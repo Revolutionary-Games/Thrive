@@ -221,9 +221,10 @@ public partial class CellEditorComponent
         // TODO: dynamic MP PR had this line:
         // OnMembraneChanged();
 
+        organismStatisticsPanel.UpdateSpeed(CalculateSpeed());
+        organismStatisticsPanel.UpdateHitpoints(CalculateHitpoints());
+
         UpdateMembraneButtons(Membrane.InternalName);
-        UpdateSpeed(CalculateSpeed());
-        UpdateHitpoints(CalculateHitpoints());
         CalculateEnergyAndCompoundBalance(editedMicrobeOrganelles.Organelles, Membrane);
         SetMembraneTooltips(Membrane);
 
@@ -245,10 +246,11 @@ public partial class CellEditorComponent
         Membrane = data.OldMembrane;
         GD.Print("Changing membrane back to '", Membrane.InternalName, "'");
         UpdateMembraneButtons(Membrane.InternalName);
-        UpdateSpeed(CalculateSpeed());
-        UpdateHitpoints(CalculateHitpoints());
         CalculateEnergyAndCompoundBalance(editedMicrobeOrganelles.Organelles, Membrane);
         SetMembraneTooltips(Membrane);
+
+        organismStatisticsPanel.UpdateSpeed(CalculateSpeed());
+        organismStatisticsPanel.UpdateHitpoints(CalculateHitpoints());
 
         StartAutoEvoPrediction();
         suggestionDirty = true;

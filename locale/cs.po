@@ -7,8 +7,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2025-01-28 15:03+0200\n"
-"PO-Revision-Date: 2025-01-21 12:01+0000\n"
+"POT-Creation-Date: 2025-02-07 11:01+0200\n"
+"PO-Revision-Date: 2025-02-06 13:29+0000\n"
 "Last-Translator: Anonymous <noreply@weblate.org>\n"
 "Language-Team: Czech <https://translate.revolutionarygamesstudio.com/projects/thrive/thrive-game/cs/>\n"
 "Language: cs\n"
@@ -1467,6 +1467,10 @@ msgstr ""
 msgid "DEBUG_DRAW_NOT_AVAILABLE"
 msgstr "Vykreslování ladění fyziky není v tomto typu sestavení k dispozici"
 
+#, fuzzy
+msgid "DEBUG_HEAT_AT_CURSOR"
+msgstr "Na kurzoru:"
+
 msgid "DEBUG_PANEL"
 msgstr "Debugovací Panel"
 
@@ -2511,6 +2515,10 @@ msgstr "Hlasitost GUI"
 msgid "HEALTH"
 msgstr "Zdraví"
 
+#, fuzzy
+msgid "HEAT_ACCUMULATION_BAR_TOOLTIP"
+msgstr "Automaticky načítat Harmony patche ze sestavy (nepotřebuje specifikování třídy modu)"
+
 msgid "HELP"
 msgstr "Nápověda"
 
@@ -3529,6 +3537,10 @@ msgstr "Mikrobiální Editor"
 msgid "MICROBE_EDITOR"
 msgstr "Mikrobiální Editor"
 
+#, fuzzy
+msgid "MICROBE_ENZYME_STATISTICS"
+msgstr "Statistika organizmu"
+
 msgid "MICROBE_FREEBUILD_EDITOR"
 msgstr "Editor mikrobů"
 
@@ -3619,6 +3631,14 @@ msgstr "Chybu opravíš stisknutím tlačítka Zpět v editoru"
 #, fuzzy
 msgid "MICROBE_LOADING_TIP_9"
 msgstr "Chybu opravíš stisknutím tlačítka Zpět v editoru"
+
+#, fuzzy
+msgid "MICROBE_MEMBRANE_PERCENTAGE_STATISTICS"
+msgstr "Statistika organizmu"
+
+#, fuzzy
+msgid "MICROBE_MEMBRANE_STATISTICS"
+msgstr "Statistika organizmu"
 
 #, fuzzy
 msgid "MICROBE_ORGANELLE_STATISTICS"
@@ -5839,7 +5859,7 @@ msgid "TESTING_TEAM"
 msgstr "Teststeři"
 
 #, fuzzy
-msgid "THANKS_FOR_BUYING_THRIVE"
+msgid "THANKS_FOR_BUYING_THRIVE_2"
 msgstr ""
 "Děkujeme, že hrajete naší hru!\n"
 "\n"
@@ -5861,18 +5881,22 @@ msgstr "Teoretici"
 msgid "THERMOPLAST"
 msgstr "Termoplast"
 
+#, fuzzy
 msgid "THERMOPLAST_DESCRIPTION"
 msgstr "Termoplast je struktura dvou membrán, která obsahuje termosenzitivní pigmenty složené dohromady v membránových vacích. Jedná se o prokaryotu, která byla asimilována pro použití svým eukaryotickým hostitelem. Pigmenty v termoplastu jsou schopny využít energii rozdílných teplot v prostředí k produkci [thrive:compound type=\"atp\"][/thrive:compound] ve vodě v procesu známem jako [b]termosyntéza[/b]. Rychlost produkce [thrive:compound type=\"atp\"][/thrive:compound] je úměrná [thrive:compound type=\"temperature\"][/thrive:compound]."
 
+#, fuzzy
 msgid "THERMOPLAST_PROCESSES_DESCRIPTION"
 msgstr "Produkuje [thrive:compound type=\"glucose\"][/thrive:compound]. Rychlost je úměrná koncentraci [thrive:compound type=\"carbondioxide\"][/thrive:compound] a teplotě."
 
 msgid "THERMOSYNTHASE"
 msgstr "Termosyntáza"
 
+#, fuzzy
 msgid "THERMOSYNTHASE_DESCRIPTION"
 msgstr "Termosyntáza je protein který využívá teplotní konvekci ke změně svého tvaru, což mu umožnuje složit a navázat se na ADP když je vystaven teplu, pak jej rozložit a recyklovat na [thrive:compound type=\"atp\"][/thrive:compound] když je vystaven chlazení v procesu známém jako [b]termosyntéza[/b]. Rychlost produkce [thrive:compound type=\"atp\"][/thrive:compound] je úměrná [thrive:compound type=\"temperature\"][/thrive:compound]."
 
+#, fuzzy
 msgid "THERMOSYNTHASE_PROCESSES_DESCRIPTION"
 msgstr "Produkuje [thrive:compound type=\"atp\"][/thrive:compound] skrze teplotní gradienty. Rychlost je úměrná [thrive:compound type=\"temperature\"][/thrive:compound]."
 
@@ -6008,6 +6032,10 @@ msgstr "Přepnout ukazatel FPS"
 
 msgid "TOGGLE_FULLSCREEN"
 msgstr "Přepínání na celou obrazovku"
+
+#, fuzzy
+msgid "TOGGLE_HEAT_VIEW_TOOLTIP"
+msgstr "Přepnout pohlcování"
 
 msgid "TOGGLE_HUD_HIDE"
 msgstr "Přepínání HUD"
@@ -8130,10 +8158,6 @@ msgid "WIKI_PULLING_CILIA"
 msgstr "Společné fáze editoru a strategie"
 
 #, fuzzy
-msgid "WIKI_RADIOSYNTHESIS"
-msgstr "Termosyntéza"
-
-#, fuzzy
 msgid "WIKI_REPRODUCTION_BUTTON"
 msgstr "Protoplazma"
 
@@ -8560,6 +8584,17 @@ msgstr "Přiblížit"
 
 msgid "ZOOM_OUT"
 msgstr "Oddálit"
+
+#, fuzzy
+#~ msgid "THANKS_FOR_BUYING_THRIVE"
+#~ msgstr ""
+#~ "Děkujeme, že hrajete naší hru!\n"
+#~ "\n"
+#~ "Pokud se vám líbí, řekněte o nás i Vašim přátelům, prosím."
+
+#, fuzzy
+#~ msgid "WIKI_RADIOSYNTHESIS"
+#~ msgstr "Termosyntéza"
 
 #~ msgid "EASTEREGG_MESSAGE_19"
 #~ msgstr "Víte, že Vpíjenka (Didinum) je lovcem Trepek (Paramecia)?"

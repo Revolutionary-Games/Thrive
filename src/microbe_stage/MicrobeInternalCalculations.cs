@@ -54,17 +54,20 @@ public static class MicrobeInternalCalculations
     public static Dictionary<Compound, float> GetTotalSpecificCapacity(IReadOnlyList<OrganelleTemplate> organelles,
         out float nominalCapacity)
     {
-        var totalNominalCap = 0.0f;
-
-        int count = organelles.Count;
-
-        for (int i = 0; i < count; ++i)
-        {
-            var organelle = organelles[i];
-            totalNominalCap += GetNominalCapacityForOrganelle(organelle.Definition, organelle.Upgrades);
-        }
+        var totalNominalCap = GetTotalNominalCapacity(organelles);
+        nominalCapacity = totalNominalCap;
 
         var capacities = new Dictionary<Compound, float>();
+
+        AddSpecificCapacity(organelles, capacities);
+
+        return capacities;
+    }
+
+    public static void AddSpecificCapacity(IReadOnlyList<OrganelleTemplate> organelles,
+        Dictionary<Compound, float> capacities)
+    {
+        var count = organelles.Count;
 
         // Update the variant of this logic in UpdateSpecificCapacities if changes are made
         for (int i = 0; i < count; ++i)
@@ -77,23 +80,15 @@ public static class MicrobeInternalCalculations
                 continue;
 
             // If this is updated the code in CompoundBag.AddSpecificCapacityForCompound must also be updated
-            if (capacities.TryGetValue(specificCapacity.Compound, out var currentCapacity))
-            {
-                capacities[specificCapacity.Compound] = currentCapacity + specificCapacity.Capacity;
-            }
-            else
-            {
-                capacities.Add(specificCapacity.Compound, specificCapacity.Capacity + totalNominalCap);
-            }
+            capacities.TryGetValue(specificCapacity.Compound, out var currentCapacity);
+            capacities[specificCapacity.Compound] = currentCapacity + specificCapacity.Capacity;
         }
-
-        nominalCapacity = totalNominalCap;
-        return capacities;
     }
 
     /// <summary>
-    ///   Variant of <see cref="GetTotalSpecificCapacity"/> to update spawned microbe stats. The used
-    ///   <see cref="CompoundBag"/> must already have the correct nominal capacity set for this to work correctly.
+    ///   Variant of <see cref="GetTotalSpecificCapacity(IReadOnlyList{OrganelleTemplate}, out float)"/> to update
+    ///   spawned microbe stats. The used <see cref="CompoundBag"/> must already have the correct nominal capacity set
+    ///   for this to work correctly.
     /// </summary>
     /// <param name="compoundBag">Target compound bag to set info in (this doesn't update nominal capacity)</param>
     /// <param name="organelles">Organelles to find specific capacity from</param>
@@ -389,7 +384,7 @@ public static class MicrobeInternalCalculations
         var enzymes = new Dictionary<Enzyme, int>();
         var result = new Dictionary<Enzyme, float>();
 
-        var lipase = SimulationParameters.Instance.GetEnzyme("lipase");
+        var lipase = SimulationParameters.Instance.GetEnzyme(Constants.LIPASE_ENZYME);
 
         foreach (var organelle in organelles)
         {
@@ -467,15 +462,23 @@ public static class MicrobeInternalCalculations
         IReadOnlyList<OrganelleTemplate> organelles, MembraneType membraneType, bool moving, bool playerSpecies,
         BiomeConditions biomeConditions, WorldGenerationSettings worldSettings)
     {
-        var energyBalance = ProcessSystem.ComputeEnergyBalance(organelles, biomeConditions, membraneType,
-            moving, playerSpecies, worldSettings, CompoundAmountType.Biome, false);
+        var energyBalance = new EnergyBalanceInfoSimple();
 
-        var compoundBalances = ProcessSystem.ComputeCompoundBalanceAtEquilibrium(organelles,
-            biomeConditions, CompoundAmountType.Biome, energyBalance);
+        var maximumMovementDirection = MaximumSpeedDirection(organelles);
+        ProcessSystem.ComputeEnergyBalanceSimple(organelles, biomeConditions, membraneType,
+            maximumMovementDirection, moving, playerSpecies, worldSettings, CompoundAmountType.Biome, null,
+            energyBalance);
+
+        var compoundBalances = new Dictionary<Compound, CompoundBalance>();
+
+        ProcessSystem.ComputeCompoundBalanceAtEquilibrium(organelles,
+            biomeConditions, CompoundAmountType.Biome, energyBalance, compoundBalances);
 
         // TODO: is it fine to use energy balance calculated with the biome numbers here?
-        var minimums = ProcessSystem.ComputeCompoundBalanceAtEquilibrium(organelles,
-            biomeConditions, CompoundAmountType.Minimum, energyBalance);
+        var minimums = new Dictionary<Compound, CompoundBalance>();
+
+        ProcessSystem.ComputeCompoundBalanceAtEquilibrium(organelles,
+            biomeConditions, CompoundAmountType.Minimum, energyBalance, minimums);
 
         var cachedCapacities = GetTotalSpecificCapacity(organelles, out var cachedCapacity);
 
@@ -558,16 +561,26 @@ public static class MicrobeInternalCalculations
     {
         if (dayCompoundBalances == null)
         {
-            var energyBalance = ProcessSystem.ComputeEnergyBalance(organelles, biomeConditions, membraneType,
-                moving, playerSpecies, worldSettings, CompoundAmountType.Biome, false);
+            var energyBalance = new EnergyBalanceInfoSimple();
 
-            dayCompoundBalances = ProcessSystem.ComputeCompoundBalanceAtEquilibrium(organelles,
-                biomeConditions, CompoundAmountType.Biome, energyBalance);
+            ProcessSystem.ComputeEnergyBalanceSimple(organelles, biomeConditions, membraneType,
+                Vector3.Forward, moving, playerSpecies, worldSettings, CompoundAmountType.Biome, null, energyBalance);
+
+            dayCompoundBalances = new Dictionary<Compound, CompoundBalance>();
+
+            ProcessSystem.ComputeCompoundBalanceAtEquilibrium(organelles,
+                biomeConditions, CompoundAmountType.Biome, energyBalance, dayCompoundBalances);
         }
 
-        var minimums = ProcessSystem.ComputeCompoundBalanceAtEquilibrium(organelles,
-            biomeConditions, CompoundAmountType.Minimum, ProcessSystem.ComputeEnergyBalance(organelles, biomeConditions,
-                membraneType, moving, playerSpecies, worldSettings, CompoundAmountType.Minimum, false));
+        var energyBalanceAtMinimum = new EnergyBalanceInfoSimple();
+
+        ProcessSystem.ComputeEnergyBalanceSimple(organelles, biomeConditions, membraneType, Vector3.Forward, moving,
+            playerSpecies, worldSettings, CompoundAmountType.Minimum, null, energyBalanceAtMinimum);
+
+        var minimums = new Dictionary<Compound, CompoundBalance>();
+
+        ProcessSystem.ComputeCompoundBalanceAtEquilibrium(organelles, biomeConditions, CompoundAmountType.Minimum,
+            energyBalanceAtMinimum, minimums);
 
         var cachedCapacities = GetTotalSpecificCapacity(organelles, out var cachedCapacity);
 

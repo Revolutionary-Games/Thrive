@@ -13,7 +13,6 @@
 [ext_resource type="Texture2D" uid="uid://d8n0qvos8qgj" path="res://assets/textures/gui/bevel/CheckAHover.svg" id="10_6ddfu"]
 [ext_resource type="Texture2D" uid="uid://b5b4cachhsid1" path="res://assets/textures/gui/bevel/RadioBDisabled.svg" id="11_haedh"]
 [ext_resource type="Texture2D" uid="uid://dndb4ybvbemeg" path="res://assets/textures/gui/bevel/CheckA.svg" id="11_ojw5x"]
-[ext_resource type="Texture2D" uid="uid://b2xjfcb1b7fup" path="res://assets/textures/gui/bevel/graphMarkerCross.png" id="12"]
 [ext_resource type="Texture2D" uid="uid://baftpflmw5mbm" path="res://assets/textures/gui/bevel/CheckBDisabled.svg" id="12_clgdg"]
 [ext_resource type="Texture2D" uid="uid://c7oscckqg7qha" path="res://assets/textures/gui/bevel/RadioADisabled.svg" id="12_ris2t"]
 [ext_resource type="Texture2D" uid="uid://kmtq0av2alnp" path="res://assets/textures/gui/bevel/CheckADisabled.svg" id="15_xv0jb"]
@@ -28,6 +27,7 @@
 [ext_resource type="FontFile" uid="uid://dblvrxw3ue372" path="res://assets/fonts/Lato-Italic.ttf" id="25_al3xa"]
 [ext_resource type="FontVariation" uid="uid://k7u2fkgwhsf0" path="res://assets/fonts/variants/RobotoMono-Regular.tres" id="26_un81c"]
 [ext_resource type="FontFile" uid="uid://s8m5c8resd50" path="res://assets/fonts/Lato-Regular.ttf" id="27_037sv"]
+[ext_resource type="Texture2D" uid="uid://bkoy6kqmc5tld" path="res://assets/textures/gui/bevel/closeCross.svg" id="28_vno4p"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_rcn6x"]
 content_margin_left = 5.0
@@ -1041,7 +1041,7 @@ Window/font_sizes/title_font_size = 16
 Window/fonts/title_font = ExtResource("1_fiqxx")
 Window/icons/close = null
 Window/icons/close_highlight = null
-Window/icons/custom_close = ExtResource("12")
+Window/icons/custom_close = ExtResource("28_vno4p")
 Window/styles/custom_close_highlight = SubResource("39")
 Window/styles/custom_panel = SubResource("40")
 Window/styles/custom_titlebar = SubResource("51")

@@ -19,6 +19,5 @@ shader_parameter/texture = ExtResource("3_lqhof")
 shader_parameter/dissolveTexture = ExtResource("2_iaryo")
 
 [node name="Melanosome" type="MeshInstance3D"]
-transform = Transform3D(0.18, 0, 0, 0, -1.22392e-08, 0.18, 0, -0.28, -7.86805e-09, 0, 0, 0)
 material_override = SubResource("ShaderMaterial_dwonw")
 mesh = ExtResource("4_27xi5")

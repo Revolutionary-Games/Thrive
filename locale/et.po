@@ -7,8 +7,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2025-01-28 15:03+0200\n"
-"PO-Revision-Date: 2024-10-17 07:24+0000\n"
+"POT-Creation-Date: 2025-02-07 11:01+0200\n"
+"PO-Revision-Date: 2025-02-06 13:29+0000\n"
 "Last-Translator: Anonymous <noreply@weblate.org>\n"
 "Language-Team: Estonian <https://translate.revolutionarygamesstudio.com/projects/thrive/thrive-game/et/>\n"
 "Language: et\n"
@@ -1464,6 +1464,10 @@ msgstr ""
 msgid "DEBUG_DRAW_NOT_AVAILABLE"
 msgstr ""
 
+#, fuzzy
+msgid "DEBUG_HEAT_AT_CURSOR"
+msgstr "Kursori juures:"
+
 msgid "DEBUG_PANEL"
 msgstr ""
 
@@ -2536,6 +2540,10 @@ msgstr "GUI helitugevus"
 msgid "HEALTH"
 msgstr "Elu"
 
+#, fuzzy
+msgid "HEAT_ACCUMULATION_BAR_TOOLTIP"
+msgstr "vabasurm"
+
 msgid "HELP"
 msgstr "Abi"
 
@@ -3567,6 +3575,10 @@ msgstr "Mikroobide redaktori laadimine"
 msgid "MICROBE_EDITOR"
 msgstr "Mikroobide redaktori laadimine"
 
+#, fuzzy
+msgid "MICROBE_ENZYME_STATISTICS"
+msgstr "Organismi statistika"
+
 msgid "MICROBE_FREEBUILD_EDITOR"
 msgstr "Microbe Freebuildi redaktor"
 
@@ -3657,6 +3669,14 @@ msgstr "Vea parandamiseks vajutage redaktoris tagasivõtmisnuppu"
 #, fuzzy
 msgid "MICROBE_LOADING_TIP_9"
 msgstr "Vea parandamiseks vajutage redaktoris tagasivõtmisnuppu"
+
+#, fuzzy
+msgid "MICROBE_MEMBRANE_PERCENTAGE_STATISTICS"
+msgstr "Organismi statistika"
+
+#, fuzzy
+msgid "MICROBE_MEMBRANE_STATISTICS"
+msgstr "Organismi statistika"
 
 #, fuzzy
 msgid "MICROBE_ORGANELLE_STATISTICS"
@@ -5935,7 +5955,7 @@ msgid "TESTING_TEAM"
 msgstr "Testimismeeskond"
 
 #, fuzzy
-msgid "THANKS_FOR_BUYING_THRIVE"
+msgid "THANKS_FOR_BUYING_THRIVE_2"
 msgstr ""
 "Tänan mängimast!\n"
 "\n"
@@ -5957,9 +5977,11 @@ msgstr "Teooria meeskond"
 msgid "THERMOPLAST"
 msgstr "Termoplast"
 
+#, fuzzy
 msgid "THERMOPLAST_DESCRIPTION"
 msgstr "Termoplast on kahekordne membraanstruktuur, mis sisaldab termotundlikke pigmente, mis on virnastatud membraanikottidesse. See on prokarüoot, mis on oma eukarüootse peremehe poolt kasutamiseks assimileeritud. Termoplastis olevad pigmendid on võimelised kasutama ümbritseva soojuse erinevuste energiat, et toota veest glükoosi ja gaasilist süsinikdioksiidi protsessis, mida nimetatakse termosünteesiks. Selle glükoosi tootmise kiirus sõltub süsinikdioksiidi kontsentratsioonist ja temperatuurist."
 
+#, fuzzy
 msgid "THERMOPLAST_PROCESSES_DESCRIPTION"
 msgstr "Toodab [thrive:compound type=\"glucose\"][/thrive:compound]. Hindamisskaalad [thrive:compound type=\"süsinikdioksiid\"][/thrive:compound] kontsentratsiooni ja temperatuuriga."
 
@@ -6110,6 +6132,10 @@ msgstr "FPS-kuva sisse- ja väljalülitamine"
 
 msgid "TOGGLE_FULLSCREEN"
 msgstr "Lülitage täisekraan sisse"
+
+#, fuzzy
+msgid "TOGGLE_HEAT_VIEW_TOOLTIP"
+msgstr "Neelamise sisse- ja väljalülitamine"
 
 msgid "TOGGLE_HUD_HIDE"
 msgstr "HUD sisse- ja väljalülitamine"
@@ -8317,10 +8343,6 @@ msgid "WIKI_PULLING_CILIA"
 msgstr ""
 
 #, fuzzy
-msgid "WIKI_RADIOSYNTHESIS"
-msgstr "Kemosüntees"
-
-#, fuzzy
 msgid "WIKI_REPRODUCTION_BUTTON"
 msgstr "Protoplasma"
 
@@ -8790,6 +8812,17 @@ msgstr "Suurenda"
 
 msgid "ZOOM_OUT"
 msgstr "Suumi välja"
+
+#, fuzzy
+#~ msgid "THANKS_FOR_BUYING_THRIVE"
+#~ msgstr ""
+#~ "Tänan mängimast!\n"
+#~ "\n"
+#~ "Kui teile mäng meeldis, rääkige meist oma sõpradele."
+
+#, fuzzy
+#~ msgid "WIKI_RADIOSYNTHESIS"
+#~ msgstr "Kemosüntees"
 
 #~ msgid "EASTEREGG_MESSAGE_19"
 #~ msgstr "Lõbus tõsiasi, Didinium on ripsloom, kes jahib parametsiat."

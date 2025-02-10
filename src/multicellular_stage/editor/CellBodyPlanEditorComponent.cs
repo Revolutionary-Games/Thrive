@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using Godot;
 using Newtonsoft.Json;
+using Systems;
 
 /// <summary>
 ///   Body plan editor component for making body plans from hexes (that represent cells)
@@ -68,6 +69,12 @@ public partial class CellBodyPlanEditorComponent :
     private readonly List<Hex> islandsWorkMemory2 = new();
     private readonly Queue<Hex> islandsWorkMemory3 = new();
 
+    private readonly List<EditorUserOverride> ignoredEditorWarnings = new();
+
+    private readonly Dictionary<Compound, float> processSpeedWorkMemory = new();
+
+    private readonly Dictionary<CellType, int> cellTypesCount = new();
+
 #pragma warning disable CA2213
 
     // Selection menu tab selector buttons
@@ -103,6 +110,12 @@ public partial class CellBodyPlanEditorComponent :
     private CellPopupMenu cellPopupMenu = null!;
 
     private PackedScene billboardScene = null!;
+
+    [Export]
+    private OrganismStatisticsPanel organismStatisticsPanel = null!;
+
+    [Export]
+    private CustomConfirmationDialog negativeAtpPopup = null!;
 #pragma warning restore CA2213
 
     [JsonProperty]
@@ -121,6 +134,8 @@ public partial class CellBodyPlanEditorComponent :
 
     private bool forceUpdateCellGraphics;
 
+    private EnergyBalanceInfoFull? energyBalanceInfo;
+
     [Signal]
     public delegate void OnCellTypeToEditSelectedEventHandler(string name, bool switchTab);
 
@@ -135,6 +150,23 @@ public partial class CellBodyPlanEditorComponent :
     public override bool HasIslands =>
         editedMicrobeCells.GetIslandHexes(islandResults, islandsWorkMemory1, islandsWorkMemory2,
             islandsWorkMemory3) > 0;
+
+    public override bool ShowFinishButtonWarning
+    {
+        get
+        {
+            if (base.ShowFinishButtonWarning)
+                return true;
+
+            if (IsNegativeAtpProduction())
+                return true;
+
+            if (HasIslands)
+                return true;
+
+            return false;
+        }
+    }
 
     [JsonIgnore]
     public bool NodeReferencesResolved { get; private set; }
@@ -225,7 +257,7 @@ public partial class CellBodyPlanEditorComponent :
 
             if (Editor.EditedCellProperties != null)
             {
-                UpdateGUIAfterLoadingSpecies();
+                UpdateGUIAfterLoadingSpecies(Editor.EditedBaseSpecies);
                 UpdateArrow(false);
             }
             else
@@ -233,6 +265,9 @@ public partial class CellBodyPlanEditorComponent :
                 GD.Print("Loaded body plan editor with no cell to edit set");
             }
         }
+
+        organismStatisticsPanel.UpdateLightSelectionPanelVisibility(
+            Editor.CurrentGame.GameWorld.WorldSettings.DayNightCycleEnabled && Editor.CurrentPatch.HasDayAndNight);
 
         UpdateCancelButtonVisibility();
     }
@@ -355,7 +390,7 @@ public partial class CellBodyPlanEditorComponent :
 
         newName = species.FormattedName;
 
-        UpdateGUIAfterLoadingSpecies();
+        UpdateGUIAfterLoadingSpecies(species);
 
         UpdateArrow(false);
     }
@@ -419,10 +454,12 @@ public partial class CellBodyPlanEditorComponent :
         if (!base.CanFinishEditing(editorUserOverrides))
             return false;
 
-        if (editorUserOverrides.Contains(EditorUserOverride.NotProducingEnoughATP))
-            return true;
-
-        // TODO: warning about not producing enough ATP if entire body plan would be negative
+        if (IsNegativeAtpProduction() &&
+            !editorUserOverrides.Contains(EditorUserOverride.NotProducingEnoughATP))
+        {
+            negativeAtpPopup.PopupCenteredShrink();
+            return false;
+        }
 
         return true;
     }
@@ -439,6 +476,8 @@ public partial class CellBodyPlanEditorComponent :
         UpdateCellTypeSelections();
 
         RegenerateCellTypeIcon(changedType);
+
+        UpdateStats();
     }
 
     /// <summary>
@@ -477,13 +516,30 @@ public partial class CellBodyPlanEditorComponent :
         return true;
     }
 
+    public Dictionary<Compound, float> GetAdditionalCapacities(out float nominalCapacity)
+    {
+        return CellBodyPlanInternalCalculations.GetTotalSpecificCapacity(editedMicrobeCells.Select(o => o.Data!),
+            out nominalCapacity);
+    }
+
+    public void OnCurrentPatchUpdated(Patch patch)
+    {
+        CalculateEnergyAndCompoundBalance(editedMicrobeCells);
+
+        organismStatisticsPanel.UpdateLightSelectionPanelVisibility(
+            Editor.CurrentGame.GameWorld.WorldSettings.DayNightCycleEnabled && Editor.CurrentPatch.HasDayAndNight);
+    }
+
+    public override void OnLightLevelChanged(float dayLightFraction)
+    {
+        UpdateVisualLightLevel(dayLightFraction, Editor.CurrentPatch);
+
+        CalculateEnergyAndCompoundBalance(editedMicrobeCells);
+    }
+
     protected CellType CellTypeFromName(string name)
     {
         return Editor.EditedSpecies.CellTypes.First(c => c.TypeName == name);
-    }
-
-    protected override void OnTranslationsChanged()
-    {
     }
 
     protected override int CalculateCurrentActionCost()
@@ -620,13 +676,44 @@ public partial class CellBodyPlanEditorComponent :
         base.Dispose(disposing);
     }
 
-    private void UpdateGUIAfterLoadingSpecies()
+    private void SetLightLevelOption(int option)
     {
-        GD.Print("Starting multicellular editor with: ", editedMicrobeCells.Count,
-            " cells in the microbe");
+        // Show selected light level
+        switch ((LightLevelOption)option)
+        {
+            case LightLevelOption.Day:
+            {
+                Editor.DayLightFraction = 1;
+                break;
+            }
 
-        SetSpeciesInfo(newName,
-            behaviourEditor.Behaviour ?? throw new Exception("Editor doesn't have Behaviour setup"));
+            case LightLevelOption.Night:
+            {
+                Editor.DayLightFraction = 0;
+                break;
+            }
+
+            case LightLevelOption.Average:
+            {
+                Editor.DayLightFraction = Editor.CurrentGame.GameWorld.LightCycle.AverageSunlight;
+                break;
+            }
+
+            case LightLevelOption.Current:
+            {
+                Editor.DayLightFraction = Editor.CurrentGame.GameWorld.LightCycle.DayLightFraction;
+                break;
+            }
+
+            default:
+                throw new Exception("Invalid light level option");
+        }
+    }
+
+    private bool IsNegativeAtpProduction()
+    {
+        return energyBalanceInfo != null &&
+            energyBalanceInfo.TotalProduction < energyBalanceInfo.TotalConsumptionStationary;
     }
 
     private void SetSpeciesInfo(string name, BehaviourDictionary behaviour)
@@ -979,11 +1066,142 @@ public partial class CellBodyPlanEditorComponent :
         EmitSignal(SignalName.OnCellTypeToEditSelected, default(Variant), false);
     }
 
+    private void OnEnergyBalanceOptionsChanged()
+    {
+        CalculateEnergyAndCompoundBalance(editedMicrobeCells);
+    }
+
+    private void OnResourceLimitingModeChanged()
+    {
+        CalculateEnergyAndCompoundBalance(editedMicrobeCells);
+    }
+
     private void OnCellsChanged()
     {
         UpdateAlreadyPlacedVisuals();
 
+        UpdateStats();
+
         UpdateArrow();
+
+        UpdateFinishButtonWarningVisibility();
+    }
+
+    private void UpdateStats()
+    {
+        organismStatisticsPanel.UpdateStorage(GetAdditionalCapacities(out var nominalCapacity), nominalCapacity);
+        organismStatisticsPanel.UpdateSpeed(CellBodyPlanInternalCalculations.CalculateSpeed(editedMicrobeCells));
+        organismStatisticsPanel.UpdateRotationSpeed(
+            CellBodyPlanInternalCalculations.CalculateRotationSpeed(editedMicrobeCells));
+
+        CalculateEnergyAndCompoundBalance(editedMicrobeCells);
+    }
+
+    /// <summary>
+    ///   Calculates the energy balance and compound balance for a colony
+    /// </summary>
+    private void CalculateEnergyAndCompoundBalance(IReadOnlyList<HexWithData<CellTemplate>> cells,
+        BiomeConditions? biome = null)
+    {
+        biome ??= Editor.CurrentPatch.Biome;
+
+        bool moving = organismStatisticsPanel.CalculateBalancesWhenMoving;
+
+        IBiomeConditions conditionsData = biome;
+
+        if (organismStatisticsPanel.ResourceLimitingMode != ResourceLimitingMode.AllResources)
+        {
+            conditionsData = new BiomeResourceLimiterAdapter(organismStatisticsPanel.ResourceLimitingMode,
+                conditionsData);
+        }
+
+        var energyBalance = new EnergyBalanceInfoFull();
+        energyBalance.SetupTrackingForRequiredCompounds();
+
+        // Cells can't individually move in the body plan, so this probably makes sense
+        var maximumMovementDirection =
+            MicrobeInternalCalculations.MaximumSpeedDirection(cells[0].Data!.CellType.Organelles);
+
+        // TODO: improve performance by calculating the balance per cell type
+        foreach (var hex in cells)
+        {
+            ProcessSystem.ComputeEnergyBalanceFull(hex.Data!.Organelles, conditionsData, hex.Data.MembraneType,
+                maximumMovementDirection, moving, true, Editor.CurrentGame.GameWorld.WorldSettings,
+                organismStatisticsPanel.CompoundAmountType, null, energyBalance);
+        }
+
+        energyBalanceInfo = energyBalance;
+
+        // TODO: It doesn't entirely make sense to sum up a colony's ATP balances and show them that way.
+        // It would be better to display those separately for each cell type.
+        // https://github.com/Revolutionary-Games/Thrive/issues/5863
+        organismStatisticsPanel.UpdateEnergyBalance(energyBalance);
+
+        // Passing those variables by refs to the following functions to reuse them
+        float nominalStorage = 0;
+        Dictionary<Compound, float>? specificStorages = null;
+
+        // This takes balanceType into account as well, https://github.com/Revolutionary-Games/Thrive/issues/2068
+        var compoundBalanceData =
+            CalculateCompoundBalanceWithMethod(organismStatisticsPanel.BalanceDisplayType,
+                organismStatisticsPanel.CompoundAmountType,
+                cells, conditionsData, energyBalance,
+                ref specificStorages, ref nominalStorage);
+
+        UpdateCompoundBalances(compoundBalanceData);
+
+        // TODO: should this skip on being affected by the resource limited?
+        var nightBalanceData = CalculateCompoundBalanceWithMethod(organismStatisticsPanel.BalanceDisplayType,
+            CompoundAmountType.Minimum, cells, conditionsData, energyBalance, ref specificStorages,
+            ref nominalStorage);
+
+        UpdateCompoundLastingTimes(compoundBalanceData, nightBalanceData, nominalStorage,
+            specificStorages ?? throw new Exception("Special storages should have been calculated"));
+
+        HandleProcessList(cells, energyBalance, conditionsData);
+    }
+
+    private Dictionary<Compound, CompoundBalance> CalculateCompoundBalanceWithMethod(BalanceDisplayType calculationType,
+        CompoundAmountType amountType,
+        IReadOnlyList<HexWithData<CellTemplate>> cells, IBiomeConditions biome, EnergyBalanceInfoFull energyBalance,
+        ref Dictionary<Compound, float>? specificStorages, ref float nominalStorage)
+    {
+        Dictionary<Compound, CompoundBalance> compoundBalanceData = new();
+        foreach (var cell in cells)
+        {
+            switch (calculationType)
+            {
+                case BalanceDisplayType.MaxSpeed:
+                    ProcessSystem.ComputeCompoundBalance(cell.Data!.Organelles, biome,
+                        amountType, true, compoundBalanceData);
+                    break;
+                case BalanceDisplayType.EnergyEquilibrium:
+                    ProcessSystem.ComputeCompoundBalanceAtEquilibrium(cell.Data!.Organelles, biome,
+                        amountType, energyBalance, compoundBalanceData);
+                    break;
+                default:
+                    GD.PrintErr("Unknown compound balance type: ", organismStatisticsPanel.BalanceDisplayType);
+                    goto case BalanceDisplayType.EnergyEquilibrium;
+            }
+        }
+
+        specificStorages ??= CellBodyPlanInternalCalculations.GetTotalSpecificCapacity(cells.Select(o => o.Data!),
+            out nominalStorage);
+
+        return ProcessSystem.ComputeCompoundFillTimes(compoundBalanceData, nominalStorage, specificStorages);
+    }
+
+    private void UpdateCellTypesCounts()
+    {
+        cellTypesCount.Clear();
+
+        foreach (var cell in editedMicrobeCells)
+        {
+            var type = cell.Data!.CellType;
+
+            cellTypesCount.TryGetValue(type, out var count);
+            cellTypesCount[type] = count + 1;
+        }
     }
 
     /// <summary>

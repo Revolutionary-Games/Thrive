@@ -1,29 +1,29 @@
 [gd_scene load_steps=27 format=3 uid="uid://bwegwjlcioasf"]
 
-[ext_resource type="Texture2D" uid="uid://myvmqsv45fl2" path="res://assets/textures/gui/bevel/redoButton.png" id="1"]
-[ext_resource type="Texture2D" uid="uid://dwsqu6nwbwg5s" path="res://assets/textures/gui/bevel/undoButton.png" id="2"]
-[ext_resource type="Texture2D" uid="uid://vcyi34wajt1n" path="res://assets/textures/gui/bevel/undoButtonActive.png" id="3"]
+[ext_resource type="Texture2D" uid="uid://diggoda10kfmt" path="res://assets/textures/gui/bevel/button.svg" id="3_xnvnb"]
 [ext_resource type="Texture2D" uid="uid://ch76ktrn1xy7r" path="res://assets/textures/gui/bevel/randomizeButtonDisabled.png" id="4"]
+[ext_resource type="Texture2D" uid="uid://dk38u8t166r53" path="res://assets/textures/gui/bevel/buttonActive.svg" id="4_otqx2"]
 [ext_resource type="Texture2D" uid="uid://baqkntjn5ng0y" path="res://assets/textures/gui/bevel/randomizeButton.png" id="5"]
-[ext_resource type="Texture2D" uid="uid://ienga5rrgrs0" path="res://assets/textures/gui/bevel/button.png" id="6"]
-[ext_resource type="Texture2D" uid="uid://xq6pcosypmfk" path="res://assets/textures/gui/bevel/clockButtonDisabled.png" id="7"]
-[ext_resource type="Texture2D" uid="uid://bjikfykbmmyol" path="res://assets/textures/gui/bevel/clockButton.png" id="8"]
-[ext_resource type="Texture2D" uid="uid://irfwi36xxb7k" path="res://assets/textures/gui/bevel/clockButtonActive.png" id="9"]
-[ext_resource type="Texture2D" uid="uid://8mwewdvpgdkb" path="res://assets/textures/gui/bevel/clockButtonHover.png" id="10"]
-[ext_resource type="Texture2D" uid="uid://bl7eohr5btm05" path="res://assets/textures/gui/bevel/undoButtonDisabled.png" id="11"]
-[ext_resource type="Texture2D" uid="uid://waxpjj3uceh8" path="res://assets/textures/gui/bevel/redoButtonDisabled.png" id="12"]
+[ext_resource type="Texture2D" uid="uid://bkwy8wv725emn" path="res://assets/textures/gui/bevel/buttonHover.svg" id="5_8d06q"]
+[ext_resource type="Texture2D" uid="uid://dc80ruc0bw3sb" path="res://assets/textures/gui/bevel/buttonDisabled.svg" id="6_a0v22"]
+[ext_resource type="Texture2D" uid="uid://gxd4vmydvjnf" path="res://assets/textures/gui/bevel/1xSymmetry.svg" id="7_b41wt"]
+[ext_resource type="Texture2D" uid="uid://dkl35gpkwqmvf" path="res://assets/textures/gui/bevel/undoButton.svg" id="8_3kcj4"]
+[ext_resource type="Texture2D" uid="uid://b5wnch57nfdkl" path="res://assets/textures/gui/bevel/undoButtonActive.svg" id="9_15ppm"]
+[ext_resource type="Texture2D" uid="uid://bqw1s2p3cp5m7" path="res://assets/textures/gui/bevel/undoButtonHover.svg" id="10_shn86"]
+[ext_resource type="Texture2D" uid="uid://dkiesgcdqnups" path="res://assets/textures/gui/bevel/undoButtonDisabled.svg" id="11_u7ura"]
+[ext_resource type="Texture2D" uid="uid://cvvbaukcnwwnx" path="res://assets/textures/gui/bevel/redoButton.svg" id="12_ehxfr"]
 [ext_resource type="Texture2D" uid="uid://jm2munbr7078" path="res://assets/textures/gui/bevel/randomizeButtonHover.png" id="13"]
-[ext_resource type="Texture2D" uid="uid://qxt24jxghje" path="res://assets/textures/gui/bevel/redoButtonHover.png" id="14"]
+[ext_resource type="Texture2D" uid="uid://cwh0nxswd7bbw" path="res://assets/textures/gui/bevel/redoButtonActive.svg" id="13_qoybt"]
+[ext_resource type="Texture2D" uid="uid://bhlaommxe558b" path="res://assets/textures/gui/bevel/redoButtonHover.svg" id="14_f7c4b"]
 [ext_resource type="Texture2D" uid="uid://c8qyts61c8a0y" path="res://assets/textures/gui/bevel/randomizeButtonActive.png" id="15"]
-[ext_resource type="Texture2D" uid="uid://u6xia8ogoguy" path="res://assets/textures/gui/bevel/buttonHover.png" id="16"]
-[ext_resource type="Texture2D" uid="uid://c16bkoqqx7w3h" path="res://assets/textures/gui/bevel/undoButtonHover.png" id="17"]
-[ext_resource type="Texture2D" uid="uid://d4k6fcmyngydt" path="res://assets/textures/gui/bevel/1xSymmetry.png" id="18"]
-[ext_resource type="Texture2D" uid="uid://dgn0a345ydfa1" path="res://assets/textures/gui/bevel/redoButtonActive.png" id="19"]
-[ext_resource type="Texture2D" uid="uid://bacp3rllk2nfq" path="res://assets/textures/gui/bevel/buttonActive.png" id="20"]
+[ext_resource type="Texture2D" uid="uid://gwmteib7k8wi" path="res://assets/textures/gui/bevel/redoButtonDisabled.svg" id="15_4uesr"]
+[ext_resource type="Texture2D" uid="uid://bwt37okwu5do4" path="res://assets/textures/gui/bevel/clockButton.svg" id="16_irqtw"]
+[ext_resource type="Texture2D" uid="uid://bgtbqglkjwhic" path="res://assets/textures/gui/bevel/clockButtonActive.svg" id="17_hrteg"]
+[ext_resource type="Texture2D" uid="uid://c4bawvfnd76bv" path="res://assets/textures/gui/bevel/clockButtonHover.svg" id="18_kdcj7"]
+[ext_resource type="Texture2D" uid="uid://ch4yengbxhjsg" path="res://assets/textures/gui/bevel/clockButtonDisabled.svg" id="19_gtqnh"]
 [ext_resource type="FontFile" uid="uid://dblvrxw3ue372" path="res://assets/fonts/Lato-Italic.ttf" id="20_ffguv"]
 [ext_resource type="Theme" uid="uid://b4cx0o110g4b6" path="res://src/gui_common/thrive_theme.tres" id="21"]
 [ext_resource type="Script" path="res://src/microbe_stage/editor/EditorComponentBottomLeftButtons.cs" id="22"]
-[ext_resource type="Texture2D" uid="uid://dggmsgyoxac4d" path="res://assets/textures/gui/bevel/buttonDisabled.png" id="23"]
 
 [sub_resource type="Animation" id="22"]
 resource_name = "invalidSpeciesNameFlash"
@@ -76,10 +76,10 @@ custom_minimum_size = Vector2(35, 35)
 layout_mode = 2
 size_flags_vertical = 4
 action_mode = 0
-texture_normal = ExtResource("6")
-texture_pressed = ExtResource("20")
-texture_hover = ExtResource("16")
-texture_disabled = ExtResource("23")
+texture_normal = ExtResource("3_xnvnb")
+texture_pressed = ExtResource("4_otqx2")
+texture_hover = ExtResource("5_8d06q")
+texture_disabled = ExtResource("6_a0v22")
 ignore_texture_size = true
 stretch_mode = 5
 
@@ -88,7 +88,7 @@ layout_mode = 0
 anchor_right = 1.0
 anchor_bottom = 1.0
 mouse_filter = 2
-texture = ExtResource("18")
+texture = ExtResource("7_b41wt")
 expand_mode = 1
 
 [node name="UndoButton" type="TextureButton" parent="HBoxContainer"]
@@ -96,10 +96,10 @@ custom_minimum_size = Vector2(35, 35)
 layout_mode = 2
 size_flags_vertical = 4
 action_mode = 0
-texture_normal = ExtResource("2")
-texture_pressed = ExtResource("3")
-texture_hover = ExtResource("17")
-texture_disabled = ExtResource("11")
+texture_normal = ExtResource("8_3kcj4")
+texture_pressed = ExtResource("9_15ppm")
+texture_hover = ExtResource("10_shn86")
+texture_disabled = ExtResource("11_u7ura")
 ignore_texture_size = true
 stretch_mode = 5
 
@@ -108,10 +108,10 @@ custom_minimum_size = Vector2(35, 35)
 layout_mode = 2
 size_flags_vertical = 4
 action_mode = 0
-texture_normal = ExtResource("1")
-texture_pressed = ExtResource("19")
-texture_hover = ExtResource("14")
-texture_disabled = ExtResource("12")
+texture_normal = ExtResource("12_ehxfr")
+texture_pressed = ExtResource("13_qoybt")
+texture_hover = ExtResource("14_f7c4b")
+texture_disabled = ExtResource("15_4uesr")
 ignore_texture_size = true
 stretch_mode = 5
 
@@ -119,10 +119,10 @@ stretch_mode = 5
 custom_minimum_size = Vector2(35, 35)
 layout_mode = 2
 size_flags_vertical = 4
-texture_normal = ExtResource("8")
-texture_pressed = ExtResource("9")
-texture_hover = ExtResource("10")
-texture_disabled = ExtResource("7")
+texture_normal = ExtResource("16_irqtw")
+texture_pressed = ExtResource("17_hrteg")
+texture_hover = ExtResource("18_kdcj7")
+texture_disabled = ExtResource("19_gtqnh")
 ignore_texture_size = true
 stretch_mode = 5
 

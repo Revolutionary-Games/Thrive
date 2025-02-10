@@ -7,8 +7,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2025-01-28 15:03+0200\n"
-"PO-Revision-Date: 2025-01-21 12:01+0000\n"
+"POT-Creation-Date: 2025-02-07 11:01+0200\n"
+"PO-Revision-Date: 2025-02-06 13:29+0000\n"
 "Last-Translator: Anonymous <noreply@weblate.org>\n"
 "Language-Team: Chinese (Traditional Han script) <https://translate.revolutionarygamesstudio.com/projects/thrive/thrive-game/zh_Hant/>\n"
 "Language: zh_TW\n"
@@ -62,13 +62,13 @@ msgid "ACTION_DELETE"
 msgstr "刪除"
 
 msgid "ACTION_DOUBLE_POPULATION"
-msgstr "種群數量翻倍"
+msgstr "物種量加倍"
 
 msgid "ACTION_DUPLICATE_UNITS"
 msgstr "複製單元"
 
 msgid "ACTION_HALF_POPULATION"
-msgstr "種群數量減半"
+msgstr "物種量減半"
 
 msgid "ACTION_TELEPORT"
 msgstr "傳送"
@@ -142,7 +142,6 @@ msgstr "（允許在滅絕後以不同物種繼續進行遊戲，而非結束遊
 msgid "ALL_WORLDS_GENERAL_STATISTICS"
 msgstr "全世界的生物統計"
 
-#, fuzzy
 msgid "ALL_WORLDS_STATISTICS"
 msgstr ""
 "[b]世代：[/b]\n"
@@ -151,13 +150,14 @@ msgstr ""
 "平均值 {1}；標準差 {2}\n"
 "[b]現存物種數：[/b]\n"
 "平均值 {3}；標準差 {4}\n"
-"[b]區域平均物種數：[/b]\n"
+"[b]各區域物種數：[/b]\n"
 "平均值 {5}；標準差 {6}\n"
-"[b]區域平均種群數量：[/b]\n"
+"[b]各區域總物種量：[/b]\n"
 "平均值 {7}；標準差 {8}\n"
-"[b]微生物生物大小：[/b]\n"
+"[b]微生物平均大小：[/b]\n"
 "平均值 {9}；標準差 {10}\n"
-"[b]基本細胞器資訊：[/b]"
+"\n"
+"[b]一般細胞器資料：[/b]"
 
 msgid "ALREADY_ASCENDED"
 msgstr "您已經飛昇了"
@@ -300,29 +300,27 @@ msgid "AUTO"
 msgstr "自動"
 
 msgid "AUTO-EVO_EXPLANATION_EXPLANATION"
-msgstr "此面板顯示 Auto-Evo 預測所依據的數字。一個物種能夠捕獲的總能量以及該物種每個個體的成本決定了最終的族群數量。Auto-Evo 使用簡化的現實模型，根據物種能夠收集的能量來計算它們的表現。對於每種食物來源，它顯示了該物種從其獲得的能量以及該食物來源所能提供的總能量。物種從總能量中獲得的分數取決於適應度與總適應度相比的大小。適應性是衡量物種利用食物來源能力的指標。"
+msgstr "此面板顯示 Auto-Evo 預測所依據的數字。一個物種能夠捕獲的總能量以及該物種每個個體的成本決定了最終的物種量。Auto-Evo 使用簡化的現實模型，根據物種能夠收集的能量來計算它們的表現。對於每種食物來源，它顯示了該物種從其獲得的能量以及該食物來源所能提供的總能量。物種從總能量中獲得的分數取決於適應度與總適應度相比的大小。適應性是衡量物種利用食物來源能力的指標。"
 
 msgid "AUTO-EVO_POPULATION_CHANGED_2"
-msgstr "{0} 在 {2}的種群數量變化了 {1}，原因：{3}"
+msgstr "{0} 在 {2}的物種量變化了 {1}，原因：{3}"
 
 msgid "AUTO-EVO_PREDICTION"
 msgstr "Auto-Evo 預測"
 
 msgid "AUTO-EVO_PREDICTION_BOX_DESCRIPTION"
 msgstr ""
-"此面板顯示了 Auto-Evo 對已編輯物種的的預期種群數量。\n"
-"Auto-Evo 運行的種群模擬（以及玩家自己的表現）是影響種群數量的另一因素。"
+"此面板顯示了 Auto-Evo 對已編輯物種的的預期物種量。\n"
+"Auto-Evo 運行的物種量模擬（以及玩家自己的表現）是影響物種量的另一因素。"
 
 msgid "AUTO-EVO_STEPS_DONE"
 msgstr "已完成 {0:F1}%。{1:n0}/{2:n0} 步。"
 
-#, fuzzy
 msgid "AUTO-EVO_STRENGHT_MULTIPLIER"
-msgstr "突變成本倍率"
+msgstr "玩家的 Auto-Evo 強度"
 
-#, fuzzy
 msgid "AUTO-EVO_STRENGHT_MULTIPLIER_EXPLANATION"
-msgstr "（編輯器中細胞器、膜與其他項目的成本）"
+msgstr "（適用於玩家物種的 Auto-Evo 物種量變化百分比）"
 
 msgid "AUTOSAVE_DURING_THE_GAME"
 msgstr "遊戲中自動存檔"
@@ -1002,7 +1000,7 @@ msgid "CONTINUE"
 msgstr "繼續遊戲"
 
 msgid "CONTINUE_AS_SPECIES"
-msgstr "[center]遊戲尚未結束。您可以切換到種群數量為 {1} 的物種 {0} 並[b]繼續遊戲[/b]。[/center]"
+msgstr "[center]遊戲尚未結束。您可以切換到物種量為 {1} 的物種 {0} 並[b]繼續遊戲[/b]。[/center]"
 
 msgid "CONTINUE_THRIVING"
 msgstr "繼續遊戲"
@@ -1305,28 +1303,28 @@ msgstr "目前正在研究：{0}（{1}）"
 msgid "CURRENT_WORLD"
 msgstr "當前世界"
 
-#, fuzzy
 msgid "CURRENT_WORLD_STATISTICS"
 msgstr ""
 "[b]世代：[/b]\n"
 "  {0}\n"
-"[b]區域數：[/b]\n"
+"[b]總區域數：[/b]\n"
 "  {1}\n"
-"[b]Auto-Evo 運行時間：[/b]\n"
+"[b]總 Auto-Evo 模擬時間：[/b]\n"
 "  {2}\n"
 "[b]總物種數：[/b]\n"
 "  {3}\n"
 "[b]現存物種數：[/b]\n"
 "  {4}\n"
-"[b]區域物種數：[/b]\n"
+"[b]各區域物種數：[/b]\n"
 "  平均值 {5}；標準差 {6}\n"
-"[b]總族群數：[/b]\n"
+"[b]總物種量：[/b]\n"
 "  {7}\n"
 "[b]優勢物種：[/b]\n"
 "  {8}\n"
-"[b]基本微生物物種資訊：[/b]\n"
+"[b]基本微生物物種資料：[/b]\n"
 "  平均大小：{9}\n"
-"[b]基本細胞器資訊：[/b]"
+"\n"
+"[b]一般細胞器資料：[/b]"
 
 msgid "CUSTOM_USERNAME"
 msgstr "自訂使用者名稱："
@@ -1346,9 +1344,8 @@ msgstr "將[thrive:compound type=\"glucose\"][/thrive:compound] 轉化為[thrive
 msgid "CYTOTOXIN_SYNTHESIS"
 msgstr "細胞毒素合成"
 
-#, fuzzy
 msgid "DAMAGE_SOURCE_RADIATION"
-msgstr "選擇目前包含您的物種的區域作為遷移來源"
+msgstr "輻射"
 
 msgid "DAY_LENGTH"
 msgstr "一日時長"
@@ -1384,6 +1381,10 @@ msgstr ""
 
 msgid "DEBUG_DRAW_NOT_AVAILABLE"
 msgstr "物理偵錯繪製在此構建類型中不可用"
+
+#, fuzzy
+msgid "DEBUG_HEAT_AT_CURSOR"
+msgstr "滑鼠指標處："
 
 msgid "DEBUG_PANEL"
 msgstr "除錯面板"
@@ -1499,7 +1500,7 @@ msgstr ""
 "突變成本倍率：{1}\n"
 "AI 突變率：{2}\n"
 "化合物雲密度：{3}\n"
-"玩家死亡種群數量懲罰：{4}\n"
+"玩家死亡物種量懲罰：{4}\n"
 "環境葡萄糖保留：{5}\n"
 "滲透調節成本倍率：{6}\n"
 "離開編輯器時額外的葡萄糖雲：{7}\n"
@@ -1830,7 +1831,7 @@ msgid "ENERGY_SOURCES"
 msgstr "能量來源："
 
 msgid "ENERGY_SUMMARY_LINE"
-msgstr "收集的總能量為 {0}，個體成本為 {1}，未修正前的種群數量為 {2}"
+msgstr "收集的總能量為 {0}，個體成本為 {1}，未修正前的物種量為 {2}"
 
 msgid "ENGULF_NO_ATP_DAMAGE_MESSAGE"
 msgstr "因無 ATP 進入吞噬模式而受損"
@@ -2201,9 +2202,8 @@ msgstr "完整模組資訊"
 msgid "GALLERY_VIEWER"
 msgstr "畫廊檢視器"
 
-#, fuzzy
 msgid "GAMEPLAY_BASICS_TITLE"
-msgstr "遊戲系統"
+msgstr "基本遊戲系統"
 
 msgid "GAME_DESIGN_TEAM"
 msgstr "遊戲設計團隊"
@@ -2213,39 +2213,32 @@ msgstr "遊戲系統"
 
 msgid "GATHERED_ENERGY_TOOLTIP"
 msgstr ""
-"顯示您的物種在所有區域中收集的總預測能量以及由此計算的種群數量（在括號內）。\n"
+"顯示您的物種在所有區域中收集的總預測能量以及由此計算的物種量（在括號內）。\n"
 "先前的能量：{0}"
 
 msgid "GENERAL"
 msgstr "一般"
 
-#, fuzzy
 msgid "GENERAL_LOADING_TIP_1"
 msgstr "在編輯器中點擊撤消按鈕以糾正錯誤"
 
-#, fuzzy
 msgid "GENERAL_LOADING_TIP_2"
-msgstr "在編輯器中點擊撤消按鈕以糾正錯誤"
+msgstr "小心更大的生物。它們會吃掉您，而且被消化的過程可不好受！"
 
-#, fuzzy
 msgid "GENERAL_LOADING_TIP_3"
-msgstr "在編輯器中點擊撤消按鈕以糾正錯誤"
+msgstr "反覆捕獵同一物種時要小心，因為您可能會將它們捕獵至滅絕。其他物種也可以做到這一點。"
 
-#, fuzzy
 msgid "GENERAL_LOADING_TIP_4"
-msgstr "在編輯器中點擊撤消按鈕以糾正錯誤"
+msgstr "有時逃跑就是最好的選擇。"
 
-#, fuzzy
 msgid "GENERAL_LOADING_TIP_5"
-msgstr "在編輯器中點擊撤消按鈕以糾正錯誤"
+msgstr "當 Auto-Evo 預測您的物種量會下降時，您仍然可以透過良好的表現來提高物種量。"
 
-#, fuzzy
 msgid "GENERAL_LOADING_TIP_6"
-msgstr "在編輯器中點擊撤消按鈕以糾正錯誤"
+msgstr "別忘了，您可以使用螢幕右上角的面板查看遊標下的內容。"
 
-#, fuzzy
 msgid "GENERAL_LOADING_TIP_7"
-msgstr "在編輯器中點擊撤消按鈕以糾正錯誤"
+msgstr "如果您的物種量降至零，您就會滅絕。"
 
 msgid "GENERATIONS"
 msgstr "世代"
@@ -2263,7 +2256,7 @@ msgid "GLOBAL_INITIAL_LETTER"
 msgstr "G"
 
 msgid "GLOBAL_POPULATION_COLON"
-msgstr "全域種群數量："
+msgstr "全域物種量："
 
 msgid "GLOBAL_TIMELINE_SPECIES_MIGRATED_TO"
 msgstr "[b][u]{0}[/u][/b] 種群的一部分從 {2}遷移到 {1}"
@@ -2322,6 +2315,10 @@ msgstr "GUI 音量"
 
 msgid "HEALTH"
 msgstr "生命值"
+
+#, fuzzy
+msgid "HEAT_ACCUMULATION_BAR_TOOLTIP"
+msgstr "自動從 Assembly 載入 Harmony 補丁（不需要指定模組類別）"
 
 msgid "HELP"
 msgstr "幫助"
@@ -3139,17 +3136,14 @@ msgstr "中硫磺塊"
 msgid "MEGA_YEARS"
 msgstr "百萬年"
 
-#, fuzzy
 msgid "MELANOSOME"
-msgstr "代謝體"
+msgstr "黑色素體"
 
-#, fuzzy
 msgid "MELANOSOME_DESCRIPTION"
-msgstr "溶酶體是一種有膜細胞器，含有可以分解各種生物分子的水解酶。溶酶體可讓細胞消化經由內吞作用攝取的物質，並在稱為[b]自噬[/b]的過程中清除細胞的廢物。"
+msgstr "黑色素體是一種含有黑色素的有膜細胞器，可以吸收放射性物質發射的高能量電磁波，並透過稱為[b]放射合成[/b]的代謝過程將其轉化為可用能量。吸收輻射的色素也有助於保護細胞更敏感的部分，從而提高整體抵抗輻射的能力。"
 
-#, fuzzy
 msgid "MELANOSOME_PROCESSES_DESCRIPTION"
-msgstr "含有消化酶。可以進行修改以改變其所含酶的類型。每個溶酶體一次只能利用一種酶。酶加速並提高消化效率。"
+msgstr "當靠近高放射性岩塊時，將[thrive:compound type=\"radiation\"][/thrive:compound] 轉化為[thrive:compound type=\"atp\"][/thrive:compound]，同時提供抗輻射能力"
 
 msgid "MEMBRANE"
 msgstr "細胞膜"
@@ -3262,36 +3256,33 @@ msgstr "微生物性能基準測試"
 msgid "MICROBE_EDITOR"
 msgstr "微生物編輯器"
 
+#, fuzzy
+msgid "MICROBE_ENZYME_STATISTICS"
+msgstr "  {0}：存在於 {1} 個物種中，平均每個物種為 {2} 個"
+
 msgid "MICROBE_FREEBUILD_EDITOR"
 msgstr "微生物階段自由編輯器"
 
-#, fuzzy
 msgid "MICROBE_LOADING_TIP_1"
-msgstr "在編輯器中點擊撤消按鈕以糾正錯誤"
+msgstr "每個網格的細胞質每秒需要消耗 1 [thrive:compound type=\"atp\"][/thrive:compound] 來維持，但它能夠生產 3 [thrive:compound type=\"atp\"][/thrive:compound]。如果您有點缺乏[thrive:compound type=\"atp\"][/thrive:compound]，請嘗試加入幾個細胞質或移除一些細胞器。"
 
-#, fuzzy
 msgid "MICROBE_LOADING_TIP_10"
-msgstr "在編輯器中點擊撤消按鈕以糾正錯誤"
+msgstr "您的細胞使用[thrive:compound type=\"atp\"][/thrive:compound] 作為能量來源。如果用完了，您就會死。"
 
-#, fuzzy
 msgid "MICROBE_LOADING_TIP_11"
-msgstr "在編輯器中點擊撤消按鈕以糾正錯誤"
+msgstr "要解鎖編輯器並繁殖，您需要存活足夠長的時間。收集[thrive:compound type=\"ammonia\"][/thrive:compound]（橙色雲）與[thrive:compound type=\"phosphates\"][/thrive:compound]（紫色雲）可加速生長。"
 
-#, fuzzy
 msgid "MICROBE_LOADING_TIP_12"
-msgstr "在編輯器中點擊撤消按鈕以糾正錯誤"
+msgstr "您可以透過按下[thrive:input]g_toggle_engulf[/thrive:input]吞噬比您小的物體並以它們為食。這會花費額外的[thrive:compound type=\"atp\"][/thrive:compound] 並減慢您的速度。別忘了再次按下[thrive:input]g_toggle_engulf[/thrive:input]以停止吞噬。"
 
-#, fuzzy
 msgid "MICROBE_LOADING_TIP_13"
-msgstr "在編輯器中點擊撤消按鈕以糾正錯誤"
+msgstr "您的細胞越大，您維持生命所需的[thrive:compound type=\"atp\"][/thrive:compound] 生產部件就越多。代謝體、鐵氧化藍蛋白、氫化酶甚至細胞質都會生產[thrive:compound type=\"atp\"][/thrive:compound]。"
 
-#, fuzzy
 msgid "MICROBE_LOADING_TIP_14"
-msgstr "在編輯器中點擊撤消按鈕以糾正錯誤"
+msgstr "編輯器中有許多細胞器可供您演化，從而允許您實現多種不同的遊戲風格。"
 
-#, fuzzy
 msgid "MICROBE_LOADING_TIP_15"
-msgstr "在編輯器中點擊撤消按鈕以糾正錯誤"
+msgstr "每個物種可用的資源都是有限的，因此增加細胞的大小也會減少最大物種量。"
 
 #, fuzzy
 msgid "MICROBE_LOADING_TIP_16"
@@ -3353,12 +3344,19 @@ msgstr "在編輯器中點擊撤消按鈕以糾正錯誤"
 msgid "MICROBE_LOADING_TIP_9"
 msgstr "在編輯器中點擊撤消按鈕以糾正錯誤"
 
+#, fuzzy
+msgid "MICROBE_MEMBRANE_PERCENTAGE_STATISTICS"
+msgstr "[b]細胞器升級資料：[/b]"
+
+#, fuzzy
+msgid "MICROBE_MEMBRANE_STATISTICS"
+msgstr "  {0}：存在於 {1} 個物種中，平均每個物種為 {2} 個"
+
 msgid "MICROBE_ORGANELLE_STATISTICS"
 msgstr "  {0}：存在於 {1} 個物種中，平均每個物種為 {2} 個"
 
-#, fuzzy
 msgid "MICROBE_ORGANELLE_UPGRADES_STATISTICS"
-msgstr "  {0}：存在於 {1} 個物種中，平均每個物種為 {2} 個"
+msgstr "[b]細胞器升級資料：[/b]"
 
 msgid "MICROBE_SPECIES_DETAIL_TEXT"
 msgstr ""
@@ -3481,7 +3479,7 @@ msgid "MIGRATION_STEP_ONLY_ONE_ALLOWED"
 msgstr "每次編輯器會話只能執行一次遷移。您可以查看下方已佇列的遷移並保留它或取消它以建立不同的遷移"
 
 msgid "MIGRATION_STEP_POPULATION_EXPLANATION"
-msgstr "選擇要從來源區域遷移到目標區域的種群數量"
+msgstr "選擇要從來源區域遷移到目標區域的物種量"
 
 msgid "MIGRATION_STEP_SOURCE_EXPLANATION"
 msgstr "選擇目前包含您的物種的區域作為遷移來源"
@@ -3772,9 +3770,8 @@ msgstr "多細胞編輯器"
 msgid "MULTICELLULAR_FREEBUILD_EDITOR"
 msgstr "多細胞自由編輯器"
 
-#, fuzzy
 msgid "MULTICELLULAR_LOADING_TIP_1"
-msgstr "多細胞編輯器"
+msgstr "雖然您的細胞共享化合物，但每個細胞都需要生產自己的[thrive:compound type=\"atp\"][/thrive:compound]。任何耗盡能量的細胞將會死亡。"
 
 msgid "MULTICELLULAR_STAGE"
 msgstr "多細胞階段"
@@ -3942,9 +3939,8 @@ msgstr "ATP 生產受毒素抑制"
 msgid "NOTICE_HIT_BY_BASE_MOVEMENT_TOXIN"
 msgstr "基礎移動速度因毒素而降低"
 
-#, fuzzy
 msgid "NOTICE_RADIATION_DAMAGE"
-msgstr "可以進入編輯器了"
+msgstr "過量輻射損傷"
 
 msgid "NOTICE_READY_TO_EDIT"
 msgstr "可以進入編輯器了"
@@ -4391,10 +4387,10 @@ msgid "PLAYER"
 msgstr "玩家"
 
 msgid "PLAYER_DEATH_POPULATION_PENALTY"
-msgstr "玩家死亡種群數量懲罰"
+msgstr "玩家死亡物種量懲罰"
 
 msgid "PLAYER_DEATH_POPULATION_PENALTY_EXPLANATION"
-msgstr "（當玩家死亡時玩家物種數量減少的係數）"
+msgstr "（當玩家死亡時玩家物種量減少的係數）"
 
 msgid "PLAYER_DIED"
 msgstr "玩家死亡"
@@ -4435,13 +4431,13 @@ msgid "PLAY_WITH_CURRENT_SETTING"
 msgstr "使用當前設定"
 
 msgid "POPULATION_CAPITAL"
-msgstr "種群數量："
+msgstr "物種量："
 
 msgid "POPULATION_COLON"
-msgstr "種群數量："
+msgstr "物種量："
 
 msgid "POPULATION_IN_PATCHES"
-msgstr "區域中的種群數量："
+msgstr "區域中的物種量："
 
 msgid "POPULATION_IN_PATCH_SHORT"
 msgstr "{0}（{1}）"
@@ -4514,17 +4510,14 @@ msgstr ""
 "您確定要退出遊戲嗎？\n"
 "您將遺失所有未儲存的進度。"
 
-#, fuzzy
 msgid "RADIATION"
-msgstr "有氧呼吸"
+msgstr "輻射"
 
-#, fuzzy
 msgid "RADIOACTIVE_CHUNK"
-msgstr "大磷酸鹽塊"
+msgstr "放射性岩塊"
 
-#, fuzzy
 msgid "RADIOSYNTHESIS"
-msgstr "熱合成"
+msgstr "放射合成"
 
 msgid "RANDOMIZE_SPECIES_NAME"
 msgstr "隨機化物種名稱"
@@ -4711,7 +4704,7 @@ msgid "RUN_ONE_STEP"
 msgstr "運行一步"
 
 msgid "RUN_RESULT_BY_SENDING_POPULATION"
-msgstr "{0}：來自 {2}，{1} 數量"
+msgstr "{0}：來自 {2}，數量 {1}"
 
 msgid "RUN_RESULT_GENE_CODE"
 msgstr "遺傳密碼："
@@ -5120,7 +5113,7 @@ msgstr ""
 "  {0}：{1}\n"
 "[b]世代[/b]\n"
 "  {2}\n"
-"[b]種群數量[/b]\n"
+"[b]物種量[/b]\n"
 "  {3}\n"
 "[b]顏色[/b]\n"
 "  #{4}\n"
@@ -5140,7 +5133,7 @@ msgid "SPECIES_NAME_TOO_LONG_POPUP"
 msgstr "物種名稱過長！"
 
 msgid "SPECIES_POPULATION"
-msgstr "物種種群數量"
+msgstr "物種量"
 
 msgid "SPECIES_PRESENT"
 msgstr "存在的物種"
@@ -5149,7 +5142,7 @@ msgid "SPECIES_TO_FIND"
 msgstr "尋找物種："
 
 msgid "SPECIES_WITH_POPULATION"
-msgstr "{0} 的種群數量：{1}"
+msgstr "{0} 的物種量：{1}"
 
 msgid "SPEED"
 msgstr "速度"
@@ -5423,7 +5416,8 @@ msgstr "溫度"
 msgid "TESTING_TEAM"
 msgstr "測試團隊"
 
-msgid "THANKS_FOR_BUYING_THRIVE"
+#, fuzzy
+msgid "THANKS_FOR_BUYING_THRIVE_2"
 msgstr ""
 "感謝您購買此 Thrive 發行來支持 Thrive 開發！\n"
 "\n"
@@ -5446,18 +5440,22 @@ msgstr "理論團隊"
 msgid "THERMOPLAST"
 msgstr "熱能體"
 
+#, fuzzy
 msgid "THERMOPLAST_DESCRIPTION"
 msgstr "熱能體是一種雙層膜結構，包含在膜囊中堆疊在一起的熱敏色素。它是一種被其真核宿主同化的原核生物。熱能體中的色素能夠利用周圍環境的熱能梯度產生能量，從水中生產[thrive:compound type=\"atp\"][/thrive:compound]，此過程被稱為[b]熱合成[/b]。其[thrive:compound type=\"atp\"][/thrive:compound] 生產速率與[thrive:compound type=\"temperature\"][/thrive:compound] 成正比。"
 
+#, fuzzy
 msgid "THERMOPLAST_PROCESSES_DESCRIPTION"
 msgstr "利用溫度梯度生產[thrive:compound type=\"atp\"][/thrive:compound]。速率與[thrive:compound type=\"temperature\"][/thrive:compound] 成正比。"
 
 msgid "THERMOSYNTHASE"
 msgstr "熱合成酶"
 
+#, fuzzy
 msgid "THERMOSYNTHASE_DESCRIPTION"
 msgstr "熱合成酶是一種利用熱對流改變其形式的蛋白質，使其在受熱時折疊並與 ADP 結合，然後在降溫時展開並生成[thrive:compound type=\"atp\"][/thrive:compound]，此過程被稱為[b]熱合成[/b]。其[thrive:compound type=\"atp\"][/thrive:compound] 生產速率與[thrive:compound type=\"temperature\"][/thrive:compound] 成正比。"
 
+#, fuzzy
 msgid "THERMOSYNTHASE_PROCESSES_DESCRIPTION"
 msgstr "利用溫度梯度生產[thrive:compound type=\"atp\"][/thrive:compound]。速率與[thrive:compound type=\"temperature\"][/thrive:compound] 成正比。"
 
@@ -5558,10 +5556,10 @@ msgid "TIMELINE_SPECIES_MIGRATED_TO"
 msgstr "部分 [b][u]{0}[/u][/b] 種群已遷移至 {1}"
 
 msgid "TIMELINE_SPECIES_POPULATION_DECREASE"
-msgstr "[b][u]{0}[/u][/b] 的種群數量減少至 {1}"
+msgstr "[b][u]{0}[/u][/b] 的物種量減少至 {1}"
 
 msgid "TIMELINE_SPECIES_POPULATION_INCREASE"
-msgstr "[b][u]{0}[/u][/b] 的種群數量增加至 {1}"
+msgstr "[b][u]{0}[/u][/b] 的物種量增加至 {1}"
 
 msgid "TIME_INDICATOR_TOOLTIP"
 msgstr "已經過時間：{0:#,#} 年"
@@ -5594,6 +5592,12 @@ msgstr "切換 FPS 顯示"
 
 msgid "TOGGLE_FULLSCREEN"
 msgstr "切換全螢幕"
+
+#, fuzzy
+msgid "TOGGLE_HEAT_VIEW_TOOLTIP"
+msgstr ""
+"切換吞噬模式以吞噬各種碎塊\n"
+"以及較小的生物體，讓活躍時能有更多的 ATP 使用"
 
 msgid "TOGGLE_HUD_HIDE"
 msgstr "切換 HUD"
@@ -5737,13 +5741,13 @@ msgstr ""
 
 msgid "TUTORIAL_MICROBE_EDITOR_AUTO-EVO_PREDICTION"
 msgstr ""
-"此面板顯示了您未來種群數量的預測。這些數字來自 [b]Auto-Evo[/b] 的群體模擬。\n"
+"此面板顯示了您未來收集總能量（以及括號中的物種量）的預測。這些數字來自 [b]Auto-Evo[/b] 的模擬。\n"
 "\n"
-"他們不會考慮您的個人表現。因此在當前的區域中進入編輯器時的實際表現會更好。\n"
+"他們不會考慮您的個人表現。因此在當前的區域中，最終的數字將與僅來自 Auto-Evo 的數字不同。每次您的細胞死亡，您的物種量就會減少，每次您進入編輯器，您的物種量就會增加。\n"
 "\n"
-"但即使您沒有直接參與，您也應該努力保持您的種群數量。\n"
+"但即使您沒有直接參與，您也應該嘗試維持這些數字。\n"
 "\n"
-"您可以按下面板中的問號按鈕查看預測背後的更多詳細資訊。按下按鈕以繼續。"
+"您可以[b]按下面板中的問號按鈕查看預測背後的更多詳細資訊。按下按鈕以繼續。[/b]"
 
 msgid "TUTORIAL_MICROBE_EDITOR_CELL_TEXT"
 msgstr ""
@@ -6026,13 +6030,11 @@ msgstr "吞噬 {0} 個微生物（目前為 {1}）"
 msgid "UNLOCK_CONDITION_EXCESS_ATP_ABOVE"
 msgstr "多餘的[thrive:compound type=\"atp\"][/thrive:compound] 達到 {0}"
 
-#, fuzzy
 msgid "UNLOCK_CONDITION_PLAYER_DAMAGE_RECEIVED"
-msgstr "死亡次數達到 {0}（目前為 {1}）"
+msgstr "接受傷害達到 {0}（目前為 {1}）"
 
-#, fuzzy
 msgid "UNLOCK_CONDITION_PLAYER_DAMAGE_RECEIVED_SOURCE"
-msgstr "死亡次數達到 {0}（目前為 {1}）"
+msgstr "來自{1}的傷害達到 {0}（目前為 {2}）"
 
 msgid "UNLOCK_CONDITION_PLAYER_DEATH_COUNT_ABOVE"
 msgstr "死亡次數達到 {0}（目前為 {1}）"
@@ -6501,9 +6503,9 @@ msgid "WIKI_CHEMORECEPTOR_STRATEGY"
 msgstr ""
 "[b]化學感受器[/b]在早期遊戲中作為尋找[thrive:compound type=\"glucose\"][/thrive:compound] 的方法很有價值。在遊戲的後期，它們可能對於尋找[thrive:compound type=\"phosphates\"][/thrive:compound] 最有用，因為這是細胞唯一無法自行產生的化合物。\n"
 "\n"
-"我們建議將搜尋半徑設為最大，並將最小密度設定在其範圍中間的某個位置。這樣，您發現的雲將會更加豐裕，因此值得花費能量來收集它們。\n"
+"我們建議將搜尋半徑設為最大，並將最小密度設定在其範圍中間的某個位置。這樣，您發現的化合物雲將會更加豐裕，因此值得花費能量來收集它們。\n"
 "\n"
-"注意其他細胞中的[b]化學感受器[/b]，無論是您自己的物種還是其他物種。具有[b]化學感受器[/b]的非玩家細胞會尋找它們的目標化合物，環境中過多的化學感受器可能會導致該化合物突然枯竭。如果您自己的物種發展出[b]化學感受器[/b]並在數量上爆炸，您可能必須在搜索便利性與環境中化合物的大量減少之間取得平衡。"
+"注意其他細胞中的[b]化學感受器[/b]，無論是您自己的物種還是其他物種。具有[b]化學感受器[/b]的非玩家細胞會尋找它們的目標化合物，環境中過多的化學感受器可能會導致該化合物突然枯竭。如果您自己的物種發展出[b]化學感受器[/b]並在物種量上爆增，您可能必須在搜索便利性與環境中化合物的大量減少之間取得平衡。"
 
 msgid "WIKI_CHEMORECEPTOR_UPGRADES"
 msgstr "無升級。"
@@ -6969,16 +6971,14 @@ msgstr "糖解、厭氧固氮"
 msgid "WIKI_HEADING_APPENDICES"
 msgstr "附錄"
 
-#, fuzzy
 msgid "WIKI_HEADING_BASIC_GAME_MECHANICS"
-msgstr "附錄"
+msgstr "基本遊戲機制"
 
 msgid "WIKI_HEADING_COMPOUNDS_LIST"
 msgstr "化合物列表"
 
-#, fuzzy
 msgid "WIKI_HEADING_COMPOUND_CLOUDS"
-msgstr "化合物列表"
+msgstr "化合物雲"
 
 msgid "WIKI_HEADING_CONCEPT_ART"
 msgstr "藝術概念"
@@ -7010,30 +7010,26 @@ msgstr "遊戲玩法"
 msgid "WIKI_HEADING_GDD"
 msgstr "遊戲設計方案"
 
-#, fuzzy
 msgid "WIKI_HEADING_GENERAL_TIPS"
-msgstr "效果"
+msgstr "一般提示"
 
 msgid "WIKI_HEADING_GENERATIONS_AND_EDITOR_SESSIONS"
 msgstr "世代與編輯器會話"
 
-#, fuzzy
 msgid "WIKI_HEADING_MICROBE_PARTS"
-msgstr "微生物階段"
+msgstr "微生物組件"
 
 msgid "WIKI_HEADING_MICROBE_STAGE"
 msgstr "微生物階段"
 
-#, fuzzy
 msgid "WIKI_HEADING_MICROBE_STAGE_TIPS"
-msgstr "微生物階段"
+msgstr "微生物階段提示"
 
 msgid "WIKI_HEADING_MODIFICATIONS"
 msgstr "修改選項"
 
-#, fuzzy
 msgid "WIKI_HEADING_MORE_GAME_INFO"
-msgstr "微生物階段"
+msgstr "更多遊戲資訊"
 
 msgid "WIKI_HEADING_MUTATIONS_AND_MUTATION_POINTS"
 msgstr "突變與突變點數"
@@ -7084,20 +7080,28 @@ msgstr "升級"
 msgid "WIKI_HELP_AND_TIPS_BASIC_GAME_MECHANICS"
 msgstr "遊戲機制"
 
-#, fuzzy
 msgid "WIKI_HELP_AND_TIPS_BUTTON"
-msgstr "化合物"
+msgstr "幫助與提示"
 
-#, fuzzy
 msgid "WIKI_HELP_AND_TIPS_COMPOUND_CLOUDS"
-msgstr "化合物列表"
+msgstr ""
+"這些是有用的化學物質，可以在區域中以化合物雲的形式產生。\n"
+"\n"
+"白 – [thrive:compound type=\"glucose\"][/thrive:compound]\n"
+"\n"
+"黃 – [thrive:compound type=\"hydrogensulfide\"][/thrive:compound]\n"
+"\n"
+"橘 – [thrive:compound type=\"ammonia\"][/thrive:compound]\n"
+"\n"
+"紫 – [thrive:compound type=\"phosphates\"][/thrive:compound]\n"
+"\n"
+"紅 – [thrive:compound type=\"iron\"][/thrive:compound]"
 
 msgid "WIKI_HELP_AND_TIPS_GENERAL_TIPS"
 msgstr ""
 
-#, fuzzy
 msgid "WIKI_HELP_AND_TIPS_INTRO"
-msgstr "Thrive 的主要遊戲內容圍繞著[color=#3796e1][url=thriveopedia:Reproduction]繁殖[/url][/color]與編輯您的物種。每次繁殖時，您都可以根據您的階段存取各種[b]編輯器[/b]。您將能夠對您的物種進行改變或[b]突變[/b]。"
+msgstr "此頁面包含一些基本的遊戲資訊與遊玩 Thrive 的一般提示。"
 
 #, fuzzy
 msgid "WIKI_HELP_AND_TIPS_MICROBE_PARTS"
@@ -7374,7 +7378,7 @@ msgstr ""
 "\n"
 "[b][u]報告[/u][/b]\n"
 "\n"
-"報告選單是玩家進入編輯器後看到的第一個頁面。該頁面描述了進入編輯器之前發生的所有環境變化，如物種數量變化、化合物濃度等。報告中提供的資訊可能會有幫助，但並不是在遊戲中大放異彩的必要條件，因此玩家無需費力分析其內容。\n"
+"報告選單是玩家進入編輯器後看到的第一個頁面。該頁面描述了進入編輯器之前發生的所有環境變化，如物種量變化、化合物濃度等。報告中提供的資訊可能會有幫助，但並不是在遊戲中大放異彩的必要條件，因此玩家無需費力分析其內容。\n"
 "\n"
 "[b][u]區域地圖[/u][/b]\n"
 "\n"
@@ -7815,9 +7819,8 @@ msgstr "鐵能體"
 msgid "WIKI_PAGE_FLAGELLUM"
 msgstr "鞭毛"
 
-#, fuzzy
 msgid "WIKI_PAGE_HELP_AND_TIPS"
-msgstr "編輯器與突變"
+msgstr "幫助與提示"
 
 msgid "WIKI_PAGE_HYDROGENASE"
 msgstr "氫化酶"
@@ -7997,10 +8000,6 @@ msgstr "無升級。"
 
 msgid "WIKI_PULLING_CILIA"
 msgstr "捕食纖毛"
-
-#, fuzzy
-msgid "WIKI_RADIOSYNTHESIS"
-msgstr "熱合成"
 
 msgid "WIKI_REPRODUCTION_BUTTON"
 msgstr "繁殖"
@@ -8505,6 +8504,18 @@ msgstr "放大"
 
 msgid "ZOOM_OUT"
 msgstr "縮小"
+
+#~ msgid "THANKS_FOR_BUYING_THRIVE"
+#~ msgstr ""
+#~ "感謝您購買此 Thrive 發行來支持 Thrive 開發！\n"
+#~ "\n"
+#~ "如果您尚未購買此遊戲，請從[color=#3796e1][url={0}]此處[/url][/color]購買遊戲或查看我們的[color=#3796e1][url=https ://revolutionarygamesstudio.com/releases/]網站[/url][/color]。\n"
+#~ "\n"
+#~ "如果您想在 Thrive 啟動之前看到 Thrive 啟動器，您可以使用主選單中的按鈕退出到啟動器，然後在啟動器選項中停用無縫模式。"
+
+#, fuzzy
+#~ msgid "WIKI_RADIOSYNTHESIS"
+#~ msgstr "熱合成"
 
 #~ msgid "EASTEREGG_MESSAGE_19"
 #~ msgstr "小知識：櫛毛蟲是一種纖毛蟲，它們會捕食草履蟲。"
@@ -9149,3 +9160,7 @@ msgstr "縮小"
 #, fuzzy
 #~ msgid "QUESTION"
 #~ msgstr "解析度："
+
+#, fuzzy
+#~ msgid "WIKI_THERMOSYNTHESIS"
+#~ msgstr "熱合成"

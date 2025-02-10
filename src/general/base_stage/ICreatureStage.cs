@@ -28,4 +28,6 @@ public interface ICreatureStage : IStageBase, IReturnableGameState
     /// </summary>
     /// <param name="species">Species to play as next</param>
     public void ContinueGameAsSpecies(Species species);
+
+    public void SetSpecialViewMode(ViewMode mode);
 }

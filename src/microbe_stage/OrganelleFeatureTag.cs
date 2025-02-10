@@ -16,4 +16,6 @@ public enum OrganelleFeatureTag
     Pilus,
 
     RadiationBlock,
+
+    HeatCollecting,
 }

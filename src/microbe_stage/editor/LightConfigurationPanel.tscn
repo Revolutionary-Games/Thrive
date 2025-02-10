@@ -1,0 +1,177 @@
+[gd_scene load_steps=9 format=3 uid="uid://0hb8nq18ljr8"]
+
+[ext_resource type="Texture2D" uid="uid://c253x2crwbldo" path="res://assets/textures/gui/bevel/Sunlight.svg" id="1_7xw5e"]
+[ext_resource type="Script" path="res://src/microbe_stage/editor/LightConfigurationPanel.cs" id="1_ynmkx"]
+[ext_resource type="FontVariation" uid="uid://cik4lxxj7fi2t" path="res://assets/fonts/variants/Jura-Regular.tres" id="2_m00tu"]
+
+[sub_resource type="StyleBoxFlat" id="11"]
+content_margin_left = 5.0
+content_margin_top = 5.0
+content_margin_right = 5.0
+content_margin_bottom = 5.0
+bg_color = Color(0.164706, 0.215686, 0.235294, 1)
+border_width_left = 1
+border_width_top = 1
+border_width_right = 1
+border_width_bottom = 1
+border_color = Color(0.396078, 0.623529, 0.584314, 1)
+corner_radius_top_left = 5
+corner_radius_top_right = 5
+corner_radius_bottom_right = 5
+corner_radius_bottom_left = 5
+
+[sub_resource type="StyleBoxFlat" id="9"]
+content_margin_left = 5.0
+content_margin_top = 5.0
+content_margin_right = 5.0
+content_margin_bottom = 5.0
+bg_color = Color(0, 0.435294, 0.52549, 1)
+border_width_left = 1
+border_width_top = 1
+border_width_right = 1
+border_width_bottom = 1
+border_color = Color(0.0666667, 1, 0.835294, 1)
+corner_radius_top_left = 5
+corner_radius_top_right = 5
+corner_radius_bottom_right = 5
+corner_radius_bottom_left = 5
+
+[sub_resource type="StyleBoxFlat" id="10"]
+content_margin_left = 5.0
+content_margin_top = 5.0
+content_margin_right = 5.0
+content_margin_bottom = 5.0
+bg_color = Color(0.0666667, 1, 0.835294, 1)
+border_width_left = 1
+border_width_top = 1
+border_width_right = 1
+border_width_bottom = 1
+border_color = Color(0.0666667, 1, 0.835294, 1)
+corner_radius_top_left = 5
+corner_radius_top_right = 5
+corner_radius_bottom_right = 5
+corner_radius_bottom_left = 5
+
+[sub_resource type="StyleBoxFlat" id="12"]
+content_margin_left = 5.0
+content_margin_top = 5.0
+content_margin_right = 5.0
+content_margin_bottom = 5.0
+bg_color = Color(0.0666667, 0.168627, 0.211765, 1)
+border_width_left = 1
+border_width_top = 1
+border_width_right = 1
+border_width_bottom = 1
+border_color = Color(0.0666667, 1, 0.835294, 1)
+corner_radius_top_left = 5
+corner_radius_top_right = 5
+corner_radius_bottom_right = 5
+corner_radius_bottom_left = 5
+
+[sub_resource type="ButtonGroup" id="ButtonGroup_qst1k"]
+
+[node name="LightConfiguration" type="PanelContainer" node_paths=PackedStringArray("dayButton", "nightButton", "averageLightButton", "currentLightButton")]
+script = ExtResource("1_ynmkx")
+dayButton = NodePath("MarginContainer/HBoxContainer/DayButton")
+nightButton = NodePath("MarginContainer/HBoxContainer/NightButton")
+averageLightButton = NodePath("MarginContainer/HBoxContainer/AverageLightButton")
+currentLightButton = NodePath("MarginContainer/HBoxContainer/CurrentLightButton")
+
+[node name="MarginContainer" type="MarginContainer" parent="."]
+layout_mode = 2
+theme_override_constants/margin_left = 10
+theme_override_constants/margin_top = 10
+theme_override_constants/margin_right = 10
+theme_override_constants/margin_bottom = 10
+
+[node name="HBoxContainer" type="HBoxContainer" parent="MarginContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+
+[node name="TextureRect" type="TextureRect" parent="MarginContainer/HBoxContainer"]
+custom_minimum_size = Vector2(30, 25)
+layout_mode = 2
+size_flags_vertical = 4
+tooltip_text = "SUNLIGHT"
+texture = ExtResource("1_7xw5e")
+expand_mode = 1
+stretch_mode = 5
+
+[node name="Control" type="Control" parent="MarginContainer/HBoxContainer"]
+custom_minimum_size = Vector2(10, 0)
+layout_mode = 2
+
+[node name="CurrentLightButton" type="Button" parent="MarginContainer/HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+mouse_filter = 1
+theme_override_colors/font_disabled_color = Color(0.870588, 0.870588, 0.870588, 1)
+theme_override_colors/font_pressed_color = Color(0, 0, 0, 1)
+theme_override_fonts/font = ExtResource("2_m00tu")
+theme_override_font_sizes/font_size = 14
+theme_override_styles/disabled = SubResource("11")
+theme_override_styles/hover = SubResource("9")
+theme_override_styles/pressed = SubResource("10")
+theme_override_styles/normal = SubResource("12")
+toggle_mode = true
+button_pressed = true
+action_mode = 0
+button_group = SubResource("ButtonGroup_qst1k")
+text = "LIGHT_LEVEL_CURRENT"
+
+[node name="DayButton" type="Button" parent="MarginContainer/HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+mouse_filter = 1
+theme_override_colors/font_disabled_color = Color(0.870588, 0.870588, 0.870588, 1)
+theme_override_colors/font_pressed_color = Color(0, 0, 0, 1)
+theme_override_fonts/font = ExtResource("2_m00tu")
+theme_override_font_sizes/font_size = 14
+theme_override_styles/disabled = SubResource("11")
+theme_override_styles/hover = SubResource("9")
+theme_override_styles/pressed = SubResource("10")
+theme_override_styles/normal = SubResource("12")
+toggle_mode = true
+action_mode = 0
+button_group = SubResource("ButtonGroup_qst1k")
+text = "LIGHT_LEVEL_DAY"
+
+[node name="NightButton" type="Button" parent="MarginContainer/HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+mouse_filter = 1
+theme_override_colors/font_disabled_color = Color(0.870588, 0.870588, 0.870588, 1)
+theme_override_colors/font_pressed_color = Color(0, 0, 0, 1)
+theme_override_fonts/font = ExtResource("2_m00tu")
+theme_override_font_sizes/font_size = 14
+theme_override_styles/disabled = SubResource("11")
+theme_override_styles/hover = SubResource("9")
+theme_override_styles/pressed = SubResource("10")
+theme_override_styles/normal = SubResource("12")
+toggle_mode = true
+action_mode = 0
+button_group = SubResource("ButtonGroup_qst1k")
+text = "LIGHT_LEVEL_NIGHT"
+
+[node name="AverageLightButton" type="Button" parent="MarginContainer/HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+mouse_filter = 1
+theme_override_colors/font_disabled_color = Color(0.870588, 0.870588, 0.870588, 1)
+theme_override_colors/font_pressed_color = Color(0, 0, 0, 1)
+theme_override_fonts/font = ExtResource("2_m00tu")
+theme_override_font_sizes/font_size = 14
+theme_override_styles/disabled = SubResource("11")
+theme_override_styles/hover = SubResource("9")
+theme_override_styles/pressed = SubResource("10")
+theme_override_styles/normal = SubResource("12")
+toggle_mode = true
+action_mode = 0
+button_group = SubResource("ButtonGroup_qst1k")
+text = "LIGHT_LEVEL_AVERAGE"
+
+[connection signal="pressed" from="MarginContainer/HBoxContainer/CurrentLightButton" to="." method="OnLightButtonClicked" binds= ["Current"]]
+[connection signal="pressed" from="MarginContainer/HBoxContainer/DayButton" to="." method="OnLightButtonClicked" binds= ["Day"]]
+[connection signal="pressed" from="MarginContainer/HBoxContainer/NightButton" to="." method="OnLightButtonClicked" binds= ["Night"]]
+[connection signal="pressed" from="MarginContainer/HBoxContainer/AverageLightButton" to="." method="OnLightButtonClicked" binds= ["Average"]]

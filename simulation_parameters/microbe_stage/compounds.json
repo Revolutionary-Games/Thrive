@@ -52,7 +52,7 @@
       "g": 0.14,
       "b": 0.80
     },
-    "IconPath": "res://assets/textures/gui/bevel/Phosphate.svg"
+    "IconPath": "res://assets/textures/gui/bevel/Phosphates.svg"
   },
   "hydrogensulfide": {
     "Name": "HYDROGEN_SULFIDE",
@@ -227,9 +227,9 @@
     "Name": "TEMPERATURE",
     "Volume": 1,
     "IsCloud": false,
-    "IsAlwaysUseful": false,
-    "IsEnvironmental": true,
-    "CanBeDistributed": false,
+    "IsAlwaysUseful": true,
+    "IsEnvironmental": false,
+    "CanBeDistributed": true,
     "Colour": {
       "r": 1,
       "g": 0,
@@ -251,6 +251,6 @@
       "g": 0.75,
       "b": 0
     },
-    "IconPath": "res://assets/textures/gui/bevel/Radiation.png"
+    "IconPath": "res://assets/textures/gui/bevel/Radiation.svg"
   }
 }

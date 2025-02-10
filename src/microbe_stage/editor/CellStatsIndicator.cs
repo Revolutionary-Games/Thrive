@@ -108,8 +108,8 @@ public partial class CellStatsIndicator : HBoxContainer
         InvalidIcon ??= GD.Load<Texture2D>("res://assets/textures/gui/bevel/helpButton.png");
 
         blankIcon = GD.Load<Texture2D>("res://assets/textures/gui/bevel/blankStat.png");
-        increaseIcon = GD.Load<Texture2D>("res://assets/textures/gui/bevel/increase.png");
-        decreaseIcon = GD.Load<Texture2D>("res://assets/textures/gui/bevel/decrease.png");
+        increaseIcon = GD.Load<Texture2D>("res://assets/textures/gui/bevel/arrowIncrease.svg");
+        decreaseIcon = GD.Load<Texture2D>("res://assets/textures/gui/bevel/arrowDecrease.svg");
 
         iconRect.Texture = Icon;
 

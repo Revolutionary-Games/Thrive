@@ -7,8 +7,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2025-01-28 15:03+0200\n"
-"PO-Revision-Date: 2025-01-21 12:01+0000\n"
+"POT-Creation-Date: 2025-02-07 11:01+0200\n"
+"PO-Revision-Date: 2025-02-06 13:29+0000\n"
 "Last-Translator: Anonymous <noreply@weblate.org>\n"
 "Language-Team: Swedish <https://translate.revolutionarygamesstudio.com/projects/thrive/thrive-game/sv/>\n"
 "Language: sv\n"
@@ -1446,6 +1446,10 @@ msgstr ""
 msgid "DEBUG_DRAW_NOT_AVAILABLE"
 msgstr ""
 
+#, fuzzy
+msgid "DEBUG_HEAT_AT_CURSOR"
+msgstr "Vid Muspekare:"
+
 msgid "DEBUG_PANEL"
 msgstr ""
 
@@ -2484,6 +2488,10 @@ msgstr "GUI-volym"
 msgid "HEALTH"
 msgstr "Hälsa"
 
+#, fuzzy
+msgid "HEAT_ACCUMULATION_BAR_TOOLTIP"
+msgstr "Självmord"
+
 msgid "HELP"
 msgstr "Hjälp"
 
@@ -3496,6 +3504,10 @@ msgstr "Mikrobredigerare"
 msgid "MICROBE_EDITOR"
 msgstr "Mikrobredigerare"
 
+#, fuzzy
+msgid "MICROBE_ENZYME_STATISTICS"
+msgstr "Organismstatistik"
+
 msgid "MICROBE_FREEBUILD_EDITOR"
 msgstr "Mikrob Fri Byggredigerare"
 
@@ -3586,6 +3598,14 @@ msgstr "Använd ångraknapped i cellredigeraren för att fixa ett mistag"
 #, fuzzy
 msgid "MICROBE_LOADING_TIP_9"
 msgstr "Använd ångraknapped i cellredigeraren för att fixa ett mistag"
+
+#, fuzzy
+msgid "MICROBE_MEMBRANE_PERCENTAGE_STATISTICS"
+msgstr "Organismstatistik"
+
+#, fuzzy
+msgid "MICROBE_MEMBRANE_STATISTICS"
+msgstr "Organismstatistik"
 
 #, fuzzy
 msgid "MICROBE_ORGANELLE_STATISTICS"
@@ -5835,7 +5855,7 @@ msgid "TESTING_TEAM"
 msgstr "Testning"
 
 #, fuzzy
-msgid "THANKS_FOR_BUYING_THRIVE"
+msgid "THANKS_FOR_BUYING_THRIVE_2"
 msgstr ""
 "Tack för att du spelade!\n"
 "\n"
@@ -5857,6 +5877,7 @@ msgstr "Teori"
 msgid "THERMOPLAST"
 msgstr "Termoplast"
 
+#, fuzzy
 msgid "THERMOPLAST_DESCRIPTION"
 msgstr "Termoplasten är en dubbelmembranstruktur som innehåller värmekänsliga pigment staplade tillsammans i membransäckar. Det är en prokaryot som har assimilerats för användning av sin eukaryota värd. Pigmenten i termoplasten kan använda energin från värmeskillnader i omgivningen för att producera glukos från vatten och gasformig koldioxid i en process som kallas termosyntes. Hastigheten för dess glukosproduktion skalas med koncentrationen av koldioxid och temperatur."
 
@@ -6015,6 +6036,10 @@ msgstr "Växla FPS display"
 
 msgid "TOGGLE_FULLSCREEN"
 msgstr "Växla fullskärm av och på"
+
+#, fuzzy
+msgid "TOGGLE_HEAT_VIEW_TOOLTIP"
+msgstr "Växla uppslukarläge av och på"
 
 msgid "TOGGLE_HUD_HIDE"
 msgstr "Växla HUD av och på"
@@ -8053,10 +8078,6 @@ msgid "WIKI_PULLING_CILIA"
 msgstr ""
 
 #, fuzzy
-msgid "WIKI_RADIOSYNTHESIS"
-msgstr "Termosyntes"
-
-#, fuzzy
 msgid "WIKI_REPRODUCTION_BUTTON"
 msgstr "Protoplasma"
 
@@ -8485,6 +8506,17 @@ msgstr "Zooma in"
 
 msgid "ZOOM_OUT"
 msgstr "Zooma ut"
+
+#, fuzzy
+#~ msgid "THANKS_FOR_BUYING_THRIVE"
+#~ msgstr ""
+#~ "Tack för att du spelade!\n"
+#~ "\n"
+#~ "Om du gillade spelet, berätta om oss för dina vänner."
+
+#, fuzzy
+#~ msgid "WIKI_RADIOSYNTHESIS"
+#~ msgstr "Termosyntes"
 
 #~ msgid "EASTEREGG_MESSAGE_19"
 #~ msgstr "Fun Fact, The Didinum är ett ciliate som jagar paramecia."

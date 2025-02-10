@@ -920,11 +920,31 @@ public static class Constants
     /// </summary>
     public const float ENZYME_DIGESTION_EFFICIENCY_MAXIMUM = 0.6f;
 
+    public const float THERMOPLAST_MIN_ATP_TEMPERATURE = 20.0f;
+    public const float THERMOPLAST_MAX_ATP_TEMPERATURE = 120.0f;
     public const float OPTIMAL_THERMOPLAST_TEMPERATURE = 100.0f;
+    public const float THERMOPLAST_GUI_MAX_TEMPERATURE = 140.0f;
+
+    public const float NOISE_EFFECT_ON_LOCAL_TEMPERATURE = 70.0f;
+    public const float TEMPERATURE_CHANGE_TO_TEMPERATURE_MULTIPLIER = 40.0f;
+    public const float THERMOPLAST_HEAT_UP_SPEED = 0.25f;
+
+    /// <summary>
+    ///   Biases the noise used for local temperature variations. Should correspond to what is set in
+    ///   "HeatGradientPlane.tscn"
+    /// </summary>
+    public const float MICROBE_HEAT_NOISE_MIDDLE_POINT = 0.5f;
+
+    public const float MICROBE_HEAT_NOISE_TO_WORLD_RATIO = 1 / MICROBE_HEAT_AREA_REPEAT_EVERY_WORLD_COORDINATE;
+    public const float MICROBE_HEAT_AREA_REPEAT_EVERY_WORLD_COORDINATE = 400;
 
     public const float ADDITIONAL_DIGESTIBLE_GLUCOSE_AMOUNT_MULTIPLIER = 1.25f;
 
-    public const string LYSOSOME_DEFAULT_ENZYME_NAME = "lipase";
+    public const string LIPASE_ENZYME = "lipase";
+
+    public const string CHITINASE_ENZYME = "chitinase";
+
+    public const string CELLULASE_ENZYME = "cellulase";
 
     public const string VACUOLE_DEFAULT_COMPOUND_NAME = "glucose";
 
@@ -1181,7 +1201,7 @@ public static class Constants
     public const float AUTO_EVO_MINIMUM_MOVE_POPULATION_FRACTION = 0.1f;
     public const float AUTO_EVO_MAXIMUM_MOVE_POPULATION_FRACTION = 0.8f;
     public const float AUTO_EVO_ENGULF_PREDATION_SCORE = 100;
-    public const float AUTO_EVO_PILUS_PREDATION_SCORE = 20;
+    public const float AUTO_EVO_PILUS_PREDATION_SCORE = 35;
     public const float AUTO_EVO_TOXIN_PREDATION_SCORE = 100;
     public const float AUTO_EVO_SLIME_JET_SCORE = 6;
     public const float AUTO_EVO_MUCOCYST_SCORE = 40;
@@ -1191,6 +1211,11 @@ public static class Constants
     public const float AUTO_EVO_COMPOUND_ENERGY_AMOUNT = 2400;
     public const float AUTO_EVO_CHUNK_ENERGY_AMOUNT = 90000000;
     public const float AUTO_EVO_CHUNK_AMOUNT_NERF = 0.01f;
+
+    /// <summary>
+    ///   Default cell's score, value is compared to <see cref="AutoEvoLysosomeEnzymesScores"/>
+    /// </summary>
+    public const float AUTO_EVO_BASE_DIGESTION_SCORE = 1;
 
     public const float AUTO_EVO_NIGHT_STORAGE_NOT_ENOUGH_PENALTY = 0.1f;
     public const float AUTO_EVO_NIGHT_SESSILITY_COLLECTING_PENALTY_MULTIPLIER = 1.2f;
@@ -1807,6 +1832,16 @@ public static class Constants
 
     public const string CONDITION_GREEN_COLOUR = "#70f423";
     public const string CONDITION_RED_COLOUR = "#ff4d4d";
+
+    /// <summary>
+    ///   Also see <see cref="AUTO_EVO_BASE_DIGESTION_SCORE"/>
+    /// </summary>
+    public static readonly Dictionary<string, float> AutoEvoLysosomeEnzymesScores = new()
+    {
+        [LIPASE_ENZYME] = 3,
+        [CHITINASE_ENZYME] = 4.5f,
+        [CELLULASE_ENZYME] = 4.5f,
+    };
 
     /// <summary>
     ///   The duration for which a save is considered recently performed.

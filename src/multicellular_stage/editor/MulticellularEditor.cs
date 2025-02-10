@@ -118,6 +118,8 @@ public partial class MulticellularEditor : EditorBase<EditorAction, MicrobeStage
 
     public void OnCurrentPatchUpdated(Patch patch)
     {
+        bodyPlanEditorTab.OnCurrentPatchUpdated(patch);
+
         cellEditorTab.OnCurrentPatchUpdated(patch);
 
         cellEditorTab.UpdateBackgroundImage(patch.BiomeTemplate);

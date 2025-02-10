@@ -33,7 +33,7 @@ public class MembraneType : IRegistryType
     /// <summary>
     ///   Type of enzyme capable of dissolving this membrane type. Default is lipase.
     /// </summary>
-    public string DissolverEnzyme = "lipase";
+    public string DissolverEnzyme = Constants.LIPASE_ENZYME;
 
     public int EditorButtonOrder;
 

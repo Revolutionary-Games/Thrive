@@ -2,20 +2,32 @@
 
 [ext_resource type="Theme" uid="uid://b4cx0o110g4b6" path="res://src/gui_common/thrive_theme.tres" id="2"]
 [ext_resource type="Texture2D" uid="uid://d0iv1w2t5wwae" path="res://assets/textures/gui/bevel/parts/membraneAmoeba.png" id="3"]
+[ext_resource type="Texture2D" uid="uid://blcmdxxsk4nyv" path="res://assets/textures/gui/bevel/DNAButtonLargeNormal.svg" id="3_3hidu"]
 [ext_resource type="PackedScene" path="res://src/gui_common/ActionButton.tscn" id="4"]
+[ext_resource type="Texture2D" uid="uid://dyc7ht0h5qfca" path="res://assets/textures/gui/bevel/DNAButtonLargePressed.svg" id="4_qdjoj"]
 [ext_resource type="PackedScene" uid="uid://qwg2dluu8ow0" path="res://src/microbe_stage/PausePrompt.tscn" id="5"]
+[ext_resource type="Texture2D" uid="uid://ctcx4y3a2a0gv" path="res://assets/textures/gui/bevel/DNAButtonLargeHover.svg" id="5_nx3ue"]
 [ext_resource type="PackedScene" uid="uid://uw3crqw21uu" path="res://src/microbe_stage/gui/HUDMessages.tscn" id="6"]
+[ext_resource type="Texture2D" uid="uid://w8bhef5oru1b" path="res://assets/textures/gui/bevel/DNAButtonLargeDisabled.svg" id="6_sr2v0"]
 [ext_resource type="PackedScene" uid="uid://duhmbx8qnpcao" path="res://src/society_stage/gui/ResourceDisplayBar.tscn" id="7"]
 [ext_resource type="Texture2D" uid="uid://myc8kb3pyj03" path="res://assets/textures/gui/bevel/actions/BuildStructure.png" id="8"]
-[ext_resource type="Texture2D" uid="uid://c732snfs7i3xx" path="res://assets/textures/gui/bevel/LargeTwoNormal.png" id="9"]
-[ext_resource type="Texture2D" uid="uid://dcc6nq6ig4etg" path="res://assets/textures/gui/bevel/LargeTwoDisabled.png" id="10"]
+[ext_resource type="Texture2D" uid="uid://r3tppwbfq4mw" path="res://assets/textures/gui/bevel/chemicalButton.svg" id="10_33ly4"]
 [ext_resource type="PackedScene" uid="uid://daaxumisua7ue" path="res://src/society_stage/gui/ResearchScreen.tscn" id="11"]
 [ext_resource type="Script" path="res://src/society_stage/gui/SocietyHUD.cs" id="12"]
 [ext_resource type="LabelSettings" uid="uid://cns7wsfktfld4" path="res://src/gui_common/fonts/Title-SemiBold-Bigger.tres" id="12_3r5as"]
-[ext_resource type="Texture2D" uid="uid://dmv0hstevg4ut" path="res://assets/textures/gui/bevel/chemicalButton.png" id="13"]
-[ext_resource type="Texture2D" uid="uid://bd4c6guswatde" path="res://assets/textures/gui/bevel/LargeTwoPressed.png" id="14"]
-[ext_resource type="Texture2D" uid="uid://cbc1ld512pl71" path="res://assets/textures/gui/bevel/LargeTwoHover.png" id="15"]
 [ext_resource type="PackedScene" uid="uid://bdwkyuskd3u3r" path="res://src/microbe_stage/HUDBottomBar.tscn" id="16"]
+
+[sub_resource type="StyleBoxFlat" id="2"]
+draw_center = false
+border_width_left = 2
+border_width_top = 2
+border_width_right = 2
+border_width_bottom = 2
+border_color = Color(1, 1, 1, 0.784314)
+corner_radius_top_left = 1
+corner_radius_top_right = 1
+corner_radius_bottom_right = 1
+corner_radius_bottom_left = 1
 
 [sub_resource type="StyleBoxFlat" id="3"]
 bg_color = Color(0.168627, 0.0470588, 0.552941, 1)
@@ -25,18 +37,6 @@ border_width_top = 2
 border_width_right = 2
 border_width_bottom = 2
 border_color = Color(0.701961, 0.701961, 0.701961, 0.588235)
-corner_radius_top_left = 1
-corner_radius_top_right = 1
-corner_radius_bottom_right = 1
-corner_radius_bottom_left = 1
-
-[sub_resource type="StyleBoxFlat" id="2"]
-draw_center = false
-border_width_left = 2
-border_width_top = 2
-border_width_right = 2
-border_width_bottom = 2
-border_color = Color(1, 1, 1, 0.784314)
 corner_radius_top_left = 1
 corner_radius_top_right = 1
 corner_radius_bottom_right = 1
@@ -90,10 +90,10 @@ offset_bottom = -6.20105
 tooltip_text = "Once added to the prototype, it will be possible to make small changes at this stage (for example lactose tolerance)"
 focus_mode = 0
 disabled = true
-texture_normal = ExtResource("9")
-texture_pressed = ExtResource("14")
-texture_hover = ExtResource("15")
-texture_disabled = ExtResource("10")
+texture_normal = ExtResource("3_3hidu")
+texture_pressed = ExtResource("4_qdjoj")
+texture_hover = ExtResource("5_nx3ue")
+texture_disabled = ExtResource("6_sr2v0")
 ignore_texture_size = true
 stretch_mode = 5
 
@@ -133,16 +133,16 @@ ActionName = "g_build_structure"
 [node name="Research" parent="ScrollContainer/HotBar" instance=ExtResource("4")]
 layout_mode = 2
 tooltip_text = "OPEN_RESEARCH_SCREEN"
-ActionIcon = ExtResource("13")
+ActionIcon = ExtResource("10_33ly4")
 ActionName = "g_science"
 
 [node name="Possess" parent="ScrollContainer/HotBar" instance=ExtResource("4")]
 layout_mode = 2
 tooltip_text = "Possess a member of your species for direct control
 (as this is a very complex feature this will be the last thing to be added once the strategy stages are complete)"
-theme_override_styles/normal = SubResource("3")
 theme_override_styles/hover = SubResource("2")
 theme_override_styles/pressed = SubResource("2")
+theme_override_styles/normal = SubResource("3")
 disabled = true
 ActionIcon = ExtResource("3")
 ActionName = "g_toggle_engulf"

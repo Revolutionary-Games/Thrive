@@ -169,9 +169,11 @@ public class MicrobeSpecies : Species, ICellDefinition
         // TODO: improve this depending on a hardcoded patch: https://github.com/Revolutionary-Games/Thrive/issues/5446
         var biomeConditions = simulationParameters.GetBiome("speciesInitialCompoundsBiome").Conditions;
 
+        var compoundBalances = new Dictionary<Compound, CompoundBalance>();
+
         // False is passed here until we can make the initial compounds patch specific
-        var compoundBalances = ProcessSystem.ComputeCompoundBalance(Organelles,
-            biomeConditions, CompoundAmountType.Biome, false);
+        ProcessSystem.ComputeCompoundBalance(Organelles, biomeConditions, CompoundAmountType.Biome, false,
+            compoundBalances);
 
         bool giveBonusGlucose = Organelles.Count <= Constants.FULL_INITIAL_GLUCOSE_SMALL_SIZE_LIMIT && IsBacteria;
 

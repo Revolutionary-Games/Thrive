@@ -7,8 +7,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2025-01-28 15:03+0200\n"
-"PO-Revision-Date: 2025-01-21 12:01+0000\n"
+"POT-Creation-Date: 2025-02-07 11:01+0200\n"
+"PO-Revision-Date: 2025-02-06 13:29+0000\n"
 "Last-Translator: Anonymous <noreply@weblate.org>\n"
 "Language-Team: Portuguese (Brazil) <https://translate.revolutionarygamesstudio.com/projects/thrive/thrive-game/pt_BR/>\n"
 "Language: pt_BR\n"
@@ -54,7 +54,7 @@ msgid "ACTION_AWAKEN"
 msgstr "Despertar ({0:F1} / {1:F1})"
 
 msgid "ACTION_AWAKEN_TOOLTIP"
-msgstr "Ir para o Estágio Desperto. Disponível ao ter capacidade mental suficiente (representados por tecidos com axônios)"
+msgstr "Ir para o Estágio Desperto. Disponível ao ter capacidade mental suficiente (representados por tecidos com axônios)."
 
 msgid "ACTION_BLOCKED_WHILE_ANOTHER_IN_PROGRESS"
 msgstr "Ação bloqueada enquanto há outra em curso"
@@ -143,7 +143,6 @@ msgstr "(permite continuar o jogo com uma outra espécie ao invés de terminar o
 msgid "ALL_WORLDS_GENERAL_STATISTICS"
 msgstr "Estatísticas Gerais de Todos os Mundos"
 
-#, fuzzy
 msgid "ALL_WORLDS_STATISTICS"
 msgstr ""
 "[b]Gerações:[/b]\n"
@@ -158,6 +157,7 @@ msgstr ""
 "  Média {7}; Desvio padrão {8}\n"
 "[b]Média de Tamanho das Espécies de Micróbios:[/b]\n"
 "  Média {9}; Desvio padrão {10}\n"
+"\n"
 "[b]Dados Gerais de Organelas:[/b]"
 
 msgid "ALREADY_ASCENDED"
@@ -305,7 +305,7 @@ msgid "AUTO-EVO_EXPLANATION_EXPLANATION"
 msgstr "Esse painel mostra os números que a previsão da auto-evo usa. A energia total que uma espécie é capaz de possuir e o custo por indivíduo da espécie determina a população final. A auto-evo usa um modelo simplificado da realidade para calcular quão bem as espécies estão desempenhando baseado na energia que elas são capazes de obter. É mostrada quanta energia cada fonte de alimento fornece para a espécie. Além disso, é mostrada a energia total disponível dessa fonte. A fração da energia total fornecida à espécie é baseada em quão adaptada a espécie é comparada à adaptação total. A adaptação é a métrica de quão bem a espécie pode utilizar essa fonte de alimento."
 
 msgid "AUTO-EVO_POPULATION_CHANGED_2"
-msgstr "A população de {0} foi alterada por {1} em {2} devido a: {3}"
+msgstr "A população de {0} foi alterada em {1} em {2} devido a: {3}"
 
 msgid "AUTO-EVO_PREDICTION"
 msgstr "Previsão da Auto-Evo"
@@ -322,9 +322,8 @@ msgstr "{0:F1}% feito. {1:n0}/{2:n0} passos."
 msgid "AUTO-EVO_STRENGHT_MULTIPLIER"
 msgstr "Multiplicador do custo de mutação"
 
-#, fuzzy
 msgid "AUTO-EVO_STRENGHT_MULTIPLIER_EXPLANATION"
-msgstr "(custo das organelas, membranas e outros itens do editor)"
+msgstr "(porcentagem de mudança de população a Auto-Evo aplica à espécie do jogador)"
 
 msgid "AUTOSAVE_DURING_THE_GAME"
 msgstr "Salvamento automático durante o jogo"
@@ -378,7 +377,7 @@ msgid "BACK"
 msgstr "Voltar"
 
 msgid "BACKGROUND_BLUR"
-msgstr ""
+msgstr "Desfoque de plano de fundo:"
 
 msgid "BACKSLASH"
 msgstr "Barra Invertida"
@@ -526,13 +525,11 @@ msgstr ""
 msgid "CACHE_MEMORY_MAX_ITEMS"
 msgstr ""
 
-#, fuzzy
 msgid "CACHE_TIME_MEMORY"
-msgstr "Memória de vídeo usada atualmente:"
+msgstr ""
 
-#, fuzzy
 msgid "CACHE_TIME_MEMORY_ONLY"
-msgstr "Memória de vídeo usada atualmente:"
+msgstr ""
 
 #, fuzzy
 msgid "CACHING_TITLE"
@@ -625,13 +622,16 @@ msgstr "Celulose"
 msgid "CELLULOSE_MEMBRANE_DESCRIPTION"
 msgstr "Essa membrana tem uma parede feita de celulose, resultando em uma melhor proteção contra danos, especialmente contra danos físicos. Ela requer menos energia para manter sua forma, mas não absorve recursos rapidamente e deixa a célula mais lenta. [b]A celulase pode digerir essa parede[/b], fazendo o organismo ficar mais vulnerável à fagocitose por parte dos predadores."
 
-#, fuzzy
 msgid "CELL_STAT_ROTATION_TOOLTIP"
-msgstr "O valor usado para gerar o mundo, que deve ser um número inteiro positivo"
+msgstr ""
+"Taxa de rotação da célula. Células maiores viram mais devagar, mas cílios podem ser adicionados para compensar.\n"
+"O posicionamento de organelas afeta a rotação, sendo que organelas mais distantes do centro reduzem mais a rotação."
 
-#, fuzzy
 msgid "CELL_STAT_SPEED_TOOLTIP"
-msgstr "O valor usado para gerar o mundo, que deve ser um número inteiro positivo"
+msgstr ""
+"Velocidade da célula. Por favor, note que devido a limitações do algoritmo que calcula este valor, ele é apenas uma aproximação.\n"
+"E, por exemplo, quando o tamanho do flagelo é modificado os valores de velocidade não fazem muito sentido e não coincidem com o que ocorrerá no estágio.\n"
+"Este é um problema conhecido, mas ainda não foi corrigido porque tem prioridade menor em comparação com diversos outros problemas e novas propriedades."
 
 msgid "CELL_TYPE_NAME"
 msgstr "Nome do Tipo de Célula"
@@ -642,9 +642,8 @@ msgstr "Notas de atualização está muito longa"
 msgid "CHANGE_THE_SYMMETRY"
 msgstr "Mudar a simetria"
 
-#, fuzzy
 msgid "CHANNEL_INHIBITOR_TOXIN_SYNTHESIS"
-msgstr "O vacúolo de toxinas é um vacúolo que foi modificado para a produção, armazenamento, e secreção de oxitoxinas. Mais vacúolos de toxinas vão aumentar a taxa na qual toxinas serão liberadas."
+msgstr "Síntese de Inibidor de Canais"
 
 msgid "CHEATS"
 msgstr "Trapaças"
@@ -662,7 +661,7 @@ msgid "CHEMOPLAST"
 msgstr "Quimioplasto"
 
 msgid "CHEMOPLAST_DESCRIPTION"
-msgstr "O quimioplasto é uma estrutura de membrana dupla contendo proteínas capazes de converter sulfeto de hidrogênio, água, e gás carbônico em glicose em um processo chamado Quimiossíntese de Sulfeto de Hidrogênio. A proporção de sua produção de glicose aumenta com a concentração de dióxido de carbono."
+msgstr "O quimioplasto é uma estrutura de membrana dupla contendo proteínas capazes de converter [thrive:compound type=\"hydrogensulfide\"][/thrive:compound], [thrive:compound type=\"carbondioxide\"][/thrive:compound] gasoso e água em [thrive:compound type=\"glucose\"][/thrive:compound] em um processo chamado [b]quimiossíntese de sulfeto de hidrogênio[/b]. A proporção de sua produção de [thrive:compound type=\"glucose\"][/thrive:compound] aumenta com a concentração de [thrive:compound type=\"carbondioxide\"][/thrive:compound]."
 
 msgid "CHEMOPLAST_PROCESSES_DESCRIPTION"
 msgstr "Transforma [thrive:compound type=\"hydrogensulfide\"][/thrive:compound] em [thrive:compound type=\"glucose\"][/thrive:compound]. Quantidade aumenta com a concentração de [thrive:compound type=\"carbondioxide\"][/thrive:compound]."
@@ -673,18 +672,21 @@ msgstr "Quimiorreceptor"
 msgid "CHEMORECEPTOR_DESCRIPTION"
 msgstr "A “visão” das células é, na verdade, a quimiorrecepção. É assim que elas obtêm informações do ambiente. Adicionar essa organela representa evoluir uma quimiorrecepção melhor. Como o jogador já consegue ver o que está ao redor da célula, a quimiorrecepção é representada por uma linha apontando para compostos fora da tela."
 
-#, fuzzy
 msgid "CHEMORECEPTOR_MINIMUM_AMOUNT_TOOLTIP"
-msgstr "Quantidade Mínima:"
+msgstr ""
+"Define o limiar de detecção de componentes. Valores baixos podem apontar para traços sutis de componentes que podem não ter quantidades úteis do componente.\n"
+"Um exemplo de estratégia é aumentar o raio de procura e quantidade mínima para que a nuvem de densidade útil mais próxima seja detectada.\n"
+"O quimiorreceptor fareja pontos individuais em uma \"nuvem\" de componente, e não o total em uma única nuvem."
 
 msgid "CHEMORECEPTOR_PROCESSES_DESCRIPTION"
 msgstr "O quimiorreceptor permite a detecção de compostos distantes. Modifique-o para mudar o tipo de composto e a cor da linha usada para indicar o caminho."
 
-#, fuzzy
 msgid "CHEMORECEPTOR_SEARCH_RADIUS_TOOLTIP"
-msgstr "A “visão” das células é, na verdade, a quimiorrecepção. É assim que elas obtêm informações do ambiente. Adicionar essa organela representa evoluir uma quimiorrecepção melhor. Como o jogador já consegue ver o que está ao redor da célula, a quimiorrecepção é representada por uma linha apontando para compostos fora da tela."
+msgstr ""
+"Define a distância máxima em que este quimiorreceptor busca por coisas para apontar.\n"
+"Pode ser usado, por exemplo, para que células lentas não apontem para recursos que provavelmente não estarão mais disponíveis quando a célula chegar lá, diminuindo a distância.\n"
+"Alternativamente, aumentar a distância pode apontar para coisas muito mais distantes, mas pode ser difícil chegar a elas antes que elas se vão."
 
-#, fuzzy
 msgid "CHEMOSYNTHESIS"
 msgstr "Quimiossíntese"
 
@@ -716,7 +718,7 @@ msgid "CHLOROPLAST"
 msgstr "Cloroplasto"
 
 msgid "CHLOROPLAST_DESCRIPTION"
-msgstr "O cloroplasto é uma estrutura de membrana dupla contendo pigmentos fotossensíveis. É um procarionte que foi assimilado pelo seu hospedeiro eucariótico. Os pigmentos no cloroplasto conseguem usar a energia da luz para produzir glicose da água e gás carbônico em um processo chamado Fotossíntese. Esses pigmentos também são o que os dá uma cor característica. A proporção de sua produção de glicose aumenta com a concentração de dióxido de carbono, e intensidade da luz."
+msgstr "O cloroplasto é uma estrutura de membrana dupla contendo pigmentos fotossensíveis dentro de sacos membranosos. É um procarionte que foi assimilado pelo seu hospedeiro eucariótico. Os pigmentos no cloroplasto conseguem usar a energia da luz para produzir [thrive:compound type=\"glucose\"][/thrive:compound] da água e [thrive:compound type=\"carbondioxide\"][/thrive:compound] gasoso em um processo chamado [b]fotossíntese[/b]. Esses pigmentos também são o que os dá uma cor característica. A proporção de sua produção de [thrive:compound type=\"glucose\"][/thrive:compound] aumenta com a concentração de [thrive:compound type=\"carbondioxide\"][/thrive:compound], e intensidade da [thrive:compound type=\"sunlight\"][/thrive:compound]."
 
 msgid "CHLOROPLAST_PROCESSES_DESCRIPTION"
 msgstr "Produz [thrive:compound type=\"glucose\"][/thrive:compound]. Quantidade aumenta com a concentração de [thrive:compound type=\"carbondioxide\"][/thrive:compound] e intensidade de [thrive:compound type=\"sunlight\"][/thrive:compound]."
@@ -752,7 +754,7 @@ msgid "CLEAN_UP_OLD_SAVES"
 msgstr "Limpar salvamentos antigos"
 
 msgid "CLEAR_CACHE"
-msgstr ""
+msgstr "Limpar Cache"
 
 msgid "CLOSE"
 msgstr "Fechar"
@@ -761,7 +763,7 @@ msgid "CLOSE_OPTIONS"
 msgstr "Fechar opções?"
 
 msgid "CLOSTRIDIAL_FERMENTATION"
-msgstr ""
+msgstr "Fermentação Clostridial"
 
 #, fuzzy
 msgid "CLOUD_BENCHMARK"
@@ -773,9 +775,8 @@ msgstr "Divisor da resolução de nuvens:"
 msgid "CLOUD_SIMULATION_MINIMUM_INTERVAL"
 msgstr "Intervalo mínimo da simulação de nuvens:"
 
-#, fuzzy
 msgid "CLOUD_SIMULATION_MULTIPLIER"
-msgstr "Multiplicador do custo da osmorregulação"
+msgstr "Multiplicador da simulação:"
 
 msgid "COASTAL"
 msgstr "Costeiro"
@@ -883,15 +884,15 @@ msgstr "(preenche o armazenamento em {0} s, que é mais tempo que a luz utilizá
 msgid "COMPOUND_BALANCE_MODE_TOOLTIP"
 msgstr ""
 "Modo para calcular o saldo de compostos; por exemplo, a opção “velocidade máxima” calcula pressupondo que todos os processos ocorram em velocidade máxima\n"
-"enquanto que a opção “equilíbrio” calcula com os processos ocorrendo rápido o suficiente para ter um saldo de ATP não negativo"
+"enquanto a opção “equilíbrio” calcula com os processos ocorrendo rápido o suficiente para ter um saldo de ATP não negativo."
 
 msgid "COMPOUND_BALANCE_TITLE"
-msgstr "Compostos"
+msgstr "Equilíbrio dos Compostos"
 
 msgid "COMPOUND_BALANCE_TOOLTIP"
 msgstr ""
 "Esta seção exibe o saldo de cada composto (produção − consumo).\n"
-"Por exemplo, o saldo de glucose precisa ser positivo para uma célula vegetal"
+"Por exemplo, o saldo de glucose precisa ser positivo para uma célula vegetal."
 
 msgid "COMPOUND_CLOUDS"
 msgstr "Nuvens de compostos"
@@ -912,23 +913,17 @@ msgstr "As concentrações de {0} diminuíram em {1}"
 msgid "COMPOUND_FOOD_SOURCE"
 msgstr "consumo de {0}"
 
-#, fuzzy
 msgid "COMPOUND_HANDLE_KEEP"
-msgstr "Compostos"
+msgstr "Manter Todos"
 
-#, fuzzy
 msgid "COMPOUND_HANDLE_SPLIT_SISTER"
-msgstr "Compostos"
+msgstr "Dividir Com Célula Irmã"
 
-#, fuzzy
 msgid "COMPOUND_HANDLE_TOP_UP"
-msgstr ""
-"Esta seção exibe o saldo de cada composto (produção − consumo).\n"
-"Por exemplo, o saldo de glucose precisa ser positivo para uma célula vegetal"
+msgstr "Sempre Completar até Inicial"
 
-#, fuzzy
 msgid "COMPOUND_HANDLE_TOP_UP_ON_CHANGE"
-msgstr "Densidade das nuvens de compostos"
+msgstr "Completar na Mudança de Região"
 
 msgid "COMPOUND_STORAGE_AMOUNT_DOES_NOT_LAST_NIGHT"
 msgstr "(não é o suficiente para suportar a noite, que dura {0} segundos)"
@@ -1021,12 +1016,15 @@ msgstr "Continuar a prosperar"
 
 msgid "CONTINUE_TO_PROTOTYPES"
 msgstr ""
-"Você terminou a parte “completa” de Thrive.\n"
-"Se quiser, você pode jogar os protótipos dos estágios seguintes que estão incluídos no jogo. Eles podem estar incompletos e usar gráficos temporários. Os protótipos estão incluídos para mostrar como será o possível futuro do jogo, e como os estágios estarão conectados.\n"
+"[b]Você terminou a parte “completa” de Thrive.[/b]\n"
 "\n"
-"Não será possível salvar o jogo na maioria dos protótipos, ou sair deles caso prosseguir. Se quiser voltar, salve o jogo antes de continuar.\n"
+"Se quiser, você pode jogar os [b]protótipos dos estágios seguintes[/b] que estão incluídos no jogo.\n"
 "\n"
-"Ao continuar, entenda que os estágios seguintes são protótipos e não reclame se estiverem incompletos."
+"Eles podem estar incompletos, usar gráficos temporários e serem de modo geral muito rústicos. Os protótipos estão incluídos para mostrar como será o possível futuro do jogo, e nossa visão geral de como os estágios estarão conectados.\n"
+"\n"
+"[b]Não será possível salvar o jogo[/b] na maioria dos protótipos, ou voltar para o estágio anterior caso prosseguir. Se quiser voltar para [i]este[/i] estágio, [b]salve o jogo agora[/b] antes de continuar.\n"
+"\n"
+"Suporte a controle também não está completo nos protótipos. Ao continuar, entenda que os estágios seguintes são protótipos e não reclame se estiverem incompletos."
 
 msgid "CONTINUE_TO_PROTOTYPES_PROMPT"
 msgstr "Prosseguir para o protótipo do estágio?"
@@ -1040,13 +1038,11 @@ msgstr "L2"
 msgid "CONTROLLER_AXIS_LEFT_TRIGGER"
 msgstr "Gatilho Esquerdo"
 
-#, fuzzy
 msgid "CONTROLLER_AXIS_LEFT_X"
-msgstr "Visualizador dos eixos do controle:"
+msgstr "Analógico Esquerdo Horizontal"
 
-#, fuzzy
 msgid "CONTROLLER_AXIS_LEFT_Y"
-msgstr "Visualizador dos eixos do controle:"
+msgstr "Analógico Esquerdo Vertical"
 
 msgid "CONTROLLER_AXIS_NEGATIVE_DIRECTION"
 msgstr "Direção Negativa"
@@ -1060,13 +1056,11 @@ msgstr "R2"
 msgid "CONTROLLER_AXIS_RIGHT_TRIGGER"
 msgstr "Gatilho Direito"
 
-#, fuzzy
 msgid "CONTROLLER_AXIS_RIGHT_X"
-msgstr "Visualizador dos eixos do controle:"
+msgstr "Analógico Direito Horizontal"
 
-#, fuzzy
 msgid "CONTROLLER_AXIS_RIGHT_Y"
-msgstr "Visualizador dos eixos do controle:"
+msgstr "Analógico Direito Vertical"
 
 msgid "CONTROLLER_AXIS_VISUALIZERS"
 msgstr "Visualizador dos eixos do controle:"
@@ -1111,21 +1105,17 @@ msgstr "Zonas mortas do controle"
 msgid "CONTROLLER_BUTTON_PADDLE4"
 msgstr "Zonas mortas do controle"
 
-#, fuzzy
 msgid "CONTROLLER_BUTTON_PS3_SELECT"
-msgstr "Tipos de prompts de botões do controle:"
+msgstr "Select"
 
-#, fuzzy
 msgid "CONTROLLER_BUTTON_PS3_START"
-msgstr "Tipos de prompts de botões do controle:"
+msgstr "Start"
 
-#, fuzzy
 msgid "CONTROLLER_BUTTON_PS_CIRCLE"
-msgstr "Zona morta:"
+msgstr "Círculo"
 
-#, fuzzy
 msgid "CONTROLLER_BUTTON_PS_CROSS"
-msgstr "Zona morta:"
+msgstr "X"
 
 msgid "CONTROLLER_BUTTON_PS_L1"
 msgstr "L1"
@@ -1133,9 +1123,8 @@ msgstr "L1"
 msgid "CONTROLLER_BUTTON_PS_L3"
 msgstr "L3"
 
-#, fuzzy
 msgid "CONTROLLER_BUTTON_PS_OPTIONS"
-msgstr "Zona morta:"
+msgstr "Opções"
 
 msgid "CONTROLLER_BUTTON_PS_R1"
 msgstr "R1"
@@ -1150,13 +1139,11 @@ msgstr "Zonas mortas do controle"
 msgid "CONTROLLER_BUTTON_PS_SONY_BUTTON"
 msgstr "Botão com Logo"
 
-#, fuzzy
 msgid "CONTROLLER_BUTTON_PS_SQUARE"
-msgstr "Visualizador dos eixos do controle:"
+msgstr "Quadrado"
 
-#, fuzzy
 msgid "CONTROLLER_BUTTON_PS_TRIANGLE"
-msgstr "Tipos de prompts de botões do controle:"
+msgstr "Triângulo"
 
 #, fuzzy
 msgid "CONTROLLER_BUTTON_RIGHT_SHOULDER"
@@ -1184,9 +1171,8 @@ msgstr ""
 msgid "CONTROLLER_BUTTON_XBOX_GUIDE"
 msgstr ""
 
-#, fuzzy
 msgid "CONTROLLER_BUTTON_XBOX_START"
-msgstr "Sensibilidade do controle"
+msgstr "Start"
 
 msgid "CONTROLLER_BUTTON_XBOX_X"
 msgstr "X"
@@ -1316,9 +1302,8 @@ msgstr "Créditos"
 msgid "CTRL"
 msgstr "CTRL"
 
-#, fuzzy
 msgid "CURRENT_CACHE_SIZE"
-msgstr "Sem pesquisas ativas"
+msgstr "Tamanho atual:"
 
 #, fuzzy
 msgid "CURRENT_CACHE_SIZE_TOOLTIP"
@@ -1339,7 +1324,6 @@ msgstr "Atualmente pesquisando: {0} ({1})"
 msgid "CURRENT_WORLD"
 msgstr "Mundo Atual"
 
-#, fuzzy
 msgid "CURRENT_WORLD_STATISTICS"
 msgstr ""
 "[b]Gerações:[/b]\n"
@@ -1360,6 +1344,7 @@ msgstr ""
 "  {8}\n"
 "[b]Dados Básicos das Espécies de Micróbios:[/b]\n"
 "  Tamanho Médio das Células: {9}\n"
+"\n"
 "[b]Dados Gerais de Organelas:[/b]"
 
 msgid "CUSTOM_USERNAME"
@@ -1369,7 +1354,7 @@ msgid "CYTOPLASM"
 msgstr "Citoplasma"
 
 msgid "CYTOPLASM_DESCRIPTION"
-msgstr "As entranhas pegajosas de uma célula. O citoplasma é a mistura básica de íons, proteínas, e outras substâncias dissolvidas na água que preenchem o interior da célula. Uma das funções que realiza é a Fermentação, a conversão de glicose em ATP. Para as células que carecem de organelas para ter metabolismos avançados, é disso que elas dependem para produzir energia. Também é usado para armazenar moléculas na célula para aumentar o tamanho dela."
+msgstr "As entranhas pegajosas de uma célula. O citoplasma é a mistura básica de íons, proteínas, e outras substâncias dissolvidas na água que preenchem o interior da célula. Uma das funções que ele realiza é a [b]glicólise[/b], a conversão de [thrive:compound type=\"glucose\"][/thrive:compound] em [thrive:compound type=\"atp\"][/thrive:compound]. Para as células que carecem de organelas para ter metabolismos mais avançados, é disso que elas dependem para produzir energia. Também é usado para armazenar moléculas na célula para aumentar o seu tamanho."
 
 msgid "CYTOPLASM_GLYCOLYSIS"
 msgstr "Glicólise do Citoplasma"
@@ -1377,9 +1362,8 @@ msgstr "Glicólise do Citoplasma"
 msgid "CYTOPLASM_PROCESSES_DESCRIPTION"
 msgstr "Transforma [thrive:compound type=\"glucose\"][/thrive:compound] em [thrive:compound type=\"atp\"][/thrive:compound]."
 
-#, fuzzy
 msgid "CYTOTOXIN_SYNTHESIS"
-msgstr "Síntese de Oxitoxina"
+msgstr "Síntese de Citotoxina"
 
 #, fuzzy
 msgid "DAMAGE_SOURCE_RADIATION"
@@ -1419,6 +1403,10 @@ msgstr ""
 
 msgid "DEBUG_DRAW_NOT_AVAILABLE"
 msgstr ""
+
+#, fuzzy
+msgid "DEBUG_HEAT_AT_CURSOR"
+msgstr "No cursor:"
 
 msgid "DEBUG_PANEL"
 msgstr "Painel de depuração"
@@ -1583,9 +1571,8 @@ msgstr "Descartar e continuar"
 msgid "DISCARD_CHANGES"
 msgstr "Descartar Mudanças"
 
-#, fuzzy
 msgid "DISCARD_MIGRATION"
-msgstr "Descartar e continuar"
+msgstr "Descartar Migração"
 
 msgid "DISCONNECTED_CELLS"
 msgstr "Células Desconectadas"
@@ -1616,7 +1603,9 @@ msgstr "Junte-se ao servidor Discord da comunidade"
 
 #, fuzzy
 msgid "DISK_CACHE_TOOLTIP"
-msgstr "Visite a nossa página na Itch.io"
+msgstr ""
+"Quando ativado, alguns dados difíceis de gerar são escritos no disco para que sejam mais rápido de carregar quando sejam necessários no futuro.\n"
+"Se desativado, apenas cache na memória é usado."
 
 msgid "DISMISSED_POPUPS_COLON"
 msgstr "Pop-ups dispensados:"
@@ -1638,9 +1627,8 @@ msgstr "Mostrar planos de fundo 3d no menu"
 msgid "DISPLAY_ABILITIES_BAR"
 msgstr "Exibir barra de habilidades"
 
-#, fuzzy
 msgid "DISPLAY_BACKGROUND_DISTORTION_EFFECT"
-msgstr "Mostrar partículas de fundo"
+msgstr "Aplicar distorção para o plano de fundo de micróbios"
 
 msgid "DISPLAY_BACKGROUND_PARTICLES"
 msgstr "Mostrar partículas de fundo"
@@ -1676,7 +1664,7 @@ msgid "DOUBLE_MEMBRANE_DESCRIPTION"
 msgstr "Uma membrana com duas camadas, tem melhor proteção contra dano e leva menos energia para não se deformar. No entanto, diminui um pouco sua velocidade e diminui a taxa em que pode absorver recursos."
 
 msgid "DRAG_TO_REORDER_ITEMS_WITH_MOUSE"
-msgstr ""
+msgstr "Arraste para reordenar itens com o mouse"
 
 msgid "DUMP_SCENE_TREE"
 msgstr "Despejar SceneTree"
@@ -1685,7 +1673,7 @@ msgid "DUPLICATE_TYPE"
 msgstr "Duplicar"
 
 msgid "EASTEREGG_MESSAGE_1"
-msgstr "Curiosidade: o Didinium e o Paramecium são um exemplo de relação de predador-presa que foi estudado por décadas. Você é o Didinium ou o Paramecium? Predador ou Presa?"
+msgstr "Curiosidade: o didínio e o paramécio são um exemplo de relação predador-presa que foi estudado por décadas. Você é o didínio ou o paramécio? Predador ou Presa?"
 
 msgid "EASTEREGG_MESSAGE_10"
 msgstr "COISAS ONDULADAS!!"
@@ -1694,59 +1682,58 @@ msgid "EASTEREGG_MESSAGE_11"
 msgstr "Pela milésima vez, o jogo não vai ter civilizações subaquáticas."
 
 msgid "EASTEREGG_MESSAGE_12"
-msgstr "Apesar dessas células azuis."
+msgstr "E essas células azuis, hein?"
 
 msgid "EASTEREGG_MESSAGE_13"
-msgstr "Aqui vai uma dica, os biomas são mais que fundos diferentes, os compostos em biomas diferentes aparecem em proporções diferentes."
+msgstr "Se a sua célula tiver 150 hexágonos, você pode fagocitar até os maiores pedaços de ferro!"
 
 msgid "EASTEREGG_MESSAGE_14"
-msgstr "Aqui vai uma dica, quanto mais flagelos você tem, o mais rápido você pode ir, mas também custa mais ATP"
+msgstr "Curiosidade: existem mais de 8000 espécies de ciliados no planeta Terra."
 
 msgid "EASTEREGG_MESSAGE_15"
-msgstr "Aqui vai uma dica, você pode ingerir pedaços de ferro ou de outras células."
+msgstr "Curiosidade: Stentor são ciliados que podem se esticar e capturar presas em um tipo de boca em formato de trompete que atrai presas gerando correntes de água com cílios."
 
 msgid "EASTEREGG_MESSAGE_16"
-msgstr "Aqui vai uma dica, se prepare antes de adicionar um núcleo. Essas coisas são caras! Em manutenção e custo inicial."
+msgstr "Curiosidade: didínios são ciliados que caçam paramécios."
 
 msgid "EASTEREGG_MESSAGE_17"
-msgstr "Curiosidade, você sabia que existem mais de 8000 espécies de ciliados no planeta Terra?"
+msgstr "Curiosidade: amebas caçam e capturam sua presa com \"pés\" feitos de citoplasma chamados pseudópodes, eventualmente queremos ter eles em Thrive."
 
 msgid "EASTEREGG_MESSAGE_18"
-msgstr "Curiosidade, o Stentor é um ciliado que pode se esticar e pegar as presas em um a espécie de boca com forma de trompete que as atrai gerando correntes d'água com os seus cílios."
+msgstr "Bactérias podem ser mais fortes do que parecem; elas podem parecer pequenas, mas algumas delas podem se enfiar em você e te matar desse jeito!"
 
 msgid "EASTEREGG_MESSAGE_2"
-msgstr "Aqui vai uma dica, toxinas podem ser usadas para rebater outras toxinas se você for rápido o suficiente."
+msgstr "Um dos primeiros protótipos jogáveis foi criado pelo nosso fantástico programador, Untrustedlife!"
 
 msgid "EASTEREGG_MESSAGE_3"
-msgstr "Aqui vai uma dica, a osmorregulação custa 1 ATP por segundo por espaço que a sua célula tem. Além disso, cada espaço vazio de citoplasma gera 5 ATP por segundo, o que significa que se você está perdendo ATP por causa do osmorregulação, é só adicionar citoplasma ou remover algumas organelas."
+msgstr "Todas as criaturas no jogo terão evoluído de um ancestral comum. Veja se você consegue identificar quais delas são mais estreitamente aparentadas!"
 
 msgid "EASTEREGG_MESSAGE_4"
-msgstr "Curiosidade, na vida real, as células procarióticas têm algo chamado biocompartimentos, que agem como organelas, e são chamados de organelas poliédricas."
+msgstr "Curiosidade: na vida real, as células procarióticas têm algo chamado biocompartimentos, que agem como organelas, e são chamados de organelas poliédricas."
 
 msgid "EASTEREGG_MESSAGE_5"
 msgstr "Curiosidade, o metabolossomo é o que se chama de uma organela poliédrica."
 
 msgid "EASTEREGG_MESSAGE_6"
-msgstr "Aqui vai uma dica, algumas vezes é melhor fugir de outras células."
+msgstr "O líder da equipe de som do Thrive fez muitas músicas que ainda não foram adicionadas ao jogo. Você pode ouví-las ou assistir lives em que ele as compõe no seu canal do YouTube, Oliver Lugg."
 
 msgid "EASTEREGG_MESSAGE_7"
-msgstr "Aqui vai uma dica, se uma célula tiver cerca de metade do seu tamanho, você pode fagocitá-la."
+msgstr "Thrive pretende ser uma simulação de um planeta alienígena, então não espere encontrar as mesmas criaturas que encontraria na Terra!"
 
 msgid "EASTEREGG_MESSAGE_8"
-msgstr "Aqui vai uma dica, as bactérias podem ser mais fortes do que elas aparentam, elas parecem pequenas, mas algumas delas podem te penetrar e matar você assim!"
+msgstr "Curiosidade: a equipe do Thrive faz podcasts de vez em quando, você deveria assistí-los!"
 
 msgid "EASTEREGG_MESSAGE_9"
-msgstr "Aqui vai uma dica, você pode caçar outras espécies à extinção se você não for cuidadoso o suficiente. Outras espécies também podem fazer o mesmo."
+msgstr "Curiosidade: Thrive é feito com o motor de código aberto Godot, e todo o código do jogo pode ser visto online."
 
 msgid "EASTER_EGGS"
 msgstr "Incluir easter eggs"
 
 msgid "EASTER_EGGS_EXPLANATION"
-msgstr "(incluir aleatoriamente segredos no jogo)"
+msgstr "(segredos que aparecem aleatoriamente no jogo)"
 
-#, fuzzy
 msgid "EASTER_EGG_BANANA_BIOME"
-msgstr "(incluir aleatoriamente segredos no jogo)"
+msgstr "Bioma Banana"
 
 msgid "EDGE_PAN_SPEED"
 msgstr "Velocidade de rotação:"
@@ -1758,20 +1745,19 @@ msgstr "Falta um título"
 msgid "EDITOR"
 msgstr "Editor"
 
-#, fuzzy
 msgid "EDITORS_AND_MUTATIONS_BUTTON"
-msgstr "teve uma mutação"
+msgstr "Editores e Mutações"
 
 msgid "EDITOR_BUTTON_TOOLTIP"
 msgstr "Abre o editor e modifica a sua espécie"
 
 msgid "EDITOR_TUTORIAL_EDITOR_TEXT"
 msgstr ""
-"Bem-vindo ao Editor de Micróbios.\n"
+"Bem-vindo ao [b]Editor de Micróbio[/b].\n"
 "\n"
-"Aqui você poderá rever o que aconteceu desde o início do jogo ou desde a última vez que esteve no editor, e fazer mudanças a sua espécie.\n"
+"Aqui você poderá revisar o que aconteceu durante gerações passadas, e então modificar a sua espécie.\n"
 "\n"
-"Nessa aba você pode ver a lista de mudanças ocorridas no ambiente que você ocupa atualmente. Tente explorar as varias ferramentas a sua disposição para aprender mais sobre os eventos do seu mundo!\n"
+"Nessa aba você pode ver a lista de mudanças ocorridas na região que você ocupa atualmente. Tente explorar as varias ferramentas à sua disposição para aprender mais sobre os eventos do seu mundo!\n"
 "\n"
 "Para ir para a próxima aba, aperte o botão “próximo” no canto inferior direito."
 
@@ -1784,9 +1770,8 @@ msgstr "Ejetar objetos fagocitados"
 msgid "EJECT_ENGULFED_TOOLTIP"
 msgstr "Ejetar objetos fagocitados"
 
-#, fuzzy
 msgid "EMITTERS_COUNT"
-msgstr "Quantidade de micróbios:"
+msgstr "Emissores:"
 
 msgid "ENABLED_MODS"
 msgstr "Mods Habilitados"
@@ -1846,9 +1831,8 @@ msgstr "Começar a endossimbiose para esta espécie (disponível assim que o tip
 msgid "ENDOSYMBIOSIS_TITLE"
 msgstr "Endossimbiose"
 
-#, fuzzy
 msgid "ENERGY_BALANCE_REQUIRED_COMPOUND_LINE"
-msgstr "{0}: -{1} ATP"
+msgstr "- {0}: {1} /segundo"
 
 msgid "ENERGY_BALANCE_TOOLTIP_CONSUMPTION"
 msgstr "{0}: -{1} ATP"
@@ -1856,9 +1840,11 @@ msgstr "{0}: -{1} ATP"
 msgid "ENERGY_BALANCE_TOOLTIP_PRODUCTION"
 msgstr "{0}: +{1} ATP"
 
-#, fuzzy
 msgid "ENERGY_BALANCE_TOOLTIP_PRODUCTION_WITH_REQUIREMENT"
-msgstr "{0}: +{1} ATP"
+msgstr ""
+"{0}: +{1} ATP\n"
+"Enquanto consome:\n"
+"{2}"
 
 msgid "ENERGY_IN_PATCH_FOR"
 msgstr "Energia em {0} para {1}"
@@ -1887,9 +1873,8 @@ msgstr "Rótulo da entidade"
 msgid "ENVIRONMENT"
 msgstr "Ambiente"
 
-#, fuzzy
 msgid "ENVIRONMENTAL_CONDITIONS_BUTTON"
-msgstr "Retenção da glicose ambiental"
+msgstr "Condições Ambientais"
 
 msgid "ENVIRONMENTAL_GLUCOSE_RETENTION"
 msgstr "Retenção da glicose ambiental"
@@ -1900,9 +1885,8 @@ msgstr "(proporção da glicose conservada no ambiente a cada geração)"
 msgid "ENVIRONMENT_BUTTON_MICROBE_TOOLTIP"
 msgstr "Mostrar/esconder ambiente"
 
-#, fuzzy
 msgid "ENVIRONMENT_TOLERANCE"
-msgstr "Ambiente"
+msgstr "Tolerância"
 
 msgid "EPIPELAGIC"
 msgstr "Epipelágico"
@@ -1934,25 +1918,25 @@ msgstr "Erro ao carregar"
 msgid "ERROR_SAVING"
 msgstr "Erro ao salvar"
 
-#, fuzzy
 msgid "ERROR_UPLOADING_EXCEPTION"
-msgstr "Erro ao carregar"
+msgstr "Uma exceção ocorreu: {0}"
 
 msgid "ESCAPE"
 msgstr "Esc"
 
 msgid "ESCAPE_ENGULFING"
-msgstr "escapou da fagocitose"
+msgstr "escapar da fagocitose"
 
 msgid "ESTUARY"
 msgstr "Estuário"
 
-#, fuzzy
 msgid "EVENT_ERUPTION_TOOLTIP"
-msgstr "Esta é a commit na qual essa versão de Thrive foi compilada"
+msgstr ""
+"Evento de Região: Erupção\n"
+"Cria mais sulfeto de hidrogênio e dióxido de carbono"
 
 msgid "EVOLUTIONARY_TREE"
-msgstr "Árvore evolucionária"
+msgstr "Árvore Evolucionária"
 
 msgid "EVOLUTIONARY_TREE_BUILD_FAILED"
 msgstr ""
@@ -1987,19 +1971,17 @@ msgstr "Sair para o Lançador"
 msgid "EXPERIMENTAL_FEATURES"
 msgstr "Recursos experimentais"
 
-#, fuzzy
 msgid "EXPERIMENTAL_FEATURES_EXPLANATION"
-msgstr "(ativa recursos adicionais que não estão maduros o suficiente para serem incluídos no jogo padrão. Se você jogar com eles, diga-nos o que achou)"
+msgstr "(ativa recursos adicionais que não estão maduros o suficiente para serem incluídos no jogo padrão. Se você jogar com eles, estamos interessados no que achou)"
 
-#, fuzzy
 msgid "EXPERIMENTAL_FEATURES_WARNING"
-msgstr "Recursos experimentais"
+msgstr "(CUIDADO: recursos experimentais podem arruinar o equilíbrio de jogo e outros aspectos, de modo que são recomendados apenas para jogadores experientes de Thrive. Ao relatar quaisquer bugs, comece seu relato dizendo que os recursos experimentais estão ativados.)"
 
 msgid "EXPORT_ALL_WORLDS"
 msgstr "Exportar Todos os Mundos"
 
 msgid "EXPORT_ALL_WORLDS_TOOLTIP"
-msgstr "Exportar os dados de todos os mundos no formato CSV"
+msgstr "Exportar os dados de todos os mundos no formato CSV (comma-separated values)"
 
 msgid "EXPORT_SUCCESS"
 msgstr "Exportados com Sucesso"
@@ -2054,10 +2036,10 @@ msgstr "Medroso"
 
 msgid "FEAR_EXPLANATION"
 msgstr ""
-"Os micróbios medrosos são mais propensos a fugir de predadores\n"
-"e percorrerão longas distâncias caso sejam intimidados.\n"
-"Os micróbios corajosos não se deixam intimidar pelos predadores próximos\n"
-"e podem contra-atacar."
+"Micróbios medrosos percorrerão maiores distâncias\n"
+"e são mais propensos a fugir de predadores de modo geral.\n"
+"Micróbios corajosos não se deixam intimidar por predadores próximos\n"
+"e são mais propensos a contra-atacar."
 
 msgid "FEATURE_DISABLED"
 msgstr "Desativado"
@@ -2083,13 +2065,11 @@ msgstr "Esse item foi truncado por ser muito longo, leia o original para obter t
 msgid "FERROPLAST"
 msgstr "Ferroplasto"
 
-#, fuzzy
 msgid "FERROPLAST_DESCRIPTION"
-msgstr "O ferroplasto é uma estrutura de membrana dupla cheia de proteínas e enzimas. É um procarionte que foi assimilado para uso de seu hospedeiro eucariótico. É capaz de oxidar [thrive:compound type=\"iron\"][/thrive:compound] de um estado químico a outra com uma eficiência bem maior do que pode ser conseguido com a rusticianina. Esse processo, chamado de [b]respiração de ferro[/b], libera energia que a célula poderá utilizar. Contudo, o ferroplasto precisa de [thrive:compound type=\"carbondioxide\"][/thrive:compound] e [thrive:compound type=\"oxygen\"][/thrive:compound] para funcionar, e níveis maiores de qualquer um desses no ambiente diminuirá a taxa da produção de [thrive:compound type=\"atp\"][/thrive:compound]."
+msgstr "Um poder metálico. O ferroplasto é uma estrutura de membrana dupla cheia de proteínas e enzimas. É um procarionte que foi assimilado para uso de seu hospedeiro eucariótico. É capaz de oxidar [thrive:compound type=\"iron\"][/thrive:compound] de um estado químico a outro com uma eficiência bem maior do que pode ser conseguido com a rusticianina. Esse processo, chamado de [b]respiração de ferro[/b], libera energia que a célula poderá utilizar. Contudo, o ferroplasto precisa de [thrive:compound type=\"carbondioxide\"][/thrive:compound] para funcionar, e níveis baixos desse composto no ambiente diminuirão a taxa da produção de [thrive:compound type=\"atp\"][/thrive:compound]."
 
-#, fuzzy
 msgid "FERROPLAST_PROCESSES_DESCRIPTION"
-msgstr "Produz [thrive:compound type=\"glucose\"][/thrive:compound]. Quantidade aumenta com a concentração de [thrive:compound type=\"carbondioxide\"][/thrive:compound] e temperatura."
+msgstr "Transforma [thrive:compound type=\"iron\"][/thrive:compound] em [thrive:compound type=\"atp\"][/thrive:compound]. Quantidade aumenta com a concentração de [thrive:compound type=\"carbondioxide\"][/thrive:compound]."
 
 msgid "FILTER_ITEMS_BY_CATEGORY_COLON"
 msgstr "Filtrar os itens por categoria:"
@@ -2119,18 +2099,16 @@ msgid "FLAGELLUM"
 msgstr "Flagelo"
 
 msgid "FLAGELLUM_DESCRIPTION"
-msgstr "O flagelo é um apêndice de fibras proteicas semelhante a um chicote, estendendo-se da membrana da célula que pode usar ATP para ondular e impulsionar a célula em uma direção. A posição do flagelo determina a direção na qual ele impulsiona a célula. A direção do impulso é oposta à direção que o flagelo aponta, por exemplo, um flagelo que está no lado esquerdo da célula só dá impulso quando ela se move para a direita."
+msgstr "O flagelo é um apêndice de fibras proteicas semelhante a um chicote, estendendo-se da membrana da célula que pode usar [thrive:compound type=\"atp\"][/thrive:compound] para ondular e impulsionar a célula em uma direção. A posição do flagelo determina a direção na qual ele impulsiona a célula. A direção do impulso é oposta à direção que o flagelo aponta, por exemplo, um flagelo que está no lado esquerdo da célula só dá impulso quando ela se move para a direita."
 
-#, fuzzy
 msgid "FLAGELLUM_LENGTH_DESCRIPTION"
-msgstr "O flagelo é um apêndice de fibras proteicas semelhante a um chicote, estendendo-se da membrana da célula que pode usar ATP para ondular e impulsionar a célula em uma direção. A posição do flagelo determina a direção na qual ele impulsiona a célula. A direção do impulso é oposta à direção que o flagelo aponta, por exemplo, um flagelo que está no lado esquerdo da célula só dá impulso quando ela se move para a direita."
+msgstr "Comprimento do flagelo. Flagelos mais longos geram mais impulso mas consomem mais ATP."
 
 msgid "FLAGELLUM_PROCESSES_DESCRIPTION"
 msgstr "Usa [thrive:compound type=\"atp\"][/thrive:compound] para aumentar a velocidade de movimento da célula."
 
-#, fuzzy
 msgid "FLEET_NAME_FROM_PLACE"
-msgstr "Frota {1}"
+msgstr "Frota {0}"
 
 msgid "FLEET_UNITS"
 msgstr "Unidades da Frota"
@@ -2152,7 +2130,7 @@ msgstr "Focado"
 
 msgid "FOCUS_EXPLANATION"
 msgstr ""
-"Os micróbios focados perseguirão presas ou pedaços por distâncias mais longas\n"
+"Micróbios focados perseguirão presas ou pedaços por distâncias mais longas\n"
 "e podem ser mais cobiçosos em relação aos pedaços.\n"
 "Micróbios mais reativos perseguirão outras presas depois de um tempo."
 
@@ -2250,16 +2228,14 @@ msgstr "Informação Completa do Mod"
 msgid "GALLERY_VIEWER"
 msgstr "Visualizador de Galeria"
 
-#, fuzzy
 msgid "GAMEPLAY_BASICS_TITLE"
-msgstr "Equipe de Game Design"
+msgstr "Conceitos Básicos da Jogabilidade"
 
 msgid "GAME_DESIGN_TEAM"
 msgstr "Equipe de Game Design"
 
-#, fuzzy
 msgid "GAME_SYSTEMS_TITLE"
-msgstr "Equipe de Game Design"
+msgstr "Sistemas do Jogo"
 
 msgid "GATHERED_ENERGY_TOOLTIP"
 msgstr ""
@@ -2269,21 +2245,17 @@ msgstr ""
 msgid "GENERAL"
 msgstr "Geral"
 
-#, fuzzy
 msgid "GENERAL_LOADING_TIP_1"
 msgstr "Aperte o botão de desfazer no editor para corrigir um erro"
 
-#, fuzzy
 msgid "GENERAL_LOADING_TIP_2"
-msgstr "Aperte o botão de desfazer no editor para corrigir um erro"
+msgstr "Cuidado com organismos maiores. Eles podem te comer, e não é legal ser digerido!"
 
-#, fuzzy
 msgid "GENERAL_LOADING_TIP_3"
-msgstr "Aperte o botão de desfazer no editor para corrigir um erro"
+msgstr "Preste atenção quando você estiver caçando a mesma espécie o tempo todo, pois você pode caçá-la até ela ser extinta. Outras espécies também podem fazer isso."
 
-#, fuzzy
 msgid "GENERAL_LOADING_TIP_4"
-msgstr "Aperte o botão de desfazer no editor para corrigir um erro"
+msgstr "Às vezes, fugir é a melhor opção."
 
 #, fuzzy
 msgid "GENERAL_LOADING_TIP_5"
@@ -2293,9 +2265,8 @@ msgstr "Aperte o botão de desfazer no editor para corrigir um erro"
 msgid "GENERAL_LOADING_TIP_6"
 msgstr "Aperte o botão de desfazer no editor para corrigir um erro"
 
-#, fuzzy
 msgid "GENERAL_LOADING_TIP_7"
-msgstr "Aperte o botão de desfazer no editor para corrigir um erro"
+msgstr "Se a sua população chegar a zero, você se torna uma espécie extinta."
 
 msgid "GENERATIONS"
 msgstr "Gerações"
@@ -2312,9 +2283,8 @@ msgstr "GLES3"
 msgid "GLOBAL_INITIAL_LETTER"
 msgstr "G"
 
-#, fuzzy
 msgid "GLOBAL_POPULATION_COLON"
-msgstr "População Total:"
+msgstr "População Global:"
 
 msgid "GLOBAL_TIMELINE_SPECIES_MIGRATED_TO"
 msgstr "Parte da população de [b][u]{0}[/u][/b] migrou de {1} para {2}"
@@ -2375,6 +2345,10 @@ msgstr "Volume da interface"
 msgid "HEALTH"
 msgstr "Saúde"
 
+#, fuzzy
+msgid "HEAT_ACCUMULATION_BAR_TOOLTIP"
+msgstr "Carregar patches Harmony do Assembly automaticamente (não é preciso especificar a classe do mod)"
+
 msgid "HELP"
 msgstr "Ajuda"
 
@@ -2423,33 +2397,29 @@ msgstr "HSV"
 msgid "HUD_MESSAGE_MULTIPLE"
 msgstr "{0} (x{1})"
 
-#, fuzzy
 msgid "HYDROGENASE"
-msgstr "Sulfeto de Hidrogênio"
+msgstr "Hidrogenase"
 
-#, fuzzy
 msgid "HYDROGENASE_DESCRIPTION"
-msgstr "Nitrogenase é uma enzima que consegue usar nitrogênio gasoso e energia celular na forma de ATP para sintetizar amônia, um nutriente essencial para o crescimento das células. Esse processo é chamado de Fixação de Nitrogênio. Como a nitrogenase é suspensa diretamente no citoplasma, os fluidos em volta realizam a Fermentação."
+msgstr "Usa hidrogênio para gerar energia a partir de [thrive:compound type=\\\"glucose\\\"][/thrive:compound]. Mais efetiva que metabolossomos a níveis baixos de [thrive:compound type=\\\"oxygen\\\"][/thrive:compound]. Muitos organismos em ambientes anóxicos usam isso como uma fonte primária de energia."
 
-#, fuzzy
 msgid "HYDROGENASE_PROCESSES_DESCRIPTION"
-msgstr "Transforma [thrive:compound type=\"atp\"][/thrive:compound] em [thrive:compound type=\"ammonia\"][/thrive:compound]. Quantidade aumenta com a concentração de [thrive:compound type=\"nitrogen\"][/thrive:compound]."
+msgstr "Transforma [thrive:compound type=\"glucose\"][/thrive:compound] em [thrive:compound type=\"atp\"][/thrive:compound]."
 
 msgid "HYDROGEN_SULFIDE"
 msgstr "Sulfeto de Hidrogênio"
 
-#, fuzzy
 msgid "ICESHARD"
-msgstr "Fragmento de gelo"
+msgstr "Fragmento Pequeno de Gelo"
 
 msgid "ICESHELF"
 msgstr "Plataforma de Gelo"
 
 msgid "ICE_CHUNK_BIG"
-msgstr ""
+msgstr "Pedaço Grande de Gelo"
 
 msgid "ICE_CHUNK_SMALL"
-msgstr ""
+msgstr "Pedaço Pequeno de Gelo"
 
 msgid "ID_IS_NOT_A_NUMBER"
 msgstr "O ID não é um número válido"
@@ -2457,9 +2427,8 @@ msgstr "O ID não é um número válido"
 msgid "ID_NUMBER"
 msgstr "Número de ID"
 
-#, fuzzy
 msgid "IMAGE_FILE_TYPES"
-msgstr "Tipos de Membranas"
+msgstr "Arquivos de Imagem Compatíveis"
 
 msgid "INCLUDE_MULTICELLULAR_PROTOTYPE"
 msgstr "Incluir protótipos dos estágios seguintes"
@@ -2467,17 +2436,14 @@ msgstr "Incluir protótipos dos estágios seguintes"
 msgid "INCLUDE_MULTICELLULAR_PROTOTYPE_EXPLANATION"
 msgstr "(alguns recursos podem não estar disponíveis quando você alcançar os próximos estágios)"
 
-#, fuzzy
 msgid "INCREASE_ITEM_SIZE"
-msgstr "Criar Novo"
+msgstr "Aumentar tamanho do objeto"
 
-#, fuzzy
 msgid "INDICATOR_SPECIES_IS_NEW"
-msgstr "Espécies Extintas"
+msgstr "Indica que a espécie é nova nessa região ou mundo"
 
-#, fuzzy
 msgid "INDICATOR_SPECIES_MUTATED"
-msgstr "Permitir que a espécie não mute"
+msgstr "Indica que a espécie sofreu mutação durante esse ciclo do auto-evo"
 
 msgid "INDUSTRIAL_STAGE"
 msgstr "Estágio Industrial"
@@ -2491,9 +2457,8 @@ msgstr "MP Infinito"
 msgid "INFO_BOX_COST"
 msgstr "Custo base (PM)"
 
-#, fuzzy
 msgid "INFO_BOX_EDITORS"
-msgstr "Custo base (PM)"
+msgstr "Editores"
 
 msgid "INFO_BOX_ENZYMES"
 msgstr "Enzimas"
@@ -2508,16 +2473,14 @@ msgstr "Nome Interno"
 msgid "INFO_BOX_MASS"
 msgstr "Massa"
 
-#, fuzzy
 msgid "INFO_BOX_NEXT_STAGE"
-msgstr "Armazenamento"
+msgstr "Próximo Estágio"
 
 msgid "INFO_BOX_OSMOREGULATION_COST"
 msgstr "Custo de Osmorregulação"
 
-#, fuzzy
 msgid "INFO_BOX_PREVIOUS_STAGE"
-msgstr "Processos"
+msgstr "Estágio Anterior"
 
 msgid "INFO_BOX_PROCESSES"
 msgstr "Processos"
@@ -2664,15 +2627,11 @@ msgstr "Quimiolitoautotrofia Férrica"
 msgid "ITCH_TOOLTIP"
 msgstr "Visite a nossa página na Itch.io"
 
-#, fuzzy
 msgid "ITEM_AT_2D_COORDINATES"
-msgstr ""
-"Coordenadas de posição: {0}\n"
-"Olhando para as coordenadas: {1}"
+msgstr "{0} em ({1}, {2})"
 
-#, fuzzy
 msgid "ITEM_NAME_SEPARATOR"
-msgstr "Interagir com o objeto"
+msgstr ":"
 
 msgid "JANUARY"
 msgstr "Janeiro"
@@ -2712,7 +2671,7 @@ msgstr ""
 "Deseja elimimar a entrada de {1}?"
 
 msgid "KEY_BRING_UP_KEYBOARD"
-msgstr ""
+msgstr "Abrir Teclado"
 
 msgid "KEY_CLEAR"
 msgstr "Limpar"
@@ -2735,9 +2694,8 @@ msgstr "Favoritos"
 msgid "KEY_FORWARD"
 msgstr "Avançar"
 
-#, fuzzy
 msgid "KEY_GLOBE"
-msgstr "Home"
+msgstr "Tecla Globo"
 
 msgid "KEY_HELP"
 msgstr "Ajuda"
@@ -2755,13 +2713,11 @@ msgstr "Ajuda"
 msgid "KEY_INSERT"
 msgstr "Insert"
 
-#, fuzzy
 msgid "KEY_JIS_EISU"
-msgstr "Insert"
+msgstr "Tecla JIS Eisu"
 
-#, fuzzy
 msgid "KEY_JIS_KANA"
-msgstr "Modo de espera"
+msgstr "Tecla JIS Kana"
 
 msgid "KEY_LEFT"
 msgstr "Seta para esquerda"
@@ -2769,9 +2725,8 @@ msgstr "Seta para esquerda"
 msgid "KEY_MENU"
 msgstr "Menu"
 
-#, fuzzy
 msgid "KEY_META"
-msgstr "Tab"
+msgstr "Meta"
 
 msgid "KEY_OPENURL"
 msgstr "Abrir URL"
@@ -3058,9 +3013,8 @@ msgstr "Bem pequeno"
 msgid "LINE_COLOUR"
 msgstr "Cor da Linha:"
 
-#, fuzzy
 msgid "LINKS_TITLE"
-msgstr "Falta um título"
+msgstr "Links"
 
 msgid "LIPASE"
 msgstr "Lipase"
@@ -3080,9 +3034,8 @@ msgstr "Carregando…"
 msgid "LOADING_GAME"
 msgstr "Carregando Jogo"
 
-#, fuzzy
 msgid "LOADING_MACROSCOPIC_EDITOR"
-msgstr "Carregando Editor de Micróbios"
+msgstr "Carregando Editor Macroscópico"
 
 msgid "LOADING_MICROBE_EDITOR"
 msgstr "Carregando Editor de Micróbios"
@@ -3143,7 +3096,7 @@ msgid "LYSOSOME"
 msgstr "Lisossomo"
 
 msgid "LYSOSOME_DESCRIPTION"
-msgstr "O lisossomo é uma organela ligada à membrana que contém enzimas hidrolíticas que podem quebrar vários tipos de biomoléculas. Os lisossomos permitem a digestão de materiais ingeridos por meio da endocitose e limpar seus resíduos usando um processo chamado autofagia."
+msgstr "O lisossomo é uma organela membranosa que contém enzimas hidrolíticas que podem dissolver vários tipos de biomoléculas. Os lisossomos permitem a digestão de materiais ingeridos por meio da endocitose e a limpeza de seus resíduos usando um processo chamado [b]autofagia[/b]."
 
 msgid "LYSOSOME_PROCESSES_DESCRIPTION"
 msgstr "Contém enzimas digestivas. Pode ser modificado para mudar o tipo de enzima que contém. Só uma enzima pode ser utilizada ao mesmo tempo."
@@ -3152,13 +3105,11 @@ msgstr "Contém enzimas digestivas. Pode ser modificado para mudar o tipo de enz
 msgid "MACROLIDE_SYNTHESIS"
 msgstr "Síntese de mucilagem"
 
-#, fuzzy
 msgid "MACROSCOPIC"
-msgstr "Tornar-se Macroscópico ({0}/{1})"
+msgstr "Macroscópico"
 
-#, fuzzy
 msgid "MACROSCOPIC_STAGE"
-msgstr "Estágio Microbial"
+msgstr "Estágio Macroscópico"
 
 msgid "MANUALLY_SET_TIME"
 msgstr "Definir Manualmente a Hora do Dia"
@@ -3185,9 +3136,8 @@ msgstr "FPS máximo:"
 msgid "MAX_FPS_NO_LIMIT"
 msgstr "Ilimitado"
 
-#, fuzzy
 msgid "MAX_SIZE_COLON"
-msgstr "Tamanho:"
+msgstr "Tamanho máximo:"
 
 msgid "MAX_SPAWNED_ENTITIES"
 msgstr "Número máximo de entidades:"
@@ -3217,9 +3167,8 @@ msgstr "Mídia Rec"
 msgid "MEDIASTOP"
 msgstr "Parar Mídia"
 
-#, fuzzy
 msgid "MEDIUM_SULFUR_CHUNK"
-msgstr "Pedaço de ferro pequeno"
+msgstr "Pedaço Médio de Enxofre"
 
 msgid "MEGA_YEARS"
 msgstr "Ma"
@@ -3255,7 +3204,7 @@ msgid "METABOLOSOMES"
 msgstr "Metabolossomo"
 
 msgid "METABOLOSOMES_DESCRIPTION"
-msgstr "Metabolossomos são aglomerados envoltos com cascas de proteínas. Eles conseguem converter glicose em ATP a uma taxa muito maior do que pode ser feita no citoplasma em um processo chamado Respiração Aeróbica. No entanto, necessita de oxigênio para funcionar, e níveis menores de oxigênio no ambiente vão desacelerar a taxa da produção de ATP. Como os metabolossomos são suspensos diretamente no citoplasma, os fluidos em volta realizarão a fermentação."
+msgstr "Metabolossomos são aglomerados de proteínas envoltos em cascas de proteínas. Eles conseguem converter [thrive:compound type=\"glucose\"][/thrive:compound] em [thrive:compound type=\"atp\"][/thrive:compound] a uma taxa muito maior do que pode ser feita no citoplasma em um processo chamado [b]Respiração Aeróbica[/b]. No entanto, eles necessitam de [thrive:compound type=\"oxygen\"][/thrive:compound] para funcionar, e níveis menores de [thrive:compound type=\"oxygen\"][/thrive:compound] no ambiente vão desacelerar a taxa da produção de [thrive:compound type=\"atp\"][/thrive:compound]. Como os metabolossomos são suspensos diretamente no citoplasma, os fluidos em volta realizarão alguma [b]glicólise[/b]."
 
 msgid "METABOLOSOMES_PROCESSES_DESCRIPTION"
 msgstr "Transforma [thrive:compound type=\"glucose\"][/thrive:compound] em [thrive:compound type=\"atp\"][/thrive:compound]. Quantidade aumenta com a concentração de [thrive:compound type=\"oxygen\"][/thrive:compound]."
@@ -3263,90 +3212,77 @@ msgstr "Transforma [thrive:compound type=\"glucose\"][/thrive:compound] em [thri
 msgid "METRICS"
 msgstr "Exibir Métricas"
 
-#, fuzzy
 msgid "METRICS_CONTENT"
 msgstr ""
 "Tempo de Processamento: {0}\n"
 "Duração da Física: {1} s\n"
-"Entidades: {2} Outros: {3}\n"
+"Entidades: {2} (peso: {3})\n"
 "Gerados: {4} Destruídos: {5}\n"
 "Nós Usados: {6}\n"
-"Memória Usada: {7} MiB\n"
-"Memória Gráfica: {8} MiB\n"
+"Memória Usada: {7}\n"
+"Memória Gráfica: {8}\n"
 "Objetos Renderizados: {9}\n"
-"Chamadas à Cena: {10} 2D: {11}\n"
-"Vértices Renderizados: {12}\n"
-"Alterações Materiais: {13}\n"
-"Alterações de Sombreamento: {14}\n"
-"Nós Órfãos: {15}\n"
-"Latência de Áudio: {16} ms\n"
-"Total de Tarefas: {17}\n"
+"Chamadas à Cena: {10}\n"
+"Primitivos Renderizados: {11}\n"
+"Nós Órfãos: {12}\n"
+"Latência de Áudio: {13} ms\n"
+"Total de Tarefas: {14}\n"
 "Tempo de Processamento Total:\n"
-"{18}"
+"{15}"
 
 msgid "MIB_VALUE"
 msgstr "{0} MiB"
 
 msgid "MICHE"
-msgstr ""
+msgstr "Micho"
 
-#, fuzzy
 msgid "MICHES_FOR_PATCH"
-msgstr "Extinta da região"
+msgstr "Michos Para A Região {0}"
 
-#, fuzzy
 msgid "MICHE_AVOID_PREDATION_SELECTION_PRESSURE"
-msgstr "A nova espécie, [b][u]{0}[/u][/b], ramificou-se de [b][u]{1}[/u][/b] devido a diferentes pressões seletivas"
+msgstr "Pressão para Evitar Seleção Predativa"
 
 msgid "MICHE_CHUNK_PRESSURE"
-msgstr ""
+msgstr "Pressão para Pedaço"
 
-#, fuzzy
 msgid "MICHE_COMPOUND_CLOUD_PRESSURE"
-msgstr "Nuvens de compostos"
+msgstr "Pressão para Nuvens de Compostos"
 
 msgid "MICHE_COMPOUND_EFFICIENCY_PRESSURE"
-msgstr ""
+msgstr "Pressão para Eficiência em Conversão de Compostos"
 
-#, fuzzy
 msgid "MICHE_DETAIL_TEXT"
 msgstr ""
-"[b]Espécie[/b]\n"
-"  {0}:{1}\n"
-"[b]Geração[/b]\n"
-"  {2}\n"
-"[b]População[/b]\n"
-"  {3}\n"
-"[b]Coloração[/b]\n"
-"  #{4}\n"
-"[b]Comportamento[/b]\n"
-"  {5}\n"
+"[b]Pressão Seletiva[/b]\n"
+"  {0}\n"
+"[b]Energia[/b]\n"
+"  {1}\n"
+"[b]Pontuações do Ocupante[/b]\n"
+"  {2}"
 
 msgid "MICHE_ENVIRONMENTAL_COMPOUND_PRESSURE"
-msgstr ""
+msgstr "Pressão para Compostos Ambientais"
 
 msgid "MICHE_MAINTAIN_COMPOUND_PRESSURE"
-msgstr ""
+msgstr "Pressão para Manter Compostos"
 
 msgid "MICHE_METABOLIC_STABILITY_PRESSURE"
-msgstr ""
+msgstr "Pressão para Estabilidade Metabólica"
 
 msgid "MICHE_NO_OP_PRESSURE"
-msgstr ""
+msgstr "Pressão para Não Realizar Operação"
 
 msgid "MICHE_PREDATION_EFFECTIVENESS_PRESSURE"
-msgstr ""
+msgstr "Pressão para Efetividade de Predação"
 
-#, fuzzy
 msgid "MICHE_PREDATOR_ROOT_PRESSURE"
-msgstr "Predação de {0}"
+msgstr "Pressão Raiz para Predador"
 
 msgid "MICHE_ROOT_PRESSURE"
-msgstr ""
+msgstr "Pressão Raiz"
 
-#, fuzzy
 msgid "MICHE_TREE"
-msgstr "Despejar SceneTree"
+msgstr "Árvore de Michos"
 
 msgid "MICROBE"
 msgstr "Micróbio"
@@ -3360,103 +3296,92 @@ msgstr "Teste de Desempenho de Micróbios"
 msgid "MICROBE_EDITOR"
 msgstr "Editor de Micróbios"
 
+#, fuzzy
+msgid "MICROBE_ENZYME_STATISTICS"
+msgstr "  {0}: Organela encontrada em {1} espécie(s), tendo em média {2} cada"
+
 msgid "MICROBE_FREEBUILD_EDITOR"
 msgstr "Editor de Micróbio Livre"
 
-#, fuzzy
 msgid "MICROBE_LOADING_TIP_1"
-msgstr "Aperte o botão de desfazer no editor para corrigir um erro"
+msgstr "Cada hexágono de citoplasma custa 1 [thrive:compound type=\"atp\"][/thrive:compound] por segundo para se manter, mas gera 3 [thrive:compound type=\"atp\"][/thrive:compound]. Se está faltando um pouco de [thrive:compound type=\"atp\"][/thrive:compound], tente adicionar alguns hexágonos ou remover algumas organelas."
 
-#, fuzzy
 msgid "MICROBE_LOADING_TIP_10"
-msgstr "Aperte o botão de desfazer no editor para corrigir um erro"
+msgstr "Sua célula usa [thrive:compound type=\"atp\"][/thrive:compound] como fonte de energia. Se acabar, você morre."
 
-#, fuzzy
 msgid "MICROBE_LOADING_TIP_11"
-msgstr "Aperte o botão de desfazer no editor para corrigir um erro"
+msgstr "Para desbloquear o editor e se reproduzir, você precisa se manter vivo por tempo suficiente. Consumir [thrive:compound type=\"ammonia\"][/thrive:compound] (nuvem laranja) e [thrive:compound type=\"phosphates\"][/thrive:compound] (nuvem roxa) acelera o crescimento."
 
-#, fuzzy
 msgid "MICROBE_LOADING_TIP_12"
-msgstr "Aperte o botão de desfazer no editor para corrigir um erro"
+msgstr "Você pode fagocitar coisas que são menores que você para se alimentar delas apertando [thrive:input]g_toggle_engulf[/thrive:input]. Isso vai custar mais [thrive:compound type=\"atp\"][/thrive:compound] e diminuir sua velocidade. Não esqueça de apertar [thrive:input]g_toggle_engulf[/thrive:input] novamente para parar de fagocitar."
 
-#, fuzzy
 msgid "MICROBE_LOADING_TIP_13"
-msgstr "Aperte o botão de desfazer no editor para corrigir um erro"
+msgstr "Quanto maior for sua célula, mais partes produtoras de [thrive:compound type=\"atp\"][/thrive:compound] serão necessárias para que ela se mantenha viva. Metabolossomos, rusticianina, hidrogenase e até citoplasma produzem [thrive:compound type=\"atp\"][/thrive:compound]."
 
-#, fuzzy
 msgid "MICROBE_LOADING_TIP_14"
-msgstr "Aperte o botão de desfazer no editor para corrigir um erro"
+msgstr "Existem muitas organelas no editor para você evoluir, permitindo uma vasta gama de estilos de jogo diferentes."
 
-#, fuzzy
 msgid "MICROBE_LOADING_TIP_15"
-msgstr "Aperte o botão de desfazer no editor para corrigir um erro"
+msgstr "Existem recursos limitados disponíveis para cada espécie, então aumentar o tamanho das suas células também diminui a sua população máxima."
 
-#, fuzzy
 msgid "MICROBE_LOADING_TIP_16"
-msgstr "Aperte o botão de desfazer no editor para corrigir um erro"
+msgstr "Use [thrive:input]g_move_forward[/thrive:input],[thrive:input]g_move_left[/thrive:input],[thrive:input]g_move_backwards[/thrive:input] e [thrive:input]g_move_right[/thrive:input] para se mover e o mouse para girar. Use [thrive:input]g_fire_toxin[/thrive:input] para disparar [thrive:compound type=\"oxytoxy\"][/thrive:compound] se você tiver um vacúolo de toxinas. Aperte [thrive:input]g_toggle_engulf[/thrive:input] para ativar ou desativar a fagocitose. Você pode aumentar e diminuir o zoom com a roda do mouse."
 
-#, fuzzy
 msgid "MICROBE_LOADING_TIP_17"
-msgstr "Aperte o botão de desfazer no editor para corrigir um erro"
+msgstr "Para se reproduzir você precisa dividir cada uma das suas organelas em duas. Organelas precisam de tempo para se dividir, e coletar [thrive:compound type=\"ammonia\"][/thrive:compound], e [thrive:compound type=\"phosphates\"][/thrive:compound] acelera o processo."
 
-#, fuzzy
 msgid "MICROBE_LOADING_TIP_18"
-msgstr "Aperte o botão de desfazer no editor para corrigir um erro"
+msgstr "Cuidado, pois seus competidores estão evoluindo junto com você. Cada vez que você usa o editor eles também evoluem."
 
-#, fuzzy
 msgid "MICROBE_LOADING_TIP_19"
-msgstr "Aperte o botão de desfazer no editor para corrigir um erro"
+msgstr "Agentes de ligação te permitem construir uma colônia de células com outros membros da sua espécie. As células compartilham compostos, agem como uma só e te permitem evoluir para um organismo multicelular."
 
-#, fuzzy
 msgid "MICROBE_LOADING_TIP_2"
-msgstr "Aperte o botão de desfazer no editor para corrigir um erro"
+msgstr "Quanto mais (ou mais longos) flagelos você tiver, mais rápido você vai - vrum vrum! Só que você gasta mais ATP."
 
-#, fuzzy
 msgid "MICROBE_LOADING_TIP_20"
-msgstr "Aperte o botão de desfazer no editor para corrigir um erro"
+msgstr "Células com membranas de celulose ou quitina não podem ser digeridas por procariontes. Um eucarionte com lisossomos pode se alimentar delas produzindo enzimas para dissolver as paredes celulares."
 
-#, fuzzy
 msgid "MICROBE_LOADING_TIP_21"
-msgstr "Aperte o botão de desfazer no editor para corrigir um erro"
+msgstr "[thrive:compound type=\"hydrogensulfide\"][/thrive:compound] pode ser convertido em [thrive:compound type=\"glucose\"][/thrive:compound] através de quimioplastos e proteínas quimiossintetizantes. [thrive:compound type=\"iron\"][/thrive:compound] pode ser convertido em [thrive:compound type=\"atp\"][/thrive:compound] através de rusticianina ou ferroplastos."
 
-#, fuzzy
 msgid "MICROBE_LOADING_TIP_22"
-msgstr "Aperte o botão de desfazer no editor para corrigir um erro"
+msgstr "Cada visita ao editor no Estágio Microbial representa [thrive:constant]EDITOR_TIME_JUMP_MILLION_YEARS[/thrive:constant] milhão(ões) de anos de evolução."
 
-#, fuzzy
 msgid "MICROBE_LOADING_TIP_3"
-msgstr "Aperte o botão de desfazer no editor para corrigir um erro"
+msgstr "Você pode fagocitar pedaços de matéria flutuante, sejam eles partes de células mortas ou minerais."
 
-#, fuzzy
 msgid "MICROBE_LOADING_TIP_4"
-msgstr "Aperte o botão de desfazer no editor para corrigir um erro"
+msgstr "Se prepare antes de adicionar um núcleo. Ele é caro - no primeiro pagamento e para ser mantido!"
 
-#, fuzzy
 msgid "MICROBE_LOADING_TIP_5"
-msgstr "Aperte o botão de desfazer no editor para corrigir um erro"
+msgstr "Toxinas podem ser usadas para empurrar outras toxinas para longe de você se você for ágil o suficiente."
 
-#, fuzzy
 msgid "MICROBE_LOADING_TIP_6"
-msgstr "Aperte o botão de desfazer no editor para corrigir um erro"
+msgstr "Se uma célula for menor que cerca de metade do seu tamanho, você consegue fagocitá-la."
 
-#, fuzzy
 msgid "MICROBE_LOADING_TIP_7"
-msgstr "Aperte o botão de desfazer no editor para corrigir um erro"
+msgstr "Biomas são mais que planos de fundo diferentes - os compostos e pedaços flutuantes em biomas diferentes são gerados em taxas diferentes."
 
-#, fuzzy
 msgid "MICROBE_LOADING_TIP_8"
-msgstr "Aperte o botão de desfazer no editor para corrigir um erro"
+msgstr "Coloque flagelos ou jatos de gosma simetricamente atrás da sua célula. De outro modo, você estará desperdiçando energia."
+
+msgid "MICROBE_LOADING_TIP_9"
+msgstr "Onde você coloca partes importa. O formato da sua célula tem um impacto na sua velocidade de movimento e rotação."
 
 #, fuzzy
-msgid "MICROBE_LOADING_TIP_9"
-msgstr "Aperte o botão de desfazer no editor para corrigir um erro"
+msgid "MICROBE_MEMBRANE_PERCENTAGE_STATISTICS"
+msgstr "[b]Dados de Melhorias de Organelas:[/b]"
+
+#, fuzzy
+msgid "MICROBE_MEMBRANE_STATISTICS"
+msgstr "  {0}: Organela encontrada em {1} espécie(s), tendo em média {2} cada"
 
 msgid "MICROBE_ORGANELLE_STATISTICS"
 msgstr "  {0}: Organela encontrada em {1} espécie(s), tendo em média {2} cada"
 
-#, fuzzy
 msgid "MICROBE_ORGANELLE_UPGRADES_STATISTICS"
-msgstr "  {0}: Organela encontrada em {1} espécie(s), tendo em média {2} cada"
+msgstr "[b]Dados de Melhorias de Organelas:[/b]"
 
 msgid "MICROBE_SPECIES_DETAIL_TEXT"
 msgstr ""
@@ -3478,9 +3403,9 @@ msgstr "Estágio Microbial"
 
 msgid "MICROBE_STAGE_BECOME_MULTICELLULAR_TEXT"
 msgstr ""
-"Você desbloqueou a progressão para a [b]multicelularidade[/b]. O próximo passo na sua jornada.\n"
+"Você desbloqueou a progressão para a [b]multicelularidade[/b] - o próximo passo na sua jornada.\n"
 "\n"
-"Para avançar, pressione o botão \"Tornar-se Multicelular\"."
+"Para avançar, pressione o botão [b]\"Tornar-se Multicelular\"[/b]."
 
 msgid "MICROBE_STAGE_COLLECT_TEXT"
 msgstr ""
@@ -3506,11 +3431,11 @@ msgstr ""
 
 msgid "MICROBE_STAGE_DAY_NIGHT_TEXT"
 msgstr ""
-"Fique de olho no medidor de luz solar no painel do ambiente.\n"
+"Fique de olho no [b]medidor de luz solar[/b] no painel do ambiente.\n"
 "\n"
 "O escurecimento do ambiente indica a chegada da noite.\n"
-"A fotossíntese não funciona à noite.\n"
-"Certifique-se que você tenha armazenamento suficiente para sobreviver a noite."
+"\n"
+"A fotossíntese não funciona à noite. Então, células que dependem de fotossíntese precisam ter um armazenamento suficiente de compostos [thrive:icon]StorageIcon[/thrive:icon] para sobreviver a noite."
 
 msgid "MICROBE_STAGE_HEALTH_TEXT"
 msgstr ""
@@ -3560,48 +3485,32 @@ msgstr ""
 msgid "MIDDLE_MOUSE"
 msgstr "Botão do meio do mouse"
 
-#, fuzzy
 msgid "MIGRATE"
-msgstr "Proporção"
+msgstr "Migrar"
 
-#, fuzzy
 msgid "MIGRATION_FAILED_TO_ADD"
-msgstr "A Criação do Mod Falhou"
+msgstr "Erro: falha na adição de migração, favor verificar parâmetros da migração"
 
 msgid "MIGRATION_STATUS_DESTINATION_NOT_SELECTED"
-msgstr ""
+msgstr "Migrando população de {0} para…"
 
-#, fuzzy
 msgid "MIGRATION_STATUS_TEXT"
-msgstr ""
-"Fique de olho na sua barra de saúde próximo a barra de ATP (canto inferior direito).\n"
-"Sua célula morre quando não tem mais saúde.\n"
-"Você regenera saúde enquanto você tem ATP.\n"
-"Certifique-se de conseguir glicose suficiente para produzir ATP."
+msgstr "Migrando {2} unidades da população de {0} para {1}"
 
-#, fuzzy
 msgid "MIGRATION_STEP_DESTINATION_EXPLANATION"
-msgstr ""
-"Descender removerá seu status de ascensão e o retornará ao Estágio Microbial. A partir daí, você poderá jogar novamente no salvamento atual.\n"
-"\n"
-"Você receberá um benefício de descensão para o novo jogo. Em uma versão futura você poderá escolher o benefício, mas por enquanto será sempre uma redução de 20% na osmorregulação.\n"
-"\n"
-"Após confirmar a descensão, você poderá editar as configurações do jogo para escolher uma nova semente de mundo e jogar em um mapa diferente ou desabilitar a vida baseada na realidade, por exemplo."
+msgstr "Selecione uma região conectada à região de origem como destino para a migração"
 
 msgid "MIGRATION_STEP_ONLY_ONE_ALLOWED"
-msgstr ""
+msgstr "Apenas uma migração pode ser realizada por sessão do editor. Você pode ver a migração que está na fila abaixo e mantê-la ou cancelá-la para criar uma migração diferente"
 
-#, fuzzy
 msgid "MIGRATION_STEP_POPULATION_EXPLANATION"
-msgstr "(custo das organelas, membranas e outros itens do editor)"
+msgstr "Selecione quanto da população migrará da região de origem para o destino"
 
-#, fuzzy
 msgid "MIGRATION_STEP_SOURCE_EXPLANATION"
-msgstr "(custo das organelas, membranas e outros itens do editor)"
+msgstr "Selecione uma região em que a sua espécie vive atualmente para servir como origem para a migração"
 
-#, fuzzy
 msgid "MIGRATION_TOOLTIP"
-msgstr "Visite a nossa página no Patreon"
+msgstr "Migre sua espécie entre regiões sem ter que se mover para uma região diferente você mesmo"
 
 msgid "MILLION_ABBREVIATION"
 msgstr "{0} Mi"
@@ -3640,7 +3549,7 @@ msgid "MITOCHONDRION"
 msgstr "Mitocôndria"
 
 msgid "MITOCHONDRION_DESCRIPTION"
-msgstr "A usina de energia da célula. A mitocôndria é uma estrutura de membrana dupla cheia de proteínas e enzimas. É um procarionte que foi assimilado pelo seu hospedeiro eucariótico para seu uso. É capaz de converter Glicose em ATP com maior eficiência do que feito no citoplasma em um processo chamado Respiração Aeróbica. No entanto, precisa de oxigênio para funcionar, e níveis menores de oxigênio no ambiente irá diminuir a taxa da produção de ATP."
+msgstr "A usina de energia da célula. A mitocôndria é uma estrutura de membrana dupla cheia de proteínas e enzimas. É um procarionte que foi assimilado pelo seu hospedeiro eucariótico para seu uso. É capaz de converter [thrive:compound type=\"glucose\"][/thrive:compound] em [thrive:compound type=\"atp\"][/thrive:compound] com eficiência muito maior do que o citoplasma em um processo chamado [b]Respiração Aeróbica[/b]. No entanto, precisa de [thrive:compound type=\"oxigen\"][/thrive:compound] para funcionar, e níveis menores de [thrive:compound type=\"oxigen\"][/thrive:compound] no ambiente diminuirão a taxa da produção de [thrive:compound type=\"atp\"][/thrive:compound]."
 
 msgid "MITOCHONDRION_PROCESSES_DESCRIPTION"
 msgstr "Transforma [thrive:compound type=\"glucose\"][/thrive:compound] em [thrive:compound type=\"atp\"][/thrive:compound]. Quantidade aumenta com concentração de [thrive:compound type=\"oxygen\"][/thrive:compound]."
@@ -3808,13 +3717,11 @@ msgstr "Ir para baixo ou abaixar"
 msgid "MOVE_FORWARD"
 msgstr "Mover para a frente"
 
-#, fuzzy
 msgid "MOVE_ITEM_DOWN"
-msgstr "Migrar para a terra"
+msgstr "Mover o item para baixo"
 
-#, fuzzy
 msgid "MOVE_ITEM_UP"
-msgstr "Mover para a direita"
+msgstr "Mover o item para cima"
 
 msgid "MOVE_LEFT"
 msgstr "Mover para a esquerda"
@@ -3832,7 +3739,9 @@ msgid "MOVE_TO_LAND"
 msgstr "Migrar para a terra"
 
 msgid "MOVE_TO_MACROSCOPIC_TOOLTIP"
-msgstr "Ir para a próxima etapa do estágio multicelular (macroscópico). Disponível ao ter uma colônia grande o suficiente."
+msgstr ""
+"Ir para o Estágio Macroscópico. Disponível ao ter uma colônia grande o suficiente.\n"
+"Isso requer que você adicione células o suficiente no editor, então cresça sua colônia até o tamanho mínimo."
 
 msgid "MOVE_TO_MULTICELLULAR_STAGE_TOOLTIP"
 msgstr "Ir para o próximo estágio do jogo (multicelular). Disponível ao ter uma colônia grande o suficiente."
@@ -3874,17 +3783,14 @@ msgstr "{0} PM"
 msgid "MUCILAGE"
 msgstr "Mucilagem"
 
-#, fuzzy
 msgid "MUCILAGE_SYNTHESIS"
-msgstr "Síntese de mucilagem"
+msgstr "Síntese de Mucilagem"
 
-#, fuzzy
 msgid "MUCOCYST_ACTION_TOOLTIP"
-msgstr "Visite a nossa página no Patreon"
+msgstr "Crie um escudo"
 
-#, fuzzy
 msgid "MULTICELLULAR"
-msgstr "Multicelular avançado"
+msgstr "Multicelular"
 
 msgid "MULTICELLULAR_EDITOR"
 msgstr "Editor Multicelular"
@@ -3892,9 +3798,8 @@ msgstr "Editor Multicelular"
 msgid "MULTICELLULAR_FREEBUILD_EDITOR"
 msgstr "Editor Multicelular Livre"
 
-#, fuzzy
 msgid "MULTICELLULAR_LOADING_TIP_1"
-msgstr "Editor Multicelular"
+msgstr "Apesar das suas células dividirem compostos, cada célula precisa produzir sua própria [thrive:compound type=\"atp\"][/thrive:compound]. Qualquer célula que não tenha isso morrerá."
 
 msgid "MULTICELLULAR_STAGE"
 msgstr "Estágio Multicelular"
@@ -4015,7 +3920,7 @@ msgid "NITROGENASE"
 msgstr "Nitrogenase"
 
 msgid "NITROGENASE_DESCRIPTION"
-msgstr "Nitrogenase é uma enzima que consegue usar nitrogênio gasoso e energia celular na forma de ATP para sintetizar amônia, um nutriente essencial para o crescimento das células. Esse processo é chamado de Fixação de Nitrogênio. Como a nitrogenase é suspensa diretamente no citoplasma, os fluidos em volta realizam a Fermentação."
+msgstr "Nitrogenase é uma proteína que consegue usar [thrive:compound type=\"nitrogen\"][/thrive:compound] gasoso e energia celular na forma de [thrive:compound type=\"atp\"][/thrive:compound] para sintetizar [thrive:compound type=\"ammonia\"][/thrive:compound], um nutriente essencial para o crescimento das células. Esse processo é chamado de [b]Fixação Anaeróbica de Nitrogênio[/b]. Como a nitrogenase é suspensa diretamente no citoplasma, os fluidos em volta realizam alguma [b]glicólise[/b]."
 
 msgid "NITROGENASE_PROCESSES_DESCRIPTION"
 msgstr "Transforma [thrive:compound type=\"atp\"][/thrive:compound] em [thrive:compound type=\"ammonia\"][/thrive:compound]. Quantidade aumenta com a concentração de [thrive:compound type=\"nitrogen\"][/thrive:compound]."
@@ -4060,11 +3965,10 @@ msgid "NOTICE_ENGULF_STORAGE_FULL"
 msgstr "Não há espaço suficiente para fagocitar o alvo"
 
 msgid "NOTICE_HIT_BY_ATP_TOXIN"
-msgstr ""
+msgstr "Produção de ATP inibida por uma toxina"
 
-#, fuzzy
 msgid "NOTICE_HIT_BY_BASE_MOVEMENT_TOXIN"
-msgstr "Movimento Base"
+msgstr "Velocidade de movimento diminuída devido a uma toxina"
 
 #, fuzzy
 msgid "NOTICE_RADIATION_DAMAGE"
@@ -4109,9 +4013,8 @@ msgstr "O diretório de capturas de tela não foi encontrado"
 msgid "NO_SELECTED_MOD"
 msgstr "Nenhum Mod Selecionado"
 
-#, fuzzy
 msgid "NO_SUGGESTION"
-msgstr "Resolução:"
+msgstr "Nenhuma"
 
 msgid "NUCLEUS"
 msgstr "Núcleo"
@@ -4159,13 +4062,11 @@ msgstr ""
 "Você pode relatar qualquer problema que encontrar, mas não serão priorizados.\n"
 "Deseja tentar carregar o jogo salvo mesmo assim?"
 
-#, fuzzy
 msgid "OPENGL_MODE_WARNING"
-msgstr "Aviso do Modo GLES2"
+msgstr "Aviso: Modo OpenGL"
 
-#, fuzzy
 msgid "OPENGL_MODE_WARNING_EXPLANATION"
-msgstr "Você está usando Thrive usando GLES2, que não é testado e pode causar problemas. Tente atualizar seus drivers de vídeo e/ou forçar o uso do AMD ou Nvidia."
+msgstr "Você está usando Thrive com OpenGL, que não é testado e provavelmente causará problemas. Garanta que você está usando uma placa de vídeo recente e tente atualizar seus drivers de vídeo. Em laptops, você pode precisar forçar o uso de gráficos AMD ou Nvidia em vez de gráficos integrados para executar Thrive."
 
 msgid "OPEN_FOLDER"
 msgstr "Abrir Pasta"
@@ -4238,13 +4139,11 @@ msgstr "Muda as configurações do jogo"
 msgid "ORGANELLES"
 msgstr "Organelas"
 
-#, fuzzy
 msgid "ORGANELLES_BUTTON"
-msgstr "Axônio"
+msgstr "Organelas"
 
-#, fuzzy
 msgid "ORGANELLES_WILL_BE_UNLOCKED_NEXT_GENERATION"
-msgstr "As condições de desbloqueio são verificadas a cada geração ao entrar no editor"
+msgstr "As condições de desbloqueio são verificadas apenas uma vez a cada geração ao entrar no editor. Algumas organelas podem ser alternativamente desbloqueadas por endossimbiose."
 
 msgid "ORGANELLE_AXON"
 msgstr "Axônio"
@@ -4252,9 +4151,8 @@ msgstr "Axônio"
 msgid "ORGANELLE_AXON_DESCRIPTION"
 msgstr "Axônios são fibras nervosas que os neurônios utilizam para conectar e comunicar com outros neurônios. Essa organela transforma o tipo da célula em um tecido cerebral."
 
-#, fuzzy
 msgid "ORGANELLE_CATEGORY_MACROSCOPIC"
-msgstr "Multicelular"
+msgstr "Macroscópica"
 
 msgid "ORGANELLE_CATEGORY_MULTICELLULAR"
 msgstr "Multicelular"
@@ -4284,9 +4182,8 @@ msgstr "{0} organelas"
 msgid "ORGANELLE_SINGULAR"
 msgstr "{0} organela"
 
-#, fuzzy
 msgid "ORGANELLE_SUGGESTION_COLON"
-msgstr "Axônio"
+msgstr "Sugestão de Organela:"
 
 #, fuzzy
 msgid "ORGANELLE_SUGGESTION_TOOLTIP"
@@ -4468,9 +4365,8 @@ msgstr "Carregamento do arquivo pck ({0}) falhou, pois o arquivo não existe"
 msgid "PEACEFUL"
 msgstr "Pacífico"
 
-#, fuzzy
 msgid "PENDING_ENDOSYMBIOSIS_EXPLANATION"
-msgstr "Você está usando Thrive usando GLES2, que não é testado e pode causar problemas. Tente atualizar seus drivers de vídeo e/ou forçar o uso do AMD ou Nvidia."
+msgstr "Existe um processo completo de endossimbiose que pode ser finalizado posicionando a célula como uma organela. É recomendado fazer isso assim que possível já que não é possível fazer mais progresso na endossimbiose até que isso seja feito. Ver o progresso da endossimbiose agora?"
 
 msgid "PENDING_ENDOSYMBIOSIS_TITLE"
 msgstr ""
@@ -4484,9 +4380,8 @@ msgstr "Desempenho"
 msgid "PERFORM_UNBINDING"
 msgstr "Desconectar"
 
-#, fuzzy
 msgid "PER_SECOND_ABBREVIATION"
-msgstr "{0} K"
+msgstr "/s"
 
 msgid "PER_SECOND_SLASH"
 msgstr "/segundo"
@@ -4545,7 +4440,7 @@ msgid "PLAYER_RELATIVE_MOVEMENT"
 msgstr "Relativo ao jogador"
 
 msgid "PLAYER_REPRODUCED"
-msgstr "jogador reproduziu"
+msgstr "jogador se reproduziu"
 
 msgid "PLAYER_SPEED"
 msgstr ""
@@ -4582,9 +4477,8 @@ msgstr "população nas regiões:"
 msgid "POPULATION_IN_PATCH_SHORT"
 msgstr "{0} ({1})"
 
-#, fuzzy
 msgid "POSITION_NUMBER"
-msgstr "Número de ID"
+msgstr "{0}."
 
 msgid "PREDATION_FOOD_SOURCE"
 msgstr "Predação de {0}"
@@ -4722,9 +4616,13 @@ msgstr "Reprodução:"
 msgid "REPRODUCTION_COMPOUNDS_MODE_EXPLANATION"
 msgstr "(ganhar os compostos necessários para a reprodução do ambiente sem ter que fazer nada)"
 
-#, fuzzy
 msgid "REPRODUCTION_COMPOUND_HANDLING_TOOLTIP"
-msgstr "Reprodução:"
+msgstr ""
+"Configura o que acontece com os compostos guardados quando for ao editor.\n"
+"Dividir com a célula irmã dá metade dos compostos guardados para ela quando sair do editor.\n"
+"Manter tudo é a opção egoísta de manter todos os compostos guardados como estão.\n"
+"Sempre completar enche quaisquer compostos até a quantidade com que a célula inicialmente é gerada.\n"
+"Completar na mudança de região completa os compostos iniciais mas apenas se a região foi mudada."
 
 msgid "REPRODUCTION_METHOD"
 msgstr "Reprodução:"
@@ -4747,9 +4645,8 @@ msgstr "Redefinir os pop-ups dispensados"
 msgid "RESET_INPUTS_TO_DEFAULTS"
 msgstr "Redefinir entradas para configurações padrão?"
 
-#, fuzzy
 msgid "RESET_ITEM_ORDER_TO_DEFAULT"
-msgstr "Redefinir entradas para configurações padrão?"
+msgstr "Redefinir a ordem dos itens para padrão"
 
 msgid "RESET_KEYBINDINGS"
 msgstr "Redefinir entradas"
@@ -5104,11 +5001,8 @@ msgstr "O flagelo é um apêndice de fibras proteicas semelhante a um chicote, e
 msgid "SHOW_HELP"
 msgstr "Mostrar ajuda"
 
-#, fuzzy
 msgid "SHOW_ITEM_COORDINATES"
-msgstr ""
-"Coordenadas de posição: {0}\n"
-"Olhando para as coordenadas: {1}"
+msgstr "Mostrar coordenadas"
 
 msgid "SHOW_NEW_PATCH_NOTES"
 msgstr "Mostrar novas notas de atualização automaticamente"
@@ -5184,7 +5078,7 @@ msgid "SLIME_JET"
 msgstr "Jato de Slime"
 
 msgid "SLIME_JET_DESCRIPTION"
-msgstr "Muitos organismos produzem substâncias polissacarídeas semelhante à slimes, e a mucilagem é uma dessas. Enquanto que várias espécies as utilizam para a locomoção, alguns tipos de bactérias ejetam essas substâncias a alta pressão. Esses jatos se comportam como motores de foguetes, impulsionando as células a uma velocidade impressonante. O slime também é usado para evitar predadores, prendendo-os nessa substância na qual só organismos que possuem a organela podem navegar."
+msgstr "Muitos organismos produzem substâncias polissacarídeas gosmentas, e a mucilagem é uma dessas. Enquanto várias espécies as utilizam para a locomoção, alguns tipos de bactérias ejetam essas substâncias a alta pressão. Esses jatos de gosma se comportam como motores de foguetes, impulsionando as células a uma velocidade impressionante. Gosma também é usada para evitar predadores, prendendo-os em uma substância na qual só organismos que possuem a organela podem navegar."
 
 msgid "SLIME_JET_PROCESSES_DESCRIPTION"
 msgstr "Transforma [thrive:compound type=\"glucose\"][/thrive:compound] em [thrive:compound type=\"mucilage\"][/thrive:compound]. Aperte [thrive:input]g_secrete_slime[/thrive:input] para expelir a [thrive:compound type=\"mucilage\"][/thrive:compound], aumentando a velocidade da célula e diminuindo a de predadores."
@@ -5271,7 +5165,7 @@ msgstr ""
 "[b]Coloração[/b]\n"
 "  #{4}\n"
 "[b]Comportamento[/b]\n"
-"  {5}\n"
+"  {5}"
 
 msgid "SPECIES_HAS_A_MUTATION"
 msgstr "teve uma mutação"
@@ -5336,16 +5230,14 @@ msgstr "Começar Pesquisa"
 msgid "STATISTICS"
 msgstr "Estatísticas"
 
-#, fuzzy
 msgid "STAT_ATP_PRODUCTION_REDUCTION"
-msgstr "PRODUÇÃO DE ATP MUITO BAIXA!"
+msgstr "Penalidade de Produção de ATP"
 
-#, fuzzy
 msgid "STAT_BASE_MOVEMENT_REDUCTION"
-msgstr "Movimento Base"
+msgstr "Redução de Movimento Base"
 
 msgid "STAT_DAMAGE"
-msgstr ""
+msgstr "Dano"
 
 msgid "STAT_DAMAGE_PER_OXYGEN"
 msgstr ""
@@ -5575,7 +5467,8 @@ msgstr "Temp."
 msgid "TESTING_TEAM"
 msgstr "Equipe de Teste"
 
-msgid "THANKS_FOR_BUYING_THRIVE"
+#, fuzzy
+msgid "THANKS_FOR_BUYING_THRIVE_2"
 msgstr ""
 "Obrigado por apoiar o desenvolvimento de Thrive ao comprar essa cópia!\n"
 "\n"
@@ -5598,18 +5491,22 @@ msgstr "Equipe de Teorização"
 msgid "THERMOPLAST"
 msgstr "Termoplasto"
 
+#, fuzzy
 msgid "THERMOPLAST_DESCRIPTION"
 msgstr "O termoplasto é uma estrutura de membrana dupla contendo pigmentos termossensíveis. É um procarionte que foi assimilado para uso do seu hospedeiro eucariótico. Os pigmentos nos termoplastos conseguem usar a energia das diferenças de calor no ambiente para produzir glicose da água e gás carbônico em um processo chamado Termossíntese. A proporção da sua produção de glicose aumenta com a concentração de dióxido de carbono e temperatura."
 
+#, fuzzy
 msgid "THERMOPLAST_PROCESSES_DESCRIPTION"
 msgstr "Produz [thrive:compound type=\"glucose\"][/thrive:compound]. Quantidade aumenta com a concentração de [thrive:compound type=\"carbondioxide\"][/thrive:compound] e temperatura."
 
 msgid "THERMOSYNTHASE"
 msgstr "Termossintase"
 
+#, fuzzy
 msgid "THERMOSYNTHASE_DESCRIPTION"
 msgstr "A termossintase é uma proteína que muda de forma usando a convecção térmica. Quando exposta ao calor, ela se dobra ligando-se ao ADP. Quando resfriada, ela se desdobra e é reciclada em ATP em um processo chamado termossíntese. A taxa de produção de ATP aumenta com a temperatura ambiente."
 
+#, fuzzy
 msgid "THERMOSYNTHASE_PROCESSES_DESCRIPTION"
 msgstr "Produz [thrive:compound type=\"atp\"][/thrive:compound]. Quantidade aumenta com a [thrive:compound type=\"temperature\"][/thrive:compound]."
 
@@ -5736,7 +5633,7 @@ msgid "TOGGLE_DEBUG_PANEL"
 msgstr "Exibir painel de depuração"
 
 msgid "TOGGLE_ENGULF"
-msgstr "Fagocitar"
+msgstr "Ativar/desativar fagocitose"
 
 #, fuzzy
 msgid "TOGGLE_ENGULF_TOOLTIP"
@@ -5750,6 +5647,12 @@ msgstr "Exibir FPS"
 msgid "TOGGLE_FULLSCREEN"
 msgstr "Tela cheia"
 
+#, fuzzy
+msgid "TOGGLE_HEAT_VIEW_TOOLTIP"
+msgstr ""
+"Ative a fagocitose para engolir pedaços\n"
+"e organismos pequenos em troca de um maior uso ATP enquanto está ativo"
+
 msgid "TOGGLE_HUD_HIDE"
 msgstr "Exibir HUD"
 
@@ -5759,9 +5662,8 @@ msgstr "Ativar Inventário"
 msgid "TOGGLE_METRICS"
 msgstr "Exibir métricas"
 
-#, fuzzy
 msgid "TOGGLE_MUCOCYST_DEFENCE"
-msgstr "Tela cheia"
+msgstr "Ative/desative o escudo do mucocisto"
 
 msgid "TOGGLE_NAVIGATION_TREE"
 msgstr "Ativar a barra lateral"
@@ -5947,33 +5849,31 @@ msgstr ""
 
 msgid "TUTORIAL_MICROBE_EDITOR_ENDING_TEXT"
 msgstr ""
-"Esse é o básico do editor. Como toque final, você pode renomear sua espécie clicando no canto inferior esquerdo e editando o texto.\n"
+"Esses são os conceitos básicos da edição da sua espécie. Como toque final, você pode renomear sua espécie clicando no nome, no canto inferior esquerdo, e editando o texto.\n"
 "\n"
-"Tente explorar as outras abas embaixo da barra de PM para ver como você pode personalizar sua célula.\n"
+"Tente explorar as outras abas embaixo da [b]barra de PM [thrive:icon]MP[/thrive:icon][/b] para ver como você pode personalizar sua célula.\n"
 "\n"
-"Para sobreviver nesse mundo difícil você precisará encontrar fontes de energia confiáveis, já que a glicose será consumida rapidamente.\n"
+"Para sobreviver nesse mundo difícil você precisará encontrar fontes de [thrive:compound type=\"atp\"][/thrive:compound] confiáveis, já que a quantidade natural de [thrive:compound type=\"glucose\"][/thrive:compound] [b]diminuirá rapidamente[/b].\n"
 "\n"
 "Boa sorte!"
 
-#, fuzzy
 msgid "TUTORIAL_MICROBE_EDITOR_FLAGELLUM"
 msgstr ""
-"Este é o editor de células, onde você pode evoluir a sua espécie gastando Pontos de Mutação (PM). Cada geração terá sempre 100 MP para gastar, então não se importe em economizar.\n"
+"[b]Flagelos[/b] impelem seu micróbio na direção oposta à que são colocados.\n"
 "\n"
-"O hexágono no centro da tela é a sua célula, que é composta por uma unidade de citoplasma;\n"
+"Colocar um flagelo no lado oposto à seta impelirá seu micróbio para frente. [b]Jatos de Gosma[/b] são colocados do mesmo modo.\n"
 "\n"
-"Para continuar, selecione uma parte no painel à esquerda. Então clique com o botão esquerdo perto do hexágono para colocá-la. Você pode girar as partes com [thrive:input]e_rotate_left[/thrive:input] e [thrive:input]e_rotate_right[/thrive:input]."
+"Flagelos consomem muito [thrive:compound type=\"atp\"][/thrive:compound], e portanto não são muito bons para células pequenas.\n"
+"\n"
+"Outro modo de aumentar um pouco a [b]velocidade[/b] [thrive:icon]MovementIcon[/thrive:icon] é tornando sua membrana mais fluida na [u]aba da membrana[/u]."
 
-#, fuzzy
 msgid "TUTORIAL_MICROBE_EDITOR_MODIFY_ORGANELLE"
 msgstr ""
-"Remover organelas também custa PM, já que conta como uma mutação, a menos que as tenha colocado na mesma seção de edição.\n"
+"Você pode [b]modificar[/b] essa organela. Isso vai desbloquear [b]novas funções[/b] ou [b]melhoras[/b] para a organela.\n"
 "\n"
-"Você pode removê-las clicando na opção correspondente no menu de organelas, que é aberto ao clicar com o botão direito nas organelas.\n"
+"Para fazer isso, clique com o botão direito na organela para abrir o [b]menu popup da organela[/b], e aperte o botão \"Modificar\".\n"
 "\n"
-"Se você cometer um erro, pode desfazer qualquer alteração que fez no editor.\n"
-"\n"
-"Clique no botão de desfazer para continuar."
+"Modifique a organela para continuar."
 
 msgid "TUTORIAL_MICROBE_EDITOR_NEGATIVE_ATP_BALANCE"
 msgstr ""
@@ -5985,32 +5885,29 @@ msgstr ""
 "\n"
 "Ou você pode adicionar armazenamento para criar uma célula que só pode se mover em rajadas."
 
-#, fuzzy
 msgid "TUTORIAL_MICROBE_EDITOR_NO_CHANGES_MADE"
 msgstr ""
-"Esse é o básico do editor. Como toque final, você pode renomear sua espécie clicando no canto inferior esquerdo e editando o texto.\n"
+"Você não realizou nenhuma mudança na sua espécie.\n"
 "\n"
-"Tente explorar as outras abas embaixo da barra de PM para ver como você pode personalizar sua célula.\n"
+"Quando você sair do editor [u]você não poderá editar sua espécie até a próxima vez em que se reproduzir[/u].\n"
 "\n"
-"Para sobreviver nesse mundo difícil você precisará encontrar fontes de energia confiáveis, já que a glicose será consumida rapidamente.\n"
-"\n"
-"Boa sorte!"
+"Para progredir no jogo você deve evoluir e se adaptar, então editar a sua espécie na maioria dos ciclos de edição é recomendado."
 
 msgid "TUTORIAL_MICROBE_EDITOR_PATCH_TEXT"
 msgstr ""
-"Este é o mapa de regiões.\n"
+"Este é o [b]mapa de regiões[/b].\n"
 "\n"
-"Cada ícone representa um ambiente onde você pode habitar, o painel à direita mostra mais informações sobre a região selecionada.\n"
+"Cada ícone representa um ambiente onde você pode habitar, e o painel à direita mostra mais informações sobre a região selecionada.\n"
 "\n"
-"Ao selecionar uma região ao lado da que você está atualmente, que é destacada com uma borda azul, você pode apertar o botão “Mover para esta região” para migrar para lá.\n"
+"Ao selecionar uma região ao lado da que você está atualmente (destacada com uma borda verde piscante), você pode apertar o botão “Mover para esta região” para migrar para lá.\n"
 "\n"
 "Tente selecionar uma região para continuar."
 
 msgid "TUTORIAL_MICROBE_EDITOR_REMOVE_ORGANELLE_TEXT"
 msgstr ""
-"Remover organelas também custa PM, já que conta como uma mutação, a menos que as tenha colocado na mesma seção de edição.\n"
+"Remover organelas também custa [b]PM[/b] [thrive:icon]MP[/thrive:icon], já que conta como uma mutação, [u]a menos que elas tenham sido colocadas na atual sessão de edição[/u].\n"
 "\n"
-"Você pode removê-las clicando na opção correspondente no menu de organelas, que é aberto ao clicar com o botão direito nas organelas.\n"
+"Você pode removê-las clicando na opção correspondente no [u]menu de organelas[/u], que é aberto ao clicar com o botão direito nas organelas.\n"
 "\n"
 "Se você cometer um erro, pode desfazer qualquer alteração que fez no editor.\n"
 "\n"
@@ -6018,11 +5915,13 @@ msgstr ""
 
 msgid "TUTORIAL_MICROBE_EDITOR_SELECT_ORGANELLE_TEXT"
 msgstr ""
-"Ao escolher quais partes adicionar, preste atenção nas suas descrições para saber o que elas fazem. Elas podem fazer mais mal que bem se você não estiver atento às suas funções.\n"
+"Ao escolher quais partes adicionar, [u]preste atenção nas suas descrições[/u] para saber o que elas fazem. Elas podem fazer [u]mais mal que bem se você não estiver atento às suas funções[/u].\n"
 "\n"
-"O “Saldo de ATP” na direita indica quanta energia você produz comparada a quantidade que você consome. Se a barra de cima for menor que a de baixo, isso significa que você não está produzindo energia suficiente.\n"
+"Cada parte requer manutenção (chamada [b]osmorregulação[/b] [thrive:icon]OsmoIcon[/thrive:icon]) e algumas executam [b]processos[/b] que precisam de certos compostos para funcionar.\n"
 "\n"
-"Aperte o botão de refazer (perto do botão de desfazer) para continuar."
+"Além disso, quanto mais partes você adicionar, mais compostos serão necessários para se reproduzir.\n"
+"\n"
+"Aperte o botão de refazer (ao lado do botão de desfazer) para continuar."
 
 msgid "TUTORIAL_MICROBE_EDITOR_STAY_SMALL"
 msgstr ""
@@ -6042,9 +5941,9 @@ msgstr ""
 
 msgid "TUTORIAL_MICROBE_STAGE_ENGULFED_TEXT"
 msgstr ""
-"Sua célula foi fagocitada e está em processo de digestão; acima de sua barra de saúde é mostrado o progresso. Ela morrerá quando o processo estiver terminado, ou quando for atingido um limite de tempo.\n"
+"Sua célula foi fagocitada e está em processo de digestão. O progresso é mostrado na sua barra de saúde. Ela morrerá quando o processo estiver terminado, ou quando for atingido um limite de tempo.\n"
 "\n"
-"Você pode pressionar o botão de suicídio para renascer, mas lembre-se: sempre há uma chance de escapar."
+"Você pode pressionar o botão de suicídio para pular o processo e renascer, mas lembre-se: sempre há uma chance de escapar!"
 
 msgid "TUTORIAL_MICROBE_STAGE_ENGULFMENT_FULL_TEXT"
 msgstr ""
@@ -6075,9 +5974,9 @@ msgstr ""
 
 msgid "TUTORIAL_MICROBE_STAGE_REPRODUCE_TEXT"
 msgstr ""
-"Para reproduzir você precisa duplicar todas as suas organelas sobrevivendo por tempo suficiente. Coletar amônia e fosfato acelera o processo.\n"
+"Para se reproduzir você precisa duplicar todas as suas organelas. Isso ocorre gradualmente enquanto você sobrevive, mas você pode acelerar o processo coletando [thrive:compound type=\"ammonia\"][/thrive:compound] e [thrive:compound type=\"phosphates\"][/thrive:compound].\n"
 "\n"
-"Observe as barras em torno do botão no canto inferior direito para ver o progresso. Elas tornam-se brancas ao ficarem completas."
+"As barras no canto inferior direito mostram o seu progresso. Elas tornam-se brancas ao ficarem completas."
 
 msgid "TUTORIAL_MICROBE_STAGE_UNBIND_TEXT"
 msgstr ""
@@ -6136,9 +6035,8 @@ msgstr "Caverna Subaquática"
 msgid "UNDERWATER_VENT_ERUPTION"
 msgstr "Caverna Subaquática"
 
-#, fuzzy
 msgid "UNDERWATER_VENT_ERUPTION_IN"
-msgstr "Caverna Subaquática"
+msgstr "Erupção em {0}"
 
 #, fuzzy
 msgid "UNDISCOVERED_ORGANELLES"
@@ -6177,17 +6075,14 @@ msgstr "Desconhecido"
 msgid "UNKNOWN_MOUSE"
 msgstr "Botão do mouse desconhecido"
 
-#, fuzzy
 msgid "UNKNOWN_ORGANELLE_SYMBOL"
-msgstr "Colocar organela"
+msgstr "?"
 
-#, fuzzy
 msgid "UNKNOWN_PATCH"
-msgstr "Desconhecido"
+msgstr "Região Desconhecida"
 
-#, fuzzy
 msgid "UNKNOWN_SHORT"
-msgstr "Desconhecido"
+msgstr "?"
 
 msgid "UNKNOWN_VERSION"
 msgstr "Versão desconhecida"
@@ -6248,9 +6143,8 @@ msgstr ""
 msgid "UNLOCK_CONDITION_REPRODUCE_IN_BIOME"
 msgstr ""
 
-#, fuzzy
 msgid "UNLOCK_CONDITION_SPEED_BELOW"
-msgstr "Velocidade da Digestão:"
+msgstr "velocidade cai abaixo de {0}"
 
 msgid "UNLOCK_WITH_ANY_OF_FOLLOWING"
 msgstr ""
@@ -6269,9 +6163,8 @@ msgstr "Cílios Atrativos"
 msgid "UPGRADE_CILIA_PULL_DESCRIPTION"
 msgstr "Ao tentar fagocitar algo ([thrive:input]g_toggle_engulf[/thrive:input]), esse tipo de cílios causa vórtices na água que puxam objetos próximos para si. É útil para capturar presas."
 
-#, fuzzy
 msgid "UPGRADE_COST"
-msgstr "{0} PM"
+msgstr "{0} ({1} PM)"
 
 msgid "UPGRADE_DESCRIPTION_NONE"
 msgstr "A variante padrão não atualizada"
@@ -6287,13 +6180,11 @@ msgstr "Ao tentar fagocitar algo ([thrive:input]g_toggle_engulf[/thrive:input]),
 msgid "UPGRADE_PILUS_INJECTISOME_DESCRIPTION"
 msgstr "Ao tentar fagocitar algo ([thrive:input]g_toggle_engulf[/thrive:input]), esse tipo de cílios causa vórtices na água que puxam objetos próximos para si. É útil para capturar presas."
 
-#, fuzzy
 msgid "UPGRADE_SLIME_JET_MUCOCYST"
-msgstr "{0} PM"
+msgstr "Mucocisto"
 
-#, fuzzy
 msgid "UPGRADE_SLIME_JET_MUCOCYST_DESCRIPTION"
-msgstr "Transforma [thrive:compound type=\"glucose\"][/thrive:compound] em [thrive:compound type=\"mucilage\"][/thrive:compound]. Aperte [thrive:input]g_secrete_slime[/thrive:input] para expelir a [thrive:compound type=\"mucilage\"][/thrive:compound], aumentando a velocidade da célula e diminuindo a de predadores."
+msgstr "Transforma o jato de gosma em um mucocisto, que cria uma camada protetora de gosma ao redor da célula. Quando ativado, ele dá imunidade temporária a todas as fontes de dano."
 
 msgid "UPLOAD"
 msgstr "Carregar"
@@ -6344,16 +6235,14 @@ msgstr "O vacúolo é uma organela membranosa interna usada para o armazenamento
 msgid "VACUOLE_IS_SPECIALIZED"
 msgstr "Vacúolo Especializado"
 
-#, fuzzy
 msgid "VACUOLE_NOT_SPECIALIZED_DESCRIPTION"
-msgstr "Aumenta o espaço de armazenamento da célula."
+msgstr "O vacúolo guardará {0} unidades de quaisquer compostos"
 
 msgid "VACUOLE_PROCESSES_DESCRIPTION"
 msgstr "Aumenta o espaço de armazenamento da célula."
 
-#, fuzzy
 msgid "VACUOLE_SPECIALIZED_DESCRIPTION"
-msgstr "Aumenta o espaço de armazenamento da célula."
+msgstr "O vacúolo armazenará {0} unidades do composto selecionado"
 
 msgid "VALUE_WITH_UNIT"
 msgstr "{0} {1}"
@@ -6458,17 +6347,14 @@ msgstr "Rolar para a direita"
 msgid "WHEEL_UP"
 msgstr "Rolar para cima"
 
-#, fuzzy
 msgid "WIKI"
-msgstr "nossa Wiki"
+msgstr "Wiki"
 
-#, fuzzy
 msgid "WIKI_2D"
-msgstr "nossa Wiki"
+msgstr "2D"
 
-#, fuzzy
 msgid "WIKI_3D"
-msgstr "nossa Wiki"
+msgstr "3D"
 
 msgid "WIKI_3D_COMMA_SANDBOX"
 msgstr ""
@@ -6504,9 +6390,8 @@ msgstr "Rusticianina é uma proteína que consegue usar o gás carbônico e oxig
 msgid "WIKI_ASCENSION_OVERVIEW"
 msgstr ""
 
-#, fuzzy
 msgid "WIKI_ASCENSION_TRANSITIONS"
-msgstr "Parabéns!"
+msgstr "Você entrará em Ascensão quando sua espécie passar por um Portal da Ascensão. Provavelmente nós mostraremos os créditos do jogo depois da cutscene que ocorrerá ao entrar no estágio de ascensão. Quando os créditos terminarem, o jogador será levado de volta ao jogo no estágio de Ascensão com uma mensagem de parabéns. Para fazer desse o último desafio do jogo, o Portal da Ascensão precisará de muita pesquisa (incluindo as Ferramentas Divinas mencionadas acima) e muita energia, equivalente a diversos sóis, para criar e operar. Outras espécies potencialmente hostis terão sua última chance para atacar o jogador aqui antes que ele ganhe poder infinito e possa simplesmente eliminar os impérios interestelares competidores."
 
 #, fuzzy
 msgid "WIKI_ASCENSION_UI"
@@ -7746,7 +7631,6 @@ msgstr "Estágio Multicelular"
 msgid "WIKI_PAGE_MYOFIBRIL"
 msgstr "Miofibrila"
 
-#, fuzzy
 msgid "WIKI_PAGE_NITROGENASE"
 msgstr "Nitrogenase"
 
@@ -7889,10 +7773,6 @@ msgid "WIKI_PULLING_CILIA"
 msgstr "Cílios"
 
 #, fuzzy
-msgid "WIKI_RADIOSYNTHESIS"
-msgstr "Termossíntese"
-
-#, fuzzy
 msgid "WIKI_REPRODUCTION_BUTTON"
 msgstr "Protoplasma"
 
@@ -7977,17 +7857,20 @@ msgstr "Agente de Sinalização"
 msgid "WIKI_SIGNALING_AGENT_UPGRADES"
 msgstr "Agente de Sinalização"
 
-#, fuzzy
 msgid "WIKI_SLIME_JET_EFFECTS"
-msgstr "Muitos organismos produzem substâncias polissacarídeas semelhante à slimes, e a mucilagem é uma dessas. Enquanto que várias espécies as utilizam para a locomoção, alguns tipos de bactérias ejetam essas substâncias a alta pressão. Esses jatos se comportam como motores de foguetes, impulsionando as células a uma velocidade impressonante. O slime também é usado para evitar predadores, prendendo-os nessa substância na qual só organismos que possuem a organela podem navegar."
+msgstr ""
+"Permite a uma célula ejetar [thrive:compound type=\"mucilage\"][/thrive:compound] para se impelir. Ejetar [thrive:compound type=\"mucilage\"][/thrive:compound] gera uma grande quantidade de velocidade por um período curto de tempo. A ejeção pode ser sustentada por mais tempo dependendo da quantidade disponível de [thrive:compound type=\"mucilage\"][/thrive:compound].\n"
+"\n"
+"Qualquer célula que não tenha [b]Jatos de Gosma[/b] que entre a região de [thrive:compound type=\"mucilage\"][/thrive:compound] resultante terá sua velocidade reduzida."
 
-#, fuzzy
 msgid "WIKI_SLIME_JET_INTRO"
-msgstr "Muitos organismos produzem substâncias polissacarídeas semelhante à slimes, e a mucilagem é uma dessas. Enquanto que várias espécies as utilizam para a locomoção, alguns tipos de bactérias ejetam essas substâncias a alta pressão. Esses jatos se comportam como motores de foguetes, impulsionando as células a uma velocidade impressonante. O slime também é usado para evitar predadores, prendendo-os nessa substância na qual só organismos que possuem a organela podem navegar."
+msgstr ""
+"Sintetiza um polímero viscoso chamado [thrive:compound type=\"mucilage\"][/thrive:compound] a partir de [thrive:compound type=\"glucose\"][/thrive:compound]. Permite à célula ejetar [thrive:compound type=\"mucilage\"][/thrive:compound] para se impelir enquanto diminui a velocidade de criaturas que entrem na substância ejetada.\n"
+"\n"
+"Em contraste com o [b][color=#3796e1][url=thriveopedia:flagellum]Flagelo[/url][/color][/b], gera uma rápida explosão de velocidade que pode ajudar a escapar de um predador ou a alcançar uma presa."
 
-#, fuzzy
 msgid "WIKI_SLIME_JET_MODIFICATIONS"
-msgstr "Muitos organismos produzem substâncias polissacarídeas semelhante à slimes, e a mucilagem é uma dessas. Enquanto que várias espécies as utilizam para a locomoção, alguns tipos de bactérias ejetam essas substâncias a alta pressão. Esses jatos se comportam como motores de foguetes, impulsionando as células a uma velocidade impressonante. O slime também é usado para evitar predadores, prendendo-os nessa substância na qual só organismos que possuem a organela podem navegar."
+msgstr "Sem modificações."
 
 #, fuzzy
 msgid "WIKI_SLIME_JET_PROCESSES"
@@ -8012,9 +7895,8 @@ msgstr ""
 msgid "WIKI_SOCIETY_STAGE_FEATURES"
 msgstr "Estágio Social"
 
-#, fuzzy
 msgid "WIKI_SOCIETY_STAGE_INTRO"
-msgstr "Muitos organismos produzem substâncias polissacarídeas semelhante à slimes, e a mucilagem é uma dessas. Enquanto que várias espécies as utilizam para a locomoção, alguns tipos de bactérias ejetam essas substâncias a alta pressão. Esses jatos se comportam como motores de foguetes, impulsionando as células a uma velocidade impressonante. O slime também é usado para evitar predadores, prendendo-os nessa substância na qual só organismos que possuem a organela podem navegar."
+msgstr ""
 
 #, fuzzy
 msgid "WIKI_SOCIETY_STAGE_OVERVIEW"
@@ -8035,9 +7917,8 @@ msgstr ""
 msgid "WIKI_SPACE_STAGE_FEATURES"
 msgstr "Jato de Slime"
 
-#, fuzzy
 msgid "WIKI_SPACE_STAGE_INTRO"
-msgstr "Muitos organismos produzem substâncias polissacarídeas semelhante à slimes, e a mucilagem é uma dessas. Enquanto que várias espécies as utilizam para a locomoção, alguns tipos de bactérias ejetam essas substâncias a alta pressão. Esses jatos se comportam como motores de foguetes, impulsionando as células a uma velocidade impressonante. O slime também é usado para evitar predadores, prendendo-os nessa substância na qual só organismos que possuem a organela podem navegar."
+msgstr ""
 
 #, fuzzy
 msgid "WIKI_SPACE_STAGE_OVERVIEW"
@@ -8326,6 +8207,18 @@ msgstr "Aumentar o zoom"
 
 msgid "ZOOM_OUT"
 msgstr "Diminuir o zoom"
+
+#~ msgid "THANKS_FOR_BUYING_THRIVE"
+#~ msgstr ""
+#~ "Obrigado por apoiar o desenvolvimento de Thrive ao comprar essa cópia!\n"
+#~ "\n"
+#~ "Se você não comprou o jogo, é possível obter a sua própria cópia [color=#3796e1][url={0}]aqui[/url][/color] ou em nosso [color=#3796e1][url=https://revolutionarygamesstudio.com/releases/]website[/url][/color].\n"
+#~ "\n"
+#~ "Se deseja acessar o Thrive Launcher antes de começar o jogo, você pode usar o botão no menu principal para ir para o lançador e então desativar o modo integrado no menu de opções."
+
+#, fuzzy
+#~ msgid "WIKI_RADIOSYNTHESIS"
+#~ msgstr "Termossíntese"
 
 #~ msgid "EASTEREGG_MESSAGE_19"
 #~ msgstr "Curiosidade, o Didinium é um ciliado que caça paramécias."
@@ -9038,3 +8931,7 @@ msgstr "Diminuir o zoom"
 #, fuzzy
 #~ msgid "WIKI_MICROBE_STAGE"
 #~ msgstr "Estágio Microbial"
+
+#, fuzzy
+#~ msgid "WIKI_THERMOSYNTHESIS"
+#~ msgstr "Termossíntese"

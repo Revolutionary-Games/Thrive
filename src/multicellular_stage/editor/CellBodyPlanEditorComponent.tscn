@@ -1,11 +1,13 @@
-[gd_scene load_steps=31 format=3 uid="uid://dylo35brdi0js"]
+[gd_scene load_steps=35 format=3 uid="uid://dylo35brdi0js"]
 
 [ext_resource type="Script" path="res://src/multicellular_stage/editor/CellBodyPlanEditorComponent.cs" id="1"]
 [ext_resource type="PackedScene" uid="uid://ipvxtakaph16" path="res://src/multicellular_stage/editor/CellPopupMenu.tscn" id="3"]
+[ext_resource type="PackedScene" uid="uid://0hb8nq18ljr8" path="res://src/microbe_stage/editor/LightConfigurationPanel.tscn" id="3_nj0t6"]
 [ext_resource type="Theme" uid="uid://b4cx0o110g4b6" path="res://src/gui_common/thrive_theme.tres" id="5"]
 [ext_resource type="LabelSettings" uid="uid://dvqx73nhtr0y2" path="res://src/gui_common/fonts/Body-Regular-Small.tres" id="6_pwhoj"]
 [ext_resource type="PackedScene" uid="uid://cl64wvnxs6ivs" path="res://src/gui_common/dialogs/CustomConfirmationDialog.tscn" id="7"]
 [ext_resource type="PackedScene" uid="uid://bapb4m7jw7pc8" path="res://src/microbe_stage/editor/BehaviourEditorSubComponent.tscn" id="9"]
+[ext_resource type="PackedScene" uid="uid://olpir0vkwcsi" path="res://src/microbe_stage/OrganismStatisticsPanel.tscn" id="10_al7uh"]
 [ext_resource type="PackedScene" uid="uid://bq6aee8pw8y3m" path="res://src/gui_common/CollapsibleList.tscn" id="11"]
 [ext_resource type="LabelSettings" uid="uid://bx7mw3uvqpo42" path="res://src/gui_common/fonts/Body-Regular-Smaller.tres" id="11_yn8ep"]
 [ext_resource type="PackedScene" uid="uid://seoiqsheiljf" path="res://src/microbe_stage/editor/MutationPointsBar.tscn" id="12"]
@@ -13,18 +15,20 @@
 [ext_resource type="PackedScene" uid="uid://bwegwjlcioasf" path="res://src/microbe_stage/editor/EditorComponentBottomLeftButtons.tscn" id="13"]
 [ext_resource type="PackedScene" uid="uid://dw3ubsraoopin" path="res://src/gui_common/TabButtons.tscn" id="15"]
 [ext_resource type="Texture2D" uid="uid://ckrug48v4bimt" path="res://assets/textures/gui/bevel/warningBadge.png" id="16"]
+[ext_resource type="PackedScene" path="res://src/gui_common/dialogs/CustomWindow.tscn" id="30_4y6am"]
+[ext_resource type="PackedScene" path="res://src/microbe_stage/ProcessList.tscn" id="31_iccom"]
 
-[sub_resource type="StyleBoxFlat" id="5"]
+[sub_resource type="StyleBoxFlat" id="4"]
 content_margin_left = 5.0
 content_margin_top = 5.0
 content_margin_right = 5.0
 content_margin_bottom = 5.0
-bg_color = Color(0.0666667, 0.168627, 0.211765, 1)
+bg_color = Color(0.164706, 0.215686, 0.235294, 1)
 border_width_left = 1
 border_width_top = 1
 border_width_right = 1
 border_width_bottom = 1
-border_color = Color(0.0666667, 1, 0.835294, 1)
+border_color = Color(0.396078, 0.623529, 0.584314, 1)
 corner_radius_top_left = 5
 corner_radius_top_right = 5
 corner_radius_bottom_right = 5
@@ -62,17 +66,17 @@ corner_radius_top_right = 5
 corner_radius_bottom_right = 5
 corner_radius_bottom_left = 5
 
-[sub_resource type="StyleBoxFlat" id="4"]
+[sub_resource type="StyleBoxFlat" id="5"]
 content_margin_left = 5.0
 content_margin_top = 5.0
 content_margin_right = 5.0
 content_margin_bottom = 5.0
-bg_color = Color(0.164706, 0.215686, 0.235294, 1)
+bg_color = Color(0.0666667, 0.168627, 0.211765, 1)
 border_width_left = 1
 border_width_top = 1
 border_width_right = 1
 border_width_bottom = 1
-border_color = Color(0.396078, 0.623529, 0.584314, 1)
+border_color = Color(0.0666667, 1, 0.835294, 1)
 corner_radius_top_left = 5
 corner_radius_top_right = 5
 corner_radius_bottom_right = 5
@@ -83,22 +87,6 @@ corner_radius_bottom_left = 5
 [sub_resource type="StyleBoxEmpty" id="7"]
 
 [sub_resource type="StyleBoxEmpty" id="8"]
-
-[sub_resource type="StyleBoxFlat" id="14"]
-content_margin_left = 5.0
-content_margin_top = 5.0
-content_margin_right = 5.0
-content_margin_bottom = 5.0
-bg_color = Color(0.49, 0, 0, 1)
-border_width_left = 1
-border_width_top = 1
-border_width_right = 1
-border_width_bottom = 1
-border_color = Color(1, 0.07, 0.07, 1)
-corner_radius_top_left = 3
-corner_radius_top_right = 3
-corner_radius_bottom_right = 3
-corner_radius_bottom_left = 3
 
 [sub_resource type="StyleBoxFlat" id="12"]
 content_margin_left = 5.0
@@ -132,17 +120,33 @@ corner_radius_top_right = 3
 corner_radius_bottom_right = 3
 corner_radius_bottom_left = 3
 
-[sub_resource type="StyleBoxFlat" id="16"]
+[sub_resource type="StyleBoxFlat" id="14"]
 content_margin_left = 5.0
 content_margin_top = 5.0
 content_margin_right = 5.0
 content_margin_bottom = 5.0
-bg_color = Color(0, 0.490196, 0.258824, 1)
+bg_color = Color(0.49, 0, 0, 1)
 border_width_left = 1
 border_width_top = 1
 border_width_right = 1
 border_width_bottom = 1
-border_color = Color(0.0666667, 1, 0.835294, 1)
+border_color = Color(1, 0.07, 0.07, 1)
+corner_radius_top_left = 3
+corner_radius_top_right = 3
+corner_radius_bottom_right = 3
+corner_radius_bottom_left = 3
+
+[sub_resource type="StyleBoxFlat" id="41"]
+content_margin_left = 5.0
+content_margin_top = 5.0
+content_margin_right = 5.0
+content_margin_bottom = 5.0
+draw_center = false
+border_width_left = 2
+border_width_top = 2
+border_width_right = 2
+border_width_bottom = 2
+border_color = Color(0.666667, 1, 0.941176, 1)
 corner_radius_top_left = 3
 corner_radius_top_right = 3
 corner_radius_bottom_right = 3
@@ -164,17 +168,17 @@ corner_radius_top_right = 3
 corner_radius_bottom_right = 3
 corner_radius_bottom_left = 3
 
-[sub_resource type="StyleBoxFlat" id="41"]
+[sub_resource type="StyleBoxFlat" id="16"]
 content_margin_left = 5.0
 content_margin_top = 5.0
 content_margin_right = 5.0
 content_margin_bottom = 5.0
-draw_center = false
-border_width_left = 2
-border_width_top = 2
-border_width_right = 2
-border_width_bottom = 2
-border_color = Color(0.666667, 1, 0.941176, 1)
+bg_color = Color(0, 0.490196, 0.258824, 1)
+border_width_left = 1
+border_width_top = 1
+border_width_right = 1
+border_width_bottom = 1
+border_color = Color(0.0666667, 1, 0.835294, 1)
 corner_radius_top_left = 3
 corner_radius_top_right = 3
 corner_radius_bottom_right = 3
@@ -306,7 +310,7 @@ _data = {
 "show": SubResource("44")
 }
 
-[node name="CellBodyPlanEditorComponent" type="Control"]
+[node name="CellBodyPlanEditorComponent" type="Control" node_paths=PackedStringArray("organismStatisticsPanel", "negativeAtpPopup")]
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
@@ -330,6 +334,8 @@ CannotDeleteInUseTypeDialogPath = NodePath("CannotDeleteInUseType")
 DuplicateCellTypeDialogPath = NodePath("NewCellTypeSetup")
 DuplicateCellTypeNamePath = NodePath("NewCellTypeSetup/VBoxContainer2/NewName")
 CellPopupMenuPath = NodePath("CellPopupMenu")
+organismStatisticsPanel = NodePath("RightPanel/VBoxContainer/OrganismStatisticsPanel")
+negativeAtpPopup = NodePath("NegativeAtpWarning")
 IslandErrorPath = NodePath("IslandError")
 MutationPointsBarPath = NodePath("LeftPanel/MainPanel/VBoxContainer/MarginContainer2/MutationPointsBar")
 ComponentBottomLeftButtonsPath = NodePath("EditorComponentBottomLeftButtons")
@@ -337,13 +343,27 @@ CancelButtonPath = NodePath("BottomRight/HBoxContainer/CancelButton")
 FinishWarningBadgePath = NodePath("BottomRight/HBoxContainer/ConfirmButton/MarginContainer/WarningBadge")
 FinishOrNextButtonPath = NodePath("BottomRight/HBoxContainer/ConfirmButton")
 
+[node name="TopPanel" type="MarginContainer" parent="."]
+layout_mode = 0
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -170.0
+offset_top = 10.0
+offset_right = 170.0
+offset_bottom = 57.0
+
+[node name="LightConfiguration" parent="TopPanel" instance=ExtResource("3_nj0t6")]
+layout_mode = 2
+
 [node name="LeftPanel" type="MarginContainer" parent="."]
 custom_minimum_size = Vector2(350, 0)
-layout_mode = 0
+layout_mode = 1
+anchors_preset = 9
 anchor_bottom = 1.0
 offset_top = 40.0
 offset_right = 350.0
 offset_bottom = -50.0
+grow_vertical = 2
 size_flags_horizontal = 4
 size_flags_vertical = 0
 theme_override_constants/margin_left = 10
@@ -394,13 +414,13 @@ LevelOnScreen = 1
 layout_mode = 2
 size_flags_horizontal = 3
 mouse_filter = 1
-theme_override_colors/font_pressed_color = Color(0, 0, 0, 1)
 theme_override_colors/font_disabled_color = Color(1, 1, 1, 1)
+theme_override_colors/font_pressed_color = Color(0, 0, 0, 1)
 theme_override_font_sizes/font_size = 14
-theme_override_styles/normal = SubResource("5")
+theme_override_styles/disabled = SubResource("4")
 theme_override_styles/hover = SubResource("2")
 theme_override_styles/pressed = SubResource("3")
-theme_override_styles/disabled = SubResource("4")
+theme_override_styles/normal = SubResource("5")
 toggle_mode = true
 button_pressed = true
 action_mode = 0
@@ -411,13 +431,13 @@ text = "STRUCTURE"
 layout_mode = 2
 size_flags_horizontal = 3
 mouse_filter = 1
-theme_override_colors/font_pressed_color = Color(0, 0, 0, 1)
 theme_override_colors/font_disabled_color = Color(1, 1, 1, 1)
+theme_override_colors/font_pressed_color = Color(0, 0, 0, 1)
 theme_override_font_sizes/font_size = 14
-theme_override_styles/normal = SubResource("5")
+theme_override_styles/disabled = SubResource("4")
 theme_override_styles/hover = SubResource("2")
 theme_override_styles/pressed = SubResource("3")
-theme_override_styles/disabled = SubResource("4")
+theme_override_styles/normal = SubResource("5")
 toggle_mode = true
 action_mode = 0
 button_group = SubResource("ButtonGroup_j7atr")
@@ -427,13 +447,13 @@ text = "REPRODUCTION"
 layout_mode = 2
 size_flags_horizontal = 3
 mouse_filter = 1
-theme_override_colors/font_pressed_color = Color(0, 0, 0, 1)
 theme_override_colors/font_disabled_color = Color(0.870588, 0.870588, 0.870588, 1)
+theme_override_colors/font_pressed_color = Color(0, 0, 0, 1)
 theme_override_font_sizes/font_size = 14
-theme_override_styles/normal = SubResource("5")
+theme_override_styles/disabled = SubResource("4")
 theme_override_styles/hover = SubResource("2")
 theme_override_styles/pressed = SubResource("3")
-theme_override_styles/disabled = SubResource("4")
+theme_override_styles/normal = SubResource("5")
 toggle_mode = true
 action_mode = 0
 button_group = SubResource("ButtonGroup_j7atr")
@@ -526,15 +546,40 @@ autowrap_mode = 3
 [node name="OptionButton" type="OptionButton" parent="LeftPanel/MainPanel/VBoxContainer/MarginContainer/EditingPanel/Reproduction/ScrollContainer/MarginContainer/VBoxContainer/HBoxContainer"]
 layout_mode = 2
 disabled = true
-item_count = 1
 selected = 0
+item_count = 1
 popup/item_0/text = "REPRODUCTION_BUDDING"
-popup/item_0/id = 0
 
 [node name="Behaviour" parent="LeftPanel/MainPanel/VBoxContainer/MarginContainer/EditingPanel" instance=ExtResource("9")]
 visible = false
 layout_mode = 2
 FinishOrNextButtonPath = NodePath("")
+
+[node name="RightPanel" type="MarginContainer" parent="."]
+custom_minimum_size = Vector2(285, 657)
+layout_mode = 1
+anchors_preset = 1
+anchor_left = 1.0
+anchor_right = 1.0
+offset_left = -285.0
+offset_bottom = 657.0
+grow_horizontal = 0
+theme_override_constants/margin_top = 10
+theme_override_constants/margin_right = 10
+
+[node name="VBoxContainer" type="VBoxContainer" parent="RightPanel"]
+layout_mode = 2
+mouse_filter = 0
+mouse_force_pass_scroll_events = false
+
+[node name="OrganismStatisticsPanel" parent="RightPanel/VBoxContainer" node_paths=PackedStringArray("processList", "processListWindow", "lightConfigurationPanel") instance=ExtResource("10_al7uh")]
+layout_mode = 2
+ShowStorageStat = true
+ShowSpeedStat = true
+ShowRotationSpeedStat = true
+processList = NodePath("../../../ProcessPanel/ScrollContainer/ProcessList")
+processListWindow = NodePath("../../../ProcessPanel")
+lightConfigurationPanel = NodePath("../../../TopPanel/LightConfiguration")
 
 [node name="EditorComponentBottomLeftButtons" parent="." instance=ExtResource("13")]
 layout_mode = 1
@@ -550,6 +595,8 @@ anchor_left = 1.0
 anchor_top = 1.0
 anchor_right = 1.0
 anchor_bottom = 1.0
+offset_left = -158.0
+offset_top = -51.0
 offset_right = -10.0
 offset_bottom = -10.0
 grow_horizontal = 0
@@ -564,11 +611,11 @@ visible = false
 custom_minimum_size = Vector2(140, 40)
 layout_mode = 2
 mouse_force_pass_scroll_events = false
-theme_override_colors/font_pressed_color = Color(1, 1, 1, 1)
 theme_override_colors/font_disabled_color = Color(0.498039, 0.529412, 0.541176, 1)
-theme_override_styles/normal = SubResource("14")
+theme_override_colors/font_pressed_color = Color(1, 1, 1, 1)
 theme_override_styles/hover = SubResource("12")
 theme_override_styles/pressed = SubResource("13")
+theme_override_styles/normal = SubResource("14")
 shortcut_in_tooltip = false
 text = "CANCEL_ACTION_CAPITAL"
 
@@ -577,9 +624,9 @@ custom_minimum_size = Vector2(140, 40)
 layout_mode = 2
 mouse_force_pass_scroll_events = false
 theme_override_colors/font_pressed_color = Color(0, 0, 0, 1)
-theme_override_styles/normal = SubResource("16")
-theme_override_styles/hover = SubResource("15")
 theme_override_styles/focus = SubResource("41")
+theme_override_styles/hover = SubResource("15")
+theme_override_styles/normal = SubResource("16")
 text = "NEXT_CAPITAL"
 
 [node name="MarginContainer" type="MarginContainer" parent="BottomRight/HBoxContainer/ConfirmButton"]
@@ -617,6 +664,13 @@ offset_bottom = 85.0
 HideCancelButton = true
 DialogText = "DISCONNECTED_CELLS_TEXT"
 WindowTitle = "DISCONNECTED_CELLS"
+
+[node name="NegativeAtpWarning" parent="." instance=ExtResource("7")]
+custom_minimum_size = Vector2(500, 0)
+offset_right = 500.0
+offset_bottom = 85.0
+DialogText = "NEGATIVE_ATP_BALANCE_TEXT"
+WindowTitle = "NEGATIVE_ATP_BALANCE"
 
 [node name="CannotDeleteInUseType" parent="." instance=ExtResource("7")]
 custom_minimum_size = Vector2(500, 0)
@@ -666,15 +720,36 @@ mouse_filter = 2
 
 [node name="CellPopupMenu" parent="." instance=ExtResource("3")]
 
+[node name="ProcessPanel" parent="." instance=ExtResource("30_4y6am")]
+custom_minimum_size = Vector2(400, 400)
+WindowTitle = "PROCESS_PANEL_TITLE"
+Resizable = true
+
+[node name="ScrollContainer" type="ScrollContainer" parent="ProcessPanel"]
+layout_mode = 0
+offset_right = 40.0
+offset_bottom = 40.0
+follow_focus = true
+
+[node name="ProcessList" parent="ProcessPanel/ScrollContainer" instance=ExtResource("31_iccom")]
+custom_minimum_size = Vector2(0, 30)
+layout_mode = 2
+ShowSpinners = false
+ShowToggles = false
+
 [connection signal="gui_input" from="." to="." method="OnHexEditorGuiInput"]
 [connection signal="mouse_entered" from="." to="." method="OnHexEditorMouseEntered"]
 [connection signal="mouse_exited" from="." to="." method="OnHexEditorMouseExited"]
+[connection signal="OnLightButtonClick" from="TopPanel/LightConfiguration" to="RightPanel/VBoxContainer/OrganismStatisticsPanel" method="OnLightLevelButtonPressed"]
 [connection signal="pressed" from="LeftPanel/MainPanel/VBoxContainer/MarginContainer/EditingPanel/TabButtons/Structure" to="." method="SetSelectionMenuTab" binds= ["Structure"]]
 [connection signal="pressed" from="LeftPanel/MainPanel/VBoxContainer/MarginContainer/EditingPanel/TabButtons/Reproduction" to="." method="SetSelectionMenuTab" binds= ["Reproduction"]]
 [connection signal="pressed" from="LeftPanel/MainPanel/VBoxContainer/MarginContainer/EditingPanel/TabButtons/Behaviour" to="." method="SetSelectionMenuTab" binds= ["Behaviour"]]
 [connection signal="pressed" from="LeftPanel/MainPanel/VBoxContainer/MarginContainer/EditingPanel/Structure/ScrollContainer/MarginContainer/PartsSelection/VBoxContainer/HBoxContainer/Modify" to="." method="OnModifyCurrentCellTypePressed"]
 [connection signal="pressed" from="LeftPanel/MainPanel/VBoxContainer/MarginContainer/EditingPanel/Structure/ScrollContainer/MarginContainer/PartsSelection/VBoxContainer/HBoxContainer/Delete" to="." method="OnDeleteCellTypePressed"]
 [connection signal="pressed" from="LeftPanel/MainPanel/VBoxContainer/MarginContainer/EditingPanel/Structure/ScrollContainer/MarginContainer/PartsSelection/VBoxContainer/Duplicate" to="." method="OnTypeDuplicateStartPressed"]
+[connection signal="OnEnergyBalanceOptionsChanged" from="RightPanel/VBoxContainer/OrganismStatisticsPanel" to="." method="OnEnergyBalanceOptionsChanged"]
+[connection signal="OnLightLevelChanged" from="RightPanel/VBoxContainer/OrganismStatisticsPanel" to="." method="SetLightLevelOption"]
+[connection signal="OnResourceLimitingModeChanged" from="RightPanel/VBoxContainer/OrganismStatisticsPanel" to="." method="OnResourceLimitingModeChanged"]
 [connection signal="OnNameSet" from="EditorComponentBottomLeftButtons" to="." method="OnSpeciesNameChanged"]
 [connection signal="OnRedo" from="EditorComponentBottomLeftButtons" to="." method="Redo"]
 [connection signal="OnSymmetryChanged" from="EditorComponentBottomLeftButtons" to="." method="OnSymmetryPressed"]
@@ -682,6 +757,7 @@ mouse_filter = 2
 [connection signal="pressed" from="BottomRight/HBoxContainer/CancelButton" to="." method="OnCancelActionClicked"]
 [connection signal="pressed" from="BottomRight/HBoxContainer/ConfirmButton" to="." method="NextOrFinishClicked"]
 [connection signal="animation_finished" from="BottomRight/HBoxContainer/ConfirmButton/MarginContainer/WarningBadge/AnimationPlayer" to="." method="HideFinishButtonWarningAfterAnimation"]
+[connection signal="Confirmed" from="NegativeAtpWarning" to="." method="ConfirmFinishEditingWithNegativeATPPressed"]
 [connection signal="Confirmed" from="NewCellTypeSetup" to="." method="OnNewCellTypeConfirmed"]
 [connection signal="text_changed" from="NewCellTypeSetup/VBoxContainer2/NewName" to="." method="OnNewCellTypeNameChanged"]
 [connection signal="text_submitted" from="NewCellTypeSetup/VBoxContainer2/NewName" to="." method="OnNewCellTextAccepted"]

@@ -7,8 +7,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2025-01-28 15:03+0200\n"
-"PO-Revision-Date: 2024-10-17 07:24+0000\n"
+"POT-Creation-Date: 2025-02-07 11:01+0200\n"
+"PO-Revision-Date: 2025-02-06 13:29+0000\n"
 "Last-Translator: Anonymous <noreply@weblate.org>\n"
 "Language-Team: Catalan <https://translate.revolutionarygamesstudio.com/projects/thrive/thrive-game/ca/>\n"
 "Language: ca\n"
@@ -1410,6 +1410,10 @@ msgstr ""
 msgid "DEBUG_DRAW_NOT_AVAILABLE"
 msgstr ""
 
+#, fuzzy
+msgid "DEBUG_HEAT_AT_CURSOR"
+msgstr "A sota del Cursor:"
+
 msgid "DEBUG_PANEL"
 msgstr "Tauler de Depuració"
 
@@ -2445,6 +2449,10 @@ msgstr "Volum del GUI"
 msgid "HEALTH"
 msgstr "Salut"
 
+#, fuzzy
+msgid "HEAT_ACCUMULATION_BAR_TOOLTIP"
+msgstr "Automàticament carregar els ecosistemes Harmony de l'Ensamblatge (no requereix especificar una classe de mod)"
+
 msgid "HELP"
 msgstr "Ajuda"
 
@@ -3458,6 +3466,10 @@ msgstr "Editor de Microbi"
 msgid "MICROBE_EDITOR"
 msgstr "Editor de Microbi"
 
+#, fuzzy
+msgid "MICROBE_ENZYME_STATISTICS"
+msgstr "Estadístiques de la Cèl·lula"
+
 msgid "MICROBE_FREEBUILD_EDITOR"
 msgstr "Editor Lliure de Microbi"
 
@@ -3548,6 +3560,14 @@ msgstr "Prem el botó de 'desfer' per tal de corregir qualsevol equivocació"
 #, fuzzy
 msgid "MICROBE_LOADING_TIP_9"
 msgstr "Prem el botó de 'desfer' per tal de corregir qualsevol equivocació"
+
+#, fuzzy
+msgid "MICROBE_MEMBRANE_PERCENTAGE_STATISTICS"
+msgstr "Estadístiques de la Cèl·lula"
+
+#, fuzzy
+msgid "MICROBE_MEMBRANE_STATISTICS"
+msgstr "Estadístiques de la Cèl·lula"
 
 #, fuzzy
 msgid "MICROBE_ORGANELLE_STATISTICS"
@@ -5780,7 +5800,7 @@ msgid "TESTING_TEAM"
 msgstr "Equip de proves"
 
 #, fuzzy
-msgid "THANKS_FOR_BUYING_THRIVE"
+msgid "THANKS_FOR_BUYING_THRIVE_2"
 msgstr ""
 "Gràcies per jugar!\n"
 "\n"
@@ -5802,18 +5822,22 @@ msgstr "Equip de teoria"
 msgid "THERMOPLAST"
 msgstr "Termoplast"
 
+#, fuzzy
 msgid "THERMOPLAST_DESCRIPTION"
 msgstr "El termoplast és una estructura de doble membrana que, de manera anàloga al Cloroplast, conté pigments sensibles a l'escalfor, agrupats en petites membranes. En realitat, és un petit organisme procariota que ha estat engolit i assimilat per una cèl·lula eucariota, que actua com a hoste. Aquests pigments, produeixen Glucosa a partir d'Aigua, Diòxid de Carboni i les diferències de Temperatura al seu entorn. La velocitat de producció de la Glucosa augmenta proporcionalment a la concentració de Diòxid de Carboni i la Temperatura."
 
+#, fuzzy
 msgid "THERMOPLAST_PROCESSES_DESCRIPTION"
 msgstr "Produeix [thrive:compound]glucose[/thrive:compound]. La velocitat és proporcional a la concentració de [thrive:compound]carbondioxide[/thrive:compound] i temperatura."
 
 msgid "THERMOSYNTHASE"
 msgstr "Termosintasa"
 
+#, fuzzy
 msgid "THERMOSYNTHASE_DESCRIPTION"
 msgstr "La termosintasa és una proteïna que fa servir la convecció tèrmica per canviar la seva forma, permetent-li plegar-se i adherir-se a l'ADP quan és exposada a la temperature, tot seguit desplegar-se i reciclar-la en ATP quan s'exposa a temperatures més baixes en un procés anomenat termosíntesi. La velocitat de la producció d'ATP és proporcional a la temperatura."
 
+#, fuzzy
 msgid "THERMOSYNTHASE_PROCESSES_DESCRIPTION"
 msgstr "Produeix [thrive:compound type=\"atp\"][/thrive:compound] fent servir gradients de temperatura. La velocitat és proporcional a [thrive:compound type=\"temperature\"][/thrive:compound]."
 
@@ -5949,6 +5973,10 @@ msgstr "Activar monitor FPS"
 
 msgid "TOGGLE_FULLSCREEN"
 msgstr "Activar pantalla completa"
+
+#, fuzzy
+msgid "TOGGLE_HEAT_VIEW_TOOLTIP"
+msgstr "Activar el mode d'engolir"
 
 msgid "TOGGLE_HUD_HIDE"
 msgstr "Commuta HUD"
@@ -8072,10 +8100,6 @@ msgid "WIKI_PULLING_CILIA"
 msgstr ""
 
 #, fuzzy
-msgid "WIKI_RADIOSYNTHESIS"
-msgstr "Termosíntesi"
-
-#, fuzzy
 msgid "WIKI_REPRODUCTION_BUTTON"
 msgstr "protoplasma"
 
@@ -8502,6 +8526,17 @@ msgstr "Enfocar la visió de la càmera"
 
 msgid "ZOOM_OUT"
 msgstr "Zoom enfora"
+
+#, fuzzy
+#~ msgid "THANKS_FOR_BUYING_THRIVE"
+#~ msgstr ""
+#~ "Gràcies per jugar!\n"
+#~ "\n"
+#~ "Si has gaudit del joc, siusplau explica-ho als teus amics."
+
+#, fuzzy
+#~ msgid "WIKI_RADIOSYNTHESIS"
+#~ msgstr "Termosíntesi"
 
 #~ msgid "EASTEREGG_MESSAGE_19"
 #~ msgstr "A mode de curiositat, el Didinum és un ciliat que caça Paramecis."

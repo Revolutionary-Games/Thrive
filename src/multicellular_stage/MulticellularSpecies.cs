@@ -87,8 +87,11 @@ public class MulticellularSpecies : Species
         // So, the compound balance calculation uses the default biome.
         // TODO: make this also default biome independent like there's a TODO in MicrobeSpecies
         var biomeConditions = simulationParameters.GetBiome("default").Conditions;
-        var compoundBalances = ProcessSystem.ComputeCompoundBalance(Cells[0].Organelles,
-            biomeConditions, CompoundAmountType.Biome, false);
+
+        var compoundBalances = new Dictionary<Compound, CompoundBalance>();
+
+        ProcessSystem.ComputeCompoundBalance(Cells[0].Organelles,
+            biomeConditions, CompoundAmountType.Biome, false, compoundBalances);
         var storageCapacity = MicrobeInternalCalculations.CalculateCapacity(Cells[0].Organelles);
 
         InitialCompounds.Clear();

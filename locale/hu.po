@@ -7,8 +7,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2025-01-28 15:03+0200\n"
-"PO-Revision-Date: 2025-01-21 12:01+0000\n"
+"POT-Creation-Date: 2025-02-07 11:01+0200\n"
+"PO-Revision-Date: 2025-02-06 13:29+0000\n"
 "Last-Translator: Anonymous <noreply@weblate.org>\n"
 "Language-Team: Hungarian <https://translate.revolutionarygamesstudio.com/projects/thrive/thrive-game/hu/>\n"
 "Language: hu\n"
@@ -1465,6 +1465,10 @@ msgstr ""
 msgid "DEBUG_DRAW_NOT_AVAILABLE"
 msgstr ""
 
+#, fuzzy
+msgid "DEBUG_HEAT_AT_CURSOR"
+msgstr "A kurzornál:"
+
 msgid "DEBUG_PANEL"
 msgstr "Debug panel"
 
@@ -2501,6 +2505,10 @@ msgstr "GUI hangerő"
 msgid "HEALTH"
 msgstr "Életerő"
 
+#, fuzzy
+msgid "HEAT_ACCUMULATION_BAR_TOOLTIP"
+msgstr "Öngyilkosság"
+
 msgid "HELP"
 msgstr "Segítség"
 
@@ -3521,6 +3529,10 @@ msgstr "Sejtszerkesztő"
 msgid "MICROBE_EDITOR"
 msgstr "Sejtszerkesztő"
 
+#, fuzzy
+msgid "MICROBE_ENZYME_STATISTICS"
+msgstr "  {0}: Megtalálható a {1} fajokban, átlagosan {2} darabja"
+
 msgid "MICROBE_FREEBUILD_EDITOR"
 msgstr "Sejtszerkesztő"
 
@@ -3611,6 +3623,14 @@ msgstr "A szerkesztőben a visszavonás gomb lenyomásával kíjavíthatsz egy v
 #, fuzzy
 msgid "MICROBE_LOADING_TIP_9"
 msgstr "A szerkesztőben a visszavonás gomb lenyomásával kíjavíthatsz egy véletlen elkövetett hibát"
+
+#, fuzzy
+msgid "MICROBE_MEMBRANE_PERCENTAGE_STATISTICS"
+msgstr "  {0}: Megtalálható a {1} fajokban, átlagosan {2} darabja"
+
+#, fuzzy
+msgid "MICROBE_MEMBRANE_STATISTICS"
+msgstr "  {0}: Megtalálható a {1} fajokban, átlagosan {2} darabja"
 
 msgid "MICROBE_ORGANELLE_STATISTICS"
 msgstr "  {0}: Megtalálható a {1} fajokban, átlagosan {2} darabja"
@@ -5850,7 +5870,7 @@ msgid "TESTING_TEAM"
 msgstr "Tesztelő csapat"
 
 #, fuzzy
-msgid "THANKS_FOR_BUYING_THRIVE"
+msgid "THANKS_FOR_BUYING_THRIVE_2"
 msgstr ""
 "Köszönjük, hogy játszottál a játékkal!\n"
 "\n"
@@ -5874,6 +5894,7 @@ msgstr "Termoplasztisz"
 msgid "THERMOPLAST_DESCRIPTION"
 msgstr ""
 
+#, fuzzy
 msgid "THERMOPLAST_PROCESSES_DESCRIPTION"
 msgstr "[thrive:compound type=\"glucose\"][/thrive:compound]-t állít elő. Hatékonysága függ a [thrive:compound type=\"carbondioxide\"][/thrive:compound] koncentrációjától és a hőmérséklettől."
 
@@ -6017,6 +6038,10 @@ msgstr "FPS mutatása be/ki"
 
 msgid "TOGGLE_FULLSCREEN"
 msgstr "Teljes képernyő be/ki"
+
+#, fuzzy
+msgid "TOGGLE_HEAT_VIEW_TOOLTIP"
+msgstr "Elnyelés be/ki"
 
 msgid "TOGGLE_HUD_HIDE"
 msgstr "HUD be/ki"
@@ -8109,10 +8134,6 @@ msgid "WIKI_PULLING_CILIA"
 msgstr "Felkelési fázis"
 
 #, fuzzy
-msgid "WIKI_RADIOSYNTHESIS"
-msgstr "Termoszintézis"
-
-#, fuzzy
 msgid "WIKI_REPRODUCTION_BUTTON"
 msgstr "Protoplazma"
 
@@ -8541,6 +8562,17 @@ msgstr "Közelítés"
 
 msgid "ZOOM_OUT"
 msgstr "Távolodás"
+
+#, fuzzy
+#~ msgid "THANKS_FOR_BUYING_THRIVE"
+#~ msgstr ""
+#~ "Köszönjük, hogy játszottál a játékkal!\n"
+#~ "\n"
+#~ "Ha élvezted a játékot, akkor beszélj a barátaidnak is rólunk."
+
+#, fuzzy
+#~ msgid "WIKI_RADIOSYNTHESIS"
+#~ msgstr "Termoszintézis"
 
 #~ msgid "EASTEREGG_MESSAGE_19"
 #~ msgstr "Érdekesség: a Didinium egy olyan csillós, mely papucsállatkákra vadászik."

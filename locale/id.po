@@ -7,8 +7,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2025-01-28 15:03+0200\n"
-"PO-Revision-Date: 2025-01-21 12:01+0000\n"
+"POT-Creation-Date: 2025-02-07 11:01+0200\n"
+"PO-Revision-Date: 2025-02-06 13:29+0000\n"
 "Last-Translator: Anonymous <noreply@weblate.org>\n"
 "Language-Team: Indonesian <https://translate.revolutionarygamesstudio.com/projects/thrive/thrive-game/id/>\n"
 "Language: id\n"
@@ -1444,6 +1444,10 @@ msgstr ""
 msgid "DEBUG_DRAW_NOT_AVAILABLE"
 msgstr ""
 
+#, fuzzy
+msgid "DEBUG_HEAT_AT_CURSOR"
+msgstr "Pada Kursor:"
+
 msgid "DEBUG_PANEL"
 msgstr "Panel Debug"
 
@@ -2491,6 +2495,10 @@ msgstr "Volume GUI"
 msgid "HEALTH"
 msgstr "Kesehatan"
 
+#, fuzzy
+msgid "HEAT_ACCUMULATION_BAR_TOOLTIP"
+msgstr "Tambah keybind baru"
+
 msgid "HELP"
 msgstr "Bantuan"
 
@@ -3518,6 +3526,10 @@ msgstr "Editor Mikrob"
 msgid "MICROBE_EDITOR"
 msgstr "Editor Mikrob"
 
+#, fuzzy
+msgid "MICROBE_ENZYME_STATISTICS"
+msgstr "Statistika Organisme"
+
 msgid "MICROBE_FREEBUILD_EDITOR"
 msgstr "Editor Mikroba Bangun-bebas"
 
@@ -3608,6 +3620,14 @@ msgstr "Tekan tombol undo di editor untuk membatalkan kesalahan"
 #, fuzzy
 msgid "MICROBE_LOADING_TIP_9"
 msgstr "Tekan tombol undo di editor untuk membatalkan kesalahan"
+
+#, fuzzy
+msgid "MICROBE_MEMBRANE_PERCENTAGE_STATISTICS"
+msgstr "Statistika Organisme"
+
+#, fuzzy
+msgid "MICROBE_MEMBRANE_STATISTICS"
+msgstr "Statistika Organisme"
 
 #, fuzzy
 msgid "MICROBE_ORGANELLE_STATISTICS"
@@ -5851,7 +5871,7 @@ msgid "TESTING_TEAM"
 msgstr ""
 
 #, fuzzy
-msgid "THANKS_FOR_BUYING_THRIVE"
+msgid "THANKS_FOR_BUYING_THRIVE_2"
 msgstr ""
 "Terimakasih telah bermain!\n"
 "\n"
@@ -5873,9 +5893,11 @@ msgstr ""
 msgid "THERMOPLAST"
 msgstr "Termoplas"
 
+#, fuzzy
 msgid "THERMOPLAST_DESCRIPTION"
 msgstr "Termoplas adalah struktur membran ganda mengandung pigmen termosensitif tertumpuk bersamaan dalam kantung membran. Ia merupakan prokariota yang terasimilasi untuk kegunaan induk sel eukariota-nya. Pigmen yang ada di termoplas dapat menggunakan perbedaan energi panas di sekelilingnya untuk memproduksi glukosa dari air dan gas karbon dioksida dalam proses yang disebut Termosintesis. Laju produksi glukosa tersebut berbanding lurus dengan konsentrasi karbon dioksida dan suhu."
 
+#, fuzzy
 msgid "THERMOPLAST_PROCESSES_DESCRIPTION"
 msgstr "Memproduksi [thrive:compound type=\"glucose\"][/thrive:compound]. Laju berbanding lurus dengan konsentrasi [thrive:compound type=\"carbondioxide\"][/thrive:compound] dan suhu."
 
@@ -6022,6 +6044,10 @@ msgstr "Nyala/matikan tampilan FPS"
 
 msgid "TOGGLE_FULLSCREEN"
 msgstr "Nyala/matikan layar penuh"
+
+#, fuzzy
+msgid "TOGGLE_HEAT_VIEW_TOOLTIP"
+msgstr "Nyala/matikan penelanan"
 
 msgid "TOGGLE_HUD_HIDE"
 msgstr "Nyala/matikan HUD"
@@ -8140,10 +8166,6 @@ msgid "WIKI_PULLING_CILIA"
 msgstr ""
 
 #, fuzzy
-msgid "WIKI_RADIOSYNTHESIS"
-msgstr "Termosintesis"
-
-#, fuzzy
 msgid "WIKI_REPRODUCTION_BUTTON"
 msgstr "Protoplasma"
 
@@ -8574,6 +8596,17 @@ msgstr "Perbesar"
 
 msgid "ZOOM_OUT"
 msgstr "Perkecil"
+
+#, fuzzy
+#~ msgid "THANKS_FOR_BUYING_THRIVE"
+#~ msgstr ""
+#~ "Terimakasih telah bermain!\n"
+#~ "\n"
+#~ "Jika kamu menikmati game ini, tolong beritahu teman anda tentang kami."
+
+#, fuzzy
+#~ msgid "WIKI_RADIOSYNTHESIS"
+#~ msgstr "Termosintesis"
 
 #~ msgid "EASTEREGG_MESSAGE_19"
 #~ msgstr "Fakta Menarik, Didinium adalah ciliata yang memburu paramecia."

@@ -7,8 +7,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2025-01-28 15:03+0200\n"
-"PO-Revision-Date: 2025-01-28 15:22+0200\n"
+"POT-Creation-Date: 2025-02-07 11:01+0200\n"
+"PO-Revision-Date: 2025-02-07 11:11+0200\n"
 "Last-Translator: Henri Hyyryläinen <hhyyrylainen@revolutionarygamesstudio.com>\n"
 "Language-Team: English <https://translate.revolutionarygamesstudio.com/projects/thrive/thrive-game/en/>\n"
 "Language: en\n"
@@ -1385,6 +1385,9 @@ msgstr ""
 msgid "DEBUG_DRAW_NOT_AVAILABLE"
 msgstr "Physics debug draw not available in this build type"
 
+msgid "DEBUG_HEAT_AT_CURSOR"
+msgstr "Heat value: {0}"
+
 msgid "DEBUG_PANEL"
 msgstr "Debug Panel"
 
@@ -2315,6 +2318,12 @@ msgstr "GUI volume"
 msgid "HEALTH"
 msgstr "Health"
 
+msgid "HEAT_ACCUMULATION_BAR_TOOLTIP"
+msgstr ""
+"This bar shows the current temperature of your cell. The yellow indicators show the effective energy generation range.\n"
+"The white vertical bar shows the environmental temperature which the bar is going to go towards.\n"
+"The indicator below the bar changes colour when energy is being generated."
+
 msgid "HELP"
 msgstr "Help"
 
@@ -3135,7 +3144,7 @@ msgid "MELANOSOME"
 msgstr "Melanosome"
 
 msgid "MELANOSOME_DESCRIPTION"
-msgstr "The melanosome is an organelle that contains melanin pigments that can absorb high-energy electromagnetic waves emitted by radioactive materials and convert them to usable energy in a process called [b]radiosynthesis[/b]. The pigments absorbing radiation also help protect more sensitive parts of the cell which increases the overall resilience against radiation."
+msgstr "The melanosome is a membrane-bound organelle containing melanin pigments that can absorb high-energy electromagnetic waves emitted by radioactive materials and convert them to usable energy in a process called [b]radiosynthesis[/b]. The pigments absorbing radiation also help protect more sensitive parts of the cell which increases the overall resilience against radiation."
 
 msgid "MELANOSOME_PROCESSES_DESCRIPTION"
 msgstr "Turns [thrive:compound type=\"radiation\"][/thrive:compound] into [thrive:compound type=\"atp\"][/thrive:compound] when next to highly radioactive rocks while also providing radiation resistance"
@@ -3251,6 +3260,9 @@ msgstr "Microbe Benchmark"
 msgid "MICROBE_EDITOR"
 msgstr "Microbe Editor"
 
+msgid "MICROBE_ENZYME_STATISTICS"
+msgstr "[b]Enzymes Data:[/b]"
+
 msgid "MICROBE_FREEBUILD_EDITOR"
 msgstr "Microbe Freebuild Editor"
 
@@ -3319,6 +3331,12 @@ msgstr "Place flagella or slime jets symmetrically at the back of your cell. Oth
 
 msgid "MICROBE_LOADING_TIP_9"
 msgstr "It matters where you place parts. The shape of your cell impacts your movement and turning speed."
+
+msgid "MICROBE_MEMBRANE_PERCENTAGE_STATISTICS"
+msgstr "{0}: Found in {1} species"
+
+msgid "MICROBE_MEMBRANE_STATISTICS"
+msgstr "[b]Membranes Data:[/b]"
 
 msgid "MICROBE_ORGANELLE_STATISTICS"
 msgstr "  {0}: Found in {1} species, averaging {2} each"
@@ -4484,7 +4502,7 @@ msgid "RADIATION"
 msgstr "Radiation"
 
 msgid "RADIOACTIVE_CHUNK"
-msgstr "Radioactive Chunk"
+msgstr "Radioactive Rock Chunk"
 
 msgid "RADIOSYNTHESIS"
 msgstr "Radiosynthesis"
@@ -5386,11 +5404,11 @@ msgstr "Temp."
 msgid "TESTING_TEAM"
 msgstr "Testing Team"
 
-msgid "THANKS_FOR_BUYING_THRIVE"
+msgid "THANKS_FOR_BUYING_THRIVE_2"
 msgstr ""
-"Thank you for supporting Thrive development by purchasing this copy of Thrive!\n"
+"Thank you for supporting Thrive development by purchasing this copy of Thrive from [color=#3796e1][url={0}]{1}[/url][/color]!\n"
 "\n"
-"If you did not buy this copy, please get your own copy [color=#3796e1][url={0}]from here[/url][/color] or check out our [color=#3796e1][url=https://revolutionarygamesstudio.com/releases/]website[/url][/color].\n"
+"The speed of continued Thrive development depends on the amount of support we receive. You can find out more from [color=#3796e1][url={2}]our website[/url][/color] or through our socials that are linked in the bottom left of the screen.\n"
 "\n"
 "If you would like to see the Thrive Launcher before Thrive is started, you can use the button in the main menu to exit to the launcher and then disable seamless mode in the launcher options menu."
 
@@ -5410,19 +5428,19 @@ msgid "THERMOPLAST"
 msgstr "Thermoplast"
 
 msgid "THERMOPLAST_DESCRIPTION"
-msgstr "The thermoplast is a double membrane structure containing thermosensitive pigments stacked together in membranous sacs. It is a prokaryote that has been assimilated for use by its eukaryotic host. The pigments in the thermoplast are able to use the energy of heat differences in the surroundings to produce [thrive:compound type=\"atp\"][/thrive:compound] from water in a process called [b]thermosynthesis[/b]. The rate of its [thrive:compound type=\"atp\"][/thrive:compound] production scales with [thrive:compound type=\"temperature\"][/thrive:compound]."
+msgstr "The thermoplast is a double membrane structure containing thermosensitive pigments stacked together in membranous sacs. It is a prokaryote that has been assimilated for use by its eukaryotic host. The pigments in the thermoplast are able to use the energy of heat differences in the surroundings to produce [thrive:compound type=\"atp\"][/thrive:compound] from water in a process called [b]thermosynthesis[/b]. The rate of its [thrive:compound type=\"atp\"][/thrive:compound] production scales with [thrive:compound type=\"temperature\"][/thrive:compound] delta."
 
 msgid "THERMOPLAST_PROCESSES_DESCRIPTION"
-msgstr "Produces [thrive:compound type=\"atp\"][/thrive:compound] using temperature gradients. Rate scales with [thrive:compound type=\"temperature\"][/thrive:compound]."
+msgstr "Produces [thrive:compound type=\"atp\"][/thrive:compound] using temperature gradients. Rate scales with change in [thrive:compound type=\"temperature\"][/thrive:compound]."
 
 msgid "THERMOSYNTHASE"
 msgstr "Thermosynthase"
 
 msgid "THERMOSYNTHASE_DESCRIPTION"
-msgstr "Thermosynthase is a protein that uses thermal convection to change its form, allowing it to fold and bind to ADP when exposed to heat, then unfold and recycle it into [thrive:compound type=\"atp\"][/thrive:compound] when exposed to cooling in a process called [b]thermosynthesis[/b]. The rate of its [thrive:compound type=\"atp\"][/thrive:compound] production scales with [thrive:compound type=\"temperature\"][/thrive:compound]."
+msgstr "Thermosynthase is a protein that uses thermal convection to change its form, allowing it to fold and bind to ADP when exposed to heat, then unfold and recycle it into [thrive:compound type=\"atp\"][/thrive:compound] when exposed to cooling in a process called [b]thermosynthesis[/b]. The rate of its [thrive:compound type=\"atp\"][/thrive:compound] production scales with [thrive:compound type=\"temperature\"][/thrive:compound] delta."
 
 msgid "THERMOSYNTHASE_PROCESSES_DESCRIPTION"
-msgstr "Produces [thrive:compound type=\"atp\"][/thrive:compound] using temperature gradients. Rate scales with [thrive:compound type=\"temperature\"][/thrive:compound]."
+msgstr "Produces [thrive:compound type=\"atp\"][/thrive:compound] using temperature gradients. Rate scales with change in [thrive:compound type=\"temperature\"][/thrive:compound]. Use thermal vision to find hot and cold areas."
 
 msgid "THERMOSYNTHESIS"
 msgstr "Thermosynthesis"
@@ -5557,6 +5575,9 @@ msgstr "Toggle FPS display"
 
 msgid "TOGGLE_FULLSCREEN"
 msgstr "Toggle fullscreen"
+
+msgid "TOGGLE_HEAT_VIEW_TOOLTIP"
+msgstr "Toggle between normal and thermal view"
 
 msgid "TOGGLE_HUD_HIDE"
 msgstr "Toggle HUD"
@@ -7371,7 +7392,7 @@ msgid "WIKI_MELANOSOME_EFFECTS"
 msgstr "No effects."
 
 msgid "WIKI_MELANOSOME_INTRO"
-msgstr "[b]Melanosome[/b] performs [b]Radiosynthesis[/b], which captures energy from radiation by absorbing it in melanin."
+msgstr "[b]Melanosomes[/b] perform [b]Radiosynthesis[/b], which captures energy from radiation by absorbing it in melanin."
 
 msgid "WIKI_MELANOSOME_MODIFICATIONS"
 msgstr "No modifications."
@@ -8065,9 +8086,6 @@ msgstr "No upgrades."
 msgid "WIKI_PULLING_CILIA"
 msgstr "Pulling Cilia"
 
-msgid "WIKI_RADIOSYNTHESIS"
-msgstr "Radiosynthesis"
-
 msgid "WIKI_REPRODUCTION_BUTTON"
 msgstr "Reproduction"
 
@@ -8571,6 +8589,17 @@ msgstr "Zoom in"
 
 msgid "ZOOM_OUT"
 msgstr "Zoom out"
+
+#~ msgid "THANKS_FOR_BUYING_THRIVE"
+#~ msgstr ""
+#~ "Thank you for supporting Thrive development by purchasing this copy of Thrive!\n"
+#~ "\n"
+#~ "If you did not buy this copy, please get your own copy [color=#3796e1][url={0}]from here[/url][/color] or check out our [color=#3796e1][url=https://revolutionarygamesstudio.com/releases/]website[/url][/color].\n"
+#~ "\n"
+#~ "If you would like to see the Thrive Launcher before Thrive is started, you can use the button in the main menu to exit to the launcher and then disable seamless mode in the launcher options menu."
+
+#~ msgid "WIKI_RADIOSYNTHESIS"
+#~ msgstr "Radiosynthesis"
 
 #~ msgid "WIKI_MACROSCOPIC_STAGE"
 #~ msgstr "Macroscopic Stage"

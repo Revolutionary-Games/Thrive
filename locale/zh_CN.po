@@ -7,8 +7,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2025-01-28 15:03+0200\n"
-"PO-Revision-Date: 2025-01-21 12:01+0000\n"
+"POT-Creation-Date: 2025-02-07 11:01+0200\n"
+"PO-Revision-Date: 2025-02-06 13:29+0000\n"
 "Last-Translator: Anonymous <noreply@weblate.org>\n"
 "Language-Team: Chinese (Simplified Han script) <https://translate.revolutionarygamesstudio.com/projects/thrive/thrive-game/zh_Hans/>\n"
 "Language: zh_CN\n"
@@ -1392,6 +1392,10 @@ msgstr ""
 msgid "DEBUG_DRAW_NOT_AVAILABLE"
 msgstr "物理调试绘图在此构建类型中不可用"
 
+#, fuzzy
+msgid "DEBUG_HEAT_AT_CURSOR"
+msgstr "鼠标指针处："
+
 msgid "DEBUG_PANEL"
 msgstr "调试菜单"
 
@@ -2336,6 +2340,10 @@ msgstr "GUI音量"
 
 msgid "HEALTH"
 msgstr "生命上限"
+
+#, fuzzy
+msgid "HEAT_ACCUMULATION_BAR_TOOLTIP"
+msgstr "从Assembly中自动加载Harmony补丁（不需要指定mod class）"
 
 msgid "HELP"
 msgstr "帮助"
@@ -3290,6 +3298,10 @@ msgstr "微生物编辑器"
 msgid "MICROBE_EDITOR"
 msgstr "微生物编辑器"
 
+#, fuzzy
+msgid "MICROBE_ENZYME_STATISTICS"
+msgstr "  {0}：{1}的物种具有该细胞器，平均数量为{2}"
+
 msgid "MICROBE_FREEBUILD_EDITOR"
 msgstr "微生物阶段自由编辑器"
 
@@ -3380,6 +3392,14 @@ msgstr "在编辑器中按下撤消键以纠正错误"
 #, fuzzy
 msgid "MICROBE_LOADING_TIP_9"
 msgstr "在编辑器中按下撤消键以纠正错误"
+
+#, fuzzy
+msgid "MICROBE_MEMBRANE_PERCENTAGE_STATISTICS"
+msgstr "  {0}：{1}的物种具有该细胞器，平均数量为{2}"
+
+#, fuzzy
+msgid "MICROBE_MEMBRANE_STATISTICS"
+msgstr "  {0}：{1}的物种具有该细胞器，平均数量为{2}"
 
 msgid "MICROBE_ORGANELLE_STATISTICS"
 msgstr "  {0}：{1}的物种具有该细胞器，平均数量为{2}"
@@ -5461,7 +5481,8 @@ msgstr "温度"
 msgid "TESTING_TEAM"
 msgstr "测试团队"
 
-msgid "THANKS_FOR_BUYING_THRIVE"
+#, fuzzy
+msgid "THANKS_FOR_BUYING_THRIVE_2"
 msgstr ""
 "感谢你的游玩！如果你喜欢这款游戏，请记得也向你的朋友们推荐一下。\n"
 "\n"
@@ -5484,18 +5505,22 @@ msgstr "理论家团队"
 msgid "THERMOPLAST"
 msgstr "热能体"
 
+#, fuzzy
 msgid "THERMOPLAST_DESCRIPTION"
 msgstr "它是一种双层膜结构，包含在膜囊中堆叠在一起的热敏色素。它是一种被其真核宿主同化的原核生物。热能体中的色素可以通过[b]热合成[/b]用温差把水和二氧化碳合成成葡萄糖。合成葡萄糖的速率跟二氧化碳的浓度与环境温度成正比。"
 
+#, fuzzy
 msgid "THERMOPLAST_PROCESSES_DESCRIPTION"
 msgstr "产出[thrive:compound type=\"glucose\"][/thrive:compound]。速率跟[thrive:compound type=\"carbondioxide\"][/thrive:compound]的浓度与环境温度成正比。"
 
 msgid "THERMOSYNTHASE"
 msgstr "热合成酶"
 
+#, fuzzy
 msgid "THERMOSYNTHASE_DESCRIPTION"
 msgstr "热合酶是一种利用热对流改变自身形态的蛋白质，它可以在受热时折叠并结合ADP，然后在降温时展开并生成ATP。这一过程被称为[b]热合成[/b]。其ATP生成速率与温度有关。"
 
+#, fuzzy
 msgid "THERMOSYNTHASE_PROCESSES_DESCRIPTION"
 msgstr "利用温度梯度生产[thrive:compound type=\"atp\"][/thrive:compound]。速度与[thrive:compound type=\"temperature\"][/thrive:compound]有关。"
 
@@ -5632,6 +5657,12 @@ msgstr "切换帧数显示"
 
 msgid "TOGGLE_FULLSCREEN"
 msgstr "切换全屏"
+
+#, fuzzy
+msgid "TOGGLE_HEAT_VIEW_TOOLTIP"
+msgstr ""
+"切换吞噬模式以吞噬各种碎块\n"
+" 以及更小的生物体来在激活时获取更好的ATP利用率"
 
 msgid "TOGGLE_HUD_HIDE"
 msgstr "切换HUD"
@@ -7888,10 +7919,6 @@ msgid "WIKI_PULLING_CILIA"
 msgstr "纤毛"
 
 #, fuzzy
-msgid "WIKI_RADIOSYNTHESIS"
-msgstr "热合成"
-
-#, fuzzy
 msgid "WIKI_REPRODUCTION_BUTTON"
 msgstr ""
 "用以提升非玩家细胞的储存的[b][color=#3796e1][url=thriveopedia:cytoplasm]细胞质[/url][/color][/b]的显著增强版本。无法被添加到玩家细胞中，但可能在玩家从环境中化石化的细胞中出现。\n"
@@ -8382,6 +8409,18 @@ msgstr "放大"
 
 msgid "ZOOM_OUT"
 msgstr "缩小"
+
+#~ msgid "THANKS_FOR_BUYING_THRIVE"
+#~ msgstr ""
+#~ "感谢你的游玩！如果你喜欢这款游戏，请记得也向你的朋友们推荐一下。\n"
+#~ "\n"
+#~ "点击链接[color=#3796e1][url={0}]from here[/url][/color]购买本游戏，或者来看看我们的官网：[color=#3796e1][url=https://revolutionarygamesstudio.com/releases/][/url][/color]。\n"
+#~ "\n"
+#~ "如果您想在Thrive启动之前看到Thrive Launcher，您可以使用主菜单中的按钮退出到启动器，然后在启动器选项菜单中禁用无缝模式。"
+
+#, fuzzy
+#~ msgid "WIKI_RADIOSYNTHESIS"
+#~ msgstr "热合成"
 
 #~ msgid "EASTEREGG_MESSAGE_19"
 #~ msgstr "趣闻：栉毛虫是一种纤毛虫，它们会捕猎草履虫。"

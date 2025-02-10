@@ -7,8 +7,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2025-01-28 15:03+0200\n"
-"PO-Revision-Date: 2025-01-21 12:01+0000\n"
+"POT-Creation-Date: 2025-02-07 11:01+0200\n"
+"PO-Revision-Date: 2025-02-06 13:29+0000\n"
 "Last-Translator: Anonymous <noreply@weblate.org>\n"
 "Language-Team: Dutch (Belgium) <https://translate.revolutionarygamesstudio.com/projects/thrive/thrive-game/nl_BE/>\n"
 "Language: nl_BE\n"
@@ -1437,6 +1437,10 @@ msgstr ""
 msgid "DEBUG_DRAW_NOT_AVAILABLE"
 msgstr ""
 
+#, fuzzy
+msgid "DEBUG_HEAT_AT_CURSOR"
+msgstr "Bij cursor:"
+
 msgid "DEBUG_PANEL"
 msgstr ""
 
@@ -2497,6 +2501,10 @@ msgstr "GUI volume"
 msgid "HEALTH"
 msgstr "Gezondheid"
 
+#, fuzzy
+msgid "HEAT_ACCUMULATION_BAR_TOOLTIP"
+msgstr "Zelfmoord"
+
 msgid "HELP"
 msgstr "Help"
 
@@ -3501,6 +3509,10 @@ msgstr "Microbebewerker"
 msgid "MICROBE_EDITOR"
 msgstr "Microbebewerker"
 
+#, fuzzy
+msgid "MICROBE_ENZYME_STATISTICS"
+msgstr "  {0}: Gevonden in {1} soort(en), gemiddeld {2} per soort"
+
 msgid "MICROBE_FREEBUILD_EDITOR"
 msgstr "Microbe Vrij Bouwen in de \"Editor\""
 
@@ -3591,6 +3603,14 @@ msgstr "Druk op de \"ongedaan maken\" knop in de \"editor\" om een fout te corri
 #, fuzzy
 msgid "MICROBE_LOADING_TIP_9"
 msgstr "Druk op de \"ongedaan maken\" knop in de \"editor\" om een fout te corrigeren"
+
+#, fuzzy
+msgid "MICROBE_MEMBRANE_PERCENTAGE_STATISTICS"
+msgstr "  {0}: Gevonden in {1} soort(en), gemiddeld {2} per soort"
+
+#, fuzzy
+msgid "MICROBE_MEMBRANE_STATISTICS"
+msgstr "  {0}: Gevonden in {1} soort(en), gemiddeld {2} per soort"
 
 msgid "MICROBE_ORGANELLE_STATISTICS"
 msgstr "  {0}: Gevonden in {1} soort(en), gemiddeld {2} per soort"
@@ -5824,7 +5844,7 @@ msgid "TESTING_TEAM"
 msgstr "Testing Team"
 
 #, fuzzy
-msgid "THANKS_FOR_BUYING_THRIVE"
+msgid "THANKS_FOR_BUYING_THRIVE_2"
 msgstr ""
 "Bedankt voor het spelen!\n"
 "\n"
@@ -5845,9 +5865,11 @@ msgstr "Theorie Team"
 msgid "THERMOPLAST"
 msgstr "Thermoplast"
 
+#, fuzzy
 msgid "THERMOPLAST_DESCRIPTION"
 msgstr "De thermoplast is een door twee membranen omsloten celorganel dat warmtegevoelige pigmenten bevat, op elkaar gestapeld in een membraanzak. Het is een prokaryoot die door zijn eukaryotische gastheer geabsorbeerd is voor diens gebruik. De pigmenten in de thermoplast zijn in staat om de energie van hitteverschillen in de omgeving te gebruiken om glucose uit water en gasvormige koolstofdioxide te produceren in een proces dat thermosyntese heet. De snelheid van de glucoseproductie hangt af van de koolstofdioxideconcentratie en de temperatuur."
 
+#, fuzzy
 msgid "THERMOPLAST_PROCESSES_DESCRIPTION"
 msgstr "Produceert [thrive:compound type=\"atp\"][/thrive:compound] met gebruik van de temperatuurgradiënt. Snelheid schaalt met [thrive:compound type=\"temperature\"][/thrive:compound]."
 
@@ -6000,6 +6022,10 @@ msgstr "Schakel FPS weergave"
 
 msgid "TOGGLE_FULLSCREEN"
 msgstr "Volledig scherm schakelen"
+
+#, fuzzy
+msgid "TOGGLE_HEAT_VIEW_TOOLTIP"
+msgstr "Schakel verzwelg"
 
 msgid "TOGGLE_HUD_HIDE"
 msgstr "Schakel HUD"
@@ -8134,10 +8160,6 @@ msgid "WIKI_PULLING_CILIA"
 msgstr "Trilharen"
 
 #, fuzzy
-msgid "WIKI_RADIOSYNTHESIS"
-msgstr "Chemosynthese"
-
-#, fuzzy
 msgid "WIKI_REPRODUCTION_BUTTON"
 msgstr "Protoplasma"
 
@@ -8580,6 +8602,17 @@ msgstr "Inzoomen"
 
 msgid "ZOOM_OUT"
 msgstr "Uitzoomen"
+
+#, fuzzy
+#~ msgid "THANKS_FOR_BUYING_THRIVE"
+#~ msgstr ""
+#~ "Bedankt voor het spelen!\n"
+#~ "\n"
+#~ "Als je het spel leuk vond, vertel je vrienden dan over ons."
+
+#, fuzzy
+#~ msgid "WIKI_RADIOSYNTHESIS"
+#~ msgstr "Chemosynthese"
 
 #~ msgid "EASTEREGG_MESSAGE_19"
 #~ msgstr "Leuk Weetje, Het Didinium is een trilhaardiertje dat op pantoffeldiertjes jaagt."

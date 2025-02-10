@@ -274,11 +274,16 @@ public partial class CreatureStageBase<TPlayer, TSimulation> : StageBase, ICreat
         // And spawn the player to continue
         SpawnPlayer();
 
-        // Auto-evo needs to be re-done as player species is different
+        // Auto-evo needs to be redone as player species is different
         CurrentGame.GameWorld.ResetAutoEvoRun();
 
         // Stop the extinction music
         StartMusic();
+    }
+
+    public virtual void SetSpecialViewMode(ViewMode mode)
+    {
+        GD.PrintErr("This stage doesn't support view mode: " + mode);
     }
 
     protected override void SetupStage()

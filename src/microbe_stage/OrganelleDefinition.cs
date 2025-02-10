@@ -294,6 +294,8 @@ public class OrganelleDefinition : IRegistryType
 
     public bool HasSignalingFeature { get; private set; }
 
+    public bool HasLysosomeComponent { get; private set; }
+
     /// <summary>
     ///   True when this organelle is one that uses oxygen as a process input (and is metabolism-related). This is
     ///   used to adjust toxin effects that have a distinction between oxygen breathers and others.
@@ -301,6 +303,8 @@ public class OrganelleDefinition : IRegistryType
     public bool IsOxygenMetabolism { get; private set; }
 
     public bool HasRadiationProtection { get; private set; }
+
+    public bool HasHeatCollection { get; private set; }
 
     [JsonIgnore]
     public string UntranslatedName =>
@@ -679,6 +683,12 @@ public class OrganelleDefinition : IRegistryType
                 var enzyme = parameters.GetEnzyme(entry.Key);
 
                 Enzymes[enzyme] = entry.Value;
+
+                if (entry.Value <= 0)
+                {
+                    throw new InvalidRegistryDataException(InternalName, nameof(OrganelleDefinition),
+                        "Enzyme amount value should be above 0");
+                }
             }
         }
 
@@ -787,10 +797,12 @@ public class OrganelleDefinition : IRegistryType
         HasCiliaComponent = HasComponentFactory<CiliaComponentFactory>();
         HasAgentVacuoleComponent = HasComponentFactory<AgentVacuoleComponentFactory>();
         HasSlimeJetComponent = HasComponentFactory<SlimeJetComponentFactory>();
+        HasLysosomeComponent = HasComponentFactory<LysosomeComponentFactory>();
 
         HasBindingFeature = HasFeatureTag(OrganelleFeatureTag.BindingAgent);
         HasSignalingFeature = HasFeatureTag(OrganelleFeatureTag.SignalingAgent);
         HasRadiationProtection = HasFeatureTag(OrganelleFeatureTag.RadiationBlock);
+        HasHeatCollection = HasFeatureTag(OrganelleFeatureTag.HeatCollecting);
     }
 
     private void CalculateModelOffset()

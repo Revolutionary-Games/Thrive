@@ -7,8 +7,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2025-01-28 15:03+0200\n"
-"PO-Revision-Date: 2024-10-17 07:24+0000\n"
+"POT-Creation-Date: 2025-02-07 11:01+0200\n"
+"PO-Revision-Date: 2025-02-06 13:29+0000\n"
 "Last-Translator: Anonymous <noreply@weblate.org>\n"
 "Language-Team: Thai <https://translate.revolutionarygamesstudio.com/projects/thrive/thrive-game/th/>\n"
 "Language: th_TH\n"
@@ -1407,6 +1407,9 @@ msgstr ""
 msgid "DEBUG_DRAW_NOT_AVAILABLE"
 msgstr ""
 
+msgid "DEBUG_HEAT_AT_CURSOR"
+msgstr ""
+
 msgid "DEBUG_PANEL"
 msgstr ""
 
@@ -2388,6 +2391,10 @@ msgstr "ปริมาณ GUI"
 msgid "HEALTH"
 msgstr "เลือด"
 
+#, fuzzy
+msgid "HEAT_ACCUMULATION_BAR_TOOLTIP"
+msgstr "ดำเนินการต่อ"
+
 msgid "HELP"
 msgstr "ช่วยเหลือ"
 
@@ -3368,6 +3375,10 @@ msgstr "สร้างจุลินทรีย์ฟรี"
 msgid "MICROBE_EDITOR"
 msgstr "สร้างจุลินทรีย์ฟรี"
 
+#, fuzzy
+msgid "MICROBE_ENZYME_STATISTICS"
+msgstr "เอาออร์แกเนลล์ออก"
+
 msgid "MICROBE_FREEBUILD_EDITOR"
 msgstr "สร้างจุลินทรีย์ฟรี"
 
@@ -3458,6 +3469,14 @@ msgstr "กดปุ่มเลิกทำในตัวแก้ไขเพ
 #, fuzzy
 msgid "MICROBE_LOADING_TIP_9"
 msgstr "กดปุ่มเลิกทำในตัวแก้ไขเพื่อแก้ไขข้อผิดพลาด"
+
+#, fuzzy
+msgid "MICROBE_MEMBRANE_PERCENTAGE_STATISTICS"
+msgstr "เอาออร์แกเนลล์ออก"
+
+#, fuzzy
+msgid "MICROBE_MEMBRANE_STATISTICS"
+msgstr "เอาออร์แกเนลล์ออก"
 
 #, fuzzy
 msgid "MICROBE_ORGANELLE_STATISTICS"
@@ -5675,7 +5694,7 @@ msgstr ""
 msgid "TESTING_TEAM"
 msgstr ""
 
-msgid "THANKS_FOR_BUYING_THRIVE"
+msgid "THANKS_FOR_BUYING_THRIVE_2"
 msgstr ""
 
 msgid "THANKS_FOR_PLAYING"
@@ -5690,6 +5709,7 @@ msgstr ""
 msgid "THERMOPLAST"
 msgstr "เทอร์โมพลาสต์"
 
+#, fuzzy
 msgid "THERMOPLAST_DESCRIPTION"
 msgstr "เทอร์โมพลาสต์เป็นโครงสร้างเมมเบรนสองชั้นที่มีเม็ดสีทนความร้อนซ้อนกันในถุงเยื่อ เป็นโปรคาริโอตที่ถูกดูดซึมเพื่อใช้โดยโฮสต์ยูคาริโอต เม็ดสีในเทอร์โมพลาสต์สามารถใช้พลังงานของความแตกต่างของความร้อนในสภาพแวดล้อมเพื่อผลิตน้ำตาลกลูโคสจากน้ำและก๊าซคาร์บอนไดออกไซด์ในกระบวนการที่เรียกว่าการสังเคราะห์ด้วยความร้อน อัตราการผลิตน้ำตาลกลูโคสที่มีความเข้มข้นของคาร์บอนไดออกไซด์และอุณหภูมิ"
 
@@ -5855,6 +5875,10 @@ msgstr "สลับการแสดง FPS"
 
 msgid "TOGGLE_FULLSCREEN"
 msgstr "สลับเต็มหน้าจอ"
+
+#, fuzzy
+msgid "TOGGLE_HEAT_VIEW_TOOLTIP"
+msgstr "สลับเขมือบ"
 
 #, fuzzy
 msgid "TOGGLE_HUD_HIDE"
@@ -7896,10 +7920,6 @@ msgid "WIKI_PULLING_CILIA"
 msgstr ""
 
 #, fuzzy
-msgid "WIKI_RADIOSYNTHESIS"
-msgstr "การสังเคราะห์ด้วยเคมี"
-
-#, fuzzy
 msgid "WIKI_REPRODUCTION_BUTTON"
 msgstr "โปรโตพลาสซึม"
 
@@ -8333,6 +8353,10 @@ msgstr "ซูมเข้า"
 
 msgid "ZOOM_OUT"
 msgstr "ซูมออก"
+
+#, fuzzy
+#~ msgid "WIKI_RADIOSYNTHESIS"
+#~ msgstr "การสังเคราะห์ด้วยเคมี"
 
 #~ msgid "EASTEREGG_MESSAGE_19"
 #~ msgstr "สาระ: Didinum เป็น ciliate ที่ล่าพารามีเซีย"
