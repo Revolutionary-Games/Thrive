@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Thrive VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2025-02-10 07:04+0000\n"
+"POT-Creation-Date: 2025-02-10 15:22+0200\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -257,7 +257,7 @@ msgstr ""
 msgid "ART_BY"
 msgstr ""
 
-#: ../src/general/MainMenu.tscn:452
+#: ../src/general/MainMenu.tscn:464
 msgid "ART_GALLERY"
 msgstr ""
 
@@ -397,7 +397,7 @@ msgstr ""
 msgid "AUTO_EVO"
 msgstr ""
 
-#: ../src/general/MainMenu.tscn:388
+#: ../src/general/MainMenu.tscn:400
 msgid "AUTO_EVO_EXPLORING_TOOL"
 msgstr ""
 
@@ -462,8 +462,8 @@ msgid "AWARE_STAGE"
 msgstr ""
 
 #: ../src/auto-evo/AutoEvoExploringTool.tscn:685
-#: ../src/general/MainMenu.tscn:417 ../src/general/MainMenu.tscn:476
-#: ../src/general/MainMenu.tscn:524 ../src/general/MainMenu.tscn:827
+#: ../src/general/MainMenu.tscn:429 ../src/general/MainMenu.tscn:488
+#: ../src/general/MainMenu.tscn:536 ../src/general/MainMenu.tscn:887
 #: ../src/general/NewGameSettings.tscn:1056 ../src/general/OptionsMenu.tscn:1913
 #: ../src/general/PauseMenu.tscn:291
 #: ../src/microbe_stage/gui/ExtinctionBox.tscn:72
@@ -574,7 +574,7 @@ msgstr ""
 msgid "BELOW_SEA_LEVEL"
 msgstr ""
 
-#: ../src/general/MainMenu.tscn:397
+#: ../src/general/MainMenu.tscn:409
 msgid "BENCHMARKS"
 msgstr ""
 
@@ -654,6 +654,10 @@ msgstr ""
 
 #: ../src/general/OptionsMenu.tscn:434
 msgid "BLOOM_RENDER_EFFECT"
+msgstr ""
+
+#: ../src/general/MainMenu.tscn:818
+msgid "BLUESKY_TOOLTIP"
 msgstr ""
 
 #: ../src/general/GameProperties.cs:158
@@ -1142,19 +1146,19 @@ msgstr ""
 msgid "COMMON_EDITING_AND_STRATEGY"
 msgstr ""
 
-#: ../src/general/MainMenu.tscn:585
+#: ../src/general/MainMenu.tscn:597
 msgid "COMMUNITY_FORUM"
 msgstr ""
 
-#: ../src/general/MainMenu.tscn:580
+#: ../src/general/MainMenu.tscn:592
 msgid "COMMUNITY_FORUM_BUTTON_TOOLTIP"
 msgstr ""
 
-#: ../src/general/MainMenu.tscn:612
+#: ../src/general/MainMenu.tscn:624
 msgid "COMMUNITY_WIKI"
 msgstr ""
 
-#: ../src/general/MainMenu.tscn:607
+#: ../src/general/MainMenu.tscn:619
 msgid "COMMUNITY_WIKI_BUTTON_TOOLTIP"
 msgstr ""
 
@@ -1215,7 +1219,7 @@ msgstr ""
 msgid "COMPOUND_CLOUDS"
 msgstr ""
 
-#: ../src/general/MainMenu.tscn:506
+#: ../src/general/MainMenu.tscn:518
 msgid "COMPOUND_CLOUD_BENCHMARK"
 msgstr ""
 
@@ -1710,7 +1714,7 @@ msgstr ""
 msgid "CREATING_OBJECTS_FROM_SAVE"
 msgstr ""
 
-#: ../src/general/MainMenu.tscn:334
+#: ../src/general/MainMenu.tscn:346
 msgid "CREDITS"
 msgstr ""
 
@@ -1931,11 +1935,11 @@ msgstr ""
 msgid "DEVELOPERS"
 msgstr ""
 
-#: ../src/general/MainMenu.tscn:594
+#: ../src/general/MainMenu.tscn:606
 msgid "DEVELOPMENT_FORUM"
 msgstr ""
 
-#: ../src/general/MainMenu.tscn:589
+#: ../src/general/MainMenu.tscn:601
 msgid "DEVELOPMENT_FORUM_BUTTON_TOOLTIP"
 msgstr ""
 
@@ -1943,11 +1947,11 @@ msgstr ""
 msgid "DEVELOPMENT_SUPPORTED_BY"
 msgstr ""
 
-#: ../src/general/MainMenu.tscn:603
+#: ../src/general/MainMenu.tscn:615
 msgid "DEVELOPMENT_WIKI"
 msgstr ""
 
-#: ../src/general/MainMenu.tscn:598
+#: ../src/general/MainMenu.tscn:610
 msgid "DEVELOPMENT_WIKI_BUTTON_TOOLTIP"
 msgstr ""
 
@@ -2055,7 +2059,7 @@ msgstr ""
 msgid "DISCONNECTED_ORGANELLES_TEXT"
 msgstr ""
 
-#: ../src/general/MainMenu.tscn:736
+#: ../src/general/MainMenu.tscn:761
 msgid "DISCORD_TOOLTIP"
 msgstr ""
 
@@ -2522,7 +2526,7 @@ msgstr ""
 msgid "EXIT_EDITOR"
 msgstr ""
 
-#: ../src/general/MainMenu.tscn:341
+#: ../src/general/MainMenu.tscn:353
 msgid "EXIT_TO_LAUNCHER"
 msgstr ""
 
@@ -2584,7 +2588,7 @@ msgstr ""
 msgid "EXTINCT_SPECIES"
 msgstr ""
 
-#: ../src/general/MainMenu.tscn:328
+#: ../src/general/MainMenu.tscn:340
 msgid "EXTRAS"
 msgstr ""
 
@@ -2592,7 +2596,7 @@ msgstr ""
 msgid "EXTRA_OPTIONS"
 msgstr ""
 
-#: ../src/general/MainMenu.tscn:747
+#: ../src/general/MainMenu.tscn:774
 msgid "FACEBOOK_TOOLTIP"
 msgstr ""
 
@@ -2954,7 +2958,7 @@ msgstr ""
 msgid "GENERATION_COLON"
 msgstr ""
 
-#: ../src/general/MainMenu.tscn:703
+#: ../src/general/MainMenu.tscn:715
 msgid "GITHUB_TOOLTIP"
 msgstr ""
 
@@ -3618,6 +3622,10 @@ msgstr ""
 msgid "INSPECTOR"
 msgstr ""
 
+#: ../src/general/MainMenu.tscn:796
+msgid "INSTAGRAM_TOOLTIP"
+msgstr ""
+
 #: ../src/awakening_stage/InteractionType.cs:32
 msgid "INTERACTION_ACTIVATE_ASCENSION"
 msgstr ""
@@ -3752,7 +3760,7 @@ msgstr ""
 msgid "IRON_CHEMOLITHOAUTOTROPHY"
 msgstr ""
 
-#: ../src/general/MainMenu.tscn:681
+#: ../src/general/MainMenu.tscn:693
 msgid "ITCH_TOOLTIP"
 msgstr ""
 
@@ -4162,7 +4170,7 @@ msgstr ""
 msgid "LEFT_MOUSE"
 msgstr ""
 
-#: ../src/general/MainMenu.tscn:459
+#: ../src/general/MainMenu.tscn:471
 msgid "LICENSES"
 msgstr ""
 
@@ -4275,7 +4283,7 @@ msgstr ""
 msgid "LINE_COLOUR"
 msgstr ""
 
-#: ../src/general/MainMenu.tscn:536
+#: ../src/general/MainMenu.tscn:548
 msgid "LINKS_TITLE"
 msgstr ""
 
@@ -4322,12 +4330,12 @@ msgstr ""
 msgid "LOAD_FINISHED"
 msgstr ""
 
-#: ../src/general/MainMenu.tscn:303 ../src/general/PauseMenu.tscn:232
+#: ../src/general/MainMenu.tscn:315 ../src/general/PauseMenu.tscn:232
 #: ../src/microbe_stage/gui/ExtinctionBox.tscn:139
 msgid "LOAD_GAME"
 msgstr ""
 
-#: ../src/general/MainMenu.tscn:301 ../src/general/PauseMenu.tscn:231
+#: ../src/general/MainMenu.tscn:313 ../src/general/PauseMenu.tscn:231
 msgid "LOAD_GAME_BUTTON_TOOLTIP"
 msgstr ""
 
@@ -4359,11 +4367,11 @@ msgstr ""
 msgid "LOCK_DAY_NIGHT_CYCLE"
 msgstr ""
 
-#: ../src/general/MainMenu.tscn:901
+#: ../src/general/MainMenu.tscn:961
 msgid "LOW_MENU_PERFORMANCE"
 msgstr ""
 
-#: ../src/general/MainMenu.tscn:900
+#: ../src/general/MainMenu.tscn:960
 msgid "LOW_MENU_PERFORMANCE_DESCRIPTION"
 msgstr ""
 
@@ -4416,6 +4424,10 @@ msgstr ""
 
 #: ../src/general/OptionsMenu.tscn:665
 msgid "MASTER_VOLUME"
+msgstr ""
+
+#: ../src/general/MainMenu.tscn:807
+msgid "MASTODON_TOOLTIP"
 msgstr ""
 
 #: ../src/general/OptionsMenu.tscn:1207 ../src/general/OptionsMenu.tscn:1213
@@ -4530,6 +4542,10 @@ msgstr ""
 msgid "METABOLOSOMES_PROCESSES_DESCRIPTION"
 msgstr ""
 
+#: ../src/general/MainMenu.tscn:737
+msgid "META_THREADS_TOOLTIP"
+msgstr ""
+
 #: ../src/engine/DebugOverlays.tscn:48 ../src/engine/DebugOverlays.tscn:107
 msgid "METRICS"
 msgstr ""
@@ -4615,7 +4631,7 @@ msgid "MICROBES_COUNT"
 msgstr ""
 
 #: ../src/benchmark/microbe/MicrobeBenchmark.tscn:41
-#: ../src/general/MainMenu.tscn:497
+#: ../src/general/MainMenu.tscn:509
 msgid "MICROBE_BENCHMARK"
 msgstr ""
 
@@ -4629,7 +4645,7 @@ msgstr ""
 msgid "MICROBE_ENZYME_STATISTICS"
 msgstr ""
 
-#: ../src/general/MainMenu.tscn:372
+#: ../src/general/MainMenu.tscn:384
 msgid "MICROBE_FREEBUILD_EDITOR"
 msgstr ""
 
@@ -4932,11 +4948,11 @@ msgstr ""
 msgid "MODIFY_TYPE"
 msgstr ""
 
-#: ../src/general/MainMenu.tscn:445
+#: ../src/general/MainMenu.tscn:457
 msgid "MODS"
 msgstr ""
 
-#: ../src/general/MainMenu.tscn:858
+#: ../src/general/MainMenu.tscn:918
 msgid "MODS_INSTALLED_BUT_NOT_ENABLED"
 msgstr ""
 
@@ -5026,11 +5042,11 @@ msgstr ""
 msgid "MOD_LICENSE"
 msgstr ""
 
-#: ../src/general/MainMenu.tscn:874
+#: ../src/general/MainMenu.tscn:934
 msgid "MOD_LOAD_ERRORS"
 msgstr ""
 
-#: ../src/general/MainMenu.tscn:872
+#: ../src/general/MainMenu.tscn:932
 msgid "MOD_LOAD_ERRORS_OCCURRED"
 msgstr ""
 
@@ -5219,7 +5235,7 @@ msgstr ""
 msgid "MULTICELLULAR_EDITOR"
 msgstr ""
 
-#: ../src/general/MainMenu.tscn:379
+#: ../src/general/MainMenu.tscn:391
 msgid "MULTICELLULAR_FREEBUILD_EDITOR"
 msgstr ""
 
@@ -5336,11 +5352,11 @@ msgstr ""
 msgid "NEWS"
 msgstr ""
 
-#: ../src/general/MainMenu.tscn:296
+#: ../src/general/MainMenu.tscn:308
 msgid "NEW_GAME"
 msgstr ""
 
-#: ../src/general/MainMenu.tscn:291
+#: ../src/general/MainMenu.tscn:303
 msgid "NEW_GAME_BUTTON_TOOLTIP"
 msgstr ""
 
@@ -5556,7 +5572,7 @@ msgstr ""
 msgid "NO_FOSSIL_DIRECTORY"
 msgstr ""
 
-#: ../src/general/MainMenu.tscn:859
+#: ../src/general/MainMenu.tscn:919
 msgid "NO_MODS_ENABLED"
 msgstr ""
 
@@ -5631,11 +5647,11 @@ msgstr ""
 msgid "OFF"
 msgstr ""
 
-#: ../src/general/MainMenu.tscn:576
+#: ../src/general/MainMenu.tscn:588
 msgid "OFFICIAL_WEBSITE"
 msgstr ""
 
-#: ../src/general/MainMenu.tscn:567
+#: ../src/general/MainMenu.tscn:579
 msgid "OFFICIAL_WEBSITE_BUTTON_TOOLTIP"
 msgstr ""
 
@@ -5650,11 +5666,11 @@ msgstr ""
 msgid "OLDER_VERSION_LOADING_WARNING"
 msgstr ""
 
-#: ../src/general/MainMenu.tscn:849
+#: ../src/general/MainMenu.tscn:909
 msgid "OPENGL_MODE_WARNING"
 msgstr ""
 
-#: ../src/general/MainMenu.tscn:848
+#: ../src/general/MainMenu.tscn:908
 msgid "OPENGL_MODE_WARNING_EXPLANATION"
 msgstr ""
 
@@ -5735,11 +5751,11 @@ msgstr ""
 msgid "OPPORTUNISTIC"
 msgstr ""
 
-#: ../src/general/MainMenu.tscn:310 ../src/general/PauseMenu.tscn:255
+#: ../src/general/MainMenu.tscn:322 ../src/general/PauseMenu.tscn:255
 msgid "OPTIONS"
 msgstr ""
 
-#: ../src/general/MainMenu.tscn:308 ../src/general/PauseMenu.tscn:254
+#: ../src/general/MainMenu.tscn:320 ../src/general/PauseMenu.tscn:254
 msgid "OPTIONS_BUTTON_TOOLTIP"
 msgstr ""
 
@@ -6008,7 +6024,7 @@ msgstr ""
 msgid "PATCH_NOTE_LINK_VISIT_TEXT"
 msgstr ""
 
-#: ../src/general/MainMenu.tscn:692
+#: ../src/general/MainMenu.tscn:704
 msgid "PATREON_TOOLTIP"
 msgstr ""
 
@@ -6292,11 +6308,11 @@ msgstr ""
 msgid "QUICK_SAVE"
 msgstr ""
 
-#: ../src/general/MainMenu.tscn:351
+#: ../src/general/MainMenu.tscn:363
 msgid "QUIT"
 msgstr ""
 
-#: ../src/general/MainMenu.tscn:339 ../src/general/MainMenu.tscn:346
+#: ../src/general/MainMenu.tscn:351 ../src/general/MainMenu.tscn:358
 #: ../src/general/PauseMenu.tscn:266
 msgid "QUIT_BUTTON_TOOLTIP"
 msgstr ""
@@ -6351,7 +6367,7 @@ msgstr ""
 msgid "RECOMMENDED_THRIVE_VERSION"
 msgstr ""
 
-#: ../src/general/MainMenu.tscn:725
+#: ../src/general/MainMenu.tscn:750
 msgid "REDDIT_TOOLTIP"
 msgstr ""
 
@@ -6372,7 +6388,7 @@ msgstr ""
 msgid "REPORT"
 msgstr ""
 
-#: ../src/general/MainMenu.tscn:620 ../src/general/PauseMenu.tscn:249
+#: ../src/general/MainMenu.tscn:632 ../src/general/PauseMenu.tscn:249
 msgid "REPORT_BUG"
 msgstr ""
 
@@ -6535,7 +6551,7 @@ msgstr ""
 msgid "REVEAL_ALL_PATCHES"
 msgstr ""
 
-#: ../src/general/MainMenu.tscn:658
+#: ../src/general/MainMenu.tscn:670
 msgid "REVOLUTIONARY_GAMES_SOCIAL_TOOLTIP"
 msgstr ""
 
@@ -6623,11 +6639,11 @@ msgstr ""
 msgid "RUSTICYANIN_PROCESSES_DESCRIPTION"
 msgstr ""
 
-#: ../src/general/MainMenu.tscn:867
+#: ../src/general/MainMenu.tscn:927
 msgid "SAFE_MODE_EXPLANATION"
 msgstr ""
 
-#: ../src/general/MainMenu.tscn:868
+#: ../src/general/MainMenu.tscn:928
 msgid "SAFE_MODE_TITLE"
 msgstr ""
 
@@ -7305,15 +7321,15 @@ msgstr ""
 msgid "STEAM_ERROR_UNKNOWN"
 msgstr ""
 
-#: ../src/general/MainMenu.tscn:893
+#: ../src/general/MainMenu.tscn:953
 msgid "STEAM_INIT_FAILED"
 msgstr ""
 
-#: ../src/general/MainMenu.tscn:892
+#: ../src/general/MainMenu.tscn:952
 msgid "STEAM_INIT_FAILED_DESCRIPTION"
 msgstr ""
 
-#: ../src/general/MainMenu.tscn:670
+#: ../src/general/MainMenu.tscn:682
 msgid "STEAM_TOOLTIP"
 msgstr ""
 
@@ -7338,7 +7354,7 @@ msgstr ""
 msgid "STORAGE_STATISTICS_SECONDS_OF_COMPOUND"
 msgstr ""
 
-#: ../src/general/MainMenu.cs:677
+#: ../src/general/MainMenu.cs:679
 msgid "STORE_LOGGED_IN_AS"
 msgstr ""
 
@@ -7556,7 +7572,7 @@ msgstr ""
 msgid "TESTING_TEAM"
 msgstr ""
 
-#: ../src/general/MainMenu.cs:293 ../src/general/MainMenu.tscn:884
+#: ../src/general/MainMenu.cs:293 ../src/general/MainMenu.tscn:944
 msgid "THANKS_FOR_BUYING_THRIVE_2"
 msgstr ""
 
@@ -7564,7 +7580,7 @@ msgstr ""
 msgid "THANKS_FOR_PLAYING"
 msgstr ""
 
-#: ../src/general/MainMenu.tscn:885
+#: ../src/general/MainMenu.tscn:945
 msgid "THANK_YOU_TITLE"
 msgstr ""
 
@@ -7626,7 +7642,7 @@ msgstr ""
 msgid "THREADS"
 msgstr ""
 
-#: ../src/general/MainMenu.tscn:438 ../src/general/PauseMenu.tscn:238
+#: ../src/general/MainMenu.tscn:450 ../src/general/PauseMenu.tscn:238
 msgid "THRIVEOPEDIA"
 msgstr ""
 
@@ -7797,7 +7813,7 @@ msgstr ""
 msgid "TOGGLE_UNBINDING"
 msgstr ""
 
-#: ../src/general/MainMenu.tscn:316
+#: ../src/general/MainMenu.tscn:328
 msgid "TOOLS"
 msgstr ""
 
@@ -8054,10 +8070,6 @@ msgstr ""
 
 #: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:374
 msgid "TUTORIAL_VIEW_NOW"
-msgstr ""
-
-#: ../src/general/MainMenu.tscn:758
-msgid "TWITTER_TOOLTIP"
 msgstr ""
 
 #: ../src/general/OptionsMenu.tscn:314
@@ -8433,7 +8445,7 @@ msgstr ""
 msgid "VIEW_PENDING_ACTIONS"
 msgstr ""
 
-#: ../src/general/MainMenu.tscn:322
+#: ../src/general/MainMenu.tscn:334
 msgid "VIEW_SOURCE_CODE"
 msgstr ""
 
@@ -8453,7 +8465,7 @@ msgstr ""
 msgid "VISIBLE_WHEN_OVER_ZERO"
 msgstr ""
 
-#: ../src/general/MainMenu.tscn:466 ../src/general/MainMenu.tscn:633
+#: ../src/general/MainMenu.tscn:478 ../src/general/MainMenu.tscn:645
 msgid "VISIT_SUGGESTIONS_SITE"
 msgstr ""
 
@@ -10718,6 +10730,10 @@ msgstr ""
 msgid "XBOX_SERIES"
 msgstr ""
 
+#: ../src/general/MainMenu.tscn:785
+msgid "X_TWITTER_TOOLTIP"
+msgstr ""
+
 #: ../src/microbe_stage/editor/MicrobeEditorReportComponent.cs:556
 #: ../src/microbe_stage/editor/MicrobeEditorReportComponent.cs:557
 #: ../src/microbe_stage/editor/MicrobeEditorReportComponent.cs:558
@@ -10730,7 +10746,7 @@ msgstr ""
 msgid "YET_TO_BE_IMPLEMENTED_NOTICE"
 msgstr ""
 
-#: ../src/general/MainMenu.tscn:714
+#: ../src/general/MainMenu.tscn:726
 msgid "YOUTUBE_TOOLTIP"
 msgstr ""
 

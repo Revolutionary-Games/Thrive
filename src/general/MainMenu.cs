@@ -659,7 +659,9 @@ public partial class MainMenu : NodeWithInput
 
             // This is maybe unnecessary, but this wasn't too difficult to add, so this hiding logic is here
             itchButton.Visible = false;
-            patreonButton.Visible = false;
+
+            // There's probably no problem with showing the Patreon link in the socials section
+            patreonButton.Visible = true;
 
             canShowThanks = true;
             storeBuyLink = "https://store.steampowered.com/app/1779200";
