@@ -86,6 +86,7 @@ size_flags_horizontal = 3
 size_flags_vertical = 3
 
 [node name="NothingSelected" type="VBoxContainer" parent="NormalContent/MarginContainer/ScrollContainer/VBoxContainer"]
+visible = false
 layout_mode = 2
 size_flags_horizontal = 3
 
@@ -99,6 +100,7 @@ horizontal_alignment = 1
 autowrap_mode = 3
 
 [node name="UnknownPatch" type="VBoxContainer" parent="NormalContent/MarginContainer/ScrollContainer/VBoxContainer"]
+visible = false
 layout_mode = 2
 size_flags_horizontal = 3
 
@@ -462,14 +464,14 @@ size_flags_horizontal = 3
 custom_minimum_size = Vector2(25, 25)
 layout_mode = 2
 size_flags_vertical = 4
-tooltip_text = "IRON"
+tooltip_text = "RADIATION"
 texture = ExtResource("22_00ty1")
 expand_mode = 1
 
 [node name="Label" type="Label" parent="NormalContent/MarginContainer/ScrollContainer/VBoxContainer/PatchDetailsContainer/Compounds/Radiation"]
 editor_description = "PLACEHOLDER"
 layout_mode = 2
-text = "5%"
+text = "1"
 label_settings = ExtResource("15_ng6rp")
 
 [node name="Situation" type="TextureRect" parent="NormalContent/MarginContainer/ScrollContainer/VBoxContainer/PatchDetailsContainer/Compounds/Radiation"]
