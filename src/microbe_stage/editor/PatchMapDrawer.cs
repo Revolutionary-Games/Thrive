@@ -1128,8 +1128,7 @@ public partial class PatchMapDrawer : Control
 
     private void AddPlayerPopulationIndicators(Patch patch, Species playerSpecies, Control node, Vector2 position)
     {
-        var playerPopulationIndicatorAmount = (int)Math.Ceiling(
-            patch.GetSpeciesSimulationPopulation(playerSpecies) *
+        var playerPopulationIndicatorAmount = (int)Math.Ceiling(patch.GetSpeciesSimulationPopulation(playerSpecies) *
             Constants.PLAYER_POPULATION_POPULATION_FOR_PER_INDICATOR);
 
         var indicatorExcess = Math.Clamp(playerSpeciesPopulationIndicators.Count - playerPopulationIndicatorAmount,
