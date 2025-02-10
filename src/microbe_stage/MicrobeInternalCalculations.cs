@@ -409,7 +409,8 @@ public static class MicrobeInternalCalculations
         return result;
     }
 
-    public static (int AmmoniaCost, int PhosphatesCost) CalculateOrganellesCosts(IEnumerable<OrganelleTemplate> organelles)
+    public static (int AmmoniaCost, int PhosphatesCost) CalculateOrganellesCosts(
+        IEnumerable<OrganelleTemplate> organelles)
     {
         float ammoniaCostTotal = 0, phosphatesCostTotal = 0;
 
@@ -421,7 +422,6 @@ public static class MicrobeInternalCalculations
 
         return ((int)ammoniaCostTotal, (int)phosphatesCostTotal);
     }
-
 
     /// <summary>
     ///   Gives bonus compounds if time is close to night. This is done to compensate spawning stuff close to night to
