@@ -1706,7 +1706,7 @@ public static class Constants
     public const float PATCH_GENERATION_CHANCE_BANANA_BIOME = 0.03f;
 
     // Constants for displaying the patch map
-    public const float PLAYER_POPULATION_POPULATION_FOR_PER_INDICATOR = 1f / 300f;
+    public const float PLAYER_POPULATION_POPULATION_FOR_PER_INDICATOR = 1.0f / 300.0f;
 
     /// <summary>
     ///   If set to true, then physics debug draw gets enabled when the game starts

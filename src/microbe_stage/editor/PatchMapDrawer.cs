@@ -1129,7 +1129,8 @@ public partial class PatchMapDrawer : Control
     private void AddPlayerPopulationIndicators(Patch patch, Species playerSpecies, Control node, Vector2 position)
     {
         var playerPopulationIndicatorAmount = (int)Math.Ceiling(
-                patch.GetSpeciesSimulationPopulation(playerSpecies) * Constants.PLAYER_POPULATION_POPULATION_FOR_PER_INDICATOR);
+            patch.GetSpeciesSimulationPopulation(playerSpecies) *
+            Constants.PLAYER_POPULATION_POPULATION_FOR_PER_INDICATOR);
 
         var indicatorExcess = Math.Clamp(playerSpeciesPopulationIndicators.Count - playerPopulationIndicatorAmount,
             0,
@@ -1148,7 +1149,7 @@ public partial class PatchMapDrawer : Control
             Control indicator;
             if (noCached)
             {
-                indicator = new TextureRect()
+                indicator = new TextureRect
                 {
                     Texture = GD.Load<Texture2D>("res://assets/textures/gui/bevel/MapDotIndicator.svg"),
                     ExpandMode = TextureRect.ExpandModeEnum.IgnoreSize,
