@@ -329,8 +329,14 @@ public partial class SelectionMenuToolTip : ControlWithInput, ICustomToolTip
 
             // All stats with +0 value that are not part of the selected membrane is made hidden
             // on the tooltip so it'll be easier to digest and compare modifier changes
-            if (Name != referenceMembrane.InternalName && modifier.ShowValue)
+            if (Name == referenceMembrane.InternalName)
+            {
+                modifier.Visible = true;
+            }
+            else if (modifier.ShowValue)
+            {
                 modifier.Visible = deltaValue != 0;
+            }
 
             // Apply the value to the text labels as percentage (except for Health)
             if (modifier.Name == "health")
