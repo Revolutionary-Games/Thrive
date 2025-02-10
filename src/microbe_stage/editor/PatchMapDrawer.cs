@@ -11,8 +11,6 @@ public partial class PatchMapDrawer : Control
     [Export]
     public bool DrawDefaultMapIfEmpty;
 
-    public uint PlayerSpeciesID = int.MaxValue;
-
     [Export(PropertyHint.ColorNoAlpha)]
     public Color InterConnectionColor = Colors.WebGreen;
 
@@ -27,6 +25,8 @@ public partial class PatchMapDrawer : Control
 
     [Export]
     public NodePath LineContainerPath = null!;
+
+    public uint PlayerSpeciesID = int.MaxValue;
 
 #pragma warning disable CA2213
     [Export]
@@ -47,7 +47,6 @@ public partial class PatchMapDrawer : Control
 
 #pragma warning disable CA2213
     private PackedScene nodeScene = null!;
-    private PackedScene populationIndicatorScene = null!;
     private Control patchNodeContainer = null!;
     private Control lineContainer = null!;
 
@@ -157,8 +156,6 @@ public partial class PatchMapDrawer : Control
         lineContainer = GetNode<Control>(LineContainerPath);
 
         nodeScene = GD.Load<PackedScene>("res://src/microbe_stage/editor/PatchMapNode.tscn");
-        populationIndicatorScene = GD.Load<PackedScene>(
-            "res://src/microbe_stage/editor/PatchMapPopulationIndicator.tscn");
 
         if (DrawDefaultMapIfEmpty && Map == null)
         {
@@ -1057,13 +1054,6 @@ public partial class PatchMapDrawer : Control
     /// </summary>
     private void RebuildMap()
     {
-        playerSpeciesPopulationIndicators = new List<Control>();
-        foreach (var node in populationIndicatorContainer.GetChildren())
-        {
-            if (node is Control indicator)
-                playerSpeciesPopulationIndicators.Add(indicator);
-        }
-
         patchNodeContainer.FreeChildren();
         nodes.Clear();
         connections.Clear();
@@ -1129,57 +1119,62 @@ public partial class PatchMapDrawer : Control
         var playerSpecies = patch.FindSpeciesByID(PlayerSpeciesID);
         if (playerSpecies != null)
         {
-            var playerPopulationIndicatorAmount = (int)Math.Ceiling(
-                patch.GetSpeciesSimulationPopulation(playerSpecies) * 0.004);
-
-            var indicatorExcess = Math.Clamp(playerSpeciesPopulationIndicators.Count - playerPopulationIndicatorAmount,
-                0,
-                playerSpeciesPopulationIndicators.Count);
-
-            for (int i = 0; i < indicatorExcess; ++i)
-            {
-                playerSpeciesPopulationIndicators.Last().QueueFree();
-            }
-
-            // Trip the list to keep it clean of disposed objects
-            var range = playerSpeciesPopulationIndicators.Count - indicatorExcess;
-            if (range > 0)
-                playerSpeciesPopulationIndicators = playerSpeciesPopulationIndicators.GetRange(0, range);
-
-            for (int i = 0; i < playerPopulationIndicatorAmount; ++i)
-            {
-                var noCached = i >= playerSpeciesPopulationIndicators.Count;
-
-                Control indicator;
-                if (noCached)
-                {
-                    indicator = populationIndicatorScene.Instantiate<Control>();
-                }
-                else
-                {
-                    indicator = playerSpeciesPopulationIndicators[i];
-                }
-
-                indicator.MouseFilter = MouseFilterEnum.Ignore;
-
-                var nodeModifier = node.Position.LengthSquared();
-                var modifierSinus = MathF.Sin(i);
-
-                if (noCached)
-                {
-                    populationIndicatorContainer.AddChild(indicator);
-                }
-
-                playerSpeciesPopulationIndicators.Remove(indicator);
-
-                indicator.Position = position + node.Size * 0.5f + new Vector2(0, 20)
-                        .Rotated(nodeModifier * 30) +
-                    new Vector2(0, modifierSinus * 50).Rotated(i * 6 * modifierSinus + nodeModifier);
-            }
+            AddPlayerPopulationIndicators(patch, playerSpecies, node, position);
         }
 
         patchNodeContainer.AddChild(node);
         nodes.Add(node.Patch, node);
+    }
+
+    private void AddPlayerPopulationIndicators(Patch patch, Species playerSpecies, Control node, Vector2 position)
+    {
+        var playerPopulationIndicatorAmount = (int)Math.Ceiling(
+                patch.GetSpeciesSimulationPopulation(playerSpecies) * Constants.PLAYER_POPULATION_POPULATION_FOR_PER_INDICATOR);
+
+        var indicatorExcess = Math.Clamp(playerSpeciesPopulationIndicators.Count - playerPopulationIndicatorAmount,
+            0,
+            playerSpeciesPopulationIndicators.Count);
+
+        // Hide excess from the end of the list
+        for (int i = 0; i < indicatorExcess; ++i)
+        {
+            playerSpeciesPopulationIndicators[playerSpeciesPopulationIndicators.Count - i].Hide();
+        }
+
+        for (int i = 0; i < playerPopulationIndicatorAmount; ++i)
+        {
+            var noCached = i >= playerSpeciesPopulationIndicators.Count;
+
+            Control indicator;
+            if (noCached)
+            {
+                indicator = new TextureRect()
+                {
+                    Texture = GD.Load<Texture2D>("res://assets/textures/gui/bevel/MapDotIndicator.svg"),
+                    ExpandMode = TextureRect.ExpandModeEnum.IgnoreSize,
+                    Size = new Vector2(6, 6),
+                };
+
+                populationIndicatorContainer.AddChild(indicator);
+            }
+            else
+            {
+                indicator = playerSpeciesPopulationIndicators[i];
+
+                indicator.Show();
+            }
+
+            indicator.MouseFilter = MouseFilterEnum.Ignore;
+
+            var nodeModifier = node.Position.LengthSquared();
+            var modifierSinus = MathF.Sin(i);
+
+            playerSpeciesPopulationIndicators.Add(indicator);
+
+            indicator.Position = position + node.Size * 0.5f + new Vector2(0, 20)
+                    .Rotated(nodeModifier * 30) +
+                new Vector2(0, modifierSinus * 50).Rotated(i * 6 * modifierSinus + nodeModifier);
+        }
     }
 
     private void BuildPatchToRegionConnections(PatchRegion region1, PatchRegion region2, Vector2 regionPoint,
