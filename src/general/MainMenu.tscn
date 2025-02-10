@@ -734,9 +734,7 @@ stretch_mode = 5
 [node name="ThreadsButton" type="TextureButton" parent="MenuContainers/SocialMedia"]
 custom_minimum_size = Vector2(25, 25)
 layout_mode = 2
-tooltip_text = "TWITTER_TOOLTIP"
-focus_neighbor_right = NodePath("../../Menus/VBoxContainer/MainMenu/Quit")
-focus_next = NodePath("../../Menus/VBoxContainer/MainMenu/Quit")
+tooltip_text = "META_THREADS_TOOLTIP"
 texture_normal = ExtResource("31_hi246")
 texture_pressed = ExtResource("32_xicnv")
 texture_hover = ExtResource("33_b0j63")
@@ -782,7 +780,7 @@ stretch_mode = 5
 [node name="TwitterButton" type="TextureButton" parent="MenuContainers/SocialMedia"]
 custom_minimum_size = Vector2(25, 25)
 layout_mode = 2
-tooltip_text = "TWITTER_TOOLTIP"
+tooltip_text = "X_TWITTER_TOOLTIP"
 texture_normal = ExtResource("43_c0bfw")
 texture_pressed = ExtResource("44_k4e4i")
 texture_hover = ExtResource("45_jbwjm")
@@ -793,7 +791,7 @@ stretch_mode = 5
 [node name="InstagramButton" type="TextureButton" parent="MenuContainers/SocialMedia"]
 custom_minimum_size = Vector2(25, 25)
 layout_mode = 2
-tooltip_text = "TWITTER_TOOLTIP"
+tooltip_text = "INSTAGRAM_TOOLTIP"
 texture_normal = ExtResource("46_c2wg1")
 texture_pressed = ExtResource("47_7h4g6")
 texture_hover = ExtResource("48_85kra")
@@ -804,7 +802,7 @@ stretch_mode = 5
 [node name="MastodonButton" type="TextureButton" parent="MenuContainers/SocialMedia"]
 custom_minimum_size = Vector2(25, 25)
 layout_mode = 2
-tooltip_text = "TWITTER_TOOLTIP"
+tooltip_text = "MASTODON_TOOLTIP"
 texture_normal = ExtResource("49_cdsa0")
 texture_pressed = ExtResource("50_r0yqh")
 texture_hover = ExtResource("51_hsjiv")
@@ -815,7 +813,7 @@ stretch_mode = 5
 [node name="BlueskyButton" type="TextureButton" parent="MenuContainers/SocialMedia"]
 custom_minimum_size = Vector2(25, 25)
 layout_mode = 2
-tooltip_text = "TWITTER_TOOLTIP"
+tooltip_text = "BLUESKY_TOOLTIP"
 focus_neighbor_right = NodePath("../../Menus/VBoxContainer/MainMenu/Quit")
 focus_next = NodePath("../../Menus/VBoxContainer/MainMenu/Quit")
 texture_normal = ExtResource("52_vqgsu")
