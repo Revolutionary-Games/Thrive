@@ -648,7 +648,8 @@ public partial class ToolTipManager : CanvasLayer
         if (modifierInfo != null)
         {
             modifierInfo.DisplayName = "AMMONIA";
-            modifierInfo.ModifierValue = organelle.InitialComposition[Compound.Ammonia].ToString(CultureInfo.CurrentCulture);
+            modifierInfo.ModifierValue =
+                organelle.InitialComposition[Compound.Ammonia].ToString(CultureInfo.CurrentCulture);
         }
 
         modifierInfo = selectionMenuTooltip.GetModifierInfo("phosphateCost");
@@ -656,7 +657,8 @@ public partial class ToolTipManager : CanvasLayer
         if (modifierInfo != null)
         {
             modifierInfo.DisplayName = "PHOSPHATE";
-            modifierInfo.ModifierValue = organelle.InitialComposition[Compound.Phosphates].ToString(CultureInfo.CurrentCulture);
+            modifierInfo.ModifierValue =
+                organelle.InitialComposition[Compound.Phosphates].ToString(CultureInfo.CurrentCulture);
         }
     }
 
