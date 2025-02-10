@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2025-02-10 10:17+0100\n"
+"POT-Creation-Date: 2025-02-10 15:22+0200\n"
 "PO-Revision-Date: 2025-02-09 23:27+0000\n"
 "Last-Translator: Anonymous <noreply@weblate.org>\n"
 "Language-Team: Georgian <https://translate.revolutionarygamesstudio.com/projects/thrive/thrive-game/ka/>\n"
@@ -172,10 +172,6 @@ msgid "AMBIANCE_VOLUME"
 msgstr "გარემოს ხმა"
 
 msgid "AMMONIA"
-msgstr "ამიაკი"
-
-#, fuzzy
-msgid "AMMONIA_COST"
 msgstr "ამიაკი"
 
 msgid "AMOUNT_OF_AUTOSAVE_TO_KEEP"
@@ -488,6 +484,10 @@ msgstr "ბიომა: {0}"
 
 msgid "BLOOM_RENDER_EFFECT"
 msgstr "გაფურჩქვნის ეფექტი:"
+
+#, fuzzy
+msgid "BLUESKY_TOOLTIP"
+msgstr "თამაშის შეჩერება"
 
 msgid "BRAIN_CELL_NAME_DEFAULT"
 msgstr "ნეირონი"
@@ -2394,6 +2394,10 @@ msgstr "ინსპექტირება"
 msgid "INSPECTOR"
 msgstr "ინსპექტორი"
 
+#, fuzzy
+msgid "INSTAGRAM_TOOLTIP"
+msgstr "ეწვიეთ ჩვენს Steam-ის გვერდს"
+
 msgid "INTERACTION_ACTIVATE_ASCENSION"
 msgstr "აყვავების კარიბჭის გააქტიურება"
 
@@ -2975,6 +2979,10 @@ msgstr "ზღვის თოვლი"
 msgid "MASTER_VOLUME"
 msgstr "საერთო ხმის დონე"
 
+#, fuzzy
+msgid "MASTODON_TOOLTIP"
+msgstr "მოახდინეთ თქვენი სახეობების მიგრაცია ბიომებს შორის იმ ბიომის გაუნძრევლად, რომელშიც თქვენ იმყოფებით"
+
 msgid "MAX_CACHE_SIZE_TOOLTIP"
 msgstr "მაქს ზომა, რომელიც დისკზე არსებულ კეშს შეუძლია, დაიკავოს (თუ კეში ძალიან გაიზრდება, მისი ელემენტები ავტომატურად წაიშლება)"
 
@@ -3052,6 +3060,12 @@ msgstr ""
 
 msgid "METABOLOSOMES_PROCESSES_DESCRIPTION"
 msgstr "გადაჰყავს [thrive:compound type=\"glucose\"][/thrive:compound] ნივთიერებაში [thrive:compound type=\"atp\"][/thrive:compound]. სიჩქარე იზრდება [thrive:compound type=\"oxygen\"][/thrive:compound]-ის კონცენტრაციასთან ერთად."
+
+#, fuzzy
+msgid "META_THREADS_TOOLTIP"
+msgstr ""
+"Hyperthreading-ის ჩართულობის ავტომატური დადგენა შეუძლებელია.\n"
+"ამას გავლენა აქვს ნაკადების ნაგულისხმევ რაოდენობაზე, რადგან hyperthreading-ის ნაკადები CPU-ის რეალური ბირთვებივით სწრაფი არაა."
 
 msgid "METRICS"
 msgstr "წარმადობის ჩვენება"
@@ -4134,10 +4148,6 @@ msgid "PER_SECOND_SLASH"
 msgstr "/წმ"
 
 msgid "PHOSPHATE"
-msgstr "ფოსფატი"
-
-#, fuzzy
-msgid "PHOSPHATES_COST"
 msgstr "ფოსფატი"
 
 msgid "PHOTOSYNTHESIS"
@@ -5572,9 +5582,6 @@ msgstr ""
 
 msgid "TUTORIAL_VIEW_NOW"
 msgstr "ნახვა ახლა"
-
-msgid "TWITTER_TOOLTIP"
-msgstr "ეწვიეთ ჩვენს Twitter-ის ლენტას"
 
 msgid "TWO_TIMES"
 msgstr "2x"
@@ -7346,6 +7353,10 @@ msgstr "Xbox One"
 
 msgid "XBOX_SERIES"
 msgstr "Xbox Series X"
+
+#, fuzzy
+msgid "X_TWITTER_TOOLTIP"
+msgstr "ეწვიეთ ჩვენს Twitter-ის ლენტას"
 
 msgid "YEARS"
 msgstr "წელი"

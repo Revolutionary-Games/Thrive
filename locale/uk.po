@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2025-02-10 10:17+0100\n"
+"POT-Creation-Date: 2025-02-10 15:22+0200\n"
 "PO-Revision-Date: 2025-02-06 13:29+0000\n"
 "Last-Translator: Anonymous <noreply@weblate.org>\n"
 "Language-Team: Ukrainian <https://translate.revolutionarygamesstudio.com/projects/thrive/thrive-game/uk/>\n"
@@ -175,10 +175,6 @@ msgid "AMBIANCE_VOLUME"
 msgstr "Гучність оточення"
 
 msgid "AMMONIA"
-msgstr "Аміак"
-
-#, fuzzy
-msgid "AMMONIA_COST"
 msgstr "Аміак"
 
 msgid "AMOUNT_OF_AUTOSAVE_TO_KEEP"
@@ -498,6 +494,10 @@ msgstr "Біом: {0}"
 #, fuzzy
 msgid "BLOOM_RENDER_EFFECT"
 msgstr "Екранні ефекти"
+
+#, fuzzy
+msgid "BLUESKY_TOOLTIP"
+msgstr "Пауза"
 
 msgid "BRAIN_CELL_NAME_DEFAULT"
 msgstr "Нейрон"
@@ -2549,6 +2549,10 @@ msgstr "Оглянути"
 msgid "INSPECTOR"
 msgstr "Інспектор"
 
+#, fuzzy
+msgid "INSTAGRAM_TOOLTIP"
+msgstr "Відвідайте нашу сторінку у Steam"
+
 msgid "INTERACTION_ACTIVATE_ASCENSION"
 msgstr "Активувати Ворота Піднесення"
 
@@ -3158,6 +3162,10 @@ msgid "MASTER_VOLUME"
 msgstr "Загальна гучність"
 
 #, fuzzy
+msgid "MASTODON_TOOLTIP"
+msgstr "Мігрувати на іншу ділянку, не залишаючи поточну"
+
+#, fuzzy
 msgid "MAX_CACHE_SIZE_TOOLTIP"
 msgstr "Виділення слизу для власного прискорення і сповільнення клітин, які застрягли в слизу"
 
@@ -3241,6 +3249,12 @@ msgstr "Метаболосоми є скупченнями білків в бі�
 
 msgid "METABOLOSOMES_PROCESSES_DESCRIPTION"
 msgstr "Перетворює [thrive:compound type=\"glucose\"][/thrive:compound] на [thrive:compound type=\"atp\"][/thrive:compound]. Швідкість перетворення залежить від [thrive:compound type=\"oxygen\"][/thrive:compound]."
+
+#, fuzzy
+msgid "META_THREADS_TOOLTIP"
+msgstr ""
+"Його не можна автоматично, увімкнене гіперпотокове або ні.\n"
+"Це впливає на кількість потоків за замовчуваням, бо гіперпотоки не такі швидкі, як реальні ядра ЦП."
 
 msgid "METRICS"
 msgstr "Панель змін"
@@ -4465,10 +4479,6 @@ msgid "PER_SECOND_SLASH"
 msgstr "/секунду"
 
 msgid "PHOSPHATE"
-msgstr "Фосфат"
-
-#, fuzzy
-msgid "PHOSPHATES_COST"
 msgstr "Фосфат"
 
 msgid "PHOTOSYNTHESIS"
@@ -6051,9 +6061,6 @@ msgstr ""
 
 msgid "TUTORIAL_VIEW_NOW"
 msgstr "Переглянути зараз"
-
-msgid "TWITTER_TOOLTIP"
-msgstr "Відвідайте"
 
 msgid "TWO_TIMES"
 msgstr "2х"
@@ -8240,6 +8247,10 @@ msgstr "Xbox One"
 
 msgid "XBOX_SERIES"
 msgstr "Xbox Series X"
+
+#, fuzzy
+msgid "X_TWITTER_TOOLTIP"
+msgstr "Відвідайте"
 
 msgid "YEARS"
 msgstr "роки"

@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2025-02-10 10:17+0100\n"
+"POT-Creation-Date: 2025-02-10 15:22+0200\n"
 "PO-Revision-Date: 2025-02-06 13:29+0000\n"
 "Last-Translator: Anonymous <noreply@weblate.org>\n"
 "Language-Team: Catalan <https://translate.revolutionarygamesstudio.com/projects/thrive/thrive-game/ca/>\n"
@@ -179,10 +179,6 @@ msgid "AMBIANCE_VOLUME"
 msgstr "Volum de l'ambient"
 
 msgid "AMMONIA"
-msgstr "Amoníac"
-
-#, fuzzy
-msgid "AMMONIA_COST"
 msgstr "Amoníac"
 
 msgid "AMOUNT_OF_AUTOSAVE_TO_KEEP"
@@ -507,6 +503,10 @@ msgstr "Bioma: {0}"
 #, fuzzy
 msgid "BLOOM_RENDER_EFFECT"
 msgstr "Efectes externs:"
+
+#, fuzzy
+msgid "BLUESKY_TOOLTIP"
+msgstr "Pausar el joc"
 
 msgid "BRAIN_CELL_NAME_DEFAULT"
 msgstr ""
@@ -2660,6 +2660,10 @@ msgid "INSPECTOR"
 msgstr "Inspeccionar"
 
 #, fuzzy
+msgid "INSTAGRAM_TOOLTIP"
+msgstr "Pausar el joc"
+
+#, fuzzy
 msgid "INTERACTION_ACTIVATE_ASCENSION"
 msgstr "Taxa de mutació de la IA"
 
@@ -3284,6 +3288,10 @@ msgid "MASTER_VOLUME"
 msgstr "Volum General"
 
 #, fuzzy
+msgid "MASTODON_TOOLTIP"
+msgstr "Pausar el joc"
+
+#, fuzzy
 msgid "MAX_CACHE_SIZE_TOOLTIP"
 msgstr "Secretar mucílag"
 
@@ -3367,6 +3375,12 @@ msgstr "Els Metabolosomes són cúmuls de proteïnes embolcallades per una membr
 
 msgid "METABOLOSOMES_PROCESSES_DESCRIPTION"
 msgstr "Transforma [thrive:compound type=\"glucose\"][/thrive:compound] en [thrive:compound type=\"atp\"][/thrive:compound]. La velocitat és proporcional a la concentració de [thrive:compound type=\"oxygen\"][/thrive:compound]."
+
+#, fuzzy
+msgid "META_THREADS_TOOLTIP"
+msgstr ""
+"No pot ser automàticament detectat si el \"hyperthreading\" està activat o no.\n"
+"Això afecta el nombre de \"threads\" per defecte ja que el \"hyperthreading threads\" no són tan ràpids com els núclis CPU reals."
 
 msgid "METRICS"
 msgstr "Mètriques de rendiment"
@@ -4678,10 +4692,6 @@ msgid "PER_SECOND_SLASH"
 msgstr "/segon"
 
 msgid "PHOSPHATE"
-msgstr "Fosfat"
-
-#, fuzzy
-msgid "PHOSPHATES_COST"
 msgstr "Fosfat"
 
 msgid "PHOTOSYNTHESIS"
@@ -6328,10 +6338,6 @@ msgstr "Carregant l'Editor Multicel·lular Primerenc"
 
 msgid "TUTORIAL_VIEW_NOW"
 msgstr "Veure ara"
-
-#, fuzzy
-msgid "TWITTER_TOOLTIP"
-msgstr "Han passat: {0:#,#} anys"
 
 msgid "TWO_TIMES"
 msgstr "2x"
@@ -8509,6 +8515,10 @@ msgstr ""
 
 msgid "XBOX_SERIES"
 msgstr ""
+
+#, fuzzy
+msgid "X_TWITTER_TOOLTIP"
+msgstr "Han passat: {0:#,#} anys"
 
 msgid "YEARS"
 msgstr "anys"

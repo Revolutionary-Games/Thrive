@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2025-02-10 10:17+0100\n"
+"POT-Creation-Date: 2025-02-10 15:22+0200\n"
 "PO-Revision-Date: 2025-02-06 13:29+0000\n"
 "Last-Translator: Anonymous <noreply@weblate.org>\n"
 "Language-Team: German <https://translate.revolutionarygamesstudio.com/projects/thrive/thrive-game/de/>\n"
@@ -177,10 +177,6 @@ msgid "AMBIANCE_VOLUME"
 msgstr "Umgebungslautstärke"
 
 msgid "AMMONIA"
-msgstr "Ammoniak"
-
-#, fuzzy
-msgid "AMMONIA_COST"
 msgstr "Ammoniak"
 
 msgid "AMOUNT_OF_AUTOSAVE_TO_KEEP"
@@ -498,6 +494,10 @@ msgstr "Biom: {0}"
 #, fuzzy
 msgid "BLOOM_RENDER_EFFECT"
 msgstr "Externe Effekte:"
+
+#, fuzzy
+msgid "BLUESKY_TOOLTIP"
+msgstr "Pausiere das Spiel"
 
 msgid "BRAIN_CELL_NAME_DEFAULT"
 msgstr "Neuron"
@@ -2673,6 +2673,10 @@ msgid "INSPECTOR"
 msgstr "Untersuchen"
 
 #, fuzzy
+msgid "INSTAGRAM_TOOLTIP"
+msgstr "Unsere Steam Seite besuchen"
+
+#, fuzzy
 msgid "INTERACTION_ACTIVATE_ASCENSION"
 msgstr "KI Mutationsrate"
 
@@ -3294,6 +3298,10 @@ msgid "MASTER_VOLUME"
 msgstr "Gesamtlautstärke"
 
 #, fuzzy
+msgid "MASTODON_TOOLTIP"
+msgstr "Besuche unsere Patreon Seite"
+
+#, fuzzy
 msgid "MAX_CACHE_SIZE_TOOLTIP"
 msgstr "Schleim absondern"
 
@@ -3377,6 +3385,12 @@ msgstr "Metabolosomen sind Cluster von Proteinen, die in Proteinhüllen verpackt
 
 msgid "METABOLOSOMES_PROCESSES_DESCRIPTION"
 msgstr "Wandelt [thrive:compound type=\"glucose\"][/thrive:compound] in [thrive:compound type=\"atp\"][/thrive:compound] um. Rate skaliert mit der Konzentration an [thrive:compound type=\"oxygen\"][/thrive:compound]."
+
+#, fuzzy
+msgid "META_THREADS_TOOLTIP"
+msgstr ""
+"Es kann nicht automatisch erkannt werden, ob Hyperthreading aktiviert ist.\n"
+"Dies wirkt sich auf die Standardanzahl von Threads aus, da Hyperthreading-Threads nicht so schnell sind wie echte CPU-Kerne."
 
 msgid "METRICS"
 msgstr "Leistungs Daten"
@@ -4648,10 +4662,6 @@ msgid "PER_SECOND_SLASH"
 msgstr "/Sekunde"
 
 msgid "PHOSPHATE"
-msgstr "Phosphat"
-
-#, fuzzy
-msgid "PHOSPHATES_COST"
 msgstr "Phosphat"
 
 msgid "PHOTOSYNTHESIS"
@@ -6306,9 +6316,6 @@ msgstr ""
 
 msgid "TUTORIAL_VIEW_NOW"
 msgstr "Tutorial ansehen"
-
-msgid "TWITTER_TOOLTIP"
-msgstr "Besuche unseren Twitter Feed"
 
 msgid "TWO_TIMES"
 msgstr "2x"
@@ -8480,6 +8487,10 @@ msgstr ""
 
 msgid "XBOX_SERIES"
 msgstr ""
+
+#, fuzzy
+msgid "X_TWITTER_TOOLTIP"
+msgstr "Besuche unseren Twitter Feed"
 
 msgid "YEARS"
 msgstr "Jahre"

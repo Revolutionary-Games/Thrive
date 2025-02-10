@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2025-02-10 10:17+0100\n"
+"POT-Creation-Date: 2025-02-10 15:22+0200\n"
 "PO-Revision-Date: 2025-02-06 13:29+0000\n"
 "Last-Translator: Anonymous <noreply@weblate.org>\n"
 "Language-Team: Chinese (Traditional Han script) <https://translate.revolutionarygamesstudio.com/projects/thrive/thrive-game/zh_Hant/>\n"
@@ -172,10 +172,6 @@ msgid "AMBIANCE_VOLUME"
 msgstr "環境音量"
 
 msgid "AMMONIA"
-msgstr "氨"
-
-#, fuzzy
-msgid "AMMONIA_COST"
 msgstr "氨"
 
 msgid "AMOUNT_OF_AUTOSAVE_TO_KEEP"
@@ -490,6 +486,10 @@ msgstr "生物群系：{0}"
 
 msgid "BLOOM_RENDER_EFFECT"
 msgstr "光暈效果："
+
+#, fuzzy
+msgid "BLUESKY_TOOLTIP"
+msgstr "暫停遊戲"
 
 msgid "BRAIN_CELL_NAME_DEFAULT"
 msgstr "神經元"
@@ -2499,6 +2499,10 @@ msgstr "檢查"
 msgid "INSPECTOR"
 msgstr "檢查器"
 
+#, fuzzy
+msgid "INSTAGRAM_TOOLTIP"
+msgstr "造訪我們的 Steam 頁面"
+
 msgid "INTERACTION_ACTIVATE_ASCENSION"
 msgstr "啟動飛昇之門"
 
@@ -3096,6 +3100,10 @@ msgstr "海洋雪"
 msgid "MASTER_VOLUME"
 msgstr "主音量"
 
+#, fuzzy
+msgid "MASTODON_TOOLTIP"
+msgstr "在區域之間遷移您的物種，而不移動您所在的區域"
+
 msgid "MAX_CACHE_SIZE_TOOLTIP"
 msgstr "磁碟快取應佔用的最大大小（如果快取變得太大，項目將自動刪除）"
 
@@ -3173,6 +3181,12 @@ msgstr "代謝體是包裹在蛋白質殼中的蛋白質叢。它們能夠將[th
 
 msgid "METABOLOSOMES_PROCESSES_DESCRIPTION"
 msgstr "將[thrive:compound type=\"glucose\"][/thrive:compound] 轉化為[thrive:compound type=\"atp\"][/thrive:compound]。速率與[thrive:compound type=\"oxygen\"][/thrive:compound] 的濃度成正比。"
+
+#, fuzzy
+msgid "META_THREADS_TOOLTIP"
+msgstr ""
+"遊戲無法自動檢測是否啟用超執行緒。\n"
+"這會影響預設的執行緒數，因為超執行緒的速度不如真實的 CPU 核心。"
 
 msgid "METRICS"
 msgstr "性能指標"
@@ -4354,10 +4368,6 @@ msgid "PER_SECOND_SLASH"
 msgstr "/s"
 
 msgid "PHOSPHATE"
-msgstr "磷酸鹽"
-
-#, fuzzy
-msgid "PHOSPHATES_COST"
 msgstr "磷酸鹽"
 
 msgid "PHOTOSYNTHESIS"
@@ -5921,9 +5931,6 @@ msgstr ""
 
 msgid "TUTORIAL_VIEW_NOW"
 msgstr "現在查看"
-
-msgid "TWITTER_TOOLTIP"
-msgstr "造訪我們的 Twitter"
 
 msgid "TWO_TIMES"
 msgstr "2x"
@@ -8487,6 +8494,10 @@ msgstr "Xbox One"
 
 msgid "XBOX_SERIES"
 msgstr "Xbox Series X"
+
+#, fuzzy
+msgid "X_TWITTER_TOOLTIP"
+msgstr "造訪我們的 Twitter"
 
 msgid "YEARS"
 msgstr "年"
