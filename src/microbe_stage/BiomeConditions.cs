@@ -76,7 +76,7 @@ public class BiomeConditions : IBiomeConditions, ICloneable
     ///   </para>
     /// </remarks>
     [JsonProperty]
-    public float Pressure { get; set; } = 101325f;
+    public float Pressure { get; set; } = 101325;
 
     /// <summary>
     ///   The compound amounts that change in realtime during gameplay
