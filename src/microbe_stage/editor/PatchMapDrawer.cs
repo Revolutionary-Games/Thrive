@@ -1174,7 +1174,7 @@ public partial class PatchMapDrawer : Control
             var nodeModifier = node.Position.LengthSquared();
             var modifierSinus = MathF.Sin(i);
 
-            indicator.Position = position + node.Size * 0.5f + new Vector2(0, 20)
+            indicator.Position = position + node.Size * 0.5f + new Vector2(0, 35)
                     .Rotated(nodeModifier * 30) +
                 new Vector2(0, modifierSinus * 50).Rotated(i * 6 * modifierSinus + nodeModifier);
         }
