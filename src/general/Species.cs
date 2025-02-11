@@ -107,13 +107,19 @@ public abstract class Species : ICloneable
     public abstract string StringCode { get; }
 
     /// <summary>
-    ///   When true this is the player species
+    ///   When true, this is the player species
     /// </summary>
     [JsonProperty]
     public bool PlayerSpecies { get; private set; }
 
     [JsonProperty]
     public EndosymbiosisData Endosymbiosis { get; private set; } = new();
+
+    /// <summary>
+    ///   Environmental tolerances of this species (determines what it can take in terms of habitat)
+    /// </summary>
+    [JsonProperty]
+    public EnvironmentalTolerances Tolerances { get; private set; } = new();
 
     [JsonIgnore]
     public string FormattedName => Genus + " " + Epithet;
