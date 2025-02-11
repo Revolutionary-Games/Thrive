@@ -49,6 +49,7 @@ public partial class PatchMapDrawer : Control
     private PackedScene nodeScene = null!;
     private Control patchNodeContainer = null!;
     private Control lineContainer = null!;
+    private Texture2D indicatorTexture = null!;
 
     [Export]
     private Control populationIndicatorContainer = null!;
@@ -59,6 +60,8 @@ public partial class PatchMapDrawer : Control
     private bool dirty = true;
 
     private bool alreadyDrawn;
+
+    private int nextIndicatorIndex;
 
     private List<Control> playerSpeciesPopulationIndicators = new();
 
@@ -154,7 +157,7 @@ public partial class PatchMapDrawer : Control
 
         patchNodeContainer = GetNode<Control>(PatchNodeContainerPath);
         lineContainer = GetNode<Control>(LineContainerPath);
-
+        indicatorTexture = GD.Load<Texture2D>("res://assets/textures/gui/bevel/MapDotIndicator.svg");
         nodeScene = GD.Load<PackedScene>("res://src/microbe_stage/editor/PatchMapNode.tscn");
 
         if (DrawDefaultMapIfEmpty && Map == null)
@@ -1058,6 +1061,8 @@ public partial class PatchMapDrawer : Control
         nodes.Clear();
         connections.Clear();
 
+        nextIndicatorIndex = 0;
+
         if (Map == null)
         {
             SelectedPatch = null;
@@ -1129,7 +1134,7 @@ public partial class PatchMapDrawer : Control
     private void AddPlayerPopulationIndicators(Patch patch, Species playerSpecies, Control node, Vector2 position)
     {
         var playerPopulationIndicatorAmount = (int)Math.Ceiling(patch.GetSpeciesSimulationPopulation(playerSpecies) *
-            Constants.PLAYER_POPULATION_POPULATION_FOR_PER_INDICATOR);
+            Constants.PLAYER_POPULATION_INDICATORS_PER_POPULATION);
 
         var indicatorExcess = Math.Clamp(playerSpeciesPopulationIndicators.Count - playerPopulationIndicatorAmount,
             0,
@@ -1141,7 +1146,7 @@ public partial class PatchMapDrawer : Control
             playerSpeciesPopulationIndicators[playerSpeciesPopulationIndicators.Count - i].Hide();
         }
 
-        for (int i = 0; i < playerPopulationIndicatorAmount; ++i)
+        for (int i = nextIndicatorIndex; i < playerPopulationIndicatorAmount; ++i)
         {
             var noCached = i >= playerSpeciesPopulationIndicators.Count;
 
@@ -1150,12 +1155,14 @@ public partial class PatchMapDrawer : Control
             {
                 indicator = new TextureRect
                 {
-                    Texture = GD.Load<Texture2D>("res://assets/textures/gui/bevel/MapDotIndicator.svg"),
+                    Texture = indicatorTexture,
                     ExpandMode = TextureRect.ExpandModeEnum.IgnoreSize,
                     Size = new Vector2(6, 6),
                 };
 
+                indicator.MouseFilter = MouseFilterEnum.Ignore;
                 populationIndicatorContainer.AddChild(indicator);
+                playerSpeciesPopulationIndicators.Add(indicator);
             }
             else
             {
@@ -1164,12 +1171,8 @@ public partial class PatchMapDrawer : Control
                 indicator.Show();
             }
 
-            indicator.MouseFilter = MouseFilterEnum.Ignore;
-
             var nodeModifier = node.Position.LengthSquared();
             var modifierSinus = MathF.Sin(i);
-
-            playerSpeciesPopulationIndicators.Add(indicator);
 
             indicator.Position = position + node.Size * 0.5f + new Vector2(0, 20)
                     .Rotated(nodeModifier * 30) +
