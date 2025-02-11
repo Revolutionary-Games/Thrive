@@ -1,4 +1,4 @@
-[gd_scene load_steps=55 format=3 uid="uid://cwot2e52r7lx0"]
+[gd_scene load_steps=56 format=3 uid="uid://cwot2e52r7lx0"]
 
 [ext_resource type="PackedScene" uid="uid://bwegwjlcioasf" path="res://src/microbe_stage/editor/EditorComponentBottomLeftButtons.tscn" id="3"]
 [ext_resource type="PackedScene" uid="uid://0hb8nq18ljr8" path="res://src/microbe_stage/editor/LightConfigurationPanel.tscn" id="3_yy73o"]
@@ -15,6 +15,7 @@
 [ext_resource type="PackedScene" uid="uid://bapb4m7jw7pc8" path="res://src/microbe_stage/editor/BehaviourEditorSubComponent.tscn" id="14"]
 [ext_resource type="LabelSettings" uid="uid://w2g8aleycqpl" path="res://src/gui_common/fonts/Title-Regular-Bigger.tres" id="14_fllwv"]
 [ext_resource type="PackedScene" uid="uid://bdtlirrkst0vl" path="res://src/microbe_stage/editor/GrowthOrderPicker.tscn" id="15_krpbw"]
+[ext_resource type="PackedScene" uid="uid://5kamud4sukbd" path="res://src/microbe_stage/editor/TolerancesEditor.tscn" id="15_rbhjt"]
 [ext_resource type="PackedScene" uid="uid://olpir0vkwcsi" path="res://src/microbe_stage/OrganismStatisticsPanel.tscn" id="15_tdiis"]
 [ext_resource type="PackedScene" path="res://src/gui_common/FocusGrabber.tscn" id="16"]
 [ext_resource type="Texture2D" uid="uid://dglc11477jgka" path="res://assets/textures/gui/bevel/helpButtonActive.png" id="17"]
@@ -335,7 +336,7 @@ _data = {
 "show": SubResource("44")
 }
 
-[node name="CellEditorComponent" type="Control" node_paths=PackedStringArray("growthOrderTabButton", "toleranceTabButton", "growthOrderTab", "growthOrderGUI", "toleranceTab", "organelleSuggestionLoadingIndicator", "organelleSuggestionLabel", "pendingEndosymbiosisPopup", "endosymbiosisButton", "endosymbiosisPopup", "showGrowthOrderCoordinates", "growthOrderNumberContainer", "micheViewer", "organismStatisticsPanel")]
+[node name="CellEditorComponent" type="Control" node_paths=PackedStringArray("growthOrderTabButton", "toleranceTabButton", "growthOrderTab", "growthOrderGUI", "tolerancesGUI", "toleranceTab", "organelleSuggestionLoadingIndicator", "organelleSuggestionLabel", "pendingEndosymbiosisPopup", "endosymbiosisButton", "endosymbiosisPopup", "showGrowthOrderCoordinates", "growthOrderNumberContainer", "micheViewer", "organismStatisticsPanel")]
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
@@ -374,6 +375,7 @@ growthOrderTabButton = NodePath("LeftPanel/MainPanel/VBoxContainer/MarginContain
 toleranceTabButton = NodePath("LeftPanel/MainPanel/VBoxContainer/MarginContainer/EditingPanel/TabButtons/Tolerances")
 growthOrderTab = NodePath("LeftPanel/MainPanel/VBoxContainer/MarginContainer/EditingPanel/Growth")
 growthOrderGUI = NodePath("LeftPanel/MainPanel/VBoxContainer/MarginContainer/EditingPanel/Growth/ScrollContainer/MarginContainer/GrowthContainer/GrowthOrderPicker")
+tolerancesGUI = NodePath("LeftPanel/MainPanel/VBoxContainer/MarginContainer/EditingPanel/Tolerance/TolerancesEditor")
 toleranceTab = NodePath("LeftPanel/MainPanel/VBoxContainer/MarginContainer/EditingPanel/Tolerance")
 organelleSuggestionLoadingIndicator = NodePath("RightPanel/VBoxContainer/AutoEvoInfoPanel/VBoxContainer/Body/MarginContainer/VBoxContainer/HBoxContainer/HFlowContainer/SugestionLoading")
 organelleSuggestionLabel = NodePath("RightPanel/VBoxContainer/AutoEvoInfoPanel/VBoxContainer/Body/MarginContainer/VBoxContainer/HBoxContainer/HFlowContainer/SuggestionValue")
@@ -777,13 +779,8 @@ size_flags_vertical = 3
 mouse_filter = 1
 theme_override_styles/panel = SubResource("14")
 
-[node name="Explanation" type="Label" parent="LeftPanel/MainPanel/VBoxContainer/MarginContainer/EditingPanel/Tolerance"]
-editor_description = "PLACEHOLDER"
-custom_minimum_size = Vector2(100, 0)
+[node name="TolerancesEditor" parent="LeftPanel/MainPanel/VBoxContainer/MarginContainer/EditingPanel/Tolerance" instance=ExtResource("15_rbhjt")]
 layout_mode = 2
-text = "In the future this tab will have controls to change the environmental tolerances of the cell to better adapt it to different patch coditions"
-label_settings = ExtResource("28_qclxk")
-autowrap_mode = 3
 
 [node name="RightPanel" type="MarginContainer" parent="."]
 custom_minimum_size = Vector2(285, 657)

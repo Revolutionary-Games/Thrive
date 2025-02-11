@@ -138,6 +138,9 @@ public partial class CellEditorComponent :
     private GrowthOrderPicker growthOrderGUI = null!;
 
     [Export]
+    private TolerancesEditor tolerancesGUI = null!;
+
+    [Export]
     private PanelContainer toleranceTab = null!;
 
     private VBoxContainer partsSelectionContainer = null!;
@@ -641,6 +644,7 @@ public partial class CellEditorComponent :
         if (!IsMulticellularEditor)
         {
             behaviourEditor.Init(owningEditor, fresh);
+            tolerancesGUI.Init(owningEditor, fresh);
         }
         else
         {
