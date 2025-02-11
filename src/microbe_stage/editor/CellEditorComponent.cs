@@ -711,8 +711,10 @@ public partial class CellEditorComponent :
             behaviourEditor.Visible = false;
             growthOrderTab.Visible = false;
             growthOrderTabButton.Visible = false;
+            toleranceTab.Visible = false;
+            toleranceTabButton.Visible = false;
 
-            // Tolerances are visible for now
+            // Tolerances also should be implemented as overall ones for the entire species for multicellular
         }
 
         UpdateMicrobePartSelections();
