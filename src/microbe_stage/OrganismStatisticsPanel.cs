@@ -171,7 +171,6 @@ public partial class OrganismStatisticsPanel : PanelContainer
 
         UpdateStatVisibility();
         UpdateATPBalanceText();
-        RegisterTooltips();
     }
 
     public void OnTranslationsChanged()

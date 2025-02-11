@@ -545,6 +545,13 @@ public partial class CellBodyPlanEditorComponent :
         UpdateCellTypeBalances();
     }
 
+    protected override void RegisterTooltips()
+    {
+        base.RegisterTooltips();
+
+        organismStatisticsPanel.RegisterTooltips();
+    }
+
     protected CellType CellTypeFromName(string name)
     {
         return Editor.EditedSpecies.CellTypes.First(c => c.TypeName == name);
@@ -1048,8 +1055,7 @@ public partial class CellBodyPlanEditorComponent :
                 organismStatisticsPanel.CalculateBalancesWhenMoving, true, Editor.CurrentGame.GameWorld.WorldSettings,
                 organismStatisticsPanel.CompoundAmountType, null, energyBalance);
 
-            button.Value.EnergyProduction = energyBalance.TotalProduction;
-            button.Value.EnergyConsumption = energyBalance.TotalConsumption;
+            button.Value.SetEnergyBalanceValues(energyBalance.TotalProduction, energyBalance.TotalConsumption);
 
             if (energyBalance.TotalProduction > maxValue)
                 maxValue = energyBalance.TotalProduction;
@@ -1070,7 +1076,6 @@ public partial class CellBodyPlanEditorComponent :
         foreach (var button in cellTypeSelectionButtons)
         {
             button.Value.MaxEnergyValue = maxValue;
-            button.Value.UpdateATPBalanceDisplay();
         }
     }
 

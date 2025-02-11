@@ -6,15 +6,6 @@ using Godot;
 /// </summary>
 public partial class CellTypeSelection : MicrobePartSelection
 {
-    public float EnergyProduction;
-
-    public float EnergyConsumption;
-
-    /// <summary>
-    ///   The maximum production/consumption across all other cell type selection buttons.
-    /// </summary>
-    public float MaxEnergyValue;
-
     private CellType? cellType;
 
 #pragma warning disable CA2213
@@ -35,6 +26,10 @@ public partial class CellTypeSelection : MicrobePartSelection
     private IImageTask? imageTask;
 
     private bool enableATPBalanceDisplay = true;
+
+    private float energyProduction;
+    private float energyConsumption;
+    private float maxEnergyValue;
 
     public bool EnableATPBalanceBars
     {
@@ -60,6 +55,44 @@ public partial class CellTypeSelection : MicrobePartSelection
 
             ReportTypeChanged();
             cellType = value;
+        }
+    }
+
+    public float EnergyProduction
+    {
+        get => energyProduction;
+        set
+        {
+            energyProduction = value;
+
+            UpdateProductionBar();
+            UpdateWarningBadge();
+        }
+    }
+
+    public float EnergyConsumption
+    {
+        get => energyConsumption;
+        set
+        {
+            energyConsumption = value;
+
+            UpdateConsumptionBar();
+            UpdateWarningBadge();
+        }
+    }
+
+    /// <summary>
+    ///   The maximum production/consumption across all other cell type selection buttons.
+    /// </summary>
+    public float MaxEnergyValue
+    {
+        get => maxEnergyValue;
+        set
+        {
+            maxEnergyValue = value;
+
+            UpdateATPBalanceDisplay();
         }
     }
 
@@ -115,27 +148,40 @@ public partial class CellTypeSelection : MicrobePartSelection
             atpBalanceWarningBadge.Visible = false;
     }
 
+    public void SetEnergyBalanceValues(float newProduction, float newConsumption)
+    {
+        energyProduction = newProduction;
+        energyConsumption = newConsumption;
+
+        UpdateATPBalanceDisplay();
+    }
+
     public void UpdateATPBalanceDisplay()
     {
         UpdateProductionBar();
         UpdateConsumptionBar();
 
-        atpBalanceWarningBadge.Visible = enableATPBalanceDisplay && EnergyConsumption > EnergyProduction;
+        UpdateWarningBadge();
+    }
+
+    private void UpdateWarningBadge()
+    {
+        atpBalanceWarningBadge.Visible = enableATPBalanceDisplay && energyConsumption > energyProduction;
     }
 
     private void UpdateProductionBar()
     {
-        atpProductionBar.Value = 100.0f * EnergyProduction / MaxEnergyValue;
+        atpProductionBar.Value = 100.0f * energyProduction / maxEnergyValue;
 
         atpProductionBar.TooltipText = Localization.Translate("CELL_TYPE_BUTTON_ATP_PRODUCTION")
-            .FormatSafe(MathF.Round(EnergyProduction, 2));
+            .FormatSafe(MathF.Round(energyProduction, 2));
     }
 
     private void UpdateConsumptionBar()
     {
-        atpConsumptionBar.Value = 100.0f * EnergyConsumption / MaxEnergyValue;
+        atpConsumptionBar.Value = 100.0f * energyConsumption / maxEnergyValue;
 
         atpConsumptionBar.TooltipText = Localization.Translate("CELL_TYPE_BUTTON_ATP_CONSUMPTION")
-            .FormatSafe(MathF.Round(EnergyConsumption, 2));
+            .FormatSafe(MathF.Round(energyConsumption, 2));
     }
 }

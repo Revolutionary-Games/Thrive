@@ -1,4 +1,5 @@
 ﻿using System.Collections.Generic;
+using Newtonsoft.Json;
 
 /// <summary>
 ///   Balance of a given compound. Lists the organelles that contribute to the balance
@@ -22,6 +23,7 @@ public class CompoundBalance
     /// <summary>
     ///   Total balance of this compound
     /// </summary>
+    [JsonIgnore]
     public float Balance => Production - Consumption;
 
     public void SetupForOrganelleDataTracking()
