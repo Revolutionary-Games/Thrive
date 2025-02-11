@@ -204,6 +204,25 @@ public static class PatchMapGenerator
         return SimulationParameters.Instance.GetBiome(name);
     }
 
+    /// <summary>
+    ///   Calculates the pressure at a given depth underwater (or another liquid)
+    /// </summary>
+    /// <param name="depthInMeters">The depth underwater in meters</param>
+    /// <param name="gravityAcceleration">The planetary gravity acceleration constant in m/s^2 (9.81 for Earth)</param>
+    /// <param name="atmosphericPressure">
+    ///   The atmospheric pressure at the surface of the liquid in Pa, default is Earth with 101325 hPa
+    /// </param>
+    /// <param name="liquidDensity">The density of the liquid being calculated. Freshwater is 1000 kg/m^3.</param>
+    /// <returns>The total pressure at the specified depth in Pa</returns>
+    private static float CalculatePressure(float depthInMeters, float gravityAcceleration = 9.81f,
+        float atmosphericPressure = 101325, float liquidDensity = 1000)
+    {
+        var hydrostaticPressure = liquidDensity * gravityAcceleration * depthInMeters;
+
+        // Total pressure is atmospheric pressure and hydrostatic pressure
+        return atmosphericPressure + hydrostaticPressure;
+    }
+
     private static void LinkPatches(Patch patch1, Patch patch2)
     {
         patch1.AddNeighbour(patch2);
@@ -536,6 +555,12 @@ public static class PatchMapGenerator
 
                 break;
             }
+        }
+
+        // Calculate environmental pressures
+        foreach (var regionPatch in region.Patches)
+        {
+            regionPatch.Biome.Pressure = CalculatePressure((float)regionPatch.Depth.Average());
         }
     }
 

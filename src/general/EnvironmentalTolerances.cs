@@ -15,9 +15,9 @@ public class EnvironmentalTolerances
     public float TemperatureTolerance = 21;
 
     /// <summary>
-    ///   Pressure this species likes to be in. The value is in hPa (hectopascals).
+    ///   Pressure this species likes to be in. The value is in Pa (pascals).
     /// </summary>
-    public float PreferredPressure = 1013.25f;
+    public float PreferredPressure = 101325f;
 
     /// <summary>
     ///   Minimum pressure this species likes. This is not just a single range as the range needs to be lopsided
