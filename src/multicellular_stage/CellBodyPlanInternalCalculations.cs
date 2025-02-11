@@ -84,7 +84,9 @@ public static class CellBodyPlanInternalCalculations
     public static (int AmmoniaCost, int PhosphatesCost) CalculateOrganellesCost(
         IReadOnlyList<HexWithData<CellTemplate>> cells)
     {
-        float ammoniaCostTotal = 0, phosphatesCostTotal = 0;
+        float ammoniaCostTotal = 0;
+        float phosphatesCostTotal = 0;
+
         foreach (var hex in cells)
         {
             var cell = hex.Data!;

@@ -480,10 +480,10 @@ public partial class OrganismStatisticsPanel : PanelContainer
         }
     }
 
-    public void UpdateOrganellesCost((int AmmoniaCost, int PhosphatesCost) costs)
+    public void UpdateOrganellesCost(int AmmoniaCost, int PhosphatesCost)
     {
-        ammoniaCostLabel.Value = costs.AmmoniaCost;
-        phosphatesCostLabel.Value = costs.PhosphatesCost;
+        ammoniaCostLabel.Value = AmmoniaCost;
+        phosphatesCostLabel.Value = PhosphatesCost;
     }
 
     public void UpdateProcessList(List<ProcessSpeedInformation> processInfo)

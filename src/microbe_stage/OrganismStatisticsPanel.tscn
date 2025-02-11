@@ -292,11 +292,13 @@ layout_mode = 2
 
 [node name="AmmoniaCost" parent="VBoxContainer/Body/ScrollContainer/MarginContainer/VBoxContainer" instance=ExtResource("3_mvl7o")]
 layout_mode = 2
+tooltip_text = "NUTRIENT_COST_TOOLTIP"
 Icon = ExtResource("14_t2dkg")
 Description = "AMMONIA_COST"
 
 [node name="PhosphatesCost" parent="VBoxContainer/Body/ScrollContainer/MarginContainer/VBoxContainer" instance=ExtResource("3_mvl7o")]
 layout_mode = 2
+tooltip_text = "NUTRIENT_COST_TOOLTIP"
 Icon = ExtResource("15_ytqp8")
 Description = "PHOSPHATES_COST"
 

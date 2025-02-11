@@ -247,7 +247,7 @@ public partial class SelectionMenuToolTip : ControlWithInput, ICustomToolTip
     }
 
     /// <summary>
-    ///   Instances the UI element for a organelle cost info
+    ///   Instances the UI element for an organelle cost info
     /// </summary>
     public void AddOrganelleCostInfo(string name, string value, float valueForColourApplying = 0,
         string? iconPath = null, StringName? nodeName = null)

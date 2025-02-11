@@ -2176,7 +2176,8 @@ public partial class CellEditorComponent :
         organismStatisticsPanel.UpdateStorage(GetAdditionalCapacities(out var nominalCapacity), nominalCapacity);
         organismStatisticsPanel.UpdateTotalDigestionSpeed(CalculateTotalDigestionSpeed());
         organismStatisticsPanel.UpdateDigestionEfficiencies(CalculateDigestionEfficiencies());
-        organismStatisticsPanel.UpdateOrganellesCost(CalculateOrganellesCosts());
+        var (ammoniaCost, phosphatesCost) = CalculateOrganellesCosts();
+        organismStatisticsPanel.UpdateOrganellesCost(ammoniaCost, phosphatesCost);
     }
 
     /// <summary>
