@@ -22,14 +22,19 @@ public partial class FullScreenToggle : NodeWithInput
             return;
         }
 
-        if (Settings.Instance.DisplayMode.Value == DisplayServer.WindowMode.Fullscreen ||
-            Settings.Instance.DisplayMode.Value == DisplayServer.WindowMode.ExclusiveFullscreen)
+        switch (Settings.Instance.DisplayMode.Value)
         {
-            Settings.Instance.DisplayMode.Value = DisplayServer.WindowMode.Windowed;
-        }
-        else
-        {
-            Settings.Instance.DisplayMode.Value = DisplayServer.WindowMode.Fullscreen;
+            case Settings.DisplayModeEnum.Windowed:
+                Settings.Instance.DisplayMode.Value = Settings.DisplayModeEnum.Fullscreen;
+                break;
+
+            case Settings.DisplayModeEnum.Fullscreen:
+                Settings.Instance.DisplayMode.Value = Settings.DisplayModeEnum.ExclusiveFullscreen;
+                break;
+
+            case Settings.DisplayModeEnum.ExclusiveFullscreen:
+                Settings.Instance.DisplayMode.Value = Settings.DisplayModeEnum.Windowed;
+                break;
         }
 
         GD.Print("Toggling fullscreen with keypress, new value: ", Settings.Instance.DisplayMode.Value);

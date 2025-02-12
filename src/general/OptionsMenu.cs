@@ -1403,15 +1403,15 @@ public partial class OptionsMenu : ControlWithInput
         }
     }
 
-    private int DisplayModeToIndex(DisplayServer.WindowMode mode)
+    private int DisplayModeToIndex(Settings.DisplayModeEnum mode)
     {
         switch (mode)
         {
-            case DisplayServer.WindowMode.Windowed:
+            case Settings.DisplayModeEnum.Windowed:
                 return 0;
-            case DisplayServer.WindowMode.Fullscreen:
+            case Settings.DisplayModeEnum.Fullscreen:
                 return 1;
-            case DisplayServer.WindowMode.ExclusiveFullscreen:
+            case Settings.DisplayModeEnum.ExclusiveFullscreen:
                 return 2;
             default:
                 GD.PrintErr("invalid display mode value");
@@ -1419,19 +1419,19 @@ public partial class OptionsMenu : ControlWithInput
         }
     }
 
-    private DisplayServer.WindowMode DisplayIndexToMode(int index)
+    private Settings.DisplayModeEnum DisplayIndexToEnum(int index)
     {
         switch (index)
         {
             case 0:
-                return DisplayServer.WindowMode.Windowed;
+                return Settings.DisplayModeEnum.Windowed;
             case 1:
-                return DisplayServer.WindowMode.Fullscreen;
+                return Settings.DisplayModeEnum.Fullscreen;
             case 2:
-                return DisplayServer.WindowMode.ExclusiveFullscreen;
+                return Settings.DisplayModeEnum.ExclusiveFullscreen;
             default:
                 GD.PrintErr("invalid display mode index");
-                return DisplayServer.WindowMode.Windowed;
+                return Settings.DisplayModeEnum.Windowed;
         }
     }
 
@@ -1947,7 +1947,7 @@ public partial class OptionsMenu : ControlWithInput
     // Graphics Button Callbacks
     private void OnDisplayModeSelected(int index)
     {
-        Settings.Instance.DisplayMode.Value = DisplayIndexToMode(index);
+        Settings.Instance.DisplayMode.Value = DisplayIndexToEnum(index);
         Settings.Instance.ApplyWindowSettings();
 
         UpdateResetSaveButtonState();
