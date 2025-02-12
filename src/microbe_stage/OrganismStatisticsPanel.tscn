@@ -1,4 +1,4 @@
-[gd_scene load_steps=20 format=3 uid="uid://olpir0vkwcsi"]
+[gd_scene load_steps=22 format=3 uid="uid://olpir0vkwcsi"]
 
 [ext_resource type="Theme" uid="uid://b4cx0o110g4b6" path="res://src/gui_common/thrive_theme.tres" id="1_ca4to"]
 [ext_resource type="Script" path="res://src/microbe_stage/OrganismStatisticsPanel.cs" id="1_hd1ty"]
@@ -16,11 +16,13 @@
 [ext_resource type="LabelSettings" uid="uid://terwl7t76t4h" path="res://src/gui_common/fonts/Body-Regular-AlmostSmall.tres" id="12_mwh2k"]
 [ext_resource type="PackedScene" path="res://src/gui_common/SegmentedBar.tscn" id="13_rekbr"]
 [ext_resource type="LabelSettings" uid="uid://dvqx73nhtr0y2" path="res://src/gui_common/fonts/Body-Regular-Small.tres" id="14_0mgfc"]
+[ext_resource type="Texture2D" uid="uid://d4bj3835y827e" path="res://assets/textures/gui/bevel/Ammonia.svg" id="14_t2dkg"]
 [ext_resource type="PackedScene" path="res://src/gui_common/CustomRichTextLabel.tscn" id="15_ogl68"]
+[ext_resource type="Texture2D" uid="uid://nckpuxkhcb0u" path="res://assets/textures/gui/bevel/Phosphates.svg" id="15_ytqp8"]
 [ext_resource type="PackedScene" uid="uid://sxqf3o1pkl0n" path="res://src/microbe_stage/editor/CompoundBalanceDisplay.tscn" id="16_wlbdy"]
 [ext_resource type="PackedScene" uid="uid://doveokjve1v3t" path="res://src/microbe_stage/editor/CompoundStorageStatistics.tscn" id="17_pca5e"]
 
-[node name="OrganismStatisticsPanel" type="PanelContainer" node_paths=PackedStringArray("sizeLabel", "speedLabel", "rotationSpeedLabel", "hpLabel", "storageLabel", "digestionSpeedLabel", "digestionEfficiencyLabel", "basicStatsSeparator", "movementStatsSeparator", "digestionStatsSeparator", "generationLabel", "atpBalancePanel", "atpBalanceLabel", "atpProductionLabel", "atpConsumptionLabel", "atpProductionBar", "atpConsumptionBar", "compoundBalance", "compoundStorageLastingTimes", "notEnoughStorageWarning", "calculateBalancesAsIfDay", "calculateBalancesWhenMoving", "processListButton")]
+[node name="OrganismStatisticsPanel" type="PanelContainer" node_paths=PackedStringArray("sizeLabel", "speedLabel", "rotationSpeedLabel", "hpLabel", "storageLabel", "digestionSpeedLabel", "digestionEfficiencyLabel", "ammoniaCostLabel", "phosphatesCostLabel", "basicStatsSeparator", "movementStatsSeparator", "digestionStatsSeparator", "organellesCostsSeparator", "generationLabel", "atpBalancePanel", "atpBalanceLabel", "atpProductionLabel", "atpConsumptionLabel", "atpProductionBar", "atpConsumptionBar", "compoundBalance", "compoundStorageLastingTimes", "notEnoughStorageWarning", "calculateBalancesAsIfDay", "calculateBalancesWhenMoving", "processListButton")]
 size_flags_vertical = 3
 mouse_filter = 1
 theme = ExtResource("1_ca4to")
@@ -34,9 +36,12 @@ hpLabel = NodePath("VBoxContainer/Body/ScrollContainer/MarginContainer/VBoxConta
 storageLabel = NodePath("VBoxContainer/Body/ScrollContainer/MarginContainer/VBoxContainer/Storage")
 digestionSpeedLabel = NodePath("VBoxContainer/Body/ScrollContainer/MarginContainer/VBoxContainer/DigestionSpeed")
 digestionEfficiencyLabel = NodePath("VBoxContainer/Body/ScrollContainer/MarginContainer/VBoxContainer/DigestionEfficiency")
+ammoniaCostLabel = NodePath("VBoxContainer/Body/ScrollContainer/MarginContainer/VBoxContainer/AmmoniaCost")
+phosphatesCostLabel = NodePath("VBoxContainer/Body/ScrollContainer/MarginContainer/VBoxContainer/PhosphatesCost")
 basicStatsSeparator = NodePath("VBoxContainer/Body/ScrollContainer/MarginContainer/VBoxContainer/HSeparator")
 movementStatsSeparator = NodePath("VBoxContainer/Body/ScrollContainer/MarginContainer/VBoxContainer/HSeparator2")
 digestionStatsSeparator = NodePath("VBoxContainer/Body/ScrollContainer/MarginContainer/VBoxContainer/HSeparator3")
+organellesCostsSeparator = NodePath("VBoxContainer/Body/ScrollContainer/MarginContainer/VBoxContainer/HSeparator4")
 generationLabel = NodePath("VBoxContainer/Body/ScrollContainer/MarginContainer/VBoxContainer/Generation/Value")
 atpBalancePanel = NodePath("VBoxContainer/Body/ScrollContainer/MarginContainer/VBoxContainer/ATPBalancePanel")
 atpBalanceLabel = NodePath("VBoxContainer/Body/ScrollContainer/MarginContainer/VBoxContainer/ATPBalancePanel/VBoxContainer/ATPBalanceTitle")
@@ -280,6 +285,22 @@ theme_override_font_sizes/font_size = 14
 text = "VIEW_CELL_PROCESSES"
 text_overrun_behavior = 3
 clip_text = true
+
+[node name="HSeparator4" type="HSeparator" parent="VBoxContainer/Body/ScrollContainer/MarginContainer/VBoxContainer"]
+custom_minimum_size = Vector2(0, 10)
+layout_mode = 2
+
+[node name="AmmoniaCost" parent="VBoxContainer/Body/ScrollContainer/MarginContainer/VBoxContainer" instance=ExtResource("3_mvl7o")]
+layout_mode = 2
+tooltip_text = "NUTRIENT_COST_TOOLTIP"
+Icon = ExtResource("14_t2dkg")
+Description = "AMMONIA_COST"
+
+[node name="PhosphatesCost" parent="VBoxContainer/Body/ScrollContainer/MarginContainer/VBoxContainer" instance=ExtResource("3_mvl7o")]
+layout_mode = 2
+tooltip_text = "NUTRIENT_COST_TOOLTIP"
+Icon = ExtResource("15_ytqp8")
+Description = "PHOSPHATES_COST"
 
 [connection signal="item_selected" from="VBoxContainer/Body/ScrollContainer/MarginContainer/VBoxContainer/ATPBalancePanel/VBoxContainer/ATPBalanceMode" to="." method="SelectATPBalanceMode"]
 [connection signal="toggled" from="VBoxContainer/Body/ScrollContainer/MarginContainer/VBoxContainer/NumbersAtDay" to="." method="OnBalanceShowOptionsChanged"]
