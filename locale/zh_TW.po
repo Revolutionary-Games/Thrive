@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2025-02-08 22:47+0300\n"
+"POT-Creation-Date: 2025-02-12 11:27+0200\n"
 "PO-Revision-Date: 2025-02-06 13:29+0000\n"
 "Last-Translator: Anonymous <noreply@weblate.org>\n"
 "Language-Team: Chinese (Traditional Han script) <https://translate.revolutionarygamesstudio.com/projects/thrive/thrive-game/zh_Hant/>\n"
@@ -172,6 +172,10 @@ msgid "AMBIANCE_VOLUME"
 msgstr "環境音量"
 
 msgid "AMMONIA"
+msgstr "氨"
+
+#, fuzzy
+msgid "AMMONIA_COST"
 msgstr "氨"
 
 msgid "AMOUNT_OF_AUTOSAVE_TO_KEEP"
@@ -496,6 +500,10 @@ msgstr "生物群系：{0}"
 msgid "BLOOM_RENDER_EFFECT"
 msgstr "光暈效果："
 
+#, fuzzy
+msgid "BLUESKY_TOOLTIP"
+msgstr "暫停遊戲"
+
 msgid "BRAIN_CELL_NAME_DEFAULT"
 msgstr "神經元"
 
@@ -638,11 +646,11 @@ msgstr ""
 
 #, fuzzy
 msgid "CELL_TYPE_BUTTON_ATP_CONSUMPTION"
-msgstr "ATP 負平衡"
+msgstr "OPTIONS 按鈕"
 
 #, fuzzy
 msgid "CELL_TYPE_BUTTON_ATP_PRODUCTION"
-msgstr "ATP 負平衡"
+msgstr "OPTIONS 按鈕"
 
 msgid "CELL_TYPE_NAME"
 msgstr "細胞類型名稱"
@@ -1399,9 +1407,8 @@ msgstr ""
 msgid "DEBUG_DRAW_NOT_AVAILABLE"
 msgstr "物理偵錯繪製在此構建類型中不可用"
 
-#, fuzzy
 msgid "DEBUG_HEAT_AT_CURSOR"
-msgstr "滑鼠指標處："
+msgstr "熱值：{0}"
 
 msgid "DEBUG_PANEL"
 msgstr "除錯面板"
@@ -2333,9 +2340,11 @@ msgstr "GUI 音量"
 msgid "HEALTH"
 msgstr "生命值"
 
-#, fuzzy
 msgid "HEAT_ACCUMULATION_BAR_TOOLTIP"
-msgstr "自動從 Assembly 載入 Harmony 補丁（不需要指定模組類別）"
+msgstr ""
+"此數值條顯示您的細胞當前溫度。黃色指標代表有效的能量生產範圍。\n"
+"白色垂直條顯示環境溫度，數值條將會向該方向變化。\n"
+"當能量正在生產時，數值條下方的指標會改變顏色。"
 
 msgid "HELP"
 msgstr "幫助"
@@ -2510,6 +2519,10 @@ msgstr "檢查"
 
 msgid "INSPECTOR"
 msgstr "檢查器"
+
+#, fuzzy
+msgid "INSTAGRAM_TOOLTIP"
+msgstr "造訪我們的 Steam 頁面"
 
 msgid "INTERACTION_ACTIVATE_ASCENSION"
 msgstr "啟動飛昇之門"
@@ -3108,6 +3121,10 @@ msgstr "海洋雪"
 msgid "MASTER_VOLUME"
 msgstr "主音量"
 
+#, fuzzy
+msgid "MASTODON_TOOLTIP"
+msgstr "在區域之間遷移您的物種，而不移動您所在的區域"
+
 msgid "MAX_CACHE_SIZE_TOOLTIP"
 msgstr "磁碟快取應佔用的最大大小（如果快取變得太大，項目將自動刪除）"
 
@@ -3185,6 +3202,12 @@ msgstr "代謝體是包裹在蛋白質殼中的蛋白質叢。它們能夠將[th
 
 msgid "METABOLOSOMES_PROCESSES_DESCRIPTION"
 msgstr "將[thrive:compound type=\"glucose\"][/thrive:compound] 轉化為[thrive:compound type=\"atp\"][/thrive:compound]。速率與[thrive:compound type=\"oxygen\"][/thrive:compound] 的濃度成正比。"
+
+#, fuzzy
+msgid "META_THREADS_TOOLTIP"
+msgstr ""
+"遊戲無法自動檢測是否啟用超執行緒。\n"
+"這會影響預設的執行緒數，因為超執行緒的速度不如真實的 CPU 核心。"
 
 msgid "METRICS"
 msgstr "性能指標"
@@ -3273,9 +3296,8 @@ msgstr "微生物性能基準測試"
 msgid "MICROBE_EDITOR"
 msgstr "微生物編輯器"
 
-#, fuzzy
 msgid "MICROBE_ENZYME_STATISTICS"
-msgstr "  {0}：存在於 {1} 個物種中，平均每個物種為 {2} 個"
+msgstr "[b]酶資料：[/b]"
 
 msgid "MICROBE_FREEBUILD_EDITOR"
 msgstr "微生物階段自由編輯器"
@@ -3361,13 +3383,11 @@ msgstr "在編輯器中點擊撤消按鈕以糾正錯誤"
 msgid "MICROBE_LOADING_TIP_9"
 msgstr "在編輯器中點擊撤消按鈕以糾正錯誤"
 
-#, fuzzy
 msgid "MICROBE_MEMBRANE_PERCENTAGE_STATISTICS"
-msgstr "[b]細胞器升級資料：[/b]"
+msgstr "{0}：在 {1} 個物種中發現"
 
-#, fuzzy
 msgid "MICROBE_MEMBRANE_STATISTICS"
-msgstr "  {0}：存在於 {1} 個物種中，平均每個物種為 {2} 個"
+msgstr "[b]細胞膜資料：[/b]"
 
 msgid "MICROBE_ORGANELLE_STATISTICS"
 msgstr "  {0}：存在於 {1} 個物種中，平均每個物種為 {2} 個"
@@ -4018,6 +4038,10 @@ msgstr "允許演化出更複雜的有膜細胞器，並將受到的傷害減少
 msgid "NUMLOCK"
 msgstr "Num Lock"
 
+#, fuzzy
+msgid "NUTRIENT_COST_TOOLTIP"
+msgstr "切換衝刺模式。衝刺時細胞移動得更快，但會消耗更多的 ATP，隨著壓力增加會消耗更多的 ATP。"
+
 msgid "N_A"
 msgstr "N/A"
 
@@ -4369,6 +4393,10 @@ msgid "PER_SECOND_SLASH"
 msgstr "/s"
 
 msgid "PHOSPHATE"
+msgstr "磷酸鹽"
+
+#, fuzzy
+msgid "PHOSPHATES_COST"
 msgstr "磷酸鹽"
 
 msgid "PHOTOSYNTHESIS"
@@ -5932,9 +5960,6 @@ msgstr ""
 
 msgid "TUTORIAL_VIEW_NOW"
 msgstr "現在查看"
-
-msgid "TWITTER_TOOLTIP"
-msgstr "造訪我們的 Twitter"
 
 msgid "TWO_TIMES"
 msgstr "2x"
@@ -8498,6 +8523,10 @@ msgstr "Xbox One"
 
 msgid "XBOX_SERIES"
 msgstr "Xbox Series X"
+
+#, fuzzy
+msgid "X_TWITTER_TOOLTIP"
+msgstr "造訪我們的 Twitter"
 
 msgid "YEARS"
 msgstr "年"

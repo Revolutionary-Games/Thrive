@@ -1275,6 +1275,11 @@ public partial class CellEditorComponent :
         return MicrobeInternalCalculations.CalculateDigestionEfficiencies(editedMicrobeOrganelles);
     }
 
+    public (int AmmoniaCost, int PhosphatesCost) CalculateOrganellesCosts()
+    {
+        return MicrobeInternalCalculations.CalculateOrganellesCosts(editedMicrobeOrganelles);
+    }
+
     public override void OnLightLevelChanged(float dayLightFraction)
     {
         UpdateVisualLightLevel(dayLightFraction, Editor.CurrentPatch);
@@ -2175,6 +2180,8 @@ public partial class CellEditorComponent :
         organismStatisticsPanel.UpdateStorage(GetAdditionalCapacities(out var nominalCapacity), nominalCapacity);
         organismStatisticsPanel.UpdateTotalDigestionSpeed(CalculateTotalDigestionSpeed());
         organismStatisticsPanel.UpdateDigestionEfficiencies(CalculateDigestionEfficiencies());
+        var (ammoniaCost, phosphatesCost) = CalculateOrganellesCosts();
+        organismStatisticsPanel.UpdateOrganellesCost(ammoniaCost, phosphatesCost);
     }
 
     /// <summary>

@@ -296,8 +296,11 @@ public sealed class ProcessSystem : AEntitySetSystem<float>
             }
         }
 
-        // Since BaseMovement and Osmoregulation are assigned total values, they shouldn't add up, rather they
-        // should replace any prevously added value
+        // Movement and osmoregulation are calculated as totals already, so these aren't added up,
+        // but rather they replace any previously added value.
+        // The movement and osmoregulation values are copied into the consumption breakdown here.
+        // These don't use the usual add method as these values are already included in the totals,
+        // so using that would lead to double counting.
         if (includeMovementCost)
         {
             result.Consumption["baseMovement"] = result.BaseMovement;

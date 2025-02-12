@@ -7,8 +7,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2025-02-08 22:47+0300\n"
-"PO-Revision-Date: 2025-02-06 20:34+0000\n"
+"POT-Creation-Date: 2025-02-12 11:27+0200\n"
+"PO-Revision-Date: 2025-02-10 02:33+0000\n"
 "Last-Translator: punctdan <yunusemredilek@hotmail.com>\n"
 "Language-Team: Turkish <https://translate.revolutionarygamesstudio.com/projects/thrive/thrive-game/tr/>\n"
 "Language: tr\n"
@@ -172,6 +172,10 @@ msgid "AMBIANCE_VOLUME"
 msgstr "Ortam sesi"
 
 msgid "AMMONIA"
+msgstr "Amonyak"
+
+#, fuzzy
+msgid "AMMONIA_COST"
 msgstr "Amonyak"
 
 msgid "AMOUNT_OF_AUTOSAVE_TO_KEEP"
@@ -496,6 +500,10 @@ msgstr "Biyom: {0}"
 msgid "BLOOM_RENDER_EFFECT"
 msgstr "Kamaşma efekti:"
 
+#, fuzzy
+msgid "BLUESKY_TOOLTIP"
+msgstr "Oyunu duraklat"
+
 msgid "BRAIN_CELL_NAME_DEFAULT"
 msgstr "Nöron"
 
@@ -638,11 +646,11 @@ msgstr ""
 
 #, fuzzy
 msgid "CELL_TYPE_BUTTON_ATP_CONSUMPTION"
-msgstr "Negatif ATP Tutarı"
+msgstr "Options"
 
 #, fuzzy
 msgid "CELL_TYPE_BUTTON_ATP_PRODUCTION"
-msgstr "Negatif ATP Tutarı"
+msgstr "Options"
 
 msgid "CELL_TYPE_NAME"
 msgstr "Hücre Türü İsmi"
@@ -2515,6 +2523,10 @@ msgstr "İncele"
 msgid "INSPECTOR"
 msgstr "Denetleyici"
 
+#, fuzzy
+msgid "INSTAGRAM_TOOLTIP"
+msgstr "Steam sayfamızı ziyaret edin"
+
 msgid "INTERACTION_ACTIVATE_ASCENSION"
 msgstr "Tırmanış Kapısını Etkinleştir"
 
@@ -3112,6 +3124,10 @@ msgstr "Deniz karı"
 msgid "MASTER_VOLUME"
 msgstr "Ana ses"
 
+#, fuzzy
+msgid "MASTODON_TOOLTIP"
+msgstr "Farklı bir araziye taşınmadan, türünüzü bir araziden başka bir araziye taşıyın"
+
 msgid "MAX_CACHE_SIZE_TOOLTIP"
 msgstr "Diskteki önbelleğin alabileceği maksimum boyut (eğer önbellek aşırı artarsa, öğeler otomatik olarak kaldırılır)"
 
@@ -3189,6 +3205,12 @@ msgstr "Metabolozomlar, protein kabuklarının içine sarılmış proteinler kü
 
 msgid "METABOLOSOMES_PROCESSES_DESCRIPTION"
 msgstr "[thrive:compound type=\"glucose\"]Glukozu[/thrive:compound], [thrive:compound type=\"atp\"]ATP'ye[/thrive:compound] dönüştürür. Bu oran, [thrive:compound type=\"oxygen\"]oksijen[/thrive:compound] konsantrasyonu ile doğru orantılıdır."
+
+#, fuzzy
+msgid "META_THREADS_TOOLTIP"
+msgstr ""
+"Hiper iş parçacığının etkin olup olmadığı otomatik olarak tespit edilemez.\n"
+"Hiper iş parçacıkları gerçek CPU çekirdekleri kadar hızlı olmadığı için, bu, varsayılan iş parçacığı sayısını etkiler."
 
 msgid "METRICS"
 msgstr "Performans Ölçümleri"
@@ -4006,6 +4028,10 @@ msgstr "Daha kompleks olan zarlı organellerin evrimleşmesini sağlar ve hasar�
 msgid "NUMLOCK"
 msgstr "Num Lock"
 
+#, fuzzy
+msgid "NUTRIENT_COST_TOOLTIP"
+msgstr "Hızlanma modunu aç. Hızlanırken, hücreler daha hızlı hareket eder. Ancak bu hücreler daha fazla ATP tüketir ve yorgunluk arttıkça ATP tüketimi daha da artar."
+
 msgid "N_A"
 msgstr "Bilinmeyen"
 
@@ -4357,6 +4383,10 @@ msgid "PER_SECOND_SLASH"
 msgstr "/saniye"
 
 msgid "PHOSPHATE"
+msgstr "Fosfat"
+
+#, fuzzy
+msgid "PHOSPHATES_COST"
 msgstr "Fosfat"
 
 msgid "PHOTOSYNTHESIS"
@@ -5421,12 +5451,11 @@ msgstr "Sıc."
 msgid "TESTING_TEAM"
 msgstr "Deneme Ekibi"
 
-#, fuzzy
 msgid "THANKS_FOR_BUYING_THRIVE_2"
 msgstr ""
-"Thrive'ın bu kopyasını satın alarak Thrive'ın gelişimine katkıda bulunduğunuz için teşekkür ederiz.\n"
+"Thrive'ın bu kopyasını [color=#3796e1][url={0}]{1}[/url][/color] sitesinden satın alarak Thrive'ın gelişimine katkıda bulunduğunuz için teşekkür ederiz.\n"
 "\n"
-"Eğer bu kopyayı satın almadıysanız, lütfen kendi kopyanızı [color=#3796e1][url={0}]buradan[/url][/color] alın veya [color=#3796e1][url=https://revolutionarygamesstudio.com/releases/]web sitemizi[/url][/color] inceleyin.\n"
+"Thrive'ın devamlı gelişiminin hızı, aldığımız desteğin miktarına bağlıdır. [color=#3796e1][url={2}]Web sitemizden[/url][/color] veya ekranın sol altında bağlantısı verilen sosyal medya platformlarından daha fazlasını öğrenebilirsiniz. \n"
 "\n"
 "Eğer Thrive başlatılmadan önce Thrive Başlatıcı'yı görmek isterseniz, başlatıcıya dönmek için ana menüdeki butonu kullanabilir ve sonra başlatıcı ayarları menüsünden kesintisiz modu devre dışı bırakabilirsiniz."
 
@@ -5449,7 +5478,7 @@ msgid "THERMOPLAST_DESCRIPTION"
 msgstr "Termoplast zarsı keseler içinde birbirinin üstüne dizili, ısıya hassas pigmentler içeren bir çift zarlı yapıdır. Bu yapı, kendi ökaryotik konağı tarafından kullanılmak üzere özümsenmiş bir prokaryottur. Termoplasttaki pigmentler, [b]termosentez[/b] adı verilen bir işlemde, sudan [thrive:compound type=\"atp\"]ATP[/thrive:compound] üretmek için çevredeki ısı farkını kullanır. [thrive:compound type=\"atp\"]ATP[/thrive:compound] üretimi, [thrive:compound type=\"temperature\"]sıcaklık[/thrive:compound] farkı ile doğru orantılıdır."
 
 msgid "THERMOPLAST_PROCESSES_DESCRIPTION"
-msgstr "Sıcaklık değişimini kullanarak [thrive:compound type=\"atp\"]ATP[/thrive:compound] üretir. Bu oran, [thrive:compound type=\"temperature\"]sıcaklıktaki[/thrive:compound] değişim ile doğru orantılıdır."
+msgstr "Sıcaklık değişimini kullanarak [thrive:compound type=\"atp\"]ATP[/thrive:compound] üretir. Bu oran, [thrive:compound type=\"temperature\"]sıcaklıktaki[/thrive:compound] değişim ile doğru orantılıdır. Sıcak ve soğuk alanları bulmak için [b]termal görüşü[/b] kullanın."
 
 msgid "THERMOSYNTHASE"
 msgstr "Termosentaz"
@@ -5458,7 +5487,7 @@ msgid "THERMOSYNTHASE_DESCRIPTION"
 msgstr "Termosentaz, ısı aktarımını kullanarak şekil değiştiren bir proteindir. Bu onun, [b]termosentez[/b] adı verilen bir işlemde, ısıya maruz kalırken katlanmasını ve ADP'ye bağlanmasını, sonra daha düşük sıcaklıklara maruz kalırken de açılmasını ve ADP'nin [thrive:compound type=\"atp\"]ATP'ye[/thrive:compound] dönüşmesini sağlar. [thrive:compound type=\"atp\"]ATP[/thrive:compound] üretimi, [thrive:compound type=\"temperature\"]sıcaklık[/thrive:compound] farkı ile doğru orantılıdır."
 
 msgid "THERMOSYNTHASE_PROCESSES_DESCRIPTION"
-msgstr "Sıcaklık değişimini kullanarak [thrive:compound type=\"atp\"]ATP[/thrive:compound] üretir. Bu oran, [thrive:compound type=\"temperature\"]sıcaklıktaki[/thrive:compound] değişim ile doğru orantılıdır. Sıcak ve soğuk alanları bulmak için termal görüşü kullanın."
+msgstr "Sıcaklık değişimini kullanarak [thrive:compound type=\"atp\"]ATP[/thrive:compound] üretir. Bu oran, [thrive:compound type=\"temperature\"]sıcaklıktaki[/thrive:compound] değişim ile doğru orantılıdır. Sıcak ve soğuk alanları bulmak için [b]termal görüşü[/b] kullanın."
 
 msgid "THERMOSYNTHESIS"
 msgstr "Termosentez"
@@ -5913,9 +5942,6 @@ msgstr ""
 
 msgid "TUTORIAL_VIEW_NOW"
 msgstr "Şimdi İnceleyin"
-
-msgid "TWITTER_TOOLTIP"
-msgstr "Twitter yayınımızı ziyaret edin"
 
 msgid "TWO_TIMES"
 msgstr "2x"
@@ -8583,6 +8609,10 @@ msgstr "Xbox One"
 
 msgid "XBOX_SERIES"
 msgstr "Xbox Series X"
+
+#, fuzzy
+msgid "X_TWITTER_TOOLTIP"
+msgstr "Twitter yayınımızı ziyaret edin"
 
 msgid "YEARS"
 msgstr "yıl"

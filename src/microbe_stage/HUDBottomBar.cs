@@ -42,7 +42,7 @@ public partial class HUDBottomBar : HBoxContainer
     private PlayButton pauseButton = null!;
 
     [Export]
-    private Button heatButton = null!;
+    private TextureButton heatButton = null!;
 
     private TextureButton? compoundsButton;
     private TextureButton? environmentButton;

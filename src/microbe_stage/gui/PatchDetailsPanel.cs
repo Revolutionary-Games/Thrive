@@ -96,6 +96,7 @@ public partial class PatchDetailsPanel : PanelContainer
     private Label glucoseLabel = null!;
     private Label phosphateLabel = null!;
     private Label ironLabel = null!;
+    private Label radiationLabel = null!;
 
     private Control otherCompoundBase = null!;
 
@@ -106,6 +107,7 @@ public partial class PatchDetailsPanel : PanelContainer
     private TextureRect ironSituation = null!;
     private TextureRect ammoniaSituation = null!;
     private TextureRect phosphateSituation = null!;
+    private TextureRect radiationSituation = null!;
 
     private CustomRichTextLabel speciesInfoDisplay = null!;
 
@@ -301,6 +303,11 @@ public partial class PatchDetailsPanel : PanelContainer
         ironLabel = ironBase.GetNode<Label>(labelPath);
         ironSituation = ironBase.GetNode<TextureRect>(situation);
 
+        radiationLabel = null!;
+        var radiationBase = compoundsContainer.GetItem<Control>("Radiation");
+        radiationLabel = radiationBase.GetNode<Label>(labelPath);
+        radiationSituation = radiationBase.GetNode<TextureRect>(situation);
+
         // Species list
         speciesInfoDisplay = speciesParentContainer.GetItem<CustomRichTextLabel>("SpeciesList");
 
@@ -417,6 +424,9 @@ public partial class PatchDetailsPanel : PanelContainer
                 Constants.PATCH_CONDITIONS_COMPOUND_DISPLAY_DECIMALS).ToString(CultureInfo.CurrentCulture);
         ironLabel.Text =
             Math.Round(GetCompoundAmount(SelectedPatch, Compound.Iron),
+                Constants.PATCH_CONDITIONS_COMPOUND_DISPLAY_DECIMALS).ToString(CultureInfo.CurrentCulture);
+        radiationLabel.Text =
+            Math.Round(GetCompoundAmount(SelectedPatch, Compound.Radiation),
                 Constants.PATCH_CONDITIONS_COMPOUND_DISPLAY_DECIMALS).ToString(CultureInfo.CurrentCulture);
 
         var speciesList = new StringBuilder(100);
@@ -581,6 +591,21 @@ public partial class PatchDetailsPanel : PanelContainer
         else
         {
             phosphateSituation.Texture = null;
+        }
+
+        nextCompound = GetCompoundAmount(SelectedPatch, Compound.Radiation);
+
+        if (nextCompound > GetCompoundAmount(CurrentPatch, Compound.Radiation))
+        {
+            radiationSituation.Texture = increaseIcon;
+        }
+        else if (nextCompound < GetCompoundAmount(CurrentPatch, Compound.Radiation))
+        {
+            radiationSituation.Texture = decreaseIcon;
+        }
+        else
+        {
+            radiationSituation.Texture = null;
         }
     }
 

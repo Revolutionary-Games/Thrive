@@ -1,4 +1,4 @@
-[gd_scene load_steps=27 format=3 uid="uid://bdwkyuskd3u3r"]
+[gd_scene load_steps=31 format=3 uid="uid://bdwkyuskd3u3r"]
 
 [ext_resource type="Texture2D" uid="uid://blqjm72pgomg0" path="res://assets/textures/gui/bevel/suicideButton.png" id="1"]
 [ext_resource type="Texture2D" uid="uid://cp3nxr3dfb88o" path="res://assets/textures/gui/bevel/statisticsButton.png" id="2"]
@@ -25,6 +25,10 @@
 [ext_resource type="Texture2D" uid="uid://c6rgyr5rhb352" path="res://assets/textures/gui/bevel/suicideButtonHover.png" id="23"]
 [ext_resource type="Texture2D" uid="uid://dt32f5t6b4u1u" path="res://assets/textures/gui/bevel/statisticsButtonActive.png" id="24"]
 [ext_resource type="Script" path="res://src/microbe_stage/HUDBottomBar.cs" id="26"]
+[ext_resource type="Texture2D" uid="uid://c2fhsjrbtkfs1" path="res://assets/textures/gui/bevel/ThermovisionButton.svg" id="26_guvij"]
+[ext_resource type="Texture2D" uid="uid://b31550jo4hwox" path="res://assets/textures/gui/bevel/ThermovisionButtonActive.svg" id="27_pc17v"]
+[ext_resource type="Texture2D" uid="uid://c64hu6j38lxjf" path="res://assets/textures/gui/bevel/ThermovisionButtonHover.svg" id="28_u7j1e"]
+[ext_resource type="Texture2D" uid="uid://dll34ycuw8wqn" path="res://assets/textures/gui/bevel/ThermovisionButtonDisabled.svg" id="29_l10eo"]
 
 [sub_resource type="StyleBoxEmpty" id="27"]
 
@@ -149,15 +153,19 @@ texture_hover = ExtResource("16")
 ignore_texture_size = true
 stretch_mode = 5
 
-[node name="HeatViewButton" type="Button" parent="."]
-editor_description = "PLACEHOLDER"
+[node name="HeatViewButton" type="TextureButton" parent="."]
 custom_minimum_size = Vector2(35, 35)
 layout_mode = 2
 tooltip_text = "TOGGLE_HEAT_VIEW_TOOLTIP"
 focus_mode = 0
 disabled = true
 toggle_mode = true
-text = "T"
+texture_normal = ExtResource("26_guvij")
+texture_pressed = ExtResource("27_pc17v")
+texture_hover = ExtResource("28_u7j1e")
+texture_disabled = ExtResource("29_l10eo")
+ignore_texture_size = true
+stretch_mode = 5
 
 [node name="HSeparator" type="HSeparator" parent="."]
 custom_minimum_size = Vector2(15, 0)

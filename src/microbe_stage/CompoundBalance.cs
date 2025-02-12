@@ -28,8 +28,8 @@ public class CompoundBalance
 
     public void SetupForOrganelleDataTracking()
     {
-        ConsumptionOrganelles = new();
-        ProductionOrganelles = new();
+        ConsumptionOrganelles = new Dictionary<string, float>();
+        ProductionOrganelles = new Dictionary<string, float>();
     }
 
     public void AddConsumption(string organelleName, float amount)
