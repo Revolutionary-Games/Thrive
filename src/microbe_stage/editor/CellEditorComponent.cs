@@ -302,6 +302,8 @@ public partial class CellEditorComponent :
 
     private bool showGrowthOrderNumbers;
 
+    private bool wasFreshInit;
+
     private TutorialState? tutorialState;
 
     public enum SelectionMenuTab
@@ -641,10 +643,14 @@ public partial class CellEditorComponent :
     {
         base.Init(owningEditor, fresh);
 
+        wasFreshInit = fresh;
+
         if (!IsMulticellularEditor)
         {
             behaviourEditor.Init(owningEditor, fresh);
-            tolerancesGUI.Init(owningEditor, fresh);
+
+            // Tolerances need access to the current species to edit, so it is initialized only after the species is
+            // ready
         }
         else
         {
@@ -866,6 +872,8 @@ public partial class CellEditorComponent :
     public override void OnEditorSpeciesSetup(Species species)
     {
         base.OnEditorSpeciesSetup(species);
+
+        tolerancesGUI.Init(Editor, wasFreshInit);
 
         // For multicellular the cell editor is initialized before a cell type to edit is selected so we skip
         // the logic here the first time this is called too early
