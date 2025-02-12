@@ -63,10 +63,10 @@ public class Settings
     // Graphics Properties
 
     /// <summary>
-    ///   Sets whether the game window is in fullscreen mode
+    ///   Sets window mode of the game window
     /// </summary>
     [JsonProperty]
-    public SettingValue<bool> FullScreen { get; private set; } = new(true);
+    public SettingValue<DisplayServer.WindowMode> DisplayMode { get; private set; } = new(DisplayServer.WindowMode.Fullscreen);
 
     /// <summary>
     ///   Sets whether the game window will use vsync
@@ -881,9 +881,7 @@ public class Settings
         }
 
         // TODO: add exclusive fullscreen mode option
-        var wantedMode = FullScreen.Value ?
-            DisplayServer.WindowMode.Fullscreen :
-            DisplayServer.WindowMode.Windowed;
+        var wantedMode = DisplayMode.Value;
 
         if (mode != wantedMode)
         {
