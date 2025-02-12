@@ -66,7 +66,8 @@ public class Settings
     ///   Sets window mode of the game window
     /// </summary>
     [JsonProperty]
-    public SettingValue<DisplayServer.WindowMode> DisplayMode { get; private set; } = new(DisplayServer.WindowMode.Fullscreen);
+    public SettingValue<DisplayServer.WindowMode> DisplayMode { get; private set; } =
+        new(DisplayServer.WindowMode.Fullscreen);
 
     /// <summary>
     ///   Sets whether the game window will use vsync

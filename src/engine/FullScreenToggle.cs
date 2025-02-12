@@ -22,7 +22,8 @@ public partial class FullScreenToggle : NodeWithInput
             return;
         }
 
-        if (Settings.Instance.DisplayMode.Value == DisplayServer.WindowMode.Fullscreen || Settings.Instance.DisplayMode.Value == DisplayServer.WindowMode.ExclusiveFullscreen)
+        if (Settings.Instance.DisplayMode.Value == DisplayServer.WindowMode.Fullscreen ||
+            Settings.Instance.DisplayMode.Value == DisplayServer.WindowMode.ExclusiveFullscreen)
         {
             Settings.Instance.DisplayMode.Value = DisplayServer.WindowMode.Windowed;
         }
