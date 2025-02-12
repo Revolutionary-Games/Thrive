@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2025-02-11 18:53+0100\n"
+"POT-Creation-Date: 2025-02-12 11:27+0200\n"
 "PO-Revision-Date: 2025-02-06 13:29+0000\n"
 "Last-Translator: Anonymous <noreply@weblate.org>\n"
 "Language-Team: Swedish <https://translate.revolutionarygamesstudio.com/projects/thrive/thrive-game/sv/>\n"
@@ -261,6 +261,15 @@ msgid "ATP_BALANCE"
 msgstr "ATP-Saldo"
 
 msgid "ATP_BALANCE_TOOLTIP"
+msgstr ""
+"Den här sektionen visar ATP-saldot (energi) för den aktuella cellen.\n"
+"För att kunna överleva måste saldot vara positivt. För sessila celler är omtanken kring saldot utom rörelsekostnaden övervägt.\n"
+"Nedrullningsmenyn nedan kan användas för att kontrollera vad som skulle hända om cellen inte hade någon resurs tillgänglig att göra ATP med.\n"
+"Till exempel kan vissa celler bara upprätthålla ett positivt ATP-saldo när de har flera sammansättningar att göra ATP från samtidigt.\n"
+"Dessa typer av celler kan vara svårare att spela som eftersom de kräver att flera sammanställningar lagras samtidigt."
+
+#, fuzzy
+msgid "ATP_BALANCE_TOOLTIP_MULTICELLULAR"
 msgstr ""
 "Den här sektionen visar ATP-saldot (energi) för den aktuella cellen.\n"
 "För att kunna överleva måste saldot vara positivt. För sessila celler är omtanken kring saldot utom rörelsekostnaden övervägt.\n"
@@ -663,6 +672,14 @@ msgstr "Fortsätt"
 #, fuzzy
 msgid "CELL_STAT_SPEED_TOOLTIP"
 msgstr "Fortsätt"
+
+#, fuzzy
+msgid "CELL_TYPE_BUTTON_ATP_CONSUMPTION"
+msgstr "{0}: -{1} ATP"
+
+#, fuzzy
+msgid "CELL_TYPE_BUTTON_ATP_PRODUCTION"
+msgstr "ATP Produktion"
 
 msgid "CELL_TYPE_NAME"
 msgstr ""

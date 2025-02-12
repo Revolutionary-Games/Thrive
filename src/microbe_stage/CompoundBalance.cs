@@ -1,18 +1,18 @@
 ﻿using System.Collections.Generic;
+using Newtonsoft.Json;
 
 /// <summary>
 ///   Balance of a given compound. Lists the organelles that contribute to the balance
 /// </summary>
 public class CompoundBalance
 {
-    public readonly Dictionary<string, float> Consumption = new();
+    public Dictionary<string, float>? ConsumptionOrganelles;
 
-    public readonly Dictionary<string, float> Production = new();
+    public Dictionary<string, float>? ProductionOrganelles;
 
-    /// <summary>
-    ///   Total balance of this compound
-    /// </summary>
-    public float Balance;
+    public float Consumption;
+
+    public float Production;
 
     /// <summary>
     ///   Optionally calculated value for how long it takes for this compound to fill storage (0 when not calculated,
@@ -20,21 +20,39 @@ public class CompoundBalance
     /// </summary>
     public float FillTime;
 
+    /// <summary>
+    ///   Total balance of this compound
+    /// </summary>
+    [JsonIgnore]
+    public float Balance => Production - Consumption;
+
+    public void SetupForOrganelleDataTracking()
+    {
+        ConsumptionOrganelles = new Dictionary<string, float>();
+        ProductionOrganelles = new Dictionary<string, float>();
+    }
+
     public void AddConsumption(string organelleName, float amount)
     {
-        Consumption.TryGetValue(organelleName, out var existing);
+        if (ConsumptionOrganelles != null)
+        {
+            ConsumptionOrganelles.TryGetValue(organelleName, out var existing);
 
-        Consumption[organelleName] = existing + amount;
+            ConsumptionOrganelles[organelleName] = existing + amount;
+        }
 
-        Balance -= amount;
+        Consumption += amount;
     }
 
     public void AddProduction(string organelleName, float amount)
     {
-        Production.TryGetValue(organelleName, out var existing);
+        if (ProductionOrganelles != null)
+        {
+            ProductionOrganelles.TryGetValue(organelleName, out var existing);
 
-        Production[organelleName] = existing + amount;
+            ProductionOrganelles[organelleName] = existing + amount;
+        }
 
-        Balance += amount;
+        Production += amount;
     }
 }

@@ -11,6 +11,9 @@ using Godot;
 public partial class OrganismStatisticsPanel : PanelContainer
 {
     [Export]
+    public bool IsMulticellularEditor;
+
+    [Export]
     public bool ShowHealthStat;
 
     [Export]
@@ -30,6 +33,9 @@ public partial class OrganismStatisticsPanel : PanelContainer
 
     [Export]
     public bool ShowDigestionEfficiencyStat;
+
+    [Export]
+    public bool ShowATPBalanceBars;
 
     [Export]
     public bool ShowOrganellesCostStat;
@@ -94,6 +100,9 @@ public partial class OrganismStatisticsPanel : PanelContainer
 
     [Export]
     private Control atpBalancePanel = null!;
+
+    [Export]
+    private Control atpBalanceBarContainer = null!;
 
     [Export]
     private Label atpBalanceLabel = null!;
@@ -173,6 +182,7 @@ public partial class OrganismStatisticsPanel : PanelContainer
         atpConsumptionBar.SelectedType = SegmentedBar.Type.ATP;
 
         UpdateStatVisibility();
+        UpdateATPBalanceText();
     }
 
     public void OnTranslationsChanged()
@@ -198,9 +208,11 @@ public partial class OrganismStatisticsPanel : PanelContainer
         digestionEfficiencyLabel.Visible = ShowDigestionEfficiencyStat;
         digestionStatsSeparator.Visible = ShowDigestionSpeedStat || ShowDigestionEfficiencyStat;
 
+        atpBalanceBarContainer.Visible = ShowATPBalanceBars;
+
         ammoniaCostLabel.Visible = ShowOrganellesCostStat;
         phosphatesCostLabel.Visible = ShowOrganellesCostStat;
-        digestionStatsSeparator.Visible = ShowOrganellesCostStat;
+        organellesCostsSeparator.Visible = ShowOrganellesCostStat;
     }
 
     public void SendObjectsToTutorials(TutorialState tutorial, MicrobeEditorTutorialGUI gui)
@@ -212,17 +224,7 @@ public partial class OrganismStatisticsPanel : PanelContainer
     {
         energyBalanceInfo = energyBalance;
 
-        if (energyBalance.FinalBalance > 0)
-        {
-            atpBalanceLabel.Text = Localization.Translate("ATP_PRODUCTION");
-            atpBalanceLabel.LabelSettings = ATPBalanceNormalText;
-        }
-        else
-        {
-            atpBalanceLabel.Text = Localization.Translate("ATP_PRODUCTION") + " - " +
-                Localization.Translate("ATP_PRODUCTION_TOO_LOW");
-            atpBalanceLabel.LabelSettings = ATPBalanceNotEnoughText;
-        }
+        UpdateATPBalanceText();
 
         atpProductionLabel.Text = string.Format(CultureInfo.CurrentCulture, "{0:F1}", energyBalance.TotalProduction);
         atpConsumptionLabel.Text = string.Format(CultureInfo.CurrentCulture, "{0:F1}", energyBalance.TotalConsumption);
@@ -360,6 +362,15 @@ public partial class OrganismStatisticsPanel : PanelContainer
     {
         digestionEfficiencyLabel.RegisterToolTipForControl("digestionEfficiencyDetails", "editor");
         storageLabel.RegisterToolTipForControl("storageDetails", "editor");
+
+        if (!IsMulticellularEditor)
+        {
+            atpBalanceLabel.TooltipText = Localization.Translate("ATP_BALANCE_TOOLTIP");
+        }
+        else
+        {
+            atpBalanceLabel.TooltipText = Localization.Translate("ATP_BALANCE_TOOLTIP_MULTICELLULAR");
+        }
     }
 
     public void UpdateSize(int size)
@@ -546,6 +557,21 @@ public partial class OrganismStatisticsPanel : PanelContainer
         }
 
         EmitSignal(SignalName.OnLightLevelChanged, (int)selectedLightLevelOption);
+    }
+
+    private void UpdateATPBalanceText()
+    {
+        if (energyBalanceInfo == null || energyBalanceInfo.FinalBalance > 0)
+        {
+            atpBalanceLabel.Text = Localization.Translate("ATP_PRODUCTION");
+            atpBalanceLabel.LabelSettings = ATPBalanceNormalText;
+        }
+        else
+        {
+            atpBalanceLabel.Text = Localization.Translate("ATP_PRODUCTION") + " - " +
+                Localization.Translate("ATP_PRODUCTION_TOO_LOW");
+            atpBalanceLabel.LabelSettings = ATPBalanceNotEnoughText;
+        }
     }
 
     private void OnCompoundBalanceTypeChanged(BalanceDisplayType newType)

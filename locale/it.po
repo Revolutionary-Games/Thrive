@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2025-02-11 18:53+0100\n"
+"POT-Creation-Date: 2025-02-12 11:27+0200\n"
 "PO-Revision-Date: 2025-02-06 13:29+0000\n"
 "Last-Translator: Anonymous <noreply@weblate.org>\n"
 "Language-Team: Italian <https://translate.revolutionarygamesstudio.com/projects/thrive/thrive-game/it/>\n"
@@ -258,6 +258,13 @@ msgstr "Bilancio ATP"
 
 #, fuzzy
 msgid "ATP_BALANCE_TOOLTIP"
+msgstr ""
+"Questa sezione mostra il bilancio totale di ATP (energia) della tua attuale cellula.\n"
+"Affinché la cellula sopravviva il bilancio deve essere positivo. Per le cellule sessili bisogna considerare il bilancio positivo escludendo i costi di movimento.\n"
+"Etc"
+
+#, fuzzy
+msgid "ATP_BALANCE_TOOLTIP_MULTICELLULAR"
 msgstr ""
 "Questa sezione mostra il bilancio totale di ATP (energia) della tua attuale cellula.\n"
 "Affinché la cellula sopravviva il bilancio deve essere positivo. Per le cellule sessili bisogna considerare il bilancio positivo escludendo i costi di movimento.\n"
@@ -635,6 +642,14 @@ msgstr ""
 "Velocità della cellula. Tieni presente che a causa delle limitazioni dell'algoritmo che calcola questo valore, il valore è approssimativo.\n"
 "E, ad esempio, quando si modifica la lunghezza del flagello, i valori di velocità non corrispondono a ciò che accadrà nella fase.\n"
 "Questo è un problema noto ma non è stato ancora risolto poiché ha una priorità inferiore rispetto a molti altri problemi e nuove funzionalità."
+
+#, fuzzy
+msgid "CELL_TYPE_BUTTON_ATP_CONSUMPTION"
+msgstr "Opzioni"
+
+#, fuzzy
+msgid "CELL_TYPE_BUTTON_ATP_PRODUCTION"
+msgstr "Opzioni"
 
 msgid "CELL_TYPE_NAME"
 msgstr "Nome del tipo di cellula"

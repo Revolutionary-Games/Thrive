@@ -1834,11 +1834,15 @@ public partial class CellEditorComponent :
     private void OnEnergyBalanceOptionsChanged()
     {
         CalculateEnergyAndCompoundBalance(editedMicrobeOrganelles, Membrane);
+
+        UpdateFinishButtonWarningVisibility();
     }
 
     private void OnResourceLimitingModeChanged()
     {
         CalculateEnergyAndCompoundBalance(editedMicrobeOrganelles, Membrane);
+
+        UpdateFinishButtonWarningVisibility();
     }
 
     /// <summary>

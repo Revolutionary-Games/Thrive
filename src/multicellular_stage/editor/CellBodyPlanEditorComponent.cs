@@ -136,6 +136,8 @@ public partial class CellBodyPlanEditorComponent :
 
     private EnergyBalanceInfoFull? energyBalanceInfo;
 
+    private bool hasNegativeATPCells;
+
     [Signal]
     public delegate void OnCellTypeToEditSelectedEventHandler(string name, bool switchTab);
 
@@ -478,6 +480,8 @@ public partial class CellBodyPlanEditorComponent :
         RegenerateCellTypeIcon(changedType);
 
         UpdateStats();
+
+        UpdateFinishButtonWarningVisibility();
     }
 
     /// <summary>
@@ -526,6 +530,8 @@ public partial class CellBodyPlanEditorComponent :
     {
         CalculateEnergyAndCompoundBalance(editedMicrobeCells);
 
+        UpdateCellTypeBalances();
+
         organismStatisticsPanel.UpdateLightSelectionPanelVisibility(
             Editor.CurrentGame.GameWorld.WorldSettings.DayNightCycleEnabled && Editor.CurrentPatch.HasDayAndNight);
     }
@@ -535,6 +541,15 @@ public partial class CellBodyPlanEditorComponent :
         UpdateVisualLightLevel(dayLightFraction, Editor.CurrentPatch);
 
         CalculateEnergyAndCompoundBalance(editedMicrobeCells);
+
+        UpdateCellTypeBalances();
+    }
+
+    protected override void RegisterTooltips()
+    {
+        base.RegisterTooltips();
+
+        organismStatisticsPanel.RegisterTooltips();
     }
 
     protected CellType CellTypeFromName(string name)
@@ -712,8 +727,7 @@ public partial class CellBodyPlanEditorComponent :
 
     private bool IsNegativeAtpProduction()
     {
-        return energyBalanceInfo != null &&
-            energyBalanceInfo.TotalProduction < energyBalanceInfo.TotalConsumptionStationary;
+        return hasNegativeATPCells;
     }
 
     private void SetSpeciesInfo(string name, BehaviourDictionary behaviour)
@@ -1019,6 +1033,52 @@ public partial class CellBodyPlanEditorComponent :
             ClearSelectedAction();
     }
 
+    private void UpdateCellTypeBalances()
+    {
+        float maxValue = 0.0f;
+
+        var maximumMovementDirection =
+            MicrobeInternalCalculations.MaximumSpeedDirection(editedMicrobeCells[0].Data!.Organelles);
+
+        var conditionsData = new BiomeResourceLimiterAdapter(organismStatisticsPanel.ResourceLimitingMode,
+            Editor.CurrentPatch.Biome);
+
+        UpdateCellTypesCounts();
+        hasNegativeATPCells = false;
+
+        foreach (var button in cellTypeSelectionButtons)
+        {
+            var energyBalance = new EnergyBalanceInfoSimple();
+
+            ProcessSystem.ComputeEnergyBalanceSimple(button.Value.CellType.Organelles, conditionsData,
+                button.Value.CellType.MembraneType, maximumMovementDirection,
+                organismStatisticsPanel.CalculateBalancesWhenMoving, true, Editor.CurrentGame.GameWorld.WorldSettings,
+                organismStatisticsPanel.CompoundAmountType, null, energyBalance);
+
+            button.Value.SetEnergyBalanceValues(energyBalance.TotalProduction, energyBalance.TotalConsumption);
+
+            if (energyBalance.TotalProduction > maxValue)
+                maxValue = energyBalance.TotalProduction;
+
+            if (energyBalance.TotalConsumption > maxValue)
+                maxValue = energyBalance.TotalConsumption;
+
+            cellTypesCount.TryGetValue(button.Value.CellType, out var count);
+
+            if (energyBalance.TotalConsumption > energyBalance.TotalProduction
+                && count > 0)
+            {
+                // This cell is present in the microbe and has a negative energy balance
+                hasNegativeATPCells = true;
+            }
+        }
+
+        foreach (var button in cellTypeSelectionButtons)
+        {
+            button.Value.MaxEnergyValue = maxValue;
+        }
+    }
+
     private void OnCellToPlaceSelected(string cellTypeName)
     {
         if (!cellTypeSelectionButtons.TryGetValue(cellTypeName, out _))
@@ -1069,11 +1129,19 @@ public partial class CellBodyPlanEditorComponent :
     private void OnEnergyBalanceOptionsChanged()
     {
         CalculateEnergyAndCompoundBalance(editedMicrobeCells);
+
+        UpdateCellTypeBalances();
+
+        UpdateFinishButtonWarningVisibility();
     }
 
     private void OnResourceLimitingModeChanged()
     {
         CalculateEnergyAndCompoundBalance(editedMicrobeCells);
+
+        UpdateCellTypeBalances();
+
+        UpdateFinishButtonWarningVisibility();
     }
 
     private void OnCellsChanged()
@@ -1098,6 +1166,8 @@ public partial class CellBodyPlanEditorComponent :
         organismStatisticsPanel.UpdateOrganellesCost(ammoniaCost, phosphatesCost);
 
         CalculateEnergyAndCompoundBalance(editedMicrobeCells);
+
+        UpdateCellTypeBalances();
     }
 
     /// <summary>
@@ -1134,11 +1204,6 @@ public partial class CellBodyPlanEditorComponent :
         }
 
         energyBalanceInfo = energyBalance;
-
-        // TODO: It doesn't entirely make sense to sum up a colony's ATP balances and show them that way.
-        // It would be better to display those separately for each cell type.
-        // https://github.com/Revolutionary-Games/Thrive/issues/5863
-        organismStatisticsPanel.UpdateEnergyBalance(energyBalance);
 
         // Passing those variables by refs to the following functions to reuse them
         float nominalStorage = 0;

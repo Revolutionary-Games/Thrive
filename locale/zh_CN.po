@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2025-02-11 18:53+0100\n"
+"POT-Creation-Date: 2025-02-12 11:27+0200\n"
 "PO-Revision-Date: 2025-02-06 13:29+0000\n"
 "Last-Translator: Anonymous <noreply@weblate.org>\n"
 "Language-Team: Chinese (Simplified Han script) <https://translate.revolutionarygamesstudio.com/projects/thrive/thrive-game/zh_Hans/>\n"
@@ -262,6 +262,15 @@ msgid "ATP_BALANCE"
 msgstr "ATP开支"
 
 msgid "ATP_BALANCE_TOOLTIP"
+msgstr ""
+"这个区域显示了目前细胞ATP（能量）的总平衡情况\n"
+"如果想要生存，这个数值应该是正的。对于没有运动需求的细胞，可以不考虑移动所消耗的ATP。\n"
+"下面的下拉菜单可以用来检查各种资源短缺时会发生的情况。\n"
+"比如，有些细胞只有在同时拥有好几种类型的化合物时才可以使ATP收支平衡。\n"
+"这些细胞将更难存活，因为它们需要收集更多的化合物。"
+
+#, fuzzy
+msgid "ATP_BALANCE_TOOLTIP_MULTICELLULAR"
 msgstr ""
 "这个区域显示了目前细胞ATP（能量）的总平衡情况\n"
 "如果想要生存，这个数值应该是正的。对于没有运动需求的细胞，可以不考虑移动所消耗的ATP。\n"
@@ -639,6 +648,14 @@ msgstr "用于生成世界的随机数种子，必须为正整数"
 #, fuzzy
 msgid "CELL_STAT_SPEED_TOOLTIP"
 msgstr "用于生成世界的随机数种子，必须为正整数"
+
+#, fuzzy
+msgid "CELL_TYPE_BUTTON_ATP_CONSUMPTION"
+msgstr "选项卡"
+
+#, fuzzy
+msgid "CELL_TYPE_BUTTON_ATP_PRODUCTION"
+msgstr "选项卡"
 
 msgid "CELL_TYPE_NAME"
 msgstr "细胞类型名称"

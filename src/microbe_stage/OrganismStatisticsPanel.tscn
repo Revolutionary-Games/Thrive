@@ -22,7 +22,7 @@
 [ext_resource type="PackedScene" uid="uid://sxqf3o1pkl0n" path="res://src/microbe_stage/editor/CompoundBalanceDisplay.tscn" id="16_wlbdy"]
 [ext_resource type="PackedScene" uid="uid://doveokjve1v3t" path="res://src/microbe_stage/editor/CompoundStorageStatistics.tscn" id="17_pca5e"]
 
-[node name="OrganismStatisticsPanel" type="PanelContainer" node_paths=PackedStringArray("sizeLabel", "speedLabel", "rotationSpeedLabel", "hpLabel", "storageLabel", "digestionSpeedLabel", "digestionEfficiencyLabel", "ammoniaCostLabel", "phosphatesCostLabel", "basicStatsSeparator", "movementStatsSeparator", "digestionStatsSeparator", "organellesCostsSeparator", "generationLabel", "atpBalancePanel", "atpBalanceLabel", "atpProductionLabel", "atpConsumptionLabel", "atpProductionBar", "atpConsumptionBar", "compoundBalance", "compoundStorageLastingTimes", "notEnoughStorageWarning", "calculateBalancesAsIfDay", "calculateBalancesWhenMoving", "processListButton")]
+[node name="OrganismStatisticsPanel" type="PanelContainer" node_paths=PackedStringArray("sizeLabel", "speedLabel", "rotationSpeedLabel", "hpLabel", "storageLabel", "digestionSpeedLabel", "digestionEfficiencyLabel", "ammoniaCostLabel", "phosphatesCostLabel", "basicStatsSeparator", "movementStatsSeparator", "digestionStatsSeparator", "organellesCostsSeparator", "generationLabel", "atpBalancePanel", "atpBalanceBarContainer", "atpBalanceLabel", "atpProductionLabel", "atpConsumptionLabel", "atpProductionBar", "atpConsumptionBar", "compoundBalance", "compoundStorageLastingTimes", "notEnoughStorageWarning", "calculateBalancesAsIfDay", "calculateBalancesWhenMoving", "processListButton")]
 size_flags_vertical = 3
 mouse_filter = 1
 theme = ExtResource("1_ca4to")
@@ -44,6 +44,7 @@ digestionStatsSeparator = NodePath("VBoxContainer/Body/ScrollContainer/MarginCon
 organellesCostsSeparator = NodePath("VBoxContainer/Body/ScrollContainer/MarginContainer/VBoxContainer/HSeparator4")
 generationLabel = NodePath("VBoxContainer/Body/ScrollContainer/MarginContainer/VBoxContainer/Generation/Value")
 atpBalancePanel = NodePath("VBoxContainer/Body/ScrollContainer/MarginContainer/VBoxContainer/ATPBalancePanel")
+atpBalanceBarContainer = NodePath("VBoxContainer/Body/ScrollContainer/MarginContainer/VBoxContainer/ATPBalancePanel/VBoxContainer/ATPBarContainer")
 atpBalanceLabel = NodePath("VBoxContainer/Body/ScrollContainer/MarginContainer/VBoxContainer/ATPBalancePanel/VBoxContainer/ATPBalanceTitle")
 atpProductionLabel = NodePath("VBoxContainer/Body/ScrollContainer/MarginContainer/VBoxContainer/ATPBalancePanel/VBoxContainer/ATPBarContainer/HBoxContainer/Label")
 atpConsumptionLabel = NodePath("VBoxContainer/Body/ScrollContainer/MarginContainer/VBoxContainer/ATPBalancePanel/VBoxContainer/ATPBarContainer/HBoxContainer2/Label")
@@ -96,6 +97,7 @@ theme_override_constants/margin_right = 5
 theme_override_constants/margin_bottom = 3
 
 [node name="VBoxContainer" type="VBoxContainer" parent="VBoxContainer/Body/ScrollContainer/MarginContainer"]
+custom_minimum_size = Vector2(246, 0)
 layout_mode = 2
 size_flags_horizontal = 3
 size_flags_vertical = 3
@@ -175,7 +177,6 @@ theme_override_constants/separation = 0
 custom_minimum_size = Vector2(100, 0)
 layout_mode = 2
 size_flags_horizontal = 3
-tooltip_text = "ATP_BALANCE_TOOLTIP"
 mouse_filter = 1
 text = "ATP_BALANCE"
 label_settings = ExtResource("11_bfneb")

@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2025-02-11 18:53+0100\n"
+"POT-Creation-Date: 2025-02-12 11:27+0200\n"
 "PO-Revision-Date: 2025-02-06 13:29+0000\n"
 "Last-Translator: Anonymous <noreply@weblate.org>\n"
 "Language-Team: Polish <https://translate.revolutionarygamesstudio.com/projects/thrive/thrive-game/pl/>\n"
@@ -261,6 +261,15 @@ msgid "ATP_BALANCE"
 msgstr "Bilans ATP"
 
 msgid "ATP_BALANCE_TOOLTIP"
+msgstr ""
+"Ta część pokazuje całkowity bilans ATP (energii) obecnej komórki.\n"
+"Py przetrwać, bilans musi być pozytywny. Dla komórek osiadłych bilans może być pozytywny jedynie w bezruchu.\n"
+"Rozwijane menu poniżej można wykorzystać do sprawdzenia, co by się stało, gdyby komórka nie miała dostępu do zasobów, z których mogłaby produkować ATP.\n"
+"Na przykład, niektóre komórki są zdolne do utrzymywania pozytywnego bilansu ATP jedynie gdy równocześnie mają wiele rodzajów związków do produkcji ATP.\n"
+"Rozgrywka takimi komórkami jest trudniejsza, ponieważ do przetrwania wymagają równoczesnego składowania wielu rodzajów związków."
+
+#, fuzzy
+msgid "ATP_BALANCE_TOOLTIP_MULTICELLULAR"
 msgstr ""
 "Ta część pokazuje całkowity bilans ATP (energii) obecnej komórki.\n"
 "Py przetrwać, bilans musi być pozytywny. Dla komórek osiadłych bilans może być pozytywny jedynie w bezruchu.\n"
@@ -643,6 +652,14 @@ msgstr "Wartość używana do generacji świata (musi być dodatnią liczbą ca�
 #, fuzzy
 msgid "CELL_STAT_SPEED_TOOLTIP"
 msgstr "Wartość używana do generacji świata (musi być dodatnią liczbą całkowitą)"
+
+#, fuzzy
+msgid "CELL_TYPE_BUTTON_ATP_CONSUMPTION"
+msgstr "Opcje"
+
+#, fuzzy
+msgid "CELL_TYPE_BUTTON_ATP_PRODUCTION"
+msgstr "Opcje"
 
 msgid "CELL_TYPE_NAME"
 msgstr "Nazwa Rodzaju Komórki"

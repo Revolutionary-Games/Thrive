@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2025-02-11 18:53+0100\n"
+"POT-Creation-Date: 2025-02-12 11:27+0200\n"
 "PO-Revision-Date: 2025-02-09 23:27+0000\n"
 "Last-Translator: Anonymous <noreply@weblate.org>\n"
 "Language-Team: Georgian <https://translate.revolutionarygamesstudio.com/projects/thrive/thrive-game/ka/>\n"
@@ -260,6 +260,15 @@ msgid "ATP_BALANCE"
 msgstr "ატფ-ის ბალანსი"
 
 msgid "ATP_BALANCE_TOOLTIP"
+msgstr ""
+"ეს სექცია ატფ-ის ბალანსს აჩვენებს მიმდინარე უჯრედისთვის.\n"
+"იმისათვის, რომ გადარჩეთ, ბალანსი დადებითი უნდა იყოს. უმოძრაო უჯრედებმა ეს მოძრაობის გარეშე უნდა მოახერხონ.\n"
+"ქვემოთ ჩამოსაშლელი სია შეგიძლიათ, გამოიყენოთ, რომ შეამოწმოთ, რა მოხდება, თუ უჯრედს არ ჰქონდა ზოგიერთი რესურსი, ატფ შეექმნა.\n"
+"მაგალითად, ზოგიერთ უჯრედს, მხოლოდ, მაშინ შეუძლიათ დადებითი ატფ-ის ბალანი ჰქონდეთ, როცა აქვთ ერთზე მეტი ნაერთი, რომ ატფ შექმნან.\n"
+"ამ ტიპის უჯრედებით თამაში უფრო ძნელია, რადგან მათ გადასარჩენად ერთზე მეტი ნაერთი სჭირდებათ."
+
+#, fuzzy
+msgid "ATP_BALANCE_TOOLTIP_MULTICELLULAR"
 msgstr ""
 "ეს სექცია ატფ-ის ბალანსს აჩვენებს მიმდინარე უჯრედისთვის.\n"
 "იმისათვის, რომ გადარჩეთ, ბალანსი დადებითი უნდა იყოს. უმოძრაო უჯრედებმა ეს მოძრაობის გარეშე უნდა მოახერხონ.\n"
@@ -627,6 +636,14 @@ msgstr ""
 
 msgid "CELL_STAT_SPEED_TOOLTIP"
 msgstr ""
+
+#, fuzzy
+msgid "CELL_TYPE_BUTTON_ATP_CONSUMPTION"
+msgstr "მორგება"
+
+#, fuzzy
+msgid "CELL_TYPE_BUTTON_ATP_PRODUCTION"
+msgstr "მორგება"
 
 msgid "CELL_TYPE_NAME"
 msgstr "უჯრედის ტიპის სახელი"
