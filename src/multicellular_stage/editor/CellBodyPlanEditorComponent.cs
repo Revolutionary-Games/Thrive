@@ -1131,6 +1131,8 @@ public partial class CellBodyPlanEditorComponent :
         CalculateEnergyAndCompoundBalance(editedMicrobeCells);
 
         UpdateCellTypeBalances();
+
+        UpdateFinishButtonWarningVisibility();
     }
 
     private void OnResourceLimitingModeChanged()
@@ -1138,6 +1140,8 @@ public partial class CellBodyPlanEditorComponent :
         CalculateEnergyAndCompoundBalance(editedMicrobeCells);
 
         UpdateCellTypeBalances();
+
+        UpdateFinishButtonWarningVisibility();
     }
 
     private void OnCellsChanged()
