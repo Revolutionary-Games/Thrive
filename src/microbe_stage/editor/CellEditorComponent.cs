@@ -1046,6 +1046,8 @@ public partial class CellEditorComponent :
         CalculateOrganelleEffectivenessInCurrentPatch();
         UpdatePatchDependentBalanceData();
 
+        tolerancesGUI.OnPatchChanged();
+
         // Redo suggestion calculations as they could depend on the patch data (though at the time of writing this is
         // not really changing)
         autoEvoPredictionDirty = true;

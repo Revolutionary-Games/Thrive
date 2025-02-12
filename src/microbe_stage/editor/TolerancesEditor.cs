@@ -105,6 +105,11 @@ public partial class TolerancesEditor : VBoxContainer
         ApplyCurrentValuesToGUI();
     }
 
+    public void OnPatchChanged()
+    {
+        UpdateCurrentValueDisplays();
+    }
+
     private void ApplyCurrentValuesToGUI()
     {
         automaticallyChanging = true;
@@ -129,9 +134,7 @@ public partial class TolerancesEditor : VBoxContainer
 
         // Create change action for the new value
 
-
         // And try to apply it
-
 
         // Rollback if not enough MP
         if (false)
@@ -200,9 +203,11 @@ public partial class TolerancesEditor : VBoxContainer
         // TODO: green for perfectly being adapted?
 
         temperatureMinLabel.Text =
-            unitFormat.FormatSafe(Math.Round(currentTemperature - currentTemperatureToleranceRange, 1), temperature.Unit);
+            unitFormat.FormatSafe(Math.Round(currentTemperature - currentTemperatureToleranceRange, 1),
+                temperature.Unit);
         temperatureMaxLabel.Text =
-            unitFormat.FormatSafe(Math.Round(currentTemperature + currentTemperatureToleranceRange, 1), temperature.Unit);
+            unitFormat.FormatSafe(Math.Round(currentTemperature + currentTemperatureToleranceRange, 1),
+                temperature.Unit);
 
         // Show in red the conditions that are not matching to make them easier to notice
         if (Math.Abs(patchTemperature - currentTemperature) > currentTemperatureToleranceRange)
