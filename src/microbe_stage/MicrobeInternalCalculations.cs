@@ -409,6 +409,21 @@ public static class MicrobeInternalCalculations
         return result;
     }
 
+    public static (int AmmoniaCost, int PhosphatesCost) CalculateOrganellesCosts(
+        IEnumerable<OrganelleTemplate> organelles)
+    {
+        float ammoniaCostTotal = 0;
+        float phosphatesCostTotal = 0;
+
+        foreach (var organelle in organelles)
+        {
+            ammoniaCostTotal += organelle.Definition.InitialComposition.GetValueOrDefault(Compound.Ammonia, 0);
+            phosphatesCostTotal += organelle.Definition.InitialComposition.GetValueOrDefault(Compound.Phosphates, 0);
+        }
+
+        return ((int)ammoniaCostTotal, (int)phosphatesCostTotal);
+    }
+
     /// <summary>
     ///   Gives bonus compounds if time is close to night. This is done to compensate spawning stuff close to night to
     ///   fill them up as if they had been spawned earlier.

@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2025-02-08 22:47+0300\n"
+"POT-Creation-Date: 2025-02-12 11:27+0200\n"
 "PO-Revision-Date: 2025-02-06 13:29+0000\n"
 "Last-Translator: Anonymous <noreply@weblate.org>\n"
 "Language-Team: Finnish <https://translate.revolutionarygamesstudio.com/projects/thrive/thrive-game/fi/>\n"
@@ -187,6 +187,10 @@ msgid "AMBIANCE_VOLUME"
 msgstr "Tunnelmaäänet"
 
 msgid "AMMONIA"
+msgstr "Ammoniakki"
+
+#, fuzzy
+msgid "AMMONIA_COST"
 msgstr "Ammoniakki"
 
 msgid "AMOUNT_OF_AUTOSAVE_TO_KEEP"
@@ -530,6 +534,10 @@ msgstr "Biomi: {0}"
 msgid "BLOOM_RENDER_EFFECT"
 msgstr "Ulkoiset vaikutukset:"
 
+#, fuzzy
+msgid "BLUESKY_TOOLTIP"
+msgstr "Laita peli tauolle"
+
 msgid "BRAIN_CELL_NAME_DEFAULT"
 msgstr "Neuroni"
 
@@ -677,11 +685,11 @@ msgstr "Laita peli tauolle"
 
 #, fuzzy
 msgid "CELL_TYPE_BUTTON_ATP_CONSUMPTION"
-msgstr "Negatiivinen ATP:n tasapaino"
+msgstr "Ohjaimen herkkyys"
 
 #, fuzzy
 msgid "CELL_TYPE_BUTTON_ATP_PRODUCTION"
-msgstr "Negatiivinen ATP:n tasapaino"
+msgstr "Ohjaimen herkkyys"
 
 msgid "CELL_TYPE_NAME"
 msgstr "Solutyypin Nimi"
@@ -2776,6 +2784,10 @@ msgstr ""
 msgid "INSPECTOR"
 msgstr ""
 
+#, fuzzy
+msgid "INSTAGRAM_TOOLTIP"
+msgstr "Laita peli tauolle"
+
 msgid "INTERACTION_ACTIVATE_ASCENSION"
 msgstr "Aktivoi nousemusportti"
 
@@ -3419,6 +3431,10 @@ msgid "MASTER_VOLUME"
 msgstr "Pää äänitaso"
 
 #, fuzzy
+msgid "MASTODON_TOOLTIP"
+msgstr "Laita peli tauolle"
+
+#, fuzzy
 msgid "MAX_CACHE_SIZE_TOOLTIP"
 msgstr "Jatka"
 
@@ -3502,6 +3518,12 @@ msgstr "Metabolosomit, eli aineenvaihduntaelimet ovat proteiinikuorien koteloimi
 
 msgid "METABOLOSOMES_PROCESSES_DESCRIPTION"
 msgstr "Muuntaa [thrive:compound type=\"glucose\"]glukoosia[/thrive:compound] [thrive:compound type=\"atp\"]ATP:ksi[/thrive:compound]. Nopeus skaalautuu [thrive:compound type=\"oxygen\"]hapen[/thrive:compound] pitoisuuden mukaan."
+
+#, fuzzy
+msgid "META_THREADS_TOOLTIP"
+msgstr ""
+"Hyperthreadingin päällä oloa ei voida automaattisesti tunnistaa.\n"
+"Tämä säätää kuinka monta taustatyöskentelijää käytetään oletusarvoisesti, koska hyperthreading ei ole yhtä tehokasta kuin oikeat prosessoriytimet."
 
 #, fuzzy
 msgid "METRICS"
@@ -4397,6 +4419,10 @@ msgstr ""
 msgid "NUMLOCK"
 msgstr "Num Lock"
 
+#, fuzzy
+msgid "NUTRIENT_COST_TOOLTIP"
+msgstr "Laita peli tauolle"
+
 msgid "N_A"
 msgstr "N/A"
 
@@ -4801,6 +4827,10 @@ msgid "PER_SECOND_SLASH"
 msgstr "/sekunti"
 
 msgid "PHOSPHATE"
+msgstr "Fosfaatti"
+
+#, fuzzy
+msgid "PHOSPHATES_COST"
 msgstr "Fosfaatti"
 
 msgid "PHOTOSYNTHESIS"
@@ -6489,10 +6519,6 @@ msgstr "Ladataan mikrobieditoria"
 
 msgid "TUTORIAL_VIEW_NOW"
 msgstr "Katso nyt"
-
-#, fuzzy
-msgid "TWITTER_TOOLTIP"
-msgstr "Help"
 
 msgid "TWO_TIMES"
 msgstr "2x"
@@ -8788,6 +8814,10 @@ msgstr "Xbox One"
 
 msgid "XBOX_SERIES"
 msgstr ""
+
+#, fuzzy
+msgid "X_TWITTER_TOOLTIP"
+msgstr "Help"
 
 msgid "YEARS"
 msgstr "vuotta"

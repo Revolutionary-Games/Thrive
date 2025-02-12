@@ -113,6 +113,15 @@ public class EndosymbiosisData
         return true;
     }
 
+    public bool CancelAllEndosymbiosisTargets()
+    {
+        if (StartedEndosymbiosis == null)
+            return false;
+
+        StartedEndosymbiosis = null;
+        return true;
+    }
+
     public InProgressEndosymbiosis MarkEndosymbiosisDone(InProgressEndosymbiosis endosymbiosisToComplete)
     {
         if (StartedEndosymbiosis == null)

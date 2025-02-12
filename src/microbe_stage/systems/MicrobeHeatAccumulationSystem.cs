@@ -22,7 +22,10 @@ public class MicrobeHeatAccumulationSystem : AEntitySetSystem<float>
 {
     private readonly NoiseTexture2D noiseSource;
 
+    // Don't dispose: https://github.com/Revolutionary-Games/Thrive/issues/5886
+#pragma warning disable CA2213
     private Image? noiseImage;
+#pragma warning restore CA2213
 
     private int noiseWidth;
     private int noiseHeight;
@@ -68,13 +71,6 @@ public class MicrobeHeatAccumulationSystem : AEntitySetSystem<float>
         var differenceFromMiddle = rawNoise - Constants.MICROBE_HEAT_NOISE_MIDDLE_POINT;
 
         return patchTemperatureMiddle + differenceFromMiddle * Constants.NOISE_EFFECT_ON_LOCAL_TEMPERATURE;
-    }
-
-    public sealed override void Dispose()
-    {
-        Dispose(true);
-        base.Dispose();
-        GC.SuppressFinalize(this);
     }
 
     protected override void PreUpdate(float delta)
@@ -162,14 +158,6 @@ public class MicrobeHeatAccumulationSystem : AEntitySetSystem<float>
             }
 
             properties.Temperature += change;
-        }
-    }
-
-    protected virtual void Dispose(bool disposing)
-    {
-        if (disposing)
-        {
-            noiseImage?.Dispose();
         }
     }
 }

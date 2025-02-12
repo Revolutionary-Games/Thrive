@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2025-02-08 22:47+0300\n"
+"POT-Creation-Date: 2025-02-12 11:27+0200\n"
 "PO-Revision-Date: 2025-02-06 13:29+0000\n"
 "Last-Translator: Anonymous <noreply@weblate.org>\n"
 "Language-Team: Portuguese (Portugal) <https://translate.revolutionarygamesstudio.com/projects/thrive/thrive-game/pt_PT/>\n"
@@ -183,6 +183,10 @@ msgid "AMBIANCE_VOLUME"
 msgstr "Volume Ambiente"
 
 msgid "AMMONIA"
+msgstr "Amoníaco"
+
+#, fuzzy
+msgid "AMMONIA_COST"
 msgstr "Amoníaco"
 
 msgid "AMOUNT_OF_AUTOSAVE_TO_KEEP"
@@ -505,6 +509,10 @@ msgstr "Bioma: {0}"
 msgid "BLOOM_RENDER_EFFECT"
 msgstr "Efeito de ecrã"
 
+#, fuzzy
+msgid "BLUESKY_TOOLTIP"
+msgstr "Pausa o jogo"
+
 msgid "BRAIN_CELL_NAME_DEFAULT"
 msgstr "Neurónio"
 
@@ -645,11 +653,11 @@ msgstr "Valor utilizado para gerar o mundo, tem de ser um número inteiro positi
 
 #, fuzzy
 msgid "CELL_TYPE_BUTTON_ATP_CONSUMPTION"
-msgstr "Saldo ATP negativo"
+msgstr "Área morta:"
 
 #, fuzzy
 msgid "CELL_TYPE_BUTTON_ATP_PRODUCTION"
-msgstr "Saldo ATP negativo"
+msgstr "Área morta:"
 
 msgid "CELL_TYPE_NAME"
 msgstr "Nome do tipo de célula"
@@ -2588,6 +2596,10 @@ msgid "INSPECTOR"
 msgstr "Inspetor"
 
 #, fuzzy
+msgid "INSTAGRAM_TOOLTIP"
+msgstr "Visite a nossa página Steam"
+
+#, fuzzy
 msgid "INTERACTION_ACTIVATE_ASCENSION"
 msgstr "Pontos de Mutação"
 
@@ -3200,6 +3212,10 @@ msgid "MASTER_VOLUME"
 msgstr "Volume principal"
 
 #, fuzzy
+msgid "MASTODON_TOOLTIP"
+msgstr "Visite a nossa pagina de Patreon"
+
+#, fuzzy
 msgid "MAX_CACHE_SIZE_TOOLTIP"
 msgstr "Retomar o jogo"
 
@@ -3283,6 +3299,12 @@ msgstr "Metabolossomas são conjuntos de proteínas envoltos no invólucro das p
 
 msgid "METABOLOSOMES_PROCESSES_DESCRIPTION"
 msgstr "Transforma [thrive:compound type=\"glucose\"][/thrive:compound] em[thrive:compound type=\"atp\"][/thrive:compound]. A taxa aumenta com a concentração de [thrive:compound type=\"oxygen\"][/thrive:compound]."
+
+#, fuzzy
+msgid "META_THREADS_TOOLTIP"
+msgstr ""
+"Não pode ser detectado automaticamente se o hyperthreading está ativo ou não.\n"
+"Isso afeta o número padrão de threads, pois os threads de hyperthreading não são tão rápidos quanto os núcleos reais do CPU."
 
 msgid "METRICS"
 msgstr "Métricas de desempenho"
@@ -4147,6 +4169,10 @@ msgstr "Permite a evolução de organelos delimitados por membranas mais complex
 msgid "NUMLOCK"
 msgstr "Num Lock"
 
+#, fuzzy
+msgid "NUTRIENT_COST_TOOLTIP"
+msgstr "Visite a nossa pagina de Patreon"
+
 msgid "N_A"
 msgstr "N/A"
 
@@ -4517,6 +4543,10 @@ msgid "PER_SECOND_SLASH"
 msgstr "/segundo"
 
 msgid "PHOSPHATE"
+msgstr "Fosfato"
+
+#, fuzzy
+msgid "PHOSPHATES_COST"
 msgstr "Fosfato"
 
 msgid "PHOTOSYNTHESIS"
@@ -6136,9 +6166,6 @@ msgstr "A carregar o Editor de Micróbio"
 
 msgid "TUTORIAL_VIEW_NOW"
 msgstr "Ver Agora"
-
-msgid "TWITTER_TOOLTIP"
-msgstr "Visite o nosso feed do Twitter"
 
 msgid "TWO_TIMES"
 msgstr "2x"
@@ -8263,6 +8290,10 @@ msgstr "Xbox One"
 
 msgid "XBOX_SERIES"
 msgstr "Xbox Series X"
+
+#, fuzzy
+msgid "X_TWITTER_TOOLTIP"
+msgstr "Visite o nosso feed do Twitter"
 
 msgid "YEARS"
 msgstr "anos"

@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2025-02-08 22:47+0300\n"
+"POT-Creation-Date: 2025-02-12 11:27+0200\n"
 "PO-Revision-Date: 2025-02-06 13:29+0000\n"
 "Last-Translator: Anonymous <noreply@weblate.org>\n"
 "Language-Team: Russian <https://translate.revolutionarygamesstudio.com/projects/thrive/thrive-game/ru/>\n"
@@ -172,6 +172,10 @@ msgid "AMBIANCE_VOLUME"
 msgstr "Громкость окружения"
 
 msgid "AMMONIA"
+msgstr "Аммиак"
+
+#, fuzzy
+msgid "AMMONIA_COST"
 msgstr "Аммиак"
 
 msgid "AMOUNT_OF_AUTOSAVE_TO_KEEP"
@@ -498,6 +502,10 @@ msgstr "Биом: {0}"
 msgid "BLOOM_RENDER_EFFECT"
 msgstr "Эффект Свечения:"
 
+#, fuzzy
+msgid "BLUESKY_TOOLTIP"
+msgstr "Приостановить игру"
+
 msgid "BRAIN_CELL_NAME_DEFAULT"
 msgstr "Нейрон"
 
@@ -640,11 +648,11 @@ msgstr ""
 
 #, fuzzy
 msgid "CELL_TYPE_BUTTON_ATP_CONSUMPTION"
-msgstr "Отрицательный баланс АТФ"
+msgstr "Настройки"
 
 #, fuzzy
 msgid "CELL_TYPE_BUTTON_ATP_PRODUCTION"
-msgstr "Отрицательный баланс АТФ"
+msgstr "Настройки"
 
 msgid "CELL_TYPE_NAME"
 msgstr "Название вида клеток"
@@ -2518,6 +2526,10 @@ msgstr "Проверить"
 msgid "INSPECTOR"
 msgstr "Инспектор"
 
+#, fuzzy
+msgid "INSTAGRAM_TOOLTIP"
+msgstr "Посетить нашу страницу в Steam"
+
 msgid "INTERACTION_ACTIVATE_ASCENSION"
 msgstr "Активировать Врата Вознесения"
 
@@ -3116,6 +3128,10 @@ msgstr "Морской снег"
 msgid "MASTER_VOLUME"
 msgstr "Общая громкость"
 
+#, fuzzy
+msgid "MASTODON_TOOLTIP"
+msgstr "Мигрировать в другой биом, не покидая текущего"
+
 msgid "MAX_CACHE_SIZE_TOOLTIP"
 msgstr "Максимальный размер кэша на диске (Объекты будут автоматически удалены если кэш станет слишком большим)"
 
@@ -3196,6 +3212,12 @@ msgstr "Метаболосомы - это кластеры белков, зав�
 
 msgid "METABOLOSOMES_PROCESSES_DESCRIPTION"
 msgstr "Превращает [thrive:compound type=\"glucose\"][/thrive:compound] в [thrive:compound type=\"atp\"][/thrive:compound]. Скорость увеличивается при повышении концентрации [thrive:compound type=\"oxygen\"][/thrive:compound]."
+
+#, fuzzy
+msgid "META_THREADS_TOOLTIP"
+msgstr ""
+"Невозможно автоматически определить, включена ли гиперпоточность или нет.\n"
+"Это влияет на количество потоков по умолчанию, так как потоки с гиперпоточностью не так быстры, как реальные ядра процессора."
 
 msgid "METRICS"
 msgstr "Включить показ производительности"
@@ -4022,6 +4044,10 @@ msgstr "Позволяет эволюционировать более слож�
 msgid "NUMLOCK"
 msgstr "Num Lock"
 
+#, fuzzy
+msgid "NUTRIENT_COST_TOOLTIP"
+msgstr "Переключает режим спринтинга. Во время спринта клетки двигаются быстрее, но потребляют значительно больше АТФ."
+
 msgid "N_A"
 msgstr "Нет данных"
 
@@ -4376,6 +4402,10 @@ msgid "PER_SECOND_SLASH"
 msgstr "/секунд"
 
 msgid "PHOSPHATE"
+msgstr "Фосфат"
+
+#, fuzzy
+msgid "PHOSPHATES_COST"
 msgstr "Фосфат"
 
 msgid "PHOTOSYNTHESIS"
@@ -5943,9 +5973,6 @@ msgstr ""
 
 msgid "TUTORIAL_VIEW_NOW"
 msgstr "Обучение"
-
-msgid "TWITTER_TOOLTIP"
-msgstr "Посетите нашу ленту в Twitter"
 
 msgid "TWO_TIMES"
 msgstr "2x"
@@ -8156,6 +8183,10 @@ msgstr "Xbox One"
 
 msgid "XBOX_SERIES"
 msgstr "Xbox Series X"
+
+#, fuzzy
+msgid "X_TWITTER_TOOLTIP"
+msgstr "Посетите нашу ленту в Twitter"
 
 msgid "YEARS"
 msgstr "лет"
