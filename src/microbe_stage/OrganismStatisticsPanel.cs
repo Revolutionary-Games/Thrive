@@ -206,12 +206,13 @@ public partial class OrganismStatisticsPanel : PanelContainer
 
         digestionSpeedLabel.Visible = ShowDigestionSpeedStat;
         digestionEfficiencyLabel.Visible = ShowDigestionEfficiencyStat;
-        digestionStatsSeparator.Visible = ShowDigestionSpeedStat || ShowDigestionEfficiencyStat ||
-            ShowOrganellesCostStat;
-        ammoniaCostLabel.Visible = ShowOrganellesCostStat;
-        phosphatesCostLabel.Visible = ShowOrganellesCostStat;
+        digestionStatsSeparator.Visible = ShowDigestionSpeedStat || ShowDigestionEfficiencyStat;
 
         atpBalanceBarContainer.Visible = ShowATPBalanceBars;
+
+        ammoniaCostLabel.Visible = ShowOrganellesCostStat;
+        phosphatesCostLabel.Visible = ShowOrganellesCostStat;
+        organellesCostsSeparator.Visible = ShowOrganellesCostStat;
     }
 
     public void SendObjectsToTutorials(TutorialState tutorial, MicrobeEditorTutorialGUI gui)
