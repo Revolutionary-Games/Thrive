@@ -200,9 +200,9 @@ public partial class TolerancesEditor : VBoxContainer
         // TODO: green for perfectly being adapted?
 
         temperatureMinLabel.Text =
-            unitFormat.FormatSafe(Math.Round(currentTemperature - currentTemperatureToleranceRange), temperature.Unit);
+            unitFormat.FormatSafe(Math.Round(currentTemperature - currentTemperatureToleranceRange, 1), temperature.Unit);
         temperatureMaxLabel.Text =
-            unitFormat.FormatSafe(Math.Round(currentTemperature + currentTemperatureToleranceRange), temperature.Unit);
+            unitFormat.FormatSafe(Math.Round(currentTemperature + currentTemperatureToleranceRange, 1), temperature.Unit);
 
         // Show in red the conditions that are not matching to make them easier to notice
         if (Math.Abs(patchTemperature - currentTemperature) > currentTemperatureToleranceRange)
@@ -217,9 +217,9 @@ public partial class TolerancesEditor : VBoxContainer
         }
 
         pressureMinLabel.Text =
-            unitFormat.FormatSafe(Math.Round((currentPressure - currentPressureToleranceRange) / 1000, 1), "kPa");
+            unitFormat.FormatSafe(Math.Round((currentPressure - currentPressureToleranceRange) / 1000), "kPa");
         pressureMaxLabel.Text =
-            unitFormat.FormatSafe(Math.Round((currentPressure + currentPressureToleranceRange) / 1000, 1), "kPa");
+            unitFormat.FormatSafe(Math.Round((currentPressure + currentPressureToleranceRange) / 1000), "kPa");
 
         if (Math.Abs(patchPressure - currentPressure) > currentPressureToleranceRange)
         {

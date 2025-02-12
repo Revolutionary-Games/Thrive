@@ -584,9 +584,15 @@ public partial class PhysicsTest : Node
 
         var workMemory = new MutationWorkMemory();
 
+        var test = "test";
+        var dummyPatch = new Patch(new LocalizedString(test), 1,
+            SimulationParameters.Instance.GetBiome("aavolcanic_vent"), BiomeType.Vents,
+            new PatchRegion(1, "test", PatchRegion.RegionType.Ocean, new Vector2(0, 0)));
+
         // Generate a random, pretty big microbe species to use for testing
         var microbeSpecies =
-            CommonMutationFunctions.GenerateRandomSpecies(new MicrobeSpecies(1, string.Empty, string.Empty), workMemory,
+            CommonMutationFunctions.GenerateRandomSpecies(new MicrobeSpecies(1, string.Empty, string.Empty), dummyPatch,
+                workMemory,
                 random);
 
         testMicrobeOrganellePositions =

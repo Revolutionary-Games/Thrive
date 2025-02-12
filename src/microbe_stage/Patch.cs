@@ -481,6 +481,29 @@ public class Patch
     }
 
     /// <summary>
+    ///   Generates a set of tolerances for a microbe that starts living in this patch. The tolerances aren't exactly
+    ///   perfectly tailored for this patch (as that would make initial migrations harder).
+    /// </summary>
+    /// <returns>Set of tolerances that can survive well in the current patch</returns>
+    public EnvironmentalTolerances GenerateTolerancesForMicrobe()
+    {
+        var pressure = Biome.Pressure;
+        var minPressure = Constants.TOLERANCE_INITIAL_PRESSURE_MIN_FRACTION * pressure;
+        var maxPressure = Constants.TOLERANCE_INITIAL_PRESSURE_MAX_FRACTION * pressure;
+
+        return new EnvironmentalTolerances
+        {
+            OxygenResistance = GetAmbientCompound(Compound.Oxygen, CompoundAmountType.Biome),
+            UVResistance = GetAmbientCompound(Compound.Sunlight, CompoundAmountType.Biome),
+            PreferredPressure = pressure,
+            PressureToleranceMin = minPressure,
+            PressureToleranceMax = maxPressure,
+            PreferredTemperature = GetAmbientCompound(Compound.Temperature, CompoundAmountType.Biome),
+            TemperatureTolerance = Constants.TOLERANCE_INITIAL_TEMPERATURE_RANGE,
+        };
+    }
+
+    /// <summary>
     ///   Logs description of an event into the patch's history.
     /// </summary>
     /// <param name="description">The event's description</param>

@@ -1705,6 +1705,10 @@ public static class Constants
 
     public const float PATCH_GENERATION_CHANCE_BANANA_BIOME = 0.03f;
 
+    public const float TOLERANCE_INITIAL_TEMPERATURE_RANGE = 10;
+    public const float TOLERANCE_INITIAL_PRESSURE_MIN_FRACTION = 0.9f;
+    public const float TOLERANCE_INITIAL_PRESSURE_MAX_FRACTION = 1.2f;
+
     /// <summary>
     ///   If set to true, then physics debug draw gets enabled when the game starts
     /// </summary>

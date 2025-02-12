@@ -156,8 +156,9 @@ size_flags_horizontal = 3
 
 [node name="PressureSlider" type="HSlider" parent="Pressure"]
 layout_mode = 2
-max_value = 5e+06
-step = 10000.0
+max_value = 5e+07
+step = 50000.0
+value = 100000.0
 rounded = true
 tick_count = 8
 
@@ -175,8 +176,8 @@ layout_mode = 2
 [node name="PressureRange" type="HSlider" parent="Pressure/HBoxContainer3"]
 layout_mode = 2
 size_flags_horizontal = 3
-max_value = 1e+06
-step = 10000.0
+max_value = 5e+06
+step = 50000.0
 value = 150000.0
 rounded = true
 

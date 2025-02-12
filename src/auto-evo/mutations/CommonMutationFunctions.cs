@@ -70,12 +70,13 @@ public static class CommonMutationFunctions
         Back,
     }
 
-    public static MicrobeSpecies GenerateRandomSpecies(MicrobeSpecies mutated, MutationWorkMemory workMemory,
-        Random random, float mp = 300)
+    public static MicrobeSpecies GenerateRandomSpecies(MicrobeSpecies mutated, Patch forPatch,
+        MutationWorkMemory workMemory, Random random, float mp = 300)
     {
         var mutationStrategy = new AddOrganelleAnywhere(_ => true);
 
         GameWorld.SetInitialSpeciesProperties(mutated, workMemory.WorkingMemory1, workMemory.WorkingMemory2);
+        mutated.Tolerances.CopyFrom(forPatch.GenerateTolerancesForMicrobe());
 
         while (mp > 0)
         {

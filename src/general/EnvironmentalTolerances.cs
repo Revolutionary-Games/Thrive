@@ -29,4 +29,15 @@ public class EnvironmentalTolerances
 
     public float UVResistance;
     public float OxygenResistance;
+
+    public void CopyFrom(EnvironmentalTolerances tolerancesToCopy)
+    {
+        PreferredTemperature = tolerancesToCopy.PreferredTemperature;
+        TemperatureTolerance = tolerancesToCopy.TemperatureTolerance;
+        PreferredPressure = tolerancesToCopy.PreferredPressure;
+        PressureToleranceMin = tolerancesToCopy.PressureToleranceMin;
+        PressureToleranceMax = tolerancesToCopy.PressureToleranceMax;
+        UVResistance = tolerancesToCopy.UVResistance;
+        OxygenResistance = tolerancesToCopy.OxygenResistance;
+    }
 }
