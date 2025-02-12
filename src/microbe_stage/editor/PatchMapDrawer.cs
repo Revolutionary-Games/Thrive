@@ -1074,6 +1074,12 @@ public partial class PatchMapDrawer : Control
             AddPatchNode(entry.Value, entry.Value.ScreenCoordinates);
         }
 
+        // Hide excess cached indicators
+        for (var i = nextIndicatorIndex; i < playerSpeciesPopulationIndicators.Count - 1; i++)
+        {
+            playerSpeciesPopulationIndicators[i].Hide();
+        }
+
         bool runNodeSelectionsUpdate = true;
 
         if (SelectedPatch != null)
@@ -1136,19 +1142,9 @@ public partial class PatchMapDrawer : Control
         var playerPopulationIndicatorAmount = (int)Math.Ceiling(patch.GetSpeciesSimulationPopulation(playerSpecies) *
             Constants.PLAYER_POPULATION_INDICATORS_PER_POPULATION);
 
-        var indicatorExcess = Math.Clamp(playerSpeciesPopulationIndicators.Count - playerPopulationIndicatorAmount,
-            0,
-            playerSpeciesPopulationIndicators.Count);
-
-        // Hide excess from the end of the list
-        for (int i = 0; i < indicatorExcess; ++i)
+        for (int i = 0; i < playerPopulationIndicatorAmount; ++i)
         {
-            playerSpeciesPopulationIndicators[playerSpeciesPopulationIndicators.Count - i].Hide();
-        }
-
-        for (int i = nextIndicatorIndex; i < playerPopulationIndicatorAmount; ++i)
-        {
-            var noCached = i >= playerSpeciesPopulationIndicators.Count;
+            var noCached = nextIndicatorIndex >= playerSpeciesPopulationIndicators.Count;
 
             Control indicator;
             if (noCached)
@@ -1166,7 +1162,7 @@ public partial class PatchMapDrawer : Control
             }
             else
             {
-                indicator = playerSpeciesPopulationIndicators[i];
+                indicator = playerSpeciesPopulationIndicators[nextIndicatorIndex];
 
                 indicator.Show();
             }
@@ -1174,9 +1170,11 @@ public partial class PatchMapDrawer : Control
             var nodeModifier = node.Position.LengthSquared();
             var modifierSinus = MathF.Sin(i);
 
-            indicator.Position = position + node.Size * 0.5f + new Vector2(0, 35)
+            indicator.Position = position + node.Size * 0.5f + new Vector2(0, 40)
                     .Rotated(nodeModifier * 30) +
-                new Vector2(0, modifierSinus * 50).Rotated(i * 6 * modifierSinus + nodeModifier);
+                new Vector2(0, modifierSinus * 40).Rotated(i * 6 * modifierSinus + nodeModifier);
+
+            ++nextIndicatorIndex;
         }
     }
 
