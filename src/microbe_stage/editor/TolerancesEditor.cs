@@ -128,17 +128,17 @@ public partial class TolerancesEditor : VBoxContainer
 
     private void OnTemperatureSliderChanged(float value)
     {
-        // Ignore changes triggered by our code to avoid infinite loops
-        if (automaticallyChanging)
+        // Ignore changes triggered by our code to avoid infinite loops (or if this isn't initialized)
+        if (automaticallyChanging || editor == null)
             return;
 
         // Create change action for the new value
+        var action = new ToleranceActionData();
 
         // And try to apply it
-
-        // Rollback if not enough MP
-        if (false)
+        if (editor.EnqueueAction(new SingleEditorAction<ToleranceActionData>(redo, undo, action)))
         {
+            // Rollback value if not enough MP
             temperatureSlider.Value = currentTemperature;
         }
         else

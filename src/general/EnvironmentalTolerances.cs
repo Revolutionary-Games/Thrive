@@ -1,4 +1,6 @@
-﻿/// <summary>
+﻿using System;
+
+/// <summary>
 ///   Environmental tolerances of a species
 /// </summary>
 public class EnvironmentalTolerances
@@ -30,6 +32,16 @@ public class EnvironmentalTolerances
     public float UVResistance;
     public float OxygenResistance;
 
+    public static bool operator ==(EnvironmentalTolerances? left, EnvironmentalTolerances? right)
+    {
+        return Equals(left, right);
+    }
+
+    public static bool operator !=(EnvironmentalTolerances? left, EnvironmentalTolerances? right)
+    {
+        return !Equals(left, right);
+    }
+
     public void CopyFrom(EnvironmentalTolerances tolerancesToCopy)
     {
         PreferredTemperature = tolerancesToCopy.PreferredTemperature;
@@ -39,5 +51,33 @@ public class EnvironmentalTolerances
         PressureToleranceMax = tolerancesToCopy.PressureToleranceMax;
         UVResistance = tolerancesToCopy.UVResistance;
         OxygenResistance = tolerancesToCopy.OxygenResistance;
+    }
+
+    public override bool Equals(object? obj)
+    {
+        if (obj is null)
+            return false;
+        if (ReferenceEquals(this, obj))
+            return true;
+        if (obj.GetType() != GetType())
+            return false;
+
+        return Equals((EnvironmentalTolerances)obj);
+    }
+
+    public override int GetHashCode()
+    {
+        return HashCode.Combine(PreferredTemperature, TemperatureTolerance, PreferredPressure, PressureToleranceMin,
+            PressureToleranceMax, UVResistance, OxygenResistance);
+    }
+
+    protected bool Equals(EnvironmentalTolerances other)
+    {
+        return PreferredTemperature.Equals(other.PreferredTemperature) &&
+            TemperatureTolerance.Equals(other.TemperatureTolerance) &&
+            PreferredPressure.Equals(other.PreferredPressure) &&
+            PressureToleranceMin.Equals(other.PressureToleranceMin) &&
+            PressureToleranceMax.Equals(other.PressureToleranceMax) && UVResistance.Equals(other.UVResistance) &&
+            OxygenResistance.Equals(other.OxygenResistance);
     }
 }
