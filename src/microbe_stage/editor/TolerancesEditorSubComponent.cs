@@ -182,6 +182,111 @@ public partial class TolerancesEditorSubComponent : EditorComponentBase<ICellEdi
         reusableTolerances.CopyFrom(CurrentTolerances);
         reusableTolerances.PreferredTemperature = value;
 
+        if (!TriggerChangeIfPossible())
+        {
+            // Rollback value if not enough MP
+            automaticallyChanging = true;
+            temperatureSlider.Value = CurrentTolerances.PreferredTemperature;
+            automaticallyChanging = false;
+        }
+    }
+
+    private void OnTemperatureToleranceRangeSliderChanged(float value)
+    {
+        if (automaticallyChanging)
+            return;
+
+        reusableTolerances ??= new EnvironmentalTolerances();
+        reusableTolerances.CopyFrom(CurrentTolerances);
+        reusableTolerances.TemperatureTolerance = value;
+
+        if (!TriggerChangeIfPossible())
+        {
+            automaticallyChanging = true;
+            temperatureToleranceRangeSlider.Value = CurrentTolerances.TemperatureTolerance;
+            automaticallyChanging = false;
+        }
+    }
+
+    private void OnPressureSliderChanged(float value)
+    {
+        if (automaticallyChanging)
+            return;
+
+        reusableTolerances ??= new EnvironmentalTolerances();
+        reusableTolerances.CopyFrom(CurrentTolerances);
+        reusableTolerances.PreferredPressure = value;
+
+        if (!TriggerChangeIfPossible())
+        {
+            automaticallyChanging = true;
+            pressureSlider.Value = CurrentTolerances.PreferredPressure;
+            automaticallyChanging = false;
+        }
+    }
+
+    private void OnPressureToleranceRangeSliderChanged(float value)
+    {
+        if (automaticallyChanging)
+            return;
+
+        // This is a bit of a special case as this is a derived property not directly on the slider
+        var min = CurrentTolerances.PreferredPressure - value;
+        var max = CurrentTolerances.PreferredPressure + value;
+
+        reusableTolerances ??= new EnvironmentalTolerances();
+        reusableTolerances.CopyFrom(CurrentTolerances);
+        reusableTolerances.PressureToleranceMin = min;
+        reusableTolerances.PressureToleranceMax = max;
+
+        if (!TriggerChangeIfPossible())
+        {
+            automaticallyChanging = true;
+            CalculateToleranceRangeForGUI();
+            pressureToleranceRangeSlider.Value = currentPressureToleranceRange;
+            automaticallyChanging = false;
+        }
+    }
+
+    private void OnOxygenResistanceSliderChanged(float value)
+    {
+        if (automaticallyChanging)
+            return;
+
+        reusableTolerances ??= new EnvironmentalTolerances();
+        reusableTolerances.CopyFrom(CurrentTolerances);
+        reusableTolerances.OxygenResistance = value;
+
+        if (!TriggerChangeIfPossible())
+        {
+            automaticallyChanging = true;
+            oxygenResistanceSlider.Value = CurrentTolerances.OxygenResistance;
+            automaticallyChanging = false;
+        }
+    }
+
+    private void OnUVResistanceSliderChanged(float value)
+    {
+        if (automaticallyChanging)
+            return;
+
+        reusableTolerances ??= new EnvironmentalTolerances();
+        reusableTolerances.CopyFrom(CurrentTolerances);
+        reusableTolerances.UVResistance = value;
+
+        if (!TriggerChangeIfPossible())
+        {
+            automaticallyChanging = true;
+            uvResistanceSlider.Value = CurrentTolerances.UVResistance;
+            automaticallyChanging = false;
+        }
+    }
+
+    private bool TriggerChangeIfPossible()
+    {
+        if (reusableTolerances == null)
+            throw new InvalidOperationException("Tolerances data should be set");
+
         // TODO: would there be a way to avoid this clone? Might need some reworking of the general actions system
         var action = new ToleranceActionData(CurrentTolerances.Clone(), reusableTolerances);
 
@@ -190,48 +295,16 @@ public partial class TolerancesEditorSubComponent : EditorComponentBase<ICellEdi
                 UndoToleranceChangeAction,
                 action)))
         {
-            // Rollback value if not enough MP
-            temperatureSlider.Value = CurrentTolerances.PreferredTemperature;
+            return false;
         }
-        else
-        {
-            // This is now eaten up by the action
-            reusableTolerances = null;
-        }
-    }
 
-    private void OnTemperatureToleranceRangeSliderChanged(float value)
-    {
-        if (automaticallyChanging)
-            return;
-    }
-
-    private void OnPressureSliderChanged(float value)
-    {
-        if (automaticallyChanging)
-            return;
-    }
-
-    private void OnPressureToleranceRangeSliderChanged(float value)
-    {
-        if (automaticallyChanging)
-            return;
-    }
-
-    private void OnOxygenResistanceSliderChanged(float value)
-    {
-        if (automaticallyChanging)
-            return;
-    }
-
-    private void OnUVResistanceSliderChanged(float value)
-    {
-        if (automaticallyChanging)
-            return;
+        // The action has now eaten the reusable object
+        reusableTolerances = null;
+        return true;
     }
 
     /// <summary>
-    ///   Applies all new values and notifies the data has changed
+    ///   Applies all new values to the GUI and notifies the data has changed
     /// </summary>
     private void OnChanged()
     {
@@ -246,6 +319,8 @@ public partial class TolerancesEditorSubComponent : EditorComponentBase<ICellEdi
         var patchPressure = patch.Biome.Pressure;
         var requiredOxygenResistance = patch.Biome.CalculateOxygenResistanceFactor();
         var requiredUVResistance = patch.Biome.CalculateUVFactor();
+        
+        // This relies on CalculateToleranceRangeForGUI having been called when necessary
 
         var unitFormat = Localization.Translate("VALUE_WITH_UNIT");
         var percentageFormat = Localization.Translate("PERCENTAGE_VALUE");
