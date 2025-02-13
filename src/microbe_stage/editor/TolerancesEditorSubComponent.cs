@@ -102,7 +102,6 @@ public partial class TolerancesEditorSubComponent : EditorComponentBase<ICellEdi
         {
             // The latest data should have already been loaded into CurrentTolerances
 
-            CalculateToleranceRangeForGUI();
             ApplyCurrentValuesToGUI();
         }
         else
@@ -128,10 +127,9 @@ public partial class TolerancesEditorSubComponent : EditorComponentBase<ICellEdi
 
     public void ResetToTolerances(EnvironmentalTolerances tolerances)
     {
-        CurrentTolerances.CopyFrom(Editor.EditedBaseSpecies.Tolerances);
+        CurrentTolerances.CopyFrom(tolerances);
 
         // Send it to GUI
-        CalculateToleranceRangeForGUI();
         ApplyCurrentValuesToGUI();
     }
 
@@ -151,11 +149,13 @@ public partial class TolerancesEditorSubComponent : EditorComponentBase<ICellEdi
     {
         // TODO: maybe the GUI should have separate sliders as well?
         currentPressureToleranceRange =
-            CurrentTolerances.PressureToleranceMax - CurrentTolerances.PressureToleranceMin;
+            (CurrentTolerances.PressureToleranceMax - CurrentTolerances.PressureToleranceMin) * 0.5f;
     }
 
     private void ApplyCurrentValuesToGUI()
     {
+        CalculateToleranceRangeForGUI();
+
         automaticallyChanging = true;
 
         temperatureSlider.Value = CurrentTolerances.PreferredTemperature;
@@ -236,7 +236,7 @@ public partial class TolerancesEditorSubComponent : EditorComponentBase<ICellEdi
 
         reusableTolerances ??= new EnvironmentalTolerances();
         reusableTolerances.CopyFrom(CurrentTolerances);
-        reusableTolerances.PressureToleranceMin = min;
+        reusableTolerances.PressureToleranceMin = Math.Max(min, 0);
         reusableTolerances.PressureToleranceMax = max;
 
         if (!TriggerChangeIfPossible())
@@ -309,6 +309,13 @@ public partial class TolerancesEditorSubComponent : EditorComponentBase<ICellEdi
     private void OnChanged()
     {
         EmitSignal(SignalName.OnTolerancesChanged);
+
+        CalculateToleranceRangeForGUI();
+
+        automaticallyChanging = true;
+        pressureToleranceRangeSlider.Value = currentPressureToleranceRange;
+        automaticallyChanging = false;
+
         UpdateCurrentValueDisplays();
     }
 
@@ -319,7 +326,7 @@ public partial class TolerancesEditorSubComponent : EditorComponentBase<ICellEdi
         var patchPressure = patch.Biome.Pressure;
         var requiredOxygenResistance = patch.Biome.CalculateOxygenResistanceFactor();
         var requiredUVResistance = patch.Biome.CalculateUVFactor();
-        
+
         // This relies on CalculateToleranceRangeForGUI having been called when necessary
 
         var unitFormat = Localization.Translate("VALUE_WITH_UNIT");
@@ -349,9 +356,10 @@ public partial class TolerancesEditorSubComponent : EditorComponentBase<ICellEdi
             temperatureMaxLabel.LabelSettings = originalTemperatureFont;
         }
 
+        // TODO: rather than using Max here, would it be better if this used the actual min and max as calculated?
         pressureMinLabel.Text =
             unitFormat.FormatSafe(
-                Math.Round((CurrentTolerances.PreferredPressure - currentPressureToleranceRange) / 1000), "kPa");
+                Math.Round(Math.Max(CurrentTolerances.PreferredPressure - currentPressureToleranceRange, 0) / 1000), "kPa");
         pressureMaxLabel.Text =
             unitFormat.FormatSafe(
                 Math.Round((CurrentTolerances.PreferredPressure + currentPressureToleranceRange) / 1000), "kPa");
@@ -367,7 +375,8 @@ public partial class TolerancesEditorSubComponent : EditorComponentBase<ICellEdi
             pressureMaxLabel.LabelSettings = originalPressureFont;
         }
 
-        oxygenResistanceLabel.Text = percentageFormat.FormatSafe(Math.Round(CurrentTolerances.OxygenResistance * 100, 1));
+        oxygenResistanceLabel.Text =
+            percentageFormat.FormatSafe(Math.Round(CurrentTolerances.OxygenResistance * 100, 1));
 
         if (CurrentTolerances.OxygenResistance < requiredOxygenResistance)
         {
