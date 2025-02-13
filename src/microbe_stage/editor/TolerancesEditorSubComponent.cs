@@ -367,7 +367,7 @@ public partial class TolerancesEditorSubComponent : EditorComponentBase<ICellEdi
             pressureMaxLabel.LabelSettings = originalPressureFont;
         }
 
-        oxygenResistanceLabel.Text = percentageFormat.FormatSafe(CurrentTolerances.OxygenResistance);
+        oxygenResistanceLabel.Text = percentageFormat.FormatSafe(Math.Round(CurrentTolerances.OxygenResistance * 100, 1));
 
         if (CurrentTolerances.OxygenResistance < requiredOxygenResistance)
         {
@@ -378,7 +378,7 @@ public partial class TolerancesEditorSubComponent : EditorComponentBase<ICellEdi
             oxygenResistanceLabel.LabelSettings = originalTemperatureFont;
         }
 
-        uvResistanceLabel.Text = percentageFormat.FormatSafe(CurrentTolerances.UVResistance);
+        uvResistanceLabel.Text = percentageFormat.FormatSafe(Math.Round(CurrentTolerances.UVResistance * 100, 1));
 
         if (CurrentTolerances.UVResistance < requiredUVResistance)
         {
