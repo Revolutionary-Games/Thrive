@@ -53,6 +53,13 @@ public class EnvironmentalTolerances
         OxygenResistance = tolerancesToCopy.OxygenResistance;
     }
 
+    public EnvironmentalTolerances Clone()
+    {
+        var newTolerances = new EnvironmentalTolerances();
+        newTolerances.CopyFrom(this);
+        return newTolerances;
+    }
+
     public override bool Equals(object? obj)
     {
         if (obj is null)

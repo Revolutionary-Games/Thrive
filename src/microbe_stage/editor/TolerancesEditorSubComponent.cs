@@ -67,11 +67,19 @@ public partial class TolerancesEditorSubComponent : EditorComponentBase<ICellEdi
 
     private bool wasFreshInit;
 
+    /// <summary>
+    ///   Reusable tolerances object for checking things until it is consumed by using it up in an action
+    /// </summary>
+    private EnvironmentalTolerances? reusableTolerances;
+
     [Signal]
     public delegate void OnTolerancesChangedEventHandler();
 
     [JsonProperty]
     public EnvironmentalTolerances CurrentTolerances { get; private set; } = new();
+
+    [JsonIgnore]
+    public override bool IsSubComponent => true;
 
     public override void _Ready()
     {
@@ -131,12 +139,13 @@ public partial class TolerancesEditorSubComponent : EditorComponentBase<ICellEdi
     {
     }
 
-    protected override void RegisterTooltips()
+    // TODO: tooltips explaining the tolerance stuff
+    /*protected override void RegisterTooltips()
     {
         base.RegisterTooltips();
 
         // aggressionSlider.RegisterToolTipForControl("aggressionSlider", "editor");
-    }
+    }*/
 
     private void CalculateToleranceRangeForGUI()
     {
@@ -167,21 +176,28 @@ public partial class TolerancesEditorSubComponent : EditorComponentBase<ICellEdi
         if (automaticallyChanging)
             return;
 
-        // Create change action for the new value
-        var action = new ToleranceActionData();
+        reusableTolerances ??= new EnvironmentalTolerances();
 
-        throw new NotImplementedException();
+        // Create a change action for the new value
+        reusableTolerances.CopyFrom(CurrentTolerances);
+        reusableTolerances.PreferredTemperature = value;
 
-        // And try to apply it
-        // if (editor.EnqueueAction(new SingleEditorAction<ToleranceActionData>(redo, undo, action)))
-        // {
-        //     // Rollback value if not enough MP
-        //     temperatureSlider.Value = currentTemperature;
-        // }
-        // else
-        // {
-        //     OnChanged();
-        // }
+        // TODO: would there be a way to avoid this clone? Might need some reworking of the general actions system
+        var action = new ToleranceActionData(CurrentTolerances.Clone(), reusableTolerances);
+
+        // And try to apply it. The actual value change will come from the do action callback.
+        if (!Editor.EnqueueAction(new SingleEditorAction<ToleranceActionData>(DoToleranceChangeAction,
+                UndoToleranceChangeAction,
+                action)))
+        {
+            // Rollback value if not enough MP
+            temperatureSlider.Value = CurrentTolerances.PreferredTemperature;
+        }
+        else
+        {
+            // This is now eaten up by the action
+            reusableTolerances = null;
+        }
     }
 
     private void OnTemperatureToleranceRangeSliderChanged(float value)
@@ -297,5 +313,19 @@ public partial class TolerancesEditorSubComponent : EditorComponentBase<ICellEdi
         {
             uvResistanceLabel.LabelSettings = originalTemperatureFont;
         }
+    }
+
+    [DeserializedCallbackAllowed]
+    private void DoToleranceChangeAction(ToleranceActionData data)
+    {
+        CurrentTolerances.CopyFrom(data.NewTolerances);
+        OnChanged();
+    }
+
+    [DeserializedCallbackAllowed]
+    private void UndoToleranceChangeAction(ToleranceActionData data)
+    {
+        CurrentTolerances.CopyFrom(data.OldTolerances);
+        OnChanged();
     }
 }

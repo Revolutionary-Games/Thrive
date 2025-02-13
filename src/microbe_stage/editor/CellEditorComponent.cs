@@ -919,6 +919,12 @@ public partial class CellEditorComponent :
         CreatePreviewMicrobeIfNeeded();
 
         UpdateArrow(false);
+
+        if (!IsMulticellularEditor)
+        {
+            // Make sure initial tolerance warnings are shown
+            OnTolerancesEditorChangedData();
+        }
     }
 
     public override void OnFinishEditing()
@@ -1044,7 +1050,9 @@ public partial class CellEditorComponent :
         CalculateOrganelleEffectivenessInCurrentPatch();
         UpdatePatchDependentBalanceData();
 
+        // Refresh tolerances data for the new patch
         tolerancesEditor.OnPatchChanged();
+        OnTolerancesEditorChangedData();
 
         // Redo suggestion calculations as they could depend on the patch data (though at the time of writing this is
         // not really changing)
