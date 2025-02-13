@@ -114,7 +114,7 @@ public partial class EditorComponentBase<TEditor> : ControlWithInput, IEditorCom
     }
 
     /// <summary>
-    ///   Called
+    ///   Called after the editor has a valid species to modify. Called shortly after <see cref="Init(TEditor,bool)"/>
     /// </summary>
     /// <param name="species">
     ///   The species that was set up, accessing more specific data through <see cref="Editor"/> rather than casting

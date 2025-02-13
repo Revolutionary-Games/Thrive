@@ -1,7 +1,7 @@
 [gd_scene load_steps=8 format=3 uid="uid://5kamud4sukbd"]
 
 [ext_resource type="Theme" uid="uid://b4cx0o110g4b6" path="res://src/gui_common/thrive_theme.tres" id="1_16mn0"]
-[ext_resource type="Script" path="res://src/microbe_stage/editor/TolerancesEditor.cs" id="2_sbu0t"]
+[ext_resource type="Script" path="res://src/microbe_stage/editor/TolerancesEditorSubComponent.cs" id="2_kqh2k"]
 [ext_resource type="LabelSettings" uid="uid://bnhcbmq3brx0s" path="res://src/gui_common/fonts/Title-SemiBold-Normal.tres" id="2_wyd8k"]
 [ext_resource type="LabelSettings" uid="uid://c5eurhimrps3n" path="res://src/gui_common/fonts/Body-Regular-Normal-Red.tres" id="3_b6a3m"]
 [ext_resource type="Texture2D" uid="uid://bsg6xcrlspkdt" path="res://assets/textures/gui/bevel/hSeparatorLeftSide.png" id="3_ri2xt"]
@@ -12,14 +12,14 @@ content_margin_top = 1.0
 texture = ExtResource("3_ri2xt")
 region_rect = Rect2(0, 0, 258, 1)
 
-[node name="TolerancesEditor" type="VBoxContainer" node_paths=PackedStringArray("temperatureSlider", "temperatureToleranceRangeSlider", "pressureSlider", "pressureToleranceRangeSlider", "oxygenResistanceSlider", "uvResistanceSlider", "temperatureMinLabel", "temperatureMaxLabel", "pressureMinLabel", "pressureMaxLabel", "oxygenResistanceLabel", "uvResistanceLabel")]
+[node name="TolerancesEditorSubComponent" type="VBoxContainer" node_paths=PackedStringArray("temperatureSlider", "temperatureToleranceRangeSlider", "pressureSlider", "pressureToleranceRangeSlider", "oxygenResistanceSlider", "uvResistanceSlider", "temperatureMinLabel", "temperatureMaxLabel", "pressureMinLabel", "pressureMaxLabel", "oxygenResistanceLabel", "uvResistanceLabel")]
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 theme = ExtResource("1_16mn0")
-script = ExtResource("2_sbu0t")
+script = ExtResource("2_kqh2k")
 temperatureSlider = NodePath("Temperature/TemperatureSlider")
 temperatureToleranceRangeSlider = NodePath("Temperature/HBoxContainer3/TemperatureRange")
 pressureSlider = NodePath("Pressure/PressureSlider")

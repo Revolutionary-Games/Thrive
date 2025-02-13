@@ -1,10 +1,15 @@
-﻿using System;
+using System;
 using Godot;
+using Newtonsoft.Json;
 
 /// <summary>
 ///   Handles showing tolerance adaptation controls (sliders) and applying their changes
 /// </summary>
-public partial class TolerancesEditor : VBoxContainer
+[JsonObject(MemberSerialization.OptIn)]
+[DeserializedCallbackTarget]
+[IgnoreNoMethodsTakingInput]
+[SceneLoadedClass("res://src/microbe_stage/editor/TolerancesEditorSubComponent.tscn", UsesEarlyResolve = false)]
+public partial class TolerancesEditorSubComponent : EditorComponentBase<ICellEditorData>
 {
     private readonly CompoundDefinition temperature = SimulationParameters.GetCompound(Compound.Temperature);
 
@@ -57,20 +62,16 @@ public partial class TolerancesEditor : VBoxContainer
 
     private bool automaticallyChanging;
 
-    private float currentTemperature;
-    private float currentTemperatureToleranceRange;
-    private float currentPressure;
+    [JsonProperty]
     private float currentPressureToleranceRange;
-    private float currentOxygenResistance;
-    private float currentUVResistance;
 
-    /// <summary>
-    ///   Editor where we apply our changes
-    /// </summary>
-    private ICellEditorData? editor;
+    private bool wasFreshInit;
 
     [Signal]
     public delegate void OnTolerancesChangedEventHandler();
+
+    [JsonProperty]
+    public EnvironmentalTolerances CurrentTolerances { get; private set; } = new();
 
     public override void _Ready()
     {
@@ -78,31 +79,32 @@ public partial class TolerancesEditor : VBoxContainer
         originalPressureFont = pressureMinLabel.LabelSettings;
     }
 
-    public void Init(ICellEditorData owningEditor, bool fresh)
+    public override void Init(ICellEditorData owningEditor, bool fresh)
     {
-        editor = owningEditor;
+        base.Init(owningEditor, fresh);
 
-        if (!fresh)
+        wasFreshInit = fresh;
+    }
+
+    public override void OnEditorSpeciesSetup(Species species)
+    {
+        base.OnEditorSpeciesSetup(species);
+
+        if (!wasFreshInit)
         {
-            // Grab the latest applied tolerance edit, if any
+            // The latest data should have already been loaded into CurrentTolerances
 
-            // If no edits exist, then fallback to the default values
+            CalculateToleranceRangeForGUI();
+            ApplyCurrentValuesToGUI();
         }
+        else
+        {
+            // Load data for the species being edited
+            var speciesTolerance = Editor.EditedBaseSpecies.Tolerances;
+            CurrentTolerances.CopyFrom(speciesTolerance);
 
-        // Load data for the species being edited
-        var speciesTolerance = editor.EditedBaseSpecies.Tolerances;
-
-        currentTemperature = speciesTolerance.PreferredTemperature;
-        currentTemperatureToleranceRange = speciesTolerance.TemperatureTolerance;
-        currentPressure = speciesTolerance.PreferredPressure;
-
-        // TODO: maybe the GUI should have separate sliders as well?
-        currentPressureToleranceRange = speciesTolerance.PressureToleranceMax - speciesTolerance.PressureToleranceMin;
-
-        currentOxygenResistance = speciesTolerance.OxygenResistance;
-        currentUVResistance = speciesTolerance.UVResistance;
-
-        ApplyCurrentValuesToGUI();
+            ResetToCurrentSpeciesTolerances();
+        }
     }
 
     public void OnPatchChanged()
@@ -110,16 +112,49 @@ public partial class TolerancesEditor : VBoxContainer
         UpdateCurrentValueDisplays();
     }
 
+    public void ResetToCurrentSpeciesTolerances()
+    {
+        // Read the species data
+        ResetToTolerances(Editor.EditedBaseSpecies.Tolerances);
+    }
+
+    public void ResetToTolerances(EnvironmentalTolerances tolerances)
+    {
+        CurrentTolerances.CopyFrom(Editor.EditedBaseSpecies.Tolerances);
+
+        // Send it to GUI
+        CalculateToleranceRangeForGUI();
+        ApplyCurrentValuesToGUI();
+    }
+
+    protected override void OnTranslationsChanged()
+    {
+    }
+
+    protected override void RegisterTooltips()
+    {
+        base.RegisterTooltips();
+
+        // aggressionSlider.RegisterToolTipForControl("aggressionSlider", "editor");
+    }
+
+    private void CalculateToleranceRangeForGUI()
+    {
+        // TODO: maybe the GUI should have separate sliders as well?
+        currentPressureToleranceRange =
+            CurrentTolerances.PressureToleranceMax - CurrentTolerances.PressureToleranceMin;
+    }
+
     private void ApplyCurrentValuesToGUI()
     {
         automaticallyChanging = true;
 
-        temperatureSlider.Value = currentTemperature;
-        temperatureToleranceRangeSlider.Value = currentTemperatureToleranceRange;
-        pressureSlider.Value = currentPressure;
+        temperatureSlider.Value = CurrentTolerances.PreferredTemperature;
+        temperatureToleranceRangeSlider.Value = CurrentTolerances.TemperatureTolerance;
+        pressureSlider.Value = CurrentTolerances.PreferredPressure;
         pressureToleranceRangeSlider.Value = currentPressureToleranceRange;
-        oxygenResistanceSlider.Value = currentOxygenResistance;
-        uvResistanceSlider.Value = currentUVResistance;
+        oxygenResistanceSlider.Value = CurrentTolerances.OxygenResistance;
+        uvResistanceSlider.Value = CurrentTolerances.UVResistance;
 
         automaticallyChanging = false;
 
@@ -128,23 +163,25 @@ public partial class TolerancesEditor : VBoxContainer
 
     private void OnTemperatureSliderChanged(float value)
     {
-        // Ignore changes triggered by our code to avoid infinite loops (or if this isn't initialized)
-        if (automaticallyChanging || editor == null)
+        // Ignore changes triggered by our code to avoid infinite loops
+        if (automaticallyChanging)
             return;
 
         // Create change action for the new value
         var action = new ToleranceActionData();
 
+        throw new NotImplementedException();
+
         // And try to apply it
-        if (editor.EnqueueAction(new SingleEditorAction<ToleranceActionData>(redo, undo, action)))
-        {
-            // Rollback value if not enough MP
-            temperatureSlider.Value = currentTemperature;
-        }
-        else
-        {
-            OnChanged();
-        }
+        // if (editor.EnqueueAction(new SingleEditorAction<ToleranceActionData>(redo, undo, action)))
+        // {
+        //     // Rollback value if not enough MP
+        //     temperatureSlider.Value = currentTemperature;
+        // }
+        // else
+        // {
+        //     OnChanged();
+        // }
     }
 
     private void OnTemperatureToleranceRangeSliderChanged(float value)
@@ -188,10 +225,7 @@ public partial class TolerancesEditor : VBoxContainer
 
     private void UpdateCurrentValueDisplays()
     {
-        if (editor == null)
-            return;
-
-        var patch = editor.CurrentPatch;
+        var patch = Editor.CurrentPatch;
         var patchTemperature = patch.Biome.GetCompound(Compound.Temperature, CompoundAmountType.Biome).Ambient;
         var patchPressure = patch.Biome.Pressure;
         var requiredOxygenResistance = patch.Biome.CalculateOxygenResistanceFactor();
@@ -203,14 +237,17 @@ public partial class TolerancesEditor : VBoxContainer
         // TODO: green for perfectly being adapted?
 
         temperatureMinLabel.Text =
-            unitFormat.FormatSafe(Math.Round(currentTemperature - currentTemperatureToleranceRange, 1),
+            unitFormat.FormatSafe(
+                Math.Round(CurrentTolerances.PreferredTemperature - CurrentTolerances.TemperatureTolerance, 1),
                 temperature.Unit);
         temperatureMaxLabel.Text =
-            unitFormat.FormatSafe(Math.Round(currentTemperature + currentTemperatureToleranceRange, 1),
+            unitFormat.FormatSafe(
+                Math.Round(CurrentTolerances.PreferredTemperature + CurrentTolerances.TemperatureTolerance, 1),
                 temperature.Unit);
 
         // Show in red the conditions that are not matching to make them easier to notice
-        if (Math.Abs(patchTemperature - currentTemperature) > currentTemperatureToleranceRange)
+        if (Math.Abs(patchTemperature - CurrentTolerances.PreferredTemperature) >
+            CurrentTolerances.TemperatureTolerance)
         {
             temperatureMinLabel.LabelSettings = badValueFont;
             temperatureMaxLabel.LabelSettings = badValueFont;
@@ -222,11 +259,13 @@ public partial class TolerancesEditor : VBoxContainer
         }
 
         pressureMinLabel.Text =
-            unitFormat.FormatSafe(Math.Round((currentPressure - currentPressureToleranceRange) / 1000), "kPa");
+            unitFormat.FormatSafe(
+                Math.Round((CurrentTolerances.PreferredPressure - currentPressureToleranceRange) / 1000), "kPa");
         pressureMaxLabel.Text =
-            unitFormat.FormatSafe(Math.Round((currentPressure + currentPressureToleranceRange) / 1000), "kPa");
+            unitFormat.FormatSafe(
+                Math.Round((CurrentTolerances.PreferredPressure + currentPressureToleranceRange) / 1000), "kPa");
 
-        if (Math.Abs(patchPressure - currentPressure) > currentPressureToleranceRange)
+        if (Math.Abs(patchPressure - CurrentTolerances.PreferredPressure) > currentPressureToleranceRange)
         {
             pressureMinLabel.LabelSettings = badValueFont;
             pressureMaxLabel.LabelSettings = badValueFont;
@@ -237,9 +276,9 @@ public partial class TolerancesEditor : VBoxContainer
             pressureMaxLabel.LabelSettings = originalPressureFont;
         }
 
-        oxygenResistanceLabel.Text = percentageFormat.FormatSafe(currentOxygenResistance);
+        oxygenResistanceLabel.Text = percentageFormat.FormatSafe(CurrentTolerances.OxygenResistance);
 
-        if (currentOxygenResistance < requiredOxygenResistance)
+        if (CurrentTolerances.OxygenResistance < requiredOxygenResistance)
         {
             oxygenResistanceLabel.LabelSettings = badValueFont;
         }
@@ -248,9 +287,9 @@ public partial class TolerancesEditor : VBoxContainer
             oxygenResistanceLabel.LabelSettings = originalTemperatureFont;
         }
 
-        uvResistanceLabel.Text = percentageFormat.FormatSafe(currentUVResistance);
+        uvResistanceLabel.Text = percentageFormat.FormatSafe(CurrentTolerances.UVResistance);
 
-        if (currentUVResistance < requiredUVResistance)
+        if (CurrentTolerances.UVResistance < requiredUVResistance)
         {
             uvResistanceLabel.LabelSettings = badValueFont;
         }

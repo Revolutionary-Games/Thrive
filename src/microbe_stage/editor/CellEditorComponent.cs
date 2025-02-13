@@ -138,7 +138,9 @@ public partial class CellEditorComponent :
     private GrowthOrderPicker growthOrderGUI = null!;
 
     [Export]
-    private TolerancesEditor tolerancesGUI = null!;
+    [JsonProperty]
+    [AssignOnlyChildItemsOnDeserialize]
+    private TolerancesEditorSubComponent tolerancesEditor = null!;
 
     [Export]
     private PanelContainer toleranceTab = null!;
@@ -301,8 +303,6 @@ public partial class CellEditorComponent :
     private bool microbePreviewMode;
 
     private bool showGrowthOrderNumbers;
-
-    private bool wasFreshInit;
 
     private TutorialState? tutorialState;
 
@@ -643,14 +643,10 @@ public partial class CellEditorComponent :
     {
         base.Init(owningEditor, fresh);
 
-        wasFreshInit = fresh;
-
         if (!IsMulticellularEditor)
         {
             behaviourEditor.Init(owningEditor, fresh);
-
-            // Tolerances need access to the current species to edit, so it is initialized only after the species is
-            // ready
+            tolerancesEditor.Init(owningEditor, fresh);
         }
         else
         {
@@ -873,8 +869,6 @@ public partial class CellEditorComponent :
     {
         base.OnEditorSpeciesSetup(species);
 
-        tolerancesGUI.Init(Editor, wasFreshInit);
-
         // For multicellular the cell editor is initialized before a cell type to edit is selected so we skip
         // the logic here the first time this is called too early
         var properties = Editor.EditedCellProperties;
@@ -898,7 +892,10 @@ public partial class CellEditorComponent :
         Colour = properties.Colour;
 
         if (!IsMulticellularEditor)
+        {
             behaviourEditor.OnEditorSpeciesSetup(species);
+            tolerancesEditor.OnEditorSpeciesSetup(species);
+        }
 
         // Get the species organelles to be edited. This also updates the placeholder hexes
         foreach (var organelle in properties.Organelles.Organelles)
@@ -969,6 +966,7 @@ public partial class CellEditorComponent :
             GD.Print("MicrobeEditor: updated organelles for species: ", editedSpecies.FormattedName);
 
             behaviourEditor.OnFinishEditing();
+            tolerancesEditor.OnFinishEditing();
 
             // When this is the primary editor of the species data, this must refresh the species data properties that
             // depend on being edited
@@ -1046,7 +1044,7 @@ public partial class CellEditorComponent :
         CalculateOrganelleEffectivenessInCurrentPatch();
         UpdatePatchDependentBalanceData();
 
-        tolerancesGUI.OnPatchChanged();
+        tolerancesEditor.OnPatchChanged();
 
         // Redo suggestion calculations as they could depend on the patch data (though at the time of writing this is
         // not really changing)
@@ -1062,6 +1060,16 @@ public partial class CellEditorComponent :
     {
         overwriteBehaviourForCalculations = behaviourData;
 
+        autoEvoPredictionDirty = true;
+        suggestionDirty = true;
+    }
+
+    /// <summary>
+    ///   Call when tolerance data changes, re-triggers simulations and updates the GUI warnings
+    /// </summary>
+    /// <param name="newTolerances">New tolerance data</param>
+    public void OnTolerancesChanged(EnvironmentalTolerances newTolerances)
+    {
         autoEvoPredictionDirty = true;
         suggestionDirty = true;
     }
@@ -1116,12 +1124,13 @@ public partial class CellEditorComponent :
         if (IsMulticellularEditor)
         {
             // Behaviour editor is not used in multicellular
-            data = new NewMicrobeActionData(oldEditedMicrobeOrganelles, oldMembrane, Rigidity, Colour, null);
+            data = new NewMicrobeActionData(oldEditedMicrobeOrganelles, oldMembrane, Rigidity, Colour, null, null);
         }
         else
         {
             data = new NewMicrobeActionData(oldEditedMicrobeOrganelles, oldMembrane, Rigidity, Colour,
-                behaviourEditor.Behaviour ?? throw new Exception("Behaviour not initialized"));
+                behaviourEditor.Behaviour ?? throw new Exception("Behaviour not initialized"),
+                tolerancesEditor.CurrentTolerances);
         }
 
         var action =
@@ -2337,6 +2346,8 @@ public partial class CellEditorComponent :
             behaviourEditor.UpdateAllBehaviouralSliders(behaviour ??
                 throw new ArgumentNullException(nameof(behaviour)));
         }
+
+        // Tolerances are applied directly in the OnEditorSpeciesSetup method
     }
 
     private void OnMovePressed()
@@ -2608,6 +2619,9 @@ public partial class CellEditorComponent :
             // Make a clone to make sure data cannot change while running
             target.Behaviour = overwriteBehaviourForCalculations.CloneObject();
         }
+
+        // Copy tolerances
+        target.Tolerances.CopyFrom(tolerancesEditor.CurrentTolerances);
     }
 
     private void SetLightLevelOption(int option)
@@ -3162,6 +3176,7 @@ public partial class CellEditorComponent :
             }
 
             calculationSpecies.Behaviour = pristineSpeciesCopy.Behaviour;
+            calculationSpecies.Tolerances.CopyFrom(pristineSpeciesCopy.Tolerances);
         }
 
         private bool StartNextRun()

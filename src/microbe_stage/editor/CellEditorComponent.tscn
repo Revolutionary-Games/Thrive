@@ -15,7 +15,7 @@
 [ext_resource type="PackedScene" uid="uid://bapb4m7jw7pc8" path="res://src/microbe_stage/editor/BehaviourEditorSubComponent.tscn" id="14"]
 [ext_resource type="LabelSettings" uid="uid://w2g8aleycqpl" path="res://src/gui_common/fonts/Title-Regular-Bigger.tres" id="14_fllwv"]
 [ext_resource type="PackedScene" uid="uid://bdtlirrkst0vl" path="res://src/microbe_stage/editor/GrowthOrderPicker.tscn" id="15_krpbw"]
-[ext_resource type="PackedScene" uid="uid://5kamud4sukbd" path="res://src/microbe_stage/editor/TolerancesEditor.tscn" id="15_rbhjt"]
+[ext_resource type="PackedScene" uid="uid://5kamud4sukbd" path="res://src/microbe_stage/editor/TolerancesEditorSubComponent.tscn" id="15_rbhjt"]
 [ext_resource type="PackedScene" uid="uid://olpir0vkwcsi" path="res://src/microbe_stage/OrganismStatisticsPanel.tscn" id="15_tdiis"]
 [ext_resource type="PackedScene" path="res://src/gui_common/FocusGrabber.tscn" id="16"]
 [ext_resource type="Texture2D" uid="uid://dglc11477jgka" path="res://assets/textures/gui/bevel/helpButtonActive.png" id="17"]
@@ -336,7 +336,7 @@ _data = {
 "show": SubResource("44")
 }
 
-[node name="CellEditorComponent" type="Control" node_paths=PackedStringArray("growthOrderTabButton", "toleranceTabButton", "growthOrderTab", "growthOrderGUI", "tolerancesGUI", "toleranceTab", "organelleSuggestionLoadingIndicator", "organelleSuggestionLabel", "pendingEndosymbiosisPopup", "endosymbiosisButton", "endosymbiosisPopup", "showGrowthOrderCoordinates", "growthOrderNumberContainer", "micheViewer", "organismStatisticsPanel")]
+[node name="CellEditorComponent" type="Control" node_paths=PackedStringArray("growthOrderTabButton", "toleranceTabButton", "growthOrderTab", "growthOrderGUI", "tolerancesEditor", "toleranceTab", "organelleSuggestionLoadingIndicator", "organelleSuggestionLabel", "pendingEndosymbiosisPopup", "endosymbiosisButton", "endosymbiosisPopup", "showGrowthOrderCoordinates", "growthOrderNumberContainer", "micheViewer", "organismStatisticsPanel")]
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
@@ -375,7 +375,7 @@ growthOrderTabButton = NodePath("LeftPanel/MainPanel/VBoxContainer/MarginContain
 toleranceTabButton = NodePath("LeftPanel/MainPanel/VBoxContainer/MarginContainer/EditingPanel/TabButtons/Tolerances")
 growthOrderTab = NodePath("LeftPanel/MainPanel/VBoxContainer/MarginContainer/EditingPanel/Growth")
 growthOrderGUI = NodePath("LeftPanel/MainPanel/VBoxContainer/MarginContainer/EditingPanel/Growth/ScrollContainer/MarginContainer/GrowthContainer/GrowthOrderPicker")
-tolerancesGUI = NodePath("LeftPanel/MainPanel/VBoxContainer/MarginContainer/EditingPanel/Tolerance/ScrollContainer/MarginContainer/TolerancesEditor")
+tolerancesEditor = NodePath("LeftPanel/MainPanel/VBoxContainer/MarginContainer/EditingPanel/Tolerance/ScrollContainer/MarginContainer/TolerancesEditor")
 toleranceTab = NodePath("LeftPanel/MainPanel/VBoxContainer/MarginContainer/EditingPanel/Tolerance")
 organelleSuggestionLoadingIndicator = NodePath("RightPanel/VBoxContainer/AutoEvoInfoPanel/VBoxContainer/Body/MarginContainer/VBoxContainer/HBoxContainer/HFlowContainer/SugestionLoading")
 organelleSuggestionLabel = NodePath("RightPanel/VBoxContainer/AutoEvoInfoPanel/VBoxContainer/Body/MarginContainer/VBoxContainer/HBoxContainer/HFlowContainer/SuggestionValue")
