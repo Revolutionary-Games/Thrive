@@ -1720,7 +1720,7 @@ public static class Constants
     /// </summary>
     public const double TOLERANCE_CHANGE_MP_PER_PRESSURE = 0.000001;
 
-    public const double TOLERANCE_CHANGE_MP_PER_PRESSURE_TOLERANCE = 0.0000005;
+    public const double TOLERANCE_CHANGE_MP_PER_PRESSURE_TOLERANCE = 0.00001;
 
     /// <summary>
     ///   If set to true, then physics debug draw gets enabled when the game starts
