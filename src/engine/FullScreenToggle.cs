@@ -33,6 +33,7 @@ public partial class FullScreenToggle : NodeWithInput
                 break;
 
             case Settings.DisplayModeEnum.ExclusiveFullscreen:
+            default:
                 Settings.Instance.DisplayMode.Value = Settings.DisplayModeEnum.Windowed;
                 break;
         }
