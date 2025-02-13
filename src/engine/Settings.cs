@@ -889,7 +889,10 @@ public class Settings
             mode = DisplayServer.WindowMode.Windowed;
         }
 
-        var wantedMode = DisplayServer.WindowGetMode();
+        // Default to wanting the current mode. This is after the maximized mode handling so that the game won't
+        // switch away from maximized mode to windowed mode.
+        var wantedMode = mode;
+
         switch (DisplayMode.Value)
         {
             case DisplayModeEnum.Windowed:
@@ -902,6 +905,10 @@ public class Settings
 
             case DisplayModeEnum.ExclusiveFullscreen:
                 wantedMode = DisplayServer.WindowMode.ExclusiveFullscreen;
+                break;
+
+            default:
+                GD.PrintErr("Unknown display mode: ", DisplayMode.Value);
                 break;
         }
 
