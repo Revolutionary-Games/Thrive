@@ -47,6 +47,15 @@ public class Settings
         AlwaysVisible = 3,
     }
 
+    public enum DisplayModeEnum
+    {
+        Windowed = 0,
+
+        Fullscreen = 1,
+
+        ExclusiveFullscreen = 2,
+    }
+
     public static Settings Instance => SingletonInstance;
 
     public static string DefaultLanguage => DefaultLanguageValue;
@@ -63,10 +72,10 @@ public class Settings
     // Graphics Properties
 
     /// <summary>
-    ///   Sets whether the game window is in fullscreen mode
+    ///   Sets window mode of the game window
     /// </summary>
     [JsonProperty]
-    public SettingValue<bool> FullScreen { get; private set; } = new(true);
+    public SettingValue<DisplayModeEnum> DisplayMode { get; private set; } = new(DisplayModeEnum.ExclusiveFullscreen);
 
     /// <summary>
     ///   Sets whether the game window will use vsync
@@ -880,10 +889,28 @@ public class Settings
             mode = DisplayServer.WindowMode.Windowed;
         }
 
-        // TODO: add exclusive fullscreen mode option
-        var wantedMode = FullScreen.Value ?
-            DisplayServer.WindowMode.Fullscreen :
-            DisplayServer.WindowMode.Windowed;
+        // Default to wanting the current mode. This is after the maximized mode handling so that the game won't
+        // switch away from maximized mode to windowed mode.
+        var wantedMode = mode;
+
+        switch (DisplayMode.Value)
+        {
+            case DisplayModeEnum.Windowed:
+                wantedMode = DisplayServer.WindowMode.Windowed;
+                break;
+
+            case DisplayModeEnum.Fullscreen:
+                wantedMode = DisplayServer.WindowMode.Fullscreen;
+                break;
+
+            case DisplayModeEnum.ExclusiveFullscreen:
+                wantedMode = DisplayServer.WindowMode.ExclusiveFullscreen;
+                break;
+
+            default:
+                GD.PrintErr("Unknown display mode: ", DisplayMode.Value);
+                break;
+        }
 
         if (mode != wantedMode)
         {

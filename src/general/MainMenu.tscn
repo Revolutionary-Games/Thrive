@@ -61,7 +61,7 @@
 [ext_resource type="Texture2D" uid="uid://blcw8ndyfuly6" path="res://assets/textures/gui/social_media/bluesky.svg" id="52_vqgsu"]
 [ext_resource type="Texture2D" uid="uid://d2aoxnqv4yn6b" path="res://assets/textures/gui/social_media/blueskyActive.svg" id="53_a3h3b"]
 [ext_resource type="Texture2D" uid="uid://pe3ra1dn4gp1" path="res://assets/textures/gui/social_media/blueskyHover.svg" id="54_4ciye"]
-[ext_resource type="PackedScene" path="res://src/gui_common/FocusGrabber.tscn" id="56"]
+[ext_resource type="PackedScene" uid="uid://cmtd78hacmxbi" path="res://src/gui_common/FocusGrabber.tscn" id="56"]
 [ext_resource type="PackedScene" uid="uid://cpp1dl8aiumt7" path="res://src/gui_common/ThriveFeedDisplayer.tscn" id="57"]
 [ext_resource type="PackedScene" uid="uid://d0tfe6i1offy" path="res://src/gui_common/PatchNotesDisplayer.tscn" id="58"]
 [ext_resource type="PackedScene" uid="uid://3vnrqlyumqtd" path="res://src/gui_common/dialogs/PermanentlyDismissibleDialog.tscn" id="59"]
@@ -885,7 +885,6 @@ mouse_filter = 1
 text = "BACK"
 
 [node name="FocusGrabber" parent="CreditsView" instance=ExtResource("56")]
-anchors_preset = 0
 NodeToGiveFocusTo = NodePath("../Back")
 
 [node name="ModManager" parent="." instance=ExtResource("14")]

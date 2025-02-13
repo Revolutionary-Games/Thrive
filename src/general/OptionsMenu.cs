@@ -64,7 +64,7 @@ public partial class OptionsMenu : ControlWithInput
     public NodePath VSyncPath = null!;
 
     [Export]
-    public NodePath FullScreenPath = null!;
+    public NodePath DisplayModePath = null!;
 
     [Export]
     public NodePath MSAAResolutionPath = null!;
@@ -358,8 +358,8 @@ public partial class OptionsMenu : ControlWithInput
     // Graphics tab
     private Control graphicsTab = null!;
     private CheckBox vsync = null!;
-    private CheckBox fullScreen = null!;
     private Label? resolution;
+    private OptionButton displayMode = null!;
     private OptionButton msaaResolution = null!;
     private OptionButton maxFramesPerSecond = null!;
     private OptionButton colourblindSetting = null!;
@@ -623,7 +623,7 @@ public partial class OptionsMenu : ControlWithInput
         // Graphics
         graphicsTab = GetNode<Control>(GraphicsTabPath);
         vsync = GetNode<CheckBox>(VSyncPath);
-        fullScreen = GetNode<CheckBox>(FullScreenPath);
+        displayMode = GetNode<OptionButton>(DisplayModePath);
         msaaResolution = GetNode<OptionButton>(MSAAResolutionPath);
         resolution = GetNode<Label>(ResolutionPath);
         maxFramesPerSecond = GetNode<OptionButton>(MaxFramesPerSecondPath);
@@ -837,7 +837,7 @@ public partial class OptionsMenu : ControlWithInput
 
         // Graphics
         vsync.ButtonPressed = settings.VSync;
-        fullScreen.ButtonPressed = settings.FullScreen;
+        displayMode.Selected = DisplayModeToIndex(settings.DisplayMode);
         msaaResolution.Selected = MSAAResolutionToIndex(settings.MSAAResolution);
         maxFramesPerSecond.Selected = MaxFPSValueToIndex(settings.MaxFramesPerSecond);
         colourblindSetting.Selected = settings.ColourblindSetting;
@@ -1012,7 +1012,7 @@ public partial class OptionsMenu : ControlWithInput
                 MiscButtonPath.Dispose();
                 GraphicsTabPath.Dispose();
                 VSyncPath.Dispose();
-                FullScreenPath.Dispose();
+                DisplayModePath.Dispose();
                 MSAAResolutionPath.Dispose();
                 ResolutionPath.Dispose();
                 MaxFramesPerSecondPath.Dispose();
@@ -1400,6 +1400,38 @@ public partial class OptionsMenu : ControlWithInput
                     Constants.NORMAL_MAX_SPAWNED_ENTITIES, Constants.LARGE_MAX_SPAWNED_ENTITIES,
                     Constants.VERY_LARGE_MAX_SPAWNED_ENTITIES, Constants.HUGE_MAX_SPAWNED_ENTITIES,
                     Constants.EXTREME_MAX_SPAWNED_ENTITIES));
+        }
+    }
+
+    private int DisplayModeToIndex(Settings.DisplayModeEnum mode)
+    {
+        switch (mode)
+        {
+            case Settings.DisplayModeEnum.Windowed:
+                return 0;
+            case Settings.DisplayModeEnum.Fullscreen:
+                return 1;
+            case Settings.DisplayModeEnum.ExclusiveFullscreen:
+                return 2;
+            default:
+                GD.PrintErr("invalid display mode value");
+                return 0;
+        }
+    }
+
+    private Settings.DisplayModeEnum DisplayIndexToEnum(int index)
+    {
+        switch (index)
+        {
+            case 0:
+                return Settings.DisplayModeEnum.Windowed;
+            case 1:
+                return Settings.DisplayModeEnum.Fullscreen;
+            case 2:
+                return Settings.DisplayModeEnum.ExclusiveFullscreen;
+            default:
+                GD.PrintErr("invalid display mode index");
+                return Settings.DisplayModeEnum.Windowed;
         }
     }
 
@@ -1913,9 +1945,9 @@ public partial class OptionsMenu : ControlWithInput
     }
 
     // Graphics Button Callbacks
-    private void OnFullScreenToggled(bool pressed)
+    private void OnDisplayModeSelected(int index)
     {
-        Settings.Instance.FullScreen.Value = pressed;
+        Settings.Instance.DisplayMode.Value = DisplayIndexToEnum(index);
         Settings.Instance.ApplyWindowSettings();
 
         UpdateResetSaveButtonState();
