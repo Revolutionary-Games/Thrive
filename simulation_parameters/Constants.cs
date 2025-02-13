@@ -1710,8 +1710,8 @@ public static class Constants
     public const float TOLERANCE_INITIAL_PRESSURE_MAX_FRACTION = 1.2f;
 
     // How much it costs to edit various tolerances in the editor
-    public const float TOLERANCE_CHANGE_MP_PER_TEMPERATURE = 0.25f;
-    public const float TOLERANCE_CHANGE_MP_PER_TEMPERATURE_TOLERANCE = 0.35f;
+    public const float TOLERANCE_CHANGE_MP_PER_TEMPERATURE = 1.0f;
+    public const float TOLERANCE_CHANGE_MP_PER_TEMPERATURE_TOLERANCE = 2.5f;
     public const float TOLERANCE_CHANGE_MP_PER_OXYGEN = 80.0f;
     public const float TOLERANCE_CHANGE_MP_PER_UV = 50.0f;
 

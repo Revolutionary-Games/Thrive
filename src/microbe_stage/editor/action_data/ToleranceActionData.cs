@@ -12,6 +12,11 @@ public class ToleranceActionData : EditorCombinableActionData
         NewTolerances = newTolerances;
     }
 
+    public override bool WantsMergeWith(CombinableActionData other)
+    {
+        return GetInterferenceModeWith(other) != ActionInterferenceMode.NoInterference;
+    }
+
     protected override int CalculateCostInternal()
     {
         // Calculate all changes
@@ -53,5 +58,14 @@ public class ToleranceActionData : EditorCombinableActionData
         var otherData = (ToleranceActionData)other;
 
         return new ToleranceActionData(OldTolerances, otherData.NewTolerances);
+    }
+
+    protected override void MergeGuaranteed(CombinableActionData other)
+    {
+        var data = (ToleranceActionData)other;
+
+        // TODO: does this need to check if this should maybe swap instead the old?
+
+        NewTolerances = data.NewTolerances;
     }
 }
