@@ -150,7 +150,7 @@ public static class CellPropertiesHelpers
     /// <param name="maxAmount">The maximum amount to eject</param>
     /// <param name="direction">The direction in which to eject relative to the microbe</param>
     /// <param name="displacement">How far away from the microbe to eject</param>
-    /// <returns>The amount of emitted compound, can be less than the <see cref="maxAmount"/></returns>
+    /// <returns>The amount of emitted compound can be less than the <see cref="maxAmount"/></returns>
     public static float EjectCompound(this ref CellProperties cellProperties, ref WorldPosition cellPosition,
         CompoundBag compounds, CompoundCloudSystem compoundCloudSystem, Compound compound, float maxAmount,
         Vector3 direction, float displacement = 0)
@@ -291,7 +291,7 @@ public static class CellPropertiesHelpers
 
         var spawnPosition = currentPosition + direction * width;
 
-        // Create the one daughter cell.
+        // Create one daughter cell.
         var (recorder, weight) = SpawnHelpers.SpawnMicrobeWithoutFinalizing(worldSimulation, spawnEnvironment, species,
             spawnPosition, true, (null, 0), out var copyEntity, multicellularSpawnState);
 
@@ -518,7 +518,7 @@ public static class CellPropertiesHelpers
     /// <summary>
     ///   Applies settings from the cell properties (of a species) again to a spawned entity (and resets
     ///   reproduction progress). This is needed if species properties need to be applied to an already spawned
-    ///   cell (for example the player).
+    ///   cell (for example, the player).
     /// </summary>
     /// <remarks>
     ///   <para>
@@ -527,6 +527,7 @@ public static class CellPropertiesHelpers
     ///   </para>
     /// </remarks>
     /// <param name="cellProperties">The cell to apply new settings to</param>
+    /// <param name="environmentalEffects">Effects on the cell from the environment</param>
     /// <param name="entity">Entity of the cell, needed to apply new state to other components</param>
     /// <param name="newDefinition">The new properties to apply</param>
     /// <param name="baseReproductionCostFrom">
@@ -539,7 +540,8 @@ public static class CellPropertiesHelpers
     /// </param>
     /// <param name="workMemory1">Temporary memory used for organelle copying</param>
     /// <param name="workMemory2">More temporary memory</param>
-    public static void ReApplyCellTypeProperties(this ref CellProperties cellProperties, in Entity entity,
+    public static void ReApplyCellTypeProperties(this ref CellProperties cellProperties,
+        ref readonly MicrobeEnvironmentalEffects environmentalEffects, in Entity entity,
         ICellDefinition newDefinition, Species baseReproductionCostFrom, IWorldSimulation worldSimulation,
         List<Hex> workMemory1, List<Hex> workMemory2)
     {
@@ -565,10 +567,11 @@ public static class CellPropertiesHelpers
 
         ref var organelleContainer = ref entity.Get<OrganelleContainer>();
 
-        // Reset all the duplicates organelles / reproduction progress of the entity
+        // Reset all the duplicate organelles / reproduction progress of the entity
         // This also resets multicellular creature's reproduction progress
         organelleContainer.ResetOrganelleLayout(ref entity.Get<CompoundStorage>(), ref entity.Get<BioProcesses>(),
-            entity, newDefinition, baseReproductionCostFrom, worldSimulation, workMemory1, workMemory2);
+            in environmentalEffects, entity, newDefinition, baseReproductionCostFrom, worldSimulation, workMemory1,
+            workMemory2);
 
         // Reset runtime colour
         if (entity.Has<ColourAnimation>())

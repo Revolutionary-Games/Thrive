@@ -4,7 +4,7 @@ using Newtonsoft.Json;
 
 /// <summary>
 ///   Limits resources allowed from <see cref="IBiomeConditions"/> based on <see cref="ResourceLimitingMode"/>.
-///   Note that this allocates a bit of memory so this is mostly good to use for editor usage and not auto-evo or
+///   Note that this allocates a bit of memory, so this is mostly good to use for editor usage and not auto-evo or
 ///   realtime use.
 /// </summary>
 public class BiomeResourceLimiterAdapter : IBiomeConditions
@@ -23,6 +23,9 @@ public class BiomeResourceLimiterAdapter : IBiomeConditions
 
     [JsonIgnore]
     public Dictionary<string, ChunkConfiguration> Chunks => filteredChunks.Value;
+
+    [JsonIgnore]
+    public float Pressure => baseConditions.Pressure;
 
     public BiomeCompoundProperties GetCompound(Compound compound, CompoundAmountType amountType)
     {

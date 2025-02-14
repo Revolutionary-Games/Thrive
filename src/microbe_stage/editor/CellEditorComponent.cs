@@ -247,6 +247,8 @@ public partial class CellEditorComponent :
     private bool autoEvoPredictionDirty;
     private double autoEvoPredictionStartTimer;
 
+    private bool refreshTolerancesWarnings;
+
     /// <summary>
     ///   The new to set on the species (or cell type) after exiting (if null, no change)
     /// </summary>
@@ -780,6 +782,19 @@ public partial class CellEditorComponent :
             UpdateGrowthOrderNumbers();
         }
 
+        if (refreshTolerancesWarnings)
+        {
+            refreshTolerancesWarnings = false;
+
+            // Tolerances affect all the efficiency of all organelles, so we have to update this data here
+            // the dataflow would be really hard to make sure no duplicate calls happen, so for now this just allows
+            // duplicate calls
+            CalculateOrganelleEffectivenessInCurrentPatch();
+
+            // TODO: implement
+            throw new NotImplementedException();
+        }
+
         // Show the organelle that is about to be placed
         if (Editor.ShowHover && !MicrobePreviewMode)
         {
@@ -1080,6 +1095,9 @@ public partial class CellEditorComponent :
     {
         autoEvoPredictionDirty = true;
         suggestionDirty = true;
+
+        // Need to show new tolerances warnings
+        refreshTolerancesWarnings = true;
     }
 
     public void UpdatePatchDependentBalanceData()
@@ -1106,8 +1124,7 @@ public partial class CellEditorComponent :
         var organelles = SimulationParameters.Instance.GetAllOrganelles();
 
         var result =
-            ProcessSystem.ComputeOrganelleProcessEfficiencies(organelles, Editor.CurrentPatch.Biome,
-                CompoundAmountType.Current);
+            ProcessSystem.ComputeOrganelleProcessEfficiencies(organelles, Editor.CurrentPatch.Biome, CalculateLatestTolerances(), CompoundAmountType.Current);
 
         UpdateOrganelleEfficiencies(result);
     }
@@ -1878,6 +1895,14 @@ public partial class CellEditorComponent :
         UpdateFinishButtonWarningVisibility();
     }
 
+    private ResolvedMicrobeTolerances CalculateLatestTolerances()
+    {
+        // TODO: in the future this will need to pass the organelle list as well
+        return MicrobeEnvironmentalToleranceCalculations.ResolveToleranceValues(
+            MicrobeEnvironmentalToleranceCalculations.CalculateTolerances(tolerancesEditor.CurrentTolerances,
+                Editor.CurrentPatch.Biome));
+    }
+
     /// <summary>
     ///   Calculates the energy balance and compound balance for a cell with the given organelles and membrane
     /// </summary>
@@ -1901,9 +1926,9 @@ public partial class CellEditorComponent :
 
         var maximumMovementDirection = MicrobeInternalCalculations.MaximumSpeedDirection(organelles);
 
-        ProcessSystem.ComputeEnergyBalanceFull(organelles, conditionsData, membrane, maximumMovementDirection, moving,
-            true, Editor.CurrentGame.GameWorld.WorldSettings, organismStatisticsPanel.CompoundAmountType, null,
-            energyBalance);
+        ProcessSystem.ComputeEnergyBalanceFull(organelles, conditionsData, CalculateLatestTolerances(), membrane,
+            maximumMovementDirection, moving, true, Editor.CurrentGame.GameWorld.WorldSettings,
+            organismStatisticsPanel.CompoundAmountType, null, energyBalance);
 
         energyBalanceInfo = energyBalance;
 
@@ -1946,11 +1971,12 @@ public partial class CellEditorComponent :
         switch (calculationType)
         {
             case BalanceDisplayType.MaxSpeed:
-                ProcessSystem.ComputeCompoundBalance(organelles, biome, amountType, true, compoundBalanceData);
+                ProcessSystem.ComputeCompoundBalance(organelles, biome, CalculateLatestTolerances(), amountType, true,
+                    compoundBalanceData);
                 break;
             case BalanceDisplayType.EnergyEquilibrium:
-                ProcessSystem.ComputeCompoundBalanceAtEquilibrium(organelles, biome, amountType, energyBalance,
-                    compoundBalanceData);
+                ProcessSystem.ComputeCompoundBalanceAtEquilibrium(organelles, biome, CalculateLatestTolerances(),
+                    amountType, energyBalance, compoundBalanceData);
                 break;
             default:
                 GD.PrintErr("Unknown compound balance type: ", calculationType);
@@ -1971,14 +1997,16 @@ public partial class CellEditorComponent :
 
         ProcessSystem.ComputeActiveProcessList(editedMicrobeOrganelles, ref processes);
 
+        var tolerances = CalculateLatestTolerances();
+
         float consumptionProductionRatio = energyBalance.TotalConsumption / energyBalance.TotalProduction;
 
         foreach (var process in processes)
         {
             // This requires the inputs to be in the biome to give a realistic prediction of how fast the processes
             // *might* run once swimming around in the stage.
-            var singleProcess = ProcessSystem.CalculateProcessMaximumSpeed(process, biome, CompoundAmountType.Current,
-                true);
+            var singleProcess = ProcessSystem.CalculateProcessMaximumSpeed(process, tolerances.ProcessSpeedModifier,
+                biome, CompoundAmountType.Current, true);
 
             // If produces more ATP than consumes, lower down production for inputs and for outputs,
             // otherwise use maximum production values (this matches the equilibrium display mode and what happens

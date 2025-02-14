@@ -1,5 +1,6 @@
 ﻿using System;
 using AutoEvo;
+using Components;
 
 /// <summary>
 ///   Helper class that contains all the math for environmental tolerances in one place (though the microbe editor and
@@ -21,14 +22,17 @@ public static class MicrobeEnvironmentalToleranceCalculations
     public static float CalculateTotalToleranceScore(MicrobeSpecies species, BiomeConditions environment,
         SimulationCache cache)
     {
-        var score = CalculateTolerances(species, environment, cache);
+        var score = CalculateTolerances(species, environment);
         return score.OverallScore;
     }
 
-    public static ToleranceResult CalculateTolerances(MicrobeSpecies species, BiomeConditions environment,
-        SimulationCache cache)
+    public static ToleranceResult CalculateTolerances(MicrobeSpecies species, BiomeConditions environment)
     {
-        var tolerance = species.Tolerances;
+        return CalculateTolerances(species.Tolerances, environment);
+    }
+
+    public static ToleranceResult CalculateTolerances(EnvironmentalTolerances speciesTolerances, BiomeConditions environment)
+    {
         var result = new ToleranceResult();
 
         var patchTemperature = environment.GetCompound(Compound.Temperature, CompoundAmountType.Biome).Ambient;
@@ -39,14 +43,16 @@ public static class MicrobeEnvironmentalToleranceCalculations
         bool missingSomething = false;
 
         // Always write the targets for becoming perfectly adapted
-        result.PerfectTemperatureAdjustment = patchTemperature - tolerance.PreferredTemperature;
-        result.PerfectPressureAdjustment = patchPressure - tolerance.PreferredPressure;
-        result.PerfectOxygenAdjustment = requiredOxygenResistance - tolerance.OxygenResistance;
-        result.PerfectUVAdjustment = requiredUVResistance - tolerance.UVResistance;
+        result.PerfectTemperatureAdjustment = patchTemperature - speciesTolerances.PreferredTemperature;
+        result.PerfectPressureAdjustment = patchPressure - speciesTolerances.PreferredPressure;
+        result.PerfectOxygenAdjustment = requiredOxygenResistance - speciesTolerances.OxygenResistance;
+        result.PerfectUVAdjustment = requiredUVResistance - speciesTolerances.UVResistance;
+
+        // TODO: make organelles affect the tolerances
 
         // Temperature
-        if (patchTemperature > tolerance.PreferredTemperature + tolerance.TemperatureTolerance ||
-            patchTemperature < tolerance.PreferredTemperature - tolerance.TemperatureTolerance)
+        if (patchTemperature > speciesTolerances.PreferredTemperature + speciesTolerances.TemperatureTolerance ||
+            patchTemperature < speciesTolerances.PreferredTemperature - speciesTolerances.TemperatureTolerance)
         {
             // Not adapted to the temperature
             var adjustmentSize = Math.Abs(result.PerfectTemperatureAdjustment);
@@ -63,49 +69,49 @@ public static class MicrobeEnvironmentalToleranceCalculations
 
             missingSomething = true;
         }
-        else if (tolerance.TemperatureTolerance <= Constants.TOLERANCE_PERFECT_THRESHOLD_TEMPERATURE)
+        else if (speciesTolerances.TemperatureTolerance <= Constants.TOLERANCE_PERFECT_THRESHOLD_TEMPERATURE)
         {
             // Perfectly adapted
             var perfectionFactor = Constants.TOLERANCE_PERFECT_TEMPERATURE_SCORE *
-                (1 - (tolerance.TemperatureTolerance / Constants.TOLERANCE_PERFECT_THRESHOLD_TEMPERATURE));
+                (1 - (speciesTolerances.TemperatureTolerance / Constants.TOLERANCE_PERFECT_THRESHOLD_TEMPERATURE));
             result.TemperatureScore = 1 + perfectionFactor;
         }
         else
         {
             // Adequately adapted, but could be made perfect
             result.TemperatureRangeSizeAdjustment =
-                tolerance.TemperatureTolerance - Constants.TOLERANCE_PERFECT_THRESHOLD_TEMPERATURE;
+                speciesTolerances.TemperatureTolerance - Constants.TOLERANCE_PERFECT_THRESHOLD_TEMPERATURE;
 
             result.TemperatureScore = 1;
         }
 
         // Pressure
-        if (patchPressure > tolerance.PressureMaximum)
+        if (patchPressure > speciesTolerances.PressureMaximum)
         {
             // Too high pressure
 
-            if (patchPressure - tolerance.PressureMaximum > Constants.TOLERANCE_MAXIMUM_SURVIVABLE_PRESSURE_DIFFERENCE)
+            if (patchPressure - speciesTolerances.PressureMaximum > Constants.TOLERANCE_MAXIMUM_SURVIVABLE_PRESSURE_DIFFERENCE)
             {
                 result.PressureScore = 0;
             }
             else
             {
-                result.PressureScore = 1 - (patchPressure - tolerance.PressureMaximum) /
+                result.PressureScore = 1 - (patchPressure - speciesTolerances.PressureMaximum) /
                     Constants.TOLERANCE_MAXIMUM_SURVIVABLE_PRESSURE_DIFFERENCE;
             }
 
             missingSomething = true;
         }
-        else if (patchPressure < tolerance.PressureMinimum)
+        else if (patchPressure < speciesTolerances.PressureMinimum)
         {
             // Too low pressure
-            if (tolerance.PressureMinimum - patchPressure > Constants.TOLERANCE_MAXIMUM_SURVIVABLE_PRESSURE_DIFFERENCE)
+            if (speciesTolerances.PressureMinimum - patchPressure > Constants.TOLERANCE_MAXIMUM_SURVIVABLE_PRESSURE_DIFFERENCE)
             {
                 result.PressureScore = 0;
             }
             else
             {
-                result.PressureScore = 1 - (tolerance.PressureMinimum - patchPressure) /
+                result.PressureScore = 1 - (speciesTolerances.PressureMinimum - patchPressure) /
                     Constants.TOLERANCE_MAXIMUM_SURVIVABLE_PRESSURE_DIFFERENCE;
             }
 
@@ -113,7 +119,7 @@ public static class MicrobeEnvironmentalToleranceCalculations
         }
         else
         {
-            var range = Math.Abs(tolerance.PressureMaximum - tolerance.PressureMinimum);
+            var range = Math.Abs(speciesTolerances.PressureMaximum - speciesTolerances.PressureMinimum);
 
             if (range <=
                 Constants.TOLERANCE_PERFECT_THRESHOLD_PRESSURE)
@@ -134,7 +140,7 @@ public static class MicrobeEnvironmentalToleranceCalculations
         }
 
         // Oxygen Resistance
-        if (tolerance.OxygenResistance < requiredOxygenResistance)
+        if (speciesTolerances.OxygenResistance < requiredOxygenResistance)
         {
             // Not adapted to the oxygen requirement
             result.OxygenScore = 1 - result.PerfectOxygenAdjustment;
@@ -146,7 +152,7 @@ public static class MicrobeEnvironmentalToleranceCalculations
         }
 
         // UV Resistance
-        if (tolerance.UVResistance < requiredUVResistance)
+        if (speciesTolerances.UVResistance < requiredUVResistance)
         {
             // Not adapted to the UV requirement
             result.UVScore = 1 - result.PerfectUVAdjustment;
@@ -192,6 +198,53 @@ public static class MicrobeEnvironmentalToleranceCalculations
         {
             throw new NotImplementedException();
         }
+    }
+
+    public static ResolvedMicrobeTolerances ResolveToleranceValues(ToleranceResult data)
+    {
+        var result = default(ResolvedMicrobeTolerances);
+
+        result.ProcessSpeedModifier = 1;
+        result.HealthModifier = 1;
+        result.OsmoregulationModifier = 1;
+
+        if (data.TemperatureScore < 1)
+        {
+            result.ProcessSpeedModifier *= Math.Min(0.9f, data.TemperatureScore);
+
+            result.OsmoregulationModifier *= Math.Min(0.9f, data.TemperatureScore);
+
+            result.HealthModifier *= Math.Min(0.9f, data.TemperatureScore);
+        }
+        else if (data.TemperatureScore > 1)
+        {
+            result.ProcessSpeedModifier *= Math.Max(1.1f, data.TemperatureScore);
+        }
+
+        if (data.PressureScore < 1)
+        {
+            result.ProcessSpeedModifier *= Math.Min(0.9f, data.PressureScore);
+            result.OsmoregulationModifier *= Math.Min(0.9f, data.PressureScore);
+            result.HealthModifier *= Math.Min(0.5f, data.PressureScore);
+        }
+        else if (data.PressureScore > 1)
+        {
+            result.HealthModifier *= Math.Max(1.2f, data.PressureScore);
+        }
+
+        if (data.OxygenScore < 1)
+        {
+            result.HealthModifier *= Math.Min(0.5f, data.OxygenScore);
+            result.OsmoregulationModifier *= Math.Min(0.5f, data.OxygenScore);
+        }
+
+        if (data.UVScore < 1)
+        {
+            result.HealthModifier *= Math.Min(0.5f, data.UVScore);
+            result.OsmoregulationModifier *= Math.Min(0.9f, data.UVScore);
+        }
+
+        return result;
     }
 
     public class ToleranceResult
