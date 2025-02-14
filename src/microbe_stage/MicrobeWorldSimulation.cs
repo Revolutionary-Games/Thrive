@@ -296,6 +296,11 @@ public partial class MicrobeWorldSimulation : WorldSimulationWithPhysics
         return microbeHeatAccumulationSystem.SampleTemperatureAt(worldPosition);
     }
 
+    public Vector2 SampleCurrentAt(Vector2 worldPosition)
+    {
+        return fluidCurrentsSystem.VelocityAt(worldPosition);
+    }
+
     /// <summary>
     ///   Clears system data that has been stored based on the player location. Call this when the player changes
     ///   locations a lot by respawning or by moving patches

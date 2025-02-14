@@ -6,8 +6,8 @@ using DefaultEcs;
 using DefaultEcs.System;
 using DefaultEcs.Threading;
 using Godot;
+using Godot.Collections;
 using Newtonsoft.Json;
-using FastNoiseLite = FastNoiseLite;
 using World = DefaultEcs.World;
 
 /// <summary>
@@ -33,30 +33,38 @@ public sealed class FluidCurrentsSystem : AEntitySetSystem<float>
     private const float POSITION_SCALING = 0.9f;
 
     // TODO: test the inbuilt fast noise in Godot to see if it is faster / a good enough replacement
-    private readonly FastNoiseLite noiseDisturbancesX;
-    private readonly FastNoiseLite noiseDisturbancesY;
-    private readonly FastNoiseLite noiseCurrentsX;
-    private readonly FastNoiseLite noiseCurrentsY;
+    private readonly NoiseTexture3D noiseDisturbancesX;
+    private readonly NoiseTexture3D noiseDisturbancesY;
+    private readonly NoiseTexture3D noiseCurrentsX;
+    private readonly NoiseTexture3D noiseCurrentsY;
+
+    private Array<Image>? noiseDisturbancesXImage;
+    private Array<Image>? noiseDisturbancesYImage;
+    private Array<Image>? noiseCurrentsXImage;
+    private Array<Image>? noiseCurrentsYImage;
 
     // private readonly Vector2 scale = new Vector2(0.05f, 0.05f);
 
     [JsonProperty]
     private float currentsTimePassed;
 
+    private int noiseWidth = -1;
+    private int noiseHeight = -1;
+
     public FluidCurrentsSystem(World world, IParallelRunner runner) : base(world, runner,
         Constants.SYSTEM_HIGHER_ENTITIES_PER_THREAD)
     {
-        noiseDisturbancesX = new FastNoiseLite(69);
-        noiseDisturbancesX.SetNoiseType(FastNoiseLite.NoiseType.Perlin);
+        noiseDisturbancesX = GD.Load<NoiseTexture3D>("res://src/microbe_stage/NoiseDisturbanceX.tres") ??
+            throw new Exception("Heat noise texture couldn't be loaded");
 
-        noiseDisturbancesY = new FastNoiseLite(13);
-        noiseDisturbancesY.SetNoiseType(FastNoiseLite.NoiseType.Perlin);
+        noiseDisturbancesY = GD.Load<NoiseTexture3D>("res://src/microbe_stage/NoiseDisturbanceY.tres") ??
+            throw new Exception("Heat noise texture couldn't be loaded");
 
-        noiseCurrentsX = new FastNoiseLite(420);
-        noiseCurrentsX.SetNoiseType(FastNoiseLite.NoiseType.Perlin);
+        noiseCurrentsX = GD.Load<NoiseTexture3D>("res://src/microbe_stage/NoiseCurrentX.tres") ??
+            throw new Exception("Heat noise texture couldn't be loaded");
 
-        noiseCurrentsY = new FastNoiseLite(1337);
-        noiseCurrentsY.SetNoiseType(FastNoiseLite.NoiseType.Perlin);
+        noiseCurrentsY = GD.Load<NoiseTexture3D>("res://src/microbe_stage/NoiseCurrentY.tres") ??
+            throw new Exception("Heat noise texture couldn't be loaded");
     }
 
     /// <summary>
@@ -75,18 +83,22 @@ public sealed class FluidCurrentsSystem : AEntitySetSystem<float>
 
     public Vector2 VelocityAt(Vector2 position)
     {
+        if (noiseDisturbancesXImage == null || noiseDisturbancesYImage == null
+            || noiseCurrentsXImage == null || noiseCurrentsYImage == null)
+            return Vector2.Zero;
+
         var scaledPosition = position * POSITION_SCALING;
 
-        float disturbancesX = noiseDisturbancesX.GetNoise(scaledPosition.X, scaledPosition.Y,
-            currentsTimePassed * DISTURBANCE_TIMESCALE);
-        float disturbancesY = noiseDisturbancesY.GetNoise(scaledPosition.X, scaledPosition.Y,
-            currentsTimePassed * DISTURBANCE_TIMESCALE);
+        float disturbancesX = GetPixel(scaledPosition.X, scaledPosition.Y,
+            currentsTimePassed * DISTURBANCE_TIMESCALE, noiseDisturbancesXImage);
+        float disturbancesY = GetPixel(scaledPosition.X, scaledPosition.Y,
+            currentsTimePassed * DISTURBANCE_TIMESCALE, noiseDisturbancesYImage);
 
-        float currentsX = noiseCurrentsX.GetNoise(scaledPosition.X * CURRENTS_STRETCHING_MULTIPLIER,
-            scaledPosition.Y, currentsTimePassed * CURRENTS_TIMESCALE);
-        float currentsY = noiseCurrentsY.GetNoise(scaledPosition.X,
+        float currentsX = GetPixel(scaledPosition.X * CURRENTS_STRETCHING_MULTIPLIER,
+            scaledPosition.Y, currentsTimePassed * CURRENTS_TIMESCALE, noiseCurrentsXImage);
+        float currentsY = GetPixel(scaledPosition.X,
             scaledPosition.Y * CURRENTS_STRETCHING_MULTIPLIER,
-            currentsTimePassed * CURRENTS_TIMESCALE);
+            currentsTimePassed * CURRENTS_TIMESCALE, noiseCurrentsYImage);
 
         var disturbancesVelocity = new Vector2(disturbancesX, disturbancesY);
         var currentsVelocity = new Vector2(Math.Abs(currentsX) > MIN_CURRENT_INTENSITY ? currentsX : 0.0f,
@@ -99,6 +111,17 @@ public sealed class FluidCurrentsSystem : AEntitySetSystem<float>
     protected override void PreUpdate(float delta)
     {
         base.PreUpdate(delta);
+
+        if (noiseDisturbancesXImage == null)
+        {
+            noiseDisturbancesXImage = noiseDisturbancesX.GetData();
+            noiseDisturbancesYImage = noiseDisturbancesY.GetData();
+            noiseCurrentsXImage = noiseCurrentsX.GetData();
+            noiseCurrentsYImage = noiseCurrentsY.GetData();
+
+            noiseWidth = noiseDisturbancesXImage[0].GetWidth();
+            noiseHeight = noiseDisturbancesXImage[0].GetHeight();
+        }
 
         currentsTimePassed += delta;
     }
@@ -118,5 +141,15 @@ public sealed class FluidCurrentsSystem : AEntitySetSystem<float>
 
         physicsControl.ImpulseToGive += new Vector3(vel.X, 0, vel.Y) * delta;
         physicsControl.PhysicsApplied = false;
+    }
+
+    private float GetPixel(float x, float y, float z, Array<Image> array)
+    {
+        if (x < 0.0f)
+            x = noiseWidth + x % noiseWidth;
+        if (y < 0.0f)
+            y = noiseHeight + y % noiseHeight;
+
+        return array[(int)z % array.Count].GetPixel((int)x % noiseWidth, (int)y % noiseHeight).R * 2.0f - 1.0f;
     }
 }
