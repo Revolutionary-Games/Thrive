@@ -24,8 +24,8 @@ public class ToleranceActionData : EditorCombinableActionData
         var temperatureToleranceChange =
             Math.Abs(OldTolerances.TemperatureTolerance - NewTolerances.TemperatureTolerance);
         double pressureChange = Math.Abs(OldTolerances.PreferredPressure - NewTolerances.PreferredPressure);
-        double minPressureChange = Math.Abs(OldTolerances.PressureToleranceMin - NewTolerances.PressureToleranceMin);
-        double maxPressureChange = Math.Abs(OldTolerances.PressureToleranceMax - NewTolerances.PressureToleranceMax);
+        double minPressureChange = Math.Abs(OldTolerances.PressureMinimum - NewTolerances.PressureMinimum);
+        double maxPressureChange = Math.Abs(OldTolerances.PressureMaximum - NewTolerances.PressureMaximum);
 
         var pressureToleranceChange = (minPressureChange + maxPressureChange) * 0.5;
 

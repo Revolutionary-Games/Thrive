@@ -372,6 +372,7 @@ public abstract class Species : ICloneable
             species.Behaviour[entry.Key] = entry.Value;
 
         species.Endosymbiosis = Endosymbiosis.Clone();
+        species.Tolerances = Tolerances.Clone();
 
         // Genus and epithet aren't copied as they are required constructor parameters
         species.Colour = Colour;

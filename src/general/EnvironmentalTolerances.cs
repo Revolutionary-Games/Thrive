@@ -25,9 +25,9 @@ public class EnvironmentalTolerances
     ///   Minimum pressure this species likes. This is not just a single range as the range needs to be lopsided
     ///   towards surviving higher pressures.
     /// </summary>
-    public float PressureToleranceMin = 760;
+    public float PressureMinimum = 71325;
 
-    public float PressureToleranceMax = 3000;
+    public float PressureMaximum = 301325;
 
     public float UVResistance;
     public float OxygenResistance;
@@ -47,10 +47,27 @@ public class EnvironmentalTolerances
         PreferredTemperature = tolerancesToCopy.PreferredTemperature;
         TemperatureTolerance = tolerancesToCopy.TemperatureTolerance;
         PreferredPressure = tolerancesToCopy.PreferredPressure;
-        PressureToleranceMin = tolerancesToCopy.PressureToleranceMin;
-        PressureToleranceMax = tolerancesToCopy.PressureToleranceMax;
+        PressureMinimum = tolerancesToCopy.PressureMinimum;
+        PressureMaximum = tolerancesToCopy.PressureMaximum;
         UVResistance = tolerancesToCopy.UVResistance;
         OxygenResistance = tolerancesToCopy.OxygenResistance;
+    }
+
+    public void SanityCheck()
+    {
+        if (!SanityCheckNoThrow())
+            throw new Exception("Tolerances are not valid (pressure is out of range)");
+    }
+
+    public bool SanityCheckNoThrow()
+    {
+        if (PreferredPressure < PressureMinimum || PreferredPressure > PressureMaximum)
+            return false;
+
+        if (PressureMinimum > PressureMaximum || PressureMaximum < 0)
+            return false;
+
+        return true;
     }
 
     public EnvironmentalTolerances Clone()
@@ -74,8 +91,8 @@ public class EnvironmentalTolerances
 
     public override int GetHashCode()
     {
-        return HashCode.Combine(PreferredTemperature, TemperatureTolerance, PreferredPressure, PressureToleranceMin,
-            PressureToleranceMax, UVResistance, OxygenResistance);
+        return HashCode.Combine(PreferredTemperature, TemperatureTolerance, PreferredPressure, PressureMinimum,
+            PressureMaximum, UVResistance, OxygenResistance);
     }
 
     protected bool Equals(EnvironmentalTolerances other)
@@ -83,8 +100,8 @@ public class EnvironmentalTolerances
         return PreferredTemperature.Equals(other.PreferredTemperature) &&
             TemperatureTolerance.Equals(other.TemperatureTolerance) &&
             PreferredPressure.Equals(other.PreferredPressure) &&
-            PressureToleranceMin.Equals(other.PressureToleranceMin) &&
-            PressureToleranceMax.Equals(other.PressureToleranceMax) && UVResistance.Equals(other.UVResistance) &&
+            PressureMinimum.Equals(other.PressureMinimum) &&
+            PressureMaximum.Equals(other.PressureMaximum) && UVResistance.Equals(other.UVResistance) &&
             OxygenResistance.Equals(other.OxygenResistance);
     }
 }

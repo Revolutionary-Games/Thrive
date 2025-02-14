@@ -149,7 +149,7 @@ public partial class TolerancesEditorSubComponent : EditorComponentBase<ICellEdi
     {
         // TODO: maybe the GUI should have separate sliders as well?
         currentPressureToleranceRange =
-            (CurrentTolerances.PressureToleranceMax - CurrentTolerances.PressureToleranceMin) * 0.5f;
+            (CurrentTolerances.PressureMaximum - CurrentTolerances.PressureMinimum) * 0.5f;
     }
 
     private void ApplyCurrentValuesToGUI()
@@ -236,8 +236,8 @@ public partial class TolerancesEditorSubComponent : EditorComponentBase<ICellEdi
 
         reusableTolerances ??= new EnvironmentalTolerances();
         reusableTolerances.CopyFrom(CurrentTolerances);
-        reusableTolerances.PressureToleranceMin = Math.Max(min, 0);
-        reusableTolerances.PressureToleranceMax = max;
+        reusableTolerances.PressureMinimum = Math.Max(min, 0);
+        reusableTolerances.PressureMaximum = max;
 
         if (!TriggerChangeIfPossible())
         {

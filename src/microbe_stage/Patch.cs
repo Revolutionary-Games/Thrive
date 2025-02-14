@@ -491,16 +491,22 @@ public class Patch
         var minPressure = Constants.TOLERANCE_INITIAL_PRESSURE_MIN_FRACTION * pressure;
         var maxPressure = Constants.TOLERANCE_INITIAL_PRESSURE_MAX_FRACTION * pressure;
 
-        return new EnvironmentalTolerances
+        var result = new EnvironmentalTolerances
         {
             OxygenResistance = GetAmbientCompound(Compound.Oxygen, CompoundAmountType.Biome),
             UVResistance = GetAmbientCompound(Compound.Sunlight, CompoundAmountType.Biome),
             PreferredPressure = pressure,
-            PressureToleranceMin = minPressure,
-            PressureToleranceMax = maxPressure,
+            PressureMinimum = minPressure,
+            PressureMaximum = maxPressure,
             PreferredTemperature = GetAmbientCompound(Compound.Temperature, CompoundAmountType.Biome),
             TemperatureTolerance = Constants.TOLERANCE_INITIAL_TEMPERATURE_RANGE,
         };
+
+#if DEBUG
+        result.SanityCheck();
+#endif
+
+        return result;
     }
 
     /// <summary>

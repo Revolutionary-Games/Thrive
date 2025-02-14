@@ -31,9 +31,11 @@ public class GenerateMiche : IRunStep
     public Miche GenerateMicheTree(AutoEvoGlobalCache globalCache)
     {
         var rootMiche = new Miche(globalCache.RootPressure);
-        var generatedMiche = new Miche(globalCache.MetabolicStabilityPressure);
+        var metabolicRoot = new Miche(globalCache.MetabolicStabilityPressure);
+        var generatedMiche = new Miche(globalCache.EnvironmentalTolerancesPressure);
 
-        rootMiche.AddChild(generatedMiche);
+        rootMiche.AddChild(metabolicRoot);
+        metabolicRoot.AddChild(generatedMiche);
 
         // Autotrophic Miches
 

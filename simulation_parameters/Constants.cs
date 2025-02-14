@@ -1231,6 +1231,8 @@ public static class Constants
     public const int AUTO_EVO_ORGANELLE_ADD_ATTEMPTS = 15;
     public const int AUTO_EVO_ORGANELLE_REMOVE_ATTEMPTS = 15;
 
+    public const float AUTO_EVO_TOLERANCE_PERFECT_CHANCE = 0.02f;
+
     public const float AUTO_EVO_PREDICTION_UPDATE_INTERVAL = 0.95f;
 
     /// <summary>
@@ -1706,8 +1708,15 @@ public static class Constants
     public const float PATCH_GENERATION_CHANCE_BANANA_BIOME = 0.03f;
 
     public const float TOLERANCE_INITIAL_TEMPERATURE_RANGE = 10;
+    public const float TOLERANCE_PERFECT_THRESHOLD_TEMPERATURE = 2;
+    public const float TOLERANCE_MAXIMUM_SURVIVABLE_TEMPERATURE_DIFFERENCE = 30;
+    public const float TOLERANCE_PERFECT_TEMPERATURE_SCORE = 0.1f;
+
+    public const float TOLERANCE_MAXIMUM_SURVIVABLE_PRESSURE_DIFFERENCE = 2000000;
+    public const float TOLERANCE_PERFECT_THRESHOLD_PRESSURE = 50000;
     public const float TOLERANCE_INITIAL_PRESSURE_MIN_FRACTION = 0.9f;
     public const float TOLERANCE_INITIAL_PRESSURE_MAX_FRACTION = 1.2f;
+    public const float TOLERANCE_PERFECT_PRESSURE_SCORE = 0.1f;
 
     // How much it costs to edit various tolerances in the editor
     public const float TOLERANCE_CHANGE_MP_PER_TEMPERATURE = 1.0f;
