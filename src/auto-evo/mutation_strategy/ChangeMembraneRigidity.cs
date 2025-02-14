@@ -15,7 +15,7 @@ public class ChangeMembraneRigidity : IMutationStrategy<MicrobeSpecies>
     public bool Repeatable => true;
 
     public List<Tuple<MicrobeSpecies, float>>? MutationsOf(MicrobeSpecies baseSpecies, float mp, bool lawk,
-        Random random)
+        Random random, BiomeConditions biomeToConsider)
     {
         const float change = Constants.AUTO_EVO_MUTATION_RIGIDITY_STEP;
         const float mpCost = change * 10 * 2;

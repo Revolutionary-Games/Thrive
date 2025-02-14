@@ -80,8 +80,8 @@ public static class CommonMutationFunctions
 
         while (mp > 0)
         {
-            var mutation = mutationStrategy.MutationsOf(mutated, mp, true, random)?.OrderBy(_ => random.Next())
-                .FirstOrDefault();
+            var mutation = mutationStrategy.MutationsOf(mutated, mp, true, random, forPatch.Biome)
+                ?.OrderBy(_ => random.Next()).FirstOrDefault();
 
             if (mutation == null)
                 break;

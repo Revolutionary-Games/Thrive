@@ -2,6 +2,7 @@
 
 using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 
 public class ModifyEnvironmentalTolerance : IMutationStrategy<MicrobeSpecies>
 {
@@ -12,11 +13,15 @@ public class ModifyEnvironmentalTolerance : IMutationStrategy<MicrobeSpecies>
     public bool Repeatable => false;
 
     public List<Tuple<MicrobeSpecies, float>>? MutationsOf(MicrobeSpecies baseSpecies, float mp, bool lawk,
-        Random random)
+        Random random, BiomeConditions biomeToConsider)
     {
-        var score = MicrobeEnvironmentalToleranceCalculations.CalculateTolerances(baseSpecies, TODO, cache);
+        if (mp <= 0)
+            return null;
 
-        // This is outside the if statement to have a slightly more consistent number of random calls
+        var score = MicrobeEnvironmentalToleranceCalculations.CalculateTolerances(baseSpecies, biomeToConsider);
+
+        // This is outside the if statement to have a slightly more consistent number of random calls (though this
+        // might not really matter in practice)
         float skipChance = random.NextSingle();
         bool doingPerfect = false;
 
@@ -32,39 +37,181 @@ public class ModifyEnvironmentalTolerance : IMutationStrategy<MicrobeSpecies>
             doingPerfect = true;
         }
 
-        // TODO: could do a shallower clone here as organelles won't be modified so this doesn't need to clone anything
-        // except the tolerances
-        MicrobeSpecies? newSpecies = null;
+        bool changes = false;
 
-        void SetupSpecies()
-        {
-            newSpecies ??= (MicrobeSpecies)baseSpecies.Clone();
-        }
+        // Technically, this could be done a lot later, but that needs all branches here to allocate this separately
+        var newTolerances = baseSpecies.Tolerances.Clone();
 
+        // TODO: with limited MP it might be better to prioritise something else than temperature
         if (score.TemperatureScore < 1 || doingPerfect)
         {
-            SetupSpecies();
-            mp -=  ?;
+            if (score.TemperatureScore < 1 || Math.Abs(score.PerfectTemperatureAdjustment) > MathUtils.EPSILON)
+            {
+                var maxChange = mp / Constants.TOLERANCE_CHANGE_MP_PER_TEMPERATURE;
+
+                float change;
+
+                if (score.PerfectTemperatureAdjustment < 0)
+                {
+                    change = Math.Max(score.PerfectTemperatureAdjustment, -maxChange);
+                }
+                else
+                {
+                    change = Math.Min(score.PerfectTemperatureAdjustment, maxChange);
+                }
+
+                newTolerances.PreferredTemperature += change;
+
+                // Need to remember to adjust MP
+                mp -= change * Constants.TOLERANCE_CHANGE_MP_PER_TEMPERATURE;
+            }
+            else
+            {
+                // Trying to perfect this
+                var maxChange = mp / Constants.TOLERANCE_CHANGE_MP_PER_TEMPERATURE_TOLERANCE;
+
+                // To perfect temperature it needs to be always negative
+#if DEBUG
+                if (score.TemperatureRangeSizeAdjustment > 0)
+                {
+                    if (Debugger.IsAttached)
+                        Debugger.Break();
+                    throw new Exception("Temperature range size adjustment is not negative");
+                }
+#endif
+
+                var change = Math.Max(score.PerfectOxygenAdjustment, maxChange);
+
+                newTolerances.TemperatureTolerance -= change;
+
+                mp -= change * Constants.TOLERANCE_CHANGE_MP_PER_TEMPERATURE_TOLERANCE;
+            }
+
+            changes = true;
         }
 
-        if (score.PressureScore < 1 || doingPerfect)
+        // TODO: sometimes when the tolerance range is too low,
+
+        if ((score.PressureScore < 1 || doingPerfect) && mp > 0)
         {
+            if (score.PressureScore < 1 || Math.Abs(score.PerfectPressureAdjustment) > MathUtils.EPSILON)
+            {
+                var maxChange = mp / Constants.TOLERANCE_CHANGE_MP_PER_PRESSURE;
+
+                // Calculate in doubles as the pressure stuff needs many decimals
+                double change;
+
+                if (score.PerfectPressureAdjustment < 0)
+                {
+                    change = Math.Max(score.PerfectPressureAdjustment, -maxChange);
+                }
+                else
+                {
+                    change = Math.Min(score.PerfectPressureAdjustment, maxChange);
+                }
+
+                newTolerances.PreferredPressure += (float)change;
+
+                mp -= (float)(change * Constants.TOLERANCE_CHANGE_MP_PER_PRESSURE);
+            }
+            else
+            {
+                // Trying to perfect this, which is much harder than the other cases as the middle point also will
+                // change (potentially)
+                var changePotential = mp / Constants.TOLERANCE_CHANGE_MP_PER_PRESSURE_TOLERANCE;
+
+                // The top range needs to always go down, and the bottom range needs always to go up
+#if DEBUG
+                if (score.TemperatureRangeSizeAdjustment > 0)
+                {
+                    if (Debugger.IsAttached)
+                        Debugger.Break();
+                    throw new Exception("Temperature range size adjustment is not negative");
+                }
+#endif
+
+                // TODO: either split this more equally or consider if it should be the other way around
+
+                var halfAdjustment = score.PressureRangeSizeAdjustment * 0.5f;
+
+                var maxChange = Math.Min(changePotential, halfAdjustment);
+
+                // Recalculate change potential for the other part of the calculation
+                mp -= (float)(maxChange * Constants.TOLERANCE_CHANGE_MP_PER_PRESSURE_TOLERANCE);
+                changePotential = mp / Constants.TOLERANCE_CHANGE_MP_PER_PRESSURE_TOLERANCE;
+
+                newTolerances.PressureMaximum = (float)(newTolerances.PressureMaximum - maxChange);
+
+                var minChange = Math.Min(changePotential, halfAdjustment);
+
+                newTolerances.PressureMinimum = (float)(newTolerances.PressureMinimum + minChange);
+
+                mp -= (float)(minChange * Constants.TOLERANCE_CHANGE_MP_PER_PRESSURE_TOLERANCE);
+
+                // Recalculate the middle point
+                // TODO: should this be considered to use MP? Most of the time this shouldn't change as the range is
+                // shrunk symmetrically
+                newTolerances.PreferredPressure =
+                    (newTolerances.PressureMaximum + newTolerances.PressureMinimum) / 2;
+            }
+
+            changes = true;
         }
 
-        if (score.OxygenScore < 1 || doingPerfect)
+        if (score.OxygenScore < 1 && mp > 0)
         {
+            var maxChange = mp / Constants.TOLERANCE_CHANGE_MP_PER_OXYGEN;
+
+            // Oxygen value can only be too low, so it is always increased
+            var change = Math.Min(score.PerfectOxygenAdjustment, maxChange);
+
+#if DEBUG
+            if (score.PerfectOxygenAdjustment < 0)
+            {
+                if (Debugger.IsAttached)
+                    Debugger.Break();
+                throw new Exception("Oxygen perfection adjustment should not be negative");
+            }
+#endif
+
+            newTolerances.UVResistance += change;
+
+            mp -= change * Constants.TOLERANCE_CHANGE_MP_PER_OXYGEN;
+            changes = true;
         }
 
-        if (score.UVScore < 1 || doingPerfect)
+        if (score.UVScore < 1 && mp > 0)
         {
+            var maxChange = mp / Constants.TOLERANCE_CHANGE_MP_PER_UV;
+
+            var change = Math.Min(score.PerfectUVAdjustment, maxChange);
+
+#if DEBUG
+            if (score.PerfectUVAdjustment < 0)
+            {
+                if (Debugger.IsAttached)
+                    Debugger.Break();
+                throw new Exception("UV perfection adjustment should not be negative");
+            }
+#endif
+
+            newTolerances.UVResistance += change;
+
+            mp -= change * Constants.TOLERANCE_CHANGE_MP_PER_UV;
+            changes = true;
         }
 
-        if (newSpecies == null)
+        if (changes)
         {
             // Didn't find anything to do after all. This condition should be ensured to be rare as we wasted some
             // processing time here
             return null;
         }
+
+        // TODO: could do a shallower clone here as organelles won't be modified so this doesn't need to clone anything
+        // except the tolerances
+        var newSpecies = (MicrobeSpecies)baseSpecies.Clone();
+        newSpecies.Tolerances.CopyFrom(newTolerances);
 
         return [Tuple.Create(newSpecies, mp)];
     }

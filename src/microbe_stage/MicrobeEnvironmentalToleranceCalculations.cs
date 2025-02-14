@@ -1,6 +1,5 @@
 ﻿using System;
 using AutoEvo;
-using Components;
 
 /// <summary>
 ///   Helper class that contains all the math for environmental tolerances in one place (though the microbe editor and
@@ -31,7 +30,8 @@ public static class MicrobeEnvironmentalToleranceCalculations
         return CalculateTolerances(species.Tolerances, environment);
     }
 
-    public static ToleranceResult CalculateTolerances(EnvironmentalTolerances speciesTolerances, BiomeConditions environment)
+    public static ToleranceResult CalculateTolerances(EnvironmentalTolerances speciesTolerances,
+        BiomeConditions environment)
     {
         var result = new ToleranceResult();
 
@@ -80,7 +80,7 @@ public static class MicrobeEnvironmentalToleranceCalculations
         {
             // Adequately adapted, but could be made perfect
             result.TemperatureRangeSizeAdjustment =
-                speciesTolerances.TemperatureTolerance - Constants.TOLERANCE_PERFECT_THRESHOLD_TEMPERATURE;
+                Constants.TOLERANCE_PERFECT_THRESHOLD_TEMPERATURE - speciesTolerances.TemperatureTolerance;
 
             result.TemperatureScore = 1;
         }
@@ -90,7 +90,8 @@ public static class MicrobeEnvironmentalToleranceCalculations
         {
             // Too high pressure
 
-            if (patchPressure - speciesTolerances.PressureMaximum > Constants.TOLERANCE_MAXIMUM_SURVIVABLE_PRESSURE_DIFFERENCE)
+            if (patchPressure - speciesTolerances.PressureMaximum >
+                Constants.TOLERANCE_MAXIMUM_SURVIVABLE_PRESSURE_DIFFERENCE)
             {
                 result.PressureScore = 0;
             }
@@ -105,7 +106,8 @@ public static class MicrobeEnvironmentalToleranceCalculations
         else if (patchPressure < speciesTolerances.PressureMinimum)
         {
             // Too low pressure
-            if (speciesTolerances.PressureMinimum - patchPressure > Constants.TOLERANCE_MAXIMUM_SURVIVABLE_PRESSURE_DIFFERENCE)
+            if (speciesTolerances.PressureMinimum - patchPressure >
+                Constants.TOLERANCE_MAXIMUM_SURVIVABLE_PRESSURE_DIFFERENCE)
             {
                 result.PressureScore = 0;
             }
@@ -132,8 +134,7 @@ public static class MicrobeEnvironmentalToleranceCalculations
             else
             {
                 // Adequately adapted, but could be made perfect
-                result.PressureRangeSizeAdjustment =
-                    range - Constants.TOLERANCE_PERFECT_THRESHOLD_PRESSURE;
+                result.PressureRangeSizeAdjustment = Constants.TOLERANCE_PERFECT_THRESHOLD_PRESSURE - range;
 
                 result.PressureScore = 1;
             }
@@ -252,7 +253,15 @@ public static class MicrobeEnvironmentalToleranceCalculations
         public float OverallScore;
 
         public float TemperatureScore;
+
+        /// <summary>
+        ///   How to adjust the preferred temperature to get to the exact value in the biome
+        /// </summary>
         public float PerfectTemperatureAdjustment;
+
+        /// <summary>
+        ///   How to adjust the tolerance range of temperature to qualify as perfectly adapted
+        /// </summary>
         public float TemperatureRangeSizeAdjustment;
 
         public float PressureScore;
