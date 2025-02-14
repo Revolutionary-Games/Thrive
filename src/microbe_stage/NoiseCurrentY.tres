@@ -1,0 +1,9 @@
+[gd_resource type="NoiseTexture3D" load_steps=2 format=3 uid="uid://c1rh4c3an4opj"]
+
+[sub_resource type="FastNoiseLite" id="FastNoiseLite_wxv30"]
+noise_type = 3
+seed = 23078
+
+[resource]
+seamless_blend_skirt = 0.5
+noise = SubResource("FastNoiseLite_wxv30")
