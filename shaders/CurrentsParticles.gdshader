@@ -73,7 +73,8 @@ void process() {
     
     vec2 current;
     {
-        vec2 position = TRANSFORM[3].xz;
+		// This should strictly conform to the formula in FluidCurrentSystem.cs
+        vec2 position = TRANSFORM[3].xz * 0.9f;
         
         // TODO: move constants to uniforms
         float timescale = 1.0f / 500.0f;
@@ -83,7 +84,7 @@ void process() {
         float disturbanceY = texture(noiseDisturbancesY, vec3(position, gameTime) / 64.0f).r;
         
         float currentX = texture(noiseCurrentsX, vec3(position.x * 0.1f, position.y, gameTime * timescale) / 64.0f).r; 
-        float currentY = texture(noiseCurrentsY, vec3(position.x * 0.1f, position.y, gameTime * timescale) / 64.0f).r; 
+        float currentY = texture(noiseCurrentsY, vec3(position.x, position.y * 0.1f, gameTime * timescale) / 64.0f).r; 
         
         vec2 disturbances = vec2(disturbanceX, disturbanceY);
         vec2 currents = vec2(currentX, currentY);
@@ -102,7 +103,7 @@ void process() {
         current *= 10.0f;
     }
     
-    VELOCITY = vec3(current.x, 0.0f, -current.y);
+    VELOCITY = vec3(current.x, 0.0f, current.y);
 
     TRANSFORM[3].xyz += VELOCITY * DELTA;
 
