@@ -141,9 +141,16 @@ public sealed class MicrobeVisualOnlySimulation : WorldSimulation
             return;
         }
 
+        var dummyEffects = new MicrobeEnvironmentalEffects()
+        {
+            HealthMultiplier = 1,
+            OsmoregulationMultiplier = 1,
+            ProcessSpeedModifier = 1,
+        };
+
         // Do a full update apply with the general code method
         ref var cellProperties = ref microbe.Get<CellProperties>();
-        cellProperties.ReApplyCellTypeProperties(ref microbe.Get<MicrobeEnvironmentalEffects>(), microbe, species,
+        cellProperties.ReApplyCellTypeProperties(ref dummyEffects, microbe, species,
             species, this, hexWorkData1, hexWorkData2);
 
         // TODO: update species member component if species changed?
