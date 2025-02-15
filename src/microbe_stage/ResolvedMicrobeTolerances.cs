@@ -1,4 +1,4 @@
-/// <summary>
+﻿/// <summary>
 ///   Resolved values of how the environment affects a specific microbe species in a patch
 /// </summary>
 public struct ResolvedMicrobeTolerances

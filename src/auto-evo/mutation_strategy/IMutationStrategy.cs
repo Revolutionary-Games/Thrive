@@ -16,7 +16,7 @@ public interface IMutationStrategy<T>
     /// <param name="baseSpecies">The species to start from</param>
     /// <param name="mp">How much MP there is to do the mutations</param>
     /// <param name="lawk">
-    ///     The game LAWK status, when the game was started in LAWK mode, affects which mutations are valid
+    ///   The game LAWK status, when the game was started in LAWK mode, affects which mutations are valid
     /// </param>
     /// <param name="random">The random object</param>
     /// <param name="biomeToConsider">

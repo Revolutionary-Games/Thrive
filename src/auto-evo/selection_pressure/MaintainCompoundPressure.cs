@@ -41,7 +41,7 @@ public class MaintainCompoundPressure : SelectionPressure
         var biomeConditions = patch.Biome;
         var resolvedTolerances = cache.GetEnvironmentalTolerances(microbeSpecies, biomeConditions);
 
-        for (var i = 0; i < microbeSpecies.Organelles.Count; i++)
+        for (var i = 0; i < microbeSpecies.Organelles.Count; ++i)
         {
             var organelle = microbeSpecies.Organelles[i];
             foreach (var process in organelle.Definition.RunnableProcesses)
