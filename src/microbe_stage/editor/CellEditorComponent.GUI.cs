@@ -805,7 +805,7 @@ public partial class CellEditorComponent
             MicrobeEnvironmentalToleranceCalculations.ResolveToleranceValues(tolerances), AddToleranceWarning);
 
         // Remove excess text that is no longer used
-        while (usedToleranceWarnings > activeToleranceWarnings.Count)
+        while (usedToleranceWarnings < activeToleranceWarnings.Count)
         {
             var last = activeToleranceWarnings[^1];
             last.QueueFree();
