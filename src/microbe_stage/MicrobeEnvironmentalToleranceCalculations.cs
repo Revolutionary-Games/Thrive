@@ -180,12 +180,13 @@ public static class MicrobeEnvironmentalToleranceCalculations
         Action<string> resultCallback)
     {
         if (problemNumbers.HealthModifier < 1 || problemNumbers.ProcessSpeedModifier < 1 ||
-            problemNumbers.OsmoregulationModifier < 1)
+            problemNumbers.OsmoregulationModifier > 1)
         {
+            // Osmoregulation modifier works in reverse (i.e. higher value is worse)
             resultCallback.Invoke(Localization.Translate("TOLERANCES_UNSUITABLE_DEBUFFS")
-                .FormatSafe(Math.Round(problemNumbers.OsmoregulationModifier * 100, 1),
-                    Math.Round(problemNumbers.ProcessSpeedModifier * 100, 1),
-                    Math.Round(problemNumbers.HealthModifier * 100, 1)));
+                .FormatSafe(-Math.Round((problemNumbers.OsmoregulationModifier - 1) * 100, 1),
+                    -Math.Round((1 - problemNumbers.ProcessSpeedModifier) * 100, 1),
+                    -Math.Round((1 - problemNumbers.HealthModifier) * 100, 1)));
         }
 
         if (data.TemperatureScore < 1)
@@ -242,7 +243,7 @@ public static class MicrobeEnvironmentalToleranceCalculations
         {
             result.ProcessSpeedModifier *= Math.Max(0.9f, data.TemperatureScore);
 
-            result.OsmoregulationModifier *= Math.Max(0.9f, data.TemperatureScore);
+            result.OsmoregulationModifier *= Math.Min(1.1f, 2 - data.TemperatureScore);
 
             result.HealthModifier *= Math.Max(0.9f, data.TemperatureScore);
         }
@@ -254,7 +255,7 @@ public static class MicrobeEnvironmentalToleranceCalculations
         if (data.PressureScore < 1)
         {
             result.ProcessSpeedModifier *= Math.Max(0.9f, data.PressureScore);
-            result.OsmoregulationModifier *= Math.Max(0.9f, data.PressureScore);
+            result.OsmoregulationModifier *= Math.Min(1.1f, 2 - data.PressureScore);
             result.HealthModifier *= Math.Max(0.5f, data.PressureScore);
         }
         else if (data.PressureScore > 1)
@@ -265,13 +266,13 @@ public static class MicrobeEnvironmentalToleranceCalculations
         if (data.OxygenScore < 1)
         {
             result.HealthModifier *= Math.Max(0.5f, data.OxygenScore);
-            result.OsmoregulationModifier *= Math.Max(0.5f, data.OxygenScore);
+            result.OsmoregulationModifier *= Math.Min(1.5f, 2 - data.OxygenScore);
         }
 
         if (data.UVScore < 1)
         {
             result.HealthModifier *= Math.Max(0.5f, data.UVScore);
-            result.OsmoregulationModifier *= Math.Max(0.9f, data.UVScore);
+            result.OsmoregulationModifier *= Math.Min(1.5f, 2 - data.UVScore);
         }
 
         // TODO: figure out why really bad pressure score species appear in the first generation
