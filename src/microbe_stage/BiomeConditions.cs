@@ -67,6 +67,18 @@ public class BiomeConditions : IBiomeConditions, ICloneable
     public Dictionary<string, ChunkConfiguration> Chunks { get; set; } = null!;
 
     /// <summary>
+    ///   Environmental pressure in this biome (average value based on the average depth from the patch)
+    /// </summary>
+    /// <remarks>
+    ///   <para>
+    ///     Default value is picked to work with default values in <see cref="EnvironmentalTolerances"/> so that this
+    ///     won't totally blow up older saves.
+    ///   </para>
+    /// </remarks>
+    [JsonProperty]
+    public float Pressure { get; set; } = 101325;
+
+    /// <summary>
     ///   The compound amounts that change in realtime during gameplay
     /// </summary>
     [JsonIgnore]
@@ -365,6 +377,18 @@ public class BiomeConditions : IBiomeConditions, ICloneable
         return true;
     }
 
+    public float CalculateOxygenResistanceFactor()
+    {
+        // TODO: maybe would be nicer to have some kind of exponential or other non-linear relationship here?
+        return Math.Clamp(GetCompound(Compound.Oxygen, CompoundAmountType.Biome).Amount, 0, 1);
+    }
+
+    public float CalculateUVFactor()
+    {
+        // Assume it is directly related to sunlight
+        return Math.Clamp(GetCompound(Compound.Sunlight, CompoundAmountType.Biome).Amount, 0, 1);
+    }
+
     public void Check(string name)
     {
         if (compounds == null)
@@ -431,6 +455,7 @@ public class BiomeConditions : IBiomeConditions, ICloneable
             minimumCompoundAmounts.CloneShallow())
         {
             Chunks = Chunks.CloneShallow(),
+            Pressure = Pressure,
         };
 
         return result;

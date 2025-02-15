@@ -27,7 +27,7 @@ public class ChangeBehaviorScore : IMutationStrategy<MicrobeSpecies>
     public bool Repeatable => false;
 
     public List<Tuple<MicrobeSpecies, float>>? MutationsOf(MicrobeSpecies baseSpecies, float mp, bool lawk,
-        Random random)
+        Random random, BiomeConditions biomeToConsider)
     {
         // TODO: Make random something passed in
         var change = (float)random.NextDouble() * maxChange;

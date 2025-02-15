@@ -1,8 +1,10 @@
-[gd_scene load_steps=2 format=2]
+[gd_scene load_steps=2 format=3 uid="uid://bgeijgq7runaw"]
 
-[ext_resource path="res://src/gui_common/FocusGrabber.cs" type="Script" id=1]
+[ext_resource type="Script" path="res://src/gui_common/FocusGrabber.cs" id="1"]
 
 [node name="FocusGrabber" type="Control"]
 process_mode = 3
+layout_mode = 3
+anchors_preset = 0
 mouse_filter = 2
-script = ExtResource( 1 )
+script = ExtResource("1")

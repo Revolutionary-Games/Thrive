@@ -527,8 +527,21 @@ public static class SpawnHelpers
 
         MulticellularSpecies? multicellular = null;
 
+        var environmentalEffects = new MicrobeEnvironmentalEffects
+        {
+            HealthMultiplier = 1,
+            OsmoregulationMultiplier = 1,
+        };
+
+        var bioProcesses = new BioProcesses
+        {
+            ProcessStatistics = aiControlled ? null : new ProcessStatistics(),
+        };
+
         if (species is MulticellularSpecies multicellularSpecies)
         {
+            // TODO: multicellular tolerances
+
             multicellular = multicellularSpecies;
             CellType resolvedCellType;
 
@@ -577,6 +590,14 @@ public static class SpawnHelpers
         }
         else if (species is MicrobeSpecies microbeSpecies)
         {
+            // TODO: add some kind of caching here to speed up microbe spawning
+            var tolerances =
+                MicrobeEnvironmentalToleranceCalculations.CalculateTolerances(microbeSpecies,
+                    spawnEnvironment.CurrentBiome);
+
+            environmentalEffects.ApplyEffects(
+                MicrobeEnvironmentalToleranceCalculations.ResolveToleranceValues(tolerances), ref bioProcesses);
+
             entity.Set(new MicrobeSpeciesMember
             {
                 Species = microbeSpecies,
@@ -594,11 +615,6 @@ public static class SpawnHelpers
         {
             throw new NotSupportedException("Unknown species type to spawn a microbe from");
         }
-
-        var bioProcesses = new BioProcesses
-        {
-            ProcessStatistics = aiControlled ? null : new ProcessStatistics(),
-        };
 
         int organelleCount;
 
@@ -729,7 +745,9 @@ public static class SpawnHelpers
         });
 
         entity.Set(new Health(HealthHelpers.CalculateMicrobeHealth(usedCellDefinition.MembraneType,
-            usedCellDefinition.MembraneRigidity)));
+            usedCellDefinition.MembraneRigidity, ref environmentalEffects)));
+
+        entity.Set(environmentalEffects);
 
         entity.Set(new CommandSignaler
         {

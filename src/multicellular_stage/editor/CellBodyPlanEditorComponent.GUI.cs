@@ -61,16 +61,24 @@ public partial class CellBodyPlanEditorComponent
 
         float consumptionProductionRatio = energyBalance.TotalConsumption / energyBalance.TotalProduction;
 
+        // TODO: environmental tolerances for multicellular
+        var environmentalTolerances = new ResolvedMicrobeTolerances
+        {
+            HealthModifier = 1,
+            OsmoregulationModifier = 1,
+            ProcessSpeedModifier = 1,
+        };
+
         foreach (var process in processes)
         {
             // This requires the inputs to be in the biome to give a realistic prediction of how fast the processes
             // *might* run once swimming around in the stage.
-            var singleProcess = ProcessSystem.CalculateProcessMaximumSpeed(process, biome, CompoundAmountType.Current,
-                true);
+            var singleProcess = ProcessSystem.CalculateProcessMaximumSpeed(process,
+                environmentalTolerances.ProcessSpeedModifier, biome, CompoundAmountType.Current, true);
 
             // If produces more ATP than consumes, lower down production for inputs and for outputs,
             // otherwise use maximum production values (this matches the equilibrium display mode and what happens
-            // in game once exiting the editor)
+            // in the game once exiting the editor)
             if (consumptionProductionRatio < 1.0f)
             {
                 singleProcess.ScaleSpeed(consumptionProductionRatio, processSpeedWorkMemory);

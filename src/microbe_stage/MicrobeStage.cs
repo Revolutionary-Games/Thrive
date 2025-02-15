@@ -669,10 +669,20 @@ public partial class MicrobeStage : CreatureStageBase<Entity, MicrobeWorldSimula
             wonOnce = true;
         }
 
+        var playerSpecies = Player.Get<SpeciesMember>().Species;
+
+        // Update the player environmental properties
+        ref var bioProcesses = ref Player.Get<BioProcesses>();
+
+        var environmentalEffects = new MicrobeEnvironmentalEffects
+        {
+            OsmoregulationMultiplier = 1,
+            HealthMultiplier = 1,
+            ProcessSpeedModifier = 1,
+        };
+
         var workData1 = new List<Hex>();
         var workData2 = new List<Hex>();
-
-        var playerSpecies = Player.Get<SpeciesMember>().Species;
 
         // Update the player's cell
         ref var cellProperties = ref Player.Get<CellProperties>();
@@ -683,18 +693,30 @@ public partial class MicrobeStage : CreatureStageBase<Entity, MicrobeWorldSimula
         {
             ref var earlySpeciesType = ref Player.Get<MulticellularSpeciesMember>();
 
+            // TODO: multicellular tolerances
+
             // Allow updating the first cell type to reproduce (reproduction order changed)
             earlySpeciesType.MulticellularCellType = earlySpeciesType.Species.Cells[0].CellType;
 
-            cellProperties.ReApplyCellTypeProperties(Player, earlySpeciesType.MulticellularCellType,
-                earlySpeciesType.Species, WorldSimulation, workData1, workData2);
+            cellProperties.ReApplyCellTypeProperties(ref environmentalEffects, Player,
+                earlySpeciesType.MulticellularCellType, earlySpeciesType.Species, WorldSimulation, workData1,
+                workData2);
         }
         else
         {
             ref var species = ref Player.Get<MicrobeSpeciesMember>();
-            cellProperties.ReApplyCellTypeProperties(Player, species.Species, species.Species, WorldSimulation,
+
+            var resolvedTolerances = MicrobeEnvironmentalToleranceCalculations.ResolveToleranceValues(
+                MicrobeEnvironmentalToleranceCalculations.CalculateTolerances(species.Species, CurrentBiome));
+
+            environmentalEffects.ApplyEffects(resolvedTolerances, ref bioProcesses);
+
+            cellProperties.ReApplyCellTypeProperties(ref environmentalEffects, Player,
+                species.Species, species.Species, WorldSimulation,
                 workData1, workData2);
         }
+
+        Player.Set(environmentalEffects);
 
         var playerCompounds = Player.Get<CompoundStorage>().Compounds;
 
@@ -735,7 +757,7 @@ public partial class MicrobeStage : CreatureStageBase<Entity, MicrobeWorldSimula
         cellProperties.Divide(ref Player.Get<OrganelleContainer>(), Player, playerSpecies, WorldSimulation,
             this, WorldSimulation.SpawnSystem, (ref EntityRecord daughter) =>
             {
-                // Mark as player reproduced entity
+                // Mark as a player-reproduced entity
                 daughter.Set(new PlayerOffspring
                 {
                     OffspringOrderNumber = ++playerOffspringTotalCount,

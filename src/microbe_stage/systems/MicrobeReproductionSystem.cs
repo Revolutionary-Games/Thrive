@@ -46,6 +46,7 @@ using World = DefaultEcs.World;
 [ReadsComponent(typeof(WorldPosition))]
 [ReadsComponent(typeof(SoundEffectPlayer))]
 [ReadsComponent(typeof(MicrobeControl))]
+[ReadsComponent(typeof(MicrobeEnvironmentalEffects))]
 [RunsAfter(typeof(OsmoregulationAndHealingSystem))]
 [RunsAfter(typeof(ProcessSystem))]
 [RuntimeCost(14)]
@@ -623,9 +624,25 @@ public sealed class MicrobeReproductionSystem : AEntitySetSystem<float>
             {
                 lock (workData2)
                 {
+                    // TODO: remove this extra copy on next save breakage point
+                    MicrobeEnvironmentalEffects environmentalEffects;
+
+                    if (entity.Has<MicrobeEnvironmentalEffects>())
+                    {
+                        environmentalEffects = entity.Get<MicrobeEnvironmentalEffects>();
+                    }
+                    else
+                    {
+                        environmentalEffects = new MicrobeEnvironmentalEffects
+                        {
+                            HealthMultiplier = 1,
+                            OsmoregulationMultiplier = 1,
+                        };
+                    }
+
                     // Return the first cell to its normal, non-duplicated cell arrangement and spawn a daughter cell
                     organelles.ResetOrganelleLayout(ref entity.Get<CompoundStorage>(),
-                        ref entity.Get<BioProcesses>(),
+                        ref entity.Get<BioProcesses>(), ref environmentalEffects,
                         entity, species, species, worldSimulation, workData1, workData2);
 
                     // This is purely inside this lock to suppress a warning on worldSimulation

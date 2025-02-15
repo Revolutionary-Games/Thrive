@@ -75,7 +75,7 @@ public class AddOrganelleAnywhere : IMutationStrategy<MicrobeSpecies>
     }
 
     public List<Tuple<MicrobeSpecies, float>>? MutationsOf(MicrobeSpecies baseSpecies, float mp, bool lawk,
-        Random random)
+        Random random, BiomeConditions biomeToConsider)
     {
         // If a cheaper organelle gets added, this will need to be updated
         if (mp < 20)

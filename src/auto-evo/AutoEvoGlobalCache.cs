@@ -7,6 +7,7 @@ public class AutoEvoGlobalCache
 {
     public readonly RootPressure RootPressure;
     public readonly MetabolicStabilityPressure MetabolicStabilityPressure;
+    public readonly EnvironmentalTolerancePressure EnvironmentalTolerancesPressure;
 
     public readonly CompoundConversionEfficiencyPressure MinorGlucoseConversionEfficiencyPressure;
     public readonly MaintainCompoundPressure MaintainGlucose;
@@ -40,6 +41,7 @@ public class AutoEvoGlobalCache
     {
         RootPressure = new RootPressure();
         MetabolicStabilityPressure = new MetabolicStabilityPressure(10.0f);
+        EnvironmentalTolerancesPressure = new EnvironmentalTolerancePressure(4);
 
         MinorGlucoseConversionEfficiencyPressure =
             new CompoundConversionEfficiencyPressure(Compound.Glucose, Compound.ATP, 0.75f);

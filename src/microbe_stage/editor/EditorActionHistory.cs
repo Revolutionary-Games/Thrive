@@ -123,7 +123,7 @@ public class EditorActionHistory<TAction> : ActionHistory<TAction>
 
     public override void AddAction(TAction action)
     {
-        // Check if the action can be merged (for example behaviour or rigidity slider subsequent edits should
+        // Check if the action can be merged (for example, behaviour or rigidity slider subsequent edits should
         // merge) in a single step for undo.
         if (ActionIndex > 0)
         {

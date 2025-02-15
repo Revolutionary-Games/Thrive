@@ -38,20 +38,28 @@ public class MaintainCompoundPressure : SelectionPressure
         var compoundUsed = 0.0f;
         var compoundCreated = 0.0f;
 
-        foreach (var organelle in microbeSpecies.Organelles)
+        var biomeConditions = patch.Biome;
+        var resolvedTolerances = cache.GetEnvironmentalTolerances(microbeSpecies, biomeConditions);
+
+        for (var i = 0; i < microbeSpecies.Organelles.Count; ++i)
         {
+            var organelle = microbeSpecies.Organelles[i];
             foreach (var process in organelle.Definition.RunnableProcesses)
             {
                 if (process.Process.Inputs.TryGetValue(compound, out var inputAmount))
                 {
-                    var processSpeed = cache.GetProcessMaximumSpeed(process, patch.Biome).CurrentSpeed;
+                    var processSpeed = cache
+                        .GetProcessMaximumSpeed(process, resolvedTolerances.ProcessSpeedModifier, biomeConditions)
+                        .CurrentSpeed;
 
                     compoundUsed += inputAmount * processSpeed;
                 }
 
                 if (process.Process.Outputs.TryGetValue(compound, out var outputAmount))
                 {
-                    var processSpeed = cache.GetProcessMaximumSpeed(process, patch.Biome).CurrentSpeed;
+                    var processSpeed = cache
+                        .GetProcessMaximumSpeed(process, resolvedTolerances.ProcessSpeedModifier, biomeConditions)
+                        .CurrentSpeed;
 
                     compoundCreated += outputAmount * processSpeed;
                 }

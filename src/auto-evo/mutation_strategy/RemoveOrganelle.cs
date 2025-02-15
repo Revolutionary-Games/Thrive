@@ -47,7 +47,7 @@ public class RemoveOrganelle : IMutationStrategy<MicrobeSpecies>
     // ReSharper restore InvokeAsExtensionMethod
 
     public List<Tuple<MicrobeSpecies, float>>? MutationsOf(MicrobeSpecies baseSpecies, float mp, bool lawk,
-        Random random)
+        Random random, BiomeConditions biomeToConsider)
     {
         if (mp < Constants.ORGANELLE_REMOVE_COST)
             return null;

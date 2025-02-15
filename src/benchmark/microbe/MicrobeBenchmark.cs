@@ -457,6 +457,11 @@ public partial class MicrobeBenchmark : BenchmarkBase
         gameProperties = GameProperties.StartNewMicrobeGame(settings);
         world = new GameWorld(settings);
 
+        var test = "test";
+        var dummyPatch = new Patch(new LocalizedString(test), 1,
+            SimulationParameters.Instance.GetBiome("aavolcanic_vent"), BiomeType.Vents,
+            new PatchRegion(1, "test", PatchRegion.RegionType.Ocean, new Vector2(0, 0)));
+
         generatedSpecies.Clear();
 
         aiGroup1Seed = random.Next();
@@ -469,8 +474,8 @@ public partial class MicrobeBenchmark : BenchmarkBase
         {
             var species = CommonMutationFunctions.GenerateRandomSpecies(world.NewMicrobeSpecies(
                     nameGenerator.GenerateNameSection(random),
-                    nameGenerator.GenerateNameSection(random, true)),
-                workMemory, random, random.Next(200, 500));
+                    nameGenerator.GenerateNameSection(random, true)), dummyPatch, workMemory, random,
+                random.Next(200, 500));
 
             generatedSpecies.Add(species);
         }

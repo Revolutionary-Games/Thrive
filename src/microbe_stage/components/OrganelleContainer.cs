@@ -280,8 +280,15 @@ public static class OrganelleContainerHelpers
     ///   Resets a created layout of organelles on an existing microbe. This variant exists as this can perform
     ///   some extra operations not yet valid when initially creating a layout.
     /// </summary>
+    /// <remarks>
+    ///   <para>
+    ///     This doesn't apply <see cref="MicrobeEnvironmentalEffects"/> to <see cref="BioProcesses"/> that is done
+    ///     separately (on spawn for microbes other than the player)
+    ///   </para>
+    /// </remarks>
     public static void ResetOrganelleLayout(this ref OrganelleContainer container,
-        ref CompoundStorage storageToUpdate, ref BioProcesses bioProcessesToUpdate, in Entity entity,
+        ref CompoundStorage storageToUpdate, ref BioProcesses bioProcessesToUpdate,
+        ref readonly MicrobeEnvironmentalEffects effectsToRead, in Entity entity,
         ICellDefinition cellDefinition, Species baseReproductionCostFrom, IWorldSimulation worldSimulation,
         List<Hex> workMemory1, List<Hex> workMemory2)
     {
@@ -327,12 +334,15 @@ public static class OrganelleContainerHelpers
 
         container.RecalculateOrganelleBioProcesses(ref bioProcessesToUpdate);
 
-        // Rescale health in case max health changed (for example the player picked a new membrane)
+        // Update this environmental effect data
+        bioProcessesToUpdate.OverallSpeedModifier = effectsToRead.ProcessSpeedModifier;
+
+        // Rescale health in case max health changed (for example, the player picked a new membrane)
         ref var health = ref entity.Get<Health>();
         if (!health.Dead && health.CurrentHealth > 0 && health.MaxHealth > 0)
         {
             health.RescaleMaxHealth(HealthHelpers.CalculateMicrobeHealth(cellDefinition.MembraneType,
-                cellDefinition.MembraneRigidity));
+                cellDefinition.MembraneRigidity, in effectsToRead));
         }
     }
 

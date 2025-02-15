@@ -179,7 +179,10 @@ public partial class CellEditorComponent
         Colour = Colors.White;
 
         if (!IsMulticellularEditor)
+        {
             behaviourEditor.ResetBehaviour();
+            tolerancesEditor.ResetToCurrentSpeciesTolerances();
+        }
 
         OnPostNewMicrobeChange();
     }
@@ -206,6 +209,11 @@ public partial class CellEditorComponent
             {
                 behaviourEditor.SetBehaviouralValue(oldBehaviour.Key, oldBehaviour.Value);
             }
+
+            if (data.OldTolerances == null)
+                throw new InvalidOperationException("Tolerances data should have been initialized for restore");
+
+            tolerancesEditor.ResetToTolerances(data.OldTolerances);
         }
 
         OnPostNewMicrobeChange();
@@ -402,6 +410,11 @@ public partial class CellEditorComponent
         }
 
         OnBehaviourDataUpdated(behaviourEditor.Behaviour);
+    }
+
+    private void OnTolerancesEditorChangedData()
+    {
+        OnTolerancesChanged(tolerancesEditor.CurrentTolerances);
     }
 
     /// <summary>
