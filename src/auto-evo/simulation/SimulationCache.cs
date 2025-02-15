@@ -55,6 +55,9 @@ public class SimulationCache
 
     private readonly Dictionary<(MicrobeSpecies, BiomeConditions), float> cachedStorageScores = new();
 
+    private readonly Dictionary<(MicrobeSpecies, BiomeConditions), ResolvedMicrobeTolerances> cachedResolvedTolerances =
+        new();
+
     public SimulationCache(WorldGenerationSettings worldSettings)
     {
         this.worldSettings = worldSettings;
@@ -76,7 +79,7 @@ public class SimulationCache
     }
 
     public EnergyBalanceInfoSimple GetEnergyBalanceForSpecies(MicrobeSpecies species,
-        IBiomeConditions biomeConditions)
+        BiomeConditions biomeConditions)
     {
         // TODO: this gets called an absolute ton with the new auto-evo so a more efficient caching method (to allow
         // different species but with same organelles to be able to use the same cache value) would be nice here
@@ -247,7 +250,7 @@ public class SimulationCache
         return cached;
     }
 
-    public float GetPredationScore(Species predatorSpecies, Species preySpecies, IBiomeConditions biomeConditions)
+    public float GetPredationScore(Species predatorSpecies, Species preySpecies, BiomeConditions biomeConditions)
     {
         if (predatorSpecies is not MicrobeSpecies predator)
             return 0;
@@ -407,6 +410,7 @@ public class SimulationCache
         cachedEnzymeScores.Clear();
         cachedUsesVaryingCompounds.Clear();
         cachedStorageScores.Clear();
+        cachedResolvedTolerances.Clear();
     }
 
     public (float PilusScore, float OxytoxyScore, float SlimeJetScore, float MucocystsScore)
@@ -522,9 +526,18 @@ public class SimulationCache
     }
 
     public ResolvedMicrobeTolerances GetEnvironmentalTolerances(MicrobeSpecies species,
-        IBiomeConditions biomeConditions)
+        BiomeConditions biomeConditions)
     {
-        throw new NotImplementedException();
+        var key = (species, biomeConditions);
+        if (cachedResolvedTolerances.TryGetValue(key, out var cached))
+            return cached;
+
+        var tolerances = MicrobeEnvironmentalToleranceCalculations.CalculateTolerances(species, biomeConditions);
+
+        var result = MicrobeEnvironmentalToleranceCalculations.ResolveToleranceValues(tolerances);
+
+        cachedResolvedTolerances.Add(key, result);
+        return result;
     }
 
     private float CalculateStorageScore(MicrobeSpecies species, BiomeConditions biomeConditions, Compound compound)

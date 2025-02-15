@@ -1,5 +1,4 @@
 ﻿using System;
-using AutoEvo;
 
 /// <summary>
 ///   Helper class that contains all the math for environmental tolerances in one place (though the microbe editor and
@@ -13,13 +12,11 @@ public static class MicrobeEnvironmentalToleranceCalculations
     /// </summary>
     /// <param name="species">Species to calculate for</param>
     /// <param name="environment">Environment the species is in</param>
-    /// <param name="cache">Cache for speeding up the calculation</param>
     /// <returns>
     ///   The overall score, which ranges from 0 (not surviving at all) to 1 (well adapted),
     ///   and over 1 (for perfectly adapted, which gives bonuses)
     /// </returns>
-    public static float CalculateTotalToleranceScore(MicrobeSpecies species, BiomeConditions environment,
-        SimulationCache cache)
+    public static float CalculateTotalToleranceScore(MicrobeSpecies species, BiomeConditions environment)
     {
         var score = CalculateTolerances(species, environment);
         return score.OverallScore;

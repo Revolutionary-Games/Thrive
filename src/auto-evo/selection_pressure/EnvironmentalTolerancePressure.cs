@@ -28,8 +28,7 @@ public class EnvironmentalTolerancePressure : SelectionPressure
             return 0;
 
         // Use scores to encourage species to be adapted to their environment
-        return MicrobeEnvironmentalToleranceCalculations.CalculateTotalToleranceScore(microbeSpecies, patch.Biome,
-            cache);
+        return MicrobeEnvironmentalToleranceCalculations.CalculateTotalToleranceScore(microbeSpecies, patch.Biome);
     }
 
     public override float GetEnergy(Patch patch)
