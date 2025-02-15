@@ -73,7 +73,7 @@ void process() {
     
     vec2 current;
     {
-		// This should strictly conform to the formula in FluidCurrentSystem.cs
+        // The following should strictly conform to the formula in FluidCurrentSystem.cs
         vec2 position = TRANSFORM[3].xz * 0.9f;
         
         // TODO: move constants to uniforms
