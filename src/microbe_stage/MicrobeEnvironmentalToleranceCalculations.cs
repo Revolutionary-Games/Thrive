@@ -176,26 +176,56 @@ public static class MicrobeEnvironmentalToleranceCalculations
         return result;
     }
 
-    public static void GenerateToleranceProblemList(ToleranceResult data, Action<string> resultCallback)
+    public static void GenerateToleranceProblemList(ToleranceResult data, in ResolvedMicrobeTolerances problemNumbers,
+        Action<string> resultCallback)
     {
+        if (problemNumbers.HealthModifier < 1 || problemNumbers.ProcessSpeedModifier < 1 ||
+            problemNumbers.OsmoregulationModifier < 1)
+        {
+            resultCallback.Invoke(Localization.Translate("TOLERANCES_UNSUITABLE_DEBUFFS")
+                .FormatSafe(Math.Round(problemNumbers.OsmoregulationModifier, 1),
+                    Math.Round(problemNumbers.ProcessSpeedModifier, 1), Math.Round(problemNumbers.HealthModifier, 1)));
+        }
+
         if (data.TemperatureScore < 1)
         {
-            throw new NotImplementedException();
+            if (data.PerfectTemperatureAdjustment < 0)
+            {
+                resultCallback.Invoke(Localization.Translate("TOLERANCES_TOO_HIGH_TEMPERATURE")
+                    .FormatSafe(Math.Round(data.PerfectTemperatureAdjustment, 1)));
+            }
+            else
+            {
+                resultCallback.Invoke(Localization.Translate("TOLERANCES_TOO_LOW_TEMPERATURE")
+                    .FormatSafe(Math.Round(data.PerfectTemperatureAdjustment, 1)));
+            }
         }
 
         if (data.PressureScore < 1)
         {
-            throw new NotImplementedException();
+            if (data.PerfectPressureAdjustment < 0)
+            {
+                // TODO: show the numbers in megapascals when makes sense
+                resultCallback.Invoke(Localization.Translate("TOLERANCES_TOO_HIGH_PRESSURE")
+                    .FormatSafe(Math.Round(data.PerfectPressureAdjustment / 1000, 1)));
+            }
+            else
+            {
+                resultCallback.Invoke(Localization.Translate("TOLERANCES_TOO_LOW_PRESSURE")
+                    .FormatSafe(Math.Round(data.PerfectPressureAdjustment / 1000, 1)));
+            }
         }
 
         if (data.OxygenScore < 1)
         {
-            throw new NotImplementedException();
+            resultCallback.Invoke(Localization.Translate("TOLERANCES_TOO_LOW_OXYGEN_PROTECTION")
+                .FormatSafe(Math.Round(data.PerfectUVAdjustment * 100, 1)));
         }
 
         if (data.UVScore < 1)
         {
-            throw new NotImplementedException();
+            resultCallback.Invoke(Localization.Translate("TOLERANCES_TOO_LOW_UV_PROTECTION")
+                .FormatSafe(Math.Round(data.PerfectUVAdjustment * 100, 1)));
         }
     }
 

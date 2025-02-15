@@ -23,6 +23,9 @@ public partial class CellEditorComponent :
     public bool IsMacroscopicEditor;
 
     [Export]
+    public int MaxToleranceWarnings = 3;
+
+    [Export]
     public NodePath? TopPanelPath;
 
     [Export]
@@ -144,6 +147,9 @@ public partial class CellEditorComponent :
 
     [Export]
     private PanelContainer toleranceTab = null!;
+
+    [Export]
+    private Container toleranceWarningContainer = null!;
 
     private VBoxContainer partsSelectionContainer = null!;
     private CollapsibleList membraneTypeSelection = null!;
@@ -791,8 +797,7 @@ public partial class CellEditorComponent :
             // duplicate calls
             CalculateOrganelleEffectivenessInCurrentPatch();
 
-            // TODO: implement
-            throw new NotImplementedException();
+            CalculateAndDisplayToleranceWarnings();
         }
 
         // Show the organelle that is about to be placed
@@ -1124,7 +1129,8 @@ public partial class CellEditorComponent :
         var organelles = SimulationParameters.Instance.GetAllOrganelles();
 
         var result =
-            ProcessSystem.ComputeOrganelleProcessEfficiencies(organelles, Editor.CurrentPatch.Biome, CalculateLatestTolerances(), CompoundAmountType.Current);
+            ProcessSystem.ComputeOrganelleProcessEfficiencies(organelles, Editor.CurrentPatch.Biome,
+                CalculateLatestTolerances(), CompoundAmountType.Current);
 
         UpdateOrganelleEfficiencies(result);
     }
@@ -1897,10 +1903,14 @@ public partial class CellEditorComponent :
 
     private ResolvedMicrobeTolerances CalculateLatestTolerances()
     {
+        return MicrobeEnvironmentalToleranceCalculations.ResolveToleranceValues(CalculateRawTolerances());
+    }
+
+    private MicrobeEnvironmentalToleranceCalculations.ToleranceResult CalculateRawTolerances()
+    {
         // TODO: in the future this will need to pass the organelle list as well
-        return MicrobeEnvironmentalToleranceCalculations.ResolveToleranceValues(
-            MicrobeEnvironmentalToleranceCalculations.CalculateTolerances(tolerancesEditor.CurrentTolerances,
-                Editor.CurrentPatch.Biome));
+        return MicrobeEnvironmentalToleranceCalculations.CalculateTolerances(tolerancesEditor.CurrentTolerances,
+            Editor.CurrentPatch.Biome);
     }
 
     /// <summary>

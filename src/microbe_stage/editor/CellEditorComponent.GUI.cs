@@ -19,6 +19,10 @@ public partial class CellEditorComponent
 {
     private readonly Dictionary<int, GrowthOrderLabel> createdGrowthOrderLabels = new();
 
+    private readonly List<Label> activeToleranceWarnings = new();
+
+    private int usedToleranceWarnings = 0;
+
     private bool inProgressSuggestionCheckRunning;
 
     [Signal]
@@ -96,6 +100,8 @@ public partial class CellEditorComponent
 
         UpdateOsmoregulationTooltips();
         UpdateMPCost();
+
+        refreshTolerancesWarnings = true;
     }
 
     private void CheckRunningAutoEvoPrediction()
@@ -760,6 +766,51 @@ public partial class CellEditorComponent
         organismStatisticsPanel.ApplyLightLevelSelection();
 
         UpdateCancelButtonVisibility();
+    }
+
+    private void CalculateAndDisplayToleranceWarnings()
+    {
+        var tolerances = CalculateRawTolerances();
+
+        usedToleranceWarnings = 0;
+
+        void AddToleranceWarning(string text)
+        {
+            if (usedToleranceWarnings < activeToleranceWarnings.Count)
+            {
+                var warning = activeToleranceWarnings[usedToleranceWarnings];
+                warning.Text = text;
+            }
+            else if (usedToleranceWarnings < MaxToleranceWarnings)
+            {
+                var warning = new Label
+                {
+                    HorizontalAlignment = HorizontalAlignment.Center,
+                    AutowrapMode = TextServer.AutowrapMode.WordSmart,
+                    CustomMinimumSize = new Vector2(150, 0),
+                };
+
+                // TODO: proper text styling
+
+                warning.Text = text;
+                activeToleranceWarnings.Add(warning);
+                toleranceWarningContainer.AddChild(warning);
+            }
+
+            ++usedToleranceWarnings;
+        }
+
+        // This allocates a delegate, but it's probably not a significant amount of garbage
+        MicrobeEnvironmentalToleranceCalculations.GenerateToleranceProblemList(tolerances,
+            MicrobeEnvironmentalToleranceCalculations.ResolveToleranceValues(tolerances), AddToleranceWarning);
+
+        // Remove excess text that is no longer used
+        while (usedToleranceWarnings > activeToleranceWarnings.Count)
+        {
+            var last = activeToleranceWarnings[^1];
+            last.QueueFree();
+            activeToleranceWarnings.RemoveAt(activeToleranceWarnings.Count - 1);
+        }
     }
 
     private void UpdateGrowthOrderNumbers()
