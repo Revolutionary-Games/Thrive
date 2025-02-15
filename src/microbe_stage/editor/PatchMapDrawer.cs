@@ -1075,7 +1075,7 @@ public partial class PatchMapDrawer : Control
         }
 
         // Hide excess cached indicators
-        for (var i = nextIndicatorIndex; i < playerSpeciesPopulationIndicators.Count - 1; i++)
+        for (var i = nextIndicatorIndex; i < playerSpeciesPopulationIndicators.Count - 1; ++i)
         {
             playerSpeciesPopulationIndicators[i].Hide();
         }
