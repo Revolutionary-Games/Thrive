@@ -117,8 +117,6 @@ public partial class CreatureStageHUDBase<TStage> : HUDWithPausing, ICreatureSta
     protected CompoundProgressBar nitrogenBar = null!;
     protected CompoundProgressBar temperatureBar = null!;
     protected CompoundProgressBar sunlightBar = null!;
-
-    // TODO: implement changing pressure conditions
     protected CompoundProgressBar pressureBar = null!;
 
     protected CompoundProgressBar radiationBar = null!;
@@ -191,7 +189,7 @@ public partial class CreatureStageHUDBase<TStage> : HUDWithPausing, ICreatureSta
     [Export]
     private StyleBoxFlat? strainBarRedFill;
 
-    // Used for save load to apply these properties
+    // Used for a save-load to apply these properties
     private bool temporaryEnvironmentCompressed;
     private bool temporaryCompoundCompressed;
 
@@ -350,10 +348,9 @@ public partial class CreatureStageHUDBase<TStage> : HUDWithPausing, ICreatureSta
             simulationParameters.GetCompoundDefinition(Compound.Sunlight), 0, true);
         sunlightBar.DisplayedName = new LocalizedString("LIGHT");
 
-        // TODO: set value from patch
         pressureBar = CompoundProgressBar.CreateSimpleWithUnit(barScene,
             GD.Load<Texture2D>("res://assets/textures/gui/bevel/Pressure.svg"), new LocalizedString("PRESSURE_SHORT"),
-            200, "kPa");
+            100000, "Pa");
 
         radiationBar = CompoundProgressBar.CreateSimpleCompound(barScene,
             simulationParameters.GetCompoundDefinition(Compound.Radiation), 0, "mGy");
@@ -618,6 +615,7 @@ public partial class CreatureStageHUDBase<TStage> : HUDWithPausing, ICreatureSta
         oxygenBar.SetValueAsPercentageFromFraction(biome.CurrentCompoundAmounts[Compound.Oxygen].Ambient);
         co2Bar.SetValueAsPercentageFromFraction(biome.CurrentCompoundAmounts[Compound.Carbondioxide].Ambient);
         nitrogenBar.SetValueAsPercentageFromFraction(biome.CurrentCompoundAmounts[Compound.Nitrogen].Ambient);
+        pressureBar.CurrentValue = biome.Pressure;
 
         sunlightBar.SetValueAsPercentageFromFraction(biome.CurrentCompoundAmounts[Compound.Sunlight].Ambient);
 

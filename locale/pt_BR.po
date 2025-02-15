@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2025-02-14 15:47+0200\n"
+"POT-Creation-Date: 2025-02-15 11:28+0200\n"
 "PO-Revision-Date: 2025-02-06 13:29+0000\n"
 "Last-Translator: Anonymous <noreply@weblate.org>\n"
 "Language-Team: Portuguese (Brazil) <https://translate.revolutionarygamesstudio.com/projects/thrive/thrive-game/pt_BR/>\n"
@@ -3308,6 +3308,10 @@ msgstr ""
 msgid "MICHE_ENVIRONMENTAL_COMPOUND_PRESSURE"
 msgstr "Pressão para Compostos Ambientais"
 
+#, fuzzy
+msgid "MICHE_ENVIRONMENTAL_TOLERANCE"
+msgstr "Tolerância"
+
 msgid "MICHE_MAINTAIN_COMPOUND_PRESSURE"
 msgstr "Pressão para Manter Compostos"
 
@@ -4296,6 +4300,10 @@ msgstr "Oxigênio"
 #, fuzzy
 msgid "OXYGEN_INHIBITOR_SYNTHESIS"
 msgstr "Síntese de Oxitoxina"
+
+#, fuzzy
+msgid "OXYGEN_RESISTANCE"
+msgstr "Resistência a Toxinas"
 
 msgid "OXYTOXISOME_PROCESSES_DESCRIPTION"
 msgstr "Transforma [thrive:compound type=\"atp\"][/thrive:compound] em [thrive:compound type=\"oxytoxy\"][/thrive:compound]. Quantidade aumenta com a concentração de [thrive:compound type=\"oxygen\"][/thrive:compound]. Pode disparar toxinas apertando [thrive:input]g_fire_toxin[/thrive:input]. Quando a quantidade de [thrive:compound type=\"oxytoxy\"][/thrive:compound] ficar baixa, será possível disparar, mas o dano irá ser reduzido."
@@ -5720,6 +5728,32 @@ msgstr "Pausar"
 msgid "TOGGLE_UNBINDING"
 msgstr "Desativar modo de ligação"
 
+msgid "TOLERANCES_TOO_HIGH_PRESSURE"
+msgstr ""
+
+msgid "TOLERANCES_TOO_HIGH_TEMPERATURE"
+msgstr ""
+
+msgid "TOLERANCES_TOO_LOW_OXYGEN_PROTECTION"
+msgstr ""
+
+#, fuzzy
+msgid "TOLERANCES_TOO_LOW_PRESSURE"
+msgstr "Pressão para Não Realizar Operação"
+
+msgid "TOLERANCES_TOO_LOW_TEMPERATURE"
+msgstr ""
+
+#, fuzzy
+msgid "TOLERANCES_TOO_LOW_UV_PROTECTION"
+msgstr "{0}: +{1} ATP"
+
+msgid "TOLERANCES_UNSUITABLE_DEBUFFS"
+msgstr ""
+
+msgid "TOLERANCE_RANGE_LABEL"
+msgstr ""
+
 msgid "TOOLS"
 msgstr "Ferramentas"
 
@@ -6261,6 +6295,10 @@ msgstr "Definir número de tarefas de fundo manualmente"
 
 msgid "USE_VIRTUAL_WINDOW_SIZE"
 msgstr "Usar tamanho da janela virtual"
+
+#, fuzzy
+msgid "UV_PROTECTION"
+msgstr "Previsão da Auto-Evo"
 
 msgid "VACUOLE"
 msgstr "Vacúolo"

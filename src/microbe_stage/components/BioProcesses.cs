@@ -31,4 +31,9 @@ public struct BioProcesses
     ///   physically should be able to.
     /// </summary>
     public float ATPProductionSpeedModifier;
+
+    /// <summary>
+    ///   If not 0, then this sets an overall speed modifier on *all* processes
+    /// </summary>
+    public float OverallSpeedModifier;
 }
