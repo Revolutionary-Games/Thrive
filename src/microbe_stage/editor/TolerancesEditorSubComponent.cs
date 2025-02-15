@@ -114,6 +114,12 @@ public partial class TolerancesEditorSubComponent : EditorComponentBase<ICellEdi
         }
     }
 
+    public override void OnFinishEditing()
+    {
+        // Apply the tolerances
+        Editor.EditedBaseSpecies.Tolerances.CopyFrom(CurrentTolerances);
+    }
+
     public void OnPatchChanged()
     {
         UpdateCurrentValueDisplays();
