@@ -1122,7 +1122,8 @@ public sealed class ProcessSystem : AEntitySetSystem<float>
             // For now, lets assume compounds we produce are also useful
             bag.SetUseful(outputCompound);
 
-            var outputAdded = entry.Value * process.Rate * environmentModifier * process.SpeedMultiplier * overallSpeedModifier;
+            var outputAdded = entry.Value * process.Rate * environmentModifier * process.SpeedMultiplier *
+                overallSpeedModifier;
 
             // currentProcessStatistics?.AddOutputAmount(entry.Key, 0);
             currentProcessStatistics?.AddOutputAmount(outputCompound, outputAdded);

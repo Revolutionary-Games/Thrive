@@ -70,13 +70,6 @@ public class EnvironmentalTolerances
         return true;
     }
 
-    public EnvironmentalTolerances Clone()
-    {
-        var newTolerances = new EnvironmentalTolerances();
-        newTolerances.CopyFrom(this);
-        return newTolerances;
-    }
-
     public override bool Equals(object? obj)
     {
         if (obj is null)
@@ -87,6 +80,13 @@ public class EnvironmentalTolerances
             return false;
 
         return Equals((EnvironmentalTolerances)obj);
+    }
+
+    public EnvironmentalTolerances Clone()
+    {
+        var newTolerances = new EnvironmentalTolerances();
+        newTolerances.CopyFrom(this);
+        return newTolerances;
     }
 
     public override int GetHashCode()

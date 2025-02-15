@@ -359,7 +359,8 @@ public partial class TolerancesEditorSubComponent : EditorComponentBase<ICellEdi
         // TODO: rather than using Max here, would it be better if this used the actual min and max as calculated?
         pressureMinLabel.Text =
             unitFormat.FormatSafe(
-                Math.Round(Math.Max(CurrentTolerances.PreferredPressure - currentPressureToleranceRange, 0) / 1000), "kPa");
+                Math.Round(Math.Max(CurrentTolerances.PreferredPressure - currentPressureToleranceRange, 0) / 1000),
+                "kPa");
         pressureMaxLabel.Text =
             unitFormat.FormatSafe(
                 Math.Round((CurrentTolerances.PreferredPressure + currentPressureToleranceRange) / 1000), "kPa");
