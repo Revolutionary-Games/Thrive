@@ -43,27 +43,19 @@ shader_parameter/noiseMultiplier = 0.099
 shader_parameter/heat = ExtResource("5_jrgee")
 shader_parameter/noise = SubResource("NoiseTexture2D_d28l8")
 
-[sub_resource type="Gradient" id="Gradient_h0jp7"]
-offsets = PackedFloat32Array(0, 0.270492, 0.663934, 1)
+[sub_resource type="Gradient" id="Gradient_4eerh"]
+offsets = PackedFloat32Array(0, 0.295082, 0.696721, 1)
 colors = PackedColorArray(0, 0, 0, 1, 1, 1, 1, 1, 1, 1, 1, 1, 0, 0, 0, 1)
 
-[sub_resource type="GradientTexture1D" id="GradientTexture1D_rt14d"]
-gradient = SubResource("Gradient_h0jp7")
+[sub_resource type="GradientTexture1D" id="GradientTexture1D_4ly1p"]
+gradient = SubResource("Gradient_4eerh")
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_23vs3"]
 shader = ExtResource("6_1vygl")
-shader_parameter/direction = null
-shader_parameter/spread = 0.0
-shader_parameter/flatness = null
-shader_parameter/inherit_emitter_velocity_ratio = 0.0
-shader_parameter/emission_shape_offset = Vector3(0, 0, 0)
-shader_parameter/emission_shape_scale = Vector3(1, 1, 1)
-shader_parameter/velocity_pivot = Vector3(0, 0, 0)
-shader_parameter/emission_box_extents = Vector3(50, 50, 1)
-shader_parameter/color_value = Color(1, 1, 1, 1)
-shader_parameter/game_time = null
-shader_parameter/global_position = null
-shader_parameter/alpha_curve = SubResource("GradientTexture1D_rt14d")
+shader_parameter/emission_box_extents = Vector3(160, 80, 1)
+shader_parameter/colorValue = Color(1, 1, 1, 1)
+shader_parameter/gameTime = null
+shader_parameter/alphaCurve = SubResource("GradientTexture1D_4ly1p")
 shader_parameter/noiseDisturbancesX = ExtResource("9_dsmo7")
 shader_parameter/noiseDisturbancesY = ExtResource("10_2hwfw")
 shader_parameter/noiseCurrentsX = ExtResource("7_tvtbb")
