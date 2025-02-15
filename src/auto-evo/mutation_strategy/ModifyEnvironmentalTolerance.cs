@@ -90,7 +90,8 @@ public class ModifyEnvironmentalTolerance : IMutationStrategy<MicrobeSpecies>
             changes = true;
         }
 
-        // TODO: sometimes when the tolerance range is too low,
+        // TODO: sometimes when the tolerance range is too low, should this try to increase the range instead of trying
+        // to just adjust the preferred exact value?
 
         if ((score.PressureScore < 1 || doingPerfect) && mp > 0)
         {
