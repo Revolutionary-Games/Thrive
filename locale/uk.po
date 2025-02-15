@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2025-02-14 15:47+0200\n"
+"POT-Creation-Date: 2025-02-15 11:28+0200\n"
 "PO-Revision-Date: 2025-02-06 13:29+0000\n"
 "Last-Translator: Anonymous <noreply@weblate.org>\n"
 "Language-Team: Ukrainian <https://translate.revolutionarygamesstudio.com/projects/thrive/thrive-game/uk/>\n"
@@ -3343,6 +3343,10 @@ msgstr ""
 msgid "MICHE_ENVIRONMENTAL_COMPOUND_PRESSURE"
 msgstr "Тиск навколишнього середовища"
 
+#, fuzzy
+msgid "MICHE_ENVIRONMENTAL_TOLERANCE"
+msgstr "Оточення"
+
 msgid "MICHE_MAINTAIN_COMPOUND_PRESSURE"
 msgstr ""
 
@@ -4368,6 +4372,10 @@ msgstr "Кисень"
 #, fuzzy
 msgid "OXYGEN_INHIBITOR_SYNTHESIS"
 msgstr "Синтез окситоксину"
+
+#, fuzzy
+msgid "OXYGEN_RESISTANCE"
+msgstr "Опір токсинам"
 
 msgid "OXYTOXISOME_PROCESSES_DESCRIPTION"
 msgstr "Перетворює [thrive:compound type=\"atp\"][/thrive:compound] на [thrive:compound type=\"oxytoxy\"][/thrive:compound]. Кількість залежить від [thrive:compound type=\"oxygen\"][/thrive:compound]. Може пирскнути токсини при натисканні [thrive:input]g_fire_toxin[/thrive:input]. Коли кількість [thrive:compound type=\"oxytoxy\"][/thrive:compound] невелика, то постріл можливий, але шкода буде незначною."
@@ -5796,6 +5804,32 @@ msgstr "Пауза"
 msgid "TOGGLE_UNBINDING"
 msgstr "Перемкнути роз'єднання"
 
+msgid "TOLERANCES_TOO_HIGH_PRESSURE"
+msgstr ""
+
+msgid "TOLERANCES_TOO_HIGH_TEMPERATURE"
+msgstr ""
+
+msgid "TOLERANCES_TOO_LOW_OXYGEN_PROTECTION"
+msgstr ""
+
+#, fuzzy
+msgid "TOLERANCES_TOO_LOW_PRESSURE"
+msgstr "Хмари сполук"
+
+msgid "TOLERANCES_TOO_LOW_TEMPERATURE"
+msgstr ""
+
+#, fuzzy
+msgid "TOLERANCES_TOO_LOW_UV_PROTECTION"
+msgstr "{0}: +{1} АТФ"
+
+msgid "TOLERANCES_UNSUITABLE_DEBUFFS"
+msgstr ""
+
+msgid "TOLERANCE_RANGE_LABEL"
+msgstr ""
+
 msgid "TOOLS"
 msgstr "Інструменти"
 
@@ -6309,6 +6343,10 @@ msgstr "Вручну встановити кількість рідних пот
 
 msgid "USE_VIRTUAL_WINDOW_SIZE"
 msgstr "Використовувати віртуальний розмір вікна"
+
+#, fuzzy
+msgid "UV_PROTECTION"
+msgstr "Прогноз Авто-ево"
 
 msgid "VACUOLE"
 msgstr "Вакуоля"

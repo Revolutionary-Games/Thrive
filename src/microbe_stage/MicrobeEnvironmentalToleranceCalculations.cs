@@ -183,8 +183,8 @@ public static class MicrobeEnvironmentalToleranceCalculations
             problemNumbers.OsmoregulationModifier < 1)
         {
             resultCallback.Invoke(Localization.Translate("TOLERANCES_UNSUITABLE_DEBUFFS")
-                .FormatSafe(Math.Round(problemNumbers.OsmoregulationModifier, 1),
-                    Math.Round(problemNumbers.ProcessSpeedModifier, 1), Math.Round(problemNumbers.HealthModifier, 1)));
+                .FormatSafe(Math.Round(problemNumbers.OsmoregulationModifier * 100, 1),
+                    Math.Round(problemNumbers.ProcessSpeedModifier * 100, 1), Math.Round(problemNumbers.HealthModifier * 100, 1)));
         }
 
         if (data.TemperatureScore < 1)
@@ -192,7 +192,7 @@ public static class MicrobeEnvironmentalToleranceCalculations
             if (data.PerfectTemperatureAdjustment < 0)
             {
                 resultCallback.Invoke(Localization.Translate("TOLERANCES_TOO_HIGH_TEMPERATURE")
-                    .FormatSafe(Math.Round(data.PerfectTemperatureAdjustment, 1)));
+                    .FormatSafe(Math.Round(-data.PerfectTemperatureAdjustment, 1)));
             }
             else
             {
@@ -207,7 +207,7 @@ public static class MicrobeEnvironmentalToleranceCalculations
             {
                 // TODO: show the numbers in megapascals when makes sense
                 resultCallback.Invoke(Localization.Translate("TOLERANCES_TOO_HIGH_PRESSURE")
-                    .FormatSafe(Math.Round(data.PerfectPressureAdjustment / 1000, 1)));
+                    .FormatSafe(Math.Round(-data.PerfectPressureAdjustment / 1000, 1)));
             }
             else
             {
