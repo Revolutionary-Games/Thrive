@@ -141,7 +141,7 @@ public sealed class MicrobeVisualOnlySimulation : WorldSimulation
             return;
         }
 
-        var dummyEffects = new MicrobeEnvironmentalEffects()
+        var dummyEffects = new MicrobeEnvironmentalEffects
         {
             HealthMultiplier = 1,
             OsmoregulationMultiplier = 1,
