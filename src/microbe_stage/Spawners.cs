@@ -746,6 +746,8 @@ public static class SpawnHelpers
         entity.Set(new Health(HealthHelpers.CalculateMicrobeHealth(usedCellDefinition.MembraneType,
             usedCellDefinition.MembraneRigidity, ref environmentalEffects)));
 
+        entity.Set(environmentalEffects);
+
         entity.Set(new CommandSignaler
         {
             SignalingChannel = species.ID,
