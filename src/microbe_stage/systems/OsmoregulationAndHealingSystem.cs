@@ -29,6 +29,7 @@ using DefaultEcs.Threading;
 [ReadsComponent(typeof(Engulfable))]
 [ReadsComponent(typeof(MicrobeColony))]
 [ReadsComponent(typeof(MicrobeColonyMember))]
+[ReadsComponent(typeof(MicrobeEnvironmentalEffects))]
 [RunsAfter(typeof(PilusDamageSystem))]
 [RunsAfter(typeof(DamageOnTouchSystem))]
 [RunsAfter(typeof(ToxinCollisionSystem))]
@@ -101,6 +102,8 @@ public sealed class OsmoregulationAndHealingSystem : AEntitySetSystem<float>
     {
         ref var organelles = ref entity.Get<OrganelleContainer>();
 
+        float environmentalMultiplier = 1.0f;
+
         var osmoregulationCost = organelles.HexCount * cellProperties.MembraneType.OsmoregulationFactor *
             Constants.ATP_COST_FOR_OSMOREGULATION * delta;
 
@@ -122,6 +125,14 @@ public sealed class OsmoregulationAndHealingSystem : AEntitySetSystem<float>
         {
             osmoregulationCost *= 20.0f / (20.0f + colonySize);
         }
+
+        // TODO: remove this check on next save breakage point
+        if (entity.Has<MicrobeEnvironmentalEffects>())
+        {
+            environmentalMultiplier = entity.Get<MicrobeEnvironmentalEffects>().OsmoregulationMultiplier;
+        }
+
+        osmoregulationCost *= environmentalMultiplier;
 
         // Only player species benefits from lowered osmoregulation
         if (entity.Get<SpeciesMember>().Species.PlayerSpecies)
