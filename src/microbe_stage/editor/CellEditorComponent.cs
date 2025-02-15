@@ -797,6 +797,12 @@ public partial class CellEditorComponent :
             // duplicate calls
             CalculateOrganelleEffectivenessInCurrentPatch();
 
+            // These are all also affected by the environmental tolerances
+            CalculateEnergyAndCompoundBalance(editedMicrobeOrganelles.Organelles, Membrane);
+
+            // Health is also affected
+            UpdateStats();
+
             CalculateAndDisplayToleranceWarnings();
         }
 
@@ -1101,7 +1107,7 @@ public partial class CellEditorComponent :
         autoEvoPredictionDirty = true;
         suggestionDirty = true;
 
-        // Need to show new tolerances warnings
+        // Need to show new tolerances warnings (and refresh a few other things)
         refreshTolerancesWarnings = true;
     }
 
@@ -1312,6 +1318,9 @@ public partial class CellEditorComponent :
     public float CalculateHitpoints()
     {
         var maxHitpoints = Membrane.Hitpoints + Rigidity * Constants.MEMBRANE_RIGIDITY_HITPOINTS_MODIFIER;
+
+        // Tolerances affect health
+        maxHitpoints *= CalculateLatestTolerances().HealthModifier;
 
         return maxHitpoints;
     }
