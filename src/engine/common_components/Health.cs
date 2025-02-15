@@ -62,7 +62,7 @@ public static class HealthHelpers
     public static float CalculateMicrobeHealth(MembraneType membraneType, float membraneRigidity,
         ref readonly MicrobeEnvironmentalEffects environmentalEffects)
     {
-        return membraneType.Hitpoints + membraneRigidity * Constants.MEMBRANE_RIGIDITY_HITPOINTS_MODIFIER *
+        return (membraneType.Hitpoints + membraneRigidity * Constants.MEMBRANE_RIGIDITY_HITPOINTS_MODIFIER) *
             environmentalEffects.HealthMultiplier;
     }
 

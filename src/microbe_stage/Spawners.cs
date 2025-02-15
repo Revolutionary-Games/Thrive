@@ -590,6 +590,7 @@ public static class SpawnHelpers
         }
         else if (species is MicrobeSpecies microbeSpecies)
         {
+            // TODO: add some kind of caching here to speed up microbe spawning
             var tolerances =
                 MicrobeEnvironmentalToleranceCalculations.CalculateTolerances(microbeSpecies,
                     spawnEnvironment.CurrentBiome);
