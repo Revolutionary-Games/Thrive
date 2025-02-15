@@ -21,7 +21,7 @@ public partial class CellEditorComponent
 
     private readonly List<Label> activeToleranceWarnings = new();
 
-    private int usedToleranceWarnings = 0;
+    private int usedToleranceWarnings;
 
     private bool inProgressSuggestionCheckRunning;
 

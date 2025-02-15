@@ -184,8 +184,8 @@ public static class MicrobeEnvironmentalToleranceCalculations
         {
             resultCallback.Invoke(Localization.Translate("TOLERANCES_UNSUITABLE_DEBUFFS")
                 .FormatSafe(Math.Round(problemNumbers.OsmoregulationModifier * 100, 1),
-                    Math.Round(problemNumbers.ProcessSpeedModifier * 100, 1), Math.Round(
-                        problemNumbers.HealthModifier * 100, 1)));
+                    Math.Round(problemNumbers.ProcessSpeedModifier * 100, 1),
+                    Math.Round(problemNumbers.HealthModifier * 100, 1)));
         }
 
         if (data.TemperatureScore < 1)
