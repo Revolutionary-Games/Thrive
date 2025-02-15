@@ -19,6 +19,7 @@ public partial class CurrentDisplay : GpuParticles3D
             time += (float)delta;
 
             ((ShaderMaterial)ProcessMaterial).SetShaderParameter("game_time", time);
+            ((ShaderMaterial)ProcessMaterial).SetShaderParameter("global_position", new Vector2(GlobalPosition.X, GlobalPosition.Z));
         }
     }
 }

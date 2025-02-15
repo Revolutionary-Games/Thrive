@@ -15,6 +15,7 @@ uniform vec4 color_value : source_color;
 uniform sampler2D alpha_curve : repeat_disable;
 
 uniform float game_time;
+uniform vec2 global_position;
 
 uniform sampler3D noiseDisturbancesX;
 uniform sampler3D noiseDisturbancesY;
@@ -248,10 +249,10 @@ void process() {
 		}
 		
 		current = mix(currents, disturbances, ratio) * 2.0f - 1.0f;
-		current *= 5.0f;
+		current *= 10.0f;
 	}
 	
-	VELOCITY = vec3(current.x, 0.0f, current.y);
+	VELOCITY = vec3(current.x, 0.0f, -current.y);
 
 	TRANSFORM[3].xyz += VELOCITY * DELTA;
 

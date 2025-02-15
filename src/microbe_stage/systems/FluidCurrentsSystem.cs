@@ -55,16 +55,16 @@ public sealed class FluidCurrentsSystem : AEntitySetSystem<float>
         Constants.SYSTEM_HIGHER_ENTITIES_PER_THREAD)
     {
         noiseDisturbancesX = GD.Load<NoiseTexture3D>("res://src/microbe_stage/NoiseDisturbanceX.tres") ??
-            throw new Exception("Heat noise texture couldn't be loaded");
+            throw new Exception("Fluid current noise texture couldn't be loaded");
 
         noiseDisturbancesY = GD.Load<NoiseTexture3D>("res://src/microbe_stage/NoiseDisturbanceY.tres") ??
-            throw new Exception("Heat noise texture couldn't be loaded");
+            throw new Exception("Fluid current noise texture couldn't be loaded");
 
         noiseCurrentsX = GD.Load<NoiseTexture3D>("res://src/microbe_stage/NoiseCurrentX.tres") ??
-            throw new Exception("Heat noise texture couldn't be loaded");
+            throw new Exception("Fluid current noise texture couldn't be loaded");
 
         noiseCurrentsY = GD.Load<NoiseTexture3D>("res://src/microbe_stage/NoiseCurrentY.tres") ??
-            throw new Exception("Heat noise texture couldn't be loaded");
+            throw new Exception("Fluid current noise texture couldn't be loaded");
     }
 
     /// <summary>

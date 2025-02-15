@@ -59,9 +59,10 @@ shader_parameter/inherit_emitter_velocity_ratio = 0.0
 shader_parameter/emission_shape_offset = Vector3(0, 0, 0)
 shader_parameter/emission_shape_scale = Vector3(1, 1, 1)
 shader_parameter/velocity_pivot = Vector3(0, 0, 0)
-shader_parameter/emission_box_extents = Vector3(20, 20, 1)
+shader_parameter/emission_box_extents = Vector3(50, 50, 1)
 shader_parameter/color_value = Color(1, 1, 1, 1)
 shader_parameter/game_time = null
+shader_parameter/global_position = null
 shader_parameter/alpha_curve = SubResource("GradientTexture1D_rt14d")
 shader_parameter/noiseDisturbancesX = ExtResource("9_dsmo7")
 shader_parameter/noiseDisturbancesY = ExtResource("10_2hwfw")
@@ -96,7 +97,7 @@ visible = false
 material_override = SubResource("ShaderMaterial_cersu")
 
 [node name="GPUParticles3D" type="GPUParticles3D" parent="World/PrimaryCamera"]
-amount = 400
+amount = 1000
 lifetime = 8.0
 interpolate = false
 process_material = SubResource("ShaderMaterial_23vs3")
