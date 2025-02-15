@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Diagnostics;
 
 /// <summary>
 ///   Helper class that contains all the math for environmental tolerances in one place (though the microbe editor and
@@ -208,11 +209,11 @@ public static class MicrobeEnvironmentalToleranceCalculations
 
         if (data.TemperatureScore < 1)
         {
-            result.ProcessSpeedModifier *= Math.Min(0.9f, data.TemperatureScore);
+            result.ProcessSpeedModifier *= Math.Max(0.9f, data.TemperatureScore);
 
-            result.OsmoregulationModifier *= Math.Min(0.9f, data.TemperatureScore);
+            result.OsmoregulationModifier *= Math.Max(0.9f, data.TemperatureScore);
 
-            result.HealthModifier *= Math.Min(0.9f, data.TemperatureScore);
+            result.HealthModifier *= Math.Max(0.9f, data.TemperatureScore);
         }
         else if (data.TemperatureScore > 1)
         {
@@ -221,9 +222,9 @@ public static class MicrobeEnvironmentalToleranceCalculations
 
         if (data.PressureScore < 1)
         {
-            result.ProcessSpeedModifier *= Math.Min(0.9f, data.PressureScore);
-            result.OsmoregulationModifier *= Math.Min(0.9f, data.PressureScore);
-            result.HealthModifier *= Math.Min(0.5f, data.PressureScore);
+            result.ProcessSpeedModifier *= Math.Max(0.9f, data.PressureScore);
+            result.OsmoregulationModifier *= Math.Max(0.9f, data.PressureScore);
+            result.HealthModifier *= Math.Max(0.5f, data.PressureScore);
         }
         else if (data.PressureScore > 1)
         {
@@ -232,15 +233,45 @@ public static class MicrobeEnvironmentalToleranceCalculations
 
         if (data.OxygenScore < 1)
         {
-            result.HealthModifier *= Math.Min(0.5f, data.OxygenScore);
-            result.OsmoregulationModifier *= Math.Min(0.5f, data.OxygenScore);
+            result.HealthModifier *= Math.Max(0.5f, data.OxygenScore);
+            result.OsmoregulationModifier *= Math.Max(0.5f, data.OxygenScore);
         }
 
         if (data.UVScore < 1)
         {
-            result.HealthModifier *= Math.Min(0.5f, data.UVScore);
-            result.OsmoregulationModifier *= Math.Min(0.9f, data.UVScore);
+            result.HealthModifier *= Math.Max(0.5f, data.UVScore);
+            result.OsmoregulationModifier *= Math.Max(0.9f, data.UVScore);
         }
+
+        // TODO: figure out why really bad pressure score species appear in the first generation
+        /*if(data.PressureScore <= 0)
+            Debugger.Break();*/
+
+#if DEBUG
+        if (result.OsmoregulationModifier <= MathUtils.EPSILON)
+        {
+            if (Debugger.IsAttached)
+                Debugger.Break();
+
+            throw new Exception("Osmoregulation modifier is 0");
+        }
+
+        if (result.ProcessSpeedModifier <= MathUtils.EPSILON)
+        {
+            if (Debugger.IsAttached)
+                Debugger.Break();
+
+            throw new Exception("Speed modifier is 0");
+        }
+
+        if (result.HealthModifier <= MathUtils.EPSILON)
+        {
+            if (Debugger.IsAttached)
+                Debugger.Break();
+
+            throw new Exception("Health modifier is 0");
+        }
+#endif
 
         return result;
     }
