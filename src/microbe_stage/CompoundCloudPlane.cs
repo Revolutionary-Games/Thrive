@@ -142,6 +142,7 @@ public partial class CompoundCloudPlane : CsgMesh3D, ISaveLoadedTracked
     public void UpdatePosition(Vector2I newPosition)
     {
         cachedWorldPosition = Position;
+        GD.Print($"Changing cloud pos. {Position}, {GlobalPosition}, {newPosition}, {position}");
 
         // Whoever made the modulus operator return negatives: i hate u.
         int newX = ((newPosition.X % Constants.CLOUD_SQUARES_PER_SIDE) + Constants.CLOUD_SQUARES_PER_SIDE)
@@ -896,7 +897,7 @@ public partial class CompoundCloudPlane : CsgMesh3D, ISaveLoadedTracked
             {
                 if (OldDensity[x, y].LengthSquared() > 1)
                 {
-                    var velocity = fluidSystem!.VelocityAt(pos + new Vector2(x, y) * Resolution) * VISCOSITY;
+                    var velocity = fluidSystem!.VelocityAt(new Vector2(x - Size / 2, y - Size / 2) * Resolution) * VISCOSITY;
 
                     // This is run in parallel, this may not touch the other compound clouds
                     float dx = x + (delta * velocity.X);
@@ -934,7 +935,7 @@ public partial class CompoundCloudPlane : CsgMesh3D, ISaveLoadedTracked
             {
                 if (OldDensity[x, y].LengthSquared() > 1)
                 {
-                    var velocity = fluidSystem!.VelocityAt(pos + new Vector2(x, y) * Resolution) * VISCOSITY;
+                    var velocity = fluidSystem!.VelocityAt(new Vector2(x - Size / 2, y - Size / 2) * Resolution) * VISCOSITY;
 
                     // This is run in parallel, this may not touch the other compound clouds
                     float dx = x + (delta * velocity.X);
