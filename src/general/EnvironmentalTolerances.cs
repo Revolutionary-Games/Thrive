@@ -19,6 +19,12 @@ public class EnvironmentalTolerances
     /// <summary>
     ///   Pressure this species likes to be in. The value is in Pa (pascals).
     /// </summary>
+    /// <remarks>
+    ///   <para>
+    ///     TODO: maybe remove this entirely as this is a pretty big danger of not being within the pressure range if
+    ///     there's a slight bug
+    ///   </para>
+    /// </remarks>
     public float PreferredPressure = 101325;
 
     /// <summary>

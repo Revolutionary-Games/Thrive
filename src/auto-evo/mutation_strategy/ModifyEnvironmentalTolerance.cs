@@ -209,10 +209,14 @@ public class ModifyEnvironmentalTolerance : IMutationStrategy<MicrobeSpecies>
             return null;
         }
 
-        // TODO: could do a shallower clone here as organelles won't be modified so this doesn't need to clone anything
-        // except the tolerances
+        // TODO: could do a shallower clone here as organelles won't be modified, so this doesn't need to clone
+        // anything except the tolerances
         var newSpecies = (MicrobeSpecies)baseSpecies.Clone();
         newSpecies.Tolerances.CopyFrom(newTolerances);
+
+#if DEBUG
+        newSpecies.Tolerances.SanityCheck();
+#endif
 
         return [Tuple.Create(newSpecies, mp)];
     }
