@@ -115,6 +115,4 @@ void process() {
     TRANSFORM[0].xyz = normalize(TRANSFORM[0].xyz);
     TRANSFORM[1].xyz = normalize(TRANSFORM[1].xyz);
     TRANSFORM[2].xyz = normalize(TRANSFORM[2].xyz);
-
-    CUSTOM.z = lifetime_percent;
 }
