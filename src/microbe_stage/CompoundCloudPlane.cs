@@ -142,7 +142,6 @@ public partial class CompoundCloudPlane : CsgMesh3D, ISaveLoadedTracked
     public void UpdatePosition(Vector2I newPosition)
     {
         cachedWorldPosition = Position;
-        GD.Print($"Changing cloud pos. {Position}, {GlobalPosition}, {newPosition}, {position}");
 
         // Whoever made the modulus operator return negatives: i hate u.
         int newX = ((newPosition.X % Constants.CLOUD_SQUARES_PER_SIDE) + Constants.CLOUD_SQUARES_PER_SIDE)

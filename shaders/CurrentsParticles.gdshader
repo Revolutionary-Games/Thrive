@@ -111,8 +111,4 @@ void process() {
     finalColor.a *= texture(alphaCurve, vec2(lifetime_percent)).r;
     
     COLOR = finalColor;
-
-    TRANSFORM[0].xyz = normalize(TRANSFORM[0].xyz);
-    TRANSFORM[1].xyz = normalize(TRANSFORM[1].xyz);
-    TRANSFORM[2].xyz = normalize(TRANSFORM[2].xyz);
 }
