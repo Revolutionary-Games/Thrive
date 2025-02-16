@@ -897,7 +897,8 @@ public partial class CompoundCloudPlane : CsgMesh3D, ISaveLoadedTracked
             {
                 if (OldDensity[x, y].LengthSquared() > 1)
                 {
-                    var velocity = fluidSystem!.VelocityAt(new Vector2(x - Size / 2, y - Size / 2) * Resolution) * VISCOSITY;
+                    var worldPos = ConvertToWorld(x, y);
+                    var velocity = fluidSystem!.VelocityAt(new Vector2(worldPos.X, worldPos.Z)) * VISCOSITY;
 
                     // This is run in parallel, this may not touch the other compound clouds
                     float dx = x + (delta * velocity.X);
@@ -935,7 +936,8 @@ public partial class CompoundCloudPlane : CsgMesh3D, ISaveLoadedTracked
             {
                 if (OldDensity[x, y].LengthSquared() > 1)
                 {
-                    var velocity = fluidSystem!.VelocityAt(new Vector2(x - Size / 2, y - Size / 2) * Resolution) * VISCOSITY;
+                    var worldPos = ConvertToWorld(x, y);
+                    var velocity = fluidSystem!.VelocityAt(new Vector2(worldPos.X, worldPos.Z)) * VISCOSITY;
 
                     // This is run in parallel, this may not touch the other compound clouds
                     float dx = x + (delta * velocity.X);
