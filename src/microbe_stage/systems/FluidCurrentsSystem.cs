@@ -38,10 +38,10 @@ public sealed class FluidCurrentsSystem : AEntitySetSystem<float>
     private readonly NoiseTexture3D noiseCurrentsX;
     private readonly NoiseTexture3D noiseCurrentsY;
 
-    private Array<Image>? noiseDisturbancesXImage;
-    private Array<Image>? noiseDisturbancesYImage;
-    private Array<Image>? noiseCurrentsXImage;
-    private Array<Image>? noiseCurrentsYImage;
+    private Image[]? noiseDisturbancesXImage;
+    private Image[]? noiseDisturbancesYImage;
+    private Image[]? noiseCurrentsXImage;
+    private Image[]? noiseCurrentsYImage;
 
     // private readonly Vector2 scale = new Vector2(0.05f, 0.05f);
 
@@ -115,13 +115,26 @@ public sealed class FluidCurrentsSystem : AEntitySetSystem<float>
 
         if (noiseDisturbancesXImage == null)
         {
-            noiseDisturbancesXImage = noiseDisturbancesX.GetData();
-            noiseDisturbancesYImage = noiseDisturbancesY.GetData();
-            noiseCurrentsXImage = noiseCurrentsX.GetData();
-            noiseCurrentsYImage = noiseCurrentsY.GetData();
+            var disturbancesX = noiseDisturbancesX.GetData();
+            var disturbancesY = noiseDisturbancesY.GetData();
+            var currentsX = noiseCurrentsX.GetData();
+            var currentsY = noiseCurrentsY.GetData();
 
-            noiseWidth = noiseDisturbancesXImage[0].GetWidth();
-            noiseHeight = noiseDisturbancesXImage[0].GetHeight();
+            noiseWidth = disturbancesX[0].GetWidth();
+            noiseHeight = disturbancesY[0].GetHeight();
+
+            noiseDisturbancesXImage = new Image[noiseWidth];
+            noiseDisturbancesYImage = new Image[noiseWidth];
+            noiseCurrentsXImage = new Image[noiseWidth];
+            noiseCurrentsYImage = new Image[noiseWidth];
+
+            for (int i = 0; i < noiseWidth; ++i)
+            {
+                noiseDisturbancesXImage[i] = disturbancesX[i];
+                noiseDisturbancesYImage[i] = disturbancesY[i];
+                noiseCurrentsXImage[i] = currentsX[i];
+                noiseCurrentsYImage[i] = currentsY[i];
+            }
         }
 
         currentsTimePassed += delta;
@@ -144,13 +157,13 @@ public sealed class FluidCurrentsSystem : AEntitySetSystem<float>
         physicsControl.PhysicsApplied = false;
     }
 
-    private float GetPixel(float x, float y, float z, Array<Image> array)
+    private float GetPixel(float x, float y, float z, Image[] array)
     {
         if (x < 0.0f)
             x = noiseWidth + x % noiseWidth;
         if (y < 0.0f)
             y = noiseHeight + y % noiseHeight;
 
-        return array[(int)z % array.Count].GetPixel((int)x % noiseWidth, (int)y % noiseHeight).R * 2.0f - 1.0f;
+        return array[(int)z % array.Length].GetPixel((int)x % noiseWidth, (int)y % noiseHeight).R * 2.0f - 1.0f;
     }
 }
