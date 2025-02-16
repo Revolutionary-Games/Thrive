@@ -87,7 +87,7 @@ public sealed class FluidCurrentsSystem : AEntitySetSystem<float>
             || noiseCurrentsXImage == null || noiseCurrentsYImage == null)
             return Vector2.Zero;
 
-        // This formula should be the same as the one in CurrentsParticles.gdshader
+        // This function's formula should be the same as the one in CurrentsParticles.gdshader
         var scaledPosition = position * POSITION_SCALING;
 
         float disturbancesX = GetPixel(scaledPosition.X, scaledPosition.Y,
