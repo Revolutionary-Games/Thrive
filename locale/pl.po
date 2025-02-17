@@ -390,7 +390,7 @@ msgid "AUTO_EVO_RESULTS_GLOBAL_TITLE"
 msgstr "Globalny Rezultat Auto-Ewolucji"
 
 msgid "AUTO_EVO_RESULTS_PATCH_TITLE"
-msgstr "Rezultat Auto-Ewolucji wybranej strefy:"
+msgstr "Rezultat Auto-Ewolucji wybranej Strefy"
 
 msgid "AUTO_EVO_RUN_STATUS"
 msgstr "Status działania:"
@@ -420,7 +420,7 @@ msgid "BACK"
 msgstr "Wróć"
 
 msgid "BACKGROUND_BLUR"
-msgstr ""
+msgstr "Rozmycie tła:"
 
 msgid "BACKSLASH"
 msgstr "Ukośnik wsteczny"
@@ -545,11 +545,10 @@ msgid "BIOME_LABEL"
 msgstr "Biom: {0}"
 
 msgid "BLOOM_RENDER_EFFECT"
-msgstr ""
+msgstr "Efekt poświaty:"
 
-#, fuzzy
 msgid "BLUESKY_TOOLTIP"
-msgstr "Zapauzuj"
+msgstr "Odwiedź nasz profil na Bluesky"
 
 msgid "BRAIN_CELL_NAME_DEFAULT"
 msgstr "Neuron"
@@ -698,10 +697,12 @@ msgstr ""
 "spowalnia absorpcje zasobów i spowalnia komórkę. [b]Celulaza może strawić tę "
 "ścianę[/b] sprawiając, że jest ona wrażliwa na wchłonięcie przez drapieżniki."
 
-#, fuzzy
 msgid "CELL_STAT_ROTATION_TOOLTIP"
 msgstr ""
-"Wartość używana do generacji świata (musi być dodatnią liczbą całkowitą)"
+"Tempo obrotu komórki. Większe komórki obracają się wolniej, jednak rzęski "
+"pozwalają na zmniejszenie efektu.\n"
+"Rozmieszczenie organelli wpływa na obrót komórki; im dalej od centrum, tym "
+"wolniej będzie obracać się komórka."
 
 #, fuzzy
 msgid "CELL_STAT_SPEED_TOOLTIP"
