@@ -17,10 +17,10 @@ public class RigidityActionData : EditorCombinableActionData<CellType>
         return other is RigidityActionData;
     }
 
-    protected override int CalculateCostInternal()
+    protected override double CalculateCostInternal()
     {
-        return (int)Math.Round(Math.Abs(NewRigidity - PreviousRigidity) *
-            Constants.MEMBRANE_RIGIDITY_SLIDER_TO_VALUE_RATIO) * Constants.MEMBRANE_RIGIDITY_COST_PER_STEP;
+        return Math.Abs(NewRigidity - PreviousRigidity) * Constants.MEMBRANE_RIGIDITY_SLIDER_TO_VALUE_RATIO *
+            Constants.MEMBRANE_RIGIDITY_COST_PER_STEP;
     }
 
     protected override ActionInterferenceMode GetInterferenceModeWithGuaranteed(CombinableActionData other)

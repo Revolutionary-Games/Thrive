@@ -71,7 +71,7 @@ public static class CommonMutationFunctions
     }
 
     public static MicrobeSpecies GenerateRandomSpecies(MicrobeSpecies mutated, Patch forPatch,
-        MutationWorkMemory workMemory, Random random, float mp = 300)
+        MutationWorkMemory workMemory, Random random, double mp = 300)
     {
         var mutationStrategy = new AddOrganelleAnywhere(_ => true);
 

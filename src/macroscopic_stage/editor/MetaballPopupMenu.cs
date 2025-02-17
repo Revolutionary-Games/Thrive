@@ -78,6 +78,8 @@ public partial class MetaballPopupMenu : HexPopupMenu
                     (EditorCombinableActionData)new MetaballRemoveActionData<MacroscopicMetaball>(o, null))) ??
             throw new ArgumentException($"{nameof(GetActionPrice)} not set");
 
+        mpCost = Math.Round(mpCost, Constants.MUTATION_POINTS_DECIMALS);
+
         var mpLabel = deleteButton.GetNode<Label>("MarginContainer/HBoxContainer/MpCost");
 
         mpLabel.Text = new LocalizedString("MP_COST", -mpCost).ToString();
@@ -95,9 +97,14 @@ public partial class MetaballPopupMenu : HexPopupMenu
                 o.Position + Vector3.One, o.Parent,
                 o.Parent, null))) ?? throw new ArgumentException($"{nameof(GetActionPrice)} not set");
 
+        mpCost = Math.Round(mpCost, Constants.MUTATION_POINTS_DECIMALS);
+
+        if (mpCost != 0)
+            mpCost = -mpCost;
+
         var mpLabel = moveButton.GetNode<Label>("MarginContainer/HBoxContainer/MpCost");
 
-        mpLabel.Text = new LocalizedString("MP_COST", -mpCost).ToString();
+        mpLabel.Text = new LocalizedString("MP_COST", mpCost).ToString();
 
         moveButton.Disabled = !EnableMoveOption;
     }

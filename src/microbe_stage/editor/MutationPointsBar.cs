@@ -6,6 +6,9 @@
 public partial class MutationPointsBar : HBoxContainer
 {
     [Export]
+    public bool ShowPercentageSymbol = true;
+
+    [Export]
     public NodePath? CurrentMutationPointsLabelPath;
 
     [Export]
@@ -51,7 +54,7 @@ public partial class MutationPointsBar : HBoxContainer
         freebuildingText = Localization.Translate("FREEBUILDING");
     }
 
-    public void UpdateBar(float currentMutationPoints, float possibleMutationPoints, bool tween = true)
+    public void UpdateBar(double currentMutationPoints, double possibleMutationPoints, bool tween = true)
     {
         if (tween)
         {
@@ -73,9 +76,13 @@ public partial class MutationPointsBar : HBoxContainer
             new Color(0.72f, 0.72f, 0.72f);
     }
 
-    public void UpdateMutationPoints(bool freebuilding, bool showResultingPoints, float currentMutationPoints,
-        float possibleMutationPoints)
+    public void UpdateMutationPoints(bool freebuilding, bool showResultingPoints, double currentMutationPoints,
+        double possibleMutationPoints)
     {
+        // Make sure tiny negative values aren't shown improperly
+        if (currentMutationPoints < 0 && currentMutationPoints > Constants.ALLOWED_MP_OVERSHOOT)
+            currentMutationPoints = 0;
+
         if (freebuilding)
         {
             mutationPointsArrow.Hide();
@@ -91,16 +98,26 @@ public partial class MutationPointsBar : HBoxContainer
                 mutationPointsArrow.Show();
                 resultingMutationPointsLabel.Show();
 
-                currentMutationPointsLabel.Text = $"({currentMutationPoints:F0}";
+                currentMutationPointsLabel.Text = $"({currentMutationPoints:0.#}";
                 resultingMutationPointsLabel.Text = $"{possibleMutationPoints:F0})";
-                baseMutationPointsLabel.Text = $"/ {Constants.BASE_MUTATION_POINTS:F0}";
             }
             else
             {
                 mutationPointsArrow.Hide();
                 resultingMutationPointsLabel.Hide();
 
-                currentMutationPointsLabel.Text = $"{currentMutationPoints:F0}";
+                currentMutationPointsLabel.Text = $"{currentMutationPoints:0.#}";
+            }
+
+            if (ShowPercentageSymbol)
+            {
+                // TODO: switch this class to using translation keys properly instead of this approach
+                // We have PERCENTAGE_VALUE translation string, but I didn't add that here as this already uses partial
+                // formatting with plain strings so I just extended the existing solution here -hhyyrylainen
+                baseMutationPointsLabel.Text = $"/ {Constants.BASE_MUTATION_POINTS:F0} %";
+            }
+            else
+            {
                 baseMutationPointsLabel.Text = $"/ {Constants.BASE_MUTATION_POINTS:F0}";
             }
         }

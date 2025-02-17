@@ -28,7 +28,7 @@ public partial class MicrobePartSelection : MarginContainer
 
 #pragma warning restore CA2213
 
-    private int mpCost;
+    private double mpCost;
     private string name = "Error: unset";
     private bool locked;
     private bool recentlyUnlocked;
@@ -46,12 +46,12 @@ public partial class MicrobePartSelection : MarginContainer
     public bool Undiscovered { get; set; }
 
     [Export]
-    public int MPCost
+    public double MPCost
     {
         get => mpCost;
         set
         {
-            if (mpCost == value)
+            if (Math.Abs(mpCost - value) < MathUtils.EPSILON)
                 return;
 
             mpCost = value;
@@ -202,13 +202,14 @@ public partial class MicrobePartSelection : MarginContainer
 
         if (mpCost < 0)
         {
-            // Negative MP cost means it actually gives MP, to convey that to the player we need to explicitly
-            // prefix the cost with a positive sign
-            cost = "+" + MathF.Abs(mpCost).ToString(CultureInfo.CurrentCulture);
+            // Negative MP cost means it actually gives MP
+            // To convey that to the player, we need to explicitly prefix the cost with a positive sign
+            cost = "+" + Math.Round(Math.Abs(mpCost), Constants.MUTATION_POINTS_DECIMALS)
+                .ToString(CultureInfo.CurrentCulture);
         }
         else
         {
-            cost = mpCost.ToString(CultureInfo.CurrentCulture);
+            cost = Math.Round(mpCost, Constants.MUTATION_POINTS_DECIMALS).ToString(CultureInfo.CurrentCulture);
         }
 
         mpLabel.Text = cost;

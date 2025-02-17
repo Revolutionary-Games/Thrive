@@ -1027,6 +1027,16 @@ public static class Constants
 
     public const int BASE_MUTATION_POINTS = 100;
 
+    /// <summary>
+    ///   As mutation points are now calculated with floats, there can be situations where the player just barely
+    ///   cannot afford something they should be able to afford, so we allow going negative by this much.
+    /// </summary>
+    public const double ALLOWED_MP_OVERSHOOT = -0.0001;
+
+    public const double SMALL_MP_COST = 0.1;
+
+    public const int MUTATION_POINTS_DECIMALS = 1;
+
     public const int ORGANELLE_REMOVE_COST = 10;
     public const int ORGANELLE_MOVE_COST = 5;
 

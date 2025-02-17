@@ -10,7 +10,7 @@ public class MembraneActionData : EditorCombinableActionData<CellType>
         NewMembrane = newMembrane;
     }
 
-    protected override int CalculateCostInternal()
+    protected override double CalculateCostInternal()
     {
         return NewMembrane.EditorCost;
     }
