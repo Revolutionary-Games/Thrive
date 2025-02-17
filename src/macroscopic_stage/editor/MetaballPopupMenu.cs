@@ -99,9 +99,12 @@ public partial class MetaballPopupMenu : HexPopupMenu
 
         mpCost = Math.Round(mpCost, Constants.MUTATION_POINTS_DECIMALS);
 
+        if (mpCost != 0)
+            mpCost = -mpCost;
+
         var mpLabel = moveButton.GetNode<Label>("MarginContainer/HBoxContainer/MpCost");
 
-        mpLabel.Text = new LocalizedString("MP_COST", -mpCost).ToString();
+        mpLabel.Text = new LocalizedString("MP_COST", mpCost).ToString();
 
         moveButton.Disabled = !EnableMoveOption;
     }
