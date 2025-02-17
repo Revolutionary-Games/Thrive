@@ -24,7 +24,7 @@ frequency = 0.2401
 [sub_resource type="NoiseTexture2D" id="NoiseTexture2D_d28l8"]
 noise = SubResource("FastNoiseLite_q12wg")
 
-[sub_resource type="ShaderMaterial" id="ShaderMaterial_cersu"]
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_pbi5n"]
 resource_local_to_scene = true
 render_priority = -2
 shader = ExtResource("4_ced6l")
@@ -55,7 +55,7 @@ AutoProcessWhilePaused = true
 [node name="HeatGradientPlane" parent="World/PrimaryCamera" instance=ExtResource("8_7ghg3")]
 transform = Transform3D(1, 0, 0, 0, -1.62921e-07, -1, 0, 1, -1.62921e-07, 0, 1.62921e-06, -10)
 visible = false
-material_override = SubResource("ShaderMaterial_cersu")
+material_override = SubResource("ShaderMaterial_pbi5n")
 
 [node name="WaterCurrentDisplay" parent="World/PrimaryCamera" instance=ExtResource("6_4kiki")]
 
