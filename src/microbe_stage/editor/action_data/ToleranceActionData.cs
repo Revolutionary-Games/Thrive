@@ -59,6 +59,14 @@ public class ToleranceActionData : EditorCombinableActionData
     {
         var otherData = (ToleranceActionData)other;
 
+        // Handle the cancels-out case
+        if (OldTolerances.Equals(otherData.NewTolerances))
+            return new ToleranceActionData(OldTolerances, OldTolerances);
+
+        // Handle flipping of the old and new data
+        if (NewTolerances.Equals(otherData.OldTolerances))
+            return new ToleranceActionData(otherData.OldTolerances, NewTolerances);
+
         return new ToleranceActionData(OldTolerances, otherData.NewTolerances);
     }
 
@@ -66,8 +74,14 @@ public class ToleranceActionData : EditorCombinableActionData
     {
         var data = (ToleranceActionData)other;
 
-        // TODO: does this need to check if this should maybe swap instead the old?
-
-        NewTolerances = data.NewTolerances;
+        // This is probably not needed, but for safety this check is here
+        if (OldTolerances.Equals(data.NewTolerances))
+        {
+            NewTolerances = data.OldTolerances;
+        }
+        else
+        {
+            NewTolerances = data.NewTolerances;
+        }
     }
 }

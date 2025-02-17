@@ -16,7 +16,7 @@ using Newtonsoft.Json;
 ///   <para>
 ///     The overall structure of the editor system is such that there is a class derived from this that is attached
 ///     to the editor scene root Node. That then contains editor components as children which implement most of the
-///     editing functionality, the editor derived class mostly acts as glue logic and sets things up.
+///     editing functionality, the editor-derived class mostly acts as glue logic and sets things up.
 ///   </para>
 ///   <para>
 ///     When inheriting from this class, the inheriting class should have attributes:
