@@ -230,11 +230,11 @@ public class EditorActionHistory<TAction> : ActionHistory<TAction>
     ///   MinimumCostActionData is the action data to combine with (not yet combined);
     ///   Mode is the interference mode currentData has with MinimumCostActionData.
     /// </returns>
-    private static (int CostDelta, EditorCombinableActionData? MinimumCostActionData, ActionInterferenceMode Mode)
+    private static (double CostDelta, EditorCombinableActionData? MinimumCostActionData, ActionInterferenceMode Mode)
         FindCheapestActionToCombineWith(EditorCombinableActionData currentData,
             IEnumerable<EditorCombinableActionData> previousData)
     {
-        // Get an ordered enumerable sorted by priority and then by cost delta
+        // Get an ordered-enumerable sorted by priority and then by cost delta
         var combinationDataEnumerable = previousData.Select(data =>
         {
             var interferenceMode = currentData.GetInterferenceModeWith(data);
@@ -260,7 +260,7 @@ public class EditorActionHistory<TAction> : ActionHistory<TAction>
         }).OrderByDescending(p => p.Item1.Priority).ThenBy(p => p.Item1.Cost);
 
         // Calculate actual cost delta by adding up all replacement refunds, and if any, the first non-replacement one
-        var costDelta = 0;
+        double costDelta = 0;
 
         // Get the first combination data and its type
         EditorCombinableActionData? firstData = null;

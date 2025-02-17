@@ -37,7 +37,7 @@ public class EndosymbiontPlaceActionData : EditorCombinableActionData<CellType>
     {
     }
 
-    protected override int CalculateCostInternal()
+    protected override double CalculateCostInternal()
     {
         // Endosymbiosis placement never costs MP
         return 0;

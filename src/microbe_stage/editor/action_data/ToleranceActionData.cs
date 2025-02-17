@@ -17,7 +17,7 @@ public class ToleranceActionData : EditorCombinableActionData
         return GetInterferenceModeWith(other) != ActionInterferenceMode.NoInterference;
     }
 
-    protected override int CalculateCostInternal()
+    protected override double CalculateCostInternal()
     {
         // Calculate all changes
         var temperatureChange = Math.Abs(OldTolerances.PreferredTemperature - NewTolerances.PreferredTemperature);
@@ -27,18 +27,20 @@ public class ToleranceActionData : EditorCombinableActionData
         double minPressureChange = Math.Abs(OldTolerances.PressureMinimum - NewTolerances.PressureMinimum);
         double maxPressureChange = Math.Abs(OldTolerances.PressureMaximum - NewTolerances.PressureMaximum);
 
+        // Calculate pressure range change as moving of the middle point (so scale the total change to half as the same
+        // change moves the min and max points at the same time)
         var pressureToleranceChange = (minPressureChange + maxPressureChange) * 0.5;
 
         var oxygenChange = Math.Abs(OldTolerances.OxygenResistance - NewTolerances.OxygenResistance);
         var uvChange = Math.Abs(OldTolerances.UVResistance - NewTolerances.UVResistance);
 
         // Then add up the costs based on the changes
-        return (int)Math.Round(temperatureChange * Constants.TOLERANCE_CHANGE_MP_PER_TEMPERATURE +
+        return temperatureChange * Constants.TOLERANCE_CHANGE_MP_PER_TEMPERATURE +
             temperatureToleranceChange * Constants.TOLERANCE_CHANGE_MP_PER_TEMPERATURE_TOLERANCE +
             pressureChange * Constants.TOLERANCE_CHANGE_MP_PER_PRESSURE +
             pressureToleranceChange * Constants.TOLERANCE_CHANGE_MP_PER_PRESSURE_TOLERANCE +
             oxygenChange * Constants.TOLERANCE_CHANGE_MP_PER_OXYGEN +
-            uvChange * Constants.TOLERANCE_CHANGE_MP_PER_UV);
+            uvChange * Constants.TOLERANCE_CHANGE_MP_PER_UV;
     }
 
     protected override ActionInterferenceMode GetInterferenceModeWithGuaranteed(CombinableActionData other)

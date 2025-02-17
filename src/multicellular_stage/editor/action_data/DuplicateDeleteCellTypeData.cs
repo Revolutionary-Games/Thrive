@@ -23,7 +23,7 @@ public class DuplicateDeleteCellTypeData : EditorCombinableActionData<Multicellu
         throw new NotSupportedException();
     }
 
-    protected override int CalculateCostInternal()
+    protected override double CalculateCostInternal()
     {
         return 0;
     }

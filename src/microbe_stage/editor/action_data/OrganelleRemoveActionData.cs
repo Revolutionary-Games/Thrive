@@ -19,7 +19,7 @@ public class OrganelleRemoveActionData : HexRemoveActionData<OrganelleTemplate, 
     {
     }
 
-    protected override int CalculateCostInternal()
+    protected override double CalculateCostInternal()
     {
         return GotReplaced ? 0 : base.CalculateCostInternal();
     }

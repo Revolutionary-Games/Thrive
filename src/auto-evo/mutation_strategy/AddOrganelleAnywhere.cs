@@ -74,7 +74,7 @@ public class AddOrganelleAnywhere : IMutationStrategy<MicrobeSpecies>
         return ThatConvertBetweenCompounds(fromCompoundResolved, toCompoundResolved, direction);
     }
 
-    public List<Tuple<MicrobeSpecies, float>>? MutationsOf(MicrobeSpecies baseSpecies, float mp, bool lawk,
+    public List<Tuple<MicrobeSpecies, double>>? MutationsOf(MicrobeSpecies baseSpecies, double mp, bool lawk,
         Random random, BiomeConditions biomeToConsider)
     {
         // If a cheaper organelle gets added, this will need to be updated
@@ -90,7 +90,7 @@ public class AddOrganelleAnywhere : IMutationStrategy<MicrobeSpecies>
         var organelles = allOrganelles.OrderBy(_ => random.Next())
             .Take(Constants.AUTO_EVO_ORGANELLE_ADD_ATTEMPTS);
 
-        var mutated = new List<Tuple<MicrobeSpecies, float>>();
+        var mutated = new List<Tuple<MicrobeSpecies, double>>();
 
         // TODO: reuse this memory somehow
         var workMemory1 = new List<Hex>();

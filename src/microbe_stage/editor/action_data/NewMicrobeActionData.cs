@@ -40,12 +40,12 @@ public class NewMicrobeActionData : EditorCombinableActionData<CellType>
 
     public override bool ResetsHistory => true;
 
-    public override int CalculateCost()
+    public override double CalculateCost()
     {
         return -Constants.BASE_MUTATION_POINTS;
     }
 
-    protected override int CalculateCostInternal()
+    protected override double CalculateCostInternal()
     {
         throw new NotSupportedException();
     }
