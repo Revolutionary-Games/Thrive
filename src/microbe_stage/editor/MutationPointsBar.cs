@@ -6,6 +6,9 @@
 public partial class MutationPointsBar : HBoxContainer
 {
     [Export]
+    public bool ShowPercentageSymbol = true;
+
+    [Export]
     public NodePath? CurrentMutationPointsLabelPath;
 
     [Export]
@@ -93,7 +96,6 @@ public partial class MutationPointsBar : HBoxContainer
 
                 currentMutationPointsLabel.Text = $"({currentMutationPoints:F0}";
                 resultingMutationPointsLabel.Text = $"{possibleMutationPoints:F0})";
-                baseMutationPointsLabel.Text = $"/ {Constants.BASE_MUTATION_POINTS:F0}";
             }
             else
             {
@@ -101,6 +103,17 @@ public partial class MutationPointsBar : HBoxContainer
                 resultingMutationPointsLabel.Hide();
 
                 currentMutationPointsLabel.Text = $"{currentMutationPoints:F0}";
+            }
+
+            if (ShowPercentageSymbol)
+            {
+                // TODO: switch this class to using translation keys properly instead of this approach
+                // We have PERCENTAGE_VALUE translation string, but I didn't add that here as this already uses partial
+                // formatting with plain strings so I just extended the existing solution here -hhyyrylainen
+                baseMutationPointsLabel.Text = $"/ {Constants.BASE_MUTATION_POINTS:F0} %";
+            }
+            else
+            {
                 baseMutationPointsLabel.Text = $"/ {Constants.BASE_MUTATION_POINTS:F0}";
             }
         }
