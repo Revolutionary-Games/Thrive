@@ -464,9 +464,13 @@ public partial class EditorBase<TAction, TStage> : NodeWithInput, IEditor, ILoad
 
     public bool CheckEnoughMPForAction(double cost)
     {
-        // Freebuilding check is here because in freebuild we are allowed to make edits that consume more than the max
-        // MP in a single go, and those wouldn't work without this freebuilding check here
-        if (MutationPoints < cost && !FreeBuilding)
+        // Freebuilding check is here because in freebuild we are allowed to make edits that consume more than the max.
+        // MP in a single go, and those wouldn't work without this freebuilding check here.
+        // MP is allowed to go negative here as with floats the math isn't exact, so it would lead to situations where
+        // the player seems like they should be able to afford something but cannot in the end.
+        // But that is not done if the cost of the individual action is too low
+        if ((MutationPoints < cost + Constants.ALLOWED_MP_OVERSHOOT ||
+                (MutationPoints < cost && cost < Constants.SMALL_MP_COST)) && !FreeBuilding)
         {
             // Flash the MP bar and play sound
             OnInsufficientMP();
@@ -938,10 +942,15 @@ public partial class EditorBase<TAction, TStage> : NodeWithInput, IEditor, ILoad
 
         mutationPointsCache = history.CalculateMutationPointsLeft();
 
-        if (mutationPointsCache.Value is < 0 or > Constants.BASE_MUTATION_POINTS)
+        if (mutationPointsCache.Value is < Constants.ALLOWED_MP_OVERSHOOT or > Constants.BASE_MUTATION_POINTS)
         {
             GD.PrintErr("Invalid MP amount: ", mutationPointsCache,
                 " This should only happen if the user disabled the Infinite MP cheat while having mutated too much.");
+        }
+        else if (mutationPointsCache.Value < 0)
+        {
+            // Clamp to 0 when the value is a small negative
+            mutationPointsCache = 0;
         }
 
         OnMutationPointsChanged();
