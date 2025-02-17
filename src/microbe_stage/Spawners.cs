@@ -756,8 +756,7 @@ public static class SpawnHelpers
 
         entity.Set<StrainAffected>();
 
-        // Microbes are not affected by currents before they are visualized
-        // entity.Set<CurrentAffected>();
+        entity.Set<CurrentAffected>();
 
         // Selecting is used to throw out specific colony members
         entity.Set<Selectable>();
