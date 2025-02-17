@@ -171,9 +171,17 @@ public class MicrobeSpecies : Species, ICellDefinition
 
         var compoundBalances = new Dictionary<Compound, CompoundBalance>();
 
+        // TODO: figure out a way to use the real patch environmental tolerances
+        var environmentalTolerances = new ResolvedMicrobeTolerances
+        {
+            HealthModifier = 1,
+            OsmoregulationModifier = 1,
+            ProcessSpeedModifier = 1,
+        };
+
         // False is passed here until we can make the initial compounds patch specific
-        ProcessSystem.ComputeCompoundBalance(Organelles, biomeConditions, CompoundAmountType.Biome, false,
-            compoundBalances);
+        ProcessSystem.ComputeCompoundBalance(Organelles, biomeConditions, environmentalTolerances,
+            CompoundAmountType.Biome, false, compoundBalances);
 
         bool giveBonusGlucose = Organelles.Count <= Constants.FULL_INITIAL_GLUCOSE_SMALL_SIZE_LIMIT && IsBacteria;
 
@@ -220,6 +228,10 @@ public class MicrobeSpecies : Species, ICellDefinition
 
         Dictionary<Compound, (float TimeToFill, float Storage)>? compoundTimes;
 
+        // TODO: can we do caching somehow here?
+        var resolvedTolerances = MicrobeEnvironmentalToleranceCalculations.ResolveToleranceValues(
+            MicrobeEnvironmentalToleranceCalculations.CalculateTolerances(this, microbeSpawnEnvironment.CurrentBiome));
+
         // This lock is here to allow multiple microbe spawns to happen in parallel. Lock is not used on clear as no
         // spawns should be allowed to happen while species are being modified
         lock (cachedFillTimes)
@@ -228,7 +240,7 @@ public class MicrobeSpecies : Species, ICellDefinition
             {
                 // TODO: should moving be false in some cases?
                 compoundTimes = MicrobeInternalCalculations.CalculateDayVaryingCompoundsFillTimes(Organelles,
-                    MembraneType, true, PlayerSpecies, biome, spawnEnvironment.WorldSettings);
+                    MembraneType, true, PlayerSpecies, biome, resolvedTolerances, spawnEnvironment.WorldSettings);
                 cachedFillTimes[biome] = compoundTimes;
             }
         }

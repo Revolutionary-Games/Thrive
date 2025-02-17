@@ -94,7 +94,7 @@ public partial class BehaviourEditorSubComponent : EditorComponentBase<ICellEdit
     {
     }
 
-    public override void OnMutationPointsChanged(int mutationPoints)
+    public override void OnMutationPointsChanged(double mutationPoints)
     {
     }
 

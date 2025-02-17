@@ -23,6 +23,9 @@ public partial class CellEditorComponent :
     public bool IsMacroscopicEditor;
 
     [Export]
+    public int MaxToleranceWarnings = 3;
+
+    [Export]
     public NodePath? TopPanelPath;
 
     [Export]
@@ -138,7 +141,15 @@ public partial class CellEditorComponent :
     private GrowthOrderPicker growthOrderGUI = null!;
 
     [Export]
+    [JsonProperty]
+    [AssignOnlyChildItemsOnDeserialize]
+    private TolerancesEditorSubComponent tolerancesEditor = null!;
+
+    [Export]
     private PanelContainer toleranceTab = null!;
+
+    [Export]
+    private Container toleranceWarningContainer = null!;
 
     private VBoxContainer partsSelectionContainer = null!;
     private CollapsibleList membraneTypeSelection = null!;
@@ -241,6 +252,8 @@ public partial class CellEditorComponent :
 
     private bool autoEvoPredictionDirty;
     private double autoEvoPredictionStartTimer;
+
+    private bool refreshTolerancesWarnings;
 
     /// <summary>
     ///   The new to set on the species (or cell type) after exiting (if null, no change)
@@ -641,6 +654,7 @@ public partial class CellEditorComponent :
         if (!IsMulticellularEditor)
         {
             behaviourEditor.Init(owningEditor, fresh);
+            tolerancesEditor.Init(owningEditor, fresh);
         }
         else
         {
@@ -711,8 +725,10 @@ public partial class CellEditorComponent :
             behaviourEditor.Visible = false;
             growthOrderTab.Visible = false;
             growthOrderTabButton.Visible = false;
+            toleranceTab.Visible = false;
+            toleranceTabButton.Visible = false;
 
-            // Tolerances are visible for now
+            // Tolerances also should be implemented as overall ones for the entire species for multicellular
         }
 
         UpdateMicrobePartSelections();
@@ -770,6 +786,24 @@ public partial class CellEditorComponent :
         if (selectedSelectionMenuTab == SelectionMenuTab.GrowthOrder)
         {
             UpdateGrowthOrderNumbers();
+        }
+
+        if (refreshTolerancesWarnings)
+        {
+            refreshTolerancesWarnings = false;
+
+            // Tolerances affect all the efficiency of all organelles, so we have to update this data here
+            // the dataflow would be really hard to make sure no duplicate calls happen, so for now this just allows
+            // duplicate calls
+            CalculateOrganelleEffectivenessInCurrentPatch();
+
+            // These are all also affected by the environmental tolerances
+            CalculateEnergyAndCompoundBalance(editedMicrobeOrganelles.Organelles, Membrane);
+
+            // Health is also affected
+            UpdateStats();
+
+            CalculateAndDisplayToleranceWarnings();
         }
 
         // Show the organelle that is about to be placed
@@ -884,7 +918,10 @@ public partial class CellEditorComponent :
         Colour = properties.Colour;
 
         if (!IsMulticellularEditor)
+        {
             behaviourEditor.OnEditorSpeciesSetup(species);
+            tolerancesEditor.OnEditorSpeciesSetup(species);
+        }
 
         // Get the species organelles to be edited. This also updates the placeholder hexes
         foreach (var organelle in properties.Organelles.Organelles)
@@ -908,6 +945,12 @@ public partial class CellEditorComponent :
         CreatePreviewMicrobeIfNeeded();
 
         UpdateArrow(false);
+
+        if (!IsMulticellularEditor)
+        {
+            // Make sure initial tolerance warnings are shown
+            OnTolerancesEditorChangedData();
+        }
     }
 
     public override void OnFinishEditing()
@@ -955,6 +998,7 @@ public partial class CellEditorComponent :
             GD.Print("MicrobeEditor: updated organelles for species: ", editedSpecies.FormattedName);
 
             behaviourEditor.OnFinishEditing();
+            tolerancesEditor.OnFinishEditing();
 
             // When this is the primary editor of the species data, this must refresh the species data properties that
             // depend on being edited
@@ -1032,6 +1076,10 @@ public partial class CellEditorComponent :
         CalculateOrganelleEffectivenessInCurrentPatch();
         UpdatePatchDependentBalanceData();
 
+        // Refresh tolerances data for the new patch
+        tolerancesEditor.OnPatchChanged();
+        OnTolerancesEditorChangedData();
+
         // Redo suggestion calculations as they could depend on the patch data (though at the time of writing this is
         // not really changing)
         autoEvoPredictionDirty = true;
@@ -1048,6 +1096,19 @@ public partial class CellEditorComponent :
 
         autoEvoPredictionDirty = true;
         suggestionDirty = true;
+    }
+
+    /// <summary>
+    ///   Call when tolerance data changes, re-triggers simulations and updates the GUI warnings
+    /// </summary>
+    /// <param name="newTolerances">New tolerance data</param>
+    public void OnTolerancesChanged(EnvironmentalTolerances newTolerances)
+    {
+        autoEvoPredictionDirty = true;
+        suggestionDirty = true;
+
+        // Need to show new tolerances warnings (and refresh a few other things)
+        refreshTolerancesWarnings = true;
     }
 
     public void UpdatePatchDependentBalanceData()
@@ -1075,7 +1136,7 @@ public partial class CellEditorComponent :
 
         var result =
             ProcessSystem.ComputeOrganelleProcessEfficiencies(organelles, Editor.CurrentPatch.Biome,
-                CompoundAmountType.Current);
+                CalculateLatestTolerances(), CompoundAmountType.Current);
 
         UpdateOrganelleEfficiencies(result);
     }
@@ -1100,12 +1161,13 @@ public partial class CellEditorComponent :
         if (IsMulticellularEditor)
         {
             // Behaviour editor is not used in multicellular
-            data = new NewMicrobeActionData(oldEditedMicrobeOrganelles, oldMembrane, Rigidity, Colour, null);
+            data = new NewMicrobeActionData(oldEditedMicrobeOrganelles, oldMembrane, Rigidity, Colour, null, null);
         }
         else
         {
             data = new NewMicrobeActionData(oldEditedMicrobeOrganelles, oldMembrane, Rigidity, Colour,
-                behaviourEditor.Behaviour ?? throw new Exception("Behaviour not initialized"));
+                behaviourEditor.Behaviour ?? throw new Exception("Behaviour not initialized"),
+                tolerancesEditor.CurrentTolerances);
         }
 
         var action =
@@ -1156,10 +1218,12 @@ public partial class CellEditorComponent :
 
         // In some cases "theoreticalCost" might get rounded improperly
         var theoreticalCost = Editor.WhatWouldActionsCost(new[] { data });
-        var cost = (int)Math.Ceiling(Math.Ceiling(theoreticalCost / costPerStep) * costPerStep);
+
+        // Removed cast to int here doesn't solve https://github.com/Revolutionary-Games/Thrive/issues/5821
+        var cost = Math.Ceiling(Math.Ceiling(theoreticalCost / costPerStep) * costPerStep);
 
         // Cases where mutation points are equal 0 are handled below in the next "if" statement
-        if (cost > Editor.MutationPoints && Editor.MutationPoints != 0)
+        if (cost > Editor.MutationPoints && Editor.MutationPoints > 0)
         {
             int stepsToCutOff = (int)Math.Ceiling((cost - Editor.MutationPoints) / costPerStep);
             data.NewRigidity -= (desiredRigidity - previousRigidity > 0 ? 1 : -1) * stepsToCutOff /
@@ -1170,9 +1234,9 @@ public partial class CellEditorComponent :
             return;
         }
 
-        // Make sure that if there are no mutation points the player cannot drag the slider
+        // Make sure that if there are no mutation points, the player cannot drag the slider
         // when the cost is rounded to zero
-        if (theoreticalCost >= 0 && (Editor.MutationPoints - cost < 0 || costPerStep > Editor.MutationPoints))
+        if (theoreticalCost >= 0 && (Editor.MutationPoints - cost <= 0 || costPerStep > Editor.MutationPoints))
         {
             UpdateRigiditySlider(previousRigidity);
             return;
@@ -1257,6 +1321,9 @@ public partial class CellEditorComponent :
     {
         var maxHitpoints = Membrane.Hitpoints + Rigidity * Constants.MEMBRANE_RIGIDITY_HITPOINTS_MODIFIER;
 
+        // Tolerances affect health
+        maxHitpoints *= CalculateLatestTolerances().HealthModifier;
+
         return maxHitpoints;
     }
 
@@ -1297,7 +1364,7 @@ public partial class CellEditorComponent :
             actionData)));
     }
 
-    protected override int CalculateCurrentActionCost()
+    protected override double CalculateCurrentActionCost()
     {
         if (string.IsNullOrEmpty(ActiveActionName) || !Editor.ShowHover)
             return 0;
@@ -1845,6 +1912,18 @@ public partial class CellEditorComponent :
         UpdateFinishButtonWarningVisibility();
     }
 
+    private ResolvedMicrobeTolerances CalculateLatestTolerances()
+    {
+        return MicrobeEnvironmentalToleranceCalculations.ResolveToleranceValues(CalculateRawTolerances());
+    }
+
+    private MicrobeEnvironmentalToleranceCalculations.ToleranceResult CalculateRawTolerances()
+    {
+        // TODO: in the future this will need to pass the organelle list as well
+        return MicrobeEnvironmentalToleranceCalculations.CalculateTolerances(tolerancesEditor.CurrentTolerances,
+            Editor.CurrentPatch.Biome);
+    }
+
     /// <summary>
     ///   Calculates the energy balance and compound balance for a cell with the given organelles and membrane
     /// </summary>
@@ -1868,9 +1947,9 @@ public partial class CellEditorComponent :
 
         var maximumMovementDirection = MicrobeInternalCalculations.MaximumSpeedDirection(organelles);
 
-        ProcessSystem.ComputeEnergyBalanceFull(organelles, conditionsData, membrane, maximumMovementDirection, moving,
-            true, Editor.CurrentGame.GameWorld.WorldSettings, organismStatisticsPanel.CompoundAmountType, null,
-            energyBalance);
+        ProcessSystem.ComputeEnergyBalanceFull(organelles, conditionsData, CalculateLatestTolerances(), membrane,
+            maximumMovementDirection, moving, true, Editor.CurrentGame.GameWorld.WorldSettings,
+            organismStatisticsPanel.CompoundAmountType, null, energyBalance);
 
         energyBalanceInfo = energyBalance;
 
@@ -1913,11 +1992,12 @@ public partial class CellEditorComponent :
         switch (calculationType)
         {
             case BalanceDisplayType.MaxSpeed:
-                ProcessSystem.ComputeCompoundBalance(organelles, biome, amountType, true, compoundBalanceData);
+                ProcessSystem.ComputeCompoundBalance(organelles, biome, CalculateLatestTolerances(), amountType, true,
+                    compoundBalanceData);
                 break;
             case BalanceDisplayType.EnergyEquilibrium:
-                ProcessSystem.ComputeCompoundBalanceAtEquilibrium(organelles, biome, amountType, energyBalance,
-                    compoundBalanceData);
+                ProcessSystem.ComputeCompoundBalanceAtEquilibrium(organelles, biome, CalculateLatestTolerances(),
+                    amountType, energyBalance, compoundBalanceData);
                 break;
             default:
                 GD.PrintErr("Unknown compound balance type: ", calculationType);
@@ -1938,14 +2018,16 @@ public partial class CellEditorComponent :
 
         ProcessSystem.ComputeActiveProcessList(editedMicrobeOrganelles, ref processes);
 
+        var tolerances = CalculateLatestTolerances();
+
         float consumptionProductionRatio = energyBalance.TotalConsumption / energyBalance.TotalProduction;
 
         foreach (var process in processes)
         {
             // This requires the inputs to be in the biome to give a realistic prediction of how fast the processes
             // *might* run once swimming around in the stage.
-            var singleProcess = ProcessSystem.CalculateProcessMaximumSpeed(process, biome, CompoundAmountType.Current,
-                true);
+            var singleProcess = ProcessSystem.CalculateProcessMaximumSpeed(process, tolerances.ProcessSpeedModifier,
+                biome, CompoundAmountType.Current, true);
 
             // If produces more ATP than consumes, lower down production for inputs and for outputs,
             // otherwise use maximum production values (this matches the equilibrium display mode and what happens
@@ -2321,6 +2403,8 @@ public partial class CellEditorComponent :
             behaviourEditor.UpdateAllBehaviouralSliders(behaviour ??
                 throw new ArgumentNullException(nameof(behaviour)));
         }
+
+        // Tolerances are applied directly in the OnEditorSpeciesSetup method
     }
 
     private void OnMovePressed()
@@ -2592,6 +2676,9 @@ public partial class CellEditorComponent :
             // Make a clone to make sure data cannot change while running
             target.Behaviour = overwriteBehaviourForCalculations.CloneObject();
         }
+
+        // Copy tolerances
+        target.Tolerances.CopyFrom(tolerancesEditor.CurrentTolerances);
     }
 
     private void SetLightLevelOption(int option)
@@ -3146,6 +3233,7 @@ public partial class CellEditorComponent :
             }
 
             calculationSpecies.Behaviour = pristineSpeciesCopy.Behaviour;
+            calculationSpecies.Tolerances.CopyFrom(pristineSpeciesCopy.Tolerances);
         }
 
         private bool StartNextRun()

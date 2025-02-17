@@ -557,7 +557,7 @@ public partial class CellBodyPlanEditorComponent :
         return Editor.EditedSpecies.CellTypes.First(c => c.TypeName == name);
     }
 
-    protected override int CalculateCurrentActionCost()
+    protected override double CalculateCurrentActionCost()
     {
         if (activeActionName == null || !Editor.ShowHover)
             return 0;
@@ -1046,12 +1046,20 @@ public partial class CellBodyPlanEditorComponent :
         UpdateCellTypesCounts();
         hasNegativeATPCells = false;
 
+        // TODO: environmental tolerances for multicellular
+        var environmentalTolerances = new ResolvedMicrobeTolerances
+        {
+            HealthModifier = 1,
+            OsmoregulationModifier = 1,
+            ProcessSpeedModifier = 1,
+        };
+
         foreach (var button in cellTypeSelectionButtons)
         {
             var energyBalance = new EnergyBalanceInfoSimple();
 
             ProcessSystem.ComputeEnergyBalanceSimple(button.Value.CellType.Organelles, conditionsData,
-                button.Value.CellType.MembraneType, maximumMovementDirection,
+                environmentalTolerances, button.Value.CellType.MembraneType, maximumMovementDirection,
                 organismStatisticsPanel.CalculateBalancesWhenMoving, true, Editor.CurrentGame.GameWorld.WorldSettings,
                 organismStatisticsPanel.CompoundAmountType, null, energyBalance);
 
@@ -1195,10 +1203,19 @@ public partial class CellBodyPlanEditorComponent :
         var maximumMovementDirection =
             MicrobeInternalCalculations.MaximumSpeedDirection(cells[0].Data!.CellType.Organelles);
 
+        // TODO: environmental tolerances for multicellular
+        var environmentalTolerances = new ResolvedMicrobeTolerances
+        {
+            HealthModifier = 1,
+            OsmoregulationModifier = 1,
+            ProcessSpeedModifier = 1,
+        };
+
         // TODO: improve performance by calculating the balance per cell type
         foreach (var hex in cells)
         {
-            ProcessSystem.ComputeEnergyBalanceFull(hex.Data!.Organelles, conditionsData, hex.Data.MembraneType,
+            ProcessSystem.ComputeEnergyBalanceFull(hex.Data!.Organelles, conditionsData, environmentalTolerances,
+                hex.Data.MembraneType,
                 maximumMovementDirection, moving, true, Editor.CurrentGame.GameWorld.WorldSettings,
                 organismStatisticsPanel.CompoundAmountType, null, energyBalance);
         }
@@ -1234,18 +1251,26 @@ public partial class CellBodyPlanEditorComponent :
         IReadOnlyList<HexWithData<CellTemplate>> cells, IBiomeConditions biome, EnergyBalanceInfoFull energyBalance,
         ref Dictionary<Compound, float>? specificStorages, ref float nominalStorage)
     {
+        // TODO: environmental tolerances for multicellular
+        var environmentalTolerances = new ResolvedMicrobeTolerances
+        {
+            HealthModifier = 1,
+            OsmoregulationModifier = 1,
+            ProcessSpeedModifier = 1,
+        };
+
         Dictionary<Compound, CompoundBalance> compoundBalanceData = new();
         foreach (var cell in cells)
         {
             switch (calculationType)
             {
                 case BalanceDisplayType.MaxSpeed:
-                    ProcessSystem.ComputeCompoundBalance(cell.Data!.Organelles, biome,
+                    ProcessSystem.ComputeCompoundBalance(cell.Data!.Organelles, biome, environmentalTolerances,
                         amountType, true, compoundBalanceData);
                     break;
                 case BalanceDisplayType.EnergyEquilibrium:
                     ProcessSystem.ComputeCompoundBalanceAtEquilibrium(cell.Data!.Organelles, biome,
-                        amountType, energyBalance, compoundBalanceData);
+                        environmentalTolerances, amountType, energyBalance, compoundBalanceData);
                     break;
                 default:
                     GD.PrintErr("Unknown compound balance type: ", organismStatisticsPanel.BalanceDisplayType);

@@ -7,6 +7,8 @@ public interface IBiomeConditions
 {
     public Dictionary<string, ChunkConfiguration> Chunks { get; }
 
+    public float Pressure { get; }
+
     public BiomeCompoundProperties GetCompound(Compound compound, CompoundAmountType amountType);
     public bool TryGetCompound(Compound compound, CompoundAmountType amountType, out BiomeCompoundProperties result);
 
@@ -26,6 +28,6 @@ public interface IBiomeConditions
     ///   Returns true if the specified compound varies during the day / night cycle
     /// </summary>
     /// <param name="compound">Compound type to check</param>
-    /// <returns>True if compound varies</returns>
+    /// <returns>True if the compound varies</returns>
     public bool IsVaryingCompound(Compound compound);
 }

@@ -47,7 +47,7 @@ public partial class HexPopupMenu : CustomPopupMenu
     [Signal]
     public delegate void ModifyPressedEventHandler();
 
-    public Func<IEnumerable<EditorCombinableActionData>, int>? GetActionPrice { get; set; }
+    public Func<IEnumerable<EditorCombinableActionData>, double>? GetActionPrice { get; set; }
 
     public bool ShowPopup
     {

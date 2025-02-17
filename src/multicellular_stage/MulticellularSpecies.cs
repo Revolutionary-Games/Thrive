@@ -90,8 +90,16 @@ public class MulticellularSpecies : Species
 
         var compoundBalances = new Dictionary<Compound, CompoundBalance>();
 
+        // TODO: environmental tolerances for multicellular
+        var environmentalTolerances = new ResolvedMicrobeTolerances
+        {
+            HealthModifier = 1,
+            OsmoregulationModifier = 1,
+            ProcessSpeedModifier = 1,
+        };
+
         ProcessSystem.ComputeCompoundBalance(Cells[0].Organelles,
-            biomeConditions, CompoundAmountType.Biome, false, compoundBalances);
+            biomeConditions, environmentalTolerances, CompoundAmountType.Biome, false, compoundBalances);
         var storageCapacity = MicrobeInternalCalculations.CalculateCapacity(Cells[0].Organelles);
 
         InitialCompounds.Clear();
@@ -124,10 +132,18 @@ public class MulticellularSpecies : Species
         // TODO: this would be excellent to match the actual cell type being used for spawning
         var cellType = Cells[0].CellType;
 
+        // TODO: environmental tolerances for multicellular
+        var environmentalTolerances = new ResolvedMicrobeTolerances
+        {
+            HealthModifier = 1,
+            OsmoregulationModifier = 1,
+            ProcessSpeedModifier = 1,
+        };
+
         // TODO: CACHING IS MISSING from here (but microbe has it)
         // TODO: should moving be false in some cases?
         var compoundTimes = MicrobeInternalCalculations.CalculateDayVaryingCompoundsFillTimes(cellType.Organelles,
-            cellType.MembraneType, true, PlayerSpecies, microbeSpawnEnvironment.CurrentBiome,
+            cellType.MembraneType, true, PlayerSpecies, microbeSpawnEnvironment.CurrentBiome, environmentalTolerances,
             microbeSpawnEnvironment.WorldSettings);
 
         MicrobeInternalCalculations.GiveNearNightInitialCompoundBuff(targetStorage, compoundTimes,

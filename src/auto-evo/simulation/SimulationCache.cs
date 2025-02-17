@@ -43,8 +43,8 @@ public class SimulationCache
 
     private readonly Dictionary<(MicrobeSpecies, MicrobeSpecies, IBiomeConditions), float> predationScores = new();
 
-    private readonly Dictionary<(TweakedProcess, IBiomeConditions), ProcessSpeedInformation> cachedProcessSpeeds =
-        new();
+    private readonly Dictionary<(TweakedProcess, float, IBiomeConditions), ProcessSpeedInformation>
+        cachedProcessSpeeds = new();
 
     private readonly Dictionary<MicrobeSpecies, (float, float, float, float)>
         cachedPredationToolsRawScores = new();
@@ -54,6 +54,9 @@ public class SimulationCache
     private readonly Dictionary<(MicrobeSpecies, BiomeConditions), bool> cachedUsesVaryingCompounds = new();
 
     private readonly Dictionary<(MicrobeSpecies, BiomeConditions), float> cachedStorageScores = new();
+
+    private readonly Dictionary<(MicrobeSpecies, BiomeConditions), ResolvedMicrobeTolerances> cachedResolvedTolerances =
+        new();
 
     public SimulationCache(WorldGenerationSettings worldSettings)
     {
@@ -76,7 +79,7 @@ public class SimulationCache
     }
 
     public EnergyBalanceInfoSimple GetEnergyBalanceForSpecies(MicrobeSpecies species,
-        IBiomeConditions biomeConditions)
+        BiomeConditions biomeConditions)
     {
         // TODO: this gets called an absolute ton with the new auto-evo so a more efficient caching method (to allow
         // different species but with same organelles to be able to use the same cache value) would be nice here
@@ -93,7 +96,8 @@ public class SimulationCache
         cached = new EnergyBalanceInfoSimple();
 
         // Auto-evo uses the average values of compound during the course of a simulated day
-        ProcessSystem.ComputeEnergyBalanceSimple(species.Organelles, biomeConditions, species.MembraneType,
+        ProcessSystem.ComputeEnergyBalanceSimple(species.Organelles, biomeConditions,
+            GetEnvironmentalTolerances(species, biomeConditions), species.MembraneType,
             maximumMovementDirection, true, species.PlayerSpecies, worldSettings, CompoundAmountType.Average, this,
             cached);
 
@@ -190,6 +194,8 @@ public class SimulationCache
         var organelles = species.Organelles.Organelles;
         var organelleCount = organelles.Count;
 
+        var tolerances = GetEnvironmentalTolerances(species, biomeConditions);
+
         for (int i = 0; i < organelleCount; ++i)
         {
             foreach (var process in organelles[i].Definition.RunnableProcesses)
@@ -198,7 +204,9 @@ public class SimulationCache
                 {
                     if (process.Process.Outputs.TryGetValue(toCompound, out var outputAmount))
                     {
-                        var processSpeed = GetProcessMaximumSpeed(process, biomeConditions).CurrentSpeed;
+                        var processSpeed =
+                            GetProcessMaximumSpeed(process, tolerances.ProcessSpeedModifier, biomeConditions)
+                                .CurrentSpeed;
 
                         cached += outputAmount * processSpeed;
                     }
@@ -215,24 +223,34 @@ public class SimulationCache
     ///   are always used at the average amount in auto-evo.
     /// </summary>
     /// <param name="process">The process to calculate the speed for</param>
+    /// <param name="speedModifier">
+    ///   Process speed modifier from <see cref="ResolvedMicrobeTolerances.ProcessSpeedModifier"/>
+    /// </param>
     /// <param name="biomeConditions">The biome conditions to use</param>
     /// <returns>The speed information for the process</returns>
-    public ProcessSpeedInformation GetProcessMaximumSpeed(TweakedProcess process, IBiomeConditions biomeConditions)
+    /// <remarks>
+    ///   <para>
+    ///     TODO: check if this method's caching ability has been compromised with adding speedModifier
+    ///   </para>
+    /// </remarks>
+    public ProcessSpeedInformation GetProcessMaximumSpeed(TweakedProcess process, float speedModifier,
+        IBiomeConditions biomeConditions)
     {
-        var key = (process, biomeConditions);
+        var key = (process, speedModifier, biomeConditions);
 
         if (cachedProcessSpeeds.TryGetValue(key, out var cached))
         {
             return cached;
         }
 
-        cached = ProcessSystem.CalculateProcessMaximumSpeed(process, biomeConditions, CompoundAmountType.Average, true);
+        cached = ProcessSystem.CalculateProcessMaximumSpeed(process, speedModifier, biomeConditions,
+            CompoundAmountType.Average, true);
 
         cachedProcessSpeeds.Add(key, cached);
         return cached;
     }
 
-    public float GetPredationScore(Species predatorSpecies, Species preySpecies, IBiomeConditions biomeConditions)
+    public float GetPredationScore(Species predatorSpecies, Species preySpecies, BiomeConditions biomeConditions)
     {
         if (predatorSpecies is not MicrobeSpecies predator)
             return 0;
@@ -392,6 +410,7 @@ public class SimulationCache
         cachedEnzymeScores.Clear();
         cachedUsesVaryingCompounds.Clear();
         cachedStorageScores.Clear();
+        cachedResolvedTolerances.Clear();
     }
 
     public (float PilusScore, float OxytoxyScore, float SlimeJetScore, float MucocystsScore)
@@ -506,6 +525,21 @@ public class SimulationCache
         return enzymesScore;
     }
 
+    public ResolvedMicrobeTolerances GetEnvironmentalTolerances(MicrobeSpecies species,
+        BiomeConditions biomeConditions)
+    {
+        var key = (species, biomeConditions);
+        if (cachedResolvedTolerances.TryGetValue(key, out var cached))
+            return cached;
+
+        var tolerances = MicrobeEnvironmentalToleranceCalculations.CalculateTolerances(species, biomeConditions);
+
+        var result = MicrobeEnvironmentalToleranceCalculations.ResolveToleranceValues(tolerances);
+
+        cachedResolvedTolerances.Add(key, result);
+        return result;
+    }
+
     private float CalculateStorageScore(MicrobeSpecies species, BiomeConditions biomeConditions, Compound compound)
     {
         // TODO: maybe a bit lower value to determine when moving kicks in (though optimally the calculation could
@@ -519,7 +553,8 @@ public class SimulationCache
 
         Dictionary<Compound, CompoundBalance>? dayCompoundBalances = null;
         var (canSurvive, requiredAmounts) = MicrobeInternalCalculations.CalculateNightStorageRequirements(
-            species.Organelles, species.MembraneType, moving, species.PlayerSpecies, biomeConditions, worldSettings,
+            species.Organelles, species.MembraneType, moving, species.PlayerSpecies, biomeConditions,
+            GetEnvironmentalTolerances(species, biomeConditions), worldSettings,
             ref dayCompoundBalances);
 
         if (dayCompoundBalances == null)

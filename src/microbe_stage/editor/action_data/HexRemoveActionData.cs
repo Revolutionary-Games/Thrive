@@ -13,7 +13,7 @@ public abstract class HexRemoveActionData<THex, TContext> : EditorCombinableActi
         Orientation = orientation;
     }
 
-    protected override int CalculateCostInternal()
+    protected override double CalculateCostInternal()
     {
         return Constants.ORGANELLE_REMOVE_COST;
     }

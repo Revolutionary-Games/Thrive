@@ -203,6 +203,13 @@ layout_mode = 2
 text = "102 kPA"
 label_settings = ExtResource("15_ng6rp")
 
+[node name="Situation" type="TextureRect" parent="NormalContent/MarginContainer/ScrollContainer/VBoxContainer/PatchDetailsContainer/PhysicalConditions/Pressure"]
+custom_minimum_size = Vector2(12, 12)
+layout_mode = 2
+size_flags_vertical = 4
+mouse_filter = 2
+expand_mode = 1
+
 [node name="Light" type="HBoxContainer" parent="NormalContent/MarginContainer/ScrollContainer/VBoxContainer/PatchDetailsContainer/PhysicalConditions"]
 layout_mode = 2
 size_flags_horizontal = 3

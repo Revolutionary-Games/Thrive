@@ -891,6 +891,8 @@ public class Settings
 
         // Default to wanting the current mode. This is after the maximized mode handling so that the game won't
         // switch away from maximized mode to windowed mode.
+        // DisplayServer.WindowMode.ExclusiveFullscreen
+        // TODO: set the default clear color to black to make the 1px border disappear on windows
         var wantedMode = mode;
 
         switch (DisplayMode.Value)

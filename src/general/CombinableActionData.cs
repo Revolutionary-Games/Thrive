@@ -1,9 +1,9 @@
 ﻿using System;
 
 /// <summary>
-///   A combinable action data can be combined with other actions.
-///   For example two separate movements of the same object can be combined into one larger movement action.
-///   This is implemented as an aid for the player so that they do not have to think about optimizing their actions
+///   Combinable action data that can be combined with other actions.
+///   For example, two separate movements of the same object can be combined into one larger movement action.
+///   This is implemented as aid for the player so that they do not have to think about optimizing their actions
 ///   to cost the least amount of MP. And reduce how many steps need to be undone when doing repetitive actions.
 /// </summary>
 public abstract class CombinableActionData
@@ -34,7 +34,7 @@ public abstract class CombinableActionData
     /// </summary>
     /// <param name="other">The action this should be combined with</param>
     /// <returns>Returns the combined action</returns>
-    /// <exception cref="NotSupportedException">Thrown when combination is not possible</exception>
+    /// <exception cref="NotSupportedException">Thrown when the combination is not possible</exception>
     public virtual CombinableActionData Combine(CombinableActionData other)
     {
         if (GetInterferenceModeWith(other) != ActionInterferenceMode.Combinable)
