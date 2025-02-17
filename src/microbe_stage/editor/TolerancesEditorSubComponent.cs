@@ -56,6 +56,9 @@ public partial class TolerancesEditorSubComponent : EditorComponentBase<ICellEdi
     [ExportCategory("Style")]
     private LabelSettings badValueFont = null!;
 
+    [Export]
+    private LabelSettings perfectValueFont = null!;
+
     private LabelSettings? originalTemperatureFont;
     private LabelSettings? originalPressureFont;
 #pragma warning restore CA2213
@@ -353,8 +356,16 @@ public partial class TolerancesEditorSubComponent : EditorComponentBase<ICellEdi
         if (Math.Abs(patchTemperature - CurrentTolerances.PreferredTemperature) >
             CurrentTolerances.TemperatureTolerance)
         {
+            // TODO: would probably be better to either mark the upper or lower bound as the problem to make it easier
+            // to solve
             temperatureMinLabel.LabelSettings = badValueFont;
             temperatureMaxLabel.LabelSettings = badValueFont;
+        }
+        else if (Math.Abs(CurrentTolerances.TemperatureTolerance) < Constants.TOLERANCE_PERFECT_THRESHOLD_TEMPERATURE)
+        {
+            // Perfectly adapted
+            temperatureMinLabel.LabelSettings = perfectValueFont;
+            temperatureMaxLabel.LabelSettings = perfectValueFont;
         }
         else
         {
@@ -375,6 +386,12 @@ public partial class TolerancesEditorSubComponent : EditorComponentBase<ICellEdi
         {
             pressureMinLabel.LabelSettings = badValueFont;
             pressureMaxLabel.LabelSettings = badValueFont;
+        }
+        else if (Math.Abs(CurrentTolerances.PressureMaximum - CurrentTolerances.PressureMinimum) <
+                 Constants.TOLERANCE_PERFECT_THRESHOLD_PRESSURE)
+        {
+            pressureMinLabel.LabelSettings = perfectValueFont;
+            pressureMaxLabel.LabelSettings = perfectValueFont;
         }
         else
         {
