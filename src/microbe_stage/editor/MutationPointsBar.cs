@@ -79,6 +79,10 @@ public partial class MutationPointsBar : HBoxContainer
     public void UpdateMutationPoints(bool freebuilding, bool showResultingPoints, double currentMutationPoints,
         double possibleMutationPoints)
     {
+        // Make sure tiny negative values aren't shown improperly
+        if (currentMutationPoints < 0 && currentMutationPoints > Constants.ALLOWED_MP_OVERSHOOT)
+            currentMutationPoints = 0;
+
         if (freebuilding)
         {
             mutationPointsArrow.Hide();
@@ -94,7 +98,7 @@ public partial class MutationPointsBar : HBoxContainer
                 mutationPointsArrow.Show();
                 resultingMutationPointsLabel.Show();
 
-                currentMutationPointsLabel.Text = $"({currentMutationPoints:F0}";
+                currentMutationPointsLabel.Text = $"({currentMutationPoints:0.#}";
                 resultingMutationPointsLabel.Text = $"{possibleMutationPoints:F0})";
             }
             else
@@ -102,7 +106,7 @@ public partial class MutationPointsBar : HBoxContainer
                 mutationPointsArrow.Hide();
                 resultingMutationPointsLabel.Hide();
 
-                currentMutationPointsLabel.Text = $"{currentMutationPoints:F0}";
+                currentMutationPointsLabel.Text = $"{currentMutationPoints:0.#}";
             }
 
             if (ShowPercentageSymbol)
