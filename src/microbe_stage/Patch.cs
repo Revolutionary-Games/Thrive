@@ -499,6 +499,9 @@ public class Patch
             maxPressure -= overshoot / 2;
         }
 
+        // Ensure pressure is within the middle of the range
+        pressure = (minPressure + maxPressure) / 2;
+
         var result = new EnvironmentalTolerances
         {
             OxygenResistance = GetAmbientCompound(Compound.Oxygen, CompoundAmountType.Biome),
