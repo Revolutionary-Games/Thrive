@@ -1,0 +1,43 @@
+[gd_scene load_steps=13 format=3 uid="uid://d3hkouff6asri"]
+
+[ext_resource type="Shader" path="res://shaders/CurrentsParticles.gdshader" id="1_ykhyg"]
+[ext_resource type="NoiseTexture3D" uid="uid://1ddjxsk3oik2" path="res://src/microbe_stage/NoiseCurrentX.tres" id="2_faxer"]
+[ext_resource type="NoiseTexture3D" uid="uid://c1rh4c3an4opj" path="res://src/microbe_stage/NoiseCurrentY.tres" id="3_lx34w"]
+[ext_resource type="NoiseTexture3D" uid="uid://ho8w6wa3jgb7" path="res://src/microbe_stage/NoiseDisturbanceX.tres" id="4_bbuou"]
+[ext_resource type="NoiseTexture3D" uid="uid://doyvqyy56j0o4" path="res://src/microbe_stage/NoiseDisturbanceY.tres" id="5_kgkhw"]
+[ext_resource type="Texture2D" uid="uid://gc70w2bqq323" path="res://assets/textures/snowflake2.png" id="6_q0tou"]
+[ext_resource type="Script" path="res://src/microbe_stage/WaterCurrentDisplay.cs" id="7_21wlg"]
+
+[sub_resource type="Gradient" id="Gradient_4eerh"]
+offsets = PackedFloat32Array(0, 0.295082, 0.696721, 1)
+colors = PackedColorArray(0, 0, 0, 1, 1, 1, 1, 1, 1, 1, 1, 1, 0, 0, 0, 1)
+
+[sub_resource type="GradientTexture1D" id="GradientTexture1D_4ly1p"]
+gradient = SubResource("Gradient_4eerh")
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_23vs3"]
+shader = ExtResource("1_ykhyg")
+shader_parameter/emission_box_extents = Vector3(160, 80, 1)
+shader_parameter/colorValue = Color(1, 1, 1, 1)
+shader_parameter/gameTime = null
+shader_parameter/alphaCurve = SubResource("GradientTexture1D_4ly1p")
+shader_parameter/noiseDisturbancesX = ExtResource("4_bbuou")
+shader_parameter/noiseDisturbancesY = ExtResource("5_kgkhw")
+shader_parameter/noiseCurrentsX = ExtResource("2_faxer")
+shader_parameter/noiseCurrentsY = ExtResource("3_lx34w")
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_kycdo"]
+transparency = 1
+vertex_color_use_as_albedo = true
+albedo_texture = ExtResource("6_q0tou")
+
+[sub_resource type="QuadMesh" id="QuadMesh_iqoan"]
+material = SubResource("StandardMaterial3D_kycdo")
+
+[node name="WaterCurrentDisplay" type="GPUParticles3D"]
+amount = 1000
+lifetime = 8.0
+interpolate = false
+process_material = SubResource("ShaderMaterial_23vs3")
+draw_pass_1 = SubResource("QuadMesh_iqoan")
+script = ExtResource("7_21wlg")
