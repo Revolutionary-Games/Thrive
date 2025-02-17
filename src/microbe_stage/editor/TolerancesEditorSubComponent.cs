@@ -88,6 +88,8 @@ public partial class TolerancesEditorSubComponent : EditorComponentBase<ICellEdi
     {
         originalTemperatureFont = temperatureMinLabel.LabelSettings;
         originalPressureFont = pressureMinLabel.LabelSettings;
+
+        pressureToleranceRangeSlider.MaxValue = Constants.TOLERANCE_PRESSURE_RANGE_MAX;
     }
 
     public override void Init(ICellEditorData owningEditor, bool fresh)

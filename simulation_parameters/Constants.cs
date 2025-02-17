@@ -1726,20 +1726,21 @@ public static class Constants
     public const float TOLERANCE_PERFECT_THRESHOLD_PRESSURE = 50000;
     public const float TOLERANCE_INITIAL_PRESSURE_MIN_FRACTION = 0.9f;
     public const float TOLERANCE_INITIAL_PRESSURE_MAX_FRACTION = 1.2f;
+    public const float TOLERANCE_PRESSURE_RANGE_MAX = 1000000;
     public const float TOLERANCE_PERFECT_PRESSURE_SCORE = 0.1f;
 
     // How much it costs to edit various tolerances in the editor
     public const float TOLERANCE_CHANGE_MP_PER_TEMPERATURE = 1.0f;
-    public const float TOLERANCE_CHANGE_MP_PER_TEMPERATURE_TOLERANCE = 2.5f;
-    public const float TOLERANCE_CHANGE_MP_PER_OXYGEN = 80.0f;
-    public const float TOLERANCE_CHANGE_MP_PER_UV = 50.0f;
+    public const float TOLERANCE_CHANGE_MP_PER_TEMPERATURE_TOLERANCE = 4.0f;
+    public const float TOLERANCE_CHANGE_MP_PER_OXYGEN = 100.0f;
+    public const float TOLERANCE_CHANGE_MP_PER_UV = 75.0f;
 
     /// <summary>
     ///   As pressure values are massive, this is a double to get reasonable MP costs
     /// </summary>
     public const double TOLERANCE_CHANGE_MP_PER_PRESSURE = 0.000001;
 
-    public const double TOLERANCE_CHANGE_MP_PER_PRESSURE_TOLERANCE = 0.00001;
+    public const double TOLERANCE_CHANGE_MP_PER_PRESSURE_TOLERANCE = 0.00005;
 
     /// <summary>
     ///   If set to true, then physics debug draw gets enabled when the game starts
