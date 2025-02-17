@@ -16,12 +16,12 @@ public interface IMutationStrategy<T>
     /// <param name="baseSpecies">The species to start from</param>
     /// <param name="mp">How much MP there is to do the mutations</param>
     /// <param name="lawk">
-    ///     The game LAWK status, when the game was started in LAWK mode, affects which mutations are valid
+    ///   The game LAWK status, when the game was started in LAWK mode, affects which mutations are valid
     /// </param>
     /// <param name="random">The random object</param>
     /// <param name="biomeToConsider">
-    ///     Gives environment to consider the mutations to be suitable for. At the time of writing,
-    ///     this only biases environmental tolerance changes.
+    ///   Gives environment to consider the mutations to be suitable for. At the time of writing,
+    ///   this only biases environmental tolerance changes.
     /// </param>
     /// <returns>
     ///   List of mutated species, null if no possible mutations are found (some strategies may return an empty list
