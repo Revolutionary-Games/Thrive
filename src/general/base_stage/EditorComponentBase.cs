@@ -171,7 +171,7 @@ public partial class EditorComponentBase<TEditor> : ControlWithInput, IEditorCom
     {
     }
 
-    public virtual void OnMutationPointsChanged(int mutationPoints)
+    public virtual void OnMutationPointsChanged(double mutationPoints)
     {
         throw new GodotAbstractMethodNotOverriddenException();
     }

@@ -82,6 +82,8 @@ public partial class OrganellePopupMenu : HexPopupMenu
                 })) ??
             throw new ArgumentException($"{nameof(GetActionPrice)} not set");
 
+        mpCost = Math.Round(mpCost, Constants.MUTATION_POINTS_DECIMALS);
+
         var mpLabel = deleteButton.GetNode<Label>("MarginContainer/HBoxContainer/MpCost");
 
         mpLabel.Text = new LocalizedString("MP_COST", -mpCost).ToString();
@@ -101,6 +103,8 @@ public partial class OrganellePopupMenu : HexPopupMenu
             {
                 CostMultiplier = CostMultiplier,
             })) ?? throw new ArgumentException($"{nameof(GetActionPrice)} not set");
+
+        mpCost = Math.Round(mpCost, Constants.MUTATION_POINTS_DECIMALS);
 
         var mpLabel = moveButton.GetNode<Label>("MarginContainer/HBoxContainer/MpCost");
 

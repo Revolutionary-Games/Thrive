@@ -51,7 +51,7 @@ public partial class MutationPointsBar : HBoxContainer
         freebuildingText = Localization.Translate("FREEBUILDING");
     }
 
-    public void UpdateBar(float currentMutationPoints, float possibleMutationPoints, bool tween = true)
+    public void UpdateBar(double currentMutationPoints, double possibleMutationPoints, bool tween = true)
     {
         if (tween)
         {
@@ -73,8 +73,8 @@ public partial class MutationPointsBar : HBoxContainer
             new Color(0.72f, 0.72f, 0.72f);
     }
 
-    public void UpdateMutationPoints(bool freebuilding, bool showResultingPoints, float currentMutationPoints,
-        float possibleMutationPoints)
+    public void UpdateMutationPoints(bool freebuilding, bool showResultingPoints, double currentMutationPoints,
+        double possibleMutationPoints)
     {
         if (freebuilding)
         {

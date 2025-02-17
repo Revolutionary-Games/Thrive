@@ -78,6 +78,8 @@ public partial class CellPopupMenu : HexPopupMenu
                     (EditorCombinableActionData)new CellRemoveActionData(o))) ??
             throw new ArgumentException($"{nameof(GetActionPrice)} not set");
 
+        mpCost = Math.Round(mpCost, Constants.MUTATION_POINTS_DECIMALS);
+
         var mpLabel = deleteButton.GetNode<Label>("MarginContainer/HBoxContainer/MpCost");
 
         mpLabel.Text = new LocalizedString("MP_COST", -mpCost).ToString();
@@ -93,6 +95,8 @@ public partial class CellPopupMenu : HexPopupMenu
         var mpCost = GetActionPrice?.Invoke(SelectedCells.Select(o =>
             (EditorCombinableActionData)new CellMoveActionData(o, o.Position, o.Position + new Hex(5, 5), 0,
                 0))) ?? throw new ArgumentException($"{nameof(GetActionPrice)} not set");
+
+        mpCost = Math.Round(mpCost, Constants.MUTATION_POINTS_DECIMALS);
 
         var mpLabel = moveButton.GetNode<Label>("MarginContainer/HBoxContainer/MpCost");
 

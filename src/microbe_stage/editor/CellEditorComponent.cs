@@ -1362,7 +1362,7 @@ public partial class CellEditorComponent :
             actionData)));
     }
 
-    protected override int CalculateCurrentActionCost()
+    protected override double CalculateCurrentActionCost()
     {
         if (string.IsNullOrEmpty(ActiveActionName) || !Editor.ShowHover)
             return 0;

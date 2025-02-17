@@ -23,15 +23,21 @@ public class EditorActionHistory<TAction> : ActionHistory<TAction>
     /// <summary>
     ///   Calculates how much MP these actions would cost if performed on top of the current history.
     /// </summary>
-    public int WhatWouldActionsCost(IEnumerable<EditorCombinableActionData> actions)
+    public double WhatWouldActionsCost(IEnumerable<EditorCombinableActionData> actions)
     {
-        return actions.Sum(WhatWouldActionCost);
+        double sum = 0;
+
+        // TODO: somehow avoid the enumerator allocation here
+        foreach (var action in actions)
+            sum += WhatWouldActionCost(action);
+
+        return sum;
     }
 
     /// <summary>
     ///   Calculates how much MP this action would cost if performed on top of the current history.
     /// </summary>
-    public int WhatWouldActionCost(EditorCombinableActionData combinableAction)
+    public double WhatWouldActionCost(EditorCombinableActionData combinableAction)
     {
         if (CheatManager.InfiniteMP)
             return 0;
@@ -42,7 +48,7 @@ public class EditorActionHistory<TAction> : ActionHistory<TAction>
     /// <summary>
     ///   Calculates the remaining MP from the action history.
     /// </summary>
-    public int CalculateMutationPointsLeft()
+    public double CalculateMutationPointsLeft()
     {
         if (CheatManager.InfiniteMP)
             return Constants.BASE_MUTATION_POINTS;
@@ -98,7 +104,7 @@ public class EditorActionHistory<TAction> : ActionHistory<TAction>
                     }
                 }
 
-                // If mode is the following, no more checks are needed.
+                // If the mode is the following, no more checks are needed.
                 if (mode == ActionInterferenceMode.CancelsOut)
                     break;
             }
@@ -286,7 +292,7 @@ public class EditorActionHistory<TAction> : ActionHistory<TAction>
         if (!currentActionData.Any())
             return null;
 
-        // For now we allow combining only if all data values can be combined
+        // For now, we allow combining only if all data values can be combined
         bool matches = true;
 
         foreach (var currentData in currentActionData)
@@ -328,7 +334,7 @@ public class EditorActionHistory<TAction> : ActionHistory<TAction>
 
             foreach (var newData in newDataList)
             {
-                // In the cancels out case we still want to merge the data so that the action can stay as a placeholder
+                // In the cancels-out case we still want to merge the data so that the action can stay as a placeholder
                 // in the history keeping the original state
                 if (newData.WantsMergeWith(currentData) &&
                     newData.GetInterferenceModeWith(currentData) is ActionInterferenceMode.CancelsOut or

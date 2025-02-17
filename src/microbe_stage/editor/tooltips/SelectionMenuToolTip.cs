@@ -56,7 +56,7 @@ public partial class SelectionMenuToolTip : ControlWithInput, ICustomToolTip
     private string? displayName;
     private string? description;
     private string processesDescription = string.Empty;
-    private int mpCost;
+    private double mpCost;
     private float osmoregulationCost;
     private bool showOsmoregulation = true;
     private bool requiresNucleus;
@@ -114,7 +114,7 @@ public partial class SelectionMenuToolTip : ControlWithInput, ICustomToolTip
     }
 
     [Export]
-    public int MutationPointCost
+    public double MutationPointCost
     {
         get => mpCost;
         set
@@ -436,13 +436,14 @@ public partial class SelectionMenuToolTip : ControlWithInput, ICustomToolTip
 
         if (mpCost < 0)
         {
-            // Negative MP cost means it actually gives MP, to convey that to the player we need to explicitly
-            // prefix the cost with a positive sign
-            cost = "+" + MathF.Abs(mpCost).ToString(CultureInfo.CurrentCulture);
+            // Negative MP cost means it actually gives MP
+            // To convey that to the player, we need to explicitly prefix the cost with a positive sign
+            cost = "+" + Math.Round(Math.Abs(mpCost), Constants.MUTATION_POINTS_DECIMALS)
+                .ToString(CultureInfo.CurrentCulture);
         }
         else
         {
-            cost = mpCost.ToString(CultureInfo.CurrentCulture);
+            cost = Math.Round(mpCost, Constants.MUTATION_POINTS_DECIMALS).ToString(CultureInfo.CurrentCulture);
         }
 
         mpLabel.Text = cost;

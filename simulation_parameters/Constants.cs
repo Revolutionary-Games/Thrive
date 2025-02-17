@@ -1027,6 +1027,8 @@ public static class Constants
 
     public const int BASE_MUTATION_POINTS = 100;
 
+    public const int MUTATION_POINTS_DECIMALS = 1;
+
     public const int ORGANELLE_REMOVE_COST = 10;
     public const int ORGANELLE_MOVE_COST = 5;
 

@@ -49,10 +49,10 @@ public interface IEditorComponent
     public void OnInvalidAction();
 
     /// <summary>
-    ///   Triggered when a valid action occurs. Can be used to implement sounds for example or other GUI feedback.
+    ///   Triggered when a valid action occurs. Can be used to implement sounds, for example or other GUI feedback.
     /// </summary>
     /// <param name="actions">
-    ///   The valid actions, can be used to filter when something special should happen based on the action type
+    ///   The valid actions. Can be used to filter when something special should happen based on the action type
     /// </param>
     public void OnValidAction(IEnumerable<CombinableActionData> actions);
 
@@ -63,7 +63,7 @@ public interface IEditorComponent
     /// <param name="freeBuilding">True if freebuild mode is on</param>
     public void NotifyFreebuild(bool freeBuilding);
 
-    public void OnMutationPointsChanged(int mutationPoints);
+    public void OnMutationPointsChanged(double mutationPoints);
 
     /// <summary>
     ///   Called when <see cref="IEditor.DayLightFraction"/> is changed.

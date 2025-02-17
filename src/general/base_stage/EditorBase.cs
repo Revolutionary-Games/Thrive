@@ -84,7 +84,7 @@ public partial class EditorBase<TAction, TStage> : NodeWithInput, IEditor, ILoad
     private Control editorGUIBaseNode = null!;
 #pragma warning restore CA2213
 
-    private int? mutationPointsCache;
+    private double? mutationPointsCache;
 
     /// <summary>
     ///   The fraction of daylight the editor is previewing things at
@@ -107,7 +107,7 @@ public partial class EditorBase<TAction, TStage> : NodeWithInput, IEditor, ILoad
     public bool TransitionFinished { get; protected set; }
 
     [JsonIgnore]
-    public int MutationPoints
+    public double MutationPoints
     {
         get => mutationPointsCache ?? CalculateMutationPointsLeft();
         set
@@ -416,7 +416,7 @@ public partial class EditorBase<TAction, TStage> : NodeWithInput, IEditor, ILoad
         throw new GodotAbstractMethodNotOverriddenException();
     }
 
-    public virtual int WhatWouldActionsCost(IEnumerable<EditorCombinableActionData> actions)
+    public virtual double WhatWouldActionsCost(IEnumerable<EditorCombinableActionData> actions)
     {
         // TODO: determine if it is better to use extra memory here or if enumerating multiple times is better (or
         // there's a way to redo this method interface to not need either workaround). Right now this is set to use
@@ -462,7 +462,7 @@ public partial class EditorBase<TAction, TStage> : NodeWithInput, IEditor, ILoad
         throw new GodotAbstractMethodNotOverriddenException();
     }
 
-    public bool CheckEnoughMPForAction(int cost)
+    public bool CheckEnoughMPForAction(double cost)
     {
         // Freebuilding check is here because in freebuild we are allowed to make edits that consume more than the max
         // MP in a single go, and those wouldn't work without this freebuilding check here
@@ -931,7 +931,7 @@ public partial class EditorBase<TAction, TStage> : NodeWithInput, IEditor, ILoad
     ///   Calculates the remaining MP from the action history
     /// </summary>
     /// <returns>The remaining MP</returns>
-    private int CalculateMutationPointsLeft()
+    private double CalculateMutationPointsLeft()
     {
         if (FreeBuilding || CheatManager.InfiniteMP)
             return Constants.BASE_MUTATION_POINTS;
