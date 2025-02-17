@@ -356,10 +356,18 @@ public partial class TolerancesEditorSubComponent : EditorComponentBase<ICellEdi
         if (Math.Abs(patchTemperature - CurrentTolerances.PreferredTemperature) >
             CurrentTolerances.TemperatureTolerance)
         {
-            // TODO: would probably be better to either mark the upper or lower bound as the problem to make it easier
-            // to solve
-            temperatureMinLabel.LabelSettings = badValueFont;
-            temperatureMaxLabel.LabelSettings = badValueFont;
+            // Mark the direction that is bad as the one having the problem to make it easier for the player to see
+            // what is wrong
+            if (patchTemperature > CurrentTolerances.PreferredTemperature)
+            {
+                temperatureMaxLabel.LabelSettings = badValueFont;
+                temperatureMinLabel.LabelSettings = originalTemperatureFont;
+            }
+            else
+            {
+                temperatureMinLabel.LabelSettings = badValueFont;
+                temperatureMaxLabel.LabelSettings = originalTemperatureFont;
+            }
         }
         else if (Math.Abs(CurrentTolerances.TemperatureTolerance) < Constants.TOLERANCE_PERFECT_THRESHOLD_TEMPERATURE)
         {
@@ -384,8 +392,16 @@ public partial class TolerancesEditorSubComponent : EditorComponentBase<ICellEdi
 
         if (Math.Abs(patchPressure - CurrentTolerances.PreferredPressure) > currentPressureToleranceRange)
         {
-            pressureMinLabel.LabelSettings = badValueFont;
-            pressureMaxLabel.LabelSettings = badValueFont;
+            if (patchPressure > CurrentTolerances.PreferredPressure)
+            {
+                pressureMaxLabel.LabelSettings = badValueFont;
+                pressureMinLabel.LabelSettings = originalPressureFont;
+            }
+            else
+            {
+                pressureMinLabel.LabelSettings = badValueFont;
+                pressureMaxLabel.LabelSettings = originalPressureFont;
+            }
         }
         else if (Math.Abs(CurrentTolerances.PressureMaximum - CurrentTolerances.PressureMinimum) <
                  Constants.TOLERANCE_PERFECT_THRESHOLD_PRESSURE)
