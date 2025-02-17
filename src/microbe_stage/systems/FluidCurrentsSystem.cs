@@ -32,7 +32,6 @@ public sealed class FluidCurrentsSystem : AEntitySetSystem<float>
     private const float DISTURBANCE_TO_CURRENTS_RATIO = 0.15f;
     private const float POSITION_SCALING = 0.9f;
 
-    // TODO: test the inbuilt fast noise in Godot to see if it is faster / a good enough replacement
     private readonly NoiseTexture3D noiseDisturbancesX;
     private readonly NoiseTexture3D noiseDisturbancesY;
     private readonly NoiseTexture3D noiseCurrentsX;
@@ -43,7 +42,11 @@ public sealed class FluidCurrentsSystem : AEntitySetSystem<float>
     private Image[]? noiseCurrentsXImage;
     private Image[]? noiseCurrentsYImage;
 
-    // private readonly Vector2 scale = new Vector2(0.05f, 0.05f);
+    private GameWorld? gameWorld;
+
+    private float speed = 0.0f;
+    private float chaoticness = 0.0f;
+    private float scale = 0.0f;
 
     [JsonProperty]
     private float currentsTimePassed;
@@ -81,6 +84,11 @@ public sealed class FluidCurrentsSystem : AEntitySetSystem<float>
         noiseCurrentsY = null!;
     }
 
+    public void SetGameWorld(GameWorld world)
+    {
+        gameWorld = world;
+    }
+
     public Vector2 VelocityAt(Vector2 position)
     {
         if (noiseDisturbancesXImage == null || noiseDisturbancesYImage == null
@@ -88,25 +96,25 @@ public sealed class FluidCurrentsSystem : AEntitySetSystem<float>
             return Vector2.Zero;
 
         // This function's formula should be the same as the one in CurrentsParticles.gdshader
-        var scaledPosition = position * POSITION_SCALING;
+        var scaledPosition = position * POSITION_SCALING * scale;
 
         float disturbancesX = GetPixel(scaledPosition.X, scaledPosition.Y,
-            currentsTimePassed * DISTURBANCE_TIMESCALE, noiseDisturbancesXImage);
+            currentsTimePassed * DISTURBANCE_TIMESCALE * chaoticness, noiseDisturbancesXImage);
         float disturbancesY = GetPixel(scaledPosition.X, scaledPosition.Y,
-            currentsTimePassed * DISTURBANCE_TIMESCALE, noiseDisturbancesYImage);
+            currentsTimePassed * DISTURBANCE_TIMESCALE * chaoticness, noiseDisturbancesYImage);
 
         float currentsX = GetPixel(scaledPosition.X * CURRENTS_STRETCHING_MULTIPLIER,
-            scaledPosition.Y, currentsTimePassed * CURRENTS_TIMESCALE, noiseCurrentsXImage);
+            scaledPosition.Y, currentsTimePassed * CURRENTS_TIMESCALE * chaoticness, noiseCurrentsXImage);
         float currentsY = GetPixel(scaledPosition.X,
             scaledPosition.Y * CURRENTS_STRETCHING_MULTIPLIER,
-            currentsTimePassed * CURRENTS_TIMESCALE, noiseCurrentsYImage);
+            currentsTimePassed * CURRENTS_TIMESCALE * chaoticness, noiseCurrentsYImage);
 
         var disturbancesVelocity = new Vector2(disturbancesX, disturbancesY);
         var currentsVelocity = new Vector2(Math.Abs(currentsX) > MIN_CURRENT_INTENSITY ? currentsX : 0.0f,
             Math.Abs(currentsY) > MIN_CURRENT_INTENSITY ? currentsY : 0.0f);
 
-        return (disturbancesVelocity * DISTURBANCE_TO_CURRENTS_RATIO) +
-            (currentsVelocity * (1.0f - DISTURBANCE_TO_CURRENTS_RATIO));
+        return (disturbancesVelocity * DISTURBANCE_TO_CURRENTS_RATIO) * speed +
+            (currentsVelocity * (1.0f - DISTURBANCE_TO_CURRENTS_RATIO)) * speed;
     }
 
     protected override void PreUpdate(float delta)
@@ -138,6 +146,21 @@ public sealed class FluidCurrentsSystem : AEntitySetSystem<float>
         }
 
         currentsTimePassed += delta;
+
+        if (gameWorld == null)
+            throw new InvalidOperationException("GameWorld not set");
+
+        if (gameWorld.Map.CurrentPatch == null)
+        {
+            GD.PrintErr("Current patch should be set for the fluid currents system to work");
+            return;
+        }
+
+        var biome = gameWorld.Map.CurrentPatch.BiomeTemplate;
+
+        speed = biome.WaterCurrentSpeed;
+        chaoticness = biome.WaterCurrentChaoticness;
+        scale = biome.WaterCurrentScale;
     }
 
     protected override void Update(float delta, in Entity entity)

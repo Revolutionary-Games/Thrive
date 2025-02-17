@@ -1,4 +1,4 @@
-[gd_scene load_steps=32 format=3 uid="uid://dva08tpqyn15k"]
+[gd_scene load_steps=21 format=3 uid="uid://dva08tpqyn15k"]
 
 [ext_resource type="Script" path="res://src/microbe_stage/MicrobeStage.cs" id="1"]
 [ext_resource type="PackedScene" uid="uid://bako5jivv1dji" path="res://src/microbe_stage/MicrobeCamera.tscn" id="2"]
@@ -7,17 +7,11 @@
 [ext_resource type="Shader" path="res://shaders/HeatGradient.gdshader" id="4_ced6l"]
 [ext_resource type="Texture2D" uid="uid://5y2h7opa1yq6" path="res://src/microbe_stage/HeatGradientNoise.tres" id="5_jrgee"]
 [ext_resource type="PackedScene" uid="uid://dqpjtfkjeuwmq" path="res://src/microbe_stage/MicrobeWorldEnvironment.tscn" id="5_jtm5v"]
-[ext_resource type="Shader" path="res://shaders/CurrentsParticles.gdshader" id="6_1vygl"]
+[ext_resource type="PackedScene" uid="uid://d3hkouff6asri" path="res://src/microbe_stage/WaterCurrentDisplay.tscn" id="6_4kiki"]
 [ext_resource type="Script" path="res://src/microbe_stage/PlayerMicrobeInput.cs" id="7"]
-[ext_resource type="Texture2D" uid="uid://gc70w2bqq323" path="res://assets/textures/snowflake2.png" id="7_fjtbc"]
-[ext_resource type="NoiseTexture3D" uid="uid://1ddjxsk3oik2" path="res://src/microbe_stage/NoiseCurrentX.tres" id="7_tvtbb"]
 [ext_resource type="PackedScene" uid="uid://d1mwl825xlq0t" path="res://src/microbe_stage/HeatGradientPlane.tscn" id="8_7ghg3"]
-[ext_resource type="NoiseTexture3D" uid="uid://c1rh4c3an4opj" path="res://src/microbe_stage/NoiseCurrentY.tres" id="8_wg48u"]
-[ext_resource type="NoiseTexture3D" uid="uid://ho8w6wa3jgb7" path="res://src/microbe_stage/NoiseDisturbanceX.tres" id="9_dsmo7"]
 [ext_resource type="Script" path="res://src/microbe_stage/CompoundCloudSystem.cs" id="10"]
-[ext_resource type="NoiseTexture3D" uid="uid://doyvqyy56j0o4" path="res://src/microbe_stage/NoiseDisturbanceY.tres" id="10_2hwfw"]
 [ext_resource type="PackedScene" uid="uid://devtugnggmuol" path="res://src/general/PauseMenu.tscn" id="11"]
-[ext_resource type="Script" path="res://src/microbe_stage/CurrentDisplay.cs" id="12_arj47"]
 [ext_resource type="Script" path="res://src/microbe_stage/MicrobeInspectInfo.cs" id="22"]
 [ext_resource type="PackedScene" uid="uid://b6pjvrbt518oj" path="res://src/engine/ChromaticFilter.tscn" id="67"]
 [ext_resource type="PackedScene" uid="uid://d116aks100ulm" path="res://src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn" id="74"]
@@ -43,37 +37,12 @@ shader_parameter/noiseMultiplier = 0.099
 shader_parameter/heat = ExtResource("5_jrgee")
 shader_parameter/noise = SubResource("NoiseTexture2D_d28l8")
 
-[sub_resource type="Gradient" id="Gradient_4eerh"]
-offsets = PackedFloat32Array(0, 0.295082, 0.696721, 1)
-colors = PackedColorArray(0, 0, 0, 1, 1, 1, 1, 1, 1, 1, 1, 1, 0, 0, 0, 1)
-
-[sub_resource type="GradientTexture1D" id="GradientTexture1D_4ly1p"]
-gradient = SubResource("Gradient_4eerh")
-
-[sub_resource type="ShaderMaterial" id="ShaderMaterial_23vs3"]
-shader = ExtResource("6_1vygl")
-shader_parameter/emission_box_extents = Vector3(160, 80, 1)
-shader_parameter/colorValue = Color(1, 1, 1, 1)
-shader_parameter/gameTime = null
-shader_parameter/alphaCurve = SubResource("GradientTexture1D_4ly1p")
-shader_parameter/noiseDisturbancesX = ExtResource("9_dsmo7")
-shader_parameter/noiseDisturbancesY = ExtResource("10_2hwfw")
-shader_parameter/noiseCurrentsX = ExtResource("7_tvtbb")
-shader_parameter/noiseCurrentsY = ExtResource("8_wg48u")
-
-[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_kycdo"]
-transparency = 1
-vertex_color_use_as_albedo = true
-albedo_texture = ExtResource("7_fjtbc")
-
-[sub_resource type="QuadMesh" id="QuadMesh_iqoan"]
-material = SubResource("StandardMaterial3D_kycdo")
-
-[node name="MicrobeStage" type="Node" node_paths=PackedStringArray("heatViewOverlay")]
+[node name="MicrobeStage" type="Node" node_paths=PackedStringArray("heatViewOverlay", "waterCurrentDisplay")]
 process_priority = -1
 script = ExtResource("1")
 GuidanceLinePath = NodePath("World/GuidanceLine")
 heatViewOverlay = NodePath("World/PrimaryCamera/HeatGradientPlane")
+waterCurrentDisplay = NodePath("World/PrimaryCamera/WaterCurrentDisplay")
 PauseMenuPath = NodePath("PauseMenu")
 HUDRootPath = NodePath("MicrobeHUD")
 
@@ -88,13 +57,7 @@ transform = Transform3D(1, 0, 0, 0, -1.62921e-07, -1, 0, 1, -1.62921e-07, 0, 1.6
 visible = false
 material_override = SubResource("ShaderMaterial_cersu")
 
-[node name="GPUParticles3D" type="GPUParticles3D" parent="World/PrimaryCamera"]
-amount = 1000
-lifetime = 8.0
-interpolate = false
-process_material = SubResource("ShaderMaterial_23vs3")
-draw_pass_1 = SubResource("QuadMesh_iqoan")
-script = ExtResource("12_arj47")
+[node name="WaterCurrentDisplay" parent="World/PrimaryCamera" instance=ExtResource("6_4kiki")]
 
 [node name="DynamicallySpawned" type="Node" parent="World"]
 
