@@ -88,6 +88,17 @@ public class EnvironmentalTolerances
         return Equals((EnvironmentalTolerances)obj);
     }
 
+    public bool EqualsApprox(EnvironmentalTolerances other)
+    {
+        return Math.Abs(PreferredTemperature - other.PreferredTemperature) < MathUtils.EPSILON &&
+            Math.Abs(TemperatureTolerance - other.TemperatureTolerance) < MathUtils.EPSILON &&
+            Math.Abs(PreferredPressure - other.PreferredPressure) < MathUtils.EPSILON &&
+            Math.Abs(PressureMinimum - other.PressureMinimum) < MathUtils.EPSILON &&
+            Math.Abs(PressureMaximum - other.PressureMaximum) < MathUtils.EPSILON &&
+            Math.Abs(UVResistance - other.UVResistance) < MathUtils.EPSILON &&
+            Math.Abs(OxygenResistance - other.OxygenResistance) < MathUtils.EPSILON;
+    }
+
     public EnvironmentalTolerances Clone()
     {
         var newTolerances = new EnvironmentalTolerances();

@@ -25,17 +25,21 @@ public class RigidityActionData : EditorCombinableActionData<CellType>
 
     protected override ActionInterferenceMode GetInterferenceModeWithGuaranteed(CombinableActionData other)
     {
-        if (other is RigidityActionData rigidityChangeActionData)
-        {
-            // If the value has been changed back to a previous value
-            if (Math.Abs(NewRigidity - rigidityChangeActionData.PreviousRigidity) < MathUtils.EPSILON &&
-                Math.Abs(rigidityChangeActionData.NewRigidity - PreviousRigidity) < MathUtils.EPSILON)
-                return ActionInterferenceMode.CancelsOut;
+        if (other is not RigidityActionData rigidityChangeActionData)
+            return ActionInterferenceMode.NoInterference;
 
-            // If the value has been changed twice
-            if (Math.Abs(NewRigidity - rigidityChangeActionData.PreviousRigidity) < MathUtils.EPSILON ||
-                Math.Abs(rigidityChangeActionData.NewRigidity - PreviousRigidity) < MathUtils.EPSILON)
-                return ActionInterferenceMode.Combinable;
+        // If the value has been changed back to a previous value
+        if (Math.Abs(NewRigidity - rigidityChangeActionData.PreviousRigidity) < MathUtils.EPSILON &&
+            Math.Abs(rigidityChangeActionData.NewRigidity - PreviousRigidity) < MathUtils.EPSILON)
+        {
+            return ActionInterferenceMode.CancelsOut;
+        }
+
+        // If the value has been changed twice
+        if (Math.Abs(NewRigidity - rigidityChangeActionData.PreviousRigidity) < MathUtils.EPSILON ||
+            Math.Abs(rigidityChangeActionData.NewRigidity - PreviousRigidity) < MathUtils.EPSILON)
+        {
+            return ActionInterferenceMode.Combinable;
         }
 
         return ActionInterferenceMode.NoInterference;
