@@ -428,9 +428,8 @@ msgstr "Ukośnik wsteczny"
 msgid "BACKSPACE"
 msgstr "Backspace"
 
-#, fuzzy
 msgid "BACTERIAL_THERMOSYNTHESIS"
-msgstr "Termosynteza"
+msgstr "Termosynteza Bakteryjna"
 
 msgid "BALANCE_DISPLAY_AT_DAY_ALWAYS"
 msgstr "Obliczaj jak w dzień"
@@ -510,9 +509,8 @@ msgstr "Najlepiej radzi sobie w:"
 msgid "BIG_IRON_CHUNK"
 msgstr "Duży Kawałek Żelaza"
 
-#, fuzzy
 msgid "BIG_PHOSPHATE_CHUNK"
-msgstr "Duży Kawałek Żelaza"
+msgstr "Duży Kawałek Fosforanu"
 
 msgid "BILLION_ABBREVIATION"
 msgstr "{0} MD"
@@ -704,10 +702,14 @@ msgstr ""
 "Rozmieszczenie organelli wpływa na obrót komórki; im dalej od centrum, tym "
 "wolniej będzie obracać się komórka."
 
-#, fuzzy
 msgid "CELL_STAT_SPEED_TOOLTIP"
 msgstr ""
-"Wartość używana do generacji świata (musi być dodatnią liczbą całkowitą)"
+"Szybkość poruszania komórki. Prosimy zrozumieć, że z powodu limitacji "
+"algorytmu, ta wartość jest tylko przybliżeniem.\n"
+"Na przykład, kiedy długości wicia jest modyfikowana, wartości szybkości nie "
+"robią całkowicie sensu i nie będą pasować do tego, co jest na scenie.\n"
+"Wiemy o tym problemie, ale on nie jest naprawiany, bo on ma mniejszy "
+"priorytet niż inne problemy i nowe funkcje."
 
 #, fuzzy
 msgid "CELL_TYPE_BUTTON_ATP_CONSUMPTION"
