@@ -191,13 +191,15 @@ public partial class TolerancesEditorSubComponent : EditorComponentBase<ICellEdi
         reusableTolerances.CopyFrom(CurrentTolerances);
         reusableTolerances.PreferredTemperature = value;
 
+        automaticallyChanging = true;
+
         if (!TriggerChangeIfPossible())
         {
             // Rollback value if not enough MP
-            automaticallyChanging = true;
             temperatureSlider.Value = CurrentTolerances.PreferredTemperature;
-            automaticallyChanging = false;
         }
+
+        automaticallyChanging = false;
     }
 
     private void OnTemperatureToleranceRangeSliderChanged(float value)
@@ -209,12 +211,14 @@ public partial class TolerancesEditorSubComponent : EditorComponentBase<ICellEdi
         reusableTolerances.CopyFrom(CurrentTolerances);
         reusableTolerances.TemperatureTolerance = value;
 
+        automaticallyChanging = true;
+
         if (!TriggerChangeIfPossible())
         {
-            automaticallyChanging = true;
             temperatureToleranceRangeSlider.Value = CurrentTolerances.TemperatureTolerance;
-            automaticallyChanging = false;
         }
+
+        automaticallyChanging = false;
     }
 
     private void OnPressureSliderChanged(float value)
@@ -226,12 +230,14 @@ public partial class TolerancesEditorSubComponent : EditorComponentBase<ICellEdi
         reusableTolerances.CopyFrom(CurrentTolerances);
         reusableTolerances.PreferredPressure = value;
 
+        automaticallyChanging = true;
+
         if (!TriggerChangeIfPossible())
         {
-            automaticallyChanging = true;
             pressureSlider.Value = CurrentTolerances.PreferredPressure;
-            automaticallyChanging = false;
         }
+
+        automaticallyChanging = false;
     }
 
     private void OnPressureToleranceRangeSliderChanged(float value)
@@ -248,13 +254,15 @@ public partial class TolerancesEditorSubComponent : EditorComponentBase<ICellEdi
         reusableTolerances.PressureMinimum = Math.Max(min, 0);
         reusableTolerances.PressureMaximum = max;
 
+        automaticallyChanging = true;
+
         if (!TriggerChangeIfPossible())
         {
-            automaticallyChanging = true;
             CalculateToleranceRangeForGUI();
             pressureToleranceRangeSlider.Value = currentPressureToleranceRange;
-            automaticallyChanging = false;
         }
+
+        automaticallyChanging = false;
     }
 
     private void OnOxygenResistanceSliderChanged(float value)
@@ -266,12 +274,14 @@ public partial class TolerancesEditorSubComponent : EditorComponentBase<ICellEdi
         reusableTolerances.CopyFrom(CurrentTolerances);
         reusableTolerances.OxygenResistance = value;
 
+        automaticallyChanging = true;
+
         if (!TriggerChangeIfPossible())
         {
-            automaticallyChanging = true;
             oxygenResistanceSlider.Value = CurrentTolerances.OxygenResistance;
-            automaticallyChanging = false;
         }
+
+        automaticallyChanging = false;
     }
 
     private void OnUVResistanceSliderChanged(float value)
@@ -283,12 +293,14 @@ public partial class TolerancesEditorSubComponent : EditorComponentBase<ICellEdi
         reusableTolerances.CopyFrom(CurrentTolerances);
         reusableTolerances.UVResistance = value;
 
+        automaticallyChanging = true;
+
         if (!TriggerChangeIfPossible())
         {
-            automaticallyChanging = true;
             uvResistanceSlider.Value = CurrentTolerances.UVResistance;
-            automaticallyChanging = false;
         }
+
+        automaticallyChanging = false;
     }
 
     private bool TriggerChangeIfPossible()
@@ -443,6 +455,15 @@ public partial class TolerancesEditorSubComponent : EditorComponentBase<ICellEdi
     private void DoToleranceChangeAction(ToleranceActionData data)
     {
         CurrentTolerances.CopyFrom(data.NewTolerances);
+
+        if (!automaticallyChanging)
+        {
+            // Need to reapply state to the sliders
+            automaticallyChanging = true;
+            ApplyCurrentValuesToGUI();
+            automaticallyChanging = false;
+        }
+
         OnChanged();
     }
 
@@ -450,6 +471,15 @@ public partial class TolerancesEditorSubComponent : EditorComponentBase<ICellEdi
     private void UndoToleranceChangeAction(ToleranceActionData data)
     {
         CurrentTolerances.CopyFrom(data.OldTolerances);
+
+        if (!automaticallyChanging)
+        {
+            // Need to reapply state to the sliders
+            automaticallyChanging = true;
+            ApplyCurrentValuesToGUI();
+            automaticallyChanging = false;
+        }
+
         OnChanged();
     }
 }
