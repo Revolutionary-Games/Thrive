@@ -14,6 +14,19 @@ public partial class TolerancesEditorSubComponent : EditorComponentBase<ICellEdi
     private readonly CompoundDefinition temperature = SimulationParameters.GetCompound(Compound.Temperature);
 
 #pragma warning disable CA2213
+
+    [Export]
+    private Container temperatureContainer = null!;
+
+    [Export]
+    private Container pressureContainer = null!;
+
+    [Export]
+    private Container oxygenResistanceContainer = null!;
+
+    [Export]
+    private Container uvResistanceContainer = null!;
+
     [Export]
     [ExportCategory("Inputs")]
     private Slider temperatureSlider = null!;
@@ -90,6 +103,8 @@ public partial class TolerancesEditorSubComponent : EditorComponentBase<ICellEdi
         originalPressureFont = pressureMinLabel.LabelSettings;
 
         pressureToleranceRangeSlider.MaxValue = Constants.TOLERANCE_PRESSURE_RANGE_MAX;
+
+        RegisterTooltips();
     }
 
     public override void Init(ICellEditorData owningEditor, bool fresh)
@@ -148,13 +163,15 @@ public partial class TolerancesEditorSubComponent : EditorComponentBase<ICellEdi
     {
     }
 
-    // TODO: tooltips explaining the tolerance stuff
-    /*protected override void RegisterTooltips()
+    protected override void RegisterTooltips()
     {
         base.RegisterTooltips();
 
-        // aggressionSlider.RegisterToolTipForControl("aggressionSlider", "editor");
-    }*/
+        temperatureContainer.RegisterToolTipForControl("temperature", "tolerances");
+        pressureContainer.RegisterToolTipForControl("pressure", "tolerances");
+        oxygenResistanceContainer.RegisterToolTipForControl("oxygenResistance", "tolerances");
+        uvResistanceContainer.RegisterToolTipForControl("uvResistance", "tolerances");
+    }
 
     private void CalculateToleranceRangeForGUI()
     {

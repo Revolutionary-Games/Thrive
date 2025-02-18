@@ -120,7 +120,7 @@ public partial class ToolTipManager : CanvasLayer
     {
         base._EnterTree();
 
-        // This node may not be added back to the scene after removing so we don't guard against double initialization
+        // This node may not be added back to the scene after removing, so we don't guard against double initialization
         // here
 
         ResolveNodeReferences();

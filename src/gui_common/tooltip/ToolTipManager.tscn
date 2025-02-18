@@ -1,4 +1,4 @@
-[gd_scene load_steps=15 format=3 uid="uid://b4vme2vxaxfkw"]
+[gd_scene load_steps=16 format=3 uid="uid://b4vme2vxaxfkw"]
 
 [ext_resource type="PackedScene" uid="uid://cil2efpg6jdmd" path="res://src/gui_common/tooltip/DefaultToolTip.tscn" id="1"]
 [ext_resource type="PackedScene" uid="uid://bhy1rrdfux74j" path="res://src/microbe_stage/editor/tooltips/ModifierInfoLabel.tscn" id="2"]
@@ -8,6 +8,7 @@
 [ext_resource type="Texture2D" uid="uid://c4w7v5wtq2d1b" path="res://assets/textures/gui/bevel/SpeedIcon.png" id="7"]
 [ext_resource type="Texture2D" uid="uid://d0iv1w2t5wwae" path="res://assets/textures/gui/bevel/parts/membraneAmoeba.png" id="11"]
 [ext_resource type="Texture2D" uid="uid://cq25ojg73mpr" path="res://assets/textures/gui/bevel/HealthIcon.png" id="13"]
+[ext_resource type="PackedScene" uid="uid://by8bg6b5p4c6m" path="res://src/microbe_stage/editor/tooltips/EnvironmentalToleranceToolTip.tscn" id="14_k78dl"]
 [ext_resource type="Texture2D" uid="uid://dgnaltjd8hysi" path="res://assets/textures/gui/bevel/parts/PilusIcon.png" id="15"]
 [ext_resource type="Texture2D" uid="uid://bvqcyxabp8g4g" path="res://assets/textures/gui/bevel/parts/ToxinVacuoleIcon.png" id="16"]
 [ext_resource type="LabelSettings" uid="uid://ijvk6u0w1c0j" path="res://src/gui_common/fonts/Body-Regular-AlmostSmall-Red.tres" id="16_dd0bc"]
@@ -158,7 +159,6 @@ layout_mode = 0
 offset_right = 400.0
 DisplayName = "MEMBRANE_RIGIDITY"
 Description = "RIGIDITY_MEMBRANE_DESCRIPTION"
-MutationPointCost = 2
 ShowOsmoregulation = false
 
 [node name="RequiresNucleus" parent="GroupHolder/editor/rigiditySlider/MarginContainer/VBoxContainer" index="1"]
@@ -259,7 +259,6 @@ layout_mode = 0
 offset_right = 400.0
 DisplayName = "NORMAL"
 Description = "NORMAL_MEMBRANE_DESCRIPTION"
-MutationPointCost = 50
 
 [node name="RequiresNucleus" parent="GroupHolder/membraneSelection/single/MarginContainer/VBoxContainer" index="1"]
 visible = false
@@ -301,7 +300,6 @@ layout_mode = 0
 offset_right = 400.0
 DisplayName = "DOUBLE"
 Description = "DOUBLE_MEMBRANE_DESCRIPTION"
-MutationPointCost = 50
 
 [node name="RequiresNucleus" parent="GroupHolder/membraneSelection/double/MarginContainer/VBoxContainer" index="1"]
 visible = false
@@ -343,7 +341,6 @@ layout_mode = 0
 offset_right = 400.0
 DisplayName = "CELLULOSE"
 Description = "CELLULOSE_MEMBRANE_DESCRIPTION"
-MutationPointCost = 50
 
 [node name="RequiresNucleus" parent="GroupHolder/membraneSelection/cellulose/MarginContainer/VBoxContainer" index="1"]
 visible = false
@@ -397,7 +394,6 @@ layout_mode = 0
 offset_right = 400.0
 DisplayName = "CHITIN"
 Description = "CHITIN_MEMBRANE_DESCRIPTION"
-MutationPointCost = 50
 
 [node name="RequiresNucleus" parent="GroupHolder/membraneSelection/chitin/MarginContainer/VBoxContainer" index="1"]
 visible = false
@@ -451,7 +447,6 @@ layout_mode = 0
 offset_right = 400.0
 DisplayName = "CALCIUM_CARBONATE"
 Description = "CALCIUM_CARBONATE_MEMBRANE_DESCRIPTION"
-MutationPointCost = 50
 
 [node name="RequiresNucleus" parent="GroupHolder/membraneSelection/calciumCarbonate/MarginContainer/VBoxContainer" index="1"]
 visible = false
@@ -500,7 +495,6 @@ offset_right = 400.0
 offset_bottom = 173.0
 DisplayName = "SILICA"
 Description = "SILICA_MEMBRANE_DESCRIPTION"
-MutationPointCost = 50
 
 [node name="RequiresNucleus" parent="GroupHolder/membraneSelection/silica/MarginContainer/VBoxContainer" index="1"]
 visible = false
@@ -811,6 +805,46 @@ layout_mode = 0
 DescriptionLabelPath = NodePath("MarginContainer/VBoxContainer/Description")
 Description = "PATCH_MAP_NAVIGATION_TOOLTIP"
 DisplayDelay = 2.5
+
+[node name="tolerances" type="Control" parent="GroupHolder"]
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="temperature" parent="GroupHolder/tolerances" instance=ExtResource("14_k78dl")]
+visible = false
+layout_mode = 0
+offset_top = 0.0
+offset_bottom = 283.0
+DisplayName = "TEMPERATURE"
+Description = "TEMPERATURE_TOLERANCE_TOOLTIP"
+
+[node name="pressure" parent="GroupHolder/tolerances" instance=ExtResource("14_k78dl")]
+visible = false
+layout_mode = 0
+offset_top = 0.0
+offset_bottom = 283.0
+ToleranceType = 1
+DisplayName = "PRESSURE"
+Description = "PRESSURE_TOLERANCE_TOOLTIP"
+
+[node name="oxygenResistance" parent="GroupHolder/tolerances" instance=ExtResource("14_k78dl")]
+visible = false
+layout_mode = 0
+offset_top = 0.0
+offset_bottom = 283.0
+ToleranceType = 2
+DisplayName = "OXYGEN_RESISTANCE"
+Description = "OXYGEN_TOLERANCE_TOOLTIP"
+
+[node name="uvResistance" parent="GroupHolder/tolerances" instance=ExtResource("14_k78dl")]
+visible = false
+layout_mode = 0
+offset_top = 0.0
+offset_bottom = 283.0
+ToleranceType = 3
+DisplayName = "UV_RESISTANCE"
+Description = "UV_TOLERANCE_TOOLTIP"
 
 [editable path="GroupHolder/editor/rigiditySlider"]
 [editable path="GroupHolder/membraneSelection/single"]
