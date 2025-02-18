@@ -1723,7 +1723,7 @@ public static class Constants
     public const float TOLERANCE_PERFECT_TEMPERATURE_SCORE = 0.1f;
 
     public const float TOLERANCE_MAXIMUM_SURVIVABLE_PRESSURE_DIFFERENCE = 2000000;
-    public const float TOLERANCE_PERFECT_THRESHOLD_PRESSURE = 60000;
+    public const float TOLERANCE_PERFECT_THRESHOLD_PRESSURE = 250000;
 
     // These are chosen to be symmetric so that the pressure tolerance range ends up easier to show correctly in the
     // GUI
