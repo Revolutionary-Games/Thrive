@@ -55,6 +55,7 @@ label_settings = ExtResource("2_wyd8k")
 [node name="HSeparator" type="HSeparator" parent="Temperature/HBoxContainer"]
 layout_mode = 2
 size_flags_horizontal = 3
+mouse_filter = 1
 theme_override_styles/separator = SubResource("StyleBoxTexture_ftstq")
 
 [node name="HBoxContainer2" type="HBoxContainer" parent="Temperature"]
@@ -63,6 +64,7 @@ layout_mode = 2
 [node name="Spacer" type="Control" parent="Temperature/HBoxContainer2"]
 layout_mode = 2
 size_flags_horizontal = 3
+mouse_filter = 1
 
 [node name="TemperatureMin" type="Label" parent="Temperature/HBoxContainer2"]
 editor_description = "PLACEHOLDER"
@@ -87,9 +89,11 @@ horizontal_alignment = 2
 [node name="Spacer2" type="Control" parent="Temperature/HBoxContainer2"]
 layout_mode = 2
 size_flags_horizontal = 3
+mouse_filter = 1
 
 [node name="TemperatureSlider" type="HSlider" parent="Temperature"]
 layout_mode = 2
+mouse_filter = 1
 rounded = true
 scrollable = false
 tick_count = 8
@@ -108,6 +112,7 @@ layout_mode = 2
 [node name="TemperatureRange" type="HSlider" parent="Temperature/HBoxContainer3"]
 layout_mode = 2
 size_flags_horizontal = 3
+mouse_filter = 1
 max_value = 50.0
 value = 10.0
 rounded = true
@@ -132,6 +137,7 @@ label_settings = ExtResource("2_wyd8k")
 [node name="HSeparator" type="HSeparator" parent="Pressure/HBoxContainer"]
 layout_mode = 2
 size_flags_horizontal = 3
+mouse_filter = 1
 theme_override_styles/separator = SubResource("StyleBoxTexture_ftstq")
 
 [node name="HBoxContainer2" type="HBoxContainer" parent="Pressure"]
@@ -140,6 +146,7 @@ layout_mode = 2
 [node name="Spacer" type="Control" parent="Pressure/HBoxContainer2"]
 layout_mode = 2
 size_flags_horizontal = 3
+mouse_filter = 1
 
 [node name="PressureMin" type="Label" parent="Pressure/HBoxContainer2"]
 editor_description = "PLACEHOLDER"
@@ -164,9 +171,11 @@ horizontal_alignment = 2
 [node name="Spacer2" type="Control" parent="Pressure/HBoxContainer2"]
 layout_mode = 2
 size_flags_horizontal = 3
+mouse_filter = 1
 
 [node name="PressureSlider" type="HSlider" parent="Pressure"]
 layout_mode = 2
+mouse_filter = 1
 max_value = 7e+07
 step = 50000.0
 value = 100000.0
@@ -188,6 +197,7 @@ layout_mode = 2
 [node name="PressureRange" type="HSlider" parent="Pressure/HBoxContainer3"]
 layout_mode = 2
 size_flags_horizontal = 3
+mouse_filter = 1
 min_value = 50000.0
 max_value = 1e+06
 step = 50000.0
@@ -214,10 +224,12 @@ label_settings = ExtResource("2_wyd8k")
 [node name="HSeparator" type="HSeparator" parent="Oxygen/HBoxContainer"]
 layout_mode = 2
 size_flags_horizontal = 3
+mouse_filter = 1
 theme_override_styles/separator = SubResource("StyleBoxTexture_ftstq")
 
 [node name="OxgenSlider" type="HSlider" parent="Oxygen"]
 layout_mode = 2
+mouse_filter = 1
 max_value = 1.0
 step = 0.05
 value = 0.25
@@ -253,10 +265,12 @@ label_settings = ExtResource("2_wyd8k")
 [node name="HSeparator" type="HSeparator" parent="UV/HBoxContainer"]
 layout_mode = 2
 size_flags_horizontal = 3
+mouse_filter = 1
 theme_override_styles/separator = SubResource("StyleBoxTexture_ftstq")
 
 [node name="UVSlider" type="HSlider" parent="UV"]
 layout_mode = 2
+mouse_filter = 1
 max_value = 1.0
 step = 0.05
 value = 0.1
