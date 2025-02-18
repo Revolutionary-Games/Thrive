@@ -544,6 +544,9 @@ public partial class CellEditorComponent
             rigidityTooltip.MutationPointCost = (int)Math.Min(
                 Constants.MEMBRANE_RIGIDITY_COST_PER_STEP * CostMultiplier, 100);
         }
+
+        tolerancesEditor.MPDisplayCostMultiplier = CostMultiplier;
+        tolerancesEditor.UpdateMPCostInToolTips();
     }
 
     private void UpdateCompoundBalances(Dictionary<Compound, CompoundBalance> balances)

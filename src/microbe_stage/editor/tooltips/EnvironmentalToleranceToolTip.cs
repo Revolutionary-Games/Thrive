@@ -1,4 +1,5 @@
-﻿using System.Globalization;
+﻿using System;
+using System.Globalization;
 using Godot;
 
 /// <summary>
@@ -6,12 +7,6 @@ using Godot;
 /// </summary>
 public partial class EnvironmentalToleranceToolTip : Control, ICustomToolTip
 {
-    /// <summary>
-    ///   The type this acts as in the tooltip
-    /// </summary>
-    [Export]
-    public StatType ToleranceType = StatType.Temperature;
-
 #pragma warning disable CA2213
     [Export]
     [ExportCategory("Internal")]
@@ -34,18 +29,18 @@ public partial class EnvironmentalToleranceToolTip : Control, ICustomToolTip
 
     [Export]
     private Control badlyAdaptedWarning = null!;
+
+    [Export]
+    private LabelSettings goodStatFont = null!;
+
+    [Export]
+    private LabelSettings badStatFont = null!;
+
+    private LabelSettings defaultStatFont = null!;
 #pragma warning restore CA2213
 
     private string? displayName;
     private float mpCost;
-
-    public enum StatType
-    {
-        Temperature,
-        Pressure,
-        Oxygen,
-        UV,
-    }
 
     [Export]
     [ExportCategory("Configuration")]
@@ -91,8 +86,66 @@ public partial class EnvironmentalToleranceToolTip : Control, ICustomToolTip
         descriptionLabel.ExtendedBbcode = Description;
         badlyAdaptedWarning.Visible = false;
 
+        defaultStatFont = healthLabel.ModifierValueFont;
+
         UpdateName();
         UpdateMPCost();
+    }
+
+    public void UpdateStats(ResolvedMicrobeTolerances tolerances)
+    {
+        // Convert stats to percentages and show
+        var percentageFormat = Localization.Translate("PERCENTAGE_VALUE");
+
+        osmoregulationLabel.ModifierValue =
+            percentageFormat.FormatSafe(StringUtils.FormatPositiveWithLeadingPlus(MathF.Round(
+                (tolerances.OsmoregulationModifier - 1) * 100, 2)));
+        healthLabel.ModifierValue =
+            percentageFormat.FormatSafe(
+                StringUtils.FormatPositiveWithLeadingPlus(MathF.Round((tolerances.HealthModifier - 1) * 100, 1)));
+        processSpeedLabel.ModifierValue =
+            percentageFormat.FormatSafe(
+                StringUtils.FormatPositiveWithLeadingPlus(MathF.Round((tolerances.ProcessSpeedModifier - 1) * 100, 2)));
+
+        // And apply colours to good and bad stats
+        if (tolerances.OsmoregulationModifier > 1)
+        {
+            osmoregulationLabel.ModifierValueFont = badStatFont;
+        }
+        else if (tolerances.OsmoregulationModifier < 1)
+        {
+            osmoregulationLabel.ModifierValueFont = goodStatFont;
+        }
+        else
+        {
+            osmoregulationLabel.ModifierValueFont = defaultStatFont;
+        }
+
+        if (tolerances.HealthModifier < 1)
+        {
+            healthLabel.ModifierValueFont = badStatFont;
+        }
+        else if (tolerances.HealthModifier > 1)
+        {
+            healthLabel.ModifierValueFont = goodStatFont;
+        }
+        else
+        {
+            healthLabel.ModifierValueFont = defaultStatFont;
+        }
+
+        if (tolerances.ProcessSpeedModifier < 1)
+        {
+            processSpeedLabel.ModifierValueFont = badStatFont;
+        }
+        else if (tolerances.ProcessSpeedModifier > 1)
+        {
+            processSpeedLabel.ModifierValueFont = goodStatFont;
+        }
+        else
+        {
+            processSpeedLabel.ModifierValueFont = defaultStatFont;
+        }
     }
 
     private void UpdateName()

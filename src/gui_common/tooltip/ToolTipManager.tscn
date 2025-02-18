@@ -824,7 +824,6 @@ visible = false
 layout_mode = 0
 offset_top = 0.0
 offset_bottom = 283.0
-ToleranceType = 1
 DisplayName = "PRESSURE"
 Description = "PRESSURE_TOLERANCE_TOOLTIP"
 
@@ -833,7 +832,6 @@ visible = false
 layout_mode = 0
 offset_top = 0.0
 offset_bottom = 283.0
-ToleranceType = 2
 DisplayName = "OXYGEN_RESISTANCE"
 Description = "OXYGEN_TOLERANCE_TOOLTIP"
 
@@ -842,8 +840,7 @@ visible = false
 layout_mode = 0
 offset_top = 0.0
 offset_bottom = 283.0
-ToleranceType = 3
-DisplayName = "UV_RESISTANCE"
+DisplayName = "UV_PROTECTION"
 Description = "UV_TOLERANCE_TOOLTIP"
 
 [editable path="GroupHolder/editor/rigiditySlider"]

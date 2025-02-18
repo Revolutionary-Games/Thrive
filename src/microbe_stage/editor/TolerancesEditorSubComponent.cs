@@ -74,6 +74,11 @@ public partial class TolerancesEditorSubComponent : EditorComponentBase<ICellEdi
 
     private LabelSettings? originalTemperatureFont;
     private LabelSettings? originalPressureFont;
+
+    private EnvironmentalToleranceToolTip? temperatureToolTip;
+    private EnvironmentalToleranceToolTip? pressureToolTip;
+    private EnvironmentalToleranceToolTip? oxygenResistanceToolTip;
+    private EnvironmentalToleranceToolTip? uvResistanceToolTip;
 #pragma warning restore CA2213
 
     private bool automaticallyChanging;
@@ -96,6 +101,8 @@ public partial class TolerancesEditorSubComponent : EditorComponentBase<ICellEdi
 
     [JsonIgnore]
     public override bool IsSubComponent => true;
+
+    public float MPDisplayCostMultiplier { get; set; } = 1;
 
     public override void _Ready()
     {
@@ -132,6 +139,8 @@ public partial class TolerancesEditorSubComponent : EditorComponentBase<ICellEdi
 
             ResetToCurrentSpeciesTolerances();
         }
+
+        UpdateToolTipStats();
     }
 
     public override void OnFinishEditing()
@@ -143,6 +152,7 @@ public partial class TolerancesEditorSubComponent : EditorComponentBase<ICellEdi
     public void OnPatchChanged()
     {
         UpdateCurrentValueDisplays();
+        UpdateToolTipStats();
     }
 
     public void ResetToCurrentSpeciesTolerances()
@@ -159,8 +169,89 @@ public partial class TolerancesEditorSubComponent : EditorComponentBase<ICellEdi
         ApplyCurrentValuesToGUI();
     }
 
+    public void UpdateMPCostInToolTips()
+    {
+        if (temperatureToolTip != null)
+        {
+            // Multiply costs by minimum step size to make the costs more reasonably display
+            var temperatureCost = temperatureSlider.Step * Constants.TOLERANCE_CHANGE_MP_PER_TEMPERATURE *
+                MPDisplayCostMultiplier;
+
+            temperatureToolTip.MPCost = (float)temperatureCost;
+        }
+
+        if (pressureToolTip != null)
+        {
+            var pressureCost = pressureSlider.Step * Constants.TOLERANCE_CHANGE_MP_PER_PRESSURE *
+                MPDisplayCostMultiplier;
+
+            pressureToolTip.MPCost = (float)pressureCost;
+        }
+
+        if (oxygenResistanceToolTip != null)
+        {
+            var oxygenCost = oxygenResistanceSlider.Step * Constants.TOLERANCE_CHANGE_MP_PER_OXYGEN *
+                MPDisplayCostMultiplier;
+
+            oxygenResistanceToolTip.MPCost = (float)oxygenCost;
+        }
+
+        if (uvResistanceToolTip != null)
+        {
+            var uvCost = uvResistanceSlider.Step * Constants.TOLERANCE_CHANGE_MP_PER_UV * MPDisplayCostMultiplier;
+
+            uvResistanceToolTip.MPCost = (float)uvCost;
+        }
+    }
+
+    public void UpdateToolTipStats()
+    {
+        // Calculate one stat at a time to get the individual changes per type instead of all combined
+        var optimal = Editor.CurrentPatch.GenerateTolerancesForMicrobe();
+
+        var tempTolerances = CurrentTolerances.Clone();
+
+        if (temperatureToolTip != null)
+        {
+            // Optimal values for other than temperature
+            tempTolerances.CopyFrom(optimal);
+            tempTolerances.PreferredTemperature = CurrentTolerances.PreferredTemperature;
+            tempTolerances.TemperatureTolerance = CurrentTolerances.TemperatureTolerance;
+
+            CalculateStatsAndShow(tempTolerances, temperatureToolTip);
+        }
+
+        if (pressureToolTip != null)
+        {
+            tempTolerances.CopyFrom(optimal);
+            tempTolerances.PreferredPressure = CurrentTolerances.PreferredPressure;
+            tempTolerances.PressureMinimum = CurrentTolerances.PressureMinimum;
+            tempTolerances.PressureMaximum = CurrentTolerances.PressureMaximum;
+
+            CalculateStatsAndShow(tempTolerances, pressureToolTip);
+        }
+
+        if (oxygenResistanceToolTip != null)
+        {
+            tempTolerances.CopyFrom(optimal);
+            tempTolerances.OxygenResistance = CurrentTolerances.OxygenResistance;
+
+            CalculateStatsAndShow(tempTolerances, oxygenResistanceToolTip);
+        }
+
+        if (uvResistanceToolTip != null)
+        {
+            tempTolerances.CopyFrom(optimal);
+            tempTolerances.UVResistance = CurrentTolerances.UVResistance;
+
+            CalculateStatsAndShow(tempTolerances, uvResistanceToolTip);
+        }
+    }
+
     protected override void OnTranslationsChanged()
     {
+        UpdateMPCostInToolTips();
+        UpdateToolTipStats();
     }
 
     protected override void RegisterTooltips()
@@ -171,6 +262,25 @@ public partial class TolerancesEditorSubComponent : EditorComponentBase<ICellEdi
         pressureContainer.RegisterToolTipForControl("pressure", "tolerances");
         oxygenResistanceContainer.RegisterToolTipForControl("oxygenResistance", "tolerances");
         uvResistanceContainer.RegisterToolTipForControl("uvResistance", "tolerances");
+
+        var toolTipManager = ToolTipManager.Instance;
+        temperatureToolTip = toolTipManager.GetToolTip<EnvironmentalToleranceToolTip>("temperature", "tolerances");
+        pressureToolTip = toolTipManager.GetToolTip<EnvironmentalToleranceToolTip>("pressure", "tolerances");
+        oxygenResistanceToolTip =
+            toolTipManager.GetToolTip<EnvironmentalToleranceToolTip>("oxygenResistance", "tolerances");
+        uvResistanceToolTip = toolTipManager.GetToolTip<EnvironmentalToleranceToolTip>("uvResistance", "tolerances");
+    }
+
+    private void CalculateStatsAndShow(EnvironmentalTolerances calculationTolerances,
+        EnvironmentalToleranceToolTip toolTip)
+    {
+        var rawTolerances =
+            MicrobeEnvironmentalToleranceCalculations.CalculateTolerances(calculationTolerances,
+                Editor.CurrentPatch.Biome);
+
+        var resolvedTolerances = MicrobeEnvironmentalToleranceCalculations.ResolveToleranceValues(rawTolerances);
+
+        toolTip.UpdateStats(resolvedTolerances);
     }
 
     private void CalculateToleranceRangeForGUI()
@@ -361,6 +471,7 @@ public partial class TolerancesEditorSubComponent : EditorComponentBase<ICellEdi
         automaticallyChanging = false;
 
         UpdateCurrentValueDisplays();
+        UpdateToolTipStats();
     }
 
     private void UpdateCurrentValueDisplays()

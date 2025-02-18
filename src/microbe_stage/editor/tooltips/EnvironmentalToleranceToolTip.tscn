@@ -1,7 +1,8 @@
-[gd_scene load_steps=13 format=3 uid="uid://by8bg6b5p4c6m"]
+[gd_scene load_steps=14 format=3 uid="uid://by8bg6b5p4c6m"]
 
 [ext_resource type="Theme" uid="uid://b4cx0o110g4b6" path="res://src/gui_common/thrive_theme.tres" id="1_8aafa"]
 [ext_resource type="Script" path="res://src/microbe_stage/editor/tooltips/EnvironmentalToleranceToolTip.cs" id="2_y5oj5"]
+[ext_resource type="LabelSettings" uid="uid://dp406petomasw" path="res://src/gui_common/fonts/Body-Bold-AlmostSmall-Green.tres" id="3_gd1ig"]
 [ext_resource type="Texture2D" uid="uid://drdwtf2f6qqch" path="res://assets/textures/gui/bevel/MP.png" id="3_trmea"]
 [ext_resource type="LabelSettings" uid="uid://brgbuduvjby6a" path="res://src/gui_common/fonts/Title-SemiBold-Smaller.tres" id="4_g1i1j"]
 [ext_resource type="LabelSettings" uid="uid://bv3bnu0g1wdw3" path="res://src/gui_common/fonts/Title-SemiBold-Big.tres" id="5_365bq"]
@@ -40,6 +41,8 @@ osmoregulationLabel = NodePath("MarginContainer/VBoxContainer/ModifierList/Osmor
 healthLabel = NodePath("MarginContainer/VBoxContainer/ModifierList/HealthModifier")
 processSpeedLabel = NodePath("MarginContainer/VBoxContainer/ModifierList/ProcessSpeed")
 badlyAdaptedWarning = NodePath("MarginContainer/VBoxContainer/NotAdaptedText")
+goodStatFont = ExtResource("3_gd1ig")
+badStatFont = ExtResource("6_jnaox")
 
 [node name="MarginContainer" type="MarginContainer" parent="."]
 layout_mode = 2
@@ -117,21 +120,18 @@ mouse_filter = 2
 layout_mode = 2
 DisplayName = "OSMOREGULATION_COST"
 ModifierValue = "0"
-ModifierValueFont = ExtResource("6_jnaox")
 ModifierIcon = ExtResource("10_4x4xi")
 
 [node name="HealthModifier" parent="MarginContainer/VBoxContainer/ModifierList" instance=ExtResource("9_sgy1c")]
 layout_mode = 2
 DisplayName = "HEALTH_MODIFIER"
 ModifierValue = "0"
-ModifierValueFont = ExtResource("6_jnaox")
 ModifierIcon = ExtResource("10_xjysk")
 
 [node name="ProcessSpeed" parent="MarginContainer/VBoxContainer/ModifierList" instance=ExtResource("9_sgy1c")]
 layout_mode = 2
 DisplayName = "PROCESS_SPEED_MODIFIER"
 ModifierValue = "0"
-ModifierValueFont = ExtResource("6_jnaox")
 ModifierIcon = ExtResource("11_21y2n")
 
 [node name="HSeparator2" type="HSeparator" parent="MarginContainer/VBoxContainer"]
