@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2025-02-15 11:28+0200\n"
+"POT-Creation-Date: 2025-02-18 15:43+0200\n"
 "PO-Revision-Date: 2025-02-06 13:29+0000\n"
 "Last-Translator: Anonymous <noreply@weblate.org>\n"
 "Language-Team: Chinese (Simplified Han script) <https://translate.revolutionarygamesstudio.com/projects/thrive/thrive-game/zh_Hans/>\n"
@@ -2374,6 +2374,9 @@ msgstr "GUI音量"
 msgid "HEALTH"
 msgstr "生命上限"
 
+msgid "HEALTH_MODIFIER"
+msgstr ""
+
 #, fuzzy
 msgid "HEAT_ACCUMULATION_BAR_TOOLTIP"
 msgstr "从Assembly中自动加载Harmony补丁（不需要指定mod class）"
@@ -4051,6 +4054,10 @@ msgstr "现在可以进入编辑器"
 msgid "NOTICE_READY_TO_EDIT"
 msgstr "现在可以进入编辑器"
 
+#, fuzzy
+msgid "NOT_ADAPTED_TO_CURRENT_PATCH"
+msgstr "找到当前的地区"
+
 msgid "NOT_STARTED_DOT"
 msgstr "未开始。"
 
@@ -4334,6 +4341,12 @@ msgstr "氰化物合成"
 msgid "OXYGEN_RESISTANCE"
 msgstr "毒抗"
 
+#, fuzzy
+msgid "OXYGEN_TOLERANCE_TOOLTIP"
+msgstr ""
+"这个区域显示了各化合物的总平衡情况（生产 - 消耗）\n"
+"比如说对植物细胞而言葡萄糖的平衡情况需要是一个不小的正数。"
+
 msgid "OXYTOXISOME_PROCESSES_DESCRIPTION"
 msgstr "将[thrive:compound type=\"atp\"][/thrive:compound]转换成[thrive:compound type=\"oxytoxy\"][/thrive:compound]。速率跟[thrive:compound type=\"oxygen\"][/thrive:compound]浓度成正比。可以通过按下[thrive:input]g_fire_toxin[/thrive:input]来释放毒素。当[thrive:compound type=\"oxytoxy\"][/thrive:compound]数量不足时仍能释放，但是伤害会降低。"
 
@@ -4455,6 +4468,14 @@ msgstr "一个内共生进度已满"
 
 msgid "PERCENTAGE_VALUE"
 msgstr "{0}%"
+
+#, fuzzy
+msgid "PERFECT_ADAPTATION_DESCRIPTION"
+msgstr ""
+"启用GUI的闪烁特效。（比如说编辑器里按钮的闪烁）\n"
+"\n"
+"如果你遇到编辑器按钮部分消失的问题，\n"
+"可以试试禁用这个功能，问题可能会消失。"
 
 msgid "PERFORMANCE"
 msgstr "性能"
@@ -4579,6 +4600,10 @@ msgstr "压力"
 msgid "PRESSURE_SHORT"
 msgstr "压力"
 
+#, fuzzy
+msgid "PRESSURE_TOLERANCE_TOOLTIP"
+msgstr "退回主菜单"
+
 msgid "PRESS_KEY_DOT_DOT_DOT"
 msgstr "按下你要设置的按钮…"
 
@@ -4598,6 +4623,10 @@ msgid "PROCESS_ENVIRONMENT_SEPARATOR"
 msgstr "@"
 
 msgid "PROCESS_PANEL_TITLE"
+msgstr "细胞生理过程"
+
+#, fuzzy
+msgid "PROCESS_SPEED_MODIFIER"
 msgstr "细胞生理过程"
 
 msgid "PROGRAMMING_TEAM"
@@ -5541,6 +5570,10 @@ msgstr "温度"
 msgid "TEMPERATURE_SHORT"
 msgstr "温度"
 
+#, fuzzy
+msgid "TEMPERATURE_TOLERANCE_TOOLTIP"
+msgstr "访问我们在Patreon上的页面"
+
 msgid "TESTING_TEAM"
 msgstr "测试团队"
 
@@ -6287,6 +6320,15 @@ msgstr "使用虚拟窗口大小"
 #, fuzzy
 msgid "UV_PROTECTION"
 msgstr "Auto-Evo的预测"
+
+#, fuzzy
+msgid "UV_TOLERANCE_TOOLTIP"
+msgstr ""
+"这个区域显示了目前细胞ATP（能量）的总平衡情况\n"
+"如果想要生存，这个数值应该是正的。对于没有运动需求的细胞，可以不考虑移动所消耗的ATP。\n"
+"下面的下拉菜单可以用来检查各种资源短缺时会发生的情况。\n"
+"比如，有些细胞只有在同时拥有好几种类型的化合物时才可以使ATP收支平衡。\n"
+"这些细胞将更难存活，因为它们需要收集更多的化合物。"
 
 msgid "VACUOLE"
 msgstr "液泡"

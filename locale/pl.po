@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2025-02-15 11:28+0200\n"
+"POT-Creation-Date: 2025-02-18 15:43+0200\n"
 "PO-Revision-Date: 2025-02-06 13:29+0000\n"
 "Last-Translator: Anonymous <noreply@weblate.org>\n"
 "Language-Team: Polish <https://translate.revolutionarygamesstudio.com/projects/thrive/thrive-game/pl/>\n"
@@ -2422,6 +2422,9 @@ msgstr "Głośność interfejsu"
 msgid "HEALTH"
 msgstr "Zdrowie"
 
+msgid "HEALTH_MODIFIER"
+msgstr ""
+
 #, fuzzy
 msgid "HEAT_ACCUMULATION_BAR_TOOLTIP"
 msgstr "Odwiedź naszego Patreona"
@@ -4147,6 +4150,10 @@ msgstr ""
 msgid "NOTICE_READY_TO_EDIT"
 msgstr ""
 
+#, fuzzy
+msgid "NOT_ADAPTED_TO_CURRENT_PATCH"
+msgstr "Znajdź Aktualny Obszar"
+
 msgid "NOT_STARTED_DOT"
 msgstr "Nie zaczęto."
 
@@ -4442,6 +4449,12 @@ msgstr "Synteza OxyToxy"
 msgid "OXYGEN_RESISTANCE"
 msgstr "Odporność Na Toksyny"
 
+#, fuzzy
+msgid "OXYGEN_TOLERANCE_TOOLTIP"
+msgstr ""
+"Ta część pokazuje bilans całkowity (produkcja - konsumpcja) dla każdego związku.\n"
+"Na przykład by stworzyć komórkę roślinną, bilans glukozy powinien być pozytywny z zapasem."
+
 msgid "OXYTOXISOME_PROCESSES_DESCRIPTION"
 msgstr "Przekształca [thrive:compound type=\"atp\"][/thrive:compound] w [thrive:compound type=\"oxytoxy\"]Oksytoksynę[/thrive:compound]. Tempo skaluje się ze stężeniem [thrive:compound type=\"oxygen\"]Tlenu[/thrive:compound]. Może wypuszczać toksyny naciskając [thrive:input]g_fire_toxin[/thrive:input]. Gdy ilość [thrive:compound type=\"oxytoxy\"]Oksytoksyny[/thrive:compound] jest niska, strzelanie jest dalej możliwe, ale będzie zadawać mniejsze obrażenia."
 
@@ -4567,6 +4580,14 @@ msgstr ""
 msgid "PERCENTAGE_VALUE"
 msgstr "{0}%"
 
+#, fuzzy
+msgid "PERFECT_ADAPTATION_DESCRIPTION"
+msgstr ""
+"Włącza blaski świetlne na interfejsach (np. błysk przycisku edytora).\n"
+"\n"
+"Jeśli doświadczysz błędu gdzie część przycisku edytora znika,\n"
+"spróbuj wyłączyć to ustawienie żeby sprawdzić czy problem zniknie."
+
 msgid "PERFORMANCE"
 msgstr "Wydajność"
 
@@ -4686,6 +4707,10 @@ msgstr "Ciśnienie"
 msgid "PRESSURE_SHORT"
 msgstr "Ciśn."
 
+#, fuzzy
+msgid "PRESSURE_TOLERANCE_TOOLTIP"
+msgstr "Wróć do menu główego"
+
 msgid "PRESS_KEY_DOT_DOT_DOT"
 msgstr "Naciśnij klawisz..."
 
@@ -4705,6 +4730,10 @@ msgid "PROCESS_ENVIRONMENT_SEPARATOR"
 msgstr "@"
 
 msgid "PROCESS_PANEL_TITLE"
+msgstr "Procesy Komórki"
+
+#, fuzzy
+msgid "PROCESS_SPEED_MODIFIER"
 msgstr "Procesy Komórki"
 
 msgid "PROGRAMMING_TEAM"
@@ -5672,6 +5701,10 @@ msgstr "Temperatura"
 msgid "TEMPERATURE_SHORT"
 msgstr "Temp."
 
+#, fuzzy
+msgid "TEMPERATURE_TOLERANCE_TOOLTIP"
+msgstr "Odwiedź naszego Patreona"
+
 msgid "TESTING_TEAM"
 msgstr "Testerzy"
 
@@ -6420,6 +6453,15 @@ msgstr "Użyj wirtualnej wielkości okna"
 #, fuzzy
 msgid "UV_PROTECTION"
 msgstr "Przewidywania Auto-Ewolucji"
+
+#, fuzzy
+msgid "UV_TOLERANCE_TOOLTIP"
+msgstr ""
+"Ta część pokazuje całkowity bilans ATP (energii) obecnej komórki.\n"
+"Py przetrwać, bilans musi być pozytywny. Dla komórek osiadłych bilans może być pozytywny jedynie w bezruchu.\n"
+"Rozwijane menu poniżej można wykorzystać do sprawdzenia, co by się stało, gdyby komórka nie miała dostępu do zasobów, z których mogłaby produkować ATP.\n"
+"Na przykład, niektóre komórki są zdolne do utrzymywania pozytywnego bilansu ATP jedynie gdy równocześnie mają wiele rodzajów związków do produkcji ATP.\n"
+"Rozgrywka takimi komórkami jest trudniejsza, ponieważ do przetrwania wymagają równoczesnego składowania wielu rodzajów związków."
 
 msgid "VACUOLE"
 msgstr "Wakuola"
