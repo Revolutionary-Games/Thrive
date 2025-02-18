@@ -107,10 +107,13 @@ public partial class EnvironmentalToleranceToolTip : Control, ICustomToolTip
             percentageFormat.FormatSafe(
                 StringUtils.FormatPositiveWithLeadingPlus(MathF.Round((tolerances.ProcessSpeedModifier - 1) * 100, 2)));
 
+        bool adapted = true;
+
         // And apply colours to good and bad stats
         if (tolerances.OsmoregulationModifier > 1)
         {
             osmoregulationLabel.ModifierValueFont = badStatFont;
+            adapted = false;
         }
         else if (tolerances.OsmoregulationModifier < 1)
         {
@@ -124,6 +127,7 @@ public partial class EnvironmentalToleranceToolTip : Control, ICustomToolTip
         if (tolerances.HealthModifier < 1)
         {
             healthLabel.ModifierValueFont = badStatFont;
+            adapted = false;
         }
         else if (tolerances.HealthModifier > 1)
         {
@@ -137,6 +141,7 @@ public partial class EnvironmentalToleranceToolTip : Control, ICustomToolTip
         if (tolerances.ProcessSpeedModifier < 1)
         {
             processSpeedLabel.ModifierValueFont = badStatFont;
+            adapted = false;
         }
         else if (tolerances.ProcessSpeedModifier > 1)
         {
@@ -146,6 +151,8 @@ public partial class EnvironmentalToleranceToolTip : Control, ICustomToolTip
         {
             processSpeedLabel.ModifierValueFont = defaultStatFont;
         }
+
+        badlyAdaptedWarning.Visible = !adapted;
     }
 
     private void UpdateName()
