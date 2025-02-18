@@ -230,7 +230,11 @@ public partial class TolerancesEditorSubComponent : EditorComponentBase<ICellEdi
 
         reusableTolerances ??= new EnvironmentalTolerances();
         reusableTolerances.CopyFrom(CurrentTolerances);
+
+        // Pressure needs to always update all the 3 related values at once when updating to make sure they match
         reusableTolerances.PreferredPressure = value;
+        reusableTolerances.PressureMinimum = Math.Max(value - currentPressureToleranceRange, 0);
+        reusableTolerances.PressureMaximum = value + currentPressureToleranceRange;
 
         automaticallyChanging = true;
 
