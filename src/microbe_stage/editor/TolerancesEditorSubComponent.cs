@@ -209,6 +209,11 @@ public partial class TolerancesEditorSubComponent : EditorComponentBase<ICellEdi
         // Calculate one stat at a time to get the individual changes per type instead of all combined
         var optimal = Editor.CurrentPatch.GenerateTolerancesForMicrobe();
 
+        // Set huge ranges so that there is no threat of optimal bonuses triggering with the default calculations
+        optimal.PressureMinimum = 0;
+        optimal.PressureMaximum = optimal.PreferredPressure + Constants.TOLERANCE_PERFECT_THRESHOLD_PRESSURE * 2;
+        optimal.TemperatureTolerance += Constants.TOLERANCE_PERFECT_THRESHOLD_TEMPERATURE * 2;
+
         var tempTolerances = CurrentTolerances.Clone();
 
         if (temperatureToolTip != null)
