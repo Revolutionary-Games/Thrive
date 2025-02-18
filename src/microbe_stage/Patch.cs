@@ -495,12 +495,13 @@ public class Patch
         var overshoot = (maxPressure - minPressure) - Constants.TOLERANCE_PRESSURE_RANGE_MAX;
         if (overshoot > 0)
         {
-            minPressure += overshoot / 2;
-            maxPressure -= overshoot / 2;
+            // Add a little bit of extra buffer around the overshoot to ensure it is below the max
+            minPressure += overshoot / 2 + 1;
+            maxPressure -= overshoot / 2 + 1;
         }
 
         // Ensure pressure is within the middle of the range
-        pressure = (minPressure + maxPressure) / 2;
+        pressure = minPressure + (maxPressure - minPressure) / 2;
 
         var result = new EnvironmentalTolerances
         {
