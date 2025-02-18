@@ -179,6 +179,7 @@ layout_mode = 2
 [node name="PressureRange" type="HSlider" parent="Pressure/HBoxContainer3"]
 layout_mode = 2
 size_flags_horizontal = 3
+min_value = 50000.0
 max_value = 1e+06
 step = 50000.0
 value = 150000.0
