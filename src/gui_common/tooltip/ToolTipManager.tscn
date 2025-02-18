@@ -155,6 +155,7 @@ DisplayDelay = 0.5
 [node name="rigiditySlider" parent="GroupHolder/editor" instance=ExtResource("5")]
 visible = false
 layout_mode = 0
+offset_right = 400.0
 DisplayName = "MEMBRANE_RIGIDITY"
 Description = "RIGIDITY_MEMBRANE_DESCRIPTION"
 MutationPointCost = 2
@@ -255,6 +256,7 @@ mouse_filter = 2
 [node name="single" parent="GroupHolder/membraneSelection" instance=ExtResource("5")]
 visible = false
 layout_mode = 0
+offset_right = 400.0
 DisplayName = "NORMAL"
 Description = "NORMAL_MEMBRANE_DESCRIPTION"
 MutationPointCost = 50
@@ -296,6 +298,7 @@ ModifierIcon = ExtResource("16")
 [node name="double" parent="GroupHolder/membraneSelection" instance=ExtResource("5")]
 visible = false
 layout_mode = 0
+offset_right = 400.0
 DisplayName = "DOUBLE"
 Description = "DOUBLE_MEMBRANE_DESCRIPTION"
 MutationPointCost = 50
@@ -337,6 +340,7 @@ ModifierIcon = ExtResource("16")
 [node name="cellulose" parent="GroupHolder/membraneSelection" instance=ExtResource("5")]
 visible = false
 layout_mode = 0
+offset_right = 400.0
 DisplayName = "CELLULOSE"
 Description = "CELLULOSE_MEMBRANE_DESCRIPTION"
 MutationPointCost = 50
@@ -390,6 +394,7 @@ ShowValue = false
 [node name="chitin" parent="GroupHolder/membraneSelection" instance=ExtResource("5")]
 visible = false
 layout_mode = 0
+offset_right = 400.0
 DisplayName = "CHITIN"
 Description = "CHITIN_MEMBRANE_DESCRIPTION"
 MutationPointCost = 50
@@ -443,6 +448,7 @@ ShowValue = false
 [node name="calciumCarbonate" parent="GroupHolder/membraneSelection" instance=ExtResource("5")]
 visible = false
 layout_mode = 0
+offset_right = 400.0
 DisplayName = "CALCIUM_CARBONATE"
 Description = "CALCIUM_CARBONATE_MEMBRANE_DESCRIPTION"
 MutationPointCost = 50
@@ -490,6 +496,7 @@ ShowValue = false
 [node name="silica" parent="GroupHolder/membraneSelection" instance=ExtResource("5")]
 visible = false
 layout_mode = 0
+offset_right = 400.0
 offset_bottom = 173.0
 DisplayName = "SILICA"
 Description = "SILICA_MEMBRANE_DESCRIPTION"
@@ -767,7 +774,6 @@ DisplayDelay = 0.5
 [node name="assumeHyperthreading" parent="GroupHolder/options" instance=ExtResource("1")]
 visible = false
 layout_mode = 0
-DescriptionLabelPath = NodePath("../addInputButton/cloudResolution/MarginContainer/VBoxContainer/Description")
 Description = "ASSUME_HYPERTHREADING_TOOLTIP"
 DisplayDelay = 0.5
 
