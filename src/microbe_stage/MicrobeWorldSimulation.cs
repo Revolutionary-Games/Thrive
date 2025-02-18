@@ -282,7 +282,7 @@ public partial class MicrobeWorldSimulation : WorldSimulationWithPhysics
         engulfedDigestionSystem.SetWorld(currentGame.GameWorld);
         microbeAI.SetWorld(currentGame.GameWorld);
         damageSoundSystem.SetWorld(currentGame.GameWorld);
-        fluidCurrentsSystem.SetGameWorld(currentGame.GameWorld);
+        fluidCurrentsSystem.SetWorld(currentGame.GameWorld);
 
         CloudSystem.Init(fluidCurrentsSystem);
     }
@@ -295,11 +295,6 @@ public partial class MicrobeWorldSimulation : WorldSimulationWithPhysics
     public float SampleTemperatureAt(Vector3 worldPosition)
     {
         return microbeHeatAccumulationSystem.SampleTemperatureAt(worldPosition);
-    }
-
-    public Vector2 SampleCurrentAt(Vector2 worldPosition)
-    {
-        return fluidCurrentsSystem.VelocityAt(worldPosition);
     }
 
     /// <summary>
