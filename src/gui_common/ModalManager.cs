@@ -35,6 +35,7 @@ public partial class ModalManager : NodeWithInput
 #pragma warning restore CA2213 // Disposable fields should be disposed
 
     private bool modalsDirty = true;
+    private bool ignoreParentLost;
 
     private ModalManager()
     {
@@ -92,6 +93,9 @@ public partial class ModalManager : NodeWithInput
 
         var parent = popup.GetParent();
         originalParents[popup] = parent;
+
+        if (modalStack.Contains(parent))
+            ignoreParentLost = true;
 
         // Listen for when the parent is removed from the tree so the modal can be removed as well.
         // But only if not registered already to avoid a duplicate connection
@@ -280,6 +284,8 @@ public partial class ModalManager : NodeWithInput
             top.FirstFocusableControl()?.GrabFocus();
             topMostWindowGivenFocus = top;
         }
+
+        ignoreParentLost = false;
     }
 
     private void OnModalContainerInput(InputEvent @event)
@@ -355,7 +361,7 @@ public partial class ModalManager : NodeWithInput
     private void OnParentLost(TopLevelContainer popup)
     {
         // If parent is a modal, then ignore as it emits signal redundantly
-        if (originalParents[popup] is TopLevelContainer)
+        if (ignoreParentLost)
             return;
 
         // Remove the original parent since the reference will now be invalid
