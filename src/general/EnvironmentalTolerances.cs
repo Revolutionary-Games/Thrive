@@ -31,6 +31,12 @@ public class EnvironmentalTolerances
     ///   Minimum pressure this species likes. This is not just a single range as the range needs to be lopsided
     ///   towards surviving higher pressures.
     /// </summary>
+    /// <remarks>
+    ///   <para>
+    ///     The difference between the defaults may not be over Constants.TOLERANCE_PRESSURE_RANGE_MAX, otherwise the
+    ///     GUI will break when this data is fed in.
+    ///   </para>
+    /// </remarks>
     public float PressureMinimum = 71325;
 
     public float PressureMaximum = 301325;
@@ -86,6 +92,17 @@ public class EnvironmentalTolerances
             return false;
 
         return Equals((EnvironmentalTolerances)obj);
+    }
+
+    public bool EqualsApprox(EnvironmentalTolerances other)
+    {
+        return Math.Abs(PreferredTemperature - other.PreferredTemperature) < MathUtils.EPSILON &&
+            Math.Abs(TemperatureTolerance - other.TemperatureTolerance) < MathUtils.EPSILON &&
+            Math.Abs(PreferredPressure - other.PreferredPressure) < MathUtils.EPSILON &&
+            Math.Abs(PressureMinimum - other.PressureMinimum) < MathUtils.EPSILON &&
+            Math.Abs(PressureMaximum - other.PressureMaximum) < MathUtils.EPSILON &&
+            Math.Abs(UVResistance - other.UVResistance) < MathUtils.EPSILON &&
+            Math.Abs(OxygenResistance - other.OxygenResistance) < MathUtils.EPSILON;
     }
 
     public EnvironmentalTolerances Clone()

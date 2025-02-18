@@ -1,10 +1,11 @@
-[gd_scene load_steps=8 format=3 uid="uid://5kamud4sukbd"]
+[gd_scene load_steps=9 format=3 uid="uid://5kamud4sukbd"]
 
 [ext_resource type="Theme" uid="uid://b4cx0o110g4b6" path="res://src/gui_common/thrive_theme.tres" id="1_16mn0"]
 [ext_resource type="Script" path="res://src/microbe_stage/editor/TolerancesEditorSubComponent.cs" id="2_kqh2k"]
 [ext_resource type="LabelSettings" uid="uid://bnhcbmq3brx0s" path="res://src/gui_common/fonts/Title-SemiBold-Normal.tres" id="2_wyd8k"]
 [ext_resource type="LabelSettings" uid="uid://c5eurhimrps3n" path="res://src/gui_common/fonts/Body-Regular-Normal-Red.tres" id="3_b6a3m"]
 [ext_resource type="Texture2D" uid="uid://bsg6xcrlspkdt" path="res://assets/textures/gui/bevel/hSeparatorLeftSide.png" id="3_ri2xt"]
+[ext_resource type="LabelSettings" uid="uid://y1jk7coufvgg" path="res://src/gui_common/fonts/Body-Regular-Normal-Green.tres" id="4_8il6m"]
 [ext_resource type="LabelSettings" uid="uid://bgokf8pxiak4n" path="res://src/gui_common/fonts/Title-SemiBold-Tiny.tres" id="5_ws7wf"]
 
 [sub_resource type="StyleBoxTexture" id="StyleBoxTexture_ftstq"]
@@ -33,6 +34,7 @@ pressureMaxLabel = NodePath("Pressure/HBoxContainer2/PressureMax")
 oxygenResistanceLabel = NodePath("Oxygen/HBoxContainer2/OxygenValue")
 uvResistanceLabel = NodePath("UV/HBoxContainer2/UVProtectionValue")
 badValueFont = ExtResource("3_b6a3m")
+perfectValueFont = ExtResource("4_8il6m")
 
 [node name="Temperature" type="VBoxContainer" parent="."]
 layout_mode = 2
@@ -100,7 +102,8 @@ layout_mode = 2
 [node name="TemperatureRange" type="HSlider" parent="Temperature/HBoxContainer3"]
 layout_mode = 2
 size_flags_horizontal = 3
-value = 50.0
+max_value = 50.0
+value = 10.0
 rounded = true
 
 [node name="Spacer" type="Control" parent="Temperature"]
@@ -156,7 +159,7 @@ size_flags_horizontal = 3
 
 [node name="PressureSlider" type="HSlider" parent="Pressure"]
 layout_mode = 2
-max_value = 5e+07
+max_value = 7e+07
 step = 50000.0
 value = 100000.0
 rounded = true
@@ -176,7 +179,7 @@ layout_mode = 2
 [node name="PressureRange" type="HSlider" parent="Pressure/HBoxContainer3"]
 layout_mode = 2
 size_flags_horizontal = 3
-max_value = 5e+06
+max_value = 1e+06
 step = 50000.0
 value = 150000.0
 rounded = true

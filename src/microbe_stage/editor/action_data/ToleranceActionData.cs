@@ -14,7 +14,9 @@ public class ToleranceActionData : EditorCombinableActionData
 
     public override bool WantsMergeWith(CombinableActionData other)
     {
-        return GetInterferenceModeWith(other) != ActionInterferenceMode.NoInterference;
+        // These must always merge with other tolerance actions, because otherwise the undo history step count is going
+        // to explore
+        return other is ToleranceActionData;
     }
 
     protected override double CalculateCostInternal()
@@ -45,29 +47,53 @@ public class ToleranceActionData : EditorCombinableActionData
 
     protected override ActionInterferenceMode GetInterferenceModeWithGuaranteed(CombinableActionData other)
     {
-        if (other is not ToleranceActionData toleranceActionData)
+        if (other is not ToleranceActionData otherTolerance)
             return ActionInterferenceMode.NoInterference;
 
-        // If changed back to original then the actions cancel out
-        if (OldTolerances.Equals(toleranceActionData.NewTolerances))
+        // If the value has been changed back to a previous value
+        if (NewTolerances.EqualsApprox(otherTolerance.OldTolerances) &&
+            otherTolerance.NewTolerances.EqualsApprox(OldTolerances))
+        {
             return ActionInterferenceMode.CancelsOut;
+        }
 
-        return ActionInterferenceMode.Combinable;
+        // If the value has been changed twice
+        if (NewTolerances.EqualsApprox(otherTolerance.OldTolerances) ||
+            otherTolerance.NewTolerances.EqualsApprox(OldTolerances))
+        {
+            return ActionInterferenceMode.Combinable;
+        }
+
+        return ActionInterferenceMode.NoInterference;
     }
 
     protected override CombinableActionData CombineGuaranteed(CombinableActionData other)
     {
-        var otherData = (ToleranceActionData)other;
+        var otherTolerance = (ToleranceActionData)other;
 
-        return new ToleranceActionData(OldTolerances, otherData.NewTolerances);
+        if (OldTolerances.EqualsApprox(otherTolerance.NewTolerances))
+            return new ToleranceActionData(NewTolerances, otherTolerance.OldTolerances);
+
+        return new ToleranceActionData(otherTolerance.NewTolerances, OldTolerances);
     }
 
     protected override void MergeGuaranteed(CombinableActionData other)
     {
-        var data = (ToleranceActionData)other;
+        var otherTolerance = (ToleranceActionData)other;
 
-        // TODO: does this need to check if this should maybe swap instead the old?
+        if (OldTolerances.EqualsApprox(otherTolerance.NewTolerances))
+        {
+            // Handle cancels out
+            if (NewTolerances.EqualsApprox(otherTolerance.OldTolerances))
+            {
+                NewTolerances = otherTolerance.NewTolerances;
+                return;
+            }
 
-        NewTolerances = data.NewTolerances;
+            OldTolerances = otherTolerance.OldTolerances;
+            return;
+        }
+
+        NewTolerances = otherTolerance.NewTolerances;
     }
 }

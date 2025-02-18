@@ -56,6 +56,9 @@ public partial class TolerancesEditorSubComponent : EditorComponentBase<ICellEdi
     [ExportCategory("Style")]
     private LabelSettings badValueFont = null!;
 
+    [Export]
+    private LabelSettings perfectValueFont = null!;
+
     private LabelSettings? originalTemperatureFont;
     private LabelSettings? originalPressureFont;
 #pragma warning restore CA2213
@@ -85,6 +88,8 @@ public partial class TolerancesEditorSubComponent : EditorComponentBase<ICellEdi
     {
         originalTemperatureFont = temperatureMinLabel.LabelSettings;
         originalPressureFont = pressureMinLabel.LabelSettings;
+
+        pressureToleranceRangeSlider.MaxValue = Constants.TOLERANCE_PRESSURE_RANGE_MAX;
     }
 
     public override void Init(ICellEditorData owningEditor, bool fresh)
@@ -188,13 +193,15 @@ public partial class TolerancesEditorSubComponent : EditorComponentBase<ICellEdi
         reusableTolerances.CopyFrom(CurrentTolerances);
         reusableTolerances.PreferredTemperature = value;
 
+        automaticallyChanging = true;
+
         if (!TriggerChangeIfPossible())
         {
             // Rollback value if not enough MP
-            automaticallyChanging = true;
             temperatureSlider.Value = CurrentTolerances.PreferredTemperature;
-            automaticallyChanging = false;
         }
+
+        automaticallyChanging = false;
     }
 
     private void OnTemperatureToleranceRangeSliderChanged(float value)
@@ -206,12 +213,14 @@ public partial class TolerancesEditorSubComponent : EditorComponentBase<ICellEdi
         reusableTolerances.CopyFrom(CurrentTolerances);
         reusableTolerances.TemperatureTolerance = value;
 
+        automaticallyChanging = true;
+
         if (!TriggerChangeIfPossible())
         {
-            automaticallyChanging = true;
             temperatureToleranceRangeSlider.Value = CurrentTolerances.TemperatureTolerance;
-            automaticallyChanging = false;
         }
+
+        automaticallyChanging = false;
     }
 
     private void OnPressureSliderChanged(float value)
@@ -223,12 +232,14 @@ public partial class TolerancesEditorSubComponent : EditorComponentBase<ICellEdi
         reusableTolerances.CopyFrom(CurrentTolerances);
         reusableTolerances.PreferredPressure = value;
 
+        automaticallyChanging = true;
+
         if (!TriggerChangeIfPossible())
         {
-            automaticallyChanging = true;
             pressureSlider.Value = CurrentTolerances.PreferredPressure;
-            automaticallyChanging = false;
         }
+
+        automaticallyChanging = false;
     }
 
     private void OnPressureToleranceRangeSliderChanged(float value)
@@ -245,13 +256,15 @@ public partial class TolerancesEditorSubComponent : EditorComponentBase<ICellEdi
         reusableTolerances.PressureMinimum = Math.Max(min, 0);
         reusableTolerances.PressureMaximum = max;
 
+        automaticallyChanging = true;
+
         if (!TriggerChangeIfPossible())
         {
-            automaticallyChanging = true;
             CalculateToleranceRangeForGUI();
             pressureToleranceRangeSlider.Value = currentPressureToleranceRange;
-            automaticallyChanging = false;
         }
+
+        automaticallyChanging = false;
     }
 
     private void OnOxygenResistanceSliderChanged(float value)
@@ -263,12 +276,14 @@ public partial class TolerancesEditorSubComponent : EditorComponentBase<ICellEdi
         reusableTolerances.CopyFrom(CurrentTolerances);
         reusableTolerances.OxygenResistance = value;
 
+        automaticallyChanging = true;
+
         if (!TriggerChangeIfPossible())
         {
-            automaticallyChanging = true;
             oxygenResistanceSlider.Value = CurrentTolerances.OxygenResistance;
-            automaticallyChanging = false;
         }
+
+        automaticallyChanging = false;
     }
 
     private void OnUVResistanceSliderChanged(float value)
@@ -280,12 +295,14 @@ public partial class TolerancesEditorSubComponent : EditorComponentBase<ICellEdi
         reusableTolerances.CopyFrom(CurrentTolerances);
         reusableTolerances.UVResistance = value;
 
+        automaticallyChanging = true;
+
         if (!TriggerChangeIfPossible())
         {
-            automaticallyChanging = true;
             uvResistanceSlider.Value = CurrentTolerances.UVResistance;
-            automaticallyChanging = false;
         }
+
+        automaticallyChanging = false;
     }
 
     private bool TriggerChangeIfPossible()
@@ -353,8 +370,24 @@ public partial class TolerancesEditorSubComponent : EditorComponentBase<ICellEdi
         if (Math.Abs(patchTemperature - CurrentTolerances.PreferredTemperature) >
             CurrentTolerances.TemperatureTolerance)
         {
-            temperatureMinLabel.LabelSettings = badValueFont;
-            temperatureMaxLabel.LabelSettings = badValueFont;
+            // Mark the direction that is bad as the one having the problem to make it easier for the player to see
+            // what is wrong
+            if (patchTemperature > CurrentTolerances.PreferredTemperature)
+            {
+                temperatureMaxLabel.LabelSettings = badValueFont;
+                temperatureMinLabel.LabelSettings = originalTemperatureFont;
+            }
+            else
+            {
+                temperatureMinLabel.LabelSettings = badValueFont;
+                temperatureMaxLabel.LabelSettings = originalTemperatureFont;
+            }
+        }
+        else if (Math.Abs(CurrentTolerances.TemperatureTolerance) < Constants.TOLERANCE_PERFECT_THRESHOLD_TEMPERATURE)
+        {
+            // Perfectly adapted
+            temperatureMinLabel.LabelSettings = perfectValueFont;
+            temperatureMaxLabel.LabelSettings = perfectValueFont;
         }
         else
         {
@@ -373,8 +406,22 @@ public partial class TolerancesEditorSubComponent : EditorComponentBase<ICellEdi
 
         if (Math.Abs(patchPressure - CurrentTolerances.PreferredPressure) > currentPressureToleranceRange)
         {
-            pressureMinLabel.LabelSettings = badValueFont;
-            pressureMaxLabel.LabelSettings = badValueFont;
+            if (patchPressure > CurrentTolerances.PreferredPressure)
+            {
+                pressureMaxLabel.LabelSettings = badValueFont;
+                pressureMinLabel.LabelSettings = originalPressureFont;
+            }
+            else
+            {
+                pressureMinLabel.LabelSettings = badValueFont;
+                pressureMaxLabel.LabelSettings = originalPressureFont;
+            }
+        }
+        else if (Math.Abs(CurrentTolerances.PressureMaximum - CurrentTolerances.PressureMinimum) <
+                 Constants.TOLERANCE_PERFECT_THRESHOLD_PRESSURE)
+        {
+            pressureMinLabel.LabelSettings = perfectValueFont;
+            pressureMaxLabel.LabelSettings = perfectValueFont;
         }
         else
         {
@@ -410,6 +457,15 @@ public partial class TolerancesEditorSubComponent : EditorComponentBase<ICellEdi
     private void DoToleranceChangeAction(ToleranceActionData data)
     {
         CurrentTolerances.CopyFrom(data.NewTolerances);
+
+        if (!automaticallyChanging)
+        {
+            // Need to reapply state to the sliders
+            automaticallyChanging = true;
+            ApplyCurrentValuesToGUI();
+            automaticallyChanging = false;
+        }
+
         OnChanged();
     }
 
@@ -417,6 +473,15 @@ public partial class TolerancesEditorSubComponent : EditorComponentBase<ICellEdi
     private void UndoToleranceChangeAction(ToleranceActionData data)
     {
         CurrentTolerances.CopyFrom(data.OldTolerances);
+
+        if (!automaticallyChanging)
+        {
+            // Need to reapply state to the sliders
+            automaticallyChanging = true;
+            ApplyCurrentValuesToGUI();
+            automaticallyChanging = false;
+        }
+
         OnChanged();
     }
 }

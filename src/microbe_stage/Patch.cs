@@ -491,6 +491,17 @@ public class Patch
         var minPressure = Constants.TOLERANCE_INITIAL_PRESSURE_MIN_FRACTION * pressure;
         var maxPressure = Constants.TOLERANCE_INITIAL_PRESSURE_MAX_FRACTION * pressure;
 
+        // Don't give too big initial tolerance range
+        var overshoot = (maxPressure - minPressure) - Constants.TOLERANCE_PRESSURE_RANGE_MAX;
+        if (overshoot > 0)
+        {
+            minPressure += overshoot / 2;
+            maxPressure -= overshoot / 2;
+        }
+
+        // Ensure pressure is within the middle of the range
+        pressure = (minPressure + maxPressure) / 2;
+
         var result = new EnvironmentalTolerances
         {
             OxygenResistance = GetAmbientCompound(Compound.Oxygen, CompoundAmountType.Biome),
@@ -530,7 +541,7 @@ public class Patch
     }
 
     /// <summary>
-    ///   Runs <see cref="ApplyVisibility"/> on all of the patches neighbours
+    ///   Runs <see cref="ApplyVisibility"/> on all the patches neighbours
     /// </summary>
     /// <param name="visibility">The visibility to be set</param>
     public void ApplyVisibilityToNeighbours(MapElementVisibility visibility)
