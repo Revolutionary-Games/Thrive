@@ -246,7 +246,7 @@
               "ConvexShapePath": "res://assets/models/Iron4.shape"
             }
           ],
-          "Density": 0.00005,
+          "Density": 0.00008,
           "Dissolves": true,
           "Radius": 1,
           "ChunkScale": 1,
@@ -274,7 +274,7 @@
               "ConvexShapePath": "res://assets/models/IronRockLarge2.shape"
             }
           ],
-          "Density": 0.00008,
+          "Density": 0.00006,
           "Dissolves": true,
           "Radius": 10,
           "ChunkScale": 1,
@@ -302,13 +302,13 @@
               "ConvexShapePath": "res://assets/models/SulfurChunkAluniteSmall1.shape"
             }
           ],
-          "Density": 0.000045,
+          "Density": 0.00005,
           "Dissolves": true,
           "Radius": 3,
           "ChunkScale": 1,
           "PhysicsDensity": 2500,
           "Size": 10,
-          "VentAmount": 0.3,
+          "VentAmount": 0.7,
           "Damages": 0,
           "DeleteOnTouch": false,
           "Compounds": {
@@ -325,13 +325,13 @@
               "ConvexShapePath": "res://assets/models/SulfurChunkAluniteMedium1.shape"
             }
           ],
-          "Density": 0.00002,
+          "Density": 0.000015,
           "Dissolves": true,
-          "Radius": 5,
+          "Radius": 7,
           "ChunkScale": 1,
           "PhysicsDensity": 1500,
-          "Size": 40,
-          "VentAmount": 0.8,
+          "Size": 55,
+          "VentAmount": 1.6,
           "Damages": 0,
           "DeleteOnTouch": false,
           "Compounds": {
@@ -1850,13 +1850,13 @@
               "ConvexShapePath": "res://assets/models/SulfurChunkAluniteSmall1.shape"
             }
           ],
-          "Density": 0.000040,
+          "Density": 0.00006,
           "Dissolves": true,
           "Radius": 3,
           "ChunkScale": 1,
           "PhysicsDensity": 2500,
           "Size": 10,
-          "VentAmount": 0.3,
+          "VentAmount": 0.7,
           "Damages": 0,
           "DeleteOnTouch": false,
           "Compounds": {
@@ -1871,15 +1871,19 @@
             {
               "ScenePath": "res://assets/models/SulfurChunkAluniteMedium1.tscn",
               "ConvexShapePath": "res://assets/models/SulfurChunkAluniteMedium1.shape"
+            },
+            {
+              "ScenePath": "res://assets/models/SulfurChunkAluniteMedium2.tscn",
+              "ConvexShapePath": "res://assets/models/SulfurChunkAluniteMedium2.shape"
             }
           ],
-          "Density": 0.00002,
+          "Density": 0.000018,
           "Dissolves": true,
-          "Radius": 5,
+          "Radius": 7,
           "ChunkScale": 1,
           "PhysicsDensity": 1500,
-          "Size": 40,
-          "VentAmount": 0.8,
+          "Size": 55,
+          "VentAmount": 1.6,
           "Damages": 0,
           "DeleteOnTouch": false,
           "Compounds": {
@@ -2442,7 +2446,7 @@
           "ChunkScale": 1,
           "PhysicsDensity": 2500,
           "Size": 10,
-          "VentAmount": 0.3,
+          "VentAmount": 0.7,
           "Damages": 0,
           "DeleteOnTouch": false,
           "Compounds": {
@@ -2461,11 +2465,11 @@
           ],
           "Density": 0.000005,
           "Dissolves": true,
-          "Radius": 5,
+          "Radius": 7,
           "ChunkScale": 1,
           "PhysicsDensity": 1500,
-          "Size": 40,
-          "VentAmount": 0.8,
+          "Size": 55,
+          "VentAmount": 1.6,
           "Damages": 0,
           "DeleteOnTouch": false,
           "Compounds": {
@@ -2742,7 +2746,7 @@
           "ChunkScale": 1,
           "PhysicsDensity": 2500,
           "Size": 10,
-          "VentAmount": 0.3,
+          "VentAmount": 0.7,
           "Damages": 0,
           "DeleteOnTouch": false,
           "Compounds": {
@@ -2761,11 +2765,11 @@
           ],
           "Density": 0.000015,
           "Dissolves": true,
-          "Radius": 5,
+          "Radius": 7,
           "ChunkScale": 1,
           "PhysicsDensity": 1500,
-          "Size": 40,
-          "VentAmount": 0.8,
+          "Size": 55,
+          "VentAmount": 1.6,
           "Damages": 0,
           "DeleteOnTouch": false,
           "Compounds": {
