@@ -1102,16 +1102,18 @@ msgstr "繼續遊戲"
 
 msgid "CONTINUE_TO_PROTOTYPES"
 msgstr ""
-"您已經到達 Thrive「已完成」部分的結尾。\n"
-"如果您願意，您可以繼續研究遊戲中包含的後期階段原型。這些可能非常不完整，使用"
-"佔位符圖形，並且總體上非常粗糙。這些是包含在遊戲內的一部分，以展示遊戲未來的"
-"潛在方向以及我們對各個階段如何連接的整體願景。\n"
+"[b]您已經到達 Thrive「已完成」部分的結尾。[/b]\n"
 "\n"
-"在大多數原型中，如果繼續或繼續後返回，您將無法保存。如果您想返回此階段，請在"
-"繼續之前進行保存。\n"
+"如果您願意，您可以繼續研究遊戲中包含的[b]後期階段原型[/b]。\n"
 "\n"
-"原型中對控制器支援也不如先前階段完整。如果您選擇繼續，請理解後期階段只是原"
-"型，請不要抱怨它們有多不完整。"
+"這些可能非常不完整，使用佔位符圖形，並且總體上非常粗糙。這些是展示遊戲未來的"
+"潛在方向以及我們對各個階段如何連接的整體願景的一部分。\n"
+"\n"
+"如果您繼續，在大多數原型中，[b]您將無法保存[/b]或返回先前階段。如果您想返回"
+"[i]此[/i]階段，請在繼續之前進行[b]保存[/b]。\n"
+"\n"
+"原型中對控制器的支援也未完成。如果您選擇繼續，請理解後期階段只是原型，請不要"
+"抱怨它們有多不完整。"
 
 msgid "CONTINUE_TO_PROTOTYPES_PROMPT"
 msgstr "進入開發中的階段原型？"
@@ -1785,12 +1787,10 @@ msgid "EASTEREGG_MESSAGE_12"
 msgstr "儘管那些藍色細胞。"
 
 msgid "EASTEREGG_MESSAGE_13"
-msgstr ""
-"小提示：生物群系不僅僅是背景圖不同，不同生物群系的化合物有時會以不同的速率產"
-"生。"
+msgstr "如果您的細胞有 150 格大小，您甚至可以吞噬大型鐵塊！"
 
 msgid "EASTEREGG_MESSAGE_14"
-msgstr "小提示：鞭毛越多移動越快，但也會消耗更多的 ATP"
+msgstr "小知識：地球上有超過 8000 種纖毛蟲。"
 
 msgid "EASTEREGG_MESSAGE_15"
 msgstr "小提示：您可以吞下大塊的細胞、鐵或其他東西。"
@@ -1799,15 +1799,17 @@ msgid "EASTEREGG_MESSAGE_16"
 msgstr "小提示：演化細胞核前請做好準備。這東西很貴！無論是維護或前期成本方面。"
 
 msgid "EASTEREGG_MESSAGE_17"
-msgstr "小知識：您知道地球上有超過 8000 種纖毛蟲嗎？"
+msgstr ""
+"小知識：變形蟲用由細胞質構成的「腿」——偽足——來捕食與捕捉獵物，我們希望最終在 "
+"Thrive 中也能擁有這些。"
 
 msgid "EASTEREGG_MESSAGE_18"
 msgstr ""
-"小知識：喇叭屬是一種纖毛蟲，它們可以伸展自身並用一種喇叭狀的嘴捕捉獵物，透過"
-"纖毛產生水流來吸引獵物。"
+"微生物可能比看起來的更強大；它們可能看起來很小，但其中一些可以鑽進您的身體並"
+"殺死您！"
 
 msgid "EASTEREGG_MESSAGE_2"
-msgstr "小提示：如果您反應夠快，您可以用自己的毒素將其它毒素推開。"
+msgstr "首個可玩的遊戲原型之一是由我們出色的程式設計師 Untrustedlife 製作的！"
 
 msgid "EASTEREGG_MESSAGE_3"
 msgstr ""
@@ -4305,11 +4307,9 @@ msgstr ""
 msgid "NUMLOCK"
 msgstr "Num Lock"
 
-#, fuzzy
 msgid "NUTRIENT_COST_TOOLTIP"
 msgstr ""
-"切換衝刺模式。衝刺時細胞移動得更快，但會消耗更多的 ATP，隨著壓力增加會消耗更"
-"多的 ATP。"
+"此處顯示您的細胞分裂需要多少化合物。數值越高意味著繁殖需要更多的時間與努力。"
 
 msgid "N_A"
 msgstr "N/A"
@@ -4543,9 +4543,8 @@ msgstr "氧"
 msgid "OXYGEN_INHIBITOR_SYNTHESIS"
 msgstr "氧抑制劑合成"
 
-#, fuzzy
 msgid "OXYGEN_RESISTANCE"
-msgstr "毒素抗性"
+msgstr "氧抗性"
 
 #, fuzzy
 msgid "OXYGEN_TOLERANCE_TOOLTIP"
@@ -4706,9 +4705,8 @@ msgstr "/s"
 msgid "PHOSPHATE"
 msgstr "磷酸鹽"
 
-#, fuzzy
 msgid "PHOSPHATES_COST"
-msgstr "磷酸鹽"
+msgstr "磷酸鹽成本："
 
 msgid "PHOTOSYNTHESIS"
 msgstr "光合作用"
@@ -5817,14 +5815,13 @@ msgstr "造訪我們的 Patreon 頁面"
 msgid "TESTING_TEAM"
 msgstr "測試團隊"
 
-#, fuzzy
 msgid "THANKS_FOR_BUYING_THRIVE_2"
 msgstr ""
-"感謝您購買此 Thrive 發行來支持 Thrive 開發！\n"
+"感謝您從 [color=#3796e1][url={0}]{1}[/url][/color] 購買此 Thrive 開發版來支"
+"持 Thrive 開發！\n"
 "\n"
-"如果您尚未購買此遊戲，請從[color=#3796e1][url={0}]此處[/url][/color]購買遊戲"
-"或查看我們的[color=#3796e1][url=https ://revolutionarygamesstudio.com/"
-"releases/]網站[/url][/color]。\n"
+"Thrive 的開發速度取決於我們所獲得的支持。您可以從[color=#3796e1][url={2}]我們"
+"的網站[/url][/color]或透過螢幕左下角連結的社交媒體了解更多資訊。\n"
 "\n"
 "如果您想在 Thrive 啟動之前看到 Thrive 啟動器，您可以使用主選單中的按鈕退出到"
 "啟動器，然後在啟動器選項中停用無縫模式。"
@@ -5844,37 +5841,38 @@ msgstr "理論團隊"
 msgid "THERMOPLAST"
 msgstr "熱能體"
 
-#, fuzzy
 msgid "THERMOPLAST_DESCRIPTION"
 msgstr ""
 "熱能體是一種雙層膜結構，包含在膜囊中堆疊在一起的熱敏色素。它是一種被其真核宿"
-"主同化的原核生物。熱能體中的色素能夠利用周圍環境的熱能梯度產生能量，從水中生"
-"產[thrive:compound type=\"atp\"][/thrive:compound]，此過程被稱為[b]熱合成[/"
-"b]。其[thrive:compound type=\"atp\"][/thrive:compound] 生產速率與[thrive:"
-"compound type=\"temperature\"][/thrive:compound] 成正比。"
+"主同化的原核生物。熱能體中的色素能夠利用周圍環境的[thrive:compound "
+"type=\"temperature\"][/thrive:compound] 上升梯度生產能量，從水中生產[thrive:"
+"compound type=\"atp\"][/thrive:compound]，此過程被稱為[b]熱合成[/b]。其"
+"[thrive:compound type=\"atp\"][/thrive:compound] 生產速率與[thrive:compound "
+"type=\"temperature\"][/thrive:compound] 的變化量成正比。"
 
-#, fuzzy
 msgid "THERMOPLAST_PROCESSES_DESCRIPTION"
 msgstr ""
 "利用溫度梯度生產[thrive:compound type=\"atp\"][/thrive:compound]。速率與"
-"[thrive:compound type=\"temperature\"][/thrive:compound] 成正比。"
+"[thrive:compound type=\"temperature\"][/thrive:compound] 的上升梯度成正比。使"
+"用[b]熱視覺[/b]來找出熱區域與冷區域。"
 
 msgid "THERMOSYNTHASE"
 msgstr "熱合成酶"
 
-#, fuzzy
 msgid "THERMOSYNTHASE_DESCRIPTION"
 msgstr ""
-"熱合成酶是一種利用熱對流改變其形式的蛋白質，使其在受熱時折疊並與 ADP 結合，然"
-"後在降溫時展開並生成[thrive:compound type=\"atp\"][/thrive:compound]，此過程"
-"被稱為[b]熱合成[/b]。其[thrive:compound type=\"atp\"][/thrive:compound] 生產"
-"速率與[thrive:compound type=\"temperature\"][/thrive:compound] 成正比。"
+"熱合成酶是一種利用熱對流改變其形式的蛋白質，使其在受熱時折疊並與 ADP 結合，將"
+"其轉換為[thrive:compound type=\"atp\"][/thrive:compound]，此過程被稱為[b]熱合"
+"成[/b]。然後在冷卻時展開，當[thrive:compound type=\"temperature\"][/thrive:"
+"compound] 再次上升時，它會重複此循環。其[thrive:compound type=\"atp\"][/"
+"thrive:compound] 生產速率與[thrive:compound type=\"temperature\"][/thrive:"
+"compound] 的變化量成正比。"
 
-#, fuzzy
 msgid "THERMOSYNTHASE_PROCESSES_DESCRIPTION"
 msgstr ""
 "利用溫度梯度生產[thrive:compound type=\"atp\"][/thrive:compound]。速率與"
-"[thrive:compound type=\"temperature\"][/thrive:compound] 成正比。"
+"[thrive:compound type=\"temperature\"][/thrive:compound] 的上升梯度成正比。使"
+"用[b]熱視覺[/b]來找出熱區域與冷區域。"
 
 msgid "THERMOSYNTHESIS"
 msgstr "熱合成"
@@ -6028,11 +6026,8 @@ msgstr "切換 FPS 顯示"
 msgid "TOGGLE_FULLSCREEN"
 msgstr "切換全螢幕"
 
-#, fuzzy
 msgid "TOGGLE_HEAT_VIEW_TOOLTIP"
-msgstr ""
-"切換吞噬模式以吞噬各種碎塊\n"
-"以及較小的生物體，讓活躍時能有更多的 ATP 使用"
+msgstr "在正常視野與熱視野之間切換"
 
 msgid "TOGGLE_HUD_HIDE"
 msgstr "切換 HUD"
@@ -6056,30 +6051,28 @@ msgid "TOGGLE_UNBINDING"
 msgstr "切換解散模式"
 
 msgid "TOLERANCES_TOO_HIGH_PRESSURE"
-msgstr ""
+msgstr "偏好壓力過高（超出 {0}）"
 
 msgid "TOLERANCES_TOO_HIGH_TEMPERATURE"
-msgstr ""
+msgstr "偏好溫度過高（超出 {0}）"
 
 msgid "TOLERANCES_TOO_LOW_OXYGEN_PROTECTION"
-msgstr ""
+msgstr "氧保護過低，需要提高 {0}%"
 
-#, fuzzy
 msgid "TOLERANCES_TOO_LOW_PRESSURE"
-msgstr "無操作壓力"
+msgstr "偏好壓力過低（不足 {0}）"
 
 msgid "TOLERANCES_TOO_LOW_TEMPERATURE"
-msgstr ""
+msgstr "偏好溫度過低（不足 {0}）"
 
-#, fuzzy
 msgid "TOLERANCES_TOO_LOW_UV_PROTECTION"
-msgstr "{0}：+{1} ATP"
+msgstr "紫外線（UV）保護過低，需要提高 {0}%"
 
 msgid "TOLERANCES_UNSUITABLE_DEBUFFS"
-msgstr ""
+msgstr "不適應當前的環境條件。減益：滲透調節 {0}%，代謝速度 {1}%，生命值 {2}%"
 
 msgid "TOLERANCE_RANGE_LABEL"
-msgstr ""
+msgstr "靈活度："
 
 msgid "TOOLS"
 msgstr "工具"
@@ -6652,9 +6645,8 @@ msgstr "手動設定本機端執行器執行緒數"
 msgid "USE_VIRTUAL_WINDOW_SIZE"
 msgstr "使用虛擬視窗大小"
 
-#, fuzzy
 msgid "UV_PROTECTION"
-msgstr "Auto-Evo 預測"
+msgstr "紫外線（UV）抗性"
 
 #, fuzzy
 msgid "UV_TOLERANCE_TOOLTIP"
@@ -8197,70 +8189,34 @@ msgstr ""
 "\n"
 "以下頁面解釋了各種機制。請隨意瀏覽頁面以獲取遊戲提示與幫助。"
 
-#, fuzzy
 msgid "WIKI_MELANOSOME_EFFECTS"
-msgstr ""
-"為[b]溶酶體[/b]配備[b]幾丁質酶[/b]或[b]纖維素酶[/b]，使細胞能夠分別消化具有"
-"[b]幾丁質膜[/b]或[b]纖維素膜[/b]的其他細胞。無法消化的細胞—那些不具備所需酵素"
-"的細胞—會立即被排出。\n"
-"\n"
-"除了基本屬性外，每個[b]溶酶體[/b]還貢獻：\n"
-"\n"
-"[indent]—   [b]+0.05[/b] 消化速度。被吞噬的物質會被更快消化。[/indent]\n"
-"[indent]—   [b]+4.5%[/b] 所選酶的消化效率。吞噬擁有該酵素對應細胞膜的細胞在被"
-"消化時會產生更多的化合物。[/indent]"
+msgstr "無效果。"
 
-#, fuzzy
 msgid "WIKI_MELANOSOME_INTRO"
-msgstr ""
-"含有消化酶。可以進行修改以改變其所含酶的類型。每個[b]溶酶體[/b]一次只能利用一"
-"種酶。酶加速並提高消化效率。\n"
-"\n"
-"[b]溶酶體[/b]是一種有膜細胞器，含有可以分解各種有機分子的水解酶。[b]溶酶體[/"
-"b]可讓細胞消化經由胞吞作用攝取的物質，並在稱為自噬的過程中清除細胞的廢物。"
+msgstr "[b]黑色素體[/b]進行[b]放射合成[/b]，透過黑色素吸收輻射能量。"
 
-#, fuzzy
 msgid "WIKI_MELANOSOME_MODIFICATIONS"
-msgstr ""
-"修改[b]溶酶體[/b]以選擇其包含的酶。預設情況下，它包含針對[b]單層膜[/b]與[b]雙"
-"層膜[/b]的[b]脂肪酶[/b]。\n"
-"\n"
-"[b]溶酶體[/b]可以包含以下之一：\n"
-"\n"
-"[indent]—   [b]幾丁質酶[/b]，其目標是[b]幾丁質膜[/b]。[/indent]\n"
-"[indent]—   [b]纖維素酶[/b]，其目標是[b]纖維素膜[/b]。[/indent]"
+msgstr "無修改。"
 
-#, fuzzy
 msgid "WIKI_MELANOSOME_PROCESSES"
-msgstr "無代謝過程。"
-
-#, fuzzy
-msgid "WIKI_MELANOSOME_REQUIREMENTS"
 msgstr ""
-"細胞必須有[b][color=#3796e1][url=thriveopedia:nucleus]細胞核[/url][/color][/"
-"b]才能演化出[b]溶酶體[/b]。\n"
+"[b]放射合成[/b]：[b]輻射[/b] File:RadiationIcon.png → [thrive:compound "
+"type=\"atp\"][/thrive:compound]\n"
 "\n"
-"如果在遊戲設定中啟用了細胞器升級，則[i]玩家細胞[/i]必須滿足以下條件中的[i]至"
-"少一個[/i]：\n"
-"\n"
-"[indent]—   到目前為止，在整個遊戲中至少吞噬了 [b]20[/b] 個細胞。[/indent]\n"
-"[indent]—   到目前為止，在整個遊戲中至少消化了 [b]10[/b] 個細胞。[/indent]"
+"利用放射性物質生產能量的方法。"
 
-#, fuzzy
+msgid "WIKI_MELANOSOME_REQUIREMENTS"
+msgstr "需要靠近放射性物質塊並受到輻射傷害"
+
 msgid "WIKI_MELANOSOME_SCIENTIFIC_BACKGROUND"
 msgstr "待定"
 
-#, fuzzy
 msgid "WIKI_MELANOSOME_STRATEGY"
 msgstr ""
-"對於吞噬獵物的細胞，通常建議演化至少兩種[b]溶酶體[/b]，設定一種使用[b]幾丁質"
-"酶[/b]，一種使用[b]纖維素酶[/b]。這樣，您的細胞就可以消化更多類型的獵物，否則"
-"這些獵物將堅不可摧。\n"
-"\n"
-"增加更多的[b]溶酶體[/b]以及酶的種類也是個好主意。提高消化速度可以防止攝入物質"
-"儲存空間不足的問題，提高消化效率使掠食作為一種策略更加可行。"
+"放射性岩塊雖然稀有，但蘊含豐富的能量。利用放射合成的建議玩法是準備充足的儲存"
+"空間或其他生存方式，以便在尋找下一塊放射性岩塊時維持生存。一旦發現，就能暫時"
+"獲得大量能量用於繁殖等活動。"
 
-#, fuzzy
 msgid "WIKI_MELANOSOME_UPGRADES"
 msgstr "無升級。"
 
@@ -9052,9 +9008,8 @@ msgstr "宏觀生物階段"
 msgid "WIKI_PAGE_MECHANICS_ROOT"
 msgstr "遊戲機制"
 
-#, fuzzy
 msgid "WIKI_PAGE_MELANOSOME"
-msgstr "溶酶體"
+msgstr "黑色素體"
 
 msgid "WIKI_PAGE_METABOLOSOMES"
 msgstr "代謝體"
@@ -9886,7 +9841,7 @@ msgid "WILL_YOU_THRIVE"
 msgstr "您能發展繁榮（Thrive）嗎？"
 
 msgid "WINDOWED"
-msgstr ""
+msgstr "視窗化"
 
 msgid "WIN_BOX_TITLE"
 msgstr "您已發展繁榮（Thrived）！"
@@ -9960,9 +9915,8 @@ msgstr "Xbox One"
 msgid "XBOX_SERIES"
 msgstr "Xbox Series X"
 
-#, fuzzy
 msgid "X_TWITTER_TOOLTIP"
-msgstr "造訪我們的 Twitter"
+msgstr "造訪我們的 X（舊稱 Twitter）檔案"
 
 msgid "YEARS"
 msgstr "年"
