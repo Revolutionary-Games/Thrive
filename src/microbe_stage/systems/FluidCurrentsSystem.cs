@@ -23,6 +23,7 @@ using World = DefaultEcs.World;
 [ReadsComponent(typeof(WorldPosition))]
 [RuntimeCost(8)]
 [JsonObject(MemberSerialization.OptIn)]
+[RunsOnMainThread]
 public sealed class FluidCurrentsSystem : AEntitySetSystem<float>
 {
     private const float DISTURBANCE_TIMESCALE = 1.000f;
@@ -84,7 +85,7 @@ public sealed class FluidCurrentsSystem : AEntitySetSystem<float>
         noiseCurrentsY = null!;
     }
 
-    public void SetGameWorld(GameWorld world)
+    public void SetWorld(GameWorld world)
     {
         gameWorld = world;
     }
