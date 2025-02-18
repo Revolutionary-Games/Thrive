@@ -354,6 +354,10 @@ public partial class ModalManager : NodeWithInput
     /// </remarks>
     private void OnParentLost(TopLevelContainer popup)
     {
+        // If parent is a modal, then ignore as it emits signal redundantly
+        if (originalParents[popup] is TopLevelContainer)
+            return;
+
         // Remove the original parent since the reference will now be invalid
         var popupWasInDictionary = originalParents.Remove(popup);
 
