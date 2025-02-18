@@ -788,9 +788,8 @@ public partial class CellEditorComponent
                     HorizontalAlignment = HorizontalAlignment.Center,
                     AutowrapMode = TextServer.AutowrapMode.WordSmart,
                     CustomMinimumSize = new Vector2(150, 0),
+                    LabelSettings = toleranceWarningsFont,
                 };
-
-                // TODO: proper text styling
 
                 warning.Text = text;
                 activeToleranceWarnings.Add(warning);
