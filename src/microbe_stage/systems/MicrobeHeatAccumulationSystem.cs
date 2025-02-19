@@ -10,6 +10,12 @@ using Godot;
 /// <summary>
 ///   Handles heating and cooling of microbes based on localised heat zones
 /// </summary>
+/// <remarks>
+///   <para>
+///     This has <see cref="RunsOnMainThreadAttribute"/> because <see cref="PreUpdate"/> reads a texture into an image.
+///     TODO: check if even reading an image is not safe from another thread
+///   </para>
+/// </remarks>
 [With(typeof(CompoundStorage))]
 [With(typeof(WorldPosition))]
 [With(typeof(OrganelleContainer))]
@@ -18,6 +24,7 @@ using Godot;
 [ReadsComponent(typeof(OrganelleContainer))]
 [RunsBefore(typeof(ProcessSystem))]
 [RunsAfter(typeof(MicrobePhysicsCreationAndSizeSystem))]
+[RunsOnMainThread]
 public class MicrobeHeatAccumulationSystem : AEntitySetSystem<float>
 {
     private readonly NoiseTexture2D noiseSource;
