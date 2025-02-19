@@ -37,12 +37,12 @@ shader_parameter/noiseMultiplier = 0.099
 shader_parameter/heat = ExtResource("5_jrgee")
 shader_parameter/noise = SubResource("NoiseTexture2D_d28l8")
 
-[node name="MicrobeStage" type="Node" node_paths=PackedStringArray("heatViewOverlay", "waterCurrentDisplay")]
+[node name="MicrobeStage" type="Node" node_paths=PackedStringArray("heatViewOverlay", "fluidCurrentDisplay")]
 process_priority = -1
 script = ExtResource("1")
 GuidanceLinePath = NodePath("World/GuidanceLine")
 heatViewOverlay = NodePath("World/PrimaryCamera/HeatGradientPlane")
-waterCurrentDisplay = NodePath("World/PrimaryCamera/WaterCurrentDisplay")
+fluidCurrentDisplay = NodePath("World/PrimaryCamera/FluidCurrentDisplay")
 PauseMenuPath = NodePath("PauseMenu")
 HUDRootPath = NodePath("MicrobeHUD")
 
@@ -57,7 +57,7 @@ transform = Transform3D(1, 0, 0, 0, -1.62921e-07, -1, 0, 1, -1.62921e-07, 0, 1.6
 visible = false
 material_override = SubResource("ShaderMaterial_pbi5n")
 
-[node name="WaterCurrentDisplay" parent="World/PrimaryCamera" instance=ExtResource("6_4kiki")]
+[node name="FluidCurrentDisplay" parent="World/PrimaryCamera" instance=ExtResource("6_4kiki")]
 
 [node name="DynamicallySpawned" type="Node" parent="World"]
 

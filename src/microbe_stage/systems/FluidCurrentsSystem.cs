@@ -26,6 +26,7 @@ using World = DefaultEcs.World;
 [RunsOnMainThread]
 public sealed class FluidCurrentsSystem : AEntitySetSystem<float>
 {
+    // The following constants should be the same as in CurrentsParticles.gdshader
     private const float DISTURBANCE_TIMESCALE = 1.000f;
     private const float CURRENTS_TIMESCALE = 1.000f / 500.0f;
     private const float CURRENTS_STRETCHING_MULTIPLIER = 1.0f / 10.0f;
@@ -114,8 +115,7 @@ public sealed class FluidCurrentsSystem : AEntitySetSystem<float>
         var currentsVelocity = new Vector2(Math.Abs(currentsX) > MIN_CURRENT_INTENSITY ? currentsX : 0.0f,
             Math.Abs(currentsY) > MIN_CURRENT_INTENSITY ? currentsY : 0.0f);
 
-        return (disturbancesVelocity * DISTURBANCE_TO_CURRENTS_RATIO) * speed +
-            (currentsVelocity * (1.0f - DISTURBANCE_TO_CURRENTS_RATIO)) * speed;
+        return currentsVelocity.Lerp(disturbancesVelocity, DISTURBANCE_TO_CURRENTS_RATIO);
     }
 
     protected override void PreUpdate(float delta)
