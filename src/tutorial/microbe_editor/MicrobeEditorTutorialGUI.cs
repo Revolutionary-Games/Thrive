@@ -437,12 +437,11 @@ public partial class MicrobeEditorTutorialGUI : Control, ITutorialGUI
         bool eitherVisible = atpBalanceIntroduction.Visible || negativeAtpBalanceTutorial.Visible;
         AtpBalanceBarHighlight.Visible = atpBalanceIntroduction.Visible;
 
-        // Force the scroll panel to scroll down
-        // This is done to show the ATP Balance Bar
-        // TODO: it seems like Godot doesn't have a scroll into view so we need to ensure that the scroll cannot be too
-        // much or too little ever
+        // Force the scroll panel to scroll down. This is done to show the ATP Balance Bar.
+        // It seems like Godot doesn't have a scroll into view, so we need to ensure that the scroll cannot be too
+        // much or too little ever.
         if (eitherVisible)
-            RightPanelScrollContainer.ScrollVertical = 500;
+            RightPanelScrollContainer.ScrollVertical = 150;
     }
 
     protected override void Dispose(bool disposing)
