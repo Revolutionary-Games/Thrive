@@ -33,7 +33,7 @@ public partial class MicrobeStage : CreatureStageBase<Entity, MicrobeWorldSimula
     private Node3D heatViewOverlay = null!;
 
     [Export]
-    private WaterCurrentDisplay waterCurrentDisplay = null!;
+    private FluidCurrentDisplay fluidCurrentDisplay = null!;
 
     private MicrobeTutorialGUI tutorialGUI = null!;
     private GuidanceLine guidanceLine = null!;
@@ -1072,7 +1072,7 @@ public partial class MicrobeStage : CreatureStageBase<Entity, MicrobeWorldSimula
 
         UpdatePatchLightLevelSettings();
 
-        waterCurrentDisplay.ApplyBiome(GameWorld.Map.CurrentPatch.BiomeTemplate);
+        fluidCurrentDisplay.ApplyBiome(GameWorld.Map.CurrentPatch.BiomeTemplate);
     }
 
     protected override void OnGameContinuedAsSpecies(Species newPlayerSpecies, Patch inPatch)
