@@ -6,7 +6,6 @@ using DefaultEcs;
 using DefaultEcs.System;
 using DefaultEcs.Threading;
 using Godot;
-using Godot.Collections;
 using Newtonsoft.Json;
 using World = DefaultEcs.World;
 
