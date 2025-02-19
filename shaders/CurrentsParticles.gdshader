@@ -17,6 +17,14 @@ uniform float speed;
 uniform float chaoticness;
 uniform float scale;
 
+// The following constants should be the same as in FluidCurrentsSystem.cs
+const float disturbanceTimescale = 1.0f;
+const float currentsTimescale = 1.0f / 500.0f;
+const float currentsStretchingMultiplier = 1.0f / 10.0f;
+const float disturbanceToCurrentsRatio = 0.15f;
+const float minCurrentIntensity = 0.4f;
+const float positionScaling = 0.9f;
+
 float rand_from_seed(inout uint seed) {
     int k;
     int s = int(seed);
@@ -78,34 +86,34 @@ void process() {
     vec2 current;
     {
         // The following should strictly conform to the formula in FluidCurrentSystem.cs
-        vec2 position = TRANSFORM[3].xz * 0.9f * scale;
+        vec2 position = TRANSFORM[3].xz * positionScaling * scale;
         
-        // TODO: move constants to uniforms
-        float timescale = 1.0f / 500.0f;
-        float ratio = 0.15f;
-        
-        float disturbanceX = texture(noiseDisturbancesX, vec3(position, gameTime * chaoticness) / 64.0f).r;
-        float disturbanceY = texture(noiseDisturbancesY, vec3(position, gameTime * chaoticness) / 64.0f).r;
+        float disturbanceX = texture(noiseDisturbancesX,
+            vec3(position, gameTime * chaoticness * disturbanceTimescale) / 64.0f).r;
+        float disturbanceY = texture(noiseDisturbancesY,
+            vec3(position, gameTime * chaoticness * disturbanceTimescale) / 64.0f).r;
         
         float currentX = texture(noiseCurrentsX,
-            vec3(position.x * 0.1f, position.y, gameTime * timescale * chaoticness) / 64.0f).r; 
+            vec3(position.x * currentsStretchingMultiplier, position.y, gameTime * currentsTimescale * chaoticness)
+            / 64.0f).r; 
         float currentY = texture(noiseCurrentsY,
-            vec3(position.x, position.y * 0.1f, gameTime * timescale * chaoticness) / 64.0f).r; 
+            vec3(position.x, position.y * currentsStretchingMultiplier, gameTime * currentsTimescale * chaoticness)
+            / 64.0f).r; 
         
         vec2 disturbances = vec2(disturbanceX, disturbanceY);
         vec2 currents = vec2(currentX, currentY);
         
-        if (abs(currents.x) < 0.4)
+        if (abs(currents.x) < minCurrentIntensity)
         {
             currents.x = 0.0f;
         }
         
-        if (abs(currents.y) < 0.4)
+        if (abs(currents.y) < minCurrentIntensity)
         {
             currents.y = 0.0f;
         }
         
-        current = mix(currents, disturbances, ratio) * 2.0f - 1.0f;
+        current = mix(currents, disturbances, disturbanceToCurrentsRatio) * 2.0f - 1.0f;
         current *= 10.0f * speed;
     }
     
