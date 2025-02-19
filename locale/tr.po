@@ -8,7 +8,7 @@ msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2025-02-18 15:43+0200\n"
-"PO-Revision-Date: 2025-02-19 08:13+0000\n"
+"PO-Revision-Date: 2025-02-19 08:57+0000\n"
 "Last-Translator: punctdan <yunusemredilek@hotmail.com>\n"
 "Language-Team: Turkish <https://translate.revolutionarygamesstudio.com/projects/thrive/thrive-game/tr/>\n"
 "Language: tr\n"
@@ -4912,7 +4912,7 @@ msgid "OXYGEN_RESISTANCE"
 msgstr "Oksijen Direnci"
 
 msgid "OXYGEN_TOLERANCE_TOOLTIP"
-msgstr "Zararlı etkilere maruz kalmadan önce hücrenizin oksijen kaynaklı hasarı ne kadar tolere edebileceğini gösterir. Eğer direncinize kıyasla çok fazla oksijen olan bir arazide bulunuyorsanız, negative etkilerle karşılaşırsınız."
+msgstr "Zararlı etkilere maruz kalmadan önce türünüzün oksijen kaynaklı hasarı ne kadar azaltabileceğini gösterir. Eğer direncinize kıyasla çok fazla oksijen olan bir arazide bulunuyorsanız, olumsuz etkilerle karşılaşırsınız."
 
 msgid "OXYTOXISOME_PROCESSES_DESCRIPTION"
 msgstr ""
@@ -5179,9 +5179,8 @@ msgstr "Basınç"
 msgid "PRESSURE_SHORT"
 msgstr "Bsnç."
 
-#, fuzzy
 msgid "PRESSURE_TOLERANCE_TOOLTIP"
-msgstr "Ana menüye dön"
+msgstr "Türünüzün tercih ettiği basınç ve onun etrafındaki hassasiyet aralığıdır. Bu aralığın dışında kalan koşullarda, türünüzün üzerinde birçok olumsuz etki olur. Kaydırma butonları ile, tercih edilen basıncı ve hassasiyeti değiştirin."
 
 msgid "PRESS_KEY_DOT_DOT_DOT"
 msgstr "Bir tuşa basın..."
@@ -6228,9 +6227,8 @@ msgstr "Sıcaklık"
 msgid "TEMPERATURE_SHORT"
 msgstr "Sıc."
 
-#, fuzzy
 msgid "TEMPERATURE_TOLERANCE_TOOLTIP"
-msgstr "Patreon sayfamızı ziyaret edin"
+msgstr "Türünüz tarafından tercih edilen sıcaklıktır. İdeal sıcaklığın etrafındaki hassasiyet aralığının dışında kalan koşullarda, hayatta kalmayı zorlaştıran olumsuz etkiler meydana gelir. Kaydırma butonlarını kullanarak oynamayı planladığınız arazilere uyum sağlayın."
 
 msgid "TESTING_TEAM"
 msgstr "Deneme Ekibi"
@@ -6515,7 +6513,7 @@ msgid "TOLERANCES_UNSUITABLE_DEBUFFS"
 msgstr "Mevcut çevresel koşullara uyum sağlayamaz. Ozmoregülasyon maliyeti: %{0}, biyoişlem hızı %{1}, sağlık %{2}"
 
 msgid "TOLERANCE_RANGE_LABEL"
-msgstr "Esneklik:"
+msgstr "Hassasiyet:"
 
 msgid "TOOLS"
 msgstr "Araçlar"
@@ -7181,18 +7179,8 @@ msgstr "Sanal pencere büyüklüğünü kullan"
 msgid "UV_PROTECTION"
 msgstr "UV Direnci"
 
-#, fuzzy
 msgid "UV_TOLERANCE_TOOLTIP"
-msgstr ""
-"Bu bölüm, mevcut hücrenin toplam ATP (enerji) tutarını gösterir.\n"
-"Hayatta kalmak için bu tutarın pozitif olması gerekir. Durağan hücreler, "
-"hareket haricindeki tutarı pozitif olarak sayabilir.\n"
-"Aşağıdaki açılan menü, hücre ATP üretmek için bazı kaynaklara sahip "
-"olmadığında neler olacağını incelemek için kullanılabilir.\n"
-"Örneğin, bazı hücreler yalnızca, aynı anda ATP üreten birden fazla bileşik "
-"türüne sahip olduğunda, pozitif bir ATP tutarı sağlayabilir.\n"
-"Bu tür hücreler ile oynamak daha zordur. Çünkü, hayatta kalmak için, bu "
-"hücrelerin birden fazla bileşik türünü aynı anda depolamaları gerekir."
+msgstr "Zararlı etkilere maruz kalmadan önce türünüzün morötesi radyasyona karşı ne kadar direnebileceğini gösterir. Eğer bulunduğunuz arazide çok fazla ışık varsa, direnç artana dek olumsuz etkilerle karşılaşırsınız."
 
 msgid "VACUOLE"
 msgstr "Koful"
