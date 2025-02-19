@@ -78,6 +78,9 @@ public partial class MicrobeEditorTutorialGUI : Control, ITutorialGUI
 
     [Export]
     private CustomWindow tolerancesTabTutorial = null!;
+
+    [Export]
+    private CustomWindow openTolerancesTabTutorial = null!;
 #pragma warning restore CA2213
 
     public MainGameState AssociatedGameState => MainGameState.MicrobeEditor;
@@ -380,6 +383,25 @@ public partial class MicrobeEditorTutorialGUI : Control, ITutorialGUI
             else
             {
                 tolerancesTabTutorial.Hide();
+            }
+        }
+    }
+
+    public bool OpenTolerancesTabTutorialVisible
+    {
+        get => openTolerancesTabTutorial.Visible;
+        set
+        {
+            if (value == openTolerancesTabTutorial.Visible)
+                return;
+
+            if (value)
+            {
+                openTolerancesTabTutorial.Show();
+            }
+            else
+            {
+                openTolerancesTabTutorial.Hide();
             }
         }
     }

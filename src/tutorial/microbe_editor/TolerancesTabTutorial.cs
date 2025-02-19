@@ -19,7 +19,6 @@ public class TolerancesTabTutorial : TutorialPhase
                     !overallState.TutorialActive())
                 {
                     Show();
-                    return true;
                 }
 
                 break;

@@ -10,7 +10,7 @@
 [ext_resource type="FontVariation" uid="uid://cqork3l186w1c" path="res://assets/fonts/variants/Jura-Bold.tres" id="9_jkhed"]
 [ext_resource type="PackedScene" path="res://src/gui_common/AddWindowReorderingSupportToSiblings.tscn" id="10"]
 
-[node name="MicrobeEditorTutorialGUI" type="Control" node_paths=PackedStringArray("tolerancesTabTutorial")]
+[node name="MicrobeEditorTutorialGUI" type="Control" node_paths=PackedStringArray("tolerancesTabTutorial", "openTolerancesTabTutorial")]
 process_mode = 3
 layout_mode = 3
 anchors_preset = 15
@@ -40,6 +40,7 @@ ModifyOrganelleTutorialPath = NodePath("ModifyOrganelleTutorial")
 AtpBalanceIntroductionPath = NodePath("AtpBalanceIntroduction")
 AtpBalanceBarHighlightPath = NodePath("AtpBalanceBarHighlight")
 tolerancesTabTutorial = NodePath("TolerancesTabTutorial")
+openTolerancesTabTutorial = NodePath("OpenTolerancesTabTutorial")
 
 [node name="AddWindowReorderingSupportToSiblings" parent="." instance=ExtResource("10")]
 anchors_preset = 0
@@ -513,6 +514,25 @@ offset_bottom = 299.0
 grow_horizontal = 0
 grow_vertical = 2
 Description = "TUTORIAL_MICROBE_EDITOR_TOLERANCES_TAB"
+ShowDelay = 0.4
+PreventsMouseCaptureWhileOpen = true
+
+[node name="OpenTolerancesTabTutorial" parent="." instance=ExtResource("8")]
+custom_minimum_size = Vector2(360, 300)
+layout_mode = 1
+anchors_preset = 6
+anchor_left = 1.0
+anchor_top = 0.5
+anchor_right = 1.0
+anchor_bottom = 0.5
+offset_left = -400.0
+offset_top = -147.0
+offset_right = -40.0
+offset_bottom = 153.0
+grow_horizontal = 0
+grow_vertical = 2
+Description = "TUTORIAL_MICROBE_EDITOR_OPEN_TOLERANCES"
+ShowDelay = 0.3
 PreventsMouseCaptureWhileOpen = true
 
 [connection signal="hidden" from="EditorEntryReport" to="." method="OnSpecificCloseClicked" binds= ["MicrobeEditorReport"]]
@@ -536,3 +556,4 @@ PreventsMouseCaptureWhileOpen = true
 [connection signal="hidden" from="AtpBalanceIntroduction" to="." method="OnSpecificCloseClicked" binds= ["AtpBalanceIntroduction"]]
 [connection signal="pressed" from="AtpBalanceIntroduction/ScrollContainer/VBoxContainer/Button" to="." method="OnSpecificCloseClicked" binds= ["AtpBalanceIntroduction"]]
 [connection signal="hidden" from="TolerancesTabTutorial" to="." method="OnSpecificCloseClicked" binds= ["TolerancesTabTutorial"]]
+[connection signal="hidden" from="OpenTolerancesTabTutorial" to="." method="OnSpecificCloseClicked" binds= ["OpenTolerancesTabTutorial"]]

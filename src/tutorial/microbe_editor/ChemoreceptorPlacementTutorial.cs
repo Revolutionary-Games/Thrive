@@ -3,7 +3,7 @@
 using System;
 
 /// <summary>
-///   Notifies the player about the chemoreceptor
+///   Notifies the player about the chemoreceptor existing
 /// </summary>
 public class ChemoreceptorPlacementTutorial : EditorEntryCountingTutorial
 {
@@ -17,7 +17,7 @@ public class ChemoreceptorPlacementTutorial : EditorEntryCountingTutorial
 
     public override string ClosedByName => "ChemoreceptorPlacementTutorial";
 
-    protected override int TriggersOnNthEditorSession => 4;
+    protected override int TriggersOnNthEditorSession => 5;
 
     public override void ApplyGUIState(MicrobeEditorTutorialGUI gui)
     {
