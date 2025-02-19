@@ -10,6 +10,11 @@ public partial class FluidCurrentDisplay : GpuParticles3D
     private ShaderMaterial material = null!;
 #pragma warning restore CA2213
 
+    private StringName gameTimeParameterName = new StringName("gameTime");
+    private StringName speedParameterName = new StringName("speed");
+    private StringName chaoticnessParameterName = new StringName("chaoticness");
+    private StringName scaleParameterName = new StringName("scale");
+
     private float time = 0.0f;
 
     public override void _Ready()
@@ -30,14 +35,27 @@ public partial class FluidCurrentDisplay : GpuParticles3D
             time += (float)delta;
 
             // TODO: make those into StringNames
-            material.SetShaderParameter("gameTime", time);
+            material.SetShaderParameter(gameTimeParameterName, time);
         }
     }
 
     public void ApplyBiome(Biome biome)
     {
-        material.SetShaderParameter("speed", biome.WaterCurrentSpeed);
-        material.SetShaderParameter("chaoticness", biome.WaterCurrentChaoticness);
-        material.SetShaderParameter("scale", biome.WaterCurrentScale);
+        material.SetShaderParameter(speedParameterName, biome.WaterCurrentSpeed);
+        material.SetShaderParameter(chaoticnessParameterName, biome.WaterCurrentChaoticness);
+        material.SetShaderParameter(scaleParameterName, biome.WaterCurrentScale);
+    }
+
+    protected override void Dispose(bool disposing)
+    {
+        if (disposing)
+        {
+            gameTimeParameterName.Dispose();
+            speedParameterName.Dispose();
+            chaoticnessParameterName.Dispose();
+            scaleParameterName.Dispose();
+        }
+
+        base.Dispose(disposing);
     }
 }
