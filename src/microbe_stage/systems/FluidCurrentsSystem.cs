@@ -115,7 +115,7 @@ public sealed class FluidCurrentsSystem : AEntitySetSystem<float>
         var currentsVelocity = new Vector2(Math.Abs(currentsX) > MIN_CURRENT_INTENSITY ? currentsX : 0.0f,
             Math.Abs(currentsY) > MIN_CURRENT_INTENSITY ? currentsY : 0.0f);
 
-        return currentsVelocity.Lerp(disturbancesVelocity, DISTURBANCE_TO_CURRENTS_RATIO);
+        return currentsVelocity.Lerp(disturbancesVelocity, DISTURBANCE_TO_CURRENTS_RATIO) * speed;
     }
 
     protected override void PreUpdate(float delta)
@@ -133,12 +133,13 @@ public sealed class FluidCurrentsSystem : AEntitySetSystem<float>
             noiseWidth = disturbancesX[0].GetWidth();
             noiseHeight = disturbancesY[0].GetHeight();
 
-            noiseDisturbancesXImage = new Image[noiseWidth];
-            noiseDisturbancesYImage = new Image[noiseWidth];
-            noiseCurrentsXImage = new Image[noiseWidth];
-            noiseCurrentsYImage = new Image[noiseWidth];
+            int noiseDepth = noiseDisturbancesX.Depth;
+            noiseDisturbancesXImage = new Image[noiseDepth];
+            noiseDisturbancesYImage = new Image[noiseDepth];
+            noiseCurrentsXImage = new Image[noiseDepth];
+            noiseCurrentsYImage = new Image[noiseDepth];
 
-            for (int i = 0; i < noiseWidth; ++i)
+            for (int i = 0; i < noiseDepth; ++i)
             {
                 noiseDisturbancesXImage[i] = disturbancesX[i];
                 noiseDisturbancesYImage[i] = disturbancesY[i];
