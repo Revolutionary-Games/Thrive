@@ -1,5 +1,4 @@
-﻿using System;
-using Godot;
+﻿using Godot;
 
 /// <summary>
 ///   Displays fluid currents in the microbe stage

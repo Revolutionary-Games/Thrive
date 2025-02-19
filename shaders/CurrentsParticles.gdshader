@@ -98,7 +98,7 @@ void process() {
             / 64.0f).r; 
         float currentY = texture(noiseCurrentsY,
             vec3(position.x, position.y * currentsStretchingMultiplier, gameTime * currentsTimescale * chaoticness)
-            / 64.0f).r; 
+            / 64.0f).r;
         
         vec2 disturbances = vec2(disturbanceX, disturbanceY);
         vec2 currents = vec2(currentX, currentY);
@@ -117,7 +117,7 @@ void process() {
         current *= 10.0f * speed;
     }
     
-    VELOCITY = vec3(current.x, 0.0f, current.y);
+    VELOCITY = mix(vec3(current.x, 0.0f, current.y), VELOCITY, 1.0f - DELTA);
 
     TRANSFORM[3].xyz += VELOCITY * DELTA;
 
