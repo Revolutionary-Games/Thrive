@@ -104,6 +104,11 @@ public enum TutorialEventType
     MicrobeEditorTabChanged,
 
     /// <summary>
+    ///   Player changed the sub-tab of the cell editor, args is <see cref="StringEventArgs"/>
+    /// </summary>
+    CellEditorTabChanged,
+
+    /// <summary>
     ///   Player selected a patch in the microbe editor, args is <see cref="PatchEventArgs"/>
     /// </summary>
     MicrobeEditorPatchSelected,
@@ -132,6 +137,11 @@ public enum TutorialEventType
     ///   Player redid an action in the editor
     /// </summary>
     MicrobeEditorRedo,
+
+    /// <summary>
+    ///   Triggered when the player changes tolerances
+    /// </summary>
+    MicrobeEditorTolerancesModified,
 
     /// <summary>
     ///   The player pressed Shift+U to toggle enable unbind mode

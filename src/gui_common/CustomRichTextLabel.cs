@@ -30,7 +30,7 @@ public partial class CustomRichTextLabel : RichTextLabel
         Compound,
 
         /// <summary>
-        ///   Turns input action string into a key prompt image of its primary input event.
+        ///   Turns an input action string into a key prompt image of its primary input event.
         /// </summary>
         Input,
 
@@ -45,7 +45,7 @@ public partial class CustomRichTextLabel : RichTextLabel
         Resource,
 
         /// <summary>
-        ///   A general purpose icon from a specific set of available icons
+        ///   A general-purpose icon from a specific set of available icons
         /// </summary>
         Icon,
     }
@@ -671,6 +671,9 @@ public partial class CustomRichTextLabel : RichTextLabel
                         break;
                     case EmbeddedThriveIcon.MP:
                         output = GetResizedImage("res://assets/textures/gui/bevel/MP.png", 20, 0);
+                        break;
+                    case EmbeddedThriveIcon.Pressure:
+                        output = GetResizedImage("res://assets/textures/gui/bevel/Pressure.svg", 20, 0);
                         break;
                     default:
                         throw new ArgumentOutOfRangeException(nameof(icon),

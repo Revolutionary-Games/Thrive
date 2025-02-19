@@ -75,6 +75,9 @@ public partial class MicrobeEditorTutorialGUI : Control, ITutorialGUI
     private CustomWindow flagellumPlacementTutorial = null!;
     private CustomWindow modifyOrganelleTutorial = null!;
     private CustomWindow atpBalanceIntroduction = null!;
+
+    [Export]
+    private CustomWindow tolerancesTabTutorial = null!;
 #pragma warning restore CA2213
 
     public MainGameState AssociatedGameState => MainGameState.MicrobeEditor;
@@ -358,6 +361,25 @@ public partial class MicrobeEditorTutorialGUI : Control, ITutorialGUI
             else
             {
                 atpBalanceIntroduction.Hide();
+            }
+        }
+    }
+
+    public bool TolerancesTabTutorialVisible
+    {
+        get => tolerancesTabTutorial.Visible;
+        set
+        {
+            if (value == tolerancesTabTutorial.Visible)
+                return;
+
+            if (value)
+            {
+                tolerancesTabTutorial.Show();
+            }
+            else
+            {
+                tolerancesTabTutorial.Hide();
             }
         }
     }

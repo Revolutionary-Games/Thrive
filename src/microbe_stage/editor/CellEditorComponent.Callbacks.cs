@@ -415,6 +415,8 @@ public partial class CellEditorComponent
     private void OnTolerancesEditorChangedData()
     {
         OnTolerancesChanged(tolerancesEditor.CurrentTolerances);
+
+        tutorialState?.SendEvent(TutorialEventType.MicrobeEditorTolerancesModified, EventArgs.Empty, this);
     }
 
     /// <summary>

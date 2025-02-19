@@ -2,11 +2,6 @@
 
 public class StaySmallTutorial : EditorEntryCountingTutorial
 {
-    public StaySmallTutorial()
-    {
-        CanTrigger = false;
-    }
-
     public override string ClosedByName => "StaySmallTutorial";
 
     protected override int TriggersOnNthEditorSession => 3;
