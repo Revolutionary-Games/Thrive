@@ -35,6 +35,11 @@ public partial class ModalManager : NodeWithInput
 #pragma warning restore CA2213 // Disposable fields should be disposed
 
     private bool modalsDirty = true;
+
+    /// <summary>
+    ///   As modals need to be re-parented when opening, they can accidentally trigger the tree-exit-signal which we
+    ///   want to ignore when we are the cause of it.
+    /// </summary>
     private bool ignoreParentLost;
 
     private ModalManager()
@@ -94,15 +99,13 @@ public partial class ModalManager : NodeWithInput
         var parent = popup.GetParent();
         originalParents[popup] = parent;
 
-        if (modalStack.Contains(parent))
-            ignoreParentLost = true;
-
         // Listen for when the parent is removed from the tree so the modal can be removed as well.
         // But only if not registered already to avoid a duplicate connection
         if (!parentLostCallables.ContainsKey(popup))
         {
+            // This cannot be a one-shot signal because ignoreParentLost can block the processing of the signal
             var parentLostCallable = Callable.From(() => OnParentLost(popup));
-            parent.Connect(Node.SignalName.TreeExiting, parentLostCallable, (uint)ConnectFlags.OneShot);
+            parent.Connect(Node.SignalName.TreeExiting, parentLostCallable);
             parentLostCallables[popup] = parentLostCallable;
         }
         else
@@ -119,6 +122,7 @@ public partial class ModalManager : NodeWithInput
 
         popup.SetMeta(modalConnectedMeta, Variant.From(true));
 
+        // TODO: find out what the problem was supposed to be here
         // PROBLEM:
         popup.Connect(TopLevelContainer.SignalName.Closed, Callable.From(() => OnModalLost(popup)),
             (uint)ConnectFlags.OneShot);
@@ -227,6 +231,8 @@ public partial class ModalManager : NodeWithInput
 
     private void UpdateModals()
     {
+        ignoreParentLost = true;
+
         while (demotedModals.Count > 0)
         {
             var modal = demotedModals.Dequeue();
@@ -243,6 +249,8 @@ public partial class ModalManager : NodeWithInput
             modal.ReParent(parent);
         }
 
+        ignoreParentLost = false;
+
         if (modalStack.Count <= 0)
         {
             activeModalContainer.Hide();
@@ -256,6 +264,8 @@ public partial class ModalManager : NodeWithInput
 
         foreach (var modal in modalStack)
         {
+            ignoreParentLost = true;
+
             if (modal != top)
             {
                 modal.ReParent(canvasLayer);
@@ -265,6 +275,8 @@ public partial class ModalManager : NodeWithInput
             {
                 top.ReParent(activeModalContainer);
             }
+
+            ignoreParentLost = false;
 
             // The user expects all modal in the stack to be visible (see `MakeModal` documentation).
             // For unexplained reasons this has to be after the re-parenting operation for focus to work in the popups.
@@ -284,8 +296,6 @@ public partial class ModalManager : NodeWithInput
             top.FirstFocusableControl()?.GrabFocus();
             topMostWindowGivenFocus = top;
         }
-
-        ignoreParentLost = false;
     }
 
     private void OnModalContainerInput(InputEvent @event)
@@ -360,7 +370,7 @@ public partial class ModalManager : NodeWithInput
     /// </remarks>
     private void OnParentLost(TopLevelContainer popup)
     {
-        // If parent is a modal, then ignore as it emits signal redundantly
+        // If the parent is being re-parented, ignore it temporarily exiting the scene tree
         if (ignoreParentLost)
             return;
 
