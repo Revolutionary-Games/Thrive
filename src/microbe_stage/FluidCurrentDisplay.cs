@@ -9,10 +9,10 @@ public partial class FluidCurrentDisplay : GpuParticles3D
     private ShaderMaterial material = null!;
 #pragma warning restore CA2213
 
-    private StringName gameTimeParameterName = new StringName("gameTime");
-    private StringName speedParameterName = new StringName("speed");
-    private StringName chaoticnessParameterName = new StringName("chaoticness");
-    private StringName scaleParameterName = new StringName("scale");
+    private StringName gameTimeParameterName = new("gameTime");
+    private StringName speedParameterName = new("speed");
+    private StringName chaoticnessParameterName = new("chaoticness");
+    private StringName scaleParameterName = new("scale");
 
     private float time = 0.0f;
 
