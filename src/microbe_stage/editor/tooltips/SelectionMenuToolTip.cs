@@ -6,7 +6,7 @@ using Godot;
 
 /// <summary>
 ///   The main tooltip class for the selections on the microbe editor's selection menu.
-///   Contains list of processes and modifiers info.
+///   Contains a list of processes and modifiers info.
 /// </summary>
 public partial class SelectionMenuToolTip : ControlWithInput, ICustomToolTip
 {

@@ -208,6 +208,9 @@ public partial class CellEditorComponent :
     private PackedScene undiscoveredOrganellesTooltipScene = null!;
 
     private Node3D? cellPreviewVisualsRoot;
+
+    [Export]
+    private LabelSettings toleranceWarningsFont = null!;
 #pragma warning restore CA2213
 
     private OrganelleDefinition nucleus = null!;

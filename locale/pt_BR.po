@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2025-02-15 11:28+0200\n"
+"POT-Creation-Date: 2025-02-18 15:43+0200\n"
 "PO-Revision-Date: 2025-02-06 13:29+0000\n"
 "Last-Translator: Anonymous <noreply@weblate.org>\n"
 "Language-Team: Portuguese (Brazil) <https://translate.revolutionarygamesstudio.com/projects/thrive/thrive-game/pt_BR/>\n"
@@ -2376,6 +2376,9 @@ msgstr "Volume da interface"
 msgid "HEALTH"
 msgstr "Saúde"
 
+msgid "HEALTH_MODIFIER"
+msgstr ""
+
 #, fuzzy
 msgid "HEAT_ACCUMULATION_BAR_TOOLTIP"
 msgstr "Carregar patches Harmony do Assembly automaticamente (não é preciso especificar a classe do mod)"
@@ -4023,6 +4026,10 @@ msgstr "O editor está pronto para ser utilizado"
 msgid "NOTICE_READY_TO_EDIT"
 msgstr "O editor está pronto para ser utilizado"
 
+#, fuzzy
+msgid "NOT_ADAPTED_TO_CURRENT_PATCH"
+msgstr "Ir para a região atual"
+
 msgid "NOT_STARTED_DOT"
 msgstr "Não começou."
 
@@ -4305,6 +4312,12 @@ msgstr "Síntese de Oxitoxina"
 msgid "OXYGEN_RESISTANCE"
 msgstr "Resistência a Toxinas"
 
+#, fuzzy
+msgid "OXYGEN_TOLERANCE_TOOLTIP"
+msgstr ""
+"Esta seção exibe o saldo de cada composto (produção − consumo).\n"
+"Por exemplo, o saldo de glucose precisa ser positivo para uma célula vegetal."
+
 msgid "OXYTOXISOME_PROCESSES_DESCRIPTION"
 msgstr "Transforma [thrive:compound type=\"atp\"][/thrive:compound] em [thrive:compound type=\"oxytoxy\"][/thrive:compound]. Quantidade aumenta com a concentração de [thrive:compound type=\"oxygen\"][/thrive:compound]. Pode disparar toxinas apertando [thrive:input]g_fire_toxin[/thrive:input]. Quando a quantidade de [thrive:compound type=\"oxytoxy\"][/thrive:compound] ficar baixa, será possível disparar, mas o dano irá ser reduzido."
 
@@ -4430,6 +4443,14 @@ msgstr "Esperando a Finalização do Processo de Endossimbiose"
 msgid "PERCENTAGE_VALUE"
 msgstr "{0}%"
 
+#, fuzzy
+msgid "PERFECT_ADAPTATION_DESCRIPTION"
+msgstr ""
+"Habilita os efeitos de luz na interface (e.g botão do editor)\n"
+"\n"
+"Se você tiver um bug onde partes do botão do editor desaparecem,\n"
+"você pode tentar desabilitar essa opção para ver se o problema desaparece."
+
 msgid "PERFORMANCE"
 msgstr "Desempenho"
 
@@ -4552,6 +4573,10 @@ msgstr "Pressão"
 msgid "PRESSURE_SHORT"
 msgstr "Pressão"
 
+#, fuzzy
+msgid "PRESSURE_TOLERANCE_TOOLTIP"
+msgstr "Volta para o menu principal"
+
 msgid "PRESS_KEY_DOT_DOT_DOT"
 msgstr "Aperte uma tecla..."
 
@@ -4571,6 +4596,10 @@ msgid "PROCESS_ENVIRONMENT_SEPARATOR"
 msgstr "@"
 
 msgid "PROCESS_PANEL_TITLE"
+msgstr "Processos"
+
+#, fuzzy
+msgid "PROCESS_SPEED_MODIFIER"
 msgstr "Processos"
 
 msgid "PROGRAMMING_TEAM"
@@ -5519,6 +5548,10 @@ msgstr "Temperatura"
 msgid "TEMPERATURE_SHORT"
 msgstr "Temp."
 
+#, fuzzy
+msgid "TEMPERATURE_TOLERANCE_TOOLTIP"
+msgstr "Visite a nossa página no Patreon"
+
 msgid "TESTING_TEAM"
 msgstr "Equipe de Teste"
 
@@ -6299,6 +6332,15 @@ msgstr "Usar tamanho da janela virtual"
 #, fuzzy
 msgid "UV_PROTECTION"
 msgstr "Previsão da Auto-Evo"
+
+#, fuzzy
+msgid "UV_TOLERANCE_TOOLTIP"
+msgstr ""
+"Esta seção mostra o equilíbrio total de ATP (energia) da célula atual.\n"
+"Para sobreviver o equilíbrio precisa ser positivo. Para células sésseis, é possível considerar o equilíbrio positivo com o movimento excluído.\n"
+"O menu suspenso abaixo pode ser usado para checar o que aconteceria se a célula não tivesse algum recurso necessário para produzir ATP.\n"
+"Por exemplo, algumas células só podem manter um equilíbrio positivo de ATP quando possuem múltiplos tipos de composto dos quais produzir ATP ao mesmo tempo.\n"
+"Esses tipos de célula são mais difíceis de jogar, já que precisam ter múltiplos tipos de composto armazenados ao mesmo tempo para sobreviver."
 
 msgid "VACUOLE"
 msgstr "Vacúolo"

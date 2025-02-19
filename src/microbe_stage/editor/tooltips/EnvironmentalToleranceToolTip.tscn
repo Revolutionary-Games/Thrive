@@ -1,0 +1,144 @@
+[gd_scene load_steps=14 format=3 uid="uid://by8bg6b5p4c6m"]
+
+[ext_resource type="Theme" uid="uid://b4cx0o110g4b6" path="res://src/gui_common/thrive_theme.tres" id="1_8aafa"]
+[ext_resource type="Script" path="res://src/microbe_stage/editor/tooltips/EnvironmentalToleranceToolTip.cs" id="2_y5oj5"]
+[ext_resource type="LabelSettings" uid="uid://dp406petomasw" path="res://src/gui_common/fonts/Body-Bold-AlmostSmall-Green.tres" id="3_gd1ig"]
+[ext_resource type="Texture2D" uid="uid://drdwtf2f6qqch" path="res://assets/textures/gui/bevel/MP.png" id="3_trmea"]
+[ext_resource type="LabelSettings" uid="uid://brgbuduvjby6a" path="res://src/gui_common/fonts/Title-SemiBold-Smaller.tres" id="4_g1i1j"]
+[ext_resource type="LabelSettings" uid="uid://bv3bnu0g1wdw3" path="res://src/gui_common/fonts/Title-SemiBold-Big.tres" id="5_365bq"]
+[ext_resource type="LabelSettings" uid="uid://bhs4dgsx2ut6q" path="res://src/gui_common/fonts/Body-Bold-AlmostSmall-Red.tres" id="6_jnaox"]
+[ext_resource type="PackedScene" path="res://src/gui_common/CustomRichTextLabel.tscn" id="7_14lq1"]
+[ext_resource type="PackedScene" uid="uid://bhy1rrdfux74j" path="res://src/microbe_stage/editor/tooltips/ModifierInfoLabel.tscn" id="9_sgy1c"]
+[ext_resource type="Texture2D" uid="uid://w33dve6al45k" path="res://assets/textures/gui/bevel/osmoregulationIcon.png" id="10_4x4xi"]
+[ext_resource type="Texture2D" uid="uid://cq25ojg73mpr" path="res://assets/textures/gui/bevel/HealthIcon.png" id="10_xjysk"]
+[ext_resource type="Texture2D" uid="uid://ccf3aa366mhe0" path="res://assets/textures/gui/bevel/ProcessesIcon.png" id="11_21y2n"]
+
+[sub_resource type="StyleBoxFlat" id="1"]
+bg_color = Color(0, 0.129412, 0.141176, 0.980392)
+border_width_left = 1
+border_width_top = 1
+border_width_right = 1
+border_width_bottom = 1
+border_color = Color(0.0666667, 1, 0.835294, 1)
+corner_radius_top_left = 5
+corner_radius_top_right = 5
+corner_radius_bottom_right = 5
+corner_radius_bottom_left = 5
+
+[node name="EnvironmentalToleranceToolTip" type="PanelContainer" node_paths=PackedStringArray("nameLabel", "mpLabel", "descriptionLabel", "osmoregulationLabel", "healthLabel", "processSpeedLabel", "badlyAdaptedWarning")]
+custom_minimum_size = Vector2(400, 0)
+offset_top = 1.0
+offset_right = 400.0
+offset_bottom = 284.0
+mouse_filter = 2
+theme = ExtResource("1_8aafa")
+theme_override_styles/panel = SubResource("1")
+script = ExtResource("2_y5oj5")
+nameLabel = NodePath("MarginContainer/VBoxContainer/Header/Title")
+mpLabel = NodePath("MarginContainer/VBoxContainer/Header/MP/Value")
+descriptionLabel = NodePath("MarginContainer/VBoxContainer/StatDescription")
+osmoregulationLabel = NodePath("MarginContainer/VBoxContainer/ModifierList/OsmoregulationCost")
+healthLabel = NodePath("MarginContainer/VBoxContainer/ModifierList/HealthModifier")
+processSpeedLabel = NodePath("MarginContainer/VBoxContainer/ModifierList/ProcessSpeed")
+badlyAdaptedWarning = NodePath("MarginContainer/VBoxContainer/NotAdaptedText")
+goodStatFont = ExtResource("3_gd1ig")
+badStatFont = ExtResource("6_jnaox")
+
+[node name="MarginContainer" type="MarginContainer" parent="."]
+layout_mode = 2
+mouse_filter = 2
+theme_override_constants/margin_left = 15
+theme_override_constants/margin_top = 15
+theme_override_constants/margin_right = 15
+theme_override_constants/margin_bottom = 15
+
+[node name="VBoxContainer" type="VBoxContainer" parent="MarginContainer"]
+layout_mode = 2
+mouse_filter = 2
+theme_override_constants/separation = 15
+
+[node name="Header" type="HBoxContainer" parent="MarginContainer/VBoxContainer"]
+layout_mode = 2
+mouse_filter = 2
+theme_override_constants/separation = 10
+
+[node name="MP" type="HBoxContainer" parent="MarginContainer/VBoxContainer/Header"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 0
+mouse_filter = 2
+
+[node name="Icon" type="TextureRect" parent="MarginContainer/VBoxContainer/Header/MP"]
+custom_minimum_size = Vector2(20, 20)
+layout_mode = 2
+size_flags_vertical = 4
+mouse_filter = 2
+texture = ExtResource("3_trmea")
+expand_mode = 1
+
+[node name="Value" type="Label" parent="MarginContainer/VBoxContainer/Header/MP"]
+layout_mode = 2
+text = "N_A_MP"
+label_settings = ExtResource("4_g1i1j")
+
+[node name="Title" type="Label" parent="MarginContainer/VBoxContainer/Header"]
+editor_description = "PLACEHOLDER"
+custom_minimum_size = Vector2(230, 0)
+layout_mode = 2
+size_flags_horizontal = 3
+text = "Stat Name"
+label_settings = ExtResource("5_365bq")
+horizontal_alignment = 1
+autowrap_mode = 2
+
+[node name="Spacer" type="Control" parent="MarginContainer/VBoxContainer/Header"]
+layout_mode = 2
+size_flags_horizontal = 3
+mouse_filter = 2
+
+[node name="NotAdaptedText" type="Label" parent="MarginContainer/VBoxContainer"]
+custom_minimum_size = Vector2(100, 0)
+layout_mode = 2
+text = "NOT_ADAPTED_TO_CURRENT_PATCH"
+label_settings = ExtResource("6_jnaox")
+autowrap_mode = 3
+
+[node name="StatDescription" parent="MarginContainer/VBoxContainer" instance=ExtResource("7_14lq1")]
+layout_mode = 2
+mouse_filter = 2
+fit_content = true
+
+[node name="HSeparator" type="HSeparator" parent="MarginContainer/VBoxContainer"]
+layout_mode = 2
+mouse_filter = 2
+
+[node name="ModifierList" type="VBoxContainer" parent="MarginContainer/VBoxContainer"]
+layout_mode = 2
+mouse_filter = 2
+
+[node name="OsmoregulationCost" parent="MarginContainer/VBoxContainer/ModifierList" instance=ExtResource("9_sgy1c")]
+layout_mode = 2
+DisplayName = "OSMOREGULATION_COST"
+ModifierValue = "0"
+ModifierIcon = ExtResource("10_4x4xi")
+
+[node name="HealthModifier" parent="MarginContainer/VBoxContainer/ModifierList" instance=ExtResource("9_sgy1c")]
+layout_mode = 2
+DisplayName = "HEALTH_MODIFIER"
+ModifierValue = "0"
+ModifierIcon = ExtResource("10_xjysk")
+
+[node name="ProcessSpeed" parent="MarginContainer/VBoxContainer/ModifierList" instance=ExtResource("9_sgy1c")]
+layout_mode = 2
+DisplayName = "PROCESS_SPEED_MODIFIER"
+ModifierValue = "0"
+ModifierIcon = ExtResource("11_21y2n")
+
+[node name="HSeparator2" type="HSeparator" parent="MarginContainer/VBoxContainer"]
+layout_mode = 2
+mouse_filter = 2
+
+[node name="PerfectAdaptation" parent="MarginContainer/VBoxContainer" instance=ExtResource("7_14lq1")]
+layout_mode = 2
+fit_content = true
+ExtendedBbcode = "PERFECT_ADAPTATION_DESCRIPTION"

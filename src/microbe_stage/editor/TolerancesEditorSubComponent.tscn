@@ -13,7 +13,7 @@ content_margin_top = 1.0
 texture = ExtResource("3_ri2xt")
 region_rect = Rect2(0, 0, 258, 1)
 
-[node name="TolerancesEditorSubComponent" type="VBoxContainer" node_paths=PackedStringArray("temperatureSlider", "temperatureToleranceRangeSlider", "pressureSlider", "pressureToleranceRangeSlider", "oxygenResistanceSlider", "uvResistanceSlider", "temperatureMinLabel", "temperatureMaxLabel", "pressureMinLabel", "pressureMaxLabel", "oxygenResistanceLabel", "uvResistanceLabel")]
+[node name="TolerancesEditorSubComponent" type="VBoxContainer" node_paths=PackedStringArray("temperatureContainer", "pressureContainer", "oxygenResistanceContainer", "uvResistanceContainer", "temperatureSlider", "temperatureToleranceRangeSlider", "pressureSlider", "pressureToleranceRangeSlider", "oxygenResistanceSlider", "uvResistanceSlider", "temperatureMinLabel", "temperatureMaxLabel", "pressureMinLabel", "pressureMaxLabel", "oxygenResistanceLabel", "uvResistanceLabel")]
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
@@ -21,6 +21,10 @@ grow_horizontal = 2
 grow_vertical = 2
 theme = ExtResource("1_16mn0")
 script = ExtResource("2_kqh2k")
+temperatureContainer = NodePath("Temperature")
+pressureContainer = NodePath("Pressure")
+oxygenResistanceContainer = NodePath("Oxygen")
+uvResistanceContainer = NodePath("UV")
 temperatureSlider = NodePath("Temperature/TemperatureSlider")
 temperatureToleranceRangeSlider = NodePath("Temperature/HBoxContainer3/TemperatureRange")
 pressureSlider = NodePath("Pressure/PressureSlider")
@@ -38,6 +42,7 @@ perfectValueFont = ExtResource("4_8il6m")
 
 [node name="Temperature" type="VBoxContainer" parent="."]
 layout_mode = 2
+mouse_filter = 0
 
 [node name="HBoxContainer" type="HBoxContainer" parent="Temperature"]
 layout_mode = 2
@@ -50,6 +55,7 @@ label_settings = ExtResource("2_wyd8k")
 [node name="HSeparator" type="HSeparator" parent="Temperature/HBoxContainer"]
 layout_mode = 2
 size_flags_horizontal = 3
+mouse_filter = 1
 theme_override_styles/separator = SubResource("StyleBoxTexture_ftstq")
 
 [node name="HBoxContainer2" type="HBoxContainer" parent="Temperature"]
@@ -58,6 +64,7 @@ layout_mode = 2
 [node name="Spacer" type="Control" parent="Temperature/HBoxContainer2"]
 layout_mode = 2
 size_flags_horizontal = 3
+mouse_filter = 1
 
 [node name="TemperatureMin" type="Label" parent="Temperature/HBoxContainer2"]
 editor_description = "PLACEHOLDER"
@@ -82,10 +89,13 @@ horizontal_alignment = 2
 [node name="Spacer2" type="Control" parent="Temperature/HBoxContainer2"]
 layout_mode = 2
 size_flags_horizontal = 3
+mouse_filter = 1
 
 [node name="TemperatureSlider" type="HSlider" parent="Temperature"]
 layout_mode = 2
+mouse_filter = 1
 rounded = true
+scrollable = false
 tick_count = 8
 
 [node name="HBoxContainer3" type="HBoxContainer" parent="Temperature"]
@@ -102,9 +112,11 @@ layout_mode = 2
 [node name="TemperatureRange" type="HSlider" parent="Temperature/HBoxContainer3"]
 layout_mode = 2
 size_flags_horizontal = 3
+mouse_filter = 1
 max_value = 50.0
 value = 10.0
 rounded = true
+scrollable = false
 
 [node name="Spacer" type="Control" parent="Temperature"]
 custom_minimum_size = Vector2(0, 5)
@@ -112,6 +124,7 @@ layout_mode = 2
 
 [node name="Pressure" type="VBoxContainer" parent="."]
 layout_mode = 2
+mouse_filter = 0
 
 [node name="HBoxContainer" type="HBoxContainer" parent="Pressure"]
 layout_mode = 2
@@ -124,6 +137,7 @@ label_settings = ExtResource("2_wyd8k")
 [node name="HSeparator" type="HSeparator" parent="Pressure/HBoxContainer"]
 layout_mode = 2
 size_flags_horizontal = 3
+mouse_filter = 1
 theme_override_styles/separator = SubResource("StyleBoxTexture_ftstq")
 
 [node name="HBoxContainer2" type="HBoxContainer" parent="Pressure"]
@@ -132,6 +146,7 @@ layout_mode = 2
 [node name="Spacer" type="Control" parent="Pressure/HBoxContainer2"]
 layout_mode = 2
 size_flags_horizontal = 3
+mouse_filter = 1
 
 [node name="PressureMin" type="Label" parent="Pressure/HBoxContainer2"]
 editor_description = "PLACEHOLDER"
@@ -156,13 +171,16 @@ horizontal_alignment = 2
 [node name="Spacer2" type="Control" parent="Pressure/HBoxContainer2"]
 layout_mode = 2
 size_flags_horizontal = 3
+mouse_filter = 1
 
 [node name="PressureSlider" type="HSlider" parent="Pressure"]
 layout_mode = 2
+mouse_filter = 1
 max_value = 7e+07
 step = 50000.0
 value = 100000.0
 rounded = true
+scrollable = false
 tick_count = 8
 
 [node name="HBoxContainer3" type="HBoxContainer" parent="Pressure"]
@@ -179,10 +197,13 @@ layout_mode = 2
 [node name="PressureRange" type="HSlider" parent="Pressure/HBoxContainer3"]
 layout_mode = 2
 size_flags_horizontal = 3
+mouse_filter = 1
+min_value = 50000.0
 max_value = 1e+06
 step = 50000.0
 value = 150000.0
 rounded = true
+scrollable = false
 
 [node name="Spacer" type="Control" parent="Pressure"]
 custom_minimum_size = Vector2(0, 5)
@@ -190,6 +211,7 @@ layout_mode = 2
 
 [node name="Oxygen" type="VBoxContainer" parent="."]
 layout_mode = 2
+mouse_filter = 0
 
 [node name="HBoxContainer" type="HBoxContainer" parent="Oxygen"]
 layout_mode = 2
@@ -202,13 +224,16 @@ label_settings = ExtResource("2_wyd8k")
 [node name="HSeparator" type="HSeparator" parent="Oxygen/HBoxContainer"]
 layout_mode = 2
 size_flags_horizontal = 3
+mouse_filter = 1
 theme_override_styles/separator = SubResource("StyleBoxTexture_ftstq")
 
 [node name="OxgenSlider" type="HSlider" parent="Oxygen"]
 layout_mode = 2
+mouse_filter = 1
 max_value = 1.0
 step = 0.05
 value = 0.25
+scrollable = false
 tick_count = 8
 
 [node name="HBoxContainer2" type="HBoxContainer" parent="Oxygen"]
@@ -227,6 +252,7 @@ layout_mode = 2
 
 [node name="UV" type="VBoxContainer" parent="."]
 layout_mode = 2
+mouse_filter = 0
 
 [node name="HBoxContainer" type="HBoxContainer" parent="UV"]
 layout_mode = 2
@@ -239,13 +265,16 @@ label_settings = ExtResource("2_wyd8k")
 [node name="HSeparator" type="HSeparator" parent="UV/HBoxContainer"]
 layout_mode = 2
 size_flags_horizontal = 3
+mouse_filter = 1
 theme_override_styles/separator = SubResource("StyleBoxTexture_ftstq")
 
 [node name="UVSlider" type="HSlider" parent="UV"]
 layout_mode = 2
+mouse_filter = 1
 max_value = 1.0
 step = 0.05
 value = 0.1
+scrollable = false
 tick_count = 8
 
 [node name="HBoxContainer2" type="HBoxContainer" parent="UV"]

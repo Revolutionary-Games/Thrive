@@ -184,7 +184,7 @@ public static class MicrobeEnvironmentalToleranceCalculations
         {
             // Osmoregulation modifier works in reverse (i.e. higher value is worse)
             resultCallback.Invoke(Localization.Translate("TOLERANCES_UNSUITABLE_DEBUFFS")
-                .FormatSafe(-Math.Round((problemNumbers.OsmoregulationModifier - 1) * 100, 1),
+                .FormatSafe($"+{(problemNumbers.OsmoregulationModifier - 1) * 100:0.#}",
                     -Math.Round((1 - problemNumbers.ProcessSpeedModifier) * 100, 1),
                     -Math.Round((1 - problemNumbers.HealthModifier) * 100, 1)));
         }
