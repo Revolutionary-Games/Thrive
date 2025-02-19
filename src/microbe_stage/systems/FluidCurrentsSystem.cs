@@ -122,7 +122,8 @@ public sealed class FluidCurrentsSystem : AEntitySetSystem<float>
     {
         base.PreUpdate(delta);
 
-        if (noiseDisturbancesXImage == null)
+        if (noiseDisturbancesXImage == null || noiseDisturbancesYImage == null
+            || noiseCurrentsXImage == null || noiseCurrentsYImage == null)
         {
             var disturbancesX = noiseDisturbancesX.GetData();
             var disturbancesY = noiseDisturbancesY.GetData();
