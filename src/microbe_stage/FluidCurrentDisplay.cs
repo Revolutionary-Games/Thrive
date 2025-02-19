@@ -4,7 +4,7 @@ using Godot;
 /// <summary>
 ///   Displays fluid currents in the microbe stage
 /// </summary>
-public partial class WaterCurrentDisplay : GpuParticles3D
+public partial class FluidCurrentDisplay : GpuParticles3D
 {
 #pragma warning disable CA2213
     private ShaderMaterial material = null!;
