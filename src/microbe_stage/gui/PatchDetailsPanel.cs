@@ -96,16 +96,19 @@ public partial class PatchDetailsPanel : PanelContainer
     private Label glucoseLabel = null!;
     private Label phosphateLabel = null!;
     private Label ironLabel = null!;
+    private Label radiationLabel = null!;
 
     private Control otherCompoundBase = null!;
 
     private TextureRect temperatureSituation = null!;
+    private TextureRect pressureSituation = null!;
     private TextureRect lightSituation = null!;
     private TextureRect hydrogenSulfideSituation = null!;
     private TextureRect glucoseSituation = null!;
     private TextureRect ironSituation = null!;
     private TextureRect ammoniaSituation = null!;
     private TextureRect phosphateSituation = null!;
+    private TextureRect radiationSituation = null!;
 
     private CustomRichTextLabel speciesInfoDisplay = null!;
 
@@ -245,8 +248,7 @@ public partial class PatchDetailsPanel : PanelContainer
 
         var pressureBase = physicalConditionsContainer.GetItem<Control>("Pressure");
         pressureLabel = pressureBase.GetNode<Label>(labelPath);
-
-        // pressureSituation = pressureBase.GetNode<TextureRect>(situation);
+        pressureSituation = pressureBase.GetNode<TextureRect>(situation);
 
         var lightBase = physicalConditionsContainer.GetItem<Control>("Light");
         lightLabel = lightBase.GetNode<Label>("LightInfo/Current/Label");
@@ -300,6 +302,11 @@ public partial class PatchDetailsPanel : PanelContainer
         var ironBase = compoundsContainer.GetItem<Control>("Iron");
         ironLabel = ironBase.GetNode<Label>(labelPath);
         ironSituation = ironBase.GetNode<TextureRect>(situation);
+
+        radiationLabel = null!;
+        var radiationBase = compoundsContainer.GetItem<Control>("Radiation");
+        radiationLabel = radiationBase.GetNode<Label>(labelPath);
+        radiationSituation = radiationBase.GetNode<TextureRect>(situation);
 
         // Species list
         speciesInfoDisplay = speciesParentContainer.GetItem<CustomRichTextLabel>("SpeciesList");
@@ -368,7 +375,7 @@ public partial class PatchDetailsPanel : PanelContainer
         temperatureLabel.Text =
             unitFormat.FormatSafe(SelectedPatch.Biome.CurrentCompoundAmounts[Compound.Temperature].Ambient,
                 temperature.Unit);
-        pressureLabel.Text = unitFormat.FormatSafe(20, "bar");
+        pressureLabel.Text = unitFormat.FormatSafe(Math.Round(SelectedPatch.Biome.Pressure * (1 / 1000.0f)), "kPa");
 
         var maxLightLevel = GetCompoundAmount(SelectedPatch, Compound.Sunlight, CompoundAmountType.Biome);
         lightLabel.Text =
@@ -417,6 +424,9 @@ public partial class PatchDetailsPanel : PanelContainer
                 Constants.PATCH_CONDITIONS_COMPOUND_DISPLAY_DECIMALS).ToString(CultureInfo.CurrentCulture);
         ironLabel.Text =
             Math.Round(GetCompoundAmount(SelectedPatch, Compound.Iron),
+                Constants.PATCH_CONDITIONS_COMPOUND_DISPLAY_DECIMALS).ToString(CultureInfo.CurrentCulture);
+        radiationLabel.Text =
+            Math.Round(GetCompoundAmount(SelectedPatch, Compound.Radiation),
                 Constants.PATCH_CONDITIONS_COMPOUND_DISPLAY_DECIMALS).ToString(CultureInfo.CurrentCulture);
 
         var speciesList = new StringBuilder(100);
@@ -490,6 +500,21 @@ public partial class PatchDetailsPanel : PanelContainer
         else
         {
             temperatureSituation.Texture = null;
+        }
+
+        nextCompound = SelectedPatch.Biome.Pressure;
+
+        if (nextCompound > CurrentPatch.Biome.Pressure)
+        {
+            pressureSituation.Texture = increaseIcon;
+        }
+        else if (nextCompound < CurrentPatch.Biome.Pressure)
+        {
+            pressureSituation.Texture = decreaseIcon;
+        }
+        else
+        {
+            pressureSituation.Texture = null;
         }
 
         // We want to compare against the non-time of day adjusted light levels
@@ -582,6 +607,21 @@ public partial class PatchDetailsPanel : PanelContainer
         {
             phosphateSituation.Texture = null;
         }
+
+        nextCompound = GetCompoundAmount(SelectedPatch, Compound.Radiation);
+
+        if (nextCompound > GetCompoundAmount(CurrentPatch, Compound.Radiation))
+        {
+            radiationSituation.Texture = increaseIcon;
+        }
+        else if (nextCompound < GetCompoundAmount(CurrentPatch, Compound.Radiation))
+        {
+            radiationSituation.Texture = decreaseIcon;
+        }
+        else
+        {
+            radiationSituation.Texture = null;
+        }
     }
 
     private void MoveToPatchClicked()
@@ -627,7 +667,7 @@ public partial class PatchDetailsPanel : PanelContainer
 
     private void MigrateAcceptPressed()
     {
-        // When viewing a completed migration pressing accept just closes
+        // When viewing a completed migration, pressing accept just closes
         if (MigrationStep == MigrationWizardStep.Completed)
         {
             MigrationStep = MigrationWizardStep.NotInProgress;
@@ -647,12 +687,12 @@ public partial class PatchDetailsPanel : PanelContainer
         // Only perform these actions if the callback didn't want to cancel adding the migration
         if (Migrations.Contains(currentlyEditedMigration))
         {
-            // Close the menu after successful migration setup to flow nicely
+            // Close the menu after a successful migration setup to flow nicely
             MigrationStep = MigrationWizardStep.NotInProgress;
         }
         else
         {
-            // Show error message
+            // Show an error message
             migrationErrorLabel.Text = Localization.Translate("MIGRATION_FAILED_TO_ADD");
             migrationErrorLabel.Visible = true;
         }

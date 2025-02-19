@@ -365,8 +365,6 @@ public partial class MulticellularEditor : EditorBase<EditorAction, MicrobeStage
                 cellEditorTab.SetEditorWorldTabSpecificObjectVisibility(false);
                 bodyPlanEditorTab.SetEditorWorldTabSpecificObjectVisibility(true);
 
-                // TODO: fix the arrow positioning when switching tabs (it fixes itself only when placing something)
-                // This line (and also in CellTypeEditor) doesn't help:
                 bodyPlanEditorTab.UpdateArrow();
                 bodyPlanEditorTab.UpdateCamera();
 
@@ -388,8 +386,6 @@ public partial class MulticellularEditor : EditorBase<EditorAction, MicrobeStage
                     bodyPlanEditorTab.SetEditorWorldTabSpecificObjectVisibility(false);
                     cellEditorTab.SetEditorWorldTabSpecificObjectVisibility(true);
 
-                    // TODO: check if this now has fixed the arrow positioning after tab change (see comment in the
-                    // above case)
                     cellEditorTab.UpdateArrow();
                     cellEditorTab.UpdateCamera();
                 }

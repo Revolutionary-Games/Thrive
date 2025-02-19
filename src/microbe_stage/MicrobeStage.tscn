@@ -1,4 +1,4 @@
-[gd_scene load_steps=14 format=3 uid="uid://dva08tpqyn15k"]
+[gd_scene load_steps=15 format=3 uid="uid://dva08tpqyn15k"]
 
 [ext_resource type="Script" path="res://src/microbe_stage/MicrobeStage.cs" id="1"]
 [ext_resource type="PackedScene" uid="uid://bako5jivv1dji" path="res://src/microbe_stage/MicrobeCamera.tscn" id="2"]
@@ -6,6 +6,7 @@
 [ext_resource type="PackedScene" uid="uid://dew8qwd0buvnb" path="res://src/thriveopedia/fossilisation/FossilisationDialog.tscn" id="4"]
 [ext_resource type="PackedScene" uid="uid://dqpjtfkjeuwmq" path="res://src/microbe_stage/MicrobeWorldEnvironment.tscn" id="5_jtm5v"]
 [ext_resource type="Script" path="res://src/microbe_stage/PlayerMicrobeInput.cs" id="7"]
+[ext_resource type="PackedScene" uid="uid://d1mwl825xlq0t" path="res://src/microbe_stage/HeatGradientPlane.tscn" id="8_7ghg3"]
 [ext_resource type="Script" path="res://src/microbe_stage/CompoundCloudSystem.cs" id="10"]
 [ext_resource type="PackedScene" uid="uid://devtugnggmuol" path="res://src/general/PauseMenu.tscn" id="11"]
 [ext_resource type="Script" path="res://src/microbe_stage/MicrobeInspectInfo.cs" id="22"]
@@ -14,10 +15,11 @@
 [ext_resource type="PackedScene" path="res://src/engine/GuidanceLine.tscn" id="75"]
 [ext_resource type="PackedScene" uid="uid://dwkek50fju0fu" path="res://src/microbe_stage/PatchNameOverlay.tscn" id="85"]
 
-[node name="MicrobeStage" type="Node"]
+[node name="MicrobeStage" type="Node" node_paths=PackedStringArray("heatViewOverlay")]
 process_priority = -1
 script = ExtResource("1")
 GuidanceLinePath = NodePath("World/GuidanceLine")
+heatViewOverlay = NodePath("World/PrimaryCamera/HeatGradientPlane")
 PauseMenuPath = NodePath("PauseMenu")
 HUDRootPath = NodePath("MicrobeHUD")
 
@@ -26,6 +28,10 @@ HUDRootPath = NodePath("MicrobeHUD")
 [node name="PrimaryCamera" parent="World" instance=ExtResource("2")]
 process_mode = 3
 AutoProcessWhilePaused = true
+
+[node name="HeatGradientPlane" parent="World/PrimaryCamera" instance=ExtResource("8_7ghg3")]
+transform = Transform3D(1, 0, 0, 0, -1.62921e-07, -1, 0, 1, -1.62921e-07, 0, 1.62921e-06, -10)
+visible = false
 
 [node name="DynamicallySpawned" type="Node" parent="World"]
 
@@ -49,8 +55,6 @@ script = ExtResource("22")
 script = ExtResource("7")
 
 [node name="ChromaticFilter" parent="." instance=ExtResource("67")]
-offset_left = -0.943848
-offset_right = -0.943848
 
 [node name="MicrobeHUD" parent="." node_paths=PackedStringArray("menu") instance=ExtResource("3")]
 FossilisationButtonLayerPath = NodePath("FossilisationButtonLayer")

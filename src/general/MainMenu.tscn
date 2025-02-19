@@ -1,4 +1,4 @@
-[gd_scene load_steps=57 format=3 uid="uid://c1fc2aip6oiqt"]
+[gd_scene load_steps=69 format=3 uid="uid://c1fc2aip6oiqt"]
 
 [ext_resource type="Theme" uid="uid://b4cx0o110g4b6" path="res://src/gui_common/thrive_theme.tres" id="1"]
 [ext_resource type="PackedScene" path="res://src/saving/SaveManagerGUI.tscn" id="2"]
@@ -23,17 +23,20 @@
 [ext_resource type="Texture2D" uid="uid://m2p4ad5ej2xn" path="res://assets/textures/gui/social_media/youtube.png" id="20"]
 [ext_resource type="Texture2D" uid="uid://bpa6jbubd1t1d" path="res://assets/textures/gui/social_media/youtubeActive.png" id="21"]
 [ext_resource type="Texture2D" uid="uid://cnbporxr188o5" path="res://assets/textures/gui/social_media/facebook.png" id="22"]
+[ext_resource type="Texture2D" uid="uid://c3j6mit7gm85i" path="res://assets/textures/gui/social_media/patreon.svg" id="22_cccwh"]
 [ext_resource type="Texture2D" uid="uid://dxeuge13ukrcc" path="res://assets/textures/gui/social_media/reddit.png" id="23"]
+[ext_resource type="Texture2D" uid="uid://facuopw6yuef" path="res://assets/textures/gui/social_media/patreonActive.svg" id="23_n77ib"]
 [ext_resource type="Texture2D" uid="uid://3hkxp4p8qp4w" path="res://assets/textures/gui/social_media/github.png" id="24"]
+[ext_resource type="Texture2D" uid="uid://c67ga15ravjv8" path="res://assets/textures/gui/social_media/patreonHover.svg" id="24_rpnak"]
 [ext_resource type="Texture2D" uid="uid://c0m2yhi7cg82v" path="res://assets/textures/gui/social_media/steam.png" id="25"]
 [ext_resource type="Texture2D" uid="uid://drw1w05yqa6kf" path="res://assets/textures/gui/social_media/facebookActive.png" id="26"]
-[ext_resource type="Texture2D" uid="uid://cw2m4uyt04gx5" path="res://assets/textures/gui/social_media/twitterActive.png" id="27"]
 [ext_resource type="Texture2D" uid="uid://bhndo2pniw3k4" path="res://assets/textures/gui/social_media/redditActive.png" id="28"]
-[ext_resource type="Texture2D" uid="uid://c3nqx082rwi1p" path="res://assets/textures/gui/social_media/twitter.png" id="29"]
 [ext_resource type="Texture2D" uid="uid://chb8tkkpn66te" path="res://assets/textures/gui/social_media/steamActive.png" id="30"]
 [ext_resource type="Texture2D" uid="uid://curounn41j5qr" path="res://assets/textures/gui/social_media/redditHover.png" id="31"]
+[ext_resource type="Texture2D" uid="uid://826gjuaecfnj" path="res://assets/textures/gui/social_media/threads.svg" id="31_hi246"]
 [ext_resource type="Texture2D" uid="uid://cei2ltqv40wmk" path="res://assets/textures/gui/social_media/steamHover.png" id="32"]
-[ext_resource type="Texture2D" uid="uid://tor0656lkw1u" path="res://assets/textures/gui/social_media/twitterHover.png" id="33"]
+[ext_resource type="Texture2D" uid="uid://djsrdux7iy0wl" path="res://assets/textures/gui/social_media/threadsActive.svg" id="32_xicnv"]
+[ext_resource type="Texture2D" uid="uid://dda3x8711tos5" path="res://assets/textures/gui/social_media/threadsHover.svg" id="33_b0j63"]
 [ext_resource type="Texture2D" uid="uid://boe2q60qtduks" path="res://assets/textures/gui/social_media/itchActive.png" id="34"]
 [ext_resource type="Texture2D" uid="uid://cxtsamqv2ix8u" path="res://assets/textures/gui/social_media/itchHover.png" id="35"]
 [ext_resource type="Texture2D" uid="uid://diut7pfjn1ual" path="res://assets/textures/gui/social_media/itch.png" id="36"]
@@ -42,14 +45,23 @@
 [ext_resource type="Texture2D" uid="uid://bq8bwt2bfs0tl" path="res://assets/textures/gui/social_media/discordActive.png" id="39"]
 [ext_resource type="Texture2D" uid="uid://npgtp0oq3ubh" path="res://assets/textures/gui/social_media/discordHover.png" id="40"]
 [ext_resource type="Texture2D" uid="uid://bob6rirg5u323" path="res://assets/textures/gui/social_media/facebookHover.png" id="41"]
-[ext_resource type="Texture2D" uid="uid://c07lbgu6qm574" path="res://assets/textures/gui/social_media/patreon.png" id="43"]
-[ext_resource type="Texture2D" uid="uid://d1eihhp5w5m8y" path="res://assets/textures/gui/social_media/patreonActive.png" id="44"]
-[ext_resource type="Texture2D" uid="uid://dolfeofh8n12y" path="res://assets/textures/gui/social_media/patreonHover.png" id="45"]
+[ext_resource type="Texture2D" uid="uid://bqcgb4vi20ld5" path="res://assets/textures/gui/social_media/x.svg" id="43_c0bfw"]
+[ext_resource type="Texture2D" uid="uid://dcoscrcia5vm3" path="res://assets/textures/gui/social_media/xActive.svg" id="44_k4e4i"]
+[ext_resource type="Texture2D" uid="uid://dhaal18p6c460" path="res://assets/textures/gui/social_media/xHover.svg" id="45_jbwjm"]
 [ext_resource type="Texture2D" uid="uid://bpb83abxkwuoi" path="res://assets/textures/gui/social_media/revolutionaryGames.png" id="46"]
+[ext_resource type="Texture2D" uid="uid://dpr4g1s52egy4" path="res://assets/textures/gui/social_media/instagram.svg" id="46_c2wg1"]
 [ext_resource type="Texture2D" uid="uid://cv8wlkju42uh3" path="res://assets/textures/gui/social_media/revolutionaryGamesActive.png" id="47"]
+[ext_resource type="Texture2D" uid="uid://8nodqgqi3fgy" path="res://assets/textures/gui/social_media/instagramActive.svg" id="47_7h4g6"]
 [ext_resource type="Texture2D" uid="uid://cyk5xafa582ww" path="res://assets/textures/gui/social_media/revolutionaryGamesHover.png" id="48"]
+[ext_resource type="Texture2D" uid="uid://cafq1f12lm1x1" path="res://assets/textures/gui/social_media/instagramHover.svg" id="48_85kra"]
 [ext_resource type="PackedScene" uid="uid://bt4wq0ddch84i" path="res://src/thriveopedia/Thriveopedia.tscn" id="49"]
-[ext_resource type="PackedScene" path="res://src/gui_common/FocusGrabber.tscn" id="56"]
+[ext_resource type="Texture2D" uid="uid://wpfj23uf6v78" path="res://assets/textures/gui/social_media/mastodon.svg" id="49_cdsa0"]
+[ext_resource type="Texture2D" uid="uid://c7e1x4pw2q658" path="res://assets/textures/gui/social_media/mastodonActive.svg" id="50_r0yqh"]
+[ext_resource type="Texture2D" uid="uid://sf2au60k62mr" path="res://assets/textures/gui/social_media/mastodonHover.svg" id="51_hsjiv"]
+[ext_resource type="Texture2D" uid="uid://blcw8ndyfuly6" path="res://assets/textures/gui/social_media/bluesky.svg" id="52_vqgsu"]
+[ext_resource type="Texture2D" uid="uid://d2aoxnqv4yn6b" path="res://assets/textures/gui/social_media/blueskyActive.svg" id="53_a3h3b"]
+[ext_resource type="Texture2D" uid="uid://pe3ra1dn4gp1" path="res://assets/textures/gui/social_media/blueskyHover.svg" id="54_4ciye"]
+[ext_resource type="PackedScene" uid="uid://bgeijgq7runaw" path="res://src/gui_common/FocusGrabber.tscn" id="56"]
 [ext_resource type="PackedScene" uid="uid://cpp1dl8aiumt7" path="res://src/gui_common/ThriveFeedDisplayer.tscn" id="57"]
 [ext_resource type="PackedScene" uid="uid://d0tfe6i1offy" path="res://src/gui_common/PatchNotesDisplayer.tscn" id="58"]
 [ext_resource type="PackedScene" uid="uid://3vnrqlyumqtd" path="res://src/gui_common/dialogs/PermanentlyDismissibleDialog.tscn" id="59"]
@@ -344,7 +356,7 @@ text = "EXIT_TO_LAUNCHER"
 custom_minimum_size = Vector2(250, 40)
 layout_mode = 2
 tooltip_text = "QUIT_BUTTON_TOOLTIP"
-focus_neighbor_left = NodePath("../../../../SocialMedia/TwitterButton")
+focus_neighbor_left = NodePath("../../../../SocialMedia/BlueskyButton")
 focus_neighbor_bottom = NodePath(".")
 focus_next = NodePath("../../../../SocialMedia/RevolutionaryGamesButton")
 mouse_filter = 1
@@ -690,10 +702,10 @@ stretch_mode = 5
 custom_minimum_size = Vector2(25, 25)
 layout_mode = 2
 tooltip_text = "PATREON_TOOLTIP"
-texture_normal = ExtResource("43")
-texture_pressed = ExtResource("44")
-texture_hover = ExtResource("45")
-texture_focused = ExtResource("45")
+texture_normal = ExtResource("22_cccwh")
+texture_pressed = ExtResource("23_n77ib")
+texture_hover = ExtResource("24_rpnak")
+texture_focused = ExtResource("24_rpnak")
 ignore_texture_size = true
 stretch_mode = 5
 
@@ -716,6 +728,17 @@ texture_normal = ExtResource("20")
 texture_pressed = ExtResource("21")
 texture_hover = ExtResource("19")
 texture_focused = ExtResource("19")
+ignore_texture_size = true
+stretch_mode = 5
+
+[node name="ThreadsButton" type="TextureButton" parent="MenuContainers/SocialMedia"]
+custom_minimum_size = Vector2(25, 25)
+layout_mode = 2
+tooltip_text = "META_THREADS_TOOLTIP"
+texture_normal = ExtResource("31_hi246")
+texture_pressed = ExtResource("32_xicnv")
+texture_hover = ExtResource("33_b0j63")
+texture_focused = ExtResource("33_b0j63")
 ignore_texture_size = true
 stretch_mode = 5
 
@@ -742,6 +765,8 @@ ignore_texture_size = true
 stretch_mode = 5
 
 [node name="FacebookButton" type="TextureButton" parent="MenuContainers/SocialMedia"]
+editor_description = "Hidden until we can get control of our facebook back and start updating it again"
+visible = false
 custom_minimum_size = Vector2(25, 25)
 layout_mode = 2
 tooltip_text = "FACEBOOK_TOOLTIP"
@@ -755,13 +780,46 @@ stretch_mode = 5
 [node name="TwitterButton" type="TextureButton" parent="MenuContainers/SocialMedia"]
 custom_minimum_size = Vector2(25, 25)
 layout_mode = 2
-tooltip_text = "TWITTER_TOOLTIP"
+tooltip_text = "X_TWITTER_TOOLTIP"
+texture_normal = ExtResource("43_c0bfw")
+texture_pressed = ExtResource("44_k4e4i")
+texture_hover = ExtResource("45_jbwjm")
+texture_focused = ExtResource("45_jbwjm")
+ignore_texture_size = true
+stretch_mode = 5
+
+[node name="InstagramButton" type="TextureButton" parent="MenuContainers/SocialMedia"]
+custom_minimum_size = Vector2(25, 25)
+layout_mode = 2
+tooltip_text = "INSTAGRAM_TOOLTIP"
+texture_normal = ExtResource("46_c2wg1")
+texture_pressed = ExtResource("47_7h4g6")
+texture_hover = ExtResource("48_85kra")
+texture_focused = ExtResource("48_85kra")
+ignore_texture_size = true
+stretch_mode = 5
+
+[node name="MastodonButton" type="TextureButton" parent="MenuContainers/SocialMedia"]
+custom_minimum_size = Vector2(25, 25)
+layout_mode = 2
+tooltip_text = "MASTODON_TOOLTIP"
+texture_normal = ExtResource("49_cdsa0")
+texture_pressed = ExtResource("50_r0yqh")
+texture_hover = ExtResource("51_hsjiv")
+texture_focused = ExtResource("51_hsjiv")
+ignore_texture_size = true
+stretch_mode = 5
+
+[node name="BlueskyButton" type="TextureButton" parent="MenuContainers/SocialMedia"]
+custom_minimum_size = Vector2(25, 25)
+layout_mode = 2
+tooltip_text = "BLUESKY_TOOLTIP"
 focus_neighbor_right = NodePath("../../Menus/VBoxContainer/MainMenu/Quit")
 focus_next = NodePath("../../Menus/VBoxContainer/MainMenu/Quit")
-texture_normal = ExtResource("29")
-texture_pressed = ExtResource("27")
-texture_hover = ExtResource("33")
-texture_focused = ExtResource("33")
+texture_normal = ExtResource("52_vqgsu")
+texture_pressed = ExtResource("53_a3h3b")
+texture_hover = ExtResource("54_4ciye")
+texture_focused = ExtResource("54_4ciye")
 ignore_texture_size = true
 stretch_mode = 5
 
@@ -827,7 +885,6 @@ mouse_filter = 1
 text = "BACK"
 
 [node name="FocusGrabber" parent="CreditsView" instance=ExtResource("56")]
-anchors_preset = 0
 NodeToGiveFocusTo = NodePath("../Back")
 
 [node name="ModManager" parent="." instance=ExtResource("14")]
@@ -878,9 +935,10 @@ custom_minimum_size = Vector2(500, 0)
 offset_right = 163.0
 offset_bottom = 97.0
 NoticeType = 1
+AutomaticallyCheckDismissPermanently = true
 CenterText = false
 HideCancelButton = true
-DialogText = "THANKS_FOR_BUYING_THRIVE"
+DialogText = "THANKS_FOR_BUYING_THRIVE_2"
 WindowTitle = "THANK_YOU_TITLE"
 
 [node name="SteamFailedDialog" parent="." instance=ExtResource("4")]
@@ -936,10 +994,14 @@ ShowCloseButton = false
 [connection signal="pressed" from="MenuContainers/SocialMedia/PatreonButton" to="." method="OnSocialMediaButtonPressed" binds= ["https://www.patreon.com/thrivegame"]]
 [connection signal="pressed" from="MenuContainers/SocialMedia/GitHubButton" to="." method="OnSocialMediaButtonPressed" binds= ["https://github.com/Revolutionary-Games/Thrive"]]
 [connection signal="pressed" from="MenuContainers/SocialMedia/YouTubeButton" to="." method="OnSocialMediaButtonPressed" binds= ["https://www.youtube.com/c/RevolutionaryGames"]]
+[connection signal="pressed" from="MenuContainers/SocialMedia/ThreadsButton" to="." method="OnSocialMediaButtonPressed" binds= ["https://www.threads.net/@thrive_game"]]
 [connection signal="pressed" from="MenuContainers/SocialMedia/RedditButton" to="." method="OnSocialMediaButtonPressed" binds= ["https://www.reddit.com/r/thrive/"]]
 [connection signal="pressed" from="MenuContainers/SocialMedia/DiscordButton" to="." method="OnSocialMediaButtonPressed" binds= ["https://discordapp.com/invite/ECR9E8x"]]
 [connection signal="pressed" from="MenuContainers/SocialMedia/FacebookButton" to="." method="OnSocialMediaButtonPressed" binds= ["https://www.facebook.com/Thrive-182887991751358/"]]
-[connection signal="pressed" from="MenuContainers/SocialMedia/TwitterButton" to="." method="OnSocialMediaButtonPressed" binds= ["https://twitter.com/Thrive_Game"]]
+[connection signal="pressed" from="MenuContainers/SocialMedia/TwitterButton" to="." method="OnSocialMediaButtonPressed" binds= ["https://x.com/Thrive_Game"]]
+[connection signal="pressed" from="MenuContainers/SocialMedia/InstagramButton" to="." method="OnSocialMediaButtonPressed" binds= ["https://www.instagram.com/thrive_game/"]]
+[connection signal="pressed" from="MenuContainers/SocialMedia/MastodonButton" to="." method="OnSocialMediaButtonPressed" binds= ["https://mastodon.social/@Thrive_Game"]]
+[connection signal="pressed" from="MenuContainers/SocialMedia/BlueskyButton" to="." method="OnSocialMediaButtonPressed" binds= ["https://bsky.app/profile/revolutionarygamesstudio.com"]]
 [connection signal="OnOptionsClosed" from="OptionsMenu" to="." method="OnReturnFromOptions"]
 [connection signal="OnBackPressed" from="SaveManagerGUI" to="." method="OnReturnFromLoadGame"]
 [connection signal="OnNewGameSettingsClosed" from="NewGameSettings" to="." method="OnReturnFromNewGameSettings"]

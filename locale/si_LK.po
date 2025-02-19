@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2025-01-31 20:54+0100\n"
+"POT-Creation-Date: 2025-02-18 15:43+0200\n"
 "PO-Revision-Date: 2022-03-22 18:22+0000\n"
 "Last-Translator: Henri Hyyryläinen <hhyyrylainen@revolutionarygamesstudio.com>\n"
 "Language-Team: Sinhala <https://translate.revolutionarygamesstudio.com/projects/thrive/thrive-game/si/>\n"
@@ -158,6 +158,9 @@ msgstr ""
 msgid "AMMONIA"
 msgstr ""
 
+msgid "AMMONIA_COST"
+msgstr ""
+
 msgid "AMOUNT_OF_AUTOSAVE_TO_KEEP"
 msgstr ""
 
@@ -233,6 +236,9 @@ msgid "ATP_BALANCE"
 msgstr ""
 
 msgid "ATP_BALANCE_TOOLTIP"
+msgstr ""
+
+msgid "ATP_BALANCE_TOOLTIP_MULTICELLULAR"
 msgstr ""
 
 msgid "ATP_BALANCE_WITHOUT_EXTERNAL_RESOURCES"
@@ -462,6 +468,9 @@ msgstr ""
 msgid "BLOOM_RENDER_EFFECT"
 msgstr "තේරූ:"
 
+msgid "BLUESKY_TOOLTIP"
+msgstr ""
+
 msgid "BRAIN_CELL_NAME_DEFAULT"
 msgstr ""
 
@@ -596,6 +605,12 @@ msgid "CELL_STAT_ROTATION_TOOLTIP"
 msgstr "තේරූ:"
 
 msgid "CELL_STAT_SPEED_TOOLTIP"
+msgstr ""
+
+msgid "CELL_TYPE_BUTTON_ATP_CONSUMPTION"
+msgstr ""
+
+msgid "CELL_TYPE_BUTTON_ATP_PRODUCTION"
 msgstr ""
 
 msgid "CELL_TYPE_NAME"
@@ -1297,6 +1312,9 @@ msgstr ""
 msgid "DEBUG_DRAW_NOT_AVAILABLE"
 msgstr ""
 
+msgid "DEBUG_HEAT_AT_CURSOR"
+msgstr ""
+
 msgid "DEBUG_PANEL"
 msgstr ""
 
@@ -1499,6 +1517,9 @@ msgid "DISPLAY_DRIVER_OPENGL"
 msgstr ""
 
 msgid "DISPLAY_DRIVER_VULKAN"
+msgstr ""
+
+msgid "DISPLAY_MODE"
 msgstr ""
 
 msgid "DISPLAY_PART_NAMES"
@@ -1807,6 +1828,9 @@ msgid "EXCEPTION_HAPPENED_PROCESSING_SAVE"
 msgstr ""
 
 msgid "EXCEPTION_HAPPENED_WHILE_LOADING"
+msgstr ""
+
+msgid "EXCLUSIVE_FULLSCREEN"
 msgstr ""
 
 msgid "EXISTING_BUILDINGS"
@@ -2193,6 +2217,13 @@ msgstr ""
 msgid "HEALTH"
 msgstr ""
 
+msgid "HEALTH_MODIFIER"
+msgstr ""
+
+#, fuzzy
+msgid "HEAT_ACCUMULATION_BAR_TOOLTIP"
+msgstr "තේරූ:"
+
 msgid "HELP"
 msgstr ""
 
@@ -2369,6 +2400,10 @@ msgstr ""
 
 msgid "INSPECTOR"
 msgstr ""
+
+#, fuzzy
+msgid "INSTAGRAM_TOOLTIP"
+msgstr "තේරූ:"
 
 msgid "INTERACTION_ACTIVATE_ASCENSION"
 msgstr ""
@@ -2954,6 +2989,10 @@ msgstr ""
 msgid "MASTER_VOLUME"
 msgstr ""
 
+#, fuzzy
+msgid "MASTODON_TOOLTIP"
+msgstr "තේරූ:"
+
 msgid "MAX_CACHE_SIZE_TOOLTIP"
 msgstr ""
 
@@ -3036,6 +3075,10 @@ msgstr ""
 msgid "METABOLOSOMES_PROCESSES_DESCRIPTION"
 msgstr ""
 
+#, fuzzy
+msgid "META_THREADS_TOOLTIP"
+msgstr "තේරූ:"
+
 msgid "METRICS"
 msgstr ""
 
@@ -3068,6 +3111,10 @@ msgstr ""
 
 msgid "MICHE_ENVIRONMENTAL_COMPOUND_PRESSURE"
 msgstr ""
+
+#, fuzzy
+msgid "MICHE_ENVIRONMENTAL_TOLERANCE"
+msgstr "තේරූ:"
 
 msgid "MICHE_MAINTAIN_COMPOUND_PRESSURE"
 msgstr ""
@@ -3692,6 +3739,9 @@ msgstr ""
 msgid "NOTICE_READY_TO_EDIT"
 msgstr ""
 
+msgid "NOT_ADAPTED_TO_CURRENT_PATCH"
+msgstr ""
+
 #, fuzzy
 msgid "NOT_STARTED_DOT"
 msgstr "තේරූ:"
@@ -3749,6 +3799,10 @@ msgstr ""
 
 msgid "NUMLOCK"
 msgstr ""
+
+#, fuzzy
+msgid "NUTRIENT_COST_TOOLTIP"
+msgstr "තේරූ:"
 
 msgid "N_A"
 msgstr ""
@@ -3961,6 +4015,13 @@ msgstr ""
 msgid "OXYGEN_INHIBITOR_SYNTHESIS"
 msgstr ""
 
+msgid "OXYGEN_RESISTANCE"
+msgstr ""
+
+#, fuzzy
+msgid "OXYGEN_TOLERANCE_TOOLTIP"
+msgstr "තේරූ:"
+
 msgid "OXYTOXISOME_PROCESSES_DESCRIPTION"
 msgstr ""
 
@@ -4083,6 +4144,10 @@ msgstr ""
 msgid "PERCENTAGE_VALUE"
 msgstr ""
 
+#, fuzzy
+msgid "PERFECT_ADAPTATION_DESCRIPTION"
+msgstr "තේරූ:"
+
 msgid "PERFORMANCE"
 msgstr ""
 
@@ -4096,6 +4161,9 @@ msgid "PER_SECOND_SLASH"
 msgstr ""
 
 msgid "PHOSPHATE"
+msgstr ""
+
+msgid "PHOSPHATES_COST"
 msgstr ""
 
 msgid "PHOTOSYNTHESIS"
@@ -4194,6 +4262,9 @@ msgstr ""
 msgid "PRESSURE_SHORT"
 msgstr ""
 
+msgid "PRESSURE_TOLERANCE_TOOLTIP"
+msgstr ""
+
 msgid "PRESS_KEY_DOT_DOT_DOT"
 msgstr ""
 
@@ -4213,6 +4284,9 @@ msgid "PROCESS_ENVIRONMENT_SEPARATOR"
 msgstr ""
 
 msgid "PROCESS_PANEL_TITLE"
+msgstr ""
+
+msgid "PROCESS_SPEED_MODIFIER"
 msgstr ""
 
 msgid "PROGRAMMING_TEAM"
@@ -5135,10 +5209,14 @@ msgstr ""
 msgid "TEMPERATURE_SHORT"
 msgstr ""
 
+#, fuzzy
+msgid "TEMPERATURE_TOLERANCE_TOOLTIP"
+msgstr "තේරූ:"
+
 msgid "TESTING_TEAM"
 msgstr ""
 
-msgid "THANKS_FOR_BUYING_THRIVE"
+msgid "THANKS_FOR_BUYING_THRIVE_2"
 msgstr ""
 
 msgid "THANKS_FOR_PLAYING"
@@ -5294,6 +5372,10 @@ msgstr ""
 msgid "TOGGLE_FULLSCREEN"
 msgstr ""
 
+#, fuzzy
+msgid "TOGGLE_HEAT_VIEW_TOOLTIP"
+msgstr "තේරූ:"
+
 msgid "TOGGLE_HUD_HIDE"
 msgstr ""
 
@@ -5313,6 +5395,30 @@ msgid "TOGGLE_PAUSE"
 msgstr ""
 
 msgid "TOGGLE_UNBINDING"
+msgstr ""
+
+msgid "TOLERANCES_TOO_HIGH_PRESSURE"
+msgstr ""
+
+msgid "TOLERANCES_TOO_HIGH_TEMPERATURE"
+msgstr ""
+
+msgid "TOLERANCES_TOO_LOW_OXYGEN_PROTECTION"
+msgstr ""
+
+msgid "TOLERANCES_TOO_LOW_PRESSURE"
+msgstr ""
+
+msgid "TOLERANCES_TOO_LOW_TEMPERATURE"
+msgstr ""
+
+msgid "TOLERANCES_TOO_LOW_UV_PROTECTION"
+msgstr ""
+
+msgid "TOLERANCES_UNSUITABLE_DEBUFFS"
+msgstr ""
+
+msgid "TOLERANCE_RANGE_LABEL"
 msgstr ""
 
 msgid "TOOLS"
@@ -5495,9 +5601,6 @@ msgid "TUTORIAL_MULTICELLULAR_STAGE_WELCOME"
 msgstr "තේරූ:"
 
 msgid "TUTORIAL_VIEW_NOW"
-msgstr ""
-
-msgid "TWITTER_TOOLTIP"
 msgstr ""
 
 msgid "TWO_TIMES"
@@ -5715,6 +5818,13 @@ msgstr ""
 
 msgid "USE_VIRTUAL_WINDOW_SIZE"
 msgstr ""
+
+msgid "UV_PROTECTION"
+msgstr ""
+
+#, fuzzy
+msgid "UV_TOLERANCE_TOOLTIP"
+msgstr "තේරූ:"
 
 msgid "VACUOLE"
 msgstr ""
@@ -7606,6 +7716,9 @@ msgstr "තේරූ:"
 msgid "WILL_YOU_THRIVE"
 msgstr ""
 
+msgid "WINDOWED"
+msgstr ""
+
 msgid "WIN_BOX_TITLE"
 msgstr ""
 
@@ -7667,6 +7780,9 @@ msgid "XBOX_ONE"
 msgstr ""
 
 msgid "XBOX_SERIES"
+msgstr ""
+
+msgid "X_TWITTER_TOOLTIP"
 msgstr ""
 
 msgid "YEARS"

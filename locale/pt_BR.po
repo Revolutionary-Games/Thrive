@@ -7,8 +7,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2025-01-31 20:54+0100\n"
-"PO-Revision-Date: 2025-01-21 12:01+0000\n"
+"POT-Creation-Date: 2025-02-18 15:43+0200\n"
+"PO-Revision-Date: 2025-02-06 13:29+0000\n"
 "Last-Translator: Anonymous <noreply@weblate.org>\n"
 "Language-Team: Portuguese (Brazil) <https://translate.revolutionarygamesstudio.com/projects/thrive/thrive-game/pt_BR/>\n"
 "Language: pt_BR\n"
@@ -175,6 +175,10 @@ msgstr "Volume do ambiente"
 msgid "AMMONIA"
 msgstr "Amônia"
 
+#, fuzzy
+msgid "AMMONIA_COST"
+msgstr "Amônia"
+
 msgid "AMOUNT_OF_AUTOSAVE_TO_KEEP"
 msgstr "Quantidade de salvamentos automáticos para manter:"
 
@@ -265,6 +269,15 @@ msgstr ""
 "Por exemplo, algumas células só podem manter um equilíbrio positivo de ATP quando possuem múltiplos tipos de composto dos quais produzir ATP ao mesmo tempo.\n"
 "Esses tipos de célula são mais difíceis de jogar, já que precisam ter múltiplos tipos de composto armazenados ao mesmo tempo para sobreviver."
 
+#, fuzzy
+msgid "ATP_BALANCE_TOOLTIP_MULTICELLULAR"
+msgstr ""
+"Esta seção mostra o equilíbrio total de ATP (energia) da célula atual.\n"
+"Para sobreviver o equilíbrio precisa ser positivo. Para células sésseis, é possível considerar o equilíbrio positivo com o movimento excluído.\n"
+"O menu suspenso abaixo pode ser usado para checar o que aconteceria se a célula não tivesse algum recurso necessário para produzir ATP.\n"
+"Por exemplo, algumas células só podem manter um equilíbrio positivo de ATP quando possuem múltiplos tipos de composto dos quais produzir ATP ao mesmo tempo.\n"
+"Esses tipos de célula são mais difíceis de jogar, já que precisam ter múltiplos tipos de composto armazenados ao mesmo tempo para sobreviver."
+
 msgid "ATP_BALANCE_WITHOUT_EXTERNAL_RESOURCES"
 msgstr "Sem recursos externos"
 
@@ -305,7 +318,7 @@ msgid "AUTO-EVO_EXPLANATION_EXPLANATION"
 msgstr "Esse painel mostra os números que a previsão da auto-evo usa. A energia total que uma espécie é capaz de possuir e o custo por indivíduo da espécie determina a população final. A auto-evo usa um modelo simplificado da realidade para calcular quão bem as espécies estão desempenhando baseado na energia que elas são capazes de obter. É mostrada quanta energia cada fonte de alimento fornece para a espécie. Além disso, é mostrada a energia total disponível dessa fonte. A fração da energia total fornecida à espécie é baseada em quão adaptada a espécie é comparada à adaptação total. A adaptação é a métrica de quão bem a espécie pode utilizar essa fonte de alimento."
 
 msgid "AUTO-EVO_POPULATION_CHANGED_2"
-msgstr "A população de {0} foi alterada em {1} em {2} devido a: {3}"
+msgstr "A população de {0} mudou em {1} membros em {2} devido a: {3}"
 
 msgid "AUTO-EVO_PREDICTION"
 msgstr "Previsão da Auto-Evo"
@@ -338,7 +351,7 @@ msgid "AUTO_EVO_FAILED"
 msgstr "A auto-evo falhou"
 
 msgid "AUTO_EVO_MISSING_RESULT_DATA_OBJECT"
-msgstr ""
+msgstr "Os resultados da Auto-evo não estão presentes. Se você carregou um salvamento antigo isso é esperado. Se você não carregou um salvamento antigo, por favor relate esse bug e envie seu arquivo de log do jogo."
 
 msgid "AUTO_EVO_RESULTS"
 msgstr "Resultados da Auto-evo:"
@@ -492,6 +505,10 @@ msgstr "Bioma: {0}"
 msgid "BLOOM_RENDER_EFFECT"
 msgstr "Efeitos de Tela:"
 
+#, fuzzy
+msgid "BLUESKY_TOOLTIP"
+msgstr "Pausar o jogo"
+
 msgid "BRAIN_CELL_NAME_DEFAULT"
 msgstr "Neurônio"
 
@@ -520,7 +537,7 @@ msgid "BY_REVOLUTIONARY_GAMES"
 msgstr "Por Revolutionary Games Studio"
 
 msgid "CACHE_DISK_MAX_TIME"
-msgstr ""
+msgstr "Tempo máximo para manter itens no disco antes de deletá-los"
 
 msgid "CACHE_MEMORY_MAX_ITEMS"
 msgstr ""
@@ -632,6 +649,14 @@ msgstr ""
 "Velocidade da célula. Por favor, note que devido a limitações do algoritmo que calcula este valor, ele é apenas uma aproximação.\n"
 "E, por exemplo, quando o tamanho do flagelo é modificado os valores de velocidade não fazem muito sentido e não coincidem com o que ocorrerá no estágio.\n"
 "Este é um problema conhecido, mas ainda não foi corrigido porque tem prioridade menor em comparação com diversos outros problemas e novas propriedades."
+
+#, fuzzy
+msgid "CELL_TYPE_BUTTON_ATP_CONSUMPTION"
+msgstr "Opções"
+
+#, fuzzy
+msgid "CELL_TYPE_BUTTON_ATP_PRODUCTION"
+msgstr "Opções"
 
 msgid "CELL_TYPE_NAME"
 msgstr "Nome do Tipo de Célula"
@@ -1404,6 +1429,9 @@ msgstr ""
 msgid "DEBUG_DRAW_NOT_AVAILABLE"
 msgstr ""
 
+msgid "DEBUG_HEAT_AT_CURSOR"
+msgstr "Valor de calor: {0}"
+
 msgid "DEBUG_PANEL"
 msgstr "Painel de depuração"
 
@@ -1634,6 +1662,10 @@ msgstr "OpenGL"
 
 msgid "DISPLAY_DRIVER_VULKAN"
 msgstr "Vulkan"
+
+#, fuzzy
+msgid "DISPLAY_MODE"
+msgstr "Exibir nomes dos botões de seleções de partes"
 
 msgid "DISPLAY_PART_NAMES"
 msgstr "Exibir nomes dos botões de seleções de partes"
@@ -1952,6 +1984,10 @@ msgstr "Uma exceção ocorreu ao processar objetos carregados"
 msgid "EXCEPTION_HAPPENED_WHILE_LOADING"
 msgstr "Uma exceção ocorreu ao carregar os dados salvos"
 
+#, fuzzy
+msgid "EXCLUSIVE_FULLSCREEN"
+msgstr "Tela cheia"
+
 msgid "EXISTING_BUILDINGS"
 msgstr "Construções"
 
@@ -2131,7 +2167,7 @@ msgstr ""
 "Micróbios mais reativos perseguirão outras presas depois de um tempo."
 
 msgid "FOG_OF_WAR_DISABLED"
-msgstr "Fog of War Desativado"
+msgstr "Fog Of War Desativado"
 
 msgid "FOG_OF_WAR_DISABLED_DESCRIPTION"
 msgstr "(todas as regiões serão mostradas)"
@@ -2142,9 +2178,8 @@ msgstr "Fog Of War Intenso"
 msgid "FOG_OF_WAR_INTENSE_DESCRIPTION"
 msgstr "(somente regiões em que o jogador já visitou serão mostradas)"
 
-#, fuzzy
 msgid "FOG_OF_WAR_MODE"
-msgstr "Modo De Fog Of War"
+msgstr "Modo de fog of war"
 
 msgid "FOG_OF_WAR_REGULAR"
 msgstr "Fog Of War Normal"
@@ -2341,6 +2376,13 @@ msgstr "Volume da interface"
 msgid "HEALTH"
 msgstr "Saúde"
 
+msgid "HEALTH_MODIFIER"
+msgstr ""
+
+#, fuzzy
+msgid "HEAT_ACCUMULATION_BAR_TOOLTIP"
+msgstr "Carregar patches Harmony do Assembly automaticamente (não é preciso especificar a classe do mod)"
+
 msgid "HELP"
 msgstr "Ajuda"
 
@@ -2515,6 +2557,10 @@ msgstr "Inspecionar"
 
 msgid "INSPECTOR"
 msgstr "Inspecionar"
+
+#, fuzzy
+msgid "INSTAGRAM_TOOLTIP"
+msgstr "Visite a nossa página na Steam"
 
 msgid "INTERACTION_ACTIVATE_ASCENSION"
 msgstr "Ativar Portal da Ascensão"
@@ -2949,7 +2995,7 @@ msgid "LIFE_ORIGIN_TOOLTIP"
 msgstr "Algumas opções podem estar desabilitadas caso você tenha habilitado “Somente vida baseada na realidade”"
 
 msgid "LIFE_ORIGIN_VENTS"
-msgstr "Fontes hidrotermais"
+msgstr "Fissuras hidrotermais"
 
 msgid "LIGHT"
 msgstr "Luz"
@@ -3119,6 +3165,10 @@ msgid "MASTER_VOLUME"
 msgstr "Volume principal"
 
 #, fuzzy
+msgid "MASTODON_TOOLTIP"
+msgstr "Migre sua espécie entre regiões sem ter que se mover para uma região diferente você mesmo"
+
+#, fuzzy
 msgid "MAX_CACHE_SIZE_TOOLTIP"
 msgstr "Expele mucilagem para aumentar a velocidade e desacelerar células presas na gosma"
 
@@ -3201,6 +3251,12 @@ msgstr "Metabolossomos são aglomerados de proteínas envoltos em cascas de prot
 msgid "METABOLOSOMES_PROCESSES_DESCRIPTION"
 msgstr "Transforma [thrive:compound type=\"glucose\"][/thrive:compound] em [thrive:compound type=\"atp\"][/thrive:compound]. Quantidade aumenta com a concentração de [thrive:compound type=\"oxygen\"][/thrive:compound]."
 
+#, fuzzy
+msgid "META_THREADS_TOOLTIP"
+msgstr ""
+"Não é possível detectar automaticamente se o hiperprocessamento está habilitado ou não.\n"
+"Isso afeta o número padrão de processos, já que as tarefas de hiperprocessamento não são tão rápidas quanto núcleos de CPU de verdade."
+
 msgid "METRICS"
 msgstr "Exibir Métricas"
 
@@ -3255,6 +3311,10 @@ msgstr ""
 msgid "MICHE_ENVIRONMENTAL_COMPOUND_PRESSURE"
 msgstr "Pressão para Compostos Ambientais"
 
+#, fuzzy
+msgid "MICHE_ENVIRONMENTAL_TOLERANCE"
+msgstr "Tolerância"
+
 msgid "MICHE_MAINTAIN_COMPOUND_PRESSURE"
 msgstr "Pressão para Manter Compostos"
 
@@ -3288,9 +3348,8 @@ msgstr "Teste de Desempenho de Micróbios"
 msgid "MICROBE_EDITOR"
 msgstr "Editor de Micróbios"
 
-#, fuzzy
 msgid "MICROBE_ENZYME_STATISTICS"
-msgstr "  {0}: Organela encontrada em {1} espécie(s), tendo em média {2} cada"
+msgstr "[b]Dados das Enzimas:[/b]"
 
 msgid "MICROBE_FREEBUILD_EDITOR"
 msgstr "Editor de Micróbio Livre"
@@ -3361,13 +3420,11 @@ msgstr "Coloque flagelos ou jatos de gosma simetricamente atrás da sua célula.
 msgid "MICROBE_LOADING_TIP_9"
 msgstr "Onde você coloca partes importa. O formato da sua célula tem um impacto na sua velocidade de movimento e rotação."
 
-#, fuzzy
 msgid "MICROBE_MEMBRANE_PERCENTAGE_STATISTICS"
-msgstr "[b]Dados de Melhorias de Organelas:[/b]"
+msgstr "{0}: Membrana encontrada em {1} espécie(s)"
 
-#, fuzzy
 msgid "MICROBE_MEMBRANE_STATISTICS"
-msgstr "  {0}: Organela encontrada em {1} espécie(s), tendo em média {2} cada"
+msgstr "[b]Dados das Membranas:[/b]"
 
 msgid "MICROBE_ORGANELLE_STATISTICS"
 msgstr "  {0}: Organela encontrada em {1} espécie(s), tendo em média {2} cada"
@@ -3921,7 +3978,7 @@ msgid "NITROPLAST"
 msgstr "Plastídeo de Fixação de Nitrogênio"
 
 msgid "NITROPLAST_DESCRIPTION"
-msgstr "O Plastídeo de Fixação de Nitrogênio é uma proteína capaz de usar nitrogênio gasoso, oxigênio e energia celular em forma de ATP para produzir amônia, um nutriente essencial para o crescimento das células. Este é um processo chamado Fixação de Nitrogênio."
+msgstr "O Nitroplasto é uma organela membranosa capaz de usar [thrive:compound type=\"nitrogen\"][/thrive:compound] gasoso, [thrive:compound type=\"oxygen\"][/thrive:compound] e [thrive:compound type=\"atp\"][/thrive:compound] para produzir [thrive:compound type=\"ammonia\"][/thrive:compound], um nutriente essencial para o crescimento das células. Este é um processo chamado [b]fixação aeróbica de nitrogênio[/b]."
 
 msgid "NITROPLAST_PROCESSES_DESCRIPTION"
 msgstr "Transforma [thrive:compound type=\"atp\"][/thrive:compound] em [thrive:compound type=\"ammonia\"][/thrive:compound]. Quantidade aumenta com a concentração de [thrive:compound type=\"nitrogen\"][/thrive:compound] e [thrive:compound type=\"oxygen\"][/thrive:compound]."
@@ -3969,6 +4026,10 @@ msgstr "O editor está pronto para ser utilizado"
 msgid "NOTICE_READY_TO_EDIT"
 msgstr "O editor está pronto para ser utilizado"
 
+#, fuzzy
+msgid "NOT_ADAPTED_TO_CURRENT_PATCH"
+msgstr "Ir para a região atual"
+
 msgid "NOT_STARTED_DOT"
 msgstr "Não começou."
 
@@ -4012,7 +4073,9 @@ msgid "NUCLEUS"
 msgstr "Núcleo"
 
 msgid "NUCLEUS_DELETE_OPTION_DISABLED_TOOLTIP"
-msgstr "O núcleo é uma mutação irreversível e é impossível removê-lo. Entretanto, se for colocado na sessão atual, é permitido desfazer ou refazer a ação"
+msgstr ""
+"O núcleo é uma mutação irreversível e é impossível removê-lo.\n"
+"Entretanto, se tiver sido colocado na sessão atual, é permitido desfazer ou refazer a ação."
 
 msgid "NUCLEUS_DESCRIPTION"
 msgstr "A principal característica das células eucarióticas. O núcleo também inclui o retículo endoplasmático e o complexo de golgi. É uma evolução das células procarióticas para desenvolver um sistema de membranas internas, assimilando outros procariontes dentro deles. Isso os permite compartimentar, ou repelir os diferentes processos acontecendo dentro das células prevenindo eles de se sobrepor. Isso permite as suas novas organelas com membranas serem mais complexas, eficientes, e especializadas do que se estivessem flutuando no citoplasma. Entretanto, isso tem o custo de fazer a célula muito maior e precisar de muita da energia da célula para se manter."
@@ -4022,6 +4085,10 @@ msgstr "Permite a evolução de mais complexas, organelas com membrana. Custa mu
 
 msgid "NUMLOCK"
 msgstr "Num Lock"
+
+#, fuzzy
+msgid "NUTRIENT_COST_TOOLTIP"
+msgstr "Visite a nossa página no Patreon"
 
 msgid "N_A"
 msgstr "N/A"
@@ -4241,6 +4308,16 @@ msgstr "Oxigênio"
 msgid "OXYGEN_INHIBITOR_SYNTHESIS"
 msgstr "Síntese de Oxitoxina"
 
+#, fuzzy
+msgid "OXYGEN_RESISTANCE"
+msgstr "Resistência a Toxinas"
+
+#, fuzzy
+msgid "OXYGEN_TOLERANCE_TOOLTIP"
+msgstr ""
+"Esta seção exibe o saldo de cada composto (produção − consumo).\n"
+"Por exemplo, o saldo de glucose precisa ser positivo para uma célula vegetal."
+
 msgid "OXYTOXISOME_PROCESSES_DESCRIPTION"
 msgstr "Transforma [thrive:compound type=\"atp\"][/thrive:compound] em [thrive:compound type=\"oxytoxy\"][/thrive:compound]. Quantidade aumenta com a concentração de [thrive:compound type=\"oxygen\"][/thrive:compound]. Pode disparar toxinas apertando [thrive:input]g_fire_toxin[/thrive:input]. Quando a quantidade de [thrive:compound type=\"oxytoxy\"][/thrive:compound] ficar baixa, será possível disparar, mas o dano irá ser reduzido."
 
@@ -4334,7 +4411,7 @@ msgid "PATREON_TOOLTIP"
 msgstr "Visite a nossa página no Patreon"
 
 msgid "PATRONS"
-msgstr "Patrons"
+msgstr "Apoiadores"
 
 msgid "PAUSED"
 msgstr "PAUSADO"
@@ -4361,10 +4438,18 @@ msgid "PENDING_ENDOSYMBIOSIS_EXPLANATION"
 msgstr "Existe um processo completo de endossimbiose que pode ser finalizado posicionando a célula como uma organela. É recomendado fazer isso assim que possível já que não é possível fazer mais progresso na endossimbiose até que isso seja feito. Ver o progresso da endossimbiose agora?"
 
 msgid "PENDING_ENDOSYMBIOSIS_TITLE"
-msgstr ""
+msgstr "Esperando a Finalização do Processo de Endossimbiose"
 
 msgid "PERCENTAGE_VALUE"
 msgstr "{0}%"
+
+#, fuzzy
+msgid "PERFECT_ADAPTATION_DESCRIPTION"
+msgstr ""
+"Habilita os efeitos de luz na interface (e.g botão do editor)\n"
+"\n"
+"Se você tiver um bug onde partes do botão do editor desaparecem,\n"
+"você pode tentar desabilitar essa opção para ver se o problema desaparece."
 
 msgid "PERFORMANCE"
 msgstr "Desempenho"
@@ -4379,6 +4464,10 @@ msgid "PER_SECOND_SLASH"
 msgstr "/segundo"
 
 msgid "PHOSPHATE"
+msgstr "Fosfato"
+
+#, fuzzy
+msgid "PHOSPHATES_COST"
 msgstr "Fosfato"
 
 msgid "PHOTOSYNTHESIS"
@@ -4484,6 +4573,10 @@ msgstr "Pressão"
 msgid "PRESSURE_SHORT"
 msgstr "Pressão"
 
+#, fuzzy
+msgid "PRESSURE_TOLERANCE_TOOLTIP"
+msgstr "Volta para o menu principal"
+
 msgid "PRESS_KEY_DOT_DOT_DOT"
 msgstr "Aperte uma tecla..."
 
@@ -4503,6 +4596,10 @@ msgid "PROCESS_ENVIRONMENT_SEPARATOR"
 msgstr "@"
 
 msgid "PROCESS_PANEL_TITLE"
+msgstr "Processos"
+
+#, fuzzy
+msgid "PROCESS_SPEED_MODIFIER"
 msgstr "Processos"
 
 msgid "PROGRAMMING_TEAM"
@@ -4600,9 +4697,8 @@ msgstr "Assexual"
 msgid "REPRODUCTION_BUDDING"
 msgstr "Gemulação"
 
-#, fuzzy
 msgid "REPRODUCTION_COMPOUNDS_MODE"
-msgstr "Reprodução:"
+msgstr "Compostos na saída do editor:"
 
 #, fuzzy
 msgid "REPRODUCTION_COMPOUNDS_MODE_EXPLANATION"
@@ -4801,7 +4897,7 @@ msgid "SAVE_ERROR_INCLUDE_JSON_DEBUG_NOTE"
 msgstr "Quando relatar um erro de salvamento, por favor inclua [color=#3796e1][url={0}]{1}[/url][/color] da [color=#3796e1][url={2}]pasta de logs[/url][/color] pois essa é uma informação crucial para os desenvolvedores do Thrive entenderem qual foi o erro de salvamento. Sem esse arquivo, será extremamente difícil diagnosticar e corrigir esse problema."
 
 msgid "SAVE_ERROR_TURN_ON_JSON_DEBUG_MODE"
-msgstr "Verifique se o modo de depuração JSON não está desativado antes de relatar esse erro de salvamento. O modo de depuração automática JSON deve ter criado um arquivo extra chamado {0} na [color=#3796e1][url={1}]pasta logs[/url][/color]. Esse arquivo contém informações essenciais para que os desenvolvedores de Thrive descubram qual foi o erro de salvamento."
+msgstr "Verifique se o modo de depuração JSON não está desativado antes de relatar esse erro de salvamento. O modo de depuração automática JSON deve ter criado um arquivo extra chamado {0} na [color=#3796e1][url={1}]pasta de logs[/url][/color]. Esse arquivo contém informações essenciais para que os desenvolvedores de Thrive descubram qual foi o erro de salvamento."
 
 msgid "SAVE_FAILED"
 msgstr "Falha ao Salvar"
@@ -4879,13 +4975,13 @@ msgid "SCALING_ON_INVERSE"
 msgstr "Inversamente proporcional"
 
 msgid "SCREEN_EFFECT"
-msgstr "Efeitos de Tela:"
+msgstr "Efeitos de Tela"
 
 msgid "SCREEN_EFFECT_GAMEBOY"
-msgstr "Paleta do GB:"
+msgstr "Paleta do GB"
 
 msgid "SCREEN_EFFECT_GAMEBOY_COLOR"
-msgstr "Gráficos de GB Color:"
+msgstr "Gráficos de GB Color"
 
 msgid "SCREEN_EFFECT_GREYSCALE"
 msgstr "Escala de cinza"
@@ -4909,7 +5005,7 @@ msgid "SEARCH_RADIUS"
 msgstr "Raio de Procura:"
 
 msgid "SEA_FLOOR"
-msgstr "Relevo Oceânico"
+msgstr "Fundo do Mar"
 
 msgid "SECRETE_SLIME"
 msgstr "Expelir mucilagem"
@@ -5078,16 +5174,14 @@ msgstr "Transforma [thrive:compound type=\"glucose\"][/thrive:compound] em [thri
 msgid "SMALL_IRON_CHUNK"
 msgstr "Pedaço de ferro pequeno"
 
-#, fuzzy
 msgid "SMALL_PHOSPHATE_CHUNK"
-msgstr "Pedaço de ferro pequeno"
+msgstr "Pedaço de fosfato pequeno"
 
-#, fuzzy
 msgid "SMALL_SULFUR_CHUNK"
-msgstr "Pedaço de ferro pequeno"
+msgstr "Pedaço de enxofre pequeno"
 
 msgid "SNOWFLAKE"
-msgstr ""
+msgstr "Floco de Neve"
 
 msgid "SOCIETY_STAGE"
 msgstr "Estágio Social"
@@ -5192,13 +5286,11 @@ msgstr "Velocidade:"
 msgid "SPREAD_TO_PATCHES"
 msgstr "espalhou para as regiões:"
 
-#, fuzzy
 msgid "SPRINT"
-msgstr "Capturar Tela"
+msgstr "Correr"
 
-#, fuzzy
 msgid "SPRINT_ACTION_TOOLTIP"
-msgstr "Visite a nossa página no Patreon"
+msgstr "Ativar/Desativar correr. Correr faz com que as células se movam mais rápido, mas consomem mais ATP e ainda mais ATP à medida que a tensão se acumula."
 
 msgid "STAGE_MENU_BUTTON_TOOLTIP"
 msgstr "Menu de pausa"
@@ -5303,13 +5395,13 @@ msgid "STORAGE_COLON"
 msgstr "Armazenamento:"
 
 msgid "STORAGE_STATISTICS_SECONDS_OF_COMPOUND"
-msgstr ""
+msgstr "segundos de"
 
 msgid "STORE_LOGGED_IN_AS"
 msgstr "Entrou como: {0}"
 
 msgid "STRAIN_BAR_VISIBILITY"
-msgstr ""
+msgstr "Visibilidade da barra de tensão"
 
 msgid "STRATEGY_STAGES"
 msgstr "Estágios de Estratégia"
@@ -5373,7 +5465,7 @@ msgid "SUPPORTER_PATRONS"
 msgstr "Apoiadores"
 
 msgid "SURVIVAL_TITLE"
-msgstr ""
+msgstr "Sobrevivência"
 
 msgid "SWITCH_TO_FRONT_CAMERA"
 msgstr "Alternar para a visão frontal"
@@ -5456,16 +5548,20 @@ msgstr "Temperatura"
 msgid "TEMPERATURE_SHORT"
 msgstr "Temp."
 
+#, fuzzy
+msgid "TEMPERATURE_TOLERANCE_TOOLTIP"
+msgstr "Visite a nossa página no Patreon"
+
 msgid "TESTING_TEAM"
 msgstr "Equipe de Teste"
 
-msgid "THANKS_FOR_BUYING_THRIVE"
+msgid "THANKS_FOR_BUYING_THRIVE_2"
 msgstr ""
-"Obrigado por apoiar o desenvolvimento de Thrive ao comprar essa cópia!\n"
+"Obrigado por apoiar o desenvolvimento de Thrive ao comprar essa cópia de [color=#3796e1][url={0}]{1}[/url][/color]!\n"
 "\n"
-"Se você não comprou o jogo, é possível obter a sua própria cópia [color=#3796e1][url={0}]aqui[/url][/color] ou em nosso [color=#3796e1][url=https://revolutionarygamesstudio.com/releases/]website[/url][/color].\n"
+"A velocidade do desenvolvimento continuado de Thrive depende da quantidade de apoio que recebemos. Você pode saber mais em [color=#3796e1][url={2}]our website[/url][/color] ou nas nossas redes sociais abaixo à esquerda.\n"
 "\n"
-"Se deseja acessar o Thrive Launcher antes de começar o jogo, você pode usar o botão no menu principal para ir para o lançador e então desativar o modo integrado no menu de opções."
+"Se deseja acessar o Inicializador do Thrive antes de começar o jogo, você pode usar o botão no menu principal para ir para o lançador e então desativar o modo integrado no menu de opções."
 
 msgid "THANKS_FOR_PLAYING"
 msgstr ""
@@ -5482,18 +5578,22 @@ msgstr "Equipe de Teorização"
 msgid "THERMOPLAST"
 msgstr "Termoplasto"
 
+#, fuzzy
 msgid "THERMOPLAST_DESCRIPTION"
 msgstr "O termoplasto é uma estrutura de membrana dupla contendo pigmentos termossensíveis. É um procarionte que foi assimilado para uso do seu hospedeiro eucariótico. Os pigmentos nos termoplastos conseguem usar a energia das diferenças de calor no ambiente para produzir glicose da água e gás carbônico em um processo chamado Termossíntese. A proporção da sua produção de glicose aumenta com a concentração de dióxido de carbono e temperatura."
 
+#, fuzzy
 msgid "THERMOPLAST_PROCESSES_DESCRIPTION"
 msgstr "Produz [thrive:compound type=\"glucose\"][/thrive:compound]. Quantidade aumenta com a concentração de [thrive:compound type=\"carbondioxide\"][/thrive:compound] e temperatura."
 
 msgid "THERMOSYNTHASE"
 msgstr "Termossintase"
 
+#, fuzzy
 msgid "THERMOSYNTHASE_DESCRIPTION"
 msgstr "A termossintase é uma proteína que muda de forma usando a convecção térmica. Quando exposta ao calor, ela se dobra ligando-se ao ADP. Quando resfriada, ela se desdobra e é reciclada em ATP em um processo chamado termossíntese. A taxa de produção de ATP aumenta com a temperatura ambiente."
 
+#, fuzzy
 msgid "THERMOSYNTHASE_PROCESSES_DESCRIPTION"
 msgstr "Produz [thrive:compound type=\"atp\"][/thrive:compound]. Quantidade aumenta com a [thrive:compound type=\"temperature\"][/thrive:compound]."
 
@@ -5560,7 +5660,7 @@ msgid "THYLAKOIDS"
 msgstr "Tilacoides"
 
 msgid "THYLAKOIDS_DESCRIPTION"
-msgstr "Tilacóides são aglomerações de proteínas e pigmentos fotossensíveis. Os pigmentos conseguem usar a energia da luz para produzir glicose da água e gás carbônico em um processo chamado Fotossíntese. Esses pigmentos também são o que os dá uma cor característica. A taxa da sua produção de glicose aumenta com a concentração de dióxido de carbono e intensidade da luz. Como os tilacóides estão suspensos diretamente no citoplasma, o fluido em volta realiza fermentação."
+msgstr "Tilacóides são aglomerações de proteínas e pigmentos fotossensíveis. Os pigmentos conseguem usar a energia da [thrive:compound type=\"sunlight\"][/thrive:compound] para produzir [thrive:compound type=\"glucose\"][/thrive:compound] a partir de água e [thrive:compound type=\"carbondioxide\"][/thrive:compound] gasoso em um processo chamado [b]fotossíntese[/b]. Esses pigmentos também são o que os dá uma cor característica. A taxa da sua produção de [thrive:compound type=\"glucose\"][/thrive:compound] aumenta com a concentração de [thrive:compound type=\"carbondioxide\"][/thrive:compound] e intensidade da [thrive:compound type=\"sunlight\"][/thrive:compound]. Como os tilacóides estão suspensos diretamente no citoplasma, o fluido em volta realiza [b]glicólise[/b]."
 
 msgid "TIDEPOOL"
 msgstr "Poça de maré"
@@ -5634,6 +5734,12 @@ msgstr "Exibir FPS"
 msgid "TOGGLE_FULLSCREEN"
 msgstr "Tela cheia"
 
+#, fuzzy
+msgid "TOGGLE_HEAT_VIEW_TOOLTIP"
+msgstr ""
+"Ative a fagocitose para engolir pedaços\n"
+"e organismos pequenos em troca de um maior uso ATP enquanto está ativo"
+
 msgid "TOGGLE_HUD_HIDE"
 msgstr "Exibir HUD"
 
@@ -5655,6 +5761,32 @@ msgstr "Pausar"
 msgid "TOGGLE_UNBINDING"
 msgstr "Desativar modo de ligação"
 
+msgid "TOLERANCES_TOO_HIGH_PRESSURE"
+msgstr ""
+
+msgid "TOLERANCES_TOO_HIGH_TEMPERATURE"
+msgstr ""
+
+msgid "TOLERANCES_TOO_LOW_OXYGEN_PROTECTION"
+msgstr ""
+
+#, fuzzy
+msgid "TOLERANCES_TOO_LOW_PRESSURE"
+msgstr "Pressão para Não Realizar Operação"
+
+msgid "TOLERANCES_TOO_LOW_TEMPERATURE"
+msgstr ""
+
+#, fuzzy
+msgid "TOLERANCES_TOO_LOW_UV_PROTECTION"
+msgstr "{0}: +{1} ATP"
+
+msgid "TOLERANCES_UNSUITABLE_DEBUFFS"
+msgstr ""
+
+msgid "TOLERANCE_RANGE_LABEL"
+msgstr ""
+
 msgid "TOOLS"
 msgstr "Ferramentas"
 
@@ -5662,7 +5794,7 @@ msgid "TOOL_HAND_AXE"
 msgstr "Machado de Mão"
 
 msgid "TOO_MANY_RECENT_VERSIONS_TO_SHOW"
-msgstr ""
+msgstr "Existem versões recentes demais, então todas não estão sendo mostradas"
 
 msgid "TOTAL_GATHERED_ENERGY_COLON"
 msgstr "Energia Acumulada:"
@@ -5671,7 +5803,7 @@ msgid "TOTAL_SAVES"
 msgstr "Salvamentos totais:"
 
 msgid "TOXIN_CHANNEL_INHIBITOR"
-msgstr ""
+msgstr "Inibidor de Canais"
 
 #, fuzzy
 msgid "TOXIN_CHANNEL_INHIBITOR_DESCRIPTION"
@@ -5690,7 +5822,7 @@ msgid "TOXIN_CYTOTOXIN_DESCRIPTION"
 msgstr "O vacúolo de toxinas é um vacúolo que foi modificado para a produção, armazenamento, e secreção de oxitoxinas. Mais vacúolos de toxinas vão aumentar a taxa na qual toxinas serão liberadas."
 
 msgid "TOXIN_FIRE_RATE_TOXICITY_COLON"
-msgstr ""
+msgstr "Taxa de Tiro e Toxicidade:"
 
 #, fuzzy
 msgid "TOXIN_MACROLIDE"
@@ -5703,7 +5835,7 @@ msgid "TOXIN_MACROLIDE_DESCRIPTION"
 msgstr "O vacúolo de toxinas é um vacúolo que foi modificado para a produção, armazenamento, e secreção de oxitoxinas. Mais vacúolos de toxinas vão aumentar a taxa na qual toxinas serão liberadas."
 
 msgid "TOXIN_OXYGEN_METABOLISM_INHIBITOR"
-msgstr ""
+msgstr "Cianeto"
 
 #, fuzzy
 msgid "TOXIN_OXYGEN_METABOLISM_INHIBITOR_DESCRIPTION"
@@ -5714,10 +5846,10 @@ msgid "TOXIN_OXYTOXY_DESCRIPTION"
 msgstr "O vacúolo de toxinas é um vacúolo que foi modificado para a produção, armazenamento, e secreção de oxitoxinas. Mais vacúolos de toxinas vão aumentar a taxa na qual toxinas serão liberadas."
 
 msgid "TOXIN_PREFER_FIRE_RATE"
-msgstr ""
+msgstr "Tiro rápido"
 
 msgid "TOXIN_PREFER_TOXICITY"
-msgstr ""
+msgstr "Tóxico"
 
 #, fuzzy
 msgid "TOXIN_PROPERTIES_HEADING"
@@ -5735,9 +5867,8 @@ msgstr ""
 "\n"
 "Após confirmar a descensão, você poderá editar as configurações do jogo para escolher uma nova semente de mundo e jogar em um mapa diferente ou desabilitar a vida baseada na realidade, por exemplo."
 
-#, fuzzy
 msgid "TOXIN_TYPE_COLON"
-msgstr "Tipo:"
+msgstr "Tipo de Toxina:"
 
 #, fuzzy
 msgid "TOXIN_TYPE_CUSTOMIZATION_EXPLANATION"
@@ -5748,11 +5879,8 @@ msgstr ""
 "\n"
 "Após confirmar a descensão, você poderá editar as configurações do jogo para escolher uma nova semente de mundo e jogar em um mapa diferente ou desabilitar a vida baseada na realidade, por exemplo."
 
-#, fuzzy
 msgid "TOXIN_VACUOLE"
-msgstr ""
-"Vacúolo de\n"
-"Toxinas"
+msgstr "Vacúolo de Toxinas"
 
 #, fuzzy
 msgid "TOXIN_VACUOLE_DESCRIPTION"
@@ -5803,19 +5931,19 @@ msgstr ""
 
 msgid "TUTORIAL_MICROBE_EDITOR_AUTO-EVO_PREDICTION"
 msgstr ""
-"Esse painel mostra uma previsão da sua população futura. Esses números são da simulação populacional da auto-evo.\n"
+"Este painel mostra uma previsão da sua energia total acumulada futura (e população entre parênteses). Esses números vêm da simulação populacional da [b]auto-evo[/b].\n"
 "\n"
-"A simulação não leva em consideração seu desempenho individual. Então, em sua região atual, você terá um maior desempenho quando entrar no editor.\n"
+"A simulação não leva em consideração seu desempenho individual. Então, em sua região atual, os números finais serão diferentes do que seriam dependendo apenas da auto-evo. A população da sua espécie diminui cada vez que a sua célula morre, e aumenta cada vez que você entra no editor.\n"
 "\n"
-"Entretanto, você deve tentar manter a população alta, mesmo sem envolvimento direto.\n"
+"Entretanto, você deve tentar manter a população alta, mesmo em regiões sem o seu envolvimento direto.\n"
 "\n"
-"Você pode ver informações mais detalhadas sobre a previsão clicando no ponto de interrogação no painel. Clique nele para continuar."
+"Você pode ver informações mais detalhadas sobre a previsão [b]clicando no ponto de interrogação no painel. Clique nele para continuar.[/b]"
 
 msgid "TUTORIAL_MICROBE_EDITOR_CELL_TEXT"
 msgstr ""
-"Este é o editor de células, onde você pode evoluir a sua espécie gastando Pontos de Mutação (PM). Cada geração terá sempre 100 MP para gastar, então não se importe em economizar.\n"
+"Este é o editor de células, onde você pode evoluir a sua espécie gastando [b]Pontos de Mutação[/b] (PM) [thrive:icon]MP[/thrive:icon]. Cada geração terá sempre [b]100 PM[/b] [thrive:icon]MP[/thrive:icon] para gastar, então não se importe com economizar!\n"
 "\n"
-"O hexágono no centro da tela é a sua célula, que é composta por uma unidade de citoplasma;\n"
+"O hexágono no centro da tela é a sua [b]célula[/b], que é composta por uma unidade de citoplasma;\n"
 "\n"
 "Para continuar, selecione uma parte no painel à esquerda. Então clique com o botão esquerdo perto do hexágono para colocá-la. Você pode girar as partes com [thrive:input]e_rotate_left[/thrive:input] e [thrive:input]e_rotate_right[/thrive:input]."
 
@@ -5858,13 +5986,13 @@ msgstr ""
 
 msgid "TUTORIAL_MICROBE_EDITOR_NEGATIVE_ATP_BALANCE"
 msgstr ""
-"Seu saldo de ATP está negativo.\n"
+"Seu saldo de [thrive:compound type=\"atp\"][/thrive:compound] está negativo.\n"
 "\n"
-"Ao executar todos os processos e se movimentar, sua criatura esgotará sua energia e morrerá.\n"
+"Ao executar todos os processos e se movimentar, sua célula esgotará sua [thrive:compound type=\"atp\"][/thrive:compound] e morrerá.\n"
 "\n"
-"Você pode adicionar organelas produtoras de ATP para criar uma célula que pode se mover constantemente.\n"
+"Existem muitas maneiras de regular a produção de [thrive:compound type=\"atp\"][/thrive:compound]. Você pode aumentá-la adicionando organelas produtoras de [thrive:compound type=\"atp\"][/thrive:compound] como [b]Hidrogenase[/b]. Algumas [b]membranas[/b] também te darão descontos na osmorregulação [thrive:icon]OsmoIcon[/thrive:icon].\n"
 "\n"
-"Ou você pode adicionar armazenamento para criar uma célula que só pode se mover em rajadas."
+"Você também pode remover organelas redundantes ou desnecessárias."
 
 msgid "TUTORIAL_MICROBE_EDITOR_NO_CHANGES_MADE"
 msgstr ""
@@ -5906,11 +6034,11 @@ msgstr ""
 
 msgid "TUTORIAL_MICROBE_EDITOR_STAY_SMALL"
 msgstr ""
-"Você deve focar em uma ou duas fontes de energia para que você não precise de recursos demais para gerar ATP suficiente para sobreviver.\n"
+"Você deveria focar em [b]especialização[/b] para sobreviver com uma ou duas fontes de [thrive:compound type=\"atp\"][/thrive:compound] para que não precise de muitos recursos ao mesmo tempo para se sustentar.\n"
 "\n"
-"Também considere se adicionar uma organela é benéfico, muitas vezes não alterar nada é uma boa escolha, pois cada parte custa ATP para ser mantida e requer mais recursos para se dividir.\n"
+"Também considere cuidadosamente se adicionar uma organela é benéfico; muitas vezes não alterar nada é uma boa escolha, pois cada parte custa [thrive:compound type=\"atp\"][/thrive:compound] para ser mantida [thrive:icon]OsmoIcon[/thrive:icon] e requer mais recursos para se dividir.\n"
 "\n"
-"Uma estratégia bastante usada é permanecer como um único hexágono de citoplasma e ir à superfície antes de obter organelas fotossintetizantes."
+"Uma estratégia possivel é permanecer como um único hexágono de citoplasma e ir à superfície antes de obter organelas [b]fotossintetizantes[/b]."
 
 msgid "TUTORIAL_MICROBE_STAGE_EDITOR_BUTTON_TUTORIAL"
 msgstr ""
@@ -5981,9 +6109,6 @@ msgstr ""
 msgid "TUTORIAL_VIEW_NOW"
 msgstr "Ver Agora"
 
-msgid "TWITTER_TOOLTIP"
-msgstr "Visite a nossa conta no Twitter"
-
 msgid "TWO_TIMES"
 msgstr "2x"
 
@@ -6012,9 +6137,8 @@ msgstr "Esta é uma build de depuração e a informação abaixo pode estar desa
 msgid "UNDERWATERCAVE"
 msgstr "Caverna Subaquática"
 
-#, fuzzy
 msgid "UNDERWATER_VENT_ERUPTION"
-msgstr "Caverna Subaquática"
+msgstr "Erupção de fissura subaquática"
 
 msgid "UNDERWATER_VENT_ERUPTION_IN"
 msgstr "Erupção em {0}"
@@ -6042,7 +6166,7 @@ msgid "UNIT_ACTION_MOVE"
 msgstr "Taxa de mutação da IA"
 
 msgid "UNIT_ADVANCED_SPACESHIP"
-msgstr ""
+msgstr "Nave Espacial Avançada"
 
 msgid "UNIT_SIMPLE_ROCKET"
 msgstr "Foguete Simples"
@@ -6084,16 +6208,16 @@ msgid "UNLOCK_ALL_ORGANELLES"
 msgstr "Múltiplas Organelas"
 
 msgid "UNLOCK_CONDITION_ATP_PRODUCTION_ABOVE"
-msgstr ""
+msgstr "produção de [thrive:compound type=\"atp\"][/thrive:compound] chega a {0}"
 
 msgid "UNLOCK_CONDITION_COMPOUND_IS_ABOVE"
-msgstr ""
+msgstr "nível de [thrive:compound type=\"{0}\"][/thrive:compound] na região é maior que {1}"
 
 msgid "UNLOCK_CONDITION_COMPOUND_IS_BELOW"
-msgstr ""
+msgstr "nível de [thrive:compound type=\"{0}\"][/thrive:compound] na região é menor que {1}"
 
 msgid "UNLOCK_CONDITION_COMPOUND_IS_BETWEEN"
-msgstr ""
+msgstr "nível de [thrive:compound type=\"{0}\"][/thrive:compound] na região é entre que {1} e {2}"
 
 msgid "UNLOCK_CONDITION_DIGESTED_MICROBES_ABOVE"
 msgstr ""
@@ -6104,13 +6228,11 @@ msgstr ""
 msgid "UNLOCK_CONDITION_EXCESS_ATP_ABOVE"
 msgstr ""
 
-#, fuzzy
 msgid "UNLOCK_CONDITION_PLAYER_DAMAGE_RECEIVED"
-msgstr "Velocidade da Digestão:"
+msgstr "dano recebido pode chegar a {0} (atualmente {1})"
 
-#, fuzzy
 msgid "UNLOCK_CONDITION_PLAYER_DAMAGE_RECEIVED_SOURCE"
-msgstr "Velocidade da Digestão:"
+msgstr "dano recebido de {1} pode chegar a {0} (atualmente {2})"
 
 msgid "UNLOCK_CONDITION_PLAYER_DEATH_COUNT_ABOVE"
 msgstr ""
@@ -6207,6 +6329,19 @@ msgstr "Definir número de tarefas de fundo manualmente"
 msgid "USE_VIRTUAL_WINDOW_SIZE"
 msgstr "Usar tamanho da janela virtual"
 
+#, fuzzy
+msgid "UV_PROTECTION"
+msgstr "Previsão da Auto-Evo"
+
+#, fuzzy
+msgid "UV_TOLERANCE_TOOLTIP"
+msgstr ""
+"Esta seção mostra o equilíbrio total de ATP (energia) da célula atual.\n"
+"Para sobreviver o equilíbrio precisa ser positivo. Para células sésseis, é possível considerar o equilíbrio positivo com o movimento excluído.\n"
+"O menu suspenso abaixo pode ser usado para checar o que aconteceria se a célula não tivesse algum recurso necessário para produzir ATP.\n"
+"Por exemplo, algumas células só podem manter um equilíbrio positivo de ATP quando possuem múltiplos tipos de composto dos quais produzir ATP ao mesmo tempo.\n"
+"Esses tipos de célula são mais difíceis de jogar, já que precisam ter múltiplos tipos de composto armazenados ao mesmo tempo para sobreviver."
+
 msgid "VACUOLE"
 msgstr "Vacúolo"
 
@@ -6257,9 +6392,8 @@ msgstr "Aumenta a velocidade de rotação das células maiores."
 msgid "VIEW_ONLINE"
 msgstr "Ver Tudo"
 
-#, fuzzy
 msgid "VIEW_PATCH_MICHES"
-msgstr "Ver as Notas de Atualização"
+msgstr "Ver Michos"
 
 msgid "VIEW_PATCH_NOTES"
 msgstr "Ver as Notas de Atualização"
@@ -6281,16 +6415,16 @@ msgid "VISIBLE"
 msgstr "Visível"
 
 msgid "VISIBLE_WHEN_CLOSE_TO_FULL"
-msgstr ""
+msgstr "Visível quando quase cheio"
 
 msgid "VISIBLE_WHEN_OVER_ZERO"
-msgstr ""
+msgstr "Visível quando acima de zero"
 
 msgid "VISIT_SUGGESTIONS_SITE"
 msgstr "Sugerir um recurso"
 
 msgid "VOLCANIC_VENT"
-msgstr "Respiradouro vulcânico"
+msgstr "Fissura Vulcânica"
 
 msgid "VOLUMEDOWN"
 msgstr "Diminuir Volume"
@@ -6340,74 +6474,63 @@ msgstr "3D"
 msgid "WIKI_3D_COMMA_SANDBOX"
 msgstr ""
 
-#, fuzzy
 msgid "WIKI_3D_COMMA_STRATEGY"
-msgstr "Editor Comum e Estágios Estratégicos"
+msgstr "3D, Estratégia"
 
-#, fuzzy
 msgid "WIKI_3D_COMMA_STRATEGY_COMMA_SPACE"
-msgstr "Editor Comum e Estágios Estratégicos"
+msgstr "3D, Estratégia, Espaço"
 
-#, fuzzy
 msgid "WIKI_8_BRACKET_16"
-msgstr "Girar à esquerda"
+msgstr "8 (16)"
 
-#, fuzzy
 msgid "WIKI_ASCENSION"
-msgstr "Rusticianina é uma proteína que consegue usar o gás carbônico e oxigênio para oxidar ferro de um estado físico para outro. O processo, chamado Quimiossíntese litoautotrófica, libera energia que a célula pode coletar."
+msgstr "Ascensão"
 
-#, fuzzy
 msgid "WIKI_ASCENSION_CURRENT_DEVELOPMENT"
-msgstr "Desenvolvedores Atuais"
+msgstr "Ainda não foi realizado trabalho em Ascensão."
 
-#, fuzzy
 msgid "WIKI_ASCENSION_FEATURES"
-msgstr "Efeitos externos:"
+msgstr "Daqui a pouco."
 
-#, fuzzy
 msgid "WIKI_ASCENSION_INTRO"
-msgstr "Rusticianina é uma proteína que consegue usar o gás carbônico e oxigênio para oxidar ferro de um estado físico para outro. O processo, chamado Quimiossíntese litoautotrófica, libera energia que a célula pode coletar."
+msgstr "Basicamente: Este é o final do jogo onde você pode viajar a galáxia como um ser metafísico, moldando e observando o que você quiser. Foi uma longa jornada e você merece."
 
 msgid "WIKI_ASCENSION_OVERVIEW"
 msgstr ""
+"Ascensão é um conceito chave em Thrive, comparável a \"ganhar o jogo\" em outros videogames. É um estado em que um organismo senciente é transformado em energia por um Portal da Ascensão e assim ganha poderes quase divinos, usando a energia do próprio universo (essencialmente fazendo milagres de graça).\n"
+"\n"
+"O que a Ascensão faz é, desde que você tenha feito a pesquisa de Ferramentas Divinas, haverá um novo painel de \"Ferramentas Divinas\" acessível em qualquer lugar do jogo, que permitirá mudar qualquer coisa que você quiser. Desde criar sistemas solares inteiros até as menores bactérias, desde destruir civilizações inteiras até possuir um de seus membros, tudo é possível."
 
 msgid "WIKI_ASCENSION_TRANSITIONS"
 msgstr "Você entrará em Ascensão quando sua espécie passar por um Portal da Ascensão. Provavelmente nós mostraremos os créditos do jogo depois da cutscene que ocorrerá ao entrar no estágio de ascensão. Quando os créditos terminarem, o jogador será levado de volta ao jogo no estágio de Ascensão com uma mensagem de parabéns. Para fazer desse o último desafio do jogo, o Portal da Ascensão precisará de muita pesquisa (incluindo as Ferramentas Divinas mencionadas acima) e muita energia, equivalente a diversos sóis, para criar e operar. Outras espécies potencialmente hostis terão sua última chance para atacar o jogador aqui antes que ele ganhe poder infinito e possa simplesmente eliminar os impérios interestelares competidores."
 
-#, fuzzy
 msgid "WIKI_ASCENSION_UI"
-msgstr "Rusticianina é uma proteína que consegue usar o gás carbônico e oxigênio para oxidar ferro de um estado físico para outro. O processo, chamado Quimiossíntese litoautotrófica, libera energia que a célula pode coletar."
+msgstr "Daqui a pouco."
 
-#, fuzzy
 msgid "WIKI_AWAKENING_STAGE_CURRENT_DEVELOPMENT"
-msgstr "Permite a ligação com outras células. Este é o primeiro passo até a multicelularidade. Quando sua célula é parte de uma colônia, os compostos são compartilhados entre as células. Você não pode entrar no editor enquanto faz parte de uma colônia, por isso precisa se desconectar após coletar compostos suficientes para dividir sua célula."
+msgstr "Ainda não foi realizado trabalho no Estágio Desperto."
 
-#, fuzzy
 msgid "WIKI_AWAKENING_STAGE_FEATURES"
-msgstr "Estágio Desperto"
+msgstr "Daqui a pouco."
 
-#, fuzzy
 msgid "WIKI_AWAKENING_STAGE_INTRO"
-msgstr "Agente de Ligação"
+msgstr "Basicamente: Você começa com uma criatura começando a descobrir o uso de ferramentas e deve rapidamente melhorá-las para sobreviver e superar a competição. Termina com a construção do seu primeiro Centro de Sociedade."
 
-#, fuzzy
 msgid "WIKI_AWAKENING_STAGE_OVERVIEW"
-msgstr "Estágio Desperto"
+msgstr "Daqui a pouco."
 
 #, fuzzy
 msgid "WIKI_AWAKENING_STAGE_TRANSITIONS"
 msgstr "Estágio Desperto"
 
-#, fuzzy
 msgid "WIKI_AWAKENING_STAGE_UI"
-msgstr "Estágio Desperto"
+msgstr "Daqui a pouco."
 
 msgid "WIKI_AWARE_STAGE_CURRENT_DEVELOPMENT"
-msgstr ""
+msgstr "Começamos o desenvolvimento de protótipos dos estágios Desperto e futuros. Os protótipos são muito menos polidos que o protótipo multicelular, mesmo o qual ainda não tem a qualidade que queremos que o jogo final tenha."
 
-#, fuzzy
 msgid "WIKI_AWARE_STAGE_FEATURES"
-msgstr "Estágio Ciente"
+msgstr "Daqui a pouco."
 
 #, fuzzy
 msgid "WIKI_AWARE_STAGE_INTRO"
@@ -6425,35 +6548,36 @@ msgstr "Nitrogenase"
 msgid "WIKI_AWARE_STAGE_UI"
 msgstr "Estágio Ciente"
 
-#, fuzzy
 msgid "WIKI_AXON_EFFECTS"
-msgstr "Efeitos externos:"
+msgstr ""
+"Para cada célula em um organismo multicelular que contenha um [b]Axônio[/b], a capacidade cerebral desse organismo aumenta proporcionalmente ao volume da célula. Células com [b]Axônios[/b] são classificadas como tendo tipo de tecido cerebral.\n"
+"\n"
+"Quando a capacidade cerebral for maior que [b]+0,5[/b], o jogador entra no Estágio Consciente. Quando a capacidade cerebral for maior que [b]+5,0[/b], o jogador entra no Estágio Desperto."
 
 msgid "WIKI_AXON_INTRO"
-msgstr ""
+msgstr "Fibras nervosas entre neurônios, disponíveis a partir do Estágio Multicelular. Necessários para aumentar a capacidade cerebral de um organismo e progredir para estágios futuros."
 
 msgid "WIKI_AXON_MODIFICATIONS"
-msgstr ""
+msgstr "Sem modificações."
 
 #, fuzzy
 msgid "WIKI_AXON_PROCESSES"
 msgstr "Nenhum processo"
 
 msgid "WIKI_AXON_REQUIREMENTS"
-msgstr ""
+msgstr "Disponível apenas a partir do Estágio Multicelular."
 
 msgid "WIKI_AXON_SCIENTIFIC_BACKGROUND"
-msgstr ""
+msgstr "A ser adicionado"
 
 msgid "WIKI_AXON_STRATEGY"
-msgstr ""
+msgstr "Adicionar [b]Axônios[/b] é essencial para alcançar estágios futuros. Recomendamos adicionar um [b]Axônio[/b] a diversos tipos de células em seu organismo multicelular, mas adicionar mais de um é redundante. No momento, mais [b]Axônios[/b] não geram nenhum benefício."
 
 msgid "WIKI_AXON_UPGRADES"
-msgstr ""
+msgstr "Nenhuma melhora."
 
-#, fuzzy
 msgid "WIKI_BACTERIAL_CHEMOSYNTHESIS_COMMA_GLYCOLYSIS"
-msgstr "Síntese de Oxitoxina"
+msgstr "Quimiossíntese Bacterial, Glicólise"
 
 #, fuzzy
 msgid "WIKI_BINDING_AGENT_EFFECTS"
@@ -6463,95 +6587,85 @@ msgstr "Permite a ligação com outras células. Este é o primeiro passo até a
 msgid "WIKI_BINDING_AGENT_INTRO"
 msgstr "Agente de Ligação"
 
-#, fuzzy
 msgid "WIKI_BINDING_AGENT_MODIFICATIONS"
-msgstr "Permite a ligação com outras células. Este é o primeiro passo até a multicelularidade. Quando sua célula é parte de uma colônia, os compostos são compartilhados entre as células. Você não pode entrar no editor enquanto faz parte de uma colônia, por isso precisa se desconectar após coletar compostos suficientes para dividir sua célula."
+msgstr "Sem modificações."
 
-#, fuzzy
 msgid "WIKI_BINDING_AGENT_PROCESSES"
-msgstr "Aperte [thrive:input]g_toggle_binding[/thrive:input] para ativar o modo de ligação. Enquanto em modo de ligação, você pode conectar outras células de sua espécie se movendo à elas. Para sair da colônia, pressione [thrive:input]g_unbind_all[/thrive:input]."
+msgstr "Sem processos."
 
-#, fuzzy
 msgid "WIKI_BINDING_AGENT_REQUIREMENTS"
-msgstr "Permite a ligação com outras células. Este é o primeiro passo até a multicelularidade. Quando sua célula é parte de uma colônia, os compostos são compartilhados entre as células. Você não pode entrar no editor enquanto faz parte de uma colônia, por isso precisa se desconectar após coletar compostos suficientes para dividir sua célula."
+msgstr ""
+"Uma célula precisa ter um [b][color=#3796e1][url=thriveopedia:nucleus]Núcleo[/url][/color][/b] para evoluir [b]Agentes de Ligação[/b].\n"
+"\n"
+"Se melhorias de organela estiverem ativadas nas configurações do jogo, [i]ambas[/i] as condições seguintes também devem ser verdadeiras [i]para a célula do jogador[/i]:\n"
+"\n"
+"[indent]—   Contém um [b][color=#3796e1][url=thriveopedia:nucleus]Núcleo[/url][/color][/b] há pelo menos [b]5[/b] gerações.[/indent]\n"
+"[indent]—   Tem um equilíbrio de [thrive:compound type=\"atp\"][/thrive:compound] de pelo menos [b]+15[/b].[/indent]"
 
-#, fuzzy
 msgid "WIKI_BINDING_AGENT_SCIENTIFIC_BACKGROUND"
-msgstr "Permite a ligação com outras células. Este é o primeiro passo até a multicelularidade. Quando sua célula é parte de uma colônia, os compostos são compartilhados entre as células. Você não pode entrar no editor enquanto faz parte de uma colônia, por isso precisa se desconectar após coletar compostos suficientes para dividir sua célula."
+msgstr "A ser adicionado"
 
 #, fuzzy
 msgid "WIKI_BINDING_AGENT_STRATEGY"
 msgstr "Permite a ligação com outras células. Este é o primeiro passo até a multicelularidade. Quando sua célula é parte de uma colônia, os compostos são compartilhados entre as células. Você não pode entrar no editor enquanto faz parte de uma colônia, por isso precisa se desconectar após coletar compostos suficientes para dividir sua célula."
 
-#, fuzzy
 msgid "WIKI_BINDING_AGENT_UPGRADES"
-msgstr "Permite a ligação com outras células. Este é o primeiro passo até a multicelularidade. Quando sua célula é parte de uma colônia, os compostos são compartilhados entre as células. Você não pode entrar no editor enquanto faz parte de uma colônia, por isso precisa se desconectar após coletar compostos suficientes para dividir sua célula."
+msgstr "Sem melhoras."
 
-#, fuzzy
 msgid "WIKI_BIOLUMINESCENT_VACUOLE_EFFECTS"
-msgstr "Vacúolo Bioluminescente"
+msgstr "Sem efeitos. A ser implementado."
 
-#, fuzzy
 msgid "WIKI_BIOLUMINESCENT_VACUOLE_INTRO"
-msgstr "Vacúolo Bioluminescente"
+msgstr "Gera luz. Ainda não implementado em Thrive."
 
-#, fuzzy
 msgid "WIKI_BIOLUMINESCENT_VACUOLE_MODIFICATIONS"
-msgstr "Vacúolo Bioluminescente"
+msgstr "Sem modificações. A ser implementado."
 
-#, fuzzy
 msgid "WIKI_BIOLUMINESCENT_VACUOLE_PROCESSES"
-msgstr "Vacúolo Bioluminescente"
+msgstr "Sem processos. A ser implementado."
 
-#, fuzzy
 msgid "WIKI_BIOLUMINESCENT_VACUOLE_REQUIREMENTS"
-msgstr "Vacúolo Bioluminescente"
+msgstr "Não pode ser adicionado a células. A ser implementado."
 
 #, fuzzy
 msgid "WIKI_BIOLUMINESCENT_VACUOLE_SCIENTIFIC_BACKGROUND"
 msgstr "Vacúolo Bioluminescente"
 
-#, fuzzy
 msgid "WIKI_BIOLUMINESCENT_VACUOLE_STRATEGY"
-msgstr "Vacúolo Bioluminescente"
+msgstr "Não disponível no jogo. A ser implementado."
 
-#, fuzzy
 msgid "WIKI_BIOLUMINESCENT_VACUOLE_UPGRADES"
-msgstr "Vacúolo Bioluminescente"
+msgstr "Sem melhoras. A ser implementado."
 
 msgid "WIKI_BODY_PLAN_EDITOR_COMMA_CELL_EDITOR"
-msgstr ""
+msgstr "Editor do Plano Corporal, Editor de Célula"
 
-#, fuzzy
 msgid "WIKI_CHEMOPLAST_EFFECTS"
-msgstr "O quimioplasto é uma estrutura de membrana dupla contendo proteínas capazes de converter sulfeto de hidrogênio, água, e gás carbônico em glicose em um processo chamado Quimiossíntese de Sulfeto de Hidrogênio. A proporção de sua produção de glicose aumenta com a concentração de dióxido de carbono."
+msgstr "Sem efeitos."
 
 #, fuzzy
 msgid "WIKI_CHEMOPLAST_INTRO"
 msgstr "O quimioplasto é uma estrutura de membrana dupla contendo proteínas capazes de converter sulfeto de hidrogênio, água, e gás carbônico em glicose em um processo chamado Quimiossíntese de Sulfeto de Hidrogênio. A proporção de sua produção de glicose aumenta com a concentração de dióxido de carbono."
 
-#, fuzzy
 msgid "WIKI_CHEMOPLAST_MODIFICATIONS"
-msgstr "O quimioplasto é uma estrutura de membrana dupla contendo proteínas capazes de converter sulfeto de hidrogênio, água, e gás carbônico em glicose em um processo chamado Quimiossíntese de Sulfeto de Hidrogênio. A proporção de sua produção de glicose aumenta com a concentração de dióxido de carbono."
+msgstr "Sem modificações."
 
 #, fuzzy
 msgid "WIKI_CHEMOPLAST_PROCESSES"
 msgstr "Transforma [thrive:compound type=\"hydrogensulfide\"][/thrive:compound] em [thrive:compound type=\"glucose\"][/thrive:compound]. Quantidade aumenta com a concentração de [thrive:compound type=\"carbondioxide\"][/thrive:compound]."
 
 msgid "WIKI_CHEMOPLAST_REQUIREMENTS"
-msgstr ""
+msgstr "Uma célula deve ter um [b][color=#3796e1][url=thriveopedia:nucleus]Núcleo[/url][/color][/b] para evoluir [b]Quimioplastos[/b]."
 
-#, fuzzy
 msgid "WIKI_CHEMOPLAST_SCIENTIFIC_BACKGROUND"
-msgstr "O quimioplasto é uma estrutura de membrana dupla contendo proteínas capazes de converter sulfeto de hidrogênio, água, e gás carbônico em glicose em um processo chamado Quimiossíntese de Sulfeto de Hidrogênio. A proporção de sua produção de glicose aumenta com a concentração de dióxido de carbono."
+msgstr "A ser adicionado"
 
 #, fuzzy
 msgid "WIKI_CHEMOPLAST_STRATEGY"
 msgstr "O quimioplasto é uma estrutura de membrana dupla contendo proteínas capazes de converter sulfeto de hidrogênio, água, e gás carbônico em glicose em um processo chamado Quimiossíntese de Sulfeto de Hidrogênio. A proporção de sua produção de glicose aumenta com a concentração de dióxido de carbono."
 
-#, fuzzy
 msgid "WIKI_CHEMOPLAST_UPGRADES"
-msgstr "O quimioplasto é uma estrutura de membrana dupla contendo proteínas capazes de converter sulfeto de hidrogênio, água, e gás carbônico em glicose em um processo chamado Quimiossíntese de Sulfeto de Hidrogênio. A proporção de sua produção de glicose aumenta com a concentração de dióxido de carbono."
+msgstr "Sem melhoras."
 
 #, fuzzy
 msgid "WIKI_CHEMORECEPTOR_EFFECTS"
@@ -6565,71 +6679,58 @@ msgstr "Quimiorreceptor"
 msgid "WIKI_CHEMORECEPTOR_MODIFICATIONS"
 msgstr "A “visão” das células é, na verdade, a quimiorrecepção. É assim que elas obtêm informações do ambiente. Adicionar essa organela representa evoluir uma quimiorrecepção melhor. Como o jogador já consegue ver o que está ao redor da célula, a quimiorrecepção é representada por uma linha apontando para compostos fora da tela."
 
-#, fuzzy
 msgid "WIKI_CHEMORECEPTOR_PROCESSES"
-msgstr "O quimiorreceptor permite a detecção de compostos distantes. Modifique-o para mudar o tipo de composto e a cor da linha usada para indicar o caminho."
+msgstr "Sem processos."
 
-#, fuzzy
 msgid "WIKI_CHEMORECEPTOR_REQUIREMENTS"
-msgstr "A “visão” das células é, na verdade, a quimiorrecepção. É assim que elas obtêm informações do ambiente. Adicionar essa organela representa evoluir uma quimiorrecepção melhor. Como o jogador já consegue ver o que está ao redor da célula, a quimiorrecepção é representada por uma linha apontando para compostos fora da tela."
+msgstr "Sem requisitos"
 
-#, fuzzy
 msgid "WIKI_CHEMORECEPTOR_SCIENTIFIC_BACKGROUND"
-msgstr "A “visão” das células é, na verdade, a quimiorrecepção. É assim que elas obtêm informações do ambiente. Adicionar essa organela representa evoluir uma quimiorrecepção melhor. Como o jogador já consegue ver o que está ao redor da célula, a quimiorrecepção é representada por uma linha apontando para compostos fora da tela."
+msgstr "A ser adicionado"
 
 #, fuzzy
 msgid "WIKI_CHEMORECEPTOR_STRATEGY"
 msgstr "A “visão” das células é, na verdade, a quimiorrecepção. É assim que elas obtêm informações do ambiente. Adicionar essa organela representa evoluir uma quimiorrecepção melhor. Como o jogador já consegue ver o que está ao redor da célula, a quimiorrecepção é representada por uma linha apontando para compostos fora da tela."
 
-#, fuzzy
 msgid "WIKI_CHEMORECEPTOR_UPGRADES"
-msgstr "A “visão” das células é, na verdade, a quimiorrecepção. É assim que elas obtêm informações do ambiente. Adicionar essa organela representa evoluir uma quimiorrecepção melhor. Como o jogador já consegue ver o que está ao redor da célula, a quimiorrecepção é representada por uma linha apontando para compostos fora da tela."
+msgstr "Sem melhoras."
 
-#, fuzzy
 msgid "WIKI_CHEMOSYNTHESIZING_PROTEINS_EFFECTS"
-msgstr "Proteínas Quimiossintetizantes"
+msgstr "Sem efeitos especiais."
 
 #, fuzzy
 msgid "WIKI_CHEMOSYNTHESIZING_PROTEINS_INTRO"
 msgstr "Proteínas Quimiossintetizantes"
 
-#, fuzzy
 msgid "WIKI_CHEMOSYNTHESIZING_PROTEINS_MODIFICATIONS"
-msgstr "Proteínas quimiossintetizantes são pequenas aglomerações de proteínas no citoplasma que podem converter [thrive:compound type=\"hydrogensulfide\"][/thrive:compound], água, e [thrive:compound type=\"carbondioxide\"][/thrive:compound] em [thrive:compound type=\"glucose\"][/thrive:compound] em um processo chamado [b]quimiossíntese[/b]. A taxa da sua produção de [thrive:compound type=\"glucose\"][/thrive:compound] aumenta com a concentração de [thrive:compound type=\"carbondioxide\"][/thrive:compound]. Como as proteínas quimiossintetizantes são suspensas diretamente no citoplasma, os fluidos em sua volta realizam [b]glicólise[/b]."
+msgstr "Sem modificações."
 
 #, fuzzy
 msgid "WIKI_CHEMOSYNTHESIZING_PROTEINS_PROCESSES"
 msgstr "Transforma [thrive:compound type=\"hydrogensulfide\"][/thrive:compound] em [thrive:compound type=\"glucose\"][/thrive:compound]. Quantidade aumenta com a concentração de [thrive:compound type=\"carbondioxide\"][/thrive:compound]. Também transforma [thrive:compound type=\"glucose\"][/thrive:compound] em [thrive:compound type=\"atp\"][/thrive:compound]."
 
-#, fuzzy
 msgid "WIKI_CHEMOSYNTHESIZING_PROTEINS_REQUIREMENTS"
-msgstr ""
-"Proteínas Qui-\n"
-"miossintetizantes"
+msgstr "Sem requisitos."
 
-#, fuzzy
 msgid "WIKI_CHEMOSYNTHESIZING_PROTEINS_SCIENTIFIC_BACKGROUND"
-msgstr "Proteínas quimiossintetizantes são pequenas aglomerações de proteínas no citoplasma que podem converter [thrive:compound type=\"hydrogensulfide\"][/thrive:compound], água, e [thrive:compound type=\"carbondioxide\"][/thrive:compound] em [thrive:compound type=\"glucose\"][/thrive:compound] em um processo chamado [b]quimiossíntese[/b]. A taxa da sua produção de [thrive:compound type=\"glucose\"][/thrive:compound] aumenta com a concentração de [thrive:compound type=\"carbondioxide\"][/thrive:compound]. Como as proteínas quimiossintetizantes são suspensas diretamente no citoplasma, os fluidos em sua volta realizam [b]glicólise[/b]."
+msgstr "A ser adicionado"
 
 #, fuzzy
 msgid "WIKI_CHEMOSYNTHESIZING_PROTEINS_STRATEGY"
 msgstr "Proteínas Quimiossintetizantes"
 
-#, fuzzy
 msgid "WIKI_CHEMOSYNTHESIZING_PROTEINS_UPGRADES"
-msgstr "Proteínas Quimiossintetizantes"
+msgstr "Sem melhoras."
 
-#, fuzzy
 msgid "WIKI_CHLOROPLAST_EFFECTS"
-msgstr "O cloroplasto é uma estrutura de membrana dupla contendo pigmentos fotossensíveis. É um procarionte que foi assimilado pelo seu hospedeiro eucariótico. Os pigmentos no cloroplasto conseguem usar a energia da luz para produzir glicose da água e gás carbônico em um processo chamado Fotossíntese. Esses pigmentos também são o que os dá uma cor característica. A proporção de sua produção de glicose aumenta com a concentração de dióxido de carbono, e intensidade da luz."
+msgstr "Sem efeitos."
 
 #, fuzzy
 msgid "WIKI_CHLOROPLAST_INTRO"
 msgstr "O cloroplasto é uma estrutura de membrana dupla contendo pigmentos fotossensíveis. É um procarionte que foi assimilado pelo seu hospedeiro eucariótico. Os pigmentos no cloroplasto conseguem usar a energia da luz para produzir glicose da água e gás carbônico em um processo chamado Fotossíntese. Esses pigmentos também são o que os dá uma cor característica. A proporção de sua produção de glicose aumenta com a concentração de dióxido de carbono, e intensidade da luz."
 
-#, fuzzy
 msgid "WIKI_CHLOROPLAST_MODIFICATIONS"
-msgstr "O cloroplasto é uma estrutura de membrana dupla contendo pigmentos fotossensíveis. É um procarionte que foi assimilado pelo seu hospedeiro eucariótico. Os pigmentos no cloroplasto conseguem usar a energia da luz para produzir glicose da água e gás carbônico em um processo chamado Fotossíntese. Esses pigmentos também são o que os dá uma cor característica. A proporção de sua produção de glicose aumenta com a concentração de dióxido de carbono, e intensidade da luz."
+msgstr "Sem modificações."
 
 #, fuzzy
 msgid "WIKI_CHLOROPLAST_PROCESSES"
@@ -6637,38 +6738,39 @@ msgstr "Produz [thrive:compound type=\"glucose\"][/thrive:compound]. Quantidade 
 
 msgid "WIKI_CHLOROPLAST_REQUIREMENTS"
 msgstr ""
+"Uma célula deve ter um [b][color=#3796e1][url=thriveopedia:nucleus]Núcleo[/url][/color][/b] para evoluir [b]Cloroplastos[/b].\n"
+"\n"
+"Se o desbloqueio de organelas estiver ativado nas configurações do jogo, a seguinte condição deve ser verdadeira [i]para a célula do jogador[/i]:\n"
+"\n"
+"[indent]—   Contém no mínimo [b]5[/b] [b][color=#3796e1][url=thriveopedia:chromatophore]Tilacoides[/url][/color][/b] há no mínimo [b]7[/b] gerações seguidas.[/indent]"
 
-#, fuzzy
 msgid "WIKI_CHLOROPLAST_SCIENTIFIC_BACKGROUND"
-msgstr "O cloroplasto é uma estrutura de membrana dupla contendo pigmentos fotossensíveis. É um procarionte que foi assimilado pelo seu hospedeiro eucariótico. Os pigmentos no cloroplasto conseguem usar a energia da luz para produzir glicose da água e gás carbônico em um processo chamado Fotossíntese. Esses pigmentos também são o que os dá uma cor característica. A proporção de sua produção de glicose aumenta com a concentração de dióxido de carbono, e intensidade da luz."
+msgstr "A ser adicionado"
 
 #, fuzzy
 msgid "WIKI_CHLOROPLAST_STRATEGY"
 msgstr "O cloroplasto é uma estrutura de membrana dupla contendo pigmentos fotossensíveis. É um procarionte que foi assimilado pelo seu hospedeiro eucariótico. Os pigmentos no cloroplasto conseguem usar a energia da luz para produzir glicose da água e gás carbônico em um processo chamado Fotossíntese. Esses pigmentos também são o que os dá uma cor característica. A proporção de sua produção de glicose aumenta com a concentração de dióxido de carbono, e intensidade da luz."
 
-#, fuzzy
 msgid "WIKI_CHLOROPLAST_UPGRADES"
-msgstr "O cloroplasto é uma estrutura de membrana dupla contendo pigmentos fotossensíveis. É um procarionte que foi assimilado pelo seu hospedeiro eucariótico. Os pigmentos no cloroplasto conseguem usar a energia da luz para produzir glicose da água e gás carbônico em um processo chamado Fotossíntese. Esses pigmentos também são o que os dá uma cor característica. A proporção de sua produção de glicose aumenta com a concentração de dióxido de carbono, e intensidade da luz."
+msgstr "Sem melhoras."
 
-#, fuzzy
 msgid "WIKI_CHROMATOPHORE_PHOTOSYNTHESIS_COMMA_GLYCOLYSIS"
-msgstr "Síntese de Oxitoxina"
+msgstr "Fotossíntese Cromatofórica, Glicólise"
 
 msgid "WIKI_CILIA_EFFECTS"
-msgstr ""
+msgstr "Cada hexágono de [b]Cílios[/b] aumenta a velocidade de rotação da célula, consumindo [thrive:compound type=\"atp\"][/thrive:compound] em troca de mobilidade extra. A melhora exata depende da posição da organela – aquelas posicionadas mais longe do centro da célula exercerão maior momento de inércia, e portanto maior aumento na velocidade de rotação."
 
 msgid "WIKI_CILIA_INTRO"
-msgstr ""
+msgstr "Pelos pequenos no exterior da célula que usam [thrive:compound type=\"atp\"][/thrive:compound] para aumentar a velocidade de rotação da célula. Podem ser melhorados para gerar correntes que atraem células e outros objetos."
 
 msgid "WIKI_CILIA_MODIFICATIONS"
-msgstr ""
+msgstr "Sem modificações."
 
-#, fuzzy
 msgid "WIKI_CILIA_PROCESSES"
-msgstr "Aumenta a velocidade de rotação das células maiores."
+msgstr "Sem processos."
 
 msgid "WIKI_CILIA_REQUIREMENTS"
-msgstr ""
+msgstr "Uma célula deve ter um [b][color=#3796e1][url=thriveopedia:nucleus]Núcleo[/url][/color][/b] para evoluir [b]Cílios[/b]."
 
 msgid "WIKI_CILIA_SCIENTIFIC_BACKGROUND"
 msgstr ""
@@ -6679,9 +6781,8 @@ msgstr ""
 msgid "WIKI_CILIA_UPGRADES"
 msgstr ""
 
-#, fuzzy
 msgid "WIKI_COMPOUNDS_BUTTON"
-msgstr "As entranhas pegajosas de uma célula. O citoplasma é a mistura básica de íons, proteínas, e outras substâncias dissolvidas na água que preenchem o interior da célula. Uma das funções que realiza é a Fermentação, a conversão de glicose em ATP. Para as células que carecem de organelas para ter metabolismos avançados, é disso que elas dependem para produzir energia. Também é usado para armazenar moléculas na célula para aumentar o tamanho dela."
+msgstr "Compostos"
 
 #, fuzzy
 msgid "WIKI_COMPOUNDS_DEVELOPMENT"
@@ -6706,17 +6807,17 @@ msgstr ""
 msgid "WIKI_COMPOUND_SYSTEM_DEVELOPMENT_OVERVIEW"
 msgstr ""
 
-#, fuzzy
 msgid "WIKI_CYTOPLASM_EFFECTS"
-msgstr "As entranhas pegajosas de uma célula. O citoplasma é a mistura básica de íons, proteínas, e outras substâncias dissolvidas na água que preenchem o interior da célula. Uma das funções que realiza é a Fermentação, a conversão de glicose em ATP. Para as células que carecem de organelas para ter metabolismos avançados, é disso que elas dependem para produzir energia. Também é usado para armazenar moléculas na célula para aumentar o tamanho dela."
+msgstr "Qualquer organela pode substituir [b]Citoplasma[/b] sem custo de pontos de mutação (além do custo da organela)."
 
-#, fuzzy
 msgid "WIKI_CYTOPLASM_INTRO"
-msgstr "As entranhas pegajosas de uma célula. O citoplasma é a mistura básica de íons, proteínas, e outras substâncias dissolvidas na água que preenchem o interior da célula. Uma das funções que realiza é a Fermentação, a conversão de glicose em ATP. Para as células que carecem de organelas para ter metabolismos avançados, é disso que elas dependem para produzir energia. Também é usado para armazenar moléculas na célula para aumentar o tamanho dela."
+msgstr ""
+"As entranhas pegajosas de uma célula. O [b]Citoplasma[/b] é a mistura básica de íons, proteínas, e outras substâncias dissolvidas na água que preenchem o interior da célula.\n"
+"\n"
+"Uma das funções que realiza é a [b]Glicólise Citoplásmica[/b], a conversão de [thrive:compound type=\"glucose\"][/thrive:compound] em [thrive:compound type=\"atp\"][/thrive:compound]. Para as células que carecem de organelas para ter metabolismos avançados, é disso que elas dependem para produzir energia. Também é usado para armazenar moléculas na célula para aumentar o tamanho dela."
 
-#, fuzzy
 msgid "WIKI_CYTOPLASM_MODIFICATIONS"
-msgstr "As entranhas pegajosas de uma célula. O citoplasma é a mistura básica de íons, proteínas, e outras substâncias dissolvidas na água que preenchem o interior da célula. Uma das funções que realiza é a Fermentação, a conversão de glicose em ATP. Para as células que carecem de organelas para ter metabolismos avançados, é disso que elas dependem para produzir energia. Também é usado para armazenar moléculas na célula para aumentar o tamanho dela."
+msgstr "Sem modificações."
 
 #, fuzzy
 msgid "WIKI_CYTOPLASM_PROCESSES"
@@ -6734,17 +6835,14 @@ msgstr ""
 msgid "WIKI_CYTOPLASM_UPGRADES"
 msgstr "Sem melhorias."
 
-#, fuzzy
 msgid "WIKI_DEVELOPMENT"
-msgstr "Wiki de desenvolvimento"
+msgstr "Desenvolvimento"
 
-#, fuzzy
 msgid "WIKI_DEVELOPMENT_INFO_BUTTON"
-msgstr "Axônio"
+msgstr "Detalhes de Desenvolvimento"
 
-#, fuzzy
 msgid "WIKI_DEVELOPMENT_ROOT_INTRO"
-msgstr "Axônio"
+msgstr "Estas são páginas relacionadas com o desenvolvimento de Thrive e contêm informação sobre teoria e implementações"
 
 msgid "WIKI_EDITORS_AND_MUTATIONS_GENERATIONS_AND_EDITOR_SESSIONS"
 msgstr ""
@@ -6770,25 +6868,27 @@ msgstr "(proporção da glicose conservada no ambiente a cada geração)"
 msgid "WIKI_ENVIRONMENTAL_CONDITIONS_THE_DAY/NIGHT_CYCLE"
 msgstr ""
 
-#, fuzzy
 msgid "WIKI_FERROPLAST_EFFECTS"
-msgstr "O termoplasto é uma estrutura de membrana dupla contendo pigmentos termossensíveis. É um procarionte que foi assimilado para uso do seu hospedeiro eucariótico. Os pigmentos nos termoplastos conseguem usar a energia das diferenças de calor no ambiente para produzir glicose da água e gás carbônico em um processo chamado Termossíntese. A proporção da sua produção de glicose aumenta com a concentração de dióxido de carbono e temperatura."
+msgstr "Sem efeitos."
 
 #, fuzzy
 msgid "WIKI_FERROPLAST_INTRO"
 msgstr "O termoplasto é uma estrutura de membrana dupla contendo pigmentos termossensíveis. É um procarionte que foi assimilado para uso do seu hospedeiro eucariótico. Os pigmentos nos termoplastos conseguem usar a energia das diferenças de calor no ambiente para produzir glicose da água e gás carbônico em um processo chamado Termossíntese. A proporção da sua produção de glicose aumenta com a concentração de dióxido de carbono e temperatura."
 
-#, fuzzy
 msgid "WIKI_FERROPLAST_MODIFICATIONS"
-msgstr "O termoplasto é uma estrutura de membrana dupla contendo pigmentos termossensíveis. É um procarionte que foi assimilado para uso do seu hospedeiro eucariótico. Os pigmentos nos termoplastos conseguem usar a energia das diferenças de calor no ambiente para produzir glicose da água e gás carbônico em um processo chamado Termossíntese. A proporção da sua produção de glicose aumenta com a concentração de dióxido de carbono e temperatura."
+msgstr "Sem modificações."
 
 #, fuzzy
 msgid "WIKI_FERROPLAST_PROCESSES"
 msgstr "Produz [thrive:compound type=\"glucose\"][/thrive:compound]. Quantidade aumenta com a concentração de [thrive:compound type=\"carbondioxide\"][/thrive:compound] e temperatura."
 
-#, fuzzy
 msgid "WIKI_FERROPLAST_REQUIREMENTS"
-msgstr "Plastídeo de Fixação de Nitrogênio"
+msgstr ""
+"Uma célula deve ter um [b][color=#3796e1][url=thriveopedia:nucleus]Núcleo[/url][/color][/b] para evoluir [b]Ferroplastos[/b].\n"
+"\n"
+"Se melhorias de organelas estiverem ativadas nas configurações do jogo, a seguinte condição deve ser verdadeira [i]para a célula do jogador[/i]:\n"
+"\n"
+"[indent]—   Contém [b][color=#3796e1][url=thriveopedia:rusticyanin]Rusticianina[/url][/color][/b] há no mínimo [b]6[/b] gerações seguidas.[/indent]"
 
 #, fuzzy
 msgid "WIKI_FERROPLAST_SCIENTIFIC_BACKGROUND"
@@ -6798,9 +6898,8 @@ msgstr "O termoplasto é uma estrutura de membrana dupla contendo pigmentos term
 msgid "WIKI_FERROPLAST_STRATEGY"
 msgstr "O termoplasto é uma estrutura de membrana dupla contendo pigmentos termossensíveis. É um procarionte que foi assimilado para uso do seu hospedeiro eucariótico. Os pigmentos nos termoplastos conseguem usar a energia das diferenças de calor no ambiente para produzir glicose da água e gás carbônico em um processo chamado Termossíntese. A proporção da sua produção de glicose aumenta com a concentração de dióxido de carbono e temperatura."
 
-#, fuzzy
 msgid "WIKI_FERROPLAST_UPGRADES"
-msgstr "O termoplasto é uma estrutura de membrana dupla contendo pigmentos termossensíveis. É um procarionte que foi assimilado para uso do seu hospedeiro eucariótico. Os pigmentos nos termoplastos conseguem usar a energia das diferenças de calor no ambiente para produzir glicose da água e gás carbônico em um processo chamado Termossíntese. A proporção da sua produção de glicose aumenta com a concentração de dióxido de carbono e temperatura."
+msgstr "Sem melhoras."
 
 #, fuzzy
 msgid "WIKI_FLAGELLUM_EFFECTS"
@@ -6810,76 +6909,66 @@ msgstr "O flagelo é um apêndice de fibras proteicas semelhante a um chicote, e
 msgid "WIKI_FLAGELLUM_INTRO"
 msgstr "O flagelo é um apêndice de fibras proteicas semelhante a um chicote, estendendo-se da membrana da célula que pode usar ATP para ondular e impulsionar a célula em uma direção. A posição do flagelo determina a direção na qual ele impulsiona a célula. A direção do impulso é oposta à direção que o flagelo aponta, por exemplo, um flagelo que está no lado esquerdo da célula só dá impulso quando ela se move para a direita."
 
-#, fuzzy
 msgid "WIKI_FLAGELLUM_MODIFICATIONS"
-msgstr "O flagelo é um apêndice de fibras proteicas semelhante a um chicote, estendendo-se da membrana da célula que pode usar ATP para ondular e impulsionar a célula em uma direção. A posição do flagelo determina a direção na qual ele impulsiona a célula. A direção do impulso é oposta à direção que o flagelo aponta, por exemplo, um flagelo que está no lado esquerdo da célula só dá impulso quando ela se move para a direita."
+msgstr "Sem modificações."
 
-#, fuzzy
 msgid "WIKI_FLAGELLUM_PROCESSES"
-msgstr "Usa [thrive:compound type=\"atp\"][/thrive:compound] para aumentar a velocidade de movimento da célula."
+msgstr "Sem processos."
 
 msgid "WIKI_FLAGELLUM_REQUIREMENTS"
 msgstr ""
+"Se melhorias de organela estiverem ativadas nas configurações do jogo, [i]pelo menos uma[/i] das condições seguintes deve ser verdadeira [i]para a célula do jogador[/i]:\n"
+"\n"
+"[indent]—   Tem velocidade abaixo de [b]15[/b].[/indent]\n"
+"[indent]—   Produz pelo menos [b]+15[/b] [thrive:compound type=\"atp\"][/thrive:compound].[/indent]"
 
 msgid "WIKI_FLAGELLUM_SCIENTIFIC_BACKGROUND"
-msgstr ""
+msgstr "A ser adicionado"
 
 msgid "WIKI_FLAGELLUM_STRATEGY"
 msgstr ""
 
 msgid "WIKI_FLAGELLUM_UPGRADES"
-msgstr ""
+msgstr "Sem melhoras."
 
-#, fuzzy
 msgid "WIKI_GLYCOLYSIS_COMMA_ANAEROBIC_NITROGEN_FIXATION"
-msgstr "Fixação Anaeróbica de Nitrogênio"
+msgstr "Glicólise, Fixação Anaeróbica de Nitrogênio"
 
-#, fuzzy
 msgid "WIKI_HEADING_APPENDICES"
-msgstr "Melhorias"
+msgstr "Apêndices"
 
-#, fuzzy
 msgid "WIKI_HEADING_BASIC_GAME_MECHANICS"
-msgstr "Melhorias"
+msgstr "Mecânicas básicas do jogo"
 
-#, fuzzy
 msgid "WIKI_HEADING_COMPOUNDS_LIST"
-msgstr "Processos"
+msgstr "Lista de compostos"
 
-#, fuzzy
 msgid "WIKI_HEADING_COMPOUND_CLOUDS"
-msgstr "Processos"
+msgstr "Nuvens de compostos"
 
-#, fuzzy
 msgid "WIKI_HEADING_CONCEPT_ART"
-msgstr "Estágio Desperto"
+msgstr "Arte Conceitual"
 
-#, fuzzy
 msgid "WIKI_HEADING_CURRENT_DEVELOPMENT"
-msgstr "Requisitos"
+msgstr "Desenvolvimento Atual"
 
-#, fuzzy
 msgid "WIKI_HEADING_DEVELOPMENT"
-msgstr "Requisitos"
+msgstr "Desenvolvimento"
 
-#, fuzzy
 msgid "WIKI_HEADING_EDITOR"
-msgstr "Efeitos"
+msgstr "Editor"
 
 msgid "WIKI_HEADING_EFFECTS"
 msgstr "Efeitos"
 
-#, fuzzy
 msgid "WIKI_HEADING_ENVIRONMENTAL_GASSES"
-msgstr "Processos"
+msgstr "Gases ambientais"
 
-#, fuzzy
 msgid "WIKI_HEADING_FEATURES"
-msgstr "Efeitos"
+msgstr "Funcionalidades"
 
-#, fuzzy
 msgid "WIKI_HEADING_FOG_OF_WAR"
-msgstr "Efeitos"
+msgstr "Fog Of War"
 
 #, fuzzy
 msgid "WIKI_HEADING_GAMEPLAY"
@@ -6889,36 +6978,29 @@ msgstr "Estágio Desperto"
 msgid "WIKI_HEADING_GDD"
 msgstr "Melhorias"
 
-#, fuzzy
 msgid "WIKI_HEADING_GENERAL_TIPS"
-msgstr "Efeitos"
+msgstr "Dicas Gerais"
 
-#, fuzzy
 msgid "WIKI_HEADING_GENERATIONS_AND_EDITOR_SESSIONS"
-msgstr "Modificações"
+msgstr "Gerações e Sessões no Editor"
 
-#, fuzzy
 msgid "WIKI_HEADING_MICROBE_PARTS"
-msgstr "Processos"
+msgstr "Partes Microbiais"
 
-#, fuzzy
 msgid "WIKI_HEADING_MICROBE_STAGE"
-msgstr "Processos"
+msgstr "Estágio Microbial"
 
-#, fuzzy
 msgid "WIKI_HEADING_MICROBE_STAGE_TIPS"
-msgstr "Processos"
+msgstr "Dicas do Estágio Microbial"
 
 msgid "WIKI_HEADING_MODIFICATIONS"
 msgstr "Modificações"
 
-#, fuzzy
 msgid "WIKI_HEADING_MORE_GAME_INFO"
-msgstr "Processos"
+msgstr "Mais Informações sobre o Jogo"
 
-#, fuzzy
 msgid "WIKI_HEADING_MUTATIONS_AND_MUTATION_POINTS"
-msgstr "Modificações"
+msgstr "Mutações e Pontos de Mutação"
 
 #, fuzzy
 msgid "WIKI_HEADING_OVERVIEW"
@@ -6928,7 +7010,6 @@ msgstr "Processos"
 msgid "WIKI_HEADING_PATCHES"
 msgstr "Melhorias"
 
-#, fuzzy
 msgid "WIKI_HEADING_PHYSICAL_CONDITIONS"
 msgstr "Condições Físicas"
 
@@ -6936,7 +7017,7 @@ msgid "WIKI_HEADING_PROCESSES"
 msgstr "Processos"
 
 msgid "WIKI_HEADING_REPRODUCTION_IN_THE_MICROBE_STAGE"
-msgstr ""
+msgstr "Reprodução no Estágio Microbial"
 
 msgid "WIKI_HEADING_REQUIREMENTS"
 msgstr "Requisitos"
@@ -6944,29 +7025,23 @@ msgstr "Requisitos"
 msgid "WIKI_HEADING_SCIENTIFIC_BACKGROUND"
 msgstr ""
 
-#, fuzzy
 msgid "WIKI_HEADING_STRATEGY"
-msgstr "Estágio Desperto"
+msgstr "Estratégia"
 
-#, fuzzy
 msgid "WIKI_HEADING_THE_DAY/NIGHT_CYCLE"
-msgstr "Estágio Desperto"
+msgstr "Ciclo dia/noite"
 
-#, fuzzy
 msgid "WIKI_HEADING_THE_PATCH_MAP"
-msgstr "Estágio Desperto"
+msgstr "Mapa de Regiões"
 
-#, fuzzy
 msgid "WIKI_HEADING_TRANSITIONS"
-msgstr "Modificações"
+msgstr "Transições"
 
-#, fuzzy
 msgid "WIKI_HEADING_TYPES_OF_COMPOUNDS"
-msgstr "Efeitos"
+msgstr "Tipos de Compostos"
 
-#, fuzzy
 msgid "WIKI_HEADING_UI"
-msgstr "Melhorias"
+msgstr "Interface"
 
 msgid "WIKI_HEADING_UPGRADES"
 msgstr "Melhorias"
@@ -6975,9 +7050,8 @@ msgstr "Melhorias"
 msgid "WIKI_HELP_AND_TIPS_BASIC_GAME_MECHANICS"
 msgstr "Colocar organela"
 
-#, fuzzy
 msgid "WIKI_HELP_AND_TIPS_BUTTON"
-msgstr "As entranhas pegajosas de uma célula. O citoplasma é a mistura básica de íons, proteínas, e outras substâncias dissolvidas na água que preenchem o interior da célula. Uma das funções que realiza é a Fermentação, a conversão de glicose em ATP. Para as células que carecem de organelas para ter metabolismos avançados, é disso que elas dependem para produzir energia. Também é usado para armazenar moléculas na célula para aumentar o tamanho dela."
+msgstr "Ajuda e Dicas"
 
 #, fuzzy
 msgid "WIKI_HELP_AND_TIPS_COMPOUND_CLOUDS"
@@ -7001,25 +7075,22 @@ msgstr "Processos"
 msgid "WIKI_HELP_AND_TIPS_MORE_GAME_INFO"
 msgstr ""
 
-#, fuzzy
 msgid "WIKI_HYDROGENASE_EFFECTS"
-msgstr "Nitrogenase é uma enzima que consegue usar nitrogênio gasoso e energia celular na forma de ATP para sintetizar amônia, um nutriente essencial para o crescimento das células. Esse processo é chamado de Fixação de Nitrogênio. Como a nitrogenase é suspensa diretamente no citoplasma, os fluidos em volta realizam a Fermentação."
+msgstr "Sem efeitos."
 
 #, fuzzy
 msgid "WIKI_HYDROGENASE_INTRO"
 msgstr "Nitrogenase é uma enzima que consegue usar nitrogênio gasoso e energia celular na forma de ATP para sintetizar amônia, um nutriente essencial para o crescimento das células. Esse processo é chamado de Fixação de Nitrogênio. Como a nitrogenase é suspensa diretamente no citoplasma, os fluidos em volta realizam a Fermentação."
 
-#, fuzzy
 msgid "WIKI_HYDROGENASE_MODIFICATIONS"
-msgstr "Nitrogenase é uma enzima que consegue usar nitrogênio gasoso e energia celular na forma de ATP para sintetizar amônia, um nutriente essencial para o crescimento das células. Esse processo é chamado de Fixação de Nitrogênio. Como a nitrogenase é suspensa diretamente no citoplasma, os fluidos em volta realizam a Fermentação."
+msgstr "Sem modificações."
 
 #, fuzzy
 msgid "WIKI_HYDROGENASE_PROCESSES"
 msgstr "Transforma [thrive:compound type=\"atp\"][/thrive:compound] em [thrive:compound type=\"ammonia\"][/thrive:compound]. Quantidade aumenta com a concentração de [thrive:compound type=\"nitrogen\"][/thrive:compound]."
 
-#, fuzzy
 msgid "WIKI_HYDROGENASE_REQUIREMENTS"
-msgstr "A termossintase é uma proteína que muda de forma usando a convecção térmica. Quando exposta ao calor, ela se dobra ligando-se ao ADP. Quando resfriada, ela se desdobra e é reciclada em ATP em um processo chamado termossíntese. A taxa de produção de ATP aumenta com a temperatura ambiente."
+msgstr "Parte inicial, sem requisitos."
 
 #, fuzzy
 msgid "WIKI_HYDROGENASE_SCIENTIFIC_BACKGROUND"
@@ -7029,17 +7100,15 @@ msgstr "Nitrogenase é uma enzima que consegue usar nitrogênio gasoso e energia
 msgid "WIKI_HYDROGENASE_STRATEGY"
 msgstr "Nitrogenase é uma enzima que consegue usar nitrogênio gasoso e energia celular na forma de ATP para sintetizar amônia, um nutriente essencial para o crescimento das células. Esse processo é chamado de Fixação de Nitrogênio. Como a nitrogenase é suspensa diretamente no citoplasma, os fluidos em volta realizam a Fermentação."
 
-#, fuzzy
 msgid "WIKI_HYDROGENASE_UPGRADES"
-msgstr "Nitrogenase é uma enzima que consegue usar nitrogênio gasoso e energia celular na forma de ATP para sintetizar amônia, um nutriente essencial para o crescimento das células. Esse processo é chamado de Fixação de Nitrogênio. Como a nitrogenase é suspensa diretamente no citoplasma, os fluidos em volta realizam a Fermentação."
+msgstr "Sem melhoras."
 
 #, fuzzy
 msgid "WIKI_INDUSTRIAL_STAGE_CURRENT_DEVELOPMENT"
 msgstr "Permite a ligação com outras células. Este é o primeiro passo até a multicelularidade. Quando sua célula é parte de uma colônia, os compostos são compartilhados entre as células. Você não pode entrar no editor enquanto faz parte de uma colônia, por isso precisa se desconectar após coletar compostos suficientes para dividir sua célula."
 
-#, fuzzy
 msgid "WIKI_INDUSTRIAL_STAGE_FEATURES"
-msgstr "Estágio Industrial"
+msgstr "Daqui a pouco."
 
 #, fuzzy
 msgid "WIKI_INDUSTRIAL_STAGE_INTRO"
@@ -7053,21 +7122,20 @@ msgstr "Estágio Industrial"
 msgid "WIKI_INDUSTRIAL_STAGE_TRANSITIONS"
 msgstr "Estágio Industrial"
 
-#, fuzzy
 msgid "WIKI_INDUSTRIAL_STAGE_UI"
-msgstr "Estágio Industrial"
+msgstr "Daqui a pouco."
 
 msgid "WIKI_INJECTISOME_PILUS"
-msgstr ""
+msgstr "Pilus Injectissômico"
 
 msgid "WIKI_LYSOSOME_EFFECTS"
 msgstr ""
-"Equipar um lisossomo com [b]quitinase[/b] ou [b]celulase[/b] permite que a célula possa digerir outras células com membranas de quitina ou celulose, respectivamente. Se uma célula não tiver um lisossomo equipado com quitinase ou celulase, ela não poderá digerir outras células que possuam essas respectivas membranas.\n"
+"Equipar um [b]Lisossomo[/b] com [b]Quitinase[/b] ou [b]Celulase[/b] permite que a célula possa digerir outras células com [b]Membranas de Quitina[/b] ou [b]Celulose[/b], respectivamente. Células indigeríveis – aquelas para quais uma célula não possui a enzima necessária– são ejetadas imediatamente.\n"
 "\n"
-"Além de suas estatísticas gerais, cada lisossomo contribui com:\n"
+"Além de suas estatísticas gerais, cada [b]Lisossomo[/b] contribui:\n"
 "\n"
 "[indent]—   [b]+0.05[/b] de velocidade de digestão. A matéria ingerida será digerida mais rapidamente. [/indent]\n"
-"[indent]—   [b]+4.5%[/b] de eficiência de digestão para a enzima escolhida. Células ingeridas com a membrana alvo da enzima produzirão mais compostos quando digeridas.[/indent]"
+"[indent]—   [b]+4.5%[/b] de eficiência de digestão para a enzima escolhida. Células fagocitadas com a membrana alvo da enzima produzirão mais compostos quando digeridas.[/indent]"
 
 #, fuzzy
 msgid "WIKI_LYSOSOME_INTRO"
@@ -7077,15 +7145,20 @@ msgstr "O lisossomo é uma organela ligada à membrana que contém enzimas hidro
 msgid "WIKI_LYSOSOME_MODIFICATIONS"
 msgstr "O lisossomo é uma organela ligada à membrana que contém enzimas hidrolíticas que podem quebrar vários tipos de biomoléculas. Os lisossomos permitem a digestão de materiais ingeridos por meio da endocitose e limpar seus resíduos usando um processo chamado autofagia."
 
-#, fuzzy
 msgid "WIKI_LYSOSOME_PROCESSES"
-msgstr "Contém enzimas digestivas. Pode ser modificado para mudar o tipo de enzima que contém. Só uma enzima pode ser utilizada ao mesmo tempo."
+msgstr "Sem processos."
 
 msgid "WIKI_LYSOSOME_REQUIREMENTS"
-msgstr "Uma célula precisa ter um núcleo para evoluir lisossomos."
+msgstr ""
+"Uma célula precisa ter um [b][color=#3796e1][url=thriveopedia:nucleus]Núcleo[/url][/color][/b] para evoluir [b]Lisossomos[/b].\n"
+"\n"
+"Se melhorias de organela estiverem ativadas nas configurações do jogo, [i]pelo menos uma[/i] das condições seguintes também deve ser verdadeira [i]para a célula do jogador[/i]:\n"
+"\n"
+"[indent]—   Fagocitou no mínimo [b]20[/b] células ao longo do jogo até agora.[/indent]\n"
+"[indent]—   Digeriu no mínimo [b]10[/b] células ao longo do jogo até agora.[/indent]"
 
 msgid "WIKI_LYSOSOME_SCIENTIFIC_BACKGROUND"
-msgstr ""
+msgstr "A ser adicionado"
 
 msgid "WIKI_LYSOSOME_STRATEGY"
 msgstr ""
@@ -7124,75 +7197,58 @@ msgstr "Estágio Espacial"
 msgid "WIKI_MACROSCOPIC_STAGE_TRANSITIONS"
 msgstr "Nitrogenase"
 
-#, fuzzy
 msgid "WIKI_MACROSCOPIC_STAGE_UI"
-msgstr "Estágio Espacial"
+msgstr "Nada foi discutido."
 
-#, fuzzy
 msgid "WIKI_MECHANICS"
-msgstr "Colocar organela"
+msgstr "Mecânicas"
 
 #, fuzzy
 msgid "WIKI_MECHANICS_ROOT_INTRO"
 msgstr "Axônio"
 
-#, fuzzy
 msgid "WIKI_MELANOSOME_EFFECTS"
-msgstr ""
-"Equipar um lisossomo com [b]quitinase[/b] ou [b]celulase[/b] permite que a célula possa digerir outras células com membranas de quitina ou celulose, respectivamente. Se uma célula não tiver um lisossomo equipado com quitinase ou celulase, ela não poderá digerir outras células que possuam essas respectivas membranas.\n"
-"\n"
-"Além de suas estatísticas gerais, cada lisossomo contribui com:\n"
-"\n"
-"[indent]—   [b]+0.05[/b] de velocidade de digestão. A matéria ingerida será digerida mais rapidamente. [/indent]\n"
-"[indent]—   [b]+4.5%[/b] de eficiência de digestão para a enzima escolhida. Células ingeridas com a membrana alvo da enzima produzirão mais compostos quando digeridas.[/indent]"
+msgstr "Sem efeitos."
 
-#, fuzzy
 msgid "WIKI_MELANOSOME_INTRO"
-msgstr "O lisossomo é uma organela ligada à membrana que contém enzimas hidrolíticas que podem quebrar vários tipos de biomoléculas. Os lisossomos permitem a digestão de materiais ingeridos por meio da endocitose e limpar seus resíduos usando um processo chamado autofagia."
+msgstr "[b]Melanossomas[/b] fazem [b]Radiossíntese[/b], que captura energia de radiação, a capturando em melanina."
 
-#, fuzzy
 msgid "WIKI_MELANOSOME_MODIFICATIONS"
-msgstr "O lisossomo é uma organela ligada à membrana que contém enzimas hidrolíticas que podem quebrar vários tipos de biomoléculas. Os lisossomos permitem a digestão de materiais ingeridos por meio da endocitose e limpar seus resíduos usando um processo chamado autofagia."
+msgstr "Sem modificações."
 
 #, fuzzy
 msgid "WIKI_MELANOSOME_PROCESSES"
 msgstr "Contém enzimas digestivas. Pode ser modificado para mudar o tipo de enzima que contém. Só uma enzima pode ser utilizada ao mesmo tempo."
 
-#, fuzzy
 msgid "WIKI_MELANOSOME_REQUIREMENTS"
-msgstr "Uma célula precisa ter um núcleo para evoluir lisossomos."
+msgstr "Precisa receber dano por radiação estando próxima a um pedaço radioativo"
 
-#, fuzzy
 msgid "WIKI_MELANOSOME_SCIENTIFIC_BACKGROUND"
-msgstr "Metabolossomos são aglomerados envoltos com cascas de proteínas. Eles conseguem converter glicose em ATP a uma taxa muito maior do que pode ser feita no citoplasma em um processo chamado Respiração Aeróbica. No entanto, necessita de oxigênio para funcionar, e níveis menores de oxigênio no ambiente vão desacelerar a taxa da produção de ATP. Como os metabolossomos são suspensos diretamente no citoplasma, os fluidos em volta realizarão a fermentação."
+msgstr "A ser adicionado"
 
 #, fuzzy
 msgid "WIKI_MELANOSOME_STRATEGY"
 msgstr "Metabolossomos são aglomerados envoltos com cascas de proteínas. Eles conseguem converter glicose em ATP a uma taxa muito maior do que pode ser feita no citoplasma em um processo chamado Respiração Aeróbica. No entanto, necessita de oxigênio para funcionar, e níveis menores de oxigênio no ambiente vão desacelerar a taxa da produção de ATP. Como os metabolossomos são suspensos diretamente no citoplasma, os fluidos em volta realizarão a fermentação."
 
-#, fuzzy
 msgid "WIKI_MELANOSOME_UPGRADES"
 msgstr "Sem melhorias."
 
-#, fuzzy
 msgid "WIKI_METABOLOSOMES_EFFECTS"
-msgstr "Metabolossomos são aglomerados envoltos com cascas de proteínas. Eles conseguem converter glicose em ATP a uma taxa muito maior do que pode ser feita no citoplasma em um processo chamado Respiração Aeróbica. No entanto, necessita de oxigênio para funcionar, e níveis menores de oxigênio no ambiente vão desacelerar a taxa da produção de ATP. Como os metabolossomos são suspensos diretamente no citoplasma, os fluidos em volta realizarão a fermentação."
+msgstr "Sem efeitos."
 
 #, fuzzy
 msgid "WIKI_METABOLOSOMES_INTRO"
 msgstr "Metabolossomo"
 
-#, fuzzy
 msgid "WIKI_METABOLOSOMES_MODIFICATIONS"
-msgstr "Metabolossomos são aglomerados envoltos com cascas de proteínas. Eles conseguem converter glicose em ATP a uma taxa muito maior do que pode ser feita no citoplasma em um processo chamado Respiração Aeróbica. No entanto, necessita de oxigênio para funcionar, e níveis menores de oxigênio no ambiente vão desacelerar a taxa da produção de ATP. Como os metabolossomos são suspensos diretamente no citoplasma, os fluidos em volta realizarão a fermentação."
+msgstr "Sem modificações."
 
 #, fuzzy
 msgid "WIKI_METABOLOSOMES_PROCESSES"
 msgstr "Transforma [thrive:compound type=\"glucose\"][/thrive:compound] em [thrive:compound type=\"atp\"][/thrive:compound]. Quantidade aumenta com a concentração de [thrive:compound type=\"oxygen\"][/thrive:compound]."
 
-#, fuzzy
 msgid "WIKI_METABOLOSOMES_REQUIREMENTS"
-msgstr "Metabolossomos são aglomerados envoltos com cascas de proteínas. Eles conseguem converter glicose em ATP a uma taxa muito maior do que pode ser feita no citoplasma em um processo chamado Respiração Aeróbica. No entanto, necessita de oxigênio para funcionar, e níveis menores de oxigênio no ambiente vão desacelerar a taxa da produção de ATP. Como os metabolossomos são suspensos diretamente no citoplasma, os fluidos em volta realizarão a fermentação."
+msgstr "Sem requisitos"
 
 #, fuzzy
 msgid "WIKI_METABOLOSOMES_SCIENTIFIC_BACKGROUND"
@@ -7202,9 +7258,8 @@ msgstr "Metabolossomos são aglomerados envoltos com cascas de proteínas. Eles 
 msgid "WIKI_METABOLOSOMES_STRATEGY"
 msgstr "Metabolossomos são aglomerados envoltos com cascas de proteínas. Eles conseguem converter glicose em ATP a uma taxa muito maior do que pode ser feita no citoplasma em um processo chamado Respiração Aeróbica. No entanto, necessita de oxigênio para funcionar, e níveis menores de oxigênio no ambiente vão desacelerar a taxa da produção de ATP. Como os metabolossomos são suspensos diretamente no citoplasma, os fluidos em volta realizarão a fermentação."
 
-#, fuzzy
 msgid "WIKI_METABOLOSOMES_UPGRADES"
-msgstr "Metabolossomos são aglomerados envoltos com cascas de proteínas. Eles conseguem converter glicose em ATP a uma taxa muito maior do que pode ser feita no citoplasma em um processo chamado Respiração Aeróbica. No entanto, necessita de oxigênio para funcionar, e níveis menores de oxigênio no ambiente vão desacelerar a taxa da produção de ATP. Como os metabolossomos são suspensos diretamente no citoplasma, os fluidos em volta realizarão a fermentação."
+msgstr "Sem melhoras."
 
 #, fuzzy
 msgid "WIKI_MICROBE_STAGE_APPENDICES"
@@ -7217,20 +7272,63 @@ msgstr ""
 "\n"
 "Para sobreviver nesse mundo hostil, você precisará coletar todos os compostos que puder encontrar e evoluir ao longo das gerações para competir contra outras espécies de microrganismos."
 
-#, fuzzy
 msgid "WIKI_MICROBE_STAGE_BUTTON"
-msgstr ""
-"Em um planeta distante, éons de atividades vulcânicas e impactos de meteoros causaram o desenvolvimento de um novo fenômeno no universo.\n"
-"\n"
-"A vida.\n"
-"\n"
-"Micróbios simples moram nas regiões mais profundas do oceano. Você é o Último Ancestral Comum Universal (LUCA) no planeta.\n"
-"\n"
-"Para sobreviver neste mundo hostil, você precisará coletar compostos e evoluir por gerações para competir contra outras espécies de micróbios."
+msgstr "Estágio Microbial"
 
 #, fuzzy
 msgid "WIKI_MICROBE_STAGE_EDITOR"
-msgstr "Editor de Micróbios"
+msgstr ""
+"O editor é o lado estratégico do estágio microbial e é acessado sempre que o jogador se reproduz. É nesse editor que o jogador pode evoluir sua espécie, posicionando na sua célula partes, de uma lista de proteínas ou organelas disponíveis. Cada geração, o jogador recebe 100 Pontos de Mutação ou PM que são usados para comprar essas partes. O editor atualmente está dividido em três janelas diferentes; A página de relatórios, o mapa de regiões, e finalmente o próprio editor.\n"
+"\n"
+"[b][u]Relatórios[/u][/b]\n"
+"\n"
+"O menu de relatórios é a primeira página que o jogador verá quand entrar no editor. Esta página descreve todas as mudanças ambientais que ocorreram antes de entrar no editor, tais como mudanças na população da espécie, concentração de compostos, etc. As informações providenciadas no relatório podem ser úteis, mas não são necessárias para ter uma boa performance no jogo, então não é necessário se preocupar com uma analisar seu conteúdo.\n"
+"\n"
+"[b][u]Mapa de Regiões[/u][/b]\n"
+"\n"
+"A segunda página que um jogador visitará é o mapa de regiões. Este menu mostra o que é essencialmente o mapa-mundi, com regiões representando biomas que o jogador pode visitar, conectadas por linhas que representam caminhos percorríveis. O jogador pode selecionar cada região visível para mostrar as estatísticas ambientais daquele bioma, como concentração de compostos, espécies presentes etc. Se a região selecionada estiver conectada à região do jogador por um caminho, o jogador poderá escolher jogar na região selecionada ao sair do editor. Jogadores que quiserem ir para um ambiente novo devem tomar cuidado e analisar uma região antes de ir para ela para garantir que estão preparados para o que está por vir.\n"
+"\n"
+"Abaixo está uma lista completa das variedades de região atualmente encontradas no jogo.\n"
+"\n"
+"[indent]—   Abissopelágico[/indent]\n"
+"[indent]—   Batipelágico[/indent]\n"
+"[indent]—   Mesopelágico[/indent]\n"
+"[indent]—   Epipelágico[/indent]\n"
+"[indent]—   Fundo do Mar[/indent]\n"
+"[indent]—   Poça de Maré[/indent]\n"
+"[indent]—   Estuário[/indent]\n"
+"[indent]—   fissuras[/indent]\n"
+"[indent]—   Costa[/indent]\n"
+"[indent]—   Plataforma de Gelo[/indent]\n"
+"[indent]—   Cavernas[/indent]\n"
+"\n"
+"[b][u]Biomas[/u][/b]\n"
+"\n"
+"[i]Artigo Principal: <a href=\"/wiki/Microbe_Biomes\" title=\"Microbe Biomes\">Biomas Microbiais</a>[/i]\n"
+"\n"
+"Cada região representa um certo bioma. O bioma define as propriedades físicas da região, como a temperatura, pressão e níveis de luz.\n"
+"\n"
+"[b][u]Editor de Células[/u][/b]\n"
+"\n"
+"The editor page is where the player will be able to customize their cell part by part. The majority of the editor is taken up by a hex field where the cell parts are placed, with the center being occupied by the player's current cell. To the left of this large space is the part list where the player will select parts to place on their cell, or otherwise change its qualities such as color or membrane type. The top right space is occupied by the organism statistics describing what the cell is capable of, as well as including the [thrive:compound type=\"atp\"][/thrive:compound] balance bar which informs the player on the amount of [thrive:compound type=\"atp\"][/thrive:compound] they produce versus how much they consume. The player should always make sure that the red bar is shorter than the green bar, or else they will meet an untimely demise of their own creation. In the bottom right, players will find the autoevo prediction screen which details how well their species is expected to perform with the changes they make according to the autoevo algorithm. Finally, the top left of the editor contains the tabs used to navigate between the previous pages, as well as the MP bar that displays the player's current bank of MP.\n"
+"\n"
+"The player is able to place new parts or hexes adjacent to any preexisting occupied hex, or atop a cytoplasm hex to replace it with a new part. Should the player desire to, they can delete parts of their cell by right-clicking placed parts at a cost of 10 MP per deletion. Alternatively, the player can use the arrow buttons located at the bottom of the editor screen to undo or redo previous actions, however this functionality will only work on changes made in the current editor section. The button in the middle of the arrow buttons is the symmetry key, which when clicked will change the player's current symmetry mode. All parts can be deleted except for three exceptions, the nucleus, binding agents, and the last hex of the cell. These parts can still be moved however, so don't stress if you don't like it's current position!\n"
+"\n"
+"The cell editor contains three different tabs, each with a unique function.\n"
+"\n"
+"The structure tab contains all of the parts the player can choose from such as proteins, organelles, and extracellular structures like the pili. The player must click on their desired part icon to select it, and then click where they want to place it within the hex field to add the part to their organism.The structure tab is divided into three categories; [b]prokaryotic structures[/b], [b]external organelles[/b], and [b]internal organelles[/b]. Internal organelles in particular cannot be used by the player until they have evolved the nucleus. The player can also freely modify, delete, or otherwise relocate placed parts while in the structure tab.\n"
+"\n"
+"The membrane tab contains options for customizing the cell's membrane. Here, the player is presented with a list of buttons representing various membrane and cell wall varieties, each with unique stats and abilities. In order to select a membrane type, the player need only ensure they have enough MP and click the desired type. The player is also granted a slider that adjusts fluidity and rigidity at the cost of 2 MP per change. The more fluid a cell is the faster and fragile it is, while rigid cells are durable but slow.At the bottom of the membrane tab is the color wheel, which allows the player to choose which color their cell will be. This feature is entirely cosmetic and does not cost any MP to change.\n"
+"\n"
+"The behavior tab presents the player with a list of behavioral scales and sliders to adjust them with. Adjusting these sliders allows the player to control how their species AI responds to the world around them, but currently does not effect the player themselves. Each slider represents two extremes of a personality scale, the position of which determining how far a species leans in either attitude. \n"
+"\n"
+"The current personality scales are;\n"
+"\n"
+"[indent]—   Peaceful/Aggressive: Determining how hostile or ambivalent a species is towards other species.[/indent]\n"
+"[indent]—   Cautious/Opportunistic: Determining how willing a species is to endanger themselves for potential gain.[/indent]\n"
+"[indent]—   Brave/Fearful: Determining how willing a species is to flee from perceived threats, and how threatening they need to be.[/indent]\n"
+"[indent]—   Sessile/Active: Determining how willing a species is to move, if at all, without stimulus.[/indent]\n"
+"[indent]—   Responsive/Focused: Determining how quickly a species gives up pursuing a goal, if ever.[/indent]"
 
 #, fuzzy
 msgid "WIKI_MICROBE_STAGE_GAMEPLAY"
@@ -7258,25 +7356,28 @@ msgstr ""
 "\n"
 "Para sobreviver neste mundo hostil, você precisará coletar compostos e evoluir por gerações para competir contra outras espécies de micróbios."
 
-#, fuzzy
 msgid "WIKI_MITOCHONDRION_EFFECTS"
-msgstr "A usina de energia da célula. A mitocôndria é uma estrutura de membrana dupla cheia de proteínas e enzimas. É um procarionte que foi assimilado pelo seu hospedeiro eucariótico para seu uso. É capaz de converter Glicose em ATP com maior eficiência do que feito no citoplasma em um processo chamado Respiração Aeróbica. No entanto, precisa de oxigênio para funcionar, e níveis menores de oxigênio no ambiente irá diminuir a taxa da produção de ATP."
+msgstr "Sem efeitos."
 
 #, fuzzy
 msgid "WIKI_MITOCHONDRION_INTRO"
 msgstr "Mitocôndria"
 
-#, fuzzy
 msgid "WIKI_MITOCHONDRION_MODIFICATIONS"
-msgstr "A usina de energia da célula. A mitocôndria é uma estrutura de membrana dupla cheia de proteínas e enzimas. É um procarionte que foi assimilado pelo seu hospedeiro eucariótico para seu uso. É capaz de converter Glicose em ATP com maior eficiência do que feito no citoplasma em um processo chamado Respiração Aeróbica. No entanto, precisa de oxigênio para funcionar, e níveis menores de oxigênio no ambiente irá diminuir a taxa da produção de ATP."
+msgstr "Sem modificações."
 
 #, fuzzy
 msgid "WIKI_MITOCHONDRION_PROCESSES"
 msgstr "Transforma [thrive:compound type=\"glucose\"][/thrive:compound] em [thrive:compound type=\"atp\"][/thrive:compound]. Quantidade aumenta com concentração de [thrive:compound type=\"oxygen\"][/thrive:compound]."
 
-#, fuzzy
 msgid "WIKI_MITOCHONDRION_REQUIREMENTS"
-msgstr "A usina de energia da célula. A mitocôndria é uma estrutura de membrana dupla cheia de proteínas e enzimas. É um procarionte que foi assimilado pelo seu hospedeiro eucariótico para seu uso. É capaz de converter Glicose em ATP com maior eficiência do que feito no citoplasma em um processo chamado Respiração Aeróbica. No entanto, precisa de oxigênio para funcionar, e níveis menores de oxigênio no ambiente irá diminuir a taxa da produção de ATP."
+msgstr ""
+"Uma célula precisa ter um [b][color=#3796e1][url=thriveopedia:nucleus]Núcleo[/url][/color][/b] para evoluir [b]Mitocôndrias[/b].\n"
+"\n"
+"Se melhorias de organela estiverem ativadas nas configurações do jogo, [i]ambas[/i] as condições seguintes também devem ser verdadeiras [i]para a célula do jogador[/i]:\n"
+"\n"
+"[indent]—   Contém no mínimo [b]4[/b]  [b][color=#3796e1][url=thriveopedia:metabolosome]Metabolossomos[/url][/color][/b] há pelo menos [b]5[/b] gerações seguidas.[/indent]\n"
+"[indent]—   Produz no mínimo [b]+20[/b] [thrive:compound type=\"atp\"][/thrive:compound].[/indent]"
 
 #, fuzzy
 msgid "WIKI_MITOCHONDRION_SCIENTIFIC_BACKGROUND"
@@ -7286,9 +7387,8 @@ msgstr "A usina de energia da célula. A mitocôndria é uma estrutura de membra
 msgid "WIKI_MITOCHONDRION_STRATEGY"
 msgstr "A usina de energia da célula. A mitocôndria é uma estrutura de membrana dupla cheia de proteínas e enzimas. É um procarionte que foi assimilado pelo seu hospedeiro eucariótico para seu uso. É capaz de converter Glicose em ATP com maior eficiência do que feito no citoplasma em um processo chamado Respiração Aeróbica. No entanto, precisa de oxigênio para funcionar, e níveis menores de oxigênio no ambiente irá diminuir a taxa da produção de ATP."
 
-#, fuzzy
 msgid "WIKI_MITOCHONDRION_UPGRADES"
-msgstr "A usina de energia da célula. A mitocôndria é uma estrutura de membrana dupla cheia de proteínas e enzimas. É um procarionte que foi assimilado pelo seu hospedeiro eucariótico para seu uso. É capaz de converter Glicose em ATP com maior eficiência do que feito no citoplasma em um processo chamado Respiração Aeróbica. No entanto, precisa de oxigênio para funcionar, e níveis menores de oxigênio no ambiente irá diminuir a taxa da produção de ATP."
+msgstr "Sem melhoras."
 
 #, fuzzy
 msgid "WIKI_MULTICELLULAR_STAGE_CONCEPT_ART"
@@ -7323,9 +7423,8 @@ msgstr "Estágio Multicelular"
 msgid "WIKI_MULTICELLULAR_STAGE_TRANSITIONS"
 msgstr "Estágio Multicelular"
 
-#, fuzzy
 msgid "WIKI_MULTICELLULAR_STAGE_UI"
-msgstr "Estágio Multicelular"
+msgstr "Nada foi discutido."
 
 msgid "WIKI_MYOFIBRIL_EFFECTS"
 msgstr ""
@@ -7334,14 +7433,13 @@ msgid "WIKI_MYOFIBRIL_INTRO"
 msgstr ""
 
 msgid "WIKI_MYOFIBRIL_MODIFICATIONS"
-msgstr ""
+msgstr "Sem modificações."
 
-#, fuzzy
 msgid "WIKI_MYOFIBRIL_PROCESSES"
-msgstr "Nenhum processo"
+msgstr "Nenhum processo."
 
 msgid "WIKI_MYOFIBRIL_REQUIREMENTS"
-msgstr ""
+msgstr "Disponível apenas a partir do Estágio Multicelular."
 
 msgid "WIKI_MYOFIBRIL_SCIENTIFIC_BACKGROUND"
 msgstr ""
@@ -7352,13 +7450,11 @@ msgstr ""
 msgid "WIKI_MYOFIBRIL_UPGRADES"
 msgstr ""
 
-#, fuzzy
 msgid "WIKI_NATION_EDITOR"
-msgstr "Habilitar o editor"
+msgstr "Editor de Nação"
 
-#, fuzzy
 msgid "WIKI_NITROGENASE_EFFECTS"
-msgstr "Nitrogenase é uma enzima que consegue usar nitrogênio gasoso e energia celular na forma de ATP para sintetizar amônia, um nutriente essencial para o crescimento das células. Esse processo é chamado de Fixação de Nitrogênio. Como a nitrogenase é suspensa diretamente no citoplasma, os fluidos em volta realizam a Fermentação."
+msgstr "Sem efeitos."
 
 #, fuzzy
 msgid "WIKI_NITROGENASE_INTRO"
@@ -7374,6 +7470,9 @@ msgstr "Transforma [thrive:compound type=\"atp\"][/thrive:compound] em [thrive:c
 
 msgid "WIKI_NITROGENASE_REQUIREMENTS"
 msgstr ""
+"Se melhorias de organela estiverem ativadas nas configurações do jogo, a condição seguinte também deve ser verdadeira [i]para a célula do jogador[/i]:\n"
+"\n"
+"[indent]—   Está em uma região com no máximo [b]13[/b] [thrive:compound type=\"ammonia\"][/thrive:compound].[/indent]"
 
 #, fuzzy
 msgid "WIKI_NITROGENASE_SCIENTIFIC_BACKGROUND"
@@ -7403,9 +7502,8 @@ msgstr "O Plastídeo de Fixação de Nitrogênio é uma proteína capaz de usar 
 msgid "WIKI_NITROPLAST_PROCESSES"
 msgstr "Transforma [thrive:compound type=\"atp\"][/thrive:compound] em [thrive:compound type=\"ammonia\"][/thrive:compound]. Quantidade aumenta com a concentração de [thrive:compound type=\"nitrogen\"][/thrive:compound] e [thrive:compound type=\"oxygen\"][/thrive:compound]."
 
-#, fuzzy
 msgid "WIKI_NITROPLAST_REQUIREMENTS"
-msgstr "Plastídeo de Fixação de Nitrogênio"
+msgstr "Uma célula precisa ter um [b][color=#3796e1][url=thriveopedia:nucleus]Núcleo[/url][/color][/b] para evoluir [b]Nitroplastos[/b]."
 
 #, fuzzy
 msgid "WIKI_NITROPLAST_SCIENTIFIC_BACKGROUND"
@@ -7441,7 +7539,7 @@ msgid "WIKI_NUCLEUS_PROCESSES"
 msgstr "Nenhum processo"
 
 msgid "WIKI_NUCLEUS_REQUIREMENTS"
-msgstr ""
+msgstr "Sem requisitos, exceto por bastante espaço em que ele caiba."
 
 msgid "WIKI_NUCLEUS_SCIENTIFIC_BACKGROUND"
 msgstr ""
@@ -7472,9 +7570,11 @@ msgstr "Um metabolossomo modificado responsável pela produção de uma forma pr
 msgid "WIKI_OXYTOXISOME_PROCESSES"
 msgstr "Transforma [thrive:compound type=\"atp\"][/thrive:compound] em [thrive:compound type=\"oxytoxy\"][/thrive:compound]. Quantidade aumenta com a concentração de [thrive:compound type=\"oxygen\"][/thrive:compound]. Pode disparar toxinas apertando [thrive:input]g_fire_toxin[/thrive:input]. Quando a quantidade de [thrive:compound type=\"oxytoxy\"][/thrive:compound] ficar baixa, será possível disparar, mas o dano irá ser reduzido."
 
-#, fuzzy
 msgid "WIKI_OXYTOXISOME_REQUIREMENTS"
-msgstr "Um metabolossomo modificado responsável pela produção de uma forma primitiva do agente tóxico Oxitoxina."
+msgstr ""
+"Se melhorias de organela estiverem ativadas nas configurações do jogo, a condição seguinte também deve ser verdadeira [i]para a célula do jogador[/i]:\n"
+"\n"
+"[indent]—   Fagocitou no mínimo [b]5[/b] células ao longo do jogo até agora.[/indent]"
 
 msgid "WIKI_OXYTOXISOME_SCIENTIFIC_BACKGROUND"
 msgstr ""
@@ -7708,6 +7808,10 @@ msgstr ""
 
 msgid "WIKI_PERFORATOR_PILUS_REQUIREMENTS"
 msgstr ""
+"Se melhorias de organela estiverem ativadas nas configurações do jogo, [i]pelo menos uma[/i] das condições seguintes também deve ser verdadeira [i]para a célula do jogador[/i]:\n"
+"\n"
+"[indent]—   Fagocitou no mínimo [b]5[/b] células ao longo de todas as gerações.[/indent]\n"
+"[indent]—   Morreu no mínimo [b]5[/b] vezes ao longo de todas as gerações.[/indent]"
 
 msgid "WIKI_PERFORATOR_PILUS_SCIENTIFIC_BACKGROUND"
 msgstr ""
@@ -7738,7 +7842,7 @@ msgid "WIKI_PROTOPLASM_PROCESSES"
 msgstr "Transforma [thrive:compound type=\"glucose\"][/thrive:compound] em [thrive:compound type=\"atp\"][/thrive:compound]."
 
 msgid "WIKI_PROTOPLASM_REQUIREMENTS"
-msgstr ""
+msgstr "O jogador não pode evoluir [b]Protoplasma[/b]. Outras espécies podem fazê-lo sem restrições."
 
 msgid "WIKI_PROTOPLASM_SCIENTIFIC_BACKGROUND"
 msgstr ""
@@ -7792,7 +7896,7 @@ msgid "WIKI_RUSTICYANIN_PROCESSES"
 msgstr "Transforma [thrive:compound type=\"iron\"][/thrive:compound] em [thrive:compound type=\"atp\"][/thrive:compound]. Quantidade aumenta com a concentração de [thrive:compound type=\"carbondioxide\"][/thrive:compound] e [thrive:compound type=\"oxygen\"][/thrive:compound]."
 
 msgid "WIKI_RUSTICYANIN_REQUIREMENTS"
-msgstr ""
+msgstr "Sem requisitos."
 
 #, fuzzy
 msgid "WIKI_RUSTICYANIN_SCIENTIFIC_BACKGROUND"
@@ -7822,9 +7926,8 @@ msgstr "Agentes de sinalização permitem que as celúlas produzam substâncias 
 msgid "WIKI_SIGNALING_AGENT_PROCESSES"
 msgstr "Segure [thrive:input]g_pack_commands[/thrive:input] para abrir um menu para dar comandos para outros membros de sua espécie."
 
-#, fuzzy
 msgid "WIKI_SIGNALING_AGENT_REQUIREMENTS"
-msgstr "Agentes de sinalização permitem que as celúlas produzam substâncias químicas a que outras podem reagir. Essas substâncias podem ser usadas para atrair outras células ou avisá-las de algum perigo para fazê-las fugir."
+msgstr "Uma célula precisa ter um [b][color=#3796e1][url=thriveopedia:nucleus]Núcleo[/url][/color][/b] para evoluir [b]Agentes de Sinalização[/b]."
 
 #, fuzzy
 msgid "WIKI_SIGNALING_AGENT_SCIENTIFIC_BACKGROUND"
@@ -7858,7 +7961,7 @@ msgid "WIKI_SLIME_JET_PROCESSES"
 msgstr "Transforma [thrive:compound type=\"glucose\"][/thrive:compound] em [thrive:compound type=\"mucilage\"][/thrive:compound]. Aperte [thrive:input]g_secrete_slime[/thrive:input] para expelir a [thrive:compound type=\"mucilage\"][/thrive:compound], aumentando a velocidade da célula e diminuindo a de predadores."
 
 msgid "WIKI_SLIME_JET_REQUIREMENTS"
-msgstr ""
+msgstr "Sem requisitos."
 
 msgid "WIKI_SLIME_JET_SCIENTIFIC_BACKGROUND"
 msgstr ""
@@ -7939,6 +8042,11 @@ msgstr "Produz [thrive:compound type=\"glucose\"][/thrive:compound]. Quantidade 
 
 msgid "WIKI_THERMOPLAST_REQUIREMENTS"
 msgstr ""
+"[b]Termoplastos[/b] aparecem apenas em jogos com Somente Vida Baseada na Realidade desativada nas configurações do jogo.\n"
+"\n"
+"Se melhorias de organela estiverem ativadas nas configurações do jogo, a condição seguinte também deve ser verdadeira [i]para a célula do jogador[/i]:\n"
+"\n"
+"[indent]—   Contém no mínimo [b]3[/b] hexágonos de [b][color=#3796e1][url=thriveopedia:thermosynthase]Termossintase[/url][/color][/b] há no mínimo [b]5[/b] gerações seguidas.[/indent]"
 
 #, fuzzy
 msgid "WIKI_THERMOPLAST_SCIENTIFIC_BACKGROUND"
@@ -7968,9 +8076,13 @@ msgstr "A termossintase é uma proteína que muda de forma usando a convecção 
 msgid "WIKI_THERMOSYNTHASE_PROCESSES"
 msgstr "Produz [thrive:compound type=\"atp\"][/thrive:compound]. Quantidade aumenta com a [thrive:compound type=\"temperature\"][/thrive:compound]."
 
-#, fuzzy
 msgid "WIKI_THERMOSYNTHASE_REQUIREMENTS"
-msgstr "A termossintase é uma proteína que muda de forma usando a convecção térmica. Quando exposta ao calor, ela se dobra ligando-se ao ADP. Quando resfriada, ela se desdobra e é reciclada em ATP em um processo chamado termossíntese. A taxa de produção de ATP aumenta com a temperatura ambiente."
+msgstr ""
+"[b]Termossintase[/b] aparece apenas em jogos com LAWK desativada nas configurações do jogo.\n"
+"\n"
+"Se desbloqueio de organela estiver ativado nas configurações do jogo, a condição seguinte deve ser verdadeira [i]para a célula do jogador[/i]:\n"
+"\n"
+"[indent]—   Está em uma região com [thrive:compound type=\"temperature\"][/thrive:compound] de no mínimo [b]+50 °C[/b].[/indent]"
 
 #, fuzzy
 msgid "WIKI_THERMOSYNTHASE_SCIENTIFIC_BACKGROUND"
@@ -8017,7 +8129,10 @@ msgstr ""
 "[b]Glicólise:[/b] [thrive:compound type=\"glucose\"][/thrive:compound] → [thrive:compound type=\"atp\"][/thrive:compound]"
 
 msgid "WIKI_THYLAKOIDS_REQUIREMENTS"
-msgstr "Sem requisitos"
+msgstr ""
+"Se melhorias de organela estiverem ativadas nas configurações do jogo, a condição seguinte deve ser verdadeira [i]para a célula do jogador[/i]:\n"
+"\n"
+"[indent]—   Está em uma região com no mínimo [b]%20[/b] [thrive:compound type=\"sunlight\"][/thrive:compound].[/indent]"
 
 #, fuzzy
 msgid "WIKI_THYLAKOIDS_SCIENTIFIC_BACKGROUND"
@@ -8049,9 +8164,14 @@ msgstr "O vacúolo de toxinas é um vacúolo que foi modificado para a produçã
 msgid "WIKI_TOXIN_VACUOLE_PROCESSES"
 msgstr "Transforma [thrive:compound type=\"atp\"][/thrive:compound] em [thrive:compound type=\"oxytoxy\"][/thrive:compound]. Quantidade aumenta com a concentração de [thrive:compound type=\"oxygen\"][/thrive:compound]. Pode disparar toxinas apertando [thrive:input]g_fire_toxin[/thrive:input]. Quando a quantidade de [thrive:compound type=\"oxytoxy\"][/thrive:compound] ficar baixa, será possível disparar, mas o dano irá ser reduzido."
 
-#, fuzzy
 msgid "WIKI_TOXIN_VACUOLE_REQUIREMENTS"
-msgstr "O vacúolo de toxinas é um vacúolo que foi modificado para a produção, armazenamento, e secreção de oxitoxinas. Mais vacúolos de toxinas vão aumentar a taxa na qual toxinas serão liberadas."
+msgstr ""
+"Uma célula precisa ter um [b][color=#3796e1][url=thriveopedia:nucleus]Núcleo[/url][/color][/b] para evoluir [b]Vacúolos de Toxinas[/b].\n"
+"\n"
+"Se melhorias de organela estiverem ativadas nas configurações do jogo, [i]pelo menos uma[/i] das condições seguintes também deve ser verdadeira [i]para a célula do jogador[/i]:\n"
+"\n"
+"[indent]—   Fagocitou no mínimo [b]10[/b] células ao longo do jogo até agora.[/indent]\n"
+"[indent]—   Contém no mínimo [b]1[/b] [b][color=#3796e1][url=thriveopedia:oxytoxyProteins]Oxitoxissoma[/url][/color][/b] há no mínimo [b]5[/b] gerações seguidas.[/indent]"
 
 #, fuzzy
 msgid "WIKI_TOXIN_VACUOLE_SCIENTIFIC_BACKGROUND"
@@ -8081,7 +8201,7 @@ msgid "WIKI_VACUOLE_PROCESSES"
 msgstr "Transforma [thrive:compound type=\"atp\"][/thrive:compound] em [thrive:compound type=\"oxytoxy\"][/thrive:compound]. Quantidade aumenta com a concentração de [thrive:compound type=\"oxygen\"][/thrive:compound]. Pode disparar toxinas apertando [thrive:input]g_fire_toxin[/thrive:input]. Quando a quantidade de [thrive:compound type=\"oxytoxy\"][/thrive:compound] ficar baixa, será possível disparar, mas o dano irá ser reduzido."
 
 msgid "WIKI_VACUOLE_REQUIREMENTS"
-msgstr ""
+msgstr "Uma célula precisa ter um [b][color=#3796e1][url=thriveopedia:nucleus]Núcleo[/url][/color][/b] para evoluir [b]Vacúolos[/b]."
 
 msgid "WIKI_VACUOLE_SCIENTIFIC_BACKGROUND"
 msgstr ""
@@ -8098,6 +8218,9 @@ msgstr "nossa Wiki"
 
 msgid "WILL_YOU_THRIVE"
 msgstr "Você vai prosperar?"
+
+msgid "WINDOWED"
+msgstr ""
 
 msgid "WIN_BOX_TITLE"
 msgstr "VOCÊ PROSPEROU!"
@@ -8165,6 +8288,10 @@ msgstr "Xbox One"
 msgid "XBOX_SERIES"
 msgstr "Xbox Series X"
 
+#, fuzzy
+msgid "X_TWITTER_TOOLTIP"
+msgstr "Visite a nossa conta no Twitter"
+
 msgid "YEARS"
 msgstr "anos"
 
@@ -8188,6 +8315,14 @@ msgstr "Aumentar o zoom"
 
 msgid "ZOOM_OUT"
 msgstr "Diminuir o zoom"
+
+#~ msgid "THANKS_FOR_BUYING_THRIVE"
+#~ msgstr ""
+#~ "Obrigado por apoiar o desenvolvimento de Thrive ao comprar essa cópia!\n"
+#~ "\n"
+#~ "Se você não comprou o jogo, é possível obter a sua própria cópia [color=#3796e1][url={0}]aqui[/url][/color] ou em nosso [color=#3796e1][url=https://revolutionarygamesstudio.com/releases/]website[/url][/color].\n"
+#~ "\n"
+#~ "Se deseja acessar o Thrive Launcher antes de começar o jogo, você pode usar o botão no menu principal para ir para o lançador e então desativar o modo integrado no menu de opções."
 
 #, fuzzy
 #~ msgid "WIKI_RADIOSYNTHESIS"

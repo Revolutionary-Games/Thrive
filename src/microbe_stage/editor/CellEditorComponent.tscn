@@ -1,4 +1,4 @@
-[gd_scene load_steps=55 format=3 uid="uid://cwot2e52r7lx0"]
+[gd_scene load_steps=56 format=3 uid="uid://cwot2e52r7lx0"]
 
 [ext_resource type="PackedScene" uid="uid://bwegwjlcioasf" path="res://src/microbe_stage/editor/EditorComponentBottomLeftButtons.tscn" id="3"]
 [ext_resource type="PackedScene" uid="uid://0hb8nq18ljr8" path="res://src/microbe_stage/editor/LightConfigurationPanel.tscn" id="3_yy73o"]
@@ -15,8 +15,9 @@
 [ext_resource type="PackedScene" uid="uid://bapb4m7jw7pc8" path="res://src/microbe_stage/editor/BehaviourEditorSubComponent.tscn" id="14"]
 [ext_resource type="LabelSettings" uid="uid://w2g8aleycqpl" path="res://src/gui_common/fonts/Title-Regular-Bigger.tres" id="14_fllwv"]
 [ext_resource type="PackedScene" uid="uid://bdtlirrkst0vl" path="res://src/microbe_stage/editor/GrowthOrderPicker.tscn" id="15_krpbw"]
+[ext_resource type="PackedScene" uid="uid://5kamud4sukbd" path="res://src/microbe_stage/editor/TolerancesEditorSubComponent.tscn" id="15_rbhjt"]
 [ext_resource type="PackedScene" uid="uid://olpir0vkwcsi" path="res://src/microbe_stage/OrganismStatisticsPanel.tscn" id="15_tdiis"]
-[ext_resource type="PackedScene" path="res://src/gui_common/FocusGrabber.tscn" id="16"]
+[ext_resource type="PackedScene" uid="uid://bgeijgq7runaw" path="res://src/gui_common/FocusGrabber.tscn" id="16"]
 [ext_resource type="Texture2D" uid="uid://dglc11477jgka" path="res://assets/textures/gui/bevel/helpButtonActive.png" id="17"]
 [ext_resource type="Texture2D" uid="uid://cxqnywb8xdvnb" path="res://assets/textures/gui/bevel/helpButton.png" id="18"]
 [ext_resource type="PackedScene" uid="uid://dw3ubsraoopin" path="res://src/gui_common/TabButtons.tscn" id="19"]
@@ -335,7 +336,7 @@ _data = {
 "show": SubResource("44")
 }
 
-[node name="CellEditorComponent" type="Control" node_paths=PackedStringArray("growthOrderTabButton", "toleranceTabButton", "growthOrderTab", "growthOrderGUI", "toleranceTab", "organelleSuggestionLoadingIndicator", "organelleSuggestionLabel", "pendingEndosymbiosisPopup", "endosymbiosisButton", "endosymbiosisPopup", "showGrowthOrderCoordinates", "growthOrderNumberContainer", "micheViewer", "organismStatisticsPanel")]
+[node name="CellEditorComponent" type="Control" node_paths=PackedStringArray("growthOrderTabButton", "toleranceTabButton", "growthOrderTab", "growthOrderGUI", "tolerancesEditor", "toleranceTab", "toleranceWarningContainer", "organelleSuggestionLoadingIndicator", "organelleSuggestionLabel", "pendingEndosymbiosisPopup", "endosymbiosisButton", "endosymbiosisPopup", "showGrowthOrderCoordinates", "growthOrderNumberContainer", "micheViewer", "organismStatisticsPanel")]
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
@@ -374,7 +375,9 @@ growthOrderTabButton = NodePath("LeftPanel/MainPanel/VBoxContainer/MarginContain
 toleranceTabButton = NodePath("LeftPanel/MainPanel/VBoxContainer/MarginContainer/EditingPanel/TabButtons/Tolerances")
 growthOrderTab = NodePath("LeftPanel/MainPanel/VBoxContainer/MarginContainer/EditingPanel/Growth")
 growthOrderGUI = NodePath("LeftPanel/MainPanel/VBoxContainer/MarginContainer/EditingPanel/Growth/ScrollContainer/MarginContainer/GrowthContainer/GrowthOrderPicker")
+tolerancesEditor = NodePath("LeftPanel/MainPanel/VBoxContainer/MarginContainer/EditingPanel/Tolerance/ScrollContainer/MarginContainer/TolerancesEditor")
 toleranceTab = NodePath("LeftPanel/MainPanel/VBoxContainer/MarginContainer/EditingPanel/Tolerance")
+toleranceWarningContainer = NodePath("ToleranceWarnings")
 organelleSuggestionLoadingIndicator = NodePath("RightPanel/VBoxContainer/AutoEvoInfoPanel/VBoxContainer/Body/MarginContainer/VBoxContainer/HBoxContainer/HFlowContainer/SugestionLoading")
 organelleSuggestionLabel = NodePath("RightPanel/VBoxContainer/AutoEvoInfoPanel/VBoxContainer/Body/MarginContainer/VBoxContainer/HBoxContainer/HFlowContainer/SuggestionValue")
 pendingEndosymbiosisPopup = NodePath("CompleteEndosymbiosisWarning")
@@ -384,6 +387,7 @@ showGrowthOrderCoordinates = NodePath("LeftPanel/MainPanel/VBoxContainer/MarginC
 growthOrderNumberContainer = NodePath("GrowthOrderNumberContainer")
 micheViewer = NodePath("PopupMicheViewer")
 organismStatisticsPanel = NodePath("RightPanel/VBoxContainer/OrganismStatisticsPanel")
+toleranceWarningsFont = ExtResource("28_qclxk")
 IslandErrorPath = NodePath("IslandError")
 MutationPointsBarPath = NodePath("LeftPanel/MainPanel/VBoxContainer/MarginContainer2/MutationPointsBar")
 ComponentBottomLeftButtonsPath = NodePath("EditorComponentBottomLeftButtons")
@@ -728,7 +732,6 @@ layout_mode = 2
 [node name="Behaviour" parent="LeftPanel/MainPanel/VBoxContainer/MarginContainer/EditingPanel" instance=ExtResource("14")]
 visible = false
 layout_mode = 2
-FinishOrNextButtonPath = NodePath("")
 
 [node name="Growth" type="PanelContainer" parent="LeftPanel/MainPanel/VBoxContainer/MarginContainer/EditingPanel"]
 visible = false
@@ -777,13 +780,18 @@ size_flags_vertical = 3
 mouse_filter = 1
 theme_override_styles/panel = SubResource("14")
 
-[node name="Explanation" type="Label" parent="LeftPanel/MainPanel/VBoxContainer/MarginContainer/EditingPanel/Tolerance"]
-editor_description = "PLACEHOLDER"
-custom_minimum_size = Vector2(100, 0)
+[node name="ScrollContainer" type="ScrollContainer" parent="LeftPanel/MainPanel/VBoxContainer/MarginContainer/EditingPanel/Tolerance"]
 layout_mode = 2
-text = "In the future this tab will have controls to change the environmental tolerances of the cell to better adapt it to different patch coditions"
-label_settings = ExtResource("28_qclxk")
-autowrap_mode = 3
+size_flags_vertical = 3
+
+[node name="MarginContainer" type="MarginContainer" parent="LeftPanel/MainPanel/VBoxContainer/MarginContainer/EditingPanel/Tolerance/ScrollContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+theme_override_constants/margin_right = 10
+
+[node name="TolerancesEditor" parent="LeftPanel/MainPanel/VBoxContainer/MarginContainer/EditingPanel/Tolerance/ScrollContainer/MarginContainer" instance=ExtResource("15_rbhjt")]
+layout_mode = 2
 
 [node name="RightPanel" type="MarginContainer" parent="."]
 custom_minimum_size = Vector2(285, 657)
@@ -811,6 +819,8 @@ ShowSpeedStat = true
 ShowRotationSpeedStat = true
 ShowDigestionSpeedStat = true
 ShowDigestionEfficiencyStat = true
+ShowATPBalanceBars = true
+ShowOrganellesCostStat = true
 processList = NodePath("../../../ProcessPanel/ScrollContainer/ProcessList")
 processListWindow = NodePath("../../../ProcessPanel")
 lightConfigurationPanel = NodePath("../../../TopPanel/LightConfigurationPanel")
@@ -975,6 +985,17 @@ layout_mode = 1
 offset_top = -53.0
 offset_right = 641.0
 grow_vertical = 0
+
+[node name="ToleranceWarnings" type="VBoxContainer" parent="."]
+layout_mode = 1
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -286.0
+offset_top = 78.0
+offset_right = 352.0
+offset_bottom = 250.0
+grow_horizontal = 2
 
 [node name="BottomRight" type="MarginContainer" parent="."]
 layout_mode = 0
@@ -1190,6 +1211,7 @@ layout_mode = 1
 [connection signal="OnBehaviourChanged" from="LeftPanel/MainPanel/VBoxContainer/MarginContainer/EditingPanel/Behaviour" to="." method="OnEmbeddedBehaviourEditorChangedData"]
 [connection signal="OrderReset" from="LeftPanel/MainPanel/VBoxContainer/MarginContainer/EditingPanel/Growth/ScrollContainer/MarginContainer/GrowthContainer/GrowthOrderPicker" to="." method="OnResetGrowthOrderPressed"]
 [connection signal="toggled" from="LeftPanel/MainPanel/VBoxContainer/MarginContainer/EditingPanel/Growth/ScrollContainer/MarginContainer/GrowthContainer/Coordinates" to="." method="OnGrowthOrderCoordinatesToggled"]
+[connection signal="OnTolerancesChanged" from="LeftPanel/MainPanel/VBoxContainer/MarginContainer/EditingPanel/Tolerance/ScrollContainer/MarginContainer/TolerancesEditor" to="." method="OnTolerancesEditorChangedData"]
 [connection signal="OnEnergyBalanceOptionsChanged" from="RightPanel/VBoxContainer/OrganismStatisticsPanel" to="." method="OnEnergyBalanceOptionsChanged"]
 [connection signal="OnLightLevelChanged" from="RightPanel/VBoxContainer/OrganismStatisticsPanel" to="." method="SetLightLevelOption"]
 [connection signal="OnResourceLimitingModeChanged" from="RightPanel/VBoxContainer/OrganismStatisticsPanel" to="." method="OnResourceLimitingModeChanged"]

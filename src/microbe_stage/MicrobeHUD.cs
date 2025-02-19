@@ -47,13 +47,16 @@ public partial class MicrobeHUD : CreatureStageHUDBase<MicrobeStage>
     [Export]
     private Button macroscopicButton = null!;
 
+    [Export]
+    private HeatAccumulationBar heatAccumulationBar = null!;
+
     private CompoundProgressBar ingestedMatterBar = null!;
 
     private CustomWindow? winBox;
 #pragma warning restore CA2213
 
     /// <summary>
-    ///   If not null the signaling agent radial menu is open for the given microbe, which should be the player
+    ///   If not null, the signaling agent radial menu is open for the given microbe, which should be the player
     /// </summary>
     private Entity? signalingAgentMenuOpenForMicrobe;
 
@@ -62,10 +65,12 @@ public partial class MicrobeHUD : CreatureStageHUDBase<MicrobeStage>
     private bool playerWasDigested;
 
     /// <summary>
-    ///   Wether or not the player has the <see cref="StrainAffected"/> component, if not an error will be printed
+    ///   Whether or not the player has the <see cref="StrainAffected"/> component, if not an error will be printed
     ///   and updating the bar will be ignored
     /// </summary>
     private bool playerMissingStrainAffected;
+
+    private float previousTemperature = float.NaN;
 
     [Signal]
     public delegate void OnToggleEngulfButtonPressedEventHandler();
@@ -149,11 +154,14 @@ public partial class MicrobeHUD : CreatureStageHUDBase<MicrobeStage>
         {
             UpdateMulticellularButton(stage.Player);
             UpdateMacroscopicButton(stage.Player);
+
+            UpdateHeatHelperWidget(stage.Player);
         }
         else
         {
             multicellularButton.Visible = false;
             macroscopicButton.Visible = false;
+            heatAccumulationBar.Visible = false;
         }
     }
 
@@ -277,6 +285,21 @@ public partial class MicrobeHUD : CreatureStageHUDBase<MicrobeStage>
 
         hp = health.CurrentHealth;
         maxHealth = health.MaxHealth;
+    }
+
+    protected override float ReadTemperature(BiomeConditions? biome)
+    {
+        if (stage is { HasAlivePlayer: true })
+        {
+            var position = stage.Player.Get<WorldPosition>();
+
+            return stage.WorldSimulation.SampleTemperatureAt(position.Position);
+        }
+
+        if (biome == null)
+            return -1;
+
+        return base.ReadTemperature(biome);
     }
 
     protected override void UpdateHealth(float delta)
@@ -492,6 +515,8 @@ public partial class MicrobeHUD : CreatureStageHUDBase<MicrobeStage>
 
         if (unbindAllHotkey.ActionNameAsStringName != null)
             unbindAllHotkey.ButtonPressed = Input.IsActionPressed(unbindAllHotkey.ActionNameAsStringName);
+
+        bottomLeftBar.HeatViewAvailable = organelles.HeatCollection > 0;
     }
 
     protected override void UpdateHoverInfo(float delta)
@@ -705,6 +730,36 @@ public partial class MicrobeHUD : CreatureStageHUDBase<MicrobeStage>
 
         macroscopicButton.Text = Localization.Translate("BECOME_MACROSCOPIC")
             .FormatSafe(playerColonySize, Constants.COLONY_SIZE_REQUIRED_FOR_MACROSCOPIC);
+    }
+
+    private void UpdateHeatHelperWidget(in Entity player)
+    {
+        if (stage == null)
+            return;
+
+        if (!player.Has<CellProperties>())
+            return;
+
+        ref var organelles = ref player.Get<OrganelleContainer>();
+
+        if (organelles.HeatCollection < 1)
+        {
+            heatAccumulationBar.Visible = false;
+            return;
+        }
+
+        heatAccumulationBar.Visible = true;
+
+        ref var cellProperties = ref player.Get<CellProperties>();
+
+        heatAccumulationBar.UpdateHeat(Math.Max(cellProperties.Temperature, 0), ReadTemperature(null),
+            Constants.THERMOPLAST_MIN_ATP_TEMPERATURE, Constants.OPTIMAL_THERMOPLAST_TEMPERATURE,
+            Constants.THERMOPLAST_MAX_ATP_TEMPERATURE, Constants.THERMOPLAST_GUI_MAX_TEMPERATURE);
+
+        if (!float.IsNaN(previousTemperature))
+            heatAccumulationBar.UpdateIndicator(cellProperties.Temperature > previousTemperature + 0.00001f);
+
+        previousTemperature = cellProperties.Temperature;
     }
 
     private void OnBecomeMulticellularPressed()

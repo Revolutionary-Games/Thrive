@@ -23,8 +23,8 @@ corner_radius_top_right = 5
 corner_radius_bottom_right = 5
 corner_radius_bottom_left = 5
 
-[node name="SelectionMenuTooltip" type="PanelContainer" node_paths=PackedStringArray("modifierInfoList", "nameLabel", "mpLabel", "requiresNucleusLabel", "osmoregulationModifier", "descriptionLabel", "processesDescriptionLabel", "processList", "moreInfo")]
-custom_minimum_size = Vector2(350, 0)
+[node name="SelectionMenuTooltip" type="PanelContainer" node_paths=PackedStringArray("modifierInfoList", "organelleCostInfoList", "nameLabel", "mpLabel", "requiresNucleusLabel", "osmoregulationModifier", "descriptionLabel", "processesDescriptionLabel", "processList", "moreInfo")]
+custom_minimum_size = Vector2(400, 0)
 offset_right = 350.0
 offset_bottom = 155.0
 mouse_filter = 2
@@ -32,6 +32,7 @@ theme = ExtResource("9")
 theme_override_styles/panel = SubResource("1")
 script = ExtResource("7")
 modifierInfoList = NodePath("MarginContainer/VBoxContainer/ModifierList")
+organelleCostInfoList = NodePath("MarginContainer/VBoxContainer/OrganelleCostList")
 nameLabel = NodePath("MarginContainer/VBoxContainer/Header/Title")
 mpLabel = NodePath("MarginContainer/VBoxContainer/Header/MP/Value")
 requiresNucleusLabel = NodePath("MarginContainer/VBoxContainer/RequiresNucleus")
@@ -119,6 +120,14 @@ ModifierValueFont = ExtResource("6_2mc08")
 ModifierIcon = ExtResource("10_log1v")
 
 [node name="HSeparator" type="HSeparator" parent="MarginContainer/VBoxContainer"]
+layout_mode = 2
+mouse_filter = 2
+
+[node name="OrganelleCostList" type="VBoxContainer" parent="MarginContainer/VBoxContainer"]
+layout_mode = 2
+mouse_filter = 2
+
+[node name="HSeparator2" type="HSeparator" parent="MarginContainer/VBoxContainer"]
 layout_mode = 2
 mouse_filter = 2
 

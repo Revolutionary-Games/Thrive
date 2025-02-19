@@ -7,8 +7,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2025-01-31 20:54+0100\n"
-"PO-Revision-Date: 2024-10-17 07:24+0000\n"
+"POT-Creation-Date: 2025-02-18 15:43+0200\n"
+"PO-Revision-Date: 2025-02-06 13:29+0000\n"
 "Last-Translator: Anonymous <noreply@weblate.org>\n"
 "Language-Team: Korean <https://translate.revolutionarygamesstudio.com/projects/thrive/thrive-game/ko/>\n"
 "Language: ko\n"
@@ -186,6 +186,10 @@ msgstr "배경 음량"
 msgid "AMMONIA"
 msgstr "암모니아"
 
+#, fuzzy
+msgid "AMMONIA_COST"
+msgstr "암모니아"
+
 msgid "AMOUNT_OF_AUTOSAVE_TO_KEEP"
 msgstr "저장할 수 있는 자동저장 갯수:"
 
@@ -272,6 +276,10 @@ msgstr "ATP 균형"
 
 #, fuzzy
 msgid "ATP_BALANCE_TOOLTIP"
+msgstr "새로운 키 배치 추가"
+
+#, fuzzy
+msgid "ATP_BALANCE_TOOLTIP_MULTICELLULAR"
 msgstr "새로운 키 배치 추가"
 
 msgid "ATP_BALANCE_WITHOUT_EXTERNAL_RESOURCES"
@@ -526,6 +534,10 @@ msgstr "생태계: {0}"
 msgid "BLOOM_RENDER_EFFECT"
 msgstr "외부 효과:"
 
+#, fuzzy
+msgid "BLUESKY_TOOLTIP"
+msgstr "재개"
+
 msgid "BRAIN_CELL_NAME_DEFAULT"
 msgstr "뉴런"
 
@@ -671,6 +683,14 @@ msgstr "재개"
 #, fuzzy
 msgid "CELL_STAT_SPEED_TOOLTIP"
 msgstr "재개"
+
+#, fuzzy
+msgid "CELL_TYPE_BUTTON_ATP_CONSUMPTION"
+msgstr "Options 키"
+
+#, fuzzy
+msgid "CELL_TYPE_BUTTON_ATP_PRODUCTION"
+msgstr "Options 키"
 
 msgid "CELL_TYPE_NAME"
 msgstr "세포 종류 이름"
@@ -1465,6 +1485,10 @@ msgstr ""
 msgid "DEBUG_DRAW_NOT_AVAILABLE"
 msgstr ""
 
+#, fuzzy
+msgid "DEBUG_HEAT_AT_CURSOR"
+msgstr "커서 위치에서:"
+
 msgid "DEBUG_PANEL"
 msgstr "디버그 패널"
 
@@ -1700,6 +1724,10 @@ msgstr "능력"
 
 #, fuzzy
 msgid "DISPLAY_DRIVER_VULKAN"
+msgstr "능력"
+
+#, fuzzy
+msgid "DISPLAY_MODE"
 msgstr "능력"
 
 #, fuzzy
@@ -2056,6 +2084,10 @@ msgstr "불러온 객체를 처리하는 중 예기치 못한 일이 발생했�
 #, fuzzy
 msgid "EXCEPTION_HAPPENED_WHILE_LOADING"
 msgstr "저장된 데이터를 불러오는 중 예기치 못한 일이 발생했습니다"
+
+#, fuzzy
+msgid "EXCLUSIVE_FULLSCREEN"
+msgstr "전체화면 전환"
 
 #, fuzzy
 msgid "EXISTING_BUILDINGS"
@@ -2482,6 +2514,13 @@ msgstr "GUI 음량"
 msgid "HEALTH"
 msgstr "생명력"
 
+msgid "HEALTH_MODIFIER"
+msgstr ""
+
+#, fuzzy
+msgid "HEAT_ACCUMULATION_BAR_TOOLTIP"
+msgstr "새로운 키 배치 추가"
+
 msgid "HELP"
 msgstr "도움말"
 
@@ -2685,6 +2724,10 @@ msgstr ""
 
 msgid "INSPECTOR"
 msgstr ""
+
+#, fuzzy
+msgid "INSTAGRAM_TOOLTIP"
+msgstr "재개"
 
 #, fuzzy
 msgid "INTERACTION_ACTIVATE_ASCENSION"
@@ -3327,6 +3370,10 @@ msgid "MASTER_VOLUME"
 msgstr "주 음량"
 
 #, fuzzy
+msgid "MASTODON_TOOLTIP"
+msgstr "새로운 키 배치 추가"
+
+#, fuzzy
 msgid "MAX_CACHE_SIZE_TOOLTIP"
 msgstr "점액 분비"
 
@@ -3417,6 +3464,10 @@ msgid "METABOLOSOMES_PROCESSES_DESCRIPTION"
 msgstr "대사체는 단백질 껍질에 싸인 단백질 집합입니다. 그들은 호기성 호흡이라는 과정을 통해 세포질에서 할 수있는 것보다 훨씬 더 빠른 속도로 포도당을 ATP로 전환 할 수 있습니다. 그러나 이를 위해 산소가 필요하며 산소가 적은 환경에선 ATP 생산 속도가 느려집니다. 대사체가 세포질에 의해 직접 둘러싸이면 주변 유체가 일부 발효를 수행합니다."
 
 #, fuzzy
+msgid "META_THREADS_TOOLTIP"
+msgstr "새로운 키 배치 추가"
+
+#, fuzzy
 msgid "METRICS"
 msgstr "FPS 표시 전환"
 
@@ -3453,6 +3504,10 @@ msgstr "존재하는 종"
 
 msgid "MICHE_ENVIRONMENTAL_COMPOUND_PRESSURE"
 msgstr ""
+
+#, fuzzy
+msgid "MICHE_ENVIRONMENTAL_TOLERANCE"
+msgstr "환경"
 
 msgid "MICHE_MAINTAIN_COMPOUND_PRESSURE"
 msgstr ""
@@ -4226,6 +4281,9 @@ msgstr ""
 msgid "NOTICE_READY_TO_EDIT"
 msgstr ""
 
+msgid "NOT_ADAPTED_TO_CURRENT_PATCH"
+msgstr ""
+
 msgid "NOT_STARTED_DOT"
 msgstr "시작되지 않음."
 
@@ -4290,6 +4348,10 @@ msgstr ""
 
 msgid "NUMLOCK"
 msgstr ""
+
+#, fuzzy
+msgid "NUTRIENT_COST_TOOLTIP"
+msgstr "새로운 키 배치 추가"
 
 #, fuzzy
 msgid "N_A"
@@ -4533,6 +4595,14 @@ msgid "OXYGEN_INHIBITOR_SYNTHESIS"
 msgstr "산소 합성"
 
 #, fuzzy
+msgid "OXYGEN_RESISTANCE"
+msgstr "독소 저항"
+
+#, fuzzy
+msgid "OXYGEN_TOLERANCE_TOOLTIP"
+msgstr "새로운 키 배치 추가"
+
+#, fuzzy
 msgid "OXYTOXISOME_PROCESSES_DESCRIPTION"
 msgstr "대사체는 단백질 껍질에 싸인 단백질 집합입니다. 그들은 호기성 호흡이라는 과정을 통해 세포질에서 할 수있는 것보다 훨씬 더 빠른 속도로 포도당을 ATP로 전환 할 수 있습니다. 그러나 이를 위해 산소가 필요하며 산소가 적은 환경에선 ATP 생산 속도가 느려집니다. 대사체가 세포질에 의해 직접 둘러싸이면 주변 유체가 일부 발효를 수행합니다."
 
@@ -4671,6 +4741,10 @@ msgstr ""
 msgid "PERCENTAGE_VALUE"
 msgstr ""
 
+#, fuzzy
+msgid "PERFECT_ADAPTATION_DESCRIPTION"
+msgstr "세포의 핵심. 미토콘드리온(복수형: 미토콘드리아)는 단백질과 효소로 이루어진 이중막 구조입니다. 진핵 숙주가 사용하기 위해 동화된 원핵 생물입니다. 호기성 호흡을 통해 세포질에서 할 수 있는 것보다 훨씬 더 높은 효율로 포도당을 ATP로 전환 할 수 있습니다. 그러나 산소를 필요로 하며 환경의 산소 수준이 낮으면 ATP 생산 속도가 느려집니다."
+
 msgid "PERFORMANCE"
 msgstr "성능"
 
@@ -4685,6 +4759,10 @@ msgid "PER_SECOND_SLASH"
 msgstr "/초"
 
 msgid "PHOSPHATE"
+msgstr "인산염"
+
+#, fuzzy
+msgid "PHOSPHATES_COST"
 msgstr "인산염"
 
 msgid "PHOTOSYNTHESIS"
@@ -4792,6 +4870,10 @@ msgstr "압력."
 msgid "PRESSURE_SHORT"
 msgstr "압력."
 
+#, fuzzy
+msgid "PRESSURE_TOLERANCE_TOOLTIP"
+msgstr "메뉴로 돌아가기"
+
 msgid "PRESS_KEY_DOT_DOT_DOT"
 msgstr "아무 키나 누르시오..."
 
@@ -4811,6 +4893,10 @@ msgid "PROCESS_ENVIRONMENT_SEPARATOR"
 msgstr ""
 
 msgid "PROCESS_PANEL_TITLE"
+msgstr "세포 진행률"
+
+#, fuzzy
+msgid "PROCESS_SPEED_MODIFIER"
 msgstr "세포 진행률"
 
 msgid "PROGRAMMING_TEAM"
@@ -5847,10 +5933,14 @@ msgstr "온도"
 msgid "TEMPERATURE_SHORT"
 msgstr "온도."
 
+#, fuzzy
+msgid "TEMPERATURE_TOLERANCE_TOOLTIP"
+msgstr "새로운 키 배치 추가"
+
 msgid "TESTING_TEAM"
 msgstr ""
 
-msgid "THANKS_FOR_BUYING_THRIVE"
+msgid "THANKS_FOR_BUYING_THRIVE_2"
 msgstr ""
 
 msgid "THANKS_FOR_PLAYING"
@@ -5866,6 +5956,7 @@ msgstr ""
 msgid "THERMOPLAST"
 msgstr "열 세포"
 
+#, fuzzy
 msgid "THERMOPLAST_DESCRIPTION"
 msgstr "열 세포는 감 열성 안료가 막질 주머니에 함께 쌓여있는 이중 막 구조입니다. 진핵 숙주가 사용하기 위해 동화 된 원핵 생물입니다. 열 세포의 안료는 열 합성 이라는 과정에서 물과 기체 이산화탄소에서 포도당을 생성하기 위해 주변의 열 차이 에너지를 사용할 수 있습니다. 포도당 생산 속도는 이산화탄소 농도와 온도에 따라 달라집니다."
 
@@ -6018,6 +6109,10 @@ msgstr "FPS 표시 전환"
 msgid "TOGGLE_FULLSCREEN"
 msgstr "전체화면 전환"
 
+#, fuzzy
+msgid "TOGGLE_HEAT_VIEW_TOOLTIP"
+msgstr "삼키기 전환"
+
 msgid "TOGGLE_HUD_HIDE"
 msgstr "HUD 켜고 끄기"
 
@@ -6040,6 +6135,31 @@ msgstr "일시 정지"
 
 msgid "TOGGLE_UNBINDING"
 msgstr "결합 해제 켜고 끄기"
+
+msgid "TOLERANCES_TOO_HIGH_PRESSURE"
+msgstr ""
+
+msgid "TOLERANCES_TOO_HIGH_TEMPERATURE"
+msgstr ""
+
+msgid "TOLERANCES_TOO_LOW_OXYGEN_PROTECTION"
+msgstr ""
+
+#, fuzzy
+msgid "TOLERANCES_TOO_LOW_PRESSURE"
+msgstr "화합물 구름"
+
+msgid "TOLERANCES_TOO_LOW_TEMPERATURE"
+msgstr ""
+
+msgid "TOLERANCES_TOO_LOW_UV_PROTECTION"
+msgstr ""
+
+msgid "TOLERANCES_UNSUITABLE_DEBUFFS"
+msgstr ""
+
+msgid "TOLERANCE_RANGE_LABEL"
+msgstr ""
 
 msgid "TOOLS"
 msgstr "도구"
@@ -6368,10 +6488,6 @@ msgstr "미생물 편집기 불러오는 중"
 msgid "TUTORIAL_VIEW_NOW"
 msgstr "튜토리얼"
 
-#, fuzzy
-msgid "TWITTER_TOOLTIP"
-msgstr "새로운 키 배치 추가"
-
 msgid "TWO_TIMES"
 msgstr ""
 
@@ -6615,6 +6731,14 @@ msgstr ""
 
 msgid "USE_VIRTUAL_WINDOW_SIZE"
 msgstr ""
+
+#, fuzzy
+msgid "UV_PROTECTION"
+msgstr "Auto-Evo 예측"
+
+#, fuzzy
+msgid "UV_TOLERANCE_TOOLTIP"
+msgstr "새로운 키 배치 추가"
 
 msgid "VACUOLE"
 msgstr "액포"
@@ -8474,6 +8598,9 @@ msgstr "세포 기관 배치"
 msgid "WILL_YOU_THRIVE"
 msgstr "번영하시겠습니까?"
 
+msgid "WINDOWED"
+msgstr ""
+
 msgid "WIN_BOX_TITLE"
 msgstr "번영했습니다!"
 
@@ -8544,6 +8671,10 @@ msgstr ""
 
 msgid "XBOX_SERIES"
 msgstr ""
+
+#, fuzzy
+msgid "X_TWITTER_TOOLTIP"
+msgstr "새로운 키 배치 추가"
 
 msgid "YEARS"
 msgstr "년"

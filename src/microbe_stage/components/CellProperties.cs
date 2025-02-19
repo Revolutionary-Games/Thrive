@@ -7,9 +7,10 @@ using DefaultEcs;
 using DefaultEcs.Command;
 using Godot;
 using Newtonsoft.Json;
+using Systems;
 
 /// <summary>
-///   Base properties of a microbe (separate from the species info as multicellular species object couldn't
+///   Base properties of a microbe (separate from the species info as multicellular species-object couldn't
 ///   work there)
 /// </summary>
 [JSONDynamicTypeAllowed]
@@ -29,6 +30,18 @@ public struct CellProperties
     public float MembraneRigidity;
 
     /// <summary>
+    ///   The temperature the cell is currently at. Used, for example, by <see cref="MicrobeHeatAccumulationSystem"/>
+    /// </summary>
+    /// <remarks>
+    ///   <para>
+    ///     It probably makes sense for this to be here as this is like a physical state of the cell currently and
+    ///     could maybe in the future affect something like rendering. Though, a more weighting factor was that
+    ///     <see cref="OrganelleContainer"/> is already a very big struct.
+    ///   </para>
+    /// </remarks>
+    public float Temperature;
+
+    /// <summary>
     ///   The membrane created for this cell. This is here so that some other systems apart from the visuals system
     ///   can have access to the membrane data.
     /// </summary>
@@ -38,7 +51,12 @@ public struct CellProperties
     public bool IsBacteria;
 
     /// <summary>
-    ///   Set to false when shape needs to be recreated
+    ///   Used to make the initial heat value match the environment on spawn
+    /// </summary>
+    public bool HeatInitialized;
+
+    /// <summary>
+    ///   Set to false when the shape needs to be recreated
     /// </summary>
     [JsonIgnore]
     public bool ShapeCreated;
@@ -132,7 +150,7 @@ public static class CellPropertiesHelpers
     /// <param name="maxAmount">The maximum amount to eject</param>
     /// <param name="direction">The direction in which to eject relative to the microbe</param>
     /// <param name="displacement">How far away from the microbe to eject</param>
-    /// <returns>The amount of emitted compound, can be less than the <see cref="maxAmount"/></returns>
+    /// <returns>The amount of emitted compound can be less than the <see cref="maxAmount"/></returns>
     public static float EjectCompound(this ref CellProperties cellProperties, ref WorldPosition cellPosition,
         CompoundBag compounds, CompoundCloudSystem compoundCloudSystem, Compound compound, float maxAmount,
         Vector3 direction, float displacement = 0)
@@ -273,7 +291,7 @@ public static class CellPropertiesHelpers
 
         var spawnPosition = currentPosition + direction * width;
 
-        // Create the one daughter cell.
+        // Create one daughter cell.
         var (recorder, weight) = SpawnHelpers.SpawnMicrobeWithoutFinalizing(worldSimulation, spawnEnvironment, species,
             spawnPosition, true, (null, 0), out var copyEntity, multicellularSpawnState);
 
@@ -500,7 +518,7 @@ public static class CellPropertiesHelpers
     /// <summary>
     ///   Applies settings from the cell properties (of a species) again to a spawned entity (and resets
     ///   reproduction progress). This is needed if species properties need to be applied to an already spawned
-    ///   cell (for example the player).
+    ///   cell (for example, the player).
     /// </summary>
     /// <remarks>
     ///   <para>
@@ -509,6 +527,7 @@ public static class CellPropertiesHelpers
     ///   </para>
     /// </remarks>
     /// <param name="cellProperties">The cell to apply new settings to</param>
+    /// <param name="environmentalEffects">Effects on the cell from the environment</param>
     /// <param name="entity">Entity of the cell, needed to apply new state to other components</param>
     /// <param name="newDefinition">The new properties to apply</param>
     /// <param name="baseReproductionCostFrom">
@@ -521,7 +540,8 @@ public static class CellPropertiesHelpers
     /// </param>
     /// <param name="workMemory1">Temporary memory used for organelle copying</param>
     /// <param name="workMemory2">More temporary memory</param>
-    public static void ReApplyCellTypeProperties(this ref CellProperties cellProperties, in Entity entity,
+    public static void ReApplyCellTypeProperties(this ref CellProperties cellProperties,
+        ref readonly MicrobeEnvironmentalEffects environmentalEffects, in Entity entity,
         ICellDefinition newDefinition, Species baseReproductionCostFrom, IWorldSimulation worldSimulation,
         List<Hex> workMemory1, List<Hex> workMemory2)
     {
@@ -547,10 +567,11 @@ public static class CellPropertiesHelpers
 
         ref var organelleContainer = ref entity.Get<OrganelleContainer>();
 
-        // Reset all the duplicates organelles / reproduction progress of the entity
+        // Reset all the duplicate organelles / reproduction progress of the entity
         // This also resets multicellular creature's reproduction progress
         organelleContainer.ResetOrganelleLayout(ref entity.Get<CompoundStorage>(), ref entity.Get<BioProcesses>(),
-            entity, newDefinition, baseReproductionCostFrom, worldSimulation, workMemory1, workMemory2);
+            in environmentalEffects, entity, newDefinition, baseReproductionCostFrom, worldSimulation, workMemory1,
+            workMemory2);
 
         // Reset runtime colour
         if (entity.Has<ColourAnimation>())
@@ -578,6 +599,11 @@ public static class CellPropertiesHelpers
 
         targetMembrane.MovementWigglyNess = cellProperties.MembraneType.MovementWigglyness -
             cellProperties.MembraneRigidity / cellProperties.MembraneType.BaseWigglyness * 0.2f;
+    }
+
+    public static float CalculateSurfaceAreaToVolume(this ref CellProperties cellProperties, int hexCount)
+    {
+        return cellProperties.UnadjustedRadius / hexCount;
     }
 
     /// <summary>

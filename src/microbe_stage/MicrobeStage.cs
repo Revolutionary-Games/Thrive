@@ -29,6 +29,9 @@ public partial class MicrobeStage : CreatureStageBase<Entity, MicrobeWorldSimula
     private float tempPatchManagerBrightness;
 
 #pragma warning disable CA2213
+    [Export]
+    private Node3D heatViewOverlay = null!;
+
     private MicrobeTutorialGUI tutorialGUI = null!;
     private GuidanceLine guidanceLine = null!;
 #pragma warning restore CA2213
@@ -238,6 +241,7 @@ public partial class MicrobeStage : CreatureStageBase<Entity, MicrobeWorldSimula
         if (HasPlayer)
         {
             DebugOverlays.Instance.ReportLookingAtCoordinates(Camera.CursorWorldPos);
+            DebugOverlays.Instance.ReportHeatValue(WorldSimulation.SampleTemperatureAt(Camera.CursorWorldPos));
 
             TutorialState.SendEvent(TutorialEventType.MicrobePlayerOrientation,
                 new RotationEventArgs(playerPosition.Rotation, playerPosition.Rotation.GetEuler()), this);
@@ -404,6 +408,22 @@ public partial class MicrobeStage : CreatureStageBase<Entity, MicrobeWorldSimula
         }
     }
 
+    public override void SetSpecialViewMode(ViewMode mode)
+    {
+        if (mode == ViewMode.Normal)
+        {
+            heatViewOverlay.Visible = false;
+        }
+        else if (mode == ViewMode.Heat)
+        {
+            heatViewOverlay.Visible = true;
+        }
+        else
+        {
+            base.SetSpecialViewMode(mode);
+        }
+    }
+
     public void RecordPlayerReproduction()
     {
         GameWorld.StatisticsTracker.PlayerReproductionStatistic.RecordPlayerReproduction(Player,
@@ -566,6 +586,8 @@ public partial class MicrobeStage : CreatureStageBase<Entity, MicrobeWorldSimula
             throw new Exception("failed to keep the current scene root");
         }
 
+        GameWorld.PlayerSpecies.Endosymbiosis.CancelAllEndosymbiosisTargets();
+
         // TODO: The multicellular stage needs to be able to track statistics and not break organelle unlocks
         GameWorld.UnlockProgress.UnlockAll = true;
 
@@ -647,10 +669,20 @@ public partial class MicrobeStage : CreatureStageBase<Entity, MicrobeWorldSimula
             wonOnce = true;
         }
 
+        var playerSpecies = Player.Get<SpeciesMember>().Species;
+
+        // Update the player environmental properties
+        ref var bioProcesses = ref Player.Get<BioProcesses>();
+
+        var environmentalEffects = new MicrobeEnvironmentalEffects
+        {
+            OsmoregulationMultiplier = 1,
+            HealthMultiplier = 1,
+            ProcessSpeedModifier = 1,
+        };
+
         var workData1 = new List<Hex>();
         var workData2 = new List<Hex>();
-
-        var playerSpecies = Player.Get<SpeciesMember>().Species;
 
         // Update the player's cell
         ref var cellProperties = ref Player.Get<CellProperties>();
@@ -661,18 +693,30 @@ public partial class MicrobeStage : CreatureStageBase<Entity, MicrobeWorldSimula
         {
             ref var earlySpeciesType = ref Player.Get<MulticellularSpeciesMember>();
 
+            // TODO: multicellular tolerances
+
             // Allow updating the first cell type to reproduce (reproduction order changed)
             earlySpeciesType.MulticellularCellType = earlySpeciesType.Species.Cells[0].CellType;
 
-            cellProperties.ReApplyCellTypeProperties(Player, earlySpeciesType.MulticellularCellType,
-                earlySpeciesType.Species, WorldSimulation, workData1, workData2);
+            cellProperties.ReApplyCellTypeProperties(ref environmentalEffects, Player,
+                earlySpeciesType.MulticellularCellType, earlySpeciesType.Species, WorldSimulation, workData1,
+                workData2);
         }
         else
         {
             ref var species = ref Player.Get<MicrobeSpeciesMember>();
-            cellProperties.ReApplyCellTypeProperties(Player, species.Species, species.Species, WorldSimulation,
+
+            var resolvedTolerances = MicrobeEnvironmentalToleranceCalculations.ResolveToleranceValues(
+                MicrobeEnvironmentalToleranceCalculations.CalculateTolerances(species.Species, CurrentBiome));
+
+            environmentalEffects.ApplyEffects(resolvedTolerances, ref bioProcesses);
+
+            cellProperties.ReApplyCellTypeProperties(ref environmentalEffects, Player,
+                species.Species, species.Species, WorldSimulation,
                 workData1, workData2);
         }
+
+        Player.Set(environmentalEffects);
 
         var playerCompounds = Player.Get<CompoundStorage>().Compounds;
 
@@ -713,7 +757,7 @@ public partial class MicrobeStage : CreatureStageBase<Entity, MicrobeWorldSimula
         cellProperties.Divide(ref Player.Get<OrganelleContainer>(), Player, playerSpecies, WorldSimulation,
             this, WorldSimulation.SpawnSystem, (ref EntityRecord daughter) =>
             {
-                // Mark as player reproduced entity
+                // Mark as a player-reproduced entity
                 daughter.Set(new PlayerOffspring
                 {
                     OffspringOrderNumber = ++playerOffspringTotalCount,

@@ -41,6 +41,9 @@ public partial class HUDBottomBar : HBoxContainer
 #pragma warning disable CA2213
     private PlayButton pauseButton = null!;
 
+    [Export]
+    private TextureButton heatButton = null!;
+
     private TextureButton? compoundsButton;
     private TextureButton? environmentButton;
     private TextureButton? processPanelButton;
@@ -75,6 +78,9 @@ public partial class HUDBottomBar : HBoxContainer
     [Signal]
     public delegate void OnStatisticsPressedEventHandler();
 
+    [Signal]
+    public delegate void OnHeatToggledEventHandler(bool expanded);
+
     public bool Paused
     {
         get => pauseButton.Paused;
@@ -108,6 +114,28 @@ public partial class HUDBottomBar : HBoxContainer
         {
             processPanelPressed = value;
             UpdateProcessPanelButton();
+        }
+    }
+
+    public bool HeatViewAvailable
+    {
+        get => !heatButton.Disabled;
+        set
+        {
+            var wanted = !value;
+            var previous = heatButton.Disabled;
+
+            if (previous == wanted)
+                return;
+
+            heatButton.Disabled = wanted;
+
+            // Ensure the heat view doesn't get stuck on
+            if (wanted && heatButton.ButtonPressed)
+            {
+                heatButton.ButtonPressed = false;
+                EmitSignal(SignalName.OnHeatToggled, false);
+            }
         }
     }
 
@@ -198,6 +226,12 @@ public partial class HUDBottomBar : HBoxContainer
     private void PausePressed(bool paused)
     {
         EmitSignal(SignalName.OnPausePressed, paused);
+    }
+
+    private void HeatButtonPressed(bool pressed)
+    {
+        GUICommon.Instance.PlayButtonPressSound();
+        EmitSignal(SignalName.OnHeatToggled, pressed);
     }
 
     private void UpdateCompoundButton()

@@ -6,7 +6,7 @@ using Godot;
 
 /// <summary>
 ///   The main tooltip class for the selections on the microbe editor's selection menu.
-///   Contains list of processes and modifiers info.
+///   Contains a list of processes and modifiers info.
 /// </summary>
 public partial class SelectionMenuToolTip : ControlWithInput, ICustomToolTip
 {
@@ -18,6 +18,9 @@ public partial class SelectionMenuToolTip : ControlWithInput, ICustomToolTip
 #pragma warning disable CA2213
     [Export]
     private VBoxContainer modifierInfoList = null!;
+
+    [Export]
+    private VBoxContainer organelleCostInfoList = null!;
 
     private PackedScene modifierInfoScene = null!;
     private LabelSettings noProcessesFont = null!;
@@ -53,7 +56,7 @@ public partial class SelectionMenuToolTip : ControlWithInput, ICustomToolTip
     private string? displayName;
     private string? description;
     private string processesDescription = string.Empty;
-    private int mpCost;
+    private double mpCost;
     private float osmoregulationCost;
     private bool showOsmoregulation = true;
     private bool requiresNucleus;
@@ -111,7 +114,7 @@ public partial class SelectionMenuToolTip : ControlWithInput, ICustomToolTip
     }
 
     [Export]
-    public int MutationPointCost
+    public double MutationPointCost
     {
         get => mpCost;
         set
@@ -244,6 +247,26 @@ public partial class SelectionMenuToolTip : ControlWithInput, ICustomToolTip
     }
 
     /// <summary>
+    ///   Instances the UI element for an organelle cost info
+    /// </summary>
+    public void AddOrganelleCostInfo(string name, string value, float valueForColourApplying = 0,
+        string? iconPath = null, StringName? nodeName = null)
+    {
+        var modifierInfo = modifierInfoScene.Instantiate<ModifierInfoLabel>();
+
+        modifierInfo.DisplayName = name;
+        if (nodeName != null)
+            modifierInfo.Name = nodeName;
+
+        modifierInfo.ModifierValue = value;
+
+        modifierInfo.AdjustValueColor(valueForColourApplying);
+        modifierInfo.ModifierIcon = string.IsNullOrEmpty(iconPath) ? null : GD.Load<Texture2D>(iconPath);
+
+        organelleCostInfoList.AddChild(modifierInfo);
+    }
+
+    /// <summary>
     ///   Gets a modifier based on its name.
     /// </summary>
     /// <param name="nodeName">Name of the modifier node</param>
@@ -321,16 +344,15 @@ public partial class SelectionMenuToolTip : ControlWithInput, ICustomToolTip
                     break;
                 case "canEngulf":
                 case "engulfInvulnerable":
-                    deltaValue = 0;
+                    deltaValue = 1;
                     break;
                 default:
                     throw new Exception("Unhandled modifier type: " + modifier.Name);
             }
 
-            // All stats with +0 value that are not part of the selected membrane is made hidden
-            // on the tooltip so it'll be easier to digest and compare modifier changes
-            if (Name != referenceMembrane.InternalName && modifier.ShowValue)
-                modifier.Visible = deltaValue != 0;
+            // All stats with +0 value are made hidden on the tooltip so it'll be easier
+            // to digest and compare modifier changes
+            modifier.Visible = deltaValue != 0;
 
             // Apply the value to the text labels as percentage (except for Health)
             if (modifier.Name == "health")
@@ -414,13 +436,14 @@ public partial class SelectionMenuToolTip : ControlWithInput, ICustomToolTip
 
         if (mpCost < 0)
         {
-            // Negative MP cost means it actually gives MP, to convey that to the player we need to explicitly
-            // prefix the cost with a positive sign
-            cost = "+" + MathF.Abs(mpCost).ToString(CultureInfo.CurrentCulture);
+            // Negative MP cost means it actually gives MP
+            // To convey that to the player, we need to explicitly prefix the cost with a positive sign
+            cost = "+" + Math.Round(Math.Abs(mpCost), Constants.MUTATION_POINTS_DECIMALS)
+                .ToString(CultureInfo.CurrentCulture);
         }
         else
         {
-            cost = mpCost.ToString(CultureInfo.CurrentCulture);
+            cost = Math.Round(mpCost, Constants.MUTATION_POINTS_DECIMALS).ToString(CultureInfo.CurrentCulture);
         }
 
         mpLabel.Text = cost;

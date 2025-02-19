@@ -920,7 +920,23 @@ public static class Constants
     /// </summary>
     public const float ENZYME_DIGESTION_EFFICIENCY_MAXIMUM = 0.6f;
 
+    public const float THERMOPLAST_MIN_ATP_TEMPERATURE = 20.0f;
+    public const float THERMOPLAST_MAX_ATP_TEMPERATURE = 120.0f;
     public const float OPTIMAL_THERMOPLAST_TEMPERATURE = 100.0f;
+    public const float THERMOPLAST_GUI_MAX_TEMPERATURE = 140.0f;
+
+    public const float NOISE_EFFECT_ON_LOCAL_TEMPERATURE = 70.0f;
+    public const float TEMPERATURE_CHANGE_TO_TEMPERATURE_MULTIPLIER = 40.0f;
+    public const float THERMOPLAST_HEAT_UP_SPEED = 0.25f;
+
+    /// <summary>
+    ///   Biases the noise used for local temperature variations. Should correspond to what is set in
+    ///   "HeatGradientPlane.tscn"
+    /// </summary>
+    public const float MICROBE_HEAT_NOISE_MIDDLE_POINT = 0.5f;
+
+    public const float MICROBE_HEAT_NOISE_TO_WORLD_RATIO = 1 / MICROBE_HEAT_AREA_REPEAT_EVERY_WORLD_COORDINATE;
+    public const float MICROBE_HEAT_AREA_REPEAT_EVERY_WORLD_COORDINATE = 400;
 
     public const float ADDITIONAL_DIGESTIBLE_GLUCOSE_AMOUNT_MULTIPLIER = 1.25f;
 
@@ -1010,6 +1026,16 @@ public static class Constants
     public const float PLAYER_PATCH_EXTINCTION_POPULATION_LOSS_COEFFICIENT = 1 / 1.2f;
 
     public const int BASE_MUTATION_POINTS = 100;
+
+    /// <summary>
+    ///   As mutation points are now calculated with floats, there can be situations where the player just barely
+    ///   cannot afford something they should be able to afford, so we allow going negative by this much.
+    /// </summary>
+    public const double ALLOWED_MP_OVERSHOOT = -0.0001;
+
+    public const double SMALL_MP_COST = 0.1;
+
+    public const int MUTATION_POINTS_DECIMALS = 1;
 
     public const int ORGANELLE_REMOVE_COST = 10;
     public const int ORGANELLE_MOVE_COST = 5;
@@ -1214,6 +1240,8 @@ public static class Constants
 
     public const int AUTO_EVO_ORGANELLE_ADD_ATTEMPTS = 15;
     public const int AUTO_EVO_ORGANELLE_REMOVE_ATTEMPTS = 15;
+
+    public const float AUTO_EVO_TOLERANCE_PERFECT_CHANCE = 0.02f;
 
     public const float AUTO_EVO_PREDICTION_UPDATE_INTERVAL = 0.95f;
 
@@ -1688,6 +1716,35 @@ public static class Constants
     public const int PATCH_GENERATION_MAX_RETRIES = 100;
 
     public const float PATCH_GENERATION_CHANCE_BANANA_BIOME = 0.03f;
+
+    public const float TOLERANCE_INITIAL_TEMPERATURE_RANGE = 10;
+    public const float TOLERANCE_PERFECT_THRESHOLD_TEMPERATURE = 2;
+    public const float TOLERANCE_MAXIMUM_SURVIVABLE_TEMPERATURE_DIFFERENCE = 30;
+    public const float TOLERANCE_PERFECT_TEMPERATURE_SCORE = 0.1f;
+
+    public const float TOLERANCE_MAXIMUM_SURVIVABLE_PRESSURE_DIFFERENCE = 2000000;
+    public const float TOLERANCE_PERFECT_THRESHOLD_PRESSURE = 250000;
+
+    // These are chosen to be symmetric so that the pressure tolerance range ends up easier to show correctly in the
+    // GUI
+    public const float TOLERANCE_INITIAL_PRESSURE_MIN_FRACTION = 0.8f;
+    public const float TOLERANCE_INITIAL_PRESSURE_MAX_FRACTION = 1.2f;
+
+    public const float TOLERANCE_PRESSURE_RANGE_MAX = 1000000;
+    public const float TOLERANCE_PERFECT_PRESSURE_SCORE = 0.1f;
+
+    // How much it costs to edit various tolerances in the editor
+    public const float TOLERANCE_CHANGE_MP_PER_TEMPERATURE = 1.0f;
+    public const float TOLERANCE_CHANGE_MP_PER_TEMPERATURE_TOLERANCE = 4.0f;
+    public const float TOLERANCE_CHANGE_MP_PER_OXYGEN = 100.0f;
+    public const float TOLERANCE_CHANGE_MP_PER_UV = 75.0f;
+
+    /// <summary>
+    ///   As pressure values are massive, this is a double to get reasonable MP costs
+    /// </summary>
+    public const double TOLERANCE_CHANGE_MP_PER_PRESSURE = 0.000001;
+
+    public const double TOLERANCE_CHANGE_MP_PER_PRESSURE_TOLERANCE = 0.00005;
 
     /// <summary>
     ///   If set to true, then physics debug draw gets enabled when the game starts

@@ -7,8 +7,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2025-01-31 20:54+0100\n"
-"PO-Revision-Date: 2024-10-17 07:24+0000\n"
+"POT-Creation-Date: 2025-02-18 15:43+0200\n"
+"PO-Revision-Date: 2025-02-06 13:29+0000\n"
 "Last-Translator: Anonymous <noreply@weblate.org>\n"
 "Language-Team: Slovak <https://translate.revolutionarygamesstudio.com/projects/thrive/thrive-game/sk/>\n"
 "Language: sk\n"
@@ -172,6 +172,10 @@ msgstr "Hlasitosť prostredia"
 msgid "AMMONIA"
 msgstr "Amoniak"
 
+#, fuzzy
+msgid "AMMONIA_COST"
+msgstr "Amoniak"
+
 msgid "AMOUNT_OF_AUTOSAVE_TO_KEEP"
 msgstr "Počet automatických uložení k zachovaniu:"
 
@@ -250,6 +254,10 @@ msgstr ""
 
 #, fuzzy
 msgid "ATP_BALANCE_TOOLTIP"
+msgstr "Zobraziť / skryť prostredie a zlúčeniny"
+
+#, fuzzy
+msgid "ATP_BALANCE_TOOLTIP_MULTICELLULAR"
 msgstr "Zobraziť / skryť prostredie a zlúčeniny"
 
 msgid "ATP_BALANCE_WITHOUT_EXTERNAL_RESOURCES"
@@ -497,6 +505,10 @@ msgstr "Bióm: {0}"
 msgid "BLOOM_RENDER_EFFECT"
 msgstr ""
 
+#, fuzzy
+msgid "BLUESKY_TOOLTIP"
+msgstr "Pozastaviť hru"
+
 msgid "BRAIN_CELL_NAME_DEFAULT"
 msgstr ""
 
@@ -638,6 +650,14 @@ msgstr "Hodnota, ktorá sa používa pri generovaní sveta (musí kladné byť �
 #, fuzzy
 msgid "CELL_STAT_SPEED_TOOLTIP"
 msgstr "Hodnota, ktorá sa používa pri generovaní sveta (musí kladné byť číslo)"
+
+#, fuzzy
+msgid "CELL_TYPE_BUTTON_ATP_CONSUMPTION"
+msgstr "{0}: -{1} ATP"
+
+#, fuzzy
+msgid "CELL_TYPE_BUTTON_ATP_PRODUCTION"
+msgstr "Produkcia ATP"
 
 msgid "CELL_TYPE_NAME"
 msgstr "Názov typu bunky"
@@ -1392,6 +1412,10 @@ msgstr ""
 msgid "DEBUG_DRAW_NOT_AVAILABLE"
 msgstr ""
 
+#, fuzzy
+msgid "DEBUG_HEAT_AT_CURSOR"
+msgstr "Na kurzore:"
+
 msgid "DEBUG_PANEL"
 msgstr "Debugovací panel"
 
@@ -1608,6 +1632,10 @@ msgstr "Zobraziť názvy tlačidiel pri výbere častí"
 
 #, fuzzy
 msgid "DISPLAY_DRIVER_VULKAN"
+msgstr "Zobraziť názvy tlačidiel pri výbere častí"
+
+#, fuzzy
+msgid "DISPLAY_MODE"
 msgstr "Zobraziť názvy tlačidiel pri výbere častí"
 
 msgid "DISPLAY_PART_NAMES"
@@ -1942,6 +1970,10 @@ msgstr ""
 
 msgid "EXCEPTION_HAPPENED_WHILE_LOADING"
 msgstr ""
+
+#, fuzzy
+msgid "EXCLUSIVE_FULLSCREEN"
+msgstr "Prepnúť na celú obrazovku"
 
 #, fuzzy
 msgid "EXISTING_BUILDINGS"
@@ -2379,6 +2411,13 @@ msgstr "Hlasitosť GUI"
 msgid "HEALTH"
 msgstr "Zdravie"
 
+msgid "HEALTH_MODIFIER"
+msgstr ""
+
+#, fuzzy
+msgid "HEAT_ACCUMULATION_BAR_TOOLTIP"
+msgstr "Pozastaviť hru"
+
 msgid "HELP"
 msgstr "Pomoc"
 
@@ -2575,6 +2614,10 @@ msgstr "Prezrieť"
 #, fuzzy
 msgid "INSPECTOR"
 msgstr "Prezrieť"
+
+#, fuzzy
+msgid "INSTAGRAM_TOOLTIP"
+msgstr "Pozastaviť hru"
 
 #, fuzzy
 msgid "INTERACTION_ACTIVATE_ASCENSION"
@@ -3193,6 +3236,10 @@ msgid "MASTER_VOLUME"
 msgstr "Celková hlasitosť"
 
 #, fuzzy
+msgid "MASTODON_TOOLTIP"
+msgstr "Pozastaviť hru"
+
+#, fuzzy
 msgid "MAX_CACHE_SIZE_TOOLTIP"
 msgstr "Pozastaviť hru"
 
@@ -3277,6 +3324,10 @@ msgstr ""
 msgid "METABOLOSOMES_PROCESSES_DESCRIPTION"
 msgstr "Premieňa [thrive:compound type=\"glucose\"]glukózu[/thrive:compound] na [thrive:compound type=\"atp\"][/thrive:compound]. Množstvo závisí od koncentrácie [thrive:compound type=\"oxygen\"]kyslíka[/thrive:compound]."
 
+#, fuzzy
+msgid "META_THREADS_TOOLTIP"
+msgstr "Pozastaviť hru"
+
 msgid "METRICS"
 msgstr "Výkonnostné metriky"
 
@@ -3330,6 +3381,10 @@ msgstr "{0} (x{1})"
 
 msgid "MICHE_ENVIRONMENTAL_COMPOUND_PRESSURE"
 msgstr ""
+
+#, fuzzy
+msgid "MICHE_ENVIRONMENTAL_TOLERANCE"
+msgstr "Životné prostredie"
 
 msgid "MICHE_MAINTAIN_COMPOUND_PRESSURE"
 msgstr ""
@@ -4021,6 +4076,9 @@ msgstr ""
 msgid "NOTICE_READY_TO_EDIT"
 msgstr ""
 
+msgid "NOT_ADAPTED_TO_CURRENT_PATCH"
+msgstr ""
+
 #, fuzzy
 msgid "NOT_STARTED_DOT"
 msgstr "Prerušené."
@@ -4080,6 +4138,10 @@ msgstr ""
 
 msgid "NUMLOCK"
 msgstr "Num Lock"
+
+#, fuzzy
+msgid "NUTRIENT_COST_TOOLTIP"
+msgstr "Pozastaviť hru"
 
 msgid "N_A"
 msgstr "N/A"
@@ -4314,6 +4376,14 @@ msgstr "Kyslík"
 msgid "OXYGEN_INHIBITOR_SYNTHESIS"
 msgstr "Syntéza OxyToxynov"
 
+#, fuzzy
+msgid "OXYGEN_RESISTANCE"
+msgstr "Odolnosť voči toxínom"
+
+#, fuzzy
+msgid "OXYGEN_TOLERANCE_TOOLTIP"
+msgstr "Zobraziť / skryť prostredie a zlúčeniny"
+
 msgid "OXYTOXISOME_PROCESSES_DESCRIPTION"
 msgstr "Premieňa [thrive:compound type=\"atp\"][/thrive:compound] na [thrive:compound type=\"oxytoxy\"][/thrive:compound]. Množstvo závisí od koncentrácie [thrive:compound type=\"oxygen\"]kyslíka[/thrive:compound]. Môže vypustiť toxíny stlačením [thrive:input]g_fire_toxin[/thrive:input]. Keď je množstvo [thrive:compound type=\"oxytoxy\"][/thrive:compound] nízke, streľba je stále možná, ale bude mať znížené poškodenie."
 
@@ -4447,6 +4517,10 @@ msgstr ""
 msgid "PERCENTAGE_VALUE"
 msgstr "{0}%"
 
+#, fuzzy
+msgid "PERFECT_ADAPTATION_DESCRIPTION"
+msgstr "Môj úžasný mod"
+
 msgid "PERFORMANCE"
 msgstr "Výkon"
 
@@ -4461,6 +4535,10 @@ msgid "PER_SECOND_SLASH"
 msgstr "/sekúnd"
 
 msgid "PHOSPHATE"
+msgstr "Fosfát"
+
+#, fuzzy
+msgid "PHOSPHATES_COST"
 msgstr "Fosfát"
 
 msgid "PHOTOSYNTHESIS"
@@ -4567,6 +4645,10 @@ msgstr "Tlak"
 msgid "PRESSURE_SHORT"
 msgstr "Tlak"
 
+#, fuzzy
+msgid "PRESSURE_TOLERANCE_TOOLTIP"
+msgstr "Vrátiť sa do hlavného menu"
+
 msgid "PRESS_KEY_DOT_DOT_DOT"
 msgstr "Stlač kláves..."
 
@@ -4587,6 +4669,10 @@ msgstr "@"
 
 #, fuzzy
 msgid "PROCESS_PANEL_TITLE"
+msgstr "Bunkové procesy"
+
+#, fuzzy
+msgid "PROCESS_SPEED_MODIFIER"
 msgstr "Bunkové procesy"
 
 msgid "PROGRAMMING_TEAM"
@@ -5568,11 +5654,15 @@ msgstr "Teplota"
 msgid "TEMPERATURE_SHORT"
 msgstr "Teplota."
 
+#, fuzzy
+msgid "TEMPERATURE_TOLERANCE_TOOLTIP"
+msgstr "Pozastaviť hru"
+
 msgid "TESTING_TEAM"
 msgstr "Testeri"
 
 #, fuzzy
-msgid "THANKS_FOR_BUYING_THRIVE"
+msgid "THANKS_FOR_BUYING_THRIVE_2"
 msgstr ""
 "Ďakujeme, že si hral našu hru!\n"
 "\n"
@@ -5606,6 +5696,7 @@ msgstr "Termosyntáza"
 msgid "THERMOSYNTHASE_DESCRIPTION"
 msgstr ""
 
+#, fuzzy
 msgid "THERMOSYNTHASE_PROCESSES_DESCRIPTION"
 msgstr "Produkuje [thrive:compound type=\"atp\"][/thrive:compound] pomocou teplotných gradientov. Množstvo závisí od [thrive:compound type=\"temperature\"] teploty [/thrive:compound]."
 
@@ -5738,6 +5829,10 @@ msgstr "Prepnúť zobrazenie počtu snímkov za sekundu"
 msgid "TOGGLE_FULLSCREEN"
 msgstr "Prepnúť na celú obrazovku"
 
+#, fuzzy
+msgid "TOGGLE_HEAT_VIEW_TOOLTIP"
+msgstr "Prepnúť pohlcovanie"
+
 msgid "TOGGLE_HUD_HIDE"
 msgstr "Prepnúť HUD"
 
@@ -5760,6 +5855,32 @@ msgstr "Pauza"
 
 msgid "TOGGLE_UNBINDING"
 msgstr "Prepnúť rozpájanie"
+
+msgid "TOLERANCES_TOO_HIGH_PRESSURE"
+msgstr ""
+
+msgid "TOLERANCES_TOO_HIGH_TEMPERATURE"
+msgstr ""
+
+msgid "TOLERANCES_TOO_LOW_OXYGEN_PROTECTION"
+msgstr ""
+
+#, fuzzy
+msgid "TOLERANCES_TOO_LOW_PRESSURE"
+msgstr "Oblaky zlúčenín"
+
+msgid "TOLERANCES_TOO_LOW_TEMPERATURE"
+msgstr ""
+
+#, fuzzy
+msgid "TOLERANCES_TOO_LOW_UV_PROTECTION"
+msgstr "{0}: +{1} ATP"
+
+msgid "TOLERANCES_UNSUITABLE_DEBUFFS"
+msgstr ""
+
+msgid "TOLERANCE_RANGE_LABEL"
+msgstr ""
 
 msgid "TOOLS"
 msgstr "Nástroje"
@@ -5961,10 +6082,6 @@ msgstr "Načítanie skorého editora mnohobunkovcov"
 
 msgid "TUTORIAL_VIEW_NOW"
 msgstr ""
-
-#, fuzzy
-msgid "TWITTER_TOOLTIP"
-msgstr "Uplynulý čas: {0:#,#} rokov"
 
 msgid "TWO_TIMES"
 msgstr "2x"
@@ -6199,6 +6316,14 @@ msgstr "Ručne nastaviť počet vlákien na pozadí"
 
 msgid "USE_VIRTUAL_WINDOW_SIZE"
 msgstr ""
+
+#, fuzzy
+msgid "UV_PROTECTION"
+msgstr "Auto-Evo predpoveď"
+
+#, fuzzy
+msgid "UV_TOLERANCE_TOOLTIP"
+msgstr "Zobraziť / skryť prostredie a zlúčeniny"
 
 msgid "VACUOLE"
 msgstr "Vakuola"
@@ -7994,6 +8119,9 @@ msgstr "naša Wiki"
 msgid "WILL_YOU_THRIVE"
 msgstr "Budeš prosperovať?"
 
+msgid "WINDOWED"
+msgstr ""
+
 msgid "WIN_BOX_TITLE"
 msgstr ""
 
@@ -8062,6 +8190,10 @@ msgstr ""
 msgid "XBOX_SERIES"
 msgstr ""
 
+#, fuzzy
+msgid "X_TWITTER_TOOLTIP"
+msgstr "Uplynulý čas: {0:#,#} rokov"
+
 msgid "YEARS"
 msgstr "roky"
 
@@ -8085,6 +8217,13 @@ msgstr "Priblížiť"
 
 msgid "ZOOM_OUT"
 msgstr "Oddialiť"
+
+#, fuzzy
+#~ msgid "THANKS_FOR_BUYING_THRIVE"
+#~ msgstr ""
+#~ "Ďakujeme, že si hral našu hru!\n"
+#~ "\n"
+#~ "Ak sa ti hra páčila, nezabudni sa o nás zmieniť svojim kamarátom."
 
 #, fuzzy
 #~ msgid "WIKI_RADIOSYNTHESIS"

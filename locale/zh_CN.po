@@ -7,8 +7,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2025-01-31 20:54+0100\n"
-"PO-Revision-Date: 2025-01-21 12:01+0000\n"
+"POT-Creation-Date: 2025-02-18 15:43+0200\n"
+"PO-Revision-Date: 2025-02-06 13:29+0000\n"
 "Last-Translator: Anonymous <noreply@weblate.org>\n"
 "Language-Team: Chinese (Simplified Han script) <https://translate.revolutionarygamesstudio.com/projects/thrive/thrive-game/zh_Hans/>\n"
 "Language: zh_CN\n"
@@ -175,6 +175,10 @@ msgstr "环境声效"
 msgid "AMMONIA"
 msgstr "氨"
 
+#, fuzzy
+msgid "AMMONIA_COST"
+msgstr "氨"
+
 msgid "AMOUNT_OF_AUTOSAVE_TO_KEEP"
 msgstr "要保留的自动保存存档数："
 
@@ -258,6 +262,15 @@ msgid "ATP_BALANCE"
 msgstr "ATP开支"
 
 msgid "ATP_BALANCE_TOOLTIP"
+msgstr ""
+"这个区域显示了目前细胞ATP（能量）的总平衡情况\n"
+"如果想要生存，这个数值应该是正的。对于没有运动需求的细胞，可以不考虑移动所消耗的ATP。\n"
+"下面的下拉菜单可以用来检查各种资源短缺时会发生的情况。\n"
+"比如，有些细胞只有在同时拥有好几种类型的化合物时才可以使ATP收支平衡。\n"
+"这些细胞将更难存活，因为它们需要收集更多的化合物。"
+
+#, fuzzy
+msgid "ATP_BALANCE_TOOLTIP_MULTICELLULAR"
 msgstr ""
 "这个区域显示了目前细胞ATP（能量）的总平衡情况\n"
 "如果想要生存，这个数值应该是正的。对于没有运动需求的细胞，可以不考虑移动所消耗的ATP。\n"
@@ -492,6 +505,10 @@ msgstr "生物群系：{0}"
 msgid "BLOOM_RENDER_EFFECT"
 msgstr "画面效果"
 
+#, fuzzy
+msgid "BLUESKY_TOOLTIP"
+msgstr "暂停游戏"
+
 msgid "BRAIN_CELL_NAME_DEFAULT"
 msgstr "神经元"
 
@@ -631,6 +648,14 @@ msgstr "用于生成世界的随机数种子，必须为正整数"
 #, fuzzy
 msgid "CELL_STAT_SPEED_TOOLTIP"
 msgstr "用于生成世界的随机数种子，必须为正整数"
+
+#, fuzzy
+msgid "CELL_TYPE_BUTTON_ATP_CONSUMPTION"
+msgstr "选项卡"
+
+#, fuzzy
+msgid "CELL_TYPE_BUTTON_ATP_PRODUCTION"
+msgstr "选项卡"
 
 msgid "CELL_TYPE_NAME"
 msgstr "细胞类型名称"
@@ -1392,6 +1417,10 @@ msgstr ""
 msgid "DEBUG_DRAW_NOT_AVAILABLE"
 msgstr "物理调试绘图在此构建类型中不可用"
 
+#, fuzzy
+msgid "DEBUG_HEAT_AT_CURSOR"
+msgstr "鼠标指针处："
+
 msgid "DEBUG_PANEL"
 msgstr "调试菜单"
 
@@ -1621,6 +1650,10 @@ msgstr "OpenGL"
 
 msgid "DISPLAY_DRIVER_VULKAN"
 msgstr "Vulkan"
+
+#, fuzzy
+msgid "DISPLAY_MODE"
+msgstr "显示细胞器名称"
 
 msgid "DISPLAY_PART_NAMES"
 msgstr "显示细胞器名称"
@@ -1938,6 +1971,10 @@ msgstr "处理载入的对象时发生异常"
 
 msgid "EXCEPTION_HAPPENED_WHILE_LOADING"
 msgstr "加载存档数据时发生异常"
+
+#, fuzzy
+msgid "EXCLUSIVE_FULLSCREEN"
+msgstr "切换全屏"
 
 msgid "EXISTING_BUILDINGS"
 msgstr "建筑"
@@ -2337,6 +2374,13 @@ msgstr "GUI音量"
 msgid "HEALTH"
 msgstr "生命上限"
 
+msgid "HEALTH_MODIFIER"
+msgstr ""
+
+#, fuzzy
+msgid "HEAT_ACCUMULATION_BAR_TOOLTIP"
+msgstr "从Assembly中自动加载Harmony补丁（不需要指定mod class）"
+
 msgid "HELP"
 msgstr "帮助"
 
@@ -2511,6 +2555,10 @@ msgstr "检查"
 
 msgid "INSPECTOR"
 msgstr "检查器"
+
+#, fuzzy
+msgid "INSTAGRAM_TOOLTIP"
+msgstr "访问我们在Steam上的页面"
 
 msgid "INTERACTION_ACTIVATE_ASCENSION"
 msgstr "启动飞升之门"
@@ -3117,6 +3165,10 @@ msgid "MASTER_VOLUME"
 msgstr "主音量"
 
 #, fuzzy
+msgid "MASTODON_TOOLTIP"
+msgstr "在区域之间迁移您的物种而不移动您当前操纵的个体所在的区域"
+
+#, fuzzy
 msgid "MAX_CACHE_SIZE_TOOLTIP"
 msgstr "喷射黏液以提高速度并减缓困在黏液中细胞的速度"
 
@@ -3201,6 +3253,12 @@ msgstr "代谢体是包裹在蛋白质外壳中的蛋白质团块。它们能够
 msgid "METABOLOSOMES_PROCESSES_DESCRIPTION"
 msgstr "将[thrive:compound type=\"glucose\"][/thrive:compound]转换成[thrive:compound type=\"atp\"][/thrive:compound]。速率跟[thrive:compound type=\"oxygen\"][/thrive:compound]浓度成正比。"
 
+#, fuzzy
+msgid "META_THREADS_TOOLTIP"
+msgstr ""
+"游戏无法自动检测是否启用了超线程。\n"
+"这个选项会影响默认线程数，因为超线程的速度不如真正的CPU内核快。"
+
 msgid "METRICS"
 msgstr "性能参数"
 
@@ -3256,6 +3314,10 @@ msgstr ""
 
 msgid "MICHE_ENVIRONMENTAL_COMPOUND_PRESSURE"
 msgstr "环境化合物压强"
+
+#, fuzzy
+msgid "MICHE_ENVIRONMENTAL_TOLERANCE"
+msgstr "环境"
 
 msgid "MICHE_MAINTAIN_COMPOUND_PRESSURE"
 msgstr "维持化合物压强"
@@ -3992,6 +4054,10 @@ msgstr "现在可以进入编辑器"
 msgid "NOTICE_READY_TO_EDIT"
 msgstr "现在可以进入编辑器"
 
+#, fuzzy
+msgid "NOT_ADAPTED_TO_CURRENT_PATCH"
+msgstr "找到当前的地区"
+
 msgid "NOT_STARTED_DOT"
 msgstr "未开始。"
 
@@ -4048,6 +4114,10 @@ msgstr "允许进化一些更加复杂的膜细胞器，并减少50%的所受伤
 
 msgid "NUMLOCK"
 msgstr "数字锁定"
+
+#, fuzzy
+msgid "NUTRIENT_COST_TOOLTIP"
+msgstr "切换到冲刺模式。冲刺时细胞移动得更快，但会消耗更多ATP，且随着压力增加ATP消耗会变得更多."
 
 msgid "N_A"
 msgstr "N/A"
@@ -4267,6 +4337,16 @@ msgstr "氧"
 msgid "OXYGEN_INHIBITOR_SYNTHESIS"
 msgstr "氰化物合成"
 
+#, fuzzy
+msgid "OXYGEN_RESISTANCE"
+msgstr "毒抗"
+
+#, fuzzy
+msgid "OXYGEN_TOLERANCE_TOOLTIP"
+msgstr ""
+"这个区域显示了各化合物的总平衡情况（生产 - 消耗）\n"
+"比如说对植物细胞而言葡萄糖的平衡情况需要是一个不小的正数。"
+
 msgid "OXYTOXISOME_PROCESSES_DESCRIPTION"
 msgstr "将[thrive:compound type=\"atp\"][/thrive:compound]转换成[thrive:compound type=\"oxytoxy\"][/thrive:compound]。速率跟[thrive:compound type=\"oxygen\"][/thrive:compound]浓度成正比。可以通过按下[thrive:input]g_fire_toxin[/thrive:input]来释放毒素。当[thrive:compound type=\"oxytoxy\"][/thrive:compound]数量不足时仍能释放，但是伤害会降低。"
 
@@ -4389,6 +4469,14 @@ msgstr "一个内共生进度已满"
 msgid "PERCENTAGE_VALUE"
 msgstr "{0}%"
 
+#, fuzzy
+msgid "PERFECT_ADAPTATION_DESCRIPTION"
+msgstr ""
+"启用GUI的闪烁特效。（比如说编辑器里按钮的闪烁）\n"
+"\n"
+"如果你遇到编辑器按钮部分消失的问题，\n"
+"可以试试禁用这个功能，问题可能会消失。"
+
 msgid "PERFORMANCE"
 msgstr "性能"
 
@@ -4402,6 +4490,10 @@ msgid "PER_SECOND_SLASH"
 msgstr "每秒"
 
 msgid "PHOSPHATE"
+msgstr "磷酸盐"
+
+#, fuzzy
+msgid "PHOSPHATES_COST"
 msgstr "磷酸盐"
 
 msgid "PHOTOSYNTHESIS"
@@ -4508,6 +4600,10 @@ msgstr "压力"
 msgid "PRESSURE_SHORT"
 msgstr "压力"
 
+#, fuzzy
+msgid "PRESSURE_TOLERANCE_TOOLTIP"
+msgstr "退回主菜单"
+
 msgid "PRESS_KEY_DOT_DOT_DOT"
 msgstr "按下你要设置的按钮…"
 
@@ -4527,6 +4623,10 @@ msgid "PROCESS_ENVIRONMENT_SEPARATOR"
 msgstr "@"
 
 msgid "PROCESS_PANEL_TITLE"
+msgstr "细胞生理过程"
+
+#, fuzzy
+msgid "PROCESS_SPEED_MODIFIER"
 msgstr "细胞生理过程"
 
 msgid "PROGRAMMING_TEAM"
@@ -5470,10 +5570,15 @@ msgstr "温度"
 msgid "TEMPERATURE_SHORT"
 msgstr "温度"
 
+#, fuzzy
+msgid "TEMPERATURE_TOLERANCE_TOOLTIP"
+msgstr "访问我们在Patreon上的页面"
+
 msgid "TESTING_TEAM"
 msgstr "测试团队"
 
-msgid "THANKS_FOR_BUYING_THRIVE"
+#, fuzzy
+msgid "THANKS_FOR_BUYING_THRIVE_2"
 msgstr ""
 "感谢你的游玩！如果你喜欢这款游戏，请记得也向你的朋友们推荐一下。\n"
 "\n"
@@ -5496,18 +5601,22 @@ msgstr "理论家团队"
 msgid "THERMOPLAST"
 msgstr "热能体"
 
+#, fuzzy
 msgid "THERMOPLAST_DESCRIPTION"
 msgstr "它是一种双层膜结构，包含在膜囊中堆叠在一起的热敏色素。它是一种被其真核宿主同化的原核生物。热能体中的色素可以通过[b]热合成[/b]用温差把水和二氧化碳合成成葡萄糖。合成葡萄糖的速率跟二氧化碳的浓度与环境温度成正比。"
 
+#, fuzzy
 msgid "THERMOPLAST_PROCESSES_DESCRIPTION"
 msgstr "产出[thrive:compound type=\"glucose\"][/thrive:compound]。速率跟[thrive:compound type=\"carbondioxide\"][/thrive:compound]的浓度与环境温度成正比。"
 
 msgid "THERMOSYNTHASE"
 msgstr "热合成酶"
 
+#, fuzzy
 msgid "THERMOSYNTHASE_DESCRIPTION"
 msgstr "热合酶是一种利用热对流改变自身形态的蛋白质，它可以在受热时折叠并结合ADP，然后在降温时展开并生成ATP。这一过程被称为[b]热合成[/b]。其ATP生成速率与温度有关。"
 
+#, fuzzy
 msgid "THERMOSYNTHASE_PROCESSES_DESCRIPTION"
 msgstr "利用温度梯度生产[thrive:compound type=\"atp\"][/thrive:compound]。速度与[thrive:compound type=\"temperature\"][/thrive:compound]有关。"
 
@@ -5645,6 +5754,12 @@ msgstr "切换帧数显示"
 msgid "TOGGLE_FULLSCREEN"
 msgstr "切换全屏"
 
+#, fuzzy
+msgid "TOGGLE_HEAT_VIEW_TOOLTIP"
+msgstr ""
+"切换吞噬模式以吞噬各种碎块\n"
+" 以及更小的生物体来在激活时获取更好的ATP利用率"
+
 msgid "TOGGLE_HUD_HIDE"
 msgstr "切换HUD"
 
@@ -5665,6 +5780,32 @@ msgstr "暂停"
 
 msgid "TOGGLE_UNBINDING"
 msgstr "切换解除连接模式"
+
+msgid "TOLERANCES_TOO_HIGH_PRESSURE"
+msgstr ""
+
+msgid "TOLERANCES_TOO_HIGH_TEMPERATURE"
+msgstr ""
+
+msgid "TOLERANCES_TOO_LOW_OXYGEN_PROTECTION"
+msgstr ""
+
+#, fuzzy
+msgid "TOLERANCES_TOO_LOW_PRESSURE"
+msgstr "无操作压力"
+
+msgid "TOLERANCES_TOO_LOW_TEMPERATURE"
+msgstr ""
+
+#, fuzzy
+msgid "TOLERANCES_TOO_LOW_UV_PROTECTION"
+msgstr "{0}： +{1} ATP"
+
+msgid "TOLERANCES_UNSUITABLE_DEBUFFS"
+msgstr ""
+
+msgid "TOLERANCE_RANGE_LABEL"
+msgstr ""
 
 msgid "TOOLS"
 msgstr "工具"
@@ -5964,9 +6105,6 @@ msgstr ""
 msgid "TUTORIAL_VIEW_NOW"
 msgstr "现在就查看"
 
-msgid "TWITTER_TOOLTIP"
-msgstr "访问我们的推特"
-
 msgid "TWO_TIMES"
 msgstr "2x"
 
@@ -6178,6 +6316,19 @@ msgstr "手动设置本地执行线程数"
 
 msgid "USE_VIRTUAL_WINDOW_SIZE"
 msgstr "使用虚拟窗口大小"
+
+#, fuzzy
+msgid "UV_PROTECTION"
+msgstr "Auto-Evo的预测"
+
+#, fuzzy
+msgid "UV_TOLERANCE_TOOLTIP"
+msgstr ""
+"这个区域显示了目前细胞ATP（能量）的总平衡情况\n"
+"如果想要生存，这个数值应该是正的。对于没有运动需求的细胞，可以不考虑移动所消耗的ATP。\n"
+"下面的下拉菜单可以用来检查各种资源短缺时会发生的情况。\n"
+"比如，有些细胞只有在同时拥有好几种类型的化合物时才可以使ATP收支平衡。\n"
+"这些细胞将更难存活，因为它们需要收集更多的化合物。"
 
 msgid "VACUOLE"
 msgstr "液泡"
@@ -8303,6 +8454,9 @@ msgstr "Wiki"
 msgid "WILL_YOU_THRIVE"
 msgstr "你能Thrive（兴盛）吗？"
 
+msgid "WINDOWED"
+msgstr ""
+
 msgid "WIN_BOX_TITLE"
 msgstr "你已发展繁荣（Thrived）！"
 
@@ -8368,6 +8522,10 @@ msgstr "Xbox One"
 msgid "XBOX_SERIES"
 msgstr "Xbox Series X"
 
+#, fuzzy
+msgid "X_TWITTER_TOOLTIP"
+msgstr "访问我们的推特"
+
 msgid "YEARS"
 msgstr "年"
 
@@ -8390,6 +8548,14 @@ msgstr "放大"
 
 msgid "ZOOM_OUT"
 msgstr "缩小"
+
+#~ msgid "THANKS_FOR_BUYING_THRIVE"
+#~ msgstr ""
+#~ "感谢你的游玩！如果你喜欢这款游戏，请记得也向你的朋友们推荐一下。\n"
+#~ "\n"
+#~ "点击链接[color=#3796e1][url={0}]from here[/url][/color]购买本游戏，或者来看看我们的官网：[color=#3796e1][url=https://revolutionarygamesstudio.com/releases/][/url][/color]。\n"
+#~ "\n"
+#~ "如果您想在Thrive启动之前看到Thrive Launcher，您可以使用主菜单中的按钮退出到启动器，然后在启动器选项菜单中禁用无缝模式。"
 
 #, fuzzy
 #~ msgid "WIKI_RADIOSYNTHESIS"

@@ -7,8 +7,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2025-01-31 20:54+0100\n"
-"PO-Revision-Date: 2024-10-17 07:24+0000\n"
+"POT-Creation-Date: 2025-02-18 15:43+0200\n"
+"PO-Revision-Date: 2025-02-06 13:29+0000\n"
 "Last-Translator: Anonymous <noreply@weblate.org>\n"
 "Language-Team: Catalan <https://translate.revolutionarygamesstudio.com/projects/thrive/thrive-game/ca/>\n"
 "Language: ca\n"
@@ -181,6 +181,10 @@ msgstr "Volum de l'ambient"
 msgid "AMMONIA"
 msgstr "Amoníac"
 
+#, fuzzy
+msgid "AMMONIA_COST"
+msgstr "Amoníac"
+
 msgid "AMOUNT_OF_AUTOSAVE_TO_KEEP"
 msgstr "Màxim nombre d'arxius d'autoguardat:"
 
@@ -260,6 +264,10 @@ msgstr "Equilibri d'ATP"
 
 #, fuzzy
 msgid "ATP_BALANCE_TOOLTIP"
+msgstr "Mostrar / amagar l'entorn i els compostos"
+
+#, fuzzy
+msgid "ATP_BALANCE_TOOLTIP_MULTICELLULAR"
 msgstr "Mostrar / amagar l'entorn i els compostos"
 
 msgid "ATP_BALANCE_WITHOUT_EXTERNAL_RESOURCES"
@@ -504,6 +512,10 @@ msgstr "Bioma: {0}"
 msgid "BLOOM_RENDER_EFFECT"
 msgstr "Efectes externs:"
 
+#, fuzzy
+msgid "BLUESKY_TOOLTIP"
+msgstr "Pausar el joc"
+
 msgid "BRAIN_CELL_NAME_DEFAULT"
 msgstr ""
 
@@ -644,6 +656,14 @@ msgstr "El valor utilitzat per generar el món, que ha de ser un nombre enter po
 #, fuzzy
 msgid "CELL_STAT_SPEED_TOOLTIP"
 msgstr "El valor utilitzat per generar el món, que ha de ser un nombre enter positiu"
+
+#, fuzzy
+msgid "CELL_TYPE_BUTTON_ATP_CONSUMPTION"
+msgstr "{0}: -{1} ATP"
+
+#, fuzzy
+msgid "CELL_TYPE_BUTTON_ATP_PRODUCTION"
+msgstr "Producció d'ATP"
 
 msgid "CELL_TYPE_NAME"
 msgstr "Nom del Tipus de Cèl·lula"
@@ -1410,6 +1430,10 @@ msgstr ""
 msgid "DEBUG_DRAW_NOT_AVAILABLE"
 msgstr ""
 
+#, fuzzy
+msgid "DEBUG_HEAT_AT_CURSOR"
+msgstr "A sota del Cursor:"
+
 msgid "DEBUG_PANEL"
 msgstr "Tauler de Depuració"
 
@@ -1644,6 +1668,10 @@ msgstr "Mostrar noms de botons de selecció de parts"
 
 #, fuzzy
 msgid "DISPLAY_DRIVER_VULKAN"
+msgstr "Mostrar noms de botons de selecció de parts"
+
+#, fuzzy
+msgid "DISPLAY_MODE"
 msgstr "Mostrar noms de botons de selecció de parts"
 
 msgid "DISPLAY_PART_NAMES"
@@ -1989,6 +2017,10 @@ msgstr "S'ha produït un problema mentre es processaven els objectes carregats"
 
 msgid "EXCEPTION_HAPPENED_WHILE_LOADING"
 msgstr "S'ha produït un problema mentre es carregaven les dades de guardat"
+
+#, fuzzy
+msgid "EXCLUSIVE_FULLSCREEN"
+msgstr "Activar pantalla completa"
 
 #, fuzzy
 msgid "EXISTING_BUILDINGS"
@@ -2445,6 +2477,13 @@ msgstr "Volum del GUI"
 msgid "HEALTH"
 msgstr "Salut"
 
+msgid "HEALTH_MODIFIER"
+msgstr ""
+
+#, fuzzy
+msgid "HEAT_ACCUMULATION_BAR_TOOLTIP"
+msgstr "Automàticament carregar els ecosistemes Harmony de l'Ensamblatge (no requereix especificar una classe de mod)"
+
 msgid "HELP"
 msgstr "Ajuda"
 
@@ -2646,6 +2685,10 @@ msgstr "Inspeccionar"
 #, fuzzy
 msgid "INSPECTOR"
 msgstr "Inspeccionar"
+
+#, fuzzy
+msgid "INSTAGRAM_TOOLTIP"
+msgstr "Pausar el joc"
 
 #, fuzzy
 msgid "INTERACTION_ACTIVATE_ASCENSION"
@@ -3272,6 +3315,10 @@ msgid "MASTER_VOLUME"
 msgstr "Volum General"
 
 #, fuzzy
+msgid "MASTODON_TOOLTIP"
+msgstr "Pausar el joc"
+
+#, fuzzy
 msgid "MAX_CACHE_SIZE_TOOLTIP"
 msgstr "Secretar mucílag"
 
@@ -3356,6 +3403,12 @@ msgstr "Els Metabolosomes són cúmuls de proteïnes embolcallades per una membr
 msgid "METABOLOSOMES_PROCESSES_DESCRIPTION"
 msgstr "Transforma [thrive:compound type=\"glucose\"][/thrive:compound] en [thrive:compound type=\"atp\"][/thrive:compound]. La velocitat és proporcional a la concentració de [thrive:compound type=\"oxygen\"][/thrive:compound]."
 
+#, fuzzy
+msgid "META_THREADS_TOOLTIP"
+msgstr ""
+"No pot ser automàticament detectat si el \"hyperthreading\" està activat o no.\n"
+"Això afecta el nombre de \"threads\" per defecte ja que el \"hyperthreading threads\" no són tan ràpids com els núclis CPU reals."
+
 msgid "METRICS"
 msgstr "Mètriques de rendiment"
 
@@ -3420,6 +3473,10 @@ msgstr ""
 
 msgid "MICHE_ENVIRONMENTAL_COMPOUND_PRESSURE"
 msgstr ""
+
+#, fuzzy
+msgid "MICHE_ENVIRONMENTAL_TOLERANCE"
+msgstr "Entorn"
 
 msgid "MICHE_MAINTAIN_COMPOUND_PRESSURE"
 msgstr ""
@@ -4218,6 +4275,10 @@ msgid "NOTICE_READY_TO_EDIT"
 msgstr ""
 
 #, fuzzy
+msgid "NOT_ADAPTED_TO_CURRENT_PATCH"
+msgstr "Trobar l'Ecosistema Actual"
+
+#, fuzzy
 msgid "NOT_STARTED_DOT"
 msgstr "Avortat."
 
@@ -4276,6 +4337,10 @@ msgstr "Permet evolucionar orgànuls més complexes, adherits a la membrana. Man
 
 msgid "NUMLOCK"
 msgstr "Num Lock"
+
+#, fuzzy
+msgid "NUTRIENT_COST_TOOLTIP"
+msgstr "Pausar el joc"
 
 msgid "N_A"
 msgstr "N/A"
@@ -4515,6 +4580,14 @@ msgstr "Oxigen"
 msgid "OXYGEN_INHIBITOR_SYNTHESIS"
 msgstr "Síntesi de les toxines OxyToxy"
 
+#, fuzzy
+msgid "OXYGEN_RESISTANCE"
+msgstr "Resistència a les Toxines"
+
+#, fuzzy
+msgid "OXYGEN_TOLERANCE_TOOLTIP"
+msgstr "Mostrar / amagar l'entorn i els compostos"
+
 msgid "OXYTOXISOME_PROCESSES_DESCRIPTION"
 msgstr "Transforma [thrive:compound type=\"atp\"][/thrive:compound] en [thrive:compound type=\"oxytoxy\"][/thrive:compound]. La velocitat és proporcional a la concentració de [thrive:compound type=\"oxygen\"][/thrive:compound]. Pot alliberar toxines prement la tecla [thrive:input]g_fire_toxin[/thrive:input]. Quan la quantitat de [thrive:compound type=\"oxytoxy\"][/thrive:compound] és baixo, encara és possible disparar, però el dany causat serà menor."
 
@@ -4652,6 +4725,14 @@ msgstr ""
 msgid "PERCENTAGE_VALUE"
 msgstr "{0}%"
 
+#, fuzzy
+msgid "PERFECT_ADAPTATION_DESCRIPTION"
+msgstr ""
+"Permet els efectes de llum intermitent als GUIs (e.g llum intermitent del botó d'editor).\n"
+"\n"
+"Si experimentes un bug on parts del botó de l'editor desapareixen,\n"
+"pots intentar desactivant això per veure si el problema s'arregla."
+
 msgid "PERFORMANCE"
 msgstr "Rendiment"
 
@@ -4666,6 +4747,10 @@ msgid "PER_SECOND_SLASH"
 msgstr "/segon"
 
 msgid "PHOSPHATE"
+msgstr "Fosfat"
+
+#, fuzzy
+msgid "PHOSPHATES_COST"
 msgstr "Fosfat"
 
 msgid "PHOTOSYNTHESIS"
@@ -4770,6 +4855,10 @@ msgstr "Pressió"
 msgid "PRESSURE_SHORT"
 msgstr "Pressió"
 
+#, fuzzy
+msgid "PRESSURE_TOLERANCE_TOOLTIP"
+msgstr "Tornar al menú principal"
+
 msgid "PRESS_KEY_DOT_DOT_DOT"
 msgstr "Prem qualsevol tecla o botó..."
 
@@ -4789,6 +4878,10 @@ msgid "PROCESS_ENVIRONMENT_SEPARATOR"
 msgstr "@"
 
 msgid "PROCESS_PANEL_TITLE"
+msgstr "Processos de la Cèl·lula"
+
+#, fuzzy
+msgid "PROCESS_SPEED_MODIFIER"
 msgstr "Processos de la Cèl·lula"
 
 msgid "PROGRAMMING_TEAM"
@@ -5788,11 +5881,15 @@ msgstr "Temperatura"
 msgid "TEMPERATURE_SHORT"
 msgstr "Temperatura"
 
+#, fuzzy
+msgid "TEMPERATURE_TOLERANCE_TOOLTIP"
+msgstr "Pausar el joc"
+
 msgid "TESTING_TEAM"
 msgstr "Equip de proves"
 
 #, fuzzy
-msgid "THANKS_FOR_BUYING_THRIVE"
+msgid "THANKS_FOR_BUYING_THRIVE_2"
 msgstr ""
 "Gràcies per jugar!\n"
 "\n"
@@ -5814,18 +5911,22 @@ msgstr "Equip de teoria"
 msgid "THERMOPLAST"
 msgstr "Termoplast"
 
+#, fuzzy
 msgid "THERMOPLAST_DESCRIPTION"
 msgstr "El termoplast és una estructura de doble membrana que, de manera anàloga al Cloroplast, conté pigments sensibles a l'escalfor, agrupats en petites membranes. En realitat, és un petit organisme procariota que ha estat engolit i assimilat per una cèl·lula eucariota, que actua com a hoste. Aquests pigments, produeixen Glucosa a partir d'Aigua, Diòxid de Carboni i les diferències de Temperatura al seu entorn. La velocitat de producció de la Glucosa augmenta proporcionalment a la concentració de Diòxid de Carboni i la Temperatura."
 
+#, fuzzy
 msgid "THERMOPLAST_PROCESSES_DESCRIPTION"
 msgstr "Produeix [thrive:compound]glucose[/thrive:compound]. La velocitat és proporcional a la concentració de [thrive:compound]carbondioxide[/thrive:compound] i temperatura."
 
 msgid "THERMOSYNTHASE"
 msgstr "Termosintasa"
 
+#, fuzzy
 msgid "THERMOSYNTHASE_DESCRIPTION"
 msgstr "La termosintasa és una proteïna que fa servir la convecció tèrmica per canviar la seva forma, permetent-li plegar-se i adherir-se a l'ADP quan és exposada a la temperature, tot seguit desplegar-se i reciclar-la en ATP quan s'exposa a temperatures més baixes en un procés anomenat termosíntesi. La velocitat de la producció d'ATP és proporcional a la temperatura."
 
+#, fuzzy
 msgid "THERMOSYNTHASE_PROCESSES_DESCRIPTION"
 msgstr "Produeix [thrive:compound type=\"atp\"][/thrive:compound] fent servir gradients de temperatura. La velocitat és proporcional a [thrive:compound type=\"temperature\"][/thrive:compound]."
 
@@ -5962,6 +6063,10 @@ msgstr "Activar monitor FPS"
 msgid "TOGGLE_FULLSCREEN"
 msgstr "Activar pantalla completa"
 
+#, fuzzy
+msgid "TOGGLE_HEAT_VIEW_TOOLTIP"
+msgstr "Activar el mode d'engolir"
+
 msgid "TOGGLE_HUD_HIDE"
 msgstr "Commuta HUD"
 
@@ -5984,6 +6089,32 @@ msgstr "Pausa"
 
 msgid "TOGGLE_UNBINDING"
 msgstr "Desactivar el mode d'unió"
+
+msgid "TOLERANCES_TOO_HIGH_PRESSURE"
+msgstr ""
+
+msgid "TOLERANCES_TOO_HIGH_TEMPERATURE"
+msgstr ""
+
+msgid "TOLERANCES_TOO_LOW_OXYGEN_PROTECTION"
+msgstr ""
+
+#, fuzzy
+msgid "TOLERANCES_TOO_LOW_PRESSURE"
+msgstr "Núvols de Compostos"
+
+msgid "TOLERANCES_TOO_LOW_TEMPERATURE"
+msgstr ""
+
+#, fuzzy
+msgid "TOLERANCES_TOO_LOW_UV_PROTECTION"
+msgstr "{0}: +{1} ATP"
+
+msgid "TOLERANCES_UNSUITABLE_DEBUFFS"
+msgstr ""
+
+msgid "TOLERANCE_RANGE_LABEL"
+msgstr ""
 
 msgid "TOOLS"
 msgstr "Eines"
@@ -6305,10 +6436,6 @@ msgstr "Carregant l'Editor Multicel·lular Primerenc"
 msgid "TUTORIAL_VIEW_NOW"
 msgstr "Veure ara"
 
-#, fuzzy
-msgid "TWITTER_TOOLTIP"
-msgstr "Han passat: {0:#,#} anys"
-
 msgid "TWO_TIMES"
 msgstr "2x"
 
@@ -6546,6 +6673,14 @@ msgstr "Manualment establir nombre de fils del fons"
 
 msgid "USE_VIRTUAL_WINDOW_SIZE"
 msgstr ""
+
+#, fuzzy
+msgid "UV_PROTECTION"
+msgstr "Predicció d'Auto-Evo"
+
+#, fuzzy
+msgid "UV_TOLERANCE_TOOLTIP"
+msgstr "Mostrar / amagar l'entorn i els compostos"
 
 msgid "VACUOLE"
 msgstr "Vacúol"
@@ -8420,6 +8555,9 @@ msgstr "la nostra Wiki"
 msgid "WILL_YOU_THRIVE"
 msgstr "Podràs prosperar?"
 
+msgid "WINDOWED"
+msgstr ""
+
 msgid "WIN_BOX_TITLE"
 msgstr "HAS ACONSEGUIT PROSPERAR!"
 
@@ -8486,6 +8624,10 @@ msgstr ""
 msgid "XBOX_SERIES"
 msgstr ""
 
+#, fuzzy
+msgid "X_TWITTER_TOOLTIP"
+msgstr "Han passat: {0:#,#} anys"
+
 msgid "YEARS"
 msgstr "anys"
 
@@ -8510,6 +8652,13 @@ msgstr "Enfocar la visió de la càmera"
 
 msgid "ZOOM_OUT"
 msgstr "Zoom enfora"
+
+#, fuzzy
+#~ msgid "THANKS_FOR_BUYING_THRIVE"
+#~ msgstr ""
+#~ "Gràcies per jugar!\n"
+#~ "\n"
+#~ "Si has gaudit del joc, siusplau explica-ho als teus amics."
 
 #, fuzzy
 #~ msgid "WIKI_RADIOSYNTHESIS"

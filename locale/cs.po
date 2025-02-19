@@ -7,8 +7,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2025-01-31 20:54+0100\n"
-"PO-Revision-Date: 2025-01-21 12:01+0000\n"
+"POT-Creation-Date: 2025-02-18 15:43+0200\n"
+"PO-Revision-Date: 2025-02-06 13:29+0000\n"
 "Last-Translator: Anonymous <noreply@weblate.org>\n"
 "Language-Team: Czech <https://translate.revolutionarygamesstudio.com/projects/thrive/thrive-game/cs/>\n"
 "Language: cs\n"
@@ -172,6 +172,10 @@ msgstr "Hlasitost prostředí"
 msgid "AMMONIA"
 msgstr "Amoniak"
 
+#, fuzzy
+msgid "AMMONIA_COST"
+msgstr "Amoniak"
+
 msgid "AMOUNT_OF_AUTOSAVE_TO_KEEP"
 msgstr "Počet automatických záloh k zachování:"
 
@@ -258,6 +262,10 @@ msgstr "Zůstatek ATP"
 
 #, fuzzy
 msgid "ATP_BALANCE_TOOLTIP"
+msgstr "Zobrazit / skrýt sloučeniny"
+
+#, fuzzy
+msgid "ATP_BALANCE_TOOLTIP_MULTICELLULAR"
 msgstr "Zobrazit / skrýt sloučeniny"
 
 msgid "ATP_BALANCE_WITHOUT_EXTERNAL_RESOURCES"
@@ -501,6 +509,10 @@ msgid "BLOOM_RENDER_EFFECT"
 msgstr "Vedlejší účinky:"
 
 #, fuzzy
+msgid "BLUESKY_TOOLTIP"
+msgstr "Pozastavit hru"
+
+#, fuzzy
 msgid "BRAIN_CELL_NAME_DEFAULT"
 msgstr "Neurony"
 
@@ -640,6 +652,14 @@ msgstr "Hodnota použita pro generování světa, která musí být pozitivní c
 #, fuzzy
 msgid "CELL_STAT_SPEED_TOOLTIP"
 msgstr "Hodnota použita pro generování světa, která musí být pozitivní celé číslo"
+
+#, fuzzy
+msgid "CELL_TYPE_BUTTON_ATP_CONSUMPTION"
+msgstr "Mrtvá zóna:"
+
+#, fuzzy
+msgid "CELL_TYPE_BUTTON_ATP_PRODUCTION"
+msgstr "Mrtvá zóna:"
 
 msgid "CELL_TYPE_NAME"
 msgstr "Název typu buňky"
@@ -1467,6 +1487,10 @@ msgstr ""
 msgid "DEBUG_DRAW_NOT_AVAILABLE"
 msgstr "Vykreslování ladění fyziky není v tomto typu sestavení k dispozici"
 
+#, fuzzy
+msgid "DEBUG_HEAT_AT_CURSOR"
+msgstr "Na kurzoru:"
+
 msgid "DEBUG_PANEL"
 msgstr "Debugovací Panel"
 
@@ -1709,6 +1733,10 @@ msgstr "Zobrazit panel schopností"
 #, fuzzy
 msgid "DISPLAY_DRIVER_VULKAN"
 msgstr "Zobrazit panel schopností"
+
+#, fuzzy
+msgid "DISPLAY_MODE"
+msgstr "Zobrazit jména tlačítek výběru částí"
 
 msgid "DISPLAY_PART_NAMES"
 msgstr "Zobrazit jména tlačítek výběru částí"
@@ -2057,6 +2085,10 @@ msgstr "Při zpracování načtených objektů došlo k výjimce"
 
 msgid "EXCEPTION_HAPPENED_WHILE_LOADING"
 msgstr "Při načítání uložených dat došlo k výjimce"
+
+#, fuzzy
+msgid "EXCLUSIVE_FULLSCREEN"
+msgstr "Přepínání na celou obrazovku"
 
 #, fuzzy
 msgid "EXISTING_BUILDINGS"
@@ -2511,6 +2543,13 @@ msgstr "Hlasitost GUI"
 msgid "HEALTH"
 msgstr "Zdraví"
 
+msgid "HEALTH_MODIFIER"
+msgstr ""
+
+#, fuzzy
+msgid "HEAT_ACCUMULATION_BAR_TOOLTIP"
+msgstr "Automaticky načítat Harmony patche ze sestavy (nepotřebuje specifikování třídy modu)"
+
 msgid "HELP"
 msgstr "Nápověda"
 
@@ -2715,6 +2754,10 @@ msgstr "Prohlédnout"
 #, fuzzy
 msgid "INSPECTOR"
 msgstr "Prohlédnout"
+
+#, fuzzy
+msgid "INSTAGRAM_TOOLTIP"
+msgstr "Pozastavit hru"
 
 #, fuzzy
 msgid "INTERACTION_ACTIVATE_ASCENSION"
@@ -3343,6 +3386,10 @@ msgid "MASTER_VOLUME"
 msgstr "Celková hlasitost"
 
 #, fuzzy
+msgid "MASTODON_TOOLTIP"
+msgstr "Navštivte náš Patreon"
+
+#, fuzzy
 msgid "MAX_CACHE_SIZE_TOOLTIP"
 msgstr "Vyměšuj sliz"
 
@@ -3426,6 +3473,12 @@ msgstr "Metabolosomy jsou shluky proteinů zabalené v proteinovém plášti. Ma
 msgid "METABOLOSOMES_PROCESSES_DESCRIPTION"
 msgstr "Přeměňuje [thrive:compound type=\"glucose\"]glukózu[/thrive:compound] na [thrive:compound type=\"atp\"]ATP[/thrive:compound]. Rychlost je úměrná koncentraci [thrive:compound type=\"oxygen\"]kyslíku[/thrive:compound]."
 
+#, fuzzy
+msgid "META_THREADS_TOOLTIP"
+msgstr ""
+"Není možné automaticky detekovat, jestli je hyperthreading povolen nebo ne.\n"
+"To ovlivňuje výchozí počet vláken, protože hyperthreading vlákna nejsou tak rychlá jako skutečná jádra CPU."
+
 msgid "METRICS"
 msgstr "Metriky výkonu"
 
@@ -3490,6 +3543,10 @@ msgstr ""
 
 msgid "MICHE_ENVIRONMENTAL_COMPOUND_PRESSURE"
 msgstr ""
+
+#, fuzzy
+msgid "MICHE_ENVIRONMENTAL_TOLERANCE"
+msgstr "Životní prostředí"
 
 msgid "MICHE_MAINTAIN_COMPOUND_PRESSURE"
 msgstr ""
@@ -4288,6 +4345,10 @@ msgstr "Editor je připraven pro vstup"
 msgid "NOTICE_READY_TO_EDIT"
 msgstr "Editor je připraven pro vstup"
 
+#, fuzzy
+msgid "NOT_ADAPTED_TO_CURRENT_PATCH"
+msgstr "Nalézt nynější prostředí"
+
 msgid "NOT_STARTED_DOT"
 msgstr "Nebylo začato."
 
@@ -4346,6 +4407,10 @@ msgstr "Umožňuje vývoj složitějších, membránově vázaných organel. Sto
 
 msgid "NUMLOCK"
 msgstr "Num Lock"
+
+#, fuzzy
+msgid "NUTRIENT_COST_TOOLTIP"
+msgstr "Navštivte náš Patreon"
 
 msgid "N_A"
 msgstr "N/A"
@@ -4584,6 +4649,14 @@ msgstr "Kyslík"
 msgid "OXYGEN_INHIBITOR_SYNTHESIS"
 msgstr "Syntéza OxyToxynů"
 
+#, fuzzy
+msgid "OXYGEN_RESISTANCE"
+msgstr "Rezistence vůči toxinům"
+
+#, fuzzy
+msgid "OXYGEN_TOLERANCE_TOOLTIP"
+msgstr "Zobrazit / skrýt sloučeniny"
+
 msgid "OXYTOXISOME_PROCESSES_DESCRIPTION"
 msgstr "Přeměňuje [thrive:compound type=\"atp\"][/thrive:compound] na [thrive:compound type=\"oxytoxy\"][/thrive:compound]. Rychlost je úměrná koncentraci [thrive:compound type=\"oxygen\"][/thrive:compound]. Toxiny mohou být uvolněny stisknutím [thrive:input]g_fire_toxin[/thrive:input]. Pokud je množství [thrive:compound type=\"oxytoxy\"][/thrive:compound] nízké, střelba je stále možná, ale bude mít snížené poškození."
 
@@ -4717,6 +4790,14 @@ msgstr ""
 msgid "PERCENTAGE_VALUE"
 msgstr "{0}%"
 
+#, fuzzy
+msgid "PERFECT_ADAPTATION_DESCRIPTION"
+msgstr ""
+"Povolí blikající efekty na uživatelském rozhraní (např. blikání tlačítka editoru)\n"
+"\n"
+"Pokud se objeví problém, kdy část tlačítka editoru mizí,\n"
+"zkuste tuto možnost vypnout."
+
 msgid "PERFORMANCE"
 msgstr "Výkon"
 
@@ -4731,6 +4812,10 @@ msgid "PER_SECOND_SLASH"
 msgstr "/sekund"
 
 msgid "PHOSPHATE"
+msgstr "Fosfát"
+
+#, fuzzy
+msgid "PHOSPHATES_COST"
 msgstr "Fosfát"
 
 msgid "PHOTOSYNTHESIS"
@@ -4835,6 +4920,10 @@ msgstr "Tlak"
 msgid "PRESSURE_SHORT"
 msgstr "Tlak"
 
+#, fuzzy
+msgid "PRESSURE_TOLERANCE_TOOLTIP"
+msgstr "Návrat do hlavního menu"
+
 msgid "PRESS_KEY_DOT_DOT_DOT"
 msgstr "Stiskněte klávesu..."
 
@@ -4854,6 +4943,10 @@ msgid "PROCESS_ENVIRONMENT_SEPARATOR"
 msgstr "@"
 
 msgid "PROCESS_PANEL_TITLE"
+msgstr "Proces buňky"
+
+#, fuzzy
+msgid "PROCESS_SPEED_MODIFIER"
 msgstr "Proces buňky"
 
 msgid "PROGRAMMING_TEAM"
@@ -5847,11 +5940,15 @@ msgstr "Teplota"
 msgid "TEMPERATURE_SHORT"
 msgstr "Teplota."
 
+#, fuzzy
+msgid "TEMPERATURE_TOLERANCE_TOOLTIP"
+msgstr "Navštivte náš Patreon"
+
 msgid "TESTING_TEAM"
 msgstr "Teststeři"
 
 #, fuzzy
-msgid "THANKS_FOR_BUYING_THRIVE"
+msgid "THANKS_FOR_BUYING_THRIVE_2"
 msgstr ""
 "Děkujeme, že hrajete naší hru!\n"
 "\n"
@@ -5873,18 +5970,22 @@ msgstr "Teoretici"
 msgid "THERMOPLAST"
 msgstr "Termoplast"
 
+#, fuzzy
 msgid "THERMOPLAST_DESCRIPTION"
 msgstr "Termoplast je struktura dvou membrán, která obsahuje termosenzitivní pigmenty složené dohromady v membránových vacích. Jedná se o prokaryotu, která byla asimilována pro použití svým eukaryotickým hostitelem. Pigmenty v termoplastu jsou schopny využít energii rozdílných teplot v prostředí k produkci [thrive:compound type=\"atp\"][/thrive:compound] ve vodě v procesu známem jako [b]termosyntéza[/b]. Rychlost produkce [thrive:compound type=\"atp\"][/thrive:compound] je úměrná [thrive:compound type=\"temperature\"][/thrive:compound]."
 
+#, fuzzy
 msgid "THERMOPLAST_PROCESSES_DESCRIPTION"
 msgstr "Produkuje [thrive:compound type=\"glucose\"][/thrive:compound]. Rychlost je úměrná koncentraci [thrive:compound type=\"carbondioxide\"][/thrive:compound] a teplotě."
 
 msgid "THERMOSYNTHASE"
 msgstr "Termosyntáza"
 
+#, fuzzy
 msgid "THERMOSYNTHASE_DESCRIPTION"
 msgstr "Termosyntáza je protein který využívá teplotní konvekci ke změně svého tvaru, což mu umožnuje složit a navázat se na ADP když je vystaven teplu, pak jej rozložit a recyklovat na [thrive:compound type=\"atp\"][/thrive:compound] když je vystaven chlazení v procesu známém jako [b]termosyntéza[/b]. Rychlost produkce [thrive:compound type=\"atp\"][/thrive:compound] je úměrná [thrive:compound type=\"temperature\"][/thrive:compound]."
 
+#, fuzzy
 msgid "THERMOSYNTHASE_PROCESSES_DESCRIPTION"
 msgstr "Produkuje [thrive:compound type=\"atp\"][/thrive:compound] skrze teplotní gradienty. Rychlost je úměrná [thrive:compound type=\"temperature\"][/thrive:compound]."
 
@@ -6021,6 +6122,10 @@ msgstr "Přepnout ukazatel FPS"
 msgid "TOGGLE_FULLSCREEN"
 msgstr "Přepínání na celou obrazovku"
 
+#, fuzzy
+msgid "TOGGLE_HEAT_VIEW_TOOLTIP"
+msgstr "Přepnout pohlcování"
+
 msgid "TOGGLE_HUD_HIDE"
 msgstr "Přepínání HUD"
 
@@ -6043,6 +6148,32 @@ msgstr "Pozastavit"
 
 msgid "TOGGLE_UNBINDING"
 msgstr "Přepnout rozpojování"
+
+msgid "TOLERANCES_TOO_HIGH_PRESSURE"
+msgstr ""
+
+msgid "TOLERANCES_TOO_HIGH_TEMPERATURE"
+msgstr ""
+
+msgid "TOLERANCES_TOO_LOW_OXYGEN_PROTECTION"
+msgstr ""
+
+#, fuzzy
+msgid "TOLERANCES_TOO_LOW_PRESSURE"
+msgstr "Mračna sloučenin"
+
+msgid "TOLERANCES_TOO_LOW_TEMPERATURE"
+msgstr ""
+
+#, fuzzy
+msgid "TOLERANCES_TOO_LOW_UV_PROTECTION"
+msgstr "{0}: +{1} ATP"
+
+msgid "TOLERANCES_UNSUITABLE_DEBUFFS"
+msgstr ""
+
+msgid "TOLERANCE_RANGE_LABEL"
+msgstr ""
 
 msgid "TOOLS"
 msgstr "Nástroje"
@@ -6368,9 +6499,6 @@ msgstr "Načítání editoru mikrobů"
 msgid "TUTORIAL_VIEW_NOW"
 msgstr "Podívat se na tutoriál"
 
-msgid "TWITTER_TOOLTIP"
-msgstr "Navštiv náš Twitter"
-
 msgid "TWO_TIMES"
 msgstr "2x"
 
@@ -6607,6 +6735,14 @@ msgstr "Manuálně nastavit počet vláken procesoru na pozadí"
 
 msgid "USE_VIRTUAL_WINDOW_SIZE"
 msgstr ""
+
+#, fuzzy
+msgid "UV_PROTECTION"
+msgstr "Auto-Evo předpověď"
+
+#, fuzzy
+msgid "UV_TOLERANCE_TOOLTIP"
+msgstr "Zobrazit / skrýt sloučeniny"
 
 msgid "VACUOLE"
 msgstr "Vakuola"
@@ -8478,6 +8614,9 @@ msgstr "naše Wiki"
 msgid "WILL_YOU_THRIVE"
 msgstr "Budete prosperovat?"
 
+msgid "WINDOWED"
+msgstr ""
+
 msgid "WIN_BOX_TITLE"
 msgstr "PROSPERUJEŠ!"
 
@@ -8545,6 +8684,10 @@ msgstr ""
 msgid "XBOX_SERIES"
 msgstr ""
 
+#, fuzzy
+msgid "X_TWITTER_TOOLTIP"
+msgstr "Navštiv náš Twitter"
+
 msgid "YEARS"
 msgstr "roky"
 
@@ -8568,6 +8711,13 @@ msgstr "Přiblížit"
 
 msgid "ZOOM_OUT"
 msgstr "Oddálit"
+
+#, fuzzy
+#~ msgid "THANKS_FOR_BUYING_THRIVE"
+#~ msgstr ""
+#~ "Děkujeme, že hrajete naší hru!\n"
+#~ "\n"
+#~ "Pokud se vám líbí, řekněte o nás i Vašim přátelům, prosím."
 
 #, fuzzy
 #~ msgid "WIKI_RADIOSYNTHESIS"

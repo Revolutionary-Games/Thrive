@@ -46,7 +46,7 @@ public class SingleEditorAction<T> : EditorAction
         undo(SingleData);
     }
 
-    public override int CalculateCost()
+    public override double CalculateCost()
     {
         return SingleData.CalculateCost();
     }
@@ -70,7 +70,7 @@ public class SingleEditorAction<T> : EditorAction
 
     public override int ApplyPartialMergedData(List<EditorCombinableActionData> newData, int startIndex)
     {
-        // To support removing actions from combined action we need to skip applying here if the item is wrong data
+        // To support removing actions from combined action, we need to skip applying here if the item is wrong data
         // which indicates that we want to be deleted
         if (newData[startIndex] is T compatibleData)
         {

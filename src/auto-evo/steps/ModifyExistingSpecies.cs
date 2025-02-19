@@ -37,8 +37,8 @@ public class ModifyExistingSpecies : IRunStep
     private readonly List<IMutationStrategy<MicrobeSpecies>> tempMutationStrategies = new();
 
     // TODO: switch to named tuple elements
-    private readonly List<Tuple<MicrobeSpecies, float>> temporaryMutations1 = new();
-    private readonly List<Tuple<MicrobeSpecies, float>> temporaryMutations2 = new();
+    private readonly List<Tuple<MicrobeSpecies, double>> temporaryMutations1 = new();
+    private readonly List<Tuple<MicrobeSpecies, double>> temporaryMutations2 = new();
 
     private readonly List<MicrobeSpecies> lastGeneratedMutations = new();
 
@@ -46,7 +46,7 @@ public class ModifyExistingSpecies : IRunStep
 
     private readonly List<SelectionPressure> temporaryPressures = new();
 
-    private readonly List<Tuple<MicrobeSpecies, float>> temporaryResultForTopMutations = new();
+    private readonly List<Tuple<MicrobeSpecies, double>> temporaryResultForTopMutations = new();
 
     private readonly MutationSorter mutationSorter;
     private readonly Random random;
@@ -238,8 +238,8 @@ public class ModifyExistingSpecies : IRunStep
         return false;
     }
 
-    private static void PruneMutations(List<Tuple<MicrobeSpecies, float>> addResultsTo, MicrobeSpecies baseSpecies,
-        List<Tuple<MicrobeSpecies, float>> mutated, Patch patch, SimulationCache cache,
+    private static void PruneMutations(List<Tuple<MicrobeSpecies, double>> addResultsTo, MicrobeSpecies baseSpecies,
+        List<Tuple<MicrobeSpecies, double>> mutated, Patch patch, SimulationCache cache,
         List<SelectionPressure> selectionPressures)
     {
         foreach (var potentialVariant in mutated)
@@ -250,7 +250,7 @@ public class ModifyExistingSpecies : IRunStep
                 var newScore = cache.GetPressureScore(pastPressure, patch, potentialVariant.Item1);
                 var oldScore = cache.GetPressureScore(pastPressure, patch, baseSpecies);
 
-                // Break if mutation fails a new pressure
+                // Break if the mutation fails a new pressure check
                 if (newScore <= 0 && oldScore > 0)
                 {
                     combinedScores = -1;
@@ -267,8 +267,8 @@ public class ModifyExistingSpecies : IRunStep
         }
     }
 
-    private static void GetTopMutations(List<Tuple<MicrobeSpecies, float>> result,
-        List<Tuple<MicrobeSpecies, float>> mutated, int amount, MutationSorter sorter)
+    private static void GetTopMutations(List<Tuple<MicrobeSpecies, double>> result,
+        List<Tuple<MicrobeSpecies, double>> mutated, int amount, MutationSorter sorter)
     {
         result.Clear();
 
@@ -385,11 +385,11 @@ public class ModifyExistingSpecies : IRunStep
     ///   Returns a new list of all possible species that might emerge in response to the provided pressures,
     ///   as well as a copy of the original species.
     /// </summary>
-    /// <returns>List of viable variants, and the provided species</returns>
+    /// <returns>List of viable variants and the provided species</returns>
     private List<MicrobeSpecies> GenerateMutations(MicrobeSpecies baseSpecies, int amount,
         List<SelectionPressure> selectionPressures)
     {
-        float totalMP = 100 * worldSettings.AIMutationMultiplier;
+        double totalMP = 100 * worldSettings.AIMutationMultiplier;
 
         temporaryMutations1.Clear();
         temporaryMutations1.Add(Tuple.Create(baseSpecies, totalMP));
@@ -427,7 +427,8 @@ public class ModifyExistingSpecies : IRunStep
                 {
                     // TODO: this seems like the longest part, so splitting this into multiple steps (maybe bundling
                     // up mutation strategies) would be good to have the auto-evo steps flow more smoothly
-                    var mutated = mutationStrategy.MutationsOf(speciesTuple.Item1, speciesTuple.Item2, lawk, random);
+                    var mutated = mutationStrategy.MutationsOf(speciesTuple.Item1, speciesTuple.Item2, lawk, random,
+                        patch.Biome);
 
                     if (mutated != null)
                     {
@@ -448,7 +449,7 @@ public class ModifyExistingSpecies : IRunStep
                 else
                 {
                     // TODO: switch to a set of rotating buffers to avoid memory allocations here
-                    inputSpecies = new List<Tuple<MicrobeSpecies, float>>();
+                    inputSpecies = new List<Tuple<MicrobeSpecies, double>>();
                     PruneMutations(inputSpecies, baseSpecies, temporaryMutations2, patch, cache, selectionPressures);
                 }
 
@@ -505,7 +506,7 @@ public class ModifyExistingSpecies : IRunStep
     private record struct Mutation(MicrobeSpecies ParentSpecies, MicrobeSpecies MutatedSpecies,
         RunResults.NewSpeciesType AddType);
 
-    private class MutationSorter(Patch patch, SimulationCache cache) : IComparer<Tuple<MicrobeSpecies, float>>
+    private class MutationSorter(Patch patch, SimulationCache cache) : IComparer<Tuple<MicrobeSpecies, double>>
     {
         // This isn't the cleanest but this class is just optimized for performance so if someone forgets to set up
         // this then bad things will happen
@@ -518,7 +519,7 @@ public class ModifyExistingSpecies : IRunStep
             baseSpecies = species;
         }
 
-        public int Compare(Tuple<MicrobeSpecies, float>? x, Tuple<MicrobeSpecies, float>? y)
+        public int Compare(Tuple<MicrobeSpecies, double>? x, Tuple<MicrobeSpecies, double>? y)
         {
             if (ReferenceEquals(x, y))
                 return 0;

@@ -107,13 +107,19 @@ public abstract class Species : ICloneable
     public abstract string StringCode { get; }
 
     /// <summary>
-    ///   When true this is the player species
+    ///   When true, this is the player species
     /// </summary>
     [JsonProperty]
     public bool PlayerSpecies { get; private set; }
 
     [JsonProperty]
     public EndosymbiosisData Endosymbiosis { get; private set; } = new();
+
+    /// <summary>
+    ///   Environmental tolerances of this species (determines what it can take in terms of habitat)
+    /// </summary>
+    [JsonProperty]
+    public EnvironmentalTolerances Tolerances { get; private set; } = new();
 
     [JsonIgnore]
     public string FormattedName => Genus + " " + Epithet;
@@ -284,7 +290,7 @@ public abstract class Species : ICloneable
             Genus = match.Groups["genus"].Value;
             Epithet = match.Groups["epithet"].Value;
 
-            GD.Print("Edited species name is now ", FormattedName);
+            GD.Print("Modified species name to: ", FormattedName);
         }
         else
         {
@@ -366,6 +372,7 @@ public abstract class Species : ICloneable
             species.Behaviour[entry.Key] = entry.Value;
 
         species.Endosymbiosis = Endosymbiosis.Clone();
+        species.Tolerances = Tolerances.Clone();
 
         // Genus and epithet aren't copied as they are required constructor parameters
         species.Colour = Colour;

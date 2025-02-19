@@ -7,8 +7,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2025-01-31 20:54+0100\n"
-"PO-Revision-Date: 2024-10-17 07:24+0000\n"
+"POT-Creation-Date: 2025-02-18 15:43+0200\n"
+"PO-Revision-Date: 2025-02-06 13:29+0000\n"
 "Last-Translator: Anonymous <noreply@weblate.org>\n"
 "Language-Team: Serbian (Cyrillic script) <https://translate.revolutionarygamesstudio.com/projects/thrive/thrive-game/sr_Cyrl/>\n"
 "Language: sr_Cyrl\n"
@@ -186,6 +186,10 @@ msgstr "Амбијента јачина звука"
 msgid "AMMONIA"
 msgstr "Амонијак"
 
+#, fuzzy
+msgid "AMMONIA_COST"
+msgstr "Амонијак"
+
 msgid "AMOUNT_OF_AUTOSAVE_TO_KEEP"
 msgstr "Количина аутоматског чувања да задржати:"
 
@@ -265,6 +269,10 @@ msgstr "ATP Равнотежа"
 
 #, fuzzy
 msgid "ATP_BALANCE_TOOLTIP"
+msgstr "Додајте ново везивање тастера"
+
+#, fuzzy
+msgid "ATP_BALANCE_TOOLTIP_MULTICELLULAR"
 msgstr "Додајте ново везивање тастера"
 
 msgid "ATP_BALANCE_WITHOUT_EXTERNAL_RESOURCES"
@@ -531,6 +539,10 @@ msgstr "Биом: {0}"
 msgid "BLOOM_RENDER_EFFECT"
 msgstr "Спољни ефекти:"
 
+#, fuzzy
+msgid "BLUESKY_TOOLTIP"
+msgstr "Наставити"
+
 msgid "BRAIN_CELL_NAME_DEFAULT"
 msgstr ""
 
@@ -677,6 +689,13 @@ msgstr "Наставити"
 #, fuzzy
 msgid "CELL_STAT_SPEED_TOOLTIP"
 msgstr "Наставити"
+
+msgid "CELL_TYPE_BUTTON_ATP_CONSUMPTION"
+msgstr ""
+
+#, fuzzy
+msgid "CELL_TYPE_BUTTON_ATP_PRODUCTION"
+msgstr "ATP Производња"
 
 msgid "CELL_TYPE_NAME"
 msgstr ""
@@ -1463,6 +1482,10 @@ msgstr ""
 msgid "DEBUG_DRAW_NOT_AVAILABLE"
 msgstr ""
 
+#, fuzzy
+msgid "DEBUG_HEAT_AT_CURSOR"
+msgstr "На Курсору:"
+
 msgid "DEBUG_PANEL"
 msgstr ""
 
@@ -1698,6 +1721,10 @@ msgstr "Способности"
 
 #, fuzzy
 msgid "DISPLAY_DRIVER_VULKAN"
+msgstr "Способности"
+
+#, fuzzy
+msgid "DISPLAY_MODE"
 msgstr "Способности"
 
 #, fuzzy
@@ -2055,6 +2082,10 @@ msgstr "Изузетак се догодио током обраде учита�
 #, fuzzy
 msgid "EXCEPTION_HAPPENED_WHILE_LOADING"
 msgstr "Изнимка се догодила приликом учитавања података за чување"
+
+#, fuzzy
+msgid "EXCLUSIVE_FULLSCREEN"
+msgstr "Укључи цео екран"
 
 #, fuzzy
 msgid "EXISTING_BUILDINGS"
@@ -2489,6 +2520,13 @@ msgstr "Тон интерфејса"
 msgid "HEALTH"
 msgstr "Здравље"
 
+msgid "HEALTH_MODIFIER"
+msgstr ""
+
+#, fuzzy
+msgid "HEAT_ACCUMULATION_BAR_TOOLTIP"
+msgstr "Додајте ново везивање тастера"
+
 msgid "HELP"
 msgstr "Помоћ"
 
@@ -2690,6 +2728,10 @@ msgstr ""
 
 msgid "INSPECTOR"
 msgstr ""
+
+#, fuzzy
+msgid "INSTAGRAM_TOOLTIP"
+msgstr "Наставити"
 
 #, fuzzy
 msgid "INTERACTION_ACTIVATE_ASCENSION"
@@ -3342,6 +3384,10 @@ msgid "MASTER_VOLUME"
 msgstr "Главна јачина звука"
 
 #, fuzzy
+msgid "MASTODON_TOOLTIP"
+msgstr "Додајте ново везивање тастера"
+
+#, fuzzy
 msgid "MAX_CACHE_SIZE_TOOLTIP"
 msgstr "Наставити"
 
@@ -3432,6 +3478,10 @@ msgid "METABOLOSOMES_PROCESSES_DESCRIPTION"
 msgstr "Метаболосоми су грозди протеина умотани у протеинске љуске. Они су у стању да претворе глукозу у ATP много већом брзином него што се то може учинити у цитоплазми са процесу који се назива аеробно дисање. Међутим, потребан му је кисеоник да би функционисао, а нижи нивои кисеоника у околини успориће брзину његове производње ATP. Пошто су метаболосоми суспендовани директно у цитоплазми, околна течност врши одређену ферментацију."
 
 #, fuzzy
+msgid "META_THREADS_TOOLTIP"
+msgstr "Додајте ново везивање тастера"
+
+#, fuzzy
 msgid "METRICS"
 msgstr "Паљење FPS приказа"
 
@@ -3468,6 +3518,10 @@ msgstr "Врсте Присутне"
 
 msgid "MICHE_ENVIRONMENTAL_COMPOUND_PRESSURE"
 msgstr ""
+
+#, fuzzy
+msgid "MICHE_ENVIRONMENTAL_TOLERANCE"
+msgstr "Животна средина"
 
 msgid "MICHE_MAINTAIN_COMPOUND_PRESSURE"
 msgstr ""
@@ -4258,6 +4312,10 @@ msgid "NOTICE_READY_TO_EDIT"
 msgstr ""
 
 #, fuzzy
+msgid "NOT_ADAPTED_TO_CURRENT_PATCH"
+msgstr "Откажи претходну акцију"
+
+#, fuzzy
 msgid "NOT_STARTED_DOT"
 msgstr "Прекинуто."
 
@@ -4323,6 +4381,10 @@ msgstr ""
 
 msgid "NUMLOCK"
 msgstr ""
+
+#, fuzzy
+msgid "NUTRIENT_COST_TOOLTIP"
+msgstr "Додајте ново везивање тастера"
 
 #, fuzzy
 msgid "N_A"
@@ -4564,6 +4626,14 @@ msgid "OXYGEN_INHIBITOR_SYNTHESIS"
 msgstr "Синтеза ОксиТокси"
 
 #, fuzzy
+msgid "OXYGEN_RESISTANCE"
+msgstr "Отпорност на токсине"
+
+#, fuzzy
+msgid "OXYGEN_TOLERANCE_TOOLTIP"
+msgstr "Додајте ново везивање тастера"
+
+#, fuzzy
 msgid "OXYTOXISOME_PROCESSES_DESCRIPTION"
 msgstr "Метаболосоми су грозди протеина умотани у протеинске љуске. Они су у стању да претворе глукозу у ATP много већом брзином него што се то може учинити у цитоплазми са процесу који се назива аеробно дисање. Међутим, потребан му је кисеоник да би функционисао, а нижи нивои кисеоника у околини успориће брзину његове производње ATP. Пошто су метаболосоми суспендовани директно у цитоплазми, околна течност врши одређену ферментацију."
 
@@ -4704,6 +4774,10 @@ msgstr ""
 msgid "PERCENTAGE_VALUE"
 msgstr ""
 
+#, fuzzy
+msgid "PERFECT_ADAPTATION_DESCRIPTION"
+msgstr "Моћ ћелије. Митохондрион (множина: митохондрије) је двострука мембранска структура испуњена протеинима и ензимима. То је прокариот који је асимилирао за употребу од свог еукариотског домаћина. У стању је да претвори глукозу у ATP са много већом ефикасношћу него што се то може учинити у цитоплазми у процесу који се назива аеробно дисање. Међутим, потребан му је кисеоник да би функционисао, а нижи нивои кисеоника у околини успориће брзину његове производње ATP."
+
 msgid "PERFORMANCE"
 msgstr "Перформансе"
 
@@ -4718,6 +4792,10 @@ msgid "PER_SECOND_SLASH"
 msgstr "/секунду"
 
 msgid "PHOSPHATE"
+msgstr "Фосфат"
+
+#, fuzzy
+msgid "PHOSPHATES_COST"
 msgstr "Фосфат"
 
 msgid "PHOTOSYNTHESIS"
@@ -4826,6 +4904,10 @@ msgstr "Прити."
 msgid "PRESSURE_SHORT"
 msgstr "Прити."
 
+#, fuzzy
+msgid "PRESSURE_TOLERANCE_TOOLTIP"
+msgstr "Вратите се у Мени"
+
 msgid "PRESS_KEY_DOT_DOT_DOT"
 msgstr "Притисните тастер..."
 
@@ -4846,6 +4928,9 @@ msgid "PROCESS_ENVIRONMENT_SEPARATOR"
 msgstr ""
 
 msgid "PROCESS_PANEL_TITLE"
+msgstr ""
+
+msgid "PROCESS_SPEED_MODIFIER"
 msgstr ""
 
 msgid "PROGRAMMING_TEAM"
@@ -5900,10 +5985,14 @@ msgstr "Температура"
 msgid "TEMPERATURE_SHORT"
 msgstr "Темп."
 
+#, fuzzy
+msgid "TEMPERATURE_TOLERANCE_TOOLTIP"
+msgstr "Додајте ново везивање тастера"
+
 msgid "TESTING_TEAM"
 msgstr ""
 
-msgid "THANKS_FOR_BUYING_THRIVE"
+msgid "THANKS_FOR_BUYING_THRIVE_2"
 msgstr ""
 
 msgid "THANKS_FOR_PLAYING"
@@ -5919,6 +6008,7 @@ msgstr ""
 msgid "THERMOPLAST"
 msgstr "Термопласт"
 
+#, fuzzy
 msgid "THERMOPLAST_DESCRIPTION"
 msgstr "Термопласт је двострука мембранска структура која садржи термосензибилне пигменте сложене заједно у мембранске врећице. То је прокариот који је асимилирао за употребу од свог еукариотског домаћина. Пигменти у термопласту могу да користе енергију топлотних разлика у околини за производњу глукозе из воде и гасовитог угљен-диоксида у процесу који се назива термосинтеза. Стопа његове производње глукозе скалира се са концентрацијом угљен-диоксида и температуром."
 
@@ -6077,6 +6167,10 @@ msgid "TOGGLE_FULLSCREEN"
 msgstr "Укључи цео екран"
 
 #, fuzzy
+msgid "TOGGLE_HEAT_VIEW_TOOLTIP"
+msgstr "Укључите гутање"
+
+#, fuzzy
 msgid "TOGGLE_HUD_HIDE"
 msgstr "Пребаците гутање"
 
@@ -6100,6 +6194,31 @@ msgstr ""
 
 msgid "TOGGLE_UNBINDING"
 msgstr "Укључи одвајање"
+
+msgid "TOLERANCES_TOO_HIGH_PRESSURE"
+msgstr ""
+
+msgid "TOLERANCES_TOO_HIGH_TEMPERATURE"
+msgstr ""
+
+msgid "TOLERANCES_TOO_LOW_OXYGEN_PROTECTION"
+msgstr ""
+
+#, fuzzy
+msgid "TOLERANCES_TOO_LOW_PRESSURE"
+msgstr "Облак једињења"
+
+msgid "TOLERANCES_TOO_LOW_TEMPERATURE"
+msgstr ""
+
+msgid "TOLERANCES_TOO_LOW_UV_PROTECTION"
+msgstr ""
+
+msgid "TOLERANCES_UNSUITABLE_DEBUFFS"
+msgstr ""
+
+msgid "TOLERANCE_RANGE_LABEL"
+msgstr ""
 
 msgid "TOOLS"
 msgstr "Алати"
@@ -6427,10 +6546,6 @@ msgstr "Учитавање Уређивача Микроба"
 msgid "TUTORIAL_VIEW_NOW"
 msgstr "Погледај сад"
 
-#, fuzzy
-msgid "TWITTER_TOOLTIP"
-msgstr "Додајте ново везивање тастера"
-
 msgid "TWO_TIMES"
 msgstr ""
 
@@ -6675,6 +6790,14 @@ msgstr ""
 
 msgid "USE_VIRTUAL_WINDOW_SIZE"
 msgstr ""
+
+#, fuzzy
+msgid "UV_PROTECTION"
+msgstr "{0:F1}% завршено. {1:n0}/{2:n0} корака."
+
+#, fuzzy
+msgid "UV_TOLERANCE_TOOLTIP"
+msgstr "Додајте ново везивање тастера"
 
 msgid "VACUOLE"
 msgstr "Вацуоле"
@@ -8700,6 +8823,9 @@ msgstr "Поставите органелу"
 msgid "WILL_YOU_THRIVE"
 msgstr "Хоћете ли просперирати?"
 
+msgid "WINDOWED"
+msgstr ""
+
 msgid "WIN_BOX_TITLE"
 msgstr "ВИ СТЕ ПРОСПЕРИРАЛИ!"
 
@@ -8770,6 +8896,10 @@ msgstr ""
 
 msgid "XBOX_SERIES"
 msgstr ""
+
+#, fuzzy
+msgid "X_TWITTER_TOOLTIP"
+msgstr "Додајте ново везивање тастера"
 
 msgid "YEARS"
 msgstr "године"

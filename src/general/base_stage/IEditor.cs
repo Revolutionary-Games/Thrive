@@ -9,9 +9,10 @@ using Newtonsoft.Json;
 public interface IEditor : ISaveLoadedTracked
 {
     /// <summary>
-    ///   The number of mutation points left
+    ///   The number of mutation points left. This is a floating point number as a whole number of mutation points is
+    ///   way too restrictive for many edits.
     /// </summary>
-    public int MutationPoints { get; }
+    public double MutationPoints { get; }
 
     /// <summary>
     ///   When true nothing costs MP
@@ -24,7 +25,7 @@ public interface IEditor : ISaveLoadedTracked
     public bool CanCancelAction { get; }
 
     /// <summary>
-    ///   True once fade transition is finished when entering editor
+    ///   True, once fade transition is finished when entering editor
     /// </summary>
     public bool TransitionFinished { get; }
 
@@ -69,7 +70,7 @@ public interface IEditor : ISaveLoadedTracked
     /// <returns>True if canceled</returns>
     public bool CancelCurrentAction();
 
-    public int WhatWouldActionsCost(IEnumerable<EditorCombinableActionData> actions);
+    public double WhatWouldActionsCost(IEnumerable<EditorCombinableActionData> actions);
 
     /// <summary>
     ///   Perform all actions through this to make undo and redo work
@@ -78,13 +79,13 @@ public interface IEditor : ISaveLoadedTracked
     /// <remarks>
     ///   <para>
     ///     This takes in a base action type so that this interface doesn't need to depend on the specific action
-    ///     type of the editor which causes some pretty nasty generic constraint interdependencies
+    ///     type of the editor, which causes some pretty nasty generic constraint interdependencies
     ///   </para>
     /// </remarks>
     public bool EnqueueAction(ReversibleAction action);
 
     /// <summary>
-    ///   Adds editor state specific context to given sequence of actions. <see cref="EnqueueAction"/> and
+    ///   Adds editor-state-specific context to the given sequence of actions. <see cref="EnqueueAction"/> and
     ///   <see cref="WhatWouldActionsCost"/> perform this automatically. Only adds the context if not missing to give
     ///   flexibility for editor components to add their custom action context that is not overridden.
     /// </summary>
@@ -93,7 +94,7 @@ public interface IEditor : ISaveLoadedTracked
 
     public void NotifyUndoRedoStateChanged();
 
-    public bool CheckEnoughMPForAction(int cost);
+    public bool CheckEnoughMPForAction(double cost);
 
     public void OnInsufficientMP(bool playSound = true);
 

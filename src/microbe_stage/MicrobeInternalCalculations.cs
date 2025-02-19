@@ -409,6 +409,21 @@ public static class MicrobeInternalCalculations
         return result;
     }
 
+    public static (int AmmoniaCost, int PhosphatesCost) CalculateOrganellesCosts(
+        IEnumerable<OrganelleTemplate> organelles)
+    {
+        float ammoniaCostTotal = 0;
+        float phosphatesCostTotal = 0;
+
+        foreach (var organelle in organelles)
+        {
+            ammoniaCostTotal += organelle.Definition.InitialComposition.GetValueOrDefault(Compound.Ammonia, 0);
+            phosphatesCostTotal += organelle.Definition.InitialComposition.GetValueOrDefault(Compound.Phosphates, 0);
+        }
+
+        return ((int)ammoniaCostTotal, (int)phosphatesCostTotal);
+    }
+
     /// <summary>
     ///   Gives bonus compounds if time is close to night. This is done to compensate spawning stuff close to night to
     ///   fill them up as if they had been spawned earlier.
@@ -460,25 +475,26 @@ public static class MicrobeInternalCalculations
     /// </returns>
     public static Dictionary<Compound, (float TimeToFill, float Storage)> CalculateDayVaryingCompoundsFillTimes(
         IReadOnlyList<OrganelleTemplate> organelles, MembraneType membraneType, bool moving, bool playerSpecies,
-        BiomeConditions biomeConditions, WorldGenerationSettings worldSettings)
+        BiomeConditions biomeConditions, ResolvedMicrobeTolerances environmentalTolerances,
+        WorldGenerationSettings worldSettings)
     {
         var energyBalance = new EnergyBalanceInfoSimple();
 
         var maximumMovementDirection = MaximumSpeedDirection(organelles);
-        ProcessSystem.ComputeEnergyBalanceSimple(organelles, biomeConditions, membraneType,
+        ProcessSystem.ComputeEnergyBalanceSimple(organelles, biomeConditions, environmentalTolerances, membraneType,
             maximumMovementDirection, moving, playerSpecies, worldSettings, CompoundAmountType.Biome, null,
             energyBalance);
 
         var compoundBalances = new Dictionary<Compound, CompoundBalance>();
 
         ProcessSystem.ComputeCompoundBalanceAtEquilibrium(organelles,
-            biomeConditions, CompoundAmountType.Biome, energyBalance, compoundBalances);
+            biomeConditions, environmentalTolerances, CompoundAmountType.Biome, energyBalance, compoundBalances);
 
         // TODO: is it fine to use energy balance calculated with the biome numbers here?
         var minimums = new Dictionary<Compound, CompoundBalance>();
 
         ProcessSystem.ComputeCompoundBalanceAtEquilibrium(organelles,
-            biomeConditions, CompoundAmountType.Minimum, energyBalance, minimums);
+            biomeConditions, environmentalTolerances, CompoundAmountType.Minimum, energyBalance, minimums);
 
         var cachedCapacities = GetTotalSpecificCapacity(organelles, out var cachedCapacity);
 
@@ -556,31 +572,33 @@ public static class MicrobeInternalCalculations
     /// </returns>
     public static (bool CanSurvive, Dictionary<Compound, float> RequiredStorage) CalculateNightStorageRequirements(
         IReadOnlyList<OrganelleTemplate> organelles, MembraneType membraneType, bool moving, bool playerSpecies,
-        BiomeConditions biomeConditions, WorldGenerationSettings worldSettings,
+        BiomeConditions biomeConditions, ResolvedMicrobeTolerances environmentalTolerances,
+        WorldGenerationSettings worldSettings,
         ref Dictionary<Compound, CompoundBalance>? dayCompoundBalances)
     {
         if (dayCompoundBalances == null)
         {
             var energyBalance = new EnergyBalanceInfoSimple();
 
-            ProcessSystem.ComputeEnergyBalanceSimple(organelles, biomeConditions, membraneType,
+            ProcessSystem.ComputeEnergyBalanceSimple(organelles, biomeConditions, environmentalTolerances, membraneType,
                 Vector3.Forward, moving, playerSpecies, worldSettings, CompoundAmountType.Biome, null, energyBalance);
 
             dayCompoundBalances = new Dictionary<Compound, CompoundBalance>();
 
             ProcessSystem.ComputeCompoundBalanceAtEquilibrium(organelles,
-                biomeConditions, CompoundAmountType.Biome, energyBalance, dayCompoundBalances);
+                biomeConditions, environmentalTolerances, CompoundAmountType.Biome, energyBalance, dayCompoundBalances);
         }
 
         var energyBalanceAtMinimum = new EnergyBalanceInfoSimple();
 
-        ProcessSystem.ComputeEnergyBalanceSimple(organelles, biomeConditions, membraneType, Vector3.Forward, moving,
-            playerSpecies, worldSettings, CompoundAmountType.Minimum, null, energyBalanceAtMinimum);
+        ProcessSystem.ComputeEnergyBalanceSimple(organelles, biomeConditions, environmentalTolerances, membraneType,
+            Vector3.Forward, moving, playerSpecies, worldSettings, CompoundAmountType.Minimum, null,
+            energyBalanceAtMinimum);
 
         var minimums = new Dictionary<Compound, CompoundBalance>();
 
-        ProcessSystem.ComputeCompoundBalanceAtEquilibrium(organelles, biomeConditions, CompoundAmountType.Minimum,
-            energyBalanceAtMinimum, minimums);
+        ProcessSystem.ComputeCompoundBalanceAtEquilibrium(organelles, biomeConditions, environmentalTolerances,
+            CompoundAmountType.Minimum, energyBalanceAtMinimum, minimums);
 
         var cachedCapacities = GetTotalSpecificCapacity(organelles, out var cachedCapacity);
 
@@ -605,7 +623,7 @@ public static class MicrobeInternalCalculations
 
             // Found a compound that is generated during the day more than night
 
-            var drainRate = -minimumValue?.Balance ?? normalBalance.Value.Consumption.SumValues();
+            var drainRate = -minimumValue?.Balance ?? normalBalance.Value.Consumption;
 
             // As things slowly pick up again after the night, it isn't fully this bad, this is just a worst case
             // scenario

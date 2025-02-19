@@ -7,8 +7,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2025-01-31 20:54+0100\n"
-"PO-Revision-Date: 2025-01-28 15:22+0200\n"
+"POT-Creation-Date: 2025-02-18 15:43+0200\n"
+"PO-Revision-Date: 2025-02-18 16:02+0200\n"
 "Last-Translator: Henri Hyyryläinen <hhyyrylainen@revolutionarygamesstudio.com>\n"
 "Language-Team: English <https://translate.revolutionarygamesstudio.com/projects/thrive/thrive-game/en/>\n"
 "Language: en\n"
@@ -174,6 +174,9 @@ msgstr "Ambiance volume"
 msgid "AMMONIA"
 msgstr "Ammonia"
 
+msgid "AMMONIA_COST"
+msgstr "Ammonia Cost:"
+
 msgid "AMOUNT_OF_AUTOSAVE_TO_KEEP"
 msgstr "Amount of autosaves to keep:"
 
@@ -262,6 +265,12 @@ msgstr ""
 "The dropdown below can be used to check what would happen if the cell didn't have some resource available to make ATP from.\n"
 "For example, some cells can only maintain a positive ATP balance when they have multiple compound types to make ATP from at once.\n"
 "Those types of cells are harder to play as they require having multiple compound types in storage at once to survive."
+
+msgid "ATP_BALANCE_TOOLTIP_MULTICELLULAR"
+msgstr ""
+"This section displays options for calculating ATP (energy) balances for cells.\n"
+"The calculated balances are shown in the cell type selection menu.\n"
+"The dropdown below can be used to check what would happen if the cell didn't have some resource available to make ATP from."
 
 msgid "ATP_BALANCE_WITHOUT_EXTERNAL_RESOURCES"
 msgstr "Without external resources"
@@ -487,6 +496,9 @@ msgstr "Biome: {0}"
 msgid "BLOOM_RENDER_EFFECT"
 msgstr "Bloom effect:"
 
+msgid "BLUESKY_TOOLTIP"
+msgstr "Visit our Bluesky profile"
+
 msgid "BRAIN_CELL_NAME_DEFAULT"
 msgstr "Neuron"
 
@@ -626,6 +638,12 @@ msgstr ""
 "Speed of the cell. Please note that due to limitations of the algorithm calculating this, the value is an approximation.\n"
 "And for example when modifying flagellum length the speed values don't fully make sense and don't match what will happen in the stage.\n"
 "This is a known problem but is not fixed yet due to being lower priority than many other problems and new features."
+
+msgid "CELL_TYPE_BUTTON_ATP_CONSUMPTION"
+msgstr "The ATP consumption of this cell type is {0}."
+
+msgid "CELL_TYPE_BUTTON_ATP_PRODUCTION"
+msgstr "The ATP production of this cell type is {0}."
 
 msgid "CELL_TYPE_NAME"
 msgstr "Cell Type Name"
@@ -1385,6 +1403,9 @@ msgstr ""
 msgid "DEBUG_DRAW_NOT_AVAILABLE"
 msgstr "Physics debug draw not available in this build type"
 
+msgid "DEBUG_HEAT_AT_CURSOR"
+msgstr "Heat value: {0}"
+
 msgid "DEBUG_PANEL"
 msgstr "Debug Panel"
 
@@ -1614,6 +1635,9 @@ msgstr "OpenGL"
 
 msgid "DISPLAY_DRIVER_VULKAN"
 msgstr "Vulkan"
+
+msgid "DISPLAY_MODE"
+msgstr "Display Mode:"
 
 msgid "DISPLAY_PART_NAMES"
 msgstr "Display part selection button names"
@@ -1929,6 +1953,9 @@ msgstr "An exception happened while processing loaded objects"
 
 msgid "EXCEPTION_HAPPENED_WHILE_LOADING"
 msgstr "An exception happened while loading the save data"
+
+msgid "EXCLUSIVE_FULLSCREEN"
+msgstr "Exclusive fullscreen"
 
 msgid "EXISTING_BUILDINGS"
 msgstr "Buildings"
@@ -2315,6 +2342,15 @@ msgstr "GUI volume"
 msgid "HEALTH"
 msgstr "Health"
 
+msgid "HEALTH_MODIFIER"
+msgstr "Health Modifier"
+
+msgid "HEAT_ACCUMULATION_BAR_TOOLTIP"
+msgstr ""
+"This bar shows the current temperature of your cell. The yellow indicators show the effective energy generation range.\n"
+"The white vertical bar shows the environmental temperature which the bar is going to go towards.\n"
+"The indicator below the bar changes colour when energy is being generated."
+
 msgid "HELP"
 msgstr "Help"
 
@@ -2488,6 +2524,9 @@ msgstr "Inspect"
 
 msgid "INSPECTOR"
 msgstr "Inspector"
+
+msgid "INSTAGRAM_TOOLTIP"
+msgstr "Visit our Instagram page"
 
 msgid "INTERACTION_ACTIVATE_ASCENSION"
 msgstr "Activate Ascension Gate"
@@ -3086,6 +3125,9 @@ msgstr "Marine snow"
 msgid "MASTER_VOLUME"
 msgstr "Master volume"
 
+msgid "MASTODON_TOOLTIP"
+msgstr "Visit our Mastodon social media profile"
+
 msgid "MAX_CACHE_SIZE_TOOLTIP"
 msgstr "Maximum size the on-disk cache should take (items will be automatically removed if the cache grows too large)"
 
@@ -3164,6 +3206,9 @@ msgstr "Metabolosomes are clusters of proteins wrapped in protein shells. They a
 msgid "METABOLOSOMES_PROCESSES_DESCRIPTION"
 msgstr "Turns [thrive:compound type=\"glucose\"][/thrive:compound] into [thrive:compound type=\"atp\"][/thrive:compound]. Rate scales with concentration of [thrive:compound type=\"oxygen\"][/thrive:compound]."
 
+msgid "META_THREADS_TOOLTIP"
+msgstr "Visit our Threads profile"
+
 msgid "METRICS"
 msgstr "Performance Metrics"
 
@@ -3217,6 +3262,9 @@ msgstr ""
 
 msgid "MICHE_ENVIRONMENTAL_COMPOUND_PRESSURE"
 msgstr "Environmental Compound Pressure"
+
+msgid "MICHE_ENVIRONMENTAL_TOLERANCE"
+msgstr "Environmental Conditions Pressure"
 
 msgid "MICHE_MAINTAIN_COMPOUND_PRESSURE"
 msgstr "Maintain Compound Pressure"
@@ -3924,6 +3972,9 @@ msgstr "Damaged by excess radiation"
 msgid "NOTICE_READY_TO_EDIT"
 msgstr "Editor is now ready to be entered"
 
+msgid "NOT_ADAPTED_TO_CURRENT_PATCH"
+msgstr "Not adapted to current patch conditions. Change the preferred conditions or tolerance ranges to remove the debuffs."
+
 msgid "NOT_STARTED_DOT"
 msgstr "Not started."
 
@@ -3979,6 +4030,9 @@ msgstr "Allows for the evolution of more complex, membrane-bound organelles and 
 
 msgid "NUMLOCK"
 msgstr "Num Lock"
+
+msgid "NUTRIENT_COST_TOOLTIP"
+msgstr "This shows how many compounds your cell needs to divide. Higher values mean that reproduction takes more time and effort."
 
 msgid "N_A"
 msgstr "N/A"
@@ -4196,6 +4250,12 @@ msgstr "Oxygen"
 msgid "OXYGEN_INHIBITOR_SYNTHESIS"
 msgstr "Oxygen Inhibitor Synthesis"
 
+msgid "OXYGEN_RESISTANCE"
+msgstr "Oxygen Resistance"
+
+msgid "OXYGEN_TOLERANCE_TOOLTIP"
+msgstr "How much oxygen-caused damage your species can mitigate before harmful effects. If you are in a patch with too much oxygen compared to your resistance, you will receive negative effects."
+
 msgid "OXYTOXISOME_PROCESSES_DESCRIPTION"
 msgstr "Turns [thrive:compound type=\"atp\"][/thrive:compound] into [thrive:compound type=\"oxytoxy\"][/thrive:compound]. Rate scales with concentration of [thrive:compound type=\"oxygen\"][/thrive:compound]. Can release toxins by pressing [thrive:input]g_fire_toxin[/thrive:input]. When [thrive:compound type=\"oxytoxy\"][/thrive:compound] amount is low, shooting is still possible but will have reduced damage."
 
@@ -4318,6 +4378,9 @@ msgstr "Pending Endosymbiosis Process Completion"
 msgid "PERCENTAGE_VALUE"
 msgstr "{0}%"
 
+msgid "PERFECT_ADAPTATION_DESCRIPTION"
+msgstr "When the tolerance ranges are turned down to minimal values and your species likes the current conditions, a perfectly adapted bonus will be added. This gives an advantage if you plan on playing in just a single patch instead of being spread out."
+
 msgid "PERFORMANCE"
 msgstr "Performance"
 
@@ -4332,6 +4395,9 @@ msgstr "/second"
 
 msgid "PHOSPHATE"
 msgstr "Phosphate"
+
+msgid "PHOSPHATES_COST"
+msgstr "Phosphates Cost:"
 
 msgid "PHOTOSYNTHESIS"
 msgstr "Photosynthesis"
@@ -4436,6 +4502,9 @@ msgstr "Pressure"
 msgid "PRESSURE_SHORT"
 msgstr "Press."
 
+msgid "PRESSURE_TOLERANCE_TOOLTIP"
+msgstr "The pressure preferred by your species as well as the flexibility range around it. When in conditions outside the range, there will be many negative effects on your species. Change the preferred pressure and flexibility with the sliders."
+
 msgid "PRESS_KEY_DOT_DOT_DOT"
 msgstr "Press a key..."
 
@@ -4456,6 +4525,9 @@ msgstr "@"
 
 msgid "PROCESS_PANEL_TITLE"
 msgstr "Cell Processes"
+
+msgid "PROCESS_SPEED_MODIFIER"
+msgstr "Bioprocess Speed"
 
 msgid "PROGRAMMING_TEAM"
 msgstr "Programming Team"
@@ -5392,14 +5464,17 @@ msgstr "Temperature"
 msgid "TEMPERATURE_SHORT"
 msgstr "Temp."
 
+msgid "TEMPERATURE_TOLERANCE_TOOLTIP"
+msgstr "The temperature preferred by your species. When in conditions outside the flexibility range around the ideal temperature, there will be negative effects that make it harder to survive. Adapt using the sliders to the patches you plan to play in."
+
 msgid "TESTING_TEAM"
 msgstr "Testing Team"
 
-msgid "THANKS_FOR_BUYING_THRIVE"
+msgid "THANKS_FOR_BUYING_THRIVE_2"
 msgstr ""
-"Thank you for supporting Thrive development by purchasing this copy of Thrive!\n"
+"Thank you for supporting Thrive development by purchasing this copy of Thrive from [color=#3796e1][url={0}]{1}[/url][/color]!\n"
 "\n"
-"If you did not buy this copy, please get your own copy [color=#3796e1][url={0}]from here[/url][/color] or check out our [color=#3796e1][url=https://revolutionarygamesstudio.com/releases/]website[/url][/color].\n"
+"The speed of continued Thrive development depends on the amount of support we receive. You can find out more from [color=#3796e1][url={2}]our website[/url][/color] or through our socials that are linked in the bottom left of the screen.\n"
 "\n"
 "If you would like to see the Thrive Launcher before Thrive is started, you can use the button in the main menu to exit to the launcher and then disable seamless mode in the launcher options menu."
 
@@ -5419,19 +5494,19 @@ msgid "THERMOPLAST"
 msgstr "Thermoplast"
 
 msgid "THERMOPLAST_DESCRIPTION"
-msgstr "The thermoplast is a double membrane structure containing thermosensitive pigments stacked together in membranous sacs. It is a prokaryote that has been assimilated for use by its eukaryotic host. The pigments in the thermoplast are able to use the energy of heat differences in the surroundings to produce [thrive:compound type=\"atp\"][/thrive:compound] from water in a process called [b]thermosynthesis[/b]. The rate of its [thrive:compound type=\"atp\"][/thrive:compound] production scales with [thrive:compound type=\"temperature\"][/thrive:compound]."
+msgstr "The thermoplast is a double membrane structure containing thermosensitive pigments stacked together in membranous sacs. It is a prokaryote that has been assimilated for use by its eukaryotic host. The pigments in the thermoplast are able to use the energy of rising [thrive:compound type=\"temperature\"][/thrive:compound] in their surroundings to produce [thrive:compound type=\"atp\"][/thrive:compound] from water in a process called [b]thermosynthesis[/b]. The rate of its [thrive:compound type=\"atp\"][/thrive:compound] production scales with [thrive:compound type=\"temperature\"][/thrive:compound] delta."
 
 msgid "THERMOPLAST_PROCESSES_DESCRIPTION"
-msgstr "Produces [thrive:compound type=\"atp\"][/thrive:compound] using temperature gradients. Rate scales with [thrive:compound type=\"temperature\"][/thrive:compound]."
+msgstr "Uses rising temperatures to produce [thrive:compound type=\"atp\"][/thrive:compound]. Rate scales with increase in [thrive:compound type=\"temperature\"][/thrive:compound]. Use [b]thermal vision[/b] to find hot and cold areas."
 
 msgid "THERMOSYNTHASE"
 msgstr "Thermosynthase"
 
 msgid "THERMOSYNTHASE_DESCRIPTION"
-msgstr "Thermosynthase is a protein that uses thermal convection to change its form, allowing it to fold and bind to ADP when exposed to heat, then unfold and recycle it into [thrive:compound type=\"atp\"][/thrive:compound] when exposed to cooling in a process called [b]thermosynthesis[/b]. The rate of its [thrive:compound type=\"atp\"][/thrive:compound] production scales with [thrive:compound type=\"temperature\"][/thrive:compound]."
+msgstr "Thermosynthase is a protein that uses thermal convection to change its form, allowing it to fold and bind to ADP when heating up, converting this to [thrive:compound type=\"atp\"][/thrive:compound] in a process called [b]thermosynthesis[/b]. The protein then unfolds as it cools, allowing it to repeat the cycle when the [thrive:compound type=\"temperature\"][/thrive:compound] increases again. The rate of its [thrive:compound type=\"atp\"][/thrive:compound] production scales with [thrive:compound type=\"temperature\"][/thrive:compound] delta."
 
 msgid "THERMOSYNTHASE_PROCESSES_DESCRIPTION"
-msgstr "Produces [thrive:compound type=\"atp\"][/thrive:compound] using temperature gradients. Rate scales with [thrive:compound type=\"temperature\"][/thrive:compound]."
+msgstr "Uses rising temperatures to produce [thrive:compound type=\"atp\"][/thrive:compound]. Rate scales with increase in [thrive:compound type=\"temperature\"][/thrive:compound]. Use [b]thermal vision[/b] to find hot and cold areas."
 
 msgid "THERMOSYNTHESIS"
 msgstr "Thermosynthesis"
@@ -5567,6 +5642,9 @@ msgstr "Toggle FPS display"
 msgid "TOGGLE_FULLSCREEN"
 msgstr "Toggle fullscreen"
 
+msgid "TOGGLE_HEAT_VIEW_TOOLTIP"
+msgstr "Toggle between normal and thermal view"
+
 msgid "TOGGLE_HUD_HIDE"
 msgstr "Toggle HUD"
 
@@ -5587,6 +5665,30 @@ msgstr "Pause"
 
 msgid "TOGGLE_UNBINDING"
 msgstr "Toggle unbinding"
+
+msgid "TOLERANCES_TOO_HIGH_PRESSURE"
+msgstr "Preferred pressure is too high by {0}"
+
+msgid "TOLERANCES_TOO_HIGH_TEMPERATURE"
+msgstr "Preferred temperature is too high by {0}"
+
+msgid "TOLERANCES_TOO_LOW_OXYGEN_PROTECTION"
+msgstr "Oxygen protection too low, needs to be {0}% higher"
+
+msgid "TOLERANCES_TOO_LOW_PRESSURE"
+msgstr "Preferred pressure is too low by {0}"
+
+msgid "TOLERANCES_TOO_LOW_TEMPERATURE"
+msgstr "Preferred temperature is too low by {0}"
+
+msgid "TOLERANCES_TOO_LOW_UV_PROTECTION"
+msgstr "UV protection too low, needs to be {0}% higher"
+
+msgid "TOLERANCES_UNSUITABLE_DEBUFFS"
+msgstr "Not adapted to current environmental conditions. Osmoregulation cost {0}%, bioprocess speed {1}%, health {2}%"
+
+msgid "TOLERANCE_RANGE_LABEL"
+msgstr "Flexibility:"
 
 msgid "TOOLS"
 msgstr "Tools"
@@ -5884,9 +5986,6 @@ msgstr ""
 msgid "TUTORIAL_VIEW_NOW"
 msgstr "View Now"
 
-msgid "TWITTER_TOOLTIP"
-msgstr "Visit our Twitter feed"
-
 msgid "TWO_TIMES"
 msgstr "2x"
 
@@ -6095,6 +6194,12 @@ msgstr "Manually set number of native side executor threads"
 
 msgid "USE_VIRTUAL_WINDOW_SIZE"
 msgstr "Use virtual window size"
+
+msgid "UV_PROTECTION"
+msgstr "UV Resistance"
+
+msgid "UV_TOLERANCE_TOOLTIP"
+msgstr "How much ultraviolet radiation your species can resist before harmful effects. If you are in a patch with too much light, you will receive negative effects until the resistance is increased."
 
 msgid "VACUOLE"
 msgstr "Vacuole"
@@ -8490,6 +8595,9 @@ msgstr "Yes"
 msgid "WILL_YOU_THRIVE"
 msgstr "Will you thrive?"
 
+msgid "WINDOWED"
+msgstr "Windowed"
+
 msgid "WIN_BOX_TITLE"
 msgstr "YOU HAVE THRIVED!"
 
@@ -8555,6 +8663,9 @@ msgstr "Xbox One"
 msgid "XBOX_SERIES"
 msgstr "Xbox Series X"
 
+msgid "X_TWITTER_TOOLTIP"
+msgstr "Visit our X (formerly Twitter) profile"
+
 msgid "YEARS"
 msgstr "years"
 
@@ -8577,6 +8688,14 @@ msgstr "Zoom in"
 
 msgid "ZOOM_OUT"
 msgstr "Zoom out"
+
+#~ msgid "THANKS_FOR_BUYING_THRIVE"
+#~ msgstr ""
+#~ "Thank you for supporting Thrive development by purchasing this copy of Thrive!\n"
+#~ "\n"
+#~ "If you did not buy this copy, please get your own copy [color=#3796e1][url={0}]from here[/url][/color] or check out our [color=#3796e1][url=https://revolutionarygamesstudio.com/releases/]website[/url][/color].\n"
+#~ "\n"
+#~ "If you would like to see the Thrive Launcher before Thrive is started, you can use the button in the main menu to exit to the launcher and then disable seamless mode in the launcher options menu."
 
 #~ msgid "WIKI_RADIOSYNTHESIS"
 #~ msgstr "Radiosynthesis"

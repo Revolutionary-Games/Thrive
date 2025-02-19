@@ -298,7 +298,7 @@ public partial class MicrobeEditorReportComponent : EditorComponentBase<IEditorR
     {
     }
 
-    public override void OnMutationPointsChanged(int mutationPoints)
+    public override void OnMutationPointsChanged(double mutationPoints)
     {
     }
 

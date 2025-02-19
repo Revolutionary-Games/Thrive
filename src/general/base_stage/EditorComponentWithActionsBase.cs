@@ -75,7 +75,7 @@ public partial class EditorComponentWithActionsBase<TEditor, TAction> : EditorCo
 
     public void UpdateMutationPointsBar(bool tween = true)
     {
-        float possibleMutationPoints = Editor.FreeBuilding ?
+        var possibleMutationPoints = Editor.FreeBuilding ?
             Constants.BASE_MUTATION_POINTS :
             Editor.MutationPoints - CalculateCurrentActionCost();
 
@@ -85,7 +85,7 @@ public partial class EditorComponentWithActionsBase<TEditor, TAction> : EditorCo
             Editor.MutationPoints, possibleMutationPoints);
     }
 
-    public override void OnMutationPointsChanged(int mutationPoints)
+    public override void OnMutationPointsChanged(double mutationPoints)
     {
         UpdateMutationPointsBar(true);
     }
@@ -189,7 +189,7 @@ public partial class EditorComponentWithActionsBase<TEditor, TAction> : EditorCo
     /// <summary>
     ///   Calculates the cost of the current editor action (may be 0 if free or no active action)
     /// </summary>
-    protected virtual int CalculateCurrentActionCost()
+    protected virtual double CalculateCurrentActionCost()
     {
         throw new GodotAbstractMethodNotOverriddenException();
     }

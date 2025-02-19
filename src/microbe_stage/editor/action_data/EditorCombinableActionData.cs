@@ -4,9 +4,9 @@ public abstract class EditorCombinableActionData : CombinableActionData
 {
     public float CostMultiplier { get; set; } = 1.0f;
 
-    public virtual int CalculateCost()
+    public virtual double CalculateCost()
     {
-        return (int)Math.Min(CalculateCostInternal() * CostMultiplier, 100);
+        return Math.Min(CalculateCostInternal() * CostMultiplier, 100);
     }
 
     public override CombinableActionData Combine(CombinableActionData other)
@@ -20,7 +20,7 @@ public abstract class EditorCombinableActionData : CombinableActionData
         return combined;
     }
 
-    protected abstract int CalculateCostInternal();
+    protected abstract double CalculateCostInternal();
 }
 
 public abstract class EditorCombinableActionData<TContext> : EditorCombinableActionData
@@ -33,10 +33,10 @@ public abstract class EditorCombinableActionData<TContext> : EditorCombinableAct
 
     public override ActionInterferenceMode GetInterferenceModeWith(CombinableActionData other)
     {
-        // If the other action was performed on a different context, we can't combine with it
+        // If the other action was performed in a different context, we can't combine with it
         if (other is EditorCombinableActionData<TContext> editorActionData)
         {
-            // Null context is the same as another null context but any existing context value doesn't equal null
+            // Null context is the same as another null context, but any existing context value doesn't equal null
             if ((Context is not null && editorActionData.Context is null) ||
                 (Context is null && editorActionData.Context is not null))
             {

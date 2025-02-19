@@ -7,8 +7,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2025-01-31 20:54+0100\n"
-"PO-Revision-Date: 2025-01-21 12:01+0000\n"
+"POT-Creation-Date: 2025-02-18 15:43+0200\n"
+"PO-Revision-Date: 2025-02-06 13:29+0000\n"
 "Last-Translator: Anonymous <noreply@weblate.org>\n"
 "Language-Team: French <https://translate.revolutionarygamesstudio.com/projects/thrive/thrive-game/fr/>\n"
 "Language: fr\n"
@@ -177,6 +177,10 @@ msgstr "Volume d'ambiance"
 msgid "AMMONIA"
 msgstr "Ammoniac"
 
+#, fuzzy
+msgid "AMMONIA_COST"
+msgstr "Ammoniac"
+
 msgid "AMOUNT_OF_AUTOSAVE_TO_KEEP"
 msgstr "Nombre de sauvegardes à conserver :"
 
@@ -261,6 +265,12 @@ msgstr "Niveau d'ATP"
 
 #, fuzzy
 msgid "ATP_BALANCE_TOOLTIP"
+msgstr ""
+"Cette section montre la balance totale (production - consommation) pour chaque composé.\n"
+"Par exemple, pour former une cellule végétale, le bilan du glucose doit être très positif."
+
+#, fuzzy
+msgid "ATP_BALANCE_TOOLTIP_MULTICELLULAR"
 msgstr ""
 "Cette section montre la balance totale (production - consommation) pour chaque composé.\n"
 "Par exemple, pour former une cellule végétale, le bilan du glucose doit être très positif."
@@ -496,6 +506,10 @@ msgstr "Terrain : {0}"
 msgid "BLOOM_RENDER_EFFECT"
 msgstr "Effets d'écran"
 
+#, fuzzy
+msgid "BLUESKY_TOOLTIP"
+msgstr "Mettre le jeu en pause"
+
 msgid "BRAIN_CELL_NAME_DEFAULT"
 msgstr "Neurone"
 
@@ -635,6 +649,14 @@ msgstr "La valeur utilisée pour générer le monde doit être un entier positif
 #, fuzzy
 msgid "CELL_STAT_SPEED_TOOLTIP"
 msgstr "La valeur utilisée pour générer le monde doit être un entier positif"
+
+#, fuzzy
+msgid "CELL_TYPE_BUTTON_ATP_CONSUMPTION"
+msgstr "Options"
+
+#, fuzzy
+msgid "CELL_TYPE_BUTTON_ATP_PRODUCTION"
+msgstr "Options"
 
 msgid "CELL_TYPE_NAME"
 msgstr "Nom du type de cellule"
@@ -1409,6 +1431,10 @@ msgstr ""
 msgid "DEBUG_DRAW_NOT_AVAILABLE"
 msgstr "Le dessin de débogage physique n'est pas disponible dans ce type de build"
 
+#, fuzzy
+msgid "DEBUG_HEAT_AT_CURSOR"
+msgstr "Au pointeur :"
+
 msgid "DEBUG_PANEL"
 msgstr "Débogueur"
 
@@ -1640,6 +1666,10 @@ msgstr "OpenGL"
 
 msgid "DISPLAY_DRIVER_VULKAN"
 msgstr "Vulkan"
+
+#, fuzzy
+msgid "DISPLAY_MODE"
+msgstr "Afficher les noms des boutons de sélection des parties"
 
 msgid "DISPLAY_PART_NAMES"
 msgstr "Afficher les noms des boutons de sélection des parties"
@@ -1972,6 +2002,10 @@ msgstr "Une exception s'est produite lors du traitement des objets importés"
 
 msgid "EXCEPTION_HAPPENED_WHILE_LOADING"
 msgstr "Une exception a eu lieu pendant le chargement des données de sauvegarde"
+
+#, fuzzy
+msgid "EXCLUSIVE_FULLSCREEN"
+msgstr "Plein écran"
 
 msgid "EXISTING_BUILDINGS"
 msgstr "Constructions"
@@ -2379,6 +2413,13 @@ msgstr "Volume de l'interface"
 msgid "HEALTH"
 msgstr "Santé"
 
+msgid "HEALTH_MODIFIER"
+msgstr ""
+
+#, fuzzy
+msgid "HEAT_ACCUMULATION_BAR_TOOLTIP"
+msgstr "Chargement automatique des patchs Harmony à partir de l'Assembleur (ne nécessite pas de spécifier la classe de mod)"
+
 msgid "HELP"
 msgstr "Aide"
 
@@ -2562,6 +2603,10 @@ msgstr "Inspecter"
 
 msgid "INSPECTOR"
 msgstr "Inspecteur"
+
+#, fuzzy
+msgid "INSTAGRAM_TOOLTIP"
+msgstr "Visitez notre page Steam"
 
 msgid "INTERACTION_ACTIVATE_ASCENSION"
 msgstr "Activer le Portail d'ascension"
@@ -3172,6 +3217,10 @@ msgid "MASTER_VOLUME"
 msgstr "Volume principal"
 
 #, fuzzy
+msgid "MASTODON_TOOLTIP"
+msgstr "Visitez notre page Patreon"
+
+#, fuzzy
 msgid "MAX_CACHE_SIZE_TOOLTIP"
 msgstr "Sécréter du mucilage pour augmenter votre vitesse ou pour engluer des cellules et les ralentir"
 
@@ -3255,6 +3304,12 @@ msgstr "Les métabolosomes sont des amas de protéines enveloppés dans des enve
 msgid "METABOLOSOMES_PROCESSES_DESCRIPTION"
 msgstr "Transforme le [thrive:compound type=\"glucose\"][/thrive:compound] en [thrive:compound type=\"atp\"][/thrive:compound]. Taux proportionnel à la concentration en [thrive:compound type=\"oxygen\"][/thrive:compound]."
 
+#, fuzzy
+msgid "META_THREADS_TOOLTIP"
+msgstr ""
+"Il n'est pas possible de détecter de manière automatique si l'hyper-threading est activé ou non.\n"
+"Cela a un impact sur le nombre de threads par défaut, car les threads de l'hyper-threading ne sont pas aussi performants que les véritables cœurs d'une unité centrale (CPU)."
+
 msgid "METRICS"
 msgstr "Mesures de performance"
 
@@ -3316,6 +3371,10 @@ msgstr ""
 
 msgid "MICHE_ENVIRONMENTAL_COMPOUND_PRESSURE"
 msgstr ""
+
+#, fuzzy
+msgid "MICHE_ENVIRONMENTAL_TOLERANCE"
+msgstr "Environnement"
 
 msgid "MICHE_MAINTAIN_COMPOUND_PRESSURE"
 msgstr ""
@@ -4093,6 +4152,10 @@ msgstr "Vous pouvez maintenant accéder à l'éditeur"
 msgid "NOTICE_READY_TO_EDIT"
 msgstr "Vous pouvez maintenant accéder à l'éditeur"
 
+#, fuzzy
+msgid "NOT_ADAPTED_TO_CURRENT_PATCH"
+msgstr "Trouver le secteur courant"
+
 msgid "NOT_STARTED_DOT"
 msgstr "Non commencé."
 
@@ -4148,6 +4211,10 @@ msgstr "Permet l'évolution vers des organites plus complexes liés à la membra
 
 msgid "NUMLOCK"
 msgstr "Verr Num"
+
+#, fuzzy
+msgid "NUTRIENT_COST_TOOLTIP"
+msgstr "Visitez notre page Patreon"
 
 msgid "N_A"
 msgstr "Aucun"
@@ -4373,6 +4440,16 @@ msgstr "Oxygène"
 msgid "OXYGEN_INHIBITOR_SYNTHESIS"
 msgstr "Synthèse d'OxyToxy"
 
+#, fuzzy
+msgid "OXYGEN_RESISTANCE"
+msgstr "Résistance aux toxines"
+
+#, fuzzy
+msgid "OXYGEN_TOLERANCE_TOOLTIP"
+msgstr ""
+"Cette section montre la balance totale (production - consommation) pour chaque composé.\n"
+"Par exemple, pour former une cellule végétale, le bilan du glucose doit être très positif."
+
 msgid "OXYTOXISOME_PROCESSES_DESCRIPTION"
 msgstr "Transforme [thrive:compound type=\"atp\"][/thrive:compound] en [thrive:compound type=\"oxytoxy\"][/thrive:compound]. Taux proportionnels à la concentration d'[thrive:compound type=\"oxygen\"][/thrive:compound]. Peut libérer des toxines en appuyant sur [thrive:input]g_fire_toxin[/thrive:input]."
 
@@ -4498,6 +4575,14 @@ msgstr "Progrès du processus d'endosymbiose en cours"
 msgid "PERCENTAGE_VALUE"
 msgstr "{0}%"
 
+#, fuzzy
+msgid "PERFECT_ADAPTATION_DESCRIPTION"
+msgstr ""
+"Active les effets de flashs lumineux sur l'interface utilisateur (c.à.d. sur les boutons de l'éditeur).\n"
+"\n"
+"Si vous constatez des bugs (comme une partie des boutons qui disparaissent),\n"
+"vous pouvez essayer de désactiver cette option."
+
 msgid "PERFORMANCE"
 msgstr "Performance"
 
@@ -4511,6 +4596,10 @@ msgid "PER_SECOND_SLASH"
 msgstr "/seconde"
 
 msgid "PHOSPHATE"
+msgstr "Phosphate"
+
+#, fuzzy
+msgid "PHOSPHATES_COST"
 msgstr "Phosphate"
 
 msgid "PHOTOSYNTHESIS"
@@ -4616,6 +4705,10 @@ msgstr "Pression"
 msgid "PRESSURE_SHORT"
 msgstr "Press."
 
+#, fuzzy
+msgid "PRESSURE_TOLERANCE_TOOLTIP"
+msgstr "Retour au menu principal"
+
 msgid "PRESS_KEY_DOT_DOT_DOT"
 msgstr "Pressez une touche..."
 
@@ -4635,6 +4728,10 @@ msgid "PROCESS_ENVIRONMENT_SEPARATOR"
 msgstr "@"
 
 msgid "PROCESS_PANEL_TITLE"
+msgstr "Processus cellulaires"
+
+#, fuzzy
+msgid "PROCESS_SPEED_MODIFIER"
 msgstr "Processus cellulaires"
 
 msgid "PROGRAMMING_TEAM"
@@ -5599,10 +5696,15 @@ msgstr "Température"
 msgid "TEMPERATURE_SHORT"
 msgstr "Temp."
 
+#, fuzzy
+msgid "TEMPERATURE_TOLERANCE_TOOLTIP"
+msgstr "Visitez notre page Patreon"
+
 msgid "TESTING_TEAM"
 msgstr "Équipe de test"
 
-msgid "THANKS_FOR_BUYING_THRIVE"
+#, fuzzy
+msgid "THANKS_FOR_BUYING_THRIVE_2"
 msgstr ""
 "Merci de soutenir le développement de Thrive en achetant cette copie de Thrive !\n"
 "\n"
@@ -5625,18 +5727,22 @@ msgstr "Équipe de théoriciens"
 msgid "THERMOPLAST"
 msgstr "Thermoplaste"
 
+#, fuzzy
 msgid "THERMOPLAST_DESCRIPTION"
 msgstr "Le thermoplaste est une structure à double membrane contenant des pigments thermosensibles empilés dans des sacs membranaires. C'est un procaryote qui a été assimilé pour être utilisé par son hôte eucaryote. Les pigments du thermoplaste sont capables d'utiliser l'énergie des différences de chaleur dans l'environnement pour produire de l'[thrive:compound type=\"atp\"][/thrive:compound] à partir de l'eau dans un processus appelé [b]thermosynthèse[/b]. Le taux de production d'[thrive:compound type=\"atp\"][/thrive:compound] varie avec la [thrive:compound type=\"temperature\"][/thrive:compound]."
 
+#, fuzzy
 msgid "THERMOPLAST_PROCESSES_DESCRIPTION"
 msgstr "Produit du [thrive:compound type=\"glucose\"][/thrive:compound]. Taux proportionnel à la concentration de [thrive:compound type=\"carbondioxide\"][/thrive:compound] et à la température."
 
 msgid "THERMOSYNTHASE"
 msgstr "Thermosynthase"
 
+#, fuzzy
 msgid "THERMOSYNTHASE_DESCRIPTION"
 msgstr "La thermosynthase est une protéine qui utilise la convection thermique pour changer de forme, ce qui lui permet de se replier et de se lier à l'ADP lorsqu'elle est exposée à la chaleur, puis de se déplier et de le recycler en [thrive:compound type=\"atp\"][/thrive:compound] lorsqu'elle est exposée au froid, dans un processus appelé [b]thermosynthèse[/b]. Le taux de production d'[thrive:compound type=\"atp\"][/thrive:compound] varie avec la [thrive:compound type=\"temperature\"][/thrive:compound]."
 
+#, fuzzy
 msgid "THERMOSYNTHASE_PROCESSES_DESCRIPTION"
 msgstr "Produit l'[thrive:compound type=\"atp\"][/thrive:compound] en utilisant les gradients de température. Le taux varie en fonction de la [thrive:compound type=\"temperature\"][/thrive:compound]."
 
@@ -5781,6 +5887,12 @@ msgstr "Afficher/cacher les FPS"
 msgid "TOGGLE_FULLSCREEN"
 msgstr "Plein écran"
 
+#, fuzzy
+msgid "TOGGLE_HEAT_VIEW_TOOLTIP"
+msgstr ""
+"Activez le mode engloutissement pour engloutir divers fragments,\n"
+"ou bien de petits organismes au prix d'une plus grande consommation d'ATP pendant ce temps"
+
 msgid "TOGGLE_HUD_HIDE"
 msgstr "Activer/désactiver l'ATH"
 
@@ -5803,6 +5915,32 @@ msgstr "Pause"
 
 msgid "TOGGLE_UNBINDING"
 msgstr "Activer/désactiver la liaison"
+
+msgid "TOLERANCES_TOO_HIGH_PRESSURE"
+msgstr ""
+
+msgid "TOLERANCES_TOO_HIGH_TEMPERATURE"
+msgstr ""
+
+msgid "TOLERANCES_TOO_LOW_OXYGEN_PROTECTION"
+msgstr ""
+
+#, fuzzy
+msgid "TOLERANCES_TOO_LOW_PRESSURE"
+msgstr "Nuages de composés"
+
+msgid "TOLERANCES_TOO_LOW_TEMPERATURE"
+msgstr ""
+
+#, fuzzy
+msgid "TOLERANCES_TOO_LOW_UV_PROTECTION"
+msgstr "{0} : +{1} ATP"
+
+msgid "TOLERANCES_UNSUITABLE_DEBUFFS"
+msgstr ""
+
+msgid "TOLERANCE_RANGE_LABEL"
+msgstr ""
 
 msgid "TOOLS"
 msgstr "Outils"
@@ -6115,9 +6253,6 @@ msgstr ""
 msgid "TUTORIAL_VIEW_NOW"
 msgstr "Voir maintenant"
 
-msgid "TWITTER_TOOLTIP"
-msgstr "Visitez notre flux Twitter"
-
 msgid "TWO_TIMES"
 msgstr "2x"
 
@@ -6346,6 +6481,16 @@ msgstr "Saisie manuelle du nombre de thread en arrière-plan"
 
 msgid "USE_VIRTUAL_WINDOW_SIZE"
 msgstr "Utiliser la taille de la fenêtre virtuelle"
+
+#, fuzzy
+msgid "UV_PROTECTION"
+msgstr "Prévision de l'Auto-Évo"
+
+#, fuzzy
+msgid "UV_TOLERANCE_TOOLTIP"
+msgstr ""
+"Cette section montre la balance totale (production - consommation) pour chaque composé.\n"
+"Par exemple, pour former une cellule végétale, le bilan du glucose doit être très positif."
 
 msgid "VACUOLE"
 msgstr "Vacuole"
@@ -8294,6 +8439,9 @@ msgstr "Oui"
 msgid "WILL_YOU_THRIVE"
 msgstr "Allez-vous prospérer ?"
 
+msgid "WINDOWED"
+msgstr ""
+
 msgid "WIN_BOX_TITLE"
 msgstr "VOUS AVEZ PROSPÉRÉ !"
 
@@ -8363,6 +8511,10 @@ msgstr "Xbox One"
 msgid "XBOX_SERIES"
 msgstr "Xbox Series X"
 
+#, fuzzy
+msgid "X_TWITTER_TOOLTIP"
+msgstr "Visitez notre flux Twitter"
+
 msgid "YEARS"
 msgstr "années"
 
@@ -8386,6 +8538,14 @@ msgstr "Zoomer"
 
 msgid "ZOOM_OUT"
 msgstr "Dézoomer"
+
+#~ msgid "THANKS_FOR_BUYING_THRIVE"
+#~ msgstr ""
+#~ "Merci de soutenir le développement de Thrive en achetant cette copie de Thrive !\n"
+#~ "\n"
+#~ "Si vous n'avez pas acheté cette copie, s'il vous plaît achetez-la [color=#3796e1][url={0}]ici[/url][/color] ou aller voir sur notre [color=#3796e1][url=https://revolutionarygamesstudio.com/releases/]site web[/url][/color].\n"
+#~ "\n"
+#~ "Si vous souhaitez voir le lanceur Thrive avant le démarrage de Thrive, vous pouvez utiliser le bouton du menu principal pour sortir du lanceur, puis désactiver le mode transparent dans le menu des options du lanceur."
 
 #, fuzzy
 #~ msgid "WIKI_RADIOSYNTHESIS"

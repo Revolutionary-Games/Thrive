@@ -8,7 +8,7 @@ using Newtonsoft.Json;
 using Xoshiro.PRNG64;
 
 /// <summary>
-///   All data regarding the game world of a thrive playthrough
+///   All data regarding the game world of a Thrive playthrough
 /// </summary>
 /// <remarks>
 ///   <para>
@@ -98,9 +98,12 @@ public class GameWorld : ISaveLoadable
 
         LightCycle.ApplyWorldSettings(settings);
 
+        bool applyInitialTolerances = false;
+
         if (startingSpecies == null)
         {
             PlayerSpecies = CreatePlayerSpecies();
+            applyInitialTolerances = true;
         }
         else
         {
@@ -116,6 +119,8 @@ public class GameWorld : ISaveLoadable
             worldSpecies[startingSpecies.ID] = startingSpecies;
 
             PlayerSpecies = startingSpecies;
+
+            // TODO: should initial environmental tolerances be modified?
         }
 
         if (!PlayerSpecies.PlayerSpecies)
@@ -128,6 +133,23 @@ public class GameWorld : ISaveLoadable
 
         // Apply initial populations
         Map.UpdateGlobalPopulations();
+
+        if (applyInitialTolerances)
+        {
+            // Make player species tolerant to the patch conditions they are starting in
+            // The fallback shouldn't be necessary except in very special cases, so it is fine to allocate a lambda
+            var patch = Map.CurrentPatch ??
+                Map.Patches.Values.FirstOrDefault(p => p.GetSpeciesSimulationPopulation(PlayerSpecies) > 0);
+
+            if (patch != null)
+            {
+                PlayerSpecies.Tolerances.CopyFrom(patch.GenerateTolerancesForMicrobe());
+            }
+            else
+            {
+                GD.PrintErr("Cannot set initial tolerances for player species, no patch with population found");
+            }
+        }
 
         // Create the initial generation by adding only the player species
         var initialSpeciesRecord = new SpeciesRecordLite((Species)PlayerSpecies.Clone(), PlayerSpecies.Population);
@@ -362,7 +384,7 @@ public class GameWorld : ISaveLoadable
                         Constants.INITIAL_FREEBUILD_POPULATION_VARIANCE_MAX + 1);
 
                 var randomSpecies = CommonMutationFunctions.GenerateRandomSpecies(
-                    NewMicrobeSpecies(string.Empty, string.Empty), workMemory, random);
+                    NewMicrobeSpecies(string.Empty, string.Empty), entry.Value, workMemory, random);
 
                 GenerationHistory[0].AllSpeciesData
                     .Add(randomSpecies.ID, new SpeciesRecordLite(randomSpecies, population));
@@ -373,7 +395,7 @@ public class GameWorld : ISaveLoadable
     }
 
     /// <summary>
-    ///   Simulate long term world time passing
+    ///   Simulate long-term world time passing
     /// </summary>
     public void OnTimePassed(double timePassed)
     {

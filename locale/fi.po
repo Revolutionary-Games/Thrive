@@ -7,9 +7,9 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2025-01-31 20:54+0100\n"
-"PO-Revision-Date: 2024-11-04 07:58+0000\n"
-"Last-Translator: Henri Hyyryläinen <hhyyrylainen@revolutionarygamesstudio.com>\n"
+"POT-Creation-Date: 2025-02-18 15:43+0200\n"
+"PO-Revision-Date: 2025-02-06 13:29+0000\n"
+"Last-Translator: Anonymous <noreply@weblate.org>\n"
 "Language-Team: Finnish <https://translate.revolutionarygamesstudio.com/projects/thrive/thrive-game/fi/>\n"
 "Language: fi\n"
 "MIME-Version: 1.0\n"
@@ -189,6 +189,10 @@ msgstr "Tunnelmaäänet"
 msgid "AMMONIA"
 msgstr "Ammoniakki"
 
+#, fuzzy
+msgid "AMMONIA_COST"
+msgstr "Ammoniakki"
+
 msgid "AMOUNT_OF_AUTOSAVE_TO_KEEP"
 msgstr "Paikat automaattitallenuksille:"
 
@@ -268,6 +272,10 @@ msgstr "ATP Tasapaino"
 
 #, fuzzy
 msgid "ATP_BALANCE_TOOLTIP"
+msgstr "Näytä / piilota ympäristö ja yhdisteet"
+
+#, fuzzy
+msgid "ATP_BALANCE_TOOLTIP_MULTICELLULAR"
 msgstr "Näytä / piilota ympäristö ja yhdisteet"
 
 msgid "ATP_BALANCE_WITHOUT_EXTERNAL_RESOURCES"
@@ -526,6 +534,10 @@ msgstr "Biomi: {0}"
 msgid "BLOOM_RENDER_EFFECT"
 msgstr "Ulkoiset vaikutukset:"
 
+#, fuzzy
+msgid "BLUESKY_TOOLTIP"
+msgstr "Laita peli tauolle"
+
 msgid "BRAIN_CELL_NAME_DEFAULT"
 msgstr "Neuroni"
 
@@ -670,6 +682,14 @@ msgstr "Laita peli tauolle"
 #, fuzzy
 msgid "CELL_STAT_SPEED_TOOLTIP"
 msgstr "Laita peli tauolle"
+
+#, fuzzy
+msgid "CELL_TYPE_BUTTON_ATP_CONSUMPTION"
+msgstr "Ohjaimen herkkyys"
+
+#, fuzzy
+msgid "CELL_TYPE_BUTTON_ATP_PRODUCTION"
+msgstr "Ohjaimen herkkyys"
 
 msgid "CELL_TYPE_NAME"
 msgstr "Solutyypin Nimi"
@@ -1484,6 +1504,10 @@ msgstr ""
 msgid "DEBUG_DRAW_NOT_AVAILABLE"
 msgstr ""
 
+#, fuzzy
+msgid "DEBUG_HEAT_AT_CURSOR"
+msgstr "Kursorin alla:"
+
 msgid "DEBUG_PANEL"
 msgstr "Virheenkorjauspaneeli"
 
@@ -1730,6 +1754,10 @@ msgstr "Näytä kykypalkki"
 
 #, fuzzy
 msgid "DISPLAY_DRIVER_VULKAN"
+msgstr "Näytä kykypalkki"
+
+#, fuzzy
+msgid "DISPLAY_MODE"
 msgstr "Näytä kykypalkki"
 
 #, fuzzy
@@ -2110,6 +2138,10 @@ msgstr "Poikkeus tapahtui prosessoidessa ladattuja objekteja"
 #, fuzzy
 msgid "EXCEPTION_HAPPENED_WHILE_LOADING"
 msgstr "Poikkeus tapahtui ladattaessa tallennuksen tietoja"
+
+#, fuzzy
+msgid "EXCLUSIVE_FULLSCREEN"
+msgstr "Vaihda koko näytön tilaa"
 
 #, fuzzy
 msgid "EXISTING_BUILDINGS"
@@ -2556,6 +2588,13 @@ msgstr "Käyttöliittymä"
 msgid "HEALTH"
 msgstr "Terveys"
 
+msgid "HEALTH_MODIFIER"
+msgstr ""
+
+#, fuzzy
+msgid "HEAT_ACCUMULATION_BAR_TOOLTIP"
+msgstr "Lisää uusi syöte"
+
 msgid "HELP"
 msgstr "Apua"
 
@@ -2755,6 +2794,10 @@ msgstr ""
 
 msgid "INSPECTOR"
 msgstr ""
+
+#, fuzzy
+msgid "INSTAGRAM_TOOLTIP"
+msgstr "Laita peli tauolle"
 
 msgid "INTERACTION_ACTIVATE_ASCENSION"
 msgstr "Aktivoi nousemusportti"
@@ -3399,6 +3442,10 @@ msgid "MASTER_VOLUME"
 msgstr "Pää äänitaso"
 
 #, fuzzy
+msgid "MASTODON_TOOLTIP"
+msgstr "Laita peli tauolle"
+
+#, fuzzy
 msgid "MAX_CACHE_SIZE_TOOLTIP"
 msgstr "Jatka"
 
@@ -3484,6 +3531,12 @@ msgid "METABOLOSOMES_PROCESSES_DESCRIPTION"
 msgstr "Muuntaa [thrive:compound type=\"glucose\"]glukoosia[/thrive:compound] [thrive:compound type=\"atp\"]ATP:ksi[/thrive:compound]. Nopeus skaalautuu [thrive:compound type=\"oxygen\"]hapen[/thrive:compound] pitoisuuden mukaan."
 
 #, fuzzy
+msgid "META_THREADS_TOOLTIP"
+msgstr ""
+"Hyperthreadingin päällä oloa ei voida automaattisesti tunnistaa.\n"
+"Tämä säätää kuinka monta taustatyöskentelijää käytetään oletusarvoisesti, koska hyperthreading ei ole yhtä tehokasta kuin oikeat prosessoriytimet."
+
+#, fuzzy
 msgid "METRICS"
 msgstr "Näytä FPS-laskuri"
 
@@ -3520,6 +3573,10 @@ msgstr "{0} (x{1})"
 
 msgid "MICHE_ENVIRONMENTAL_COMPOUND_PRESSURE"
 msgstr ""
+
+#, fuzzy
+msgid "MICHE_ENVIRONMENTAL_TOLERANCE"
+msgstr "Ympäristö"
 
 msgid "MICHE_MAINTAIN_COMPOUND_PRESSURE"
 msgstr ""
@@ -4318,6 +4375,10 @@ msgid "NOTICE_READY_TO_EDIT"
 msgstr ""
 
 #, fuzzy
+msgid "NOT_ADAPTED_TO_CURRENT_PATCH"
+msgstr "Peruuta nykyinen toimenpide"
+
+#, fuzzy
 msgid "NOT_STARTED_DOT"
 msgstr "Peruutettu."
 
@@ -4376,6 +4437,10 @@ msgstr ""
 
 msgid "NUMLOCK"
 msgstr "Num Lock"
+
+#, fuzzy
+msgid "NUTRIENT_COST_TOOLTIP"
+msgstr "Laita peli tauolle"
 
 msgid "N_A"
 msgstr "N/A"
@@ -4626,6 +4691,14 @@ msgstr "Happi"
 msgid "OXYGEN_INHIBITOR_SYNTHESIS"
 msgstr "Happimyrkkysynteesi"
 
+#, fuzzy
+msgid "OXYGEN_RESISTANCE"
+msgstr "Myrkyn kestävyys"
+
+#, fuzzy
+msgid "OXYGEN_TOLERANCE_TOOLTIP"
+msgstr "Näytä / piilota ympäristö ja yhdisteet"
+
 msgid "OXYTOXISOME_PROCESSES_DESCRIPTION"
 msgstr "Muuntaa [thrive:compound type=\"atp\"][/thrive:compound]:n [thrive:compound type=\"oxytoxy\"]oxytoxyksi[/thrive:compound]. Muunnosnopeus riippuu ympäristön [thrive:compound type=\"oxygen\"]happipitoisuudesta[/thrive:compound]. Voi päästää myrkkyjä painamalla [thrive:input]g_fire_toxin[/thrive:input]. Kun [thrive:compound type=\"oxytoxy\"][/thrive:compound]n pitoisuudet ovat alhaiset, ampuminen on edelleen mahdollista, mutta aiheuttaa vähemmän vahinkoa."
 
@@ -4767,6 +4840,10 @@ msgstr ""
 msgid "PERCENTAGE_VALUE"
 msgstr "{0}%"
 
+#, fuzzy
+msgid "PERFECT_ADAPTATION_DESCRIPTION"
+msgstr "Pistä muita soluja tällä."
+
 msgid "PERFORMANCE"
 msgstr "Suorituskyky"
 
@@ -4781,6 +4858,10 @@ msgid "PER_SECOND_SLASH"
 msgstr "/sekunti"
 
 msgid "PHOSPHATE"
+msgstr "Fosfaatti"
+
+#, fuzzy
+msgid "PHOSPHATES_COST"
 msgstr "Fosfaatti"
 
 msgid "PHOTOSYNTHESIS"
@@ -4888,6 +4969,10 @@ msgstr "Paine"
 msgid "PRESSURE_SHORT"
 msgstr "Paine"
 
+#, fuzzy
+msgid "PRESSURE_TOLERANCE_TOOLTIP"
+msgstr "Palaa Päävalikkoon"
+
 msgid "PRESS_KEY_DOT_DOT_DOT"
 msgstr "Paina jotain näppäintä..."
 
@@ -4907,6 +4992,10 @@ msgid "PROCESS_ENVIRONMENT_SEPARATOR"
 msgstr "@"
 
 msgid "PROCESS_PANEL_TITLE"
+msgstr "Solun prosessit"
+
+#, fuzzy
+msgid "PROCESS_SPEED_MODIFIER"
 msgstr "Solun prosessit"
 
 msgid "PROGRAMMING_TEAM"
@@ -5942,11 +6031,15 @@ msgstr "Lämpötila"
 msgid "TEMPERATURE_SHORT"
 msgstr "Lämpö."
 
+#, fuzzy
+msgid "TEMPERATURE_TOLERANCE_TOOLTIP"
+msgstr "Laita peli tauolle"
+
 msgid "TESTING_TEAM"
 msgstr "Testaustiimi"
 
 #, fuzzy
-msgid "THANKS_FOR_BUYING_THRIVE"
+msgid "THANKS_FOR_BUYING_THRIVE_2"
 msgstr ""
 "Kiitos pelaamisesta!\n"
 "\n"
@@ -5971,6 +6064,7 @@ msgstr "Lämpöplasti"
 msgid "THERMOPLAST_DESCRIPTION"
 msgstr ""
 
+#, fuzzy
 msgid "THERMOPLAST_PROCESSES_DESCRIPTION"
 msgstr "Tuottaa [thrive:compound type=\"glucose\"]glukoosia[/thrive:compound]. Tuotannon nopeus riippuu ympäristön [thrive:compound type=\"carbondioxide\"]hiilidioksidipitoisuudesta[/thrive:compound] ja lämpötilasta."
 
@@ -6123,6 +6217,10 @@ msgstr "Näytä FPS-laskuri"
 msgid "TOGGLE_FULLSCREEN"
 msgstr "Vaihda koko näytön tilaa"
 
+#, fuzzy
+msgid "TOGGLE_HEAT_VIEW_TOOLTIP"
+msgstr "Aloita/lopeta nieleminen"
+
 msgid "TOGGLE_HUD_HIDE"
 msgstr "Näytä/Piilota HUD"
 
@@ -6145,6 +6243,32 @@ msgstr "Pysäytä"
 
 msgid "TOGGLE_UNBINDING"
 msgstr "Aloita/Lopeta erkanemistila"
+
+msgid "TOLERANCES_TOO_HIGH_PRESSURE"
+msgstr ""
+
+msgid "TOLERANCES_TOO_HIGH_TEMPERATURE"
+msgstr ""
+
+msgid "TOLERANCES_TOO_LOW_OXYGEN_PROTECTION"
+msgstr ""
+
+#, fuzzy
+msgid "TOLERANCES_TOO_LOW_PRESSURE"
+msgstr "Yhdistepilvet"
+
+msgid "TOLERANCES_TOO_LOW_TEMPERATURE"
+msgstr ""
+
+#, fuzzy
+msgid "TOLERANCES_TOO_LOW_UV_PROTECTION"
+msgstr "{0}: +{1} ATP"
+
+msgid "TOLERANCES_UNSUITABLE_DEBUFFS"
+msgstr ""
+
+msgid "TOLERANCE_RANGE_LABEL"
+msgstr ""
 
 msgid "TOOLS"
 msgstr "Työkalut"
@@ -6465,10 +6589,6 @@ msgstr "Ladataan mikrobieditoria"
 msgid "TUTORIAL_VIEW_NOW"
 msgstr "Katso nyt"
 
-#, fuzzy
-msgid "TWITTER_TOOLTIP"
-msgstr "Help"
-
 msgid "TWO_TIMES"
 msgstr "2x"
 
@@ -6712,6 +6832,14 @@ msgstr "Määritä manuaalisesti taustalla pyörivien suorittajien määrä"
 
 msgid "USE_VIRTUAL_WINDOW_SIZE"
 msgstr "Käytä virtuaalista ikkunankokoa"
+
+#, fuzzy
+msgid "UV_PROTECTION"
+msgstr "Auto-Evon ennuste"
+
+#, fuzzy
+msgid "UV_TOLERANCE_TOOLTIP"
+msgstr "Näytä / piilota ympäristö ja yhdisteet"
 
 msgid "VACUOLE"
 msgstr "Vakuoli"
@@ -8694,6 +8822,9 @@ msgstr "Wikimme"
 msgid "WILL_YOU_THRIVE"
 msgstr "Tuletko selviämään?"
 
+msgid "WINDOWED"
+msgstr ""
+
 msgid "WIN_BOX_TITLE"
 msgstr "OLET SELVIYTYNYT!"
 
@@ -8764,6 +8895,10 @@ msgstr "Xbox One"
 msgid "XBOX_SERIES"
 msgstr ""
 
+#, fuzzy
+msgid "X_TWITTER_TOOLTIP"
+msgstr "Help"
+
 msgid "YEARS"
 msgstr "vuotta"
 
@@ -8788,6 +8923,13 @@ msgstr "Zoomaa sisään"
 
 msgid "ZOOM_OUT"
 msgstr "Zoomaa ulospäin"
+
+#, fuzzy
+#~ msgid "THANKS_FOR_BUYING_THRIVE"
+#~ msgstr ""
+#~ "Kiitos pelaamisesta!\n"
+#~ "\n"
+#~ "Jos tykkäsit pelistä, kerrothan kavereillesi meistä."
 
 #, fuzzy
 #~ msgid "WIKI_RADIOSYNTHESIS"

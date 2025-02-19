@@ -120,7 +120,7 @@ public partial class ToolTipManager : CanvasLayer
     {
         base._EnterTree();
 
-        // This node may not be added back to the scene after removing so we don't guard against double initialization
+        // This node may not be added back to the scene after removing, so we don't guard against double initialization
         // here
 
         ResolveNodeReferences();
@@ -586,11 +586,19 @@ public partial class ToolTipManager : CanvasLayer
         if (organelle.Components.Storage != null)
         {
             // Modifier info is filled into later (so this uses blank values)
-            // This is done just on startup so it isn't super important but this allocates a bunch of StringNames
+            // This is done just on startup, so it isn't super important, but this allocates a bunch of StringNames
             // for the modifier info sections for each organelle unnecessarily (when the StringNames could be reused)
             tooltip.AddModifierInfo(string.Empty, string.Empty, 0,
                 "res://assets/textures/gui/bevel/StorageIcon.png", "storage");
         }
+
+        tooltip.AddOrganelleCostInfo("AMMONIA_COST",
+            "+" + organelle.InitialComposition.GetValueOrDefault(Compound.Ammonia, 0), 0,
+            "res://assets/textures/gui/bevel/Ammonia.svg", "ammoniaCost");
+
+        tooltip.AddOrganelleCostInfo("PHOSPHATES_COST",
+            "+" + organelle.InitialComposition.GetValueOrDefault(Compound.Phosphates, 0), 0,
+            "res://assets/textures/gui/bevel/Phosphates.svg", "phosphateCost");
 
         UpdateModifierInfoWithTranslations(organelle, tooltip);
     }
@@ -635,6 +643,26 @@ public partial class ToolTipManager : CanvasLayer
         {
             modifierInfo.DisplayName = "SPEED";
             modifierInfo.ModifierValue = "+" + Constants.FLAGELLA_SPEED_BONUS_DISPLAY;
+        }
+
+        modifierInfo = selectionMenuTooltip.GetModifierInfo("ammoniaCost");
+
+        if (modifierInfo != null)
+        {
+            var amount = organelle.InitialComposition[Compound.Ammonia];
+            modifierInfo.DisplayName = "AMMONIA";
+            modifierInfo.ModifierValue = amount.ToString(CultureInfo.CurrentCulture);
+            modifierInfo.Visible = amount != 0;
+        }
+
+        modifierInfo = selectionMenuTooltip.GetModifierInfo("phosphateCost");
+
+        if (modifierInfo != null)
+        {
+            var amount = organelle.InitialComposition[Compound.Phosphates];
+            modifierInfo.DisplayName = "PHOSPHATE";
+            modifierInfo.ModifierValue = amount.ToString(CultureInfo.CurrentCulture);
+            modifierInfo.Visible = amount != 0;
         }
     }
 

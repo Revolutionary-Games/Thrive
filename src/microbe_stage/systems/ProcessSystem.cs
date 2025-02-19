@@ -183,7 +183,8 @@ public sealed class ProcessSystem : AEntitySetSystem<float>
     ///   <see cref="amountType"/> specifies how changes during an in-game day are taken into account.
     /// </summary>
     public static Dictionary<string, OrganelleEfficiency> ComputeOrganelleProcessEfficiencies(
-        IEnumerable<OrganelleDefinition> organelles, BiomeConditions biome, CompoundAmountType amountType)
+        IEnumerable<OrganelleDefinition> organelles, BiomeConditions biome,
+        ResolvedMicrobeTolerances environmentTolerances, CompoundAmountType amountType)
     {
         var result = new Dictionary<string, OrganelleEfficiency>();
 
@@ -193,7 +194,8 @@ public sealed class ProcessSystem : AEntitySetSystem<float>
 
             foreach (var process in organelle.RunnableProcesses)
             {
-                info.Processes.Add(CalculateProcessMaximumSpeed(process, biome, amountType, false));
+                info.Processes.Add(CalculateProcessMaximumSpeed(process, environmentTolerances.ProcessSpeedModifier,
+                    biome, amountType, false));
             }
 
             result[organelle.InternalName] = info;
@@ -207,6 +209,7 @@ public sealed class ProcessSystem : AEntitySetSystem<float>
     /// </summary>
     /// <param name="organelles">The organelles to compute the balance with</param>
     /// <param name="biome">The conditions the organelles are simulated in</param>
+    /// <param name="environmentTolerances">Environmental tolerances that affect the processes</param>
     /// <param name="membrane">The membrane type to adjust the energy balance with</param>
     /// <param name="onlyMovementInDirection">
     ///   Only movement organelles that can move in this (cell origin relative) direction are calculated. Other
@@ -226,7 +229,8 @@ public sealed class ProcessSystem : AEntitySetSystem<float>
     ///   The resulting energy balance.
     /// </param>
     public static void ComputeEnergyBalanceSimple(IReadOnlyList<OrganelleTemplate> organelles,
-        IBiomeConditions biome, MembraneType membrane, Vector3 onlyMovementInDirection,
+        IBiomeConditions biome, in ResolvedMicrobeTolerances environmentTolerances, MembraneType membrane,
+        Vector3 onlyMovementInDirection,
         bool includeMovementCost, bool isPlayerSpecies, WorldGenerationSettings worldSettings,
         CompoundAmountType amountType, SimulationCache? cache,
         EnergyBalanceInfoSimple result)
@@ -242,8 +246,8 @@ public sealed class ProcessSystem : AEntitySetSystem<float>
         }
 #endif
 
-        CalculateSimplePartOfEnergyBalance(organelles, biome, membrane, onlyMovementInDirection, includeMovementCost,
-            isPlayerSpecies, worldSettings, amountType, cache, result);
+        CalculateSimplePartOfEnergyBalance(organelles, biome, environmentTolerances, membrane, onlyMovementInDirection,
+            includeMovementCost, isPlayerSpecies, worldSettings, amountType, cache, result);
     }
 
     /// <summary>
@@ -251,15 +255,16 @@ public sealed class ProcessSystem : AEntitySetSystem<float>
     /// </summary>
     /// <param name="organelles">The organelles to compute the balance with</param>
     /// <param name="biome">The conditions the organelles are simulated in</param>
+    /// <param name="environmentTolerances">Environmental tolerances that affect this</param>
     /// <param name="membrane">The membrane type to adjust the energy balance with</param>
     /// <param name="onlyMovementInDirection">
     ///   Only movement organelles that can move in this (cell origin relative) direction are calculated. Other
     ///   movement organelles are assumed to be inactive in the balance calculation.
     /// </param>
     /// <param name="includeMovementCost">
-    ///   Only when true are movement related energy costs included in the calculation. When false base movement data
+    ///   Only when true are movement-related energy costs included in the calculation. When false base movement data
     ///   is provided, but it is not taken into account in the sums, but total movement cost is not calculated. If that
-    ///   is required then include movement cost parameter should be set to true and from the result the variables
+    ///   is required, then include movement cost parameter should be set to true, and from the result, the variables
     ///   giving balance without movement should be used as an alternative to setting this false.
     /// </param>
     /// <param name="isPlayerSpecies">Whether this microbe is a member of the player's species</param>
@@ -268,11 +273,12 @@ public sealed class ProcessSystem : AEntitySetSystem<float>
     /// <param name="cache">Auto-Evo Cache for speeding up the function</param>
     /// <param name="result">The resulting energy balance.</param>
     public static void ComputeEnergyBalanceFull(IReadOnlyList<OrganelleTemplate> organelles,
-        IBiomeConditions biome, MembraneType membrane, Vector3 onlyMovementInDirection,
+        IBiomeConditions biome, ResolvedMicrobeTolerances environmentTolerances, MembraneType membrane,
+        Vector3 onlyMovementInDirection,
         bool includeMovementCost, bool isPlayerSpecies, WorldGenerationSettings worldSettings,
         CompoundAmountType amountType, SimulationCache? cache, EnergyBalanceInfoFull result)
     {
-        CalculateSimplePartOfEnergyBalance(organelles, biome, membrane, onlyMovementInDirection,
+        CalculateSimplePartOfEnergyBalance(organelles, biome, environmentTolerances, membrane, onlyMovementInDirection,
             includeMovementCost, isPlayerSpecies, worldSettings, amountType, cache, result);
 
         // Once simple balance is calculated we add the extra info on top, this approach loops the organelles twice
@@ -283,7 +289,7 @@ public sealed class ProcessSystem : AEntitySetSystem<float>
         {
             var organelle = organelles[i];
 
-            AddOrganelleATPTracking(organelle, biome, amountType, cache, result);
+            AddOrganelleATPTracking(organelle, biome, environmentTolerances, amountType, cache, result);
 
             // Take special cell components that take energy into account
             if (TryGetMovementCostForOrganelle(includeMovementCost, organelle, onlyMovementInDirection, out var cost))
@@ -296,12 +302,17 @@ public sealed class ProcessSystem : AEntitySetSystem<float>
             }
         }
 
+        // Movement and osmoregulation are calculated as totals already, so these aren't added up,
+        // but rather they replace any previously added value.
+        // The movement and osmoregulation values are copied into the consumption breakdown here.
+        // These don't use the usual add method as these values are already included in the totals,
+        // so using that would lead to double counting.
         if (includeMovementCost)
         {
-            result.AddConsumption("baseMovement", result.BaseMovement);
+            result.Consumption["baseMovement"] = result.BaseMovement;
         }
 
-        result.AddConsumption("osmoregulation", result.Osmoregulation);
+        result.Consumption["osmoregulation"] = result.Osmoregulation;
     }
 
     /// <summary>
@@ -316,7 +327,8 @@ public sealed class ProcessSystem : AEntitySetSystem<float>
     ///   </para>
     /// </remarks>
     public static void ComputeCompoundBalance(IEnumerable<OrganelleDefinition> organelles, IBiomeConditions biome,
-        CompoundAmountType amountType, bool requireInputCompoundsInBiome, Dictionary<Compound, CompoundBalance> result)
+        ResolvedMicrobeTolerances environmentTolerances, CompoundAmountType amountType,
+        bool requireInputCompoundsInBiome, Dictionary<Compound, CompoundBalance> result)
     {
         void MakeSureResultExists(Compound compound)
         {
@@ -331,7 +343,8 @@ public sealed class ProcessSystem : AEntitySetSystem<float>
             foreach (var process in organelle.RunnableProcesses)
             {
                 var speedAdjusted =
-                    CalculateProcessMaximumSpeed(process, biome, amountType, requireInputCompoundsInBiome);
+                    CalculateProcessMaximumSpeed(process, environmentTolerances.ProcessSpeedModifier, biome, amountType,
+                        requireInputCompoundsInBiome);
 
                 foreach (var input in speedAdjusted.Inputs)
                 {
@@ -349,10 +362,10 @@ public sealed class ProcessSystem : AEntitySetSystem<float>
     }
 
     public static void ComputeCompoundBalance(IEnumerable<OrganelleTemplate> organelles, IBiomeConditions biome,
-        CompoundAmountType amountType,
+        ResolvedMicrobeTolerances environmentTolerances, CompoundAmountType amountType,
         bool requireInputCompoundsInBiome, Dictionary<Compound, CompoundBalance> result)
     {
-        ComputeCompoundBalance(organelles.Select(o => o.Definition), biome, amountType,
+        ComputeCompoundBalance(organelles.Select(o => o.Definition), biome, environmentTolerances, amountType,
             requireInputCompoundsInBiome, result);
     }
 
@@ -367,7 +380,7 @@ public sealed class ProcessSystem : AEntitySetSystem<float>
     ///   </para>
     /// </remarks>
     public static void ComputeCompoundBalanceAtEquilibrium(IEnumerable<OrganelleDefinition> organelles,
-        IBiomeConditions biome, CompoundAmountType amountType,
+        IBiomeConditions biome, ResolvedMicrobeTolerances environmentTolerances, CompoundAmountType amountType,
         EnergyBalanceInfoSimple energyBalance, Dictionary<Compound, CompoundBalance> result)
     {
         void MakeSureResultExists(Compound compound)
@@ -384,7 +397,8 @@ public sealed class ProcessSystem : AEntitySetSystem<float>
         {
             foreach (var process in organelle.RunnableProcesses)
             {
-                var speedAdjusted = CalculateProcessMaximumSpeed(process, biome, amountType, true);
+                var speedAdjusted = CalculateProcessMaximumSpeed(process, environmentTolerances.ProcessSpeedModifier,
+                    biome, amountType, true);
 
                 // If the cell produces more ATP than it needs, its ATP producing processes need to be toned down
                 bool useRatio = speedAdjusted.Outputs.ContainsKey(Compound.ATP) && consumptionProductionRatio < 1.0f;
@@ -421,11 +435,11 @@ public sealed class ProcessSystem : AEntitySetSystem<float>
     }
 
     public static void ComputeCompoundBalanceAtEquilibrium(IEnumerable<OrganelleTemplate> organelles,
-        IBiomeConditions biome, CompoundAmountType amountType,
+        IBiomeConditions biome, ResolvedMicrobeTolerances environmentTolerances, CompoundAmountType amountType,
         EnergyBalanceInfoSimple energyBalance, Dictionary<Compound, CompoundBalance> result)
     {
-        ComputeCompoundBalanceAtEquilibrium(organelles.Select(o => o.Definition), biome, amountType,
-            energyBalance, result);
+        ComputeCompoundBalanceAtEquilibrium(organelles.Select(o => o.Definition), biome, environmentTolerances,
+            amountType, energyBalance, result);
     }
 
     /// <summary>
@@ -456,7 +470,8 @@ public sealed class ProcessSystem : AEntitySetSystem<float>
     ///   input compounds present in the biome can run)
     /// </summary>
     public static (float Production, float Consumption) CalculateOrganelleATPBalance(OrganelleTemplate organelle,
-        IBiomeConditions biome, CompoundAmountType amountType, SimulationCache? cache)
+        IBiomeConditions biome, CompoundAmountType amountType, float speedModifier,
+        SimulationCache? cache)
     {
         float processATPProduction = 0.0f;
         float processATPConsumption = 0.0f;
@@ -466,11 +481,11 @@ public sealed class ProcessSystem : AEntitySetSystem<float>
             ProcessSpeedInformation processData;
             if (cache != null && amountType == CompoundAmountType.Average)
             {
-                processData = cache.GetProcessMaximumSpeed(process, biome);
+                processData = cache.GetProcessMaximumSpeed(process, speedModifier, biome);
             }
             else
             {
-                processData = CalculateProcessMaximumSpeed(process, biome, amountType, true);
+                processData = CalculateProcessMaximumSpeed(process, speedModifier, biome, amountType, true);
             }
 
             var amount = processData.ATPConsumption;
@@ -490,18 +505,20 @@ public sealed class ProcessSystem : AEntitySetSystem<float>
     ///   <see cref="biome"/> (so only processes with input compounds present in the biome can run)
     /// </summary>
     public static void AddOrganelleATPTracking(OrganelleTemplate organelle,
-        IBiomeConditions biome, CompoundAmountType amountType, SimulationCache? cache, EnergyBalanceInfoFull result)
+        IBiomeConditions biome, ResolvedMicrobeTolerances environmentTolerances, CompoundAmountType amountType,
+        SimulationCache? cache, EnergyBalanceInfoFull result)
     {
         foreach (var process in organelle.Definition.RunnableProcesses)
         {
             ProcessSpeedInformation processData;
             if (cache != null && amountType == CompoundAmountType.Average)
             {
-                processData = cache.GetProcessMaximumSpeed(process, biome);
+                processData = cache.GetProcessMaximumSpeed(process, environmentTolerances.ProcessSpeedModifier, biome);
             }
             else
             {
-                processData = CalculateProcessMaximumSpeed(process, biome, amountType, true);
+                processData = CalculateProcessMaximumSpeed(process, environmentTolerances.ProcessSpeedModifier, biome,
+                    amountType, true);
             }
 
             var amount = processData.ATPConsumption;
@@ -527,7 +544,8 @@ public sealed class ProcessSystem : AEntitySetSystem<float>
     ///   </para>
     /// </remarks>
     public static ProcessSpeedInformation CalculateProcessMaximumSpeed(TweakedProcess process,
-        IBiomeConditions biome, CompoundAmountType pointInTimeType, bool requireInputCompoundsInBiome)
+        float speedModifier, IBiomeConditions biome, CompoundAmountType pointInTimeType,
+        bool requireInputCompoundsInBiome)
     {
         var result = new ProcessSpeedInformation(process.Process);
 
@@ -596,7 +614,7 @@ public sealed class ProcessSystem : AEntitySetSystem<float>
 
             var availableRate = inputCompound == Compound.Temperature ?
                 CalculateTemperatureEffect(availableInEnvironment) :
-                availableInEnvironment / input.Value;
+                availableInEnvironment / (input.Value * speedModifier);
 
             result.AvailableAmounts[inputCompound] = availableInEnvironment;
 
@@ -607,7 +625,7 @@ public sealed class ProcessSystem : AEntitySetSystem<float>
 
             speedFactor *= availableRate;
 
-            result.WritableInputs[inputCompound] = input.Value;
+            result.WritableInputs[inputCompound] = input.Value * speedModifier;
         }
 
         result.Efficiency = efficiency;
@@ -630,7 +648,7 @@ public sealed class ProcessSystem : AEntitySetSystem<float>
 
             var inputCompound = entry.Key.ID;
 
-            var adjustedValue = entry.Value * speedFactor;
+            var adjustedValue = entry.Value * speedFactor * speedModifier;
             result.WritableInputs.Add(inputCompound, adjustedValue);
 
             if (adjustedValue > 0)
@@ -652,7 +670,7 @@ public sealed class ProcessSystem : AEntitySetSystem<float>
 
         foreach (var entry in process.Process.Outputs)
         {
-            var amount = entry.Value * speedFactor;
+            var amount = entry.Value * speedFactor * speedModifier;
 
             var outputCompound = entry.Key.ID;
 
@@ -679,7 +697,8 @@ public sealed class ProcessSystem : AEntitySetSystem<float>
     /// </returns>
     public static float CalculateSpeciesActiveProcessListForEffect(Species species,
         List<TweakedProcess> processesResult, BiomeConditions conditions,
-        WorldGenerationSettings worldGenerationSettings, SimulationCache? cache = null)
+        ResolvedMicrobeTolerances environmentTolerances, WorldGenerationSettings worldGenerationSettings,
+        SimulationCache? cache = null)
     {
         // Only microbial species can currently be handled
         if (species is not MicrobeSpecies microbeSpecies)
@@ -688,7 +707,7 @@ public sealed class ProcessSystem : AEntitySetSystem<float>
         var balance = new EnergyBalanceInfoSimple();
         var maximumMovementDirection = MicrobeInternalCalculations.MaximumSpeedDirection(microbeSpecies.Organelles);
 
-        ComputeEnergyBalanceSimple(microbeSpecies.Organelles, conditions,
+        ComputeEnergyBalanceSimple(microbeSpecies.Organelles, conditions, environmentTolerances,
             microbeSpecies.MembraneType, maximumMovementDirection, false, false, worldGenerationSettings,
             CompoundAmountType.Average, cache, balance);
 
@@ -709,9 +728,10 @@ public sealed class ProcessSystem : AEntitySetSystem<float>
     }
 
     public static float CalculateEffectiveProcessSpeedForEffect(TweakedProcess process, float balanceModifier,
-        BiomeConditions conditions)
+        BiomeConditions conditions, float environmentalToleranceModifier)
     {
-        var rate = CalculateProcessMaximumSpeed(process, conditions, CompoundAmountType.Biome, true);
+        var rate = CalculateProcessMaximumSpeed(process, environmentalToleranceModifier, conditions,
+            CompoundAmountType.Biome, true);
 
         // Skip checking processes that cannot run
         if (rate.CurrentSpeed <= 0)
@@ -780,14 +800,20 @@ public sealed class ProcessSystem : AEntitySetSystem<float>
         ref var storage = ref entity.Get<CompoundStorage>();
         ref var processes = ref entity.Get<BioProcesses>();
 
-        ProcessNode(ref processes, ref storage, delta);
+        float overallSpeedModifier = 1.0f;
+
+        // TODO: remove once save breakage is done
+        if (entity.Has<MicrobeEnvironmentalEffects>())
+            overallSpeedModifier = entity.Get<MicrobeEnvironmentalEffects>().ProcessSpeedModifier;
+
+        ProcessNode(ref processes, ref storage, overallSpeedModifier, delta);
     }
 
     private static void CalculateSimplePartOfEnergyBalance(IReadOnlyList<OrganelleTemplate> organelles,
-        IBiomeConditions biome,
-        MembraneType membrane, Vector3 onlyMovementInDirection, bool includeMovementCost, bool isPlayerSpecies,
-        WorldGenerationSettings worldSettings, CompoundAmountType amountType, SimulationCache? cache,
-        EnergyBalanceInfoSimple result)
+        IBiomeConditions biome, in ResolvedMicrobeTolerances environmentTolerances, MembraneType membrane,
+        Vector3 onlyMovementInDirection, bool includeMovementCost, bool isPlayerSpecies,
+        WorldGenerationSettings worldSettings, CompoundAmountType amountType,
+        SimulationCache? cache, EnergyBalanceInfoSimple result)
     {
         var processATPProduction = 0.0f;
         var processATPConsumption = 0.0f;
@@ -800,7 +826,8 @@ public sealed class ProcessSystem : AEntitySetSystem<float>
         {
             var organelle = organelles[i];
 
-            var (production, consumption) = CalculateOrganelleATPBalance(organelle, biome, amountType, cache);
+            var (production, consumption) = CalculateOrganelleATPBalance(organelle, biome, amountType,
+                environmentTolerances.ProcessSpeedModifier, cache);
 
             processATPProduction += production;
             processATPConsumption += consumption;
@@ -840,6 +867,13 @@ public sealed class ProcessSystem : AEntitySetSystem<float>
         // Calculate the osmoregulation
         var osmoregulation = Constants.ATP_COST_FOR_OSMOREGULATION * hexCount *
             membrane.OsmoregulationFactor;
+
+#if DEBUG
+        if (environmentTolerances.OsmoregulationModifier <= 0)
+            throw new ArgumentException("Uninitialized environmental tolerances");
+#endif
+
+        osmoregulation *= environmentTolerances.OsmoregulationModifier;
 
         if (isPlayerSpecies)
         {
@@ -905,7 +939,8 @@ public sealed class ProcessSystem : AEntitySetSystem<float>
         return environmentalCompoundProperties.Ambient;
     }
 
-    private void ProcessNode(ref BioProcesses processor, ref CompoundStorage storage, float delta)
+    private void ProcessNode(ref BioProcesses processor, ref CompoundStorage storage, float overallSpeedModifier,
+        float delta)
     {
         var bag = storage.Compounds;
 
@@ -959,12 +994,13 @@ public sealed class ProcessSystem : AEntitySetSystem<float>
                         currentProcessStatistics.UpdateProcessDataIfNeeded(process);
 
                         currentProcessStatistics.BeginFrame(delta);
-                        RunProcess(delta, processData, bag, process, ref processor, currentProcessStatistics);
+                        RunProcess(delta, processData, bag, process, ref processor, overallSpeedModifier,
+                            currentProcessStatistics);
                     }
                 }
                 else
                 {
-                    RunProcess(delta, processData, bag, process, ref processor, null);
+                    RunProcess(delta, processData, bag, process, ref processor, overallSpeedModifier, null);
                 }
             }
         }
@@ -976,9 +1012,9 @@ public sealed class ProcessSystem : AEntitySetSystem<float>
     }
 
     private void RunProcess(float delta, BioProcess processData, CompoundBag bag, TweakedProcess process,
-        ref BioProcesses processorInfo, SingleProcessStatistics? currentProcessStatistics)
+        ref BioProcesses processorInfo, float overallSpeedModifier, SingleProcessStatistics? currentProcessStatistics)
     {
-        // Can your cell do the process
+        // Bool for can your cell do the process
         bool canDoProcess = true;
 
         float environmentModifier = 1.0f;
@@ -1012,7 +1048,7 @@ public sealed class ProcessSystem : AEntitySetSystem<float>
             // do environmental modifier here, and save it for later
             environmentModifier *= inputCompound == Compound.Temperature ?
                 CalculateTemperatureEffect(ambient) :
-                ambient / entry.Value;
+                ambient / (entry.Value * overallSpeedModifier);
 
             if (environmentModifier <= MathUtils.EPSILON)
                 currentProcessStatistics?.AddLimitingFactor(inputCompound);
@@ -1038,7 +1074,8 @@ public sealed class ProcessSystem : AEntitySetSystem<float>
 
             var inputCompound = entry.Key.ID;
 
-            var inputRemoved = entry.Value * process.Rate * environmentModifier * process.SpeedMultiplier;
+            var inputRemoved = entry.Value * process.Rate * environmentModifier * process.SpeedMultiplier *
+                overallSpeedModifier;
 
             // currentProcessStatistics?.AddInputAmount(entry.Key, 0);
             // We don't multiply by delta here because we report the per-second values anyway. In the actual
@@ -1082,17 +1119,18 @@ public sealed class ProcessSystem : AEntitySetSystem<float>
         {
             var outputCompound = entry.Key.ID;
 
-            // For now lets assume compounds we produce are also useful
+            // For now, lets assume compounds we produce are also useful
             bag.SetUseful(outputCompound);
 
-            var outputAdded = entry.Value * process.Rate * environmentModifier * process.SpeedMultiplier;
+            var outputAdded = entry.Value * process.Rate * environmentModifier * process.SpeedMultiplier *
+                overallSpeedModifier;
 
             // currentProcessStatistics?.AddOutputAmount(entry.Key, 0);
             currentProcessStatistics?.AddOutputAmount(outputCompound, outputAdded);
 
             outputAdded = outputAdded * delta * spaceConstraintModifier;
 
-            // if environmental right now this isn't released anywhere
+            // if environmental right now, this isn't released anywhere
             if (entry.Key.IsEnvironmental)
                 continue;
 
@@ -1136,7 +1174,7 @@ public sealed class ProcessSystem : AEntitySetSystem<float>
         }
 
         float totalModifier = process.Rate * delta * environmentModifier * spaceConstraintModifier *
-            process.SpeedMultiplier;
+            process.SpeedMultiplier * overallSpeedModifier;
 
         // Apply ATP production speed cap if in effect
         if (isATPProducer && processorInfo.ATPProductionSpeedModifier != 0)
@@ -1156,8 +1194,10 @@ public sealed class ProcessSystem : AEntitySetSystem<float>
 
         if (currentProcessStatistics != null)
         {
+            // TODO: should the overall speed modifier be included in here? It already has scaled the inputs and
+            // outputs
             currentProcessStatistics.CurrentSpeed = process.Rate * environmentModifier * spaceConstraintModifier *
-                process.SpeedMultiplier;
+                process.SpeedMultiplier * overallSpeedModifier;
         }
 
         // Consume inputs
@@ -1172,7 +1212,7 @@ public sealed class ProcessSystem : AEntitySetSystem<float>
 
             currentProcessStatistics?.AddInputAmount(inputCompound, inputRemoved * inverseDelta);
 
-            // This should always succeed (due to the earlier check) so it is always assumed here that this
+            // This should always succeed (due to the earlier check), so it is always assumed here that this
             // succeeded. Caveat: see: BioProcesses.ATPProductionSpeedModifier
             bag.TakeCompound(inputCompound, inputRemoved);
         }

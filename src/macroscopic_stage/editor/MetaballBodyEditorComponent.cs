@@ -403,7 +403,7 @@ public partial class MetaballBodyEditorComponent :
     {
     }
 
-    protected override int CalculateCurrentActionCost()
+    protected override double CalculateCurrentActionCost()
     {
         if (activeActionName == null || !Editor.ShowHover)
             return 0;
@@ -900,6 +900,9 @@ public partial class MetaballBodyEditorComponent :
             }
 
             control.MPCost = Constants.METABALL_ADD_COST;
+
+            // TODO: remove this line after ATP balance calculations are implemented for this editor
+            control.EnableATPBalanceBars = false;
 
             // TODO: tooltips for these
         }

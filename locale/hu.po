@@ -7,8 +7,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2025-01-31 20:54+0100\n"
-"PO-Revision-Date: 2025-01-21 12:01+0000\n"
+"POT-Creation-Date: 2025-02-18 15:43+0200\n"
+"PO-Revision-Date: 2025-02-06 13:29+0000\n"
 "Last-Translator: Anonymous <noreply@weblate.org>\n"
 "Language-Team: Hungarian <https://translate.revolutionarygamesstudio.com/projects/thrive/thrive-game/hu/>\n"
 "Language: hu\n"
@@ -185,6 +185,10 @@ msgstr "Környezeti hangerő"
 msgid "AMMONIA"
 msgstr "Ammónia"
 
+#, fuzzy
+msgid "AMMONIA_COST"
+msgstr "Ammónia"
+
 msgid "AMOUNT_OF_AUTOSAVE_TO_KEEP"
 msgstr "Megtartható automatikus mentések száma:"
 
@@ -271,6 +275,10 @@ msgstr "ATP egyensúly"
 
 #, fuzzy
 msgid "ATP_BALANCE_TOOLTIP"
+msgstr "Az összetevők mutatása / elrejtése"
+
+#, fuzzy
+msgid "ATP_BALANCE_TOOLTIP_MULTICELLULAR"
 msgstr "Az összetevők mutatása / elrejtése"
 
 msgid "ATP_BALANCE_WITHOUT_EXTERNAL_RESOURCES"
@@ -506,6 +514,10 @@ msgstr "Biom: {0}"
 msgid "BLOOM_RENDER_EFFECT"
 msgstr "Külső effektek:"
 
+#, fuzzy
+msgid "BLUESKY_TOOLTIP"
+msgstr "Játék szüneteltetése"
+
 msgid "BRAIN_CELL_NAME_DEFAULT"
 msgstr "Neuron"
 
@@ -646,6 +658,14 @@ msgstr "Az az érték, ami a világok generálásáért felelős. Ennek az ért�
 #, fuzzy
 msgid "CELL_STAT_SPEED_TOOLTIP"
 msgstr "Az az érték, ami a világok generálásáért felelős. Ennek az értéknek pozitívnak kell lennie."
+
+#, fuzzy
+msgid "CELL_TYPE_BUTTON_ATP_CONSUMPTION"
+msgstr "Options"
+
+#, fuzzy
+msgid "CELL_TYPE_BUTTON_ATP_PRODUCTION"
+msgstr "Options"
 
 msgid "CELL_TYPE_NAME"
 msgstr "Sejttípus neve"
@@ -1465,6 +1485,10 @@ msgstr ""
 msgid "DEBUG_DRAW_NOT_AVAILABLE"
 msgstr ""
 
+#, fuzzy
+msgid "DEBUG_HEAT_AT_CURSOR"
+msgstr "A kurzornál:"
+
 msgid "DEBUG_PANEL"
 msgstr "Debug panel"
 
@@ -1701,6 +1725,10 @@ msgstr "Képesség sáv megjelenítése"
 
 #, fuzzy
 msgid "DISPLAY_DRIVER_VULKAN"
+msgstr "Képesség sáv megjelenítése"
+
+#, fuzzy
+msgid "DISPLAY_MODE"
 msgstr "Képesség sáv megjelenítése"
 
 #, fuzzy
@@ -2048,6 +2076,10 @@ msgstr ""
 
 msgid "EXCEPTION_HAPPENED_WHILE_LOADING"
 msgstr ""
+
+#, fuzzy
+msgid "EXCLUSIVE_FULLSCREEN"
+msgstr "Teljes képernyő be/ki"
 
 #, fuzzy
 msgid "EXISTING_BUILDINGS"
@@ -2501,6 +2533,13 @@ msgstr "GUI hangerő"
 msgid "HEALTH"
 msgstr "Életerő"
 
+msgid "HEALTH_MODIFIER"
+msgstr ""
+
+#, fuzzy
+msgid "HEAT_ACCUMULATION_BAR_TOOLTIP"
+msgstr "Öngyilkosság"
+
 msgid "HELP"
 msgstr "Segítség"
 
@@ -2702,6 +2741,10 @@ msgstr "Ellenőriz"
 #, fuzzy
 msgid "INSPECTOR"
 msgstr "Ellenőriz"
+
+#, fuzzy
+msgid "INSTAGRAM_TOOLTIP"
+msgstr "Játék szüneteltetése"
 
 #, fuzzy
 msgid "INTERACTION_ACTIVATE_ASCENSION"
@@ -3335,6 +3378,10 @@ msgid "MASTER_VOLUME"
 msgstr "Fő hangerő"
 
 #, fuzzy
+msgid "MASTODON_TOOLTIP"
+msgstr "Játék szüneteltetése"
+
+#, fuzzy
 msgid "MAX_CACHE_SIZE_TOOLTIP"
 msgstr "Játék folytatása"
 
@@ -3419,6 +3466,12 @@ msgstr "A metaboloszómák fehérjecsoportosulások fehérjeburokba csomagolva. 
 msgid "METABOLOSOMES_PROCESSES_DESCRIPTION"
 msgstr "[thrive:compound type=\"glucose\"][/thrive:compound]-t alakít át [thrive:compound type=\"atp\"][/thrive:compound]-vé. Hatékonysága függ az [thrive:compound type=\"oxygen\"][/thrive:compound] koncentrációjától."
 
+#, fuzzy
+msgid "META_THREADS_TOOLTIP"
+msgstr ""
+"Nem lehet automatikusan felismerni, hogy a hyperthreading engedélyezve van-e vagy sem.\n"
+"Ez befolyásolja a szálak alapértelmezett számát, mivel a hyperthreading szálak nem olyan gyorsak, mint a valódi CPU-magok."
+
 msgid "METRICS"
 msgstr "Teljesítmény metrikák"
 
@@ -3483,6 +3536,10 @@ msgstr ""
 
 msgid "MICHE_ENVIRONMENTAL_COMPOUND_PRESSURE"
 msgstr ""
+
+#, fuzzy
+msgid "MICHE_ENVIRONMENTAL_TOLERANCE"
+msgstr "Környezet"
 
 msgid "MICHE_MAINTAIN_COMPOUND_PRESSURE"
 msgstr ""
@@ -4283,6 +4340,10 @@ msgid "NOTICE_READY_TO_EDIT"
 msgstr ""
 
 #, fuzzy
+msgid "NOT_ADAPTED_TO_CURRENT_PATCH"
+msgstr "Jelenlegi patch-re ugrás"
+
+#, fuzzy
 msgid "NOT_STARTED_DOT"
 msgstr "Megszakítva."
 
@@ -4340,6 +4401,10 @@ msgstr ""
 
 msgid "NUMLOCK"
 msgstr "Num Lock"
+
+#, fuzzy
+msgid "NUTRIENT_COST_TOOLTIP"
+msgstr "Játék szüneteltetése"
 
 msgid "N_A"
 msgstr "N/A"
@@ -4580,6 +4645,14 @@ msgstr "Oxigén"
 msgid "OXYGEN_INHIBITOR_SYNTHESIS"
 msgstr "OxyToxy szintézis"
 
+#, fuzzy
+msgid "OXYGEN_RESISTANCE"
+msgstr "Méreg elleni állóképesség"
+
+#, fuzzy
+msgid "OXYGEN_TOLERANCE_TOOLTIP"
+msgstr "Az összetevők mutatása / elrejtése"
+
 msgid "OXYTOXISOME_PROCESSES_DESCRIPTION"
 msgstr "[thrive:compound type=\"atp\"][/thrive:compound]-t alakít át [thrive:compound type=\"oxytoxy\"][/thrive:compound]-vá. Hatékonysága függ az [thrive:compound type=\"oxygen\"][/thrive:compound] koncentrációjától. Mérget képes kilőni a [thrive:input]g_fire_toxin[/thrive:input] megnyomásával. Ha az [thrive:compound type=\"oxytoxy\"][/thrive:compound] mennyisége alacsony, akkor azt a kis mennyiséget ki tudod lőni, viszont kevesebb sebzést okoz."
 
@@ -4712,6 +4785,10 @@ msgstr ""
 msgid "PERCENTAGE_VALUE"
 msgstr "{0}%"
 
+#, fuzzy
+msgid "PERFECT_ADAPTATION_DESCRIPTION"
+msgstr "Minden sejt csak kemoreceptorok segítségével képes \"látni\", így tudnak információt gyűjteni a környezetükről. Ezen sejtszervecske hozzáadásával sokkal finomhangoltabb lesz a sejted kemorecepciója. Egy vonal fog megjelenni játékon belül, mely jelképezi a sejt \"látását\", és a sejt közelében található vegyületekre mutat."
+
 msgid "PERFORMANCE"
 msgstr "Teljesítmény"
 
@@ -4726,6 +4803,10 @@ msgid "PER_SECOND_SLASH"
 msgstr "/másodperc"
 
 msgid "PHOSPHATE"
+msgstr "Foszfát"
+
+#, fuzzy
+msgid "PHOSPHATES_COST"
 msgstr "Foszfát"
 
 msgid "PHOTOSYNTHESIS"
@@ -4830,6 +4911,10 @@ msgstr "Nyomás"
 msgid "PRESSURE_SHORT"
 msgstr "Nyomás"
 
+#, fuzzy
+msgid "PRESSURE_TOLERANCE_TOOLTIP"
+msgstr "Kilépés a főmenübe"
+
 msgid "PRESS_KEY_DOT_DOT_DOT"
 msgstr "Nyomj le egy gombot..."
 
@@ -4849,6 +4934,10 @@ msgid "PROCESS_ENVIRONMENT_SEPARATOR"
 msgstr "@"
 
 msgid "PROCESS_PANEL_TITLE"
+msgstr "Sejtfolyamatok"
+
+#, fuzzy
+msgid "PROCESS_SPEED_MODIFIER"
 msgstr "Sejtfolyamatok"
 
 msgid "PROGRAMMING_TEAM"
@@ -5858,11 +5947,15 @@ msgstr "Hőmérséklet"
 msgid "TEMPERATURE_SHORT"
 msgstr "Hőm."
 
+#, fuzzy
+msgid "TEMPERATURE_TOLERANCE_TOOLTIP"
+msgstr "Játék szüneteltetése"
+
 msgid "TESTING_TEAM"
 msgstr "Tesztelő csapat"
 
 #, fuzzy
-msgid "THANKS_FOR_BUYING_THRIVE"
+msgid "THANKS_FOR_BUYING_THRIVE_2"
 msgstr ""
 "Köszönjük, hogy játszottál a játékkal!\n"
 "\n"
@@ -5886,6 +5979,7 @@ msgstr "Termoplasztisz"
 msgid "THERMOPLAST_DESCRIPTION"
 msgstr ""
 
+#, fuzzy
 msgid "THERMOPLAST_PROCESSES_DESCRIPTION"
 msgstr "[thrive:compound type=\"glucose\"][/thrive:compound]-t állít elő. Hatékonysága függ a [thrive:compound type=\"carbondioxide\"][/thrive:compound] koncentrációjától és a hőmérséklettől."
 
@@ -6030,6 +6124,10 @@ msgstr "FPS mutatása be/ki"
 msgid "TOGGLE_FULLSCREEN"
 msgstr "Teljes képernyő be/ki"
 
+#, fuzzy
+msgid "TOGGLE_HEAT_VIEW_TOOLTIP"
+msgstr "Elnyelés be/ki"
+
 msgid "TOGGLE_HUD_HIDE"
 msgstr "HUD be/ki"
 
@@ -6052,6 +6150,32 @@ msgstr "Szünet"
 
 msgid "TOGGLE_UNBINDING"
 msgstr "Szétválás be/ki"
+
+msgid "TOLERANCES_TOO_HIGH_PRESSURE"
+msgstr ""
+
+msgid "TOLERANCES_TOO_HIGH_TEMPERATURE"
+msgstr ""
+
+msgid "TOLERANCES_TOO_LOW_OXYGEN_PROTECTION"
+msgstr ""
+
+#, fuzzy
+msgid "TOLERANCES_TOO_LOW_PRESSURE"
+msgstr "Vegyületfelhők"
+
+msgid "TOLERANCES_TOO_LOW_TEMPERATURE"
+msgstr ""
+
+#, fuzzy
+msgid "TOLERANCES_TOO_LOW_UV_PROTECTION"
+msgstr "{0}: +{1} ATP"
+
+msgid "TOLERANCES_UNSUITABLE_DEBUFFS"
+msgstr ""
+
+msgid "TOLERANCE_RANGE_LABEL"
+msgstr ""
 
 msgid "TOOLS"
 msgstr "Eszközök"
@@ -6360,10 +6484,6 @@ msgstr "Többsejtes szerkesztő betöltése"
 msgid "TUTORIAL_VIEW_NOW"
 msgstr "Tutorial"
 
-#, fuzzy
-msgid "TWITTER_TOOLTIP"
-msgstr "Változtasd meg beállításaidat"
-
 msgid "TWO_TIMES"
 msgstr "2x"
 
@@ -6601,6 +6721,14 @@ msgstr "A háttérben futó szálak számának manuális beállítása"
 
 msgid "USE_VIRTUAL_WINDOW_SIZE"
 msgstr ""
+
+#, fuzzy
+msgid "UV_PROTECTION"
+msgstr "Auto-Evo becslés"
+
+#, fuzzy
+msgid "UV_TOLERANCE_TOOLTIP"
+msgstr "Az összetevők mutatása / elrejtése"
 
 msgid "VACUOLE"
 msgstr "Vakuólum"
@@ -8458,6 +8586,9 @@ msgstr "Wikipédiánk"
 msgid "WILL_YOU_THRIVE"
 msgstr "Túl fogsz élni?"
 
+msgid "WINDOWED"
+msgstr ""
+
 msgid "WIN_BOX_TITLE"
 msgstr "TÚLÉLTÉL!"
 
@@ -8526,6 +8657,10 @@ msgstr "Xbox One"
 msgid "XBOX_SERIES"
 msgstr "Xbox Series X"
 
+#, fuzzy
+msgid "X_TWITTER_TOOLTIP"
+msgstr "Változtasd meg beállításaidat"
+
 msgid "YEARS"
 msgstr "évek"
 
@@ -8549,6 +8684,13 @@ msgstr "Közelítés"
 
 msgid "ZOOM_OUT"
 msgstr "Távolodás"
+
+#, fuzzy
+#~ msgid "THANKS_FOR_BUYING_THRIVE"
+#~ msgstr ""
+#~ "Köszönjük, hogy játszottál a játékkal!\n"
+#~ "\n"
+#~ "Ha élvezted a játékot, akkor beszélj a barátaidnak is rólunk."
 
 #, fuzzy
 #~ msgid "WIKI_RADIOSYNTHESIS"
