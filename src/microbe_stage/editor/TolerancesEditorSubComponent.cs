@@ -11,6 +11,9 @@ using Newtonsoft.Json;
 [SceneLoadedClass("res://src/microbe_stage/editor/TolerancesEditorSubComponent.tscn", UsesEarlyResolve = false)]
 public partial class TolerancesEditorSubComponent : EditorComponentBase<ICellEditorData>
 {
+    private readonly StringName toleranceFlashName = new("FlashPressureRange");
+    private readonly StringName tooWideRangeName = new("PopupPressureRangeWarning");
+
     private readonly CompoundDefinition temperature = SimulationParameters.GetCompound(Compound.Temperature);
 
 #pragma warning disable CA2213
@@ -28,6 +31,9 @@ public partial class TolerancesEditorSubComponent : EditorComponentBase<ICellEdi
     private Container uvResistanceContainer = null!;
 
     [Export]
+    private AnimationPlayer invalidChangeAnimation = null!;
+
+    [Export]
     [ExportCategory("Inputs")]
     private Slider temperatureSlider = null!;
 
@@ -35,10 +41,10 @@ public partial class TolerancesEditorSubComponent : EditorComponentBase<ICellEdi
     private Slider temperatureToleranceRangeSlider = null!;
 
     [Export]
-    private Slider pressureSlider = null!;
+    private Slider pressureMinSlider = null!;
 
     [Export]
-    private Slider pressureToleranceRangeSlider = null!;
+    private Slider pressureMaxSlider = null!;
 
     [Export]
     private Slider oxygenResistanceSlider = null!;
@@ -83,15 +89,17 @@ public partial class TolerancesEditorSubComponent : EditorComponentBase<ICellEdi
 
     private bool automaticallyChanging;
 
-    [JsonProperty]
-    private float currentPressureToleranceRange;
-
     private bool wasFreshInit;
 
     /// <summary>
     ///   Reusable tolerances object for checking things until it is consumed by using it up in an action
     /// </summary>
     private EnvironmentalTolerances? reusableTolerances;
+
+    /// <summary>
+    ///   When true links the max and min pressure sliders to keep a consistent range
+    /// </summary>
+    private bool keepSamePressureFlexibility = true;
 
     [Signal]
     public delegate void OnTolerancesChangedEventHandler();
@@ -108,8 +116,6 @@ public partial class TolerancesEditorSubComponent : EditorComponentBase<ICellEdi
     {
         originalTemperatureFont = temperatureMinLabel.LabelSettings;
         originalPressureFont = pressureMinLabel.LabelSettings;
-
-        pressureToleranceRangeSlider.MaxValue = Constants.TOLERANCE_PRESSURE_RANGE_MAX;
 
         RegisterTooltips();
     }
@@ -182,7 +188,7 @@ public partial class TolerancesEditorSubComponent : EditorComponentBase<ICellEdi
 
         if (pressureToolTip != null)
         {
-            var pressureCost = pressureSlider.Step * Constants.TOLERANCE_CHANGE_MP_PER_PRESSURE *
+            var pressureCost = pressureMinSlider.Step * Constants.TOLERANCE_CHANGE_MP_PER_PRESSURE *
                 MPDisplayCostMultiplier;
 
             pressureToolTip.MPCost = (float)pressureCost;
@@ -211,7 +217,7 @@ public partial class TolerancesEditorSubComponent : EditorComponentBase<ICellEdi
 
         // Set huge ranges so that there is no threat of optimal bonuses triggering with the default calculations
         optimal.PressureMinimum = 0;
-        optimal.PressureMaximum = optimal.PreferredPressure + Constants.TOLERANCE_PERFECT_THRESHOLD_PRESSURE * 2;
+        optimal.PressureMaximum += Constants.TOLERANCE_PERFECT_THRESHOLD_PRESSURE * 2;
         optimal.TemperatureTolerance += Constants.TOLERANCE_PERFECT_THRESHOLD_TEMPERATURE * 2;
 
         var tempTolerances = CurrentTolerances.Clone();
@@ -229,7 +235,6 @@ public partial class TolerancesEditorSubComponent : EditorComponentBase<ICellEdi
         if (pressureToolTip != null)
         {
             tempTolerances.CopyFrom(optimal);
-            tempTolerances.PreferredPressure = CurrentTolerances.PreferredPressure;
             tempTolerances.PressureMinimum = CurrentTolerances.PressureMinimum;
             tempTolerances.PressureMaximum = CurrentTolerances.PressureMaximum;
 
@@ -276,6 +281,17 @@ public partial class TolerancesEditorSubComponent : EditorComponentBase<ICellEdi
         uvResistanceToolTip = toolTipManager.GetToolTip<EnvironmentalToleranceToolTip>("uvResistance", "tolerances");
     }
 
+    protected override void Dispose(bool disposing)
+    {
+        if (disposing)
+        {
+            toleranceFlashName.Dispose();
+            tooWideRangeName.Dispose();
+        }
+
+        base.Dispose(disposing);
+    }
+
     private void CalculateStatsAndShow(EnvironmentalTolerances calculationTolerances,
         EnvironmentalToleranceToolTip toolTip)
     {
@@ -288,23 +304,14 @@ public partial class TolerancesEditorSubComponent : EditorComponentBase<ICellEdi
         toolTip.UpdateStats(resolvedTolerances);
     }
 
-    private void CalculateToleranceRangeForGUI()
-    {
-        // TODO: maybe the GUI should have separate sliders as well?
-        currentPressureToleranceRange =
-            (CurrentTolerances.PressureMaximum - CurrentTolerances.PressureMinimum) * 0.5f;
-    }
-
     private void ApplyCurrentValuesToGUI()
     {
-        CalculateToleranceRangeForGUI();
-
         automaticallyChanging = true;
 
         temperatureSlider.Value = CurrentTolerances.PreferredTemperature;
         temperatureToleranceRangeSlider.Value = CurrentTolerances.TemperatureTolerance;
-        pressureSlider.Value = CurrentTolerances.PreferredPressure;
-        pressureToleranceRangeSlider.Value = currentPressureToleranceRange;
+        pressureMinSlider.Value = CurrentTolerances.PressureMinimum;
+        pressureMaxSlider.Value = CurrentTolerances.PressureMaximum;
         oxygenResistanceSlider.Value = CurrentTolerances.OxygenResistance;
         uvResistanceSlider.Value = CurrentTolerances.UVResistance;
 
@@ -355,52 +362,131 @@ public partial class TolerancesEditorSubComponent : EditorComponentBase<ICellEdi
         automaticallyChanging = false;
     }
 
-    private void OnPressureSliderChanged(float value)
+    private void OnPressureSliderMinChanged(float value)
     {
         if (automaticallyChanging)
             return;
 
-        reusableTolerances ??= new EnvironmentalTolerances();
-        reusableTolerances.CopyFrom(CurrentTolerances);
-
-        // Pressure needs to always update all the 3 related values at once when updating to make sure they match
-        reusableTolerances.PreferredPressure = value;
-        reusableTolerances.PressureMinimum = Math.Max(value - currentPressureToleranceRange, 0);
-        reusableTolerances.PressureMaximum = value + currentPressureToleranceRange;
-
         automaticallyChanging = true;
 
-        if (!TriggerChangeIfPossible())
+        var previousRange = Math.Abs(CurrentTolerances.PressureMaximum - CurrentTolerances.PressureMinimum);
+
+        if (keepSamePressureFlexibility)
         {
-            pressureSlider.Value = CurrentTolerances.PreferredPressure;
+            // Update the other slider to keep the current flexibility range
+            var maxShouldBe = value + previousRange;
+
+            // If not possible restricted the movement and flash the toggle button red
+            if (maxShouldBe > pressureMaxSlider.MaxValue)
+            {
+                // Not possible to change
+                pressureMaxSlider.Value = pressureMaxSlider.MaxValue;
+                invalidChangeAnimation.Play(toleranceFlashName);
+
+                // This will trigger the signal again for processing retry
+                automaticallyChanging = false;
+                pressureMinSlider.Value = pressureMaxSlider.MaxValue - previousRange;
+                return;
+            }
+
+            // Adjust the dependent slider
+            pressureMaxSlider.Value = maxShouldBe;
+        }
+        else
+        {
+            var newRange = Math.Abs(pressureMaxSlider.Value - value);
+
+            // Ensure flexibility doesn't go above the configured limit
+            if (newRange > previousRange && newRange > Constants.TOLERANCE_PRESSURE_RANGE_MAX)
+            {
+                pressureMinSlider.Value = CurrentTolerances.PressureMinimum;
+
+                invalidChangeAnimation.Play(tooWideRangeName);
+                automaticallyChanging = false;
+                return;
+            }
+
+            // Min can't go above the max
+            if (value > pressureMaxSlider.Value)
+            {
+                pressureMaxSlider.Value = value;
+            }
         }
 
+        TryApplyPressureChange(value, (float)pressureMaxSlider.Value);
         automaticallyChanging = false;
     }
 
-    private void OnPressureToleranceRangeSliderChanged(float value)
+    private void OnPressureSliderMaxChanged(float value)
     {
         if (automaticallyChanging)
             return;
 
-        // This is a bit of a special case as this is a derived property not directly on the slider
-        var min = CurrentTolerances.PreferredPressure - value;
-        var max = CurrentTolerances.PreferredPressure + value;
+        automaticallyChanging = true;
 
+        var previousRange = Math.Abs(CurrentTolerances.PressureMaximum - CurrentTolerances.PressureMinimum);
+
+        if (keepSamePressureFlexibility)
+        {
+            // Update the other slider to keep the current flexibility range
+            var minShouldBe = value - previousRange;
+
+            if (minShouldBe < pressureMinSlider.MinValue)
+            {
+                // Not possible to change
+                pressureMinSlider.Value = pressureMinSlider.MinValue;
+                invalidChangeAnimation.Play(toleranceFlashName);
+
+                // This will trigger the signal again for processing retry
+                automaticallyChanging = false;
+                pressureMaxSlider.Value = pressureMinSlider.MinValue + previousRange;
+                return;
+            }
+
+            pressureMinSlider.Value = minShouldBe;
+        }
+        else
+        {
+            var newRange = Math.Abs(value - pressureMinSlider.Value);
+
+            if (newRange > previousRange && newRange > Constants.TOLERANCE_PRESSURE_RANGE_MAX)
+            {
+                pressureMaxSlider.Value = CurrentTolerances.PressureMaximum;
+
+                invalidChangeAnimation.Play(tooWideRangeName);
+
+                automaticallyChanging = false;
+                return;
+            }
+
+            // Max can't go below the min
+            if (value < pressureMinSlider.Value)
+            {
+                pressureMinSlider.Value = value;
+            }
+        }
+
+        TryApplyPressureChange((float)pressureMinSlider.Value, value);
+        automaticallyChanging = false;
+    }
+
+    private void OnKeepPressureFlexibilityToggled(bool keepCurrent)
+    {
+        keepSamePressureFlexibility = keepCurrent;
+    }
+
+    private void TryApplyPressureChange(float min, float max)
+    {
         reusableTolerances ??= new EnvironmentalTolerances();
         reusableTolerances.CopyFrom(CurrentTolerances);
-        reusableTolerances.PressureMinimum = Math.Max(min, 0);
+        reusableTolerances.PressureMinimum = min;
         reusableTolerances.PressureMaximum = max;
-
-        automaticallyChanging = true;
 
         if (!TriggerChangeIfPossible())
         {
-            CalculateToleranceRangeForGUI();
-            pressureToleranceRangeSlider.Value = currentPressureToleranceRange;
+            pressureMinSlider.Value = CurrentTolerances.PressureMinimum;
+            pressureMaxSlider.Value = CurrentTolerances.PressureMaximum;
         }
-
-        automaticallyChanging = false;
     }
 
     private void OnOxygenResistanceSliderChanged(float value)
@@ -469,12 +555,6 @@ public partial class TolerancesEditorSubComponent : EditorComponentBase<ICellEdi
     {
         EmitSignal(SignalName.OnTolerancesChanged);
 
-        CalculateToleranceRangeForGUI();
-
-        automaticallyChanging = true;
-        pressureToleranceRangeSlider.Value = currentPressureToleranceRange;
-        automaticallyChanging = false;
-
         UpdateCurrentValueDisplays();
         UpdateToolTipStats();
     }
@@ -532,27 +612,18 @@ public partial class TolerancesEditorSubComponent : EditorComponentBase<ICellEdi
             temperatureMaxLabel.LabelSettings = originalTemperatureFont;
         }
 
-        // TODO: rather than using Max here, would it be better if this used the actual min and max as calculated?
-        pressureMinLabel.Text =
-            unitFormat.FormatSafe(
-                Math.Round(Math.Max(CurrentTolerances.PreferredPressure - currentPressureToleranceRange, 0) / 1000),
-                "kPa");
-        pressureMaxLabel.Text =
-            unitFormat.FormatSafe(
-                Math.Round((CurrentTolerances.PreferredPressure + currentPressureToleranceRange) / 1000), "kPa");
+        pressureMinLabel.Text = unitFormat.FormatSafe(Math.Round(CurrentTolerances.PressureMinimum / 1000), "kPa");
+        pressureMaxLabel.Text = unitFormat.FormatSafe(Math.Round(CurrentTolerances.PressureMaximum / 1000), "kPa");
 
-        if (Math.Abs(patchPressure - CurrentTolerances.PreferredPressure) > currentPressureToleranceRange)
+        if (patchPressure > CurrentTolerances.PressureMaximum)
         {
-            if (patchPressure > CurrentTolerances.PreferredPressure)
-            {
-                pressureMaxLabel.LabelSettings = badValueFont;
-                pressureMinLabel.LabelSettings = originalPressureFont;
-            }
-            else
-            {
-                pressureMinLabel.LabelSettings = badValueFont;
-                pressureMaxLabel.LabelSettings = originalPressureFont;
-            }
+            pressureMaxLabel.LabelSettings = badValueFont;
+            pressureMinLabel.LabelSettings = originalPressureFont;
+        }
+        else if (patchPressure < CurrentTolerances.PressureMinimum)
+        {
+            pressureMinLabel.LabelSettings = badValueFont;
+            pressureMaxLabel.LabelSettings = originalPressureFont;
         }
         else if (Math.Abs(CurrentTolerances.PressureMaximum - CurrentTolerances.PressureMinimum) <
                  Constants.TOLERANCE_PERFECT_THRESHOLD_PRESSURE)

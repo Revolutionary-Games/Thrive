@@ -25,13 +25,15 @@ public class ToleranceActionData : EditorCombinableActionData
         var temperatureChange = Math.Abs(OldTolerances.PreferredTemperature - NewTolerances.PreferredTemperature);
         var temperatureToleranceChange =
             Math.Abs(OldTolerances.TemperatureTolerance - NewTolerances.TemperatureTolerance);
-        double pressureChange = Math.Abs(OldTolerances.PreferredPressure - NewTolerances.PreferredPressure);
-        double minPressureChange = Math.Abs(OldTolerances.PressureMinimum - NewTolerances.PressureMinimum);
-        double maxPressureChange = Math.Abs(OldTolerances.PressureMaximum - NewTolerances.PressureMaximum);
 
-        // Calculate pressure range change as moving of the middle point (so scale the total change to half as the same
-        // change moves the min and max points at the same time)
-        var pressureToleranceChange = (minPressureChange + maxPressureChange) * 0.5;
+        // Pressure change is calculated as the change of the range's middle points
+        double pressureChange = Math.Abs((OldTolerances.PressureMaximum + OldTolerances.PressureMinimum) * 0.5 -
+            (NewTolerances.PressureMaximum + NewTolerances.PressureMinimum) * 0.5);
+
+        // Calculate pressure tolerance range change
+        var oldRange = Math.Abs(OldTolerances.PressureMaximum - OldTolerances.PressureMinimum);
+        var newRange = Math.Abs(NewTolerances.PressureMaximum - NewTolerances.PressureMinimum);
+        var pressureToleranceChange = Math.Abs(oldRange - newRange);
 
         var oxygenChange = Math.Abs(OldTolerances.OxygenResistance - NewTolerances.OxygenResistance);
         var uvChange = Math.Abs(OldTolerances.UVResistance - NewTolerances.UVResistance);
