@@ -5,7 +5,7 @@
 [ext_resource type="NoiseTexture3D" uid="uid://c1rh4c3an4opj" path="res://src/microbe_stage/NoiseCurrentY.tres" id="3_lx34w"]
 [ext_resource type="NoiseTexture3D" uid="uid://ho8w6wa3jgb7" path="res://src/microbe_stage/NoiseDisturbanceX.tres" id="4_bbuou"]
 [ext_resource type="NoiseTexture3D" uid="uid://doyvqyy56j0o4" path="res://src/microbe_stage/NoiseDisturbanceY.tres" id="5_kgkhw"]
-[ext_resource type="Texture2D" uid="uid://gc70w2bqq323" path="res://assets/textures/snowflake2.png" id="6_q0tou"]
+[ext_resource type="Texture2D" uid="uid://bwks4coimg7al" path="res://assets/textures/blurry_circle.png" id="6_vctkt"]
 [ext_resource type="Script" path="res://src/microbe_stage/FluidCurrentDisplay.cs" id="7_21wlg"]
 
 [sub_resource type="Gradient" id="Gradient_4eerh"]
@@ -20,6 +20,9 @@ shader = ExtResource("1_ykhyg")
 shader_parameter/emission_box_extents = Vector3(160, 80, 1)
 shader_parameter/colorValue = Color(1, 1, 1, 1)
 shader_parameter/gameTime = null
+shader_parameter/speed = null
+shader_parameter/chaoticness = null
+shader_parameter/scale = null
 shader_parameter/alphaCurve = SubResource("GradientTexture1D_4ly1p")
 shader_parameter/noiseDisturbancesX = ExtResource("4_bbuou")
 shader_parameter/noiseDisturbancesY = ExtResource("5_kgkhw")
@@ -29,7 +32,7 @@ shader_parameter/noiseCurrentsY = ExtResource("3_lx34w")
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_kycdo"]
 transparency = 1
 vertex_color_use_as_albedo = true
-albedo_texture = ExtResource("6_q0tou")
+albedo_texture = ExtResource("6_vctkt")
 
 [sub_resource type="QuadMesh" id="QuadMesh_iqoan"]
 material = SubResource("StandardMaterial3D_kycdo")

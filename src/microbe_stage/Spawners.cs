@@ -756,7 +756,7 @@ public static class SpawnHelpers
 
         entity.Set<StrainAffected>();
 
-        entity.Set<CurrentAffected>();
+        entity.Set(new CurrentAffected(20.0f));
 
         // Selecting is used to throw out specific colony members
         entity.Set<Selectable>();
