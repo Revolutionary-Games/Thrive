@@ -122,6 +122,12 @@ public class TutorialState : ITutorialInput
     [JsonProperty]
     public ModifyOrganelleTutorial ModifyOrganelleTutorial { get; private set; } = new();
 
+    [JsonProperty]
+    public TolerancesTabTutorial TolerancesTabTutorial { get; private set; } = new();
+
+    [JsonProperty]
+    public OpenTolerancesTabTutorial OpenTolerancesTabTutorial { get; private set; } = new();
+
     // End of tutorial state variables
 
     [JsonProperty]
@@ -411,6 +417,8 @@ public class TutorialState : ITutorialInput
             FlagellumPlacementTutorial,
             ModifyOrganelleTutorial,
             AtpBalanceIntroduction,
+            OpenTolerancesTabTutorial,
+            TolerancesTabTutorial,
         };
     }
 }

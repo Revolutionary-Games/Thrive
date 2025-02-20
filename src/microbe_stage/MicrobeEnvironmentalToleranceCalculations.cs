@@ -221,7 +221,7 @@ public static class MicrobeEnvironmentalToleranceCalculations
         if (data.OxygenScore < 1)
         {
             resultCallback.Invoke(Localization.Translate("TOLERANCES_TOO_LOW_OXYGEN_PROTECTION")
-                .FormatSafe(Math.Round(data.PerfectUVAdjustment * 100, 1)));
+                .FormatSafe(Math.Round(data.PerfectOxygenAdjustment * 100, 1)));
         }
 
         if (data.UVScore < 1)

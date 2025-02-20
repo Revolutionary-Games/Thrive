@@ -1732,6 +1732,13 @@ public static class Constants
     public const float TOLERANCE_PRESSURE_RANGE_MAX = 1000000;
     public const float TOLERANCE_PERFECT_PRESSURE_SCORE = 0.1f;
 
+    /// <summary>
+    ///   UV effects only appear once this amount of UV is in a patch
+    /// </summary>
+    public const float TOLERANCE_UV_APPLY_AFTER = 0.01f;
+
+    public const float TOLERANCE_OXYGEN_APPLY_AFTER = 0.01f;
+
     // How much it costs to edit various tolerances in the editor
     public const float TOLERANCE_CHANGE_MP_PER_TEMPERATURE = 1.0f;
     public const float TOLERANCE_CHANGE_MP_PER_TEMPERATURE_TOLERANCE = 4.0f;

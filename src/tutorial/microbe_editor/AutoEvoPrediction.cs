@@ -16,7 +16,7 @@ public class AutoEvoPrediction : EditorEntryCountingTutorial
     [JsonIgnore]
     public Control? EditorAutoEvoPredictionPanel { get; set; }
 
-    protected override int TriggersOnNthEditorSession => 2;
+    protected override int TriggersOnNthEditorSession => 3;
 
     public override void ApplyGUIState(MicrobeEditorTutorialGUI gui)
     {

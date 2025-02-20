@@ -11,6 +11,7 @@ public enum EmbeddedThriveIcon
     OsmoIcon,
     MovementIcon,
     MP,
+    Pressure,
 }
 
 public static class EmbeddedThriveIconExtensions

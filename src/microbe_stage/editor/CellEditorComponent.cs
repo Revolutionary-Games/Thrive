@@ -952,7 +952,7 @@ public partial class CellEditorComponent :
         if (!IsMulticellularEditor)
         {
             // Make sure initial tolerance warnings are shown
-            OnTolerancesEditorChangedData();
+            OnTolerancesChanged(tolerancesEditor.CurrentTolerances);
         }
     }
 
@@ -1081,7 +1081,7 @@ public partial class CellEditorComponent :
 
         // Refresh tolerances data for the new patch
         tolerancesEditor.OnPatchChanged();
-        OnTolerancesEditorChangedData();
+        OnTolerancesChanged(tolerancesEditor.CurrentTolerances);
 
         // Redo suggestion calculations as they could depend on the patch data (though at the time of writing this is
         // not really changing)
@@ -2729,6 +2729,8 @@ public partial class CellEditorComponent :
 
         selectedSelectionMenuTab = selection;
         ApplySelectionMenuTab();
+
+        tutorialState?.SendEvent(TutorialEventType.CellEditorTabChanged, new StringEventArgs(tab), this);
     }
 
     private void ApplySelectionMenuTab()
