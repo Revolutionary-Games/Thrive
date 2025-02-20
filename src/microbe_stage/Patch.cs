@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.ComponentModel;
+using System.Diagnostics;
 using Godot;
 using Newtonsoft.Json;
 using Nito.Collections;
@@ -499,15 +500,32 @@ public class Patch
             minPressure += overshoot / 2 + 1;
             maxPressure -= overshoot / 2 + 1;
         }
+        else
+        {
+            // Make sure tolerance is not perfectly adapted by default
+            var rangeToPerfect = Constants.TOLERANCE_PERFECT_THRESHOLD_PRESSURE - (maxPressure - minPressure);
 
-        // Ensure pressure is within the middle of the range
-        pressure = minPressure + (maxPressure - minPressure) / 2;
+            if (rangeToPerfect > 0)
+            {
+                // This is rounded to 50 000 as that's the min step in GUI sliders
+                maxPressure += MathF.Ceiling(rangeToPerfect / 50000.0f) * 50000;
+            }
+
+#if DEBUG
+            if (Math.Abs(maxPressure - minPressure) > Constants.TOLERANCE_PRESSURE_RANGE_MAX)
+            {
+                GD.PrintErr("Ended up generating too wide initial tolerance");
+
+                if (Debugger.IsAttached)
+                    Debugger.Break();
+            }
+#endif
+        }
 
         var result = new EnvironmentalTolerances
         {
             OxygenResistance = GetAmbientCompound(Compound.Oxygen, CompoundAmountType.Biome),
             UVResistance = GetAmbientCompound(Compound.Sunlight, CompoundAmountType.Biome),
-            PreferredPressure = pressure,
             PressureMinimum = minPressure,
             PressureMaximum = maxPressure,
             PreferredTemperature = GetAmbientCompound(Compound.Temperature, CompoundAmountType.Biome),

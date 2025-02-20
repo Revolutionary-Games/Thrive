@@ -723,7 +723,11 @@ public partial class CreatureStageHUDBase<TStage> : HUDWithPausing, ICreatureSta
         // TODO: skip updating the label if value has not changed to save on memory allocations
         healthBar.MaxValue = maxHP;
         GUICommon.SmoothlyUpdateBar(healthBar, hp, delta);
-        var hpText = StringUtils.FormatNumber(MathF.Round(hp)) + " / " + StringUtils.FormatNumber(maxHP);
+
+        // TODO: might need to consider some effects of the rounding if max health is for example 58.8 there could be
+        // situations where there's slight confusion possibility as the displayed value is higher than it really is
+        // Max HP is rounded now as well so that it matches what the HP can end up displaying as
+        var hpText = StringUtils.FormatNumber(MathF.Round(hp)) + " / " + StringUtils.FormatNumber(MathF.Round(maxHP));
         hpLabel.Text = hpText;
         hpLabel.TooltipText = hpText;
 

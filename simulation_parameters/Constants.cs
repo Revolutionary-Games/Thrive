@@ -1729,7 +1729,7 @@ public static class Constants
     public const float TOLERANCE_INITIAL_PRESSURE_MIN_FRACTION = 0.8f;
     public const float TOLERANCE_INITIAL_PRESSURE_MAX_FRACTION = 1.2f;
 
-    public const float TOLERANCE_PRESSURE_RANGE_MAX = 1000000;
+    public const float TOLERANCE_PRESSURE_RANGE_MAX = 2000000;
     public const float TOLERANCE_PERFECT_PRESSURE_SCORE = 0.1f;
 
     /// <summary>
@@ -1748,7 +1748,7 @@ public static class Constants
     /// <summary>
     ///   As pressure values are massive, this is a double to get reasonable MP costs
     /// </summary>
-    public const double TOLERANCE_CHANGE_MP_PER_PRESSURE = 0.000001;
+    public const double TOLERANCE_CHANGE_MP_PER_PRESSURE = 0.000002;
 
     public const double TOLERANCE_CHANGE_MP_PER_PRESSURE_TOLERANCE = 0.00005;
 

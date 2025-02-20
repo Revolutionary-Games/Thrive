@@ -105,7 +105,7 @@ public static class HealthHelpers
 
         if (damageList == null)
         {
-            // Create new damage list, don't really care if due to data race some info is lost here so we don't
+            // Create a new damage list, don't really care if due to data race some info is lost here, so we don't
             // immediately set the list here and lock it
             damageList = new List<DamageEventNotice> { damageEvent };
 

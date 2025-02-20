@@ -7,6 +7,12 @@ using Godot;
 /// </summary>
 public partial class VacuoleUpgradeGUI : VBoxContainer, IOrganelleUpgrader
 {
+    /// <summary>
+    ///   We need to explicitly block some compounds from upgrades as there's no way to otherwise skip these based on
+    ///   just the properties of the compounds in the JSON
+    /// </summary>
+    public static readonly Compound[] BlockedSpecializedCompounds = [Compound.Radiation, Compound.Temperature];
+
     [Export]
     public NodePath? CompoundsPath;
 
@@ -40,8 +46,12 @@ public partial class VacuoleUpgradeGUI : VBoxContainer, IOrganelleUpgrader
 
     public void OnStartFor(OrganelleTemplate organelle, GameProperties currentGame, float costMultiplier)
     {
+        // Exclude a bunch of stuff that is handled by other things or for other reasons shouldn't be selectable and
+        // an explicitly disabled list of things as there's no property to block those with
         shownChoices = SimulationParameters.Instance.GetAllCompounds().Values
-            .Where(c => !c.IsEnvironmental && (!c.IsAgent || c.ID == Compound.Mucilage)).ToList();
+            .Where(c => !c.IsEnvironmental && (!c.IsAgent || c.ID == Compound.Mucilage) &&
+                !BlockedSpecializedCompounds.Contains(c.ID))
+            .ToList();
 
         foreach (var compound in shownChoices)
             compounds.AddItem(compound.Name);

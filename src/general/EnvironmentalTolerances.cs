@@ -17,19 +17,8 @@ public class EnvironmentalTolerances
     public float TemperatureTolerance = 21;
 
     /// <summary>
-    ///   Pressure this species likes to be in. The value is in Pa (pascals).
-    /// </summary>
-    /// <remarks>
-    ///   <para>
-    ///     TODO: maybe remove this entirely as this is a pretty big danger of not being within the pressure range if
-    ///     there's a slight bug
-    ///   </para>
-    /// </remarks>
-    public float PreferredPressure = 101325;
-
-    /// <summary>
-    ///   Minimum pressure this species likes. This is not just a single range as the range needs to be lopsided
-    ///   towards surviving higher pressures.
+    ///   Minimum pressure this species likes. The value is in Pa (pascals). This is not just a single range as
+    ///   the range needs to be lopsided towards surviving higher pressures.
     /// </summary>
     /// <remarks>
     ///   <para>
@@ -58,7 +47,6 @@ public class EnvironmentalTolerances
     {
         PreferredTemperature = tolerancesToCopy.PreferredTemperature;
         TemperatureTolerance = tolerancesToCopy.TemperatureTolerance;
-        PreferredPressure = tolerancesToCopy.PreferredPressure;
         PressureMinimum = tolerancesToCopy.PressureMinimum;
         PressureMaximum = tolerancesToCopy.PressureMaximum;
         UVResistance = tolerancesToCopy.UVResistance;
@@ -73,10 +61,10 @@ public class EnvironmentalTolerances
 
     public bool SanityCheckNoThrow()
     {
-        if (PreferredPressure < PressureMinimum || PreferredPressure > PressureMaximum)
+        if (PressureMinimum > PressureMaximum)
             return false;
 
-        if (PressureMinimum > PressureMaximum || PressureMaximum < 0)
+        if (PressureMaximum < 0)
             return false;
 
         return true;
@@ -98,7 +86,6 @@ public class EnvironmentalTolerances
     {
         return Math.Abs(PreferredTemperature - other.PreferredTemperature) < MathUtils.EPSILON &&
             Math.Abs(TemperatureTolerance - other.TemperatureTolerance) < MathUtils.EPSILON &&
-            Math.Abs(PreferredPressure - other.PreferredPressure) < MathUtils.EPSILON &&
             Math.Abs(PressureMinimum - other.PressureMinimum) < MathUtils.EPSILON &&
             Math.Abs(PressureMaximum - other.PressureMaximum) < MathUtils.EPSILON &&
             Math.Abs(UVResistance - other.UVResistance) < MathUtils.EPSILON &&
@@ -114,7 +101,7 @@ public class EnvironmentalTolerances
 
     public override int GetHashCode()
     {
-        return HashCode.Combine(PreferredTemperature, TemperatureTolerance, PreferredPressure, PressureMinimum,
+        return HashCode.Combine(PreferredTemperature, TemperatureTolerance, PressureMinimum,
             PressureMaximum, UVResistance, OxygenResistance);
     }
 
@@ -122,7 +109,6 @@ public class EnvironmentalTolerances
     {
         return PreferredTemperature.Equals(other.PreferredTemperature) &&
             TemperatureTolerance.Equals(other.TemperatureTolerance) &&
-            PreferredPressure.Equals(other.PreferredPressure) &&
             PressureMinimum.Equals(other.PressureMinimum) &&
             PressureMaximum.Equals(other.PressureMaximum) && UVResistance.Equals(other.UVResistance) &&
             OxygenResistance.Equals(other.OxygenResistance);

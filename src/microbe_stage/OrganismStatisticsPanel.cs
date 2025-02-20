@@ -396,7 +396,7 @@ public partial class OrganismStatisticsPanel : PanelContainer
 
     public void UpdateHitpoints(float hp)
     {
-        hpLabel.Value = hp;
+        hpLabel.Value = MathF.Round(hp, 1);
     }
 
     public void UpdateStorage(Dictionary<Compound, float> storage, float nominalStorage)
