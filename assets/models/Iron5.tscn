@@ -1,8 +1,28 @@
-[gd_scene load_steps=3 format=3 uid="uid://be223v178pehv"]
+[gd_scene load_steps=8 format=3 uid="uid://be223v178pehv"]
 
-[ext_resource type="Material" uid="uid://cjly5ovvgv0c5" path="res://assets/models/IronMaterial.material" id="2"]
+[ext_resource type="Shader" path="res://shaders/IronChunk.gdshader" id="1_f53v7"]
 [ext_resource type="ArrayMesh" uid="uid://bxmp33rvntkiq" path="res://assets/models/IronRockLarge1.mesh" id="2_6d2pu"]
+[ext_resource type="Texture2D" uid="uid://cynylcx1824be" path="res://assets/textures/IronChunk_Depleted.png" id="2_tx4w3"]
+[ext_resource type="Texture2D" uid="uid://baxuoyeo83r2u" path="res://assets/textures/dissolve_noise.tres" id="3_otfdd"]
+[ext_resource type="Texture2D" uid="uid://btvaabw1tcq3d" path="res://assets/textures/IronChunk_Full.png" id="4_imykw"]
+[ext_resource type="Texture2D" uid="uid://c4lakneio0v00" path="res://assets/textures/IronChunk_normal.png" id="5_xsykt"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_drc08"]
+resource_local_to_scene = true
+render_priority = 0
+shader = ExtResource("1_f53v7")
+shader_parameter/roughness = 0.85
+shader_parameter/metallicTextureChannel = Vector4(1, 0, 0, 0)
+shader_parameter/depletion = 0.0
+shader_parameter/dissolveValue = 0.0
+shader_parameter/dissolveScale = 2.0
+shader_parameter/outlineWidth = 0.0
+shader_parameter/growColor = Color(0.321569, 0.180392, 0.101961, 1)
+shader_parameter/fullTexture = ExtResource("4_imykw")
+shader_parameter/depletedTexture = ExtResource("2_tx4w3")
+shader_parameter/normalTexture = ExtResource("5_xsykt")
+shader_parameter/dissolveTexture = ExtResource("3_otfdd")
 
 [node name="iron5" type="MeshInstance3D"]
-material_override = ExtResource("2")
+material_override = SubResource("ShaderMaterial_drc08")
 mesh = ExtResource("2_6d2pu")
