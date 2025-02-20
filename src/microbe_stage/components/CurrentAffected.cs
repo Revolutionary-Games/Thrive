@@ -11,4 +11,15 @@ using Systems;
 [JSONDynamicTypeAllowed]
 public struct CurrentAffected
 {
+    public float EffectStrength;
+
+    public CurrentAffected()
+    {
+        EffectStrength = 1.0f;
+    }
+
+    public CurrentAffected(float strength)
+    {
+        EffectStrength = strength;
+    }
 }

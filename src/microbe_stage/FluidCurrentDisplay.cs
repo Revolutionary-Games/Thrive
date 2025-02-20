@@ -33,7 +33,6 @@ public partial class FluidCurrentDisplay : GpuParticles3D
         {
             time += (float)delta;
 
-            // TODO: make those into StringNames
             material.SetShaderParameter(gameTimeParameterName, time);
         }
     }
@@ -43,6 +42,9 @@ public partial class FluidCurrentDisplay : GpuParticles3D
         material.SetShaderParameter(speedParameterName, biome.WaterCurrentSpeed);
         material.SetShaderParameter(chaoticnessParameterName, biome.WaterCurrentChaoticness);
         material.SetShaderParameter(scaleParameterName, biome.WaterCurrentScale);
+
+        Amount = (int)((1.0f - biome.WaterCurrentSpeed * 0.33f) + (1.0f * biome.WaterCurrentChaoticness * 0.33f)
+            + (1.0f - biome.WaterCurrentScale * 0.33f) * 300.0f);
     }
 
     protected override void Dispose(bool disposing)

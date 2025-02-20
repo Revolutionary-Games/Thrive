@@ -178,7 +178,8 @@ public sealed class FluidCurrentsSystem : AEntitySetSystem<float>
         var pos = new Vector2(position.Position.X, position.Position.Z);
         var vel = VelocityAt(pos) * Constants.MAX_FORCE_APPLIED_BY_CURRENTS;
 
-        physicsControl.ImpulseToGive += new Vector3(vel.X, 0, vel.Y) * delta;
+        physicsControl.ImpulseToGive += new Vector3(vel.X, 0, vel.Y) * delta
+            * entity.Get<CurrentAffected>().EffectStrength;
         physicsControl.PhysicsApplied = false;
     }
 
