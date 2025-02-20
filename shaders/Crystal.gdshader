@@ -17,11 +17,11 @@ uniform vec4 emission : source_color = vec4(0.1f, 0.1f, 0.1f, 1.0f);
 uniform float emissionEnergy = 0.25f;
 
 uniform sampler2D dissolveTexture : source_color;
-uniform float dissolveValue : hint_range(0, 1) = 0.f;
-uniform float dissolveScale : hint_range(0.5f, 5.f, 0.1f) = 1.f;
+uniform float dissolveValue : hint_range(0, 1) = 0.0f;
+uniform float dissolveScale : hint_range(0.5f, 5.0f, 0.1f) = 1.0f;
 
-uniform float outlineWidth : hint_range(0.f, 0.25f, 0.01f) = 0.f;
-uniform vec4 growColor : source_color = vec4(0.1f, 0.1f, 0.1f, 1.f);
+uniform float outlineWidth : hint_range(0.0f, 0.25f, 0.01f) = 0.0f;
+uniform vec4 growColor : source_color = vec4(0.1f, 0.1f, 0.1f, 1.0f);
 
 void fragment() {
     vec4 albedoUV = texture(albedoTexture, UV);
@@ -33,8 +33,8 @@ void fragment() {
     float cutoff = dot(dissolveTex.rgb, vec3(0.3f, 0.3f, 0.3f)) -
         float(-0.5f + dissolveValue);
 
-    vec3 dissolveOutline = clamp(vec3(round(1.f - float(cutoff - outlineWidth))) *
-        growColor.rgb, 0.f, dissolveValue);
+    vec3 dissolveOutline = clamp(vec3(round(1.0f - float(cutoff - outlineWidth))) *
+        growColor.rgb, 0.0f, dissolveValue);
 
     ALBEDO = final.rgb;
     ALPHA = round(cutoff) * final.a;
@@ -50,5 +50,5 @@ void fragment() {
     METALLIC = metallic;
     SPECULAR = specular;
 
-    EMISSION = clamp(((dissolveOutline + emission.rgb) * roughnessUV * emissionEnergy), 0.f, dissolveValue);
+    EMISSION = clamp(((dissolveOutline + emission.rgb) * roughnessUV * emissionEnergy), 0.0f, dissolveValue);
 }
