@@ -45,9 +45,9 @@ public sealed class FluidCurrentsSystem : AEntitySetSystem<float>
 
     private GameWorld? gameWorld;
 
-    private float speed = 0.0f;
-    private float chaoticness = 0.0f;
-    private float scale = 0.0f;
+    private float speed;
+    private float chaoticness;
+    private float scale;
 
     [JsonProperty]
     private float currentsTimePassed;

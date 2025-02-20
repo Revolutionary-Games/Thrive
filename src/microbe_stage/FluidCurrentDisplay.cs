@@ -14,7 +14,7 @@ public partial class FluidCurrentDisplay : GpuParticles3D
     private StringName chaoticnessParameterName = new("chaoticness");
     private StringName scaleParameterName = new("scale");
 
-    private float time = 0.0f;
+    private float time;
 
     public override void _Ready()
     {
