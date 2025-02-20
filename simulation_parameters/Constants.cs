@@ -1753,6 +1753,11 @@ public static class Constants
     public const double TOLERANCE_CHANGE_MP_PER_PRESSURE_TOLERANCE = 0.00005;
 
     /// <summary>
+    ///   How many indicator dots on patch map are displayed per amount of population
+    /// </summary>
+    public const float PLAYER_POPULATION_INDICATORS_PER_POPULATION = 1.0f / 300.0f;
+
+    /// <summary>
     ///   If set to true, then physics debug draw gets enabled when the game starts
     /// </summary>
     public const bool AUTOMATICALLY_TURN_ON_PHYSICS_DEBUG_DRAW = false;

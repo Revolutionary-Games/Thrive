@@ -26,6 +26,8 @@ public partial class PatchMapDrawer : Control
     [Export]
     public NodePath LineContainerPath = null!;
 
+    public uint PlayerSpeciesID = int.MaxValue;
+
 #pragma warning disable CA2213
     [Export]
     public ShaderMaterial MonochromeMaterial = null!;
@@ -47,6 +49,10 @@ public partial class PatchMapDrawer : Control
     private PackedScene nodeScene = null!;
     private Control patchNodeContainer = null!;
     private Control lineContainer = null!;
+    private Texture2D indicatorTexture = null!;
+
+    [Export]
+    private Control populationIndicatorContainer = null!;
 #pragma warning restore CA2213
 
     private PatchMap map = null!;
@@ -54,6 +60,10 @@ public partial class PatchMapDrawer : Control
     private bool dirty = true;
 
     private bool alreadyDrawn;
+
+    private int nextIndicatorIndex;
+
+    private List<Control> playerSpeciesPopulationIndicators = new();
 
     private Dictionary<Patch, bool>? patchEnableStatusesToBeApplied;
 
@@ -147,7 +157,7 @@ public partial class PatchMapDrawer : Control
 
         patchNodeContainer = GetNode<Control>(PatchNodeContainerPath);
         lineContainer = GetNode<Control>(LineContainerPath);
-
+        indicatorTexture = GD.Load<Texture2D>("res://assets/textures/gui/bevel/MapDotIndicator.svg");
         nodeScene = GD.Load<PackedScene>("res://src/microbe_stage/editor/PatchMapNode.tscn");
 
         if (DrawDefaultMapIfEmpty && Map == null)
@@ -1051,6 +1061,8 @@ public partial class PatchMapDrawer : Control
         nodes.Clear();
         connections.Clear();
 
+        nextIndicatorIndex = 0;
+
         if (Map == null)
         {
             SelectedPatch = null;
@@ -1060,6 +1072,12 @@ public partial class PatchMapDrawer : Control
         foreach (var entry in Map.Patches)
         {
             AddPatchNode(entry.Value, entry.Value.ScreenCoordinates);
+        }
+
+        // Hide excess cached indicators
+        for (var i = nextIndicatorIndex; i < playerSpeciesPopulationIndicators.Count - 1; ++i)
+        {
+            playerSpeciesPopulationIndicators[i].Hide();
         }
 
         bool runNodeSelectionsUpdate = true;
@@ -1109,8 +1127,55 @@ public partial class PatchMapDrawer : Control
 
         patch.ApplyPatchEventVisuals(node);
 
+        var playerSpecies = patch.FindSpeciesByID(PlayerSpeciesID);
+        if (playerSpecies != null)
+        {
+            AddPlayerPopulationIndicators(patch, playerSpecies, node, position);
+        }
+
         patchNodeContainer.AddChild(node);
         nodes.Add(node.Patch, node);
+    }
+
+    private void AddPlayerPopulationIndicators(Patch patch, Species playerSpecies, Control node, Vector2 position)
+    {
+        var playerPopulationIndicatorAmount = (int)Math.Ceiling(patch.GetSpeciesSimulationPopulation(playerSpecies) *
+            Constants.PLAYER_POPULATION_INDICATORS_PER_POPULATION);
+
+        for (int i = 0; i < playerPopulationIndicatorAmount; ++i)
+        {
+            var noCached = nextIndicatorIndex >= playerSpeciesPopulationIndicators.Count;
+
+            Control indicator;
+            if (noCached)
+            {
+                indicator = new TextureRect
+                {
+                    Texture = indicatorTexture,
+                    ExpandMode = TextureRect.ExpandModeEnum.IgnoreSize,
+                    Size = new Vector2(6, 6),
+                };
+
+                indicator.MouseFilter = MouseFilterEnum.Ignore;
+                populationIndicatorContainer.AddChild(indicator);
+                playerSpeciesPopulationIndicators.Add(indicator);
+            }
+            else
+            {
+                indicator = playerSpeciesPopulationIndicators[nextIndicatorIndex];
+
+                indicator.Show();
+            }
+
+            var nodeModifier = node.Position.LengthSquared();
+            var modifierSinus = MathF.Sin(i);
+
+            indicator.Position = position + node.Size * 0.5f + new Vector2(0, 40)
+                    .Rotated(nodeModifier * 30) +
+                new Vector2(0, modifierSinus * 40).Rotated(i * 6 * modifierSinus + nodeModifier);
+
+            ++nextIndicatorIndex;
+        }
     }
 
     private void BuildPatchToRegionConnections(PatchRegion region1, PatchRegion region2, Vector2 regionPoint,
