@@ -7,8 +7,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2025-02-20 11:26+0200\n"
-"PO-Revision-Date: 2025-02-20 15:07+0200\n"
+"POT-Creation-Date: 2025-02-20 18:50+0200\n"
+"PO-Revision-Date: 2025-02-20 18:53+0200\n"
 "Last-Translator: Henri Hyyryläinen <hhyyrylainen@revolutionarygamesstudio.com>\n"
 "Language-Team: English <https://translate.revolutionarygamesstudio.com/projects/thrive/thrive-game/en/>\n"
 "Language: en\n"
@@ -2658,6 +2658,12 @@ msgstr "July"
 msgid "JUNE"
 msgstr "June"
 
+msgid "KEEP_CURRENT_FLEXIBILITY"
+msgstr "Keep current flexibility"
+
+msgid "KEEP_CURRENT_TOLERANCE_FLEXIBILITY_TOOLTIP"
+msgstr "Keep the current pressure tolerance range while moving the min and max sliders"
+
 msgid "KEEP_MIGRATION"
 msgstr "Keep Migration"
 
@@ -4503,7 +4509,7 @@ msgid "PRESSURE_SHORT"
 msgstr "Press."
 
 msgid "PRESSURE_TOLERANCE_TOOLTIP"
-msgstr "The pressure preferred by your species as well as the flexibility range around it. When in conditions outside the range, there will be many negative effects on your species. Change the preferred pressure and flexibility with the sliders."
+msgstr "The pressure preferred by your species. Configured as a min and max values as separate sliders. When in conditions outside the range, there will be many negative effects on your species. Change the range size by unchecking the checkbox below the sliders."
 
 msgid "PRESS_KEY_DOT_DOT_DOT"
 msgstr "Press a key..."
@@ -5695,6 +5701,9 @@ msgstr "Tools"
 
 msgid "TOOL_HAND_AXE"
 msgstr "Hand Axe"
+
+msgid "TOO_LARGE_PRESSURE_RANGE"
+msgstr "Pressure range too wide"
 
 msgid "TOO_MANY_RECENT_VERSIONS_TO_SHOW"
 msgstr "Not showing all recent versions as there are too many"
