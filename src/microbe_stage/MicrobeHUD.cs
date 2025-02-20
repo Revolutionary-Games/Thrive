@@ -757,7 +757,11 @@ public partial class MicrobeHUD : CreatureStageHUDBase<MicrobeStage>
             Constants.THERMOPLAST_MAX_ATP_TEMPERATURE, Constants.THERMOPLAST_GUI_MAX_TEMPERATURE);
 
         if (!float.IsNaN(previousTemperature))
-            heatAccumulationBar.UpdateIndicator(cellProperties.Temperature > previousTemperature + 0.00001f);
+        {
+            // Only show good indicator when temperature is going up and it is within the ATP generation range
+            heatAccumulationBar.UpdateIndicator(cellProperties.Temperature > previousTemperature + 0.00001f &&
+                cellProperties.Temperature >= Constants.THERMOPLAST_MIN_ATP_TEMPERATURE);
+        }
 
         previousTemperature = cellProperties.Temperature;
     }

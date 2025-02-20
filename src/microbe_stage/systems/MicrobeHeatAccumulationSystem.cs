@@ -40,6 +40,7 @@ public class MicrobeHeatAccumulationSystem : AEntitySetSystem<float>
     private GameWorld? gameWorld;
 
     private float patchTemperatureMiddle;
+    private float temperatureVarianceScale = 1;
 
     public MicrobeHeatAccumulationSystem(World world, IParallelRunner runner) : base(world, runner,
         Constants.SYSTEM_EXTREME_ENTITIES_PER_THREAD)
@@ -77,7 +78,7 @@ public class MicrobeHeatAccumulationSystem : AEntitySetSystem<float>
 
         var differenceFromMiddle = rawNoise - Constants.MICROBE_HEAT_NOISE_MIDDLE_POINT;
 
-        return patchTemperatureMiddle + differenceFromMiddle * Constants.NOISE_EFFECT_ON_LOCAL_TEMPERATURE;
+        return patchTemperatureMiddle + differenceFromMiddle * temperatureVarianceScale;
     }
 
     protected override void PreUpdate(float delta)
@@ -102,6 +103,8 @@ public class MicrobeHeatAccumulationSystem : AEntitySetSystem<float>
             GD.PrintErr("Current patch should be set for the microbe heat system to work");
             return;
         }
+
+        temperatureVarianceScale = gameWorld.Map.CurrentPatch.BiomeTemplate.TemperatureVarianceScale;
 
         if (!gameWorld.Map.CurrentPatch.Biome.TryGetCompound(Compound.Temperature, CompoundAmountType.Current,
                 out var patchTemperature))
