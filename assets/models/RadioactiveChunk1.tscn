@@ -42,7 +42,7 @@ radial_accel_min = -0.150002
 radial_accel_max = -0.150002
 damping_min = 1.0
 damping_max = 1.0
-scale_min = 0.8
+scale_min = 0.7
 scale_max = 1.1
 alpha_curve = SubResource("CurveTexture_362cl")
 
@@ -98,7 +98,7 @@ mesh = ExtResource("6_pkbv3")
 process_mode = 3
 transform = Transform3D(1, -9.68575e-08, 0, -5.96046e-08, 1, -7.45058e-09, -5.96046e-08, -7.45058e-09, 1, 0, 0, 0)
 amount = 5
-lifetime = 0.3
+lifetime = 0.22
 fixed_fps = 0
 process_material = SubResource("ParticleProcessMaterial_7g33f")
 draw_pass_1 = SubResource("QuadMesh_7icxh")
