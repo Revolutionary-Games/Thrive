@@ -256,7 +256,7 @@ public partial class CellEditorComponent :
     private bool autoEvoPredictionDirty;
     private double autoEvoPredictionStartTimer;
 
-    private bool refreshTolerancesWarnings;
+    private bool refreshTolerancesWarnings = true;
 
     /// <summary>
     ///   The new to set on the species (or cell type) after exiting (if null, no change)
@@ -709,6 +709,12 @@ public partial class CellEditorComponent :
             // Send info to the GUI about the organelle effectiveness in the current patch
             // When not loading a save, this is handled by OnEditorReady
             OnPatchDataReady();
+
+            // Ensure the tolerance editor is set up to display current values when loading a save
+            if (!IsMulticellularEditor)
+            {
+                tolerancesEditor.OnEditorSpeciesSetup(Editor.EditedBaseSpecies);
+            }
         }
 
         if (IsMulticellularEditor)
