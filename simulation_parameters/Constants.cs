@@ -1748,7 +1748,7 @@ public static class Constants
     /// <summary>
     ///   As pressure values are massive, this is a double to get reasonable MP costs
     /// </summary>
-    public const double TOLERANCE_CHANGE_MP_PER_PRESSURE = 0.000001;
+    public const double TOLERANCE_CHANGE_MP_PER_PRESSURE = 0.000002;
 
     public const double TOLERANCE_CHANGE_MP_PER_PRESSURE_TOLERANCE = 0.00005;
 
