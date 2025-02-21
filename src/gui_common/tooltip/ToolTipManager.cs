@@ -192,7 +192,7 @@ public partial class ToolTipManager : CanvasLayer
     }
 
     /// <summary>
-    ///   Shows a tooltip (popup) with specified message for a given duration.
+    ///   Shows a tooltip (popup) with a specified message for a given duration.
     /// </summary>
     public void ShowPopup(string message, float duration)
     {
@@ -218,7 +218,7 @@ public partial class ToolTipManager : CanvasLayer
     }
 
     /// <summary>
-    ///   Adds tooltip into collection. Creates a new group if group node with the given name doesn't exist
+    ///   Adds tooltip into a collection. Creates a new group if group node with the given name doesn't exist
     /// </summary>
     public void AddToolTip(ICustomToolTip tooltip, string group = DEFAULT_GROUP_NAME)
     {
