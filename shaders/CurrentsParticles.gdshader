@@ -90,8 +90,8 @@ void process() {
             vec3(position.x, position.y * currentsStretchingMultiplier, gameTime * currentsTimescale * chaoticness)
             / 64.0f).r;
         
-        vec2 disturbances = vec2(disturbanceX, disturbanceY);
-        vec2 currents = vec2(currentX, currentY);
+        vec2 disturbances = vec2(disturbanceX, disturbanceY) * 2.0f - 1.0f;
+        vec2 currents = vec2(currentX, currentY) * 2.0f - 1.0f;
         
         if (abs(currents.x) < minCurrentIntensity)
         {
@@ -103,7 +103,7 @@ void process() {
             currents.y = 0.0f;
         }
         
-        current = mix(currents, disturbances, disturbanceToCurrentsRatio) * 2.0f - 1.0f;
+        current = mix(currents, disturbances, disturbanceToCurrentsRatio);
         current *= 10.0f * speed;
     }
     
