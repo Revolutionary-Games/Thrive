@@ -5,10 +5,11 @@ using Components;
 using DefaultEcs;
 using DefaultEcs.System;
 using DefaultEcs.Threading;
+using Godot;
 
 /// <summary>
 ///   Handles taking energy from microbes for osmoregulation (staying alive) cost and dealing damage if there's not
-///   enough energy. If microbe has non-zero ATP then passive health regeneration happens.
+///   enough energy. If a microbe has non-zero ATP, then passive health regeneration happens.
 /// </summary>
 /// <remarks>
 ///   <para>
@@ -74,7 +75,7 @@ public sealed class OsmoregulationAndHealingSystem : AEntitySetSystem<float>
 
         HandleOsmoregulationDamage(entity, ref status, ref health, ref cellProperties, compounds, delta);
 
-        // There used to be engulfing mode ATP handling here, but it is now in EngulfingSystem as it makes more
+        // There used to be the engulfing mode ATP handling here, but it is now in EngulfingSystem as it makes more
         // sense to be in there
     }
 
@@ -129,7 +130,20 @@ public sealed class OsmoregulationAndHealingSystem : AEntitySetSystem<float>
         // TODO: remove this check on next save breakage point
         if (entity.Has<MicrobeEnvironmentalEffects>())
         {
-            environmentalMultiplier = entity.Get<MicrobeEnvironmentalEffects>().OsmoregulationMultiplier;
+            ref var environmentalEffects = ref entity.Get<MicrobeEnvironmentalEffects>();
+            environmentalMultiplier = environmentalEffects.OsmoregulationMultiplier;
+
+            // TODO: remove this safety check once it is no longer possible for this problem to happen
+            // https://github.com/Revolutionary-Games/Thrive/issues/5928
+            if (float.IsNaN(environmentalMultiplier) || environmentalMultiplier < 0)
+            {
+                GD.PrintErr("Microbe has invalid osmoregulation multiplier: ", environmentalMultiplier);
+
+                // Reset the data to not spam the error
+                environmentalEffects.OsmoregulationMultiplier = 1.0f;
+
+                environmentalMultiplier = 1.0f;
+            }
         }
 
         osmoregulationCost *= environmentalMultiplier;

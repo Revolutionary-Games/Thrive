@@ -51,6 +51,9 @@ public static class MicrobeEnvironmentalToleranceCalculations
 
         // TODO: make organelles affect the tolerances
 
+        // TODO: the root cause of https://github.com/Revolutionary-Games/Thrive/issues/5928 is probably somewhere in
+        // the following lines of code
+
         // Temperature
         if (patchTemperature > speciesTolerances.PreferredTemperature + speciesTolerances.TemperatureTolerance ||
             patchTemperature < speciesTolerances.PreferredTemperature - speciesTolerances.TemperatureTolerance)
