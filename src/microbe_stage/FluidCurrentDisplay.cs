@@ -34,6 +34,12 @@ public partial class FluidCurrentDisplay : GpuParticles3D
             time += (float)delta;
 
             material.SetShaderParameter(gameTimeParameterName, time);
+
+            SpeedScale = 1.0f;
+        }
+        else
+        {
+            SpeedScale = 0.0f;
         }
     }
 
