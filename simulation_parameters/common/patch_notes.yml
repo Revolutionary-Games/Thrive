@@ -724,3 +724,84 @@
     - Improved a few aspects of our CMake files
     - "Steam: Fixed workshop upload dialog not showing all error conditions"
     - Updated translations
+
+0.8.1:
+  IntroductionText: |
+    Our focus continues to be on completing as many microbe roadmap items as fast as possible. This time we have many new gameplay features and changes like environmental tolerances, radiotrophy food source, and reworked, full thermosynthesis implementation. No to mention all the smaller GUI improvements, bug fixes and new look for the patch map with all connections drawn as lines. Also a big announcement is that we have decided to split multicellular stage into two: early multicellular is now called just multicellular, and a new stage called macroscopic is what takes over the late multicellular as it was previously called.
+  ReleaseLink: https://github.com/Revolutionary-Games/Thrive/releases/tag/v0.8.1
+  PatchNotes:
+    - Added environmental tolerances, which means cells need to be adapted to the temperature, pressure and other stats of the patch they live in or otherwise they get various negative effects. Conversely perfect adaptation leads to bonuses.
+    - Added radiotrophy as a new food source, which allows using radioactive rocks to generate energy
+    - Thermosynthesis is now finally fully implemented. The feature now requires moving between local hot and cold areas to generate energy only when the cell's temperature is going up.
+    - Added microbe background blur and enabled distortion effect by default
+    - Added region connection lines to the patch map and tweaked its visuals to make it clear which patches link together
+    - Added an option to select between the different fullscreen modes supported by Godot Engine. When using exclusive fullscreen mode this fixes a one pixel border problem on Windows.
+    - "Late multicellular was split into its own full stage: Macroscopic"
+    - Implemented multicellular organism statistics panel
+    - Added per cell type ATP balance bars to the multicellular editor
+    - Increased auto-evo population change effect strength on the player from 20% to 50% and made it a configurable difficulty option
+    - Changing organelles back to their base state no longer refunds the upgrade cost. This fixed an infinite MP exploit with the refunds
+    - Improved the accuracy of the algorithm used by organelle suggestions, this should make the suggestions more accurate and no longer suggest adding a nucleus too early
+    - Made environmental light match the gameplay light cycle to make the environment darker during the night
+    - Marine snow density now depends on existing species instead of always being there
+    - Improved microbe AI to be able to use the feature to enter engulf mode even if out of ATP
+    - Tweaked thermosynthesis related text and icons
+    - Updated various icons to be SVG files to no longer be blurry at high resolutions
+    - Added displays in the editor to show reproduction cost in terms of ammonia and phosphates
+    - Improved cell image generation to make it less likely for the images to be cutoff
+    - Updated various tooltip and tutorial text to be more clear and accurate in relation to new game features
+    - Added a new overall tips Thriveopedia page to help new players
+    - Added the miche viewer to the auto-evo prediction explanation popup
+    - Added sulfur chunks as energy sources to auto-evo
+    - Added a new sulfur chunk variant
+    - Auto-evo can now evolve the slime jet
+    - Auto-evo can now evolve the mucocyst
+    - Added lysosome effects to auto-evo and made auto-evo able to evolve them
+    - Added a tutorial about early goals to the microbe editor (finding a good patch and then getting the nucleus)
+    - Added a tooltip for the cell rotation rate stat to explain that organelle placement affects it
+    - Added an option to the growth order menu to show organelle coordinates, which now defaults to off for clearer look
+    - Reordered the charts in the report tab to have more important ones at the top and environmental conditions last
+    - Increased efficiency of organelle position finding code for organelle growth so that big cells don't cause lag spikes
+    - Added Banana Biome Easter Egg
+    - Changed migration button to say "Migration Manager" to hopefully clear up the functionality
+    - Increased efficiency of position calculation for new organelles in auto-evo which should increase overall simulation speed by about 20%
+    - Fixed the organelle suggestions system sometimes suggesting unavailable organelles like myofibril
+    - Fixed the alternative compound balance mode not working at all
+    - Fixed membrane stat comparisons in tooltips and made them only show stats that are different to the currently selected membrane
+    - Fixed auto-evo prediction not updating on patch change or on behaviour slider change
+    - Fixed tutorial lines that pointed to nothing by allowing tutorials to temporarily hide the lines if there is nothing to point to
+    - Fixed the editor sometimes needing multiple clicks after closing a popup menu by making sure our input manager always forwards key up events to all listeners
+    - Fixed patch events showing on undiscovered patches
+    - Fixed sprint strain bar continuing to go up when engulfed
+    - Fixed the lysosome upgrade GUI being slightly too short and having a scrollbar
+    - Fixed hitting floating toxins in engulf mode triggering a message about being too small to engulf them
+    - Fixed the game getting locked up when trying to move the rigidity slider when you have exactly 0 MP
+    - Fixed inventory icons being behind some windows when dragging them
+    - Fixed patch notes popup not grabbing focus correctly
+    - Fixed modal popups staying open when moving on from an editor component
+    - Fixed an error in multicellular editor when clearing the cell selection
+    - Fixed an issue in our native lib management tool incorrectly checking for Mac libraries in certain usage situations
+    - Refactored MP system to calculate things as floats to make smaller edits work better (especially with lowered mutation cost)
+    - Endosymbiosis processes are now cleared when entering multicellular to not permanently lock the player out of a potential food source
+    - Added clarification in chemoreceptor tooltip that it can also be used to detect cells
+    - Added a tooltip for the compound handling modes in the new game setup to try to explain the rough idea behind each mode
+    - Improved zoom behaviour in the evolutionary tree and tweaked the dragging limits
+    - Updated all of the social media buttons in the main menu
+    - Removed an unnecessary memory allocation in auto-evo organelle upgrade attempt code
+    - Made our custom modal dialog manager close open dialogs when changing scenes as the old parent GUI is deleted
+    - Changed direct multicellular starter cell to work with the new no oxygen environment
+    - Removed extra data calculations from auto-evo energy balance calculations
+    - Refactored code related to the microbe editor organism panel
+    - Removed trailing spaces from the chromatic shader
+    - "Steam: updated the wording on our thanks for buying the game message to avoid negative undertones. The thanks popup also now defaults to being permanently dismissed after clicking OK once."
+    - "Added a new translation: Japanese. Only a little bit of the game has been translated yet so please help out if you can."
+    - Added Tatar language to be selectable, though the translation work hasn't started yet. If anyone can help out this translation, please do.
+    - Updated Thriveopedia content
+    - Updated setup instructions to tell to install dotnet 9
+    - Bumped license year to 2025
+    - Tweaked Dependabot configuration for dependency updates
+    - Updated AngleSharp from 1.1.2 to 1.2.0
+    - Updated Harmony to 2.3.5
+    - Updated Nix build flake
+    - Updated System.IO.Hashing from 9.0.0 to 9.0.2
+    - Updated translations
