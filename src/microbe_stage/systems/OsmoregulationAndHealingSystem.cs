@@ -133,6 +133,8 @@ public sealed class OsmoregulationAndHealingSystem : AEntitySetSystem<float>
             ref var environmentalEffects = ref entity.Get<MicrobeEnvironmentalEffects>();
             environmentalMultiplier = environmentalEffects.OsmoregulationMultiplier;
 
+            // TODO: remove this safety check once it is no longer possible for this problem to happen
+            // https://github.com/Revolutionary-Games/Thrive/issues/5928
             if (float.IsNaN(environmentalMultiplier) || environmentalMultiplier < 0)
             {
                 GD.PrintErr("Microbe has invalid osmoregulation multiplier: ", environmentalMultiplier);

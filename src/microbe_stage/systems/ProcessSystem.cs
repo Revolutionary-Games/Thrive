@@ -802,9 +802,24 @@ public sealed class ProcessSystem : AEntitySetSystem<float>
 
         float overallSpeedModifier = 1.0f;
 
-        // TODO: remove once save breakage is done
+        // TODO: remove this if check once save breakage is done
         if (entity.Has<MicrobeEnvironmentalEffects>())
-            overallSpeedModifier = entity.Get<MicrobeEnvironmentalEffects>().ProcessSpeedModifier;
+        {
+            var microbeEnvironmentalEffects = entity.Get<MicrobeEnvironmentalEffects>();
+            overallSpeedModifier = microbeEnvironmentalEffects.ProcessSpeedModifier;
+
+            // TODO: hopefully in the far future this safety check could be removed
+            // https://github.com/Revolutionary-Games/Thrive/issues/5928
+            if (float.IsNaN(overallSpeedModifier) || float.IsInfinity(overallSpeedModifier) || overallSpeedModifier < 0)
+            {
+                GD.PrintErr(
+                    $"ProcessSystem: process speed modifier is invalid for microbe {entity}: {overallSpeedModifier}");
+                overallSpeedModifier = 1.0f;
+
+                // Reset the data to not keep printing the error
+                microbeEnvironmentalEffects.ProcessSpeedModifier = 1.0f;
+            }
+        }
 
         ProcessNode(ref processes, ref storage, overallSpeedModifier, delta);
     }
