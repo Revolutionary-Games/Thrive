@@ -62,8 +62,18 @@ public static class HealthHelpers
     public static float CalculateMicrobeHealth(MembraneType membraneType, float membraneRigidity,
         ref readonly MicrobeEnvironmentalEffects environmentalEffects)
     {
+        float healthMultiplier = environmentalEffects.HealthMultiplier;
+
+        // TODO: remove this safety check once no longer necessary
+        // https://github.com/Revolutionary-Games/Thrive/issues/5928
+        if (healthMultiplier is <= MathUtils.EPSILON or float.NaN)
+        {
+            GD.PrintErr("Invalid health multiplier for a microbe: ", healthMultiplier);
+            healthMultiplier = 1.0f;
+        }
+
         return (membraneType.Hitpoints + membraneRigidity * Constants.MEMBRANE_RIGIDITY_HITPOINTS_MODIFIER) *
-            environmentalEffects.HealthMultiplier;
+            healthMultiplier;
     }
 
     /// <summary>

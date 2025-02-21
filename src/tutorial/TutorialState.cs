@@ -128,6 +128,9 @@ public class TutorialState : ITutorialInput
     [JsonProperty]
     public OpenTolerancesTabTutorial OpenTolerancesTabTutorial { get; private set; } = new();
 
+    [JsonProperty]
+    public EarlyGameGoalTutorial EarlyGameGoalTutorial { get; private set; } = new();
+
     // End of tutorial state variables
 
     [JsonProperty]
@@ -419,6 +422,7 @@ public class TutorialState : ITutorialInput
             AtpBalanceIntroduction,
             OpenTolerancesTabTutorial,
             TolerancesTabTutorial,
+            EarlyGameGoalTutorial,
         };
     }
 }

@@ -81,6 +81,9 @@ public partial class MicrobeEditorTutorialGUI : Control, ITutorialGUI
 
     [Export]
     private CustomWindow openTolerancesTabTutorial = null!;
+
+    [Export]
+    private CustomWindow earlyGameGoalTutorial = null!;
 #pragma warning restore CA2213
 
     public MainGameState AssociatedGameState => MainGameState.MicrobeEditor;
@@ -402,6 +405,25 @@ public partial class MicrobeEditorTutorialGUI : Control, ITutorialGUI
             else
             {
                 openTolerancesTabTutorial.Hide();
+            }
+        }
+    }
+
+    public bool EarlyGameGoalVisible
+    {
+        get => earlyGameGoalTutorial.Visible;
+        set
+        {
+            if (value == earlyGameGoalTutorial.Visible)
+                return;
+
+            if (value)
+            {
+                earlyGameGoalTutorial.Show();
+            }
+            else
+            {
+                earlyGameGoalTutorial.Hide();
             }
         }
     }
