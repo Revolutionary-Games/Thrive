@@ -694,7 +694,7 @@ public partial class CreatureStageHUDBase<TStage> : HUDWithPausing, ICreatureSta
     }
 
     /// <summary>
-    ///   Hides both the compounds panel and the environment panel
+    ///   Hides both the compounds panel and the environment panel for tutorial purposes
     /// </summary>
     public void HideEnvironmentAndCompoundPanels()
     {
@@ -704,12 +704,18 @@ public partial class CreatureStageHUDBase<TStage> : HUDWithPausing, ICreatureSta
         bottomLeftBar.EnvironmentPressed = false;
     }
 
+    /// <summary>
+    ///   Restores the compound panel after it was closed for the tutorial
+    /// </summary>
     public void ShowCompoundPanel()
     {
         compoundsPanel.ShowPanel = true;
         bottomLeftBar.CompoundsPressed = true;
     }
 
+    /// <summary>
+    ///   Restores the environment panel after it was closed for the tutorial
+    /// </summary>
     public void ShowEnvironmentPanel()
     {
         environmentPanel.ShowPanel = true;
