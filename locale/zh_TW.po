@@ -8,7 +8,7 @@ msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2025-02-21 15:14+0200\n"
-"PO-Revision-Date: 2025-02-19 10:55+0000\n"
+"PO-Revision-Date: 2025-02-21 21:31+0000\n"
 "Last-Translator: xzihnago <xzihnago@gmail.com>\n"
 "Language-Team: Chinese (Traditional Han script) <https://translate.revolutionarygamesstudio.com/projects/thrive/thrive-game/zh_Hant/>\n"
 "Language: zh_TW\n"
@@ -1750,14 +1750,15 @@ msgstr "編輯器與突變"
 msgid "EDITOR_BUTTON_TOOLTIP"
 msgstr "進入編輯器並修改您的物種"
 
-#, fuzzy
 msgid "EDITOR_TUTORIAL_EARLY_GOAL"
 msgstr ""
-"這裡是你的細胞編輯器，你可以在這通過花費變異點來添加或移除細胞器。\n"
+"歡迎回到編輯器。每次成功繁殖後您都會回到此處。\n"
 "\n"
-"你還可以在細胞編輯器裡修改你的物種的其它屬性。\n"
+"[b]早期遊戲的目標[/b]是找到一個適合居住的地區與一個可靠的食物來源。\n"
 "\n"
-"想要繼續的話，從左側面板選中一個細胞器（細胞質是個好選擇）。然後再點擊右側面板中央附近的六角格以將此細胞器放入你的物種中。"
+"稍後您可以開始考慮添加[b]細胞核[/b]，這是在遊戲中進步的方式，但不要太早添加它，因為它是一種非常昂貴的細胞器。\n"
+"\n"
+"按「下一步」按鈕以繼續。"
 
 msgid "EDITOR_TUTORIAL_EDITOR_TEXT"
 msgstr ""
@@ -2668,11 +2669,10 @@ msgid "JUNE"
 msgstr "六月"
 
 msgid "KEEP_CURRENT_FLEXIBILITY"
-msgstr ""
+msgstr "維持當前的適應範圍"
 
-#, fuzzy
 msgid "KEEP_CURRENT_TOLERANCE_FLEXIBILITY_TOOLTIP"
-msgstr "您的物種所偏好的溫度。當處於理想溫度適應範圍之外的條件時，就會產生負面影響，使生存變得更加困難。使用滑桿來調整並適應您計劃遊玩的區域。"
+msgstr "移動最小與最大滑桿同時保持目前壓力適應範圍"
 
 msgid "KEEP_MIGRATION"
 msgstr "保留遷移"
@@ -3504,9 +3504,8 @@ msgstr "滑鼠中鍵"
 msgid "MIGRATION_FAILED_TO_ADD"
 msgstr "錯誤：遷移失敗，請檢查遷移參數"
 
-#, fuzzy
 msgid "MIGRATION_MANAGER"
-msgstr "將 {2} 單位的種群從 {0}遷移到 {1}"
+msgstr "遷移管理器"
 
 msgid "MIGRATION_STATUS_DESTINATION_NOT_SELECTED"
 msgstr "將種群從 {0}遷移到…"
@@ -5714,7 +5713,7 @@ msgid "TOOL_HAND_AXE"
 msgstr "手斧"
 
 msgid "TOO_LARGE_PRESSURE_RANGE"
-msgstr ""
+msgstr "壓力範圍過寬"
 
 msgid "TOO_MANY_RECENT_VERSIONS_TO_SHOW"
 msgstr "未顯示所有最近版本，因為版本過多"
