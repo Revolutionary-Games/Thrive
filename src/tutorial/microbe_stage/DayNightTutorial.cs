@@ -21,8 +21,11 @@ public class DayNightTutorial : TutorialPhase
         {
             case TutorialEventType.MicrobePlayerEnterSunlightPatch:
             {
+                MicrobeHUD hud = ((HUDEventArgs)args).HUD;
+
                 if (!HasBeenShown && CanTrigger && !overallState.TutorialActive())
                 {
+                    hud.ShowEnvironmentPanel();
                     Show();
                     return true;
                 }

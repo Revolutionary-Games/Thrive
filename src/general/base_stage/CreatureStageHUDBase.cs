@@ -710,6 +710,12 @@ public partial class CreatureStageHUDBase<TStage> : HUDWithPausing, ICreatureSta
         bottomLeftBar.CompoundsPressed = true;
     }
 
+    public void ShowEnvironmentPanel()
+    {
+        environmentPanel.ShowPanel = true;
+        bottomLeftBar.EnvironmentPressed = true;
+    }
+
     /// <summary>
     ///   Creates and displays a fossilisation button above each on-screen organism.
     /// </summary>

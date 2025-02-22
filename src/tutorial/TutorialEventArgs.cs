@@ -177,3 +177,13 @@ public class GameWorldEventArgs : TutorialEventArgs
 
     public GameWorld World { get; }
 }
+
+public class HUDEventArgs : TutorialEventArgs
+{
+    public HUDEventArgs(MicrobeHUD microbeHUD)
+    {
+        HUD = microbeHUD;
+    }
+
+    public MicrobeHUD HUD { get; }
+}
