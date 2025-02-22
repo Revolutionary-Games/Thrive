@@ -63,9 +63,14 @@ public class ToleranceActionData : EditorCombinableActionData
             return ActionInterferenceMode.CancelsOut;
         }
 
-        // If the value has been changed twice
-        if (NewTolerances.EqualsApprox(otherTolerance.OldTolerances) ||
-            otherTolerance.NewTolerances.EqualsApprox(OldTolerances))
+        // Check if the value has been changed twice
+        // Unlike many other actions, this may combine in one specific direction;
+        // otherwise infinite change potential bug happens
+
+        // TODO: not having combining the other way around makes tolerance edits with other edits in between not always
+        // refund the MP, which is not optimal: https://github.com/Revolutionary-Games/Thrive/issues/5932
+        if (NewTolerances.EqualsApprox(otherTolerance.OldTolerances) /*||
+            otherTolerance.NewTolerances.EqualsApprox(OldTolerances)*/)
         {
             return ActionInterferenceMode.Combinable;
         }
