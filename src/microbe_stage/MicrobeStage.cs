@@ -859,7 +859,8 @@ public partial class MicrobeStage : CreatureStageBase<Entity, MicrobeWorldSimula
 
                 if (patchSunlight > Constants.DAY_NIGHT_TUTORIAL_LIGHT_MIN)
                 {
-                    TutorialState.SendEvent(TutorialEventType.MicrobePlayerEnterSunlightPatch, new HUDEventArgs(HUD), this);
+                    TutorialState.SendEvent(TutorialEventType.MicrobePlayerEnterSunlightPatch, new HUDEventArgs(HUD),
+                        this);
                 }
             }
         }
