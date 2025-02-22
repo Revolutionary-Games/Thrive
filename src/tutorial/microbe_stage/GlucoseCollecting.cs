@@ -69,9 +69,14 @@ public class GlucoseCollecting : TutorialPhase
             case TutorialEventType.MicrobeCompoundsNearPlayer:
             {
                 var data = (EntityPositionEventArgs)args;
+                //var compounds = ((CompoundBagEventArgs)args).Compounds;
 
                 if (!HasBeenShown && data.EntityPosition.HasValue && CanTrigger && !overallState.TutorialActive())
                 {
+                    // force player microbe to have the right amount of Glucose missing
+                    //compounds.AddCompound(Compound.Glucose, compounds.GetCapacityForCompound(Compound.Glucose));
+                    //compounds.AddCompound(Compound.Glucose, -Constants.GLUCOSE_TUTORIAL_COLLECT_BEFORE_COMPLETE);
+
                     nextTutorial = overallState.MicrobeReproduction;
                     Show();
                 }
