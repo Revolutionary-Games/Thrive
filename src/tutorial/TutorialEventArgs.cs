@@ -62,12 +62,14 @@ public class MicrobeMovementEventArgs : TutorialEventArgs
 
 public class EntityPositionEventArgs : TutorialEventArgs
 {
-    public EntityPositionEventArgs(Vector3? position)
+    public EntityPositionEventArgs(Vector3? position, CompoundBag compounds)
     {
         EntityPosition = position;
+        Compounds = compounds;
     }
 
     public Vector3? EntityPosition { get; }
+    public CompoundBag Compounds { get; }
 }
 
 public class CompoundBagEventArgs : TutorialEventArgs

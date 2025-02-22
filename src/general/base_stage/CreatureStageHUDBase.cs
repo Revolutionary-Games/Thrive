@@ -700,6 +700,8 @@ public partial class CreatureStageHUDBase<TStage> : HUDWithPausing, ICreatureSta
     {
         compoundsPanel.ShowPanel = false;
         environmentPanel.ShowPanel = false;
+        bottomLeftBar.CompoundsPressed = false;
+        bottomLeftBar.EnvironmentPressed = false;
     }
 
     /// <summary>
