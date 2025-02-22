@@ -48,7 +48,7 @@ earlyGameGoalTutorial = NodePath("EarlyGoalTutorial")
 anchors_preset = 0
 
 [node name="EditorEntryReport" parent="." instance=ExtResource("8")]
-custom_minimum_size = Vector2(390, 360)
+custom_minimum_size = Vector2(390, 280)
 layout_mode = 1
 anchors_preset = 6
 anchor_left = 1.0
@@ -58,7 +58,7 @@ anchor_bottom = 0.5
 offset_left = -533.0
 offset_top = -184.0
 offset_right = -173.0
-offset_bottom = 156.0
+offset_bottom = 96.0
 grow_horizontal = 0
 grow_vertical = 2
 Description = "EDITOR_TUTORIAL_EDITOR_TEXT"
