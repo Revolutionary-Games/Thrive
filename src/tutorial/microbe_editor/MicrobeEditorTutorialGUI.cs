@@ -75,6 +75,15 @@ public partial class MicrobeEditorTutorialGUI : Control, ITutorialGUI
     private CustomWindow flagellumPlacementTutorial = null!;
     private CustomWindow modifyOrganelleTutorial = null!;
     private CustomWindow atpBalanceIntroduction = null!;
+
+    [Export]
+    private CustomWindow tolerancesTabTutorial = null!;
+
+    [Export]
+    private CustomWindow openTolerancesTabTutorial = null!;
+
+    [Export]
+    private CustomWindow earlyGameGoalTutorial = null!;
 #pragma warning restore CA2213
 
     public MainGameState AssociatedGameState => MainGameState.MicrobeEditor;
@@ -362,6 +371,63 @@ public partial class MicrobeEditorTutorialGUI : Control, ITutorialGUI
         }
     }
 
+    public bool TolerancesTabTutorialVisible
+    {
+        get => tolerancesTabTutorial.Visible;
+        set
+        {
+            if (value == tolerancesTabTutorial.Visible)
+                return;
+
+            if (value)
+            {
+                tolerancesTabTutorial.Show();
+            }
+            else
+            {
+                tolerancesTabTutorial.Hide();
+            }
+        }
+    }
+
+    public bool OpenTolerancesTabTutorialVisible
+    {
+        get => openTolerancesTabTutorial.Visible;
+        set
+        {
+            if (value == openTolerancesTabTutorial.Visible)
+                return;
+
+            if (value)
+            {
+                openTolerancesTabTutorial.Show();
+            }
+            else
+            {
+                openTolerancesTabTutorial.Hide();
+            }
+        }
+    }
+
+    public bool EarlyGameGoalVisible
+    {
+        get => earlyGameGoalTutorial.Visible;
+        set
+        {
+            if (value == earlyGameGoalTutorial.Visible)
+                return;
+
+            if (value)
+            {
+                earlyGameGoalTutorial.Show();
+            }
+            else
+            {
+                earlyGameGoalTutorial.Hide();
+            }
+        }
+    }
+
     public override void _Ready()
     {
         editorEntryReport = GetNode<CustomWindow>(EditorEntryReportPath);
@@ -415,12 +481,11 @@ public partial class MicrobeEditorTutorialGUI : Control, ITutorialGUI
         bool eitherVisible = atpBalanceIntroduction.Visible || negativeAtpBalanceTutorial.Visible;
         AtpBalanceBarHighlight.Visible = atpBalanceIntroduction.Visible;
 
-        // Force the scroll panel to scroll down
-        // This is done to show the ATP Balance Bar
-        // TODO: it seems like Godot doesn't have a scroll into view so we need to ensure that the scroll cannot be too
-        // much or too little ever
+        // Force the scroll panel to scroll down. This is done to show the ATP Balance Bar.
+        // It seems like Godot doesn't have a scroll into view, so we need to ensure that the scroll cannot be too
+        // much or too little ever.
         if (eitherVisible)
-            RightPanelScrollContainer.ScrollVertical = 500;
+            RightPanelScrollContainer.ScrollVertical = 150;
     }
 
     protected override void Dispose(bool disposing)

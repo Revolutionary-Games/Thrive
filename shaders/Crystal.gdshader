@@ -29,10 +29,12 @@ void fragment() {
 
     // Handle dissolve animation
     vec4 dissolveTex = texture(dissolveTexture, (UV * dissolveScale));
+
     float cutoff = dot(dissolveTex.rgb, vec3(0.3f, 0.3f, 0.3f)) -
         float(-0.5f + dissolveValue);
+
     vec3 dissolveOutline = clamp(vec3(round(1.0f - float(cutoff - outlineWidth))) *
-        growColor.rgb, 0, dissolveValue);
+        growColor.rgb, 0.0f, dissolveValue);
 
     ALBEDO = final.rgb;
     ALPHA = round(cutoff) * final.a;
@@ -48,5 +50,5 @@ void fragment() {
     METALLIC = metallic;
     SPECULAR = specular;
 
-    EMISSION = ((dissolveOutline + emission.rgb) * roughnessUV * emissionEnergy);
+    EMISSION = clamp(((dissolveOutline + emission.rgb) * roughnessUV * emissionEnergy), 0.0f, dissolveValue);
 }

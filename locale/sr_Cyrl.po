@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2025-02-15 11:28+0200\n"
+"POT-Creation-Date: 2025-02-21 15:14+0200\n"
 "PO-Revision-Date: 2025-02-06 13:29+0000\n"
 "Last-Translator: Anonymous <noreply@weblate.org>\n"
 "Language-Team: Serbian (Cyrillic script) <https://translate.revolutionarygamesstudio.com/projects/thrive/thrive-game/sr_Cyrl/>\n"
@@ -1848,6 +1848,15 @@ msgstr "је мутирао"
 msgid "EDITOR_BUTTON_TOOLTIP"
 msgstr "Додајте ново везивање тастера"
 
+#, fuzzy
+msgid "EDITOR_TUTORIAL_EARLY_GOAL"
+msgstr ""
+"Ово је уређивач ћелија у којем можете додати или уклонити органеле са своје врсте трошећи мутације поени(МП).\n"
+"\n"
+"Такође можете променити друга својства своје врсте на другим картицама уређивача ћелија.\n"
+"\n"
+"Да бисте наставили, одаберите органелу са табле са леве стране (цитоплазма је добар избор). Затим кликните левим тастером миша поред шестерокута приказаног у средини екрана да бисте додали ту органелу својој врсти."
+
 msgid "EDITOR_TUTORIAL_EDITOR_TEXT"
 msgstr ""
 "Добродошли у Уредник Микроба.\n"
@@ -2520,6 +2529,9 @@ msgstr "Тон интерфејса"
 msgid "HEALTH"
 msgstr "Здравље"
 
+msgid "HEALTH_MODIFIER"
+msgstr ""
+
 #, fuzzy
 msgid "HEAT_ACCUMULATION_BAR_TOOLTIP"
 msgstr "Додајте ново везивање тастера"
@@ -2870,6 +2882,13 @@ msgstr ""
 
 msgid "JUNE"
 msgstr ""
+
+msgid "KEEP_CURRENT_FLEXIBILITY"
+msgstr ""
+
+#, fuzzy
+msgid "KEEP_CURRENT_TOLERANCE_FLEXIBILITY_TOOLTIP"
+msgstr "Додајте ново везивање тастера"
 
 #, fuzzy
 msgid "KEEP_MIGRATION"
@@ -3782,12 +3801,16 @@ msgid "MIDDLE_MOUSE"
 msgstr "Средњи миш"
 
 #, fuzzy
-msgid "MIGRATE"
-msgstr "Стопа"
-
-#, fuzzy
 msgid "MIGRATION_FAILED_TO_ADD"
 msgstr "Аутоматска-еволуција није успела"
+
+#, fuzzy
+msgid "MIGRATION_MANAGER"
+msgstr ""
+"Припазите на своју здравствену траку поред ATP траке (доле десно).\n"
+"Ваша ћелија ће умрети ако остане без здравља.\n"
+"Обнављате здравље док имате ATP.\n"
+"Обавезно сакупите довољно глукозе за производњу ATP."
 
 msgid "MIGRATION_STATUS_DESTINATION_NOT_SELECTED"
 msgstr ""
@@ -4309,6 +4332,10 @@ msgid "NOTICE_READY_TO_EDIT"
 msgstr ""
 
 #, fuzzy
+msgid "NOT_ADAPTED_TO_CURRENT_PATCH"
+msgstr "Откажи претходну акцију"
+
+#, fuzzy
 msgid "NOT_STARTED_DOT"
 msgstr "Прекинуто."
 
@@ -4623,6 +4650,10 @@ msgid "OXYGEN_RESISTANCE"
 msgstr "Отпорност на токсине"
 
 #, fuzzy
+msgid "OXYGEN_TOLERANCE_TOOLTIP"
+msgstr "Додајте ново везивање тастера"
+
+#, fuzzy
 msgid "OXYTOXISOME_PROCESSES_DESCRIPTION"
 msgstr "Метаболосоми су грозди протеина умотани у протеинске љуске. Они су у стању да претворе глукозу у ATP много већом брзином него што се то може учинити у цитоплазми са процесу који се назива аеробно дисање. Међутим, потребан му је кисеоник да би функционисао, а нижи нивои кисеоника у околини успориће брзину његове производње ATP. Пошто су метаболосоми суспендовани директно у цитоплазми, околна течност врши одређену ферментацију."
 
@@ -4763,6 +4794,10 @@ msgstr ""
 msgid "PERCENTAGE_VALUE"
 msgstr ""
 
+#, fuzzy
+msgid "PERFECT_ADAPTATION_DESCRIPTION"
+msgstr "Моћ ћелије. Митохондрион (множина: митохондрије) је двострука мембранска структура испуњена протеинима и ензимима. То је прокариот који је асимилирао за употребу од свог еукариотског домаћина. У стању је да претвори глукозу у ATP са много већом ефикасношћу него што се то може учинити у цитоплазми у процесу који се назива аеробно дисање. Међутим, потребан му је кисеоник да би функционисао, а нижи нивои кисеоника у околини успориће брзину његове производње ATP."
+
 msgid "PERFORMANCE"
 msgstr "Перформансе"
 
@@ -4889,6 +4924,10 @@ msgstr "Прити."
 msgid "PRESSURE_SHORT"
 msgstr "Прити."
 
+#, fuzzy
+msgid "PRESSURE_TOLERANCE_TOOLTIP"
+msgstr "Вратите се у Мени"
+
 msgid "PRESS_KEY_DOT_DOT_DOT"
 msgstr "Притисните тастер..."
 
@@ -4909,6 +4948,9 @@ msgid "PROCESS_ENVIRONMENT_SEPARATOR"
 msgstr ""
 
 msgid "PROCESS_PANEL_TITLE"
+msgstr ""
+
+msgid "PROCESS_SPEED_MODIFIER"
 msgstr ""
 
 msgid "PROGRAMMING_TEAM"
@@ -5963,6 +6005,10 @@ msgstr "Температура"
 msgid "TEMPERATURE_SHORT"
 msgstr "Темп."
 
+#, fuzzy
+msgid "TEMPERATURE_TOLERANCE_TOOLTIP"
+msgstr "Додајте ново везивање тастера"
+
 msgid "TESTING_TEAM"
 msgstr ""
 
@@ -6200,6 +6246,9 @@ msgstr "Алати"
 msgid "TOOL_HAND_AXE"
 msgstr ""
 
+msgid "TOO_LARGE_PRESSURE_RANGE"
+msgstr ""
+
 msgid "TOO_MANY_RECENT_VERSIONS_TO_SHOW"
 msgstr ""
 
@@ -6418,6 +6467,16 @@ msgstr ""
 "Срећно!"
 
 #, fuzzy
+msgid "TUTORIAL_MICROBE_EDITOR_OPEN_TOLERANCES"
+msgstr ""
+"Добродошли у Уредник Микроба.\n"
+"Овде можете прегледати шта се догодило од почетка игре или када сте последњи пут били у уредник. А затим унесите промене у своју врсту.\n"
+"\n"
+"На овој картици можете видети извештај о томе које врсте постоје, где и које су њихове популације. Такође можете видети промене животне средине на врху.\n"
+"\n"
+"Да бисте прешли на следећу картицу уређивача, притисните следеће дугме у доњем десном углу."
+
+#, fuzzy
 msgid "TUTORIAL_MICROBE_EDITOR_PATCH_TEXT"
 msgstr ""
 "Добродошли у Уредник Микроба.\n"
@@ -6456,6 +6515,16 @@ msgstr ""
 "Такође можете променити друга својства своје врсте на другим картицама уређивача ћелија.\n"
 "\n"
 "Да бисте наставили, одаберите органелу са табле са леве стране (цитоплазма је добар избор). Затим кликните левим тастером миша поред шестерокута приказаног у средини екрана да бисте додали ту органелу својој врсти."
+
+#, fuzzy
+msgid "TUTORIAL_MICROBE_EDITOR_TOLERANCES_TAB"
+msgstr ""
+"Добродошли у Уредник Микроба.\n"
+"Овде можете прегледати шта се догодило од почетка игре или када сте последњи пут били у уредник. А затим унесите промене у своју врсту.\n"
+"\n"
+"На овој картици можете видети извештај о томе које врсте постоје, где и које су њихове популације. Такође можете видети промене животне средине на врху.\n"
+"\n"
+"Да бисте прешли на следећу картицу уређивача, притисните следеће дугме у доњем десном углу."
 
 #, fuzzy
 msgid "TUTORIAL_MICROBE_STAGE_EDITOR_BUTTON_TUTORIAL"
@@ -6768,6 +6837,10 @@ msgstr ""
 #, fuzzy
 msgid "UV_PROTECTION"
 msgstr "{0:F1}% завршено. {1:n0}/{2:n0} корака."
+
+#, fuzzy
+msgid "UV_TOLERANCE_TOOLTIP"
+msgstr "Додајте ново везивање тастера"
 
 msgid "VACUOLE"
 msgstr "Вацуоле"
@@ -8895,6 +8968,10 @@ msgid "ZOOM_OUT"
 msgstr "Одзумирати"
 
 #, fuzzy
+#~ msgid "MIGRATE"
+#~ msgstr "Стопа"
+
+#, fuzzy
 #~ msgid "WIKI_RADIOSYNTHESIS"
 #~ msgstr "Хемосинтеза"
 
@@ -9338,14 +9415,6 @@ msgstr "Одзумирати"
 #~ "\n"
 #~ "Изаберите зону за наставак."
 
-#~ msgid "EDITOR_TUTORIAL_CELL_TEXT"
-#~ msgstr ""
-#~ "Ово је уређивач ћелија у којем можете додати или уклонити органеле са своје врсте трошећи мутације поени(МП).\n"
-#~ "\n"
-#~ "Такође можете променити друга својства своје врсте на другим картицама уређивача ћелија.\n"
-#~ "\n"
-#~ "Да бисте наставили, одаберите органелу са табле са леве стране (цитоплазма је добар избор). Затим кликните левим тастером миша поред шестерокута приказаног у средини екрана да бисте додали ту органелу својој врсти."
-
 #, fuzzy
 #~ msgid "TOTAL_EXTINCTION"
 #~ msgstr "Број популације од {0} променио се за {1} због: {2}"
@@ -9542,3 +9611,11 @@ msgstr "Одзумирати"
 
 #~ msgid "PLASTID"
 #~ msgstr "Пластид"
+
+#~ msgid "EDITOR_TUTORIAL_CELL_TEXT"
+#~ msgstr ""
+#~ "Ово је уређивач ћелија у којем можете додати или уклонити органеле са своје врсте трошећи мутације поени(МП).\n"
+#~ "\n"
+#~ "Такође можете променити друга својства своје врсте на другим картицама уређивача ћелија.\n"
+#~ "\n"
+#~ "Да бисте наставили, одаберите органелу са табле са леве стране (цитоплазма је добар избор). Затим кликните левим тастером миша поред шестерокута приказаног у средини екрана да бисте додали ту органелу својој врсти."

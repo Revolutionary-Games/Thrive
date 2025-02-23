@@ -32,7 +32,7 @@ public class UpgradeOrganelle : IMutationStrategy<MicrobeSpecies>
 
     public bool Repeatable => false;
 
-    public List<Tuple<MicrobeSpecies, float>>? MutationsOf(MicrobeSpecies baseSpecies, float mp, bool lawk,
+    public List<Tuple<MicrobeSpecies, double>>? MutationsOf(MicrobeSpecies baseSpecies, double mp, bool lawk,
         Random random, BiomeConditions biomeToConsider)
     {
         if (allOrganelles.Count == 0)
@@ -58,7 +58,7 @@ public class UpgradeOrganelle : IMutationStrategy<MicrobeSpecies>
 
         if (validMutations)
         {
-            var mutated = new List<Tuple<MicrobeSpecies, float>>();
+            var mutated = new List<Tuple<MicrobeSpecies, double>>();
 
             var newSpecies = (MicrobeSpecies)baseSpecies.Clone();
 
@@ -84,7 +84,7 @@ public class UpgradeOrganelle : IMutationStrategy<MicrobeSpecies>
                 }
             }
 
-            mutated.Add(new Tuple<MicrobeSpecies, float>(newSpecies, mp));
+            mutated.Add(new Tuple<MicrobeSpecies, double>(newSpecies, mp));
 
             return mutated;
         }

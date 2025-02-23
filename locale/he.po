@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2025-02-15 11:28+0200\n"
+"POT-Creation-Date: 2025-02-21 15:14+0200\n"
 "PO-Revision-Date: 2025-02-06 13:29+0000\n"
 "Last-Translator: Anonymous <noreply@weblate.org>\n"
 "Language-Team: Hebrew <https://translate.revolutionarygamesstudio.com/projects/thrive/thrive-game/he/>\n"
@@ -1808,6 +1808,15 @@ msgstr "עבר מוטציה"
 msgid "EDITOR_BUTTON_TOOLTIP"
 msgstr "כנס לעורך ושנה את המין שלך"
 
+#, fuzzy
+msgid "EDITOR_TUTORIAL_EARLY_GOAL"
+msgstr ""
+"זה עורך המיקרובי או התא, איפה שאתה יכול להוסיף או להסיר אברונים מהמין שלך על ידי תשלום בנקודות מוטציה (נקמ\"ו).\n"
+"\n"
+"אתה גם יכול לשנות מאפיינים אחרים של המין שלך בלשוניות האחרות של הערוך.\n"
+"\n"
+"בשביל להמשיך, בחר אברון מהחלונית שמשמאל (ציטופלזמה היינו התחלה טובה). ואז לחץ לחיצה שמאלית ליד המשושה שמוצג במרכז במסך בשביל להוסיף את האברון למין שלך."
+
 msgid "EDITOR_TUTORIAL_EDITOR_TEXT"
 msgstr ""
 "ברוך הבא לעורך המיקרובי.\n"
@@ -2488,6 +2497,9 @@ msgstr "עוצמת ממשק עזרים"
 msgid "HEALTH"
 msgstr "חיים"
 
+msgid "HEALTH_MODIFIER"
+msgstr ""
+
 #, fuzzy
 msgid "HEAT_ACCUMULATION_BAR_TOOLTIP"
 msgstr "מעלה אוטומטי את Harmony מהמפרק (לא דורש מחלקת מוד מסויימת)"
@@ -2837,6 +2849,13 @@ msgstr "יולי"
 
 msgid "JUNE"
 msgstr "יוני"
+
+msgid "KEEP_CURRENT_FLEXIBILITY"
+msgstr ""
+
+#, fuzzy
+msgid "KEEP_CURRENT_TOLERANCE_FLEXIBILITY_TOOLTIP"
+msgstr "ראו את דף הפטריון שלנו"
 
 #, fuzzy
 msgid "KEEP_MIGRATION"
@@ -3735,12 +3754,16 @@ msgid "MIDDLE_MOUSE"
 msgstr "גלגלת העכבר"
 
 #, fuzzy
-msgid "MIGRATE"
-msgstr "קצב"
-
-#, fuzzy
 msgid "MIGRATION_FAILED_TO_ADD"
 msgstr "יצירת מוד נכשלה"
+
+#, fuzzy
+msgid "MIGRATION_MANAGER"
+msgstr ""
+"עקוב אחרי מד החיים שלך שליד מד הATP (בימין התחתון).\n"
+"התא שלך ימות אם יגמר לו החיים.\n"
+"ואתה מתרפא כל עוד יש לך ATP.\n"
+"הקפד לאסוף מספיק גלוקוז ליצור ATP."
 
 msgid "MIGRATION_STATUS_DESTINATION_NOT_SELECTED"
 msgstr ""
@@ -4252,6 +4275,10 @@ msgstr ""
 msgid "NOTICE_READY_TO_EDIT"
 msgstr ""
 
+#, fuzzy
+msgid "NOT_ADAPTED_TO_CURRENT_PATCH"
+msgstr "מצא את האזור הנוכחי"
+
 msgid "NOT_STARTED_DOT"
 msgstr "לא התחיל."
 
@@ -4557,6 +4584,10 @@ msgstr "סינתזת \"אוקסיטוקסי\""
 msgid "OXYGEN_RESISTANCE"
 msgstr "עמידות לרעלים"
 
+#, fuzzy
+msgid "OXYGEN_TOLERANCE_TOOLTIP"
+msgstr "הראה/החבא תרכובות"
+
 msgid "OXYTOXISOME_PROCESSES_DESCRIPTION"
 msgstr "הופך [thrive:compound type=\"atp\"][/thrive:compound] ל[thrive:compound type=\"oxytoxy\"][/thrive:compound]. בהתאם לריכוזו של ה[thrive:compound type=\"oxygen\"][/thrive:compound].ניתן לשחררו על ידי [thrive:input]g_fire_toxin[/thrive:input]."
 
@@ -4690,6 +4721,14 @@ msgstr ""
 msgid "PERCENTAGE_VALUE"
 msgstr "{0}%"
 
+#, fuzzy
+msgid "PERFECT_ADAPTATION_DESCRIPTION"
+msgstr ""
+"אפשר את אפקט הבהוב אורות על ממשק משתמש (למשל הבהוב כפתור העורך)\n"
+"\n"
+"אם אתה נתקל בבאג בזמן שחלקים מהכפתור העורך נעלמים,\n"
+"נסה להשבות את זה בשביל לראות אם הבעיה נעלמה."
+
 msgid "PERFORMANCE"
 msgstr "ביצועים"
 
@@ -4812,6 +4851,10 @@ msgstr "לחץ"
 msgid "PRESSURE_SHORT"
 msgstr "לחץ."
 
+#, fuzzy
+msgid "PRESSURE_TOLERANCE_TOOLTIP"
+msgstr "צא לתפריט הראשי"
+
 msgid "PRESS_KEY_DOT_DOT_DOT"
 msgstr "לחץ על מקש..."
 
@@ -4831,6 +4874,10 @@ msgid "PROCESS_ENVIRONMENT_SEPARATOR"
 msgstr "@"
 
 msgid "PROCESS_PANEL_TITLE"
+msgstr "תהליכי התא"
+
+#, fuzzy
+msgid "PROCESS_SPEED_MODIFIER"
 msgstr "תהליכי התא"
 
 msgid "PROGRAMMING_TEAM"
@@ -5814,6 +5861,10 @@ msgstr "טמפרטורה"
 msgid "TEMPERATURE_SHORT"
 msgstr "טמפ'."
 
+#, fuzzy
+msgid "TEMPERATURE_TOLERANCE_TOOLTIP"
+msgstr "ראו את דף הפטריון שלנו"
+
 msgid "TESTING_TEAM"
 msgstr "צוות בודקים"
 
@@ -6051,6 +6102,9 @@ msgstr "כלים"
 msgid "TOOL_HAND_AXE"
 msgstr ""
 
+msgid "TOO_LARGE_PRESSURE_RANGE"
+msgstr ""
+
 msgid "TOO_MANY_RECENT_VERSIONS_TO_SHOW"
 msgstr ""
 
@@ -6270,6 +6324,17 @@ msgstr ""
 "\n"
 "בהצלחה!"
 
+#, fuzzy
+msgid "TUTORIAL_MICROBE_EDITOR_OPEN_TOLERANCES"
+msgstr ""
+"זהו מפת האזורים.\n"
+"\n"
+"על כל אייקון מייצג סביבה ייחודית שאתה יכול להתיישב, עם כרטיסייה בצד ימין שמתאר את התנאים באזור הנבחר.\n"
+"\n"
+"אם תא בוחר אזור שליד האחד שבו אתה נמצא, שהוא מסומן בגבול ירוק מהבהב, אתה יכול ללחוץ על הכפתור \"תעבור לאזור זה\" בשביל לנדוד לשם.\n"
+"\n"
+"נסה לבחור אזור בשביל להמשיך."
+
 msgid "TUTORIAL_MICROBE_EDITOR_PATCH_TEXT"
 msgstr ""
 "זהו מפת האזורים.\n"
@@ -6305,6 +6370,17 @@ msgstr ""
 "כדאי גם שקול היטב האם הוספת חלק באמת מועילה, כך שלא תמיד כדאי לשנות את מה שכבר עובד, מכיוון שכל חלק עולה לתחזוקה של ATP ודורש יותר משאבים לשכפול.\n"
 "\n"
 "אסטרטגיה אפשרית אחת זהו להישאר משושה של ציטופלזמה אחת ורק להגיע לאזורים של פני הים המלאים באור לפני שמוסיפים אברונים שעושים פוטוסינתזה."
+
+#, fuzzy
+msgid "TUTORIAL_MICROBE_EDITOR_TOLERANCES_TAB"
+msgstr ""
+"זהו מפת האזורים.\n"
+"\n"
+"על כל אייקון מייצג סביבה ייחודית שאתה יכול להתיישב, עם כרטיסייה בצד ימין שמתאר את התנאים באזור הנבחר.\n"
+"\n"
+"אם תא בוחר אזור שליד האחד שבו אתה נמצא, שהוא מסומן בגבול ירוק מהבהב, אתה יכול ללחוץ על הכפתור \"תעבור לאזור זה\" בשביל לנדוד לשם.\n"
+"\n"
+"נסה לבחור אזור בשביל להמשיך."
 
 msgid "TUTORIAL_MICROBE_STAGE_EDITOR_BUTTON_TUTORIAL"
 msgstr ""
@@ -6611,6 +6687,10 @@ msgstr "השתמש בגודל חלון וירטואלי"
 #, fuzzy
 msgid "UV_PROTECTION"
 msgstr "חיזוי של המפתח האוטומטי"
+
+#, fuzzy
+msgid "UV_TOLERANCE_TOOLTIP"
+msgstr "הראה/החבא תרכובות"
 
 msgid "VACUOLE"
 msgstr "חלולית"
@@ -8581,6 +8661,10 @@ msgid "ZOOM_OUT"
 msgstr "זום החוצה"
 
 #, fuzzy
+#~ msgid "MIGRATE"
+#~ msgstr "קצב"
+
+#, fuzzy
 #~ msgid "THANKS_FOR_BUYING_THRIVE"
 #~ msgstr ""
 #~ "תודה ששיחקת!\n"
@@ -9092,14 +9176,6 @@ msgstr "זום החוצה"
 #~ "\n"
 #~ "תבחר באזור מסוים בשביל להמשיך."
 
-#~ msgid "EDITOR_TUTORIAL_CELL_TEXT"
-#~ msgstr ""
-#~ "זה עורך המיקרובי או התא, איפה שאתה יכול להוסיף או להסיר אברונים מהמין שלך על ידי תשלום בנקודות מוטציה (נקמ\"ו).\n"
-#~ "\n"
-#~ "אתה גם יכול לשנות מאפיינים אחרים של המין שלך בלשוניות האחרות של הערוך.\n"
-#~ "\n"
-#~ "בשביל להמשיך, בחר אברון מהחלונית שמשמאל (ציטופלזמה היינו התחלה טובה). ואז לחץ לחיצה שמאלית ליד המשושה שמוצג במרכז במסך בשביל להוסיף את האברון למין שלך."
-
 #, fuzzy
 #~ msgid "TOTAL_EXTINCTION"
 #~ msgstr "נכחד ב{0}"
@@ -9299,3 +9375,11 @@ msgstr "זום החוצה"
 
 #~ msgid "PLASTID"
 #~ msgstr "פלסטיד"
+
+#~ msgid "EDITOR_TUTORIAL_CELL_TEXT"
+#~ msgstr ""
+#~ "זה עורך המיקרובי או התא, איפה שאתה יכול להוסיף או להסיר אברונים מהמין שלך על ידי תשלום בנקודות מוטציה (נקמ\"ו).\n"
+#~ "\n"
+#~ "אתה גם יכול לשנות מאפיינים אחרים של המין שלך בלשוניות האחרות של הערוך.\n"
+#~ "\n"
+#~ "בשביל להמשיך, בחר אברון מהחלונית שמשמאל (ציטופלזמה היינו התחלה טובה). ואז לחץ לחיצה שמאלית ליד המשושה שמוצג במרכז במסך בשביל להוסיף את האברון למין שלך."

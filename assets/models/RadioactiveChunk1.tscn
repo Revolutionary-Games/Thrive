@@ -1,26 +1,104 @@
-[gd_scene load_steps=7 format=3 uid="uid://oq2aawq8xamx"]
+[gd_scene load_steps=17 format=3 uid="uid://oq2aawq8xamx"]
 
-[ext_resource type="Shader" path="res://shaders/IronChunk.gdshader" id="1_v5a2o"]
+[ext_resource type="Shader" path="res://shaders/EmissiveChunk.gdshader" id="1_mg4le"]
 [ext_resource type="Texture2D" uid="uid://chqec76b7yinx" path="res://assets/textures/RadioactiveChunk1_normal.png" id="2_bg0yx"]
 [ext_resource type="Texture2D" uid="uid://baxuoyeo83r2u" path="res://assets/textures/dissolve_noise.tres" id="3_2gpaa"]
+[ext_resource type="Texture2D" uid="uid://bd0wg67rat6fh" path="res://assets/textures/RadioactiveChunk1_emission.png" id="4_2j0f4"]
 [ext_resource type="Texture2D" uid="uid://cc0fmdpdq5sob" path="res://assets/textures/RadioactiveChunk1.png" id="4_14ku5"]
 [ext_resource type="ArrayMesh" uid="uid://ifcb1d7sv4x0" path="res://assets/models/RadioactiveChunk1.mesh" id="6_pkbv3"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_rmgh8"]
 resource_local_to_scene = true
 render_priority = 0
-shader = ExtResource("1_v5a2o")
+shader = ExtResource("1_mg4le")
 shader_parameter/roughness = 0.85
-shader_parameter/metallicTextureChannel = Vector4(0, 0, 1, 0)
-shader_parameter/depletion = 0.0
+shader_parameter/metallic = 0.85
+shader_parameter/emission = Color(0.14527, 0.237416, 0.116779, 1)
+shader_parameter/emissionEnergy = 2.0
+shader_parameter/useTextureEmission = true
 shader_parameter/dissolveValue = 0.0
+shader_parameter/dissolveScale = 1.0
 shader_parameter/outlineWidth = 0.1
 shader_parameter/growColor = Color(0, 0, 0, 1)
-shader_parameter/fullTexture = ExtResource("4_14ku5")
-shader_parameter/depletedTexture = ExtResource("4_14ku5")
+shader_parameter/albedoTexture = ExtResource("4_14ku5")
 shader_parameter/normalTexture = ExtResource("2_bg0yx")
+shader_parameter/emissionTexture = ExtResource("4_2j0f4")
 shader_parameter/dissolveTexture = ExtResource("3_2gpaa")
+
+[sub_resource type="Curve" id="Curve_gnhjc"]
+_data = [Vector2(0, 0.473418), 0.0, 5.40276, 0, 0, Vector2(0.100946, 0.975316), 0.796959, 0.796959, 0, 0, Vector2(0.22082, 1), 0.0, 0.0, 0, 0, Vector2(0.413249, 0.35), -1.30411, -1.30411, 0, 0, Vector2(0.987382, 0), -0.0474222, 0.0, 0, 0]
+point_count = 5
+
+[sub_resource type="CurveTexture" id="CurveTexture_362cl"]
+curve = SubResource("Curve_gnhjc")
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_7g33f"]
+emission_shape = 2
+emission_sphere_radius = 0.3
+gravity = Vector3(0, 0, 0)
+linear_accel_min = 2.0
+linear_accel_max = 2.0
+radial_accel_min = -0.150002
+radial_accel_max = -0.150002
+damping_min = 1.0
+damping_max = 1.0
+scale_min = 0.7
+scale_max = 1.1
+alpha_curve = SubResource("CurveTexture_362cl")
+
+[sub_resource type="Gradient" id="Gradient_kn8e1"]
+interpolation_mode = 2
+offsets = PackedFloat32Array(0.0228571, 0.0742857, 0.251429, 0.588571, 0.948571)
+colors = PackedColorArray(1, 1, 1, 0.52549, 1, 1, 1, 0.333333, 1, 1, 1, 0.14902, 1, 1, 1, 0.0392157, 1, 1, 1, 0)
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_j6pab"]
+gradient = SubResource("Gradient_kn8e1")
+fill = 1
+fill_from = Vector2(0.5, 0.5)
+fill_to = Vector2(1, 0.5)
+
+[sub_resource type="Gradient" id="Gradient_iytk7"]
+interpolation_mode = 2
+offsets = PackedFloat32Array(0.0857143, 0.262857, 0.828571)
+colors = PackedColorArray(0.4018, 0.82, 0.4715, 0.352941, 0.236033, 0.73, 0.219, 0.254902, 0.24816, 0.66, 0.1452, 0)
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_78eqk"]
+gradient = SubResource("Gradient_iytk7")
+width = 128
+height = 128
+fill = 1
+fill_from = Vector2(0.5, 0.5)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_d5c6a"]
+render_priority = 20
+transparency = 4
+albedo_color = Color(0.14, 0.13776, 0.1288, 0.537255)
+albedo_texture = SubResource("GradientTexture2D_j6pab")
+metallic_specular = 0.0
+emission_enabled = true
+emission = Color(0.10516, 0.206212, 0.0751465, 1)
+emission_energy_multiplier = 0.4
+emission_texture = SubResource("GradientTexture2D_78eqk")
+disable_receive_shadows = true
+billboard_mode = 3
+billboard_keep_scale = true
+particles_anim_h_frames = 1
+particles_anim_v_frames = 1
+particles_anim_loop = false
+
+[sub_resource type="QuadMesh" id="QuadMesh_7icxh"]
+material = SubResource("StandardMaterial3D_d5c6a")
+size = Vector2(40, 40)
 
 [node name="RadioactiveChunk" type="MeshInstance3D"]
 material_override = SubResource("ShaderMaterial_rmgh8")
 mesh = ExtResource("6_pkbv3")
+
+[node name="GlowParticles" type="GPUParticles3D" parent="."]
+process_mode = 3
+transform = Transform3D(1, -9.68575e-08, 0, -5.96046e-08, 1, -7.45058e-09, -5.96046e-08, -7.45058e-09, 1, 0, 0, 0)
+amount = 5
+lifetime = 0.22
+fixed_fps = 0
+process_material = SubResource("ParticleProcessMaterial_7g33f")
+draw_pass_1 = SubResource("QuadMesh_7icxh")

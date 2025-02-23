@@ -3,7 +3,7 @@
 [ext_resource type="Shader" path="res://shaders/IronChunk.gdshader" id="1_odumb"]
 [ext_resource type="Texture2D" uid="uid://b2yxnpvehsb08" path="res://assets/textures/SulfurChunk1.png" id="2_8v5hb"]
 [ext_resource type="Texture2D" uid="uid://baxuoyeo83r2u" path="res://assets/textures/dissolve_noise.tres" id="3_alqmg"]
-[ext_resource type="Texture2D" uid="uid://bdm8ocmn6s0w7" path="res://assets/textures/menu_backgrounds/PlanetClouds_Normal.png" id="4_mt8qe"]
+[ext_resource type="Texture2D" uid="uid://b03pvu5kmh1jk" path="res://assets/textures/SulfurChunk1_normal.png" id="4_q7ecp"]
 [ext_resource type="ArrayMesh" uid="uid://mpyjr0nfktnr" path="res://assets/models/SulfurChunkAluniteMedium1.mesh" id="5_0gqef"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_rmyp7"]
@@ -14,11 +14,12 @@ shader_parameter/roughness = 0.8
 shader_parameter/metallicTextureChannel = Vector4(0, 0, 0, 0.15)
 shader_parameter/depletion = 0.0
 shader_parameter/dissolveValue = 0.0
+shader_parameter/dissolveScale = 1.5
 shader_parameter/outlineWidth = 0.0
 shader_parameter/growColor = Color(0, 0, 0, 1)
 shader_parameter/fullTexture = ExtResource("2_8v5hb")
 shader_parameter/depletedTexture = ExtResource("2_8v5hb")
-shader_parameter/normalTexture = ExtResource("4_mt8qe")
+shader_parameter/normalTexture = ExtResource("4_q7ecp")
 shader_parameter/dissolveTexture = ExtResource("3_alqmg")
 
 [node name="Sulfur" type="MeshInstance3D"]

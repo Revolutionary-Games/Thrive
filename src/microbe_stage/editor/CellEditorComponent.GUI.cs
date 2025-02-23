@@ -544,6 +544,9 @@ public partial class CellEditorComponent
             rigidityTooltip.MutationPointCost = (int)Math.Min(
                 Constants.MEMBRANE_RIGIDITY_COST_PER_STEP * CostMultiplier, 100);
         }
+
+        tolerancesEditor.MPDisplayCostMultiplier = CostMultiplier;
+        tolerancesEditor.UpdateMPCostInToolTips();
     }
 
     private void UpdateCompoundBalances(Dictionary<Compound, CompoundBalance> balances)
@@ -788,9 +791,8 @@ public partial class CellEditorComponent
                     HorizontalAlignment = HorizontalAlignment.Center,
                     AutowrapMode = TextServer.AutowrapMode.WordSmart,
                     CustomMinimumSize = new Vector2(150, 0),
+                    LabelSettings = toleranceWarningsFont,
                 };
-
-                // TODO: proper text styling
 
                 warning.Text = text;
                 activeToleranceWarnings.Add(warning);

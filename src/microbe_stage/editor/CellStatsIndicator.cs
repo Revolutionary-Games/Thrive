@@ -83,7 +83,7 @@ public partial class CellStatsIndicator : HBoxContainer
     }
 
     /// <summary>
-    ///   First assignment sets the initial value, subsequent assignment sets the other values to be compared with.
+    ///   The first assignment sets the initial value, later assignments set the other values to be compared with.
     /// </summary>
     [Export]
     public float Value

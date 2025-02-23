@@ -208,6 +208,9 @@ public partial class CellEditorComponent :
     private PackedScene undiscoveredOrganellesTooltipScene = null!;
 
     private Node3D? cellPreviewVisualsRoot;
+
+    [Export]
+    private LabelSettings toleranceWarningsFont = null!;
 #pragma warning restore CA2213
 
     private OrganelleDefinition nucleus = null!;
@@ -253,7 +256,7 @@ public partial class CellEditorComponent :
     private bool autoEvoPredictionDirty;
     private double autoEvoPredictionStartTimer;
 
-    private bool refreshTolerancesWarnings;
+    private bool refreshTolerancesWarnings = true;
 
     /// <summary>
     ///   The new to set on the species (or cell type) after exiting (if null, no change)
@@ -706,6 +709,12 @@ public partial class CellEditorComponent :
             // Send info to the GUI about the organelle effectiveness in the current patch
             // When not loading a save, this is handled by OnEditorReady
             OnPatchDataReady();
+
+            // Ensure the tolerance editor is set up to display current values when loading a save
+            if (!IsMulticellularEditor)
+            {
+                tolerancesEditor.OnEditorSpeciesSetup(Editor.EditedBaseSpecies);
+            }
         }
 
         if (IsMulticellularEditor)
@@ -949,7 +958,7 @@ public partial class CellEditorComponent :
         if (!IsMulticellularEditor)
         {
             // Make sure initial tolerance warnings are shown
-            OnTolerancesEditorChangedData();
+            OnTolerancesChanged(tolerancesEditor.CurrentTolerances);
         }
     }
 
@@ -1078,7 +1087,7 @@ public partial class CellEditorComponent :
 
         // Refresh tolerances data for the new patch
         tolerancesEditor.OnPatchChanged();
-        OnTolerancesEditorChangedData();
+        OnTolerancesChanged(tolerancesEditor.CurrentTolerances);
 
         // Redo suggestion calculations as they could depend on the patch data (though at the time of writing this is
         // not really changing)
@@ -1218,10 +1227,12 @@ public partial class CellEditorComponent :
 
         // In some cases "theoreticalCost" might get rounded improperly
         var theoreticalCost = Editor.WhatWouldActionsCost(new[] { data });
-        var cost = (int)Math.Ceiling(Math.Ceiling(theoreticalCost / costPerStep) * costPerStep);
+
+        // Removed cast to int here doesn't solve https://github.com/Revolutionary-Games/Thrive/issues/5821
+        var cost = Math.Ceiling(Math.Ceiling(theoreticalCost / costPerStep) * costPerStep);
 
         // Cases where mutation points are equal 0 are handled below in the next "if" statement
-        if (cost > Editor.MutationPoints && Editor.MutationPoints != 0)
+        if (cost > Editor.MutationPoints && Editor.MutationPoints > 0)
         {
             int stepsToCutOff = (int)Math.Ceiling((cost - Editor.MutationPoints) / costPerStep);
             data.NewRigidity -= (desiredRigidity - previousRigidity > 0 ? 1 : -1) * stepsToCutOff /
@@ -1232,9 +1243,9 @@ public partial class CellEditorComponent :
             return;
         }
 
-        // Make sure that if there are no mutation points the player cannot drag the slider
+        // Make sure that if there are no mutation points, the player cannot drag the slider
         // when the cost is rounded to zero
-        if (theoreticalCost >= 0 && (Editor.MutationPoints - cost < 0 || costPerStep > Editor.MutationPoints))
+        if (theoreticalCost >= 0 && (Editor.MutationPoints - cost <= 0 || costPerStep > Editor.MutationPoints))
         {
             UpdateRigiditySlider(previousRigidity);
             return;
@@ -1362,7 +1373,7 @@ public partial class CellEditorComponent :
             actionData)));
     }
 
-    protected override int CalculateCurrentActionCost()
+    protected override double CalculateCurrentActionCost()
     {
         if (string.IsNullOrEmpty(ActiveActionName) || !Editor.ShowHover)
             return 0;
@@ -2724,6 +2735,8 @@ public partial class CellEditorComponent :
 
         selectedSelectionMenuTab = selection;
         ApplySelectionMenuTab();
+
+        tutorialState?.SendEvent(TutorialEventType.CellEditorTabChanged, new StringEventArgs(tab), this);
     }
 
     private void ApplySelectionMenuTab()

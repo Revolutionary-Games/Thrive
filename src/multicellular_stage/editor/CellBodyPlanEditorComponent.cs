@@ -557,7 +557,7 @@ public partial class CellBodyPlanEditorComponent :
         return Editor.EditedSpecies.CellTypes.First(c => c.TypeName == name);
     }
 
-    protected override int CalculateCurrentActionCost()
+    protected override double CalculateCurrentActionCost()
     {
         if (activeActionName == null || !Editor.ShowHover)
             return 0;

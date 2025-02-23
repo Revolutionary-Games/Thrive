@@ -37,6 +37,11 @@ public class Biome : IRegistryType
     /// </summary>
     public LightDetails Sunlight = new();
 
+    /// <summary>
+    ///   How much the temperature in this biome varies on a microscopic scale when moving around
+    /// </summary>
+    public float TemperatureVarianceScale = 5;
+
     public float CompoundCloudBrightness = 1.0f;
 
     public float WaterCurrentSpeed = 1.0f;
@@ -97,6 +102,12 @@ public class Biome : IRegistryType
         {
             throw new InvalidRegistryDataException(name, GetType().Name,
                 "cloud brightness needs to be over 0");
+        }
+
+        if (TemperatureVarianceScale < 0)
+        {
+            throw new InvalidRegistryDataException(name, GetType().Name,
+                "temperature variance scale needs to be over 0");
         }
 
         TranslationHelper.CopyTranslateTemplatesToTranslateSource(this);

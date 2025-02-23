@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2025-02-15 11:28+0200\n"
+"POT-Creation-Date: 2025-02-21 15:14+0200\n"
 "PO-Revision-Date: 2025-02-06 13:29+0000\n"
 "Last-Translator: Anonymous <noreply@weblate.org>\n"
 "Language-Team: Catalan <https://translate.revolutionarygamesstudio.com/projects/thrive/thrive-game/ca/>\n"
@@ -1789,6 +1789,15 @@ msgstr "ha mutat"
 msgid "EDITOR_BUTTON_TOOLTIP"
 msgstr "Entrar a l'editor i modificar la teva espècie"
 
+#, fuzzy
+msgid "EDITOR_TUTORIAL_EARLY_GOAL"
+msgstr ""
+"Aquest és l'Editor de Microbi, on pots afegir, treure o modificar diferents orgànuls, tot invertint-hi una quantitat corresponent de Punts de Mutació.\n"
+"\n"
+"També pots canviar altres propietats i elements de la teva cèl·lula, com ara la membrana, en les altres pestanyes de l'Editor.\n"
+"\n"
+"Per continuar, selecciona un orgànul del tauler de l'esquerra (el Citoplasma és una bona opció). Tot seguit, fes clic esquerre al cantó de l'Hexàgon mostrat al bell mig de la pantalla (que representa l'interior de la teva cèl·lula) per tal d'afegir aquest orgànul a la teva espècie."
+
 msgid "EDITOR_TUTORIAL_EDITOR_TEXT"
 msgstr ""
 "Benvingut a l'Editor de Microbi.\n"
@@ -2477,6 +2486,9 @@ msgstr "Volum del GUI"
 msgid "HEALTH"
 msgstr "Salut"
 
+msgid "HEALTH_MODIFIER"
+msgstr ""
+
 #, fuzzy
 msgid "HEAT_ACCUMULATION_BAR_TOOLTIP"
 msgstr "Automàticament carregar els ecosistemes Harmony de l'Ensamblatge (no requereix especificar una classe de mod)"
@@ -2827,6 +2839,13 @@ msgstr "Juliol"
 
 msgid "JUNE"
 msgstr "Juny"
+
+msgid "KEEP_CURRENT_FLEXIBILITY"
+msgstr ""
+
+#, fuzzy
+msgid "KEEP_CURRENT_TOLERANCE_FLEXIBILITY_TOOLTIP"
+msgstr "Pausar el joc"
 
 #, fuzzy
 msgid "KEEP_MIGRATION"
@@ -3732,12 +3751,16 @@ msgid "MIDDLE_MOUSE"
 msgstr "Clic del mig del ratolí"
 
 #, fuzzy
-msgid "MIGRATE"
-msgstr "La velocitat"
-
-#, fuzzy
 msgid "MIGRATION_FAILED_TO_ADD"
 msgstr "Creació de Mod Fallida"
+
+#, fuzzy
+msgid "MIGRATION_MANAGER"
+msgstr ""
+"Estigues atent a la barra de salut, que hi ha al costat de la barra d'ATP (a la part inferior dreta de la pantalla).\n"
+"Si la teva cèl·lula es queda sense energia, es morirà.\n"
+"Pots recuperar la teva salut (autoregeneració) si tens prou quantitat d'ATP.\n"
+"Assegurat de recol·lectar prou Glucosa per no quedar-te sense ATP."
 
 msgid "MIGRATION_STATUS_DESTINATION_NOT_SELECTED"
 msgstr ""
@@ -4272,6 +4295,10 @@ msgid "NOTICE_READY_TO_EDIT"
 msgstr ""
 
 #, fuzzy
+msgid "NOT_ADAPTED_TO_CURRENT_PATCH"
+msgstr "Trobar l'Ecosistema Actual"
+
+#, fuzzy
 msgid "NOT_STARTED_DOT"
 msgstr "Avortat."
 
@@ -4577,6 +4604,10 @@ msgstr "Síntesi de les toxines OxyToxy"
 msgid "OXYGEN_RESISTANCE"
 msgstr "Resistència a les Toxines"
 
+#, fuzzy
+msgid "OXYGEN_TOLERANCE_TOOLTIP"
+msgstr "Mostrar / amagar l'entorn i els compostos"
+
 msgid "OXYTOXISOME_PROCESSES_DESCRIPTION"
 msgstr "Transforma [thrive:compound type=\"atp\"][/thrive:compound] en [thrive:compound type=\"oxytoxy\"][/thrive:compound]. La velocitat és proporcional a la concentració de [thrive:compound type=\"oxygen\"][/thrive:compound]. Pot alliberar toxines prement la tecla [thrive:input]g_fire_toxin[/thrive:input]. Quan la quantitat de [thrive:compound type=\"oxytoxy\"][/thrive:compound] és baixo, encara és possible disparar, però el dany causat serà menor."
 
@@ -4714,6 +4745,14 @@ msgstr ""
 msgid "PERCENTAGE_VALUE"
 msgstr "{0}%"
 
+#, fuzzy
+msgid "PERFECT_ADAPTATION_DESCRIPTION"
+msgstr ""
+"Permet els efectes de llum intermitent als GUIs (e.g llum intermitent del botó d'editor).\n"
+"\n"
+"Si experimentes un bug on parts del botó de l'editor desapareixen,\n"
+"pots intentar desactivant això per veure si el problema s'arregla."
+
 msgid "PERFORMANCE"
 msgstr "Rendiment"
 
@@ -4836,6 +4875,10 @@ msgstr "Pressió"
 msgid "PRESSURE_SHORT"
 msgstr "Pressió"
 
+#, fuzzy
+msgid "PRESSURE_TOLERANCE_TOOLTIP"
+msgstr "Tornar al menú principal"
+
 msgid "PRESS_KEY_DOT_DOT_DOT"
 msgstr "Prem qualsevol tecla o botó..."
 
@@ -4855,6 +4898,10 @@ msgid "PROCESS_ENVIRONMENT_SEPARATOR"
 msgstr "@"
 
 msgid "PROCESS_PANEL_TITLE"
+msgstr "Processos de la Cèl·lula"
+
+#, fuzzy
+msgid "PROCESS_SPEED_MODIFIER"
 msgstr "Processos de la Cèl·lula"
 
 msgid "PROGRAMMING_TEAM"
@@ -5854,6 +5901,10 @@ msgstr "Temperatura"
 msgid "TEMPERATURE_SHORT"
 msgstr "Temperatura"
 
+#, fuzzy
+msgid "TEMPERATURE_TOLERANCE_TOOLTIP"
+msgstr "Pausar el joc"
+
 msgid "TESTING_TEAM"
 msgstr "Equip de proves"
 
@@ -6091,6 +6142,9 @@ msgstr "Eines"
 msgid "TOOL_HAND_AXE"
 msgstr ""
 
+msgid "TOO_LARGE_PRESSURE_RANGE"
+msgstr ""
+
 msgid "TOO_MANY_RECENT_VERSIONS_TO_SHOW"
 msgstr ""
 
@@ -6310,6 +6364,17 @@ msgstr ""
 "\n"
 "Bona sort!"
 
+#, fuzzy
+msgid "TUTORIAL_MICROBE_EDITOR_OPEN_TOLERANCES"
+msgstr ""
+"Aquest és el mapa de zones.\n"
+"\n"
+"Cada icona representa un ecosistema o bioma que pot ser habitat. El tauler de la dreta indica les condicions del bioma seleccionat.\n"
+"\n"
+"Si selecciones un bioma connectat al que ocupes actualment, ressaltat amb una vora blau cian, pots premer el botó \"Moure's a aquesta zona\" per tal de migrar-hi.\n"
+"\n"
+"Selecciona una zona per continuar."
+
 msgid "TUTORIAL_MICROBE_EDITOR_PATCH_TEXT"
 msgstr ""
 "Aquest és el mapa de zones.\n"
@@ -6345,6 +6410,17 @@ msgstr ""
 "També, considera curosament si afegir un orgànul és bo, sovint no fer cap canvi és una bona tria, ja que cada part costa ATP per mantenir i requereix més recursos per dividir.\n"
 "\n"
 "Una possible estratègia consisteix en mantenir-se com un sol hexàgon de citoplasma i simplement dirigir-te als biomes de la superfície primer abans d'aconseguir orgànuls de fotosíntesi."
+
+#, fuzzy
+msgid "TUTORIAL_MICROBE_EDITOR_TOLERANCES_TAB"
+msgstr ""
+"Aquest és el mapa de zones.\n"
+"\n"
+"Cada icona representa un ecosistema o bioma que pot ser habitat. El tauler de la dreta indica les condicions del bioma seleccionat.\n"
+"\n"
+"Si selecciones un bioma connectat al que ocupes actualment, ressaltat amb una vora blau cian, pots premer el botó \"Moure's a aquesta zona\" per tal de migrar-hi.\n"
+"\n"
+"Selecciona una zona per continuar."
 
 msgid "TUTORIAL_MICROBE_STAGE_EDITOR_BUTTON_TUTORIAL"
 msgstr ""
@@ -6646,6 +6722,10 @@ msgstr ""
 #, fuzzy
 msgid "UV_PROTECTION"
 msgstr "Predicció d'Auto-Evo"
+
+#, fuzzy
+msgid "UV_TOLERANCE_TOOLTIP"
+msgstr "Mostrar / amagar l'entorn i els compostos"
 
 msgid "VACUOLE"
 msgstr "Vacúol"
@@ -8619,6 +8699,10 @@ msgid "ZOOM_OUT"
 msgstr "Zoom enfora"
 
 #, fuzzy
+#~ msgid "MIGRATE"
+#~ msgstr "La velocitat"
+
+#, fuzzy
 #~ msgid "THANKS_FOR_BUYING_THRIVE"
 #~ msgstr ""
 #~ "Gràcies per jugar!\n"
@@ -9078,14 +9162,6 @@ msgstr "Zoom enfora"
 #~ "\n"
 #~ "Selecciona un Indret per tal de continuar."
 
-#~ msgid "EDITOR_TUTORIAL_CELL_TEXT"
-#~ msgstr ""
-#~ "Aquest és l'Editor de Microbi, on pots afegir, treure o modificar diferents orgànuls, tot invertint-hi una quantitat corresponent de Punts de Mutació.\n"
-#~ "\n"
-#~ "També pots canviar altres propietats i elements de la teva cèl·lula, com ara la membrana, en les altres pestanyes de l'Editor.\n"
-#~ "\n"
-#~ "Per continuar, selecciona un orgànul del tauler de l'esquerra (el Citoplasma és una bona opció). Tot seguit, fes clic esquerre al cantó de l'Hexàgon mostrat al bell mig de la pantalla (que representa l'interior de la teva cèl·lula) per tal d'afegir aquest orgànul a la teva espècie."
-
 #~ msgid "VIEW_NOW"
 #~ msgstr "Veure Ara"
 
@@ -9276,3 +9352,11 @@ msgstr "Zoom enfora"
 #, fuzzy
 #~ msgid "BACKTAB"
 #~ msgstr "Enrere"
+
+#~ msgid "EDITOR_TUTORIAL_CELL_TEXT"
+#~ msgstr ""
+#~ "Aquest és l'Editor de Microbi, on pots afegir, treure o modificar diferents orgànuls, tot invertint-hi una quantitat corresponent de Punts de Mutació.\n"
+#~ "\n"
+#~ "També pots canviar altres propietats i elements de la teva cèl·lula, com ara la membrana, en les altres pestanyes de l'Editor.\n"
+#~ "\n"
+#~ "Per continuar, selecciona un orgànul del tauler de l'esquerra (el Citoplasma és una bona opció). Tot seguit, fes clic esquerre al cantó de l'Hexàgon mostrat al bell mig de la pantalla (que representa l'interior de la teva cèl·lula) per tal d'afegir aquest orgànul a la teva espècie."

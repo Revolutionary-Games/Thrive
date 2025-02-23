@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2025-02-15 11:28+0200\n"
+"POT-Creation-Date: 2025-02-21 15:14+0200\n"
 "PO-Revision-Date: 2025-01-21 12:01+0000\n"
 "Last-Translator: Anonymous <noreply@weblate.org>\n"
 "Language-Team: Spanish (Argentina) <https://translate.revolutionarygamesstudio.com/projects/thrive/thrive-game/es_AR/>\n"
@@ -1750,6 +1750,9 @@ msgstr "posee una mutación"
 msgid "EDITOR_BUTTON_TOOLTIP"
 msgstr ""
 
+msgid "EDITOR_TUTORIAL_EARLY_GOAL"
+msgstr ""
+
 msgid "EDITOR_TUTORIAL_EDITOR_TEXT"
 msgstr ""
 
@@ -2373,6 +2376,9 @@ msgstr "Volumen de la interfaz"
 msgid "HEALTH"
 msgstr ""
 
+msgid "HEALTH_MODIFIER"
+msgstr ""
+
 #, fuzzy
 msgid "HEAT_ACCUMULATION_BAR_TOOLTIP"
 msgstr "Disparar toxina"
@@ -2700,6 +2706,18 @@ msgstr ""
 
 msgid "JUNE"
 msgstr ""
+
+msgid "KEEP_CURRENT_FLEXIBILITY"
+msgstr ""
+
+#, fuzzy
+msgid "KEEP_CURRENT_TOLERANCE_FLEXIBILITY_TOOLTIP"
+msgstr ""
+"Esta sección muestra el balance total de ATP (energía) de la célula actual.\n"
+"Para poder sobrevivir, el balance tiene que ser positivo. Para las célular sésiles se puede considerar el balance positivo con el movimiento excluído.\n"
+"El menú desplegable de ahí abajo lo podés usar para chequear que pasaría si la célula no tuviese ningún recurso disponible para poder crear ATP.\n"
+"Por ejemplo, algunas células solo pueden mantener un balance de ATP positivo cuando tienen múltiples tipos de componentes de los que pueden crear ATP al mísmo tiempo.\n"
+"Ese tipo de células son más difíciles de jugar porque requieren que almacenes varios tipos de componentes al mísmo tiempo para poder sobrevivir."
 
 #, fuzzy
 msgid "KEEP_MIGRATION"
@@ -3584,11 +3602,12 @@ msgstr "Mover organela"
 msgid "MIDDLE_MOUSE"
 msgstr ""
 
-msgid "MIGRATE"
-msgstr ""
-
 #, fuzzy
 msgid "MIGRATION_FAILED_TO_ADD"
+msgstr "Normal"
+
+#, fuzzy
+msgid "MIGRATION_MANAGER"
 msgstr "Normal"
 
 msgid "MIGRATION_STATUS_DESTINATION_NOT_SELECTED"
@@ -4083,6 +4102,10 @@ msgid "NOTICE_READY_TO_EDIT"
 msgstr ""
 
 #, fuzzy
+msgid "NOT_ADAPTED_TO_CURRENT_PATCH"
+msgstr "Cancelar acción actual"
+
+#, fuzzy
 msgid "NOT_STARTED_DOT"
 msgstr "Abortado."
 
@@ -4373,6 +4396,10 @@ msgstr "Fotosíntesis"
 msgid "OXYGEN_RESISTANCE"
 msgstr ""
 
+#, fuzzy
+msgid "OXYGEN_TOLERANCE_TOOLTIP"
+msgstr "Anda a la etapa del despertar. Solo cuando dejes de ser un boludo ( El tipo de tejido son axones)."
+
 msgid "OXYTOXISOME_PROCESSES_DESCRIPTION"
 msgstr ""
 
@@ -4501,6 +4528,10 @@ msgstr ""
 msgid "PERCENTAGE_VALUE"
 msgstr ""
 
+#, fuzzy
+msgid "PERFECT_ADAPTATION_DESCRIPTION"
+msgstr "población:"
+
 msgid "PERFORMANCE"
 msgstr "Rendimiento"
 
@@ -4619,6 +4650,15 @@ msgstr ""
 msgid "PRESSURE_SHORT"
 msgstr ""
 
+#, fuzzy
+msgid "PRESSURE_TOLERANCE_TOOLTIP"
+msgstr ""
+"Esta sección muestra el balance total de ATP (energía) de la célula actual.\n"
+"Para poder sobrevivir, el balance tiene que ser positivo. Para las célular sésiles se puede considerar el balance positivo con el movimiento excluído.\n"
+"El menú desplegable de ahí abajo lo podés usar para chequear que pasaría si la célula no tuviese ningún recurso disponible para poder crear ATP.\n"
+"Por ejemplo, algunas células solo pueden mantener un balance de ATP positivo cuando tienen múltiples tipos de componentes de los que pueden crear ATP al mísmo tiempo.\n"
+"Ese tipo de células son más difíciles de jugar porque requieren que almacenes varios tipos de componentes al mísmo tiempo para poder sobrevivir."
+
 msgid "PRESS_KEY_DOT_DOT_DOT"
 msgstr "Presiona cualquier tecla…"
 
@@ -4639,6 +4679,9 @@ msgid "PROCESS_ENVIRONMENT_SEPARATOR"
 msgstr ""
 
 msgid "PROCESS_PANEL_TITLE"
+msgstr ""
+
+msgid "PROCESS_SPEED_MODIFIER"
 msgstr ""
 
 msgid "PROGRAMMING_TEAM"
@@ -5607,6 +5650,15 @@ msgstr ""
 msgid "TEMPERATURE_SHORT"
 msgstr ""
 
+#, fuzzy
+msgid "TEMPERATURE_TOLERANCE_TOOLTIP"
+msgstr ""
+"Esta sección muestra el balance total de ATP (energía) de la célula actual.\n"
+"Para poder sobrevivir, el balance tiene que ser positivo. Para las célular sésiles se puede considerar el balance positivo con el movimiento excluído.\n"
+"El menú desplegable de ahí abajo lo podés usar para chequear que pasaría si la célula no tuviese ningún recurso disponible para poder crear ATP.\n"
+"Por ejemplo, algunas células solo pueden mantener un balance de ATP positivo cuando tienen múltiples tipos de componentes de los que pueden crear ATP al mísmo tiempo.\n"
+"Ese tipo de células son más difíciles de jugar porque requieren que almacenes varios tipos de componentes al mísmo tiempo para poder sobrevivir."
+
 msgid "TESTING_TEAM"
 msgstr ""
 
@@ -5845,6 +5897,9 @@ msgstr "Herramientas"
 msgid "TOOL_HAND_AXE"
 msgstr ""
 
+msgid "TOO_LARGE_PRESSURE_RANGE"
+msgstr ""
+
 msgid "TOO_MANY_RECENT_VERSIONS_TO_SHOW"
 msgstr ""
 
@@ -6041,6 +6096,10 @@ msgstr "Usá W, A, S y D y el mouse para moverte. E para disparar OxiToxi NT si 
 msgid "TUTORIAL_MICROBE_EDITOR_NO_CHANGES_MADE"
 msgstr "Usá W, A, S y D y el mouse para moverte. E para disparar OxiToxi NT si tenés una vacuola de toxinas. G para activar o desactivar el modo engullir."
 
+#, fuzzy
+msgid "TUTORIAL_MICROBE_EDITOR_OPEN_TOLERANCES"
+msgstr "Usá W, A, S y D y el mouse para moverte. E para disparar OxiToxi NT si tenés una vacuola de toxinas. G para activar o desactivar el modo engullir."
+
 msgid "TUTORIAL_MICROBE_EDITOR_PATCH_TEXT"
 msgstr ""
 
@@ -6052,6 +6111,10 @@ msgstr ""
 
 msgid "TUTORIAL_MICROBE_EDITOR_STAY_SMALL"
 msgstr ""
+
+#, fuzzy
+msgid "TUTORIAL_MICROBE_EDITOR_TOLERANCES_TAB"
+msgstr "Usá W, A, S y D y el mouse para moverte. E para disparar OxiToxi NT si tenés una vacuola de toxinas. G para activar o desactivar el modo engullir."
 
 #, fuzzy
 msgid "TUTORIAL_MICROBE_STAGE_EDITOR_BUTTON_TUTORIAL"
@@ -6322,6 +6385,15 @@ msgstr ""
 #, fuzzy
 msgid "UV_PROTECTION"
 msgstr "Predicción del Auto-evo"
+
+#, fuzzy
+msgid "UV_TOLERANCE_TOOLTIP"
+msgstr ""
+"Esta sección muestra el balance total de ATP (energía) de la célula actual.\n"
+"Para poder sobrevivir, el balance tiene que ser positivo. Para las célular sésiles se puede considerar el balance positivo con el movimiento excluído.\n"
+"El menú desplegable de ahí abajo lo podés usar para chequear que pasaría si la célula no tuviese ningún recurso disponible para poder crear ATP.\n"
+"Por ejemplo, algunas células solo pueden mantener un balance de ATP positivo cuando tienen múltiples tipos de componentes de los que pueden crear ATP al mísmo tiempo.\n"
+"Ese tipo de células son más difíciles de jugar porque requieren que almacenes varios tipos de componentes al mísmo tiempo para poder sobrevivir."
 
 msgid "VACUOLE"
 msgstr "Vacuola"

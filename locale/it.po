@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2025-02-15 11:28+0200\n"
+"POT-Creation-Date: 2025-02-21 15:14+0200\n"
 "PO-Revision-Date: 2025-02-06 13:29+0000\n"
 "Last-Translator: Anonymous <noreply@weblate.org>\n"
 "Language-Team: Italian <https://translate.revolutionarygamesstudio.com/projects/thrive/thrive-game/it/>\n"
@@ -1780,6 +1780,15 @@ msgstr "ha subito una mutazione"
 msgid "EDITOR_BUTTON_TOOLTIP"
 msgstr "Apri l'editor e modifica la tua specie"
 
+#, fuzzy
+msgid "EDITOR_TUTORIAL_EARLY_GOAL"
+msgstr ""
+"Questo è l'editor delle cellule, dove puoi aggiungere o rimuovere organuli dalla tua specie spendendo punti mutazione (MP).\n"
+"\n"
+"Ci sono anche altre proprietà, che puoi cambiare negli appositi pannelli.\n"
+"\n"
+"Per continuare, scegli un organulo dal pannello a sinistra (il citoplasma è una buona scelta). Poi, fai clic sinistro vicino all'esagono al centro dello schermo per aggiungere quell'organulo alla tua specie."
+
 msgid "EDITOR_TUTORIAL_EDITOR_TEXT"
 msgstr ""
 "Benvenuti nel [b]Editor dei microbi[/b].\n"
@@ -2464,6 +2473,9 @@ msgstr "Volume della GUI"
 msgid "HEALTH"
 msgstr "Salute"
 
+msgid "HEALTH_MODIFIER"
+msgstr ""
+
 #, fuzzy
 msgid "HEAT_ACCUMULATION_BAR_TOOLTIP"
 msgstr "Carica automaticamente patch Harmony dall'Assembly (non richiede di specificare la classe della mod)"
@@ -2815,6 +2827,13 @@ msgstr "Luglio"
 
 msgid "JUNE"
 msgstr "Giugno"
+
+msgid "KEEP_CURRENT_FLEXIBILITY"
+msgstr ""
+
+#, fuzzy
+msgid "KEEP_CURRENT_TOLERANCE_FLEXIBILITY_TOOLTIP"
+msgstr "Metti in pausa il gioco"
 
 #, fuzzy
 msgid "KEEP_MIGRATION"
@@ -3703,12 +3722,16 @@ msgid "MIDDLE_MOUSE"
 msgstr "Clic centrale"
 
 #, fuzzy
-msgid "MIGRATE"
-msgstr "Il tasso"
-
-#, fuzzy
 msgid "MIGRATION_FAILED_TO_ADD"
 msgstr "Creazione della mod fallita"
+
+#, fuzzy
+msgid "MIGRATION_MANAGER"
+msgstr ""
+"Tieni d'occhio la barra della tua salute vicino alla barra dell'ATP (in basso a destra).\n"
+"Se si svuota, la tua cellula muore.\n"
+"Recuperi salute se hai ATP disponibile.\n"
+"Assicurati di raccogliere abbastanza glucosio per produrre ATP."
 
 msgid "MIGRATION_STATUS_DESTINATION_NOT_SELECTED"
 msgstr ""
@@ -4244,6 +4267,10 @@ msgstr "Danneggiato da eccessive radiazioni"
 msgid "NOTICE_READY_TO_EDIT"
 msgstr ""
 
+#, fuzzy
+msgid "NOT_ADAPTED_TO_CURRENT_PATCH"
+msgstr "Trova la zona corrente"
+
 msgid "NOT_STARTED_DOT"
 msgstr "Processo non iniziato."
 
@@ -4550,6 +4577,12 @@ msgstr "Sintesi dell'OssiTossi"
 msgid "OXYGEN_RESISTANCE"
 msgstr "Resistenza alle Tossine"
 
+#, fuzzy
+msgid "OXYGEN_TOLERANCE_TOOLTIP"
+msgstr ""
+"In questa sezione è riportato il bilancio totale (produzione - consumo) per ciascun composto.\n"
+"Ad esempio, per creare una cellula vegetale, il bilancio del glucosio deve essere abbastanza positivo."
+
 msgid "OXYTOXISOME_PROCESSES_DESCRIPTION"
 msgstr "Trasforma l'[thrive:compound type=\"atp\"][/thrive:compound] in [thrive:compound type=\"oxytoxy\"][/thrive:compound]. Il tasso aumenta con la concentrazione di [thrive:compound type=\"oxygen\"][/thrive:compound]. Puoi rilasciare le tossine premendo [thrive:input]g_fire_toxin[/thrive:input]. Il danno aumenta con la quantità disponibile."
 
@@ -4685,6 +4718,14 @@ msgstr ""
 msgid "PERCENTAGE_VALUE"
 msgstr "{0}%"
 
+#, fuzzy
+msgid "PERFECT_ADAPTATION_DESCRIPTION"
+msgstr ""
+"Abilita gli effetti di luce nella GUI [graphical user interface], come ad esempio il flash del pulsante dell'editor.\n"
+"\n"
+"Nel caso dovessi riscontrare un bug per cui alcune parti del pulsante dell'editor spariscono,\n"
+"puoi provare a disattivare questa opzione per risolverlo."
+
 msgid "PERFORMANCE"
 msgstr "Prestazioni"
 
@@ -4807,6 +4848,10 @@ msgstr "Pressione"
 msgid "PRESSURE_SHORT"
 msgstr "Press."
 
+#, fuzzy
+msgid "PRESSURE_TOLERANCE_TOOLTIP"
+msgstr "Torna al menù principale"
+
 msgid "PRESS_KEY_DOT_DOT_DOT"
 msgstr "Premi un tasto..."
 
@@ -4826,6 +4871,10 @@ msgid "PROCESS_ENVIRONMENT_SEPARATOR"
 msgstr "@"
 
 msgid "PROCESS_PANEL_TITLE"
+msgstr "Processi cellulari"
+
+#, fuzzy
+msgid "PROCESS_SPEED_MODIFIER"
 msgstr "Processi cellulari"
 
 msgid "PROGRAMMING_TEAM"
@@ -5819,6 +5868,10 @@ msgstr "Temperatura"
 msgid "TEMPERATURE_SHORT"
 msgstr "Temp."
 
+#, fuzzy
+msgid "TEMPERATURE_TOLERANCE_TOOLTIP"
+msgstr "Metti in pausa il gioco"
+
 msgid "TESTING_TEAM"
 msgstr "Squadra Collaudatori"
 
@@ -6056,6 +6109,9 @@ msgstr "Strumenti"
 msgid "TOOL_HAND_AXE"
 msgstr ""
 
+msgid "TOO_LARGE_PRESSURE_RANGE"
+msgstr ""
+
 msgid "TOO_MANY_RECENT_VERSIONS_TO_SHOW"
 msgstr ""
 
@@ -6275,6 +6331,17 @@ msgstr ""
 "\n"
 "Buona fortuna!"
 
+#, fuzzy
+msgid "TUTORIAL_MICROBE_EDITOR_OPEN_TOLERANCES"
+msgstr ""
+"Questa è la mappa delle zone.\n"
+"\n"
+"Ciascuna icona rappresenta un habitat in cui puoi abitare. Il pannello a destra ti mostra informazioni aggiuntive sulla zona attualmente selezionata.\n"
+"\n"
+"Se selezioni una zona adiacente a quella dove ti trovi attualmente, evidenziata da un bordino verde lampeggiante, avrai l'opzione di migrarci premendo il pulsante \"Trasferisciti in questa zona\" in basso a destra.\n"
+"\n"
+"Prova a selezionare una zona per continuare."
+
 msgid "TUTORIAL_MICROBE_EDITOR_PATCH_TEXT"
 msgstr ""
 "Questa è la mappa delle zone.\n"
@@ -6310,6 +6377,17 @@ msgstr ""
 "Inoltre, prima di aggiungere un organulo, considera attentamente se serve veramente. Spesso non apporre modifiche è una buona scelta: ciascuna parte richiede ATP e comporta un costo maggiore al momento della tua divisione cellulare.\n"
 "\n"
 "Ecco una strategia possibile: finché non raggiungi le zone di superficie, rimani un singolo esagono di citoplasma; una volta lì, investi in organuli fotosintetici."
+
+#, fuzzy
+msgid "TUTORIAL_MICROBE_EDITOR_TOLERANCES_TAB"
+msgstr ""
+"Questa è la mappa delle zone.\n"
+"\n"
+"Ciascuna icona rappresenta un habitat in cui puoi abitare. Il pannello a destra ti mostra informazioni aggiuntive sulla zona attualmente selezionata.\n"
+"\n"
+"Se selezioni una zona adiacente a quella dove ti trovi attualmente, evidenziata da un bordino verde lampeggiante, avrai l'opzione di migrarci premendo il pulsante \"Trasferisciti in questa zona\" in basso a destra.\n"
+"\n"
+"Prova a selezionare una zona per continuare."
 
 msgid "TUTORIAL_MICROBE_STAGE_EDITOR_BUTTON_TUTORIAL"
 msgstr ""
@@ -6612,6 +6690,13 @@ msgstr ""
 #, fuzzy
 msgid "UV_PROTECTION"
 msgstr "Previsione dell'Auto-Evo"
+
+#, fuzzy
+msgid "UV_TOLERANCE_TOOLTIP"
+msgstr ""
+"Questa sezione mostra il bilancio totale di ATP (energia) della tua attuale cellula.\n"
+"Affinché la cellula sopravviva il bilancio deve essere positivo. Per le cellule sessili bisogna considerare il bilancio positivo escludendo i costi di movimento.\n"
+"Etc"
 
 msgid "VACUOLE"
 msgstr "Vacuolo"
@@ -8574,6 +8659,10 @@ msgid "ZOOM_OUT"
 msgstr "Zoom indietro"
 
 #, fuzzy
+#~ msgid "MIGRATE"
+#~ msgstr "Il tasso"
+
+#, fuzzy
 #~ msgid "THANKS_FOR_BUYING_THRIVE"
 #~ msgstr ""
 #~ "Grazie per aver giocato!\n"
@@ -9072,14 +9161,6 @@ msgstr "Zoom indietro"
 #~ "\n"
 #~ "Seleziona una zona per continuare."
 
-#~ msgid "EDITOR_TUTORIAL_CELL_TEXT"
-#~ msgstr ""
-#~ "Questo è l'editor delle cellule, dove puoi aggiungere o rimuovere organuli dalla tua specie spendendo punti mutazione (MP).\n"
-#~ "\n"
-#~ "Ci sono anche altre proprietà, che puoi cambiare negli appositi pannelli.\n"
-#~ "\n"
-#~ "Per continuare, scegli un organulo dal pannello a sinistra (il citoplasma è una buona scelta). Poi, fai clic sinistro vicino all'esagono al centro dello schermo per aggiungere quell'organulo alla tua specie."
-
 #~ msgid "VIEW_NOW"
 #~ msgstr "Vedi Ora"
 
@@ -9267,3 +9348,11 @@ msgstr "Zoom indietro"
 
 #~ msgid "WITH_CONCENTRATION_OF"
 #~ msgstr "con la concentrazione di"
+
+#~ msgid "EDITOR_TUTORIAL_CELL_TEXT"
+#~ msgstr ""
+#~ "Questo è l'editor delle cellule, dove puoi aggiungere o rimuovere organuli dalla tua specie spendendo punti mutazione (MP).\n"
+#~ "\n"
+#~ "Ci sono anche altre proprietà, che puoi cambiare negli appositi pannelli.\n"
+#~ "\n"
+#~ "Per continuare, scegli un organulo dal pannello a sinistra (il citoplasma è una buona scelta). Poi, fai clic sinistro vicino all'esagono al centro dello schermo per aggiungere quell'organulo alla tua specie."

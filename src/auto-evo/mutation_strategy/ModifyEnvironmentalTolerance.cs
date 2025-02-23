@@ -12,7 +12,7 @@ public class ModifyEnvironmentalTolerance : IMutationStrategy<MicrobeSpecies>
     /// </summary>
     public bool Repeatable => false;
 
-    public List<Tuple<MicrobeSpecies, float>>? MutationsOf(MicrobeSpecies baseSpecies, float mp, bool lawk,
+    public List<Tuple<MicrobeSpecies, double>>? MutationsOf(MicrobeSpecies baseSpecies, double mp, bool lawk,
         Random random, BiomeConditions biomeToConsider)
     {
         if (mp <= 0)
@@ -53,11 +53,13 @@ public class ModifyEnvironmentalTolerance : IMutationStrategy<MicrobeSpecies>
 
                 if (score.PerfectTemperatureAdjustment < 0)
                 {
-                    change = Math.Max(score.PerfectTemperatureAdjustment, -maxChange);
+                    // Round here so that we don't accidentally round the max change upwards inflating how much change
+                    // is allowed to happen
+                    change = (float)Math.Max(score.PerfectTemperatureAdjustment, -maxChange);
                 }
                 else
                 {
-                    change = Math.Min(score.PerfectTemperatureAdjustment, maxChange);
+                    change = (float)Math.Min(score.PerfectTemperatureAdjustment, maxChange);
                 }
 
                 newTolerances.PreferredTemperature += change;
@@ -68,7 +70,7 @@ public class ModifyEnvironmentalTolerance : IMutationStrategy<MicrobeSpecies>
             else
             {
                 // Trying to perfect this
-                var maxChange = mp / Constants.TOLERANCE_CHANGE_MP_PER_TEMPERATURE_TOLERANCE;
+                var maxChange = (float)(mp / Constants.TOLERANCE_CHANGE_MP_PER_TEMPERATURE_TOLERANCE);
 
                 // To perfect temperature it needs to be always negative
 #if DEBUG
@@ -111,7 +113,9 @@ public class ModifyEnvironmentalTolerance : IMutationStrategy<MicrobeSpecies>
                     change = Math.Min(score.PerfectPressureAdjustment, maxChange);
                 }
 
-                newTolerances.PreferredPressure += (float)change;
+                // These are adjusted in the same direction to keep the same range as before
+                newTolerances.PressureMinimum = Math.Max(newTolerances.PressureMinimum + (float)change, 0);
+                newTolerances.PressureMaximum = Math.Max(newTolerances.PressureMaximum + (float)change, 0);
 
                 mp -= (float)(change * Constants.TOLERANCE_CHANGE_MP_PER_PRESSURE);
             }
@@ -148,12 +152,6 @@ public class ModifyEnvironmentalTolerance : IMutationStrategy<MicrobeSpecies>
                 newTolerances.PressureMinimum = (float)(newTolerances.PressureMinimum + minChange);
 
                 mp -= (float)(minChange * Constants.TOLERANCE_CHANGE_MP_PER_PRESSURE_TOLERANCE);
-
-                // Recalculate the middle point
-                // TODO: should this be considered to use MP? Most of the time this shouldn't change as the range is
-                // shrunk symmetrically
-                newTolerances.PreferredPressure =
-                    (newTolerances.PressureMaximum + newTolerances.PressureMinimum) / 2;
             }
 
             changes = true;
@@ -175,7 +173,7 @@ public class ModifyEnvironmentalTolerance : IMutationStrategy<MicrobeSpecies>
             }
 #endif
 
-            newTolerances.UVResistance += change;
+            newTolerances.UVResistance += (float)change;
 
             mp -= change * Constants.TOLERANCE_CHANGE_MP_PER_OXYGEN;
             changes = true;
@@ -196,7 +194,7 @@ public class ModifyEnvironmentalTolerance : IMutationStrategy<MicrobeSpecies>
             }
 #endif
 
-            newTolerances.UVResistance += change;
+            newTolerances.UVResistance += (float)change;
 
             mp -= change * Constants.TOLERANCE_CHANGE_MP_PER_UV;
             changes = true;

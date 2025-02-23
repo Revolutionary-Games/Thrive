@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2025-02-15 11:28+0200\n"
+"POT-Creation-Date: 2025-02-21 15:14+0200\n"
 "PO-Revision-Date: 2025-02-06 13:29+0000\n"
 "Last-Translator: Anonymous <noreply@weblate.org>\n"
 "Language-Team: Chinese (Simplified Han script) <https://translate.revolutionarygamesstudio.com/projects/thrive/thrive-game/zh_Hans/>\n"
@@ -1767,6 +1767,15 @@ msgstr "编辑与突变"
 msgid "EDITOR_BUTTON_TOOLTIP"
 msgstr "进入编辑器并修改你的物种"
 
+#, fuzzy
+msgid "EDITOR_TUTORIAL_EARLY_GOAL"
+msgstr ""
+"这里是你的细胞编辑器，你可以在这通过花费变异点来添加或移除细胞器。\n"
+"\n"
+"你还可以在细胞编辑器里修改你的物种的其它属性。\n"
+"\n"
+"想要继续的话，从左侧面板选中一个细胞器（细胞质是个好选择）。然后再点击右侧面板中央附近的六角格以将此细胞器放入你的物种中。"
+
 msgid "EDITOR_TUTORIAL_EDITOR_TEXT"
 msgstr ""
 "欢迎来到[b]微生物编辑器[/b]。\n"
@@ -2374,6 +2383,9 @@ msgstr "GUI音量"
 msgid "HEALTH"
 msgstr "生命上限"
 
+msgid "HEALTH_MODIFIER"
+msgstr ""
+
 #, fuzzy
 msgid "HEAT_ACCUMULATION_BAR_TOOLTIP"
 msgstr "从Assembly中自动加载Harmony补丁（不需要指定mod class）"
@@ -2690,6 +2702,13 @@ msgstr "七月"
 
 msgid "JUNE"
 msgstr "六月"
+
+msgid "KEEP_CURRENT_FLEXIBILITY"
+msgstr ""
+
+#, fuzzy
+msgid "KEEP_CURRENT_TOLERANCE_FLEXIBILITY_TOOLTIP"
+msgstr "访问我们在Patreon上的页面"
 
 msgid "KEEP_MIGRATION"
 msgstr "保留更改并继续"
@@ -3561,11 +3580,12 @@ msgstr ""
 msgid "MIDDLE_MOUSE"
 msgstr "鼠标中键"
 
-msgid "MIGRATE"
-msgstr "迁移"
-
 msgid "MIGRATION_FAILED_TO_ADD"
 msgstr "错误：迁移失败，请检查迁移参数"
+
+#, fuzzy
+msgid "MIGRATION_MANAGER"
+msgstr "将{2}单位的种群从{0}迁移到{1}"
 
 msgid "MIGRATION_STATUS_DESTINATION_NOT_SELECTED"
 msgstr "将种群从{0}迁移到..."
@@ -4051,6 +4071,10 @@ msgstr "现在可以进入编辑器"
 msgid "NOTICE_READY_TO_EDIT"
 msgstr "现在可以进入编辑器"
 
+#, fuzzy
+msgid "NOT_ADAPTED_TO_CURRENT_PATCH"
+msgstr "找到当前的地区"
+
 msgid "NOT_STARTED_DOT"
 msgstr "未开始。"
 
@@ -4334,6 +4358,12 @@ msgstr "氰化物合成"
 msgid "OXYGEN_RESISTANCE"
 msgstr "毒抗"
 
+#, fuzzy
+msgid "OXYGEN_TOLERANCE_TOOLTIP"
+msgstr ""
+"这个区域显示了各化合物的总平衡情况（生产 - 消耗）\n"
+"比如说对植物细胞而言葡萄糖的平衡情况需要是一个不小的正数。"
+
 msgid "OXYTOXISOME_PROCESSES_DESCRIPTION"
 msgstr "将[thrive:compound type=\"atp\"][/thrive:compound]转换成[thrive:compound type=\"oxytoxy\"][/thrive:compound]。速率跟[thrive:compound type=\"oxygen\"][/thrive:compound]浓度成正比。可以通过按下[thrive:input]g_fire_toxin[/thrive:input]来释放毒素。当[thrive:compound type=\"oxytoxy\"][/thrive:compound]数量不足时仍能释放，但是伤害会降低。"
 
@@ -4455,6 +4485,14 @@ msgstr "一个内共生进度已满"
 
 msgid "PERCENTAGE_VALUE"
 msgstr "{0}%"
+
+#, fuzzy
+msgid "PERFECT_ADAPTATION_DESCRIPTION"
+msgstr ""
+"启用GUI的闪烁特效。（比如说编辑器里按钮的闪烁）\n"
+"\n"
+"如果你遇到编辑器按钮部分消失的问题，\n"
+"可以试试禁用这个功能，问题可能会消失。"
 
 msgid "PERFORMANCE"
 msgstr "性能"
@@ -4579,6 +4617,10 @@ msgstr "压力"
 msgid "PRESSURE_SHORT"
 msgstr "压力"
 
+#, fuzzy
+msgid "PRESSURE_TOLERANCE_TOOLTIP"
+msgstr "退回主菜单"
+
 msgid "PRESS_KEY_DOT_DOT_DOT"
 msgstr "按下你要设置的按钮…"
 
@@ -4598,6 +4640,10 @@ msgid "PROCESS_ENVIRONMENT_SEPARATOR"
 msgstr "@"
 
 msgid "PROCESS_PANEL_TITLE"
+msgstr "细胞生理过程"
+
+#, fuzzy
+msgid "PROCESS_SPEED_MODIFIER"
 msgstr "细胞生理过程"
 
 msgid "PROGRAMMING_TEAM"
@@ -5541,6 +5587,10 @@ msgstr "温度"
 msgid "TEMPERATURE_SHORT"
 msgstr "温度"
 
+#, fuzzy
+msgid "TEMPERATURE_TOLERANCE_TOOLTIP"
+msgstr "访问我们在Patreon上的页面"
+
 msgid "TESTING_TEAM"
 msgstr "测试团队"
 
@@ -5780,6 +5830,9 @@ msgstr "工具"
 msgid "TOOL_HAND_AXE"
 msgstr "手斧"
 
+msgid "TOO_LARGE_PRESSURE_RANGE"
+msgstr ""
+
 msgid "TOO_MANY_RECENT_VERSIONS_TO_SHOW"
 msgstr "因为最近版本太多而没有全部显示"
 
@@ -5965,6 +6018,16 @@ msgstr ""
 "一旦您离开编辑器[u]，您将不能编辑你的物种，直到下一次繁殖[/u]。\n"
 "为了在游戏中取得进展，您将需要进化和适应，所以您最好在每一次循环中都编辑你的物种。"
 
+#, fuzzy
+msgid "TUTORIAL_MICROBE_EDITOR_OPEN_TOLERANCES"
+msgstr ""
+"右侧的ATP生产条显示你的细胞生产和消耗[thrive:compound type=\"atp\"][/thrive:compound]的比例。如果顶段条比底段条短，说明你没有产生足够的[thrive:compound type=\"atp\"][/thrive:compound]。\n"
+"\n"
+"低端条包含[b]渗透调节[/b][thrive:icon]OsmoIcon[/thrive:icon]消耗和[b]移动[/b][thrive:icon]MovementIcon[/thrive:icon]消耗。\n"
+"[b]渗透调节[/b][thrive:icon]OsmoIcon[/thrive:icon]是[u]维持生命的基本消耗[/u]。你添加的每一个部件都会增加这种消耗。\n"
+"\n"
+"如果你的[thrive:compound type=\"atp\"][/thrive:compound]生产为负，务必增加[thrive:compound type=\"atp\"][/thrive:compound]生产或添加[b]储存[/b][thrive:icon]StorageIcon[/thrive:icon]来允许爆发式移动。"
+
 msgid "TUTORIAL_MICROBE_EDITOR_PATCH_TEXT"
 msgstr ""
 "这里是[b]地区图[/b]。\n"
@@ -6002,6 +6065,16 @@ msgstr ""
 "还要仔细考虑增加一个细胞器是否真正有益，你并不总是需要改变能运作的东西，因为每个细胞器都要花费[thrive:compound type=\"atp\"][/thrive:compound] 来维护[thrive:icon]OsmoIcon[/thrive:icon]，也需要更多的资源来进行复制。\n"
 "\n"
 "一个可能的策略是只带着一个六角格的细胞质，先前往表层地区再获得[b]光合作用[/b]细胞器。"
+
+#, fuzzy
+msgid "TUTORIAL_MICROBE_EDITOR_TOLERANCES_TAB"
+msgstr ""
+"右侧的ATP生产条显示你的细胞生产和消耗[thrive:compound type=\"atp\"][/thrive:compound]的比例。如果顶段条比底段条短，说明你没有产生足够的[thrive:compound type=\"atp\"][/thrive:compound]。\n"
+"\n"
+"低端条包含[b]渗透调节[/b][thrive:icon]OsmoIcon[/thrive:icon]消耗和[b]移动[/b][thrive:icon]MovementIcon[/thrive:icon]消耗。\n"
+"[b]渗透调节[/b][thrive:icon]OsmoIcon[/thrive:icon]是[u]维持生命的基本消耗[/u]。你添加的每一个部件都会增加这种消耗。\n"
+"\n"
+"如果你的[thrive:compound type=\"atp\"][/thrive:compound]生产为负，务必增加[thrive:compound type=\"atp\"][/thrive:compound]生产或添加[b]储存[/b][thrive:icon]StorageIcon[/thrive:icon]来允许爆发式移动。"
 
 msgid "TUTORIAL_MICROBE_STAGE_EDITOR_BUTTON_TUTORIAL"
 msgstr ""
@@ -6287,6 +6360,15 @@ msgstr "使用虚拟窗口大小"
 #, fuzzy
 msgid "UV_PROTECTION"
 msgstr "Auto-Evo的预测"
+
+#, fuzzy
+msgid "UV_TOLERANCE_TOOLTIP"
+msgstr ""
+"这个区域显示了目前细胞ATP（能量）的总平衡情况\n"
+"如果想要生存，这个数值应该是正的。对于没有运动需求的细胞，可以不考虑移动所消耗的ATP。\n"
+"下面的下拉菜单可以用来检查各种资源短缺时会发生的情况。\n"
+"比如，有些细胞只有在同时拥有好几种类型的化合物时才可以使ATP收支平衡。\n"
+"这些细胞将更难存活，因为它们需要收集更多的化合物。"
 
 msgid "VACUOLE"
 msgstr "液泡"
@@ -8507,6 +8589,9 @@ msgstr "放大"
 msgid "ZOOM_OUT"
 msgstr "缩小"
 
+#~ msgid "MIGRATE"
+#~ msgstr "迁移"
+
 #~ msgid "THANKS_FOR_BUYING_THRIVE"
 #~ msgstr ""
 #~ "感谢你的游玩！如果你喜欢这款游戏，请记得也向你的朋友们推荐一下。\n"
@@ -8963,14 +9048,6 @@ msgstr "缩小"
 #~ "\n"
 #~ "选择一个地区以继续。"
 
-#~ msgid "EDITOR_TUTORIAL_CELL_TEXT"
-#~ msgstr ""
-#~ "这里是你的细胞编辑器，你可以在这通过花费变异点来添加或移除细胞器。\n"
-#~ "\n"
-#~ "你还可以在细胞编辑器里修改你的物种的其它属性。\n"
-#~ "\n"
-#~ "想要继续的话，从左侧面板选中一个细胞器（细胞质是个好选择）。然后再点击右侧面板中央附近的六角格以将此细胞器放入你的物种中。"
-
 #~ msgid "VIEW_NOW"
 #~ msgstr "现在就去看看"
 
@@ -9178,3 +9255,11 @@ msgstr "缩小"
 #~ msgstr ""
 #~ "化学合\n"
 #~ "成蛋白"
+
+#~ msgid "EDITOR_TUTORIAL_CELL_TEXT"
+#~ msgstr ""
+#~ "这里是你的细胞编辑器，你可以在这通过花费变异点来添加或移除细胞器。\n"
+#~ "\n"
+#~ "你还可以在细胞编辑器里修改你的物种的其它属性。\n"
+#~ "\n"
+#~ "想要继续的话，从左侧面板选中一个细胞器（细胞质是个好选择）。然后再点击右侧面板中央附近的六角格以将此细胞器放入你的物种中。"

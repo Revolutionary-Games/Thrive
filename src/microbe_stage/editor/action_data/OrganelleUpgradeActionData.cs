@@ -19,7 +19,7 @@ public class OrganelleUpgradeActionData : EditorCombinableActionData<CellType>
         UpgradedOrganelle = upgradedOrganelle;
     }
 
-    protected override int CalculateCostInternal()
+    protected override double CalculateCostInternal()
     {
         int cost = 0;
 

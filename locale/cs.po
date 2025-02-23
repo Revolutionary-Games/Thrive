@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2025-02-15 11:28+0200\n"
+"POT-Creation-Date: 2025-02-21 15:14+0200\n"
 "PO-Revision-Date: 2025-02-06 13:29+0000\n"
 "Last-Translator: Anonymous <noreply@weblate.org>\n"
 "Language-Team: Czech <https://translate.revolutionarygamesstudio.com/projects/thrive/thrive-game/cs/>\n"
@@ -1853,6 +1853,15 @@ msgstr "zmutoval se"
 msgid "EDITOR_BUTTON_TOOLTIP"
 msgstr "Vstupte do editoru a upravte svůj druh"
 
+#, fuzzy
+msgid "EDITOR_TUTORIAL_EARLY_GOAL"
+msgstr ""
+"Toto je editor buněk, kde můžeš přidávat nebo odebírat organely z tvého druhu utracením bodů mutace (MP).\n"
+"\n"
+"Další vlastnosti tvého druhu můžeš změnit na dalších kartách editoru buněk.\n"
+"\n"
+"Pokračuj výběrem organely z panelu vlevo (cytoplazma je dobrá volba). Potom klikni levým tlačítkem vedle zobrazeného šestiúhelníku (Hexu) uprostřed obrazovky a přidej tuto organelu ke svému druhu."
+
 msgid "EDITOR_TUTORIAL_EDITOR_TEXT"
 msgstr ""
 "Vítejte v editoru mikrobů.\n"
@@ -2543,6 +2552,9 @@ msgstr "Hlasitost GUI"
 msgid "HEALTH"
 msgstr "Zdraví"
 
+msgid "HEALTH_MODIFIER"
+msgstr ""
+
 #, fuzzy
 msgid "HEAT_ACCUMULATION_BAR_TOOLTIP"
 msgstr "Automaticky načítat Harmony patche ze sestavy (nepotřebuje specifikování třídy modu)"
@@ -2899,6 +2911,13 @@ msgstr "Červenec"
 
 msgid "JUNE"
 msgstr "Červen"
+
+msgid "KEEP_CURRENT_FLEXIBILITY"
+msgstr ""
+
+#, fuzzy
+msgid "KEEP_CURRENT_TOLERANCE_FLEXIBILITY_TOOLTIP"
+msgstr "Navštivte náš Patreon"
 
 #, fuzzy
 msgid "KEEP_MIGRATION"
@@ -3797,12 +3816,16 @@ msgid "MIDDLE_MOUSE"
 msgstr "Tlačítko kolečka myši"
 
 #, fuzzy
-msgid "MIGRATE"
-msgstr "Tempo"
-
-#, fuzzy
 msgid "MIGRATION_FAILED_TO_ADD"
 msgstr "Vytvoření módu se nezdařilo"
+
+#, fuzzy
+msgid "MIGRATION_MANAGER"
+msgstr ""
+"Dávej pozor na svou zdravotní lištu vedle lišty ATP (vpravo dole).\n"
+"Tvá buňka zemře, pokud jí dojde zdraví.\n"
+"Regenerace zdraví probíhá za předpokladu, že máš dostatek ATP.\n"
+"Nezapomeň shromáždit dostatek glukózy k produkci ATP."
 
 msgid "MIGRATION_STATUS_DESTINATION_NOT_SELECTED"
 msgstr "migrovat populaci z {0} do ..."
@@ -4342,6 +4365,10 @@ msgstr "Editor je připraven pro vstup"
 msgid "NOTICE_READY_TO_EDIT"
 msgstr "Editor je připraven pro vstup"
 
+#, fuzzy
+msgid "NOT_ADAPTED_TO_CURRENT_PATCH"
+msgstr "Nalézt nynější prostředí"
+
 msgid "NOT_STARTED_DOT"
 msgstr "Nebylo začato."
 
@@ -4646,6 +4673,10 @@ msgstr "Syntéza OxyToxynů"
 msgid "OXYGEN_RESISTANCE"
 msgstr "Rezistence vůči toxinům"
 
+#, fuzzy
+msgid "OXYGEN_TOLERANCE_TOOLTIP"
+msgstr "Zobrazit / skrýt sloučeniny"
+
 msgid "OXYTOXISOME_PROCESSES_DESCRIPTION"
 msgstr "Přeměňuje [thrive:compound type=\"atp\"][/thrive:compound] na [thrive:compound type=\"oxytoxy\"][/thrive:compound]. Rychlost je úměrná koncentraci [thrive:compound type=\"oxygen\"][/thrive:compound]. Toxiny mohou být uvolněny stisknutím [thrive:input]g_fire_toxin[/thrive:input]. Pokud je množství [thrive:compound type=\"oxytoxy\"][/thrive:compound] nízké, střelba je stále možná, ale bude mít snížené poškození."
 
@@ -4779,6 +4810,14 @@ msgstr ""
 msgid "PERCENTAGE_VALUE"
 msgstr "{0}%"
 
+#, fuzzy
+msgid "PERFECT_ADAPTATION_DESCRIPTION"
+msgstr ""
+"Povolí blikající efekty na uživatelském rozhraní (např. blikání tlačítka editoru)\n"
+"\n"
+"Pokud se objeví problém, kdy část tlačítka editoru mizí,\n"
+"zkuste tuto možnost vypnout."
+
 msgid "PERFORMANCE"
 msgstr "Výkon"
 
@@ -4901,6 +4940,10 @@ msgstr "Tlak"
 msgid "PRESSURE_SHORT"
 msgstr "Tlak"
 
+#, fuzzy
+msgid "PRESSURE_TOLERANCE_TOOLTIP"
+msgstr "Návrat do hlavního menu"
+
 msgid "PRESS_KEY_DOT_DOT_DOT"
 msgstr "Stiskněte klávesu..."
 
@@ -4920,6 +4963,10 @@ msgid "PROCESS_ENVIRONMENT_SEPARATOR"
 msgstr "@"
 
 msgid "PROCESS_PANEL_TITLE"
+msgstr "Proces buňky"
+
+#, fuzzy
+msgid "PROCESS_SPEED_MODIFIER"
 msgstr "Proces buňky"
 
 msgid "PROGRAMMING_TEAM"
@@ -5913,6 +5960,10 @@ msgstr "Teplota"
 msgid "TEMPERATURE_SHORT"
 msgstr "Teplota."
 
+#, fuzzy
+msgid "TEMPERATURE_TOLERANCE_TOOLTIP"
+msgstr "Navštivte náš Patreon"
+
 msgid "TESTING_TEAM"
 msgstr "Teststeři"
 
@@ -6150,6 +6201,9 @@ msgstr "Nástroje"
 msgid "TOOL_HAND_AXE"
 msgstr ""
 
+msgid "TOO_LARGE_PRESSURE_RANGE"
+msgstr ""
+
 msgid "TOO_MANY_RECENT_VERSIONS_TO_SHOW"
 msgstr ""
 
@@ -6369,6 +6423,17 @@ msgstr ""
 "\n"
 "Hodně štěstí!"
 
+#, fuzzy
+msgid "TUTORIAL_MICROBE_EDITOR_OPEN_TOLERANCES"
+msgstr ""
+"Toto je mapa prostředí.\n"
+"\n"
+"Každá ikona reprezentuje unikátní prostředí ve kterém můžete žít. Panel napravo popisuje kondice v právě vybraném prostředí.\n"
+"\n"
+"Pokud vyberete prostředí které je spojené s tím ve kterém právě jste, které je ohraničené blikající zelenou, můžete zmáčknout tlačítko \"Přesunout se do tohoto prostředí\" napravo, abyste do něj migrovali.\n"
+"\n"
+"Pro pokračování, zkuste vybrat některé z prostředí."
+
 msgid "TUTORIAL_MICROBE_EDITOR_PATCH_TEXT"
 msgstr ""
 "Toto je mapa prostředí.\n"
@@ -6406,6 +6471,17 @@ msgstr ""
 "Také pečlivě zvažte, zda je přidání organely prospěšné, často je dobrou volbou neprovádět žádné změny, protože každá část stojí ATP na udržení a vyžaduje více zdrojů na rozdělení.\n"
 "\n"
 "Jednou z možných strategií je zůstat jedním šestiúhelníkem z cytoplazma a před pořízením organel pro fotosyntézu zamířit jen k povrchovým oblastem."
+
+#, fuzzy
+msgid "TUTORIAL_MICROBE_EDITOR_TOLERANCES_TAB"
+msgstr ""
+"Toto je mapa prostředí.\n"
+"\n"
+"Každá ikona reprezentuje unikátní prostředí ve kterém můžete žít. Panel napravo popisuje kondice v právě vybraném prostředí.\n"
+"\n"
+"Pokud vyberete prostředí které je spojené s tím ve kterém právě jste, které je ohraničené blikající zelenou, můžete zmáčknout tlačítko \"Přesunout se do tohoto prostředí\" napravo, abyste do něj migrovali.\n"
+"\n"
+"Pro pokračování, zkuste vybrat některé z prostředí."
 
 msgid "TUTORIAL_MICROBE_STAGE_EDITOR_BUTTON_TUTORIAL"
 msgstr ""
@@ -6708,6 +6784,10 @@ msgstr ""
 #, fuzzy
 msgid "UV_PROTECTION"
 msgstr "Auto-Evo předpověď"
+
+#, fuzzy
+msgid "UV_TOLERANCE_TOOLTIP"
+msgstr "Zobrazit / skrýt sloučeniny"
 
 msgid "VACUOLE"
 msgstr "Vakuola"
@@ -8678,6 +8758,10 @@ msgid "ZOOM_OUT"
 msgstr "Oddálit"
 
 #, fuzzy
+#~ msgid "MIGRATE"
+#~ msgstr "Tempo"
+
+#, fuzzy
 #~ msgid "THANKS_FOR_BUYING_THRIVE"
 #~ msgstr ""
 #~ "Děkujeme, že hrajete naší hru!\n"
@@ -9157,14 +9241,6 @@ msgstr "Oddálit"
 #~ "\n"
 #~ "Pokračuj výběrem lokace."
 
-#~ msgid "EDITOR_TUTORIAL_CELL_TEXT"
-#~ msgstr ""
-#~ "Toto je editor buněk, kde můžeš přidávat nebo odebírat organely z tvého druhu utracením bodů mutace (MP).\n"
-#~ "\n"
-#~ "Další vlastnosti tvého druhu můžeš změnit na dalších kartách editoru buněk.\n"
-#~ "\n"
-#~ "Pokračuj výběrem organely z panelu vlevo (cytoplazma je dobrá volba). Potom klikni levým tlačítkem vedle zobrazeného šestiúhelníku (Hexu) uprostřed obrazovky a přidej tuto organelu ke svému druhu."
-
 #~ msgid "VIEW_NOW"
 #~ msgstr "Zobrazit"
 
@@ -9355,3 +9431,11 @@ msgstr "Oddálit"
 #, fuzzy
 #~ msgid "BACKTAB"
 #~ msgstr "Zpět"
+
+#~ msgid "EDITOR_TUTORIAL_CELL_TEXT"
+#~ msgstr ""
+#~ "Toto je editor buněk, kde můžeš přidávat nebo odebírat organely z tvého druhu utracením bodů mutace (MP).\n"
+#~ "\n"
+#~ "Další vlastnosti tvého druhu můžeš změnit na dalších kartách editoru buněk.\n"
+#~ "\n"
+#~ "Pokračuj výběrem organely z panelu vlevo (cytoplazma je dobrá volba). Potom klikni levým tlačítkem vedle zobrazeného šestiúhelníku (Hexu) uprostřed obrazovky a přidej tuto organelu ke svému druhu."

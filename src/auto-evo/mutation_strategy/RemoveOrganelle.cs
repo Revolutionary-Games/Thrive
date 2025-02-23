@@ -46,7 +46,7 @@ public class RemoveOrganelle : IMutationStrategy<MicrobeSpecies>
 
     // ReSharper restore InvokeAsExtensionMethod
 
-    public List<Tuple<MicrobeSpecies, float>>? MutationsOf(MicrobeSpecies baseSpecies, float mp, bool lawk,
+    public List<Tuple<MicrobeSpecies, double>>? MutationsOf(MicrobeSpecies baseSpecies, double mp, bool lawk,
         Random random, BiomeConditions biomeToConsider)
     {
         if (mp < Constants.ORGANELLE_REMOVE_COST)
@@ -55,7 +55,7 @@ public class RemoveOrganelle : IMutationStrategy<MicrobeSpecies>
         var organelles = baseSpecies.Organelles.Where(x => Criteria(x.Definition))
             .OrderBy(_ => random.Next()).Take(Constants.AUTO_EVO_ORGANELLE_REMOVE_ATTEMPTS);
 
-        List<Tuple<MicrobeSpecies, float>>? mutated = null;
+        List<Tuple<MicrobeSpecies, double>>? mutated = null;
 
         MutationWorkMemory? workMemory = null;
 
@@ -90,7 +90,7 @@ public class RemoveOrganelle : IMutationStrategy<MicrobeSpecies>
 
             CommonMutationFunctions.AttachIslandHexes(newSpecies.Organelles, workMemory);
 
-            mutated ??= new List<Tuple<MicrobeSpecies, float>>();
+            mutated ??= new List<Tuple<MicrobeSpecies, double>>();
             mutated.Add(Tuple.Create(newSpecies, mp - Constants.ORGANELLE_REMOVE_COST));
         }
 

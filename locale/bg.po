@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2025-02-15 11:28+0200\n"
+"POT-Creation-Date: 2025-02-21 15:14+0200\n"
 "PO-Revision-Date: 2025-02-06 13:29+0000\n"
 "Last-Translator: Anonymous <noreply@weblate.org>\n"
 "Language-Team: Bulgarian <https://translate.revolutionarygamesstudio.com/projects/thrive/thrive-game/bg/>\n"
@@ -1855,6 +1855,15 @@ msgstr "претърпяха мутация"
 msgid "EDITOR_BUTTON_TOOLTIP"
 msgstr "Отваряне на редактора"
 
+#, fuzzy
+msgid "EDITOR_TUTORIAL_EARLY_GOAL"
+msgstr ""
+"Това е микробният редактор, тук може да добавяте или премахвате органели от Вашите създания, чрез наличните мутационни точки (МТ).\n"
+"\n"
+"Също така, може да променяте и другите характеристики по Вашите създания, чрез останалите раздели в редактора.\n"
+"\n"
+"За да продължите, изберете органел от панела вляво (например цитоплазмата). След това, натиснете с мишката до шестоъгълника за да го добавите към Вашето създание."
+
 msgid "EDITOR_TUTORIAL_EDITOR_TEXT"
 msgstr ""
 "Добре дошли в [b]микробния редактор[/b].\n"
@@ -2505,6 +2514,9 @@ msgstr "Интерфейс"
 msgid "HEALTH"
 msgstr "Здраве"
 
+msgid "HEALTH_MODIFIER"
+msgstr ""
+
 #, fuzzy
 msgid "HEAT_ACCUMULATION_BAR_TOOLTIP"
 msgstr "Автоматично зареждане на „Harmony“ от „Assembly“"
@@ -2848,6 +2860,13 @@ msgstr "Юли"
 
 msgid "JUNE"
 msgstr "Юни"
+
+msgid "KEEP_CURRENT_FLEXIBILITY"
+msgstr ""
+
+#, fuzzy
+msgid "KEEP_CURRENT_TOLERANCE_FLEXIBILITY_TOOLTIP"
+msgstr "Отваряне на страницата ни в „Patreon“"
 
 #, fuzzy
 msgid "KEEP_MIGRATION"
@@ -3745,12 +3764,16 @@ msgid "MIDDLE_MOUSE"
 msgstr "Среден бутон"
 
 #, fuzzy
-msgid "MIGRATE"
-msgstr "Количеството"
-
-#, fuzzy
 msgid "MIGRATION_FAILED_TO_ADD"
 msgstr "Създаването на модификацията е неуспешно"
+
+#, fuzzy
+msgid "MIGRATION_MANAGER"
+msgstr ""
+"Наблюдавайте нивото на здравето си, което се намира до нивото на [thrive:compound type=\"АТФ\"][/thrive:compound] (долу вдясно).\n"
+"Вашата клетка ще умре, ако изгуби всичките си точки здраве.\n"
+"Ако имате [thrive:compound type=\"АТФ\"][/thrive:compound], точките здраве се възстановяват.\n"
+"Събирайте [thrive:compound type=\"глюкоза\"][/thrive:compound] за да произвеждате [thrive:compound type=\"АТФ\"][/thrive:compound]."
 
 msgid "MIGRATION_STATUS_DESTINATION_NOT_SELECTED"
 msgstr ""
@@ -4255,6 +4278,10 @@ msgstr ""
 msgid "NOTICE_READY_TO_EDIT"
 msgstr ""
 
+#, fuzzy
+msgid "NOT_ADAPTED_TO_CURRENT_PATCH"
+msgstr "Текущо местообитание"
+
 msgid "NOT_STARTED_DOT"
 msgstr "Не е започната."
 
@@ -4557,6 +4584,10 @@ msgstr "Окситоксиносинтеза"
 msgid "OXYGEN_RESISTANCE"
 msgstr "Токсична устойчивост"
 
+#, fuzzy
+msgid "OXYGEN_TOLERANCE_TOOLTIP"
+msgstr "Превключване на химичните съединения"
+
 msgid "OXYTOXISOME_PROCESSES_DESCRIPTION"
 msgstr "Превръща [thrive:compound type=\"atp\"]АТФ[/thrive:compound] в [thrive:compound type=\"oxytoxy\"]окситоксин[/thrive:compound]. Количеството зависи от концентрацията на [thrive:compound type=\"oxygen\"]кислород[/thrive:compound] в околната среда. Изстрелва токсини с натискане на [thrive:input]g_fire_toxin[/thrive:input]. Тяхната ефективност зависи от количеството на [thrive:compound type=\"oxytoxy\"]окситоксин[/thrive:compound] в клетката."
 
@@ -4686,6 +4717,14 @@ msgstr ""
 msgid "PERCENTAGE_VALUE"
 msgstr "{0} %"
 
+#, fuzzy
+msgid "PERFECT_ADAPTATION_DESCRIPTION"
+msgstr ""
+"Превключване на светлинните ефекти за бутона на редактора.\n"
+"\n"
+"Ако имате графични проблеми с бутона на редактора,\n"
+"трябва да изключите светлинните ефекти."
+
 msgid "PERFORMANCE"
 msgstr "Производителност"
 
@@ -4812,6 +4851,10 @@ msgstr "Налягане"
 msgid "PRESSURE_SHORT"
 msgstr "Наляг."
 
+#, fuzzy
+msgid "PRESSURE_TOLERANCE_TOOLTIP"
+msgstr "Връщане в главното меню"
+
 msgid "PRESS_KEY_DOT_DOT_DOT"
 msgstr "Натиснете клавиш..."
 
@@ -4831,6 +4874,10 @@ msgid "PROCESS_ENVIRONMENT_SEPARATOR"
 msgstr "при"
 
 msgid "PROCESS_PANEL_TITLE"
+msgstr "Клетъчни процеси"
+
+#, fuzzy
+msgid "PROCESS_SPEED_MODIFIER"
 msgstr "Клетъчни процеси"
 
 msgid "PROGRAMMING_TEAM"
@@ -5806,6 +5853,10 @@ msgstr "Температура"
 msgid "TEMPERATURE_SHORT"
 msgstr "Темп."
 
+#, fuzzy
+msgid "TEMPERATURE_TOLERANCE_TOOLTIP"
+msgstr "Отваряне на страницата ни в „Patreon“"
+
 msgid "TESTING_TEAM"
 msgstr "Изпитатели"
 
@@ -6053,6 +6104,9 @@ msgstr "Инструменти"
 msgid "TOOL_HAND_AXE"
 msgstr "Ръчна брадва"
 
+msgid "TOO_LARGE_PRESSURE_RANGE"
+msgstr ""
+
 msgid "TOO_MANY_RECENT_VERSIONS_TO_SHOW"
 msgstr ""
 
@@ -6263,6 +6317,17 @@ msgstr ""
 "\n"
 "Успех!"
 
+#, fuzzy
+msgid "TUTORIAL_MICROBE_EDITOR_OPEN_TOLERANCES"
+msgstr ""
+"Това е картата на зоните.\n"
+"\n"
+"Тук може да видите полезна информация за различните зони, в които живеят микробите.\n"
+"\n"
+"Ако изберете зона, съседна на Вашето местообитание, което е подчертано в зелено, може да натиснете бутона „Преселване“ за да се придвижите в нея.\n"
+"\n"
+"Изберете зона за да продължите."
+
 msgid "TUTORIAL_MICROBE_EDITOR_PATCH_TEXT"
 msgstr ""
 "Това е [b]картата на зоните[/b].\n"
@@ -6298,6 +6363,17 @@ msgstr ""
 "Преценете внимателно дали добавянето на даден органел е от полза, защото всяка структура се нуждае от [thrive:compound type=\"АТФ\"][/thrive:compound], за да поддържа [thrive:icon]OsmoIcon[/thrive:icon] и изисква повече хранителни вещества за възпроизвеждането на Вашата клетка.\n"
 "\n"
 "Възможно е да не правите никакви промени и просто да се отправите към морската повърхност, преди да еволюирате [b]фотосинтезиращите[/b] органели."
+
+#, fuzzy
+msgid "TUTORIAL_MICROBE_EDITOR_TOLERANCES_TAB"
+msgstr ""
+"Това е картата на зоните.\n"
+"\n"
+"Тук може да видите полезна информация за различните зони, в които живеят микробите.\n"
+"\n"
+"Ако изберете зона, съседна на Вашето местообитание, което е подчертано в зелено, може да натиснете бутона „Преселване“ за да се придвижите в нея.\n"
+"\n"
+"Изберете зона за да продължите."
 
 msgid "TUTORIAL_MICROBE_STAGE_EDITOR_BUTTON_TUTORIAL"
 msgstr ""
@@ -6604,6 +6680,10 @@ msgstr "Използване на виртуалния размер"
 #, fuzzy
 msgid "UV_PROTECTION"
 msgstr "Прогноза"
+
+#, fuzzy
+msgid "UV_TOLERANCE_TOOLTIP"
+msgstr "Превключване на химичните съединения"
 
 msgid "VACUOLE"
 msgstr "Вакуола"
@@ -8583,6 +8663,10 @@ msgstr "Приближаване"
 msgid "ZOOM_OUT"
 msgstr "Отдалечаване"
 
+#, fuzzy
+#~ msgid "MIGRATE"
+#~ msgstr "Количеството"
+
 #~ msgid "THANKS_FOR_BUYING_THRIVE"
 #~ msgstr ""
 #~ "Благодарим Ви за покупката на „Thrive“!\n"
@@ -9112,14 +9196,6 @@ msgstr "Отдалечаване"
 #~ "\n"
 #~ "Изберете зона за да продължите."
 
-#~ msgid "EDITOR_TUTORIAL_CELL_TEXT"
-#~ msgstr ""
-#~ "Това е микробният редактор, тук може да добавяте или премахвате органели от Вашите създания, чрез наличните мутационни точки (МТ).\n"
-#~ "\n"
-#~ "Също така, може да променяте и другите характеристики по Вашите създания, чрез останалите раздели в редактора.\n"
-#~ "\n"
-#~ "За да продължите, изберете органел от панела вляво (например цитоплазмата). След това, натиснете с мишката до шестоъгълника за да го добавите към Вашето създание."
-
 #~ msgid "VIEW_NOW"
 #~ msgstr "Преглед"
 
@@ -9397,3 +9473,11 @@ msgstr "Отдалечаване"
 #~ "Напредъкът на храносмилането се показва в лентата на здравето (долу вдясно) като процент. Вашата клетка ще умре, след като той достигне 100% или бъде достигнато максималното време на изчакване.\n"
 #~ "\n"
 #~ "Натиснете бутона за извършване на самоубийство, за да пропуснете този процес, но не забравяйте, че винаги има шанс да се спасите!"
+
+#~ msgid "EDITOR_TUTORIAL_CELL_TEXT"
+#~ msgstr ""
+#~ "Това е микробният редактор, тук може да добавяте или премахвате органели от Вашите създания, чрез наличните мутационни точки (МТ).\n"
+#~ "\n"
+#~ "Също така, може да променяте и другите характеристики по Вашите създания, чрез останалите раздели в редактора.\n"
+#~ "\n"
+#~ "За да продължите, изберете органел от панела вляво (например цитоплазмата). След това, натиснете с мишката до шестоъгълника за да го добавите към Вашето създание."

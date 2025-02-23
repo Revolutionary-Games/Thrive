@@ -10,7 +10,7 @@
 [ext_resource type="FontVariation" uid="uid://cqork3l186w1c" path="res://assets/fonts/variants/Jura-Bold.tres" id="9_jkhed"]
 [ext_resource type="PackedScene" path="res://src/gui_common/AddWindowReorderingSupportToSiblings.tscn" id="10"]
 
-[node name="MicrobeEditorTutorialGUI" type="Control"]
+[node name="MicrobeEditorTutorialGUI" type="Control" node_paths=PackedStringArray("tolerancesTabTutorial", "openTolerancesTabTutorial", "earlyGameGoalTutorial")]
 process_mode = 3
 layout_mode = 3
 anchors_preset = 15
@@ -39,6 +39,9 @@ FlagellumPlacementTutorialPath = NodePath("FlagellumPlacementTutorial")
 ModifyOrganelleTutorialPath = NodePath("ModifyOrganelleTutorial")
 AtpBalanceIntroductionPath = NodePath("AtpBalanceIntroduction")
 AtpBalanceBarHighlightPath = NodePath("AtpBalanceBarHighlight")
+tolerancesTabTutorial = NodePath("TolerancesTabTutorial")
+openTolerancesTabTutorial = NodePath("OpenTolerancesTabTutorial")
+earlyGameGoalTutorial = NodePath("EarlyGoalTutorial")
 
 [node name="AddWindowReorderingSupportToSiblings" parent="." instance=ExtResource("10")]
 anchors_preset = 0
@@ -498,6 +501,59 @@ theme_override_fonts/font = ExtResource("9_jkhed")
 theme_override_font_sizes/font_size = 18
 text = "GOT_IT"
 
+[node name="TolerancesTabTutorial" parent="." instance=ExtResource("8")]
+custom_minimum_size = Vector2(360, 360)
+layout_mode = 2
+anchor_left = 1.0
+anchor_top = 0.5
+anchor_right = 1.0
+anchor_bottom = 0.5
+offset_left = -495.0
+offset_top = -281.0
+offset_right = -8.0
+offset_bottom = 299.0
+grow_horizontal = 0
+grow_vertical = 2
+Description = "TUTORIAL_MICROBE_EDITOR_TOLERANCES_TAB"
+ShowDelay = 0.4
+PreventsMouseCaptureWhileOpen = true
+
+[node name="OpenTolerancesTabTutorial" parent="." instance=ExtResource("8")]
+custom_minimum_size = Vector2(360, 300)
+layout_mode = 1
+anchors_preset = 6
+anchor_left = 1.0
+anchor_top = 0.5
+anchor_right = 1.0
+anchor_bottom = 0.5
+offset_left = -400.0
+offset_top = -147.0
+offset_right = -40.0
+offset_bottom = 153.0
+grow_horizontal = 0
+grow_vertical = 2
+Description = "TUTORIAL_MICROBE_EDITOR_OPEN_TOLERANCES"
+ShowDelay = 0.3
+PreventsMouseCaptureWhileOpen = true
+
+[node name="EarlyGoalTutorial" parent="." instance=ExtResource("8")]
+custom_minimum_size = Vector2(390, 360)
+layout_mode = 1
+anchors_preset = 6
+anchor_left = 1.0
+anchor_top = 0.5
+anchor_right = 1.0
+anchor_bottom = 0.5
+offset_left = -563.0
+offset_top = -194.0
+offset_right = -173.0
+offset_bottom = 166.0
+grow_horizontal = 0
+grow_vertical = 2
+Description = "EDITOR_TUTORIAL_EARLY_GOAL"
+ShowDelay = 0.7
+PreventsMouseCaptureWhileOpen = true
+
 [connection signal="hidden" from="EditorEntryReport" to="." method="OnSpecificCloseClicked" binds= ["MicrobeEditorReport"]]
 [connection signal="hidden" from="PatchMapTutorial" to="." method="OnSpecificCloseClicked" binds= ["PatchMap"]]
 [connection signal="hidden" from="CellEditorIntro" to="." method="OnSpecificCloseClicked" binds= ["CellEditorIntroduction"]]
@@ -518,3 +574,6 @@ text = "GOT_IT"
 [connection signal="pressed" from="NegativeAtpBalanceTutorial/ScrollContainer/VBoxContainer/Button" to="." method="OnSpecificCloseClicked" binds= ["NegativeAtpBalanceTutorial"]]
 [connection signal="hidden" from="AtpBalanceIntroduction" to="." method="OnSpecificCloseClicked" binds= ["AtpBalanceIntroduction"]]
 [connection signal="pressed" from="AtpBalanceIntroduction/ScrollContainer/VBoxContainer/Button" to="." method="OnSpecificCloseClicked" binds= ["AtpBalanceIntroduction"]]
+[connection signal="hidden" from="TolerancesTabTutorial" to="." method="OnSpecificCloseClicked" binds= ["TolerancesTabTutorial"]]
+[connection signal="hidden" from="OpenTolerancesTabTutorial" to="." method="OnSpecificCloseClicked" binds= ["OpenTolerancesTabTutorial"]]
+[connection signal="hidden" from="EarlyGoalTutorial" to="." method="OnSpecificCloseClicked" binds= ["EarlyGameGoalTutorial"]]

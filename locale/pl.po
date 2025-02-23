@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2025-02-15 11:28+0200\n"
+"POT-Creation-Date: 2025-02-21 15:14+0200\n"
 "PO-Revision-Date: 2025-02-06 13:29+0000\n"
 "Last-Translator: Anonymous <noreply@weblate.org>\n"
 "Language-Team: Polish <https://translate.revolutionarygamesstudio.com/projects/thrive/thrive-game/pl/>\n"
@@ -143,7 +143,6 @@ msgstr "(pozwala kontynuować rozgrywkę innym gatunkiem po wymarciu pierwotnego
 msgid "ALL_WORLDS_GENERAL_STATISTICS"
 msgstr "Ogólne Statystyki Wszystkich Światów"
 
-#, fuzzy
 msgid "ALL_WORLDS_STATISTICS"
 msgstr ""
 "[b]Pokolenia:[/b]\n"
@@ -158,7 +157,7 @@ msgstr ""
 "  Średnio {7}; Standardowe Odchylenie {8}\n"
 "[b]Średnia Wielkość Gatunków Mikrobów w Polach:[/b]\n"
 "  Średnio {9}; Standardowe Odchylenie {10}\n"
-"[b]Ogólne Dane Ogranelli:[/b]"
+"[b]Ogólne Dane Organelli:[/b]"
 
 msgid "ALREADY_ASCENDED"
 msgstr "Już dokonałeś wniebowstąpienia"
@@ -175,9 +174,8 @@ msgstr "Głośność otoczenia"
 msgid "AMMONIA"
 msgstr "Amoniak"
 
-#, fuzzy
 msgid "AMMONIA_COST"
-msgstr "Amoniak"
+msgstr "Koszt Amoniaku:"
 
 msgid "AMOUNT_OF_AUTOSAVE_TO_KEEP"
 msgstr "Zachowywana ilość autozapisów:"
@@ -268,14 +266,11 @@ msgstr ""
 "Na przykład, niektóre komórki są zdolne do utrzymywania pozytywnego bilansu ATP jedynie gdy równocześnie mają wiele rodzajów związków do produkcji ATP.\n"
 "Rozgrywka takimi komórkami jest trudniejsza, ponieważ do przetrwania wymagają równoczesnego składowania wielu rodzajów związków."
 
-#, fuzzy
 msgid "ATP_BALANCE_TOOLTIP_MULTICELLULAR"
 msgstr ""
-"Ta część pokazuje całkowity bilans ATP (energii) obecnej komórki.\n"
-"Py przetrwać, bilans musi być pozytywny. Dla komórek osiadłych bilans może być pozytywny jedynie w bezruchu.\n"
-"Rozwijane menu poniżej można wykorzystać do sprawdzenia, co by się stało, gdyby komórka nie miała dostępu do zasobów, z których mogłaby produkować ATP.\n"
-"Na przykład, niektóre komórki są zdolne do utrzymywania pozytywnego bilansu ATP jedynie gdy równocześnie mają wiele rodzajów związków do produkcji ATP.\n"
-"Rozgrywka takimi komórkami jest trudniejsza, ponieważ do przetrwania wymagają równoczesnego składowania wielu rodzajów związków."
+"Ta sekcja pokazuje opcje kalkulacji bilansu ATP (energii) dla komórek.\n"
+"Obliczony bilans jest pokazany w menu wyboru typu komórki.\n"
+"Menu poniżej pokazuje, co się może stać, jeśli komórka nie będzie miała któregoś z surowców niezbędnych do wytworzenia ATP."
 
 msgid "ATP_BALANCE_WITHOUT_EXTERNAL_RESOURCES"
 msgstr ""
@@ -283,13 +278,11 @@ msgstr ""
 msgid "ATP_BALANCE_WITHOUT_GLUCOSE"
 msgstr "Bez glukozy"
 
-#, fuzzy
 msgid "ATP_BALANCE_WITHOUT_HYDROGEN_SULFIDE"
-msgstr "Siarkowodór (H₂S)"
+msgstr "Bez siarkowodoru (H₂S)"
 
-#, fuzzy
 msgid "ATP_BALANCE_WITHOUT_IRON"
-msgstr "Bilans ATP"
+msgstr "Bez żelaza"
 
 msgid "ATP_BALANCE_WITH_ALL_COMPOUNDS"
 msgstr "Ze wszystkimi wymaganymi związkami"
@@ -332,13 +325,11 @@ msgstr ""
 msgid "AUTO-EVO_STEPS_DONE"
 msgstr "{0:F1}% zrobione. {1:n0}/{2:n0} kroków."
 
-#, fuzzy
 msgid "AUTO-EVO_STRENGHT_MULTIPLIER"
-msgstr "Mnożnik kosztu mutacji"
+msgstr "Mnożnik siły Auto-Ewolucji"
 
-#, fuzzy
 msgid "AUTO-EVO_STRENGHT_MULTIPLIER_EXPLANATION"
-msgstr "(koszt organelli, błon i innych przedmiotów w edytorze)"
+msgstr "(ilość procentowa zmian w populacji, które nakłada Auto-Ewolucja na gatunek gracza)"
 
 msgid "AUTOSAVE_DURING_THE_GAME"
 msgstr "Autozapis w trakcie gry"
@@ -353,18 +344,16 @@ msgid "AUTO_EVO_FAILED"
 msgstr "Auto-ewolucja nie może się uruchomić"
 
 msgid "AUTO_EVO_MISSING_RESULT_DATA_OBJECT"
-msgstr ""
+msgstr "Rezultaty automatycznej ewolucji nieznalezione. Jeśli załadowałeś starszy zapis to jest spodziewane, że one nie będą obecne. Jeśli nie załadowałeś starszego zapisu, promisy raportować to jako błąd i wysłać nam twoje pliki log."
 
 msgid "AUTO_EVO_RESULTS"
 msgstr "Rezultat Auto-Ewolucji:"
 
-#, fuzzy
 msgid "AUTO_EVO_RESULTS_GLOBAL_TITLE"
-msgstr "Rezultat Auto-Ewolucji:"
+msgstr "Globalny Rezultat Auto-Ewolucji"
 
-#, fuzzy
 msgid "AUTO_EVO_RESULTS_PATCH_TITLE"
-msgstr "Rezultat Auto-Ewolucji:"
+msgstr "Rezultat Auto-Ewolucji wybranej Strefy"
 
 msgid "AUTO_EVO_RUN_STATUS"
 msgstr "Status działania:"
@@ -394,7 +383,7 @@ msgid "BACK"
 msgstr "Wróć"
 
 msgid "BACKGROUND_BLUR"
-msgstr ""
+msgstr "Rozmycie tła:"
 
 msgid "BACKSLASH"
 msgstr "Ukośnik wsteczny"
@@ -402,9 +391,8 @@ msgstr "Ukośnik wsteczny"
 msgid "BACKSPACE"
 msgstr "Backspace"
 
-#, fuzzy
 msgid "BACTERIAL_THERMOSYNTHESIS"
-msgstr "Termosynteza"
+msgstr "Termosynteza Bakteryjna"
 
 msgid "BALANCE_DISPLAY_AT_DAY_ALWAYS"
 msgstr "Obliczaj jak w dzień"
@@ -481,9 +469,8 @@ msgstr "Najlepiej radzi sobie w:"
 msgid "BIG_IRON_CHUNK"
 msgstr "Duży Kawałek Żelaza"
 
-#, fuzzy
 msgid "BIG_PHOSPHATE_CHUNK"
-msgstr "Duży Kawałek Żelaza"
+msgstr "Duży Kawałek Fosforanu"
 
 msgid "BILLION_ABBREVIATION"
 msgstr "{0} MD"
@@ -507,11 +494,10 @@ msgid "BIOME_LABEL"
 msgstr "Biom: {0}"
 
 msgid "BLOOM_RENDER_EFFECT"
-msgstr ""
+msgstr "Efekt poświaty:"
 
-#, fuzzy
 msgid "BLUESKY_TOOLTIP"
-msgstr "Zapauzuj"
+msgstr "Odwiedź nasz profil na Bluesky"
 
 msgid "BRAIN_CELL_NAME_DEFAULT"
 msgstr "Neuron"
@@ -645,13 +631,16 @@ msgstr "Celulozowa"
 msgid "CELLULOSE_MEMBRANE_DESCRIPTION"
 msgstr "Ta błona posiada ścianę która zapewnia lepszą ochronę przed obrażeniami a zwłaszcza przed obrażeniami fizycznymi. Kosztuje też mniej energii, ale spowalnia absorpcje zasobów i spowalnia komórkę. [b]Celulaza może strawić tę ścianę[/b] sprawiając, że jest ona wrażliwa na wchłonięcie przez drapieżniki."
 
-#, fuzzy
 msgid "CELL_STAT_ROTATION_TOOLTIP"
-msgstr "Wartość używana do generacji świata (musi być dodatnią liczbą całkowitą)"
+msgstr ""
+"Tempo obrotu komórki. Większe komórki obracają się wolniej, jednak rzęski pozwalają na zmniejszenie efektu.\n"
+"Rozmieszczenie organelli wpływa na obrót komórki; im dalej od centrum, tym wolniej będzie obracać się komórka."
 
-#, fuzzy
 msgid "CELL_STAT_SPEED_TOOLTIP"
-msgstr "Wartość używana do generacji świata (musi być dodatnią liczbą całkowitą)"
+msgstr ""
+"Szybkość poruszania komórki. Prosimy zrozumieć, że z powodu limitacji algorytmu, ta wartość jest tylko przybliżeniem.\n"
+"Dodatkowo przy np. zmianie długości wici, wartości szybkości nie mają w pełni sensu i nie będą pasować do tego, co dzieje się w grze.\n"
+"Wiemy o tym problemie, jednak nie jest jeszcze naprawiony ze względu na mniejszy priorytet w porównaniu do innych problemów i nowych funkcji."
 
 #, fuzzy
 msgid "CELL_TYPE_BUTTON_ATP_CONSUMPTION"
@@ -1803,6 +1792,15 @@ msgstr "zmutował"
 msgid "EDITOR_BUTTON_TOOLTIP"
 msgstr "Wejdź do edytora i modyfikuj swój gatunek"
 
+#, fuzzy
+msgid "EDITOR_TUTORIAL_EARLY_GOAL"
+msgstr ""
+"Oto edytor komórek, gdzie możesz dokonać zmian w zamian za Punkty Mutacji (PM)\n"
+"\n"
+"Możesz również zmieniać różne inne cechy twojego gatunku w innych zakładkach edytora.\n"
+"\n"
+"Aby kontynuować, wybierz organellum z lewego panelu (cytozol będzie dobrym wyborem), następnie kliknij na heks na środku ekranu aby dodać to organellum do twojej komórki."
+
 msgid "EDITOR_TUTORIAL_EDITOR_TEXT"
 msgstr ""
 "Witaj w [b]Edytorze Mikrobów[/b].\n"
@@ -2422,6 +2420,9 @@ msgstr "Głośność interfejsu"
 msgid "HEALTH"
 msgstr "Zdrowie"
 
+msgid "HEALTH_MODIFIER"
+msgstr ""
+
 #, fuzzy
 msgid "HEAT_ACCUMULATION_BAR_TOOLTIP"
 msgstr "Odwiedź naszego Patreona"
@@ -2751,6 +2752,13 @@ msgstr "Lipiec"
 
 msgid "JUNE"
 msgstr "Czerwiec"
+
+msgid "KEEP_CURRENT_FLEXIBILITY"
+msgstr ""
+
+#, fuzzy
+msgid "KEEP_CURRENT_TOLERANCE_FLEXIBILITY_TOOLTIP"
+msgstr "Odwiedź naszego Patreona"
 
 #, fuzzy
 msgid "KEEP_MIGRATION"
@@ -3644,12 +3652,16 @@ msgid "MIDDLE_MOUSE"
 msgstr "Środkowy przycisk myszy"
 
 #, fuzzy
-msgid "MIGRATE"
-msgstr "Tempo"
-
-#, fuzzy
 msgid "MIGRATION_FAILED_TO_ADD"
 msgstr "Tworzenie Moda Nie Powiodło Się"
+
+#, fuzzy
+msgid "MIGRATION_MANAGER"
+msgstr ""
+"Pilnuj swojego paska zdrowia obok paska ATP (prawy dolny róg)?\n"
+"Twoja komórka umiera jeśli utraci całe swoje zdrowie.\n"
+"Możesz się zregenerować, jeśli masz wystarczająco dużo ATP.\n"
+"Upewnij się, że masz wystarczająco dużo glukozy (lub żelaza) aby syntezować ATP."
 
 msgid "MIGRATION_STATUS_DESTINATION_NOT_SELECTED"
 msgstr ""
@@ -4147,6 +4159,10 @@ msgstr ""
 msgid "NOTICE_READY_TO_EDIT"
 msgstr ""
 
+#, fuzzy
+msgid "NOT_ADAPTED_TO_CURRENT_PATCH"
+msgstr "Znajdź Aktualny Obszar"
+
 msgid "NOT_STARTED_DOT"
 msgstr "Nie zaczęto."
 
@@ -4442,6 +4458,12 @@ msgstr "Synteza OxyToxy"
 msgid "OXYGEN_RESISTANCE"
 msgstr "Odporność Na Toksyny"
 
+#, fuzzy
+msgid "OXYGEN_TOLERANCE_TOOLTIP"
+msgstr ""
+"Ta część pokazuje bilans całkowity (produkcja - konsumpcja) dla każdego związku.\n"
+"Na przykład by stworzyć komórkę roślinną, bilans glukozy powinien być pozytywny z zapasem."
+
 msgid "OXYTOXISOME_PROCESSES_DESCRIPTION"
 msgstr "Przekształca [thrive:compound type=\"atp\"][/thrive:compound] w [thrive:compound type=\"oxytoxy\"]Oksytoksynę[/thrive:compound]. Tempo skaluje się ze stężeniem [thrive:compound type=\"oxygen\"]Tlenu[/thrive:compound]. Może wypuszczać toksyny naciskając [thrive:input]g_fire_toxin[/thrive:input]. Gdy ilość [thrive:compound type=\"oxytoxy\"]Oksytoksyny[/thrive:compound] jest niska, strzelanie jest dalej możliwe, ale będzie zadawać mniejsze obrażenia."
 
@@ -4567,6 +4589,14 @@ msgstr ""
 msgid "PERCENTAGE_VALUE"
 msgstr "{0}%"
 
+#, fuzzy
+msgid "PERFECT_ADAPTATION_DESCRIPTION"
+msgstr ""
+"Włącza blaski świetlne na interfejsach (np. błysk przycisku edytora).\n"
+"\n"
+"Jeśli doświadczysz błędu gdzie część przycisku edytora znika,\n"
+"spróbuj wyłączyć to ustawienie żeby sprawdzić czy problem zniknie."
+
 msgid "PERFORMANCE"
 msgstr "Wydajność"
 
@@ -4686,6 +4716,10 @@ msgstr "Ciśnienie"
 msgid "PRESSURE_SHORT"
 msgstr "Ciśn."
 
+#, fuzzy
+msgid "PRESSURE_TOLERANCE_TOOLTIP"
+msgstr "Wróć do menu główego"
+
 msgid "PRESS_KEY_DOT_DOT_DOT"
 msgstr "Naciśnij klawisz..."
 
@@ -4705,6 +4739,10 @@ msgid "PROCESS_ENVIRONMENT_SEPARATOR"
 msgstr "@"
 
 msgid "PROCESS_PANEL_TITLE"
+msgstr "Procesy Komórki"
+
+#, fuzzy
+msgid "PROCESS_SPEED_MODIFIER"
 msgstr "Procesy Komórki"
 
 msgid "PROGRAMMING_TEAM"
@@ -5672,6 +5710,10 @@ msgstr "Temperatura"
 msgid "TEMPERATURE_SHORT"
 msgstr "Temp."
 
+#, fuzzy
+msgid "TEMPERATURE_TOLERANCE_TOOLTIP"
+msgstr "Odwiedź naszego Patreona"
+
 msgid "TESTING_TEAM"
 msgstr "Testerzy"
 
@@ -5902,6 +5944,9 @@ msgstr "Narzędzia"
 msgid "TOOL_HAND_AXE"
 msgstr ""
 
+msgid "TOO_LARGE_PRESSURE_RANGE"
+msgstr ""
+
 msgid "TOO_MANY_RECENT_VERSIONS_TO_SHOW"
 msgstr ""
 
@@ -6085,6 +6130,16 @@ msgstr ""
 "Kiedy wyjdziesz z edytora[u]nie będziesz mógł edytować swojego gatunku dopóki znów się nie rozmnożysz[/u].\n"
 "Aby czynić postępy w grze musisz ewoluować, więc edycja gatunku jest zalecana przy większości wizyt w edytorze."
 
+#, fuzzy
+msgid "TUTORIAL_MICROBE_EDITOR_OPEN_TOLERANCES"
+msgstr ""
+"Grafik produkcji ATP po prawej pokazuje ile [thrive:compound type=\"atp\"][/thrive:compound] twoja komórka produkuje w porównaniu do ile jest zużywane. Jeżeli górny słupek jest krótszy od dolnego, to produkcja [thrive:compound type=\"atp\"][/thrive:compound] jest za niska.\n"
+"\n"
+"Dolny słupek obejmuje koszt [b]osmoregulacji[/b] [thrive:icon]OsmoIcon[/thrive:icon] i koszt [b]ruchu[/b] [thrive:icon]MovementIcon[/thrive:icon].\n"
+"Koszt [b]osmoregulacji[/b] [thrive:icon]OsmoIcon[/thrive:icon] to [u] bazowy koszt potrzebny to przeżycia[/u]. Każda część którą dodasz zwiększa ten koszt.\n"
+"\n"
+"Jeśli twoja produkcja [thrive:compound type=\"atp\"][/thrive:compound] jest negatywna, postaraj się ją zwiększyć albo dodać [b]przechowywanie[/b] [thrive:icon]StorageIcon[/thrive:icon] by móc się poruszać w małych impulsach."
+
 msgid "TUTORIAL_MICROBE_EDITOR_PATCH_TEXT"
 msgstr ""
 "To jest [b]mapa obszarów[/b].\n"
@@ -6122,6 +6177,16 @@ msgstr ""
 "Rozważ też czy dodawanie organelli to dobry pomysł, nie zawsze musisz zmieniać to, co już działa, gdyż każda część wymaga [thrive:compound type=\"atp\"][/thrive:compound] by utrzymać [thrive:icon]OsmoIcon[/thrive:icon] i większych ilości zasobów do rozmnażania.\n"
 "\n"
 "Jedną z możliwych strategii jest pozostanie pojedynczym heksem cytoplazmy i udanie się do środowisk powierzchniowych zanim dodasz organella [b]fotosyntezujace[/b]."
+
+#, fuzzy
+msgid "TUTORIAL_MICROBE_EDITOR_TOLERANCES_TAB"
+msgstr ""
+"Grafik produkcji ATP po prawej pokazuje ile [thrive:compound type=\"atp\"][/thrive:compound] twoja komórka produkuje w porównaniu do ile jest zużywane. Jeżeli górny słupek jest krótszy od dolnego, to produkcja [thrive:compound type=\"atp\"][/thrive:compound] jest za niska.\n"
+"\n"
+"Dolny słupek obejmuje koszt [b]osmoregulacji[/b] [thrive:icon]OsmoIcon[/thrive:icon] i koszt [b]ruchu[/b] [thrive:icon]MovementIcon[/thrive:icon].\n"
+"Koszt [b]osmoregulacji[/b] [thrive:icon]OsmoIcon[/thrive:icon] to [u] bazowy koszt potrzebny to przeżycia[/u]. Każda część którą dodasz zwiększa ten koszt.\n"
+"\n"
+"Jeśli twoja produkcja [thrive:compound type=\"atp\"][/thrive:compound] jest negatywna, postaraj się ją zwiększyć albo dodać [b]przechowywanie[/b] [thrive:icon]StorageIcon[/thrive:icon] by móc się poruszać w małych impulsach."
 
 msgid "TUTORIAL_MICROBE_STAGE_EDITOR_BUTTON_TUTORIAL"
 msgstr ""
@@ -6420,6 +6485,15 @@ msgstr "Użyj wirtualnej wielkości okna"
 #, fuzzy
 msgid "UV_PROTECTION"
 msgstr "Przewidywania Auto-Ewolucji"
+
+#, fuzzy
+msgid "UV_TOLERANCE_TOOLTIP"
+msgstr ""
+"Ta część pokazuje całkowity bilans ATP (energii) obecnej komórki.\n"
+"Py przetrwać, bilans musi być pozytywny. Dla komórek osiadłych bilans może być pozytywny jedynie w bezruchu.\n"
+"Rozwijane menu poniżej można wykorzystać do sprawdzenia, co by się stało, gdyby komórka nie miała dostępu do zasobów, z których mogłaby produkować ATP.\n"
+"Na przykład, niektóre komórki są zdolne do utrzymywania pozytywnego bilansu ATP jedynie gdy równocześnie mają wiele rodzajów związków do produkcji ATP.\n"
+"Rozgrywka takimi komórkami jest trudniejsza, ponieważ do przetrwania wymagają równoczesnego składowania wielu rodzajów związków."
 
 msgid "VACUOLE"
 msgstr "Wakuola"
@@ -8358,6 +8432,10 @@ msgstr "Przybliż"
 msgid "ZOOM_OUT"
 msgstr "Oddal"
 
+#, fuzzy
+#~ msgid "MIGRATE"
+#~ msgstr "Tempo"
+
 #~ msgid "THANKS_FOR_BUYING_THRIVE"
 #~ msgstr ""
 #~ "Dziękujemy za wspieranie twórców Thrive przez kupowanie tej kopii gry!\n"
@@ -8873,14 +8951,6 @@ msgstr "Oddal"
 #~ "\n"
 #~ "Wybierz środowisko żeby kontynuować."
 
-#~ msgid "EDITOR_TUTORIAL_CELL_TEXT"
-#~ msgstr ""
-#~ "Oto edytor komórek, gdzie możesz dokonać zmian w zamian za Punkty Mutacji (PM)\n"
-#~ "\n"
-#~ "Możesz również zmieniać różne inne cechy twojego gatunku w innych zakładkach edytora.\n"
-#~ "\n"
-#~ "Aby kontynuować, wybierz organellum z lewego panelu (cytozol będzie dobrym wyborem), następnie kliknij na heks na środku ekranu aby dodać to organellum do twojej komórki."
-
 #~ msgid "VIEW_NOW"
 #~ msgstr "Zobacz teraz"
 
@@ -9084,3 +9154,11 @@ msgstr "Oddal"
 
 #~ msgid "WITH_POPULATION"
 #~ msgstr "{0} z populacją: {1}"
+
+#~ msgid "EDITOR_TUTORIAL_CELL_TEXT"
+#~ msgstr ""
+#~ "Oto edytor komórek, gdzie możesz dokonać zmian w zamian za Punkty Mutacji (PM)\n"
+#~ "\n"
+#~ "Możesz również zmieniać różne inne cechy twojego gatunku w innych zakładkach edytora.\n"
+#~ "\n"
+#~ "Aby kontynuować, wybierz organellum z lewego panelu (cytozol będzie dobrym wyborem), następnie kliknij na heks na środku ekranu aby dodać to organellum do twojej komórki."

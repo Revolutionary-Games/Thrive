@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2025-02-15 11:28+0200\n"
+"POT-Creation-Date: 2025-02-21 15:14+0200\n"
 "PO-Revision-Date: 2025-02-06 13:29+0000\n"
 "Last-Translator: Anonymous <noreply@weblate.org>\n"
 "Language-Team: Dutch (Belgium) <https://translate.revolutionarygamesstudio.com/projects/thrive/thrive-game/nl_BE/>\n"
@@ -1839,6 +1839,15 @@ msgid "EDITOR_BUTTON_TOOLTIP"
 msgstr "Voeg een nieuwe sneltoets toe"
 
 #, fuzzy
+msgid "EDITOR_TUTORIAL_EARLY_GOAL"
+msgstr ""
+"Dit is de cel editor waar je organellen kan toevoegen aan of verwijderen van je soort door mutatiepunten (MP) te besteden.\n"
+"\n"
+"Je kan ook andere eigenschappen van je soort aanpassen in de andere tabbladen van de cel editor.\n"
+"\n"
+"Om verder te gaan selecteer je een organel van het paneel aan de linkerkant (cytoplasma is een goede keuze). Klik dan met de linkermuisknop naast de zeshoek die getoond is in het midden van het scherm om dat organel toe te voegen aan je soort."
+
+#, fuzzy
 msgid "EDITOR_TUTORIAL_EDITOR_TEXT"
 msgstr ""
 "Welkom bij de Microbe Editor.\n"
@@ -2529,6 +2538,9 @@ msgstr "GUI volume"
 msgid "HEALTH"
 msgstr "Gezondheid"
 
+msgid "HEALTH_MODIFIER"
+msgstr ""
+
 #, fuzzy
 msgid "HEAT_ACCUMULATION_BAR_TOOLTIP"
 msgstr "Zelfmoord"
@@ -2873,6 +2885,13 @@ msgstr "Juli"
 
 msgid "JUNE"
 msgstr "Juni"
+
+msgid "KEEP_CURRENT_FLEXIBILITY"
+msgstr ""
+
+#, fuzzy
+msgid "KEEP_CURRENT_TOLERANCE_FLEXIBILITY_TOOLTIP"
+msgstr "Pauzeer het spel"
 
 #, fuzzy
 msgid "KEEP_MIGRATION"
@@ -3761,12 +3780,16 @@ msgid "MIDDLE_MOUSE"
 msgstr "Midden muis"
 
 #, fuzzy
-msgid "MIGRATE"
-msgstr "Beoordeel"
-
-#, fuzzy
 msgid "MIGRATION_FAILED_TO_ADD"
 msgstr "Mod creatie gefaald"
+
+#, fuzzy
+msgid "MIGRATION_MANAGER"
+msgstr ""
+"Houd je gezondheidsbalk naast de ATP-balk (rechtsonder) in de gaten.\n"
+"Je cel sterft als hij geen gezondheid meer heeft.\n"
+"Je regenereert gezondheid terwijl je ATP hebt.\n"
+"Zorg ervoor dat u voldoende glucose verzamelt om ATP te produceren."
 
 msgid "MIGRATION_STATUS_DESTINATION_NOT_SELECTED"
 msgstr ""
@@ -4277,6 +4300,10 @@ msgid "NOTICE_READY_TO_EDIT"
 msgstr "Bewerker is nu klaar om er in te gaan"
 
 #, fuzzy
+msgid "NOT_ADAPTED_TO_CURRENT_PATCH"
+msgstr "Ongeldige mod icoon map"
+
+#, fuzzy
 msgid "NOT_STARTED_DOT"
 msgstr "Onvoltooid."
 
@@ -4592,6 +4619,10 @@ msgstr "OxyToxy Synthese"
 msgid "OXYGEN_RESISTANCE"
 msgstr "Toxine-resistentie"
 
+#, fuzzy
+msgid "OXYGEN_TOLERANCE_TOOLTIP"
+msgstr "Toon / verstop omgeving en verbindingen"
+
 msgid "OXYTOXISOME_PROCESSES_DESCRIPTION"
 msgstr "verandert [thrive:compound type=\"atp\"][/thrive:compound] in [thrive:compound type=\"oxytoxy\"][/thrive:compound]. Ratio schaalt met concentratie van [thrive:compound type=\"oxygen\"][/thrive:compound]. Kan gif afvuren door te drukken op [thrive:input]g_fire_toxin[/thrive:input]."
 
@@ -4731,6 +4762,14 @@ msgstr ""
 msgid "PERCENTAGE_VALUE"
 msgstr "{0}%"
 
+#, fuzzy
+msgid "PERFECT_ADAPTATION_DESCRIPTION"
+msgstr ""
+"Schakelt de lichtflitsende effecten op GUI's in (bijv. Editor knop flits).\n"
+"\n"
+"Als u een bug ervaart waarbij delen van de editor knop verdwijnen,\n"
+"kunt u proberen dit uit te schakelen om te zien of het probleem is verdwenen."
+
 msgid "PERFORMANCE"
 msgstr "Prestaties"
 
@@ -4857,6 +4896,10 @@ msgstr "Druk"
 msgid "PRESSURE_SHORT"
 msgstr "Druk."
 
+#, fuzzy
+msgid "PRESSURE_TOLERANCE_TOOLTIP"
+msgstr "Ga terug naar het menu"
+
 msgid "PRESS_KEY_DOT_DOT_DOT"
 msgstr "Druk een toets..."
 
@@ -4877,6 +4920,10 @@ msgid "PROCESS_ENVIRONMENT_SEPARATOR"
 msgstr "@"
 
 msgid "PROCESS_PANEL_TITLE"
+msgstr "Celprocessen"
+
+#, fuzzy
+msgid "PROCESS_SPEED_MODIFIER"
 msgstr "Celprocessen"
 
 msgid "PROGRAMMING_TEAM"
@@ -5898,6 +5945,10 @@ msgstr "Temperatuur"
 msgid "TEMPERATURE_SHORT"
 msgstr "Temp."
 
+#, fuzzy
+msgid "TEMPERATURE_TOLERANCE_TOOLTIP"
+msgstr "Pauzeer het spel"
+
 msgid "TESTING_TEAM"
 msgstr "Testing Team"
 
@@ -6141,6 +6192,9 @@ msgstr "Hulpmiddelen"
 msgid "TOOL_HAND_AXE"
 msgstr ""
 
+msgid "TOO_LARGE_PRESSURE_RANGE"
+msgstr ""
+
 msgid "TOO_MANY_RECENT_VERSIONS_TO_SHOW"
 msgstr ""
 
@@ -6362,6 +6416,16 @@ msgstr ""
 "Om in het spel verder te gaan zal je moeten evolueren en adapteren, dus het is aangeraden om uw soort bewerken in de meeste bewerkingscycli."
 
 #, fuzzy
+msgid "TUTORIAL_MICROBE_EDITOR_OPEN_TOLERANCES"
+msgstr ""
+"Welkom bij de Microbe Editor.\n"
+"Hier kan je zien wat er is gebeurd sinds het begin van het spel of wanneer je het laatste in de editor was. Dan kan je hier ook aanpassingen maken aan je soort.\n"
+"\n"
+"In dit tabblad kan je een verslag zien van welke soorten er bestaan, waar en wat hun populaties zijn. Je kan ook omgevingsveranderingen zien bovenaan.\n"
+"\n"
+"Om naar het volgende tabblad te gaan druk je op de volgende knop rechts onder."
+
+#, fuzzy
 msgid "TUTORIAL_MICROBE_EDITOR_PATCH_TEXT"
 msgstr ""
 "Welkom bij de Microbe Editor.\n"
@@ -6401,6 +6465,16 @@ msgstr ""
 "Overweeg ook zorgvuldig of het toevoegen van een organel gunstig is, vaak is het een goede keuze om geen wijzigingen aan te brengen, omdat elk onderdeel ATP kost om te onderhouden en er meer middelen nodig zijn om te verdelen.\n"
 "\n"
 "Een mogelijke strategie is om een enkele hex van cytoplasma te blijven en eerst naar de oppervlakte zones te gaan voordat je fotosynthese-organellen krijgt."
+
+#, fuzzy
+msgid "TUTORIAL_MICROBE_EDITOR_TOLERANCES_TAB"
+msgstr ""
+"Welkom bij de Microbe Editor.\n"
+"Hier kan je zien wat er is gebeurd sinds het begin van het spel of wanneer je het laatste in de editor was. Dan kan je hier ook aanpassingen maken aan je soort.\n"
+"\n"
+"In dit tabblad kan je een verslag zien van welke soorten er bestaan, waar en wat hun populaties zijn. Je kan ook omgevingsveranderingen zien bovenaan.\n"
+"\n"
+"Om naar het volgende tabblad te gaan druk je op de volgende knop rechts onder."
 
 #, fuzzy
 msgid "TUTORIAL_MICROBE_STAGE_EDITOR_BUTTON_TUTORIAL"
@@ -6710,6 +6784,10 @@ msgstr ""
 #, fuzzy
 msgid "UV_PROTECTION"
 msgstr "Auto-Evo voorspelling"
+
+#, fuzzy
+msgid "UV_TOLERANCE_TOOLTIP"
+msgstr "Toon / verstop omgeving en verbindingen"
 
 msgid "VACUOLE"
 msgstr "Vacuole"
@@ -8695,6 +8773,10 @@ msgid "ZOOM_OUT"
 msgstr "Uitzoomen"
 
 #, fuzzy
+#~ msgid "MIGRATE"
+#~ msgstr "Beoordeel"
+
+#, fuzzy
 #~ msgid "THANKS_FOR_BUYING_THRIVE"
 #~ msgstr ""
 #~ "Bedankt voor het spelen!\n"
@@ -9143,14 +9225,6 @@ msgstr "Uitzoomen"
 #~ "\n"
 #~ "Selecteer een plek om verder te gaan."
 
-#~ msgid "EDITOR_TUTORIAL_CELL_TEXT"
-#~ msgstr ""
-#~ "Dit is de cel editor waar je organellen kan toevoegen aan of verwijderen van je soort door mutatiepunten (MP) te besteden.\n"
-#~ "\n"
-#~ "Je kan ook andere eigenschappen van je soort aanpassen in de andere tabbladen van de cel editor.\n"
-#~ "\n"
-#~ "Om verder te gaan selecteer je een organel van het paneel aan de linkerkant (cytoplasma is een goede keuze). Klik dan met de linkermuisknop naast de zeshoek die getoond is in het midden van het scherm om dat organel toe te voegen aan je soort."
-
 #~ msgid "VIEW_NOW"
 #~ msgstr "Kijk nu"
 
@@ -9345,3 +9419,11 @@ msgstr "Uitzoomen"
 #, fuzzy
 #~ msgid "TOTAL_TIME_USED_COLON"
 #~ msgstr "Soorten:"
+
+#~ msgid "EDITOR_TUTORIAL_CELL_TEXT"
+#~ msgstr ""
+#~ "Dit is de cel editor waar je organellen kan toevoegen aan of verwijderen van je soort door mutatiepunten (MP) te besteden.\n"
+#~ "\n"
+#~ "Je kan ook andere eigenschappen van je soort aanpassen in de andere tabbladen van de cel editor.\n"
+#~ "\n"
+#~ "Om verder te gaan selecteer je een organel van het paneel aan de linkerkant (cytoplasma is een goede keuze). Klik dan met de linkermuisknop naast de zeshoek die getoond is in het midden van het scherm om dat organel toe te voegen aan je soort."

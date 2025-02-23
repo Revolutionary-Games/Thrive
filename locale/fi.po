@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2025-02-15 11:28+0200\n"
+"POT-Creation-Date: 2025-02-21 15:14+0200\n"
 "PO-Revision-Date: 2025-02-06 13:29+0000\n"
 "Last-Translator: Anonymous <noreply@weblate.org>\n"
 "Language-Team: Finnish <https://translate.revolutionarygamesstudio.com/projects/thrive/thrive-game/fi/>\n"
@@ -1891,6 +1891,17 @@ msgstr "on saanut mutaation"
 msgid "EDITOR_BUTTON_TOOLTIP"
 msgstr "Lisää uusi syöte"
 
+#, fuzzy
+msgid "EDITOR_TUTORIAL_EARLY_GOAL"
+msgstr ""
+"Tervetuloa mikrobieditoriin.\n"
+"\n"
+"Täällä voit tarkastaa miten edelliset sukupolvesi ovat onnistuneet, ja tehdä muutoksia seuraavaan lajisi sukupolveen.\n"
+"\n"
+"Tarjolla on lista muutoksista ympäristössä, jossa parhaillaan elät. Kokeile ja tutki erilaisia työkaluja solun ympäristön ja rakenteen muutoksiin!\n"
+"\n"
+"Kun olet valmis jatkamaan, paina \"jatka\" painiketta alhaalla oikealla."
+
 msgid "EDITOR_TUTORIAL_EDITOR_TEXT"
 msgstr ""
 "Tervetuloa mikrobieditoriin.\n"
@@ -2588,6 +2599,9 @@ msgstr "Käyttöliittymä"
 msgid "HEALTH"
 msgstr "Terveys"
 
+msgid "HEALTH_MODIFIER"
+msgstr ""
+
 #, fuzzy
 msgid "HEAT_ACCUMULATION_BAR_TOOLTIP"
 msgstr "Lisää uusi syöte"
@@ -2932,6 +2946,13 @@ msgstr "Heinäkuu"
 
 msgid "JUNE"
 msgstr "Kesäkuu"
+
+msgid "KEEP_CURRENT_FLEXIBILITY"
+msgstr ""
+
+#, fuzzy
+msgid "KEEP_CURRENT_TOLERANCE_FLEXIBILITY_TOOLTIP"
+msgstr "Laita peli tauolle"
 
 #, fuzzy
 msgid "KEEP_MIGRATION"
@@ -3841,12 +3862,16 @@ msgid "MIDDLE_MOUSE"
 msgstr "Hiiren keskimmäinen painike"
 
 #, fuzzy
-msgid "MIGRATE"
-msgstr "Nopeus"
-
-#, fuzzy
 msgid "MIGRATION_FAILED_TO_ADD"
 msgstr "Auto-evon suorittaminen epäonnistui"
+
+#, fuzzy
+msgid "MIGRATION_MANAGER"
+msgstr ""
+"Seuraa tarkoin alhaalla oikealla näkyviä palkkeja.\n"
+"Solusi kuolee, jos sen terveyspalkki loppuu.\n"
+"Terveyspalkkisi kasvaa silloin kun solullasi on ATP:tä.\n"
+"Pidä huolta, että keräät tarpeeksi glukoosia tuottaaksesi ATP:tä."
 
 msgid "MIGRATION_STATUS_DESTINATION_NOT_SELECTED"
 msgstr ""
@@ -4372,6 +4397,10 @@ msgid "NOTICE_READY_TO_EDIT"
 msgstr ""
 
 #, fuzzy
+msgid "NOT_ADAPTED_TO_CURRENT_PATCH"
+msgstr "Peruuta nykyinen toimenpide"
+
+#, fuzzy
 msgid "NOT_STARTED_DOT"
 msgstr "Peruutettu."
 
@@ -4688,6 +4717,10 @@ msgstr "Happimyrkkysynteesi"
 msgid "OXYGEN_RESISTANCE"
 msgstr "Myrkyn kestävyys"
 
+#, fuzzy
+msgid "OXYGEN_TOLERANCE_TOOLTIP"
+msgstr "Näytä / piilota ympäristö ja yhdisteet"
+
 msgid "OXYTOXISOME_PROCESSES_DESCRIPTION"
 msgstr "Muuntaa [thrive:compound type=\"atp\"][/thrive:compound]:n [thrive:compound type=\"oxytoxy\"]oxytoxyksi[/thrive:compound]. Muunnosnopeus riippuu ympäristön [thrive:compound type=\"oxygen\"]happipitoisuudesta[/thrive:compound]. Voi päästää myrkkyjä painamalla [thrive:input]g_fire_toxin[/thrive:input]. Kun [thrive:compound type=\"oxytoxy\"][/thrive:compound]n pitoisuudet ovat alhaiset, ampuminen on edelleen mahdollista, mutta aiheuttaa vähemmän vahinkoa."
 
@@ -4829,6 +4862,10 @@ msgstr ""
 msgid "PERCENTAGE_VALUE"
 msgstr "{0}%"
 
+#, fuzzy
+msgid "PERFECT_ADAPTATION_DESCRIPTION"
+msgstr "Pistä muita soluja tällä."
+
 msgid "PERFORMANCE"
 msgstr "Suorituskyky"
 
@@ -4954,6 +4991,10 @@ msgstr "Paine"
 msgid "PRESSURE_SHORT"
 msgstr "Paine"
 
+#, fuzzy
+msgid "PRESSURE_TOLERANCE_TOOLTIP"
+msgstr "Palaa Päävalikkoon"
+
 msgid "PRESS_KEY_DOT_DOT_DOT"
 msgstr "Paina jotain näppäintä..."
 
@@ -4973,6 +5014,10 @@ msgid "PROCESS_ENVIRONMENT_SEPARATOR"
 msgstr "@"
 
 msgid "PROCESS_PANEL_TITLE"
+msgstr "Solun prosessit"
+
+#, fuzzy
+msgid "PROCESS_SPEED_MODIFIER"
 msgstr "Solun prosessit"
 
 msgid "PROGRAMMING_TEAM"
@@ -6008,6 +6053,10 @@ msgstr "Lämpötila"
 msgid "TEMPERATURE_SHORT"
 msgstr "Lämpö."
 
+#, fuzzy
+msgid "TEMPERATURE_TOLERANCE_TOOLTIP"
+msgstr "Laita peli tauolle"
+
 msgid "TESTING_TEAM"
 msgstr "Testaustiimi"
 
@@ -6249,6 +6298,9 @@ msgstr "Työkalut"
 msgid "TOOL_HAND_AXE"
 msgstr ""
 
+msgid "TOO_LARGE_PRESSURE_RANGE"
+msgstr ""
+
 msgid "TOO_MANY_RECENT_VERSIONS_TO_SHOW"
 msgstr ""
 
@@ -6468,6 +6520,17 @@ msgstr ""
 "\n"
 "Lykkyä tykö!"
 
+#, fuzzy
+msgid "TUTORIAL_MICROBE_EDITOR_OPEN_TOLERANCES"
+msgstr ""
+"Tämä on ympäristökartta.\n"
+"\n"
+"Kuvakkeet esittävät erilaisia ympäristöjä, joihin solusi voi levittyä. Oikealla näkyvästä paneelista voit katsoa millaiset olosuhteet ympäristöllä valitsevat.\n"
+"\n"
+"Siirtyäksesi valitsemaasi ympäristöön (korostettu vaaleansinisellä reunalla) klikkaa Siirry-painiketta levitäksesi.\n"
+"\n"
+"Kokeile valita uusi ympäristö jatkaaksesi."
+
 msgid "TUTORIAL_MICROBE_EDITOR_PATCH_TEXT"
 msgstr ""
 "Tämä on ympäristökartta.\n"
@@ -6503,6 +6566,17 @@ msgstr ""
 "Kannattaa myös arvioida, onko osien lisääminen hyödyllistä. Jokainen osa käyttää lisää ATP:tä ja siten solu tarvitsee lisää yhdisteitä lisääntyäkseen.\n"
 "\n"
 "Hyvä alkustrategia voi olla pysyä yksittäisenä solulimana ja suunnata ympäristöissä pinnalle, jossa voi käyttää fotosynteesin soluelimiä."
+
+#, fuzzy
+msgid "TUTORIAL_MICROBE_EDITOR_TOLERANCES_TAB"
+msgstr ""
+"Tämä on ympäristökartta.\n"
+"\n"
+"Kuvakkeet esittävät erilaisia ympäristöjä, joihin solusi voi levittyä. Oikealla näkyvästä paneelista voit katsoa millaiset olosuhteet ympäristöllä valitsevat.\n"
+"\n"
+"Siirtyäksesi valitsemaasi ympäristöön (korostettu vaaleansinisellä reunalla) klikkaa Siirry-painiketta levitäksesi.\n"
+"\n"
+"Kokeile valita uusi ympäristö jatkaaksesi."
 
 msgid "TUTORIAL_MICROBE_STAGE_EDITOR_BUTTON_TUTORIAL"
 msgstr ""
@@ -6809,6 +6883,10 @@ msgstr "Käytä virtuaalista ikkunankokoa"
 #, fuzzy
 msgid "UV_PROTECTION"
 msgstr "Auto-Evon ennuste"
+
+#, fuzzy
+msgid "UV_TOLERANCE_TOOLTIP"
+msgstr "Näytä / piilota ympäristö ja yhdisteet"
 
 msgid "VACUOLE"
 msgstr "Vakuoli"
@@ -8892,6 +8970,10 @@ msgstr "Zoomaa sisään"
 
 msgid "ZOOM_OUT"
 msgstr "Zoomaa ulospäin"
+
+#, fuzzy
+#~ msgid "MIGRATE"
+#~ msgstr "Nopeus"
 
 #, fuzzy
 #~ msgid "THANKS_FOR_BUYING_THRIVE"

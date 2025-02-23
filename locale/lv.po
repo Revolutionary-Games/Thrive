@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2025-02-15 11:28+0200\n"
+"POT-Creation-Date: 2025-02-21 15:14+0200\n"
 "PO-Revision-Date: 2024-10-17 07:24+0000\n"
 "Last-Translator: Anonymous <noreply@weblate.org>\n"
 "Language-Team: Latvian <https://translate.revolutionarygamesstudio.com/projects/thrive/thrive-game/lv/>\n"
@@ -1810,6 +1810,9 @@ msgstr "Satur mutāciju"
 msgid "EDITOR_BUTTON_TOOLTIP"
 msgstr "Apskatiet detalizētu informāciju aiz pareģošanas"
 
+msgid "EDITOR_TUTORIAL_EARLY_GOAL"
+msgstr ""
+
 msgid "EDITOR_TUTORIAL_EDITOR_TEXT"
 msgstr ""
 
@@ -2481,6 +2484,9 @@ msgstr "Interfeisa skaļums"
 msgid "HEALTH"
 msgstr "Veselība"
 
+msgid "HEALTH_MODIFIER"
+msgstr ""
+
 #, fuzzy
 msgid "HEAT_ACCUMULATION_BAR_TOOLTIP"
 msgstr "Apskatiet detalizētu informāciju aiz pareģošanas"
@@ -2821,6 +2827,13 @@ msgstr ""
 
 msgid "JUNE"
 msgstr ""
+
+msgid "KEEP_CURRENT_FLEXIBILITY"
+msgstr ""
+
+#, fuzzy
+msgid "KEEP_CURRENT_TOLERANCE_FLEXIBILITY_TOOLTIP"
+msgstr "Apskatiet detalizētu informāciju aiz pareģošanas"
 
 #, fuzzy
 msgid "KEEP_MIGRATION"
@@ -3721,11 +3734,12 @@ msgstr "Organisma statistika"
 msgid "MIDDLE_MOUSE"
 msgstr "Peles vidējā poga"
 
-msgid "MIGRATE"
-msgstr ""
-
 #, fuzzy
 msgid "MIGRATION_FAILED_TO_ADD"
+msgstr "populācija:"
+
+#, fuzzy
+msgid "MIGRATION_MANAGER"
 msgstr "populācija:"
 
 msgid "MIGRATION_STATUS_DESTINATION_NOT_SELECTED"
@@ -4231,6 +4245,10 @@ msgid "NOTICE_READY_TO_EDIT"
 msgstr ""
 
 #, fuzzy
+msgid "NOT_ADAPTED_TO_CURRENT_PATCH"
+msgstr "Atcelt pašreizējo darbību"
+
+#, fuzzy
 msgid "NOT_STARTED_DOT"
 msgstr "Atcelts."
 
@@ -4547,6 +4565,10 @@ msgstr "OxyToxy sintēze"
 msgid "OXYGEN_RESISTANCE"
 msgstr "Izturība pret toksīniem"
 
+#, fuzzy
+msgid "OXYGEN_TOLERANCE_TOOLTIP"
+msgstr "Apskatiet detalizētu informāciju aiz pareģošanas"
+
 msgid "OXYTOXISOME_PROCESSES_DESCRIPTION"
 msgstr ""
 
@@ -4691,6 +4713,10 @@ msgstr ""
 msgid "PERCENTAGE_VALUE"
 msgstr ""
 
+#, fuzzy
+msgid "PERFECT_ADAPTATION_DESCRIPTION"
+msgstr "Modifikācijas Apraksts:"
+
 msgid "PERFORMANCE"
 msgstr ""
 
@@ -4813,6 +4839,10 @@ msgstr "Spiediens"
 msgid "PRESSURE_SHORT"
 msgstr "Spied."
 
+#, fuzzy
+msgid "PRESSURE_TOLERANCE_TOOLTIP"
+msgstr "Atgriezties izvēlnē"
+
 msgid "PRESS_KEY_DOT_DOT_DOT"
 msgstr "Uzspiediet kādu pogu..."
 
@@ -4833,6 +4863,10 @@ msgid "PROCESS_ENVIRONMENT_SEPARATOR"
 msgstr ""
 
 msgid "PROCESS_PANEL_TITLE"
+msgstr "Šūnas procesi"
+
+#, fuzzy
+msgid "PROCESS_SPEED_MODIFIER"
 msgstr "Šūnas procesi"
 
 msgid "PROGRAMMING_TEAM"
@@ -5830,6 +5864,10 @@ msgstr "Temperatūra"
 msgid "TEMPERATURE_SHORT"
 msgstr "Temperatūra."
 
+#, fuzzy
+msgid "TEMPERATURE_TOLERANCE_TOOLTIP"
+msgstr "Apskatiet detalizētu informāciju aiz pareģošanas"
+
 msgid "TESTING_TEAM"
 msgstr ""
 
@@ -6075,6 +6113,9 @@ msgstr "Instrumenti"
 msgid "TOOL_HAND_AXE"
 msgstr ""
 
+msgid "TOO_LARGE_PRESSURE_RANGE"
+msgstr ""
+
 msgid "TOO_MANY_RECENT_VERSIONS_TO_SHOW"
 msgstr ""
 
@@ -6303,6 +6344,13 @@ msgstr ""
 "\n"
 "Lai pamestu koloniju vispārīgi, jūs varat uzklikšķināt uz savas šūnas vai uzspiest atsaistīt visu pogu."
 
+#, fuzzy
+msgid "TUTORIAL_MICROBE_EDITOR_OPEN_TOLERANCES"
+msgstr ""
+"Jūs esat iegājuši atsaistīšanas režīmā. Šajā režīmā jūs varat uzklikšķināt uz kolonijas locekļiem, lai tos atsaistītu.\n"
+"\n"
+"Lai pamestu koloniju vispārīgi, jūs varat uzklikšķināt uz savas šūnas vai uzspiest atsaistīt visu pogu."
+
 msgid "TUTORIAL_MICROBE_EDITOR_PATCH_TEXT"
 msgstr ""
 
@@ -6314,6 +6362,13 @@ msgstr ""
 
 msgid "TUTORIAL_MICROBE_EDITOR_STAY_SMALL"
 msgstr ""
+
+#, fuzzy
+msgid "TUTORIAL_MICROBE_EDITOR_TOLERANCES_TAB"
+msgstr ""
+"Jūs esat iegājuši atsaistīšanas režīmā. Šajā režīmā jūs varat uzklikšķināt uz kolonijas locekļiem, lai tos atsaistītu.\n"
+"\n"
+"Lai pamestu koloniju vispārīgi, jūs varat uzklikšķināt uz savas šūnas vai uzspiest atsaistīt visu pogu."
 
 #, fuzzy
 msgid "TUTORIAL_MICROBE_STAGE_EDITOR_BUTTON_TUTORIAL"
@@ -6615,6 +6670,10 @@ msgstr ""
 #, fuzzy
 msgid "UV_PROTECTION"
 msgstr "Automātiska-Evo Pareģošana"
+
+#, fuzzy
+msgid "UV_TOLERANCE_TOOLTIP"
+msgstr "Apskatiet detalizētu informāciju aiz pareģošanas"
 
 msgid "VACUOLE"
 msgstr "Vakuola"

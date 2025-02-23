@@ -23,6 +23,8 @@ public partial class EditorComponentBase<TEditor> : ControlWithInput, IEditorCom
 
     private TEditor? editor;
 
+    private double invalidSoundCooldown;
+
     protected EditorComponentBase()
     {
     }
@@ -106,6 +108,13 @@ public partial class EditorComponentBase<TEditor> : ControlWithInput, IEditorCom
         Init((TEditor)owningEditor, fresh);
     }
 
+    public override void _Process(double delta)
+    {
+        base._Process(delta);
+
+        invalidSoundCooldown -= delta;
+    }
+
     public virtual void OnEditorReady()
     {
         // Late initialisation stuff can go here (usually overridden by component types that need that)
@@ -171,7 +180,7 @@ public partial class EditorComponentBase<TEditor> : ControlWithInput, IEditorCom
     {
     }
 
-    public virtual void OnMutationPointsChanged(int mutationPoints)
+    public virtual void OnMutationPointsChanged(double mutationPoints)
     {
         throw new GodotAbstractMethodNotOverriddenException();
     }
@@ -182,7 +191,12 @@ public partial class EditorComponentBase<TEditor> : ControlWithInput, IEditorCom
 
     internal void PlayInvalidActionSound()
     {
-        GUICommon.Instance.PlayCustomSound(unableToPerformActionSound, 0.4f);
+        // To avoid multiple sounds overlapping, there's a cooldown
+        if (invalidSoundCooldown <= 0)
+        {
+            GUICommon.Instance.PlayCustomSound(unableToPerformActionSound, 0.4f);
+            invalidSoundCooldown = 0.4f;
+        }
     }
 
     /// <summary>

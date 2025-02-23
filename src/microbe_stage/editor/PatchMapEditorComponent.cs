@@ -174,7 +174,7 @@ public partial class PatchMapEditorComponent<TEditor> : EditorComponentBase<TEdi
         }
     }
 
-    public override void OnMutationPointsChanged(int mutationPoints)
+    public override void OnMutationPointsChanged(double mutationPoints)
     {
     }
 
