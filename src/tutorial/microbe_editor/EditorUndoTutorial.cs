@@ -35,7 +35,7 @@ public class EditorUndoTutorial : TutorialPhase
                 OrganelleDefinition placedOrganelle = ((OrganellePlacedEventArgs)args).Definition;
 
                 if (!HasBeenShown && CanTrigger && !overallState.TutorialActive()
-                        && placedOrganelle == SimulationParameters.Instance.GetOrganelleType("nucleus"))
+                    && placedOrganelle == SimulationParameters.Instance.GetOrganelleType("nucleus"))
                 {
                     Show();
                     overallState.EditorTutorialEnd.CanTrigger = true;
