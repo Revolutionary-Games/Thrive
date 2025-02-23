@@ -531,6 +531,7 @@ public static class SpawnHelpers
         {
             HealthMultiplier = 1,
             OsmoregulationMultiplier = 1,
+            ProcessSpeedModifier = 1,
         };
 
         var bioProcesses = new BioProcesses
