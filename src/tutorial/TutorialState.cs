@@ -488,7 +488,6 @@ public class TutorialState : ITutorialInput, ISaveLoadable
             CellEditorIntroduction,
             NucleusTutorial,
             EditorUndoTutorial,
-            EditorRedoTutorial,
             EditorTutorialEnd,
             AutoEvoPrediction,
             StaySmallTutorial,
