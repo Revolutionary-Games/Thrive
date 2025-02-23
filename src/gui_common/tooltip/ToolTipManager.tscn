@@ -294,6 +294,12 @@ layout_mode = 2
 DisplayName = "TOXIN_RESISTANCE"
 ModifierIcon = ExtResource("16")
 
+[node name="HSeparator" parent="GroupHolder/membraneSelection/single/MarginContainer/VBoxContainer" index="5"]
+visible = false
+
+[node name="OrganelleCostList" parent="GroupHolder/membraneSelection/single/MarginContainer/VBoxContainer" index="6"]
+visible = false
+
 [node name="double" parent="GroupHolder/membraneSelection" instance=ExtResource("5")]
 visible = false
 layout_mode = 0
@@ -334,6 +340,12 @@ ModifierIcon = ExtResource("15")
 layout_mode = 2
 DisplayName = "TOXIN_RESISTANCE"
 ModifierIcon = ExtResource("16")
+
+[node name="HSeparator" parent="GroupHolder/membraneSelection/double/MarginContainer/VBoxContainer" index="5"]
+visible = false
+
+[node name="OrganelleCostList" parent="GroupHolder/membraneSelection/double/MarginContainer/VBoxContainer" index="6"]
+visible = false
 
 [node name="cellulose" parent="GroupHolder/membraneSelection" instance=ExtResource("5")]
 visible = false
@@ -388,6 +400,12 @@ DisplayName = "RESISTANT_TO_BASIC_ENGULFMENT"
 ModifierNameFont = ExtResource("17_ftkue")
 ShowValue = false
 
+[node name="HSeparator" parent="GroupHolder/membraneSelection/cellulose/MarginContainer/VBoxContainer" index="5"]
+visible = false
+
+[node name="OrganelleCostList" parent="GroupHolder/membraneSelection/cellulose/MarginContainer/VBoxContainer" index="6"]
+visible = false
+
 [node name="chitin" parent="GroupHolder/membraneSelection" instance=ExtResource("5")]
 visible = false
 layout_mode = 0
@@ -441,6 +459,12 @@ DisplayName = "RESISTANT_TO_BASIC_ENGULFMENT"
 ModifierNameFont = ExtResource("17_ftkue")
 ShowValue = false
 
+[node name="HSeparator" parent="GroupHolder/membraneSelection/chitin/MarginContainer/VBoxContainer" index="5"]
+visible = false
+
+[node name="OrganelleCostList" parent="GroupHolder/membraneSelection/chitin/MarginContainer/VBoxContainer" index="6"]
+visible = false
+
 [node name="calciumCarbonate" parent="GroupHolder/membraneSelection" instance=ExtResource("5")]
 visible = false
 layout_mode = 0
@@ -487,6 +511,12 @@ layout_mode = 2
 DisplayName = "CANNOT_ENGULF"
 ModifierNameFont = ExtResource("16_dd0bc")
 ShowValue = false
+
+[node name="HSeparator" parent="GroupHolder/membraneSelection/calciumCarbonate/MarginContainer/VBoxContainer" index="5"]
+visible = false
+
+[node name="OrganelleCostList" parent="GroupHolder/membraneSelection/calciumCarbonate/MarginContainer/VBoxContainer" index="6"]
+visible = false
 
 [node name="silica" parent="GroupHolder/membraneSelection" instance=ExtResource("5")]
 visible = false
@@ -535,6 +565,12 @@ layout_mode = 2
 DisplayName = "CANNOT_ENGULF"
 ModifierNameFont = ExtResource("16_dd0bc")
 ShowValue = false
+
+[node name="HSeparator" parent="GroupHolder/membraneSelection/silica/MarginContainer/VBoxContainer" index="5"]
+visible = false
+
+[node name="OrganelleCostList" parent="GroupHolder/membraneSelection/silica/MarginContainer/VBoxContainer" index="6"]
+visible = false
 
 [node name="processesProduction" type="Control" parent="GroupHolder"]
 anchors_preset = 0
