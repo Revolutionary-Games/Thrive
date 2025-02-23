@@ -23,7 +23,8 @@ public partial class CompoundStorageStatistics : VBoxContainer
     public override void _Ready()
     {
         childCache = new ChildObjectCache<Compound, CompoundAmount>(compoundListContainer,
-            c => new CompoundAmount { Compound = c, PrefixPositiveWithPlus = false, AmountSuffix = valueSuffix });
+            c => new CompoundAmount
+                { Compound = c, PrefixPositiveWithPlus = false, AmountSuffix = valueSuffix, ShowUnit = false });
     }
 
     public override void _EnterTree()
@@ -158,7 +159,7 @@ public partial class CompoundStorageStatistics : VBoxContainer
 
             if (updateTarget.TranslationKey != "COMPOUND_STORAGE_AMOUNT_DOES_NOT_LAST_NIGHT")
             {
-                // Need to swap base key
+                // Need to swap the base key
                 SetNewExtraDescription(compoundControl, nightLength);
                 return;
             }

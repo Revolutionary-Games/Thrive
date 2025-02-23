@@ -175,6 +175,11 @@ public partial class CompoundAmount : HBoxContainer
         }
     }
 
+    /// <summary>
+    ///   If set to false, the unit will not be shown for the amount
+    /// </summary>
+    public bool ShowUnit { get; set; } = true;
+
     public override void _Ready()
     {
         base._Ready();
@@ -237,7 +242,7 @@ public partial class CompoundAmount : HBoxContainer
         }
 
         string numberPart;
-        if (!string.IsNullOrEmpty(compoundDefinition!.Unit))
+        if (!string.IsNullOrEmpty(compoundDefinition!.Unit) && ShowUnit)
         {
             numberPart = Localization.Translate("VALUE_WITH_UNIT")
                 .FormatSafe(Math.Round(amount), compoundDefinition.Unit);
