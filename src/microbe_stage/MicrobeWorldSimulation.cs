@@ -206,7 +206,7 @@ public partial class MicrobeWorldSimulation : WorldSimulationWithPhysics
         engulfedHandlingSystem = new EngulfedHandlingSystem(this, SpawnSystem, EntitySystem, couldParallelize);
 
         strainSystem = new StrainSystem(EntitySystem, couldParallelize);
-        microbeMovementSystem = new MicrobeMovementSystem(PhysicalWorld, EntitySystem, parallelRunner);
+        microbeMovementSystem = new MicrobeMovementSystem(this, PhysicalWorld, EntitySystem, parallelRunner);
 
         irradiationSystem = new IrradiationSystem(EntitySystem, parallelRunner);
         microbeAI = new MicrobeAISystem(cloudSystem, spawnEnvironment.DaylightInfo, EntitySystem, parallelRunner);

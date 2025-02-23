@@ -43,11 +43,13 @@ using World = DefaultEcs.World;
 [RuntimeCost(14)]
 public sealed class MicrobeMovementSystem : AEntitySetSystem<float>
 {
+    private readonly IWorldSimulation worldSimulation;
     private readonly PhysicalWorld physicalWorld;
 
-    public MicrobeMovementSystem(PhysicalWorld physicalWorld, World world, IParallelRunner runner) : base(world,
-        runner, Constants.SYSTEM_HIGHER_ENTITIES_PER_THREAD)
+    public MicrobeMovementSystem(IWorldSimulation worldSimulation, PhysicalWorld physicalWorld, World world,
+        IParallelRunner runner) : base(world, runner, Constants.SYSTEM_HIGHER_ENTITIES_PER_THREAD)
     {
+        this.worldSimulation = worldSimulation;
         this.physicalWorld = physicalWorld;
     }
 
@@ -313,8 +315,25 @@ public sealed class MicrobeMovementSystem : AEntitySetSystem<float>
 
         if (control.MovementDirection != Vector3.Zero && hasColony)
         {
-            CalculateColonyImpactOnMovementForce(ref entity.Get<MicrobeColony>(), control.MovementDirection,
-                cellProperties.IsBacteria, delta, ref force);
+            try
+            {
+                CalculateColonyImpactOnMovementForce(ref entity.Get<MicrobeColony>(), control.MovementDirection,
+                    cellProperties.IsBacteria, delta, ref force);
+            }
+            catch (Exception e)
+            {
+                // TODO: try to find out the real root cause of this problem rather than detecting and force disbanding
+                // the colony here
+                GD.PrintErr("Error calculating colony movement force: " + e);
+
+                var entityId = entity;
+
+                Invoke.Instance.Perform(() =>
+                {
+                    GD.PrintErr("Force disbanding the colony that is in invalid state, entity: ", entityId);
+                    MicrobeColonyHelpers.UnbindAllOutsideGameUpdate(entityId, worldSimulation);
+                });
+            }
         }
 
         if (control.SlowedBySlime)
