@@ -773,38 +773,43 @@ public partial class CellEditorComponent
 
     private void CalculateAndDisplayToleranceWarnings()
     {
-        var tolerances = CalculateRawTolerances();
-
         usedToleranceWarnings = 0;
 
-        void AddToleranceWarning(string text)
+        // Tolerances with the cell editor are not used in multicellular, rather the body plan editor will display
+        // the warnings (once they are done)
+        if (!IsMulticellularEditor)
         {
-            if (usedToleranceWarnings < activeToleranceWarnings.Count)
+            var tolerances = CalculateRawTolerances();
+
+            void AddToleranceWarning(string text)
             {
-                var warning = activeToleranceWarnings[usedToleranceWarnings];
-                warning.Text = text;
-            }
-            else if (usedToleranceWarnings < MaxToleranceWarnings)
-            {
-                var warning = new Label
+                if (usedToleranceWarnings < activeToleranceWarnings.Count)
                 {
-                    HorizontalAlignment = HorizontalAlignment.Center,
-                    AutowrapMode = TextServer.AutowrapMode.WordSmart,
-                    CustomMinimumSize = new Vector2(150, 0),
-                    LabelSettings = toleranceWarningsFont,
-                };
+                    var warning = activeToleranceWarnings[usedToleranceWarnings];
+                    warning.Text = text;
+                }
+                else if (usedToleranceWarnings < MaxToleranceWarnings)
+                {
+                    var warning = new Label
+                    {
+                        HorizontalAlignment = HorizontalAlignment.Center,
+                        AutowrapMode = TextServer.AutowrapMode.WordSmart,
+                        CustomMinimumSize = new Vector2(150, 0),
+                        LabelSettings = toleranceWarningsFont,
+                    };
 
-                warning.Text = text;
-                activeToleranceWarnings.Add(warning);
-                toleranceWarningContainer.AddChild(warning);
+                    warning.Text = text;
+                    activeToleranceWarnings.Add(warning);
+                    toleranceWarningContainer.AddChild(warning);
+                }
+
+                ++usedToleranceWarnings;
             }
 
-            ++usedToleranceWarnings;
+            // This allocates a delegate, but it's probably not a significant amount of garbage
+            MicrobeEnvironmentalToleranceCalculations.GenerateToleranceProblemList(tolerances,
+                MicrobeEnvironmentalToleranceCalculations.ResolveToleranceValues(tolerances), AddToleranceWarning);
         }
-
-        // This allocates a delegate, but it's probably not a significant amount of garbage
-        MicrobeEnvironmentalToleranceCalculations.GenerateToleranceProblemList(tolerances,
-            MicrobeEnvironmentalToleranceCalculations.ResolveToleranceValues(tolerances), AddToleranceWarning);
 
         // Remove excess text that is no longer used
         while (usedToleranceWarnings < activeToleranceWarnings.Count)

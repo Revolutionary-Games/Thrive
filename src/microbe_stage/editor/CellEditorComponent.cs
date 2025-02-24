@@ -315,6 +315,8 @@ public partial class CellEditorComponent :
 
     private bool showGrowthOrderNumbers;
 
+    private bool multicellularTolerancesPrinted;
+
     private TutorialState? tutorialState;
 
     public enum SelectionMenuTab
@@ -1085,9 +1087,12 @@ public partial class CellEditorComponent :
         CalculateOrganelleEffectivenessInCurrentPatch();
         UpdatePatchDependentBalanceData();
 
-        // Refresh tolerances data for the new patch
-        tolerancesEditor.OnPatchChanged();
-        OnTolerancesChanged(tolerancesEditor.CurrentTolerances);
+        if (!IsMulticellularEditor)
+        {
+            // Refresh tolerances data for the new patch
+            tolerancesEditor.OnPatchChanged();
+            OnTolerancesChanged(tolerancesEditor.CurrentTolerances);
+        }
 
         // Redo suggestion calculations as they could depend on the patch data (though at the time of writing this is
         // not really changing)
@@ -1923,6 +1928,24 @@ public partial class CellEditorComponent :
 
     private ResolvedMicrobeTolerances CalculateLatestTolerances()
     {
+        if (IsMulticellularEditor)
+        {
+            if (!multicellularTolerancesPrinted)
+            {
+                GD.Print("TODO: implement tolerances data coming from the multicellular editor");
+                multicellularTolerancesPrinted = true;
+            }
+
+            // TODO: this should use info from the cell body plan editor regarding tolerances and remove this dummy
+            // return
+            return new ResolvedMicrobeTolerances
+            {
+                HealthModifier = 1,
+                OsmoregulationModifier = 1,
+                ProcessSpeedModifier = 1,
+            };
+        }
+
         return MicrobeEnvironmentalToleranceCalculations.ResolveToleranceValues(CalculateRawTolerances());
     }
 
