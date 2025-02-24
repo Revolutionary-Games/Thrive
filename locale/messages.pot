@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Thrive VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2025-02-24 16:39+0300\n"
+"POT-Creation-Date: 2025-02-24 22:14+0300\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -442,7 +442,7 @@ msgstr ""
 msgid "AUTO_MOVE_FORWARDS"
 msgstr ""
 
-#: ../src/general/OptionsMenu.cs:1167 ../src/general/OptionsMenu.tscn:353
+#: ../src/general/OptionsMenu.cs:1167 ../src/general/OptionsMenu.tscn:352
 msgid "AUTO_RESOLUTION"
 msgstr ""
 
@@ -660,7 +660,7 @@ msgstr ""
 msgid "BIOME_LABEL"
 msgstr ""
 
-#: ../src/general/OptionsMenu.tscn:453
+#: ../src/general/OptionsMenu.tscn:452
 msgid "BLOOM_RENDER_EFFECT"
 msgstr ""
 
@@ -1002,7 +1002,7 @@ msgstr ""
 msgid "CHOSEN_FILENAME_ALREADY_EXISTS"
 msgstr ""
 
-#: ../src/general/OptionsMenu.tscn:428
+#: ../src/general/OptionsMenu.tscn:427
 msgid "CHROMATIC_ABERRATION"
 msgstr ""
 
@@ -1101,7 +1101,7 @@ msgstr ""
 msgid "COLOUR"
 msgstr ""
 
-#: ../src/general/OptionsMenu.tscn:397
+#: ../src/general/OptionsMenu.tscn:396
 msgid "COLOURBLIND_CORRECTION"
 msgstr ""
 
@@ -1608,11 +1608,11 @@ msgstr ""
 msgid "COPY_RESULTS"
 msgstr ""
 
-#: ../src/general/OptionsMenu.tscn:411
+#: ../src/general/OptionsMenu.tscn:410
 msgid "CORRECTION_PROTANOPE"
 msgstr ""
 
-#: ../src/general/OptionsMenu.tscn:413
+#: ../src/general/OptionsMenu.tscn:412
 msgid "CORRECTION_TRITANOPE"
 msgstr ""
 
@@ -2031,7 +2031,7 @@ msgstr ""
 msgid "DIGESTION_SPEED_VALUE"
 msgstr ""
 
-#: ../src/general/OptionsMenu.tscn:332
+#: ../src/general/OptionsMenu.tscn:331
 msgid "DISABLED"
 msgstr ""
 
@@ -2107,11 +2107,11 @@ msgstr ""
 msgid "DISPLAY_ABILITIES_BAR"
 msgstr ""
 
-#: ../src/general/OptionsMenu.tscn:479
+#: ../src/general/OptionsMenu.tscn:478
 msgid "DISPLAY_BACKGROUND_DISTORTION_EFFECT"
 msgstr ""
 
-#: ../src/general/OptionsMenu.tscn:474
+#: ../src/general/OptionsMenu.tscn:473
 msgid "DISPLAY_BACKGROUND_PARTICLES"
 msgstr ""
 
@@ -2123,7 +2123,7 @@ msgstr ""
 msgid "DISPLAY_DRIVER_VULKAN"
 msgstr ""
 
-#: ../src/general/OptionsMenu.tscn:287
+#: ../src/general/OptionsMenu.tscn:286
 msgid "DISPLAY_MODE"
 msgstr ""
 
@@ -2288,7 +2288,7 @@ msgstr ""
 msgid "EDITOR_TUTORIAL_EDITOR_TEXT"
 msgstr ""
 
-#: ../src/general/OptionsMenu.tscn:337
+#: ../src/general/OptionsMenu.tscn:336
 msgid "EIGHT_TIMES"
 msgstr ""
 
@@ -2537,7 +2537,7 @@ msgstr ""
 msgid "EXCEPTION_HAPPENED_WHILE_LOADING"
 msgstr ""
 
-#: ../src/general/OptionsMenu.tscn:302
+#: ../src/general/OptionsMenu.tscn:301
 msgid "EXCLUSIVE_FULLSCREEN"
 msgstr ""
 
@@ -2872,7 +2872,7 @@ msgstr ""
 msgid "FOSSIL_DELETION_FAILED_DESCRIPTION"
 msgstr ""
 
-#: ../src/general/OptionsMenu.tscn:335
+#: ../src/general/OptionsMenu.tscn:334
 msgid "FOUR_TIMES"
 msgstr ""
 
@@ -2903,7 +2903,7 @@ msgstr ""
 msgid "FREE_GLUCOSE_CLOUD_EXPLANATION"
 msgstr ""
 
-#: ../src/general/OptionsMenu.tscn:300
+#: ../src/general/OptionsMenu.tscn:299
 msgid "FULLSCREEN"
 msgstr ""
 
@@ -3055,7 +3055,7 @@ msgstr ""
 msgid "GPU_NAME"
 msgstr ""
 
-#: ../src/general/OptionsMenu.tscn:192
+#: ../src/general/OptionsMenu.tscn:191
 msgid "GRAPHICS"
 msgstr ""
 
@@ -3113,7 +3113,7 @@ msgstr ""
 msgid "HIGHER_VALUES_INCREASE_PERFORMANCE"
 msgstr ""
 
-#: ../src/general/OptionsMenu.tscn:319 ../src/general/OptionsMenu.tscn:1025
+#: ../src/general/OptionsMenu.tscn:318 ../src/general/OptionsMenu.tscn:1025
 msgid "HIGHER_VALUES_WORSEN_PERFORMANCE"
 msgstr ""
 
@@ -3630,7 +3630,7 @@ msgstr ""
 msgid "INIT_NEW_WORLD_TOOLTIP"
 msgstr ""
 
-#: ../src/general/OptionsMenu.tscn:219
+#: ../src/general/OptionsMenu.tscn:218
 msgid "INPUTS"
 msgstr ""
 
@@ -4419,6 +4419,10 @@ msgstr ""
 msgid "LOW_QUALITY_BACKGROUND_BLUR"
 msgstr ""
 
+#: ../src/general/OptionsMenu.tscn:483
+msgid "LOW_QUALITY_BACKGROUND_BLUR_TOOLTIP"
+msgstr ""
+
 #: ../simulation_parameters/microbe_stage/organelles.json:1236
 msgid "LYSOSOME"
 msgstr ""
@@ -4479,11 +4483,11 @@ msgstr ""
 msgid "MAX_CACHE_SIZE_TOOLTIP"
 msgstr ""
 
-#: ../src/general/OptionsMenu.tscn:361
+#: ../src/general/OptionsMenu.tscn:360
 msgid "MAX_FPS"
 msgstr ""
 
-#: ../src/general/OptionsMenu.tscn:387
+#: ../src/general/OptionsMenu.tscn:386
 msgid "MAX_FPS_NO_LIMIT"
 msgstr ""
 
@@ -4930,7 +4934,7 @@ msgstr ""
 msgid "MIN_VISIBLE_DATASET_WARNING"
 msgstr ""
 
-#: ../src/general/NewGameSettings.tscn:273 ../src/general/OptionsMenu.tscn:228
+#: ../src/general/NewGameSettings.tscn:273 ../src/general/OptionsMenu.tscn:227
 msgid "MISC"
 msgstr ""
 
@@ -5311,7 +5315,7 @@ msgstr ""
 msgid "MULTIPLE_ORGANELLES"
 msgstr ""
 
-#: ../src/general/OptionsMenu.tscn:315
+#: ../src/general/OptionsMenu.tscn:314
 msgid "MULTISAMPLE_ANTI_ALIASING"
 msgstr ""
 
@@ -5534,7 +5538,7 @@ msgstr ""
 #: ../simulation_parameters/common/wiki.json:2446
 #: ../simulation_parameters/common/wiki.json:2466
 #: ../simulation_parameters/common/wiki.json:2521
-#: ../src/general/OptionsMenu.tscn:410
+#: ../src/general/OptionsMenu.tscn:409
 #: ../src/thriveopedia/pages/wiki/organelles/OrganelleInfoBox.cs:201
 #: ../src/thriveopedia/pages/wiki/organelles/OrganelleInfoBox.cs:210
 #: ../src/thriveopedia/pages/wiki/organelles/OrganelleInfoBox.cs:219
@@ -6163,7 +6167,7 @@ msgstr ""
 msgid "PERFECT_ADAPTATION_DESCRIPTION"
 msgstr ""
 
-#: ../src/general/OptionsMenu.tscn:210
+#: ../src/general/OptionsMenu.tscn:209
 msgid "PERFORMANCE"
 msgstr ""
 
@@ -6571,7 +6575,7 @@ msgstr ""
 msgid "RESIZE_METABALL_TOOLTIP"
 msgstr ""
 
-#: ../src/general/OptionsMenu.tscn:345
+#: ../src/general/OptionsMenu.tscn:344
 msgid "RESOLUTION"
 msgstr ""
 
@@ -7172,7 +7176,7 @@ msgstr ""
 msgid "SOCIETY_STAGE"
 msgstr ""
 
-#: ../src/general/OptionsMenu.tscn:201
+#: ../src/general/OptionsMenu.tscn:200
 msgid "SOUND"
 msgstr ""
 
@@ -8217,7 +8221,7 @@ msgstr ""
 msgid "TUTORIAL_VIEW_NOW"
 msgstr ""
 
-#: ../src/general/OptionsMenu.tscn:333
+#: ../src/general/OptionsMenu.tscn:332
 msgid "TWO_TIMES"
 msgstr ""
 
@@ -8641,7 +8645,7 @@ msgstr ""
 msgid "VOLUMEUP"
 msgstr ""
 
-#: ../src/general/OptionsMenu.tscn:272
+#: ../src/general/OptionsMenu.tscn:271
 msgid "VSYNC"
 msgstr ""
 
@@ -10800,7 +10804,7 @@ msgstr ""
 msgid "WILL_YOU_THRIVE"
 msgstr ""
 
-#: ../src/general/OptionsMenu.tscn:299
+#: ../src/general/OptionsMenu.tscn:298
 msgid "WINDOWED"
 msgstr ""
 
