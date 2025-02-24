@@ -74,7 +74,7 @@ public partial class BackgroundPlane : Node3D
         spatialBlurMaterial = (ShaderMaterial)planeBlurMaterial;
         canvasBlurMaterial = (ShaderMaterial)colorRectBlurMaterial;
 
-        UpdateSubViewportResolution();
+        UpdateSubViewportResolution(GetWindow().Size);
         ApplyDistortionEffect();
         ApplyBlurEffect();
     }
@@ -87,6 +87,7 @@ public partial class BackgroundPlane : Node3D
         Settings.Instance.MicrobeDistortionStrength.OnChanged += OnBackgroundDistortionChanged;
 
         Settings.Instance.MicrobeBackgroundBlurStrength.OnChanged += OnBackgroundBlurStrengthChanged;
+        Settings.Instance.MicrobeBackgroundBlurLowQuality.OnChanged += UpdateBlurQuality;
     }
 
     public override void _ExitTree()
@@ -97,6 +98,7 @@ public partial class BackgroundPlane : Node3D
         Settings.Instance.MicrobeDistortionStrength.OnChanged -= OnBackgroundDistortionChanged;
 
         Settings.Instance.MicrobeBackgroundBlurStrength.OnChanged -= OnBackgroundBlurStrengthChanged;
+        Settings.Instance.MicrobeBackgroundBlurLowQuality.OnChanged -= UpdateBlurQuality;
     }
 
     public override void _Process(double delta)
@@ -105,13 +107,16 @@ public partial class BackgroundPlane : Node3D
 
         SetWorldPosition(new Vector2(GlobalPosition.X, GlobalPosition.Z));
 
-        elapsed += delta;
-
-        if (elapsed > 1.0f)
+        if (!Settings.Instance.MicrobeBackgroundBlurLowQuality)
         {
-            UpdateSubViewportResolution();
+            elapsed += delta;
 
-            elapsed = 0.0f;
+            if (elapsed > 1.0f)
+            {
+                UpdateSubViewportResolution(GetWindow().Size);
+
+                elapsed = 0.0f;
+            }
         }
     }
 
@@ -166,14 +171,25 @@ public partial class BackgroundPlane : Node3D
         base.Dispose(disposing);
     }
 
-    private void UpdateSubViewportResolution()
+    private void UpdateSubViewportResolution(Vector2I newSize)
     {
-        var newSize = GetWindow().Size;
         if (previousWindowSize != newSize)
         {
             previousWindowSize = newSize;
             backgroundSubViewport.Size = newSize;
             partialBlurSubViewport.Size = newSize;
+        }
+    }
+
+    private void UpdateBlurQuality(bool isLowQuality)
+    {
+        if (isLowQuality)
+        {
+            UpdateSubViewportResolution(new Vector2I(1280, 720));
+        }
+        else
+        {
+            UpdateSubViewportResolution(GetWindow().Size);
         }
     }
 
