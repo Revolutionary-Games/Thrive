@@ -74,7 +74,7 @@ public partial class BackgroundPlane : Node3D
         spatialBlurMaterial = (ShaderMaterial)planeBlurMaterial;
         canvasBlurMaterial = (ShaderMaterial)colorRectBlurMaterial;
 
-        UpdateSubViewportResolution(GetWindow().Size);
+        UpdateSubViewportResolution();
         ApplyDistortionEffect();
         ApplyBlurEffect();
     }
@@ -107,16 +107,13 @@ public partial class BackgroundPlane : Node3D
 
         SetWorldPosition(new Vector2(GlobalPosition.X, GlobalPosition.Z));
 
-        if (!Settings.Instance.MicrobeBackgroundBlurLowQuality)
+        elapsed += delta;
+
+        if (elapsed > 1.0f)
         {
-            elapsed += delta;
+            UpdateSubViewportResolution();
 
-            if (elapsed > 1.0f)
-            {
-                UpdateSubViewportResolution(GetWindow().Size);
-
-                elapsed = 0.0f;
-            }
+            elapsed = 0.0f;
         }
     }
 
@@ -171,8 +168,19 @@ public partial class BackgroundPlane : Node3D
         base.Dispose(disposing);
     }
 
-    private void UpdateSubViewportResolution(Vector2I newSize)
+    private void UpdateSubViewportResolution()
     {
+        Vector2I newSize;
+
+        if (Settings.Instance.MicrobeBackgroundBlurLowQuality)
+        {
+            newSize = new Vector2I(1280, 720);
+        }
+        else
+        {
+            newSize = GetWindow().Size;
+        }
+
         if (previousWindowSize != newSize)
         {
             previousWindowSize = newSize;
@@ -183,14 +191,7 @@ public partial class BackgroundPlane : Node3D
 
     private void UpdateBlurQuality(bool isLowQuality)
     {
-        if (isLowQuality)
-        {
-            UpdateSubViewportResolution(new Vector2I(1280, 720));
-        }
-        else
-        {
-            UpdateSubViewportResolution(GetWindow().Size);
-        }
+        UpdateSubViewportResolution();
     }
 
     private void SetWorldPosition(Vector2 position)
