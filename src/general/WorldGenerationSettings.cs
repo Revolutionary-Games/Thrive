@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.ComponentModel;
 using Godot;
 using Newtonsoft.Json;
@@ -48,6 +48,18 @@ public class WorldGenerationSettings
         [Description("LIFE_ORIGIN_PANSPERMIA")]
         Panspermia = 2,
     }
+    
+    public enum WorldSizeEnum
+    {
+        [Description("WORLD_SIZE_SMALL")]
+        Small = 0,
+
+        [Description("WORLD_SIZE_MEDIUM")]
+        Medium = 1,
+
+        [Description("WORLD_SIZE_LARGE")]
+        Large = 2,
+    }
 
     /// <summary>
     ///   Whether this game is restricted to only LAWK parts and abilities
@@ -73,6 +85,11 @@ public class WorldGenerationSettings
     ///   Random seed for generating this game's planet
     /// </summary>
     public long Seed { get; set; } = new XoShiRo256starstar().Next64();
+    
+    /// <summary>
+    ///   Size of World
+    /// </summary>
+    public WorldSizeEnum WorldSize { get; set; } = WorldSizeEnum.Medium;
 
     // The following are helper proxies to the values from the difficulty
     [JsonIgnore]
