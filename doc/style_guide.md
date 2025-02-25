@@ -112,8 +112,8 @@ Code style rules
   namespace all using statements should be within the namespace.
 
 - Build your code with warnings enabled to see things StyleCop
-  complains about. If you don't automatic checks on your code will
-  fail automatic pull request checks.
+  complains about. If you don't, automatic checks on your pull request
+  will fail.
 
 - Due to StyleCop not having rules for everything, there are
   additional rules implemented by a custom script (`dotnet run
