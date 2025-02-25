@@ -38,10 +38,11 @@ public sealed class FluidCurrentsSystem : AEntitySetSystem<float>
     private readonly NoiseTexture3D noiseCurrentsX;
     private readonly NoiseTexture3D noiseCurrentsY;
 
-    private Image[]? noiseDisturbancesXImage;
-    private Image[]? noiseDisturbancesYImage;
-    private Image[]? noiseCurrentsXImage;
-    private Image[]? noiseCurrentsYImage;
+    private Image[] noiseDisturbancesXImage = null!;
+    private Image[] noiseDisturbancesYImage = null!;
+    private Image[] noiseCurrentsXImage = null!;
+    private Image[] noiseCurrentsYImage = null!;
+    private bool imagesInitialized;
 
     private GameWorld? gameWorld;
 
@@ -92,8 +93,7 @@ public sealed class FluidCurrentsSystem : AEntitySetSystem<float>
 
     public Vector2 VelocityAt(Vector2 position)
     {
-        if (noiseDisturbancesXImage == null || noiseDisturbancesYImage == null
-            || noiseCurrentsXImage == null || noiseCurrentsYImage == null)
+        if (!imagesInitialized)
             return Vector2.Zero;
 
         // This function's formula should be the same as the one in CurrentsParticles.gdshader
@@ -121,8 +121,7 @@ public sealed class FluidCurrentsSystem : AEntitySetSystem<float>
     {
         base.PreUpdate(delta);
 
-        if (noiseDisturbancesXImage == null || noiseDisturbancesYImage == null
-            || noiseCurrentsXImage == null || noiseCurrentsYImage == null)
+        if (!imagesInitialized)
         {
             var disturbancesX = noiseDisturbancesX.GetData();
             var disturbancesY = noiseDisturbancesY.GetData();
@@ -145,6 +144,8 @@ public sealed class FluidCurrentsSystem : AEntitySetSystem<float>
                 noiseCurrentsXImage[i] = currentsX[i];
                 noiseCurrentsYImage[i] = currentsY[i];
             }
+
+            imagesInitialized = true;
         }
 
         currentsTimePassed += delta;
