@@ -383,6 +383,9 @@ public partial class OptionsMenu : ControlWithInput
     private Button displayMicrobeBackgroundDistortionToggle = null!;
 
     [Export]
+    private Button lowQualityBackgroundBlurToggle = null!;
+
+    [Export]
     private Button bloomEffectToggle = null!;
 
     [Export]
@@ -850,6 +853,7 @@ public partial class OptionsMenu : ControlWithInput
         strainVisibility.Selected = (int)settings.StrainBarVisibilityMode.Value;
         displayBackgroundParticlesToggle.ButtonPressed = settings.DisplayBackgroundParticles;
         displayMicrobeBackgroundDistortionToggle.ButtonPressed = settings.MicrobeDistortionStrength.Value > 0;
+        lowQualityBackgroundBlurToggle.ButtonPressed = settings.MicrobeBackgroundBlurLowQuality;
         guiLightEffectsToggle.ButtonPressed = settings.GUILightEffectsEnabled;
         displayPartNamesToggle.ButtonPressed = settings.DisplayPartNames;
         displayMenu3DBackgroundsToggle.ButtonPressed = settings.Menu3DBackgroundEnabled;
@@ -2076,6 +2080,13 @@ public partial class OptionsMenu : ControlWithInput
         {
             Settings.Instance.MicrobeDistortionStrength.Value = 0;
         }
+
+        UpdateResetSaveButtonState();
+    }
+
+    private void OnLowQualityBackgroundBlurToggled(bool toggle)
+    {
+        Settings.Instance.MicrobeBackgroundBlurLowQuality.Value = toggle;
 
         UpdateResetSaveButtonState();
     }
