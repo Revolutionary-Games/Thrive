@@ -680,6 +680,37 @@ public partial class CreatureStageHUDBase<TStage> : HUDWithPausing, ICreatureSta
     }
 
     /// <summary>
+    ///   Hides both the compounds panel and the environment panel for tutorial purposes
+    /// </summary>
+    public void HideEnvironmentAndCompoundPanels()
+    {
+        compoundsPanel.ShowPanel = false;
+        compoundsPanel.ShowAgents = false;
+
+        environmentPanel.ShowPanel = false;
+        bottomLeftBar.CompoundsPressed = false;
+        bottomLeftBar.EnvironmentPressed = false;
+    }
+
+    /// <summary>
+    ///   Restores the compound panel after it was closed for the tutorial
+    /// </summary>
+    public void ShowCompoundPanel()
+    {
+        compoundsPanel.ShowPanel = true;
+        bottomLeftBar.CompoundsPressed = true;
+    }
+
+    /// <summary>
+    ///   Restores the environment panel after it was closed for the tutorial
+    /// </summary>
+    public void ShowEnvironmentPanel()
+    {
+        environmentPanel.ShowPanel = true;
+        bottomLeftBar.EnvironmentPressed = true;
+    }
+
+    /// <summary>
     ///   Creates and displays a fossilisation button above each on-screen organism.
     /// </summary>
     protected virtual void ShowFossilisationButtons()

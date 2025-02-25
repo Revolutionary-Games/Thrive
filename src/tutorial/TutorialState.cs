@@ -74,9 +74,6 @@ public class TutorialState : ITutorialInput
     public EditorUndoTutorial EditorUndoTutorial { get; private set; } = new();
 
     [JsonProperty]
-    public EditorRedoTutorial EditorRedoTutorial { get; private set; } = new();
-
-    [JsonProperty]
     public EditorTutorialEnd EditorTutorialEnd { get; private set; } = new();
 
     [JsonProperty]
@@ -405,7 +402,6 @@ public class TutorialState : ITutorialInput
             PatchMap,
             CellEditorIntroduction,
             EditorUndoTutorial,
-            EditorRedoTutorial,
             EditorTutorialEnd,
             AutoEvoPrediction,
             StaySmallTutorial,

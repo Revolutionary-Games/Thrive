@@ -62,12 +62,16 @@ public class MicrobeMovementEventArgs : TutorialEventArgs
 
 public class EntityPositionEventArgs : TutorialEventArgs
 {
-    public EntityPositionEventArgs(Vector3? position)
+    public EntityPositionEventArgs(Vector3? position, CompoundBag compounds, MicrobeHUD hud)
     {
         EntityPosition = position;
+        Compounds = compounds;
+        HUD = hud;
     }
 
     public Vector3? EntityPosition { get; }
+    public CompoundBag Compounds { get; }
+    public MicrobeHUD HUD { get; }
 }
 
 public class CompoundBagEventArgs : TutorialEventArgs
@@ -162,4 +166,14 @@ public class GameWorldEventArgs : TutorialEventArgs
     }
 
     public GameWorld World { get; }
+}
+
+public class HUDEventArgs : TutorialEventArgs
+{
+    public HUDEventArgs(MicrobeHUD microbeHUD)
+    {
+        HUD = microbeHUD;
+    }
+
+    public MicrobeHUD HUD { get; }
 }
