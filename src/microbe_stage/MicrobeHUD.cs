@@ -595,8 +595,27 @@ public partial class MicrobeHUD : CreatureStageHUDBase<MicrobeStage>
         }
     }
 
+    protected override void ApplySpeedMode(bool fastModeEnabled)
+    {
+        if (stage == null)
+        {
+            GD.PrintErr("Can't apply speed mode without stage set");
+            return;
+        }
+
+        stage.WorldSimulation.WorldTimeScale = fastModeEnabled ? 2 : 1;
+    }
+
+    protected override bool GetCurrentSpeedMode()
+    {
+        if (stage == null)
+            return false;
+
+        return stage.WorldSimulation.WorldTimeScale > 1;
+    }
+
     /// <summary>
-    ///   Sets button's texture and hint based on its status of fossilisation
+    ///   Sets a button's texture and hint based on its status of fossilisation
     /// </summary>
     private void SetupFossilisationButtonVisuals(FossilisationButton button, bool alreadyFossilised)
     {

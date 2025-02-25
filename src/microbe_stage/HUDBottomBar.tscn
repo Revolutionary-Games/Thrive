@@ -1,4 +1,4 @@
-[gd_scene load_steps=31 format=3 uid="uid://bdwkyuskd3u3r"]
+[gd_scene load_steps=35 format=3 uid="uid://bdwkyuskd3u3r"]
 
 [ext_resource type="Texture2D" uid="uid://blqjm72pgomg0" path="res://assets/textures/gui/bevel/suicideButton.png" id="1"]
 [ext_resource type="Texture2D" uid="uid://cp3nxr3dfb88o" path="res://assets/textures/gui/bevel/statisticsButton.png" id="2"]
@@ -11,11 +11,15 @@
 [ext_resource type="Texture2D" uid="uid://cmqynxgbt4jvj" path="res://assets/textures/gui/bevel/environmentButtonActive.png" id="10"]
 [ext_resource type="Texture2D" uid="uid://qqpvmk0a71tk" path="res://assets/textures/gui/bevel/MainMenuActive.png" id="11"]
 [ext_resource type="Texture2D" uid="uid://oq2xa0j5c6af" path="res://assets/textures/gui/bevel/MainMenuHover.png" id="12"]
+[ext_resource type="Texture2D" uid="uid://cq3ewq272kbxb" path="res://assets/textures/gui/bevel/Speed2XButton.svg" id="12_62oub"]
 [ext_resource type="Texture2D" uid="uid://r3tppwbfq4mw" path="res://assets/textures/gui/bevel/chemicalButton.svg" id="12_r44vw"]
 [ext_resource type="Texture2D" uid="uid://d2g6mdtpedlsu" path="res://assets/textures/gui/bevel/compoundsButtonHover.png" id="13"]
+[ext_resource type="Texture2D" uid="uid://gee04cb8dj2n" path="res://assets/textures/gui/bevel/Speed2XButtonActive.svg" id="13_k101w"]
 [ext_resource type="Texture2D" uid="uid://n0vyshk4aji7" path="res://assets/textures/gui/bevel/chemicalButtonActive.svg" id="13_qgxfk"]
+[ext_resource type="Texture2D" uid="uid://bioa58mwt4ob7" path="res://assets/textures/gui/bevel/Speed2XButtonHover.svg" id="14_pxurr"]
 [ext_resource type="Texture2D" uid="uid://ceko5ytw6ytnr" path="res://assets/textures/gui/bevel/chemicalButtonHover.svg" id="14_ti1r5"]
 [ext_resource type="Texture2D" uid="uid://csoia3qjosic0" path="res://assets/textures/gui/bevel/environmentButtonHover.png" id="15"]
+[ext_resource type="Texture2D" uid="uid://xq1p0mf4k8sq" path="res://assets/textures/gui/bevel/Speed2XButtonDisabled.svg" id="15_aq5wf"]
 [ext_resource type="Texture2D" uid="uid://dbudy6jb7bhad" path="res://assets/textures/gui/bevel/helpButtonHover.png" id="16"]
 [ext_resource type="Texture2D" uid="uid://doeuoye8slhmb" path="res://assets/textures/gui/bevel/searchButtonActive.png" id="17"]
 [ext_resource type="Texture2D" uid="uid://0wqh6lnuc71d" path="res://assets/textures/gui/bevel/statisticsButtonHover.png" id="18"]
@@ -32,7 +36,7 @@
 
 [sub_resource type="StyleBoxEmpty" id="27"]
 
-[node name="HUDBottomBar" type="HBoxContainer" node_paths=PackedStringArray("heatButton")]
+[node name="HUDBottomBar" type="HBoxContainer" node_paths=PackedStringArray("heatButton", "speedButton")]
 custom_minimum_size = Vector2(0, 35)
 anchors_preset = 2
 anchor_top = 1.0
@@ -49,6 +53,7 @@ EnvironmentButtonPath = NodePath("EnvironmentButton")
 ProcessPanelButtonPath = NodePath("ChemicalButton")
 SuicideButtonPath = NodePath("SuicideButton")
 heatButton = NodePath("HeatViewButton")
+speedButton = NodePath("SpeedButton")
 
 [node name="OpenMenu" type="TextureButton" parent="."]
 custom_minimum_size = Vector2(50, 35)
@@ -119,6 +124,20 @@ texture_hover = ExtResource("18")
 ignore_texture_size = true
 stretch_mode = 5
 
+[node name="SpeedButton" type="TextureButton" parent="."]
+custom_minimum_size = Vector2(35, 35)
+layout_mode = 2
+tooltip_text = "DOUBLE_SPEED_TOGGLE_TOOLTIP"
+focus_mode = 0
+toggle_mode = true
+action_mode = 0
+texture_normal = ExtResource("12_62oub")
+texture_pressed = ExtResource("13_k101w")
+texture_hover = ExtResource("14_pxurr")
+texture_disabled = ExtResource("15_aq5wf")
+ignore_texture_size = true
+stretch_mode = 5
+
 [node name="SearchButton" type="TextureButton" parent="."]
 modulate = Color(0.384314, 0.384314, 0.384314, 1)
 custom_minimum_size = Vector2(35, 35)
@@ -178,6 +197,7 @@ theme_override_styles/separator = SubResource("27")
 [connection signal="pressed" from="CompoundsButton" to="." method="CompoundsButtonPressed"]
 [connection signal="pressed" from="ChemicalButton" to="." method="ProcessButtonPressed"]
 [connection signal="pressed" from="StatisticsButton" to="." method="StatisticsButtonPressed"]
+[connection signal="pressed" from="SpeedButton" to="." method="SpeedButtonPressed"]
 [connection signal="pressed" from="SuicideButton" to="." method="SuicideButtonPressed"]
 [connection signal="pressed" from="QuestionMarkButton" to="." method="HelpButtonPressed"]
 [connection signal="toggled" from="HeatViewButton" to="." method="HeatButtonPressed"]
