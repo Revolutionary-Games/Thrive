@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Globalization;
@@ -143,7 +143,10 @@ public partial class NewGameSettings : ControlWithInput
 
     [Export]
     public NodePath GameSeedAdvancedPath = null!;
-
+    
+    [Export]
+    public NodePath WorldSizeButtonPath = null!;
+    
     [Export]
     public NodePath IncludeMulticellularButtonPath = null!;
 
@@ -221,6 +224,7 @@ public partial class NewGameSettings : ControlWithInput
     private VBoxContainer dayLengthContainer = null!;
     private LineEdit gameSeed = null!;
     private LineEdit gameSeedAdvanced = null!;
+    private OptionButton worldSizeButton = null!;
 
     // Misc controls
     private Button includeMulticellularButton = null!;
@@ -316,6 +320,7 @@ public partial class NewGameSettings : ControlWithInput
         dayLengthReadout = GetNode<LineEdit>(DayLengthReadoutPath);
         gameSeed = GetNode<LineEdit>(GameSeedPath);
         gameSeedAdvanced = GetNode<LineEdit>(GameSeedAdvancedPath);
+        worldSizeButton = GetNode<OptionButton>(WorldSizeButtonPath);
         includeMulticellularButton = GetNode<Button>(IncludeMulticellularButtonPath);
         easterEggsButton = GetNode<Button>(EasterEggsButtonPath);
         backButton = GetNode<Button>(BackButtonPath);
@@ -462,6 +467,8 @@ public partial class NewGameSettings : ControlWithInput
         gameSeedAdvanced.Text = seedText;
         SetSeed(seedText);
 
+        worldSizeButton.Selected = (int)settings.WorldSize;
+
         // Always set prototypes to true as the player must have been there to descend
         includeMulticellularButton.ButtonPressed = true;
 
@@ -537,6 +544,7 @@ public partial class NewGameSettings : ControlWithInput
                 DayLengthReadoutPath.Dispose();
                 GameSeedPath.Dispose();
                 GameSeedAdvancedPath.Dispose();
+                WorldSizeButtonPath.Dispose();
                 IncludeMulticellularButtonPath.Dispose();
                 EasterEggsButtonPath.Dispose();
                 BackButtonPath.Dispose();
@@ -656,6 +664,7 @@ public partial class NewGameSettings : ControlWithInput
         settings.DayNightCycleEnabled = dayNightCycleButton.ButtonPressed;
         settings.DayLength = (int)dayLength.Value;
         settings.Seed = latestValidSeed;
+        settings.WorldSize = (WorldGenerationSettings.WorldSizeEnum)worldSizeButton.Selected;
 
         settings.IncludeMulticellular = includeMulticellularButton.ButtonPressed;
         settings.EasterEggs = easterEggsButton.ButtonPressed;
@@ -1040,6 +1049,11 @@ public partial class NewGameSettings : ControlWithInput
         gameSeed.Text = seed;
         gameSeedAdvanced.Text = seed;
         SetSeed(seed);
+    }
+    
+    private void OnWorldSizeSelected(int index)
+    {
+        worldSizeButton.Selected = index;
     }
 
     private void OnIncludeMulticellularToggled(bool pressed)
