@@ -55,6 +55,12 @@ public abstract class WorldSimulation : IWorldSimulation, IGodotEarlyNodeResolve
     private float timeSinceLastEntityEstimate = 1;
     private int ecsThreadsToUse = 1;
 
+    /// <summary>
+    ///   Used to trigger warnings about <see cref="WorldTimeScale"/> being so high we can't process the game fast
+    ///   enough
+    /// </summary>
+    private int timeScaleMissedUpdates;
+
     public WorldSimulation()
     {
         entities = new World();
@@ -105,6 +111,19 @@ public abstract class WorldSimulation : IWorldSimulation, IGodotEarlyNodeResolve
     [JsonIgnore]
     public bool Processing { get; private set; }
 
+    /// <summary>
+    ///   Timescale of the non-framerate dependent simulation. Saved with the hope that any GUIs can properly detect
+    ///   this being changed.
+    /// </summary>
+    /// <remarks>
+    ///   <para>
+    ///     As physics step size is not currently adjusted values below 1 can make the game feel a bit jittery, so for
+    ///     now values in the range 1-3 are the best working (though the upper range depends on performance).
+    ///   </para>
+    /// </remarks>
+    [JsonProperty]
+    public float WorldTimeScale { get; set; } = 1;
+
     [JsonIgnore]
     public bool NodeReferencesResolved { get; private set; }
 
@@ -126,12 +145,12 @@ public abstract class WorldSimulation : IWorldSimulation, IGodotEarlyNodeResolve
     ///     This is an alternative to calling <see cref="ProcessLogic"/> and <see cref="ProcessFrameLogic"/> separately
     ///   </para>
     /// </remarks>
-    /// <returns>True when a game logic update happened. False if it wasn't time yet.</returns>
+    /// <returns>True, when a game logic update happened. False if it wasn't time yet.</returns>
     public bool ProcessAll(float delta)
     {
         bool useSpecialPhysicsMode = !disableComponentChecking && GenerateThreadedSystems.UseCheckedComponentAccess;
 
-        // See the comment below about this special physics
+        // See the comment below about this about special physics
         if (useSpecialPhysicsMode)
             WaitForStartedPhysicsRun();
 
@@ -142,8 +161,8 @@ public abstract class WorldSimulation : IWorldSimulation, IGodotEarlyNodeResolve
         {
             // Physics only runs after the frame systems to ensure physics callbacks triggered during frame systems
             // are not detected incorrectly. This slightly changes the characteristics of the physics interactions
-            // with other systems, but is fine for this debugging purpose
-            OnProcessPhysics(delta);
+            // with other systems but is fine for this debugging purpose
+            OnProcessPhysics(delta * WorldTimeScale);
         }
 
         return processed;
@@ -153,28 +172,47 @@ public abstract class WorldSimulation : IWorldSimulation, IGodotEarlyNodeResolve
     ///   Processes non-framerate dependent logic and steps the physics simulation once enough time has accumulated
     /// </summary>
     /// <param name="delta">
-    ///   Time since previous call, used to determine when it is actually time to do something
+    ///   Time since the previous call, used to determine when it is actually time to do something
     /// </param>
-    /// <returns>True when a game logic update happened. False if it wasn't time yet.</returns>
+    /// <returns>True, when a game logic update happened. False if it wasn't time yet.</returns>
     public virtual bool ProcessLogic(float delta)
     {
         ThrowIfNotInitialized();
 
-        accumulatedLogicTime += delta;
+        // This is a safety check about the timescale somehow being uninitialised / accidentally set to 0
+        if (WorldTimeScale <= 0)
+        {
+            GD.PrintErr("World timescale should be above 0, forcing it to 1");
+            WorldTimeScale = 1;
+        }
+
+        // Allow this time to actually reflect realtime
+        timeSinceLastEntityEstimate += delta;
+
+        accumulatedLogicTime += delta * WorldTimeScale;
 
         // TODO: is it a good idea to rate limit physics to not be able to run on update frames when the logic
         // wasn't ran?
         if (accumulatedLogicTime < minimumTimeBetweenLogicUpdates)
             return false;
 
-        // Allow this time to actually reflect realtime
-        timeSinceLastEntityEstimate += accumulatedLogicTime;
-
         if (accumulatedLogicTime > Constants.SIMULATION_MAX_DELTA_TIME)
         {
-            // Prevent lag spikes from messing with game logic too bad. The downside here is that at extremely low
-            // framerate the game will run in slow motion
+            // Prevent lag spikes from messing with game logic too badly. The downside here is that at extremely low
+            // framerate, the game will run in slow motion
             accumulatedLogicTime = Constants.SIMULATION_MAX_DELTA_TIME;
+
+            if (WorldTimeScale > 1)
+            {
+                ++timeScaleMissedUpdates;
+
+                if (timeScaleMissedUpdates > 2)
+                    GD.PrintErr("World time scale is higher than we have processing power for");
+            }
+        }
+        else
+        {
+            timeScaleMissedUpdates = 0;
         }
 
         Processing = true;

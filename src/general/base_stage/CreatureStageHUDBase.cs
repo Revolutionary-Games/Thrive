@@ -455,6 +455,9 @@ public partial class CreatureStageHUDBase<TStage> : HUDWithPausing, ICreatureSta
         UpdateProcessPanel();
 
         UpdateFossilisationButtons();
+
+        // This would be kind of hard to make a non-polling approach for updating the button status
+        UpdateSpeedModeDisplay();
     }
 
     public void SendEditorButtonToTutorial(TutorialState tutorialState)
@@ -891,6 +894,16 @@ public partial class CreatureStageHUDBase<TStage> : HUDWithPausing, ICreatureSta
         throw new GodotAbstractMethodNotOverriddenException();
     }
 
+    protected virtual void ApplySpeedMode(bool fastModeEnabled)
+    {
+        GD.PrintErr("Fast mode is not implemented for this stage");
+    }
+
+    protected virtual bool GetCurrentSpeedMode()
+    {
+        return false;
+    }
+
     protected Color GetCompoundDensityCategoryColor(float amount)
     {
         return amount switch
@@ -1230,6 +1243,16 @@ public partial class CreatureStageHUDBase<TStage> : HUDWithPausing, ICreatureSta
     private void StatisticsButtonPressed()
     {
         ThriveopediaManager.OpenPage("CurrentWorld");
+    }
+
+    private void SpeedModeButtonPressed(bool pressed)
+    {
+        ApplySpeedMode(pressed);
+    }
+
+    private void UpdateSpeedModeDisplay()
+    {
+        bottomLeftBar.SpeedModePressed = GetCurrentSpeedMode();
     }
 
     private void HeatViewButtonPressed(bool pressed)
