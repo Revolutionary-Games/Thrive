@@ -19,7 +19,21 @@ public static class PatchMapGenerator
 
         // Initialize the graph's random parameters
         var regionCoordinates = new List<Vector2>();
-        int vertexCount = random.Next(6, 10);
+        //int vertexCount = random.Next(6, 10);
+        int vertexCount = 6;
+        if (settings.WorldSize == WorldGenerationSettings.WorldSizeEnum.Small)
+        {
+            vertexCount = 6;
+        }
+        else if (settings.WorldSize == WorldGenerationSettings.WorldSizeEnum.Medium)
+        {
+            vertexCount = 9;
+        }
+        else if (settings.WorldSize == WorldGenerationSettings.WorldSizeEnum.Large)
+        {
+            vertexCount = 12;
+        }
+
         int minDistance = 180;
 
         int currentPatchId = 0;
@@ -136,7 +150,7 @@ public static class PatchMapGenerator
             }
 
             BuildRegionSize(region);
-            coordinates = GenerateCoordinates(region, map, random, minDistance);
+            coordinates = GenerateCoordinates(region, map, random, minDistance, settings.WorldSize);
 
             // If there is no more place for the current region, abandon it.
             // TODO: modify the algorithm to not need to abandon regions
@@ -368,7 +382,7 @@ public static class PatchMapGenerator
         return region1Rect.Intersects(region2Rect, true);
     }
 
-    private static Vector2 GenerateCoordinates(PatchRegion region, PatchMap map, Random random, int minDistance)
+    private static Vector2 GenerateCoordinates(PatchRegion region, PatchMap map, Random random, int minDistance, WorldGenerationSettings.WorldSizeEnum worldSize)
     {
         Vector2 coordinate;
 
@@ -379,6 +393,17 @@ public static class PatchMapGenerator
         do
         {
             coordinate = new Vector2(random.Next(3, 16) * 100, random.Next(3, 16) * 100);
+
+            // Uses more area for larger worlds
+            if (worldSize == WorldGenerationSettings.WorldSizeEnum.Medium)
+            {
+                coordinate = new Vector2(random.Next(3, 20) * 100, random.Next(3, 20) * 100);
+            }
+            else if (worldSize == WorldGenerationSettings.WorldSizeEnum.Large)
+            {
+                coordinate = new Vector2(random.Next(3, 24) * 100, random.Next(3, 24) * 100);
+            }
+
             region.ScreenCoordinates = coordinate;
         }
         while (!CheckRegionDistance(region, map, minDistance) && ++i < Constants.PATCH_GENERATION_MAX_RETRIES);
