@@ -62,8 +62,11 @@ public partial class MicrobeStage : CreatureStageBase<Entity, MicrobeWorldSimula
     [JsonProperty]
     private double movementModeShowTimer;
 
+    /// <summary>
+    ///   Used to mark the first time the player turns off tutorials in game
+    /// </summary>
     [JsonProperty]
-    private bool tutorialEndedOnce;
+    private bool tutorialCanceledOnce;
 
     /// <summary>
     ///   Used to give increasing numbers to player offspring to know which is the latest
@@ -852,11 +855,11 @@ public partial class MicrobeStage : CreatureStageBase<Entity, MicrobeWorldSimula
         {
             tutorialGUI.EventReceiver?.OnTutorialDisabled();
 
-            if (!tutorialEndedOnce)
+            if (!tutorialCanceledOnce)
             {
                 HUD.ShowCompoundPanel();
                 HUD.ShowEnvironmentPanel();
-                tutorialEndedOnce = true;
+                tutorialCanceledOnce = true;
             }
         }
         else
