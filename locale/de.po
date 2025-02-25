@@ -8,10 +8,9 @@ msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2025-02-24 22:14+0300\n"
-"PO-Revision-Date: 2025-02-25 10:42+0000\n"
-"Last-Translator: Alice König <alice.purple-rose@outlook.com>\n"
-"Language-Team: German <https://translate.revolutionarygamesstudio.com/"
-"projects/thrive/thrive-game/de/>\n"
+"PO-Revision-Date: 2025-02-25 19:21+0000\n"
+"Last-Translator: Matthias Ulbl <matthias.ulbl@gmx.at>\n"
+"Language-Team: German <https://translate.revolutionarygamesstudio.com/projects/thrive/thrive-game/de/>\n"
 "Language: de\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -551,9 +550,8 @@ msgstr "Biom: {0}"
 msgid "BLOOM_RENDER_EFFECT"
 msgstr "Externe Effekte:"
 
-#, fuzzy
 msgid "BLUESKY_TOOLTIP"
-msgstr "Pausiere das Spiel"
+msgstr "Besuche unser Blusky-Profil"
 
 msgid "BRAIN_CELL_NAME_DEFAULT"
 msgstr "Neuron"
@@ -567,9 +565,8 @@ msgstr "Stöbern"
 msgid "BROWSE_WORKSHOP"
 msgstr "Workshop durchsuchen"
 
-#, fuzzy
 msgid "BUILD_CITY"
-msgstr "Struktur"
+msgstr "Baue eine Stadt"
 
 #, fuzzy
 msgid "BUILD_QUEUE"
@@ -1540,20 +1537,37 @@ msgstr "Aktuelle Entwickler(innen)"
 msgid "CURRENT_LOCATION_CAPITAL"
 msgstr "AKTUELLE POSITION"
 
-#, fuzzy
 msgid "CURRENT_RESEARCH_NONE"
-msgstr "Fähigkeitenleiste anzeigen"
+msgstr "Nichts wird erforscht"
 
-#, fuzzy
 msgid "CURRENT_RESEARCH_PROGRESS"
-msgstr "Hilfemenü öffnen"
+msgstr "Laufende Forschung: {0} ({1})"
 
 msgid "CURRENT_WORLD"
 msgstr "Aktuelle Welt"
 
-#, fuzzy
 msgid "CURRENT_WORLD_STATISTICS"
-msgstr "Organismus-Statistik"
+msgstr ""
+"[b]Generationen:[/b]\n"
+"  {0}\n"
+"[b]Gesamtzahl Bereiche:[/b]\n"
+"  {1}\n"
+"[b]Gesamtzahl Auto-Evo-Zeit:[/b]\n"
+"  {2}\n"
+"[b]Gesamtzahl Spezies:[/b]\n"
+"  {3}\n"
+"[b]Spezies noch am Leben:[/b]\n"
+"  {4}\n"
+"[b]Spezies Anzahl pro Bereich:[/b]\n"
+"  Durchschnitt {5}; Standardabweichung {6}\n"
+"[b]Gesamtpopulation:[/b]\n"
+"  {7}\n"
+"[b]Populationsstärkste Spezies:[/b]\n"
+"  {8}\n"
+"[b]Grundlegende Mikroben-Spezies Daten:[/b]\n"
+"  Durchschnittliche Größe (in Hex-Feldern): {9}\n"
+"\n"
+"[b]Generische Organellen-Daten:[/b]"
 
 msgid "CUSTOM_USERNAME"
 msgstr "Eigener Nutzername:"
@@ -1580,13 +1594,11 @@ msgstr ""
 "Wandelt [thrive:compound type=\"glucose\"][/thrive:compound] in [thrive:"
 "compound type=\"atp\"][/thrive:compound] um."
 
-#, fuzzy
 msgid "CYTOTOXIN_SYNTHESIS"
-msgstr "OxyToxid-Synthese"
+msgstr "Zellgift-Synthese"
 
-#, fuzzy
 msgid "DAMAGE_SOURCE_RADIATION"
-msgstr "(Kosten für Organellen, Membranen und andere Gegenstände im Editor)"
+msgstr "Strahlung"
 
 msgid "DAY_LENGTH"
 msgstr "Tageslänge"
@@ -1597,9 +1609,8 @@ msgstr "(Spieltaglänge in Realzeitsekunden)"
 msgid "DAY_NIGHT_CYCLE_ENABLED"
 msgstr "Tag-/Nachtzyklus aktivieren"
 
-#, fuzzy
 msgid "DAY_NIGHT_CYCLE_ENABLED_EXPLANATION_2"
-msgstr "(WARNUNG: Photosynthese wird wesentlich weniger effizient)"
+msgstr "(Photosynthese wird in der Nacht ineffektiv, was mehr Planung erfordert)"
 
 msgid "DEADZONE_CALIBRATION_FINISHED"
 msgstr ""
@@ -1626,12 +1637,12 @@ msgstr ""
 "Position: {0}\n"
 "Richtung: {1}"
 
-msgid "DEBUG_DRAW_NOT_AVAILABLE"
-msgstr ""
-
 #, fuzzy
+msgid "DEBUG_DRAW_NOT_AVAILABLE"
+msgstr "Physics debug draw in dieser Version nicht verfügbar"
+
 msgid "DEBUG_HEAT_AT_CURSOR"
-msgstr "Am Zeiger:"
+msgstr "Hitzewert: {0}"
 
 msgid "DEBUG_PANEL"
 msgstr "Debug-Fenster"
@@ -1639,9 +1650,8 @@ msgstr "Debug-Fenster"
 msgid "DECEMBER"
 msgstr "Dezember"
 
-#, fuzzy
 msgid "DECREASE_ITEM_SIZE"
-msgstr "Schleim absondern"
+msgstr "Objektgröße verringern"
 
 msgid "DEFAULT_AUDIO_OUTPUT_DEVICE"
 msgstr "Standardausgabegerät"
@@ -1658,11 +1668,8 @@ msgstr ""
 " - {1} Schnellspeicherstände\n"
 " - {2} Backup Speicherstände"
 
-#, fuzzy
 msgid "DELETE_FOSSIL_CONFIRMATION"
-msgstr ""
-"Das Löschen dieses Speicherstandes kann nicht rückgängig gemacht werden, "
-"bist du sicher, dass du ihn dauerhaft löschen willst?"
+msgstr "Das Löschen dieses Fossils kann nicht rückgängig gemacht werden, bist du sicher, dass du es dauerhaft löschen willst?"
 
 msgid "DELETE_OLD_SAVES_PROMPT"
 msgstr "Alte Spieltände löschen?"
@@ -1690,24 +1697,19 @@ msgstr ""
 msgid "DELETE_THIS_SAVE_PROMPT"
 msgstr "Diesen Spielstand wirklich löschen?"
 
-#, fuzzy
 msgid "DESCEND_BUTTON"
-msgstr ""
-"Das Löschen dieses Speicherstandes kann nicht rückgängig gemacht werden, "
-"bist du sicher, dass du ihn dauerhaft löschen willst?"
+msgstr "Rückentwickeln"
 
-#, fuzzy
 msgid "DESCEND_CONFIRMATION"
-msgstr ""
-"Das Löschen dieses Speicherstandes kann nicht rückgängig gemacht werden, "
-"bist du sicher, dass du ihn dauerhaft löschen willst?"
+msgstr "Bist du sicher, dass du dich rückentwickeln willst?"
 
-#, fuzzy
 msgid "DESCEND_CONFIRMATION_EXPLANATION"
 msgstr ""
-"Mache diese Spezies zu einem Fossil um sie im Museum zu speichern. Du kannst "
-"von der Thriveopedia auf das Museum zugreifen, oder Fossile im Sandboxeditor "
-"laden."
+"Abstieg entfernt den Aufstiegsstatus und wirft dich zurück ins Mikrobenstadium. Von dort aus kannst du im derzeitigen Spielstand erneut durch das Spiel spielen.\n"
+"\n"
+"Du erhältst einen Abstiegsbonus für den neuen Spieldurchlauf. In künftigen Versionen kannst du den Bonus selbst wählen, derzeit ist es aber immer ein 20%-Vorteil bei der Osmoregulation.\n"
+"\n"
+"Wenn der Abstieg bestätigt wurde, kannst du die Spiel- und Startwelteinstellungen ändern."
 
 msgid "DESCRIPTION"
 msgstr "Beschreibung:"
@@ -1812,9 +1814,8 @@ msgstr "Verwerfen und fortfahren"
 msgid "DISCARD_CHANGES"
 msgstr "Verwerfen und fortfahren"
 
-#, fuzzy
 msgid "DISCARD_MIGRATION"
-msgstr "Verwerfen und fortfahren"
+msgstr "Migration verwerfen"
 
 msgid "DISCONNECTED_CELLS"
 msgstr "Getrennte Zellen"
@@ -1859,39 +1860,32 @@ msgstr ""
 "Wenn einige davon wieder sichtbar werden sollen, können mit der Schaltfläche "
 "neben dieser alle ausgeblendeten Popups wieder angezeigt werden."
 
-#, fuzzy
 msgid "DISMISS_INFORMATION_PERMANENTLY"
-msgstr "Dies' nicht wieder anzeigen"
+msgstr "Nicht wieder anzeigen"
 
-#, fuzzy
 msgid "DISMISS_WARNING_PERMANENTLY"
-msgstr "Dies' nicht wieder anzeigen"
+msgstr "Warnung nicht wieder anzeigen"
 
-#, fuzzy
 msgid "DISPLAY_3D_MENU_BACKGROUNDS"
-msgstr "Hintergrundpartikel anzeigen"
+msgstr "3D-Hintergrund im Menü anzeigen"
 
 msgid "DISPLAY_ABILITIES_BAR"
 msgstr "Fähigkeitenleiste anzeigen"
 
-#, fuzzy
 msgid "DISPLAY_BACKGROUND_DISTORTION_EFFECT"
-msgstr "Hintergrundpartikel anzeigen"
+msgstr "Verzerrung bei Mikroben-Hintergrund anwenden"
 
 msgid "DISPLAY_BACKGROUND_PARTICLES"
 msgstr "Hintergrundpartikel anzeigen"
 
-#, fuzzy
 msgid "DISPLAY_DRIVER_OPENGL"
-msgstr "Fähigkeitenleiste anzeigen"
+msgstr "OpenGL"
 
-#, fuzzy
 msgid "DISPLAY_DRIVER_VULKAN"
-msgstr "Fähigkeitenleiste anzeigen"
+msgstr "Vulkan"
 
-#, fuzzy
 msgid "DISPLAY_MODE"
-msgstr "Namen der Teile Schaltflächen anzeigen"
+msgstr "Anzeigemodus:"
 
 msgid "DISPLAY_PART_NAMES"
 msgstr "Namen der Teile Schaltflächen anzeigen"
@@ -2029,13 +2023,11 @@ msgstr "Easter eggs einbeziehen"
 msgid "EASTER_EGGS_EXPLANATION"
 msgstr "(zufällig generierte Geheimnisse im Spielverlauf)"
 
-#, fuzzy
 msgid "EASTER_EGG_BANANA_BIOME"
-msgstr "(zufällig generierte Geheimnisse im Spielverlauf)"
+msgstr "Bananen-Bereich"
 
-#, fuzzy
 msgid "EDGE_PAN_SPEED"
-msgstr "Ressourcen-Absorptionsgeschwindigkeit"
+msgstr "Schwenk-Geschwindigkeit:"
 
 #, fuzzy
 msgid "EDITING_TITLE"
@@ -2044,26 +2036,21 @@ msgstr "Titel fehlt"
 msgid "EDITOR"
 msgstr "Editor"
 
-#, fuzzy
 msgid "EDITORS_AND_MUTATIONS_BUTTON"
-msgstr "ist mutiert"
+msgstr "Editoren und Mutationen"
 
 msgid "EDITOR_BUTTON_TOOLTIP"
 msgstr "Betritt den Editor und bearbeite deine Spezies"
 
-#, fuzzy
 msgid "EDITOR_TUTORIAL_EARLY_GOAL"
 msgstr ""
-"Dies ist der Zell-Editor, in dem du durch Ausgabe von Mutationspunkten (MP) "
-"Organellen an deiner Spezies hinzufügen oder entfernen kannst.\n"
+"Willkommen im Editor. Du landest immer hier, wenn du dich erfolgreich reproduzierst.\n"
 "\n"
-"Du kannst auch andere Eigenschaften deiner Spezies in den anderen Registern "
-"des Zelleneditors ändern.\n"
+"Das [b]Ziel des frühen Spielstadiums[/b] ist, einen guten Bereich mit einer zuverlässigen Nahrungsquelle zu finden.\n"
 "\n"
-"Um fortzufahren, wähle eine Organelle aus der Palette auf der linken Seite "
-"aus (Zytoplasma ist eine gute Wahl). Klicke dann mit der linken Maustaste "
-"neben das in der Mitte des Bildschirms angezeigte Feld, um diese Organelle "
-"zu deiner Spezies hinzuzufügen."
+"Später im Spiel kann man darüber nachdenke, einen [b]Zellkern[/b] zu entwickeln, wodurch man im Spiel voranschreitet. Dies sollte aber nicht zu früh geschehen, da der Zellkern eine sehr kostspielige Organelle ist.\n"
+"\n"
+"Drücke auf Weiter um fortzufahren."
 
 msgid "EDITOR_TUTORIAL_EDITOR_TEXT"
 msgstr ""
@@ -2081,17 +2068,14 @@ msgstr ""
 msgid "EIGHT_TIMES"
 msgstr "8x"
 
-#, fuzzy
 msgid "EJECT_ENGULFED"
-msgstr "Kann nicht verschlingen"
+msgstr "Verschlungene Objekte ausstoßen"
 
-#, fuzzy
 msgid "EJECT_ENGULFED_TOOLTIP"
-msgstr "Kann nicht verschlingen"
+msgstr "Verschlungene Objekte ausstoßen"
 
-#, fuzzy
 msgid "EMITTERS_COUNT"
-msgstr "Einzeller"
+msgstr "Sender:"
 
 msgid "ENABLED_MODS"
 msgstr "Aktivierte Mods"
@@ -2118,70 +2102,46 @@ msgstr ""
 "Endosymbionten-Typ bereits vorhanden. Bitte den Endosymbiose-Prozess im "
 "Editor weiterführen"
 
-#, fuzzy
 msgid "ENDOSYMBIOSIS_AVAILABLE_ORGANELLES"
-msgstr "Mehrere Organellen"
+msgstr "verfügbare Organellen"
 
 msgid "ENDOSYMBIOSIS_BUTTON"
 msgstr "Endosymbiose"
 
-#, fuzzy
 msgid "ENDOSYMBIOSIS_CANCEL_TOOLTIP"
-msgstr "Alle Verbindungen lösen"
+msgstr "Diesen Endosymbiose-Prozess abbrechen. Der bereits erreichte Fortschritt geht dabei verloren!"
 
-#, fuzzy
 msgid "ENDOSYMBIOSIS_COMPLETE_TOOLTIP"
-msgstr ""
-"Der Zahlenwert zum Generieren der Zufallswelt. (Muss eine positive ganze "
-"Zahl sein.)"
+msgstr "Diesen Endosymbiose-Prozess abschließen und als Organelle platzieren"
 
-#, fuzzy
 msgid "ENDOSYMBIOSIS_EXPLANATION"
-msgstr ""
-"Aggressive Mikroben jagen ihre Beute über größere Entfernungen\n"
-"und kämpfen eher gegen Angreifer, wenn sie angegriffen werden.\n"
-"Friedliche Mikroben greifen andere nicht über größere Entfernungen an\n"
-"und setzen seltener Giftstoffe gegen Angreifer ein."
+msgstr "Endosymbiose wandelt andere Spezies in Endosymbionten um (Spezies, die in einer anderen Spezies in einer symbiotischen Beziehung leben). Dadurch wird die entstandene Organelle freigeschaltet und gibt eine Gratiskopie davon. Mögliche Kandidatenspezies für die Endosymbiose werden unten angezeigt, wenn sie zuvor bereits einmal verschlungen wurden. Die Dauer des Prozesses hängt von der Eignung der Spezies ab und wird ebenfalls angezeigt."
 
 msgid "ENDOSYMBIOSIS_NOTHING_ENGULFED"
 msgstr ""
 "Es wurden noch keine geeigneten Spezies verschlungen, die in Endosymbionten "
 "umgewandelt werden könnten"
 
-#, fuzzy
 msgid "ENDOSYMBIOSIS_NO_CANDIDATE_ORGANELLES"
-msgstr "Getrennte Organellen"
+msgstr "Diese Spezies kann nicht in eine Organelle umgewandelt werden"
 
-#, fuzzy
 msgid "ENDOSYMBIOSIS_PROGRESSING_EXPLANATION"
-msgstr ""
-"Dies zeigt an, wie viele Popups vom Spieler dauerhaft ausgeblendet wurden.\n"
-"Wenn einige davon wieder sichtbar werden sollen, können mit der Schaltfläche "
-"neben dieser alle ausgeblendeten Popups wieder angezeigt werden."
+msgstr "Der Endosymbiose-Prozess schreitet fort, wenn die Zielspezies verschlungen wurde und in eine temporäre Organelle umgewandelt wurde (immer nur eine möglich). Der Fortschritt wird nur gespeichert, wenn die Zelle bis zur nächsten Editor-Sitzung mit dieser temporären Organelle überlebt."
 
 msgid "ENDOSYMBIOSIS_PROKARYOTIC_LIMIT_EXPLANATION"
 msgstr "Prokaryoten können höchstens einen Endosymbionten haben"
 
-#, fuzzy
 msgid "ENDOSYMBIOSIS_SINGLE_SPECIES_PROGRESS_DESCRIPTION"
-msgstr ""
-"Wandelt [thrive:compound type=\"hydrogensulfide\"][/thrive:compound] in "
-"[thrive:compound type=\"glucose\"][/thrive:compound] um. Die Rate skaliert "
-"mit der Konzentration von [thrive:compound type=\"carbondioxide\"][/thrive:"
-"compound]. Wandelt [thrive:compound type=\"glucose\"][/thrive:compound] auch "
-"in [thrive:compound type=\"atp\"][/thrive:compound] um."
+msgstr "Überlebe mit dieser temporären Organelle bis zur nächsten Editor-Sitzung"
 
-#, fuzzy
 msgid "ENDOSYMBIOSIS_START_TOOLTIP"
-msgstr "Betritt den Editor und bearbeite deine Spezies"
+msgstr "Beginne die Endosymbiose für diese Spezies (verfügbar, wenn Zielorganellentyp ausgewählt wurde)"
 
-#, fuzzy
 msgid "ENDOSYMBIOSIS_TITLE"
-msgstr "Titel fehlt"
+msgstr "Endosymbiose"
 
-#, fuzzy
 msgid "ENERGY_BALANCE_REQUIRED_COMPOUND_LINE"
-msgstr "{0}: -{1} ATP"
+msgstr "- {0}: {1} /Sekunde"
 
 msgid "ENERGY_BALANCE_TOOLTIP_CONSUMPTION"
 msgstr "{0}: -{1} ATP"
@@ -2189,16 +2149,17 @@ msgstr "{0}: -{1} ATP"
 msgid "ENERGY_BALANCE_TOOLTIP_PRODUCTION"
 msgstr "{0}: +{1} ATP"
 
-#, fuzzy
 msgid "ENERGY_BALANCE_TOOLTIP_PRODUCTION_WITH_REQUIREMENT"
-msgstr "{0}: +{1} ATP"
+msgstr ""
+"{0}: +{1} ATP\n"
+"Beim Verbrauch von:\n"
+"{2}"
 
 msgid "ENERGY_IN_PATCH_FOR"
 msgstr "Energie in {0} für {1}"
 
-#, fuzzy
 msgid "ENERGY_IN_PATCH_SHORT"
-msgstr "Energie in {0} für {1}"
+msgstr "{0}, {1}"
 
 msgid "ENERGY_SOURCES"
 msgstr "Energiequellen:"
@@ -2223,9 +2184,8 @@ msgstr "Entitäts Kennzeichnung"
 msgid "ENVIRONMENT"
 msgstr "Umgebung"
 
-#, fuzzy
 msgid "ENVIRONMENTAL_CONDITIONS_BUTTON"
-msgstr "Glukoseerhalt in der Umwelt"
+msgstr "Umweltbedingungen"
 
 msgid "ENVIRONMENTAL_GLUCOSE_RETENTION"
 msgstr "Glukoseerhalt in der Umwelt"
@@ -2237,9 +2197,8 @@ msgstr ""
 msgid "ENVIRONMENT_BUTTON_MICROBE_TOOLTIP"
 msgstr "Umgebung und Substanzen ein-/ausblenden"
 
-#, fuzzy
 msgid "ENVIRONMENT_TOLERANCE"
-msgstr "Umgebung"
+msgstr "Toleranz"
 
 msgid "EPIPELAGIC"
 msgstr "Epipelagial"
@@ -2261,13 +2220,11 @@ msgstr ""
 "Fehler: Das Speichern neuer Einstellungen in der Konfigurationsdatei ist "
 "fehlgeschlagen."
 
-#, fuzzy
 msgid "ERROR_FETCHING_EXPLANATION"
-msgstr "(zufällig generierte Geheimnisse im Spielverlauf)"
+msgstr "Nachrichtenabruf fehlgeschlagen wegen Fehler: {0}"
 
-#, fuzzy
 msgid "ERROR_FETCHING_NEWS"
-msgstr "Fehler beim Erstellen der Modinformationsdatei"
+msgstr "Fehler beim Nachrichtenabruf"
 
 msgid "ERROR_LOADING"
 msgstr "Fehler beim Laden"
@@ -2275,9 +2232,8 @@ msgstr "Fehler beim Laden"
 msgid "ERROR_SAVING"
 msgstr "Fehler beim Speichern"
 
-#, fuzzy
 msgid "ERROR_UPLOADING_EXCEPTION"
-msgstr "Fehler beim Laden"
+msgstr "Ausnahmefall eingetreten: {0}"
 
 msgid "ESCAPE"
 msgstr "Esc"
@@ -2288,21 +2244,19 @@ msgstr "Verschlingung entflohen"
 msgid "ESTUARY"
 msgstr "Ästuar"
 
-#, fuzzy
 msgid "EVENT_ERUPTION_TOOLTIP"
-msgstr "Dies ist die exakte Version dieser Thrive Instanz"
+msgstr ""
+"Eruption Bereichsereignis\n"
+"Zusätzliche Substanzen erscheinen: Schwefelwasserstoff und Kohlendioxid"
 
 msgid "EVOLUTIONARY_TREE"
 msgstr "Evolutionsbaum"
 
-#, fuzzy
 msgid "EVOLUTIONARY_TREE_BUILD_FAILED"
 msgstr ""
-"Wird im Sandboxmode oder in Spielständen die vor der 0.6.0 gestartet wurden "
-"nicht angezeigt.\n"
+"Erstellung des Evolutionsbaums fehlgeschlagen.\n"
 "\n"
-"Trifft keins von beidem zu, ist ein Fehler aufgetreten. Bitte benachrichtige "
-"das Entwickler Team und stelle Log Dateien zur Verfügung."
+"Bitte informiere die Entwickler und stelle Spiele-Logs zur Verfügung."
 
 msgid "EXACT_VERSION_COLON"
 msgstr "Genaue Thrive Version:"
@@ -2320,16 +2274,14 @@ msgstr "Beim Laden der Speicherdaten ist ein Fehler aufgetreten"
 msgid "EXCLUSIVE_FULLSCREEN"
 msgstr "Vollbild umschalten"
 
-#, fuzzy
 msgid "EXISTING_BUILDINGS"
-msgstr "Bekannte ID angeben"
+msgstr "Gebäude"
 
 msgid "EXIT"
 msgstr "Verlassen"
 
-#, fuzzy
 msgid "EXIT_EDITOR"
-msgstr "Zum nächsten Tab des Editors wechseln"
+msgstr "Editor verlassen"
 
 msgid "EXIT_TO_LAUNCHER"
 msgstr "Beenden zum Launcher"
@@ -2337,22 +2289,19 @@ msgstr "Beenden zum Launcher"
 msgid "EXPERIMENTAL_FEATURES"
 msgstr "Experimentelle Funktionen"
 
-#, fuzzy
 msgid "EXPERIMENTAL_FEATURES_EXPLANATION"
-msgstr ""
-"(Geschwindigkeit mit der die künstliche Intelligenz Ihre Arten mutieren läßt)"
+msgstr "(experimentelle Spiele-Features aktivieren, die standardmäßig deaktiviert sind - wir sind interessiert an Feedback, wenn du diese Features testest)"
 
-#, fuzzy
 msgid "EXPERIMENTAL_FEATURES_WARNING"
-msgstr ""
-"(Geschwindigkeit mit der die künstliche Intelligenz Ihre Arten mutieren läßt)"
+msgstr "(ACHTUNG: Experimentelle Features sind nicht ausgereift und können das Spielerlebnis negativ beeinflussen. Empfohlen nur für erfahrene Spieler. Bei Fehlerreports bitte angeben, dass mit aktivierten experimentellen Features gespielt wurde.)"
 
 msgid "EXPORT_ALL_WORLDS"
 msgstr "Alle Welten exportieren"
 
 msgid "EXPORT_ALL_WORLDS_TOOLTIP"
 msgstr ""
-"Exportiere die Daten aller Welten im CSV-Format (comma-separated values)"
+"Exportiere die Daten aller Welten im CSV-Format (durch Kommas getrennte "
+"Werte)"
 
 msgid "EXPORT_SUCCESS"
 msgstr "Erfolgreich exportiert"
@@ -2397,24 +2346,14 @@ msgstr "Besuche unsere Facebook Seite"
 msgid "FAILED"
 msgstr "Gescheitert"
 
-#, fuzzy
 msgid "FAILED_ONE_OR_MORE_SAVE_DELETION_DESCRIPTION"
-msgstr "Mein fantastischer Mod"
+msgstr "Fehler: Löschen eines oder mehrerer Speicherstände fehlgeschlagen."
 
-#, fuzzy
 msgid "FAILED_SAVE_DELETION"
-msgstr ""
-"Fehler: Das Speichern neuer Einstellungen in der Konfigurationsdatei ist "
-"fehlgeschlagen."
+msgstr "Fehler: Das Speichern neuer Einstellungen in der Konfigurationsdatei ist fehlgeschlagen"
 
-#, fuzzy
 msgid "FAILED_SAVE_DELETION_DESCRIPTION"
-msgstr ""
-"Initialisierung der Steam-Client-Bibliothek fehlgeschlagen. Steam-Funktionen "
-"sind nicht verfügbar.\n"
-"Bitte stellen Sie sicher, dass Steam läuft und Sie mit dem richtigen Account "
-"angemeldet sind. Bitte starten Sie das Spiel mittels der Steam-Client-"
-"Software, wenn dieser Fehler nicht anders verschwindet."
+msgstr "Der Spielstand konnte nicht gelöscht werden."
 
 msgid "FEARFUL"
 msgstr "Furchtsam"
@@ -2439,36 +2378,17 @@ msgstr "Februar"
 msgid "FEED_ITEM_CONTENT_PARSING_FAILED"
 msgstr "Initialisierung der Steam-Client-Bibliothek fehlgeschlagen"
 
-#, fuzzy
 msgid "FEED_ITEM_MISSING_CONTENT"
-msgstr ""
-"Zeit des Prozesses: {0} s\n"
-"Zeit des Physikprozesses: {1} s\n"
-"Entitäten: {2} Andere: {3}\n"
-"Erzeugt: {4} Entfernt: {5}\n"
-"Benutzte Knoten: {6}\n"
-"Benutzter Speicher: {7}\n"
-"Grafikspeicher: {8}\n"
-"Erzeugte Objekte: {9}\n"
-"Zeichnungsaufrufe: {10} 2D: {11}\n"
-"Erzeugte Eckpunkte: {12}\n"
-"Materialänderungen: {13}\n"
-"Shader-Änderungen: {14}\n"
-"Verwaiste Knoten: {15}\n"
-"Audio-Latenz: {16} ms\n"
-"Gesamtanzahl Threads: {17}\n"
-"Gesamte CPU-Zeit:\n"
-"{18}"
+msgstr "Leeres Element."
 
 msgid "FEED_ITEM_PUBLISHED_AT"
 msgstr "Veröffentlicht am {0}"
 
 msgid "FEED_ITEM_TRUNCATED_NOTICE"
-msgstr ""
+msgstr "Element war zu lang und wurde gekürzt. Für den Gesamtinhalt bitte das Original lesen. {0}"
 
-#, fuzzy
 msgid "FERROPLAST"
-msgstr "Thermoplast"
+msgstr "Ferroplast"
 
 #, fuzzy
 msgid "FERROPLAST_DESCRIPTION"
@@ -2482,12 +2402,8 @@ msgstr ""
 "produzieren. Die Geschwindigkeit seiner Glukoseproduktion hängt von der "
 "Konzentration des Kohlendioxids und der Temperatur ab."
 
-#, fuzzy
 msgid "FERROPLAST_PROCESSES_DESCRIPTION"
-msgstr ""
-"Produziert [thrive:compound type=\"glucose\"][/thrive:compound]. Die Rate "
-"hängt von der Konzentration von [thrive:compound type=\"carbondioxide\"][/"
-"thrive:compound] und der Temperatur ab."
+msgstr "Wandelt [thrive:compound type=\"iron\"][/thrive:compound] in [thrive:compound type=\"atp\"][/thrive:compound] um. Die Effizienz hängt von der [thrive:compound type=\"carbondioxide\"][/thrive:compound]-Konzentration ab."
 
 msgid "FILTER_ITEMS_BY_CATEGORY_COLON"
 msgstr "Nach Kategorie sortieren:"
@@ -2510,11 +2426,8 @@ msgstr "{0} Generationen fertigstellen"
 msgid "FIRE_TOXIN"
 msgstr "Gift schießen"
 
-#, fuzzy
 msgid "FIRE_TOXIN_TOOLTIP"
-msgstr ""
-"Einige Optionen sind möglicherweise nicht verfügbar, wenn nur "
-"kohlenstoffbasiertes Leben aktiviert ist"
+msgstr "Giftprojektil abschießen und Zielzellen beschädigen"
 
 msgid "FLAGELLUM"
 msgstr "Geißeln"
@@ -2530,34 +2443,22 @@ msgstr ""
 "einer Zelle befindet, gibt beispielsweise Schub, wenn es sich nach rechts "
 "bewegt."
 
-#, fuzzy
 msgid "FLAGELLUM_LENGTH_DESCRIPTION"
-msgstr ""
-"Die Geißel (Plural: Geißen, auch genannt Flagellen) ist ein peitschenartiges "
-"Bündel von Proteinfasern, das sich von der Zellmembran aus erstreckt und mit "
-"Hilfe von ATP die Zelle wellenförmig in eine Richtung treiben kann. Die "
-"Position des Flagellums bestimmt die Richtung, in der es den Schub für die "
-"Zellbewegung liefert. Die Schubrichtung ist entgegengesetzt zu der Richtung, "
-"in die das Flagellum zeigt. Ein Flagellum, das sich auf der linken Seite "
-"einer Zelle befindet, gibt beispielsweise Schub, wenn es sich nach rechts "
-"bewegt."
+msgstr "Geißellänge. Längere Geißeln erzeugen mehr Vortrieb aber verbrauchen mehr ATP."
 
 msgid "FLAGELLUM_PROCESSES_DESCRIPTION"
 msgstr ""
 "Verwendet [thrive:compound type=\"atp\"][/thrive:compound], um die "
 "Bewegungsgeschwindigkeit der Zelle zu erhöhen."
 
-#, fuzzy
 msgid "FLEET_NAME_FROM_PLACE"
-msgstr "wurde ausgelöscht"
+msgstr "{0} Flotte"
 
-#, fuzzy
 msgid "FLEET_UNITS"
-msgstr "{0} {1}"
+msgstr "Flotteneinheiten"
 
-#, fuzzy
 msgid "FLOATING_CHUNKS_COLON"
-msgstr "Drehung:"
+msgstr "Schwebende Brocken:"
 
 msgid "FLOATING_HAZARD"
 msgstr "Schwimmende Gefahr"
@@ -2578,31 +2479,17 @@ msgstr ""
 "und sind möglicherweise sehr viel ehrgeiziger, wenn es um Brocken geht.\n"
 "Responsive Mikroben wechseln schneller zu neuen Zielen."
 
-#, fuzzy
 msgid "FOG_OF_WAR_DISABLED"
-msgstr "Deaktiviert"
+msgstr "Nebel des Krieges deaktiviert"
 
-#, fuzzy
 msgid "FOG_OF_WAR_DISABLED_DESCRIPTION"
-msgstr ""
-"Initialisierung der Steam-Client-Bibliothek fehlgeschlagen. Steam-Funktionen "
-"sind nicht verfügbar.\n"
-"Bitte stellen Sie sicher, dass Steam läuft und Sie mit dem richtigen Account "
-"angemeldet sind. Bitte starten Sie das Spiel mittels der Steam-Client-"
-"Software, wenn dieser Fehler nicht anders verschwindet."
+msgstr "(alle Bereiche werden aufgedeckt)"
 
 msgid "FOG_OF_WAR_INTENSE"
 msgstr "Dichter Nebel des Krieges"
 
-#, fuzzy
 msgid "FOG_OF_WAR_INTENSE_DESCRIPTION"
-msgstr ""
-"Nitrogenase ist ein Protein, das in der Lage ist, gasförmigen Stickstoff und "
-"zelluläre Energie in Form von ATP zu nutzen, um Ammoniak, einen wichtigen "
-"Wachstumsnährstoff für Zellen, zu produzieren. Dies ist ein Prozess, der als "
-"anaerobe Stickstofffixierung bezeichnet wird. Da die Nitrogenase direkt im "
-"Zytoplasma untergebracht ist, führt die umgebende Flüssigkeit glykolyse "
-"durch."
+msgstr "(nur dem Spieler bekannte Bereiche werden aufgedeckt)"
 
 msgid "FOG_OF_WAR_MODE"
 msgstr "Nebel-des-Krieges-Modus"
@@ -2652,18 +2539,11 @@ msgstr ""
 "von der Thriveopedia auf das Museum zugreifen, oder Fossile im Sandboxeditor "
 "laden."
 
-#, fuzzy
 msgid "FOSSILISATION_FAILED"
-msgstr "Diese Art fossilisieren"
+msgstr "Versteinerung fehlgeschlagen"
 
-#, fuzzy
 msgid "FOSSILISATION_FAILED_DESCRIPTION"
-msgstr ""
-"Initialisierung der Steam-Client-Bibliothek fehlgeschlagen. Steam-Funktionen "
-"sind nicht verfügbar.\n"
-"Bitte stellen Sie sicher, dass Steam läuft und Sie mit dem richtigen Account "
-"angemeldet sind. Bitte starten Sie das Spiel mittels der Steam-Client-"
-"Software, wenn dieser Fehler nicht anders verschwindet."
+msgstr "Die Fossil-Datei konnte nicht geschrieben werden"
 
 msgid "FOSSILISATION_HINT"
 msgstr "Diese Art fossilisieren"
@@ -2674,18 +2554,11 @@ msgstr "Diese Art fossilisieren (ist bereits fossilisiert)"
 msgid "FOSSILISE"
 msgstr "Versteinern"
 
-#, fuzzy
 msgid "FOSSIL_DELETION_FAILED"
-msgstr "Moderstellung fehlgeschlagen"
+msgstr "Löschung des Fossils fehlgeschlagen"
 
-#, fuzzy
 msgid "FOSSIL_DELETION_FAILED_DESCRIPTION"
-msgstr ""
-"Initialisierung der Steam-Client-Bibliothek fehlgeschlagen. Steam-Funktionen "
-"sind nicht verfügbar.\n"
-"Bitte stellen Sie sicher, dass Steam läuft und Sie mit dem richtigen Account "
-"angemeldet sind. Bitte starten Sie das Spiel mittels der Steam-Client-"
-"Software, wenn dieser Fehler nicht anders verschwindet."
+msgstr "Fossil-Datei konnte nicht gelöscht werden"
 
 msgid "FOUR_TIMES"
 msgstr "4x"
@@ -2717,20 +2590,19 @@ msgstr "Vollständige Modinformationen"
 msgid "GALLERY_VIEWER"
 msgstr "Kunstgalerie"
 
-#, fuzzy
 msgid "GAMEPLAY_BASICS_TITLE"
-msgstr "Spieldesigner Team"
+msgstr "Grundlagen des Spiels"
 
 msgid "GAME_DESIGN_TEAM"
 msgstr "Spieldesigner Team"
 
-#, fuzzy
 msgid "GAME_SYSTEMS_TITLE"
-msgstr "Spieldesigner Team"
+msgstr "Spielsysteme"
 
-#, fuzzy
 msgid "GATHERED_ENERGY_TOOLTIP"
-msgstr "Besuche unsere Patreon Seite"
+msgstr ""
+"Zeigt die gesamte von deiner Spezies gesammelte Energie in allen Bereichen und die daraus resultierende Population (in Klammern).\n"
+"Energie zuvor: {0}"
 
 msgid "GENERAL"
 msgstr "Allgemein"
@@ -2740,35 +2612,23 @@ msgid "GENERAL_LOADING_TIP_1"
 msgstr ""
 "Drücke die Rückgängig-Schaltfläche im Editor, um einen Fehler zu korrigieren"
 
-#, fuzzy
 msgid "GENERAL_LOADING_TIP_2"
-msgstr ""
-"Drücke die Rückgängig-Schaltfläche im Editor, um einen Fehler zu korrigieren"
+msgstr "Hüte dich vor größeren Organismen. Sie werden dich fressen, und verdaut zu werden ist kein Spaß!"
 
-#, fuzzy
 msgid "GENERAL_LOADING_TIP_3"
-msgstr ""
-"Drücke die Rückgängig-Schaltfläche im Editor, um einen Fehler zu korrigieren"
+msgstr "Sei vorsichtig, wenn du dieselbe Spezies wiederholt und dauerhaft bejagst. Sie können dadurch aussterben."
 
-#, fuzzy
 msgid "GENERAL_LOADING_TIP_4"
-msgstr ""
-"Drücke die Rückgängig-Schaltfläche im Editor, um einen Fehler zu korrigieren"
+msgstr "Manchmal ist es am besten einfach zu flüchten."
 
-#, fuzzy
 msgid "GENERAL_LOADING_TIP_5"
-msgstr ""
-"Drücke die Rückgängig-Schaltfläche im Editor, um einen Fehler zu korrigieren"
+msgstr "Wenn Auto-Evo einen Populationsabfall bei deiner Spezies voraussagt, kannst du die Population trotzdem steigern, wenn du im Spiel gut abschneidest."
 
-#, fuzzy
 msgid "GENERAL_LOADING_TIP_6"
-msgstr ""
-"Drücke die Rückgängig-Schaltfläche im Editor, um einen Fehler zu korrigieren"
+msgstr "Nicht vergessen: Die Anzeige rechts oben zeigt dir, was unter dem Cursor liegt."
 
-#, fuzzy
 msgid "GENERAL_LOADING_TIP_7"
-msgstr ""
-"Drücke die Rückgängig-Schaltfläche im Editor, um einen Fehler zu korrigieren"
+msgstr "Wenn deine Population auf Null fällt, stirbst du aus."
 
 msgid "GENERATIONS"
 msgstr "Generationen"
@@ -2785,9 +2645,8 @@ msgstr "GLES3"
 msgid "GLOBAL_INITIAL_LETTER"
 msgstr "G"
 
-#, fuzzy
 msgid "GLOBAL_POPULATION_COLON"
-msgstr "Gesamtbevölkerung:"
+msgstr "Gesamtpopulation:"
 
 msgid "GLOBAL_TIMELINE_SPECIES_MIGRATED_TO"
 msgstr "Ein Teil der [b][u]{0}[/u][/b]-Bevölkerung ist von {1} in {2} migriert"
@@ -2804,9 +2663,8 @@ msgstr "Glykolyse"
 msgid "GODMODE"
 msgstr "Unbesiegbar"
 
-#, fuzzy
 msgid "GOD_TOOLS_TITLE"
-msgstr "Tritt unserem Discord Server bei"
+msgstr "Gottmodus"
 
 msgid "GOOGLY_EYE_CELL"
 msgstr "Kulleraugenzelle"
@@ -2826,9 +2684,8 @@ msgstr "Grafik"
 msgid "GRAPHICS_TEAM"
 msgstr "Grafikteam"
 
-#, fuzzy
 msgid "GROWTH_ORDER"
-msgstr "Beschränke die Nutzung von Wachstums-Substanzen"
+msgstr "Wachstums-Reihenfolge"
 
 msgid "GUI"
 msgstr "Benutzeroberfläche"
@@ -3905,41 +3762,36 @@ msgstr ""
 "aufgrund von unterschiedlichem Selektionsdruck"
 
 msgid "MICHE_CHUNK_PRESSURE"
-msgstr ""
+msgstr "Druck durch Brocken"
 
-#, fuzzy
 msgid "MICHE_COMPOUND_CLOUD_PRESSURE"
-msgstr "Verbindungswolken"
+msgstr "Druck durch Substanzwolken"
 
 msgid "MICHE_COMPOUND_EFFICIENCY_PRESSURE"
 msgstr "Druck durch Substanzumwandlungs-Effizienz"
 
-#, fuzzy
 msgid "MICHE_DETAIL_TEXT"
 msgstr ""
-"[b]Spezies[/b]\n"
-"  {0}:{1}\n"
-"[b]Generation[/b]\n"
-"  {2}\n"
-"[b]Bevölkerung[/b]\n"
-"  {3}\n"
-"[b]Farbe[/b]\n"
-"  #{4}\n"
-"[b]Verhalten[/b]\n"
-"  {5}"
+"[b]Selektionsdruck[/b]\n"
+"  {0}\n"
+"[b]Energie[/b]\n"
+"  {1}\n"
+"[b]Punktzahlen ansässige Population[/b]\n"
+"  {2}"
 
 msgid "MICHE_ENVIRONMENTAL_COMPOUND_PRESSURE"
 msgstr "Druck durch Umwelt-Substanzen"
 
-#, fuzzy
 msgid "MICHE_ENVIRONMENTAL_TOLERANCE"
-msgstr "Umgebung"
+msgstr "Druck durch Umweltbedingungen"
 
+#, fuzzy
 msgid "MICHE_MAINTAIN_COMPOUND_PRESSURE"
-msgstr ""
+msgstr "Druck durch Substanzen aufrecht erhalten"
 
+#, fuzzy
 msgid "MICHE_METABOLIC_STABILITY_PRESSURE"
-msgstr ""
+msgstr "Druck durch metabolische Stabilität"
 
 msgid "MICHE_NO_OP_PRESSURE"
 msgstr ""
@@ -3961,9 +3813,8 @@ msgstr "SceneTree ausgeben"
 msgid "MICROBE"
 msgstr "Einzeller"
 
-#, fuzzy
 msgid "MICROBES_COUNT"
-msgstr "Einzeller"
+msgstr "Anzahl der Mikroben:"
 
 #, fuzzy
 msgid "MICROBE_BENCHMARK"
@@ -3979,25 +3830,17 @@ msgstr "Organismus-Statistik"
 msgid "MICROBE_FREEBUILD_EDITOR"
 msgstr "Mikroben-Sandboxeditor"
 
-#, fuzzy
 msgid "MICROBE_LOADING_TIP_1"
-msgstr ""
-"Drücke die Rückgängig-Schaltfläche im Editor, um einen Fehler zu korrigieren"
+msgstr "Jedes Hex-Feld Zytoplasma kostet 1 [thrive:compound type=\"atp\"][/thrive:compound] pro Sekunde in der Erhaltung, aber generiert 3 [thrive:compound type=\"atp\"][/thrive:compound]. Wenn dir [thrive:compound type=\"atp\"][/thrive:compound] fehlt, versuche ein paar Felder Zytoplasma hinzuzufügen und einer Organellen zu entfernen."
 
-#, fuzzy
 msgid "MICROBE_LOADING_TIP_10"
-msgstr ""
-"Drücke die Rückgängig-Schaltfläche im Editor, um einen Fehler zu korrigieren"
+msgstr "Deine Zelle benötigt [thrive:compound type=\"atp\"][/thrive:compound] als Energiequelle. Wenn es ausgeht, stirbt sie."
 
-#, fuzzy
 msgid "MICROBE_LOADING_TIP_11"
-msgstr ""
-"Drücke die Rückgängig-Schaltfläche im Editor, um einen Fehler zu korrigieren"
+msgstr "Um in den Editor zu gelangen und dich zu reproduzieren, musst du lange genug überleben. Sammle [thrive:compound type=\"ammonia\"][/thrive:compound] (orange Substanzwolken) und [thrive:compound type=\"phosphates\"][/thrive:compound] (lila Substanzwolken) um das Wachstum zu beschleunigen."
 
-#, fuzzy
 msgid "MICROBE_LOADING_TIP_12"
-msgstr ""
-"Drücke die Rückgängig-Schaltfläche im Editor, um einen Fehler zu korrigieren"
+msgstr "Du kannst Dinge verschlingen, die kleiner sind als du um dich davon zu ernähren. Drücke dazu [thrive:input]g_toggle_engulf[/thrive:input]. Der Verschlingmodus kostet extra [thrive:compound type=\"atp\"][/thrive:compound] und verlangsamt dich. Drücke [thrive:input]g_toggle_engulf[/thrive:input] erneut um den Verschlingmodus wieder zu verlassen."
 
 #, fuzzy
 msgid "MICROBE_LOADING_TIP_13"
@@ -4009,25 +3852,19 @@ msgid "MICROBE_LOADING_TIP_14"
 msgstr ""
 "Drücke die Rückgängig-Schaltfläche im Editor, um einen Fehler zu korrigieren"
 
-#, fuzzy
 msgid "MICROBE_LOADING_TIP_15"
-msgstr ""
-"Drücke die Rückgängig-Schaltfläche im Editor, um einen Fehler zu korrigieren"
+msgstr "Es gibt begrenzte Ressourcen für jede Spezies. Je größer deine Zellen sind, desto geringer wird die maximal mögliche Population."
 
 #, fuzzy
 msgid "MICROBE_LOADING_TIP_16"
 msgstr ""
 "Drücke die Rückgängig-Schaltfläche im Editor, um einen Fehler zu korrigieren"
 
-#, fuzzy
 msgid "MICROBE_LOADING_TIP_17"
-msgstr ""
-"Drücke die Rückgängig-Schaltfläche im Editor, um einen Fehler zu korrigieren"
+msgstr "Zur Reproduktion muss jede Organelle sich in zwei teilen. Organellen brauchen Zeit zur Teilung, aber das Sammeln von [thrive:compound type=\"ammonia\"][/thrive:compound] und [thrive:compound type=\"phosphates\"][/thrive:compound] beschleunigt den Prozess."
 
-#, fuzzy
 msgid "MICROBE_LOADING_TIP_18"
-msgstr ""
-"Drücke die Rückgängig-Schaltfläche im Editor, um einen Fehler zu korrigieren"
+msgstr "Bei jeder Editor-Sitzung entwickeln sich deine Konkurrenten ebenfalls."
 
 msgid "MICROBE_LOADING_TIP_19"
 msgstr ""
@@ -4036,15 +3873,11 @@ msgstr ""
 "als eine Einheit und ermöglichen es, sich in einen vielzelligen Organismus "
 "zu entwickeln."
 
-#, fuzzy
 msgid "MICROBE_LOADING_TIP_2"
-msgstr ""
-"Drücke die Rückgängig-Schaltfläche im Editor, um einen Fehler zu korrigieren"
+msgstr "Je mehr oder längere Geißeln du hast, desto schneller kannst du dich bewegen! Der ATP-Verbrauch steigt dadurch natürlich an."
 
-#, fuzzy
 msgid "MICROBE_LOADING_TIP_20"
-msgstr ""
-"Drücke die Rückgängig-Schaltfläche im Editor, um einen Fehler zu korrigieren"
+msgstr "Zellen mit einer Membran aus Zellulose oder Chitin können von Prokaryoten nicht verdaut werden. Eukaryoten mit Lysosomen können solche Zellen aber verdauen, da sie Enzyme produzieren, die die Zellmembrane aufbrechen können."
 
 #, fuzzy
 msgid "MICROBE_LOADING_TIP_21"
@@ -4100,7 +3933,7 @@ msgid "MICROBE_MEMBRANE_STATISTICS"
 msgstr "Organismus-Statistik"
 
 msgid "MICROBE_ORGANELLE_STATISTICS"
-msgstr "  {0}: Gefunden in {1} Arten, im Durchschnitt je {2}"
+msgstr "  {0}: Gefunden in {1} Spezies, im Durchschnitt je {2}"
 
 #, fuzzy
 msgid "MICROBE_ORGANELLE_UPGRADES_STATISTICS"
@@ -4511,13 +4344,11 @@ msgstr "Nach unten bewegen oder bücken/schleichen"
 msgid "MOVE_FORWARD"
 msgstr "Vorwärts bewegen"
 
-#, fuzzy
 msgid "MOVE_ITEM_DOWN"
-msgstr "Landgang"
+msgstr "Element nach unten bewegen"
 
-#, fuzzy
 msgid "MOVE_ITEM_UP"
-msgstr "Nach rechts bewegen"
+msgstr "Element nach oben bewegen"
 
 msgid "MOVE_LEFT"
 msgstr "Nach links bewegen"
@@ -4562,9 +4393,8 @@ msgstr ""
 "\n"
 "Geplant ist es, diesen Schritt gradueller und weniger plötzlich zu gestalten."
 
-#, fuzzy
 msgid "MOVING_TO_AWAKENING_PROTOTYPE_TITLE"
-msgstr "Landgang?"
+msgstr "Ins Bewusstseinsstadium fortschreiten?"
 
 msgid "MOVING_TO_LAND_PROTOTYPE"
 msgstr ""
@@ -4579,9 +4409,8 @@ msgstr ""
 msgid "MOVING_TO_LAND_PROTOTYPE_TITLE"
 msgstr "Landgang?"
 
-#, fuzzy
 msgid "MOVING_TO_SOCIETY_STAGE"
-msgstr "Landgang?"
+msgstr "Übergang zu einer Gesellschaft..."
 
 msgid "MP_COST"
 msgstr "{0} MP"
@@ -4589,17 +4418,14 @@ msgstr "{0} MP"
 msgid "MUCILAGE"
 msgstr "Schleim"
 
-#, fuzzy
 msgid "MUCILAGE_SYNTHESIS"
-msgstr "Synthese von Schleimstoffen"
+msgstr "Schleimstoff-Synthese"
 
-#, fuzzy
 msgid "MUCOCYST_ACTION_TOOLTIP"
-msgstr "Besuche unsere Patreon Seite"
+msgstr "Schutzschild bilden"
 
-#, fuzzy
 msgid "MULTICELLULAR"
-msgstr "Makroskopischer Mehrzeller"
+msgstr "mehrzellig"
 
 msgid "MULTICELLULAR_EDITOR"
 msgstr "Mehrzelliger Editor"
@@ -5247,9 +5073,8 @@ msgstr ""
 msgid "PAST_DEVELOPERS"
 msgstr "Frühere Entwickler(innen)"
 
-#, fuzzy
 msgid "PATCH_COLON"
-msgstr "Bestes Gebiet:"
+msgstr "Bereich:"
 
 msgid "PATCH_EXTINCTION_BOX_TEXT"
 msgstr ""
@@ -5273,17 +5098,15 @@ msgstr "Klicke, ziehe und zoome um dir einen Überblick zu verschaffen"
 msgid "PATCH_NAME"
 msgstr "{0} {1}"
 
-#, fuzzy
 msgid "PATCH_NOTES_LAST_PLAYED_INFO"
-msgstr "Seitentitel"
+msgstr "Du hast zuletzt Thrive {0} gespielt, seither gibt es eine neue Version"
 
 msgid "PATCH_NOTES_LAST_PLAYED_INFO_PLURAL"
 msgstr ""
 "Du hast zuletzt am {0} Thrive gespielt. Seitdem gibt es {1} neue Versionen"
 
-#, fuzzy
 msgid "PATCH_NOTES_TITLE"
-msgstr "Seitentitel"
+msgstr "Patch-Notizen"
 
 msgid "PATCH_NOTE_BULLET_POINT"
 msgstr "— {0}"
@@ -5291,16 +5114,8 @@ msgstr "— {0}"
 msgid "PATCH_NOTE_CHANGES_HEADING"
 msgstr "Änderungen:"
 
-#, fuzzy
 msgid "PATCH_NOTE_LINK_VISIT_TEXT"
-msgstr ""
-"Genau wie 99% aller Arten, die jemals existiert haben, ist auch deine Art "
-"ausgestorben. Andere werden weiterhin deine Nische ausfüllen und gedeihen, "
-"aber das wirst nicht du sein. Du wirst vergessen werden, ein "
-"fehlgeschlagenes Experiment der Evolution.\n"
-"Aber keine sorge, es ist noch nicht alles verloren, du kannst einen andere "
-"Art auswählen mit der du spielen möchtest und ihr beim gedeihen zu helfen "
-"(oder auch nicht)!"
+msgstr "Lies die vollständigen Informationen zu dieser Version auf [color=#3796e1][url={0}]GitHub[/url][/color]"
 
 msgid "PATREON_TOOLTIP"
 msgstr "Besuche unsere Patreon Seite"
@@ -5362,9 +5177,8 @@ msgstr "Leistung"
 msgid "PERFORM_UNBINDING"
 msgstr "Entbinden durchführen"
 
-#, fuzzy
 msgid "PER_SECOND_ABBREVIATION"
-msgstr "{0} Tsd"
+msgstr "/s"
 
 msgid "PER_SECOND_SLASH"
 msgstr "/Sekunde"
@@ -5372,9 +5186,8 @@ msgstr "/Sekunde"
 msgid "PHOSPHATE"
 msgstr "Phosphat"
 
-#, fuzzy
 msgid "PHOSPHATES_COST"
-msgstr "Phosphat"
+msgstr "Phosphat-Kosten:"
 
 msgid "PHOTOSYNTHESIS"
 msgstr "Photosynthese"
@@ -5405,9 +5218,8 @@ msgstr "Planetenerstellung kommt bald!"
 msgid "PLANET_RANDOM_SEED"
 msgstr "Planetensamen Nummer (Zufallswert):"
 
-#, fuzzy
 msgid "PLAYER"
-msgstr "Spielerzelle"
+msgstr "Spieler"
 
 msgid "PLAYER_DEATH_POPULATION_PENALTY"
 msgstr "Bevölkerungsstrafe bei Spielertod"
@@ -5426,9 +5238,8 @@ msgstr "Spieler duplizieren"
 msgid "PLAYER_EXTINCT"
 msgstr "Spieler ist ausgestorben"
 
-#, fuzzy
 msgid "PLAYER_RELATIVE_MOVEMENT"
-msgstr "Spieler ist ausgestorben"
+msgstr "Spielerabhängig"
 
 msgid "PLAYER_REPRODUCED"
 msgstr "Spieler-Reproduktion"
@@ -5468,9 +5279,8 @@ msgstr "Bevölkerung in Gebieten:"
 msgid "POPULATION_IN_PATCH_SHORT"
 msgstr "{0} ({1})"
 
-#, fuzzy
 msgid "POSITION_NUMBER"
-msgstr "ID-Nummer"
+msgstr "{0}."
 
 msgid "PREDATION_FOOD_SOURCE"
 msgstr "Beute von {0}"
@@ -5484,9 +5294,8 @@ msgstr "Druck"
 msgid "PRESSURE_SHORT"
 msgstr "Druck"
 
-#, fuzzy
 msgid "PRESSURE_TOLERANCE_TOOLTIP"
-msgstr "Zurück zum Hauptmenü"
+msgstr "Der Umgebungsdruck, den deine Spezies bevorzugt. Minimal- und Maximalwerte können in separaten Schiebern eingestellt werden. Wenn die Umweltbedingungen außerhalb des Bereichs liegen, hat das viele negative Auswirkungen auf deine Spezies. Die Bereichsgröße kannst du mit der Checkbox unter den Schiebern verändern."
 
 msgid "PRESS_KEY_DOT_DOT_DOT"
 msgstr "Drücke eine Taste..."
@@ -5509,9 +5318,8 @@ msgstr "@"
 msgid "PROCESS_PANEL_TITLE"
 msgstr "Zellprozesse"
 
-#, fuzzy
 msgid "PROCESS_SPEED_MODIFIER"
-msgstr "Zellprozesse"
+msgstr "Bioprozess-Geschwindigkeit"
 
 msgid "PROGRAMMING_TEAM"
 msgstr "Programmierer Team"
@@ -5545,17 +5353,14 @@ msgstr ""
 "Bist du sicher, dass du das Spiel beenden willst?\n"
 "Alle nicht gespeicherten Fortschritte gehen verloren."
 
-#, fuzzy
 msgid "RADIATION"
-msgstr "Aerobe Atmung"
+msgstr "Strahlung"
 
-#, fuzzy
 msgid "RADIOACTIVE_CHUNK"
-msgstr "Großer Eisenbrocken"
+msgstr "Radioaktiver Gesteinsbrocken"
 
-#, fuzzy
 msgid "RADIOSYNTHESIS"
-msgstr "Thermosynthese"
+msgstr "Radiosynthese"
 
 msgid "RANDOMIZE_SPECIES_NAME"
 msgstr "Zufälliger Speziesnamen"
@@ -5595,9 +5400,8 @@ msgstr "Aktualisieren"
 msgid "REPORT"
 msgstr "Bericht"
 
-#, fuzzy
 msgid "REPORT_BUG"
-msgstr "Bericht"
+msgstr "Bug-Report senden"
 
 msgid "REPRODUCED"
 msgstr "Reproduktion"
@@ -7732,7 +7536,7 @@ msgid "VIEW_PATCH_NOTES_TOOLTIP"
 msgstr "{0} {1}"
 
 msgid "VIEW_PENDING_ACTIONS"
-msgstr ""
+msgstr "Jetzt anzeigen"
 
 msgid "VIEW_SOURCE_CODE"
 msgstr "Quellcode anschauen"
@@ -8016,25 +7820,13 @@ msgstr "unfertig"
 
 msgid "WIKI_BINDING_AGENT_STRATEGY"
 msgstr ""
-"Die Fähigkeit Kolonien zu bilden ist sehr mächtig, insbesondere für "
-"Organismen, die [b]Photosynthese[/b] betreiben. Jede zusätzliche Zelle in "
-"einer Kolonie reduziert die Gesamtkosten der Osmoregulation, was die "
-"Energieeffizienz steigert.  So können photosynthesebetreibende Spezies "
-"[thrive:compound type=\"glucose\"][/thrive:compound] schneller herstellen "
-"und räuberische Kolonien zwischen den Mahlzeiten länger überleben.\n"
+"Die Fähigkeit Kolonien zu bilden ist sehr mächtig, insbesondere für Organismen, die [b]Photosynthese[/b] betreiben. Jede zusätzliche Zelle in einer Kolonie reduziert die Gesamtkosten der Osmoregulation, was die Energieeffizienz steigert. So können photosynthesebetreibende Spezies [thrive:compound type=\"glucose\"][/thrive:compound] schneller herstellen und räuberische Kolonien zwischen den Mahlzeiten länger überleben.\n"
 "\n"
-"Gleichartige Zellen für die Koloniebildung zu finden, kann sich schwierig "
-"gestalten, daher ist es ratsam einen [b][color=#3796e1][url=thriveopedia:"
-"signalingAgent]Signalstoff[/url][/color][/b] zu verwenden, um Zellen "
-"anzulocken.\n"
+"Gleichartige Zellen für die Koloniebildung zu finden, kann sich schwierig gestalten, daher ist es ratsam einen [b][color=#3796e1][url=thriveopedia:signalingAgent]Signalstoff[/url][/color][/b] zu verwenden, um Zellen anzulocken.\n"
 "\n"
-"Zellen innerhalb einer Kolonie können sich nicht teilen und müssen die "
-"Kolonie verlassen, um in den Editor zu gelangen.\n"
+"Zellen innerhalb einer Kolonie können sich nicht teilen und müssen die Kolonie verlassen, um in den Editor zu gelangen.\n"
 "\n"
-"Eine Kolonie kann zwar unbegrenzt wachsen, aber es werden nur fünf Zellen "
-"zum Fortschritt in das nächste Stadium benötigt. Halte nach der Schaltfläche "
-"Ausschau, die es dir ermöglicht, vielzellig zu werden. Diese Schaltfläche "
-"findest du über der Editor-Schaltfläche in der Umweltansicht."
+"Eine Kolonie kann zwar unbegrenzt wachsen, aber es werden nur fünf Zellen zum Fortschritt in das nächste Stadium benötigt. Halte nach der Schaltfläche Ausschau, die es dir ermöglicht, vielzellig zu werden. Diese Schaltfläche findest du über der Editor-Schaltfläche in der Umweltansicht."
 
 msgid "WIKI_BINDING_AGENT_UPGRADES"
 msgstr "Keine Erweiterungen."
