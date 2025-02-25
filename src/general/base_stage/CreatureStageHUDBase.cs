@@ -699,6 +699,8 @@ public partial class CreatureStageHUDBase<TStage> : HUDWithPausing, ICreatureSta
     public void HideEnvironmentAndCompoundPanels()
     {
         compoundsPanel.ShowPanel = false;
+        compoundsPanel.ShowAgents = false;
+
         environmentPanel.ShowPanel = false;
         bottomLeftBar.CompoundsPressed = false;
         bottomLeftBar.EnvironmentPressed = false;
