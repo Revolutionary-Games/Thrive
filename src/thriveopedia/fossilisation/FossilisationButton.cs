@@ -83,8 +83,8 @@ public partial class FossilisationButton : TextureButton
                 canvasPosition.X < 1.1f * viewportSize.X && canvasPosition.Y < 1.1f * viewportSize.Y)
             {
                 canvasPosition = ScreenUtils.InverseBarrelDistortion(
-                new Vector2(canvasPosition.X, viewportSize.Y - canvasPosition.Y), Settings.Instance.ChromaticAmount,
-                viewportSize);
+                    new Vector2(canvasPosition.X, viewportSize.Y - canvasPosition.Y), Settings.Instance.ChromaticAmount,
+                    viewportSize);
 
                 canvasPosition = new Vector2(canvasPosition.X, viewportSize.Y - canvasPosition.Y);
             }
