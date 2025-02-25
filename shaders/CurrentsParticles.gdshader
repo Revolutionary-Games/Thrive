@@ -1,0 +1,122 @@
+shader_type particles;
+render_mode disable_velocity;
+
+uniform vec3 emission_box_extents;
+uniform vec4 colorValue : source_color;
+uniform sampler2D alphaCurve : repeat_disable;
+
+uniform float gameTime;
+
+uniform sampler3D noiseDisturbancesX;
+uniform sampler3D noiseDisturbancesY;
+
+uniform sampler3D noiseCurrentsX;
+uniform sampler3D noiseCurrentsY;
+
+uniform float speed;
+uniform float chaoticness;
+uniform float scale;
+
+// The following constants should be the same as in FluidCurrentsSystem.cs
+const float disturbanceTimescale = 1.0f;
+const float currentsTimescale = 1.0f / 500.0f;
+const float currentsStretchingMultiplier = 1.0f / 10.0f;
+const float disturbanceToCurrentsRatio = 0.15f;
+const float minCurrentIntensity = 0.4f;
+const float positionScaling = 0.9f;
+
+// Generates a random float and modifies the seed
+float rand_from_seed(inout uint seed) {
+    int k;
+    int s = int(seed);
+    if (s == 0) {
+        s = 305420679;
+    }
+    k = s / 127773;
+    s = 16807 * (s - k * 127773) - 2836 * k;
+    if (s < 0) {
+        s += 2147483647;
+    }
+    seed = uint(s);
+    return float(seed % uint(65536)) / 65535.0;
+}
+
+uint hash(uint x) {
+    x = ((x >> uint(16)) ^ x) * uint(73244475);
+    x = ((x >> uint(16)) ^ x) * uint(73244475);
+    x = (x >> uint(16)) ^ x;
+    return x;
+}
+
+void start() {
+    uint base_number = NUMBER;
+    uint alt_seed = hash(base_number + uint(1) + RANDOM_SEED);
+
+    CUSTOM = vec4(0.0);
+    COLOR = colorValue;
+    TRANSFORM[0].xyz = vec3(1.0, 0.0, 0.0);
+    TRANSFORM[1].xyz = vec3(0.0, 1.0, 0.0);
+    TRANSFORM[2].xyz = vec3(0.0, 0.0, 1.0);
+    TRANSFORM[3].xyz = vec3(rand_from_seed(alt_seed) * 2.0 - 1.0, rand_from_seed(alt_seed) * 2.0 - 1.0,
+        rand_from_seed(alt_seed) * 2.0 - 1.0) * emission_box_extents;
+    TRANSFORM = EMISSION_TRANSFORM * TRANSFORM;
+    float visibleScale = rand_from_seed(alt_seed) * 0.75f + 0.625f;
+    TRANSFORM[0].xyz *= visibleScale;
+    TRANSFORM[1].xyz *= visibleScale;
+    TRANSFORM[2].xyz *= visibleScale;
+}
+
+void process() {
+    CUSTOM.y += DELTA;
+    float lifetime_percent = CUSTOM.y / LIFETIME;
+    if (CUSTOM.y > LIFETIME) {
+        ACTIVE = false;
+    }
+    
+    vec2 current;
+    {
+        // The following should strictly conform to the formula in FluidCurrentSystem.cs
+        vec2 position = TRANSFORM[3].xz * positionScaling * scale;
+        
+        float disturbanceX = texture(noiseDisturbancesX,
+            vec3(position, gameTime * chaoticness * disturbanceTimescale) / 64.0f).r;
+        float disturbanceY = texture(noiseDisturbancesY,
+            vec3(position, gameTime * chaoticness * disturbanceTimescale) / 64.0f).r;
+        
+        float currentX = texture(noiseCurrentsX,
+            vec3(position.x * currentsStretchingMultiplier, position.y, gameTime * currentsTimescale * chaoticness)
+            / 64.0f).r; 
+        float currentY = texture(noiseCurrentsY,
+            vec3(position.x, position.y * currentsStretchingMultiplier, gameTime * currentsTimescale * chaoticness)
+            / 64.0f).r;
+        
+        vec2 disturbances = vec2(disturbanceX, disturbanceY) * 2.0f - 1.0f;
+        vec2 currents = vec2(currentX, currentY) * 2.0f - 1.0f;
+        
+        if (abs(currents.x) < minCurrentIntensity)
+        {
+            currents.x = 0.0f;
+        }
+        
+        if (abs(currents.y) < minCurrentIntensity)
+        {
+            currents.y = 0.0f;
+        }
+        
+        current = mix(currents, disturbances, disturbanceToCurrentsRatio);
+        current *= 10.0f * speed;
+    }
+    
+    VELOCITY = mix(vec3(current.x, 0.0f, current.y), VELOCITY, 1.0f - DELTA * 2.0f);
+
+    TRANSFORM[3].xyz += VELOCITY * DELTA;
+    
+    vec4 finalColor = colorValue;
+    finalColor.a *= texture(alphaCurve, vec2(lifetime_percent)).r;
+    if (speed != 0.0){
+        // The faster the particle, the more visible it is
+        finalColor.a *= length(current) / (speed * 10.0f);
+    }
+    
+    COLOR = finalColor;
+}
