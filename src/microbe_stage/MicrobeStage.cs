@@ -950,10 +950,11 @@ public partial class MicrobeStage : CreatureStageBase<Entity, MicrobeWorldSimula
 
         ProceduralDataCache.Instance.OnEnterState(MainGameState.MicrobeStage);
 
-        // If this is a new game, place some phosphates as a learning tool
+        // If this is a new game, place some clouds as a learning tool
         if (!IsLoadedFromSave)
         {
             Clouds.AddCloud(Compound.Phosphates, 50000.0f, new Vector3(40.0f, 0.0f, 0.0f));
+            Clouds.AddCloud(Compound.Glucose, 20000.0f, new Vector3(105.0f, 0.0f, 0.0f));
 
             // If we are starting with tutorials on, disable extra panels that don't matter right now
             if (TutorialState.Enabled)
