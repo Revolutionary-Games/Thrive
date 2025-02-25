@@ -115,7 +115,7 @@ void process() {
     finalColor.a *= texture(alphaCurve, vec2(lifetime_percent)).r;
     if (speed != 0.0){
         // The faster the particle, the more visible it is
-        finalColor.a *= (length(current) / speed) / 10.0f;
+        finalColor.a *= length(current) / (speed * 10.0f);
     }
     
     COLOR = finalColor;
