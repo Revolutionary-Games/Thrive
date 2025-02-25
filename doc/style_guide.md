@@ -22,7 +22,7 @@ Thrive is a *game* and not just general software:
   important. And often many patterns that are faster but less readable
   need to be used.
 - Memory allocations should be avoided whenever possible. GUI and
-  editor code is less relaxed regarding this, but code running each
+  editor code is more relaxed regarding this, but code running each
   frame during the game should not allocate memory. Instead,
   preallocated lists and other data structures should be created and
   kept around across frames to avoid allocating more memory. More info
