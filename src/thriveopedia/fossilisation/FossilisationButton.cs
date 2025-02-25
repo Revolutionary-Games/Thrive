@@ -78,15 +78,16 @@ public partial class FossilisationButton : TextureButton
         {
             var viewportSize = GetViewportRect().Size;
 
-            // Clamping to the range where InverseBarrelDistortion is accurate
-            var tolerance = viewportSize * 0.1f;
-            canvasPosition = canvasPosition.Clamp(Vector2.Zero - tolerance, viewportSize + tolerance);
-
-            canvasPosition = ScreenUtils.InverseBarrelDistortion(
+            // Make sure that the button is on the screen before applying the effect
+            if (canvasPosition.X > -0.1f * viewportSize.X && canvasPosition.Y > -0.1f * viewportSize.Y &&
+                canvasPosition.X < 1.1f * viewportSize.X && canvasPosition.Y < 1.1f * viewportSize.Y)
+            {
+                canvasPosition = ScreenUtils.InverseBarrelDistortion(
                 new Vector2(canvasPosition.X, viewportSize.Y - canvasPosition.Y), Settings.Instance.ChromaticAmount,
                 viewportSize);
 
-            canvasPosition = new Vector2(canvasPosition.X, viewportSize.Y - canvasPosition.Y);
+                canvasPosition = new Vector2(canvasPosition.X, viewportSize.Y - canvasPosition.Y);
+            }
         }
 
         GlobalPosition = canvasPosition;
