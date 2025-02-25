@@ -267,6 +267,7 @@ public partial class MicrobeHUD : CreatureStageHUDBase<MicrobeStage>
 
             var button = FossilisationButtonScene.Instantiate<FossilisationButton>();
             button.AttachedEntity = entity;
+            button.IsMicrobeStage = true;
             button.Connect(FossilisationButton.SignalName.OnFossilisationDialogOpened, new Callable(this,
                 nameof(ShowFossilisationDialog)));
 
