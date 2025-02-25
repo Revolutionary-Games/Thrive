@@ -62,8 +62,8 @@ void start() {
     TRANSFORM = EMISSION_TRANSFORM * TRANSFORM;
     float visibleScale = rand_from_seed(alt_seed) * 0.75f + 0.625f;
     TRANSFORM[0].xyz *= visibleScale;
-	TRANSFORM[1].xyz *= visibleScale;
-	TRANSFORM[2].xyz *= visibleScale;
+    TRANSFORM[1].xyz *= visibleScale;
+    TRANSFORM[2].xyz *= visibleScale;
 }
 
 void process() {
