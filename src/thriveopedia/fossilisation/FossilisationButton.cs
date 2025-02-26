@@ -17,6 +17,8 @@ public partial class FossilisationButton : TextureButton
     /// </summary>
     public Entity AttachedEntity;
 
+    public bool IsMicrobeStage;
+
     /// <summary>
     ///   Whether this species has already been fossilised.
     /// </summary>
@@ -70,7 +72,25 @@ public partial class FossilisationButton : TextureButton
             return;
         }
 
-        GlobalPosition = camera.UnprojectPosition(AttachedEntity.Get<WorldPosition>().Position);
+        var canvasPosition = camera.UnprojectPosition(AttachedEntity.Get<WorldPosition>().Position);
+
+        if (IsMicrobeStage && Settings.Instance.ChromaticEnabled)
+        {
+            var viewportSize = GetViewportRect().Size;
+
+            // Make sure that the button is on the screen before applying the effect
+            if (canvasPosition.X > -0.1f * viewportSize.X && canvasPosition.Y > -0.1f * viewportSize.Y &&
+                canvasPosition.X < 1.1f * viewportSize.X && canvasPosition.Y < 1.1f * viewportSize.Y)
+            {
+                canvasPosition = ScreenUtils.InverseBarrelDistortion(
+                    new Vector2(canvasPosition.X, viewportSize.Y - canvasPosition.Y), Settings.Instance.ChromaticAmount,
+                    viewportSize);
+
+                canvasPosition = new Vector2(canvasPosition.X, viewportSize.Y - canvasPosition.Y);
+            }
+        }
+
+        GlobalPosition = canvasPosition;
     }
 
     private void OnPressed()
