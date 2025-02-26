@@ -1328,10 +1328,7 @@ public partial class PatchMapDrawer : Control
 
             // TODO: would be really nice to be able to just update the line objects without redoing them all
             // Clear existing connection lines
-            foreach (Node child in lineContainer.GetChildren())
-            {
-                child.QueueFree();
-            }
+            lineContainer.QueueFreeChildren(false);
 
             // Also needs to update the lines connecting patches for those to display properly
             RebuildRegionConnections();
