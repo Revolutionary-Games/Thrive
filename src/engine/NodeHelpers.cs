@@ -59,8 +59,15 @@ public static class NodeHelpers
     /// <param name="detach">If true the children are immediately removed from the parent</param>
     public static void QueueFreeChildren(this Node node, bool detach = true)
     {
-        foreach (Node child in node.GetChildren())
+        int count = node.GetChildCount();
+        while (true)
         {
+            if (count < 1)
+                break;
+
+            var child = node.GetChild(count - 1);
+            --count;
+
             if (detach)
                 node.RemoveChild(child);
 
