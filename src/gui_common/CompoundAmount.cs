@@ -76,7 +76,7 @@ public partial class CompoundAmount : HBoxContainer
     }
 
     /// <summary>
-    ///   If not null this suffix is added to the amount (with a space added between the values)
+    ///   If not null, this suffix is added to the amount (with a space added between the values)
     /// </summary>
     public string? AmountSuffix
     {
@@ -127,7 +127,7 @@ public partial class CompoundAmount : HBoxContainer
     }
 
     /// <summary>
-    ///   If true  numbers are shown as percentages.
+    ///   If true, numbers are shown as percentages.
     /// </summary>
     public bool UsePercentageDisplay
     {

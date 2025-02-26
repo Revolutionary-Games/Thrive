@@ -120,12 +120,12 @@ public partial class ChemicalEquation : VBoxContainer
     }
 
     /// <summary>
-    ///   If true then "/ second" is shown after the process inputs and outputs
+    ///   If true, then "/ second" is shown after the process inputs and outputs
     /// </summary>
     public bool ShowPerSecondLabel { get; set; } = true;
 
     /// <summary>
-    ///   Only if this is true the text "/ second" is shown fully, instead of being abbreviated to " / s"
+    ///   Only if this is true, the text "/ second" is shown fully, instead of being abbreviated to ` / s`
     /// </summary>
     public bool ShowFullSecondText
     {
@@ -141,14 +141,14 @@ public partial class ChemicalEquation : VBoxContainer
     }
 
     /// <summary>
-    ///   If true this will automatically check the set process for changes
+    ///   If true, this will automatically check the set process for changes
     /// </summary>
     public bool AutoRefreshProcess { get; set; } = true;
 
     public float SpinnerBaseSpeed { get; set; } = Constants.DEFAULT_PROCESS_SPINNER_SPEED;
 
     /// <summary>
-    ///   If true the title color will be changed to red if EquationFromProcess has any limiting compounds.
+    ///   If true, the title colour will be changed to red if EquationFromProcess has any limiting compounds.
     /// </summary>
     public bool MarkRedOnLimitingCompounds { get; set; }
 
