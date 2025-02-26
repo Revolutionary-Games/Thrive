@@ -298,7 +298,11 @@ public partial class ChemicalEquation : VBoxContainer
             // Show the inputs
             if (leftSide == null)
             {
-                leftSide = new CompoundListBox();
+                leftSide = new CompoundListBox
+                {
+                    MakeSureSmallValuesAreShown = true,
+                };
+
                 firstLineContainer.AddChild(leftSide);
             }
 

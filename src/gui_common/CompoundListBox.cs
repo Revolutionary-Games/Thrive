@@ -32,6 +32,11 @@ public partial class CompoundListBox : HBoxContainer
     public bool UsePercentageDisplay { get; set; }
 
     /// <summary>
+    ///   If true, ensures small values are not just rounded to 0
+    /// </summary>
+    public bool MakeSureSmallValuesAreShown { get; set; }
+
+    /// <summary>
     ///   Updates the shown compounds
     /// </summary>
     /// <param name="compounds">The compounds and amounts to show</param>
@@ -68,6 +73,7 @@ public partial class CompoundListBox : HBoxContainer
             Compound = forCompound,
             PrefixPositiveWithPlus = PrefixPositiveWithPlus,
             UsePercentageDisplay = UsePercentageDisplay,
+            ShowEvenSmallValues = MakeSureSmallValuesAreShown,
         };
         return compoundDisplay;
     }

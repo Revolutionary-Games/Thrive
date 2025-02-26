@@ -7,6 +7,8 @@ using Godot;
 /// </summary>
 public partial class CompoundAmount : HBoxContainer
 {
+    private const float MINIMUM_DISPLAY_VALUE = 0.000001f;
+
     private readonly StringName colourParameterName = new("font_color");
 
 #pragma warning disable CA2213
@@ -21,6 +23,7 @@ public partial class CompoundAmount : HBoxContainer
     private CompoundDefinition? compoundDefinition;
 
     private int decimals = 3;
+    private bool showEvenSmallValues;
     private float amount = float.NegativeInfinity;
     private string? amountSuffix;
     private bool prefixPositiveWithPlus;
@@ -110,6 +113,24 @@ public partial class CompoundAmount : HBoxContainer
     }
 
     /// <summary>
+    ///   If set to true, then even small values are shown even if when rounding to <see cref="Decimals"/> wouldn't
+    ///   show anything here.
+    ///   This is used to make sure players are not confused if process inputs are shown as 0.
+    /// </summary>
+    public bool ShowEvenSmallValues
+    {
+        get => showEvenSmallValues;
+        set
+        {
+            if (showEvenSmallValues == value)
+                return;
+
+            showEvenSmallValues = value;
+            UpdateLabel();
+        }
+    }
+
+    /// <summary>
     ///   If true positive (>= 0) amounts are prefixed with a plus.
     /// </summary>
     public bool PrefixPositiveWithPlus
@@ -191,7 +212,7 @@ public partial class CompoundAmount : HBoxContainer
         UpdateIcon();
         UpdateTooltip();
 
-        // Only apply non-default colour here. If it is later changed, it is then applied
+        // Only apply a non-default colour here. If it is later changed, it is then applied
         if (ValueColour != Colour.White)
             UpdateColour();
 
@@ -230,6 +251,47 @@ public partial class CompoundAmount : HBoxContainer
         base.Dispose(disposing);
     }
 
+    private static int CalculateNeededDecimalPlaces(float value)
+    {
+        if (value is <= 0 or >= 1)
+            throw new ArgumentException("Value must be between 0 and 1 (exclusive)");
+
+        return (int)Math.Ceiling(Math.Abs(Math.Log10(value)));
+    }
+
+    private static string GetFormatWithDecimals(int decimals)
+    {
+        if (decimals < 0)
+            decimals = 0;
+
+        switch (decimals)
+        {
+            case 0:
+                return "F0";
+            case 1:
+                return "F1";
+            case 2:
+                return "F2";
+            case 3:
+                return "F3";
+            case 4:
+                return "F4";
+            case 5:
+                return "F5";
+            case 6:
+                return "F6";
+            case 7:
+                return "F7";
+            case 8:
+                return "F8";
+            default:
+                GD.PrintErr("Unhandled number of decimals format to display: ", decimals);
+
+                // This is not the default operation for everything as this allocates a string each time
+                return $"F{decimals}";
+        }
+    }
+
     private void UpdateLabel()
     {
         if (amountLabel == null)
@@ -244,6 +306,8 @@ public partial class CompoundAmount : HBoxContainer
         string numberPart;
         if (!string.IsNullOrEmpty(compoundDefinition!.Unit) && ShowUnit)
         {
+            // TODO: implement also the small value display here?
+
             numberPart = Localization.Translate("VALUE_WITH_UNIT")
                 .FormatSafe(Math.Round(amount, decimals), compoundDefinition.Unit);
         }
@@ -253,7 +317,17 @@ public partial class CompoundAmount : HBoxContainer
         }
         else
         {
-            numberPart = Math.Round(amount, decimals).ToString(CultureInfo.CurrentCulture);
+            var absAmount = Math.Abs(amount);
+            if (showEvenSmallValues && absAmount is < 1 and > MINIMUM_DISPLAY_VALUE &&
+                absAmount < Math.Pow(10, -decimals))
+            {
+                numberPart = amount.ToString(GetFormatWithDecimals(CalculateNeededDecimalPlaces(absAmount)))
+                    .ToString(CultureInfo.CurrentCulture);
+            }
+            else
+            {
+                numberPart = Math.Round(amount, decimals).ToString(CultureInfo.CurrentCulture);
+            }
         }
 
         if (amountSuffix != null)
