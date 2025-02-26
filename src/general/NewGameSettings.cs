@@ -1,4 +1,4 @@
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Globalization;
@@ -143,10 +143,10 @@ public partial class NewGameSettings : ControlWithInput
 
     [Export]
     public NodePath GameSeedAdvancedPath = null!;
-    
+
     [Export]
     public NodePath WorldSizeButtonPath = null!;
-    
+
     [Export]
     public NodePath IncludeMulticellularButtonPath = null!;
 
@@ -1050,7 +1050,7 @@ public partial class NewGameSettings : ControlWithInput
         gameSeedAdvanced.Text = seed;
         SetSeed(seed);
     }
-    
+
     private void OnWorldSizeSelected(int index)
     {
         worldSizeButton.Selected = index;

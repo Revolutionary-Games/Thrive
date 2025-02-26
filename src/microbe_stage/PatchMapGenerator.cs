@@ -19,7 +19,8 @@ public static class PatchMapGenerator
 
         // Initialize the graph's random parameters
         var regionCoordinates = new List<Vector2>();
-        //int vertexCount = random.Next(6, 10);
+
+        // int vertexCount = random.Next(6, 10);
         int vertexCount = 6;
         if (settings.WorldSize == WorldGenerationSettings.WorldSizeEnum.Small)
         {
@@ -382,7 +383,8 @@ public static class PatchMapGenerator
         return region1Rect.Intersects(region2Rect, true);
     }
 
-    private static Vector2 GenerateCoordinates(PatchRegion region, PatchMap map, Random random, int minDistance, WorldGenerationSettings.WorldSizeEnum worldSize)
+    private static Vector2 GenerateCoordinates(PatchRegion region, PatchMap map,
+        Random random, int minDistance, WorldGenerationSettings.WorldSizeEnum worldSize)
     {
         Vector2 coordinate;
 
