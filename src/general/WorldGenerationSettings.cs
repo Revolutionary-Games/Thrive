@@ -49,6 +49,8 @@ public class WorldGenerationSettings
         Panspermia = 2,
     }
 
+    // If changing the WorldSizeEnum members, always synchronize with the
+    // explicit values in the WorldSize OptionButton
     public enum WorldSizeEnum
     {
         [Description("WORLD_SIZE_SMALL")]
