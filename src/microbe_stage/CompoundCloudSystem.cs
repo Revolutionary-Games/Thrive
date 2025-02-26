@@ -88,8 +88,29 @@ public partial class CompoundCloudSystem : Node, IReadonlyCompoundClouds, ISaveL
         // TODO: if the compound types have changed since we saved, that needs to be handled
         if (IsLoadedFromSave)
         {
+            bool loadSucceeded = true;
+
             foreach (var cloud in clouds)
             {
+                // Check if save has something terrible going on
+                if (cloud.Compounds == null! || !loadSucceeded)
+                {
+                    if (loadSucceeded)
+                    {
+                        GD.PrintErr("CompoundCloudSystem is in invalid state in save! " +
+                            "Will try to recover by resetting all clouds.");
+                    }
+
+                    loadSucceeded = false;
+                    renderPriority = -1;
+
+                    // Re-add the clouds as our children
+                    AddChild(cloud);
+
+                    // Continue to add all the planes as children properly
+                    continue;
+                }
+
                 // Re-init with potentially changed compounds
                 // TODO: special handling is needed if the compounds actually changed
                 cloud.Init(fluidSystem, renderPriority, cloud.Compounds[0], cloud.Compounds[1], cloud.Compounds[2],
@@ -101,7 +122,10 @@ public partial class CompoundCloudSystem : Node, IReadonlyCompoundClouds, ISaveL
                 AddChild(cloud);
             }
 
-            return;
+            if (loadSucceeded)
+                return;
+
+            // If the load didn't succeed, we fall back to the normal initialisation logic
         }
 
         for (int i = 0; i < clouds.Count; ++i)
