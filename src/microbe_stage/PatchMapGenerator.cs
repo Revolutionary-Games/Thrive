@@ -20,19 +20,19 @@ public static class PatchMapGenerator
         // Initialize the graph's random parameters
         var regionCoordinates = new List<Vector2>();
 
-        // int vertexCount = random.Next(6, 10);
-        int vertexCount = 6;
+        int vertexCount = 4;
+
         if (settings.WorldSize == WorldGenerationSettings.WorldSizeEnum.Small)
         {
-            vertexCount = 6;
+            vertexCount = random.Next(4, 6);
         }
         else if (settings.WorldSize == WorldGenerationSettings.WorldSizeEnum.Medium)
         {
-            vertexCount = 9;
+            vertexCount = random.Next(7, 9);
         }
         else if (settings.WorldSize == WorldGenerationSettings.WorldSizeEnum.Large)
         {
-            vertexCount = 12;
+            vertexCount = random.Next(10, 12);
         }
 
         int minDistance = 180;
