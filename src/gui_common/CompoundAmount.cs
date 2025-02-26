@@ -245,7 +245,7 @@ public partial class CompoundAmount : HBoxContainer
         if (!string.IsNullOrEmpty(compoundDefinition!.Unit) && ShowUnit)
         {
             numberPart = Localization.Translate("VALUE_WITH_UNIT")
-                .FormatSafe(Math.Round(amount), compoundDefinition.Unit);
+                .FormatSafe(Math.Round(amount, decimals), compoundDefinition.Unit);
         }
         else if (UsePercentageDisplay)
         {
