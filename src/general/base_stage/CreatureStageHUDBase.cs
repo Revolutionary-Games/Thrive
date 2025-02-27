@@ -894,12 +894,12 @@ public partial class CreatureStageHUDBase<TStage> : HUDWithPausing, ICreatureSta
         throw new GodotAbstractMethodNotOverriddenException();
     }
 
-    protected virtual void ApplySpeedMode(bool fastModeEnabled)
+    public virtual void ApplySpeedMode(bool fastModeEnabled)
     {
         GD.PrintErr("Fast mode is not implemented for this stage");
     }
 
-    protected virtual bool GetCurrentSpeedMode()
+    public virtual bool GetCurrentSpeedMode()
     {
         return false;
     }
