@@ -49,8 +49,15 @@ public class WorldGenerationSettings
         Panspermia = 2,
     }
 
-    // If changing the WorldSizeEnum members, always synchronize with the
-    // explicit values in the WorldSize OptionButton
+    /// <summary>
+    ///   The possible world sizes used in Planet customization
+    /// </summary>
+    /// <remarks>
+    ///   <para>
+    ///     If changing the WorldSizeEnum members, always synchronize with the
+    ///     explicit values in the WorldSize OptionButton
+    ///   </para>
+    /// </remarks>
     public enum WorldSizeEnum
     {
         [Description("WORLD_SIZE_SMALL")]
