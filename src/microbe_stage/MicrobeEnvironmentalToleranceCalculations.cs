@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.Diagnostics;
 
 /// <summary>
@@ -25,161 +26,50 @@ public static class MicrobeEnvironmentalToleranceCalculations
 
     public static ToleranceResult CalculateTolerances(MicrobeSpecies species, BiomeConditions environment)
     {
-        return CalculateTolerances(species.Tolerances, environment);
+        return CalculateTolerances(species.Tolerances, species.Organelles, environment);
     }
 
     public static ToleranceResult CalculateTolerances(EnvironmentalTolerances speciesTolerances,
-        BiomeConditions environment)
+        IReadOnlyList<OrganelleTemplate> organelles, BiomeConditions environment)
     {
         var result = new ToleranceResult();
 
-        var patchTemperature = environment.GetCompound(Compound.Temperature, CompoundAmountType.Biome).Ambient;
-        var patchPressure = environment.Pressure;
-        var requiredOxygenResistance = environment.CalculateOxygenResistanceFactor();
-        var requiredUVResistance = environment.CalculateUVFactor();
-
-        bool missingSomething = false;
-
-        // Always write the targets for becoming perfectly adapted
-        result.PerfectTemperatureAdjustment = patchTemperature - speciesTolerances.PreferredTemperature;
-        result.PerfectOxygenAdjustment = requiredOxygenResistance - speciesTolerances.OxygenResistance;
-        result.PerfectUVAdjustment = requiredUVResistance - speciesTolerances.UVResistance;
-
-        // Need to get the average pressure value from the max and min to know how much to adjust
-        result.PerfectPressureAdjustment =
-            patchPressure - (speciesTolerances.PressureMaximum + speciesTolerances.PressureMinimum) * 0.5f;
-
-        // TODO: make organelles affect the tolerances
-
-        // TODO: the root cause of https://github.com/Revolutionary-Games/Thrive/issues/5928 is probably somewhere in
-        // the following lines of code
-
-        // Temperature
-        if (patchTemperature > speciesTolerances.PreferredTemperature + speciesTolerances.TemperatureTolerance ||
-            patchTemperature < speciesTolerances.PreferredTemperature - speciesTolerances.TemperatureTolerance)
+        var resolvedTolerances = new ToleranceValues
         {
-            // Not adapted to the temperature
-            var adjustmentSize = Math.Abs(result.PerfectTemperatureAdjustment);
+            PreferredTemperature = speciesTolerances.PreferredTemperature,
+            TemperatureTolerance = speciesTolerances.TemperatureTolerance,
+            PressureMinimum = speciesTolerances.PressureMinimum,
+            PressureMaximum = speciesTolerances.PressureMaximum,
+            OxygenResistance = speciesTolerances.OxygenResistance,
+            UVResistance = speciesTolerances.UVResistance,
+        };
 
-            if (adjustmentSize > Constants.TOLERANCE_MAXIMUM_SURVIVABLE_TEMPERATURE_DIFFERENCE)
-            {
-                result.TemperatureScore = 0;
-            }
-            else
-            {
-                result.TemperatureScore =
-                    1 - adjustmentSize / Constants.TOLERANCE_MAXIMUM_SURVIVABLE_TEMPERATURE_DIFFERENCE;
-            }
+        var noExtraEffects = resolvedTolerances;
 
-            missingSomething = true;
-        }
-        else if (speciesTolerances.TemperatureTolerance <= Constants.TOLERANCE_PERFECT_THRESHOLD_TEMPERATURE)
-        {
-            // Perfectly adapted
-            var perfectionFactor = Constants.TOLERANCE_PERFECT_TEMPERATURE_SCORE *
-                (1 - (speciesTolerances.TemperatureTolerance / Constants.TOLERANCE_PERFECT_THRESHOLD_TEMPERATURE));
-            result.TemperatureScore = 1 + perfectionFactor;
-        }
-        else
-        {
-            // Adequately adapted, but could be made perfect
-            result.TemperatureRangeSizeAdjustment =
-                Constants.TOLERANCE_PERFECT_THRESHOLD_TEMPERATURE - speciesTolerances.TemperatureTolerance;
+        ApplyOrganelleEffectsOnTolerances(organelles, ref resolvedTolerances);
 
-            result.TemperatureScore = 1;
-        }
-
-        // Pressure
-        if (patchPressure > speciesTolerances.PressureMaximum)
-        {
-            // Too high pressure
-
-            if (patchPressure - speciesTolerances.PressureMaximum >
-                Constants.TOLERANCE_MAXIMUM_SURVIVABLE_PRESSURE_DIFFERENCE)
-            {
-                result.PressureScore = 0;
-            }
-            else
-            {
-                result.PressureScore = 1 - (patchPressure - speciesTolerances.PressureMaximum) /
-                    Constants.TOLERANCE_MAXIMUM_SURVIVABLE_PRESSURE_DIFFERENCE;
-            }
-
-            missingSomething = true;
-        }
-        else if (patchPressure < speciesTolerances.PressureMinimum)
-        {
-            // Too low pressure
-            if (speciesTolerances.PressureMinimum - patchPressure >
-                Constants.TOLERANCE_MAXIMUM_SURVIVABLE_PRESSURE_DIFFERENCE)
-            {
-                result.PressureScore = 0;
-            }
-            else
-            {
-                result.PressureScore = 1 - (speciesTolerances.PressureMinimum - patchPressure) /
-                    Constants.TOLERANCE_MAXIMUM_SURVIVABLE_PRESSURE_DIFFERENCE;
-            }
-
-            missingSomething = true;
-        }
-        else
-        {
-            var range = Math.Abs(speciesTolerances.PressureMaximum - speciesTolerances.PressureMinimum);
-
-            if (range <=
-                Constants.TOLERANCE_PERFECT_THRESHOLD_PRESSURE)
-            {
-                // Perfectly adapted
-                var perfectionFactor = Constants.TOLERANCE_PERFECT_PRESSURE_SCORE *
-                    (1 - (range / Constants.TOLERANCE_PERFECT_THRESHOLD_PRESSURE));
-                result.PressureScore = 1 + perfectionFactor;
-            }
-            else
-            {
-                // Adequately adapted, but could be made perfect
-                result.PressureRangeSizeAdjustment = Constants.TOLERANCE_PERFECT_THRESHOLD_PRESSURE - range;
-
-                result.PressureScore = 1;
-            }
-        }
-
-        // Oxygen Resistance
-        if (speciesTolerances.OxygenResistance < requiredOxygenResistance)
-        {
-            // Not adapted to the oxygen requirement
-            result.OxygenScore = 1 - result.PerfectOxygenAdjustment;
-            missingSomething = true;
-        }
-        else
-        {
-            result.OxygenScore = 1;
-        }
-
-        // UV Resistance
-        if (speciesTolerances.UVResistance < requiredUVResistance)
-        {
-            // Not adapted to the UV requirement
-            result.UVScore = 1 - result.PerfectUVAdjustment;
-            missingSomething = true;
-        }
-        else
-        {
-            result.UVScore = 1;
-        }
-
-        // Make overall score an average of all values
-        result.OverallScore =
-            (result.TemperatureScore + result.PressureScore + result.OxygenScore + result.UVScore) / 4;
-
-        // But if missing something, ensure the score is not 1
-        if (missingSomething && result.OverallScore >= 1)
-        {
-            // TODO: maybe a lower value here or some other adjustment?
-            result.OverallScore = 0.99f;
-        }
+        CalculateTolerancesInternal(resolvedTolerances, noExtraEffects, environment, result);
 
         return result;
+    }
+
+    public static void ApplyOrganelleEffectsOnTolerances(IReadOnlyList<OrganelleTemplate> organelles,
+        ref ToleranceValues tolerances)
+    {
+        int organelleCount = organelles.Count;
+        for (int i = 0; i < organelleCount; ++i)
+        {
+            var organelleDefinition = organelles[i].Definition;
+
+            if (organelleDefinition.AffectsTolerances)
+            {
+                tolerances.TemperatureTolerance += organelleDefinition.ToleranceModifierTemperatureRange;
+                tolerances.OxygenResistance += organelleDefinition.ToleranceModifierOxygen;
+                tolerances.UVResistance += organelleDefinition.ToleranceModifierUV;
+                tolerances.PressureMinimum -= organelleDefinition.ToleranceModifierPressureRange;
+                tolerances.PressureMaximum += organelleDefinition.ToleranceModifierPressureRange;
+            }
+        }
     }
 
     public static void GenerateToleranceProblemList(ToleranceResult data, in ResolvedMicrobeTolerances problemNumbers,
@@ -312,6 +202,170 @@ public static class MicrobeEnvironmentalToleranceCalculations
 #endif
 
         return result;
+    }
+
+    private static void CalculateTolerancesInternal(in ToleranceValues speciesTolerances,
+        in ToleranceValues noExtraEffects, BiomeConditions environment, ToleranceResult result)
+    {
+        var patchTemperature = environment.GetCompound(Compound.Temperature, CompoundAmountType.Biome).Ambient;
+        var patchPressure = environment.Pressure;
+        var requiredOxygenResistance = environment.CalculateOxygenResistanceFactor();
+        var requiredUVResistance = environment.CalculateUVFactor();
+
+        bool missingSomething = false;
+
+        // Always write the targets for becoming perfectly adapted
+        result.PerfectTemperatureAdjustment = patchTemperature - speciesTolerances.PreferredTemperature;
+        result.PerfectOxygenAdjustment = requiredOxygenResistance - speciesTolerances.OxygenResistance;
+        result.PerfectUVAdjustment = requiredUVResistance - speciesTolerances.UVResistance;
+
+        // Need to get the average pressure value from the max and min to know how much to adjust
+        result.PerfectPressureAdjustment =
+            patchPressure - (speciesTolerances.PressureMaximum + speciesTolerances.PressureMinimum) * 0.5f;
+
+        // TODO: the root cause of https://github.com/Revolutionary-Games/Thrive/issues/5928 is probably somewhere in
+        // the following lines of code
+
+        // Temperature
+        if (patchTemperature > speciesTolerances.PreferredTemperature + speciesTolerances.TemperatureTolerance ||
+            patchTemperature < speciesTolerances.PreferredTemperature - speciesTolerances.TemperatureTolerance)
+        {
+            // Not adapted to the temperature
+            var adjustmentSize = Math.Abs(result.PerfectTemperatureAdjustment);
+
+            if (adjustmentSize > Constants.TOLERANCE_MAXIMUM_SURVIVABLE_TEMPERATURE_DIFFERENCE)
+            {
+                result.TemperatureScore = 0;
+            }
+            else
+            {
+                result.TemperatureScore =
+                    1 - adjustmentSize / Constants.TOLERANCE_MAXIMUM_SURVIVABLE_TEMPERATURE_DIFFERENCE;
+            }
+
+            missingSomething = true;
+        }
+        else if (noExtraEffects.TemperatureTolerance <= Constants.TOLERANCE_PERFECT_THRESHOLD_TEMPERATURE)
+        {
+            // Perfect adaptation ranges are calculated without the effects of organelles as they would otherwise
+            // be really hard to apply
+
+            // Perfectly adapted
+            var perfectionFactor = Constants.TOLERANCE_PERFECT_TEMPERATURE_SCORE *
+                (1 - (noExtraEffects.TemperatureTolerance / Constants.TOLERANCE_PERFECT_THRESHOLD_TEMPERATURE));
+            result.TemperatureScore = 1 + perfectionFactor;
+        }
+        else
+        {
+            // Adequately adapted, but could be made perfect
+            result.TemperatureRangeSizeAdjustment =
+                Constants.TOLERANCE_PERFECT_THRESHOLD_TEMPERATURE - noExtraEffects.TemperatureTolerance;
+
+            result.TemperatureScore = 1;
+        }
+
+        // Pressure
+        if (patchPressure > speciesTolerances.PressureMaximum)
+        {
+            // Too high pressure
+
+            if (patchPressure - speciesTolerances.PressureMaximum >
+                Constants.TOLERANCE_MAXIMUM_SURVIVABLE_PRESSURE_DIFFERENCE)
+            {
+                result.PressureScore = 0;
+            }
+            else
+            {
+                result.PressureScore = 1 - (patchPressure - speciesTolerances.PressureMaximum) /
+                    Constants.TOLERANCE_MAXIMUM_SURVIVABLE_PRESSURE_DIFFERENCE;
+            }
+
+            missingSomething = true;
+        }
+        else if (patchPressure < speciesTolerances.PressureMinimum)
+        {
+            // Too low pressure
+            if (speciesTolerances.PressureMinimum - patchPressure >
+                Constants.TOLERANCE_MAXIMUM_SURVIVABLE_PRESSURE_DIFFERENCE)
+            {
+                result.PressureScore = 0;
+            }
+            else
+            {
+                result.PressureScore = 1 - (speciesTolerances.PressureMinimum - patchPressure) /
+                    Constants.TOLERANCE_MAXIMUM_SURVIVABLE_PRESSURE_DIFFERENCE;
+            }
+
+            missingSomething = true;
+        }
+        else
+        {
+            var range = Math.Abs(noExtraEffects.PressureMaximum - noExtraEffects.PressureMinimum);
+
+            if (range <=
+                Constants.TOLERANCE_PERFECT_THRESHOLD_PRESSURE)
+            {
+                // Perfectly adapted
+                var perfectionFactor = Constants.TOLERANCE_PERFECT_PRESSURE_SCORE *
+                    (1 - (range / Constants.TOLERANCE_PERFECT_THRESHOLD_PRESSURE));
+                result.PressureScore = 1 + perfectionFactor;
+            }
+            else
+            {
+                // Adequately adapted, but could be made perfect
+                result.PressureRangeSizeAdjustment = Constants.TOLERANCE_PERFECT_THRESHOLD_PRESSURE - range;
+
+                result.PressureScore = 1;
+            }
+        }
+
+        // Oxygen Resistance
+        if (speciesTolerances.OxygenResistance < requiredOxygenResistance)
+        {
+            // Not adapted to the oxygen requirement
+            result.OxygenScore = 1 - result.PerfectOxygenAdjustment;
+            missingSomething = true;
+        }
+        else
+        {
+            result.OxygenScore = 1;
+        }
+
+        // UV Resistance
+        if (speciesTolerances.UVResistance < requiredUVResistance)
+        {
+            // Not adapted to the UV requirement
+            result.UVScore = 1 - result.PerfectUVAdjustment;
+            missingSomething = true;
+        }
+        else
+        {
+            result.UVScore = 1;
+        }
+
+        // Make overall score an average of all values
+        result.OverallScore =
+            (result.TemperatureScore + result.PressureScore + result.OxygenScore + result.UVScore) / 4;
+
+        // But if missing something, ensure the score is not 1
+        if (missingSomething && result.OverallScore >= 1)
+        {
+            // TODO: maybe a lower value here or some other adjustment?
+            result.OverallScore = 0.99f;
+        }
+    }
+
+    /// <summary>
+    ///   Final tolerance values to use in calculations
+    /// </summary>
+    public struct ToleranceValues
+    {
+        public float PreferredTemperature;
+        public float TemperatureTolerance;
+        public float PressureMinimum;
+        public float PressureMaximum;
+        public float OxygenResistance;
+        public float UVResistance;
     }
 
     public class ToleranceResult

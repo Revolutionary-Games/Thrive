@@ -1951,9 +1951,8 @@ public partial class CellEditorComponent :
 
     private MicrobeEnvironmentalToleranceCalculations.ToleranceResult CalculateRawTolerances()
     {
-        // TODO: in the future this will need to pass the organelle list as well
         return MicrobeEnvironmentalToleranceCalculations.CalculateTolerances(tolerancesEditor.CurrentTolerances,
-            Editor.CurrentPatch.Biome);
+            editedMicrobeOrganelles, Editor.CurrentPatch.Biome);
     }
 
     /// <summary>
@@ -2063,7 +2062,7 @@ public partial class CellEditorComponent :
 
             // If produces more ATP than consumes, lower down production for inputs and for outputs,
             // otherwise use maximum production values (this matches the equilibrium display mode and what happens
-            // in game once exiting the editor)
+            // in the game once exiting the editor)
             if (consumptionProductionRatio < 1.0f)
             {
                 singleProcess.ScaleSpeed(consumptionProductionRatio, processSpeedWorkMemory);

@@ -295,9 +295,15 @@ public partial class TolerancesEditorSubComponent : EditorComponentBase<ICellEdi
     private void CalculateStatsAndShow(EnvironmentalTolerances calculationTolerances,
         EnvironmentalToleranceToolTip toolTip)
     {
+        if (Editor.EditedCellProperties == null)
+        {
+            GD.PrintErr("No cell properties set, tolerances editor cannot update!");
+            return;
+        }
+
         var rawTolerances =
             MicrobeEnvironmentalToleranceCalculations.CalculateTolerances(calculationTolerances,
-                Editor.CurrentPatch.Biome);
+                Editor.EditedCellProperties.Organelles, Editor.CurrentPatch.Biome);
 
         var resolvedTolerances = MicrobeEnvironmentalToleranceCalculations.ResolveToleranceValues(rawTolerances);
 
