@@ -367,31 +367,31 @@ public static class MicrobeEnvironmentalToleranceCalculations
         public float OxygenResistance;
         public float UVResistance;
     }
+}
 
-    public class ToleranceResult
-    {
-        public float OverallScore;
+public class ToleranceResult
+{
+    public float OverallScore;
 
-        public float TemperatureScore;
+    public float TemperatureScore;
 
-        /// <summary>
-        ///   How to adjust the preferred temperature to get to the exact value in the biome
-        /// </summary>
-        public float PerfectTemperatureAdjustment;
+    /// <summary>
+    ///   How to adjust the preferred temperature to get to the exact value in the biome
+    /// </summary>
+    public float PerfectTemperatureAdjustment;
 
-        /// <summary>
-        ///   How to adjust the tolerance range of temperature to qualify as perfectly adapted
-        /// </summary>
-        public float TemperatureRangeSizeAdjustment;
+    /// <summary>
+    ///   How to adjust the tolerance range of temperature to qualify as perfectly adapted
+    /// </summary>
+    public float TemperatureRangeSizeAdjustment;
 
-        public float PressureScore;
-        public float PerfectPressureAdjustment;
-        public float PressureRangeSizeAdjustment;
+    public float PressureScore;
+    public float PerfectPressureAdjustment;
+    public float PressureRangeSizeAdjustment;
 
-        public float OxygenScore;
-        public float PerfectOxygenAdjustment;
+    public float OxygenScore;
+    public float PerfectOxygenAdjustment;
 
-        public float UVScore;
-        public float PerfectUVAdjustment;
-    }
+    public float UVScore;
+    public float PerfectUVAdjustment;
 }

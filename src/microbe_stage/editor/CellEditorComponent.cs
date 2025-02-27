@@ -1949,7 +1949,7 @@ public partial class CellEditorComponent :
         return MicrobeEnvironmentalToleranceCalculations.ResolveToleranceValues(CalculateRawTolerances());
     }
 
-    private MicrobeEnvironmentalToleranceCalculations.ToleranceResult CalculateRawTolerances()
+    private ToleranceResult CalculateRawTolerances()
     {
         return MicrobeEnvironmentalToleranceCalculations.CalculateTolerances(tolerancesEditor.CurrentTolerances,
             editedMicrobeOrganelles, Editor.CurrentPatch.Biome);
