@@ -1090,7 +1090,7 @@ public partial class CellEditorComponent :
         if (!IsMulticellularEditor)
         {
             // Refresh tolerances data for the new patch
-            tolerancesEditor.OnPatchChanged();
+            tolerancesEditor.OnDataTolerancesDependOnChanged();
             OnTolerancesChanged(tolerancesEditor.CurrentTolerances);
         }
 
@@ -2356,6 +2356,13 @@ public partial class CellEditorComponent :
         // Send to gui current status of cell
         organismStatisticsPanel.UpdateSize(MicrobeHexSize);
         UpdateStats();
+
+        if (!IsMulticellularEditor)
+        {
+            // Tolerances are now affected by organelle changes, so re-trigger calculating them
+            OnTolerancesChanged(tolerancesEditor.CurrentTolerances);
+            tolerancesEditor.OnDataTolerancesDependOnChanged();
+        }
 
         UpdateCellVisualization();
 
