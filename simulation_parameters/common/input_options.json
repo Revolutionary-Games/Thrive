@@ -101,6 +101,10 @@
       {
         "InputName": "g_build_structure",
         "Name": "INPUT_NAME_BUILD_STRUCTURE"
+      },
+      {
+        "InputName": "g_toggle_speed_mode",
+        "Name": "TOGGLE_FAST_MODE"
       }
     ]
   },
@@ -380,10 +384,6 @@
       {
         "InputName": "g_toggle_gui",
         "Name": "TOGGLE_HUD_HIDE"
-      },
-      {
-        "InputName": "g_toggle_speed_mode",
-        "Name": "TOGGLE_FAST_MODE"
       }
     ]
   }
