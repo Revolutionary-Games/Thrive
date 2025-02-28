@@ -703,7 +703,8 @@ msgstr ""
 "Diese Membran hat eine Wand, was zu einem besseren Schutz gegen "
 "Gesamtschäden und insbesondere gegen physische Schäden führt. Sie kostet "
 "auch weniger Energie, um ihre Form zu behalten, kann aber Ressourcen nur "
-"langsam absorbieren und ist langsamer."
+"langsam absorbieren und ist langsamer. [b] Cellulase kann diese Wand "
+"verdauen [/b] was sie anfällig für Verschlingung durch Raubtiere macht."
 
 #, fuzzy
 msgid "CELL_STAT_ROTATION_TOOLTIP"
@@ -1423,7 +1424,7 @@ msgid "CPU_THREADS"
 msgstr "Threads:"
 
 msgid "CRAFTING_CLEAR_INPUTS"
-msgstr ""
+msgstr "Ausgewählte Eingaben löschen"
 
 #, fuzzy
 msgid "CRAFTING_ERROR_INTERNAL_CONSUME_PROBLEM"
@@ -3051,7 +3052,7 @@ msgid "INFO_BOX_UNIQUE"
 msgstr "DU HAST DICH ENTWICKELT!"
 
 msgid "INFO_BOX_UPGRADES"
-msgstr ""
+msgstr "Erweiterungen"
 
 msgid "INGESTED_MATTER"
 msgstr "Aufgenommene Materie"
@@ -4103,9 +4104,8 @@ msgstr "Organismus-Statistik"
 msgid "MICROBE_MEMBRANE_STATISTICS"
 msgstr "Organismus-Statistik"
 
-#, fuzzy
 msgid "MICROBE_ORGANELLE_STATISTICS"
-msgstr "Organismus-Statistik"
+msgstr "  {0}: Gefunden in {1} Arten, im Durchschnitt je {2}"
 
 #, fuzzy
 msgid "MICROBE_ORGANELLE_UPGRADES_STATISTICS"
