@@ -728,7 +728,7 @@ public partial class TolerancesEditorSubComponent : EditorComponentBase<ICellEdi
 
         // Pressure
         value = unitFormat.FormatSafe(Math.Round(organelleModifiers.PressureMaximum / 1000), "kPa");
-        pressureToleranceModifierLabel.Text = organelleModifiers.PressureMaximum >= 0 ? "+" + value : value;
+        pressureToleranceModifierLabel.Text = $"({value})";
 
         // Oxygen
         value = percentageFormat.FormatSafe(Math.Round(organelleModifiers.OxygenResistance * 100, 1));

@@ -338,13 +338,37 @@ tick_count = 8
 [node name="HFlowContainer" type="HFlowContainer" parent="Pressure"]
 layout_mode = 2
 
+[node name="PressureTolerance" type="HBoxContainer" parent="Pressure/HFlowContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+mouse_filter = 0
+
+[node name="RangeModifierLabel" type="Label" parent="Pressure/HFlowContainer/PressureTolerance"]
+layout_mode = 2
+mouse_filter = 1
+text = "TOLERANCE_RANGE_LABEL"
+label_settings = ExtResource("8_ktuy7")
+vertical_alignment = 2
+
+[node name="PressureRangeModifier" type="Label" parent="Pressure/HFlowContainer/PressureTolerance"]
+editor_description = "PLACEHOLDER"
+layout_mode = 2
+mouse_filter = 1
+text = "(-500 kPa)"
+label_settings = ExtResource("8_ktuy7")
+horizontal_alignment = 1
+vertical_alignment = 2
+
+[node name="Control" type="Control" parent="Pressure/HFlowContainer/PressureTolerance"]
+layout_mode = 2
+size_flags_horizontal = 3
+
 [node name="KeepTolerance" type="CheckBox" parent="Pressure/HFlowContainer"]
-custom_minimum_size = Vector2(250, 0)
 layout_mode = 2
 tooltip_text = "KEEP_CURRENT_TOLERANCE_FLEXIBILITY_TOOLTIP"
-theme_override_font_sizes/font_size = 16
+theme_override_font_sizes/font_size = 14
 button_pressed = true
-text = "KEEP_CURRENT_FLEXIBILITY"
+text = "KEEP_CURRENT_SHORT"
 
 [node name="TooWideWarning" type="PanelContainer" parent="Pressure/HFlowContainer/KeepTolerance"]
 visible = false
@@ -363,27 +387,6 @@ text = "TOO_LARGE_PRESSURE_RANGE"
 label_settings = ExtResource("8_mharw")
 horizontal_alignment = 1
 autowrap_mode = 3
-
-[node name="PressureTolerance" type="HBoxContainer" parent="Pressure/HFlowContainer"]
-layout_mode = 2
-size_flags_horizontal = 3
-mouse_filter = 0
-
-[node name="Control" type="Control" parent="Pressure/HFlowContainer/PressureTolerance"]
-layout_mode = 2
-size_flags_horizontal = 3
-
-[node name="RangeModifierLabel" type="Label" parent="Pressure/HFlowContainer/PressureTolerance"]
-layout_mode = 2
-text = "TOLERANCE_RANGE_LABEL"
-label_settings = ExtResource("8_ktuy7")
-
-[node name="PressureRangeModifier" type="Label" parent="Pressure/HFlowContainer/PressureTolerance"]
-editor_description = "PLACEHOLDER"
-layout_mode = 2
-text = "(-500 kPa)"
-label_settings = ExtResource("8_ktuy7")
-horizontal_alignment = 1
 
 [node name="Spacer" type="Control" parent="Pressure"]
 custom_minimum_size = Vector2(0, 5)
