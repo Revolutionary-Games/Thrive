@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2025-02-25 16:57+0200\n"
+"POT-Creation-Date: 2025-02-28 12:07+0200\n"
 "PO-Revision-Date: 2025-02-06 13:29+0000\n"
 "Last-Translator: Anonymous <noreply@weblate.org>\n"
 "Language-Team: Italian <https://translate.revolutionarygamesstudio.com/projects/thrive/thrive-game/it/>\n"
@@ -174,9 +174,8 @@ msgstr "Volume dell'ambiente"
 msgid "AMMONIA"
 msgstr "Ammoniaca"
 
-#, fuzzy
 msgid "AMMONIA_COST"
-msgstr "Ammoniaca"
+msgstr "Costo Ammoniaca:"
 
 msgid "AMOUNT_OF_AUTOSAVE_TO_KEEP"
 msgstr "Numero di salvataggi automatici da conservare:"
@@ -496,9 +495,8 @@ msgstr "Bioma: {0}"
 msgid "BLOOM_RENDER_EFFECT"
 msgstr "Effetto bagliore:"
 
-#, fuzzy
 msgid "BLUESKY_TOOLTIP"
-msgstr "Metti in pausa il gioco"
+msgstr "Visita il nostro profilo Bluesky"
 
 msgid "BRAIN_CELL_NAME_DEFAULT"
 msgstr "Neurone"
@@ -643,13 +641,11 @@ msgstr ""
 "E, ad esempio, quando si modifica la lunghezza del flagello, i valori di velocità non corrispondono a ciò che accadrà nella fase.\n"
 "Questo è un problema noto ma non è stato ancora risolto poiché ha una priorità inferiore rispetto a molti altri problemi e nuove funzionalità."
 
-#, fuzzy
 msgid "CELL_TYPE_BUTTON_ATP_CONSUMPTION"
-msgstr "Opzioni"
+msgstr "Il consumo di ATP di questo tipo di cellula è {0}."
 
-#, fuzzy
 msgid "CELL_TYPE_BUTTON_ATP_PRODUCTION"
-msgstr "Opzioni"
+msgstr "La produzione di ATP di questo tipo di cellula è {0}."
 
 msgid "CELL_TYPE_NAME"
 msgstr "Nome del tipo di cellula"
@@ -1256,14 +1252,13 @@ msgid "CRAFTING_RESULTS"
 msgstr "Risultati"
 
 msgid "CRAFTING_SELECT_RECIPE_OR_ITEMS_TO_FILTER"
-msgstr ""
+msgstr "Seleziona una ricetta di crafting o aggiungi oggetti per filtrare"
 
 msgid "CRAFTING_TAKE_ALL"
 msgstr "Prendi tutto"
 
-#, fuzzy
 msgid "CRAFTING_TITLE"
-msgstr "Il titolo è mancante"
+msgstr "Crafting"
 
 msgid "CREATE"
 msgstr "Crea"
@@ -1310,9 +1305,8 @@ msgstr "Ringraziamenti"
 msgid "CTRL"
 msgstr "CTRL"
 
-#, fuzzy
 msgid "CURRENT_CACHE_SIZE"
-msgstr "Mostra i nomi dei pulsanti di selezione delle parti"
+msgstr "Dimensione attuale:"
 
 #, fuzzy
 msgid "CURRENT_CACHE_SIZE_TOOLTIP"
@@ -1324,17 +1318,14 @@ msgstr "Sviluppatori attuali"
 msgid "CURRENT_LOCATION_CAPITAL"
 msgstr "ZONA ATTUALE"
 
-#, fuzzy
 msgid "CURRENT_RESEARCH_NONE"
-msgstr "Mostra i nomi dei pulsanti di selezione delle parti"
+msgstr "Non si sta effettuando alcuna ricerca"
 
-#, fuzzy
 msgid "CURRENT_RESEARCH_PROGRESS"
-msgstr "Apri la finestra di aiuto"
+msgstr "Attualmente in fase di ricerca: {0} ({1})"
 
-#, fuzzy
 msgid "CURRENT_WORLD"
-msgstr "Sviluppatori attuali"
+msgstr "Mondo Attuale"
 
 msgid "CURRENT_WORLD_STATISTICS"
 msgstr ""
@@ -1374,27 +1365,23 @@ msgstr "Glicolisi citoplasmatica"
 msgid "CYTOPLASM_PROCESSES_DESCRIPTION"
 msgstr "Trasforma il [thrive:compound type=\"glucose\"][/thrive:compound] in [thrive:compound type=\"atp\"][/thrive:compound]."
 
-#, fuzzy
 msgid "CYTOTOXIN_SYNTHESIS"
-msgstr "Sintesi dell'OssiTossi"
+msgstr "Sintesi della Citotossina"
 
-#, fuzzy
 msgid "DAMAGE_SOURCE_RADIATION"
-msgstr "(costo di organuli, membrane e altri oggetti nell'editor)"
+msgstr "radiazioni"
 
 msgid "DAY_LENGTH"
 msgstr "Durata del giorno"
 
-#, fuzzy
 msgid "DAY_LENGTH_EXPLANATION"
-msgstr "(segreti che possono apparire casualmente nel gioco)"
+msgstr "(lunghezza in secondi reali per un giorno di gioco)"
 
 msgid "DAY_NIGHT_CYCLE_ENABLED"
 msgstr "Attiva il ciclo giorno/notte"
 
-#, fuzzy
 msgid "DAY_NIGHT_CYCLE_ENABLED_EXPLANATION_2"
-msgstr "(comincia ogni generazione vicino a una nuvola di glucosio)"
+msgstr "(la fotosintesi diventa inefficace durante la notte, richiedendo una maggiore pianificazione)"
 
 #, fuzzy
 msgid "DEADZONE_CALIBRATION_FINISHED"
@@ -1407,9 +1394,8 @@ msgstr "Percentuale di completamento di questa traduzione: {0}%"
 msgid "DEADZONE_CALIBRATION_IS_RESET"
 msgstr "Le calibrazioni della zona morta sono state resettate"
 
-#, fuzzy
 msgid "DEADZONE_CONFIGURATION"
-msgstr "Eliminare questo salvataggio è un'operazione irreversibile. Non potrai recuperarlo. Sei sicuro di volerlo fare?"
+msgstr "Configurazione zona morta"
 
 msgid "DEATH"
 msgstr "morte"
@@ -1449,9 +1435,8 @@ msgstr ""
 " - {1} salvataggi(o) rapidi/o;\n"
 "- {2} salvataggi(o) di backup."
 
-#, fuzzy
 msgid "DELETE_FOSSIL_CONFIRMATION"
-msgstr "Eliminare questo salvataggio è un'operazione irreversibile. Non potrai recuperarlo. Sei sicuro di volerlo fare?"
+msgstr "Eliminare questo fossile non può essere annullato, sei sicuro di volerlo cancellare definitivamente?"
 
 msgid "DELETE_OLD_SAVES_PROMPT"
 msgstr "Eliminare i vecchi salvataggi?"
@@ -1476,11 +1461,10 @@ msgstr "Cancellare questo salvataggio?"
 
 #, fuzzy
 msgid "DESCEND_BUTTON"
-msgstr "Eliminare questo salvataggio è un'operazione irreversibile. Non potrai recuperarlo. Sei sicuro di volerlo fare?"
+msgstr "Discesa"
 
-#, fuzzy
 msgid "DESCEND_CONFIRMATION"
-msgstr "Eliminare questo salvataggio è un'operazione irreversibile. Non potrai recuperarlo. Sei sicuro di volerlo fare?"
+msgstr "Sei sicuro di voler scendere?"
 
 #, fuzzy
 msgid "DESCEND_CONFIRMATION_EXPLANATION"
@@ -1507,7 +1491,10 @@ msgstr "Numero di CPU rilevate:"
 
 #, fuzzy
 msgid "DEVBUILD_VERSION_INFO"
-msgstr "Sostenitori Devbuilds"
+msgstr ""
+"DevBuild {0}\n"
+"su branch {1} alle {2}\n"
+"{3}"
 
 msgid "DEVELOPERS"
 msgstr "Sviluppatori"
@@ -6055,6 +6042,10 @@ msgstr "Attiva/disattiva fagocitosi"
 #, fuzzy
 msgid "TOGGLE_ENGULF_TOOLTIP"
 msgstr "Attiva/disattiva fagocitosi"
+
+#, fuzzy
+msgid "TOGGLE_FAST_MODE"
+msgstr "Metti in pausa"
 
 msgid "TOGGLE_FPS"
 msgstr "Mostra/nascondi visualizzazione FPS"
