@@ -573,7 +573,7 @@ msgstr "Bauwarteschlange"
 
 #, fuzzy
 msgid "BUILD_STRUCTURE"
-msgstr "Struktur"
+msgstr "Baue eine Struktur"
 
 msgid "BY"
 msgstr "Von:"
@@ -706,22 +706,27 @@ msgstr ""
 #, fuzzy
 msgid "CELL_STAT_ROTATION_TOOLTIP"
 msgstr ""
-"Der Zahlenwert zum Generieren der Zufallswelt. (Muss eine positive ganze "
-"Zahl sein.)"
+"Drehgeschwindigkeit der Zelle. Große Zellen drehen sich langsamer, aber "
+"Zilien können hinzugefügt werden um dem entgegenzuwirken.\n"
+"Weiter entfernte Organellen reduzieren die Drehgeschwindigkeit mehr."
 
 #, fuzzy
 msgid "CELL_STAT_SPEED_TOOLTIP"
 msgstr ""
-"Der Zahlenwert zum Generieren der Zufallswelt. (Muss eine positive ganze "
-"Zahl sein.)"
+"Geschwindigkeit der Zelle. Durch Limitierungen des Algorithmus ist dieser "
+"Wert eine Annahme.\n"
+"Zu dem wenn Geißeln modifiziert werden macht der Wert nicht ganz Sinn und "
+"zeigen nicht den Effekt auf der Ebene.\n"
+"Das Problem ist bekannt aber wird nicht Priorisiert wegen wichtigerem wie "
+"neuen Features."
 
 #, fuzzy
 msgid "CELL_TYPE_BUTTON_ATP_CONSUMPTION"
-msgstr "Totzone:"
+msgstr "Der ATP Verbrauch dieses Zelltyps ist {0}."
 
 #, fuzzy
 msgid "CELL_TYPE_BUTTON_ATP_PRODUCTION"
-msgstr "Totzone:"
+msgstr "Die ATP Produktion dieses Zelltyps ist {0}."
 
 msgid "CELL_TYPE_NAME"
 msgstr "Zellentypname"
@@ -1001,7 +1006,7 @@ msgstr "Hellwert, Helligkeit oder Intensität der Farbe"
 
 #, fuzzy
 msgid "COMMON_ABILITIES"
-msgstr "Fähigkeiten"
+msgstr "Gewöhnliche Fähigkeiten"
 
 msgid "COMMON_EDITING_AND_STRATEGY"
 msgstr ""
@@ -1023,7 +1028,7 @@ msgstr "Erstellt am:"
 
 #, fuzzy
 msgid "COMPLETE_ACTION"
-msgstr "Erstellt am:"
+msgstr "Erstellt am"
 
 msgid "COMPOUNDS"
 msgstr "Substanzen"
@@ -1044,7 +1049,7 @@ msgstr "Substanzen:"
 
 #, fuzzy
 msgid "COMPOUND_BALANCE_FILL_TIME"
-msgstr "Verbindungsbalance"
+msgstr "(füllt Lager in {0} s)"
 
 msgid "COMPOUND_BALANCE_FILL_TIME_TOO_LONG"
 msgstr ""
