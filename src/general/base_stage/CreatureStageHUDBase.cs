@@ -682,6 +682,16 @@ public partial class CreatureStageHUDBase<TStage> : HUDWithPausing, ICreatureSta
         }
     }
 
+    public virtual void ApplySpeedMode(bool fastModeEnabled)
+    {
+        GD.PrintErr("Fast mode is not implemented for this stage");
+    }
+
+    public virtual bool GetCurrentSpeedMode()
+    {
+        return false;
+    }
+
     /// <summary>
     ///   Creates and displays a fossilisation button above each on-screen organism.
     /// </summary>
@@ -892,16 +902,6 @@ public partial class CreatureStageHUDBase<TStage> : HUDWithPausing, ICreatureSta
     protected virtual bool ShouldShowAgentsPanel()
     {
         throw new GodotAbstractMethodNotOverriddenException();
-    }
-
-    public virtual void ApplySpeedMode(bool fastModeEnabled)
-    {
-        GD.PrintErr("Fast mode is not implemented for this stage");
-    }
-
-    public virtual bool GetCurrentSpeedMode()
-    {
-        return false;
     }
 
     protected Color GetCompoundDensityCategoryColor(float amount)
