@@ -408,6 +408,12 @@ public partial class MicrobeStage : CreatureStageBase<Entity, MicrobeWorldSimula
         }
     }
 
+    [RunOnKeyDown("g_toggle_speed_mode")]
+    public void ToggleSpeedMode()
+    {
+        HUD.ApplySpeedMode(!HUD.GetCurrentSpeedMode());
+    }
+
     public override void SetSpecialViewMode(ViewMode mode)
     {
         if (mode == ViewMode.Normal)

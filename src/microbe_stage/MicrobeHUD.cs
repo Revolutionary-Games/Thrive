@@ -239,6 +239,25 @@ public partial class MicrobeHUD : CreatureStageHUDBase<MicrobeStage>
         winBox.GetNode<Timer>("Timer").Connect(Timer.SignalName.Timeout, new Callable(this, nameof(ToggleWinBox)));
     }
 
+    public override void ApplySpeedMode(bool fastModeEnabled)
+    {
+        if (stage == null)
+        {
+            GD.PrintErr("Can't apply speed mode without stage set");
+            return;
+        }
+
+        stage.WorldSimulation.WorldTimeScale = fastModeEnabled ? 2 : 1;
+    }
+
+    public override bool GetCurrentSpeedMode()
+    {
+        if (stage == null)
+            return false;
+
+        return stage.WorldSimulation.WorldTimeScale > 1;
+    }
+
     protected override void UpdateFossilisationButtonStates()
     {
         var fossils = FossilisedSpecies.CreateListOfFossils(false);
@@ -594,25 +613,6 @@ public partial class MicrobeHUD : CreatureStageHUDBase<MicrobeStage>
             if (hoveredEntity.Value > 1)
                 item.SetDescription(Localization.Translate("N_TIMES").FormatSafe(hoveredEntity.Value));
         }
-    }
-
-    protected override void ApplySpeedMode(bool fastModeEnabled)
-    {
-        if (stage == null)
-        {
-            GD.PrintErr("Can't apply speed mode without stage set");
-            return;
-        }
-
-        stage.WorldSimulation.WorldTimeScale = fastModeEnabled ? 2 : 1;
-    }
-
-    protected override bool GetCurrentSpeedMode()
-    {
-        if (stage == null)
-            return false;
-
-        return stage.WorldSimulation.WorldTimeScale > 1;
     }
 
     /// <summary>
