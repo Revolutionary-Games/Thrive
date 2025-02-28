@@ -1,4 +1,4 @@
-[gd_scene load_steps=16 format=3 uid="uid://b4vme2vxaxfkw"]
+[gd_scene load_steps=17 format=3 uid="uid://b4vme2vxaxfkw"]
 
 [ext_resource type="PackedScene" uid="uid://cil2efpg6jdmd" path="res://src/gui_common/tooltip/DefaultToolTip.tscn" id="1"]
 [ext_resource type="PackedScene" uid="uid://bhy1rrdfux74j" path="res://src/microbe_stage/editor/tooltips/ModifierInfoLabel.tscn" id="2"]
@@ -10,6 +10,7 @@
 [ext_resource type="Texture2D" uid="uid://cq25ojg73mpr" path="res://assets/textures/gui/bevel/HealthIcon.png" id="13"]
 [ext_resource type="PackedScene" uid="uid://by8bg6b5p4c6m" path="res://src/microbe_stage/editor/tooltips/EnvironmentalToleranceToolTip.tscn" id="14_k78dl"]
 [ext_resource type="Texture2D" uid="uid://dgnaltjd8hysi" path="res://assets/textures/gui/bevel/parts/PilusIcon.png" id="15"]
+[ext_resource type="PackedScene" uid="uid://cbwkactqp7nyg" path="res://src/microbe_stage/editor/tooltips/StatModifierToolTip.tscn" id="15_l158n"]
 [ext_resource type="Texture2D" uid="uid://bvqcyxabp8g4g" path="res://assets/textures/gui/bevel/parts/ToxinVacuoleIcon.png" id="16"]
 [ext_resource type="LabelSettings" uid="uid://ijvk6u0w1c0j" path="res://src/gui_common/fonts/Body-Regular-AlmostSmall-Red.tres" id="16_dd0bc"]
 [ext_resource type="LabelSettings" uid="uid://bm5md8yedxcr2" path="res://src/gui_common/fonts/Body-Regular-AlmostSmall-Green.tres" id="17_ftkue"]
@@ -861,6 +862,14 @@ offset_bottom = 283.0
 DisplayName = "TEMPERATURE"
 Description = "TEMPERATURE_TOLERANCE_TOOLTIP"
 
+[node name="temperatureRangeModifier" parent="GroupHolder/tolerances" instance=ExtResource("15_l158n")]
+visible = false
+layout_mode = 0
+offset_top = 0.0
+offset_bottom = 283.0
+DisplayName = "TEMPERATURE"
+Description = "TOLERANCE_FROM_ORGANELLES_TOOLTIP"
+
 [node name="pressure" parent="GroupHolder/tolerances" instance=ExtResource("14_k78dl")]
 visible = false
 layout_mode = 0
@@ -868,6 +877,14 @@ offset_top = 0.0
 offset_bottom = 283.0
 DisplayName = "PRESSURE"
 Description = "PRESSURE_TOLERANCE_TOOLTIP"
+
+[node name="pressureRangeModifier" parent="GroupHolder/tolerances" instance=ExtResource("15_l158n")]
+visible = false
+layout_mode = 0
+offset_top = 0.0
+offset_bottom = 283.0
+DisplayName = "PRESSURE"
+Description = "TOLERANCE_FROM_ORGANELLES_TOOLTIP"
 
 [node name="oxygenResistance" parent="GroupHolder/tolerances" instance=ExtResource("14_k78dl")]
 visible = false
@@ -877,6 +894,15 @@ offset_bottom = 283.0
 DisplayName = "OXYGEN_RESISTANCE"
 Description = "OXYGEN_TOLERANCE_TOOLTIP"
 
+[node name="oxygenResistanceModifier" parent="GroupHolder/tolerances" instance=ExtResource("15_l158n")]
+visible = false
+layout_mode = 0
+offset_top = 0.0
+offset_bottom = 283.0
+DisplayName = "OXYGEN_RESISTANCE"
+Description = "TOLERANCE_FROM_ORGANELLES_TOOLTIP"
+ShowAsPercentage = true
+
 [node name="uvResistance" parent="GroupHolder/tolerances" instance=ExtResource("14_k78dl")]
 visible = false
 layout_mode = 0
@@ -884,6 +910,15 @@ offset_top = 0.0
 offset_bottom = 283.0
 DisplayName = "UV_PROTECTION"
 Description = "UV_TOLERANCE_TOOLTIP"
+
+[node name="uvResistanceModifier" parent="GroupHolder/tolerances" instance=ExtResource("15_l158n")]
+visible = false
+layout_mode = 0
+offset_top = 0.0
+offset_bottom = 283.0
+DisplayName = "UV_PROTECTION"
+Description = "TOLERANCE_FROM_ORGANELLES_TOOLTIP"
+ShowAsPercentage = true
 
 [editable path="GroupHolder/editor/rigiditySlider"]
 [editable path="GroupHolder/membraneSelection/single"]
