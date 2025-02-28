@@ -103,13 +103,15 @@ public class WorldGenerationSettings
     public bool FreeGlucoseCloud => Difficulty.FreeGlucoseCloud;
 
     [JsonIgnore]
-    public bool PassiveGainOfReproductionCompounds => Difficulty.PassiveReproduction;
-
-    [JsonIgnore]
     public bool SwitchSpeciesOnExtinction => Difficulty.SwitchSpeciesOnExtinction;
 
     [JsonIgnore]
     public bool LimitReproductionCompoundUseSpeed => Difficulty.LimitGrowthRate;
+
+    /// <summary>
+    ///   Whether the player can passively reproduce
+    /// </summary>
+    public bool PassiveGainOfReproductionCompounds { get; set; } = true;
 
     /// <summary>
     ///   Whether the day/night cycle in this game is enabled
