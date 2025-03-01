@@ -1,4 +1,4 @@
-[gd_scene load_steps=15 format=3 uid="uid://5kamud4sukbd"]
+[gd_scene load_steps=16 format=3 uid="uid://5kamud4sukbd"]
 
 [ext_resource type="Theme" uid="uid://b4cx0o110g4b6" path="res://src/gui_common/thrive_theme.tres" id="1_16mn0"]
 [ext_resource type="Script" path="res://src/microbe_stage/editor/TolerancesEditorSubComponent.cs" id="2_kqh2k"]
@@ -9,6 +9,7 @@
 [ext_resource type="LabelSettings" uid="uid://bgokf8pxiak4n" path="res://src/gui_common/fonts/Title-SemiBold-Tiny.tres" id="5_ws7wf"]
 [ext_resource type="PackedScene" uid="uid://dccswprlmgtel" path="res://src/microbe_stage/editor/ToleranceInfo.tscn" id="7_sg3ru"]
 [ext_resource type="LabelSettings" uid="uid://o0tip7etc0x2" path="res://src/gui_common/fonts/Body-Bold-Small-Red.tres" id="8_mharw"]
+[ext_resource type="Texture2D" uid="uid://dmjlic63rpnug" path="res://assets/textures/gui/bevel/markerMoreThan.svg" id="10_q4a2w"]
 
 [sub_resource type="StyleBoxTexture" id="StyleBoxTexture_ftstq"]
 content_margin_top = 1.0
@@ -105,7 +106,7 @@ _data = {
 "RESET": SubResource("Animation_fmah3")
 }
 
-[node name="TolerancesEditorSubComponent" type="VBoxContainer" node_paths=PackedStringArray("temperatureContainer", "pressureContainer", "oxygenResistanceContainer", "uvResistanceContainer", "invalidChangeAnimation", "temperatureSlider", "temperatureToleranceRangeSlider", "temperatureToleranceInfo", "pressureMinSlider", "pressureMaxSlider", "minPressureToleranceInfo", "maxPressureToleranceInfo", "oxygenResistanceSlider", "uvResistanceSlider", "temperatureMinLabel", "temperatureMaxLabel", "pressureMinLabel", "pressureMaxLabel", "oxygenResistanceLabel", "uvResistanceLabel")]
+[node name="TolerancesEditorSubComponent" type="VBoxContainer" node_paths=PackedStringArray("temperatureContainer", "pressureContainer", "oxygenResistanceContainer", "uvResistanceContainer", "invalidChangeAnimation", "temperatureSlider", "temperatureToleranceRangeSlider", "temperatureToleranceInfo", "pressureMinSlider", "pressureMaxSlider", "minPressureToleranceInfo", "maxPressureToleranceInfo", "oxygenResistanceSlider", "oxygenToleranceInfo", "uvResistanceSlider", "uvToleranceInfo", "temperatureMinLabel", "temperatureMaxLabel", "pressureMinLabel", "pressureMaxLabel", "oxygenResistanceLabel", "uvResistanceLabel")]
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
@@ -120,13 +121,15 @@ uvResistanceContainer = NodePath("UV")
 invalidChangeAnimation = NodePath("ErrorPlayer")
 temperatureSlider = NodePath("Temperature/TemperatureSlider")
 temperatureToleranceRangeSlider = NodePath("Temperature/HBoxContainer3/TemperatureRange")
-temperatureToleranceInfo = NodePath("Temperature/MarginContainer/TemperatureInfo")
+temperatureToleranceInfo = NodePath("Temperature/TemperatureInfo")
 pressureMinSlider = NodePath("Pressure/PressureSliderMin")
 pressureMaxSlider = NodePath("Pressure/PressureSliderMax")
-minPressureToleranceInfo = NodePath("Pressure/MarginContainer/MinPressureInfo")
-maxPressureToleranceInfo = NodePath("Pressure/MarginContainer2/MaxPressureInfo")
+minPressureToleranceInfo = NodePath("Pressure/MinPressureInfo")
+maxPressureToleranceInfo = NodePath("Pressure/MaxPressureInfo")
 oxygenResistanceSlider = NodePath("Oxygen/OxgenSlider")
+oxygenToleranceInfo = NodePath("Oxygen/OxygenInfo")
 uvResistanceSlider = NodePath("UV/UVSlider")
+uvToleranceInfo = NodePath("UV/UVInfo")
 temperatureMinLabel = NodePath("Temperature/HBoxContainer2/TemperatureMin")
 temperatureMaxLabel = NodePath("Temperature/HBoxContainer2/TemperatureMax")
 pressureMinLabel = NodePath("Pressure/HBoxContainer2/PressureMin")
@@ -187,12 +190,7 @@ layout_mode = 2
 size_flags_horizontal = 3
 mouse_filter = 1
 
-[node name="MarginContainer" type="MarginContainer" parent="Temperature"]
-layout_mode = 2
-theme_override_constants/margin_left = 7
-theme_override_constants/margin_right = 7
-
-[node name="TemperatureInfo" parent="Temperature/MarginContainer" instance=ExtResource("7_sg3ru")]
+[node name="TemperatureInfo" parent="Temperature" instance=ExtResource("7_sg3ru")]
 layout_mode = 2
 
 [node name="TemperatureSlider" type="HSlider" parent="Temperature"]
@@ -277,12 +275,7 @@ layout_mode = 2
 size_flags_horizontal = 3
 mouse_filter = 1
 
-[node name="MarginContainer" type="MarginContainer" parent="Pressure"]
-layout_mode = 2
-theme_override_constants/margin_left = 7
-theme_override_constants/margin_right = 7
-
-[node name="MinPressureInfo" parent="Pressure/MarginContainer" instance=ExtResource("7_sg3ru")]
+[node name="MinPressureInfo" parent="Pressure" instance=ExtResource("7_sg3ru")]
 layout_mode = 2
 
 [node name="PressureSliderMin" type="HSlider" parent="Pressure"]
@@ -295,12 +288,7 @@ rounded = true
 scrollable = false
 tick_count = 8
 
-[node name="MarginContainer2" type="MarginContainer" parent="Pressure"]
-layout_mode = 2
-theme_override_constants/margin_left = 7
-theme_override_constants/margin_right = 7
-
-[node name="MaxPressureInfo" parent="Pressure/MarginContainer2" instance=ExtResource("7_sg3ru")]
+[node name="MaxPressureInfo" parent="Pressure" instance=ExtResource("7_sg3ru")]
 layout_mode = 2
 
 [node name="PressureSliderMax" type="HSlider" parent="Pressure"]
@@ -359,6 +347,10 @@ size_flags_horizontal = 3
 mouse_filter = 1
 theme_override_styles/separator = SubResource("StyleBoxTexture_ftstq")
 
+[node name="OxygenInfo" parent="Oxygen" instance=ExtResource("7_sg3ru")]
+layout_mode = 2
+markerTexture = ExtResource("10_q4a2w")
+
 [node name="OxgenSlider" type="HSlider" parent="Oxygen"]
 layout_mode = 2
 mouse_filter = 1
@@ -399,6 +391,10 @@ layout_mode = 2
 size_flags_horizontal = 3
 mouse_filter = 1
 theme_override_styles/separator = SubResource("StyleBoxTexture_ftstq")
+
+[node name="UVInfo" parent="UV" instance=ExtResource("7_sg3ru")]
+layout_mode = 2
+markerTexture = ExtResource("10_q4a2w")
 
 [node name="UVSlider" type="HSlider" parent="UV"]
 layout_mode = 2

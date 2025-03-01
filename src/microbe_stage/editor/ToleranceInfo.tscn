@@ -1,43 +1,65 @@
 [gd_scene load_steps=3 format=3 uid="uid://dccswprlmgtel"]
 
 [ext_resource type="Script" path="res://src/microbe_stage/editor/ToleranceInfo.cs" id="1_f6ri8"]
-[ext_resource type="Texture2D" uid="uid://c87pmuytu68hf" path="res://assets/textures/gui/bevel/MenuDownArrow.svg" id="2_uxhro"]
+[ext_resource type="Texture2D" uid="uid://db31f2ylf0beu" path="res://assets/textures/gui/bevel/markerOptimal.svg" id="2_dbghd"]
 
 [node name="ToleranceInfo" type="Control" node_paths=PackedStringArray("startValue", "endValue", "optimalValueMarker")]
-custom_minimum_size = Vector2(0, 20)
+custom_minimum_size = Vector2(0, 15)
 layout_mode = 3
 anchors_preset = 0
 offset_right = 356.0
-offset_bottom = 20.0
-size_flags_vertical = 4
+offset_bottom = 15.0
 script = ExtResource("1_f6ri8")
 startValue = NodePath("MinValue")
 endValue = NodePath("MaxValue")
-optimalValueMarker = NodePath("TextureRect")
+optimalValueMarker = NodePath("MarginContainer/Control/TextureRect")
+markerTexture = ExtResource("2_dbghd")
 
 [node name="MinValue" type="Label" parent="."]
 layout_mode = 1
-offset_right = 40.0
-offset_bottom = 23.0
-horizontal_alignment = 1
+anchors_preset = 2
+anchor_top = 1.0
+anchor_bottom = 1.0
+offset_top = -23.0
+offset_right = 26.0
+grow_vertical = 0
+theme_override_font_sizes/font_size = 15
 vertical_alignment = 1
 
 [node name="MaxValue" type="Label" parent="."]
 layout_mode = 1
-anchors_preset = 1
+anchors_preset = 3
 anchor_left = 1.0
+anchor_top = 1.0
 anchor_right = 1.0
-offset_left = -40.0
-offset_bottom = 23.0
+anchor_bottom = 1.0
+offset_left = -26.0
+offset_top = -23.0
 grow_horizontal = 0
-horizontal_alignment = 1
+grow_vertical = 0
+theme_override_font_sizes/font_size = 15
+horizontal_alignment = 2
 vertical_alignment = 1
 
-[node name="TextureRect" type="TextureRect" parent="."]
+[node name="MarginContainer" type="MarginContainer" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/margin_left = 9
+theme_override_constants/margin_right = 9
+
+[node name="Control" type="Control" parent="MarginContainer"]
+layout_mode = 2
+
+[node name="TextureRect" type="TextureRect" parent="MarginContainer/Control"]
 layout_mode = 1
 anchors_preset = -1
-offset_left = -10.0
+offset_left = -8.0
 offset_top = 10.0
-offset_right = 10.0
-offset_bottom = 30.0
-texture = ExtResource("2_uxhro")
+offset_right = 8.0
+offset_bottom = 26.0
+texture = ExtResource("2_dbghd")
+expand_mode = 1
