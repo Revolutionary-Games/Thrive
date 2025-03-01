@@ -6,7 +6,7 @@
 [ext_resource type="PackedScene" path="res://src/gui_common/CustomRichTextLabel.tscn" id="5"]
 [ext_resource type="Script" path="res://src/gui_common/dialogs/TutorialDialog.cs" id="7"]
 [ext_resource type="PackedScene" uid="uid://cy5puaxnv8e2a" path="res://src/gui_common/dialogs/TutorialDialog.tscn" id="8"]
-[ext_resource type="PackedScene" path="res://src/gui_common/dialogs/CustomWindow.tscn" id="9"]
+[ext_resource type="PackedScene" uid="uid://fvklx3e86qtn" path="res://src/gui_common/dialogs/CustomWindow.tscn" id="9"]
 [ext_resource type="FontVariation" uid="uid://cqork3l186w1c" path="res://assets/fonts/variants/Jura-Bold.tres" id="9_jkhed"]
 [ext_resource type="PackedScene" path="res://src/gui_common/AddWindowReorderingSupportToSiblings.tscn" id="10"]
 
@@ -556,7 +556,7 @@ ShowDelay = 0.7
 PreventsMouseCaptureWhileOpen = true
 
 [node name="NucleusTutorial" parent="." instance=ExtResource("9")]
-custom_minimum_size = Vector2(360, 390)
+custom_minimum_size = Vector2(360, 300)
 layout_mode = 1
 anchors_preset = 8
 anchor_left = 0.5
@@ -566,7 +566,7 @@ anchor_bottom = 0.5
 offset_left = -180.0
 offset_top = -187.5
 offset_right = 180.0
-offset_bottom = 202.5
+offset_bottom = 112.5
 grow_horizontal = 2
 grow_vertical = 2
 script = ExtResource("7")
@@ -589,7 +589,7 @@ size_flags_vertical = 3
 
 [node name="CustomRichTextLabel" parent="NucleusTutorial/ScrollContainer/VBoxContainer" instance=ExtResource("5")]
 layout_mode = 2
-theme_override_font_sizes/normal_font_size = 15
+theme_override_font_sizes/normal_font_size = 16
 fit_content = true
 
 [node name="Control" type="Control" parent="NucleusTutorial/ScrollContainer/VBoxContainer"]
