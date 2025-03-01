@@ -1,12 +1,13 @@
-[gd_scene load_steps=14 format=3 uid="uid://5kamud4sukbd"]
+[gd_scene load_steps=15 format=3 uid="uid://5kamud4sukbd"]
 
 [ext_resource type="Theme" uid="uid://b4cx0o110g4b6" path="res://src/gui_common/thrive_theme.tres" id="1_16mn0"]
 [ext_resource type="Script" path="res://src/microbe_stage/editor/TolerancesEditorSubComponent.cs" id="2_kqh2k"]
 [ext_resource type="LabelSettings" uid="uid://bnhcbmq3brx0s" path="res://src/gui_common/fonts/Title-SemiBold-Normal.tres" id="2_wyd8k"]
 [ext_resource type="LabelSettings" uid="uid://c5eurhimrps3n" path="res://src/gui_common/fonts/Body-Regular-Normal-Red.tres" id="3_b6a3m"]
 [ext_resource type="Texture2D" uid="uid://bsg6xcrlspkdt" path="res://assets/textures/gui/bevel/hSeparatorLeftSide.png" id="3_ri2xt"]
-[ext_resource type="LabelSettings" uid="uid://y1jk7coufvgg" path="res://src/gui_common/fonts/Body-Regular-Normal-Green.tres" id="4_8il6m"]
+[ext_resource type="LabelSettings" path="res://src/gui_common/fonts/Body-Regular-Normal-Green.tres" id="4_8il6m"]
 [ext_resource type="LabelSettings" uid="uid://bgokf8pxiak4n" path="res://src/gui_common/fonts/Title-SemiBold-Tiny.tres" id="5_ws7wf"]
+[ext_resource type="PackedScene" uid="uid://dccswprlmgtel" path="res://src/microbe_stage/editor/ToleranceInfo.tscn" id="7_sg3ru"]
 [ext_resource type="LabelSettings" uid="uid://o0tip7etc0x2" path="res://src/gui_common/fonts/Body-Bold-Small-Red.tres" id="8_mharw"]
 
 [sub_resource type="StyleBoxTexture" id="StyleBoxTexture_ftstq"]
@@ -104,7 +105,7 @@ _data = {
 "RESET": SubResource("Animation_fmah3")
 }
 
-[node name="TolerancesEditorSubComponent" type="VBoxContainer" node_paths=PackedStringArray("temperatureContainer", "pressureContainer", "oxygenResistanceContainer", "uvResistanceContainer", "invalidChangeAnimation", "temperatureSlider", "temperatureToleranceRangeSlider", "pressureMinSlider", "pressureMaxSlider", "oxygenResistanceSlider", "uvResistanceSlider", "temperatureMinLabel", "temperatureMaxLabel", "pressureMinLabel", "pressureMaxLabel", "oxygenResistanceLabel", "uvResistanceLabel")]
+[node name="TolerancesEditorSubComponent" type="VBoxContainer" node_paths=PackedStringArray("temperatureContainer", "pressureContainer", "oxygenResistanceContainer", "uvResistanceContainer", "invalidChangeAnimation", "temperatureSlider", "temperatureToleranceRangeSlider", "temperatureToleranceInfo", "pressureMinSlider", "pressureMaxSlider", "minPressureToleranceInfo", "maxPressureToleranceInfo", "oxygenResistanceSlider", "uvResistanceSlider", "temperatureMinLabel", "temperatureMaxLabel", "pressureMinLabel", "pressureMaxLabel", "oxygenResistanceLabel", "uvResistanceLabel")]
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
@@ -119,8 +120,11 @@ uvResistanceContainer = NodePath("UV")
 invalidChangeAnimation = NodePath("ErrorPlayer")
 temperatureSlider = NodePath("Temperature/TemperatureSlider")
 temperatureToleranceRangeSlider = NodePath("Temperature/HBoxContainer3/TemperatureRange")
+temperatureToleranceInfo = NodePath("Temperature/MarginContainer/TemperatureInfo")
 pressureMinSlider = NodePath("Pressure/PressureSliderMin")
 pressureMaxSlider = NodePath("Pressure/PressureSliderMax")
+minPressureToleranceInfo = NodePath("Pressure/MarginContainer/MinPressureInfo")
+maxPressureToleranceInfo = NodePath("Pressure/MarginContainer2/MaxPressureInfo")
 oxygenResistanceSlider = NodePath("Oxygen/OxgenSlider")
 uvResistanceSlider = NodePath("UV/UVSlider")
 temperatureMinLabel = NodePath("Temperature/HBoxContainer2/TemperatureMin")
@@ -182,6 +186,14 @@ horizontal_alignment = 2
 layout_mode = 2
 size_flags_horizontal = 3
 mouse_filter = 1
+
+[node name="MarginContainer" type="MarginContainer" parent="Temperature"]
+layout_mode = 2
+theme_override_constants/margin_left = 7
+theme_override_constants/margin_right = 7
+
+[node name="TemperatureInfo" parent="Temperature/MarginContainer" instance=ExtResource("7_sg3ru")]
+layout_mode = 2
 
 [node name="TemperatureSlider" type="HSlider" parent="Temperature"]
 layout_mode = 2
@@ -265,6 +277,14 @@ layout_mode = 2
 size_flags_horizontal = 3
 mouse_filter = 1
 
+[node name="MarginContainer" type="MarginContainer" parent="Pressure"]
+layout_mode = 2
+theme_override_constants/margin_left = 7
+theme_override_constants/margin_right = 7
+
+[node name="MinPressureInfo" parent="Pressure/MarginContainer" instance=ExtResource("7_sg3ru")]
+layout_mode = 2
+
 [node name="PressureSliderMin" type="HSlider" parent="Pressure"]
 layout_mode = 2
 mouse_filter = 1
@@ -274,6 +294,14 @@ value = 100000.0
 rounded = true
 scrollable = false
 tick_count = 8
+
+[node name="MarginContainer2" type="MarginContainer" parent="Pressure"]
+layout_mode = 2
+theme_override_constants/margin_left = 7
+theme_override_constants/margin_right = 7
+
+[node name="MaxPressureInfo" parent="Pressure/MarginContainer2" instance=ExtResource("7_sg3ru")]
+layout_mode = 2
 
 [node name="PressureSliderMax" type="HSlider" parent="Pressure"]
 layout_mode = 2

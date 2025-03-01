@@ -41,10 +41,19 @@ public partial class TolerancesEditorSubComponent : EditorComponentBase<ICellEdi
     private Slider temperatureToleranceRangeSlider = null!;
 
     [Export]
+    private ToleranceInfo temperatureToleranceInfo = null!;
+
+    [Export]
     private Slider pressureMinSlider = null!;
 
     [Export]
     private Slider pressureMaxSlider = null!;
+
+    [Export]
+    private ToleranceInfo minPressureToleranceInfo = null!;
+
+    [Export]
+    private ToleranceInfo maxPressureToleranceInfo = null!;
 
     [Export]
     private Slider oxygenResistanceSlider = null!;
@@ -659,6 +668,10 @@ public partial class TolerancesEditorSubComponent : EditorComponentBase<ICellEdi
         {
             uvResistanceLabel.LabelSettings = originalTemperatureFont;
         }
+
+        temperatureToleranceInfo.UpdateInfo(0, 100, patchTemperature / 100.0f);
+        minPressureToleranceInfo.UpdateInfo(0, 70000000, patchPressure / 70000000);
+        maxPressureToleranceInfo.UpdateInfo(0, 70000000, patchPressure / 70000000);
     }
 
     [DeserializedCallbackAllowed]
