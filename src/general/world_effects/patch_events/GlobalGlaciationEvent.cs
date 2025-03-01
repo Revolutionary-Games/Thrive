@@ -16,16 +16,23 @@ public class GlobalGlaciationEvent : IWorldEffect
     [JsonProperty]
     private readonly XoShiRo256starstar random;
 
-    private readonly bool hasEventAlreadyHappened = false;
+    [JsonProperty]
+    private readonly bool hasEventAlreadyHappened;
 
+    [JsonProperty]
     private readonly Dictionary<int, Dictionary<Compound, float>> previousEnvironmentalChanges = new();
+
+    [JsonProperty]
     private readonly Dictionary<int, string> previousBackground = new();
+
+    [JsonProperty]
     private readonly Dictionary<int, Color> previousLightColour = new();
 
     /// <summary>
     /// Tells how many generations the event will last. "-1" means that it hasn't started at all.
     /// "0" means it has finished, and it won't happen again
     /// </summary>
+    [JsonProperty]
     private int generationsLeft = -1;
 
     [JsonProperty]
@@ -117,7 +124,7 @@ public class GlobalGlaciationEvent : IWorldEffect
     {
         AdjustBackground(index, patch);
         AdjustEnvironment(index, patch);
-        AdjustChunks(patch);
+        AddIceChunks(patch);
         LogEvent(patch, totalTimePassed);
     }
 
@@ -151,7 +158,7 @@ public class GlobalGlaciationEvent : IWorldEffect
     /// <summary>
     /// Gets chunks from Iceshelf patch template and applies them to the patches.
     /// </summary>
-    private void AdjustChunks(Patch patch)
+    private void AddIceChunks(Patch patch)
     {
         var templateBiome = SimulationParameters.Instance.GetBiome(TemplateBiomeForIceChunks);
         foreach (var configuration in IceChunksConfigurations)
