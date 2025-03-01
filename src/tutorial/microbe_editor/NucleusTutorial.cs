@@ -1,7 +1,6 @@
 namespace Tutorial;
 
 using System;
-using Godot;
 using Newtonsoft.Json;
 
 /// <summary>
@@ -39,19 +38,14 @@ public class NucleusTutorial : TutorialPhase
 
                 CanTrigger = EditorEntryCount >= TriggersOnNthEditorSession;
 
-                if (!HasBeenShown && CanTrigger)
-                {
-                    Show();
-                }
-
                 break;
             }
 
             case TutorialEventType.MicrobeEditorTabChanged:
             {
-                if (ShownCurrently)
+                if (!HasBeenShown && CanTrigger && ((StringEventArgs)args).Data == cellEditorTab)
                 {
-                    Hide();
+                    Show();
                 }
 
                 break;

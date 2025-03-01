@@ -555,9 +555,54 @@ Description = "EDITOR_TUTORIAL_EARLY_GOAL"
 ShowDelay = 0.7
 PreventsMouseCaptureWhileOpen = true
 
-[node name="NucleusTutorial" parent="." instance=ExtResource("8")]
+[node name="NucleusTutorial" parent="." instance=ExtResource("9")]
+custom_minimum_size = Vector2(360, 390)
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -180.0
+offset_top = -187.5
+offset_right = 180.0
+offset_bottom = 202.5
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("7")
+LabelPath = NodePath("ScrollContainer/VBoxContainer/CustomRichTextLabel")
 Description = "TUTORIAL_MICROBE_EDITOR_NUCLEUS"
-PreventsMouseCaptureWhileOpen = true
+DescriptionForController = ""
+ShowDelay = 0.7
+WindowTitle = "TUTORIAL"
+
+[node name="ScrollContainer" type="ScrollContainer" parent="NucleusTutorial"]
+custom_minimum_size = Vector2(230, 230)
+layout_mode = 0
+anchor_right = 1.0
+anchor_bottom = 1.0
+
+[node name="VBoxContainer" type="VBoxContainer" parent="NucleusTutorial/ScrollContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+
+[node name="CustomRichTextLabel" parent="NucleusTutorial/ScrollContainer/VBoxContainer" instance=ExtResource("5")]
+layout_mode = 2
+theme_override_font_sizes/normal_font_size = 15
+fit_content = true
+
+[node name="Control" type="Control" parent="NucleusTutorial/ScrollContainer/VBoxContainer"]
+layout_mode = 2
+size_flags_vertical = 3
+
+[node name="Button" type="Button" parent="NucleusTutorial/ScrollContainer/VBoxContainer"]
+custom_minimum_size = Vector2(110, 0)
+layout_mode = 2
+size_flags_horizontal = 4
+theme_override_fonts/font = ExtResource("9_jkhed")
+theme_override_font_sizes/font_size = 18
+text = "GOT_IT"
 
 [connection signal="hidden" from="EditorEntryReport" to="." method="OnSpecificCloseClicked" binds= ["MicrobeEditorReport"]]
 [connection signal="hidden" from="PatchMapTutorial" to="." method="OnSpecificCloseClicked" binds= ["PatchMap"]]
@@ -583,3 +628,4 @@ PreventsMouseCaptureWhileOpen = true
 [connection signal="hidden" from="OpenTolerancesTabTutorial" to="." method="OnSpecificCloseClicked" binds= ["OpenTolerancesTabTutorial"]]
 [connection signal="hidden" from="EarlyGoalTutorial" to="." method="OnSpecificCloseClicked" binds= ["EarlyGameGoalTutorial"]]
 [connection signal="hidden" from="NucleusTutorial" to="." method="OnSpecificCloseClicked" binds= ["NucleusTutorial"]]
+[connection signal="pressed" from="NucleusTutorial/ScrollContainer/VBoxContainer/Button" to="." method="OnSpecificCloseClicked" binds= ["NucleusTutorial"]]
