@@ -690,6 +690,11 @@ public partial class TolerancesEditorSubComponent : EditorComponentBase<ICellEdi
         string zeroPercents = percentageFormat.FormatSafe(0);
         string hundredPercents = percentageFormat.FormatSafe(100);
 
+        // Don't show markers when they are at 0% as it looks confusing
+        oxygenToleranceInfo.ShowMarker = requiredOxygenResistance > MathUtils.EPSILON;
+        uvToleranceInfo.ShowMarker = requiredUVResistance > MathUtils.EPSILON;
+
+
         oxygenToleranceInfo.UpdateBoundaryLabels(zeroPercents, hundredPercents);
         oxygenToleranceInfo.UpdateMarker(requiredOxygenResistance);
 

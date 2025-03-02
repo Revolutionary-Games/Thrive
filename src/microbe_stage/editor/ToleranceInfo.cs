@@ -20,6 +20,22 @@ public partial class ToleranceInfo : Control
     private Texture2D markerTexture = null!;
 #pragma warning restore CA2213
 
+    private bool showMarker = true;
+
+    public bool ShowMarker
+    {
+        get => showMarker;
+        set
+        {
+            if (value == showMarker)
+                return;
+
+            showMarker = value;
+
+            optimalValueMarker.Visible = value;
+        }
+    }
+
     public override void _Ready()
     {
         base._Ready();

@@ -106,7 +106,7 @@ _data = {
 "RESET": SubResource("Animation_fmah3")
 }
 
-[node name="TolerancesEditorSubComponent" type="VBoxContainer" node_paths=PackedStringArray("temperatureContainer", "pressureContainer", "oxygenResistanceContainer", "uvResistanceContainer", "invalidChangeAnimation", "temperatureSlider", "temperatureToleranceRangeSlider", "temperatureToleranceInfo", "pressureMinSlider", "pressureMaxSlider", "minPressureToleranceInfo", "maxPressureToleranceInfo", "oxygenResistanceSlider", "oxygenToleranceInfo", "uvResistanceSlider", "uvToleranceInfo", "temperatureMinLabel", "temperatureMaxLabel", "pressureMinLabel", "pressureMaxLabel", "oxygenResistanceLabel", "uvResistanceLabel")]
+[node name="TolerancesEditorSubComponent" type="VBoxContainer" node_paths=PackedStringArray("temperatureContainer", "pressureContainer", "oxygenResistanceContainer", "uvResistanceContainer", "invalidChangeAnimation", "temperatureSlider", "temperatureToleranceRangeSlider", "pressureMinSlider", "pressureMaxSlider", "oxygenResistanceSlider", "uvResistanceSlider", "temperatureMinLabel", "temperatureMaxLabel", "pressureMinLabel", "pressureMaxLabel", "oxygenResistanceLabel", "uvResistanceLabel", "temperatureToleranceInfo", "minPressureToleranceInfo", "maxPressureToleranceInfo", "oxygenToleranceInfo", "uvToleranceInfo")]
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
@@ -121,21 +121,21 @@ uvResistanceContainer = NodePath("UV")
 invalidChangeAnimation = NodePath("ErrorPlayer")
 temperatureSlider = NodePath("Temperature/TemperatureSlider")
 temperatureToleranceRangeSlider = NodePath("Temperature/HBoxContainer3/TemperatureRange")
-temperatureToleranceInfo = NodePath("Temperature/TemperatureInfo")
 pressureMinSlider = NodePath("Pressure/PressureSliderMin")
 pressureMaxSlider = NodePath("Pressure/PressureSliderMax")
-minPressureToleranceInfo = NodePath("Pressure/MinPressureInfo")
-maxPressureToleranceInfo = NodePath("Pressure/MaxPressureInfo")
 oxygenResistanceSlider = NodePath("Oxygen/OxgenSlider")
-oxygenToleranceInfo = NodePath("Oxygen/OxygenInfo")
 uvResistanceSlider = NodePath("UV/UVSlider")
-uvToleranceInfo = NodePath("UV/UVInfo")
 temperatureMinLabel = NodePath("Temperature/HBoxContainer2/TemperatureMin")
 temperatureMaxLabel = NodePath("Temperature/HBoxContainer2/TemperatureMax")
 pressureMinLabel = NodePath("Pressure/HBoxContainer2/PressureMin")
 pressureMaxLabel = NodePath("Pressure/HBoxContainer2/PressureMax")
 oxygenResistanceLabel = NodePath("Oxygen/HBoxContainer2/OxygenValue")
 uvResistanceLabel = NodePath("UV/HBoxContainer2/UVProtectionValue")
+temperatureToleranceInfo = NodePath("Temperature/TemperatureInfo")
+minPressureToleranceInfo = NodePath("Pressure/MinPressureInfo")
+maxPressureToleranceInfo = NodePath("Pressure/MaxPressureInfo")
+oxygenToleranceInfo = NodePath("Oxygen/OxygenInfo")
+uvToleranceInfo = NodePath("UV/UVInfo")
 badValueFont = ExtResource("3_b6a3m")
 perfectValueFont = ExtResource("4_8il6m")
 
