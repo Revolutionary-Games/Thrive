@@ -9,6 +9,7 @@ public class DummyWorldSimulation : IWorldSimulation
 {
     public World EntitySystem { get; } = new();
     public bool Processing { get; set; }
+    public float WorldTimeScale { get; set; } = 1;
 
     public void ResolveNodeReferences()
     {

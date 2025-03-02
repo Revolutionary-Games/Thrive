@@ -21,16 +21,20 @@ public partial class CompoundListBox : HBoxContainer
     public string PartSeparator { get; set; } = " + ";
 
     /// <summary>
-    ///   If true positive (>= 0) numbers are prefixed with a plus.
+    ///   If true, positive (>= 0) numbers are prefixed with a plus.
     ///   Needs to be set before UpdateCompounds is called
     /// </summary>
     public bool PrefixPositiveWithPlus { get; set; }
 
     /// <summary>
-    ///   If true  numbers are shown as percentages.
-    ///   Needs to be set before UpdateCompounds is called
+    ///   If true, numbers are shown as percentages. Needs to be set before UpdateCompounds is called
     /// </summary>
     public bool UsePercentageDisplay { get; set; }
+
+    /// <summary>
+    ///   If true, ensures small values are not just rounded to 0
+    /// </summary>
+    public bool MakeSureSmallValuesAreShown { get; set; }
 
     /// <summary>
     ///   Updates the shown compounds
@@ -69,6 +73,7 @@ public partial class CompoundListBox : HBoxContainer
             Compound = forCompound,
             PrefixPositiveWithPlus = PrefixPositiveWithPlus,
             UsePercentageDisplay = UsePercentageDisplay,
+            ShowEvenSmallValues = MakeSureSmallValuesAreShown,
         };
         return compoundDisplay;
     }

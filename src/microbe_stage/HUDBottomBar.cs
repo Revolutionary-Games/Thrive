@@ -6,19 +6,19 @@
 public partial class HUDBottomBar : HBoxContainer
 {
     /// <summary>
-    ///   When false the compound and environment toggles are hidden
+    ///   When false, the compound and environment toggles are hidden
     /// </summary>
     [Export]
     public bool ShowCompoundPanelToggles = true;
 
     /// <summary>
-    ///   When false the suicide button is hidden
+    ///   When false, the suicide button is hidden
     /// </summary>
     [Export]
     public bool ShowSuicideButton = true;
 
     /// <summary>
-    ///   When false the microbe processes button is hidden
+    ///   When false, the microbe processes button is hidden
     /// </summary>
     [Export]
     public bool ShowProcessesButton = true;
@@ -44,6 +44,9 @@ public partial class HUDBottomBar : HBoxContainer
     [Export]
     private TextureButton heatButton = null!;
 
+    [Export]
+    private BaseButton? speedButton;
+
     private TextureButton? compoundsButton;
     private TextureButton? environmentButton;
     private TextureButton? processPanelButton;
@@ -53,6 +56,9 @@ public partial class HUDBottomBar : HBoxContainer
     private bool compoundsPressed = true;
     private bool environmentPressed = true;
     private bool processPanelPressed;
+
+    private bool speedModePressed;
+    private bool speedModeAvailable = true;
 
     [Signal]
     public delegate void OnMenuPressedEventHandler();
@@ -80,6 +86,9 @@ public partial class HUDBottomBar : HBoxContainer
 
     [Signal]
     public delegate void OnHeatToggledEventHandler(bool expanded);
+
+    [Signal]
+    public delegate void OnSpeedModeToggledEventHandler(bool enabled);
 
     public bool Paused
     {
@@ -139,6 +148,31 @@ public partial class HUDBottomBar : HBoxContainer
         }
     }
 
+    [Export]
+    public bool SpeedModeAvailable
+    {
+        get => speedModeAvailable;
+        set
+        {
+            speedModeAvailable = value;
+
+            UpdateSpeedButton();
+        }
+    }
+
+    public bool SpeedModePressed
+    {
+        get => speedModePressed;
+        set
+        {
+            if (value == speedModePressed)
+                return;
+
+            speedModePressed = value;
+            UpdateSpeedButton();
+        }
+    }
+
     public override void _Ready()
     {
         pauseButton = GetNode<PlayButton>(PauseButtonPath);
@@ -151,6 +185,7 @@ public partial class HUDBottomBar : HBoxContainer
         UpdateCompoundButton();
         UpdateEnvironmentButton();
         UpdateProcessPanelButton();
+        UpdateSpeedButton();
 
         UpdateButtonVisibility();
     }
@@ -256,6 +291,22 @@ public partial class HUDBottomBar : HBoxContainer
             return;
 
         processPanelButton.ButtonPressed = ProcessesPressed;
+    }
+
+    private void SpeedButtonPressed()
+    {
+        GUICommon.Instance.PlayButtonPressSound();
+        SpeedModePressed = !SpeedModePressed;
+        EmitSignal(SignalName.OnSpeedModeToggled, SpeedModePressed);
+    }
+
+    private void UpdateSpeedButton()
+    {
+        if (speedButton == null)
+            return;
+
+        speedButton.ButtonPressed = SpeedModePressed;
+        speedButton.Visible = speedModeAvailable;
     }
 
     private void UpdateButtonVisibility()

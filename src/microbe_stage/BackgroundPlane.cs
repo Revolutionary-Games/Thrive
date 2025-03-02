@@ -87,6 +87,7 @@ public partial class BackgroundPlane : Node3D
         Settings.Instance.MicrobeDistortionStrength.OnChanged += OnBackgroundDistortionChanged;
 
         Settings.Instance.MicrobeBackgroundBlurStrength.OnChanged += OnBackgroundBlurStrengthChanged;
+        Settings.Instance.MicrobeBackgroundBlurLowQuality.OnChanged += UpdateBlurQuality;
     }
 
     public override void _ExitTree()
@@ -97,6 +98,7 @@ public partial class BackgroundPlane : Node3D
         Settings.Instance.MicrobeDistortionStrength.OnChanged -= OnBackgroundDistortionChanged;
 
         Settings.Instance.MicrobeBackgroundBlurStrength.OnChanged -= OnBackgroundBlurStrengthChanged;
+        Settings.Instance.MicrobeBackgroundBlurLowQuality.OnChanged -= UpdateBlurQuality;
     }
 
     public override void _Process(double delta)
@@ -168,13 +170,28 @@ public partial class BackgroundPlane : Node3D
 
     private void UpdateSubViewportResolution()
     {
-        var newSize = GetWindow().Size;
+        Vector2I newSize;
+
+        if (Settings.Instance.MicrobeBackgroundBlurLowQuality)
+        {
+            newSize = new Vector2I(1280, 720);
+        }
+        else
+        {
+            newSize = GetWindow().Size;
+        }
+
         if (previousWindowSize != newSize)
         {
             previousWindowSize = newSize;
             backgroundSubViewport.Size = newSize;
             partialBlurSubViewport.Size = newSize;
         }
+    }
+
+    private void UpdateBlurQuality(bool isLowQuality)
+    {
+        UpdateSubViewportResolution();
     }
 
     private void SetWorldPosition(Vector2 position)

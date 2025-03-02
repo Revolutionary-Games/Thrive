@@ -129,6 +129,11 @@ public class Settings
     public SettingValue<float> MicrobeBackgroundBlurStrength { get; private set; } = new(2.0f);
 
     /// <summary>
+    ///   Sets whether the blur will use a lower resolution.
+    /// </summary>
+    public SettingValue<bool> MicrobeBackgroundBlurLowQuality { get; private set; } = new(false);
+
+    /// <summary>
     ///   Type of controller button prompts to show
     /// </summary>
     [JsonProperty]

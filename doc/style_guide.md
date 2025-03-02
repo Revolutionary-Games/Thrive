@@ -15,11 +15,43 @@ ignore directive, should only be done in special cases. If some rule
 is especially troublesome it can be discussed whether it can be
 disabled entirely.
 
+Before the specific rules, here are a few special considerations as
+Thrive is a *game* and not just general software:
+
+- Runtime cost of code that runs each frame (or very often) is very
+  important. And often many patterns that are faster but less readable
+  need to be used.
+- Memory allocations should be avoided whenever possible. GUI and
+  editor code is more relaxed regarding this, but code running each
+  frame during the game should not allocate memory. Instead,
+  preallocated lists and other data structures should be created and
+  kept around across frames to avoid allocating more memory. More info
+  on memory allocations is in the special section about them in this
+  document.
+- Nullable *value* types should be avoided as they require boxing
+  allocations in order to create them. Some persistent use of them is
+  fine as that spreads out the memory allocations and thus doesn't
+  generate as much garbage collector pressure. But in general stuff
+  like `Vector3?` should be avoided. Instead, use a normal variable and
+  a bool indicating if the value is valid.
+- LINQ usage needs to be avoided as it can be very hard to avoid extra
+  memory allocations or lambda allocations with variable
+  captures. There's a [recommended
+  plugin](https://plugins.jetbrains.com/plugin/9223-heap-allocations-viewer)
+  for Rider to highlight all memory allocations.
+- Foreach loops that allocate enumerators should be avoided, and
+  instead manual loops used whenever the compiler optimization for
+  `foreach` doesn't work. See the Rider plugin to easily know when
+  that is the case.
+
+Note that the above doesn't apply to the extra code components that
+aren't primarily used by the Thrive game project.
+
 Code style rules
 ----------------
 
 - Indentation is 4 spaces. Continued statements are indented one level
-  higher.
+  higher (per level of scope as JetBrains indents).
 
 - Names (that includes variables, functions and classes) should be
   descriptive. Avoid abbreviations. Do not shorten variable names just
@@ -80,8 +112,8 @@ Code style rules
   namespace all using statements should be within the namespace.
 
 - Build your code with warnings enabled to see things StyleCop
-  complains about. If you don't automatic checks on your code will
-  fail.
+  complains about. If you don't, automatic checks on your pull request
+  will fail.
 
 - Due to StyleCop not having rules for everything, there are
   additional rules implemented by a custom script (`dotnet run
@@ -89,14 +121,16 @@ Code style rules
   make sure there are no issues in your code. This script can be
   enabled to run automatically with pre-commit.
 
-- All classes and their public and protected members should be
-  documented by XML comments. If the function's purpose is clear from
-  the name, then its documentation can be omitted. If there is a
-  comment on a single construct (class, method etc.) it must be an XML
-  comment. All XML comments must begin with a `summary` section to
-  explain what something is, and after that what it is used for. If
-  the usage explanation is long or there are extra information to
-  include, put those into a paragraph inside a `remarks` section.
+- All classes and their public members should be documented by XML
+  comments. If the function's purpose is clear from the name, then its
+  documentation can be omitted. Documenting protected and private
+  members is more optional but if their purpose or usage by derived
+  classes isn't immediately obvious, they should be documented. If
+  there is a comment on a single construct (class, method etc.) it
+  must be an XML comment. All XML comments must begin with a `summary`
+  section to explain what something is, and after that what it is used
+  for. If the usage explanation is long or there are extra information
+  to include, put those into a paragraph inside a `remarks` section.
 
 - In XML comments each nesting level is intended 2 spaces more than
   the previous level.
@@ -266,7 +300,10 @@ Code style rules
   namespace (check the documentation on the types for which generators
   are suitable for what kinds of numeric types). General advice is to
   use 128-bit generators for 32-bit types (`int`, `float`) and 256-bit
-  generators for 64-bit types (`long`, `double`).
+  generators for 64-bit types (`long`, `double`). Note that `Xoshiro`
+  randoms can still be passed around as `Random` references but no
+  direct creations of `System.Random` class should be done for
+  gameplay code or where state might need to be saved.
 
 - Unrelated uses should not share the same variable. Instead they
   should locally define their own variable instance.
@@ -289,7 +326,8 @@ Code style rules
 - Prefer `List` and other concrete containers over `IList` and similar
   interfaces. `IList` should be used only in very special cases that
   require it. In many cases `IEnumerable` is the preferred type to use
-  to not place constraints on other code unnecessarily.
+  to not place constraints on other code unnecessarily. Concrete lists
+  allow `foreach` usage without memory allocations.
 
 - Methods should not use `=> style` bodies, properties when they are
   short should use that style bodies.
@@ -304,7 +342,9 @@ Code style rules
 
 - Prefer to write out code rather than using very complex LINQ
   chains. Use complex LINQ sparingly. If LINQ would need many nested
-  statements in lambdas, normal code should be used instead
+  statements in lambdas, normal code should be used instead. When
+  using LINQ take extreme care related to memory allocations if the
+  method using LINQ is called often.
 
 - Prefer to use single letter variable names in LINQ statements, when
   they are clear enough. Don't always use x or another generic
