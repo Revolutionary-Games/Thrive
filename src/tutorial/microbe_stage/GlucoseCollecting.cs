@@ -24,11 +24,18 @@ public class GlucoseCollecting : TutorialPhase
         CanTrigger = false;
     }
 
+    [JsonProperty]
+    public HUDBottomBar HUDBottomBar { get; set; } = new();
+
+    [JsonProperty]
+    public CompoundPanels CompoundPanels { get; set; } = new();
+
     public override string ClosedByName => "GlucoseCollecting";
 
     public override void ApplyGUIState(MicrobeTutorialGUI gui)
     {
         gui.GlucoseTutorialVisible = ShownCurrently;
+        
     }
 
     public override void Hide()
@@ -70,7 +77,6 @@ public class GlucoseCollecting : TutorialPhase
             {
                 var data = (EntityPositionEventArgs)args;
                 var compounds = ((EntityPositionEventArgs)args).Compounds;
-                var hud = ((EntityPositionEventArgs)args).HUD;
 
                 if (!HasBeenShown && data.EntityPosition.HasValue && CanTrigger && !overallState.TutorialActive())
                 {
@@ -78,7 +84,8 @@ public class GlucoseCollecting : TutorialPhase
                     compounds.TakeCompound(Compound.Glucose, compounds.GetCapacityForCompound(Compound.Glucose));
                     compounds.AddCompound(Compound.Glucose, 0.2f);
 
-                    hud.ShowCompoundPanel();
+                    CompoundPanels.ShowPanel = true;
+                    HUDBottomBar.CompoundsPressed = true;
 
                     nextTutorial = overallState.MicrobeReproduction;
                     Show();

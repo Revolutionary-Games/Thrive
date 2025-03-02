@@ -311,7 +311,7 @@ public partial class MicrobeStage : CreatureStageBase<Entity, MicrobeWorldSimula
                 {
                     TutorialState.SendEvent(TutorialEventType.MicrobeCompoundsNearPlayer,
                         new EntityPositionEventArgs(Clouds.FindCompoundNearPoint(playerPosition.Position,
-                            Compound.Glucose), Player.Get<CompoundStorage>().Compounds, HUD),
+                            Compound.Glucose), Player.Get<CompoundStorage>().Compounds),
                         this);
                 }
 
@@ -327,7 +327,7 @@ public partial class MicrobeStage : CreatureStageBase<Entity, MicrobeWorldSimula
                         WorldSimulation);
 
                     TutorialState.SendEvent(TutorialEventType.MicrobeChunksNearPlayer,
-                        new EntityPositionEventArgs(position, Player.Get<CompoundStorage>().Compounds, HUD), this);
+                        new EntityPositionEventArgs(position, Player.Get<CompoundStorage>().Compounds), this);
                 }
 
                 guidancePosition = TutorialState.GetPlayerGuidancePosition();
@@ -872,7 +872,7 @@ public partial class MicrobeStage : CreatureStageBase<Entity, MicrobeWorldSimula
 
                 if (patchSunlight > Constants.DAY_NIGHT_TUTORIAL_LIGHT_MIN)
                 {
-                    TutorialState.SendEvent(TutorialEventType.MicrobePlayerEnterSunlightPatch, new HUDEventArgs(HUD),
+                    TutorialState.SendEvent(TutorialEventType.MicrobePlayerEnterSunlightPatch, EventArgs.Empty,
                         this);
                 }
             }
@@ -949,7 +949,7 @@ public partial class MicrobeStage : CreatureStageBase<Entity, MicrobeWorldSimula
         WorldSimulation.InitForCurrentGame(CurrentGame!);
 
         tutorialGUI.EventReceiver = TutorialState;
-        HUD.SendEditorButtonToTutorial(TutorialState);
+        HUD.SendNessicaryGUIElementsToTutorial(TutorialState);
 
         ProceduralDataCache.Instance.OnEnterState(MainGameState.MicrobeStage);
 

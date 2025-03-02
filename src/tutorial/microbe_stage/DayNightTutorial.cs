@@ -1,5 +1,6 @@
 ﻿namespace Tutorial;
 
+using Newtonsoft.Json;
 using System;
 
 /// <summary>
@@ -7,6 +8,12 @@ using System;
 /// </summary>
 public class DayNightTutorial : TutorialPhase
 {
+    [JsonProperty]
+    public HUDBottomBar HUDBottomBar { get; set; } = new();
+
+    [JsonProperty]
+    public EnvironmentPanel EnvironmentPanel { get; set; } = new();
+
     public override string ClosedByName => "DayNightTutorial";
 
     public override void ApplyGUIState(MicrobeTutorialGUI gui)
@@ -21,11 +28,10 @@ public class DayNightTutorial : TutorialPhase
         {
             case TutorialEventType.MicrobePlayerEnterSunlightPatch:
             {
-                MicrobeHUD hud = ((HUDEventArgs)args).HUD;
-
                 if (!HasBeenShown && CanTrigger && !overallState.TutorialActive())
                 {
-                    hud.ShowEnvironmentPanel();
+                    EnvironmentPanel.ShowPanel = true;
+                    HUDBottomBar.EnvironmentPressed = true;
                     Show();
                     return true;
                 }

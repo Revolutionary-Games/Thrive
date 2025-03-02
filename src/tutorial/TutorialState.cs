@@ -33,7 +33,6 @@ public class TutorialState : ITutorialInput, ISaveLoadable
     public bool DisableShowingAlreadySeenTutorials { get; private set; }
 
     // Tutorial states
-
     [JsonProperty]
     public MicrobeStageWelcome MicrobeStageWelcome { get; private set; } = new();
 
