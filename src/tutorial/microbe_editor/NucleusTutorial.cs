@@ -41,6 +41,11 @@ public class NucleusTutorial : TutorialPhase
 
                 if (isNucleus)
                 {
+                    if (ShownCurrently)
+                    {
+                        Hide();
+                    }
+
                     hasNucleus = true;
                 }
 
