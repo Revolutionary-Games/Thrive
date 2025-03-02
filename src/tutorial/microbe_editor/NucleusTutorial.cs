@@ -63,6 +63,22 @@ public class NucleusTutorial : TutorialPhase
                 break;
             }
 
+            case TutorialEventType.MicrobeEditorRedo:
+            {
+                var eventArgs = (RedoEventArgs)args;
+                var combinedAction = (CombinedEditorAction)eventArgs.Action;
+
+                foreach (var data in combinedAction.Data)
+                {
+                    if (data is OrganellePlacementActionData { PlacedHex.ReadableName: "Nucleus" })
+                    {
+                        hasNucleus = true;
+                    }
+                }
+
+                break;
+            }
+
             case TutorialEventType.EnteredMicrobeEditor:
             {
                 ++EditorEntryCount;
