@@ -464,13 +464,12 @@ public partial class CreatureStageHUDBase<TStage> : HUDWithPausing, ICreatureSta
     public void SendNessicaryGUIElementsToTutorial(TutorialState tutorialState)
     {
         tutorialState.MicrobePressEditorButton.PressEditorButtonControl = editorButton;
-        
+
         tutorialState.GlucoseCollecting.CompoundPanels = compoundsPanel;
         tutorialState.GlucoseCollecting.HUDBottomBar = bottomLeftBar;
 
-
-        //tutorialState.EnvironmentPanel = environmentPanel;
-        //tutorialState.HUDBottomBar = bottomLeftBar;
+        tutorialState.DayNightTutorial.EnvironmentPanel = environmentPanel;
+        tutorialState.DayNightTutorial.HUDBottomBar = bottomLeftBar;
     }
 
     /// <summary>
