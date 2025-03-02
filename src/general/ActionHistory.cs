@@ -14,7 +14,6 @@ public class ActionHistory<T>
     ///   marks the last action that has been done (not undone, but
     ///   possibly redone), is 0 if there is none.
     /// </summary>
-
     [JsonProperty]
     public List<T> Actions { get; private set; } = new();
 

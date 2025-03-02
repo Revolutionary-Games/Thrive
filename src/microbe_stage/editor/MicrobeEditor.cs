@@ -261,11 +261,6 @@ public partial class MicrobeEditor : EditorBase<EditorAction, MicrobeStage>, IEd
         return GameProperties.StartNewMicrobeGame(new WorldGenerationSettings());
     }
 
-    protected override void OnUndoPerformed()
-    {
-        base.OnUndoPerformed();
-    }
-
     protected override void OnRedoPerformed()
     {
         base.OnRedoPerformed();
