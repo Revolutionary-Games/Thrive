@@ -12,7 +12,7 @@ public class NucleusTutorial : TutorialPhase
 
     private readonly string cellEditorTab = EditorTab.CellEditor.ToString();
 
-    private bool hasNucleus = false;
+    private bool hasNucleus;
 
     public NucleusTutorial()
     {
