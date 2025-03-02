@@ -62,10 +62,10 @@ public class MicrobeMovementEventArgs : TutorialEventArgs
 
 public class EntityPositionEventArgs : TutorialEventArgs
 {
-    public EntityPositionEventArgs(Vector3? position, CompoundBag compounds)
+    public EntityPositionEventArgs(Vector3? position, CompoundBag playerCompounds)
     {
         EntityPosition = position;
-        Compounds = compounds;
+        Compounds = playerCompounds;
     }
 
     public Vector3? EntityPosition { get; }
