@@ -1,6 +1,7 @@
 namespace Tutorial;
 
 using System;
+using Godot;
 using Newtonsoft.Json;
 
 /// <summary>
@@ -8,7 +9,7 @@ using Newtonsoft.Json;
 /// </summary>
 public class NucleusTutorial : TutorialPhase
 {
-    private const int TriggersOnNthEditorSession = 3;
+    private const int TriggersOnNthEditorSession = 1;
 
     private readonly string cellEditorTab = EditorTab.CellEditor.ToString();
 
@@ -32,6 +33,19 @@ public class NucleusTutorial : TutorialPhase
     {
         switch (eventType)
         {
+            case TutorialEventType.MicrobeEditorOrganellePlaced:
+            {
+                var eventArgs = (OrganellePlacedEventArgs)args;
+                var isNucleus = eventArgs.Definition.Name == "Nucleus";
+
+                if (isNucleus)
+                {
+                    Inhibit();
+                }
+
+                break;
+            }
+
             case TutorialEventType.EnteredMicrobeEditor:
             {
                 ++EditorEntryCount;
@@ -46,6 +60,11 @@ public class NucleusTutorial : TutorialPhase
                 if (!HasBeenShown && CanTrigger && ((StringEventArgs)args).Data == cellEditorTab)
                 {
                     Show();
+                }
+
+                if (ShownCurrently)
+                {
+                    Hide();
                 }
 
                 break;
