@@ -24,7 +24,6 @@ public class TutorialState : ITutorialInput
     public bool Enabled { get; set; } = Settings.Instance.TutorialsEnabled;
 
     // Tutorial states
-
     [JsonProperty]
     public MicrobeStageWelcome MicrobeStageWelcome { get; private set; } = new();
 
