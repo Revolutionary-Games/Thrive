@@ -1,7 +1,6 @@
 ﻿namespace Tutorial;
 
 using System;
-using Godot;
 using Newtonsoft.Json;
 
 /// <summary>
@@ -55,12 +54,7 @@ public class NucleusTutorial : TutorialPhase
 
                 foreach (var data in combinedAction.Data)
                 {
-                    if (data is not OrganellePlacementActionData)
-                    {
-                        break;
-                    }
-
-                    if (((OrganellePlacementActionData)data).PlacedHex.ReadableName == "Nucleus")
+                    if (data is OrganellePlacementActionData { PlacedHex.ReadableName: "Nucleus" })
                     {
                         hasNucleus = false;
                     }
@@ -68,8 +62,6 @@ public class NucleusTutorial : TutorialPhase
 
                 break;
             }
-
-
 
             case TutorialEventType.EnteredMicrobeEditor:
             {
@@ -80,8 +72,6 @@ public class NucleusTutorial : TutorialPhase
                 break;
             }
 
-
-
             case TutorialEventType.MicrobeEditorTabChanged:
             {
                 if (!HasBeenShown && CanTrigger && ((StringEventArgs)args).Data == cellEditorTab && !hasNucleus)
@@ -89,7 +79,7 @@ public class NucleusTutorial : TutorialPhase
                     Show();
                 }
 
-                if (ShownCurrently && ((StringEventArgs)args).Data != cellEditorTab || hasNucleus)
+                if ((ShownCurrently && ((StringEventArgs)args).Data != cellEditorTab) || hasNucleus)
                 {
                     Hide();
                 }
