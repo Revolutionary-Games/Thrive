@@ -134,7 +134,7 @@ public enum TutorialEventType
     MicrobeEditorUndo,
 
     /// <summary>
-    ///   Player redid an action in the editor
+    ///   Player redid an action in the editor, args is <see cref="RedoEventArgs"/>
     /// </summary>
     MicrobeEditorRedo,
 

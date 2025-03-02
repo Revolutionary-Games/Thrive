@@ -164,6 +164,16 @@ public class UndoEventArgs : TutorialEventArgs
     public ReversibleAction Action { get; }
 }
 
+public class RedoEventArgs : TutorialEventArgs
+{
+    public RedoEventArgs(ReversibleAction action)
+    {
+        Action = action;
+    }
+
+    public ReversibleAction Action { get; }
+}
+
 public class GameWorldEventArgs : TutorialEventArgs
 {
     public GameWorldEventArgs(GameWorld world)

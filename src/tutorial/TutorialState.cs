@@ -392,6 +392,7 @@ public class TutorialState : ITutorialInput
     {
         return new List<TutorialPhase>
         {
+            NucleusTutorial,
             MicrobeStageWelcome,
             MicrobeMovement,
             MicrobeMovementExplanation,
@@ -426,7 +427,6 @@ public class TutorialState : ITutorialInput
             OpenTolerancesTabTutorial,
             TolerancesTabTutorial,
             EarlyGameGoalTutorial,
-            NucleusTutorial,
         };
     }
 }

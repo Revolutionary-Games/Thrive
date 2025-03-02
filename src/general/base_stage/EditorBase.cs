@@ -374,6 +374,8 @@ public partial class EditorBase<TAction, TStage> : NodeWithInput, IEditor, ILoad
 
         if (history.Redo())
         {
+            TutorialState.SendEvent(TutorialEventType.MicrobeEditorRedo,
+                new RedoEventArgs(history.Actions[history.ActionIndex + 1]), this);
             OnRedoPerformed();
         }
 
