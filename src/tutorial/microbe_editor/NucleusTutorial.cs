@@ -9,7 +9,7 @@ using Newtonsoft.Json;
 /// </summary>
 public class NucleusTutorial : TutorialPhase
 {
-    private const int TriggersOnNthEditorSession = 1;
+    private const int TriggersOnNthEditorSession = 11;
 
     private readonly string cellEditorTab = EditorTab.CellEditor.ToString();
 
@@ -62,7 +62,7 @@ public class NucleusTutorial : TutorialPhase
                     Show();
                 }
 
-                if (ShownCurrently)
+                if (ShownCurrently && ((StringEventArgs)args).Data != cellEditorTab)
                 {
                     Hide();
                 }
