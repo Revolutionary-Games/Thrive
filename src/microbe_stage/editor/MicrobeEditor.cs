@@ -264,7 +264,6 @@ public partial class MicrobeEditor : EditorBase<EditorAction, MicrobeStage>, IEd
     protected override void OnUndoPerformed()
     {
         base.OnUndoPerformed();
-        TutorialState.SendEvent(TutorialEventType.MicrobeEditorUndo, EventArgs.Empty, this);
     }
 
     protected override void OnRedoPerformed()

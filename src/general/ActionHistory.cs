@@ -14,11 +14,12 @@ public class ActionHistory<T>
     ///   marks the last action that has been done (not undone, but
     ///   possibly redone), is 0 if there is none.
     /// </summary>
-    [JsonProperty]
-    protected int ActionIndex { get; private set; }
 
     [JsonProperty]
-    protected List<T> Actions { get; private set; } = new();
+    public List<T> Actions { get; private set; } = new();
+
+    [JsonProperty]
+    public int ActionIndex { get; private set; }
 
     public bool CanRedo()
     {

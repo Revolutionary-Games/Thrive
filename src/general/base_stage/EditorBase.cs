@@ -388,6 +388,8 @@ public partial class EditorBase<TAction, TStage> : NodeWithInput, IEditor, ILoad
 
         if (history.Undo())
         {
+            TutorialState.SendEvent(TutorialEventType.MicrobeEditorUndo,
+                new UndoEventArgs(history.Actions[history.ActionIndex]), this);
             OnUndoPerformed();
         }
 
