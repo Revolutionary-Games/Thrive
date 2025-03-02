@@ -27,12 +27,15 @@ public partial class ToleranceInfo : Control
         optimalValueMarker.Texture = markerTexture;
     }
 
-    public void UpdateInfo(float start, float end, float optimalValue)
+    public void UpdateBoundaryLabels(string start, string end)
+    {
+        startValue.Text = start;
+        endValue.Text = end;
+    }
+
+    public void UpdateMarker(float optimalValue)
     {
         optimalValueMarker.AnchorLeft = optimalValue;
         optimalValueMarker.AnchorRight = optimalValue;
-
-        startValue.Text = start.ToString();
-        endValue.Text = end.ToString();
     }
 }

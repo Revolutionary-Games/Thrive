@@ -41,31 +41,16 @@ public partial class TolerancesEditorSubComponent : EditorComponentBase<ICellEdi
     private Slider temperatureToleranceRangeSlider = null!;
 
     [Export]
-    private ToleranceInfo temperatureToleranceInfo = null!;
-
-    [Export]
     private Slider pressureMinSlider = null!;
 
     [Export]
     private Slider pressureMaxSlider = null!;
 
     [Export]
-    private ToleranceInfo minPressureToleranceInfo = null!;
-
-    [Export]
-    private ToleranceInfo maxPressureToleranceInfo = null!;
-
-    [Export]
     private Slider oxygenResistanceSlider = null!;
 
     [Export]
-    private ToleranceInfo oxygenToleranceInfo = null!;
-
-    [Export]
     private Slider uvResistanceSlider = null!;
-
-    [Export]
-    private ToleranceInfo uvToleranceInfo = null!;
 
     [Export]
     [ExportCategory("Displays")]
@@ -85,6 +70,21 @@ public partial class TolerancesEditorSubComponent : EditorComponentBase<ICellEdi
 
     [Export]
     private Label uvResistanceLabel = null!;
+
+    [Export]
+    private ToleranceInfo temperatureToleranceInfo = null!;
+
+    [Export]
+    private ToleranceInfo minPressureToleranceInfo = null!;
+
+    [Export]
+    private ToleranceInfo maxPressureToleranceInfo = null!;
+
+    [Export]
+    private ToleranceInfo oxygenToleranceInfo = null!;
+
+    [Export]
+    private ToleranceInfo uvToleranceInfo = null!;
 
     [Export]
     [ExportCategory("Style")]
@@ -675,12 +675,26 @@ public partial class TolerancesEditorSubComponent : EditorComponentBase<ICellEdi
             uvResistanceLabel.LabelSettings = originalTemperatureFont;
         }
 
-        temperatureToleranceInfo.UpdateInfo(0, 100, patchTemperature / 100.0f);
-        minPressureToleranceInfo.UpdateInfo(0, 70000, patchPressure / 70000000);
-        maxPressureToleranceInfo.UpdateInfo(0, 70000, patchPressure / 70000000);
+        temperatureToleranceInfo.UpdateBoundaryLabels(unitFormat.FormatSafe(0, temperature.Unit), unitFormat.FormatSafe(100, temperature.Unit));
+        temperatureToleranceInfo.UpdateMarker(patchTemperature / 100.0f);
 
-        oxygenToleranceInfo.UpdateInfo(0, 100, requiredOxygenResistance);
-        uvToleranceInfo.UpdateInfo(0, 100, requiredUVResistance);
+        string minPressure = unitFormat.FormatSafe(0, "kPa");
+        string maxPressure = unitFormat.FormatSafe(70000, "kPa");
+
+        minPressureToleranceInfo.UpdateBoundaryLabels(minPressure, maxPressure);
+        minPressureToleranceInfo.UpdateMarker(patchPressure / 70000000);
+
+        maxPressureToleranceInfo.UpdateBoundaryLabels(minPressure, maxPressure);
+        maxPressureToleranceInfo.UpdateMarker(patchPressure / 70000000);
+
+        string zeroPercents = percentageFormat.FormatSafe(0);
+        string hundredPercents = percentageFormat.FormatSafe(100);
+
+        oxygenToleranceInfo.UpdateBoundaryLabels(zeroPercents, hundredPercents);
+        oxygenToleranceInfo.UpdateMarker(requiredOxygenResistance);
+
+        uvToleranceInfo.UpdateBoundaryLabels(zeroPercents, hundredPercents);
+        uvToleranceInfo.UpdateMarker(requiredUVResistance);
     }
 
     [DeserializedCallbackAllowed]
