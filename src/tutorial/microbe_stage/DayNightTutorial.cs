@@ -1,7 +1,7 @@
 ﻿namespace Tutorial;
 
-using Newtonsoft.Json;
 using System;
+using Newtonsoft.Json;
 
 /// <summary>
 ///   Tells the player about the day and night cycle

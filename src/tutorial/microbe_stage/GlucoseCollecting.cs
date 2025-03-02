@@ -35,7 +35,6 @@ public class GlucoseCollecting : TutorialPhase
     public override void ApplyGUIState(MicrobeTutorialGUI gui)
     {
         gui.GlucoseTutorialVisible = ShownCurrently;
-        
     }
 
     public override void Hide()
