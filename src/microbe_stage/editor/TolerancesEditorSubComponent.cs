@@ -162,6 +162,7 @@ public partial class TolerancesEditorSubComponent : EditorComponentBase<ICellEdi
         }
 
         UpdateToolTipStats();
+        UpdateAdditionalSliderInfo();
     }
 
     public override void OnFinishEditing()
@@ -174,6 +175,8 @@ public partial class TolerancesEditorSubComponent : EditorComponentBase<ICellEdi
     {
         UpdateCurrentValueDisplays();
         UpdateToolTipStats();
+
+        UpdateAdditionalSliderInfo();
     }
 
     public void ResetToCurrentSpeciesTolerances()
@@ -674,8 +677,21 @@ public partial class TolerancesEditorSubComponent : EditorComponentBase<ICellEdi
         {
             uvResistanceLabel.LabelSettings = originalTemperatureFont;
         }
+    }
 
-        temperatureToleranceInfo.UpdateBoundaryLabels(unitFormat.FormatSafe(0, temperature.Unit), unitFormat.FormatSafe(100, temperature.Unit));
+    private void UpdateAdditionalSliderInfo()
+    {
+        var patch = Editor.CurrentPatch;
+        var patchTemperature = patch.Biome.GetCompound(Compound.Temperature, CompoundAmountType.Biome).Ambient;
+        var patchPressure = patch.Biome.Pressure;
+        var requiredOxygenResistance = patch.Biome.CalculateOxygenResistanceFactor();
+        var requiredUVResistance = patch.Biome.CalculateUVFactor();
+
+        var unitFormat = Localization.Translate("VALUE_WITH_UNIT");
+        var percentageFormat = Localization.Translate("PERCENTAGE_VALUE");
+
+        temperatureToleranceInfo.UpdateBoundaryLabels(unitFormat.FormatSafe(0, temperature.Unit),
+            unitFormat.FormatSafe(100, temperature.Unit));
         temperatureToleranceInfo.UpdateMarker(patchTemperature / 100.0f);
 
         string minPressure = unitFormat.FormatSafe(0, "kPa");
@@ -693,7 +709,6 @@ public partial class TolerancesEditorSubComponent : EditorComponentBase<ICellEdi
         // Don't show markers when they are at 0% as it looks confusing
         oxygenToleranceInfo.ShowMarker = requiredOxygenResistance > MathUtils.EPSILON;
         uvToleranceInfo.ShowMarker = requiredUVResistance > MathUtils.EPSILON;
-
 
         oxygenToleranceInfo.UpdateBoundaryLabels(zeroPercents, hundredPercents);
         oxygenToleranceInfo.UpdateMarker(requiredOxygenResistance);

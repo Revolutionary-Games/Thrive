@@ -1,5 +1,4 @@
-﻿using System;
-using Godot;
+﻿using Godot;
 
 /// <summary>
 ///   Displays additional tolerance slider info, such as the optimal value and value labels.
