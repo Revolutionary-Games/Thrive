@@ -1,6 +1,7 @@
 ﻿namespace Tutorial;
 
 using System;
+using Godot;
 using Newtonsoft.Json;
 
 /// <summary>
@@ -11,6 +12,8 @@ public class NucleusTutorial : TutorialPhase
     private const int TriggersOnNthEditorSession = 11;
 
     private readonly string cellEditorTab = EditorTab.CellEditor.ToString();
+
+    private bool hasNucleus = false;
 
     public NucleusTutorial()
     {
@@ -39,11 +42,34 @@ public class NucleusTutorial : TutorialPhase
 
                 if (isNucleus)
                 {
-                    Inhibit();
+                    hasNucleus = true;
                 }
 
                 break;
             }
+
+            case TutorialEventType.MicrobeEditorUndo:
+            {
+                var eventArgs = (UndoEventArgs)args;
+                var combinedAction = (CombinedEditorAction)eventArgs.Action;
+
+                foreach (var data in combinedAction.Data)
+                {
+                    if (data is not OrganellePlacementActionData)
+                    {
+                        break;
+                    }
+
+                    if (((OrganellePlacementActionData)data).PlacedHex.ReadableName == "Nucleus")
+                    {
+                        hasNucleus = false;
+                    }
+                }
+
+                break;
+            }
+
+
 
             case TutorialEventType.EnteredMicrobeEditor:
             {
@@ -54,14 +80,16 @@ public class NucleusTutorial : TutorialPhase
                 break;
             }
 
+
+
             case TutorialEventType.MicrobeEditorTabChanged:
             {
-                if (!HasBeenShown && CanTrigger && ((StringEventArgs)args).Data == cellEditorTab)
+                if (!HasBeenShown && CanTrigger && ((StringEventArgs)args).Data == cellEditorTab && !hasNucleus)
                 {
                     Show();
                 }
 
-                if (ShownCurrently && ((StringEventArgs)args).Data != cellEditorTab)
+                if (ShownCurrently && ((StringEventArgs)args).Data != cellEditorTab || hasNucleus)
                 {
                     Hide();
                 }
