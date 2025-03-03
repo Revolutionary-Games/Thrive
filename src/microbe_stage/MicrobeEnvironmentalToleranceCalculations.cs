@@ -48,6 +48,17 @@ public static class MicrobeEnvironmentalToleranceCalculations
 
         ApplyOrganelleEffectsOnTolerances(organelles, ref resolvedTolerances);
 
+        // Tolerances can't go below minimum values.
+        // Otherwise, species adding hydrogenosomes in the vents can be too negatively protected against oxygen.
+        if (resolvedTolerances.PressureMinimum < 0)
+            resolvedTolerances.PressureMinimum = 0;
+
+        if (resolvedTolerances.OxygenResistance < 0)
+            resolvedTolerances.OxygenResistance = 0;
+
+        if (resolvedTolerances.UVResistance < 0)
+            resolvedTolerances.UVResistance = 0;
+
         CalculateTolerancesInternal(resolvedTolerances, noExtraEffects, environment, result);
 
         return result;
