@@ -724,19 +724,25 @@ public partial class TolerancesEditorSubComponent : EditorComponentBase<ICellEdi
 
         var value = unitFormat.FormatSafe(Math.Round(organelleModifiers.TemperatureTolerance, 1), temperature.Unit);
 
-        temperatureToleranceModifierLabel.Text = organelleModifiers.TemperatureTolerance > 0 ? "+" + value : value;
+        value = organelleModifiers.TemperatureTolerance >= 0 ? "+" + value : value;
+        temperatureToleranceModifierLabel.Text = $"({value})";
 
-        // Pressure
-        value = unitFormat.FormatSafe(Math.Round(organelleModifiers.PressureMaximum / 1000), "kPa");
-        pressureToleranceModifierLabel.Text = $"({value})";
+        // Pressure. This is slightly different in that we only have this one display, so it does double duty to show
+        // the bonus as well as the current range
+        value = unitFormat.FormatSafe(
+            Math.Round((Math.Abs(CurrentTolerances.PressureMaximum - CurrentTolerances.PressureMinimum) +
+                organelleModifiers.PressureMaximum) / 1000), "kPa");
+        pressureToleranceModifierLabel.Text = value;
 
         // Oxygen
         value = percentageFormat.FormatSafe(Math.Round(organelleModifiers.OxygenResistance * 100, 1));
-        oxygenResistanceModifierLabel.Text = organelleModifiers.OxygenResistance >= 0 ? "+" + value : value;
+        value = organelleModifiers.OxygenResistance >= 0 ? "+" + value : value;
+        oxygenResistanceModifierLabel.Text = $"({value})";
 
         // UV
         value = percentageFormat.FormatSafe(Math.Round(organelleModifiers.UVResistance * 100, 1));
-        uvResistanceModifierLabel.Text = organelleModifiers.UVResistance >= 0 ? "+" + value : value;
+        value = organelleModifiers.UVResistance >= 0 ? "+" + value : value;
+        uvResistanceModifierLabel.Text = $"({value})";
     }
 
     [DeserializedCallbackAllowed]
