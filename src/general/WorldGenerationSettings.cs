@@ -111,7 +111,6 @@ public class WorldGenerationSettings
     /// <summary>
     ///   Whether the player can passively reproduce
     /// </summary>
-    public bool PassiveGainOfReproductionCompounds { get; set; } = true;
 
     /// <summary>
     ///   Whether the day/night cycle in this game is enabled
@@ -162,7 +161,6 @@ public class WorldGenerationSettings
             Localization.Translate("PERCENTAGE_VALUE").FormatSafe(Math.Round(GlucoseDecay * 100, 1)),
             OsmoregulationMultiplier,
             TranslationHelper.TranslateFeatureFlag(FreeGlucoseCloud),
-            TranslationHelper.TranslateFeatureFlag(PassiveGainOfReproductionCompounds),
             TranslationHelper.TranslateFeatureFlag(LimitReproductionCompoundUseSpeed));
     }
 
