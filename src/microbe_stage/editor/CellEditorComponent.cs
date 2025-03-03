@@ -1037,7 +1037,7 @@ public partial class CellEditorComponent :
         if (!base.CanFinishEditing(editorUserOverrides))
             return false;
 
-        // Show warning if the editor has an endosymbiosis that should be finished
+        // Show a warning if the editor has an endosymbiosis that should be finished
         if (HasFinishedPendingEndosymbiosis && !editorUserOverrides.Contains(EditorUserOverride.EndosymbiosisPending))
         {
             pendingEndosymbiosisPopup.PopupCenteredShrink();
@@ -1071,6 +1071,15 @@ public partial class CellEditorComponent :
         }
 
         return true;
+    }
+
+    /// <summary>
+    ///   Allows access to the latest edited organelles by this component. Shouldn't be modified but just read.
+    /// </summary>
+    /// <returns>Access to the latest organelle edits</returns>
+    public OrganelleLayout<OrganelleTemplate> GetLatestEditedOrganelles()
+    {
+        return editedMicrobeOrganelles;
     }
 
     /// <summary>

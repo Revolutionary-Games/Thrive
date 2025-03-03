@@ -334,15 +334,15 @@ public partial class TolerancesEditorSubComponent : EditorComponentBase<ICellEdi
     private void CalculateStatsAndShow(EnvironmentalTolerances calculationTolerances,
         EnvironmentalToleranceToolTip toolTip)
     {
-        if (Editor.EditedCellProperties == null)
+        if (Editor.EditedCellOrganelles == null)
         {
-            GD.PrintErr("No cell properties set, tolerances editor cannot update!");
+            GD.PrintErr("No cell edited organelles set, tolerances editor cannot update!");
             return;
         }
 
         var rawTolerances =
             MicrobeEnvironmentalToleranceCalculations.CalculateTolerances(calculationTolerances,
-                Editor.EditedCellProperties.Organelles, Editor.CurrentPatch.Biome);
+                Editor.EditedCellOrganelles, Editor.CurrentPatch.Biome);
 
         var resolvedTolerances = MicrobeEnvironmentalToleranceCalculations.ResolveToleranceValues(rawTolerances);
 
@@ -705,15 +705,15 @@ public partial class TolerancesEditorSubComponent : EditorComponentBase<ICellEdi
             uvResistanceLabel.LabelSettings = originalTemperatureFont;
         }
 
-        if (Editor.EditedCellProperties?.Organelles == null)
+        if (Editor.EditedCellOrganelles == null)
         {
             GD.PrintErr("Cannot update effective tolerance values without organelles");
             return;
         }
 
         var organelleModifiers = default(MicrobeEnvironmentalToleranceCalculations.ToleranceValues);
-        MicrobeEnvironmentalToleranceCalculations.ApplyOrganelleEffectsOnTolerances(
-            Editor.EditedCellProperties.Organelles, ref organelleModifiers);
+        MicrobeEnvironmentalToleranceCalculations.ApplyOrganelleEffectsOnTolerances(Editor.EditedCellOrganelles,
+            ref organelleModifiers);
 
         // Update then the effective ranges and modifier values
         // TODO: make negative tolerance modifiers show their labels in red
