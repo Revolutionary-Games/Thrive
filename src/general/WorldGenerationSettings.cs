@@ -219,6 +219,7 @@ public class WorldGenerationSettings
             $", Difficulty: {Difficulty.GetDescriptionString()}" +
             $", Life origin: {Origin}" +
             $", Seed: {Seed}" +
+            $", Size: {WorldSize}" +
             $", Day/night cycle enabled: {DayNightCycleEnabled}" +
             $", Day length: {DayLength}" +
             $", Include multicellular: {IncludeMulticellular}" +
