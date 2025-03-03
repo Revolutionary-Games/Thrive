@@ -109,10 +109,6 @@ public class WorldGenerationSettings
     public bool LimitReproductionCompoundUseSpeed => Difficulty.LimitGrowthRate;
 
     /// <summary>
-    ///   Whether the player can passively reproduce
-    /// </summary>
-
-    /// <summary>
     ///   Whether the day/night cycle in this game is enabled
     /// </summary>
     public bool DayNightCycleEnabled { get; set; } = true;
