@@ -407,16 +407,13 @@ public static class PatchMapGenerator
                     coordinate = new Vector2(random.Next(3, 16) * 100, random.Next(3, 16) * 100);
                     break;
 
+                default:
                 case WorldGenerationSettings.WorldSizeEnum.Medium:
                     coordinate = new Vector2(random.Next(3, 20) * 100, random.Next(3, 20) * 100);
                     break;
 
                 case WorldGenerationSettings.WorldSizeEnum.Large:
                     coordinate = new Vector2(random.Next(3, 24) * 100, random.Next(3, 24) * 100);
-                    break;
-
-                default:
-                    coordinate = new Vector2(random.Next(3, 20) * 100, random.Next(3, 20) * 100);
                     break;
             }
 
