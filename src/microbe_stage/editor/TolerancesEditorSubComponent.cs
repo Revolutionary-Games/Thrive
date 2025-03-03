@@ -11,6 +11,10 @@ using Newtonsoft.Json;
 [SceneLoadedClass("res://src/microbe_stage/editor/TolerancesEditorSubComponent.tscn", UsesEarlyResolve = false)]
 public partial class TolerancesEditorSubComponent : EditorComponentBase<ICellEditorData>
 {
+    [Export]
+    [ExportCategory("Config")]
+    public bool ShowZeroModifiers;
+
     private readonly StringName toleranceFlashName = new("FlashPressureRange");
     private readonly StringName tooWideRangeName = new("PopupPressureRangeWarning");
 
@@ -725,24 +729,51 @@ public partial class TolerancesEditorSubComponent : EditorComponentBase<ICellEdi
         var value = unitFormat.FormatSafe(Math.Round(organelleModifiers.TemperatureTolerance, 1), temperature.Unit);
 
         value = organelleModifiers.TemperatureTolerance >= 0 ? "+" + value : value;
-        temperatureToleranceModifierLabel.Text = $"({value})";
+
+        if (ShowZeroModifiers || organelleModifiers.TemperatureTolerance != 0)
+        {
+            temperatureToleranceModifierLabel.Text = $"({value})";
+            temperatureToleranceModifierLabel.Visible = true;
+        }
+        else
+        {
+            temperatureToleranceModifierLabel.Visible = false;
+        }
 
         // Pressure. This is slightly different in that we only have this one display, so it does double duty to show
         // the bonus as well as the current range
-        value = unitFormat.FormatSafe(
-            Math.Round((Math.Abs(CurrentTolerances.PressureMaximum - CurrentTolerances.PressureMinimum) +
+        value = unitFormat.FormatSafe(Math.Round(
+            (Math.Abs(CurrentTolerances.PressureMaximum - CurrentTolerances.PressureMinimum) +
                 organelleModifiers.PressureMaximum) / 1000), "kPa");
         pressureToleranceModifierLabel.Text = value;
 
         // Oxygen
         value = percentageFormat.FormatSafe(Math.Round(organelleModifiers.OxygenResistance * 100, 1));
         value = organelleModifiers.OxygenResistance >= 0 ? "+" + value : value;
-        oxygenResistanceModifierLabel.Text = $"({value})";
+
+        if (ShowZeroModifiers || organelleModifiers.OxygenResistance != 0)
+        {
+            oxygenResistanceModifierLabel.Text = $"({value})";
+            oxygenResistanceModifierLabel.Visible = true;
+        }
+        else
+        {
+            oxygenResistanceModifierLabel.Visible = false;
+        }
 
         // UV
         value = percentageFormat.FormatSafe(Math.Round(organelleModifiers.UVResistance * 100, 1));
         value = organelleModifiers.UVResistance >= 0 ? "+" + value : value;
-        uvResistanceModifierLabel.Text = $"({value})";
+
+        if (ShowZeroModifiers || organelleModifiers.UVResistance != 0)
+        {
+            uvResistanceModifierLabel.Text = $"({value})";
+            uvResistanceModifierLabel.Visible = true;
+        }
+        else
+        {
+            uvResistanceModifierLabel.Visible = false;
+        }
     }
 
     [DeserializedCallbackAllowed]

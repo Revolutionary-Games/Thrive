@@ -127,15 +127,15 @@ oxygenResistanceSlider = NodePath("Oxygen/OxgenSlider")
 uvResistanceSlider = NodePath("UV/UVSlider")
 temperatureMinLabel = NodePath("Temperature/HBoxContainer2/TemperatureMin")
 temperatureMaxLabel = NodePath("Temperature/HBoxContainer2/TemperatureMax")
-temperatureToleranceLabel = NodePath("Temperature/HBoxContainer3/VBoxContainer/ToleranceRange/TemperatureRangeValue")
-temperatureToleranceModifierLabel = NodePath("Temperature/HBoxContainer3/VBoxContainer/ToleranceRange/TemperatureRangeModifier")
+temperatureToleranceLabel = NodePath("Temperature/HBoxContainer3/VBoxContainer/ToleranceRange/HBoxContainer/TemperatureRangeValue")
+temperatureToleranceModifierLabel = NodePath("Temperature/HBoxContainer3/VBoxContainer/ToleranceRange/HBoxContainer/TemperatureRangeModifier")
 pressureMinLabel = NodePath("Pressure/HBoxContainer2/PressureMin")
 pressureMaxLabel = NodePath("Pressure/HBoxContainer2/PressureMax")
 pressureToleranceModifierLabel = NodePath("Pressure/HFlowContainer/PressureTolerance/PressureRangeModifier")
-oxygenResistanceLabel = NodePath("Oxygen/HBoxContainer3/OxygenValue")
-oxygenResistanceModifierLabel = NodePath("Oxygen/HBoxContainer3/OxygenModifier")
-uvResistanceLabel = NodePath("UV/HBoxContainer2/HBoxContainer/UVProtectionValue")
-uvResistanceModifierLabel = NodePath("UV/HBoxContainer2/HBoxContainer/UVModifier")
+oxygenResistanceLabel = NodePath("Oxygen/HBoxContainer3/HBoxContainer/OxygenValue")
+oxygenResistanceModifierLabel = NodePath("Oxygen/HBoxContainer3/HBoxContainer/OxygenModifier")
+uvResistanceLabel = NodePath("UV/HBoxContainer2/HBoxContainer/HBoxContainer/UVProtectionValue")
+uvResistanceModifierLabel = NodePath("UV/HBoxContainer2/HBoxContainer/HBoxContainer/UVModifier")
 badValueFont = ExtResource("3_q5r3n")
 perfectValueFont = ExtResource("4_15qmx")
 
@@ -234,7 +234,10 @@ layout_mode = 2
 size_flags_horizontal = 3
 mouse_filter = 1
 
-[node name="TemperatureRangeValue" type="Label" parent="Temperature/HBoxContainer3/VBoxContainer/ToleranceRange"]
+[node name="HBoxContainer" type="HBoxContainer" parent="Temperature/HBoxContainer3/VBoxContainer/ToleranceRange"]
+layout_mode = 2
+
+[node name="TemperatureRangeValue" type="Label" parent="Temperature/HBoxContainer3/VBoxContainer/ToleranceRange/HBoxContainer"]
 editor_description = "PLACEHOLDER"
 layout_mode = 2
 size_flags_horizontal = 3
@@ -242,10 +245,10 @@ text = "8 C"
 label_settings = ExtResource("8_ktuy7")
 horizontal_alignment = 2
 
-[node name="Spacer2" type="Control" parent="Temperature/HBoxContainer3/VBoxContainer/ToleranceRange"]
+[node name="Spacer2" type="Control" parent="Temperature/HBoxContainer3/VBoxContainer/ToleranceRange/HBoxContainer"]
 layout_mode = 2
 
-[node name="TemperatureRangeModifier" type="Label" parent="Temperature/HBoxContainer3/VBoxContainer/ToleranceRange"]
+[node name="TemperatureRangeModifier" type="Label" parent="Temperature/HBoxContainer3/VBoxContainer/ToleranceRange/HBoxContainer"]
 editor_description = "PLACEHOLDER"
 layout_mode = 2
 size_flags_horizontal = 3
@@ -428,7 +431,10 @@ layout_mode = 2
 size_flags_horizontal = 3
 mouse_filter = 1
 
-[node name="OxygenValue" type="Label" parent="Oxygen/HBoxContainer3"]
+[node name="HBoxContainer" type="HBoxContainer" parent="Oxygen/HBoxContainer3"]
+layout_mode = 2
+
+[node name="OxygenValue" type="Label" parent="Oxygen/HBoxContainer3/HBoxContainer"]
 editor_description = "PLACEHOLDER"
 layout_mode = 2
 size_flags_horizontal = 3
@@ -436,10 +442,10 @@ text = "25%"
 label_settings = ExtResource("8_ktuy7")
 horizontal_alignment = 2
 
-[node name="Spacer2" type="Control" parent="Oxygen/HBoxContainer3"]
+[node name="Spacer2" type="Control" parent="Oxygen/HBoxContainer3/HBoxContainer"]
 layout_mode = 2
 
-[node name="OxygenModifier" type="Label" parent="Oxygen/HBoxContainer3"]
+[node name="OxygenModifier" type="Label" parent="Oxygen/HBoxContainer3/HBoxContainer"]
 editor_description = "PLACEHOLDER"
 layout_mode = 2
 size_flags_horizontal = 3
@@ -495,7 +501,10 @@ layout_mode = 2
 size_flags_horizontal = 3
 mouse_filter = 1
 
-[node name="UVProtectionValue" type="Label" parent="UV/HBoxContainer2/HBoxContainer"]
+[node name="HBoxContainer" type="HBoxContainer" parent="UV/HBoxContainer2/HBoxContainer"]
+layout_mode = 2
+
+[node name="UVProtectionValue" type="Label" parent="UV/HBoxContainer2/HBoxContainer/HBoxContainer"]
 editor_description = "PLACEHOLDER"
 layout_mode = 2
 size_flags_horizontal = 3
@@ -503,10 +512,10 @@ text = "10%"
 label_settings = ExtResource("8_ktuy7")
 horizontal_alignment = 2
 
-[node name="Spacer2" type="Control" parent="UV/HBoxContainer2/HBoxContainer"]
+[node name="Spacer2" type="Control" parent="UV/HBoxContainer2/HBoxContainer/HBoxContainer"]
 layout_mode = 2
 
-[node name="UVModifier" type="Label" parent="UV/HBoxContainer2/HBoxContainer"]
+[node name="UVModifier" type="Label" parent="UV/HBoxContainer2/HBoxContainer/HBoxContainer"]
 editor_description = "PLACEHOLDER"
 layout_mode = 2
 size_flags_horizontal = 3
