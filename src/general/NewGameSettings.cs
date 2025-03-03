@@ -1050,7 +1050,7 @@ public partial class NewGameSettings : ControlWithInput
 
     private void OnWorldSizeSelected(int index)
     {
-        worldSizeButton.Selected = index;
+        _ = index;
     }
 
     private void OnIncludeMulticellularToggled(bool pressed)
