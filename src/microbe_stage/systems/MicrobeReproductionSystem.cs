@@ -88,12 +88,6 @@ public sealed class MicrobeReproductionSystem : AEntitySetSystem<float>
         CalculateFreeCompoundsAndLimits(WorldGenerationSettings worldSettings, int hexCount, bool isMulticellular,
             float delta)
     {
-        // Skip some computations when they are not needed
-        if (!worldSettings.LimitReproductionCompoundUseSpeed)
-        {
-            return (float.MaxValue, 0);
-        }
-
         // TODO: make the current patch affect this?
         // TODO: make being in a colony affect this
         float remainingFreeCompounds = Constants.MICROBE_REPRODUCTION_FREE_COMPOUNDS *
