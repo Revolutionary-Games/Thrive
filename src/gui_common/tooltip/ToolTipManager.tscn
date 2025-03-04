@@ -869,6 +869,7 @@ offset_top = 0.0
 offset_bottom = 283.0
 DisplayName = "TEMPERATURE"
 Description = "TOLERANCE_FROM_ORGANELLES_TOOLTIP"
+ShownDecimals = 3
 
 [node name="pressure" parent="GroupHolder/tolerances" instance=ExtResource("14_k78dl")]
 visible = false
@@ -885,6 +886,8 @@ offset_top = 0.0
 offset_bottom = 283.0
 DisplayName = "PRESSURE"
 Description = "TOLERANCE_FROM_ORGANELLES_TOOLTIP"
+ShownDecimals = 0
+ValueSuffix = "Pa"
 
 [node name="oxygenResistance" parent="GroupHolder/tolerances" instance=ExtResource("14_k78dl")]
 visible = false

@@ -295,7 +295,7 @@ public partial class TolerancesEditorSubComponent : EditorComponentBase<ICellEdi
             CalculateStatsAndShow(tempTolerances, uvResistanceToolTip);
         }
 
-        // TODO: update effective value tooltips
+        UpdateEffectiveValueToolTips();
     }
 
     protected override void OnTranslationsChanged()
@@ -331,6 +331,16 @@ public partial class TolerancesEditorSubComponent : EditorComponentBase<ICellEdi
         uvResistanceToolTip = toolTipManager.GetToolTip<EnvironmentalToleranceToolTip>("uvResistance", "tolerances");
         uvResistanceModifierToolTip =
             toolTipManager.GetToolTip<StatModifierToolTip>("uvResistanceModifier", "tolerances");
+
+        // Copy the units here automatically
+        if (temperatureRangeToolTip != null)
+        {
+            temperatureRangeToolTip.ValueSuffix = SimulationParameters.GetCompound(Compound.Temperature).Unit;
+        }
+        else
+        {
+            GD.PrintErr("Tooltips not correctly found for tolerances editor");
+        }
     }
 
     protected override void Dispose(bool disposing)
@@ -360,6 +370,43 @@ public partial class TolerancesEditorSubComponent : EditorComponentBase<ICellEdi
         var resolvedTolerances = MicrobeEnvironmentalToleranceCalculations.ResolveToleranceValues(rawTolerances);
 
         toolTip.UpdateStats(resolvedTolerances);
+    }
+
+    private void UpdateEffectiveValueToolTips()
+    {
+        if (Editor.EditedCellOrganelles == null)
+        {
+            GD.PrintErr("no cell edited organelles set, cannot update effective value tooltips");
+            return;
+        }
+
+        var tolerances = default(MicrobeEnvironmentalToleranceCalculations.ToleranceValues);
+
+        // Take the current values as base and apply the organelle modifiers on top to get effective values
+        tolerances.CopyFrom(CurrentTolerances);
+
+        MicrobeEnvironmentalToleranceCalculations.ApplyOrganelleEffectsOnTolerances(Editor.EditedCellOrganelles,
+            ref tolerances);
+
+        if (temperatureRangeToolTip != null)
+        {
+            temperatureRangeToolTip.DisplayedValue = tolerances.TemperatureTolerance;
+        }
+
+        if (pressureRangeToolTip != null)
+        {
+            pressureRangeToolTip.DisplayedValue = tolerances.PressureMaximum - tolerances.PressureMinimum;
+        }
+
+        if (oxygenResistanceModifierToolTip != null)
+        {
+            oxygenResistanceModifierToolTip.DisplayedValue = tolerances.OxygenResistance;
+        }
+
+        if (uvResistanceModifierToolTip != null)
+        {
+            uvResistanceModifierToolTip.DisplayedValue = tolerances.UVResistance;
+        }
     }
 
     private void ApplyCurrentValuesToGUI()

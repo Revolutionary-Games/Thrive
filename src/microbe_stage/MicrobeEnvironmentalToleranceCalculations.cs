@@ -377,6 +377,16 @@ public static class MicrobeEnvironmentalToleranceCalculations
         public float PressureMaximum;
         public float OxygenResistance;
         public float UVResistance;
+
+        public void CopyFrom(EnvironmentalTolerances tolerances)
+        {
+            PreferredTemperature = tolerances.PreferredTemperature;
+            TemperatureTolerance = tolerances.TemperatureTolerance;
+            PressureMinimum = tolerances.PressureMinimum;
+            PressureMaximum = tolerances.PressureMaximum;
+            OxygenResistance = tolerances.OxygenResistance;
+            UVResistance = tolerances.UVResistance;
+        }
     }
 }
 

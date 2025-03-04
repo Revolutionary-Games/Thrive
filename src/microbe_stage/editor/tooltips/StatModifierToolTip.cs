@@ -32,6 +32,7 @@ public partial class StatModifierToolTip : Control, ICustomToolTip
     private int decimalsToShow = 2;
 
     private bool formatAsPercentage;
+    private string? valueSuffix;
 
     [Export]
     [ExportCategory("Configuration")]
@@ -74,6 +75,20 @@ public partial class StatModifierToolTip : Control, ICustomToolTip
                 return;
 
             decimalsToShow = value;
+            UpdateValueDisplay();
+        }
+    }
+
+    [Export]
+    public string? ValueSuffix
+    {
+        get => valueSuffix;
+        set
+        {
+            if (valueSuffix == value)
+                return;
+
+            valueSuffix = value;
             UpdateValueDisplay();
         }
     }
@@ -131,15 +146,22 @@ public partial class StatModifierToolTip : Control, ICustomToolTip
 
         value = Math.Round(value, decimalsToShow);
 
+        string text;
+
         if (formatAsPercentage)
         {
             var percentageFormat = Localization.Translate("PERCENTAGE_VALUE");
 
-            valueLabel.Text = percentageFormat.FormatSafe(value);
+            text = percentageFormat.FormatSafe(value);
         }
         else
         {
-            valueLabel.Text = value.ToString(CultureInfo.CurrentCulture);
+            text = value.ToString(CultureInfo.CurrentCulture);
         }
+
+        if (!string.IsNullOrEmpty(valueSuffix))
+            text = $"{text} {valueSuffix}";
+
+        valueLabel.Text = text;
     }
 }
