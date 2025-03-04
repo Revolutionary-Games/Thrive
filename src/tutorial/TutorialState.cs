@@ -392,7 +392,6 @@ public class TutorialState : ITutorialInput
     {
         return new List<TutorialPhase>
         {
-            NucleusTutorial,
             MicrobeStageWelcome,
             MicrobeMovement,
             MicrobeMovementExplanation,
@@ -408,6 +407,7 @@ public class TutorialState : ITutorialInput
             EditorWelcome,
             PatchMap,
             CellEditorIntroduction,
+            NucleusTutorial,
             EditorUndoTutorial,
             EditorRedoTutorial,
             EditorTutorialEnd,
