@@ -289,10 +289,10 @@ public partial class PatchMapNode : MarginContainer
             {
                 case WorldEffectVisuals.None:
                     break;
-                case WorldEffectVisuals.UnderwaterVentEruptionEvent:
+                case WorldEffectVisuals.UnderwaterVentEruption:
                     eruptionEventIndicator.Visible = true;
                     break;
-                case WorldEffectVisuals.GlaciationEvent:
+                case WorldEffectVisuals.GlobalGlaciation:
                     glaciationEventIndicator.Visible = true;
                     break;
                 default:

@@ -17,9 +17,6 @@ public class GlobalGlaciationEvent : IWorldEffect
     private readonly XoShiRo256starstar random;
 
     [JsonProperty]
-    private readonly bool hasEventAlreadyHappened;
-
-    [JsonProperty]
     private readonly Dictionary<int, Dictionary<Compound, float>> previousEnvironmentalChanges = new();
 
     [JsonProperty]
@@ -27,6 +24,9 @@ public class GlobalGlaciationEvent : IWorldEffect
 
     [JsonProperty]
     private readonly Dictionary<int, Color> previousLightColour = new();
+
+    [JsonProperty]
+    private bool hasEventAlreadyHappened;
 
     /// <summary>
     /// Tells how many generations the event will last. "-1" means that it hasn't started at all.
@@ -51,7 +51,9 @@ public class GlobalGlaciationEvent : IWorldEffect
         this.random = random;
     }
 
-    public void OnRegisterToWorld() { }
+    public void OnRegisterToWorld()
+    {
+    }
 
     public void OnTimePassed(double elapsed, double totalTimePassed)
     {
@@ -65,18 +67,22 @@ public class GlobalGlaciationEvent : IWorldEffect
             return;
 
         if (generationsLeft == -1)
+        {
             TryToTriggerEvent(totalTimePassed);
+        }
         else if (generationsLeft == 0)
+        {
             FinishEvent();
+        }
     }
 
     private void MarkPatches(double totalTimePassed)
     {
         foreach (var patch in targetWorld.Map.Patches.Values)
         {
-            if (Constants.SurfaceBiomes.Contains(patch.BiomeType))
+            if (patch.Depth[0] == 0)
             {
-                patch.AddPatchEventRecord(WorldEffectVisuals.GlaciationEvent, totalTimePassed);
+                patch.AddPatchEventRecord(WorldEffectVisuals.GlobalGlaciation, totalTimePassed);
             }
         }
     }
@@ -86,11 +92,11 @@ public class GlobalGlaciationEvent : IWorldEffect
         if (!AreConditionsMet())
             return;
 
-        generationsLeft = random.Next(2, 6);
+        generationsLeft = random.Next(Constants.GLOBAL_GLACIATION_MIN_DURATION, Constants.GLOBAL_GLACIATION_MAX_DURATION);
 
         foreach (var (index, patch) in targetWorld.Map.Patches)
         {
-            if (Constants.SurfaceBiomes.Contains(patch.BiomeType))
+            if (patch.Depth[0] == 0)
             {
                 ChangePatchProperties(index, patch, totalTimePassed);
             }
@@ -103,11 +109,11 @@ public class GlobalGlaciationEvent : IWorldEffect
         var patchesExceedingOxygenLevel = 0;
         foreach (var patch in targetWorld.Map.Patches.Values)
         {
-            if (!Constants.SurfaceBiomes.Contains(patch.BiomeType))
+            if (patch.Depth[0] != 0)
                 continue;
 
-            var oxygenLevel = patch.Biome.ChangeableCompounds[Compound.Oxygen];
-            if (oxygenLevel.Ambient >= Constants.OXYGEN_THRESHOLD)
+            patch.Biome.TryGetCompound(Compound.Oxygen, CompoundAmountType.Biome, out var oxygenLevel);
+            if (oxygenLevel.Ambient >= Constants.GLOBAL_GLACIATION_OXYGEN_THRESHOLD)
                 patchesExceedingOxygenLevel += 1;
 
             numberOfSurfacePatches += 1;
@@ -116,8 +122,8 @@ public class GlobalGlaciationEvent : IWorldEffect
         // Just prevent dividing by zero, but that shouldn't be possible anyway
         numberOfSurfacePatches = numberOfSurfacePatches == 0 ? 1 : numberOfSurfacePatches;
 
-        return (float)patchesExceedingOxygenLevel / numberOfSurfacePatches >= Constants.OXYGEN_PATCHES_THRESHOLD
-            && random.Next(100) >= Constants.GLOBAL_GLACIATION_CHANCE;
+        return (float)patchesExceedingOxygenLevel / numberOfSurfacePatches >= Constants.GLOBAL_GLACIATION_PATCHES_THRESHOLD
+            && random.NextFloat() <= Constants.GLOBAL_GLACIATION_CHANCE;
     }
 
     private void ChangePatchProperties(int index, Patch patch, double totalTimePassed)
@@ -180,7 +186,7 @@ public class GlobalGlaciationEvent : IWorldEffect
                 true, true, "PatchIceShelf.svg");
         }
 
-        patch.AddPatchEventRecord(WorldEffectVisuals.GlaciationEvent, totalTimePassed);
+        patch.AddPatchEventRecord(WorldEffectVisuals.GlobalGlaciation, totalTimePassed);
     }
 
     private void FinishEvent()
@@ -202,7 +208,7 @@ public class GlobalGlaciationEvent : IWorldEffect
 
             patch.BiomeTemplate.Background = biomeBackground;
             patch.BiomeTemplate.Sunlight.Colour = biomeLightColour;
-            patch.Biome.ApplyLongTermCompoundChanges(patch.BiomeTemplate, changes, null);
+            patch.Biome.ApplyLongTermCompoundChanges(patch.BiomeTemplate, changes, new Dictionary<Compound, float>());
 
             RemoveChunks(patch);
         }
