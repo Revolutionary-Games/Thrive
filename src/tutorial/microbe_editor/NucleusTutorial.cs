@@ -12,6 +12,7 @@ public class NucleusTutorial : TutorialPhase
 
     private readonly string cellEditorTab = EditorTab.CellEditor.ToString();
 
+    [JsonProperty]
     private bool hasNucleus;
 
     public NucleusTutorial()
