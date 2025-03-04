@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2025-02-28 12:07+0200\n"
+"POT-Creation-Date: 2025-03-04 13:08+0200\n"
 "PO-Revision-Date: 2025-02-20 06:37+0000\n"
 "Last-Translator: Joah van der Maaden <voorjoah@gmail.com>\n"
 "Language-Team: Dutch <https://translate.revolutionarygamesstudio.com/projects/thrive/thrive-game/nl/>\n"
@@ -1807,6 +1807,10 @@ msgstr ""
 "\n"
 "Als je klaar bent, klik dan op de knop \"volgende\" rechtsonder om door te gaan naar de Gebiedenkaart."
 
+#, fuzzy
+msgid "EFFECTIVE_VALUE"
+msgstr "{0}%"
+
 msgid "EIGHT_TIMES"
 msgstr "8x"
 
@@ -2761,8 +2765,9 @@ msgstr "Juli"
 msgid "JUNE"
 msgstr "Juni"
 
-msgid "KEEP_CURRENT_FLEXIBILITY"
-msgstr ""
+#, fuzzy
+msgid "KEEP_CURRENT_SHORT"
+msgstr "Huidige Wereld"
 
 #, fuzzy
 msgid "KEEP_CURRENT_TOLERANCE_FLEXIBILITY_TOOLTIP"
@@ -5953,6 +5958,15 @@ msgstr "{0}: +{1} ATP"
 
 msgid "TOLERANCES_UNSUITABLE_DEBUFFS"
 msgstr ""
+
+#, fuzzy
+msgid "TOLERANCE_FROM_ORGANELLES_TOOLTIP"
+msgstr ""
+"Dit deel laat het totaal aantal ATP (energie) zien in de huidige cel.\n"
+"Om te overleven moet deze waarde positief zijn. Sessiele cellen kunnen deze waarde als postief zien .\n"
+"Het menu hieronder kan gebruikt worden om te wat er zou gebeuren als een cel geen stoffen zou hebben om ATP te maken.\n"
+"bijvoorbeeld, sommige cellen kunnen alleen een positief ATP balans houden als ze meerdere stof types hebben om ATP tegelijk van te maken.\n"
+"Die typen cellen zijn moeilijker om te spelen omdat ze meerdere stoffen tegelijk in opslag nodig hebben."
 
 msgid "TOLERANCE_RANGE_LABEL"
 msgstr ""
