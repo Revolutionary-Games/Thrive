@@ -59,16 +59,16 @@ public sealed class FluidCurrentsSystem : AEntitySetSystem<float>
     public FluidCurrentsSystem(World world, IParallelRunner runner) : base(world, runner,
         Constants.SYSTEM_HIGHER_ENTITIES_PER_THREAD)
     {
-        noiseDisturbancesX = GD.Load<NoiseTexture3D>("res://src/microbe_stage/NoiseDisturbanceX.tres") ??
+        noiseDisturbancesX = GD.Load<NoiseTexture3D>("res://src/microbe_stage/NoiseFluidDisturbanceX.tres") ??
             throw new Exception("Fluid current noise texture couldn't be loaded");
 
-        noiseDisturbancesY = GD.Load<NoiseTexture3D>("res://src/microbe_stage/NoiseDisturbanceY.tres") ??
+        noiseDisturbancesY = GD.Load<NoiseTexture3D>("res://src/microbe_stage/NoiseFluidDisturbanceY.tres") ??
             throw new Exception("Fluid current noise texture couldn't be loaded");
 
-        noiseCurrentsX = GD.Load<NoiseTexture3D>("res://src/microbe_stage/NoiseCurrentX.tres") ??
+        noiseCurrentsX = GD.Load<NoiseTexture3D>("res://src/microbe_stage/NoiseFluidCurrentX.tres") ??
             throw new Exception("Fluid current noise texture couldn't be loaded");
 
-        noiseCurrentsY = GD.Load<NoiseTexture3D>("res://src/microbe_stage/NoiseCurrentY.tres") ??
+        noiseCurrentsY = GD.Load<NoiseTexture3D>("res://src/microbe_stage/NoiseFluidCurrentY.tres") ??
             throw new Exception("Fluid current noise texture couldn't be loaded");
     }
 
