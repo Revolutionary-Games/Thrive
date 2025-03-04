@@ -630,24 +630,38 @@ public partial class TolerancesEditorSubComponent : EditorComponentBase<ICellEdi
         var unitFormat = Localization.Translate("VALUE_WITH_UNIT");
         var percentageFormat = Localization.Translate("PERCENTAGE_VALUE");
 
-        // TODO: green for perfectly being adapted?
+        var organelleModifiers = default(MicrobeEnvironmentalToleranceCalculations.ToleranceValues);
+        bool gotOrganelles = false;
+
+        if (Editor.EditedCellOrganelles != null)
+        {
+            gotOrganelles = true;
+            MicrobeEnvironmentalToleranceCalculations.ApplyOrganelleEffectsOnTolerances(Editor.EditedCellOrganelles,
+                ref organelleModifiers);
+        }
+
+        var preferredTemperatureWithOrganelles =
+            CurrentTolerances.PreferredTemperature + organelleModifiers.PreferredTemperature;
+
+        var temperatureToleranceWithOrganelles =
+            CurrentTolerances.TemperatureTolerance + organelleModifiers.TemperatureTolerance;
 
         temperatureMinLabel.Text =
             unitFormat.FormatSafe(
-                Math.Round(CurrentTolerances.PreferredTemperature - CurrentTolerances.TemperatureTolerance, 1),
+                Math.Round(preferredTemperatureWithOrganelles - temperatureToleranceWithOrganelles, 1),
                 temperature.Unit);
         temperatureMaxLabel.Text =
             unitFormat.FormatSafe(
-                Math.Round(CurrentTolerances.PreferredTemperature + CurrentTolerances.TemperatureTolerance, 1),
+                Math.Round(preferredTemperatureWithOrganelles + temperatureToleranceWithOrganelles, 1),
                 temperature.Unit);
 
         // Show in red the conditions that are not matching to make them easier to notice
-        if (Math.Abs(patchTemperature - CurrentTolerances.PreferredTemperature) >
-            CurrentTolerances.TemperatureTolerance)
+        if (Math.Abs(patchTemperature - preferredTemperatureWithOrganelles) >
+            temperatureToleranceWithOrganelles)
         {
             // Mark the direction that is bad as the one having the problem to make it easier for the player to see
             // what is wrong
-            if (patchTemperature > CurrentTolerances.PreferredTemperature)
+            if (patchTemperature > preferredTemperatureWithOrganelles)
             {
                 temperatureMaxLabel.LabelSettings = badValueFont;
                 temperatureMinLabel.LabelSettings = originalTemperatureFont;
@@ -670,15 +684,19 @@ public partial class TolerancesEditorSubComponent : EditorComponentBase<ICellEdi
             temperatureMaxLabel.LabelSettings = originalTemperatureFont;
         }
 
-        pressureMinLabel.Text = unitFormat.FormatSafe(Math.Round(CurrentTolerances.PressureMinimum / 1000), "kPa");
-        pressureMaxLabel.Text = unitFormat.FormatSafe(Math.Round(CurrentTolerances.PressureMaximum / 1000), "kPa");
+        var pressureMinWithOrganelles =
+            Math.Max(0, CurrentTolerances.PressureMinimum + organelleModifiers.PressureMinimum);
+        var pressureMaxWithOrganelles = CurrentTolerances.PressureMaximum + organelleModifiers.PressureMaximum;
 
-        if (patchPressure > CurrentTolerances.PressureMaximum)
+        pressureMinLabel.Text = unitFormat.FormatSafe(Math.Round(pressureMinWithOrganelles / 1000), "kPa");
+        pressureMaxLabel.Text = unitFormat.FormatSafe(Math.Round(pressureMaxWithOrganelles / 1000), "kPa");
+
+        if (patchPressure > pressureMaxWithOrganelles)
         {
             pressureMaxLabel.LabelSettings = badValueFont;
             pressureMinLabel.LabelSettings = originalPressureFont;
         }
-        else if (patchPressure < CurrentTolerances.PressureMinimum)
+        else if (patchPressure < pressureMinWithOrganelles)
         {
             pressureMinLabel.LabelSettings = badValueFont;
             pressureMaxLabel.LabelSettings = originalPressureFont;
@@ -718,15 +736,11 @@ public partial class TolerancesEditorSubComponent : EditorComponentBase<ICellEdi
             uvResistanceLabel.LabelSettings = originalTemperatureFont;
         }
 
-        if (Editor.EditedCellOrganelles == null)
+        if (!gotOrganelles)
         {
             GD.PrintErr("Cannot update effective tolerance values without organelles");
             return;
         }
-
-        var organelleModifiers = default(MicrobeEnvironmentalToleranceCalculations.ToleranceValues);
-        MicrobeEnvironmentalToleranceCalculations.ApplyOrganelleEffectsOnTolerances(Editor.EditedCellOrganelles,
-            ref organelleModifiers);
 
         // Update then the effective ranges and modifier values
 
@@ -766,8 +780,8 @@ public partial class TolerancesEditorSubComponent : EditorComponentBase<ICellEdi
 
         // Make pressure green if within the perfect adaptation range as this is a total range display and not just
         // the modifier like the other values
-        if (Math.Abs(CurrentTolerances.PressureMaximum - CurrentTolerances.PressureMinimum) +
-            organelleModifiers.PressureMaximum <= Constants.TOLERANCE_PERFECT_THRESHOLD_PRESSURE)
+        if (Math.Abs(CurrentTolerances.PressureMaximum - CurrentTolerances.PressureMinimum) <=
+            Constants.TOLERANCE_PERFECT_THRESHOLD_PRESSURE)
         {
             pressureToleranceModifierLabel.LabelSettings = modifierGoodFont;
         }
