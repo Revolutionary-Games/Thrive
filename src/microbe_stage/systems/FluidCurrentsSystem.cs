@@ -1,6 +1,7 @@
 ﻿namespace Systems;
 
 using System;
+using System.Runtime.CompilerServices;
 using Components;
 using DefaultEcs;
 using DefaultEcs.System;
@@ -184,6 +185,7 @@ public sealed class FluidCurrentsSystem : AEntitySetSystem<float>
         physicsControl.PhysicsApplied = false;
     }
 
+    [MethodImpl(MethodImplOptions.AggressiveInlining)]
     private float GetPixel(float x, float y, float z, Image[] array)
     {
         if (x < 0.0f)

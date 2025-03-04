@@ -1,7 +1,7 @@
 shader_type particles;
 render_mode disable_velocity;
 
-uniform vec3 emission_box_extents;
+uniform vec3 emissionBoxExtents;
 uniform vec4 colorValue : source_color;
 uniform sampler2D alphaCurve : repeat_disable;
 
@@ -58,7 +58,7 @@ void start() {
     TRANSFORM[1].xyz = vec3(0.0, 1.0, 0.0);
     TRANSFORM[2].xyz = vec3(0.0, 0.0, 1.0);
     TRANSFORM[3].xyz = vec3(rand_from_seed(alt_seed) * 2.0 - 1.0, rand_from_seed(alt_seed) * 2.0 - 1.0,
-        rand_from_seed(alt_seed) * 2.0 - 1.0) * emission_box_extents;
+        rand_from_seed(alt_seed) * 2.0 - 1.0) * emissionBoxExtents;
     TRANSFORM = EMISSION_TRANSFORM * TRANSFORM;
     float visibleScale = rand_from_seed(alt_seed) * 0.75f + 0.625f;
     TRANSFORM[0].xyz *= visibleScale;
