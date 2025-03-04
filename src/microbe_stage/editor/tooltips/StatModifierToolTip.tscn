@@ -1,8 +1,9 @@
-[gd_scene load_steps=7 format=3 uid="uid://cbwkactqp7nyg"]
+[gd_scene load_steps=8 format=3 uid="uid://cbwkactqp7nyg"]
 
 [ext_resource type="Theme" uid="uid://b4cx0o110g4b6" path="res://src/gui_common/thrive_theme.tres" id="1_nmj7f"]
 [ext_resource type="Script" path="res://src/microbe_stage/editor/tooltips/StatModifierToolTip.cs" id="2_jdmsc"]
 [ext_resource type="LabelSettings" uid="uid://da5d5tw7mrxt3" path="res://src/gui_common/fonts/Body-Regular-Tiny-Grey.tres" id="3_su033"]
+[ext_resource type="LabelSettings" uid="uid://bx7mw3uvqpo42" path="res://src/gui_common/fonts/Body-Regular-Smaller.tres" id="3_tcxln"]
 [ext_resource type="LabelSettings" uid="uid://bv3bnu0g1wdw3" path="res://src/gui_common/fonts/Title-SemiBold-Big.tres" id="7_wpqvi"]
 [ext_resource type="PackedScene" path="res://src/gui_common/CustomRichTextLabel.tscn" id="8_j3oaw"]
 
@@ -32,6 +33,7 @@ descriptionLabel = NodePath("MarginContainer/VBoxContainer/StatDescription")
 extraDescriptionLabel = NodePath("MarginContainer/VBoxContainer/EndingRemarks")
 extraDescriptionSeparator = NodePath("MarginContainer/VBoxContainer/HSeparator2")
 statsContainer = NodePath("MarginContainer/VBoxContainer/ModifierSummary")
+BreakdownFont = ExtResource("3_tcxln")
 
 [node name="MarginContainer" type="MarginContainer" parent="."]
 layout_mode = 2

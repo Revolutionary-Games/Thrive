@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using Godot;
 using Newtonsoft.Json;
 
@@ -19,6 +20,8 @@ public partial class TolerancesEditorSubComponent : EditorComponentBase<ICellEdi
     private readonly StringName tooWideRangeName = new("PopupPressureRangeWarning");
 
     private readonly CompoundDefinition temperature = SimulationParameters.GetCompound(Compound.Temperature);
+
+    private readonly Dictionary<OrganelleDefinition, float> tempToleranceModifiers = new();
 
 #pragma warning disable CA2213
 
@@ -391,21 +394,39 @@ public partial class TolerancesEditorSubComponent : EditorComponentBase<ICellEdi
         if (temperatureRangeToolTip != null)
         {
             temperatureRangeToolTip.DisplayedValue = tolerances.TemperatureTolerance;
+
+            // Calculate organelle summaries so that the info can be shown in the tooltips
+            MicrobeEnvironmentalToleranceCalculations.GenerateToleranceEffectSummariesByOrganelle(
+                Editor.EditedCellOrganelles, ToleranceModifier.TemperatureRange, tempToleranceModifiers);
+
+            temperatureRangeToolTip.DisplayOrganelleBreakdown(tempToleranceModifiers);
         }
 
         if (pressureRangeToolTip != null)
         {
             pressureRangeToolTip.DisplayedValue = tolerances.PressureMaximum - tolerances.PressureMinimum;
+
+            MicrobeEnvironmentalToleranceCalculations.GenerateToleranceEffectSummariesByOrganelle(
+                Editor.EditedCellOrganelles, ToleranceModifier.PressureRange, tempToleranceModifiers);
+            pressureRangeToolTip.DisplayOrganelleBreakdown(tempToleranceModifiers);
         }
 
         if (oxygenResistanceModifierToolTip != null)
         {
             oxygenResistanceModifierToolTip.DisplayedValue = tolerances.OxygenResistance;
+
+            MicrobeEnvironmentalToleranceCalculations.GenerateToleranceEffectSummariesByOrganelle(
+                Editor.EditedCellOrganelles, ToleranceModifier.Oxygen, tempToleranceModifiers);
+            oxygenResistanceModifierToolTip.DisplayOrganelleBreakdown(tempToleranceModifiers);
         }
 
         if (uvResistanceModifierToolTip != null)
         {
             uvResistanceModifierToolTip.DisplayedValue = tolerances.UVResistance;
+
+            MicrobeEnvironmentalToleranceCalculations.GenerateToleranceEffectSummariesByOrganelle(
+                Editor.EditedCellOrganelles, ToleranceModifier.UV, tempToleranceModifiers);
+            uvResistanceModifierToolTip.DisplayOrganelleBreakdown(tempToleranceModifiers);
         }
     }
 

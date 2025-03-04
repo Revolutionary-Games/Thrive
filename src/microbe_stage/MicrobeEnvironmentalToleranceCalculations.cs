@@ -83,6 +83,24 @@ public static class MicrobeEnvironmentalToleranceCalculations
         }
     }
 
+    public static void GenerateToleranceEffectSummariesByOrganelle(IReadOnlyList<OrganelleTemplate> organelles,
+        ToleranceModifier modifier, Dictionary<OrganelleDefinition, float> result)
+    {
+        result.Clear();
+
+        int organelleCount = organelles.Count;
+        for (int i = 0; i < organelleCount; ++i)
+        {
+            var organelleDefinition = organelles[i].Definition;
+            if (!organelleDefinition.ToleranceEffects.TryGetValue(modifier, out var value))
+                continue;
+
+            result.TryGetValue(organelleDefinition, out var existingValue);
+
+            result[organelleDefinition] = existingValue + value;
+        }
+    }
+
     public static void GenerateToleranceProblemList(ToleranceResult data, in ResolvedMicrobeTolerances problemNumbers,
         Action<string> resultCallback)
     {
@@ -354,7 +372,7 @@ public static class MicrobeEnvironmentalToleranceCalculations
             result.UVScore = 1;
         }
 
-        // Make overall score an average of all values
+        // Make the overall score an average of all values
         result.OverallScore =
             (result.TemperatureScore + result.PressureScore + result.OxygenScore + result.UVScore) / 4;
 
