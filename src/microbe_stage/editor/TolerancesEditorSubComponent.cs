@@ -103,8 +103,16 @@ public partial class TolerancesEditorSubComponent : EditorComponentBase<ICellEdi
     [Export]
     private LabelSettings perfectValueFont = null!;
 
+    [Export]
+    private LabelSettings modifierBadFont = null!;
+
+    [Export]
+    private LabelSettings modifierGoodFont = null!;
+
     private LabelSettings? originalTemperatureFont;
     private LabelSettings? originalPressureFont;
+
+    private LabelSettings? originalModifierFont;
 
     private EnvironmentalToleranceToolTip? temperatureToolTip;
     private StatModifierToolTip? temperatureRangeToolTip;
@@ -145,6 +153,7 @@ public partial class TolerancesEditorSubComponent : EditorComponentBase<ICellEdi
     {
         originalTemperatureFont = temperatureMinLabel.LabelSettings;
         originalPressureFont = pressureMinLabel.LabelSettings;
+        originalModifierFont = temperatureToleranceModifierLabel.LabelSettings;
 
         RegisterTooltips();
     }
@@ -720,7 +729,6 @@ public partial class TolerancesEditorSubComponent : EditorComponentBase<ICellEdi
             ref organelleModifiers);
 
         // Update then the effective ranges and modifier values
-        // TODO: make negative tolerance modifiers show their labels in red
 
         // Temperature
         temperatureToleranceLabel.Text =
@@ -734,6 +742,15 @@ public partial class TolerancesEditorSubComponent : EditorComponentBase<ICellEdi
         {
             temperatureToleranceModifierLabel.Text = $"({value})";
             temperatureToleranceModifierLabel.Visible = true;
+
+            if (organelleModifiers.TemperatureTolerance < 0)
+            {
+                temperatureToleranceModifierLabel.LabelSettings = modifierBadFont;
+            }
+            else
+            {
+                temperatureToleranceModifierLabel.LabelSettings = originalModifierFont;
+            }
         }
         else
         {
@@ -747,6 +764,18 @@ public partial class TolerancesEditorSubComponent : EditorComponentBase<ICellEdi
                 organelleModifiers.PressureMaximum) / 1000), "kPa");
         pressureToleranceModifierLabel.Text = value;
 
+        // Make pressure green if within the perfect adaptation range as this is a total range display and not just
+        // the modifier like the other values
+        if (Math.Abs(CurrentTolerances.PressureMaximum - CurrentTolerances.PressureMinimum) +
+            organelleModifiers.PressureMaximum <= Constants.TOLERANCE_PERFECT_THRESHOLD_PRESSURE)
+        {
+            pressureToleranceModifierLabel.LabelSettings = modifierGoodFont;
+        }
+        else
+        {
+            pressureToleranceModifierLabel.LabelSettings = originalModifierFont;
+        }
+
         // Oxygen
         value = percentageFormat.FormatSafe(Math.Round(organelleModifiers.OxygenResistance * 100, 1));
         value = organelleModifiers.OxygenResistance >= 0 ? "+" + value : value;
@@ -755,6 +784,15 @@ public partial class TolerancesEditorSubComponent : EditorComponentBase<ICellEdi
         {
             oxygenResistanceModifierLabel.Text = $"({value})";
             oxygenResistanceModifierLabel.Visible = true;
+
+            if (organelleModifiers.OxygenResistance < 0)
+            {
+                oxygenResistanceModifierLabel.LabelSettings = modifierBadFont;
+            }
+            else
+            {
+                oxygenResistanceModifierLabel.LabelSettings = originalModifierFont;
+            }
         }
         else
         {
@@ -769,6 +807,15 @@ public partial class TolerancesEditorSubComponent : EditorComponentBase<ICellEdi
         {
             uvResistanceModifierLabel.Text = $"({value})";
             uvResistanceModifierLabel.Visible = true;
+
+            if (organelleModifiers.UVResistance < 0)
+            {
+                uvResistanceModifierLabel.LabelSettings = modifierBadFont;
+            }
+            else
+            {
+                uvResistanceModifierLabel.LabelSettings = originalModifierFont;
+            }
         }
         else
         {

@@ -138,6 +138,8 @@ uvResistanceLabel = NodePath("UV/HBoxContainer2/HBoxContainer/HBoxContainer/UVPr
 uvResistanceModifierLabel = NodePath("UV/HBoxContainer2/HBoxContainer/HBoxContainer/UVModifier")
 badValueFont = ExtResource("3_q5r3n")
 perfectValueFont = ExtResource("4_15qmx")
+modifierBadFont = ExtResource("3_q5r3n")
+modifierGoodFont = ExtResource("4_15qmx")
 
 [node name="Temperature" type="VBoxContainer" parent="."]
 layout_mode = 2
