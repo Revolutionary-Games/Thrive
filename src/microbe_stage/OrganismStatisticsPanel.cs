@@ -341,7 +341,7 @@ public partial class OrganismStatisticsPanel : PanelContainer
             }
 
             tooltip.Description = Localization.Translate("ENERGY_BALANCE_TOOLTIP_CONSUMPTION")
-                .FormatSafe(displayName, Math.Round(energyBalance.Consumption[subBar.Name]));
+                .FormatSafe(displayName, Math.Round(energyBalance.Consumption[subBar.Name], 3));
         }
     }
 
