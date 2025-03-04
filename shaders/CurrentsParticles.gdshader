@@ -26,7 +26,7 @@ const float minCurrentIntensity = 0.4f;
 const float positionScaling = 0.9f;
 
 // Generates a random float and modifies the seed
-float rand_from_seed(inout uint seed) {
+float RandFromSeed(inout uint seed) {
     int k;
     int s = int(seed);
     if (s == 0) {
@@ -41,7 +41,7 @@ float rand_from_seed(inout uint seed) {
     return float(seed % uint(65536)) / 65535.0;
 }
 
-uint hash(uint x) {
+uint Hash(uint x) {
     x = ((x >> uint(16)) ^ x) * uint(73244475);
     x = ((x >> uint(16)) ^ x) * uint(73244475);
     x = (x >> uint(16)) ^ x;
@@ -49,18 +49,18 @@ uint hash(uint x) {
 }
 
 void start() {
-    uint base_number = NUMBER;
-    uint alt_seed = hash(base_number + uint(1) + RANDOM_SEED);
+    uint baseNumber = NUMBER;
+    uint altSeed = Hash(baseNumber + uint(1) + RANDOM_SEED);
 
     CUSTOM = vec4(0.0);
     COLOR = colorValue;
     TRANSFORM[0].xyz = vec3(1.0, 0.0, 0.0);
     TRANSFORM[1].xyz = vec3(0.0, 1.0, 0.0);
     TRANSFORM[2].xyz = vec3(0.0, 0.0, 1.0);
-    TRANSFORM[3].xyz = vec3(rand_from_seed(alt_seed) * 2.0 - 1.0, rand_from_seed(alt_seed) * 2.0 - 1.0,
-        rand_from_seed(alt_seed) * 2.0 - 1.0) * emissionBoxExtents;
+    TRANSFORM[3].xyz = vec3(RandFromSeed(altSeed) * 2.0 - 1.0, RandFromSeed(altSeed) * 2.0 - 1.0,
+        RandFromSeed(altSeed) * 2.0 - 1.0) * emissionBoxExtents;
     TRANSFORM = EMISSION_TRANSFORM * TRANSFORM;
-    float visibleScale = rand_from_seed(alt_seed) * 0.75f + 0.625f;
+    float visibleScale = RandFromSeed(altSeed) * 0.75f + 0.625f;
     TRANSFORM[0].xyz *= visibleScale;
     TRANSFORM[1].xyz *= visibleScale;
     TRANSFORM[2].xyz *= visibleScale;
@@ -68,7 +68,7 @@ void start() {
 
 void process() {
     CUSTOM.y += DELTA;
-    float lifetime_percent = CUSTOM.y / LIFETIME;
+    float lifetimePercent = CUSTOM.y / LIFETIME;
     if (CUSTOM.y > LIFETIME) {
         ACTIVE = false;
     }
@@ -112,7 +112,7 @@ void process() {
     TRANSFORM[3].xyz += VELOCITY * DELTA;
     
     vec4 finalColor = colorValue;
-    finalColor.a *= texture(alphaCurve, vec2(lifetime_percent)).r;
+    finalColor.a *= texture(alphaCurve, vec2(lifetimePercent)).r;
     if (speed != 0.0){
         // The faster the particle, the more visible it is
         finalColor.a *= length(current) / (speed * 10.0f);
