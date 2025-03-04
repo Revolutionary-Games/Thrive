@@ -8,7 +8,7 @@ msgstr ""
 "Project-Id-Version: Thrive VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2025-02-25 16:57+0200\n"
-"PO-Revision-Date: 2025-02-28 09:56+0000\n"
+"PO-Revision-Date: 2025-03-01 13:57+0000\n"
 "Last-Translator: Argakyan <andrinmueller@hotmail.ch>\n"
 "Language-Team: Alemannic <https://translate.revolutionarygamesstudio.com/projects/thrive/thrive-game/gsw/>\n"
 "Language: gsw\n"
@@ -527,7 +527,7 @@ msgstr "Hintergrund-Unschärfi:"
 
 #: ../src/engine/input/key_mapping/KeyNames.cs:277
 msgid "BACKSLASH"
-msgstr "Backslash"
+msgstr "Schrägstrich"
 
 #: ../src/engine/input/key_mapping/KeyNames.cs:157
 msgid "BACKSPACE"
@@ -1283,109 +1283,117 @@ msgstr "(Spiicher wird i {0} s gfüllt, was länger isch als vorhandenes Tagesli
 #: ../src/microbe_stage/editor/CompoundBalanceDisplay.tscn:36
 msgid "COMPOUND_BALANCE_MODE_TOOLTIP"
 msgstr ""
+"Modus, idem de Stoffhuushalt berechnet wird. Z.B.: Im Modus Maximalgschwindigkeit wird d'Berechnit unter de aanahm gmacht, dass alli Prozess mit maximale Gschwindigkeit laufet,\n"
+"während im Modus Gliichgwicht d'Prozess nur so schnell laufet, dass de ATP-Huushalt nöd negativ wird."
 
 #: ../src/microbe_stage/editor/CompoundBalanceDisplay.tscn:24
 msgid "COMPOUND_BALANCE_TITLE"
-msgstr ""
+msgstr "Stoffhuushalt"
 
 #: ../src/microbe_stage/editor/CompoundBalanceDisplay.tscn:22
 msgid "COMPOUND_BALANCE_TOOLTIP"
 msgstr ""
+"I dere Übersicht wird de Gsamthuushalt (Produktion und Verbruuch) per Stoff aazeiget.\n"
+"I enere Pflanzezelle mues z.B. de Glukosehuushalt im Überschuss sii."
 
 #: ../src/general/OptionsMenu.tscn:903
 msgid "COMPOUND_CLOUDS"
-msgstr ""
+msgstr "Stoffwulche"
 
 #: ../src/general/MainMenu.tscn:518
 msgid "COMPOUND_CLOUD_BENCHMARK"
-msgstr ""
+msgstr "Richtwert für Stoffwulche"
 
 #: ../src/general/NewGameSettings.tscn:427
 msgid "COMPOUND_CLOUD_DENSITY"
-msgstr ""
+msgstr "Stoffwulchedichti"
 
 #: ../src/general/NewGameSettings.tscn:457
 msgid "COMPOUND_CLOUD_DENSITY_EXPLANATION"
-msgstr ""
+msgstr "(Dichti vode Stoffwulche ide Umwelt)"
 
 #: ../src/general/world_effects/GlucoseReductionEffect.cs:73
 #: ../src/general/world_effects/GlucoseReductionEffect.cs:98
 msgid "COMPOUND_CONCENTRATIONS_DECREASED"
-msgstr ""
+msgstr "{0}konzentratione sind um {1} gsunke"
 
 #: ../src/auto-evo/selection_pressure/CompoundCloudPressure.cs:77
 msgid "COMPOUND_FOOD_SOURCE"
-msgstr ""
+msgstr "{0}-Verbruuch"
 
 #: ../src/general/NewGameSettings.tscn:663
 msgid "COMPOUND_HANDLE_KEEP"
-msgstr ""
+msgstr "Alli bhalte"
 
 #: ../src/general/NewGameSettings.tscn:662
 msgid "COMPOUND_HANDLE_SPLIT_SISTER"
-msgstr ""
+msgstr "Mit Schwöschterzelle teile"
 
 #: ../src/general/NewGameSettings.tscn:665
 msgid "COMPOUND_HANDLE_TOP_UP"
-msgstr ""
+msgstr "Immer uf Uusgangsbestand uuffülle"
 
 #: ../src/general/NewGameSettings.tscn:667
 msgid "COMPOUND_HANDLE_TOP_UP_ON_CHANGE"
-msgstr ""
+msgstr "Bi Breichwechsel uuffülle"
 
 #: ../src/microbe_stage/editor/CompoundStorageStatistics.cs:176
 msgid "COMPOUND_STORAGE_AMOUNT_DOES_NOT_LAST_NIGHT"
-msgstr ""
+msgstr "(nöd gnueg, um d'Nacht z'überstah bi {0}s)"
 
 #: ../src/microbe_stage/editor/CompoundStorageStatistics.cs:101
 msgid "COMPOUND_STORAGE_NOT_ENOUGH_GENERATED_DURING_DAY"
-msgstr ""
+msgstr "Numme {1} [thrive:compound type=\"{0}\"][/thrive:compound] cha während emene Tag generiert werde, aber {2} isch nötig um d'Nacht z'überstah."
 
 #: ../src/microbe_stage/editor/CompoundStorageStatistics.cs:83
 msgid "COMPOUND_STORAGE_NOT_ENOUGH_SPACE"
-msgstr ""
+msgstr "Es isch nöd uusriichend Spiicher für [thrive:compound type=\"{0}\"][/thrive:compound] umme. D'Nacht duuret {2}s, aber de Spiicher langet numme für {1}s."
 
 #: ../src/microbe_stage/editor/CompoundStorageStatistics.tscn:23
 msgid "COMPOUND_STORAGE_STATS_TITLE"
-msgstr ""
+msgstr "Spiicherkapazität"
 
 #: ../src/microbe_stage/editor/CompoundStorageStatistics.tscn:21
 msgid "COMPOUND_STORAGE_STATS_TOOLTIP"
 msgstr ""
+"Da wird aazeiget, wie lang d'Zelle bruucht, um d'jeweiligi Substanz z'verbruuche (wemmer vo emene volle Spiicher uusgaht).\n"
+"Die Zahle werdet immer so berechnet, als wäri es Nacht - so chammer prüefe, öb d'Zelle uusriichend Spiichermöglichkeite hett,\n"
+"demit sie d'Nacht überstaht. Wemmer d'Bewegigschöschte mit em Böxli uuschlammeret, hett mer s'absolute Minimum,\n"
+"wommer zum überlebbe bruucht, wenn sich die Zelle d'ganzi Nacht über nöd bewegt um Energie z'spaare."
 
 #: ../src/microbe_stage/editor/upgrades/ChemoreceptorUpgradeGUI.tscn:39
 msgid "COMPOUND_TO_FIND"
-msgstr ""
+msgstr "Suech nach Stoff:"
 
 #: ../simulation_parameters/common/gallery.json:3
 msgid "CONCEPT_ART"
-msgstr ""
+msgstr "Konzeptart"
 
 #: ../src/auto-evo/AutoEvoExploringTool.tscn:105
 msgid "CONFIG"
-msgstr ""
+msgstr "Konfiguration"
 
 #: ../src/general/base_stage/EditorComponentBase.cs:93
 msgid "CONFIRM_CAPITAL"
-msgstr ""
+msgstr "BESTÄTIGE"
 
 #: ../src/thriveopedia/pages/ThriveopediaMuseumPage.tscn:131
 msgid "CONFIRM_DELETE"
-msgstr ""
+msgstr "Lösche bestätige"
 
 #: ../src/auto-evo/AutoEvoExploringTool.tscn:694
 #: ../src/general/PauseMenu.tscn:317
 #: ../src/thriveopedia/pages/ThriveopediaMuseumPage.tscn:118
 msgid "CONFIRM_EXIT"
-msgstr ""
+msgstr "Beende bestätige"
 
 #: ../src/thriveopedia/fossilisation/FossilisationDialog.tscn:150
 msgid "CONFIRM_FOSSILISATION_OVERWRITE"
-msgstr ""
+msgstr "Überschriibe bestätige"
 
 #: ../src/space_stage/SpaceStage.tscn:138
 msgid "CONFIRM_MOVE_TO_ASCENSION_STAGE"
-msgstr ""
+msgstr "Wiiter zum Uufstiegsstadium?"
 
 #: ../src/space_stage/SpaceStage.tscn:137
 msgid "CONFIRM_MOVE_TO_ASCENSION_STAGE_EXPLANATION"
