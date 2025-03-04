@@ -18,8 +18,8 @@ public struct CurrentAffected
         EffectStrength = 1.0f;
     }
 
-    public CurrentAffected(float strength)
+    public CurrentAffected(float effectStrength)
     {
-        EffectStrength = strength;
+        EffectStrength = effectStrength;
     }
 }
