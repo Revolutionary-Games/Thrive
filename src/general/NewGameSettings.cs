@@ -222,6 +222,9 @@ public partial class NewGameSettings : ControlWithInput
     private LineEdit gameSeed = null!;
     private LineEdit gameSeedAdvanced = null!;
 
+    [Export]
+    private OptionButton worldSizeButton = null!;
+
     // Misc controls
     private Button includeMulticellularButton = null!;
     private Button easterEggsButton = null!;
@@ -462,6 +465,8 @@ public partial class NewGameSettings : ControlWithInput
         gameSeedAdvanced.Text = seedText;
         SetSeed(seedText);
 
+        worldSizeButton.Selected = (int)settings.WorldSize;
+
         // Always set prototypes to true as the player must have been there to descend
         includeMulticellularButton.ButtonPressed = true;
 
@@ -656,6 +661,7 @@ public partial class NewGameSettings : ControlWithInput
         settings.DayNightCycleEnabled = dayNightCycleButton.ButtonPressed;
         settings.DayLength = (int)dayLength.Value;
         settings.Seed = latestValidSeed;
+        settings.WorldSize = (WorldGenerationSettings.WorldSizeEnum)worldSizeButton.Selected;
 
         settings.IncludeMulticellular = includeMulticellularButton.ButtonPressed;
         settings.EasterEggs = easterEggsButton.ButtonPressed;
@@ -1040,6 +1046,11 @@ public partial class NewGameSettings : ControlWithInput
         gameSeed.Text = seed;
         gameSeedAdvanced.Text = seed;
         SetSeed(seed);
+    }
+
+    private void OnWorldSizeSelected(int index)
+    {
+        _ = index;
     }
 
     private void OnIncludeMulticellularToggled(bool pressed)
