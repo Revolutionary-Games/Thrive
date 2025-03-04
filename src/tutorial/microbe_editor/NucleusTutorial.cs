@@ -37,17 +37,21 @@ public class NucleusTutorial : TutorialPhase
         {
             case TutorialEventType.MicrobeEditorOrganellePlaced:
             {
-                var eventArgs = (OrganellePlacedEventArgs)args;
+                if (args is not OrganellePlacedEventArgs eventArgs)
+                {
+                    break;
+                }
+
                 var isNucleus = eventArgs.Definition.Name == "Nucleus";
 
                 if (isNucleus)
                 {
+                    hasNucleus = true;
+
                     if (ShownCurrently)
                     {
                         Hide();
                     }
-
-                    hasNucleus = true;
                 }
 
                 break;
