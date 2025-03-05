@@ -190,11 +190,7 @@ public sealed class FluidCurrentsSystem : AEntitySetSystem<float>
     [MethodImpl(MethodImplOptions.AggressiveInlining)]
     private float GetPixel(float x, float y, float z, Image[] array)
     {
-        if (x < 0.0f)
-            x = noiseWidth + x % noiseWidth;
-        if (y < 0.0f)
-            y = noiseHeight + y % noiseHeight;
-
-        return array[(int)z % array.Length].GetPixel((int)x % noiseWidth, (int)y % noiseHeight).R * 2.0f - 1.0f;
+        return array[(int)z % array.Length].GetPixel(((int)x).PositiveModulo(noiseWidth),
+            ((int)y).PositiveModulo(noiseHeight)).R * 2.0f - 1.0f;
     }
 }
