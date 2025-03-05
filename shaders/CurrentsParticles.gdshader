@@ -93,14 +93,9 @@ void process() {
         vec2 disturbances = vec2(disturbanceX, disturbanceY) * 2.0f - 1.0f;
         vec2 currents = vec2(currentX, currentY) * 2.0f - 1.0f;
         
-        if (abs(currents.x) < minCurrentIntensity)
+        if (pow(currents.x, 2) + pow(currents.y, 2) < minCurrentIntensity)
         {
-            currents.x = 0.0f;
-        }
-        
-        if (abs(currents.y) < minCurrentIntensity)
-        {
-            currents.y = 0.0f;
+            currents = vec2(0.0f);
         }
         
         current = mix(currents, disturbances, disturbanceToCurrentsRatio);

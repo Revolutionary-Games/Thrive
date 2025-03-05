@@ -112,8 +112,10 @@ public sealed class FluidCurrentsSystem : AEntitySetSystem<float>
             currentsTimePassed * CURRENTS_TIMESCALE * chaoticness, noiseCurrentsYImage);
 
         var disturbancesVelocity = new Vector2(disturbancesX, disturbancesY);
-        var currentsVelocity = new Vector2(Math.Abs(currentsX) > MIN_CURRENT_INTENSITY ? currentsX : 0.0f,
-            Math.Abs(currentsY) > MIN_CURRENT_INTENSITY ? currentsY : 0.0f);
+        var currentsVelocity = new Vector2(currentsX, currentsY);
+
+        if (currentsVelocity.LengthSquared() < MIN_CURRENT_INTENSITY)
+            currentsVelocity = Vector2.Zero;
 
         return currentsVelocity.Lerp(disturbancesVelocity, DISTURBANCE_TO_CURRENTS_RATIO) * speed;
     }
