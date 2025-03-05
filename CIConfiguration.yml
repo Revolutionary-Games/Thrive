@@ -30,8 +30,11 @@ jobs:
           # This doesn't fetch or install debug variants as they aren't strictly necessary for packaging
           command: dotnet run --project Scripts -- native Fetch --debug false
       - run:
-          name: Create builds
-          command: dotnet run --project Scripts -- package --dehydrated
+          name: Create build (Linux)
+          command: dotnet run --project Scripts -- package --dehydrated Linux
+      - run:
+          name: Create build (Windows)
+          command: dotnet run --project Scripts -- package --dehydrated Windows
       - run:
           name: Upload devbuilds
           command: dotnet run --project Scripts -- upload
