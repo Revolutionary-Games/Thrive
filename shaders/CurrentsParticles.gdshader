@@ -22,7 +22,7 @@ const float disturbanceTimescale = 1.0f;
 const float currentsTimescale = 1.0f / 500.0f;
 const float currentsStretchingMultiplier = 1.0f / 10.0f;
 const float disturbanceToCurrentsRatio = 0.15f;
-const float minCurrentIntensity = 0.4f;
+const float minCurrentIntensity = 0.25f;
 const float positionScaling = 0.9f;
 
 // Generates a random float and modifies the seed
@@ -102,7 +102,7 @@ void process() {
         current *= 10.0f * speed;
     }
     
-    VELOCITY = mix(vec3(current.x, 0.0f, current.y), VELOCITY, 1.0f - DELTA * 2.0f);
+    VELOCITY = mix(vec3(current.x, 0.0f, current.y), VELOCITY, 1.0f - DELTA * 5.0f);
 
     TRANSFORM[3].xyz += VELOCITY * DELTA;
     
@@ -110,7 +110,7 @@ void process() {
     finalColor.a *= texture(alphaCurve, vec2(lifetimePercent)).r;
     if (speed != 0.0){
         // The faster the particle, the more visible it is
-        finalColor.a *= length(current) / (speed * 10.0f);
+        finalColor.a *= length(VELOCITY) / (speed * 10.0f);
     }
     
     COLOR = finalColor;
