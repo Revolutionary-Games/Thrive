@@ -2,10 +2,20 @@
 extends Control
 
 var _context_menus := Dictionary()
+var _command_handler := GdUnitCommandHandler.instance()
 
 
-func _init(context_menus: Array[GdUnitContextMenuItem]) -> void:
+func _init() -> void:
 	set_name("EditorFileSystemContextMenuHandler")
+
+	var is_test_suite := func is_visible(script: Script, is_ts: bool) -> bool:
+		if script == null:
+			return false
+		return GdObjects.is_test_suite(script) == is_ts
+	var context_menus :Array[GdUnitContextMenuItem] = [
+		GdUnitContextMenuItem.new(GdUnitContextMenuItem.MENU_ID.TEST_RUN, "Run Testsuites", "Play", is_test_suite.bind(true), _command_handler.command(GdUnitCommandHandler.CMD_RUN_TESTSUITE)),
+		GdUnitContextMenuItem.new(GdUnitContextMenuItem.MENU_ID.TEST_DEBUG, "Debug Testsuites", "PlayStart", is_test_suite.bind(true), _command_handler.command(GdUnitCommandHandler.CMD_RUN_TESTSUITE_DEBUG)),
+	]
 	for menu in context_menus:
 		_context_menus[menu.id] = menu
 	var popup := _menu_popup()
@@ -19,44 +29,43 @@ func _init(context_menus: Array[GdUnitContextMenuItem]) -> void:
 func on_context_menu_show(context_menu: PopupMenu, file_tree: Tree) -> void:
 	context_menu.add_separator()
 	var current_index := context_menu.get_item_count()
-	var selected_test_suites := collect_testsuites(_context_menus.values()[0] as GdUnitContextMenuItem, file_tree)
 
 	for menu_id: int in _context_menus.keys():
 		var menu_item: GdUnitContextMenuItem = _context_menus[menu_id]
-		if selected_test_suites.size() != 0:
-			context_menu.add_item(menu_item.name, menu_id)
-			#context_menu.set_item_icon_modulate(current_index, Color.MEDIUM_PURPLE)
-			context_menu.set_item_disabled(current_index, !menu_item.is_enabled(null))
-			context_menu.set_item_icon(current_index, GdUnitUiTools.get_icon(menu_item.icon))
-			current_index += 1
+
+		context_menu.add_item(menu_item.name, menu_id)
+		#context_menu.set_item_icon_modulate(current_index, Color.MEDIUM_PURPLE)
+		context_menu.set_item_disabled(current_index, !menu_item.is_enabled(null))
+		context_menu.set_item_icon(current_index, GdUnitUiTools.get_icon(menu_item.icon))
+		current_index += 1
 
 
 func on_context_menu_pressed(id: int, file_tree: Tree) -> void:
 	if !_context_menus.has(id):
 		return
 	var menu_item: GdUnitContextMenuItem = _context_menus[id]
-	var selected_test_suites := collect_testsuites(menu_item, file_tree)
-	menu_item.execute([selected_test_suites])
+	var test_suites := collect_testsuites(menu_item, file_tree)
+	menu_item.execute([test_suites])
 
 
-func collect_testsuites(_menu_item: GdUnitContextMenuItem, file_tree: Tree) -> PackedStringArray:
+func collect_testsuites(_menu_item: GdUnitContextMenuItem, file_tree: Tree) -> Array[Script]:
 	var file_system := EditorInterface.get_resource_filesystem()
 	var selected_item := file_tree.get_selected()
-	var selected_test_suites := PackedStringArray()
+	var selected_test_suites: Array[Script] = []
+	var suite_scaner := GdUnitTestSuiteScanner.new()
 
 	while selected_item:
 		var resource_path: String = selected_item.get_metadata(0)
 		var file_type := file_system.get_file_type(resource_path)
 		var is_dir := DirAccess.dir_exists_absolute(resource_path)
 		if is_dir:
-			@warning_ignore("return_value_discarded")
-			selected_test_suites.append(resource_path)
+			selected_test_suites.append_array(suite_scaner.scan_directory(resource_path))
 		elif is_dir or file_type == "GDScript" or file_type == "CSharpScript":
 			# find a performant way to check if the selected item a testsuite
-			var resource := ResourceLoader.load(resource_path, "Script", ResourceLoader.CACHE_MODE_REUSE)
+			var resource: Script = ResourceLoader.load(resource_path, "Script", ResourceLoader.CACHE_MODE_REUSE)
 			if _menu_item.is_visible(resource):
 				@warning_ignore("return_value_discarded")
-				selected_test_suites.append(resource_path)
+				selected_test_suites.append(resource)
 		selected_item = file_tree.get_next_selected(selected_item)
 	return selected_test_suites
 

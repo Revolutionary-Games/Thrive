@@ -107,7 +107,7 @@ func set_testcase_counters(test_name: String, p_error_count: int, p_failure_coun
 		return
 	var test_report:GdUnitTestCaseReport = _reports.filter(func (report: GdUnitTestCaseReport) -> bool:
 		return report.name() == test_name
-		).back()
+	).back()
 	if test_report:
 		test_report.set_testcase_counters(p_error_count, p_failure_count, p_orphan_count, p_is_skipped, p_is_flaky, p_duration)
 
@@ -119,6 +119,6 @@ func add_testcase_reports(test_name: String, reports: Array[GdUnitReport] ) -> v
 	# and resultis in multipe report entries with the same name
 	var test_report:GdUnitTestCaseReport = _reports.filter(func (report: GdUnitTestCaseReport) -> bool:
 		return report.name() == test_name
-		).back()
+	).back()
 	if test_report:
 		test_report.add_testcase_reports(reports)

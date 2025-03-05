@@ -4,8 +4,8 @@
 [ext_resource type="PackedScene" path="res://src/saving/SaveManagerGUI.tscn" id="2"]
 [ext_resource type="PackedScene" uid="uid://khgb1ctp1e5o" path="res://src/general/OptionsMenu.tscn" id="3"]
 [ext_resource type="PackedScene" uid="uid://cl64wvnxs6ivs" path="res://src/gui_common/dialogs/CustomConfirmationDialog.tscn" id="4"]
-[ext_resource type="Script" path="res://src/gui_common/VersionNumber.cs" id="5"]
-[ext_resource type="Script" path="res://src/general/MainMenu.cs" id="6"]
+[ext_resource type="Script" uid="uid://cmmb0y16fbk1e" path="res://src/gui_common/VersionNumber.cs" id="5"]
+[ext_resource type="Script" uid="uid://cilrltnys645h" path="res://src/general/MainMenu.cs" id="6"]
 [ext_resource type="Texture2D" uid="uid://dv5ipphdtx82d" path="res://assets/textures/gui/BG_Menu02.png" id="7"]
 [ext_resource type="LabelSettings" uid="uid://bp3qw4ja1j38x" path="res://src/gui_common/fonts/Thrive-Small.tres" id="7_1nsb2"]
 [ext_resource type="Texture2D" uid="uid://c4w1n4rgao7br" path="res://assets/textures/gui/BG_Menu01.png" id="8"]
@@ -113,8 +113,8 @@ tracks/0/keys = {
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_wp2ig"]
 _data = {
-"MenuSlide": SubResource("1"),
-"RESET": SubResource("Animation_qunue")
+&"MenuSlide": SubResource("1"),
+&"RESET": SubResource("Animation_qunue")
 }
 
 [node name="MainMenu" type="Control" node_paths=PackedStringArray("websiteButtonsContainer", "openGlPopup")]

@@ -1,7 +1,7 @@
 [gd_scene load_steps=3 format=3 uid="uid://bako5jivv1dji"]
 
 [ext_resource type="PackedScene" uid="uid://dyko4f6a4agwn" path="res://src/microbe_stage/BackgroundPlane.tscn" id="2_yrakl"]
-[ext_resource type="Script" path="res://src/microbe_stage/MicrobeCamera.cs" id="3"]
+[ext_resource type="Script" uid="uid://cnp0vke5arnoc" path="res://src/microbe_stage/MicrobeCamera.cs" id="3"]
 
 [node name="MicrobeCamera" type="Camera3D" node_paths=PackedStringArray("backgroundPlane")]
 process_priority = 100

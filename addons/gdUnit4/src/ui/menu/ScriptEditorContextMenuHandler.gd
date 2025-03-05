@@ -3,10 +3,19 @@ extends Control
 
 var _context_menus := Dictionary()
 var _editor: ScriptEditor
+var _command_handler := GdUnitCommandHandler.instance()
 
 
-func _init(context_menus: Array[GdUnitContextMenuItem]) -> void:
+func _init() -> void:
 	set_name("ScriptEditorContextMenuHandler")
+
+	var is_test_suite := func is_visible(script: Script, is_ts: bool) -> bool:
+		return GdObjects.is_test_suite(script) == is_ts
+	var context_menus :Array[GdUnitContextMenuItem] = [
+		GdUnitContextMenuItem.new(GdUnitContextMenuItem.MENU_ID.TEST_RUN, "Run Tests", "Play", is_test_suite.bind(true), _command_handler.command(GdUnitCommandHandler.CMD_RUN_TESTCASE)),
+		GdUnitContextMenuItem.new(GdUnitContextMenuItem.MENU_ID.TEST_DEBUG, "Debug Tests", "PlayStart", is_test_suite.bind(true), _command_handler.command(GdUnitCommandHandler.CMD_RUN_TESTCASE_DEBUG)),
+		GdUnitContextMenuItem.new(GdUnitContextMenuItem.MENU_ID.CREATE_TEST, "Create Test", "New", is_test_suite.bind(false), _command_handler.command(GdUnitCommandHandler.CMD_CREATE_TESTCASE))
+	]
 	for menu in context_menus:
 		_context_menus[menu.id] = menu
 	_editor = EditorInterface.get_script_editor()

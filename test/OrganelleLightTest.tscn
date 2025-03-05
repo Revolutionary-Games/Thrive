@@ -1,25 +1,25 @@
-[gd_scene load_steps=22 format=3 uid="uid://cuijr3m5dr1b1"]
+[gd_scene load_steps=21 format=3 uid="uid://cuijr3m5dr1b1"]
 
-[ext_resource type="Shader" path="res://shaders/OrganelleTransparent.gdshader" id="1"]
+[ext_resource type="Shader" uid="uid://bpdtg8smolq32" path="res://shaders/OrganelleTransparent.gdshader" id="1"]
 [ext_resource type="PackedScene" uid="uid://ddluj5hiii7uv" path="res://assets/models/organelles/Mitochondrion.tscn" id="2"]
 [ext_resource type="Texture2D" uid="uid://deb04cuns82jr" path="res://assets/textures/Mitochondrion.png" id="3"]
 [ext_resource type="PackedScene" uid="uid://b0rm6imau0jjv" path="res://assets/models/organelles/Chemoplast.tscn" id="4"]
 [ext_resource type="Texture2D" uid="uid://qh7cokct60go" path="res://assets/textures/Chemoplast.png" id="5"]
 [ext_resource type="PackedScene" uid="uid://jgcbwcrqbblv" path="res://src/microbe_stage/Membrane.tscn" id="8"]
 [ext_resource type="Texture2D" uid="uid://c4abs1j47umma" path="res://assets/textures/SingleMembrane.png" id="8_gq526"]
-[ext_resource type="Shader" path="res://shaders/Membrane.gdshader" id="9"]
+[ext_resource type="Shader" uid="uid://c10kaqsum34o" path="res://shaders/Membrane.gdshader" id="9"]
 [ext_resource type="Texture2D" uid="uid://dnxx08njuvfha" path="res://assets/textures/SingleMembraneDamaged.png" id="9_x1sig"]
 [ext_resource type="PackedScene" uid="uid://d0o560vbcgswt" path="res://assets/models/organelles/SlimeJet.tscn" id="10"]
 [ext_resource type="PackedScene" uid="uid://bexhhxecb6yu2" path="res://assets/models/organelles/Rusticyanin.tscn" id="11"]
-[ext_resource type="Shader" path="res://shaders/EngulfEffect.gdshader" id="11_n3xav"]
-[ext_resource type="Texture2D" uid="uid://c5hugfarngq4o" path="res://assets/textures/rusticyanin.png" id="12"]
-[ext_resource type="Shader" path="res://shaders/MucocystEffect.gdshader" id="12_0y7ws"]
+[ext_resource type="Shader" uid="uid://buhqlk4dv4wy4" path="res://shaders/EngulfEffect.gdshader" id="11_n3xav"]
+[ext_resource type="Shader" uid="uid://duvkpd0301bv0" path="res://shaders/MucocystEffect.gdshader" id="12_0y7ws"]
 [ext_resource type="Texture2D" uid="uid://baxuoyeo83r2u" path="res://assets/textures/dissolve_noise.tres" id="13"]
 
 [sub_resource type="ShaderMaterial" id="1"]
 resource_local_to_scene = true
 render_priority = 0
 shader = ExtResource("1")
+shader_parameter/texture = ExtResource("3")
 shader_parameter/dissolveValue = 0.0
 shader_parameter/dissolveScale = 1.0
 shader_parameter/fresnelValue = 1.0
@@ -28,12 +28,12 @@ shader_parameter/outlineWidth = 0.0
 shader_parameter/growColor = Color(0.1, 0.1, 0.1, 1)
 shader_parameter/tint = Color(1, 1, 1, 1)
 shader_parameter/jiggleAmount = 0.0005
-shader_parameter/texture = ExtResource("3")
 
 [sub_resource type="ShaderMaterial" id="2"]
 resource_local_to_scene = true
 render_priority = 0
 shader = ExtResource("1")
+shader_parameter/texture = ExtResource("5")
 shader_parameter/dissolveValue = 0.0
 shader_parameter/dissolveScale = 1.0
 shader_parameter/fresnelValue = 1.0
@@ -42,7 +42,6 @@ shader_parameter/outlineWidth = 0.0
 shader_parameter/growColor = Color(0.1, 0.1, 0.1, 1)
 shader_parameter/tint = Color(1, 1, 1, 1)
 shader_parameter/jiggleAmount = 0.0005
-shader_parameter/texture = ExtResource("5")
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_eeqtv"]
 resource_local_to_scene = true
@@ -50,12 +49,12 @@ render_priority = 1
 shader = ExtResource("9")
 shader_parameter/wigglyNess = 1.0
 shader_parameter/movementWigglyNess = 1.0
-shader_parameter/dissolveValue = 0.0
-shader_parameter/healthFraction = 0.25
-shader_parameter/tint = Color(1, 1, 1, 1)
 shader_parameter/albedoTexture = ExtResource("8_gq526")
 shader_parameter/damagedTexture = ExtResource("9_x1sig")
 shader_parameter/dissolveTexture = ExtResource("13")
+shader_parameter/dissolveValue = 0.0
+shader_parameter/healthFraction = 0.25
+shader_parameter/tint = Color(1, 1, 1, 1)
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_04a7v"]
 resource_local_to_scene = true
@@ -81,6 +80,7 @@ shader_parameter/tint = Color(0.4, 0.8, 0.6, 1)
 resource_local_to_scene = true
 render_priority = 0
 shader = ExtResource("1")
+shader_parameter/dissolveTexture = ExtResource("13")
 shader_parameter/dissolveValue = 0.0
 shader_parameter/dissolveScale = 1.0
 shader_parameter/fresnelValue = 1.0
@@ -89,8 +89,6 @@ shader_parameter/outlineWidth = 0.05
 shader_parameter/growColor = Color(0.180392, 0.176471, 0.168627, 1)
 shader_parameter/tint = Color(1, 1, 1, 1)
 shader_parameter/jiggleAmount = 0.0005
-shader_parameter/texture = ExtResource("12")
-shader_parameter/dissolveTexture = ExtResource("13")
 
 [node name="Node3D" type="Node3D"]
 

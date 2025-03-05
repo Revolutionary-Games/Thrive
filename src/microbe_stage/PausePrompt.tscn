@@ -1,7 +1,7 @@
 [gd_scene load_steps=3 format=3 uid="uid://qwg2dluu8ow0"]
 
 [ext_resource type="LabelSettings" uid="uid://cis0p1u7hveec" path="res://src/gui_common/fonts/Title-SemiBold-Huge.tres" id="2_llgsb"]
-[ext_resource type="PackedScene" path="res://src/gui_common/CustomRichTextLabel.tscn" id="5"]
+[ext_resource type="PackedScene" uid="uid://bhpjtbtaeunat" path="res://src/gui_common/CustomRichTextLabel.tscn" id="5"]
 
 [node name="PausePrompt" type="Control"]
 layout_mode = 3

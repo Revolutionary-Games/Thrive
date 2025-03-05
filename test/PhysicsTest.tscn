@@ -1,9 +1,9 @@
 [gd_scene load_steps=6 format=3 uid="uid://ii0cd56itvdj"]
 
 [ext_resource type="Theme" uid="uid://b4cx0o110g4b6" path="res://src/gui_common/thrive_theme.tres" id="1"]
-[ext_resource type="Script" path="res://test/PhysicsTest.cs" id="2"]
+[ext_resource type="Script" uid="uid://drhubod4fl85t" path="res://test/PhysicsTest.cs" id="2"]
 [ext_resource type="LabelSettings" uid="uid://bx7mw3uvqpo42" path="res://src/gui_common/fonts/Body-Regular-Smaller.tres" id="4_aiyoe"]
-[ext_resource type="PackedScene" path="res://src/gui_common/dialogs/CustomWindow.tscn" id="5"]
+[ext_resource type="PackedScene" uid="uid://du8sc8kjirguk" path="res://src/gui_common/dialogs/CustomWindow.tscn" id="5"]
 
 [sub_resource type="PlaneMesh" id="1"]
 size = Vector2(200, 200)

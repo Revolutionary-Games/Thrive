@@ -1,8 +1,8 @@
 [gd_scene load_steps=25 format=3 uid="uid://khgb1ctp1e5o"]
 
 [ext_resource type="Theme" uid="uid://b4cx0o110g4b6" path="res://src/gui_common/thrive_theme.tres" id="1"]
-[ext_resource type="Script" path="res://src/general/OptionsMenu.cs" id="2"]
-[ext_resource type="Script" path="res://src/engine/input/key_mapping/InputGroupList.cs" id="3"]
+[ext_resource type="Script" uid="uid://dmx0x77eogl4f" path="res://src/general/OptionsMenu.cs" id="2"]
+[ext_resource type="Script" uid="uid://dfoaku3adr8tx" path="res://src/engine/input/key_mapping/InputGroupList.cs" id="3"]
 [ext_resource type="PackedScene" uid="uid://cl64wvnxs6ivs" path="res://src/gui_common/dialogs/CustomConfirmationDialog.tscn" id="6"]
 [ext_resource type="LabelSettings" uid="uid://uxdd8vb4xedn" path="res://src/gui_common/fonts/Body-Regular-AlmostTiny.tres" id="7_etww0"]
 [ext_resource type="PackedScene" path="res://src/gui_common/dialogs/CustomWindow.tscn" id="8"]

@@ -1,8 +1,8 @@
 [gd_scene load_steps=4 format=3 uid="uid://dgqw7nudbxobi"]
 
-[ext_resource type="PackedScene" path="res://src/gui_common/dialogs/CustomWindow.tscn" id="1"]
-[ext_resource type="PackedScene" path="res://src/microbe_stage/ProcessList.tscn" id="2"]
-[ext_resource type="Script" path="res://src/microbe_stage/ProcessPanel.cs" id="3"]
+[ext_resource type="PackedScene" uid="uid://du8sc8kjirguk" path="res://src/gui_common/dialogs/CustomWindow.tscn" id="1"]
+[ext_resource type="PackedScene" uid="uid://dt4v2vma5p2s4" path="res://src/microbe_stage/ProcessList.tscn" id="2"]
+[ext_resource type="Script" uid="uid://cggb4tptu8us2" path="res://src/microbe_stage/ProcessPanel.cs" id="3"]
 
 [node name="ProcessPanel" instance=ExtResource("1")]
 process_priority = 5

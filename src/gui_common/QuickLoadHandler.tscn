@@ -1,22 +1,22 @@
-[gd_scene load_steps=3 format=2]
+[gd_scene load_steps=3 format=3 uid="uid://b5b4oe4lcttdp"]
 
-[ext_resource path="res://src/gui_common/QuickLoadHandler.cs" type="Script" id=1]
-[ext_resource path="res://src/gui_common/dialogs/CustomConfirmationDialog.tscn" type="PackedScene" id=2]
+[ext_resource type="Script" uid="uid://c0wwvgubj1gn" path="res://src/gui_common/QuickLoadHandler.cs" id="1"]
+[ext_resource type="PackedScene" uid="uid://cl64wvnxs6ivs" path="res://src/gui_common/dialogs/CustomConfirmationDialog.tscn" id="2"]
 
 [node name="QuickLoadHandler" type="Control"]
 anchor_right = 1.0
 anchor_bottom = 1.0
 mouse_filter = 2
-script = ExtResource( 1 )
+script = ExtResource("1")
 __meta__ = {
 "_edit_use_anchors_": false
 }
 DifferentVersionDialogPath = NodePath("DifferentVersionDialog")
 
-[node name="DifferentVersionDialog" parent="." instance=ExtResource( 2 )]
+[node name="DifferentVersionDialog" parent="." instance=ExtResource("2")]
 offset_right = 570.0
 offset_bottom = 75.0
-custom_minimum_size = Vector2( 570, 0 )
+custom_minimum_size = Vector2(570, 0)
 DialogText = "SAVE_HAS_DIFFERENT_VERSION_TEXT"
 HideCancelButton = true
 WindowTitle = "SAVE_HAS_DIFFERENT_VERSION"

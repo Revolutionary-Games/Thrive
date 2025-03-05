@@ -23,7 +23,7 @@ public partial class TweakedColourPicker : ColorPicker
 #pragma warning restore CA2213
 
     /// <summary>
-    ///   Currently our customized presets are (almost) completely removed. DO NOT TRY TO USE!
+    ///   Currently, our customised presets are (almost) completely removed. DO NOT TRY TO USE!
     /// </summary>
     public string PresetGroup { get; private set; } = "default";
 
@@ -44,17 +44,17 @@ public partial class TweakedColourPicker : ColorPicker
         baseControl.GetChild(2).GetChild<BaseButton>(1).Connect(BaseButton.SignalName.Pressed,
             new Callable(this, nameof(UpdateTooltips)));
 
-        // Hide RAW button
+        // Hide the RAW button
         baseControl.GetChild(2).GetChild<BaseButton>(2).Hide();
 
         // Get controls
         // Sliders are now also for HSL (OKHSL)
-        sliderROrH = baseControl.GetChild(4).GetChild(0).GetChild<HSlider>(1);
-        sliderGOrS = baseControl.GetChild(4).GetChild(0).GetChild<HSlider>(4);
-        sliderBOrV = baseControl.GetChild(4).GetChild(0).GetChild<HSlider>(7);
-        sliderA = baseControl.GetChild(4).GetChild(0).GetChild<HSlider>(13);
-        labelA = baseControl.GetChild(4).GetChild(0).GetChild<Control>(12);
-        spinBoxA = baseControl.GetChild(4).GetChild(0).GetChild<Control>(14);
+        sliderROrH = baseControl.GetChild(3).GetChild<HSlider>(1);
+        sliderGOrS = baseControl.GetChild(3).GetChild<HSlider>(4);
+        sliderBOrV = baseControl.GetChild(3).GetChild<HSlider>(7);
+        sliderA = baseControl.GetChild(3).GetChild<HSlider>(10);
+        labelA = baseControl.GetChild(3).GetChild<Control>(9);
+        spinBoxA = baseControl.GetChild(3).GetChild<Control>(11);
         pickerButton = baseControl.GetChild(1).GetChild<Button>(0);
 
         baseControl.GetChild(2).GetChild<MenuButton>(3).GetPopup().Connect(PopupMenu.SignalName.IndexPressed,
@@ -63,7 +63,7 @@ public partial class TweakedColourPicker : ColorPicker
             new Callable(this, nameof(UpdateTooltips)));
         HideAlphaSlider(1);
 
-        // Disable RAW option in a dropdown menu
+        // Disable the RAW option in a dropdown menu
         baseControl.GetChild(2).GetChild<MenuButton>(3).GetPopup().SetItemDisabled(2, true);
 
         // Disable value bar scroll with the mouse, as the colour pickers are often in scrollable containers and

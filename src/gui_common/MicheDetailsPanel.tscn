@@ -1,7 +1,7 @@
 [gd_scene load_steps=3 format=3 uid="uid://cikd2ef2usr1y"]
 
-[ext_resource type="Script" path="res://src/gui_common/MicheDetailsPanel.cs" id="1_ow3ua"]
-[ext_resource type="PackedScene" path="res://src/gui_common/CustomRichTextLabel.tscn" id="5_1t1od"]
+[ext_resource type="Script" uid="uid://cf67gfjmc2hh1" path="res://src/gui_common/MicheDetailsPanel.cs" id="1_ow3ua"]
+[ext_resource type="PackedScene" uid="uid://bhpjtbtaeunat" path="res://src/gui_common/CustomRichTextLabel.tscn" id="5_1t1od"]
 
 [node name="MicheDetailsPanel" type="MarginContainer"]
 custom_minimum_size = Vector2(352, 300)

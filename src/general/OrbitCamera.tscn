@@ -1,10 +1,10 @@
-[gd_scene load_steps=2 format=2]
+[gd_scene load_steps=2 format=3 uid="uid://d1eadacniisv8"]
 
-[ext_resource path="res://src/general/OrbitCamera.cs" type="Script" id=1]
+[ext_resource type="Script" uid="uid://brmyqlr5le4k7" path="res://src/general/OrbitCamera.cs" id="1"]
 
 [node name="OrbitCamera" type="Node3D"]
-script = ExtResource( 1 )
+script = ExtResource("1")
 RotationSpeed = 0.2
 
 [node name="Camera3D" type="Camera3D" parent="."]
-transform = Transform3D( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 5 )
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 5)

@@ -1,8 +1,8 @@
-[gd_scene load_steps=2 format=2]
+[gd_scene load_steps=2 format=3 uid="uid://bibdu64h85xmp"]
 
-[ext_resource path="res://src/gui_common/ShowWhenInputTypeMatches.cs" type="Script" id=1]
+[ext_resource type="Script" uid="uid://cmcx1dep3lrno" path="res://src/gui_common/ShowWhenInputTypeMatches.cs" id="1"]
 
 [node name="ShowWhenInputTypeMatches" type="VBoxContainer"]
 anchor_right = 1.0
 anchor_bottom = 1.0
-script = ExtResource( 1 )
+script = ExtResource("1")

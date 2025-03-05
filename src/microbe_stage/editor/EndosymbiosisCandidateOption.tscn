@@ -2,10 +2,10 @@
 
 [ext_resource type="Theme" uid="uid://b4cx0o110g4b6" path="res://src/gui_common/thrive_theme.tres" id="1_mr2ks"]
 [ext_resource type="PackedScene" uid="uid://b5cbn7afnas1x" path="res://src/gui_common/PhotographablePreview.tscn" id="2_46q7o"]
-[ext_resource type="Script" path="res://src/microbe_stage/editor/EndosymbiosisCandidateOption.cs" id="2_rtvoc"]
+[ext_resource type="Script" uid="uid://ruuysypac8fg" path="res://src/microbe_stage/editor/EndosymbiosisCandidateOption.cs" id="2_rtvoc"]
 [ext_resource type="LabelSettings" uid="uid://das77igcbl0vy" path="res://src/gui_common/fonts/Body-Italic-Small.tres" id="3_04q4h"]
 [ext_resource type="LabelSettings" uid="uid://c07qrffjvqfw" path="res://src/gui_common/fonts/Body-Regular-Tiny.tres" id="4_ub6ah"]
-[ext_resource type="Script" path="res://src/gui_common/SpeciesPreview.cs" id="5_jvixx"]
+[ext_resource type="Script" uid="uid://b0ycij328egrn" path="res://src/gui_common/SpeciesPreview.cs" id="5_jvixx"]
 
 [node name="EndosymbiosisCandidateOption" type="VBoxContainer" node_paths=PackedStringArray("organelleChoicesContainer", "speciesNameLabel", "speciesPreview", "selectButton")]
 anchors_preset = 15

@@ -3,47 +3,23 @@ extends Node
 
 signal completed()
 
-# default timeout 5min
-const DEFAULT_TIMEOUT := -1
-const ARGUMENT_TIMEOUT := "timeout"
-const ARGUMENT_SKIP := "do_skip"
-const ARGUMENT_SKIP_REASON := "skip_reason"
 
-var _iterations: int = 1
+var _test_case: GdUnitTestCase
+var _attribute: TestCaseAttribute
 var _current_iteration: int = -1
-var _seed: int
-var _fuzzers: Array[GdFunctionArgument] = []
-var _test_param_index := -1
-var _line_number: int = -1
-var _script_path: String
-var _skipped := false
-var _skip_reason := ""
 var _expect_to_interupt := false
 var _timer: Timer
 var _interupted: bool = false
 var _failed := false
 var _parameter_set_resolver: GdUnitTestParameterSetResolver
 var _is_disposed := false
-
-var timeout: int = DEFAULT_TIMEOUT:
-	set(value):
-		timeout = value
-	get:
-		if timeout == DEFAULT_TIMEOUT:
-			timeout = GdUnitSettings.test_timeout()
-		return timeout
+var _func_state: Variant
 
 
-@warning_ignore("shadowed_variable_base_class")
-func configure(p_name: String, p_line_number: int, p_script_path: String, p_timeout: int=DEFAULT_TIMEOUT, p_fuzzers: Array[GdFunctionArgument]=[], p_iterations: int=1, p_seed: int=-1) -> _TestCase:
-	set_name(p_name)
-	_line_number = p_line_number
-	_fuzzers = p_fuzzers
-	_iterations = p_iterations
-	_seed = p_seed
-	_script_path = p_script_path
-	timeout = p_timeout
-	return self
+func _init(test_case: GdUnitTestCase, attribute: TestCaseAttribute, fd: GdFunctionDescriptor) -> void:
+	_test_case = test_case
+	_attribute = attribute
+	set_function_descriptor(fd)
 
 
 func execute(p_test_parameter := Array(), p_iteration := 0) -> void:
@@ -52,23 +28,53 @@ func execute(p_test_parameter := Array(), p_iteration := 0) -> void:
 	if _current_iteration == - 1:
 		_set_failure_handler()
 		set_timeout()
-	if not p_test_parameter.is_empty():
+
+	if is_parameterized():
+		execute_parameterized()
+	elif not p_test_parameter.is_empty():
 		update_fuzzers(p_test_parameter, p_iteration)
-		_execute_test_case(name, p_test_parameter)
+		_execute_test_case(test_name(), p_test_parameter)
 	else:
-		_execute_test_case(name, [])
+		_execute_test_case(test_name(), [])
 	await completed
 
 
-func execute_paramaterized(p_test_parameter: Array) -> void:
+func execute_parameterized() -> void:
 	_failure_received(false)
 	set_timeout()
+
+	# Resolve parameter set at runtime to include runtime variables
+	var test_parameters := await _resolve_test_parameters(_test_case.attribute_index)
+	if test_parameters.is_empty():
+		return
+
+	await _execute_test_case(test_name(), test_parameters)
+
+
+func _resolve_test_parameters(attribute_index: int) -> Array:
+	var result := _parameter_set_resolver.load_parameter_sets(get_parent())
+	if result.is_error():
+		do_skip(true, result.error_message())
+		await (Engine.get_main_loop() as SceneTree).process_frame
+		completed.emit()
+		return []
+
+	# validate the parameter set
+	var parameter_sets: Array = result.value()
+	result = _parameter_set_resolver.validate(parameter_sets, attribute_index)
+	if result.is_error():
+		do_skip(true, result.error_message())
+		await (Engine.get_main_loop() as SceneTree).process_frame
+		completed.emit()
+		return []
+
+	@warning_ignore("unsafe_method_access")
+	var test_parameters: Array = parameter_sets[attribute_index].duplicate()
 	# We need here to add a empty array to override the `test_parameters` to prevent initial "default" parameters from being used.
 	# This prevents objects in the argument list from being unnecessarily re-instantiated.
-	var test_parameters := p_test_parameter.duplicate() # is strictly need to duplicate the paramters before extend
 	test_parameters.append([])
-	_execute_test_case(name, test_parameters)
-	await completed
+
+	return test_parameters
 
 
 func dispose() -> void:
@@ -78,13 +84,15 @@ func dispose() -> void:
 	Engine.remove_meta("GD_TEST_FAILURE")
 	stop_timer()
 	_remove_failure_handler()
-	_fuzzers.clear()
+	_attribute.fuzzers.clear()
 
 
 @warning_ignore("shadowed_variable_base_class", "redundant_await")
 func _execute_test_case(name: String, test_parameter: Array) -> void:
+	# save the function state like GDScriptFunctionState to dispose at test timeout to prevent orphan state
+	_func_state = get_parent().callv(name, test_parameter)
+	await _func_state
 	# needs at least on await otherwise it breaks the awaiting chain
-	await get_parent().callv(name, test_parameter)
 	await (Engine.get_main_loop() as SceneTree).process_frame
 	completed.emit()
 
@@ -98,7 +106,7 @@ func update_fuzzers(input_values: Array, iteration: int) -> void:
 func set_timeout() -> void:
 	if is_instance_valid(_timer):
 		return
-	var time: float = timeout / 1000.0
+	var time: float = _attribute.timeout / 1000.0
 	_timer = Timer.new()
 	add_child(_timer)
 	_timer.set_name("gdunit_test_case_timer_%d" % _timer.get_instance_id())
@@ -112,6 +120,8 @@ func set_timeout() -> void:
 
 func do_interrupt() -> void:
 	_interupted = true
+	# We need to dispose manually the function state here
+	GdObjects.dispose_function_state(_func_state)
 	if not is_expect_interupted():
 		var execution_context:= GdUnitThreadManager.get_current_context().get_execution_context()
 		if is_fuzzed():
@@ -119,7 +129,7 @@ func do_interrupt() -> void:
 				.create(GdUnitReport.INTERUPTED, line_number(), GdAssertMessages.fuzzer_interuped(_current_iteration, "timedout")))
 		else:
 			execution_context.add_report(GdUnitReport.new()\
-				.create(GdUnitReport.INTERUPTED, line_number(), GdAssertMessages.test_timeout(timeout)))
+				.create(GdUnitReport.INTERUPTED, line_number(), GdAssertMessages.test_timeout(_attribute.timeout)))
 	completed.emit()
 
 
@@ -167,74 +177,67 @@ func is_parameterized() -> bool:
 
 
 func is_skipped() -> bool:
-	return _skipped
+	return _attribute.is_skipped
 
 
 func skip_info() -> String:
-	return _skip_reason
+	return _attribute.skip_reason
+
+
+func id() -> GdUnitGUID:
+	return _test_case.guid
+
+
+func test_name() -> String:
+	return _test_case.test_name
+
+
+@warning_ignore("native_method_override")
+func get_name() -> StringName:
+	return _test_case.test_name
 
 
 func line_number() -> int:
-	return _line_number
+	return _test_case.line_number
 
 
 func iterations() -> int:
-	return _iterations
+	return _attribute.fuzzer_iterations
 
 
 func seed_value() -> int:
-	return _seed
+	return _attribute.test_seed
 
 
 func is_fuzzed() -> bool:
-	return not _fuzzers.is_empty()
+	return not _attribute.fuzzers.is_empty()
 
 
 func fuzzer_arguments() -> Array[GdFunctionArgument]:
-	return _fuzzers
+	return _attribute.fuzzers
 
 
 func script_path() -> String:
-	return _script_path
+	return _test_case.source_file
 
 
 func ResourcePath() -> String:
-	return _script_path
+	return _test_case.source_file
 
 
 func generate_seed() -> void:
-	if _seed != -1:
-		seed(_seed)
+	if _attribute.test_seed != -1:
+		seed(_attribute.test_seed)
 
 
-func skip(skipped: bool, reason: String="") -> void:
-	_skipped = skipped
-	_skip_reason = reason
+func do_skip(skipped: bool, reason: String="") -> void:
+	_attribute.is_skipped = skipped
+	_attribute.skip_reason = reason
 
 
 func set_function_descriptor(fd: GdFunctionDescriptor) -> void:
 	_parameter_set_resolver = GdUnitTestParameterSetResolver.new(fd)
 
 
-func set_test_parameter_index(index: int) -> void:
-	_test_param_index = index
-
-
-func test_parameter_index() -> int:
-	return _test_param_index
-
-
-func test_case_names() -> PackedStringArray:
-	return _parameter_set_resolver.build_test_case_names(self)
-
-
-func load_parameter_sets() -> Array:
-	return _parameter_set_resolver.load_parameter_sets(self, true)
-
-
-func parameter_set_resolver() -> GdUnitTestParameterSetResolver:
-	return _parameter_set_resolver
-
-
 func _to_string() -> String:
-	return "%s :%d (%dms)" % [get_name(), _line_number, timeout]
+	return "%s :%d (%dms)" % [get_name(), _test_case.line_number, _attribute.timeout]

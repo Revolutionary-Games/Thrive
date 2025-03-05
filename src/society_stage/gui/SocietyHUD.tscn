@@ -3,7 +3,7 @@
 [ext_resource type="Theme" uid="uid://b4cx0o110g4b6" path="res://src/gui_common/thrive_theme.tres" id="2"]
 [ext_resource type="Texture2D" uid="uid://d0iv1w2t5wwae" path="res://assets/textures/gui/bevel/parts/membraneAmoeba.png" id="3"]
 [ext_resource type="Texture2D" uid="uid://blcmdxxsk4nyv" path="res://assets/textures/gui/bevel/DNAButtonLargeNormal.svg" id="3_3hidu"]
-[ext_resource type="PackedScene" path="res://src/gui_common/ActionButton.tscn" id="4"]
+[ext_resource type="PackedScene" uid="uid://cmfpne0v21jbs" path="res://src/gui_common/ActionButton.tscn" id="4"]
 [ext_resource type="Texture2D" uid="uid://dyc7ht0h5qfca" path="res://assets/textures/gui/bevel/DNAButtonLargePressed.svg" id="4_qdjoj"]
 [ext_resource type="PackedScene" uid="uid://qwg2dluu8ow0" path="res://src/microbe_stage/PausePrompt.tscn" id="5"]
 [ext_resource type="Texture2D" uid="uid://ctcx4y3a2a0gv" path="res://assets/textures/gui/bevel/DNAButtonLargeHover.svg" id="5_nx3ue"]
@@ -13,7 +13,7 @@
 [ext_resource type="Texture2D" uid="uid://myc8kb3pyj03" path="res://assets/textures/gui/bevel/actions/BuildStructure.png" id="8"]
 [ext_resource type="Texture2D" uid="uid://r3tppwbfq4mw" path="res://assets/textures/gui/bevel/chemicalButton.svg" id="10_33ly4"]
 [ext_resource type="PackedScene" uid="uid://daaxumisua7ue" path="res://src/society_stage/gui/ResearchScreen.tscn" id="11"]
-[ext_resource type="Script" path="res://src/society_stage/gui/SocietyHUD.cs" id="12"]
+[ext_resource type="Script" uid="uid://dfo7xw73wytsl" path="res://src/society_stage/gui/SocietyHUD.cs" id="12"]
 [ext_resource type="LabelSettings" uid="uid://cns7wsfktfld4" path="res://src/gui_common/fonts/Title-SemiBold-Bigger.tres" id="12_3r5as"]
 [ext_resource type="PackedScene" uid="uid://bdwkyuskd3u3r" path="res://src/microbe_stage/HUDBottomBar.tscn" id="16"]
 

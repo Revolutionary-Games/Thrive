@@ -29,17 +29,17 @@ size_flags_horizontal = 3
 size_flags_vertical = 3
 
 [node name="Header" type="PanelContainer" parent="VBoxContainer"]
+auto_translate_mode = 2
 custom_minimum_size = Vector2(0, 32)
 layout_mode = 2
-auto_translate = false
 localize_numeral_system = false
 mouse_filter = 2
 
 [node name="header_title" type="RichTextLabel" parent="VBoxContainer/Header"]
+auto_translate_mode = 2
 layout_mode = 2
 size_flags_horizontal = 3
 size_flags_vertical = 3
-auto_translate = false
 localize_numeral_system = false
 mouse_filter = 2
 bbcode_enabled = true
@@ -57,5 +57,8 @@ use_parent_material = true
 layout_mode = 2
 size_flags_horizontal = 3
 size_flags_vertical = 3
+focus_mode = 2
 bbcode_enabled = true
 scroll_following = true
+context_menu_enabled = true
+selection_enabled = true

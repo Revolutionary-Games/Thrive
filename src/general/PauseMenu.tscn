@@ -1,13 +1,13 @@
 [gd_scene load_steps=14 format=3 uid="uid://devtugnggmuol"]
 
-[ext_resource type="Script" path="res://src/general/PauseMenu.cs" id="1"]
+[ext_resource type="Script" uid="uid://exlgkif2qbrm" path="res://src/general/PauseMenu.cs" id="1"]
 [ext_resource type="Theme" uid="uid://b4cx0o110g4b6" path="res://src/gui_common/thrive_theme.tres" id="2"]
 [ext_resource type="PackedScene" uid="uid://ddi31qylscfyh" path="res://src/saving/SaveList.tscn" id="3"]
 [ext_resource type="PackedScene" path="res://src/saving/NewSaveMenu.tscn" id="5"]
 [ext_resource type="PackedScene" uid="uid://khgb1ctp1e5o" path="res://src/general/OptionsMenu.tscn" id="6"]
 [ext_resource type="PackedScene" uid="uid://cl64wvnxs6ivs" path="res://src/gui_common/dialogs/CustomConfirmationDialog.tscn" id="7"]
 [ext_resource type="PackedScene" uid="uid://bt4wq0ddch84i" path="res://src/thriveopedia/Thriveopedia.tscn" id="8"]
-[ext_resource type="PackedScene" path="res://src/gui_common/FocusGrabber.tscn" id="9"]
+[ext_resource type="PackedScene" uid="uid://bgeijgq7runaw" path="res://src/gui_common/FocusGrabber.tscn" id="9"]
 [ext_resource type="PackedScene" uid="uid://cba187yaeukt3" path="res://src/gui_common/TopLevelContainer.tscn" id="10"]
 
 [sub_resource type="Animation" id="Animation_rnkue"]
@@ -167,9 +167,9 @@ tracks/3/keys = {
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_y4xuc"]
 _data = {
-"Close": SubResource("Animation_rnkue"),
-"Open": SubResource("Animation_fsnwg"),
-"RESET": SubResource("Animation_ih5uy")
+&"Close": SubResource("Animation_rnkue"),
+&"Open": SubResource("Animation_fsnwg"),
+&"RESET": SubResource("Animation_ih5uy")
 }
 
 [node name="PauseMenu" instance=ExtResource("10")]

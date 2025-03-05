@@ -38,16 +38,14 @@ static func build(to_spy: Variant, debug_write := false) -> Variant:
 	var spy := spy_on_script(to_spy, excluded_functions, debug_write)
 	if spy == null:
 		return null
-	var spy_instance :Object = spy.new()
+	var spy_instance: Object = spy.new()
+	@warning_ignore("unsafe_method_access")
+	# we do not call the original implementation for _ready and all input function, this is actualy done by the engine
+	spy_instance.__init(to_spy, ["_input", "_gui_input", "_input_event", "_unhandled_input"])
 	@warning_ignore("unsafe_cast")
 	copy_properties(to_spy as Object, spy_instance)
 	@warning_ignore("return_value_discarded")
 	GdUnitObjectInteractions.reset(spy_instance)
-	@warning_ignore("unsafe_method_access")
-	spy_instance.__set_singleton(to_spy)
-	# we do not call the original implementation for _ready and all input function, this is actualy done by the engine
-	@warning_ignore("unsafe_method_access")
-	spy_instance.__exclude_method_call([ "_input", "_gui_input", "_input_event", "_unhandled_input"])
 	return register_auto_free(spy_instance)
 
 
@@ -106,8 +104,23 @@ static func spy_on_scene(scene :Node, debug_write :bool) -> Object:
 	scene_script.free()
 	if spy == null:
 		return null
-	# replace original script whit spy
+
+	# we need to restore the original script properties to apply after script exchange
+	var original_properties := {}
+	for p in scene.get_property_list():
+		var property_name: String = p["name"]
+		var usage: int = p["usage"]
+		if (usage & PROPERTY_USAGE_SCRIPT_VARIABLE) == PROPERTY_USAGE_SCRIPT_VARIABLE:
+			original_properties[property_name] = scene.get(property_name)
+
+	# exchage with spy
 	scene.set_script(spy)
+	# apply original script properties to the spy
+	for property_name: String in original_properties.keys():
+		scene.set(property_name, original_properties[property_name])
+
+	@warning_ignore("unsafe_method_access")
+	scene.__init(scene, [])
 	return register_auto_free(scene)
 
 

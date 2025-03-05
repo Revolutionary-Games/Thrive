@@ -1,7 +1,7 @@
 [gd_scene load_steps=3 format=3 uid="uid://b0qu4wsytbrdo"]
 
 [ext_resource type="PackedScene" uid="uid://c4i1ie8aqbswd" path="res://src/gui_common/art_gallery/GalleryCard.tscn" id="1"]
-[ext_resource type="Script" path="res://src/gui_common/art_gallery/GalleryCardModel.cs" id="2"]
+[ext_resource type="Script" uid="uid://di7u8qytfe6yy" path="res://src/gui_common/art_gallery/GalleryCardModel.cs" id="2"]
 
 [node name="GalleryCardModel" instance=ExtResource("1")]
 script = ExtResource("2")

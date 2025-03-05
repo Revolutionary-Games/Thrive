@@ -45,7 +45,7 @@ var _decoders := {
 	TYPE_OBJECT: _on_type_Object
 }
 
-static func _regex(pattern :String) -> RegEx:
+static func _regex(pattern: String) -> RegEx:
 	var regex := RegEx.new()
 	var err := regex.compile(pattern)
 	if err != OK:
@@ -54,11 +54,11 @@ static func _regex(pattern :String) -> RegEx:
 	return regex
 
 
-func get_decoder(type :int) -> Callable:
+func get_decoder(type: int) -> Callable:
 	return _decoders.get(type, func(value :Variant) -> String: return '%s' % value)
 
 
-func _on_type_StringName(value :StringName) -> String:
+func _on_type_StringName(value: StringName) -> String:
 	if value.is_empty():
 		return 'StringName()'
 	return 'StringName("%s")' % value
@@ -74,27 +74,27 @@ func _on_type_Color(color: Color) -> String:
 	return "Color%s" % color
 
 
-func _on_type_NodePath(path :NodePath) -> String:
+func _on_type_NodePath(path: NodePath) -> String:
 	if path.is_empty():
 		return 'NodePath()'
 	return 'NodePath("%s")' % path
 
 
-func _on_type_Callable(_cb :Callable) -> String:
+func _on_type_Callable(_cb: Callable) -> String:
 	return 'Callable()'
 
 
-func _on_type_Signal(_s :Signal) -> String:
+func _on_type_Signal(_s: Signal) -> String:
 	return 'Signal()'
 
 
-func _on_type_Dictionary(dict :Dictionary) -> String:
+func _on_type_Dictionary(dict: Dictionary) -> String:
 	if dict.is_empty():
 		return '{}'
 	return str(dict)
 
 
-func _on_type_Array(value :Variant, type :int) -> String:
+func _on_type_Array(value: Variant, type: int) -> String:
 	match type:
 		TYPE_ARRAY:
 			return str(value)
@@ -150,7 +150,7 @@ func _on_type_Array(value :Variant, type :int) -> String:
 		TYPE_PACKED_INT32_ARRAY,\
 		TYPE_PACKED_INT64_ARRAY:
 			var vectors := PackedStringArray()
-			for vector :Variant in value:
+			for vector: Variant in value:
 				@warning_ignore("return_value_discarded")
 				vectors.append(str(vector))
 			if vectors.is_empty():
@@ -159,7 +159,12 @@ func _on_type_Array(value :Variant, type :int) -> String:
 	return "unknown array type %d" % type
 
 
-func _on_type_Vector(value :Variant, type :int) -> String:
+func _on_type_Vector(value: Variant, type: int) -> String:
+
+	if typeof(value) != type:
+		push_error("Internal Error: type missmatch detected for value '%s', expects type %s" % [value, type_string(type)])
+		return ""
+
 	match type:
 		TYPE_VECTOR2:
 			if value == Vector2():
@@ -188,73 +193,69 @@ func _on_type_Vector(value :Variant, type :int) -> String:
 	return "unknown vector type %d" % type
 
 
-func _on_type_Transform2D(transform :Transform2D) -> String:
+func _on_type_Transform2D(transform: Transform2D) -> String:
 	if transform == Transform2D():
 		return "Transform2D()"
 	return "Transform2D(Vector2%s, Vector2%s, Vector2%s)" % [transform.x, transform.y, transform.origin]
 
 
-func _on_type_Transform3D(transform :Transform3D) -> String:
+func _on_type_Transform3D(transform: Transform3D) -> String:
 	if transform == Transform3D():
 		return "Transform3D()"
 	return "Transform3D(Vector3%s, Vector3%s, Vector3%s, Vector3%s)" % [transform.basis.x, transform.basis.y, transform.basis.z, transform.origin]
 
 
-func _on_type_Projection(projection :Projection) -> String:
+func _on_type_Projection(projection: Projection) -> String:
 	return "Projection(Vector4%s, Vector4%s, Vector4%s, Vector4%s)" % [projection.x, projection.y, projection.z, projection.w]
 
 
 @warning_ignore("unused_parameter")
-func _on_type_RID(value :RID) -> String:
+func _on_type_RID(value: RID) -> String:
 	return "RID()"
 
 
-func _on_type_Rect2(rect :Rect2) -> String:
+func _on_type_Rect2(rect: Rect2) -> String:
 	if rect == Rect2():
 		return "Rect2()"
 	return "Rect2(Vector2%s, Vector2%s)" % [rect.position, rect.size]
 
 
-func _on_type_Rect2i(rect :Variant) -> String:
+func _on_type_Rect2i(rect: Variant) -> String:
 	if rect == Rect2i():
 		return "Rect2i()"
 	return "Rect2i(Vector2i%s, Vector2i%s)" % [rect.position, rect.size]
 
 
-func _on_type_Plane(plane :Plane) -> String:
+func _on_type_Plane(plane: Plane) -> String:
 	if plane == Plane():
 		return "Plane()"
 	return "Plane(%d, %d, %d, %d)" % [plane.x, plane.y, plane.z, plane.d]
 
 
-func _on_type_Quaternion(quaternion :Quaternion) -> String:
+func _on_type_Quaternion(quaternion: Quaternion) -> String:
 	if quaternion == Quaternion():
 		return "Quaternion()"
 	return "Quaternion(%d, %d, %d, %d)" % [quaternion.x, quaternion.y, quaternion.z, quaternion.w]
 
 
-func _on_type_AABB(aabb :AABB) -> String:
+func _on_type_AABB(aabb: AABB) -> String:
 	if aabb == AABB():
 		return "AABB()"
 	return "AABB(Vector3%s, Vector3%s)" % [aabb.position, aabb.size]
 
 
-func _on_type_Basis(basis :Basis) -> String:
+func _on_type_Basis(basis: Basis) -> String:
 	if basis == Basis():
 		return "Basis()"
 	return "Basis(Vector3%s, Vector3%s, Vector3%s)" % [basis.x, basis.y, basis.z]
 
 
-@warning_ignore("unsafe_cast")
-static func decode(value :Variant) -> String:
+static func decode(value: Variant) -> String:
 	var type := typeof(value)
+	@warning_ignore("unsafe_cast")
 	if GdArrayTools.is_type_array(type) and (value as Array).is_empty():
 		return "<empty>"
-	var decoder :Callable = (
-			instance("GdUnitDefaultValueDecoders",
-				func() -> GdDefaultValueDecoder: return GdDefaultValueDecoder.new()
-				) as GdDefaultValueDecoder
-		).get_decoder(type)
+	var decoder := _get_value_decoder(type)
 	if decoder == null:
 		push_error("No value decoder registered for type '%d'! Please open a Bug issue at 'https://github.com/MikeSchulze/gdUnit4/issues/new/choose'." % type)
 		return "null"
@@ -263,18 +264,21 @@ static func decode(value :Variant) -> String:
 	return decoder.call(value)
 
 
-@warning_ignore("unsafe_cast")
-static func decode_typed(type :int, value :Variant) -> String:
+static func decode_typed(type: int, value: Variant) -> String:
 	if value == null:
 		return "null"
-	var decoder: Callable = (
-			instance("GdUnitDefaultValueDecoders",
-				func() -> GdDefaultValueDecoder: return GdDefaultValueDecoder.new()
-				) as GdDefaultValueDecoder
-			).get_decoder(type)
+	var decoder := _get_value_decoder(type)
 	if decoder == null:
 		push_error("No value decoder registered for type '%d'! Please open a Bug issue at 'https://github.com/MikeSchulze/gdUnit4/issues/new/choose'." % type)
 		return "null"
 	if type == TYPE_OBJECT:
 		return decoder.call(value, type)
 	return decoder.call(value)
+
+
+static func _get_value_decoder(type: int) -> Callable:
+	var decoder: GdDefaultValueDecoder = instance(
+		"GdUnitDefaultValueDecoders",
+		func() -> GdDefaultValueDecoder:
+			return GdDefaultValueDecoder.new())
+	return decoder.get_decoder(type)

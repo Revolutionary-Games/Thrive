@@ -1,11 +1,11 @@
 [gd_scene load_steps=10 format=3 uid="uid://b2uw1x2g8awbf"]
 
 [ext_resource type="Theme" uid="uid://b4cx0o110g4b6" path="res://src/gui_common/thrive_theme.tres" id="3"]
-[ext_resource type="Script" path="res://src/microbe_stage/gui/ExtinctionBox.cs" id="4"]
+[ext_resource type="Script" uid="uid://b0j6gdymbnyns" path="res://src/microbe_stage/gui/ExtinctionBox.cs" id="4"]
 [ext_resource type="LabelSettings" uid="uid://b6ygk4wqe5y68" path="res://src/gui_common/fonts/Thrive-Humongous-Red.tres" id="4_wg3u8"]
 [ext_resource type="PackedScene" uid="uid://ddi31qylscfyh" path="res://src/saving/SaveList.tscn" id="5"]
 [ext_resource type="LabelSettings" uid="uid://cns7wsfktfld4" path="res://src/gui_common/fonts/Title-SemiBold-Bigger.tres" id="5_1cfe3"]
-[ext_resource type="PackedScene" path="res://src/gui_common/CustomRichTextLabel.tscn" id="6_fyfe8"]
+[ext_resource type="PackedScene" uid="uid://bhpjtbtaeunat" path="res://src/gui_common/CustomRichTextLabel.tscn" id="6_fyfe8"]
 
 [sub_resource type="StyleBoxFlat" id="1"]
 bg_color = Color(0, 0, 0, 0.392157)
@@ -28,7 +28,7 @@ tracks/0/keys = {
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_exnap"]
 _data = {
-"FadeIn": SubResource("2")
+&"FadeIn": SubResource("2")
 }
 
 [node name="ExtinctionBox" type="Control" node_paths=PackedStringArray("continueText", "continueButton")]

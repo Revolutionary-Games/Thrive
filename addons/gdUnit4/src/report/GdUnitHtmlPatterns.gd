@@ -120,7 +120,7 @@ static func build(template: String, report: GdUnitReportSummary, report_link: St
 	return template\
 		.replace(PATH, get_report_path(report))\
 		.replace(BREADCRUMP_PATH_LINK, get_path_as_link(report))\
-		.replace(RESOURCE_PATH, report.resource_path())\
+		.replace(RESOURCE_PATH, report.get_resource_path())\
 		.replace(TESTSUITE_NAME, report.name_html_encoded())\
 		.replace(TESTSUITE_COUNT, str(report.suite_count()))\
 		.replace(TESTCASE_COUNT, str(report.test_count()))\

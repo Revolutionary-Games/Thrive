@@ -1,11 +1,12 @@
 [gd_scene load_steps=5 format=3 uid="uid://b6pjvrbt518oj"]
 
-[ext_resource type="Script" path="res://src/engine/ChromaticFilter.cs" id="1"]
-[ext_resource type="Shader" path="res://shaders/Chromatic.gdshader" id="2"]
+[ext_resource type="Script" uid="uid://c4ujk8ysiafcu" path="res://src/engine/ChromaticFilter.cs" id="1"]
+[ext_resource type="Shader" uid="uid://c0h6kp5jvkstt" path="res://shaders/Chromatic.gdshader" id="2"]
 [ext_resource type="Texture2D" uid="uid://dtvbg17mj0i35" path="res://assets/textures/blank.png" id="3"]
 
 [sub_resource type="ShaderMaterial" id="1"]
 shader = ExtResource("2")
+shader_parameter/MAX_DIST_PX = 0.0
 
 [node name="ChromaticFilter" type="TextureRect"]
 material = SubResource("1")

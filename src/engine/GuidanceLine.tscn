@@ -1,7 +1,7 @@
-[gd_scene load_steps=2 format=2]
+[gd_scene load_steps=2 format=3 uid="uid://b5yuo8sj21lnf"]
 
-[ext_resource path="res://src/engine/GuidanceLine.cs" type="Script" id=1]
+[ext_resource type="Script" uid="uid://cyn112d5r8m6k" path="res://src/engine/GuidanceLine.cs" id="1"]
 
 [node name="GuidanceLine" type="MeshInstance3D"]
 cast_shadow = 0
-script = ExtResource( 1 )
+script = ExtResource("1")

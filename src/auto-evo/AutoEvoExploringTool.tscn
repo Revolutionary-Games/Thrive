@@ -1,6 +1,6 @@
 [gd_scene load_steps=22 format=3 uid="uid://cgryi0yvh11d8"]
 
-[ext_resource type="Script" path="res://src/auto-evo/AutoEvoExploringTool.cs" id="1"]
+[ext_resource type="Script" uid="uid://btl24nbg2dyml" path="res://src/auto-evo/AutoEvoExploringTool.cs" id="1"]
 [ext_resource type="Theme" uid="uid://b4cx0o110g4b6" path="res://src/gui_common/thrive_theme.tres" id="2"]
 [ext_resource type="PackedScene" path="res://src/gui_common/CustomRichTextLabel.tscn" id="5"]
 [ext_resource type="LabelSettings" uid="uid://b6c60ljn172wp" path="res://src/gui_common/fonts/Body-Bold-Smaller.tres" id="5_6c001"]
@@ -8,7 +8,7 @@
 [ext_resource type="PackedScene" uid="uid://rfg25u72afai" path="res://src/gui_common/SpeciesDetailsPanelWithFossilisation.tscn" id="9"]
 [ext_resource type="PackedScene" uid="uid://cl64wvnxs6ivs" path="res://src/gui_common/dialogs/CustomConfirmationDialog.tscn" id="11"]
 [ext_resource type="LabelSettings" uid="uid://bx7mw3uvqpo42" path="res://src/gui_common/fonts/Body-Regular-Smaller.tres" id="11_crtm0"]
-[ext_resource type="Script" path="res://src/gui_common/CustomDropDown.cs" id="12"]
+[ext_resource type="Script" uid="uid://cnjatsx4a4qpl" path="res://src/gui_common/CustomDropDown.cs" id="12"]
 [ext_resource type="PackedScene" path="res://src/microbe_stage/editor/PatchMapDrawer.tscn" id="13"]
 [ext_resource type="PackedScene" uid="uid://cjbhth6wlc08l" path="res://src/auto-evo/EvolutionaryTree.tscn" id="14"]
 [ext_resource type="PackedScene" uid="uid://din62wkc2pcnk" path="res://src/gui_common/DraggableScrollContainer.tscn" id="16"]
@@ -18,7 +18,7 @@
 [ext_resource type="Texture2D" uid="uid://b84h4mjojeb7q" path="res://assets/textures/gui/bevel/plusButton.png" id="18"]
 [ext_resource type="PackedScene" uid="uid://cikd2ef2usr1y" path="res://src/gui_common/MicheDetailsPanel.tscn" id="18_qhnwh"]
 [ext_resource type="Texture2D" uid="uid://bwcvbcn15kctq" path="res://assets/textures/gui/bevel/plusButtonHover.png" id="19"]
-[ext_resource type="PackedScene" path="res://src/gui_common/FocusGrabber.tscn" id="20"]
+[ext_resource type="PackedScene" uid="uid://bgeijgq7runaw" path="res://src/gui_common/FocusGrabber.tscn" id="20"]
 [ext_resource type="PackedScene" uid="uid://dw3ubsraoopin" path="res://src/gui_common/TabButtons.tscn" id="21"]
 
 [sub_resource type="ButtonGroup" id="ButtonGroup_cxjso"]

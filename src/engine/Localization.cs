@@ -15,9 +15,11 @@ public partial class Localization : Node
     private static bool printedError;
 
     /// <summary>
-    ///   Cache of looked up translations for current language. Will be cleared on language change
+    ///   Cache of looked up translations for the current language. Will be cleared on language change
     /// </summary>
     private readonly Dictionary<string, string> lookedUpTranslations = new();
+
+    private bool ready;
 
     private Localization()
     {
@@ -66,7 +68,7 @@ public partial class Localization : Node
                 GD.PrintErr("Localization is being accessed before it was initialized. This bypasses memory caching.");
             }
 
-            // This works, but does some pretty nasty memory allocations
+            // This works but does some pretty nasty memory allocations
             return TranslationServer.Translate(message);
         }
 
@@ -85,6 +87,13 @@ public partial class Localization : Node
         return result;
     }
 
+    public override void _Ready()
+    {
+        base._Ready();
+
+        ready = true;
+    }
+
     public override void _ExitTree()
     {
         base._ExitTree();
@@ -96,6 +105,10 @@ public partial class Localization : Node
     public override void _Notification(int what)
     {
         base._Notification(what);
+
+        // Godot 4.4 sends the translations changed signal way too early, so we ignore it until ready is called
+        if (!ready)
+            return;
 
         if (what == NotificationTranslationChanged)
             OnLanguageChanged();

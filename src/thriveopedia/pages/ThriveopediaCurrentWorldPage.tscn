@@ -1,7 +1,7 @@
 [gd_scene load_steps=4 format=3 uid="uid://drsohmn15i4to"]
 
-[ext_resource type="PackedScene" path="res://src/thriveopedia/ThriveopediaPage.tscn" id="1"]
-[ext_resource type="Script" path="res://src/thriveopedia/pages/ThriveopediaCurrentWorldPage.cs" id="2"]
+[ext_resource type="PackedScene" uid="uid://cckki1kx0cnol" path="res://src/thriveopedia/ThriveopediaPage.tscn" id="1"]
+[ext_resource type="Script" uid="uid://cml3p0ajm4qju" path="res://src/thriveopedia/pages/ThriveopediaCurrentWorldPage.cs" id="2"]
 [ext_resource type="LabelSettings" uid="uid://bnhcbmq3brx0s" path="res://src/gui_common/fonts/Title-SemiBold-Normal.tres" id="3_4isgi"]
 
 [node name="ThriveopediaCurrentWorldPage" instance=ExtResource("1")]

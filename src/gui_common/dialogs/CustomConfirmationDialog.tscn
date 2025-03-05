@@ -1,9 +1,9 @@
 [gd_scene load_steps=6 format=3 uid="uid://cl64wvnxs6ivs"]
 
-[ext_resource type="Script" path="res://src/gui_common/dialogs/CustomConfirmationDialog.cs" id="1"]
+[ext_resource type="Script" uid="uid://d27qna4nsmyhl" path="res://src/gui_common/dialogs/CustomConfirmationDialog.cs" id="1"]
 [ext_resource type="PackedScene" path="res://src/gui_common/dialogs/CustomWindow.tscn" id="2"]
 [ext_resource type="PackedScene" path="res://src/gui_common/CustomRichTextLabel.tscn" id="4"]
-[ext_resource type="PackedScene" path="res://src/gui_common/FocusGrabber.tscn" id="5"]
+[ext_resource type="PackedScene" uid="uid://bgeijgq7runaw" path="res://src/gui_common/FocusGrabber.tscn" id="5"]
 [ext_resource type="FontVariation" uid="uid://cqork3l186w1c" path="res://assets/fonts/variants/Jura-Bold.tres" id="5_pks4s"]
 
 [node name="CustomConfirmationDialog" instance=ExtResource("2")]

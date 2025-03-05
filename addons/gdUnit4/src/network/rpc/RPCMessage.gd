@@ -1,12 +1,12 @@
 class_name RPCMessage
 extends RPC
 
-var _message :String
+var _message: String
 
 
-static func of(p_message :String) -> RPCMessage:
+static func of(msg :String) -> RPCMessage:
 	var rpc := RPCMessage.new()
-	rpc._message = p_message
+	rpc._message = msg
 	return rpc
 
 

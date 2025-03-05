@@ -1,7 +1,7 @@
 [gd_scene load_steps=7 format=3 uid="uid://hxrn73ihp8r4"]
 
 [ext_resource type="PackedScene" uid="uid://cpxcni1cii4k8" path="res://assets/models/EditorArrow.tscn" id="1"]
-[ext_resource type="Shader" path="res://shaders/EditorHexGrid.gdshader" id="3_yr5pr"]
+[ext_resource type="Shader" uid="uid://srqfmfn6rh6j" path="res://shaders/EditorHexGrid.gdshader" id="3_yr5pr"]
 [ext_resource type="Texture2D" uid="uid://cai50f52nr8gw" path="res://assets/textures/background_particle_fuzzy.png" id="4_vutib"]
 [ext_resource type="PackedScene" uid="uid://bako5jivv1dji" path="res://src/microbe_stage/MicrobeCamera.tscn" id="5"]
 
@@ -11,10 +11,10 @@ size = Vector2(15, 15)
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_kek8v"]
 render_priority = -2
 shader = ExtResource("3_yr5pr")
+shader_parameter/maskTexture = ExtResource("4_vutib")
 shader_parameter/color = Color(1, 1, 1, 1)
 shader_parameter/lineWidth = 0.02
 shader_parameter/edgeLength = 1.299
-shader_parameter/maskTexture = ExtResource("4_vutib")
 
 [node name="MicrobeEditorWorld" type="Node"]
 

@@ -1,10 +1,10 @@
 [gd_scene load_steps=7 format=3 uid="uid://bpbpxv82m0i0a"]
 
 [ext_resource type="Theme" uid="uid://b4cx0o110g4b6" path="res://src/gui_common/thrive_theme.tres" id="1_0t3i4"]
-[ext_resource type="Script" path="res://src/microbe_stage/editor/EndosymbiosisProgressDisplay.cs" id="2_y7vs2"]
+[ext_resource type="Script" uid="uid://bjlwsawgdfpo1" path="res://src/microbe_stage/editor/EndosymbiosisProgressDisplay.cs" id="2_y7vs2"]
 [ext_resource type="LabelSettings" uid="uid://das77igcbl0vy" path="res://src/gui_common/fonts/Body-Italic-Small.tres" id="3_1qvrg"]
 [ext_resource type="PackedScene" uid="uid://b5cbn7afnas1x" path="res://src/gui_common/PhotographablePreview.tscn" id="4_tyacu"]
-[ext_resource type="Script" path="res://src/gui_common/SpeciesPreview.cs" id="5_7kqgl"]
+[ext_resource type="Script" uid="uid://b0ycij328egrn" path="res://src/gui_common/SpeciesPreview.cs" id="5_7kqgl"]
 [ext_resource type="LabelSettings" uid="uid://c07qrffjvqfw" path="res://src/gui_common/fonts/Body-Regular-Tiny.tres" id="6_etecp"]
 
 [node name="EndosymbiosisProgressDisplay" type="VBoxContainer" node_paths=PackedStringArray("speciesNameLabel", "speciesPreview", "progressBar", "finishButton")]

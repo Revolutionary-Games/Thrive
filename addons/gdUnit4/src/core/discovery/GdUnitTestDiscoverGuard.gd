@@ -1,132 +1,288 @@
+## Guards and tracks test case changes during test discovery and file modifications.[br]
+## [br]
+## This guard maintains a cache of discovered tests to track changes between test runs and during[br]
+## file modifications. It is optimized for performance using simple but effective test identity checks.[br]
+## [br]
+## Test Change Detection:[br]
+## - Moved tests: The test implementation remains at a different line number[br]
+## - Renamed tests: The test line position remains but the test name changed[br]
+## - Deleted tests: A previously discovered test was removed[br]
+## - Added tests: A new test was discovered[br]
+## [br]
+## Cache Management:[br]
+## - Maintains test identity through unique GdUnitTestCase GUIDs[br]
+## - Maps source files to their discovered test cases[br]
+## - Tracks only essential metadata (line numbers, names) to minimize memory use[br]
+## [br]
+## Change Detection Strategy:[br]
+## The guard uses a lightweight approach by comparing only line numbers and test names.[br]
+## This avoids expensive operations like test content parsing or similarity checks.[br]
+## [br]
+## Event Handling:[br]
+## - Emits events on test changes through GdUnitSignals[br]
+## - Synchronizes cache with test discovery events[br]
+## - Notifies UI about test changes[br]
+## [br]
+## Example usage:[br]
+## [codeblock]
+## # Create guard for tracking test changes
+## var guard := GdUnitTestDiscoverGuard.new()
+##
+## # Connect to test discovery events
+## GdUnitSignals.instance().gdunit_test_discovered.connect(guard.sync_test_added)
+##
+## # Discover tests and track changes
+## await guard.discover(test_script)
+## [/codeblock]
+class_name GdUnitTestDiscoverGuard
 extends RefCounted
 
 
-# Caches all test indices for parameterized tests
-class TestCaseIndicesCache:
-	var _cache := {}
-
-	func _key(resource_path: String, test_name: String) -> StringName:
-		return &"%s_%s" % [resource_path, test_name]
-
-
-	func contains_test_case(resource_path: String, test_name: String) -> bool:
-		return _cache.has(_key(resource_path, test_name))
-
-
-	func validate(resource_path: String, test_name: String, indices: PackedStringArray) -> bool:
-		var cached_indicies: PackedStringArray = _cache[_key(resource_path, test_name)]
-		return GdArrayTools.has_same_content(cached_indicies, indices)
-
-
-	func sync(resource_path: String, test_name: String, indices: PackedStringArray) -> void:
-		if indices.is_empty():
-			_cache[_key(resource_path, test_name)] = []
-		else:
-			_cache[_key(resource_path, test_name)] = indices
-
-# contains all tracked test suites where discovered since editor start
-# key : test suite resource_path
-# value: the list of discovered test case names
+## Maps source files to their discovered test cases.[br]
+## [br]
+## Key: Test suite source file path[br]
+## Value: Array of [class GdUnitTestCase] instances
 var _discover_cache := {}
 
-var discovered_test_case_indices_cache := TestCaseIndicesCache.new()
+
+## Tracks discovered test changes for debug purposes.[br]
+## [br]
+## Available in debug mode only. Contains dictionaries:[br]
+## - changed_tests: Tests that were moved or renamed[br]
+## - deleted_tests: Tests that were removed[br]
+## - added_tests: New tests that were discovered
+var _discovered_changes := {}
 
 
-func _init() -> void:
+## Controls test change debug tracking.[br]
+## [br]
+## When true, maintains _discovered_changes for debugging.[br]
+## Used primarily in tests to verify change detection.
+var _is_debug := false
+
+
+## Creates a new guard instance.[br]
+## [br]
+## [param is_debug] When true, enables change tracking for debugging.
+func _init(is_debug := false) -> void:
+	_is_debug = is_debug
 	# Register for discovery events to sync the cache
 	@warning_ignore("return_value_discarded")
-	GdUnitSignals.instance().gdunit_add_test_suite.connect(sync_cache)
+	GdUnitSignals.instance().gdunit_test_discover_added.connect(sync_test_added)
+	GdUnitSignals.instance().gdunit_test_discover_deleted.connect(sync_test_deleted)
+	GdUnitSignals.instance().gdunit_test_discover_modified.connect(sync_test_modified)
+	GdUnitSignals.instance().gdunit_event.connect(handle_discover_events)
 
 
-func sync_cache(dto: GdUnitTestSuiteDto) -> void:
-	var resource_path := ProjectSettings.localize_path(dto.path())
-	var discovered_test_cases: Array[String] = []
-	for test_case in dto.test_cases():
-		discovered_test_cases.append(test_case.name())
-		discovered_test_case_indices_cache.sync(resource_path, test_case.name(), test_case.test_case_names())
-	_discover_cache[resource_path] = discovered_test_cases
+## Adds a discovered test to the cache.[br]
+## [br]
+## [param test_case] The test case to add to the cache.
+func sync_test_added(test_case: GdUnitTestCase) -> void:
+	var test_cases: Array[GdUnitTestCase] = _discover_cache.get_or_add(test_case.source_file, Array([], TYPE_OBJECT, "RefCounted", GdUnitTestCase))
+	test_cases.append(test_case)
 
 
-func discover(script: Script) -> void:
+## Removes a test from the cache.[br]
+## [br]
+## [param test_case] The test case to remove from the cache.
+func sync_test_deleted(test_case: GdUnitTestCase) -> void:
+	var test_cases: Array[GdUnitTestCase] = _discover_cache.get_or_add(test_case.source_file, Array([], TYPE_OBJECT, "RefCounted", GdUnitTestCase))
+	test_cases.erase(test_case)
+
+
+## Updates a test from the cache.[br]
+## [br]
+## [param test_case] The test case to update from the cache.
+func sync_test_modified(changed_test: GdUnitTestCase) -> void:
+	var test_cases: Array[GdUnitTestCase] = _discover_cache.get_or_add(changed_test.source_file, Array([], TYPE_OBJECT, "RefCounted", GdUnitTestCase))
+	for test in test_cases:
+		if test.guid == changed_test.guid:
+			test.test_name = changed_test.test_name
+			test.display_name = changed_test.display_name
+			test.line_number = changed_test.line_number
+			break
+
+
+## Handles test discovery events.[br]
+## [br]
+## Resets the cache when a new discovery starts.[br]
+## [param event] The discovery event to handle.
+func handle_discover_events(event: GdUnitEvent) -> void:
+	# reset the cache on fresh discovery
+	if event.type() == GdUnitEvent.DISCOVER_START:
+		_discover_cache = {}
+
+
+## Registers a callback for discovered tests.[br]
+## [br]
+## Default sink writes to [class GdUnitTestDiscoverSink].
+static func default_discover_sink(test_case: GdUnitTestCase) -> void:
+	GdUnitTestDiscoverSink.discover(test_case)
+
+
+## Finds a test case by its unique identifier.[br]
+## [br]
+## Searches through all cached test cases across all test suites[br]
+## to find a test with the matching GUID.[br]
+## [br]
+## [param id] The GUID of the test to find[br]
+## Returns the matching test case or null if not found.
+func find_test_by_id(id: GdUnitGUID) -> GdUnitTestCase:
+	for test_sets: Array[GdUnitTestCase] in _discover_cache.values():
+		for test in test_sets:
+			if test.guid.equals(id):
+				return test
+
+	return null
+
+
+## Discovers tests in a script and tracks changes.[br]
+## [br]
+## Handles both GDScript and C# test suites.[br]
+## The guard maintains test identity through changes.[br]
+## [br]
+## [param script] The test script to analyze[br]
+## [param discover_sink] Optional callback for test discovery events
+func discover(script: Script, discover_sink: Callable = default_discover_sink) -> void:
 	# for cs scripts we need to recomplie before discover new tests
 	if GdObjects.is_cs_script(script):
 		await rebuild_project(script)
 
-	if GdObjects.is_test_suite(script):
-		# a new test suite is discovered
-		var script_path := ProjectSettings.localize_path(script.resource_path)
-		var scanner := GdUnitTestSuiteScanner.new()
-		var test_suite := scanner._parse_test_suite(script)
-		var suite_name := test_suite.get_name()
+	if _is_debug:
+		_discovered_changes["changed_tests"] = Array([], TYPE_OBJECT, "RefCounted", GdUnitTestCase)
+		_discovered_changes["deleted_tests"] = Array([], TYPE_OBJECT, "RefCounted", GdUnitTestCase)
+		_discovered_changes["added_tests"] = Array([], TYPE_OBJECT, "RefCounted", GdUnitTestCase)
 
-		if not _discover_cache.has(script_path):
-			var dto :GdUnitTestSuiteDto = GdUnitTestSuiteDto.of(test_suite)
-			GdUnitSignals.instance().gdunit_event.emit(GdUnitEventTestDiscoverTestSuiteAdded.new(script_path, suite_name, dto))
-			sync_cache(dto)
-			test_suite.queue_free()
+	if GdObjects.is_test_suite(script):
+		# rediscover all tests
+		var source_file := script.resource_path
+		var discovered_tests: Array[GdUnitTestCase] = []
+
+		if script is GDScript:
+			var gd_script: GDScript = script
+			GdUnitTestDiscoverer.discover_tests(gd_script, func(test_case: GdUnitTestCase) -> void:
+				discovered_tests.append(test_case)
+			)
+		else:
+			## TODO add c# test sidcovery here
+			pass
+
+		# The suite is never discovered, we add all discovered tests
+		if not _discover_cache.has(source_file):
+			for test_case in discovered_tests:
+				discover_sink.call(test_case)
 			return
 
-		var discovered_test_cases :Array[String] = _discover_cache.get(script_path, [] as Array[String])
-		var script_test_cases := extract_test_functions(test_suite)
-
-		# first detect removed/renamed tests
-		var tests_removed := PackedStringArray()
-		for test_case in discovered_test_cases:
-			if not script_test_cases.has(test_case):
-				@warning_ignore("return_value_discarded")
-				tests_removed.append(test_case)
-		# second detect new added tests
-		var tests_added :Array[String] = []
-		for test_case in script_test_cases:
-			if not discovered_test_cases.has(test_case):
-				tests_added.append(test_case)
-
-		# We need to scan for parameterized test because of possible test data changes
-		# For more details look at https://github.com/MikeSchulze/gdUnit4/issues/592
-		for test_case_name in script_test_cases:
-			if discovered_test_case_indices_cache.contains_test_case(script_path, test_case_name):
-				var test_case: _TestCase = test_suite.find_child(test_case_name, false, false)
-				var test_indices := test_case.test_case_names()
-				if not discovered_test_case_indices_cache.validate(script_path, test_case_name, test_indices):
-					if !tests_removed.has(test_case_name):
-						tests_removed.append(test_case_name)
-					if !tests_added.has(test_case_name):
-						tests_added.append(test_case_name)
-					discovered_test_case_indices_cache.sync(script_path, test_case_name, test_indices)
-
-		# finally notify changes to the inspector
-		if not tests_removed.is_empty() or not tests_added.is_empty():
-			# emit deleted tests
-			for test_name in tests_removed:
-				discovered_test_cases.erase(test_name)
-				GdUnitSignals.instance().gdunit_event.emit(GdUnitEventTestDiscoverTestRemoved.new(script_path, suite_name, test_name))
-
-			# emit new discovered tests
-			for test_name in tests_added:
-				discovered_test_cases.append(test_name)
-				var test_case := test_suite.find_child(test_name, false, false)
-				var dto := GdUnitTestCaseDto.new()
-				dto = dto.deserialize(dto.serialize(test_case))
-				GdUnitSignals.instance().gdunit_event.emit(GdUnitEventTestDiscoverTestAdded.new(script_path, suite_name, dto))
-				# if the parameterized test fresh added we need to sync the cache
-				if not discovered_test_case_indices_cache.contains_test_case(script_path, test_name):
-					discovered_test_case_indices_cache.sync(script_path, test_name, dto.test_case_names())
-
-			# update the cache
-			_discover_cache[script_path] = discovered_test_cases
-			test_suite.queue_free()
+		sync_moved_tests(source_file, discovered_tests)
+		sync_renamed_tests(source_file, discovered_tests)
+		sync_deleted_tests(source_file, discovered_tests)
+		sync_added_tests(source_file, discovered_tests, discover_sink)
 
 
-func extract_test_functions(test_suite :Node) -> PackedStringArray:
-	return test_suite.get_children()\
-		.filter(func(child: Node) -> bool: return is_instance_of(child, _TestCase))\
-		.map(func (child: Node) -> String: return child.get_name())
+## Synchronizes moved tests between discover cycles.[br]
+## [br]
+## A test is considered moved when:[br]
+## - It has the same name[br]
+## - But a different line number[br]
+## [br]
+## [param source_file] suite source path[br]
+## [param discovered_tests] Newly discovered tests
+func sync_moved_tests(source_file: String, discovered_tests: Array[GdUnitTestCase]) -> void:
+	@warning_ignore("unsafe_method_access")
+	var cache: Array[GdUnitTestCase] = _discover_cache.get(source_file).duplicate()
+	for discovered_test in discovered_tests:
+		# lookup in cache
+		var original_tests: Array[GdUnitTestCase] = cache.filter(is_test_moved.bind(discovered_test))
+		for test in original_tests:
+			# update the line_number
+			var line_number_before := test.line_number
+			test.line_number = discovered_test.line_number
+			GdUnitSignals.instance().gdunit_test_discover_modified.emit(test)
+			if _is_debug:
+				prints("-> moved test id:%s  %s: line:(%d -> %d)" % [test.guid, test.display_name, line_number_before, test.line_number])
+				@warning_ignore("unsafe_method_access")
+				_discovered_changes.get_or_add("changed_tests", Array([], TYPE_OBJECT, "RefCounted", GdUnitTestCase)).append(test)
 
 
-func is_paramaterized_test(test_suite :Node, test_case_name: String) -> bool:
-	return test_suite.get_children()\
-		.filter(func(child: Node) -> bool: return child.name == test_case_name)\
-		.any(func (test: _TestCase) -> bool: return test.is_parameterized())
+## Synchronizes renamed tests between discover cycles.[br]
+## [br]
+## A test is considered renamed when:[br]
+## - It has the same line number[br]
+## - But a different name[br]
+## [br]
+## [param source_file] suite source path[br]
+## [param discovered_tests] Newly discovered tests
+func sync_renamed_tests(source_file: String, discovered_tests: Array[GdUnitTestCase]) -> void:
+	@warning_ignore("unsafe_method_access")
+	var cache: Array[GdUnitTestCase] = _discover_cache.get(source_file).duplicate()
+	for discovered_test in discovered_tests:
+		# lookup in cache
+		var original_tests: Array[GdUnitTestCase] = cache.filter(is_test_renamed.bind(discovered_test))
+		for test in original_tests:
+			# update the renaming names
+			var original_display_name := test.display_name
+			test.test_name = discovered_test.test_name
+			test.display_name = discovered_test.display_name
+			GdUnitSignals.instance().gdunit_test_discover_modified.emit(test)
+			if _is_debug:
+				prints("-> renamed test id:%s  %s -> %s" % [test.guid, original_display_name, test.display_name])
+				@warning_ignore("unsafe_method_access")
+				_discovered_changes.get_or_add("changed_tests", Array([], TYPE_OBJECT, "RefCounted", GdUnitTestCase)).append(test)
+
+
+## Synchronizes deleted tests between discover cycles.[br]
+## [br]
+## A test is considered deleted when:[br]
+## - It exists in the cache[br]
+## - But is not found in the newly discovered tests[br]
+## [br]
+## [param source_file] suite source path[br]
+## [param discovered_tests] Newly discovered tests
+func sync_deleted_tests(source_file: String, discovered_tests: Array[GdUnitTestCase]) -> void:
+	@warning_ignore("unsafe_method_access")
+	var cache: Array[GdUnitTestCase] = _discover_cache.get(source_file).duplicate()
+	# lookup in cache
+	for test in cache:
+		if not discovered_tests.any(test_equals.bind(test)):
+			GdUnitSignals.instance().gdunit_test_discover_deleted.emit(test)
+			if _is_debug:
+				prints("-> deleted test id:%s  %s:%d" % [test.guid, test.display_name, test.line_number])
+				@warning_ignore("unsafe_method_access")
+				_discovered_changes.get_or_add("deleted_tests", Array([], TYPE_OBJECT, "RefCounted", GdUnitTestCase)).append(test)
+
+
+## Synchronizes newly added tests between discover cycles.[br]
+## [br]
+## A test is considered added when:[br]
+## - It exists in the newly discovered tests[br]
+## - But is not found in the cache[br]
+## [br]
+## [param source_file] suite source path[br]
+## [param discovered_tests] Newly discovered tests[br]
+## [param discover_sink] Callback to handle newly discovered tests
+func sync_added_tests(source_file: String, discovered_tests: Array[GdUnitTestCase], discover_sink: Callable) -> void:
+	@warning_ignore("unsafe_method_access")
+	var cache: Array[GdUnitTestCase] = _discover_cache.get(source_file).duplicate()
+	# lookup in cache
+	for test in discovered_tests:
+		if not cache.any(test_equals.bind(test)):
+			discover_sink.call(test)
+			if _is_debug:
+				prints("-> added test id:%s  %s:%d" % [test.guid, test.display_name, test.line_number])
+				@warning_ignore("unsafe_method_access")
+				_discovered_changes.get_or_add("added_tests", Array([], TYPE_OBJECT, "RefCounted", GdUnitTestCase)).append(test)
+
+
+func is_test_renamed(left: GdUnitTestCase, right: GdUnitTestCase) -> bool:
+	return left.line_number == right.line_number and left.test_name != right.test_name
+
+
+func is_test_moved(left: GdUnitTestCase, right: GdUnitTestCase) -> bool:
+	return left.line_number != right.line_number and left.test_name == right.test_name
+
+
+func test_equals(left: GdUnitTestCase, right: GdUnitTestCase) -> bool:
+	return left.display_name == right.display_name
 
 
 # do rebuild the entire project, there is actual no way to enforce the Godot engine itself to do this
@@ -142,11 +298,12 @@ func rebuild_project(script: Script) -> void:
 		print_rich("[color=CORNFLOWER_BLUE]GdUnitTestDiscoverGuard:[/color] [color=RED]Rebuild the project failed.[/color]")
 		print_rich("[color=CORNFLOWER_BLUE]GdUnitTestDiscoverGuard:[/color] [color=RED]Can't find installed `dotnet`! Please check your environment is setup correctly.[/color]")
 		return
-	print_rich("[color=CORNFLOWER_BLUE]GdUnitTestDiscoverGuard:[/color] [color=DEEP_SKY_BLUE]Found dotnet v%s[/color]" % output[0].strip_edges())
+
+	print_rich("[color=CORNFLOWER_BLUE]GdUnitTestDiscoverGuard:[/color] [color=DEEP_SKY_BLUE]Found dotnet v%s[/color]" % str(output[0]).strip_edges())
 	output.clear()
 
 	exit_code = OS.execute("dotnet", ["build"], output)
 	print_rich("[color=CORNFLOWER_BLUE]GdUnitTestDiscoverGuard:[/color] [color=DEEP_SKY_BLUE]Rebuild the project ... [/color]")
-	for out:Variant in output:
+	for out: String in output:
 		print_rich("[color=DEEP_SKY_BLUE] 		%s" % out.strip_edges())
 	await scene_tree.process_frame

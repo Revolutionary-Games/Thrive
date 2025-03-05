@@ -1,6 +1,6 @@
 [gd_scene load_steps=7 format=3 uid="uid://cp23vdxwoeegx"]
 
-[ext_resource type="PackedScene" path="res://src/gui_common/dialogs/CustomWindow.tscn" id="3"]
+[ext_resource type="PackedScene" uid="uid://du8sc8kjirguk" path="res://src/gui_common/dialogs/CustomWindow.tscn" id="3"]
 [ext_resource type="LabelSettings" uid="uid://cns7wsfktfld4" path="res://src/gui_common/fonts/Title-SemiBold-Bigger.tres" id="3_bvn5i"]
 [ext_resource type="LabelSettings" uid="uid://bh5jgkxx1boyf" path="res://src/gui_common/fonts/Thrive-Humongous.tres" id="3_j7klg"]
 
@@ -25,7 +25,7 @@ tracks/0/keys = {
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_4wi48"]
 _data = {
-"FadeIn": SubResource("2")
+&"FadeIn": SubResource("2")
 }
 
 [node name="WinBox" instance=ExtResource("3")]

@@ -1,0 +1,33 @@
+@tool
+extends EditorContextMenuPlugin
+
+var _context_menus := Dictionary()
+var _editor: ScriptEditor
+var _command_handler := GdUnitCommandHandler.instance()
+
+
+func _init() -> void:
+	var is_test_suite := func is_visible(script: Script, is_ts: bool) -> bool:
+		return GdObjects.is_test_suite(script) == is_ts
+	var context_menus :Array[GdUnitContextMenuItem] = [
+		GdUnitContextMenuItem.new(GdUnitContextMenuItem.MENU_ID.TEST_RUN, "Run Tests", "Play", is_test_suite.bind(true), _command_handler.command(GdUnitCommandHandler.CMD_RUN_TESTCASE)),
+		GdUnitContextMenuItem.new(GdUnitContextMenuItem.MENU_ID.TEST_DEBUG, "Debug Tests", "PlayStart", is_test_suite.bind(true), _command_handler.command(GdUnitCommandHandler.CMD_RUN_TESTCASE_DEBUG)),
+		GdUnitContextMenuItem.new(GdUnitContextMenuItem.MENU_ID.CREATE_TEST, "Create Test", "New", is_test_suite.bind(false), _command_handler.command(GdUnitCommandHandler.CMD_CREATE_TESTCASE))
+	]
+	for menu in context_menus:
+		_context_menus[menu.id] = menu
+	_editor = EditorInterface.get_script_editor()
+	@warning_ignore("return_value_discarded")
+
+
+func _popup_menu(paths: PackedStringArray) -> void:
+	var script_path := paths[0]
+	var script: Script = ResourceLoader.load(script_path, "Script", ResourceLoader.CACHE_MODE_REUSE)
+
+	for menu_id: int in _context_menus.keys():
+		var menu_item: GdUnitContextMenuItem = _context_menus[menu_id]
+		if menu_item.is_visible(script):
+			add_context_menu_item(menu_item.name,
+				func call(files: Array) -> void:
+					menu_item.execute([script_path]),
+				GdUnitUiTools.get_icon(menu_item.icon))
