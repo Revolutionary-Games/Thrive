@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Buffers;
 using System.Collections.Generic;
+using System.Linq;
 using Godot;
 
 /// <summary>
@@ -9,6 +10,11 @@ using Godot;
 public interface IMembraneDataSource
 {
     public Vector2[] HexPositions { get; }
+
+    public Vector2[]? MulticellularPositions { get; }
+
+    public Vector2? CellPositionInMulticellular { get; }
+
     public int HexPositionCount { get; }
     public MembraneType Type { get; }
 }
@@ -18,14 +24,18 @@ public interface IMembraneDataSource
 /// </summary>
 public struct MembraneGenerationParameters : IMembraneDataSource
 {
-    public MembraneGenerationParameters(Vector2[] hexPositions, int hexPositionCount, MembraneType type)
+    public MembraneGenerationParameters(Vector2[] hexPositions, int hexPositionCount, MembraneType type, Vector2[]? multicellularPositions, Vector2? thisCellPosition)
     {
         HexPositions = hexPositions;
+        MulticellularPositions = multicellularPositions;
+        CellPositionInMulticellular = thisCellPosition;
         HexPositionCount = hexPositionCount;
         Type = type;
     }
 
     public Vector2[] HexPositions { get; }
+    public Vector2[]? MulticellularPositions { get; }
+    public Vector2? CellPositionInMulticellular { get; }
     public int HexPositionCount { get; }
 
     public MembraneType Type { get; }
@@ -108,14 +118,14 @@ public static class MembraneComputationHelpers
 
         lock (generator)
         {
-            result = generator.GenerateShape(hexes, length, membraneType);
+            result = generator.GenerateShape(hexes, length, membraneType, null, null);
         }
 
         cache.WriteMembraneData(ref result);
         return result;
     }
 
-    public static long ComputeMembraneDataHash(Vector2[] positions, int count, MembraneType type)
+    public static long ComputeMembraneDataHash(Vector2[] positions, int count, MembraneType type, Vector2 vec = default(Vector2))
     {
         var nameHash = type.InternalName.GetHashCode();
 
@@ -128,7 +138,7 @@ public static class MembraneComputationHelpers
 
             for (int i = 0; i < count; ++i)
             {
-                var posHash = positions[i].GetHashCode();
+                var posHash = positions[i].GetHashCode() + vec.GetHashCode();
 
                 // TODO: switch to using rotate left here once we can (after Godot 4)
                 hash ^= (hashMultiply * posHash) ^ ((5081L * hashMultiply * hashMultiply + posHash) << 32);
@@ -141,16 +151,16 @@ public static class MembraneComputationHelpers
 
     public static long ComputeMembraneDataHash(this IMembraneDataSource dataSource)
     {
-        return ComputeMembraneDataHash(dataSource.HexPositions, dataSource.HexPositionCount, dataSource.Type);
+        return ComputeMembraneDataHash(dataSource.HexPositions, dataSource.HexPositionCount, dataSource.Type, dataSource.CellPositionInMulticellular ?? default(Vector2));
     }
 
     public static bool MembraneDataFieldsEqual(this IMembraneDataSource dataSource, IMembraneDataSource other)
     {
-        return dataSource.MembraneDataFieldsEqual(other.HexPositions, other.HexPositionCount, other.Type);
+        return dataSource.MembraneDataFieldsEqual(other.HexPositions, other.HexPositionCount, other.Type, other.CellPositionInMulticellular);
     }
 
     public static bool MembraneDataFieldsEqual(this IMembraneDataSource dataSource, Vector2[] otherPoints,
-        int otherPointCount, MembraneType otherType)
+        int otherPointCount, MembraneType otherType, Vector2? cellPositionInMulticellular)
     {
         if (!dataSource.Type.Equals(otherType))
             return false;
@@ -161,6 +171,25 @@ public static class MembraneComputationHelpers
         var count = dataSource.HexPositionCount;
 
         var sourcePoints = dataSource.HexPositions;
+
+        if (dataSource.CellPositionInMulticellular != null)
+        {
+            if (cellPositionInMulticellular == null)
+                return false;
+
+            if (!dataSource.CellPositionInMulticellular.Equals(cellPositionInMulticellular))
+            {
+                return false;
+            }
+        }
+        else
+        {
+            if (cellPositionInMulticellular != null)
+            {
+                return false;
+
+            }
+        }
 
         for (int i = 0; i < count; ++i)
         {
