@@ -5,7 +5,7 @@
 [ext_resource type="Texture2D" uid="uid://drrdhfwd5s8e2" path="res://assets/textures/gui/bevel/actions/EngulfEject.png" id="7"]
 [ext_resource type="Texture2D" uid="uid://d0iv1w2t5wwae" path="res://assets/textures/gui/bevel/parts/membraneAmoeba.png" id="9"]
 [ext_resource type="Texture2D" uid="uid://bvqcyxabp8g4g" path="res://assets/textures/gui/bevel/parts/ToxinVacuoleIcon.png" id="10"]
-[ext_resource type="Script" path="res://src/microbe_stage/MicrobeHUD.cs" id="13"]
+[ext_resource type="Script" uid="uid://ch3xlvy14pm24" path="res://src/microbe_stage/MicrobeHUD.cs" id="13"]
 [ext_resource type="PackedScene" uid="uid://cf65ovetig4om" path="res://src/microbe_stage/gui/EnvironmentPanel.tscn" id="13_wltm2"]
 [ext_resource type="PackedScene" uid="uid://bk6re4dgb8r3n" path="res://src/microbe_stage/gui/CompoundPanels.tscn" id="14_hlko5"]
 [ext_resource type="AudioStream" uid="uid://c5u3d8rsbm0lu" path="res://assets/sounds/soundeffects/microbe-pickup-organelle.ogg" id="18"]
@@ -33,8 +33,8 @@
 [ext_resource type="PackedScene" uid="uid://dgqw7nudbxobi" path="res://src/microbe_stage/ProcessPanel.tscn" id="61"]
 [ext_resource type="LabelSettings" uid="uid://cns7wsfktfld4" path="res://src/gui_common/fonts/Title-SemiBold-Bigger.tres" id="61_5q73x"]
 [ext_resource type="PackedScene" uid="uid://qwg2dluu8ow0" path="res://src/microbe_stage/PausePrompt.tscn" id="62"]
-[ext_resource type="PackedScene" path="res://src/gui_common/dialogs/StagePrototypeConfirm.tscn" id="64"]
-[ext_resource type="PackedScene" path="res://src/gui_common/ActionButton.tscn" id="65"]
+[ext_resource type="PackedScene" uid="uid://bjx6dmh0m3fim" path="res://src/gui_common/dialogs/StagePrototypeConfirm.tscn" id="64"]
+[ext_resource type="PackedScene" uid="uid://cmfpne0v21jbs" path="res://src/gui_common/ActionButton.tscn" id="65"]
 [ext_resource type="Texture2D" uid="uid://mqpv4yc0m4r5" path="res://assets/textures/gui/bevel/HealthBar.png" id="67"]
 [ext_resource type="Texture2D" uid="uid://buv5vjrf4hx0h" path="res://assets/textures/gui/bevel/parts/SignalingAgentIcon.png" id="68"]
 [ext_resource type="Texture2D" uid="uid://bqyawyqghdnxp" path="res://assets/textures/gui/bevel/unbind.png" id="70"]
@@ -129,8 +129,8 @@ tracks/2/keys = {
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_bjeaw"]
 _data = {
-"HideCompoundsPanels": SubResource("39"),
-"ShowCompoundsPanels": SubResource("45")
+&"HideCompoundsPanels": SubResource("39"),
+&"ShowCompoundsPanels": SubResource("45")
 }
 
 [sub_resource type="Animation" id="41"]
@@ -215,8 +215,8 @@ tracks/2/keys = {
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_8um2t"]
 _data = {
-"HideEnvironmentPanel": SubResource("41"),
-"ShowEnvironmentPanel": SubResource("42")
+&"HideEnvironmentPanel": SubResource("41"),
+&"ShowEnvironmentPanel": SubResource("42")
 }
 
 [sub_resource type="StyleBoxFlat" id="28"]

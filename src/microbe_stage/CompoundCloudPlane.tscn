@@ -1,7 +1,7 @@
 [gd_scene load_steps=8 format=3 uid="uid://bertyonikiucy"]
 
-[ext_resource type="Shader" path="res://shaders/CompoundCloudPlane.gdshader" id="1"]
-[ext_resource type="Script" path="res://src/microbe_stage/CompoundCloudPlane.cs" id="3"]
+[ext_resource type="Shader" uid="uid://dgycjc6ljac5u" path="res://shaders/CompoundCloudPlane.gdshader" id="1"]
+[ext_resource type="Script" uid="uid://b3yij73oy1bnv" path="res://src/microbe_stage/CompoundCloudPlane.cs" id="3"]
 
 [sub_resource type="QuadMesh" id="1"]
 lightmap_size_hint = Vector2i(1002, 1002)
@@ -23,15 +23,15 @@ noise = SubResource("FastNoiseLite_7cqxm")
 resource_local_to_scene = true
 render_priority = -1
 shader = ExtResource("1")
+shader_parameter/noise = SubResource("NoiseTexture2D_xdmng")
 shader_parameter/colour1 = Color(0, 0, 0, 0)
 shader_parameter/colour2 = Color(0, 0, 0, 0)
 shader_parameter/colour3 = Color(0, 0, 0, 0)
 shader_parameter/colour4 = Color(0, 0, 0, 0)
 shader_parameter/UVOffset = Vector2(0, 0)
-shader_parameter/NoiseScale = 14
+shader_parameter/NoiseScale = 14.0
 shader_parameter/BrightnessMultiplier = 1.0
 shader_parameter/CLOUD_SPEED = 0.013
-shader_parameter/noise = SubResource("NoiseTexture2D_xdmng")
 
 [node name="CompoundCloudPlane" type="CSGMesh3D"]
 transform = Transform3D(3, 0, 0, 0, -1.31134e-07, 1, 0, -3, -4.37114e-08, 0, 0, 0)

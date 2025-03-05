@@ -1,10 +1,10 @@
 [gd_scene load_steps=6 format=3 uid="uid://bcy1o8pg86owe"]
 
-[ext_resource type="PackedScene" path="res://src/thriveopedia/ThriveopediaPage.tscn" id="1"]
-[ext_resource type="Script" path="res://src/thriveopedia/pages/ThriveopediaHomePage.cs" id="2"]
+[ext_resource type="PackedScene" uid="uid://cckki1kx0cnol" path="res://src/thriveopedia/ThriveopediaPage.tscn" id="1"]
+[ext_resource type="Script" uid="uid://daxip50k51ekn" path="res://src/thriveopedia/pages/ThriveopediaHomePage.cs" id="2"]
 [ext_resource type="LabelSettings" uid="uid://cis0p1u7hveec" path="res://src/gui_common/fonts/Title-SemiBold-Huge.tres" id="3_o2j84"]
 [ext_resource type="Texture2D" uid="uid://dcx3vsernjy4k" path="res://assets/concept_art/disturbance.jpg" id="4"]
-[ext_resource type="PackedScene" path="res://src/gui_common/CustomRichTextLabel.tscn" id="5"]
+[ext_resource type="PackedScene" uid="uid://bhpjtbtaeunat" path="res://src/gui_common/CustomRichTextLabel.tscn" id="5"]
 
 [node name="ThriveopediaHomePage" instance=ExtResource("1")]
 anchors_preset = 15

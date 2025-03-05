@@ -1,11 +1,11 @@
 [gd_scene load_steps=8 format=3 uid="uid://dwgat6j2u77g4"]
 
-[ext_resource type="Script" path="res://addons/gdUnit4/src/ui/settings/GdUnitSettingsDialog.gd" id="2"]
+[ext_resource type="Script" uid="uid://prdl53ps747t" path="res://addons/gdUnit4/src/ui/settings/GdUnitSettingsDialog.gd" id="2"]
 [ext_resource type="Texture2D" uid="uid://bkh022wwqq7s3" path="res://addons/gdUnit4/src/ui/settings/logo.png" id="3_isfyl"]
 [ext_resource type="PackedScene" uid="uid://dte0m2endcgtu" path="res://addons/gdUnit4/src/ui/templates/TestSuiteTemplate.tscn" id="4"]
 [ext_resource type="PackedScene" uid="uid://0xyeci1tqebj" path="res://addons/gdUnit4/src/update/GdUnitUpdateNotify.tscn" id="5_n1jtv"]
 [ext_resource type="PackedScene" uid="uid://pmnkxrhglak5" path="res://addons/gdUnit4/src/ui/settings/GdUnitInputCapture.tscn" id="5_xu3j8"]
-[ext_resource type="Script" path="res://addons/gdUnit4/src/update/GdUnitUpdateClient.gd" id="8_2ggr0"]
+[ext_resource type="Script" uid="uid://bvnpbpwbxt7hm" path="res://addons/gdUnit4/src/update/GdUnitUpdateClient.gd" id="8_2ggr0"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_hbbq5"]
 content_margin_left = 10.0
