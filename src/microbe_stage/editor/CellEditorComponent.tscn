@@ -30,7 +30,7 @@
 [ext_resource type="PackedScene" uid="uid://c0ihn5gix4eyp" path="res://src/microbe_stage/editor/upgrades/OrganelleUpgradeGUI.tscn" id="30"]
 [ext_resource type="PackedScene" uid="uid://c6e83y3bsdx4q" path="res://src/microbe_stage/editor/EndosymbiosisPopup.tscn" id="38_e0n84"]
 [ext_resource type="PackedScene" uid="uid://du8sc8kjirguk" path="res://src/gui_common/dialogs/CustomWindow.tscn" id="39"]
-[ext_resource type="PackedScene" path="res://src/microbe_stage/ProcessList.tscn" id="41_n2bpg"]
+[ext_resource type="PackedScene" uid="uid://dt4v2vma5p2s4" path="res://src/microbe_stage/ProcessList.tscn" id="41_n2bpg"]
 [ext_resource type="PackedScene" uid="uid://cwe0bjv8qtrtr" path="res://src/gui_common/TweakedColourPicker.tscn" id="43"]
 [ext_resource type="PackedScene" uid="uid://ci8lopfc3lodh" path="res://src/microbe_stage/editor/PopupMicheViewer.tscn" id="44_bxafd"]
 [ext_resource type="PackedScene" uid="uid://bq6aee8pw8y3m" path="res://src/gui_common/CollapsibleList.tscn" id="45"]
@@ -1068,7 +1068,7 @@ expand_mode = 1
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="BottomRight/HBoxContainer/ConfirmButton/MarginContainer/WarningBadge"]
 libraries = {
-"": SubResource("AnimationLibrary_18kr8")
+&"": SubResource("AnimationLibrary_18kr8")
 }
 
 [node name="NegativeAtpWarning" parent="." instance=ExtResource("9")]
