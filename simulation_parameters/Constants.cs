@@ -714,9 +714,9 @@ public static class Constants
     /// </summary>
     public const float RADIATION_DAMAGE_INTERVAL = 0.6f;
 
-    public const float RADIATION_NATURAL_DECAY = 0.02f;
+    public const float RADIATION_NATURAL_DECAY = 0.03f;
 
-    public const float RADIATION_NATURAL_DECAY_WHEN_TAKING_DAMAGE = 3 * RADIATION_NATURAL_DECAY;
+    public const float RADIATION_NATURAL_DECAY_WHEN_TAKING_DAMAGE = 5 * RADIATION_NATURAL_DECAY;
 
     public const float RADIATION_PROTECTION_PER_ORGANELLE = 0.1f;
 
@@ -1722,7 +1722,7 @@ public static class Constants
     public const float TOLERANCE_PERFECT_TEMPERATURE_SCORE = 0.1f;
 
     public const float TOLERANCE_MAXIMUM_SURVIVABLE_PRESSURE_DIFFERENCE = 2000000;
-    public const float TOLERANCE_PERFECT_THRESHOLD_PRESSURE = 250000;
+    public const float TOLERANCE_PERFECT_THRESHOLD_PRESSURE = 350000;
 
     // These are chosen to be symmetric so that the pressure tolerance range ends up easier to show correctly in the
     // GUI

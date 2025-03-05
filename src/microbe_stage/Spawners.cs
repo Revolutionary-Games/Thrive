@@ -476,8 +476,8 @@ public static class SpawnHelpers
         MulticellularSpawnState multicellularSpawnState = MulticellularSpawnState.Bud,
         bool giveInitialCompounds = true, Random? random = null)
     {
-        // If this method is modified it must be ensured that CellPropertiesHelpers.ReApplyCellTypeProperties and
-        // MicrobeVisualOnlySimulation microbe update methods are also up-to-date
+        // If this method is modified, it must be ensured that CellPropertiesHelpers.ReApplyCellTypeProperties and
+        // MicrobeVisualOnlySimulation microbe update methods are also up to date
 
         var entityCreator = worldSimulation.GetRecorderWorld(recorder);
 
@@ -488,7 +488,7 @@ public static class SpawnHelpers
 
         entity.Set(new SpeciesMember(species));
 
-        // Player vs. AI controlled microbe components
+        // Player vs. AI-controlled microbe components
         if (aiControlled)
         {
             entity.Set<MicrobeAI>();
@@ -503,7 +503,7 @@ public static class SpawnHelpers
         }
         else
         {
-            // We assume that if the cell is not AI controlled it is the player's cell
+            // We assume that if the cell is not AI-controlled, it is the player's cell
             entity.Set<PlayerMarker>();
 
             // The player's "ears" are placed at the player microbe
@@ -516,7 +516,7 @@ public static class SpawnHelpers
             {
                 AbsoluteMaxDistanceSquared = Constants.MICROBE_SOUND_MAX_DISTANCE_SQUARED,
 
-                // As this takes a bit of extra performance this is just set for the player
+                // As this takes a bit of extra performance, this is just set for the player
                 AutoDetectPlayer = true,
             });
         }
@@ -531,6 +531,7 @@ public static class SpawnHelpers
         {
             HealthMultiplier = 1,
             OsmoregulationMultiplier = 1,
+            ProcessSpeedModifier = 1,
         };
 
         var bioProcesses = new BioProcesses
@@ -590,13 +591,7 @@ public static class SpawnHelpers
         }
         else if (species is MicrobeSpecies microbeSpecies)
         {
-            // TODO: add some kind of caching here to speed up microbe spawning
-            var tolerances =
-                MicrobeEnvironmentalToleranceCalculations.CalculateTolerances(microbeSpecies,
-                    spawnEnvironment.CurrentBiome);
-
-            environmentalEffects.ApplyEffects(
-                MicrobeEnvironmentalToleranceCalculations.ResolveToleranceValues(tolerances), ref bioProcesses);
+            environmentalEffects.ApplyEffects(spawnEnvironment.GetSpeciesTolerances(microbeSpecies), ref bioProcesses);
 
             entity.Set(new MicrobeSpeciesMember
             {

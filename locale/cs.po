@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2025-02-21 15:14+0200\n"
+"POT-Creation-Date: 2025-03-04 13:08+0200\n"
 "PO-Revision-Date: 2025-02-06 13:29+0000\n"
 "Last-Translator: Anonymous <noreply@weblate.org>\n"
 "Language-Team: Czech <https://translate.revolutionarygamesstudio.com/projects/thrive/thrive-game/cs/>\n"
@@ -1762,6 +1762,10 @@ msgstr "Dvojklikem zobrazíte v celé obrazovce"
 msgid "DOUBLE_MEMBRANE_DESCRIPTION"
 msgstr "Membrána se dvěma vrstvami má lepší ochranu proti poškození a potřebuje méně energie k zabránění deformace. Avšak zpomaluje buňku a snižuje rychlost, kterou může absorbovat zdroje."
 
+#, fuzzy
+msgid "DOUBLE_SPEED_TOGGLE_TOOLTIP"
+msgstr "Hodnota použita pro generování světa, která musí být pozitivní celé číslo"
+
 msgid "DRAG_TO_REORDER_ITEMS_WITH_MOUSE"
 msgstr ""
 
@@ -1871,6 +1875,10 @@ msgstr ""
 "Tato záložka pro vás má změny, které se udály v prostředí, ve kterém právě jste. Zkuste využít všechny nástroje, které máte k dispozici, abyste se naučili více o událostech ve vašem světě!\n"
 "\n"
 "Až budete chtít pokračovat, zmáčkněte tlačítko \"Další\" v pravém dolním rohu."
+
+#, fuzzy
+msgid "EFFECTIVE_VALUE"
+msgstr "{0}%"
 
 msgid "EIGHT_TIMES"
 msgstr "8x"
@@ -2912,8 +2920,9 @@ msgstr "Červenec"
 msgid "JUNE"
 msgstr "Červen"
 
-msgid "KEEP_CURRENT_FLEXIBILITY"
-msgstr ""
+#, fuzzy
+msgid "KEEP_CURRENT_SHORT"
+msgstr "Současní vývojáři"
 
 #, fuzzy
 msgid "KEEP_CURRENT_TOLERANCE_FLEXIBILITY_TOOLTIP"
@@ -3364,6 +3373,12 @@ msgstr "Výkon"
 #, fuzzy
 msgid "LOW_MENU_PERFORMANCE_DESCRIPTION"
 msgstr "Obsahuje trávící enzymy. Může být modifikován pro změnu typu enzymu, který obsahuje. Lysozomy jsou schopny obsahovat pouze jeden typ enzymu najednou. Enzymy zrychlují a zvyšují efektivitu trávení."
+
+msgid "LOW_QUALITY_BACKGROUND_BLUR"
+msgstr ""
+
+msgid "LOW_QUALITY_BACKGROUND_BLUR_TOOLTIP"
+msgstr ""
 
 msgid "LYSOSOME"
 msgstr "Lysozom"
@@ -6136,6 +6151,10 @@ msgstr "Přepnout pohlcování"
 msgid "TOGGLE_ENGULF_TOOLTIP"
 msgstr "Přepnout pohlcování"
 
+#, fuzzy
+msgid "TOGGLE_FAST_MODE"
+msgstr "Pozastavit"
+
 msgid "TOGGLE_FPS"
 msgstr "Přepnout ukazatel FPS"
 
@@ -6191,6 +6210,10 @@ msgstr "{0}: +{1} ATP"
 
 msgid "TOLERANCES_UNSUITABLE_DEBUFFS"
 msgstr ""
+
+#, fuzzy
+msgid "TOLERANCE_FROM_ORGANELLES_TOOLTIP"
+msgstr "Zobrazit / skrýt sloučeniny"
 
 msgid "TOLERANCE_RANGE_LABEL"
 msgstr ""
@@ -8716,6 +8739,31 @@ msgstr ""
 #, fuzzy
 msgid "WORLD_RELATIVE_MOVEMENT"
 msgstr "ke zvýšení pohyblivosti"
+
+#, fuzzy
+msgid "WORLD_SIZE"
+msgstr "Současní vývojáři"
+
+#, fuzzy
+msgid "WORLD_SIZE_EXPLANATION"
+msgstr ""
+"Soustředění mikrobi budou hledat kousky nebo kořist na větší vzdálenosti \n"
+"a mohou být mnohem náročnější na kusy.\n"
+"Reagující mikroby se dříve přepnou na nové cíle."
+
+msgid "WORLD_SIZE_LARGE"
+msgstr ""
+
+#, fuzzy
+msgid "WORLD_SIZE_MEDIUM"
+msgstr "ke zvýšení pohyblivosti"
+
+msgid "WORLD_SIZE_SMALL"
+msgstr ""
+
+#, fuzzy
+msgid "WORLD_SIZE_TOOLTIP"
+msgstr "Připoj se na náš komunitní Discord server"
 
 msgid "WORST_PATCH_COLON"
 msgstr "Nejhorší oblast:"

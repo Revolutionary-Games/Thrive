@@ -4,6 +4,13 @@
 public interface IMicrobeSpawnEnvironment : ISpawnEnvironmentInfo
 {
     public BiomeConditions CurrentBiome { get; }
+
+    /// <summary>
+    ///   Gets microbe environmental tolerances in a resolved manner for use with spawning. This method exists to allow
+    ///   caching.
+    /// </summary>
+    /// <param name="microbeSpecies">Species to get tolerances for</param>
+    public ResolvedMicrobeTolerances GetSpeciesTolerances(MicrobeSpecies microbeSpecies);
 }
 
 public class DummyMicrobeSpawnEnvironment : IMicrobeSpawnEnvironment
@@ -17,4 +24,14 @@ public class DummyMicrobeSpawnEnvironment : IMicrobeSpawnEnvironment
     public IDaylightInfo DaylightInfo { get; set; } = new DummyLightCycle();
     public WorldGenerationSettings WorldSettings { get; set; } = new();
     public BiomeConditions CurrentBiome { get; set; }
+
+    public ResolvedMicrobeTolerances GetSpeciesTolerances(MicrobeSpecies microbeSpecies)
+    {
+        return new ResolvedMicrobeTolerances
+        {
+            ProcessSpeedModifier = 1,
+            OsmoregulationModifier = 1,
+            HealthModifier = 1,
+        };
+    }
 }

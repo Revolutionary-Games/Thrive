@@ -813,13 +813,26 @@ public sealed class ProcessSystem : AEntitySetSystem<float>
             if (float.IsNaN(overallSpeedModifier) || float.IsInfinity(overallSpeedModifier) || overallSpeedModifier < 0)
             {
                 GD.PrintErr(
-                    $"ProcessSystem: process speed modifier is invalid for microbe {entity}: {overallSpeedModifier}");
+                    $"ProcessSystem: process speed modifier is invalid for entity {entity}: {overallSpeedModifier}");
                 overallSpeedModifier = 1.0f;
 
                 // Reset the data to not keep printing the error
                 microbeEnvironmentalEffects.ProcessSpeedModifier = 1.0f;
             }
         }
+
+#if DEBUG
+        if (overallSpeedModifier <= 0)
+        {
+            // This likely causes NaN values, so we need to track down places that would cause this.
+            // If desired in the future to be able to disable processing entirely, we might want to fix this case, but
+            // for now this should never be allowed to happen.
+            GD.PrintErr($"ProcessSystem: process speed modifier is invalid for {entity}: {overallSpeedModifier}");
+
+            if (Debugger.IsAttached)
+                Debugger.Break();
+        }
+#endif
 
         ProcessNode(ref processes, ref storage, overallSpeedModifier, delta);
     }

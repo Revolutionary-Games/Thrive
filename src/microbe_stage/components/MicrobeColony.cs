@@ -844,18 +844,26 @@ public static class MicrobeColonyHelpers
             if (colonyMember == colony.Leader)
                 continue;
 
-            ref var memberPosition = ref colonyMember.Get<AttachedToEntity>();
+            try
+            {
+                ref var memberPosition = ref colonyMember.Get<AttachedToEntity>();
 
-            var distanceSquared = memberPosition.RelativePosition.LengthSquared();
+                var distanceSquared = memberPosition.RelativePosition.LengthSquared();
 
-            // Multiply both the propulsion and mass by the distance from center to simulate leverage
-            // This relies on the bounding of the cell rotation, as a colony can never be faster than the
-            // fastest cell inside it
-            var memberRotation = MicrobeInternalCalculations
-                    .CalculateRotationSpeed(colonyMember.Get<OrganelleContainer>().Organelles!.Organelles)
-                * (1 + 0.03f * distanceSquared);
+                // Multiply both the propulsion and mass by the distance from center to simulate leverage
+                // This relies on the bounding of the cell rotation, as a colony can never be faster than the
+                // fastest cell inside it
+                var memberRotation = MicrobeInternalCalculations
+                        .CalculateRotationSpeed(colonyMember.Get<OrganelleContainer>().Organelles!.Organelles)
+                    * (1 + 0.03f * distanceSquared);
 
-            colonyRotation += memberRotation;
+                colonyRotation += memberRotation;
+            }
+            catch (Exception e)
+            {
+                GD.PrintErr("Failed to calculate rotation speed for microbe colony, " +
+                    "member likely missing attached component: ", e);
+            }
         }
 
         colony.ColonyRotationSpeed = colonyRotation / colony.ColonyMembers.Length;

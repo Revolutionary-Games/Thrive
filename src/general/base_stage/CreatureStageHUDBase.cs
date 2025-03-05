@@ -455,6 +455,9 @@ public partial class CreatureStageHUDBase<TStage> : HUDWithPausing, ICreatureSta
         UpdateProcessPanel();
 
         UpdateFossilisationButtons();
+
+        // This would be kind of hard to make a non-polling approach for updating the button status
+        UpdateSpeedModeDisplay();
     }
 
     public void SendEditorButtonToTutorial(TutorialState tutorialState)
@@ -677,6 +680,16 @@ public partial class CreatureStageHUDBase<TStage> : HUDWithPausing, ICreatureSta
         {
             throw new NotImplementedException("Saving non-microbe species is not yet implemented");
         }
+    }
+
+    public virtual void ApplySpeedMode(bool fastModeEnabled)
+    {
+        GD.PrintErr("Fast mode is not implemented for this stage");
+    }
+
+    public virtual bool GetCurrentSpeedMode()
+    {
+        return false;
     }
 
     /// <summary>
@@ -1230,6 +1243,16 @@ public partial class CreatureStageHUDBase<TStage> : HUDWithPausing, ICreatureSta
     private void StatisticsButtonPressed()
     {
         ThriveopediaManager.OpenPage("CurrentWorld");
+    }
+
+    private void SpeedModeButtonPressed(bool pressed)
+    {
+        ApplySpeedMode(pressed);
+    }
+
+    private void UpdateSpeedModeDisplay()
+    {
+        bottomLeftBar.SpeedModePressed = GetCurrentSpeedMode();
     }
 
     private void HeatViewButtonPressed(bool pressed)

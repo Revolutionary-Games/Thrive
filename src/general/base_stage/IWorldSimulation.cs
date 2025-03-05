@@ -18,6 +18,11 @@ public interface IWorldSimulation : IEntityContainer, IDisposable
     /// </summary>
     public bool Processing { get; }
 
+    /// <summary>
+    ///   Controls the timescale of the simulation. Affects only the simulation and not the frame render systems.
+    /// </summary>
+    public float WorldTimeScale { get; set; }
+
     public void ResolveNodeReferences();
 
     /// <summary>

@@ -1,0 +1,94 @@
+[gd_scene load_steps=8 format=3 uid="uid://cbwkactqp7nyg"]
+
+[ext_resource type="Theme" uid="uid://b4cx0o110g4b6" path="res://src/gui_common/thrive_theme.tres" id="1_nmj7f"]
+[ext_resource type="Script" path="res://src/microbe_stage/editor/tooltips/StatModifierToolTip.cs" id="2_jdmsc"]
+[ext_resource type="LabelSettings" uid="uid://da5d5tw7mrxt3" path="res://src/gui_common/fonts/Body-Regular-Tiny-Grey.tres" id="3_su033"]
+[ext_resource type="LabelSettings" uid="uid://bx7mw3uvqpo42" path="res://src/gui_common/fonts/Body-Regular-Smaller.tres" id="3_tcxln"]
+[ext_resource type="LabelSettings" uid="uid://bv3bnu0g1wdw3" path="res://src/gui_common/fonts/Title-SemiBold-Big.tres" id="7_wpqvi"]
+[ext_resource type="PackedScene" path="res://src/gui_common/CustomRichTextLabel.tscn" id="8_j3oaw"]
+
+[sub_resource type="StyleBoxFlat" id="1"]
+bg_color = Color(0, 0.129412, 0.141176, 0.980392)
+border_width_left = 1
+border_width_top = 1
+border_width_right = 1
+border_width_bottom = 1
+border_color = Color(0.0666667, 1, 0.835294, 1)
+corner_radius_top_left = 5
+corner_radius_top_right = 5
+corner_radius_bottom_right = 5
+corner_radius_bottom_left = 5
+
+[node name="StatModifierToolTip" type="PanelContainer" node_paths=PackedStringArray("valueLabel", "descriptionLabel", "extraDescriptionLabel", "extraDescriptionSeparator", "statsContainer")]
+custom_minimum_size = Vector2(400, 0)
+offset_top = 1.0
+offset_right = 400.0
+offset_bottom = 284.0
+mouse_filter = 2
+theme = ExtResource("1_nmj7f")
+theme_override_styles/panel = SubResource("1")
+script = ExtResource("2_jdmsc")
+valueLabel = NodePath("MarginContainer/VBoxContainer/Top/EffectiveValue")
+descriptionLabel = NodePath("MarginContainer/VBoxContainer/StatDescription")
+extraDescriptionLabel = NodePath("MarginContainer/VBoxContainer/EndingRemarks")
+extraDescriptionSeparator = NodePath("MarginContainer/VBoxContainer/HSeparator2")
+statsContainer = NodePath("MarginContainer/VBoxContainer/ModifierSummary")
+BreakdownFont = ExtResource("3_tcxln")
+
+[node name="MarginContainer" type="MarginContainer" parent="."]
+layout_mode = 2
+mouse_filter = 2
+theme_override_constants/margin_left = 15
+theme_override_constants/margin_top = 15
+theme_override_constants/margin_right = 15
+theme_override_constants/margin_bottom = 15
+
+[node name="VBoxContainer" type="VBoxContainer" parent="MarginContainer"]
+layout_mode = 2
+mouse_filter = 2
+theme_override_constants/separation = 15
+
+[node name="Top" type="VBoxContainer" parent="MarginContainer/VBoxContainer"]
+layout_mode = 2
+theme_override_constants/separation = 0
+
+[node name="EffectiveValue" type="Label" parent="MarginContainer/VBoxContainer/Top"]
+editor_description = "PLACEHOLDER"
+custom_minimum_size = Vector2(230, 0)
+layout_mode = 2
+size_flags_horizontal = 3
+text = "12%"
+label_settings = ExtResource("7_wpqvi")
+horizontal_alignment = 1
+vertical_alignment = 1
+autowrap_mode = 2
+
+[node name="EffectiveValueTitle" type="Label" parent="MarginContainer/VBoxContainer/Top"]
+custom_minimum_size = Vector2(100, 0)
+layout_mode = 2
+text = "EFFECTIVE_VALUE"
+label_settings = ExtResource("3_su033")
+horizontal_alignment = 1
+autowrap_mode = 3
+
+[node name="StatDescription" parent="MarginContainer/VBoxContainer" instance=ExtResource("8_j3oaw")]
+layout_mode = 2
+mouse_filter = 2
+fit_content = true
+
+[node name="HSeparator" type="HSeparator" parent="MarginContainer/VBoxContainer"]
+layout_mode = 2
+mouse_filter = 2
+
+[node name="ModifierSummary" type="GridContainer" parent="MarginContainer/VBoxContainer"]
+layout_mode = 2
+mouse_filter = 2
+columns = 2
+
+[node name="HSeparator2" type="HSeparator" parent="MarginContainer/VBoxContainer"]
+layout_mode = 2
+mouse_filter = 2
+
+[node name="EndingRemarks" parent="MarginContainer/VBoxContainer" instance=ExtResource("8_j3oaw")]
+layout_mode = 2
+fit_content = true

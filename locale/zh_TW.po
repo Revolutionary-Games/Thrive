@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2025-02-21 15:14+0200\n"
+"POT-Creation-Date: 2025-03-04 13:08+0200\n"
 "PO-Revision-Date: 2025-02-21 21:31+0000\n"
 "Last-Translator: xzihnago <xzihnago@gmail.com>\n"
 "Language-Team: Chinese (Traditional Han script) <https://translate.revolutionarygamesstudio.com/projects/thrive/thrive-game/zh_Hant/>\n"
@@ -1663,6 +1663,10 @@ msgstr "雙擊即可全螢幕檢視"
 msgid "DOUBLE_MEMBRANE_DESCRIPTION"
 msgstr "有兩層的細胞膜，對傷害有更好的防護能力，並且花費更少能量來維持外型。然而，它會減慢細胞的移動速度並降低其吸收資源的速率。"
 
+#, fuzzy
+msgid "DOUBLE_SPEED_TOGGLE_TOOLTIP"
+msgstr "用來生成世界的隨機數，必須為正整數"
+
 msgid "DRAG_TO_REORDER_ITEMS_WITH_MOUSE"
 msgstr "用滑鼠拖曳以重新排序"
 
@@ -1769,6 +1773,10 @@ msgstr ""
 "此分頁提供當前區域中的變化列表。嘗試探索您可以使用的各種工具，以了解有關您世界中事件的更多資訊！\n"
 "\n"
 "準備好後，按右下角的「下一頁」按鈕繼續。"
+
+#, fuzzy
+msgid "EFFECTIVE_VALUE"
+msgstr "{0}%"
 
 msgid "EIGHT_TIMES"
 msgstr "8x"
@@ -2668,7 +2676,8 @@ msgstr "七月"
 msgid "JUNE"
 msgstr "六月"
 
-msgid "KEEP_CURRENT_FLEXIBILITY"
+#, fuzzy
+msgid "KEEP_CURRENT_SHORT"
 msgstr "維持當前的適應範圍"
 
 msgid "KEEP_CURRENT_TOLERANCE_FLEXIBILITY_TOOLTIP"
@@ -3107,6 +3116,14 @@ msgstr ""
 "您的平均 FPS 非常低。\n"
 "3D 選單背景已啟用，這會佔用大量系統資源。停用該選項可能會極大地提高性能。\n"
 "您現在希望這樣做嗎？"
+
+#, fuzzy
+msgid "LOW_QUALITY_BACKGROUND_BLUR"
+msgstr "背景模糊："
+
+#, fuzzy
+msgid "LOW_QUALITY_BACKGROUND_BLUR_TOOLTIP"
+msgstr "背景模糊："
 
 msgid "LYSOSOME"
 msgstr "溶酶體"
@@ -5652,6 +5669,10 @@ msgstr ""
 "切換吞噬模式以吞噬各種碎塊\n"
 "以及較小的生物體，讓活躍時能有更多的 ATP 使用"
 
+#, fuzzy
+msgid "TOGGLE_FAST_MODE"
+msgstr "暫停"
+
 msgid "TOGGLE_FPS"
 msgstr "切換 FPS 顯示"
 
@@ -5702,6 +5723,10 @@ msgstr "紫外線（UV）保護過低，需要提高 {0}%"
 
 msgid "TOLERANCES_UNSUITABLE_DEBUFFS"
 msgstr "不適應當前的環境條件。滲透調節成本 {0}%、代謝速度 {1}%、生命值 {2}%"
+
+#, fuzzy
+msgid "TOLERANCE_FROM_ORGANELLES_TOOLTIP"
+msgstr "您的物種在受到有害影響之前能抵抗多少紫外線輻射。如果您處在光照過強的地方，您就會受到負面影響，直到抗性增加。"
 
 msgid "TOLERANCE_RANGE_LABEL"
 msgstr "適應範圍："
@@ -8554,6 +8579,31 @@ msgstr ""
 
 msgid "WORLD_RELATIVE_MOVEMENT"
 msgstr "相對於世界"
+
+#, fuzzy
+msgid "WORLD_SIZE"
+msgstr "世界"
+
+#, fuzzy
+msgid "WORLD_SIZE_EXPLANATION"
+msgstr ""
+"專注型微生物會在更遠的距離追擊獵物或物質塊\n"
+"並且對物質塊更有渴求。\n"
+"應變型微生物將更快地轉向新目標。"
+
+msgid "WORLD_SIZE_LARGE"
+msgstr ""
+
+#, fuzzy
+msgid "WORLD_SIZE_MEDIUM"
+msgstr "相對於世界"
+
+msgid "WORLD_SIZE_SMALL"
+msgstr ""
+
+#, fuzzy
+msgid "WORLD_SIZE_TOOLTIP"
+msgstr "運行一定數量的世界，每個世界運行的代數由上方的顯示框決定。"
 
 msgid "WORST_PATCH_COLON"
 msgstr "最差區域："

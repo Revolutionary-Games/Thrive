@@ -336,6 +336,12 @@ public sealed class MicrobePhysicsCreationAndSizeSystem : AEntitySetSystem<float
 
                 ref var currentMemberOrganelles = ref member.Get<OrganelleContainer>();
 
+                if (!member.Has<AttachedToEntity>())
+                {
+                    GD.PrintErr("Colony member has no attached component, created combined body will be wrong");
+                    continue;
+                }
+
                 ref var attached = ref member.Get<AttachedToEntity>();
 
                 memberOrganelles.Add((currentMemberOrganelles.Organelles ??

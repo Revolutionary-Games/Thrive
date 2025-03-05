@@ -117,6 +117,9 @@
         "Capacity": 0.25
       }
     },
+    "ToleranceEffects": {
+      "Oxygen": -0.01
+    },
     "Density": 1100,
     "Graphics": {
       "ScenePath": "res://assets/models/organelles/Nitrogenase.tscn"
@@ -233,6 +236,9 @@
         "Compound": "oxytoxy"
       }
     },
+    "ToleranceEffects": {
+      "Oxygen": 0.005
+    },
     "Density": 1100,
     "Graphics": {
       "ScenePath": "res://assets/models/organelles/OxytoxyProteins.tscn"
@@ -329,6 +335,10 @@
         "Capacity": 0.25
       }
     },
+    "ToleranceEffects": {
+      "UV": 0.03,
+      "Oxygen": 0.01
+    },
     "Density": 1200,
     "Graphics": {
       "ScenePath": "res://assets/models/organelles/Chromatophore.tscn"
@@ -370,6 +380,9 @@
       "Storage": {
         "Capacity": 0.25
       }
+    },
+    "ToleranceEffects": {
+      "Oxygen": 0.03
     },
     "Density": 1100,
     "Graphics": {
@@ -413,6 +426,9 @@
         "Capacity": 0.25
       }
     },
+    "ToleranceEffects": {
+      "Oxygen": -0.03
+    },
     "Density": 1100,
     "Graphics": {
       "ScenePath": "res://assets/models/organelles/Hydrogenase.tscn"
@@ -449,6 +465,9 @@
       "Storage": {
         "Capacity": 0.5
       }
+    },
+    "ToleranceEffects": {
+      "Oxygen": -0.02
     },
     "Density": 1100,
     "Graphics": {
@@ -487,6 +506,9 @@
     "FeatureTags": [
       "HeatCollecting"
     ],
+    "ToleranceEffects": {
+      "TemperatureRange": 2
+    },
     "Density": 1200,
     "Graphics": {
       "ScenePath": "res://assets/models/organelles/Thermosynthase.tscn"
@@ -613,6 +635,9 @@
         "Capacity": 5
       }
     },
+    "ToleranceEffects": {
+      "PressureRange": 100000
+    },
     "Density": 1200,
     "RelativeDensityVolume": 1,
     "Graphics": {
@@ -650,6 +675,9 @@
       "Storage": {
         "Capacity": 0.5
       }
+    },
+    "ToleranceEffects": {
+      "Oxygen": 0.06
     },
     "Density": 1100,
     "Graphics": {
@@ -701,6 +729,9 @@
         "Process": "cytotoxinSynthesis",
         "Compound": "oxytoxy"
       }
+    },
+    "ToleranceEffects": {
+      "Oxygen": 0.01
     },
     "Density": 1100,
     "Graphics": {
@@ -846,6 +877,10 @@
       "Storage": {
         "Capacity": 0.5
       }
+    },
+    "ToleranceEffects": {
+      "UV": 0.08,
+      "Oxygen": 0.02
     },
     "Density": 1200,
     "Graphics": {
@@ -1023,6 +1058,9 @@
       },
       "SlimeJet": {}
     },
+    "ToleranceEffects": {
+      "UV": 0.01
+    },
     "Density": 1100,
     "Graphics": {
       "ScenePath": "res://assets/models/organelles/SlimeJet.tscn",
@@ -1133,6 +1171,9 @@
     "FeatureTags": [
       "HeatCollecting"
     ],
+    "ToleranceEffects": {
+      "TemperatureRange": 5
+    },
     "Density": 1200,
     "Graphics": {
       "ScenePath": "res://assets/models/organelles/Thermoplast.tscn"
@@ -1332,6 +1373,9 @@
     "FeatureTags": [
       "RadiationBlock"
     ],
+    "ToleranceEffects": {
+      "UV": 0.02
+    },
     "Density": 1300,
     "RelativeDensityVolume": 1,
     "Graphics": {
@@ -1371,6 +1415,9 @@
     "FeatureTags": [
       "Axon"
     ],
+    "ToleranceEffects": {
+      "UV": -0.1
+    },
     "Density": 1100,
     "RelativeDensityVolume": 1,
     "Graphics": {

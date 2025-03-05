@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2025-02-21 15:14+0200\n"
+"POT-Creation-Date: 2025-03-04 13:08+0200\n"
 "PO-Revision-Date: 2025-02-06 13:29+0000\n"
 "Last-Translator: Anonymous <noreply@weblate.org>\n"
 "Language-Team: Catalan <https://translate.revolutionarygamesstudio.com/projects/thrive/thrive-game/ca/>\n"
@@ -1698,6 +1698,10 @@ msgstr "Doble clic per mostrar en pantalla completa"
 msgid "DOUBLE_MEMBRANE_DESCRIPTION"
 msgstr "Una membrana cel·lular formada per dues capes, que ofereix millor protecció i consumeix menys energia. No obstant, fa que la cèl·lula esdevingui més lenta. També redueix la velocitat a la qual s'absorbeixen els nutrients en entrar-hi en contacte."
 
+#, fuzzy
+msgid "DOUBLE_SPEED_TOGGLE_TOOLTIP"
+msgstr "El valor utilitzat per generar el món, que ha de ser un nombre enter positiu"
+
 msgid "DRAG_TO_REORDER_ITEMS_WITH_MOUSE"
 msgstr ""
 
@@ -1807,6 +1811,10 @@ msgstr ""
 "Aquesta pestanya t'ofereix una llista de canvis en la zona que ocupes actualment. Intenta explorar les diferents eines que tens a la teva disposició per aprendre més sobre els esdeveniments del teu món.\n"
 "\n"
 "Quan estiguis a punt, fes clic al botó \"següent\", a baix a la dreta."
+
+#, fuzzy
+msgid "EFFECTIVE_VALUE"
+msgstr "{0}%"
 
 msgid "EIGHT_TIMES"
 msgstr "8x"
@@ -2840,8 +2848,9 @@ msgstr "Juliol"
 msgid "JUNE"
 msgstr "Juny"
 
-msgid "KEEP_CURRENT_FLEXIBILITY"
-msgstr ""
+#, fuzzy
+msgid "KEEP_CURRENT_SHORT"
+msgstr "Món Actual"
 
 #, fuzzy
 msgid "KEEP_CURRENT_TOLERANCE_FLEXIBILITY_TOOLTIP"
@@ -3293,6 +3302,12 @@ msgstr "Rendiment"
 #, fuzzy
 msgid "LOW_MENU_PERFORMANCE_DESCRIPTION"
 msgstr "Conté enzims digestius. Es pot modificar per canviar el tipus d'enzim que conté. Només es pot utilitzar un enzim cada vegada."
+
+msgid "LOW_QUALITY_BACKGROUND_BLUR"
+msgstr ""
+
+msgid "LOW_QUALITY_BACKGROUND_BLUR_TOOLTIP"
+msgstr ""
 
 msgid "LYSOSOME"
 msgstr "Lisosoma"
@@ -6077,6 +6092,10 @@ msgstr "Activar el mode d'engolir"
 msgid "TOGGLE_ENGULF_TOOLTIP"
 msgstr "Activar el mode d'engolir"
 
+#, fuzzy
+msgid "TOGGLE_FAST_MODE"
+msgstr "Pausa"
+
 msgid "TOGGLE_FPS"
 msgstr "Activar monitor FPS"
 
@@ -6132,6 +6151,10 @@ msgstr "{0}: +{1} ATP"
 
 msgid "TOLERANCES_UNSUITABLE_DEBUFFS"
 msgstr ""
+
+#, fuzzy
+msgid "TOLERANCE_FROM_ORGANELLES_TOOLTIP"
+msgstr "Mostrar / amagar l'entorn i els compostos"
 
 msgid "TOLERANCE_RANGE_LABEL"
 msgstr ""
@@ -8656,6 +8679,31 @@ msgstr ""
 #, fuzzy
 msgid "WORLD_RELATIVE_MOVEMENT"
 msgstr "per augmentar la"
+
+#, fuzzy
+msgid "WORLD_SIZE"
+msgstr "Món"
+
+#, fuzzy
+msgid "WORLD_SIZE_EXPLANATION"
+msgstr ""
+"Els microbis centrats buscaran recursos o preses més llunyans\n"
+"i és possible que siguin molt més ambiciosos respecte a uns mateixos recursos.\n"
+"Els microbis sensibles canviaran d'objectius més aviat."
+
+msgid "WORLD_SIZE_LARGE"
+msgstr ""
+
+#, fuzzy
+msgid "WORLD_SIZE_MEDIUM"
+msgstr "per augmentar la"
+
+msgid "WORLD_SIZE_SMALL"
+msgstr ""
+
+#, fuzzy
+msgid "WORLD_SIZE_TOOLTIP"
+msgstr "Han passat: {0:#,#} anys"
 
 msgid "WORST_PATCH_COLON"
 msgstr "Pitjor Medi:"

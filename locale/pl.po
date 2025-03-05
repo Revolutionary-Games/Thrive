@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2025-02-21 15:14+0200\n"
+"POT-Creation-Date: 2025-03-04 13:08+0200\n"
 "PO-Revision-Date: 2025-02-06 13:29+0000\n"
 "Last-Translator: Anonymous <noreply@weblate.org>\n"
 "Language-Team: Polish <https://translate.revolutionarygamesstudio.com/projects/thrive/thrive-game/pl/>\n"
@@ -1702,6 +1702,10 @@ msgstr "Należy kliknąć dwa razy żeby przejść w tryb pełnego ekranu"
 msgid "DOUBLE_MEMBRANE_DESCRIPTION"
 msgstr "Membrana z dwoma warstwami, lepiej chroni przed uszkodzeniami i potrzebuje mniej energii żeby się nie deformować. Aczkolwiek, spowalnia trochę komórkę oraz prędkość absorbcji zasobów."
 
+#, fuzzy
+msgid "DOUBLE_SPEED_TOGGLE_TOOLTIP"
+msgstr "Wartość używana do generacji świata (musi być dodatnią liczbą całkowitą)"
+
 msgid "DRAG_TO_REORDER_ITEMS_WITH_MOUSE"
 msgstr ""
 
@@ -1810,6 +1814,10 @@ msgstr ""
 "W tej zakładce możesz zobaczyć raport istniejących gatunków, gdzie i jak duża jest ich populacja. Użyj dostępnych narzędzi aby dowiedzieć się więcej o wydarzeniach na świecie!\n"
 "\n"
 "kiedy będziesz gotów, wciśnij przycisk \"dalej\" w prawym dolnym rogu aby kontynuować."
+
+#, fuzzy
+msgid "EFFECTIVE_VALUE"
+msgstr "{0}%"
 
 msgid "EIGHT_TIMES"
 msgstr "8x"
@@ -2753,8 +2761,9 @@ msgstr "Lipiec"
 msgid "JUNE"
 msgstr "Czerwiec"
 
-msgid "KEEP_CURRENT_FLEXIBILITY"
-msgstr ""
+#, fuzzy
+msgid "KEEP_CURRENT_SHORT"
+msgstr "Obecny Świat"
 
 #, fuzzy
 msgid "KEEP_CURRENT_TOLERANCE_FLEXIBILITY_TOOLTIP"
@@ -3204,6 +3213,14 @@ msgstr ""
 "Średnia ilość klatek na sekundę jest bardzo niska.\n"
 "Tła menu w 3D są włączone, co może zużywać dużo zasobów systemowych. Wyłączenie tej opcji może znacznie zwiększyć wydajność.\n"
 "Czy chciałbyś to teraz zrobić?"
+
+#, fuzzy
+msgid "LOW_QUALITY_BACKGROUND_BLUR"
+msgstr "Rozmycie tła:"
+
+#, fuzzy
+msgid "LOW_QUALITY_BACKGROUND_BLUR_TOOLTIP"
+msgstr "Rozmycie tła:"
 
 msgid "LYSOSOME"
 msgstr "Lizosom"
@@ -5879,6 +5896,10 @@ msgstr "Przełączenie fagocytozy"
 msgid "TOGGLE_ENGULF_TOOLTIP"
 msgstr ""
 
+#, fuzzy
+msgid "TOGGLE_FAST_MODE"
+msgstr "Pauza"
+
 msgid "TOGGLE_FPS"
 msgstr "Przełącz wyświetlacz FPS"
 
@@ -5934,6 +5955,15 @@ msgstr "{0}: +{1} ATP"
 
 msgid "TOLERANCES_UNSUITABLE_DEBUFFS"
 msgstr ""
+
+#, fuzzy
+msgid "TOLERANCE_FROM_ORGANELLES_TOOLTIP"
+msgstr ""
+"Ta część pokazuje całkowity bilans ATP (energii) obecnej komórki.\n"
+"Py przetrwać, bilans musi być pozytywny. Dla komórek osiadłych bilans może być pozytywny jedynie w bezruchu.\n"
+"Rozwijane menu poniżej można wykorzystać do sprawdzenia, co by się stało, gdyby komórka nie miała dostępu do zasobów, z których mogłaby produkować ATP.\n"
+"Na przykład, niektóre komórki są zdolne do utrzymywania pozytywnego bilansu ATP jedynie gdy równocześnie mają wiele rodzajów związków do produkcji ATP.\n"
+"Rozgrywka takimi komórkami jest trudniejsza, ponieważ do przetrwania wymagają równoczesnego składowania wielu rodzajów związków."
 
 msgid "TOLERANCE_RANGE_LABEL"
 msgstr ""
@@ -8391,6 +8421,31 @@ msgstr ""
 #, fuzzy
 msgid "WORLD_RELATIVE_MOVEMENT"
 msgstr "żeby zwiększyć ruch"
+
+#, fuzzy
+msgid "WORLD_SIZE"
+msgstr "Świat"
+
+#, fuzzy
+msgid "WORLD_SIZE_EXPLANATION"
+msgstr ""
+"Skupione mikroby będą wyszukiwać pożywienia lub ofiar przez długie odległości\n"
+"oraz mogą być bardzo zachłanne względem nowych źródeł pożywienia.\n"
+"Responsywne mikroby będą chętniej zmieniać źródła pożywienia."
+
+msgid "WORLD_SIZE_LARGE"
+msgstr ""
+
+#, fuzzy
+msgid "WORLD_SIZE_MEDIUM"
+msgstr "żeby zwiększyć ruch"
+
+msgid "WORLD_SIZE_SMALL"
+msgstr ""
+
+#, fuzzy
+msgid "WORLD_SIZE_TOOLTIP"
+msgstr "Wartość używana do generacji świata (musi być dodatnią liczbą całkowitą)"
 
 msgid "WORST_PATCH_COLON"
 msgstr "Najgorzej radzi sobie w:"

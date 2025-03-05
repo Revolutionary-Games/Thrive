@@ -315,6 +315,8 @@ public partial class CellEditorComponent :
 
     private bool showGrowthOrderNumbers;
 
+    private bool multicellularTolerancesPrinted;
+
     private TutorialState? tutorialState;
 
     public enum SelectionMenuTab
@@ -1035,7 +1037,7 @@ public partial class CellEditorComponent :
         if (!base.CanFinishEditing(editorUserOverrides))
             return false;
 
-        // Show warning if the editor has an endosymbiosis that should be finished
+        // Show a warning if the editor has an endosymbiosis that should be finished
         if (HasFinishedPendingEndosymbiosis && !editorUserOverrides.Contains(EditorUserOverride.EndosymbiosisPending))
         {
             pendingEndosymbiosisPopup.PopupCenteredShrink();
@@ -1072,6 +1074,15 @@ public partial class CellEditorComponent :
     }
 
     /// <summary>
+    ///   Allows access to the latest edited organelles by this component. Shouldn't be modified but just read.
+    /// </summary>
+    /// <returns>Access to the latest organelle edits</returns>
+    public OrganelleLayout<OrganelleTemplate> GetLatestEditedOrganelles()
+    {
+        return editedMicrobeOrganelles;
+    }
+
+    /// <summary>
     ///   Report that the current patch used in the editor has changed
     /// </summary>
     /// <param name="patch">The patch that is set</param>
@@ -1085,9 +1096,12 @@ public partial class CellEditorComponent :
         CalculateOrganelleEffectivenessInCurrentPatch();
         UpdatePatchDependentBalanceData();
 
-        // Refresh tolerances data for the new patch
-        tolerancesEditor.OnPatchChanged();
-        OnTolerancesChanged(tolerancesEditor.CurrentTolerances);
+        if (!IsMulticellularEditor)
+        {
+            // Refresh tolerances data for the new patch
+            tolerancesEditor.OnDataTolerancesDependOnChanged();
+            OnTolerancesChanged(tolerancesEditor.CurrentTolerances);
+        }
 
         // Redo suggestion calculations as they could depend on the patch data (though at the time of writing this is
         // not really changing)
@@ -1923,14 +1937,31 @@ public partial class CellEditorComponent :
 
     private ResolvedMicrobeTolerances CalculateLatestTolerances()
     {
+        if (IsMulticellularEditor)
+        {
+            if (!multicellularTolerancesPrinted)
+            {
+                GD.Print("TODO: implement tolerances data coming from the multicellular editor");
+                multicellularTolerancesPrinted = true;
+            }
+
+            // TODO: this should use info from the cell body plan editor regarding tolerances and remove this dummy
+            // return
+            return new ResolvedMicrobeTolerances
+            {
+                HealthModifier = 1,
+                OsmoregulationModifier = 1,
+                ProcessSpeedModifier = 1,
+            };
+        }
+
         return MicrobeEnvironmentalToleranceCalculations.ResolveToleranceValues(CalculateRawTolerances());
     }
 
-    private MicrobeEnvironmentalToleranceCalculations.ToleranceResult CalculateRawTolerances()
+    private ToleranceResult CalculateRawTolerances()
     {
-        // TODO: in the future this will need to pass the organelle list as well
         return MicrobeEnvironmentalToleranceCalculations.CalculateTolerances(tolerancesEditor.CurrentTolerances,
-            Editor.CurrentPatch.Biome);
+            editedMicrobeOrganelles, Editor.CurrentPatch.Biome);
     }
 
     /// <summary>
@@ -2040,7 +2071,7 @@ public partial class CellEditorComponent :
 
             // If produces more ATP than consumes, lower down production for inputs and for outputs,
             // otherwise use maximum production values (this matches the equilibrium display mode and what happens
-            // in game once exiting the editor)
+            // in the game once exiting the editor)
             if (consumptionProductionRatio < 1.0f)
             {
                 singleProcess.ScaleSpeed(consumptionProductionRatio, processSpeedWorkMemory);
@@ -2334,6 +2365,13 @@ public partial class CellEditorComponent :
         // Send to gui current status of cell
         organismStatisticsPanel.UpdateSize(MicrobeHexSize);
         UpdateStats();
+
+        if (!IsMulticellularEditor)
+        {
+            // Tolerances are now affected by organelle changes, so re-trigger calculating them
+            OnTolerancesChanged(tolerancesEditor.CurrentTolerances);
+            tolerancesEditor.OnDataTolerancesDependOnChanged();
+        }
 
         UpdateCellVisualization();
 

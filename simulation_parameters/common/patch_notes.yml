@@ -805,3 +805,15 @@
     - Updated Nix build flake
     - Updated System.IO.Hashing from 9.0.0 to 9.0.2
     - Updated translations
+
+0.8.1.1:
+  IntroductionText: |
+    This is a small patch release to make multicellular stage work again as there was a major bug that slipped into the previous release that completely prevented playing the multicellular stage.
+  ReleaseLink: https://github.com/Revolutionary-Games/Thrive/releases/tag/v0.8.1.1
+  PatchNotes:
+    - Fixed multicellular cells after the first one immediately starting to die. This should make multicellular now playable again.
+    - Doubled decay of radiation when taking damage to reduce overall taken radiation damage once it starts
+    - Fixed units of compound types shown in the GUI for how many seconds the storage lasts
+    - Fixed extra horizontal separators being visible in the membrane tooltips
+    - Added safeguards against cell colony members with missing components, now those colonies are force disbanded to allow the game to continue
+    - Updated translations

@@ -7,8 +7,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2025-02-21 15:14+0200\n"
-"PO-Revision-Date: 2025-02-20 06:37+0000\n"
+"POT-Creation-Date: 2025-03-04 13:08+0200\n"
+"PO-Revision-Date: 2025-02-23 16:13+0000\n"
 "Last-Translator: DiversoCortez <decaiotreis@proton.me>\n"
 "Language-Team: Portuguese (Brazil) <https://translate.revolutionarygamesstudio.com/projects/thrive/thrive-game/pt_BR/>\n"
 "Language: pt_BR\n"
@@ -330,9 +330,8 @@ msgstr ""
 msgid "AUTO-EVO_STEPS_DONE"
 msgstr "{0:F1}% feito. {1:n0}/{2:n0} passos."
 
-#, fuzzy
 msgid "AUTO-EVO_STRENGHT_MULTIPLIER"
-msgstr "Multiplicador do custo de mutação"
+msgstr "Força da auto-evo no jogador"
 
 msgid "AUTO-EVO_STRENGHT_MULTIPLIER_EXPLANATION"
 msgstr "(porcentagem de mudança de população a Auto-Evo aplica à espécie do jogador)"
@@ -1685,6 +1684,10 @@ msgstr "Clique duas vezes para ver em tela cheia"
 msgid "DOUBLE_MEMBRANE_DESCRIPTION"
 msgstr "Uma membrana com duas camadas, tem melhor proteção contra dano e leva menos energia para não se deformar. No entanto, diminui um pouco sua velocidade e diminui a taxa em que pode absorver recursos."
 
+#, fuzzy
+msgid "DOUBLE_SPEED_TOGGLE_TOOLTIP"
+msgstr "O valor usado para gerar o mundo, que deve ser um número inteiro positivo"
+
 msgid "DRAG_TO_REORDER_ITEMS_WITH_MOUSE"
 msgstr "Arraste para reordenar itens com o mouse"
 
@@ -1791,6 +1794,10 @@ msgstr ""
 "Nessa aba você pode ver a lista de mudanças ocorridas na região que você ocupa atualmente. Tente explorar as varias ferramentas à sua disposição para aprender mais sobre os eventos do seu mundo!\n"
 "\n"
 "Para ir para a próxima aba, aperte o botão “próximo” no canto inferior direito."
+
+#, fuzzy
+msgid "EFFECTIVE_VALUE"
+msgstr "{0}%"
 
 msgid "EIGHT_TIMES"
 msgstr "8x"
@@ -1986,9 +1993,8 @@ msgstr "Uma exceção ocorreu ao processar objetos carregados"
 msgid "EXCEPTION_HAPPENED_WHILE_LOADING"
 msgstr "Uma exceção ocorreu ao carregar os dados salvos"
 
-#, fuzzy
 msgid "EXCLUSIVE_FULLSCREEN"
-msgstr "Tela cheia"
+msgstr "Tela cheia exclusiva"
 
 msgid "EXISTING_BUILDINGS"
 msgstr "Construções"
@@ -2692,12 +2698,12 @@ msgstr "Julho"
 msgid "JUNE"
 msgstr "Junho"
 
-msgid "KEEP_CURRENT_FLEXIBILITY"
-msgstr ""
-
 #, fuzzy
+msgid "KEEP_CURRENT_SHORT"
+msgstr "Manter flexibilidade atual"
+
 msgid "KEEP_CURRENT_TOLERANCE_FLEXIBILITY_TOOLTIP"
-msgstr "A temperatura preferida pela sua espécie. Quando em condições fora da faixa de flexibilidade ao redor da temperatura ideal, haverá diversos efeitos negativos que tornarão sobreviver mais difícil. Adapte-se usando os sliders para as regiões em que você pretende jogar."
+msgstr "Manter faixa de tolerância de pressão atual enquanto move sliders máximo e mínimo"
 
 msgid "KEEP_MIGRATION"
 msgstr "Manter Migração"
@@ -3136,6 +3142,14 @@ msgstr ""
 "Os planos de fundos 3d estão ativados, o que pode usar uma grande quantidade de recursos do sistema. Desativar a opção pode aumentar o desempenho.\n"
 "Você gostaria de fazer isso agora?"
 
+#, fuzzy
+msgid "LOW_QUALITY_BACKGROUND_BLUR"
+msgstr "Desfoque de plano de fundo:"
+
+#, fuzzy
+msgid "LOW_QUALITY_BACKGROUND_BLUR_TOOLTIP"
+msgstr "Desfoque de plano de fundo:"
+
 msgid "LYSOSOME"
 msgstr "Lisossomo"
 
@@ -3534,9 +3548,8 @@ msgstr "Botão do meio do mouse"
 msgid "MIGRATION_FAILED_TO_ADD"
 msgstr "Erro: falha na adição de migração, favor verificar parâmetros da migração"
 
-#, fuzzy
 msgid "MIGRATION_MANAGER"
-msgstr "Migrando {2} unidades da população de {0} para {1}"
+msgstr "Gerenciador de Migração"
 
 msgid "MIGRATION_STATUS_DESTINATION_NOT_SELECTED"
 msgstr "Migrando população de {0} para…"
@@ -4722,9 +4735,8 @@ msgstr "Redefinir para as configurações padrão?"
 msgid "RESISTANT_TO_BASIC_ENGULFMENT"
 msgstr "Resistente à fagocitose básica"
 
-#, fuzzy
 msgid "RESIZE_METABALL_TOOLTIP"
-msgstr "Retomar o jogo"
+msgstr "Definir o tamanho da metaball a ser colocada. Alternativamente, pode ser mudado com atalhos de teclado."
 
 msgid "RESOLUTION"
 msgstr "Resolução:"
@@ -5688,6 +5700,9 @@ msgstr ""
 "Ative a fagocitose para fagocitar pedaços diversos\n"
 " e organismos menores em troca de um maior uso de ATP enquanto está ativo"
 
+msgid "TOGGLE_FAST_MODE"
+msgstr "Ativar Modo Rápido"
+
 msgid "TOGGLE_FPS"
 msgstr "Exibir FPS"
 
@@ -5739,6 +5754,10 @@ msgstr "Proteção UV baixa demais, precisa ser {0}% mais alta"
 msgid "TOLERANCES_UNSUITABLE_DEBUFFS"
 msgstr "Não adaptado para as condições ambientais atuais. Custo da osmorregulação {0}%, velocidade dos bioprocessos {1}%, saúde {2}%"
 
+#, fuzzy
+msgid "TOLERANCE_FROM_ORGANELLES_TOOLTIP"
+msgstr "Quanta radiação ultravioleta a sua espécie pode aguentar antes de sofrer efeitos danosos. Se você estiver em uma região com muita luz, você sofrerá efeitos negativos até que a resistência seja aumentada."
+
 msgid "TOLERANCE_RANGE_LABEL"
 msgstr "Flexibilidade:"
 
@@ -5749,7 +5768,7 @@ msgid "TOOL_HAND_AXE"
 msgstr "Machado de Mão"
 
 msgid "TOO_LARGE_PRESSURE_RANGE"
-msgstr ""
+msgstr "Faixa de pressão larga demais"
 
 msgid "TOO_MANY_RECENT_VERSIONS_TO_SHOW"
 msgstr "Existem versões recentes demais, então todas não estão sendo mostradas"
@@ -6261,7 +6280,7 @@ msgid "USE_A_CUSTOM_USERNAME"
 msgstr "Usar um nome personalizado"
 
 msgid "USE_DISK_CACHE"
-msgstr ""
+msgstr "Usar cache do disco"
 
 msgid "USE_MANUAL_THREAD_COUNT"
 msgstr "Definir número de tarefas de fundo manualmente"
@@ -8151,6 +8170,31 @@ msgstr ""
 
 msgid "WORLD_RELATIVE_MOVEMENT"
 msgstr "Relativo ao mundo"
+
+#, fuzzy
+msgid "WORLD_SIZE"
+msgstr "Mundo"
+
+#, fuzzy
+msgid "WORLD_SIZE_EXPLANATION"
+msgstr ""
+"Micróbios focados perseguirão presas ou pedaços por distâncias mais longas\n"
+"e podem ser mais cobiçosos em relação aos pedaços.\n"
+"Micróbios mais reativos perseguirão outras presas depois de um tempo."
+
+msgid "WORLD_SIZE_LARGE"
+msgstr ""
+
+#, fuzzy
+msgid "WORLD_SIZE_MEDIUM"
+msgstr "Relativo ao mundo"
+
+msgid "WORLD_SIZE_SMALL"
+msgstr ""
+
+#, fuzzy
+msgid "WORLD_SIZE_TOOLTIP"
+msgstr "Executar a simulação em um certo número de mundos, a quantidade de gerações que cada mundo deve simular é determinada pela opção acima."
 
 msgid "WORST_PATCH_COLON"
 msgstr "Pior Região:"
