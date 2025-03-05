@@ -126,29 +126,7 @@ public sealed class FluidCurrentsSystem : AEntitySetSystem<float>
 
         if (!imagesInitialized)
         {
-            var disturbancesX = noiseDisturbancesX.GetData();
-            var disturbancesY = noiseDisturbancesY.GetData();
-            var currentsX = noiseCurrentsX.GetData();
-            var currentsY = noiseCurrentsY.GetData();
-
-            noiseWidth = disturbancesX[0].GetWidth();
-            noiseHeight = disturbancesY[0].GetHeight();
-
-            int noiseDepth = noiseDisturbancesX.Depth;
-            noiseDisturbancesXImage = new Image[noiseDepth];
-            noiseDisturbancesYImage = new Image[noiseDepth];
-            noiseCurrentsXImage = new Image[noiseDepth];
-            noiseCurrentsYImage = new Image[noiseDepth];
-
-            for (int i = 0; i < noiseDepth; ++i)
-            {
-                noiseDisturbancesXImage[i] = disturbancesX[i];
-                noiseDisturbancesYImage[i] = disturbancesY[i];
-                noiseCurrentsXImage[i] = currentsX[i];
-                noiseCurrentsYImage[i] = currentsY[i];
-            }
-
-            imagesInitialized = true;
+            TryGetNoiseImages();
         }
 
         currentsTimePassed += delta;
@@ -195,6 +173,36 @@ public sealed class FluidCurrentsSystem : AEntitySetSystem<float>
 
         physicsControl.ImpulseToGive += new Vector3(vel.X, 0, vel.Y) * delta * effectStrength;
         physicsControl.PhysicsApplied = false;
+    }
+
+    private void TryGetNoiseImages()
+    {
+        var disturbancesX = noiseDisturbancesX.GetData();
+        var disturbancesY = noiseDisturbancesY.GetData();
+        var currentsX = noiseCurrentsX.GetData();
+        var currentsY = noiseCurrentsY.GetData();
+
+        if (disturbancesX == null || disturbancesY == null || currentsX == null || currentsY == null)
+            return;
+
+        noiseWidth = disturbancesX[0].GetWidth();
+        noiseHeight = disturbancesY[0].GetHeight();
+
+        int noiseDepth = noiseDisturbancesX.Depth;
+        noiseDisturbancesXImage = new Image[noiseDepth];
+        noiseDisturbancesYImage = new Image[noiseDepth];
+        noiseCurrentsXImage = new Image[noiseDepth];
+        noiseCurrentsYImage = new Image[noiseDepth];
+
+        for (int i = 0; i < noiseDepth; ++i)
+        {
+            noiseDisturbancesXImage[i] = disturbancesX[i];
+            noiseDisturbancesYImage[i] = disturbancesY[i];
+            noiseCurrentsXImage[i] = currentsX[i];
+            noiseCurrentsYImage[i] = currentsY[i];
+        }
+
+        imagesInitialized = true;
     }
 
     [MethodImpl(MethodImplOptions.AggressiveInlining)]
