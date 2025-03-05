@@ -8,10 +8,9 @@ msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2025-03-04 13:08+0200\n"
-"PO-Revision-Date: 2025-02-24 06:48+0000\n"
-"Last-Translator: Maxim Maier <maiermaxim21@gmail.com>\n"
-"Language-Team: German <https://translate.revolutionarygamesstudio.com/"
-"projects/thrive/thrive-game/de/>\n"
+"PO-Revision-Date: 2025-03-05 07:56+0000\n"
+"Last-Translator: Alexander Huber <alhuber32@gmail.com>\n"
+"Language-Team: German <https://translate.revolutionarygamesstudio.com/projects/thrive/thrive-game/de/>\n"
 "Language: de\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -503,7 +502,7 @@ msgid "BENCHMARK_FINISHED"
 msgstr "Benchmark beendet"
 
 msgid "BENCHMARK_PHASE"
-msgstr ""
+msgstr "Benchmark-Phase:"
 
 msgid "BENCHMARK_RESULTS_COLON"
 msgstr "Ergebnisse:"
@@ -571,7 +570,6 @@ msgstr "Baue eine Stadt"
 msgid "BUILD_QUEUE"
 msgstr "Bauwarteschlange"
 
-#, fuzzy
 msgid "BUILD_STRUCTURE"
 msgstr "Baue eine Struktur"
 
@@ -583,21 +581,20 @@ msgstr "Von Revolutionary Games Studio"
 
 msgid "CACHE_DISK_MAX_TIME"
 msgstr ""
+"Maximale Zeit, um Elemente auf der Festplatte zu behalten, bevor sie "
+"gelöscht werden"
 
 msgid "CACHE_MEMORY_MAX_ITEMS"
-msgstr ""
+msgstr "Maximal im Speicher zu haltende Cache-Elemente"
 
-#, fuzzy
 msgid "CACHE_TIME_MEMORY"
-msgstr "Derzeit belegter Grafikspeicher:"
+msgstr "Wie lange die Cache-Elemente im Speicher bleiben sollen"
 
-#, fuzzy
 msgid "CACHE_TIME_MEMORY_ONLY"
-msgstr "Derzeit belegter Grafikspeicher:"
+msgstr "Cache-Zeit bei ausschließlicher Speicherung im Arbeitsspeicher"
 
-#, fuzzy
 msgid "CACHING_TITLE"
-msgstr "Titel fehlt"
+msgstr "Zwischenspeicherung"
 
 msgid "CALCIUM_CARBONATE"
 msgstr "Kalziumkarbonat"
@@ -703,30 +700,28 @@ msgstr ""
 "Wand verdauen [/b], was sie anfällig für Verschlingung durch Fressfeinde "
 "macht."
 
-#, fuzzy
 msgid "CELL_STAT_ROTATION_TOOLTIP"
 msgstr ""
-"Drehgeschwindigkeit der Zelle. Große Zellen drehen sich langsamer, aber "
-"Zilien können hinzugefügt werden um dem entgegenzuwirken.\n"
-"Weiter entfernte Organellen reduzieren die Drehgeschwindigkeit mehr."
+"Rotationsrate der Zelle. Größere Zellen drehen sich langsamer, aber Zilien "
+"können dies ausgleichen.\n"
+"Die Platzierung der Organellen beeinflusst die Rotation, wobei Organellen, "
+"die weiter vom Zentrum entfernt sind, die Rotation stärker reduzieren."
 
-#, fuzzy
 msgid "CELL_STAT_SPEED_TOOLTIP"
 msgstr ""
 "Geschwindigkeit der Zelle. Durch Limitierungen des Algorithmus ist dieser "
 "Wert eine Annahme.\n"
-"Zu dem wenn Geißeln modifiziert werden macht der Wert nicht ganz Sinn und "
-"zeigen nicht den Effekt auf der Ebene.\n"
-"Das Problem ist bekannt aber wird nicht Priorisiert wegen wichtigerem wie "
-"neuen Features."
+"Wenn zum Beispiel die Länge der Flagelle verändert wird, sind die "
+"Geschwindigkeitswerte nicht ganz sinnvoll und entsprechen nicht dem Effekt "
+"auf der Ebene.\n"
+"Das Problem ist bekannt, wird aber wegen höher priorisierten Problemen und "
+"neuen Funktionen nicht behoben."
 
-#, fuzzy
 msgid "CELL_TYPE_BUTTON_ATP_CONSUMPTION"
-msgstr "Der ATP Verbrauch dieses Zelltyps ist {0}."
+msgstr "Der ATP-Verbrauch dieses Zelltyps ist {0}."
 
-#, fuzzy
 msgid "CELL_TYPE_BUTTON_ATP_PRODUCTION"
-msgstr "Die ATP Produktion dieses Zelltyps ist {0}."
+msgstr "Die ATP-Produktion dieses Zelltyps ist {0}."
 
 msgid "CELL_TYPE_NAME"
 msgstr "Zellentypname"
@@ -737,12 +732,8 @@ msgstr "Änderungsnotizen sind zu lang"
 msgid "CHANGE_THE_SYMMETRY"
 msgstr "Ändern der Symmetrie"
 
-#, fuzzy
 msgid "CHANNEL_INHIBITOR_TOXIN_SYNTHESIS"
-msgstr ""
-"Die Toxinvakuole ist eine Vakuole, die für die spezifische Produktion, "
-"Lagerung und Sekretion von Oxytoxiden modifiziert wurde. Mehr Toxinvakuolen "
-"erhöhen die Geschwindigkeit, mit der Toxine freigesetzt werden können."
+msgstr "Synthese von Kanalhemmern"
 
 msgid "CHEATS"
 msgstr "Cheats"
@@ -789,9 +780,15 @@ msgstr ""
 "über den sichtbaren Bildschirmbereich hinausgeht und nahe gelegene "
 "Verbindungen anzeigt, die der Spieler noch nicht sehen konnte."
 
-#, fuzzy
 msgid "CHEMORECEPTOR_MINIMUM_AMOUNT_TOOLTIP"
-msgstr "Mindestmenge zur Erkennung:"
+msgstr ""
+"Setzt den Erkennungs-Schwellenwert für Verbindungen. Niedrige Werte können "
+"auf sehr schwache Spuren von Verbindungen hinweisen, die möglicherweise "
+"keine nennenswerte Menge dieser Verbindung enthalten.\n"
+"Eine Beispielstrategie ist es, den Suchradius und die Mindestmenge zu "
+"erhöhen, damit die nächstgelegene, sinnvoll dichte Wolke erkannt wird.\n"
+"Der Chemorezeptor \"riecht\" einzelne Punkte in einer Verbindungs-\"Wolke\" "
+"und nicht die Gesamtheit der Wolke."
 
 msgid "CHEMORECEPTOR_PROCESSES_DESCRIPTION"
 msgstr ""
@@ -799,15 +796,16 @@ msgstr ""
 "Entfernung. Nach der Platzierung können Sie die Art der Substanz und die "
 "Farbe der Führungslinie auswählen."
 
-#, fuzzy
 msgid "CHEMORECEPTOR_SEARCH_RADIUS_TOOLTIP"
 msgstr ""
-"Alle Zellen \"sehen\" nur durch Chemorezeption. Auf diese Weise erhalten die "
-"Zellen Informationen über ihre Umgebung. Das Hinzufügen dieser Organelle "
-"bedeutet, dass die Chemorezeption weiter verfeinert wird. Da der Spieler "
-"schon im Zellstadium sehen kann, wird dies durch eine Linie dargestellt, die "
-"über den sichtbaren Bildschirmbereich hinausgeht und nahe gelegene "
-"Verbindungen anzeigt, die der Spieler noch nicht sehen konnte."
+"Setzt die maximale Entfernung, in der dieser Chemorezeptor nach Dingen "
+"sucht, auf die er zeigt.\n"
+"Dies kann beispielsweise für langsame Zellen verwendet werden, um nicht auf "
+"Ressourcen zu zeigen, die wahrscheinlich verschwunden sind, bevor die Zelle "
+"dort ankommt, indem die Entfernung verringert wird.\n"
+"Alternativ kann das Erhöhen der Entfernung dazu führen, dass auf weiter "
+"entfernte Objekte gezeigt wird, aber diese könnten schwer zu erreichen sein, "
+"bevor sie verschwunden sind."
 
 msgid "CHEMOSYNTHESIS"
 msgstr "Chemosynthese"
@@ -931,9 +929,8 @@ msgstr "Optionen schließen?"
 msgid "CLOSTRIDIAL_FERMENTATION"
 msgstr "Clostridiale Fermentation"
 
-#, fuzzy
 msgid "CLOUD_BENCHMARK"
-msgstr "Mikrobeneditor"
+msgstr "Cloud-Benchmark"
 
 msgid "CLOUD_RESOLUTION_DIVISOR"
 msgstr "Wolkenauflösungsteiler:"
@@ -941,9 +938,8 @@ msgstr "Wolkenauflösungsteiler:"
 msgid "CLOUD_SIMULATION_MINIMUM_INTERVAL"
 msgstr "Wolkensimulation Minimumintervall:"
 
-#, fuzzy
 msgid "CLOUD_SIMULATION_MULTIPLIER"
-msgstr "Osmoregulationskostenmultiplikator"
+msgstr "Simmulationsmultiplikator:"
 
 msgid "COASTAL"
 msgstr "Küste"
@@ -1002,12 +998,11 @@ msgstr "Sättigungswert, der Anteil an Grau in einer bestimmten Farbe"
 msgid "COLOUR_PICKER_V_TOOLTIP"
 msgstr "Hellwert, Helligkeit oder Intensität der Farbe"
 
-#, fuzzy
 msgid "COMMON_ABILITIES"
-msgstr "Gewöhnliche Fähigkeiten"
+msgstr "Allgemeine Fähigkeiten"
 
 msgid "COMMON_EDITING_AND_STRATEGY"
-msgstr ""
+msgstr "Allgemeine Editor- und Strategiestufen"
 
 msgid "COMMUNITY_FORUM"
 msgstr "Community-Forum"
@@ -1024,9 +1019,8 @@ msgstr "Besuche unser Gemeinschafts-Wiki"
 msgid "COMPILED_AT_COLON"
 msgstr "Erstellt am:"
 
-#, fuzzy
 msgid "COMPLETE_ACTION"
-msgstr "Erstellt am"
+msgstr "Fertig"
 
 msgid "COMPOUNDS"
 msgstr "Substanzen"
@@ -1043,9 +1037,8 @@ msgstr "Substanzen ein-/ausblenden"
 msgid "COMPOUNDS_COLON"
 msgstr "Substanzen:"
 
-#, fuzzy
 msgid "COMPOUND_BALANCE_FILL_TIME"
-msgstr "(füllt Lager in {0} s)"
+msgstr "(füllt den Speicher in {0} s)"
 
 msgid "COMPOUND_BALANCE_FILL_TIME_TOO_LONG"
 msgstr ""
@@ -1152,10 +1145,16 @@ msgstr "Überschreiben bestätigen"
 msgid "CONFIRM_MOVE_TO_ASCENSION_STAGE"
 msgstr "Weiter zum Aufstiegsstadium?"
 
-#, fuzzy
 msgid "CONFIRM_MOVE_TO_ASCENSION_STAGE_EXPLANATION"
 msgstr ""
-"(Geschwindigkeit mit der die künstliche Intelligenz Ihre Arten mutieren läßt)"
+"Du kannst nun aufsteigen und die Aufstiegsphase erreichen, indem du das "
+"Aufstiegsportal aktivierst.\n"
+"\n"
+"Dies wird unbegrenzte Macht in Form neuer Göttlicher Werkzeuge freischalten, "
+"die du in diesem Speicherstand verwenden kannst.\n"
+"\n"
+"Aufsteigen bedeutet auch, dass du das Spiel gewonnen hast, aber du wirst "
+"weiterhin spielen können. Möchtest du aufsteigen?"
 
 msgid "CONFIRM_MOVE_TO_INDUSTRIAL_STAGE"
 msgstr "Fortfahren zur Industriellen Phase?"
@@ -1168,10 +1167,17 @@ msgstr ""
 msgid "CONFIRM_MOVE_TO_SPACE_STAGE"
 msgstr "Ins Weltraumstadium übergehen?"
 
-#, fuzzy
 msgid "CONFIRM_MOVE_TO_SPACE_STAGE_EXPLANATION"
 msgstr ""
-"(Geschwindigkeit mit der die künstliche Intelligenz Ihre Arten mutieren läßt)"
+"Du kannst nun zur Weltraumphase übergehen, indem du dein erstes Raumschiff "
+"startest.\n"
+"\n"
+"Zurzeit ist es in den Prototypen noch nicht möglich, zu deinem Planeten "
+"zurückzukehren, aber der endgültige Plan ist es, ein flüssiges Hinein- und "
+"Herauszoomen von Planeten in der Weltraumphase zu ermöglichen.\n"
+"\n"
+" Abbrechen des Starts wird die Raumschiff-Einheit zerstören. Möchtest du das "
+"Raumschiff starten?"
 
 msgid "CONFIRM_NEW_GAME_BUTTON_TOOLTIP"
 msgstr "Mit diesen Einstellungen spielen"
@@ -1221,13 +1227,11 @@ msgstr ""
 msgid "CONTINUE_TO_PROTOTYPES_PROMPT"
 msgstr "Mit Prototyp-Stadien fortfahren?"
 
-#, fuzzy
 msgid "CONTROLLER_ANY_DEVICE"
-msgstr "Totzonen kalibrieren"
+msgstr "Beliebiges Gerät"
 
-#, fuzzy
 msgid "CONTROLLER_AXIS_L2"
-msgstr "Controllerachsenvisualisierer:"
+msgstr "L2"
 
 msgid "CONTROLLER_AXIS_LEFT_TRIGGER"
 msgstr "Linker Auslöser"
@@ -1244,9 +1248,8 @@ msgstr "Negative Richtung"
 msgid "CONTROLLER_AXIS_POSITIVE_DIRECTION"
 msgstr "Positive Richtung"
 
-#, fuzzy
 msgid "CONTROLLER_AXIS_R2"
-msgstr "Controllerachsenvisualisierer:"
+msgstr "R2"
 
 msgid "CONTROLLER_AXIS_RIGHT_TRIGGER"
 msgstr "Rechter Auslöser"
@@ -1272,32 +1275,26 @@ msgstr "Steuerkreuz Rechts"
 msgid "CONTROLLER_BUTTON_DPAD_UP"
 msgstr "Steuerkreuz Oben"
 
-#, fuzzy
 msgid "CONTROLLER_BUTTON_LEFT_SHOULDER"
-msgstr "Totzone:"
+msgstr "Linke Schultertaste"
 
 msgid "CONTROLLER_BUTTON_LEFT_STICK"
 msgstr "Linker Stick Klick"
 
-#, fuzzy
 msgid "CONTROLLER_BUTTON_MISC1"
-msgstr "Totzonen kalibrieren"
+msgstr "Controller Sonstiger Button"
 
-#, fuzzy
 msgid "CONTROLLER_BUTTON_PADDLE1"
-msgstr "Totzonen kalibrieren"
+msgstr "Paddel-Taste 1"
 
-#, fuzzy
 msgid "CONTROLLER_BUTTON_PADDLE2"
-msgstr "Totzonen kalibrieren"
+msgstr "Paddel-Taste 2"
 
-#, fuzzy
 msgid "CONTROLLER_BUTTON_PADDLE3"
-msgstr "Totzonen kalibrieren"
+msgstr "Paddel-Taste 3"
 
-#, fuzzy
 msgid "CONTROLLER_BUTTON_PADDLE4"
-msgstr "Totzonen kalibrieren"
+msgstr "Paddel-Taste 4"
 
 msgid "CONTROLLER_BUTTON_PS3_SELECT"
 msgstr "Auswählen"
@@ -1305,86 +1302,71 @@ msgstr "Auswählen"
 msgid "CONTROLLER_BUTTON_PS3_START"
 msgstr "Start"
 
-#, fuzzy
 msgid "CONTROLLER_BUTTON_PS_CIRCLE"
-msgstr "Totzone:"
+msgstr "Kreis"
 
-#, fuzzy
 msgid "CONTROLLER_BUTTON_PS_CROSS"
-msgstr "Totzone:"
+msgstr "Kreuz"
 
-#, fuzzy
 msgid "CONTROLLER_BUTTON_PS_L1"
-msgstr "Totzonen kalibrieren"
+msgstr "L1"
 
-#, fuzzy
 msgid "CONTROLLER_BUTTON_PS_L3"
-msgstr "Totzonen kalibrieren"
+msgstr "L3"
 
 msgid "CONTROLLER_BUTTON_PS_OPTIONS"
 msgstr "Optionen"
 
-#, fuzzy
 msgid "CONTROLLER_BUTTON_PS_R1"
-msgstr "Totzonen kalibrieren"
+msgstr "R1"
 
-#, fuzzy
 msgid "CONTROLLER_BUTTON_PS_R3"
-msgstr "Totzonen kalibrieren"
+msgstr "R3"
 
 msgid "CONTROLLER_BUTTON_PS_SHARE"
 msgstr "Teilen"
 
 msgid "CONTROLLER_BUTTON_PS_SONY_BUTTON"
-msgstr ""
+msgstr "Logo-Taste"
 
-#, fuzzy
 msgid "CONTROLLER_BUTTON_PS_SQUARE"
-msgstr "Controllerachsenvisualisierer:"
+msgstr "Quadrat"
 
-#, fuzzy
 msgid "CONTROLLER_BUTTON_PS_TRIANGLE"
-msgstr "Controllerachsenvisualisierer:"
+msgstr "Dreieck"
 
-#, fuzzy
 msgid "CONTROLLER_BUTTON_RIGHT_SHOULDER"
-msgstr "Controllerachsenvisualisierer:"
+msgstr "Rechte Schultertaste"
 
 msgid "CONTROLLER_BUTTON_RIGHT_STICK"
-msgstr ""
+msgstr "Rechter Stick-Klick"
 
 msgid "CONTROLLER_BUTTON_TOUCH_PAD"
 msgstr "Touchpad"
 
-#, fuzzy
 msgid "CONTROLLER_BUTTON_UNKNOWN"
-msgstr "Totzone:"
+msgstr "Unbekannter Knopf"
 
-#, fuzzy
 msgid "CONTROLLER_BUTTON_XBOX_A"
-msgstr "Totzone:"
+msgstr "A"
 
-#, fuzzy
 msgid "CONTROLLER_BUTTON_XBOX_B"
-msgstr "Totzone:"
+msgstr "B"
 
 msgid "CONTROLLER_BUTTON_XBOX_BACK"
 msgstr "Zurück"
 
 msgid "CONTROLLER_BUTTON_XBOX_GUIDE"
-msgstr ""
+msgstr "Leitfaden"
 
-#, fuzzy
 msgid "CONTROLLER_BUTTON_XBOX_START"
-msgstr "Controllerempfindlichkeit"
+msgstr "Start"
 
-#, fuzzy
 msgid "CONTROLLER_BUTTON_XBOX_X"
-msgstr "Totzone:"
+msgstr "X"
 
-#, fuzzy
 msgid "CONTROLLER_BUTTON_XBOX_Y"
-msgstr "Totzone:"
+msgstr "Y"
 
 msgid "CONTROLLER_DEADZONES"
 msgstr "Totzonen kalibrieren"
@@ -1402,14 +1384,13 @@ msgid "CONTROLLER_DEADZONE_COLON"
 msgstr "Totzone:"
 
 msgid "CONTROLLER_PROMPT_TYPE_SETTING"
-msgstr ""
+msgstr "Art der Controller-Tastenanzeige:"
 
 msgid "CONTROLLER_SENSITIVITY"
 msgstr "Controllerempfindlichkeit"
 
-#, fuzzy
 msgid "CONTROLLER_UNKNOWN_AXIS"
-msgstr "Totzonen kalibrieren"
+msgstr "Unbekannte Achse"
 
 msgid "COPY_ERROR_TO_CLIPBOARD"
 msgstr "Fehler in die Zwischenablage kopieren"
@@ -1423,31 +1404,26 @@ msgstr "Rotblindheit (Rot-Grün)"
 msgid "CORRECTION_TRITANOPE"
 msgstr "Blaublindheit (Blau-Gelb)"
 
-#, fuzzy
 msgid "CPU_THREADS"
-msgstr "Threads:"
+msgstr "Threads"
 
 msgid "CRAFTING_CLEAR_INPUTS"
 msgstr "Ausgewählte Eingaben löschen"
 
-#, fuzzy
 msgid "CRAFTING_ERROR_INTERNAL_CONSUME_PROBLEM"
-msgstr "Fehler: Interner Fehler im Materialverbrauch"
+msgstr "Fehler: Interner Fehler beim Verbrauchen von Handwerksobjekten"
 
-#, fuzzy
 msgid "CRAFTING_ERROR_TAKING_ITEMS"
-msgstr "invers skaliert"
+msgstr "Konnte die Handwerks-Eingabeobjekte nicht finden"
 
 msgid "CRAFTING_FILTER_INPUTS"
 msgstr "Eingabe"
 
-#, fuzzy
 msgid "CRAFTING_KNOWN_ITEMS"
-msgstr "invers skaliert"
+msgstr "Bekannte Rezepte"
 
-#, fuzzy
 msgid "CRAFTING_NOT_ENOUGH_MATERIAL"
-msgstr "invers skaliert"
+msgstr "Nicht genug {0}, um das Rezept herzustellen"
 
 msgid "CRAFTING_NO_RECIPE_SELECTED"
 msgstr "Wähle zuerst einen Bauplan aus"
@@ -1455,16 +1431,14 @@ msgstr "Wähle zuerst einen Bauplan aus"
 msgid "CRAFTING_NO_ROOM_TO_TAKE_CRAFTING_RESULTS"
 msgstr "Nicht genügend Platz, um alle Gegenstände zu lagern"
 
-#, fuzzy
 msgid "CRAFTING_RECIPE_DISPLAY"
-msgstr "Ergebnisse kopieren"
+msgstr "{0} ({1})"
 
 msgid "CRAFTING_RECIPE_HAND_AXE"
 msgstr "Stein-Handaxt"
 
-#, fuzzy
 msgid "CRAFTING_RESULTS"
-msgstr "Ergebnisse kopieren"
+msgstr "Ergebnisse"
 
 msgid "CRAFTING_SELECT_RECIPE_OR_ITEMS_TO_FILTER"
 msgstr "Wähle einen Bauplan oder Gegenstand zum Filtern"
@@ -1472,9 +1446,8 @@ msgstr "Wähle einen Bauplan oder Gegenstand zum Filtern"
 msgid "CRAFTING_TAKE_ALL"
 msgstr "Nimm alles"
 
-#, fuzzy
 msgid "CRAFTING_TITLE"
-msgstr "Titel fehlt"
+msgstr "Herstellen"
 
 msgid "CREATE"
 msgstr "Erstellen"
@@ -1529,13 +1502,15 @@ msgstr "Abspann"
 msgid "CTRL"
 msgstr "Strg"
 
-#, fuzzy
 msgid "CURRENT_CACHE_SIZE"
-msgstr "Fähigkeitenleiste anzeigen"
+msgstr "Aktuelle Größe:"
 
-#, fuzzy
 msgid "CURRENT_CACHE_SIZE_TOOLTIP"
-msgstr "Schleim absondern"
+msgstr ""
+"Größe aller derzeit auf der Festplatte gespeicherten Cache-Elemente. Kann "
+"jederzeit sicher gelöscht werden, \n"
+"aber wenn ein Element das nächste Mal benötigt wird, das im Cache gewesen "
+"wäre, dauert es länger, es zu erzeugen."
 
 msgid "CURRENT_DEVELOPERS"
 msgstr "Aktuelle Entwickler(innen)"
@@ -1644,9 +1619,8 @@ msgstr ""
 "Position: {0}\n"
 "Richtung: {1}"
 
-#, fuzzy
 msgid "DEBUG_DRAW_NOT_AVAILABLE"
-msgstr "Physics debug draw in dieser Version nicht verfügbar"
+msgstr "Physik-Debug-Darstellung in diesem Bautyp nicht verfügbar"
 
 msgid "DEBUG_HEAT_AT_CURSOR"
 msgstr "Hitzewert: {0}"
@@ -1861,9 +1835,11 @@ msgstr ""
 msgid "DISCORD_TOOLTIP"
 msgstr "Tritt unserem Discord Server bei"
 
-#, fuzzy
 msgid "DISK_CACHE_TOOLTIP"
-msgstr "Besuche unsere Itch.io Seite"
+msgstr ""
+"Wenn aktiviert, werden einige teuer zu generierende Daten auf der Festplatte "
+"gespeichert, damit sie beim nächsten Laden schneller verfügbar sind.\n"
+"Wenn deaktiviert, wird nur der Cache im Arbeitsspeicher verwendet."
 
 msgid "DISMISSED_POPUPS_COLON"
 msgstr "Versteckte Pop-ups:"
@@ -3032,9 +3008,8 @@ msgstr "KI Mutationsrate"
 msgid "INTERACTION_DEPOSIT_RESOURCES_NO_SUITABLE_RESOURCES"
 msgstr ""
 
-#, fuzzy
 msgid "INTERACTION_DESTROY"
-msgstr "KI Mutationsrate"
+msgstr "Zerstören"
 
 #, fuzzy
 msgid "INTERACTION_FOUND_SETTLEMENT"
