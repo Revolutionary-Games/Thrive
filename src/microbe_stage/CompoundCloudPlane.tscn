@@ -3,27 +3,23 @@
 [ext_resource type="Shader" uid="uid://dgycjc6ljac5u" path="res://shaders/CompoundCloudPlane.gdshader" id="1"]
 [ext_resource type="Script" uid="uid://b3yij73oy1bnv" path="res://src/microbe_stage/CompoundCloudPlane.cs" id="3"]
 
-[sub_resource type="QuadMesh" id="1"]
-lightmap_size_hint = Vector2i(1002, 1002)
-size = Vector2(200, 200)
-
-[sub_resource type="Gradient" id="Gradient_u1fse"]
+[sub_resource type="Gradient" id="Gradient_spx17"]
 offsets = PackedFloat32Array(0, 0.88806)
 colors = PackedColorArray(0.525493, 0.525492, 0.525492, 1, 1, 1, 1, 1)
 
-[sub_resource type="FastNoiseLite" id="FastNoiseLite_7cqxm"]
+[sub_resource type="FastNoiseLite" id="FastNoiseLite_spx17"]
 
-[sub_resource type="NoiseTexture2D" id="NoiseTexture2D_xdmng"]
+[sub_resource type="NoiseTexture2D" id="NoiseTexture2D_spx17"]
 generate_mipmaps = false
 seamless = true
-color_ramp = SubResource("Gradient_u1fse")
-noise = SubResource("FastNoiseLite_7cqxm")
+color_ramp = SubResource("Gradient_spx17")
+noise = SubResource("FastNoiseLite_spx17")
 
-[sub_resource type="ShaderMaterial" id="2"]
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_spx17"]
 resource_local_to_scene = true
 render_priority = -1
 shader = ExtResource("1")
-shader_parameter/noise = SubResource("NoiseTexture2D_xdmng")
+shader_parameter/noise = SubResource("NoiseTexture2D_spx17")
 shader_parameter/colour1 = Color(0, 0, 0, 0)
 shader_parameter/colour2 = Color(0, 0, 0, 0)
 shader_parameter/colour3 = Color(0, 0, 0, 0)
@@ -33,9 +29,13 @@ shader_parameter/NoiseScale = 14.0
 shader_parameter/BrightnessMultiplier = 1.0
 shader_parameter/CLOUD_SPEED = 0.013
 
-[node name="CompoundCloudPlane" type="CSGMesh3D"]
+[sub_resource type="QuadMesh" id="1"]
+lightmap_size_hint = Vector2i(1002, 1002)
+size = Vector2(200, 200)
+
+[node name="CompoundCloudPlane" type="MeshInstance3D"]
 transform = Transform3D(3, 0, 0, 0, -1.31134e-07, 1, 0, -3, -4.37114e-08, 0, 0, 0)
+material_override = SubResource("ShaderMaterial_spx17")
 cast_shadow = 0
 mesh = SubResource("1")
-material = SubResource("2")
 script = ExtResource("3")
