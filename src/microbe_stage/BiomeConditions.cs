@@ -199,7 +199,7 @@ public class BiomeConditions : IBiomeConditions, ICloneable
     ///   Specifies the compound cloud spawn sizes for all new non-environmental compounds
     /// </param>
     public void ApplyLongTermCompoundChanges(Biome biomeDetails, Dictionary<Compound, float> changes,
-        IReadOnlyDictionary<Compound, float> newCloudSizes)
+        IReadOnlyDictionary<Compound, float>? newCloudSizes)
     {
         var simulationParameters = SimulationParameters.Instance;
 
@@ -211,7 +211,7 @@ public class BiomeConditions : IBiomeConditions, ICloneable
             {
                 if (!TryGetCompound(entry.Key, CompoundAmountType.Biome, out var existing))
                 {
-                    if (!newCloudSizes.TryGetValue(entry.Key, out var cloudSize))
+                    if (newCloudSizes?.TryGetValue(entry.Key, out var cloudSize) != true)
                     {
                         GD.PrintErr(
                             $"Unknown cloud spawn size to use for {entry.Key}, using a default hardcoded value");
@@ -229,7 +229,7 @@ public class BiomeConditions : IBiomeConditions, ICloneable
                 // Then non-gas environmental can also be applied here as these don't use custom handling
                 TryGetCompound(entry.Key, CompoundAmountType.Biome, out var existing);
 
-                existing.Ambient = Math.Clamp(existing.Ambient + entry.Value, 0, 1);
+                existing.Ambient += entry.Value;
                 ModifyLongTermCondition(entry.Key, existing);
             }
         }

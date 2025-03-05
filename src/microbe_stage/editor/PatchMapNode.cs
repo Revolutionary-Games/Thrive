@@ -41,6 +41,9 @@ public partial class PatchMapNode : MarginContainer
     [Export]
     private TextureRect eruptionEventIndicator = null!;
 
+    [Export]
+    private TextureRect glaciationEventIndicator = null!;
+
     private TextureRect? iconRect;
     private Panel? highlightPanel;
     private Panel? markPanel;
@@ -276,6 +279,7 @@ public partial class PatchMapNode : MarginContainer
     public void ShowEventVisuals(IReadOnlyList<WorldEffectVisuals> list)
     {
         eruptionEventIndicator.Visible = false;
+        glaciationEventIndicator.Visible = false;
 
         var count = list.Count;
 
@@ -285,8 +289,11 @@ public partial class PatchMapNode : MarginContainer
             {
                 case WorldEffectVisuals.None:
                     break;
-                case WorldEffectVisuals.UnderwaterVentEruption:
+                case WorldEffectVisuals.UnderwaterVentEruptionEvent:
                     eruptionEventIndicator.Visible = true;
+                    break;
+                case WorldEffectVisuals.GlaciationEvent:
+                    glaciationEventIndicator.Visible = true;
                     break;
                 default:
                     GD.PrintErr($"Unknown event to display on patch map node: {list[i]}");
