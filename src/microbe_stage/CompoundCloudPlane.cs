@@ -888,6 +888,9 @@ public partial class CompoundCloudPlane : CsgMesh3D, ISaveLoadedTracked
 
     private void PartialAdvectCenter(int x0, int y0, int width, int height, float delta)
     {
+        // Reading to a local variable to avoid some calls to the getter
+        var resolution = Resolution;
+
         var worldPos = ConvertToWorld(0, 0);
         for (int x = x0; x < x0 + width; ++x)
         {
@@ -896,7 +899,7 @@ public partial class CompoundCloudPlane : CsgMesh3D, ISaveLoadedTracked
                 if (OldDensity[x, y].LengthSquared() > 1)
                 {
                     var velocity = fluidSystem!.VelocityAt(
-                        new Vector2(worldPos.X + x * Resolution, worldPos.Z + y * Resolution)) * VISCOSITY;
+                        new Vector2(worldPos.X + x * resolution, worldPos.Z + y * resolution)) * VISCOSITY;
 
                     // This is run in parallel, this may not touch the other compound clouds
                     float dx = x + (delta * velocity.X);
@@ -928,6 +931,9 @@ public partial class CompoundCloudPlane : CsgMesh3D, ISaveLoadedTracked
 
     private void PartialAdvectEdges(int x0, int y0, int width, int height, float delta)
     {
+        // Reading to a local variable to avoid some calls to the getter
+        var resolution = Resolution;
+
         var worldPos = ConvertToWorld(0, 0);
         for (int x = x0; x < x0 + width; ++x)
         {
@@ -936,7 +942,7 @@ public partial class CompoundCloudPlane : CsgMesh3D, ISaveLoadedTracked
                 if (OldDensity[x, y].LengthSquared() > 1)
                 {
                     var velocity = fluidSystem!.VelocityAt(
-                        new Vector2(worldPos.X + x * Resolution, worldPos.Z + y * Resolution)) * VISCOSITY;
+                        new Vector2(worldPos.X + x * resolution, worldPos.Z + y * resolution)) * VISCOSITY;
 
                     // This is run in parallel, this may not touch the other compound clouds
                     float dx = x + (delta * velocity.X);
