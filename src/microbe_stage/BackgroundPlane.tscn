@@ -9,9 +9,6 @@
 [ext_resource type="Texture2D" uid="uid://bddntbgykd7uq" path="res://assets/textures/background/Thrive_vent2.png" id="7_g3bc7"]
 [ext_resource type="Texture2D" uid="uid://bsvls5moner1g" path="res://assets/textures/background/Thrive_vent3.png" id="8_yxu5g"]
 
-[sub_resource type="PlaneMesh" id="1"]
-size = Vector2(800, 400)
-
 [sub_resource type="FastNoiseLite" id="FastNoiseLite_dor76"]
 frequency = 0.0035
 
@@ -44,6 +41,9 @@ shader_parameter/distortionSpeed = 0.0025
 shader_parameter/layerAnimateSpeed = 0.4
 shader_parameter/worldPos = Vector2(0, 0)
 
+[sub_resource type="PlaneMesh" id="1"]
+size = Vector2(800, 400)
+
 [sub_resource type="ViewportTexture" id="ViewportTexture_duokn"]
 viewport_path = NodePath("PartialBlurViewport")
 
@@ -73,18 +73,18 @@ blurColorRect = NodePath("PartialBlurViewport/ColorRect")
 backgroundSubViewport = NodePath("BackgroundViewport")
 partialBlurSubViewport = NodePath("PartialBlurViewport")
 
-[node name="BackgroundPlane" type="CSGMesh3D" parent="."]
+[node name="BackgroundPlane" type="MeshInstance3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, -4.37114e-08, -1, 0, 1, -4.37114e-08, 0, 0, -15)
+material_override = SubResource("2")
 cast_shadow = 0
 mesh = SubResource("1")
-material = SubResource("2")
 
-[node name="BlurResultPlane" type="CSGMesh3D" parent="."]
+[node name="BlurResultPlane" type="MeshInstance3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, -1.62921e-07, -1, 0, 1, -1.62921e-07, 0, 0, -20)
 visible = false
+material_override = SubResource("ShaderMaterial_1sr76")
 cast_shadow = 0
 mesh = SubResource("1")
-material = SubResource("ShaderMaterial_1sr76")
 
 [node name="PartialBlurViewport" type="SubViewport" parent="."]
 disable_3d = true
