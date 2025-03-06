@@ -29,7 +29,7 @@
 [ext_resource type="LabelSettings" uid="uid://dvqx73nhtr0y2" path="res://src/gui_common/fonts/Body-Regular-Small.tres" id="28_qclxk"]
 [ext_resource type="PackedScene" uid="uid://c0ihn5gix4eyp" path="res://src/microbe_stage/editor/upgrades/OrganelleUpgradeGUI.tscn" id="30"]
 [ext_resource type="PackedScene" uid="uid://c6e83y3bsdx4q" path="res://src/microbe_stage/editor/EndosymbiosisPopup.tscn" id="38_e0n84"]
-[ext_resource type="PackedScene" path="res://src/gui_common/dialogs/CustomWindow.tscn" id="39"]
+[ext_resource type="PackedScene" uid="uid://bveyudkidlau0" path="res://src/gui_common/dialogs/CustomWindow.tscn" id="39"]
 [ext_resource type="PackedScene" path="res://src/microbe_stage/ProcessList.tscn" id="41_n2bpg"]
 [ext_resource type="PackedScene" uid="uid://cwe0bjv8qtrtr" path="res://src/gui_common/TweakedColourPicker.tscn" id="43"]
 [ext_resource type="PackedScene" uid="uid://ci8lopfc3lodh" path="res://src/microbe_stage/editor/PopupMicheViewer.tscn" id="44_bxafd"]
@@ -1180,14 +1180,18 @@ text = "AUTO-EVO_EXPLANATION_EXPLANATION"
 label_settings = ExtResource("28_qclxk")
 autowrap_mode = 3
 
-[node name="MichesViewButton" type="Button" parent="PredictionExplanation/VBoxContainer/ScrollContainer/MarginContainer/VBoxContainer"]
+[node name="HBoxContainer" type="HBoxContainer" parent="PredictionExplanation/VBoxContainer"]
 layout_mode = 2
+
+[node name="MichesViewButton" type="Button" parent="PredictionExplanation/VBoxContainer/HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
 theme_override_font_sizes/font_size = 14
 text = "VIEW_PATCH_MICHES"
 
-[node name="Close" type="Button" parent="PredictionExplanation/VBoxContainer"]
+[node name="Close" type="Button" parent="PredictionExplanation/VBoxContainer/HBoxContainer"]
 layout_mode = 2
-size_flags_horizontal = 4
+size_flags_horizontal = 3
 theme_override_font_sizes/font_size = 14
 text = "CLOSE"
 
@@ -1234,7 +1238,7 @@ layout_mode = 1
 [connection signal="EndosymbiosisCancelled" from="EndosymbiosisPopup" to="." method="OnAbandonEndosymbiosisOperation"]
 [connection signal="EndosymbiosisFinished" from="EndosymbiosisPopup" to="." method="OnEndosymbiosisFinished"]
 [connection signal="SpeciesSelected" from="EndosymbiosisPopup" to="." method="OnEndosymbiosisSelected"]
-[connection signal="pressed" from="PredictionExplanation/VBoxContainer/ScrollContainer/MarginContainer/VBoxContainer/MichesViewButton" to="." method="OnMicheViewRequested"]
-[connection signal="pressed" from="PredictionExplanation/VBoxContainer/Close" to="." method="CloseAutoEvoPrediction"]
+[connection signal="pressed" from="PredictionExplanation/VBoxContainer/HBoxContainer/MichesViewButton" to="." method="OnMicheViewRequested"]
+[connection signal="pressed" from="PredictionExplanation/VBoxContainer/HBoxContainer/Close" to="." method="CloseAutoEvoPrediction"]
 
 [editable path="CompleteEndosymbiosisWarning"]
