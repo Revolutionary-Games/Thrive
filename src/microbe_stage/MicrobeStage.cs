@@ -957,7 +957,7 @@ public partial class MicrobeStage : CreatureStageBase<Entity, MicrobeWorldSimula
         if (!IsLoadedFromSave)
         {
             // create a small trail of phosphates
-            for (int x = 4; x < 100; x+=4)
+            for (int x = 4; x < 100; x += 4)
             {
                 Clouds.AddCloud(Compound.Phosphates, 1500.0f, new Vector3(x, 0.0f, -MathF.Sqrt(x)));
             }
