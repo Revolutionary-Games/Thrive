@@ -113,6 +113,10 @@ public partial class MacroscopicEditor : EditorBase<EditorAction, MacroscopicSta
     [JsonIgnore]
     public ICellDefinition? EditedCellProperties => selectedCellTypeToEdit;
 
+    // TODO: same as multicellular editor, might be needed in the future to support tolerances editing
+    [JsonIgnore]
+    public IReadOnlyList<OrganelleTemplate>? EditedCellOrganelles => null;
+
     protected override string MusicCategory => "MacroscopicEditor";
 
     protected override MainGameState ReturnToState => MainGameState.MacroscopicStage;

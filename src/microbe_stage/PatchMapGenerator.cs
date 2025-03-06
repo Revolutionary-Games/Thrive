@@ -19,7 +19,29 @@ public static class PatchMapGenerator
 
         // Initialize the graph's random parameters
         var regionCoordinates = new List<Vector2>();
-        int vertexCount = random.Next(6, 10);
+
+        int vertexCount;
+
+        switch (settings.WorldSize)
+        {
+            case WorldGenerationSettings.WorldSizeEnum.Small:
+                vertexCount = random.Next(4, 6);
+                break;
+
+            case WorldGenerationSettings.WorldSizeEnum.Medium:
+                vertexCount = random.Next(7, 9);
+                break;
+
+            case WorldGenerationSettings.WorldSizeEnum.Large:
+                vertexCount = random.Next(10, 12);
+                break;
+
+            default:
+                vertexCount = random.Next(7, 9);
+                GD.PrintErr("WorldSize Setting is invalid: ", settings.WorldSize);
+                break;
+        }
+
         int minDistance = 180;
 
         int currentPatchId = 0;
@@ -136,7 +158,7 @@ public static class PatchMapGenerator
             }
 
             BuildRegionSize(region);
-            coordinates = GenerateCoordinates(region, map, random, minDistance);
+            coordinates = GenerateCoordinates(region, map, random, minDistance, settings.WorldSize);
 
             // If there is no more place for the current region, abandon it.
             // TODO: modify the algorithm to not need to abandon regions
@@ -368,7 +390,8 @@ public static class PatchMapGenerator
         return region1Rect.Intersects(region2Rect, true);
     }
 
-    private static Vector2 GenerateCoordinates(PatchRegion region, PatchMap map, Random random, int minDistance)
+    private static Vector2 GenerateCoordinates(PatchRegion region, PatchMap map,
+        Random random, int minDistance, WorldGenerationSettings.WorldSizeEnum worldSize)
     {
         Vector2 coordinate;
 
@@ -378,7 +401,22 @@ public static class PatchMapGenerator
         // Try no more than Constants.PATCH_GENERATION_MAX_RETRIES times to avoid infinite loop.
         do
         {
-            coordinate = new Vector2(random.Next(3, 16) * 100, random.Next(3, 16) * 100);
+            switch (worldSize)
+            {
+                case WorldGenerationSettings.WorldSizeEnum.Small:
+                    coordinate = new Vector2(random.Next(3, 16) * 100, random.Next(3, 16) * 100);
+                    break;
+
+                default:
+                case WorldGenerationSettings.WorldSizeEnum.Medium:
+                    coordinate = new Vector2(random.Next(3, 20) * 100, random.Next(3, 20) * 100);
+                    break;
+
+                case WorldGenerationSettings.WorldSizeEnum.Large:
+                    coordinate = new Vector2(random.Next(3, 24) * 100, random.Next(3, 24) * 100);
+                    break;
+            }
+
             region.ScreenCoordinates = coordinate;
         }
         while (!CheckRegionDistance(region, map, minDistance) && ++i < Constants.PATCH_GENERATION_MAX_RETRIES);

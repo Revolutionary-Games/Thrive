@@ -228,7 +228,9 @@ public sealed class MicrobeEmissionSystem : AEntitySetSystem<float>
                 // aren't used per agent type)
 
                 // Emit as much as you have, but don't start if there's way too little toxin
-                float amountEmitted = Math.Min(amountAvailable, Constants.MAXIMUM_AGENT_EMISSION_AMOUNT);
+                float amountEmitted = Math.Min(amountAvailable,
+                    EmissionAmountWithToxicity(organelles.AverageToxinToxicity));
+
                 if (amountEmitted < Constants.MINIMUM_AGENT_EMISSION_AMOUNT)
                     return;
 
@@ -283,6 +285,23 @@ public sealed class MicrobeEmissionSystem : AEntitySetSystem<float>
 
         // No modification from default
         return Constants.AGENT_EMISSION_COOLDOWN / vacuoleCount;
+    }
+
+    private float EmissionAmountWithToxicity(float toxicity)
+    {
+        if (toxicity < 0)
+        {
+            // High-firerate, low emission amount
+            return Constants.MAXIMUM_AGENT_EMISSION_AMOUNT * (1.0f + toxicity * 0.5f);
+        }
+
+        if (toxicity > 0)
+        {
+            // Low-firerate, high emission amount
+            return Constants.MAXIMUM_AGENT_EMISSION_AMOUNT * (1.0f + toxicity);
+        }
+
+        return Constants.MAXIMUM_AGENT_EMISSION_AMOUNT;
     }
 
     private void HandleSlimeSecretion(in Entity entity, ref MicrobeControl control,

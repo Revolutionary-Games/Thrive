@@ -94,7 +94,10 @@ public partial class MicrobeBenchmark : BenchmarkBase
     private int remainingMicrobesAtEnd;
 
     // This used to be an int so hopefully this doesn't change things by being an int now
-    protected override long RandomSeed => 256345461;
+    protected override long RandomSeed => 223120489;
+
+    // Lively seed with slime jets and toxins, combat is quite active
+    // protected override long RandomSeed => 223120489;
 
     // Quite good new seed with small cells
     // protected override long RandomSeed = 256345461;

@@ -41,7 +41,7 @@ public class OrganelleDefinition : IRegistryType
     public string Description = string.Empty;
 
     /// <summary>
-    ///   When true the graphics for this organelle are positioned externally (i.e. moved to the membrane edge and
+    ///   When true, the graphics for this organelle are positioned externally (i.e. moved to the membrane edge and
     ///   point outside from the cell)
     /// </summary>
     public bool PositionedExternally;
@@ -122,6 +122,8 @@ public class OrganelleDefinition : IRegistryType
     ///   The compounds this organelle consists of (how many resources are needed to duplicate this)
     /// </summary>
     public Dictionary<Compound, float> InitialComposition = null!;
+
+    public Dictionary<ToleranceModifier, float> ToleranceEffects = new();
 
     /// <summary>
     ///   Colour used for ATP production bar
@@ -305,6 +307,19 @@ public class OrganelleDefinition : IRegistryType
     public bool HasRadiationProtection { get; private set; }
 
     public bool HasHeatCollection { get; private set; }
+
+    // Easy access to precalculated total tolerance modifiers
+    public float ToleranceModifierOxygen { get; private set; }
+    public float ToleranceModifierUV { get; private set; }
+    public float ToleranceModifierPressureRange { get; private set; }
+    public float ToleranceModifierTemperatureRange { get; private set; }
+
+    /// <summary>
+    ///   True if this has any modifier on tolerances (used to early skip processing organelles that don't affect
+    ///   anything)
+    /// </summary>
+    [JsonIgnore]
+    public bool AffectsTolerances { get; private set; }
 
     [JsonIgnore]
     public string UntranslatedName =>
@@ -608,6 +623,15 @@ public class OrganelleDefinition : IRegistryType
                 set.Check(name);
         }
 
+        foreach (var effect in ToleranceEffects)
+        {
+            if (float.IsNaN(effect.Value) || !float.IsNormal(effect.Value))
+            {
+                throw new InvalidRegistryDataException(name, GetType().Name,
+                    "Tolerance effect value is not a valid number");
+            }
+        }
+
 #if DEBUG
         if (!string.IsNullOrEmpty(corpseChunkGraphics.ScenePath))
         {
@@ -739,10 +763,12 @@ public class OrganelleDefinition : IRegistryType
                 }
             }
         }
+
+        ComputeTolerances();
     }
 
     /// <summary>
-    ///   A bbcode string containing all the unlock conditions for this organelle.
+    ///   A bbcode string containing all the unlock-conditions for this organelle.
     /// </summary>
     public void GenerateUnlockRequirementsText(LocalizedStringBuilder builder,
         WorldAndPlayerDataSource worldAndPlayerArgs)
@@ -823,6 +849,39 @@ public class OrganelleDefinition : IRegistryType
 
         offset /= Hexes.Count;
         return offset;
+    }
+
+    private void ComputeTolerances()
+    {
+        ToleranceModifierOxygen = 0;
+        ToleranceModifierUV = 0;
+        ToleranceModifierPressureRange = 0;
+        ToleranceModifierTemperatureRange = 0;
+
+        foreach (var toleranceEffect in ToleranceEffects)
+        {
+            switch (toleranceEffect.Key)
+            {
+                case ToleranceModifier.Oxygen:
+                    ToleranceModifierOxygen += toleranceEffect.Value;
+                    break;
+                case ToleranceModifier.UV:
+                    ToleranceModifierUV += toleranceEffect.Value;
+                    break;
+                case ToleranceModifier.TemperatureRange:
+                    ToleranceModifierTemperatureRange += toleranceEffect.Value;
+                    break;
+                case ToleranceModifier.PressureRange:
+                    ToleranceModifierPressureRange += toleranceEffect.Value;
+                    break;
+                default:
+                    GD.PrintErr("Unknown tolerance type for organelle to effect: ", toleranceEffect.Key);
+                    break;
+            }
+        }
+
+        AffectsTolerances = ToleranceModifierOxygen != 0 || ToleranceModifierUV != 0 ||
+            ToleranceModifierTemperatureRange != 0 || ToleranceModifierPressureRange != 0;
     }
 
     private bool TryGetGraphicsForUpgrade(OrganelleUpgrades? upgrades, out LoadedSceneWithModelInfo upgradeScene)

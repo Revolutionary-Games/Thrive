@@ -50,6 +50,27 @@ public class WorldGenerationSettings
     }
 
     /// <summary>
+    ///   The possible world sizes used in Planet customization
+    /// </summary>
+    /// <remarks>
+    ///   <para>
+    ///     If changing the WorldSizeEnum members, always synchronize with the
+    ///     explicit values in the WorldSize OptionButton
+    ///   </para>
+    /// </remarks>
+    public enum WorldSizeEnum
+    {
+        [Description("WORLD_SIZE_SMALL")]
+        Small = 0,
+
+        [Description("WORLD_SIZE_MEDIUM")]
+        Medium = 1,
+
+        [Description("WORLD_SIZE_LARGE")]
+        Large = 2,
+    }
+
+    /// <summary>
     ///   Whether this game is restricted to only LAWK parts and abilities
     /// </summary>
     public bool LAWK { get; set; }
@@ -73,6 +94,11 @@ public class WorldGenerationSettings
     ///   Random seed for generating this game's planet
     /// </summary>
     public long Seed { get; set; } = new XoShiRo256starstar().Next64();
+
+    /// <summary>
+    ///   Size of World
+    /// </summary>
+    public WorldSizeEnum WorldSize { get; set; } = WorldSizeEnum.Medium;
 
     // The following are helper proxies to the values from the difficulty
     [JsonIgnore]
@@ -193,6 +219,7 @@ public class WorldGenerationSettings
             $", Difficulty: {Difficulty.GetDescriptionString()}" +
             $", Life origin: {Origin}" +
             $", Seed: {Seed}" +
+            $", Size: {WorldSize}" +
             $", Day/night cycle enabled: {DayNightCycleEnabled}" +
             $", Day length: {DayLength}" +
             $", Include multicellular: {IncludeMulticellular}" +
