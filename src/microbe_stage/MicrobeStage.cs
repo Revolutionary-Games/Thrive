@@ -419,6 +419,8 @@ public partial class MicrobeStage : CreatureStageBase<Entity, MicrobeWorldSimula
     [RunOnKeyDown("g_toggle_heat_view")]
     public void ToggleHeatView()
     {
+        // Confirm heat view is currently available, then toggle it if so.
+
         if (!HUD.IsHeatViewAvailable())
         {
             return;
@@ -433,6 +435,8 @@ public partial class MicrobeStage : CreatureStageBase<Entity, MicrobeWorldSimula
             SetSpecialViewMode(ViewMode.Normal);
         }
 
+        // Button display changed on heat view toggle to keep the button constantly in-sync, rather than polling
+        // the heat view's current state
         HUD.UpdateHeatViewDisplay();
     }
 
