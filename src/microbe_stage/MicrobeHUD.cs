@@ -258,6 +258,11 @@ public partial class MicrobeHUD : CreatureStageHUDBase<MicrobeStage>
         return stage.WorldSimulation.WorldTimeScale > 1;
     }
 
+    public override bool IsHeatViewAvailable()
+    {
+        return bottomLeftBar.HeatViewAvailable;
+    }
+
     protected override void UpdateFossilisationButtonStates()
     {
         var fossils = FossilisedSpecies.CreateListOfFossils(false);

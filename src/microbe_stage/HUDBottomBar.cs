@@ -39,10 +39,11 @@ public partial class HUDBottomBar : HBoxContainer
     public NodePath SuicideButtonPath = null!;
 
 #pragma warning disable CA2213
-    private PlayButton pauseButton = null!;
 
     [Export]
-    private TextureButton heatButton = null!;
+    public TextureButton HeatButton = null!;
+
+    private PlayButton pauseButton = null!;
 
     [Export]
     private BaseButton? speedButton;
@@ -128,21 +129,21 @@ public partial class HUDBottomBar : HBoxContainer
 
     public bool HeatViewAvailable
     {
-        get => !heatButton.Disabled;
+        get => !HeatButton.Disabled;
         set
         {
             var wanted = !value;
-            var previous = heatButton.Disabled;
+            var previous = HeatButton.Disabled;
 
             if (previous == wanted)
                 return;
 
-            heatButton.Disabled = wanted;
+            HeatButton.Disabled = wanted;
 
             // Ensure the heat view doesn't get stuck on
-            if (wanted && heatButton.ButtonPressed)
+            if (wanted && HeatButton.ButtonPressed)
             {
-                heatButton.ButtonPressed = false;
+                HeatButton.ButtonPressed = false;
                 EmitSignal(SignalName.OnHeatToggled, false);
             }
         }

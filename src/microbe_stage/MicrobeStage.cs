@@ -416,6 +416,26 @@ public partial class MicrobeStage : CreatureStageBase<Entity, MicrobeWorldSimula
         HUD.ApplySpeedMode(!HUD.GetCurrentSpeedMode());
     }
 
+    [RunOnKeyDown("g_toggle_heat_view")]
+    public void ToggleHeatView()
+    {
+        if (!HUD.IsHeatViewAvailable())
+        {
+            return;
+        }
+
+        if (heatViewOverlay.Visible == false)
+        {
+            SetSpecialViewMode(ViewMode.Heat);
+        }
+        else
+        {
+            SetSpecialViewMode(ViewMode.Normal);
+        }
+
+        HUD.UpdateHeatViewDisplay();
+    }
+
     public override void SetSpecialViewMode(ViewMode mode)
     {
         if (mode == ViewMode.Normal)
