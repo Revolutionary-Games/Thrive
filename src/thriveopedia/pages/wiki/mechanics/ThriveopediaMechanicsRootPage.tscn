@@ -1,10 +1,10 @@
 [gd_scene load_steps=6 format=3 uid="uid://bdv2c5vo31w83"]
 
 [ext_resource type="PackedScene" uid="uid://cckki1kx0cnol" path="res://src/thriveopedia/ThriveopediaPage.tscn" id="1_mt8qb"]
-[ext_resource type="Script" path="res://src/thriveopedia/pages/wiki/mechanics/ThriveopediaMechanicsRootPage.cs" id="2_oop0a"]
+[ext_resource type="Script" uid="uid://bi7lhm3uw8fhc" path="res://src/thriveopedia/pages/wiki/mechanics/ThriveopediaMechanicsRootPage.cs" id="2_oop0a"]
 [ext_resource type="LabelSettings" uid="uid://bnhcbmq3brx0s" path="res://src/gui_common/fonts/Title-SemiBold-Normal.tres" id="3_0ivu5"]
-[ext_resource type="Script" path="res://src/thriveopedia/pages/wiki/mechanics/MechanicSubcategory.cs" id="3_j4d6r"]
-[ext_resource type="Script" path="res://src/thriveopedia/pages/wiki/TextPageLinkButton.cs" id="4_1fqff"]
+[ext_resource type="Script" uid="uid://cjydhah61777v" path="res://src/thriveopedia/pages/wiki/mechanics/MechanicSubcategory.cs" id="3_j4d6r"]
+[ext_resource type="Script" uid="uid://bqs3es06ri3tj" path="res://src/thriveopedia/pages/wiki/TextPageLinkButton.cs" id="4_1fqff"]
 
 [node name="ThriveopediaPage" node_paths=PackedStringArray("mainArticle", "noticeContainer") instance=ExtResource("1_mt8qb")]
 script = ExtResource("2_oop0a")

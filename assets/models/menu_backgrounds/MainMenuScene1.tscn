@@ -214,8 +214,8 @@ tracks/2/keys = {
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_ayvgv"]
 _data = {
-"PlanetRotation": SubResource("Animation_jbxbs"),
-"RESET": SubResource("2")
+&"PlanetRotation": SubResource("Animation_jbxbs"),
+&"RESET": SubResource("2")
 }
 
 [sub_resource type="Gradient" id="Gradient_nvj0c"]
@@ -393,8 +393,8 @@ tracks/5/keys = {
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_vqvxl"]
 _data = {
-"CameraAnimation": SubResource("22"),
-"RESET": SubResource("24")
+&"CameraAnimation": SubResource("22"),
+&"RESET": SubResource("24")
 }
 
 [node name="MainMenuScene1" type="Node3D"]

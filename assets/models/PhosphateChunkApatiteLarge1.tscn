@@ -1,13 +1,13 @@
 [gd_scene load_steps=12 format=3 uid="uid://ork3xiril0bq"]
 
-[ext_resource type="Shader" path="res://shaders/Crystal.gdshader" id="1_0qsxg"]
+[ext_resource type="Shader" uid="uid://bxd4cdv4qekba" path="res://shaders/Crystal.gdshader" id="1_0qsxg"]
 [ext_resource type="Texture2D" uid="uid://baxuoyeo83r2u" path="res://assets/textures/dissolve_noise.tres" id="2_w0d41"]
-[ext_resource type="Script" path="res://src/microbe_stage/OrganelleMeshWithChildren.cs" id="3_b8lrv"]
+[ext_resource type="Script" uid="uid://bplaagvlwvvbq" path="res://src/microbe_stage/OrganelleMeshWithChildren.cs" id="3_b8lrv"]
 [ext_resource type="Texture2D" uid="uid://c4givkmxrlllx" path="res://assets/textures/Crystal.png" id="3_hcl7f"]
 [ext_resource type="Texture2D" uid="uid://dvp0yex8rwygn" path="res://assets/textures/Crystal_rough_emit.png" id="4_7gni5"]
 [ext_resource type="ArrayMesh" uid="uid://33tvx663lr0x" path="res://assets/models/PhosphateChunkApatiteLargeCrystal.mesh" id="5_cdma8"]
 [ext_resource type="Texture2D" uid="uid://ppco0jrr2v0q" path="res://assets/textures/Crystal_normal.png" id="7_1vk26"]
-[ext_resource type="Shader" path="res://shaders/IronChunk.gdshader" id="7_j80xn"]
+[ext_resource type="Shader" uid="uid://dwec2fuh8kn2c" path="res://shaders/IronChunk.gdshader" id="7_j80xn"]
 [ext_resource type="ArrayMesh" uid="uid://bxhmnyjk1vfrh" path="res://assets/models/PhosphateChunkApatiteLargeRock.mesh" id="8_7qf82"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_bfxy3"]
@@ -15,36 +15,36 @@ resource_local_to_scene = true
 render_priority = 18
 shader = ExtResource("1_0qsxg")
 shader_parameter/albedo = Color(0.262745, 0.309804, 1, 1)
+shader_parameter/albedoTexture = ExtResource("3_hcl7f")
 shader_parameter/useNormal = false
 shader_parameter/roughness = 0.261
+shader_parameter/roughnessTexture = ExtResource("4_7gni5")
 shader_parameter/roughnessTextureChannel = Vector4(1, 0, 0, 0)
 shader_parameter/specular = 0.65
 shader_parameter/metallic = 0.15
 shader_parameter/emission = Color(0.0195242, 0.00734134, 0.53186, 0.956863)
 shader_parameter/emissionEnergy = 0.25
+shader_parameter/dissolveTexture = ExtResource("2_w0d41")
 shader_parameter/dissolveValue = 0.0
 shader_parameter/dissolveScale = 1.5
 shader_parameter/outlineWidth = 0.02
 shader_parameter/growColor = Color(0.1617, 0.293498, 0.77, 1)
-shader_parameter/albedoTexture = ExtResource("3_hcl7f")
-shader_parameter/roughnessTexture = ExtResource("4_7gni5")
-shader_parameter/dissolveTexture = ExtResource("2_w0d41")
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_hsbfc"]
 resource_local_to_scene = true
 render_priority = 17
 shader = ExtResource("7_j80xn")
+shader_parameter/fullTexture = ExtResource("3_hcl7f")
+shader_parameter/depletedTexture = ExtResource("3_hcl7f")
+shader_parameter/normalTexture = ExtResource("7_1vk26")
 shader_parameter/roughness = 1.5
 shader_parameter/metallicTextureChannel = Vector4(0, 0, 0, 0)
 shader_parameter/depletion = 0.0
+shader_parameter/dissolveTexture = ExtResource("2_w0d41")
 shader_parameter/dissolveValue = 0.0
 shader_parameter/dissolveScale = 1.5
 shader_parameter/outlineWidth = 0.0
 shader_parameter/growColor = Color(0.819608, 0.670588, 0.509804, 1)
-shader_parameter/fullTexture = ExtResource("3_hcl7f")
-shader_parameter/depletedTexture = ExtResource("3_hcl7f")
-shader_parameter/normalTexture = ExtResource("7_1vk26")
-shader_parameter/dissolveTexture = ExtResource("2_w0d41")
 
 [node name="Apatite" type="MeshInstance3D" node_paths=PackedStringArray("meshChildren")]
 material_override = SubResource("ShaderMaterial_bfxy3")
