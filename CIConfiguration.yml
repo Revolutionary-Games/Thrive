@@ -29,16 +29,18 @@ jobs:
           name: Download native libraries
           # This doesn't fetch or install debug variants as they aren't strictly necessary for packaging
           command: dotnet run --project Scripts -- native Fetch Install --debug false
-      # BUILD DISABLED FOR NOW AS GODOT 4.4 SEEMS TO GET STUCK IMPORTING FONTS
-      #- run:
-      #    name: Create build (Linux)
-      #    command: dotnet run --project Scripts -- package --dehydrated Linux
-      #- run:
-      #    name: Create build (Windows)
-      #    command: dotnet run --project Scripts -- package --dehydrated Windows
-      #- run:
-      #    name: Upload devbuilds
-      #    command: dotnet run --project Scripts -- upload
+      - run:
+          name: Import assets into Godot
+          command: godot . --import --headless --quit-after 5
+      - run:
+         name: Create build (Linux)
+         command: dotnet run --project Scripts -- package --dehydrated Linux
+      - run:
+         name: Create build (Windows)
+         command: dotnet run --project Scripts -- package --dehydrated Windows
+      - run:
+         name: Upload devbuilds
+         command: dotnet run --project Scripts -- upload
   jetbrains:
     image: thrive/godot-ci:v27
     cache:
