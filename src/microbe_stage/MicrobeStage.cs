@@ -963,7 +963,7 @@ public partial class MicrobeStage : CreatureStageBase<Entity, MicrobeWorldSimula
             }
 
             // with a small cloud of glucose at the end
-            Clouds.AddCloud(Compound.Glucose, 19000.0f, new Vector3(135.0f, 0.0f, -25.0f));
+            Clouds.AddCloud(Compound.Glucose, 19000.0f, new Vector3(140.0f, 0.0f, -25.0f));
 
             // If we are starting with tutorials on, disable extra panels that don't matter right now
             if (TutorialState.Enabled)
