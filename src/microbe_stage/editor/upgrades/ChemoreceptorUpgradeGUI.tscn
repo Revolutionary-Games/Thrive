@@ -2,7 +2,7 @@
 
 [ext_resource type="Theme" uid="uid://b4cx0o110g4b6" path="res://src/gui_common/thrive_theme.tres" id="1"]
 [ext_resource type="PackedScene" uid="uid://cwe0bjv8qtrtr" path="res://src/gui_common/TweakedColourPicker.tscn" id="2"]
-[ext_resource type="Script" path="res://src/microbe_stage/editor/upgrades/ChemoreceptorUpgradeGUI.cs" id="3"]
+[ext_resource type="Script" uid="uid://baukp1n6xhx5o" path="res://src/microbe_stage/editor/upgrades/ChemoreceptorUpgradeGUI.cs" id="3"]
 
 [node name="ChemoreceptorUpgradeGUI" type="VBoxContainer"]
 anchors_preset = 15

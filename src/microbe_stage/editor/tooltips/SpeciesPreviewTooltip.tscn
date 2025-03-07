@@ -2,9 +2,9 @@
 
 [ext_resource type="Theme" uid="uid://b4cx0o110g4b6" path="res://src/gui_common/thrive_theme.tres" id="1"]
 [ext_resource type="PackedScene" uid="uid://b5cbn7afnas1x" path="res://src/gui_common/PhotographablePreview.tscn" id="2"]
-[ext_resource type="Script" path="res://src/microbe_stage/CellHexesPreview.cs" id="3"]
-[ext_resource type="Script" path="res://src/gui_common/SpeciesPreview.cs" id="4"]
-[ext_resource type="Script" path="res://src/microbe_stage/editor/tooltips/SpeciesPreviewTooltip.cs" id="5"]
+[ext_resource type="Script" uid="uid://qy26p3ugf4wu" path="res://src/microbe_stage/CellHexesPreview.cs" id="3"]
+[ext_resource type="Script" uid="uid://b0ycij328egrn" path="res://src/gui_common/SpeciesPreview.cs" id="4"]
+[ext_resource type="Script" uid="uid://khgejxt85rf4" path="res://src/microbe_stage/editor/tooltips/SpeciesPreviewTooltip.cs" id="5"]
 
 [sub_resource type="StyleBoxFlat" id="1"]
 bg_color = Color(0, 0.129412, 0.141176, 0.980392)

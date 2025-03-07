@@ -1,6 +1,6 @@
 [gd_scene load_steps=33 format=3 uid="uid://b6at78uxbps1"]
 
-[ext_resource type="Script" path="res://src/macroscopic_stage/editor/MetaballBodyEditorComponent.cs" id="1"]
+[ext_resource type="Script" uid="uid://caq4oh00j7yin" path="res://src/macroscopic_stage/editor/MetaballBodyEditorComponent.cs" id="1"]
 [ext_resource type="Texture2D" uid="uid://bo70v3237p6iv" path="res://assets/textures/gui/bevel/hSeparatorCentered.png" id="2"]
 [ext_resource type="PackedScene" uid="uid://u7xx74aaed4e" path="res://src/macroscopic_stage/editor/MetaballPopupMenu.tscn" id="3"]
 [ext_resource type="Theme" uid="uid://b4cx0o110g4b6" path="res://src/gui_common/thrive_theme.tres" id="5"]
@@ -306,9 +306,9 @@ tracks/0/keys = {
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_vbjf3"]
 _data = {
-"RESET": SubResource("17"),
-"hide": SubResource("18"),
-"show": SubResource("19")
+&"RESET": SubResource("17"),
+&"hide": SubResource("18"),
+&"show": SubResource("19")
 }
 
 [node name="MetaballBodyEditorComponent" type="Control" node_paths=PackedStringArray("metaballResizeScroll")]

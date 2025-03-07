@@ -1,9 +1,9 @@
 [gd_scene load_steps=5 format=3 uid="uid://dso6jpju1ild0"]
 
-[ext_resource type="PackedScene" path="res://src/gui_common/DraggableScrollContainer.tscn" id="1"]
+[ext_resource type="PackedScene" uid="uid://din62wkc2pcnk" path="res://src/gui_common/DraggableScrollContainer.tscn" id="1"]
 [ext_resource type="Theme" uid="uid://b4cx0o110g4b6" path="res://src/gui_common/thrive_theme.tres" id="2"]
-[ext_resource type="Script" path="res://src/society_stage/gui/TechWebGUI.cs" id="3"]
-[ext_resource type="PackedScene" path="res://src/gui_common/CustomRichTextLabel.tscn" id="4"]
+[ext_resource type="Script" uid="uid://cdn1mk1sq7aj7" path="res://src/society_stage/gui/TechWebGUI.cs" id="3"]
+[ext_resource type="PackedScene" uid="uid://bhpjtbtaeunat" path="res://src/gui_common/CustomRichTextLabel.tscn" id="4"]
 
 [node name="TechWebGUI" type="HBoxContainer"]
 anchors_preset = 15

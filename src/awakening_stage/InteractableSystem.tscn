@@ -1,6 +1,6 @@
-[gd_scene load_steps=2 format=2]
+[gd_scene load_steps=2 format=3 uid="uid://s7qy23vie22s"]
 
-[ext_resource path="res://src/awakening_stage/InteractableSystem.cs" type="Script" id=1]
+[ext_resource type="Script" uid="uid://da262w7o4sh0v" path="res://src/awakening_stage/InteractableSystem.cs" id="1"]
 
 [node name="InteractableSystem" type="Control"]
 process_priority = 5
@@ -9,4 +9,4 @@ anchor_bottom = 1.0
 mouse_filter = 2
 size_flags_horizontal = 3
 size_flags_vertical = 3
-script = ExtResource( 1 )
+script = ExtResource("1")

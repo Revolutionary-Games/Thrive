@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2025-03-04 13:08+0200\n"
+"POT-Creation-Date: 2025-03-07 11:33+0200\n"
 "PO-Revision-Date: 2025-02-21 21:31+0000\n"
 "Last-Translator: xzihnago <xzihnago@gmail.com>\n"
 "Language-Team: Chinese (Traditional Han script) <https://translate.revolutionarygamesstudio.com/projects/thrive/thrive-game/zh_Hant/>\n"
@@ -1663,9 +1663,8 @@ msgstr "雙擊即可全螢幕檢視"
 msgid "DOUBLE_MEMBRANE_DESCRIPTION"
 msgstr "有兩層的細胞膜，對傷害有更好的防護能力，並且花費更少能量來維持外型。然而，它會減慢細胞的移動速度並降低其吸收資源的速率。"
 
-#, fuzzy
 msgid "DOUBLE_SPEED_TOGGLE_TOOLTIP"
-msgstr "用來生成世界的隨機數，必須為正整數"
+msgstr "在正常與雙倍遊戲速度之間切換"
 
 msgid "DRAG_TO_REORDER_ITEMS_WITH_MOUSE"
 msgstr "用滑鼠拖曳以重新排序"
@@ -3117,13 +3116,11 @@ msgstr ""
 "3D 選單背景已啟用，這會佔用大量系統資源。停用該選項可能會極大地提高性能。\n"
 "您現在希望這樣做嗎？"
 
-#, fuzzy
 msgid "LOW_QUALITY_BACKGROUND_BLUR"
-msgstr "背景模糊："
+msgstr "低解析度背景模糊"
 
-#, fuzzy
 msgid "LOW_QUALITY_BACKGROUND_BLUR_TOOLTIP"
-msgstr "背景模糊："
+msgstr "使背景模糊使用較低的分辨率，從而提高效能。"
 
 msgid "LYSOSOME"
 msgstr "溶酶體"
@@ -4327,9 +4324,6 @@ msgstr "向右平移"
 
 msgid "PAN_CAMERA_UP"
 msgstr "向上平移"
-
-msgid "PASSIVE_REPRODUCTION_PROGRESS"
-msgstr "被動獲得繁殖進度"
 
 msgid "PASSIVE_REPRODUCTION_PROGRESS_EXPLANATION"
 msgstr "（被動地從環境中獲得繁殖所需的化合物）"
@@ -5669,9 +5663,8 @@ msgstr ""
 "切換吞噬模式以吞噬各種碎塊\n"
 "以及較小的生物體，讓活躍時能有更多的 ATP 使用"
 
-#, fuzzy
 msgid "TOGGLE_FAST_MODE"
-msgstr "暫停"
+msgstr "切換快速模式"
 
 msgid "TOGGLE_FPS"
 msgstr "切換 FPS 顯示"
@@ -7213,9 +7206,21 @@ msgstr "使用者介面"
 msgid "WIKI_HEADING_UPGRADES"
 msgstr "升級"
 
-#, fuzzy
 msgid "WIKI_HELP_AND_TIPS_BASIC_GAME_MECHANICS"
-msgstr "遊戲機制"
+msgstr ""
+"玩家控制一個物種的成員，該物種需要在世界中擴展並演化為更複雜的生命體。你操控著物種中的單個細胞：如果它死亡，您將接管另一個細胞。您需要與其他物種的細胞競爭，並確保自己的物種能夠生存下去。\n"
+"\n"
+"世界被劃分為多個[b]區域[/b]。玩家細胞棲息的區域是您的[b]目前區域[/b]。\n"
+"\n"
+"在您目前的區域中，您必須收集[b]化合物[/b]來維持生命，並生長得足夠久以[b]繁殖[/b]。一旦您的細胞完成繁殖，您將會穿越數百萬年到未來並切換至[b]編輯器[/b]。\n"
+"\n"
+"在[b]編輯器[/b]中，您可以看到數百萬年來所有現存物種由於其生物特性與您在當前區域中的表現而發生了哪些變化。您可以看到哪些新物種[b]演化[/b]、哪些物種[b]滅絕[/b]以及它們的總[b]物種量[/b]發生了怎樣的變化。\n"
+"\n"
+"您可以在[b]編輯器[/b]的[b]區域地圖[/b]部分中變更您目前的區域，並將您物種從其他區域移動到另一個區域。您也可以透過[b]編輯[/b]來決定您的物種要如何演化。\n"
+"\n"
+"您可以透過添加、移除或調整細胞的部件來[b]編輯[/b]您的物種，也可以改變物種的行為。\n"
+"\n"
+"當您離開[b]編輯器[/b]時，您將回到目前區域，然後再次開始循環。每次演化所帶來的微小變化都會為星球的生命帶來巨大的改變。"
 
 msgid "WIKI_HELP_AND_TIPS_BUTTON"
 msgstr "幫助與提示"
@@ -8580,30 +8585,23 @@ msgstr ""
 msgid "WORLD_RELATIVE_MOVEMENT"
 msgstr "相對於世界"
 
-#, fuzzy
 msgid "WORLD_SIZE"
-msgstr "世界"
+msgstr "世界大小"
 
-#, fuzzy
 msgid "WORLD_SIZE_EXPLANATION"
-msgstr ""
-"專注型微生物會在更遠的距離追擊獵物或物質塊\n"
-"並且對物質塊更有渴求。\n"
-"應變型微生物將更快地轉向新目標。"
+msgstr "（改變世界中的區域數量）"
 
 msgid "WORLD_SIZE_LARGE"
-msgstr ""
+msgstr "大"
 
-#, fuzzy
 msgid "WORLD_SIZE_MEDIUM"
-msgstr "相對於世界"
+msgstr "中"
 
 msgid "WORLD_SIZE_SMALL"
-msgstr ""
+msgstr "小"
 
-#, fuzzy
 msgid "WORLD_SIZE_TOOLTIP"
-msgstr "運行一定數量的世界，每個世界運行的代數由上方的顯示框決定。"
+msgstr "較大的世界可能會降低模擬速度，因此不建議在性能較差的電腦上使用。"
 
 msgid "WORST_PATCH_COLON"
 msgstr "最差區域："
@@ -8642,6 +8640,9 @@ msgstr "放大"
 
 msgid "ZOOM_OUT"
 msgstr "縮小"
+
+#~ msgid "PASSIVE_REPRODUCTION_PROGRESS"
+#~ msgstr "被動獲得繁殖進度"
 
 #~ msgid "MIGRATE"
 #~ msgstr "遷移"

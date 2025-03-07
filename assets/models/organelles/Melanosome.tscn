@@ -1,6 +1,6 @@
 [gd_scene load_steps=6 format=3 uid="uid://tvhbaau8rmaa"]
 
-[ext_resource type="Shader" path="res://shaders/OrganelleOpaque.gdshader" id="1_liv11"]
+[ext_resource type="Shader" uid="uid://caplkvkclneuh" path="res://shaders/OrganelleOpaque.gdshader" id="1_liv11"]
 [ext_resource type="Texture2D" uid="uid://baxuoyeo83r2u" path="res://assets/textures/dissolve_noise.tres" id="2_iaryo"]
 [ext_resource type="Texture2D" uid="uid://cg5q28ntl2mpf" path="res://assets/textures/Melanosome.png" id="3_lqhof"]
 [ext_resource type="ArrayMesh" uid="uid://b12vfnfyvwkux" path="res://assets/models/organelles/Melanosome.mesh" id="4_27xi5"]
@@ -9,14 +9,14 @@
 resource_local_to_scene = true
 render_priority = 0
 shader = ExtResource("1_liv11")
+shader_parameter/texture = ExtResource("3_lqhof")
+shader_parameter/dissolveTexture = ExtResource("2_iaryo")
 shader_parameter/dissolveValue = 0.0
 shader_parameter/dissolveScale = 1.0
 shader_parameter/outlineWidth = 0.0
 shader_parameter/growColor = Color(0.1, 0.1, 0.1, 1)
 shader_parameter/tint = Color(1, 1, 1, 1)
 shader_parameter/jiggleAmount = 0.0005
-shader_parameter/texture = ExtResource("3_lqhof")
-shader_parameter/dissolveTexture = ExtResource("2_iaryo")
 
 [node name="Melanosome" type="MeshInstance3D"]
 material_override = SubResource("ShaderMaterial_dwonw")
