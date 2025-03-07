@@ -257,6 +257,7 @@ public partial class MicrobeEditor : EditorBase<EditorAction, MicrobeStage>, IEd
     {
         // TODO: select which units will be used for the master elapsed time counter
         CurrentGame.GameWorld.OnTimePassed(1);
+        cellEditorTab.UpdateBackgroundImage(CurrentPatch.BiomeTemplate);
     }
 
     protected override GameProperties StartNewGameForEditor()

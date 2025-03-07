@@ -17,13 +17,7 @@ public class GlobalGlaciationEvent : IWorldEffect
     private readonly XoShiRo256starstar random;
 
     [JsonProperty]
-    private readonly Dictionary<int, Dictionary<Compound, float>> previousEnvironmentalChanges = new();
-
-    [JsonProperty]
-    private readonly Dictionary<int, string> previousBackground = new();
-
-    [JsonProperty]
-    private readonly Dictionary<int, Color> previousLightColour = new();
+    private readonly List<int> modifiedPatchesIds = new();
 
     [JsonProperty]
     private bool hasEventAlreadyHappened;
@@ -34,6 +28,9 @@ public class GlobalGlaciationEvent : IWorldEffect
     /// </summary>
     [JsonProperty]
     private int generationsLeft = -1;
+
+    [JsonProperty]
+    private int eventDuration = 0;
 
     [JsonProperty]
     private GameWorld targetWorld;
@@ -89,10 +86,13 @@ public class GlobalGlaciationEvent : IWorldEffect
 
     private void TryToTriggerEvent(double totalTimePassed)
     {
+        // if (totalTimePassed <= 200_000_000)
+        //     return;
         if (!AreConditionsMet())
             return;
 
-        generationsLeft = random.Next(Constants.GLOBAL_GLACIATION_MIN_DURATION, Constants.GLOBAL_GLACIATION_MAX_DURATION);
+        eventDuration = random.Next(Constants.GLOBAL_GLACIATION_MIN_DURATION, Constants.GLOBAL_GLACIATION_MAX_DURATION);
+        generationsLeft = eventDuration;
 
         foreach (var (index, patch) in targetWorld.Map.Patches)
         {
@@ -128,22 +128,22 @@ public class GlobalGlaciationEvent : IWorldEffect
 
     private void ChangePatchProperties(int index, Patch patch, double totalTimePassed)
     {
-        AdjustBackground(index, patch);
-        AdjustEnvironment(index, patch);
+        modifiedPatchesIds.Add(index);
+        AdjustBackground(patch);
+        AdjustEnvironment(patch);
         AddIceChunks(patch);
         LogEvent(patch, totalTimePassed);
     }
 
-    private void AdjustBackground(int index, Patch patch)
+    private void AdjustBackground(Patch patch)
     {
-        previousBackground.Add(index, patch.BiomeTemplate.Background);
-        previousLightColour.Add(index, patch.BiomeTemplate.Sunlight.Colour);
-
         patch.BiomeTemplate.Background = Background;
-        patch.BiomeTemplate.Sunlight.Colour = new Color(0.8f, 0.9f, 1, 1);
+        patch.CurrentSnapshot.Background = Background;
+        patch.BiomeTemplate.Sunlight.Colour = new Color(0.8f, 0.8f, 1, 1);
+        patch.CurrentSnapshot.LightColour = new Color(0.8f, 0.8f, 1, 1);
     }
 
-    private void AdjustEnvironment(int index, Patch patch)
+    private void AdjustEnvironment(Patch patch)
     {
         var currentTemperature = patch.Biome.ChangeableCompounds[Compound.Temperature];
         var currentSunlight = patch.Biome.ChangeableCompounds[Compound.Sunlight];
@@ -156,9 +156,8 @@ public class GlobalGlaciationEvent : IWorldEffect
             [Compound.Temperature] = currentTemperature.Ambient,
             [Compound.Sunlight] = currentSunlight.Ambient,
         };
-        previousEnvironmentalChanges.Add(index, changes);
 
-        patch.Biome.ApplyLongTermCompoundChanges(patch.BiomeTemplate, changes, null);
+        patch.Biome.ApplyLongTermCompoundChanges(patch.BiomeTemplate, changes, new Dictionary<Compound, float>());
     }
 
     /// <summary>
@@ -191,27 +190,47 @@ public class GlobalGlaciationEvent : IWorldEffect
 
     private void FinishEvent()
     {
-        foreach (var index in previousEnvironmentalChanges.Keys)
+        hasEventAlreadyHappened = true;
+        foreach (var index in modifiedPatchesIds)
         {
             if (!targetWorld.Map.Patches.TryGetValue(index, out var patch))
                 continue;
 
-            var biomeBackground = previousBackground[index];
-            var biomeLightColour = previousLightColour[index];
-            var changes = previousEnvironmentalChanges[index];
+            PatchSnapshot patchSnapshot = patch.History[eventDuration];
 
-            // Reverse the changes in sunlight and temperature values
-            foreach (var changeIndex in changes.Keys)
-            {
-                changes[changeIndex] = -changes[changeIndex];
-            }
-
-            patch.BiomeTemplate.Background = biomeBackground;
-            patch.BiomeTemplate.Sunlight.Colour = biomeLightColour;
-            patch.Biome.ApplyLongTermCompoundChanges(patch.BiomeTemplate, changes, new Dictionary<Compound, float>());
-
+            ResetBackground(patch, patchSnapshot);
+            ResetEnvironment(patch, patchSnapshot);
             RemoveChunks(patch);
         }
+    }
+
+    private void ResetBackground(Patch patch, PatchSnapshot patchSnapshot)
+    {
+        var biomeBackground = patchSnapshot.Background;
+        var biomeLightColour = patchSnapshot.LightColour;
+        patch.BiomeTemplate.Background = biomeBackground;
+        patch.BiomeTemplate.Sunlight.Colour = biomeLightColour;
+        patch.CurrentSnapshot.Background = biomeBackground;
+        patch.CurrentSnapshot.LightColour = biomeLightColour;
+    }
+
+    private void ResetEnvironment(Patch patch, PatchSnapshot patchSnapshot)
+    {
+        var currentTemperature = patch.Biome.ChangeableCompounds[Compound.Temperature];
+        var currentSunlight = patch.Biome.ChangeableCompounds[Compound.Sunlight];
+        var previousTemperature = patchSnapshot.Biome.ChangeableCompounds[Compound.Temperature];
+        var previousSunlight = patchSnapshot.Biome.ChangeableCompounds[Compound.Sunlight];
+
+        currentTemperature.Ambient = previousTemperature.Ambient - currentTemperature.Ambient;
+        currentSunlight.Ambient = 0.5f - currentSunlight.Ambient - previousSunlight.Ambient;
+
+        var changes = new Dictionary<Compound, float>
+        {
+            [Compound.Temperature] = currentTemperature.Ambient,
+            [Compound.Sunlight] = currentSunlight.Ambient,
+        };
+
+        patch.Biome.ApplyLongTermCompoundChanges(patch.BiomeTemplate, changes, new Dictionary<Compound, float>());
     }
 
     private void RemoveChunks(Patch patch)
