@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2025-02-28 12:07+0200\n"
+"POT-Creation-Date: 2025-03-07 11:33+0200\n"
 "PO-Revision-Date: 2025-02-06 13:29+0000\n"
 "Last-Translator: Anonymous <noreply@weblate.org>\n"
 "Language-Team: Dutch (Belgium) <https://translate.revolutionarygamesstudio.com/projects/thrive/thrive-game/nl_BE/>\n"
@@ -1861,6 +1861,10 @@ msgstr ""
 "\n"
 "Om naar het volgende tabblad te gaan druk je op de volgende knop rechts onder."
 
+#, fuzzy
+msgid "EFFECTIVE_VALUE"
+msgstr "{0}%"
+
 msgid "EIGHT_TIMES"
 msgstr "8x"
 
@@ -2890,8 +2894,9 @@ msgstr "Juli"
 msgid "JUNE"
 msgstr "Juni"
 
-msgid "KEEP_CURRENT_FLEXIBILITY"
-msgstr ""
+#, fuzzy
+msgid "KEEP_CURRENT_SHORT"
+msgstr "Huidige Ontwikkelaars"
 
 #, fuzzy
 msgid "KEEP_CURRENT_TOLERANCE_FLEXIBILITY_TOOLTIP"
@@ -4677,10 +4682,6 @@ msgid "PAN_CAMERA_UP"
 msgstr "Beweeg camera naar boven"
 
 #, fuzzy
-msgid "PASSIVE_REPRODUCTION_PROGRESS"
-msgstr "{0} bevolking veranderd met {1} door: {2}"
-
-#, fuzzy
 msgid "PASSIVE_REPRODUCTION_PROGRESS_EXPLANATION"
 msgstr "{0} bevolking veranderd met {1} door: {2}"
 
@@ -6196,6 +6197,10 @@ msgstr "{0}: +{1} ATP"
 
 msgid "TOLERANCES_UNSUITABLE_DEBUFFS"
 msgstr ""
+
+#, fuzzy
+msgid "TOLERANCE_FROM_ORGANELLES_TOOLTIP"
+msgstr "Toon / verstop omgeving en verbindingen"
 
 msgid "TOLERANCE_RANGE_LABEL"
 msgstr ""
@@ -8746,6 +8751,31 @@ msgstr ""
 msgid "WORLD_RELATIVE_MOVEMENT"
 msgstr "Relatief aan de wereld"
 
+#, fuzzy
+msgid "WORLD_SIZE"
+msgstr "Wereld"
+
+#, fuzzy
+msgid "WORLD_SIZE_EXPLANATION"
+msgstr ""
+"Gefocuste microben zullen over grotere afstanden naar brokken of prooien zoeken\n"
+"en misschien veel ambitieuzer over brokken zijn.\n"
+"Responsieve microben zullen sneller overschakelen naar nieuwe doelen."
+
+msgid "WORLD_SIZE_LARGE"
+msgstr ""
+
+#, fuzzy
+msgid "WORLD_SIZE_MEDIUM"
+msgstr "Relatief aan de wereld"
+
+msgid "WORLD_SIZE_SMALL"
+msgstr ""
+
+#, fuzzy
+msgid "WORLD_SIZE_TOOLTIP"
+msgstr "Voeg een nieuwe sneltoets toe"
+
 msgid "WORST_PATCH_COLON"
 msgstr "Slechtste Zone:"
 
@@ -8785,6 +8815,10 @@ msgstr "Inzoomen"
 
 msgid "ZOOM_OUT"
 msgstr "Uitzoomen"
+
+#, fuzzy
+#~ msgid "PASSIVE_REPRODUCTION_PROGRESS"
+#~ msgstr "{0} bevolking veranderd met {1} door: {2}"
 
 #, fuzzy
 #~ msgid "MIGRATE"

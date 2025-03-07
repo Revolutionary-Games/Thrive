@@ -1,7 +1,7 @@
 [gd_scene load_steps=4 format=3 uid="uid://dp8h2xyvs6xf7"]
 
 [ext_resource type="PackedScene" uid="uid://cckki1kx0cnol" path="res://src/thriveopedia/ThriveopediaPage.tscn" id="1"]
-[ext_resource type="Script" path="res://src/thriveopedia/pages/wiki/organelles/ThriveopediaOrganellePage.cs" id="2"]
+[ext_resource type="Script" uid="uid://bbnvtjvlmow04" path="res://src/thriveopedia/pages/wiki/organelles/ThriveopediaOrganellePage.cs" id="2"]
 [ext_resource type="PackedScene" uid="uid://difkxs0cysyce" path="res://src/thriveopedia/pages/wiki/organelles/OrganelleInfoBox.tscn" id="8"]
 
 [node name="ThriveopediaPage" node_paths=PackedStringArray("mainArticle", "noticeContainer") instance=ExtResource("1")]

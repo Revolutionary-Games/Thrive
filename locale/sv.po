@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2025-02-28 12:07+0200\n"
+"POT-Creation-Date: 2025-03-07 11:33+0200\n"
 "PO-Revision-Date: 2025-02-06 13:29+0000\n"
 "Last-Translator: Anonymous <noreply@weblate.org>\n"
 "Language-Team: Swedish <https://translate.revolutionarygamesstudio.com/projects/thrive/thrive-game/sv/>\n"
@@ -1843,6 +1843,10 @@ msgstr ""
 msgid "EDITOR_TUTORIAL_EDITOR_TEXT"
 msgstr ""
 
+#, fuzzy
+msgid "EFFECTIVE_VALUE"
+msgstr "{0}%"
+
 msgid "EIGHT_TIMES"
 msgstr "8x"
 
@@ -2871,8 +2875,9 @@ msgstr "Juli"
 msgid "JUNE"
 msgstr "Juni"
 
-msgid "KEEP_CURRENT_FLEXIBILITY"
-msgstr ""
+#, fuzzy
+msgid "KEEP_CURRENT_SHORT"
+msgstr "Nuvarande utvecklare"
 
 #, fuzzy
 msgid "KEEP_CURRENT_TOLERANCE_FLEXIBILITY_TOOLTIP"
@@ -4667,10 +4672,6 @@ msgid "PAN_CAMERA_UP"
 msgstr "Panorera uppåt"
 
 #, fuzzy
-msgid "PASSIVE_REPRODUCTION_PROGRESS"
-msgstr "{0} befolkning förändrades av {1} på grund av: {2}"
-
-#, fuzzy
 msgid "PASSIVE_REPRODUCTION_PROGRESS_EXPLANATION"
 msgstr "{0} befolkning förändrades av {1} på grund av: {2}"
 
@@ -6188,6 +6189,15 @@ msgstr "{0}:+{1} ATP"
 
 msgid "TOLERANCES_UNSUITABLE_DEBUFFS"
 msgstr ""
+
+#, fuzzy
+msgid "TOLERANCE_FROM_ORGANELLES_TOOLTIP"
+msgstr ""
+"Den här sektionen visar ATP-saldot (energi) för den aktuella cellen.\n"
+"För att kunna överleva måste saldot vara positivt. För sessila celler är omtanken kring saldot utom rörelsekostnaden övervägt.\n"
+"Nedrullningsmenyn nedan kan användas för att kontrollera vad som skulle hända om cellen inte hade någon resurs tillgänglig att göra ATP med.\n"
+"Till exempel kan vissa celler bara upprätthålla ett positivt ATP-saldo när de har flera sammansättningar att göra ATP från samtidigt.\n"
+"Dessa typer av celler kan vara svårare att spela som eftersom de kräver att flera sammanställningar lagras samtidigt."
 
 msgid "TOLERANCE_RANGE_LABEL"
 msgstr ""
@@ -8621,6 +8631,32 @@ msgstr ""
 msgid "WORLD_RELATIVE_MOVEMENT"
 msgstr "för att öka hastigheten"
 
+#, fuzzy
+msgid "WORLD_SIZE"
+msgstr "Nuvarande utvecklare"
+
+#, fuzzy
+msgid "WORLD_SIZE_EXPLANATION"
+msgstr ""
+"Aggressiva mikrober jagar byte över större avstånd\n"
+"och har större sannolikhet att kämpa emot när rovdjur attackerar.\n"
+"Fredliga mikrober attackerar inte andra över större avstånd\n"
+"och har lägre sannolikhet att använda gifter mot rovdjur."
+
+msgid "WORLD_SIZE_LARGE"
+msgstr ""
+
+#, fuzzy
+msgid "WORLD_SIZE_MEDIUM"
+msgstr "för att öka hastigheten"
+
+msgid "WORLD_SIZE_SMALL"
+msgstr ""
+
+#, fuzzy
+msgid "WORLD_SIZE_TOOLTIP"
+msgstr "Hjälp"
+
 msgid "WORST_PATCH_COLON"
 msgstr ""
 
@@ -8661,6 +8697,10 @@ msgstr "Zooma in"
 
 msgid "ZOOM_OUT"
 msgstr "Zooma ut"
+
+#, fuzzy
+#~ msgid "PASSIVE_REPRODUCTION_PROGRESS"
+#~ msgstr "{0} befolkning förändrades av {1} på grund av: {2}"
 
 #, fuzzy
 #~ msgid "THANKS_FOR_BUYING_THRIVE"

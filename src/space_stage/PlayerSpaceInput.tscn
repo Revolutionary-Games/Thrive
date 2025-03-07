@@ -1,6 +1,6 @@
-[gd_scene load_steps=2 format=2]
+[gd_scene load_steps=2 format=3 uid="uid://iejv3lkw2njv"]
 
-[ext_resource path="res://src/space_stage/PlayerSpaceInput.cs" type="Script" id=1]
+[ext_resource type="Script" uid="uid://c5dclwauuo8ht" path="res://src/space_stage/PlayerSpaceInput.cs" id="1"]
 
 [node name="PlayerSpaceInput" type="Node"]
-script = ExtResource( 1 )
+script = ExtResource("1")

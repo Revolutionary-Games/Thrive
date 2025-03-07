@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2025-02-28 12:07+0200\n"
+"POT-Creation-Date: 2025-03-07 11:33+0200\n"
 "PO-Revision-Date: 2025-02-06 13:29+0000\n"
 "Last-Translator: Anonymous <noreply@weblate.org>\n"
 "Language-Team: Hungarian <https://translate.revolutionarygamesstudio.com/projects/thrive/thrive-game/hu/>\n"
@@ -1871,6 +1871,10 @@ msgstr ""
 "\n"
 "A következő szerkesztő ablakba való lépéshez nyomd meg jobb lenti gombot."
 
+#, fuzzy
+msgid "EFFECTIVE_VALUE"
+msgstr "{0}%"
+
 msgid "EIGHT_TIMES"
 msgstr "8x"
 
@@ -2901,8 +2905,9 @@ msgstr "Július"
 msgid "JUNE"
 msgstr "Június"
 
-msgid "KEEP_CURRENT_FLEXIBILITY"
-msgstr ""
+#, fuzzy
+msgid "KEEP_CURRENT_SHORT"
+msgstr "Jelenlegi fejlesztők"
 
 #, fuzzy
 msgid "KEEP_CURRENT_TOLERANCE_FLEXIBILITY_TOOLTIP"
@@ -4726,10 +4731,6 @@ msgid "PAN_CAMERA_UP"
 msgstr "Pásztázás felfelé"
 
 #, fuzzy
-msgid "PASSIVE_REPRODUCTION_PROGRESS"
-msgstr "(a sebesség, mely alatt az MI fajok mutálódnak)"
-
-#, fuzzy
 msgid "PASSIVE_REPRODUCTION_PROGRESS_EXPLANATION"
 msgstr "(a sebesség, mely alatt az MI fajok mutálódnak)"
 
@@ -6208,6 +6209,10 @@ msgstr "{0}: +{1} ATP"
 
 msgid "TOLERANCES_UNSUITABLE_DEBUFFS"
 msgstr ""
+
+#, fuzzy
+msgid "TOLERANCE_FROM_ORGANELLES_TOOLTIP"
+msgstr "Az összetevők mutatása / elrejtése"
 
 msgid "TOLERANCE_RANGE_LABEL"
 msgstr ""
@@ -8703,6 +8708,30 @@ msgstr ""
 msgid "WORLD_RELATIVE_MOVEMENT"
 msgstr "Alap mozgás"
 
+#, fuzzy
+msgid "WORLD_SIZE"
+msgstr "Jelenlegi fejlesztők"
+
+#, fuzzy
+msgid "WORLD_SIZE_EXPLANATION"
+msgstr ""
+"A fókuszált sejtek nagyobb távolságokat tesznek meg táplálék reményében.\n"
+"A reszponzív sejtek hamar új célpontokat keresnek."
+
+msgid "WORLD_SIZE_LARGE"
+msgstr ""
+
+#, fuzzy
+msgid "WORLD_SIZE_MEDIUM"
+msgstr "Alap mozgás"
+
+msgid "WORLD_SIZE_SMALL"
+msgstr ""
+
+#, fuzzy
+msgid "WORLD_SIZE_TOOLTIP"
+msgstr "Segítség"
+
 msgid "WORST_PATCH_COLON"
 msgstr "Legrosszabb patch:"
 
@@ -8742,6 +8771,10 @@ msgstr "Közelítés"
 
 msgid "ZOOM_OUT"
 msgstr "Távolodás"
+
+#, fuzzy
+#~ msgid "PASSIVE_REPRODUCTION_PROGRESS"
+#~ msgstr "(a sebesség, mely alatt az MI fajok mutálódnak)"
 
 #~ msgid "MIGRATE"
 #~ msgstr "Vándorlás"

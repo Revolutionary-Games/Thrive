@@ -8,6 +8,19 @@ const SUB_COLOR :=  Color(1, 0, 0, .3)
 const ADD_COLOR :=  Color(0, 1, 0, .3)
 
 
+# Dictionary of control characters and their readable representations
+const CONTROL_CHARS = {
+	"\n": "<LF>",   # Line Feed
+	"\r": "<CR>",   # Carriage Return
+	"\t": "<TAB>",  # Tab
+	"\b": "<BS>",   # Backspace
+	"\f": "<FF>",   # Form Feed
+	"\v": "<VT>",   # Vertical Tab
+	"\a": "<BEL>",  # Bell
+	"": "<ESC>"   # Escape
+}
+
+
 static func format_dict(value :Variant) -> String:
 	if not value is Dictionary:
 		return str(value)
@@ -627,9 +640,31 @@ static func error_contains_exactly(current: Array, expected: Array) -> String:
 static func format_chars(characters :PackedByteArray, type :Color) -> PackedByteArray:
 	if characters.size() == 0:# or characters[0] == 10:
 		return characters
+
+	# Replace each control character with its readable form
+	var formatted_text := characters.get_string_from_utf8()
+	for control_char: String in CONTROL_CHARS:
+		var replace_text: String = CONTROL_CHARS[control_char]
+		formatted_text = formatted_text.replace(control_char, replace_text)
+
+	# Handle special ASCII control characters (0x00-0x1F, 0x7F)
+	var ascii_text := ""
+	for i in formatted_text.length():
+		var character := formatted_text[i]
+		var code := character.unicode_at(0)
+		if code < 0x20 and not CONTROL_CHARS.has(character):  # Control characters not handled above
+			ascii_text += "<0x%02X>" % code
+		elif code == 0x7F:  # DEL character
+			ascii_text += "<DEL>"
+		else:
+			ascii_text += character
+
+	var message := "[bgcolor=#%s][color=white]%s[/color][/bgcolor]" % [
+		type.to_html(),
+		ascii_text
+	]
+
 	var result := PackedByteArray()
-	var message := "[bgcolor=#%s][color=with]%s[/color][/bgcolor]" % [
-					type.to_html(), characters.get_string_from_utf8().replace("\n", "<LF>")]
 	result.append_array(message.to_utf8_buffer())
 	return result
 

@@ -53,6 +53,9 @@ public partial class MicrobeEditor : EditorBase<EditorAction, MicrobeStage>, IEd
         editedSpecies ?? throw new InvalidOperationException("species not initialized");
 
     [JsonIgnore]
+    public IReadOnlyList<OrganelleTemplate> EditedCellOrganelles => cellEditorTab.GetLatestEditedOrganelles();
+
+    [JsonIgnore]
     public Patch CurrentPatch => patchMapTab.CurrentPatch;
 
     [JsonIgnore]

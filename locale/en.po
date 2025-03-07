@@ -7,8 +7,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2025-02-28 12:07+0200\n"
-"PO-Revision-Date: 2025-02-28 12:00+0200\n"
+"POT-Creation-Date: 2025-03-07 11:33+0200\n"
+"PO-Revision-Date: 2025-03-04 13:27+0200\n"
 "Last-Translator: Henri Hyyryläinen <hhyyrylainen@revolutionarygamesstudio.com>\n"
 "Language-Team: English <https://translate.revolutionarygamesstudio.com/projects/thrive/thrive-game/en/>\n"
 "Language: en\n"
@@ -1524,8 +1524,7 @@ msgstr ""
 "Environmental glucose retention: {5}\n"
 "Osmoregulation cost multiplier: {6}\n"
 "Free glucose cloud when leaving editor: {7}\n"
-"Passively gain reproduction progress: {8}\n"
-"Limit growth compound usage: {9}"
+"Limit growth compound usage: {8}"
 
 msgid "DIFFICULTY_PRESET"
 msgstr "Difficulty preset"
@@ -1772,6 +1771,9 @@ msgstr ""
 "The Report Screen gives you a list of changes in the patch you currently occupy. Try exploring the various tools at your disposal to learn more about events in your world!\n"
 "\n"
 "When you are ready, press the \"next\" button in the bottom right to continue to the Patch Map Screen."
+
+msgid "EFFECTIVE_VALUE"
+msgstr "Effective Value"
 
 msgid "EIGHT_TIMES"
 msgstr "8x"
@@ -2671,8 +2673,8 @@ msgstr "July"
 msgid "JUNE"
 msgstr "June"
 
-msgid "KEEP_CURRENT_FLEXIBILITY"
-msgstr "Keep current flexibility"
+msgid "KEEP_CURRENT_SHORT"
+msgstr "Keep Current"
 
 msgid "KEEP_CURRENT_TOLERANCE_FLEXIBILITY_TOOLTIP"
 msgstr "Keep the current pressure tolerance range while moving the min and max sliders"
@@ -4320,9 +4322,6 @@ msgstr "Pan to the right"
 msgid "PAN_CAMERA_UP"
 msgstr "Pan upwards"
 
-msgid "PASSIVE_REPRODUCTION_PROGRESS"
-msgstr "Passively gain reproduction progress"
-
 msgid "PASSIVE_REPRODUCTION_PROGRESS_EXPLANATION"
 msgstr "(passively gain reproduction compounds from the environment without having to do anything)"
 
@@ -5714,6 +5713,9 @@ msgstr "UV protection too low, needs to be {0}% higher"
 
 msgid "TOLERANCES_UNSUITABLE_DEBUFFS"
 msgstr "Not adapted to current environmental conditions. Osmoregulation cost {0}%, bioprocess speed {1}%, health {2}%"
+
+msgid "TOLERANCE_FROM_ORGANELLES_TOOLTIP"
+msgstr "Tolerances are affected by some organelles, both positively and negatively. The effective value is shown here after the base value is added together with the change from organelles. Some organelles synergize with certain playstyles but harm others."
 
 msgid "TOLERANCE_RANGE_LABEL"
 msgstr "Flexibility:"
@@ -8702,6 +8704,24 @@ msgstr ""
 msgid "WORLD_RELATIVE_MOVEMENT"
 msgstr "World relative"
 
+msgid "WORLD_SIZE"
+msgstr "World Size"
+
+msgid "WORLD_SIZE_EXPLANATION"
+msgstr "(changes the number of patches in the world)"
+
+msgid "WORLD_SIZE_LARGE"
+msgstr "Large"
+
+msgid "WORLD_SIZE_MEDIUM"
+msgstr "Medium"
+
+msgid "WORLD_SIZE_SMALL"
+msgstr "Small"
+
+msgid "WORLD_SIZE_TOOLTIP"
+msgstr "Having a large world may slow down simulation and is not recommended for slower computers."
+
 msgid "WORST_PATCH_COLON"
 msgstr "Worst Patch:"
 
@@ -8739,6 +8759,9 @@ msgstr "Zoom in"
 
 msgid "ZOOM_OUT"
 msgstr "Zoom out"
+
+#~ msgid "PASSIVE_REPRODUCTION_PROGRESS"
+#~ msgstr "Passively gain reproduction progress"
 
 #~ msgid "MIGRATE"
 #~ msgstr "Migrate"

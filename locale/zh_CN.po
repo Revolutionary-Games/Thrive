@@ -7,8 +7,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2025-02-28 12:07+0200\n"
-"PO-Revision-Date: 2025-02-06 13:29+0000\n"
+"POT-Creation-Date: 2025-03-07 11:33+0200\n"
+"PO-Revision-Date: 2025-03-07 10:46+0000\n"
 "Last-Translator: Anonymous <noreply@weblate.org>\n"
 "Language-Team: Chinese (Simplified Han script) <https://translate.revolutionarygamesstudio.com/projects/thrive/thrive-game/zh_Hans/>\n"
 "Language: zh_CN\n"
@@ -1529,6 +1529,7 @@ msgstr "Devbuilds 支持者"
 msgid "DIFFICULTY"
 msgstr "难度"
 
+#, fuzzy
 msgid "DIFFICULTY_DETAILS_STRING"
 msgstr ""
 "难度预设: {0}\n"
@@ -1789,6 +1790,10 @@ msgstr ""
 "这个选项卡为你提供了你目前所处的区域中的变化列表。试着探索你拥有的各种工具，以了解更多发生在你的世界中的事！\n"
 "\n"
 "当你准备好了，按右下角的 \"下一步 \"按钮以继续。"
+
+#, fuzzy
+msgid "EFFECTIVE_VALUE"
+msgstr "{0}%"
 
 msgid "EIGHT_TIMES"
 msgstr "8x"
@@ -2707,8 +2712,9 @@ msgstr "七月"
 msgid "JUNE"
 msgstr "六月"
 
-msgid "KEEP_CURRENT_FLEXIBILITY"
-msgstr ""
+#, fuzzy
+msgid "KEEP_CURRENT_SHORT"
+msgstr "当前世界"
 
 #, fuzzy
 msgid "KEEP_CURRENT_TOLERANCE_FLEXIBILITY_TOOLTIP"
@@ -4413,9 +4419,6 @@ msgstr "向右平移"
 msgid "PAN_CAMERA_UP"
 msgstr "向上平移"
 
-msgid "PASSIVE_REPRODUCTION_PROGRESS"
-msgstr "被动获得的繁殖进度"
-
 msgid "PASSIVE_REPRODUCTION_PROGRESS_EXPLANATION"
 msgstr "（从周围的环境中被动获得的用于繁殖的化合物）"
 
@@ -5834,6 +5837,15 @@ msgstr "{0}： +{1} ATP"
 
 msgid "TOLERANCES_UNSUITABLE_DEBUFFS"
 msgstr ""
+
+#, fuzzy
+msgid "TOLERANCE_FROM_ORGANELLES_TOOLTIP"
+msgstr ""
+"这个区域显示了目前细胞ATP（能量）的总平衡情况\n"
+"如果想要生存，这个数值应该是正的。对于没有运动需求的细胞，可以不考虑移动所消耗的ATP。\n"
+"下面的下拉菜单可以用来检查各种资源短缺时会发生的情况。\n"
+"比如，有些细胞只有在同时拥有好几种类型的化合物时才可以使ATP收支平衡。\n"
+"这些细胞将更难存活，因为它们需要收集更多的化合物。"
 
 msgid "TOLERANCE_RANGE_LABEL"
 msgstr ""
@@ -8564,6 +8576,31 @@ msgstr ""
 msgid "WORLD_RELATIVE_MOVEMENT"
 msgstr "相对世界移动"
 
+#, fuzzy
+msgid "WORLD_SIZE"
+msgstr "世界"
+
+#, fuzzy
+msgid "WORLD_SIZE_EXPLANATION"
+msgstr ""
+"专注型微生物会在更远的距离里追击猎物或物质块\n"
+"并且对物质块更有渴求。\n"
+"应变型微生物将更快的转向新的目标。"
+
+msgid "WORLD_SIZE_LARGE"
+msgstr ""
+
+#, fuzzy
+msgid "WORLD_SIZE_MEDIUM"
+msgstr "相对世界移动"
+
+msgid "WORLD_SIZE_SMALL"
+msgstr ""
+
+#, fuzzy
+msgid "WORLD_SIZE_TOOLTIP"
+msgstr "运行一定数量的世界，每个世界运行的代数由左上方的数字显示框决定。"
+
 msgid "WORST_PATCH_COLON"
 msgstr "表现最糟的地区："
 
@@ -8602,6 +8639,9 @@ msgstr "放大"
 
 msgid "ZOOM_OUT"
 msgstr "缩小"
+
+#~ msgid "PASSIVE_REPRODUCTION_PROGRESS"
+#~ msgstr "被动获得的繁殖进度"
 
 #~ msgid "MIGRATE"
 #~ msgstr "迁移"
