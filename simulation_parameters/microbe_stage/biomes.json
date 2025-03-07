@@ -275,7 +275,7 @@
               "ConvexShapePath": "res://assets/models/IronRockLarge2.shape"
             }
           ],
-          "Density": 0.00006,
+          "Density": 0.000055,
           "Dissolves": true,
           "Radius": 10,
           "ChunkScale": 1,
@@ -338,6 +338,29 @@
           "Compounds": {
             "hydrogensulfide": {
               "Amount": 4000
+            }
+          }
+        },
+        "sulfurLargeChunk": {
+          "Name": "LARGE_SULFUR_CHUNK",
+          "Meshes": [
+            {
+              "ScenePath": "res://assets/models/SulfurChunkAluniteLarge1.tscn",
+              "ConvexShapePath": "res://assets/models/SulfurChunkAluniteLarge1.shape"
+            }
+          ],
+          "Density": 0.000004,
+          "Dissolves": true,
+          "Radius": 10,
+          "ChunkScale": 1,
+          "PhysicsDensity": 1500,
+          "Size": 100,
+          "VentAmount": 8,
+          "Damages": 0,
+          "DeleteOnTouch": false,
+          "Compounds": {
+            "hydrogensulfide": {
+              "Amount": 16000
             }
           }
         },
@@ -1880,7 +1903,7 @@
               "ConvexShapePath": "res://assets/models/SulfurChunkAluniteMedium2.shape"
             }
           ],
-          "Density": 0.000018,
+          "Density": 0.000016,
           "Dissolves": true,
           "Radius": 7,
           "ChunkScale": 1,
@@ -1892,6 +1915,29 @@
           "Compounds": {
             "hydrogensulfide": {
               "Amount": 4000
+            }
+          }
+        },
+        "sulfurLargeChunk": {
+          "Name": "LARGE_SULFUR_CHUNK",
+          "Meshes": [
+            {
+              "ScenePath": "res://assets/models/SulfurChunkAluniteLarge1.tscn",
+              "ConvexShapePath": "res://assets/models/SulfurChunkAluniteLarge1.shape"
+            }
+          ],
+          "Density": 0.000004,
+          "Dissolves": true,
+          "Radius": 10,
+          "ChunkScale": 1,
+          "PhysicsDensity": 1500,
+          "Size": 100,
+          "VentAmount": 8,
+          "Damages": 0,
+          "DeleteOnTouch": false,
+          "Compounds": {
+            "hydrogensulfide": {
+              "Amount": 16000
             }
           }
         },
@@ -2767,7 +2813,7 @@
               "ConvexShapePath": "res://assets/models/SulfurChunkAluniteMedium1.shape"
             }
           ],
-          "Density": 0.000015,
+          "Density": 0.000014,
           "Dissolves": true,
           "Radius": 7,
           "ChunkScale": 1,
@@ -2779,6 +2825,29 @@
           "Compounds": {
             "hydrogensulfide": {
               "Amount": 4000
+            }
+          }
+        },
+        "sulfurLargeChunk": {
+          "Name": "LARGE_SULFUR_CHUNK",
+          "Meshes": [
+            {
+              "ScenePath": "res://assets/models/SulfurChunkAluniteLarge1.tscn",
+              "ConvexShapePath": "res://assets/models/SulfurChunkAluniteLarge1.shape"
+            }
+          ],
+          "Density": 0.000003,
+          "Dissolves": true,
+          "Radius": 10,
+          "ChunkScale": 1,
+          "PhysicsDensity": 1500,
+          "Size": 100,
+          "VentAmount": 8,
+          "Damages": 0,
+          "DeleteOnTouch": false,
+          "Compounds": {
+            "hydrogensulfide": {
+              "Amount": 16000
             }
           }
         },
