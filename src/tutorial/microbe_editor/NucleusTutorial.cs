@@ -6,10 +6,8 @@ using Newtonsoft.Json;
 /// <summary>
 ///   Prompts the player to eventually place a nucleus for further progression
 /// </summary>
-public class NucleusTutorial : TutorialPhase
+public class NucleusTutorial : EditorEntryCountingTutorial
 {
-    private const int TriggersOnNthEditorSession = 11;
-
     private readonly string cellEditorTab = EditorTab.CellEditor.ToString();
 
     [JsonProperty]
@@ -22,8 +20,7 @@ public class NucleusTutorial : TutorialPhase
 
     public override string ClosedByName => "NucleusTutorial";
 
-    [JsonProperty]
-    private int EditorEntryCount { get; set; }
+    protected override int TriggersOnNthEditorSession { get; }
 
     public override void ApplyGUIState(MicrobeEditorTutorialGUI gui)
     {
@@ -91,9 +88,7 @@ public class NucleusTutorial : TutorialPhase
 
             case TutorialEventType.EnteredMicrobeEditor:
             {
-                ++EditorEntryCount;
-
-                CanTrigger = EditorEntryCount >= TriggersOnNthEditorSession;
+                CanTrigger = NumberOfEditorEntries >= TriggersOnNthEditorSession;
 
                 break;
             }
