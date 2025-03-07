@@ -14,7 +14,7 @@ using Vector4 = System.Numerics.Vector4;
 ///   (can be repositioned as the player moves)
 /// </summary>
 [SceneLoadedClass("res://src/microbe_stage/CompoundCloudPlane.tscn", UsesEarlyResolve = false)]
-public partial class CompoundCloudPlane : CsgMesh3D, ISaveLoadedTracked
+public partial class CompoundCloudPlane : MeshInstance3D, ISaveLoadedTracked
 {
     /// <summary>
     ///   The current densities of compounds. This uses custom writing so this is ignored.
@@ -124,7 +124,7 @@ public partial class CompoundCloudPlane : CsgMesh3D, ISaveLoadedTracked
             cloud3Definition?.DecayRate ?? 1.0f, cloud4Definition?.DecayRate ?? 1.0f);
 
         // Setup colours
-        var material = (ShaderMaterial)Material;
+        var material = (ShaderMaterial)MaterialOverride;
 
         material.SetShaderParameter("colour1", cloud1Definition.Colour);
 
@@ -800,7 +800,7 @@ public partial class CompoundCloudPlane : CsgMesh3D, ISaveLoadedTracked
 
     public void SetBrightness(float brightness)
     {
-        var material = (ShaderMaterial)Material;
+        var material = (ShaderMaterial)MaterialOverride;
         material.SetShaderParameter(brightnessParameterName, brightness);
     }
 
@@ -1025,13 +1025,13 @@ public partial class CompoundCloudPlane : CsgMesh3D, ISaveLoadedTracked
         image = Image.CreateEmpty(Size, Size, false, Image.Format.Rgba8);
         texture = ImageTexture.CreateFromImage(image);
 
-        var material = (ShaderMaterial)Material;
+        var material = (ShaderMaterial)MaterialOverride;
         material.SetShaderParameter("densities", texture);
     }
 
     private void SetMaterialUVForPosition()
     {
-        var material = (ShaderMaterial)Material;
+        var material = (ShaderMaterial)MaterialOverride;
 
         // No clue how this math ends up with the right UV offsets - hhyyrylainen
         material.SetShaderParameter(uvOffsetParameterName, new Vector2(

@@ -1,7 +1,7 @@
 [gd_scene load_steps=3 format=3 uid="uid://bfccopfvmva7i"]
 
 [ext_resource type="PackedScene" uid="uid://cckki1kx0cnol" path="res://src/thriveopedia/ThriveopediaPage.tscn" id="1"]
-[ext_resource type="Script" path="res://src/thriveopedia/pages/wiki/development/ThriveopediaDevelopmentRootPage.cs" id="2_1a13f"]
+[ext_resource type="Script" uid="uid://dy275t6yj77rp" path="res://src/thriveopedia/pages/wiki/development/ThriveopediaDevelopmentRootPage.cs" id="2_1a13f"]
 
 [node name="ThriveopediaPage2" node_paths=PackedStringArray("mainArticle", "noticeContainer") instance=ExtResource("1")]
 script = ExtResource("2_1a13f")

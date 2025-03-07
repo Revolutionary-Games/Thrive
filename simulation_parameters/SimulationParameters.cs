@@ -102,7 +102,7 @@ public partial class SimulationParameters : Node
         if (Engine.IsEditorHint())
             return;
 
-        // Compounds are referenced by the other json files so it is loaded first and instance is assigned here
+        // Compounds are referenced by the other JSON files, so it is loaded first and an instance is assigned here
         instance = this;
 
         // Loading specific registry types need a custom JSON deserializer that can load their respective objects, but
@@ -544,6 +544,11 @@ public partial class SimulationParameters : Node
     /// </summary>
     public void ApplyTranslations()
     {
+        // In Godot 4.4 this signal no comes before registry loading, so ignore needing to translate things again
+        // if we haven't even loaded anything
+        if (instance == null)
+            return;
+
         ApplyRegistryObjectTranslations(membranes);
         ApplyRegistryObjectTranslations(backgrounds);
         ApplyRegistryObjectTranslations(biomes);

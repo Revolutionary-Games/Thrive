@@ -1,7 +1,7 @@
 [gd_scene load_steps=3 format=3 uid="uid://c8qh2fvqyrggg"]
 
 [ext_resource type="PackedScene" path="res://src/gui_common/dialogs/CustomWindow.tscn" id="1"]
-[ext_resource type="Script" path="res://src/ascension_stage/gui/GodToolsPopup.cs" id="2"]
+[ext_resource type="Script" uid="uid://yl81laet141y" path="res://src/ascension_stage/gui/GodToolsPopup.cs" id="2"]
 
 [node name="GodToolsPopup" instance=ExtResource("1")]
 visible = true

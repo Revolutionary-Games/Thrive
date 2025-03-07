@@ -1,6 +1,6 @@
 [gd_scene load_steps=25 format=3 uid="uid://bk6re4dgb8r3n"]
 
-[ext_resource type="Script" path="res://src/microbe_stage/gui/CompoundPanels.cs" id="1_x6jrf"]
+[ext_resource type="Script" uid="uid://d2yfv0dpe61wm" path="res://src/microbe_stage/gui/CompoundPanels.cs" id="1_x6jrf"]
 [ext_resource type="LabelSettings" uid="uid://2wocwdhy8088" path="res://src/gui_common/fonts/Title-SemiBold-AlmostSmaller.tres" id="2_a755s"]
 [ext_resource type="Texture2D" uid="uid://beeiribndheui" path="res://assets/textures/gui/bevel/Compounds.svg" id="2_ix6mf"]
 [ext_resource type="Texture2D" uid="uid://56lvdt8x5ts8" path="res://assets/textures/gui/bevel/expandPanel.png" id="3_g8oxc"]
@@ -598,13 +598,13 @@ tracks/5/keys = {
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_1orya"]
 _data = {
-"AddAgents": SubResource("Animation_4cpjp"),
-"HideAgents": SubResource("Animation_mc3hp"),
-"HideBoth": SubResource("Animation_xenqi"),
-"HideOnlyCompounds": SubResource("Animation_h4ygb"),
-"RESET": SubResource("Animation_qc1gx"),
-"ShowBoth": SubResource("Animation_dwfay"),
-"ShowOnlyCompounds": SubResource("Animation_dyqfp")
+&"AddAgents": SubResource("Animation_4cpjp"),
+&"HideAgents": SubResource("Animation_mc3hp"),
+&"HideBoth": SubResource("Animation_xenqi"),
+&"HideOnlyCompounds": SubResource("Animation_h4ygb"),
+&"RESET": SubResource("Animation_qc1gx"),
+&"ShowBoth": SubResource("Animation_dwfay"),
+&"ShowOnlyCompounds": SubResource("Animation_dyqfp")
 }
 
 [node name="CompoundPanels" type="VBoxContainer" node_paths=PackedStringArray("agentsContainer", "agentsParentContainer", "expandButton", "compressButton", "primaryBarContainer", "panelHideAnimationPlayer")]

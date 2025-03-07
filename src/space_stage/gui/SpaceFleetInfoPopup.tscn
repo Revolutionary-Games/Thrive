@@ -1,7 +1,7 @@
 [gd_scene load_steps=3 format=3 uid="uid://bfhdxoesc44hj"]
 
-[ext_resource type="PackedScene" path="res://src/gui_common/dialogs/CustomWindow.tscn" id="1"]
-[ext_resource type="Script" path="res://src/space_stage/gui/SpaceFleetInfoPopup.cs" id="2"]
+[ext_resource type="PackedScene" uid="uid://du8sc8kjirguk" path="res://src/gui_common/dialogs/CustomWindow.tscn" id="1"]
+[ext_resource type="Script" uid="uid://cyke4f5kjbk4b" path="res://src/space_stage/gui/SpaceFleetInfoPopup.cs" id="2"]
 
 [node name="SpaceFleetInfoPopup" instance=ExtResource("1")]
 anchors_preset = 1

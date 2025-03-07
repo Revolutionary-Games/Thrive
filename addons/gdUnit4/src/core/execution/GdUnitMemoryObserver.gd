@@ -42,17 +42,18 @@ static func _is_instance_guard_enabled() -> bool:
 	return false
 
 
-@warning_ignore("unsafe_method_access")
 static func debug_observe(name :String, obj :Object, indent :int = 0) -> void:
 	if not _show_debug:
 		return
 	var script :GDScript= obj if obj is GDScript else obj.get_script()
 	if script:
 		var base_script :GDScript = script.get_base_script()
+		@warning_ignore("unsafe_method_access")
 		prints("".lpad(indent, "	"), name, obj, obj.get_class(), "reference_count:", obj.get_reference_count() if obj is RefCounted else 0, "script:", script, script.resource_path)
 		if base_script:
 			debug_observe("+", base_script, indent+1)
 	else:
+		@warning_ignore("unsafe_method_access")
 		prints(name, obj, obj.get_class(), obj.get_name())
 
 
