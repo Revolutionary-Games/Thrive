@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Thrive VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2025-03-04 13:08+0200\n"
+"POT-Creation-Date: 2025-03-07 10:42+0200\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -2292,7 +2292,7 @@ msgstr ""
 msgid "EDITOR_TUTORIAL_EDITOR_TEXT"
 msgstr ""
 
-#: ../src/microbe_stage/editor/tooltips/StatModifierToolTip.tscn:67
+#: ../src/microbe_stage/editor/tooltips/StatModifierToolTip.tscn:69
 msgid "EFFECTIVE_VALUE"
 msgstr ""
 
@@ -3145,7 +3145,7 @@ msgstr ""
 msgid "HOLD_TO_SHOW_CURSOR_ADVICE_TEXT"
 msgstr ""
 
-#: ../src/ascension_stage/AscensionCeremony.tscn:231
+#: ../src/ascension_stage/AscensionCeremony.tscn:209
 msgid "HOLD_TO_SKIP_CREDITS"
 msgstr ""
 
@@ -5977,13 +5977,13 @@ msgstr ""
 msgid "OXYGEN_INHIBITOR_SYNTHESIS"
 msgstr ""
 
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:894
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:902
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:897
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:905
 #: ../src/microbe_stage/editor/TolerancesEditorSubComponent.tscn:409
 msgid "OXYGEN_RESISTANCE"
 msgstr ""
 
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:895
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:898
 msgid "OXYGEN_TOLERANCE_TOOLTIP"
 msgstr ""
 
@@ -6155,9 +6155,10 @@ msgstr ""
 #: ../src/general/WorldGenerationSettings.cs:186
 #: ../src/gui_common/CompoundAmount.cs:316
 #: ../src/microbe_stage/editor/MicrobeEditorReportComponent.cs:518
-#: ../src/microbe_stage/editor/TolerancesEditorSubComponent.cs:631
+#: ../src/microbe_stage/editor/TolerancesEditorSubComponent.cs:699
 #: ../src/microbe_stage/editor/tooltips/EnvironmentalToleranceToolTip.cs:98
-#: ../src/microbe_stage/editor/tooltips/StatModifierToolTip.cs:136
+#: ../src/microbe_stage/editor/tooltips/StatModifierToolTip.cs:157
+#: ../src/microbe_stage/editor/tooltips/StatModifierToolTip.cs:237
 #: ../src/microbe_stage/editor/upgrades/ToxinUpgradeGUI.cs:54
 #: ../src/microbe_stage/gui/CompoundProgressBar.cs:505
 #: ../src/microbe_stage/gui/CompoundProgressBar.cs:581
@@ -6337,8 +6338,8 @@ msgstr ""
 msgid "PREDICTION_DETAILS_OPEN_TOOLTIP"
 msgstr ""
 
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:878
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:886
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:879
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:887
 #: ../src/microbe_stage/editor/TolerancesEditorSubComponent.tscn:278
 #: ../src/microbe_stage/gui/PatchDetailsPanel.tscn:196
 msgid "PRESSURE"
@@ -6348,7 +6349,7 @@ msgstr ""
 msgid "PRESSURE_SHORT"
 msgstr ""
 
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:879
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:880
 msgid "PRESSURE_TOLERANCE_TOOLTIP"
 msgstr ""
 
@@ -7931,38 +7932,38 @@ msgstr ""
 msgid "TOGGLE_UNBINDING"
 msgstr ""
 
-#: ../src/microbe_stage/MicrobeEnvironmentalToleranceCalculations.cs:118
+#: ../src/microbe_stage/MicrobeEnvironmentalToleranceCalculations.cs:136
 msgid "TOLERANCES_TOO_HIGH_PRESSURE"
 msgstr ""
 
-#: ../src/microbe_stage/MicrobeEnvironmentalToleranceCalculations.cs:103
+#: ../src/microbe_stage/MicrobeEnvironmentalToleranceCalculations.cs:121
 msgid "TOLERANCES_TOO_HIGH_TEMPERATURE"
 msgstr ""
 
-#: ../src/microbe_stage/MicrobeEnvironmentalToleranceCalculations.cs:130
+#: ../src/microbe_stage/MicrobeEnvironmentalToleranceCalculations.cs:148
 msgid "TOLERANCES_TOO_LOW_OXYGEN_PROTECTION"
 msgstr ""
 
-#: ../src/microbe_stage/MicrobeEnvironmentalToleranceCalculations.cs:123
+#: ../src/microbe_stage/MicrobeEnvironmentalToleranceCalculations.cs:141
 msgid "TOLERANCES_TOO_LOW_PRESSURE"
 msgstr ""
 
-#: ../src/microbe_stage/MicrobeEnvironmentalToleranceCalculations.cs:108
+#: ../src/microbe_stage/MicrobeEnvironmentalToleranceCalculations.cs:126
 msgid "TOLERANCES_TOO_LOW_TEMPERATURE"
 msgstr ""
 
-#: ../src/microbe_stage/MicrobeEnvironmentalToleranceCalculations.cs:136
+#: ../src/microbe_stage/MicrobeEnvironmentalToleranceCalculations.cs:154
 msgid "TOLERANCES_TOO_LOW_UV_PROTECTION"
 msgstr ""
 
-#: ../src/microbe_stage/MicrobeEnvironmentalToleranceCalculations.cs:93
+#: ../src/microbe_stage/MicrobeEnvironmentalToleranceCalculations.cs:111
 msgid "TOLERANCES_UNSUITABLE_DEBUFFS"
 msgstr ""
 
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:871
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:887
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:903
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:920
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:888
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:906
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:923
 msgid "TOLERANCE_FROM_ORGANELLES_TOOLTIP"
 msgstr ""
 
@@ -8528,13 +8529,13 @@ msgstr ""
 msgid "USE_VIRTUAL_WINDOW_SIZE"
 msgstr ""
 
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:911
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:919
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:914
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:922
 #: ../src/microbe_stage/editor/TolerancesEditorSubComponent.tscn:476
 msgid "UV_PROTECTION"
 msgstr ""
 
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:912
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:915
 msgid "UV_TOLERANCE_TOOLTIP"
 msgstr ""
 
@@ -8563,7 +8564,7 @@ msgid "VACUOLE_SPECIALIZED_DESCRIPTION"
 msgstr ""
 
 #: ../src/gui_common/CompoundAmount.cs:311
-#: ../src/microbe_stage/editor/TolerancesEditorSubComponent.cs:630
+#: ../src/microbe_stage/editor/TolerancesEditorSubComponent.cs:698
 #: ../src/microbe_stage/gui/CompoundProgressBar.cs:509
 #: ../src/microbe_stage/gui/CompoundProgressBar.cs:585
 #: ../src/microbe_stage/gui/PatchDetailsPanel.cs:371
