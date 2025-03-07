@@ -24,7 +24,7 @@ func add_testsuite_report(p_resource_path: String, p_suite_name: String, p_test_
 @warning_ignore("shadowed_variable")
 func add_testcase(resource_path :String, suite_name :String, test_name: String) -> void:
 	for report:GdUnitTestSuiteReport in _reports:
-		if report.resource_path() == resource_path:
+		if report.get_resource_path() == resource_path:
 			var test_report := GdUnitTestCaseReport.new(resource_path, suite_name, test_name)
 			report.add_or_create_test_report(test_report)
 
@@ -38,7 +38,7 @@ func add_testsuite_reports(
 	p_reports :Array = []) -> void:
 
 	for report:GdUnitTestSuiteReport in _reports:
-		if report.resource_path() == p_resource_path:
+		if report.get_resource_path() == p_resource_path:
 			report.set_reports(p_reports)
 	update_summary_counters(p_error_count, p_failure_count, p_orphan_count, 0, 0, p_duration)
 
@@ -49,7 +49,7 @@ func add_testcase_reports(
 	p_reports: Array[GdUnitReport]) -> void:
 
 	for report:GdUnitTestSuiteReport in _reports:
-		if report.resource_path() == p_resource_path:
+		if report.get_resource_path() == p_resource_path:
 			report.add_testcase_reports(p_test_name, p_reports)
 
 
@@ -63,7 +63,7 @@ func update_testsuite_counters(
 	p_duration: int) -> void:
 
 	for report:GdUnitTestSuiteReport in _reports:
-		if report.resource_path() == p_resource_path:
+		if report.get_resource_path() == p_resource_path:
 			report.update_testsuite_counters(p_error_count, p_failure_count, p_orphan_count, p_is_skipped, p_is_flaky, p_duration)
 	update_summary_counters(p_error_count, p_failure_count, p_orphan_count, p_is_skipped, p_is_flaky, 0)
 
@@ -79,7 +79,7 @@ func set_testcase_counters(
 	p_duration: int) -> void:
 
 	for report:GdUnitTestSuiteReport in _reports:
-		if report.resource_path() == p_resource_path:
+		if report.get_resource_path() == p_resource_path:
 			report.set_testcase_counters(p_test_name, p_error_count, p_failure_count, p_orphan_count,
 				p_is_skipped, p_is_flaky, p_duration)
 

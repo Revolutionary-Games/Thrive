@@ -23,7 +23,7 @@
 [ext_resource type="Texture2D" uid="uid://ch4yengbxhjsg" path="res://assets/textures/gui/bevel/clockButtonDisabled.svg" id="19_gtqnh"]
 [ext_resource type="FontFile" uid="uid://dblvrxw3ue372" path="res://assets/fonts/Lato-Italic.ttf" id="20_ffguv"]
 [ext_resource type="Theme" uid="uid://b4cx0o110g4b6" path="res://src/gui_common/thrive_theme.tres" id="21"]
-[ext_resource type="Script" path="res://src/microbe_stage/editor/EditorComponentBottomLeftButtons.cs" id="22"]
+[ext_resource type="Script" uid="uid://cxn2s1oeuknqo" path="res://src/microbe_stage/editor/EditorComponentBottomLeftButtons.cs" id="22"]
 
 [sub_resource type="Animation" id="22"]
 resource_name = "invalidSpeciesNameFlash"
@@ -43,7 +43,7 @@ tracks/0/keys = {
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_b77ra"]
 _data = {
-"invalidSpeciesNameFlash": SubResource("22")
+&"invalidSpeciesNameFlash": SubResource("22")
 }
 
 [node name="EditorComponentBottomLeftButtons" type="MarginContainer"]

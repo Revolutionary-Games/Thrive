@@ -7,8 +7,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2025-03-04 13:08+0200\n"
-"PO-Revision-Date: 2025-02-06 13:29+0000\n"
+"POT-Creation-Date: 2025-03-07 11:33+0200\n"
+"PO-Revision-Date: 2025-03-07 10:46+0000\n"
 "Last-Translator: Anonymous <noreply@weblate.org>\n"
 "Language-Team: Polish <https://translate.revolutionarygamesstudio.com/projects/thrive/thrive-game/pl/>\n"
 "Language: pl\n"
@@ -273,7 +273,7 @@ msgstr ""
 "Menu poniżej pokazuje, co się może stać, jeśli komórka nie będzie miała któregoś z surowców niezbędnych do wytworzenia ATP."
 
 msgid "ATP_BALANCE_WITHOUT_EXTERNAL_RESOURCES"
-msgstr ""
+msgstr "Bez źródeł zewnętrznych"
 
 msgid "ATP_BALANCE_WITHOUT_GLUCOSE"
 msgstr "Bez glukozy"
@@ -526,8 +526,9 @@ msgstr "Przez:"
 msgid "BY_REVOLUTIONARY_GAMES"
 msgstr "Wykonane Przez Revolutionary Games Studio"
 
+#, fuzzy
 msgid "CACHE_DISK_MAX_TIME"
-msgstr ""
+msgstr "Maksymalny czas przetrzymywania przedmiotów na dysku przed usunięciem"
 
 msgid "CACHE_MEMORY_MAX_ITEMS"
 msgstr ""
@@ -771,7 +772,7 @@ msgid "CLEAN_UP_OLD_SAVES"
 msgstr "Usuń stare zapisy"
 
 msgid "CLEAR_CACHE"
-msgstr ""
+msgstr "Wyczyść pamięć podręczną"
 
 msgid "CLOSE"
 msgstr "Zamknij"
@@ -780,7 +781,7 @@ msgid "CLOSE_OPTIONS"
 msgstr "Zamknąć opcje?"
 
 msgid "CLOSTRIDIAL_FERMENTATION"
-msgstr ""
+msgstr "Fermentacja masłowa"
 
 #, fuzzy
 msgid "CLOUD_BENCHMARK"
@@ -1055,7 +1056,7 @@ msgid "CONTROLLER_ANY_DEVICE"
 msgstr "Strefy Martwe Kontrolera"
 
 msgid "CONTROLLER_AXIS_L2"
-msgstr ""
+msgstr "L2"
 
 msgid "CONTROLLER_AXIS_LEFT_TRIGGER"
 msgstr ""
@@ -1131,7 +1132,7 @@ msgid "CONTROLLER_BUTTON_PADDLE4"
 msgstr "Strefy Martwe Kontrolera"
 
 msgid "CONTROLLER_BUTTON_PS3_SELECT"
-msgstr ""
+msgstr "Wybierz"
 
 msgid "CONTROLLER_BUTTON_PS3_START"
 msgstr "Start"
@@ -1180,7 +1181,7 @@ msgid "CONTROLLER_BUTTON_RIGHT_STICK"
 msgstr ""
 
 msgid "CONTROLLER_BUTTON_TOUCH_PAD"
-msgstr ""
+msgstr "Panel dotykowy"
 
 msgid "CONTROLLER_BUTTON_UNKNOWN"
 msgstr "Nieznany Przycisk"
@@ -1192,10 +1193,10 @@ msgid "CONTROLLER_BUTTON_XBOX_B"
 msgstr "B"
 
 msgid "CONTROLLER_BUTTON_XBOX_BACK"
-msgstr ""
+msgstr "Wstecz"
 
 msgid "CONTROLLER_BUTTON_XBOX_GUIDE"
-msgstr ""
+msgstr "Przewodnik"
 
 #, fuzzy
 msgid "CONTROLLER_BUTTON_XBOX_START"
@@ -1487,7 +1488,7 @@ msgid "DELETE_THIS_SAVE_PROMPT"
 msgstr "Usunąć ten zapis?"
 
 msgid "DESCEND_BUTTON"
-msgstr ""
+msgstr "Zniżenie"
 
 #, fuzzy
 msgid "DESCEND_CONFIRMATION"
@@ -1549,6 +1550,7 @@ msgstr "Wspierający Devbuilderów"
 msgid "DIFFICULTY"
 msgstr "Poziom trudności"
 
+#, fuzzy
 msgid "DIFFICULTY_DETAILS_STRING"
 msgstr ""
 "Ogólny poziom trudności: {0}\n"
@@ -1853,7 +1855,7 @@ msgid "ENDOSYMBIONT_ENGULFED_PROGRESS"
 msgstr "Zamieniono cel endosymbiozy w tymczasowego organella, to zwiększy postęp w procesie endosymbiozy jeśli uda ci się wejść w edytor"
 
 msgid "ENDOSYMBIONT_TYPE_ALREADY_PRESENT"
-msgstr ""
+msgstr "Typ endosymbionta obecny, wejdź w tryb edytora, aby kontynuować proces endosymbiozy"
 
 #, fuzzy
 msgid "ENDOSYMBIOSIS_AVAILABLE_ORGANELLES"
@@ -1863,7 +1865,7 @@ msgid "ENDOSYMBIOSIS_BUTTON"
 msgstr "Endosymbioza"
 
 msgid "ENDOSYMBIOSIS_CANCEL_TOOLTIP"
-msgstr ""
+msgstr "Anuluj ten proces endosymbiozy. Tracisz wtedy cały dotychczasowy postęp tego endosymbionta!"
 
 #, fuzzy
 msgid "ENDOSYMBIOSIS_COMPLETE_TOOLTIP"
@@ -1880,13 +1882,13 @@ msgid "ENDOSYMBIOSIS_NO_CANDIDATE_ORGANELLES"
 msgstr "Niepołączone Organelle"
 
 msgid "ENDOSYMBIOSIS_PROGRESSING_EXPLANATION"
-msgstr ""
+msgstr "Aby zrobić postęp w procesie endosymbiozy, potrzebny gatunek musi zostać wchłonięty i zmieniony w tymczasowe organellum (obecne może być tylko jedno na raz). Postęp jest zapisany, gdy wejdziesz do edytora, posiadając tymczasowe organellum."
 
 msgid "ENDOSYMBIOSIS_PROKARYOTIC_LIMIT_EXPLANATION"
 msgstr "Prokarioty mogą mieć najwyżej jeden endosymbiont"
 
 msgid "ENDOSYMBIOSIS_SINGLE_SPECIES_PROGRESS_DESCRIPTION"
-msgstr ""
+msgstr "Przeżyj do edytora z tym gatunkiem jako tymczasowym organellum, aby kontynować"
 
 #, fuzzy
 msgid "ENDOSYMBIOSIS_START_TOOLTIP"
@@ -1923,7 +1925,7 @@ msgid "ENERGY_SUMMARY_LINE"
 msgstr "Całkowita zdobyta energia wynosi {0} z indywidualnym kosztem {1} tworzącym nieuregulowaną populację {2}"
 
 msgid "ENGULF_NO_ATP_DAMAGE_MESSAGE"
-msgstr ""
+msgstr "Uszkodzono przez wejście do trybu wchłaniania bez ATP"
 
 msgid "ENTER_EXISTING_ID"
 msgstr "Podaj Istniejące ID"
@@ -2038,7 +2040,7 @@ msgid "EXIT_TO_LAUNCHER"
 msgstr "Wyjdź do Launchera"
 
 msgid "EXPERIMENTAL_FEATURES"
-msgstr ""
+msgstr "Eksperymentalne funkcje"
 
 #, fuzzy
 msgid "EXPERIMENTAL_FEATURES_EXPLANATION"
@@ -2100,7 +2102,7 @@ msgid "FAILED_SAVE_DELETION"
 msgstr "Błąd: Usunięcie zapisu się nie powiodło"
 
 msgid "FAILED_SAVE_DELETION_DESCRIPTION"
-msgstr ""
+msgstr "Zapis gry nie mógł zostać usunięty."
 
 msgid "FEARFUL"
 msgstr "Płochliwość"
@@ -4520,9 +4522,6 @@ msgstr "Przesuń w prawo"
 
 msgid "PAN_CAMERA_UP"
 msgstr "Przesuń w górę"
-
-msgid "PASSIVE_REPRODUCTION_PROGRESS"
-msgstr "Biernie uzyskuj postęp reprodukcji"
 
 msgid "PASSIVE_REPRODUCTION_PROGRESS_EXPLANATION"
 msgstr "(biernie uzyskuj związki reprodukcji ze środowiska bez potrzeby robienia czegokolwiek)"
@@ -8486,6 +8485,9 @@ msgstr "Przybliż"
 
 msgid "ZOOM_OUT"
 msgstr "Oddal"
+
+#~ msgid "PASSIVE_REPRODUCTION_PROGRESS"
+#~ msgstr "Biernie uzyskuj postęp reprodukcji"
 
 #, fuzzy
 #~ msgid "MIGRATE"

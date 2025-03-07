@@ -1,7 +1,7 @@
 [gd_scene load_steps=9 format=3 uid="uid://dwkek50fju0fu"]
 
 [ext_resource type="Theme" uid="uid://b4cx0o110g4b6" path="res://src/gui_common/thrive_theme.tres" id="1_um53y"]
-[ext_resource type="Script" path="res://src/microbe_stage/PatchNameOverlay.cs" id="3"]
+[ext_resource type="Script" uid="uid://dv60ccgxd8by2" path="res://src/microbe_stage/PatchNameOverlay.cs" id="3"]
 [ext_resource type="LabelSettings" uid="uid://cly2udph8cr5d" path="res://src/gui_common/fonts/Title-SemiBold-HugePlus.tres" id="3_ln4oc"]
 
 [sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_02uav"]
@@ -43,7 +43,7 @@ tracks/1/keys = {
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_p6wm2"]
 _data = {
-"FadeInOut": SubResource("37")
+&"FadeInOut": SubResource("37")
 }
 
 [node name="PatchNameOverlay" type="PanelContainer"]

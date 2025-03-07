@@ -1,7 +1,7 @@
 [gd_scene load_steps=4 format=3 uid="uid://ddx5iuk72ucfx"]
 
 [ext_resource type="PackedScene" uid="uid://cckki1kx0cnol" path="res://src/thriveopedia/ThriveopediaPage.tscn" id="1"]
-[ext_resource type="Script" path="res://src/thriveopedia/pages/wiki/stages/ThriveopediaStagePage.cs" id="2_x2y32"]
+[ext_resource type="Script" uid="uid://ct41mpkjgrsog" path="res://src/thriveopedia/pages/wiki/stages/ThriveopediaStagePage.cs" id="2_x2y32"]
 [ext_resource type="PackedScene" uid="uid://b725n2vco3c4u" path="res://src/thriveopedia/pages/wiki/stages/StageInfoBox.tscn" id="3_2basw"]
 
 [node name="ThriveopediaPage" node_paths=PackedStringArray("infoBox", "mainArticle", "noticeContainer") instance=ExtResource("1")]
