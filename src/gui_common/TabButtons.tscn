@@ -1,7 +1,7 @@
 [gd_scene load_steps=4 format=3 uid="uid://dw3ubsraoopin"]
 
-[ext_resource type="Script" path="res://src/gui_common/TabButtons.cs" id="1"]
-[ext_resource type="PackedScene" path="res://src/gui_common/KeyPrompt.tscn" id="3"]
+[ext_resource type="Script" uid="uid://b83rkap8lxrhi" path="res://src/gui_common/TabButtons.cs" id="1"]
+[ext_resource type="PackedScene" uid="uid://ci8b4cca0q55h" path="res://src/gui_common/KeyPrompt.tscn" id="3"]
 [ext_resource type="LabelSettings" uid="uid://dcekwe8j7ep16" path="res://src/gui_common/fonts/Title-SemiBold-AlmostHuge.tres" id="3_fsivl"]
 
 [node name="TabButtons" type="HBoxContainer"]

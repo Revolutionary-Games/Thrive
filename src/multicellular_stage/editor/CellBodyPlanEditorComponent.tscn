@@ -1,6 +1,6 @@
 [gd_scene load_steps=35 format=3 uid="uid://dylo35brdi0js"]
 
-[ext_resource type="Script" path="res://src/multicellular_stage/editor/CellBodyPlanEditorComponent.cs" id="1"]
+[ext_resource type="Script" uid="uid://ctqyvjb6wvagi" path="res://src/multicellular_stage/editor/CellBodyPlanEditorComponent.cs" id="1"]
 [ext_resource type="PackedScene" uid="uid://ipvxtakaph16" path="res://src/multicellular_stage/editor/CellPopupMenu.tscn" id="3"]
 [ext_resource type="PackedScene" uid="uid://0hb8nq18ljr8" path="res://src/microbe_stage/editor/LightConfigurationPanel.tscn" id="3_nj0t6"]
 [ext_resource type="Theme" uid="uid://b4cx0o110g4b6" path="res://src/gui_common/thrive_theme.tres" id="5"]
@@ -15,8 +15,8 @@
 [ext_resource type="PackedScene" uid="uid://bwegwjlcioasf" path="res://src/microbe_stage/editor/EditorComponentBottomLeftButtons.tscn" id="13"]
 [ext_resource type="PackedScene" uid="uid://dw3ubsraoopin" path="res://src/gui_common/TabButtons.tscn" id="15"]
 [ext_resource type="Texture2D" uid="uid://ckrug48v4bimt" path="res://assets/textures/gui/bevel/warningBadge.png" id="16"]
-[ext_resource type="PackedScene" path="res://src/gui_common/dialogs/CustomWindow.tscn" id="30_4y6am"]
-[ext_resource type="PackedScene" path="res://src/microbe_stage/ProcessList.tscn" id="31_iccom"]
+[ext_resource type="PackedScene" uid="uid://du8sc8kjirguk" path="res://src/gui_common/dialogs/CustomWindow.tscn" id="30_4y6am"]
+[ext_resource type="PackedScene" uid="uid://dt4v2vma5p2s4" path="res://src/microbe_stage/ProcessList.tscn" id="31_iccom"]
 
 [sub_resource type="StyleBoxFlat" id="4"]
 content_margin_left = 5.0
@@ -305,9 +305,9 @@ tracks/0/keys = {
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_1nh8x"]
 _data = {
-"RESET": SubResource("42"),
-"hide": SubResource("43"),
-"show": SubResource("44")
+&"RESET": SubResource("42"),
+&"hide": SubResource("43"),
+&"show": SubResource("44")
 }
 
 [node name="CellBodyPlanEditorComponent" type="Control" node_paths=PackedStringArray("organismStatisticsPanel", "negativeAtpPopup")]

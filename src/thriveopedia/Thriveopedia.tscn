@@ -1,6 +1,6 @@
 [gd_scene load_steps=27 format=3 uid="uid://bt4wq0ddch84i"]
 
-[ext_resource type="Script" path="res://src/thriveopedia/Thriveopedia.cs" id="1"]
+[ext_resource type="Script" uid="uid://0bqayucvq028" path="res://src/thriveopedia/Thriveopedia.cs" id="1"]
 [ext_resource type="Theme" uid="uid://b4cx0o110g4b6" path="res://src/gui_common/thrive_theme.tres" id="2"]
 [ext_resource type="Texture2D" uid="uid://camjm54dldghh" path="res://assets/textures/gui/bevel/homeButtonHover.png" id="3"]
 [ext_resource type="Texture2D" uid="uid://w4gnovw8c1hc" path="res://assets/textures/gui/bevel/homeButton.png" id="4"]
@@ -21,7 +21,7 @@
 [ext_resource type="Texture2D" uid="uid://dq4vgh4rhhk55" path="res://assets/textures/gui/bevel/navigationButton.png" id="22"]
 [ext_resource type="Texture2D" uid="uid://rq3vjvh31df5" path="res://assets/textures/gui/bevel/navigationButtonHover.png" id="23"]
 [ext_resource type="Texture2D" uid="uid://r81yhcuka8ch" path="res://assets/textures/gui/bevel/navigationButtonActive.png" id="24"]
-[ext_resource type="PackedScene" path="res://src/gui_common/FocusGrabber.tscn" id="26"]
+[ext_resource type="PackedScene" uid="uid://bgeijgq7runaw" path="res://src/gui_common/FocusGrabber.tscn" id="26"]
 
 [sub_resource type="Animation" id="1"]
 resource_name = "Collapse"
@@ -148,9 +148,9 @@ tracks/2/keys = {
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_4nf6r"]
 _data = {
-"Collapse": SubResource("1"),
-"Expand": SubResource("2"),
-"RESET": SubResource("3")
+&"Collapse": SubResource("1"),
+&"Expand": SubResource("2"),
+&"RESET": SubResource("3")
 }
 
 [node name="Thriveopedia" type="Control"]

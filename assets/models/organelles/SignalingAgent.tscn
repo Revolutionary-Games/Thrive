@@ -2,13 +2,15 @@
 
 [ext_resource type="ArrayMesh" uid="uid://be5hi6ewama7n" path="res://assets/models/organelles/SignalingAgent.mesh" id="1"]
 [ext_resource type="Texture2D" uid="uid://dpoart80a28ef" path="res://assets/textures/SignalAgentAlbedo.png" id="2"]
-[ext_resource type="Shader" path="res://shaders/OrganelleTransparent.gdshader" id="3"]
+[ext_resource type="Shader" uid="uid://bpdtg8smolq32" path="res://shaders/OrganelleTransparent.gdshader" id="3"]
 [ext_resource type="Texture2D" uid="uid://baxuoyeo83r2u" path="res://assets/textures/dissolve_noise.tres" id="4"]
 
 [sub_resource type="ShaderMaterial" id="1"]
 resource_local_to_scene = true
 render_priority = 0
 shader = ExtResource("3")
+shader_parameter/texture = ExtResource("2")
+shader_parameter/dissolveTexture = ExtResource("4")
 shader_parameter/dissolveValue = 0.0
 shader_parameter/dissolveScale = 1.0
 shader_parameter/fresnelValue = 1.0
@@ -17,8 +19,6 @@ shader_parameter/outlineWidth = 0.05
 shader_parameter/growColor = Color(0.105, 0.168, 0.21, 1)
 shader_parameter/tint = Color(1, 1, 1, 1)
 shader_parameter/jiggleAmount = 0.0005
-shader_parameter/texture = ExtResource("2")
-shader_parameter/dissolveTexture = ExtResource("4")
 
 [node name="SignalingAgent" type="MeshInstance3D"]
 transform = Transform3D(0.75, 0, 0, 0, -3.27835e-08, 0.75, 0, -0.75, -3.27835e-08, 0, 0, 0)

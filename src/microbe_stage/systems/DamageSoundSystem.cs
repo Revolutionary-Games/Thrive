@@ -99,7 +99,7 @@ public sealed class DamageSoundSystem : AEntitySetSystem<float>
                     // Doesn't make a ton of sense if other cells play Geiger-counter sounds...
                     if (isPlayer)
                     {
-                        soundEffectPlayer.PlaySoundEffect("res://assets/sounds/soundeffects/radiation.ogg");
+                        soundEffectPlayer.PlaySoundEffect("res://assets/sounds/soundeffects/radiation.ogg", 28.0f);
                     }
                 }
             }

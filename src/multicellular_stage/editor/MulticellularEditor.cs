@@ -88,6 +88,11 @@ public partial class MulticellularEditor : EditorBase<EditorAction, MicrobeStage
     [JsonIgnore]
     public ICellDefinition? EditedCellProperties => selectedCellTypeToEdit;
 
+    // TODO: could implement this if desired but for now this is always null (might be needed for multicellular
+    // tolerances implementation)
+    [JsonIgnore]
+    public IReadOnlyList<OrganelleTemplate>? EditedCellOrganelles => null;
+
     protected override string MusicCategory => "MulticellularEditor";
 
     protected override MainGameState ReturnToState => MainGameState.MicrobeStage;

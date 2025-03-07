@@ -1,6 +1,6 @@
 [gd_scene load_steps=17 format=3 uid="uid://oq2aawq8xamx"]
 
-[ext_resource type="Shader" path="res://shaders/EmissiveChunk.gdshader" id="1_mg4le"]
+[ext_resource type="Shader" uid="uid://do4akofb50cqg" path="res://shaders/EmissiveChunk.gdshader" id="1_mg4le"]
 [ext_resource type="Texture2D" uid="uid://chqec76b7yinx" path="res://assets/textures/RadioactiveChunk1_normal.png" id="2_bg0yx"]
 [ext_resource type="Texture2D" uid="uid://baxuoyeo83r2u" path="res://assets/textures/dissolve_noise.tres" id="3_2gpaa"]
 [ext_resource type="Texture2D" uid="uid://bd0wg67rat6fh" path="res://assets/textures/RadioactiveChunk1_emission.png" id="4_2j0f4"]
@@ -11,19 +11,19 @@
 resource_local_to_scene = true
 render_priority = 0
 shader = ExtResource("1_mg4le")
+shader_parameter/albedoTexture = ExtResource("4_14ku5")
+shader_parameter/normalTexture = ExtResource("2_bg0yx")
 shader_parameter/roughness = 0.85
 shader_parameter/metallic = 0.85
+shader_parameter/emissionTexture = ExtResource("4_2j0f4")
 shader_parameter/emission = Color(0.14527, 0.237416, 0.116779, 1)
 shader_parameter/emissionEnergy = 2.0
 shader_parameter/useTextureEmission = true
+shader_parameter/dissolveTexture = ExtResource("3_2gpaa")
 shader_parameter/dissolveValue = 0.0
 shader_parameter/dissolveScale = 1.0
 shader_parameter/outlineWidth = 0.1
 shader_parameter/growColor = Color(0, 0, 0, 1)
-shader_parameter/albedoTexture = ExtResource("4_14ku5")
-shader_parameter/normalTexture = ExtResource("2_bg0yx")
-shader_parameter/emissionTexture = ExtResource("4_2j0f4")
-shader_parameter/dissolveTexture = ExtResource("3_2gpaa")
 
 [sub_resource type="Curve" id="Curve_gnhjc"]
 _data = [Vector2(0, 0.473418), 0.0, 5.40276, 0, 0, Vector2(0.100946, 0.975316), 0.796959, 0.796959, 0, 0, Vector2(0.22082, 1), 0.0, 0.0, 0, 0, Vector2(0.413249, 0.35), -1.30411, -1.30411, 0, 0, Vector2(0.987382, 0), -0.0474222, 0.0, 0, 0]

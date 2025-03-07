@@ -7,9 +7,9 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2025-03-02 06:12-0300\n"
-"PO-Revision-Date: 2025-02-23 16:13+0000\n"
-"Last-Translator: Teashrock <kajitsu22@gmail.com>\n"
+"POT-Creation-Date: 2025-03-07 11:33+0200\n"
+"PO-Revision-Date: 2025-03-07 10:46+0000\n"
+"Last-Translator: Anonymous <noreply@weblate.org>\n"
 "Language-Team: Ukrainian <https://translate.revolutionarygamesstudio.com/projects/thrive/thrive-game/uk/>\n"
 "Language: uk\n"
 "MIME-Version: 1.0\n"
@@ -1515,6 +1515,7 @@ msgstr "Підтримка у розробці"
 msgid "DIFFICULTY"
 msgstr "Складність"
 
+#, fuzzy
 msgid "DIFFICULTY_DETAILS_STRING"
 msgstr ""
 "Попередня складність: {0}\n"
@@ -1781,13 +1782,8 @@ msgstr ""
 "Коли будете готові, натисніть кнопку \"Далі\" справа знизу, щоб перейти до наступної вкладки редактора."
 
 #, fuzzy
-msgid "EDITOR_TUTORIAL_MICROBE_EDITOR_NUCLEUS"
-msgstr ""
-"Це клітинний редактор, де Ви можете розвивати свій вид, використовуючи мутаційні очки (МО). Кожне покоління у Вас є 100 МО для витрат, тому не намагайтеся їх накопичувати.\n"
-"\n"
-"Гекс (шестикутник) в центрі екрана — це ваша клітина, що зараз складається лише з однієї частинки цитоплазми.\n"
-"\n"
-"Щоб продовжити, виберіть частину на панелі зліва. Потім клацніть ЛКМ біля гекса, щоб розмістити його. Ви можете обертати частини за допомогою [thrive:input]e_rotate_left[/thrive:input] та [thrive:input]e_rotate_right[/thrive:input]."
+msgid "EFFECTIVE_VALUE"
+msgstr "{0}%"
 
 msgid "EIGHT_TIMES"
 msgstr "8х"
@@ -2389,7 +2385,7 @@ msgid "HEALTH"
 msgstr "Здоров'я"
 
 msgid "HEALTH_MODIFIER"
-msgstr ""
+msgstr "Модифікатор здоров'я"
 
 #, fuzzy
 msgid "HEAT_ACCUMULATION_BAR_TOOLTIP"
@@ -2716,7 +2712,8 @@ msgstr "Липень"
 msgid "JUNE"
 msgstr "Червень"
 
-msgid "KEEP_CURRENT_FLEXIBILITY"
+#, fuzzy
+msgid "KEEP_CURRENT_SHORT"
 msgstr "Зберегти поточну гнучкість"
 
 msgid "KEEP_CURRENT_TOLERANCE_FLEXIBILITY_TOOLTIP"
@@ -4438,9 +4435,6 @@ msgstr "Повернути панораму вправо"
 msgid "PAN_CAMERA_UP"
 msgstr "Повернути панораму вгору"
 
-msgid "PASSIVE_REPRODUCTION_PROGRESS"
-msgstr "Пасивно збільшувати репродуктивний прогрес"
-
 msgid "PASSIVE_REPRODUCTION_PROGRESS_EXPLANATION"
 msgstr "(пасивно збільшувати сполуки для розмноження з середовища без дій )"
 
@@ -4724,7 +4718,7 @@ msgid "RANDOMIZE_SPECIES_NAME"
 msgstr "Випадкова назва виду"
 
 msgid "RANDOM_SEED_TOOLTIP"
-msgstr "Значення, яке використовує для генерації світу, що мусить бути дадатним, цілим числом"
+msgstr "Значення, яке використовує для генерації світу, що мусить бути додатним, цілим числом"
 
 msgid "RAW"
 msgstr "Необроблений"
@@ -5859,6 +5853,10 @@ msgstr "{0}: +{1} АТФ"
 
 msgid "TOLERANCES_UNSUITABLE_DEBUFFS"
 msgstr ""
+
+#, fuzzy
+msgid "TOLERANCE_FROM_ORGANELLES_TOOLTIP"
+msgstr "Як багато ультрафіолетової радіації ваш вид здатен витримати до появи негативних ефектів. Якщо на поточній ділянці забагато світла, ви отримаєте негативні ефекти допоки не підвищите опір."
 
 msgid "TOLERANCE_RANGE_LABEL"
 msgstr "Гнучкість:"
@@ -8359,6 +8357,31 @@ msgstr ""
 msgid "WORLD_RELATIVE_MOVEMENT"
 msgstr "Відносно світу"
 
+#, fuzzy
+msgid "WORLD_SIZE"
+msgstr "Світ"
+
+#, fuzzy
+msgid "WORLD_SIZE_EXPLANATION"
+msgstr ""
+"Зосереджені мікроби шукатимуть брили або здобич на більшій відстані\n"
+"та можуть завзятіше змагатися за брили.\n"
+"Чуйні мікроби швидше відвертатимуться на нові цілі."
+
+msgid "WORLD_SIZE_LARGE"
+msgstr ""
+
+#, fuzzy
+msgid "WORLD_SIZE_MEDIUM"
+msgstr "Відносно світу"
+
+msgid "WORLD_SIZE_SMALL"
+msgstr ""
+
+#, fuzzy
+msgid "WORLD_SIZE_TOOLTIP"
+msgstr "Запустити декілька світів, кількість генерацій для кожного з них визначається через кнопку вибору зверху."
+
 msgid "WORST_PATCH_COLON"
 msgstr "Найгірша ділянка:"
 
@@ -8398,6 +8421,9 @@ msgstr "Приблизитись"
 
 msgid "ZOOM_OUT"
 msgstr "Віддалитись"
+
+#~ msgid "PASSIVE_REPRODUCTION_PROGRESS"
+#~ msgstr "Пасивно збільшувати репродуктивний прогрес"
 
 #~ msgid "MIGRATE"
 #~ msgstr "Мігрувати"

@@ -17,10 +17,10 @@ public partial class BackgroundPlane : Node3D
     ///   Background plane that is moved farther away from the camera when zooming out
     /// </summary>
     [Export]
-    private CsgMesh3D backgroundPlane = null!;
+    private MeshInstance3D backgroundPlane = null!;
 
     [Export]
-    private CsgMesh3D blurResultPlane = null!;
+    private MeshInstance3D blurResultPlane = null!;
 
     [Export]
     private ColorRect blurColorRect = null!;
@@ -60,8 +60,8 @@ public partial class BackgroundPlane : Node3D
 
     public override void _Ready()
     {
-        var material = backgroundPlane.Material;
-        var planeBlurMaterial = blurResultPlane.Material;
+        var material = backgroundPlane.MaterialOverride;
+        var planeBlurMaterial = blurResultPlane.MaterialOverride;
         var colorRectBlurMaterial = blurColorRect.Material;
 
         if (material == null || planeBlurMaterial == null || colorRectBlurMaterial == null)

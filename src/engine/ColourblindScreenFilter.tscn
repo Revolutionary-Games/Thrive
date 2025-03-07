@@ -1,8 +1,8 @@
 [gd_scene load_steps=5 format=3 uid="uid://cmg6okryq4k0l"]
 
-[ext_resource type="Script" path="res://src/engine/ColourblindScreenFilter.cs" id="1"]
+[ext_resource type="Script" uid="uid://drrwkkq6115xw" path="res://src/engine/ColourblindScreenFilter.cs" id="1"]
 [ext_resource type="Texture2D" uid="uid://dtvbg17mj0i35" path="res://assets/textures/blank.png" id="2"]
-[ext_resource type="Shader" path="res://shaders/ScreenFilter.gdshader" id="3"]
+[ext_resource type="Shader" uid="uid://cxybf26ijnltp" path="res://shaders/ScreenFilter.gdshader" id="3"]
 
 [sub_resource type="ShaderMaterial" id="1"]
 shader = ExtResource("3")

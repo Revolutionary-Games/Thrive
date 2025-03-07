@@ -1,6 +1,6 @@
 [gd_scene load_steps=19 format=3 uid="uid://dbejsscdbcy"]
 
-[ext_resource type="Script" path="res://src/space_stage/PlacedPlanet.cs" id="1"]
+[ext_resource type="Script" uid="uid://btbk5xipiq5" path="res://src/space_stage/PlacedPlanet.cs" id="1"]
 [ext_resource type="Texture2D" uid="uid://omojbhinobbj" path="res://assets/textures/menu_backgrounds/MenuPlanet_Base_color.png" id="3_5hwl5"]
 [ext_resource type="Texture2D" uid="uid://dnjv3mdsq2cgy" path="res://assets/textures/menu_backgrounds/Planet_Mat_Height.png" id="4_gnxoe"]
 [ext_resource type="Texture2D" uid="uid://dd2xmhh6y4boy" path="res://assets/textures/menu_backgrounds/MenuPlanet_Roughness.png" id="5_4hp73"]
@@ -135,8 +135,8 @@ tracks/2/keys = {
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_ayvgv"]
 _data = {
-"PlanetRotation": SubResource("1"),
-"RESET": SubResource("2")
+&"PlanetRotation": SubResource("1"),
+&"RESET": SubResource("2")
 }
 
 [node name="PlacedPlanet" type="Node3D"]

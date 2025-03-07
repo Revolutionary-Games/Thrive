@@ -31,7 +31,7 @@ func path() -> String:
 	return _resource_path.get_base_dir().replace("res://", "")
 
 
-func resource_path() -> String:
+func get_resource_path() -> String:
 	return _resource_path
 
 

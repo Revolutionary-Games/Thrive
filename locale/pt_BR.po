@@ -7,9 +7,9 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2025-03-02 06:12-0300\n"
-"PO-Revision-Date: 2025-02-23 16:13+0000\n"
-"Last-Translator: DiversoCortez <decaiotreis@proton.me>\n"
+"POT-Creation-Date: 2025-03-07 11:33+0200\n"
+"PO-Revision-Date: 2025-03-07 10:46+0000\n"
+"Last-Translator: Anonymous <noreply@weblate.org>\n"
 "Language-Team: Portuguese (Brazil) <https://translate.revolutionarygamesstudio.com/projects/thrive/thrive-game/pt_BR/>\n"
 "Language: pt_BR\n"
 "MIME-Version: 1.0\n"
@@ -268,14 +268,11 @@ msgstr ""
 "Por exemplo, algumas células só podem manter um equilíbrio positivo de ATP quando possuem múltiplos tipos de composto dos quais produzir ATP ao mesmo tempo.\n"
 "Esses tipos de célula são mais difíceis de jogar, já que precisam ter múltiplos tipos de composto armazenados ao mesmo tempo para sobreviver."
 
-#, fuzzy
 msgid "ATP_BALANCE_TOOLTIP_MULTICELLULAR"
 msgstr ""
-"Esta seção mostra o equilíbrio total de ATP (energia) da célula atual.\n"
-"Para sobreviver o equilíbrio precisa ser positivo. Para células sésseis, é possível considerar o equilíbrio positivo com o movimento excluído.\n"
-"O menu suspenso abaixo pode ser usado para checar o que aconteceria se a célula não tivesse algum recurso necessário para produzir ATP.\n"
-"Por exemplo, algumas células só podem manter um equilíbrio positivo de ATP quando possuem múltiplos tipos de composto dos quais produzir ATP ao mesmo tempo.\n"
-"Esses tipos de célula são mais difíceis de jogar, já que precisam ter múltiplos tipos de composto armazenados ao mesmo tempo para sobreviver."
+"Esta seção motra opções para calcular o balanço de ATP (energia) para as células.\n"
+"O balanço calculado é mostrado no menu de seleção do tipo de célula.\n"
+"O menu suspenso abaixo pode ser usado para checar o que aconteceria se a célula não tivesse algum recurso disponível para fazer ATP."
 
 msgid "ATP_BALANCE_WITHOUT_EXTERNAL_RESOURCES"
 msgstr "Sem recursos externos"
@@ -459,7 +456,6 @@ msgstr "{0}-{1}m sob o nível do mar"
 msgid "BENCHMARKS"
 msgstr "Testes de desempenho"
 
-#, fuzzy
 msgid "BENCHMARK_FINISHED"
 msgstr "Teste de desempenho terminado"
 
@@ -473,10 +469,10 @@ msgid "BEST_PATCH_COLON"
 msgstr "Melhor Região:"
 
 msgid "BIG_IRON_CHUNK"
-msgstr "Pedaço de ferro grande"
+msgstr "Pedaço de Ferro Grande"
 
 msgid "BIG_PHOSPHATE_CHUNK"
-msgstr "Pedaço de fosfato grande"
+msgstr "Pedaço de Fosfato Grande"
 
 msgid "BILLION_ABBREVIATION"
 msgstr "{0} Bi"
@@ -499,9 +495,8 @@ msgstr "Vacúolo Bioluminescente"
 msgid "BIOME_LABEL"
 msgstr "Bioma: {0}"
 
-#, fuzzy
 msgid "BLOOM_RENDER_EFFECT"
-msgstr "Efeitos de Tela:"
+msgstr "Efeito de Bloom:"
 
 msgid "BLUESKY_TOOLTIP"
 msgstr "Visite nosso perfil no Bluesky"
@@ -537,13 +532,13 @@ msgid "CACHE_DISK_MAX_TIME"
 msgstr "Tempo máximo para manter itens no disco antes de deletá-los"
 
 msgid "CACHE_MEMORY_MAX_ITEMS"
-msgstr ""
+msgstr "Items de cache máximos para manter na memória"
 
 msgid "CACHE_TIME_MEMORY"
-msgstr ""
+msgstr "Quão longo para manter os itens de cache na memória"
 
 msgid "CACHE_TIME_MEMORY_ONLY"
-msgstr ""
+msgstr "Tempo de cache quando usando cache de memóra somente"
 
 #, fuzzy
 msgid "CACHING_TITLE"
@@ -756,7 +751,7 @@ msgid "CHUNK_CELL_CORPSE_PART"
 msgstr "Pedaço de Cadáver Celular"
 
 msgid "CHUNK_FOOD_SOURCE"
-msgstr "{0} consumo"
+msgstr "Consumo de {0}"
 
 msgid "CILIA"
 msgstr "Cílios"
@@ -785,9 +780,8 @@ msgstr "Fechar opções?"
 msgid "CLOSTRIDIAL_FERMENTATION"
 msgstr "Fermentação Clostridial"
 
-#, fuzzy
 msgid "CLOUD_BENCHMARK"
-msgstr "Teste de Desempenho de Micróbios"
+msgstr "Teste de Desempenho de Núvens"
 
 msgid "CLOUD_RESOLUTION_DIVISOR"
 msgstr "Divisor da resolução de nuvens:"
@@ -916,9 +910,8 @@ msgstr ""
 msgid "COMPOUND_CLOUDS"
 msgstr "Nuvens de compostos"
 
-#, fuzzy
 msgid "COMPOUND_CLOUD_BENCHMARK"
-msgstr "Densidade das nuvens de compostos"
+msgstr "Teste de Desempenho de Núvens de Compostos"
 
 msgid "COMPOUND_CLOUD_DENSITY"
 msgstr "Densidade das nuvens de compostos"
@@ -1096,9 +1089,8 @@ msgstr "Botão Direcional Para a Direita"
 msgid "CONTROLLER_BUTTON_DPAD_UP"
 msgstr "Botão Direcional Para Cima"
 
-#, fuzzy
 msgid "CONTROLLER_BUTTON_LEFT_SHOULDER"
-msgstr "Zona morta:"
+msgstr "Botão de Ombro Esquerdo"
 
 #, fuzzy
 msgid "CONTROLLER_BUTTON_LEFT_STICK"
@@ -1533,6 +1525,7 @@ msgstr "Apoiadores Devbuilds"
 msgid "DIFFICULTY"
 msgstr "Dificuldade"
 
+#, fuzzy
 msgid "DIFFICULTY_DETAILS_STRING"
 msgstr ""
 "Dificuldade: {0}\n"
@@ -1776,14 +1769,15 @@ msgstr "Editores e Mutações"
 msgid "EDITOR_BUTTON_TOOLTIP"
 msgstr "Abre o editor e modifica a sua espécie"
 
-#, fuzzy
 msgid "EDITOR_TUTORIAL_EARLY_GOAL"
 msgstr ""
-"Este é o editor de células, onde você pode adicionar ou remover organelas da sua espécie gastando pontos de mutação (PM).\n"
+"Bem-vindo(a) de volta ao editor. Você vai voltar para cá cada vez que se reproduzir com sucesso.\n"
 "\n"
-"Você também pode alterar outras propriedades da sua espécie nas outras abas do editor de células;\n"
+"O [b]objetivo do começo do jogo[/b] é encontrar uma boa região para viver e uma fonte confiável de comida.\n"
 "\n"
-"Para continuar, selecione uma organela do painel na esquerda (o citoplasma é uma boa escolha). Depois, clique com o botão esquerdo próximo ao hexágono no meio da tela para adicionar a organela na sua espécie."
+"Depois, você pode começar a pensar em adicionar o [b]núcleo[/b] que é o modo de avançar o jogo, mas não o adicione cedo demais, pois é uma organela muito cara.\n"
+"\n"
+"Aperte o botão \"Próximo\" para continuar."
 
 msgid "EDITOR_TUTORIAL_EDITOR_TEXT"
 msgstr ""
@@ -1793,16 +1787,11 @@ msgstr ""
 "\n"
 "Nessa aba você pode ver a lista de mudanças ocorridas na região que você ocupa atualmente. Tente explorar as varias ferramentas à sua disposição para aprender mais sobre os eventos do seu mundo!\n"
 "\n"
-"Para ir para a próxima aba, aperte o botão “próximo” no canto inferior direito."
+"Quando terminar, aperte o botão “Próximo” no canto inferior direito para ir à aba do Mapa de Regiões."
 
 #, fuzzy
-msgid "EDITOR_TUTORIAL_MICROBE_EDITOR_NUCLEUS"
-msgstr ""
-"Este é o editor de células, onde você pode evoluir a sua espécie gastando [b]Pontos de Mutação[/b] (PM) [thrive:icon]MP[/thrive:icon]. Cada geração terá sempre [b]100 PM[/b] [thrive:icon]MP[/thrive:icon] para gastar, então não se importe com economizar!\n"
-"\n"
-"O hexágono no centro da tela é a sua [b]célula[/b], que é composta por uma unidade de citoplasma;\n"
-"\n"
-"Para continuar, selecione uma parte no painel à esquerda. Então clique com o botão esquerdo perto do hexágono para colocá-la. Você pode girar as partes com [thrive:input]e_rotate_left[/thrive:input] e [thrive:input]e_rotate_right[/thrive:input]."
+msgid "EFFECTIVE_VALUE"
+msgstr "{0}%"
 
 msgid "EIGHT_TIMES"
 msgstr "8x"
@@ -2462,10 +2451,10 @@ msgid "ICESHELF"
 msgstr "Plataforma de Gelo"
 
 msgid "ICE_CHUNK_BIG"
-msgstr "Pedaço Grande de Gelo"
+msgstr "Pedaço de Gelo Grande"
 
 msgid "ICE_CHUNK_SMALL"
-msgstr "Pedaço Pequeno de Gelo"
+msgstr "Pedaço de Gelo Pequeno"
 
 msgid "ID_IS_NOT_A_NUMBER"
 msgstr "O ID não é um número válido"
@@ -2703,7 +2692,8 @@ msgstr "Julho"
 msgid "JUNE"
 msgstr "Junho"
 
-msgid "KEEP_CURRENT_FLEXIBILITY"
+#, fuzzy
+msgid "KEEP_CURRENT_SHORT"
 msgstr "Manter flexibilidade atual"
 
 msgid "KEEP_CURRENT_TOLERANCE_FLEXIBILITY_TOOLTIP"
@@ -3232,7 +3222,7 @@ msgid "MEDIASTOP"
 msgstr "Parar Mídia"
 
 msgid "MEDIUM_SULFUR_CHUNK"
-msgstr "Pedaço Médio de Enxofre"
+msgstr "Pedaço de Enxofre Médio"
 
 msgid "MEGA_YEARS"
 msgstr "Ma"
@@ -3241,7 +3231,7 @@ msgid "MELANOSOME"
 msgstr "Melanossomo"
 
 msgid "MELANOSOME_DESCRIPTION"
-msgstr "O melanossomo é uma organela membranosa que contém pigmentos de melanina que podem absorver ondas eletromagnéticas de alta energia emitidas por materiais radioativos e convertê-las para energia usável em um processo chamado [b]radiossíntese[/b]. Os pigmentos absorvendo radiação também ajudam a proteger as partes mais sensíveis da célula, o que aumenta a resiliência total contra radiação."
+msgstr "O melanossomo é uma organela membranosa que contém pigmentos de melanina que podem absorver ondas eletromagnéticas de alta energia emitidas por materiais radioativos e convertê-las para energia usável em um processo chamado [b]radiossíntese[/b]. Esses pigmentos que absorvem radiação também ajudam a proteger as partes mais sensíveis da célula, o que aumenta a resiliência total contra radiação."
 
 msgid "MELANOSOME_PROCESSES_DESCRIPTION"
 msgstr "Transforma [thrive:compound type=\"radiation\"][/thrive:compound] em [thrive:compound type=\"atp\"][/thrive:compound] quando próximo a pedras altamente radioativas e também gera resistência a radiação."
@@ -4363,9 +4353,6 @@ msgstr "Mover a câmera para a direita"
 msgid "PAN_CAMERA_UP"
 msgstr "Mover a câmera para cima"
 
-msgid "PASSIVE_REPRODUCTION_PROGRESS"
-msgstr "Ganhar compostos para a reprodução passivamente"
-
 msgid "PASSIVE_REPRODUCTION_PROGRESS_EXPLANATION"
 msgstr "(ganhar os compostos necessários para a reprodução do ambiente sem ter que fazer nada)"
 
@@ -5158,13 +5145,13 @@ msgid "SLIME_JET_PROCESSES_DESCRIPTION"
 msgstr "Transforma [thrive:compound type=\"glucose\"][/thrive:compound] em [thrive:compound type=\"mucilage\"][/thrive:compound]. Aperte [thrive:input]g_secrete_slime[/thrive:input] para expelir a [thrive:compound type=\"mucilage\"][/thrive:compound], aumentando a velocidade da célula e diminuindo a de predadores."
 
 msgid "SMALL_IRON_CHUNK"
-msgstr "Pedaço de ferro pequeno"
+msgstr "Pedaço de Ferro Pequeno"
 
 msgid "SMALL_PHOSPHATE_CHUNK"
-msgstr "Pedaço de fosfato pequeno"
+msgstr "Pedaço de Fosfato Pequeno"
 
 msgid "SMALL_SULFUR_CHUNK"
-msgstr "Pedaço de enxofre pequeno"
+msgstr "Pedaço de Enxofre Pequeno"
 
 msgid "SNOWFLAKE"
 msgstr "Floco de Neve"
@@ -5758,6 +5745,10 @@ msgstr "Proteção UV baixa demais, precisa ser {0}% mais alta"
 msgid "TOLERANCES_UNSUITABLE_DEBUFFS"
 msgstr "Não adaptado para as condições ambientais atuais. Custo da osmorregulação {0}%, velocidade dos bioprocessos {1}%, saúde {2}%"
 
+#, fuzzy
+msgid "TOLERANCE_FROM_ORGANELLES_TOOLTIP"
+msgstr "Quanta radiação ultravioleta a sua espécie pode aguentar antes de sofrer efeitos danosos. Se você estiver em uma região com muita luz, você sofrerá efeitos negativos até que a resistência seja aumentada."
+
 msgid "TOLERANCE_RANGE_LABEL"
 msgstr "Flexibilidade:"
 
@@ -5894,11 +5885,11 @@ msgstr ""
 
 msgid "TUTORIAL_MICROBE_EDITOR_CELL_TEXT"
 msgstr ""
-"Este é o editor de células, onde você pode evoluir a sua espécie gastando [b]Pontos de Mutação[/b] (PM) [thrive:icon]MP[/thrive:icon]. Cada geração terá sempre [b]100 PM[/b] [thrive:icon]MP[/thrive:icon] para gastar, então não se importe com economizar!\n"
+"Este é o editor de células, onde você pode evoluir a sua espécie gastando [b]Pontos de Mutação[/b] (PM) [thrive:icon]MP[/thrive:icon]. Cada geração sempre terá [b]100 PM[/b] [thrive:icon]MP[/thrive:icon] para gastar, então você não precisa economizar!\n"
 "\n"
-"O hexágono no centro da tela é a sua [b]célula[/b], que é composta por uma unidade de citoplasma;\n"
+"O hexágono no centro da tela é a sua [b]célula[/b], que é composta por uma unidade de citoplasma.\n"
 "\n"
-"Para continuar, selecione uma parte no painel à esquerda. Então clique com o botão esquerdo perto do hexágono para colocá-la. Você pode girar as partes com [thrive:input]e_rotate_left[/thrive:input] e [thrive:input]e_rotate_right[/thrive:input]."
+"Para continuar, selecione uma parte no painel à esquerda. Então, clique com o botão esquerdo perto do hexágono para colocá-la. Você pode girar as partes com [thrive:input]e_rotate_left[/thrive:input] e [thrive:input]e_rotate_right[/thrive:input]."
 
 msgid "TUTORIAL_MICROBE_EDITOR_CHEMORECEPTOR"
 msgstr ""
@@ -5914,7 +5905,7 @@ msgstr ""
 "\n"
 "Tente explorar as outras abas embaixo da [b]barra de PM [thrive:icon]MP[/thrive:icon][/b] para ver como você pode personalizar sua célula.\n"
 "\n"
-"Para sobreviver nesse mundo difícil você precisará encontrar fontes de [thrive:compound type=\"atp\"][/thrive:compound] confiáveis, já que a quantidade natural de [thrive:compound type=\"glucose\"][/thrive:compound] [b]diminuirá rapidamente[/b].\n"
+"Para sobreviver nesse mundo impiedoso você precisará encontrar fontes confiáveis de [thrive:compound type=\"atp\"][/thrive:compound], já que a quantidade de [thrive:compound type=\"glucose\"][/thrive:compound] natural [b]diminuirá rapidamente[/b].\n"
 "\n"
 "Boa sorte!"
 
@@ -5954,16 +5945,13 @@ msgstr ""
 "\n"
 "Para progredir no jogo você deve evoluir e se adaptar, então editar a sua espécie na maioria dos ciclos de edição é recomendado."
 
-#, fuzzy
 msgid "TUTORIAL_MICROBE_EDITOR_OPEN_TOLERANCES"
 msgstr ""
-"Seu saldo de ATP está negativo.\n"
+"Você pode adaptar sua célula para [b]condições ambientais[/b] diferentes.\n"
 "\n"
-"Ao executar todos os processos e se movimentar, sua criatura esgotará sua energia e morrerá.\n"
+"Condições ambientais podem causar efeitos negativos [b]e[/b] positivos. Então é importante garantir que as tolerâncias corretas estão definidas quando você vai para regiões novas.\n"
 "\n"
-"Você pode adicionar organelas produtoras de ATP para criar uma célula que pode se mover constantemente.\n"
-"\n"
-"Ou você pode adicionar armazenamento para criar uma célula que só pode se mover em rajadas."
+"Selecione a aba \"Tolerância\" no painel à esquerda para continuar."
 
 msgid "TUTORIAL_MICROBE_EDITOR_PATCH_TEXT"
 msgstr ""
@@ -5977,7 +5965,7 @@ msgstr ""
 
 msgid "TUTORIAL_MICROBE_EDITOR_REMOVE_ORGANELLE_TEXT"
 msgstr ""
-"Remover organelas também custa [b]PM[/b] [thrive:icon]MP[/thrive:icon], já que conta como uma mutação, [u]a menos que elas tenham sido colocadas na atual sessão de edição[/u].\n"
+"Remover organelas também custa [b]PM[/b] [thrive:icon]MP[/thrive:icon], já que isso conta como uma mutação, [u]a menos que elas tenham sido colocadas na atual sessão de edição[/u].\n"
 "\n"
 "Você pode removê-las clicando na opção correspondente no [u]menu de organelas[/u], que é aberto ao clicar com o botão direito nas organelas.\n"
 "\n"
@@ -5997,22 +5985,23 @@ msgstr ""
 
 msgid "TUTORIAL_MICROBE_EDITOR_STAY_SMALL"
 msgstr ""
-"Você deveria focar em [b]especialização[/b] para sobreviver com uma ou duas fontes de [thrive:compound type=\"atp\"][/thrive:compound] para que não precise de muitos recursos ao mesmo tempo para se sustentar.\n"
+"Você deveria se [b]especializar[/b] para sobreviver com uma ou duas fontes de [thrive:compound type=\"atp\"][/thrive:compound] para que não precise de muitos recursos ao mesmo tempo para se sustentar.\n"
 "\n"
 "Também considere cuidadosamente se adicionar uma organela é benéfico; muitas vezes não alterar nada é uma boa escolha, pois cada parte custa [thrive:compound type=\"atp\"][/thrive:compound] para ser mantida [thrive:icon]OsmoIcon[/thrive:icon] e requer mais recursos para se dividir.\n"
 "\n"
 "Uma estratégia possivel é permanecer como um único hexágono de citoplasma e ir à superfície antes de obter organelas [b]fotossintetizantes[/b]."
 
-#, fuzzy
 msgid "TUTORIAL_MICROBE_EDITOR_TOLERANCES_TAB"
 msgstr ""
-"Seu saldo de ATP está negativo.\n"
+"O editor de tolerâncias permite mudar as [b]condições ambientais às quais a sua espécie está adaptada[/b]. Essas incluem a [thrive:compound type=\"temperature\"][/thrive:compound] e a [b]pressão[/b][thrive:icon]Pressure[/thrive:icon] da região em que você reside.\n"
 "\n"
-"Ao executar todos os processos e se movimentar, sua criatura esgotará sua energia e morrerá.\n"
+"Quando você vai para uma região para a qual você não se adaptou, haverá [b]diversos efeitos negativos[/b]. Ajustar os sliders para corrigir as condições preferidas ou aumentar a faixa de flexibilidade para a nova região removerá esses efeitos. As condições inadequadas são mostradas em vermelho.\n"
 "\n"
-"Você pode adicionar organelas produtoras de ATP para criar uma célula que pode se mover constantemente.\n"
+"Para estar [b]perfeitamente adaptada[/b] e ganhar bônus ao invés de efeitos negativos, as faixas de flexibilidade devem estar reduzidas a valores mínimos e ainda estar adaptadas à região. Então, os números ficarão verdes e darão efeitos positivos.\n"
 "\n"
-"Ou você pode adicionar armazenamento para criar uma célula que só pode se mover em rajadas."
+"O que você perde com a adaptação perfeita é a adaptabilidade para diversas regiões. Planejar antes de trocar de região aumentando as faixas de tolerância pode ser uma boa estratégia se você tem [b]alguns PM[/b] [thrive:icon]MP[/thrive:icon] para usar antes de sair do editor.\n"
+"\n"
+"Tente mudar uma das tolerâncias ambientais para fechar este tutorial."
 
 msgid "TUTORIAL_MICROBE_STAGE_EDITOR_BUTTON_TUTORIAL"
 msgstr ""
@@ -8171,6 +8160,31 @@ msgstr ""
 msgid "WORLD_RELATIVE_MOVEMENT"
 msgstr "Relativo ao mundo"
 
+#, fuzzy
+msgid "WORLD_SIZE"
+msgstr "Mundo"
+
+#, fuzzy
+msgid "WORLD_SIZE_EXPLANATION"
+msgstr ""
+"Micróbios focados perseguirão presas ou pedaços por distâncias mais longas\n"
+"e podem ser mais cobiçosos em relação aos pedaços.\n"
+"Micróbios mais reativos perseguirão outras presas depois de um tempo."
+
+msgid "WORLD_SIZE_LARGE"
+msgstr ""
+
+#, fuzzy
+msgid "WORLD_SIZE_MEDIUM"
+msgstr "Relativo ao mundo"
+
+msgid "WORLD_SIZE_SMALL"
+msgstr ""
+
+#, fuzzy
+msgid "WORLD_SIZE_TOOLTIP"
+msgstr "Executar a simulação em um certo número de mundos, a quantidade de gerações que cada mundo deve simular é determinada pela opção acima."
+
 msgid "WORST_PATCH_COLON"
 msgstr "Pior Região:"
 
@@ -8209,6 +8223,9 @@ msgstr "Aumentar o zoom"
 
 msgid "ZOOM_OUT"
 msgstr "Diminuir o zoom"
+
+#~ msgid "PASSIVE_REPRODUCTION_PROGRESS"
+#~ msgstr "Ganhar compostos para a reprodução passivamente"
 
 #~ msgid "MIGRATE"
 #~ msgstr "Migrar"

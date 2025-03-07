@@ -1,7 +1,7 @@
 [gd_scene load_steps=6 format=3 uid="uid://d0o560vbcgswt"]
 
 [ext_resource type="PackedScene" uid="uid://cs3kuijsfeoxr" path="res://assets/models/organelles/SlimeJet.glb" id="1"]
-[ext_resource type="Shader" path="res://shaders/OrganelleTransparent.gdshader" id="2_4pk1c"]
+[ext_resource type="Shader" uid="uid://bpdtg8smolq32" path="res://shaders/OrganelleTransparent.gdshader" id="2_4pk1c"]
 [ext_resource type="Texture2D" uid="uid://baxuoyeo83r2u" path="res://assets/textures/dissolve_noise.tres" id="3"]
 [ext_resource type="Texture2D" uid="uid://dhfbtptdm6tk2" path="res://assets/textures/SlimeJet.png" id="4"]
 
@@ -9,6 +9,8 @@
 resource_local_to_scene = true
 render_priority = 0
 shader = ExtResource("2_4pk1c")
+shader_parameter/texture = ExtResource("4")
+shader_parameter/dissolveTexture = ExtResource("3")
 shader_parameter/dissolveValue = 0.0
 shader_parameter/dissolveScale = 1.1
 shader_parameter/fresnelValue = 1.0
@@ -17,8 +19,6 @@ shader_parameter/outlineWidth = 0.0
 shader_parameter/growColor = Color(0.1, 0.1, 0.1, 1)
 shader_parameter/tint = Color(1, 1, 1, 1)
 shader_parameter/jiggleAmount = 0.0005
-shader_parameter/texture = ExtResource("4")
-shader_parameter/dissolveTexture = ExtResource("3")
 
 [node name="SlimeJet" instance=ExtResource("1")]
 transform = Transform3D(0.8, 0, 0, 0, 0.8, 0, 0, 0, 0.8, 0, 0.05, 0.2)
