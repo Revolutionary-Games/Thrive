@@ -1,14 +1,14 @@
 [gd_scene load_steps=10 format=3 uid="uid://cahegn58i768h"]
 
-[ext_resource type="Script" path="res://src/tutorial/microbe_editor/MicrobeEditorTutorialGUI.cs" id="1"]
+[ext_resource type="Script" uid="uid://cpv8736sj42ui" path="res://src/tutorial/microbe_editor/MicrobeEditorTutorialGUI.cs" id="1"]
 [ext_resource type="Theme" uid="uid://b4cx0o110g4b6" path="res://src/gui_common/thrive_theme.tres" id="2"]
 [ext_resource type="PackedScene" uid="uid://c46wnild4hluc" path="res://src/gui_common/ControlHighlight.tscn" id="3"]
-[ext_resource type="PackedScene" path="res://src/gui_common/CustomRichTextLabel.tscn" id="5"]
-[ext_resource type="Script" path="res://src/gui_common/dialogs/TutorialDialog.cs" id="7"]
+[ext_resource type="PackedScene" uid="uid://bhpjtbtaeunat" path="res://src/gui_common/CustomRichTextLabel.tscn" id="5"]
+[ext_resource type="Script" uid="uid://c22vgu2gpm74j" path="res://src/gui_common/dialogs/TutorialDialog.cs" id="7"]
 [ext_resource type="PackedScene" uid="uid://cy5puaxnv8e2a" path="res://src/gui_common/dialogs/TutorialDialog.tscn" id="8"]
-[ext_resource type="PackedScene" path="res://src/gui_common/dialogs/CustomWindow.tscn" id="9"]
+[ext_resource type="PackedScene" uid="uid://du8sc8kjirguk" path="res://src/gui_common/dialogs/CustomWindow.tscn" id="9"]
 [ext_resource type="FontVariation" uid="uid://cqork3l186w1c" path="res://assets/fonts/variants/Jura-Bold.tres" id="9_jkhed"]
-[ext_resource type="PackedScene" path="res://src/gui_common/AddWindowReorderingSupportToSiblings.tscn" id="10"]
+[ext_resource type="PackedScene" uid="uid://tna206f2gtkv" path="res://src/gui_common/AddWindowReorderingSupportToSiblings.tscn" id="10"]
 
 [node name="MicrobeEditorTutorialGUI" type="Control" node_paths=PackedStringArray("tolerancesTabTutorial", "openTolerancesTabTutorial", "earlyGameGoalTutorial")]
 process_mode = 3

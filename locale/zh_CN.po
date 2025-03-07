@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2025-03-03 08:12-0300\n"
+"POT-Creation-Date: 2025-03-07 11:33+0200\n"
 "PO-Revision-Date: 2025-02-06 13:29+0000\n"
 "Last-Translator: Anonymous <noreply@weblate.org>\n"
 "Language-Team: Chinese (Simplified Han script) <https://translate.revolutionarygamesstudio.com/projects/thrive/thrive-game/zh_Hans/>\n"
@@ -1790,6 +1790,10 @@ msgstr ""
 "\n"
 "当你准备好了，按右下角的 \"下一步 \"按钮以继续。"
 
+#, fuzzy
+msgid "EFFECTIVE_VALUE"
+msgstr "{0}%"
+
 msgid "EIGHT_TIMES"
 msgstr "8x"
 
@@ -2707,8 +2711,9 @@ msgstr "七月"
 msgid "JUNE"
 msgstr "六月"
 
-msgid "KEEP_CURRENT_FLEXIBILITY"
-msgstr ""
+#, fuzzy
+msgid "KEEP_CURRENT_SHORT"
+msgstr "当前世界"
 
 #, fuzzy
 msgid "KEEP_CURRENT_TOLERANCE_FLEXIBILITY_TOOLTIP"
@@ -5832,6 +5837,15 @@ msgstr "{0}： +{1} ATP"
 msgid "TOLERANCES_UNSUITABLE_DEBUFFS"
 msgstr ""
 
+#, fuzzy
+msgid "TOLERANCE_FROM_ORGANELLES_TOOLTIP"
+msgstr ""
+"这个区域显示了目前细胞ATP（能量）的总平衡情况\n"
+"如果想要生存，这个数值应该是正的。对于没有运动需求的细胞，可以不考虑移动所消耗的ATP。\n"
+"下面的下拉菜单可以用来检查各种资源短缺时会发生的情况。\n"
+"比如，有些细胞只有在同时拥有好几种类型的化合物时才可以使ATP收支平衡。\n"
+"这些细胞将更难存活，因为它们需要收集更多的化合物。"
+
 msgid "TOLERANCE_RANGE_LABEL"
 msgstr ""
 
@@ -8560,6 +8574,31 @@ msgstr ""
 
 msgid "WORLD_RELATIVE_MOVEMENT"
 msgstr "相对世界移动"
+
+#, fuzzy
+msgid "WORLD_SIZE"
+msgstr "世界"
+
+#, fuzzy
+msgid "WORLD_SIZE_EXPLANATION"
+msgstr ""
+"专注型微生物会在更远的距离里追击猎物或物质块\n"
+"并且对物质块更有渴求。\n"
+"应变型微生物将更快的转向新的目标。"
+
+msgid "WORLD_SIZE_LARGE"
+msgstr ""
+
+#, fuzzy
+msgid "WORLD_SIZE_MEDIUM"
+msgstr "相对世界移动"
+
+msgid "WORLD_SIZE_SMALL"
+msgstr ""
+
+#, fuzzy
+msgid "WORLD_SIZE_TOOLTIP"
+msgstr "运行一定数量的世界，每个世界运行的代数由左上方的数字显示框决定。"
 
 msgid "WORST_PATCH_COLON"
 msgstr "表现最糟的地区："

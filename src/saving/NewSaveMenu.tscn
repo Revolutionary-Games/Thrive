@@ -1,16 +1,16 @@
-[gd_scene load_steps=6 format=2]
+[gd_scene load_steps=6 format=3 uid="uid://u27aqj8gq4ep"]
 
-[ext_resource path="res://src/gui_common/thrive_theme.tres" type="Theme" id=1]
-[ext_resource path="res://src/saving/NewSaveMenu.cs" type="Script" id=2]
-[ext_resource path="res://src/gui_common/dialogs/CustomConfirmationDialog.tscn" type="PackedScene" id=3]
-[ext_resource path="res://src/saving/SaveList.tscn" type="PackedScene" id=4]
-[ext_resource path="res://src/gui_common/FocusGrabber.tscn" type="PackedScene" id=5]
+[ext_resource type="Theme" uid="uid://b4cx0o110g4b6" path="res://src/gui_common/thrive_theme.tres" id="1"]
+[ext_resource type="Script" uid="uid://dh0ic3eupgf0q" path="res://src/saving/NewSaveMenu.cs" id="2"]
+[ext_resource type="PackedScene" uid="uid://cl64wvnxs6ivs" path="res://src/gui_common/dialogs/CustomConfirmationDialog.tscn" id="3"]
+[ext_resource type="PackedScene" uid="uid://ddi31qylscfyh" path="res://src/saving/SaveList.tscn" id="4"]
+[ext_resource type="PackedScene" uid="uid://bgeijgq7runaw" path="res://src/gui_common/FocusGrabber.tscn" id="5"]
 
 [node name="NewSaveMenu" type="Control"]
 anchor_right = 1.0
 anchor_bottom = 1.0
-theme = ExtResource( 1 )
-script = ExtResource( 2 )
+theme = ExtResource("1")
+script = ExtResource("2")
 SaveListPath = NodePath("VBoxContainer/VBoxContainer/SaveList")
 SaveNameBoxPath = NodePath("VBoxContainer/VBoxContainer/HBoxContainer/SaveName")
 OverwriteConfirmPath = NodePath("OverwriteConfirm")
@@ -61,10 +61,10 @@ caret_blink = true
 offset_left = 1045.0
 offset_right = 1176.0
 offset_bottom = 37.0
-theme_override_colors/font_disabled_color = Color( 1, 1, 1, 1 )
-theme_override_colors/font_color = Color( 1, 1, 1, 1 )
-theme_override_colors/font_hover_color = Color( 1, 1, 1, 1 )
-theme_override_colors/font_pressed_color = Color( 1, 1, 1, 1 )
+theme_override_colors/font_disabled_color = Color(1, 1, 1, 1)
+theme_override_colors/font_color = Color(1, 1, 1, 1)
+theme_override_colors/font_hover_color = Color(1, 1, 1, 1)
+theme_override_colors/font_pressed_color = Color(1, 1, 1, 1)
 disabled = true
 text = "EXTRA_OPTIONS"
 
@@ -72,7 +72,7 @@ text = "EXTRA_OPTIONS"
 offset_left = 1180.0
 offset_right = 1280.0
 offset_bottom = 37.0
-custom_minimum_size = Vector2( 100, 37 )
+custom_minimum_size = Vector2(100, 37)
 focus_neighbor_left = NodePath("../SaveName")
 focus_neighbor_bottom = NodePath("../../../CenterContainer/Back")
 focus_next = NodePath("../../../CenterContainer/Back")
@@ -90,7 +90,7 @@ offset_right = 1280.0
 offset_bottom = 74.0
 text = "OVERWRITE_EXISTING_SAVE"
 
-[node name="SaveList" parent="VBoxContainer/VBoxContainer" instance=ExtResource( 4 )]
+[node name="SaveList" parent="VBoxContainer/VBoxContainer" instance=ExtResource("4")]
 anchor_right = 0.0
 anchor_bottom = 0.0
 offset_top = 78.0
@@ -110,7 +110,7 @@ offset_bottom = 720.0
 offset_left = 590.0
 offset_right = 690.0
 offset_bottom = 37.0
-custom_minimum_size = Vector2( 100, 37 )
+custom_minimum_size = Vector2(100, 37)
 focus_neighbor_left = NodePath("../../VBoxContainer/HBoxContainer/SaveName")
 focus_neighbor_top = NodePath("../../VBoxContainer/HBoxContainer/Save")
 focus_neighbor_right = NodePath("../../VBoxContainer/HBoxContainer/Save")
@@ -118,28 +118,28 @@ focus_neighbor_bottom = NodePath(".")
 focus_next = NodePath(".")
 focus_previous = NodePath("../../VBoxContainer/HBoxContainer/Save")
 size_flags_horizontal = 0
-theme = ExtResource( 1 )
+theme = ExtResource("1")
 text = "BACK"
 __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="FocusGrabber" parent="VBoxContainer/CenterContainer" instance=ExtResource( 5 )]
+[node name="FocusGrabber" parent="VBoxContainer/CenterContainer" instance=ExtResource("5")]
 offset_left = 640.0
 offset_top = 18.0
 offset_right = 640.0
 offset_bottom = 18.0
-SkipOverridingFocusForElements = [ NodePath("../../..") ]
+SkipOverridingFocusForElements = [NodePath("../../..")]
 Priority = 3
 NodeToGiveFocusTo = NodePath("../../VBoxContainer/HBoxContainer/Save")
 AlwaysOverrideFocus = true
 
-[node name="OverwriteConfirm" parent="." instance=ExtResource( 3 )]
-custom_minimum_size = Vector2( 500, 0 )
+[node name="OverwriteConfirm" parent="." instance=ExtResource("3")]
+custom_minimum_size = Vector2(500, 0)
 WindowTitle = "OVERWRITE_EXISTING_SAVE_PROMPT"
 
-[node name="AttemptWriteFailAccept" parent="." instance=ExtResource( 3 )]
-custom_minimum_size = Vector2( 500, 0 )
+[node name="AttemptWriteFailAccept" parent="." instance=ExtResource("3")]
+custom_minimum_size = Vector2(500, 0)
 WindowTitle = "CANNOT_WRITE_SAVE"
 Movable = false
 HideCancelButton = true

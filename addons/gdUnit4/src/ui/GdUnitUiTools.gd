@@ -46,6 +46,8 @@ static func get_spinner() -> AnimatedTexture:
 
 
 static func get_color_animated_icon(icon_name :String, from :Color, to :Color) -> AnimatedTexture:
+	if not Engine.is_editor_hint():
+		return null
 	var texture := AnimatedTexture.new()
 	texture.frames = 8
 	texture.speed_scale = 2.5
@@ -124,6 +126,7 @@ static func _merge_images_scaled(image1: Image, offset1: Vector2i, image2: Image
 	# Create a new Image for the merged result
 	var merged_image := Image.create(image1.get_width(), image1.get_height(), false, image1.get_format())
 	merged_image.blend_rect(image1, Rect2(Vector2.ZERO, image1.get_size()), offset1)
+	@warning_ignore("narrowing_conversion")
 	image2.resize(image2.get_width()/1.3, image2.get_height()/1.3)
 	merged_image.blend_rect(image2, Rect2(Vector2.ZERO, image2.get_size()), offset2)
 	return merged_image

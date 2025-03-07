@@ -133,20 +133,12 @@ func _on_gdunit_event(event: GdUnitEvent) -> void:
 			total_errors = 0
 			total_flaky = 0
 			status_changed(0, 0, 0)
-		GdUnitEvent.TESTCASE_BEFORE:
-			pass
-		GdUnitEvent.TESTCASE_STATISTICS:
-			if event.is_error():
-				status_changed(event.error_count(), 0, event.is_flaky())
-			else:
-				status_changed(0, event.failed_count(), event.is_flaky())
-		GdUnitEvent.TESTSUITE_BEFORE:
-			pass
-		GdUnitEvent.TESTSUITE_AFTER:
-			if event.is_error():
-				status_changed(event.error_count(), 0, 0)
-			else:
-				status_changed(0, event.failed_count(), 0)
+
+		GdUnitEvent.TESTCASE_AFTER:
+			status_changed(event.error_count(), event.failed_count(),  event.is_flaky())
+
+		#GdUnitEvent.TESTSUITE_AFTER:
+		#	status_changed(event.error_count(), event.failed_count(),  event.is_flaky())
 
 
 func _on_btn_error_up_pressed() -> void:
