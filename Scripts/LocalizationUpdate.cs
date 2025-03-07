@@ -35,6 +35,7 @@ public class LocalizationUpdate : LocalizationUpdateBase<LocalizationOptionsBase
         "fi",
         "fr",
         "frm",
+        "gsw",
         "he",
         "hr",
         "hu",
@@ -148,7 +149,6 @@ public class LocalizationUpdate : LocalizationUpdateBase<LocalizationOptionsBase
     {
         ".deps.json",
     };
-
 
     /// <summary>
     ///   Thrive build trees shouldn't have obj or bin folders made by the C# compiler, but just in case if there are
