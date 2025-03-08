@@ -30,8 +30,11 @@ public class NucleusTutorial : EditorEntryCountingTutorial
     public override bool CheckEvent(TutorialState overallState, TutorialEventType eventType, EventArgs args,
         object sender)
     {
-        if (base.CheckEvent(overallState, eventType, args, sender))
-            return true;
+        if (!hasNucleus)
+        {
+            if (base.CheckEvent(overallState, eventType, args, sender))
+                return true;
+        }
 
         switch (eventType)
         {
