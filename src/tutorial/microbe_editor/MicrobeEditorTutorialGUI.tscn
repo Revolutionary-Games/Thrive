@@ -556,17 +556,17 @@ ShowDelay = 0.7
 PreventsMouseCaptureWhileOpen = true
 
 [node name="NucleusTutorial" parent="." instance=ExtResource("9")]
-custom_minimum_size = Vector2(360, 250)
+custom_minimum_size = Vector2(360, 300)
 layout_mode = 1
 anchors_preset = 8
 anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
-offset_left = -180.0
+offset_left = 80.0
 offset_top = -187.5
-offset_right = 180.0
-offset_bottom = 62.5
+offset_right = 440.0
+offset_bottom = 112.5
 grow_horizontal = 2
 grow_vertical = 2
 script = ExtResource("7")
