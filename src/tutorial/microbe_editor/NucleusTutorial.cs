@@ -22,7 +22,7 @@ public class NucleusTutorial : EditorEntryCountingTutorial
 
     public override string ClosedByName => "NucleusTutorial";
 
-    protected override int TriggersOnNthEditorSession => 2;
+    protected override int TriggersOnNthEditorSession => 10;
 
     public override void ApplyGUIState(MicrobeEditorTutorialGUI gui)
     {
