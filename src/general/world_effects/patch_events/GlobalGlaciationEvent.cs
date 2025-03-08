@@ -23,8 +23,8 @@ public class GlobalGlaciationEvent : IWorldEffect
     private bool hasEventAlreadyHappened;
 
     /// <summary>
-    /// Tells how many generations the event will last. "-1" means that it hasn't started at all.
-    /// "0" means it has finished, and it won't happen again
+    ///   Tells how many generations the event will last. "-1" means that it hasn't started at all.
+    ///   "0" means it has finished, and it won't happen again
     /// </summary>
     [JsonProperty]
     private int generationsLeft = -1;
@@ -120,7 +120,8 @@ public class GlobalGlaciationEvent : IWorldEffect
         // Just prevent dividing by zero, but that shouldn't be possible anyway
         numberOfSurfacePatches = numberOfSurfacePatches == 0 ? 1 : numberOfSurfacePatches;
 
-        return (float)patchesExceedingOxygenLevel / numberOfSurfacePatches >= Constants.GLOBAL_GLACIATION_PATCHES_THRESHOLD
+        return (float)patchesExceedingOxygenLevel / numberOfSurfacePatches >=
+            Constants.GLOBAL_GLACIATION_PATCHES_THRESHOLD
             && random.NextFloat() <= Constants.GLOBAL_GLACIATION_CHANCE;
     }
 
@@ -159,7 +160,7 @@ public class GlobalGlaciationEvent : IWorldEffect
     }
 
     /// <summary>
-    /// Gets chunks from Iceshelf patch template and applies them to the patches.
+    ///   Gets chunks from Iceshelf patch template and applies them to the patches.
     /// </summary>
     private void AddIceChunks(Patch patch)
     {
