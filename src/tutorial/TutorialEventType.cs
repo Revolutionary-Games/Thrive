@@ -129,12 +129,12 @@ public enum TutorialEventType
     MicrobeEditorOrganelleModified,
 
     /// <summary>
-    ///   Player undid an action in the editor, args is <see cref="EditorEventArgs"/>
+    ///   Player undid an action in the editor, args is <see cref="EditorActionEventArgs"/>
     /// </summary>
     MicrobeEditorUndo,
 
     /// <summary>
-    ///   Player redid an action in the editor, args is <see cref="EditorEventArgs"/>
+    ///   Player redid an action in the editor, args is <see cref="EditorActionEventArgs"/>
     /// </summary>
     MicrobeEditorRedo,
 

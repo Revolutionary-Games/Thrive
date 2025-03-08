@@ -62,7 +62,7 @@ public class NucleusTutorial : EditorEntryCountingTutorial
 
             case TutorialEventType.MicrobeEditorUndo:
             {
-                var eventArgs = (EditorEventArgs)args;
+                var eventArgs = (EditorActionEventArgs)args;
                 var combinedAction = (CombinedEditorAction)eventArgs.Action;
 
                 foreach (var data in combinedAction.Data)
@@ -78,7 +78,7 @@ public class NucleusTutorial : EditorEntryCountingTutorial
 
             case TutorialEventType.MicrobeEditorRedo:
             {
-                var eventArgs = (EditorEventArgs)args;
+                var eventArgs = (EditorActionEventArgs)args;
                 var combinedAction = (CombinedEditorAction)eventArgs.Action;
 
                 foreach (var data in combinedAction.Data)
