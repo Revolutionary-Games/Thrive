@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Thrive VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2025-03-07 11:33+0200\n"
+"POT-Creation-Date: 2025-03-08 20:54+0100\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -69,7 +69,7 @@ msgstr ""
 #: ../src/general/base_stage/EditorBase.cs:749
 #: ../src/macroscopic_stage/editor/MacroscopicEditor.cs:519
 #: ../src/microbe_stage/editor/CellEditorComponent.GUI.cs:63
-#: ../src/multicellular_stage/editor/MulticellularEditor.cs:443
+#: ../src/multicellular_stage/editor/MulticellularEditor.cs:444
 msgid "ACTION_BLOCKED_WHILE_ANOTHER_IN_PROGRESS"
 msgstr ""
 
@@ -2517,7 +2517,7 @@ msgstr ""
 msgid "ESTUARY"
 msgstr ""
 
-#: ../src/microbe_stage/editor/PatchMapNode.tscn:100
+#: ../src/microbe_stage/editor/PatchMapNode.tscn:102
 msgid "EVENT_ERUPTION_TOOLTIP"
 msgstr ""
 
@@ -3000,6 +3000,18 @@ msgstr ""
 
 #: ../src/general/OptionsMenu.tscn:549
 msgid "GLES3"
+msgstr ""
+
+#: ../src/general/world_effects/patch_events/GlobalGlaciationEvent.cs:179
+msgid "GLOBAL_GLACIATION_EVENT"
+msgstr ""
+
+#: ../src/general/world_effects/patch_events/GlobalGlaciationEvent.cs:184
+msgid "GLOBAL_GLACIATION_EVENT_LOG"
+msgstr ""
+
+#: ../src/microbe_stage/editor/PatchMapNode.tscn:112
+msgid "GLOBAL_GLACIATION_EVENT_TOOLTIP"
 msgstr ""
 
 #: ../src/microbe_stage/editor/MicrobeEditorReportComponent.tscn:369
@@ -8278,11 +8290,11 @@ msgstr ""
 msgid "UNDERWATERCAVE"
 msgstr ""
 
-#: ../src/general/world_effects/UnderwaterVentEruptionEffect.cs:74
+#: ../src/general/world_effects/patch_events/UnderwaterVentEruptionEffect.cs:74
 msgid "UNDERWATER_VENT_ERUPTION"
 msgstr ""
 
-#: ../src/general/world_effects/UnderwaterVentEruptionEffect.cs:80
+#: ../src/general/world_effects/patch_events/UnderwaterVentEruptionEffect.cs:80
 msgid "UNDERWATER_VENT_ERUPTION_IN"
 msgstr ""
 
@@ -8341,7 +8353,7 @@ msgstr ""
 msgid "UNKNOWN_PATCH"
 msgstr ""
 
-#: ../src/microbe_stage/editor/PatchMapNode.tscn:85
+#: ../src/microbe_stage/editor/PatchMapNode.tscn:87
 msgid "UNKNOWN_SHORT"
 msgstr ""
 
