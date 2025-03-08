@@ -168,7 +168,7 @@ public sealed class FluidCurrentsSystem : AEntitySetSystem<float>
         }
         else if (effectStrength == -1)
         {
-            effectStrength = 0;
+            return;
         }
 
         physicsControl.ImpulseToGive += new Vector3(vel.X, 0, vel.Y) * delta * effectStrength;
@@ -178,11 +178,19 @@ public sealed class FluidCurrentsSystem : AEntitySetSystem<float>
     private void TryGetNoiseImages()
     {
         var disturbancesX = noiseDisturbancesX.GetData();
-        var disturbancesY = noiseDisturbancesY.GetData();
-        var currentsX = noiseCurrentsX.GetData();
-        var currentsY = noiseCurrentsY.GetData();
+        if (disturbancesX == null)
+            return;
 
-        if (disturbancesX == null || disturbancesY == null || currentsX == null || currentsY == null)
+        var disturbancesY = noiseDisturbancesY.GetData();
+        if (disturbancesY == null)
+            return;
+
+        var currentsX = noiseCurrentsX.GetData();
+        if (currentsX == null)
+            return;
+
+        var currentsY = noiseCurrentsY.GetData();
+        if (currentsY == null)
             return;
 
         noiseWidth = disturbancesX[0].GetWidth();
