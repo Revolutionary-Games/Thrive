@@ -10,6 +10,8 @@ public class NucleusTutorial : EditorEntryCountingTutorial
 {
     private readonly string cellEditorTab = EditorTab.CellEditor.ToString();
 
+    private readonly OrganelleDefinition nucleus = SimulationParameters.Instance.GetOrganelleType("nucleus");
+
     [JsonProperty]
     private bool hasNucleus;
 
@@ -45,7 +47,7 @@ public class NucleusTutorial : EditorEntryCountingTutorial
                     break;
                 }
 
-                var isNucleus = eventArgs.Definition.InternalName == "nucleus";
+                var isNucleus = eventArgs.Definition.InternalName == nucleus.InternalName;
 
                 if (isNucleus)
                 {
@@ -67,7 +69,10 @@ public class NucleusTutorial : EditorEntryCountingTutorial
 
                 foreach (var data in combinedAction.Data)
                 {
-                    if (data is OrganellePlacementActionData { PlacedHex.Definition.InternalName: "nucleus" })
+                    if (data is not OrganellePlacementActionData organellePlacementData)
+                        continue;
+
+                    if (organellePlacementData.PlacedHex.Definition.InternalName == nucleus.InternalName)
                     {
                         hasNucleus = false;
                     }
@@ -83,7 +88,10 @@ public class NucleusTutorial : EditorEntryCountingTutorial
 
                 foreach (var data in combinedAction.Data)
                 {
-                    if (data is OrganellePlacementActionData { PlacedHex.Definition.InternalName: "nucleus" })
+                    if (data is not OrganellePlacementActionData organellePlacementData)
+                        continue;
+
+                    if (organellePlacementData.PlacedHex.Definition.InternalName == nucleus.InternalName)
                     {
                         hasNucleus = true;
                     }
