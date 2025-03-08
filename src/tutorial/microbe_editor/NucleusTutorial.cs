@@ -39,7 +39,7 @@ public class NucleusTutorial : EditorEntryCountingTutorial
                     break;
                 }
 
-                var isNucleus = eventArgs.Definition.InternalName == "Nucleus";
+                var isNucleus = eventArgs.Definition.InternalName == "nucleus";
 
                 if (isNucleus)
                 {
@@ -61,7 +61,7 @@ public class NucleusTutorial : EditorEntryCountingTutorial
 
                 foreach (var data in combinedAction.Data)
                 {
-                    if (data is OrganellePlacementActionData { PlacedHex.Definition.InternalName: "Nucleus" })
+                    if (data is OrganellePlacementActionData { PlacedHex.Definition.InternalName: "nucleus" })
                     {
                         hasNucleus = false;
                     }
@@ -77,7 +77,7 @@ public class NucleusTutorial : EditorEntryCountingTutorial
 
                 foreach (var data in combinedAction.Data)
                 {
-                    if (data is OrganellePlacementActionData { PlacedHex.Definition.InternalName: "Nucleus" })
+                    if (data is OrganellePlacementActionData { PlacedHex.Definition.InternalName: "nucleus" })
                     {
                         hasNucleus = true;
                     }
