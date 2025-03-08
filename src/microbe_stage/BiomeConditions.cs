@@ -207,7 +207,14 @@ public class BiomeConditions : IBiomeConditions, ICloneable
         foreach (var entry in changes)
         {
             var definition = simulationParameters.GetCompoundDefinition(entry.Key);
-            if (!definition.IsEnvironmental)
+            if (!definition.IsEnvironmental && !definition.IsGas)
+            {
+                TryGetCompound(entry.Key, CompoundAmountType.Biome, out var existing);
+
+                existing.Ambient += entry.Value;
+                ModifyLongTermCondition(entry.Key, existing);
+            }
+            else if (!definition.IsEnvironmental)
             {
                 if (!TryGetCompound(entry.Key, CompoundAmountType.Biome, out var existing))
                 {
@@ -229,7 +236,7 @@ public class BiomeConditions : IBiomeConditions, ICloneable
                 // Then non-gas environmental can also be applied here as these don't use custom handling
                 TryGetCompound(entry.Key, CompoundAmountType.Biome, out var existing);
 
-                existing.Ambient += entry.Value;
+                existing.Ambient = Math.Clamp(existing.Ambient + entry.Value, 0, 1);
                 ModifyLongTermCondition(entry.Key, existing);
             }
         }

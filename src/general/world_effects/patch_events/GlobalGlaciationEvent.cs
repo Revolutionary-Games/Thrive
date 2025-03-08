@@ -86,8 +86,6 @@ public class GlobalGlaciationEvent : IWorldEffect
 
     private void TryToTriggerEvent(double totalTimePassed)
     {
-        // if (totalTimePassed <= 200_000_000)
-        //     return;
         if (!AreConditionsMet())
             return;
 
@@ -222,7 +220,7 @@ public class GlobalGlaciationEvent : IWorldEffect
         var previousSunlight = patchSnapshot.Biome.ChangeableCompounds[Compound.Sunlight];
 
         currentTemperature.Ambient = previousTemperature.Ambient - currentTemperature.Ambient;
-        currentSunlight.Ambient = 0.5f - currentSunlight.Ambient - previousSunlight.Ambient;
+        currentSunlight.Ambient = previousSunlight.Ambient - currentSunlight.Ambient;
 
         var changes = new Dictionary<Compound, float>
         {
