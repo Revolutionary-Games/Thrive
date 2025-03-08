@@ -7,6 +7,8 @@ public partial class FluidCurrentDisplay : GpuParticles3D
 {
 #pragma warning disable CA2213
     private ShaderMaterial material = null!;
+
+    private MicrobeStage stage = null!;
 #pragma warning restore CA2213
 
     private StringName gameTimeParameterName = new("gameTime");
@@ -15,6 +17,11 @@ public partial class FluidCurrentDisplay : GpuParticles3D
     private StringName scaleParameterName = new("scale");
 
     private float time;
+
+    public void Init(MicrobeStage microbeStage)
+    {
+        stage = microbeStage;
+    }
 
     public override void _Ready()
     {
@@ -31,11 +38,11 @@ public partial class FluidCurrentDisplay : GpuParticles3D
 
         if (!PauseManager.Instance.Paused)
         {
-            time += (float)delta;
-
             material.SetShaderParameter(gameTimeParameterName, time);
 
-            SpeedScale = 1.0f;
+            SpeedScale = stage.WorldSimulation.WorldTimeScale;
+
+            time += (float)(delta * SpeedScale);
         }
         else
         {
