@@ -20,7 +20,7 @@ public class NucleusTutorial : EditorEntryCountingTutorial
 
     public override string ClosedByName => "NucleusTutorial";
 
-    protected override int TriggersOnNthEditorSession { get; }
+    protected override int TriggersOnNthEditorSession => 2;
 
     public override void ApplyGUIState(MicrobeEditorTutorialGUI gui)
     {
@@ -30,6 +30,9 @@ public class NucleusTutorial : EditorEntryCountingTutorial
     public override bool CheckEvent(TutorialState overallState, TutorialEventType eventType, EventArgs args,
         object sender)
     {
+        if (base.CheckEvent(overallState, eventType, args, sender))
+            return true;
+
         switch (eventType)
         {
             case TutorialEventType.MicrobeEditorOrganellePlaced:
@@ -56,7 +59,7 @@ public class NucleusTutorial : EditorEntryCountingTutorial
 
             case TutorialEventType.MicrobeEditorUndo:
             {
-                var eventArgs = (UndoEventArgs)args;
+                var eventArgs = (EditorEventArgs)args;
                 var combinedAction = (CombinedEditorAction)eventArgs.Action;
 
                 foreach (var data in combinedAction.Data)
@@ -72,7 +75,7 @@ public class NucleusTutorial : EditorEntryCountingTutorial
 
             case TutorialEventType.MicrobeEditorRedo:
             {
-                var eventArgs = (RedoEventArgs)args;
+                var eventArgs = (EditorEventArgs)args;
                 var combinedAction = (CombinedEditorAction)eventArgs.Action;
 
                 foreach (var data in combinedAction.Data)
@@ -81,28 +84,6 @@ public class NucleusTutorial : EditorEntryCountingTutorial
                     {
                         hasNucleus = true;
                     }
-                }
-
-                break;
-            }
-
-            case TutorialEventType.EnteredMicrobeEditor:
-            {
-                CanTrigger = NumberOfEditorEntries >= TriggersOnNthEditorSession;
-
-                break;
-            }
-
-            case TutorialEventType.MicrobeEditorTabChanged:
-            {
-                if (!HasBeenShown && CanTrigger && ((StringEventArgs)args).Data == cellEditorTab && !hasNucleus)
-                {
-                    Show();
-                }
-
-                if ((ShownCurrently && ((StringEventArgs)args).Data != cellEditorTab) || hasNucleus)
-                {
-                    Hide();
                 }
 
                 break;

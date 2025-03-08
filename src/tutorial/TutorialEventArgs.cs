@@ -154,19 +154,9 @@ public class OrganellePlacedEventArgs : TutorialEventArgs
     public OrganelleDefinition Definition { get; }
 }
 
-public class UndoEventArgs : TutorialEventArgs
+public class EditorEventArgs : TutorialEventArgs
 {
-    public UndoEventArgs(ReversibleAction action)
-    {
-        Action = action;
-    }
-
-    public ReversibleAction Action { get; }
-}
-
-public class RedoEventArgs : TutorialEventArgs
-{
-    public RedoEventArgs(ReversibleAction action)
+    public EditorEventArgs(ReversibleAction action)
     {
         Action = action;
     }
