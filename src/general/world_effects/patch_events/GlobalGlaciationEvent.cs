@@ -1,4 +1,4 @@
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using Godot;
 using Newtonsoft.Json;
 using Xoshiro.PRNG64;
@@ -30,7 +30,7 @@ public class GlobalGlaciationEvent : IWorldEffect
     private int generationsLeft = -1;
 
     [JsonProperty]
-    private int eventDuration = 0;
+    private int eventDuration;
 
     [JsonProperty]
     private GameWorld targetWorld;
