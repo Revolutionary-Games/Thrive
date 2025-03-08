@@ -34,7 +34,12 @@ public class ChemoreceptorPlacementTutorial : EditorEntryCountingTutorial
         {
             case TutorialEventType.MicrobeEditorOrganellePlaced:
             {
-                if (((OrganellePlacedEventArgs)args).Definition.InternalName != chemoreceptor.InternalName)
+                if (args is not OrganellePlacedEventArgs organellePlacedEventArgs)
+                {
+                    break;
+                }
+
+                if (organellePlacedEventArgs.Definition.InternalName != chemoreceptor.InternalName)
                     break;
 
                 if (ShownCurrently)
