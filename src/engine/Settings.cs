@@ -842,6 +842,7 @@ public class Settings
     public void ApplyGraphicsSettings()
     {
         GUICommon.Instance.GetTree().Root.GetViewport().Msaa3D = MSAAResolution;
+        GUICommon.Instance.GetTree().Root.GetViewport().AnisotropicFilteringLevel = AnisotropicFilterLevel;
 
         // Values less than 0 are undefined behaviour
         int max = MaxFramesPerSecond;
