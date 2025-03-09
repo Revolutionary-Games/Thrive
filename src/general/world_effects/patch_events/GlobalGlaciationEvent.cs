@@ -94,7 +94,7 @@ public class GlobalGlaciationEvent : IWorldEffect
 
         foreach (var (index, patch) in targetWorld.Map.Patches)
         {
-            if (patch.Depth[0] == 0)
+            if (patch.Depth[0] == 0 && patch.BiomeType != BiomeType.Cave)
             {
                 ChangePatchProperties(index, patch, totalTimePassed);
             }
@@ -109,7 +109,7 @@ public class GlobalGlaciationEvent : IWorldEffect
         var patchesExceedingOxygenLevel = 0;
         foreach (var patch in targetWorld.Map.Patches.Values)
         {
-            if (patch.Depth[0] != 0)
+            if (patch.Depth[0] != 0 || patch.BiomeType == BiomeType.Cave)
                 continue;
 
             patch.Biome.TryGetCompound(Compound.Oxygen, CompoundAmountType.Biome, out var oxygenLevel);
@@ -178,12 +178,12 @@ public class GlobalGlaciationEvent : IWorldEffect
     private void LogEvent(Patch patch, double totalTimePassed)
     {
         patch.LogEvent(new LocalizedString("GLOBAL_GLACIATION_EVENT"),
-            true, true, "PatchIceShelf.svg");
+            true, true, "GlobalGlaciationEvent.svg");
 
         if (patch.Visibility == MapElementVisibility.Shown)
         {
             targetWorld.LogEvent(new LocalizedString("GLOBAL_GLACIATION_EVENT_LOG", patch.Name),
-                true, false, "PatchIceShelf.svg");
+                true, false, "GlobalGlaciationEvent.svg");
         }
 
         patch.AddPatchEventRecord(WorldEffectVisuals.GlobalGlaciation, totalTimePassed);
@@ -192,13 +192,13 @@ public class GlobalGlaciationEvent : IWorldEffect
     private void LogBeginningOfGlaciation()
     {
         targetWorld.LogEvent(new LocalizedString("GLOBAL_GLACIATION_START_EVENT_LOG"),
-            true, true, "PatchIceShelf.svg");
+            true, true, "GlobalGlaciationEvent.svg");
     }
 
     private void LogEndOfGlaciation()
     {
         targetWorld.LogEvent(new LocalizedString("GLOBAL_GLACIATION_END_EVENT_LOG"),
-            true, true, "PatchIceShelf.svg");
+            true, true, "GlobalGlaciationEvent.svg");
     }
 
     private void FinishEvent()
