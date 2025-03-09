@@ -154,6 +154,16 @@ public class OrganellePlacedEventArgs : TutorialEventArgs
     public OrganelleDefinition Definition { get; }
 }
 
+public class EditorActionEventArgs : TutorialEventArgs
+{
+    public EditorActionEventArgs(ReversibleAction action)
+    {
+        Action = action;
+    }
+
+    public ReversibleAction Action { get; }
+}
+
 public class GameWorldEventArgs : TutorialEventArgs
 {
     public GameWorldEventArgs(GameWorld world)
