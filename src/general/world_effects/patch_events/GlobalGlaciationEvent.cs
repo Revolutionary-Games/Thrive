@@ -99,6 +99,8 @@ public class GlobalGlaciationEvent : IWorldEffect
                 ChangePatchProperties(index, patch, totalTimePassed);
             }
         }
+
+        LogBeginningOfGlaciation();
     }
 
     private bool AreConditionsMet()
@@ -181,10 +183,22 @@ public class GlobalGlaciationEvent : IWorldEffect
         if (patch.Visibility == MapElementVisibility.Shown)
         {
             targetWorld.LogEvent(new LocalizedString("GLOBAL_GLACIATION_EVENT_LOG", patch.Name),
-                true, true, "PatchIceShelf.svg");
+                true, false, "PatchIceShelf.svg");
         }
 
         patch.AddPatchEventRecord(WorldEffectVisuals.GlobalGlaciation, totalTimePassed);
+    }
+
+    private void LogBeginningOfGlaciation()
+    {
+        targetWorld.LogEvent(new LocalizedString("GLOBAL_GLACIATION_START_EVENT_LOG"),
+            true, true, "PatchIceShelf.svg");
+    }
+
+    private void LogEndOfGlaciation()
+    {
+        targetWorld.LogEvent(new LocalizedString("GLOBAL_GLACIATION_END_EVENT_LOG"),
+            true, true, "PatchIceShelf.svg");
     }
 
     private void FinishEvent()
@@ -201,6 +215,8 @@ public class GlobalGlaciationEvent : IWorldEffect
             ResetEnvironment(patch, patchSnapshot);
             RemoveChunks(patch);
         }
+
+        LogEndOfGlaciation();
     }
 
     private void ResetBackground(Patch patch, PatchSnapshot patchSnapshot)
