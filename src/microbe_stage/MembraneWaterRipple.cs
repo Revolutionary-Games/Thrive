@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Reflection;
 using Godot;
 
@@ -14,7 +14,7 @@ public partial class MembraneWaterRipple : Node
     public float RippleStrength = 0.8f;
 
     [Export]
-    public Color WaterColor = new (0.0f, 0.0f, 0.0f, 0.02f);
+    public Color WaterColor = new(0.0f, 0.0f, 0.0f, 0.02f);
 
     [Export]
     public float WaterSize = 18.0f; // Base water size
@@ -323,7 +323,9 @@ public partial class MembraneWaterRipple : Node
     }
 
     // Updates movement parameters for the effect
+#pragma warning disable SA1313
     private void UpdateMovementParameters(double _delta)
+#pragma warning restore SA1313
     {
         try
         {
@@ -333,11 +335,10 @@ public partial class MembraneWaterRipple : Node
             // Get current position
             Vector3 currentPos = parentMembrane.GlobalPosition;
             float currentTime = Time.GetTicksMsec() / 1000.0f;
-
             float timeSinceLastMovement = currentTime - lastMovementTime;
-            Vector3 movement = timeSinceLastMovement > 0.01f 
-			? currentPos - lastPosition
-			: lastPosition - previousPosition;
+            Vector3 movement = timeSinceLastMovement > 0.01f
+                ? currentPos - lastPosition
+                : lastPosition - previousPosition;
 
             // Only update after minimum time to avoid jitter
             if (timeSinceLastMovement > 0.01f)
@@ -397,7 +398,7 @@ public partial class MembraneWaterRipple : Node
             foreach (var propertyName in new[] { "Radius", "radius", "_radius" })
             {
                 var property = parentMembrane.GetType().GetProperty(propertyName,
-				BindingFlags.Public | BindingFlags.NonPublic | BindingFlags.Instance);
+                BindingFlags.Public | BindingFlags.NonPublic | BindingFlags.Instance);
 
                 if (property != null)
                 {
@@ -409,7 +410,7 @@ public partial class MembraneWaterRipple : Node
                 }
 
                 var field = parentMembrane.GetType().GetField(propertyName,
-				BindingFlags.Public | BindingFlags.NonPublic | BindingFlags.Instance);
+                BindingFlags.Public | BindingFlags.NonPublic | BindingFlags.Instance);
 
                 if (field != null)
                 {
@@ -425,7 +426,7 @@ public partial class MembraneWaterRipple : Node
             foreach (var methodName in new[] { "GetRadius", "get_Radius", "GetSize", "get_Size" })
             {
                 var method = parentMembrane.GetType().GetMethod(methodName,
-				BindingFlags.Public | BindingFlags.NonPublic | BindingFlags.Instance);
+                BindingFlags.Public | BindingFlags.NonPublic | BindingFlags.Instance);
 
                 if (method != null && method.GetParameters().Length == 0)
                 {
