@@ -5,7 +5,7 @@
 [ext_resource type="Script" uid="uid://dfoaku3adr8tx" path="res://src/engine/input/key_mapping/InputGroupList.cs" id="3"]
 [ext_resource type="PackedScene" uid="uid://cl64wvnxs6ivs" path="res://src/gui_common/dialogs/CustomConfirmationDialog.tscn" id="6"]
 [ext_resource type="LabelSettings" uid="uid://uxdd8vb4xedn" path="res://src/gui_common/fonts/Body-Regular-AlmostTiny.tres" id="7_etww0"]
-[ext_resource type="PackedScene" path="res://src/gui_common/dialogs/CustomWindow.tscn" id="8"]
+[ext_resource type="PackedScene" uid="uid://du8sc8kjirguk" path="res://src/gui_common/dialogs/CustomWindow.tscn" id="8"]
 [ext_resource type="LabelSettings" uid="uid://bnhcbmq3brx0s" path="res://src/gui_common/fonts/Title-SemiBold-Normal.tres" id="8_jegpj"]
 [ext_resource type="PackedScene" uid="uid://2nt57gfubafw" path="res://src/gui_common/dialogs/ErrorDialog.tscn" id="9"]
 [ext_resource type="Texture2D" uid="uid://bsg6xcrlspkdt" path="res://assets/textures/gui/bevel/hSeparatorLeftSide.png" id="11"]
@@ -297,6 +297,7 @@ size_flags_vertical = 0
 selected = 0
 item_count = 3
 popup/item_0/text = "WINDOWED"
+popup/item_0/id = 0
 popup/item_1/text = "FULLSCREEN"
 popup/item_1/id = 1
 popup/item_2/text = "EXCLUSIVE_FULLSCREEN"
@@ -330,6 +331,38 @@ size_flags_vertical = 0
 selected = 1
 item_count = 4
 popup/item_0/text = "DISABLED"
+popup/item_0/id = 0
+popup/item_1/text = "TWO_TIMES"
+popup/item_1/id = 1
+popup/item_2/text = "FOUR_TIMES"
+popup/item_2/id = 2
+popup/item_3/text = "EIGHT_TIMES"
+popup/item_3/id = 3
+
+[node name="HBoxContainer15" type="HBoxContainer" parent="CenterContainer/VBoxContainer/VBoxContainer/VBoxContainer/PanelContainer/Graphics/ScrollContainer/MarginContainer/VBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="VBoxContainer" type="VBoxContainer" parent="CenterContainer/VBoxContainer/VBoxContainer/VBoxContainer/PanelContainer/Graphics/ScrollContainer/MarginContainer/VBoxContainer/HBoxContainer15"]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="CenterContainer/VBoxContainer/VBoxContainer/VBoxContainer/PanelContainer/Graphics/ScrollContainer/MarginContainer/VBoxContainer/HBoxContainer15/VBoxContainer"]
+layout_mode = 2
+mouse_filter = 0
+text = "ANISOTROPIC_FILTERING"
+
+[node name="Separator" type="Control" parent="CenterContainer/VBoxContainer/VBoxContainer/VBoxContainer/PanelContainer/Graphics/ScrollContainer/MarginContainer/VBoxContainer/HBoxContainer15"]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="AnisotropicFilterLevel" type="OptionButton" parent="CenterContainer/VBoxContainer/VBoxContainer/VBoxContainer/PanelContainer/Graphics/ScrollContainer/MarginContainer/VBoxContainer/HBoxContainer15"]
+custom_minimum_size = Vector2(200, 25)
+layout_mode = 2
+size_flags_vertical = 0
+selected = 1
+item_count = 4
+popup/item_0/text = "DISABLED"
+popup/item_0/id = 0
 popup/item_1/text = "TWO_TIMES"
 popup/item_1/id = 1
 popup/item_2/text = "FOUR_TIMES"
@@ -370,6 +403,7 @@ layout_mode = 2
 selected = 6
 item_count = 9
 popup/item_0/text = "30"
+popup/item_0/id = 0
 popup/item_1/text = "60"
 popup/item_1/id = 1
 popup/item_2/text = "90"
@@ -408,6 +442,7 @@ focus_next = NodePath("../../HBoxContainer5/ChromaticToggle")
 selected = 0
 item_count = 3
 popup/item_0/text = "NONE"
+popup/item_0/id = 0
 popup/item_1/text = "CORRECTION_PROTANOPE"
 popup/item_1/id = 1
 popup/item_2/text = "CORRECTION_TRITANOPE"
@@ -599,6 +634,7 @@ focus_previous = NodePath("../../Menu3DBackgroundsToggle")
 selected = 0
 item_count = 7
 popup/item_0/text = "AUTO"
+popup/item_0/id = 0
 popup/item_1/text = "XBOX360"
 popup/item_1/id = 1
 popup/item_2/text = "XBOX_ONE"
@@ -655,6 +691,7 @@ focus_previous = NodePath("../../DisplayPartNamesToggle")
 selected = 0
 item_count = 4
 popup/item_0/text = "OFF"
+popup/item_0/id = 0
 popup/item_1/text = "VISIBLE_WHEN_CLOSE_TO_FULL"
 popup/item_1/id = 1
 popup/item_2/text = "VISIBLE_WHEN_OVER_ZERO"
@@ -943,6 +980,7 @@ size_flags_vertical = 0
 selected = 2
 item_count = 5
 popup/item_0/text = "0ms"
+popup/item_0/id = 0
 popup/item_1/text = "20ms"
 popup/item_1/id = 1
 popup/item_2/text = "40ms"
@@ -982,6 +1020,7 @@ disabled = true
 selected = 1
 item_count = 3
 popup/item_0/text = "1"
+popup/item_0/id = 0
 popup/item_1/text = "2"
 popup/item_1/id = 1
 popup/item_2/text = "4"
@@ -1040,6 +1079,7 @@ focus_next = NodePath("../../AssumeHyperthreading")
 selected = 3
 item_count = 8
 popup/item_0/text = "LIMIT_TINY"
+popup/item_0/id = 0
 popup/item_1/text = "LIMIT_VERY_SMALL"
 popup/item_1/id = 1
 popup/item_2/text = "LIMIT_SMALL"
@@ -1463,6 +1503,7 @@ layout_mode = 2
 selected = 0
 item_count = 3
 popup/item_0/text = "SCALING_NONE"
+popup/item_0/id = 0
 popup/item_1/text = "SCALING_ON"
 popup/item_1/id = 1
 popup/item_2/text = "SCALING_ON_INVERSE"
@@ -1563,6 +1604,7 @@ focus_neighbor_bottom = NodePath("../../HBoxContainer3/Movement3DType")
 selected = 0
 item_count = 3
 popup/item_0/text = "AUTO"
+popup/item_0/id = 0
 popup/item_1/text = "PLAYER_RELATIVE_MOVEMENT"
 popup/item_1/id = 1
 popup/item_2/text = "SCREEN_RELATIVE_MOVEMENT"
@@ -1589,6 +1631,7 @@ focus_neighbor_right = NodePath("../../../../../../HBoxContainer/ResetInputsButt
 selected = 0
 item_count = 2
 popup/item_0/text = "SCREEN_RELATIVE_MOVEMENT"
+popup/item_0/id = 0
 popup/item_1/text = "WORLD_RELATIVE_MOVEMENT"
 popup/item_1/id = 1
 
@@ -1859,6 +1902,7 @@ focus_neighbor_bottom = NodePath("../../HBoxContainer9/ScreenEffect")
 selected = 0
 item_count = 3
 popup/item_0/text = "JSON_DEBUG_MODE_AUTO"
+popup/item_0/id = 0
 popup/item_1/text = "JSON_DEBUG_MODE_ALWAYS"
 popup/item_1/id = 1
 popup/item_2/text = "JSON_DEBUG_MODE_NEVER"
@@ -1972,14 +2016,14 @@ text = "RESET_SETTINGS_TO_DEFAULTS"
 [node name="DefaultsConfirm" parent="CenterContainer" instance=ExtResource("6")]
 custom_minimum_size = Vector2(600, 0)
 layout_mode = 2
-DialogText = "ARE_YOU_SURE_TO_RESET_ALL_SETTINGS"
 WindowTitle = "RESET_TO_DEFAULTS"
+DialogText = "ARE_YOU_SURE_TO_RESET_ALL_SETTINGS"
 
 [node name="DefaultsInputsConfirm" parent="CenterContainer" instance=ExtResource("6")]
 custom_minimum_size = Vector2(600, 0)
 layout_mode = 2
-DialogText = "ARE_YOU_SURE_TO_RESET_INPUT_SETTINGS"
 WindowTitle = "RESET_INPUTS_TO_DEFAULTS"
+DialogText = "ARE_YOU_SURE_TO_RESET_INPUT_SETTINGS"
 
 [node name="BackConfirm" parent="CenterContainer" instance=ExtResource("8")]
 custom_minimum_size = Vector2(600, 0)
@@ -2046,17 +2090,17 @@ WindowTitle = "ERROR"
 [node name="ErrorDialog" parent="CenterContainer" instance=ExtResource("9")]
 custom_minimum_size = Vector2(400, 0)
 layout_mode = 2
-ErrorMessage = "ERROR_FAILED_TO_SAVE_NEW_SETTINGS"
-ExceptionInfo = ""
 WindowTitle = "ERROR"
 Resizable = false
+ErrorMessage = "ERROR_FAILED_TO_SAVE_NEW_SETTINGS"
+ExceptionInfo = ""
 
 [node name="NoDirectoryDialog" parent="CenterContainer" instance=ExtResource("6")]
 custom_minimum_size = Vector2(600, 0)
 layout_mode = 2
+WindowTitle = "NO_SCREENSHOT_DIRECTORY"
 HideCancelButton = true
 DialogText = "TRY_TAKING_SOME_SCREENSHOTS"
-WindowTitle = "NO_SCREENSHOT_DIRECTORY"
 
 [node name="PatchNotesBox" parent="CenterContainer" instance=ExtResource("8")]
 layout_mode = 2
@@ -2107,11 +2151,6 @@ anchor_bottom = 0.0
 grow_horizontal = 1
 grow_vertical = 1
 
-[connection signal="pressed" from="CenterContainer/VBoxContainer/TabButtons/GraphicsButton" to="." method="ChangeSettingsTab" binds= ["Graphics"]]
-[connection signal="pressed" from="CenterContainer/VBoxContainer/TabButtons/SoundButton" to="." method="ChangeSettingsTab" binds= ["Sound"]]
-[connection signal="pressed" from="CenterContainer/VBoxContainer/TabButtons/PerformanceButton" to="." method="ChangeSettingsTab" binds= ["Performance"]]
-[connection signal="pressed" from="CenterContainer/VBoxContainer/TabButtons/InputsButton" to="." method="ChangeSettingsTab" binds= ["Inputs"]]
-[connection signal="pressed" from="CenterContainer/VBoxContainer/TabButtons/MiscButton" to="." method="ChangeSettingsTab" binds= ["Miscellaneous"]]
 [connection signal="toggled" from="CenterContainer/VBoxContainer/VBoxContainer/VBoxContainer/PanelContainer/Graphics/ScrollContainer/MarginContainer/VBoxContainer/Vsync" to="." method="OnVSyncToggled"]
 [connection signal="item_selected" from="CenterContainer/VBoxContainer/VBoxContainer/VBoxContainer/PanelContainer/Graphics/ScrollContainer/MarginContainer/VBoxContainer/HBoxContainer14/DisplayMode" to="." method="OnDisplayModeSelected"]
 [connection signal="item_selected" from="CenterContainer/VBoxContainer/VBoxContainer/VBoxContainer/PanelContainer/Graphics/ScrollContainer/MarginContainer/VBoxContainer/HBoxContainer/MSAAResolution" to="." method="OnMSAAResolutionSelected"]
@@ -2204,10 +2243,7 @@ grow_vertical = 1
 [connection signal="pressed" from="CenterContainer/VBoxContainer/VBoxContainer/HBoxContainer/Reset" to="." method="OnResetPressed"]
 [connection signal="pressed" from="CenterContainer/VBoxContainer/VBoxContainer/HBoxContainer/Save" to="." method="OnSavePressed"]
 [connection signal="pressed" from="CenterContainer/VBoxContainer/VBoxContainer/HBoxContainer/Defaults" to="." method="OnDefaultsPressed"]
-[connection signal="Confirmed" from="CenterContainer/DefaultsConfirm" to="." method="DefaultsConfirmSelected"]
-[connection signal="Confirmed" from="CenterContainer/DefaultsInputsConfirm" to="." method="InputDefaultsConfirm"]
 [connection signal="pressed" from="CenterContainer/BackConfirm/VBoxContainer/HBoxContainer/SaveButton" to="." method="BackSaveSelected"]
 [connection signal="pressed" from="CenterContainer/BackConfirm/VBoxContainer/HBoxContainer/DiscardButton" to="." method="BackDiscardSelected"]
 [connection signal="pressed" from="CenterContainer/BackConfirm/VBoxContainer/HBoxContainer/CancelButton" to="." method="BackCancelSelected"]
-[connection signal="Confirmed" from="CenterContainer/ConflictDialog" to="CenterContainer/VBoxContainer/VBoxContainer/VBoxContainer/PanelContainer/Inputs/MarginContainer/VBoxContainer/VBoxContainer/ScrollContainer/MarginContainer/VBoxContainer/InputGroupList" method="OnConflictConfirmed"]
 [connection signal="pressed" from="CenterContainer/PatchNotesBox/VBoxContainer/HBoxContainer/Close" to="CenterContainer/PatchNotesBox" method="OnCloseButtonPressed"]
