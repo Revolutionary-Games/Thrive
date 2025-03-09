@@ -91,6 +91,13 @@ public class Settings
         new(Viewport.Msaa.Msaa2X);
 
     /// <summary>
+    ///   Sets the level of the anisotropic filter to apply to the viewport
+    /// </summary>
+    [JsonProperty]
+    public SettingValue<Viewport.AnisotropicFiltering> AnisotropicFilterLevel { get; private set; } =
+        new(Viewport.AnisotropicFiltering.Anisotropy8X);
+
+    /// <summary>
     ///   Sets the maximum framerate of the game window
     /// </summary>
     [JsonProperty]

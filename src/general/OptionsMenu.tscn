@@ -36,7 +36,7 @@ region_rect = Rect2(0, 0, 258, 1)
 
 [sub_resource type="StyleBoxEmpty" id="7"]
 
-[node name="OptionsMenu" type="Control" node_paths=PackedStringArray("damageEffect", "strainVisibility", "displayMicrobeBackgroundDistortionToggle", "lowQualityBackgroundBlurToggle", "bloomEffectToggle", "bloomSlider", "blurSlider", "useDiskCaching", "maxCacheSizeSlider", "maxCacheSizeLabel", "currentCacheSize", "maxMemoryCacheTimeSlider", "maxMemoryCacheTimeLabel", "maxDiskCacheTimeSlider", "maxDiskCacheTimeLabel", "maxMemoryItemsSlider", "maxMemoryItemsLabel", "maxMemoryOnlyCacheTimeSlider", "maxMemoryOnlyCacheTimeLabel")]
+[node name="OptionsMenu" type="Control" node_paths=PackedStringArray("anisotropicFilterLevel", "damageEffect", "strainVisibility", "displayMicrobeBackgroundDistortionToggle", "lowQualityBackgroundBlurToggle", "bloomEffectToggle", "bloomSlider", "blurSlider", "useDiskCaching", "maxCacheSizeSlider", "maxCacheSizeLabel", "currentCacheSize", "maxMemoryCacheTimeSlider", "maxMemoryCacheTimeLabel", "maxDiskCacheTimeSlider", "maxDiskCacheTimeLabel", "maxMemoryItemsSlider", "maxMemoryItemsLabel", "maxMemoryOnlyCacheTimeSlider", "maxMemoryOnlyCacheTimeLabel")]
 process_mode = 3
 layout_mode = 3
 anchors_preset = 15
@@ -147,6 +147,7 @@ BuiltAtLabelPath = NodePath("CenterContainer/VBoxContainer/VBoxContainer/VBoxCon
 UnsavedProgressWarningPath = NodePath("CenterContainer/VBoxContainer/VBoxContainer/VBoxContainer/PanelContainer/Misc/ScrollContainer/MarginContainer/VBoxContainer/UnsavedProgressWarning")
 PatchNotesBoxPath = NodePath("CenterContainer/PatchNotesBox")
 PatchNotesDisplayerPath = NodePath("CenterContainer/PatchNotesBox/VBoxContainer/PatchNotesDisplayer")
+anisotropicFilterLevel = NodePath("CenterContainer/VBoxContainer/VBoxContainer/VBoxContainer/PanelContainer/Graphics/ScrollContainer/MarginContainer/VBoxContainer/HBoxContainer15/AnisotropicFilterLevel")
 damageEffect = NodePath("CenterContainer/VBoxContainer/VBoxContainer/VBoxContainer/PanelContainer/Graphics/ScrollContainer/MarginContainer/VBoxContainer/DamageEffect")
 strainVisibility = NodePath("CenterContainer/VBoxContainer/VBoxContainer/VBoxContainer/PanelContainer/Graphics/ScrollContainer/MarginContainer/VBoxContainer/HBoxContainer11/StrainBarMode")
 displayMicrobeBackgroundDistortionToggle = NodePath("CenterContainer/VBoxContainer/VBoxContainer/VBoxContainer/PanelContainer/Graphics/ScrollContainer/MarginContainer/VBoxContainer/BackgroundDistortion")
@@ -2158,6 +2159,7 @@ grow_vertical = 1
 [connection signal="toggled" from="CenterContainer/VBoxContainer/VBoxContainer/VBoxContainer/PanelContainer/Graphics/ScrollContainer/MarginContainer/VBoxContainer/Vsync" to="." method="OnVSyncToggled"]
 [connection signal="item_selected" from="CenterContainer/VBoxContainer/VBoxContainer/VBoxContainer/PanelContainer/Graphics/ScrollContainer/MarginContainer/VBoxContainer/HBoxContainer14/DisplayMode" to="." method="OnDisplayModeSelected"]
 [connection signal="item_selected" from="CenterContainer/VBoxContainer/VBoxContainer/VBoxContainer/PanelContainer/Graphics/ScrollContainer/MarginContainer/VBoxContainer/HBoxContainer/MSAAResolution" to="." method="OnMSAAResolutionSelected"]
+[connection signal="item_selected" from="CenterContainer/VBoxContainer/VBoxContainer/VBoxContainer/PanelContainer/Graphics/ScrollContainer/MarginContainer/VBoxContainer/HBoxContainer15/AnisotropicFilterLevel" to="." method="OnAnisotropicFilteringSelected"]
 [connection signal="item_selected" from="CenterContainer/VBoxContainer/VBoxContainer/VBoxContainer/PanelContainer/Graphics/ScrollContainer/MarginContainer/VBoxContainer/HBoxContainer3/MaxFramesPerSecond" to="." method="OnMaxFramesPerSecondSelected"]
 [connection signal="item_selected" from="CenterContainer/VBoxContainer/VBoxContainer/VBoxContainer/PanelContainer/Graphics/ScrollContainer/MarginContainer/VBoxContainer/HBoxContainer2/ColourblindSetting" to="." method="OnColourblindSettingSelected"]
 [connection signal="toggled" from="CenterContainer/VBoxContainer/VBoxContainer/VBoxContainer/PanelContainer/Graphics/ScrollContainer/MarginContainer/VBoxContainer/HBoxContainer5/ChromaticToggle" to="." method="OnChromaticAberrationToggled"]

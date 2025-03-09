@@ -369,6 +369,9 @@ public partial class OptionsMenu : ControlWithInput
     private CheckBox displayAbilitiesHotBarToggle = null!;
 
     [Export]
+    private OptionButton anisotropicFilterLevel = null!;
+
+    [Export]
     private CheckBox damageEffect = null!;
 
     [Export]
@@ -842,6 +845,7 @@ public partial class OptionsMenu : ControlWithInput
         vsync.ButtonPressed = settings.VSync;
         displayMode.Selected = DisplayModeToIndex(settings.DisplayMode);
         msaaResolution.Selected = MSAAResolutionToIndex(settings.MSAAResolution);
+        anisotropicFilterLevel.Selected = (int)settings.AnisotropicFilterLevel.Value;
         maxFramesPerSecond.Selected = MaxFPSValueToIndex(settings.MaxFramesPerSecond);
         colourblindSetting.Selected = settings.ColourblindSetting;
         chromaticAberrationSlider.Value = settings.ChromaticAmount;
@@ -1475,6 +1479,26 @@ public partial class OptionsMenu : ControlWithInput
         }
     }
 
+    private Viewport.AnisotropicFiltering AnisotropicFilteringIndexToLevel(int index)
+    {
+        switch (index)
+        {
+            case 0:
+                return Viewport.AnisotropicFiltering.Disabled;
+            case 1:
+                return Viewport.AnisotropicFiltering.Anisotropy2X;
+            case 2:
+                return Viewport.AnisotropicFiltering.Anisotropy4X;
+            case 3:
+                return Viewport.AnisotropicFiltering.Anisotropy8X;
+            case 4:
+                return Viewport.AnisotropicFiltering.Anisotropy16X;
+            default:
+                GD.PrintErr("invalid MSAA resolution index");
+                return Viewport.AnisotropicFiltering.Disabled;
+        }
+    }
+
     private int MaxFPSValueToIndex(int value)
     {
         switch (value)
@@ -1968,6 +1992,14 @@ public partial class OptionsMenu : ControlWithInput
     private void OnMSAAResolutionSelected(int index)
     {
         Settings.Instance.MSAAResolution.Value = MSAAIndexToResolution(index);
+        Settings.Instance.ApplyGraphicsSettings();
+
+        UpdateResetSaveButtonState();
+    }
+
+    private void OnAnisotropicFilteringSelected(int index)
+    {
+        Settings.Instance.AnisotropicFilterLevel.Value = AnisotropicFilteringIndexToLevel(index);
         Settings.Instance.ApplyGraphicsSettings();
 
         UpdateResetSaveButtonState();
