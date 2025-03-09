@@ -221,11 +221,10 @@
       "oxygen": 0.081
     }
   },
-  "iron_chemolithoautotrophy": {
-    "Name": "IRON_CHEMOLITHOAUTOTROPHY",
+  "iron_oxidation": {
+    "Name": "IRON_OXIDATION",
     "Inputs": {
-      "iron": 0.02,
-      "carbondioxide": 0.09
+      "iron": 0.02
     },
     "Outputs": {
       "atp": 5
@@ -251,10 +250,9 @@
     }
   },
   "ferrosynthesis": {
-    "Name": "IRON_CHEMOLITHOAUTOTROPHY",
+    "Name": "IRON_OXIDATION",
     "Inputs": {
-      "iron": 0.033,
-      "carbondioxide": 0.09
+      "iron": 0.033
     },
     "Outputs": {
       "atp": 13
