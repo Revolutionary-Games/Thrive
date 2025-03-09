@@ -78,10 +78,13 @@ public class GenerateMiche : IRunStep
         var hasMediumSulfurChunk = patch.Biome.Chunks.TryGetValue("sulfurMediumChunk", out var mediumSulfurChunk) &&
             mediumSulfurChunk.Density > 0;
 
+        var hasLargeSulfurChunk = patch.Biome.Chunks.TryGetValue("sulfurLargeChunk", out var largeSulfurChunk) &&
+            largeSulfurChunk.Density > 0;
+
         // Hydrogen Sulfide
         if ((patch.Biome.TryGetCompound(Compound.Hydrogensulfide, CompoundAmountType.Biome,
                     out var hydrogenSulfideAmount) &&
-                hydrogenSulfideAmount.Amount > 0) || hasSmallSulfurChunk || hasMediumSulfurChunk)
+                hydrogenSulfideAmount.Amount > 0) || hasSmallSulfurChunk || hasMediumSulfurChunk || hasLargeSulfurChunk)
         {
             var hydrogenSulfideMiche = new Miche(globalCache.HydrogenSulfideConversionEfficiencyPressure);
             var generateATP = new Miche(globalCache.MinorGlucoseConversionEfficiencyPressure);
@@ -95,6 +98,9 @@ public class GenerateMiche : IRunStep
 
             if (hasMediumSulfurChunk)
                 maintainGlucose.AddChild(new Miche(globalCache.MediumSulfurChunkPressure));
+
+            if (hasLargeSulfurChunk)
+                maintainGlucose.AddChild(new Miche(globalCache.LargeSulfurChunkPressure));
 
             generateATP.AddChild(maintainGlucose);
             hydrogenSulfideMiche.AddChild(generateATP);
