@@ -34,6 +34,9 @@ public partial class MicrobeStage : CreatureStageBase<Entity, MicrobeWorldSimula
     [Export]
     private Node3D heatViewOverlay = null!;
 
+    [Export]
+    private FluidCurrentDisplay fluidCurrentDisplay = null!;
+
     private MicrobeTutorialGUI tutorialGUI = null!;
     private GuidanceLine guidanceLine = null!;
 #pragma warning restore CA2213
@@ -162,6 +165,7 @@ public partial class MicrobeStage : CreatureStageBase<Entity, MicrobeWorldSimula
         tutorialGUI.Visible = true;
         HUD.Init(this);
         HoverInfo.Init(Clouds, Camera);
+        fluidCurrentDisplay.Init(this);
 
         // Do stage setup to spawn things and setup all parts of the stage
         SetupStage();
@@ -1100,6 +1104,8 @@ public partial class MicrobeStage : CreatureStageBase<Entity, MicrobeWorldSimula
         UpdateBackground();
 
         UpdatePatchLightLevelSettings();
+
+        fluidCurrentDisplay.ApplyBiome(GameWorld.Map.CurrentPatch.BiomeTemplate);
     }
 
     protected override void OnGameContinuedAsSpecies(Species newPlayerSpecies, Patch inPatch)
