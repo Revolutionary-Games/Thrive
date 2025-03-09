@@ -1,0 +1,72 @@
+[gd_scene load_steps=14 format=3 uid="uid://jgcbwcrqbblv"]
+
+[ext_resource type="Script" uid="uid://cfo6vubwh8xay" path="res://src/microbe_stage/Membrane.cs" id="1"]
+[ext_resource type="Shader" uid="uid://n5en0070niam" path="res://shaders/Membrane.gdshader" id="2"]
+[ext_resource type="Texture2D" uid="uid://c4abs1j47umma" path="res://assets/textures/SingleMembrane.png" id="3_mj630"]
+[ext_resource type="Texture2D" uid="uid://dnxx08njuvfha" path="res://assets/textures/SingleMembraneDamaged.png" id="4_yioiy"]
+[ext_resource type="Texture2D" uid="uid://baxuoyeo83r2u" path="res://assets/textures/dissolve_noise.tres" id="5"]
+[ext_resource type="Shader" uid="uid://c331kb4yta46" path="res://shaders/EngulfEffect.gdshader" id="6_vljlr"]
+[ext_resource type="Texture2D" uid="uid://bvxwsysj3kj2j" path="res://assets/textures/MembraneNormals.png" id="6_wjsrx"]
+[ext_resource type="Shader" uid="uid://djouei06equ3y" path="res://shaders/MucocystEffect.gdshader" id="7_grw0d"]
+[ext_resource type="Script" uid="uid://h7vrv62tr4sx" path="res://src/microbe_stage/MembraneWaterRipple.cs" id="9_water"]
+
+[sub_resource type="BoxMesh" id="1"]
+size = Vector3(2, 0.539, 2)
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_55k4t"]
+resource_local_to_scene = true
+render_priority = 18
+shader = ExtResource("2")
+shader_parameter/wigglyNess = 1.0
+shader_parameter/movementWigglyNess = 1.0
+shader_parameter/albedoTexture = ExtResource("3_mj630")
+shader_parameter/damagedTexture = ExtResource("4_yioiy")
+shader_parameter/normal2Texture = ExtResource("6_wjsrx")
+shader_parameter/dissolveTexture = ExtResource("5")
+shader_parameter/dissolveValue = 0.0
+shader_parameter/healthFraction = 0.25
+shader_parameter/tint = Color(1, 1, 1, 1)
+shader_parameter/water_time = 0.0
+shader_parameter/water_strength = 0.03
+shader_parameter/water_wiggle = 1.0
+shader_parameter/water_color = Color(0, 0.3, 0.6, 0.4)
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_p8cmc"]
+resource_local_to_scene = true
+render_priority = 0
+shader = ExtResource("6_vljlr")
+shader_parameter/wigglyNess = 1.0
+shader_parameter/movementWigglyNess = 1.0
+shader_parameter/waviness = 40.0
+shader_parameter/waveSpeed = 10.0
+shader_parameter/fade = 0.2
+shader_parameter/tint = Color(0, 0.55, 0.8, 1)
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_lboqi"]
+resource_local_to_scene = true
+render_priority = 0
+shader = ExtResource("7_grw0d")
+shader_parameter/wigglyNess = 1.0
+shader_parameter/movementWigglyNess = 1.0
+shader_parameter/fade = 0.25
+shader_parameter/tint = Color(0.4, 0.8, 0.6, 1)
+
+[node name="Membrane" type="MeshInstance3D" node_paths=PackedStringArray("engulfAnimationMeshInstance", "mucocystAnimationMeshInstance")]
+process_priority = 2
+cast_shadow = 0
+mesh = SubResource("1")
+script = ExtResource("1")
+MembraneShaderMaterial = SubResource("ShaderMaterial_55k4t")
+EngulfShaderMaterial = SubResource("ShaderMaterial_p8cmc")
+MucocystShaderMaterial = SubResource("ShaderMaterial_lboqi")
+engulfAnimationMeshInstance = NodePath("EngulfMesh")
+mucocystAnimationMeshInstance = NodePath("MucocystMesh")
+
+[node name="EngulfMesh" type="MeshInstance3D" parent="."]
+visible = false
+
+[node name="MucocystMesh" type="MeshInstance3D" parent="."]
+visible = false
+
+[node name="WaterRipple" type="Node" parent="."]
+script = ExtResource("9_water")
