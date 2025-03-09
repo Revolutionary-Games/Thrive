@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
 using System.Reflection;
 using Godot;
@@ -23,8 +23,11 @@ public partial class MembraneWaterRipple : Node
     [Export]
     public float Phase = 0.2f;
 
+    /*Controls how quickly ripples dissipate
+    higher values = less viscous appearance*/
+
     [Export]
-    public float Attenuation = 0.998f; // Controls how quickly ripples dissipate - higher values = less viscous appearance
+    public float Attenuation = 0.998f;
 
     [Export]
     public string ShaderPath = "res://shaders/MembraneWaterRipple.gdshader";
@@ -200,7 +203,7 @@ public partial class MembraneWaterRipple : Node
 
             // Optimize subdivision based on size
             // NOLINT
-            int subdivision = Mathf.Clamp((int)(meshSize * 6), 60, MaxMeshSubdivision);
+            int subdivision = System.Math.Clamp((int)(meshSize * 6), 60, MaxMeshSubdivision);
             planeMesh.SubdivideWidth = subdivision;
             planeMesh.SubdivideDepth = subdivision;
 
@@ -271,10 +274,10 @@ public partial class MembraneWaterRipple : Node
 
             // Only update if size changed significantly
             // NOLINT
-            if (Mathf.Abs(currentRadius - lastCheckedMembraneRadius) > 0.5f)
+            if (MathF.Abs(currentRadius - lastCheckedMembraneRadius) > 0.5f)
             {
                 // NOLINT
-                float meshSize = Mathf.Max(WaterSize, currentRadius * RadiusMultiplier);
+                float meshSize = MathF.Max(WaterSize, currentRadius * RadiusMultiplier);
 
                 // Update the mesh
                 if (waterPlane != null && waterPlane.Mesh is PlaneMesh planeMesh)
@@ -283,7 +286,7 @@ public partial class MembraneWaterRipple : Node
 
                     // Optimize subdivision based on size
                     // NOLINT
-                    int subdivision = Mathf.Clamp((int)(meshSize * 6), 60, MaxMeshSubdivision);
+                    int subdivision = System.Math.Clamp((int)(meshSize * 6), 60, MaxMeshSubdivision);
                     planeMesh.SubdivideWidth = subdivision;
                     planeMesh.SubdivideDepth = subdivision;
                 }
@@ -363,9 +366,9 @@ public partial class MembraneWaterRipple : Node
 
                     currentDirection = currentDirection.Lerp(direction, 0.3f);
 
-                    float speed = Mathf.Clamp(distance * 3.5f, 0.0f, 1.0f);
+                    float speed = System.Math.Clamp(distance * 3.5f, 0.0f, 1.0f);
 
-                    currentSpeed = Mathf.Lerp(currentSpeed, speed, 0.3f);
+                    currentSpeed = MathUtils.Lerp(currentSpeed, speed, 0.3f);
                 }
             }
             else
