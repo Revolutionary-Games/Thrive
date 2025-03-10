@@ -845,7 +845,7 @@ public partial class OptionsMenu : ControlWithInput
         vsync.ButtonPressed = settings.VSync;
         displayMode.Selected = DisplayModeToIndex(settings.DisplayMode);
         msaaResolution.Selected = MSAAResolutionToIndex(settings.MSAAResolution);
-        anisotropicFilterLevel.Selected = (int)settings.AnisotropicFilterLevel.Value;
+        anisotropicFilterLevel.Selected = AnisotropicFilterLevelToIndex(settings.AnisotropicFilterLevel);
         maxFramesPerSecond.Selected = MaxFPSValueToIndex(settings.MaxFramesPerSecond);
         colourblindSetting.Selected = settings.ColourblindSetting;
         chromaticAberrationSlider.Value = settings.ChromaticAmount;
@@ -1477,6 +1477,27 @@ public partial class OptionsMenu : ControlWithInput
                 GD.PrintErr("invalid MSAA resolution index");
                 return Viewport.Msaa.Disabled;
         }
+    }
+
+    private int AnisotropicFilterLevelToIndex(Viewport.AnisotropicFiltering level)
+    {
+        if (level == Viewport.AnisotropicFiltering.Disabled)
+            return 0;
+
+        if (level == Viewport.AnisotropicFiltering.Anisotropy2X)
+            return 1;
+
+        if (level == Viewport.AnisotropicFiltering.Anisotropy4X)
+            return 2;
+
+        if (level == Viewport.AnisotropicFiltering.Anisotropy8X)
+            return 3;
+
+        if (level == Viewport.AnisotropicFiltering.Anisotropy16X)
+            return 4;
+
+        GD.PrintErr("invalid anisotropic filtering level index");
+        return 0;
     }
 
     private Viewport.AnisotropicFiltering AnisotropicFilteringIndexToLevel(int index)
