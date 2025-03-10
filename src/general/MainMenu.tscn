@@ -1,7 +1,7 @@
 [gd_scene load_steps=69 format=3 uid="uid://c1fc2aip6oiqt"]
 
 [ext_resource type="Theme" uid="uid://b4cx0o110g4b6" path="res://src/gui_common/thrive_theme.tres" id="1"]
-[ext_resource type="PackedScene" path="res://src/saving/SaveManagerGUI.tscn" id="2"]
+[ext_resource type="PackedScene" uid="uid://8to431fk1dnp" path="res://src/saving/SaveManagerGUI.tscn" id="2"]
 [ext_resource type="PackedScene" uid="uid://khgb1ctp1e5o" path="res://src/general/OptionsMenu.tscn" id="3"]
 [ext_resource type="PackedScene" uid="uid://cl64wvnxs6ivs" path="res://src/gui_common/dialogs/CustomConfirmationDialog.tscn" id="4"]
 [ext_resource type="Script" uid="uid://cmmb0y16fbk1e" path="res://src/gui_common/VersionNumber.cs" id="5"]
@@ -13,7 +13,7 @@
 [ext_resource type="Texture2D" uid="uid://dpxsicy6au2mh" path="res://assets/misc/thrive_logo_big.png" id="10"]
 [ext_resource type="PackedScene" uid="uid://cqwy12d33agr4" path="res://src/gui_common/CreditsScroll.tscn" id="11"]
 [ext_resource type="PackedScene" uid="uid://c120hjc04sice" path="res://src/gui_common/dialogs/LicensesDisplay.tscn" id="12"]
-[ext_resource type="PackedScene" path="res://src/gui_common/dialogs/CustomWindow.tscn" id="12_a6o4c"]
+[ext_resource type="PackedScene" uid="uid://du8sc8kjirguk" path="res://src/gui_common/dialogs/CustomWindow.tscn" id="12_a6o4c"]
 [ext_resource type="Texture2D" uid="uid://bv0644lcfansy" path="res://assets/textures/gui/social_media/discord.png" id="13"]
 [ext_resource type="PackedScene" uid="uid://d06pkd2hx1syf" path="res://src/modding/ModManager.tscn" id="14"]
 [ext_resource type="PackedScene" uid="uid://2nt57gfubafw" path="res://src/gui_common/dialogs/ErrorDialog.tscn" id="15"]
@@ -893,7 +893,7 @@ layout_mode = 1
 
 [node name="GUIAnimations" type="AnimationPlayer" parent="."]
 libraries = {
-"": SubResource("AnimationLibrary_wp2ig")
+&"": SubResource("AnimationLibrary_wp2ig")
 }
 
 [node name="OpenGLWarningPopup" parent="." instance=ExtResource("4")]
