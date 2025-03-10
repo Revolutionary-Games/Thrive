@@ -103,6 +103,17 @@ public static class Constants
     public const float MIN_DISTANCE_FROM_PLAYER_FOR_SPAWN = SPAWN_SECTOR_SIZE - 10;
 
     /// <summary>
+    ///   Used to reduce how commonly the player species spawns to make it more likely for the player to encounter
+    ///   other species.
+    /// </summary>
+    public const float PLAYER_SPECIES_SPAWN_MULTIPLIER = 0.5f;
+
+    /// <summary>
+    ///   Smaller spawn penalty to make binding agents easier to use with better player species spawn rates.
+    /// </summary>
+    public const float PLAYER_SPECIES_SPAWN_MULTIPLIER_BINDING_AGENTS = 0.7f;
+
+    /// <summary>
     ///   Cells farther than this are forced to move towards the player to get on screen to give better activity
     ///   from our limited entity count. Lower values let farther away cells to just chill without having to move.
     /// </summary>
