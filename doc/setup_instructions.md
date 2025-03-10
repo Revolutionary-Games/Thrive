@@ -21,7 +21,7 @@ Thank you!
 Prerequisites
 =============
 
-Godot .Net version
+Godot .NET version
 ------------------
 
 The currently used Godot version is __4.3 .NET__. The regular version
