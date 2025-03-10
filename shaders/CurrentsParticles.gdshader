@@ -22,7 +22,7 @@ const float disturbanceTimescale = 1.0f;
 const float currentsTimescale = 1.0f / 500.0f;
 const float currentsStretchingMultiplier = 1.0f / 10.0f;
 const float disturbanceToCurrentsRatio = 0.15f;
-const float minCurrentIntensity = 0.25f;
+const float minCurrentIntensity = 0.50f;
 const float positionScaling = 0.9f;
 
 // Generates a random float and modifies the seed
