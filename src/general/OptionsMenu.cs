@@ -1494,7 +1494,7 @@ public partial class OptionsMenu : ControlWithInput
             case 4:
                 return Viewport.AnisotropicFiltering.Anisotropy16X;
             default:
-                GD.PrintErr("invalid MSAA resolution index");
+                GD.PrintErr("invalid anisotropic filtering level index");
                 return Viewport.AnisotropicFiltering.Disabled;
         }
     }
