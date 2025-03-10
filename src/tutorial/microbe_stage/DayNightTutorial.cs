@@ -1,12 +1,19 @@
 ﻿namespace Tutorial;
 
 using System;
+using Newtonsoft.Json;
 
 /// <summary>
 ///   Tells the player about the day and night cycle
 /// </summary>
 public class DayNightTutorial : TutorialPhase
 {
+    [JsonProperty]
+    public HUDBottomBar HUDBottomBar { get; set; } = new();
+
+    [JsonProperty]
+    public EnvironmentPanel EnvironmentPanel { get; set; } = new();
+
     public override string ClosedByName => "DayNightTutorial";
 
     public override void ApplyGUIState(MicrobeTutorialGUI gui)
@@ -23,6 +30,8 @@ public class DayNightTutorial : TutorialPhase
             {
                 if (!HasBeenShown && CanTrigger && !overallState.TutorialActive())
                 {
+                    EnvironmentPanel.ShowPanel = true;
+                    HUDBottomBar.EnvironmentPressed = true;
                     Show();
                     return true;
                 }

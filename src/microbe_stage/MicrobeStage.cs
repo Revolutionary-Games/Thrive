@@ -54,6 +54,12 @@ public partial class MicrobeStage : CreatureStageBase<Entity, MicrobeWorldSimula
     private bool wonOnce;
 
     /// <summary>
+    ///   Used to mark the first time the player turns off tutorials in game
+    /// </summary>
+    [JsonProperty]
+    private bool tutorialCanceledOnce;
+
+    /// <summary>
     ///   Used to give increasing numbers to player offspring to know which is the latest
     /// </summary>
     [JsonProperty]
@@ -292,7 +298,7 @@ public partial class MicrobeStage : CreatureStageBase<Entity, MicrobeWorldSimula
                 {
                     TutorialState.SendEvent(TutorialEventType.MicrobeCompoundsNearPlayer,
                         new EntityPositionEventArgs(Clouds.FindCompoundNearPoint(playerPosition.Position,
-                            Compound.Glucose)),
+                            Compound.Glucose), Player.Get<CompoundStorage>().Compounds),
                         this);
                 }
 
@@ -308,7 +314,7 @@ public partial class MicrobeStage : CreatureStageBase<Entity, MicrobeWorldSimula
                         WorldSimulation);
 
                     TutorialState.SendEvent(TutorialEventType.MicrobeChunksNearPlayer,
-                        new EntityPositionEventArgs(position), this);
+                        new EntityPositionEventArgs(position, Player.Get<CompoundStorage>().Compounds), this);
                 }
 
                 guidancePosition = TutorialState.GetPlayerGuidancePosition();
@@ -835,6 +841,13 @@ public partial class MicrobeStage : CreatureStageBase<Entity, MicrobeWorldSimula
         if (!CurrentGame.TutorialState.Enabled)
         {
             tutorialGUI.EventReceiver?.OnTutorialDisabled();
+
+            if (!tutorialCanceledOnce)
+            {
+                HUD.ShowCompoundPanel();
+                HUD.ShowEnvironmentPanel();
+                tutorialCanceledOnce = true;
+            }
         }
         else
         {
@@ -846,7 +859,8 @@ public partial class MicrobeStage : CreatureStageBase<Entity, MicrobeWorldSimula
 
                 if (patchSunlight > Constants.DAY_NIGHT_TUTORIAL_LIGHT_MIN)
                 {
-                    TutorialState.SendEvent(TutorialEventType.MicrobePlayerEnterSunlightPatch, EventArgs.Empty, this);
+                    TutorialState.SendEvent(TutorialEventType.MicrobePlayerEnterSunlightPatch, EventArgs.Empty,
+                        this);
                 }
             }
         }
@@ -921,14 +935,27 @@ public partial class MicrobeStage : CreatureStageBase<Entity, MicrobeWorldSimula
         WorldSimulation.InitForCurrentGame(CurrentGame!);
 
         tutorialGUI.EventReceiver = TutorialState;
-        HUD.SendEditorButtonToTutorial(TutorialState);
+        HUD.SendNessicaryGUIElementsToTutorial(TutorialState);
 
         ProceduralDataCache.Instance.OnEnterState(MainGameState.MicrobeStage);
 
-        // If this is a new game, place some phosphates as a learning tool
+        // If this is a new game, place some clouds as a learning tool
         if (!IsLoadedFromSave)
         {
-            Clouds.AddCloud(Compound.Phosphates, 50000.0f, new Vector3(50.0f, 0.0f, 0.0f));
+            // create a small trail of phosphates
+            for (int x = 4; x < 100; x += 4)
+            {
+                Clouds.AddCloud(Compound.Phosphates, 1500.0f, new Vector3(x, 0.0f, -MathF.Sqrt(x)));
+            }
+
+            // with a small cloud of glucose at the end
+            Clouds.AddCloud(Compound.Glucose, 19000.0f, new Vector3(140.0f, 0.0f, -25.0f));
+
+            // If we are starting with tutorials on, disable extra panels that don't matter right now
+            if (TutorialState.Enabled)
+            {
+                HUD.HideEnvironmentAndCompoundPanels();
+            }
         }
 
         patchManager.CurrentGame = CurrentGame;
