@@ -165,10 +165,11 @@ public partial class MicrobeStage : CreatureStageBase<Entity, MicrobeWorldSimula
         tutorialGUI.Visible = true;
         HUD.Init(this);
         HoverInfo.Init(Clouds, Camera);
-        fluidCurrentDisplay.Init(this, Camera);
 
         // Do stage setup to spawn things and setup all parts of the stage
         SetupStage();
+
+        fluidCurrentDisplay.Init(WorldSimulation, Camera);
     }
 
     public override void ResolveNodeReferences()

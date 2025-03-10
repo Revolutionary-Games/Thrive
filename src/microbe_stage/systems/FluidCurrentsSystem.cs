@@ -166,7 +166,7 @@ public sealed class FluidCurrentsSystem : AEntitySetSystem<float>
         {
             effectStrength = 1;
         }
-        else if (effectStrength == -1)
+        else if (effectStrength < 0)
         {
             return;
         }
