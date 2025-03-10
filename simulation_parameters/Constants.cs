@@ -103,6 +103,30 @@ public static class Constants
     public const float MIN_DISTANCE_FROM_PLAYER_FOR_SPAWN = SPAWN_SECTOR_SIZE - 10;
 
     /// <summary>
+    ///   Used to reduce how commonly the player species spawns to make it more likely for the player to encounter
+    ///   other species.
+    /// </summary>
+    public const float PLAYER_SPECIES_SPAWN_MULTIPLIER = 0.5f;
+
+    /// <summary>
+    ///   Smaller spawn penalty to make binding agents easier to use with better player species spawn rates.
+    /// </summary>
+    public const float PLAYER_SPECIES_SPAWN_MULTIPLIER_BINDING_AGENTS = 0.7f;
+
+    /// <summary>
+    ///   Cells farther than this are forced to move towards the player to get on screen to give better activity
+    ///   from our limited entity count. Lower values let farther away cells to just chill without having to move.
+    /// </summary>
+    public const float ON_STAGE_THRESHOLD_AROUND_PLAYER = 0.71f;
+
+    /// <summary>
+    ///   Sets much randomness is added on each axis (X and Z) for a cell's target to move to the player position to
+    ///   get "on stage"
+    ///   Larger values add more randomness to cells moving towards the player.
+    /// </summary>
+    public const float ON_STAGE_DESTINATION_RANDOMNESS = 20;
+
+    /// <summary>
     ///   Scale factor for density of compound cloud spawns
     /// </summary>
     public const int CLOUD_SPAWN_DENSITY_SCALE_FACTOR = 10000;
