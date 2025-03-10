@@ -5,29 +5,29 @@
 /// </summary>
 public partial class FluidCurrentDisplay : GpuParticles3D
 {
+    private readonly StringName gameTimeParameterName = new("gameTime");
+    private readonly StringName speedParameterName = new("speed");
+    private readonly StringName chaoticnessParameterName = new("chaoticness");
+    private readonly StringName scaleParameterName = new("scale");
+
 #pragma warning disable CA2213
     private ShaderMaterial material = null!;
 
-    private MicrobeStage stage = null!;
+    private IWorldSimulation timeScaling = null!;
 #pragma warning restore CA2213
 
-    private StringName gameTimeParameterName = new("gameTime");
-    private StringName speedParameterName = new("speed");
-    private StringName chaoticnessParameterName = new("chaoticness");
-    private StringName scaleParameterName = new("scale");
-
     private float time;
-
-    public void Init(MicrobeStage microbeStage)
-    {
-        stage = microbeStage;
-    }
 
     public override void _Ready()
     {
         base._Ready();
 
         material = (ShaderMaterial)ProcessMaterial;
+    }
+
+    public void Init(IWorldSimulation worldTimeSource)
+    {
+        timeScaling = worldTimeSource;
     }
 
     public override void _Process(double delta)
@@ -38,11 +38,11 @@ public partial class FluidCurrentDisplay : GpuParticles3D
 
         if (!PauseManager.Instance.Paused)
         {
-            material.SetShaderParameter(gameTimeParameterName, time);
-
-            SpeedScale = stage.WorldSimulation.WorldTimeScale;
+            SpeedScale = timeScaling.WorldTimeScale;
 
             time += (float)(delta * SpeedScale);
+
+            material.SetShaderParameter(gameTimeParameterName, time);
         }
         else
         {
