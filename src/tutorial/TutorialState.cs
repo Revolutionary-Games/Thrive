@@ -131,6 +131,9 @@ public class TutorialState : ITutorialInput
     [JsonProperty]
     public EarlyGameGoalTutorial EarlyGameGoalTutorial { get; private set; } = new();
 
+    [JsonProperty]
+    public NucleusTutorial NucleusTutorial { get; private set; } = new();
+
     // End of tutorial state variables
 
     [JsonProperty]
@@ -404,6 +407,7 @@ public class TutorialState : ITutorialInput
             EditorWelcome,
             PatchMap,
             CellEditorIntroduction,
+            NucleusTutorial,
             EditorUndoTutorial,
             EditorRedoTutorial,
             EditorTutorialEnd,
