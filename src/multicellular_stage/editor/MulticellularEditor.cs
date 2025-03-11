@@ -127,7 +127,7 @@ public partial class MulticellularEditor : EditorBase<EditorAction, MicrobeStage
 
         cellEditorTab.OnCurrentPatchUpdated(patch);
 
-        cellEditorTab.UpdateBackgroundImage(patch.BiomeTemplate);
+        cellEditorTab.UpdateBackgroundImage(patch);
     }
 
     public override void AddContextToActions(IEnumerable<CombinableActionData> actions)
@@ -220,7 +220,7 @@ public partial class MulticellularEditor : EditorBase<EditorAction, MicrobeStage
             reportTab.UpdateEvents(CurrentGame.GameWorld.EventsLog, CurrentGame.GameWorld.TotalPassedTime);
         }
 
-        cellEditorTab.UpdateBackgroundImage(CurrentPatch.BiomeTemplate);
+        cellEditorTab.UpdateBackgroundImage(CurrentPatch);
 
         // TODO: as we are a prototype we don't want to auto save
         wantsToSave = false;
@@ -304,7 +304,9 @@ public partial class MulticellularEditor : EditorBase<EditorAction, MicrobeStage
     {
         // TODO: select which units will be used for the master elapsed time counter
         CurrentGame.GameWorld.OnTimePassed(1);
-        cellEditorTab.UpdateBackgroundImage(CurrentPatch.BiomeTemplate);
+
+        // Patch events are able to change the stage's background so it needs to be updated here.
+        cellEditorTab.UpdateBackgroundImage(CurrentPatch);
     }
 
     protected override GameProperties StartNewGameForEditor()
