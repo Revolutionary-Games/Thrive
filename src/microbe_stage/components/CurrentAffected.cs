@@ -11,4 +11,14 @@ using Systems;
 [JSONDynamicTypeAllowed]
 public struct CurrentAffected
 {
+    /// <summary>
+    ///   Currents' effect on this entity. Note that 0 means the same as 1, being the default constructor value,
+    ///   while -1 disables currents' effect.
+    /// </summary>
+    public float EffectStrength;
+
+    public CurrentAffected(float effectStrength)
+    {
+        EffectStrength = effectStrength;
+    }
 }
