@@ -1,6 +1,7 @@
 ﻿namespace Tutorial;
 
 using System;
+using Godot;
 using Newtonsoft.Json;
 
 /// <summary>
@@ -32,11 +33,8 @@ public class NucleusTutorial : EditorEntryCountingTutorial
     public override bool CheckEvent(TutorialState overallState, TutorialEventType eventType, EventArgs args,
         object sender)
     {
-        if (!hasNucleus)
-        {
-            if (base.CheckEvent(overallState, eventType, args, sender))
-                return true;
-        }
+        if (base.CheckEvent(overallState, eventType, args, sender))
+            return false;
 
         switch (eventType)
         {
@@ -44,6 +42,7 @@ public class NucleusTutorial : EditorEntryCountingTutorial
             {
                 if (args is not OrganellePlacedEventArgs eventArgs)
                 {
+                    GD.PrintErr("Organelle placed event has wrong argument type, this will break many tutorials!");
                     break;
                 }
 
@@ -62,12 +61,11 @@ public class NucleusTutorial : EditorEntryCountingTutorial
                 break;
             }
 
-            case TutorialEventType.MicrobeEditorUndo:
+            case TutorialEventType.EditorUndo:
             {
-                var eventArgs = (EditorActionEventArgs)args;
-                var combinedAction = (CombinedEditorAction)eventArgs.Action;
+                var editorActionEventArgs = (EditorActionEventArgs)args;
 
-                foreach (var data in combinedAction.Data)
+                foreach (var data in editorActionEventArgs.Action.Data)
                 {
                     if (data is not OrganellePlacementActionData organellePlacementData)
                         continue;
@@ -81,12 +79,11 @@ public class NucleusTutorial : EditorEntryCountingTutorial
                 break;
             }
 
-            case TutorialEventType.MicrobeEditorRedo:
+            case TutorialEventType.EditorRedo:
             {
-                var eventArgs = (EditorActionEventArgs)args;
-                var combinedAction = (CombinedEditorAction)eventArgs.Action;
+                var editorActionEventArgs = (EditorActionEventArgs)args;
 
-                foreach (var data in combinedAction.Data)
+                foreach (var data in editorActionEventArgs.Action.Data)
                 {
                     if (data is not OrganellePlacementActionData organellePlacementData)
                         continue;
@@ -95,6 +92,18 @@ public class NucleusTutorial : EditorEntryCountingTutorial
                     {
                         hasNucleus = true;
                     }
+                }
+
+                break;
+            }
+
+            case TutorialEventType.MicrobeEditorTabChanged:
+            {
+                var tab = ((StringEventArgs)args).Data;
+
+                if (tab == cellEditorTab && !hasNucleus && CanTrigger)
+                {
+                    Show();
                 }
 
                 break;

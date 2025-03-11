@@ -374,7 +374,7 @@ public partial class EditorBase<TAction, TStage> : NodeWithInput, IEditor, ILoad
 
         if (history.Redo())
         {
-            TutorialState.SendEvent(TutorialEventType.MicrobeEditorRedo,
+            TutorialState.SendEvent(TutorialEventType.EditorRedo,
                 new EditorActionEventArgs(history.Actions[history.ActionIndex - 1]), this);
             OnRedoPerformed();
         }
@@ -390,7 +390,7 @@ public partial class EditorBase<TAction, TStage> : NodeWithInput, IEditor, ILoad
 
         if (history.Undo())
         {
-            TutorialState.SendEvent(TutorialEventType.MicrobeEditorUndo,
+            TutorialState.SendEvent(TutorialEventType.EditorUndo,
                 new EditorActionEventArgs(history.Actions[history.ActionIndex]), this);
             OnUndoPerformed();
         }

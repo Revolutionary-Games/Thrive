@@ -5,7 +5,7 @@ using System;
 /// <summary>
 ///   Notifies the player about the chemoreceptor existing
 /// </summary>
-public class ChemoreceptorPlacementTutorial : EditorEntryCountingTutorial
+public class ChemoreceptorPlacementTutorial : CellEditorEntryCountingTutorial
 {
     private readonly OrganelleDefinition chemoreceptor =
         SimulationParameters.Instance.GetOrganelleType("chemoreceptor");
@@ -34,13 +34,11 @@ public class ChemoreceptorPlacementTutorial : EditorEntryCountingTutorial
         {
             case TutorialEventType.MicrobeEditorOrganellePlaced:
             {
-                if (args is not OrganellePlacedEventArgs organellePlacedEventArgs)
+                if (args is not OrganellePlacedEventArgs organellePlacedEventArgs ||
+                    organellePlacedEventArgs.Definition.InternalName != chemoreceptor.InternalName)
                 {
                     break;
                 }
-
-                if (organellePlacedEventArgs.Definition.InternalName != chemoreceptor.InternalName)
-                    break;
 
                 if (ShownCurrently)
                 {

@@ -156,12 +156,12 @@ public class OrganellePlacedEventArgs : TutorialEventArgs
 
 public class EditorActionEventArgs : TutorialEventArgs
 {
-    public EditorActionEventArgs(ReversibleAction action)
+    public EditorActionEventArgs(EditorAction action)
     {
         Action = action;
     }
 
-    public ReversibleAction Action { get; }
+    public EditorAction Action { get; }
 }
 
 public class GameWorldEventArgs : TutorialEventArgs

@@ -131,12 +131,12 @@ public enum TutorialEventType
     /// <summary>
     ///   Player undid an action in the editor, args is <see cref="EditorActionEventArgs"/>
     /// </summary>
-    MicrobeEditorUndo,
+    EditorUndo,
 
     /// <summary>
     ///   Player redid an action in the editor, args is <see cref="EditorActionEventArgs"/>
     /// </summary>
-    MicrobeEditorRedo,
+    EditorRedo,
 
     /// <summary>
     ///   Triggered when the player changes tolerances
