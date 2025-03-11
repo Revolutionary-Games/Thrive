@@ -52,7 +52,8 @@ public class Patch
         ID = id;
         BiomeTemplate = biomeTemplate;
         BiomeType = biomeType;
-        currentSnapshot = new PatchSnapshot((BiomeConditions)biomeTemplate.Conditions.Clone(), biomeTemplate.Background);
+        currentSnapshot =
+            new PatchSnapshot((BiomeConditions)biomeTemplate.Conditions.Clone(), biomeTemplate.Background);
         Region = region;
     }
 

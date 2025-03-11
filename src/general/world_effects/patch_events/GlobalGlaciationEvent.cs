@@ -149,7 +149,8 @@ public class GlobalGlaciationEvent : IWorldEffect
 
     private void AdjustEnvironment(Patch patch)
     {
-        bool hasTemperature = patch.Biome.ChangeableCompounds.TryGetValue(Compound.Temperature, out var currentTemperature);
+        bool hasTemperature =
+            patch.Biome.ChangeableCompounds.TryGetValue(Compound.Temperature, out var currentTemperature);
         bool hasSunlight = patch.Biome.ChangeableCompounds.TryGetValue(Compound.Sunlight, out var currentSunlight);
 
         if (!hasTemperature)
