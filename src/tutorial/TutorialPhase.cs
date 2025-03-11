@@ -9,7 +9,7 @@ using Newtonsoft.Json;
 public abstract class TutorialPhase
 {
     /// <summary>
-    ///   If set to false the trigger condition won't be checked for this tutorial
+    ///   If set to false, the trigger condition won't be checked for this tutorial
     /// </summary>
     [JsonProperty]
     public bool CanTrigger { get; set; } = true;
@@ -24,7 +24,7 @@ public abstract class TutorialPhase
     public bool HandlesEvents { get; protected set; } = true;
 
     /// <summary>
-    ///   When true this tutorial wants the game paused
+    ///   When true, this tutorial wants the game paused
     /// </summary>
     [JsonProperty]
     public bool Pauses { get; protected set; }
