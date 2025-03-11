@@ -3,13 +3,13 @@
 [ext_resource type="Theme" uid="uid://b4cx0o110g4b6" path="res://src/gui_common/thrive_theme.tres" id="1"]
 [ext_resource type="Script" uid="uid://c2fgxgloa4ura" path="res://src/general/NewGameSettings.cs" id="2"]
 [ext_resource type="Texture2D" uid="uid://c8qyts61c8a0y" path="res://assets/textures/gui/bevel/randomizeButtonActive.png" id="5"]
-[ext_resource type="FontFile" uid="uid://s8m5c8resd50" path="res://assets/fonts/Lato-Regular.ttf" id="5_otvf3"]
+[ext_resource type="FontFile" uid="uid://cl6d1s5vr5gp8" path="res://assets/fonts/Lato-Regular.ttf" id="5_otvf3"]
 [ext_resource type="LabelSettings" uid="uid://uxdd8vb4xedn" path="res://src/gui_common/fonts/Body-Regular-AlmostTiny.tres" id="5_rnvau"]
 [ext_resource type="Texture2D" uid="uid://baqkntjn5ng0y" path="res://assets/textures/gui/bevel/randomizeButton.png" id="6"]
 [ext_resource type="Texture2D" uid="uid://ch76ktrn1xy7r" path="res://assets/textures/gui/bevel/randomizeButtonDisabled.png" id="7"]
 [ext_resource type="Texture2D" uid="uid://jm2munbr7078" path="res://assets/textures/gui/bevel/randomizeButtonHover.png" id="8"]
 [ext_resource type="Texture2D" uid="uid://c6pe536xf5ime" path="res://assets/concept_art/planet_generation.jpg" id="10"]
-[ext_resource type="PackedScene" path="res://src/gui_common/CustomRichTextLabel.tscn" id="11"]
+[ext_resource type="PackedScene" uid="uid://bhpjtbtaeunat" path="res://src/gui_common/CustomRichTextLabel.tscn" id="11"]
 [ext_resource type="PackedScene" uid="uid://bgeijgq7runaw" path="res://src/gui_common/FocusGrabber.tscn" id="12"]
 [ext_resource type="PackedScene" uid="uid://dw3ubsraoopin" path="res://src/gui_common/TabButtons.tscn" id="13"]
 [ext_resource type="LabelSettings" uid="uid://58teykjxnrdt" path="res://src/gui_common/fonts/Body-Regular-AlmostTiny-Red.tres" id="13_yxxhr"]
@@ -185,6 +185,7 @@ tooltip_text = "LIFE_ORIGIN_TOOLTIP"
 selected = 0
 item_count = 3
 popup/item_0/text = "LIFE_ORIGIN_VENTS"
+popup/item_0/id = 0
 popup/item_1/text = "LIFE_ORIGIN_POND"
 popup/item_1/id = 1
 popup/item_2/text = "LIFE_ORIGIN_PANSPERMIA"
@@ -660,6 +661,7 @@ tooltip_text = "REPRODUCTION_COMPOUND_HANDLING_TOOLTIP"
 selected = 0
 item_count = 4
 popup/item_0/text = "COMPOUND_HANDLE_SPLIT_SISTER"
+popup/item_0/id = 0
 popup/item_1/text = "COMPOUND_HANDLE_KEEP"
 popup/item_1/id = 1
 popup/item_2/text = "COMPOUND_HANDLE_TOP_UP"
@@ -846,6 +848,7 @@ tooltip_text = "LIFE_ORIGIN_TOOLTIP"
 selected = 0
 item_count = 3
 popup/item_0/text = "LIFE_ORIGIN_VENTS"
+popup/item_0/id = 0
 popup/item_1/text = "LIFE_ORIGIN_POND"
 popup/item_1/id = 1
 popup/item_2/text = "LIFE_ORIGIN_PANSPERMIA"
@@ -979,6 +982,7 @@ tooltip_text = "WORLD_SIZE_TOOLTIP"
 selected = 1
 item_count = 3
 popup/item_0/text = "WORLD_SIZE_SMALL"
+popup/item_0/id = 0
 popup/item_1/text = "WORLD_SIZE_MEDIUM"
 popup/item_1/id = 1
 popup/item_2/text = "WORLD_SIZE_LARGE"
