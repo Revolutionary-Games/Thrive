@@ -44,6 +44,14 @@ public class Biome : IRegistryType
 
     public float CompoundCloudBrightness = 1.0f;
 
+    public float WaterCurrentSpeed = 1.0f;
+
+    public float WaterCurrentChaoticness = 1.0f;
+
+    public float WaterCurrentScale = 1.0f;
+
+    public int WaterCurrentParticleCount = 300;
+
     /// <summary>
     ///   Total gas volume of this biome when it is a single patch.
     /// </summary>

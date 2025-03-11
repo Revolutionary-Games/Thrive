@@ -456,11 +456,22 @@ public sealed class MicrobeAISystem : AEntitySetSystem<float>, ISpeciesMemberLoc
             if (potentiallyKnownPlayerPosition != null)
             {
                 // Only move if we aren't sessile
+                // The threshold is not too high so that not all cells are forced to move
                 if (position.Position.DistanceSquaredTo(potentiallyKnownPlayerPosition.Value) >
-                    Math.Pow(Constants.SPAWN_SECTOR_SIZE, 2) * 0.75f &&
+                    Math.Pow(Constants.SPAWN_SECTOR_SIZE, 2) * Constants.ON_STAGE_THRESHOLD_AROUND_PLAYER &&
                     !isSessile)
                 {
-                    ai.MoveToLocation(potentiallyKnownPlayerPosition.Value, ref control, entity);
+                    // And some randomness is added here so that each cell doesn't literally want to move to the exact
+                    // same position
+                    // TODO: this probably gets re-called for each cell quite often so this randomness may not be
+                    // very efficient as the values will average out over multiple calls
+                    var randomness =
+                        new Vector3(random.NextSingle() * Constants.ON_STAGE_DESTINATION_RANDOMNESS -
+                            Constants.ON_STAGE_DESTINATION_RANDOMNESS * 0.5f, 0,
+                            random.NextSingle() * Constants.ON_STAGE_DESTINATION_RANDOMNESS -
+                            Constants.ON_STAGE_DESTINATION_RANDOMNESS * 0.5f);
+
+                    ai.MoveToLocation(potentiallyKnownPlayerPosition.Value + randomness, ref control, entity);
                     return;
                 }
 
@@ -470,7 +481,7 @@ public sealed class MicrobeAISystem : AEntitySetSystem<float>, ISpeciesMemberLoc
 
         var isIronEater = organelles.IronBreakdownEfficiency > 0;
 
-        // Siderophore is experimental feature
+        // Siderophore is an experimental feature
         if (!gameWorld!.WorldSettings.ExperimentalFeatures)
             isIronEater = false;
 
