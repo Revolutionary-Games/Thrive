@@ -88,7 +88,7 @@ public class GameWorld : ISaveLoadable
 
             TimedEffects.RegisterEffect("sulfide_consumption", new HydrogenSulfideConsumptionEffect(this));
             TimedEffects.RegisterEffect("compound_diffusion", new CompoundDiffusionEffect(this));
-            TimedEffects.RegisterEffect("iron_oxidation", new IronOxidationEffect(this));
+            TimedEffects.RegisterEffect("iron_chemolithoautotrophy", new IronOxidationEffect(this));
 
             TimedEffects.RegisterEffect("marine_snow", new MarineSnowDensityEffect(this));
 
