@@ -4,11 +4,16 @@ using System;
 using Newtonsoft.Json;
 
 /// <summary>
-///   Helper for making tutorials that count how many times the cell editor has been entered
+///   A tutorial that counts how many times the editor has been entered and allows derived classes access to that
+///   information
 /// </summary>
 public abstract class EditorEntryCountingTutorial : TutorialPhase
 {
-    private readonly string cellEditorTab = EditorTab.CellEditor.ToString();
+    protected EditorEntryCountingTutorial()
+    {
+        // Make this tutorial not trigger until the editor entry count is right
+        CanTrigger = false;
+    }
 
     [JsonProperty]
     public int NumberOfEditorEntries { get; set; }
@@ -18,27 +23,12 @@ public abstract class EditorEntryCountingTutorial : TutorialPhase
     public override bool CheckEvent(TutorialState overallState, TutorialEventType eventType, EventArgs args,
         object sender)
     {
-        if (CheckEventEditorEntryEvent(eventType))
-            return false;
-
-        switch (eventType)
-        {
-            case TutorialEventType.MicrobeEditorTabChanged:
-            {
-                if (!HasBeenShown && CanTrigger && ((StringEventArgs)args).Data == cellEditorTab &&
-                    !overallState.TutorialActive())
-                {
-                    Show();
-                }
-
-                break;
-            }
-        }
+        CheckEventEditorEntryEvent(eventType);
 
         return false;
     }
 
-    protected bool CheckEventEditorEntryEvent(TutorialEventType eventType)
+    private bool CheckEventEditorEntryEvent(TutorialEventType eventType)
     {
         if (eventType != TutorialEventType.EnteredMicrobeEditor)
             return false;
