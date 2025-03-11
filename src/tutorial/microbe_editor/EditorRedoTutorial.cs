@@ -30,7 +30,7 @@ public class EditorRedoTutorial : TutorialPhase
     {
         switch (eventType)
         {
-            case TutorialEventType.MicrobeEditorUndo:
+            case TutorialEventType.EditorUndo:
             {
                 if (!HasBeenShown && CanTrigger)
                 {
@@ -43,7 +43,7 @@ public class EditorRedoTutorial : TutorialPhase
                 break;
             }
 
-            case TutorialEventType.MicrobeEditorRedo:
+            case TutorialEventType.EditorRedo:
             {
                 if (ShownCurrently)
                 {

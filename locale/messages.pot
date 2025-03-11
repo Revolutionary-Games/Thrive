@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Thrive VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2025-03-07 12:58+0000\n"
+"POT-Creation-Date: 2025-03-09 11:58-0300\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -66,7 +66,7 @@ msgstr ""
 msgid "ACTION_AWAKEN_TOOLTIP"
 msgstr ""
 
-#: ../src/general/base_stage/EditorBase.cs:749
+#: ../src/general/base_stage/EditorBase.cs:753
 #: ../src/macroscopic_stage/editor/MacroscopicEditor.cs:519
 #: ../src/microbe_stage/editor/CellEditorComponent.GUI.cs:63
 #: ../src/multicellular_stage/editor/MulticellularEditor.cs:443
@@ -617,7 +617,7 @@ msgstr ""
 #: ../simulation_parameters/microbe_stage/biomes.json:2750
 #: ../simulation_parameters/microbe_stage/biomes.json:3095
 #: ../simulation_parameters/microbe_stage/biomes.json:3312
-#: ../src/auto-evo/AutoEvoGlobalCache.cs:57
+#: ../src/auto-evo/AutoEvoGlobalCache.cs:58
 msgid "BIG_IRON_CHUNK"
 msgstr ""
 
@@ -1056,10 +1056,10 @@ msgstr ""
 #: ../src/microbe_stage/editor/EndosymbiosisPopup.tscn:82
 #: ../src/microbe_stage/ProcessPanel.tscn:58 ../src/modding/ModManager.tscn:710
 #: ../src/thriveopedia/Thriveopedia.tscn:293
-#: ../src/tutorial/microbe_editor/MicrobeEditorTutorialGUI.tscn:289
-#: ../src/tutorial/microbe_editor/MicrobeEditorTutorialGUI.tscn:356
-#: ../src/tutorial/microbe_editor/MicrobeEditorTutorialGUI.tscn:406
-#: ../src/tutorial/microbe_editor/MicrobeEditorTutorialGUI.tscn:451
+#: ../src/tutorial/microbe_editor/MicrobeEditorTutorialGUI.tscn:290
+#: ../src/tutorial/microbe_editor/MicrobeEditorTutorialGUI.tscn:357
+#: ../src/tutorial/microbe_editor/MicrobeEditorTutorialGUI.tscn:407
+#: ../src/tutorial/microbe_editor/MicrobeEditorTutorialGUI.tscn:452
 msgid "CLOSE"
 msgstr ""
 
@@ -2284,12 +2284,16 @@ msgstr ""
 msgid "EDITOR_BUTTON_TOOLTIP"
 msgstr ""
 
-#: ../src/tutorial/microbe_editor/MicrobeEditorTutorialGUI.tscn:553
+#: ../src/tutorial/microbe_editor/MicrobeEditorTutorialGUI.tscn:554
 msgid "EDITOR_TUTORIAL_EARLY_GOAL"
 msgstr ""
 
-#: ../src/tutorial/microbe_editor/MicrobeEditorTutorialGUI.tscn:63
+#: ../src/tutorial/microbe_editor/MicrobeEditorTutorialGUI.tscn:64
 msgid "EDITOR_TUTORIAL_EDITOR_TEXT"
+msgstr ""
+
+#: ../src/tutorial/microbe_editor/MicrobeEditorTutorialGUI.tscn:574
+msgid "EDITOR_TUTORIAL_MICROBE_EDITOR_NUCLEUS"
 msgstr ""
 
 #: ../src/microbe_stage/editor/tooltips/StatModifierToolTip.tscn:69
@@ -3050,8 +3054,8 @@ msgstr ""
 msgid "GOOGLY_EYE_CELL"
 msgstr ""
 
-#: ../src/tutorial/microbe_editor/MicrobeEditorTutorialGUI.tscn:196
-#: ../src/tutorial/microbe_editor/MicrobeEditorTutorialGUI.tscn:502
+#: ../src/tutorial/microbe_editor/MicrobeEditorTutorialGUI.tscn:197
+#: ../src/tutorial/microbe_editor/MicrobeEditorTutorialGUI.tscn:503
 msgid "GOT_IT"
 msgstr ""
 
@@ -4067,6 +4071,7 @@ msgstr ""
 #: ../simulation_parameters/microbe_stage/biomes.json:345
 #: ../simulation_parameters/microbe_stage/biomes.json:1922
 #: ../simulation_parameters/microbe_stage/biomes.json:2832
+#: ../src/auto-evo/AutoEvoGlobalCache.cs:70
 msgid "LARGE_SULFUR_CHUNK"
 msgstr ""
 
@@ -4550,7 +4555,7 @@ msgstr ""
 #: ../simulation_parameters/microbe_stage/biomes.json:1895
 #: ../simulation_parameters/microbe_stage/biomes.json:2509
 #: ../simulation_parameters/microbe_stage/biomes.json:2809
-#: ../src/auto-evo/AutoEvoGlobalCache.cs:67
+#: ../src/auto-evo/AutoEvoGlobalCache.cs:68
 msgid "MEDIUM_SULFUR_CHUNK"
 msgstr ""
 
@@ -6437,7 +6442,7 @@ msgstr ""
 
 #: ../simulation_parameters/microbe_stage/biomes.json:414
 #: ../simulation_parameters/microbe_stage/biomes.json:1999
-#: ../src/auto-evo/AutoEvoGlobalCache.cs:76
+#: ../src/auto-evo/AutoEvoGlobalCache.cs:79
 msgid "RADIOACTIVE_CHUNK"
 msgstr ""
 
@@ -7156,7 +7161,7 @@ msgstr ""
 #: ../simulation_parameters/microbe_stage/biomes.json:2714
 #: ../simulation_parameters/microbe_stage/biomes.json:3063
 #: ../simulation_parameters/microbe_stage/biomes.json:3276
-#: ../src/auto-evo/AutoEvoGlobalCache.cs:55
+#: ../src/auto-evo/AutoEvoGlobalCache.cs:56
 msgid "SMALL_IRON_CHUNK"
 msgstr ""
 
@@ -7175,7 +7180,7 @@ msgstr ""
 #: ../simulation_parameters/microbe_stage/biomes.json:1868
 #: ../simulation_parameters/microbe_stage/biomes.json:2486
 #: ../simulation_parameters/microbe_stage/biomes.json:2778
-#: ../src/auto-evo/AutoEvoGlobalCache.cs:65
+#: ../src/auto-evo/AutoEvoGlobalCache.cs:66
 msgid "SMALL_SULFUR_CHUNK"
 msgstr ""
 
@@ -8137,74 +8142,75 @@ msgid "TRY_TAKING_SOME_SCREENSHOTS"
 msgstr ""
 
 #: ../src/gui_common/dialogs/TutorialDialog.tscn:18
-#: ../src/tutorial/microbe_editor/MicrobeEditorTutorialGUI.tscn:168
-#: ../src/tutorial/microbe_editor/MicrobeEditorTutorialGUI.tscn:261
-#: ../src/tutorial/microbe_editor/MicrobeEditorTutorialGUI.tscn:328
-#: ../src/tutorial/microbe_editor/MicrobeEditorTutorialGUI.tscn:377
-#: ../src/tutorial/microbe_editor/MicrobeEditorTutorialGUI.tscn:422
-#: ../src/tutorial/microbe_editor/MicrobeEditorTutorialGUI.tscn:473
+#: ../src/tutorial/microbe_editor/MicrobeEditorTutorialGUI.tscn:169
+#: ../src/tutorial/microbe_editor/MicrobeEditorTutorialGUI.tscn:262
+#: ../src/tutorial/microbe_editor/MicrobeEditorTutorialGUI.tscn:329
+#: ../src/tutorial/microbe_editor/MicrobeEditorTutorialGUI.tscn:378
+#: ../src/tutorial/microbe_editor/MicrobeEditorTutorialGUI.tscn:423
+#: ../src/tutorial/microbe_editor/MicrobeEditorTutorialGUI.tscn:474
+#: ../src/tutorial/microbe_editor/MicrobeEditorTutorialGUI.tscn:577
 #: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:62
 #: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:347
 msgid "TUTORIAL"
 msgstr ""
 
-#: ../src/tutorial/microbe_editor/MicrobeEditorTutorialGUI.tscn:472
+#: ../src/tutorial/microbe_editor/MicrobeEditorTutorialGUI.tscn:473
 msgid "TUTORIAL_MICROBE_EDITOR_ATP_BALANCE_INTRO"
 msgstr ""
 
-#: ../src/tutorial/microbe_editor/MicrobeEditorTutorialGUI.tscn:218
+#: ../src/tutorial/microbe_editor/MicrobeEditorTutorialGUI.tscn:219
 msgid "TUTORIAL_MICROBE_EDITOR_AUTO-EVO_PREDICTION"
 msgstr ""
 
-#: ../src/tutorial/microbe_editor/MicrobeEditorTutorialGUI.tscn:98
+#: ../src/tutorial/microbe_editor/MicrobeEditorTutorialGUI.tscn:99
 msgid "TUTORIAL_MICROBE_EDITOR_CELL_TEXT"
 msgstr ""
 
-#: ../src/tutorial/microbe_editor/MicrobeEditorTutorialGUI.tscn:305
+#: ../src/tutorial/microbe_editor/MicrobeEditorTutorialGUI.tscn:306
 msgid "TUTORIAL_MICROBE_EDITOR_CHEMORECEPTOR"
 msgstr ""
 
-#: ../src/tutorial/microbe_editor/MicrobeEditorTutorialGUI.tscn:165
+#: ../src/tutorial/microbe_editor/MicrobeEditorTutorialGUI.tscn:166
 msgid "TUTORIAL_MICROBE_EDITOR_ENDING_TEXT"
 msgstr ""
 
-#: ../src/tutorial/microbe_editor/MicrobeEditorTutorialGUI.tscn:258
+#: ../src/tutorial/microbe_editor/MicrobeEditorTutorialGUI.tscn:259
 msgid "TUTORIAL_MICROBE_EDITOR_FLAGELLUM"
 msgstr ""
 
-#: ../src/tutorial/microbe_editor/MicrobeEditorTutorialGUI.tscn:237
+#: ../src/tutorial/microbe_editor/MicrobeEditorTutorialGUI.tscn:238
 msgid "TUTORIAL_MICROBE_EDITOR_MODIFY_ORGANELLE"
 msgstr ""
 
-#: ../src/tutorial/microbe_editor/MicrobeEditorTutorialGUI.tscn:421
+#: ../src/tutorial/microbe_editor/MicrobeEditorTutorialGUI.tscn:422
 msgid "TUTORIAL_MICROBE_EDITOR_NEGATIVE_ATP_BALANCE"
 msgstr ""
 
-#: ../src/tutorial/microbe_editor/MicrobeEditorTutorialGUI.tscn:374
+#: ../src/tutorial/microbe_editor/MicrobeEditorTutorialGUI.tscn:375
 msgid "TUTORIAL_MICROBE_EDITOR_NO_CHANGES_MADE"
 msgstr ""
 
-#: ../src/tutorial/microbe_editor/MicrobeEditorTutorialGUI.tscn:535
+#: ../src/tutorial/microbe_editor/MicrobeEditorTutorialGUI.tscn:536
 msgid "TUTORIAL_MICROBE_EDITOR_OPEN_TOLERANCES"
 msgstr ""
 
-#: ../src/tutorial/microbe_editor/MicrobeEditorTutorialGUI.tscn:81
+#: ../src/tutorial/microbe_editor/MicrobeEditorTutorialGUI.tscn:82
 msgid "TUTORIAL_MICROBE_EDITOR_PATCH_TEXT"
 msgstr ""
 
-#: ../src/tutorial/microbe_editor/MicrobeEditorTutorialGUI.tscn:116
+#: ../src/tutorial/microbe_editor/MicrobeEditorTutorialGUI.tscn:117
 msgid "TUTORIAL_MICROBE_EDITOR_REMOVE_ORGANELLE_TEXT"
 msgstr ""
 
-#: ../src/tutorial/microbe_editor/MicrobeEditorTutorialGUI.tscn:138
+#: ../src/tutorial/microbe_editor/MicrobeEditorTutorialGUI.tscn:139
 msgid "TUTORIAL_MICROBE_EDITOR_SELECT_ORGANELLE_TEXT"
 msgstr ""
 
-#: ../src/tutorial/microbe_editor/MicrobeEditorTutorialGUI.tscn:325
+#: ../src/tutorial/microbe_editor/MicrobeEditorTutorialGUI.tscn:326
 msgid "TUTORIAL_MICROBE_EDITOR_STAY_SMALL"
 msgstr ""
 
-#: ../src/tutorial/microbe_editor/MicrobeEditorTutorialGUI.tscn:517
+#: ../src/tutorial/microbe_editor/MicrobeEditorTutorialGUI.tscn:518
 msgid "TUTORIAL_MICROBE_EDITOR_TOLERANCES_TAB"
 msgstr ""
 
