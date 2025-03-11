@@ -391,8 +391,9 @@ public static class MicrobeControlHelpers
             if (damage >= health.CurrentHealth)
                 return;
 
-            // Need to force this cell into a mode, so deal the damage
-            health.DealDamage(damage, "forcedState");
+            // Need to force this cell into a mode, so cause the damage.
+            // We checked above that damage won't kill, so we don't check for damage protection on the player.
+            health.DealDamage(damage, "forcedState", -1);
 
             control.ForcedStateRemaining = Constants.ENGULF_NO_ATP_TIME;
 

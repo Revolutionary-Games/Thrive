@@ -509,6 +509,12 @@ public static class Constants
     public const float OXYTOXY_DAMAGE_DEBUFF_MAX = 0.75f;
 
     /// <summary>
+    ///   If the player has more than this much health, a single damage event cannot kill them. Instead, it leaves
+    ///   just a bit of health (1% or 0.1 whichever is more).
+    /// </summary>
+    public const float PLAYER_INSTANT_KILL_PROTECTION_HEALTH_THRESHOLD = 2.5f;
+
+    /// <summary>
     ///   How much a cell's speed is slowed when travelling through slime
     /// </summary>
     public const float MUCILAGE_IMPEDE_FACTOR = 4.0f;
