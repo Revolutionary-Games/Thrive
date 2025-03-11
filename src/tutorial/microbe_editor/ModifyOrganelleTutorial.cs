@@ -22,9 +22,7 @@ public class ModifyOrganelleTutorial : TutorialPhase
             case TutorialEventType.MicrobeEditorOrganellePlaced:
             {
                 if (args is not OrganellePlacedEventArgs organellePlacedEventArgs)
-                {
                     break;
-                }
 
                 var upgradable = organellePlacedEventArgs.Definition.AvailableUpgrades.Count > 0 ||
                     !string.IsNullOrEmpty(organellePlacedEventArgs.Definition.UpgradeGUI);
