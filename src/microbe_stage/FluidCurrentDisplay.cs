@@ -43,6 +43,8 @@ public partial class FluidCurrentDisplay : GpuParticles3D
 
         var parentPos = parent.Position;
 
+        // Position is only updated once it is different enough to avoid visual jitter when the player is being carried
+        // by a current
         if (MathF.Abs(parentPos.X - previousParentPosition.X) > MIN_DISTANCE_TO_REPOSITION
             || MathF.Abs(parentPos.Z - previousParentPosition.Z) > MIN_DISTANCE_TO_REPOSITION)
         {
