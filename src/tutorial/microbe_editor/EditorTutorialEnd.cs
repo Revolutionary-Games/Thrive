@@ -24,7 +24,7 @@ public class EditorTutorialEnd : TutorialPhase
     {
         switch (eventType)
         {
-            case TutorialEventType.MicrobeEditorRedo:
+            case TutorialEventType.EditorRedo:
             {
                 if (!HasBeenShown && CanTrigger)
                 {
