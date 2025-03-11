@@ -57,7 +57,7 @@ public class PatchManager : IChildPropertiesLoadCallback
     }
 
     /// <summary>
-    ///   Applies all patch related settings that are needed to be set. Like different spawners, despawning old
+    ///   Applies all patch-related settings that are needed to be set. Like different spawners, despawning old
     ///   entities if the patch changed etc.
     /// </summary>
     /// <param name="currentPatch">The patch to apply settings from</param>
@@ -98,7 +98,7 @@ public class PatchManager : IChildPropertiesLoadCallback
 
         GD.Print($"Applying patch ({currentPatch.Name}) settings");
 
-        // Update environment for process system
+        // Update environment for the process system
         processSystem.SetBiome(currentPatch.Biome);
 
         // Apply spawn system settings
@@ -112,7 +112,7 @@ public class PatchManager : IChildPropertiesLoadCallback
     }
 
     /// <summary>
-    ///   Updates spawn system settings for current patch
+    ///   Updates spawn system settings for the current patch
     /// </summary>
     public void UpdateSpawners(Patch currentPatch, IMicrobeSpawnEnvironment spawnEnvironment)
     {
@@ -252,6 +252,29 @@ public class PatchManager : IChildPropertiesLoadCallback
 
             var density = MathF.Max(MathF.Log(population / Constants.MICROBE_SPAWN_DENSITY_POPULATION_MULTIPLIER) *
                 Constants.MICROBE_SPAWN_DENSITY_SCALE_FACTOR, 0.0f);
+
+            if (entry.Key.PlayerSpecies)
+            {
+                // Adjust player species spawn rate as there have been too many complaints about the player just seeing
+                // their own species
+
+                // Except if the player is maybe looking for binding opportunities, then reduce the spawns much less
+                bool hasBinding = false;
+
+                if (entry.Key is MicrobeSpecies microbeSpecies)
+                {
+                    hasBinding = microbeSpecies.Organelles.Any(o => o.Definition.HasBindingFeature);
+                }
+
+                if (hasBinding)
+                {
+                    density *= Constants.PLAYER_SPECIES_SPAWN_MULTIPLIER_BINDING_AGENTS;
+                }
+                else
+                {
+                    density *= Constants.PLAYER_SPECIES_SPAWN_MULTIPLIER;
+                }
+            }
 
             var name = species.ID.ToString(CultureInfo.InvariantCulture);
 
