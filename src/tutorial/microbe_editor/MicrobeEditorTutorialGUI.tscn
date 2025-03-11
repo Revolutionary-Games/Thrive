@@ -555,46 +555,23 @@ Description = "EDITOR_TUTORIAL_EARLY_GOAL"
 ShowDelay = 0.7
 PreventsMouseCaptureWhileOpen = true
 
-[node name="NucleusTutorial" parent="." instance=ExtResource("9")]
+[node name="NucleusTutorial" parent="." instance=ExtResource("8")]
 custom_minimum_size = Vector2(360, 300)
 layout_mode = 1
-anchors_preset = 8
-anchor_left = 0.5
+anchors_preset = 6
+anchor_left = 1.0
 anchor_top = 0.5
-anchor_right = 0.5
-anchor_bottom = 0.5
-offset_left = 80.0
-offset_top = -187.5
-offset_right = 440.0
-offset_bottom = 112.5
-grow_horizontal = 2
-grow_vertical = 2
-script = ExtResource("7")
-LabelPath = NodePath("ScrollContainer/VBoxContainer/CustomRichTextLabel")
-Description = "EDITOR_TUTORIAL_MICROBE_EDITOR_NUCLEUS"
-DescriptionForController = ""
-ShowDelay = 0.7
-WindowTitle = "TUTORIAL"
-
-[node name="ScrollContainer" type="ScrollContainer" parent="NucleusTutorial"]
-custom_minimum_size = Vector2(230, 230)
-layout_mode = 0
 anchor_right = 1.0
-anchor_bottom = 1.0
-
-[node name="VBoxContainer" type="VBoxContainer" parent="NucleusTutorial/ScrollContainer"]
-layout_mode = 2
-size_flags_horizontal = 3
-size_flags_vertical = 3
-
-[node name="CustomRichTextLabel" parent="NucleusTutorial/ScrollContainer/VBoxContainer" instance=ExtResource("5")]
-layout_mode = 2
-theme_override_font_sizes/normal_font_size = 16
-fit_content = true
-
-[node name="Control" type="Control" parent="NucleusTutorial/ScrollContainer/VBoxContainer"]
-layout_mode = 2
-size_flags_vertical = 3
+anchor_bottom = 0.5
+offset_left = -560.0
+offset_top = -187.5
+offset_right = -170.0
+offset_bottom = 172.5
+grow_horizontal = 0
+grow_vertical = 2
+Description = "EDITOR_TUTORIAL_MICROBE_EDITOR_NUCLEUS"
+ShowDelay = 0.7
+PreventsMouseCaptureWhileOpen = true
 
 [connection signal="hidden" from="EditorEntryReport" to="." method="OnSpecificCloseClicked" binds= ["MicrobeEditorReport"]]
 [connection signal="hidden" from="PatchMapTutorial" to="." method="OnSpecificCloseClicked" binds= ["PatchMap"]]
