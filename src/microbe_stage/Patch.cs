@@ -656,7 +656,7 @@ public class PatchSnapshot : ICloneable
 
     public List<GameEventDescription> EventsLog = new();
 
-    public PatchSnapshot(BiomeConditions biome, string background)
+    public PatchSnapshot(BiomeConditions biome, string? background)
     {
         Biome = biome;
         Background = background;

@@ -312,7 +312,6 @@ public partial class MulticellularEditor : EditorBase<EditorAction, MicrobeStage
         cellEditorTab.UpdateBackgroundImage(CurrentPatch);
     }
 
-
     protected override GameProperties StartNewGameForEditor()
     {
         return GameProperties.StartNewMulticellularGame(new WorldGenerationSettings());

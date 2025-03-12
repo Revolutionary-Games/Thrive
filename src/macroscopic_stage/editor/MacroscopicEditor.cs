@@ -334,7 +334,6 @@ public partial class MacroscopicEditor : EditorBase<EditorAction, MacroscopicSta
         cellEditorTab.UpdateBackgroundImage(CurrentPatch);
     }
 
-
     protected override GameProperties StartNewGameForEditor()
     {
         return GameProperties.StartNewMacroscopicGame(new WorldGenerationSettings());
