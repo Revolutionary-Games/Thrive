@@ -92,13 +92,10 @@ public class GlobalGlaciationEvent : IWorldEffect
 
     private void TryToTriggerEvent(double totalTimePassed)
     {
-        // if (!AreConditionsMet())
-        //     return;
-        if (totalTimePassed <= 200_000_000)
+        if (!AreConditionsMet())
             return;
 
         eventDuration = random.Next(Constants.GLOBAL_GLACIATION_MIN_DURATION, Constants.GLOBAL_GLACIATION_MAX_DURATION);
-        eventDuration = 2;
         generationsLeft = eventDuration;
 
         foreach (var (index, patch) in targetWorld.Map.Patches)
