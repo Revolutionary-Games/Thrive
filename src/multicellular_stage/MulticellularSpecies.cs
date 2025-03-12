@@ -84,9 +84,9 @@ public class MulticellularSpecies : Species
         var simulationParameters = SimulationParameters.Instance;
 
         // Since the initial compounds are only set once per species they can't be calculated for each Biome.
-        // So, the compound balance calculation uses the default biome.
-        // TODO: make this also default biome independent like there's a TODO in MicrobeSpecies
-        var biomeConditions = simulationParameters.GetBiome("default").Conditions;
+        // So, the compound balance calculation uses a special biome.
+        // TODO: see the TODOS in MicrobeSpecies as well as: https://github.com/Revolutionary-Games/Thrive/issues/5446
+        var biomeConditions = simulationParameters.GetBiome("speciesInitialCompoundsBiome").Conditions;
 
         var compoundBalances = new Dictionary<Compound, CompoundBalance>();
 
@@ -117,6 +117,7 @@ public class MulticellularSpecies : Species
             // Some extra is given to accommodate multicellular growth
             var compoundInitialAmount = Math.Abs(compoundBalance.Value.Balance) *
                 Constants.INITIAL_COMPOUND_TIME * Constants.MULTICELLULAR_INITIAL_COMPOUND_MULTIPLIER;
+
             if (compoundInitialAmount > storageCapacity)
                 compoundInitialAmount = storageCapacity;
 
