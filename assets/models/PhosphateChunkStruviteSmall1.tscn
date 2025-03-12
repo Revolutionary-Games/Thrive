@@ -10,7 +10,7 @@
 resource_local_to_scene = true
 render_priority = 17
 shader = ExtResource("1_m8qe5")
-shader_parameter/albedo = Color(0.91, 0.879667, 0.8372, 0.729412)
+shader_parameter/albedo = Color(0.964706, 0.952941, 0.921569, 0.431373)
 shader_parameter/albedoTexture = ExtResource("2_3udni")
 shader_parameter/useNormal = false
 shader_parameter/roughness = 0.75
@@ -24,7 +24,6 @@ shader_parameter/dissolveTexture = ExtResource("2_7bo67")
 shader_parameter/dissolveValue = 0.0
 shader_parameter/dissolveScale = 1.0
 shader_parameter/outlineWidth = 0.01
-shader_parameter/growColor = Color(0.924418, 0.903825, 0.890985, 0.933333)
 
 [node name="Struvite" type="MeshInstance3D"]
 material_override = SubResource("ShaderMaterial_xyp8a")
