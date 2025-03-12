@@ -310,16 +310,20 @@ On the top toolbar, go to Editor -> Editor Settings.
 
 Scroll down on the left window until you find the Dotnet section (note
 the screenshot is from Godot 3, Godot 4 has slightly renamed things).
-Click on Editor. Set External Editor to your development environment.
+Click on Editor. Set External Editor to your development
+environment. Note that you may need to turn on advanced settings to
+see the "Dotnet" settings category.
 
 <img src="https://randomthrivefiles.b-cdn.net/setup_instructions/images/godot_external_editor_settings.png" alt="godot external editor" width="550px">
 
-Here selected IDE is Rider.
+Here the selected IDE is Rider.
 
-Even if you do not use the Godot script editor, Godot automatically opens some files and replaces the spaces with tabs.
-To stop Godot from messing with your files, go to Text Editor -> Indent and set Type to spaces
+Even if you do not use the Godot script editor, Godot automatically
+opens some files and replaces the spaces with tabs.  To stop Godot
+from messing with your files, go to Text Editor -> Behavior and set
+the "Type" under the "Indent" heading to Spaces.
 
-<img src="https://randomthrivefiles.b-cdn.net/setup_instructions/images/godot_editor_use_spaces.png" alt="set intend to spaces" width="550px">
+<img src="https://randomthrivefiles.b-cdn.net/setup_instructions/images/godot_editor_use_spaces.png" alt="set indent to spaces" width="550px">
 
 With Godot 4 it is no longer required to manually switch the build
 tool to "dotnet" (the option should no longer exist).
