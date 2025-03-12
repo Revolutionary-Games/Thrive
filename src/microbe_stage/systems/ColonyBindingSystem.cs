@@ -95,6 +95,11 @@ public sealed class ColonyBindingSystem : AEntitySetSystem<float>
         if (compounds.TakeCompound(Compound.ATP, cost) < cost - 0.001f)
         {
             control.SetStateColonyAware(entity, MicrobeState.Normal);
+
+            // Let the player know why they got thrown out of binding mode if running out of ATP
+            entity.SendNoticeIfPossible(() =>
+                new SimpleHUDMessage(Localization.Translate("NOTICE_BINDING_OUT_OF_ATP"), DisplayDuration.Short));
+
             return;
         }
 
