@@ -85,7 +85,7 @@ public class GameWorld : ISaveLoadable
             TimedEffects.RegisterEffect("nitrogen_control", new NitrogenControlEffect(this));
             TimedEffects.RegisterEffect("underwater_vent_eruption",
                 new UnderwaterVentEruptionEffect(this, random.Next64()));
-            TimedEffects.RegisterEffect("global_glaciation_change",
+            TimedEffects.RegisterEffect("global_glaciation_event",
                 new GlobalGlaciationEvent(this, random.Next64()));
 
             TimedEffects.RegisterEffect("sulfide_consumption", new HydrogenSulfideConsumptionEffect(this));
