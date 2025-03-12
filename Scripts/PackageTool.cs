@@ -6,6 +6,7 @@ using System.Diagnostics;
 using System.IO;
 using System.IO.Compression;
 using System.Linq;
+using System.Text;
 using System.Text.RegularExpressions;
 using System.Threading;
 using System.Threading.Tasks;
@@ -36,7 +37,11 @@ public class PackageTool : PackageToolBase<Program.PackageOptions>
 
     private const string MAC_ENTITLEMENTS = "Scripts/Thrive.entitlements";
 
+    private const string GODOT_PROJECT_FILE = "project.godot";
+
     private static readonly Regex GodotVersionRegex = new(@"([\d\.]+)\..*mono");
+
+    private static readonly Regex ClearColourOptionRegex = new("environment\\/defaults\\/default_clear_color=.+[\n\r]+");
 
     private static readonly IReadOnlyList<PackagePlatform> ThrivePlatforms = new List<PackagePlatform>
     {
@@ -106,7 +111,7 @@ public class PackageTool : PackageToolBase<Program.PackageOptions>
     };
 
     /// <summary>
-    ///   Base files (non-Steam, no license) that are copied to the exported game folders
+    ///   Base files (non-Steam, no licence) that are copied to the exported game folders
     /// </summary>
     private static readonly IReadOnlyCollection<FileToPackage> BaseFilesToPackage = new List<FileToPackage>
     {
@@ -130,7 +135,7 @@ public class PackageTool : PackageToolBase<Program.PackageOptions>
         }
         else
         {
-            // For now our mac builds kind of need to be done on a Mac so this reflects that
+            // For now our Mac builds kind of need to be done on a Mac, so this reflects that
             if (OperatingSystem.IsMacOS())
             {
                 DefaultPlatforms = [PackagePlatform.Mac];
@@ -238,7 +243,7 @@ public class PackageTool : PackageToolBase<Program.PackageOptions>
 
     protected override async Task<bool> OnBeforeStartExport(CancellationToken cancellationToken)
     {
-        // Make sure Godot Editor is configured with right native libraries as it exports them itself
+        // Make sure Godot Editor is configured with the right native libraries as it exports them itself
         ColourConsole.WriteInfoLine("Making sure GDExtension is installed in Godot as the distributable version");
 
         var nativeLibraryTool = new NativeLibs(new Program.NativeLibOptions
@@ -268,6 +273,9 @@ public class PackageTool : PackageToolBase<Program.PackageOptions>
         {
             steamMode = await SteamBuild.IsSteamBuildEnabled(cancellationToken);
         }
+
+        // Apply export project settings
+        await ApplyExportOnlyProjectGodotSettings(cancellationToken);
 
         // Make sure Thrive has been compiled as this seems to be able to cause an issue where the back button from
         // new game settings doesn't work
@@ -452,7 +460,7 @@ public class PackageTool : PackageToolBase<Program.PackageOptions>
     {
         if (steamMode)
         {
-            // Create the steam specific resources
+            // Create the Steam-specific resources
 
             // Copy the right Steamworks.NET library for the current target
             CopyHelpers.CopyToFolder(SteamBuild
@@ -653,6 +661,8 @@ public class PackageTool : PackageToolBase<Program.PackageOptions>
     {
         if (!await base.OnAfterExport(cancellationToken))
             return false;
+
+        await CleanUpExportOnlyProjectSettings(cancellationToken);
 
         // Clean up the revision file to not have it hang around unnecessarily
         BuildInfoWriter.DeleteBuildInfo();
@@ -991,5 +1001,57 @@ public class PackageTool : PackageToolBase<Program.PackageOptions>
         //     var template = await File.ReadAllTextAsync(STEAM_README_TEMPLATE, cancellationToken);
         //     var normalLicense = await File.ReadAllTextAsync("LICENSE.txt", cancellationToken);
         // }
+    }
+
+    private async Task ApplyExportOnlyProjectGodotSettings(CancellationToken cancellationToken)
+    {
+        var content = Encoding.UTF8.GetString(await File.ReadAllBytesAsync(GODOT_PROJECT_FILE, cancellationToken));
+
+        // Skip if already present
+        if (ClearColourOptionRegex.IsMatch(content))
+        {
+            ColourConsole.WriteInfoLine("Clear colour option already present in Godot project, skipping");
+            return;
+        }
+
+        var index = content.LastIndexOf("[rendering]", StringComparison.InvariantCulture);
+
+        if (index < 0)
+            throw new Exception("Could not find '[rendering]' section in Godot project file");
+
+        index += "[rendering]".Length;
+
+        var lineEnding = "\n";
+
+        if (content.Contains("\r\n"))
+            lineEnding = "\r\n";
+
+        // Find the start of the data to insert our customisation at
+        while (char.IsWhiteSpace(content[index]) && index + 1 < content.Length)
+        {
+            ++index;
+        }
+
+        var newContent =
+            content.Insert(index, "environment/defaults/default_clear_color=Color(0, 0, 0, 1)" + lineEnding);
+
+        if (newContent != content)
+        {
+            await File.WriteAllBytesAsync(GODOT_PROJECT_FILE, Encoding.UTF8.GetBytes(newContent), cancellationToken);
+            ColourConsole.WriteNormalLine("Added special export-only clear colour setting to the Godot project file");
+        }
+    }
+
+    private async Task CleanUpExportOnlyProjectSettings(CancellationToken cancellationToken)
+    {
+        var content = Encoding.UTF8.GetString(await File.ReadAllBytesAsync(GODOT_PROJECT_FILE, cancellationToken));
+
+        var newContent = ClearColourOptionRegex.Replace(content, "");
+
+        if (newContent != content)
+        {
+            await File.WriteAllBytesAsync(GODOT_PROJECT_FILE, Encoding.UTF8.GetBytes(newContent), cancellationToken);
+            ColourConsole.WriteNormalLine("Removed special export-only settings from the Godot project file");
+        }
     }
 }
