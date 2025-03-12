@@ -41,7 +41,8 @@ public class PackageTool : PackageToolBase<Program.PackageOptions>
 
     private static readonly Regex GodotVersionRegex = new(@"([\d\.]+)\..*mono");
 
-    private static readonly Regex ClearColourOptionRegex = new("environment\\/defaults\\/default_clear_color=.+[\n\r]+");
+    private static readonly Regex ClearColourOptionRegex =
+        new("environment\\/defaults\\/default_clear_color=.+[\n\r]+");
 
     private static readonly IReadOnlyList<PackagePlatform> ThrivePlatforms = new List<PackagePlatform>
     {
