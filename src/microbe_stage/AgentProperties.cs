@@ -1,4 +1,5 @@
 ﻿using Components;
+using DefaultEcs;
 using Newtonsoft.Json;
 
 /// <summary>
@@ -44,18 +45,19 @@ public class AgentProperties
         new LocalizedString("AGENT_NAME",
             new LocalizedString(SimulationParameters.GetCompound(Compound).GetUntranslatedName()));
 
-    public void DealDamage(ref Health health, ref CellProperties hitCellProperties, float toxinAmount)
+    public void DealDamage(ref Health health, ref CellProperties hitCellProperties, in Entity entity, float toxinAmount)
     {
         var damage = CalculateBaseDamage(toxinAmount);
 
-        health.DealMicrobeDamage(ref hitCellProperties, damage, DamageTypeName);
+        health.DealMicrobeDamage(ref hitCellProperties, damage, DamageTypeName,
+            HealthHelpers.GetInstantKillProtectionThreshold(entity));
     }
 
-    public void DealDamage(ref Health health, float toxinAmount)
+    public void DealDamage(ref Health health, in Entity entity, float toxinAmount)
     {
         var damage = CalculateBaseDamage(toxinAmount);
 
-        health.DealDamage(damage, DamageTypeName);
+        health.DealDamage(damage, DamageTypeName, HealthHelpers.GetInstantKillProtectionThreshold(entity));
     }
 
     /// <summary>

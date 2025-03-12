@@ -92,7 +92,7 @@ public sealed class DamageSoundSystem : AEntitySetSystem<float>
                 {
                     // TODO: check the volume here as this was before set to play non-positionally
                     soundEffectPlayer.PlaySoundEffect("res://assets/sounds/soundeffects/microbe-ice-damage.ogg",
-                        0.5f);
+                        0.8f);
                 }
                 else if (damageSource == "radiation")
                 {
