@@ -92,10 +92,13 @@ public class GlobalGlaciationEvent : IWorldEffect
 
     private void TryToTriggerEvent(double totalTimePassed)
     {
-        if (!AreConditionsMet())
+        // if (!AreConditionsMet())
+        //     return;
+        if (totalTimePassed <= 200_000_000)
             return;
 
         eventDuration = random.Next(Constants.GLOBAL_GLACIATION_MIN_DURATION, Constants.GLOBAL_GLACIATION_MAX_DURATION);
+        eventDuration = 2;
         generationsLeft = eventDuration;
 
         foreach (var (index, patch) in targetWorld.Map.Patches)
@@ -161,7 +164,7 @@ public class GlobalGlaciationEvent : IWorldEffect
 
         if (!hasSunlight)
         {
-            GD.PrintErr("Patch has no sunlight");
+            GD.PrintErr("Surface patch has no sunlight");
             return;
         }
 

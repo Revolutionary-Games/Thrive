@@ -724,6 +724,7 @@ public partial class EditorBase<TAction, TStage> : NodeWithInput, IEditor, ILoad
 
         GD.Print("Elapsing time on editor entry");
         ElapseEditorEntryTime();
+        UpdatePatchDetails();
 
         // Get summary before applying results in order to get comparisons to the previous populations
         var run = CurrentGame.GameWorld.GetAutoEvoRun();
@@ -823,6 +824,11 @@ public partial class EditorBase<TAction, TStage> : NodeWithInput, IEditor, ILoad
     }
 
     protected virtual void ElapseEditorEntryTime()
+    {
+        throw new GodotAbstractMethodNotOverriddenException();
+    }
+
+    protected virtual void UpdatePatchDetails()
     {
         throw new GodotAbstractMethodNotOverriddenException();
     }

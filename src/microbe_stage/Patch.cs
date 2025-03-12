@@ -140,7 +140,7 @@ public class Patch
     public BiomeConditions Biome => currentSnapshot.Biome;
 
     [JsonIgnore]
-    public string Background => currentSnapshot.Background;
+    public string Background => currentSnapshot.Background ?? BiomeTemplate.Background;
 
     /// <summary>
     ///   Logged events that specifically occurred in this patch.
@@ -652,7 +652,7 @@ public class PatchSnapshot : ICloneable
     public Dictionary<Species, SpeciesInfo> RecordedSpeciesInfo = new();
 
     public BiomeConditions Biome;
-    public string Background;
+    public string? Background;
 
     public List<GameEventDescription> EventsLog = new();
 

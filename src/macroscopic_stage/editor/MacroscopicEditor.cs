@@ -326,10 +326,14 @@ public partial class MacroscopicEditor : EditorBase<EditorAction, MacroscopicSta
     {
         // TODO: select which units will be used for the master elapsed time counter
         CurrentGame.GameWorld.OnTimePassed(1);
+    }
 
+    protected override void UpdatePatchDetails()
+    {
         // Patch events are able to change the stage's background so it needs to be updated here.
         cellEditorTab.UpdateBackgroundImage(CurrentPatch);
     }
+
 
     protected override GameProperties StartNewGameForEditor()
     {
