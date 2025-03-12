@@ -2092,10 +2092,10 @@ msgid "FERROPLAST"
 msgstr "Ferroplast"
 
 msgid "FERROPLAST_DESCRIPTION"
-msgstr "A metallic powerhouse. The ferroplast is a double membrane structure filled with proteins and enzymes. It is a prokaryote that has been assimilated for use by its eukaryotic host. It is able to oxidize [thrive:compound type=\"iron\"][/thrive:compound] from one chemical state to another at a much higher efficiency than can be achieved with rusticyanin. This process, called [b]iron respiration[/b], releases energy which the cell can then harvest. It does, however, require [thrive:compound type=\"carbondioxide\"][/thrive:compound] to function, and lower levels of this compound in the environment will slow down the rate of its [thrive:compound type=\"atp\"][/thrive:compound] production."
+msgstr "A metallic powerhouse. The ferroplast is a double-membraned structure filled with proteins and enzymes. It is a prokaryote that has been assimilated for use by its eukaryotic host. It is able to change [thrive:compound type=\"iron\"][/thrive:compound] from one chemical state to another at a much higher efficiency than can be achieved with rusticyanin. This process, called [b]iron oxidation[/b], releases energy which the cell can then harvest."
 
 msgid "FERROPLAST_PROCESSES_DESCRIPTION"
-msgstr "Turns [thrive:compound type=\"iron\"][/thrive:compound] into [thrive:compound type=\"atp\"][/thrive:compound]. Rate scales with concentration of [thrive:compound type=\"carbondioxide\"][/thrive:compound]."
+msgstr "Uses [thrive:compound type=\"iron\"][/thrive:compound] to produce [thrive:compound type=\"atp\"][/thrive:compound]."
 
 msgid "FILTER_ITEMS_BY_CATEGORY_COLON"
 msgstr "Filter items by category:"
@@ -2669,8 +2669,8 @@ msgstr ""
 msgid "IRON"
 msgstr "Iron"
 
-msgid "IRON_CHEMOLITHOAUTOTROPHY"
-msgstr "Iron Chemolithoautotrophy"
+msgid "IRON_OXIDATION"
+msgstr "Iron Oxidation"
 
 msgid "ITCH_TOOLTIP"
 msgstr "Visit our Itch.io page"
@@ -4838,10 +4838,10 @@ msgid "RUSTICYANIN"
 msgstr "Rusticyanin"
 
 msgid "RUSTICYANIN_DESCRIPTION"
-msgstr "Rusticyanin is a protein able to use [thrive:compound type=\"carbondioxide\"][/thrive:compound] to oxidize [thrive:compound type=\"iron\"][/thrive:compound] from one chemical state to another. This process, called [b]iron respiration[/b], releases energy which the cell can then harvest."
+msgstr "Rusticyanin is a protein able to change [thrive:compound type=\"iron\"][/thrive:compound] from one chemical state to another. This process, called [b]iron oxidation[/b], releases energy which the cell can then harvest."
 
 msgid "RUSTICYANIN_PROCESSES_DESCRIPTION"
-msgstr "Turns [thrive:compound type=\"iron\"][/thrive:compound] into [thrive:compound type=\"atp\"][/thrive:compound]. Rate scales with concentration of [thrive:compound type=\"carbondioxide\"][/thrive:compound]."
+msgstr "Uses [thrive:compound type=\"iron\"][/thrive:compound] to produce [thrive:compound type=\"atp\"][/thrive:compound]."
 
 msgid "SAFE_MODE_EXPLANATION"
 msgstr ""
@@ -7059,18 +7059,18 @@ msgstr "No effects."
 
 msgid "WIKI_FERROPLAST_INTRO"
 msgstr ""
-"A metallic powerhouse. The [b]Ferroplast[/b] uses [thrive:compound type=\"iron\"][/thrive:compound] and [thrive:compound type=\"carbondioxide\"][/thrive:compound] to produce [thrive:compound type=\"atp\"][/thrive:compound] by the process of [b]Iron Chemolithoautotrophy[/b]. This involves oxidizing [thrive:compound type=\"iron\"][/thrive:compound], changing it from one chemical state to another. The effect scales with [thrive:compound type=\"carbondioxide\"][/thrive:compound] concentration, so lower levels of [thrive:compound type=\"carbondioxide\"][/thrive:compound] in the environment will lead to less [thrive:compound type=\"atp\"][/thrive:compound] being produced.\n"
+"Uses [thrive:compound type=\"iron\"][/thrive:compound] to produce [thrive:compound type=\"atp\"][/thrive:compound] by the process of [b]Iron Oxidation[/b].\n"
 "\n"
-"A [b]Ferroplast[/b] is a double-membrane structure containing a network of proteins and enzymes. It is a prokaryote that has been assimilated for use by its eukaryotic host. It works at a much higher efficiency than can be achieved with [b][color=#3796e1][url=thriveopedia:rusticyanin]Rusticyanin[/url][/color][/b]."
+"A [b]Ferroplast[/b] is a double-membraned structure containing a network of proteins and enzymes. It is a prokaryote that has been assimilated for use by its eukaryotic host. It works at a much higher efficiency than can be achieved with [b][color=#3796e1][url=thriveopedia:rusticyanin]Rusticyanin[/url][/color][/b]."
 
 msgid "WIKI_FERROPLAST_MODIFICATIONS"
 msgstr "No modifications."
 
 msgid "WIKI_FERROPLAST_PROCESSES"
 msgstr ""
-"[b]Iron Chemolithoautotrophy[/b]: [thrive:compound type=\"iron\"][/thrive:compound] + [thrive:compound type=\"carbondioxide\"][/thrive:compound] → [thrive:compound type=\"atp\"][/thrive:compound]\n"
+"[b]Iron Oxidation[/b]: [thrive:compound type=\"iron\"][/thrive:compound] → [thrive:compound type=\"atp\"][/thrive:compound]\n"
 "\n"
-"A method of generating energy without [thrive:compound type=\"glucose\"][/thrive:compound]. Consumes [thrive:compound type=\"iron\"][/thrive:compound] and scales with the amount of environmental [thrive:compound type=\"carbondioxide\"][/thrive:compound]."
+"A method of generating energy without [thrive:compound type=\"glucose\"][/thrive:compound]. Consumes [thrive:compound type=\"iron\"][/thrive:compound]."
 
 msgid "WIKI_FERROPLAST_REQUIREMENTS"
 msgstr ""
@@ -7081,13 +7081,13 @@ msgstr ""
 "[indent]—   Contains [b][color=#3796e1][url=thriveopedia:rusticyanin]Rusticyanin[/url][/color][/b] for at least [b]6[/b] generations in a row.[/indent]"
 
 msgid "WIKI_FERROPLAST_SCIENTIFIC_BACKGROUND"
-msgstr "[b]Ferroplasts[/b] have not been discovered in real life, but are theorised to be entirely possible, based on the evolution of endosymbiotes (such as the [b][color=#3796e1][url=thriveopedia:mitochondrion]Mitochondrion[/url][/color][/b]) and the energy-yielding capabilities of [b][color=#3796e1][url=thriveopedia:rusticyanin]Rusticyanin[/url][/color][/b]."
+msgstr "[b]Ferroplasts[/b] have not been discovered in real life, but are theorised to be entirely possible, based on the evolution of endosymbiotes (such as the [b][color=#3796e1][url=thriveopedia:mitochondrion]Mitochondrion[/url][/color][/b]) and the energy-yielding capabilities of [b][color=#3796e1][url=thriveopedia:rusticyanin]Rusticyanin[/url][/color][/b]. The actions of [b][color=#3796e1][url=thriveopedia:rusticyanin]Rusticyanin[/url][/color][/b] at the cell membrane taking place at the organelle's membrane instead."
 
 msgid "WIKI_FERROPLAST_STRATEGY"
 msgstr ""
-"In environments with plentiful [thrive:compound type=\"iron\"][/thrive:compound] and high levels of [thrive:compound type=\"carbondioxide\"][/thrive:compound], [b]Ferroplasts[/b] are excellent primary or secondary energy sources. Be aware though that concentrations of both compounds can decrease as the game progresses, so we recommend making use of additional energy sources before your cell starts to struggle.\n"
+"In environments with plentiful [thrive:compound type=\"iron\"][/thrive:compound], [b]Ferroplasts[/b] are excellent primary or secondary energy sources. In many patches, [thrive:compound type=\"iron\"][/thrive:compound] can be found much more consistently than [thrive:compound type=\"glucose\"][/thrive:compound] as large chunks of [thrive:compound type=\"iron\"][/thrive:compound] ore can remain near the cell indefinitely. Be aware though that concentrations of [thrive:compound type=\"iron\"][/thrive:compound] can decrease as the game progresses, so we recommend making use of additional energy sources before your cell starts to struggle.\n"
 "\n"
-"We also recommend replacing [b][color=#3796e1][url=thriveopedia:rusticyanin]Rusticyanin[/url][/color][/b] with [b]Ferroplasts[/b] after evolving a [b][color=#3796e1][url=thriveopedia:nucleus]Nucleus[/url][/color][/b] for far greater efficiency."
+"We also recommend replacing any pairs of [b][color=#3796e1][url=thriveopedia:rusticyanin]Rusticyanin[/url][/color][/b] with [b]Ferroplasts[/b] after evolving a [b][color=#3796e1][url=thriveopedia:nucleus]Nucleus[/url][/color][/b] for far greater efficiency."
 
 msgid "WIKI_FERROPLAST_UPGRADES"
 msgstr "No upgrades."
@@ -7525,8 +7525,8 @@ msgstr "No upgrades."
 
 msgid "WIKI_MACROSCOPIC_STAGE_CONCEPT_ART"
 msgstr ""
-"[indent]—   [color=#3796e1][url=https://wiki.revolutionarygamesstudio.com/images/thumb/9/9f/Multieditorconcept.jpeg/120px-Multieditorconcept.jpeg]Editor concept[/url][/color] \t\t\t[/indent]\n"
-"[indent]—   [color=#3796e1][url=https://wiki.revolutionarygamesstudio.com/images/thumb/9/92/Multicolorconcept.png/120px-Multicolorconcept.png]Terrain color concept[/url][/color] \t\t\t[/indent]"
+"[indent]—   [color=#3796e1][url=https://wiki.revolutionarygamesstudio.com/images/thumb/9/9f/Multieditorconcept.jpeg/120px-Multieditorconcept.jpeg]Editor concept[/url][/color] 			[/indent]\n"
+"[indent]—   [color=#3796e1][url=https://wiki.revolutionarygamesstudio.com/images/thumb/9/92/Multicolorconcept.png/120px-Multicolorconcept.png]Terrain color concept[/url][/color] 			[/indent]"
 
 msgid "WIKI_MACROSCOPIC_STAGE_CURRENT_DEVELOPMENT"
 msgstr "Prototype level of the development of the macroscopic stage has started."
@@ -7792,8 +7792,8 @@ msgstr "No upgrades."
 
 msgid "WIKI_MULTICELLULAR_STAGE_CONCEPT_ART"
 msgstr ""
-"[indent]—   [color=#3796e1][url=https://wiki.revolutionarygamesstudio.com/images/thumb/7/75/Multiperceptionconcept.jpg/120px-Multiperceptionconcept.jpg]Perception concept[/url][/color] \t\t\t[/indent]\n"
-"[indent]—   [color=#3796e1][url=https://wiki.revolutionarygamesstudio.com/images/thumb/9/9f/Multieditorconcept.jpeg/120px-Multieditorconcept.jpeg]Editor concept[/url][/color] \t\t\t[/indent]"
+"[indent]—   [color=#3796e1][url=https://wiki.revolutionarygamesstudio.com/images/thumb/7/75/Multiperceptionconcept.jpg/120px-Multiperceptionconcept.jpg]Perception concept[/url][/color] 			[/indent]\n"
+"[indent]—   [color=#3796e1][url=https://wiki.revolutionarygamesstudio.com/images/thumb/9/9f/Multieditorconcept.jpeg/120px-Multieditorconcept.jpeg]Editor concept[/url][/color] 			[/indent]"
 
 msgid "WIKI_MULTICELLULAR_STAGE_CURRENT_DEVELOPMENT"
 msgstr "Multicellular stage development has started but it is not very fleshed out yet."
@@ -8293,23 +8293,23 @@ msgid "WIKI_RUSTICYANIN_EFFECTS"
 msgstr "Evolving [b]Rusticyanin[/b] equips a cell with the enzyme of the same name. This allows a cell to digest chunks of [thrive:compound type=\"iron\"][/thrive:compound] in the environment."
 
 msgid "WIKI_RUSTICYANIN_INTRO"
-msgstr "Transforms [thrive:compound type=\"iron\"][/thrive:compound] into [thrive:compound type=\"atp\"][/thrive:compound] by the process of [b]Iron Chemolithoautotrophy[/b]. The rate of this reaction scales with the amount of [thrive:compound type=\"carbondioxide\"][/thrive:compound] in the environment."
+msgstr "Uses [thrive:compound type=\"iron\"][/thrive:compound] to produce [thrive:compound type=\"atp\"][/thrive:compound] by the process of [b]Iron Oxidation[/b]."
 
 msgid "WIKI_RUSTICYANIN_MODIFICATIONS"
 msgstr "No modifications."
 
 msgid "WIKI_RUSTICYANIN_PROCESSES"
 msgstr ""
-"[b]Iron Chemolithoautotrophy[/b]: [thrive:compound type=\"iron\"][/thrive:compound] + [thrive:compound type=\"carbondioxide\"][/thrive:compound] → [thrive:compound type=\"atp\"][/thrive:compound]\n"
+"[b]Iron Oxidation[/b]: [thrive:compound type=\"iron\"][/thrive:compound] → [thrive:compound type=\"atp\"][/thrive:compound]\n"
 "\n"
-"A method of generating energy without [thrive:compound type=\"glucose\"][/thrive:compound]. Consumes [thrive:compound type=\"iron\"][/thrive:compound] and scales with the amount of environmental [thrive:compound type=\"carbondioxide\"][/thrive:compound]."
+"A method of generating energy without [thrive:compound type=\"glucose\"][/thrive:compound]. Consumes [thrive:compound type=\"iron\"][/thrive:compound]."
 
 msgid "WIKI_RUSTICYANIN_REQUIREMENTS"
 msgstr "No requirements."
 
 msgid "WIKI_RUSTICYANIN_SCIENTIFIC_BACKGROUND"
 msgstr ""
-"[b]Rusticyanin[/b] can be found in the membranes of some bacteria and archaea. It transfers electrons from [b]Iron[/b] and uses this to draw ions into the cell to help create new [b]ATP[/b] molecules.\n"
+"[b]Rusticyanin[/b] can be found in the membranes of some bacteria and archaea. It oxidises [b]Iron[/b] in contatct with the membrane, transferring electrons from it. The charge created on the membrane surface is then used to draw positive [b]Hydrogen[/b] ions into the cell. The extra electrons and ions help to convert spent [b]ADP[/b] molecules into new [b]ATP[/b] molecules and then reset the various proteins involved, so the process can start again.\n"
 "\n"
 "[color=#3796e1][url=https://en.wikipedia.org/wiki/Rusticyanin]https://en.wikipedia.org/wiki/Rusticyanin[/url][/color]"
 

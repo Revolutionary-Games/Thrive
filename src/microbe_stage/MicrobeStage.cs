@@ -867,7 +867,7 @@ public partial class MicrobeStage : CreatureStageBase<Entity, MicrobeWorldSimula
             health.Invulnerable = false;
 
             // This doesn't use the microbe damage calculation as this damage can't be resisted
-            health.DealDamage(9999.0f, "suicide");
+            health.Kill();
 
             // Force digestion to complete immediately
             if (Player.Has<Engulfable>())

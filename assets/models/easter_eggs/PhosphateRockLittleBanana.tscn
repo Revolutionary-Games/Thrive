@@ -10,7 +10,7 @@
 resource_local_to_scene = true
 render_priority = 17
 shader = ExtResource("1_nhjnn")
-shader_parameter/albedo = Color(0, 0.580392, 1, 0.87451)
+shader_parameter/albedo = Color(0, 0.580392, 1, 0.588235)
 shader_parameter/albedoTexture = ExtResource("2_j40of")
 shader_parameter/useNormal = false
 shader_parameter/roughness = 0.4
@@ -19,12 +19,11 @@ shader_parameter/roughnessTextureChannel = Vector4(1, 0, 0, 0)
 shader_parameter/specular = 0.83
 shader_parameter/metallic = 0.44
 shader_parameter/emission = Color(0.321569, 0.192157, 0.811765, 1)
-shader_parameter/emissionEnergy = 0.25
+shader_parameter/emissionEnergy = 0.0
 shader_parameter/dissolveTexture = ExtResource("3_qqbc0")
 shader_parameter/dissolveValue = 0.0
 shader_parameter/dissolveScale = 1.1
 shader_parameter/outlineWidth = 0.0
-shader_parameter/growColor = Color(0.1, 0.1, 0.1, 1)
 
 [node name="LittleBanan" type="MeshInstance3D"]
 material_override = SubResource("ShaderMaterial_nih3b")
