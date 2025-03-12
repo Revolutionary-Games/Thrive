@@ -77,6 +77,9 @@ public partial class MicrobeEditorTutorialGUI : Control, ITutorialGUI
     private CustomWindow atpBalanceIntroduction = null!;
 
     [Export]
+    private CustomWindow nucleusTutorial = null!;
+
+    [Export]
     private CustomWindow tolerancesTabTutorial = null!;
 
     [Export]
@@ -348,6 +351,25 @@ public partial class MicrobeEditorTutorialGUI : Control, ITutorialGUI
             else
             {
                 modifyOrganelleTutorial.Hide();
+            }
+        }
+    }
+
+    public bool NucleusTutorialVisible
+    {
+        get => nucleusTutorial.Visible;
+        set
+        {
+            if (value == nucleusTutorial.Visible)
+                return;
+
+            if (value)
+            {
+                nucleusTutorial.Show();
+            }
+            else
+            {
+                nucleusTutorial.Hide();
             }
         }
     }

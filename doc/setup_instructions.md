@@ -21,7 +21,7 @@ Thank you!
 Prerequisites
 =============
 
-Godot mono version
+Godot .NET version
 ------------------
 
 The currently used Godot version is __4.3 .NET__. The regular version
@@ -32,10 +32,6 @@ through the [previous Godot
 versions](https://downloads.tuxfamily.org/godotengine/) to get the
 right version. Using a different version than what is mentioned above
 will cause issues.
-
-Note that if you have previously used Godot 3 on Thrive, you need to
-delete the `.import` folder, otherwise the project setup for Godot 4
-will not work correctly.
 
 Godot is self-contained, meaning that you just extract the downloaded
 archive and run the Godot executable in it.
@@ -94,7 +90,7 @@ https://www.youtube.com/watch?v=HVsySz-h9r4
 .NET SDK
 ----------
 
-Next you need, .NET SDK. Recommended version currently is 9.0, but a
+Next you need the .NET SDK. Recommended version currently is 9.0, but a
 newer version may also work. You also need *runtime* 8.0 to run Thrive
 tests. This can be installed either with the sdk version 8.0 or just
 the plain runtime which saves some disk space.
@@ -103,9 +99,8 @@ On Linux you can use your package manager to install .NET. The package
 might be called `dotnet-sdk-9.0`. For example on Fedora this can be
 installed with: `sudo dnf install dotnet-sdk-9.0 dotnet-runtime-8.0`
 
-On Windows don't install Mono or MonoDevelop, it will break
-things. Dotnet is a good tool to use on Windows. You can download an
-installer for that from: https://dotnet.microsoft.com/en-us/download
+On Windows you can download the .NET installer from:
+https://dotnet.microsoft.com/en-us/download
 
 On mac you can install the dotnet sdk by downloading an installer from
 Microsoft's website. Important note for M1 mac users, you need to
@@ -141,7 +136,6 @@ Godot currently supports the following development environments:
 - Visual Studio 2022
 - Visual Studio Code
 - JetBrains Rider
-- MonoDevelop (may not be suitable for Godot 4)
 - Visual Studio for Mac
 
 ### Jetbrains Rider

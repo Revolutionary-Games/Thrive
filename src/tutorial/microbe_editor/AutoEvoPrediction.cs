@@ -4,7 +4,7 @@ using System;
 using Godot;
 using Newtonsoft.Json;
 
-public class AutoEvoPrediction : EditorEntryCountingTutorial
+public class AutoEvoPrediction : CellEditorEntryCountingTutorial
 {
     public AutoEvoPrediction()
     {
