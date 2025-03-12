@@ -512,7 +512,7 @@ public static class Constants
     ///   If the player has more than this much health, a single damage event cannot kill them. Instead, it leaves
     ///   just a bit of health (1% or 0.1 whichever is more).
     /// </summary>
-    public const float PLAYER_INSTANT_KILL_PROTECTION_HEALTH_THRESHOLD = 2.5f;
+    public const float PLAYER_INSTANT_KILL_PROTECTION_HEALTH_THRESHOLD = 5.0f;
 
     /// <summary>
     ///   How much a cell's speed is slowed when travelling through slime
