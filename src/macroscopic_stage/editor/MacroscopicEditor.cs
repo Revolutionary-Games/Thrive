@@ -328,6 +328,12 @@ public partial class MacroscopicEditor : EditorBase<EditorAction, MacroscopicSta
         CurrentGame.GameWorld.OnTimePassed(1);
     }
 
+    protected override void UpdatePatchDetails()
+    {
+        // Patch events are able to change the stage's background so it needs to be updated here.
+        cellEditorTab.UpdateBackgroundImage(CurrentPatch);
+    }
+
     protected override GameProperties StartNewGameForEditor()
     {
         return GameProperties.StartNewMacroscopicGame(new WorldGenerationSettings());
@@ -474,7 +480,7 @@ public partial class MacroscopicEditor : EditorBase<EditorAction, MacroscopicSta
 
     private void UpdateBackgrounds(Patch patch)
     {
-        cellEditorTab.UpdateBackgroundImage(patch.BiomeTemplate);
+        cellEditorTab.UpdateBackgroundImage(patch);
 
         UpdateBackgroundPanorama(patch.BiomeTemplate);
     }

@@ -6,4 +6,5 @@
     None,
 
     UnderwaterVentEruption,
+    GlobalGlaciation,
 }
