@@ -118,7 +118,7 @@ public static class MicrobeControlHelpers
     /// </summary>
     /// <remarks>
     ///   <para>
-    ///     Applies a colony-wide state (for example makes all cells that can be in engulf mode in the colony be in
+    ///     Applies a colony-wide state (for example, makes all cells that can be in engulf mode in the colony be in
     ///     engulf mode even if the lead cell cannot engulf)
     ///   </para>
     /// </remarks>
@@ -135,7 +135,7 @@ public static class MicrobeControlHelpers
 
                 foreach (var colonyMember in colony.ColonyMembers)
                 {
-                    // The IsAlive check should be unnecessary here but as this is a general method there's this
+                    // The IsAlive check should be unnecessary here, but as this is a general method, there's this
                     // extra safety against crashing due to colony bugs
                     if (colonyMember != entity && colonyMember.IsAlive)
                     {

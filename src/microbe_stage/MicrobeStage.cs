@@ -867,7 +867,8 @@ public partial class MicrobeStage : CreatureStageBase<Entity, MicrobeWorldSimula
             health.Invulnerable = false;
 
             // This doesn't use the microbe damage calculation as this damage can't be resisted
-            health.Kill();
+            // And Kill() would skip the population penalty
+            health.CurrentHealth = 0;
 
             // Force digestion to complete immediately
             if (Player.Has<Engulfable>())

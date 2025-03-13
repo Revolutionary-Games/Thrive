@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Thrive VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2025-03-12 23:10+0100\n"
+"POT-Creation-Date: 2025-03-13 10:55+0200\n"
 "PO-Revision-Date: 2025-03-01 13:57+0000\n"
 "Last-Translator: Argakyan <andrinmueller@hotmail.ch>\n"
 "Language-Team: Alemannic <https://translate.revolutionarygamesstudio.com/projects/thrive/thrive-game/gsw/>\n"
@@ -188,6 +188,9 @@ msgstr "Anaerobi Stickstofffixierig"
 
 msgid "AND_UNLOCK_CONDITION"
 msgstr "und"
+
+msgid "ANISOTROPIC_FILTERING"
+msgstr ""
 
 msgid "APPEARANCE"
 msgstr "Erschiingsbild"
@@ -979,33 +982,43 @@ msgstr "Wiiter zum Uufstiegsstadium?"
 
 msgid "CONFIRM_MOVE_TO_ASCENSION_STAGE_EXPLANATION"
 msgstr ""
+"Du chasch jetzt uufstiege und id Uufstiegsphase, idem du s'Uufstiegsportal aktiviersch. \n"
+"\n"
+"Das schaltet unbegrenzti Mach i Form vo God-Tools frei, wo du i dem Spiicherstand verwende chasch.\n"
+"\n"
+"Uufstiege bedüütet au, dass du s'Spieli gwunne hesch, aber du wirsch wiiterhin spiele chönne. Wettsch uufstiege?"
 
 msgid "CONFIRM_MOVE_TO_INDUSTRIAL_STAGE"
-msgstr ""
+msgstr "Wiiter zur Industrielle Phase?"
 
 msgid "CONFIRM_MOVE_TO_INDUSTRIAL_STAGE_EXPLANATION"
-msgstr ""
+msgstr "S'platziere vo enere Fabrik veraalasst en Fortschritt is Industrialisierigsstadium. Wiiter is nöchschte Stadium?"
 
 msgid "CONFIRM_MOVE_TO_SPACE_STAGE"
-msgstr ""
+msgstr "Is Weltruumstadium übere?"
 
 msgid "CONFIRM_MOVE_TO_SPACE_STAGE_EXPLANATION"
 msgstr ""
+"Du chasch jetzt i d'Weltruumphase übere, idem du dis erschte Ruumschiff startisch.\n"
+"\n"
+"Im Moment isches ide Prototype nöd möglich zu dim Planete zrugg z'gah, aber de eventuelli Plan isches flüssig inne und use z'zoome bi Planete ide Weltruumphase.\n"
+"\n"
+"S'abbreche vom Start wird s'Ruumschiff zerstöre. Wettsch s'Ruumschiff starte?"
 
 msgid "CONFIRM_NEW_GAME_BUTTON_TOOLTIP"
-msgstr ""
+msgstr "Mit dene Iistellige spiele"
 
 msgid "CONFIRM_NEW_GAME_BUTTON_TOOLTIP_DISABLED"
-msgstr ""
+msgstr "S'paar Iistellige sind ungültig"
 
 msgid "CONSTRUCTION_UNIT_NAME"
-msgstr ""
+msgstr "Einheit:{0}"
 
 msgid "CONTENT_UPLOADED_FROM"
-msgstr ""
+msgstr "Workshop-Content wird us folgemdem Ordner Ufegladde: {0}"
 
 msgid "CONTINUE"
-msgstr ""
+msgstr "Wiiter"
 
 msgid "CONTINUE_AS_SPECIES"
 msgstr ""
@@ -2187,22 +2200,6 @@ msgid "GITHUB_TOOLTIP"
 msgstr ""
 
 msgid "GLES3"
-msgstr ""
-
-msgid "GLOBAL_GLACIATION_END_EVENT_LOG"
-msgstr ""
-
-msgid "GLOBAL_GLACIATION_EVENT"
-msgstr ""
-
-msgid "GLOBAL_GLACIATION_EVENT_LOG"
-msgstr ""
-
-#, fuzzy
-msgid "GLOBAL_GLACIATION_EVENT_TOOLTIP"
-msgstr "Fortschritt zum Erwachene-Stadium. Erscht mögli wenn uusriichend Ghirnkapazität z'Verfüegig staht (Hirngwäb mit Axone) ."
-
-msgid "GLOBAL_GLACIATION_START_EVENT_LOG"
 msgstr ""
 
 msgid "GLOBAL_INITIAL_LETTER"
@@ -3753,7 +3750,13 @@ msgstr ""
 msgid "NOTHING_TO_INTERACT_WITH"
 msgstr ""
 
+msgid "NOTICE_BINDING_OUT_OF_ATP"
+msgstr ""
+
 msgid "NOTICE_DAMAGED_BY_NO_ATP"
+msgstr ""
+
+msgid "NOTICE_ENGULFING_OUT_OF_ATP"
 msgstr ""
 
 msgid "NOTICE_ENGULF_DAMAGE_FROM_TOXIN"
@@ -4828,6 +4831,9 @@ msgid "SILICA"
 msgstr ""
 
 msgid "SILICA_MEMBRANE_DESCRIPTION"
+msgstr ""
+
+msgid "SIXTEEN_TIMES"
 msgstr ""
 
 msgid "SIZE_COLON"
@@ -7347,13 +7353,8 @@ msgstr ""
 msgid "WORLD_SIZE"
 msgstr ""
 
-#, fuzzy
 msgid "WORLD_SIZE_EXPLANATION"
-msgstr ""
-"Aggressivi Mikrobe jagged ihri Beuti über grösseri Dischtanze\n"
-"und kämpfed eher gege Aagrifer, wenn sie aagriffe werdet.\n"
-"Friedlichi Mikrobe grifed anderi nöd über grosseri Dischtanze aa\n"
-"und setzed seltener Giftstoff gege Aagrifer i."
+msgstr "(veränderet d'Nummer vo Gebiet ide Welt)"
 
 msgid "WORLD_SIZE_LARGE"
 msgstr ""
@@ -7364,9 +7365,8 @@ msgstr ""
 msgid "WORLD_SIZE_SMALL"
 msgstr ""
 
-#, fuzzy
 msgid "WORLD_SIZE_TOOLTIP"
-msgstr "Alphakanalwert vode Farb"
+msgstr "E grossi Welt z'ha chann d'Simulation verlangsame und isch nöd empfohle für langsameri PC."
 
 msgid "WORST_PATCH_COLON"
 msgstr ""

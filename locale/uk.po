@@ -7,8 +7,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2025-03-12 23:10+0100\n"
-"PO-Revision-Date: 2025-03-07 10:46+0000\n"
+"POT-Creation-Date: 2025-03-13 10:55+0200\n"
+"PO-Revision-Date: 2025-03-12 14:39+0000\n"
 "Last-Translator: Anonymous <noreply@weblate.org>\n"
 "Language-Team: Ukrainian <https://translate.revolutionarygamesstudio.com/projects/thrive/thrive-game/uk/>\n"
 "Language: uk\n"
@@ -188,6 +188,9 @@ msgstr "Анаеробна азотфіксація"
 
 msgid "AND_UNLOCK_CONDITION"
 msgstr "та"
+
+msgid "ANISOTROPIC_FILTERING"
+msgstr ""
 
 msgid "APPEARANCE"
 msgstr "Зовнішній вигляд"
@@ -2328,24 +2331,6 @@ msgstr "Відвідайте наше сховище у GitHub"
 msgid "GLES3"
 msgstr "GLES3"
 
-msgid "GLOBAL_GLACIATION_END_EVENT_LOG"
-msgstr ""
-
-#, fuzzy
-msgid "GLOBAL_GLACIATION_EVENT"
-msgstr "Загальна популяція:"
-
-#, fuzzy
-msgid "GLOBAL_GLACIATION_EVENT_LOG"
-msgstr "Загальна популяція:"
-
-#, fuzzy
-msgid "GLOBAL_GLACIATION_EVENT_TOOLTIP"
-msgstr "Перейдіть до стадії пробудження. Доступно, коли у вас достатня сила мозку (тип клітини з аксонами)."
-
-msgid "GLOBAL_GLACIATION_START_EVENT_LOG"
-msgstr ""
-
 msgid "GLOBAL_INITIAL_LETTER"
 msgstr "G"
 
@@ -4108,8 +4093,16 @@ msgstr "Тут нічого"
 msgid "NOTHING_TO_INTERACT_WITH"
 msgstr "Немає з чим взаємодіяти"
 
+#, fuzzy
+msgid "NOTICE_BINDING_OUT_OF_ATP"
+msgstr "Пошкодження через нестачу АТФ"
+
 msgid "NOTICE_DAMAGED_BY_NO_ATP"
 msgstr "Пошкодження через нестачу АТФ"
+
+#, fuzzy
+msgid "NOTICE_ENGULFING_OUT_OF_ATP"
+msgstr "Поточний розмір клітини замалий для поглинання цілі"
 
 msgid "NOTICE_ENGULF_DAMAGE_FROM_TOXIN"
 msgstr "Пошкодження через токсини у поглинутій матерії"
@@ -4959,9 +4952,11 @@ msgstr "Запустити декілька світів, кількість г�
 msgid "RUSTICYANIN"
 msgstr "Рустіціанін"
 
+#, fuzzy
 msgid "RUSTICYANIN_DESCRIPTION"
 msgstr "Рустіціанін — це білок, що використовує [thrive:compound type=\"carbondioxide\"][/thrive:compound] для окиснення [thrive:compound type=\"iron\"][/thrive:compound] з одного хімічного стану в інший. Цей процес, що зветься [b]залізним диханням[/b], вивільняє енергію, яку клітина потім забирає."
 
+#, fuzzy
 msgid "RUSTICYANIN_PROCESSES_DESCRIPTION"
 msgstr "Перетворює [thrive:compound type=\"iron\"][/thrive:compound] на [thrive:compound type=\"atp\"][/thrive:compound]. Кількість залежить від [thrive:compound type=\"carbondioxide\"][/thrive:compound]."
 
@@ -5253,6 +5248,9 @@ msgstr "Кремнезій"
 
 msgid "SILICA_MEMBRANE_DESCRIPTION"
 msgstr "Ця мембрана має міцну стінку з кремнезію. Вона може опиратися загальним пошкодженням, і також особливо стійка до фізичної шкоди. Вона також вимагає менше енергії для утримання форми. Однак це сильно сповільнює клітину, і вона не так швидко поглинає ресурси."
+
+msgid "SIXTEEN_TIMES"
+msgstr "16х"
 
 msgid "SIZE_COLON"
 msgstr "Розмір:"
@@ -8830,9 +8828,6 @@ msgstr "Віддалитись"
 
 #~ msgid "GLES2"
 #~ msgstr "GLES2"
-
-#~ msgid "SIXTEEN_TIMES"
-#~ msgstr "16х"
 
 #~ msgid "EVOLUTIONARY_TREE_DISABLED_LABEL"
 #~ msgstr ""

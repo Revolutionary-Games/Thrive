@@ -7,8 +7,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2025-03-12 23:10+0100\n"
-"PO-Revision-Date: 2025-03-07 10:46+0000\n"
+"POT-Creation-Date: 2025-03-13 10:55+0200\n"
+"PO-Revision-Date: 2025-03-12 14:39+0000\n"
 "Last-Translator: Anonymous <noreply@weblate.org>\n"
 "Language-Team: Chinese (Traditional Han script) <https://translate.revolutionarygamesstudio.com/projects/thrive/thrive-game/zh_Hant/>\n"
 "Language: zh_TW\n"
@@ -188,6 +188,9 @@ msgstr "厭氧固氮"
 
 msgid "AND_UNLOCK_CONDITION"
 msgstr "且"
+
+msgid "ANISOTROPIC_FILTERING"
+msgstr ""
 
 msgid "APPEARANCE"
 msgstr "外觀"
@@ -2093,9 +2096,11 @@ msgstr "本篇因篇幅過長被刪節，詳情請閱讀原文。{0}"
 msgid "FERROPLAST"
 msgstr "鐵能體"
 
+#, fuzzy
 msgid "FERROPLAST_DESCRIPTION"
 msgstr "一個金屬發電廠。鐵能體是一種充滿蛋白質與酶的雙層膜結構。它是一種已被其真核宿主同化的原核生物。它能夠將[thrive:compound type=\"iron\"][/thrive:compound] 從一種化學狀態氧化為另一種化學狀態，其效率比鐵氧化藍蛋白更高。此過程被稱為[b]鐵呼吸[/b]，釋放能量，然後細胞可以收集這些能量。然而，它需要[thrive:compound type=\"carbondioxide\"][/thrive:compound] 才能發揮作用，並且較低的環境濃度會降低其[thrive:compound type=\"atp\"][/thrive:compound] 生產速率。"
 
+#, fuzzy
 msgid "FERROPLAST_PROCESSES_DESCRIPTION"
 msgstr "將[thrive:compound type=\"iron\"][/thrive:compound] 轉化為[thrive:compound type=\"atp\"][/thrive:compound]。速率與[thrive:compound type=\"carbondioxide\"][/thrive:compound] 的濃度成正比。"
 
@@ -2304,24 +2309,6 @@ msgstr "造訪我們的 GitHub 儲存庫"
 
 msgid "GLES3"
 msgstr "GLES3"
-
-msgid "GLOBAL_GLACIATION_END_EVENT_LOG"
-msgstr ""
-
-#, fuzzy
-msgid "GLOBAL_GLACIATION_EVENT"
-msgstr "全域物種量："
-
-#, fuzzy
-msgid "GLOBAL_GLACIATION_EVENT_LOG"
-msgstr "全域物種量："
-
-#, fuzzy
-msgid "GLOBAL_GLACIATION_EVENT_TOOLTIP"
-msgstr "進入覺醒階段。達到一定腦力（具有軸突的組織）後開放。"
-
-msgid "GLOBAL_GLACIATION_START_EVENT_LOG"
-msgstr ""
 
 msgid "GLOBAL_INITIAL_LETTER"
 msgstr "G"
@@ -4008,8 +3995,16 @@ msgstr "這裡什麼都沒有"
 msgid "NOTHING_TO_INTERACT_WITH"
 msgstr "沒有可以互動的物件"
 
+#, fuzzy
+msgid "NOTICE_BINDING_OUT_OF_ATP"
+msgstr "因 ATP 耗盡而損傷"
+
 msgid "NOTICE_DAMAGED_BY_NO_ATP"
 msgstr "因 ATP 耗盡而損傷"
+
+#, fuzzy
+msgid "NOTICE_ENGULFING_OUT_OF_ATP"
+msgstr "目前細胞大小不足以吞噬目標"
 
 msgid "NOTICE_ENGULF_DAMAGE_FROM_TOXIN"
 msgstr "因攝入物質中的毒素而損傷"
@@ -4841,9 +4836,11 @@ msgstr "運行一定數量的世界，每個世界運行的代數由上方的顯
 msgid "RUSTICYANIN"
 msgstr "鐵氧化藍蛋白"
 
+#, fuzzy
 msgid "RUSTICYANIN_DESCRIPTION"
 msgstr "鐵氧化藍蛋白是一種蛋白質，能夠利用[thrive:compound type=\"carbondioxide\"][/thrive:compound] 氧化[thrive:compound type=\"iron\"][/thrive:compound]。此過程被稱為[b]鐵呼吸[/b]，釋放能量，然後細胞可以收集這些能量。"
 
+#, fuzzy
 msgid "RUSTICYANIN_PROCESSES_DESCRIPTION"
 msgstr "將[thrive:compound type=\"iron\"][/thrive:compound] 轉化為[thrive:compound type=\"atp\"][/thrive:compound]。速率與[thrive:compound type=\"carbondioxide\"][/thrive:compound] 的濃度成正比。"
 
@@ -5133,6 +5130,9 @@ msgstr "二氧化矽"
 
 msgid "SILICA_MEMBRANE_DESCRIPTION"
 msgstr "這種細胞膜具有堅固的二氧化矽壁。它可以很好地抵抗整體傷害，且對物理傷害的抵抗力非常強。並花費較少的能量維持外形。然而，它會大大減慢細胞的速度，細胞吸收資源的速度也會降低。"
+
+msgid "SIXTEEN_TIMES"
+msgstr "16x"
 
 msgid "SIZE_COLON"
 msgstr "大小："
@@ -7062,6 +7062,7 @@ msgstr ""
 msgid "WIKI_FERROPLAST_EFFECTS"
 msgstr "無效果。"
 
+#, fuzzy
 msgid "WIKI_FERROPLAST_INTRO"
 msgstr ""
 "一個金屬發電廠。[b]鐵能體[/b]使用[thrive:compound type=\"iron\"][/thrive:compound] 與[thrive:compound type=\"carbondioxide\"][/thrive:compound] 來生產[thrive:compound type=\"atp\"][/thrive:compound]，此過程被稱為[b]鐵化能自養[/b]。這涉及氧化[thrive:compound type=\"iron\"][/thrive:compound]，將其從一種化學狀態轉變為另一種化學狀態。此效應與[thrive:compound type=\"carbondioxide\"][/thrive:compound] 的濃度成正比，因此環境中較低的[thrive:compound type=\"carbondioxide\"][/thrive:compound] 濃度會降低其[thrive:compound type=\"atp\"][/thrive:compound] 生產速率。\n"
@@ -7071,6 +7072,7 @@ msgstr ""
 msgid "WIKI_FERROPLAST_MODIFICATIONS"
 msgstr "無修改。"
 
+#, fuzzy
 msgid "WIKI_FERROPLAST_PROCESSES"
 msgstr ""
 "[b]鐵化能自養[/b]：[thrive:compound type=\"iron\"][/thrive:compound] + [thrive:compound type=\"carbondioxide\"][/thrive:compound] → [thrive:compound type=\"atp\"][/thrive:compound]\n"
@@ -7085,9 +7087,11 @@ msgstr ""
 "\n"
 "[indent]—   至少連續 [b]6[/b] 代中包含[b][color=#3796e1][url=thriveopedia:rusticyanin]鐵氧化藍蛋白[/url][/color][/b]。[/indent]"
 
+#, fuzzy
 msgid "WIKI_FERROPLAST_SCIENTIFIC_BACKGROUND"
 msgstr "[b]鐵能體[/b]尚未在現實生活中被發現，但基於內共生演化與[b][color=#3796e1][url=thriveopedia:rusticyanin]鐵氧化藍蛋白[/url][/color][/b]的能量生產能力，理論上是完全可能的（例如[b][color=#3796e1][url=thriveopedia:mitochondrion]粒線體[/url][/color][/b]）。"
 
+#, fuzzy
 msgid "WIKI_FERROPLAST_STRATEGY"
 msgstr ""
 "在含有大量[thrive:compound type=\"iron\"][/thrive:compound] 與高濃度[thrive:compound type=\"carbondioxide\"][/thrive:compound] 的環境中，[b]鐵能體[/b]是優秀的主要或次要能量來源。請注意，隨著遊戲的進行，兩種化合物的濃度都會降低，因此我們建議在您的細胞開始掙扎之前使用其他的能量來源。\n"
@@ -8174,12 +8178,14 @@ msgstr "遊戲內 Thrive 百科"
 msgid "WIKI_RUSTICYANIN_EFFECTS"
 msgstr "不斷演化的[b]鐵氧化藍蛋白[/b]為細胞配備了同名的酶。這允許細胞消化環境中的[thrive:compound type=\"iron\"][/thrive:compound] 塊。"
 
+#, fuzzy
 msgid "WIKI_RUSTICYANIN_INTRO"
 msgstr "透過[b]鐵化能自養[/b]代謝將[thrive:compound type=\"iron\"][/thrive:compound] 轉化為[thrive:compound type=\"atp\"][/thrive:compound]。反應速率與環境中[thrive:compound type=\"carbondioxide\"][/thrive:compound] 的濃度成正比。"
 
 msgid "WIKI_RUSTICYANIN_MODIFICATIONS"
 msgstr "無修改。"
 
+#, fuzzy
 msgid "WIKI_RUSTICYANIN_PROCESSES"
 msgstr ""
 "[b]鐵化能自養[/b]：[thrive:compound type=\"iron\"][/thrive:compound] + [thrive:compound type=\"carbondioxide\"][/thrive:compound] → [thrive:compound type=\"atp\"][/thrive:compound]\n"
@@ -8189,6 +8195,7 @@ msgstr ""
 msgid "WIKI_RUSTICYANIN_REQUIREMENTS"
 msgstr "無要求。"
 
+#, fuzzy
 msgid "WIKI_RUSTICYANIN_SCIENTIFIC_BACKGROUND"
 msgstr ""
 "[b]鐵氧化藍蛋白[/b]存在於一些細菌與古菌的細胞膜中。它從[b]鐵[/b]轉移電子，並利用電子將離子泵入細胞中，以幫助製造新的 [b]ATP[/b] 分子。\n"
@@ -8964,9 +8971,6 @@ msgstr "縮小"
 
 #~ msgid "GLES2"
 #~ msgstr "GLES2"
-
-#~ msgid "SIXTEEN_TIMES"
-#~ msgstr "16x"
 
 #~ msgid "WIKI_HEADING_AEROBIC_CELLULAR_RESPIRATION_(GLUCOSE_->_ATP)"
 #~ msgstr "有氧呼吸作用（葡萄糖 -> ATP）"
