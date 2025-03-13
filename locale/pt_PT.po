@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2025-03-11 21:01-0300\n"
+"POT-Creation-Date: 2025-03-13 10:55+0200\n"
 "PO-Revision-Date: 2025-02-06 13:29+0000\n"
 "Last-Translator: Anonymous <noreply@weblate.org>\n"
 "Language-Team: Portuguese (Portugal) <https://translate.revolutionarygamesstudio.com/projects/thrive/thrive-game/pt_PT/>\n"
@@ -2735,8 +2735,9 @@ msgstr "Protanóptico (Vermelho-Verde)"
 msgid "IRON"
 msgstr "Ferro"
 
-msgid "IRON_CHEMOLITHOAUTOTROPHY"
-msgstr "Quimiolitoautotrofia Férrica"
+#, fuzzy
+msgid "IRON_OXIDATION"
+msgstr "Doações"
 
 msgid "ITCH_TOOLTIP"
 msgstr "Visite a nossa página Itch.io"
@@ -4149,8 +4150,16 @@ msgstr "Nada aqui"
 msgid "NOTHING_TO_INTERACT_WITH"
 msgstr "Não há nada para interagir"
 
+#, fuzzy
+msgid "NOTICE_BINDING_OUT_OF_ATP"
+msgstr "Danificado por falta de ATP"
+
 msgid "NOTICE_DAMAGED_BY_NO_ATP"
 msgstr "Danificado por falta de ATP"
+
+#, fuzzy
+msgid "NOTICE_ENGULFING_OUT_OF_ATP"
+msgstr "Tamanho atual da célula demasiado pequeno para engolir o alvo"
 
 msgid "NOTICE_ENGULF_DAMAGE_FROM_TOXIN"
 msgstr "Danificado por toxinas na matéria ingerida"
@@ -8514,6 +8523,9 @@ msgstr "Ampliar"
 
 msgid "ZOOM_OUT"
 msgstr "Reduzir"
+
+#~ msgid "IRON_CHEMOLITHOAUTOTROPHY"
+#~ msgstr "Quimiolitoautotrofia Férrica"
 
 #~ msgid "PASSIVE_REPRODUCTION_PROGRESS"
 #~ msgstr "Obter passivamente progresso de reprodução"

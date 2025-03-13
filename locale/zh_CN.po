@@ -7,8 +7,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2025-03-11 21:01-0300\n"
-"PO-Revision-Date: 2025-03-07 10:46+0000\n"
+"POT-Creation-Date: 2025-03-13 10:55+0200\n"
+"PO-Revision-Date: 2025-03-12 14:39+0000\n"
 "Last-Translator: Anonymous <noreply@weblate.org>\n"
 "Language-Team: Chinese (Simplified Han script) <https://translate.revolutionarygamesstudio.com/projects/thrive/thrive-game/zh_Hans/>\n"
 "Language: zh_CN\n"
@@ -394,7 +394,7 @@ msgid "BACK"
 msgstr "返回"
 
 msgid "BACKGROUND_BLUR"
-msgstr ""
+msgstr "背景模糊："
 
 msgid "BACKSLASH"
 msgstr "反斜杠"
@@ -777,7 +777,7 @@ msgid "CLEAN_UP_OLD_SAVES"
 msgstr "清除旧存档"
 
 msgid "CLEAR_CACHE"
-msgstr ""
+msgstr "清除缓存"
 
 msgid "CLOSE"
 msgstr "关闭"
@@ -1688,7 +1688,7 @@ msgid "DOUBLE_SPEED_TOGGLE_TOOLTIP"
 msgstr "用于生成世界的随机数种子，必须为正整数"
 
 msgid "DRAG_TO_REORDER_ITEMS_WITH_MOUSE"
-msgstr ""
+msgstr "拖动鼠标重新排序项目"
 
 msgid "DUMP_SCENE_TREE"
 msgstr "转储SceneTree"
@@ -2117,9 +2117,11 @@ msgstr "本篇因篇幅过长而被删节，详情请阅读原文。 {0}"
 msgid "FERROPLAST"
 msgstr "铁化能质体"
 
+#, fuzzy
 msgid "FERROPLAST_DESCRIPTION"
 msgstr "一个以金属为原料的“动力工厂”。铁化能质体是一种充满了蛋白质与酶的双层膜结构，起源于一种被其真核宿主吸收利用了原核生物。它能够将[thrive:compound type=\"iron\"][/thrive:compound] 从一种化学状态氧化到另一种，且效率远高于铁硫菌蓝蛋白。此過程这一过程称为[b]铁呼吸[/b]，释放并供给细胞能量。然而，它需要[thrive:compound type=\"carbondioxide\"][/thrive:compound] 才能发挥作用，若其环境浓度较低则会降低其[thrive:compound type=\"atp\"][/thrive:compound] 的生产速率。"
 
+#, fuzzy
 msgid "FERROPLAST_PROCESSES_DESCRIPTION"
 msgstr "利用[thrive:compound type=\"iron\"][/thrive:compound]生产[thrive:compound type=\"atp\"][/thrive:compound]。合成速率与环境[thrive:compound type=\"carbondioxide\"][/thrive:compound]浓度成正比。"
 
@@ -2405,7 +2407,7 @@ msgid "HEALTH"
 msgstr "生命上限"
 
 msgid "HEALTH_MODIFIER"
-msgstr ""
+msgstr "健康修改器"
 
 #, fuzzy
 msgid "HEAT_ACCUMULATION_BAR_TOOLTIP"
@@ -2687,8 +2689,9 @@ msgstr ""
 msgid "IRON"
 msgstr "铁"
 
-msgid "IRON_CHEMOLITHOAUTOTROPHY"
-msgstr "铁化能无机自养"
+#, fuzzy
+msgid "IRON_OXIDATION"
+msgstr "捐助"
 
 msgid "ITCH_TOOLTIP"
 msgstr "访问我们在Itch.io上的页面"
@@ -3172,7 +3175,7 @@ msgstr ""
 "你现在希望这么做吗？"
 
 msgid "LOW_QUALITY_BACKGROUND_BLUR"
-msgstr ""
+msgstr "低分辨率背景模糊"
 
 msgid "LOW_QUALITY_BACKGROUND_BLUR_TOOLTIP"
 msgstr ""
@@ -4075,8 +4078,16 @@ msgstr "这里啥都没有"
 msgid "NOTHING_TO_INTERACT_WITH"
 msgstr "没有可以交互的物体"
 
+#, fuzzy
+msgid "NOTICE_BINDING_OUT_OF_ATP"
+msgstr "因ATP耗尽而受伤"
+
 msgid "NOTICE_DAMAGED_BY_NO_ATP"
 msgstr "因ATP耗尽而受伤"
+
+#, fuzzy
+msgid "NOTICE_ENGULFING_OUT_OF_ATP"
+msgstr "目前细胞大小不足以吞噬目标"
 
 msgid "NOTICE_ENGULF_DAMAGE_FROM_TOXIN"
 msgstr "由于摄入物体中的毒素而受伤"
@@ -4929,9 +4940,11 @@ msgstr "运行一定数量的世界，每个世界运行的代数由左上方的
 msgid "RUSTICYANIN"
 msgstr "铁硫菌蓝蛋白"
 
+#, fuzzy
 msgid "RUSTICYANIN_DESCRIPTION"
 msgstr "铁硫菌蓝蛋白能够利用气态二氧化碳将铁从一种化学状态氧化为另一种化学状态。这个过程被称作[b]铁呼吸[/b]，能够释放可被细胞收集的能量。"
 
+#, fuzzy
 msgid "RUSTICYANIN_PROCESSES_DESCRIPTION"
 msgstr "将[thrive:compound type=\"iron\"][/thrive:compound]转换成[thrive:compound type=\"atp\"][/thrive:compound]。速率跟[thrive:compound type=\"carbondioxide\"][/thrive:compound]的浓度成正比。"
 
@@ -8166,12 +8179,14 @@ msgstr "游戏内Thrive百科"
 msgid "WIKI_RUSTICYANIN_EFFECTS"
 msgstr "不断进化的 [b]铁硫菌蓝蛋白[/b] 为细胞配备了同名的酶。 这允许细胞消化环境中的[thrive:compound type=\"iron\"][/thrive:compound]铁块。"
 
+#, fuzzy
 msgid "WIKI_RUSTICYANIN_INTRO"
 msgstr "透过[b]铁化能自养[/b]代谢将[thrive:compound type=\"iron\"][/thrive:compound] 转化为[thrive:compound type=\"atp\"][/thrive:compound]。 反应速率与环境中[thrive:compound type=\"carbondioxide\"][/thrive:compound] 的浓度成正比。"
 
 msgid "WIKI_RUSTICYANIN_MODIFICATIONS"
 msgstr "无修改。"
 
+#, fuzzy
 msgid "WIKI_RUSTICYANIN_PROCESSES"
 msgstr ""
 "[b]铁化能自养[/b]：[thrive:compound type=\"iron\"][/thrive:compound] + [thrive:compound type=\"carbondioxide\"][/thrive:compound] → [thrive: compound type=\"atp\"][/thrive:compound]\n"
@@ -8658,6 +8673,9 @@ msgstr "放大"
 
 msgid "ZOOM_OUT"
 msgstr "缩小"
+
+#~ msgid "IRON_CHEMOLITHOAUTOTROPHY"
+#~ msgstr "铁化能无机自养"
 
 #~ msgid "PASSIVE_REPRODUCTION_PROGRESS"
 #~ msgstr "被动获得的繁殖进度"

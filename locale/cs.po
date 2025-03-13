@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2025-03-11 21:01-0300\n"
+"POT-Creation-Date: 2025-03-13 10:55+0200\n"
 "PO-Revision-Date: 2025-03-07 10:46+0000\n"
 "Last-Translator: Anonymous <noreply@weblate.org>\n"
 "Language-Team: Czech <https://translate.revolutionarygamesstudio.com/projects/thrive/thrive-game/cs/>\n"
@@ -2895,8 +2895,9 @@ msgstr ""
 msgid "IRON"
 msgstr "Železo"
 
-msgid "IRON_CHEMOLITHOAUTOTROPHY"
-msgstr "Chemolithoautotrofie železa"
+#, fuzzy
+msgid "IRON_OXIDATION"
+msgstr "Příspěvky"
 
 #, fuzzy
 msgid "ITCH_TOOLTIP"
@@ -4367,8 +4368,16 @@ msgstr "Nic zde není"
 msgid "NOTHING_TO_INTERACT_WITH"
 msgstr ""
 
+#, fuzzy
+msgid "NOTICE_BINDING_OUT_OF_ATP"
+msgstr "Poškozeno, kvůli nedostatku ATP"
+
 msgid "NOTICE_DAMAGED_BY_NO_ATP"
 msgstr "Poškozeno, kvůli nedostatku ATP"
+
+#, fuzzy
+msgid "NOTICE_ENGULFING_OUT_OF_ATP"
+msgstr "Velikost buňky je moc malá pro pohlcení cíle"
 
 #, fuzzy
 msgid "NOTICE_ENGULF_DAMAGE_FROM_TOXIN"
@@ -8821,6 +8830,9 @@ msgstr "Přiblížit"
 
 msgid "ZOOM_OUT"
 msgstr "Oddálit"
+
+#~ msgid "IRON_CHEMOLITHOAUTOTROPHY"
+#~ msgstr "Chemolithoautotrofie železa"
 
 #~ msgid "PASSIVE_REPRODUCTION_PROGRESS"
 #~ msgstr "Pasivní příjem pokroku reprodukce"

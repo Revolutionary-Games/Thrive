@@ -7,8 +7,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2025-03-11 21:01-0300\n"
-"PO-Revision-Date: 2025-03-07 10:46+0000\n"
+"POT-Creation-Date: 2025-03-13 10:55+0200\n"
+"PO-Revision-Date: 2025-03-12 14:39+0000\n"
 "Last-Translator: Anonymous <noreply@weblate.org>\n"
 "Language-Team: Polish <https://translate.revolutionarygamesstudio.com/projects/thrive/thrive-game/pl/>\n"
 "Language: pl\n"
@@ -2151,9 +2151,11 @@ msgstr ""
 msgid "FERROPLAST"
 msgstr "Termoplast"
 
+#, fuzzy
 msgid "FERROPLAST_DESCRIPTION"
 msgstr "Ferroplast jest strukturą z podwójną membraną wypełnioną białkami i enzymami. Jest prokariontem, który został przyswojony do użytku przez eukariotycznego hosta. Utlenia [thrive:compound type=\"iron\"]Żelazo[/thrive:compound] z jednego stanu chemicznego do innego o wiele sprawniej niż rustycyjanina. Ten proces, zwany [b]oddychaniem żelazowym[/b], wydziela energię wykorzystywaną przez komórkę. Wymaga on jednak [thrive:compound type=\"carbondioxide\"]Dwutlenku Węgla[/thrive:compound] by funkcjonować, a niższe stężenia tego związku w środowisku spowolnią tempo produkcji [thrive:compound type=\"atp\"][/thrive:compound]."
 
+#, fuzzy
 msgid "FERROPLAST_PROCESSES_DESCRIPTION"
 msgstr "Przekształca [thrive:compound type=\"iron\"]Żelazo[/thrive:compound] w [thrive:compound type=\"atp\"][/thrive:compound]. Tempo skaluje się ze stężeniem [thrive:compound type=\"carbondioxide\"]Dwutlenku Węgla[/thrive:compound]."
 
@@ -2738,8 +2740,9 @@ msgstr ""
 msgid "IRON"
 msgstr "Żelazo (Fe²⁺)"
 
-msgid "IRON_CHEMOLITHOAUTOTROPHY"
-msgstr "Utlenianie Żelaza"
+#, fuzzy
+msgid "IRON_OXIDATION"
+msgstr "Wsparcie"
 
 msgid "ITCH_TOOLTIP"
 msgstr "Odwiedź naszą stronę Itch.io"
@@ -4166,7 +4169,14 @@ msgstr "Nic tu nie ma"
 msgid "NOTHING_TO_INTERACT_WITH"
 msgstr ""
 
+#, fuzzy
+msgid "NOTICE_BINDING_OUT_OF_ATP"
+msgstr "Przełącz tryb łączenia. Dotykaj innych komórek by stworzyć kolonię."
+
 msgid "NOTICE_DAMAGED_BY_NO_ATP"
+msgstr ""
+
+msgid "NOTICE_ENGULFING_OUT_OF_ATP"
 msgstr ""
 
 msgid "NOTICE_ENGULF_DAMAGE_FROM_TOXIN"
@@ -5037,9 +5047,11 @@ msgstr ""
 msgid "RUSTICYANIN"
 msgstr "Rusticyjanina"
 
+#, fuzzy
 msgid "RUSTICYANIN_DESCRIPTION"
 msgstr "Rusticyjanina to białko mogące użyć gazowego [thrive:compound type=\"carbondioxide\"]Dwutlenku Węgla[/thrive:compound] do utleniania [thrive:compound type=\"iron\"]Żelaza[/thrive:compound] z jednego stanu chemicznego do innego. Ten proces, nazywany [b]oddychaniem żelazowym[/b], uwalnia energię którą komórka może zebrać."
 
+#, fuzzy
 msgid "RUSTICYANIN_PROCESSES_DESCRIPTION"
 msgstr "Utlenia [thrive:compound type=\"iron\"]Żelazo[/thrive:compound] wydzielając [thrive:compound type=\"atp\"][/thrive:compound]. Tempo skaluje się ze stężeniem [thrive:compound type=\"carbondioxide\"]Dwutlenku Węgla[/thrive:compound]."
 
@@ -8504,6 +8516,9 @@ msgstr "Przybliż"
 
 msgid "ZOOM_OUT"
 msgstr "Oddal"
+
+#~ msgid "IRON_CHEMOLITHOAUTOTROPHY"
+#~ msgstr "Utlenianie Żelaza"
 
 #~ msgid "PASSIVE_REPRODUCTION_PROGRESS"
 #~ msgstr "Biernie uzyskuj postęp reprodukcji"

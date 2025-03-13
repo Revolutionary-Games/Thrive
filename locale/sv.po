@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2025-03-11 21:01-0300\n"
+"POT-Creation-Date: 2025-03-13 10:55+0200\n"
 "PO-Revision-Date: 2025-02-06 13:29+0000\n"
 "Last-Translator: Anonymous <noreply@weblate.org>\n"
 "Language-Team: Swedish <https://translate.revolutionarygamesstudio.com/projects/thrive/thrive-game/sv/>\n"
@@ -2860,8 +2860,9 @@ msgstr "Protanope (Röd-Grön)"
 msgid "IRON"
 msgstr "Järn"
 
-msgid "IRON_CHEMOLITHOAUTOTROPHY"
-msgstr "Järnkemolitoautotrofi"
+#, fuzzy
+msgid "IRON_OXIDATION"
+msgstr "Donationer"
 
 #, fuzzy
 msgid "ITCH_TOOLTIP"
@@ -4303,7 +4304,14 @@ msgstr "Ingenting här"
 msgid "NOTHING_TO_INTERACT_WITH"
 msgstr ""
 
+#, fuzzy
+msgid "NOTICE_BINDING_OUT_OF_ATP"
+msgstr "Växla bindning av och på"
+
 msgid "NOTICE_DAMAGED_BY_NO_ATP"
+msgstr ""
+
+msgid "NOTICE_ENGULFING_OUT_OF_ATP"
 msgstr ""
 
 msgid "NOTICE_ENGULF_DAMAGE_FROM_TOXIN"
@@ -8724,6 +8732,9 @@ msgstr "Zooma in"
 
 msgid "ZOOM_OUT"
 msgstr "Zooma ut"
+
+#~ msgid "IRON_CHEMOLITHOAUTOTROPHY"
+#~ msgstr "Järnkemolitoautotrofi"
 
 #, fuzzy
 #~ msgid "PASSIVE_REPRODUCTION_PROGRESS"
