@@ -2,10 +2,18 @@
 using Godot;
 
 /// <summary>
-///   Contains a short results for a species from auto-evo. Can be pressed to request more info for the species.
+///   Contains a short result for a species from auto-evo. Can be pressed to request more info for the species.
 /// </summary>
 public partial class SpeciesResultButton : Button
 {
+    /// <summary>
+    ///   Adds a suffix to the population number so that they are not shown in a confusing way to the player.
+    ///   This is done so that the base numbers are nice and small to understand, but for realism and to avoid
+    ///   players complaining, we add a suffix to pretend that the real value is much, much higher.
+    /// </summary>
+    [Export]
+    public string AmountSuffix = Constants.MICROBE_POPULATION_SUFFIX;
+
 #pragma warning disable CA2213
     [Export]
     private Label nameLabel = null!;
@@ -51,7 +59,7 @@ public partial class SpeciesResultButton : Button
 
     public override void _Ready()
     {
-        // Ensure minimum size is set
+        // Ensure a minimum size is set
         CustomMinimumSize = _GetMinimumSize();
     }
 
@@ -81,7 +89,7 @@ public partial class SpeciesResultButton : Button
     {
         partialExtinctionIndicator.Visible = newPopulation < 1;
 
-        resultPatchPopulation.Text = newPopulation.ToString();
+        resultPatchPopulation.Text = $"{newPopulation} {AmountSuffix}";
 
         var difference = newPopulation - oldPopulation;
 

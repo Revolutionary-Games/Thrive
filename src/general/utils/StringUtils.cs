@@ -22,6 +22,23 @@ public static class StringUtils
     /// </remarks>
     public static string FormatNumber(this double number, bool withSuffix = true)
     {
+        // Using short scale (English convention) for a billion and higher values
+        if (number is >= 1000000000000000 or <= -1000000000000000)
+        {
+            return withSuffix ?
+                Localization.Translate("QUADRILLION_ABBREVIATION")
+                    .FormatSafe(number.ToString("0,,,,,.#####", CultureInfo.CurrentCulture)) :
+                number.ToString("0,,,,,.#####", CultureInfo.CurrentCulture);
+        }
+
+        if (number is >= 1000000000000 or <= -1000000000000)
+        {
+            return withSuffix ?
+                Localization.Translate("TRILLION_ABBREVIATION")
+                    .FormatSafe(number.ToString("0,,,,.####", CultureInfo.CurrentCulture)) :
+                number.ToString("0,,,,.####", CultureInfo.CurrentCulture);
+        }
+
         if (number is >= 1000000000 or <= -1000000000)
         {
             return withSuffix ?

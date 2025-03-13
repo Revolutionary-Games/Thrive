@@ -1054,6 +1054,9 @@ public static class Constants
     public const int PLAYER_PATCH_EXTINCTION_POPULATION_LOSS_CONSTANT = -35;
     public const float PLAYER_PATCH_EXTINCTION_POPULATION_LOSS_COEFFICIENT = 1 / 1.2f;
 
+    public const double MICROBE_POPULATION_MULTIPLIER = 1000000000000;
+    public const string MICROBE_POPULATION_SUFFIX = "T";
+
     public const int BASE_MUTATION_POINTS = 100;
 
     /// <summary>
