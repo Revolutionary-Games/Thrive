@@ -36,7 +36,7 @@ region_rect = Rect2(0, 0, 258, 1)
 
 [sub_resource type="StyleBoxEmpty" id="7"]
 
-[node name="OptionsMenu" type="Control" node_paths=PackedStringArray("damageEffect", "strainVisibility", "displayMicrobeBackgroundDistortionToggle", "lowQualityBackgroundBlurToggle", "bloomEffectToggle", "bloomSlider", "blurSlider", "useDiskCaching", "maxCacheSizeSlider", "maxCacheSizeLabel", "currentCacheSize", "maxMemoryCacheTimeSlider", "maxMemoryCacheTimeLabel", "maxDiskCacheTimeSlider", "maxDiskCacheTimeLabel", "maxMemoryItemsSlider", "maxMemoryItemsLabel", "maxMemoryOnlyCacheTimeSlider", "maxMemoryOnlyCacheTimeLabel")]
+[node name="OptionsMenu" type="Control" node_paths=PackedStringArray("anisotropicFilterLevel", "damageEffect", "strainVisibility", "displayMicrobeBackgroundDistortionToggle", "lowQualityBackgroundBlurToggle", "bloomEffectToggle", "bloomSlider", "blurSlider", "useDiskCaching", "maxCacheSizeSlider", "maxCacheSizeLabel", "currentCacheSize", "maxMemoryCacheTimeSlider", "maxMemoryCacheTimeLabel", "maxDiskCacheTimeSlider", "maxDiskCacheTimeLabel", "maxMemoryItemsSlider", "maxMemoryItemsLabel", "maxMemoryOnlyCacheTimeSlider", "maxMemoryOnlyCacheTimeLabel")]
 process_mode = 3
 layout_mode = 3
 anchors_preset = 15
@@ -147,6 +147,7 @@ BuiltAtLabelPath = NodePath("CenterContainer/VBoxContainer/VBoxContainer/VBoxCon
 UnsavedProgressWarningPath = NodePath("CenterContainer/VBoxContainer/VBoxContainer/VBoxContainer/PanelContainer/Misc/ScrollContainer/MarginContainer/VBoxContainer/UnsavedProgressWarning")
 PatchNotesBoxPath = NodePath("CenterContainer/PatchNotesBox")
 PatchNotesDisplayerPath = NodePath("CenterContainer/PatchNotesBox/VBoxContainer/PatchNotesDisplayer")
+anisotropicFilterLevel = NodePath("CenterContainer/VBoxContainer/VBoxContainer/VBoxContainer/PanelContainer/Graphics/ScrollContainer/MarginContainer/VBoxContainer/HBoxContainer15/AnisotropicFilterLevel")
 damageEffect = NodePath("CenterContainer/VBoxContainer/VBoxContainer/VBoxContainer/PanelContainer/Graphics/ScrollContainer/MarginContainer/VBoxContainer/DamageEffect")
 strainVisibility = NodePath("CenterContainer/VBoxContainer/VBoxContainer/VBoxContainer/PanelContainer/Graphics/ScrollContainer/MarginContainer/VBoxContainer/HBoxContainer11/StrainBarMode")
 displayMicrobeBackgroundDistortionToggle = NodePath("CenterContainer/VBoxContainer/VBoxContainer/VBoxContainer/PanelContainer/Graphics/ScrollContainer/MarginContainer/VBoxContainer/BackgroundDistortion")
@@ -338,6 +339,36 @@ popup/item_2/text = "FOUR_TIMES"
 popup/item_2/id = 2
 popup/item_3/text = "EIGHT_TIMES"
 popup/item_3/id = 3
+
+[node name="HBoxContainer15" type="HBoxContainer" parent="CenterContainer/VBoxContainer/VBoxContainer/VBoxContainer/PanelContainer/Graphics/ScrollContainer/MarginContainer/VBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="Label" type="Label" parent="CenterContainer/VBoxContainer/VBoxContainer/VBoxContainer/PanelContainer/Graphics/ScrollContainer/MarginContainer/VBoxContainer/HBoxContainer15"]
+layout_mode = 2
+mouse_filter = 0
+text = "ANISOTROPIC_FILTERING"
+
+[node name="Separator" type="Control" parent="CenterContainer/VBoxContainer/VBoxContainer/VBoxContainer/PanelContainer/Graphics/ScrollContainer/MarginContainer/VBoxContainer/HBoxContainer15"]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="AnisotropicFilterLevel" type="OptionButton" parent="CenterContainer/VBoxContainer/VBoxContainer/VBoxContainer/PanelContainer/Graphics/ScrollContainer/MarginContainer/VBoxContainer/HBoxContainer15"]
+custom_minimum_size = Vector2(200, 25)
+layout_mode = 2
+size_flags_vertical = 0
+selected = 1
+item_count = 5
+popup/item_0/text = "DISABLED"
+popup/item_0/id = 0
+popup/item_1/text = "TWO_TIMES"
+popup/item_1/id = 1
+popup/item_2/text = "FOUR_TIMES"
+popup/item_2/id = 2
+popup/item_3/text = "EIGHT_TIMES"
+popup/item_3/id = 3
+popup/item_4/text = "SIXTEEN_TIMES"
+popup/item_4/id = 4
 
 [node name="HBoxContainer4" type="HBoxContainer" parent="CenterContainer/VBoxContainer/VBoxContainer/VBoxContainer/PanelContainer/Graphics/ScrollContainer/MarginContainer/VBoxContainer"]
 layout_mode = 2
@@ -2128,6 +2159,7 @@ grow_vertical = 1
 [connection signal="toggled" from="CenterContainer/VBoxContainer/VBoxContainer/VBoxContainer/PanelContainer/Graphics/ScrollContainer/MarginContainer/VBoxContainer/Vsync" to="." method="OnVSyncToggled"]
 [connection signal="item_selected" from="CenterContainer/VBoxContainer/VBoxContainer/VBoxContainer/PanelContainer/Graphics/ScrollContainer/MarginContainer/VBoxContainer/HBoxContainer14/DisplayMode" to="." method="OnDisplayModeSelected"]
 [connection signal="item_selected" from="CenterContainer/VBoxContainer/VBoxContainer/VBoxContainer/PanelContainer/Graphics/ScrollContainer/MarginContainer/VBoxContainer/HBoxContainer/MSAAResolution" to="." method="OnMSAAResolutionSelected"]
+[connection signal="item_selected" from="CenterContainer/VBoxContainer/VBoxContainer/VBoxContainer/PanelContainer/Graphics/ScrollContainer/MarginContainer/VBoxContainer/HBoxContainer15/AnisotropicFilterLevel" to="." method="OnAnisotropicFilteringSelected"]
 [connection signal="item_selected" from="CenterContainer/VBoxContainer/VBoxContainer/VBoxContainer/PanelContainer/Graphics/ScrollContainer/MarginContainer/VBoxContainer/HBoxContainer3/MaxFramesPerSecond" to="." method="OnMaxFramesPerSecondSelected"]
 [connection signal="item_selected" from="CenterContainer/VBoxContainer/VBoxContainer/VBoxContainer/PanelContainer/Graphics/ScrollContainer/MarginContainer/VBoxContainer/HBoxContainer2/ColourblindSetting" to="." method="OnColourblindSettingSelected"]
 [connection signal="toggled" from="CenterContainer/VBoxContainer/VBoxContainer/VBoxContainer/PanelContainer/Graphics/ScrollContainer/MarginContainer/VBoxContainer/HBoxContainer5/ChromaticToggle" to="." method="OnChromaticAberrationToggled"]
