@@ -207,14 +207,7 @@ public class BiomeConditions : IBiomeConditions, ICloneable
         foreach (var entry in changes)
         {
             var definition = simulationParameters.GetCompoundDefinition(entry.Key);
-            if (!definition.IsEnvironmental && !definition.IsGas)
-            {
-                TryGetCompound(entry.Key, CompoundAmountType.Biome, out var existing);
-
-                existing.Ambient += entry.Value;
-                ModifyLongTermCondition(entry.Key, existing);
-            }
-            else if (!definition.IsEnvironmental)
+            if (!definition.IsEnvironmental)
             {
                 if (!TryGetCompound(entry.Key, CompoundAmountType.Biome, out var existing))
                 {
