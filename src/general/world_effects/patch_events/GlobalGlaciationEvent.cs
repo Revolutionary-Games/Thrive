@@ -112,7 +112,8 @@ public class GlobalGlaciationEvent : IWorldEffect
                 break;
             case 0:
             {
-                eventDuration = random.Next(Constants.GLOBAL_GLACIATION_MIN_DURATION, Constants.GLOBAL_GLACIATION_MAX_DURATION);
+                eventDuration = random.Next(Constants.GLOBAL_GLACIATION_MIN_DURATION,
+                    Constants.GLOBAL_GLACIATION_MAX_DURATION);
                 generationsLeft = eventDuration;
 
                 foreach (var (index, patch) in targetWorld.Map.Patches)
