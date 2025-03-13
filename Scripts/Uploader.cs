@@ -17,7 +17,7 @@ using ScriptsBase.Utilities;
 using SharedBase.Utilities;
 
 /// <summary>
-///   Manages uploading dehydrated devbuilds and the object cache entries missing from the server
+///   Manages uploading of dehydrated devbuilds and the object cache entries missing from the server
 /// </summary>
 public class Uploader
 {
@@ -31,6 +31,7 @@ public class Uploader
 
     private readonly Uri url;
 
+    // TODO: this probably is actually not needed as we use async rather than multiple threads
     private readonly object outputLock = new();
 
     /// <summary>
@@ -104,11 +105,16 @@ public class Uploader
     {
         using var client = CreateHttpClient();
 
+        // Offer builds in parallel to make the upload process faster
+        var jobs = new List<Task>();
+
         foreach (var metaFile in Directory.EnumerateFiles(dehydratedFolder, $"*{Dehydration.DEHYDRATED_META_SUFFIX}",
                      SearchOption.TopDirectoryOnly))
         {
-            await CheckBuildForUpload(metaFile, client, cancellationToken);
+            jobs.Add(CheckBuildForUpload(metaFile, client, cancellationToken));
         }
+
+        await Task.WhenAll(jobs);
 
         if (devbuildsToUpload.GroupBy(d => (d.Platform, d.Version)).Any(g => g.Count() > 1))
         {
@@ -231,34 +237,44 @@ public class Uploader
 
     private async Task<List<ThingToUpload>> FetchObjectUploadTokens(CancellationToken cancellationToken)
     {
-        using var client = CreateHttpClient();
-
-        var result = new List<ThingToUpload>();
+        var tasks = new List<Task<List<ThingToUpload>>>();
 
         foreach (var chunk in dehydratedToUpload.Chunk(CommunicationConstants.MAX_DEHYDRATED_OBJECTS_PER_OFFER))
         {
+            tasks.Add(FetchDehydratedTokenChunk(chunk, cancellationToken));
+        }
+
+        var result = new List<ThingToUpload>();
+        foreach (var task in tasks)
+        {
             cancellationToken.ThrowIfCancellationRequested();
 
-            var data = await PerformWithRetry(async cancellation =>
-            {
-                var response = await client.PostAsJsonAsync("api/v1/devbuild/upload_objects",
-                    new DehydratedUploadRequest
-                    {
-                        Objects = chunk.Select(d =>
-                            new DehydratedObjectRequest(d, (int)new FileInfo(Sha3ToPath(d)).Length)).ToList(),
-                    }, cancellation);
-
-                return await GetJsonFromResponse<DehydratedUploadResult>(response, cancellation);
-            }, cancellationToken);
-
-            foreach (var toUpload in data.Upload)
-            {
-                result.Add(
-                    new ThingToUpload(Sha3ToPath(toUpload.Sha3), toUpload.UploadUrl, toUpload.VerifyToken, false));
-            }
+            result.AddRange(await task);
         }
 
         return result;
+    }
+
+    private async Task<List<ThingToUpload>> FetchDehydratedTokenChunk(string[] chunk,
+        CancellationToken cancellationToken)
+    {
+        // This uses more simultaneous http clients but should be faster
+        using var client = CreateHttpClient();
+
+        var data = await PerformWithRetry(async cancellation =>
+        {
+            var response = await client.PostAsJsonAsync("api/v1/devbuild/upload_objects",
+                new DehydratedUploadRequest
+                {
+                    Objects = chunk.Select(d =>
+                        new DehydratedObjectRequest(d, (int)new FileInfo(Sha3ToPath(d)).Length)).ToList(),
+                }, cancellation);
+
+            return await GetJsonFromResponse<DehydratedUploadResult>(response, cancellation);
+        }, cancellationToken);
+
+        return data.Upload.Select(u =>
+            new ThingToUpload(Sha3ToPath(u.Sha3), u.UploadUrl, u.VerifyToken, false)).ToList();
     }
 
     private async Task<List<ThingToUpload>> FetchDevBuildUploadTokens(CancellationToken cancellationToken)
@@ -349,7 +365,7 @@ public class Uploader
     {
         using var client = CreateHttpClient();
 
-        // Separate client to not send our headers there
+        // Separate client to not send our headers to the storage
         using var uploadClient = new HttpClient();
 
         foreach (var upload in things)
@@ -366,7 +382,7 @@ public class Uploader
             await PutFile(upload.File, upload.UploadUrl, uploadClient, cancellationToken);
 
             // Tell the server about upload success
-            // We don't want to cancel this, so we'll at least run this if we are canceled (and delete it), before
+            // We don't want to cancel this, so we'll at least run this if we are cancelled (and delete it), before
             // exiting
             await PerformWithRetry(async cancellation =>
             {
@@ -412,6 +428,22 @@ public class Uploader
             content.Headers.ContentType = MediaTypeHeaderValue.Parse("application/octet-stream");
 
             var response = await client.PutAsync(fullUrl, content, cancellation);
+
+            if (!response.IsSuccessStatusCode)
+            {
+                // Try to read the response body in case we can see some better errors
+                ColourConsole.WriteNormalLine("Trying to read response body of a failed upload");
+                var contentString = await response.Content.ReadAsStringAsync(cancellation);
+
+                if (string.IsNullOrWhiteSpace(contentString))
+                {
+                    ColourConsole.WriteWarningLine("Failed request had no response body");
+                }
+                else
+                {
+                    ColourConsole.WriteWarningLine("Storage responded with failure: \n" + contentString);
+                }
+            }
 
             response.EnsureSuccessStatusCode();
 
@@ -460,7 +492,7 @@ public class Uploader
                         break;
                     }
 
-                    // Remote side might be rebooting so we wait here a bit (or we are doing things too fast)
+                    // Remote side might be rebooting, so we wait here a bit (or we are doing things too fast)
                     if (httpRequestException.StatusCode is HttpStatusCode.InternalServerError
                         or HttpStatusCode.GatewayTimeout or HttpStatusCode.BadGateway
                         or HttpStatusCode.ServiceUnavailable or HttpStatusCode.TooManyRequests)
@@ -475,6 +507,12 @@ public class Uploader
                             await Task.Delay(TimeSpan.FromSeconds(timeToWait), cancellationToken);
                             timeToWait *= 2;
                         }
+                    }
+                    else
+                    {
+                        // Give a brief wait before retrying as waiting a few seconds longer probably doesn't help
+                        // here
+                        await Task.Delay(TimeSpan.FromSeconds(1), cancellationToken);
                     }
                 }
             }

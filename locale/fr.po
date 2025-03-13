@@ -7,8 +7,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2025-03-12 12:05+0000\n"
-"PO-Revision-Date: 2025-03-07 10:46+0000\n"
+"POT-Creation-Date: 2025-03-13 10:55+0200\n"
+"PO-Revision-Date: 2025-03-12 14:39+0000\n"
 "Last-Translator: Anonymous <noreply@weblate.org>\n"
 "Language-Team: French <https://translate.revolutionarygamesstudio.com/projects/thrive/thrive-game/fr/>\n"
 "Language: fr\n"
@@ -192,6 +192,9 @@ msgstr "Fixation anaérobique d'azote"
 
 msgid "AND_UNLOCK_CONDITION"
 msgstr "et"
+
+msgid "ANISOTROPIC_FILTERING"
+msgstr ""
 
 msgid "APPEARANCE"
 msgstr "Apparence"
@@ -4165,8 +4168,16 @@ msgid "NOTHING_TO_INTERACT_WITH"
 msgstr "Aucun objet avec lequel interagir"
 
 #, fuzzy
+msgid "NOTICE_BINDING_OUT_OF_ATP"
+msgstr "Dommages dus à l'absence d'ATP"
+
+#, fuzzy
 msgid "NOTICE_DAMAGED_BY_NO_ATP"
 msgstr "Dommages dus à l'absence d'ATP"
+
+#, fuzzy
+msgid "NOTICE_ENGULFING_OUT_OF_ATP"
+msgstr "Cellule trop petite pour phagocyter la cible"
 
 #, fuzzy
 msgid "NOTICE_ENGULF_DAMAGE_FROM_TOXIN"
@@ -5030,9 +5041,11 @@ msgstr "Lance un certain nombre de mondes, le nombre de générations pour chaqu
 msgid "RUSTICYANIN"
 msgstr "Rusticyanine"
 
+#, fuzzy
 msgid "RUSTICYANIN_DESCRIPTION"
 msgstr "La rusticyanine est une protéine capable d'utiliser le [thrive:compound type=\"carbondioxide\"][/thrive:compound] pour oxyder le [thrive:compound type=\"iron\"][/thrive:compound] d'un état chimique à un autre. Ce processus, appelé [b]respiration ferrique[/b], libère de l'énergie que la cellule peut ensuite récolter."
 
+#, fuzzy
 msgid "RUSTICYANIN_PROCESSES_DESCRIPTION"
 msgstr "Transforme le [thrive:compound type=\"iron\"][/thrive:compound] en [thrive:compound type=\"atp\"][/thrive:compound]. Taux proportionnels à la concentration de [thrive:compound type=\"carbondioxide\"][/thrive:compound]."
 
@@ -5332,6 +5345,9 @@ msgstr "Silice"
 
 msgid "SILICA_MEMBRANE_DESCRIPTION"
 msgstr "Cette membrane possède une paroi solide de silice. Elle résiste bien aux dégâts globaux et très bien aux dégâts physiques. Elle requiert aussi moins d'énergie pour maintenir sa forme. Cependant, elle ralentit sensiblement la cellule et celle-ci absorbe les ressources à un taux réduit."
+
+msgid "SIXTEEN_TIMES"
+msgstr "16x"
 
 msgid "SIZE_COLON"
 msgstr "Taille :"
@@ -9007,9 +9023,6 @@ msgstr "Dézoomer"
 
 #~ msgid "GLES2"
 #~ msgstr "GLES2"
-
-#~ msgid "SIXTEEN_TIMES"
-#~ msgstr "16x"
 
 #, fuzzy
 #~ msgid "TARGET_TIME"

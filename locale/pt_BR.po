@@ -7,8 +7,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2025-03-12 12:05+0000\n"
-"PO-Revision-Date: 2025-03-07 10:46+0000\n"
+"POT-Creation-Date: 2025-03-13 10:55+0200\n"
+"PO-Revision-Date: 2025-03-12 14:39+0000\n"
 "Last-Translator: Anonymous <noreply@weblate.org>\n"
 "Language-Team: Portuguese (Brazil) <https://translate.revolutionarygamesstudio.com/projects/thrive/thrive-game/pt_BR/>\n"
 "Language: pt_BR\n"
@@ -20,7 +20,7 @@ msgstr ""
 "Generated-By: Babel 2.8.0\n"
 
 msgid "2D_MOVEMENT_TYPE_SELECTION"
-msgstr "Estilo de movimento bidimensional:"
+msgstr "Estilo de movimento 2D:"
 
 msgid "3D_EDITOR"
 msgstr "Editor 3D"
@@ -40,9 +40,8 @@ msgstr "Abortar"
 msgid "ABORTED_DOT"
 msgstr "Abortado."
 
-#, fuzzy
 msgid "ABSORBERS_COUNT"
-msgstr "Quantidade de micróbios:"
+msgstr "Absorventes:"
 
 msgid "ABYSSOPELAGIC"
 msgstr "Abissopelágico"
@@ -189,6 +188,9 @@ msgstr "Fixação Anaeróbica de Nitrogênio"
 
 msgid "AND_UNLOCK_CONDITION"
 msgstr "e"
+
+msgid "ANISOTROPIC_FILTERING"
+msgstr ""
 
 msgid "APPEARANCE"
 msgstr "Aparência"
@@ -540,9 +542,8 @@ msgstr "Quão longo para manter os itens de cache na memória"
 msgid "CACHE_TIME_MEMORY_ONLY"
 msgstr "Tempo de cache quando usando cache de memóra somente"
 
-#, fuzzy
 msgid "CACHING_TITLE"
-msgstr "Criação"
+msgstr "Cache"
 
 msgid "CALCIUM_CARBONATE"
 msgstr "Carbonato de Cálcio"
@@ -1177,10 +1178,10 @@ msgid "CONTROLLER_BUTTON_XBOX_B"
 msgstr "B"
 
 msgid "CONTROLLER_BUTTON_XBOX_BACK"
-msgstr ""
+msgstr "Voltar"
 
 msgid "CONTROLLER_BUTTON_XBOX_GUIDE"
-msgstr ""
+msgstr "Guia"
 
 msgid "CONTROLLER_BUTTON_XBOX_START"
 msgstr "Start"
@@ -1754,7 +1755,7 @@ msgid "EASTER_EGG_BANANA_BIOME"
 msgstr "Bioma Banana"
 
 msgid "EDGE_PAN_SPEED"
-msgstr "Velocidade de rotação:"
+msgstr "Velocidade de rotação horizontal:"
 
 #, fuzzy
 msgid "EDITING_TITLE"
@@ -2108,9 +2109,11 @@ msgstr "Esse item foi truncado por ser muito longo, leia o original para obter t
 msgid "FERROPLAST"
 msgstr "Ferroplasto"
 
+#, fuzzy
 msgid "FERROPLAST_DESCRIPTION"
 msgstr "Um poder metálico. O ferroplasto é uma estrutura de membrana dupla cheia de proteínas e enzimas. É um procarionte que foi assimilado para uso de seu hospedeiro eucariótico. É capaz de oxidar [thrive:compound type=\"iron\"][/thrive:compound] de um estado químico a outro com uma eficiência bem maior do que pode ser conseguido com a rusticianina. Esse processo, chamado de [b]respiração de ferro[/b], libera energia que a célula poderá utilizar. Contudo, o ferroplasto precisa de [thrive:compound type=\"carbondioxide\"][/thrive:compound] para funcionar, e níveis baixos desse composto no ambiente diminuirão a taxa da produção de [thrive:compound type=\"atp\"][/thrive:compound]."
 
+#, fuzzy
 msgid "FERROPLAST_PROCESSES_DESCRIPTION"
 msgstr "Transforma [thrive:compound type=\"iron\"][/thrive:compound] em [thrive:compound type=\"atp\"][/thrive:compound]. Quantidade aumenta com a concentração de [thrive:compound type=\"carbondioxide\"][/thrive:compound]."
 
@@ -3248,7 +3251,7 @@ msgid "MELANOSOME_DESCRIPTION"
 msgstr "O melanossomo é uma organela membranosa que contém pigmentos de melanina que podem absorver ondas eletromagnéticas de alta energia emitidas por materiais radioativos e convertê-las para energia usável em um processo chamado [b]radiossíntese[/b]. Esses pigmentos que absorvem radiação também ajudam a proteger as partes mais sensíveis da célula, o que aumenta a resiliência total contra radiação."
 
 msgid "MELANOSOME_PROCESSES_DESCRIPTION"
-msgstr "Transforma [thrive:compound type=\"radiation\"][/thrive:compound] em [thrive:compound type=\"atp\"][/thrive:compound] quando próximo a pedras altamente radioativas e também gera resistência a radiação."
+msgstr "Transforma [thrive:compound type=\"radiation\"][/thrive:compound] em [thrive:compound type=\"atp\"][/thrive:compound] quando próximo a pedras altamente radioativas e também gera resistência a radiação"
 
 msgid "MEMBRANE"
 msgstr "Membrana"
@@ -4017,8 +4020,16 @@ msgstr "Não há nada aqui"
 msgid "NOTHING_TO_INTERACT_WITH"
 msgstr "Não há nada para interagir"
 
+#, fuzzy
+msgid "NOTICE_BINDING_OUT_OF_ATP"
+msgstr "Ferido devido à falta de ATP"
+
 msgid "NOTICE_DAMAGED_BY_NO_ATP"
 msgstr "Ferido devido à falta de ATP"
+
+#, fuzzy
+msgid "NOTICE_ENGULFING_OUT_OF_ATP"
+msgstr "A célula é muito pequena para fagocitar o alvo"
 
 msgid "NOTICE_ENGULF_DAMAGE_FROM_TOXIN"
 msgstr "Ferido por toxinas devido à ingestão de matéria"
@@ -4263,7 +4274,7 @@ msgid "ORGANELLE_SUGGESTION_TOOLTIP"
 msgstr ""
 "Este indicador mostra uma organela sugerida que pode ser adicionada à célula.\n"
 "A sugestão é calculada pela auto-evo baseada em qual organela adicionada gera o maior aumento na energia ganha.\n"
-"Às vezes, não há uma única boa organela para adicionar, mas edições maiores com mais organelas ainda podem ser ser beneficiais a longo prazo.\n"
+"Às vezes, não há uma única boa organela para adicionar, mas edições maiores com mais organelas ainda podem ser beneficiais a longo prazo.\n"
 "Remover organelas existentes também é frequentemente uma estratégia útil."
 
 msgid "ORGANELLE_UNLOCKS_ENABLED"
@@ -4326,7 +4337,7 @@ msgid "OXYGEN_RESISTANCE"
 msgstr "Resistência a Oxigênio"
 
 msgid "OXYGEN_TOLERANCE_TOOLTIP"
-msgstr "Quanto dano causado por oxigênio a sua espécie pode mitigar antes de sofrer efeitos nocivos. Se você está em uma região com oxigênio demais comparado à sua resistência, você vai sofrer efeitos negativos"
+msgstr "Quanto dano causado por oxigênio a sua espécie pode mitigar antes de sofrer efeitos nocivos. Se você está em uma região com oxigênio demais comparado à sua resistência, você vai sofrer efeitos negativos."
 
 msgid "OXYTOXISOME_PROCESSES_DESCRIPTION"
 msgstr "Transforma [thrive:compound type=\"atp\"][/thrive:compound] em [thrive:compound type=\"oxytoxy\"][/thrive:compound]. Quantidade aumenta com a concentração de [thrive:compound type=\"oxygen\"][/thrive:compound]. Pode disparar toxinas apertando [thrive:input]g_fire_toxin[/thrive:input]. Quando a quantidade de [thrive:compound type=\"oxytoxy\"][/thrive:compound] ficar baixa, será possível disparar, mas o dano irá ser reduzido."
@@ -4850,9 +4861,11 @@ msgstr "Executar a simulação em um certo número de mundos, a quantidade de ge
 msgid "RUSTICYANIN"
 msgstr "Rusticianina"
 
+#, fuzzy
 msgid "RUSTICYANIN_DESCRIPTION"
 msgstr "Rusticianina é uma proteína que consegue usar o [thrive:compound type=\"carbondioxide\"][/thrive:compound] e para oxidar [thrive:compound type=\"iron\"][/thrive:compound] de um estado químico para outro. Esse processo, chamado de [b]respiração de ferro[/b], libera energia que a célula pode usar."
 
+#, fuzzy
 msgid "RUSTICYANIN_PROCESSES_DESCRIPTION"
 msgstr "Transforma [thrive:compound type=\"iron\"][/thrive:compound] em [thrive:compound type=\"atp\"][/thrive:compound]. Quantidade aumenta com a concentração de [thrive:compound type=\"carbondioxide\"][/thrive:compound]."
 
@@ -5142,6 +5155,9 @@ msgstr "Sílica"
 
 msgid "SILICA_MEMBRANE_DESCRIPTION"
 msgstr "Essa membrana tem uma forte parede feita de sílica. Pode resistir bem a danos no geral e é muito resistente a danos físicos. Também precisa de menos energia para manter sua forma. No entanto, diminui a velocidade da célula drasticamente e ela absorve recursos a um ritmo menor."
+
+msgid "SIXTEEN_TIMES"
+msgstr "16x"
 
 msgid "SIZE_COLON"
 msgstr "Tamanho:"
@@ -5554,7 +5570,7 @@ msgstr ""
 "Se gostou, fale do jogo para seus amigos."
 
 msgid "THANK_YOU_TITLE"
-msgstr "Obrigado"
+msgstr "Obrigado(a)"
 
 msgid "THEORY_TEAM"
 msgstr "Equipe de Teoria"
@@ -8600,9 +8616,6 @@ msgstr "Diminuir o zoom"
 
 #~ msgid "GLES2"
 #~ msgstr "GLES2"
-
-#~ msgid "SIXTEEN_TIMES"
-#~ msgstr "16x"
 
 #~ msgid "WIKI_HEADING_AEROBIC_CELLULAR_RESPIRATION_(GLUCOSE_->_ATP)"
 #~ msgstr "Respiração celular aeróbica (glicose -> ATP)"
