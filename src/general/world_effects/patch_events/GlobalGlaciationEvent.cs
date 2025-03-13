@@ -155,13 +155,13 @@ public class GlobalGlaciationEvent : IWorldEffect
 
         if (!hasTemperature)
         {
-            GD.PrintErr("Patch has no temperature");
+            GD.PrintErr("Glaciation event encountered patch with unexpectedly no temperature");
             return;
         }
 
         if (!hasSunlight)
         {
-            GD.PrintErr("Surface patch has no sunlight");
+            GD.PrintErr("Glaciation event encountered patch with unexpectedly no sunlight");
             return;
         }
 
