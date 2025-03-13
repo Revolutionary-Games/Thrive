@@ -188,7 +188,7 @@ public partial class PatchMapDrawer : Control
         if (connections.Count == 0)
         {
             // Clear existing connection lines
-            lineContainer.QueueFreeChildren();
+            lineContainer.QueueFreeChildren(false);
 
             CreateRegionLinks();
             RebuildRegionConnections();
