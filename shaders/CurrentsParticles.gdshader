@@ -17,12 +17,14 @@ uniform float speed;
 uniform float chaoticness;
 uniform float scale;
 
+uniform float brightness;
+
 // The following constants should be the same as in FluidCurrentsSystem.cs
 const float disturbanceTimescale = 1.0f;
 const float currentsTimescale = 1.0f / 500.0f;
 const float currentsStretchingMultiplier = 1.0f / 10.0f;
 const float disturbanceToCurrentsRatio = 0.15f;
-const float minCurrentIntensity = 0.50f;
+const float minCurrentIntensity = 0.25f;
 const float positionScaling = 0.9f;
 
 // Generates a random float and modifies the seed
@@ -114,5 +116,5 @@ void process() {
         finalColor.a *= 0.2f + 0.8f * length(VELOCITY) / (speed * 10.0f);
     }
     
-    COLOR = finalColor;
+    COLOR = finalColor * brightness;
 }
