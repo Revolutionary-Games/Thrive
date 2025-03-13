@@ -30,6 +30,9 @@ public class GlobalGlaciationEvent : IWorldEffect
     private int generationsLeft = -1;
 
     [JsonProperty]
+    private int generationsToTrigger = -1;
+
+    [JsonProperty]
     private int eventDuration;
 
     [JsonProperty]
@@ -92,21 +95,38 @@ public class GlobalGlaciationEvent : IWorldEffect
 
     private void TryToTriggerEvent(double totalTimePassed)
     {
-        if (!AreConditionsMet())
-            return;
-
-        eventDuration = random.Next(Constants.GLOBAL_GLACIATION_MIN_DURATION, Constants.GLOBAL_GLACIATION_MAX_DURATION);
-        generationsLeft = eventDuration;
-
-        foreach (var (index, patch) in targetWorld.Map.Patches)
+        if (generationsToTrigger == -1)
         {
-            if (IsSurfacePatch(patch))
-            {
-                ChangePatchProperties(index, patch, totalTimePassed);
-            }
+            if (!AreConditionsMet())
+                return;
+
+            generationsToTrigger = Constants.GLOBAL_GLACIATION_HEADS_UP_DURATION;
+            return;
         }
 
-        LogBeginningOfGlaciation();
+        switch (generationsToTrigger)
+        {
+            case > 0:
+                LogHeadUpEventWarning();
+                generationsToTrigger -= 1;
+                break;
+            case 0:
+            {
+                eventDuration = random.Next(Constants.GLOBAL_GLACIATION_MIN_DURATION, Constants.GLOBAL_GLACIATION_MAX_DURATION);
+                generationsLeft = eventDuration;
+
+                foreach (var (index, patch) in targetWorld.Map.Patches)
+                {
+                    if (IsSurfacePatch(patch))
+                    {
+                        ChangePatchProperties(index, patch, totalTimePassed);
+                    }
+                }
+
+                LogBeginningOfGlaciation();
+                break;
+            }
+        }
     }
 
     private bool AreConditionsMet()
@@ -198,6 +218,12 @@ public class GlobalGlaciationEvent : IWorldEffect
         }
 
         patch.AddPatchEventRecord(WorldEffectVisuals.GlobalGlaciation, totalTimePassed);
+    }
+
+    private void LogHeadUpEventWarning()
+    {
+        targetWorld.LogEvent(new LocalizedString("GLOBAL_GLACIATION_EVENT_WARNING_LOG", generationsToTrigger),
+            true, true, "GlobalGlaciationEvent.svg");
     }
 
     private void LogBeginningOfGlaciation()

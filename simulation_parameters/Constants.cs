@@ -1349,6 +1349,7 @@ public static class Constants
     public const float GLOBAL_GLACIATION_CHANCE = 0.5F;
     public const int GLOBAL_GLACIATION_MIN_DURATION = 2;
     public const int GLOBAL_GLACIATION_MAX_DURATION = 6;
+    public const int GLOBAL_GLACIATION_HEADS_UP_DURATION = 1;
 
     // These control how many game entities can exist at once
     public const int TINY_MAX_SPAWNED_ENTITIES = 80;
