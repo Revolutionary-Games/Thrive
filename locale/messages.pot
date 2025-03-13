@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Thrive VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2025-03-12 12:05+0000\n"
+"POT-Creation-Date: 2025-03-12 15:17+0200\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -2333,15 +2333,15 @@ msgstr ""
 msgid "ENABLE_GUI_LIGHT_EFFECTS"
 msgstr ""
 
-#: ../src/microbe_stage/systems/EngulfingSystem.cs:1351
+#: ../src/microbe_stage/systems/EngulfingSystem.cs:1357
 msgid "ENDOSYMBIONT_ENGULFED_ALREADY_DONE"
 msgstr ""
 
-#: ../src/microbe_stage/systems/EngulfingSystem.cs:1357
+#: ../src/microbe_stage/systems/EngulfingSystem.cs:1363
 msgid "ENDOSYMBIONT_ENGULFED_PROGRESS"
 msgstr ""
 
-#: ../src/microbe_stage/systems/EngulfingSystem.cs:1328
+#: ../src/microbe_stage/systems/EngulfingSystem.cs:1334
 msgid "ENDOSYMBIONT_TYPE_ALREADY_PRESENT"
 msgstr ""
 
@@ -5581,8 +5581,16 @@ msgstr ""
 msgid "NOTHING_TO_INTERACT_WITH"
 msgstr ""
 
+#: ../src/microbe_stage/systems/ColonyBindingSystem.cs:101
+msgid "NOTICE_BINDING_OUT_OF_ATP"
+msgstr ""
+
 #: ../src/microbe_stage/systems/MicrobeEventCallbackSystem.cs:112
 msgid "NOTICE_DAMAGED_BY_NO_ATP"
+msgstr ""
+
+#: ../src/microbe_stage/systems/EngulfingSystem.cs:899
+msgid "NOTICE_ENGULFING_OUT_OF_ATP"
 msgstr ""
 
 #: ../src/microbe_stage/systems/EngulfedDigestionSystem.cs:279
@@ -5593,12 +5601,12 @@ msgstr ""
 msgid "NOTICE_ENGULF_MISSING_ENZYME"
 msgstr ""
 
-#: ../src/microbe_stage/systems/EngulfingSystem.cs:1145
+#: ../src/microbe_stage/systems/EngulfingSystem.cs:1151
 msgid "NOTICE_ENGULF_SIZE_TOO_SMALL"
 msgstr ""
 
 #: ../src/microbe_stage/systems/EngulfedDigestionSystem.cs:142
-#: ../src/microbe_stage/systems/EngulfingSystem.cs:1137
+#: ../src/microbe_stage/systems/EngulfingSystem.cs:1143
 msgid "NOTICE_ENGULF_STORAGE_FULL"
 msgstr ""
 
