@@ -1497,7 +1497,7 @@ public partial class OptionsMenu : ControlWithInput
             return 4;
 
         GD.PrintErr("invalid anisotropic filtering level index");
-        return 0;
+        return 3;
     }
 
     private Viewport.AnisotropicFiltering AnisotropicFilteringIndexToLevel(int index)
@@ -1516,7 +1516,7 @@ public partial class OptionsMenu : ControlWithInput
                 return Viewport.AnisotropicFiltering.Anisotropy16X;
             default:
                 GD.PrintErr("invalid anisotropic filtering level index");
-                return Viewport.AnisotropicFiltering.Disabled;
+                return Viewport.AnisotropicFiltering.Anisotropy8X;
         }
     }
 
