@@ -92,14 +92,14 @@ public sealed class DamageSoundSystem : AEntitySetSystem<float>
                 {
                     // TODO: check the volume here as this was before set to play non-positionally
                     soundEffectPlayer.PlaySoundEffect("res://assets/sounds/soundeffects/microbe-ice-damage.ogg",
-                        0.5f);
+                        0.8f);
                 }
                 else if (damageSource == "radiation")
                 {
                     // Doesn't make a ton of sense if other cells play Geiger-counter sounds...
                     if (isPlayer)
                     {
-                        soundEffectPlayer.PlaySoundEffect("res://assets/sounds/soundeffects/radiation.ogg");
+                        soundEffectPlayer.PlaySoundEffect("res://assets/sounds/soundeffects/radiation.ogg", 28.0f);
                     }
                 }
             }

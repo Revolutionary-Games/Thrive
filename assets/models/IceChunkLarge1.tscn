@@ -1,25 +1,30 @@
-[gd_scene load_steps=5 format=3 uid="uid://cf7m6tvdm1618"]
+[gd_scene load_steps=7 format=3 uid="uid://cf7m6tvdm1618"]
 
+[ext_resource type="Shader" uid="uid://bxd4cdv4qekba" path="res://shaders/Crystal.gdshader" id="1_v3suj"]
 [ext_resource type="Texture2D" uid="uid://c4lakneio0v00" path="res://assets/textures/IronChunk_normal.png" id="2_2cqno"]
 [ext_resource type="Texture2D" uid="uid://dfw401vxsi10p" path="res://assets/textures/IceChunk.png" id="2_kxdxj"]
+[ext_resource type="Texture2D" uid="uid://baxuoyeo83r2u" path="res://assets/textures/dissolve_noise.tres" id="3_qbtcf"]
 [ext_resource type="ArrayMesh" uid="uid://yj10yvbmr7y5" path="res://assets/models/IceChunkLarge1.mesh" id="5_6qvee"]
 
-[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_kjn86"]
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_v3suj"]
+resource_local_to_scene = true
 render_priority = 18
-transparency = 4
-blend_mode = 1
-cull_mode = 2
-albedo_color = Color(0.917647, 1, 1, 0.772549)
-albedo_texture = ExtResource("2_kxdxj")
-metallic = 0.6
-metallic_specular = 0.78
-roughness = 0.6
-emission_enabled = true
-emission = Color(0.321569, 0.321569, 0.435294, 1)
-emission_energy_multiplier = 0.4
-normal_enabled = true
-normal_texture = ExtResource("2_2cqno")
+shader = ExtResource("1_v3suj")
+shader_parameter/albedo = Color(0.839216, 1, 1, 0.870588)
+shader_parameter/albedoTexture = ExtResource("2_kxdxj")
+shader_parameter/useNormal = true
+shader_parameter/normalTexture = ExtResource("2_2cqno")
+shader_parameter/roughness = 0.55
+shader_parameter/roughnessTextureChannel = Vector4(1, 0, 0, 0)
+shader_parameter/specular = 0.78
+shader_parameter/metallic = 0.65
+shader_parameter/emission = Color(0.321569, 0.321569, 0.435294, 1)
+shader_parameter/emissionEnergy = 0.5
+shader_parameter/dissolveTexture = ExtResource("3_qbtcf")
+shader_parameter/dissolveValue = 0.0
+shader_parameter/dissolveScale = 1.0
+shader_parameter/outlineWidth = 0.0
 
 [node name="IceChunk" type="MeshInstance3D"]
-material_override = SubResource("StandardMaterial3D_kjn86")
+material_override = SubResource("ShaderMaterial_v3suj")
 mesh = ExtResource("5_6qvee")

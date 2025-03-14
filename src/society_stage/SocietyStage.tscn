@@ -1,6 +1,6 @@
 [gd_scene load_steps=17 format=3 uid="uid://njelpsugkine"]
 
-[ext_resource type="Script" path="res://src/society_stage/SocietyStage.cs" id="1"]
+[ext_resource type="Script" uid="uid://bi4uxx3fuf2uu" path="res://src/society_stage/SocietyStage.cs" id="1"]
 [ext_resource type="PackedScene" path="res://src/society_stage/StrategicCamera.tscn" id="2"]
 [ext_resource type="Texture2D" uid="uid://bguijfqnuki3m" path="res://assets/textures/environment/Terrain_01_Albedo.png" id="3"]
 [ext_resource type="Texture2D" uid="uid://ccd7geklqgvfv" path="res://assets/textures/environment/Terrain_01_Normals.png" id="4"]
@@ -8,8 +8,8 @@
 [ext_resource type="Texture2D" uid="uid://c1sbymwyxg1jn" path="res://assets/textures/environment/Terrain_02_Albedo.png" id="6"]
 [ext_resource type="PackedScene" uid="uid://bs5shdurovke8" path="res://src/society_stage/gui/SocietyHUD.tscn" id="7"]
 [ext_resource type="PackedScene" uid="uid://devtugnggmuol" path="res://src/general/PauseMenu.tscn" id="8"]
-[ext_resource type="PackedScene" path="res://src/awakening_stage/gui/SelectBuildingPopup.tscn" id="9"]
-[ext_resource type="PackedScene" path="res://src/society_stage/PlayerSocietyInput.tscn" id="10"]
+[ext_resource type="PackedScene" uid="uid://borrsf8mdual2" path="res://src/awakening_stage/gui/SelectBuildingPopup.tscn" id="9"]
+[ext_resource type="PackedScene" uid="uid://c8sp5juqvmna3" path="res://src/society_stage/PlayerSocietyInput.tscn" id="10"]
 [ext_resource type="PackedScene" uid="uid://cl64wvnxs6ivs" path="res://src/gui_common/dialogs/CustomConfirmationDialog.tscn" id="11"]
 
 [sub_resource type="BoxShape3D" id="1"]

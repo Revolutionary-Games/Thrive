@@ -261,11 +261,12 @@ public sealed class ToxinCollisionSystem : AEntitySetSystem<float>
                 }
 
                 damageSource.ToxinProperties.DealDamage(ref health, ref damageTarget.Get<CellProperties>(),
+                    damageTarget,
                     damageSource.ToxinAmount * modifier);
             }
             else
             {
-                damageSource.ToxinProperties.DealDamage(ref health, damageSource.ToxinAmount);
+                damageSource.ToxinProperties.DealDamage(ref health, damageTarget, damageSource.ToxinAmount);
             }
 
             return true;
@@ -274,7 +275,7 @@ public sealed class ToxinCollisionSystem : AEntitySetSystem<float>
         {
             GD.PrintErr("Error processing toxin collision: ", e);
 
-            // Destroy this toxin to avoid recurring error printing spam
+            // Destroy this toxin to avoid recurring error printing spamming
             return true;
         }
     }

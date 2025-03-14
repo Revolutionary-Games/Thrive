@@ -1,11 +1,11 @@
 class_name RPCClientConnect
 extends RPC
 
-var _client_id :int
+var _client_id: int
 
 
-func with_id(p_client_id :int) -> RPCClientConnect:
-	_client_id = p_client_id
+func with_id(id: int) -> RPCClientConnect:
+	_client_id = id
 	return self
 
 

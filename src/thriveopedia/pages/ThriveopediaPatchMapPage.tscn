@@ -1,12 +1,12 @@
 [gd_scene load_steps=9 format=3 uid="uid://cwjyrlp6s2jos"]
 
-[ext_resource type="Script" path="res://src/thriveopedia/pages/ThriveopediaPatchMapPage.cs" id="1"]
-[ext_resource type="PackedScene" path="res://src/thriveopedia/ThriveopediaPage.tscn" id="2"]
-[ext_resource type="PackedScene" path="res://src/gui_common/DraggableScrollContainer.tscn" id="5"]
-[ext_resource type="PackedScene" path="res://src/microbe_stage/editor/PatchMapDrawer.tscn" id="6"]
+[ext_resource type="Script" uid="uid://bftirhxrv2ipm" path="res://src/thriveopedia/pages/ThriveopediaPatchMapPage.cs" id="1"]
+[ext_resource type="PackedScene" uid="uid://cckki1kx0cnol" path="res://src/thriveopedia/ThriveopediaPage.tscn" id="2"]
+[ext_resource type="PackedScene" uid="uid://din62wkc2pcnk" path="res://src/gui_common/DraggableScrollContainer.tscn" id="5"]
+[ext_resource type="PackedScene" uid="uid://cmhetwsk3qbb7" path="res://src/microbe_stage/editor/PatchMapDrawer.tscn" id="6"]
 [ext_resource type="PackedScene" uid="uid://bjl5o7oy7yr15" path="res://src/microbe_stage/gui/PatchDetailsPanel.tscn" id="7"]
 [ext_resource type="LabelSettings" uid="uid://dvqx73nhtr0y2" path="res://src/gui_common/fonts/Body-Regular-Small.tres" id="7_weruj"]
-[ext_resource type="Shader" path="res://shaders/Monochrome.gdshader" id="8"]
+[ext_resource type="Shader" uid="uid://cpigmjcwmm61a" path="res://shaders/Monochrome.gdshader" id="8"]
 
 [sub_resource type="ShaderMaterial" id="1"]
 shader = ExtResource("8")

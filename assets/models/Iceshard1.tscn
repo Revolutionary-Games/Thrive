@@ -1,35 +1,30 @@
-[gd_scene load_steps=8 format=3 uid="uid://bkkpsrifquemw"]
+[gd_scene load_steps=7 format=3 uid="uid://bkkpsrifquemw"]
 
-[ext_resource type="Shader" path="res://shaders/Crystal.gdshader" id="1_l2xop"]
+[ext_resource type="Shader" uid="uid://bxd4cdv4qekba" path="res://shaders/Crystal.gdshader" id="1_l2xop"]
 [ext_resource type="Texture2D" uid="uid://dfw401vxsi10p" path="res://assets/textures/IceChunk.png" id="2_bunih"]
 [ext_resource type="Texture2D" uid="uid://baxuoyeo83r2u" path="res://assets/textures/dissolve_noise.tres" id="3_1c02q"]
 [ext_resource type="Texture2D" uid="uid://c4lakneio0v00" path="res://assets/textures/IronChunk_normal.png" id="4_ej15h"]
-[ext_resource type="Texture2D" uid="uid://dvp0yex8rwygn" path="res://assets/textures/Crystal_rough_emit.png" id="5_mie8v"]
 [ext_resource type="ArrayMesh" uid="uid://ct6x5q7py2637" path="res://assets/models/IceShard1.mesh" id="5_uu00j"]
 
-[sub_resource type="ShaderMaterial" id="ShaderMaterial_wdpla"]
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_mk3rw"]
 resource_local_to_scene = true
 render_priority = 17
 shader = ExtResource("1_l2xop")
-shader_parameter/albedo = Color(1, 1, 1, 1)
+shader_parameter/albedo = Color(0.858824, 1, 1, 0.905882)
+shader_parameter/albedoTexture = ExtResource("2_bunih")
 shader_parameter/useNormal = true
+shader_parameter/normalTexture = ExtResource("4_ej15h")
 shader_parameter/roughness = 0.6
 shader_parameter/roughnessTextureChannel = Vector4(1, 0, 0, 0)
 shader_parameter/specular = 0.784
 shader_parameter/metallic = 0.45
-shader_parameter/metallicTextureChannel = Vector4(1, 0, 0, 0)
 shader_parameter/emission = Color(0.223529, 0.223529, 0.235294, 0.933333)
 shader_parameter/emissionEnergy = 1.5
-shader_parameter/clearcoat = 0.713
-shader_parameter/clearcoatRoughness = 0.269
-shader_parameter/dissolveValue = 0.0
-shader_parameter/outlineWidth = null
-shader_parameter/growColor = Color(0.756863, 0.878431, 0.890196, 0.847059)
-shader_parameter/albedoTexture = ExtResource("2_bunih")
-shader_parameter/normalTexture = ExtResource("4_ej15h")
-shader_parameter/roughnessTexture = ExtResource("5_mie8v")
 shader_parameter/dissolveTexture = ExtResource("3_1c02q")
+shader_parameter/dissolveValue = 0.0
+shader_parameter/dissolveScale = 1.0
+shader_parameter/outlineWidth = 0.0
 
 [node name="IceShardTiny" type="MeshInstance3D"]
-material_override = SubResource("ShaderMaterial_wdpla")
+material_override = SubResource("ShaderMaterial_mk3rw")
 mesh = ExtResource("5_uu00j")

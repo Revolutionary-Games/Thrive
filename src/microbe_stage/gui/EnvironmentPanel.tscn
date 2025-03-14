@@ -1,7 +1,7 @@
 [gd_scene load_steps=20 format=3 uid="uid://cf65ovetig4om"]
 
 [ext_resource type="LabelSettings" uid="uid://2wocwdhy8088" path="res://src/gui_common/fonts/Title-SemiBold-AlmostSmaller.tres" id="1_8bbgm"]
-[ext_resource type="Script" path="res://src/microbe_stage/gui/EnvironmentPanel.cs" id="1_vxpah"]
+[ext_resource type="Script" uid="uid://b25hrr68fbj04" path="res://src/microbe_stage/gui/EnvironmentPanel.cs" id="1_vxpah"]
 [ext_resource type="Texture2D" uid="uid://c72h7bdtxhwf2" path="res://assets/textures/gui/bevel/Environment.svg" id="2_61d08"]
 [ext_resource type="Texture2D" uid="uid://56lvdt8x5ts8" path="res://assets/textures/gui/bevel/expandPanel.png" id="2_pmqaf"]
 [ext_resource type="Texture2D" uid="uid://bxlnimt4nkhqo" path="res://assets/textures/gui/bevel/expandPanelActive.png" id="3_j0hv2"]
@@ -173,9 +173,9 @@ tracks/2/keys = {
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_bjeaw"]
 _data = {
-"Hide": SubResource("Animation_s0kx8"),
-"RESET": SubResource("Animation_k44qq"),
-"Show": SubResource("Animation_ccids")
+&"Hide": SubResource("Animation_s0kx8"),
+&"RESET": SubResource("Animation_k44qq"),
+&"Show": SubResource("Animation_ccids")
 }
 
 [node name="EnvironmentPanel" type="VBoxContainer" node_paths=PackedStringArray("expandButton", "compressButton", "primaryBarContainer", "panelHideAnimationPlayer")]

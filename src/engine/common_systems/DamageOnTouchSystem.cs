@@ -120,23 +120,26 @@ public sealed class DamageOnTouchSystem : AEntitySetSystem<float>
             if (entityExtraData.IsSubShapePilus(subShape))
                 return false;
 
+            // This is fetched here as the protection also applies to the player's cell colony
+            var protection = HealthHelpers.GetInstantKillProtectionThreshold(entity);
+
             if (entity.Has<MicrobeColony>())
             {
                 if (entity.Get<MicrobeColony>().GetMicrobeFromSubShape(ref entityExtraData,
                         subShape, out var hitEntity))
                 {
                     hitEntity.Get<Health>()
-                        .DealMicrobeDamage(ref hitEntity.Get<CellProperties>(), damageValue, damageType);
+                        .DealMicrobeDamage(ref hitEntity.Get<CellProperties>(), damageValue, damageType, protection);
 
                     return true;
                 }
             }
 
-            health.DealMicrobeDamage(ref entity.Get<CellProperties>(), damageValue, damageType);
+            health.DealMicrobeDamage(ref entity.Get<CellProperties>(), damageValue, damageType, protection);
         }
         else
         {
-            health.DealDamage(damageValue, damageType);
+            health.DealDamage(damageValue, damageType, HealthHelpers.GetInstantKillProtectionThreshold(entity));
         }
 
         return true;

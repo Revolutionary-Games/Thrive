@@ -2,9 +2,9 @@
 
 [ext_resource type="Theme" uid="uid://b4cx0o110g4b6" path="res://src/gui_common/thrive_theme.tres" id="5"]
 [ext_resource type="PackedScene" uid="uid://u7o6febei0qr" path="res://src/gui_common/MouseHoverPanel.tscn" id="6"]
-[ext_resource type="PackedScene" path="res://src/gui_common/CustomRichTextLabel.tscn" id="8"]
+[ext_resource type="PackedScene" uid="uid://bhpjtbtaeunat" path="res://src/gui_common/CustomRichTextLabel.tscn" id="8"]
 [ext_resource type="Texture2D" uid="uid://dvmlda3belyek" path="res://assets/textures/gui/bevel/actions/OpenInventory.png" id="9"]
-[ext_resource type="Script" path="res://src/macroscopic_stage/MacroscopicHUD.cs" id="11"]
+[ext_resource type="Script" uid="uid://b41wm2cw1ov0i" path="res://src/macroscopic_stage/MacroscopicHUD.cs" id="11"]
 [ext_resource type="PackedScene" uid="uid://dwkek50fju0fu" path="res://src/microbe_stage/PatchNameOverlay.tscn" id="12"]
 [ext_resource type="PackedScene" uid="uid://dgqw7nudbxobi" path="res://src/microbe_stage/ProcessPanel.tscn" id="13"]
 [ext_resource type="PackedScene" uid="uid://cf65ovetig4om" path="res://src/microbe_stage/gui/EnvironmentPanel.tscn" id="13_ayo6l"]
@@ -38,7 +38,7 @@
 [ext_resource type="Texture2D" uid="uid://d0iv1w2t5wwae" path="res://assets/textures/gui/bevel/parts/membraneAmoeba.png" id="71"]
 [ext_resource type="Texture2D" uid="uid://buv5vjrf4hx0h" path="res://assets/textures/gui/bevel/parts/SignalingAgentIcon.png" id="76"]
 [ext_resource type="PackedScene" uid="uid://qwg2dluu8ow0" path="res://src/microbe_stage/PausePrompt.tscn" id="77"]
-[ext_resource type="PackedScene" path="res://src/gui_common/ActionButton.tscn" id="78"]
+[ext_resource type="PackedScene" uid="uid://cmfpne0v21jbs" path="res://src/gui_common/ActionButton.tscn" id="78"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_gpwlk"]
 bg_color = Color(1, 0.301961, 0.301961, 1)
@@ -413,16 +413,16 @@ offset_right = 408.0
 offset_bottom = 672.0
 
 [node name="ScrollContainer" type="ScrollContainer" parent="."]
-custom_minimum_size = Vector2(500, 69)
+custom_minimum_size = Vector2(415, 69)
 layout_mode = 1
 anchors_preset = 7
 anchor_left = 0.5
 anchor_top = 1.0
 anchor_right = 0.5
 anchor_bottom = 1.0
-offset_left = -249.0
+offset_left = -199.0
 offset_top = -68.0
-offset_right = 251.0
+offset_right = 201.0
 offset_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 0

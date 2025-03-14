@@ -1,16 +1,16 @@
 [gd_scene load_steps=12 format=3 uid="uid://d116aks100ulm"]
 
-[ext_resource type="Script" path="res://src/tutorial/microbe_stage/MicrobeTutorialGUI.cs" id="1"]
+[ext_resource type="Script" uid="uid://3xqb6s7y5nm5" path="res://src/tutorial/microbe_stage/MicrobeTutorialGUI.cs" id="1"]
 [ext_resource type="Theme" uid="uid://b4cx0o110g4b6" path="res://src/gui_common/thrive_theme.tres" id="2"]
-[ext_resource type="PackedScene" path="res://src/gui_common/KeyPrompt.tscn" id="3"]
-[ext_resource type="Script" path="res://src/gui_common/dialogs/TutorialDialog.cs" id="7"]
-[ext_resource type="PackedScene" path="res://src/gui_common/CustomRichTextLabel.tscn" id="9"]
+[ext_resource type="PackedScene" uid="uid://ci8b4cca0q55h" path="res://src/gui_common/KeyPrompt.tscn" id="3"]
+[ext_resource type="Script" uid="uid://c22vgu2gpm74j" path="res://src/gui_common/dialogs/TutorialDialog.cs" id="7"]
+[ext_resource type="PackedScene" uid="uid://bhpjtbtaeunat" path="res://src/gui_common/CustomRichTextLabel.tscn" id="9"]
 [ext_resource type="FontVariation" uid="uid://cqork3l186w1c" path="res://assets/fonts/variants/Jura-Bold.tres" id="9_s6a8v"]
 [ext_resource type="PackedScene" uid="uid://cy5puaxnv8e2a" path="res://src/gui_common/dialogs/TutorialDialog.tscn" id="10"]
 [ext_resource type="PackedScene" uid="uid://c46wnild4hluc" path="res://src/gui_common/ControlHighlight.tscn" id="11"]
-[ext_resource type="PackedScene" path="res://src/gui_common/FocusGrabber.tscn" id="12"]
-[ext_resource type="PackedScene" path="res://src/gui_common/dialogs/CustomWindow.tscn" id="13"]
-[ext_resource type="PackedScene" path="res://src/gui_common/AddWindowReorderingSupportToSiblings.tscn" id="14"]
+[ext_resource type="PackedScene" uid="uid://bgeijgq7runaw" path="res://src/gui_common/FocusGrabber.tscn" id="12"]
+[ext_resource type="PackedScene" uid="uid://du8sc8kjirguk" path="res://src/gui_common/dialogs/CustomWindow.tscn" id="13"]
+[ext_resource type="PackedScene" uid="uid://tna206f2gtkv" path="res://src/gui_common/AddWindowReorderingSupportToSiblings.tscn" id="14"]
 
 [node name="MicrobeTutorialGUI" type="Control"]
 process_mode = 3

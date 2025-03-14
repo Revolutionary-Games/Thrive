@@ -1,9 +1,24 @@
 [gd_scene load_steps=8 format=3 uid="uid://woqh47yetqtm"]
 
 [ext_resource type="Theme" uid="uid://b4cx0o110g4b6" path="res://src/gui_common/thrive_theme.tres" id="1"]
-[ext_resource type="Script" path="res://src/saving/SaveStatusOverlay.cs" id="2"]
+[ext_resource type="Script" uid="uid://3y3ig3107ad7" path="res://src/saving/SaveStatusOverlay.cs" id="2"]
 [ext_resource type="PackedScene" uid="uid://2nt57gfubafw" path="res://src/gui_common/dialogs/ErrorDialog.tscn" id="3"]
-[ext_resource type="PackedScene" path="res://src/gui_common/CustomRichTextLabel.tscn" id="4"]
+[ext_resource type="PackedScene" uid="uid://bhpjtbtaeunat" path="res://src/gui_common/CustomRichTextLabel.tscn" id="4"]
+
+[sub_resource type="Animation" id="Animation_hwcmd"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("StatusLabel:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(1, 1, 1, 1)]
+}
 
 [sub_resource type="Animation" id="1"]
 resource_name = "SavingStatusFadeOut"
@@ -32,25 +47,10 @@ tracks/1/keys = {
 "values": [Color(1, 1, 1, 1), Color(1, 1, 1, 0)]
 }
 
-[sub_resource type="Animation" id="Animation_hwcmd"]
-length = 0.001
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath("StatusLabel:modulate")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 0,
-"values": [Color(1, 1, 1, 1)]
-}
-
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_1toxe"]
 _data = {
-"RESET": SubResource("Animation_hwcmd"),
-"SavingStatusFadeOut": SubResource("1")
+&"RESET": SubResource("Animation_hwcmd"),
+&"SavingStatusFadeOut": SubResource("1")
 }
 
 [node name="SaveStatusOverlay" type="Control"]

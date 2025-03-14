@@ -22,7 +22,6 @@ public class CustomDifficulty : IDifficulty
     public float PlayerAutoEvoStrength { get; set; } = 0.2f;
 
     public bool FreeGlucoseCloud { get; set; }
-    public bool PassiveReproduction { get; set; }
 
     public ReproductionCompoundHandling ReproductionCompounds { get; set; } =
         ReproductionCompoundHandling.TopUpOnPatchChange;

@@ -4,7 +4,7 @@
 [ext_resource type="Material" uid="uid://dodp28iio21ld" path="res://src/microbe_stage/editor/MutationPointsTextMaterial.tres" id="3"]
 [ext_resource type="Texture2D" uid="uid://bembxnxct020" path="res://assets/textures/gui/bevel/WhiteArrow.png" id="4"]
 [ext_resource type="LabelSettings" uid="uid://dvqx73nhtr0y2" path="res://src/gui_common/fonts/Body-Regular-Small.tres" id="4_6f2eg"]
-[ext_resource type="Script" path="res://src/microbe_stage/editor/MutationPointsBar.cs" id="5"]
+[ext_resource type="Script" uid="uid://beu4j4dhccxju" path="res://src/microbe_stage/editor/MutationPointsBar.cs" id="5"]
 
 [sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_dqa1m"]
 
@@ -56,7 +56,7 @@ tracks/2/keys = {
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_g5nvi"]
 _data = {
-"FlashBar": SubResource("7")
+&"FlashBar": SubResource("7")
 }
 
 [node name="MutationPointsBar" type="HBoxContainer"]

@@ -1,10 +1,10 @@
 [gd_scene load_steps=6 format=3 uid="uid://b1boea8qjx6xx"]
 
-[ext_resource type="Script" path="res://src/gui_common/SpeciesDetailsPanel.cs" id="2"]
+[ext_resource type="Script" uid="uid://b38gejqohshfe" path="res://src/gui_common/SpeciesDetailsPanel.cs" id="2"]
 [ext_resource type="PackedScene" uid="uid://b5cbn7afnas1x" path="res://src/gui_common/PhotographablePreview.tscn" id="4"]
-[ext_resource type="PackedScene" path="res://src/gui_common/CustomRichTextLabel.tscn" id="5"]
-[ext_resource type="Script" path="res://src/gui_common/SpeciesPreview.cs" id="6"]
-[ext_resource type="Script" path="res://src/microbe_stage/CellHexesPreview.cs" id="7"]
+[ext_resource type="PackedScene" uid="uid://bhpjtbtaeunat" path="res://src/gui_common/CustomRichTextLabel.tscn" id="5"]
+[ext_resource type="Script" uid="uid://b0ycij328egrn" path="res://src/gui_common/SpeciesPreview.cs" id="6"]
+[ext_resource type="Script" uid="uid://qy26p3ugf4wu" path="res://src/microbe_stage/CellHexesPreview.cs" id="7"]
 
 [node name="SpeciesDetailsPanel" type="MarginContainer"]
 custom_minimum_size = Vector2(352, 300)

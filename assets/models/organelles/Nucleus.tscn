@@ -1,6 +1,6 @@
 [gd_scene load_steps=6 format=3 uid="uid://fut6yvqxhf25"]
 
-[ext_resource type="Shader" path="res://shaders/OrganelleTransparent.gdshader" id="1_bheag"]
+[ext_resource type="Shader" uid="uid://bpdtg8smolq32" path="res://shaders/OrganelleTransparent.gdshader" id="1_bheag"]
 [ext_resource type="Texture2D" uid="uid://baxuoyeo83r2u" path="res://assets/textures/dissolve_noise.tres" id="2_tdl0s"]
 [ext_resource type="Texture2D" uid="uid://bh1e6qrcmeoux" path="res://assets/textures/Nucleus.png" id="3_1w7t3"]
 [ext_resource type="ArrayMesh" uid="uid://buw78wgilybsy" path="res://assets/models/organelles/Nucleus.mesh" id="4_tmwr2"]
@@ -9,6 +9,8 @@
 resource_local_to_scene = true
 render_priority = 0
 shader = ExtResource("1_bheag")
+shader_parameter/texture = ExtResource("3_1w7t3")
+shader_parameter/dissolveTexture = ExtResource("2_tdl0s")
 shader_parameter/dissolveValue = 0.0
 shader_parameter/dissolveScale = 1.8
 shader_parameter/fresnelValue = 0.0
@@ -17,8 +19,6 @@ shader_parameter/outlineWidth = 0.1
 shader_parameter/growColor = Color(0.176419, 0.176419, 0.176419, 1)
 shader_parameter/tint = Color(1, 1, 1, 1)
 shader_parameter/jiggleAmount = 0.01
-shader_parameter/texture = ExtResource("3_1w7t3")
-shader_parameter/dissolveTexture = ExtResource("2_tdl0s")
 
 [node name="Nucleus" type="MeshInstance3D"]
 rotation_edit_mode = 2

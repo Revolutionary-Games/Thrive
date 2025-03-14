@@ -38,7 +38,7 @@
       "carbondioxide": 0.27
     },
     "Outputs": {
-      "glucose": 0.3,
+      "glucose": 0.36,
       "oxygen": 0.27
     }
   },
@@ -222,13 +222,12 @@
     }
   },
   "iron_chemolithoautotrophy": {
-    "Name": "IRON_CHEMOLITHOAUTOTROPHY",
+    "Name": "IRON_OXIDATION",
     "Inputs": {
-      "iron": 0.02,
-      "carbondioxide": 0.09
+      "iron": 0.02
     },
     "Outputs": {
-      "atp": 5
+      "atp": 5.5
     },
     "IsMetabolismProcess": false
   },
@@ -251,13 +250,12 @@
     }
   },
   "ferrosynthesis": {
-    "Name": "IRON_CHEMOLITHOAUTOTROPHY",
+    "Name": "IRON_OXIDATION",
     "Inputs": {
-      "iron": 0.033,
-      "carbondioxide": 0.09
+      "iron": 0.033
     },
     "Outputs": {
-      "atp": 13
+      "atp": 14
     },
     "IsMetabolismProcess": false
   },

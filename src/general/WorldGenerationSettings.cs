@@ -129,9 +129,6 @@ public class WorldGenerationSettings
     public bool FreeGlucoseCloud => Difficulty.FreeGlucoseCloud;
 
     [JsonIgnore]
-    public bool PassiveGainOfReproductionCompounds => Difficulty.PassiveReproduction;
-
-    [JsonIgnore]
     public bool SwitchSpeciesOnExtinction => Difficulty.SwitchSpeciesOnExtinction;
 
     [JsonIgnore]
@@ -186,7 +183,6 @@ public class WorldGenerationSettings
             Localization.Translate("PERCENTAGE_VALUE").FormatSafe(Math.Round(GlucoseDecay * 100, 1)),
             OsmoregulationMultiplier,
             TranslationHelper.TranslateFeatureFlag(FreeGlucoseCloud),
-            TranslationHelper.TranslateFeatureFlag(PassiveGainOfReproductionCompounds),
             TranslationHelper.TranslateFeatureFlag(LimitReproductionCompoundUseSpeed));
     }
 

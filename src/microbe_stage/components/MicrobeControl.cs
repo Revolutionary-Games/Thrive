@@ -118,7 +118,7 @@ public static class MicrobeControlHelpers
     /// </summary>
     /// <remarks>
     ///   <para>
-    ///     Applies a colony-wide state (for example makes all cells that can be in engulf mode in the colony be in
+    ///     Applies a colony-wide state (for example, makes all cells that can be in engulf mode in the colony be in
     ///     engulf mode even if the lead cell cannot engulf)
     ///   </para>
     /// </remarks>
@@ -135,7 +135,7 @@ public static class MicrobeControlHelpers
 
                 foreach (var colonyMember in colony.ColonyMembers)
                 {
-                    // The IsAlive check should be unnecessary here but as this is a general method there's this
+                    // The IsAlive check should be unnecessary here, but as this is a general method, there's this
                     // extra safety against crashing due to colony bugs
                     if (colonyMember != entity && colonyMember.IsAlive)
                     {
@@ -391,8 +391,9 @@ public static class MicrobeControlHelpers
             if (damage >= health.CurrentHealth)
                 return;
 
-            // Need to force this cell into a mode, so deal the damage
-            health.DealDamage(damage, "forcedState");
+            // Need to force this cell into a mode, so cause the damage.
+            // We checked above that damage won't kill, so we don't check for damage protection on the player.
+            health.DealDamage(damage, "forcedState", -1);
 
             control.ForcedStateRemaining = Constants.ENGULF_NO_ATP_TIME;
 

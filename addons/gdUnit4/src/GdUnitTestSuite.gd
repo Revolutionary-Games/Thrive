@@ -54,7 +54,7 @@ func __gdunit_argument_matchers() -> GDScript:
 
 
 func __gdunit_object_interactions() -> GDScript:
-	return __lazy_load("res://addons/gdUnit4/src/core/GdUnitObjectInteractions.gd")
+	return __lazy_load("res://addons/gdUnit4/src/doubler/GdUnitObjectInteractions.gd")
 
 
 ## This function is called before a test suite starts[br]

@@ -65,7 +65,7 @@ public partial class PlayerMicrobeInput : NodeWithInput
             {
                 // It's probably fine to not update the tutorial state here with events as this state doesn't last
                 // that long and the player needs a pretty long time to get so far in the game as to get here
-                // Unbinding mode movement is canceled by the binding system now
+                // Unbinding mode movement is cancelled by the binding system now
                 return;
             }
 

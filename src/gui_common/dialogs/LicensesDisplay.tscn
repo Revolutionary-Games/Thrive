@@ -1,11 +1,11 @@
 [gd_scene load_steps=9 format=3 uid="uid://c120hjc04sice"]
 
-[ext_resource type="Script" path="res://src/gui_common/dialogs/LicensesDisplay.cs" id="1"]
+[ext_resource type="Script" uid="uid://d224lkc2bm76y" path="res://src/gui_common/dialogs/LicensesDisplay.cs" id="1"]
 [ext_resource type="Theme" uid="uid://b4cx0o110g4b6" path="res://src/gui_common/thrive_theme.tres" id="2"]
 [ext_resource type="LabelSettings" uid="uid://cwi2hxs06xut5" path="res://src/gui_common/fonts/Body-Bold-Normal.tres" id="4_158nk"]
 [ext_resource type="LabelSettings" uid="uid://ddq0a7mi3w0bd" path="res://src/gui_common/fonts/Mono-Regular-Smaller.tres" id="4_cbphf"]
-[ext_resource type="PackedScene" path="res://src/gui_common/FocusGrabber.tscn" id="5"]
-[ext_resource type="PackedScene" path="res://src/gui_common/dialogs/CustomWindow.tscn" id="6"]
+[ext_resource type="PackedScene" uid="uid://bgeijgq7runaw" path="res://src/gui_common/FocusGrabber.tscn" id="5"]
+[ext_resource type="PackedScene" uid="uid://du8sc8kjirguk" path="res://src/gui_common/dialogs/CustomWindow.tscn" id="6"]
 [ext_resource type="FontVariation" uid="uid://cqork3l186w1c" path="res://assets/fonts/variants/Jura-Bold.tres" id="7_ytd0c"]
 
 [sub_resource type="StyleBoxFlat" id="1"]

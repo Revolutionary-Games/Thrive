@@ -86,7 +86,7 @@ public sealed class PilusDamageSystem : AEntitySetSystem<float>
     private void DealPilusDamage(ref MicrobePhysicsExtraData ourExtraData, ref PhysicsCollision collision,
         in Entity targetEntity)
     {
-        // Skip applying damage while previous damage cooldown is still active
+        // Skip applying damage while the previous damage cooldown is still active
         ref var cooldown = ref collision.SecondEntity.Get<DamageCooldown>();
 
         if (cooldown.IsInCooldown())
@@ -98,7 +98,8 @@ public sealed class PilusDamageSystem : AEntitySetSystem<float>
         {
             // Injectisome attack
             targetHealth.DealMicrobeDamage(ref collision.SecondEntity.Get<CellProperties>(),
-                Constants.INJECTISOME_BASE_DAMAGE, "injectisome");
+                Constants.INJECTISOME_BASE_DAMAGE, "injectisome",
+                HealthHelpers.GetInstantKillProtectionThreshold(targetEntity));
 
             cooldown.StartInjectisomeCooldown();
             return;
@@ -113,7 +114,8 @@ public sealed class PilusDamageSystem : AEntitySetSystem<float>
         if (damage > Constants.PILUS_MAX_DAMAGE)
             damage = Constants.PILUS_MAX_DAMAGE;
 
-        targetHealth.DealMicrobeDamage(ref collision.SecondEntity.Get<CellProperties>(), damage, "pilus");
+        targetHealth.DealMicrobeDamage(ref collision.SecondEntity.Get<CellProperties>(), damage, "pilus",
+            HealthHelpers.GetInstantKillProtectionThreshold(targetEntity));
 
         cooldown.StartDamageScaledCooldown(damage, Constants.PILUS_MIN_DAMAGE_TRIGGER_COOLDOWN,
             Constants.PILUS_MAX_DAMAGE, Constants.PILUS_MIN_COOLDOWN, Constants.PILUS_MAX_COOLDOWN);

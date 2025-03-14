@@ -1,8 +1,8 @@
 [gd_scene load_steps=4 format=3 uid="uid://cy5puaxnv8e2a"]
 
-[ext_resource type="PackedScene" path="res://src/gui_common/dialogs/CustomWindow.tscn" id="1"]
+[ext_resource type="PackedScene" uid="uid://du8sc8kjirguk" path="res://src/gui_common/dialogs/CustomWindow.tscn" id="1"]
 [ext_resource type="PackedScene" path="res://src/gui_common/CustomRichTextLabel.tscn" id="2"]
-[ext_resource type="Script" path="res://src/gui_common/dialogs/TutorialDialog.cs" id="3"]
+[ext_resource type="Script" uid="uid://c22vgu2gpm74j" path="res://src/gui_common/dialogs/TutorialDialog.cs" id="3"]
 
 [node name="TutorialDialog" instance=ExtResource("1")]
 custom_minimum_size = Vector2(260, 240)

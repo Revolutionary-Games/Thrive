@@ -94,7 +94,7 @@ public sealed class OsmoregulationAndHealingSystem : AEntitySetSystem<float>
             if (entity.Get<Engulfable>().PhagocytosisStep != PhagocytosisPhase.None)
                 return;
 
-            ApplyATPDamage(compounds, ref health, ref cellProperties);
+            ApplyATPDamage(compounds, ref health, ref cellProperties, entity);
         }
     }
 
@@ -158,13 +158,14 @@ public sealed class OsmoregulationAndHealingSystem : AEntitySetSystem<float>
     /// <summary>
     ///   Damage the microbe if it's too low on ATP.
     /// </summary>
-    private void ApplyATPDamage(CompoundBag compounds, ref Health health, ref CellProperties cellProperties)
+    private void ApplyATPDamage(CompoundBag compounds, ref Health health, ref CellProperties cellProperties,
+        in Entity entity)
     {
         if (compounds.GetCompoundAmount(Compound.ATP) > Constants.ATP_DAMAGE_THRESHOLD)
             return;
 
         health.DealMicrobeDamage(ref cellProperties, health.MaxHealth * Constants.NO_ATP_DAMAGE_FRACTION,
-            "atpDamage");
+            "atpDamage", HealthHelpers.GetInstantKillProtectionThreshold(entity));
     }
 
     /// <summary>

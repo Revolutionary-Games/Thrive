@@ -8,7 +8,7 @@ using Newtonsoft.Json;
 ///   Tells the player about the ATP balance bar functionality (must trigger before the negative ATP balance
 ///   tutorial will work)
 /// </summary>
-public class AtpBalanceIntroduction : EditorEntryCountingTutorial
+public class AtpBalanceIntroduction : CellEditorEntryCountingTutorial
 {
     [JsonProperty]
     private bool shouldEnableNegativeATPTutorial;

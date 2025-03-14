@@ -1,8 +1,8 @@
 [gd_scene load_steps=4 format=3 uid="uid://7ok6pq37xfp2"]
 
 [ext_resource type="PackedScene" uid="uid://bs5shdurovke8" path="res://src/society_stage/gui/SocietyHUD.tscn" id="1"]
-[ext_resource type="Script" path="res://src/industrial_stage/gui/IndustrialHUD.cs" id="2"]
-[ext_resource type="PackedScene" path="res://src/industrial_stage/gui/CityScreen.tscn" id="3"]
+[ext_resource type="Script" uid="uid://c1g4kmqlvsf78" path="res://src/industrial_stage/gui/IndustrialHUD.cs" id="2"]
+[ext_resource type="PackedScene" uid="uid://cfqiy6w37wxrm" path="res://src/industrial_stage/gui/CityScreen.tscn" id="3"]
 
 [node name="IndustrialHUD" instance=ExtResource("1")]
 script = ExtResource("2")

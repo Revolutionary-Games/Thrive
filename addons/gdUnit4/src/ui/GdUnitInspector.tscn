@@ -38,6 +38,7 @@ layout_mode = 2
 size_flags_vertical = 1
 
 [node name="ProgressBar" parent="VBoxContainer/Header" instance=ExtResource("2")]
+unique_name_in_owner = true
 layout_mode = 2
 size_flags_horizontal = 5
 max_value = 0.0
@@ -47,6 +48,7 @@ layout_mode = 2
 size_flags_horizontal = 11
 
 [node name="MainPanel" parent="VBoxContainer" instance=ExtResource("7")]
+unique_name_in_owner = true
 layout_mode = 2
 
 [node name="Monitor" parent="VBoxContainer" instance=ExtResource("4")]
@@ -62,6 +64,4 @@ layout_mode = 2
 [connection signal="select_flaky_next" from="VBoxContainer/Header/StatusBar" to="VBoxContainer/MainPanel" method="_on_select_next_item_by_state" binds= [4]]
 [connection signal="select_flaky_prevous" from="VBoxContainer/Header/StatusBar" to="VBoxContainer/MainPanel" method="_on_select_previous_item_by_state" binds= [4]]
 [connection signal="tree_view_mode_changed" from="VBoxContainer/Header/StatusBar" to="VBoxContainer/MainPanel" method="_on_status_bar_tree_view_mode_changed"]
-[connection signal="run_testcase" from="VBoxContainer/MainPanel" to="." method="_on_MainPanel_run_testcase"]
-[connection signal="run_testsuite" from="VBoxContainer/MainPanel" to="." method="_on_MainPanel_run_testsuite"]
 [connection signal="jump_to_orphan_nodes" from="VBoxContainer/Monitor" to="VBoxContainer/MainPanel" method="select_first_orphan"]

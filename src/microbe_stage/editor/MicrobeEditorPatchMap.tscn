@@ -1,13 +1,13 @@
 [gd_scene load_steps=14 format=3 uid="uid://r0oqu6luui0h"]
 
-[ext_resource type="Shader" path="res://shaders/Monochrome.gdshader" id="1"]
+[ext_resource type="Shader" uid="uid://cpigmjcwmm61a" path="res://shaders/Monochrome.gdshader" id="1"]
 [ext_resource type="PackedScene" uid="uid://bjl5o7oy7yr15" path="res://src/microbe_stage/gui/PatchDetailsPanel.tscn" id="2"]
-[ext_resource type="PackedScene" path="res://src/gui_common/FocusGrabber.tscn" id="4"]
+[ext_resource type="PackedScene" uid="uid://bgeijgq7runaw" path="res://src/gui_common/FocusGrabber.tscn" id="4"]
 [ext_resource type="LabelSettings" uid="uid://dvqx73nhtr0y2" path="res://src/gui_common/fonts/Body-Regular-Small.tres" id="6_6vp11"]
 [ext_resource type="PackedScene" uid="uid://ci8lopfc3lodh" path="res://src/microbe_stage/editor/PopupMicheViewer.tscn" id="9_ootaw"]
 [ext_resource type="Theme" uid="uid://b4cx0o110g4b6" path="res://src/gui_common/thrive_theme.tres" id="14"]
 [ext_resource type="PackedScene" path="res://src/microbe_stage/editor/PatchMapDrawer.tscn" id="18"]
-[ext_resource type="Script" path="res://src/microbe_stage/editor/MicrobeEditorPatchMap.cs" id="28"]
+[ext_resource type="Script" uid="uid://jcs27lgwprsd" path="res://src/microbe_stage/editor/MicrobeEditorPatchMap.cs" id="28"]
 [ext_resource type="PackedScene" uid="uid://din62wkc2pcnk" path="res://src/gui_common/DraggableScrollContainer.tscn" id="30"]
 
 [sub_resource type="ShaderMaterial" id="28"]

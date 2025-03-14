@@ -1,10 +1,10 @@
 [gd_scene load_steps=12 format=3 uid="uid://c0i1up4lcts8j"]
 
 [ext_resource type="Theme" uid="uid://b4cx0o110g4b6" path="res://src/gui_common/thrive_theme.tres" id="1_q5xho"]
-[ext_resource type="Script" path="res://src/microbe_stage/editor/SpeciesResultButton.cs" id="2_f6kus"]
+[ext_resource type="Script" uid="uid://e0tp5c61cjqp" path="res://src/microbe_stage/editor/SpeciesResultButton.cs" id="2_f6kus"]
 [ext_resource type="LabelSettings" uid="uid://cw40l6f6fo8ml" path="res://src/gui_common/fonts/Body-Regular-Small-Green.tres" id="3_46m0d"]
 [ext_resource type="PackedScene" uid="uid://b5cbn7afnas1x" path="res://src/gui_common/PhotographablePreview.tscn" id="3_uyudq"]
-[ext_resource type="Script" path="res://src/gui_common/SpeciesPreview.cs" id="4_6vevb"]
+[ext_resource type="Script" uid="uid://b0ycij328egrn" path="res://src/gui_common/SpeciesPreview.cs" id="4_6vevb"]
 [ext_resource type="LabelSettings" uid="uid://das77igcbl0vy" path="res://src/gui_common/fonts/Body-Italic-Small.tres" id="4_48wtx"]
 [ext_resource type="LabelSettings" uid="uid://bl7dig4lq5ko" path="res://src/gui_common/fonts/Body-Regular-Small-Red.tres" id="4_e7xr2"]
 [ext_resource type="Texture2D" uid="uid://b2xjfcb1b7fup" path="res://assets/textures/gui/bevel/graphMarkerCross.png" id="5_fiy0i"]

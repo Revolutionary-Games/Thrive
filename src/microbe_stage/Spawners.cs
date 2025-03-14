@@ -358,13 +358,11 @@ public static class SpawnHelpers
                 DisableCollisions = true,
                 RemoveVelocity = true,
                 DisableParticles = selectedMesh.IsParticles,
-                UsesMicrobialDissolveEffect = !selectedMesh.IsParticles,
                 VentCompounds = ventCompounds,
-            });
 
-            // Particles should be supported so don't need to trigger this warning
-            if (!hasMicrobeShaderParameters && !selectedMesh.IsParticles)
-                GD.PrintErr("Chunk is non-dissolving but no microbe shader parameters were found for animation");
+                // Easter Egg chunk doesn't have microbe shader parameters even though it is not particles
+                UsesMicrobialDissolveEffect = !selectedMesh.IsParticles && hasMicrobeShaderParameters,
+            });
         }
 
         entity.Set(new Physics
@@ -751,8 +749,7 @@ public static class SpawnHelpers
 
         entity.Set<StrainAffected>();
 
-        // Microbes are not affected by currents before they are visualized
-        // entity.Set<CurrentAffected>();
+        entity.Set(new CurrentAffected(20.0f));
 
         // Selecting is used to throw out specific colony members
         entity.Set<Selectable>();

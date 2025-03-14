@@ -1,6 +1,6 @@
 ﻿namespace Tutorial;
 
-public class StaySmallTutorial : EditorEntryCountingTutorial
+public class StaySmallTutorial : CellEditorEntryCountingTutorial
 {
     public override string ClosedByName => "StaySmallTutorial";
 

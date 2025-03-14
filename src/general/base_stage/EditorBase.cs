@@ -372,8 +372,19 @@ public partial class EditorBase<TAction, TStage> : NodeWithInput, IEditor, ILoad
         if (HasInProgressAction)
             return;
 
+        var action = history.ActionToRedo();
+
         if (history.Redo())
         {
+            if (action != null)
+            {
+                TutorialState.SendEvent(TutorialEventType.EditorRedo, new EditorActionEventArgs(action), this);
+            }
+            else
+            {
+                GD.PrintErr("Somehow performed an action that was null when redoing");
+            }
+
             OnRedoPerformed();
         }
 
@@ -386,8 +397,19 @@ public partial class EditorBase<TAction, TStage> : NodeWithInput, IEditor, ILoad
         if (HasInProgressAction)
             return;
 
+        var action = history.ActionToUndo();
+
         if (history.Undo())
         {
+            if (action != null)
+            {
+                TutorialState.SendEvent(TutorialEventType.EditorUndo, new EditorActionEventArgs(action), this);
+            }
+            else
+            {
+                GD.PrintErr("Somehow undid an action that was null when undoing");
+            }
+
             OnUndoPerformed();
         }
 

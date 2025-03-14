@@ -135,6 +135,13 @@ public class ShuffleBag<T> : IEnumerable<T?>
 
             (currentContent[i], currentContent[j]) = (currentContent[j], currentContent[i]);
         }
+
+        // Backup shuffle for 2 item bags
+        if (currentContent.Count == 2)
+        {
+            if (random.NextDouble() < 0.5)
+                (currentContent[0], currentContent[1]) = (currentContent[1], currentContent[0]);
+        }
     }
 
     /// <summary>

@@ -75,6 +75,7 @@ public static class MathUtils
     ///   This function returns modulo values between 0 and mod-1.
     /// </summary>
     /// <returns>The positive modulo</returns>
+    [MethodImpl(MethodImplOptions.AggressiveInlining)]
     public static int PositiveModulo(this int val, int mod)
     {
         int result = val % mod;

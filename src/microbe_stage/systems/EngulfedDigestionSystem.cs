@@ -272,7 +272,8 @@ public sealed class EngulfedDigestionSystem : AEntitySetSystem<float>
                         ref var health = ref entity.Get<Health>();
 
                         health.DealMicrobeDamage(ref cellProperties,
-                            health.MaxHealth * Constants.TOXIN_DIGESTION_DAMAGE_FRACTION, "oxytoxy");
+                            health.MaxHealth * Constants.TOXIN_DIGESTION_DAMAGE_FRACTION, "oxytoxy",
+                            HealthHelpers.GetInstantKillProtectionThreshold(entity));
 
                         entity.SendNoticeIfPossible(() => new SimpleHUDMessage(
                             Localization.Translate("NOTICE_ENGULF_DAMAGE_FROM_TOXIN"),

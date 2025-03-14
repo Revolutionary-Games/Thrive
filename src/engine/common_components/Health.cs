@@ -2,6 +2,8 @@
 
 using System;
 using System.Collections.Generic;
+using System.Runtime.CompilerServices;
+using DefaultEcs;
 using Godot;
 
 /// <summary>
@@ -79,7 +81,15 @@ public static class HealthHelpers
     /// <summary>
     ///   A general damage dealing method that doesn't apply any damage reductions or anything like that
     /// </summary>
-    public static void DealDamage(this ref Health health, float damage, string damageSource)
+    /// <param name="health">The health structure to cause damage to</param>
+    /// <param name="damage">The amount of damage to apply</param>
+    /// <param name="damageSource">The name of the damage source</param>
+    /// <param name="instantKillProtectionThreshold">
+    ///   A threshold above which, if the current health is, the damage is not allowed to instantly kill the entity.
+    ///   Pass in a negative value to disable the protection.
+    /// </param>
+    public static void DealDamage(this ref Health health, float damage, string damageSource,
+        float instantKillProtectionThreshold)
     {
         if (health.Invulnerable)
         {
@@ -101,8 +111,19 @@ public static class HealthHelpers
         if (health.Dead || damage == 0)
             return;
 
+        var previousHealth = health.CurrentHealth;
+
         // This should result in at least reasonable health even if thread race conditions hit here
         health.CurrentHealth = Math.Max(0, health.CurrentHealth - damage);
+
+        if (instantKillProtectionThreshold > 0 && health.CurrentHealth <= 0 &&
+            previousHealth >= instantKillProtectionThreshold)
+        {
+            // Apply instant kill prevention to this damage event
+            var targetHealth = Math.Max(0.1f, health.MaxHealth * 0.01f);
+            health.CurrentHealth = targetHealth;
+            damage = Math.Max(0, previousHealth - targetHealth);
+        }
 
         // TODO: should there be a minimum damage, like 0.01 after which the cooldown is only triggered?
         // Only trigger cooldown once enough damage is taken to make sure really small trickle damage doesn't cause
@@ -146,7 +167,7 @@ public static class HealthHelpers
     }
 
     /// <summary>
-    ///   Applies damage but takes microbe damage resistances into account. This should be (almost always) be used
+    ///   Applies damage but takes microbe damage resistances into account. This should (almost always) be used
     ///   for microbes to calculate the right damage rather than <see cref="DealDamage"/>
     /// </summary>
     /// <remarks>
@@ -156,7 +177,7 @@ public static class HealthHelpers
     ///   </para>
     /// </remarks>
     public static void DealMicrobeDamage(this ref Health health, ref CellProperties cellProperties, float damage,
-        string damageSource)
+        string damageSource, float instantKillProtectionThreshold)
     {
         // TODO: reimplement this (probably better to use the invulnerable health property and also make engulf
         // check that to prevent engulfing of the player)
@@ -186,7 +207,23 @@ public static class HealthHelpers
             damage /= 2;
         }
 
-        health.DealDamage(damage, damageSource);
+        health.DealDamage(damage, damageSource, instantKillProtectionThreshold);
+    }
+
+    /// <summary>
+    ///   Returns instant kill protection damage threshold for an entity. This is only active for the player.
+    /// </summary>
+    /// <param name="entity">Entity to check</param>
+    /// <returns>The damage protection threshold or -1 if protection is disabled</returns>
+    public static float GetInstantKillProtectionThreshold(in Entity entity)
+    {
+        return GetInstantKillProtectionThreshold(entity.Has<PlayerMarker>());
+    }
+
+    [MethodImpl(MethodImplOptions.AggressiveInlining)]
+    public static float GetInstantKillProtectionThreshold(bool isPlayer)
+    {
+        return isPlayer ? Constants.PLAYER_INSTANT_KILL_PROTECTION_HEALTH_THRESHOLD : -1;
     }
 
     /// <summary>

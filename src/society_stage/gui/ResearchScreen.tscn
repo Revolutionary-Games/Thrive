@@ -1,8 +1,8 @@
 [gd_scene load_steps=4 format=3 uid="uid://daaxumisua7ue"]
 
-[ext_resource type="PackedScene" path="res://src/gui_common/dialogs/CustomWindow.tscn" id="1"]
+[ext_resource type="PackedScene" uid="uid://du8sc8kjirguk" path="res://src/gui_common/dialogs/CustomWindow.tscn" id="1"]
 [ext_resource type="PackedScene" uid="uid://dso6jpju1ild0" path="res://src/society_stage/gui/TechWebGUI.tscn" id="2"]
-[ext_resource type="Script" path="res://src/society_stage/gui/ResearchScreen.cs" id="3"]
+[ext_resource type="Script" uid="uid://divf37bri2boy" path="res://src/society_stage/gui/ResearchScreen.cs" id="3"]
 
 [node name="ResearchScreen" instance=ExtResource("1")]
 visible = true

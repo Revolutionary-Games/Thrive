@@ -880,18 +880,24 @@ public sealed class EngulfingSystem : AEntitySetSystem<float>
                     {
                         control.ForcedStateRemaining -= delta;
 
-                        // Not absolutely necessary to force to zero as a negative value would work as well but this
-                        // is a bit nicer data then in the component and probably doesn't cost much performance
+                        // Not absolutely necessary to force to zero as a negative value would work as well, but this
+                        // is a bit nicer data than in the component
+                        // and probably costs little performance
                         if (control.ForcedStateRemaining < 0)
                             control.ForcedStateRemaining = 0;
 
-                        // Staying in engulf mode thanks to forced entry even without ATP
+                        // Staying in engulfing mode thanks to forced entry even without ATP
                         checkEngulfStartCollisions = true;
                     }
                     else
                     {
                         // No longer any ATP, or forced state, so get out of the state
                         control.SetStateColonyAware(entity, MicrobeState.Normal);
+
+                        // Let the player know why they got thrown out of binding mode if running out of ATP
+                        entity.SendNoticeIfPossible(() =>
+                            new SimpleHUDMessage(Localization.Translate("NOTICE_ENGULFING_OUT_OF_ATP"),
+                                DisplayDuration.Short));
                     }
                 }
                 else
@@ -908,8 +914,8 @@ public sealed class EngulfingSystem : AEntitySetSystem<float>
         {
             if (control.State == MicrobeState.Engulf)
             {
-                // Force out of incorrect state (but don't force whole colony in case there is a cell type in the
-                // colony that can engulf even if the leader can't)
+                // Force out of the incorrect state (but don't force the whole colony in case there is a cell type in
+                // the colony that can engulf even if the leader can't)
                 control.State = MicrobeState.Normal;
             }
         }

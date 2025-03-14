@@ -1,6 +1,6 @@
 [gd_scene load_steps=2 format=3 uid="uid://doe55k2jyc4xn"]
 
-[ext_resource type="Script" path="res://src/macroscopic_stage/MacroscopicConvolutionDisplayer.cs" id="1_11vo3"]
+[ext_resource type="Script" uid="uid://dh8yuuagbflvb" path="res://src/macroscopic_stage/MacroscopicConvolutionDisplayer.cs" id="1_11vo3"]
 
 [node name="MacroscopicConvolutionDisplayer" type="MeshInstance3D"]
 script = ExtResource("1_11vo3")

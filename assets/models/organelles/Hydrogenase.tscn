@@ -1,6 +1,6 @@
 [gd_scene load_steps=6 format=3 uid="uid://lrku4yc04467"]
 
-[ext_resource type="Shader" path="res://shaders/OrganelleOpaque.gdshader" id="1_frfjk"]
+[ext_resource type="Shader" uid="uid://bpdtg8smolq32" path="res://shaders/OrganelleTransparent.gdshader" id="1_linyx"]
 [ext_resource type="Texture2D" uid="uid://baxuoyeo83r2u" path="res://assets/textures/dissolve_noise.tres" id="2_7sl1q"]
 [ext_resource type="Texture2D" uid="uid://cyeu1ujr54dub" path="res://assets/textures/Hydrogenase.png" id="3_06202"]
 [ext_resource type="ArrayMesh" uid="uid://c056ohcgvexwb" path="res://assets/models/organelles/Hydrogenase.mesh" id="4_gy8tj"]
@@ -8,15 +8,17 @@
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_20swk"]
 resource_local_to_scene = true
 render_priority = 0
-shader = ExtResource("1_frfjk")
+shader = ExtResource("1_linyx")
+shader_parameter/texture = ExtResource("3_06202")
+shader_parameter/dissolveTexture = ExtResource("2_7sl1q")
 shader_parameter/dissolveValue = 0.0
 shader_parameter/dissolveScale = 1.0
+shader_parameter/fresnelValue = 1.0
+shader_parameter/fresnelActive = false
 shader_parameter/outlineWidth = 0.05
 shader_parameter/growColor = Color(0.494118, 0.12549, 0.117647, 1)
 shader_parameter/tint = Color(1, 1, 1, 1)
 shader_parameter/jiggleAmount = 0.05
-shader_parameter/texture = ExtResource("3_06202")
-shader_parameter/dissolveTexture = ExtResource("2_7sl1q")
 
 [node name="Hydrogenase" type="MeshInstance3D"]
 material_override = SubResource("ShaderMaterial_20swk")

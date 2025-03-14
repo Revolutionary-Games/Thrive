@@ -57,9 +57,22 @@ func set_value(value: String) -> void:
 
 	if _type == TYPE_NIL or _type == GdObjects.TYPE_VARIANT:
 		_type = _extract_value_type(value)
-		_default_value = value
+		if _type == GdObjects.TYPE_VARIANT:
+			_default_value = value
 	if _default_value == null:
-		_default_value = value
+		match _type:
+			TYPE_DICTIONARY:
+				_default_value = as_dictionary(value)
+			TYPE_ARRAY:
+				_default_value = as_array(value)
+			GdObjects.TYPE_FUZZER:
+				_default_value = value
+			_:
+				_default_value = str_to_var(value)
+				# if converting fails assign the original value without converting
+				if _default_value == null and value != null:
+					_default_value = value
+		#prints("set default_value: ", _default_value, "with type %d" % _type, " from original: '%s'" % value)
 
 
 func _extract_value_type(value: String) -> int:
@@ -115,7 +128,7 @@ static func get_parameter_set(parameters :Array[GdFunctionArgument]) -> GdFuncti
 func _to_string() -> String:
 	var s := _name
 	if _type != TYPE_NIL:
-		s += ":" + GdObjects.type_as_string(_type)
+		s += ": " + GdObjects.type_as_string(_type)
 	if _type_hint != TYPE_NIL:
 		s += "[%s]" % GdObjects.type_as_string(_type_hint)
 	if typeof(_default_value) != TYPE_STRING:
@@ -170,3 +183,26 @@ func _parse_parameter_set(input :String) -> PackedStringArray:
 			collected_characters.clear()
 			matched = false
 	return output
+
+
+## value converters
+
+func as_array(value: String) -> Array:
+	if value == "Array()" or value == "[]":
+		return []
+
+	if value.begins_with("Array("):
+		value = value.lstrip("Array(").rstrip(")")
+	if value.begins_with("["):
+		return str_to_var(value)
+	return []
+
+
+func as_dictionary(value: String) -> Dictionary:
+	if value == "Dictionary()":
+		return {}
+	if value.begins_with("Dictionary("):
+		value = value.lstrip("Dictionary(").rstrip(")")
+	if value.begins_with("{"):
+		return str_to_var(value)
+	return {}

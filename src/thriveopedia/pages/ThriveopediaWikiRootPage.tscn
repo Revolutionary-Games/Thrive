@@ -1,10 +1,10 @@
 [gd_scene load_steps=6 format=3 uid="uid://cnhgueotwqave"]
 
 [ext_resource type="PackedScene" uid="uid://cckki1kx0cnol" path="res://src/thriveopedia/ThriveopediaPage.tscn" id="1"]
-[ext_resource type="PackedScene" path="res://src/gui_common/CustomRichTextLabel.tscn" id="3"]
+[ext_resource type="PackedScene" uid="uid://bhpjtbtaeunat" path="res://src/gui_common/CustomRichTextLabel.tscn" id="3"]
 [ext_resource type="LabelSettings" uid="uid://cis0p1u7hveec" path="res://src/gui_common/fonts/Title-SemiBold-Huge.tres" id="3_n4hnu"]
 [ext_resource type="Texture2D" uid="uid://bax5eq6vw1chn" path="res://assets/concept_art/flagellum-concepts.jpg" id="4"]
-[ext_resource type="Script" path="res://src/thriveopedia/pages/ThriveopediaWikiRootPage.cs" id="5"]
+[ext_resource type="Script" uid="uid://bsroxnro54lwc" path="res://src/thriveopedia/pages/ThriveopediaWikiRootPage.cs" id="5"]
 
 [node name="ThriveopediaPage" instance=ExtResource("1")]
 script = ExtResource("5")

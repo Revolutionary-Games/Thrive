@@ -5,7 +5,7 @@ using System;
 /// <summary>
 ///   Tutorial about opening the tolerances-tab. In case the player hasn't viewed it.
 /// </summary>
-public class OpenTolerancesTabTutorial : EditorEntryCountingTutorial
+public class OpenTolerancesTabTutorial : CellEditorEntryCountingTutorial
 {
     private readonly string tolerancesTab = CellEditorComponent.SelectionMenuTab.Tolerance.ToString();
 

@@ -1,48 +1,48 @@
-[gd_scene load_steps=8 format=2]
+[gd_scene load_steps=8 format=3 uid="uid://cmfpne0v21jbs"]
 
-[ext_resource path="res://src/gui_common/thrive_theme.tres" type="Theme" id=1]
-[ext_resource path="res://src/gui_common/ActionButton.cs" type="Script" id=2]
-[ext_resource path="res://src/gui_common/KeyPrompt.tscn" type="PackedScene" id=3]
-[ext_resource path="res://assets/textures/blank.png" type="Texture2D" id=4]
+[ext_resource type="Theme" uid="uid://b4cx0o110g4b6" path="res://src/gui_common/thrive_theme.tres" id="1"]
+[ext_resource type="Script" uid="uid://bn4rgoc3v75no" path="res://src/gui_common/ActionButton.cs" id="2"]
+[ext_resource type="PackedScene" path="res://src/gui_common/KeyPrompt.tscn" id="3"]
+[ext_resource type="Texture2D" uid="uid://dtvbg17mj0i35" path="res://assets/textures/blank.png" id="4"]
 
-[sub_resource type="StyleBoxFlat" id=1]
+[sub_resource type="StyleBoxFlat" id="1"]
 draw_center = false
 border_width_left = 2
 border_width_top = 2
 border_width_right = 2
 border_width_bottom = 2
-border_color = Color( 1, 1, 1, 0.784314 )
+border_color = Color(1, 1, 1, 0.784314)
 corner_radius_top_left = 1
 corner_radius_top_right = 1
 corner_radius_bottom_right = 1
 corner_radius_bottom_left = 1
 
-[sub_resource type="StyleBoxFlat" id=3]
+[sub_resource type="StyleBoxFlat" id="3"]
 draw_center = false
 border_width_left = 2
 border_width_top = 2
 border_width_right = 2
 border_width_bottom = 2
-border_color = Color( 0.701961, 0.701961, 0.701961, 0.588235 )
+border_color = Color(0.701961, 0.701961, 0.701961, 0.588235)
 corner_radius_top_left = 1
 corner_radius_top_right = 1
 corner_radius_bottom_right = 1
 corner_radius_bottom_left = 1
 
-[sub_resource type="StyleBoxFlat" id=2]
-bg_color = Color( 0.0666667, 1, 0.835294, 0.588235 )
+[sub_resource type="StyleBoxFlat" id="2"]
+bg_color = Color(0.0666667, 1, 0.835294, 0.588235)
 
 [node name="ActionButton" type="Button"]
 light_mask = 2
 anchor_right = 0.0359375
 anchor_bottom = 0.0708333
-custom_minimum_size = Vector2( 46, 51 )
+custom_minimum_size = Vector2(46, 51)
 focus_mode = 0
-theme = ExtResource( 1 )
-theme_override_styles/hover = SubResource( 1 )
-theme_override_styles/pressed = SubResource( 1 )
-theme_override_styles/normal = SubResource( 3 )
-script = ExtResource( 2 )
+theme = ExtResource("1")
+theme_override_styles/hover = SubResource("1")
+theme_override_styles/pressed = SubResource("1")
+theme_override_styles/normal = SubResource("3")
+script = ExtResource("2")
 __meta__ = {
 "_edit_use_anchors_": true
 }
@@ -53,11 +53,11 @@ offset_left = 2.0
 offset_top = 2.0
 offset_right = 44.0
 offset_bottom = 49.0
-custom_minimum_size = Vector2( 42, 47 )
+custom_minimum_size = Vector2(42, 47)
 mouse_filter = 1
 size_flags_horizontal = 0
 size_flags_vertical = 0
-theme_override_styles/panel = SubResource( 2 )
+theme_override_styles/panel = SubResource("2")
 __meta__ = {
 "_edit_use_anchors_": false
 }
@@ -87,25 +87,25 @@ __meta__ = {
 [node name="Icon" type="TextureRect" parent="MarginContainer/VBoxContainer"]
 offset_right = 40.0
 offset_bottom = 40.0
-custom_minimum_size = Vector2( 40, 40 )
+custom_minimum_size = Vector2(40, 40)
 size_flags_horizontal = 4
 size_flags_vertical = 4
 expand = true
 
-[node name="KeyPrompt" parent="MarginContainer/VBoxContainer" instance=ExtResource( 3 )]
+[node name="KeyPrompt" parent="MarginContainer/VBoxContainer" instance=ExtResource("3")]
 offset_left = 7.0
 offset_top = 33.0
 offset_right = 33.0
 offset_bottom = 59.0
-custom_minimum_size = Vector2( 26, 26 )
+custom_minimum_size = Vector2(26, 26)
 size_flags_horizontal = 4
-UnpressedColour = Color( 1, 1, 1, 0.784314 )
-PressedColour = Color( 0.701961, 0.701961, 0.701961, 0.784314 )
+UnpressedColour = Color(1, 1, 1, 0.784314)
+PressedColour = Color(0.701961, 0.701961, 0.701961, 0.784314)
 
 [node name="Mask" type="PointLight2D" parent="."]
-position = Vector2( 23, 49 )
-scale = Vector2( 0.806852, 0.78202 )
-texture = ExtResource( 4 )
+position = Vector2(23, 49)
+scale = Vector2(0.806852, 0.78202)
+texture = ExtResource("4")
 mode = 3
 range_item_cull_mask = 2
 

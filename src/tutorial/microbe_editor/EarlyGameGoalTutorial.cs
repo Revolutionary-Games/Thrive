@@ -1,23 +1,14 @@
 ﻿namespace Tutorial;
 
 using System;
-using Newtonsoft.Json;
 
-public class EarlyGameGoalTutorial : TutorialPhase
+public class EarlyGameGoalTutorial : EditorEntryCountingTutorial
 {
-    private const int TriggersOnNthEditorSession = 2;
-
     private readonly string reportTab = EditorTab.Report.ToString();
-
-    public EarlyGameGoalTutorial()
-    {
-        CanTrigger = false;
-    }
 
     public override string ClosedByName => "EarlyGameGoalTutorial";
 
-    [JsonProperty]
-    private int EditorEntryCount { get; set; }
+    protected override int TriggersOnNthEditorSession => 2;
 
     public override void ApplyGUIState(MicrobeEditorTutorialGUI gui)
     {
@@ -27,14 +18,13 @@ public class EarlyGameGoalTutorial : TutorialPhase
     public override bool CheckEvent(TutorialState overallState, TutorialEventType eventType, EventArgs args,
         object sender)
     {
+        if (base.CheckEvent(overallState, eventType, args, sender))
+            return false;
+
         switch (eventType)
         {
             case TutorialEventType.EnteredMicrobeEditor:
             {
-                ++EditorEntryCount;
-
-                CanTrigger = EditorEntryCount >= TriggersOnNthEditorSession;
-
                 if (!HasBeenShown && CanTrigger)
                 {
                     Show();

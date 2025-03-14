@@ -35,6 +35,7 @@ public class LocalizationUpdate : LocalizationUpdateBase<LocalizationOptionsBase
         "fi",
         "fr",
         "frm",
+        "gsw",
         "he",
         "hr",
         "hu",
@@ -109,7 +110,7 @@ public class LocalizationUpdate : LocalizationUpdateBase<LocalizationOptionsBase
     };
 
     /// <summary>
-    ///   This has JSON object key's that contain translatable values
+    ///   This has JSON object's keys that contain translatable values
     /// </summary>
     private static readonly IReadOnlyCollection<string> TranslatedJSONKeys = new List<string>
     {
@@ -147,6 +148,16 @@ public class LocalizationUpdate : LocalizationUpdateBase<LocalizationOptionsBase
     protected override IEnumerable<string> FilesToIgnore { get; } = new List<string>
     {
         ".deps.json",
+    };
+
+    /// <summary>
+    ///   Thrive build trees shouldn't have obj or bin folders made by the C# compiler, but just in case if there are
+    ///   any, then they are ignored.
+    /// </summary>
+    protected override IEnumerable<string> FoldersToIgnore { get; } = new List<string>
+    {
+        "obj",
+        "bin",
     };
 
     protected override IReadOnlyList<string> Locales => ThriveLocales;

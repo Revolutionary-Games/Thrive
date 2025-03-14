@@ -28,16 +28,33 @@ static func is_type_array(type :int) -> bool:
 
 ## Filters an array by given value[br]
 ## If the given value not an array it returns null, will remove all occurence of given value.
-@warning_ignore("unsafe_method_access")
 static func filter_value(array: Variant, value: Variant) -> Variant:
 	if not is_array_type(array):
 		return null
+
+	@warning_ignore("unsafe_method_access")
 	var filtered_array: Variant = array.duplicate()
-	var index :int = filtered_array.find(value)
+	@warning_ignore("unsafe_method_access")
+	var index: int = filtered_array.find(value)
 	while index != -1:
+		@warning_ignore("unsafe_method_access")
 		filtered_array.remove_at(index)
+		@warning_ignore("unsafe_method_access")
 		index = filtered_array.find(value)
 	return filtered_array
+
+
+## Groups an array by a custom key selector
+## The function should take an item and return the group key
+static func group_by(array: Array, key_selector: Callable) -> Dictionary:
+	var result := {}
+
+	for item: Variant in array:
+		var group_key: Variant = key_selector.call(item)
+		var values: Array = result.get_or_add(group_key, [])
+		values.append(item)
+
+	return result
 
 
 ## Erases a value from given array by using equals(l,r) to find the element to erase

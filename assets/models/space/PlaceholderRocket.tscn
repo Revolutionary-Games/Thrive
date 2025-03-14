@@ -56,7 +56,7 @@ colors = PackedColorArray(0.862745, 0.862745, 0.862745, 0, 0.85, 0.85, 0.85, 0.7
 gradient = SubResource("Gradient_xdfe6")
 
 [sub_resource type="Curve" id="Curve_jpuui"]
-max_value = 1.2
+_limits = [0.0, 1.2, 0.0, 1.0]
 _data = [Vector2(0.00630915, 0.745823), 0.0, 2.94843, 0, 0, Vector2(0.138801, 1.2), 0.0, 0.0, 0, 0]
 point_count = 2
 

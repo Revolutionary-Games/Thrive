@@ -1,18 +1,18 @@
-[gd_scene load_steps=3 format=2]
+[gd_scene load_steps=3 format=3 uid="uid://bhpjtbtaeunat"]
 
-[ext_resource path="res://src/gui_common/thrive_theme.tres" type="Theme" id=1]
-[ext_resource path="res://src/gui_common/CustomRichTextLabel.cs" type="Script" id=3]
+[ext_resource type="Theme" uid="uid://b4cx0o110g4b6" path="res://src/gui_common/thrive_theme.tres" id="1"]
+[ext_resource type="Script" uid="uid://c0itxwsgtedpj" path="res://src/gui_common/CustomRichTextLabel.cs" id="3"]
 
 [node name="CustomRichTextLabel" type="RichTextLabel"]
 offset_right = 22.0
 offset_bottom = 22.0
-theme = ExtResource( 1 )
-theme_override_colors/default_color = Color( 1, 1, 1, 1 )
-theme_override_colors/font_shadow_color = Color( 0, 0, 0, 0 )
+theme = ExtResource("1")
+theme_override_colors/default_color = Color(1, 1, 1, 1)
+theme_override_colors/font_shadow_color = Color(0, 0, 0, 0)
 theme_override_constants/line_separation = 5
 bbcode_enabled = true
 fit_content_height = true
-script = ExtResource( 3 )
+script = ExtResource("3")
 __meta__ = {
 "_editor_description_": ""
 }

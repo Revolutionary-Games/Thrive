@@ -26,8 +26,8 @@ const SETTINGS_SHORTCUT_MAPPING := {
 	GdUnitSettings.SHORTCUT_EDITOR_RUN_TEST : GdUnitShortcut.ShortCut.RUN_TESTCASE,
 	GdUnitSettings.SHORTCUT_EDITOR_RUN_TEST_DEBUG : GdUnitShortcut.ShortCut.RUN_TESTCASE_DEBUG,
 	GdUnitSettings.SHORTCUT_EDITOR_CREATE_TEST : GdUnitShortcut.ShortCut.CREATE_TEST,
-	GdUnitSettings.SHORTCUT_FILESYSTEM_RUN_TEST : GdUnitShortcut.ShortCut.RUN_TESTCASE,
-	GdUnitSettings.SHORTCUT_FILESYSTEM_RUN_TEST_DEBUG : GdUnitShortcut.ShortCut.RUN_TESTCASE_DEBUG
+	GdUnitSettings.SHORTCUT_FILESYSTEM_RUN_TEST : GdUnitShortcut.ShortCut.RUN_TESTSUITE,
+	GdUnitSettings.SHORTCUT_FILESYSTEM_RUN_TEST_DEBUG : GdUnitShortcut.ShortCut.RUN_TESTSUITE_DEBUG
 }
 
 # the current test runner config
@@ -68,8 +68,8 @@ func _init() -> void:
 	register_command(GdUnitCommand.new(CMD_RUN_OVERALL, is_not_running, cmd_run_overall.bind(true), GdUnitShortcut.ShortCut.RUN_TESTS_OVERALL))
 	register_command(GdUnitCommand.new(CMD_RUN_TESTCASE, is_not_running, cmd_editor_run_test.bind(false), GdUnitShortcut.ShortCut.RUN_TESTCASE))
 	register_command(GdUnitCommand.new(CMD_RUN_TESTCASE_DEBUG, is_not_running, cmd_editor_run_test.bind(true), GdUnitShortcut.ShortCut.RUN_TESTCASE_DEBUG))
-	register_command(GdUnitCommand.new(CMD_RUN_TESTSUITE, is_not_running, cmd_run_test_suites.bind(false)))
-	register_command(GdUnitCommand.new(CMD_RUN_TESTSUITE_DEBUG, is_not_running, cmd_run_test_suites.bind(true)))
+	register_command(GdUnitCommand.new(CMD_RUN_TESTSUITE, is_not_running, cmd_run_test_suites.bind(false), GdUnitShortcut.ShortCut.RUN_TESTSUITE))
+	register_command(GdUnitCommand.new(CMD_RUN_TESTSUITE_DEBUG, is_not_running, cmd_run_test_suites.bind(true), GdUnitShortcut.ShortCut.RUN_TESTSUITE_DEBUG))
 	register_command(GdUnitCommand.new(CMD_RERUN_TESTS, is_not_running, cmd_run.bind(false), GdUnitShortcut.ShortCut.RERUN_TESTS))
 	register_command(GdUnitCommand.new(CMD_RERUN_TESTS_DEBUG, is_not_running, cmd_run.bind(true), GdUnitShortcut.ShortCut.RERUN_TESTS_DEBUG))
 	register_command(GdUnitCommand.new(CMD_CREATE_TESTCASE, is_not_running, cmd_create_test, GdUnitShortcut.ShortCut.CREATE_TEST))
@@ -167,11 +167,25 @@ func command(cmd_name: String) -> GdUnitCommand:
 	return _commands.get(cmd_name)
 
 
-func cmd_run_test_suites(test_suite_paths: PackedStringArray, debug: bool, rerun := false) -> void:
+func cmd_run_test_suites(scripts: Array[Script], debug: bool, rerun := false) -> void:
+	# Update test discovery
+	GdUnitSignals.instance().gdunit_event.emit(GdUnitEventTestDiscoverStart.new())
+	var tests_to_execute: Array[GdUnitTestCase] = []
+	for script in scripts:
+		if script is GDScript:
+			GdUnitTestDiscoverer.discover_tests(script as GDScript, func(test_case: GdUnitTestCase) -> void:
+				tests_to_execute.append(test_case)
+				GdUnitTestDiscoverSink.discover(test_case)
+			)
+		else:
+			## TODO call gdunit4Net discovery
+			print_debug("CSharpScript discovery not implemented!")
+	GdUnitSignals.instance().gdunit_event.emit(GdUnitEventTestDiscoverEnd.new(0, 0))
+
 	# create new runner runner_config for fresh run otherwise use saved one
 	if not rerun:
 		var result := _runner_config.clear()\
-			.add_test_suites(test_suite_paths)\
+			.add_test_cases(tests_to_execute)\
 			.save_config()
 		if result.is_error():
 			push_error(result.error_message())
@@ -180,10 +194,29 @@ func cmd_run_test_suites(test_suite_paths: PackedStringArray, debug: bool, rerun
 
 
 func cmd_run_test_case(test_suite_resource_path: String, test_case: String, test_param_index: int, debug: bool, rerun := false) -> void:
+	# Update test discovery
+	var script := load(test_suite_resource_path)
+	var tests_to_execute: Array[GdUnitTestCase] = []
+	GdUnitSignals.instance().gdunit_event.emit(GdUnitEventTestDiscoverStart.new())
+	if script is GDScript:
+		GdUnitTestDiscoverer.discover_test(script as GDScript, [test_case], func(test: GdUnitTestCase) -> void:
+				# We only add selected parameterized test to the execution list
+				if test_param_index == -1:
+					tests_to_execute.append(test)
+				elif test.attribute_index == test_param_index:
+					tests_to_execute.append(test)
+				GdUnitTestDiscoverSink.discover(test)
+		)
+	else:
+		## TODO call gdunit4Net discovery
+		print_debug("CSharpScript discovery not implemented!")
+		return
+	GdUnitSignals.instance().gdunit_event.emit(GdUnitEventTestDiscoverEnd.new(0, 0))
+
 	# create new runner config for fresh run otherwise use saved one
 	if not rerun:
 		var result := _runner_config.clear()\
-			.add_test_case(test_suite_resource_path, test_case, test_param_index)\
+			.add_test_cases(tests_to_execute)\
 			.save_config()
 		if result.is_error():
 			push_error(result.error_message())
@@ -191,10 +224,21 @@ func cmd_run_test_case(test_suite_resource_path: String, test_case: String, test
 	cmd_run(debug)
 
 
-func cmd_run_overall(debug: bool) -> void:
-	var test_suite_paths: PackedStringArray = GdUnitCommandHandler.scan_all_test_directories(GdUnitSettings.test_root_folder())
+func cmd_run_tests(tests_to_execute: Array[GdUnitTestCase], debug: bool) -> void:
+	# Save tests to runner config before execute
 	var result := _runner_config.clear()\
-		.add_test_suites(test_suite_paths)\
+		.add_test_cases(tests_to_execute)\
+		.save_config()
+	if result.is_error():
+		push_error(result.error_message())
+		return
+	cmd_run(debug)
+
+
+func cmd_run_overall(debug: bool) -> void:
+	var tests_to_execute := await GdUnitTestDiscoverer.run()
+	var result := _runner_config.clear()\
+		.add_test_cases(tests_to_execute)\
 		.save_config()
 	if result.is_error():
 		push_error(result.error_message())
@@ -206,6 +250,8 @@ func cmd_run(debug: bool) -> void:
 	# don't start is already running
 	if _is_running:
 		return
+
+	GdUnitSignals.instance().gdunit_event.emit(GdUnitInit.new())
 	# save current selected excution config
 	var server_port: int = Engine.get_meta("gdunit_server_port")
 	var result := _runner_config.set_server_port(server_port).save_config()
@@ -240,24 +286,26 @@ func cmd_stop(client_id: int) -> void:
 
 
 func cmd_editor_run_test(debug: bool) -> void:
-	var cursor_line := active_base_editor().get_caret_line()
-	#run test case?
-	var regex := RegEx.new()
-	@warning_ignore("return_value_discarded")
-	regex.compile("(^func[ ,\t])(test_[a-zA-Z0-9_]*)")
-	var result := regex.search(active_base_editor().get_line(cursor_line))
-	if result:
-		var func_name := result.get_string(2).strip_edges()
-		prints("Run test:", func_name, "debug", debug)
-		if func_name.begins_with("test_"):
-			cmd_run_test_case(active_script().resource_path, func_name, -1, debug)
-			return
+	if is_active_script_editor():
+		var cursor_line := active_base_editor().get_caret_line()
+		#run test case?
+		var regex := RegEx.new()
+		@warning_ignore("return_value_discarded")
+		regex.compile("(^func[ ,\t])(test_[a-zA-Z0-9_]*)")
+		var result := regex.search(active_base_editor().get_line(cursor_line))
+		if result:
+			var func_name := result.get_string(2).strip_edges()
+			if func_name.begins_with("test_"):
+				cmd_run_test_case(active_script().resource_path, func_name, -1, debug)
+				return
 	# otherwise run the full test suite
-	var selected_test_suites := [active_script().resource_path]
+	var selected_test_suites: Array[Script] = [active_script()]
 	cmd_run_test_suites(selected_test_suites, debug)
 
 
 func cmd_create_test() -> void:
+	if not is_active_script_editor():
+		return
 	var cursor_line := active_base_editor().get_caret_line()
 	var result := GdUnitTestSuiteBuilder.create(active_script(), cursor_line)
 	if result.is_error():
@@ -306,7 +354,7 @@ static func match_test_directory(directory: String, test_directory: String) -> b
 
 
 func run_debug_mode() -> void:
-	EditorInterface.play_custom_scene("res://addons/gdUnit4/src/core/GdUnitRunner.tscn")
+	EditorInterface.play_custom_scene("res://addons/gdUnit4/src/core/runners/GdUnitTestRunner.tscn")
 	_is_running = true
 
 
@@ -317,9 +365,13 @@ func run_release_mode() -> void:
 	arguments.append("--no-window")
 	arguments.append("--path")
 	arguments.append(ProjectSettings.globalize_path("res://"))
-	arguments.append("res://addons/gdUnit4/src/core/GdUnitRunner.tscn")
+	arguments.append("res://addons/gdUnit4/src/core/runners/GdUnitTestRunner.tscn")
 	_current_runner_process_id = OS.create_process(OS.get_executable_path(), arguments, false);
 	_is_running = true
+
+
+func is_active_script_editor() -> bool:
+	return EditorInterface.get_script_editor().get_current_editor() != null
 
 
 func active_base_editor() -> TextEdit:
@@ -357,7 +409,11 @@ func _on_settings_changed(property: GdUnitProperty) -> void:
 		var value: PackedInt32Array = property.value()
 		var input_event := create_shortcut_input_even(value)
 		prints("Shortcut changed: '%s' to '%s'" % [GdUnitShortcut.ShortCut.keys()[shortcut], input_event.as_text()])
-		register_shortcut(shortcut, input_event)
+		var action := get_shortcut_action(shortcut)
+		if action != null:
+			action.update_shortcut(input_event)
+		else:
+			register_shortcut(shortcut, input_event)
 	if property.name() == GdUnitSettings.TEST_DISCOVER_ENABLED:
 		var timer :SceneTreeTimer = (Engine.get_main_loop() as SceneTree).create_timer(3)
 		@warning_ignore("return_value_discarded")

@@ -45,7 +45,7 @@ public class EditorUndoTutorial : TutorialPhase
                 break;
             }
 
-            case TutorialEventType.MicrobeEditorUndo:
+            case TutorialEventType.EditorUndo:
             {
                 if (ShownCurrently)
                 {

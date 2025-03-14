@@ -7,8 +7,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2025-03-04 13:08+0200\n"
-"PO-Revision-Date: 2025-02-06 13:29+0000\n"
+"POT-Creation-Date: 2025-03-13 10:55+0200\n"
+"PO-Revision-Date: 2025-03-07 10:46+0000\n"
 "Last-Translator: Anonymous <noreply@weblate.org>\n"
 "Language-Team: Czech <https://translate.revolutionarygamesstudio.com/projects/thrive/thrive-game/cs/>\n"
 "Language: cs\n"
@@ -188,6 +188,9 @@ msgstr "Anaerobní fixace dusíku"
 #, fuzzy
 msgid "AND_UNLOCK_CONDITION"
 msgstr "Fyzické podmínky"
+
+msgid "ANISOTROPIC_FILTERING"
+msgstr ""
 
 msgid "APPEARANCE"
 msgstr "Vzhled"
@@ -1605,6 +1608,7 @@ msgstr "Sponzoři Devbuild"
 msgid "DIFFICULTY"
 msgstr "Obtížnost"
 
+#, fuzzy
 msgid "DIFFICULTY_DETAILS_STRING"
 msgstr ""
 "Přednastavená obtížnost: {0}\n"
@@ -1875,6 +1879,15 @@ msgstr ""
 "Tato záložka pro vás má změny, které se udály v prostředí, ve kterém právě jste. Zkuste využít všechny nástroje, které máte k dispozici, abyste se naučili více o událostech ve vašem světě!\n"
 "\n"
 "Až budete chtít pokračovat, zmáčkněte tlačítko \"Další\" v pravém dolním rohu."
+
+#, fuzzy
+msgid "EDITOR_TUTORIAL_MICROBE_EDITOR_NUCLEUS"
+msgstr ""
+"Toto je editor buněk, kde můžete vyvinout svůj druh utrácením mutačních bodů (MP). Při každé nové generaci vždy začínáte se 100 MP na utracení, takže nemá cenu šetřit!\n"
+"\n"
+"Hex uprostřed obrazovky je vaše buňka, která se skládá z jedné cytoplazmy.\n"
+"\n"
+"Abyste pokračovali, vyberte jednu s částí v levém panelu. Poté ho umístíte vedle hexu kliknutím levého tlačítka myši. Můžete s částmi otáčet pomocí [thrive:input]e_rotate_left[/thrive:input] a [thrive:input]e_rotate_right[/thrive:input]."
 
 #, fuzzy
 msgid "EFFECTIVE_VALUE"
@@ -2882,8 +2895,9 @@ msgstr ""
 msgid "IRON"
 msgstr "Železo"
 
-msgid "IRON_CHEMOLITHOAUTOTROPHY"
-msgstr "Chemolithoautotrofie železa"
+#, fuzzy
+msgid "IRON_OXIDATION"
+msgstr "Příspěvky"
 
 #, fuzzy
 msgid "ITCH_TOOLTIP"
@@ -3098,6 +3112,10 @@ msgstr "Na překladu do tohoto jazyku se ještě pracuje ({0} hotovo)"
 
 msgid "LANGUAGE_TRANSLATION_PROGRESS_REALLY_LOW"
 msgstr "Tento překlad není kompletní ({0}% dokončeno) prosím, pomozte nám s ním!"
+
+#, fuzzy
+msgid "LARGE_SULFUR_CHUNK"
+msgstr "Malý kus železa"
 
 msgid "LAST_ORGANELLE_DELETE_OPTION_DISABLED_TOOLTIP"
 msgstr "Nelze smazat poslední organelu"
@@ -4350,8 +4368,16 @@ msgstr "Nic zde není"
 msgid "NOTHING_TO_INTERACT_WITH"
 msgstr ""
 
+#, fuzzy
+msgid "NOTICE_BINDING_OUT_OF_ATP"
+msgstr "Poškozeno, kvůli nedostatku ATP"
+
 msgid "NOTICE_DAMAGED_BY_NO_ATP"
 msgstr "Poškozeno, kvůli nedostatku ATP"
+
+#, fuzzy
+msgid "NOTICE_ENGULFING_OUT_OF_ATP"
+msgstr "Velikost buňky je moc malá pro pohlcení cíle"
 
 #, fuzzy
 msgid "NOTICE_ENGULF_DAMAGE_FROM_TOXIN"
@@ -4734,9 +4760,6 @@ msgstr "Posuň se doprava"
 
 msgid "PAN_CAMERA_UP"
 msgstr "Posuň se nahoru"
-
-msgid "PASSIVE_REPRODUCTION_PROGRESS"
-msgstr "Pasivní příjem pokroku reprodukce"
 
 msgid "PASSIVE_REPRODUCTION_PROGRESS_EXPLANATION"
 msgstr "(pasivní příjem reprodukčních sloučenin z prostředí bez toho aniž byste něco museli dělat)"
@@ -5561,6 +5584,9 @@ msgstr "Oxid křemičitý"
 
 msgid "SILICA_MEMBRANE_DESCRIPTION"
 msgstr "Tato membrána má silnou křemičitou stěnu. Dokáže dobře odolat celkovému poškození a je velmi odolný proti fyzickému poškození. Pro udržení své formy vyžaduje také méně energie. Avšak velice zpomaluje buňku a buňka absorbuje zdroje sníženou rychlostí."
+
+msgid "SIXTEEN_TIMES"
+msgstr "16x"
 
 msgid "SIZE_COLON"
 msgstr "Velikost:"
@@ -8805,6 +8831,12 @@ msgstr "Přiblížit"
 msgid "ZOOM_OUT"
 msgstr "Oddálit"
 
+#~ msgid "IRON_CHEMOLITHOAUTOTROPHY"
+#~ msgstr "Chemolithoautotrofie železa"
+
+#~ msgid "PASSIVE_REPRODUCTION_PROGRESS"
+#~ msgstr "Pasivní příjem pokroku reprodukce"
+
 #, fuzzy
 #~ msgid "MIGRATE"
 #~ msgstr "Tempo"
@@ -9156,9 +9188,6 @@ msgstr "Oddálit"
 
 #~ msgid "GLES2"
 #~ msgstr "GLES2"
-
-#~ msgid "SIXTEEN_TIMES"
-#~ msgstr "16x"
 
 #, fuzzy
 #~ msgid "TARGET_TIME"

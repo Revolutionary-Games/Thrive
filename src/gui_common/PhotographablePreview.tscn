@@ -1,7 +1,7 @@
 [gd_scene load_steps=3 format=3 uid="uid://b5cbn7afnas1x"]
 
 [ext_resource type="Texture2D" uid="uid://b7x2tfj1vvsqt" path="res://assets/textures/gui/bevel/IconGenerating.png" id="1"]
-[ext_resource type="Script" path="res://src/gui_common/PhotographablePreview.cs" id="1_v7pft"]
+[ext_resource type="Script" uid="uid://df1en3n02hlpx" path="res://src/gui_common/PhotographablePreview.cs" id="1_v7pft"]
 
 [node name="PhotographablePreview" type="Control" node_paths=PackedStringArray("textureRect")]
 custom_minimum_size = Vector2(50, 50)

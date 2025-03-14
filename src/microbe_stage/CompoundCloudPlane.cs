@@ -14,7 +14,7 @@ using Vector4 = System.Numerics.Vector4;
 ///   (can be repositioned as the player moves)
 /// </summary>
 [SceneLoadedClass("res://src/microbe_stage/CompoundCloudPlane.tscn", UsesEarlyResolve = false)]
-public partial class CompoundCloudPlane : CsgMesh3D, ISaveLoadedTracked
+public partial class CompoundCloudPlane : MeshInstance3D, ISaveLoadedTracked
 {
     /// <summary>
     ///   The current densities of compounds. This uses custom writing so this is ignored.
@@ -124,7 +124,7 @@ public partial class CompoundCloudPlane : CsgMesh3D, ISaveLoadedTracked
             cloud3Definition?.DecayRate ?? 1.0f, cloud4Definition?.DecayRate ?? 1.0f);
 
         // Setup colours
-        var material = (ShaderMaterial)Material;
+        var material = (ShaderMaterial)MaterialOverride;
 
         material.SetShaderParameter("colour1", cloud1Definition.Colour);
 
@@ -272,49 +272,48 @@ public partial class CompoundCloudPlane : CsgMesh3D, ISaveLoadedTracked
     {
         // The diffusion rate seems to have a bigger effect
         delta *= 100.0f;
-        var pos = new Vector2(cachedWorldPosition.X, cachedWorldPosition.Z);
 
         if (position.X != 0)
         {
-            PartialAdvectEdges(0, 0, Constants.CLOUD_EDGE_WIDTH / 2, Size, delta, pos);
+            PartialAdvectEdges(0, 0, Constants.CLOUD_EDGE_WIDTH / 2, Size, delta);
             PartialAdvectEdges(Size - Constants.CLOUD_EDGE_WIDTH / 2, 0, Constants.CLOUD_EDGE_WIDTH / 2,
-                Size, delta, pos);
+                Size, delta);
         }
 
         if (position.X != 1)
         {
             PartialAdvectEdges(Size / Constants.CLOUD_SQUARES_PER_SIDE - Constants.CLOUD_EDGE_WIDTH / 2,
-                0, Constants.CLOUD_EDGE_WIDTH, Size, delta, pos);
+                0, Constants.CLOUD_EDGE_WIDTH, Size, delta);
         }
 
         if (position.X != 2)
         {
             PartialAdvectEdges(2 * Size / Constants.CLOUD_SQUARES_PER_SIDE - Constants.CLOUD_EDGE_WIDTH / 2,
-                0, Constants.CLOUD_EDGE_WIDTH, Size, delta, pos);
+                0, Constants.CLOUD_EDGE_WIDTH, Size, delta);
         }
 
         if (position.Y != 0)
         {
             PartialAdvectEdges(Constants.CLOUD_EDGE_WIDTH / 2, 0,
                 Size / Constants.CLOUD_SQUARES_PER_SIDE - Constants.CLOUD_EDGE_WIDTH,
-                Constants.CLOUD_EDGE_WIDTH / 2, delta, pos);
+                Constants.CLOUD_EDGE_WIDTH / 2, delta);
             PartialAdvectEdges(Constants.CLOUD_EDGE_WIDTH / 2, Size - Constants.CLOUD_EDGE_WIDTH / 2,
                 Size / Constants.CLOUD_SQUARES_PER_SIDE - Constants.CLOUD_EDGE_WIDTH,
-                Constants.CLOUD_EDGE_WIDTH / 2, delta, pos);
+                Constants.CLOUD_EDGE_WIDTH / 2, delta);
             PartialAdvectEdges(Size / Constants.CLOUD_SQUARES_PER_SIDE + Constants.CLOUD_EDGE_WIDTH / 2,
                 0, Size / Constants.CLOUD_SQUARES_PER_SIDE - Constants.CLOUD_EDGE_WIDTH,
-                Constants.CLOUD_EDGE_WIDTH / 2, delta, pos);
+                Constants.CLOUD_EDGE_WIDTH / 2, delta);
             PartialAdvectEdges(Size / Constants.CLOUD_SQUARES_PER_SIDE + Constants.CLOUD_EDGE_WIDTH / 2,
                 Size - Constants.CLOUD_EDGE_WIDTH / 2,
                 Size / Constants.CLOUD_SQUARES_PER_SIDE - Constants.CLOUD_EDGE_WIDTH,
-                Constants.CLOUD_EDGE_WIDTH / 2, delta, pos);
+                Constants.CLOUD_EDGE_WIDTH / 2, delta);
             PartialAdvectEdges(2 * Size / Constants.CLOUD_SQUARES_PER_SIDE + Constants.CLOUD_EDGE_WIDTH / 2,
                 0, Size / Constants.CLOUD_SQUARES_PER_SIDE - Constants.CLOUD_EDGE_WIDTH,
-                Constants.CLOUD_EDGE_WIDTH / 2, delta, pos);
+                Constants.CLOUD_EDGE_WIDTH / 2, delta);
             PartialAdvectEdges(2 * Size / Constants.CLOUD_SQUARES_PER_SIDE + Constants.CLOUD_EDGE_WIDTH / 2,
                 Size - Constants.CLOUD_EDGE_WIDTH / 2,
                 Size / Constants.CLOUD_SQUARES_PER_SIDE - Constants.CLOUD_EDGE_WIDTH,
-                Constants.CLOUD_EDGE_WIDTH / 2, delta, pos);
+                Constants.CLOUD_EDGE_WIDTH / 2, delta);
         }
 
         if (position.Y != 1)
@@ -322,15 +321,15 @@ public partial class CompoundCloudPlane : CsgMesh3D, ISaveLoadedTracked
             PartialAdvectEdges(Constants.CLOUD_EDGE_WIDTH / 2,
                 Size / Constants.CLOUD_SQUARES_PER_SIDE - Constants.CLOUD_EDGE_WIDTH / 2,
                 Size / Constants.CLOUD_SQUARES_PER_SIDE - Constants.CLOUD_EDGE_WIDTH,
-                Constants.CLOUD_EDGE_WIDTH, delta, pos);
+                Constants.CLOUD_EDGE_WIDTH, delta);
             PartialAdvectEdges(Size / Constants.CLOUD_SQUARES_PER_SIDE + Constants.CLOUD_EDGE_WIDTH / 2,
                 Size / Constants.CLOUD_SQUARES_PER_SIDE - Constants.CLOUD_EDGE_WIDTH / 2,
                 Size / Constants.CLOUD_SQUARES_PER_SIDE - Constants.CLOUD_EDGE_WIDTH,
-                Constants.CLOUD_EDGE_WIDTH, delta, pos);
+                Constants.CLOUD_EDGE_WIDTH, delta);
             PartialAdvectEdges(2 * Size / Constants.CLOUD_SQUARES_PER_SIDE + Constants.CLOUD_EDGE_WIDTH / 2,
                 Size / Constants.CLOUD_SQUARES_PER_SIDE - Constants.CLOUD_EDGE_WIDTH / 2,
                 Size / Constants.CLOUD_SQUARES_PER_SIDE - Constants.CLOUD_EDGE_WIDTH,
-                Constants.CLOUD_EDGE_WIDTH, delta, pos);
+                Constants.CLOUD_EDGE_WIDTH, delta);
         }
 
         if (position.Y != 2)
@@ -338,16 +337,16 @@ public partial class CompoundCloudPlane : CsgMesh3D, ISaveLoadedTracked
             PartialAdvectEdges(Constants.CLOUD_EDGE_WIDTH / 2,
                 2 * Size / Constants.CLOUD_SQUARES_PER_SIDE - Constants.CLOUD_EDGE_WIDTH / 2,
                 Size / Constants.CLOUD_SQUARES_PER_SIDE - Constants.CLOUD_EDGE_WIDTH,
-                Constants.CLOUD_EDGE_WIDTH, delta, pos);
+                Constants.CLOUD_EDGE_WIDTH, delta);
             PartialAdvectEdges(Size / Constants.CLOUD_SQUARES_PER_SIDE + Constants.CLOUD_EDGE_WIDTH / 2,
                 Constants.CLOUD_EDGE_WIDTH * Size / Constants.CLOUD_SQUARES_PER_SIDE
                 - Constants.CLOUD_EDGE_WIDTH / 2,
                 Size / Constants.CLOUD_SQUARES_PER_SIDE - Constants.CLOUD_EDGE_WIDTH,
-                Constants.CLOUD_EDGE_WIDTH, delta, pos);
+                Constants.CLOUD_EDGE_WIDTH, delta);
             PartialAdvectEdges(2 * Size / Constants.CLOUD_SQUARES_PER_SIDE + Constants.CLOUD_EDGE_WIDTH / 2,
                 2 * Size / Constants.CLOUD_SQUARES_PER_SIDE - Constants.CLOUD_EDGE_WIDTH / 2,
                 Size / Constants.CLOUD_SQUARES_PER_SIDE - Constants.CLOUD_EDGE_WIDTH,
-                Constants.CLOUD_EDGE_WIDTH, delta, pos);
+                Constants.CLOUD_EDGE_WIDTH, delta);
         }
     }
 
@@ -358,7 +357,6 @@ public partial class CompoundCloudPlane : CsgMesh3D, ISaveLoadedTracked
     {
         // The diffusion rate seems to have a bigger effect
         delta *= 100.0f;
-        var pos = new Vector2(cachedWorldPosition.X, cachedWorldPosition.Z);
 
         for (int i = 0; i < Constants.CLOUD_SQUARES_PER_SIDE; ++i)
         {
@@ -372,7 +370,7 @@ public partial class CompoundCloudPlane : CsgMesh3D, ISaveLoadedTracked
                     y0 * Size / Constants.CLOUD_SQUARES_PER_SIDE,
                     Size / Constants.CLOUD_SQUARES_PER_SIDE,
                     Size / Constants.CLOUD_SQUARES_PER_SIDE,
-                    delta, pos));
+                    delta));
                 queue.Add(task);
             }
         }
@@ -802,7 +800,7 @@ public partial class CompoundCloudPlane : CsgMesh3D, ISaveLoadedTracked
 
     public void SetBrightness(float brightness)
     {
-        var material = (ShaderMaterial)Material;
+        var material = (ShaderMaterial)MaterialOverride;
         material.SetShaderParameter(brightnessParameterName, brightness);
     }
 
@@ -888,15 +886,20 @@ public partial class CompoundCloudPlane : CsgMesh3D, ISaveLoadedTracked
         }
     }
 
-    private void PartialAdvectCenter(int x0, int y0, int width, int height, float delta, Vector2 pos)
+    private void PartialAdvectCenter(int x0, int y0, int width, int height, float delta)
     {
+        // Reading to a local variable to avoid some calls to the getter
+        var resolution = Resolution;
+
+        var worldPos = ConvertToWorld(0, 0);
         for (int x = x0; x < x0 + width; ++x)
         {
             for (int y = y0; y < y0 + height; ++y)
             {
                 if (OldDensity[x, y].LengthSquared() > 1)
                 {
-                    var velocity = fluidSystem!.VelocityAt(pos + new Vector2(x, y) * Resolution) * VISCOSITY;
+                    var velocity = fluidSystem!.VelocityAt(
+                        new Vector2(worldPos.X + x * resolution, worldPos.Z + y * resolution)) * VISCOSITY;
 
                     // This is run in parallel, this may not touch the other compound clouds
                     float dx = x + (delta * velocity.X);
@@ -926,15 +929,20 @@ public partial class CompoundCloudPlane : CsgMesh3D, ISaveLoadedTracked
         }
     }
 
-    private void PartialAdvectEdges(int x0, int y0, int width, int height, float delta, Vector2 pos)
+    private void PartialAdvectEdges(int x0, int y0, int width, int height, float delta)
     {
+        // Reading to a local variable to avoid some calls to the getter
+        var resolution = Resolution;
+
+        var worldPos = ConvertToWorld(0, 0);
         for (int x = x0; x < x0 + width; ++x)
         {
             for (int y = y0; y < y0 + height; ++y)
             {
                 if (OldDensity[x, y].LengthSquared() > 1)
                 {
-                    var velocity = fluidSystem!.VelocityAt(pos + new Vector2(x, y) * Resolution) * VISCOSITY;
+                    var velocity = fluidSystem!.VelocityAt(
+                        new Vector2(worldPos.X + x * resolution, worldPos.Z + y * resolution)) * VISCOSITY;
 
                     // This is run in parallel, this may not touch the other compound clouds
                     float dx = x + (delta * velocity.X);
@@ -975,13 +983,13 @@ public partial class CompoundCloudPlane : CsgMesh3D, ISaveLoadedTracked
         }
     }
 
-    private void PartialUpdateCenter(int x0, int y0, int width, int height, float delta, Vector2 pos)
+    private void PartialUpdateCenter(int x0, int y0, int width, int height, float delta)
     {
         PartialDiffuseCenter(x0 + Constants.CLOUD_EDGE_WIDTH / 2, y0 + Constants.CLOUD_EDGE_WIDTH / 2, width
             - Constants.CLOUD_EDGE_WIDTH, height - Constants.CLOUD_EDGE_WIDTH, delta);
         PartialClearDensity(x0, y0, width, height);
         PartialAdvectCenter(x0 + Constants.CLOUD_EDGE_WIDTH / 2, y0 + Constants.CLOUD_EDGE_WIDTH / 2, width
-            - Constants.CLOUD_EDGE_WIDTH, height - Constants.CLOUD_EDGE_WIDTH, delta, pos);
+            - Constants.CLOUD_EDGE_WIDTH, height - Constants.CLOUD_EDGE_WIDTH, delta);
     }
 
     private float HackyAddress(ref Vector4 vector, int index)
@@ -1017,13 +1025,13 @@ public partial class CompoundCloudPlane : CsgMesh3D, ISaveLoadedTracked
         image = Image.CreateEmpty(Size, Size, false, Image.Format.Rgba8);
         texture = ImageTexture.CreateFromImage(image);
 
-        var material = (ShaderMaterial)Material;
+        var material = (ShaderMaterial)MaterialOverride;
         material.SetShaderParameter("densities", texture);
     }
 
     private void SetMaterialUVForPosition()
     {
-        var material = (ShaderMaterial)Material;
+        var material = (ShaderMaterial)MaterialOverride;
 
         // No clue how this math ends up with the right UV offsets - hhyyrylainen
         material.SetShaderParameter(uvOffsetParameterName, new Vector2(
