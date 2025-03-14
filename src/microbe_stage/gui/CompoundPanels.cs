@@ -214,7 +214,7 @@ public partial class CompoundPanels : BarPanelBase
             {
                 if (ShowAgents)
                 {
-                    // the "ShowAgents" animation isn't working correctly for some reason
+                    // TODO: Fix "ShowAgents" animation
                     panelHideAnimationPlayer.Play("ShowBoth");
                     currentCompoundsState = true;
                     currentAgentsState = true;
