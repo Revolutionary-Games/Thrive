@@ -1,13 +1,14 @@
-[gd_scene load_steps=13 format=3 uid="uid://jgcbwcrqbblv"]
+[gd_scene load_steps=14 format=3 uid="uid://jgcbwcrqbblv"]
 
-[ext_resource type="Script" uid="uid://bs82n6jeyxhg6" path="res://src/microbe_stage/Membrane.cs" id="1"]
-[ext_resource type="Shader" uid="uid://c10kaqsum34o" path="res://shaders/Membrane.gdshader" id="2"]
+[ext_resource type="Script" uid="uid://cfo6vubwh8xay" path="res://src/microbe_stage/Membrane.cs" id="1"]
+[ext_resource type="Shader" uid="uid://n5en0070niam" path="res://shaders/Membrane.gdshader" id="2"]
 [ext_resource type="Texture2D" uid="uid://c4abs1j47umma" path="res://assets/textures/SingleMembrane.png" id="3_mj630"]
 [ext_resource type="Texture2D" uid="uid://dnxx08njuvfha" path="res://assets/textures/SingleMembraneDamaged.png" id="4_yioiy"]
 [ext_resource type="Texture2D" uid="uid://baxuoyeo83r2u" path="res://assets/textures/dissolve_noise.tres" id="5"]
-[ext_resource type="Shader" uid="uid://buhqlk4dv4wy4" path="res://shaders/EngulfEffect.gdshader" id="6_vljlr"]
+[ext_resource type="Shader" uid="uid://c331kb4yta46" path="res://shaders/EngulfEffect.gdshader" id="6_vljlr"]
 [ext_resource type="Texture2D" uid="uid://bvxwsysj3kj2j" path="res://assets/textures/MembraneNormals.png" id="6_wjsrx"]
-[ext_resource type="Shader" uid="uid://duvkpd0301bv0" path="res://shaders/MucocystEffect.gdshader" id="7_grw0d"]
+[ext_resource type="Shader" uid="uid://djouei06equ3y" path="res://shaders/MucocystEffect.gdshader" id="7_grw0d"]
+[ext_resource type="Script" uid="uid://h7vrv62tr4sx" path="res://src/microbe_stage/MembraneWaterRipple.cs" id="9_water"]
 
 [sub_resource type="BoxMesh" id="1"]
 size = Vector3(2, 0.539, 2)
@@ -25,6 +26,10 @@ shader_parameter/dissolveTexture = ExtResource("5")
 shader_parameter/dissolveValue = 0.0
 shader_parameter/healthFraction = 0.25
 shader_parameter/tint = Color(1, 1, 1, 1)
+shader_parameter/water_time = 0.0
+shader_parameter/water_strength = 0.03
+shader_parameter/water_wiggle = 1.0
+shader_parameter/water_color = Color(0, 0.3, 0.6, 0.4)
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_p8cmc"]
 resource_local_to_scene = true
@@ -62,3 +67,6 @@ visible = false
 
 [node name="MucocystMesh" type="MeshInstance3D" parent="."]
 visible = false
+
+[node name="WaterRipple" type="Node" parent="."]
+script = ExtResource("9_water")
