@@ -37,6 +37,9 @@ public partial class MicrobeStage : CreatureStageBase<Entity, MicrobeWorldSimula
     [Export]
     private FluidCurrentDisplay fluidCurrentDisplay = null!;
 
+    [Export]
+    private MovementModeSelectionPopup movementModeSelectionPopup = null!;
+
     private MicrobeTutorialGUI tutorialGUI = null!;
     private GuidanceLine guidanceLine = null!;
 #pragma warning restore CA2213
@@ -55,6 +58,9 @@ public partial class MicrobeStage : CreatureStageBase<Entity, MicrobeWorldSimula
 
     [JsonProperty]
     private bool wonOnce;
+
+    [JsonProperty]
+    private double movementModeShowTimer;
 
     /// <summary>
     ///   Used to give increasing numbers to player offspring to know which is the latest
@@ -224,6 +230,8 @@ public partial class MicrobeStage : CreatureStageBase<Entity, MicrobeWorldSimula
             {
                 GD.PrintErr("Can't read player position: " + e);
             }
+
+            HandleMovementModePrompt(delta);
         }
 
         bool playerAlive = HasAlivePlayer;
@@ -1194,6 +1202,36 @@ public partial class MicrobeStage : CreatureStageBase<Entity, MicrobeWorldSimula
         if (!HasPlayer)
         {
             GD.Print("Loaded game doesn't have a currently alive player");
+        }
+    }
+
+    /// <summary>
+    ///   Handles showing a movement mode selection prompt when using the keyboard as that seems to be a pretty
+    ///   common complaint of many new Thrive players that they can't find the movement mode and change it
+    /// </summary>
+    /// <param name="delta">Process delta time</param>
+    private void HandleMovementModePrompt(double delta)
+    {
+        if (KeyPromptHelper.InputMethod != ActiveInputMethod.Keyboard)
+            return;
+
+        var previous = movementModeShowTimer;
+        movementModeShowTimer += delta;
+
+        // Trigger movement mode selection prompt just once
+        if (previous < Constants.MOVEMENT_MODE_SELECTION_DELAY &&
+            movementModeShowTimer >= Constants.MOVEMENT_MODE_SELECTION_DELAY)
+        {
+            // But only if it hasn't been permanently dismissed
+            if (!Settings.Instance.IsNoticePermanentlyDismissed(DismissibleNotice.MicrobeMovementMode))
+            {
+                GD.Print("Showing movement mode selection prompt");
+                movementModeSelectionPopup.ShowSelection();
+            }
+            else
+            {
+                GD.Print("Movement mode selection notice permanently dismissed");
+            }
         }
     }
 
