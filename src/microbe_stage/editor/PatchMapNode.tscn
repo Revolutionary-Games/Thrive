@@ -27,7 +27,7 @@ corner_radius_top_right = 5
 corner_radius_bottom_right = 5
 corner_radius_bottom_left = 5
 
-[node name="PatchMapNode" type="MarginContainer" node_paths=PackedStringArray("eruptionEventIndicator", "glaciationEventIndicator")]
+[node name="PatchMapNode" type="MarginContainer" node_paths=PackedStringArray("eruptionEventIndicator", "glaciationEventIndicator", "meteorStrikeEventIndicator")]
 custom_minimum_size = Vector2(64, 64)
 offset_right = 64.0
 offset_bottom = 64.0
@@ -41,6 +41,7 @@ UnknownLabelPath = NodePath("MarginContainer/MarginContainer/UnknownLabel")
 UnknownTextureFilePath = "res://assets/textures/gui/bevel/PatchAbyss.svg"
 eruptionEventIndicator = NodePath("EventIcons/Eruption")
 glaciationEventIndicator = NodePath("EventIcons/GlobalGlaciation")
+meteorStrikeEventIndicator = NodePath("EventIcons/MeteorStrike")
 
 [node name="AdjacentToHighlight" type="Panel" parent="."]
 visible = false
@@ -112,6 +113,16 @@ layout_mode = 2
 tooltip_text = "GLOBAL_GLACIATION_EVENT_TOOLTIP"
 mouse_filter = 0
 texture = ExtResource("5_0vro7")
+expand_mode = 2
+stretch_mode = 4
+
+[node name="MeteorStrike" type="TextureRect" parent="EventIcons"]
+visible = false
+custom_minimum_size = Vector2(16, 16)
+layout_mode = 2
+tooltip_text = "EVENT_ERUPTION_TOOLTIP"
+mouse_filter = 0
+texture = ExtResource("4_t22aw")
 expand_mode = 2
 stretch_mode = 4
 

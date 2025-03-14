@@ -44,6 +44,9 @@ public partial class PatchMapNode : MarginContainer
     [Export]
     private TextureRect glaciationEventIndicator = null!;
 
+    [Export]
+    private TextureRect meteorStrikeEventIndicator = null!;
+
     private TextureRect? iconRect;
     private Panel? highlightPanel;
     private Panel? markPanel;
@@ -280,6 +283,7 @@ public partial class PatchMapNode : MarginContainer
     {
         eruptionEventIndicator.Visible = false;
         glaciationEventIndicator.Visible = false;
+        meteorStrikeEventIndicator.Visible = false;
 
         var count = list.Count;
 
@@ -294,6 +298,9 @@ public partial class PatchMapNode : MarginContainer
                     break;
                 case WorldEffectVisuals.GlobalGlaciation:
                     glaciationEventIndicator.Visible = true;
+                    break;
+                case WorldEffectVisuals.MeteorImpact:
+                    meteorStrikeEventIndicator.Visible = true;
                     break;
                 default:
                     GD.PrintErr($"Unknown event to display on patch map node: {list[i]}");

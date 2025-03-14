@@ -186,11 +186,14 @@ public class GlobalGlaciationEvent : IWorldEffect
             return;
         }
 
-        currentTemperature.Ambient = random.Next(0, 5);
-        currentSunlight.Ambient = 0.5f;
+        if (patch.BiomeType != BiomeType.IceShelf)
+        {
+            currentSunlight.Ambient *= Constants.GLOBAL_GLACIATION_SUNLIGHT_MULTIPLICATION;
+            patch.Biome.ModifyLongTermCondition(Compound.Sunlight, currentSunlight);
+        }
 
+        currentTemperature.Ambient = random.Next(0, 5);
         patch.Biome.ModifyLongTermCondition(Compound.Temperature, currentTemperature);
-        patch.Biome.ModifyLongTermCondition(Compound.Sunlight, currentSunlight);
     }
 
     /// <summary>
@@ -267,11 +270,22 @@ public class GlobalGlaciationEvent : IWorldEffect
 
     private void ResetEnvironment(Patch patch, PatchSnapshot patchSnapshot)
     {
-        var previousTemperature = patchSnapshot.Biome.ChangeableCompounds[Compound.Temperature];
-        var previousSunlight = patchSnapshot.Biome.ChangeableCompounds[Compound.Sunlight];
+        if (patch.BiomeType != BiomeType.IceShelf)
+        {
+            bool hasSunlight = patch.Biome.ChangeableCompounds.TryGetValue(Compound.Sunlight, out var currentSunlight);
 
+            if (!hasSunlight)
+            {
+                GD.PrintErr("Glaciation event encountered patch with unexpectedly no sunlight");
+                return;
+            }
+
+            currentSunlight.Ambient /= Constants.GLOBAL_GLACIATION_SUNLIGHT_MULTIPLICATION;
+            patch.Biome.ModifyLongTermCondition(Compound.Sunlight, currentSunlight);
+        }
+
+        var previousTemperature = patchSnapshot.Biome.ChangeableCompounds[Compound.Temperature];
         patch.Biome.ModifyLongTermCondition(Compound.Temperature, previousTemperature);
-        patch.Biome.ModifyLongTermCondition(Compound.Sunlight, previousSunlight);
     }
 
     private void RemoveChunks(Patch patch)

@@ -7,4 +7,5 @@
 
     UnderwaterVentEruption,
     GlobalGlaciation,
+    MeteorImpact,
 }
