@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2025-02-28 12:07+0200\n"
+"POT-Creation-Date: 2025-03-14 11:08+0200\n"
 "PO-Revision-Date: 2025-02-06 13:29+0000\n"
 "Last-Translator: Anonymous <noreply@weblate.org>\n"
 "Language-Team: Slovak <https://translate.revolutionarygamesstudio.com/projects/thrive/thrive-game/sk/>\n"
@@ -188,6 +188,9 @@ msgstr "Anaeróbna fixácia dusíka"
 #, fuzzy
 msgid "AND_UNLOCK_CONDITION"
 msgstr "Fyzické podmienky"
+
+msgid "ANISOTROPIC_FILTERING"
+msgstr ""
 
 msgid "APPEARANCE"
 msgstr "Vzhľad"
@@ -1763,6 +1766,14 @@ msgstr ""
 msgid "EDITOR_TUTORIAL_EDITOR_TEXT"
 msgstr ""
 
+#, fuzzy
+msgid "EDITOR_TUTORIAL_MICROBE_EDITOR_NUCLEUS"
+msgstr "Záporná bilancia ATP"
+
+#, fuzzy
+msgid "EFFECTIVE_VALUE"
+msgstr "{0}%"
+
 msgid "EIGHT_TIMES"
 msgstr "8x"
 
@@ -2728,8 +2739,9 @@ msgstr ""
 msgid "IRON"
 msgstr "Železo"
 
-msgid "IRON_CHEMOLITHOAUTOTROPHY"
-msgstr "Chemolitoautotrofia železa"
+#, fuzzy
+msgid "IRON_OXIDATION"
+msgstr "Príspevky"
 
 #, fuzzy
 msgid "ITCH_TOOLTIP"
@@ -2763,8 +2775,9 @@ msgstr "Júl"
 msgid "JUNE"
 msgstr "Jún"
 
-msgid "KEEP_CURRENT_FLEXIBILITY"
-msgstr ""
+#, fuzzy
+msgid "KEEP_CURRENT_SHORT"
+msgstr "Súčasní vývojári"
 
 #, fuzzy
 msgid "KEEP_CURRENT_TOLERANCE_FLEXIBILITY_TOOLTIP"
@@ -2941,6 +2954,10 @@ msgstr "Na preklade tohto jazyka sa ešte pracuje ({0}% hotovo)"
 
 msgid "LANGUAGE_TRANSLATION_PROGRESS_REALLY_LOW"
 msgstr "Tento preklad nie je dokončený ({0}% hotovo) prosím pomôž nám s ním!"
+
+#, fuzzy
+msgid "LARGE_SULFUR_CHUNK"
+msgstr "Malý kus železa"
 
 #, fuzzy
 msgid "LAST_ORGANELLE_DELETE_OPTION_DISABLED_TOOLTIP"
@@ -4069,7 +4086,14 @@ msgstr "Tu nič nie je"
 msgid "NOTHING_TO_INTERACT_WITH"
 msgstr ""
 
+#, fuzzy
+msgid "NOTICE_BINDING_OUT_OF_ATP"
+msgstr "Prepnúť spájanie"
+
 msgid "NOTICE_DAMAGED_BY_NO_ATP"
+msgstr ""
+
+msgid "NOTICE_ENGULFING_OUT_OF_ATP"
 msgstr ""
 
 msgid "NOTICE_ENGULF_DAMAGE_FROM_TOXIN"
@@ -4450,10 +4474,6 @@ msgid "PAN_CAMERA_UP"
 msgstr "Pohyb kamery nahor"
 
 #, fuzzy
-msgid "PASSIVE_REPRODUCTION_PROGRESS"
-msgstr "(rýchlosť, akou druhy AI mutujú)"
-
-#, fuzzy
 msgid "PASSIVE_REPRODUCTION_PROGRESS_EXPLANATION"
 msgstr "(rýchlosť, akou druhy AI mutujú)"
 
@@ -4710,6 +4730,10 @@ msgstr "Protoplazma"
 
 msgid "PULL_REQUESTS_PROGRAMMING"
 msgstr "Externí programátori"
+
+#, fuzzy
+msgid "QUADRILLION_ABBREVIATION"
+msgstr "{0} mld"
 
 msgid "QUICK_LOAD"
 msgstr "Rýchle načítanie"
@@ -5268,6 +5292,9 @@ msgstr "Oxid kremičitý"
 
 msgid "SILICA_MEMBRANE_DESCRIPTION"
 msgstr ""
+
+msgid "SIXTEEN_TIMES"
+msgstr "16x"
 
 msgid "SIZE_COLON"
 msgstr "Veľkosť:"
@@ -5904,6 +5931,10 @@ msgstr "{0}: +{1} ATP"
 msgid "TOLERANCES_UNSUITABLE_DEBUFFS"
 msgstr ""
 
+#, fuzzy
+msgid "TOLERANCE_FROM_ORGANELLES_TOOLTIP"
+msgstr "Zobraziť / skryť prostredie a zlúčeniny"
+
 msgid "TOLERANCE_RANGE_LABEL"
 msgstr ""
 
@@ -6021,6 +6052,10 @@ msgstr "Prekladatelia"
 
 msgid "TRANSPARENCY"
 msgstr "Priehľadnosť"
+
+#, fuzzy
+msgid "TRILLION_ABBREVIATION"
+msgstr "{0} mld"
 
 #, fuzzy
 msgid "TRY_FOSSILISING_SOME_SPECIES"
@@ -8214,6 +8249,28 @@ msgstr ""
 msgid "WORLD_RELATIVE_MOVEMENT"
 msgstr "Základný pohyb"
 
+#, fuzzy
+msgid "WORLD_SIZE"
+msgstr "Súčasní vývojári"
+
+#, fuzzy
+msgid "WORLD_SIZE_EXPLANATION"
+msgstr "(začiatočná poloha)"
+
+msgid "WORLD_SIZE_LARGE"
+msgstr ""
+
+#, fuzzy
+msgid "WORLD_SIZE_MEDIUM"
+msgstr "Základný pohyb"
+
+msgid "WORLD_SIZE_SMALL"
+msgstr ""
+
+#, fuzzy
+msgid "WORLD_SIZE_TOOLTIP"
+msgstr "Uplynulý čas: {0:#,#} rokov"
+
 msgid "WORST_PATCH_COLON"
 msgstr "Najhoršia oblasť:"
 
@@ -8253,6 +8310,13 @@ msgstr "Priblížiť"
 
 msgid "ZOOM_OUT"
 msgstr "Oddialiť"
+
+#~ msgid "IRON_CHEMOLITHOAUTOTROPHY"
+#~ msgstr "Chemolitoautotrofia železa"
+
+#, fuzzy
+#~ msgid "PASSIVE_REPRODUCTION_PROGRESS"
+#~ msgstr "(rýchlosť, akou druhy AI mutujú)"
 
 #, fuzzy
 #~ msgid "THANKS_FOR_BUYING_THRIVE"
@@ -8544,9 +8608,6 @@ msgstr "Oddialiť"
 
 #~ msgid "UNKNOWN_ON_WINDOWS"
 #~ msgstr "Neznáme na Windowse"
-
-#~ msgid "SIXTEEN_TIMES"
-#~ msgstr "16x"
 
 #, fuzzy
 #~ msgid "TARGET_TIME"

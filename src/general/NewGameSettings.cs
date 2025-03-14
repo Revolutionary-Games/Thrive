@@ -106,9 +106,6 @@ public partial class NewGameSettings : ControlWithInput
     public NodePath FreeGlucoseCloudButtonPath = null!;
 
     [Export]
-    public NodePath PassiveReproductionButtonPath = null!;
-
-    [Export]
     public NodePath LimitGrowthRateButtonPath = null!;
 
     [Export]
@@ -202,7 +199,6 @@ public partial class NewGameSettings : ControlWithInput
     private OptionButton reproductionCompoundsDropdown = null!;
 
     private Button freeGlucoseCloudButton = null!;
-    private Button passiveReproductionButton = null!;
 
     [Export]
     private Button switchSpeciesOnExtinctionButton = null!;
@@ -221,6 +217,9 @@ public partial class NewGameSettings : ControlWithInput
     private VBoxContainer dayLengthContainer = null!;
     private LineEdit gameSeed = null!;
     private LineEdit gameSeedAdvanced = null!;
+
+    [Export]
+    private OptionButton worldSizeButton = null!;
 
     // Misc controls
     private Button includeMulticellularButton = null!;
@@ -303,7 +302,6 @@ public partial class NewGameSettings : ControlWithInput
         fogOfWarModeDropdown = GetNode<OptionButton>(FogOfWarModeDropdownPath);
         fogOfWarModeDescription = GetNode<Label>(FogOfWarModeDescriptionPath);
         freeGlucoseCloudButton = GetNode<Button>(FreeGlucoseCloudButtonPath);
-        passiveReproductionButton = GetNode<Button>(PassiveReproductionButtonPath);
         limitGrowthRateButton = GetNode<Button>(LimitGrowthRateButtonPath);
         organelleUnlocksEnabled = GetNode<Button>(OrganelleUnlocksEnabledPath);
         lifeOriginButton = GetNode<OptionButton>(LifeOriginButtonPath);
@@ -439,7 +437,6 @@ public partial class NewGameSettings : ControlWithInput
 
         reproductionCompoundsDropdown.Selected = reproductionIndex;
         freeGlucoseCloudButton.ButtonPressed = difficulty.FreeGlucoseCloud;
-        passiveReproductionButton.ButtonPressed = difficulty.PassiveReproduction;
         switchSpeciesOnExtinctionButton.ButtonPressed = difficulty.SwitchSpeciesOnExtinction;
         limitGrowthRateButton.ButtonPressed = difficulty.LimitGrowthRate;
         organelleUnlocksEnabled.ButtonPressed = difficulty.OrganelleUnlocksEnabled;
@@ -461,6 +458,8 @@ public partial class NewGameSettings : ControlWithInput
         gameSeed.Text = seedText;
         gameSeedAdvanced.Text = seedText;
         SetSeed(seedText);
+
+        worldSizeButton.Selected = (int)settings.WorldSize;
 
         // Always set prototypes to true as the player must have been there to descend
         includeMulticellularButton.ButtonPressed = true;
@@ -524,7 +523,6 @@ public partial class NewGameSettings : ControlWithInput
                 FogOfWarModeDropdownPath.Dispose();
                 FogOfWarModeDescriptionPath.Dispose();
                 FreeGlucoseCloudButtonPath.Dispose();
-                PassiveReproductionButtonPath.Dispose();
                 LimitGrowthRateButtonPath.Dispose();
                 OrganelleUnlocksEnabledPath.Dispose();
                 LifeOriginButtonPath.Dispose();
@@ -636,7 +634,6 @@ public partial class NewGameSettings : ControlWithInput
                 ReproductionCompounds = SelectedReproductionCompounds,
                 FogOfWarMode = (FogOfWarMode)fogOfWarModeDropdown.Selected,
                 FreeGlucoseCloud = freeGlucoseCloudButton.ButtonPressed,
-                PassiveReproduction = passiveReproductionButton.ButtonPressed,
                 SwitchSpeciesOnExtinction = switchSpeciesOnExtinctionButton.ButtonPressed,
                 LimitGrowthRate = limitGrowthRateButton.ButtonPressed,
                 OrganelleUnlocksEnabled = organelleUnlocksEnabled.ButtonPressed,
@@ -656,6 +653,7 @@ public partial class NewGameSettings : ControlWithInput
         settings.DayNightCycleEnabled = dayNightCycleButton.ButtonPressed;
         settings.DayLength = (int)dayLength.Value;
         settings.Seed = latestValidSeed;
+        settings.WorldSize = (WorldGenerationSettings.WorldSizeEnum)worldSizeButton.Selected;
 
         settings.IncludeMulticellular = includeMulticellularButton.ButtonPressed;
         settings.EasterEggs = easterEggsButton.ButtonPressed;
@@ -777,7 +775,6 @@ public partial class NewGameSettings : ControlWithInput
         reproductionCompoundsDropdown.Selected =
             reproductionCompoundsDropdown.GetItemIndex((int)preset.ReproductionCompounds);
         freeGlucoseCloudButton.ButtonPressed = preset.FreeGlucoseCloud;
-        passiveReproductionButton.ButtonPressed = preset.PassiveReproduction;
         switchSpeciesOnExtinctionButton.ButtonPressed = preset.SwitchSpeciesOnExtinction;
         limitGrowthRateButton.ButtonPressed = preset.LimitGrowthRate;
         organelleUnlocksEnabled.ButtonPressed = preset.OrganelleUnlocksEnabled;
@@ -824,9 +821,6 @@ public partial class NewGameSettings : ControlWithInput
                 continue;
 
             if (freeGlucoseCloudButton.ButtonPressed != preset.FreeGlucoseCloud)
-                continue;
-
-            if (passiveReproductionButton.ButtonPressed != preset.PassiveReproduction)
                 continue;
 
             if (switchSpeciesOnExtinctionButton.ButtonPressed != preset.SwitchSpeciesOnExtinction)
@@ -1040,6 +1034,11 @@ public partial class NewGameSettings : ControlWithInput
         gameSeed.Text = seed;
         gameSeedAdvanced.Text = seed;
         SetSeed(seed);
+    }
+
+    private void OnWorldSizeSelected(int index)
+    {
+        _ = index;
     }
 
     private void OnIncludeMulticellularToggled(bool pressed)

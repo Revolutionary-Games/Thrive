@@ -32,5 +32,9 @@ var command: String:
 		return command
 
 
+func update_shortcut(input_event: InputEventKey) -> void:
+	shortcut.set_events([input_event])
+
+
 func _to_string() -> String:
 	return "GdUnitShortcutAction: %s (%s) -> %s" % [GdUnitShortcut.ShortCut.keys()[type], shortcut.get_as_text(), command]

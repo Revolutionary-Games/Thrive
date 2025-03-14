@@ -7,9 +7,9 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2025-02-28 12:07+0200\n"
-"PO-Revision-Date: 2025-02-23 16:13+0000\n"
-"Last-Translator: Teashrock <kajitsu22@gmail.com>\n"
+"POT-Creation-Date: 2025-03-14 11:08+0200\n"
+"PO-Revision-Date: 2025-03-12 14:39+0000\n"
+"Last-Translator: Anonymous <noreply@weblate.org>\n"
 "Language-Team: Russian <https://translate.revolutionarygamesstudio.com/projects/thrive/thrive-game/ru/>\n"
 "Language: ru\n"
 "MIME-Version: 1.0\n"
@@ -189,6 +189,9 @@ msgstr "Анаэробная азотфиксация"
 
 msgid "AND_UNLOCK_CONDITION"
 msgstr "И"
+
+msgid "ANISOTROPIC_FILTERING"
+msgstr ""
 
 msgid "APPEARANCE"
 msgstr "Внешний вид"
@@ -1523,6 +1526,7 @@ msgstr "Devbuild-Спонсоры"
 msgid "DIFFICULTY"
 msgstr "Сложность"
 
+#, fuzzy
 msgid "DIFFICULTY_DETAILS_STRING"
 msgstr ""
 "Заданная сложность: {0}\n"
@@ -1783,6 +1787,19 @@ msgstr ""
 "На этой вкладке представлен список изменений в биоме, в котором вы находитесь. Попробуйте изучить различные инструменты, имеющиеся в вашем распоряжении, чтобы узнать больше о событиях в вашем мире!\n"
 "\n"
 "Когда вы будете готовы, нажмите кнопку \"далее\" в правом нижнем углу, чтобы продолжить."
+
+#, fuzzy
+msgid "EDITOR_TUTORIAL_MICROBE_EDITOR_NUCLEUS"
+msgstr ""
+"Это редактор клеток, в котором вы можете добавлять или удалять органеллы из вашего вида, тратя очки мутации (ОМ). В каждом поколении вам будет доступно 100 ОМ, очки не сохраняются, поэтому не бойтесь тратить!\n"
+"\n"
+"Шестиугольник в центре экрана — это ваша клетка, которая сейчас состоит из одной ячейки цитоплазмы.\n"
+"\n"
+"Чтобы продолжить, выберите органеллу на панели слева. Затем щелкните левой кнопкой мыши чтобы поместить её. Вы можете вращать органеллы кнопками [thrive:input]e_rotate_left[/thrive:input] и [thrive:input]e_rotate_right[/thrive:input]."
+
+#, fuzzy
+msgid "EFFECTIVE_VALUE"
+msgstr "{0}%"
 
 msgid "EIGHT_TIMES"
 msgstr "8x"
@@ -2091,9 +2108,11 @@ msgstr "Этот пункт был усечен из-за слишком бол�
 msgid "FERROPLAST"
 msgstr "Ферропласт"
 
+#, fuzzy
 msgid "FERROPLAST_DESCRIPTION"
 msgstr "Металлическая энергостанция. Феропласт - двойная мембранная структура, заполненная белками и энзимами. Это -- прокариота, что была ассимилирована для использованием эукариотом-хозяином. Она способна сжигать (окислять) [thrive:compound type=\"iron\"][/thrive:compound] из одного химического состояния в другое с куда большей эффективностью, которую можно достичь с помощью рустицианина. Этот процесс, названный [b]Железной Респирацией[/b], испускает большое количество энергии, что клетка-хозяин может использовать в своих целях. Ферропласты нуждаются в [thrive:compound type=\"carbondioxide\"][/thrive:compound] и  для функционирования, и меньшие уровни содержания этого газа в в среде замедлит скорость производства [thrive:compound type=\"atp\"][/thrive:compound]."
 
+#, fuzzy
 msgid "FERROPLAST_PROCESSES_DESCRIPTION"
 msgstr "Превращает [thrive:compound type=\"iron\"][/thrive:compound] в [thrive:compound type=\"atp\"][/thrive:compound]. Количество получаемой энергии прямо зависит от содержания [thrive:compound type=\"carbondioxide\"][/thrive:compound] в окружающей среде. Чем меньше газа -- тем меньше производится [thrive:compound type=\"atp\"][/thrive:compound]."
 
@@ -2370,7 +2389,7 @@ msgid "HEALTH"
 msgstr "Здоровье"
 
 msgid "HEALTH_MODIFIER"
-msgstr ""
+msgstr "Модификатор здоровья"
 
 #, fuzzy
 msgid "HEAT_ACCUMULATION_BAR_TOOLTIP"
@@ -2651,8 +2670,9 @@ msgstr ""
 msgid "IRON"
 msgstr "Железо"
 
-msgid "IRON_CHEMOLITHOAUTOTROPHY"
-msgstr "Железная хемолитоавтотрофия"
+#, fuzzy
+msgid "IRON_OXIDATION"
+msgstr "Пожертвования"
 
 msgid "ITCH_TOOLTIP"
 msgstr "Посетить нашу страницу на itch.io"
@@ -2684,8 +2704,9 @@ msgstr "Июль"
 msgid "JUNE"
 msgstr "Июнь"
 
-msgid "KEEP_CURRENT_FLEXIBILITY"
-msgstr ""
+#, fuzzy
+msgid "KEEP_CURRENT_SHORT"
+msgstr "Текущий мир"
 
 #, fuzzy
 msgid "KEEP_CURRENT_TOLERANCE_FLEXIBILITY_TOOLTIP"
@@ -2854,6 +2875,10 @@ msgstr "Этот язык всё ещё находится в стадии ра�
 
 msgid "LANGUAGE_TRANSLATION_PROGRESS_REALLY_LOW"
 msgstr "Этот перевод в процессе разработки (завершён на {0}%). Пожалуйста, помогите нам с этим!"
+
+#, fuzzy
+msgid "LARGE_SULFUR_CHUNK"
+msgstr "Маленький фрагмент железа"
 
 msgid "LAST_ORGANELLE_DELETE_OPTION_DISABLED_TOOLTIP"
 msgstr "Последняя органелла не может быть удалена"
@@ -4003,8 +4028,16 @@ msgstr "Здесь ничего нет"
 msgid "NOTHING_TO_INTERACT_WITH"
 msgstr "Не с чем взаимодействовать"
 
+#, fuzzy
+msgid "NOTICE_BINDING_OUT_OF_ATP"
+msgstr "Вы теряете здоровье из-за отсутствия АТФ"
+
 msgid "NOTICE_DAMAGED_BY_NO_ATP"
 msgstr "Вы теряете здоровье из-за отсутствия АТФ"
+
+#, fuzzy
+msgid "NOTICE_ENGULFING_OUT_OF_ATP"
+msgstr "Нынешний размер клетки слишком мал для поглощения объекта"
 
 msgid "NOTICE_ENGULF_DAMAGE_FROM_TOXIN"
 msgstr "Вы теряете здоровье из-за токсинов в поглощенном организме"
@@ -4361,9 +4394,6 @@ msgstr "Переместить вправо"
 msgid "PAN_CAMERA_UP"
 msgstr "Переместить вверх"
 
-msgid "PASSIVE_REPRODUCTION_PROGRESS"
-msgstr "Пассивно получать прогресс репродукции"
-
 msgid "PASSIVE_REPRODUCTION_PROGRESS_EXPLANATION"
 msgstr "(пассивно получать необходимые для репродукции вещества из окружающей среды)"
 
@@ -4618,6 +4648,10 @@ msgstr "Протоплазма"
 msgid "PULL_REQUESTS_PROGRAMMING"
 msgstr "Pull Requests / Программирование"
 
+#, fuzzy
+msgid "QUADRILLION_ABBREVIATION"
+msgstr "{0} Млрд"
+
 msgid "QUICK_LOAD"
 msgstr "Быстрая загрузка"
 
@@ -4854,9 +4888,11 @@ msgstr "Запустить определенное количество мир�
 msgid "RUSTICYANIN"
 msgstr "Рустицианин"
 
+#, fuzzy
 msgid "RUSTICYANIN_DESCRIPTION"
 msgstr "Рустицианин - это белок, способный использовать [thrive:compound type=\"carbondioxide\"][/thrive:compound] для окисления [thrive:compound type=\"iron\"][/thrive:compound] из одного химического состояния в другое. Этот процесс, называемый [b]Хемосинтезом Железа[/b], высвобождает энергию ([thrive:compound type=\"atp\"][/thrive:compound]) , которую клетка затем может собрать."
 
+#, fuzzy
 msgid "RUSTICYANIN_PROCESSES_DESCRIPTION"
 msgstr "Превращает [thrive:compound type=\"iron\"][/thrive:compound] в [thrive:compound type=\"atp\"][/thrive:compound]. Скорость увеличивается при повышении концентрации [thrive:compound type=\"carbondioxide\"][/thrive:compound]."
 
@@ -5146,6 +5182,9 @@ msgstr "Кремнезём"
 
 msgid "SILICA_MEMBRANE_DESCRIPTION"
 msgstr "Эта мембрана имеет прочную стенку из кремнезема. Она может хорошо противостоять общим повреждениям и очень устойчива к физическим повреждениям. Она также требует меньше энергии для поддержания своей формы. Но клетка не может быстро поглощать ресурсы и двигается медленнее."
+
+msgid "SIXTEEN_TIMES"
+msgstr "16x"
 
 msgid "SIZE_COLON"
 msgstr "Размер:"
@@ -5753,10 +5792,10 @@ msgid "TOGGLE_UNBINDING"
 msgstr "Переключить развязку"
 
 msgid "TOLERANCES_TOO_HIGH_PRESSURE"
-msgstr ""
+msgstr "Предпочтитаемое давление превышает на {0}"
 
 msgid "TOLERANCES_TOO_HIGH_TEMPERATURE"
-msgstr ""
+msgstr "Предпочитаемая температура превышает на {0}"
 
 msgid "TOLERANCES_TOO_LOW_OXYGEN_PROTECTION"
 msgstr "Слишком низкая защита от кислорода, требуется повысить на {0}%"
@@ -5777,6 +5816,15 @@ msgstr "{0}: +{1} АТФ"
 msgid "TOLERANCES_UNSUITABLE_DEBUFFS"
 msgstr "Не адаптирован к нынешним условиям среды. Ухудшено: осморегуляция: {0}%, скорость клеточных процессов {1}%, здоровье {2}%"
 
+#, fuzzy
+msgid "TOLERANCE_FROM_ORGANELLES_TOOLTIP"
+msgstr ""
+"Эта секция показывает весь баланс АТФ (энергии) в клетке.\n"
+"Для того, чтобы выжить, баланс АТФ должен быть положительным. Малоподвижные клетки для сохранения энергии могут полностью исключить передвижение как таковое.\n"
+"Вы можете использовать раскрывающийся список ниже для проверки производства АТФ при отсутствии необходимых соединений.\n"
+"Например, некоторые клетки могут поддерживать положительный баланс АТФ только если у них в наличии есть множество соединений.\n"
+"Играть за этот тип клеток намного сложнее, поскольку для выживания им нужно иметь в хранилище все эти соединения разом."
+
 msgid "TOLERANCE_RANGE_LABEL"
 msgstr "Гибкость:"
 
@@ -5787,7 +5835,7 @@ msgid "TOOL_HAND_AXE"
 msgstr "Ручной Топор"
 
 msgid "TOO_LARGE_PRESSURE_RANGE"
-msgstr ""
+msgstr "Диапазон давлений слишком широк"
 
 msgid "TOO_MANY_RECENT_VERSIONS_TO_SHOW"
 msgstr "Слишком много недавних версий для отображения"
@@ -5882,6 +5930,10 @@ msgstr "Переводчики"
 
 msgid "TRANSPARENCY"
 msgstr "Прозрачность"
+
+#, fuzzy
+msgid "TRILLION_ABBREVIATION"
+msgstr "{0} Млрд"
 
 msgid "TRY_FOSSILISING_SOME_SPECIES"
 msgstr "Попробуйте сохранить окаменелости некоторых видов!"
@@ -6835,10 +6887,132 @@ msgid "WIKI_COMPOUND_SYSTEM_DEVELOPMENT_COMPOUNDS_LIST"
 msgstr "Полный список соединений, входящих в Микробную стадию, просмотрите в таблице «Соединения» на странице «Дополнительно для Микробной Стадии»."
 
 msgid "WIKI_COMPOUND_SYSTEM_DEVELOPMENT_INTRO"
-msgstr ""
+msgstr "Система соединений это одна из базовых игровых механик лежащая в основе симуляций во всей игре, придумана для повсеместного использования, от клеточного гомеостаза до межзвёздной торговли."
 
 msgid "WIKI_COMPOUND_SYSTEM_DEVELOPMENT_MICROBE_STAGE"
 msgstr ""
+"[indent]—   Соединения это вещества из которых создан мир и живые организмы. Таким образом, простые вещества (например углерод), природные ресурсы (соль, вода), органические соединения (аминокислоты) и органические полимеры (белки).[/indent]\n"
+"[indent]—   Позднее, будут и ткани (кости, мускулы) сделанные из других сложных соединений.[/indent]\n"
+"[indent]—   Конечными продуктами являются такие вещи, как клеточная мембрана, и с ними можно обращаться так же, как с соединениями. Еще один важный конечный продукт - энергия.[/indent]\n"
+"[indent]—   Соединения присутствуют в окружающей среде в нескольких состояниях:[/indent]\n"
+"\n"
+"[indent]—   Общее количество соединений в экосистеме постоянно.[/indent]\n"
+"[indent]—   Соединения могут транформироваться (напр. разложение воды на водород и кислород)[/indent]\n"
+"[indent]—   Скопления соединений основаны на сетке, представляющей ресурсы окружающей среды. Их концентрация может меняться, скоплению высокой концентрации соответствует более насыщенный цвет.[/indent]\n"
+"\n"
+"[b][u]Organelles[/u][/b]\n"
+"\n"
+"[indent]—   Место, где происходят процессы. Некоторые процессы требуют особых органелл. Они могут меняться в зависимости от свойств органеллы.[/indent]\n"
+"[indent]—   In later stages, this would be organs, workshops/factories and cities.[/indent]\n"
+"\n"
+"[b][u]Collection and Storage[/u][/b]\n"
+"\n"
+"[indent]—   Amount of compounds in a system measured in a unit based on moles[/indent]\n"
+"[indent]—   Each compound has a weight. This affects how much storage space it takes up in a cell.[/indent]\n"
+"[indent]—   Compounds are automatically absorbed by microbes by swimming through them, if the microbe has space to store it. They are stored in the cytoplasm or in vacuoles.[/indent]\n"
+"[indent]—   Vacuoles can be designated to only store specific compounds.[/indent]\n"
+"\n"
+"[b][u]Priority System[/u][/b]\n"
+"\n"
+"Because storage is just going to be general, there need to be priorities on what compounds get stored and which ones to eject first in case the storage is filled.\n"
+"\n"
+"[b][u]Processes[/u][/b]\n"
+"\n"
+"[indent]—   These control how compounds are converted from one to another, and what is required to do so. If an organism isn't capable of carrying out a particular process, it may not have access to that process' products, and will need to acquire them some other way (probably by eating something), or may not be able to acquire them at all (for example, eating a rhino horn doesn't allow you to grow one yourself).[/indent]\n"
+"[indent]—   The processes you're able to carry out, and how effectively you can do so, define your organism, your species, and your place in the food chain.[/indent]\n"
+"[indent]—   Not all processes will be available at the beginning and the player will need to get certain organelles in order to unlock them.[/indent]\n"
+"\n"
+"[b][u]Agents[/u][/b]\n"
+"\n"
+"[indent]—   Agents are special compounds with powerful effects, and most are made from the same constituents for the sake of simplicity. Converting incoming compounds into agents is done using the golgi apparatus and endoplasmic reticulum, which consume ATP at a fixed rate whether performing this task or not.[/indent]\n"
+"[indent]—   More details on the Agents page.[/indent]\n"
+"\n"
+"[b][u]Organisms[/u][/b]\n"
+"\n"
+"[indent]—   Organisms are individuals of a species, whether it be a cell, plant, or creature.[/indent]\n"
+"[indent]—   Each has particular organelles/organs, is capable of particular processes, can store particular compounds, and considers others to be waste products.[/indent]\n"
+"[indent]—   Each one continually carries out the processes it is capable of in order to produce the compounds it needs.[/indent]\n"
+"[indent]—   A compound can be a nutrient for one species and not for another.[/indent]\n"
+"\n"
+"[b][u]Implementation[/u][/b]\n"
+"\n"
+"[indent]—   At the beginning of the update method, each process calculates its price, and the price function is a function of the demand, the supply, and the previous price of the compound.[/indent]\n"
+"\n"
+"In the current implementation the function is:\n"
+"\n"
+"[code]P = √(D / (S + 1)) * COMPOUND_PRICE_MOMENTUM + oldP * (1 - COMPOUND_PRICE_MOMENTUM))[/code]\n"
+"\n"
+"With:\n"
+"[code]P[/code] the price\n"
+"[code]D[/code] the demand\n"
+"[code]S[/code] the supply\n"
+"[code]oldP[/code] the old price\n"
+"[code]COMPOUND_PRICE_MOMENTUM[/code] a constant between 0 and 1.\n"
+"\n"
+"\n"
+"The function also performs a check to raise the value from 0 to a small positive number if needed.\n"
+"\n"
+"[indent]—   After that's done, if the compound is marked as “useful” (this is done on the compound table), then the price gets inflated by a certain amount, depending on the compound supply. This is done so that the process system knows which compounds does it want to make (otherwise all prices would decay to 0 and that would be no fun).[/indent]\n"
+"\n"
+"In the current implementation, the price inflating function is:\n"
+"\n"
+"[code]PI = IMPORTANT_COMPOUND_BIAS / (S + 1)[/code]\n"
+"\n"
+"With:\n"
+"[code]PI[/code] the price inflation\n"
+"[code]S[/code] the supply\n"
+"[code]IMPORTANT_COMPOUND_BIAS[/code] an arbitrary constant\n"
+"\n"
+"\n"
+"It’s important to notice that for the first price equation the old price used is the non-inflated one.\n"
+"If, after all that, the price is below a certain small number, then the price is rounded down to zero (and therefore dumped later).\n"
+"\n"
+"[indent]—   After all those calculations are done for all of the compounds, the process system needs to decide the desired rate for each of the processes.[/indent]\n"
+"[indent]—   This rate could, potentially, be larger than the maximum capacity the process has.[/indent]\n"
+"[indent]—   Said rate is calculated by making a simple prediction about the prices of the compounds, by replicating the same calculations of phase 1 on each compound, but assuming the supply is one unit larger, and then assuming the price is linear in respect of the supply.[/indent]\n"
+"[indent]—   If the price of the compound was 0 on phase 1 it’s assumed that the price of that compound is always 0, regardless of the supply.[/indent]\n"
+"[indent]—   Finally, it’s assumed that the price is 0 for any value of supply that the linearization would make it’s price negative (aka, the minimum value of a function is 0).[/indent]\n"
+"[indent]—   Here’s an example of one of those functions, made in the google drive equivalent of MS Paint:[/indent]\n"
+"\n"
+"[indent]—   Then all the process system has to do is get the rate at which the sum of all the input compound prices would equal the sum of all the output compound prices, and that is the desired rate.[/indent]\n"
+"[indent]—   If all of the output compounds have a price of 0, then the desired rate is made 0.[/indent]\n"
+"[indent]—   An example of a process would be like this:[/indent]\n"
+"\n"
+"*To account for the storage space, a similar calculation is made but multiplying the prices of the compounds by a function that returns a value between 0.0 and 1.0, depending on the available space and the size and amount of the compounds processed.\n"
+"\n"
+"In the current implementation, the function is:\n"
+"\n"
+"[code]M = 2.0 * (1.0 - sigmoid(RS / (AS + 1.0) * STORAGE_SPACE_MULTIPLIER));[/code]\n"
+"\n"
+"With:\n"
+"[code]M[/code] is the multiplier between 0 and 1.\n"
+"[code]RS[/code] is the required space of the compound (volume * amount produced/processed)\n"
+"[code]AS[/code] is the available storage space\n"
+"[code]STORAGE_SPACE_MULTIPLIER[/code] is an arbitrary constant (currently 2.0)\n"
+"\n"
+"[indent]—   Then the inputs get converted into the outputs by a rate of the minimum of the desired rate considering the storage space ONLY if by doing so the rate is reduced, otherwise the space is not considered (this is to avoid the process system to destroy compounds to gain space, when the compound purging code should do that), and the max capacity of the process (assuming there are enough inputs and storage space to do so).[/indent]\n"
+"\n"
+"[indent]—   After the desired rates are found, the process must determine the demand of the compounds.[/indent]\n"
+"[indent]—   The demand of a compound is equal to the sum of all the demands generated by all the processes, which is defined by the equation[/indent]\n"
+"\n"
+"[code]D = DR * IN * soft(PC * IN)[/code]\n"
+"\n"
+"with:\n"
+"[code]D[/code] the demand generated by a process.\n"
+"[code]DR[/code] the desired rate of that process (without capacity, input or storage space limitations being considered).\n"
+"[code]IN[/code] the input needed by the process (aka the amount of input spent on running the process at a rate of 1).\n"
+"[code]PC[/code] the maximum process capacity\n"
+"[code]soft(x)[/code] a continuous, monotonically increasing function that equals 0 when x = 0, and 1 when x ⟶ ∞\n"
+"\n"
+"In the current implementation:\n"
+"\n"
+"[code]soft(x) = 2 * sigmoid(x * PROCESS_CAPACITY_DEMAND_MULTIPLIER) - 1[/code]\n"
+"\n"
+"with [code]PROCESS_CAPACITY_DEMAND_MULTIPLIER[/code] being an arbitrary constant.\n"
+"\n"
+"[indent]—   It’s important to note that a process like A ⟶ B, with a rate of 2 * x it’s exactly the same as the process 2 * A ⟶ 2 * B, with a rate of x[/indent]\n"
+"[indent]—   It’s also important that processes with a max capacity of 0 do not affect the system in any way.[/indent]\n"
+"[indent]—   That’s it! :D[/indent]"
 
 msgid "WIKI_COMPOUND_SYSTEM_DEVELOPMENT_OVERVIEW"
 msgstr ""
@@ -6889,7 +7063,7 @@ msgid "WIKI_DEVELOPMENT_ROOT_INTRO"
 msgstr "Аксон"
 
 msgid "WIKI_EDITORS_AND_MUTATIONS_GENERATIONS_AND_EDITOR_SESSIONS"
-msgstr ""
+msgstr "Каждый раз входя в [b]Editor[/b] в Thrive вы продвигаетесь на одно [b]Generation[/b] В это время можно видеть статистику, поменять локацию или что-то изменить для вашего вида. Это относится к [b]Editor Session[/b]."
 
 #, fuzzy
 msgid "WIKI_EDITORS_AND_MUTATIONS_INTRO"
@@ -6897,9 +7071,12 @@ msgstr "Электростанция клетки. Митохондрия  сп�
 
 msgid "WIKI_EDITORS_AND_MUTATIONS_MUTATIONS_AND_MUTATION_POINTS"
 msgstr ""
+"Каждое изменение в ваших видах это [b]Mutation[/b]. Сие включает добавление органелл, их улучшение и что важно,[u]even removing them[/u]. \n"
+"\n"
+"Каждая мутация, которую вы привносите в ваш вид будет стить [b]Mutation Points[/b] [thrive:icon]MP[/thrive:icon], именуемых иначе [b]MP[/b]. Вам всегда начисляют только [b]100[/b] очков мутаций к одной сессии радактора. [u]They do not carry over or accumulate[/u]."
 
 msgid "WIKI_ENVIRONMENTAL_CONDITIONS_ENVIRONMENTAL_GASSES"
-msgstr ""
+msgstr "Это [color=#3796e1][url=thriveopedia:Compounds]Compounds[/url][/color] которые обозначены только как процентная доля в окружающей среде. Похожим образом они меняют [b]rate[/b] с которым определенный [b]processes[/b] будет проходить. Они влияют на большую часть Органелл."
 
 #, fuzzy
 msgid "WIKI_ENVIRONMENTAL_CONDITIONS_INTRO"
@@ -6911,6 +7088,9 @@ msgstr "(доля глюкозы, остающейся в окружающей �
 
 msgid "WIKI_ENVIRONMENTAL_CONDITIONS_THE_DAY/NIGHT_CYCLE"
 msgstr ""
+"Цикл [b]день/ночь[/b] это настройка которая может быть включена в новом игровом меню. Когда цикл день/ночь включен, включается [thrive:compound type=\"sunlight\"][/thrive:compound] цикл между [b]0[/b] и [b]100[/b] [b]%[/b] света за определенное количество времени (что также можно изменить в настройках).\n"
+"\n"
+"В следствии этого [b]Photosynthesis[/b] выживание с фотосинтезом не дает прочной опоры. Автотрофы, использующие [thrive:compound type=\"sunlight\"][/thrive:compound] нужно будет прокачивать [b]storage[/b] (например, используя [color=#3796e1][url=thriveopedia:vacuole]Vacuoles[/url][/color]) чтобы пережить ночь."
 
 #, fuzzy
 msgid "WIKI_FERROPLAST_EFFECTS"
@@ -7079,7 +7259,7 @@ msgid "WIKI_HEADING_PROCESSES"
 msgstr "Процессы"
 
 msgid "WIKI_HEADING_REPRODUCTION_IN_THE_MICROBE_STAGE"
-msgstr ""
+msgstr "Размножение на стадии Микроб"
 
 msgid "WIKI_HEADING_REQUIREMENTS"
 msgstr "Требования"
@@ -7130,6 +7310,22 @@ msgstr "Процессы"
 
 msgid "WIKI_HELP_AND_TIPS_GENERAL_TIPS"
 msgstr ""
+"Этот раздел содержит все подсказки по игре, применимо ко множеству этапов которые отображаются на экране загрузки.\n"
+"\n"
+"\n"
+"Нажмите кнопку [b]Undo[/b]  в  редакторе, чтобы исправить ошибку.\n"
+"\n"
+"Бдите о великих организмах. Они тебя сьедят, не весело быть переваренным!\n"
+"\n"
+"Будь осторожен, охотясь за одним видом, такие как вы могут довести их до истребления. Другие виды тоже могут так делать.\n"
+"\n"
+"Иногда лучше дать дёру.\n"
+"\n"
+"Когда Авто-эво предвещает вам вымирание, вы таки можете увеличить её своей хорошей игрой.\n"
+"\n"
+"Не забывай, ты можешь использовать панель сверху справа на экране чтобы видеть то что под курсором.\n"
+"\n"
+"Если ваша популяция упадет до нуля, вы вымрете."
 
 #, fuzzy
 msgid "WIKI_HELP_AND_TIPS_INTRO"
@@ -7586,7 +7782,7 @@ msgid "WIKI_NO"
 msgstr "наша Wiki"
 
 msgid "WIKI_NONE_COMMA_THIS_IS_THE_LAST_STAGE"
-msgstr ""
+msgstr "Нет, Это последняя стадия"
 
 #, fuzzy
 msgid "WIKI_NUCLEUS_EFFECTS"
@@ -7705,7 +7901,7 @@ msgid "WIKI_PAGE_COMPOUNDS"
 msgstr "Цитоплазма"
 
 msgid "WIKI_PAGE_COMPOUND_SYSTEM_DEVELOPMENT"
-msgstr ""
+msgstr "Разработка Системы Соединений"
 
 #, fuzzy
 msgid "WIKI_PAGE_CYTOPLASM"
@@ -7800,7 +7996,7 @@ msgid "WIKI_PAGE_OXYTOXISOME"
 msgstr "Окситоксисома"
 
 msgid "WIKI_PAGE_PERFORATOR_PILUS"
-msgstr ""
+msgstr "Пронзающий пиль"
 
 #, fuzzy
 msgid "WIKI_PAGE_PROTOPLASM"
@@ -7864,9 +8060,15 @@ msgstr ""
 
 msgid "WIKI_PERFORATOR_PILUS_EFFECTS"
 msgstr ""
+"Если в клетке есть [b]Perforator Pilus[/b], клетки других видов будут получать значительный урон, если будут прикасаться к нему. Если у обеих клеток есть [b]Perforator Pili[/b], то они наоборот могут блокировать взаимные атаки.\n"
+"\n"
+"[b]Perforator Pili[/b] также блокирует токсичные снаряды. Подробнее [b][color=#3796e1][url=thriveopedia:oxytoxyProteins]Oxytoxisome[/url][/color][/b] and [b][color=#3796e1][url=thriveopedia:oxytoxy]Toxin Vacuole[/url][/color][/b]."
 
 msgid "WIKI_PERFORATOR_PILUS_INTRO"
 msgstr ""
+"Боевая органелла, используемая чтобы прокалывать другие клетки. Клетка, атакованная [b]Perforator Pilus[/b] теряет много здоровья.\n"
+"\n"
+"Также защищает от токсинов, отражая токсичные снаряды."
 
 #, fuzzy
 msgid "WIKI_PERFORATOR_PILUS_MODIFICATIONS"
@@ -7876,8 +8078,13 @@ msgstr "Пили (единственное число: пиль) встреча�
 msgid "WIKI_PERFORATOR_PILUS_PROCESSES"
 msgstr "Проткните этим другие клетки."
 
+#, fuzzy
 msgid "WIKI_PERFORATOR_PILUS_REQUIREMENTS"
 msgstr ""
+"Если улучшения органелл включены в игровых настройках, [i]at least one[/i] из из следующих условий должно быть верно [i]for the player cell[/i]:\n"
+"\n"
+"[indent]—   Имеет по меньшей мере [b]5[/b] клеток среди всех поколений.[/indent]\n"
+"[indent]—   Умер как минимум[b]5[/b] раз во всех поколениях.[/indent]"
 
 msgid "WIKI_PERFORATOR_PILUS_SCIENTIFIC_BACKGROUND"
 msgstr ""
@@ -8317,6 +8524,31 @@ msgstr ""
 msgid "WORLD_RELATIVE_MOVEMENT"
 msgstr "Относительно мира"
 
+#, fuzzy
+msgid "WORLD_SIZE"
+msgstr "Мир"
+
+#, fuzzy
+msgid "WORLD_SIZE_EXPLANATION"
+msgstr ""
+"Целенаправленные микробы будут искать добычу на большем растоянии\n"
+"и будут соперничать за куски с большим рвением.\n"
+"Бдительные микробы будут быстрее переключаться на новые цели."
+
+msgid "WORLD_SIZE_LARGE"
+msgstr ""
+
+#, fuzzy
+msgid "WORLD_SIZE_MEDIUM"
+msgstr "Относительно мира"
+
+msgid "WORLD_SIZE_SMALL"
+msgstr ""
+
+#, fuzzy
+msgid "WORLD_SIZE_TOOLTIP"
+msgstr "Запустить определенное количество миров, количество генераций на каждый мир определяется в меню сверху."
+
 msgid "WORST_PATCH_COLON"
 msgstr "Худший биом:"
 
@@ -8356,6 +8588,12 @@ msgstr "Увеличить масштаб"
 
 msgid "ZOOM_OUT"
 msgstr "Уменьшить масштаб"
+
+#~ msgid "IRON_CHEMOLITHOAUTOTROPHY"
+#~ msgstr "Железная хемолитоавтотрофия"
+
+#~ msgid "PASSIVE_REPRODUCTION_PROGRESS"
+#~ msgstr "Пассивно получать прогресс репродукции"
 
 #~ msgid "MIGRATE"
 #~ msgstr "Мигрировать"
@@ -8708,9 +8946,6 @@ msgstr "Уменьшить масштаб"
 
 #~ msgid "GLES2"
 #~ msgstr "GLES2"
-
-#~ msgid "SIXTEEN_TIMES"
-#~ msgstr "16x"
 
 #~ msgid "WIKI_HEADING_AEROBIC_CELLULAR_RESPIRATION_(GLUCOSE_->_ATP)"
 #~ msgstr "Аэробное клеточное дыхание (Глюкоза -> АТФ)"

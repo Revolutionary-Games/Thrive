@@ -106,12 +106,11 @@ func return_type_as_string() -> String:
 	return GdObjects.type_as_string(return_type())
 
 
-@warning_ignore("unsafe_cast")
 func set_argument_value(arg_name: String, value: String) -> void:
-	(
-		_args.filter(func(arg: GdFunctionArgument) -> bool: return arg.name() == arg_name)\
-		.front() as GdFunctionArgument
-	).set_value(value)
+	var argument: GdFunctionArgument = _args.filter(func(arg: GdFunctionArgument) -> bool:
+		return arg.name() == arg_name
+		).front()
+	argument.set_value(value)
 
 
 func enrich_file_info(p_source_path: String, p_line_number: int) -> void:

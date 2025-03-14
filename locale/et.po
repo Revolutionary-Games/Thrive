@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2025-02-28 12:07+0200\n"
+"POT-Creation-Date: 2025-03-14 11:08+0200\n"
 "PO-Revision-Date: 2025-02-06 13:29+0000\n"
 "Last-Translator: Anonymous <noreply@weblate.org>\n"
 "Language-Team: Estonian <https://translate.revolutionarygamesstudio.com/projects/thrive/thrive-game/et/>\n"
@@ -210,6 +210,9 @@ msgstr "Anaeroobne lämmastiku fikseerimine"
 #, fuzzy
 msgid "AND_UNLOCK_CONDITION"
 msgstr "Füüsilised tingimused"
+
+msgid "ANISOTROPIC_FILTERING"
+msgstr ""
 
 #, fuzzy
 msgid "APPEARANCE"
@@ -1884,6 +1887,19 @@ msgstr ""
 "\n"
 "Kui olete valmis, vajutage jätkamiseks paremas alanurgas nuppu \"Järgmine\"."
 
+#, fuzzy
+msgid "EDITOR_TUTORIAL_MICROBE_EDITOR_NUCLEUS"
+msgstr ""
+"See on rakuredaktor, kus saate mutatsioonipunkte (MP) kulutades oma liike arendada. Igal põlvkonnal on teil alati kulutamiseks 100 MP, nii et ärge vaevu säästma!\n"
+"\n"
+"Ekraani keskel olev kuusnurk on teie rakk, mis koosneb ühest tsütoplasma osast.\n"
+"\n"
+"Jätkamiseks valige vasakpoolsest paneelist osa. Seejärel klõpsake selle asetamiseks vasakklahvi kuusiku kõrval. Osasid saate pöörata A ja D abil (vaikeklahvid)."
+
+#, fuzzy
+msgid "EFFECTIVE_VALUE"
+msgstr "{0}%"
+
 msgid "EIGHT_TIMES"
 msgstr "8x"
 
@@ -2903,8 +2919,9 @@ msgstr ""
 msgid "IRON"
 msgstr "Raud"
 
-msgid "IRON_CHEMOLITHOAUTOTROPHY"
-msgstr "Raua kemolitoautotroofia"
+#, fuzzy
+msgid "IRON_OXIDATION"
+msgstr "Annetused"
 
 #, fuzzy
 msgid "ITCH_TOOLTIP"
@@ -2938,8 +2955,9 @@ msgstr "juuli"
 msgid "JUNE"
 msgstr "juuni"
 
-msgid "KEEP_CURRENT_FLEXIBILITY"
-msgstr ""
+#, fuzzy
+msgid "KEEP_CURRENT_SHORT"
+msgstr "Praegused arendajad"
 
 #, fuzzy
 msgid "KEEP_CURRENT_TOLERANCE_FLEXIBILITY_TOOLTIP"
@@ -3115,6 +3133,10 @@ msgstr "See keel on veel pooleli ({0}% valmis)"
 
 msgid "LANGUAGE_TRANSLATION_PROGRESS_REALLY_LOW"
 msgstr "See tõlge on väga puudulik ({0}% valmis). Palun aidake meid sellega!"
+
+#, fuzzy
+msgid "LARGE_SULFUR_CHUNK"
+msgstr "Väike raua tükk"
 
 msgid "LAST_ORGANELLE_DELETE_OPTION_DISABLED_TOOLTIP"
 msgstr ""
@@ -4400,7 +4422,14 @@ msgstr "Siin pole midagi"
 msgid "NOTHING_TO_INTERACT_WITH"
 msgstr ""
 
+#, fuzzy
+msgid "NOTICE_BINDING_OUT_OF_ATP"
+msgstr "Lülitage sidumine sisse"
+
 msgid "NOTICE_DAMAGED_BY_NO_ATP"
+msgstr ""
+
+msgid "NOTICE_ENGULFING_OUT_OF_ATP"
 msgstr ""
 
 msgid "NOTICE_ENGULF_DAMAGE_FROM_TOXIN"
@@ -4793,10 +4822,6 @@ msgid "PAN_CAMERA_UP"
 msgstr "Panner ülespoole"
 
 #, fuzzy
-msgid "PASSIVE_REPRODUCTION_PROGRESS"
-msgstr "See paneel näitab numbreid, millest automaatse evo ennustus töötab. Lõpliku populatsiooni määrab kogu energia, mida liik suudab püüda, ja kulu liigi isendi kohta. Auto-evo kasutab lihtsustatud tegelikkuse mudelit, et arvutada, kui hästi liigid toimivad, võttes aluseks energia, mida nad suudavad koguda. Iga toiduallika puhul näidatakse, et liik saab sellest palju energiat. Lisaks kuvatakse sellest allikast saadaolev koguenergia. See, kui suur osa liikide koguenergiast võidab, põhineb sellel, kui suur on sobivus võrreldes kogu sobivusega. Fitness on mõõdik selle kohta, kui hästi liik suudab seda toiduallikat kasutada."
-
-#, fuzzy
 msgid "PASSIVE_REPRODUCTION_PROGRESS_EXPLANATION"
 msgstr "See paneel näitab numbreid, millest automaatse evo ennustus töötab. Lõpliku populatsiooni määrab kogu energia, mida liik suudab püüda, ja kulu liigi isendi kohta. Auto-evo kasutab lihtsustatud tegelikkuse mudelit, et arvutada, kui hästi liigid toimivad, võttes aluseks energia, mida nad suudavad koguda. Iga toiduallika puhul näidatakse, et liik saab sellest palju energiat. Lisaks kuvatakse sellest allikast saadaolev koguenergia. See, kui suur osa liikide koguenergiast võidab, põhineb sellel, kui suur on sobivus võrreldes kogu sobivusega. Fitness on mõõdik selle kohta, kui hästi liik suudab seda toiduallikat kasutada."
 
@@ -5059,6 +5084,10 @@ msgstr "Protoplasma"
 
 msgid "PULL_REQUESTS_PROGRAMMING"
 msgstr "Tõmbetaotlused / programmeerimine"
+
+#, fuzzy
+msgid "QUADRILLION_ABBREVIATION"
+msgstr "{0} B"
 
 msgid "QUICK_LOAD"
 msgstr "Kiire laadimine"
@@ -5638,6 +5667,9 @@ msgstr "Ränidioksiid"
 
 msgid "SILICA_MEMBRANE_DESCRIPTION"
 msgstr "Sellel membraanil on tugev ränidioksiidi sein. See talub hästi üldist kahju ja on väga vastupidav füüsilistele kahjustustele. Samuti nõuab see oma vormi säilitamiseks vähem energiat. Kuid see aeglustab raku tööd suure teguri võrra ja rakk neelab ressursse vähendatud kiirusega."
+
+msgid "SIXTEEN_TIMES"
+msgstr "16x"
 
 msgid "SIZE_COLON"
 msgstr "Suurus:"
@@ -6311,6 +6343,10 @@ msgstr "{0}: +{1} ATP"
 msgid "TOLERANCES_UNSUITABLE_DEBUFFS"
 msgstr ""
 
+#, fuzzy
+msgid "TOLERANCE_FROM_ORGANELLES_TOOLTIP"
+msgstr "Näita/peida keskkonda ja ühendeid"
+
 msgid "TOLERANCE_RANGE_LABEL"
 msgstr ""
 
@@ -6439,6 +6475,10 @@ msgstr "Tõlkijad"
 #, fuzzy
 msgid "TRANSPARENCY"
 msgstr "Tõlkijad"
+
+#, fuzzy
+msgid "TRILLION_ABBREVIATION"
+msgstr "{0} B"
 
 #, fuzzy
 msgid "TRY_FOSSILISING_SOME_SPECIES"
@@ -8960,6 +9000,31 @@ msgstr ""
 msgid "WORLD_RELATIVE_MOVEMENT"
 msgstr "Aluse liikumine"
 
+#, fuzzy
+msgid "WORLD_SIZE"
+msgstr "Praegused arendajad"
+
+#, fuzzy
+msgid "WORLD_SIZE_EXPLANATION"
+msgstr ""
+"Keskendunud mikroobid otsivad tükke või saaki suuremate vahemaade tagant\n"
+"ja võib olla tükkide osas palju ambitsioonikam.\n"
+"Reageerivad mikroobid lülituvad varem uutele sihtmärkidele."
+
+msgid "WORLD_SIZE_LARGE"
+msgstr ""
+
+#, fuzzy
+msgid "WORLD_SIZE_MEDIUM"
+msgstr "Aluse liikumine"
+
+msgid "WORLD_SIZE_SMALL"
+msgstr ""
+
+#, fuzzy
+msgid "WORLD_SIZE_TOOLTIP"
+msgstr "Möödunud aeg: {0:#,#} aastat"
+
 msgid "WORST_PATCH_COLON"
 msgstr "Halvim plaaster:"
 
@@ -9000,6 +9065,13 @@ msgstr "Suurenda"
 
 msgid "ZOOM_OUT"
 msgstr "Suumi välja"
+
+#~ msgid "IRON_CHEMOLITHOAUTOTROPHY"
+#~ msgstr "Raua kemolitoautotroofia"
+
+#, fuzzy
+#~ msgid "PASSIVE_REPRODUCTION_PROGRESS"
+#~ msgstr "See paneel näitab numbreid, millest automaatse evo ennustus töötab. Lõpliku populatsiooni määrab kogu energia, mida liik suudab püüda, ja kulu liigi isendi kohta. Auto-evo kasutab lihtsustatud tegelikkuse mudelit, et arvutada, kui hästi liigid toimivad, võttes aluseks energia, mida nad suudavad koguda. Iga toiduallika puhul näidatakse, et liik saab sellest palju energiat. Lisaks kuvatakse sellest allikast saadaolev koguenergia. See, kui suur osa liikide koguenergiast võidab, põhineb sellel, kui suur on sobivus võrreldes kogu sobivusega. Fitness on mõõdik selle kohta, kui hästi liik suudab seda toiduallikat kasutada."
 
 #, fuzzy
 #~ msgid "THANKS_FOR_BUYING_THRIVE"
@@ -9359,9 +9431,6 @@ msgstr "Suumi välja"
 #, fuzzy
 #~ msgid "UNKNOWN_ON_WINDOWS"
 #~ msgstr "Tundmatu töökoja ID selle modifikatsiooni jaoks"
-
-#~ msgid "SIXTEEN_TIMES"
-#~ msgstr "16x"
 
 #, fuzzy
 #~ msgid "TARGET_TIME"

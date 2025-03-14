@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2025-02-28 12:07+0200\n"
+"POT-Creation-Date: 2025-03-14 11:08+0200\n"
 "PO-Revision-Date: 2025-02-06 13:29+0000\n"
 "Last-Translator: Anonymous <noreply@weblate.org>\n"
 "Language-Team: Esperanto <https://translate.revolutionarygamesstudio.com/projects/thrive/thrive-game/eo/>\n"
@@ -198,6 +198,9 @@ msgstr "Malaerobia Nitrogena Riparado"
 #, fuzzy
 msgid "AND_UNLOCK_CONDITION"
 msgstr "Fizikaj Kondiĉoj"
+
+msgid "ANISOTROPIC_FILTERING"
+msgstr ""
 
 msgid "APPEARANCE"
 msgstr "Aspekto"
@@ -1870,6 +1873,19 @@ msgstr ""
 "Por iri al la sekva redakta langeto, premu la sekvan butonon en la dekstra fundo."
 
 #, fuzzy
+msgid "EDITOR_TUTORIAL_MICROBE_EDITOR_NUCLEUS"
+msgstr ""
+"Bonvenon al la Mikrobredaktilo.\n"
+"Ĉi tie vi povas revizii, kio okazis ekde la komenco de la ludo aŭ kiam vi laste estis en la redaktilo. Kaj ekde nun vi povas ŝanĝi viajn speciojn.\n"
+"\n"
+"En ĉi tiu langeto vi povas vidi raporton pri kiaj specioj ekzistas, kie kaj kiaj estas iliaj populacioj. Vi ankaŭ povas vidi mediajn ŝanĝojn supre.\n"
+"\n"
+"Por iri al la sekva redakta langeto, premu la sekvan butonon en la dekstra fundo."
+
+msgid "EFFECTIVE_VALUE"
+msgstr ""
+
+#, fuzzy
 msgid "EIGHT_TIMES"
 msgstr "Dekstra musbutono"
 
@@ -2853,8 +2869,9 @@ msgstr ""
 msgid "IRON"
 msgstr "Fero"
 
-msgid "IRON_CHEMOLITHOAUTOTROPHY"
-msgstr "Fera Kemolitoaŭtotrofio"
+#, fuzzy
+msgid "IRON_OXIDATION"
+msgstr "Agordoj"
 
 #, fuzzy
 msgid "ITCH_TOOLTIP"
@@ -2888,8 +2905,9 @@ msgstr ""
 msgid "JUNE"
 msgstr ""
 
-msgid "KEEP_CURRENT_FLEXIBILITY"
-msgstr ""
+#, fuzzy
+msgid "KEEP_CURRENT_SHORT"
+msgstr "Tеmp."
 
 #, fuzzy
 msgid "KEEP_CURRENT_TOLERANCE_FLEXIBILITY_TOOLTIP"
@@ -3072,6 +3090,10 @@ msgstr ""
 
 msgid "LANGUAGE_TRANSLATION_PROGRESS_REALLY_LOW"
 msgstr ""
+
+#, fuzzy
+msgid "LARGE_SULFUR_CHUNK"
+msgstr "Malgranda Fera Peco"
 
 msgid "LAST_ORGANELLE_DELETE_OPTION_DISABLED_TOOLTIP"
 msgstr ""
@@ -4313,7 +4335,14 @@ msgstr "Nenio estas ĉi tie"
 msgid "NOTHING_TO_INTERACT_WITH"
 msgstr ""
 
+#, fuzzy
+msgid "NOTICE_BINDING_OUT_OF_ATP"
+msgstr "Ŝaltu engluton"
+
 msgid "NOTICE_DAMAGED_BY_NO_ATP"
+msgstr ""
+
+msgid "NOTICE_ENGULFING_OUT_OF_ATP"
 msgstr ""
 
 msgid "NOTICE_ENGULF_DAMAGE_FROM_TOXIN"
@@ -4711,10 +4740,6 @@ msgid "PAN_CAMERA_UP"
 msgstr "Movigu supren"
 
 #, fuzzy
-msgid "PASSIVE_REPRODUCTION_PROGRESS"
-msgstr "{0} loĝantaro ŝanĝiĝis per {1} pro: {2}"
-
-#, fuzzy
 msgid "PASSIVE_REPRODUCTION_PROGRESS_EXPLANATION"
 msgstr "{0} loĝantaro ŝanĝiĝis per {1} pro: {2}"
 
@@ -4983,6 +5008,10 @@ msgstr "Protoplasmo"
 
 msgid "PULL_REQUESTS_PROGRAMMING"
 msgstr ""
+
+#, fuzzy
+msgid "QUADRILLION_ABBREVIATION"
+msgstr "{0} Mrd"
 
 msgid "QUICK_LOAD"
 msgstr "Rapida ŝarĝo"
@@ -5586,6 +5615,10 @@ msgstr "Siliko"
 
 msgid "SILICA_MEMBRANE_DESCRIPTION"
 msgstr "Ĉi tiu membrano havas fortan silikan muron. Ĝi povas bone rezisti ĝeneralan damaĝon kaj tre rezistas al fizika damaĝo. Ĝi ankaŭ postulas malpli da energio por konservi sian formon. Tamen ĝi malrapidigas la ĉelon kaj la ĉelo sorbas resurson kun malpli granda rapideco."
+
+#, fuzzy
+msgid "SIXTEEN_TIMES"
+msgstr "Listo de Specioj"
 
 msgid "SIZE_COLON"
 msgstr "Grandeco:"
@@ -6261,6 +6294,10 @@ msgstr "{0}: +{1} ATP"
 msgid "TOLERANCES_UNSUITABLE_DEBUFFS"
 msgstr ""
 
+#, fuzzy
+msgid "TOLERANCE_FROM_ORGANELLES_TOOLTIP"
+msgstr "Aldonunovan funkcion por klavo"
+
 msgid "TOLERANCE_RANGE_LABEL"
 msgstr ""
 
@@ -6383,6 +6420,10 @@ msgstr "Helpu Traduki La Ludon"
 #, fuzzy
 msgid "TRANSPARENCY"
 msgstr "Helpu Traduki La Ludon"
+
+#, fuzzy
+msgid "TRILLION_ABBREVIATION"
+msgstr "{0} Mrd"
 
 #, fuzzy
 msgid "TRY_FOSSILISING_SOME_SPECIES"
@@ -8960,6 +9001,28 @@ msgid "WORLD_RELATIVE_MOVEMENT"
 msgstr "popliigi la movadon"
 
 #, fuzzy
+msgid "WORLD_SIZE"
+msgstr "\"{0}\" - {1}"
+
+#, fuzzy
+msgid "WORLD_SIZE_EXPLANATION"
+msgstr "{0} loĝantaro ŝanĝiĝis per {1} pro: {2}"
+
+msgid "WORLD_SIZE_LARGE"
+msgstr ""
+
+#, fuzzy
+msgid "WORLD_SIZE_MEDIUM"
+msgstr "popliigi la movadon"
+
+msgid "WORLD_SIZE_SMALL"
+msgstr ""
+
+#, fuzzy
+msgid "WORLD_SIZE_TOOLTIP"
+msgstr "Aldonunovan funkcion por klavo"
+
+#, fuzzy
 msgid "WORST_PATCH_COLON"
 msgstr "Specioj:"
 
@@ -8998,6 +9061,13 @@ msgstr "Zomu"
 
 msgid "ZOOM_OUT"
 msgstr "Malzomu"
+
+#~ msgid "IRON_CHEMOLITHOAUTOTROPHY"
+#~ msgstr "Fera Kemolitoaŭtotrofio"
+
+#, fuzzy
+#~ msgid "PASSIVE_REPRODUCTION_PROGRESS"
+#~ msgstr "{0} loĝantaro ŝanĝiĝis per {1} pro: {2}"
 
 #, fuzzy
 #~ msgid "MIGRATE"
@@ -9342,10 +9412,6 @@ msgstr "Malzomu"
 #, fuzzy
 #~ msgid "LOOKING_AT"
 #~ msgstr "Premu la malfaran butonon en la redaktilo por korekti eraron"
-
-#, fuzzy
-#~ msgid "SPECIES_N_TIMES"
-#~ msgstr "Listo de Specioj"
 
 #, fuzzy
 #~ msgid "BECOME_AWARE"

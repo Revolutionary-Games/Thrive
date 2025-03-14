@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2025-02-28 12:07+0200\n"
+"POT-Creation-Date: 2025-03-14 11:08+0200\n"
 "PO-Revision-Date: 2025-01-21 12:01+0000\n"
 "Last-Translator: Anonymous <noreply@weblate.org>\n"
 "Language-Team: Spanish (Argentina) <https://translate.revolutionarygamesstudio.com/projects/thrive/thrive-game/es_AR/>\n"
@@ -191,6 +191,9 @@ msgstr "Fijación anaeróbica de nitrógeno"
 
 msgid "AND_UNLOCK_CONDITION"
 msgstr "y"
+
+msgid "ANISOTROPIC_FILTERING"
+msgstr ""
 
 msgid "APPEARANCE"
 msgstr "Apariencia"
@@ -1760,6 +1763,24 @@ msgstr ""
 msgid "EDITOR_TUTORIAL_EDITOR_TEXT"
 msgstr ""
 
+#, fuzzy
+msgid "EDITOR_TUTORIAL_MICROBE_EDITOR_NUCLEUS"
+msgstr ""
+"Estructuras Procarioticas\n"
+"\n"
+"Citoplasma: Tiene espacio de almacenamiento y hace glicólisis (produce un poco de ATP).\n"
+"\n"
+"Metabolosomas: Convierten sulfuro de hidrógeno en glucosa a la mitad de la eficiencia de los quimioplastos, pero también hacen glicólisis.\n"
+"\n"
+"Tilacoides: Producen un tercio de la cantidad de glucosa de un cloroplasto, pero hace glicólisis.\n"
+"\n"
+"Rusticianina: Convierte el hierro en ATP.\n"
+"\n"
+"Nitrogenasa: Convierte el nitrógeno atmosférico en amoníaco y consume ATP."
+
+msgid "EFFECTIVE_VALUE"
+msgstr ""
+
 msgid "EIGHT_TIMES"
 msgstr "x8"
 
@@ -2678,8 +2699,9 @@ msgstr "Protanopia (Rojo-verde)"
 msgid "IRON"
 msgstr "Hierro"
 
-msgid "IRON_CHEMOLITHOAUTOTROPHY"
-msgstr ""
+#, fuzzy
+msgid "IRON_OXIDATION"
+msgstr "Resolución:"
 
 msgid "ITCH_TOOLTIP"
 msgstr ""
@@ -2711,7 +2733,7 @@ msgstr ""
 msgid "JUNE"
 msgstr ""
 
-msgid "KEEP_CURRENT_FLEXIBILITY"
+msgid "KEEP_CURRENT_SHORT"
 msgstr ""
 
 #, fuzzy
@@ -2893,6 +2915,10 @@ msgstr "Este lenguaje todavía esta en progreso ({0}% completado)"
 
 msgid "LANGUAGE_TRANSLATION_PROGRESS_REALLY_LOW"
 msgstr "Esta traducción esta bastante incompleta ({0}% hecha) porfis ayudanos a terminarla!"
+
+#, fuzzy
+msgid "LARGE_SULFUR_CHUNK"
+msgstr "Pedacito de hierro"
 
 msgid "LAST_ORGANELLE_DELETE_OPTION_DISABLED_TOOLTIP"
 msgstr ""
@@ -4085,7 +4111,14 @@ msgstr ""
 msgid "NOTHING_TO_INTERACT_WITH"
 msgstr ""
 
+#, fuzzy
+msgid "NOTICE_BINDING_OUT_OF_ATP"
+msgstr "Activar vinculación"
+
 msgid "NOTICE_DAMAGED_BY_NO_ATP"
+msgstr ""
+
+msgid "NOTICE_ENGULFING_OUT_OF_ATP"
 msgstr ""
 
 msgid "NOTICE_ENGULF_DAMAGE_FROM_TOXIN"
@@ -4455,9 +4488,6 @@ msgstr ""
 msgid "PAN_CAMERA_UP"
 msgstr ""
 
-msgid "PASSIVE_REPRODUCTION_PROGRESS"
-msgstr ""
-
 msgid "PASSIVE_REPRODUCTION_PROGRESS_EXPLANATION"
 msgstr ""
 
@@ -4710,6 +4740,10 @@ msgstr "Protoplasma"
 
 msgid "PULL_REQUESTS_PROGRAMMING"
 msgstr ""
+
+#, fuzzy
+msgid "QUADRILLION_ABBREVIATION"
+msgstr "{0} B"
 
 msgid "QUICK_LOAD"
 msgstr "Carga rápida"
@@ -5263,6 +5297,9 @@ msgstr "Silicio"
 
 msgid "SILICA_MEMBRANE_DESCRIPTION"
 msgstr ""
+
+msgid "SIXTEEN_TIMES"
+msgstr "x16"
 
 msgid "SIZE_COLON"
 msgstr ""
@@ -5904,6 +5941,15 @@ msgstr ""
 msgid "TOLERANCES_UNSUITABLE_DEBUFFS"
 msgstr ""
 
+#, fuzzy
+msgid "TOLERANCE_FROM_ORGANELLES_TOOLTIP"
+msgstr ""
+"Esta sección muestra el balance total de ATP (energía) de la célula actual.\n"
+"Para poder sobrevivir, el balance tiene que ser positivo. Para las célular sésiles se puede considerar el balance positivo con el movimiento excluído.\n"
+"El menú desplegable de ahí abajo lo podés usar para chequear que pasaría si la célula no tuviese ningún recurso disponible para poder crear ATP.\n"
+"Por ejemplo, algunas células solo pueden mantener un balance de ATP positivo cuando tienen múltiples tipos de componentes de los que pueden crear ATP al mísmo tiempo.\n"
+"Ese tipo de células son más difíciles de jugar porque requieren que almacenes varios tipos de componentes al mísmo tiempo para poder sobrevivir."
+
 msgid "TOLERANCE_RANGE_LABEL"
 msgstr ""
 
@@ -6020,6 +6066,10 @@ msgstr ""
 
 msgid "TRANSPARENCY"
 msgstr ""
+
+#, fuzzy
+msgid "TRILLION_ABBREVIATION"
+msgstr "{0} B"
 
 msgid "TRY_FOSSILISING_SOME_SPECIES"
 msgstr ""
@@ -8530,6 +8580,32 @@ msgstr ""
 msgid "WORLD_RELATIVE_MOVEMENT"
 msgstr ""
 
+#, fuzzy
+msgid "WORLD_SIZE"
+msgstr "\" {0} \" - {1}"
+
+#, fuzzy
+msgid "WORLD_SIZE_EXPLANATION"
+msgstr "Normal"
+
+msgid "WORLD_SIZE_LARGE"
+msgstr ""
+
+msgid "WORLD_SIZE_MEDIUM"
+msgstr ""
+
+msgid "WORLD_SIZE_SMALL"
+msgstr ""
+
+#, fuzzy
+msgid "WORLD_SIZE_TOOLTIP"
+msgstr ""
+"Esta sección muestra el balance total de ATP (energía) de la célula actual.\n"
+"Para poder sobrevivir, el balance tiene que ser positivo. Para las célular sésiles se puede considerar el balance positivo con el movimiento excluído.\n"
+"El menú desplegable de ahí abajo lo podés usar para chequear que pasaría si la célula no tuviese ningún recurso disponible para poder crear ATP.\n"
+"Por ejemplo, algunas células solo pueden mantener un balance de ATP positivo cuando tienen múltiples tipos de componentes de los que pueden crear ATP al mísmo tiempo.\n"
+"Ese tipo de células son más difíciles de jugar porque requieren que almacenes varios tipos de componentes al mísmo tiempo para poder sobrevivir."
+
 msgid "WORST_PATCH_COLON"
 msgstr ""
 
@@ -8882,9 +8958,6 @@ msgstr "Alejar la pantalla"
 #, fuzzy
 #~ msgid "TREBLEUP"
 #~ msgstr "Triplicar"
-
-#~ msgid "SIXTEEN_TIMES"
-#~ msgstr "x16"
 
 #, fuzzy
 #~ msgid "TARGET_TIME"

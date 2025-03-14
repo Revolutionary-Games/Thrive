@@ -7,9 +7,9 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2025-02-28 12:07+0200\n"
-"PO-Revision-Date: 2025-02-21 21:31+0000\n"
-"Last-Translator: xzihnago <xzihnago@gmail.com>\n"
+"POT-Creation-Date: 2025-03-14 11:08+0200\n"
+"PO-Revision-Date: 2025-03-12 14:39+0000\n"
+"Last-Translator: Anonymous <noreply@weblate.org>\n"
 "Language-Team: Chinese (Traditional Han script) <https://translate.revolutionarygamesstudio.com/projects/thrive/thrive-game/zh_Hant/>\n"
 "Language: zh_TW\n"
 "MIME-Version: 1.0\n"
@@ -188,6 +188,9 @@ msgstr "厭氧固氮"
 
 msgid "AND_UNLOCK_CONDITION"
 msgstr "且"
+
+msgid "ANISOTROPIC_FILTERING"
+msgstr ""
 
 msgid "APPEARANCE"
 msgstr "外觀"
@@ -1514,6 +1517,7 @@ msgstr "Devbuilds 支持者"
 msgid "DIFFICULTY"
 msgstr "難度"
 
+#, fuzzy
 msgid "DIFFICULTY_DETAILS_STRING"
 msgstr ""
 "預設難度：{0}\n"
@@ -1663,9 +1667,8 @@ msgstr "雙擊即可全螢幕檢視"
 msgid "DOUBLE_MEMBRANE_DESCRIPTION"
 msgstr "有兩層的細胞膜，對傷害有更好的防護能力，並且花費更少能量來維持外型。然而，它會減慢細胞的移動速度並降低其吸收資源的速率。"
 
-#, fuzzy
 msgid "DOUBLE_SPEED_TOGGLE_TOOLTIP"
-msgstr "用來生成世界的隨機數，必須為正整數"
+msgstr "在正常與雙倍遊戲速度之間切換"
 
 msgid "DRAG_TO_REORDER_ITEMS_WITH_MOUSE"
 msgstr "用滑鼠拖曳以重新排序"
@@ -1773,6 +1776,19 @@ msgstr ""
 "此分頁提供當前區域中的變化列表。嘗試探索您可以使用的各種工具，以了解有關您世界中事件的更多資訊！\n"
 "\n"
 "準備好後，按右下角的「下一頁」按鈕繼續。"
+
+#, fuzzy
+msgid "EDITOR_TUTORIAL_MICROBE_EDITOR_NUCLEUS"
+msgstr ""
+"這是細胞編輯器，您可以透過花費[b]突變點數[/b]（MP）[thrive:icon]MP[/thrive:icon] 來演化您的物種。每一代您都會有[b]100 MP[/b] [thrive:icon]MP[/thrive:icon] 可以花費，所以不必費心保留！\n"
+"\n"
+"螢幕中央的六邊形是您的[b]細胞[/b]，它由單一細胞質組成。\n"
+"\n"
+"要繼續，請從左側面板中選擇一個組件。然後左鍵單擊六邊形網格旁邊來放置它。您可以使用[thrive:input]e_rotate_left[/thrive:input]與[thrive:input]e_rotate_right[/thrive:input]旋轉部件。"
+
+#, fuzzy
+msgid "EFFECTIVE_VALUE"
+msgstr "{0}%"
 
 msgid "EIGHT_TIMES"
 msgstr "8x"
@@ -2080,9 +2096,11 @@ msgstr "本篇因篇幅過長被刪節，詳情請閱讀原文。{0}"
 msgid "FERROPLAST"
 msgstr "鐵能體"
 
+#, fuzzy
 msgid "FERROPLAST_DESCRIPTION"
 msgstr "一個金屬發電廠。鐵能體是一種充滿蛋白質與酶的雙層膜結構。它是一種已被其真核宿主同化的原核生物。它能夠將[thrive:compound type=\"iron\"][/thrive:compound] 從一種化學狀態氧化為另一種化學狀態，其效率比鐵氧化藍蛋白更高。此過程被稱為[b]鐵呼吸[/b]，釋放能量，然後細胞可以收集這些能量。然而，它需要[thrive:compound type=\"carbondioxide\"][/thrive:compound] 才能發揮作用，並且較低的環境濃度會降低其[thrive:compound type=\"atp\"][/thrive:compound] 生產速率。"
 
+#, fuzzy
 msgid "FERROPLAST_PROCESSES_DESCRIPTION"
 msgstr "將[thrive:compound type=\"iron\"][/thrive:compound] 轉化為[thrive:compound type=\"atp\"][/thrive:compound]。速率與[thrive:compound type=\"carbondioxide\"][/thrive:compound] 的濃度成正比。"
 
@@ -2639,8 +2657,9 @@ msgstr ""
 msgid "IRON"
 msgstr "鐵"
 
-msgid "IRON_CHEMOLITHOAUTOTROPHY"
-msgstr "鐵化能自養"
+#, fuzzy
+msgid "IRON_OXIDATION"
+msgstr "捐款"
 
 msgid "ITCH_TOOLTIP"
 msgstr "造訪我們的 Itch.io 頁面"
@@ -2672,7 +2691,8 @@ msgstr "七月"
 msgid "JUNE"
 msgstr "六月"
 
-msgid "KEEP_CURRENT_FLEXIBILITY"
+#, fuzzy
+msgid "KEEP_CURRENT_SHORT"
 msgstr "維持當前的適應範圍"
 
 msgid "KEEP_CURRENT_TOLERANCE_FLEXIBILITY_TOOLTIP"
@@ -2841,6 +2861,10 @@ msgstr "此語言仍在翻譯中（已完成 {0}%）"
 
 msgid "LANGUAGE_TRANSLATION_PROGRESS_REALLY_LOW"
 msgstr "此翻譯非常不完整（已完成 {0}%）請幫助我們！"
+
+#, fuzzy
+msgid "LARGE_SULFUR_CHUNK"
+msgstr "小硫磺塊"
 
 msgid "LAST_ORGANELLE_DELETE_OPTION_DISABLED_TOOLTIP"
 msgstr "無法刪除唯一的細胞器"
@@ -3112,13 +3136,11 @@ msgstr ""
 "3D 選單背景已啟用，這會佔用大量系統資源。停用該選項可能會極大地提高性能。\n"
 "您現在希望這樣做嗎？"
 
-#, fuzzy
 msgid "LOW_QUALITY_BACKGROUND_BLUR"
-msgstr "背景模糊："
+msgstr "低解析度背景模糊"
 
-#, fuzzy
 msgid "LOW_QUALITY_BACKGROUND_BLUR_TOOLTIP"
-msgstr "背景模糊："
+msgstr "使背景模糊使用較低的分辨率，從而提高效能。"
 
 msgid "LYSOSOME"
 msgstr "溶酶體"
@@ -3973,8 +3995,16 @@ msgstr "這裡什麼都沒有"
 msgid "NOTHING_TO_INTERACT_WITH"
 msgstr "沒有可以互動的物件"
 
+#, fuzzy
+msgid "NOTICE_BINDING_OUT_OF_ATP"
+msgstr "因 ATP 耗盡而損傷"
+
 msgid "NOTICE_DAMAGED_BY_NO_ATP"
 msgstr "因 ATP 耗盡而損傷"
+
+#, fuzzy
+msgid "NOTICE_ENGULFING_OUT_OF_ATP"
+msgstr "目前細胞大小不足以吞噬目標"
 
 msgid "NOTICE_ENGULF_DAMAGE_FROM_TOXIN"
 msgstr "因攝入物質中的毒素而損傷"
@@ -4323,9 +4353,6 @@ msgstr "向右平移"
 msgid "PAN_CAMERA_UP"
 msgstr "向上平移"
 
-msgid "PASSIVE_REPRODUCTION_PROGRESS"
-msgstr "被動獲得繁殖進度"
-
 msgid "PASSIVE_REPRODUCTION_PROGRESS_EXPLANATION"
 msgstr "（被動地從環境中獲得繁殖所需的化合物）"
 
@@ -4572,6 +4599,10 @@ msgstr "原生質"
 msgid "PULL_REQUESTS_PROGRAMMING"
 msgstr "PR／程式設計"
 
+#, fuzzy
+msgid "QUADRILLION_ABBREVIATION"
+msgstr "{0}E+9"
+
 msgid "QUICK_LOAD"
 msgstr "快速讀檔"
 
@@ -4809,9 +4840,11 @@ msgstr "運行一定數量的世界，每個世界運行的代數由上方的顯
 msgid "RUSTICYANIN"
 msgstr "鐵氧化藍蛋白"
 
+#, fuzzy
 msgid "RUSTICYANIN_DESCRIPTION"
 msgstr "鐵氧化藍蛋白是一種蛋白質，能夠利用[thrive:compound type=\"carbondioxide\"][/thrive:compound] 氧化[thrive:compound type=\"iron\"][/thrive:compound]。此過程被稱為[b]鐵呼吸[/b]，釋放能量，然後細胞可以收集這些能量。"
 
+#, fuzzy
 msgid "RUSTICYANIN_PROCESSES_DESCRIPTION"
 msgstr "將[thrive:compound type=\"iron\"][/thrive:compound] 轉化為[thrive:compound type=\"atp\"][/thrive:compound]。速率與[thrive:compound type=\"carbondioxide\"][/thrive:compound] 的濃度成正比。"
 
@@ -5101,6 +5134,9 @@ msgstr "二氧化矽"
 
 msgid "SILICA_MEMBRANE_DESCRIPTION"
 msgstr "這種細胞膜具有堅固的二氧化矽壁。它可以很好地抵抗整體傷害，且對物理傷害的抵抗力非常強。並花費較少的能量維持外形。然而，它會大大減慢細胞的速度，細胞吸收資源的速度也會降低。"
+
+msgid "SIXTEEN_TIMES"
+msgstr "16x"
 
 msgid "SIZE_COLON"
 msgstr "大小："
@@ -5664,9 +5700,8 @@ msgstr ""
 "切換吞噬模式以吞噬各種碎塊\n"
 "以及較小的生物體，讓活躍時能有更多的 ATP 使用"
 
-#, fuzzy
 msgid "TOGGLE_FAST_MODE"
-msgstr "暫停"
+msgstr "切換快速模式"
 
 msgid "TOGGLE_FPS"
 msgstr "切換 FPS 顯示"
@@ -5718,6 +5753,10 @@ msgstr "紫外線（UV）保護過低，需要提高 {0}%"
 
 msgid "TOLERANCES_UNSUITABLE_DEBUFFS"
 msgstr "不適應當前的環境條件。滲透調節成本 {0}%、代謝速度 {1}%、生命值 {2}%"
+
+#, fuzzy
+msgid "TOLERANCE_FROM_ORGANELLES_TOOLTIP"
+msgstr "您的物種在受到有害影響之前能抵抗多少紫外線輻射。如果您處在光照過強的地方，您就會受到負面影響，直到抗性增加。"
 
 msgid "TOLERANCE_RANGE_LABEL"
 msgstr "適應範圍："
@@ -5822,6 +5861,10 @@ msgstr "翻譯人員"
 
 msgid "TRANSPARENCY"
 msgstr "透明度"
+
+#, fuzzy
+msgid "TRILLION_ABBREVIATION"
+msgstr "{0}E+9"
 
 msgid "TRY_FOSSILISING_SOME_SPECIES"
 msgstr "嘗試將一些物種變成化石！"
@@ -7027,6 +7070,7 @@ msgstr ""
 msgid "WIKI_FERROPLAST_EFFECTS"
 msgstr "無效果。"
 
+#, fuzzy
 msgid "WIKI_FERROPLAST_INTRO"
 msgstr ""
 "一個金屬發電廠。[b]鐵能體[/b]使用[thrive:compound type=\"iron\"][/thrive:compound] 與[thrive:compound type=\"carbondioxide\"][/thrive:compound] 來生產[thrive:compound type=\"atp\"][/thrive:compound]，此過程被稱為[b]鐵化能自養[/b]。這涉及氧化[thrive:compound type=\"iron\"][/thrive:compound]，將其從一種化學狀態轉變為另一種化學狀態。此效應與[thrive:compound type=\"carbondioxide\"][/thrive:compound] 的濃度成正比，因此環境中較低的[thrive:compound type=\"carbondioxide\"][/thrive:compound] 濃度會降低其[thrive:compound type=\"atp\"][/thrive:compound] 生產速率。\n"
@@ -7036,6 +7080,7 @@ msgstr ""
 msgid "WIKI_FERROPLAST_MODIFICATIONS"
 msgstr "無修改。"
 
+#, fuzzy
 msgid "WIKI_FERROPLAST_PROCESSES"
 msgstr ""
 "[b]鐵化能自養[/b]：[thrive:compound type=\"iron\"][/thrive:compound] + [thrive:compound type=\"carbondioxide\"][/thrive:compound] → [thrive:compound type=\"atp\"][/thrive:compound]\n"
@@ -7050,9 +7095,11 @@ msgstr ""
 "\n"
 "[indent]—   至少連續 [b]6[/b] 代中包含[b][color=#3796e1][url=thriveopedia:rusticyanin]鐵氧化藍蛋白[/url][/color][/b]。[/indent]"
 
+#, fuzzy
 msgid "WIKI_FERROPLAST_SCIENTIFIC_BACKGROUND"
 msgstr "[b]鐵能體[/b]尚未在現實生活中被發現，但基於內共生演化與[b][color=#3796e1][url=thriveopedia:rusticyanin]鐵氧化藍蛋白[/url][/color][/b]的能量生產能力，理論上是完全可能的（例如[b][color=#3796e1][url=thriveopedia:mitochondrion]粒線體[/url][/color][/b]）。"
 
+#, fuzzy
 msgid "WIKI_FERROPLAST_STRATEGY"
 msgstr ""
 "在含有大量[thrive:compound type=\"iron\"][/thrive:compound] 與高濃度[thrive:compound type=\"carbondioxide\"][/thrive:compound] 的環境中，[b]鐵能體[/b]是優秀的主要或次要能量來源。請注意，隨著遊戲的進行，兩種化合物的濃度都會降低，因此我們建議在您的細胞開始掙扎之前使用其他的能量來源。\n"
@@ -7204,9 +7251,21 @@ msgstr "使用者介面"
 msgid "WIKI_HEADING_UPGRADES"
 msgstr "升級"
 
-#, fuzzy
 msgid "WIKI_HELP_AND_TIPS_BASIC_GAME_MECHANICS"
-msgstr "遊戲機制"
+msgstr ""
+"玩家控制一個物種的成員，該物種需要在世界中擴展並演化為更複雜的生命體。你操控著物種中的單個細胞：如果它死亡，您將接管另一個細胞。您需要與其他物種的細胞競爭，並確保自己的物種能夠生存下去。\n"
+"\n"
+"世界被劃分為多個[b]區域[/b]。玩家細胞棲息的區域是您的[b]目前區域[/b]。\n"
+"\n"
+"在您目前的區域中，您必須收集[b]化合物[/b]來維持生命，並生長得足夠久以[b]繁殖[/b]。一旦您的細胞完成繁殖，您將會穿越數百萬年到未來並切換至[b]編輯器[/b]。\n"
+"\n"
+"在[b]編輯器[/b]中，您可以看到數百萬年來所有現存物種由於其生物特性與您在當前區域中的表現而發生了哪些變化。您可以看到哪些新物種[b]演化[/b]、哪些物種[b]滅絕[/b]以及它們的總[b]物種量[/b]發生了怎樣的變化。\n"
+"\n"
+"您可以在[b]編輯器[/b]的[b]區域地圖[/b]部分中變更您目前的區域，並將您物種從其他區域移動到另一個區域。您也可以透過[b]編輯[/b]來決定您的物種要如何演化。\n"
+"\n"
+"您可以透過添加、移除或調整細胞的部件來[b]編輯[/b]您的物種，也可以改變物種的行為。\n"
+"\n"
+"當您離開[b]編輯器[/b]時，您將回到目前區域，然後再次開始循環。每次演化所帶來的微小變化都會為星球的生命帶來巨大的改變。"
 
 msgid "WIKI_HELP_AND_TIPS_BUTTON"
 msgstr "幫助與提示"
@@ -8127,12 +8186,14 @@ msgstr "遊戲內 Thrive 百科"
 msgid "WIKI_RUSTICYANIN_EFFECTS"
 msgstr "不斷演化的[b]鐵氧化藍蛋白[/b]為細胞配備了同名的酶。這允許細胞消化環境中的[thrive:compound type=\"iron\"][/thrive:compound] 塊。"
 
+#, fuzzy
 msgid "WIKI_RUSTICYANIN_INTRO"
 msgstr "透過[b]鐵化能自養[/b]代謝將[thrive:compound type=\"iron\"][/thrive:compound] 轉化為[thrive:compound type=\"atp\"][/thrive:compound]。反應速率與環境中[thrive:compound type=\"carbondioxide\"][/thrive:compound] 的濃度成正比。"
 
 msgid "WIKI_RUSTICYANIN_MODIFICATIONS"
 msgstr "無修改。"
 
+#, fuzzy
 msgid "WIKI_RUSTICYANIN_PROCESSES"
 msgstr ""
 "[b]鐵化能自養[/b]：[thrive:compound type=\"iron\"][/thrive:compound] + [thrive:compound type=\"carbondioxide\"][/thrive:compound] → [thrive:compound type=\"atp\"][/thrive:compound]\n"
@@ -8142,6 +8203,7 @@ msgstr ""
 msgid "WIKI_RUSTICYANIN_REQUIREMENTS"
 msgstr "無要求。"
 
+#, fuzzy
 msgid "WIKI_RUSTICYANIN_SCIENTIFIC_BACKGROUND"
 msgstr ""
 "[b]鐵氧化藍蛋白[/b]存在於一些細菌與古菌的細胞膜中。它從[b]鐵[/b]轉移電子，並利用電子將離子泵入細胞中，以幫助製造新的 [b]ATP[/b] 分子。\n"
@@ -8571,6 +8633,24 @@ msgstr ""
 msgid "WORLD_RELATIVE_MOVEMENT"
 msgstr "相對於世界"
 
+msgid "WORLD_SIZE"
+msgstr "世界大小"
+
+msgid "WORLD_SIZE_EXPLANATION"
+msgstr "（改變世界中的區域數量）"
+
+msgid "WORLD_SIZE_LARGE"
+msgstr "大"
+
+msgid "WORLD_SIZE_MEDIUM"
+msgstr "中"
+
+msgid "WORLD_SIZE_SMALL"
+msgstr "小"
+
+msgid "WORLD_SIZE_TOOLTIP"
+msgstr "較大的世界可能會降低模擬速度，因此不建議在性能較差的電腦上使用。"
+
 msgid "WORST_PATCH_COLON"
 msgstr "最差區域："
 
@@ -8608,6 +8688,12 @@ msgstr "放大"
 
 msgid "ZOOM_OUT"
 msgstr "縮小"
+
+#~ msgid "IRON_CHEMOLITHOAUTOTROPHY"
+#~ msgstr "鐵化能自養"
+
+#~ msgid "PASSIVE_REPRODUCTION_PROGRESS"
+#~ msgstr "被動獲得繁殖進度"
 
 #~ msgid "MIGRATE"
 #~ msgstr "遷移"
@@ -8893,9 +8979,6 @@ msgstr "縮小"
 
 #~ msgid "GLES2"
 #~ msgstr "GLES2"
-
-#~ msgid "SIXTEEN_TIMES"
-#~ msgstr "16x"
 
 #~ msgid "WIKI_HEADING_AEROBIC_CELLULAR_RESPIRATION_(GLUCOSE_->_ATP)"
 #~ msgstr "有氧呼吸作用（葡萄糖 -> ATP）"

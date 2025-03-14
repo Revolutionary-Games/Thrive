@@ -1,6 +1,6 @@
 [gd_scene load_steps=14 format=3 uid="uid://bqbt1jtgup58k"]
 
-[ext_resource type="Script" path="res://src/awakening_stage/gui/InventoryScreen.cs" id="1"]
+[ext_resource type="Script" uid="uid://bjbt2nkr8o8sl" path="res://src/awakening_stage/gui/InventoryScreen.cs" id="1"]
 [ext_resource type="PackedScene" path="res://src/gui_common/dialogs/CustomWindow.tscn" id="2"]
 [ext_resource type="Texture2D" uid="uid://bjd7m7yy3slb0" path="res://assets/textures/gui/CreaturePlaceholder.png" id="3"]
 [ext_resource type="Texture2D" uid="uid://bembxnxct020" path="res://assets/textures/gui/bevel/WhiteArrow.png" id="4"]
@@ -43,8 +43,8 @@ tracks/0/keys = {
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_ed7nr"]
 _data = {
-"Flash": SubResource("1"),
-"RESET": SubResource("2")
+&"Flash": SubResource("1"),
+&"RESET": SubResource("2")
 }
 
 [node name="InventoryScreen" type="Control"]

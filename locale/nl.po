@@ -7,9 +7,9 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2025-02-28 12:07+0200\n"
-"PO-Revision-Date: 2025-02-20 06:37+0000\n"
-"Last-Translator: Joah van der Maaden <voorjoah@gmail.com>\n"
+"POT-Creation-Date: 2025-03-14 11:08+0200\n"
+"PO-Revision-Date: 2025-03-12 14:39+0000\n"
+"Last-Translator: Anonymous <noreply@weblate.org>\n"
 "Language-Team: Dutch <https://translate.revolutionarygamesstudio.com/projects/thrive/thrive-game/nl/>\n"
 "Language: nl\n"
 "MIME-Version: 1.0\n"
@@ -188,6 +188,9 @@ msgstr "Anaerobe Stikstoffixatie"
 
 msgid "AND_UNLOCK_CONDITION"
 msgstr "En"
+
+msgid "ANISOTROPIC_FILTERING"
+msgstr ""
 
 msgid "APPEARANCE"
 msgstr "Uiterlijk"
@@ -1539,6 +1542,7 @@ msgstr "Bijdragers aan Devbuilds"
 msgid "DIFFICULTY"
 msgstr "Moeilijkheidsgraad"
 
+#, fuzzy
 msgid "DIFFICULTY_DETAILS_STRING"
 msgstr ""
 "Moeilijkheidsgraad: {0}\n"
@@ -1806,6 +1810,19 @@ msgstr ""
 "Het Rapportscherm toont een lijst met veranderingen in jouw gebied. Probeer de verschillende hulpmiddelen uit om meer te leren over gebeurtenissen in je wereld!\n"
 "\n"
 "Als je klaar bent, klik dan op de knop \"volgende\" rechtsonder om door te gaan naar de Gebiedenkaart."
+
+#, fuzzy
+msgid "EDITOR_TUTORIAL_MICROBE_EDITOR_NUCLEUS"
+msgstr ""
+"Dit is de celbewerker waar je je soort kunt evolueren door mutatiepunten (MP) uit te geven. Iedere generatie heb je altijd precies 100 MP, dus doe geen moeite om ze op te sparen.\n"
+"\n"
+"De hex in het centrum van je scherm is je cel, die nu bestaat uit een enkel cytoplasmadeel.\n"
+"\n"
+"Selecteer een onderdeel uit het linkerpaneel om verder te gaan. Plaats het onderdeel door naast het hex met de linkermuisknop te klikken. Je kunt delen roteren met [thrive:input]e_rotate_left[/thrive:input] en [thrive:input]e_rotate_right[/thrive:input]."
+
+#, fuzzy
+msgid "EFFECTIVE_VALUE"
+msgstr "{0}%"
 
 msgid "EIGHT_TIMES"
 msgstr "8x"
@@ -2724,8 +2741,9 @@ msgstr ""
 msgid "IRON"
 msgstr "Ijzer"
 
-msgid "IRON_CHEMOLITHOAUTOTROPHY"
-msgstr "Ijzer-chemolithoautotrofie"
+#, fuzzy
+msgid "IRON_OXIDATION"
+msgstr "Donaties"
 
 msgid "ITCH_TOOLTIP"
 msgstr "Bezoek onze Itch.io pagina"
@@ -2761,8 +2779,9 @@ msgstr "Juli"
 msgid "JUNE"
 msgstr "Juni"
 
-msgid "KEEP_CURRENT_FLEXIBILITY"
-msgstr ""
+#, fuzzy
+msgid "KEEP_CURRENT_SHORT"
+msgstr "Huidige Wereld"
 
 #, fuzzy
 msgid "KEEP_CURRENT_TOLERANCE_FLEXIBILITY_TOOLTIP"
@@ -2938,6 +2957,10 @@ msgstr "De vertaling van deze taal is nog niet compleet ({0}% compleet)"
 
 msgid "LANGUAGE_TRANSLATION_PROGRESS_REALLY_LOW"
 msgstr "Deze vertaling is nog niet compleet ({0}% klaar) help ons hier alstublieft mee!"
+
+#, fuzzy
+msgid "LARGE_SULFUR_CHUNK"
+msgstr "Klein stuk ijzer"
 
 msgid "LAST_ORGANELLE_DELETE_OPTION_DISABLED_TOOLTIP"
 msgstr "Kan laatste organel niet verwijderen"
@@ -3447,9 +3470,8 @@ msgstr "Microbe Prestatietest"
 msgid "MICROBE_EDITOR"
 msgstr "Microbe Bewerker"
 
-#, fuzzy
 msgid "MICROBE_ENZYME_STATISTICS"
-msgstr "  {0}: Gevonden in {1} soorten, gemiddeld {2} per soort"
+msgstr "[b]Enzymendata:[/b]"
 
 msgid "MICROBE_FREEBUILD_EDITOR"
 msgstr "Microbe vrij bouwen bewerker"
@@ -3542,13 +3564,11 @@ msgstr "Klik de ongedaan maken knop in de bewerker om een fout te corrigeren"
 msgid "MICROBE_LOADING_TIP_9"
 msgstr "Klik de ongedaan maken knop in de bewerker om een fout te corrigeren"
 
-#, fuzzy
 msgid "MICROBE_MEMBRANE_PERCENTAGE_STATISTICS"
-msgstr "  {0}: Gevonden in {1} soorten, gemiddeld {2} per soort"
+msgstr "{0}: Gevonden in {1} soorten"
 
-#, fuzzy
 msgid "MICROBE_MEMBRANE_STATISTICS"
-msgstr "  {0}: Gevonden in {1} soorten, gemiddeld {2} per soort"
+msgstr "[b]Membranendata:[/b]"
 
 msgid "MICROBE_ORGANELLE_STATISTICS"
 msgstr "  {0}: Gevonden in {1} soorten, gemiddeld {2} per soort"
@@ -4148,8 +4168,16 @@ msgstr "Niets hier"
 msgid "NOTHING_TO_INTERACT_WITH"
 msgstr "Niets om op te reageren"
 
+#, fuzzy
+msgid "NOTICE_BINDING_OUT_OF_ATP"
+msgstr "Beschadigd vanwege een tekort aan ATP"
+
 msgid "NOTICE_DAMAGED_BY_NO_ATP"
 msgstr "Beschadigd vanwege een tekort aan ATP"
+
+#, fuzzy
+msgid "NOTICE_ENGULFING_OUT_OF_ATP"
+msgstr "Formaat van huidige cel is te klein om doelwit te verzwelgen"
 
 msgid "NOTICE_ENGULF_DAMAGE_FROM_TOXIN"
 msgstr "Beschadigd door gifstoffen in ingeslikte materie"
@@ -4519,9 +4547,6 @@ msgstr "Draai naar rechts"
 msgid "PAN_CAMERA_UP"
 msgstr "Beweeg omhoog"
 
-msgid "PASSIVE_REPRODUCTION_PROGRESS"
-msgstr "Krijg passief reproduktievoortgang"
-
 msgid "PASSIVE_REPRODUCTION_PROGRESS_EXPLANATION"
 msgstr "(krijg passief reproductieve stoffen van de omgeving zonder iets te hoeven doen)"
 
@@ -4780,6 +4805,10 @@ msgstr "Protoplasma"
 msgid "PULL_REQUESTS_PROGRAMMING"
 msgstr "Pull Aanvragen / Programmeren"
 
+#, fuzzy
+msgid "QUADRILLION_ABBREVIATION"
+msgstr "{0} Mld"
+
 msgid "QUICK_LOAD"
 msgstr "Snel laden"
 
@@ -5021,9 +5050,11 @@ msgstr "Voer een zekere hoeveelheid werelden uit. De hoeveelheid generaties voor
 msgid "RUSTICYANIN"
 msgstr "Rusticyanine"
 
+#, fuzzy
 msgid "RUSTICYANIN_DESCRIPTION"
 msgstr "Rusticyanine is een eiwat dat [thrive:compound type=\"carbondioxide\"][/thrive:compound] en [thrive:compound type=\"oxygen\"][/thrive:compound] gebruikt om [thrive:compound type=\"iron\"][/thrive:compound] van een chemische staat naar een andere te oxideren. Dit proces heet [b]ijzerademhaling[/b] en maakt energie vrij die de cel kan gebruiken."
 
+#, fuzzy
 msgid "RUSTICYANIN_PROCESSES_DESCRIPTION"
 msgstr "Zet [thrive:compound type=\"iron\"][/thrive:compound] om in [thrive:compound type=\"atp\"][/thrive:compound]. Snelheid schaalt met contentratie van [thrive:compound type=\"carbondioxide\"][/thrive:compound]."
 
@@ -5319,6 +5350,9 @@ msgstr "Siliciumdioxide"
 
 msgid "SILICA_MEMBRANE_DESCRIPTION"
 msgstr "Dit membraan heeft een sterke celmuur van silica. Het kan zeer goed tegen schade en is zeer resistent voor fysieke schade. Het heeft ook minder energie nodig om zijn vorm te behouden. Echter, het vertraagt de cel ernstig en de cel kan grondstoffen minder snel opnemen."
+
+msgid "SIXTEEN_TIMES"
+msgstr "16x"
 
 msgid "SIZE_COLON"
 msgstr "Grootte:"
@@ -5761,9 +5795,8 @@ msgstr "Thermosynthase"
 msgid "THERMOSYNTHASE_DESCRIPTION"
 msgstr "Thermosynthase is een eiwit dat thermische convectie gebruikt om zijn vorm aan te passen. Wanneer het opwarmt, vouwt het zichzelf op en bindt het aan ADP, waarbij het dit omzet in [thrive:compound type=\"atp\"][/thrive:compound]. Dit proces heet [b]thermosynthese[/b]. Het eiwit ontvouwt weer als het afkoelt, waardoor het de cyclus kan herhalen als de [thrive:compound type=\"temperature\"][/thrive:compound] weer toeneemt. De snelheid van de productie van [thrive:compound type=\"atp\"][/thrive:compound] schaalt met [thrive:compound type=\"temperature\"][/thrive:compound] delta."
 
-#, fuzzy
 msgid "THERMOSYNTHASE_PROCESSES_DESCRIPTION"
-msgstr "Gebruikt toenemende temperaturen om [thrive:compound type=\"atp\"][/thrive:compound] te produceren. Snelheid schaalt met toename van [thrive:compound type=\"temperature\"][/thrive:compound]. Gebruik [b]warmtevisie[b] om hete en koude gebieden te vinden."
+msgstr "Gebruikt toenemende temperaturen om [thrive:compound type=\"atp\"][/thrive:compound] te produceren. Snelheid schaalt met toename van [thrive:compound type=\"temperature\"][/thrive:compound]. Gebruik [b]warmtevisie[/b] om hete en koude gebieden te vinden."
 
 msgid "THERMOSYNTHESIS"
 msgstr "Thermosynthese"
@@ -5954,6 +5987,15 @@ msgstr "{0}: +{1} ATP"
 msgid "TOLERANCES_UNSUITABLE_DEBUFFS"
 msgstr ""
 
+#, fuzzy
+msgid "TOLERANCE_FROM_ORGANELLES_TOOLTIP"
+msgstr ""
+"Dit deel laat het totaal aantal ATP (energie) zien in de huidige cel.\n"
+"Om te overleven moet deze waarde positief zijn. Sessiele cellen kunnen deze waarde als postief zien .\n"
+"Het menu hieronder kan gebruikt worden om te wat er zou gebeuren als een cel geen stoffen zou hebben om ATP te maken.\n"
+"bijvoorbeeld, sommige cellen kunnen alleen een positief ATP balans houden als ze meerdere stof types hebben om ATP tegelijk van te maken.\n"
+"Die typen cellen zijn moeilijker om te spelen omdat ze meerdere stoffen tegelijk in opslag nodig hebben."
+
 msgid "TOLERANCE_RANGE_LABEL"
 msgstr ""
 
@@ -6079,6 +6121,10 @@ msgstr "Vertalers"
 
 msgid "TRANSPARENCY"
 msgstr "Transparantie"
+
+#, fuzzy
+msgid "TRILLION_ABBREVIATION"
+msgstr "{0} Mld"
 
 msgid "TRY_FOSSILISING_SOME_SPECIES"
 msgstr "Probeer enkele soorten te fossilizeren!"
@@ -7839,11 +7885,9 @@ msgstr "Bindmiddel"
 msgid "WIKI_PAGE_BIOLUMINESCENT_VACUOLE"
 msgstr "Bioluminescente Vacuole"
 
-#, fuzzy
 msgid "WIKI_PAGE_CHEMOPLAST"
 msgstr "Chemoplast"
 
-#, fuzzy
 msgid "WIKI_PAGE_CHEMORECEPTOR"
 msgstr "Chemoreceptor"
 
@@ -7851,7 +7895,6 @@ msgstr "Chemoreceptor"
 msgid "WIKI_PAGE_CHEMOSYNTHESIZING_PROTEINS"
 msgstr "Chemosynthetiserende eiwitten"
 
-#, fuzzy
 msgid "WIKI_PAGE_CHLOROPLAST"
 msgstr "Chloroplast"
 
@@ -8471,6 +8514,31 @@ msgstr ""
 msgid "WORLD_RELATIVE_MOVEMENT"
 msgstr "Relatief aan de wereld"
 
+#, fuzzy
+msgid "WORLD_SIZE"
+msgstr "Wereld"
+
+#, fuzzy
+msgid "WORLD_SIZE_EXPLANATION"
+msgstr ""
+"Gefocuste microben zullen over grotere afstanden brokstukken en prooi zoeken\n"
+"en zijn mogelijk veel ambitieuzer over brokstukken.\n"
+"Reagerende microben zullen sneller van doelwit wisselen."
+
+msgid "WORLD_SIZE_LARGE"
+msgstr ""
+
+#, fuzzy
+msgid "WORLD_SIZE_MEDIUM"
+msgstr "Relatief aan de wereld"
+
+msgid "WORLD_SIZE_SMALL"
+msgstr ""
+
+#, fuzzy
+msgid "WORLD_SIZE_TOOLTIP"
+msgstr "Voer een zekere hoeveelheid werelden uit. De hoeveelheid generaties voor iedere wereld is bepaald door de ronddraaiende kist boven."
+
 msgid "WORST_PATCH_COLON"
 msgstr "Slechtse Gebied:"
 
@@ -8510,6 +8578,12 @@ msgstr "Inzoomen"
 
 msgid "ZOOM_OUT"
 msgstr "Uitzoomen"
+
+#~ msgid "IRON_CHEMOLITHOAUTOTROPHY"
+#~ msgstr "Ijzer-chemolithoautotrofie"
+
+#~ msgid "PASSIVE_REPRODUCTION_PROGRESS"
+#~ msgstr "Krijg passief reproduktievoortgang"
 
 #~ msgid "THANKS_FOR_BUYING_THRIVE"
 #~ msgstr ""
@@ -8872,9 +8946,6 @@ msgstr "Uitzoomen"
 
 #~ msgid "GLES2"
 #~ msgstr "GLES2"
-
-#~ msgid "SIXTEEN_TIMES"
-#~ msgstr "16x"
 
 #, fuzzy
 #~ msgid "TARGET_TIME"

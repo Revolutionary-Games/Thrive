@@ -7,8 +7,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2025-02-28 12:07+0200\n"
-"PO-Revision-Date: 2025-02-06 13:29+0000\n"
+"POT-Creation-Date: 2025-03-14 11:08+0200\n"
+"PO-Revision-Date: 2025-03-12 14:39+0000\n"
 "Last-Translator: Anonymous <noreply@weblate.org>\n"
 "Language-Team: French <https://translate.revolutionarygamesstudio.com/projects/thrive/thrive-game/fr/>\n"
 "Language: fr\n"
@@ -192,6 +192,9 @@ msgstr "Fixation anaérobique d'azote"
 
 msgid "AND_UNLOCK_CONDITION"
 msgstr "et"
+
+msgid "ANISOTROPIC_FILTERING"
+msgstr ""
 
 msgid "APPEARANCE"
 msgstr "Apparence"
@@ -1543,6 +1546,7 @@ msgstr "Supporteurs DevBuilds"
 msgid "DIFFICULTY"
 msgstr "Difficulté"
 
+#, fuzzy
 msgid "DIFFICULTY_DETAILS_STRING"
 msgstr ""
 "Difficulté prédéfinie : {0}\n"
@@ -1808,6 +1812,19 @@ msgstr ""
 "Cet onglet vous donne une liste des modifications apportées au secteur que vous occupez actuellement. Essayez d'explorer les différents outils à votre disposition pour en savoir plus sur les événements de votre monde !\n"
 "\n"
 "Lorsque vous êtes prêt, appuyez sur le bouton \"Suivant\" en bas à droite pour continuer."
+
+#, fuzzy
+msgid "EDITOR_TUTORIAL_MICROBE_EDITOR_NUCLEUS"
+msgstr ""
+"C'est l'éditeur de cellules où vous pouvez faire évoluer votre espèce en dépensant des [b]points de mutation[/b] (PM) [thrive:icon]MP[/thrive:icon]. À chaque génération, vous aurez toujours [b]100 PM[/b] [thrive:icon]MP[/thrive:icon] à dépenser, alors inutile d'économiser !\n"
+"\n"
+"L'hexagone au centre de votre écran est votre [b]cellule[/b], qui est composée d'une seule partie de cytoplasme.\n"
+"\n"
+"Pour continuer, sélectionnez une partie dans le panneau de gauche. Cliquez ensuite avec le bouton gauche de la souris à côté de l'hexagone pour le placer. Vous pouvez faire pivoter les pièces avec [thrive:input]e_rotate_left[/thrive:input] et [thrive:input]e_rotate_right[/thrive:input]."
+
+#, fuzzy
+msgid "EFFECTIVE_VALUE"
+msgstr "{0}%"
 
 msgid "EIGHT_TIMES"
 msgstr "8x"
@@ -2716,8 +2733,9 @@ msgstr ""
 msgid "IRON"
 msgstr "Fer"
 
-msgid "IRON_CHEMOLITHOAUTOTROPHY"
-msgstr "Chimiolithoautotrophe ferrique"
+#, fuzzy
+msgid "IRON_OXIDATION"
+msgstr "Dons"
 
 msgid "ITCH_TOOLTIP"
 msgstr "Visitez notre page Itch.io"
@@ -2753,8 +2771,9 @@ msgstr "Juillet"
 msgid "JUNE"
 msgstr "Juin"
 
-msgid "KEEP_CURRENT_FLEXIBILITY"
-msgstr ""
+#, fuzzy
+msgid "KEEP_CURRENT_SHORT"
+msgstr "Monde actuel"
 
 #, fuzzy
 msgid "KEEP_CURRENT_TOLERANCE_FLEXIBILITY_TOOLTIP"
@@ -2925,6 +2944,10 @@ msgstr "Cette langue est encore en cours de rédaction ({0}% effectué)"
 
 msgid "LANGUAGE_TRANSLATION_PROGRESS_REALLY_LOW"
 msgstr "Cette traduction est très incomplète ({0}% effectué). Aidez-nous à la terminer !"
+
+#, fuzzy
+msgid "LARGE_SULFUR_CHUNK"
+msgstr "Petit fragment de fer"
 
 msgid "LAST_ORGANELLE_DELETE_OPTION_DISABLED_TOOLTIP"
 msgstr "Impossible de supprimer le dernière organite"
@@ -4145,8 +4168,16 @@ msgid "NOTHING_TO_INTERACT_WITH"
 msgstr "Aucun objet avec lequel interagir"
 
 #, fuzzy
+msgid "NOTICE_BINDING_OUT_OF_ATP"
+msgstr "Dommages dus à l'absence d'ATP"
+
+#, fuzzy
 msgid "NOTICE_DAMAGED_BY_NO_ATP"
 msgstr "Dommages dus à l'absence d'ATP"
+
+#, fuzzy
+msgid "NOTICE_ENGULFING_OUT_OF_ATP"
+msgstr "Cellule trop petite pour phagocyter la cible"
 
 #, fuzzy
 msgid "NOTICE_ENGULF_DAMAGE_FROM_TOXIN"
@@ -4515,9 +4546,6 @@ msgstr "Panoramique droit"
 msgid "PAN_CAMERA_UP"
 msgstr "Panoramique vers le haut"
 
-msgid "PASSIVE_REPRODUCTION_PROGRESS"
-msgstr "Gagner passivement des progrès en matière de reproduction"
-
 msgid "PASSIVE_REPRODUCTION_PROGRESS_EXPLANATION"
 msgstr "(obtenir passivement des composés de reproduction de l'environnement sans avoir à faire quoi que ce soit)"
 
@@ -4774,6 +4802,10 @@ msgstr "Protoplasme"
 msgid "PULL_REQUESTS_PROGRAMMING"
 msgstr "Pull Requests / Programmation"
 
+#, fuzzy
+msgid "QUADRILLION_ABBREVIATION"
+msgstr "{0} Mrd"
+
 msgid "QUICK_LOAD"
 msgstr "Chargement rapide"
 
@@ -5013,9 +5045,11 @@ msgstr "Lance un certain nombre de mondes, le nombre de générations pour chaqu
 msgid "RUSTICYANIN"
 msgstr "Rusticyanine"
 
+#, fuzzy
 msgid "RUSTICYANIN_DESCRIPTION"
 msgstr "La rusticyanine est une protéine capable d'utiliser le [thrive:compound type=\"carbondioxide\"][/thrive:compound] pour oxyder le [thrive:compound type=\"iron\"][/thrive:compound] d'un état chimique à un autre. Ce processus, appelé [b]respiration ferrique[/b], libère de l'énergie que la cellule peut ensuite récolter."
 
+#, fuzzy
 msgid "RUSTICYANIN_PROCESSES_DESCRIPTION"
 msgstr "Transforme le [thrive:compound type=\"iron\"][/thrive:compound] en [thrive:compound type=\"atp\"][/thrive:compound]. Taux proportionnels à la concentration de [thrive:compound type=\"carbondioxide\"][/thrive:compound]."
 
@@ -5315,6 +5349,9 @@ msgstr "Silice"
 
 msgid "SILICA_MEMBRANE_DESCRIPTION"
 msgstr "Cette membrane possède une paroi solide de silice. Elle résiste bien aux dégâts globaux et très bien aux dégâts physiques. Elle requiert aussi moins d'énergie pour maintenir sa forme. Cependant, elle ralentit sensiblement la cellule et celle-ci absorbe les ressources à un taux réduit."
+
+msgid "SIXTEEN_TIMES"
+msgstr "16x"
 
 msgid "SIZE_COLON"
 msgstr "Taille :"
@@ -5967,6 +6004,12 @@ msgstr "{0} : +{1} ATP"
 msgid "TOLERANCES_UNSUITABLE_DEBUFFS"
 msgstr ""
 
+#, fuzzy
+msgid "TOLERANCE_FROM_ORGANELLES_TOOLTIP"
+msgstr ""
+"Cette section montre la balance totale (production - consommation) pour chaque composé.\n"
+"Par exemple, pour former une cellule végétale, le bilan du glucose doit être très positif."
+
 msgid "TOLERANCE_RANGE_LABEL"
 msgstr "Flexibilité :"
 
@@ -6073,6 +6116,10 @@ msgstr "Traducteurs"
 
 msgid "TRANSPARENCY"
 msgstr "Transparence"
+
+#, fuzzy
+msgid "TRILLION_ABBREVIATION"
+msgstr "{0} Mrd"
 
 msgid "TRY_FOSSILISING_SOME_SPECIES"
 msgstr "Essayez de fossiliser des espèces !"
@@ -8544,6 +8591,31 @@ msgstr ""
 msgid "WORLD_RELATIVE_MOVEMENT"
 msgstr "Dépend du monde"
 
+#, fuzzy
+msgid "WORLD_SIZE"
+msgstr "Monde"
+
+#, fuzzy
+msgid "WORLD_SIZE_EXPLANATION"
+msgstr ""
+"Les microbes persévérants rechercheront des fragments ou des proies sur de plus grandes distances\n"
+"et pourront se montrer bien plus ambitieux face à des fragments disputés.\n"
+"Les microbes réactifs basculeront plus vite vers de nouvelles cibles."
+
+msgid "WORLD_SIZE_LARGE"
+msgstr ""
+
+#, fuzzy
+msgid "WORLD_SIZE_MEDIUM"
+msgstr "Dépend du monde"
+
+msgid "WORLD_SIZE_SMALL"
+msgstr ""
+
+#, fuzzy
+msgid "WORLD_SIZE_TOOLTIP"
+msgstr "Lance un certain nombre de mondes, le nombre de générations pour chaque monde est déterminé par liste déroulante ci-dessus."
+
 msgid "WORST_PATCH_COLON"
 msgstr "Pire secteur :"
 
@@ -8582,6 +8654,12 @@ msgstr "Zoomer"
 
 msgid "ZOOM_OUT"
 msgstr "Dézoomer"
+
+#~ msgid "IRON_CHEMOLITHOAUTOTROPHY"
+#~ msgstr "Chimiolithoautotrophe ferrique"
+
+#~ msgid "PASSIVE_REPRODUCTION_PROGRESS"
+#~ msgstr "Gagner passivement des progrès en matière de reproduction"
 
 #, fuzzy
 #~ msgid "MIGRATE"
@@ -8953,9 +9031,6 @@ msgstr "Dézoomer"
 
 #~ msgid "GLES2"
 #~ msgstr "GLES2"
-
-#~ msgid "SIXTEEN_TIMES"
-#~ msgstr "16x"
 
 #, fuzzy
 #~ msgid "TARGET_TIME"

@@ -4,7 +4,7 @@
 [ext_resource type="Texture2D" uid="uid://dyc7ht0h5qfca" path="res://assets/textures/gui/bevel/DNAButtonLargePressed.svg" id="2_ktti2"]
 [ext_resource type="Texture2D" uid="uid://ctcx4y3a2a0gv" path="res://assets/textures/gui/bevel/DNAButtonLargeHover.svg" id="3_pslvo"]
 [ext_resource type="Texture2D" uid="uid://w8bhef5oru1b" path="res://assets/textures/gui/bevel/DNAButtonLargeDisabled.svg" id="4_1c2pb"]
-[ext_resource type="Script" path="res://src/microbe_stage/gui/EditorEntryButton.cs" id="5_kxl0r"]
+[ext_resource type="Script" uid="uid://c00icmo0ki7w4" path="res://src/microbe_stage/gui/EditorEntryButton.cs" id="5_kxl0r"]
 [ext_resource type="Texture2D" uid="uid://cai50f52nr8gw" path="res://assets/textures/background_particle_fuzzy.png" id="5_vcgwd"]
 [ext_resource type="Texture2D" uid="uid://oxxtqpharrog" path="res://assets/textures/gui/bevel/AmmoniaBW.svg" id="6_a6ce0"]
 [ext_resource type="Texture2D" uid="uid://ds0evrot5mcgx" path="res://assets/textures/gui/bevel/PhosphatesBW.svg" id="7_3if3j"]
@@ -42,7 +42,7 @@ tracks/1/keys = {
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_xveqw"]
 _data = {
-"EditorButtonFlash": SubResource("30")
+&"EditorButtonFlash": SubResource("30")
 }
 
 [node name="EditorButton" type="TextureButton" node_paths=PackedStringArray("highlight", "buttonAnimationPlayer", "ammoniaIcon", "ammoniaReproductionBar", "phosphateIcon", "phosphateReproductionBar", "reproductionBar", "editorButtonFlash")]

@@ -184,21 +184,21 @@ public partial class PatchMapDrawer : Control
         if (Map == null)
             return;
 
-        // Create connections between regions if they dont exist.
+        // Create connections between regions if they don't exist.
         if (connections.Count == 0)
         {
             // Clear existing connection lines
-            lineContainer.FreeChildren();
+            lineContainer.QueueFreeChildren(false);
 
             CreateRegionLinks();
             RebuildRegionConnections();
+            DrawPatchLinks();
+            DrawHighlightedConnections();
         }
 
-        DrawPatchLinks();
-        DrawHighlightedConnections();
         DrawRegionBorders();
 
-        // Scroll to player patch only when first drawn
+        // Scroll to the player patch only when first drawn
         if (!alreadyDrawn)
         {
             // Just snap, it can get pretty annoying otherwise
@@ -209,12 +209,15 @@ public partial class PatchMapDrawer : Control
     }
 
     /// <summary>
-    ///   Centers the map to the coordinates of current patch.
+    ///   Centers the map to the coordinates of the current patch.
     /// </summary>
     /// <param name="smoothed">If true, smoothly pans the view to the destination, otherwise just snaps.</param>
     public void CenterToCurrentPatch(bool smoothed = true)
     {
-        EmitSignal(SignalName.OnCurrentPatchCentered, PlayerPatch!.ScreenCoordinates, smoothed);
+        // In Godot 4.4 this is triggered too early, so we need to wait until the end of the frame to update this.
+        // This allocates a capturing lambda, but this should be used rarely enough that it doesn't really matter
+        Invoke.Instance.Perform(() =>
+            EmitSignal(SignalName.OnCurrentPatchCentered, PlayerPatch!.ScreenCoordinates, smoothed));
     }
 
     public void MarkDirty()
@@ -1047,6 +1050,7 @@ public partial class PatchMapDrawer : Control
     /// </summary>
     private void RebuildMap()
     {
+        lineContainer.QueueFreeChildren(false);
         patchNodeContainer.FreeChildren();
         nodes.Clear();
         connections.Clear();

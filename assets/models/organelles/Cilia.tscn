@@ -1,7 +1,7 @@
 [gd_scene load_steps=6 format=3 uid="uid://yxuatqlicwtn"]
 
 [ext_resource type="PackedScene" uid="uid://d2keheblwnnfe" path="res://assets/models/organelles/Cilia.glb" id="1_3y8uh"]
-[ext_resource type="Shader" path="res://shaders/OrganelleTransparent.gdshader" id="2_dkpan"]
+[ext_resource type="Shader" uid="uid://bpdtg8smolq32" path="res://shaders/OrganelleTransparent.gdshader" id="2_dkpan"]
 [ext_resource type="Texture2D" uid="uid://baxuoyeo83r2u" path="res://assets/textures/dissolve_noise.tres" id="3_uptes"]
 [ext_resource type="Texture2D" uid="uid://1cvtjasc84ub" path="res://assets/textures/FilamentousOrganelle.png" id="4_52435"]
 
@@ -9,6 +9,8 @@
 resource_local_to_scene = true
 render_priority = 0
 shader = ExtResource("2_dkpan")
+shader_parameter/texture = ExtResource("4_52435")
+shader_parameter/dissolveTexture = ExtResource("3_uptes")
 shader_parameter/dissolveValue = 0.0
 shader_parameter/dissolveScale = 1.0
 shader_parameter/fresnelValue = 1.0
@@ -17,8 +19,6 @@ shader_parameter/outlineWidth = 0.0
 shader_parameter/growColor = Color(0.5, 0.5, 0.5, 1)
 shader_parameter/tint = Color(1, 1, 1, 1)
 shader_parameter/jiggleAmount = 0.0
-shader_parameter/texture = ExtResource("4_52435")
-shader_parameter/dissolveTexture = ExtResource("3_uptes")
 
 [node name="Cilia" instance=ExtResource("1_3y8uh")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -0.128127)

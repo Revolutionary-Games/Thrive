@@ -1,0 +1,47 @@
+[gd_scene load_steps=13 format=3 uid="uid://d3hkouff6asri"]
+
+[ext_resource type="Shader" uid="uid://erlcc6rxb1cy" path="res://shaders/CurrentsParticles.gdshader" id="1_ykhyg"]
+[ext_resource type="NoiseTexture3D" uid="uid://dprbq7c2fwyfq" path="res://src/microbe_stage/NoiseFluidCurrentX.tres" id="2_faxer"]
+[ext_resource type="NoiseTexture3D" uid="uid://cb62fq3n5m2or" path="res://src/microbe_stage/NoiseFluidCurrentY.tres" id="3_lx34w"]
+[ext_resource type="NoiseTexture3D" uid="uid://dt8diyy702esp" path="res://src/microbe_stage/NoiseFluidDisturbanceX.tres" id="4_bbuou"]
+[ext_resource type="NoiseTexture3D" uid="uid://be2uvgyvlycdd" path="res://src/microbe_stage/NoiseFluidDisturbanceY.tres" id="5_kgkhw"]
+[ext_resource type="Texture2D" uid="uid://bwks4coimg7al" path="res://assets/textures/blurry_circle.png" id="6_vctkt"]
+[ext_resource type="Script" uid="uid://dbjhycamqqslq" path="res://src/microbe_stage/FluidCurrentDisplay.cs" id="7_21wlg"]
+
+[sub_resource type="Gradient" id="Gradient_4eerh"]
+offsets = PackedFloat32Array(0, 0.295082, 0.696721, 1)
+colors = PackedColorArray(0, 0, 0, 1, 1, 1, 1, 1, 1, 1, 1, 1, 0, 0, 0, 1)
+
+[sub_resource type="GradientTexture1D" id="GradientTexture1D_4ly1p"]
+gradient = SubResource("Gradient_4eerh")
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_23vs3"]
+shader = ExtResource("1_ykhyg")
+shader_parameter/emissionBoxExtents = Vector3(160, 80, 1)
+shader_parameter/colorValue = Color(1, 1, 1, 1)
+shader_parameter/alphaCurve = SubResource("GradientTexture1D_4ly1p")
+shader_parameter/gameTime = 0.0
+shader_parameter/noiseDisturbancesX = ExtResource("4_bbuou")
+shader_parameter/noiseDisturbancesY = ExtResource("5_kgkhw")
+shader_parameter/noiseCurrentsX = ExtResource("2_faxer")
+shader_parameter/noiseCurrentsY = ExtResource("3_lx34w")
+shader_parameter/speed = 0.0
+shader_parameter/chaoticness = 0.0
+shader_parameter/scale = 0.0
+shader_parameter/brightness = 1.0
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_kycdo"]
+transparency = 1
+vertex_color_use_as_albedo = true
+albedo_texture = ExtResource("6_vctkt")
+
+[sub_resource type="QuadMesh" id="QuadMesh_iqoan"]
+material = SubResource("StandardMaterial3D_kycdo")
+
+[node name="WaterCurrentDisplay" type="GPUParticles3D"]
+amount = 1000
+lifetime = 8.0
+interpolate = false
+process_material = SubResource("ShaderMaterial_23vs3")
+draw_pass_1 = SubResource("QuadMesh_iqoan")
+script = ExtResource("7_21wlg")

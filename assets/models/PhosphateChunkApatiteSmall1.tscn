@@ -1,6 +1,6 @@
 [gd_scene load_steps=7 format=3 uid="uid://ch5u7ojot5up8"]
 
-[ext_resource type="Shader" path="res://shaders/Crystal.gdshader" id="1_g5rlt"]
+[ext_resource type="Shader" uid="uid://bxd4cdv4qekba" path="res://shaders/Crystal.gdshader" id="1_g5rlt"]
 [ext_resource type="Texture2D" uid="uid://c4givkmxrlllx" path="res://assets/textures/Crystal.png" id="2_6ymvq"]
 [ext_resource type="Texture2D" uid="uid://baxuoyeo83r2u" path="res://assets/textures/dissolve_noise.tres" id="3_o04en"]
 [ext_resource type="Texture2D" uid="uid://dvp0yex8rwygn" path="res://assets/textures/Crystal_rough_emit.png" id="4_5e0t3"]
@@ -10,21 +10,20 @@
 resource_local_to_scene = true
 render_priority = 18
 shader = ExtResource("1_g5rlt")
-shader_parameter/albedo = Color(9.62615e-07, 0.878612, 0.837866, 0.956863)
+shader_parameter/albedo = Color(0, 0.760784, 0.839216, 0.529412)
+shader_parameter/albedoTexture = ExtResource("2_6ymvq")
 shader_parameter/useNormal = false
 shader_parameter/roughness = 0.6
+shader_parameter/roughnessTexture = ExtResource("4_5e0t3")
 shader_parameter/roughnessTextureChannel = Vector4(1, 0, 0, 0)
 shader_parameter/specular = 0.7
 shader_parameter/metallic = 0.57
 shader_parameter/emission = Color(0, 0.419608, 0.498039, 0.972549)
 shader_parameter/emissionEnergy = 0.0
+shader_parameter/dissolveTexture = ExtResource("3_o04en")
 shader_parameter/dissolveValue = 0.0
 shader_parameter/dissolveScale = 1.0
 shader_parameter/outlineWidth = 0.0
-shader_parameter/growColor = Color(0.0823529, 0.541176, 0.705882, 1)
-shader_parameter/albedoTexture = ExtResource("2_6ymvq")
-shader_parameter/roughnessTexture = ExtResource("4_5e0t3")
-shader_parameter/dissolveTexture = ExtResource("3_o04en")
 
 [node name="Apatite" type="MeshInstance3D"]
 material_override = SubResource("ShaderMaterial_6mvut")

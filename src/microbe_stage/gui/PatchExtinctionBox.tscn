@@ -1,13 +1,13 @@
 [gd_scene load_steps=14 format=3 uid="uid://g70pm5ndiqf2"]
 
-[ext_resource type="PackedScene" path="res://src/microbe_stage/editor/PatchMapDrawer.tscn" id="3"]
+[ext_resource type="PackedScene" uid="uid://cmhetwsk3qbb7" path="res://src/microbe_stage/editor/PatchMapDrawer.tscn" id="3"]
 [ext_resource type="LabelSettings" uid="uid://cns7wsfktfld4" path="res://src/gui_common/fonts/Title-SemiBold-Bigger.tres" id="3_dudgs"]
 [ext_resource type="LabelSettings" uid="uid://bh5jgkxx1boyf" path="res://src/gui_common/fonts/Thrive-Humongous.tres" id="3_xy8f2"]
-[ext_resource type="Script" path="res://src/microbe_stage/gui/PatchExtinctionBox.cs" id="4"]
+[ext_resource type="Script" uid="uid://uqtiengiyuqo" path="res://src/microbe_stage/gui/PatchExtinctionBox.cs" id="4"]
 [ext_resource type="PackedScene" uid="uid://bjl5o7oy7yr15" path="res://src/microbe_stage/gui/PatchDetailsPanel.tscn" id="5"]
 [ext_resource type="PackedScene" uid="uid://din62wkc2pcnk" path="res://src/gui_common/DraggableScrollContainer.tscn" id="7"]
 [ext_resource type="Theme" uid="uid://b4cx0o110g4b6" path="res://src/gui_common/thrive_theme.tres" id="8"]
-[ext_resource type="Shader" path="res://shaders/Monochrome.gdshader" id="9"]
+[ext_resource type="Shader" uid="uid://cpigmjcwmm61a" path="res://shaders/Monochrome.gdshader" id="9"]
 
 [sub_resource type="StyleBoxFlat" id="1"]
 bg_color = Color(0, 0, 0, 0.313726)
@@ -34,7 +34,7 @@ tracks/0/keys = {
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_818a6"]
 _data = {
-"FadeIn": SubResource("2")
+&"FadeIn": SubResource("2")
 }
 
 [node name="PatchExtinctionBox" type="Control"]

@@ -2,7 +2,7 @@
 
 [ext_resource type="PackedScene" uid="uid://dj12vy45xfnoj" path="res://src/gui_common/PlaybackControls.tscn" id="1"]
 [ext_resource type="Texture2D" uid="uid://cuga0i232g6bu" path="res://assets/textures/gui/bevel/musicNote.png" id="2"]
-[ext_resource type="Script" path="res://src/gui_common/art_gallery/GalleryCardAudio.cs" id="3"]
+[ext_resource type="Script" uid="uid://ck7qeqnf21dri" path="res://src/gui_common/art_gallery/GalleryCardAudio.cs" id="3"]
 [ext_resource type="PackedScene" uid="uid://c4i1ie8aqbswd" path="res://src/gui_common/art_gallery/GalleryCard.tscn" id="4"]
 
 [node name="GalleryCardAudio" instance=ExtResource("4")]

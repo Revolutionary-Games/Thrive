@@ -120,7 +120,7 @@ func get_test_suite_name() -> StringName:
 
 func get_test_case_name() -> StringName:
 	if _test_case_name.is_empty():
-		return test_case.get_name()
+		return test_case._test_case.display_name
 	return _test_case_name
 
 

@@ -1,7 +1,7 @@
 [gd_scene load_steps=4 format=3 uid="uid://c6e83y3bsdx4q"]
 
-[ext_resource type="PackedScene" path="res://src/gui_common/dialogs/CustomWindow.tscn" id="1_o4oq3"]
-[ext_resource type="Script" path="res://src/microbe_stage/editor/EndosymbiosisPopup.cs" id="2_s4663"]
+[ext_resource type="PackedScene" uid="uid://du8sc8kjirguk" path="res://src/gui_common/dialogs/CustomWindow.tscn" id="1_o4oq3"]
+[ext_resource type="Script" uid="uid://6gq7r0e7tea3" path="res://src/microbe_stage/editor/EndosymbiosisPopup.cs" id="2_s4663"]
 [ext_resource type="LabelSettings" uid="uid://dvqx73nhtr0y2" path="res://src/gui_common/fonts/Body-Regular-Small.tres" id="3_50ouf"]
 
 [node name="EndosymbiosisPopup" node_paths=PackedStringArray("generalExplanationLabel", "inProgressAdviceLabel", "prokaryoteFullLabel", "choicesContainer", "progressContainer") instance=ExtResource("1_o4oq3")]

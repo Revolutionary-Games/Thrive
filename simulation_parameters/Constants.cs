@@ -103,6 +103,30 @@ public static class Constants
     public const float MIN_DISTANCE_FROM_PLAYER_FOR_SPAWN = SPAWN_SECTOR_SIZE - 10;
 
     /// <summary>
+    ///   Used to reduce how commonly the player species spawns to make it more likely for the player to encounter
+    ///   other species.
+    /// </summary>
+    public const float PLAYER_SPECIES_SPAWN_MULTIPLIER = 0.5f;
+
+    /// <summary>
+    ///   Smaller spawn penalty to make binding agents easier to use with better player species spawn rates.
+    /// </summary>
+    public const float PLAYER_SPECIES_SPAWN_MULTIPLIER_BINDING_AGENTS = 0.7f;
+
+    /// <summary>
+    ///   Cells farther than this are forced to move towards the player to get on screen to give better activity
+    ///   from our limited entity count. Lower values let farther away cells to just chill without having to move.
+    /// </summary>
+    public const float ON_STAGE_THRESHOLD_AROUND_PLAYER = 0.71f;
+
+    /// <summary>
+    ///   Sets much randomness is added on each axis (X and Z) for a cell's target to move to the player position to
+    ///   get "on stage"
+    ///   Larger values add more randomness to cells moving towards the player.
+    /// </summary>
+    public const float ON_STAGE_DESTINATION_RANDOMNESS = 20;
+
+    /// <summary>
     ///   Scale factor for density of compound cloud spawns
     /// </summary>
     public const int CLOUD_SPAWN_DENSITY_SCALE_FACTOR = 10000;
@@ -360,7 +384,7 @@ public static class Constants
     /// <summary>
     ///   The maximum force that can be applied by currents in the fluid system
     /// </summary>
-    public const float MAX_FORCE_APPLIED_BY_CURRENTS = 1200;
+    public const float MAX_FORCE_APPLIED_BY_CURRENTS = 2000;
 
     public const int TRANSLATION_VERY_INCOMPLETE_THRESHOLD = 30;
     public const int TRANSLATION_INCOMPLETE_THRESHOLD = 70;
@@ -483,6 +507,12 @@ public static class Constants
     public const float OXYTOXY_DAMAGE_DEBUFF_PER_ORGANELLE = 0.05f;
 
     public const float OXYTOXY_DAMAGE_DEBUFF_MAX = 0.75f;
+
+    /// <summary>
+    ///   If the player has more than this much health, a single damage event cannot kill them. Instead, it leaves
+    ///   just a bit of health (1% or 0.1 whichever is more).
+    /// </summary>
+    public const float PLAYER_INSTANT_KILL_PROTECTION_HEALTH_THRESHOLD = 5.0f;
 
     /// <summary>
     ///   How much a cell's speed is slowed when travelling through slime
@@ -1023,6 +1053,9 @@ public static class Constants
     public const float PLAYER_REPRODUCTION_POPULATION_GAIN_COEFFICIENT = 1.2f;
     public const int PLAYER_PATCH_EXTINCTION_POPULATION_LOSS_CONSTANT = -35;
     public const float PLAYER_PATCH_EXTINCTION_POPULATION_LOSS_COEFFICIENT = 1 / 1.2f;
+
+    public const double MICROBE_POPULATION_MULTIPLIER = 1000000000000;
+    public const string MICROBE_POPULATION_SUFFIX = "T";
 
     public const int BASE_MUTATION_POINTS = 100;
 
@@ -1718,11 +1751,11 @@ public static class Constants
 
     public const float TOLERANCE_INITIAL_TEMPERATURE_RANGE = 10;
     public const float TOLERANCE_PERFECT_THRESHOLD_TEMPERATURE = 2;
-    public const float TOLERANCE_MAXIMUM_SURVIVABLE_TEMPERATURE_DIFFERENCE = 30;
+    public const float TOLERANCE_MAXIMUM_SURVIVABLE_TEMPERATURE_DIFFERENCE = 40;
     public const float TOLERANCE_PERFECT_TEMPERATURE_SCORE = 0.1f;
 
-    public const float TOLERANCE_MAXIMUM_SURVIVABLE_PRESSURE_DIFFERENCE = 2000000;
-    public const float TOLERANCE_PERFECT_THRESHOLD_PRESSURE = 250000;
+    public const float TOLERANCE_MAXIMUM_SURVIVABLE_PRESSURE_DIFFERENCE = 4000000;
+    public const float TOLERANCE_PERFECT_THRESHOLD_PRESSURE = 350000;
 
     // These are chosen to be symmetric so that the pressure tolerance range ends up easier to show correctly in the
     // GUI
@@ -1742,8 +1775,8 @@ public static class Constants
     // How much it costs to edit various tolerances in the editor
     public const float TOLERANCE_CHANGE_MP_PER_TEMPERATURE = 1.0f;
     public const float TOLERANCE_CHANGE_MP_PER_TEMPERATURE_TOLERANCE = 4.0f;
-    public const float TOLERANCE_CHANGE_MP_PER_OXYGEN = 100.0f;
-    public const float TOLERANCE_CHANGE_MP_PER_UV = 75.0f;
+    public const float TOLERANCE_CHANGE_MP_PER_OXYGEN = 150.0f;
+    public const float TOLERANCE_CHANGE_MP_PER_UV = 100.0f;
 
     /// <summary>
     ///   As pressure values are massive, this is a double to get reasonable MP costs
@@ -1751,6 +1784,23 @@ public static class Constants
     public const double TOLERANCE_CHANGE_MP_PER_PRESSURE = 0.000002;
 
     public const double TOLERANCE_CHANGE_MP_PER_PRESSURE_TOLERANCE = 0.00005;
+
+    // Environmental tolerance debuff / buff tweak variables
+    public const float TOLERANCE_TEMPERATURE_SPEED_MODIFIER_MIN = 0.8f;
+    public const float TOLERANCE_TEMPERATURE_OSMOREGULATION_MAX = 1.2f;
+    public const float TOLERANCE_TEMPERATURE_HEALTH_MIN = 0.8f;
+    public const float TOLERANCE_TEMPERATURE_SPEED_BUFF_MAX = 1.1f;
+
+    public const float TOLERANCE_PRESSURE_SPEED_MODIFIER_MIN = 0.8f;
+    public const float TOLERANCE_PRESSURE_OSMOREGULATION_MAX = 1.1f;
+    public const float TOLERANCE_PRESSURE_HEALTH_MIN = 0.5f;
+    public const float TOLERANCE_PRESSURE_HEALTH_BUFF_MAX = 1.2f;
+
+    public const float TOLERANCE_OXYGEN_HEALTH_MIN = 0.5f;
+    public const float TOLERANCE_OXYGEN_OSMOREGULATION_MAX = 1.6f;
+
+    public const float TOLERANCE_UV_HEALTH_MIN = 0.5f;
+    public const float TOLERANCE_UV_OSMOREGULATION_MAX = 1.5f;
 
     /// <summary>
     ///   If set to true, then physics debug draw gets enabled when the game starts

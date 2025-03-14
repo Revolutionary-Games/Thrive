@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2025-02-28 12:07+0200\n"
+"POT-Creation-Date: 2025-03-14 11:08+0200\n"
 "PO-Revision-Date: 2025-02-06 13:29+0000\n"
 "Last-Translator: Anonymous <noreply@weblate.org>\n"
 "Language-Team: Dutch (Belgium) <https://translate.revolutionarygamesstudio.com/projects/thrive/thrive-game/nl_BE/>\n"
@@ -200,6 +200,9 @@ msgstr "Anaerobe Stikstoffixatie"
 
 msgid "AND_UNLOCK_CONDITION"
 msgstr "en"
+
+msgid "ANISOTROPIC_FILTERING"
+msgstr ""
 
 msgid "APPEARANCE"
 msgstr "Uiterlijk"
@@ -1861,6 +1864,20 @@ msgstr ""
 "\n"
 "Om naar het volgende tabblad te gaan druk je op de volgende knop rechts onder."
 
+#, fuzzy
+msgid "EDITOR_TUTORIAL_MICROBE_EDITOR_NUCLEUS"
+msgstr ""
+"Welkom bij de Microbe Editor.\n"
+"Hier kan je zien wat er is gebeurd sinds het begin van het spel of wanneer je het laatste in de editor was. Dan kan je hier ook aanpassingen maken aan je soort.\n"
+"\n"
+"In dit tabblad kan je een verslag zien van welke soorten er bestaan, waar en wat hun populaties zijn. Je kan ook omgevingsveranderingen zien bovenaan.\n"
+"\n"
+"Om naar het volgende tabblad te gaan druk je op de volgende knop rechts onder."
+
+#, fuzzy
+msgid "EFFECTIVE_VALUE"
+msgstr "{0}%"
+
 msgid "EIGHT_TIMES"
 msgstr "8x"
 
@@ -2855,8 +2872,9 @@ msgstr "Protanope (Rood-Groen)"
 msgid "IRON"
 msgstr "Ijzer"
 
-msgid "IRON_CHEMOLITHOAUTOTROPHY"
-msgstr "Ijzer Chemolithoautotrofie"
+#, fuzzy
+msgid "IRON_OXIDATION"
+msgstr "Donaties"
 
 #, fuzzy
 msgid "ITCH_TOOLTIP"
@@ -2890,8 +2908,9 @@ msgstr "Juli"
 msgid "JUNE"
 msgstr "Juni"
 
-msgid "KEEP_CURRENT_FLEXIBILITY"
-msgstr ""
+#, fuzzy
+msgid "KEEP_CURRENT_SHORT"
+msgstr "Huidige Ontwikkelaars"
 
 #, fuzzy
 msgid "KEEP_CURRENT_TOLERANCE_FLEXIBILITY_TOOLTIP"
@@ -3067,6 +3086,10 @@ msgstr "Aan deze taal wordt nog gewerkt ({0}% voltooid)"
 
 msgid "LANGUAGE_TRANSLATION_PROGRESS_REALLY_LOW"
 msgstr "Deze vertaling is erg onvolledig ({0}% klaar) help ons alstublieft!"
+
+#, fuzzy
+msgid "LARGE_SULFUR_CHUNK"
+msgstr "Klein Brok Ijzer"
 
 msgid "LAST_ORGANELLE_DELETE_OPTION_DISABLED_TOOLTIP"
 msgstr ""
@@ -4280,8 +4303,16 @@ msgstr "Hier is niets"
 msgid "NOTHING_TO_INTERACT_WITH"
 msgstr "Niets om te interageren"
 
+#, fuzzy
+msgid "NOTICE_BINDING_OUT_OF_ATP"
+msgstr "Beschadigd door een gebrek aan ATP"
+
 msgid "NOTICE_DAMAGED_BY_NO_ATP"
 msgstr "Beschadigd door een gebrek aan ATP"
+
+#, fuzzy
+msgid "NOTICE_ENGULFING_OUT_OF_ATP"
+msgstr "Grootte van huidige cel is te klein om doelwit op te slokken"
 
 msgid "NOTICE_ENGULF_DAMAGE_FROM_TOXIN"
 msgstr "Beschadigd door gifstoffen in opgeslokte materie"
@@ -4677,10 +4708,6 @@ msgid "PAN_CAMERA_UP"
 msgstr "Beweeg camera naar boven"
 
 #, fuzzy
-msgid "PASSIVE_REPRODUCTION_PROGRESS"
-msgstr "{0} bevolking veranderd met {1} door: {2}"
-
-#, fuzzy
 msgid "PASSIVE_REPRODUCTION_PROGRESS_EXPLANATION"
 msgstr "{0} bevolking veranderd met {1} door: {2}"
 
@@ -4950,6 +4977,10 @@ msgstr "Protoplasma"
 
 msgid "PULL_REQUESTS_PROGRAMMING"
 msgstr "Pull-verzoeken / programmering"
+
+#, fuzzy
+msgid "QUADRILLION_ABBREVIATION"
+msgstr "{0} B"
 
 msgid "QUICK_LOAD"
 msgstr "Snel laden"
@@ -5544,6 +5575,9 @@ msgstr "Siliciumdioxide"
 
 msgid "SILICA_MEMBRANE_DESCRIPTION"
 msgstr "Dit membraan heeft een sterke wand van siliciumdioxide. Het kan algemene schade goed weerstaan en is zeer resistent tegen fysieke schade. Het heeft ook minder energie nodig om zijn vorm te behouden. Echter, het vertraagt de cel met een grote factor en de cel absorbeert stoffen minder snel."
+
+msgid "SIXTEEN_TIMES"
+msgstr "16x"
 
 msgid "SIZE_COLON"
 msgstr "Grootte:"
@@ -6197,6 +6231,10 @@ msgstr "{0}: +{1} ATP"
 msgid "TOLERANCES_UNSUITABLE_DEBUFFS"
 msgstr ""
 
+#, fuzzy
+msgid "TOLERANCE_FROM_ORGANELLES_TOOLTIP"
+msgstr "Toon / verstop omgeving en verbindingen"
+
 msgid "TOLERANCE_RANGE_LABEL"
 msgstr ""
 
@@ -6324,6 +6362,10 @@ msgstr "Vertalers"
 #, fuzzy
 msgid "TRANSPARENCY"
 msgstr "Vertalers"
+
+#, fuzzy
+msgid "TRILLION_ABBREVIATION"
+msgstr "{0} B"
 
 #, fuzzy
 msgid "TRY_FOSSILISING_SOME_SPECIES"
@@ -8746,6 +8788,31 @@ msgstr ""
 msgid "WORLD_RELATIVE_MOVEMENT"
 msgstr "Relatief aan de wereld"
 
+#, fuzzy
+msgid "WORLD_SIZE"
+msgstr "Wereld"
+
+#, fuzzy
+msgid "WORLD_SIZE_EXPLANATION"
+msgstr ""
+"Gefocuste microben zullen over grotere afstanden naar brokken of prooien zoeken\n"
+"en misschien veel ambitieuzer over brokken zijn.\n"
+"Responsieve microben zullen sneller overschakelen naar nieuwe doelen."
+
+msgid "WORLD_SIZE_LARGE"
+msgstr ""
+
+#, fuzzy
+msgid "WORLD_SIZE_MEDIUM"
+msgstr "Relatief aan de wereld"
+
+msgid "WORLD_SIZE_SMALL"
+msgstr ""
+
+#, fuzzy
+msgid "WORLD_SIZE_TOOLTIP"
+msgstr "Voeg een nieuwe sneltoets toe"
+
 msgid "WORST_PATCH_COLON"
 msgstr "Slechtste Zone:"
 
@@ -8785,6 +8852,13 @@ msgstr "Inzoomen"
 
 msgid "ZOOM_OUT"
 msgstr "Uitzoomen"
+
+#~ msgid "IRON_CHEMOLITHOAUTOTROPHY"
+#~ msgstr "Ijzer Chemolithoautotrofie"
+
+#, fuzzy
+#~ msgid "PASSIVE_REPRODUCTION_PROGRESS"
+#~ msgstr "{0} bevolking veranderd met {1} door: {2}"
 
 #, fuzzy
 #~ msgid "MIGRATE"
@@ -9113,9 +9187,6 @@ msgstr "Uitzoomen"
 #, fuzzy
 #~ msgid "UNKNOWN_ON_WINDOWS"
 #~ msgstr "Onbekende Workshop ID voor deze mod"
-
-#~ msgid "SIXTEEN_TIMES"
-#~ msgstr "16x"
 
 #, fuzzy
 #~ msgid "TARGET_TIME"

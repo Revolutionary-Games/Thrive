@@ -7,8 +7,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2025-02-28 12:07+0200\n"
-"PO-Revision-Date: 2025-02-06 13:29+0000\n"
+"POT-Creation-Date: 2025-03-14 11:08+0200\n"
+"PO-Revision-Date: 2025-03-07 10:46+0000\n"
 "Last-Translator: Anonymous <noreply@weblate.org>\n"
 "Language-Team: Bulgarian <https://translate.revolutionarygamesstudio.com/projects/thrive/thrive-game/bg/>\n"
 "Language: bg\n"
@@ -201,6 +201,9 @@ msgstr "Анаеробна азотна фиксация"
 #, fuzzy
 msgid "AND_UNLOCK_CONDITION"
 msgstr "Физически условия"
+
+msgid "ANISOTROPIC_FILTERING"
+msgstr ""
 
 msgid "APPEARANCE"
 msgstr "Външност"
@@ -1609,6 +1612,7 @@ msgstr "Вътрешни поддръжници"
 msgid "DIFFICULTY"
 msgstr "Трудност"
 
+#, fuzzy
 msgid "DIFFICULTY_DETAILS_STRING"
 msgstr ""
 "Ниво на трудност: {0}\n"
@@ -1877,6 +1881,19 @@ msgstr ""
 "В този раздел може да разгледате отчета за различните създания. Също така, може да наблюдавате промените в околната среда.\n"
 "\n"
 "За да преминете към следващия раздел, натиснете бутона „НАПРЕД“, който се намира долу вдясно."
+
+#, fuzzy
+msgid "EDITOR_TUTORIAL_MICROBE_EDITOR_NUCLEUS"
+msgstr ""
+"Това е клетъчният редактор, тук може да добавяте или премахвате органели от Вашите създания, чрез наличните [b]мутационни точки[/b] (МТ) [thrive:icon]MP[/thrive:icon]. Всяко поколение разполага със [b]100 MT[/b] [thrive:icon]MP[/thrive:icon].\n"
+"\n"
+"Шестоъгълникът от цитоплазма в центъра на екрана е Вашата [b]клетка[/b].\n"
+"\n"
+"За да продължите, изберете органел от панела вляво. След това, натиснете с мишката до шестоъгълника за да го добавите към Вашето създание. Може да завъртите органелите чрез натискане на [thrive:input]e_rotate_left[/thrive:input] или [thrive:input]e_rotate_right[/thrive:input]."
+
+#, fuzzy
+msgid "EFFECTIVE_VALUE"
+msgstr "{0} %"
 
 msgid "EIGHT_TIMES"
 msgstr "8 пъти"
@@ -2831,8 +2848,9 @@ msgstr ""
 msgid "IRON"
 msgstr "Желязо"
 
-msgid "IRON_CHEMOLITHOAUTOTROPHY"
-msgstr "Желязна хемолитоавтотрофия"
+#, fuzzy
+msgid "IRON_OXIDATION"
+msgstr "Дарения"
 
 msgid "ITCH_TOOLTIP"
 msgstr "Отваряне на страницата ни в „Itch.io“"
@@ -2865,8 +2883,9 @@ msgstr "Юли"
 msgid "JUNE"
 msgstr "Юни"
 
-msgid "KEEP_CURRENT_FLEXIBILITY"
-msgstr ""
+#, fuzzy
+msgid "KEEP_CURRENT_SHORT"
+msgstr "Текущ свят"
 
 #, fuzzy
 msgid "KEEP_CURRENT_TOLERANCE_FLEXIBILITY_TOOLTIP"
@@ -3042,6 +3061,10 @@ msgstr "Този превод е в процес на разработка и е
 
 msgid "LANGUAGE_TRANSLATION_PROGRESS_REALLY_LOW"
 msgstr "Този превод е в начален етап на разработка и е завършен на {0} %!"
+
+#, fuzzy
+msgid "LARGE_SULFUR_CHUNK"
+msgstr "Малък железен фрагмент"
 
 msgid "LAST_ORGANELLE_DELETE_OPTION_DISABLED_TOOLTIP"
 msgstr "Последният органел не може да бъде премахнат"
@@ -4260,7 +4283,14 @@ msgstr "Няма нищо"
 msgid "NOTHING_TO_INTERACT_WITH"
 msgstr ""
 
+#, fuzzy
+msgid "NOTICE_BINDING_OUT_OF_ATP"
+msgstr "Свързване"
+
 msgid "NOTICE_DAMAGED_BY_NO_ATP"
+msgstr ""
+
+msgid "NOTICE_ENGULFING_OUT_OF_ATP"
 msgstr ""
 
 msgid "NOTICE_ENGULF_DAMAGE_FROM_TOXIN"
@@ -4638,9 +4668,6 @@ msgstr "Преместване надясно"
 msgid "PAN_CAMERA_UP"
 msgstr "Преместване нагоре"
 
-msgid "PASSIVE_REPRODUCTION_PROGRESS"
-msgstr "Пасивно усвояване на хранителните вещества"
-
 msgid "PASSIVE_REPRODUCTION_PROGRESS_EXPLANATION"
 msgstr "(създанията усвояват хранителните вещества от околната среда)"
 
@@ -4904,6 +4931,10 @@ msgstr "Протоплазма"
 
 msgid "PULL_REQUESTS_PROGRAMMING"
 msgstr "Разработчици"
+
+#, fuzzy
+msgid "QUADRILLION_ABBREVIATION"
+msgstr "{0} млрд"
 
 msgid "QUICK_LOAD"
 msgstr "Бързо зареждане"
@@ -5457,6 +5488,9 @@ msgstr "Силициева"
 
 msgid "SILICA_MEMBRANE_DESCRIPTION"
 msgstr "Това е мембрана с здрава стена от силициев диоксид, която осигурява най-добрата защита и се нуждае от по-малко енергия за да не се деформира. Недостатъците ѝ са, че клетката става прекалено бавна, както и усвояването на хранителните вещества."
+
+msgid "SIXTEEN_TIMES"
+msgstr "16 пъти"
 
 msgid "SIZE_COLON"
 msgstr "Размер:"
@@ -6109,6 +6143,10 @@ msgstr "{0}: +{1} АТФ"
 msgid "TOLERANCES_UNSUITABLE_DEBUFFS"
 msgstr ""
 
+#, fuzzy
+msgid "TOLERANCE_FROM_ORGANELLES_TOOLTIP"
+msgstr "Превключване на химичните съединения"
+
 msgid "TOLERANCE_RANGE_LABEL"
 msgstr ""
 
@@ -6228,6 +6266,10 @@ msgstr "Преводачи"
 
 msgid "TRANSPARENCY"
 msgstr "Прозрачност"
+
+#, fuzzy
+msgid "TRILLION_ABBREVIATION"
+msgstr "{0} млрд"
 
 msgid "TRY_FOSSILISING_SOME_SPECIES"
 msgstr "Трябва да направите няколко вкаменелости!"
@@ -8637,6 +8679,31 @@ msgstr ""
 msgid "WORLD_RELATIVE_MOVEMENT"
 msgstr "за да увеличи скоростта"
 
+#, fuzzy
+msgid "WORLD_SIZE"
+msgstr "Свят"
+
+#, fuzzy
+msgid "WORLD_SIZE_EXPLANATION"
+msgstr ""
+"Вглъбените микроби не променят намеренията си\n"
+"и са склонни да постигнат целта си.\n"
+"Бдителните микроби бързо променят намеренията си."
+
+msgid "WORLD_SIZE_LARGE"
+msgstr ""
+
+#, fuzzy
+msgid "WORLD_SIZE_MEDIUM"
+msgstr "за да увеличи скоростта"
+
+msgid "WORLD_SIZE_SMALL"
+msgstr ""
+
+#, fuzzy
+msgid "WORLD_SIZE_TOOLTIP"
+msgstr "Симулиране на определен брой светове с предварително определеното количество на поколенията."
+
 msgid "WORST_PATCH_COLON"
 msgstr "Изчезва:"
 
@@ -8676,6 +8743,12 @@ msgstr "Приближаване"
 
 msgid "ZOOM_OUT"
 msgstr "Отдалечаване"
+
+#~ msgid "IRON_CHEMOLITHOAUTOTROPHY"
+#~ msgstr "Желязна хемолитоавтотрофия"
+
+#~ msgid "PASSIVE_REPRODUCTION_PROGRESS"
+#~ msgstr "Пасивно усвояване на хранителните вещества"
 
 #, fuzzy
 #~ msgid "MIGRATE"
@@ -9042,9 +9115,6 @@ msgstr "Отдалечаване"
 
 #~ msgid "GLES2"
 #~ msgstr "GLES2"
-
-#~ msgid "SIXTEEN_TIMES"
-#~ msgstr "16 пъти"
 
 #, fuzzy
 #~ msgid "TARGET_TIME"

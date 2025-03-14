@@ -49,11 +49,6 @@ public interface IDifficulty : IRegistryAssignable
     public bool FreeGlucoseCloud { get; }
 
     /// <summary>
-    ///   Whether microbes get free reproduction compounds at a steady background rate
-    /// </summary>
-    public bool PassiveReproduction { get; }
-
-    /// <summary>
     ///   Sets what happens when the player reproduces to their stored compounds
     /// </summary>
     public ReproductionCompoundHandling ReproductionCompounds { get; }
@@ -101,7 +96,6 @@ public static class DifficultyHelpers
             OsmoregulationMultiplier = difficulty.OsmoregulationMultiplier,
             PlayerAutoEvoStrength = difficulty.PlayerAutoEvoStrength,
             FreeGlucoseCloud = difficulty.FreeGlucoseCloud,
-            PassiveReproduction = difficulty.PassiveReproduction,
             SwitchSpeciesOnExtinction = difficulty.SwitchSpeciesOnExtinction,
             LimitGrowthRate = difficulty.LimitGrowthRate,
             FogOfWarMode = difficulty.FogOfWarMode,
@@ -122,7 +116,6 @@ public static class DifficultyHelpers
             $", Osmoregulation multiplier: {difficulty.OsmoregulationMultiplier}" +
             $", auto-evo strength: {difficulty.PlayerAutoEvoStrength}" +
             $", Free glucose cloud: {difficulty.FreeGlucoseCloud}" +
-            $", Passive Reproduction: {difficulty.PassiveReproduction}" +
             $", Switch on Extinction: {difficulty.SwitchSpeciesOnExtinction}" +
             $", Limit Growth Rate: {difficulty.LimitGrowthRate}" +
             $", Fog Of War Mode: {difficulty.FogOfWarMode}" +

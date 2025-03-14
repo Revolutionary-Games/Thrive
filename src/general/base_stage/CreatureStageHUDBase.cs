@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Globalization;
 using System.Linq;
 using Components;
 using Godot;
@@ -864,17 +865,26 @@ public partial class CreatureStageHUDBase<TStage> : HUDWithPausing, ICreatureSta
     protected void UpdatePopulation()
     {
         var playerSpecies = stage!.GameWorld.PlayerSpecies;
-        var population = stage.GameWorld.Map.CurrentPatch!.GetSpeciesGameplayPopulation(playerSpecies);
+        double population = stage.GameWorld.Map.CurrentPatch!.GetSpeciesGameplayPopulation(playerSpecies);
 
         if (population <= 0 && stage.HasPlayer)
             population = 1;
 
+        // To not confuse the player that might see a 1 as the population but still seeing plenty of their species
+        // scale up the displayed numbers
+        if (playerSpecies is MicrobeSpecies or MulticellularSpecies)
+        {
+            // Scale is trillions
+            population *= Constants.MICROBE_POPULATION_MULTIPLIER;
+        }
+
         // TODO: skip updating the label if value has not changed to save on memory allocations
         populationLabel.Text = population.FormatNumber();
+        populationLabel.TooltipText = population.ToString("N0", CultureInfo.CurrentCulture);
     }
 
     /// <summary>
-    ///   Updates the GUI bars to show only needed compounds
+    ///   Updates the GUI bars to show only the necessary compounds
     /// </summary>
     protected void UpdateNeededBars()
     {

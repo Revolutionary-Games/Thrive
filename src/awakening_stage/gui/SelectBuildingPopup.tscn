@@ -1,7 +1,7 @@
 [gd_scene load_steps=3 format=3 uid="uid://borrsf8mdual2"]
 
 [ext_resource type="PackedScene" path="res://src/gui_common/dialogs/CustomWindow.tscn" id="1"]
-[ext_resource type="Script" path="res://src/awakening_stage/gui/SelectBuildingPopup.cs" id="2"]
+[ext_resource type="Script" uid="uid://dq7avc5py7nbb" path="res://src/awakening_stage/gui/SelectBuildingPopup.cs" id="2"]
 
 [node name="SelectBuildingPopup" type="Control"]
 visible = false

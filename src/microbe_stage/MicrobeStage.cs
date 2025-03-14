@@ -19,6 +19,8 @@ public partial class MicrobeStage : CreatureStageBase<Entity, MicrobeWorldSimula
     [Export]
     public NodePath? GuidanceLinePath;
 
+    private readonly Dictionary<MicrobeSpecies, ResolvedMicrobeTolerances> resolvedTolerancesCache = new();
+
     private OrganelleDefinition cytoplasm = null!;
 
     // This is no longer saved with child properties as it gets really complicated trying to load data into this from
@@ -31,6 +33,9 @@ public partial class MicrobeStage : CreatureStageBase<Entity, MicrobeWorldSimula
 #pragma warning disable CA2213
     [Export]
     private Node3D heatViewOverlay = null!;
+
+    [Export]
+    private FluidCurrentDisplay fluidCurrentDisplay = null!;
 
     private MicrobeTutorialGUI tutorialGUI = null!;
     private GuidanceLine guidanceLine = null!;
@@ -72,7 +77,7 @@ public partial class MicrobeStage : CreatureStageBase<Entity, MicrobeWorldSimula
     /// </summary>
     private bool switchedPatchInEditorForCompounds;
 
-    // Because this is a scene loaded class, we can't do the following to avoid a temporary unused world simulation
+    // Because this is a scene-loaded class, we can't do the following to avoid a temporary unused world simulation
     // from being created
     // [JsonConstructor]
     // public MicrobeStage(MicrobeWorldSimulation worldSimulation) : base(worldSimulation)
@@ -84,7 +89,7 @@ public partial class MicrobeStage : CreatureStageBase<Entity, MicrobeWorldSimula
     public CompoundCloudSystem Clouds { get; private set; } = null!;
 
     /// <summary>
-    ///   The main camera, needs to be after anything with AssignOnlyChildItemsOnDeserialize due to load order
+    ///   The main camera. This needs to be after anything with AssignOnlyChildItemsOnDeserialize due to load order
     /// </summary>
     [JsonProperty]
     [AssignOnlyChildItemsOnDeserialize]
@@ -163,6 +168,8 @@ public partial class MicrobeStage : CreatureStageBase<Entity, MicrobeWorldSimula
 
         // Do stage setup to spawn things and setup all parts of the stage
         SetupStage();
+
+        fluidCurrentDisplay.Init(WorldSimulation, Camera);
     }
 
     public override void ResolveNodeReferences()
@@ -436,6 +443,25 @@ public partial class MicrobeStage : CreatureStageBase<Entity, MicrobeWorldSimula
             GameWorld.Map.CurrentPatch!.BiomeTemplate);
     }
 
+    public ResolvedMicrobeTolerances GetSpeciesTolerances(MicrobeSpecies microbeSpecies)
+    {
+        // Use caching to speed up spawning
+        lock (resolvedTolerancesCache)
+        {
+            if (resolvedTolerancesCache.TryGetValue(microbeSpecies, out var cached))
+                return cached;
+
+            var tolerances =
+                MicrobeEnvironmentalToleranceCalculations.CalculateTolerances(microbeSpecies, CurrentBiome);
+
+            cached = MicrobeEnvironmentalToleranceCalculations.ResolveToleranceValues(tolerances);
+
+            resolvedTolerancesCache[microbeSpecies] = cached;
+
+            return cached;
+        }
+    }
+
     /// <summary>
     ///   Switches to the editor
     /// </summary>
@@ -680,6 +706,9 @@ public partial class MicrobeStage : CreatureStageBase<Entity, MicrobeWorldSimula
         // Update the player environmental properties
         ref var bioProcesses = ref Player.Get<BioProcesses>();
 
+        // Make sure there's no way this cache has outdated values
+        ClearResolvedTolerancesCache();
+
         var environmentalEffects = new MicrobeEnvironmentalEffects
         {
             OsmoregulationMultiplier = 1,
@@ -838,7 +867,8 @@ public partial class MicrobeStage : CreatureStageBase<Entity, MicrobeWorldSimula
             health.Invulnerable = false;
 
             // This doesn't use the microbe damage calculation as this damage can't be resisted
-            health.DealDamage(9999.0f, "suicide");
+            // And Kill() would skip the population penalty
+            health.CurrentHealth = 0;
 
             // Force digestion to complete immediately
             if (Player.Has<Engulfable>())
@@ -1048,6 +1078,8 @@ public partial class MicrobeStage : CreatureStageBase<Entity, MicrobeWorldSimula
 
     protected override void UpdatePatchSettings(bool promptPatchNameChange = true)
     {
+        ClearResolvedTolerancesCache();
+
         // TODO: would be nice to skip this if we are loading a save made in the editor as this gets called twice when
         // going back to the stage
         if (patchManager.ApplyChangedPatchSettingsIfNeeded(GameWorld.Map.CurrentPatch!, this))
@@ -1074,6 +1106,8 @@ public partial class MicrobeStage : CreatureStageBase<Entity, MicrobeWorldSimula
         UpdateBackground();
 
         UpdatePatchLightLevelSettings();
+
+        fluidCurrentDisplay.ApplyBiome(GameWorld.Map.CurrentPatch.BiomeTemplate);
     }
 
     protected override void OnGameContinuedAsSpecies(Species newPlayerSpecies, Patch inPatch)
@@ -1495,6 +1529,14 @@ public partial class MicrobeStage : CreatureStageBase<Entity, MicrobeWorldSimula
         {
             GD.PrintErr("Couldn't read player health: " + e);
             return false;
+        }
+    }
+
+    private void ClearResolvedTolerancesCache()
+    {
+        lock (resolvedTolerancesCache)
+        {
+            resolvedTolerancesCache.Clear();
         }
     }
 

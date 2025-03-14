@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using Godot;
 using Newtonsoft.Json;
 
@@ -11,10 +12,16 @@ using Newtonsoft.Json;
 [SceneLoadedClass("res://src/microbe_stage/editor/TolerancesEditorSubComponent.tscn", UsesEarlyResolve = false)]
 public partial class TolerancesEditorSubComponent : EditorComponentBase<ICellEditorData>
 {
+    [Export]
+    [ExportCategory("Config")]
+    public bool ShowZeroModifiers;
+
     private readonly StringName toleranceFlashName = new("FlashPressureRange");
     private readonly StringName tooWideRangeName = new("PopupPressureRangeWarning");
 
     private readonly CompoundDefinition temperature = SimulationParameters.GetCompound(Compound.Temperature);
+
+    private readonly Dictionary<OrganelleDefinition, float> tempToleranceModifiers = new();
 
 #pragma warning disable CA2213
 
@@ -22,7 +29,13 @@ public partial class TolerancesEditorSubComponent : EditorComponentBase<ICellEdi
     private Container temperatureContainer = null!;
 
     [Export]
+    private Container temperatureToleranceContainer = null!;
+
+    [Export]
     private Container pressureContainer = null!;
+
+    [Export]
+    private Container pressureRangeContainer = null!;
 
     [Export]
     private Container oxygenResistanceContainer = null!;
@@ -60,16 +73,31 @@ public partial class TolerancesEditorSubComponent : EditorComponentBase<ICellEdi
     private Label temperatureMaxLabel = null!;
 
     [Export]
+    private Label temperatureToleranceLabel = null!;
+
+    [Export]
+    private Label temperatureToleranceModifierLabel = null!;
+
+    [Export]
     private Label pressureMinLabel = null!;
 
     [Export]
     private Label pressureMaxLabel = null!;
 
     [Export]
+    private Label pressureToleranceModifierLabel = null!;
+
+    [Export]
     private Label oxygenResistanceLabel = null!;
 
     [Export]
+    private Label oxygenResistanceModifierLabel = null!;
+
+    [Export]
     private Label uvResistanceLabel = null!;
+
+    [Export]
+    private Label uvResistanceModifierLabel = null!;
 
     [Export]
     private ToleranceInfo temperatureToleranceInfo = null!;
@@ -93,13 +121,25 @@ public partial class TolerancesEditorSubComponent : EditorComponentBase<ICellEdi
     [Export]
     private LabelSettings perfectValueFont = null!;
 
+    [Export]
+    private LabelSettings modifierBadFont = null!;
+
+    [Export]
+    private LabelSettings modifierGoodFont = null!;
+
     private LabelSettings? originalTemperatureFont;
     private LabelSettings? originalPressureFont;
 
+    private LabelSettings? originalModifierFont;
+
     private EnvironmentalToleranceToolTip? temperatureToolTip;
+    private StatModifierToolTip? temperatureRangeToolTip;
     private EnvironmentalToleranceToolTip? pressureToolTip;
+    private StatModifierToolTip? pressureRangeToolTip;
     private EnvironmentalToleranceToolTip? oxygenResistanceToolTip;
+    private StatModifierToolTip? oxygenResistanceModifierToolTip;
     private EnvironmentalToleranceToolTip? uvResistanceToolTip;
+    private StatModifierToolTip? uvResistanceModifierToolTip;
 #pragma warning restore CA2213
 
     private bool automaticallyChanging;
@@ -112,7 +152,7 @@ public partial class TolerancesEditorSubComponent : EditorComponentBase<ICellEdi
     private EnvironmentalTolerances? reusableTolerances;
 
     /// <summary>
-    ///   When true links the max and min pressure sliders to keep a consistent range
+    ///   When true, links the max and min pressure sliders to keep a consistent range
     /// </summary>
     private bool keepSamePressureFlexibility = true;
 
@@ -131,6 +171,7 @@ public partial class TolerancesEditorSubComponent : EditorComponentBase<ICellEdi
     {
         originalTemperatureFont = temperatureMinLabel.LabelSettings;
         originalPressureFont = pressureMinLabel.LabelSettings;
+        originalModifierFont = temperatureToleranceModifierLabel.LabelSettings;
 
         RegisterTooltips();
     }
@@ -171,7 +212,7 @@ public partial class TolerancesEditorSubComponent : EditorComponentBase<ICellEdi
         Editor.EditedBaseSpecies.Tolerances.CopyFrom(CurrentTolerances);
     }
 
-    public void OnPatchChanged()
+    public void OnDataTolerancesDependOnChanged()
     {
         UpdateCurrentValueDisplays();
         UpdateToolTipStats();
@@ -274,10 +315,13 @@ public partial class TolerancesEditorSubComponent : EditorComponentBase<ICellEdi
 
             CalculateStatsAndShow(tempTolerances, uvResistanceToolTip);
         }
+
+        UpdateEffectiveValueToolTips();
     }
 
     protected override void OnTranslationsChanged()
     {
+        UpdateCurrentValueDisplays();
         UpdateMPCostInToolTips();
         UpdateToolTipStats();
     }
@@ -287,16 +331,37 @@ public partial class TolerancesEditorSubComponent : EditorComponentBase<ICellEdi
         base.RegisterTooltips();
 
         temperatureContainer.RegisterToolTipForControl("temperature", "tolerances");
+        temperatureToleranceContainer.RegisterToolTipForControl("temperatureRangeModifier", "tolerances");
         pressureContainer.RegisterToolTipForControl("pressure", "tolerances");
+        pressureRangeContainer.RegisterToolTipForControl("pressureRangeModifier", "tolerances");
         oxygenResistanceContainer.RegisterToolTipForControl("oxygenResistance", "tolerances");
+        oxygenResistanceModifierLabel.RegisterToolTipForControl("oxygenResistanceModifier", "tolerances");
         uvResistanceContainer.RegisterToolTipForControl("uvResistance", "tolerances");
+        uvResistanceModifierLabel.RegisterToolTipForControl("uvResistanceModifier", "tolerances");
 
         var toolTipManager = ToolTipManager.Instance;
         temperatureToolTip = toolTipManager.GetToolTip<EnvironmentalToleranceToolTip>("temperature", "tolerances");
+        temperatureRangeToolTip =
+            toolTipManager.GetToolTip<StatModifierToolTip>("temperatureRangeModifier", "tolerances");
         pressureToolTip = toolTipManager.GetToolTip<EnvironmentalToleranceToolTip>("pressure", "tolerances");
+        pressureRangeToolTip = toolTipManager.GetToolTip<StatModifierToolTip>("pressureRangeModifier", "tolerances");
         oxygenResistanceToolTip =
             toolTipManager.GetToolTip<EnvironmentalToleranceToolTip>("oxygenResistance", "tolerances");
+        oxygenResistanceModifierToolTip =
+            toolTipManager.GetToolTip<StatModifierToolTip>("oxygenResistanceModifier", "tolerances");
         uvResistanceToolTip = toolTipManager.GetToolTip<EnvironmentalToleranceToolTip>("uvResistance", "tolerances");
+        uvResistanceModifierToolTip =
+            toolTipManager.GetToolTip<StatModifierToolTip>("uvResistanceModifier", "tolerances");
+
+        // Copy the units here automatically
+        if (temperatureRangeToolTip != null)
+        {
+            temperatureRangeToolTip.ValueSuffix = SimulationParameters.GetCompound(Compound.Temperature).Unit;
+        }
+        else
+        {
+            GD.PrintErr("Tooltips not correctly found for tolerances editor");
+        }
     }
 
     protected override void Dispose(bool disposing)
@@ -313,13 +378,74 @@ public partial class TolerancesEditorSubComponent : EditorComponentBase<ICellEdi
     private void CalculateStatsAndShow(EnvironmentalTolerances calculationTolerances,
         EnvironmentalToleranceToolTip toolTip)
     {
+        if (Editor.EditedCellOrganelles == null)
+        {
+            GD.PrintErr("No cell edited organelles set, tolerances editor cannot update!");
+            return;
+        }
+
         var rawTolerances =
             MicrobeEnvironmentalToleranceCalculations.CalculateTolerances(calculationTolerances,
-                Editor.CurrentPatch.Biome);
+                Editor.EditedCellOrganelles, Editor.CurrentPatch.Biome);
 
         var resolvedTolerances = MicrobeEnvironmentalToleranceCalculations.ResolveToleranceValues(rawTolerances);
 
         toolTip.UpdateStats(resolvedTolerances);
+    }
+
+    private void UpdateEffectiveValueToolTips()
+    {
+        if (Editor.EditedCellOrganelles == null)
+        {
+            GD.PrintErr("no cell edited organelles set, cannot update effective value tooltips");
+            return;
+        }
+
+        var tolerances = default(MicrobeEnvironmentalToleranceCalculations.ToleranceValues);
+
+        // Take the current values as base and apply the organelle modifiers on top to get effective values
+        tolerances.CopyFrom(CurrentTolerances);
+
+        MicrobeEnvironmentalToleranceCalculations.ApplyOrganelleEffectsOnTolerances(Editor.EditedCellOrganelles,
+            ref tolerances);
+
+        if (temperatureRangeToolTip != null)
+        {
+            temperatureRangeToolTip.DisplayedValue = tolerances.TemperatureTolerance;
+
+            // Calculate organelle summaries so that the info can be shown in the tooltips
+            MicrobeEnvironmentalToleranceCalculations.GenerateToleranceEffectSummariesByOrganelle(
+                Editor.EditedCellOrganelles, ToleranceModifier.TemperatureRange, tempToleranceModifiers);
+
+            temperatureRangeToolTip.DisplayOrganelleBreakdown(tempToleranceModifiers);
+        }
+
+        if (pressureRangeToolTip != null)
+        {
+            pressureRangeToolTip.DisplayedValue = tolerances.PressureMaximum - tolerances.PressureMinimum;
+
+            MicrobeEnvironmentalToleranceCalculations.GenerateToleranceEffectSummariesByOrganelle(
+                Editor.EditedCellOrganelles, ToleranceModifier.PressureRange, tempToleranceModifiers);
+            pressureRangeToolTip.DisplayOrganelleBreakdown(tempToleranceModifiers);
+        }
+
+        if (oxygenResistanceModifierToolTip != null)
+        {
+            oxygenResistanceModifierToolTip.DisplayedValue = tolerances.OxygenResistance;
+
+            MicrobeEnvironmentalToleranceCalculations.GenerateToleranceEffectSummariesByOrganelle(
+                Editor.EditedCellOrganelles, ToleranceModifier.Oxygen, tempToleranceModifiers);
+            oxygenResistanceModifierToolTip.DisplayOrganelleBreakdown(tempToleranceModifiers);
+        }
+
+        if (uvResistanceModifierToolTip != null)
+        {
+            uvResistanceModifierToolTip.DisplayedValue = tolerances.UVResistance;
+
+            MicrobeEnvironmentalToleranceCalculations.GenerateToleranceEffectSummariesByOrganelle(
+                Editor.EditedCellOrganelles, ToleranceModifier.UV, tempToleranceModifiers);
+            uvResistanceModifierToolTip.DisplayOrganelleBreakdown(tempToleranceModifiers);
+        }
     }
 
     private void ApplyCurrentValuesToGUI()
@@ -590,24 +716,38 @@ public partial class TolerancesEditorSubComponent : EditorComponentBase<ICellEdi
         var unitFormat = Localization.Translate("VALUE_WITH_UNIT");
         var percentageFormat = Localization.Translate("PERCENTAGE_VALUE");
 
-        // TODO: green for perfectly being adapted?
+        var organelleModifiers = default(MicrobeEnvironmentalToleranceCalculations.ToleranceValues);
+        bool gotOrganelles = false;
+
+        if (Editor.EditedCellOrganelles != null)
+        {
+            gotOrganelles = true;
+            MicrobeEnvironmentalToleranceCalculations.ApplyOrganelleEffectsOnTolerances(Editor.EditedCellOrganelles,
+                ref organelleModifiers);
+        }
+
+        var preferredTemperatureWithOrganelles =
+            CurrentTolerances.PreferredTemperature + organelleModifiers.PreferredTemperature;
+
+        var temperatureToleranceWithOrganelles =
+            CurrentTolerances.TemperatureTolerance + organelleModifiers.TemperatureTolerance;
 
         temperatureMinLabel.Text =
             unitFormat.FormatSafe(
-                Math.Round(CurrentTolerances.PreferredTemperature - CurrentTolerances.TemperatureTolerance, 1),
+                Math.Round(preferredTemperatureWithOrganelles - temperatureToleranceWithOrganelles, 1),
                 temperature.Unit);
         temperatureMaxLabel.Text =
             unitFormat.FormatSafe(
-                Math.Round(CurrentTolerances.PreferredTemperature + CurrentTolerances.TemperatureTolerance, 1),
+                Math.Round(preferredTemperatureWithOrganelles + temperatureToleranceWithOrganelles, 1),
                 temperature.Unit);
 
         // Show in red the conditions that are not matching to make them easier to notice
-        if (Math.Abs(patchTemperature - CurrentTolerances.PreferredTemperature) >
-            CurrentTolerances.TemperatureTolerance)
+        if (Math.Abs(patchTemperature - preferredTemperatureWithOrganelles) >
+            temperatureToleranceWithOrganelles)
         {
             // Mark the direction that is bad as the one having the problem to make it easier for the player to see
             // what is wrong
-            if (patchTemperature > CurrentTolerances.PreferredTemperature)
+            if (patchTemperature > preferredTemperatureWithOrganelles)
             {
                 temperatureMaxLabel.LabelSettings = badValueFont;
                 temperatureMinLabel.LabelSettings = originalTemperatureFont;
@@ -630,15 +770,19 @@ public partial class TolerancesEditorSubComponent : EditorComponentBase<ICellEdi
             temperatureMaxLabel.LabelSettings = originalTemperatureFont;
         }
 
-        pressureMinLabel.Text = unitFormat.FormatSafe(Math.Round(CurrentTolerances.PressureMinimum / 1000), "kPa");
-        pressureMaxLabel.Text = unitFormat.FormatSafe(Math.Round(CurrentTolerances.PressureMaximum / 1000), "kPa");
+        var pressureMinWithOrganelles =
+            Math.Max(0, CurrentTolerances.PressureMinimum + organelleModifiers.PressureMinimum);
+        var pressureMaxWithOrganelles = CurrentTolerances.PressureMaximum + organelleModifiers.PressureMaximum;
 
-        if (patchPressure > CurrentTolerances.PressureMaximum)
+        pressureMinLabel.Text = unitFormat.FormatSafe(Math.Round(pressureMinWithOrganelles / 1000), "kPa");
+        pressureMaxLabel.Text = unitFormat.FormatSafe(Math.Round(pressureMaxWithOrganelles / 1000), "kPa");
+
+        if (patchPressure > pressureMaxWithOrganelles)
         {
             pressureMaxLabel.LabelSettings = badValueFont;
             pressureMinLabel.LabelSettings = originalPressureFont;
         }
-        else if (patchPressure < CurrentTolerances.PressureMinimum)
+        else if (patchPressure < pressureMinWithOrganelles)
         {
             pressureMinLabel.LabelSettings = badValueFont;
             pressureMaxLabel.LabelSettings = originalPressureFont;
@@ -676,6 +820,106 @@ public partial class TolerancesEditorSubComponent : EditorComponentBase<ICellEdi
         else
         {
             uvResistanceLabel.LabelSettings = originalTemperatureFont;
+        }
+
+        if (!gotOrganelles)
+        {
+            GD.PrintErr("Cannot update effective tolerance values without organelles");
+            return;
+        }
+
+        // Update then the effective ranges and modifier values
+
+        // Temperature
+        temperatureToleranceLabel.Text =
+            unitFormat.FormatSafe(Math.Round(CurrentTolerances.TemperatureTolerance, 1), temperature.Unit);
+
+        var value = unitFormat.FormatSafe(Math.Round(organelleModifiers.TemperatureTolerance, 1), temperature.Unit);
+
+        value = organelleModifiers.TemperatureTolerance >= 0 ? "+" + value : value;
+
+        if (ShowZeroModifiers || organelleModifiers.TemperatureTolerance != 0)
+        {
+            temperatureToleranceModifierLabel.Text = $"({value})";
+            temperatureToleranceModifierLabel.Visible = true;
+
+            if (organelleModifiers.TemperatureTolerance < 0)
+            {
+                temperatureToleranceModifierLabel.LabelSettings = modifierBadFont;
+            }
+            else
+            {
+                temperatureToleranceModifierLabel.LabelSettings = originalModifierFont;
+            }
+        }
+        else
+        {
+            temperatureToleranceModifierLabel.Visible = false;
+        }
+
+        // Pressure. This is slightly different in that we only have this one display, so it does double duty to show
+        // the bonus as well as the current range
+        value = unitFormat.FormatSafe(Math.Round(
+            (Math.Abs(CurrentTolerances.PressureMaximum - CurrentTolerances.PressureMinimum) +
+                organelleModifiers.PressureMaximum) / 1000), "kPa");
+        pressureToleranceModifierLabel.Text = value;
+
+        // Make pressure green if within the perfect adaptation range as this is a total range display and not just
+        // the modifier like the other values
+        if (Math.Abs(CurrentTolerances.PressureMaximum - CurrentTolerances.PressureMinimum) <=
+            Constants.TOLERANCE_PERFECT_THRESHOLD_PRESSURE)
+        {
+            pressureToleranceModifierLabel.LabelSettings = modifierGoodFont;
+        }
+        else
+        {
+            pressureToleranceModifierLabel.LabelSettings = originalModifierFont;
+        }
+
+        // Oxygen
+        value = percentageFormat.FormatSafe(Math.Round(organelleModifiers.OxygenResistance * 100, 1));
+        value = organelleModifiers.OxygenResistance >= 0 ? "+" + value : value;
+
+        if (ShowZeroModifiers || organelleModifiers.OxygenResistance != 0)
+        {
+            oxygenResistanceModifierLabel.Text = $"({value})";
+            oxygenResistanceModifierLabel.Visible = true;
+
+            if (organelleModifiers.OxygenResistance < 0)
+            {
+                oxygenResistanceModifierLabel.LabelSettings = modifierBadFont;
+            }
+            else
+            {
+                oxygenResistanceModifierLabel.LabelSettings = originalModifierFont;
+            }
+        }
+        else
+        {
+            oxygenResistanceModifierLabel.Visible = false;
+        }
+
+        // UV
+        value = percentageFormat.FormatSafe(Math.Round(organelleModifiers.UVResistance * 100, 1));
+        value = organelleModifiers.UVResistance >= 0 ? "+" + value : value;
+
+        if (ShowZeroModifiers || organelleModifiers.UVResistance != 0)
+        {
+            uvResistanceModifierLabel.Text = $"({value})";
+            uvResistanceModifierLabel.Visible = true;
+
+            if (organelleModifiers.UVResistance < 0)
+            {
+                uvResistanceModifierLabel.LabelSettings = modifierBadFont;
+            }
+            else
+            {
+                uvResistanceModifierLabel.LabelSettings = originalModifierFont;
+            }
+        }
+        else
+        {
+            uvResistanceModifierLabel.Visible = false;
         }
     }
 

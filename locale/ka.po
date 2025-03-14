@@ -7,9 +7,9 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2025-02-28 12:07+0200\n"
-"PO-Revision-Date: 2025-02-23 17:05+0000\n"
-"Last-Translator: NorwayFun <temuri.doghonadze@gmail.com>\n"
+"POT-Creation-Date: 2025-03-14 11:08+0200\n"
+"PO-Revision-Date: 2025-03-12 14:39+0000\n"
+"Last-Translator: Anonymous <noreply@weblate.org>\n"
 "Language-Team: Georgian <https://translate.revolutionarygamesstudio.com/projects/thrive/thrive-game/ka/>\n"
 "Language: ka\n"
 "MIME-Version: 1.0\n"
@@ -188,6 +188,9 @@ msgstr "ანაერობული აზოტის ფიქსაცი�
 
 msgid "AND_UNLOCK_CONDITION"
 msgstr "და"
+
+msgid "ANISOTROPIC_FILTERING"
+msgstr "ანიზოტროპული გაფილტვრა:"
 
 msgid "APPEARANCE"
 msgstr "გარეგნობა"
@@ -1576,9 +1579,8 @@ msgstr "ორმაგი წკაპი სრულ ეკრანზე �
 msgid "DOUBLE_MEMBRANE_DESCRIPTION"
 msgstr ""
 
-#, fuzzy
 msgid "DOUBLE_SPEED_TOGGLE_TOOLTIP"
-msgstr "სამყაროს გენერაციისთვის გამოყენებული მნიშვნელობა, რომელიც დადებითი მთელი რიცხვი უნდა იყოს"
+msgstr "გადართვა თამაშის ნორმალურ და ორმაგ სიჩქარეს შორის"
 
 msgid "DRAG_TO_REORDER_ITEMS_WITH_MOUSE"
 msgstr "გადაათრიეთ ეს, რომ საგნები თაგუნათი გადაალაგოთ"
@@ -1672,6 +1674,12 @@ msgstr ""
 
 msgid "EDITOR_TUTORIAL_EDITOR_TEXT"
 msgstr ""
+
+msgid "EDITOR_TUTORIAL_MICROBE_EDITOR_NUCLEUS"
+msgstr ""
+
+msgid "EFFECTIVE_VALUE"
+msgstr "ეფექტური მნიშვნელობა"
 
 msgid "EIGHT_TIMES"
 msgstr "8x"
@@ -1979,7 +1987,7 @@ msgid "FERROPLAST_DESCRIPTION"
 msgstr ""
 
 msgid "FERROPLAST_PROCESSES_DESCRIPTION"
-msgstr "გადაჰყავს [thrive:compound type=\"iron\"][/thrive:compound] [thrive:compound type=\"atp\"][/thrive:compound]-ში. სიჩქარე [thrive:compound type=\"carbondioxide\"][/thrive:compound]-ის კონცენტრაციის ზრდასთან ერთად იზრდება."
+msgstr "იყენებს [thrive:compound type=\"iron\"]-ს [/thrive:compound], რომ აწარმოოს[thrive:compound type=\"atp\"][/thrive:compound]."
 
 msgid "FILTER_ITEMS_BY_CATEGORY_COLON"
 msgstr "საგნების ფილტრი კატეგორიით:"
@@ -2520,8 +2528,8 @@ msgstr ""
 msgid "IRON"
 msgstr "რკინა"
 
-msgid "IRON_CHEMOLITHOAUTOTROPHY"
-msgstr "რკინის ქემოლითოავტოტროფია"
+msgid "IRON_OXIDATION"
+msgstr "რკინის დაჟანგვა"
 
 msgid "ITCH_TOOLTIP"
 msgstr "ეწვიეთ ჩვენს itch.io-ის გვერდს"
@@ -2553,8 +2561,8 @@ msgstr "ივლისი"
 msgid "JUNE"
 msgstr "ივნისი"
 
-msgid "KEEP_CURRENT_FLEXIBILITY"
-msgstr "მიმდინარე მოქნილობის შენარჩუნება"
+msgid "KEEP_CURRENT_SHORT"
+msgstr "ამჟამინდელის შენარჩუნება"
 
 msgid "KEEP_CURRENT_TOLERANCE_FLEXIBILITY_TOOLTIP"
 msgstr "ამჟამინდელი წნევის გამძლეობის შუალედის შენარცუნება მაქსიმალურ და მინიმალურ სლაიდერებს მოძრაობას შორის"
@@ -2722,6 +2730,9 @@ msgstr "ეს ენა ჯერ კიდევ მუშავდება. 
 
 msgid "LANGUAGE_TRANSLATION_PROGRESS_REALLY_LOW"
 msgstr "ეს თარგმანი დაუსრულებელია (მზადაა {0}%). დაგვეხმარეთ თარგმანში!"
+
+msgid "LARGE_SULFUR_CHUNK"
+msgstr "დიდი გოგირდის ნაგლეჯი"
 
 msgid "LAST_ORGANELLE_DELETE_OPTION_DISABLED_TOOLTIP"
 msgstr "ბოლო ორგანელას ვერ წაშლით"
@@ -3765,8 +3776,14 @@ msgstr "აქ არაფერია"
 msgid "NOTHING_TO_INTERACT_WITH"
 msgstr "ურთიერთქმედება ვერაფერთან ხდება"
 
+msgid "NOTICE_BINDING_OUT_OF_ATP"
+msgstr "მიბმის რეჟიმიდან გასვლა ატფ-ის ნაკლებობის გამო"
+
 msgid "NOTICE_DAMAGED_BY_NO_ATP"
 msgstr "დაზიანებულია ატფ-ის უქონლობის გამო"
+
+msgid "NOTICE_ENGULFING_OUT_OF_ATP"
+msgstr "შთანთქმის რეჟიმიდან გასვლა ატფ-ის ნაკლებობის გამო"
 
 msgid "NOTICE_ENGULF_DAMAGE_FROM_TOXIN"
 msgstr "დაზიანებულია შთანთქმულ მასაში არსებული ტოქსინებით"
@@ -4104,9 +4121,6 @@ msgstr "მარჯვნივ მიწევა"
 msgid "PAN_CAMERA_UP"
 msgstr "აბრუნება"
 
-msgid "PASSIVE_REPRODUCTION_PROGRESS"
-msgstr "რეპროდუქციის პროგრესის პასიური მიღება"
-
 msgid "PASSIVE_REPRODUCTION_PROGRESS_EXPLANATION"
 msgstr "(რეპროდუქციის ნაერთების პასიური ათვისება გარემოდან რამის კეთების გარეშე)"
 
@@ -4353,6 +4367,10 @@ msgstr "პროტოპლაზმა"
 msgid "PULL_REQUESTS_PROGRAMMING"
 msgstr "Pull Requests / პროგრამირება"
 
+#, fuzzy
+msgid "QUADRILLION_ABBREVIATION"
+msgstr "{0} მლრდ"
+
 msgid "QUICK_LOAD"
 msgstr "სწრაფი ჩატვირთვა"
 
@@ -4589,7 +4607,7 @@ msgid "RUSTICYANIN_DESCRIPTION"
 msgstr ""
 
 msgid "RUSTICYANIN_PROCESSES_DESCRIPTION"
-msgstr "გადაჰყავს [thrive:compound type=\"iron\"][/thrive:compound] [thrive:compound type=\"atp\"][/thrive:compound]-ში. სიჩქარე [thrive:compound type=\"carbondioxide\"]-ის კონცენტრაციის ზრდასთან ერთად იზრდება."
+msgstr "იყენებს [thrive:compound type=\"iron\"]-ს[/thrive:compound], რომ აწარმოოს [thrive:compound type=\"atp\"][/thrive:compound]."
 
 msgid "SAFE_MODE_EXPLANATION"
 msgstr ""
@@ -4865,6 +4883,9 @@ msgstr "კაჟი"
 
 msgid "SILICA_MEMBRANE_DESCRIPTION"
 msgstr ""
+
+msgid "SIXTEEN_TIMES"
+msgstr "16x"
 
 msgid "SIZE_COLON"
 msgstr "ზომა:"
@@ -5412,9 +5433,8 @@ msgstr ""
 "გადართეთ შთანთქმის რეჟიმი, რომ სხვადასხვა ნაგლეჯები\n"
 " და პატარა ორგანიზმები შთანთქათ მათი ატფ-ის გაცვლისთვის, სანამ აქტიურია"
 
-#, fuzzy
 msgid "TOGGLE_FAST_MODE"
-msgstr "პაუზა"
+msgstr "სწრაფი რეჟიმის გადართვა"
 
 msgid "TOGGLE_FPS"
 msgstr "FPS-ის ჩვენების გადართვა"
@@ -5466,6 +5486,9 @@ msgstr "უი დაცვა ძალიან დაბალია. სა�
 
 msgid "TOLERANCES_UNSUITABLE_DEBUFFS"
 msgstr "ამჟამინდელ გარემოსთან შეგუებული არაა. ოსმორეგულაცია: {0}%, დამუშავების სიჩქარე {1}%, ჯანმრთელობა {2}%"
+
+msgid "TOLERANCE_FROM_ORGANELLES_TOOLTIP"
+msgstr ""
 
 msgid "TOLERANCE_RANGE_LABEL"
 msgstr "მოქნილობა:"
@@ -5570,6 +5593,10 @@ msgstr "მთარგმნელები"
 
 msgid "TRANSPARENCY"
 msgstr "გამჭვირვალობა"
+
+#, fuzzy
+msgid "TRILLION_ABBREVIATION"
+msgstr "{0} მლრდ"
 
 msgid "TRY_FOSSILISING_SOME_SPECIES"
 msgstr "სცადეთ ზოგიერთი სახეობის განამარხება!"
@@ -7456,6 +7483,24 @@ msgstr ""
 msgid "WORLD_RELATIVE_MOVEMENT"
 msgstr "სამყაროსთან შეფარდებით"
 
+msgid "WORLD_SIZE"
+msgstr "სამყაროს ზომა"
+
+msgid "WORLD_SIZE_EXPLANATION"
+msgstr "(ცვლის სამყაროში ბიომების რაოდენობას)"
+
+msgid "WORLD_SIZE_LARGE"
+msgstr "დიდი"
+
+msgid "WORLD_SIZE_MEDIUM"
+msgstr "საშუალო"
+
+msgid "WORLD_SIZE_SMALL"
+msgstr "პატარა"
+
+msgid "WORLD_SIZE_TOOLTIP"
+msgstr "დიდი სამყაროს ქონამ, შეიძლება, სიმულაცია შეანელოს და არაა რეკომენდებული ნელი კომპიუტერებისთვის."
+
 msgid "WORST_PATCH_COLON"
 msgstr "ყველაზე ცუდი ბიომა:"
 
@@ -7493,6 +7538,9 @@ msgstr "გადიდება"
 
 msgid "ZOOM_OUT"
 msgstr "დაპატარავება"
+
+#~ msgid "PASSIVE_REPRODUCTION_PROGRESS"
+#~ msgstr "რეპროდუქციის პროგრესის პასიური მიღება"
 
 #~ msgid "MIGRATE"
 #~ msgstr "მიგრაცია"
