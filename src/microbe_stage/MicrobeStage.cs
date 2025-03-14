@@ -949,7 +949,7 @@ public partial class MicrobeStage : CreatureStageBase<Entity, MicrobeWorldSimula
         WorldSimulation.InitForCurrentGame(CurrentGame!);
 
         tutorialGUI.EventReceiver = TutorialState;
-        HUD.SendNessicaryGUIElementsToTutorial(TutorialState);
+        HUD.SendObjectsToTutorials(TutorialState);
 
         ProceduralDataCache.Instance.OnEnterState(MainGameState.MicrobeStage);
 

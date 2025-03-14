@@ -36,7 +36,7 @@ public class ModifyOrganelleTutorial : TutorialPhase
             }
 
             // If undo is pressed, assume for now that it was the upgradable organelle, and close
-            case TutorialEventType.MicrobeEditorUndo:
+            case TutorialEventType.EditorUndo:
             {
                 if (ShownCurrently)
                 {

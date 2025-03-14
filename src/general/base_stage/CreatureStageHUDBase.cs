@@ -461,7 +461,7 @@ public partial class CreatureStageHUDBase<TStage> : HUDWithPausing, ICreatureSta
         UpdateSpeedModeDisplay();
     }
 
-    public void SendNessicaryGUIElementsToTutorial(TutorialState tutorialState)
+    public void SendObjectsToTutorials(TutorialState tutorialState)
     {
         tutorialState.MicrobePressEditorButton.PressEditorButtonControl = editorButton;
 
