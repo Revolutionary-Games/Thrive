@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Thrive VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2025-03-13 10:55+0200\n"
+"POT-Creation-Date: 2025-03-14 11:08+0200\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -307,7 +307,7 @@ msgstr ""
 
 #: ../simulation_parameters/microbe_stage/compounds.json:3
 #: ../src/macroscopic_stage/MacroscopicHUD.tscn:340
-#: ../src/microbe_stage/MicrobeHUD.tscn:501
+#: ../src/microbe_stage/MicrobeHUD.tscn:502
 msgid "ATP"
 msgstr ""
 
@@ -636,7 +636,7 @@ msgstr ""
 msgid "BIG_PHOSPHATE_CHUNK"
 msgstr ""
 
-#: ../src/general/utils/StringUtils.cs:28
+#: ../src/general/utils/StringUtils.cs:45
 msgid "BILLION_ABBREVIATION"
 msgstr ""
 
@@ -813,27 +813,27 @@ msgstr ""
 msgid "CARBON_DIOXIDE"
 msgstr ""
 
-#: ../src/general/base_stage/CreatureStageHUDBase.cs:926
+#: ../src/general/base_stage/CreatureStageHUDBase.cs:936
 msgid "CATEGORY_AN_ABUNDANCE"
 msgstr ""
 
-#: ../src/general/base_stage/CreatureStageHUDBase.cs:930
+#: ../src/general/base_stage/CreatureStageHUDBase.cs:940
 msgid "CATEGORY_A_FAIR_AMOUNT"
 msgstr ""
 
-#: ../src/general/base_stage/CreatureStageHUDBase.cs:934
+#: ../src/general/base_stage/CreatureStageHUDBase.cs:944
 msgid "CATEGORY_LITTLE"
 msgstr ""
 
-#: ../src/general/base_stage/CreatureStageHUDBase.cs:928
+#: ../src/general/base_stage/CreatureStageHUDBase.cs:938
 msgid "CATEGORY_QUITE_A_BIT"
 msgstr ""
 
-#: ../src/general/base_stage/CreatureStageHUDBase.cs:932
+#: ../src/general/base_stage/CreatureStageHUDBase.cs:942
 msgid "CATEGORY_SOME"
 msgstr ""
 
-#: ../src/general/base_stage/CreatureStageHUDBase.cs:936
+#: ../src/general/base_stage/CreatureStageHUDBase.cs:946
 msgid "CATEGORY_VERY_LITTLE"
 msgstr ""
 
@@ -2313,7 +2313,7 @@ msgid "EJECT_ENGULFED"
 msgstr ""
 
 #: ../src/macroscopic_stage/MacroscopicHUD.tscn:499
-#: ../src/microbe_stage/MicrobeHUD.tscn:640
+#: ../src/microbe_stage/MicrobeHUD.tscn:641
 msgid "EJECT_ENGULFED_TOOLTIP"
 msgstr ""
 
@@ -2413,7 +2413,7 @@ msgstr ""
 msgid "ENERGY_BALANCE_TOOLTIP_PRODUCTION_WITH_REQUIREMENT"
 msgstr ""
 
-#: ../src/microbe_stage/editor/CellEditorComponent.cs:3020
+#: ../src/microbe_stage/editor/CellEditorComponent.cs:3021
 msgid "ENERGY_IN_PATCH_FOR"
 msgstr ""
 
@@ -2421,11 +2421,11 @@ msgstr ""
 msgid "ENERGY_IN_PATCH_SHORT"
 msgstr ""
 
-#: ../src/microbe_stage/editor/CellEditorComponent.cs:3031
+#: ../src/microbe_stage/editor/CellEditorComponent.cs:3032
 msgid "ENERGY_SOURCES"
 msgstr ""
 
-#: ../src/microbe_stage/editor/CellEditorComponent.cs:3024
+#: ../src/microbe_stage/editor/CellEditorComponent.cs:3025
 msgid "ENERGY_SUMMARY_LINE"
 msgstr ""
 
@@ -2739,7 +2739,7 @@ msgid "FIRE_TOXIN"
 msgstr ""
 
 #: ../src/macroscopic_stage/MacroscopicHUD.tscn:474
-#: ../src/microbe_stage/MicrobeHUD.tscn:650
+#: ../src/microbe_stage/MicrobeHUD.tscn:651
 msgid "FIRE_TOXIN_TOOLTIP"
 msgstr ""
 
@@ -2834,7 +2834,7 @@ msgstr ""
 msgid "FOOD_CHAIN"
 msgstr ""
 
-#: ../src/microbe_stage/editor/CellEditorComponent.cs:3037
+#: ../src/microbe_stage/editor/CellEditorComponent.cs:3038
 msgid "FOOD_SOURCE_ENERGY_INFO"
 msgstr ""
 
@@ -3988,7 +3988,7 @@ msgstr ""
 msgid "KEY_UP"
 msgstr ""
 
-#: ../src/general/utils/StringUtils.cs:44
+#: ../src/general/utils/StringUtils.cs:61
 msgid "KILO_ABBREVIATION"
 msgstr ""
 
@@ -4274,7 +4274,7 @@ msgstr ""
 msgid "LIFE_ORIGIN_VENTS"
 msgstr ""
 
-#: ../src/general/base_stage/CreatureStageHUDBase.cs:349
+#: ../src/general/base_stage/CreatureStageHUDBase.cs:350
 msgid "LIGHT"
 msgstr ""
 
@@ -4940,7 +4940,7 @@ msgstr ""
 msgid "MIGRATION_TOOLTIP"
 msgstr ""
 
-#: ../src/general/utils/StringUtils.cs:36
+#: ../src/general/utils/StringUtils.cs:53
 msgid "MILLION_ABBREVIATION"
 msgstr ""
 
@@ -5298,7 +5298,7 @@ msgid "MUCILAGE_SYNTHESIS"
 msgstr ""
 
 #: ../src/macroscopic_stage/MacroscopicHUD.tscn:516
-#: ../src/microbe_stage/MicrobeHUD.tscn:713
+#: ../src/microbe_stage/MicrobeHUD.tscn:714
 msgid "MUCOCYST_ACTION_TOOLTIP"
 msgstr ""
 
@@ -5626,7 +5626,7 @@ msgstr ""
 msgid "NOTICE_RADIATION_DAMAGE"
 msgstr ""
 
-#: ../src/general/base_stage/CreatureStageHUDBase.cs:483
+#: ../src/general/base_stage/CreatureStageHUDBase.cs:484
 msgid "NOTICE_READY_TO_EDIT"
 msgstr ""
 
@@ -5647,7 +5647,7 @@ msgid "NO_AI"
 msgstr ""
 
 #: ../src/gui_common/charts/line/LineChart.cs:693
-#: ../src/microbe_stage/editor/CellEditorComponent.cs:3052
+#: ../src/microbe_stage/editor/CellEditorComponent.cs:3053
 msgid "NO_DATA_TO_SHOW"
 msgstr ""
 
@@ -6364,7 +6364,7 @@ msgstr ""
 msgid "PRESSURE"
 msgstr ""
 
-#: ../src/general/base_stage/CreatureStageHUDBase.cs:352
+#: ../src/general/base_stage/CreatureStageHUDBase.cs:353
 msgid "PRESSURE_SHORT"
 msgstr ""
 
@@ -6424,6 +6424,10 @@ msgstr ""
 
 #: ../src/gui_common/CreditsScroll.cs:539
 msgid "PULL_REQUESTS_PROGRAMMING"
+msgstr ""
+
+#: ../src/general/utils/StringUtils.cs:29
+msgid "QUADRILLION_ABBREVIATION"
 msgstr ""
 
 #: ../simulation_parameters/common/input_options.json:370
@@ -6940,7 +6944,7 @@ msgid "SECRETE_SLIME"
 msgstr ""
 
 #: ../src/macroscopic_stage/MacroscopicHUD.tscn:491
-#: ../src/microbe_stage/MicrobeHUD.tscn:692
+#: ../src/microbe_stage/MicrobeHUD.tscn:693
 msgid "SECRETE_SLIME_TOOLTIP"
 msgstr ""
 
@@ -7086,7 +7090,7 @@ msgstr ""
 msgid "SHOW_WEB_NEWS_FEED"
 msgstr ""
 
-#: ../src/microbe_stage/MicrobeHUD.tscn:724
+#: ../src/microbe_stage/MicrobeHUD.tscn:725
 msgid "SIDEROPHORE_ACTION_TOOLTIP"
 msgstr ""
 
@@ -7094,7 +7098,7 @@ msgstr ""
 msgid "SIGNALING_AGENT"
 msgstr ""
 
-#: ../src/microbe_stage/MicrobeHUD.tscn:681
+#: ../src/microbe_stage/MicrobeHUD.tscn:682
 msgid "SIGNALING_AGENTS_ACTION_TOOLTIP"
 msgstr ""
 
@@ -7342,7 +7346,7 @@ msgid "SPRINT"
 msgstr ""
 
 #: ../src/macroscopic_stage/MacroscopicHUD.tscn:506
-#: ../src/microbe_stage/MicrobeHUD.tscn:702
+#: ../src/microbe_stage/MicrobeHUD.tscn:703
 msgid "SPRINT_ACTION_TOOLTIP"
 msgstr ""
 
@@ -7698,7 +7702,7 @@ msgstr ""
 msgid "TEMPERATURE"
 msgstr ""
 
-#: ../src/general/base_stage/CreatureStageHUDBase.cs:345
+#: ../src/general/base_stage/CreatureStageHUDBase.cs:346
 msgid "TEMPERATURE_SHORT"
 msgstr ""
 
@@ -7893,7 +7897,7 @@ msgstr ""
 msgid "TOGGLE_BINDING"
 msgstr ""
 
-#: ../src/microbe_stage/MicrobeHUD.tscn:660
+#: ../src/microbe_stage/MicrobeHUD.tscn:661
 msgid "TOGGLE_BINDING_TOOLTIP"
 msgstr ""
 
@@ -7907,7 +7911,7 @@ msgstr ""
 msgid "TOGGLE_ENGULF"
 msgstr ""
 
-#: ../src/microbe_stage/MicrobeHUD.tscn:628
+#: ../src/microbe_stage/MicrobeHUD.tscn:629
 msgid "TOGGLE_ENGULF_TOOLTIP"
 msgstr ""
 
@@ -8145,6 +8149,10 @@ msgstr ""
 msgid "TRANSPARENCY"
 msgstr ""
 
+#: ../src/general/utils/StringUtils.cs:37
+msgid "TRILLION_ABBREVIATION"
+msgstr ""
+
 #: ../src/thriveopedia/pages/ThriveopediaMuseumPage.tscn:124
 msgid "TRY_FOSSILISING_SOME_SPECIES"
 msgstr ""
@@ -8289,7 +8297,7 @@ msgstr ""
 msgid "UNBIND_ALL"
 msgstr ""
 
-#: ../src/microbe_stage/MicrobeHUD.tscn:671
+#: ../src/microbe_stage/MicrobeHUD.tscn:672
 msgid "UNBIND_ALL_TOOLTIP"
 msgstr ""
 

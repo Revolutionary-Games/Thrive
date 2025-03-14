@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2025-03-13 10:55+0200\n"
+"POT-Creation-Date: 2025-03-14 11:08+0200\n"
 "PO-Revision-Date: 2025-03-12 14:39+0000\n"
 "Last-Translator: Anonymous <noreply@weblate.org>\n"
 "Language-Team: Georgian <https://translate.revolutionarygamesstudio.com/projects/thrive/thrive-game/ka/>\n"
@@ -190,7 +190,7 @@ msgid "AND_UNLOCK_CONDITION"
 msgstr "და"
 
 msgid "ANISOTROPIC_FILTERING"
-msgstr ""
+msgstr "ანიზოტროპული გაფილტვრა:"
 
 msgid "APPEARANCE"
 msgstr "გარეგნობა"
@@ -1986,9 +1986,8 @@ msgstr "ფეროპლასტი"
 msgid "FERROPLAST_DESCRIPTION"
 msgstr ""
 
-#, fuzzy
 msgid "FERROPLAST_PROCESSES_DESCRIPTION"
-msgstr "გადაჰყავს [thrive:compound type=\"iron\"][/thrive:compound] [thrive:compound type=\"atp\"][/thrive:compound]-ში. სიჩქარე [thrive:compound type=\"carbondioxide\"][/thrive:compound]-ის კონცენტრაციის ზრდასთან ერთად იზრდება."
+msgstr "იყენებს [thrive:compound type=\"iron\"]-ს [/thrive:compound], რომ აწარმოოს[thrive:compound type=\"atp\"][/thrive:compound]."
 
 msgid "FILTER_ITEMS_BY_CATEGORY_COLON"
 msgstr "საგნების ფილტრი კატეგორიით:"
@@ -2529,9 +2528,8 @@ msgstr ""
 msgid "IRON"
 msgstr "რკინა"
 
-#, fuzzy
 msgid "IRON_OXIDATION"
-msgstr "შემოწირულობები"
+msgstr "რკინის დაჟანგვა"
 
 msgid "ITCH_TOOLTIP"
 msgstr "ეწვიეთ ჩვენს itch.io-ის გვერდს"
@@ -3778,16 +3776,14 @@ msgstr "აქ არაფერია"
 msgid "NOTHING_TO_INTERACT_WITH"
 msgstr "ურთიერთქმედება ვერაფერთან ხდება"
 
-#, fuzzy
 msgid "NOTICE_BINDING_OUT_OF_ATP"
-msgstr "დაზიანებულია ატფ-ის უქონლობის გამო"
+msgstr "მიბმის რეჟიმიდან გასვლა ატფ-ის ნაკლებობის გამო"
 
 msgid "NOTICE_DAMAGED_BY_NO_ATP"
 msgstr "დაზიანებულია ატფ-ის უქონლობის გამო"
 
-#, fuzzy
 msgid "NOTICE_ENGULFING_OUT_OF_ATP"
-msgstr "მიმდინარე უჯრედის ზომა მეტისმეტად პატარაა სამიზნის შთანთქმისთვის"
+msgstr "შთანთქმის რეჟიმიდან გასვლა ატფ-ის ნაკლებობის გამო"
 
 msgid "NOTICE_ENGULF_DAMAGE_FROM_TOXIN"
 msgstr "დაზიანებულია შთანთქმულ მასაში არსებული ტოქსინებით"
@@ -4371,6 +4367,10 @@ msgstr "პროტოპლაზმა"
 msgid "PULL_REQUESTS_PROGRAMMING"
 msgstr "Pull Requests / პროგრამირება"
 
+#, fuzzy
+msgid "QUADRILLION_ABBREVIATION"
+msgstr "{0} მლრდ"
+
 msgid "QUICK_LOAD"
 msgstr "სწრაფი ჩატვირთვა"
 
@@ -4606,9 +4606,8 @@ msgstr "რუსტიციანინი"
 msgid "RUSTICYANIN_DESCRIPTION"
 msgstr ""
 
-#, fuzzy
 msgid "RUSTICYANIN_PROCESSES_DESCRIPTION"
-msgstr "გადაჰყავს [thrive:compound type=\"iron\"][/thrive:compound] [thrive:compound type=\"atp\"][/thrive:compound]-ში. სიჩქარე [thrive:compound type=\"carbondioxide\"]-ის კონცენტრაციის ზრდასთან ერთად იზრდება."
+msgstr "იყენებს [thrive:compound type=\"iron\"]-ს[/thrive:compound], რომ აწარმოოს [thrive:compound type=\"atp\"][/thrive:compound]."
 
 msgid "SAFE_MODE_EXPLANATION"
 msgstr ""
@@ -4885,9 +4884,8 @@ msgstr "კაჟი"
 msgid "SILICA_MEMBRANE_DESCRIPTION"
 msgstr ""
 
-#, fuzzy
 msgid "SIXTEEN_TIMES"
-msgstr "{0}-ჯერ"
+msgstr "16x"
 
 msgid "SIZE_COLON"
 msgstr "ზომა:"
@@ -5595,6 +5593,10 @@ msgstr "მთარგმნელები"
 
 msgid "TRANSPARENCY"
 msgstr "გამჭვირვალობა"
+
+#, fuzzy
+msgid "TRILLION_ABBREVIATION"
+msgstr "{0} მლრდ"
 
 msgid "TRY_FOSSILISING_SOME_SPECIES"
 msgstr "სცადეთ ზოგიერთი სახეობის განამარხება!"

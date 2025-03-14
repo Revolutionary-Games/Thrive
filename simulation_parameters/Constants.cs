@@ -1054,6 +1054,9 @@ public static class Constants
     public const int PLAYER_PATCH_EXTINCTION_POPULATION_LOSS_CONSTANT = -35;
     public const float PLAYER_PATCH_EXTINCTION_POPULATION_LOSS_COEFFICIENT = 1 / 1.2f;
 
+    public const double MICROBE_POPULATION_MULTIPLIER = 1000000000000;
+    public const string MICROBE_POPULATION_SUFFIX = "T";
+
     public const int BASE_MUTATION_POINTS = 100;
 
     /// <summary>
@@ -1748,10 +1751,10 @@ public static class Constants
 
     public const float TOLERANCE_INITIAL_TEMPERATURE_RANGE = 10;
     public const float TOLERANCE_PERFECT_THRESHOLD_TEMPERATURE = 2;
-    public const float TOLERANCE_MAXIMUM_SURVIVABLE_TEMPERATURE_DIFFERENCE = 30;
+    public const float TOLERANCE_MAXIMUM_SURVIVABLE_TEMPERATURE_DIFFERENCE = 40;
     public const float TOLERANCE_PERFECT_TEMPERATURE_SCORE = 0.1f;
 
-    public const float TOLERANCE_MAXIMUM_SURVIVABLE_PRESSURE_DIFFERENCE = 2000000;
+    public const float TOLERANCE_MAXIMUM_SURVIVABLE_PRESSURE_DIFFERENCE = 4000000;
     public const float TOLERANCE_PERFECT_THRESHOLD_PRESSURE = 350000;
 
     // These are chosen to be symmetric so that the pressure tolerance range ends up easier to show correctly in the
@@ -1772,8 +1775,8 @@ public static class Constants
     // How much it costs to edit various tolerances in the editor
     public const float TOLERANCE_CHANGE_MP_PER_TEMPERATURE = 1.0f;
     public const float TOLERANCE_CHANGE_MP_PER_TEMPERATURE_TOLERANCE = 4.0f;
-    public const float TOLERANCE_CHANGE_MP_PER_OXYGEN = 100.0f;
-    public const float TOLERANCE_CHANGE_MP_PER_UV = 75.0f;
+    public const float TOLERANCE_CHANGE_MP_PER_OXYGEN = 150.0f;
+    public const float TOLERANCE_CHANGE_MP_PER_UV = 100.0f;
 
     /// <summary>
     ///   As pressure values are massive, this is a double to get reasonable MP costs
@@ -1781,6 +1784,23 @@ public static class Constants
     public const double TOLERANCE_CHANGE_MP_PER_PRESSURE = 0.000002;
 
     public const double TOLERANCE_CHANGE_MP_PER_PRESSURE_TOLERANCE = 0.00005;
+
+    // Environmental tolerance debuff / buff tweak variables
+    public const float TOLERANCE_TEMPERATURE_SPEED_MODIFIER_MIN = 0.8f;
+    public const float TOLERANCE_TEMPERATURE_OSMOREGULATION_MAX = 1.2f;
+    public const float TOLERANCE_TEMPERATURE_HEALTH_MIN = 0.8f;
+    public const float TOLERANCE_TEMPERATURE_SPEED_BUFF_MAX = 1.1f;
+
+    public const float TOLERANCE_PRESSURE_SPEED_MODIFIER_MIN = 0.8f;
+    public const float TOLERANCE_PRESSURE_OSMOREGULATION_MAX = 1.1f;
+    public const float TOLERANCE_PRESSURE_HEALTH_MIN = 0.5f;
+    public const float TOLERANCE_PRESSURE_HEALTH_BUFF_MAX = 1.2f;
+
+    public const float TOLERANCE_OXYGEN_HEALTH_MIN = 0.5f;
+    public const float TOLERANCE_OXYGEN_OSMOREGULATION_MAX = 1.6f;
+
+    public const float TOLERANCE_UV_HEALTH_MIN = 0.5f;
+    public const float TOLERANCE_UV_OSMOREGULATION_MAX = 1.5f;
 
     /// <summary>
     ///   If set to true, then physics debug draw gets enabled when the game starts

@@ -17,12 +17,14 @@ uniform float speed;
 uniform float chaoticness;
 uniform float scale;
 
+uniform float brightness;
+
 // The following constants should be the same as in FluidCurrentsSystem.cs
 const float disturbanceTimescale = 1.0f;
 const float currentsTimescale = 1.0f / 500.0f;
 const float currentsStretchingMultiplier = 1.0f / 10.0f;
 const float disturbanceToCurrentsRatio = 0.15f;
-const float minCurrentIntensity = 0.50f;
+const float minCurrentIntensity = 0.25f;
 const float positionScaling = 0.9f;
 
 // Generates a random float and modifies the seed
@@ -79,16 +81,16 @@ void process() {
         vec2 position = TRANSFORM[3].xz * positionScaling * scale;
         
         float disturbanceX = texture(noiseDisturbancesX,
-            vec3(position, gameTime * chaoticness * disturbanceTimescale) / 64.0f).r;
+            vec3(position / 128.0f, gameTime * chaoticness * disturbanceTimescale / 64.0f)).r;
         float disturbanceY = texture(noiseDisturbancesY,
-            vec3(position, gameTime * chaoticness * disturbanceTimescale) / 64.0f).r;
+            vec3(position / 128.0f, gameTime * chaoticness * disturbanceTimescale / 64.0f)).r;
         
         float currentX = texture(noiseCurrentsX,
-            vec3(position.x * currentsStretchingMultiplier, position.y, gameTime * currentsTimescale * chaoticness)
-            / 64.0f).r; 
+            vec3(position.x * currentsStretchingMultiplier / 128.0f, position.y / 128.0f,
+                gameTime * currentsTimescale * chaoticness / 64.0f)).r; 
         float currentY = texture(noiseCurrentsY,
-            vec3(position.x, position.y * currentsStretchingMultiplier, gameTime * currentsTimescale * chaoticness)
-            / 64.0f).r;
+            vec3(position.x / 128.0f, position.y * currentsStretchingMultiplier / 128.0f,
+                gameTime * currentsTimescale * chaoticness / 64.0f)).r;
         
         vec2 disturbances = vec2(disturbanceX, disturbanceY) * 2.0f - 1.0f;
         vec2 currents = vec2(currentX, currentY) * 2.0f - 1.0f;
@@ -114,5 +116,5 @@ void process() {
         finalColor.a *= 0.2f + 0.8f * length(VELOCITY) / (speed * 10.0f);
     }
     
-    COLOR = finalColor;
+    COLOR = finalColor * brightness;
 }
