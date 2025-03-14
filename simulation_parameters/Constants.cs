@@ -1392,7 +1392,7 @@ public static class Constants
     /// <summary>
     ///   Time in the microbe stage (not counting when the game is paused) after which the movement type prompt can
     ///   be shown.
-    ///   This doesn't count paused time. This value has to be long enough to not conflict with the editor welcome
+    ///   This doesn't count paused time. This value has to be long enough to not conflict with the microbe welcome
     ///   tutorial.
     /// </summary>
     public const float MOVEMENT_MODE_SELECTION_DELAY = 1.55f;
