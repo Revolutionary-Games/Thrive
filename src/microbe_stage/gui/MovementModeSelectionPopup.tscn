@@ -12,6 +12,7 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
+mouse_filter = 2
 script = ExtResource("1_j4wd8")
 actualPopup = NodePath("Popup")
 cellRelativePlayer = NodePath("Popup/VBoxContainer/HBoxContainer/Left/MarginContainer/CellPlayer")
@@ -108,9 +109,12 @@ focus_previous = NodePath("../../Left/SelectLeft")
 text = "SELECTED"
 
 [node name="Label" type="Label" parent="Popup/VBoxContainer"]
+custom_minimum_size = Vector2(100, 0)
 layout_mode = 2
 text = "MODE_CAN_BE_CHANGED_IN_OPTIONS"
 label_settings = ExtResource("3_xgpmt")
+horizontal_alignment = 1
+autowrap_mode = 3
 
 [node name="Spacer" type="Control" parent="Popup/VBoxContainer"]
 layout_mode = 2

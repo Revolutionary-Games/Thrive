@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Thrive VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2025-03-14 11:08+0200\n"
+"POT-Creation-Date: 2025-03-14 15:50+0200\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -53,6 +53,7 @@ msgstr ""
 msgid "ABYSSOPELAGIC"
 msgstr ""
 
+#: ../src/microbe_stage/gui/MovementModeSelectionPopup.tscn:148
 #: ../src/microbe_stage/gui/PatchDetailsPanel.tscn:622
 msgid "ACCEPT"
 msgstr ""
@@ -1048,6 +1049,10 @@ msgstr ""
 
 #: ../src/general/OptionsMenu.tscn:1264
 msgid "CLEAR_CACHE"
+msgstr ""
+
+#: ../src/microbe_stage/gui/MovementModeSelectionPopup.cs:182
+msgid "CLICK_TO_SELECT"
 msgstr ""
 
 #: ../src/benchmark/microbe/CloudBenchmark.tscn:141
@@ -2096,6 +2101,7 @@ msgid "DISMISSED_POPUPS_EXPLANATION"
 msgstr ""
 
 #: ../src/gui_common/dialogs/PermanentlyDismissibleDialog.cs:56
+#: ../src/microbe_stage/gui/MovementModeSelectionPopup.tscn:137
 msgid "DISMISS_INFORMATION_PERMANENTLY"
 msgstr ""
 
@@ -2517,7 +2523,7 @@ msgstr ""
 msgid "ESCAPE"
 msgstr ""
 
-#: ../src/microbe_stage/MicrobeStage.cs:1548
+#: ../src/microbe_stage/MicrobeStage.cs:1586
 msgid "ESCAPE_ENGULFING"
 msgstr ""
 
@@ -5010,6 +5016,10 @@ msgstr ""
 msgid "MODELS"
 msgstr ""
 
+#: ../src/microbe_stage/gui/MovementModeSelectionPopup.tscn:113
+msgid "MODE_CAN_BE_CHANGED_IN_OPTIONS"
+msgstr ""
+
 #: ../src/microbe_stage/editor/OrganellePopupMenu.tscn:270
 msgid "MODIFY"
 msgstr ""
@@ -6292,7 +6302,12 @@ msgid "PLAYER_EXTINCT"
 msgstr ""
 
 #: ../src/general/OptionsMenu.tscn:1608
+#: ../src/microbe_stage/gui/MovementModeSelectionPopup.tscn:48
 msgid "PLAYER_RELATIVE_MOVEMENT"
+msgstr ""
+
+#: ../src/microbe_stage/gui/MovementModeSelectionPopup.tscn:42
+msgid "PLAYER_RELATIVE_MOVEMENT_TOOLTIP"
 msgstr ""
 
 #: ../src/general/base_stage/CreatureStageBase.cs:324
@@ -6916,7 +6931,12 @@ msgid "SCREEN_EFFECT_NONE"
 msgstr ""
 
 #: ../src/general/OptionsMenu.tscn:1610 ../src/general/OptionsMenu.tscn:1633
+#: ../src/microbe_stage/gui/MovementModeSelectionPopup.tscn:85
 msgid "SCREEN_RELATIVE_MOVEMENT"
+msgstr ""
+
+#: ../src/microbe_stage/gui/MovementModeSelectionPopup.tscn:79
+msgid "SCREEN_RELATIVE_MOVEMENT_TOOLTIP"
 msgstr ""
 
 #: ../src/engine/input/key_mapping/KeyNames.cs:168
@@ -6953,6 +6973,11 @@ msgstr ""
 #: ../src/thriveopedia/pages/ThriveopediaPatchMapPage.cs:146
 #: ../src/thriveopedia/pages/ThriveopediaPatchMapPage.tscn:82
 msgid "SEED_LABEL"
+msgstr ""
+
+#: ../src/microbe_stage/gui/MovementModeSelectionPopup.tscn:71
+#: ../src/microbe_stage/gui/MovementModeSelectionPopup.tscn:108
+msgid "SELECTED"
 msgstr ""
 
 #: ../src/saving/SaveManagerGUI.tscn:162
@@ -6999,6 +7024,10 @@ msgstr ""
 
 #: ../src/microbe_stage/editor/upgrades/LysosomeUpgradeGUI.tscn:21
 msgid "SELECT_ENZYME"
+msgstr ""
+
+#: ../src/microbe_stage/gui/MovementModeSelectionPopup.tscn:26
+msgid "SELECT_MOVEMENT_MODE_TITLE"
 msgstr ""
 
 #: ../src/gui_common/RadialMenu.cs:71
@@ -7262,7 +7291,7 @@ msgstr ""
 msgid "SPAWN_ENEMY"
 msgstr ""
 
-#: ../src/microbe_stage/MicrobeStage.cs:1232
+#: ../src/microbe_stage/MicrobeStage.cs:1270
 msgid "SPAWN_ENEMY_CHEAT_FAIL"
 msgstr ""
 
@@ -7558,11 +7587,11 @@ msgstr ""
 msgid "STRUCTURE_STEAM_POWERED_FACTORY"
 msgstr ""
 
-#: ../src/microbe_stage/MicrobeStage.cs:1546
+#: ../src/microbe_stage/MicrobeStage.cs:1584
 msgid "SUCCESSFUL_KILL"
 msgstr ""
 
-#: ../src/microbe_stage/MicrobeStage.cs:1547
+#: ../src/microbe_stage/MicrobeStage.cs:1585
 msgid "SUCCESSFUL_SCAVENGE"
 msgstr ""
 
@@ -7852,8 +7881,8 @@ msgstr ""
 msgid "TIMELINE_SELECTION_PRESSURE_SPLIT"
 msgstr ""
 
-#: ../src/microbe_stage/MicrobeStage.cs:554
-#: ../src/microbe_stage/MicrobeStage.cs:558
+#: ../src/microbe_stage/MicrobeStage.cs:562
+#: ../src/microbe_stage/MicrobeStage.cs:566
 msgid "TIMELINE_SPECIES_BECAME_MULTICELLULAR"
 msgstr ""
 

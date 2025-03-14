@@ -7,8 +7,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2025-03-14 11:08+0200\n"
-"PO-Revision-Date: 2025-03-13 13:47+0200\n"
+"POT-Creation-Date: 2025-03-14 15:50+0200\n"
+"PO-Revision-Date: 2025-03-14 15:50+0200\n"
 "Last-Translator: Henri Hyyryläinen <hhyyrylainen@revolutionarygamesstudio.com>\n"
 "Language-Team: English <https://translate.revolutionarygamesstudio.com/projects/thrive/thrive-game/en/>\n"
 "Language: en\n"
@@ -770,6 +770,9 @@ msgstr "Clean Up Old Saves"
 
 msgid "CLEAR_CACHE"
 msgstr "Clear Cache"
+
+msgid "CLICK_TO_SELECT"
+msgstr "Select"
 
 msgid "CLOSE"
 msgstr "Close"
@@ -3606,6 +3609,9 @@ msgstr "Modding instructions are available on"
 msgid "MODELS"
 msgstr "Models"
 
+msgid "MODE_CAN_BE_CHANGED_IN_OPTIONS"
+msgstr "2D movement mode can be later changed in the options menu at any time"
+
 msgid "MODIFY"
 msgstr "Modify"
 
@@ -4495,6 +4501,12 @@ msgstr "Player is extinct"
 msgid "PLAYER_RELATIVE_MOVEMENT"
 msgstr "Player relative"
 
+msgid "PLAYER_RELATIVE_MOVEMENT_TOOLTIP"
+msgstr ""
+"In player relative movement mode the movement keys are relative to the current rotation of the player cell.\n"
+"So moving the cursor changes what is considered forward for the cell.\n"
+"This is the default movement mode for Thrive."
+
 msgid "PLAYER_REPRODUCED"
 msgstr "player reproduced"
 
@@ -4961,6 +4973,12 @@ msgstr "None"
 msgid "SCREEN_RELATIVE_MOVEMENT"
 msgstr "Screen relative"
 
+msgid "SCREEN_RELATIVE_MOVEMENT_TOOLTIP"
+msgstr ""
+"In screen relative movement mode the movement keys always specify a direction in relation to the screen.\n"
+"So the cell rotation doesn't impact which direction each key corresponds to.\n"
+"This mode may be more familiar to new Thrive players."
+
 msgid "SCROLLLOCK"
 msgstr "Scroll Lock"
 
@@ -4984,6 +5002,9 @@ msgstr "Secrete mucilage for a speed boost and slowing down cells stuck in slime
 
 msgid "SEED_LABEL"
 msgstr "Planet seed: {0}"
+
+msgid "SELECTED"
+msgstr "Selected"
 
 msgid "SELECTED_COLON"
 msgstr "Selected:"
@@ -5017,6 +5038,9 @@ msgstr "Select a cell type to edit here from the editor tab"
 
 msgid "SELECT_ENZYME"
 msgstr "Select Enzyme:"
+
+msgid "SELECT_MOVEMENT_MODE_TITLE"
+msgstr "Select Movement Mode"
 
 msgid "SELECT_OPTION"
 msgstr "Select An Option"

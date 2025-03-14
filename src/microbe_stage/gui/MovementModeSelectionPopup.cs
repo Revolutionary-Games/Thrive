@@ -56,13 +56,11 @@ public partial class MovementModeSelectionPopup : Control
         {
             case TwoDimensionalMovementMode.Automatic:
             case TwoDimensionalMovementMode.PlayerRelative:
-                cellRelativeCheckBox.ButtonPressed = true;
-                screenRelativeCheckBox.ButtonPressed = false;
+                ApplyMovementModeToCheckBoxes(true);
                 break;
 
             case TwoDimensionalMovementMode.ScreenRelative:
-                cellRelativeCheckBox.ButtonPressed = false;
-                screenRelativeCheckBox.ButtonPressed = true;
+                ApplyMovementModeToCheckBoxes(false);
                 break;
 
             default:
@@ -129,14 +127,20 @@ public partial class MovementModeSelectionPopup : Control
 
     private void LeftSelectionChanged(bool pressed)
     {
-        cellRelativeCheckBox.ButtonPressed = pressed;
-        screenRelativeCheckBox.ButtonPressed = !pressed;
+        ApplyMovementModeToCheckBoxes(pressed);
     }
 
     private void RightSelectionChanged(bool pressed)
     {
-        cellRelativeCheckBox.ButtonPressed = !pressed;
-        screenRelativeCheckBox.ButtonPressed = pressed;
+        ApplyMovementModeToCheckBoxes(!pressed);
+    }
+
+    private void ApplyMovementModeToCheckBoxes(bool playerRelative)
+    {
+        cellRelativeCheckBox.ButtonPressed = playerRelative;
+        cellRelativeCheckBox.Text = playerRelative ? "SELECTED" : "CLICK_TO_SELECT";
+        screenRelativeCheckBox.ButtonPressed = !playerRelative;
+        screenRelativeCheckBox.Text = !playerRelative ? "SELECTED" : "CLICK_TO_SELECT";
     }
 
     private void LeftSideGUIInput(InputEvent @event)
@@ -171,5 +175,10 @@ public partial class MovementModeSelectionPopup : Control
 
             makingSelection = false;
         }
+    }
+
+    private void DummyTranslations()
+    {
+        Localization.Translate("CLICK_TO_SELECT");
     }
 }
