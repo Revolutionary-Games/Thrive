@@ -1395,7 +1395,7 @@ public static class Constants
     ///   This doesn't count paused time. This value has to be long enough to not conflict with the editor welcome
     ///   tutorial.
     /// </summary>
-    public const float MOVEMENT_MODE_SELECTION_DELAY = 1.5f;
+    public const float MOVEMENT_MODE_SELECTION_DELAY = 1.55f;
 
     public const float MICROBE_MOVEMENT_EXPLAIN_TUTORIAL_DELAY = 12.0f;
     public const float MICROBE_MOVEMENT_EXPLAIN_TUTORIAL_DELAY_CONTROLLER = 1.0f;
