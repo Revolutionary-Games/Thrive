@@ -7,4 +7,5 @@ public enum DismissibleNotice
     NoModsActiveButInstalled,
     ThanksForBuying,
     LowPerformanceWarning,
+    MicrobeMovementMode,
 }

@@ -1389,6 +1389,14 @@ public static class Constants
 
     public const float TIME_BEFORE_TUTORIAL_CAN_PAUSE = 0.01f;
 
+    /// <summary>
+    ///   Time in the microbe stage (not counting when the game is paused) after which the movement type prompt can
+    ///   be shown.
+    ///   This doesn't count paused time. This value has to be long enough to not conflict with the microbe welcome
+    ///   tutorial.
+    /// </summary>
+    public const float MOVEMENT_MODE_SELECTION_DELAY = 1.55f;
+
     public const float MICROBE_MOVEMENT_EXPLAIN_TUTORIAL_DELAY = 12.0f;
     public const float MICROBE_MOVEMENT_EXPLAIN_TUTORIAL_DELAY_CONTROLLER = 1.0f;
     public const float MICROBE_MOVEMENT_TUTORIAL_REQUIRE_DIRECTION_PRESS_TIME = 2.2f;
