@@ -1,3 +1,4 @@
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using Godot;
@@ -10,9 +11,6 @@ public class MeteorImpactEvent : IWorldEffect
     private const string TemplateBiomeForChunks = "aavolcanic_vent";
     private const string Prefix = "meteorImpact_";
 
-    private static readonly string[] ChunksConfigurations =
-        ["ironSmallChunk", "ironBigChunk", "phosphateSmallChunk", "phosphateBigChunk", "radioactiveChunk"];
-
     [JsonProperty]
     private readonly HashSet<int> modifiedPatchesIds = new();
 
@@ -21,6 +19,9 @@ public class MeteorImpactEvent : IWorldEffect
 
     [JsonProperty]
     private GameWorld targetWorld;
+
+    [JsonProperty]
+    private Meteor selectedMeteor;
 
     public MeteorImpactEvent(GameWorld targetWorld, long randomSeed)
     {
@@ -58,8 +59,8 @@ public class MeteorImpactEvent : IWorldEffect
         // Impact sizes:
         // 0 -> 1 patch; 1 -> all surface patches in region; 2 -> all surface patches in 2 neighbouring regions
         var impactSize = random.Next(0, 3);
-
         GetAffectedPatches(impactSize);
+        GetMeteorType();
 
         foreach (var patch in targetWorld.Map.Patches.Values)
         {
@@ -70,6 +71,14 @@ public class MeteorImpactEvent : IWorldEffect
         }
 
         LogBeginningOfMeteorStrike();
+    }
+
+    private void GetMeteorType()
+    {
+        var meteors = SimulationParameters.Instance.GetAllMeteors().ToList();
+        var index = PatchEventUtils.GetRandomElementByProbability(meteors.Select(meteor => meteor.Probability).ToList(),
+            random.NextDouble());
+        selectedMeteor = meteors.ElementAt(index);
     }
 
     private void GetAffectedPatches(int impactSize)
@@ -121,6 +130,8 @@ public class MeteorImpactEvent : IWorldEffect
     private void AdjustEnvironment(Patch patch)
     {
         bool hasSunlight = patch.Biome.ChangeableCompounds.TryGetValue(Compound.Sunlight, out var currentSunlight);
+        bool hasCarboneDioxide =
+            patch.Biome.ChangeableCompounds.TryGetValue(Compound.Carbondioxide, out var currentCarbonDioxide);
 
         if (!hasSunlight)
         {
@@ -128,8 +139,22 @@ public class MeteorImpactEvent : IWorldEffect
             return;
         }
 
+        if (!hasCarboneDioxide)
+        {
+            GD.PrintErr("Meteor impact event encountered patch with unexpectedly no carbonDioxide");
+            return;
+        }
+
+        var changes = new Dictionary<Compound, float>();
+        var cloudSizes = new Dictionary<Compound, float>();
+
         currentSunlight.Ambient *= Constants.METEOR_IMPACT_SUNLIGHT_MULTIPLICATION;
+        currentCarbonDioxide.Ambient += 0.15f;
+        currentCarbonDioxide.Ambient = Math.Clamp(currentCarbonDioxide.Ambient, 0, 1);
+        changes[Compound.Carbondioxide] = currentCarbonDioxide.Ambient;
+
         patch.Biome.ModifyLongTermCondition(Compound.Sunlight, currentSunlight);
+        patch.Biome.ApplyLongTermCompoundChanges(patch.BiomeTemplate, changes, cloudSizes);
     }
 
     /// <summary>
@@ -138,7 +163,7 @@ public class MeteorImpactEvent : IWorldEffect
     private void AddChunks(Patch patch)
     {
         var templateBiome = SimulationParameters.Instance.GetBiome(TemplateBiomeForChunks);
-        foreach (var configuration in ChunksConfigurations)
+        foreach (var configuration in selectedMeteor.Chunks)
         {
             var chunkConfiguration = templateBiome.Conditions.Chunks[configuration];
             chunkConfiguration.Density *= random.NextFloat() * 0.5f + 0.5f;
@@ -193,7 +218,7 @@ public class MeteorImpactEvent : IWorldEffect
 
     private void RemoveChunks(Patch patch)
     {
-        foreach (var configuration in ChunksConfigurations)
+        foreach (var configuration in selectedMeteor.Chunks)
         {
             patch.Biome.Chunks.Remove(Prefix + configuration);
         }

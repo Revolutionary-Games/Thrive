@@ -1,0 +1,48 @@
+{
+  "plain_meteor": {
+    "Name": "PLAIN_METEOR",
+    "Chunks": [],
+    "Compounds": {
+      "Carbondioxide": 0.15
+    },
+    "Probability": 0.25
+  },
+  "iron_meteor": {
+    "Name": "IRON_METEOR",
+    "Chunks": [
+      "meteorIronSmallChunk",
+      "meteorIronBigChunk"
+    ],
+    "Compounds": {},
+    "Probability": 0.25
+  },
+  "phosphate_meteor": {
+    "Name": "PHOSPHATE_METEOR",
+    "Chunks": [
+      "meteorPhosphateSmallChunk",
+      "meteorPhosphateBigChunk"
+    ],
+    "Compounds": {},
+    "Probability": 0.2
+  },
+  "sulfide_meteor": {
+    "Name": "SULFIDE_METEOR",
+    "Chunks": [],
+    "Compounds": {},
+    "Probability": 0.1
+  },
+  "radioactive_meteor": {
+    "Name": "RADIOACTIVE_METEOR",
+    "Chunks": [
+      "meteorRadioactiveChunk"
+    ],
+    "Compounds": {},
+    "Probability": 0.1
+  },
+  "glucose_meteor": {
+    "Name": "GLUCOSE_METEOR",
+    "Chunks": [],
+    "Compounds": {},
+    "Probability": 0.1
+  }
+}
