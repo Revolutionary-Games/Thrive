@@ -7,6 +7,11 @@ public partial class ToleranceOptimalMarker : Control
 {
 #pragma warning disable CA2213
     [Export]
+    [ExportCategory("Visuals")]
+    private Texture2D markerTextureOverride = null!;
+
+    [Export]
+    [ExportCategory("Internal")]
     private Label startValue = null!;
 
     [Export]
@@ -14,9 +19,6 @@ public partial class ToleranceOptimalMarker : Control
 
     [Export]
     private TextureRect optimalValueMarker = null!;
-
-    [Export]
-    private Texture2D? markerTextureOverride = null!;
 #pragma warning restore CA2213
 
     private bool showMarker = true;
