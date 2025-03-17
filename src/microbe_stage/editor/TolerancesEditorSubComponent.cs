@@ -100,19 +100,19 @@ public partial class TolerancesEditorSubComponent : EditorComponentBase<ICellEdi
     private Label uvResistanceModifierLabel = null!;
 
     [Export]
-    private ToleranceInfo temperatureToleranceInfo = null!;
+    private ToleranceOptimalMarker temperatureToleranceMarker = null!;
 
     [Export]
-    private ToleranceInfo minPressureToleranceInfo = null!;
+    private ToleranceOptimalMarker minPressureToleranceMarker = null!;
 
     [Export]
-    private ToleranceInfo maxPressureToleranceInfo = null!;
+    private ToleranceOptimalMarker maxPressureToleranceMarker = null!;
 
     [Export]
-    private ToleranceInfo oxygenToleranceInfo = null!;
+    private ToleranceOptimalMarker oxygenToleranceMarker = null!;
 
     [Export]
-    private ToleranceInfo uvToleranceInfo = null!;
+    private ToleranceOptimalMarker uvToleranceMarker = null!;
 
     [Export]
     [ExportCategory("Style")]
@@ -934,31 +934,31 @@ public partial class TolerancesEditorSubComponent : EditorComponentBase<ICellEdi
         var unitFormat = Localization.Translate("VALUE_WITH_UNIT");
         var percentageFormat = Localization.Translate("PERCENTAGE_VALUE");
 
-        temperatureToleranceInfo.UpdateBoundaryLabels(unitFormat.FormatSafe(0, temperature.Unit),
+        temperatureToleranceMarker.UpdateBoundaryLabels(unitFormat.FormatSafe(0, temperature.Unit),
             unitFormat.FormatSafe(100, temperature.Unit));
-        temperatureToleranceInfo.UpdateMarker(patchTemperature / 100.0f);
+        temperatureToleranceMarker.UpdateMarker(patchTemperature / 100.0f);
 
         string minPressure = unitFormat.FormatSafe(0, "kPa");
         string maxPressure = unitFormat.FormatSafe(70000, "kPa");
 
-        minPressureToleranceInfo.UpdateBoundaryLabels(minPressure, maxPressure);
-        minPressureToleranceInfo.UpdateMarker(patchPressure / 70000000);
+        minPressureToleranceMarker.UpdateBoundaryLabels(minPressure, maxPressure);
+        minPressureToleranceMarker.UpdateMarker(patchPressure / 70000000);
 
-        maxPressureToleranceInfo.UpdateBoundaryLabels(minPressure, maxPressure);
-        maxPressureToleranceInfo.UpdateMarker(patchPressure / 70000000);
+        maxPressureToleranceMarker.UpdateBoundaryLabels(minPressure, maxPressure);
+        maxPressureToleranceMarker.UpdateMarker(patchPressure / 70000000);
 
         string zeroPercents = percentageFormat.FormatSafe(0);
         string hundredPercents = percentageFormat.FormatSafe(100);
 
         // Don't show markers when they are at 0% as it looks confusing
-        oxygenToleranceInfo.ShowMarker = requiredOxygenResistance > MathUtils.EPSILON;
-        uvToleranceInfo.ShowMarker = requiredUVResistance > MathUtils.EPSILON;
+        oxygenToleranceMarker.ShowMarker = requiredOxygenResistance > MathUtils.EPSILON;
+        uvToleranceMarker.ShowMarker = requiredUVResistance > MathUtils.EPSILON;
 
-        oxygenToleranceInfo.UpdateBoundaryLabels(zeroPercents, hundredPercents);
-        oxygenToleranceInfo.UpdateMarker(requiredOxygenResistance);
+        oxygenToleranceMarker.UpdateBoundaryLabels(zeroPercents, hundredPercents);
+        oxygenToleranceMarker.UpdateMarker(requiredOxygenResistance);
 
-        uvToleranceInfo.UpdateBoundaryLabels(zeroPercents, hundredPercents);
-        uvToleranceInfo.UpdateMarker(requiredUVResistance);
+        uvToleranceMarker.UpdateBoundaryLabels(zeroPercents, hundredPercents);
+        uvToleranceMarker.UpdateMarker(requiredUVResistance);
     }
 
     [DeserializedCallbackAllowed]

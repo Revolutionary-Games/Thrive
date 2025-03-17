@@ -3,7 +3,7 @@
 /// <summary>
 ///   Displays additional tolerance slider info, such as the optimal value and value labels.
 /// </summary>
-public partial class ToleranceInfo : Control
+public partial class ToleranceOptimalMarker : Control
 {
 #pragma warning disable CA2213
     [Export]
