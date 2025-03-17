@@ -7,5 +7,10 @@
 
     UnderwaterVentEruption,
     GlobalGlaciation,
-    MeteorImpact,
+    MeteorPlainImpact,
+    MeteorIronImpact,
+    MeteorPhosphatesImpact,
+    MeteorRadioactiveImpact,
+    MeteorGlucoseImpact,
+    MeteorSulfurImpact,
 }

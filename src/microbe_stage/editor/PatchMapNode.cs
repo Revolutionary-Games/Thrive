@@ -45,7 +45,22 @@ public partial class PatchMapNode : MarginContainer
     private TextureRect glaciationEventIndicator = null!;
 
     [Export]
-    private TextureRect meteorStrikeEventIndicator = null!;
+    private TextureRect meteorPlainEventIndicator = null!;
+
+    [Export]
+    private TextureRect meteorIronEventIndicator = null!;
+
+    [Export]
+    private TextureRect meteorPhosphatesEventIndicator = null!;
+
+    [Export]
+    private TextureRect meteorRadioactiveEventIndicator = null!;
+
+    [Export]
+    private TextureRect meteorGlucoseEventIndicator = null!;
+
+    [Export]
+    private TextureRect meteorSulfurEventIndicator = null!;
 
     private TextureRect? iconRect;
     private Panel? highlightPanel;
@@ -283,7 +298,12 @@ public partial class PatchMapNode : MarginContainer
     {
         eruptionEventIndicator.Visible = false;
         glaciationEventIndicator.Visible = false;
-        meteorStrikeEventIndicator.Visible = false;
+        meteorPlainEventIndicator.Visible = false;
+        meteorIronEventIndicator.Visible = false;
+        meteorPhosphatesEventIndicator.Visible = false;
+        meteorRadioactiveEventIndicator.Visible = false;
+        meteorGlucoseEventIndicator.Visible = false;
+        meteorSulfurEventIndicator.Visible = false;
 
         var count = list.Count;
 
@@ -299,8 +319,23 @@ public partial class PatchMapNode : MarginContainer
                 case WorldEffectVisuals.GlobalGlaciation:
                     glaciationEventIndicator.Visible = true;
                     break;
-                case WorldEffectVisuals.MeteorImpact:
-                    meteorStrikeEventIndicator.Visible = true;
+                case WorldEffectVisuals.MeteorPlainImpact:
+                    meteorPlainEventIndicator.Visible = true;
+                    break;
+                case WorldEffectVisuals.MeteorIronImpact:
+                    meteorIronEventIndicator.Visible = true;
+                    break;
+                case WorldEffectVisuals.MeteorPhosphatesImpact:
+                    meteorPhosphatesEventIndicator.Visible = true;
+                    break;
+                case WorldEffectVisuals.MeteorRadioactiveImpact:
+                    meteorRadioactiveEventIndicator.Visible = true;
+                    break;
+                case WorldEffectVisuals.MeteorGlucoseImpact:
+                    meteorGlucoseEventIndicator.Visible = true;
+                    break;
+                case WorldEffectVisuals.MeteorSulfurImpact:
+                    meteorSulfurEventIndicator.Visible = true;
                     break;
                 default:
                     GD.PrintErr($"Unknown event to display on patch map node: {list[i]}");

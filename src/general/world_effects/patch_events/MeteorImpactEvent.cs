@@ -8,8 +8,7 @@ using Xoshiro.PRNG64;
 [JSONDynamicTypeAllowed]
 public class MeteorImpactEvent : IWorldEffect
 {
-    private const string TemplateBiomeForChunks = "aavolcanic_vent";
-    private const string Prefix = "meteorImpact_";
+    private const string TemplateBiomeForChunks = "patch_event_template_biome";
 
     [JsonProperty]
     private readonly HashSet<int> modifiedPatchesIds = new();
@@ -21,7 +20,7 @@ public class MeteorImpactEvent : IWorldEffect
     private GameWorld targetWorld;
 
     [JsonProperty]
-    private Meteor selectedMeteor;
+    private Meteor selectedMeteor = null!;
 
     public MeteorImpactEvent(GameWorld targetWorld, long randomSeed)
     {
@@ -79,6 +78,7 @@ public class MeteorImpactEvent : IWorldEffect
         var index = PatchEventUtils.GetRandomElementByProbability(meteors.Select(meteor => meteor.Probability).ToList(),
             random.NextDouble());
         selectedMeteor = meteors.ElementAt(index);
+        GD.Print("SELECTED: " + selectedMeteor.Name);
     }
 
     private void GetAffectedPatches(int impactSize)
@@ -117,7 +117,9 @@ public class MeteorImpactEvent : IWorldEffect
 
     private bool AreConditionsMet()
     {
-        return random.NextFloat() <= Constants.METEOR_IMPACT_CHANCE;
+        return true;
+
+        // return random.NextFloat() <= Constants.METEOR_IMPACT_CHANCE;
     }
 
     private void ChangePatchProperties(Patch patch, double totalTimePassed)
@@ -158,16 +160,22 @@ public class MeteorImpactEvent : IWorldEffect
     }
 
     /// <summary>
-    ///   Gets chunks from Vents patch template and applies them to the patches.
+    ///   Gets chunks from event template patch and applies them to the patches.
     /// </summary>
     private void AddChunks(Patch patch)
     {
         var templateBiome = SimulationParameters.Instance.GetBiome(TemplateBiomeForChunks);
         foreach (var configuration in selectedMeteor.Chunks)
         {
-            var chunkConfiguration = templateBiome.Conditions.Chunks[configuration];
+            var configurationExists = templateBiome.Conditions.Chunks.TryGetValue(configuration, out var chunkConfiguration);
+            if (!configurationExists)
+            {
+                GD.PrintErr("Event chunk configuration does not exist: " + configuration);
+                continue;
+            }
+
             chunkConfiguration.Density *= random.NextFloat() * 0.5f + 0.5f;
-            patch.Biome.Chunks.Add(Prefix + configuration, chunkConfiguration);
+            patch.Biome.Chunks.Add(configuration, chunkConfiguration);
         }
     }
 
@@ -182,7 +190,7 @@ public class MeteorImpactEvent : IWorldEffect
                 true, false, "GlobalGlaciationEvent.svg");
         }
 
-        patch.AddPatchEventRecord(WorldEffectVisuals.MeteorImpact, totalTimePassed);
+        patch.AddPatchEventRecord(selectedMeteor.VisualEffect, totalTimePassed);
     }
 
     private void FinishEvent()
@@ -220,7 +228,7 @@ public class MeteorImpactEvent : IWorldEffect
     {
         foreach (var configuration in selectedMeteor.Chunks)
         {
-            patch.Biome.Chunks.Remove(Prefix + configuration);
+            patch.Biome.Chunks.Remove(configuration);
         }
     }
 

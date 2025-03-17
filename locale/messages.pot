@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Thrive VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2025-03-13 19:22+0100\n"
+"POT-Creation-Date: 2025-03-16 22:50+0100\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -2525,7 +2525,8 @@ msgstr ""
 msgid "ESTUARY"
 msgstr ""
 
-#: ../src/microbe_stage/editor/PatchMapNode.tscn:102
+#: ../src/microbe_stage/editor/PatchMapNode.tscn:104
+#: ../src/microbe_stage/editor/PatchMapNode.tscn:124
 msgid "EVENT_ERUPTION_TOOLTIP"
 msgstr ""
 
@@ -3010,27 +3011,27 @@ msgstr ""
 msgid "GLES3"
 msgstr ""
 
-#: ../src/general/world_effects/patch_events/GlobalGlaciationEvent.cs:237
+#: ../src/general/world_effects/patch_events/GlobalGlaciationEvent.cs:241
 msgid "GLOBAL_GLACIATION_END_EVENT_LOG"
 msgstr ""
 
-#: ../src/general/world_effects/patch_events/GlobalGlaciationEvent.cs:211
+#: ../src/general/world_effects/patch_events/GlobalGlaciationEvent.cs:215
 msgid "GLOBAL_GLACIATION_EVENT"
 msgstr ""
 
-#: ../src/general/world_effects/patch_events/GlobalGlaciationEvent.cs:216
+#: ../src/general/world_effects/patch_events/GlobalGlaciationEvent.cs:220
 msgid "GLOBAL_GLACIATION_EVENT_LOG"
 msgstr ""
 
-#: ../src/microbe_stage/editor/PatchMapNode.tscn:112
+#: ../src/microbe_stage/editor/PatchMapNode.tscn:114
 msgid "GLOBAL_GLACIATION_EVENT_TOOLTIP"
 msgstr ""
 
-#: ../src/general/world_effects/patch_events/GlobalGlaciationEvent.cs:225
+#: ../src/general/world_effects/patch_events/GlobalGlaciationEvent.cs:229
 msgid "GLOBAL_GLACIATION_EVENT_WARNING_LOG"
 msgstr ""
 
-#: ../src/general/world_effects/patch_events/GlobalGlaciationEvent.cs:231
+#: ../src/general/world_effects/patch_events/GlobalGlaciationEvent.cs:235
 msgid "GLOBAL_GLACIATION_START_EVENT_LOG"
 msgstr ""
 
@@ -3053,6 +3054,10 @@ msgstr ""
 
 #: ../src/general/world_effects/GlucoseReductionEffect.cs:93
 msgid "GLUCOSE_CONCENTRATIONS_DRASTICALLY_DROPPED"
+msgstr ""
+
+#: ../simulation_parameters/microbe_stage/meteors.json:62
+msgid "GLUCOSE_METEOR"
 msgstr ""
 
 #: ../simulation_parameters/common/wiki.json:1810
@@ -3823,6 +3828,10 @@ msgstr ""
 #: ../simulation_parameters/microbe_stage/compounds.json:140
 #: ../src/microbe_stage/gui/PatchDetailsPanel.tscn:449
 msgid "IRON"
+msgstr ""
+
+#: ../simulation_parameters/microbe_stage/meteors.json:12
+msgid "IRON_METEOR"
 msgstr ""
 
 #: ../simulation_parameters/common/wiki.json:783
@@ -4639,6 +4648,18 @@ msgstr ""
 
 #: ../src/general/MainMenu.tscn:737
 msgid "META_THREADS_TOOLTIP"
+msgstr ""
+
+#: ../src/general/world_effects/patch_events/MeteorImpactEvent.cs:183
+msgid "METEOR_IMPACT_EVENT"
+msgstr ""
+
+#: ../src/general/world_effects/patch_events/MeteorImpactEvent.cs:188
+msgid "METEOR_IMPACT_EVENT_LOG"
+msgstr ""
+
+#: ../src/general/world_effects/patch_events/MeteorImpactEvent.cs:236
+msgid "METEOR_STRIKE_START_EVENT_LOG"
 msgstr ""
 
 #: ../src/engine/DebugOverlays.tscn:48 ../src/engine/DebugOverlays.tscn:107
@@ -6248,6 +6269,10 @@ msgstr ""
 msgid "PHOSPHATES_COST"
 msgstr ""
 
+#: ../simulation_parameters/microbe_stage/meteors.json:25
+msgid "PHOSPHATE_METEOR"
+msgstr ""
+
 #: ../simulation_parameters/common/wiki.json:546
 #: ../simulation_parameters/microbe_stage/bio_processes.json:35
 #: ../simulation_parameters/microbe_stage/bio_processes.json:214
@@ -6270,6 +6295,10 @@ msgstr ""
 
 #: ../simulation_parameters/common/input_options.json:189
 msgid "PLACE_ORGANELLE"
+msgstr ""
+
+#: ../simulation_parameters/microbe_stage/meteors.json:3
+msgid "PLAIN_METEOR"
 msgstr ""
 
 #: ../src/general/NewGameSettings.tscn:265
@@ -6480,6 +6509,10 @@ msgstr ""
 #: ../simulation_parameters/microbe_stage/biomes.json:2031
 #: ../src/auto-evo/AutoEvoGlobalCache.cs:79
 msgid "RADIOACTIVE_CHUNK"
+msgstr ""
+
+#: ../simulation_parameters/microbe_stage/meteors.json:51
+msgid "RADIOACTIVE_METEOR"
 msgstr ""
 
 #: ../simulation_parameters/common/wiki.json:1099
@@ -7594,6 +7627,10 @@ msgstr ""
 msgid "SUICIDE_BUTTON_TOOLTIP"
 msgstr ""
 
+#: ../simulation_parameters/microbe_stage/meteors.json:38
+msgid "SULFIDE_METEOR"
+msgstr ""
+
 #: ../simulation_parameters/microbe_stage/compounds.json:208
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:838
 #: ../src/microbe_stage/editor/LightConfigurationPanel.tscn:96
@@ -8329,11 +8366,11 @@ msgstr ""
 msgid "UNDERWATERCAVE"
 msgstr ""
 
-#: ../src/general/world_effects/patch_events/UnderwaterVentEruptionEffect.cs:74
+#: ../src/general/world_effects/patch_events/UnderwaterVentEruptionEffect.cs:75
 msgid "UNDERWATER_VENT_ERUPTION"
 msgstr ""
 
-#: ../src/general/world_effects/patch_events/UnderwaterVentEruptionEffect.cs:80
+#: ../src/general/world_effects/patch_events/UnderwaterVentEruptionEffect.cs:81
 msgid "UNDERWATER_VENT_ERUPTION_IN"
 msgstr ""
 
@@ -8392,7 +8429,7 @@ msgstr ""
 msgid "UNKNOWN_PATCH"
 msgstr ""
 
-#: ../src/microbe_stage/editor/PatchMapNode.tscn:87
+#: ../src/microbe_stage/editor/PatchMapNode.tscn:89
 msgid "UNKNOWN_SHORT"
 msgstr ""
 

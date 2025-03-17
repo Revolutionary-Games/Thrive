@@ -3,9 +3,10 @@
     "Name": "PLAIN_METEOR",
     "Chunks": [],
     "Compounds": {
-      "Carbondioxide": 0.15
+      "Carbondioxide": 0.25
     },
-    "Probability": 0.25
+    "Probability": 0.25,
+    "VisualEffect": "MeteorPlainImpact"
   },
   "iron_meteor": {
     "Name": "IRON_METEOR",
@@ -13,36 +14,59 @@
       "meteorIronSmallChunk",
       "meteorIronBigChunk"
     ],
-    "Compounds": {},
-    "Probability": 0.25
+    "Compounds": {
+      "Carbondioxide": 0.15,
+      "Iron": 0.00005
+    },
+    "Probability": 0.25,
+    "VisualEffect": "MeteorIronImpact"
   },
-  "phosphate_meteor": {
+  "phosphates_meteor": {
     "Name": "PHOSPHATE_METEOR",
     "Chunks": [
       "meteorPhosphateSmallChunk",
       "meteorPhosphateBigChunk"
     ],
-    "Compounds": {},
-    "Probability": 0.2
+    "Compounds": {
+      "Carbondioxide": 0.15,
+      "Phosphates": 0.00005
+    },
+    "Probability": 0.2,
+    "VisualEffect": "MeteorPhosphatesImpact"
   },
   "sulfide_meteor": {
     "Name": "SULFIDE_METEOR",
-    "Chunks": [],
-    "Compounds": {},
-    "Probability": 0.1
+    "Chunks": [
+      "meteorSulfurSmallChunk",
+      "meteorSulfurMediumChunk",
+      "meteorSulfurLargeChunk"
+    ],
+    "Compounds": {
+      "Carbondioxide": 0.15,
+      "Hydrogensulfide": 0.00005
+    },
+    "Probability": 0.1,
+    "VisualEffect": "MeteorSulfurImpact"
   },
   "radioactive_meteor": {
     "Name": "RADIOACTIVE_METEOR",
     "Chunks": [
       "meteorRadioactiveChunk"
     ],
-    "Compounds": {},
-    "Probability": 0.1
+    "Compounds": {
+      "Carbondioxide": 0.20
+    },
+    "Probability": 0.1,
+    "VisualEffect": "MeteorRadioactiveImpact"
   },
   "glucose_meteor": {
     "Name": "GLUCOSE_METEOR",
     "Chunks": [],
-    "Compounds": {},
-    "Probability": 0.1
+    "Compounds": {
+      "Carbondioxide": 0.15,
+      "Glucose": 0.00005
+    },
+    "Probability": 0.1,
+    "VisualEffect": "MeteorGlucoseImpact"
   }
 }

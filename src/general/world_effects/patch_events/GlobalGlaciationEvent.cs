@@ -6,12 +6,11 @@ using Xoshiro.PRNG64;
 [JSONDynamicTypeAllowed]
 public class GlobalGlaciationEvent : IWorldEffect
 {
-    private const string TemplateBiomeForIceChunks = "ice_shelf";
-    private const string Prefix = "globalGlaciation_";
+    private const string TemplateBiomeForIceChunks = "patch_event_template_biome";
     private const string Background = "iceshelf";
 
     private static readonly string[] IceChunksConfigurations =
-        ["iceShard", "iceChunkSmall", "iceChunkBig", "iceSnowflake"];
+        ["glaciationIceShard", "glaciationIceChunkSmall", "glaciationIceChunkBig", "glaciationIceSnowflake"];
 
     [JsonProperty]
     private readonly XoShiRo256starstar random;
@@ -197,7 +196,7 @@ public class GlobalGlaciationEvent : IWorldEffect
     }
 
     /// <summary>
-    ///   Gets chunks from Iceshelf patch template and applies them to the patches.
+    ///   Gets chunks from event template patch and applies them to the patches.
     /// </summary>
     private void AddIceChunks(Patch patch)
     {
@@ -206,7 +205,7 @@ public class GlobalGlaciationEvent : IWorldEffect
         {
             var iceChunkConfiguration = templateBiome.Conditions.Chunks[configuration];
             iceChunkConfiguration.Density *= 10;
-            patch.Biome.Chunks.Add(Prefix + configuration, iceChunkConfiguration);
+            patch.Biome.Chunks.Add(configuration, iceChunkConfiguration);
         }
     }
 
@@ -292,7 +291,7 @@ public class GlobalGlaciationEvent : IWorldEffect
     {
         foreach (var configuration in IceChunksConfigurations)
         {
-            patch.Biome.Chunks.Remove(Prefix + configuration);
+            patch.Biome.Chunks.Remove(configuration);
         }
     }
 }

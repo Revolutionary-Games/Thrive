@@ -8,29 +8,21 @@ using ThriveScriptsShared;
 /// <summary>
 ///   Contains definitions of meteors for meteor impact event
 /// </summary>
-// [TypeConverter($"Saving.Serializers.{nameof(MeteorStringConverter)}")]
 public class Meteor : IRegistryType
 {
-    /// <summary>
-    ///   User visible pretty name
-    /// </summary>
     [TranslateFrom(nameof(untranslatedName))]
     public string Name = null!;
 
-    // [TranslateFrom(nameof(untranslatedDescription))]
-    // public string Description = null!;
+    [TranslateFrom(nameof(untranslatedDescription))]
+    public string Description = null!;
 
-    public List<string> Chunks { get; set; } = new();
+    public WorldEffectVisuals VisualEffect;
 
-    public Dictionary<Compound, double> Compounds { get; set; } = new();
-    // public Dictionary<CompoundDefinition, float> Compounds = new();
+    public List<string> Chunks = new();
 
-    public double Probability { get; set; }
+    public Dictionary<Compound, double> Compounds = new();
 
-    // public string Icon = null!;
-    //
-    // [JsonIgnore]
-    // public Texture2D? LoadedIcon;
+    public double Probability;
 
 #pragma warning disable 169,649 // Used through reflection
     private string? untranslatedName;
@@ -47,17 +39,12 @@ public class Meteor : IRegistryType
                 "Meteor has no name");
         }
     }
-    
-    // public void Resolve(SimulationParameters parameters)
-    // {
-    //     LoadedIcon = GD.Load<Texture2D>(Icon);
-    // }
 
     public void ApplyTranslations()
     {
         TranslationHelper.ApplyTranslations(this);
     }
-    
+
     public override string ToString()
     {
         return Name;
