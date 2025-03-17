@@ -106,7 +106,7 @@ _data = {
 &"RESET": SubResource("Animation_fmah3")
 }
 
-[node name="TolerancesEditorSubComponent" type="VBoxContainer" node_paths=PackedStringArray("temperatureContainer", "temperatureToleranceContainer", "pressureContainer", "pressureRangeContainer", "oxygenResistanceContainer", "uvResistanceContainer", "invalidChangeAnimation", "temperatureSlider", "temperatureToleranceRangeSlider", "pressureMinSlider", "pressureMaxSlider", "oxygenResistanceSlider", "uvResistanceSlider", "temperatureMinLabel", "temperatureMaxLabel", "temperatureToleranceLabel", "temperatureToleranceModifierLabel", "pressureMinLabel", "pressureMaxLabel", "pressureToleranceModifierLabel", "oxygenResistanceLabel", "oxygenResistanceModifierLabel", "uvResistanceLabel", "uvResistanceModifierLabel", "temperatureToleranceInfo", "minPressureToleranceInfo", "maxPressureToleranceInfo", "oxygenToleranceInfo", "uvToleranceInfo")]
+[node name="TolerancesEditorSubComponent" type="VBoxContainer" node_paths=PackedStringArray("temperatureContainer", "temperatureToleranceContainer", "pressureContainer", "pressureRangeContainer", "oxygenResistanceContainer", "uvResistanceContainer", "invalidChangeAnimation", "temperatureSlider", "temperatureToleranceRangeSlider", "pressureMinSlider", "pressureMaxSlider", "oxygenResistanceSlider", "uvResistanceSlider", "temperatureMinLabel", "temperatureMaxLabel", "temperatureToleranceLabel", "temperatureToleranceModifierLabel", "pressureMinLabel", "pressureMaxLabel", "pressureToleranceModifierLabel", "oxygenResistanceLabel", "oxygenResistanceModifierLabel", "uvResistanceLabel", "uvResistanceModifierLabel")]
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
@@ -138,11 +138,6 @@ oxygenResistanceLabel = NodePath("Oxygen/HBoxContainer3/HBoxContainer/OxygenValu
 oxygenResistanceModifierLabel = NodePath("Oxygen/HBoxContainer3/HBoxContainer/OxygenModifier")
 uvResistanceLabel = NodePath("UV/HBoxContainer2/HBoxContainer/HBoxContainer/UVProtectionValue")
 uvResistanceModifierLabel = NodePath("UV/HBoxContainer2/HBoxContainer/HBoxContainer/UVModifier")
-temperatureToleranceInfo = NodePath("Temperature/TemperatureInfo")
-minPressureToleranceInfo = NodePath("Pressure/MinPressureInfo")
-maxPressureToleranceInfo = NodePath("Pressure/MaxPressureInfo")
-oxygenToleranceInfo = NodePath("Oxygen/OxygenInfo")
-uvToleranceInfo = NodePath("UV/UVInfo")
 badValueFont = ExtResource("3_q5r3n")
 perfectValueFont = ExtResource("4_15qmx")
 modifierBadFont = ExtResource("3_q5r3n")
@@ -202,7 +197,7 @@ layout_mode = 2
 size_flags_horizontal = 3
 mouse_filter = 1
 
-[node name="TemperatureInfo" parent="Temperature" instance=ExtResource("7_sg3ru")]
+[node name="TemperatureMarker" parent="Temperature" instance=ExtResource("7_sg3ru")]
 layout_mode = 2
 
 [node name="TemperatureSlider" type="HSlider" parent="Temperature"]
@@ -330,7 +325,7 @@ layout_mode = 2
 size_flags_horizontal = 3
 mouse_filter = 1
 
-[node name="MinPressureInfo" parent="Pressure" instance=ExtResource("7_sg3ru")]
+[node name="MinPressureMarker" parent="Pressure" instance=ExtResource("7_sg3ru")]
 layout_mode = 2
 
 [node name="PressureSliderMin" type="HSlider" parent="Pressure"]
@@ -343,7 +338,7 @@ rounded = true
 scrollable = false
 tick_count = 8
 
-[node name="MaxPressureInfo" parent="Pressure" instance=ExtResource("7_sg3ru")]
+[node name="MaxPressureMarker" parent="Pressure" instance=ExtResource("7_sg3ru")]
 layout_mode = 2
 
 [node name="PressureSliderMax" type="HSlider" parent="Pressure"]
@@ -431,9 +426,9 @@ size_flags_horizontal = 3
 mouse_filter = 1
 theme_override_styles/separator = SubResource("StyleBoxTexture_ftstq")
 
-[node name="OxygenInfo" parent="Oxygen" instance=ExtResource("7_sg3ru")]
+[node name="OxygenMarker" parent="Oxygen" instance=ExtResource("7_sg3ru")]
 layout_mode = 2
-markerTexture = ExtResource("10_q4a2w")
+markerTextureOverride = ExtResource("10_q4a2w")
 
 [node name="OxgenSlider" type="HSlider" parent="Oxygen"]
 layout_mode = 2
@@ -502,9 +497,9 @@ size_flags_horizontal = 3
 mouse_filter = 1
 theme_override_styles/separator = SubResource("StyleBoxTexture_ftstq")
 
-[node name="UVInfo" parent="UV" instance=ExtResource("7_sg3ru")]
+[node name="UVMarker" parent="UV" instance=ExtResource("7_sg3ru")]
 layout_mode = 2
-markerTexture = ExtResource("10_q4a2w")
+markerTextureOverride = ExtResource("10_q4a2w")
 
 [node name="UVSlider" type="HSlider" parent="UV"]
 layout_mode = 2

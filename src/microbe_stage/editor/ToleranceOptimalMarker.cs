@@ -16,7 +16,7 @@ public partial class ToleranceOptimalMarker : Control
     private TextureRect optimalValueMarker = null!;
 
     [Export]
-    private Texture2D markerTexture = null!;
+    private Texture2D? markerTextureOverride = null!;
 #pragma warning restore CA2213
 
     private bool showMarker = true;
@@ -39,7 +39,8 @@ public partial class ToleranceOptimalMarker : Control
     {
         base._Ready();
 
-        optimalValueMarker.Texture = markerTexture;
+        if (markerTextureOverride != null)
+            optimalValueMarker.Texture = markerTextureOverride;
     }
 
     public void UpdateBoundaryLabels(string start, string end)
