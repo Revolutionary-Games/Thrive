@@ -73,6 +73,15 @@ public partial class MicrobeEditorReportComponent : EditorComponentBase<IEditorR
     [Export]
     private VBoxContainer majorEventsList = null!;
 
+    [Export]
+    private Button showTextReportButton = null!;
+
+    [Export]
+    private CustomWindow textReportDialog = null!;
+
+    [Export]
+    private CustomRichTextLabel textReportLabel = null!;
+
     private PackedScene eventTemplate = null!;
 
     private HBoxContainer physicalConditionsIconLegends = null!;
@@ -95,6 +104,7 @@ public partial class MicrobeEditorReportComponent : EditorComponentBase<IEditorR
     private Patch? currentlyDisplayedPatch;
 
     private RunResults? autoEvoResults;
+    private Func<LocalizedStringBuilder>? textReportGenerator;
 
     public enum ReportSubtab
     {
@@ -241,7 +251,7 @@ public partial class MicrobeEditorReportComponent : EditorComponentBase<IEditorR
         }
     }
 
-    public void UpdateAutoEvoResults(RunResults results, string external)
+    public void UpdateAutoEvoResults(RunResults results, string external, Func<LocalizedStringBuilder>? getTextReport)
     {
         noAutoEvoResultData.Visible = false;
         graphicalResultsContainer.Visible = true;
@@ -264,6 +274,9 @@ public partial class MicrobeEditorReportComponent : EditorComponentBase<IEditorR
                 foodChainData.DisplayFoodChainIfRequired(autoEvoResults, PatchToShowInfoFor, PlayerSpecies);
             }
         }
+
+        showTextReportButton.Visible = getTextReport != null;
+        textReportGenerator = getTextReport;
     }
 
     public void DisplayAutoEvoFailure(string extra)
@@ -739,5 +752,19 @@ public partial class MicrobeEditorReportComponent : EditorComponentBase<IEditorR
 
             button.Modulate = button.ButtonPressed ? Colors.White : Colors.DarkGray;
         }
+    }
+
+    private void OnPressedOpenTextReport()
+    {
+        if (textReportGenerator == null)
+        {
+            GD.PrintErr("No text report generator function passed to the report component");
+            return;
+        }
+
+        GUICommon.Instance.PlayButtonPressSound();
+
+        textReportLabel.Text = textReportGenerator().ToString();
+        textReportDialog.Show();
     }
 }
