@@ -8,7 +8,7 @@ public partial class ToleranceOptimalMarker : Control
 #pragma warning disable CA2213
     [Export]
     [ExportCategory("Visuals")]
-    private Texture2D markerTextureOverride = null!;
+    private Texture2D? markerTextureOverride;
 
     [Export]
     [ExportCategory("Internal")]
