@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2025-03-16 22:50+0100\n"
+"POT-Creation-Date: 2025-03-18 21:56+0100\n"
 "PO-Revision-Date: 2025-02-06 13:29+0000\n"
 "Last-Translator: Anonymous <noreply@weblate.org>\n"
 "Language-Team: Swedish <https://translate.revolutionarygamesstudio.com/projects/thrive/thrive-game/sv/>\n"
@@ -2073,6 +2073,27 @@ msgstr "Flodmynning"
 msgid "EVENT_ERUPTION_TOOLTIP"
 msgstr "Självmord"
 
+msgid "EVENT_METEOR_GLUCOSE"
+msgstr ""
+
+#, fuzzy
+msgid "EVENT_METEOR_IRON"
+msgstr "{0}:+{1} ATP"
+
+#, fuzzy
+msgid "EVENT_METEOR_PHOSPHATES"
+msgstr "Spawna fosfat"
+
+#, fuzzy
+msgid "EVENT_METEOR_PLAIN"
+msgstr "Självmord"
+
+msgid "EVENT_METEOR_RADIOACTIVE"
+msgstr ""
+
+msgid "EVENT_METEOR_SULFUR"
+msgstr ""
+
 #, fuzzy
 msgid "EVOLUTIONARY_TREE"
 msgstr "Av Revolutionary Games Studio"
@@ -2513,10 +2534,6 @@ msgstr "Glukos"
 msgid "GLUCOSE_CONCENTRATIONS_DRASTICALLY_DROPPED"
 msgstr "Glukoskoncentrationerna har sjunkit drastiskt!"
 
-#, fuzzy
-msgid "GLUCOSE_METEOR"
-msgstr "Glukos"
-
 msgid "GLYCOLYSIS"
 msgstr "Glykolys"
 
@@ -2885,10 +2902,6 @@ msgstr "Protanope (Röd-Grön)"
 
 msgid "IRON"
 msgstr "Järn"
-
-#, fuzzy
-msgid "IRON_METEOR"
-msgstr "Miljö"
 
 #, fuzzy
 msgid "IRON_OXIDATION"
@@ -4860,10 +4873,6 @@ msgstr "Fosfat"
 msgid "PHOSPHATES_COST"
 msgstr "Fosfat"
 
-#, fuzzy
-msgid "PHOSPHATE_METEOR"
-msgstr "Fosfat"
-
 msgid "PHOTOSYNTHESIS"
 msgstr "Fotosyntes"
 
@@ -4875,9 +4884,6 @@ msgstr ""
 
 msgid "PLACE_ORGANELLE"
 msgstr "Placera organell"
-
-msgid "PLAIN_METEOR"
-msgstr ""
 
 msgid "PLANET"
 msgstr ""
@@ -5038,10 +5044,6 @@ msgstr "Anding"
 
 #, fuzzy
 msgid "RADIOACTIVE_CHUNK"
-msgstr "Stor järnbit"
-
-#, fuzzy
-msgid "RADIOACTIVE_METEOR"
 msgstr "Stor järnbit"
 
 #, fuzzy
@@ -5938,9 +5940,6 @@ msgstr ""
 
 msgid "SUICIDE_BUTTON_TOOLTIP"
 msgstr "Självmord"
-
-msgid "SULFIDE_METEOR"
-msgstr ""
 
 msgid "SUNLIGHT"
 msgstr "Solljus"
@@ -8787,6 +8786,22 @@ msgstr "Zooma in"
 msgid "ZOOM_OUT"
 msgstr "Zooma ut"
 
+#, fuzzy
+#~ msgid "GLUCOSE_METEOR"
+#~ msgstr "Glukos"
+
+#, fuzzy
+#~ msgid "IRON_METEOR"
+#~ msgstr "Miljö"
+
+#, fuzzy
+#~ msgid "PHOSPHATE_METEOR"
+#~ msgstr "Fosfat"
+
+#, fuzzy
+#~ msgid "RADIOACTIVE_METEOR"
+#~ msgstr "Stor järnbit"
+
 #~ msgid "IRON_CHEMOLITHOAUTOTROPHY"
 #~ msgstr "Järnkemolitoautotrofi"
 
@@ -8952,10 +8967,6 @@ msgstr "Zooma ut"
 #, fuzzy
 #~ msgid "ERUPTION_IN"
 #~ msgstr "Producerar"
-
-#, fuzzy
-#~ msgid "EVENT_TOOLTIP_ERUPTION"
-#~ msgstr "{0}:+{1} ATP"
 
 #~ msgid "THE_AMOUNT_OF_GLUCOSE_HAS_BEEN_REDUCED"
 #~ msgstr "Mängden glukos har minskats med {0} av den tidigare mängden."

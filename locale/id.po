@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2025-03-16 22:50+0100\n"
+"POT-Creation-Date: 2025-03-18 21:56+0100\n"
 "PO-Revision-Date: 2025-02-06 13:29+0000\n"
 "Last-Translator: Anonymous <noreply@weblate.org>\n"
 "Language-Team: Indonesian <https://translate.revolutionarygamesstudio.com/projects/thrive/thrive-game/id/>\n"
@@ -2069,6 +2069,27 @@ msgstr "Muara"
 msgid "EVENT_ERUPTION_TOOLTIP"
 msgstr "Tambah keybind baru"
 
+msgid "EVENT_METEOR_GLUCOSE"
+msgstr ""
+
+#, fuzzy
+msgid "EVENT_METEOR_IRON"
+msgstr "{0}: +{1} ATP"
+
+#, fuzzy
+msgid "EVENT_METEOR_PHOSPHATES"
+msgstr "Munculkan fosfat"
+
+#, fuzzy
+msgid "EVENT_METEOR_PLAIN"
+msgstr "Tambah keybind baru"
+
+msgid "EVENT_METEOR_RADIOACTIVE"
+msgstr ""
+
+msgid "EVENT_METEOR_SULFUR"
+msgstr ""
+
 msgid "EVOLUTIONARY_TREE"
 msgstr "Pohon Evolusi"
 
@@ -2521,10 +2542,6 @@ msgstr "Glukosa"
 msgid "GLUCOSE_CONCENTRATIONS_DRASTICALLY_DROPPED"
 msgstr "Konsentrasi glukosa telah turun drastis!"
 
-#, fuzzy
-msgid "GLUCOSE_METEOR"
-msgstr "Glukosa"
-
 msgid "GLYCOLYSIS"
 msgstr "Glikolisis"
 
@@ -2898,10 +2915,6 @@ msgstr ""
 
 msgid "IRON"
 msgstr "Besi"
-
-#, fuzzy
-msgid "IRON_METEOR"
-msgstr "Lingkungan"
 
 #, fuzzy
 msgid "IRON_OXIDATION"
@@ -4885,10 +4898,6 @@ msgstr "Fosfat"
 msgid "PHOSPHATES_COST"
 msgstr "Fosfat"
 
-#, fuzzy
-msgid "PHOSPHATE_METEOR"
-msgstr "Fosfat"
-
 msgid "PHOTOSYNTHESIS"
 msgstr "Fotosintesis"
 
@@ -4900,9 +4909,6 @@ msgstr "Kekebalan Fisik"
 
 msgid "PLACE_ORGANELLE"
 msgstr "Letakkan organel"
-
-msgid "PLAIN_METEOR"
-msgstr ""
 
 msgid "PLANET"
 msgstr ""
@@ -5064,10 +5070,6 @@ msgstr "Respirasi Aerob"
 
 #, fuzzy
 msgid "RADIOACTIVE_CHUNK"
-msgstr "Potongan Besi Besar"
-
-#, fuzzy
-msgid "RADIOACTIVE_METEOR"
 msgstr "Potongan Besi Besar"
 
 #, fuzzy
@@ -5970,9 +5972,6 @@ msgstr ""
 #, fuzzy
 msgid "SUICIDE_BUTTON_TOOLTIP"
 msgstr "Tambah keybind baru"
-
-msgid "SULFIDE_METEOR"
-msgstr ""
 
 msgid "SUNLIGHT"
 msgstr "Sinar Matahari"
@@ -8891,6 +8890,22 @@ msgstr "Perbesar"
 msgid "ZOOM_OUT"
 msgstr "Perkecil"
 
+#, fuzzy
+#~ msgid "GLUCOSE_METEOR"
+#~ msgstr "Glukosa"
+
+#, fuzzy
+#~ msgid "IRON_METEOR"
+#~ msgstr "Lingkungan"
+
+#, fuzzy
+#~ msgid "PHOSPHATE_METEOR"
+#~ msgstr "Fosfat"
+
+#, fuzzy
+#~ msgid "RADIOACTIVE_METEOR"
+#~ msgstr "Potongan Besi Besar"
+
 #~ msgid "IRON_CHEMOLITHOAUTOTROPHY"
 #~ msgstr "Kemolitoautotrofi Besi"
 
@@ -9055,10 +9070,6 @@ msgstr "Perkecil"
 #, fuzzy
 #~ msgid "ERUPTION_IN"
 #~ msgstr "Tunas"
-
-#, fuzzy
-#~ msgid "EVENT_TOOLTIP_ERUPTION"
-#~ msgstr "{0}: +{1} ATP"
 
 #~ msgid "THE_AMOUNT_OF_GLUCOSE_HAS_BEEN_REDUCED"
 #~ msgstr "Jumlah glukosa telah dikurang menjadi {0} dari jumlah sebelumya."

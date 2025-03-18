@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2025-03-16 22:50+0100\n"
+"POT-Creation-Date: 2025-03-18 21:56+0100\n"
 "PO-Revision-Date: 2025-02-06 13:29+0000\n"
 "Last-Translator: Anonymous <noreply@weblate.org>\n"
 "Language-Team: Slovak <https://translate.revolutionarygamesstudio.com/projects/thrive/thrive-game/sk/>\n"
@@ -1967,6 +1967,27 @@ msgstr "Ústie"
 msgid "EVENT_ERUPTION_TOOLTIP"
 msgstr "Vrátiť sa k základnému zobrazeniu nastavení"
 
+msgid "EVENT_METEOR_GLUCOSE"
+msgstr ""
+
+#, fuzzy
+msgid "EVENT_METEOR_IRON"
+msgstr "{0}: +{1} ATP"
+
+#, fuzzy
+msgid "EVENT_METEOR_PHOSPHATES"
+msgstr "Umiestniť fosfát"
+
+#, fuzzy
+msgid "EVENT_METEOR_PLAIN"
+msgstr "Vrátiť sa k základnému zobrazeniu nastavení"
+
+msgid "EVENT_METEOR_RADIOACTIVE"
+msgstr ""
+
+msgid "EVENT_METEOR_SULFUR"
+msgstr ""
+
 #, fuzzy
 msgid "EVOLUTIONARY_TREE"
 msgstr "Od Revolutionary Games Studio"
@@ -2403,10 +2424,6 @@ msgstr "Glukóza"
 msgid "GLUCOSE_CONCENTRATIONS_DRASTICALLY_DROPPED"
 msgstr "Koncentrácia glukózy drasticky klesla!"
 
-#, fuzzy
-msgid "GLUCOSE_METEOR"
-msgstr "Glukóza"
-
 msgid "GLYCOLYSIS"
 msgstr "Glykolýza"
 
@@ -2764,10 +2781,6 @@ msgstr ""
 
 msgid "IRON"
 msgstr "Železo"
-
-#, fuzzy
-msgid "IRON_METEOR"
-msgstr "Životné prostredie"
 
 #, fuzzy
 msgid "IRON_OXIDATION"
@@ -4622,10 +4635,6 @@ msgstr "Fosfát"
 msgid "PHOSPHATES_COST"
 msgstr "Fosfát"
 
-#, fuzzy
-msgid "PHOSPHATE_METEOR"
-msgstr "Fosfát"
-
 msgid "PHOTOSYNTHESIS"
 msgstr "Fotosyntéza"
 
@@ -4637,9 +4646,6 @@ msgstr "Fyzická odolnosť"
 
 msgid "PLACE_ORGANELLE"
 msgstr "Umiestniť organelu"
-
-msgid "PLAIN_METEOR"
-msgstr ""
 
 msgid "PLANET"
 msgstr "Planéta"
@@ -4801,10 +4807,6 @@ msgstr "Aeróbne Dýchanie"
 
 #, fuzzy
 msgid "RADIOACTIVE_CHUNK"
-msgstr "Veľký kus železa"
-
-#, fuzzy
-msgid "RADIOACTIVE_METEOR"
 msgstr "Veľký kus železa"
 
 #, fuzzy
@@ -5655,9 +5657,6 @@ msgstr ""
 
 msgid "SUICIDE_BUTTON_TOOLTIP"
 msgstr "Samovražda"
-
-msgid "SULFIDE_METEOR"
-msgstr ""
 
 msgid "SUNLIGHT"
 msgstr "Slnečné žiarenie"
@@ -8357,6 +8356,22 @@ msgstr "Priblížiť"
 msgid "ZOOM_OUT"
 msgstr "Oddialiť"
 
+#, fuzzy
+#~ msgid "GLUCOSE_METEOR"
+#~ msgstr "Glukóza"
+
+#, fuzzy
+#~ msgid "IRON_METEOR"
+#~ msgstr "Životné prostredie"
+
+#, fuzzy
+#~ msgid "PHOSPHATE_METEOR"
+#~ msgstr "Fosfát"
+
+#, fuzzy
+#~ msgid "RADIOACTIVE_METEOR"
+#~ msgstr "Veľký kus železa"
+
 #~ msgid "IRON_CHEMOLITHOAUTOTROPHY"
 #~ msgstr "Chemolitoautotrofia železa"
 
@@ -8512,10 +8527,6 @@ msgstr "Oddialiť"
 #, fuzzy
 #~ msgid "ERUPTION_IN"
 #~ msgstr "Pučanie"
-
-#, fuzzy
-#~ msgid "EVENT_TOOLTIP_ERUPTION"
-#~ msgstr "{0}: +{1} ATP"
 
 #~ msgid "THYLAKOID"
 #~ msgstr "Tylakoid"

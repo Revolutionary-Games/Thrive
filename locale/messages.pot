@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Thrive VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2025-03-16 22:50+0100\n"
+"POT-Creation-Date: 2025-03-18 21:56+0100\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -621,6 +621,7 @@ msgstr ""
 #: ../simulation_parameters/microbe_stage/biomes.json:2794
 #: ../simulation_parameters/microbe_stage/biomes.json:3143
 #: ../simulation_parameters/microbe_stage/biomes.json:3364
+#: ../simulation_parameters/microbe_stage/biomes.json:3608
 #: ../src/auto-evo/AutoEvoGlobalCache.cs:58
 msgid "BIG_IRON_CHUNK"
 msgstr ""
@@ -633,6 +634,7 @@ msgstr ""
 #: ../simulation_parameters/microbe_stage/biomes.json:2611
 #: ../simulation_parameters/microbe_stage/biomes.json:2934
 #: ../simulation_parameters/microbe_stage/biomes.json:3198
+#: ../simulation_parameters/microbe_stage/biomes.json:3732
 msgid "BIG_PHOSPHATE_CHUNK"
 msgstr ""
 
@@ -2525,9 +2527,32 @@ msgstr ""
 msgid "ESTUARY"
 msgstr ""
 
-#: ../src/microbe_stage/editor/PatchMapNode.tscn:104
-#: ../src/microbe_stage/editor/PatchMapNode.tscn:124
+#: ../src/microbe_stage/editor/PatchMapNode.tscn:115
 msgid "EVENT_ERUPTION_TOOLTIP"
+msgstr ""
+
+#: ../src/microbe_stage/editor/PatchMapNode.tscn:175
+msgid "EVENT_METEOR_GLUCOSE"
+msgstr ""
+
+#: ../src/microbe_stage/editor/PatchMapNode.tscn:145
+msgid "EVENT_METEOR_IRON"
+msgstr ""
+
+#: ../src/microbe_stage/editor/PatchMapNode.tscn:155
+msgid "EVENT_METEOR_PHOSPHATES"
+msgstr ""
+
+#: ../src/microbe_stage/editor/PatchMapNode.tscn:135
+msgid "EVENT_METEOR_PLAIN"
+msgstr ""
+
+#: ../src/microbe_stage/editor/PatchMapNode.tscn:165
+msgid "EVENT_METEOR_RADIOACTIVE"
+msgstr ""
+
+#: ../src/microbe_stage/editor/PatchMapNode.tscn:185
+msgid "EVENT_METEOR_SULFUR"
 msgstr ""
 
 #: ../src/auto-evo/AutoEvoExploringTool.tscn:569
@@ -3011,27 +3036,27 @@ msgstr ""
 msgid "GLES3"
 msgstr ""
 
-#: ../src/general/world_effects/patch_events/GlobalGlaciationEvent.cs:241
+#: ../src/general/world_effects/patch_events/GlobalGlaciationEvent.cs:240
 msgid "GLOBAL_GLACIATION_END_EVENT_LOG"
 msgstr ""
 
-#: ../src/general/world_effects/patch_events/GlobalGlaciationEvent.cs:215
+#: ../src/general/world_effects/patch_events/GlobalGlaciationEvent.cs:214
 msgid "GLOBAL_GLACIATION_EVENT"
 msgstr ""
 
-#: ../src/general/world_effects/patch_events/GlobalGlaciationEvent.cs:220
+#: ../src/general/world_effects/patch_events/GlobalGlaciationEvent.cs:219
 msgid "GLOBAL_GLACIATION_EVENT_LOG"
 msgstr ""
 
-#: ../src/microbe_stage/editor/PatchMapNode.tscn:114
+#: ../src/microbe_stage/editor/PatchMapNode.tscn:125
 msgid "GLOBAL_GLACIATION_EVENT_TOOLTIP"
 msgstr ""
 
-#: ../src/general/world_effects/patch_events/GlobalGlaciationEvent.cs:229
+#: ../src/general/world_effects/patch_events/GlobalGlaciationEvent.cs:228
 msgid "GLOBAL_GLACIATION_EVENT_WARNING_LOG"
 msgstr ""
 
-#: ../src/general/world_effects/patch_events/GlobalGlaciationEvent.cs:235
+#: ../src/general/world_effects/patch_events/GlobalGlaciationEvent.cs:234
 msgid "GLOBAL_GLACIATION_START_EVENT_LOG"
 msgstr ""
 
@@ -3054,10 +3079,6 @@ msgstr ""
 
 #: ../src/general/world_effects/GlucoseReductionEffect.cs:93
 msgid "GLUCOSE_CONCENTRATIONS_DRASTICALLY_DROPPED"
-msgstr ""
-
-#: ../simulation_parameters/microbe_stage/meteors.json:62
-msgid "GLUCOSE_METEOR"
 msgstr ""
 
 #: ../simulation_parameters/common/wiki.json:1810
@@ -3229,6 +3250,7 @@ msgid "HYDROGEN_SULFIDE"
 msgstr ""
 
 #: ../simulation_parameters/microbe_stage/biomes.json:2178
+#: ../simulation_parameters/microbe_stage/biomes.json:3474
 msgid "ICESHARD"
 msgstr ""
 
@@ -3237,10 +3259,12 @@ msgid "ICESHELF"
 msgstr ""
 
 #: ../simulation_parameters/microbe_stage/biomes.json:2222
+#: ../simulation_parameters/microbe_stage/biomes.json:3518
 msgid "ICE_CHUNK_BIG"
 msgstr ""
 
 #: ../simulation_parameters/microbe_stage/biomes.json:2197
+#: ../simulation_parameters/microbe_stage/biomes.json:3493
 msgid "ICE_CHUNK_SMALL"
 msgstr ""
 
@@ -3830,10 +3854,6 @@ msgstr ""
 msgid "IRON"
 msgstr ""
 
-#: ../simulation_parameters/microbe_stage/meteors.json:12
-msgid "IRON_METEOR"
-msgstr ""
-
 #: ../simulation_parameters/common/wiki.json:783
 #: ../simulation_parameters/common/wiki.json:1889
 #: ../simulation_parameters/microbe_stage/bio_processes.json:225
@@ -4108,6 +4128,7 @@ msgstr ""
 #: ../simulation_parameters/microbe_stage/biomes.json:353
 #: ../simulation_parameters/microbe_stage/biomes.json:1954
 #: ../simulation_parameters/microbe_stage/biomes.json:2876
+#: ../simulation_parameters/microbe_stage/biomes.json:3686
 #: ../src/auto-evo/AutoEvoGlobalCache.cs:70
 msgid "LARGE_SULFUR_CHUNK"
 msgstr ""
@@ -4592,6 +4613,7 @@ msgstr ""
 #: ../simulation_parameters/microbe_stage/biomes.json:1927
 #: ../simulation_parameters/microbe_stage/biomes.json:2549
 #: ../simulation_parameters/microbe_stage/biomes.json:2853
+#: ../simulation_parameters/microbe_stage/biomes.json:3663
 #: ../src/auto-evo/AutoEvoGlobalCache.cs:68
 msgid "MEDIUM_SULFUR_CHUNK"
 msgstr ""
@@ -4650,15 +4672,15 @@ msgstr ""
 msgid "META_THREADS_TOOLTIP"
 msgstr ""
 
-#: ../src/general/world_effects/patch_events/MeteorImpactEvent.cs:183
+#: ../src/general/world_effects/patch_events/MeteorImpactEvent.cs:257
 msgid "METEOR_IMPACT_EVENT"
 msgstr ""
 
-#: ../src/general/world_effects/patch_events/MeteorImpactEvent.cs:188
+#: ../src/general/world_effects/patch_events/MeteorImpactEvent.cs:262
 msgid "METEOR_IMPACT_EVENT_LOG"
 msgstr ""
 
-#: ../src/general/world_effects/patch_events/MeteorImpactEvent.cs:236
+#: ../src/general/world_effects/patch_events/MeteorImpactEvent.cs:311
 msgid "METEOR_STRIKE_START_EVENT_LOG"
 msgstr ""
 
@@ -6269,10 +6291,6 @@ msgstr ""
 msgid "PHOSPHATES_COST"
 msgstr ""
 
-#: ../simulation_parameters/microbe_stage/meteors.json:25
-msgid "PHOSPHATE_METEOR"
-msgstr ""
-
 #: ../simulation_parameters/common/wiki.json:546
 #: ../simulation_parameters/microbe_stage/bio_processes.json:35
 #: ../simulation_parameters/microbe_stage/bio_processes.json:214
@@ -6295,10 +6313,6 @@ msgstr ""
 
 #: ../simulation_parameters/common/input_options.json:189
 msgid "PLACE_ORGANELLE"
-msgstr ""
-
-#: ../simulation_parameters/microbe_stage/meteors.json:3
-msgid "PLAIN_METEOR"
 msgstr ""
 
 #: ../src/general/NewGameSettings.tscn:265
@@ -6507,12 +6521,9 @@ msgstr ""
 
 #: ../simulation_parameters/microbe_stage/biomes.json:422
 #: ../simulation_parameters/microbe_stage/biomes.json:2031
+#: ../simulation_parameters/microbe_stage/biomes.json:3755
 #: ../src/auto-evo/AutoEvoGlobalCache.cs:79
 msgid "RADIOACTIVE_CHUNK"
-msgstr ""
-
-#: ../simulation_parameters/microbe_stage/meteors.json:51
-msgid "RADIOACTIVE_METEOR"
 msgstr ""
 
 #: ../simulation_parameters/common/wiki.json:1099
@@ -7234,6 +7245,7 @@ msgstr ""
 #: ../simulation_parameters/microbe_stage/biomes.json:2758
 #: ../simulation_parameters/microbe_stage/biomes.json:3111
 #: ../simulation_parameters/microbe_stage/biomes.json:3328
+#: ../simulation_parameters/microbe_stage/biomes.json:3572
 #: ../src/auto-evo/AutoEvoGlobalCache.cs:56
 msgid "SMALL_IRON_CHUNK"
 msgstr ""
@@ -7246,6 +7258,7 @@ msgstr ""
 #: ../simulation_parameters/microbe_stage/biomes.json:2572
 #: ../simulation_parameters/microbe_stage/biomes.json:2899
 #: ../simulation_parameters/microbe_stage/biomes.json:3167
+#: ../simulation_parameters/microbe_stage/biomes.json:3709
 msgid "SMALL_PHOSPHATE_CHUNK"
 msgstr ""
 
@@ -7253,11 +7266,13 @@ msgstr ""
 #: ../simulation_parameters/microbe_stage/biomes.json:1900
 #: ../simulation_parameters/microbe_stage/biomes.json:2526
 #: ../simulation_parameters/microbe_stage/biomes.json:2822
+#: ../simulation_parameters/microbe_stage/biomes.json:3636
 #: ../src/auto-evo/AutoEvoGlobalCache.cs:66
 msgid "SMALL_SULFUR_CHUNK"
 msgstr ""
 
 #: ../simulation_parameters/microbe_stage/biomes.json:2252
+#: ../simulation_parameters/microbe_stage/biomes.json:3548
 msgid "SNOWFLAKE"
 msgstr ""
 
@@ -7625,10 +7640,6 @@ msgstr ""
 
 #: ../src/microbe_stage/HUDBottomBar.tscn:156
 msgid "SUICIDE_BUTTON_TOOLTIP"
-msgstr ""
-
-#: ../simulation_parameters/microbe_stage/meteors.json:38
-msgid "SULFIDE_METEOR"
 msgstr ""
 
 #: ../simulation_parameters/microbe_stage/compounds.json:208
@@ -8429,7 +8440,7 @@ msgstr ""
 msgid "UNKNOWN_PATCH"
 msgstr ""
 
-#: ../src/microbe_stage/editor/PatchMapNode.tscn:89
+#: ../src/microbe_stage/editor/PatchMapNode.tscn:99
 msgid "UNKNOWN_SHORT"
 msgstr ""
 
@@ -8740,6 +8751,7 @@ msgstr ""
 
 #: ../simulation_parameters/microbe_stage/biomes.json:188
 #: ../simulation_parameters/microbe_stage/biomes.json:3300
+#: ../simulation_parameters/microbe_stage/biomes.json:3442
 msgid "VOLCANIC_VENT"
 msgstr ""
 

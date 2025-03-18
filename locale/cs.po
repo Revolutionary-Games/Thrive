@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2025-03-16 22:50+0100\n"
+"POT-Creation-Date: 2025-03-18 21:56+0100\n"
 "PO-Revision-Date: 2025-03-07 10:46+0000\n"
 "Last-Translator: Anonymous <noreply@weblate.org>\n"
 "Language-Team: Czech <https://translate.revolutionarygamesstudio.com/projects/thrive/thrive-game/cs/>\n"
@@ -2095,6 +2095,27 @@ msgstr "Ústí"
 msgid "EVENT_ERUPTION_TOOLTIP"
 msgstr "Automaticky načítat Harmony patche ze sestavy (nepotřebuje specifikování třídy modu)"
 
+msgid "EVENT_METEOR_GLUCOSE"
+msgstr ""
+
+#, fuzzy
+msgid "EVENT_METEOR_IRON"
+msgstr "{0}: +{1} ATP"
+
+#, fuzzy
+msgid "EVENT_METEOR_PHOSPHATES"
+msgstr "Spawnout Fosfát"
+
+#, fuzzy
+msgid "EVENT_METEOR_PLAIN"
+msgstr "Automaticky načítat Harmony patche ze sestavy (nepotřebuje specifikování třídy modu)"
+
+msgid "EVENT_METEOR_RADIOACTIVE"
+msgstr ""
+
+msgid "EVENT_METEOR_SULFUR"
+msgstr ""
+
 msgid "EVOLUTIONARY_TREE"
 msgstr "Evoluční strom"
 
@@ -2543,10 +2564,6 @@ msgstr "Glukóza"
 msgid "GLUCOSE_CONCENTRATIONS_DRASTICALLY_DROPPED"
 msgstr "Koncentrace glukózy drasticky klesla!"
 
-#, fuzzy
-msgid "GLUCOSE_METEOR"
-msgstr "Glukóza"
-
 msgid "GLYCOLYSIS"
 msgstr "Glykolýza"
 
@@ -2920,10 +2937,6 @@ msgstr ""
 
 msgid "IRON"
 msgstr "Železo"
-
-#, fuzzy
-msgid "IRON_METEOR"
-msgstr "Životní prostředí"
 
 #, fuzzy
 msgid "IRON_OXIDATION"
@@ -4916,10 +4929,6 @@ msgstr "Fosfát"
 msgid "PHOSPHATES_COST"
 msgstr "Fosfát"
 
-#, fuzzy
-msgid "PHOSPHATE_METEOR"
-msgstr "Fosfát"
-
 msgid "PHOTOSYNTHESIS"
 msgstr "Fotosyntéza"
 
@@ -4931,9 +4940,6 @@ msgstr "Fyzická odolnost"
 
 msgid "PLACE_ORGANELLE"
 msgstr "Umístit organelu"
-
-msgid "PLAIN_METEOR"
-msgstr ""
 
 msgid "PLANET"
 msgstr "Planeta"
@@ -5092,10 +5098,6 @@ msgstr "Aerobní dýchání"
 
 #, fuzzy
 msgid "RADIOACTIVE_CHUNK"
-msgstr "Velký kus železa"
-
-#, fuzzy
-msgid "RADIOACTIVE_METEOR"
 msgstr "Velký kus železa"
 
 #, fuzzy
@@ -5958,9 +5960,6 @@ msgstr "Výsledek indikovat úspěch, ale nebylo vráceno žádné ID"
 
 msgid "SUICIDE_BUTTON_TOOLTIP"
 msgstr "Spáchat sebevraždu"
-
-msgid "SULFIDE_METEOR"
-msgstr ""
 
 msgid "SUNLIGHT"
 msgstr "Sluneční svit"
@@ -8885,6 +8884,22 @@ msgstr "Přiblížit"
 msgid "ZOOM_OUT"
 msgstr "Oddálit"
 
+#, fuzzy
+#~ msgid "GLUCOSE_METEOR"
+#~ msgstr "Glukóza"
+
+#, fuzzy
+#~ msgid "IRON_METEOR"
+#~ msgstr "Životní prostředí"
+
+#, fuzzy
+#~ msgid "PHOSPHATE_METEOR"
+#~ msgstr "Fosfát"
+
+#, fuzzy
+#~ msgid "RADIOACTIVE_METEOR"
+#~ msgstr "Velký kus železa"
+
 #~ msgid "IRON_CHEMOLITHOAUTOTROPHY"
 #~ msgstr "Chemolithoautotrofie železa"
 
@@ -9056,10 +9071,6 @@ msgstr "Oddálit"
 #, fuzzy
 #~ msgid "ERUPTION_IN"
 #~ msgstr "Pučení"
-
-#, fuzzy
-#~ msgid "EVENT_TOOLTIP_ERUPTION"
-#~ msgstr "{0}: +{1} ATP"
 
 #~ msgid "THE_AMOUNT_OF_GLUCOSE_HAS_BEEN_REDUCED"
 #~ msgstr "Množství glukózy bylo sníženo na {0} z předchozího množství."

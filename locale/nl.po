@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2025-03-16 22:50+0100\n"
+"POT-Creation-Date: 2025-03-18 21:56+0100\n"
 "PO-Revision-Date: 2025-03-12 14:39+0000\n"
 "Last-Translator: Anonymous <noreply@weblate.org>\n"
 "Language-Team: Dutch <https://translate.revolutionarygamesstudio.com/projects/thrive/thrive-game/nl/>\n"
@@ -2015,6 +2015,27 @@ msgstr "Estuarium"
 msgid "EVENT_ERUPTION_TOOLTIP"
 msgstr "Dit is de exacte code commit die gebruikt is bij het compileren van deze versie van Thrive"
 
+msgid "EVENT_METEOR_GLUCOSE"
+msgstr ""
+
+#, fuzzy
+msgid "EVENT_METEOR_IRON"
+msgstr "{0}: +{1} ATP"
+
+#, fuzzy
+msgid "EVENT_METEOR_PHOSPHATES"
+msgstr "Plaats fosfaat"
+
+#, fuzzy
+msgid "EVENT_METEOR_PLAIN"
+msgstr "Dit is de exacte code commit die gebruikt is bij het compileren van deze versie van Thrive"
+
+msgid "EVENT_METEOR_RADIOACTIVE"
+msgstr ""
+
+msgid "EVENT_METEOR_SULFUR"
+msgstr ""
+
 msgid "EVOLUTIONARY_TREE"
 msgstr "Stamboom"
 
@@ -2420,10 +2441,6 @@ msgstr "Glucose"
 msgid "GLUCOSE_CONCENTRATIONS_DRASTICALLY_DROPPED"
 msgstr "Glucoseconcentratie is drastisch gedaald!"
 
-#, fuzzy
-msgid "GLUCOSE_METEOR"
-msgstr "Glucose"
-
 msgid "GLYCOLYSIS"
 msgstr "Glycolyse"
 
@@ -2766,10 +2783,6 @@ msgstr ""
 
 msgid "IRON"
 msgstr "Ijzer"
-
-#, fuzzy
-msgid "IRON_METEOR"
-msgstr "Omgeving"
 
 #, fuzzy
 msgid "IRON_OXIDATION"
@@ -4697,10 +4710,6 @@ msgstr "Fosfaat"
 msgid "PHOSPHATES_COST"
 msgstr "Fosfaat"
 
-#, fuzzy
-msgid "PHOSPHATE_METEOR"
-msgstr "Fosfaat"
-
 msgid "PHOTOSYNTHESIS"
 msgstr "Fotosynthese"
 
@@ -4712,9 +4721,6 @@ msgstr "Fysieke Weerstand"
 
 msgid "PLACE_ORGANELLE"
 msgstr "Plaats organellen"
-
-msgid "PLAIN_METEOR"
-msgstr ""
 
 msgid "PLANET"
 msgstr "Planeet"
@@ -4875,10 +4881,6 @@ msgstr "aërobe ademhaling"
 
 #, fuzzy
 msgid "RADIOACTIVE_CHUNK"
-msgstr "Groot Brokstuk Fosfaat"
-
-#, fuzzy
-msgid "RADIOACTIVE_METEOR"
 msgstr "Groot Brokstuk Fosfaat"
 
 #, fuzzy
@@ -5707,9 +5709,6 @@ msgstr "Resultaat geeft aan succesvol te zijn geweest, maar geen ID was teruggeg
 
 msgid "SUICIDE_BUTTON_TOOLTIP"
 msgstr "Verga meteen"
-
-msgid "SULFIDE_METEOR"
-msgstr ""
 
 msgid "SUNLIGHT"
 msgstr "Zonlicht"
@@ -8625,6 +8624,22 @@ msgstr "Inzoomen"
 msgid "ZOOM_OUT"
 msgstr "Uitzoomen"
 
+#, fuzzy
+#~ msgid "GLUCOSE_METEOR"
+#~ msgstr "Glucose"
+
+#, fuzzy
+#~ msgid "IRON_METEOR"
+#~ msgstr "Omgeving"
+
+#, fuzzy
+#~ msgid "PHOSPHATE_METEOR"
+#~ msgstr "Fosfaat"
+
+#, fuzzy
+#~ msgid "RADIOACTIVE_METEOR"
+#~ msgstr "Groot Brokstuk Fosfaat"
+
 #~ msgid "IRON_CHEMOLITHOAUTOTROPHY"
 #~ msgstr "Ijzer-chemolithoautotrofie"
 
@@ -8806,10 +8821,6 @@ msgstr "Uitzoomen"
 #, fuzzy
 #~ msgid "ERUPTION_IN"
 #~ msgstr "Ontkiemen"
-
-#, fuzzy
-#~ msgid "EVENT_TOOLTIP_ERUPTION"
-#~ msgstr "{0}: +{1} ATP"
 
 #~ msgid "THE_AMOUNT_OF_GLUCOSE_HAS_BEEN_REDUCED"
 #~ msgstr "De hoeveelheid glucose is verminderd tot {0} van de voorgaande hoeveelheid."

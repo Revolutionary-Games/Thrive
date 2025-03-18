@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2025-03-16 22:50+0100\n"
+"POT-Creation-Date: 2025-03-18 21:56+0100\n"
 "PO-Revision-Date: 2025-03-12 14:39+0000\n"
 "Last-Translator: Anonymous <noreply@weblate.org>\n"
 "Language-Team: Ukrainian <https://translate.revolutionarygamesstudio.com/projects/thrive/thrive-game/uk/>\n"
@@ -1971,6 +1971,27 @@ msgstr "Гирло"
 msgid "EVENT_ERUPTION_TOOLTIP"
 msgstr "Це точний підтверджувальний код компіляції цієї версії Thrive"
 
+msgid "EVENT_METEOR_GLUCOSE"
+msgstr ""
+
+#, fuzzy
+msgid "EVENT_METEOR_IRON"
+msgstr "{0}: +{1} АТФ"
+
+#, fuzzy
+msgid "EVENT_METEOR_PHOSPHATES"
+msgstr "Спавн фосфатів"
+
+#, fuzzy
+msgid "EVENT_METEOR_PLAIN"
+msgstr "Це точний підтверджувальний код компіляції цієї версії Thrive"
+
+msgid "EVENT_METEOR_RADIOACTIVE"
+msgstr ""
+
+msgid "EVENT_METEOR_SULFUR"
+msgstr ""
+
 msgid "EVOLUTIONARY_TREE"
 msgstr "Еволюційне дерево"
 
@@ -2369,10 +2390,6 @@ msgstr "Глюкоза"
 msgid "GLUCOSE_CONCENTRATIONS_DRASTICALLY_DROPPED"
 msgstr "Концентрація глюкози раптово впала!"
 
-#, fuzzy
-msgid "GLUCOSE_METEOR"
-msgstr "Глюкоза"
-
 msgid "GLYCOLYSIS"
 msgstr "Гліколіз"
 
@@ -2712,10 +2729,6 @@ msgstr ""
 
 msgid "IRON"
 msgstr "Залізо"
-
-#, fuzzy
-msgid "IRON_METEOR"
-msgstr "Оточення"
 
 #, fuzzy
 msgid "IRON_OXIDATION"
@@ -4603,10 +4616,6 @@ msgstr "Фосфат"
 msgid "PHOSPHATES_COST"
 msgstr "Вартість фосфату:"
 
-#, fuzzy
-msgid "PHOSPHATE_METEOR"
-msgstr "Фосфат"
-
 msgid "PHOTOSYNTHESIS"
 msgstr "Фотосинтез"
 
@@ -4618,9 +4627,6 @@ msgstr "Фізичний опір"
 
 msgid "PLACE_ORGANELLE"
 msgstr "Місце для органели"
-
-msgid "PLAIN_METEOR"
-msgstr ""
 
 msgid "PLANET"
 msgstr "Планета"
@@ -4780,10 +4786,6 @@ msgstr "Радіація"
 
 #, fuzzy
 msgid "RADIOACTIVE_CHUNK"
-msgstr "Великий шматок фосфату"
-
-#, fuzzy
-msgid "RADIOACTIVE_METEOR"
 msgstr "Великий шматок фосфату"
 
 #, fuzzy
@@ -5607,9 +5609,6 @@ msgstr "Результат показав успіх, але ID не повер�
 
 msgid "SUICIDE_BUTTON_TOOLTIP"
 msgstr "Суїцид"
-
-msgid "SULFIDE_METEOR"
-msgstr ""
 
 msgid "SUNLIGHT"
 msgstr "Сонячне світло"
@@ -8506,6 +8505,22 @@ msgstr "Приблизитись"
 msgid "ZOOM_OUT"
 msgstr "Віддалитись"
 
+#, fuzzy
+#~ msgid "GLUCOSE_METEOR"
+#~ msgstr "Глюкоза"
+
+#, fuzzy
+#~ msgid "IRON_METEOR"
+#~ msgstr "Оточення"
+
+#, fuzzy
+#~ msgid "PHOSPHATE_METEOR"
+#~ msgstr "Фосфат"
+
+#, fuzzy
+#~ msgid "RADIOACTIVE_METEOR"
+#~ msgstr "Великий шматок фосфату"
+
 #~ msgid "IRON_CHEMOLITHOAUTOTROPHY"
 #~ msgstr "Хемолітоавтотрофія заліза"
 
@@ -8696,10 +8711,6 @@ msgstr "Віддалитись"
 #, fuzzy
 #~ msgid "ERUPTION_IN"
 #~ msgstr "Брункування"
-
-#, fuzzy
-#~ msgid "EVENT_TOOLTIP_ERUPTION"
-#~ msgstr "{0}: +{1} АТФ"
 
 #~ msgid "THE_AMOUNT_OF_GLUCOSE_HAS_BEEN_REDUCED"
 #~ msgstr "Кількість глюкози зменшена до {0} з попередньої кількості."

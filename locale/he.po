@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2025-03-16 22:50+0100\n"
+"POT-Creation-Date: 2025-03-18 21:56+0100\n"
 "PO-Revision-Date: 2025-02-06 13:29+0000\n"
 "Last-Translator: Anonymous <noreply@weblate.org>\n"
 "Language-Team: Hebrew <https://translate.revolutionarygamesstudio.com/projects/thrive/thrive-game/he/>\n"
@@ -2043,6 +2043,27 @@ msgstr "שפך נהר"
 msgid "EVENT_ERUPTION_TOOLTIP"
 msgstr "זוהי מחויבת הקוד המדויקת שממנה הורכבה הגרסה הזו של Thrive"
 
+msgid "EVENT_METEOR_GLUCOSE"
+msgstr ""
+
+#, fuzzy
+msgid "EVENT_METEOR_IRON"
+msgstr "{0}: {1}+ ATP"
+
+#, fuzzy
+msgid "EVENT_METEOR_PHOSPHATES"
+msgstr "זמן פוספט"
+
+#, fuzzy
+msgid "EVENT_METEOR_PLAIN"
+msgstr "זוהי מחויבת הקוד המדויקת שממנה הורכבה הגרסה הזו של Thrive"
+
+msgid "EVENT_METEOR_RADIOACTIVE"
+msgstr ""
+
+msgid "EVENT_METEOR_SULFUR"
+msgstr ""
+
 msgid "EVOLUTIONARY_TREE"
 msgstr "עץ אבולוציוני"
 
@@ -2487,10 +2508,6 @@ msgstr "גלוקוז"
 msgid "GLUCOSE_CONCENTRATIONS_DRASTICALLY_DROPPED"
 msgstr "ריכוזי הגלוקוז ירדו בצורה דרסטית!"
 
-#, fuzzy
-msgid "GLUCOSE_METEOR"
-msgstr "גלוקוז"
-
 msgid "GLYCOLYSIS"
 msgstr "גליקוליזה"
 
@@ -2861,10 +2878,6 @@ msgstr ""
 
 msgid "IRON"
 msgstr "ברזל"
-
-#, fuzzy
-msgid "IRON_METEOR"
-msgstr "סביבה"
 
 #, fuzzy
 msgid "IRON_OXIDATION"
@@ -4825,10 +4838,6 @@ msgstr "פוספט"
 msgid "PHOSPHATES_COST"
 msgstr "פוספט"
 
-#, fuzzy
-msgid "PHOSPHATE_METEOR"
-msgstr "פוספט"
-
 msgid "PHOTOSYNTHESIS"
 msgstr "פוטוסינתזה"
 
@@ -4840,9 +4849,6 @@ msgstr "עמידות מפגיעה פיזית"
 
 msgid "PLACE_ORGANELLE"
 msgstr "הוסף אברון"
-
-msgid "PLAIN_METEOR"
-msgstr ""
 
 msgid "PLANET"
 msgstr "כוכב לכת"
@@ -5001,10 +5007,6 @@ msgstr "נשימה ארובית"
 
 #, fuzzy
 msgid "RADIOACTIVE_CHUNK"
-msgstr "גוש ברזל גדול"
-
-#, fuzzy
-msgid "RADIOACTIVE_METEOR"
 msgstr "גוש ברזל גדול"
 
 #, fuzzy
@@ -5857,9 +5859,6 @@ msgstr "התוצאה הצביעה על הצלחה אבל שום ID לא חזר"
 
 msgid "SUICIDE_BUTTON_TOOLTIP"
 msgstr "התאבדות"
-
-msgid "SULFIDE_METEOR"
-msgstr ""
 
 msgid "SUNLIGHT"
 msgstr "אור שמש"
@@ -8786,6 +8785,22 @@ msgstr "להתמקד"
 msgid "ZOOM_OUT"
 msgstr "זום החוצה"
 
+#, fuzzy
+#~ msgid "GLUCOSE_METEOR"
+#~ msgstr "גלוקוז"
+
+#, fuzzy
+#~ msgid "IRON_METEOR"
+#~ msgstr "סביבה"
+
+#, fuzzy
+#~ msgid "PHOSPHATE_METEOR"
+#~ msgstr "פוספט"
+
+#, fuzzy
+#~ msgid "RADIOACTIVE_METEOR"
+#~ msgstr "גוש ברזל גדול"
+
 #~ msgid "IRON_CHEMOLITHOAUTOTROPHY"
 #~ msgstr "כימוליתו-אוטוטרופי מברזל"
 
@@ -8969,10 +8984,6 @@ msgstr "זום החוצה"
 #, fuzzy
 #~ msgid "ERUPTION_IN"
 #~ msgstr "הנצה"
-
-#, fuzzy
-#~ msgid "EVENT_TOOLTIP_ERUPTION"
-#~ msgstr "{0}: {1}+ ATP"
 
 #~ msgid "THE_AMOUNT_OF_GLUCOSE_HAS_BEEN_REDUCED"
 #~ msgstr "כמות הגלוקוז ירד ל{0} מהכמות הקודמת."

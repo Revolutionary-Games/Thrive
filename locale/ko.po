@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2025-03-16 22:50+0100\n"
+"POT-Creation-Date: 2025-03-18 21:56+0100\n"
 "PO-Revision-Date: 2025-02-06 13:29+0000\n"
 "Last-Translator: Anonymous <noreply@weblate.org>\n"
 "Language-Team: Korean <https://translate.revolutionarygamesstudio.com/projects/thrive/thrive-game/ko/>\n"
@@ -2091,6 +2091,27 @@ msgstr "어귀"
 msgid "EVENT_ERUPTION_TOOLTIP"
 msgstr "새로운 키 배치 추가"
 
+msgid "EVENT_METEOR_GLUCOSE"
+msgstr ""
+
+#, fuzzy
+msgid "EVENT_METEOR_IRON"
+msgstr "수중 동굴"
+
+#, fuzzy
+msgid "EVENT_METEOR_PHOSPHATES"
+msgstr "인산염 배치"
+
+#, fuzzy
+msgid "EVENT_METEOR_PLAIN"
+msgstr "새로운 키 배치 추가"
+
+msgid "EVENT_METEOR_RADIOACTIVE"
+msgstr ""
+
+msgid "EVENT_METEOR_SULFUR"
+msgstr ""
+
 msgid "EVOLUTIONARY_TREE"
 msgstr "진화 계보"
 
@@ -2514,10 +2535,6 @@ msgstr "포도당"
 msgid "GLUCOSE_CONCENTRATIONS_DRASTICALLY_DROPPED"
 msgstr ""
 
-#, fuzzy
-msgid "GLUCOSE_METEOR"
-msgstr "포도당"
-
 msgid "GLYCOLYSIS"
 msgstr "포도당"
 
@@ -2889,10 +2906,6 @@ msgstr ""
 
 msgid "IRON"
 msgstr "철"
-
-#, fuzzy
-msgid "IRON_METEOR"
-msgstr "환경"
 
 #, fuzzy
 msgid "IRON_OXIDATION"
@@ -4863,10 +4876,6 @@ msgstr "인산염"
 msgid "PHOSPHATES_COST"
 msgstr "인산염"
 
-#, fuzzy
-msgid "PHOSPHATE_METEOR"
-msgstr "인산염"
-
 msgid "PHOTOSYNTHESIS"
 msgstr "광합성"
 
@@ -4878,9 +4887,6 @@ msgstr "물리 저항"
 
 msgid "PLACE_ORGANELLE"
 msgstr "세포 기관 배치"
-
-msgid "PLAIN_METEOR"
-msgstr ""
 
 msgid "PLANET"
 msgstr ""
@@ -5042,10 +5048,6 @@ msgstr "호흡"
 
 #, fuzzy
 msgid "RADIOACTIVE_CHUNK"
-msgstr "큰 철 덩어리"
-
-#, fuzzy
-msgid "RADIOACTIVE_METEOR"
 msgstr "큰 철 덩어리"
 
 #, fuzzy
@@ -5952,9 +5954,6 @@ msgstr ""
 #, fuzzy
 msgid "SUICIDE_BUTTON_TOOLTIP"
 msgstr "새로운 키 배치 추가"
-
-msgid "SULFIDE_METEOR"
-msgstr ""
 
 msgid "SUNLIGHT"
 msgstr "햇빛"
@@ -8876,6 +8875,22 @@ msgstr "확대"
 msgid "ZOOM_OUT"
 msgstr "축소"
 
+#, fuzzy
+#~ msgid "GLUCOSE_METEOR"
+#~ msgstr "포도당"
+
+#, fuzzy
+#~ msgid "IRON_METEOR"
+#~ msgstr "환경"
+
+#, fuzzy
+#~ msgid "PHOSPHATE_METEOR"
+#~ msgstr "인산염"
+
+#, fuzzy
+#~ msgid "RADIOACTIVE_METEOR"
+#~ msgstr "큰 철 덩어리"
+
 #~ msgid "IRON_CHEMOLITHOAUTOTROPHY"
 #~ msgstr "철 화학합성독립영양"
 
@@ -9045,10 +9060,6 @@ msgstr "축소"
 #, fuzzy
 #~ msgid "ERUPTION_IN"
 #~ msgstr "생산"
-
-#, fuzzy
-#~ msgid "EVENT_TOOLTIP_ERUPTION"
-#~ msgstr "수중 동굴"
 
 #~ msgid "THE_AMOUNT_OF_GLUCOSE_HAS_BEEN_REDUCED"
 #~ msgstr "포도당의 양이 이전 양보다 {0} 만큼 감소되었습니다."
