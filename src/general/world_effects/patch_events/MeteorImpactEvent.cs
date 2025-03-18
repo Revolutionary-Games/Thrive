@@ -1,4 +1,4 @@
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Linq;
 using Godot;
@@ -55,11 +55,8 @@ public class MeteorImpactEvent : IWorldEffect
         if (!AreConditionsMet())
             return;
 
-        // Impact sizes:
-        // 0 -> 1 patch; 1 -> all surface patches in region; 2 -> all surface patches in 2 neighbouring regions
-        var impactSize = random.Next(0, 3);
-        GetAffectedPatches(impactSize);
-        GetMeteorType();
+        ChooseAffectedPatches();
+        ChooseMeteorType();
 
         foreach (var patch in targetWorld.Map.Patches.Values)
         {
@@ -72,26 +69,48 @@ public class MeteorImpactEvent : IWorldEffect
         LogBeginningOfMeteorStrike();
     }
 
-    private void GetMeteorType()
+    private void ChooseMeteorType()
     {
         var meteors = SimulationParameters.Instance.GetAllMeteors().ToList();
-        var index = PatchEventUtils.GetRandomElementByProbability(meteors.Select(meteor => meteor.Probability).ToList(),
+        var index = GetRandomElementByProbability(meteors.Select(meteor => meteor.Probability).ToList(),
             random.NextDouble());
         selectedMeteor = meteors.ElementAt(index);
-        GD.Print("SELECTED: " + selectedMeteor.Name);
     }
 
-    private void GetAffectedPatches(int impactSize)
+    private int GetRandomElementByProbability(List<double> chances, double probability)
     {
+        double totalSum = chances.Sum();
+        if (Math.Abs(totalSum - 1.0) > 1e-6)
+        {
+            GD.PrintErr($"Probability sum mismatch: {totalSum}. Expected: 1.0");
+            return 0;
+        }
+
+        double cumulative = 0.0;
+        for (var i = 0; i < chances.Count; i++)
+        {
+            cumulative += chances[i];
+            if (probability <= cumulative)
+                return i;
+        }
+
+        throw new ArgumentException("Chances list is empty");
+    }
+
+    private void ChooseAffectedPatches()
+    {
+        var impactSize = random.Next(0, 3);
         var surfacePatches = targetWorld.Map.Patches.Values.Where(IsSurfacePatch).ToList();
         var selectedPatch = surfacePatches[random.Next(surfacePatches.Count)];
         var adjacentRegion = selectedPatch.Region.Adjacent.ToList()[random.Next(selectedPatch.Region.Adjacent.Count)];
 
+        // 1 patch
         if (impactSize >= 0)
         {
             modifiedPatchesIds.Add(selectedPatch.ID);
         }
 
+        // all surface patches in region
         if (impactSize >= 1)
         {
             foreach (var adjacent in selectedPatch.Adjacent)
@@ -103,6 +122,7 @@ public class MeteorImpactEvent : IWorldEffect
             }
         }
 
+        // all surface patches in 2 neighbouring regions
         if (impactSize >= 2)
         {
             foreach (var patch in adjacentRegion.Patches)
@@ -124,39 +144,10 @@ public class MeteorImpactEvent : IWorldEffect
 
     private void ChangePatchProperties(Patch patch, double totalTimePassed)
     {
-        AdjustEnvironment(patch);
+        AdjustEnvironmentalConditions(patch);
+        AdjustCompounds(patch);
         AddChunks(patch);
         LogEvent(patch, totalTimePassed);
-    }
-
-    private void AdjustEnvironment(Patch patch)
-    {
-        bool hasSunlight = patch.Biome.ChangeableCompounds.TryGetValue(Compound.Sunlight, out var currentSunlight);
-        bool hasCarboneDioxide =
-            patch.Biome.ChangeableCompounds.TryGetValue(Compound.Carbondioxide, out var currentCarbonDioxide);
-
-        if (!hasSunlight)
-        {
-            GD.PrintErr("Meteor impact event encountered patch with unexpectedly no sunlight");
-            return;
-        }
-
-        if (!hasCarboneDioxide)
-        {
-            GD.PrintErr("Meteor impact event encountered patch with unexpectedly no carbonDioxide");
-            return;
-        }
-
-        var changes = new Dictionary<Compound, float>();
-        var cloudSizes = new Dictionary<Compound, float>();
-
-        currentSunlight.Ambient *= Constants.METEOR_IMPACT_SUNLIGHT_MULTIPLICATION;
-        currentCarbonDioxide.Ambient += 0.15f;
-        currentCarbonDioxide.Ambient = Math.Clamp(currentCarbonDioxide.Ambient, 0, 1);
-        changes[Compound.Carbondioxide] = currentCarbonDioxide.Ambient;
-
-        patch.Biome.ModifyLongTermCondition(Compound.Sunlight, currentSunlight);
-        patch.Biome.ApplyLongTermCompoundChanges(patch.BiomeTemplate, changes, cloudSizes);
     }
 
     /// <summary>
@@ -167,7 +158,8 @@ public class MeteorImpactEvent : IWorldEffect
         var templateBiome = SimulationParameters.Instance.GetBiome(TemplateBiomeForChunks);
         foreach (var configuration in selectedMeteor.Chunks)
         {
-            var configurationExists = templateBiome.Conditions.Chunks.TryGetValue(configuration, out var chunkConfiguration);
+            var configurationExists =
+                templateBiome.Conditions.Chunks.TryGetValue(configuration, out var chunkConfiguration);
             if (!configurationExists)
             {
                 GD.PrintErr("Event chunk configuration does not exist: " + configuration);
@@ -179,15 +171,96 @@ public class MeteorImpactEvent : IWorldEffect
         }
     }
 
+    private void AdjustEnvironmentalConditions(Patch patch)
+    {
+        bool hasSunlight = patch.Biome.ChangeableCompounds.TryGetValue(Compound.Sunlight, out var currentSunlight);
+
+        if (!hasSunlight)
+        {
+            GD.PrintErr("Meteor impact event encountered patch with unexpectedly no sunlight");
+            return;
+        }
+
+        currentSunlight.Ambient *= Constants.METEOR_IMPACT_SUNLIGHT_MULTIPLICATION;
+        patch.Biome.ModifyLongTermCondition(Compound.Sunlight, currentSunlight);
+    }
+
+    private void AdjustCompounds(Patch patch)
+    {
+        var changes = new Dictionary<Compound, float>();
+        var cloudSizes = new Dictionary<Compound, float>();
+
+        foreach (var (compoundName, levelChange) in selectedMeteor.Compounds)
+        {
+            bool hasCompound =
+                patch.Biome.ChangeableCompounds.TryGetValue(compoundName, out var currentCompoundLevel);
+
+            if (!hasCompound)
+            {
+                GD.PrintErr($"Meteor impact event encountered patch with unexpectedly no {compoundName.ToString()}");
+                return;
+            }
+
+            var definition = SimulationParameters.Instance.GetCompoundDefinition(compoundName);
+
+            if (!definition.IsEnvironmental)
+            {
+                // glucose, phosphates, iron, sulfur
+                currentCompoundLevel.Density = (float)levelChange;
+                currentCompoundLevel.Amount = currentCompoundLevel.Amount == 0 ? 10000 : currentCompoundLevel.Amount;
+                changes[compoundName] = currentCompoundLevel.Density;
+                cloudSizes[compoundName] = currentCompoundLevel.Amount;
+            }
+            else
+            {
+                // CO2
+                currentCompoundLevel.Ambient = (float)levelChange;
+                changes[compoundName] = currentCompoundLevel.Ambient;
+            }
+        }
+
+        patch.Biome.ApplyLongTermCompoundChanges(patch.BiomeTemplate, changes, cloudSizes);
+    }
+
+    private void ReduceCompounds(Patch patch)
+    {
+        var changes = new Dictionary<Compound, float>();
+        var cloudSizes = new Dictionary<Compound, float>();
+
+        foreach (var (compoundName, levelChange) in selectedMeteor.Compounds)
+        {
+            bool hasCompound =
+                patch.Biome.ChangeableCompounds.TryGetValue(compoundName, out var currentCompoundLevel);
+
+            if (!hasCompound)
+            {
+                GD.PrintErr($"Meteor impact event encountered patch with unexpectedly no {compoundName.ToString()}");
+                return;
+            }
+
+            var definition = SimulationParameters.Instance.GetCompoundDefinition(compoundName);
+
+            if (!definition.IsEnvironmental)
+            {
+                // glucose, phosphates, iron, sulfur
+                currentCompoundLevel.Density = -(float)levelChange / 3;
+                changes[compoundName] = currentCompoundLevel.Density;
+                cloudSizes[compoundName] = currentCompoundLevel.Amount;
+            }
+        }
+
+        patch.Biome.ApplyLongTermCompoundChanges(patch.BiomeTemplate, changes, cloudSizes);
+    }
+
     private void LogEvent(Patch patch, double totalTimePassed)
     {
         patch.LogEvent(new LocalizedString("METEOR_IMPACT_EVENT"),
-            true, true, "GlobalGlaciationEvent.svg");
+            true, true, "MeteorImpactEvent.svg");
 
         if (patch.Visibility == MapElementVisibility.Shown)
         {
             targetWorld.LogEvent(new LocalizedString("METEOR_IMPACT_EVENT_LOG", patch.Name),
-                true, false, "GlobalGlaciationEvent.svg");
+                true, false, "MeteorImpactEvent.svg");
         }
 
         patch.AddPatchEventRecord(selectedMeteor.VisualEffect, totalTimePassed);
@@ -203,6 +276,7 @@ public class MeteorImpactEvent : IWorldEffect
                 continue;
             }
 
+            ReduceCompounds(patch);
             ResetEnvironment(patch);
             RemoveChunks(patch);
         }
