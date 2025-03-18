@@ -307,6 +307,6 @@ public class MeteorImpactEvent : IWorldEffect
     private void LogBeginningOfMeteorStrike()
     {
         targetWorld.LogEvent(new LocalizedString("METEOR_STRIKE_START_EVENT_LOG", modifiedPatchesIds.Count),
-            true, true, "GlobalGlaciationEvent.svg");
+            true, true, "MeteorImpactEvent.svg");
     }
 }
