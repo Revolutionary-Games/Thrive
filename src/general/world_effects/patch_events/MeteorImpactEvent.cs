@@ -137,9 +137,7 @@ public class MeteorImpactEvent : IWorldEffect
 
     private bool AreConditionsMet()
     {
-        return true;
-
-        // return random.NextFloat() <= Constants.METEOR_IMPACT_CHANCE;
+        return random.NextFloat() <= Constants.METEOR_IMPACT_CHANCE;
     }
 
     private void ChangePatchProperties(Patch patch, double totalTimePassed)
