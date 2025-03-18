@@ -7,7 +7,7 @@ using Godot;
 using Newtonsoft.Json;
 
 /// <summary>
-///   Base common class with shared editor functionality. Note that most editor functionality is done by
+///   Base, common class with shared editor functionality. Note that most editor functionality is done by
 ///   <see cref="EditorComponentBase{TEditor}"/> derived types.
 /// </summary>
 /// <typeparam name="TAction">Editor action type the action history uses in this editor</typeparam>
