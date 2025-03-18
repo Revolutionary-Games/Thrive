@@ -291,8 +291,6 @@ public static class Constants
 
     public const float CONTEXTUAL_ONLY_MUSIC_CHANCE = 0.33f;
 
-    public const float MICROBE_MOVEMENT_SOUND_EMIT_COOLDOWN = 1.3f;
-
     // Note that the rotation speed is reversed, i.e. lower values mean faster
     public const float CELL_MAX_ROTATION = 8.0f;
     public const float CELL_MIN_ROTATION = 0.10f;
@@ -427,6 +425,7 @@ public static class Constants
     public const string MICROBE_ENGULFING_MODE_SOUND = "res://assets/sounds/soundeffects/engulfment.ogg";
     public const string MICROBE_BINDING_MODE_SOUND = "res://assets/sounds/soundeffects/binding.ogg";
 
+    public const float MICROBE_MOVEMENT_SOUND_EMIT_COOLDOWN = 1.3f;
     public const float MICROBE_MOVEMENT_SOUND_MAX_VOLUME = 0.4f;
 
     // TODO: should this volume be actually 0?
@@ -439,6 +438,12 @@ public static class Constants
 
     public const float MICROBE_SOUND_MAX_DISTANCE = 300;
     public const float MICROBE_SOUND_MAX_DISTANCE_SQUARED = MICROBE_SOUND_MAX_DISTANCE * MICROBE_SOUND_MAX_DISTANCE;
+
+    /// <summary>
+    ///   Makes sounds played by the non-player cell a bit quieter. This is added because death sounds from other
+    ///   entities can get overwhelming otherwise
+    /// </summary>
+    public const float NON_PLAYER_ENTITY_VOLUME_MULTIPLIER = 0.7f;
 
     public const int MAX_CONCURRENT_SOUNDS = 100;
 

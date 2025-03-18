@@ -14,10 +14,16 @@ public struct SoundEffectPlayer
     public SoundEffectSlot[]? SoundEffectSlots;
 
     /// <summary>
-    ///   If not 0 then this is the max distance from (squared) the player that this sound player will play
+    ///   If not 0, then this is the max distance from (squared) the player that this sound player will play
     ///   anything at all
     /// </summary>
     public float AbsoluteMaxDistanceSquared;
+
+    /// <summary>
+    ///   If not 0, then sets a multiplier for all sound effect volumes played by this player. Used to make sounds from
+    ///   non-player entities quieter.
+    /// </summary>
+    public float SoundVolumeMultiplier;
 
     /// <summary>
     ///   When true the played sounds are automatically played in 2D for the player's entity (by having a
@@ -48,12 +54,12 @@ public struct SoundEffectSlot
 
     /// <summary>
     ///   If true then this sound keeps playing (looping) and <see cref="Play"/> never automatically stops. Can
-    ///   be set to false to stop the audio playing after the current loop or manually immediately stopped.
+    ///   be set to false in order to stop the audio playing after the current loop or manually immediately stopped.
     /// </summary>
     public bool Loop;
 
     /// <summary>
-    ///   Internal flag don't touch
+    ///   Internal flag, don't touch
     /// </summary>
     [JsonIgnore]
     public ushort InternalPlayingState;
@@ -73,7 +79,7 @@ public static class SoundEffectPlayerHelpers
     /// <returns>True if the sound was started, false if all playing slots were full already</returns>
     public static bool PlaySoundEffect(this ref SoundEffectPlayer soundEffectPlayer, string sound, float volume = 1)
     {
-        // There's a race condition here but it should only extremely rarely happen if two sounds want to start
+        // There's a race condition here, but it should only extremely rarely happen if two sounds want to start
         // at the exact same moment in time
         SoundEffectSlot[]? slots = soundEffectPlayer.SoundEffectSlots;
 
@@ -96,7 +102,7 @@ public static class SoundEffectPlayerHelpers
 
                 // Found an empty slot to play in
                 slot.SoundFile = sound;
-                slot.Volume = volume;
+                slot.Volume = CalculateEffectiveVolume(volume, soundEffectPlayer.SoundVolumeMultiplier);
                 slot.Play = true;
 
                 slot.Loop = false;
@@ -263,7 +269,9 @@ public static class SoundEffectPlayerHelpers
                 {
                     var targetVolume = Math.Clamp(slot.Volume + changeSpeed, 0, maxVolume);
 
-                    // The volume mostly changes until it reaches the max volume which is always the exact same
+                    targetVolume = CalculateEffectiveVolume(targetVolume, soundEffectPlayer.SoundVolumeMultiplier);
+
+                    // The volume mostly changes until it reaches the max volume, which is always the exact same
                     // ReSharper disable once CompareOfFloatsByEqualityOperator
                     if (slot.Volume != targetVolume || !slot.Loop || !slot.Play)
                     {
@@ -290,7 +298,7 @@ public static class SoundEffectPlayerHelpers
                 ref var slot = ref slots[emptySlot];
 
                 slot.SoundFile = sound;
-                slot.Volume = initialVolume;
+                slot.Volume = CalculateEffectiveVolume(initialVolume, soundEffectPlayer.SoundVolumeMultiplier);
                 slot.Loop = true;
                 slot.Play = true;
 
@@ -307,7 +315,7 @@ public static class SoundEffectPlayerHelpers
     ///   The opposite of <see cref="PlayGraduallyTurningUpLoopingSound"/> for handling stopping sounds started
     ///   like that
     /// </summary>
-    /// <returns>True if there was a sound to lower volume of or stop</returns>
+    /// <returns>True if there was a sound to lower the volume of or stop</returns>
     public static bool PlayGraduallyTurningDownSound(this ref SoundEffectPlayer soundEffectPlayer, string sound,
         float changeSpeed)
     {
@@ -335,10 +343,12 @@ public static class SoundEffectPlayerHelpers
 
                 if (targetVolume <= 0)
                 {
-                    // Immediately stop when volume reaches zero
+                    // Immediately stop when the volume reaches zero
                     slot.Play = false;
                     return true;
                 }
+
+                targetVolume = CalculateEffectiveVolume(targetVolume, soundEffectPlayer.SoundVolumeMultiplier);
 
                 slot.Volume = targetVolume;
 
@@ -374,7 +384,9 @@ public static class SoundEffectPlayerHelpers
                 // Detect already playing sound
                 if (slot.Play && slot.SoundFile == sound)
                 {
-                    // These are explicitly set by calling code so exact values should be fine
+                    // These are explicitly set by calling code, so exact values should be fine
+                    volume = CalculateEffectiveVolume(volume, soundEffectPlayer.SoundVolumeMultiplier);
+
                     // ReSharper disable once CompareOfFloatsByEqualityOperator
                     if (slot.Volume != volume || slot.Loop != loop)
                     {
@@ -399,7 +411,7 @@ public static class SoundEffectPlayerHelpers
                 ref var slot = ref slots[emptySlot];
 
                 slot.SoundFile = sound;
-                slot.Volume = volume;
+                slot.Volume = CalculateEffectiveVolume(volume, soundEffectPlayer.SoundVolumeMultiplier);
                 slot.Loop = loop;
                 slot.Play = true;
 
@@ -416,12 +428,25 @@ public static class SoundEffectPlayerHelpers
     private static bool IsSlotReadyForReUse(ref SoundEffectSlot slot)
     {
         // The Play variable is used to both control the playback and to detect when it has ended, as such a slot
-        // with Play false is not necessarily ready for re-use yet, so we kind of naughtily check the internal
-        // state to detect when the slot is truly free
+        // with Play false is not necessarily ready for re-use yet. So we kind of naughtily check the internal
+        // state to detect when the slot is truly free.
         return !slot.Play && slot.InternalPlayingState == 0;
 
         // TODO: would it be better to adjust the sound slot reuse logic when the slot is still playing?
         // There's currently an error print in HandleSoundEntityStateApply that triggers if a slot is reused
         // before its internal player is reset
+    }
+
+    [MethodImpl(MethodImplOptions.AggressiveInlining)]
+    private static float CalculateEffectiveVolume(float volume, float soundVolumeMultiplier)
+    {
+        if (soundVolumeMultiplier == 0)
+            return volume;
+
+        // Negative value disables sounds
+        if (soundVolumeMultiplier < -0)
+            return 0;
+
+        return volume * soundVolumeMultiplier;
     }
 }
