@@ -645,6 +645,13 @@ msgstr ""
 "And for example when modifying flagellum length the speed values don't fully make sense and don't match what will happen in the stage.\n"
 "This is a known problem but is not fixed yet due to being lower priority than many other problems and new features."
 
+msgid "CELL_STAT_STORAGE_TOOLTIP"
+msgstr ""
+"Storage capacity of the cell. Higher storage allows storing more compounds at once.\n"
+"High-storage cells can use a strategy where they cannot move indefinitely but need to recharge their ATP stores for a while to then move.\n"
+"Note that a low amount of storage can cause ATP shortages even if the ATP balance is positive. These problems can become worse due to lag spikes\n"
+"or general low performance of the game. Adding more storage helps with these issues."
+
 msgid "CELL_TYPE_BUTTON_ATP_CONSUMPTION"
 msgstr "The ATP consumption of this cell type is {0}."
 

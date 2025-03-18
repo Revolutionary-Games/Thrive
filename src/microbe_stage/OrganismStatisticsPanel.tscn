@@ -114,6 +114,7 @@ Description = "SIZE_COLON"
 
 [node name="Storage" parent="VBoxContainer/Body/ScrollContainer/MarginContainer/VBoxContainer" instance=ExtResource("3_mvl7o")]
 layout_mode = 2
+tooltip_text = "CELL_STAT_STORAGE_TOOLTIP"
 Icon = ExtResource("6_6daqi")
 Description = "STORAGE_COLON"
 
@@ -236,6 +237,7 @@ selected = 0
 fit_to_longest_item = false
 item_count = 5
 popup/item_0/text = "ATP_BALANCE_WITH_ALL_COMPOUNDS"
+popup/item_0/id = 0
 popup/item_1/text = "ATP_BALANCE_WITHOUT_GLUCOSE"
 popup/item_1/id = 1
 popup/item_2/text = "ATP_BALANCE_WITHOUT_IRON"
