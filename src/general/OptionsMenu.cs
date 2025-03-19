@@ -4,6 +4,7 @@ using System.Globalization;
 using System.Linq;
 using Godot;
 using Saving;
+using Tutorial;
 
 /// <summary>
 ///   Handles the logic for the options menu GUI.
@@ -2878,6 +2879,14 @@ public partial class OptionsMenu : ControlWithInput
 
         UpdateResetSaveButtonState();
         UpdateDismissedNoticeCount();
+    }
+
+    private void OnResetShownTutorials()
+    {
+        GUICommon.Instance.PlayButtonPressSound();
+
+        GD.Print("Clearing all seen tutorials");
+        AlreadySeenTutorials.ResetAllSeenTutorials();
     }
 
     private void OnOpenPatchNotesPressed()
