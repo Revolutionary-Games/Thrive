@@ -1259,6 +1259,10 @@ public static class Constants
     public const float AUTO_EVO_CHUNK_ENERGY_AMOUNT = 90000000;
     public const float AUTO_EVO_CHUNK_AMOUNT_NERF = 0.01f;
 
+    public const int AI_FOLLOW_PLAYER_MIGRATION_TO_EMPTY_PATCH_THRESHOLD = 2;
+
+    public const int AI_FOLLOW_FREE_POPULATION_GIVEN = 100;
+
     /// <summary>
     ///   Default cell's score, value is compared to <see cref="AutoEvoLysosomeEnzymesScores"/>
     /// </summary>

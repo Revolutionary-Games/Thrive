@@ -322,12 +322,6 @@ public partial class MacroscopicEditor : EditorBase<EditorAction, MacroscopicSta
         CheckDidActionAffectTissueTypes(history.ActionToUndo());
     }
 
-    protected override void ElapseEditorEntryTime()
-    {
-        // TODO: select which units will be used for the master elapsed time counter
-        CurrentGame.GameWorld.OnTimePassed(1);
-    }
-
     protected override GameProperties StartNewGameForEditor()
     {
         return GameProperties.StartNewMacroscopicGame(new WorldGenerationSettings());
