@@ -22,7 +22,7 @@
 [ext_resource type="PackedScene" uid="uid://sxqf3o1pkl0n" path="res://src/microbe_stage/editor/CompoundBalanceDisplay.tscn" id="16_wlbdy"]
 [ext_resource type="PackedScene" uid="uid://doveokjve1v3t" path="res://src/microbe_stage/editor/CompoundStorageStatistics.tscn" id="17_pca5e"]
 
-[node name="OrganismStatisticsPanel" type="PanelContainer" node_paths=PackedStringArray("sizeLabel", "speedLabel", "rotationSpeedLabel", "hpLabel", "storageLabel", "digestionSpeedLabel", "digestionEfficiencyLabel", "ammoniaCostLabel", "phosphatesCostLabel", "basicStatsSeparator", "movementStatsSeparator", "digestionStatsSeparator", "organellesCostsSeparator", "generationLabel", "atpBalancePanel", "atpBalanceBarContainer", "atpBalanceLabel", "atpProductionLabel", "atpConsumptionLabel", "atpProductionBar", "atpConsumptionBar", "compoundBalance", "compoundStorageLastingTimes", "notEnoughStorageWarning", "calculateBalancesAsIfDay", "calculateBalancesWhenMoving", "processListButton")]
+[node name="OrganismStatisticsPanel" type="PanelContainer" node_paths=PackedStringArray("sizeLabel", "speedLabel", "rotationSpeedLabel", "hpLabel", "storageLabel", "digestionSpeedLabel", "digestionEfficiencyLabel", "ammoniaCostLabel", "phosphatesCostLabel", "digestionStatsSeparator", "generationLabel", "atpBalancePanel", "atpBalanceBarContainer", "atpBalanceLabel", "atpProductionLabel", "atpConsumptionLabel", "atpProductionBar", "atpConsumptionBar", "compoundBalance", "compoundStorageLastingTimes", "notEnoughStorageWarning", "calculateBalancesAsIfDay", "calculateBalancesWhenMoving", "processListButton")]
 size_flags_vertical = 3
 mouse_filter = 1
 theme = ExtResource("1_ca4to")
@@ -38,10 +38,7 @@ digestionSpeedLabel = NodePath("VBoxContainer/Body/ScrollContainer/MarginContain
 digestionEfficiencyLabel = NodePath("VBoxContainer/Body/ScrollContainer/MarginContainer/VBoxContainer/DigestionEfficiency")
 ammoniaCostLabel = NodePath("VBoxContainer/Body/ScrollContainer/MarginContainer/VBoxContainer/AmmoniaCost")
 phosphatesCostLabel = NodePath("VBoxContainer/Body/ScrollContainer/MarginContainer/VBoxContainer/PhosphatesCost")
-basicStatsSeparator = NodePath("VBoxContainer/Body/ScrollContainer/MarginContainer/VBoxContainer/HSeparator")
-movementStatsSeparator = NodePath("VBoxContainer/Body/ScrollContainer/MarginContainer/VBoxContainer/HSeparator2")
-digestionStatsSeparator = NodePath("VBoxContainer/Body/ScrollContainer/MarginContainer/VBoxContainer/HSeparator3")
-organellesCostsSeparator = NodePath("VBoxContainer/Body/ScrollContainer/MarginContainer/VBoxContainer/HSeparator4")
+digestionStatsSeparator = NodePath("VBoxContainer/Body/ScrollContainer/MarginContainer/VBoxContainer/HSeparator4")
 generationLabel = NodePath("VBoxContainer/Body/ScrollContainer/MarginContainer/VBoxContainer/Generation/Value")
 atpBalancePanel = NodePath("VBoxContainer/Body/ScrollContainer/MarginContainer/VBoxContainer/ATPBalancePanel")
 atpBalanceBarContainer = NodePath("VBoxContainer/Body/ScrollContainer/MarginContainer/VBoxContainer/ATPBalancePanel/VBoxContainer/ATPBarContainer")
@@ -107,18 +104,10 @@ layout_mode = 2
 Icon = ExtResource("4_6j8dv")
 Description = "HP_COLON"
 
-[node name="Size" parent="VBoxContainer/Body/ScrollContainer/MarginContainer/VBoxContainer" instance=ExtResource("3_mvl7o")]
-layout_mode = 2
-Icon = ExtResource("5_wtbqs")
-Description = "SIZE_COLON"
-
 [node name="Storage" parent="VBoxContainer/Body/ScrollContainer/MarginContainer/VBoxContainer" instance=ExtResource("3_mvl7o")]
 layout_mode = 2
 Icon = ExtResource("6_6daqi")
 Description = "STORAGE_COLON"
-
-[node name="HSeparator" type="HSeparator" parent="VBoxContainer/Body/ScrollContainer/MarginContainer/VBoxContainer"]
-layout_mode = 2
 
 [node name="Speed" parent="VBoxContainer/Body/ScrollContainer/MarginContainer/VBoxContainer" instance=ExtResource("3_mvl7o")]
 layout_mode = 2
@@ -132,35 +121,8 @@ tooltip_text = "CELL_STAT_ROTATION_TOOLTIP"
 Icon = ExtResource("8_52j0g")
 Description = "ROTATION_COLON"
 
-[node name="HSeparator2" type="HSeparator" parent="VBoxContainer/Body/ScrollContainer/MarginContainer/VBoxContainer"]
-layout_mode = 2
-
-[node name="DigestionSpeed" parent="VBoxContainer/Body/ScrollContainer/MarginContainer/VBoxContainer" instance=ExtResource("3_mvl7o")]
-layout_mode = 2
-Icon = ExtResource("9_yl0er")
-Description = "DIGESTION_SPEED_COLON"
-
-[node name="DigestionEfficiency" parent="VBoxContainer/Body/ScrollContainer/MarginContainer/VBoxContainer" instance=ExtResource("3_mvl7o")]
-layout_mode = 2
-Icon = ExtResource("10_l6acm")
-Description = "DIGESTION_EFFICIENCY_COLON"
-
 [node name="HSeparator3" type="HSeparator" parent="VBoxContainer/Body/ScrollContainer/MarginContainer/VBoxContainer"]
 layout_mode = 2
-
-[node name="Generation" type="HBoxContainer" parent="VBoxContainer/Body/ScrollContainer/MarginContainer/VBoxContainer"]
-layout_mode = 2
-
-[node name="Description" type="Label" parent="VBoxContainer/Body/ScrollContainer/MarginContainer/VBoxContainer/Generation"]
-layout_mode = 2
-text = "GENERATION_COLON"
-label_settings = ExtResource("11_bfneb")
-
-[node name="Value" type="Label" parent="VBoxContainer/Body/ScrollContainer/MarginContainer/VBoxContainer/Generation"]
-editor_description = "PLACEHOLDER"
-layout_mode = 2
-text = "n/a"
-label_settings = ExtResource("12_mwh2k")
 
 [node name="ATPBalancePanel" type="MarginContainer" parent="VBoxContainer/Body/ScrollContainer/MarginContainer/VBoxContainer"]
 layout_mode = 2
@@ -236,6 +198,7 @@ selected = 0
 fit_to_longest_item = false
 item_count = 5
 popup/item_0/text = "ATP_BALANCE_WITH_ALL_COMPOUNDS"
+popup/item_0/id = 0
 popup/item_1/text = "ATP_BALANCE_WITHOUT_GLUCOSE"
 popup/item_1/id = 1
 popup/item_2/text = "ATP_BALANCE_WITHOUT_IRON"
@@ -270,7 +233,7 @@ text_overrun_behavior = 4
 clip_text = true
 
 [node name="Separator2" type="Control" parent="VBoxContainer/Body/ScrollContainer/MarginContainer/VBoxContainer"]
-custom_minimum_size = Vector2(0, 10)
+custom_minimum_size = Vector2(0, 5)
 layout_mode = 2
 mouse_filter = 1
 
@@ -287,6 +250,25 @@ text = "VIEW_CELL_PROCESSES"
 text_overrun_behavior = 3
 clip_text = true
 
+[node name="HSeparator5" type="HSeparator" parent="VBoxContainer/Body/ScrollContainer/MarginContainer/VBoxContainer"]
+layout_mode = 2
+mouse_filter = 1
+
+[node name="Size" parent="VBoxContainer/Body/ScrollContainer/MarginContainer/VBoxContainer" instance=ExtResource("3_mvl7o")]
+layout_mode = 2
+Icon = ExtResource("5_wtbqs")
+Description = "SIZE_COLON"
+
+[node name="DigestionSpeed" parent="VBoxContainer/Body/ScrollContainer/MarginContainer/VBoxContainer" instance=ExtResource("3_mvl7o")]
+layout_mode = 2
+Icon = ExtResource("9_yl0er")
+Description = "DIGESTION_SPEED_COLON"
+
+[node name="DigestionEfficiency" parent="VBoxContainer/Body/ScrollContainer/MarginContainer/VBoxContainer" instance=ExtResource("3_mvl7o")]
+layout_mode = 2
+Icon = ExtResource("10_l6acm")
+Description = "DIGESTION_EFFICIENCY_COLON"
+
 [node name="HSeparator4" type="HSeparator" parent="VBoxContainer/Body/ScrollContainer/MarginContainer/VBoxContainer"]
 custom_minimum_size = Vector2(0, 10)
 layout_mode = 2
@@ -302,6 +284,20 @@ layout_mode = 2
 tooltip_text = "NUTRIENT_COST_TOOLTIP"
 Icon = ExtResource("15_ytqp8")
 Description = "PHOSPHATES_COST"
+
+[node name="Generation" type="HBoxContainer" parent="VBoxContainer/Body/ScrollContainer/MarginContainer/VBoxContainer"]
+layout_mode = 2
+
+[node name="Description" type="Label" parent="VBoxContainer/Body/ScrollContainer/MarginContainer/VBoxContainer/Generation"]
+layout_mode = 2
+text = "GENERATION_COLON"
+label_settings = ExtResource("11_bfneb")
+
+[node name="Value" type="Label" parent="VBoxContainer/Body/ScrollContainer/MarginContainer/VBoxContainer/Generation"]
+editor_description = "PLACEHOLDER"
+layout_mode = 2
+text = "n/a"
+label_settings = ExtResource("12_mwh2k")
 
 [connection signal="item_selected" from="VBoxContainer/Body/ScrollContainer/MarginContainer/VBoxContainer/ATPBalancePanel/VBoxContainer/ATPBalanceMode" to="." method="SelectATPBalanceMode"]
 [connection signal="toggled" from="VBoxContainer/Body/ScrollContainer/MarginContainer/VBoxContainer/NumbersAtDay" to="." method="OnBalanceShowOptionsChanged"]

@@ -506,6 +506,7 @@ public partial class MicrobeEditorTutorialGUI : Control, ITutorialGUI
         // Force the scroll panel to scroll down. This is done to show the ATP Balance Bar.
         // It seems like Godot doesn't have a scroll into view, so we need to ensure that the scroll cannot be too
         // much or too little ever.
+        // TODO: adjust this with the new reordered panel and upcoming tutorial rework
         if (eitherVisible)
             RightPanelScrollContainer.ScrollVertical = 150;
     }
