@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Thrive VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2025-03-19 11:38+0200\n"
+"POT-Creation-Date: 2025-03-19 15:24+0200\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -67,10 +67,10 @@ msgstr ""
 msgid "ACTION_AWAKEN_TOOLTIP"
 msgstr ""
 
-#: ../src/general/base_stage/EditorBase.cs:771
-#: ../src/macroscopic_stage/editor/MacroscopicEditor.cs:529
+#: ../src/general/base_stage/EditorBase.cs:789
+#: ../src/macroscopic_stage/editor/MacroscopicEditor.cs:523
 #: ../src/microbe_stage/editor/CellEditorComponent.GUI.cs:63
-#: ../src/multicellular_stage/editor/MulticellularEditor.cs:453
+#: ../src/multicellular_stage/editor/MulticellularEditor.cs:447
 msgid "ACTION_BLOCKED_WHILE_ANOTHER_IN_PROGRESS"
 msgstr ""
 
@@ -205,7 +205,7 @@ msgstr ""
 msgid "AMMONIA"
 msgstr ""
 
-#: ../src/microbe_stage/OrganismStatisticsPanel.tscn:298
+#: ../src/microbe_stage/OrganismStatisticsPanel.tscn:300
 msgid "AMMONIA_COST"
 msgstr ""
 
@@ -312,7 +312,7 @@ msgstr ""
 msgid "ATP"
 msgstr ""
 
-#: ../src/microbe_stage/OrganismStatisticsPanel.tscn:181
+#: ../src/microbe_stage/OrganismStatisticsPanel.tscn:182
 msgid "ATP_BALANCE"
 msgstr ""
 
@@ -324,23 +324,23 @@ msgstr ""
 msgid "ATP_BALANCE_TOOLTIP_MULTICELLULAR"
 msgstr ""
 
-#: ../src/microbe_stage/OrganismStatisticsPanel.tscn:245
+#: ../src/microbe_stage/OrganismStatisticsPanel.tscn:247
 msgid "ATP_BALANCE_WITHOUT_EXTERNAL_RESOURCES"
 msgstr ""
 
-#: ../src/microbe_stage/OrganismStatisticsPanel.tscn:239
+#: ../src/microbe_stage/OrganismStatisticsPanel.tscn:241
 msgid "ATP_BALANCE_WITHOUT_GLUCOSE"
 msgstr ""
 
-#: ../src/microbe_stage/OrganismStatisticsPanel.tscn:243
+#: ../src/microbe_stage/OrganismStatisticsPanel.tscn:245
 msgid "ATP_BALANCE_WITHOUT_HYDROGEN_SULFIDE"
 msgstr ""
 
-#: ../src/microbe_stage/OrganismStatisticsPanel.tscn:241
+#: ../src/microbe_stage/OrganismStatisticsPanel.tscn:243
 msgid "ATP_BALANCE_WITHOUT_IRON"
 msgstr ""
 
-#: ../src/microbe_stage/OrganismStatisticsPanel.tscn:238
+#: ../src/microbe_stage/OrganismStatisticsPanel.tscn:239
 msgid "ATP_BALANCE_WITH_ALL_COMPOUNDS"
 msgstr ""
 
@@ -505,19 +505,19 @@ msgstr ""
 msgid "BACTERIAL_THERMOSYNTHESIS"
 msgstr ""
 
-#: ../src/microbe_stage/OrganismStatisticsPanel.tscn:259
+#: ../src/microbe_stage/OrganismStatisticsPanel.tscn:261
 msgid "BALANCE_DISPLAY_AT_DAY_ALWAYS"
 msgstr ""
 
-#: ../src/microbe_stage/OrganismStatisticsPanel.tscn:257
+#: ../src/microbe_stage/OrganismStatisticsPanel.tscn:259
 msgid "BALANCE_DISPLAY_AT_DAY_ALWAYS_TOOLTIP"
 msgstr ""
 
-#: ../src/microbe_stage/OrganismStatisticsPanel.tscn:268
+#: ../src/microbe_stage/OrganismStatisticsPanel.tscn:270
 msgid "BALANCE_DISPLAY_WHILE_MOVING"
 msgstr ""
 
-#: ../src/microbe_stage/OrganismStatisticsPanel.tscn:265
+#: ../src/microbe_stage/OrganismStatisticsPanel.tscn:267
 msgid "BALANCE_DISPLAY_WHILE_MOVING_TOOLTIP"
 msgstr ""
 
@@ -872,12 +872,16 @@ msgstr ""
 msgid "CELLULOSE_MEMBRANE_DESCRIPTION"
 msgstr ""
 
-#: ../src/microbe_stage/OrganismStatisticsPanel.tscn:131
+#: ../src/microbe_stage/OrganismStatisticsPanel.tscn:132
 msgid "CELL_STAT_ROTATION_TOOLTIP"
 msgstr ""
 
-#: ../src/microbe_stage/OrganismStatisticsPanel.tscn:125
+#: ../src/microbe_stage/OrganismStatisticsPanel.tscn:126
 msgid "CELL_STAT_SPEED_TOOLTIP"
+msgstr ""
+
+#: ../src/microbe_stage/OrganismStatisticsPanel.tscn:117
+msgid "CELL_STAT_STORAGE_TOOLTIP"
 msgstr ""
 
 #: ../src/multicellular_stage/editor/CellTypeSelection.cs:184
@@ -2029,7 +2033,7 @@ msgstr ""
 msgid "DIGESTION_EFFICIENCY"
 msgstr ""
 
-#: ../src/microbe_stage/OrganismStatisticsPanel.tscn:146
+#: ../src/microbe_stage/OrganismStatisticsPanel.tscn:147
 msgid "DIGESTION_EFFICIENCY_COLON"
 msgstr ""
 
@@ -2037,7 +2041,7 @@ msgstr ""
 msgid "DIGESTION_SPEED"
 msgstr ""
 
-#: ../src/microbe_stage/OrganismStatisticsPanel.tscn:141
+#: ../src/microbe_stage/OrganismStatisticsPanel.tscn:142
 msgid "DIGESTION_SPEED_COLON"
 msgstr ""
 
@@ -3009,7 +3013,7 @@ msgstr ""
 msgid "GENERATIONS"
 msgstr ""
 
-#: ../src/microbe_stage/OrganismStatisticsPanel.tscn:156
+#: ../src/microbe_stage/OrganismStatisticsPanel.tscn:157
 msgid "GENERATION_COLON"
 msgstr ""
 
@@ -5722,8 +5726,8 @@ msgstr ""
 msgid "NUMLOCK"
 msgstr ""
 
-#: ../src/microbe_stage/OrganismStatisticsPanel.tscn:296
-#: ../src/microbe_stage/OrganismStatisticsPanel.tscn:302
+#: ../src/microbe_stage/OrganismStatisticsPanel.tscn:298
+#: ../src/microbe_stage/OrganismStatisticsPanel.tscn:304
 msgid "NUTRIENT_COST_TOOLTIP"
 msgstr ""
 
@@ -6235,7 +6239,7 @@ msgstr ""
 msgid "PHOSPHATE"
 msgstr ""
 
-#: ../src/microbe_stage/OrganismStatisticsPanel.tscn:304
+#: ../src/microbe_stage/OrganismStatisticsPanel.tscn:306
 msgid "PHOSPHATES_COST"
 msgstr ""
 
@@ -6738,7 +6742,7 @@ msgstr ""
 msgid "ROTATE_RIGHT"
 msgstr ""
 
-#: ../src/microbe_stage/OrganismStatisticsPanel.tscn:133
+#: ../src/microbe_stage/OrganismStatisticsPanel.tscn:134
 msgid "ROTATION_COLON"
 msgstr ""
 
@@ -6982,7 +6986,7 @@ msgid "SECRETE_SLIME_TOOLTIP"
 msgstr ""
 
 #: ../src/microbe_stage/editor/MicrobeEditorPatchMap.tscn:138
-#: ../src/microbe_stage/editor/PatchMapEditorComponent.cs:328
+#: ../src/microbe_stage/editor/PatchMapEditorComponent.cs:347
 #: ../src/thriveopedia/pages/ThriveopediaPatchMapPage.cs:146
 #: ../src/thriveopedia/pages/ThriveopediaPatchMapPage.tscn:82
 msgid "SEED_LABEL"
@@ -7383,7 +7387,7 @@ msgstr ""
 msgid "SPEED"
 msgstr ""
 
-#: ../src/microbe_stage/OrganismStatisticsPanel.tscn:127
+#: ../src/microbe_stage/OrganismStatisticsPanel.tscn:128
 msgid "SPEED_COLON"
 msgstr ""
 
@@ -7530,7 +7534,7 @@ msgstr ""
 msgid "STORAGE"
 msgstr ""
 
-#: ../src/microbe_stage/OrganismStatisticsPanel.tscn:118
+#: ../src/microbe_stage/OrganismStatisticsPanel.tscn:119
 msgid "STORAGE_COLON"
 msgstr ""
 
@@ -7903,6 +7907,14 @@ msgstr ""
 msgid "TIMELINE_NICHE_FILL"
 msgstr ""
 
+#: ../src/microbe_stage/editor/PatchMapEditorComponent.cs:156
+msgid "TIMELINE_PLAYER_MIGRATED"
+msgstr ""
+
+#: ../src/microbe_stage/editor/PatchMapEditorComponent.cs:152
+msgid "TIMELINE_PLAYER_MIGRATED_TO"
+msgstr ""
+
 #: ../src/auto-evo/RunResults.cs:1359
 msgid "TIMELINE_SELECTION_PRESSURE_SPLIT"
 msgstr ""
@@ -7918,6 +7930,10 @@ msgstr ""
 
 #: ../src/auto-evo/RunResults.cs:1297
 msgid "TIMELINE_SPECIES_EXTINCT_LOCAL"
+msgstr ""
+
+#: ../src/microbe_stage/editor/PatchMapEditorComponent.cs:438
+msgid "TIMELINE_SPECIES_FOLLOWED"
 msgstr ""
 
 #: ../src/auto-evo/RunResults.cs:1323
@@ -8695,7 +8711,7 @@ msgstr ""
 msgid "VIEW_ALL"
 msgstr ""
 
-#: ../src/microbe_stage/OrganismStatisticsPanel.tscn:286
+#: ../src/microbe_stage/OrganismStatisticsPanel.tscn:288
 msgid "VIEW_CELL_PROCESSES"
 msgstr ""
 
@@ -8769,7 +8785,7 @@ msgstr ""
 msgid "VSYNC"
 msgstr ""
 
-#: ../src/general/base_stage/EditorBase.cs:270
+#: ../src/general/base_stage/EditorBase.cs:280
 msgid "WAITING_FOR_AUTO_EVO"
 msgstr ""
 

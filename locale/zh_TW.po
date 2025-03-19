@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2025-03-19 11:38+0200\n"
+"POT-Creation-Date: 2025-03-19 15:24+0200\n"
 "PO-Revision-Date: 2025-03-12 14:39+0000\n"
 "Last-Translator: Anonymous <noreply@weblate.org>\n"
 "Language-Team: Chinese (Traditional Han script) <https://translate.revolutionarygamesstudio.com/projects/thrive/thrive-game/zh_Hant/>\n"
@@ -641,6 +641,13 @@ msgstr ""
 "細胞器的放置位置會影響旋轉，離中心越遠的細胞器對旋轉的影響越大。"
 
 msgid "CELL_STAT_SPEED_TOOLTIP"
+msgstr ""
+"細胞的速度。請注意，由於計算演算法的限制，該值為近似值。\n"
+"例如，當修改鞭毛長度時，速度值可能無法完全反映實際情況，並且可能與遊戲中的實際表現不完全一致。\n"
+"這是一個已知問題，但由於其優先級低於其他許多問題與新功能，因此尚未修復。"
+
+#, fuzzy
+msgid "CELL_STAT_STORAGE_TOOLTIP"
 msgstr ""
 "細胞的速度。請注意，由於計算演算法的限制，該值為近似值。\n"
 "例如，當修改鞭毛長度時，速度值可能無法完全反映實際情況，並且可能與遊戲中的實際表現不完全一致。\n"
@@ -5699,6 +5706,14 @@ msgstr "顯示本地事件"
 msgid "TIMELINE_NICHE_FILL"
 msgstr "[b][u]{0}[/u][/b] 從 [b][u]{1}[/u][/b] 中分支出來，作為一個新物種來填補生態棲位"
 
+#, fuzzy
+msgid "TIMELINE_PLAYER_MIGRATED"
+msgstr "部分 [b][u]{0}[/u][/b] 種群已遷移至 {1}"
+
+#, fuzzy
+msgid "TIMELINE_PLAYER_MIGRATED_TO"
+msgstr "部分 [b][u]{0}[/u][/b] 種群已遷移至 {1}"
+
 msgid "TIMELINE_SELECTION_PRESSURE_SPLIT"
 msgstr "[b][u]{0}[/u][/b] 從 [b][u]{1}[/u][/b] 中分支出來，成為了一個新物種，原因是演化壓力"
 
@@ -5710,6 +5725,10 @@ msgstr "[b][u]{0}[/u][/b] 滅絕了！"
 
 msgid "TIMELINE_SPECIES_EXTINCT_LOCAL"
 msgstr "[b][u]{0}[/u][/b] 已從此區域中消失"
+
+#, fuzzy
+msgid "TIMELINE_SPECIES_FOLLOWED"
+msgstr "[b][u]{0}[/u][/b] 滅絕了！"
 
 msgid "TIMELINE_SPECIES_MIGRATED_FROM"
 msgstr "部分 [b][u]{0}[/u][/b] 種群從 {1}遷移到此區域"

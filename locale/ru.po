@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2025-03-19 11:38+0200\n"
+"POT-Creation-Date: 2025-03-19 15:24+0200\n"
 "PO-Revision-Date: 2025-03-12 14:39+0000\n"
 "Last-Translator: Anonymous <noreply@weblate.org>\n"
 "Language-Team: Russian <https://translate.revolutionarygamesstudio.com/projects/thrive/thrive-game/ru/>\n"
@@ -648,6 +648,13 @@ msgstr ""
 "Размещение органелл влияет на вращение: органеллы, расположенные дальше от центра, сильнее замедляют вращение."
 
 msgid "CELL_STAT_SPEED_TOOLTIP"
+msgstr ""
+"Скорость Клетки. Пожалуйста, заметьте, что ввиду лимитов алгоритмов, отвечающих за вычисление скорости, выдаётся приблизительное значение.\n"
+"И, Для примера, когда вы модифицируете длину жгутика, показываемые значения не демонстрируют настоящую скорость в игровом мире.\n"
+"Это известная проблема, но пока что мы её не исправили -- она в низком приоритете, для нас есть более важные вещи."
+
+#, fuzzy
+msgid "CELL_STAT_STORAGE_TOOLTIP"
 msgstr ""
 "Скорость Клетки. Пожалуйста, заметьте, что ввиду лимитов алгоритмов, отвечающих за вычисление скорости, выдаётся приблизительное значение.\n"
 "И, Для примера, когда вы модифицируете длину жгутика, показываемые значения не демонстрируют настоящую скорость в игровом мире.\n"
@@ -5753,6 +5760,14 @@ msgstr "Показать местные события"
 msgid "TIMELINE_NICHE_FILL"
 msgstr "Вид [b][u]{0}[/u][/b] отделился от вида [b][u]{1}[/u][/b] как новый вид, чтобы заполнить нишу"
 
+#, fuzzy
+msgid "TIMELINE_PLAYER_MIGRATED"
+msgstr "Часть популяции вида [b][u]{0}[/u][/b] мигрировала в {1}"
+
+#, fuzzy
+msgid "TIMELINE_PLAYER_MIGRATED_TO"
+msgstr "Часть популяции вида [b][u]{0}[/u][/b] мигрировала в {1}"
+
 msgid "TIMELINE_SELECTION_PRESSURE_SPLIT"
 msgstr "Вид [b][u]{0}[/u][/b] отделился от вида [b][u]{1}[/u][/b] как новый вид в связи с различными условиями отбора"
 
@@ -5764,6 +5779,10 @@ msgstr "Вид [b][u]{0}[/u][/b] вымер!"
 
 msgid "TIMELINE_SPECIES_EXTINCT_LOCAL"
 msgstr "Вид [b][u]{0}[/u][/b] исчез из этого биома"
+
+#, fuzzy
+msgid "TIMELINE_SPECIES_FOLLOWED"
+msgstr "Вид [b][u]{0}[/u][/b] вымер!"
 
 msgid "TIMELINE_SPECIES_MIGRATED_FROM"
 msgstr "Часть популяции вида [b][u]{0}[/u][/b] мигрировала в этот биом из {1}"

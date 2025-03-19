@@ -149,10 +149,12 @@ public partial class PatchMapEditorComponent<TEditor> : EditorComponentBase<TEdi
             targetPatch.AddSpecies(Editor.EditedBaseSpecies, 0);
 
             // Log the player migration
-            Editor.CurrentGame.GameWorld.LogEvent(new LocalizedString("TIMELINE_PLAYER_MIGRATED", targetPatch.Name),
-                false, false, "popMigrated.png", Editor.CalculateNextGenerationTimePoint());
-            targetPatch.LogEvent(new LocalizedString("TIMELINE_PLAYER_MIGRATED", targetPatch.Name), false, false,
-                "popMigrated.png");
+            Editor.CurrentGame.GameWorld.LogEvent(new LocalizedString("TIMELINE_PLAYER_MIGRATED_TO",
+                Editor.EditedBaseSpecies.FormattedNameBbCodeUnstyled,
+                targetPatch.Name), true, false, "popMigrated.png", Editor.CalculateNextGenerationTimePoint());
+            targetPatch.LogEvent(
+                new LocalizedString("TIMELINE_PLAYER_MIGRATED", Editor.EditedBaseSpecies.FormattedNameBbCodeUnstyled),
+                true, false, "popMigrated.png");
 
             if (migrateAI)
             {

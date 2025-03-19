@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2025-03-19 11:38+0200\n"
+"POT-Creation-Date: 2025-03-19 15:24+0200\n"
 "PO-Revision-Date: 2025-03-12 14:39+0000\n"
 "Last-Translator: Anonymous <noreply@weblate.org>\n"
 "Language-Team: Spanish <https://translate.revolutionarygamesstudio.com/projects/thrive/thrive-game/es/>\n"
@@ -647,6 +647,13 @@ msgstr ""
 "La ubicación de los orgánulos afecta a la rotación: los orgánulos más alejados del centro reducen más la rotación."
 
 msgid "CELL_STAT_SPEED_TOOLTIP"
+msgstr ""
+"Velocidad de la célula. Tenga en cuenta que debido a las limitaciones del algoritmo que calcula esto, el valor es una aproximación.\n"
+"Y por ejemplo cuando se modifica la longitud del flagelo los valores de velocidad no tienen todo el sentido y no coinciden con lo que ocurrirá en el escenario.\n"
+"Este es un problema conocido pero no está arreglado todavía debido a que es menos prioritario que muchos otros problemas y nuevas características."
+
+#, fuzzy
+msgid "CELL_STAT_STORAGE_TOOLTIP"
 msgstr ""
 "Velocidad de la célula. Tenga en cuenta que debido a las limitaciones del algoritmo que calcula esto, el valor es una aproximación.\n"
 "Y por ejemplo cuando se modifica la longitud del flagelo los valores de velocidad no tienen todo el sentido y no coinciden con lo que ocurrirá en el escenario.\n"
@@ -5938,6 +5945,14 @@ msgstr "Mostrar eventos locales"
 msgid "TIMELINE_NICHE_FILL"
 msgstr "[b][u]{0}[/u][/b] se separó de [b][u]{1}[/u][/b] como una nueva especie para llenar un nicho"
 
+#, fuzzy
+msgid "TIMELINE_PLAYER_MIGRATED"
+msgstr "Parte de la población de [b][u]{0}[/u][/b] ha inmigrado desde {1}"
+
+#, fuzzy
+msgid "TIMELINE_PLAYER_MIGRATED_TO"
+msgstr "Parte de la población de [b][u]{0}[/u][/b] ha inmigrado desde {1}"
+
 msgid "TIMELINE_SELECTION_PRESSURE_SPLIT"
 msgstr "[b][u]{0}[/u][/b] surgió desde [b][u]{1}[/u][/b] como una nueva especie debido a presiones evolutivas diferentes"
 
@@ -5953,6 +5968,10 @@ msgstr "¡[b][u]{0}[/u][/b] se ha extinguido!"
 
 msgid "TIMELINE_SPECIES_EXTINCT_LOCAL"
 msgstr "[b][u]{0}[/u][/b] ha desaparecido de este bioma"
+
+#, fuzzy
+msgid "TIMELINE_SPECIES_FOLLOWED"
+msgstr "¡[b][u]{0}[/u][/b] se ha extinguido!"
 
 msgid "TIMELINE_SPECIES_MIGRATED_FROM"
 msgstr "Parte de la población de [b][u]{0}[/u][/b] ha inmigrado a este bioma desde {1}"

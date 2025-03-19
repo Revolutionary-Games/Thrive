@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2025-03-19 11:38+0200\n"
+"POT-Creation-Date: 2025-03-19 15:24+0200\n"
 "PO-Revision-Date: 2025-03-12 14:39+0000\n"
 "Last-Translator: Anonymous <noreply@weblate.org>\n"
 "Language-Team: Polish <https://translate.revolutionarygamesstudio.com/projects/thrive/thrive-game/pl/>\n"
@@ -645,6 +645,13 @@ msgstr ""
 "Rozmieszczenie organelli wpływa na obrót komórki; im dalej od centrum, tym wolniej będzie obracać się komórka."
 
 msgid "CELL_STAT_SPEED_TOOLTIP"
+msgstr ""
+"Szybkość poruszania komórki. Prosimy zrozumieć, że z powodu limitacji algorytmu, ta wartość jest tylko przybliżeniem.\n"
+"Dodatkowo przy np. zmianie długości wici, wartości szybkości nie mają w pełni sensu i nie będą pasować do tego, co dzieje się w grze.\n"
+"Wiemy o tym problemie, jednak nie jest jeszcze naprawiony ze względu na mniejszy priorytet w porównaniu do innych problemów i nowych funkcji."
+
+#, fuzzy
+msgid "CELL_STAT_STORAGE_TOOLTIP"
 msgstr ""
 "Szybkość poruszania komórki. Prosimy zrozumieć, że z powodu limitacji algorytmu, ta wartość jest tylko przybliżeniem.\n"
 "Dodatkowo przy np. zmianie długości wici, wartości szybkości nie mają w pełni sensu i nie będą pasować do tego, co dzieje się w grze.\n"
@@ -5930,6 +5937,14 @@ msgstr "Pokaż wydarzenia lokalne"
 msgid "TIMELINE_NICHE_FILL"
 msgstr "[b][u]{0}[/u][/b] oddzielił się od [b][u]{1}[/u][/b] jako nowy gatunek by zapełnić niszę"
 
+#, fuzzy
+msgid "TIMELINE_PLAYER_MIGRATED"
+msgstr "Część populacji [b][u]{0}[/u][/b] przeniosła się do obszaru {1}"
+
+#, fuzzy
+msgid "TIMELINE_PLAYER_MIGRATED_TO"
+msgstr "Część populacji [b][u]{0}[/u][/b] przeniosła się do obszaru {1}"
+
 msgid "TIMELINE_SELECTION_PRESSURE_SPLIT"
 msgstr "[b][u]{0}[/u][/b] oddzielił się od [b][u]{1}[/u][/b] jako nowy gatunek ze względu na zróżnicowane naciski selekcyjne"
 
@@ -5941,6 +5956,10 @@ msgstr "[b][u]{0}[/u][/b] wymarł!"
 
 msgid "TIMELINE_SPECIES_EXTINCT_LOCAL"
 msgstr "Gatunek [b][u]{0}[/u][/b] wyginął z tego obszaru"
+
+#, fuzzy
+msgid "TIMELINE_SPECIES_FOLLOWED"
+msgstr "[b][u]{0}[/u][/b] wymarł!"
 
 msgid "TIMELINE_SPECIES_MIGRATED_FROM"
 msgstr "Część populacji [b][u]{0}[/u][/b] przeniosła się do tego obszaru z {1}"

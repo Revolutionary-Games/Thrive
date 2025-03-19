@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2025-03-19 11:38+0200\n"
+"POT-Creation-Date: 2025-03-19 15:24+0200\n"
 "PO-Revision-Date: 2025-03-07 10:46+0000\n"
 "Last-Translator: Anonymous <noreply@weblate.org>\n"
 "Language-Team: Czech <https://translate.revolutionarygamesstudio.com/projects/thrive/thrive-game/cs/>\n"
@@ -658,6 +658,10 @@ msgstr "Hodnota použita pro generování světa, která musí být pozitivní c
 
 #, fuzzy
 msgid "CELL_STAT_SPEED_TOOLTIP"
+msgstr "Hodnota použita pro generování světa, která musí být pozitivní celé číslo"
+
+#, fuzzy
+msgid "CELL_STAT_STORAGE_TOOLTIP"
 msgstr "Hodnota použita pro generování světa, která musí být pozitivní celé číslo"
 
 #, fuzzy
@@ -6173,6 +6177,14 @@ msgstr "Zobrazit lokální události"
 msgid "TIMELINE_NICHE_FILL"
 msgstr "[b][u]{0}[/u][/b] se oddělil od [b][u]{1}[/u][/b] jako nový druh, aby zaplnil mezeru"
 
+#, fuzzy
+msgid "TIMELINE_PLAYER_MIGRATED"
+msgstr "Část populace [b][u]{0}[/u][/b] migrovala do {1}"
+
+#, fuzzy
+msgid "TIMELINE_PLAYER_MIGRATED_TO"
+msgstr "Část populace [b][u]{0}[/u][/b] migrovala do {1}"
+
 msgid "TIMELINE_SELECTION_PRESSURE_SPLIT"
 msgstr "[b][u]{0}[/u][/b] se oddělil od [b][u]{1}[/u][/b] jako nový druh kvůli jiných selekčních tlaků"
 
@@ -6190,6 +6202,10 @@ msgstr "[b][u]{0}[/u][/b] vyhynul!"
 
 msgid "TIMELINE_SPECIES_EXTINCT_LOCAL"
 msgstr "[b][u]{0}[/u][/b] zmizel z tohoto prostředí"
+
+#, fuzzy
+msgid "TIMELINE_SPECIES_FOLLOWED"
+msgstr "[b][u]{0}[/u][/b] vyhynul!"
 
 msgid "TIMELINE_SPECIES_MIGRATED_FROM"
 msgstr "Část populace [b][u]{0}[/u][/b] migrovala do tohoto prostředí z {1}"
