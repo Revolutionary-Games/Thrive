@@ -73,7 +73,6 @@ offset_right = 40.0
 offset_bottom = 40.0
 
 [node name="ScrollContainer" type="ScrollContainer" parent="MicrobeWelcome/VBoxContainer"]
-clip_contents = false
 custom_minimum_size = Vector2(230, 235)
 layout_mode = 2
 size_flags_vertical = 3
@@ -112,6 +111,7 @@ layout_mode = 2
 [node name="CheckBox" type="CheckBox" parent="MicrobeWelcome/VBoxContainer/ScrollContainer/VBoxContainer/HBoxContainer"]
 layout_mode = 2
 size_flags_horizontal = 0
+tooltip_text = "SHOW_ALL_TUTORIALS_TOOLTIP"
 theme_override_font_sizes/font_size = 14
 button_pressed = true
 text = "SHOW_ALL_TUTORIALS"

@@ -493,11 +493,9 @@ public partial class MicrobeTutorialGUI : Control, ITutorialGUI
             if (tutorialDisabledExplanation.Visible)
             {
                 // Scroll down to ensure the new text is visible
-                // Need to invoke to make sure this
-                // Invoke.Instance.QueueForObject(() => welcomeTutorialScrollContainer.ScrollVertical = 500, welcomeTutorialScrollContainer);
-
-                // TODO: test
-                welcomeTutorialScrollContainer.ScrollVertical = 500;
+                // Need to invoke to make sure this happens after the new text appears
+                Invoke.Instance.QueueForObject(() => welcomeTutorialScrollContainer.ScrollVertical = 500,
+                    welcomeTutorialScrollContainer);
             }
         }
     }
