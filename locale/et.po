@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2025-03-17 16:32+0200\n"
+"POT-Creation-Date: 2025-03-19 11:38+0200\n"
 "PO-Revision-Date: 2025-02-06 13:29+0000\n"
 "Last-Translator: Anonymous <noreply@weblate.org>\n"
 "Language-Team: Estonian <https://translate.revolutionarygamesstudio.com/projects/thrive/thrive-game/et/>\n"
@@ -5238,6 +5238,14 @@ msgstr "Lähtestage sisendid"
 msgid "RESET_SETTINGS_TO_DEFAULTS"
 msgstr "normaalne"
 
+#, fuzzy
+msgid "RESET_SHOWN_TUTORIALS"
+msgstr "Näita õpetusi"
+
+#, fuzzy
+msgid "RESET_SHOWN_TUTORIALS_TOOLTIP"
+msgstr "Möödunud aeg: {0:#,#} aastat"
+
 msgid "RESET_TO_DEFAULTS"
 msgstr "Kas lähtestada normaalseks?"
 
@@ -5618,6 +5626,14 @@ msgid "SHIFT"
 msgstr "SHIFT"
 
 #, fuzzy
+msgid "SHOW_ALL_TUTORIALS"
+msgstr "Näita õpetusi"
+
+#, fuzzy
+msgid "SHOW_ALL_TUTORIALS_TOOLTIP"
+msgstr "Möödunud aeg: {0:#,#} aastat"
+
+#, fuzzy
 msgid "SHOW_DAMAGE_EFFECT"
 msgstr "Lipu (mitmuses: flagella) on piitsataoline valgukiudude kimp, mis ulatub välja rakumembraanist, mis kasutab ATP-d raku lainetamiseks ja liikumiseks teatud suunas. Lipu asend määrab suuna, milles see raku liikumiseks tõukejõu annab. Tõukejõu suund on vastupidine suunale, kuhu lipp on suunatud, näiteks raku vasakule küljele asetatud lipp annab paremale liikumisel tõukejõu."
 
@@ -5636,14 +5652,15 @@ msgstr "{0} {1}"
 msgid "SHOW_NEW_PATCH_NOTES_TOOLTIP"
 msgstr "{0} {1}"
 
-msgid "SHOW_TUTORIALS"
-msgstr "Näita õpetusi"
-
 msgid "SHOW_TUTORIALS_IN_NEW_CURRENT_OPTION"
 msgstr "Näita õpetusi (praeguses mängus)"
 
 msgid "SHOW_TUTORIALS_IN_NEW_GAMES_OPTION"
 msgstr "Näita õpetusi (uutes mängudes)"
+
+#, fuzzy
+msgid "SHOW_TUTORIALS_OPTION_TOOLTIP"
+msgstr "Möödunud aeg: {0:#,#} aastat"
 
 msgid "SHOW_UNSAVED_PROGRESS_WARNING"
 msgstr "Kuva salvestamata edenemise hoiatus"
@@ -5968,6 +5985,10 @@ msgstr ""
 
 msgid "STORE_LOGGED_IN_AS"
 msgstr "Sisse logitud kui: {0}"
+
+#, fuzzy
+msgid "STRAIN_BAR_TOOLTIP"
+msgstr "Peata mäng"
 
 msgid "STRAIN_BAR_VISIBILITY"
 msgstr ""
@@ -6519,6 +6540,13 @@ msgstr "Proovige teha ekraanipilte!"
 
 msgid "TUTORIAL"
 msgstr "Õpetus"
+
+#, fuzzy
+msgid "TUTORIAL_ALL_NOT_ENABLED_EXPLANATION"
+msgstr ""
+"Keskendunud mikroobid otsivad tükke või saaki suuremate vahemaade tagant\n"
+"ja võib olla tükkide osas palju ambitsioonikam.\n"
+"Reageerivad mikroobid lülituvad varem uutele sihtmärkidele."
 
 #, fuzzy
 msgid "TUTORIAL_MICROBE_EDITOR_ATP_BALANCE_INTRO"

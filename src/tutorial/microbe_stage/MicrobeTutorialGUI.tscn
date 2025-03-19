@@ -1,9 +1,10 @@
-[gd_scene load_steps=12 format=3 uid="uid://d116aks100ulm"]
+[gd_scene load_steps=13 format=3 uid="uid://d116aks100ulm"]
 
 [ext_resource type="Script" uid="uid://3xqb6s7y5nm5" path="res://src/tutorial/microbe_stage/MicrobeTutorialGUI.cs" id="1"]
 [ext_resource type="Theme" uid="uid://b4cx0o110g4b6" path="res://src/gui_common/thrive_theme.tres" id="2"]
 [ext_resource type="PackedScene" uid="uid://ci8b4cca0q55h" path="res://src/gui_common/KeyPrompt.tscn" id="3"]
 [ext_resource type="Script" uid="uid://c22vgu2gpm74j" path="res://src/gui_common/dialogs/TutorialDialog.cs" id="7"]
+[ext_resource type="LabelSettings" uid="uid://c07qrffjvqfw" path="res://src/gui_common/fonts/Body-Regular-Tiny.tres" id="8_01chk"]
 [ext_resource type="PackedScene" uid="uid://bhpjtbtaeunat" path="res://src/gui_common/CustomRichTextLabel.tscn" id="9"]
 [ext_resource type="FontVariation" uid="uid://cqork3l186w1c" path="res://assets/fonts/variants/Jura-Bold.tres" id="9_s6a8v"]
 [ext_resource type="PackedScene" uid="uid://cy5puaxnv8e2a" path="res://src/gui_common/dialogs/TutorialDialog.tscn" id="10"]
@@ -12,7 +13,7 @@
 [ext_resource type="PackedScene" uid="uid://du8sc8kjirguk" path="res://src/gui_common/dialogs/CustomWindow.tscn" id="13"]
 [ext_resource type="PackedScene" uid="uid://tna206f2gtkv" path="res://src/gui_common/AddWindowReorderingSupportToSiblings.tscn" id="14"]
 
-[node name="MicrobeTutorialGUI" type="Control"]
+[node name="MicrobeTutorialGUI" type="Control" node_paths=PackedStringArray("tutorialDisabledExplanation", "welcomeTutorialScrollContainer")]
 process_mode = 3
 layout_mode = 3
 anchors_preset = 15
@@ -45,17 +46,19 @@ EngulfmentExplanationPath = NodePath("EngulfmentTutorial")
 EngulfedExplanationPath = NodePath("EngulfedTutorial")
 EngulfmentFullCapacityPath = NodePath("EngulfmentFullCapacity")
 EditorButtonHighlightPath = NodePath("EditorButtonHighlight")
+tutorialDisabledExplanation = NodePath("MicrobeWelcome/VBoxContainer/ScrollContainer/VBoxContainer/AllNotEnabledExplanation")
+welcomeTutorialScrollContainer = NodePath("MicrobeWelcome/VBoxContainer/ScrollContainer")
 
 [node name="AddWindowReorderingSupportToSiblings" parent="." instance=ExtResource("14")]
 anchors_preset = 0
 
 [node name="MicrobeWelcome" parent="." instance=ExtResource("13")]
-custom_minimum_size = Vector2(450, 455)
+custom_minimum_size = Vector2(450, 460)
 layout_mode = 1
 offset_right = 450.0
 offset_bottom = 430.0
 script = ExtResource("7")
-LabelPath = NodePath("ScrollContainer/VBoxContainer/CustomRichTextLabel")
+LabelPath = NodePath("VBoxContainer/ScrollContainer/VBoxContainer/CustomRichTextLabel")
 Description = "MICROBE_STAGE_INITIAL"
 DescriptionForController = ""
 ShowDelay = 0.0
@@ -63,51 +66,66 @@ WindowTitle = "TUTORIAL"
 Exclusive = true
 ExclusiveAllowCloseOnEscape = false
 
-[node name="ScrollContainer" type="ScrollContainer" parent="MicrobeWelcome"]
-custom_minimum_size = Vector2(230, 250)
+[node name="VBoxContainer" type="VBoxContainer" parent="MicrobeWelcome"]
+custom_minimum_size = Vector2(230, 265)
 layout_mode = 0
-anchor_right = 1.0
-anchor_bottom = 1.0
-offset_left = 15.0
-offset_top = 15.0
-offset_right = 435.0
-offset_bottom = 385.0
+offset_right = 40.0
+offset_bottom = 40.0
 
-[node name="VBoxContainer" type="VBoxContainer" parent="MicrobeWelcome/ScrollContainer"]
+[node name="ScrollContainer" type="ScrollContainer" parent="MicrobeWelcome/VBoxContainer"]
+custom_minimum_size = Vector2(230, 235)
+layout_mode = 2
+size_flags_vertical = 3
+mouse_filter = 0
+mouse_force_pass_scroll_events = false
+
+[node name="VBoxContainer" type="VBoxContainer" parent="MicrobeWelcome/VBoxContainer/ScrollContainer"]
 layout_mode = 2
 size_flags_horizontal = 3
 size_flags_vertical = 3
 
-[node name="CustomRichTextLabel" parent="MicrobeWelcome/ScrollContainer/VBoxContainer" instance=ExtResource("9")]
+[node name="CustomRichTextLabel" parent="MicrobeWelcome/VBoxContainer/ScrollContainer/VBoxContainer" instance=ExtResource("9")]
 layout_mode = 2
 theme_override_font_sizes/normal_font_size = 16
 fit_content = true
 
-[node name="Control" type="Control" parent="MicrobeWelcome/ScrollContainer/VBoxContainer"]
+[node name="Control" type="Control" parent="MicrobeWelcome/VBoxContainer/ScrollContainer/VBoxContainer"]
 layout_mode = 2
 size_flags_vertical = 3
 
-[node name="HBoxContainer" type="HBoxContainer" parent="MicrobeWelcome/ScrollContainer/VBoxContainer"]
+[node name="AllNotEnabledExplanation" type="Label" parent="MicrobeWelcome/VBoxContainer/ScrollContainer/VBoxContainer"]
+visible = false
+custom_minimum_size = Vector2(150, 0)
+layout_mode = 2
+text = "TUTORIAL_ALL_NOT_ENABLED_EXPLANATION"
+label_settings = ExtResource("8_01chk")
+autowrap_mode = 3
+
+[node name="HBoxContainer" type="HBoxContainer" parent="MicrobeWelcome/VBoxContainer/ScrollContainer/VBoxContainer"]
 layout_mode = 2
 
-[node name="Control" type="Control" parent="MicrobeWelcome/ScrollContainer/VBoxContainer/HBoxContainer"]
+[node name="Control" type="Control" parent="MicrobeWelcome/VBoxContainer/ScrollContainer/VBoxContainer/HBoxContainer"]
 custom_minimum_size = Vector2(10, 0)
 layout_mode = 2
 
-[node name="CheckBox" type="CheckBox" parent="MicrobeWelcome/ScrollContainer/VBoxContainer/HBoxContainer"]
+[node name="CheckBox" type="CheckBox" parent="MicrobeWelcome/VBoxContainer/ScrollContainer/VBoxContainer/HBoxContainer"]
 layout_mode = 2
 size_flags_horizontal = 0
+tooltip_text = "SHOW_ALL_TUTORIALS_TOOLTIP"
 theme_override_font_sizes/font_size = 14
 button_pressed = true
-text = "SHOW_TUTORIALS"
+text = "SHOW_ALL_TUTORIALS"
 
-[node name="FocusGrabber" parent="MicrobeWelcome/ScrollContainer/VBoxContainer/HBoxContainer" instance=ExtResource("12")]
+[node name="FocusGrabber" parent="MicrobeWelcome/VBoxContainer/ScrollContainer/VBoxContainer/HBoxContainer" instance=ExtResource("12")]
 layout_mode = 2
 Priority = 2
-NodeToGiveFocusTo = NodePath("../../Button")
+NodeToGiveFocusTo = NodePath("../../../../Button")
 GrabFocusWhenBecomingVisible = true
 
-[node name="Button" type="Button" parent="MicrobeWelcome/ScrollContainer/VBoxContainer"]
+[node name="Control2" type="Control" parent="MicrobeWelcome/VBoxContainer/ScrollContainer/VBoxContainer"]
+layout_mode = 2
+
+[node name="Button" type="Button" parent="MicrobeWelcome/VBoxContainer"]
 layout_mode = 2
 size_flags_horizontal = 4
 theme_override_fonts/font = ExtResource("9_s6a8v")
@@ -470,8 +488,8 @@ theme_override_font_sizes/font_size = 18
 text = "CONTINUE_THRIVING"
 
 [connection signal="hidden" from="MicrobeWelcome" to="." method="OnClickedCloseAll"]
-[connection signal="toggled" from="MicrobeWelcome/ScrollContainer/VBoxContainer/HBoxContainer/CheckBox" to="." method="OnTutorialEnabledValueChanged"]
-[connection signal="pressed" from="MicrobeWelcome/ScrollContainer/VBoxContainer/Button" to="." method="OnClickedCloseAll"]
+[connection signal="toggled" from="MicrobeWelcome/VBoxContainer/ScrollContainer/VBoxContainer/HBoxContainer/CheckBox" to="." method="OnTutorialEnabledValueChanged"]
+[connection signal="pressed" from="MicrobeWelcome/VBoxContainer/Button" to="." method="OnClickedCloseAll"]
 [connection signal="hidden" from="MicrobeMovementTutorial/ExplainingPopup" to="." method="OnSpecificCloseClicked" binds= ["MicrobeMovementExplain"]]
 [connection signal="hidden" from="GlucoseTutorial" to="." method="OnSpecificCloseClicked" binds= ["GlucoseCollecting"]]
 [connection signal="hidden" from="DayNightTutorial" to="." method="OnSpecificCloseClicked" binds= ["DayNightTutorial"]]

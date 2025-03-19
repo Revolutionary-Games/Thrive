@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2025-03-17 16:32+0200\n"
+"POT-Creation-Date: 2025-03-19 11:38+0200\n"
 "PO-Revision-Date: 2025-03-12 14:39+0000\n"
 "Last-Translator: Anonymous <noreply@weblate.org>\n"
 "Language-Team: German <https://translate.revolutionarygamesstudio.com/projects/thrive/thrive-game/de/>\n"
@@ -4781,6 +4781,14 @@ msgstr "Tastenkombinationen zurücksetzen"
 msgid "RESET_SETTINGS_TO_DEFAULTS"
 msgstr "Standardeinstellungen"
 
+#, fuzzy
+msgid "RESET_SHOWN_TUTORIALS"
+msgstr "Einführung anzeigen"
+
+#, fuzzy
+msgid "RESET_SHOWN_TUTORIALS_TOOLTIP"
+msgstr "Exportiere die Daten aller Welten im CSV-Format (durch Kommas getrennte Werte)"
+
 msgid "RESET_TO_DEFAULTS"
 msgstr "Auf Standardeinstellungen zurücksetzen?"
 
@@ -5151,6 +5159,14 @@ msgid "SHIFT"
 msgstr "Shift"
 
 #, fuzzy
+msgid "SHOW_ALL_TUTORIALS"
+msgstr "Einführung anzeigen"
+
+#, fuzzy
+msgid "SHOW_ALL_TUTORIALS_TOOLTIP"
+msgstr "Exportiere die Daten aller Welten im CSV-Format (durch Kommas getrennte Werte)"
+
+#, fuzzy
 msgid "SHOW_DAMAGE_EFFECT"
 msgstr "Schadensauswirkung anzeigen"
 
@@ -5166,14 +5182,15 @@ msgstr "Neue Patchnotizen automatisch anzeigen"
 msgid "SHOW_NEW_PATCH_NOTES_TOOLTIP"
 msgstr "Patchnotizen neuer Thrive-Versionen automatisch im Hauptmenü anzeigen"
 
-msgid "SHOW_TUTORIALS"
-msgstr "Einführung anzeigen"
-
 msgid "SHOW_TUTORIALS_IN_NEW_CURRENT_OPTION"
 msgstr "Tutorials anzeigen (im aktuellen Spiel)"
 
 msgid "SHOW_TUTORIALS_IN_NEW_GAMES_OPTION"
 msgstr "Tutorials anzeigen (in neuen Spielen)"
+
+#, fuzzy
+msgid "SHOW_TUTORIALS_OPTION_TOOLTIP"
+msgstr "Exportiere die Daten aller Welten im CSV-Format (durch Kommas getrennte Werte)"
 
 msgid "SHOW_UNSAVED_PROGRESS_WARNING"
 msgstr "Warnung vor ungesichertem Fortschritt anzeigen"
@@ -5473,6 +5490,10 @@ msgstr "Sekunden für"
 
 msgid "STORE_LOGGED_IN_AS"
 msgstr "Angemeldet als: {0}"
+
+#, fuzzy
+msgid "STRAIN_BAR_TOOLTIP"
+msgstr "Sprint-Modus aktivieren. Im Sprint-Modus bewegen sich Zellen schneller, aber verbrauchen mehr ATP. Je länger die Belastung durch den Sprint dauert, desto mehr ATP wird verbraucht."
 
 msgid "STRAIN_BAR_VISIBILITY"
 msgstr "Belastungsbalken Sichtbarkeit"
@@ -5996,6 +6017,10 @@ msgstr "Versuche ein paar Screenshots zu machen!"
 
 msgid "TUTORIAL"
 msgstr "Anleitung"
+
+#, fuzzy
+msgid "TUTORIAL_ALL_NOT_ENABLED_EXPLANATION"
+msgstr "(WARNUNG: Photosynthese wird wesentlich weniger effizient)"
 
 msgid "TUTORIAL_MICROBE_EDITOR_ATP_BALANCE_INTRO"
 msgstr ""

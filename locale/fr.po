@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2025-03-17 16:32+0200\n"
+"POT-Creation-Date: 2025-03-19 11:38+0200\n"
 "PO-Revision-Date: 2025-03-12 14:39+0000\n"
 "Last-Translator: Anonymous <noreply@weblate.org>\n"
 "Language-Team: French <https://translate.revolutionarygamesstudio.com/projects/thrive/thrive-game/fr/>\n"
@@ -4943,6 +4943,14 @@ msgstr "Réinitialiser les raccourcis clavier"
 msgid "RESET_SETTINGS_TO_DEFAULTS"
 msgstr "Par défaut"
 
+#, fuzzy
+msgid "RESET_SHOWN_TUTORIALS"
+msgstr "Montrer les tutoriels"
+
+#, fuzzy
+msgid "RESET_SHOWN_TUTORIALS_TOOLTIP"
+msgstr "Exporter toutes les donnée des mondes en format Comma-Separated Values (csv)"
+
 msgid "RESET_TO_DEFAULTS"
 msgstr "Restaurer par défaut ?"
 
@@ -5300,6 +5308,14 @@ msgid "SHIFT"
 msgstr "Maj"
 
 #, fuzzy
+msgid "SHOW_ALL_TUTORIALS"
+msgstr "Montrer les tutoriels"
+
+#, fuzzy
+msgid "SHOW_ALL_TUTORIALS_TOOLTIP"
+msgstr "Exporter toutes les donnée des mondes en format Comma-Separated Values (csv)"
+
+#, fuzzy
 msgid "SHOW_DAMAGE_EFFECT"
 msgstr "Chaque [b]flagelle[/b] exerce une poussée en sens inverse de son orientation. Il fournit également une petite poussée dans les directions proches du sens opposé (plus précisément, les directions pour lesquelles la composante du vecteur opposé est positive). Lorsqu'un [b]flagelle[/b] est actif, il consomme de l'[/thrive:compound type=\"atp\"][/thrive:compound]."
 
@@ -5318,14 +5334,15 @@ msgstr "Afficher automatiquement les nouvelles notes de correctif"
 msgid "SHOW_NEW_PATCH_NOTES_TOOLTIP"
 msgstr "Afficher automatiquement les notes de correctif des nouvelles versions de Thrive dans le menu principal"
 
-msgid "SHOW_TUTORIALS"
-msgstr "Montrer les tutoriels"
-
 msgid "SHOW_TUTORIALS_IN_NEW_CURRENT_OPTION"
 msgstr "Afficher les tutoriels (dans la partie en cours)"
 
 msgid "SHOW_TUTORIALS_IN_NEW_GAMES_OPTION"
 msgstr "Afficher les tutoriels (dans les nouvelles parties)"
+
+#, fuzzy
+msgid "SHOW_TUTORIALS_OPTION_TOOLTIP"
+msgstr "Exporter toutes les donnée des mondes en format Comma-Separated Values (csv)"
 
 msgid "SHOW_UNSAVED_PROGRESS_WARNING"
 msgstr "Avertissement lorsque la progression n'a pas été sauvegardée"
@@ -5627,6 +5644,10 @@ msgstr ""
 
 msgid "STORE_LOGGED_IN_AS"
 msgstr "Connecté sous le nom de : {0}"
+
+#, fuzzy
+msgid "STRAIN_BAR_TOOLTIP"
+msgstr "Visitez notre page Patreon"
 
 msgid "STRAIN_BAR_VISIBILITY"
 msgstr ""
@@ -6159,6 +6180,10 @@ msgstr "Essayez de prendre une capture d'écran !"
 
 msgid "TUTORIAL"
 msgstr "Tutoriel"
+
+#, fuzzy
+msgid "TUTORIAL_ALL_NOT_ENABLED_EXPLANATION"
+msgstr "(certains organites auront des conditions de déverrouillage requises pour les placer)"
 
 #, fuzzy
 msgid "TUTORIAL_MICROBE_EDITOR_ATP_BALANCE_INTRO"

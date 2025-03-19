@@ -11,7 +11,7 @@ public interface ITutorialGUI
     public MainGameState AssociatedGameState { get; }
 
     /// <summary>
-    ///   Which object receives events from this tutorial
+    ///   Specifies which object receives events from this tutorial
     /// </summary>
     public ITutorialInput? EventReceiver { get; set; }
 
@@ -21,17 +21,16 @@ public interface ITutorialGUI
     public bool IsClosingAutomatically { get; set; }
 
     /// <summary>
-    ///   True when the tutorial selected boxes have been left untouched (on).
-    ///   Child classes should by default set this to true.
+    ///   True when all tutorials should be shown and not just the new ones.
     /// </summary>
     /// <remarks>
     ///   <para>
     ///     There's a small bug where if the tutorials are turned back on and then displayed, that leaves the checkboxes
-    ///     unchecked, when things become visible all the enable tutorials check boxes would need to read this value
-    ///     to fix this
+    ///     unchecked when things become visible.
+    ///     All the enable tutorials check boxes would need to read this value to fix this
     ///   </para>
     /// </remarks>
-    public bool TutorialEnabledSelected { get; }
+    public bool AllTutorialsDesiredState { get; }
 
     /// <summary>
     ///   The main GUI node
@@ -44,15 +43,15 @@ public interface ITutorialGUI
     public void OnClickedCloseAll();
 
     /// <summary>
-    ///   A button for closing specific tutorial was pressed by the user
+    ///   A button for closing a specific tutorial was pressed by the user
     /// </summary>
     /// <param name="closedThing">Name of the tutorials that should be closed</param>
     public void OnSpecificCloseClicked(string closedThing);
 
     /// <summary>
-    ///   Value for tutorials being on was toggled by the user, and should be applied when the current tutorial is
-    ///   closed
+    ///   The user changed the value for all tutorials being enabled.
+    ///   Should be applied when the current tutorial is closed
     /// </summary>
-    /// <param name="value">Whether tutorials should be on</param>
+    /// <param name="value">Whether all tutorials should be on or not</param>
     public void OnTutorialEnabledValueChanged(bool value);
 }

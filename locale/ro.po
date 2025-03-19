@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2025-03-17 16:32+0200\n"
+"POT-Creation-Date: 2025-03-19 11:38+0200\n"
 "PO-Revision-Date: 2025-01-21 12:01+0000\n"
 "Last-Translator: Anonymous <noreply@weblate.org>\n"
 "Language-Team: Romanian <https://translate.revolutionarygamesstudio.com/projects/thrive/thrive-game/ro/>\n"
@@ -4599,6 +4599,15 @@ msgstr ""
 msgid "RESET_SETTINGS_TO_DEFAULTS"
 msgstr ""
 
+msgid "RESET_SHOWN_TUTORIALS"
+msgstr ""
+
+#, fuzzy
+msgid "RESET_SHOWN_TUTORIALS_TOOLTIP"
+msgstr ""
+"Nu poate fi detectat automat dacă hyperthreading-ul este activat sau nu.\n"
+"Acest lucru afectează numărul implicit de thread-uri, deoarece thread-urile hiperthreading nu sunt la fel de rapide ca nucleele CPU reale."
+
 msgid "RESET_TO_DEFAULTS"
 msgstr ""
 
@@ -4930,6 +4939,15 @@ msgstr ""
 msgid "SHIFT"
 msgstr ""
 
+msgid "SHOW_ALL_TUTORIALS"
+msgstr ""
+
+#, fuzzy
+msgid "SHOW_ALL_TUTORIALS_TOOLTIP"
+msgstr ""
+"Nu poate fi detectat automat dacă hyperthreading-ul este activat sau nu.\n"
+"Acest lucru afectează numărul implicit de thread-uri, deoarece thread-urile hiperthreading nu sunt la fel de rapide ca nucleele CPU reale."
+
 msgid "SHOW_DAMAGE_EFFECT"
 msgstr ""
 
@@ -4945,14 +4963,17 @@ msgstr ""
 msgid "SHOW_NEW_PATCH_NOTES_TOOLTIP"
 msgstr ""
 
-msgid "SHOW_TUTORIALS"
-msgstr ""
-
 msgid "SHOW_TUTORIALS_IN_NEW_CURRENT_OPTION"
 msgstr ""
 
 msgid "SHOW_TUTORIALS_IN_NEW_GAMES_OPTION"
 msgstr ""
+
+#, fuzzy
+msgid "SHOW_TUTORIALS_OPTION_TOOLTIP"
+msgstr ""
+"Nu poate fi detectat automat dacă hyperthreading-ul este activat sau nu.\n"
+"Acest lucru afectează numărul implicit de thread-uri, deoarece thread-urile hiperthreading nu sunt la fel de rapide ca nucleele CPU reale."
 
 msgid "SHOW_UNSAVED_PROGRESS_WARNING"
 msgstr ""
@@ -5241,6 +5262,10 @@ msgstr ""
 
 msgid "STORE_LOGGED_IN_AS"
 msgstr ""
+
+#, fuzzy
+msgid "STRAIN_BAR_TOOLTIP"
+msgstr "Treceți la etapa de trezire. Disponibil odată ce aveți creierul suficient de dezvoltat (tip de țesut cu axoni)."
 
 msgid "STRAIN_BAR_VISIBILITY"
 msgstr ""
@@ -5730,6 +5755,10 @@ msgstr ""
 
 msgid "TUTORIAL"
 msgstr ""
+
+#, fuzzy
+msgid "TUTORIAL_ALL_NOT_ENABLED_EXPLANATION"
+msgstr "(viteza cu care speciile IA suferă mutații)"
 
 msgid "TUTORIAL_MICROBE_EDITOR_ATP_BALANCE_INTRO"
 msgstr ""
