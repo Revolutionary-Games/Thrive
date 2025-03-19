@@ -78,6 +78,13 @@ public partial class MicrobeTutorialGUI : Control, ITutorialGUI
 
 #pragma warning disable CA2213
     private TutorialDialog microbeWelcomeMessage = null!;
+
+    [Export]
+    private Control tutorialDisabledExplanation = null!;
+
+    [Export]
+    private ScrollContainer welcomeTutorialScrollContainer = null!;
+
     private Control microbeMovementKeyPrompts = null!;
     private Control microbeMovementKeyForward = null!;
     private Control microbeMovementKeyLeft = null!;
@@ -107,7 +114,7 @@ public partial class MicrobeTutorialGUI : Control, ITutorialGUI
 
     public MainGameState AssociatedGameState => MainGameState.MicrobeStage;
 
-    public bool TutorialEnabledSelected { get; private set; } = true;
+    public bool AllTutorialsDesiredState { get; private set; } = true;
 
     public Node GUINode => this;
 
@@ -477,7 +484,22 @@ public partial class MicrobeTutorialGUI : Control, ITutorialGUI
 
     public void OnTutorialEnabledValueChanged(bool value)
     {
-        TutorialEnabledSelected = value;
+        AllTutorialsDesiredState = value;
+
+        if (tutorialDisabledExplanation.Visible != !value)
+        {
+            tutorialDisabledExplanation.Visible = !value;
+
+            if (tutorialDisabledExplanation.Visible)
+            {
+                // Scroll down to ensure the new text is visible
+                // Need to invoke to make sure this
+                // Invoke.Instance.QueueForObject(() => welcomeTutorialScrollContainer.ScrollVertical = 500, welcomeTutorialScrollContainer);
+
+                // TODO: test
+                welcomeTutorialScrollContainer.ScrollVertical = 500;
+            }
+        }
     }
 
     public void SetWelcomeTextForLifeOrigin(WorldGenerationSettings.LifeOrigin gameLifeOrigin)

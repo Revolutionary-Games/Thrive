@@ -53,7 +53,7 @@ welcomeTutorialScrollContainer = NodePath("MicrobeWelcome/VBoxContainer/ScrollCo
 anchors_preset = 0
 
 [node name="MicrobeWelcome" parent="." instance=ExtResource("13")]
-custom_minimum_size = Vector2(450, 455)
+custom_minimum_size = Vector2(450, 460)
 layout_mode = 1
 offset_right = 450.0
 offset_bottom = 430.0
@@ -67,7 +67,7 @@ Exclusive = true
 ExclusiveAllowCloseOnEscape = false
 
 [node name="VBoxContainer" type="VBoxContainer" parent="MicrobeWelcome"]
-custom_minimum_size = Vector2(230, 255)
+custom_minimum_size = Vector2(230, 265)
 layout_mode = 0
 offset_right = 40.0
 offset_bottom = 40.0
@@ -77,6 +77,8 @@ clip_contents = false
 custom_minimum_size = Vector2(230, 235)
 layout_mode = 2
 size_flags_vertical = 3
+mouse_filter = 0
+mouse_force_pass_scroll_events = false
 
 [node name="VBoxContainer" type="VBoxContainer" parent="MicrobeWelcome/VBoxContainer/ScrollContainer"]
 layout_mode = 2
