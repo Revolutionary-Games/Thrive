@@ -56,9 +56,7 @@ public partial class ToleranceOptimalMarker : Control
 
     public void UpdateMarker(float optimalValue)
     {
-        var position = optimalValueMarker.Position;
-        position.X = padding + (Size.X - 2.0f * padding) * optimalValue - optimalValueMarker.Size.X * 0.5f;
-
-        optimalValueMarker.Position = position;
+        optimalValueMarker.OffsetLeft = padding + (Size.X - 2.0f * padding) * optimalValue
+            - optimalValueMarker.Size.X * 0.5f;
     }
 }
