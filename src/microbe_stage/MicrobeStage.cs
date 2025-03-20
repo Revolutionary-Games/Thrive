@@ -69,6 +69,12 @@ public partial class MicrobeStage : CreatureStageBase<Entity, MicrobeWorldSimula
     private bool tutorialCanceledOnce;
 
     /// <summary>
+    ///   Used to detect when the welcome tutorial is over and some state should be checked.
+    ///   For example, having already played certain tutorials requires restoring the compounds panel to open.
+    /// </summary>
+    private bool waitingForWelcomeTutorialToEnd;
+
+    /// <summary>
     ///   Used to give increasing numbers to player offspring to know which is the latest
     /// </summary>
     [JsonProperty]
@@ -341,6 +347,25 @@ public partial class MicrobeStage : CreatureStageBase<Entity, MicrobeWorldSimula
             else
             {
                 guidanceLine.Visible = false;
+            }
+
+            if (waitingForWelcomeTutorialToEnd)
+            {
+                // Check if the welcome tutorial has ended
+                if (TutorialState.MicrobeStageWelcome.Complete)
+                {
+                    waitingForWelcomeTutorialToEnd = false;
+
+                    // Restore panel state if tutorials won't be played
+                    bool showCompounds = TutorialState.GlucoseCollecting.Complete;
+                    bool showEnvironment = TutorialState.DayNightTutorial.Complete;
+
+                    if (showEnvironment)
+                        HUD.ShowEnvironmentPanel();
+
+                    if (showCompounds)
+                        HUD.ShowCompoundPanel();
+                }
             }
 
             // Apply player god mode
@@ -964,7 +989,8 @@ public partial class MicrobeStage : CreatureStageBase<Entity, MicrobeWorldSimula
             // If we are starting with tutorials on, disable extra panels that don't matter right now
             if (TutorialState.Enabled)
             {
-                HUD.HideEnvironmentAndCompoundPanels();
+                HUD.HideEnvironmentAndCompoundPanels(false);
+                waitingForWelcomeTutorialToEnd = true;
             }
         }
 
