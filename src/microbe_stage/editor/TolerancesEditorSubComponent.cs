@@ -181,6 +181,8 @@ public partial class TolerancesEditorSubComponent : EditorComponentBase<ICellEdi
         base.Init(owningEditor, fresh);
 
         wasFreshInit = fresh;
+
+        ItemRectChanged += UpdateCurrentValueDisplays;
     }
 
     public override void OnEditorSpeciesSetup(Species species)
