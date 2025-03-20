@@ -59,7 +59,6 @@ public partial class ToleranceOptimalMarker : Control
         var position = optimalValueMarker.Position;
         position.X = padding + (Size.X - 2.0f * padding) * optimalValue - optimalValueMarker.Size.X * 0.5f;
 
-        GD.Print($"Setting to {position} ({optimalValue}) from {optimalValueMarker.Position}");
         optimalValueMarker.Position = position;
     }
 }

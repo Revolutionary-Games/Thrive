@@ -138,11 +138,11 @@ oxygenResistanceLabel = NodePath("Oxygen/HBoxContainer3/HBoxContainer/OxygenValu
 oxygenResistanceModifierLabel = NodePath("Oxygen/HBoxContainer3/HBoxContainer/OxygenModifier")
 uvResistanceLabel = NodePath("UV/HBoxContainer2/HBoxContainer/HBoxContainer/UVProtectionValue")
 uvResistanceModifierLabel = NodePath("UV/HBoxContainer2/HBoxContainer/HBoxContainer/UVModifier")
-temperatureToleranceMarker = NodePath("Temperature/TemperatureSlider/TemperatureMarker")
-minPressureToleranceMarker = NodePath("Pressure/PressureSliderMin/MinPressureMarker")
-maxPressureToleranceMarker = NodePath("Pressure/PressureSliderMax/MaxPressureMarker")
-oxygenToleranceMarker = NodePath("Oxygen/OxgenSlider/OxygenMarker")
-uvToleranceMarker = NodePath("UV/UVSlider/UVMarker")
+temperatureToleranceMarker = NodePath("Temperature/TemperatureMarker")
+minPressureToleranceMarker = NodePath("Pressure/MinPressureMarker")
+maxPressureToleranceMarker = NodePath("Pressure/MaxPressureMarker")
+oxygenToleranceMarker = NodePath("Oxygen/OxygenMarker")
+uvToleranceMarker = NodePath("UV/UVMarker")
 badValueFont = ExtResource("3_q5r3n")
 perfectValueFont = ExtResource("4_15qmx")
 modifierBadFont = ExtResource("3_q5r3n")
@@ -202,20 +202,15 @@ layout_mode = 2
 size_flags_horizontal = 3
 mouse_filter = 1
 
+[node name="TemperatureMarker" parent="Temperature" instance=ExtResource("7_sg3ru")]
+layout_mode = 2
+
 [node name="TemperatureSlider" type="HSlider" parent="Temperature"]
 layout_mode = 2
 mouse_filter = 1
 rounded = true
 scrollable = false
 tick_count = 8
-
-[node name="TemperatureMarker" parent="Temperature/TemperatureSlider" instance=ExtResource("7_sg3ru")]
-layout_mode = 2
-anchors_preset = 0
-anchor_right = 0.0
-offset_top = -19.0
-offset_right = 1280.0
-offset_bottom = -4.0
 
 [node name="HBoxContainer3" type="HBoxContainer" parent="Temperature"]
 layout_mode = 2
@@ -335,6 +330,9 @@ layout_mode = 2
 size_flags_horizontal = 3
 mouse_filter = 1
 
+[node name="MinPressureMarker" parent="Pressure" instance=ExtResource("7_sg3ru")]
+layout_mode = 2
+
 [node name="PressureSliderMin" type="HSlider" parent="Pressure"]
 layout_mode = 2
 mouse_filter = 1
@@ -345,13 +343,8 @@ rounded = true
 scrollable = false
 tick_count = 8
 
-[node name="MinPressureMarker" parent="Pressure/PressureSliderMin" instance=ExtResource("7_sg3ru")]
+[node name="MaxPressureMarker" parent="Pressure" instance=ExtResource("7_sg3ru")]
 layout_mode = 2
-anchors_preset = 0
-anchor_right = 0.0
-offset_top = -19.0
-offset_right = 1280.0
-offset_bottom = -4.0
 
 [node name="PressureSliderMax" type="HSlider" parent="Pressure"]
 layout_mode = 2
@@ -362,14 +355,6 @@ value = 100000.0
 rounded = true
 scrollable = false
 tick_count = 8
-
-[node name="MaxPressureMarker" parent="Pressure/PressureSliderMax" instance=ExtResource("7_sg3ru")]
-layout_mode = 2
-anchors_preset = 0
-anchor_right = 0.0
-offset_top = -19.0
-offset_right = 1280.0
-offset_bottom = -4.0
 
 [node name="HFlowContainer" type="HFlowContainer" parent="Pressure"]
 layout_mode = 2
@@ -446,6 +431,10 @@ size_flags_horizontal = 3
 mouse_filter = 1
 theme_override_styles/separator = SubResource("StyleBoxTexture_ftstq")
 
+[node name="OxygenMarker" parent="Oxygen" instance=ExtResource("7_sg3ru")]
+layout_mode = 2
+markerTextureOverride = ExtResource("10_q4a2w")
+
 [node name="OxgenSlider" type="HSlider" parent="Oxygen"]
 layout_mode = 2
 mouse_filter = 1
@@ -454,15 +443,6 @@ step = 0.05
 value = 0.25
 scrollable = false
 tick_count = 6
-
-[node name="OxygenMarker" parent="Oxygen/OxgenSlider" instance=ExtResource("7_sg3ru")]
-layout_mode = 2
-anchors_preset = 0
-anchor_right = 0.0
-offset_top = -19.0
-offset_right = 1280.0
-offset_bottom = -4.0
-markerTextureOverride = ExtResource("10_q4a2w")
 
 [node name="HBoxContainer3" type="HBoxContainer" parent="Oxygen"]
 layout_mode = 2
@@ -522,6 +502,10 @@ size_flags_horizontal = 3
 mouse_filter = 1
 theme_override_styles/separator = SubResource("StyleBoxTexture_ftstq")
 
+[node name="UVMarker" parent="UV" instance=ExtResource("7_sg3ru")]
+layout_mode = 2
+markerTextureOverride = ExtResource("10_q4a2w")
+
 [node name="UVSlider" type="HSlider" parent="UV"]
 layout_mode = 2
 mouse_filter = 1
@@ -530,15 +514,6 @@ step = 0.05
 value = 0.1
 scrollable = false
 tick_count = 6
-
-[node name="UVMarker" parent="UV/UVSlider" instance=ExtResource("7_sg3ru")]
-layout_mode = 2
-anchors_preset = 0
-anchor_right = 0.0
-offset_top = -19.0
-offset_right = 1280.0
-offset_bottom = -4.0
-markerTextureOverride = ExtResource("10_q4a2w")
 
 [node name="HBoxContainer2" type="HBoxContainer" parent="UV"]
 layout_mode = 2

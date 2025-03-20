@@ -203,7 +203,6 @@ public partial class TolerancesEditorSubComponent : EditorComponentBase<ICellEdi
         }
 
         UpdateToolTipStats();
-        UpdateAdditionalSliderInfo();
     }
 
     public override void OnFinishEditing()
@@ -216,8 +215,6 @@ public partial class TolerancesEditorSubComponent : EditorComponentBase<ICellEdi
     {
         UpdateCurrentValueDisplays();
         UpdateToolTipStats();
-
-        UpdateAdditionalSliderInfo();
     }
 
     public void ResetToCurrentSpeciesTolerances()
@@ -921,19 +918,8 @@ public partial class TolerancesEditorSubComponent : EditorComponentBase<ICellEdi
         {
             uvResistanceModifierLabel.Visible = false;
         }
-    }
 
-    private void UpdateAdditionalSliderInfo()
-    {
-        var patch = Editor.CurrentPatch;
-        var patchTemperature = patch.Biome.GetCompound(Compound.Temperature, CompoundAmountType.Biome).Ambient;
-        var patchPressure = patch.Biome.Pressure;
-        var requiredOxygenResistance = patch.Biome.CalculateOxygenResistanceFactor();
-        var requiredUVResistance = patch.Biome.CalculateUVFactor();
-
-        var unitFormat = Localization.Translate("VALUE_WITH_UNIT");
-        var percentageFormat = Localization.Translate("PERCENTAGE_VALUE");
-
+        // Update markers
         temperatureToleranceMarker.UpdateBoundaryLabels(unitFormat.FormatSafe(0, temperature.Unit),
             unitFormat.FormatSafe(100, temperature.Unit));
         temperatureToleranceMarker.UpdateMarker(patchTemperature / 100.0f);
