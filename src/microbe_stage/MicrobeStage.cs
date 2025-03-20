@@ -956,14 +956,10 @@ public partial class MicrobeStage : CreatureStageBase<Entity, MicrobeWorldSimula
         // If this is a new game, place some clouds as a learning tool
         if (!IsLoadedFromSave)
         {
-            // create a small trail of phosphates
-            for (int x = 4; x < 100; x += 4)
-            {
-                Clouds.AddCloud(Compound.Phosphates, 1500.0f, new Vector3(x, 0.0f, -MathF.Sqrt(x)));
-            }
-
-            // with a small cloud of glucose at the end
-            Clouds.AddCloud(Compound.Glucose, 19000.0f, new Vector3(140.0f, 0.0f, -25.0f));
+            // Place some phosphates to have something on screen at the start
+            Clouds.AddCloud(Compound.Phosphates, 5000.0f, new Vector3(40.0f, 0.0f, 0.5f));
+            Clouds.AddCloud(Compound.Phosphates, 20000.0f, new Vector3(45.0f, 0.0f, 0.0f));
+            Clouds.AddCloud(Compound.Phosphates, 30000.0f, new Vector3(50.0f, 0.0f, 0.0f));
 
             // If we are starting with tutorials on, disable extra panels that don't matter right now
             if (TutorialState.Enabled)
