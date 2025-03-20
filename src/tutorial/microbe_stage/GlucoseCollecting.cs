@@ -24,11 +24,11 @@ public class GlucoseCollecting : TutorialPhase
         CanTrigger = false;
     }
 
-    [JsonProperty]
-    public HUDBottomBar HUDBottomBar { get; set; } = new();
+    [JsonIgnore]
+    public HUDBottomBar? HUDBottomBar { get; set; }
 
-    [JsonProperty]
-    public CompoundPanels CompoundPanels { get; set; } = new();
+    [JsonIgnore]
+    public CompoundPanels? CompoundPanels { get; set; }
 
     public override string ClosedByName => "GlucoseCollecting";
 
@@ -39,7 +39,7 @@ public class GlucoseCollecting : TutorialPhase
 
     public override void Hide()
     {
-        // Whenever this is hidden we want to let the next tutorial know it can start
+        // Whenever this is hidden, we want to let the next tutorial know it can start
         if (ShownCurrently)
         {
             if (nextTutorial != null)
@@ -75,16 +75,18 @@ public class GlucoseCollecting : TutorialPhase
             case TutorialEventType.MicrobeCompoundsNearPlayer:
             {
                 var data = (EntityPositionEventArgs)args;
-                var compounds = ((EntityPositionEventArgs)args).Compounds;
 
                 if (!HasBeenShown && data.EntityPosition.HasValue && CanTrigger && !overallState.TutorialActive())
                 {
-                    // force player microbe to have the right amount of Glucose missing
-                    compounds.TakeCompound(Compound.Glucose, compounds.GetCapacityForCompound(Compound.Glucose));
-                    compounds.AddCompound(Compound.Glucose, 0.2f);
-
-                    CompoundPanels.ShowPanel = true;
-                    HUDBottomBar.CompoundsPressed = true;
+                    if (CompoundPanels != null && HUDBottomBar != null)
+                    {
+                        CompoundPanels.ShowPanel = true;
+                        HUDBottomBar.CompoundsPressed = true;
+                    }
+                    else
+                    {
+                        GD.PrintErr("Missing GUI panels in glucose tutorial");
+                    }
 
                     nextTutorial = overallState.MicrobeReproduction;
                     Show();

@@ -63,7 +63,7 @@ public partial class MicrobeStage : CreatureStageBase<Entity, MicrobeWorldSimula
     private double movementModeShowTimer;
 
     /// <summary>
-    ///   Used to mark the first time the player turns off tutorials in game
+    ///   Used to mark the first time the player turns off tutorials in the game
     /// </summary>
     [JsonProperty]
     private bool tutorialCanceledOnce;
@@ -311,8 +311,7 @@ public partial class MicrobeStage : CreatureStageBase<Entity, MicrobeWorldSimula
                 {
                     TutorialState.SendEvent(TutorialEventType.MicrobeCompoundsNearPlayer,
                         new EntityPositionEventArgs(Clouds.FindCompoundNearPoint(playerPosition.Position,
-                            Compound.Glucose), Player.Get<CompoundStorage>().Compounds),
-                        this);
+                            Compound.Glucose)), this);
                 }
 
                 if (TutorialState.WantsNearbyEngulfableInfo())
@@ -327,7 +326,7 @@ public partial class MicrobeStage : CreatureStageBase<Entity, MicrobeWorldSimula
                         WorldSimulation);
 
                     TutorialState.SendEvent(TutorialEventType.MicrobeChunksNearPlayer,
-                        new EntityPositionEventArgs(position, Player.Get<CompoundStorage>().Compounds), this);
+                        new EntityPositionEventArgs(position), this);
                 }
 
                 guidancePosition = TutorialState.GetPlayerGuidancePosition();
@@ -857,8 +856,10 @@ public partial class MicrobeStage : CreatureStageBase<Entity, MicrobeWorldSimula
 
             if (!tutorialCanceledOnce)
             {
+                GD.Print("Showing compounds panel as tutorial has been cancelled");
                 HUD.ShowCompoundPanel();
                 HUD.ShowEnvironmentPanel();
+
                 tutorialCanceledOnce = true;
             }
         }
@@ -872,8 +873,7 @@ public partial class MicrobeStage : CreatureStageBase<Entity, MicrobeWorldSimula
 
                 if (patchSunlight > Constants.DAY_NIGHT_TUTORIAL_LIGHT_MIN)
                 {
-                    TutorialState.SendEvent(TutorialEventType.MicrobePlayerEnterSunlightPatch, EventArgs.Empty,
-                        this);
+                    TutorialState.SendEvent(TutorialEventType.MicrobePlayerEnterSunlightPatch, EventArgs.Empty, this);
                 }
             }
         }
@@ -945,7 +945,7 @@ public partial class MicrobeStage : CreatureStageBase<Entity, MicrobeWorldSimula
         WorldSimulation.CameraFollowSystem.Camera = Camera;
         HoverInfo.PhysicalWorld = WorldSimulation.PhysicalWorld;
 
-        // Init the simulation and finish setting up the systems (for example cloud init happens here)
+        // Init the simulation and finish setting up the systems (for example, cloud init happens here)
         WorldSimulation.InitForCurrentGame(CurrentGame!);
 
         tutorialGUI.EventReceiver = TutorialState;

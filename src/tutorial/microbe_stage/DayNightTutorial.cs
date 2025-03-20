@@ -1,6 +1,7 @@
 ﻿namespace Tutorial;
 
 using System;
+using Godot;
 using Newtonsoft.Json;
 
 /// <summary>
@@ -8,11 +9,11 @@ using Newtonsoft.Json;
 /// </summary>
 public class DayNightTutorial : TutorialPhase
 {
-    [JsonProperty]
-    public HUDBottomBar HUDBottomBar { get; set; } = new();
+    [JsonIgnore]
+    public HUDBottomBar? HUDBottomBar { get; set; }
 
-    [JsonProperty]
-    public EnvironmentPanel EnvironmentPanel { get; set; } = new();
+    [JsonIgnore]
+    public EnvironmentPanel? EnvironmentPanel { get; set; }
 
     public override string ClosedByName => "DayNightTutorial";
 
@@ -30,8 +31,16 @@ public class DayNightTutorial : TutorialPhase
             {
                 if (!HasBeenShown && CanTrigger && !overallState.TutorialActive())
                 {
-                    EnvironmentPanel.ShowPanel = true;
-                    HUDBottomBar.EnvironmentPressed = true;
+                    if (HUDBottomBar != null && EnvironmentPanel != null)
+                    {
+                        EnvironmentPanel.ShowPanel = true;
+                        HUDBottomBar.EnvironmentPressed = true;
+                    }
+                    else
+                    {
+                        GD.PrintErr("Missing GUI panels in day/night tutorial");
+                    }
+
                     Show();
                     return true;
                 }
