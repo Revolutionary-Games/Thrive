@@ -32,13 +32,9 @@ public class EditorUndoTutorial : TutorialPhase
         {
             case TutorialEventType.MicrobeEditorOrganellePlaced:
             {
-                OrganelleDefinition placedOrganelle = ((OrganellePlacedEventArgs)args).Definition;
-
-                if (!HasBeenShown && CanTrigger && !overallState.TutorialActive()
-                    && placedOrganelle == SimulationParameters.Instance.GetOrganelleType("nucleus"))
+                if (!HasBeenShown && CanTrigger && !overallState.TutorialActive())
                 {
                     Show();
-                    overallState.EditorTutorialEnd.CanTrigger = true;
                     return true;
                 }
 

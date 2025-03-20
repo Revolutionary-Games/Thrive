@@ -24,7 +24,7 @@ public class EditorTutorialEnd : TutorialPhase
     {
         switch (eventType)
         {
-            case TutorialEventType.EditorUndo:
+            case TutorialEventType.EditorRedo:
             {
                 if (!HasBeenShown && CanTrigger)
                 {
