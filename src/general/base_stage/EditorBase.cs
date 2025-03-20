@@ -205,6 +205,16 @@ public partial class EditorBase<TAction, TStage> : NodeWithInput, IEditor, ILoad
     /// </summary>
     protected virtual bool HasInProgressAction => throw new GodotAbstractPropertyNotOverriddenException();
 
+    /// <summary>
+    ///   How much time passes each editor cycle
+    /// </summary>
+    /// <remarks>
+    ///   <para>
+    ///     TODO: select which units will be used for the master elapsed time counter
+    ///   </para>
+    /// </remarks>
+    protected virtual double EditorTimeStep => 1;
+
     public override void _Ready()
     {
         base._Ready();
@@ -573,6 +583,14 @@ public partial class EditorBase<TAction, TStage> : NodeWithInput, IEditor, ILoad
         pauseMenu.OpenToSpeciesPage(species);
     }
 
+    public double CalculateNextGenerationTimePoint()
+    {
+        if (currentGame == null)
+            throw new InvalidOperationException("Editor not initialized, missing current game");
+
+        return currentGame.GameWorld.CalculateNextTimeStep(EditorTimeStep);
+    }
+
     protected virtual void ResolveDerivedTypeNodeReferences()
     {
         throw new GodotAbstractMethodNotOverriddenException();
@@ -824,7 +842,7 @@ public partial class EditorBase<TAction, TStage> : NodeWithInput, IEditor, ILoad
 
     protected virtual void ElapseEditorEntryTime()
     {
-        throw new GodotAbstractMethodNotOverriddenException();
+        CurrentGame.GameWorld.OnTimePassed(EditorTimeStep);
     }
 
     protected virtual void PerformAutoSave()

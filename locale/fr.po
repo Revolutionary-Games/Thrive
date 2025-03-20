@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2025-03-19 11:38+0200\n"
+"POT-Creation-Date: 2025-03-19 15:24+0200\n"
 "PO-Revision-Date: 2025-03-12 14:39+0000\n"
 "Last-Translator: Anonymous <noreply@weblate.org>\n"
 "Language-Team: French <https://translate.revolutionarygamesstudio.com/projects/thrive/thrive-game/fr/>\n"
@@ -654,6 +654,10 @@ msgstr "La valeur utilisée pour générer le monde doit être un entier positif
 
 #, fuzzy
 msgid "CELL_STAT_SPEED_TOOLTIP"
+msgstr "La valeur utilisée pour générer le monde doit être un entier positif"
+
+#, fuzzy
+msgid "CELL_STAT_STORAGE_TOOLTIP"
 msgstr "La valeur utilisée pour générer le monde doit être un entier positif"
 
 #, fuzzy
@@ -5937,6 +5941,14 @@ msgstr "Montrer les évènements locaux"
 msgid "TIMELINE_NICHE_FILL"
 msgstr "[b][u]{0}[/u][/b] s'est séparé de [b][u]{1}[/u][/b] en tant que nouvelle espèce pour remplir une niche"
 
+#, fuzzy
+msgid "TIMELINE_PLAYER_MIGRATED"
+msgstr "Une partie de la population de [b][u]{0}[/u][/b] a migré vers {1}"
+
+#, fuzzy
+msgid "TIMELINE_PLAYER_MIGRATED_TO"
+msgstr "Une partie de la population de [b][u]{0}[/u][/b] a migré vers {1}"
+
 msgid "TIMELINE_SELECTION_PRESSURE_SPLIT"
 msgstr "[b][u]{0}[/u][/b] s'est séparé de [b][u]{1}[/u][/b] en tant que nouvelle espèce en raison de différentes pressions sélectives"
 
@@ -5948,6 +5960,10 @@ msgstr "[b][u]{0}[/u][/b] s'est éteint !"
 
 msgid "TIMELINE_SPECIES_EXTINCT_LOCAL"
 msgstr "[b][u]{0}[/u][/b] a disparu de ce secteur"
+
+#, fuzzy
+msgid "TIMELINE_SPECIES_FOLLOWED"
+msgstr "[b][u]{0}[/u][/b] s'est éteint !"
 
 msgid "TIMELINE_SPECIES_MIGRATED_FROM"
 msgstr "Une partie de la population de [b][u]{0}[/u][/b] a migré vers ce secteur depuis {1}"
