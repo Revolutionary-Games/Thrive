@@ -100,7 +100,7 @@ tracks/3/interp = 1
 tracks/3/loop_wrap = true
 tracks/3/keys = {
 "times": PackedFloat32Array(0, 0.2),
-"transitions": PackedFloat32Array(1, 1),
+"transitions": PackedFloat32Array(1, -2),
 "update": 0,
 "values": [Vector2(0, 0), Vector2(0, 100)]
 }
@@ -755,7 +755,7 @@ layout_mode = 2
 
 [node name="PanelAnimationPlayer" type="AnimationPlayer" parent="."]
 libraries = {
-"": SubResource("AnimationLibrary_1orya")
+&"": SubResource("AnimationLibrary_1orya")
 }
 
 [connection signal="pressed" from="CompoundsPanel/VBoxContainer/Header/HBoxContainer/CompoundExpandButton" to="." method="OnExpandPressed"]
