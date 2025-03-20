@@ -11,6 +11,9 @@ public partial class ToleranceOptimalMarker : Control
     private Texture2D markerTextureOverride = null!;
 
     [Export]
+    private float padding = 8.0f;
+
+    [Export]
     [ExportCategory("Internal")]
     private Label startValue = null!;
 
@@ -53,7 +56,10 @@ public partial class ToleranceOptimalMarker : Control
 
     public void UpdateMarker(float optimalValue)
     {
-        optimalValueMarker.AnchorLeft = optimalValue;
-        optimalValueMarker.AnchorRight = optimalValue;
+        var position = optimalValueMarker.Position;
+        position.X = padding + (Size.X - 2.0f * padding) * optimalValue - optimalValueMarker.Size.X * 0.5f;
+
+        GD.Print($"Setting to {position} ({optimalValue}) from {optimalValueMarker.Position}");
+        optimalValueMarker.Position = position;
     }
 }
