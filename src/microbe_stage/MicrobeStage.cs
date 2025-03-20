@@ -63,6 +63,12 @@ public partial class MicrobeStage : CreatureStageBase<Entity, MicrobeWorldSimula
     private double movementModeShowTimer;
 
     /// <summary>
+    ///   Used to mark the first time the player turns off tutorials in the game
+    /// </summary>
+    [JsonProperty]
+    private bool tutorialCanceledOnce;
+
+    /// <summary>
     ///   Used to give increasing numbers to player offspring to know which is the latest
     /// </summary>
     [JsonProperty]
@@ -305,8 +311,7 @@ public partial class MicrobeStage : CreatureStageBase<Entity, MicrobeWorldSimula
                 {
                     TutorialState.SendEvent(TutorialEventType.MicrobeCompoundsNearPlayer,
                         new EntityPositionEventArgs(Clouds.FindCompoundNearPoint(playerPosition.Position,
-                            Compound.Glucose)),
-                        this);
+                            Compound.Glucose)), this);
                 }
 
                 if (TutorialState.WantsNearbyEngulfableInfo())
@@ -848,6 +853,15 @@ public partial class MicrobeStage : CreatureStageBase<Entity, MicrobeWorldSimula
         if (!CurrentGame.TutorialState.Enabled)
         {
             tutorialGUI.EventReceiver?.OnTutorialDisabled();
+
+            if (!tutorialCanceledOnce)
+            {
+                GD.Print("Showing compounds panel as tutorial has been cancelled");
+                HUD.ShowCompoundPanel();
+                HUD.ShowEnvironmentPanel();
+
+                tutorialCanceledOnce = true;
+            }
         }
         else
         {
@@ -931,18 +945,27 @@ public partial class MicrobeStage : CreatureStageBase<Entity, MicrobeWorldSimula
         WorldSimulation.CameraFollowSystem.Camera = Camera;
         HoverInfo.PhysicalWorld = WorldSimulation.PhysicalWorld;
 
-        // Init the simulation and finish setting up the systems (for example cloud init happens here)
+        // Init the simulation and finish setting up the systems (for example, cloud init happens here)
         WorldSimulation.InitForCurrentGame(CurrentGame!);
 
         tutorialGUI.EventReceiver = TutorialState;
-        HUD.SendEditorButtonToTutorial(TutorialState);
+        HUD.SendObjectsToTutorials(TutorialState);
 
         ProceduralDataCache.Instance.OnEnterState(MainGameState.MicrobeStage);
 
-        // If this is a new game, place some phosphates as a learning tool
+        // If this is a new game, place some clouds as a learning tool
         if (!IsLoadedFromSave)
         {
-            Clouds.AddCloud(Compound.Phosphates, 50000.0f, new Vector3(50.0f, 0.0f, 0.0f));
+            // Place some phosphates to have something on screen at the start
+            Clouds.AddCloud(Compound.Phosphates, 5000.0f, new Vector3(40.0f, 0.0f, 0.5f));
+            Clouds.AddCloud(Compound.Phosphates, 20000.0f, new Vector3(45.0f, 0.0f, 0.0f));
+            Clouds.AddCloud(Compound.Phosphates, 30000.0f, new Vector3(50.0f, 0.0f, 0.0f));
+
+            // If we are starting with tutorials on, disable extra panels that don't matter right now
+            if (TutorialState.Enabled)
+            {
+                HUD.HideEnvironmentAndCompoundPanels();
+            }
         }
 
         patchManager.CurrentGame = CurrentGame;

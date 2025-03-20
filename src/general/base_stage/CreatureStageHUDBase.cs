@@ -461,9 +461,15 @@ public partial class CreatureStageHUDBase<TStage> : HUDWithPausing, ICreatureSta
         UpdateSpeedModeDisplay();
     }
 
-    public void SendEditorButtonToTutorial(TutorialState tutorialState)
+    public void SendObjectsToTutorials(TutorialState tutorialState)
     {
         tutorialState.MicrobePressEditorButton.PressEditorButtonControl = editorButton;
+
+        tutorialState.GlucoseCollecting.CompoundPanels = compoundsPanel;
+        tutorialState.GlucoseCollecting.HUDBottomBar = bottomLeftBar;
+
+        tutorialState.DayNightTutorial.EnvironmentPanel = environmentPanel;
+        tutorialState.DayNightTutorial.HUDBottomBar = bottomLeftBar;
     }
 
     /// <summary>
@@ -691,6 +697,36 @@ public partial class CreatureStageHUDBase<TStage> : HUDWithPausing, ICreatureSta
     public virtual bool GetCurrentSpeedMode()
     {
         return false;
+    }
+
+    /// <summary>
+    ///   Hides both the compounds panel and the environment panel for tutorial purposes
+    /// </summary>
+    public void HideEnvironmentAndCompoundPanels()
+    {
+        compoundsPanel.ShowPanel = false;
+        bottomLeftBar.CompoundsPressed = false;
+
+        environmentPanel.ShowPanel = false;
+        bottomLeftBar.EnvironmentPressed = false;
+    }
+
+    /// <summary>
+    ///   Restores the compound panel after it was closed for the tutorial
+    /// </summary>
+    public void ShowCompoundPanel()
+    {
+        compoundsPanel.ShowPanel = true;
+        bottomLeftBar.CompoundsPressed = true;
+    }
+
+    /// <summary>
+    ///   Restores the environment panel after it was closed for the tutorial
+    /// </summary>
+    public void ShowEnvironmentPanel()
+    {
+        environmentPanel.ShowPanel = true;
+        bottomLeftBar.EnvironmentPressed = true;
     }
 
     /// <summary>
