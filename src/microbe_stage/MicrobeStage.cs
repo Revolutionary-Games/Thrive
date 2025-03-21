@@ -74,6 +74,9 @@ public partial class MicrobeStage : CreatureStageBase<Entity, MicrobeWorldSimula
     /// </summary>
     private bool waitingForWelcomeTutorialToEnd;
 
+    [JsonProperty]
+    private bool environmentPanelAutomaticallyOpened;
+
     /// <summary>
     ///   Used to give increasing numbers to player offspring to know which is the latest
     /// </summary>
@@ -377,6 +380,17 @@ public partial class MicrobeStage : CreatureStageBase<Entity, MicrobeWorldSimula
 
                     if (showCompounds)
                         HUD.ShowCompoundPanel();
+                }
+            }
+
+            if (!environmentPanelAutomaticallyOpened)
+            {
+                // Open panel automatically if taking radiation
+                var compounds = Player.Get<CompoundStorage>().Compounds;
+                if (compounds.GetCompoundAmount(Compound.Radiation) > 0.1f)
+                {
+                    HUD.ShowEnvironmentPanel();
+                    environmentPanelAutomaticallyOpened = true;
                 }
             }
 
@@ -768,6 +782,7 @@ public partial class MicrobeStage : CreatureStageBase<Entity, MicrobeWorldSimula
 
         var workData1 = new List<Hex>();
         var workData2 = new List<Hex>();
+        bool playerHasThermoplast = false;
 
         // Update the player's cell
         ref var cellProperties = ref Player.Get<CellProperties>();
@@ -799,6 +814,15 @@ public partial class MicrobeStage : CreatureStageBase<Entity, MicrobeWorldSimula
             cellProperties.ReApplyCellTypeProperties(ref environmentalEffects, Player,
                 species.Species, species.Species, WorldSimulation,
                 workData1, workData2);
+
+            foreach (var organelle in species.Species.Organelles)
+            {
+                if (organelle.Definition.HasHeatCollection)
+                {
+                    playerHasThermoplast = true;
+                    break;
+                }
+            }
         }
 
         Player.Set(environmentalEffects);
@@ -913,6 +937,13 @@ public partial class MicrobeStage : CreatureStageBase<Entity, MicrobeWorldSimula
                     TutorialState.SendEvent(TutorialEventType.MicrobePlayerEnterSunlightPatch, EventArgs.Empty, this);
                 }
             }
+        }
+
+        // When adding a thermoplast, the environment panel should be made visible
+        if (!environmentPanelAutomaticallyOpened && playerHasThermoplast)
+        {
+            HUD.ShowEnvironmentPanel();
+            environmentPanelAutomaticallyOpened = true;
         }
     }
 
