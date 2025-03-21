@@ -69,6 +69,15 @@ public partial class MicrobeStage : CreatureStageBase<Entity, MicrobeWorldSimula
     private bool tutorialCanceledOnce;
 
     /// <summary>
+    ///   Used to detect when the welcome tutorial is over and some state should be checked.
+    ///   For example, having already played certain tutorials requires restoring the compounds panel to open.
+    /// </summary>
+    private bool waitingForWelcomeTutorialToEnd;
+
+    [JsonProperty]
+    private bool environmentPanelAutomaticallyOpened;
+
+    /// <summary>
     ///   Used to give increasing numbers to player offspring to know which is the latest
     /// </summary>
     [JsonProperty]
@@ -205,6 +214,13 @@ public partial class MicrobeStage : CreatureStageBase<Entity, MicrobeWorldSimula
         CheatManager.OnSpawnEnemyCheatUsed += OnSpawnEnemyCheatUsed;
         CheatManager.OnPlayerDuplicationCheatUsed += OnDuplicatePlayerCheatUsed;
         CheatManager.OnDespawnAllEntitiesCheatUsed += OnDespawnAllEntitiesCheatUsed;
+
+        // Re-register this callback in case it is necessary
+        // The primary registration for this is in OnGameStarted
+        if (CurrentGame != null)
+        {
+            TutorialState.GlucoseCollecting.OnTutorialOpen += SetupPlayerForGlucoseCollecting;
+        }
     }
 
     public override void _ExitTree()
@@ -215,6 +231,11 @@ public partial class MicrobeStage : CreatureStageBase<Entity, MicrobeWorldSimula
         CheatManager.OnDespawnAllEntitiesCheatUsed -= OnDespawnAllEntitiesCheatUsed;
 
         DebugOverlays.Instance.OnWorldDisabled(WorldSimulation);
+
+        if (CurrentGame != null)
+        {
+            TutorialState.GlucoseCollecting.OnTutorialOpen += SetupPlayerForGlucoseCollecting;
+        }
     }
 
     public override void _Process(double delta)
@@ -341,6 +362,36 @@ public partial class MicrobeStage : CreatureStageBase<Entity, MicrobeWorldSimula
             else
             {
                 guidanceLine.Visible = false;
+            }
+
+            if (waitingForWelcomeTutorialToEnd)
+            {
+                // Check if the welcome tutorial has ended
+                if (TutorialState.MicrobeStageWelcome.Complete)
+                {
+                    waitingForWelcomeTutorialToEnd = false;
+
+                    // Restore panel state if tutorials won't be played
+                    bool showCompounds = TutorialState.GlucoseCollecting.Complete;
+                    bool showEnvironment = TutorialState.DayNightTutorial.Complete;
+
+                    if (showEnvironment)
+                        HUD.ShowEnvironmentPanel();
+
+                    if (showCompounds)
+                        HUD.ShowCompoundPanel();
+                }
+            }
+
+            if (!environmentPanelAutomaticallyOpened)
+            {
+                // Open panel automatically if taking radiation
+                var compounds = Player.Get<CompoundStorage>().Compounds;
+                if (compounds.GetCompoundAmount(Compound.Radiation) > 0.1f)
+                {
+                    HUD.ShowEnvironmentPanel();
+                    environmentPanelAutomaticallyOpened = true;
+                }
             }
 
             // Apply player god mode
@@ -731,6 +782,7 @@ public partial class MicrobeStage : CreatureStageBase<Entity, MicrobeWorldSimula
 
         var workData1 = new List<Hex>();
         var workData2 = new List<Hex>();
+        bool playerHasThermoplast = false;
 
         // Update the player's cell
         ref var cellProperties = ref Player.Get<CellProperties>();
@@ -762,6 +814,15 @@ public partial class MicrobeStage : CreatureStageBase<Entity, MicrobeWorldSimula
             cellProperties.ReApplyCellTypeProperties(ref environmentalEffects, Player,
                 species.Species, species.Species, WorldSimulation,
                 workData1, workData2);
+
+            foreach (var organelle in species.Species.Organelles)
+            {
+                if (organelle.Definition.HasHeatCollection)
+                {
+                    playerHasThermoplast = true;
+                    break;
+                }
+            }
         }
 
         Player.Set(environmentalEffects);
@@ -877,6 +938,13 @@ public partial class MicrobeStage : CreatureStageBase<Entity, MicrobeWorldSimula
                 }
             }
         }
+
+        // When adding a thermoplast, the environment panel should be made visible
+        if (!environmentPanelAutomaticallyOpened && playerHasThermoplast)
+        {
+            HUD.ShowEnvironmentPanel();
+            environmentPanelAutomaticallyOpened = true;
+        }
     }
 
     public override void OnSuicide()
@@ -964,7 +1032,8 @@ public partial class MicrobeStage : CreatureStageBase<Entity, MicrobeWorldSimula
             // If we are starting with tutorials on, disable extra panels that don't matter right now
             if (TutorialState.Enabled)
             {
-                HUD.HideEnvironmentAndCompoundPanels();
+                HUD.HideEnvironmentAndCompoundPanels(false);
+                waitingForWelcomeTutorialToEnd = true;
             }
         }
 
@@ -986,6 +1055,9 @@ public partial class MicrobeStage : CreatureStageBase<Entity, MicrobeWorldSimula
         UpdatePatchSettings(!TutorialState.Enabled);
 
         SpawnPlayer();
+
+        // Can now register this callback with the game set
+        TutorialState.GlucoseCollecting.OnTutorialOpen += SetupPlayerForGlucoseCollecting;
     }
 
     protected override void SpawnPlayer()
@@ -1599,6 +1671,26 @@ public partial class MicrobeStage : CreatureStageBase<Entity, MicrobeWorldSimula
         {
             resolvedTolerancesCache.Clear();
         }
+    }
+
+    private void SetupPlayerForGlucoseCollecting()
+    {
+        // Reduce player glucose amount to have enough storage space to collect stuff
+        if (!HasAlivePlayer)
+        {
+            GD.PrintErr("Cannot adjust player glucose as no alive player exists");
+            return;
+        }
+
+        var compounds = Player.Get<CompoundStorage>().Compounds;
+
+        var glucoseMax = compounds.GetCapacityForCompound(Compound.Glucose);
+
+        var excess = compounds.GetCompoundAmount(Compound.Glucose) -
+            (glucoseMax - Constants.TUTORIAL_GLUCOSE_MAKE_EMPTY_SPACE_AT_LEAST);
+
+        if (excess > 0)
+            compounds.TakeCompound(Compound.Glucose, excess);
     }
 
     private void TranslationsForFeaturesToReimplement()

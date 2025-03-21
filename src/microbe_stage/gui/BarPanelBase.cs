@@ -27,9 +27,9 @@ public partial class BarPanelBase : VBoxContainer
 
 #pragma warning restore CA2213
 
-    private bool panelCompressed;
+    protected bool showPanels = true;
 
-    private bool showPanels = true;
+    private bool panelCompressed;
 
     [Export]
     public bool PanelCompressed
@@ -85,6 +85,13 @@ public partial class BarPanelBase : VBoxContainer
 
         primaryBarContainer.AddChild(bar);
         primaryBars.Add(bar);
+    }
+
+    public virtual void HideWithoutAnimation()
+    {
+        // Immediately transferring states so don't trigger animations by setting this directly
+        showPanels = false;
+        HideImmediately();
     }
 
     protected void OnCompressPressed()
