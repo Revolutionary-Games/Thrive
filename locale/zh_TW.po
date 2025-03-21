@@ -8,7 +8,7 @@ msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2025-03-20 10:30+0200\n"
-"PO-Revision-Date: 2025-03-12 14:39+0000\n"
+"PO-Revision-Date: 2025-03-20 20:10+0000\n"
 "Last-Translator: Anonymous <noreply@weblate.org>\n"
 "Language-Team: Chinese (Traditional Han script) <https://translate.revolutionarygamesstudio.com/projects/thrive/thrive-game/zh_Hant/>\n"
 "Language: zh_TW\n"
@@ -3472,6 +3472,7 @@ msgstr ""
 "\n"
 "若要繼續，請按下「[b]成為多細胞[/b]」按鈕。"
 
+#, fuzzy
 msgid "MICROBE_STAGE_COLLECT_TEXT"
 msgstr ""
 "透過在[thrive:compound type=\"glucose\"][/thrive:compound]（白雲）上移動來收集它們。\n"
@@ -3480,6 +3481,7 @@ msgstr ""
 "\n"
 "跟隨顯示的線尋找附近的[thrive:compound type=\"glucose\"][/thrive:compound]。"
 
+#, fuzzy
 msgid "MICROBE_STAGE_CONTROL_TEXT"
 msgstr ""
 "要控制細胞，請使用在細胞附近（螢幕中央）顯示的按鍵與滑鼠來控制細胞方向。\n"
@@ -3494,6 +3496,7 @@ msgstr ""
 "警告：控制器輸入是實驗性的，並不完全可用（若無觸控板），也預期會出現錯誤\n"
 "嘗試所有按鍵幾秒鐘以繼續。"
 
+#, fuzzy
 msgid "MICROBE_STAGE_DAY_NIGHT_TEXT"
 msgstr ""
 "留意環境面板上的[b]光照強度[/b]是否有下降。\n"
@@ -3502,6 +3505,7 @@ msgstr ""
 "光合作用在夜間無效。\n"
 "因此，請確保您有足夠的能量儲存 [thrive:icon]StorageIcon[/thrive:icon] 來度過夜晚。"
 
+#, fuzzy
 msgid "MICROBE_STAGE_HEALTH_TEXT"
 msgstr ""
 "密切關注[thrive:compound type=\"atp\"][/thrive:compound] 欄旁的生命值（右下方）。\n"
@@ -3539,6 +3543,7 @@ msgstr ""
 "\n"
 "為了在這個充滿敵意的世界中生存，您需要收集任何您能找到的化合物，並在多世代中不斷演化來與其他微生物競爭。"
 
+#, fuzzy
 msgid "MICROBE_STAGE_ORGANELLE_DIVISION"
 msgstr ""
 "您的一個細胞器已分裂。\n"
@@ -5954,6 +5959,7 @@ msgstr "教學"
 msgid "TUTORIAL_ALL_NOT_ENABLED_EXPLANATION"
 msgstr "（某些細胞器需要滿足特定解鎖條件才能放置）"
 
+#, fuzzy
 msgid "TUTORIAL_MICROBE_EDITOR_ATP_BALANCE_INTRO"
 msgstr ""
 "右側的 ATP 生產欄顯示您細胞生產的[thrive:compound type=\"atp\"][/thrive:compound] 與消耗的比例。如果頂欄比底欄短，則表示您沒有生產足夠的[thrive:compound type=\"atp\"][/thrive:compound]。\n"
@@ -5972,6 +5978,7 @@ msgstr ""
 "\n"
 "您可以[b]按下面板中的問號按鈕查看預測背後的更多詳細資訊。按下按鈕以繼續。[/b]"
 
+#, fuzzy
 msgid "TUTORIAL_MICROBE_EDITOR_CELL_TEXT"
 msgstr ""
 "這是細胞編輯器，您可以透過花費[b]突變點數[/b]（MP）[thrive:icon]MP[/thrive:icon] 來演化您的物種。每一代您都會有[b]100 MP[/b] [thrive:icon]MP[/thrive:icon] 可以花費，所以不必費心保留！\n"
@@ -5988,6 +5995,7 @@ msgstr ""
 "\n"
 "放置化學感受器將允許您探測諸如[thrive:compound type=\"glucose\"][/thrive:compound] 之類的化合物，並引導您找到它們。它也可用於探測其他物種的細胞。"
 
+#, fuzzy
 msgid "TUTORIAL_MICROBE_EDITOR_ENDING_TEXT"
 msgstr ""
 "這些是編輯物種的基礎操作。最後，您可以透過點擊左下角的名稱並編輯文字來重新命名您的物種。\n"
@@ -6042,6 +6050,7 @@ msgstr ""
 "\n"
 "選擇左側面板中的「適應」分頁以繼續。"
 
+#, fuzzy
 msgid "TUTORIAL_MICROBE_EDITOR_PATCH_TEXT"
 msgstr ""
 "這是[b]區域地圖[/b]。\n"
@@ -6072,6 +6081,7 @@ msgstr ""
 "\n"
 "按下重做按鈕（位於撤銷按鈕旁）以繼續。"
 
+#, fuzzy
 msgid "TUTORIAL_MICROBE_EDITOR_STAY_SMALL"
 msgstr ""
 "您應該專注於[b]特化[/b]，依靠一種或兩種[thrive:compound type=\"atp\"][/thrive:compound] 來源，這樣您就不需要擁有所有資源以產生足夠的能量來生存。\n"
@@ -6112,6 +6122,7 @@ msgstr ""
 "\n"
 "當細胞充滿時，就無法吞噬更多的東西。要繼續吞噬，請等待一個或多個攝入的物體被完全消化。"
 
+#, fuzzy
 msgid "TUTORIAL_MICROBE_STAGE_ENGULFMENT_TEXT"
 msgstr ""
 "在吞噬模式下透過在物體上移動來吞噬它們。按下[thrive:input]g_toggle_engulf[/thrive:input]切換吞噬模式。\n"
@@ -6133,6 +6144,7 @@ msgstr ""
 "除非您成為多細胞生物，否則您需要離開群體才能進入編輯器。\n"
 "按下[thrive:input]g_unbind_all[/thrive:input]離開細胞群體以進行繁殖。"
 
+#, fuzzy
 msgid "TUTORIAL_MICROBE_STAGE_REPRODUCE_TEXT"
 msgstr ""
 "為了繁殖，您必須複製您的細胞器。當細胞存活時，這種情況會逐漸發生，但您可以透過收集[thrive:compound type=\"ammonia\"][/thrive:compound] 與[thrive:compound type=\"phosphates\"][/thrive:compound] 來加速這個過程。\n"

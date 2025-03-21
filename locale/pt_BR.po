@@ -8,7 +8,7 @@ msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2025-03-20 10:30+0200\n"
-"PO-Revision-Date: 2025-03-12 14:39+0000\n"
+"PO-Revision-Date: 2025-03-20 20:10+0000\n"
 "Last-Translator: Anonymous <noreply@weblate.org>\n"
 "Language-Team: Portuguese (Brazil) <https://translate.revolutionarygamesstudio.com/projects/thrive/thrive-game/pt_BR/>\n"
 "Language: pt_BR\n"
@@ -3494,6 +3494,7 @@ msgstr ""
 "\n"
 "Para avançar, pressione o botão [b]\"Tornar-se Multicelular\"[/b]."
 
+#, fuzzy
 msgid "MICROBE_STAGE_COLLECT_TEXT"
 msgstr ""
 "Colete glicose (nuvens brancas) movendo-se na direção delas.\n"
@@ -3502,6 +3503,7 @@ msgstr ""
 "\n"
 "Siga a linha da sua célula até a glicose."
 
+#, fuzzy
 msgid "MICROBE_STAGE_CONTROL_TEXT"
 msgstr ""
 "Para controlar a sua célula use as teclas mostradas perto de sua célula (centro da tela) e o mouse para controlar a sua orientação.\n"
@@ -3516,6 +3518,7 @@ msgstr ""
 "AVISO: o uso de controles como entrada é experimental e não é completamente utilizável (sem um touchpad), também espere por bugs.\n"
 "Tente todas as direções por alguns segundos para continuar."
 
+#, fuzzy
 msgid "MICROBE_STAGE_DAY_NIGHT_TEXT"
 msgstr ""
 "Fique de olho no [b]medidor de luz solar[/b] no painel do ambiente.\n"
@@ -3524,6 +3527,7 @@ msgstr ""
 "\n"
 "A fotossíntese não funciona à noite. Então, células que dependem de fotossíntese precisam ter um armazenamento suficiente de compostos [thrive:icon]StorageIcon[/thrive:icon] para sobreviver a noite."
 
+#, fuzzy
 msgid "MICROBE_STAGE_HEALTH_TEXT"
 msgstr ""
 "Fique de olho na sua barra de saúde próximo a barra de ATP (canto inferior direito).\n"
@@ -3561,6 +3565,7 @@ msgstr ""
 "\n"
 "Para sobreviver nesse mundo hostil, você precisará coletar todos os compostos que puder encontrar e evoluir ao longo das gerações para competir contra outras espécies de microrganismos."
 
+#, fuzzy
 msgid "MICROBE_STAGE_ORGANELLE_DIVISION"
 msgstr ""
 "Uma de suas organelas se dividiu.\n"
@@ -5980,6 +5985,7 @@ msgstr "Tutorial"
 msgid "TUTORIAL_ALL_NOT_ENABLED_EXPLANATION"
 msgstr "(algumas organelas terão condições de desbloqueio para poderem ser colocadas)"
 
+#, fuzzy
 msgid "TUTORIAL_MICROBE_EDITOR_ATP_BALANCE_INTRO"
 msgstr ""
 "A barra de Produção de ATP à direita indica quanta [thrive:compound type=\"atp\"][/thrive:compound] a sua célula produz comparada com quanto é consumida. Se a barra superior for menor que a inferior, você não está produzindo [thrive:compound type=\"atp\"][/thrive:compound] suficiente.\n"
@@ -5998,6 +6004,7 @@ msgstr ""
 "\n"
 "Você pode ver informações mais detalhadas sobre a previsão [b]clicando no ponto de interrogação no painel. Clique nele para continuar.[/b]"
 
+#, fuzzy
 msgid "TUTORIAL_MICROBE_EDITOR_CELL_TEXT"
 msgstr ""
 "Este é o editor de células, onde você pode evoluir a sua espécie gastando [b]Pontos de Mutação[/b] (PM) [thrive:icon]MP[/thrive:icon]. Cada geração sempre terá [b]100 PM[/b] [thrive:icon]MP[/thrive:icon] para gastar, então você não precisa economizar!\n"
@@ -6014,6 +6021,7 @@ msgstr ""
 "\n"
 "Colocar um desses lhe permitirá detectar compostos como [thrive:compound type=\"glucose\"][/thrive:compound] e the guiará até eles. Também pode ser usado para detectar células de outras espécies."
 
+#, fuzzy
 msgid "TUTORIAL_MICROBE_EDITOR_ENDING_TEXT"
 msgstr ""
 "Esses são os conceitos básicos da edição da sua espécie. Como toque final, você pode renomear sua espécie clicando no nome, no canto inferior esquerdo, e editando o texto.\n"
@@ -6068,6 +6076,7 @@ msgstr ""
 "\n"
 "Selecione a aba \"Tolerância\" no painel à esquerda para continuar."
 
+#, fuzzy
 msgid "TUTORIAL_MICROBE_EDITOR_PATCH_TEXT"
 msgstr ""
 "Este é o [b]mapa de regiões[/b].\n"
@@ -6098,6 +6107,7 @@ msgstr ""
 "\n"
 "Aperte o botão de refazer (ao lado do botão de desfazer) para continuar."
 
+#, fuzzy
 msgid "TUTORIAL_MICROBE_EDITOR_STAY_SMALL"
 msgstr ""
 "Você deveria se [b]especializar[/b] para sobreviver com uma ou duas fontes de [thrive:compound type=\"atp\"][/thrive:compound] para que não precise de muitos recursos ao mesmo tempo para se sustentar.\n"
@@ -6138,6 +6148,7 @@ msgstr ""
 "\n"
 "Quando cheio, um micróbio não pode fagocitar mais. É preciso esperar que pelo menos um objeto seja digerido."
 
+#, fuzzy
 msgid "TUTORIAL_MICROBE_STAGE_ENGULFMENT_TEXT"
 msgstr ""
 "Fagocite objetos ao passar por cima deles no modo apropriado. Ative e desative esse modo apertando [thrive:input]g_toggle_engulf[/thrive:input].\n"
@@ -6159,6 +6170,7 @@ msgstr ""
 "Você deverá sair da colônia para entrar no editor, a não ser que queira tornar-se um organismo multicelular.\n"
 "Saia da colônia ao apertar [thrive:input]g_unbind_all[/thrive:input]."
 
+#, fuzzy
 msgid "TUTORIAL_MICROBE_STAGE_REPRODUCE_TEXT"
 msgstr ""
 "Para se reproduzir você precisa duplicar todas as suas organelas. Isso ocorre gradualmente enquanto você sobrevive, mas você pode acelerar o processo coletando [thrive:compound type=\"ammonia\"][/thrive:compound] e [thrive:compound type=\"phosphates\"][/thrive:compound].\n"
