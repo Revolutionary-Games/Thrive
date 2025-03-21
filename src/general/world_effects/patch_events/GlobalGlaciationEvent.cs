@@ -167,6 +167,11 @@ public class GlobalGlaciationEvent : IWorldEffect
 
     private void AdjustEnvironment(Patch patch)
     {
+        if (patch.BiomeType == BiomeType.IceShelf)
+        {
+            return;
+        }
+
         bool hasTemperature =
             patch.Biome.ChangeableCompounds.TryGetValue(Compound.Temperature, out var currentTemperature);
         bool hasSunlight = patch.Biome.ChangeableCompounds.TryGetValue(Compound.Sunlight, out var currentSunlight);
@@ -265,6 +270,11 @@ public class GlobalGlaciationEvent : IWorldEffect
 
     private void ResetEnvironment(Patch patch, PatchSnapshot patchSnapshot)
     {
+        if (patch.BiomeType == BiomeType.IceShelf)
+        {
+            return;
+        }
+
         var hasTemperature = patchSnapshot.Biome.TryGetCompound(Compound.Temperature, CompoundAmountType.Biome,
             out var previousTemperature);
         var hasSunlight =
