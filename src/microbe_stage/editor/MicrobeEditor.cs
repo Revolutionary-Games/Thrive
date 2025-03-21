@@ -101,7 +101,7 @@ public partial class MicrobeEditor : EditorBase<EditorAction, MicrobeStage>, IEd
             return;
         }
 
-        reportTab.UpdateAutoEvoResults(autoEvoResults, autoEvoExternal?.ToString() ?? "error");
+        UpdateAutoEvoToReportTab();
     }
 
     public override void SetEditorObjectVisibility(bool shown)
@@ -236,7 +236,7 @@ public partial class MicrobeEditor : EditorBase<EditorAction, MicrobeStage>, IEd
 
         if (autoEvoResults != null && autoEvoExternal != null)
         {
-            reportTab.UpdateAutoEvoResults(autoEvoResults, autoEvoExternal.ToString());
+            UpdateAutoEvoToReportTab();
         }
         else if (autoEvoExternal != null)
         {
@@ -251,12 +251,6 @@ public partial class MicrobeEditor : EditorBase<EditorAction, MicrobeStage>, IEd
         reportTab.UpdateEvents(CurrentGame.GameWorld.EventsLog, CurrentGame.GameWorld.TotalPassedTime);
 
         patchMapTab.UpdatePatchEvents();
-    }
-
-    protected override void ElapseEditorEntryTime()
-    {
-        // TODO: select which units will be used for the master elapsed time counter
-        CurrentGame.GameWorld.OnTimePassed(1);
     }
 
     protected override void UpdatePatchDetails()
@@ -351,6 +345,16 @@ public partial class MicrobeEditor : EditorBase<EditorAction, MicrobeStage>, IEd
         }
 
         base.Dispose(disposing);
+    }
+
+    private void UpdateAutoEvoToReportTab()
+    {
+        if (autoEvoResults == null)
+            throw new InvalidOperationException("May not be called without report");
+
+        // This creates a new callable each time, but the garbage amount should be negligible
+        reportTab.UpdateAutoEvoResults(autoEvoResults, autoEvoExternal?.ToString() ?? "error",
+            () => autoEvoResults.MakeSummary(true));
     }
 
     private void OnRevealAllPatchesCheatUsed(object? sender, EventArgs args)

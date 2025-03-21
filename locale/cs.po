@@ -7,8 +7,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2025-03-21 19:22+0100\n"
-"PO-Revision-Date: 2025-03-07 10:46+0000\n"
+"POT-Creation-Date: 2025-03-20 10:30+0200\n"
+"PO-Revision-Date: 2025-03-20 20:10+0000\n"
 "Last-Translator: Anonymous <noreply@weblate.org>\n"
 "Language-Team: Czech <https://translate.revolutionarygamesstudio.com/projects/thrive/thrive-game/cs/>\n"
 "Language: cs\n"
@@ -322,6 +322,10 @@ msgid "AUTO-EVO_PREDICTION_BOX_DESCRIPTION"
 msgstr ""
 "Tento panel ukazuje očekávané počty populací z auto-evo pro editované druhy.\n"
 "Auto-evo provádí simulaci populace, což je další část (kromě vašeho vlastního výkonu), která ovlivňuje vaši populaci."
+
+#, fuzzy
+msgid "AUTO-EVO_RESULTS_TITLE"
+msgstr "Výsledky Auto-evo:"
 
 msgid "AUTO-EVO_STEPS_DONE"
 msgstr "{0:F1}% splněno. {1:n0}/{2:n0} kroků."
@@ -657,6 +661,10 @@ msgid "CELL_STAT_SPEED_TOOLTIP"
 msgstr "Hodnota použita pro generování světa, která musí být pozitivní celé číslo"
 
 #, fuzzy
+msgid "CELL_STAT_STORAGE_TOOLTIP"
+msgstr "Hodnota použita pro generování světa, která musí být pozitivní celé číslo"
+
+#, fuzzy
 msgid "CELL_TYPE_BUTTON_ATP_CONSUMPTION"
 msgstr "Mrtvá zóna:"
 
@@ -785,6 +793,10 @@ msgstr "Vyčistit staré zálohy"
 
 msgid "CLEAR_CACHE"
 msgstr "vymazat cache"
+
+#, fuzzy
+msgid "CLICK_TO_SELECT"
+msgstr "Smazat vybrané"
 
 msgid "CLOSE"
 msgstr "Zavřít"
@@ -2505,32 +2517,6 @@ msgstr "Navštiv náš GitHub repozitář"
 msgid "GLES3"
 msgstr "GLES3"
 
-msgid "GLOBAL_GLACIATION_END_EVENT_LOG"
-msgstr ""
-
-#, fuzzy
-msgid "GLOBAL_GLACIATION_EVENT"
-msgstr "Celková populace:"
-
-#, fuzzy
-msgid "GLOBAL_GLACIATION_EVENT_LOG"
-msgstr "Celková populace:"
-
-#, fuzzy
-msgid "GLOBAL_GLACIATION_EVENT_TOOLTIP"
-msgstr "Přejděte do fáze Probuzení. Dostupné, jakmile máte dostatečnou sílu mozku (typ tkáně s axony)."
-
-#, fuzzy
-msgid "GLOBAL_GLACIATION_EVENT_WARNING_LOG_PLURAL"
-msgstr "Celková populace:"
-
-#, fuzzy
-msgid "GLOBAL_GLACIATION_EVENT_WARNING_LOG_SINGULAR"
-msgstr "Celková populace:"
-
-msgid "GLOBAL_GLACIATION_START_EVENT_LOG"
-msgstr ""
-
 msgid "GLOBAL_INITIAL_LETTER"
 msgstr "G"
 
@@ -3799,6 +3785,7 @@ msgstr ""
 "\n"
 "Následujte čáru vedoucí z vaší buňky k blízké glukóze."
 
+#, fuzzy
 msgid "MICROBE_STAGE_COLLECT_TEXT"
 msgstr ""
 "Pohybem skrze glukózu (bílé oblaky) ji lze posbírat.\n"
@@ -3807,6 +3794,7 @@ msgstr ""
 "\n"
 "Následujte čáru vedoucí z vaší buňky k blízké glukóze."
 
+#, fuzzy
 msgid "MICROBE_STAGE_CONTROL_TEXT"
 msgstr ""
 "Chceš-li ovládat buňku, použij klávesy zobrazené v blízkosti buňky (střed obrazovky) a myš pro ovládání orientace buňky.\n"
@@ -3828,6 +3816,7 @@ msgstr ""
 "Regenerace zdraví probíhá za předpokladu, že máš dostatek ATP.\n"
 "Nezapomeň shromáždit dostatek glukózy k produkci ATP."
 
+#, fuzzy
 msgid "MICROBE_STAGE_HEALTH_TEXT"
 msgstr ""
 "Dávej pozor na svou zdravotní lištu vedle lišty ATP (vpravo dole).\n"
@@ -3972,6 +3961,9 @@ msgstr "Modding instrukce jsou dostupné na"
 
 msgid "MODELS"
 msgstr "Modely"
+
+msgid "MODE_CAN_BE_CHANGED_IN_OPTIONS"
+msgstr ""
 
 msgid "MODIFY"
 msgstr "Upravit"
@@ -4950,6 +4942,10 @@ msgstr "Hráč vyhynul"
 msgid "PLAYER_RELATIVE_MOVEMENT"
 msgstr "Hráč vyhynul"
 
+#, fuzzy
+msgid "PLAYER_RELATIVE_MOVEMENT_TOOLTIP"
+msgstr "Hráč vyhynul"
+
 msgid "PLAYER_REPRODUCED"
 msgstr "hráč se rozmnožil"
 
@@ -5033,6 +5029,10 @@ msgstr "Proces buňky"
 msgid "PROCESS_SPEED_MODIFIER"
 msgstr "Proces buňky"
 
+#, fuzzy
+msgid "PROCESS_TOGGLE_TOOLTIP"
+msgstr "Návrat do hlavního menu"
+
 msgid "PROGRAMMING_TEAM"
 msgstr "Programátoři"
 
@@ -5047,6 +5047,10 @@ msgstr "Protoplazma"
 
 msgid "PULL_REQUESTS_PROGRAMMING"
 msgstr "Externí programátoři"
+
+#, fuzzy
+msgid "QUADRILLION_ABBREVIATION"
+msgstr "{0} mld"
 
 msgid "QUICK_LOAD"
 msgstr "Rychlé načtení"
@@ -5173,6 +5177,14 @@ msgstr "Resetovat ovládání"
 
 msgid "RESET_SETTINGS_TO_DEFAULTS"
 msgstr "Výchozí"
+
+#, fuzzy
+msgid "RESET_SHOWN_TUTORIALS"
+msgstr "Zobrazit tutoriál"
+
+#, fuzzy
+msgid "RESET_SHOWN_TUTORIALS_TOOLTIP"
+msgstr "Připoj se na náš komunitní Discord server"
 
 msgid "RESET_TO_DEFAULTS"
 msgstr "Obnovit výchozí nastavení?"
@@ -5437,6 +5449,10 @@ msgstr "Zobrazit panel schopností"
 msgid "SCREEN_RELATIVE_MOVEMENT"
 msgstr "ke zvýšení pohyblivosti"
 
+#, fuzzy
+msgid "SCREEN_RELATIVE_MOVEMENT_TOOLTIP"
+msgstr "ke zvýšení pohyblivosti"
+
 msgid "SCROLLLOCK"
 msgstr "Scroll Lock"
 
@@ -5461,6 +5477,10 @@ msgstr "Vyměšuj sliz"
 
 msgid "SEED_LABEL"
 msgstr "Seed planety: {0}"
+
+#, fuzzy
+msgid "SELECTED"
+msgstr "Vybraný mod:"
 
 msgid "SELECTED_COLON"
 msgstr "Vybráno:"
@@ -5495,6 +5515,10 @@ msgstr "V záložce editoru vyberte typ buňky pro úpravu"
 
 msgid "SELECT_ENZYME"
 msgstr "Vyberte enzym:"
+
+#, fuzzy
+msgid "SELECT_MOVEMENT_MODE_TITLE"
+msgstr "Odstranit místní data"
 
 msgid "SELECT_OPTION"
 msgstr "Vyberte možnost"
@@ -5532,6 +5556,14 @@ msgid "SHIFT"
 msgstr "Shift"
 
 #, fuzzy
+msgid "SHOW_ALL_TUTORIALS"
+msgstr "Zobrazit tutoriál"
+
+#, fuzzy
+msgid "SHOW_ALL_TUTORIALS_TOOLTIP"
+msgstr "Připoj se na náš komunitní Discord server"
+
+#, fuzzy
 msgid "SHOW_DAMAGE_EFFECT"
 msgstr "Bičík (množné číslo bičíky) je svazek proteinových vláken, který vychází z buněčné membrány a může se pomocí ATP vlnit a pohánět buňku v určitém směru. Pozice bičíku určuje směr, ve kterém je rychlost buňky ovlivněna. Například bičík umístěný na levé straně buňky zvýší její rychlost pohybu doprava."
 
@@ -5552,14 +5584,15 @@ msgstr "{0} {1}"
 msgid "SHOW_NEW_PATCH_NOTES_TOOLTIP"
 msgstr "{0} {1}"
 
-msgid "SHOW_TUTORIALS"
-msgstr "Zobrazit tutoriál"
-
 msgid "SHOW_TUTORIALS_IN_NEW_CURRENT_OPTION"
 msgstr "Zobrazit tutoriály (v aktuální hře)"
 
 msgid "SHOW_TUTORIALS_IN_NEW_GAMES_OPTION"
 msgstr "Zobrazit tutoriály (v nových hrách)"
+
+#, fuzzy
+msgid "SHOW_TUTORIALS_OPTION_TOOLTIP"
+msgstr "Připoj se na náš komunitní Discord server"
 
 msgid "SHOW_UNSAVED_PROGRESS_WARNING"
 msgstr "Zobrazení upozornění na neuložený postup"
@@ -5875,6 +5908,10 @@ msgstr ""
 msgid "STORE_LOGGED_IN_AS"
 msgstr "Přihlášen jako: {0}"
 
+#, fuzzy
+msgid "STRAIN_BAR_TOOLTIP"
+msgstr "Navštivte náš Patreon"
+
 msgid "STRAIN_BAR_VISIBILITY"
 msgstr ""
 
@@ -6147,6 +6184,14 @@ msgstr "Zobrazit lokální události"
 msgid "TIMELINE_NICHE_FILL"
 msgstr "[b][u]{0}[/u][/b] se oddělil od [b][u]{1}[/u][/b] jako nový druh, aby zaplnil mezeru"
 
+#, fuzzy
+msgid "TIMELINE_PLAYER_MIGRATED"
+msgstr "Část populace [b][u]{0}[/u][/b] migrovala do {1}"
+
+#, fuzzy
+msgid "TIMELINE_PLAYER_MIGRATED_TO"
+msgstr "Část populace [b][u]{0}[/u][/b] migrovala do {1}"
+
 msgid "TIMELINE_SELECTION_PRESSURE_SPLIT"
 msgstr "[b][u]{0}[/u][/b] se oddělil od [b][u]{1}[/u][/b] jako nový druh kvůli jiných selekčních tlaků"
 
@@ -6164,6 +6209,10 @@ msgstr "[b][u]{0}[/u][/b] vyhynul!"
 
 msgid "TIMELINE_SPECIES_EXTINCT_LOCAL"
 msgstr "[b][u]{0}[/u][/b] zmizel z tohoto prostředí"
+
+#, fuzzy
+msgid "TIMELINE_SPECIES_FOLLOWED"
+msgstr "[b][u]{0}[/u][/b] vyhynul!"
 
 msgid "TIMELINE_SPECIES_MIGRATED_FROM"
 msgstr "Část populace [b][u]{0}[/u][/b] migrovala do tohoto prostředí z {1}"
@@ -6396,6 +6445,10 @@ msgid "TRANSPARENCY"
 msgstr "Průhlednost"
 
 #, fuzzy
+msgid "TRILLION_ABBREVIATION"
+msgstr "{0} mld"
+
+#, fuzzy
 msgid "TRY_FOSSILISING_SOME_SPECIES"
 msgstr "Zkuste udělat snímek obrazovky!"
 
@@ -6407,6 +6460,10 @@ msgstr "Zkuste udělat snímek obrazovky!"
 
 msgid "TUTORIAL"
 msgstr "Tutoriál"
+
+#, fuzzy
+msgid "TUTORIAL_ALL_NOT_ENABLED_EXPLANATION"
+msgstr "(POZOR: fotosyntéza se stává mnohem méně životaschopnou)"
 
 #, fuzzy
 msgid "TUTORIAL_MICROBE_EDITOR_ATP_BALANCE_INTRO"
@@ -6429,6 +6486,7 @@ msgstr ""
 "\n"
 "Podrobnější informace za předpovědí si můžete zobrazit stisknutím tlačítka s otazníkem na panelu. Chcete-li pokračovat, stiskněte jej."
 
+#, fuzzy
 msgid "TUTORIAL_MICROBE_EDITOR_CELL_TEXT"
 msgstr ""
 "Toto je editor buněk, kde můžete vyvinout svůj druh utrácením mutačních bodů (MP). Při každé nové generaci vždy začínáte se 100 MP na utracení, takže nemá cenu šetřit!\n"
@@ -6446,6 +6504,7 @@ msgstr ""
 "\n"
 "Abyste pokračovali, vyberte jednu s částí v levém panelu. Poté ho umístíte vedle hexu kliknutím levého tlačítka myši. Můžete s částmi otáčet pomocí [thrive:input]e_rotate_left[/thrive:input] a [thrive:input]e_rotate_right[/thrive:input]."
 
+#, fuzzy
 msgid "TUTORIAL_MICROBE_EDITOR_ENDING_TEXT"
 msgstr ""
 "To jsou základní úpravy tvého druhu. Další možnosti můžeš zhlédnout na ostatních kartách editoru buněk.\n"
@@ -6509,6 +6568,7 @@ msgstr ""
 "\n"
 "Pro pokračování, zkuste vybrat některé z prostředí."
 
+#, fuzzy
 msgid "TUTORIAL_MICROBE_EDITOR_PATCH_TEXT"
 msgstr ""
 "Toto je mapa prostředí.\n"
@@ -6539,6 +6599,7 @@ msgstr ""
 "\n"
 "Pokračuj stisknutím tlačítka vrátit (poblíž tlačítka Zpět)."
 
+#, fuzzy
 msgid "TUTORIAL_MICROBE_EDITOR_STAY_SMALL"
 msgstr ""
 "Měli byste se soustředit na jeden nebo dva zdroje energie, abyste nemuseli mít všechny zdroje k vytvoření dostatečného množství ATP pro přežití.\n"
@@ -6579,6 +6640,7 @@ msgstr ""
 "\n"
 "Buňka, když plna, nic víc nemůže jíst. Abys mohl/a jist dál, musíš počkat až jeden nebo dvě předměty jsou úplně strávený."
 
+#, fuzzy
 msgid "TUTORIAL_MICROBE_STAGE_ENGULFMENT_TEXT"
 msgstr ""
 "Můžeš sníst předměty když se přes ně pohybuješ a jsi během toho v pohlcovacího módu. Abys zapnul pohlcovací mód zmáčkni [thrive:input]g_toggle_engulf[/thrive:input]\n"
@@ -6600,6 +6662,7 @@ msgstr ""
 "\n"
 "K rozpuštění kolonie klikni na svou buňku nebo stiskni klávesu pro odpojení všech."
 
+#, fuzzy
 msgid "TUTORIAL_MICROBE_STAGE_REPRODUCE_TEXT"
 msgstr ""
 "Aby ses mohl/a rozmnožovat, musíš duplikovat všechny své organely shromážděním dostatečného množství amoniaku a fosfátů.\n"
@@ -6935,6 +6998,9 @@ msgstr ""
 
 msgid "VIEW_SOURCE_CODE"
 msgstr "Zdrojový kód"
+
+msgid "VIEW_TEXT_REPORT"
+msgstr ""
 
 msgid "VIP_PATRONS"
 msgstr "VIP Podporovatelé"

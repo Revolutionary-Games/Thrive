@@ -9,7 +9,7 @@ using Tutorial;
 ///   State of the tutorials for a game of Thrive
 /// </summary>
 [JsonObject(IsReference = true)]
-public class TutorialState : ITutorialInput
+public class TutorialState : ITutorialInput, ISaveLoadable
 {
     /// <summary>
     ///   True when the tutorial has paused the game
@@ -21,7 +21,16 @@ public class TutorialState : ITutorialInput
 
     private List<TutorialPhase>? cachedTutorials;
 
+    private bool previousTutorialActiveState;
+    private double timeSinceActiveCheck;
+
     public bool Enabled { get; set; } = Settings.Instance.TutorialsEnabled;
+
+    /// <summary>
+    ///   When this is true, tutorials that have already been seen by the player in any playthrough are automatically
+    ///   marked as already complete.
+    /// </summary>
+    public bool DisableShowingAlreadySeenTutorials { get; private set; }
 
     // Tutorial states
 
@@ -238,8 +247,16 @@ public class TutorialState : ITutorialInput
 
     public void Process(ITutorialGUI gui, float delta)
     {
+        AlreadySeenTutorials.Process(delta);
+
         if (!Enabled)
         {
+            if (previousTutorialActiveState)
+            {
+                previousTutorialActiveState = false;
+                ReportClosedTutorialsToSeenTutorials();
+            }
+
             if (hasPaused)
             {
                 UnPause();
@@ -256,6 +273,26 @@ public class TutorialState : ITutorialInput
         }
 
         HandlePausing();
+
+        timeSinceActiveCheck += delta;
+        if (timeSinceActiveCheck > 0.1f)
+        {
+            timeSinceActiveCheck = 0;
+
+            bool active = TutorialActive();
+
+            if (active != previousTutorialActiveState)
+            {
+                previousTutorialActiveState = active;
+
+                if (!previousTutorialActiveState)
+                {
+                    // When tutorials are deactivated, check what has been closed to make sure we haven't missed
+                    // any tutorial closings and mark those in the seen system
+                    ReportClosedTutorialsToSeenTutorials();
+                }
+            }
+        }
 
         // Pause if the game is paused, but we didn't want to pause things
         if (PauseManager.Instance.Paused && !WantsGamePaused)
@@ -290,6 +327,26 @@ public class TutorialState : ITutorialInput
         Enabled = true;
     }
 
+    public void OnCompleteTutorialsAlreadySeen()
+    {
+        // Remember this setting for saving / loading
+        DisableShowingAlreadySeenTutorials = true;
+
+        var seen = AlreadySeenTutorials.SeenTutorials;
+
+        foreach (var tutorial in Tutorials)
+        {
+            if (tutorial.HasBeenShown)
+                continue;
+
+            if (seen.Contains(tutorial.ClosedByName))
+            {
+                // Tutorial seen in another game, suppress it here as well
+                tutorial.Inhibit();
+            }
+        }
+    }
+
     public void OnCurrentTutorialClosed(string name)
     {
         bool somethingMatched = false;
@@ -302,7 +359,11 @@ public class TutorialState : ITutorialInput
             somethingMatched = true;
 
             if (tutorial.ShownCurrently)
+            {
                 tutorial.Hide();
+
+                AlreadySeenTutorials.MarkSeen(name);
+            }
         }
 
         if (!somethingMatched)
@@ -316,11 +377,21 @@ public class TutorialState : ITutorialInput
     {
         HideAll();
         needsToApplyEvenIfDisabled = true;
+
+        ReportClosedTutorialsToSeenTutorials();
     }
 
     public void OnNextPressed()
     {
         throw new NotImplementedException();
+    }
+
+    public void FinishLoading(ISaveContext? context)
+    {
+        if (DisableShowingAlreadySeenTutorials)
+        {
+            OnCompleteTutorialsAlreadySeen();
+        }
     }
 
     /// <summary>
@@ -386,6 +457,17 @@ public class TutorialState : ITutorialInput
         if (hasPaused)
             PauseManager.Instance.Resume(nameof(TutorialState));
         hasPaused = false;
+    }
+
+    private void ReportClosedTutorialsToSeenTutorials()
+    {
+        foreach (var tutorial in Tutorials)
+        {
+            if (tutorial.HasBeenShown)
+            {
+                AlreadySeenTutorials.MarkSeen(tutorial.ClosedByName);
+            }
+        }
     }
 
     private List<TutorialPhase> BuildListOfAllTutorials()

@@ -110,7 +110,7 @@ public partial class MulticellularEditor : EditorBase<EditorAction, MicrobeStage
             return;
         }
 
-        reportTab.UpdateAutoEvoResults(autoEvoResults, autoEvoExternal?.ToString() ?? "error");
+        UpdateAutoEvoToReportTab();
     }
 
     public override void SetEditorObjectVisibility(bool shown)
@@ -276,7 +276,7 @@ public partial class MulticellularEditor : EditorBase<EditorAction, MicrobeStage
 
         if (autoEvoResults != null && autoEvoExternal != null)
         {
-            reportTab.UpdateAutoEvoResults(autoEvoResults, autoEvoExternal.ToString());
+            UpdateAutoEvoToReportTab();
         }
 
         reportTab.UpdatePatchDetails(CurrentPatch, TargetPatch);
@@ -298,12 +298,6 @@ public partial class MulticellularEditor : EditorBase<EditorAction, MicrobeStage
         base.OnRedoPerformed();
 
         CheckDidActionAffectCellTypes(history.ActionToUndo());
-    }
-
-    protected override void ElapseEditorEntryTime()
-    {
-        // TODO: select which units will be used for the master elapsed time counter
-        CurrentGame.GameWorld.OnTimePassed(1);
     }
 
     protected override void UpdatePatchDetails()
@@ -440,6 +434,16 @@ public partial class MulticellularEditor : EditorBase<EditorAction, MicrobeStage
         }
 
         base.Dispose(disposing);
+    }
+
+    private void UpdateAutoEvoToReportTab()
+    {
+        if (autoEvoResults == null)
+            throw new InvalidOperationException("May not be called without report");
+
+        // This creates a new callable each time, but the garbage amount should be negligible
+        reportTab.UpdateAutoEvoResults(autoEvoResults, autoEvoExternal?.ToString() ?? "error",
+            () => autoEvoResults.MakeSummary(true));
     }
 
     private void OnStartEditingCellType(string? name, bool switchTab)

@@ -378,12 +378,12 @@ offset_bottom = -3.0
 
 [node name="CompoundsPanelAnimationPlayer" type="AnimationPlayer" parent="."]
 libraries = {
-"": SubResource("AnimationLibrary_bjeaw")
+&"": SubResource("AnimationLibrary_bjeaw")
 }
 
 [node name="EnvironmentPanelAnimationPlayer" type="AnimationPlayer" parent="."]
 libraries = {
-"": SubResource("AnimationLibrary_8um2t")
+&"": SubResource("AnimationLibrary_8um2t")
 }
 
 [node name="BottomRight" type="Control" parent="."]
@@ -447,9 +447,10 @@ text = "POPULATION_CAPITAL"
 label_settings = ExtResource("39_2oma1")
 
 [node name="Value" type="Label" parent="BottomRight/VBoxContainer/PopulationData"]
-custom_minimum_size = Vector2(40, 0)
+custom_minimum_size = Vector2(45, 0)
 layout_mode = 2
 size_flags_horizontal = 3
+mouse_filter = 1
 theme_override_styles/normal = SubResource("28")
 text = "100"
 label_settings = ExtResource("39_2oma1")
@@ -576,10 +577,10 @@ grow_horizontal = 2
 grow_vertical = 2
 
 [node name="ProcessPanel" parent="." instance=ExtResource("61")]
-offset_left = 8.0
-offset_top = 72.0
-offset_right = -872.0
-offset_bottom = -48.0
+offset_left = 2.0
+offset_top = 71.0
+offset_right = 402.0
+offset_bottom = 671.0
 
 [node name="MicrobeCheatMenu" parent="." instance=ExtResource("55")]
 offset_left = 10.0
@@ -777,6 +778,7 @@ offset_right = 125.0
 offset_bottom = 198.0
 grow_horizontal = 2
 grow_vertical = 2
+tooltip_text = "STRAIN_BAR_TOOLTIP"
 theme_type_variation = &"SprintBar"
 max_value = 0.9
 step = 0.001

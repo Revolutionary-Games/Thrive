@@ -1780,6 +1780,7 @@ value = 1.0
 [node name="TutorialsEnabledOnNewGame" type="CheckBox" parent="CenterContainer/VBoxContainer/VBoxContainer/VBoxContainer/PanelContainer/Misc/ScrollContainer/MarginContainer/VBoxContainer"]
 layout_mode = 2
 size_flags_horizontal = 0
+tooltip_text = "SHOW_TUTORIALS_OPTION_TOOLTIP"
 focus_neighbor_right = NodePath("../HBoxContainer2/MaxQuickSaves")
 text = "SHOW_TUTORIALS_IN_NEW_GAMES_OPTION"
 
@@ -1788,6 +1789,12 @@ layout_mode = 2
 size_flags_horizontal = 0
 focus_neighbor_right = NodePath("../HBoxContainer2/MaxQuickSaves")
 text = "SHOW_TUTORIALS_IN_NEW_CURRENT_OPTION"
+
+[node name="ResetTutorials" type="Button" parent="CenterContainer/VBoxContainer/VBoxContainer/VBoxContainer/PanelContainer/Misc/ScrollContainer/MarginContainer/VBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 0
+tooltip_text = "RESET_SHOWN_TUTORIALS_TOOLTIP"
+text = "RESET_SHOWN_TUTORIALS"
 
 [node name="UnsavedProgressWarning" type="CheckBox" parent="CenterContainer/VBoxContainer/VBoxContainer/VBoxContainer/PanelContainer/Misc/ScrollContainer/MarginContainer/VBoxContainer"]
 layout_mode = 2
@@ -1855,6 +1862,7 @@ text = "SHOW_NEW_PATCH_NOTES"
 layout_mode = 2
 size_flags_horizontal = 0
 tooltip_text = "VIEW_PATCH_NOTES_TOOLTIP"
+focus_neighbor_right = NodePath("../HBoxContainer8/ResetDismissed")
 focus_neighbor_bottom = NodePath("../HBoxContainer8/ResetDismissed")
 text = "VIEW_PATCH_NOTES"
 
@@ -1880,6 +1888,7 @@ size_flags_horizontal = 3
 [node name="ResetDismissed" type="Button" parent="CenterContainer/VBoxContainer/VBoxContainer/VBoxContainer/PanelContainer/Misc/ScrollContainer/MarginContainer/VBoxContainer/HBoxContainer8"]
 layout_mode = 2
 size_flags_horizontal = 3
+focus_neighbor_left = NodePath("../../ViewPatchNotes")
 focus_neighbor_top = NodePath("../../ViewPatchNotes")
 action_mode = 0
 text = "RESET_DISMISSED_POPUPS"
@@ -2233,6 +2242,7 @@ grow_vertical = 1
 [connection signal="value_changed" from="CenterContainer/VBoxContainer/VBoxContainer/VBoxContainer/PanelContainer/Misc/ScrollContainer/MarginContainer/VBoxContainer/HBoxContainer2/MaxQuickSaves" to="." method="OnMaxQuickSavesValueChanged"]
 [connection signal="toggled" from="CenterContainer/VBoxContainer/VBoxContainer/VBoxContainer/PanelContainer/Misc/ScrollContainer/MarginContainer/VBoxContainer/TutorialsEnabledOnNewGame" to="." method="OnTutorialsOnNewGameToggled"]
 [connection signal="toggled" from="CenterContainer/VBoxContainer/VBoxContainer/VBoxContainer/PanelContainer/Misc/ScrollContainer/MarginContainer/VBoxContainer/TutorialsEnabled" to="." method="OnTutorialsEnabledToggled"]
+[connection signal="pressed" from="CenterContainer/VBoxContainer/VBoxContainer/VBoxContainer/PanelContainer/Misc/ScrollContainer/MarginContainer/VBoxContainer/ResetTutorials" to="." method="OnResetShownTutorials"]
 [connection signal="toggled" from="CenterContainer/VBoxContainer/VBoxContainer/VBoxContainer/PanelContainer/Misc/ScrollContainer/MarginContainer/VBoxContainer/UnsavedProgressWarning" to="." method="OnUnsavedProgressWarningToggled"]
 [connection signal="toggled" from="CenterContainer/VBoxContainer/VBoxContainer/VBoxContainer/PanelContainer/Misc/ScrollContainer/MarginContainer/VBoxContainer/Cheats" to="." method="OnCheatsToggled"]
 [connection signal="toggled" from="CenterContainer/VBoxContainer/VBoxContainer/VBoxContainer/PanelContainer/Misc/ScrollContainer/MarginContainer/VBoxContainer/CustomUsernameEnabled" to="." method="OnCustomUsernameEnabledToggled"]

@@ -7,7 +7,7 @@ using Godot;
 using Newtonsoft.Json;
 
 /// <summary>
-///   Base common class with shared editor functionality. Note that most editor functionality is done by
+///   Base, common class with shared editor functionality. Note that most editor functionality is done by
 ///   <see cref="EditorComponentBase{TEditor}"/> derived types.
 /// </summary>
 /// <typeparam name="TAction">Editor action type the action history uses in this editor</typeparam>
@@ -204,6 +204,16 @@ public partial class EditorBase<TAction, TStage> : NodeWithInput, IEditor, ILoad
     ///   True when there is an inprogress action that prevents other actions from being done (and tab changes)
     /// </summary>
     protected virtual bool HasInProgressAction => throw new GodotAbstractPropertyNotOverriddenException();
+
+    /// <summary>
+    ///   How much time passes each editor cycle
+    /// </summary>
+    /// <remarks>
+    ///   <para>
+    ///     TODO: select which units will be used for the master elapsed time counter
+    ///   </para>
+    /// </remarks>
+    protected virtual double EditorTimeStep => 1;
 
     public override void _Ready()
     {
@@ -573,6 +583,14 @@ public partial class EditorBase<TAction, TStage> : NodeWithInput, IEditor, ILoad
         pauseMenu.OpenToSpeciesPage(species);
     }
 
+    public double CalculateNextGenerationTimePoint()
+    {
+        if (currentGame == null)
+            throw new InvalidOperationException("Editor not initialized, missing current game");
+
+        return currentGame.GameWorld.CalculateNextTimeStep(EditorTimeStep);
+    }
+
     protected virtual void ResolveDerivedTypeNodeReferences()
     {
         throw new GodotAbstractMethodNotOverriddenException();
@@ -825,7 +843,7 @@ public partial class EditorBase<TAction, TStage> : NodeWithInput, IEditor, ILoad
 
     protected virtual void ElapseEditorEntryTime()
     {
-        throw new GodotAbstractMethodNotOverriddenException();
+        CurrentGame.GameWorld.OnTimePassed(EditorTimeStep);
     }
 
     /// <summary>

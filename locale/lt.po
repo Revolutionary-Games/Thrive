@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2025-03-21 19:22+0100\n"
+"POT-Creation-Date: 2025-03-20 10:30+0200\n"
 "PO-Revision-Date: 2025-01-21 12:01+0000\n"
 "Last-Translator: Anonymous <noreply@weblate.org>\n"
 "Language-Team: Lithuanian <https://translate.revolutionarygamesstudio.com/projects/thrive/thrive-game/lt/>\n"
@@ -332,6 +332,10 @@ msgid "AUTO-EVO_PREDICTION_BOX_DESCRIPTION"
 msgstr ""
 "Šiame skydelyje parodytas tikėtinas redaguotų rūšių populiacijų skaičius pagal Auto-evo.\n"
 "Auto-evo atlieka populiacijos modeliavimą, kuris yra kita dalis (be jūsų pačių veiklos), daranti įtaką jūsų populiacijai."
+
+#, fuzzy
+msgid "AUTO-EVO_RESULTS_TITLE"
+msgstr "Auto-evo rezultatai:"
 
 msgid "AUTO-EVO_STEPS_DONE"
 msgstr "{0:F1}% atlikta. {1:n0}/{2:n0} žingsniai."
@@ -658,6 +662,10 @@ msgid "CELL_STAT_SPEED_TOOLTIP"
 msgstr "Reikšmė, naudojama generuojant pasaulį, kuri turi būti teigiamas sveikas skaičius"
 
 #, fuzzy
+msgid "CELL_STAT_STORAGE_TOOLTIP"
+msgstr "Reikšmė, naudojama generuojant pasaulį, kuri turi būti teigiamas sveikas skaičius"
+
+#, fuzzy
 msgid "CELL_TYPE_BUTTON_ATP_CONSUMPTION"
 msgstr "Mirties Zona:"
 
@@ -784,6 +792,9 @@ msgid "CLEAN_UP_OLD_SAVES"
 msgstr "Išvalyti Senus Išsaugojimus"
 
 msgid "CLEAR_CACHE"
+msgstr ""
+
+msgid "CLICK_TO_SELECT"
 msgstr ""
 
 msgid "CLOSE"
@@ -2366,32 +2377,6 @@ msgstr "Baigti žaidimą"
 msgid "GLES3"
 msgstr ""
 
-msgid "GLOBAL_GLACIATION_END_EVENT_LOG"
-msgstr ""
-
-#, fuzzy
-msgid "GLOBAL_GLACIATION_EVENT"
-msgstr "Sumažinti Perpus Populiaciją"
-
-#, fuzzy
-msgid "GLOBAL_GLACIATION_EVENT_LOG"
-msgstr "Sumažinti Perpus Populiaciją"
-
-#, fuzzy
-msgid "GLOBAL_GLACIATION_EVENT_TOOLTIP"
-msgstr "Pereiti į Nubudimo Stadiją. Ji galima, kai turi pakankamai protinės galios (audinio tipas su aksonais)."
-
-#, fuzzy
-msgid "GLOBAL_GLACIATION_EVENT_WARNING_LOG_PLURAL"
-msgstr "Sumažinti Perpus Populiaciją"
-
-#, fuzzy
-msgid "GLOBAL_GLACIATION_EVENT_WARNING_LOG_SINGULAR"
-msgstr "Sumažinti Perpus Populiaciją"
-
-msgid "GLOBAL_GLACIATION_START_EVENT_LOG"
-msgstr ""
-
 msgid "GLOBAL_INITIAL_LETTER"
 msgstr ""
 
@@ -3685,6 +3670,9 @@ msgstr ""
 msgid "MODELS"
 msgstr "Modeliai"
 
+msgid "MODE_CAN_BE_CHANGED_IN_OPTIONS"
+msgstr ""
+
 msgid "MODIFY"
 msgstr ""
 
@@ -4568,6 +4556,10 @@ msgstr ""
 msgid "PLAYER_RELATIVE_MOVEMENT"
 msgstr ""
 
+#, fuzzy
+msgid "PLAYER_RELATIVE_MOVEMENT_TOOLTIP"
+msgstr "Atidaryti papildomų nustatymų langą"
+
 msgid "PLAYER_REPRODUCED"
 msgstr ""
 
@@ -4648,6 +4640,10 @@ msgstr ""
 msgid "PROCESS_SPEED_MODIFIER"
 msgstr ""
 
+#, fuzzy
+msgid "PROCESS_TOGGLE_TOOLTIP"
+msgstr "Rodyti / slėpti junginius"
+
 msgid "PROGRAMMING_TEAM"
 msgstr ""
 
@@ -4662,6 +4658,10 @@ msgstr ""
 
 msgid "PULL_REQUESTS_PROGRAMMING"
 msgstr ""
+
+#, fuzzy
+msgid "QUADRILLION_ABBREVIATION"
+msgstr "{0} Mlrd"
 
 msgid "QUICK_LOAD"
 msgstr ""
@@ -4785,6 +4785,14 @@ msgstr ""
 
 msgid "RESET_SETTINGS_TO_DEFAULTS"
 msgstr ""
+
+#, fuzzy
+msgid "RESET_SHOWN_TUTORIALS"
+msgstr "Pamoka"
+
+#, fuzzy
+msgid "RESET_SHOWN_TUTORIALS_TOOLTIP"
+msgstr "Reikšmė, naudojama generuojant pasaulį, kuri turi būti teigiamas sveikas skaičius"
 
 msgid "RESET_TO_DEFAULTS"
 msgstr ""
@@ -5029,6 +5037,10 @@ msgstr "Atidaryti pagalbos langą"
 msgid "SCREEN_RELATIVE_MOVEMENT"
 msgstr ""
 
+#, fuzzy
+msgid "SCREEN_RELATIVE_MOVEMENT_TOOLTIP"
+msgstr "Reikšmė, naudojama generuojant pasaulį, kuri turi būti teigiamas sveikas skaičius"
+
 msgid "SCROLLLOCK"
 msgstr ""
 
@@ -5052,6 +5064,9 @@ msgid "SECRETE_SLIME_TOOLTIP"
 msgstr "Reikšmė, naudojama generuojant pasaulį, kuri turi būti teigiamas sveikas skaičius"
 
 msgid "SEED_LABEL"
+msgstr ""
+
+msgid "SELECTED"
 msgstr ""
 
 msgid "SELECTED_COLON"
@@ -5087,6 +5102,9 @@ msgstr ""
 msgid "SELECT_ENZYME"
 msgstr ""
 
+msgid "SELECT_MOVEMENT_MODE_TITLE"
+msgstr ""
+
 msgid "SELECT_OPTION"
 msgstr ""
 
@@ -5120,6 +5138,14 @@ msgstr ""
 msgid "SHIFT"
 msgstr ""
 
+#, fuzzy
+msgid "SHOW_ALL_TUTORIALS"
+msgstr "Pamoka"
+
+#, fuzzy
+msgid "SHOW_ALL_TUTORIALS_TOOLTIP"
+msgstr "Reikšmė, naudojama generuojant pasaulį, kuri turi būti teigiamas sveikas skaičius"
+
 msgid "SHOW_DAMAGE_EFFECT"
 msgstr ""
 
@@ -5136,14 +5162,15 @@ msgstr ""
 msgid "SHOW_NEW_PATCH_NOTES_TOOLTIP"
 msgstr ""
 
-msgid "SHOW_TUTORIALS"
-msgstr ""
-
 msgid "SHOW_TUTORIALS_IN_NEW_CURRENT_OPTION"
 msgstr ""
 
 msgid "SHOW_TUTORIALS_IN_NEW_GAMES_OPTION"
 msgstr ""
+
+#, fuzzy
+msgid "SHOW_TUTORIALS_OPTION_TOOLTIP"
+msgstr "Reikšmė, naudojama generuojant pasaulį, kuri turi būti teigiamas sveikas skaičius"
 
 msgid "SHOW_UNSAVED_PROGRESS_WARNING"
 msgstr ""
@@ -5440,6 +5467,10 @@ msgstr ""
 msgid "STORE_LOGGED_IN_AS"
 msgstr "Prisijungęs kaip: {0}"
 
+#, fuzzy
+msgid "STRAIN_BAR_TOOLTIP"
+msgstr "Baigti žaidimą"
+
 msgid "STRAIN_BAR_VISIBILITY"
 msgstr ""
 
@@ -5697,6 +5728,12 @@ msgstr ""
 msgid "TIMELINE_NICHE_FILL"
 msgstr ""
 
+msgid "TIMELINE_PLAYER_MIGRATED"
+msgstr ""
+
+msgid "TIMELINE_PLAYER_MIGRATED_TO"
+msgstr ""
+
 msgid "TIMELINE_SELECTION_PRESSURE_SPLIT"
 msgstr ""
 
@@ -5709,6 +5746,10 @@ msgstr ""
 
 msgid "TIMELINE_SPECIES_EXTINCT_LOCAL"
 msgstr ""
+
+#, fuzzy
+msgid "TIMELINE_SPECIES_FOLLOWED"
+msgstr "Mikroorganizmo būsena"
 
 msgid "TIMELINE_SPECIES_MIGRATED_FROM"
 msgstr ""
@@ -5927,6 +5968,10 @@ msgstr ""
 msgid "TRANSPARENCY"
 msgstr ""
 
+#, fuzzy
+msgid "TRILLION_ABBREVIATION"
+msgstr "{0} Mlrd"
+
 msgid "TRY_FOSSILISING_SOME_SPECIES"
 msgstr ""
 
@@ -5938,6 +5983,10 @@ msgstr ""
 
 msgid "TUTORIAL"
 msgstr "Pamoka"
+
+#, fuzzy
+msgid "TUTORIAL_ALL_NOT_ENABLED_EXPLANATION"
+msgstr "Elemento aprašymas:"
 
 msgid "TUTORIAL_MICROBE_EDITOR_ATP_BALANCE_INTRO"
 msgstr ""
@@ -6311,6 +6360,9 @@ msgstr ""
 
 msgid "VIEW_SOURCE_CODE"
 msgstr "Peržiūrėti išeities kodą"
+
+msgid "VIEW_TEXT_REPORT"
+msgstr ""
 
 msgid "VIP_PATRONS"
 msgstr ""

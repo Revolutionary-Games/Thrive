@@ -92,7 +92,7 @@ public partial class MicrobeEditorTutorialGUI : Control, ITutorialGUI
     public MainGameState AssociatedGameState => MainGameState.MicrobeEditor;
     public ITutorialInput? EventReceiver { get; set; }
     public bool IsClosingAutomatically { get; set; }
-    public bool TutorialEnabledSelected { get; private set; } = true;
+    public bool AllTutorialsDesiredState { get; private set; } = true;
     public Node GUINode => this;
 
     public ControlHighlight? CellEditorUndoHighlight { get; private set; }
@@ -104,7 +104,7 @@ public partial class MicrobeEditorTutorialGUI : Control, ITutorialGUI
     public ControlHighlight? AtpBalanceBarHighlight { get; private set; }
 
     /// <summary>
-    ///   This is used to ensure scroll position shows elements related to active tutorials
+    ///   This is used to ensure the scroll position shows elements related to active tutorials
     /// </summary>
     public ScrollContainer RightPanelScrollContainer { get; set; } = null!;
 
@@ -492,7 +492,7 @@ public partial class MicrobeEditorTutorialGUI : Control, ITutorialGUI
 
     public void OnTutorialEnabledValueChanged(bool value)
     {
-        TutorialEnabledSelected = value;
+        AllTutorialsDesiredState = value;
     }
 
     public void HandleShowingATPBarHighlight()
@@ -506,6 +506,7 @@ public partial class MicrobeEditorTutorialGUI : Control, ITutorialGUI
         // Force the scroll panel to scroll down. This is done to show the ATP Balance Bar.
         // It seems like Godot doesn't have a scroll into view, so we need to ensure that the scroll cannot be too
         // much or too little ever.
+        // TODO: adjust this with the new reordered panel and upcoming tutorial rework
         if (eitherVisible)
             RightPanelScrollContainer.ScrollVertical = 150;
     }

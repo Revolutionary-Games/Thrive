@@ -291,8 +291,6 @@ public static class Constants
 
     public const float CONTEXTUAL_ONLY_MUSIC_CHANCE = 0.33f;
 
-    public const float MICROBE_MOVEMENT_SOUND_EMIT_COOLDOWN = 1.3f;
-
     // Note that the rotation speed is reversed, i.e. lower values mean faster
     public const float CELL_MAX_ROTATION = 8.0f;
     public const float CELL_MIN_ROTATION = 0.10f;
@@ -427,6 +425,7 @@ public static class Constants
     public const string MICROBE_ENGULFING_MODE_SOUND = "res://assets/sounds/soundeffects/engulfment.ogg";
     public const string MICROBE_BINDING_MODE_SOUND = "res://assets/sounds/soundeffects/binding.ogg";
 
+    public const float MICROBE_MOVEMENT_SOUND_EMIT_COOLDOWN = 1.3f;
     public const float MICROBE_MOVEMENT_SOUND_MAX_VOLUME = 0.4f;
 
     // TODO: should this volume be actually 0?
@@ -439,6 +438,12 @@ public static class Constants
 
     public const float MICROBE_SOUND_MAX_DISTANCE = 300;
     public const float MICROBE_SOUND_MAX_DISTANCE_SQUARED = MICROBE_SOUND_MAX_DISTANCE * MICROBE_SOUND_MAX_DISTANCE;
+
+    /// <summary>
+    ///   Makes sounds played by the non-player cell a bit quieter. This is added because death sounds from other
+    ///   entities can get overwhelming otherwise
+    /// </summary>
+    public const float NON_PLAYER_ENTITY_VOLUME_MULTIPLIER = 0.7f;
 
     public const int MAX_CONCURRENT_SOUNDS = 100;
 
@@ -1054,6 +1059,9 @@ public static class Constants
     public const int PLAYER_PATCH_EXTINCTION_POPULATION_LOSS_CONSTANT = -35;
     public const float PLAYER_PATCH_EXTINCTION_POPULATION_LOSS_COEFFICIENT = 1 / 1.2f;
 
+    public const double MICROBE_POPULATION_MULTIPLIER = 1000000000000;
+    public const string MICROBE_POPULATION_SUFFIX = "T";
+
     public const int BASE_MUTATION_POINTS = 100;
 
     /// <summary>
@@ -1251,6 +1259,10 @@ public static class Constants
     public const float AUTO_EVO_CHUNK_ENERGY_AMOUNT = 90000000;
     public const float AUTO_EVO_CHUNK_AMOUNT_NERF = 0.01f;
 
+    public const int AI_FOLLOW_PLAYER_MIGRATION_TO_EMPTY_PATCH_THRESHOLD = 2;
+
+    public const int AI_FOLLOW_FREE_POPULATION_GIVEN = 100;
+
     /// <summary>
     ///   Default cell's score, value is compared to <see cref="AutoEvoLysosomeEnzymesScores"/>
     /// </summary>
@@ -1393,11 +1405,19 @@ public static class Constants
 
     public const float TIME_BEFORE_TUTORIAL_CAN_PAUSE = 0.01f;
 
+    /// <summary>
+    ///   Time in the microbe stage (not counting when the game is paused) after which the movement type prompt can
+    ///   be shown.
+    ///   This doesn't count paused time. This value has to be long enough to not conflict with the microbe welcome
+    ///   tutorial.
+    /// </summary>
+    public const float MOVEMENT_MODE_SELECTION_DELAY = 1.55f;
+
     public const float MICROBE_MOVEMENT_EXPLAIN_TUTORIAL_DELAY = 12.0f;
     public const float MICROBE_MOVEMENT_EXPLAIN_TUTORIAL_DELAY_CONTROLLER = 1.0f;
     public const float MICROBE_MOVEMENT_TUTORIAL_REQUIRE_DIRECTION_PRESS_TIME = 2.2f;
     public const float TUTORIAL_ENTITY_POSITION_UPDATE_INTERVAL = 0.2f;
-    public const float GLUCOSE_TUTORIAL_TRIGGER_ENABLE_FREE_STORAGE_SPACE = 0.14f;
+    public const float GLUCOSE_TUTORIAL_TRIGGER_ENABLE_FREE_STORAGE_SPACE = 0.09f;
     public const float GLUCOSE_TUTORIAL_COLLECT_BEFORE_COMPLETE = 0.21f;
     public const float MICROBE_REPRODUCTION_TUTORIAL_DELAY = 10;
     public const float HIDE_MICROBE_STAYING_ALIVE_TUTORIAL_AFTER = 60;
@@ -1536,6 +1556,8 @@ public static class Constants
     public const string SAVE_FOLDER = "user://saves";
     public const string FOSSILISED_SPECIES_FOLDER = "user://fossils";
     public const string AUTO_EVO_EXPORT_FOLDER = "user://auto-evo_exports";
+
+    public const string TUTORIAL_DATA_FILE = "user://tutorials.json.gz";
 
     public const string CACHE_FOLDER = "user://cache";
     public const string CACHE_IMAGES_FOLDER = "user://cache/img";
@@ -1755,10 +1777,10 @@ public static class Constants
 
     public const float TOLERANCE_INITIAL_TEMPERATURE_RANGE = 10;
     public const float TOLERANCE_PERFECT_THRESHOLD_TEMPERATURE = 2;
-    public const float TOLERANCE_MAXIMUM_SURVIVABLE_TEMPERATURE_DIFFERENCE = 30;
+    public const float TOLERANCE_MAXIMUM_SURVIVABLE_TEMPERATURE_DIFFERENCE = 40;
     public const float TOLERANCE_PERFECT_TEMPERATURE_SCORE = 0.1f;
 
-    public const float TOLERANCE_MAXIMUM_SURVIVABLE_PRESSURE_DIFFERENCE = 2000000;
+    public const float TOLERANCE_MAXIMUM_SURVIVABLE_PRESSURE_DIFFERENCE = 4000000;
     public const float TOLERANCE_PERFECT_THRESHOLD_PRESSURE = 350000;
 
     // These are chosen to be symmetric so that the pressure tolerance range ends up easier to show correctly in the
@@ -1779,8 +1801,8 @@ public static class Constants
     // How much it costs to edit various tolerances in the editor
     public const float TOLERANCE_CHANGE_MP_PER_TEMPERATURE = 1.0f;
     public const float TOLERANCE_CHANGE_MP_PER_TEMPERATURE_TOLERANCE = 4.0f;
-    public const float TOLERANCE_CHANGE_MP_PER_OXYGEN = 100.0f;
-    public const float TOLERANCE_CHANGE_MP_PER_UV = 75.0f;
+    public const float TOLERANCE_CHANGE_MP_PER_OXYGEN = 150.0f;
+    public const float TOLERANCE_CHANGE_MP_PER_UV = 100.0f;
 
     /// <summary>
     ///   As pressure values are massive, this is a double to get reasonable MP costs
@@ -1788,6 +1810,23 @@ public static class Constants
     public const double TOLERANCE_CHANGE_MP_PER_PRESSURE = 0.000002;
 
     public const double TOLERANCE_CHANGE_MP_PER_PRESSURE_TOLERANCE = 0.00005;
+
+    // Environmental tolerance debuff / buff tweak variables
+    public const float TOLERANCE_TEMPERATURE_SPEED_MODIFIER_MIN = 0.8f;
+    public const float TOLERANCE_TEMPERATURE_OSMOREGULATION_MAX = 1.2f;
+    public const float TOLERANCE_TEMPERATURE_HEALTH_MIN = 0.8f;
+    public const float TOLERANCE_TEMPERATURE_SPEED_BUFF_MAX = 1.1f;
+
+    public const float TOLERANCE_PRESSURE_SPEED_MODIFIER_MIN = 0.8f;
+    public const float TOLERANCE_PRESSURE_OSMOREGULATION_MAX = 1.1f;
+    public const float TOLERANCE_PRESSURE_HEALTH_MIN = 0.5f;
+    public const float TOLERANCE_PRESSURE_HEALTH_BUFF_MAX = 1.2f;
+
+    public const float TOLERANCE_OXYGEN_HEALTH_MIN = 0.5f;
+    public const float TOLERANCE_OXYGEN_OSMOREGULATION_MAX = 1.6f;
+
+    public const float TOLERANCE_UV_HEALTH_MIN = 0.5f;
+    public const float TOLERANCE_UV_OSMOREGULATION_MAX = 1.5f;
 
     /// <summary>
     ///   If set to true, then physics debug draw gets enabled when the game starts

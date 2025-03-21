@@ -11,6 +11,7 @@ public partial class FluidCurrentDisplay : GpuParticles3D
     private readonly StringName speedParameterName = new("speed");
     private readonly StringName chaoticnessParameterName = new("chaoticness");
     private readonly StringName scaleParameterName = new("scale");
+    private readonly StringName brightnessParameterName = new("brightness");
 
 #pragma warning disable CA2213
     private ShaderMaterial material = null!;
@@ -76,6 +77,8 @@ public partial class FluidCurrentDisplay : GpuParticles3D
         material.SetShaderParameter(chaoticnessParameterName, biome.WaterCurrentChaoticness);
         material.SetShaderParameter(scaleParameterName, biome.WaterCurrentScale);
 
+        material.SetShaderParameter(brightnessParameterName, biome.CompoundCloudBrightness);
+
         Amount = biome.WaterCurrentParticleCount;
     }
 
@@ -87,6 +90,7 @@ public partial class FluidCurrentDisplay : GpuParticles3D
             speedParameterName.Dispose();
             chaoticnessParameterName.Dispose();
             scaleParameterName.Dispose();
+            brightnessParameterName.Dispose();
         }
 
         base.Dispose(disposing);
