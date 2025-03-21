@@ -699,6 +699,16 @@ public partial class CreatureStageHUDBase<TStage> : HUDWithPausing, ICreatureSta
         return false;
     }
 
+    public virtual bool IsHeatViewAvailable()
+    {
+        return false;
+    }
+
+    public void UpdateHeatViewDisplay()
+    {
+        bottomLeftBar.HeatButton.ButtonPressed = !bottomLeftBar.HeatButton.ButtonPressed;
+    }
+
     /// <summary>
     ///   Hides both the compounds panel and the environment panel for tutorial purposes
     /// </summary>

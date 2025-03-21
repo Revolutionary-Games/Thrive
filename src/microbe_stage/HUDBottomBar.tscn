@@ -36,7 +36,7 @@
 
 [sub_resource type="StyleBoxEmpty" id="27"]
 
-[node name="HUDBottomBar" type="HBoxContainer" node_paths=PackedStringArray("heatButton", "speedButton")]
+[node name="HUDBottomBar" type="HBoxContainer" node_paths=PackedStringArray("HeatButton", "speedButton")]
 custom_minimum_size = Vector2(0, 35)
 anchors_preset = 2
 anchor_top = 1.0
@@ -52,7 +52,7 @@ CompoundsButtonPath = NodePath("CompoundsButton")
 EnvironmentButtonPath = NodePath("EnvironmentButton")
 ProcessPanelButtonPath = NodePath("ChemicalButton")
 SuicideButtonPath = NodePath("SuicideButton")
-heatButton = NodePath("HeatViewButton")
+HeatButton = NodePath("HeatViewButton")
 speedButton = NodePath("SpeedButton")
 
 [node name="OpenMenu" type="TextureButton" parent="."]
