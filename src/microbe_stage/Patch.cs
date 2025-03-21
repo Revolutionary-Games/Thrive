@@ -52,7 +52,8 @@ public class Patch
         ID = id;
         BiomeTemplate = biomeTemplate;
         BiomeType = biomeType;
-        currentSnapshot = new PatchSnapshot((BiomeConditions)biomeTemplate.Conditions.Clone());
+        currentSnapshot =
+            new PatchSnapshot((BiomeConditions)biomeTemplate.Conditions.Clone(), biomeTemplate.Background);
         Region = region;
     }
 
@@ -137,6 +138,9 @@ public class Patch
 
     [JsonIgnore]
     public BiomeConditions Biome => currentSnapshot.Biome;
+
+    [JsonIgnore]
+    public string Background => currentSnapshot.Background ?? BiomeTemplate.Background;
 
     /// <summary>
     ///   Logged events that specifically occurred in this patch.
@@ -661,12 +665,14 @@ public class PatchSnapshot : ICloneable
     public Dictionary<Species, SpeciesInfo> RecordedSpeciesInfo = new();
 
     public BiomeConditions Biome;
+    public string? Background;
 
     public List<GameEventDescription> EventsLog = new();
 
-    public PatchSnapshot(BiomeConditions biome)
+    public PatchSnapshot(BiomeConditions biome, string? background)
     {
         Biome = biome;
+        Background = background;
     }
 
     public void ReplaceSpecies(Species old, Species newSpecies)
@@ -689,7 +695,7 @@ public class PatchSnapshot : ICloneable
     public object Clone()
     {
         // We only do a shallow copy of RecordedSpeciesInfo here as SpeciesInfo objects are never modified.
-        var result = new PatchSnapshot((BiomeConditions)Biome.Clone())
+        var result = new PatchSnapshot((BiomeConditions)Biome.Clone(), Background)
         {
             TimePeriod = TimePeriod,
             SpeciesInPatch = new Dictionary<Species, long>(SpeciesInPatch),

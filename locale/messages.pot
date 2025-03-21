@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Thrive VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2025-03-20 10:30+0200\n"
+"POT-Creation-Date: 2025-03-21 19:56+0100\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -67,10 +67,10 @@ msgstr ""
 msgid "ACTION_AWAKEN_TOOLTIP"
 msgstr ""
 
-#: ../src/general/base_stage/EditorBase.cs:789
-#: ../src/macroscopic_stage/editor/MacroscopicEditor.cs:523
-#: ../src/microbe_stage/editor/CellEditorComponent.GUI.cs:63
-#: ../src/multicellular_stage/editor/MulticellularEditor.cs:447
+#: ../src/general/base_stage/EditorBase.cs:790
+#: ../src/macroscopic_stage/editor/MacroscopicEditor.cs:529
+#: ../src/microbe_stage/editor/CellEditorComponent.GUI.cs:62
+#: ../src/multicellular_stage/editor/MulticellularEditor.cs:453
 msgid "ACTION_BLOCKED_WHILE_ANOTHER_IN_PROGRESS"
 msgstr ""
 
@@ -818,27 +818,27 @@ msgstr ""
 msgid "CARBON_DIOXIDE"
 msgstr ""
 
-#: ../src/general/base_stage/CreatureStageHUDBase.cs:936
+#: ../src/general/base_stage/CreatureStageHUDBase.cs:972
 msgid "CATEGORY_AN_ABUNDANCE"
 msgstr ""
 
-#: ../src/general/base_stage/CreatureStageHUDBase.cs:940
+#: ../src/general/base_stage/CreatureStageHUDBase.cs:976
 msgid "CATEGORY_A_FAIR_AMOUNT"
 msgstr ""
 
-#: ../src/general/base_stage/CreatureStageHUDBase.cs:944
+#: ../src/general/base_stage/CreatureStageHUDBase.cs:980
 msgid "CATEGORY_LITTLE"
 msgstr ""
 
-#: ../src/general/base_stage/CreatureStageHUDBase.cs:938
+#: ../src/general/base_stage/CreatureStageHUDBase.cs:974
 msgid "CATEGORY_QUITE_A_BIT"
 msgstr ""
 
-#: ../src/general/base_stage/CreatureStageHUDBase.cs:942
+#: ../src/general/base_stage/CreatureStageHUDBase.cs:978
 msgid "CATEGORY_SOME"
 msgstr ""
 
-#: ../src/general/base_stage/CreatureStageHUDBase.cs:946
+#: ../src/general/base_stage/CreatureStageHUDBase.cs:982
 msgid "CATEGORY_VERY_LITTLE"
 msgstr ""
 
@@ -1389,7 +1389,7 @@ msgstr ""
 msgid "CONTINUE_AS_SPECIES"
 msgstr ""
 
-#: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:488
+#: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:489
 msgid "CONTINUE_THRIVING"
 msgstr ""
 
@@ -2532,7 +2532,7 @@ msgstr ""
 msgid "ESCAPE"
 msgstr ""
 
-#: ../src/microbe_stage/MicrobeStage.cs:1586
+#: ../src/microbe_stage/MicrobeStage.cs:1608
 msgid "ESCAPE_ENGULFING"
 msgstr ""
 
@@ -2540,7 +2540,7 @@ msgstr ""
 msgid "ESTUARY"
 msgstr ""
 
-#: ../src/microbe_stage/editor/PatchMapNode.tscn:100
+#: ../src/microbe_stage/editor/PatchMapNode.tscn:102
 msgid "EVENT_ERUPTION_TOOLTIP"
 msgstr ""
 
@@ -3023,6 +3023,34 @@ msgstr ""
 
 #: ../src/general/OptionsMenu.tscn:584
 msgid "GLES3"
+msgstr ""
+
+#: ../src/general/world_effects/patch_events/GlobalGlaciationEvent.cs:242
+msgid "GLOBAL_GLACIATION_END_EVENT_LOG"
+msgstr ""
+
+#: ../src/general/world_effects/patch_events/GlobalGlaciationEvent.cs:214
+msgid "GLOBAL_GLACIATION_EVENT"
+msgstr ""
+
+#: ../src/general/world_effects/patch_events/GlobalGlaciationEvent.cs:219
+msgid "GLOBAL_GLACIATION_EVENT_LOG"
+msgstr ""
+
+#: ../src/microbe_stage/editor/PatchMapNode.tscn:112
+msgid "GLOBAL_GLACIATION_EVENT_TOOLTIP"
+msgstr ""
+
+#: ../src/general/world_effects/patch_events/GlobalGlaciationEvent.cs:230
+msgid "GLOBAL_GLACIATION_EVENT_WARNING_LOG_PLURAL"
+msgstr ""
+
+#: ../src/general/world_effects/patch_events/GlobalGlaciationEvent.cs:229
+msgid "GLOBAL_GLACIATION_EVENT_WARNING_LOG_SINGULAR"
+msgstr ""
+
+#: ../src/general/world_effects/patch_events/GlobalGlaciationEvent.cs:236
+msgid "GLOBAL_GLACIATION_START_EVENT_LOG"
 msgstr ""
 
 #: ../src/microbe_stage/editor/MicrobeEditorReportComponent.tscn:378
@@ -4874,27 +4902,27 @@ msgstr ""
 msgid "MICROBE_STAGE"
 msgstr ""
 
-#: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:272
+#: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:273
 msgid "MICROBE_STAGE_BECOME_MULTICELLULAR_TEXT"
 msgstr ""
 
-#: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:226
+#: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:227
 msgid "MICROBE_STAGE_COLLECT_TEXT"
 msgstr ""
 
-#: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:155
+#: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:156
 msgid "MICROBE_STAGE_CONTROL_TEXT"
 msgstr ""
 
-#: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:156
+#: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:157
 msgid "MICROBE_STAGE_CONTROL_TEXT_CONTROLLER"
 msgstr ""
 
-#: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:242
+#: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:243
 msgid "MICROBE_STAGE_DAY_NIGHT_TEXT"
 msgstr ""
 
-#: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:287
+#: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:288
 msgid "MICROBE_STAGE_HEALTH_TEXT"
 msgstr ""
 
@@ -4910,7 +4938,7 @@ msgstr ""
 msgid "MICROBE_STAGE_INITIAL_POND"
 msgstr ""
 
-#: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:258
+#: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:259
 msgid "MICROBE_STAGE_ORGANELLE_DIVISION"
 msgstr ""
 
@@ -5645,7 +5673,7 @@ msgstr ""
 msgid "NOTICE_RADIATION_DAMAGE"
 msgstr ""
 
-#: ../src/general/base_stage/CreatureStageHUDBase.cs:484
+#: ../src/general/base_stage/CreatureStageHUDBase.cs:490
 msgid "NOTICE_READY_TO_EDIT"
 msgstr ""
 
@@ -5702,7 +5730,7 @@ msgstr ""
 msgid "NO_SELECTED_MOD"
 msgstr ""
 
-#: ../src/microbe_stage/editor/CellEditorComponent.GUI.cs:164
+#: ../src/microbe_stage/editor/CellEditorComponent.GUI.cs:163
 msgid "NO_SUGGESTION"
 msgstr ""
 
@@ -5880,7 +5908,7 @@ msgstr ""
 msgid "ORGANELLES_BUTTON"
 msgstr ""
 
-#: ../src/microbe_stage/editor/CellEditorComponent.GUI.cs:444
+#: ../src/microbe_stage/editor/CellEditorComponent.GUI.cs:443
 msgid "ORGANELLES_WILL_BE_UNLOCKED_NEXT_GENERATION"
 msgstr ""
 
@@ -7320,7 +7348,7 @@ msgstr ""
 msgid "SPAWN_ENEMY"
 msgstr ""
 
-#: ../src/microbe_stage/MicrobeStage.cs:1270
+#: ../src/microbe_stage/MicrobeStage.cs:1292
 msgid "SPAWN_ENEMY_CHEAT_FAIL"
 msgstr ""
 
@@ -7621,11 +7649,11 @@ msgstr ""
 msgid "STRUCTURE_STEAM_POWERED_FACTORY"
 msgstr ""
 
-#: ../src/microbe_stage/MicrobeStage.cs:1584
+#: ../src/microbe_stage/MicrobeStage.cs:1606
 msgid "SUCCESSFUL_KILL"
 msgstr ""
 
-#: ../src/microbe_stage/MicrobeStage.cs:1585
+#: ../src/microbe_stage/MicrobeStage.cs:1607
 msgid "SUCCESSFUL_SCAVENGE"
 msgstr ""
 
@@ -7923,8 +7951,8 @@ msgstr ""
 msgid "TIMELINE_SELECTION_PRESSURE_SPLIT"
 msgstr ""
 
-#: ../src/microbe_stage/MicrobeStage.cs:562
-#: ../src/microbe_stage/MicrobeStage.cs:566
+#: ../src/microbe_stage/MicrobeStage.cs:567
+#: ../src/microbe_stage/MicrobeStage.cs:571
 msgid "TIMELINE_SPECIES_BECAME_MULTICELLULAR"
 msgstr ""
 
@@ -8248,7 +8276,7 @@ msgstr ""
 #: ../src/tutorial/microbe_editor/MicrobeEditorTutorialGUI.tscn:423
 #: ../src/tutorial/microbe_editor/MicrobeEditorTutorialGUI.tscn:474
 #: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:65
-#: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:365
+#: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:366
 msgid "TUTORIAL"
 msgstr ""
 
@@ -8316,43 +8344,43 @@ msgstr ""
 msgid "TUTORIAL_MICROBE_EDITOR_TOLERANCES_TAB"
 msgstr ""
 
-#: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:327
+#: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:328
 msgid "TUTORIAL_MICROBE_STAGE_EDITOR_BUTTON_TUTORIAL"
 msgstr ""
 
-#: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:440
+#: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:441
 msgid "TUTORIAL_MICROBE_STAGE_ENGULFED_TEXT"
 msgstr ""
 
-#: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:408
+#: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:409
 msgid "TUTORIAL_MICROBE_STAGE_ENGULFMENT_FULL_TEXT"
 msgstr ""
 
-#: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:424
+#: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:425
 msgid "TUTORIAL_MICROBE_STAGE_ENGULFMENT_TEXT"
 msgstr ""
 
-#: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:362
+#: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:363
 msgid "TUTORIAL_MICROBE_STAGE_HELP_MENU_AND_ZOOM"
 msgstr ""
 
-#: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:457
+#: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:458
 msgid "TUTORIAL_MICROBE_STAGE_LEAVE_COLONY_TEXT"
 msgstr ""
 
-#: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:303
+#: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:304
 msgid "TUTORIAL_MICROBE_STAGE_REPRODUCE_TEXT"
 msgstr ""
 
-#: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:343
+#: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:344
 msgid "TUTORIAL_MICROBE_STAGE_UNBIND_TEXT"
 msgstr ""
 
-#: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:469
+#: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:470
 msgid "TUTORIAL_MULTICELLULAR_STAGE_WELCOME"
 msgstr ""
 
-#: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:392
+#: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:393
 msgid "TUTORIAL_VIEW_NOW"
 msgstr ""
 
@@ -8392,11 +8420,11 @@ msgstr ""
 msgid "UNDERWATERCAVE"
 msgstr ""
 
-#: ../src/general/world_effects/UnderwaterVentEruptionEffect.cs:74
+#: ../src/general/world_effects/patch_events/UnderwaterVentEruptionEffect.cs:74
 msgid "UNDERWATER_VENT_ERUPTION"
 msgstr ""
 
-#: ../src/general/world_effects/UnderwaterVentEruptionEffect.cs:80
+#: ../src/general/world_effects/patch_events/UnderwaterVentEruptionEffect.cs:80
 msgid "UNDERWATER_VENT_ERUPTION_IN"
 msgstr ""
 
@@ -8455,7 +8483,7 @@ msgstr ""
 msgid "UNKNOWN_PATCH"
 msgstr ""
 
-#: ../src/microbe_stage/editor/PatchMapNode.tscn:85
+#: ../src/microbe_stage/editor/PatchMapNode.tscn:87
 msgid "UNKNOWN_SHORT"
 msgstr ""
 
@@ -8535,7 +8563,7 @@ msgstr ""
 msgid "UNLOCK_CONDITION_SPEED_BELOW"
 msgstr ""
 
-#: ../src/microbe_stage/editor/CellEditorComponent.GUI.cs:426
+#: ../src/microbe_stage/editor/CellEditorComponent.GUI.cs:425
 msgid "UNLOCK_WITH_ANY_OF_FOLLOWING"
 msgstr ""
 
