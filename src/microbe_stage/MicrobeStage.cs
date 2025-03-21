@@ -211,6 +211,13 @@ public partial class MicrobeStage : CreatureStageBase<Entity, MicrobeWorldSimula
         CheatManager.OnSpawnEnemyCheatUsed += OnSpawnEnemyCheatUsed;
         CheatManager.OnPlayerDuplicationCheatUsed += OnDuplicatePlayerCheatUsed;
         CheatManager.OnDespawnAllEntitiesCheatUsed += OnDespawnAllEntitiesCheatUsed;
+
+        // Re-register this callback in case it is necessary
+        // The primary registration for this is in OnGameStarted
+        if (CurrentGame != null)
+        {
+            TutorialState.GlucoseCollecting.OnTutorialOpen += SetupPlayerForGlucoseCollecting;
+        }
     }
 
     public override void _ExitTree()
@@ -221,6 +228,11 @@ public partial class MicrobeStage : CreatureStageBase<Entity, MicrobeWorldSimula
         CheatManager.OnDespawnAllEntitiesCheatUsed -= OnDespawnAllEntitiesCheatUsed;
 
         DebugOverlays.Instance.OnWorldDisabled(WorldSimulation);
+
+        if (CurrentGame != null)
+        {
+            TutorialState.GlucoseCollecting.OnTutorialOpen += SetupPlayerForGlucoseCollecting;
+        }
     }
 
     public override void _Process(double delta)
@@ -1012,6 +1024,9 @@ public partial class MicrobeStage : CreatureStageBase<Entity, MicrobeWorldSimula
         UpdatePatchSettings(!TutorialState.Enabled);
 
         SpawnPlayer();
+
+        // Can now register this callback with the game set
+        TutorialState.GlucoseCollecting.OnTutorialOpen += SetupPlayerForGlucoseCollecting;
     }
 
     protected override void SpawnPlayer()
@@ -1625,6 +1640,26 @@ public partial class MicrobeStage : CreatureStageBase<Entity, MicrobeWorldSimula
         {
             resolvedTolerancesCache.Clear();
         }
+    }
+
+    private void SetupPlayerForGlucoseCollecting()
+    {
+        // Reduce player glucose amount to have enough storage space to collect stuff
+        if (!HasAlivePlayer)
+        {
+            GD.PrintErr("Cannot adjust player glucose as no alive player exists");
+            return;
+        }
+
+        var compounds = Player.Get<CompoundStorage>().Compounds;
+
+        var glucoseMax = compounds.GetCapacityForCompound(Compound.Glucose);
+
+        var excess = compounds.GetCompoundAmount(Compound.Glucose) -
+            (glucoseMax - Constants.TUTORIAL_GLUCOSE_MAKE_EMPTY_SPACE_AT_LEAST);
+
+        if (excess > 0)
+            compounds.TakeCompound(Compound.Glucose, excess);
     }
 
     private void TranslationsForFeaturesToReimplement()

@@ -9,6 +9,11 @@ using Newtonsoft.Json;
 public abstract class TutorialPhase
 {
     /// <summary>
+    ///   Some tutorials send an event when they open
+    /// </summary>
+    public delegate void OnTutorialOpenDelegate();
+
+    /// <summary>
     ///   If set to false, the trigger condition won't be checked for this tutorial
     /// </summary>
     [JsonProperty]

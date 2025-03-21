@@ -32,6 +32,9 @@ public class GlucoseCollecting : TutorialPhase
 
     public override string ClosedByName => "GlucoseCollecting";
 
+    [JsonIgnore]
+    public OnTutorialOpenDelegate? OnTutorialOpen { get; set; }
+
     public override void ApplyGUIState(MicrobeTutorialGUI gui)
     {
         gui.GlucoseTutorialVisible = ShownCurrently;
@@ -89,6 +92,7 @@ public class GlucoseCollecting : TutorialPhase
                     }
 
                     nextTutorial = overallState.MicrobeReproduction;
+                    OnTutorialOpen?.Invoke();
                     Show();
                 }
 
