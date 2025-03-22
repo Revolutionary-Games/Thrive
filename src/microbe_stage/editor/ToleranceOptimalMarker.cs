@@ -15,12 +15,6 @@ public partial class ToleranceOptimalMarker : Control
 
     [Export]
     [ExportCategory("Internal")]
-    private Label startValue = null!;
-
-    [Export]
-    private Label endValue = null!;
-
-    [Export]
     private TextureRect optimalValueMarker = null!;
 #pragma warning restore CA2213
 
@@ -59,12 +53,6 @@ public partial class ToleranceOptimalMarker : Control
 
         if (markerTextureOverride != null)
             optimalValueMarker.Texture = markerTextureOverride;
-    }
-
-    public void UpdateBoundaryLabels(string start, string end)
-    {
-        startValue.Text = start;
-        endValue.Text = end;
     }
 
     /// <summary>

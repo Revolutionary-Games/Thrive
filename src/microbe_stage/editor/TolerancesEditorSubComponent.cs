@@ -920,17 +920,9 @@ public partial class TolerancesEditorSubComponent : EditorComponentBase<ICellEdi
         }
 
         // Update markers
-        temperatureToleranceMarker.UpdateBoundaryLabels(unitFormat.FormatSafe(0, temperature.Unit),
-            unitFormat.FormatSafe(100, temperature.Unit));
         temperatureToleranceMarker.OptimalValue = patchTemperature / 100.0f;
 
-        string minPressure = unitFormat.FormatSafe(0, "kPa");
-        string maxPressure = unitFormat.FormatSafe(70000, "kPa");
-
-        minPressureToleranceMarker.UpdateBoundaryLabels(minPressure, maxPressure);
         minPressureToleranceMarker.OptimalValue = patchPressure / 70000000;
-
-        maxPressureToleranceMarker.UpdateBoundaryLabels(minPressure, maxPressure);
         maxPressureToleranceMarker.OptimalValue = patchPressure / 70000000;
 
         string zeroPercents = percentageFormat.FormatSafe(0);
@@ -940,10 +932,8 @@ public partial class TolerancesEditorSubComponent : EditorComponentBase<ICellEdi
         oxygenToleranceMarker.ShowMarker = requiredOxygenResistance > MathUtils.EPSILON;
         uvToleranceMarker.ShowMarker = requiredUVResistance > MathUtils.EPSILON;
 
-        oxygenToleranceMarker.UpdateBoundaryLabels(zeroPercents, hundredPercents);
         oxygenToleranceMarker.OptimalValue = requiredOxygenResistance;
 
-        uvToleranceMarker.UpdateBoundaryLabels(zeroPercents, hundredPercents);
         uvToleranceMarker.OptimalValue = requiredUVResistance;
     }
 
