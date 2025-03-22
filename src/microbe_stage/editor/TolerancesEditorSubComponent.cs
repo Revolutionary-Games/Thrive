@@ -100,6 +100,21 @@ public partial class TolerancesEditorSubComponent : EditorComponentBase<ICellEdi
     private Label uvResistanceModifierLabel = null!;
 
     [Export]
+    private ToleranceOptimalMarker temperatureToleranceMarker = null!;
+
+    [Export]
+    private ToleranceOptimalMarker minPressureToleranceMarker = null!;
+
+    [Export]
+    private ToleranceOptimalMarker maxPressureToleranceMarker = null!;
+
+    [Export]
+    private ToleranceOptimalMarker oxygenToleranceMarker = null!;
+
+    [Export]
+    private ToleranceOptimalMarker uvToleranceMarker = null!;
+
+    [Export]
     [ExportCategory("Style")]
     private LabelSettings badValueFont = null!;
 
@@ -903,6 +918,20 @@ public partial class TolerancesEditorSubComponent : EditorComponentBase<ICellEdi
         {
             uvResistanceModifierLabel.Visible = false;
         }
+
+        // Update markers
+        temperatureToleranceMarker.OptimalValue = patchTemperature / 100.0f;
+
+        minPressureToleranceMarker.OptimalValue = patchPressure / 70000000;
+        maxPressureToleranceMarker.OptimalValue = patchPressure / 70000000;
+
+        // Don't show markers when they are at 0% as it looks confusing
+        oxygenToleranceMarker.ShowMarker = requiredOxygenResistance > MathUtils.EPSILON;
+        uvToleranceMarker.ShowMarker = requiredUVResistance > MathUtils.EPSILON;
+
+        oxygenToleranceMarker.OptimalValue = requiredOxygenResistance;
+
+        uvToleranceMarker.OptimalValue = requiredUVResistance;
     }
 
     [DeserializedCallbackAllowed]
