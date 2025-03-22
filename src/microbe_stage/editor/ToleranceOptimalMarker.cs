@@ -7,14 +7,9 @@ public partial class ToleranceOptimalMarker : Control
 {
 #pragma warning disable CA2213
     [Export]
-    [ExportCategory("Visuals")]
     private Texture2D? markerTextureOverride;
 
     [Export]
-    private float padding = 8.0f;
-
-    [Export]
-    [ExportCategory("Internal")]
     private TextureRect optimalValueMarker = null!;
 #pragma warning restore CA2213
 
@@ -60,7 +55,7 @@ public partial class ToleranceOptimalMarker : Control
     /// </summary>
     public void UpdateMarker()
     {
-        optimalValueMarker.Position = new Vector2(padding + (Size.X - 2.0f * padding) * optimalValue
-            - optimalValueMarker.Size.X * 0.5f, optimalValueMarker.Position.Y);
+        optimalValueMarker.Position = new Vector2((Size.X - optimalValueMarker.Size.X + 0.5f) * optimalValue - 0.5f,
+            optimalValueMarker.Position.Y);
     }
 }
