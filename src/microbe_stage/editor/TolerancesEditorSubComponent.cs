@@ -925,9 +925,6 @@ public partial class TolerancesEditorSubComponent : EditorComponentBase<ICellEdi
         minPressureToleranceMarker.OptimalValue = patchPressure / 70000000;
         maxPressureToleranceMarker.OptimalValue = patchPressure / 70000000;
 
-        string zeroPercents = percentageFormat.FormatSafe(0);
-        string hundredPercents = percentageFormat.FormatSafe(100);
-
         // Don't show markers when they are at 0% as it looks confusing
         oxygenToleranceMarker.ShowMarker = requiredOxygenResistance > MathUtils.EPSILON;
         uvToleranceMarker.ShowMarker = requiredUVResistance > MathUtils.EPSILON;
