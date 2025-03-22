@@ -60,7 +60,7 @@ public partial class ToleranceOptimalMarker : Control
     /// </summary>
     public void UpdateMarker()
     {
-        optimalValueMarker.OffsetLeft = padding + (Size.X - 2.0f * padding) * optimalValue
-            - optimalValueMarker.Size.X * 0.5f;
+        optimalValueMarker.Position = new Vector2(padding + (Size.X - 2.0f * padding) * optimalValue
+            - optimalValueMarker.Size.X * 0.5f, optimalValueMarker.Position.Y);
     }
 }

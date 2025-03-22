@@ -3,7 +3,7 @@
 [ext_resource type="Script" uid="uid://druhu7df8n2px" path="res://src/microbe_stage/editor/ToleranceOptimalMarker.cs" id="1_f6ri8"]
 [ext_resource type="Texture2D" uid="uid://db31f2ylf0beu" path="res://assets/textures/gui/bevel/markerOptimal.svg" id="2_dbghd"]
 
-[node name="ToleranceInfo" type="Control" node_paths=PackedStringArray("startValue", "endValue", "optimalValueMarker")]
+[node name="ToleranceInfo" type="Control" node_paths=PackedStringArray("optimalValueMarker")]
 custom_minimum_size = Vector2(0, 15)
 layout_mode = 3
 anchors_preset = 10
@@ -12,8 +12,6 @@ grow_horizontal = 2
 mouse_filter = 1
 script = ExtResource("1_f6ri8")
 padding = 8.5
-startValue = NodePath("")
-endValue = NodePath("")
 optimalValueMarker = NodePath("TextureRect")
 
 [node name="TextureRect" type="TextureRect" parent="."]
@@ -24,4 +22,4 @@ texture = ExtResource("2_dbghd")
 expand_mode = 3
 stretch_mode = 4
 
-[connection signal="item_rect_changed" from="." to="." method="UpdateMarker"]
+[connection signal="resized" from="." to="." method="UpdateMarker"]
