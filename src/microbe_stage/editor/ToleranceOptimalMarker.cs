@@ -26,6 +26,8 @@ public partial class ToleranceOptimalMarker : Control
 
     private bool showMarker = true;
 
+    private float optimalValue;
+
     public bool ShowMarker
     {
         get => showMarker;
@@ -37,6 +39,17 @@ public partial class ToleranceOptimalMarker : Control
             showMarker = value;
 
             optimalValueMarker.Visible = value;
+        }
+    }
+
+    public float OptimalValue
+    {
+        get => optimalValue;
+        set
+        {
+            optimalValue = value;
+
+            UpdateMarker();
         }
     }
 
@@ -54,7 +67,10 @@ public partial class ToleranceOptimalMarker : Control
         endValue.Text = end;
     }
 
-    public void UpdateMarker(float optimalValue)
+    /// <summary>
+    ///   Updates the marker's position, taking into account any rect changes
+    /// </summary>
+    public void UpdateMarker()
     {
         optimalValueMarker.OffsetLeft = padding + (Size.X - 2.0f * padding) * optimalValue
             - optimalValueMarker.Size.X * 0.5f;

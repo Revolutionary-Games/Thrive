@@ -11,7 +11,7 @@ anchor_right = 1.0
 grow_horizontal = 2
 mouse_filter = 1
 script = ExtResource("1_f6ri8")
-padding = 7.5
+padding = 8.5
 startValue = NodePath("MinValue")
 endValue = NodePath("MaxValue")
 optimalValueMarker = NodePath("TextureRect")
@@ -49,3 +49,5 @@ offset_bottom = 16.0
 texture = ExtResource("2_dbghd")
 expand_mode = 3
 stretch_mode = 4
+
+[connection signal="item_rect_changed" from="." to="." method="UpdateMarker"]

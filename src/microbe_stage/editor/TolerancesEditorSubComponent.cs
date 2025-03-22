@@ -181,8 +181,6 @@ public partial class TolerancesEditorSubComponent : EditorComponentBase<ICellEdi
         base.Init(owningEditor, fresh);
 
         wasFreshInit = fresh;
-
-        ItemRectChanged += UpdateCurrentValueDisplays;
     }
 
     public override void OnEditorSpeciesSetup(Species species)
@@ -924,16 +922,16 @@ public partial class TolerancesEditorSubComponent : EditorComponentBase<ICellEdi
         // Update markers
         temperatureToleranceMarker.UpdateBoundaryLabels(unitFormat.FormatSafe(0, temperature.Unit),
             unitFormat.FormatSafe(100, temperature.Unit));
-        temperatureToleranceMarker.UpdateMarker(patchTemperature / 100.0f);
+        temperatureToleranceMarker.OptimalValue = patchTemperature / 100.0f;
 
         string minPressure = unitFormat.FormatSafe(0, "kPa");
         string maxPressure = unitFormat.FormatSafe(70000, "kPa");
 
         minPressureToleranceMarker.UpdateBoundaryLabels(minPressure, maxPressure);
-        minPressureToleranceMarker.UpdateMarker(patchPressure / 70000000);
+        minPressureToleranceMarker.OptimalValue = patchPressure / 70000000;
 
         maxPressureToleranceMarker.UpdateBoundaryLabels(minPressure, maxPressure);
-        maxPressureToleranceMarker.UpdateMarker(patchPressure / 70000000);
+        maxPressureToleranceMarker.OptimalValue = patchPressure / 70000000;
 
         string zeroPercents = percentageFormat.FormatSafe(0);
         string hundredPercents = percentageFormat.FormatSafe(100);
@@ -943,10 +941,10 @@ public partial class TolerancesEditorSubComponent : EditorComponentBase<ICellEdi
         uvToleranceMarker.ShowMarker = requiredUVResistance > MathUtils.EPSILON;
 
         oxygenToleranceMarker.UpdateBoundaryLabels(zeroPercents, hundredPercents);
-        oxygenToleranceMarker.UpdateMarker(requiredOxygenResistance);
+        oxygenToleranceMarker.OptimalValue = requiredOxygenResistance;
 
         uvToleranceMarker.UpdateBoundaryLabels(zeroPercents, hundredPercents);
-        uvToleranceMarker.UpdateMarker(requiredUVResistance);
+        uvToleranceMarker.OptimalValue = requiredUVResistance;
     }
 
     [DeserializedCallbackAllowed]
