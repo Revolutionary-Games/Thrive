@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using Godot;
 
 /// <summary>
@@ -29,6 +29,9 @@ public partial class Membrane : MeshInstance3D
 
     [Export]
     private MeshInstance3D mucocystAnimationMeshInstance = null!;
+
+    // Instance of the WaterRipple effect
+    private MembraneWaterRipple? waterRipple;
 #pragma warning disable CA2213
     private Texture2D? albedoTexture;
 
@@ -173,6 +176,12 @@ public partial class Membrane : MeshInstance3D
         if (EngulfShaderMaterial == null)
             throw new Exception("EngulfShaderMaterial on Membrane is not set");
 
+        waterRipple = GetNode<MembraneWaterRipple>("WaterRipple");
+        if (waterRipple != null)
+        {
+            waterRipple.Initialize(this);
+        }
+
         SetMesh();
     }
 
@@ -296,6 +305,7 @@ public partial class Membrane : MeshInstance3D
             healthParameterName.Dispose();
             wigglynessParameterName.Dispose();
             movementWigglynessParameterName.Dispose();
+            fadeParameterName.Dispose();
         }
 
         base.Dispose(disposing);
