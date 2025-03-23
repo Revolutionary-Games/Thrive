@@ -1,9 +1,10 @@
-﻿using System;
+using System;
 using Godot;
 
 /// <summary>
 ///   Manages spawning and processing ripple effect
 /// </summary>
+
 // Globally disable the MergeIntoLogicalPattern warning for the entire file
 #pragma warning disable MergeIntoLogicalPattern
 public partial class MembraneWaterRipple : Node
@@ -47,6 +48,7 @@ public partial class MembraneWaterRipple : Node
     ///   Predefined LOD distance values
     /// </summary>
     private const float VERY_LOW_LOD_DISTANCE = 40.0f;
+
     private const float LOW_LOD_DISTANCE = 30.0f;
     private const float HIGH_LOD_DISTANCE = 15.0f;
 
@@ -54,6 +56,7 @@ public partial class MembraneWaterRipple : Node
     ///   Predefined LOD subdivision values
     /// </summary>
     private const int VERY_LOW_LOD_SUBDIVISION = 40;
+
     private const int LOW_LOD_SUBDIVISION = 60;
     private const int MEDIUM_LOD_SUBDIVISION = 90;
     private const int HIGH_LOD_SUBDIVISION = 120;
@@ -77,22 +80,24 @@ public partial class MembraneWaterRipple : Node
     ///   Position tracking and effect state variables
     /// </summary>
     private Vector2[]? pastPositions;
+
     private Vector3[]? membranePositionHistory;
-    private int currentPositionIndex = 0;
-    private bool isPositionHistoryFull = false;
+    private int currentPositionIndex;
+    private bool isPositionHistoryFull;
     private float positionRecordTimer;
     private Vector3 lastPosition;
     private Vector2 currentDirection = Vector2.Right;
     private float currentSpeed;
     private float timeAccumulator;
     private bool isCurrentlyVisible = true;
-    private float visibilityCheckTimer = 0.0f;
+    private float visibilityCheckTimer;
     private bool isEffectEnabled = true;
 
     /// <summary>
     ///   Camera state caching variables
     /// </summary>
     private Camera3D? currentCamera;
+
     private float lastCameraDistance;
     private Vector3 lastCameraPosition;
     private bool isCameraPositionValid;
@@ -420,9 +425,9 @@ public partial class MembraneWaterRipple : Node
     private void UpdateMovementParameters(float delta)
     {
         // Using separate null checks to work around pattern matching limitations in the compiler
-        if (waterMaterial == null)
+        if (waterMaterial == null) 
             return;
-        if (parentMembrane == null)
+        if (parentMembrane == null) 
             return;
         if (waterPlane == null)
             return;
@@ -559,7 +564,8 @@ public partial class MembraneWaterRipple : Node
     /// </summary>
     private float GetMembraneRadius()
     {
-        return parentMembrane == null ? DEFAULT_MEMBRANE_RADIUS :
+        return parentMembrane == null ?
+            DEFAULT_MEMBRANE_RADIUS :
             parentMembrane.EncompassingCircleRadius;
     }
 }
