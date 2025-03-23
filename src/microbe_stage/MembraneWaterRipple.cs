@@ -66,7 +66,7 @@ public partial class MembraneWaterRipple : Node
     private readonly StringName attenuationParam = new("Attenuation");
     private readonly StringName pastPositionsParam = new("PastPositions");
     private readonly StringName pastPositionsCountParam = new("PastPositionsCount");
-    private MeshInstance3D waterPlane = null!;
+    private MeshInstance3D? waterPlane;
     private ShaderMaterial? waterMaterial;
     private Membrane? parentMembrane;
     private PlaneMesh? planeMesh;
@@ -74,8 +74,8 @@ public partial class MembraneWaterRipple : Node
     /// <summary>
     ///   Position tracking and effect state variables
     /// </summary>
-    private Vector2[] pastPositions = null!;
-    private Vector3[] membranePositionHistory = null!;
+    private Vector2[]? pastPositions;
+    private Vector3[]? membranePositionHistory;
     private int currentPositionIndex = 0;
     private bool isPositionHistoryFull = false;
     private float positionRecordTimer;
@@ -114,28 +114,31 @@ public partial class MembraneWaterRipple : Node
     public override void _Ready()
     {
         waterPlane = GetNode<MeshInstance3D>("WaterPlane");
-        waterMaterial = waterPlane.MaterialOverride as ShaderMaterial;
-        planeMesh = waterPlane.Mesh as PlaneMesh;
+        waterMaterial = waterPlane?.MaterialOverride as ShaderMaterial;
+        planeMesh = waterPlane?.Mesh as PlaneMesh;
         pastPositions = new Vector2[PositionHistorySize];
         membranePositionHistory = new Vector3[PositionHistorySize];
 
         // Initialize with zero values
         for (int i = 0; i < PositionHistorySize; ++i)
         {
-            pastPositions[i] = Vector2.Zero;
-            membranePositionHistory[i] = Vector3.Zero;
+            if (pastPositions != null)
+                pastPositions[i] = Vector2.Zero;
+            if (membranePositionHistory != null)
+                membranePositionHistory[i] = Vector3.Zero;
         }
 
         InitializeShaderParameters();
         currentCamera = GetViewport()?.GetCamera3D();
         isCameraPositionValid = false;
-        waterPlane.Visible = false;
+        if (waterPlane != null)
+            waterPlane.Visible = false;
     }
 
     /// <summary>
     ///   Initialize the effect with the parent membrane
     /// </summary>
-    public void Initialize(Membrane membrane)
+    public void Initialize(Membrane? membrane)
     {
         if (membrane == null)
             return;
@@ -146,11 +149,13 @@ public partial class MembraneWaterRipple : Node
         // Initialize position history with current position
         for (int i = 0; i < PositionHistorySize; ++i)
         {
-            membranePositionHistory[i] = lastPosition;
+            if (membranePositionHistory != null)
+                membranePositionHistory[i] = lastPosition;
         }
 
         isEffectEnabled = true;
-        waterPlane.Visible = true;
+        if (waterPlane != null)
+            waterPlane.Visible = true;
         UpdatePosition();
     }
 
@@ -234,7 +239,8 @@ public partial class MembraneWaterRipple : Node
         waterMaterial.SetShaderParameter(movementDirectionParam, Vector2.Zero);
         waterMaterial.SetShaderParameter(phaseParam, 0.2f);
         waterMaterial.SetShaderParameter(attenuationParam, 0.9998f);
-        waterMaterial.SetShaderParameter(pastPositionsParam, pastPositions);
+        if (pastPositions != null)
+            waterMaterial.SetShaderParameter(pastPositionsParam, pastPositions);
         waterMaterial.SetShaderParameter(pastPositionsCountParam, 0);
     }
 
@@ -410,7 +416,7 @@ public partial class MembraneWaterRipple : Node
     /// </summary>
     private void UpdateMovementParameters(float delta)
     {
-        if (waterMaterial == null || parentMembrane == null || waterPlane == null)
+        if (waterMaterial is null or parentMembrane is null or waterPlane is null)
             return;
 
         // Calculates membrane movement since the last frame
