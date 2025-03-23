@@ -420,9 +420,9 @@ public partial class MembraneWaterRipple : Node
     private void UpdateMovementParameters(float delta)
     {
         // Using separate null checks to work around pattern matching limitations in the compiler
-        if (waterMaterial == null) 
+        if (waterMaterial == null)
             return;
-        if (parentMembrane == null) 
+        if (parentMembrane == null)
             return;
         if (waterPlane == null)
             return;
