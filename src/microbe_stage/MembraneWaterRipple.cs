@@ -94,7 +94,7 @@ public partial class MembraneWaterRipple : Node
     private float lastCameraDistance;
     private Vector3 lastCameraPosition;
     private bool isCameraPositionValid;
-    
+
     private LodLevel currentLodLevel = LodLevel.Medium;
 
     /// <summary>
@@ -248,6 +248,7 @@ public partial class MembraneWaterRipple : Node
 
         var camera = currentCamera ?? GetViewport()?.GetCamera3D();
         if (camera == null)
+
             // If we can't determine, assume it is visible
             return true;
 
