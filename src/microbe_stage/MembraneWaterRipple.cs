@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using Godot;
 
 /// <summary>
@@ -254,7 +254,6 @@ public partial class MembraneWaterRipple : Node
 
         var camera = currentCamera ?? GetViewport()?.GetCamera3D();
         if (camera == null)
-
             // If we can't determine, assume it is visible
             return true;
 
@@ -416,7 +415,7 @@ public partial class MembraneWaterRipple : Node
     /// </summary>
     private void UpdateMovementParameters(float delta)
     {
-        if (waterMaterial is null or parentMembrane is null or waterPlane is null)
+        if (waterMaterial == null || parentMembrane == null || waterPlane == null)
             return;
 
         // Calculates membrane movement since the last frame
@@ -427,7 +426,7 @@ public partial class MembraneWaterRipple : Node
 
         // Store position in circular history buffer at timed intervals
         positionRecordTimer += delta;
-        if (positionRecordTimer >= PositionRecordInterval)
+        if (positionRecordTimer >= PositionRecordInterval && membranePositionHistory != null)
         {
             membranePositionHistory[currentPositionIndex] = currentPos;
             currentPositionIndex = (currentPositionIndex + 1) % PositionHistorySize;
@@ -447,7 +446,7 @@ public partial class MembraneWaterRipple : Node
             waterMaterial.SetShaderParameter(pastPositionsCountParam, actualCount);
 
             // update past positions array only if there's actual movement (improve)
-            if (significantMovement)
+            if (significantMovement && pastPositions != null)
             {
                 waterMaterial.SetShaderParameter(pastPositionsParam, pastPositions);
             }
