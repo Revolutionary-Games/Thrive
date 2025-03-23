@@ -163,7 +163,7 @@ public partial class MembraneWaterRipple : Node
    visibilityCheckTimer += (float)delta;
    if (visibilityCheckTimer >= VisibilityCheckInterval)
    {
-    visibilityCheckTimer = 0f;
+    visibilityCheckTimer = 0.0f;
     UpdateCameraCache();
     isCurrentlyVisible = IsMembraneVisible();
 
@@ -498,8 +498,8 @@ public partial class MembraneWaterRipple : Node
  }
 
  /// <summary>
- /// Updates the local position array for the shader
- /// based on the real position history
+ ///   Updates the local position array for the shader
+ ///   based on the real position history
  /// </summary>
  private void UpdateLocalPositions()
  {
