@@ -5,192 +5,268 @@ render_mode blend_mix, depth_prepass_alpha, cull_back, diffuse_lambert;
 uniform vec4 WaterColor : source_color = vec4(0.0, 0.0, 0.0, 0.02);
 // Intensity of ripple displacement
 uniform float RippleStrength = 0.8;
-// Time offset for animation
+// Time offset for animation container
 uniform float TimeOffset = 0.0;
-// Speed of movement
+// Speed of movement container
 uniform float MovementSpeed = 0.0;
-// Direction of movement
+// Direction of movement container
 uniform vec2 MovementDirection = vec2(0.0, 0.0);
+// Array of past positions for curved movement path
+uniform vec2 PastPositions[14];
+// Number of past positions actually available
+uniform int PastPositionsCount = 0;
 // Wave phase
 uniform float Phase = 0.2;
 // Regulates viscosity - Higher values = less viscous and longer lasting ripples
 uniform float Attenuation = 0.998;
 
-// Wave height calculation with improved long-distance propagation
+// Constants for mesh sizing and effect configuration
+const float MeshSize = 8.0;
+const float EdgeFadeStart = 6.0; 
+const float EdgeFadeEnd = 0.4;
+const int MaxPathSamples = 12;
+const int SecondaryStart = 2;
+const int SecondaryEnd = 10;
+
+// Direct linear interpolation between two positions
+vec2 InterpolatePositions(vec2 pos1, vec2 pos2, float factor) {
+    return pos1 + (pos2 - pos1) * factor;
+}
+
+// Function to get position at arbitrary position in the path with interpolation
+vec2 GetPathPosition(float index) {
+    // Handle edge cases
+    if (PastPositionsCount == 0) return vec2(0.0, 0.0);
+    if (PastPositionsCount == 1) return PastPositions[0];
+    
+    // Ensure index is within bounds 
+    index = clamp(index, 0.0, float(PastPositionsCount - 1));
+    
+    // Get the two closest positions for interpolation
+    int lowerIndex = int(floor(index));
+    int upperIndex = int(ceil(index));
+    
+    // If they're the same, no interpolation needed
+    if (lowerIndex == upperIndex) {
+        return PastPositions[lowerIndex];
+    }
+    
+    // Calculate interpolation factor
+    float factor = index - float(lowerIndex);
+    
+    return InterpolatePositions(PastPositions[lowerIndex], PastPositions[upperIndex], factor);
+}
+
+// Calculate wave height at given position relative to a center point
 float WaveHeight(vec2 position, vec2 center, float time, float elapsed) {
     // Distance from wave origin
     float dist = length(position - center);
     
-    // Primary wave 
-    // Higher speed = less viscous appearance
-    float speed = 2.0;
-    float frequency = 1.5;
-    // Lower exp decay factor = less viscous appearance
-    float amplitude = 0.6 * exp(-0.05 * dist);
-    float primaryWave = amplitude * sin(dist * frequency - time * speed);
+    // Early exit for distant points
+    if (dist > 10.0) return 0.0;
     
-    // Add subtle harmonic overtones for more natural water movement
-    float harmonic1 = 0.12 * sin(dist * frequency * 1.5 - time * speed * 1.3) * exp(-0.1 * dist);
-    float harmonic2 = 0.08 * sin(dist * frequency * 0.7 - time * speed * 0.7) * exp(-0.07 * dist);
+    // Constants that define the wave
+    const float speed = 2.0;
+    const float frequency = 2.0;
     
-    // Combine waves with logarithmic decay for more distant propagation
-    float combined = primaryWave + harmonic1 + harmonic2;
+    float amplitude = 0.8 * exp(-0.10 * dist); 
     
-    // Use a gentler time decay for longer lasting effect
-    // Lower elapsed decay (0.25) = less viscous water with longer-lasting ripples
-    // Lower distance decay (0.08) = ripples travel further like less viscous fluid
-    return combined * exp(-elapsed * 0.25) * exp(-0.08 * dist);
-}
+    // Main wave component
+    float wave = time * speed;
+    float primaryWave = amplitude * sin(dist * frequency - wave);
+    
+    // Reduced harmonic content for better performance
+    float harmonic1 = 0.0;
 
-// Physics-based water ripple simulation with enhanced trail and propagation
-float SimulateRipples(vec2 position, vec2 direction, float speed, float time) {
-    // Generate minimal ripples even when barely moving
-    if (speed < 0.03) speed = 0.03;
-    
-    // We'll simulate ripples generated at different positions along the movement path
-    // Ripple origins follow the movement direction
-    float totalRipple = 0.0;
-    
-    // Current position of the membrane (origin for new ripples)
-    vec2 currentPos = vec2(0.0, 0.0);
-    
-    // Simulate multiple ripple sources from object's recent past positions (longer trail)
-    // More iterations = longer trail, less viscous appearance
-    for (int i = 0; i < 14; i++) {
-        // Previous positions along movement path (farther back in time for larger i)
-        // Lower factor = ripples closer together, more viscous
-        float timeAgo = float(i) * 0.15;
-        
-        // Position of the membrane at time (time - timeAgo)
-        // Higher multiplier = longer trail
-        vec2 pastPos = currentPos - direction * speed * 5.0 * timeAgo;
-        
-        // Calculate wave height from this past position
-        // More recent positions (smaller i) have stronger effect
-        float wave = WaveHeight(position, pastPos, time, timeAgo);
-        
-        // If very close to object, create depression (water pushed down by object)
-        if (i < 1 && length(position - currentPos) < 0.8) {
-            // Water gets pushed down where object is
-            float depression = 0.8 * (1.0 - length(position - currentPos) / 0.8);
-            wave -= depression * 0.5;
-        }
-        
-        if (i > 1 && i < 8) {
-            // Calculate position relative to trail
-            vec2 toPos = position - pastPos;
-            float alongTrail = dot(toPos, direction);
-            vec2 projected = pastPos + alongTrail * direction;
-            float perpDist = length(position - projected);
-            
-            if (alongTrail < 0.0 && perpDist < 3.5 * (1.0 + float(i) * 0.25)) {
-                float vAngle = 0.2 + float(i) * 0.04;
-                float vWidth = abs(alongTrail) * vAngle;
-                float vLineDist = abs(perpDist - vWidth);
-                
-                // Add wake trail ripples with more pronounced pattern
-                if (vLineDist < 1.2) {
-                    float wakeIntensity = (1.0 - vLineDist / 1.2) * 0.25 * exp(-float(i) * 0.18);
-                    wave += wakeIntensity * sin(alongTrail * 2.0 - time * 4.0);
-                }
-            }
-        }
-        
-        // These create additional subtle ripples that propagate further
-        if (i > 2) {
-            // Secondary ripples - smaller, higher frequency waves that propagate further
-            float secondaryDist = length(position - pastPos);
-            if (secondaryDist > 2.0 && secondaryDist < 18.0) {
-                float secondaryWave = 0.18 * sin(secondaryDist * 2.3 - time * 3.0 + float(i)) * 
-                                     exp(-0.06 * secondaryDist) * exp(-timeAgo * 0.2);
-                wave += secondaryWave;
-            }
-            
-            // Tertiary ripples adds very subtles low frequency waves for distant propagation
-            if (secondaryDist > 4.0 && secondaryDist < 30.0) {
-                float tertiaryWave = 0.1 * sin(secondaryDist * 0.9 - time * 1.5 + float(i) * 0.5) * 
-                                     exp(-0.025 * secondaryDist) * exp(-timeAgo * 0.12);
-                wave += tertiaryWave;
-            }
-        }
-        
-        // This creates the elongated appearance of ripples behind a moving object
-        vec2 toPos = position - pastPos;
-        float alongDir = dot(toPos, direction);
-        if (alongDir < 0.0 && alongDir > -12.0) {  
-            // Stretch factor increases with distance for more pronounced trail
-            float stretchFactor = min(1.0, -alongDir * 0.1) * 0.3;
-            
-            // Create stretched ripples that extend behind the movement
-            float stretchedWave = 0.15 * sin(alongDir * 1.5 - time * 2.0) * 
-                                 exp(alongDir * 0.1) * exp(-timeAgo * 0.3);
-            
-            // Add elongated wake pattern for more natural water trail
-            wave += stretchedWave * stretchFactor;
-        }
-        
-        // Lower time_ago decay factor (0.5) = longer lasting trail, less viscous appearance
-        totalRipple += wave * (1.0 - timeAgo * 0.5);  
+    // Only calculate harmonics for closer points
+    if (dist < 8.0) {
+        harmonic1 = 0.10 * sin(dist * frequency * 1.8 - time * speed * 1.3) * exp(-0.15 * dist);
     }
     
-    // Add edge fade to prevent hard cutoffs at mesh edges
-    float edgeDist = min(8.0 - abs(position.x), 8.0 - abs(position.y));
-    float edgeFade = smoothstep(0.0, 2.0, edgeDist);
+    // Combine waves with optimized decay
+    float combined = primaryWave + harmonic1;
     
-    // Scale by movement speed and strength with edge fade
-    return totalRipple * speed * edgeFade;
+    // Simplified decay calculation
+    return combined * exp(-elapsed * 0.3) * exp(-0.10 * dist);
+}
+
+// Calculate wake trail effect between two position points
+float CalculateWakeTrail(vec2 position, vec2 pos1, vec2 pos2, float timeAgo, float time) 
+{
+    // Skip if positions are too close
+    float segmentLength = length(pos2 - pos1);
+    if (segmentLength < 0.01) return 0.0;
+    
+    // Early distance check to skip calculations
+    if (length(position - pos1) > 3.0 && length(position - pos2) > 3.0) {
+        return 0.0;
+    }
+    
+    // Calculate direction vector
+    vec2 trailDir = (pos2 - pos1) / segmentLength;
+    
+    // Calculate perpendicular vector
+    vec2 perpDir = vec2(-trailDir.y, trailDir.x);
+    
+    // Quick projection calculation
+    vec2 toPoint = position - pos1;
+    float projDist = dot(toPoint, trailDir);
+    
+    // Early exit for points not near the segment
+    if (projDist < -0.5 || projDist > segmentLength + 0.5) {
+        return 0.0;
+    }
+    
+    // Perpendicular distance calculation
+    float perpDist = abs(dot(toPoint, perpDir));
+    
+    // Wake calculation
+    float wakeWidth = 0.8;
+    float intensity = exp(-perpDist * perpDist / wakeWidth);
+    float oscillation = sin(projDist * 2.5 - time * 3.0) * 0.2;
+    float fade = exp(-timeAgo * 0.4);
+    
+    return intensity * oscillation * fade * 0.25;
+}
+
+// Simulate ripple effects with adaptive sampling
+float SimulateRipples(vec2 position, vec2 direction, float speed, float time) {
+    // Skip early if no positions are recorded
+    if (PastPositionsCount <= 0) return 0.0;
+    
+    // Current position is always the most recent one
+    vec2 currentPos = PastPositions[0];
+    
+    float centerDist = length(position - currentPos);
+    
+    // Very early exit for distant vertices
+    if (centerDist > 12.0) {
+        return 0.0;
+    }
+    
+    // Create ripple value based on the current position
+    float radialRipple = 0.3 * sin(centerDist * 2.5 - time * 3.0) * exp(-0.3 * centerDist);
+    float totalRipple = radialRipple;
+    
+    // Path sampling with adaptive quality based on distance
+    if (PastPositionsCount >= 2) {
+        // Determine sample step based on distance
+        int sampleStep = 1;
+        if (centerDist > 8.0) sampleStep = 3;
+        else if (centerDist > 4.0) sampleStep = 2;
+         int maxSamples = min(MaxPathSamples, PastPositionsCount);
+        
+        // Sample the path
+        for (int i = 0; i < maxSamples; i += sampleStep) {
+            if (i >= PastPositionsCount) break;
+            
+            // Calculate path time and position
+            float pathTime = float(i) / float(MaxPathSamples - 1) * float(PastPositionsCount - 1);
+            vec2 pathPos = GetPathPosition(pathTime);
+            float timeAgo = pathTime * 0.15;
+            
+            // Distance-based culling
+            float pointDist = length(position - pathPos);
+            if (pointDist > 10.0) continue;
+            
+            // Generates wave
+            float wave = WaveHeight(position, pathPos, time, timeAgo);
+            
+            // Add water depression at current position
+            if (i == 0 && centerDist < 0.8) {
+                float depthFactor = centerDist / 0.8;
+                float depression = 0.8 * (1.0 - depthFactor);
+                wave -= depression * 0.5;
+            }
+            
+            // Calculate trail segments only for close points
+            if (i < maxSamples - 1 && centerDist < 6.0 && i % sampleStep == 0) {
+                float nextPathTime = float(i + 1) / float(MaxPathSamples - 1) * float(PastPositionsCount - 1);
+                vec2 nextPathPos = GetPathPosition(nextPathTime);
+                
+                // Only calculate wake trails if there's meaningful movement
+                if (length(nextPathPos - pathPos) > 0.05) {
+                    wave += CalculateWakeTrail(position, pathPos, nextPathPos, timeAgo, time);
+                }
+            }
+            
+            // Add secondary ripples with reduced frequency
+            if (i > SecondaryStart && i < SecondaryEnd && i % (sampleStep * 2) == 0) {
+                float secondaryDist = length(position - pathPos);
+                if (secondaryDist > 1.5 && secondaryDist < 8.0) {
+                    float secondaryPhase = secondaryDist * 2.8 - time * 3.0 + float(i);
+                    float secondaryWave = 0.15 * sin(secondaryPhase) * 
+                                          exp(-0.15 * secondaryDist) * 
+                                          exp(-timeAgo * 0.3);
+                    wave += secondaryWave;
+                }
+            }
+            
+            // Add to total with time decay
+            totalRipple += wave * exp(-timeAgo * 0.6);
+        }
+    }
+    
+    float edgeFade = 1.0;
+    if (centerDist > 6.0) {
+        edgeFade = 1.0 - (centerDist - 6.0) / 6.0;
+        edgeFade = clamp(edgeFade, 0.0, 1.0);
+    }
+    
+    // Final ripple value with speed scaling
+    return totalRipple * max(speed, 0.15) * edgeFade;
 }
 
 void vertex() {
     // Get vertex position in model space
     vec2 pos = VERTEX.xz;
     
-    // Apply water simulation with enhanced trail
-    float displacement = SimulateRipples(pos, MovementDirection, MovementSpeed, TimeOffset);
+    // Distance based parameter
+    float distFromCenter = length(pos);
     
-    // Apply height displacement
-    VERTEX.y += displacement * RippleStrength;
-    
-    // Calculate normals for proper lighting with finer sampling for detailed ripples
-    vec3 normal = NORMAL;
-    if (abs(displacement) > 0.001) {
-
-        float stepSize = 0.08;
-        float dx = (SimulateRipples(pos + vec2(stepSize, 0.0), MovementDirection, MovementSpeed, TimeOffset) - 
-                   SimulateRipples(pos - vec2(stepSize, 0.0), MovementDirection, MovementSpeed, TimeOffset)) / (2.0 * stepSize);
-        float dz = (SimulateRipples(pos + vec2(0.0, stepSize), MovementDirection, MovementSpeed, TimeOffset) - 
-                   SimulateRipples(pos - vec2(0.0, stepSize), MovementDirection, MovementSpeed, TimeOffset)) / (2.0 * stepSize);
+    // Only apply ripple effects to vertices within a reasonable distance
+    if (distFromCenter <= 12.0) {
+        // Apply ripple simulation with movement parameters
+        float displacement = SimulateRipples(pos, MovementDirection, MovementSpeed, TimeOffset);
         
-        // Create normal from gradient
-        vec3 gradientNormal = normalize(vec3(-dx * RippleStrength, 1.0, -dz * RippleStrength));
+        // Apply height displacement
+        VERTEX.y += displacement * RippleStrength;
         
-        // Blend normal for smooth transitions
-        float blendFactor = min(1.0, abs(displacement) * 5.0);
-        normal = normalize(mix(NORMAL, gradientNormal, blendFactor));
+        // Only calculate normals for visible displacement
+        if (abs(displacement) > 0.003) {
+            float stepSize = 0.05; 
+            if (distFromCenter < 6.0) {
+                stepSize = 0.04; 
+            }
+            
+            // Simplified gradient calculation
+            float dx = (SimulateRipples(pos + vec2(stepSize, 0.0), MovementDirection, MovementSpeed, TimeOffset) - 
+                       SimulateRipples(pos - vec2(stepSize, 0.0), MovementDirection, MovementSpeed, TimeOffset)) / (2.0 * stepSize);
+            float dz = (SimulateRipples(pos + vec2(0.0, stepSize), MovementDirection, MovementSpeed, TimeOffset) - 
+                       SimulateRipples(pos - vec2(0.0, stepSize), MovementDirection, MovementSpeed, TimeOffset)) / (2.0 * stepSize);
+            
+            // Create normal from gradient
+            vec3 gradientNormal = normalize(vec3(-dx * RippleStrength, 1.0, -dz * RippleStrength));
+            
+            // Blend normal for smooth transitions
+            float blendFactor = min(1.0, abs(displacement) * 8.0);
+            NORMAL = normalize(mix(NORMAL, gradientNormal, blendFactor));
+        }
     }
-    
-    NORMAL = normal;
+    // For distant vertices, we don't modify VERTEX or NORMAL
 }
 
 void fragment() {
-    // Simple water coloring
-    float depthFactor = clamp(1.0 - (-VERTEX.y * 0.5), 0.0, 1.0);
-    
-    // Keep color fully transparent, only showing ripple distortion
-    vec3 finalColor = vec3(0.0, 0.0, 0.0);
-    
-    // Basic lighting
+    // Calculate lighting parameters
     float nDotL = dot(NORMAL, normalize(vec3(0.4, 0.8, 0.3)));
     float viewDotNormal = max(0.0, dot(normalize(VIEW), NORMAL));
     
-    // Final coloring with reduced highlight intensity for less pronounced contrast
+    // Highlights and fresnel calculation
     float enhancedHighlight = pow(max(0.0, nDotL), 8.0) * 0.25; 
     float enhancedFresnel = pow(1.0 - viewDotNormal, 2.0) * 0.4; 
-    ALBEDO = finalColor + vec3(enhancedHighlight) + vec3(0.8, 0.9, 1.0) * enhancedFresnel;
     
-    // Reduced specular to make wave tops less pronounced
+    ALBEDO = vec3(0.0, 0.0, 0.0) + vec3(enhancedHighlight) + vec3(0.8, 0.9, 1.0) * enhancedFresnel;
     SPECULAR = 0.5;
-    // Slightly increased roughness for softer reflections
     ROUGHNESS = 0.2;
     ALPHA = WaterColor.a;
 }
