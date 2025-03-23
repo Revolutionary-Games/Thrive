@@ -4,6 +4,7 @@ using System.Globalization;
 using System.Linq;
 using Godot;
 using Saving;
+using Tutorial;
 
 /// <summary>
 ///   Handles the logic for the options menu GUI.
@@ -367,6 +368,9 @@ public partial class OptionsMenu : ControlWithInput
     private Slider chromaticAberrationSlider = null!;
     private OptionButton controllerPromptType = null!;
     private CheckBox displayAbilitiesHotBarToggle = null!;
+
+    [Export]
+    private OptionButton anisotropicFilterLevel = null!;
 
     [Export]
     private CheckBox damageEffect = null!;
@@ -842,6 +846,7 @@ public partial class OptionsMenu : ControlWithInput
         vsync.ButtonPressed = settings.VSync;
         displayMode.Selected = DisplayModeToIndex(settings.DisplayMode);
         msaaResolution.Selected = MSAAResolutionToIndex(settings.MSAAResolution);
+        anisotropicFilterLevel.Selected = AnisotropicFilterLevelToIndex(settings.AnisotropicFilterLevel);
         maxFramesPerSecond.Selected = MaxFPSValueToIndex(settings.MaxFramesPerSecond);
         colourblindSetting.Selected = settings.ColourblindSetting;
         chromaticAberrationSlider.Value = settings.ChromaticAmount;
@@ -1475,6 +1480,47 @@ public partial class OptionsMenu : ControlWithInput
         }
     }
 
+    private int AnisotropicFilterLevelToIndex(Viewport.AnisotropicFiltering level)
+    {
+        if (level == Viewport.AnisotropicFiltering.Disabled)
+            return 0;
+
+        if (level == Viewport.AnisotropicFiltering.Anisotropy2X)
+            return 1;
+
+        if (level == Viewport.AnisotropicFiltering.Anisotropy4X)
+            return 2;
+
+        if (level == Viewport.AnisotropicFiltering.Anisotropy8X)
+            return 3;
+
+        if (level == Viewport.AnisotropicFiltering.Anisotropy16X)
+            return 4;
+
+        GD.PrintErr("invalid anisotropic filtering level index");
+        return 3;
+    }
+
+    private Viewport.AnisotropicFiltering AnisotropicFilteringIndexToLevel(int index)
+    {
+        switch (index)
+        {
+            case 0:
+                return Viewport.AnisotropicFiltering.Disabled;
+            case 1:
+                return Viewport.AnisotropicFiltering.Anisotropy2X;
+            case 2:
+                return Viewport.AnisotropicFiltering.Anisotropy4X;
+            case 3:
+                return Viewport.AnisotropicFiltering.Anisotropy8X;
+            case 4:
+                return Viewport.AnisotropicFiltering.Anisotropy16X;
+            default:
+                GD.PrintErr("invalid anisotropic filtering level index");
+                return Viewport.AnisotropicFiltering.Anisotropy8X;
+        }
+    }
+
     private int MaxFPSValueToIndex(int value)
     {
         switch (value)
@@ -1968,6 +2014,14 @@ public partial class OptionsMenu : ControlWithInput
     private void OnMSAAResolutionSelected(int index)
     {
         Settings.Instance.MSAAResolution.Value = MSAAIndexToResolution(index);
+        Settings.Instance.ApplyGraphicsSettings();
+
+        UpdateResetSaveButtonState();
+    }
+
+    private void OnAnisotropicFilteringSelected(int index)
+    {
+        Settings.Instance.AnisotropicFilterLevel.Value = AnisotropicFilteringIndexToLevel(index);
         Settings.Instance.ApplyGraphicsSettings();
 
         UpdateResetSaveButtonState();
@@ -2825,6 +2879,14 @@ public partial class OptionsMenu : ControlWithInput
 
         UpdateResetSaveButtonState();
         UpdateDismissedNoticeCount();
+    }
+
+    private void OnResetShownTutorials()
+    {
+        GUICommon.Instance.PlayButtonPressSound();
+
+        GD.Print("Clearing all seen tutorials");
+        AlreadySeenTutorials.ResetAllSeenTutorials();
     }
 
     private void OnOpenPatchNotesPressed()

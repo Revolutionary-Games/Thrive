@@ -84,16 +84,7 @@ public partial class OrganismStatisticsPanel : PanelContainer
     private CellStatsIndicator phosphatesCostLabel = null!;
 
     [Export]
-    private Control basicStatsSeparator = null!;
-
-    [Export]
-    private Control movementStatsSeparator = null!;
-
-    [Export]
     private Control digestionStatsSeparator = null!;
-
-    [Export]
-    private Control organellesCostsSeparator = null!;
 
     [Export]
     private Label generationLabel = null!;
@@ -198,21 +189,18 @@ public partial class OrganismStatisticsPanel : PanelContainer
         hpLabel.Visible = ShowHealthStat;
         sizeLabel.Visible = ShowSizeStat;
         storageLabel.Visible = ShowStorageStat;
-        basicStatsSeparator.Visible = ShowHealthStat || ShowSizeStat || ShowStorageStat;
 
         speedLabel.Visible = ShowSpeedStat;
         rotationSpeedLabel.Visible = ShowRotationSpeedStat;
-        movementStatsSeparator.Visible = ShowSpeedStat || ShowRotationSpeedStat;
 
         digestionSpeedLabel.Visible = ShowDigestionSpeedStat;
         digestionEfficiencyLabel.Visible = ShowDigestionEfficiencyStat;
-        digestionStatsSeparator.Visible = ShowDigestionSpeedStat || ShowDigestionEfficiencyStat;
+        digestionStatsSeparator.Visible = ShowDigestionSpeedStat || ShowDigestionEfficiencyStat || ShowSizeStat;
 
         atpBalanceBarContainer.Visible = ShowATPBalanceBars;
 
         ammoniaCostLabel.Visible = ShowOrganellesCostStat;
         phosphatesCostLabel.Visible = ShowOrganellesCostStat;
-        organellesCostsSeparator.Visible = ShowOrganellesCostStat;
     }
 
     public void SendObjectsToTutorials(TutorialState tutorial, MicrobeEditorTutorialGUI gui)

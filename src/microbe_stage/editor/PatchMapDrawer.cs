@@ -188,14 +188,14 @@ public partial class PatchMapDrawer : Control
         if (connections.Count == 0)
         {
             // Clear existing connection lines
-            lineContainer.FreeChildren();
+            lineContainer.QueueFreeChildren(false);
 
             CreateRegionLinks();
             RebuildRegionConnections();
+            DrawPatchLinks();
+            DrawHighlightedConnections();
         }
 
-        DrawPatchLinks();
-        DrawHighlightedConnections();
         DrawRegionBorders();
 
         // Scroll to the player patch only when first drawn
@@ -1050,6 +1050,7 @@ public partial class PatchMapDrawer : Control
     /// </summary>
     private void RebuildMap()
     {
+        lineContainer.QueueFreeChildren(false);
         patchNodeContainer.FreeChildren();
         nodes.Clear();
         connections.Clear();

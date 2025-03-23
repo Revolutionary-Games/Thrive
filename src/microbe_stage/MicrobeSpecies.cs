@@ -159,7 +159,7 @@ public class MicrobeSpecies : Species, ICellDefinition
 
     public override void UpdateInitialCompounds()
     {
-        // Since the initial compounds are only set once per species they can't be calculated for each Biome.
+        // Since the initial compounds are only set once per species, they can't be calculated for each Biome.
         // So, the compound balance calculation uses the default biome.
         // Also, we should not overtly punish photosynthesizers, so we just use the consumption here (instead of
         // balance where the generated glucose would offset things and spawn photosynthesizers with no glucose,

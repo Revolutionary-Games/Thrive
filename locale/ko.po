@@ -7,8 +7,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2025-03-09 11:58-0300\n"
-"PO-Revision-Date: 2025-02-06 13:29+0000\n"
+"POT-Creation-Date: 2025-03-20 10:30+0200\n"
+"PO-Revision-Date: 2025-03-20 20:10+0000\n"
 "Last-Translator: Anonymous <noreply@weblate.org>\n"
 "Language-Team: Korean <https://translate.revolutionarygamesstudio.com/projects/thrive/thrive-game/ko/>\n"
 "Language: ko\n"
@@ -203,6 +203,9 @@ msgstr "혐기성 질소 고정"
 msgid "AND_UNLOCK_CONDITION"
 msgstr "물리적 상태"
 
+msgid "ANISOTROPIC_FILTERING"
+msgstr ""
+
 msgid "APPEARANCE"
 msgstr "외관"
 
@@ -334,6 +337,10 @@ msgid "AUTO-EVO_PREDICTION_BOX_DESCRIPTION"
 msgstr ""
 "이 패널은 Auto-Evo가 예측한 편집되는 종의 개체수를 보여줍니다.\n"
 "Auto-Evo는 개체수 시뮬레이션을 구동하며 이는 당신의 개체수에 가해지는 영향 중 (당신 스스로의 실력을 제외한) 나머지 부분을 담당합니다."
+
+#, fuzzy
+msgid "AUTO-EVO_RESULTS_TITLE"
+msgstr "Auto-evo 결과:"
 
 msgid "AUTO-EVO_STEPS_DONE"
 msgstr "{0:F1}% 완료됨. {1:n0}/{2:n0} 단계."
@@ -685,6 +692,10 @@ msgid "CELL_STAT_SPEED_TOOLTIP"
 msgstr "재개"
 
 #, fuzzy
+msgid "CELL_STAT_STORAGE_TOOLTIP"
+msgstr "재개"
+
+#, fuzzy
 msgid "CELL_TYPE_BUTTON_ATP_CONSUMPTION"
 msgstr "Options 키"
 
@@ -826,6 +837,10 @@ msgstr "이전 저장 정리"
 
 msgid "CLEAR_CACHE"
 msgstr "캐시 초기화하기"
+
+#, fuzzy
+msgid "CLICK_TO_SELECT"
+msgstr "선택된 파일 삭제"
 
 msgid "CLOSE"
 msgstr "닫기"
@@ -2861,8 +2876,9 @@ msgstr ""
 msgid "IRON"
 msgstr "철"
 
-msgid "IRON_CHEMOLITHOAUTOTROPHY"
-msgstr "철 화학합성독립영양"
+#, fuzzy
+msgid "IRON_OXIDATION"
+msgstr "설정"
 
 #, fuzzy
 msgid "ITCH_TOOLTIP"
@@ -3734,12 +3750,14 @@ msgstr ""
 "당신의 세포는 살아남기 위한 에너지를 만들기 위해 포도당이 필요합니다.\n"
 "선을 따라 움직여 세포 근처의 포도당으로 이동하세요."
 
+#, fuzzy
 msgid "MICROBE_STAGE_COLLECT_TEXT"
 msgstr ""
 "이동하여 포도당 (흰색 구름)을 수집하세요.\n"
 "당신의 세포는 살아남기 위한 에너지를 만들기 위해 포도당이 필요합니다.\n"
 "선을 따라 움직여 세포 근처의 포도당으로 이동하세요."
 
+#, fuzzy
 msgid "MICROBE_STAGE_CONTROL_TEXT"
 msgstr ""
 "세포 주위에 보이는 키 (화면 중앙)로 세포를 움직이고 마우스로 방향을 조절하세요.\n"
@@ -3761,6 +3779,7 @@ msgstr ""
 "ATP가 있다면 재생할 것입니다.\n"
 "ATP를 만들기 위하여 충분한 포도당을 수집하세요."
 
+#, fuzzy
 msgid "MICROBE_STAGE_HEALTH_TEXT"
 msgstr ""
 "ATP 막대 옆의 생명력 막대를 주시하세요(오른쪽 아래).\n"
@@ -3906,6 +3925,9 @@ msgstr ""
 
 msgid "MODELS"
 msgstr "모델"
+
+msgid "MODE_CAN_BE_CHANGED_IN_OPTIONS"
+msgstr ""
 
 msgid "MODIFY"
 msgstr ""
@@ -4303,7 +4325,14 @@ msgstr "아무것도 없음"
 msgid "NOTHING_TO_INTERACT_WITH"
 msgstr ""
 
+#, fuzzy
+msgid "NOTICE_BINDING_OUT_OF_ATP"
+msgstr "결합 모드 켜고 끄기"
+
 msgid "NOTICE_DAMAGED_BY_NO_ATP"
+msgstr ""
+
+msgid "NOTICE_ENGULFING_OUT_OF_ATP"
 msgstr ""
 
 msgid "NOTICE_ENGULF_DAMAGE_FROM_TOXIN"
@@ -4862,6 +4891,10 @@ msgstr "플레이어 사망함"
 msgid "PLAYER_RELATIVE_MOVEMENT"
 msgstr "플레이어 사망함"
 
+#, fuzzy
+msgid "PLAYER_RELATIVE_MOVEMENT_TOOLTIP"
+msgstr "플레이어 사망함"
+
 msgid "PLAYER_REPRODUCED"
 msgstr "플레이어 복제됨"
 
@@ -4946,6 +4979,10 @@ msgstr "세포 진행률"
 msgid "PROCESS_SPEED_MODIFIER"
 msgstr "세포 진행률"
 
+#, fuzzy
+msgid "PROCESS_TOGGLE_TOOLTIP"
+msgstr "메뉴로 돌아가기"
+
 msgid "PROGRAMMING_TEAM"
 msgstr ""
 
@@ -4960,6 +4997,10 @@ msgstr "원형질"
 
 msgid "PULL_REQUESTS_PROGRAMMING"
 msgstr ""
+
+#, fuzzy
+msgid "QUADRILLION_ABBREVIATION"
+msgstr "{0} 십억"
 
 msgid "QUICK_LOAD"
 msgstr "빠른 불러오기"
@@ -5096,6 +5137,14 @@ msgstr "키 설정 초기화"
 
 msgid "RESET_SETTINGS_TO_DEFAULTS"
 msgstr "기본값"
+
+#, fuzzy
+msgid "RESET_SHOWN_TUTORIALS"
+msgstr "튜토리얼 보기"
+
+#, fuzzy
+msgid "RESET_SHOWN_TUTORIALS_TOOLTIP"
+msgstr "새로운 키 배치 추가"
 
 msgid "RESET_TO_DEFAULTS"
 msgstr "기본값으로 초기화하시겠습니까?"
@@ -5371,6 +5420,10 @@ msgstr "능력"
 msgid "SCREEN_RELATIVE_MOVEMENT"
 msgstr "이동 속도 향상"
 
+#, fuzzy
+msgid "SCREEN_RELATIVE_MOVEMENT_TOOLTIP"
+msgstr "이동 속도 향상"
+
 msgid "SCROLLLOCK"
 msgstr ""
 
@@ -5396,6 +5449,10 @@ msgstr "점액 분비"
 #, fuzzy
 msgid "SEED_LABEL"
 msgstr "생태계: {0}"
+
+#, fuzzy
+msgid "SELECTED"
+msgstr "선택됨:"
 
 msgid "SELECTED_COLON"
 msgstr "선택됨:"
@@ -5436,6 +5493,9 @@ msgstr ""
 msgid "SELECT_ENZYME"
 msgstr "선택됨:"
 
+msgid "SELECT_MOVEMENT_MODE_TITLE"
+msgstr ""
+
 #, fuzzy
 msgid "SELECT_OPTION"
 msgstr "선택됨:"
@@ -5473,6 +5533,14 @@ msgid "SHIFT"
 msgstr "Shift"
 
 #, fuzzy
+msgid "SHOW_ALL_TUTORIALS"
+msgstr "튜토리얼 보기"
+
+#, fuzzy
+msgid "SHOW_ALL_TUTORIALS_TOOLTIP"
+msgstr "새로운 키 배치 추가"
+
+#, fuzzy
 msgid "SHOW_DAMAGE_EFFECT"
 msgstr "편모는 ATP를 사용하여 세포를 앞으로 나아가게 하는 세포막에서 이어지는 채찍 모양의 단백질 섬유 다발입니다."
 
@@ -5492,16 +5560,16 @@ msgid "SHOW_NEW_PATCH_NOTES_TOOLTIP"
 msgstr "동굴"
 
 #, fuzzy
-msgid "SHOW_TUTORIALS"
-msgstr "튜토리얼 보기"
-
-#, fuzzy
 msgid "SHOW_TUTORIALS_IN_NEW_CURRENT_OPTION"
 msgstr "튜토리얼 보기(현재 진행중인 게임)"
 
 #, fuzzy
 msgid "SHOW_TUTORIALS_IN_NEW_GAMES_OPTION"
 msgstr "튜토리얼 보기(새 게임 시작 시)"
+
+#, fuzzy
+msgid "SHOW_TUTORIALS_OPTION_TOOLTIP"
+msgstr "새로운 키 배치 추가"
 
 #, fuzzy
 msgid "SHOW_UNSAVED_PROGRESS_WARNING"
@@ -5566,6 +5634,10 @@ msgstr "이산화규소"
 
 msgid "SILICA_MEMBRANE_DESCRIPTION"
 msgstr "이 세포막은 이산화규소로 이루어진 강력한 벽 입니다. 전반적인 손상에 잘 견딜 수 있으며 물리적 손상에 매우 강합니다. 또한 형태를 유지하는 데 더 적은 에너지가 필요합니다. 그러나 이는 세포 속도를 크게 낮추고 자원을 느리게 흡수합니다."
+
+#, fuzzy
+msgid "SIXTEEN_TIMES"
+msgstr "존재하는 종"
 
 msgid "SIZE_COLON"
 msgstr "크기:"
@@ -5826,6 +5898,10 @@ msgstr ""
 
 msgid "STORE_LOGGED_IN_AS"
 msgstr ""
+
+#, fuzzy
+msgid "STRAIN_BAR_TOOLTIP"
+msgstr "새로운 키 배치 추가"
 
 msgid "STRAIN_BAR_VISIBILITY"
 msgstr ""
@@ -6095,6 +6171,14 @@ msgid "TIMELINE_NICHE_FILL"
 msgstr "유전자 코드:"
 
 #, fuzzy
+msgid "TIMELINE_PLAYER_MIGRATED"
+msgstr "[b][u]{0}[/u][/b] 개체군의 일부가 {1} 지역으로부터 이 지역으로 이주함"
+
+#, fuzzy
+msgid "TIMELINE_PLAYER_MIGRATED_TO"
+msgstr "[b][u]{0}[/u][/b] 개체군의 일부가 {1} 지역으로부터 이 지역으로 이주함"
+
+#, fuzzy
 msgid "TIMELINE_SELECTION_PRESSURE_SPLIT"
 msgstr "퍼뜨리기:"
 
@@ -6110,6 +6194,10 @@ msgstr "[b][u]{0}[/u][/b]은(는) 멸종했습니다!"
 
 msgid "TIMELINE_SPECIES_EXTINCT_LOCAL"
 msgstr "[b][u]{0}[/u][/b]이(가) 이 지역에서 사라짐"
+
+#, fuzzy
+msgid "TIMELINE_SPECIES_FOLLOWED"
+msgstr "[b][u]{0}[/u][/b]은(는) 멸종했습니다!"
 
 msgid "TIMELINE_SPECIES_MIGRATED_FROM"
 msgstr "[b][u]{0}[/u][/b] 개체군의 일부가 {1} 지역으로부터 이 지역으로 이주함"
@@ -6336,6 +6424,10 @@ msgid "TRANSPARENCY"
 msgstr "게임을 번역하는 것을 도와주세요"
 
 #, fuzzy
+msgid "TRILLION_ABBREVIATION"
+msgstr "{0} 십억"
+
+#, fuzzy
 msgid "TRY_FOSSILISING_SOME_SPECIES"
 msgstr "스크린샷 촬영"
 
@@ -6349,6 +6441,10 @@ msgstr "스크린샷 촬영"
 #, fuzzy
 msgid "TUTORIAL"
 msgstr "튜토리얼"
+
+#, fuzzy
+msgid "TUTORIAL_ALL_NOT_ENABLED_EXPLANATION"
+msgstr "이것으로 다른 세포를 찌르세요."
 
 #, fuzzy
 msgid "TUTORIAL_MICROBE_EDITOR_ATP_BALANCE_INTRO"
@@ -6891,6 +6987,9 @@ msgstr ""
 
 msgid "VIEW_SOURCE_CODE"
 msgstr "소스 코드 보기"
+
+msgid "VIEW_TEXT_REPORT"
+msgstr ""
 
 msgid "VIP_PATRONS"
 msgstr ""
@@ -8807,6 +8906,9 @@ msgstr "확대"
 msgid "ZOOM_OUT"
 msgstr "축소"
 
+#~ msgid "IRON_CHEMOLITHOAUTOTROPHY"
+#~ msgstr "철 화학합성독립영양"
+
 #~ msgid "PASSIVE_REPRODUCTION_PROGRESS"
 #~ msgstr "번식 진도를 자동으로 진전"
 
@@ -9152,10 +9254,6 @@ msgstr "축소"
 #, fuzzy
 #~ msgid "LOOKING_AT"
 #~ msgstr "편집기에서 취소 버튼을 눌러 실수를 정정 할 수 있습니다"
-
-#, fuzzy
-#~ msgid "SPECIES_N_TIMES"
-#~ msgstr "존재하는 종"
 
 #, fuzzy
 #~ msgid "BECOME_AWARE"

@@ -7,8 +7,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2025-03-09 11:58-0300\n"
-"PO-Revision-Date: 2025-03-07 10:46+0000\n"
+"POT-Creation-Date: 2025-03-20 10:30+0200\n"
+"PO-Revision-Date: 2025-03-20 20:10+0000\n"
 "Last-Translator: Anonymous <noreply@weblate.org>\n"
 "Language-Team: Chinese (Simplified Han script) <https://translate.revolutionarygamesstudio.com/projects/thrive/thrive-game/zh_Hans/>\n"
 "Language: zh_CN\n"
@@ -191,6 +191,9 @@ msgstr "无氧固氨"
 msgid "AND_UNLOCK_CONDITION"
 msgstr "和"
 
+msgid "ANISOTROPIC_FILTERING"
+msgstr ""
+
 msgid "APPEARANCE"
 msgstr "外观"
 
@@ -328,6 +331,10 @@ msgstr ""
 "这个面板显示了来自auto-evo对已编辑物种的预期种群数量。\n"
 "Auto-evo运行的种群模拟是影响种群数量的另一部分要素（还有玩家自己的表现）。"
 
+#, fuzzy
+msgid "AUTO-EVO_RESULTS_TITLE"
+msgstr "Auto-evo结果："
+
 msgid "AUTO-EVO_STEPS_DONE"
 msgstr "已完成{0:F1}%。{1:n0}/{2:n0}步剩余。"
 
@@ -391,7 +398,7 @@ msgid "BACK"
 msgstr "返回"
 
 msgid "BACKGROUND_BLUR"
-msgstr ""
+msgstr "背景模糊："
 
 msgid "BACKSLASH"
 msgstr "反斜杠"
@@ -650,6 +657,10 @@ msgid "CELL_STAT_SPEED_TOOLTIP"
 msgstr "用于生成世界的随机数种子，必须为正整数"
 
 #, fuzzy
+msgid "CELL_STAT_STORAGE_TOOLTIP"
+msgstr "用于生成世界的随机数种子，必须为正整数"
+
+#, fuzzy
 msgid "CELL_TYPE_BUTTON_ATP_CONSUMPTION"
 msgstr "选项卡"
 
@@ -774,7 +785,11 @@ msgid "CLEAN_UP_OLD_SAVES"
 msgstr "清除旧存档"
 
 msgid "CLEAR_CACHE"
-msgstr ""
+msgstr "清除缓存"
+
+#, fuzzy
+msgid "CLICK_TO_SELECT"
+msgstr "删除选中的"
 
 msgid "CLOSE"
 msgstr "关闭"
@@ -1685,7 +1700,7 @@ msgid "DOUBLE_SPEED_TOGGLE_TOOLTIP"
 msgstr "用于生成世界的随机数种子，必须为正整数"
 
 msgid "DRAG_TO_REORDER_ITEMS_WITH_MOUSE"
-msgstr ""
+msgstr "拖动鼠标重新排序项目"
 
 msgid "DUMP_SCENE_TREE"
 msgstr "转储SceneTree"
@@ -2114,9 +2129,11 @@ msgstr "本篇因篇幅过长而被删节，详情请阅读原文。 {0}"
 msgid "FERROPLAST"
 msgstr "铁化能质体"
 
+#, fuzzy
 msgid "FERROPLAST_DESCRIPTION"
 msgstr "一个以金属为原料的“动力工厂”。铁化能质体是一种充满了蛋白质与酶的双层膜结构，起源于一种被其真核宿主吸收利用了原核生物。它能够将[thrive:compound type=\"iron\"][/thrive:compound] 从一种化学状态氧化到另一种，且效率远高于铁硫菌蓝蛋白。此過程这一过程称为[b]铁呼吸[/b]，释放并供给细胞能量。然而，它需要[thrive:compound type=\"carbondioxide\"][/thrive:compound] 才能发挥作用，若其环境浓度较低则会降低其[thrive:compound type=\"atp\"][/thrive:compound] 的生产速率。"
 
+#, fuzzy
 msgid "FERROPLAST_PROCESSES_DESCRIPTION"
 msgstr "利用[thrive:compound type=\"iron\"][/thrive:compound]生产[thrive:compound type=\"atp\"][/thrive:compound]。合成速率与环境[thrive:compound type=\"carbondioxide\"][/thrive:compound]浓度成正比。"
 
@@ -2402,7 +2419,7 @@ msgid "HEALTH"
 msgstr "生命上限"
 
 msgid "HEALTH_MODIFIER"
-msgstr ""
+msgstr "健康修改器"
 
 #, fuzzy
 msgid "HEAT_ACCUMULATION_BAR_TOOLTIP"
@@ -2684,8 +2701,9 @@ msgstr ""
 msgid "IRON"
 msgstr "铁"
 
-msgid "IRON_CHEMOLITHOAUTOTROPHY"
-msgstr "铁化能无机自养"
+#, fuzzy
+msgid "IRON_OXIDATION"
+msgstr "捐助"
 
 msgid "ITCH_TOOLTIP"
 msgstr "访问我们在Itch.io上的页面"
@@ -3169,7 +3187,7 @@ msgstr ""
 "你现在希望这么做吗？"
 
 msgid "LOW_QUALITY_BACKGROUND_BLUR"
-msgstr ""
+msgstr "低分辨率背景模糊"
 
 msgid "LOW_QUALITY_BACKGROUND_BLUR_TOOLTIP"
 msgstr ""
@@ -3531,6 +3549,7 @@ msgstr ""
 "\n"
 "按下“成为多细胞”按钮以继续。"
 
+#, fuzzy
 msgid "MICROBE_STAGE_COLLECT_TEXT"
 msgstr ""
 "通过移动到白色的云上来收集葡萄糖。\n"
@@ -3539,6 +3558,7 @@ msgstr ""
 "\n"
 "请跟随显示的线到最近的葡萄糖云中。"
 
+#, fuzzy
 msgid "MICROBE_STAGE_CONTROL_TEXT"
 msgstr ""
 "使用屏幕中央显示的按键来控制你的细胞，鼠标控制细胞朝向。\n"
@@ -3553,6 +3573,7 @@ msgstr ""
 "\n"
 "尝试所有按键几秒钟以继续。"
 
+#, fuzzy
 msgid "MICROBE_STAGE_DAY_NIGHT_TEXT"
 msgstr ""
 "注意环境面板上的[b]光强变化[/b]。\n"
@@ -3561,6 +3582,7 @@ msgstr ""
 "光合作用在夜间无效。\n"
 "因此，请确保您储存[thrive:icon]StorageIcon[/thrive:icon]了足够的能量来过夜。"
 
+#, fuzzy
 msgid "MICROBE_STAGE_HEALTH_TEXT"
 msgstr ""
 "随时注意你的ATP条旁边的生命值条（在屏幕右下角）。\n"
@@ -3598,6 +3620,7 @@ msgstr ""
 "\n"
 "要在这个充满敌意的世界活下去，您需要收集任何你能找到的化合物，并且在每个世代不断地进化，才能够跟其它的微生物竞争。"
 
+#, fuzzy
 msgid "MICROBE_STAGE_ORGANELLE_DIVISION"
 msgstr ""
 "你的一个细胞器已分裂。\n"
@@ -3687,6 +3710,10 @@ msgstr "Mod制作说明在"
 
 msgid "MODELS"
 msgstr "模型"
+
+#, fuzzy
+msgid "MODE_CAN_BE_CHANGED_IN_OPTIONS"
+msgstr "光标位于屏幕边缘时平移战略视图"
 
 msgid "MODIFY"
 msgstr "修改"
@@ -4072,8 +4099,16 @@ msgstr "这里啥都没有"
 msgid "NOTHING_TO_INTERACT_WITH"
 msgstr "没有可以交互的物体"
 
+#, fuzzy
+msgid "NOTICE_BINDING_OUT_OF_ATP"
+msgstr "因ATP耗尽而受伤"
+
 msgid "NOTICE_DAMAGED_BY_NO_ATP"
 msgstr "因ATP耗尽而受伤"
+
+#, fuzzy
+msgid "NOTICE_ENGULFING_OUT_OF_ATP"
+msgstr "目前细胞大小不足以吞噬目标"
 
 msgid "NOTICE_ENGULF_DAMAGE_FROM_TOXIN"
 msgstr "由于摄入物体中的毒素而受伤"
@@ -4589,6 +4624,10 @@ msgstr "玩家已灭绝"
 msgid "PLAYER_RELATIVE_MOVEMENT"
 msgstr "相对于玩家"
 
+#, fuzzy
+msgid "PLAYER_RELATIVE_MOVEMENT_TOOLTIP"
+msgstr "相对于玩家"
+
 msgid "PLAYER_REPRODUCED"
 msgstr "玩家繁殖"
 
@@ -4672,6 +4711,10 @@ msgstr "细胞生理过程"
 msgid "PROCESS_SPEED_MODIFIER"
 msgstr "细胞生理过程"
 
+#, fuzzy
+msgid "PROCESS_TOGGLE_TOOLTIP"
+msgstr "退回主菜单"
+
 msgid "PROGRAMMING_TEAM"
 msgstr "程序员团队"
 
@@ -4686,6 +4729,10 @@ msgstr "原生质"
 
 msgid "PULL_REQUESTS_PROGRAMMING"
 msgstr "合并请求/编程"
+
+#, fuzzy
+msgid "QUADRILLION_ABBREVIATION"
+msgstr "{0} *10⁹"
 
 msgid "QUICK_LOAD"
 msgstr "快速读档"
@@ -4810,6 +4857,14 @@ msgstr "重置按键绑定"
 msgid "RESET_SETTINGS_TO_DEFAULTS"
 msgstr "默认"
 
+#, fuzzy
+msgid "RESET_SHOWN_TUTORIALS"
+msgstr "显示教程"
+
+#, fuzzy
+msgid "RESET_SHOWN_TUTORIALS_TOOLTIP"
+msgstr "以逗号分隔符（csv）格式导出所有世界数据"
+
 msgid "RESET_TO_DEFAULTS"
 msgstr "重置为默认值？"
 
@@ -4926,9 +4981,11 @@ msgstr "运行一定数量的世界，每个世界运行的代数由左上方的
 msgid "RUSTICYANIN"
 msgstr "铁硫菌蓝蛋白"
 
+#, fuzzy
 msgid "RUSTICYANIN_DESCRIPTION"
 msgstr "铁硫菌蓝蛋白能够利用气态二氧化碳将铁从一种化学状态氧化为另一种化学状态。这个过程被称作[b]铁呼吸[/b]，能够释放可被细胞收集的能量。"
 
+#, fuzzy
 msgid "RUSTICYANIN_PROCESSES_DESCRIPTION"
 msgstr "将[thrive:compound type=\"iron\"][/thrive:compound]转换成[thrive:compound type=\"atp\"][/thrive:compound]。速率跟[thrive:compound type=\"carbondioxide\"][/thrive:compound]的浓度成正比。"
 
@@ -5057,6 +5114,10 @@ msgstr "无"
 msgid "SCREEN_RELATIVE_MOVEMENT"
 msgstr "相对于屏幕"
 
+#, fuzzy
+msgid "SCREEN_RELATIVE_MOVEMENT_TOOLTIP"
+msgstr "相对于屏幕"
+
 msgid "SCROLLLOCK"
 msgstr "滚卷锁定"
 
@@ -5080,6 +5141,10 @@ msgstr "喷射黏液以提高速度并减缓困在黏液中细胞的速度"
 
 msgid "SEED_LABEL"
 msgstr "星球种子：{0}"
+
+#, fuzzy
+msgid "SELECTED"
+msgstr "选中的Mod："
 
 msgid "SELECTED_COLON"
 msgstr "选中的："
@@ -5114,6 +5179,10 @@ msgstr "从编辑器选项卡中选择要在此处编辑的细胞类型"
 msgid "SELECT_ENZYME"
 msgstr "选中的酶："
 
+#, fuzzy
+msgid "SELECT_MOVEMENT_MODE_TITLE"
+msgstr "Thrive在安全模式下启动"
+
 msgid "SELECT_OPTION"
 msgstr "选择一个选项"
 
@@ -5147,6 +5216,14 @@ msgstr "音效音量"
 msgid "SHIFT"
 msgstr "Shift"
 
+#, fuzzy
+msgid "SHOW_ALL_TUTORIALS"
+msgstr "显示教程"
+
+#, fuzzy
+msgid "SHOW_ALL_TUTORIALS_TOOLTIP"
+msgstr "以逗号分隔符（csv）格式导出所有世界数据"
+
 msgid "SHOW_DAMAGE_EFFECT"
 msgstr "在屏幕上显示伤害效果"
 
@@ -5165,14 +5242,15 @@ msgstr "自动显示新的补丁说明"
 msgid "SHOW_NEW_PATCH_NOTES_TOOLTIP"
 msgstr "在主菜单中自动显示新版Thrive的补丁说明"
 
-msgid "SHOW_TUTORIALS"
-msgstr "显示教程"
-
 msgid "SHOW_TUTORIALS_IN_NEW_CURRENT_OPTION"
 msgstr "现有游戏中显示教程"
 
 msgid "SHOW_TUTORIALS_IN_NEW_GAMES_OPTION"
 msgstr "开始新游戏时显示教程"
+
+#, fuzzy
+msgid "SHOW_TUTORIALS_OPTION_TOOLTIP"
+msgstr "以逗号分隔符（csv）格式导出所有世界数据"
 
 msgid "SHOW_UNSAVED_PROGRESS_WARNING"
 msgstr "显示未保存的进度警告"
@@ -5221,6 +5299,9 @@ msgstr "二氧化硅"
 
 msgid "SILICA_MEMBRANE_DESCRIPTION"
 msgstr "这个细胞膜额外配置了一层二氧化硅外壳。各方面都有更好的防御力，尤其是物防高的惊人。同时也不需要多少能量来维持形状，但吸收营养和移动的速度都很慢。"
+
+msgid "SIXTEEN_TIMES"
+msgstr "16x"
 
 msgid "SIZE_COLON"
 msgstr "大小："
@@ -5465,6 +5546,10 @@ msgstr "秒"
 
 msgid "STORE_LOGGED_IN_AS"
 msgstr "已登录为：{0}"
+
+#, fuzzy
+msgid "STRAIN_BAR_TOOLTIP"
+msgstr "切换到冲刺模式。冲刺时细胞移动得更快，但会消耗更多ATP，且随着压力增加ATP消耗会变得更多."
 
 msgid "STRAIN_BAR_VISIBILITY"
 msgstr "压力值可见性"
@@ -5741,6 +5826,14 @@ msgstr "显示本地事件"
 msgid "TIMELINE_NICHE_FILL"
 msgstr "[b][u]{0}[/u][/b]从[b][u]{1}[/u][/b]中分裂出来，成为了一个新的物种以填补一个生态位"
 
+#, fuzzy
+msgid "TIMELINE_PLAYER_MIGRATED"
+msgstr "一部分[b][u]{0}[/u][/b]种群已经移民到了{1}"
+
+#, fuzzy
+msgid "TIMELINE_PLAYER_MIGRATED_TO"
+msgstr "一部分[b][u]{0}[/u][/b]种群已经移民到了{1}"
+
 msgid "TIMELINE_SELECTION_PRESSURE_SPLIT"
 msgstr "[b][u]{0}[/u][/b]从[b][u]{1}[/u][/b]中分裂出来，成为了一个新的物种，原因是进化压力"
 
@@ -5752,6 +5845,10 @@ msgstr "[b][u]{0}[/u][/b] 已经灭绝了！"
 
 msgid "TIMELINE_SPECIES_EXTINCT_LOCAL"
 msgstr "[b][u]{0}[/u][/b]已从本地区中消失"
+
+#, fuzzy
+msgid "TIMELINE_SPECIES_FOLLOWED"
+msgstr "[b][u]{0}[/u][/b] 已经灭绝了！"
 
 msgid "TIMELINE_SPECIES_MIGRATED_FROM"
 msgstr "一部分[b][u]{0}[/u][/b]种群已经从{1}移民到了这个地区"
@@ -5965,6 +6062,10 @@ msgstr "翻译者"
 msgid "TRANSPARENCY"
 msgstr "透明度"
 
+#, fuzzy
+msgid "TRILLION_ABBREVIATION"
+msgstr "{0} *10⁹"
+
 msgid "TRY_FOSSILISING_SOME_SPECIES"
 msgstr "尝试将某些物种变成化石！"
 
@@ -5977,6 +6078,11 @@ msgstr "试着截一些图吧！"
 msgid "TUTORIAL"
 msgstr "教程"
 
+#, fuzzy
+msgid "TUTORIAL_ALL_NOT_ENABLED_EXPLANATION"
+msgstr "（一些细胞器需要前置解锁条件来放置）"
+
+#, fuzzy
 msgid "TUTORIAL_MICROBE_EDITOR_ATP_BALANCE_INTRO"
 msgstr ""
 "右侧的ATP生产条显示你的细胞生产和消耗[thrive:compound type=\"atp\"][/thrive:compound]的比例。如果顶段条比底段条短，说明你没有产生足够的[thrive:compound type=\"atp\"][/thrive:compound]。\n"
@@ -5996,6 +6102,7 @@ msgstr ""
 "\n"
 "你可以通过按面板上的问号按钮查看预测背后的更多详细信息。按下它以继续。"
 
+#, fuzzy
 msgid "TUTORIAL_MICROBE_EDITOR_CELL_TEXT"
 msgstr ""
 "这是细胞编辑器，你可以通过花费[b]变异点[/b]（MP）[thrive:icon]MP[/thrive:icon]从你的物种中添加或删除细胞器。每一世代你都会且只会有[b]100MP[/b][thrive:icon]MP[/thrive:icon] ，所以不用费心去存留。\n"
@@ -6012,6 +6119,7 @@ msgstr ""
 "\n"
 "放置一个将允许你探测例如[thrive:compound type=\"glucose\"][/thrive:compound]之类的化合物，并且指引你找到它们。它也能用来探测其他物种的细胞。"
 
+#, fuzzy
 msgid "TUTORIAL_MICROBE_EDITOR_ENDING_TEXT"
 msgstr ""
 "这些就是改变物种的基础操作了。作为点睛之笔，你可以通过点击左下角的名称来重新命名你的物种。\n"
@@ -6067,6 +6175,7 @@ msgstr ""
 "\n"
 "如果你的[thrive:compound type=\"atp\"][/thrive:compound]生产为负，务必增加[thrive:compound type=\"atp\"][/thrive:compound]生产或添加[b]储存[/b][thrive:icon]StorageIcon[/thrive:icon]来允许爆发式移动。"
 
+#, fuzzy
 msgid "TUTORIAL_MICROBE_EDITOR_PATCH_TEXT"
 msgstr ""
 "这里是[b]地区图[/b]。\n"
@@ -6097,6 +6206,7 @@ msgstr ""
 "\n"
 "按下重做按钮（和撤销按钮在一起）以继续。"
 
+#, fuzzy
 msgid "TUTORIAL_MICROBE_EDITOR_STAY_SMALL"
 msgstr ""
 "你应该专注于一种或两种[b]专业化的[/b][thrive:compound type=\"atp\"][/thrive:compound]来源，这样你就不需要拥有所有资源才能产生足够的ATP来生存。\n"
@@ -6135,6 +6245,7 @@ msgstr ""
 "\n"
 "当充满时，细胞不能吞噬更多的东西。要继续吞噬，要等到一个或多个摄入的物体被完全消化。"
 
+#, fuzzy
 msgid "TUTORIAL_MICROBE_STAGE_ENGULFMENT_TEXT"
 msgstr ""
 "在吞噬模式下，通过在物体上移动来吞噬它们。按[thrive:input]g_toggle_engulf[/thrive:input]来切换吞噬模式。\n"
@@ -6156,6 +6267,7 @@ msgstr ""
 "你需要离开这个细胞群落才能繁殖并进入细胞编辑器，除非你决定成为多细胞生物。\n"
 "按下 [thrive:input]g_unbind_all[/thrive:input] 以离开这个细胞群落从而继续繁殖。"
 
+#, fuzzy
 msgid "TUTORIAL_MICROBE_STAGE_REPRODUCE_TEXT"
 msgstr ""
 "繁殖需要你存活的足够久以将所有细胞器都复制一份。收集氨和磷酸盐可以加快繁殖速度。\n"
@@ -6472,6 +6584,9 @@ msgstr "现在查看"
 
 msgid "VIEW_SOURCE_CODE"
 msgstr "查看源代码"
+
+msgid "VIEW_TEXT_REPORT"
+msgstr ""
 
 msgid "VIP_PATRONS"
 msgstr "VIP 支持者"
@@ -8160,12 +8275,14 @@ msgstr "游戏内Thrive百科"
 msgid "WIKI_RUSTICYANIN_EFFECTS"
 msgstr "不断进化的 [b]铁硫菌蓝蛋白[/b] 为细胞配备了同名的酶。 这允许细胞消化环境中的[thrive:compound type=\"iron\"][/thrive:compound]铁块。"
 
+#, fuzzy
 msgid "WIKI_RUSTICYANIN_INTRO"
 msgstr "透过[b]铁化能自养[/b]代谢将[thrive:compound type=\"iron\"][/thrive:compound] 转化为[thrive:compound type=\"atp\"][/thrive:compound]。 反应速率与环境中[thrive:compound type=\"carbondioxide\"][/thrive:compound] 的浓度成正比。"
 
 msgid "WIKI_RUSTICYANIN_MODIFICATIONS"
 msgstr "无修改。"
 
+#, fuzzy
 msgid "WIKI_RUSTICYANIN_PROCESSES"
 msgstr ""
 "[b]铁化能自养[/b]：[thrive:compound type=\"iron\"][/thrive:compound] + [thrive:compound type=\"carbondioxide\"][/thrive:compound] → [thrive: compound type=\"atp\"][/thrive:compound]\n"
@@ -8653,6 +8770,9 @@ msgstr "放大"
 msgid "ZOOM_OUT"
 msgstr "缩小"
 
+#~ msgid "IRON_CHEMOLITHOAUTOTROPHY"
+#~ msgstr "铁化能无机自养"
+
 #~ msgid "PASSIVE_REPRODUCTION_PROGRESS"
 #~ msgstr "被动获得的繁殖进度"
 
@@ -8973,9 +9093,6 @@ msgstr "缩小"
 
 #~ msgid "GLES2"
 #~ msgstr "GLES2"
-
-#~ msgid "SIXTEEN_TIMES"
-#~ msgstr "16x"
 
 #, fuzzy
 #~ msgid "TARGET_TIME"

@@ -5,5 +5,8 @@ noise_type = 3
 seed = 65347
 
 [resource]
-seamless_blend_skirt = 0.5
+width = 128
+height = 128
+seamless = true
+seamless_blend_skirt = 0.25
 noise = SubResource("FastNoiseLite_wxv30")

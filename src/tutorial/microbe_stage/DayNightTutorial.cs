@@ -1,12 +1,20 @@
 ﻿namespace Tutorial;
 
 using System;
+using Godot;
+using Newtonsoft.Json;
 
 /// <summary>
 ///   Tells the player about the day and night cycle
 /// </summary>
 public class DayNightTutorial : TutorialPhase
 {
+    [JsonIgnore]
+    public HUDBottomBar? HUDBottomBar { get; set; }
+
+    [JsonIgnore]
+    public EnvironmentPanel? EnvironmentPanel { get; set; }
+
     public override string ClosedByName => "DayNightTutorial";
 
     public override void ApplyGUIState(MicrobeTutorialGUI gui)
@@ -23,6 +31,16 @@ public class DayNightTutorial : TutorialPhase
             {
                 if (!HasBeenShown && CanTrigger && !overallState.TutorialActive())
                 {
+                    if (HUDBottomBar != null && EnvironmentPanel != null)
+                    {
+                        EnvironmentPanel.ShowPanel = true;
+                        HUDBottomBar.EnvironmentPressed = true;
+                    }
+                    else
+                    {
+                        GD.PrintErr("Missing GUI panels in day/night tutorial");
+                    }
+
                     Show();
                     return true;
                 }

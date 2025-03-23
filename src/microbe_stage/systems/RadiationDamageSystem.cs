@@ -79,7 +79,8 @@ public sealed class RadiationDamageSystem : AEntitySetSystem<float>
         // Apply damage if there is some to apply
         if (rawDamage > 0 && !health.Dead)
         {
-            health.DealMicrobeDamage(ref entity.Get<CellProperties>(), rawDamage, "radiation");
+            health.DealMicrobeDamage(ref entity.Get<CellProperties>(), rawDamage, "radiation",
+                HealthHelpers.GetInstantKillProtectionThreshold(entity));
 
             entity.SendNoticeIfPossible(() =>
                 new SimpleHUDMessage(Localization.Translate("NOTICE_RADIATION_DAMAGE"), DisplayDuration.Short));

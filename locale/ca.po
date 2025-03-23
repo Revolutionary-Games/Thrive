@@ -7,8 +7,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2025-03-09 11:58-0300\n"
-"PO-Revision-Date: 2025-02-06 13:29+0000\n"
+"POT-Creation-Date: 2025-03-20 10:30+0200\n"
+"PO-Revision-Date: 2025-03-20 20:10+0000\n"
 "Last-Translator: Anonymous <noreply@weblate.org>\n"
 "Language-Team: Catalan <https://translate.revolutionarygamesstudio.com/projects/thrive/thrive-game/ca/>\n"
 "Language: ca\n"
@@ -198,6 +198,9 @@ msgstr "Fixació Anaeròbica de Nitrogen"
 msgid "AND_UNLOCK_CONDITION"
 msgstr "Condicions Físiques"
 
+msgid "ANISOTROPIC_FILTERING"
+msgstr ""
+
 msgid "APPEARANCE"
 msgstr "Aparença"
 
@@ -321,6 +324,10 @@ msgid "AUTO-EVO_PREDICTION_BOX_DESCRIPTION"
 msgstr ""
 "Aquest tauler mostra els nombres de població esperats pel sistema auto-evo per l'espècie editada.\n"
 "El sistema auto-evo fa una simulació de població que representa l'altra part (més enllà del teu propi rendiment) que afecta la teva població."
+
+#, fuzzy
+msgid "AUTO-EVO_RESULTS_TITLE"
+msgstr "Resultats de l'algorisme Auto-Evo:"
 
 msgid "AUTO-EVO_STEPS_DONE"
 msgstr "{0:F1}% fet. {1:n0}/{2:n0} passos."
@@ -658,6 +665,10 @@ msgid "CELL_STAT_SPEED_TOOLTIP"
 msgstr "El valor utilitzat per generar el món, que ha de ser un nombre enter positiu"
 
 #, fuzzy
+msgid "CELL_STAT_STORAGE_TOOLTIP"
+msgstr "El valor utilitzat per generar el món, que ha de ser un nombre enter positiu"
+
+#, fuzzy
 msgid "CELL_TYPE_BUTTON_ATP_CONSUMPTION"
 msgstr "{0}: -{1} ATP"
 
@@ -786,6 +797,10 @@ msgstr "Netejar els arxius de guardat antics"
 
 msgid "CLEAR_CACHE"
 msgstr ""
+
+#, fuzzy
+msgid "CLICK_TO_SELECT"
+msgstr "Eliminar tot el que ha estat seleccionat"
 
 msgid "CLOSE"
 msgstr "Tancar"
@@ -2822,8 +2837,9 @@ msgstr ""
 msgid "IRON"
 msgstr "Ferro"
 
-msgid "IRON_CHEMOLITHOAUTOTROPHY"
-msgstr "Quimiolitoautotròfia basada en Ferro"
+#, fuzzy
+msgid "IRON_OXIDATION"
+msgstr "Donacions"
 
 #, fuzzy
 msgid "ITCH_TOOLTIP"
@@ -3697,6 +3713,7 @@ msgstr ""
 "\n"
 "Segueix la línia de la pantalla, des de la teva cèl·lula fins al núvol de Glucosa més proper."
 
+#, fuzzy
 msgid "MICROBE_STAGE_COLLECT_TEXT"
 msgstr ""
 "Recol·lecta Glucosa (núvols blancs) desplaçant-t'hi per sobre.\n"
@@ -3705,6 +3722,7 @@ msgstr ""
 "\n"
 "Segueix la línia de la pantalla, des de la teva cèl·lula fins al núvol de Glucosa més proper."
 
+#, fuzzy
 msgid "MICROBE_STAGE_CONTROL_TEXT"
 msgstr ""
 "La teva cèl·lula, el darrer avantpassat universal comú, és al centre de la pantalla. Per tal de controlar-la, fes servir les tecles que es mostren al seu costat.\n"
@@ -3726,6 +3744,7 @@ msgstr ""
 "Pots recuperar la teva salut (autoregeneració) si tens prou quantitat d'ATP.\n"
 "Assegurat de recol·lectar prou Glucosa per no quedar-te sense ATP."
 
+#, fuzzy
 msgid "MICROBE_STAGE_HEALTH_TEXT"
 msgstr ""
 "Estigues atent a la barra de salut, que hi ha al costat de la barra d'ATP (a la part inferior dreta de la pantalla).\n"
@@ -3876,6 +3895,9 @@ msgstr "Instruccions per fer Mods estan disponibles a"
 
 msgid "MODELS"
 msgstr "Models"
+
+msgid "MODE_CAN_BE_CHANGED_IN_OPTIONS"
+msgstr ""
 
 msgid "MODIFY"
 msgstr "Modificar"
@@ -4294,7 +4316,14 @@ msgstr "No hi ha res a sota del Cursor"
 msgid "NOTHING_TO_INTERACT_WITH"
 msgstr ""
 
+#, fuzzy
+msgid "NOTICE_BINDING_OUT_OF_ATP"
+msgstr "Activar el mode d'unió"
+
 msgid "NOTICE_DAMAGED_BY_NO_ATP"
+msgstr ""
+
+msgid "NOTICE_ENGULFING_OUT_OF_ATP"
 msgstr ""
 
 msgid "NOTICE_ENGULF_DAMAGE_FROM_TOXIN"
@@ -4845,6 +4874,10 @@ msgstr "Jugador extingit"
 msgid "PLAYER_RELATIVE_MOVEMENT"
 msgstr "Jugador extingit"
 
+#, fuzzy
+msgid "PLAYER_RELATIVE_MOVEMENT_TOOLTIP"
+msgstr "Jugador extingit"
+
 msgid "PLAYER_REPRODUCED"
 msgstr "el jugador ha aconseguit reproduïr-se"
 
@@ -4928,6 +4961,10 @@ msgstr "Processos de la Cèl·lula"
 msgid "PROCESS_SPEED_MODIFIER"
 msgstr "Processos de la Cèl·lula"
 
+#, fuzzy
+msgid "PROCESS_TOGGLE_TOOLTIP"
+msgstr "Tornar al menú principal"
+
 msgid "PROGRAMMING_TEAM"
 msgstr "Equip de programació"
 
@@ -4942,6 +4979,10 @@ msgstr "protoplasma"
 
 msgid "PULL_REQUESTS_PROGRAMMING"
 msgstr "Pull Requests / Programació"
+
+#, fuzzy
+msgid "QUADRILLION_ABBREVIATION"
+msgstr "{0} B"
 
 msgid "QUICK_LOAD"
 msgstr "Càrrega ràpida"
@@ -5072,6 +5113,14 @@ msgstr "Resetejar Inputs"
 
 msgid "RESET_SETTINGS_TO_DEFAULTS"
 msgstr "Per defecte"
+
+#, fuzzy
+msgid "RESET_SHOWN_TUTORIALS"
+msgstr "Mostrar tutorials"
+
+#, fuzzy
+msgid "RESET_SHOWN_TUTORIALS_TOOLTIP"
+msgstr "Han passat: {0:#,#} anys"
 
 msgid "RESET_TO_DEFAULTS"
 msgstr "Resetejar als valors per defecte?"
@@ -5336,6 +5385,10 @@ msgstr "Mostrar noms de botons de selecció de parts"
 msgid "SCREEN_RELATIVE_MOVEMENT"
 msgstr "per augmentar la"
 
+#, fuzzy
+msgid "SCREEN_RELATIVE_MOVEMENT_TOOLTIP"
+msgstr "per augmentar la"
+
 msgid "SCROLLLOCK"
 msgstr "Scroll Lock"
 
@@ -5361,6 +5414,10 @@ msgstr "Secretar mucílag"
 #, fuzzy
 msgid "SEED_LABEL"
 msgstr "Bioma: {0}"
+
+#, fuzzy
+msgid "SELECTED"
+msgstr "Mod Seleccionat:"
 
 msgid "SELECTED_COLON"
 msgstr "Seleccionat:"
@@ -5398,6 +5455,10 @@ msgstr "Selecciona un tipus de cèl·lula per editar aquí des de la pestanya Ed
 msgid "SELECT_ENZYME"
 msgstr "Seleccionar Enzim:"
 
+#, fuzzy
+msgid "SELECT_MOVEMENT_MODE_TITLE"
+msgstr "Eliminar Dades Locals"
+
 msgid "SELECT_OPTION"
 msgstr "Seleccionar Una Opció"
 
@@ -5434,6 +5495,14 @@ msgid "SHIFT"
 msgstr "Shift"
 
 #, fuzzy
+msgid "SHOW_ALL_TUTORIALS"
+msgstr "Mostrar tutorials"
+
+#, fuzzy
+msgid "SHOW_ALL_TUTORIALS_TOOLTIP"
+msgstr "Han passat: {0:#,#} anys"
+
+#, fuzzy
 msgid "SHOW_DAMAGE_EFFECT"
 msgstr "El flagel (plural: flagels) és uns farcell de proteïnes i fibres, com un petit tentacle que sobresurt de la membrana cel·lular. Mitjançant un moviment ondulatori, permet propulsar la cèl·lula cap endavant a gran velocitat, mentre consumeix ATP. La posició dels flagels determina la direcció en la qual produeix l'impuls per moure la cèl·lula. La direcció de l'impuls és oposada a la direcció cap a la qual el flagel està apuntant. Per exemple, un flagel col·locat a l'esquerra del centre de la cèl·lula produïra impuls quan aquesta es mogui cap a la dreta."
 
@@ -5452,14 +5521,15 @@ msgstr "{0} {1}"
 msgid "SHOW_NEW_PATCH_NOTES_TOOLTIP"
 msgstr "{0} {1}"
 
-msgid "SHOW_TUTORIALS"
-msgstr "Mostrar tutorials"
-
 msgid "SHOW_TUTORIALS_IN_NEW_CURRENT_OPTION"
 msgstr "Mostrar tutorials (a la partida actual)"
 
 msgid "SHOW_TUTORIALS_IN_NEW_GAMES_OPTION"
 msgstr "Mostrar tutorials (en noves partides)"
+
+#, fuzzy
+msgid "SHOW_TUTORIALS_OPTION_TOOLTIP"
+msgstr "Han passat: {0:#,#} anys"
 
 msgid "SHOW_UNSAVED_PROGRESS_WARNING"
 msgstr "Mostra avís de progrés no guardat"
@@ -5510,6 +5580,9 @@ msgstr "Silici"
 
 msgid "SILICA_MEMBRANE_DESCRIPTION"
 msgstr "Aquesta membrana té una forta paret de silici. Pot resistir les agressions externes, sobretot les de naturalesa física. També consumeix poca energia. No obstant, fa que la cèl·lula esdevingui lenta, i que absorbeixi els nutrients a poc a poc."
+
+msgid "SIXTEEN_TIMES"
+msgstr "16x"
 
 msgid "SIZE_COLON"
 msgstr "Mida:"
@@ -5772,6 +5845,10 @@ msgstr ""
 
 msgid "STORE_LOGGED_IN_AS"
 msgstr "Registrat com a: {0}"
+
+#, fuzzy
+msgid "STRAIN_BAR_TOOLTIP"
+msgstr "Pausar el joc"
 
 msgid "STRAIN_BAR_VISIBILITY"
 msgstr ""
@@ -6045,6 +6122,14 @@ msgstr "Mostrar esdeveniments locals"
 msgid "TIMELINE_NICHE_FILL"
 msgstr "[b][u]{0}[/u][/b] s'ha dividit de [b][u]{1}[/u][/b] com a una nova espècie per omplir un nínxol"
 
+#, fuzzy
+msgid "TIMELINE_PLAYER_MIGRATED"
+msgstr "Part de [b][u]{0}[/u][/b] població ha migrat a {1}"
+
+#, fuzzy
+msgid "TIMELINE_PLAYER_MIGRATED_TO"
+msgstr "Part de [b][u]{0}[/u][/b] població ha migrat a {1}"
+
 msgid "TIMELINE_SELECTION_PRESSURE_SPLIT"
 msgstr "[b][u]{0}[/u][/b] s'ha dividit de [b][u]{1}[/u][/b] com a noves espècies degut a diferents pressions selectives"
 
@@ -6062,6 +6147,10 @@ msgstr "[b][u]{0}[/u][/b] s'ha extingit!"
 
 msgid "TIMELINE_SPECIES_EXTINCT_LOCAL"
 msgstr "[b][u]{0}[/u][/b] ha desaparegut de l'ecosistema"
+
+#, fuzzy
+msgid "TIMELINE_SPECIES_FOLLOWED"
+msgstr "[b][u]{0}[/u][/b] s'ha extingit!"
 
 msgid "TIMELINE_SPECIES_MIGRATED_FROM"
 msgstr "Part de [b][u]{0}[/u][/b] població ha migrat a aquest ecosistema des de {1}"
@@ -6294,6 +6383,10 @@ msgid "TRANSPARENCY"
 msgstr "Transparència"
 
 #, fuzzy
+msgid "TRILLION_ABBREVIATION"
+msgstr "{0} B"
+
+#, fuzzy
 msgid "TRY_FOSSILISING_SOME_SPECIES"
 msgstr "Intenta fer algunes captures de pantalla!"
 
@@ -6305,6 +6398,10 @@ msgstr "Intenta fer algunes captures de pantalla!"
 
 msgid "TUTORIAL"
 msgstr "Tutorial"
+
+#, fuzzy
+msgid "TUTORIAL_ALL_NOT_ENABLED_EXPLANATION"
+msgstr "(comença cada generació amb un núvol de glucosa gratuït proper)"
 
 #, fuzzy
 msgid "TUTORIAL_MICROBE_EDITOR_ATP_BALANCE_INTRO"
@@ -6327,6 +6424,7 @@ msgstr ""
 "\n"
 "Pots veure informació més detallada de la predicció clicant a la icona del signe d'interrogació al tauler. Prem-la per continuar."
 
+#, fuzzy
 msgid "TUTORIAL_MICROBE_EDITOR_CELL_TEXT"
 msgstr ""
 "Aquest és l'editor de microbi, on pots fer evolucionar la teva espècie invertint punts de mutació (MP). En cada generació disposaràs de 100 MP per invertir, de manera que no cal que n'estalviïs!\n"
@@ -6344,6 +6442,7 @@ msgstr ""
 "\n"
 "Per continuar, selecciona una part del tauler de l'esquerra. Tot seguit, fes clic-esquerra a l'hexàgon per a col·locar-la. Pots fer rotar les parts amb les tecles [thrive:input]e_rotate_left[/thrive:input] and [thrive:input]e_rotate_right[/thrive:input]."
 
+#, fuzzy
 msgid "TUTORIAL_MICROBE_EDITOR_ENDING_TEXT"
 msgstr ""
 "Aquests són els fonaments per editar la teva espècie. També pots canviar el nom de la teva espècie clicant el requadre de sota i a l'esquerra i editant-ne el text. \n"
@@ -6407,6 +6506,7 @@ msgstr ""
 "\n"
 "Selecciona una zona per continuar."
 
+#, fuzzy
 msgid "TUTORIAL_MICROBE_EDITOR_PATCH_TEXT"
 msgstr ""
 "Aquest és el mapa de zones.\n"
@@ -6435,6 +6535,7 @@ msgstr ""
 "\n"
 "Prem el botó de refer l'acció (a la vora del botó de desfer l'acció) per continuar."
 
+#, fuzzy
 msgid "TUTORIAL_MICROBE_EDITOR_STAY_SMALL"
 msgstr ""
 "Per sobreviure, t'hauries de concentrar en especialitzar-te en explotar una o dues fonts d'energia, de manera que no necessitis molts recursos diferents per sobreviure.\n"
@@ -6474,6 +6575,7 @@ msgstr ""
 "\n"
 "Quan estigui plena, una cèl·lula no pot engolir més objectes. Per seguir engolint, cal esperar fins que un o més dels objectes ingerits hagin estat totalment digerits."
 
+#, fuzzy
 msgid "TUTORIAL_MICROBE_STAGE_ENGULFMENT_TEXT"
 msgstr ""
 "Engoleix objectes movent-hi per sobre mentre estiguis en el mode d'engoliment. Activa el mode d'engoliment prement [thrive:input]g_toggle_engulf[/thrive:input].\n"
@@ -6495,6 +6597,7 @@ msgstr ""
 "\n"
 "Per abandonar la colònia del tot, pots clicar en la teva pròpia cèl·lula o pressionar la tecla per desunir-les a totes."
 
+#, fuzzy
 msgid "TUTORIAL_MICROBE_STAGE_REPRODUCE_TEXT"
 msgstr ""
 "Per reproduïr-te, has de duplicar tots els teus orgànuls recol·lectant prou Amoníac i Fosfat.\n"
@@ -6831,6 +6934,9 @@ msgstr ""
 
 msgid "VIEW_SOURCE_CODE"
 msgstr "Veure Codi Font"
+
+msgid "VIEW_TEXT_REPORT"
+msgstr ""
 
 msgid "VIP_PATRONS"
 msgstr "Partidaris VIP"
@@ -8755,6 +8861,9 @@ msgstr "Enfocar la visió de la càmera"
 msgid "ZOOM_OUT"
 msgstr "Zoom enfora"
 
+#~ msgid "IRON_CHEMOLITHOAUTOTROPHY"
+#~ msgstr "Quimiolitoautotròfia basada en Ferro"
+
 #, fuzzy
 #~ msgid "PASSIVE_REPRODUCTION_PROGRESS"
 #~ msgstr "(velocitat a la qual les espècies de la IA muten)"
@@ -9085,9 +9194,6 @@ msgstr "Zoom enfora"
 
 #~ msgid "UNKNOWN_ON_WINDOWS"
 #~ msgstr "Desconegut a Windows"
-
-#~ msgid "SIXTEEN_TIMES"
-#~ msgstr "16x"
 
 #, fuzzy
 #~ msgid "TARGET_TIME"

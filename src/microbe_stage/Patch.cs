@@ -281,6 +281,19 @@ public class Patch
         return currentSnapshot.SpeciesInPatch.Remove(species);
     }
 
+    public int GetSpeciesCount()
+    {
+        int result = 0;
+
+        foreach (var entry in SpeciesInPatch)
+        {
+            if (entry.Value > 0)
+                ++result;
+        }
+
+        return result;
+    }
+
     /// <summary>
     ///   Updates a species population in this patch. Should only be called by auto-evo applying the results.
     /// </summary>

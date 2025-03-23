@@ -7,8 +7,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2025-03-09 11:58-0300\n"
-"PO-Revision-Date: 2025-02-06 13:29+0000\n"
+"POT-Creation-Date: 2025-03-20 10:30+0200\n"
+"PO-Revision-Date: 2025-03-20 20:10+0000\n"
 "Last-Translator: Anonymous <noreply@weblate.org>\n"
 "Language-Team: Italian <https://translate.revolutionarygamesstudio.com/projects/thrive/thrive-game/it/>\n"
 "Language: it\n"
@@ -142,7 +142,6 @@ msgstr "(permetti di continuare la partita con una specie differente quando la t
 msgid "ALL_WORLDS_GENERAL_STATISTICS"
 msgstr "Statistiche generali di tutti i mondi"
 
-#, fuzzy
 msgid "ALL_WORLDS_STATISTICS"
 msgstr ""
 "[b]Generazioni:[/b]\n"
@@ -157,6 +156,7 @@ msgstr ""
 "  Nella Media{7}; Deviazione Standard {8}\n"
 "[b]Taglia Media Esagoni Delle Specie Di Microbi:[/b]\n"
 "  Nella Media {9}; Deviazione Standard {10}\n"
+"\n"
 "[b]Dati Generici Organuli:[/b]"
 
 msgid "ALREADY_ASCENDED"
@@ -188,6 +188,9 @@ msgstr "Azotofissazione anaerobica"
 
 msgid "AND_UNLOCK_CONDITION"
 msgstr "e"
+
+msgid "ANISOTROPIC_FILTERING"
+msgstr "Filtraggio anisotropico:"
 
 msgid "APPEARANCE"
 msgstr "Aspetto"
@@ -225,8 +228,11 @@ msgstr "Congratulazioni!"
 msgid "ASCENSION_CONGRATULATIONS_CONTENT"
 msgstr ""
 "Sei asceso e hai completato il gioco. Congratulazioni per aver raggiunto la fine!\n"
+"\n"
 "Puoi continuare a giocare nella Fase Spazio con Strumenti Divini sbloccati per sfogare la tua creatività.\n"
+"\n"
 "E' possibile inoltre discendere e ritornare alla Fase Microbo in questo salvataggio e ripetere tutti gli stadi con vantaggi extra.\n"
+"\n"
 "Ascese totali in questo salvataggio: {0}"
 
 msgid "ASCENSION_STAGE"
@@ -255,19 +261,19 @@ msgstr "ATP"
 msgid "ATP_BALANCE"
 msgstr "Bilancio ATP"
 
-#, fuzzy
 msgid "ATP_BALANCE_TOOLTIP"
 msgstr ""
-"Questa sezione mostra il bilancio totale di ATP (energia) della tua attuale cellula.\n"
-"Affinché la cellula sopravviva il bilancio deve essere positivo. Per le cellule sessili bisogna considerare il bilancio positivo escludendo i costi di movimento.\n"
-"Etc"
+"Questa sezione mostra il bilancio totale di ATP (energia) della cellula corrente.\n"
+"Per sopravvivere, il bilancio deve essere positivo. Per le cellule sessili, possono considerare il bilancio positivo escludendo il movimento.\n"
+"Il menu a discesa qui sotto può essere utilizzato per verificare cosa accadrebbe se la cellula non avesse risorse disponibili da cui ricavare ATP.\n"
+"Ad esempio, alcune cellule possono mantenere un bilancio ATP positivo solo quando hanno più tipi di composti da cui ricavare ATP contemporaneamente.\n"
+"Questi tipi di cellule sono più difficili da riprodurre poiché richiedono di avere più tipi di composti in magazzino contemporaneamente per sopravvivere."
 
-#, fuzzy
 msgid "ATP_BALANCE_TOOLTIP_MULTICELLULAR"
 msgstr ""
-"Questa sezione mostra il bilancio totale di ATP (energia) della tua attuale cellula.\n"
-"Affinché la cellula sopravviva il bilancio deve essere positivo. Per le cellule sessili bisogna considerare il bilancio positivo escludendo i costi di movimento.\n"
-"Etc"
+"Questa sezione mostra le opzioni per calcolare i bilanci di ATP (energia) per le celle.\n"
+"I bilanci calcolati sono mostrati nel menu di selezione del tipo di cella.\n"
+"Il menu a discesa sottostante può essere utilizzato per controllare cosa accadrebbe se la cella non avesse risorse disponibili da cui ricavare ATP."
 
 msgid "ATP_BALANCE_WITHOUT_EXTERNAL_RESOURCES"
 msgstr "Senza risorse esterne"
@@ -319,16 +325,18 @@ msgstr ""
 "Questo pannello mostra la popolazione prevista dall'Auto-Evo per la specie modificata.\n"
 "La simulazione di popolazione eseguita dall'Auto-Evo è uno dei due fattori che ha effetto sulla tua popolazione (l'altro è la tua prestazione personale)."
 
+#, fuzzy
+msgid "AUTO-EVO_RESULTS_TITLE"
+msgstr "Risultati dell'Auto-Evo:"
+
 msgid "AUTO-EVO_STEPS_DONE"
 msgstr "{0:F1}% fatto. Passo {1:n0}/{2:n0}."
 
-#, fuzzy
 msgid "AUTO-EVO_STRENGHT_MULTIPLIER"
-msgstr "Moltiplicatore costo di mutazione"
+msgstr "Moltiplicatore costo di auto evoluzione"
 
-#, fuzzy
 msgid "AUTO-EVO_STRENGHT_MULTIPLIER_EXPLANATION"
-msgstr "(costo di organuli, membrane e altri oggetti nell'editor)"
+msgstr "(la percentuale del cambiamento di popolazione auto-evo si applica alla specie del giocatore)"
 
 msgid "AUTOSAVE_DURING_THE_GAME"
 msgstr "Salvataggio automatico durante il gioco"
@@ -534,9 +542,8 @@ msgstr "Massimo di items di cache da mantenere in memoria"
 msgid "CACHE_TIME_MEMORY"
 msgstr "Per quanto tempo conservare le cache in memoria"
 
-#, fuzzy
 msgid "CACHE_TIME_MEMORY_ONLY"
-msgstr "Memoria video utilizzata al momento:"
+msgstr "Tempo della cache quando si utilizza solo la cache in memoria"
 
 msgid "CACHING_TITLE"
 msgstr "Caching"
@@ -628,14 +635,19 @@ msgstr "Cellulosa"
 msgid "CELLULOSE_MEMBRANE_DESCRIPTION"
 msgstr "Questa membrana possiede una parete. Ciò le conferisce una migliore protezione ai danni, specialmente ai danni fisici. Inoltre, consuma meno energia per mantenere la propria forma, ma è più lenta nei movimenti e nell'assorbire le risorse. [b]La cellulasi è in grado di digerire tale parete[/b], rendendo la membrana vulnerabile alla fagocitosi da parte dei predatori."
 
-#, fuzzy
 msgid "CELL_STAT_ROTATION_TOOLTIP"
+msgstr ""
+"Velocità di rotazione della cellula. Le cellule più grandi ruotano più lentamente, ma si possono aggiungere ciglia per compensare.\n"
+"Anche il posizionamento degli organelli influisce sulla rotazione, poiché organelli più lontani dal centro che rallentano ulteriormente la rotazione."
+
+msgid "CELL_STAT_SPEED_TOOLTIP"
 msgstr ""
 "Velocità della cellula. Tieni presente che a causa delle limitazioni dell'algoritmo che calcola questo valore, il valore è approssimativo.\n"
 "E, ad esempio, quando si modifica la lunghezza del flagello, i valori di velocità non corrispondono a ciò che accadrà nella fase.\n"
 "Questo è un problema noto ma non è stato ancora risolto poiché ha una priorità inferiore rispetto a molti altri problemi e nuove funzionalità."
 
-msgid "CELL_STAT_SPEED_TOOLTIP"
+#, fuzzy
+msgid "CELL_STAT_STORAGE_TOOLTIP"
 msgstr ""
 "Velocità della cellula. Tieni presente che a causa delle limitazioni dell'algoritmo che calcola questo valore, il valore è approssimativo.\n"
 "E, ad esempio, quando si modifica la lunghezza del flagello, i valori di velocità non corrispondono a ciò che accadrà nella fase.\n"
@@ -769,6 +781,9 @@ msgstr "Pulisci i vecchi salvataggi"
 
 msgid "CLEAR_CACHE"
 msgstr "Pulisci Cache"
+
+msgid "CLICK_TO_SELECT"
+msgstr "Seleziona"
 
 msgid "CLOSE"
 msgstr "Chiudi"
@@ -939,29 +954,29 @@ msgid "COMPOUND_HANDLE_TOP_UP_ON_CHANGE"
 msgstr "Densità delle nuvole di composti"
 
 msgid "COMPOUND_STORAGE_AMOUNT_DOES_NOT_LAST_NIGHT"
-msgstr "(non abbastanza per sopravvivere alla notte che è lunga {0}s)"
+msgstr "(non è abbastanza per sopravvivere ad una notte di {0}s)"
 
 msgid "COMPOUND_STORAGE_NOT_ENOUGH_GENERATED_DURING_DAY"
-msgstr "Solo {1} [thrive:compound type=\"{0}\"][/thrive:compound] può essere generato durante il giorno ma per sopravvivere durante la notte ne sono richiesti {2}."
+msgstr "Solo {1} [thrive:compound type=\"{0}\"][/thrive:compound] può essere generato durante il giorno ma per sopravvivere durante la notte ne servono {2}."
 
 msgid "COMPOUND_STORAGE_NOT_ENOUGH_SPACE"
-msgstr "Non c'è abbastanza spazio di archiviazione per [thrive:compound type=\"{0}\"][/thrive:compound] poiché la notte dura {2} s ma lo spazio di archiviazione può contenere solo {1} s di composti."
+msgstr "Non c'è abbastanza spazio di stoccaggio per [thrive:compound type=\"{0}\"][/thrive:compound] poiché la notte dura {2} s ma è possibile immagazzinare solo {1} s di composti."
 
 msgid "COMPOUND_STORAGE_STATS_TITLE"
-msgstr "Dimensioni dello stoccaggio"
+msgstr "Capacità di stoccaggio"
 
 msgid "COMPOUND_STORAGE_STATS_TOOLTIP"
 msgstr ""
 "Questa sezione mostra quanto tempo impiega la cellula per utilizzare ciascun tipo di composto quando si parte dallo stoccaggio pieno.\n"
 "Questi numeri vengono sempre calcolati come se fosse notte e possono essere utilizzati per verificare se la cellula ha abbastanza spazio di stoccaggio\n"
-"per sopravvivere tutta la notte. La disattivazione del costo di movimento con la casella fornisce i numeri minimi per sopravvivere\n"
+"per sopravvivere tutta la notte. Disattivare il costo di movimento con la casella fornisce i numeri minimi per sopravvivere\n"
 "quando si resta fermi tutta la notte per risparmiare energia."
 
 msgid "COMPOUND_TO_FIND"
 msgstr "Composto da trovare:"
 
 msgid "CONCEPT_ART"
-msgstr "Concept art"
+msgstr "Arte concettuale"
 
 msgid "CONFIG"
 msgstr "Configurazione"
@@ -990,19 +1005,19 @@ msgstr ""
 "Ascendere significherà anche finire il gioco, ma sarai in grado di continuare a giocare. Vuoi ascendere?"
 
 msgid "CONFIRM_MOVE_TO_INDUSTRIAL_STAGE"
-msgstr "Spostarsi allo Stadio Industriale?"
+msgstr "Passare alla fase industriale?"
 
 msgid "CONFIRM_MOVE_TO_INDUSTRIAL_STAGE_EXPLANATION"
 msgstr "Posizionando una fabbrica avanzerai alla fase industriale. Passare alla fase successiva?"
 
 msgid "CONFIRM_MOVE_TO_SPACE_STAGE"
-msgstr "Spostarsi alla Fase Spaziale?"
+msgstr "Spostarsi alla fase spaziale?"
 
 msgid "CONFIRM_MOVE_TO_SPACE_STAGE_EXPLANATION"
 msgstr ""
-"Ora puoi avanzare alla Fase Spaziale lanciando la tua prima navicella.\n"
+"Ora puoi avanzare alla fase spaziale lanciando la tua prima navicella.\n"
 "\n"
-"Per ora nei prototipi non è possibile tornare sul proprio pianeta, ma il piano finale è quello di consentire lo zoom avanti e indietro sui pianeti senza problemi nella fase spaziale.\n"
+"Per ora nei prototipi non è possibile tornare sul proprio pianeta, ma il piano finale è di permettere nella fase spaziale di sfrecciare avanti e indietro sui pianeti senza problemi.\n"
 "\n"
 "L'annullamento del lancio distruggerà l'unità della navicella. Sei sicuro di lanciare la navicella spaziale?"
 
@@ -1016,13 +1031,13 @@ msgid "CONSTRUCTION_UNIT_NAME"
 msgstr "Unità: {0}"
 
 msgid "CONTENT_UPLOADED_FROM"
-msgstr "I contenuti del Workshop saranno caricati da questa cartella: {0}"
+msgstr "I contenuti del seminario saranno caricati da questa cartella: {0}"
 
 msgid "CONTINUE"
 msgstr "Continua"
 
 msgid "CONTINUE_AS_SPECIES"
-msgstr "[center]Il gioco non è ancora finito, però. Si può [b]continuare[/b] passando a giocare nei panni della specie {0} con una popolazione di {1}.[/center]"
+msgstr "[center]Tuttavia il gioco non è ancora finito. Puoi [b]continuare[/b] giocando nei panni della specie {0} con una popolazione di {1}.[/center]"
 
 msgid "CONTINUE_THRIVING"
 msgstr "Continua a prosperare"
@@ -1031,16 +1046,16 @@ msgid "CONTINUE_TO_PROTOTYPES"
 msgstr ""
 "[b]Avete raggiunto la fine della parte “completa” di Thrive.[/b]\n"
 "\n"
-"Se volete, potete continuare con i [b]prototipi di fase successiva[/b] inclusi nel gioco.\n"
+"Se volete, potete continuare con i [b]prototipi di fasi successive[/b] inclusi nel gioco.\n"
 "\n"
-"Questi possono risultare incompleti, utilizzare grafica provvisoria e, in generale, risultare grezzi. Sono stati inclusi per mostrare la potenziale direzione futura del gioco e la nostra visione generale di come le varie fasi sono collegate tra loro.\n"
+"Questi potrebbero essere incompleti, utilizzare una grafica provvisoria e, in generale, risultare grezzi. Sono stati inclusi per mostrare la potenziale direzione futura del gioco e la nostra visione generale di come le varie fasi sono collegate tra loro.\n"
 "\n"
 "Se si continua, durante la maggior parte dei prototipi [b]non sarà possibile salvare[/b] o tornare alla fase precedente. Se si vuole tornare a [i]questa[/i] fase, si prega di effettuare un [b]salvataggio ora[/b] prima di procedere.\n"
 "\n"
-"Anche il supporto dei controller è incompleto nei prototipi. Se si sceglie di continuare, è bene comprendere che le fasi successive sono prototipi e quindi non lamentarsi della loro parziale incompletezza."
+"Anche il supporto dei controller è incompleto nei prototipi. Se scegli di continuare, è bene comprendere che le fasi successive sono sperimentali e quindi non lamentarsi della loro incompletezza."
 
 msgid "CONTINUE_TO_PROTOTYPES_PROMPT"
-msgstr "Continuare ai prototipi?"
+msgstr "Continuare alla fase prototipi?"
 
 msgid "CONTROLLER_ANY_DEVICE"
 msgstr "Qualsiasi dispositivo"
@@ -1052,10 +1067,10 @@ msgid "CONTROLLER_AXIS_LEFT_TRIGGER"
 msgstr "Grilletto sinistro"
 
 msgid "CONTROLLER_AXIS_LEFT_X"
-msgstr "Analogico sinistro orizzontale"
+msgstr "Levetta sinistra orizzontale"
 
 msgid "CONTROLLER_AXIS_LEFT_Y"
-msgstr "Analogico sinistro verticale"
+msgstr "Levetta sinistra verticale"
 
 msgid "CONTROLLER_AXIS_NEGATIVE_DIRECTION"
 msgstr "Direzione negativa"
@@ -1070,10 +1085,10 @@ msgid "CONTROLLER_AXIS_RIGHT_TRIGGER"
 msgstr "Grilletto destro"
 
 msgid "CONTROLLER_AXIS_RIGHT_X"
-msgstr "Analogico destro orizzontale"
+msgstr "Levetta destra orizzontale"
 
 msgid "CONTROLLER_AXIS_RIGHT_Y"
-msgstr "Analogico destro verticale"
+msgstr "Levetta destra verticale"
 
 msgid "CONTROLLER_AXIS_VISUALIZERS"
 msgstr "Visualizzatori degli assi del controller:"
@@ -1195,7 +1210,7 @@ msgid "CONTROLLER_DEADZONE_COLON"
 msgstr "Zona morta:"
 
 msgid "CONTROLLER_PROMPT_TYPE_SETTING"
-msgstr ""
+msgstr "Tipo di richiesta del pulsante del controller:"
 
 msgid "CONTROLLER_SENSITIVITY"
 msgstr "Sensibilità controller"
@@ -1308,9 +1323,8 @@ msgstr "CTRL"
 msgid "CURRENT_CACHE_SIZE"
 msgstr "Dimensione attuale:"
 
-#, fuzzy
 msgid "CURRENT_CACHE_SIZE_TOOLTIP"
-msgstr "Secerni mucillagine"
+msgstr "Dimensioni di tutti gli elementi della cache attualmente archiviati sul disco. Possono essere tranquillamente cancellati in qualsiasi momento, ma quando un elemento che sarebbe stato nella cache è necessario di nuovo, la generazione richiederà più tempo."
 
 msgid "CURRENT_DEVELOPERS"
 msgstr "Sviluppatori attuali"
@@ -1383,13 +1397,11 @@ msgstr "Attiva il ciclo giorno/notte"
 msgid "DAY_NIGHT_CYCLE_ENABLED_EXPLANATION_2"
 msgstr "(la fotosintesi diventa inefficace durante la notte, richiedendo una maggiore pianificazione)"
 
-#, fuzzy
 msgid "DEADZONE_CALIBRATION_FINISHED"
-msgstr "Ulteriori controlli hanno rilevato un problema: {0}"
+msgstr "La calibrazione della zona morta è terminata. Le zone aggiornate sono visualizzate di seguito sui visualizzatori dei valori degli assi."
 
-#, fuzzy
 msgid "DEADZONE_CALIBRATION_INPROGRESS"
-msgstr "Percentuale di completamento di questa traduzione: {0}%"
+msgstr "La calibrazione della zona morta è in corso. Non toccare alcun pulsante o stick sul controller e attendi qualche secondo."
 
 msgid "DEADZONE_CALIBRATION_IS_RESET"
 msgstr "Le calibrazioni della zona morta sono state resettate"
@@ -1406,7 +1418,7 @@ msgstr ""
 "Guardando le coordinate: {1}"
 
 msgid "DEBUG_DRAW_NOT_AVAILABLE"
-msgstr ""
+msgstr "Il debug della fisica non è disponibile in questa versione"
 
 #, fuzzy
 msgid "DEBUG_HEAT_AT_CURSOR"
@@ -1418,12 +1430,11 @@ msgstr "Pannello di debug"
 msgid "DECEMBER"
 msgstr "Dicembre"
 
-#, fuzzy
 msgid "DECREASE_ITEM_SIZE"
-msgstr "Secerni mucillagine"
+msgstr "Riduci le dimensioni dell'oggetto"
 
 msgid "DEFAULT_AUDIO_OUTPUT_DEVICE"
-msgstr "Dispositivo di output audio di default"
+msgstr "Dispositivo di output predefinito"
 
 msgid "DELETE"
 msgstr "Rimuovi"
@@ -1445,7 +1456,7 @@ msgid "DELETE_ORGANELLE"
 msgstr "Rimuovi organulo"
 
 msgid "DELETE_SAVE_CONFIRMATION"
-msgstr "Eliminare questo salvataggio è un'operazione irreversibile. Non potrai recuperarlo. Sei sicuro di volerlo fare?"
+msgstr "L'eliminazione di questo salvataggio è un'azione irreversibile. Vuoi davvero eliminarlo definitivamente?"
 
 msgid "DELETE_SELECTED"
 msgstr "Elimina i selezionati"
@@ -1459,20 +1470,19 @@ msgstr "Eliminare i file selezionati è un'azione irreversibile. Sei sicuro di v
 msgid "DELETE_THIS_SAVE_PROMPT"
 msgstr "Cancellare questo salvataggio?"
 
-#, fuzzy
 msgid "DESCEND_BUTTON"
-msgstr "Discesa"
+msgstr "Discendi"
 
 msgid "DESCEND_CONFIRMATION"
-msgstr "Sei sicuro di voler scendere?"
+msgstr "Sei sicuro di voler discendere?"
 
-#, fuzzy
 msgid "DESCEND_CONFIRMATION_EXPLANATION"
 msgstr ""
-"I microbi aggressivi inseguono le prede per grandi distanze\n"
-"e sono più propensi a combattere quando aggrediti.\n"
-"I microbi pacifici, invece, ignorano i soggetti lontani\n"
-"e sono meno inclini a sparare tossine ai propri predatori."
+"Discendere rimuoverà il tuo stato asceso e ti riporterà allo stadio di microbo. Da lì puoi rigiocare il gioco nel salvataggio corrente.\n"
+"\n"
+"Riceverai un vantaggio per l'involuzione nella nuova partita. In una versione futura sarai in grado di scegliere tu stesso il vantaggio, ma per ora sarà sempre una riduzione del 20% dell'osmoregolazione.\n"
+"\n"
+"Una volta confermata la discesa, puoi modificare le impostazioni di gioco per scegliere un nuovo seme del mondo da giocare su una mappa diversa o disattivare LAWK, ad esempio."
 
 msgid "DESCRIPTION"
 msgstr "Descrizione:"
@@ -1499,24 +1509,20 @@ msgstr ""
 msgid "DEVELOPERS"
 msgstr "Sviluppatori"
 
-#, fuzzy
 msgid "DEVELOPMENT_FORUM"
-msgstr "Sviluppo sostenuto da Revolutionary Games Studio ry"
+msgstr "Forum di sviluppo"
 
-#, fuzzy
 msgid "DEVELOPMENT_FORUM_BUTTON_TOOLTIP"
-msgstr "Apri l'editor e modifica la tua specie"
+msgstr "Visualizza gli aggiornamenti sullo sviluppo sul nostro forum dedicato"
 
 msgid "DEVELOPMENT_SUPPORTED_BY"
 msgstr "Sviluppo sostenuto da Revolutionary Games Studio ry"
 
-#, fuzzy
 msgid "DEVELOPMENT_WIKI"
-msgstr "Sviluppatori"
+msgstr "Wiki per sviluppatori"
 
-#, fuzzy
 msgid "DEVELOPMENT_WIKI_BUTTON_TOOLTIP"
-msgstr "Come giocare"
+msgstr "Visita la nostra wiki per sviluppatori"
 
 msgid "DEVOURED"
 msgstr "Divorato"
@@ -1527,9 +1533,17 @@ msgstr "Sostenitori Devbuilds"
 msgid "DIFFICULTY"
 msgstr "Difficoltà"
 
-#, fuzzy
 msgid "DIFFICULTY_DETAILS_STRING"
-msgstr "Preimpostazione di difficoltà"
+msgstr ""
+"Difficoltà preimpostata: {0}\n"
+"Moltiplicatore del costo di mutazione: {1}\n"
+"Tasso di mutazione AI: {2}\n"
+"Densità della nuvola composta: {3}\n"
+"Penalità della popolazione per morte del giocatore: {4}\n"
+"Ritenzione di glucosio ambientale: {5}\n"
+"Moltiplicatore del costo di osmoregolazione: {6}\n"
+"Nuvola di glucosio libera quando si esce dall'editor: {7}\n"
+"Uso del limite composto di crescita: {8}"
 
 msgid "DIFFICULTY_PRESET"
 msgstr "Preimpostazione di difficoltà"
@@ -1547,16 +1561,16 @@ msgid "DIFFICULTY_PRESET_NORMAL"
 msgstr "Normale"
 
 msgid "DIGESTION_EFFICIENCY"
-msgstr "Efficienza di digestione"
+msgstr "Efficienza della digestione"
 
 msgid "DIGESTION_EFFICIENCY_COLON"
 msgstr "Efficienza di digestione:"
 
 msgid "DIGESTION_SPEED"
-msgstr "Velocità di digestione"
+msgstr "Velocità della digestione"
 
 msgid "DIGESTION_SPEED_COLON"
-msgstr "Velocità di digestione:"
+msgstr "Velocità della digestione:"
 
 msgid "DIGESTION_SPEED_VALUE"
 msgstr "{0}/s"
@@ -1565,17 +1579,16 @@ msgid "DISABLED"
 msgstr "Disattivato"
 
 msgid "DISABLE_ALL"
-msgstr "Disattiva tutte"
+msgstr "Disattiva tutto"
 
 msgid "DISCARD_AND_CONTINUE"
-msgstr "Continua senza salvare"
+msgstr "Ignora e continua"
 
 msgid "DISCARD_CHANGES"
-msgstr "Abbandona le modifiche"
+msgstr "Scarta le modifiche"
 
-#, fuzzy
 msgid "DISCARD_MIGRATION"
-msgstr "Continua senza salvare"
+msgstr "Ignora la migrazione"
 
 msgid "DISCONNECTED_CELLS"
 msgstr "Cellule disconnesse"
@@ -2797,8 +2810,9 @@ msgstr ""
 msgid "IRON"
 msgstr "Ferro"
 
-msgid "IRON_CHEMOLITHOAUTOTROPHY"
-msgstr "Chemiolitoautotrofia del ferro"
+#, fuzzy
+msgid "IRON_OXIDATION"
+msgstr "Donazioni"
 
 #, fuzzy
 msgid "ITCH_TOOLTIP"
@@ -3663,6 +3677,7 @@ msgstr ""
 "\n"
 "Segui la linea dalla tua cellula fino alla nuvola di glucosio più vicina."
 
+#, fuzzy
 msgid "MICROBE_STAGE_COLLECT_TEXT"
 msgstr ""
 "Raccogli glucosio (nuvole bianche) muovendoti sopra di esse.\n"
@@ -3671,6 +3686,7 @@ msgstr ""
 "\n"
 "Segui la linea dalla tua cellula fino alla nuvola di glucosio più vicina."
 
+#, fuzzy
 msgid "MICROBE_STAGE_CONTROL_TEXT"
 msgstr ""
 "Per controllare la tua cellula, usa i tasti mostrati vicino a essa (al centro dello schermo); usa il mouse per controllare la sua direzione.\n"
@@ -3692,6 +3708,7 @@ msgstr ""
 "Recuperi salute se hai ATP disponibile.\n"
 "Assicurati di raccogliere abbastanza glucosio per produrre ATP."
 
+#, fuzzy
 msgid "MICROBE_STAGE_HEALTH_TEXT"
 msgstr ""
 "Tieni d'occhio la barra della tua salute vicino alla barra dell'ATP (in basso a destra).\n"
@@ -3837,6 +3854,9 @@ msgstr "Le istruzioni per creare mod sono disponibili sulla"
 
 msgid "MODELS"
 msgstr "Modelli"
+
+msgid "MODE_CAN_BE_CHANGED_IN_OPTIONS"
+msgstr ""
 
 msgid "MODIFY"
 msgstr "Modifica"
@@ -4256,8 +4276,16 @@ msgstr "Qui nulla"
 msgid "NOTHING_TO_INTERACT_WITH"
 msgstr "Non c'è niente con cui interagire"
 
+#, fuzzy
+msgid "NOTICE_BINDING_OUT_OF_ATP"
+msgstr "Danneggiato a causa della mancanza di ATP"
+
 msgid "NOTICE_DAMAGED_BY_NO_ATP"
 msgstr "Danneggiato a causa della mancanza di ATP"
+
+#, fuzzy
+msgid "NOTICE_ENGULFING_OUT_OF_ATP"
+msgstr "La dimensione corrente della cellula non è sufficiente per inghiottire il bersaglio"
 
 msgid "NOTICE_ENGULF_DAMAGE_FROM_TOXIN"
 msgstr "Danneggiato a causa delle tossine nella materia ingerita"
@@ -4807,6 +4835,10 @@ msgstr "Il giocatore si è estinto"
 msgid "PLAYER_RELATIVE_MOVEMENT"
 msgstr "Il giocatore si è estinto"
 
+#, fuzzy
+msgid "PLAYER_RELATIVE_MOVEMENT_TOOLTIP"
+msgstr "Il giocatore si è estinto"
+
 msgid "PLAYER_REPRODUCED"
 msgstr "il giocatore si è riprodotto"
 
@@ -4890,6 +4922,10 @@ msgstr "Processi cellulari"
 msgid "PROCESS_SPEED_MODIFIER"
 msgstr "Processi cellulari"
 
+#, fuzzy
+msgid "PROCESS_TOGGLE_TOOLTIP"
+msgstr "Torna al menù principale"
+
 msgid "PROGRAMMING_TEAM"
 msgstr "Squadra Programmatori"
 
@@ -4904,6 +4940,10 @@ msgstr "Protoplasma"
 
 msgid "PULL_REQUESTS_PROGRAMMING"
 msgstr "Pull request / programmazione"
+
+#, fuzzy
+msgid "QUADRILLION_ABBREVIATION"
+msgstr "{0} Mld"
 
 msgid "QUICK_LOAD"
 msgstr "Caricamento rapido"
@@ -5033,6 +5073,14 @@ msgstr "Ripristina i comandi"
 
 msgid "RESET_SETTINGS_TO_DEFAULTS"
 msgstr "Predefinite"
+
+#, fuzzy
+msgid "RESET_SHOWN_TUTORIALS"
+msgstr "Mostra i tutorial"
+
+#, fuzzy
+msgid "RESET_SHOWN_TUTORIALS_TOOLTIP"
+msgstr "Tempo trascorso: {0:#,#} anni"
 
 msgid "RESET_TO_DEFAULTS"
 msgstr "Ripristinare le impostazioni predefinite?"
@@ -5297,6 +5345,10 @@ msgstr "Mostra i nomi dei pulsanti di selezione delle parti"
 msgid "SCREEN_RELATIVE_MOVEMENT"
 msgstr "per aumentare la"
 
+#, fuzzy
+msgid "SCREEN_RELATIVE_MOVEMENT_TOOLTIP"
+msgstr "per aumentare la"
+
 msgid "SCROLLLOCK"
 msgstr "Bloc Scroll [Scroll Lock]"
 
@@ -5321,6 +5373,10 @@ msgstr "Secerni mucillagine"
 
 msgid "SEED_LABEL"
 msgstr "Seme del pianeta: {0}"
+
+#, fuzzy
+msgid "SELECTED"
+msgstr "Mod selezionata:"
 
 msgid "SELECTED_COLON"
 msgstr "Selezionati:"
@@ -5355,6 +5411,10 @@ msgstr "Seleziona un tipo di cellula dal pannello Editor per modificarla qui"
 
 msgid "SELECT_ENZYME"
 msgstr "Seleziona l'enzima:"
+
+#, fuzzy
+msgid "SELECT_MOVEMENT_MODE_TITLE"
+msgstr "Rimuovi Dati Locali"
 
 msgid "SELECT_OPTION"
 msgstr "Seleziona un'opzione"
@@ -5392,6 +5452,14 @@ msgid "SHIFT"
 msgstr "Maiusc [Shift]"
 
 #, fuzzy
+msgid "SHOW_ALL_TUTORIALS"
+msgstr "Mostra i tutorial"
+
+#, fuzzy
+msgid "SHOW_ALL_TUTORIALS_TOOLTIP"
+msgstr "Tempo trascorso: {0:#,#} anni"
+
+#, fuzzy
 msgid "SHOW_DAMAGE_EFFECT"
 msgstr "Il flagello è un fascio di proteine simile a una frusta che si estende a partire dalla membrana cellulare. Consuma [thrive:compound type=\"atp\"][/thrive:compound] per ondulare, fornendo così movimento alla cellula. La direzione di tale movimento è opposta alla direzione in cui il flagello punta: per esempio, un flagello posizionato sul lato sinistro della cellula fornisce spinta nel movimento verso destra."
 
@@ -5410,14 +5478,15 @@ msgstr "{1} {0}o/a"
 msgid "SHOW_NEW_PATCH_NOTES_TOOLTIP"
 msgstr "{1} {0}o/a"
 
-msgid "SHOW_TUTORIALS"
-msgstr "Mostra i tutorial"
-
 msgid "SHOW_TUTORIALS_IN_NEW_CURRENT_OPTION"
 msgstr "Mostra i tutorial (nella partita attuale)"
 
 msgid "SHOW_TUTORIALS_IN_NEW_GAMES_OPTION"
 msgstr "Mostra i tutorial (in nuove partite)"
+
+#, fuzzy
+msgid "SHOW_TUTORIALS_OPTION_TOOLTIP"
+msgstr "Tempo trascorso: {0:#,#} anni"
 
 msgid "SHOW_UNSAVED_PROGRESS_WARNING"
 msgstr "Mostra avvertimeto relativo ai progressi non salvati"
@@ -5468,6 +5537,9 @@ msgstr "Silice"
 
 msgid "SILICA_MEMBRANE_DESCRIPTION"
 msgstr "Questa membrana ha una forte parete di silice. Resiste al danno molto bene, in particolare a quello fisico. Inoltre, consuma meno energia per mantenere la forma. Tuttavia, rallenta di molto la cellula e il tasso con cui assorbe le risorse."
+
+msgid "SIXTEEN_TIMES"
+msgstr "16x"
 
 msgid "SIZE_COLON"
 msgstr "Dimensioni:"
@@ -5728,6 +5800,10 @@ msgstr ""
 
 msgid "STORE_LOGGED_IN_AS"
 msgstr "Hai effettuato l'accesso come: {0}"
+
+#, fuzzy
+msgid "STRAIN_BAR_TOOLTIP"
+msgstr "Metti in pausa il gioco"
 
 msgid "STRAIN_BAR_VISIBILITY"
 msgstr ""
@@ -6001,6 +6077,14 @@ msgstr "Mostra eventi locali"
 msgid "TIMELINE_NICHE_FILL"
 msgstr "Nuova specie: [b][u]{0}[/u][/b] si è diramata da [b][u]{1}[/u][/b] per occupare una nicchia"
 
+#, fuzzy
+msgid "TIMELINE_PLAYER_MIGRATED"
+msgstr "Parte della popolazione di [b][u]{0}[/u][/b] è migrata verso {1}"
+
+#, fuzzy
+msgid "TIMELINE_PLAYER_MIGRATED_TO"
+msgstr "Parte della popolazione di [b][u]{0}[/u][/b] è migrata verso {1}"
+
 msgid "TIMELINE_SELECTION_PRESSURE_SPLIT"
 msgstr "Nuova specie: [b][u]{0}[/u][/b] si è diramata da [b][u]{1}[/u][/b] a causa di pressioni selettive diverse"
 
@@ -6018,6 +6102,10 @@ msgstr "La specie [b][u]{0}[/u][/b] si è estinta!"
 
 msgid "TIMELINE_SPECIES_EXTINCT_LOCAL"
 msgstr "La specie [b][u]{0}[/u][/b] è scomparsa da questa zona"
+
+#, fuzzy
+msgid "TIMELINE_SPECIES_FOLLOWED"
+msgstr "La specie [b][u]{0}[/u][/b] si è estinta!"
 
 msgid "TIMELINE_SPECIES_MIGRATED_FROM"
 msgstr "Parte della popolazione di [b][u]{0}[/u][/b] è migrata in questa zona da {1}"
@@ -6253,6 +6341,10 @@ msgid "TRANSPARENCY"
 msgstr "Trasparenza"
 
 #, fuzzy
+msgid "TRILLION_ABBREVIATION"
+msgstr "{0} Mld"
+
+#, fuzzy
 msgid "TRY_FOSSILISING_SOME_SPECIES"
 msgstr "Prova a scattare qualche screenshot!"
 
@@ -6264,6 +6356,10 @@ msgstr "Prova a scattare qualche screenshot!"
 
 msgid "TUTORIAL"
 msgstr "Tutorial"
+
+#, fuzzy
+msgid "TUTORIAL_ALL_NOT_ENABLED_EXPLANATION"
+msgstr "(comincia ogni generazione vicino a una nuvola di glucosio)"
 
 #, fuzzy
 msgid "TUTORIAL_MICROBE_EDITOR_ATP_BALANCE_INTRO"
@@ -6286,6 +6382,7 @@ msgstr ""
 "\n"
 "Puoi vedere informazioni più dettagliate premendo il punto di domanda all'interno del pannello. Premilo per continuare."
 
+#, fuzzy
 msgid "TUTORIAL_MICROBE_EDITOR_CELL_TEXT"
 msgstr ""
 "Questo è l'editor delle cellule. Qui puoi evolvere la tua specie spendendo punti mutazione (PM). A ogni generazione avrai a disposizione esattamente 100 PM, quindi non preoccuparti di risparmiare!\n"
@@ -6303,6 +6400,7 @@ msgstr ""
 "\n"
 "Per continuare, seleziona una parte dal pannello a sinistra. Poi, fai clic sinistro vicino all'esagono per posizionarla. Puoi ruotare le parti con [thrive:input]e_rotate_left[/thrive:input] e [thrive:input]e_rotate_right[/thrive:input]."
 
+#, fuzzy
 msgid "TUTORIAL_MICROBE_EDITOR_ENDING_TEXT"
 msgstr ""
 "Questi sono i concetti base per la modifica della tua specie; ma per darle un tocco finale, hai anche l'opzione di rinominarla. Per farlo, fai clic sul suo nome attuale in basso a sinistra e modifica il testo.\n"
@@ -6366,6 +6464,7 @@ msgstr ""
 "\n"
 "Prova a selezionare una zona per continuare."
 
+#, fuzzy
 msgid "TUTORIAL_MICROBE_EDITOR_PATCH_TEXT"
 msgstr ""
 "Questa è la mappa delle zone.\n"
@@ -6394,6 +6493,7 @@ msgstr ""
 "\n"
 "Premi il pulsante \"Rispristina l'ultima azione\" (vicino al precedente) per continuare."
 
+#, fuzzy
 msgid "TUTORIAL_MICROBE_EDITOR_STAY_SMALL"
 msgstr ""
 "Dovresti concentrarti su una o due fonti di energia; così, non avrai bisogno di raccogliere troppe risorse diverse per produrre abbastanza ATP e sopravvivere.\n"
@@ -6433,6 +6533,7 @@ msgstr ""
 "\n"
 "Se è piena, non potrai inglobare altre cose, e dovrai aspettare che uno o più contenuti vengano digeriti completamente."
 
+#, fuzzy
 msgid "TUTORIAL_MICROBE_STAGE_ENGULFMENT_TEXT"
 msgstr ""
 "Per fagocitare degli oggetti, passaci sopra con la modalità apposita, attivata con [thrive:input]g_toggle_engulf[/thrive:input].\n"
@@ -6456,6 +6557,7 @@ msgstr ""
 "\n"
 "Segui la linea dalla tua cellula al più vicino oggetto inglobabile."
 
+#, fuzzy
 msgid "TUTORIAL_MICROBE_STAGE_REPRODUCE_TEXT"
 msgstr ""
 "Per riprodurti, devi duplicare tutti i tuoi organuli. Per farlo, devi raccogliere abbastanza ammoniaca e fosfati.\n"
@@ -6794,6 +6896,9 @@ msgstr ""
 
 msgid "VIEW_SOURCE_CODE"
 msgstr "Vedi codice sorgente"
+
+msgid "VIEW_TEXT_REPORT"
+msgstr ""
 
 msgid "VIP_PATRONS"
 msgstr "Sostenitori VIP"
@@ -8707,6 +8812,9 @@ msgstr "Zoom avanti"
 msgid "ZOOM_OUT"
 msgstr "Zoom indietro"
 
+#~ msgid "IRON_CHEMOLITHOAUTOTROPHY"
+#~ msgstr "Chemiolitoautotrofia del ferro"
+
 #, fuzzy
 #~ msgid "PASSIVE_REPRODUCTION_PROGRESS"
 #~ msgstr "(velocità di mutazione delle specie controllate dall'intelligenza artificiale)"
@@ -9070,9 +9178,6 @@ msgstr "Zoom indietro"
 
 #~ msgid "GLES2"
 #~ msgstr "GLES2"
-
-#~ msgid "SIXTEEN_TIMES"
-#~ msgstr "16x"
 
 #, fuzzy
 #~ msgid "TARGET_TIME"

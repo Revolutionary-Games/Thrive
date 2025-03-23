@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Globalization;
 using System.Linq;
 using Components;
 using Godot;
@@ -460,9 +461,15 @@ public partial class CreatureStageHUDBase<TStage> : HUDWithPausing, ICreatureSta
         UpdateSpeedModeDisplay();
     }
 
-    public void SendEditorButtonToTutorial(TutorialState tutorialState)
+    public void SendObjectsToTutorials(TutorialState tutorialState)
     {
         tutorialState.MicrobePressEditorButton.PressEditorButtonControl = editorButton;
+
+        tutorialState.GlucoseCollecting.CompoundPanels = compoundsPanel;
+        tutorialState.GlucoseCollecting.HUDBottomBar = bottomLeftBar;
+
+        tutorialState.DayNightTutorial.EnvironmentPanel = environmentPanel;
+        tutorialState.DayNightTutorial.HUDBottomBar = bottomLeftBar;
     }
 
     /// <summary>
@@ -693,6 +700,36 @@ public partial class CreatureStageHUDBase<TStage> : HUDWithPausing, ICreatureSta
     }
 
     /// <summary>
+    ///   Hides both the compounds panel and the environment panel for tutorial purposes
+    /// </summary>
+    public void HideEnvironmentAndCompoundPanels()
+    {
+        compoundsPanel.ShowPanel = false;
+        bottomLeftBar.CompoundsPressed = false;
+
+        environmentPanel.ShowPanel = false;
+        bottomLeftBar.EnvironmentPressed = false;
+    }
+
+    /// <summary>
+    ///   Restores the compound panel after it was closed for the tutorial
+    /// </summary>
+    public void ShowCompoundPanel()
+    {
+        compoundsPanel.ShowPanel = true;
+        bottomLeftBar.CompoundsPressed = true;
+    }
+
+    /// <summary>
+    ///   Restores the environment panel after it was closed for the tutorial
+    /// </summary>
+    public void ShowEnvironmentPanel()
+    {
+        environmentPanel.ShowPanel = true;
+        bottomLeftBar.EnvironmentPressed = true;
+    }
+
+    /// <summary>
     ///   Creates and displays a fossilisation button above each on-screen organism.
     /// </summary>
     protected virtual void ShowFossilisationButtons()
@@ -864,17 +901,26 @@ public partial class CreatureStageHUDBase<TStage> : HUDWithPausing, ICreatureSta
     protected void UpdatePopulation()
     {
         var playerSpecies = stage!.GameWorld.PlayerSpecies;
-        var population = stage.GameWorld.Map.CurrentPatch!.GetSpeciesGameplayPopulation(playerSpecies);
+        double population = stage.GameWorld.Map.CurrentPatch!.GetSpeciesGameplayPopulation(playerSpecies);
 
         if (population <= 0 && stage.HasPlayer)
             population = 1;
 
+        // To not confuse the player that might see a 1 as the population but still seeing plenty of their species
+        // scale up the displayed numbers
+        if (playerSpecies is MicrobeSpecies or MulticellularSpecies)
+        {
+            // Scale is trillions
+            population *= Constants.MICROBE_POPULATION_MULTIPLIER;
+        }
+
         // TODO: skip updating the label if value has not changed to save on memory allocations
         populationLabel.Text = population.FormatNumber();
+        populationLabel.TooltipText = population.ToString("N0", CultureInfo.CurrentCulture);
     }
 
     /// <summary>
-    ///   Updates the GUI bars to show only needed compounds
+    ///   Updates the GUI bars to show only the necessary compounds
     /// </summary>
     protected void UpdateNeededBars()
     {

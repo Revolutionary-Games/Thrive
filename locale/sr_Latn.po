@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2025-03-09 11:58-0300\n"
+"POT-Creation-Date: 2025-03-20 10:30+0200\n"
 "PO-Revision-Date: 2025-02-06 13:29+0000\n"
 "Last-Translator: Anonymous <noreply@weblate.org>\n"
 "Language-Team: Serbian (Latin script) <https://translate.revolutionarygamesstudio.com/projects/thrive/thrive-game/sr_Latn/>\n"
@@ -195,6 +195,9 @@ msgstr "Anaerobna Fiksacija Azota"
 msgid "AND_UNLOCK_CONDITION"
 msgstr ""
 
+msgid "ANISOTROPIC_FILTERING"
+msgstr ""
+
 #, fuzzy
 msgid "APPEARANCE"
 msgstr "Performanse"
@@ -320,6 +323,10 @@ msgstr "{0:F1}% završeno. {1:n0}/{2:n0} koraka."
 #, fuzzy
 msgid "AUTO-EVO_PREDICTION_BOX_DESCRIPTION"
 msgstr "Moć ćelije. Mitohondrion (množina: mitohondrije) je dvostruka membranska struktura ispunjena proteinima i enzimima. To je prokariot koji je asimilirao za upotrebu od svog eukariotskog domaćina. U stanju je da pretvori glukozu u ATP sa mnogo većom efikasnošću nego što se to može učiniti u citoplazmi u procesu koji se naziva aerobno disanje. Međutim, potreban mu je kiseonik da bi funkcionisao, a niži nivoi kiseonika u okolini usporiće brzinu njegove proizvodnje ATP."
+
+#, fuzzy
+msgid "AUTO-EVO_RESULTS_TITLE"
+msgstr "Rezultati automatske-evolucije:"
 
 msgid "AUTO-EVO_STEPS_DONE"
 msgstr "{0:F1}% završeno. {1:n0}/{2:n0} koraka."
@@ -667,6 +674,10 @@ msgstr "Nastaviti"
 msgid "CELL_STAT_SPEED_TOOLTIP"
 msgstr "Nastaviti"
 
+#, fuzzy
+msgid "CELL_STAT_STORAGE_TOOLTIP"
+msgstr "Nastaviti"
+
 msgid "CELL_TYPE_BUTTON_ATP_CONSUMPTION"
 msgstr ""
 
@@ -809,6 +820,9 @@ msgid "CLEAN_UP_OLD_SAVES"
 msgstr ""
 
 msgid "CLEAR_CACHE"
+msgstr ""
+
+msgid "CLICK_TO_SELECT"
 msgstr ""
 
 msgid "CLOSE"
@@ -2786,8 +2800,9 @@ msgstr ""
 msgid "IRON"
 msgstr "Gvožđe"
 
-msgid "IRON_CHEMOLITHOAUTOTROPHY"
-msgstr "Hemolitoautotrofija gvožđa"
+#, fuzzy
+msgid "IRON_OXIDATION"
+msgstr "Opcije"
 
 #, fuzzy
 msgid "ITCH_TOOLTIP"
@@ -3751,6 +3766,9 @@ msgstr ""
 msgid "MODELS"
 msgstr ""
 
+msgid "MODE_CAN_BE_CHANGED_IN_OPTIONS"
+msgstr ""
+
 msgid "MODIFY"
 msgstr ""
 
@@ -4144,7 +4162,14 @@ msgstr "Ništa ovde"
 msgid "NOTHING_TO_INTERACT_WITH"
 msgstr ""
 
+#, fuzzy
+msgid "NOTICE_BINDING_OUT_OF_ATP"
+msgstr "Prebacite gutanje"
+
 msgid "NOTICE_DAMAGED_BY_NO_ATP"
+msgstr ""
+
+msgid "NOTICE_ENGULFING_OUT_OF_ATP"
 msgstr ""
 
 msgid "NOTICE_ENGULF_DAMAGE_FROM_TOXIN"
@@ -4687,6 +4712,10 @@ msgstr "igrač je umro"
 msgid "PLAYER_RELATIVE_MOVEMENT"
 msgstr "igrač je umro"
 
+#, fuzzy
+msgid "PLAYER_RELATIVE_MOVEMENT_TOOLTIP"
+msgstr "igrač je umro"
+
 msgid "PLAYER_REPRODUCED"
 msgstr "Igrač se reprodukovao"
 
@@ -4773,6 +4802,10 @@ msgstr ""
 msgid "PROCESS_SPEED_MODIFIER"
 msgstr ""
 
+#, fuzzy
+msgid "PROCESS_TOGGLE_TOOLTIP"
+msgstr "Vratite se u Meni"
+
 msgid "PROGRAMMING_TEAM"
 msgstr ""
 
@@ -4786,6 +4819,9 @@ msgid "PROTOPLASM"
 msgstr "Protoplazma"
 
 msgid "PULL_REQUESTS_PROGRAMMING"
+msgstr ""
+
+msgid "QUADRILLION_ABBREVIATION"
 msgstr ""
 
 msgid "QUICK_LOAD"
@@ -4923,6 +4959,13 @@ msgstr "Resetujte Unosi"
 
 msgid "RESET_SETTINGS_TO_DEFAULTS"
 msgstr "Podrazumevane vrednosti"
+
+msgid "RESET_SHOWN_TUTORIALS"
+msgstr ""
+
+#, fuzzy
+msgid "RESET_SHOWN_TUTORIALS_TOOLTIP"
+msgstr "Dodajte novo vezivanje tastera"
 
 msgid "RESET_TO_DEFAULTS"
 msgstr "Resetuj do početnog?"
@@ -5193,6 +5236,10 @@ msgstr "Sposobnosti"
 msgid "SCREEN_RELATIVE_MOVEMENT"
 msgstr "za povećanje kretanja"
 
+#, fuzzy
+msgid "SCREEN_RELATIVE_MOVEMENT_TOOLTIP"
+msgstr "za povećanje kretanja"
+
 msgid "SCROLLLOCK"
 msgstr ""
 
@@ -5217,6 +5264,10 @@ msgstr "Nastaviti"
 
 msgid "SEED_LABEL"
 msgstr ""
+
+#, fuzzy
+msgid "SELECTED"
+msgstr "Zatvoriti opcije?"
 
 msgid "SELECTED_COLON"
 msgstr ""
@@ -5257,6 +5308,9 @@ msgstr ""
 msgid "SELECT_ENZYME"
 msgstr "Zatvoriti opcije?"
 
+msgid "SELECT_MOVEMENT_MODE_TITLE"
+msgstr ""
+
 #, fuzzy
 msgid "SELECT_OPTION"
 msgstr "Zatvoriti opcije?"
@@ -5293,6 +5347,13 @@ msgstr "Tom od zvučnih efekata"
 msgid "SHIFT"
 msgstr "Shift"
 
+msgid "SHOW_ALL_TUTORIALS"
+msgstr ""
+
+#, fuzzy
+msgid "SHOW_ALL_TUTORIALS_TOOLTIP"
+msgstr "Dodajte novo vezivanje tastera"
+
 #, fuzzy
 msgid "SHOW_DAMAGE_EFFECT"
 msgstr "Bič (množina: bičevi) je snop proteinskih vlakana koji se proteže od ćelijske membrane koja može da koristi ATP da bi se povaljao i pokrenuo ćeliju u pravcu."
@@ -5311,9 +5372,6 @@ msgstr "Pećina"
 msgid "SHOW_NEW_PATCH_NOTES_TOOLTIP"
 msgstr "Pećina"
 
-msgid "SHOW_TUTORIALS"
-msgstr ""
-
 #, fuzzy
 msgid "SHOW_TUTORIALS_IN_NEW_CURRENT_OPTION"
 msgstr "Prikaži vodiče (u trenutnoj igri)"
@@ -5321,6 +5379,10 @@ msgstr "Prikaži vodiče (u trenutnoj igri)"
 #, fuzzy
 msgid "SHOW_TUTORIALS_IN_NEW_GAMES_OPTION"
 msgstr "Prikaži vodiče (u novim igrama)"
+
+#, fuzzy
+msgid "SHOW_TUTORIALS_OPTION_TOOLTIP"
+msgstr "Dodajte novo vezivanje tastera"
 
 #, fuzzy
 msgid "SHOW_UNSAVED_PROGRESS_WARNING"
@@ -5388,6 +5450,10 @@ msgstr "Silicijum-Dioksid"
 
 msgid "SILICA_MEMBRANE_DESCRIPTION"
 msgstr "Ova membrana ima jak zid od silicijum dioksida. Može se dobro odupreti ukupnoj šteti i vrlo je otporan na fizička oštećenja. Takođe zahteva manje energije za održavanje forme. Međutim, usporava ćeliju velikim faktorom i ćelija apsorbuje resurse smanjenom brzinom."
+
+#, fuzzy
+msgid "SIXTEEN_TIMES"
+msgstr "Vrste:"
 
 msgid "SIZE_COLON"
 msgstr "Veličina:"
@@ -5645,6 +5711,10 @@ msgstr ""
 
 msgid "STORE_LOGGED_IN_AS"
 msgstr ""
+
+#, fuzzy
+msgid "STRAIN_BAR_TOOLTIP"
+msgstr "Dodajte novo vezivanje tastera"
 
 msgid "STRAIN_BAR_VISIBILITY"
 msgstr ""
@@ -5914,6 +5984,12 @@ msgstr ""
 msgid "TIMELINE_NICHE_FILL"
 msgstr "genetski kod:"
 
+msgid "TIMELINE_PLAYER_MIGRATED"
+msgstr ""
+
+msgid "TIMELINE_PLAYER_MIGRATED_TO"
+msgstr ""
+
 #, fuzzy
 msgid "TIMELINE_SELECTION_PRESSURE_SPLIT"
 msgstr "se proširila na zone:"
@@ -5927,6 +6003,10 @@ msgstr ""
 
 msgid "TIMELINE_SPECIES_EXTINCT_LOCAL"
 msgstr ""
+
+#, fuzzy
+msgid "TIMELINE_SPECIES_FOLLOWED"
+msgstr "genetski kod:"
 
 msgid "TIMELINE_SPECIES_MIGRATED_FROM"
 msgstr ""
@@ -6155,6 +6235,9 @@ msgstr ""
 msgid "TRANSPARENCY"
 msgstr ""
 
+msgid "TRILLION_ABBREVIATION"
+msgstr ""
+
 #, fuzzy
 msgid "TRY_FOSSILISING_SOME_SPECIES"
 msgstr "Napravite snimak ekrana"
@@ -6168,6 +6251,10 @@ msgstr "Napravite snimak ekrana"
 
 msgid "TUTORIAL"
 msgstr ""
+
+#, fuzzy
+msgid "TUTORIAL_ALL_NOT_ENABLED_EXPLANATION"
+msgstr "Izbodite druge ćelije sa ovo."
 
 #, fuzzy
 msgid "TUTORIAL_MICROBE_EDITOR_ATP_BALANCE_INTRO"
@@ -6586,6 +6673,9 @@ msgstr ""
 
 msgid "VIEW_SOURCE_CODE"
 msgstr "Pogledajte Izvorni Kod"
+
+msgid "VIEW_TEXT_REPORT"
+msgstr ""
 
 msgid "VIP_PATRONS"
 msgstr ""
@@ -8490,6 +8580,9 @@ msgstr "Zumirati"
 msgid "ZOOM_OUT"
 msgstr "Odzumirati"
 
+#~ msgid "IRON_CHEMOLITHOAUTOTROPHY"
+#~ msgstr "Hemolitoautotrofija gvožđa"
+
 #, fuzzy
 #~ msgid "PASSIVE_REPRODUCTION_PROGRESS"
 #~ msgstr "Broj populacije od {0} promenio se za {1} zbog: {2}"
@@ -8805,10 +8898,6 @@ msgstr "Odzumirati"
 #, fuzzy
 #~ msgid "LOOKING_AT"
 #~ msgstr "Pritisnite dugme poništi u uređivaču da biste ispravili grešku"
-
-#, fuzzy
-#~ msgid "SPECIES_N_TIMES"
-#~ msgstr "Vrste:"
 
 #, fuzzy
 #~ msgid "CONFIRM_NORMAL"

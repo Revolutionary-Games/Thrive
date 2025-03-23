@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2025-03-09 11:58-0300\n"
+"POT-Creation-Date: 2025-03-20 10:30+0200\n"
 "PO-Revision-Date: 2025-01-21 12:01+0000\n"
 "Last-Translator: Anonymous <noreply@weblate.org>\n"
 "Language-Team: Spanish (Argentina) <https://translate.revolutionarygamesstudio.com/projects/thrive/thrive-game/es_AR/>\n"
@@ -192,6 +192,9 @@ msgstr "Fijación anaeróbica de nitrógeno"
 msgid "AND_UNLOCK_CONDITION"
 msgstr "y"
 
+msgid "ANISOTROPIC_FILTERING"
+msgstr ""
+
 msgid "APPEARANCE"
 msgstr "Apariencia"
 
@@ -327,6 +330,10 @@ msgid "AUTO-EVO_PREDICTION_BOX_DESCRIPTION"
 msgstr ""
 "Este panel muestra la energía total esperada recolectada y cifras de población (en paréntesis) desde auto-evo para las especies editadas\n"
 "Auto-Evo ejecuta la simulación de población, que es la otra parte (además de tu propio rendimiento) que afecta tu población."
+
+#, fuzzy
+msgid "AUTO-EVO_RESULTS_TITLE"
+msgstr "Resultado del Auto-evo:"
 
 msgid "AUTO-EVO_STEPS_DONE"
 msgstr "{0:F1}% hecho. {1:n0}/{2:n0} pasos."
@@ -657,6 +664,10 @@ msgstr "Activar/Desactivar engullir"
 msgid "CELL_STAT_SPEED_TOOLTIP"
 msgstr "Activar/Desactivar engullir"
 
+#, fuzzy
+msgid "CELL_STAT_STORAGE_TOOLTIP"
+msgstr "Activar/Desactivar engullir"
+
 msgid "CELL_TYPE_BUTTON_ATP_CONSUMPTION"
 msgstr ""
 
@@ -783,6 +794,9 @@ msgid "CLEAN_UP_OLD_SAVES"
 msgstr ""
 
 msgid "CLEAR_CACHE"
+msgstr ""
+
+msgid "CLICK_TO_SELECT"
 msgstr ""
 
 msgid "CLOSE"
@@ -2696,8 +2710,9 @@ msgstr "Protanopia (Rojo-verde)"
 msgid "IRON"
 msgstr "Hierro"
 
-msgid "IRON_CHEMOLITHOAUTOTROPHY"
-msgstr ""
+#, fuzzy
+msgid "IRON_OXIDATION"
+msgstr "Resolución:"
 
 msgid "ITCH_TOOLTIP"
 msgstr ""
@@ -3723,6 +3738,9 @@ msgstr ""
 msgid "MODELS"
 msgstr ""
 
+msgid "MODE_CAN_BE_CHANGED_IN_OPTIONS"
+msgstr ""
+
 msgid "MODIFY"
 msgstr ""
 
@@ -4107,7 +4125,14 @@ msgstr ""
 msgid "NOTHING_TO_INTERACT_WITH"
 msgstr ""
 
+#, fuzzy
+msgid "NOTICE_BINDING_OUT_OF_ATP"
+msgstr "Activar vinculación"
+
 msgid "NOTICE_DAMAGED_BY_NO_ATP"
+msgstr ""
+
+msgid "NOTICE_ENGULFING_OUT_OF_ATP"
 msgstr ""
 
 msgid "NOTICE_ENGULF_DAMAGE_FROM_TOXIN"
@@ -4627,6 +4652,10 @@ msgstr ""
 msgid "PLAYER_RELATIVE_MOVEMENT"
 msgstr ""
 
+#, fuzzy
+msgid "PLAYER_RELATIVE_MOVEMENT_TOOLTIP"
+msgstr "Cuando está seleccionado, calcula el balance y otros números en el panel asumiendo que la célula está moviéndose constantemente"
+
 msgid "PLAYER_REPRODUCED"
 msgstr ""
 
@@ -4715,6 +4744,15 @@ msgstr ""
 msgid "PROCESS_SPEED_MODIFIER"
 msgstr ""
 
+#, fuzzy
+msgid "PROCESS_TOGGLE_TOOLTIP"
+msgstr ""
+"Esta sección muestra el balance total de ATP (energía) de la célula actual.\n"
+"Para poder sobrevivir, el balance tiene que ser positivo. Para las célular sésiles se puede considerar el balance positivo con el movimiento excluído.\n"
+"El menú desplegable de ahí abajo lo podés usar para chequear que pasaría si la célula no tuviese ningún recurso disponible para poder crear ATP.\n"
+"Por ejemplo, algunas células solo pueden mantener un balance de ATP positivo cuando tienen múltiples tipos de componentes de los que pueden crear ATP al mísmo tiempo.\n"
+"Ese tipo de células son más difíciles de jugar porque requieren que almacenes varios tipos de componentes al mísmo tiempo para poder sobrevivir."
+
 msgid "PROGRAMMING_TEAM"
 msgstr ""
 
@@ -4729,6 +4767,10 @@ msgstr "Protoplasma"
 
 msgid "PULL_REQUESTS_PROGRAMMING"
 msgstr ""
+
+#, fuzzy
+msgid "QUADRILLION_ABBREVIATION"
+msgstr "{0} B"
 
 msgid "QUICK_LOAD"
 msgstr "Carga rápida"
@@ -4854,6 +4896,13 @@ msgstr ""
 
 msgid "RESET_SETTINGS_TO_DEFAULTS"
 msgstr ""
+
+msgid "RESET_SHOWN_TUTORIALS"
+msgstr ""
+
+#, fuzzy
+msgid "RESET_SHOWN_TUTORIALS_TOOLTIP"
+msgstr "\" {0} \" - {1}"
 
 msgid "RESET_TO_DEFAULTS"
 msgstr ""
@@ -5100,6 +5149,10 @@ msgstr "Barrita de habilidades (recomendado)"
 msgid "SCREEN_RELATIVE_MOVEMENT"
 msgstr ""
 
+#, fuzzy
+msgid "SCREEN_RELATIVE_MOVEMENT_TOOLTIP"
+msgstr "Disparar toxina"
+
 msgid "SCROLLLOCK"
 msgstr "Scroll Lock"
 
@@ -5123,6 +5176,10 @@ msgstr ""
 
 msgid "SEED_LABEL"
 msgstr ""
+
+#, fuzzy
+msgid "SELECTED"
+msgstr "población:"
 
 msgid "SELECTED_COLON"
 msgstr ""
@@ -5161,6 +5218,9 @@ msgstr ""
 msgid "SELECT_ENZYME"
 msgstr "población:"
 
+msgid "SELECT_MOVEMENT_MODE_TITLE"
+msgstr ""
+
 #, fuzzy
 msgid "SELECT_OPTION"
 msgstr "población:"
@@ -5196,6 +5256,13 @@ msgstr "Volumen de efectos"
 msgid "SHIFT"
 msgstr ""
 
+msgid "SHOW_ALL_TUTORIALS"
+msgstr ""
+
+#, fuzzy
+msgid "SHOW_ALL_TUTORIALS_TOOLTIP"
+msgstr "\" {0} \" - {1}"
+
 msgid "SHOW_DAMAGE_EFFECT"
 msgstr ""
 
@@ -5212,14 +5279,15 @@ msgstr ""
 msgid "SHOW_NEW_PATCH_NOTES_TOOLTIP"
 msgstr "\" {0} \" - {1}"
 
-msgid "SHOW_TUTORIALS"
-msgstr ""
-
 msgid "SHOW_TUTORIALS_IN_NEW_CURRENT_OPTION"
 msgstr ""
 
 msgid "SHOW_TUTORIALS_IN_NEW_GAMES_OPTION"
 msgstr ""
+
+#, fuzzy
+msgid "SHOW_TUTORIALS_OPTION_TOOLTIP"
+msgstr "\" {0} \" - {1}"
 
 msgid "SHOW_UNSAVED_PROGRESS_WARNING"
 msgstr ""
@@ -5282,6 +5350,9 @@ msgstr "Silicio"
 
 msgid "SILICA_MEMBRANE_DESCRIPTION"
 msgstr ""
+
+msgid "SIXTEEN_TIMES"
+msgstr "x16"
 
 msgid "SIZE_COLON"
 msgstr ""
@@ -5531,6 +5602,10 @@ msgstr ""
 
 msgid "STORE_LOGGED_IN_AS"
 msgstr "Logeado como: {0}"
+
+#, fuzzy
+msgid "STRAIN_BAR_TOOLTIP"
+msgstr "Disparar toxina"
 
 msgid "STRAIN_BAR_VISIBILITY"
 msgstr ""
@@ -5797,6 +5872,12 @@ msgstr ""
 msgid "TIMELINE_NICHE_FILL"
 msgstr "Han emergido para rellenar únicamente mas tumbas"
 
+msgid "TIMELINE_PLAYER_MIGRATED"
+msgstr ""
+
+msgid "TIMELINE_PLAYER_MIGRATED_TO"
+msgstr ""
+
 #, fuzzy
 msgid "TIMELINE_SELECTION_PRESSURE_SPLIT"
 msgstr "emergieron debido a la selección natural"
@@ -5821,6 +5902,10 @@ msgstr ""
 
 msgid "TIMELINE_SPECIES_EXTINCT_LOCAL"
 msgstr ""
+
+#, fuzzy
+msgid "TIMELINE_SPECIES_FOLLOWED"
+msgstr "Han emergido para rellenar únicamente mas tumbas"
 
 msgid "TIMELINE_SPECIES_MIGRATED_FROM"
 msgstr ""
@@ -6049,6 +6134,10 @@ msgstr ""
 msgid "TRANSPARENCY"
 msgstr ""
 
+#, fuzzy
+msgid "TRILLION_ABBREVIATION"
+msgstr "{0} B"
+
 msgid "TRY_FOSSILISING_SOME_SPECIES"
 msgstr ""
 
@@ -6060,6 +6149,10 @@ msgstr ""
 
 msgid "TUTORIAL"
 msgstr ""
+
+#, fuzzy
+msgid "TUTORIAL_ALL_NOT_ENABLED_EXPLANATION"
+msgstr "población:"
 
 #, fuzzy
 msgid "TUTORIAL_MICROBE_EDITOR_ATP_BALANCE_INTRO"
@@ -6507,6 +6600,9 @@ msgid "VIEW_PENDING_ACTIONS"
 msgstr ""
 
 msgid "VIEW_SOURCE_CODE"
+msgstr ""
+
+msgid "VIEW_TEXT_REPORT"
 msgstr ""
 
 msgid "VIP_PATRONS"
@@ -8936,9 +9032,6 @@ msgstr "Alejar la pantalla"
 #, fuzzy
 #~ msgid "TREBLEUP"
 #~ msgstr "Triplicar"
-
-#~ msgid "SIXTEEN_TIMES"
-#~ msgstr "x16"
 
 #, fuzzy
 #~ msgid "TARGET_TIME"

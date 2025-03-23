@@ -7,8 +7,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2025-03-09 11:58-0300\n"
-"PO-Revision-Date: 2025-02-06 13:29+0000\n"
+"POT-Creation-Date: 2025-03-20 10:30+0200\n"
+"PO-Revision-Date: 2025-03-20 20:10+0000\n"
 "Last-Translator: Anonymous <noreply@weblate.org>\n"
 "Language-Team: Hebrew <https://translate.revolutionarygamesstudio.com/projects/thrive/thrive-game/he/>\n"
 "Language: he\n"
@@ -191,6 +191,9 @@ msgstr "קיבוע חנקן אנאירובי"
 msgid "AND_UNLOCK_CONDITION"
 msgstr "מצב פיזי"
 
+msgid "ANISOTROPIC_FILTERING"
+msgstr ""
+
 msgid "APPEARANCE"
 msgstr "הופעה"
 
@@ -314,6 +317,10 @@ msgid "AUTO-EVO_PREDICTION_BOX_DESCRIPTION"
 msgstr ""
 "לוח זה מראה את מספרי האוכלוסייה הצפויים מהמפתח האוטומטי עבור מינים ערוכים.\n"
 "מפתח אוטומטי מריץ הדמיות אכלוסיה שהיא החלק השני (חוץ מהפעולות שלך) שמשפיע על האוכלוסייה שלך."
+
+#, fuzzy
+msgid "AUTO-EVO_RESULTS_TITLE"
+msgstr "תוצאות מפתח אוטומטי:"
 
 msgid "AUTO-EVO_STEPS_DONE"
 msgstr "{0:F1}% הסתיים. {1:n0}/{2:n0} שלבים."
@@ -648,6 +655,10 @@ msgid "CELL_STAT_SPEED_TOOLTIP"
 msgstr "הערך משומש ביצור העולם, ועל כך, שחייב להיות מספר שלם חיובי"
 
 #, fuzzy
+msgid "CELL_STAT_STORAGE_TOOLTIP"
+msgstr "הערך משומש ביצור העולם, ועל כך, שחייב להיות מספר שלם חיובי"
+
+#, fuzzy
 msgid "CELL_TYPE_BUTTON_ATP_CONSUMPTION"
 msgstr "שטח מת:"
 
@@ -776,6 +787,10 @@ msgstr "נקה שמירות ישנות"
 
 msgid "CLEAR_CACHE"
 msgstr ""
+
+#, fuzzy
+msgid "CLICK_TO_SELECT"
+msgstr "מחק נבחרים"
 
 msgid "CLOSE"
 msgstr "סגור"
@@ -2833,8 +2848,9 @@ msgstr ""
 msgid "IRON"
 msgstr "ברזל"
 
-msgid "IRON_CHEMOLITHOAUTOTROPHY"
-msgstr "כימוליתו-אוטוטרופי מברזל"
+#, fuzzy
+msgid "IRON_OXIDATION"
+msgstr "תרומות"
 
 msgid "ITCH_TOOLTIP"
 msgstr "ראו את דף Itch.io שלנו"
@@ -3706,6 +3722,7 @@ msgstr ""
 "\n"
 "עקוב אחרי הקו מהתא שלך לגלוקוז הסמוך."
 
+#, fuzzy
 msgid "MICROBE_STAGE_COLLECT_TEXT"
 msgstr ""
 "את יכול לאסוף גלוקוז (הענן הלבן) על ידי מעבר מעליהם.\n"
@@ -3714,6 +3731,7 @@ msgstr ""
 "\n"
 "עקוב אחרי הקו מהתא שלך לגלוקוז הסמוך."
 
+#, fuzzy
 msgid "MICROBE_STAGE_CONTROL_TEXT"
 msgstr ""
 "בשביל לשלוט בתא שלך, השתמש במקשים המוצגים סביבו (במרכז המסך) ובעכבר על מנת לשלוט בכיוון התנועה שלו.\n"
@@ -3735,6 +3753,7 @@ msgstr ""
 "ואתה מתרפא כל עוד יש לך ATP.\n"
 "הקפד לאסוף מספיק גלוקוז ליצור ATP."
 
+#, fuzzy
 msgid "MICROBE_STAGE_HEALTH_TEXT"
 msgstr ""
 "עקוב אחרי מד החיים שלך שליד מד הATP (בימין התחתון).\n"
@@ -3879,6 +3898,9 @@ msgstr "הוראות יצירת מוד זמינים ב-"
 
 msgid "MODELS"
 msgstr "מודלים"
+
+msgid "MODE_CAN_BE_CHANGED_IN_OPTIONS"
+msgstr ""
 
 msgid "MODIFY"
 msgstr "לשנות"
@@ -4275,7 +4297,14 @@ msgstr "אין פה שום דבר"
 msgid "NOTHING_TO_INTERACT_WITH"
 msgstr ""
 
+#, fuzzy
+msgid "NOTICE_BINDING_OUT_OF_ATP"
+msgstr "החלף מצב קישור"
+
 msgid "NOTICE_DAMAGED_BY_NO_ATP"
+msgstr ""
+
+msgid "NOTICE_ENGULFING_OUT_OF_ATP"
 msgstr ""
 
 msgid "NOTICE_ENGULF_DAMAGE_FROM_TOXIN"
@@ -4822,6 +4851,10 @@ msgstr "השחקן נכחד"
 msgid "PLAYER_RELATIVE_MOVEMENT"
 msgstr "השחקן נכחד"
 
+#, fuzzy
+msgid "PLAYER_RELATIVE_MOVEMENT_TOOLTIP"
+msgstr "השחקן נכחד"
+
 msgid "PLAYER_REPRODUCED"
 msgstr "השחקן התרבה"
 
@@ -4905,6 +4938,10 @@ msgstr "תהליכי התא"
 msgid "PROCESS_SPEED_MODIFIER"
 msgstr "תהליכי התא"
 
+#, fuzzy
+msgid "PROCESS_TOGGLE_TOOLTIP"
+msgstr "צא לתפריט הראשי"
+
 msgid "PROGRAMMING_TEAM"
 msgstr "צוות מתכנתים"
 
@@ -4919,6 +4956,10 @@ msgstr "פרוטופלזמה"
 
 msgid "PULL_REQUESTS_PROGRAMMING"
 msgstr "בקשות דרישה / תיכנות"
+
+#, fuzzy
+msgid "QUADRILLION_ABBREVIATION"
+msgstr "{0} מיליארד"
 
 msgid "QUICK_LOAD"
 msgstr "טעינה מהירה"
@@ -5044,6 +5085,14 @@ msgstr "איפוס חיבורי מקשים"
 
 msgid "RESET_SETTINGS_TO_DEFAULTS"
 msgstr "ברירת מחדל"
+
+#, fuzzy
+msgid "RESET_SHOWN_TUTORIALS"
+msgstr "הצג מדריכים"
+
+#, fuzzy
+msgid "RESET_SHOWN_TUTORIALS_TOOLTIP"
+msgstr "היצטרפו לשרת הדיסטורט הקהילתי שלנו"
 
 msgid "RESET_TO_DEFAULTS"
 msgstr "איפוס לברירת מחדל?"
@@ -5305,6 +5354,10 @@ msgstr "הצג שמות כפתורי בחירת חלקים"
 msgid "SCREEN_RELATIVE_MOVEMENT"
 msgstr "להגדלת התנועה"
 
+#, fuzzy
+msgid "SCREEN_RELATIVE_MOVEMENT_TOOLTIP"
+msgstr "להגדלת התנועה"
+
 msgid "SCROLLLOCK"
 msgstr "מקש Scroll Lock"
 
@@ -5329,6 +5382,10 @@ msgstr "הפרש ריר"
 
 msgid "SEED_LABEL"
 msgstr "זרע אקראי של כוכב לכת: {0}"
+
+#, fuzzy
+msgid "SELECTED"
+msgstr "מודים נבחרו:"
 
 msgid "SELECTED_COLON"
 msgstr "נבחרו:"
@@ -5363,6 +5420,10 @@ msgstr "בחר סוג תא בשביל לערוך אותו בתגית העורך"
 
 msgid "SELECT_ENZYME"
 msgstr "בחר אנזים:"
+
+#, fuzzy
+msgid "SELECT_MOVEMENT_MODE_TITLE"
+msgstr "Thrive הופעל במצב בטוח"
 
 msgid "SELECT_OPTION"
 msgstr "בחר אפשרות"
@@ -5400,6 +5461,14 @@ msgid "SHIFT"
 msgstr "Shift"
 
 #, fuzzy
+msgid "SHOW_ALL_TUTORIALS"
+msgstr "הצג מדריכים"
+
+#, fuzzy
+msgid "SHOW_ALL_TUTORIALS_TOOLTIP"
+msgstr "היצטרפו לשרת הדיסטורט הקהילתי שלנו"
+
+#, fuzzy
 msgid "SHOW_DAMAGE_EFFECT"
 msgstr "השוטון (ברבים: שוטונים) הוא צרור סיבי חלבון דמוי שוט המשתרע מקרום התא אשר משתמש ב- ATP כדי לגלול ולהניע את התא לכיוון מסוים. מקומו של השוטון קובע את כיוונו שממנו מספק דחף לתנועת התא. כיוון הדחף מנוגד לכיוון שהשוטון פונה, למשל שוטון שמונח בכיוון השמאל של התא יספק דחף לימין."
 
@@ -5418,14 +5487,15 @@ msgstr "{0} {1}"
 msgid "SHOW_NEW_PATCH_NOTES_TOOLTIP"
 msgstr "{0} {1}"
 
-msgid "SHOW_TUTORIALS"
-msgstr "הצג מדריכים"
-
 msgid "SHOW_TUTORIALS_IN_NEW_CURRENT_OPTION"
 msgstr "הצג מדריכים (בשמירה נוכחית)"
 
 msgid "SHOW_TUTORIALS_IN_NEW_GAMES_OPTION"
 msgstr "הצג מדריכים (בשמירות חדשות)"
+
+#, fuzzy
+msgid "SHOW_TUTORIALS_OPTION_TOOLTIP"
+msgstr "היצטרפו לשרת הדיסטורט הקהילתי שלנו"
 
 msgid "SHOW_UNSAVED_PROGRESS_WARNING"
 msgstr "הראה אזהרת התקדמות ללא שמירה"
@@ -5476,6 +5546,9 @@ msgstr "צורן"
 
 msgid "SILICA_MEMBRANE_DESCRIPTION"
 msgstr "לקרום זה יש קיר חזק העשוי מצורן. מה שמאפשר לו לעמוד היטב עם הנזק הכללי ועמיד מאוד בפני נזקים פיזיים. זהו גם דורש פחות אנרגיה כדי לשמור על צורתו. עם זאת, הוא מאט את התא בצורה רצינית והתא סופג משאבים בקצב מופחת."
+
+msgid "SIXTEEN_TIMES"
+msgstr "16x"
 
 msgid "SIZE_COLON"
 msgstr "גודל:"
@@ -5733,6 +5806,10 @@ msgstr ""
 
 msgid "STORE_LOGGED_IN_AS"
 msgstr "התחבר כ:{0}"
+
+#, fuzzy
+msgid "STRAIN_BAR_TOOLTIP"
+msgstr "ראו את דף הפטריון שלנו"
 
 msgid "STRAIN_BAR_VISIBILITY"
 msgstr ""
@@ -6006,6 +6083,14 @@ msgstr "הראה אירועים מקומיים"
 msgid "TIMELINE_NICHE_FILL"
 msgstr "[b][u]{0}[/u][/b] התפצל מ[b][u]{1}[/u][/b] כמין חדש בשביל למלא גומחה"
 
+#, fuzzy
+msgid "TIMELINE_PLAYER_MIGRATED"
+msgstr "חלק מאוכלוסיית [b][u]{0}[/u][/b] נדדה ל{1}"
+
+#, fuzzy
+msgid "TIMELINE_PLAYER_MIGRATED_TO"
+msgstr "חלק מאוכלוסיית [b][u]{0}[/u][/b] נדדה ל{1}"
+
 msgid "TIMELINE_SELECTION_PRESSURE_SPLIT"
 msgstr "[b][u]{0}[/u][/b] התפצל מ[b][u]{1}[/u][/b] כמין חדש בשל לחץ ברירה שונים"
 
@@ -6023,6 +6108,10 @@ msgstr "[b][u]{0}[/u][/b] נכחד!"
 
 msgid "TIMELINE_SPECIES_EXTINCT_LOCAL"
 msgstr "[b][u]{0}[/u][/b] נעלמה מאזור זה"
+
+#, fuzzy
+msgid "TIMELINE_SPECIES_FOLLOWED"
+msgstr "[b][u]{0}[/u][/b] נכחד!"
 
 msgid "TIMELINE_SPECIES_MIGRATED_FROM"
 msgstr "חלק מאוכלוסיית [b][u]{0}[/u][/b] נדדה לאזור זה מ{1}"
@@ -6255,6 +6344,10 @@ msgid "TRANSPARENCY"
 msgstr "שקיפות"
 
 #, fuzzy
+msgid "TRILLION_ABBREVIATION"
+msgstr "{0} מיליארד"
+
+#, fuzzy
 msgid "TRY_FOSSILISING_SOME_SPECIES"
 msgstr "נסה לצלם כמה צילומי מסך!"
 
@@ -6266,6 +6359,10 @@ msgstr "נסה לצלם כמה צילומי מסך!"
 
 msgid "TUTORIAL"
 msgstr "מדריך"
+
+#, fuzzy
+msgid "TUTORIAL_ALL_NOT_ENABLED_EXPLANATION"
+msgstr "(מתחיל עם ענן גלוקוז חופשי קרוב בכל דור)"
 
 #, fuzzy
 msgid "TUTORIAL_MICROBE_EDITOR_ATP_BALANCE_INTRO"
@@ -6288,6 +6385,7 @@ msgstr ""
 "\n"
 "אתה יכול להציג מידע מפורט יותר מאחורי החיזוי על ידי לחיצה על כפתור סימן השאלה בלוח. לחץ עליו כדי להמשיך."
 
+#, fuzzy
 msgid "TUTORIAL_MICROBE_EDITOR_CELL_TEXT"
 msgstr ""
 "זהו עורך התא שבו אתה יכול לפתח את המין שלך על ידי תשלום בנקודות מוטציה (נקמ\"ו). על כל דור תמיד היה לך 100 נקמ\"ו לבזבז, כך שאין סיבה לשמור!.\n"
@@ -6305,6 +6403,7 @@ msgstr ""
 "\n"
 "בשביל להמשיך, בחר חלק מהכרטיסייה השמאלית. לאחר מיכן לחץ על הלחצן השמאלי בתוך המשושה הרצוי בשביל להניח אותו. אתה יכול לסובב חלקים על ידי [thrive:input]e_rotate_left[/thrive:input] ו[thrive:input]e_rotate_right[/thrive:input]."
 
+#, fuzzy
 msgid "TUTORIAL_MICROBE_EDITOR_ENDING_TEXT"
 msgstr ""
 "אלו כל הדברים הבסיסים על עריכת המין שלך. ולסיום, אתה יכול לשנות את שם המין שלך על ידי לחיצה על השם בצד שמאל למטה ועריכת הטקסט.\n"
@@ -6368,6 +6467,7 @@ msgstr ""
 "\n"
 "נסה לבחור אזור בשביל להמשיך."
 
+#, fuzzy
 msgid "TUTORIAL_MICROBE_EDITOR_PATCH_TEXT"
 msgstr ""
 "זהו מפת האזורים.\n"
@@ -6396,6 +6496,7 @@ msgstr ""
 "\n"
 "לחץ על כפתור עשה מחדש (זה שליד כפתור בטל) על מנת להמשיך."
 
+#, fuzzy
 msgid "TUTORIAL_MICROBE_EDITOR_STAY_SMALL"
 msgstr ""
 "כדאי לך להתמקד בהתמחות על מנת לשרוד על מקור אנרגיה אחד או שניים, כך שלא תזדקק למשאבים רבים ושונים בבת אחת כדי לקיים את עצמך.\n"
@@ -6435,6 +6536,7 @@ msgstr ""
 "\n"
 "כאשר שתא שלך מלא, הוא לא מסוגל לבלוע עוד. בשביל להמשיך לבלוע, תזדקק לחכות עד שיעוכלו לחלוטין אובייקט אחד או יותר."
 
+#, fuzzy
 msgid "TUTORIAL_MICROBE_STAGE_ENGULFMENT_TEXT"
 msgstr ""
 "לבלוע אובייקטים על ידי תנועה עליהם בזמן שמצב בליעה פועל. את מצב הבליעה מופעל על ידי לחיצה על [thrive:input]g_toggle_engulf[/thrive:input].\n"
@@ -6456,6 +6558,7 @@ msgstr ""
 "אתה חייב לעזוב את המושבה בשביל להיכנס לעורך אלו אם אתה מתכנן להפוך לרב תאים.\n"
 "צא מהמושבה בשביל להמשיך לגדול על ידי לחיצה על [thrive:input]נתק הכל[/thrive:input]."
 
+#, fuzzy
 msgid "TUTORIAL_MICROBE_STAGE_REPRODUCE_TEXT"
 msgstr ""
 "בכדי להתרבות, עליך לשכפל את כל האברונים, ובשביל זה אתה צריך לשרוד מספיק זמן. אסוף אמונה ופוספט על מנת להאיץ את תהליך הרבייה.\n"
@@ -6795,6 +6898,9 @@ msgstr ""
 
 msgid "VIEW_SOURCE_CODE"
 msgstr "צפה בקוד מקור"
+
+msgid "VIEW_TEXT_REPORT"
+msgstr ""
 
 msgid "VIP_PATRONS"
 msgstr "תומכי VIP"
@@ -8718,6 +8824,9 @@ msgstr "להתמקד"
 msgid "ZOOM_OUT"
 msgstr "זום החוצה"
 
+#~ msgid "IRON_CHEMOLITHOAUTOTROPHY"
+#~ msgstr "כימוליתו-אוטוטרופי מברזל"
+
 #~ msgid "PASSIVE_REPRODUCTION_PROGRESS"
 #~ msgstr "השג באופן פסיבי התקדמות הרבייה"
 
@@ -9084,9 +9193,6 @@ msgstr "זום החוצה"
 
 #~ msgid "GLES2"
 #~ msgstr "GLES2"
-
-#~ msgid "SIXTEEN_TIMES"
-#~ msgstr "16x"
 
 #, fuzzy
 #~ msgid "TARGET_TIME"

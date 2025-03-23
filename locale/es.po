@@ -7,8 +7,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2025-03-09 11:58-0300\n"
-"PO-Revision-Date: 2025-03-07 10:46+0000\n"
+"POT-Creation-Date: 2025-03-20 10:30+0200\n"
+"PO-Revision-Date: 2025-03-20 20:10+0000\n"
 "Last-Translator: Anonymous <noreply@weblate.org>\n"
 "Language-Team: Spanish <https://translate.revolutionarygamesstudio.com/projects/thrive/thrive-game/es/>\n"
 "Language: es\n"
@@ -142,7 +142,6 @@ msgstr "(permite continuar la partida con una especie en extinción diferente en
 msgid "ALL_WORLDS_GENERAL_STATISTICS"
 msgstr "Estadísticas genéricas de todos los mundos"
 
-#, fuzzy
 msgid "ALL_WORLDS_STATISTICS"
 msgstr ""
 "[b]Generaciones:[/b]\n"
@@ -157,6 +156,7 @@ msgstr ""
 "  Media {7}; desviación típica {8}\n"
 "[b]Tamaño medio hexagonal de especies de microbios:[/b]\n"
 "  Media {9}; desviación típica {10}\n"
+"\n"
 "[b]Datos genéricos de orgánulos:[/b]"
 
 msgid "ALREADY_ASCENDED"
@@ -174,9 +174,8 @@ msgstr "Volumen de ambiente"
 msgid "AMMONIA"
 msgstr "Amoniaco"
 
-#, fuzzy
 msgid "AMMONIA_COST"
-msgstr "Amoniaco"
+msgstr "Coste del Amoniaco:"
 
 msgid "AMOUNT_OF_AUTOSAVE_TO_KEEP"
 msgstr "Cantidad de autoguardados a almacenar:"
@@ -189,6 +188,9 @@ msgstr "Fijación de Nitrógeno Anaeróbica"
 
 msgid "AND_UNLOCK_CONDITION"
 msgstr "y"
+
+msgid "ANISOTROPIC_FILTERING"
+msgstr ""
 
 msgid "APPEARANCE"
 msgstr "Apariencia"
@@ -325,6 +327,10 @@ msgid "AUTO-EVO_PREDICTION_BOX_DESCRIPTION"
 msgstr ""
 "Este panel muestra la población de la especie modificada que se espera auto-evolucione.\n"
 "El sistema auto-evo se encarga de la evolución de la parte de la población que no controlas, tu rendimiento afectara los cálculos del sistema."
+
+#, fuzzy
+msgid "AUTO-EVO_RESULTS_TITLE"
+msgstr "Resultados de Auto-evo:"
 
 msgid "AUTO-EVO_STEPS_DONE"
 msgstr "{0:F1}% hecho. {1:n0}/{2:n0} etapas."
@@ -647,6 +653,13 @@ msgstr ""
 "Este es un problema conocido pero no está arreglado todavía debido a que es menos prioritario que muchos otros problemas y nuevas características."
 
 #, fuzzy
+msgid "CELL_STAT_STORAGE_TOOLTIP"
+msgstr ""
+"Velocidad de la célula. Tenga en cuenta que debido a las limitaciones del algoritmo que calcula esto, el valor es una aproximación.\n"
+"Y por ejemplo cuando se modifica la longitud del flagelo los valores de velocidad no tienen todo el sentido y no coinciden con lo que ocurrirá en el escenario.\n"
+"Este es un problema conocido pero no está arreglado todavía debido a que es menos prioritario que muchos otros problemas y nuevas características."
+
+#, fuzzy
 msgid "CELL_TYPE_BUTTON_ATP_CONSUMPTION"
 msgstr "Opciones"
 
@@ -776,6 +789,10 @@ msgstr "Limpiar archivos de guardado antiguos"
 
 msgid "CLEAR_CACHE"
 msgstr "Limpiar Caché"
+
+#, fuzzy
+msgid "CLICK_TO_SELECT"
+msgstr "Eliminar selección"
 
 msgid "CLOSE"
 msgstr "Cerrar"
@@ -2103,9 +2120,11 @@ msgstr "Este artículo se ha cortado por ser demasiado largo, por favor lea el o
 msgid "FERROPLAST"
 msgstr "Ferroplasto"
 
+#, fuzzy
 msgid "FERROPLAST_DESCRIPTION"
 msgstr "Una fuente de energía metálica. El ferroplasto es una estructura de doble membrana llena de proteínas y enzimas. Es un procariota asimilado por su huésped eucariota. Es capaz de oxidar [thrive:compound type=«hierro»][/thrive:compound] de un estado químico a otro con una eficacia muy superior a la que puede lograrse con la rusticianina. Este proceso, denominado [b]respiración férrica[/b], libera energía que la célula puede aprovechar. Sin embargo, requiere [thrive:compound type=«carbondioxide»][/thrive:compound] para funcionar, y unos niveles más bajos de este compuesto en el medio ambiente ralentizarán la tasa de producción de [thrive:compound type=«atp»][/thrive:compound]."
 
+#, fuzzy
 msgid "FERROPLAST_PROCESSES_DESCRIPTION"
 msgstr "Convierte [thrive:compound type=«hierro»][/thrive:compound] en [thrive:compound type=«atp»][/thrive:compound]. La velocidad varía con la concentración de [thrive:compound type=«carbondioxide»][/thrive:compound]."
 
@@ -2668,8 +2687,9 @@ msgstr ""
 msgid "IRON"
 msgstr "Hierro"
 
-msgid "IRON_CHEMOLITHOAUTOTROPHY"
-msgstr "Quimiolitoautotrofía Férrica"
+#, fuzzy
+msgid "IRON_OXIDATION"
+msgstr "Donaciones"
 
 msgid "ITCH_TOOLTIP"
 msgstr "Visita nuestra página de itch.io"
@@ -3519,12 +3539,14 @@ msgstr ""
 "Tu célula necesita glucosa para producir energía, y por lo tanto, sobrevivir.\n"
 "Sigue la línea desde tu célula hacia la glucosa."
 
+#, fuzzy
 msgid "MICROBE_STAGE_COLLECT_TEXT"
 msgstr ""
 "Consigue glucosa (nubes blancas) al moverte hacia ella.\n"
 "Tu célula necesita glucosa para producir energía, y por lo tanto, sobrevivir.\n"
 "Sigue la línea desde tu célula hacia la glucosa."
 
+#, fuzzy
 msgid "MICROBE_STAGE_CONTROL_TEXT"
 msgstr ""
 "Para controlar tu célula, usa las teclas mostradas cerca de tu célula en el centro de la pantalla, y el ratón para controlar la orientación.\n"
@@ -3546,6 +3568,7 @@ msgstr ""
 "Mientras tengas ATP, regenerarás tus PS.\n"
 "Asegúrate de conseguir suficiente glucosa para producir ATP."
 
+#, fuzzy
 msgid "MICROBE_STAGE_HEALTH_TEXT"
 msgstr ""
 "Mantén la atención en la barra de PS al lado de la barra de ATP (parte inferior derecha).\n"
@@ -3686,6 +3709,10 @@ msgstr "Las instrucciones para hacer mods están disponibles en"
 
 msgid "MODELS"
 msgstr "Modelos"
+
+#, fuzzy
+msgid "MODE_CAN_BE_CHANGED_IN_OPTIONS"
+msgstr "Rotar la vista estratégica cuando el cursor esté en el limite de la pantalla"
 
 msgid "MODIFY"
 msgstr "Modificar"
@@ -4083,8 +4110,16 @@ msgid "NOTHING_TO_INTERACT_WITH"
 msgstr "No hay nada con lo que interactuar"
 
 #, fuzzy
+msgid "NOTICE_BINDING_OUT_OF_ATP"
+msgstr "Dañado por no tener nada de ATP"
+
+#, fuzzy
 msgid "NOTICE_DAMAGED_BY_NO_ATP"
 msgstr "Dañado por no tener nada de ATP"
+
+#, fuzzy
+msgid "NOTICE_ENGULFING_OUT_OF_ATP"
+msgstr "El tamaño actual de la célula es demasiado pequeño para engullir al objetivo"
 
 #, fuzzy
 msgid "NOTICE_ENGULF_DAMAGE_FROM_TOXIN"
@@ -4644,6 +4679,10 @@ msgstr "El jugador se extinguió"
 msgid "PLAYER_RELATIVE_MOVEMENT"
 msgstr "El jugador se extinguió"
 
+#, fuzzy
+msgid "PLAYER_RELATIVE_MOVEMENT_TOOLTIP"
+msgstr "El jugador se extinguió"
+
 msgid "PLAYER_REPRODUCED"
 msgstr "El jugador se reprodujo"
 
@@ -4730,6 +4769,10 @@ msgstr "Procesos celulares"
 msgid "PROCESS_SPEED_MODIFIER"
 msgstr "Procesos celulares"
 
+#, fuzzy
+msgid "PROCESS_TOGGLE_TOOLTIP"
+msgstr "Volver al menú principal"
+
 msgid "PROGRAMMING_TEAM"
 msgstr "Equipo de programación"
 
@@ -4744,6 +4787,10 @@ msgstr "Protoplasma"
 
 msgid "PULL_REQUESTS_PROGRAMMING"
 msgstr "Pull Requests / programación"
+
+#, fuzzy
+msgid "QUADRILLION_ABBREVIATION"
+msgstr "{0} mM"
 
 msgid "QUICK_LOAD"
 msgstr "Carga rápida"
@@ -4868,6 +4915,14 @@ msgstr "Reiniciar teclas asociadas"
 
 msgid "RESET_SETTINGS_TO_DEFAULTS"
 msgstr "Predeterminado"
+
+#, fuzzy
+msgid "RESET_SHOWN_TUTORIALS"
+msgstr "Mostrar tutoriales"
+
+#, fuzzy
+msgid "RESET_SHOWN_TUTORIALS_TOOLTIP"
+msgstr "Exportar los datos de todos los mundos en formato de valores separados por comas (csv)"
 
 msgid "RESET_TO_DEFAULTS"
 msgstr "¿Volver a los ajustes predeterminados?"
@@ -5133,6 +5188,10 @@ msgstr "Mostrar la barra de habilidades"
 msgid "SCREEN_RELATIVE_MOVEMENT"
 msgstr "para incrementar la velocidad de movimiento"
 
+#, fuzzy
+msgid "SCREEN_RELATIVE_MOVEMENT_TOOLTIP"
+msgstr "para incrementar la velocidad de movimiento"
+
 msgid "SCROLLLOCK"
 msgstr "Bloq Despl"
 
@@ -5157,6 +5216,10 @@ msgstr "Secretar mucílago"
 
 msgid "SEED_LABEL"
 msgstr "Semilla del planeta: {0}"
+
+#, fuzzy
+msgid "SELECTED"
+msgstr "Mods seleccionados:"
 
 msgid "SELECTED_COLON"
 msgstr "Selección:"
@@ -5191,6 +5254,10 @@ msgstr "Selecciona un tipo de célula en la pestaña de edición para modificar 
 
 msgid "SELECT_ENZYME"
 msgstr "Seleciona Enzima:"
+
+#, fuzzy
+msgid "SELECT_MOVEMENT_MODE_TITLE"
+msgstr "Thrive iniciado en modo seguro"
 
 msgid "SELECT_OPTION"
 msgstr "Selecciona una opción"
@@ -5229,6 +5296,14 @@ msgid "SHIFT"
 msgstr "Shift"
 
 #, fuzzy
+msgid "SHOW_ALL_TUTORIALS"
+msgstr "Mostrar tutoriales"
+
+#, fuzzy
+msgid "SHOW_ALL_TUTORIALS_TOOLTIP"
+msgstr "Exportar los datos de todos los mundos en formato de valores separados por comas (csv)"
+
+#, fuzzy
 msgid "SHOW_DAMAGE_EFFECT"
 msgstr "Los flagelos son grupos de fibras de proteínas en forma de látigo que se extienden desde la membrana de la célula. Usan ATP para propulsar a la célula en la dirección contraria a la que apuntan, efecto similar a la cola de un pez. Así pues, un flagelo del lado izquierdo, dará un impulso hacia la derecha."
 
@@ -5249,14 +5324,15 @@ msgstr "{0} {1}"
 msgid "SHOW_NEW_PATCH_NOTES_TOOLTIP"
 msgstr "{0} {1}"
 
-msgid "SHOW_TUTORIALS"
-msgstr "Mostrar tutoriales"
-
 msgid "SHOW_TUTORIALS_IN_NEW_CURRENT_OPTION"
 msgstr "Mostrar tutoriales (en la partida actual)"
 
 msgid "SHOW_TUTORIALS_IN_NEW_GAMES_OPTION"
 msgstr "Mostrar tutoriales (en nuevas partidas)"
+
+#, fuzzy
+msgid "SHOW_TUTORIALS_OPTION_TOOLTIP"
+msgstr "Exportar los datos de todos los mundos en formato de valores separados por comas (csv)"
 
 msgid "SHOW_UNSAVED_PROGRESS_WARNING"
 msgstr "Mostrar aviso de progreso sin guardar"
@@ -5308,6 +5384,9 @@ msgstr "Sílice"
 
 msgid "SILICA_MEMBRANE_DESCRIPTION"
 msgstr "Esta membrana tiene una dura pared de sílice. Puede resistir el daño muy bien, especialmente el daño físico. También requiere menos energía. No obstante, ralentiza a la célula drásticamente y absorbe recursos a una velocidad menor."
+
+msgid "SIXTEEN_TIMES"
+msgstr "16x"
 
 msgid "SIZE_COLON"
 msgstr "Tamaño:"
@@ -5566,6 +5645,10 @@ msgstr "Segundos de"
 
 msgid "STORE_LOGGED_IN_AS"
 msgstr "Conectado como: {0}"
+
+#, fuzzy
+msgid "STRAIN_BAR_TOOLTIP"
+msgstr "Visita nuestro Patreon"
 
 msgid "STRAIN_BAR_VISIBILITY"
 msgstr "Visibilidad de la barra de fatiga"
@@ -5869,6 +5952,14 @@ msgstr "Mostrar eventos locales"
 msgid "TIMELINE_NICHE_FILL"
 msgstr "[b][u]{0}[/u][/b] se separó de [b][u]{1}[/u][/b] como una nueva especie para llenar un nicho"
 
+#, fuzzy
+msgid "TIMELINE_PLAYER_MIGRATED"
+msgstr "Parte de la población de [b][u]{0}[/u][/b] ha inmigrado desde {1}"
+
+#, fuzzy
+msgid "TIMELINE_PLAYER_MIGRATED_TO"
+msgstr "Parte de la población de [b][u]{0}[/u][/b] ha inmigrado desde {1}"
+
 msgid "TIMELINE_SELECTION_PRESSURE_SPLIT"
 msgstr "[b][u]{0}[/u][/b] surgió desde [b][u]{1}[/u][/b] como una nueva especie debido a presiones evolutivas diferentes"
 
@@ -5884,6 +5975,10 @@ msgstr "¡[b][u]{0}[/u][/b] se ha extinguido!"
 
 msgid "TIMELINE_SPECIES_EXTINCT_LOCAL"
 msgstr "[b][u]{0}[/u][/b] ha desaparecido de este bioma"
+
+#, fuzzy
+msgid "TIMELINE_SPECIES_FOLLOWED"
+msgstr "¡[b][u]{0}[/u][/b] se ha extinguido!"
 
 msgid "TIMELINE_SPECIES_MIGRATED_FROM"
 msgstr "Parte de la población de [b][u]{0}[/u][/b] ha inmigrado a este bioma desde {1}"
@@ -6114,6 +6209,10 @@ msgid "TRANSPARENCY"
 msgstr "Transparencia"
 
 #, fuzzy
+msgid "TRILLION_ABBREVIATION"
+msgstr "{0} mM"
+
+#, fuzzy
 msgid "TRY_FOSSILISING_SOME_SPECIES"
 msgstr "Intenta tomar algunas capturas de pantalla!"
 
@@ -6125,6 +6224,10 @@ msgstr "Intenta tomar algunas capturas de pantalla!"
 
 msgid "TUTORIAL"
 msgstr "Tutorial"
+
+#, fuzzy
+msgid "TUTORIAL_ALL_NOT_ENABLED_EXPLANATION"
+msgstr "(ADVERTENCIA: la fotosíntesis se vuelve mucho menos viable)"
 
 #, fuzzy
 msgid "TUTORIAL_MICROBE_EDITOR_ATP_BALANCE_INTRO"
@@ -6165,6 +6268,7 @@ msgstr ""
 "\n"
 "Para continuar, selecciona una parte del panel de la izquierda. Luego apreta click izquierdo al lado del hexágono para ubicarla. Puedes rotar partes con [thrive:input]e_rotate_left[/thrive:input] and [thrive:input]e_rotate_right[/thrive:input]."
 
+#, fuzzy
 msgid "TUTORIAL_MICROBE_EDITOR_ENDING_TEXT"
 msgstr ""
 "Eso es lo básico del editor. Puedes ver las otras pestañas del editor para tener incluso más opciones.\n"
@@ -6228,6 +6332,7 @@ msgstr ""
 "\n"
 "Intenta seleccionar un bioma para continuar."
 
+#, fuzzy
 msgid "TUTORIAL_MICROBE_EDITOR_PATCH_TEXT"
 msgstr ""
 "Este es el mapa de las regiones.\n"
@@ -6258,6 +6363,7 @@ msgstr ""
 "\n"
 "Presiona el botón de rehacer para continuar."
 
+#, fuzzy
 msgid "TUTORIAL_MICROBE_EDITOR_STAY_SMALL"
 msgstr ""
 "Deberías enfocarte en una o dos fuentes de energía, de ésta forma no necesitarás tener todos los recursos para general suficiente ATP para sobrevivir.\n"
@@ -6299,6 +6405,7 @@ msgstr ""
 "\n"
 "Cuando está llena, una célula no puede engullir más cosas. Para continuar engullendo, espera a que uno o más objetos previamente engullidos sean completamente digeridos."
 
+#, fuzzy
 msgid "TUTORIAL_MICROBE_STAGE_ENGULFMENT_TEXT"
 msgstr ""
 "Engulle objetos pasando por encima de ellos en el modo engullir. Actívalo presionando[thrive:input]g_toggle_engulf[/thrive:input].\n"
@@ -6320,6 +6427,7 @@ msgstr ""
 "Debes dejar la colonia para utilizar el editor salvo que planees volverte multicelular.\n"
 "Deja la colonia para continuar tu crecimiento apretando [thrive:input]g_unbind_all[/thrive:input]."
 
+#, fuzzy
 msgid "TUTORIAL_MICROBE_STAGE_REPRODUCE_TEXT"
 msgstr ""
 "Para que tu célula se reproduzca necesita duplicar todos sus orgánulos reuniendo la suficiente cantidad de amoníaco y fosfatos.\n"
@@ -6665,6 +6773,9 @@ msgstr "Ver ahora"
 
 msgid "VIEW_SOURCE_CODE"
 msgstr "Ver código fuente"
+
+msgid "VIEW_TEXT_REPORT"
+msgstr ""
 
 msgid "VIP_PATRONS"
 msgstr "Colaboradores VIP"
@@ -8976,9 +9087,6 @@ msgstr "Alejar el zoom"
 
 #~ msgid "GLES2"
 #~ msgstr "GLES2"
-
-#~ msgid "SIXTEEN_TIMES"
-#~ msgstr "16x"
 
 #, fuzzy
 #~ msgid "TARGET_TIME"

@@ -30,7 +30,7 @@ public sealed class FluidCurrentsSystem : AEntitySetSystem<float>
     private const float DISTURBANCE_TIMESCALE = 1.000f;
     private const float CURRENTS_TIMESCALE = 1.000f / 500.0f;
     private const float CURRENTS_STRETCHING_MULTIPLIER = 1.0f / 10.0f;
-    private const float MIN_CURRENT_INTENSITY = 0.50f;
+    private const float MIN_CURRENT_INTENSITY = 0.25f;
     private const float DISTURBANCE_TO_CURRENTS_RATIO = 0.15f;
     private const float POSITION_SCALING = 0.9f;
 

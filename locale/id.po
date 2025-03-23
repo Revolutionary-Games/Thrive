@@ -7,8 +7,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2025-03-09 11:58-0300\n"
-"PO-Revision-Date: 2025-02-06 13:29+0000\n"
+"POT-Creation-Date: 2025-03-20 10:30+0200\n"
+"PO-Revision-Date: 2025-03-20 20:10+0000\n"
 "Last-Translator: Anonymous <noreply@weblate.org>\n"
 "Language-Team: Indonesian <https://translate.revolutionarygamesstudio.com/projects/thrive/thrive-game/id/>\n"
 "Language: id\n"
@@ -207,6 +207,9 @@ msgstr "Fiksasi Anaerob Nitrogen"
 msgid "AND_UNLOCK_CONDITION"
 msgstr "Kondisi Fisik"
 
+msgid "ANISOTROPIC_FILTERING"
+msgstr ""
+
 msgid "APPEARANCE"
 msgstr "Penampilan"
 
@@ -339,6 +342,10 @@ msgstr "{0:F1}% selesai. {1:n0}/{2:n0} tahap."
 #, fuzzy
 msgid "AUTO-EVO_PREDICTION_BOX_DESCRIPTION"
 msgstr "Pembangkit listrik sel. Mitokondria adalah struktur membran ganda yang terisi oleh protein dan enzim. Mitokondria merupakan prokariota yang telah terasimilasi untuk kegunaan induk sel eukariota-nya. Ia juga dapat mengkonversi glukosa menjadi ATP pada efisiensi yang lebih tinggi daripada yang dapat dilakukan oleh sitoplasma dalam proses yang disebut Respirasi Aerob. Namun, ini tentunya memerlukan oksigen untuk berfungsi dan tingkat oksigen yang lebih rendah di lingkungan dapat memperlambat laju produksi ATP-nya."
+
+#, fuzzy
+msgid "AUTO-EVO_RESULTS_TITLE"
+msgstr "Hasil auto-evo:"
 
 msgid "AUTO-EVO_STEPS_DONE"
 msgstr "{0:F1}% selesai. {1:n0}/{2:n0} tahap."
@@ -682,6 +689,10 @@ msgid "CELL_STAT_SPEED_TOOLTIP"
 msgstr "Lanjutkan"
 
 #, fuzzy
+msgid "CELL_STAT_STORAGE_TOOLTIP"
+msgstr "Lanjutkan"
+
+#, fuzzy
 msgid "CELL_TYPE_BUTTON_ATP_CONSUMPTION"
 msgstr "{0}: -{1} ATP"
 
@@ -818,6 +829,10 @@ msgstr "Bersihkan Save Lama"
 
 msgid "CLEAR_CACHE"
 msgstr ""
+
+#, fuzzy
+msgid "CLICK_TO_SELECT"
+msgstr "Hapus terpilih"
 
 msgid "CLOSE"
 msgstr "Tutup"
@@ -2870,8 +2885,9 @@ msgstr ""
 msgid "IRON"
 msgstr "Besi"
 
-msgid "IRON_CHEMOLITHOAUTOTROPHY"
-msgstr "Kemolitoautotrofi Besi"
+#, fuzzy
+msgid "IRON_OXIDATION"
+msgstr "Pilihan"
 
 #, fuzzy
 msgid "ITCH_TOOLTIP"
@@ -3756,12 +3772,14 @@ msgstr ""
 "Selmu membutuhkan glukosa agar dapat memproduksi energi untuk bertahan hidup.\n"
 "Ikuti garis yang membujur dari selmu ke glukosa terdekat."
 
+#, fuzzy
 msgid "MICROBE_STAGE_COLLECT_TEXT"
 msgstr ""
 "Kumpulkan glukosa (awan putih) dengan bergerak ke atas mereka.\n"
 "Selmu membutuhkan glukosa agar dapat memproduksi energi untuk bertahan hidup.\n"
 "Ikuti garis yang membujur dari selmu ke glukosa terdekat."
 
+#, fuzzy
 msgid "MICROBE_STAGE_CONTROL_TEXT"
 msgstr ""
 "Untuk mengendalikan selmu gunakan tombol-tombol yang tertampil dekat selmu (pusat layar) dan gunakan mouse untuk mengendalikan orientasi sel.\n"
@@ -3783,6 +3801,7 @@ msgstr ""
 "Kamu memperbarui health ketika memiliki ATP.\n"
 "Pastikan telah mengumpulkan glukosa yang cukup untuk memproduksi ATP."
 
+#, fuzzy
 msgid "MICROBE_STAGE_HEALTH_TEXT"
 msgstr ""
 "Perhatikan bilah health di sebelah bilah ATP (kanan bawah).\n"
@@ -3927,6 +3946,9 @@ msgstr ""
 
 msgid "MODELS"
 msgstr "Model"
+
+msgid "MODE_CAN_BE_CHANGED_IN_OPTIONS"
+msgstr ""
 
 msgid "MODIFY"
 msgstr "Ubah"
@@ -4324,7 +4346,14 @@ msgstr "Tidak ada apa-apa disini"
 msgid "NOTHING_TO_INTERACT_WITH"
 msgstr ""
 
+#, fuzzy
+msgid "NOTICE_BINDING_OUT_OF_ATP"
+msgstr "Nyala/matikan pelekatan"
+
 msgid "NOTICE_DAMAGED_BY_NO_ATP"
+msgstr ""
+
+msgid "NOTICE_ENGULFING_OUT_OF_ATP"
 msgstr ""
 
 msgid "NOTICE_ENGULF_DAMAGE_FROM_TOXIN"
@@ -4884,6 +4913,10 @@ msgstr "Gandakan Pemain"
 msgid "PLAYER_RELATIVE_MOVEMENT"
 msgstr "Gandakan Pemain"
 
+#, fuzzy
+msgid "PLAYER_RELATIVE_MOVEMENT_TOOLTIP"
+msgstr "Gandakan Pemain"
+
 msgid "PLAYER_REPRODUCED"
 msgstr "pemain bereproduksi"
 
@@ -4968,6 +5001,10 @@ msgstr "Proses Sel"
 msgid "PROCESS_SPEED_MODIFIER"
 msgstr "Proses Sel"
 
+#, fuzzy
+msgid "PROCESS_TOGGLE_TOOLTIP"
+msgstr "Kembali ke Menu"
+
 msgid "PROGRAMMING_TEAM"
 msgstr ""
 
@@ -4983,6 +5020,10 @@ msgstr "Protoplasma"
 
 msgid "PULL_REQUESTS_PROGRAMMING"
 msgstr ""
+
+#, fuzzy
+msgid "QUADRILLION_ABBREVIATION"
+msgstr "{0} M"
 
 msgid "QUICK_LOAD"
 msgstr "Muat cepat"
@@ -5114,6 +5155,14 @@ msgstr "Setel Ulang Input"
 
 msgid "RESET_SETTINGS_TO_DEFAULTS"
 msgstr "Semula"
+
+#, fuzzy
+msgid "RESET_SHOWN_TUTORIALS"
+msgstr "Tampilkan tutorial"
+
+#, fuzzy
+msgid "RESET_SHOWN_TUTORIALS_TOOLTIP"
+msgstr "Tambah keybind baru"
 
 msgid "RESET_TO_DEFAULTS"
 msgstr "Setel ulang ke semula?"
@@ -5383,6 +5432,10 @@ msgstr "Tampilkan Bilah Kemampuan Sel"
 msgid "SCREEN_RELATIVE_MOVEMENT"
 msgstr ""
 
+#, fuzzy
+msgid "SCREEN_RELATIVE_MOVEMENT_TOOLTIP"
+msgstr "Pergerakan Dasar"
+
 msgid "SCROLLLOCK"
 msgstr "Scroll Lock"
 
@@ -5408,6 +5461,10 @@ msgstr "Lanjutkan"
 #, fuzzy
 msgid "SEED_LABEL"
 msgstr "Bioma: {0}"
+
+#, fuzzy
+msgid "SELECTED"
+msgstr "Terpilih:"
 
 msgid "SELECTED_COLON"
 msgstr "Terpilih:"
@@ -5448,6 +5505,9 @@ msgstr "Pilih jenis sel untuk menyuntingnya disini dari tab penyunting"
 msgid "SELECT_ENZYME"
 msgstr "Terpilih:"
 
+msgid "SELECT_MOVEMENT_MODE_TITLE"
+msgstr ""
+
 #, fuzzy
 msgid "SELECT_OPTION"
 msgstr "Terpilih:"
@@ -5485,6 +5545,14 @@ msgid "SHIFT"
 msgstr ""
 
 #, fuzzy
+msgid "SHOW_ALL_TUTORIALS"
+msgstr "Tampilkan tutorial"
+
+#, fuzzy
+msgid "SHOW_ALL_TUTORIALS_TOOLTIP"
+msgstr "Tambah keybind baru"
+
+#, fuzzy
 msgid "SHOW_DAMAGE_EFFECT"
 msgstr "Flagela adalah bundelan serat protein yang berbentuk seperti cambuk memanjang dari membran sel yang menggunakan ATP untuk berputar dan mendorong sel ke suatu arah. Posisi flagela menentukan arah mana flagela tersebut memberi daya dorong untuk pergerakan sel. Arah dorongan berlawanan dengan arah flagela tersebut menuju, contohnya sebuah flagela yang di letakkan pada sisi kiri sebuah sel menyediakan daya dorong ketika bergerak ke kanan."
 
@@ -5504,16 +5572,16 @@ msgid "SHOW_NEW_PATCH_NOTES_TOOLTIP"
 msgstr "Gua"
 
 #, fuzzy
-msgid "SHOW_TUTORIALS"
-msgstr "Tampilkan tutorial"
-
-#, fuzzy
 msgid "SHOW_TUTORIALS_IN_NEW_CURRENT_OPTION"
 msgstr "Tampilkan tutorial (di permainan saat ini)"
 
 #, fuzzy
 msgid "SHOW_TUTORIALS_IN_NEW_GAMES_OPTION"
 msgstr "Tampilkan tutorial (di permainan baru)"
+
+#, fuzzy
+msgid "SHOW_TUTORIALS_OPTION_TOOLTIP"
+msgstr "Tambah keybind baru"
 
 #, fuzzy
 msgid "SHOW_UNSAVED_PROGRESS_WARNING"
@@ -5574,6 +5642,10 @@ msgstr "Silika"
 
 msgid "SILICA_MEMBRANE_DESCRIPTION"
 msgstr "Membran ini memiliki dinding kuat terbuat dari silika. Dapat menahan kerusakan secara keseluruhan dengan baik dan sangat kebal terhadap kerusakan fisik. Juga memerlukan lebih sedikit energi untuk mempertahankan bentuk. Namun, sangat memperlambat sel dan juga memperlambat laju kemampuan sel menyerap sumber daya."
+
+#, fuzzy
+msgid "SIXTEEN_TIMES"
+msgstr "Daftar Spesies"
 
 msgid "SIZE_COLON"
 msgstr "Ukuran:"
@@ -5844,6 +5916,10 @@ msgstr ""
 
 msgid "STORE_LOGGED_IN_AS"
 msgstr "Masuk sebagai {0}"
+
+#, fuzzy
+msgid "STRAIN_BAR_TOOLTIP"
+msgstr "Tambah keybind baru"
 
 msgid "STRAIN_BAR_VISIBILITY"
 msgstr ""
@@ -6119,6 +6195,14 @@ msgstr ""
 msgid "TIMELINE_NICHE_FILL"
 msgstr "[b][u]{0}[/u][/b] berpisah dari [b][u]{1}[/u][/b] sebagai spesies baru untuk mengisi sebuah relung"
 
+#, fuzzy
+msgid "TIMELINE_PLAYER_MIGRATED"
+msgstr "Sebagian dari populasi [b][u]{0}[/u][/b] telah bermigrasi ke {1}"
+
+#, fuzzy
+msgid "TIMELINE_PLAYER_MIGRATED_TO"
+msgstr "Sebagian dari populasi [b][u]{0}[/u][/b] telah bermigrasi ke {1}"
+
 msgid "TIMELINE_SELECTION_PRESSURE_SPLIT"
 msgstr "[b][u]{0}[/u][/b] berpisah dari [b][u]{1}[/u][/b] sebagai spesies baru karena tekanan seleksi yang berbeda"
 
@@ -6134,6 +6218,10 @@ msgstr "[b][u]{0}[/u][/b] telah punah!"
 
 msgid "TIMELINE_SPECIES_EXTINCT_LOCAL"
 msgstr "[b][u]{0}[/u][/b] telah lenyap dari daerah ini"
+
+#, fuzzy
+msgid "TIMELINE_SPECIES_FOLLOWED"
+msgstr "[b][u]{0}[/u][/b] telah punah!"
 
 msgid "TIMELINE_SPECIES_MIGRATED_FROM"
 msgstr "Sebagian dari populasi [b][u]{0}[/u][/b] telah bermigrasi ke daerah ini dari {1}"
@@ -6360,6 +6448,10 @@ msgid "TRANSPARENCY"
 msgstr "Transparansi"
 
 #, fuzzy
+msgid "TRILLION_ABBREVIATION"
+msgstr "{0} M"
+
+#, fuzzy
 msgid "TRY_FOSSILISING_SOME_SPECIES"
 msgstr "Ambil tangkapan layar"
 
@@ -6373,6 +6465,10 @@ msgstr "Ambil tangkapan layar"
 #, fuzzy
 msgid "TUTORIAL"
 msgstr "Tutorial"
+
+#, fuzzy
+msgid "TUTORIAL_ALL_NOT_ENABLED_EXPLANATION"
+msgstr "Tusuk sel lain dengan ini."
 
 #, fuzzy
 msgid "TUTORIAL_MICROBE_EDITOR_ATP_BALANCE_INTRO"
@@ -6917,6 +7013,9 @@ msgstr ""
 
 msgid "VIEW_SOURCE_CODE"
 msgstr "Lihat Kode Sumber"
+
+msgid "VIEW_TEXT_REPORT"
+msgstr ""
 
 msgid "VIP_PATRONS"
 msgstr "Pendukung VIP"
@@ -8821,6 +8920,9 @@ msgstr "Perbesar"
 
 msgid "ZOOM_OUT"
 msgstr "Perkecil"
+
+#~ msgid "IRON_CHEMOLITHOAUTOTROPHY"
+#~ msgstr "Kemolitoautotrofi Besi"
 
 #, fuzzy
 #~ msgid "PASSIVE_REPRODUCTION_PROGRESS"
