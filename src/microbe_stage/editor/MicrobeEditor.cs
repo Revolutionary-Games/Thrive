@@ -192,7 +192,16 @@ public partial class MicrobeEditor : EditorBase<EditorAction, MicrobeStage>, IEd
 
     protected override void InitEditorGUI(bool fresh)
     {
-        reportTab.OnNextTab = () => SetEditorTab(EditorTab.PatchMap);
+        if (TutorialState.Enabled && !TutorialState.EditorReportWelcome.Complete)
+        {
+            GD.Print("Will skip patch map tab for tutorial purposes");
+            reportTab.OnNextTab = () => SetEditorTab(EditorTab.CellEditor);
+        }
+        else
+        {
+            reportTab.OnNextTab = () => SetEditorTab(EditorTab.PatchMap);
+        }
+
         patchMapTab.OnNextTab = () => SetEditorTab(EditorTab.CellEditor);
         cellEditorTab.OnFinish = ForwardEditorComponentFinishRequest;
 
@@ -263,6 +272,39 @@ public partial class MicrobeEditor : EditorBase<EditorAction, MicrobeStage>, IEd
         reportTab.UpdateEvents(CurrentGame.GameWorld.EventsLog, CurrentGame.GameWorld.TotalPassedTime);
 
         patchMapTab.UpdatePatchEvents();
+
+        if (TutorialState.Enabled)
+        {
+            if (editorTabSelector == null)
+                throw new InvalidOperationException("Editor GUI not setup");
+
+            // Tutorial handling
+            // On the first go, go directly to the cell editor tab
+            if (!TutorialState.CellEditorIntroduction.Complete && !TutorialState.TutorialActive())
+            {
+                GD.Print("Going to cell editor tab for tutorial purposes (and hiding other tabs)");
+                SetEditorTab(EditorTab.CellEditor);
+
+                editorTabSelector.ShowMapTab = false;
+                editorTabSelector.ShowReportTab = false;
+
+                cellEditorTab.HideGUIElementsForInitialTutorial();
+            }
+            else if (TutorialState.EarlyGameGoalTutorial is { CanTrigger: false, Complete: false })
+            {
+                // On the second go, hide the patch map
+                GD.Print("Hiding patch map tab for tutorial purposes");
+                editorTabSelector.ShowMapTab = false;
+
+                cellEditorTab.HideAutoEvoPredictionForTutorial();
+                cellEditorTab.HideAdvancedTabs();
+            }
+            else if (!TutorialState.AutoEvoPrediction.Complete)
+            {
+                // Third editor cycle
+                cellEditorTab.HideAdvancedTabs();
+            }
+        }
     }
 
     protected override GameProperties StartNewGameForEditor()

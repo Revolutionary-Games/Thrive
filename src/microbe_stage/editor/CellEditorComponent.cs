@@ -1125,6 +1125,13 @@ public partial class CellEditorComponent :
         appearanceTabButton.Visible = false;
     }
 
+    public void HideAdvancedTabs()
+    {
+        // Hide the most advanced tabs
+        growthOrderTabButton.Visible = false;
+        toleranceTabButton.Visible = false;
+    }
+
     public void HideAutoEvoPredictionForTutorial()
     {
         autoEvoPredictionPanel.Visible = false;

@@ -71,7 +71,7 @@ public class TutorialState : ITutorialInput, ISaveLoadable
     public MicrobeEngulfmentStorageFull EngulfmentStorageFull { get; private set; } = new();
 
     [JsonProperty]
-    public EditorWelcome EditorWelcome { get; private set; } = new();
+    public EditorReportWelcome EditorReportWelcome { get; private set; } = new();
 
     [JsonProperty]
     public Tutorial.PatchMap PatchMap { get; private set; } = new();
@@ -486,7 +486,7 @@ public class TutorialState : ITutorialInput, ISaveLoadable
             MicrobeEngulfedExplanation,
             EngulfmentStorageFull,
             CheckTheHelpMenu,
-            EditorWelcome,
+            EditorReportWelcome,
             PatchMap,
             CellEditorIntroduction,
             NucleusTutorial,
