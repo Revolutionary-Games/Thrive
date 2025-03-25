@@ -882,8 +882,20 @@ public partial class CellEditorComponent :
             {
                 GD.Print("Restoring visibility of cell editor GUI that tutorial disabled");
                 ShowStatisticsPanel(true);
-                ShowAutoEvoPredictionPanel(true);
                 ShowConfirmButton(true);
+
+                // Probably need to have this safety here to ensure that unintended things don't become visible in
+                // multicellular
+                if (!IsMulticellularEditor)
+                {
+                    ShowAutoEvoPredictionPanel(true);
+
+                    growthOrderTabButton.Visible = true;
+                    toleranceTabButton.Visible = true;
+                    behaviourTabButton.Visible = true;
+                }
+
+                appearanceTabButton.Visible = true;
             }
         }
     }
@@ -1103,6 +1115,14 @@ public partial class CellEditorComponent :
         organismStatisticsPanel.Visible = false;
         finishOrNextButton.Visible = false;
         HideAutoEvoPredictionForTutorial();
+
+        // Don't show the most advanced tabs
+        growthOrderTabButton.Visible = false;
+        toleranceTabButton.Visible = false;
+
+        // And don't show these yet
+        behaviourTabButton.Visible = false;
+        appearanceTabButton.Visible = false;
     }
 
     public void HideAutoEvoPredictionForTutorial()
@@ -1126,6 +1146,14 @@ public partial class CellEditorComponent :
         tween.SetEase(Tween.EaseType.InOut);
         tween.SetTrans(Tween.TransitionType.Expo);
         tween.TweenProperty(rightPanel, "position", targetPosition, 0.5);
+    }
+
+    public void ShowBasicEditingTabs()
+    {
+        appearanceTabButton.Visible = true;
+
+        if (!IsMulticellularEditor)
+            behaviourTabButton.Visible = true;
     }
 
     public void ShowConfirmButton(bool animate)

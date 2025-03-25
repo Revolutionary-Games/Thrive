@@ -95,6 +95,7 @@ public partial class MicrobeEditor : EditorBase<EditorAction, MicrobeStage>, IEd
         if (currentGame != null)
         {
             TutorialState.EditorRedoTutorial.OnTutorialOpen -= OnShowStatisticsForTutorial;
+            TutorialState.EditorTutorialEnd.OnTutorialOpen -= cellEditorTab.ShowBasicEditingTabs;
             TutorialState.EditorTutorialEnd.OnClosed -= OnShowConfirmForTutorial;
         }
     }
@@ -154,6 +155,7 @@ public partial class MicrobeEditor : EditorBase<EditorAction, MicrobeStage>, IEd
 
         // Register showing certain parts of the GUI as the tutorial progresses
         TutorialState.EditorRedoTutorial.OnTutorialOpen += OnShowStatisticsForTutorial;
+        TutorialState.EditorTutorialEnd.OnTutorialOpen += cellEditorTab.ShowBasicEditingTabs;
         TutorialState.EditorTutorialEnd.OnClosed += OnShowConfirmForTutorial;
 
         base.InitEditor(fresh);
