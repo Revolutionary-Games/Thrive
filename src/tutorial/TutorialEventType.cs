@@ -74,6 +74,11 @@ public enum TutorialEventType
     MicrobePlayerReadyToEdit,
 
     /// <summary>
+    ///   Triggered when the player opens the process panel
+    /// </summary>
+    ProcessPanelOpened,
+
+    /// <summary>
     ///   Player presses the button the exit the microbe editor but has made no changes
     /// </summary>
     MicrobeEditorNoChangesMade,
@@ -102,6 +107,11 @@ public enum TutorialEventType
     ///   Player changed the microbe editor tab, args is <see cref="StringEventArgs"/>
     /// </summary>
     MicrobeEditorTabChanged,
+
+    /// <summary>
+    ///   Player changed the <see cref="MicrobeEditorReportComponent"/> subtab, args is <see cref="StringEventArgs"/>
+    /// </summary>
+    ReportComponentSubtabChanged,
 
     /// <summary>
     ///   Player changed the sub-tab of the cell editor, args is <see cref="StringEventArgs"/>

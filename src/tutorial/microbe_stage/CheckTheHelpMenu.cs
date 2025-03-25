@@ -3,11 +3,9 @@
 using System;
 using Newtonsoft.Json;
 
-public class CheckTheHelpMenu : TutorialPhase
+public class CheckTheHelpMenu : SwimmingAroundCountingTutorial
 {
     public const string TUTORIAL_NAME = "CheckTheHelpMenu";
-
-    private const int TriggersOnNthSwimmingSession = 3;
 
     public CheckTheHelpMenu()
     {
@@ -16,35 +14,10 @@ public class CheckTheHelpMenu : TutorialPhase
 
     public override string ClosedByName => TUTORIAL_NAME;
 
-    [JsonProperty]
-    public int NumberOfMicrobeStageEntries { get; set; }
+    protected override int TriggersOnNthSwimmingSession => 5;
 
     public override void ApplyGUIState(MicrobeTutorialGUI gui)
     {
         gui.CheckTheHelpMenuVisible = ShownCurrently;
-    }
-
-    public override bool CheckEvent(TutorialState overallState, TutorialEventType eventType, EventArgs args,
-        object sender)
-    {
-        switch (eventType)
-        {
-            case TutorialEventType.EnteredMicrobeStage:
-            {
-                if (!HasBeenShown)
-                {
-                    ++NumberOfMicrobeStageEntries;
-                    if (NumberOfMicrobeStageEntries >= TriggersOnNthSwimmingSession &&
-                        !overallState.TutorialActive())
-                    {
-                        Show();
-                    }
-                }
-
-                break;
-            }
-        }
-
-        return false;
     }
 }

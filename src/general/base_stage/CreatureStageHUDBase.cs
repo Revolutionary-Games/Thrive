@@ -464,6 +464,7 @@ public partial class CreatureStageHUDBase<TStage> : HUDWithPausing, ICreatureSta
     public void SendObjectsToTutorials(TutorialState tutorialState)
     {
         tutorialState.MicrobePressEditorButton.PressEditorButtonControl = editorButton;
+        tutorialState.OpenProcessPanelTutorial.ProcessPanelButtonControl = bottomLeftBar.ProcessPanelButtonControl;
 
         tutorialState.GlucoseCollecting.CompoundPanels = compoundsPanel;
         tutorialState.GlucoseCollecting.HUDBottomBar = bottomLeftBar;
@@ -1265,6 +1266,9 @@ public partial class CreatureStageHUDBase<TStage> : HUDWithPausing, ICreatureSta
         {
             processPanel.Show();
             bottomLeftBar.ProcessesPressed = true;
+
+            // Send a tutorial event about this opening
+            stage?.CurrentGame?.TutorialState.SendEvent(TutorialEventType.ProcessPanelOpened, EventArgs.Empty, this);
         }
     }
 

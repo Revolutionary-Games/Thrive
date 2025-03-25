@@ -613,6 +613,9 @@ public partial class MicrobeEditorReportComponent : EditorComponentBase<IEditorR
 
         selectedReportSubtab = selection;
         ApplyReportSubtab();
+
+        Editor.CurrentGame.TutorialState.SendEvent(TutorialEventType.ReportComponentSubtabChanged,
+            new StringEventArgs(tab), this);
     }
 
     private void ApplyReportSubtab()

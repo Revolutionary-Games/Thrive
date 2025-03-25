@@ -71,6 +71,15 @@ public class TutorialState : ITutorialInput, ISaveLoadable
     public MicrobeEngulfmentStorageFull EngulfmentStorageFull { get; private set; } = new();
 
     [JsonProperty]
+    public OpenProcessPanelTutorial OpenProcessPanelTutorial { get; private set; } = new();
+
+    [JsonProperty]
+    public ProcessPanelTutorial ProcessPanelTutorial { get; private set; } = new();
+
+    [JsonProperty]
+    public MigrationTutorial MigrationTutorial { get; private set; } = new();
+
+    [JsonProperty]
     public EditorReportWelcome EditorReportWelcome { get; private set; } = new();
 
     [JsonProperty]
@@ -102,6 +111,12 @@ public class TutorialState : ITutorialInput, ISaveLoadable
 
     [JsonProperty]
     public AtpBalanceIntroduction AtpBalanceIntroduction { get; private set; } = new();
+
+    [JsonProperty]
+    public CompoundBalancesTutorial CompoundBalancesTutorial { get; private set; } = new();
+
+    [JsonProperty]
+    public FoodChainTabTutorial FoodChainTabTutorial { get; private set; } = new();
 
     [JsonProperty]
     public LeaveColonyTutorial LeaveColonyTutorial { get; private set; } = new();
@@ -485,6 +500,8 @@ public class TutorialState : ITutorialInput, ISaveLoadable
             MicrobeEngulfmentExplanation,
             MicrobeEngulfedExplanation,
             EngulfmentStorageFull,
+            OpenProcessPanelTutorial,
+            ProcessPanelTutorial,
             CheckTheHelpMenu,
             EditorReportWelcome,
             PatchMap,
@@ -497,6 +514,9 @@ public class TutorialState : ITutorialInput, ISaveLoadable
             StaySmallTutorial,
             ChemoreceptorPlacementTutorial,
             NegativeAtpBalanceTutorial,
+            CompoundBalancesTutorial,
+            FoodChainTabTutorial,
+            MigrationTutorial,
             LeaveColonyTutorial,
             BecomeMulticellularTutorial,
             MulticellularWelcome,

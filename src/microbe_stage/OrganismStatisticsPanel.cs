@@ -206,6 +206,7 @@ public partial class OrganismStatisticsPanel : PanelContainer
     public void SendObjectsToTutorials(TutorialState tutorial, MicrobeEditorTutorialGUI gui)
     {
         tutorial.AtpBalanceIntroduction.ATPBalanceBarControl = atpBalancePanel;
+        tutorial.CompoundBalancesTutorial.CompoundBalanceControl = compoundBalance;
     }
 
     public void UpdateEnergyBalance(EnergyBalanceInfoFull energyBalance)

@@ -87,6 +87,15 @@ public partial class MicrobeEditorTutorialGUI : Control, ITutorialGUI
 
     [Export]
     private CustomWindow earlyGameGoalTutorial = null!;
+
+    [Export]
+    private CustomWindow compoundBalanceTutorial = null!;
+
+    [Export]
+    private CustomWindow migrationTutorial = null!;
+
+    [Export]
+    private CustomWindow foodChainTutorial = null!;
 #pragma warning restore CA2213
 
     public MainGameState AssociatedGameState => MainGameState.MicrobeEditor;
@@ -102,6 +111,9 @@ public partial class MicrobeEditorTutorialGUI : Control, ITutorialGUI
     public ControlHighlight? AutoEvoPredictionHighlight { get; private set; }
 
     public ControlHighlight? AtpBalanceBarHighlight { get; private set; }
+
+    [Export]
+    public ControlHighlight? CompoundBalanceHighlight { get; private set; }
 
     /// <summary>
     ///   This is used to ensure the scroll position shows elements related to active tutorials
@@ -450,6 +462,64 @@ public partial class MicrobeEditorTutorialGUI : Control, ITutorialGUI
         }
     }
 
+    public bool CompoundBalanceTutorialVisible
+    {
+        get => compoundBalanceTutorial.Visible;
+        set
+        {
+            if (value == compoundBalanceTutorial.Visible)
+                return;
+
+            if (value)
+            {
+                compoundBalanceTutorial.Show();
+                RightPanelScrollContainer.ScrollVertical = 150;
+            }
+            else
+            {
+                compoundBalanceTutorial.Hide();
+            }
+        }
+    }
+
+    public bool MigrationTutorialVisible
+    {
+        get => migrationTutorial.Visible;
+        set
+        {
+            if (value == migrationTutorial.Visible)
+                return;
+
+            if (value)
+            {
+                migrationTutorial.Show();
+            }
+            else
+            {
+                migrationTutorial.Hide();
+            }
+        }
+    }
+
+    public bool FoodChainTutorialVisible
+    {
+        get => foodChainTutorial.Visible;
+        set
+        {
+            if (value == foodChainTutorial.Visible)
+                return;
+
+            if (value)
+            {
+                foodChainTutorial.Show();
+            }
+            else
+            {
+                foodChainTutorial.Hide();
+            }
+        }
+    }
+
     public override void _Ready()
     {
         editorEntryReport = GetNode<CustomWindow>(EditorEntryReportPath);
@@ -508,7 +578,7 @@ public partial class MicrobeEditorTutorialGUI : Control, ITutorialGUI
         // much or too little ever.
         // TODO: adjust this with the new reordered panel and upcoming tutorial rework
         if (eitherVisible)
-            RightPanelScrollContainer.ScrollVertical = 150;
+            RightPanelScrollContainer.ScrollVertical = 100;
     }
 
     protected override void Dispose(bool disposing)

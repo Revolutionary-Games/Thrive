@@ -36,6 +36,10 @@ public class PatchMap : TutorialPhase
                     Hide();
                 }
 
+                // Let the second patch map tutorial trigger
+                if (HasBeenShown && tab != patchMapTab)
+                    overallState.MigrationTutorial.DependentTutorialCompleted = true;
+
                 break;
             }
 

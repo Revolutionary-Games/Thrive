@@ -105,6 +105,13 @@ public partial class MicrobeTutorialGUI : Control, ITutorialGUI
     private CustomWindow dayNightTutorial = null!;
     private CustomWindow becomeMulticellularTutorial = null!;
     private CustomWindow organelleDivisionTutorial = null!;
+
+    [Export]
+    private CustomWindow openProcessPanelTutorial = null!;
+
+    [Export]
+    private CustomWindow processPanelTutorial = null!;
+
 #pragma warning restore CA2213
 
     [Signal]
@@ -119,6 +126,9 @@ public partial class MicrobeTutorialGUI : Control, ITutorialGUI
     public Node GUINode => this;
 
     public ControlHighlight? PressEditorButtonHighlight { get; private set; }
+
+    [Export]
+    public ControlHighlight? ProcessPanelButtonHighlight { get; private set; }
 
     public bool IsClosingAutomatically { get; set; }
 
@@ -435,6 +445,44 @@ public partial class MicrobeTutorialGUI : Control, ITutorialGUI
                 return;
 
             becomeMulticellularTutorial.Visible = value;
+        }
+    }
+
+    public bool OpenProcessPanelTutorialVisible
+    {
+        get => openProcessPanelTutorial.Visible;
+        set
+        {
+            if (value == openProcessPanelTutorial.Visible)
+                return;
+
+            if (value)
+            {
+                openProcessPanelTutorial.Show();
+            }
+            else
+            {
+                openProcessPanelTutorial.Hide();
+            }
+        }
+    }
+
+    public bool ProcessPanelTutorialVisible
+    {
+        get => processPanelTutorial.Visible;
+        set
+        {
+            if (value == processPanelTutorial.Visible)
+                return;
+
+            if (value)
+            {
+                processPanelTutorial.Show();
+            }
+            else
+            {
+                processPanelTutorial.Hide();
+            }
         }
     }
 
