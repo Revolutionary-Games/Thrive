@@ -91,9 +91,6 @@ public partial class CellEditorComponent :
     [Export]
     public NodePath OrganelleUpgradeGUIPath = null!;
 
-    [Export]
-    public NodePath RightPanelScrollContainerPath = null!;
-
     /// <summary>
     ///   Temporary hex memory for use by the main thread in this component
     /// </summary>
@@ -199,7 +196,14 @@ public partial class CellEditorComponent :
     private CustomWindow autoEvoPredictionExplanationPopup = null!;
     private CustomRichTextLabel autoEvoPredictionExplanationLabel = null!;
 
+    [Export]
+    private Control rightPanel = null!;
+
+    [Export]
     private ScrollContainer rightPanelScrollContainer = null!;
+
+    [Export]
+    private Control bottomRightPanel = null!;
 
     private PackedScene organelleSelectionButtonScene = null!;
 
@@ -648,8 +652,6 @@ public partial class CellEditorComponent :
         negativeAtpPopup = GetNode<CustomConfirmationDialog>(NegativeAtpPopupPath);
         organelleMenu = GetNode<OrganellePopupMenu>(OrganelleMenuPath);
         organelleUpgradeGUI = GetNode<OrganelleUpgradeGUI>(OrganelleUpgradeGUIPath);
-
-        rightPanelScrollContainer = GetNode<ScrollContainer>(RightPanelScrollContainerPath);
 
         autoEvoPredictionExplanationPopup = GetNode<CustomWindow>(AutoEvoPredictionExplanationPopupPath);
         autoEvoPredictionExplanationLabel = GetNode<CustomRichTextLabel>(AutoEvoPredictionExplanationLabelPath);
@@ -1103,7 +1105,31 @@ public partial class CellEditorComponent :
         if (!animate)
             return;
 
-        tutorialAnimationPlayer.Play("ShowRightPanel");
+        // Due to anchor positioning, this needs an animation defined with code to work correctly; otherwise the final
+        // position will not be correct
+        var tween = CreateTween();
+
+        var targetPosition = rightPanel.Position;
+        rightPanel.Position += new Vector2(rightPanel.Size.X + 5, 0);
+        tween.SetEase(Tween.EaseType.InOut);
+        tween.SetTrans(Tween.TransitionType.Expo);
+        tween.TweenProperty(rightPanel, "position", targetPosition, 0.5);
+    }
+
+    public void ShowConfirmButton(bool animate)
+    {
+        finishOrNextButton.Visible = true;
+
+        if (!animate)
+            return;
+
+        var tween = CreateTween();
+
+        var targetPosition = bottomRightPanel.Position;
+        bottomRightPanel.Position += new Vector2(0, bottomRightPanel.Size.Y + 5);
+        tween.SetEase(Tween.EaseType.Out);
+        tween.SetTrans(Tween.TransitionType.Expo);
+        tween.TweenProperty(bottomRightPanel, "position", targetPosition, 0.4);
     }
 
     public void ShowAutoEvoPredictionPanel(bool animate)
@@ -1114,16 +1140,6 @@ public partial class CellEditorComponent :
             return;
 
         tutorialAnimationPlayer.Play("ShowAutoEvoPrediction");
-    }
-
-    public void ShowConfirmButton(bool animate)
-    {
-        finishOrNextButton.Visible = true;
-
-        if (!animate)
-            return;
-
-        tutorialAnimationPlayer.Play("ShowConfirmButton");
     }
 
     /// <summary>
@@ -1632,7 +1648,6 @@ public partial class CellEditorComponent :
                 AutoEvoPredictionExplanationPopupPath.Dispose();
                 AutoEvoPredictionExplanationLabelPath.Dispose();
                 OrganelleUpgradeGUIPath.Dispose();
-                RightPanelScrollContainerPath.Dispose();
             }
 
             previewSimulation?.Dispose();
