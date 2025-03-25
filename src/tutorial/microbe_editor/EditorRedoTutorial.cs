@@ -14,6 +14,8 @@ public class EditorRedoTutorial : TutorialPhase
     [JsonIgnore]
     public Control? EditorRedoButtonControl { get; set; }
 
+    public OnTutorialOpenDelegate? OnTutorialOpen { get; set; }
+
     public override void ApplyGUIState(MicrobeEditorTutorialGUI gui)
     {
         if (gui.CellEditorRedoHighlight == null)
@@ -35,6 +37,7 @@ public class EditorRedoTutorial : TutorialPhase
                 if (!HasBeenShown && CanTrigger)
                 {
                     Show();
+                    OnTutorialOpen?.Invoke();
                     overallState.EditorTutorialEnd.CanTrigger = true;
 
                     return true;

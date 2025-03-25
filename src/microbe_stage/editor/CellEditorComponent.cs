@@ -210,6 +210,9 @@ public partial class CellEditorComponent :
     private Node3D? cellPreviewVisualsRoot;
 
     [Export]
+    private AnimationPlayer tutorialAnimationPlayer = null!;
+
+    [Export]
     private LabelSettings toleranceWarningsFont = null!;
 #pragma warning restore CA2213
 
@@ -1037,6 +1040,14 @@ public partial class CellEditorComponent :
         if (!base.CanFinishEditing(editorUserOverrides))
             return false;
 
+        // Disallow exiting if the confirmation button hasn't been enabled yet (by the tutorial). This is just a safety
+        // check against accidentally skipping the tutorial
+        if (tutorialState is { Enabled: true } && !finishOrNextButton.Visible)
+        {
+            GD.Print("Disallowing exit of cell editor as tutorial is still active (and confirm is hidden)");
+            return false;
+        }
+
         // Show a warning if the editor has an endosymbiosis that should be finished
         if (HasFinishedPendingEndosymbiosis && !editorUserOverrides.Contains(EditorUserOverride.EndosymbiosisPending))
         {
@@ -1071,6 +1082,48 @@ public partial class CellEditorComponent :
         }
 
         return true;
+    }
+
+    public void HideGUIElementsForInitialTutorial()
+    {
+        organismStatisticsPanel.Visible = false;
+        finishOrNextButton.Visible = false;
+        HideAutoEvoPredictionForTutorial();
+    }
+
+    public void HideAutoEvoPredictionForTutorial()
+    {
+        autoEvoPredictionPanel.Visible = false;
+    }
+
+    public void ShowStatisticsPanel(bool animate)
+    {
+        organismStatisticsPanel.Visible = true;
+
+        if (!animate)
+            return;
+
+        tutorialAnimationPlayer.Play("ShowRightPanel");
+    }
+
+    public void ShowAutoEvoPredictionPanel(bool animate)
+    {
+        autoEvoPredictionPanel.Visible = true;
+
+        if (!animate)
+            return;
+
+        tutorialAnimationPlayer.Play("ShowAutoEvoPrediction");
+    }
+
+    public void ShowConfirmButton(bool animate)
+    {
+        finishOrNextButton.Visible = true;
+
+        if (!animate)
+            return;
+
+        tutorialAnimationPlayer.Play("ShowConfirmButton");
     }
 
     /// <summary>

@@ -13,6 +13,8 @@ public abstract class TutorialPhase
     /// </summary>
     public delegate void OnTutorialOpenDelegate();
 
+    public delegate void OnTutorialCompleteDelegate();
+
     /// <summary>
     ///   If set to false, the trigger condition won't be checked for this tutorial
     /// </summary>

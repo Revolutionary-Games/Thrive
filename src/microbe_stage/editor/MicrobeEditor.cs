@@ -91,6 +91,12 @@ public partial class MicrobeEditor : EditorBase<EditorAction, MicrobeStage>, IEd
 
         CheatManager.OnRevealAllPatches -= OnRevealAllPatchesCheatUsed;
         CheatManager.OnUnlockAllOrganelles -= OnUnlockAllOrganellesCheatUsed;
+
+        if (currentGame != null)
+        {
+            TutorialState.EditorRedoTutorial.OnTutorialOpen -= OnShowStatisticsForTutorial;
+            TutorialState.EditorTutorialEnd.OnClosed -= OnShowConfirmForTutorial;
+        }
     }
 
     public void SendAutoEvoResultsToReportComponent()
@@ -145,6 +151,10 @@ public partial class MicrobeEditor : EditorBase<EditorAction, MicrobeStage>, IEd
     protected override void InitEditor(bool fresh)
     {
         patchMapTab.SetMap(CurrentGame.GameWorld.Map);
+
+        // Register showing certain parts of the GUI as the tutorial progresses
+        TutorialState.EditorRedoTutorial.OnTutorialOpen += OnShowStatisticsForTutorial;
+        TutorialState.EditorTutorialEnd.OnClosed += OnShowConfirmForTutorial;
 
         base.InitEditor(fresh);
 
@@ -276,10 +286,9 @@ public partial class MicrobeEditor : EditorBase<EditorAction, MicrobeStage>, IEd
     protected override void ApplyEditorTab()
     {
         // This now triggers also when loading the editor initially, but no tutorial relies on the player going back
-        // to the report tab so this shouldn't matter
+        // to the report tab, so this shouldn't matter
         TutorialState.SendEvent(TutorialEventType.MicrobeEditorTabChanged,
-            new StringEventArgs(selectedEditorTab.ToString()),
-            this);
+            new StringEventArgs(selectedEditorTab.ToString()), this);
 
         // Hide all
         reportTab.Hide();
@@ -349,6 +358,16 @@ public partial class MicrobeEditor : EditorBase<EditorAction, MicrobeStage>, IEd
         // This creates a new callable each time, but the garbage amount should be negligible
         reportTab.UpdateAutoEvoResults(autoEvoResults, autoEvoExternal?.ToString() ?? "error",
             () => autoEvoResults.MakeSummary(true));
+    }
+
+    private void OnShowStatisticsForTutorial()
+    {
+        cellEditorTab.ShowStatisticsPanel(true);
+    }
+
+    private void OnShowConfirmForTutorial()
+    {
+        cellEditorTab.ShowConfirmButton(true);
     }
 
     private void OnRevealAllPatchesCheatUsed(object? sender, EventArgs args)

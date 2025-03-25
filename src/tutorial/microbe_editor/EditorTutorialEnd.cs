@@ -3,7 +3,7 @@
 using System;
 
 /// <summary>
-///   Last words of the microbe editor tutorial
+///   Last words of the microbe editor tutorial (for the first editor cycle)
 /// </summary>
 public class EditorTutorialEnd : TutorialPhase
 {
@@ -13,6 +13,8 @@ public class EditorTutorialEnd : TutorialPhase
     }
 
     public override string ClosedByName => "CellEditorClosingWords";
+
+    public OnTutorialCompleteDelegate? OnClosed { get; set; }
 
     public override void ApplyGUIState(MicrobeEditorTutorialGUI gui)
     {
@@ -37,5 +39,15 @@ public class EditorTutorialEnd : TutorialPhase
         }
 
         return false;
+    }
+
+    public override void Hide()
+    {
+        if (ShownCurrently)
+        {
+            OnClosed?.Invoke();
+        }
+
+        base.Hide();
     }
 }
