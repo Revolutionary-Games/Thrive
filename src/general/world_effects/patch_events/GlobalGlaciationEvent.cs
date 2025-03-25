@@ -214,12 +214,6 @@ public class GlobalGlaciationEvent : IWorldEffect
         patch.LogEvent(new LocalizedString("GLOBAL_GLACIATION_EVENT"),
             true, true, "GlobalGlaciationEvent.svg");
 
-        if (patch.Visibility == MapElementVisibility.Shown)
-        {
-            targetWorld.LogEvent(new LocalizedString("GLOBAL_GLACIATION_EVENT_LOG", patch.Name),
-                true, false, "GlobalGlaciationEvent.svg");
-        }
-
         patch.AddPatchEventRecord(WorldEffectVisuals.GlobalGlaciation, totalTimePassed);
     }
 
@@ -235,6 +229,9 @@ public class GlobalGlaciationEvent : IWorldEffect
     {
         targetWorld.LogEvent(new LocalizedString("GLOBAL_GLACIATION_START_EVENT_LOG"),
             true, true, "GlobalGlaciationEvent.svg");
+
+        targetWorld.LogEvent(new LocalizedString("GLOBAL_GLACIATION_EVENT_LOG", modifiedPatchesIds.Count),
+            true, false, "GlobalGlaciationEvent.svg");
     }
 
     private void LogEndOfGlaciation()
