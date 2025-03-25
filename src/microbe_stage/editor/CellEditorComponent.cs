@@ -874,6 +874,18 @@ public partial class CellEditorComponent :
                 MouseHoverPositions = hoveredHexes.ToList();
             }
         }
+
+        // Safety if the tutorial is disabled and some core GUI is disabled
+        if (TutorialState is { Enabled: false })
+        {
+            if (!finishOrNextButton.Visible)
+            {
+                GD.Print("Restoring visibility of cell editor GUI that tutorial disabled");
+                ShowStatisticsPanel(true);
+                ShowAutoEvoPredictionPanel(true);
+                ShowConfirmButton(true);
+            }
+        }
     }
 
     public override void OnEditorReady()
