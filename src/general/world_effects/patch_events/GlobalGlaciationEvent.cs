@@ -229,9 +229,6 @@ public class GlobalGlaciationEvent : IWorldEffect
     {
         targetWorld.LogEvent(new LocalizedString("GLOBAL_GLACIATION_START_EVENT_LOG"),
             true, true, "GlobalGlaciationEvent.svg");
-
-        targetWorld.LogEvent(new LocalizedString("GLOBAL_GLACIATION_EVENT_LOG", modifiedPatchesIds.Count),
-            true, false, "GlobalGlaciationEvent.svg");
     }
 
     private void LogEndOfGlaciation()
