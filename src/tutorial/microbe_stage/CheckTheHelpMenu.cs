@@ -1,8 +1,5 @@
 ﻿namespace Tutorial;
 
-using System;
-using Newtonsoft.Json;
-
 public class CheckTheHelpMenu : SwimmingAroundCountingTutorial
 {
     public const string TUTORIAL_NAME = "CheckTheHelpMenu";
