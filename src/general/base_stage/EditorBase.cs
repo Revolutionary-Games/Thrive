@@ -810,7 +810,7 @@ public partial class EditorBase<TAction, TStage> : NodeWithInput, IEditor, ILoad
 
     protected IEditorComponent? GetActiveEditorComponent()
     {
-        // Assume first visible editor component is the active one
+        // Assume the first visible editor component is the active one
         foreach (var editorComponent in GetAllEditorComponents())
         {
             if (editorComponent.Visible)
