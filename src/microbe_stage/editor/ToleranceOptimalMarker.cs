@@ -1,7 +1,7 @@
 ﻿using Godot;
 
 /// <summary>
-///   Displays additional tolerance slider info, such as the optimal value and value labels.
+///   Displays the optimal tolerance value marker
 /// </summary>
 public partial class ToleranceOptimalMarker : Control
 {
@@ -31,6 +31,9 @@ public partial class ToleranceOptimalMarker : Control
         }
     }
 
+    /// <summary>
+    ///   The optimal tolerance value as a fraction (0-1) between the min and max values.
+    /// </summary>
     public float OptimalValue
     {
         get => optimalValue;
