@@ -1142,10 +1142,10 @@ public partial class CellEditorComponent :
         var tween = CreateTween();
 
         var targetPosition = rightPanel.Position;
-        rightPanel.Position += new Vector2(rightPanel.Size.X + 5, 0);
         tween.SetEase(Tween.EaseType.InOut);
         tween.SetTrans(Tween.TransitionType.Expo);
-        tween.TweenProperty(rightPanel, "position", targetPosition, 0.5);
+        tween.TweenProperty(rightPanel, "position", targetPosition, 0.5)
+            .From(targetPosition + new Vector2(rightPanel.Size.X + 5, 0));
     }
 
     public void ShowBasicEditingTabs()
@@ -1166,10 +1166,9 @@ public partial class CellEditorComponent :
         var tween = CreateTween();
 
         var targetPosition = bottomRightPanel.Position;
-        bottomRightPanel.Position += new Vector2(0, bottomRightPanel.Size.Y + 5);
-        tween.SetEase(Tween.EaseType.Out);
-        tween.SetTrans(Tween.TransitionType.Expo);
-        tween.TweenProperty(bottomRightPanel, "position", targetPosition, 0.4);
+        tween.SetTrans(Tween.TransitionType.Sine);
+        tween.TweenProperty(bottomRightPanel, "position", targetPosition, 0.4)
+            .From(targetPosition + new Vector2(0, bottomRightPanel.Size.Y + 5));
     }
 
     public void ShowAutoEvoPredictionPanel(bool animate)
