@@ -920,10 +920,15 @@ public partial class TolerancesEditorSubComponent : EditorComponentBase<ICellEdi
         }
 
         // Update markers
-        temperatureToleranceMarker.OptimalValue = patchTemperature / 100.0f;
+        // For non-percentage sliders, OptimalValue is calculated as a fraction between the min and max slider values
+        temperatureToleranceMarker.OptimalValue = (patchTemperature - (float)temperatureSlider.MinValue)
+            / (float)(temperatureSlider.MaxValue - temperatureSlider.MinValue);
 
-        minPressureToleranceMarker.OptimalValue = patchPressure / 70000000;
-        maxPressureToleranceMarker.OptimalValue = patchPressure / 70000000;
+        float pressureRangeFraction = (patchPressure - (float)pressureMaxSlider.MinValue)
+            / (float)(pressureMaxSlider.MaxValue - pressureMaxSlider.MinValue);
+
+        minPressureToleranceMarker.OptimalValue = pressureRangeFraction;
+        maxPressureToleranceMarker.OptimalValue = pressureRangeFraction;
 
         // Don't show markers when they are at 0% as it looks confusing
         oxygenToleranceMarker.ShowMarker = requiredOxygenResistance > MathUtils.EPSILON;
