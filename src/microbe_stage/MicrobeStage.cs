@@ -219,7 +219,7 @@ public partial class MicrobeStage : CreatureStageBase<Entity, MicrobeWorldSimula
         // The primary registration for this is in OnGameStarted
         if (CurrentGame != null)
         {
-            TutorialState.GlucoseCollecting.OnTutorialOpen += SetupPlayerForGlucoseCollecting;
+            TutorialState.GlucoseCollecting.OnOpened += SetupPlayerForGlucoseCollecting;
         }
     }
 
@@ -234,7 +234,7 @@ public partial class MicrobeStage : CreatureStageBase<Entity, MicrobeWorldSimula
 
         if (CurrentGame != null)
         {
-            TutorialState.GlucoseCollecting.OnTutorialOpen += SetupPlayerForGlucoseCollecting;
+            TutorialState.GlucoseCollecting.OnOpened += SetupPlayerForGlucoseCollecting;
         }
     }
 
@@ -1057,7 +1057,7 @@ public partial class MicrobeStage : CreatureStageBase<Entity, MicrobeWorldSimula
         SpawnPlayer();
 
         // Can now register this callback with the game set
-        TutorialState.GlucoseCollecting.OnTutorialOpen += SetupPlayerForGlucoseCollecting;
+        TutorialState.GlucoseCollecting.OnOpened += SetupPlayerForGlucoseCollecting;
     }
 
     protected override void SpawnPlayer()

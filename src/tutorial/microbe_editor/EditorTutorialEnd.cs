@@ -14,8 +14,6 @@ public class EditorTutorialEnd : TutorialPhase
 
     public override string ClosedByName => "CellEditorClosingWords";
 
-    public OnTutorialCompleteDelegate? OnClosed { get; set; }
-
     public override void ApplyGUIState(MicrobeEditorTutorialGUI gui)
     {
         gui.CellEditorClosingWordsVisible = ShownCurrently;

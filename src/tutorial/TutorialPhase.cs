@@ -8,9 +8,6 @@ using Newtonsoft.Json;
 [JsonObject(IsReference = true)]
 public abstract class TutorialPhase
 {
-    /// <summary>
-    ///   Some tutorials send an event when they open
-    /// </summary>
     public delegate void OnTutorialOpenDelegate();
 
     public delegate void OnTutorialCompleteDelegate();
@@ -60,6 +57,18 @@ public abstract class TutorialPhase
     [JsonIgnore]
     public bool WantsPaused => Pauses && ShownCurrently;
 
+    /// <summary>
+    ///   Event that is triggered when this tutorial opens
+    /// </summary>
+    [JsonIgnore]
+    public OnTutorialOpenDelegate? OnOpened { get; set; }
+
+    /// <summary>
+    ///   Event that is triggered when this tutorial closes for any reason
+    /// </summary>
+    [JsonIgnore]
+    public OnTutorialCompleteDelegate? OnClosed { get; set; }
+
     // GUI state applying functions, there is one per the type of tutorial GUI
     // By default when a tutorial receives the call to apply states for a GUI it doesn't handle, it will be hidden
     // if visible
@@ -87,6 +96,9 @@ public abstract class TutorialPhase
 
     public virtual void Show()
     {
+        if (!ShownCurrently)
+            OnOpened?.Invoke();
+
         ShownCurrently = true;
         HasBeenShown = true;
         Time = 0;
@@ -96,6 +108,8 @@ public abstract class TutorialPhase
     {
         if (!ShownCurrently)
             return;
+
+        OnClosed?.Invoke();
 
         ShownCurrently = false;
 
