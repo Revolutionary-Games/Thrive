@@ -115,7 +115,7 @@ public partial class MicrobeEditor : EditorBase<EditorAction, MicrobeStage>, IEd
     {
         cellEditorTab.OnCurrentPatchUpdated(patch);
 
-        cellEditorTab.UpdateBackgroundImage(patch.BiomeTemplate);
+        cellEditorTab.UpdateBackgroundImage(patch);
     }
 
     public override bool CancelCurrentAction()
@@ -167,7 +167,7 @@ public partial class MicrobeEditor : EditorBase<EditorAction, MicrobeStage>, IEd
 
         ProceduralDataCache.Instance.OnEnterState(MainGameState.MicrobeEditor);
 
-        cellEditorTab.UpdateBackgroundImage(CurrentPatch.BiomeTemplate);
+        cellEditorTab.UpdateBackgroundImage(CurrentPatch);
 
         // Make tutorials run
         cellEditorTab.TutorialState = TutorialState;
@@ -251,6 +251,12 @@ public partial class MicrobeEditor : EditorBase<EditorAction, MicrobeStage>, IEd
         reportTab.UpdateEvents(CurrentGame.GameWorld.EventsLog, CurrentGame.GameWorld.TotalPassedTime);
 
         patchMapTab.UpdatePatchEvents();
+    }
+
+    protected override void UpdatePatchDetails()
+    {
+        // Patch events are able to change the stage's background so it needs to be updated here.
+        cellEditorTab.UpdateBackgroundImage(CurrentPatch);
     }
 
     protected override GameProperties StartNewGameForEditor()

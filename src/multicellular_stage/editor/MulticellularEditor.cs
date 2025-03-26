@@ -127,7 +127,7 @@ public partial class MulticellularEditor : EditorBase<EditorAction, MicrobeStage
 
         cellEditorTab.OnCurrentPatchUpdated(patch);
 
-        cellEditorTab.UpdateBackgroundImage(patch.BiomeTemplate);
+        cellEditorTab.UpdateBackgroundImage(patch);
     }
 
     public override void AddContextToActions(IEnumerable<CombinableActionData> actions)
@@ -220,7 +220,7 @@ public partial class MulticellularEditor : EditorBase<EditorAction, MicrobeStage
             reportTab.UpdateEvents(CurrentGame.GameWorld.EventsLog, CurrentGame.GameWorld.TotalPassedTime);
         }
 
-        cellEditorTab.UpdateBackgroundImage(CurrentPatch.BiomeTemplate);
+        cellEditorTab.UpdateBackgroundImage(CurrentPatch);
 
         // TODO: as we are a prototype we don't want to auto save
         wantsToSave = false;
@@ -298,6 +298,12 @@ public partial class MulticellularEditor : EditorBase<EditorAction, MicrobeStage
         base.OnRedoPerformed();
 
         CheckDidActionAffectCellTypes(history.ActionToUndo());
+    }
+
+    protected override void UpdatePatchDetails()
+    {
+        // Patch events are able to change the stage's background so it needs to be updated here.
+        cellEditorTab.UpdateBackgroundImage(CurrentPatch);
     }
 
     protected override GameProperties StartNewGameForEditor()
