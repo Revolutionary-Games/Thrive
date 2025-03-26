@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2025-03-25 22:07+0100\n"
+"POT-Creation-Date: 2025-03-26 14:53+0200\n"
 "PO-Revision-Date: 2025-03-20 20:10+0000\n"
 "Last-Translator: Anonymous <noreply@weblate.org>\n"
 "Language-Team: Portuguese (Brazil) <https://translate.revolutionarygamesstudio.com/projects/thrive/thrive-game/pt_BR/>\n"
@@ -3539,15 +3539,6 @@ msgstr ""
 "Tente todas as direções por alguns segundos para continuar."
 
 #, fuzzy
-msgid "MICROBE_STAGE_DAY_NIGHT_TEXT"
-msgstr ""
-"Fique de olho no [b]medidor de luz solar[/b] no painel do ambiente.\n"
-"\n"
-"O escurecimento do ambiente indica a chegada da noite.\n"
-"\n"
-"A fotossíntese não funciona à noite. Então, células que dependem de fotossíntese precisam ter um armazenamento suficiente de compostos [thrive:icon]StorageIcon[/thrive:icon] para sobreviver a noite."
-
-#, fuzzy
 msgid "MICROBE_STAGE_HEALTH_TEXT"
 msgstr ""
 "Fique de olho na sua barra de saúde próximo a barra de ATP (canto inferior direito).\n"
@@ -6042,6 +6033,15 @@ msgstr ""
 "Colocar um desses lhe permitirá detectar compostos como [thrive:compound type=\"glucose\"][/thrive:compound] e the guiará até eles. Também pode ser usado para detectar células de outras espécies."
 
 #, fuzzy
+msgid "TUTORIAL_MICROBE_EDITOR_COMPOUND_BALANCES"
+msgstr ""
+"Você pode adaptar sua célula para [b]condições ambientais[/b] diferentes.\n"
+"\n"
+"Condições ambientais podem causar efeitos negativos [b]e[/b] positivos. Então é importante garantir que as tolerâncias corretas estão definidas quando você vai para regiões novas.\n"
+"\n"
+"Selecione a aba \"Tolerância\" no painel à esquerda para continuar."
+
+#, fuzzy
 msgid "TUTORIAL_MICROBE_EDITOR_ENDING_TEXT"
 msgstr ""
 "Esses são os conceitos básicos da edição da sua espécie. Como toque final, você pode renomear sua espécie clicando no nome, no canto inferior esquerdo, e editando o texto.\n"
@@ -6061,6 +6061,24 @@ msgstr ""
 "Flagelos consomem muito [thrive:compound type=\"atp\"][/thrive:compound], e portanto não são muito bons para células pequenas.\n"
 "\n"
 "Outro modo de aumentar um pouco a [b]velocidade[/b] [thrive:icon]MovementIcon[/thrive:icon] é tornando sua membrana mais fluida na [u]aba da membrana[/u]."
+
+#, fuzzy
+msgid "TUTORIAL_MICROBE_EDITOR_FOOD_CHAIN"
+msgstr ""
+"Você não realizou nenhuma mudança na sua espécie.\n"
+"\n"
+"Quando você sair do editor [u]você não poderá editar sua espécie até a próxima vez em que se reproduzir[/u].\n"
+"\n"
+"Para progredir no jogo você deve evoluir e se adaptar, então editar a sua espécie na maioria dos ciclos de edição é recomendado."
+
+#, fuzzy
+msgid "TUTORIAL_MICROBE_EDITOR_MIGRATION"
+msgstr ""
+"Você pode adicionar um [b]quimiorreceptor[/b] à sua célula.\n"
+"\n"
+"Quimiorreceptores representam um aumento na habilidade da sua espécie de perceber coisas ao seu redor.\n"
+"\n"
+"Colocar um desses lhe permitirá detectar compostos como [thrive:compound type=\"glucose\"][/thrive:compound] e the guiará até eles. Também pode ser usado para detectar células de outras espécies."
 
 msgid "TUTORIAL_MICROBE_EDITOR_MODIFY_ORGANELLE"
 msgstr ""
@@ -6177,6 +6195,15 @@ msgstr ""
 "\n"
 "Siga a linha da sua célula até o objeto fagocitável mais próximo."
 
+#, fuzzy
+msgid "TUTORIAL_MICROBE_STAGE_ENVIRONMENT_PANEL"
+msgstr ""
+"Fagocite objetos ao passar por cima deles no modo apropriado. Ative e desative esse modo apertando [thrive:input]g_toggle_engulf[/thrive:input].\n"
+"\n"
+"Pare de fagocitar quando o objeto estiver sendo puxado.\n"
+"\n"
+"Siga a linha da sua célula até o objeto fagocitável mais próximo."
+
 msgid "TUTORIAL_MICROBE_STAGE_HELP_MENU_AND_ZOOM"
 msgstr ""
 "Se você estiver com dificuldade, leia o manual de ajuda. Você pode abri-lo clicando no ponto de interrogação no canto inferior esquerdo.\n"
@@ -6191,7 +6218,28 @@ msgstr ""
 "Saia da colônia ao apertar [thrive:input]g_unbind_all[/thrive:input]."
 
 #, fuzzy
+msgid "TUTORIAL_MICROBE_STAGE_OPEN_PROCESS_PANEL"
+msgstr ""
+"Para se reproduzir você precisa duplicar todas as suas organelas. Isso ocorre gradualmente enquanto você sobrevive, mas você pode acelerar o processo coletando [thrive:compound type=\"ammonia\"][/thrive:compound] e [thrive:compound type=\"phosphates\"][/thrive:compound].\n"
+"\n"
+"As barras no canto inferior direito mostram o seu progresso. Elas tornam-se brancas ao ficarem completas."
+
+#, fuzzy
+msgid "TUTORIAL_MICROBE_STAGE_PROCESS_PANEL"
+msgstr ""
+"Para se reproduzir você precisa duplicar todas as suas organelas. Isso ocorre gradualmente enquanto você sobrevive, mas você pode acelerar o processo coletando [thrive:compound type=\"ammonia\"][/thrive:compound] e [thrive:compound type=\"phosphates\"][/thrive:compound].\n"
+"\n"
+"As barras no canto inferior direito mostram o seu progresso. Elas tornam-se brancas ao ficarem completas."
+
+#, fuzzy
 msgid "TUTORIAL_MICROBE_STAGE_REPRODUCE_TEXT"
+msgstr ""
+"Para se reproduzir você precisa duplicar todas as suas organelas. Isso ocorre gradualmente enquanto você sobrevive, mas você pode acelerar o processo coletando [thrive:compound type=\"ammonia\"][/thrive:compound] e [thrive:compound type=\"phosphates\"][/thrive:compound].\n"
+"\n"
+"As barras no canto inferior direito mostram o seu progresso. Elas tornam-se brancas ao ficarem completas."
+
+#, fuzzy
+msgid "TUTORIAL_MICROBE_STAGE_RESOURCE_SPLIT"
 msgstr ""
 "Para se reproduzir você precisa duplicar todas as suas organelas. Isso ocorre gradualmente enquanto você sobrevive, mas você pode acelerar o processo coletando [thrive:compound type=\"ammonia\"][/thrive:compound] e [thrive:compound type=\"phosphates\"][/thrive:compound].\n"
 "\n"
@@ -8373,6 +8421,15 @@ msgstr "Aumentar o zoom"
 
 msgid "ZOOM_OUT"
 msgstr "Diminuir o zoom"
+
+#, fuzzy
+#~ msgid "MICROBE_STAGE_DAY_NIGHT_TEXT"
+#~ msgstr ""
+#~ "Fique de olho no [b]medidor de luz solar[/b] no painel do ambiente.\n"
+#~ "\n"
+#~ "O escurecimento do ambiente indica a chegada da noite.\n"
+#~ "\n"
+#~ "A fotossíntese não funciona à noite. Então, células que dependem de fotossíntese precisam ter um armazenamento suficiente de compostos [thrive:icon]StorageIcon[/thrive:icon] para sobreviver a noite."
 
 #, fuzzy
 #~ msgid "GLOBAL_GLACIATION_EVENT_LOG"
