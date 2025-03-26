@@ -9,14 +9,18 @@ using Newtonsoft.Json;
 /// </summary>
 public class OpenProcessPanelTutorial : SwimmingAroundCountingTutorial
 {
-    public const string TUTORIAL_NAME = "OpenProcessPanelTutorial";
+    public OpenProcessPanelTutorial()
+    {
+        // This needs to pause to ensure the player doesn't die while this overlay is open
+        Pauses = true;
+    }
 
-    public override string ClosedByName => TUTORIAL_NAME;
+    public override string ClosedByName => "OpenProcessPanelTutorial";
 
     [JsonIgnore]
     public Control? ProcessPanelButtonControl { get; set; }
 
-    protected override int TriggersOnNthSwimmingSession => 3;
+    protected override int TriggersOnNthSwimmingSession => 2;
 
     public override void ApplyGUIState(MicrobeTutorialGUI gui)
     {

@@ -215,7 +215,7 @@ layout_mode = 2
 size_flags_horizontal = 4
 theme_override_fonts/font = ExtResource("9_jkhed")
 theme_override_font_sizes/font_size = 18
-text = "GOT_IT"
+text = "CLOSE"
 
 [node name="AutoEvoPredictionHighlight" parent="." instance=ExtResource("3")]
 visible = false
@@ -375,7 +375,7 @@ layout_mode = 2
 size_flags_horizontal = 4
 theme_override_fonts/font = ExtResource("9_jkhed")
 theme_override_font_sizes/font_size = 18
-text = "CLOSE"
+text = "GOT_IT"
 
 [node name="MadeNoChangesTutorial" parent="." instance=ExtResource("9")]
 custom_minimum_size = Vector2(375, 270)

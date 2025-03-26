@@ -4,7 +4,7 @@ public class ResourcesAfterSplitTutorial : SwimmingAroundCountingTutorial
 {
     public override string ClosedByName => "ResourcesAfterSplitTutorial";
 
-    protected override int TriggersOnNthSwimmingSession => 5;
+    protected override int TriggersOnNthSwimmingSession => 6;
 
     public override void ApplyGUIState(MicrobeTutorialGUI gui)
     {
