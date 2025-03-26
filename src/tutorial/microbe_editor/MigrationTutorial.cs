@@ -1,20 +1,27 @@
 ﻿namespace Tutorial;
 
 using System;
+using Newtonsoft.Json;
 
 /// <summary>
-///   Tutorial for the patch map tab
+///   Second tutorial for the patch map screen
 /// </summary>
-public class PatchMap : TutorialPhase
+public class MigrationTutorial : TutorialPhase
 {
     private readonly string patchMapTab = EditorTab.PatchMap.ToString();
     private readonly string cellEditorTab = EditorTab.CellEditor.ToString();
 
-    public override string ClosedByName => "PatchMap";
+    public MigrationTutorial()
+    {
+        CanTrigger = false;
+    }
+
+    [JsonIgnore]
+    public override string ClosedByName => "MigrationTutorial";
 
     public override void ApplyGUIState(MicrobeEditorTutorialGUI gui)
     {
-        gui.PatchMapVisible = ShownCurrently;
+        gui.MigrationTutorialVisible = ShownCurrently;
     }
 
     public override bool CheckEvent(TutorialState overallState, TutorialEventType eventType, EventArgs args,
@@ -26,7 +33,7 @@ public class PatchMap : TutorialPhase
             {
                 var tab = ((StringEventArgs)args).Data;
 
-                if (!HasBeenShown && CanTrigger && tab == patchMapTab)
+                if (!HasBeenShown && CanTrigger && tab == patchMapTab && !overallState.TutorialActive())
                 {
                     Show();
                 }
@@ -39,9 +46,15 @@ public class PatchMap : TutorialPhase
                 break;
             }
 
-            case TutorialEventType.MicrobeEditorPatchSelected:
+            case TutorialEventType.EnteredMicrobeEditor:
             {
-                if (ShownCurrently && ((PatchEventArgs)args).Patch != null)
+                CanTrigger = overallState.PatchMap.Complete;
+                break;
+            }
+
+            case TutorialEventType.EditorMigrationCreated:
+            {
+                if (ShownCurrently)
                 {
                     Hide();
                 }

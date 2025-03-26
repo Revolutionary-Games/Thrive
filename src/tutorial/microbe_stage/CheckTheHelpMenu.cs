@@ -11,7 +11,7 @@ public class CheckTheHelpMenu : SwimmingAroundCountingTutorial
 
     public override string ClosedByName => TUTORIAL_NAME;
 
-    protected override int TriggersOnNthSwimmingSession => 5;
+    protected override int TriggersOnNthSwimmingSession => 7;
 
     public override void ApplyGUIState(MicrobeTutorialGUI gui)
     {

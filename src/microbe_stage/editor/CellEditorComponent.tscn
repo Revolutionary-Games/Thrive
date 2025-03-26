@@ -548,7 +548,7 @@ growthOrderNumberContainer = NodePath("GrowthOrderNumberContainer")
 micheViewer = NodePath("PopupMicheViewer")
 organismStatisticsPanel = NodePath("RightPanel/VBoxContainer/OrganismStatisticsPanel")
 rightPanel = NodePath("RightPanel")
-rightPanelScrollContainer = NodePath("RightPanel/VBoxContainer/AutoEvoInfoPanel/VBoxContainer/Body")
+rightPanelScrollContainer = NodePath("RightPanel/VBoxContainer/OrganismStatisticsPanel/VBoxContainer/Body/ScrollContainer")
 bottomRightPanel = NodePath("BottomRight")
 tutorialAnimationPlayer = NodePath("TutorialAnimations")
 toleranceWarningsFont = ExtResource("28_qclxk")
@@ -1410,4 +1410,5 @@ libraries = {
 [connection signal="pressed" from="PredictionExplanation/VBoxContainer/ScrollContainer/MarginContainer/VBoxContainer/MichesViewButton" to="." method="OnMicheViewRequested"]
 [connection signal="pressed" from="PredictionExplanation/VBoxContainer/Close" to="." method="CloseAutoEvoPrediction"]
 
+[editable path="RightPanel/VBoxContainer/OrganismStatisticsPanel"]
 [editable path="CompleteEndosymbiosisWarning"]

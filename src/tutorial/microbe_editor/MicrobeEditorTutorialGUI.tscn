@@ -10,7 +10,7 @@
 [ext_resource type="FontVariation" uid="uid://cqork3l186w1c" path="res://assets/fonts/variants/Jura-Bold.tres" id="9_jkhed"]
 [ext_resource type="PackedScene" uid="uid://tna206f2gtkv" path="res://src/gui_common/AddWindowReorderingSupportToSiblings.tscn" id="10"]
 
-[node name="MicrobeEditorTutorialGUI" type="Control" node_paths=PackedStringArray("nucleusTutorial", "tolerancesTabTutorial", "openTolerancesTabTutorial", "earlyGameGoalTutorial")]
+[node name="MicrobeEditorTutorialGUI" type="Control" node_paths=PackedStringArray("nucleusTutorial", "tolerancesTabTutorial", "openTolerancesTabTutorial", "earlyGameGoalTutorial", "compoundBalanceTutorial", "migrationTutorial", "foodChainTutorial", "CompoundBalanceHighlight")]
 process_mode = 3
 layout_mode = 3
 anchors_preset = 15
@@ -43,6 +43,10 @@ nucleusTutorial = NodePath("NucleusTutorial")
 tolerancesTabTutorial = NodePath("TolerancesTabTutorial")
 openTolerancesTabTutorial = NodePath("OpenTolerancesTabTutorial")
 earlyGameGoalTutorial = NodePath("EarlyGoalTutorial")
+compoundBalanceTutorial = NodePath("CompoundBalanceTutorial")
+migrationTutorial = NodePath("MigrationTutorial")
+foodChainTutorial = NodePath("FoodChainTutorial")
+CompoundBalanceHighlight = NodePath("CompoundBalanceHighlight")
 
 [node name="AddWindowReorderingSupportToSiblings" parent="." instance=ExtResource("10")]
 anchors_preset = 0
@@ -80,6 +84,23 @@ offset_bottom = 161.0
 grow_horizontal = 0
 grow_vertical = 2
 Description = "TUTORIAL_MICROBE_EDITOR_PATCH_TEXT"
+PreventsMouseCaptureWhileOpen = true
+
+[node name="MigrationTutorial" parent="." instance=ExtResource("8")]
+custom_minimum_size = Vector2(360, 360)
+layout_mode = 1
+anchors_preset = 6
+anchor_left = 1.0
+anchor_top = 0.5
+anchor_right = 1.0
+anchor_bottom = 0.5
+offset_left = -533.0
+offset_top = -184.0
+offset_right = -173.0
+offset_bottom = 161.0
+grow_horizontal = 0
+grow_vertical = 2
+Description = "TUTORIAL_MICROBE_EDITOR_MIGRATION"
 PreventsMouseCaptureWhileOpen = true
 
 [node name="CellEditorIntro" parent="." instance=ExtResource("8")]
@@ -573,8 +594,76 @@ Description = "EDITOR_TUTORIAL_MICROBE_EDITOR_NUCLEUS"
 ShowDelay = 0.7
 PreventsMouseCaptureWhileOpen = true
 
+[node name="CompoundBalanceTutorial" type="Control" parent="."]
+visible = false
+custom_minimum_size = Vector2(260, 420)
+anchors_preset = 0
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -200.0
+offset_top = 91.0
+offset_right = 200.0
+offset_bottom = 511.0
+theme = ExtResource("2")
+script = ExtResource("7")
+LabelPath = NodePath("ScrollContainer/VBoxContainer/CustomRichTextLabel")
+Description = "TUTORIAL_MICROBE_EDITOR_COMPOUND_BALANCES"
+WindowTitle = "TUTORIAL"
+
+[node name="ScrollContainer" type="ScrollContainer" parent="CompoundBalanceTutorial"]
+custom_minimum_size = Vector2(230, 230)
+layout_mode = 0
+anchor_right = 1.0
+anchor_bottom = 1.0
+
+[node name="VBoxContainer" type="VBoxContainer" parent="CompoundBalanceTutorial/ScrollContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+
+[node name="CustomRichTextLabel" parent="CompoundBalanceTutorial/ScrollContainer/VBoxContainer" instance=ExtResource("5")]
+layout_mode = 2
+theme_override_font_sizes/normal_font_size = 15
+fit_content = true
+
+[node name="Control" type="Control" parent="CompoundBalanceTutorial/ScrollContainer/VBoxContainer"]
+layout_mode = 2
+size_flags_vertical = 3
+
+[node name="Button" type="Button" parent="CompoundBalanceTutorial/ScrollContainer/VBoxContainer"]
+custom_minimum_size = Vector2(110, 0)
+layout_mode = 2
+size_flags_horizontal = 4
+theme_override_fonts/font = ExtResource("9_jkhed")
+theme_override_font_sizes/font_size = 18
+text = "GOT_IT"
+
+[node name="CompoundBalanceHighlight" parent="." instance=ExtResource("3")]
+visible = false
+anchors_preset = 0
+anchor_right = 0.0
+anchor_bottom = 0.0
+
+[node name="FoodChainTutorial" parent="." instance=ExtResource("8")]
+custom_minimum_size = Vector2(360, 360)
+layout_mode = 1
+anchors_preset = 6
+anchor_left = 1.0
+anchor_top = 0.5
+anchor_right = 1.0
+anchor_bottom = 0.5
+offset_left = -533.0
+offset_top = -191.5
+offset_right = -173.0
+offset_bottom = 168.5
+grow_horizontal = 0
+grow_vertical = 2
+Description = "TUTORIAL_MICROBE_EDITOR_FOOD_CHAIN"
+PreventsMouseCaptureWhileOpen = true
+
 [connection signal="hidden" from="EditorEntryReport" to="." method="OnSpecificCloseClicked" binds= ["MicrobeEditorReport"]]
 [connection signal="hidden" from="PatchMapTutorial" to="." method="OnSpecificCloseClicked" binds= ["PatchMap"]]
+[connection signal="hidden" from="MigrationTutorial" to="." method="OnSpecificCloseClicked" binds= ["MigrationTutorial"]]
 [connection signal="hidden" from="CellEditorIntro" to="." method="OnSpecificCloseClicked" binds= ["CellEditorIntroduction"]]
 [connection signal="hidden" from="UndoTutorial" to="." method="OnSpecificCloseClicked" binds= ["CellEditorUndo"]]
 [connection signal="hidden" from="RedoTutorial" to="." method="OnSpecificCloseClicked" binds= ["CellEditorRedo"]]
@@ -597,3 +686,6 @@ PreventsMouseCaptureWhileOpen = true
 [connection signal="hidden" from="OpenTolerancesTabTutorial" to="." method="OnSpecificCloseClicked" binds= ["OpenTolerancesTabTutorial"]]
 [connection signal="hidden" from="EarlyGoalTutorial" to="." method="OnSpecificCloseClicked" binds= ["EarlyGameGoalTutorial"]]
 [connection signal="hidden" from="NucleusTutorial" to="." method="OnSpecificCloseClicked" binds= ["NucleusTutorial"]]
+[connection signal="hidden" from="CompoundBalanceTutorial" to="." method="OnSpecificCloseClicked" binds= ["CompoundBalancesTutorial"]]
+[connection signal="pressed" from="CompoundBalanceTutorial/ScrollContainer/VBoxContainer/Button" to="." method="OnSpecificCloseClicked" binds= ["CompoundBalancesTutorial"]]
+[connection signal="hidden" from="FoodChainTutorial" to="." method="OnSpecificCloseClicked" binds= ["FoodChainTabTutorial"]]

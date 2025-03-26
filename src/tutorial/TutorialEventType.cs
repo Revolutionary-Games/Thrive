@@ -184,6 +184,11 @@ public enum TutorialEventType
     MicrobeEditorPlayerEnergyBalanceChanged,
 
     /// <summary>
+    ///   Player created a migration with the migration manager
+    /// </summary>
+    EditorMigrationCreated,
+
+    /// <summary>
     ///   Triggers when the first non-cytoplasm organelle divided
     /// </summary>
     MicrobeNonCytoplasmOrganelleDivided,

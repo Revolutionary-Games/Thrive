@@ -454,6 +454,10 @@ public partial class PatchMapEditorComponent<TEditor> : EditorComponentBase<TEdi
         {
             detailsPanel.Migrations.Remove(migration);
         }
+        else
+        {
+            Editor.CurrentGame.TutorialState.SendEvent(TutorialEventType.EditorMigrationCreated, EventArgs.Empty, this);
+        }
     }
 
     private void OnMigrationProgress(PatchDetailsPanel.MigrationWizardStep step)

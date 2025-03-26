@@ -473,7 +473,7 @@ public partial class MicrobeEditorTutorialGUI : Control, ITutorialGUI
             if (value)
             {
                 compoundBalanceTutorial.Show();
-                RightPanelScrollContainer.ScrollVertical = 150;
+                RightPanelScrollContainer.ScrollVertical = 100;
             }
             else
             {
@@ -578,7 +578,7 @@ public partial class MicrobeEditorTutorialGUI : Control, ITutorialGUI
         // much or too little ever.
         // TODO: adjust this with the new reordered panel and upcoming tutorial rework
         if (eitherVisible)
-            RightPanelScrollContainer.ScrollVertical = 100;
+            RightPanelScrollContainer.ScrollVertical = 50;
     }
 
     protected override void Dispose(bool disposing)
