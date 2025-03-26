@@ -586,6 +586,7 @@ public partial class OrganismStatisticsPanel : PanelContainer
 
     private void OnProcessListButtonClicked()
     {
+        GUICommon.Instance.PlayButtonPressSound();
         processListWindow.Visible = !processListWindow.Visible;
     }
 
