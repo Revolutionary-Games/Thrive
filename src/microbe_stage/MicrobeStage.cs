@@ -215,9 +215,9 @@ public partial class MicrobeStage : CreatureStageBase<Entity, MicrobeWorldSimula
         CheatManager.OnPlayerDuplicationCheatUsed += OnDuplicatePlayerCheatUsed;
         CheatManager.OnDespawnAllEntitiesCheatUsed += OnDespawnAllEntitiesCheatUsed;
 
-        // Re-register this callback in case it is necessary
+        // Re-register these callbacks in case it is necessary
         // The primary registration for this is in OnGameStarted
-        if (CurrentGame != null)
+        if (CurrentGame != null && HUD != null!)
         {
             TutorialState.GlucoseCollecting.OnOpened += SetupPlayerForGlucoseCollecting;
             TutorialState.DayNightTutorial.OnOpened += HUD.CloseProcessPanel;
