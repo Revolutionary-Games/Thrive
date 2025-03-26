@@ -1356,6 +1356,13 @@ public static class Constants
     public const float VENT_ERUPTION_HYDROGEN_SULFIDE_INCREASE = 0.00004f;
     public const float VENT_ERUPTION_CARBON_DIOXIDE_INCREASE = 0.3f;
 
+    public const float GLOBAL_GLACIATION_OXYGEN_THRESHOLD = 0.07f;
+    public const float GLOBAL_GLACIATION_PATCHES_THRESHOLD = 0.7f;
+    public const float GLOBAL_GLACIATION_CHANCE = 0.5F;
+    public const int GLOBAL_GLACIATION_MIN_DURATION = 2;
+    public const int GLOBAL_GLACIATION_MAX_DURATION = 6;
+    public const int GLOBAL_GLACIATION_HEADS_UP_DURATION = 1;
+
     // These control how many game entities can exist at once
     public const int TINY_MAX_SPAWNED_ENTITIES = 80;
     public const int VERY_SMALL_MAX_SPAWNED_ENTITIES = 150;

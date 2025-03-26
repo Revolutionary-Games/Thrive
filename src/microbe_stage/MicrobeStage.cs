@@ -1194,8 +1194,7 @@ public partial class MicrobeStage : CreatureStageBase<Entity, MicrobeWorldSimula
 
     private void UpdateBackground()
     {
-        Camera.SetBackground(SimulationParameters.Instance.GetBackground(
-            GameWorld.Map.CurrentPatch!.BiomeTemplate.Background));
+        Camera.SetBackground(SimulationParameters.Instance.GetBackground(GameWorld.Map.CurrentPatch!.Background));
     }
 
     private void UpdatePatchLightLevelSettings()
