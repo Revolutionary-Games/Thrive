@@ -77,6 +77,9 @@ public class TutorialState : ITutorialInput, ISaveLoadable
     public ProcessPanelTutorial ProcessPanelTutorial { get; private set; } = new();
 
     [JsonProperty]
+    public ResourcesAfterSplitTutorial ResourcesAfterSplitTutorial { get; private set; } = new();
+
+    [JsonProperty]
     public MigrationTutorial MigrationTutorial { get; private set; } = new();
 
     [JsonProperty]
@@ -502,6 +505,7 @@ public class TutorialState : ITutorialInput, ISaveLoadable
             EngulfmentStorageFull,
             OpenProcessPanelTutorial,
             ProcessPanelTutorial,
+            ResourcesAfterSplitTutorial,
             CheckTheHelpMenu,
             EditorReportWelcome,
             PatchMap,

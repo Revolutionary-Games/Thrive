@@ -112,6 +112,9 @@ public partial class MicrobeTutorialGUI : Control, ITutorialGUI
     [Export]
     private CustomWindow processPanelTutorial = null!;
 
+    [Export]
+    private CustomWindow resourceSplitTutorial = null!;
+
 #pragma warning restore CA2213
 
     [Signal]
@@ -482,6 +485,25 @@ public partial class MicrobeTutorialGUI : Control, ITutorialGUI
             else
             {
                 processPanelTutorial.Hide();
+            }
+        }
+    }
+
+    public bool ResourceSplitTutorialVisible
+    {
+        get => resourceSplitTutorial.Visible;
+        set
+        {
+            if (value == resourceSplitTutorial.Visible)
+                return;
+
+            if (value)
+            {
+                resourceSplitTutorial.Show();
+            }
+            else
+            {
+                resourceSplitTutorial.Hide();
             }
         }
     }
