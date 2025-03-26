@@ -499,6 +499,15 @@ public partial class CreatureStageHUDBase<TStage> : HUDWithPausing, ICreatureSta
         editorButton.HideReproductionDialog();
     }
 
+    public void CloseProcessPanel()
+    {
+        if (processPanel.Visible)
+        {
+            bottomLeftBar.ProcessesPressed = false;
+            processPanel.Hide();
+        }
+    }
+
     public override void OnEnterStageTransition(bool longerDuration, bool returningFromEditor)
     {
         if (stage == null)

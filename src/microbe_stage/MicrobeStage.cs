@@ -220,6 +220,7 @@ public partial class MicrobeStage : CreatureStageBase<Entity, MicrobeWorldSimula
         if (CurrentGame != null)
         {
             TutorialState.GlucoseCollecting.OnOpened += SetupPlayerForGlucoseCollecting;
+            TutorialState.DayNightTutorial.OnOpened += HUD.CloseProcessPanel;
         }
     }
 
@@ -234,7 +235,8 @@ public partial class MicrobeStage : CreatureStageBase<Entity, MicrobeWorldSimula
 
         if (CurrentGame != null)
         {
-            TutorialState.GlucoseCollecting.OnOpened += SetupPlayerForGlucoseCollecting;
+            TutorialState.GlucoseCollecting.OnOpened -= SetupPlayerForGlucoseCollecting;
+            TutorialState.DayNightTutorial.OnOpened -= HUD.CloseProcessPanel;
         }
     }
 
@@ -1058,6 +1060,7 @@ public partial class MicrobeStage : CreatureStageBase<Entity, MicrobeWorldSimula
 
         // Can now register this callback with the game set
         TutorialState.GlucoseCollecting.OnOpened += SetupPlayerForGlucoseCollecting;
+        TutorialState.DayNightTutorial.OnOpened += HUD.CloseProcessPanel;
     }
 
     protected override void SpawnPlayer()
