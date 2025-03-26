@@ -5,17 +5,17 @@
 [ext_resource type="PackedScene" uid="uid://dw3ubsraoopin" path="res://src/gui_common/TabButtons.tscn" id="3"]
 [ext_resource type="FontVariation" uid="uid://cik4lxxj7fi2t" path="res://assets/fonts/variants/Jura-Regular.tres" id="4_sx78e"]
 
-[sub_resource type="StyleBoxFlat" id="12"]
+[sub_resource type="StyleBoxFlat" id="11"]
 content_margin_left = 5.0
 content_margin_top = 5.0
 content_margin_right = 5.0
 content_margin_bottom = 5.0
-bg_color = Color(0.0666667, 0.168627, 0.211765, 1)
+bg_color = Color(0.164706, 0.215686, 0.235294, 1)
 border_width_left = 1
 border_width_top = 1
 border_width_right = 1
 border_width_bottom = 1
-border_color = Color(0.0666667, 1, 0.835294, 1)
+border_color = Color(0.396078, 0.623529, 0.584314, 1)
 corner_radius_top_left = 5
 corner_radius_top_right = 5
 corner_radius_bottom_right = 5
@@ -53,17 +53,17 @@ corner_radius_top_right = 5
 corner_radius_bottom_right = 5
 corner_radius_bottom_left = 5
 
-[sub_resource type="StyleBoxFlat" id="11"]
+[sub_resource type="StyleBoxFlat" id="12"]
 content_margin_left = 5.0
 content_margin_top = 5.0
 content_margin_right = 5.0
 content_margin_bottom = 5.0
-bg_color = Color(0.164706, 0.215686, 0.235294, 1)
+bg_color = Color(0.0666667, 0.168627, 0.211765, 1)
 border_width_left = 1
 border_width_top = 1
 border_width_right = 1
 border_width_bottom = 1
-border_color = Color(0.396078, 0.623529, 0.584314, 1)
+border_color = Color(0.0666667, 1, 0.835294, 1)
 corner_radius_top_left = 5
 corner_radius_top_right = 5
 corner_radius_bottom_right = 5
@@ -97,10 +97,10 @@ focus_mode = 0
 mouse_force_pass_scroll_events = false
 theme_override_fonts/font = ExtResource("4_sx78e")
 theme_override_font_sizes/font_size = 14
-theme_override_styles/normal = SubResource("12")
+theme_override_styles/disabled = SubResource("11")
 theme_override_styles/hover = SubResource("9")
 theme_override_styles/pressed = SubResource("10")
-theme_override_styles/disabled = SubResource("11")
+theme_override_styles/normal = SubResource("12")
 toggle_mode = true
 button_pressed = true
 action_mode = 0
@@ -115,10 +115,10 @@ mouse_force_pass_scroll_events = false
 theme_override_colors/font_pressed_color = Color(0, 0, 0, 1)
 theme_override_fonts/font = ExtResource("4_sx78e")
 theme_override_font_sizes/font_size = 14
-theme_override_styles/normal = SubResource("12")
+theme_override_styles/disabled = SubResource("11")
 theme_override_styles/hover = SubResource("9")
 theme_override_styles/pressed = SubResource("10")
-theme_override_styles/disabled = SubResource("11")
+theme_override_styles/normal = SubResource("12")
 toggle_mode = true
 action_mode = 0
 button_group = SubResource("ButtonGroup_kbxi1")
@@ -132,10 +132,10 @@ mouse_force_pass_scroll_events = false
 theme_override_colors/font_pressed_color = Color(0, 0, 0, 1)
 theme_override_fonts/font = ExtResource("4_sx78e")
 theme_override_font_sizes/font_size = 14
-theme_override_styles/normal = SubResource("12")
+theme_override_styles/disabled = SubResource("11")
 theme_override_styles/hover = SubResource("9")
 theme_override_styles/pressed = SubResource("10")
-theme_override_styles/disabled = SubResource("11")
+theme_override_styles/normal = SubResource("12")
 toggle_mode = true
 action_mode = 0
 button_group = SubResource("ButtonGroup_kbxi1")
@@ -149,10 +149,10 @@ mouse_force_pass_scroll_events = false
 theme_override_colors/font_pressed_color = Color(0, 0, 0, 1)
 theme_override_fonts/font = ExtResource("4_sx78e")
 theme_override_font_sizes/font_size = 14
-theme_override_styles/normal = SubResource("12")
+theme_override_styles/disabled = SubResource("11")
 theme_override_styles/hover = SubResource("9")
 theme_override_styles/pressed = SubResource("10")
-theme_override_styles/disabled = SubResource("11")
+theme_override_styles/normal = SubResource("12")
 toggle_mode = true
 action_mode = 0
 button_group = SubResource("ButtonGroup_kbxi1")
