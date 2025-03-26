@@ -17,7 +17,7 @@ public class DayNightTutorial : SwimmingAroundCountingTutorial
 
     public override string ClosedByName => "DayNightTutorial";
 
-    protected override int TriggersOnNthSwimmingSession => 4;
+    protected override int TriggersOnNthSwimmingSession => 3;
 
     public override void ApplyGUIState(MicrobeTutorialGUI gui)
     {

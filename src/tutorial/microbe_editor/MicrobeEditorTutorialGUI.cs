@@ -473,7 +473,7 @@ public partial class MicrobeEditorTutorialGUI : Control, ITutorialGUI
             if (value)
             {
                 compoundBalanceTutorial.Show();
-                RightPanelScrollContainer.ScrollVertical = 100;
+                RightPanelScrollContainer.ScrollVertical = 150;
             }
             else
             {

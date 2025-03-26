@@ -530,23 +530,6 @@ grow_horizontal = 0
 Description = "TUTORIAL_MICROBE_STAGE_PROCESS_PANEL"
 PreventsMouseCaptureWhileOpen = true
 
-[node name="ScrollContainer" parent="ProcessPanelTutorial" index="0"]
-anchor_right = 0.0
-anchor_bottom = 0.0
-offset_right = 230.0
-offset_bottom = 230.0
-
-[node name="Control" type="Control" parent="ProcessPanelTutorial/ScrollContainer/VBoxContainer" index="1"]
-layout_mode = 2
-size_flags_vertical = 3
-
-[node name="Button" type="Button" parent="ProcessPanelTutorial/ScrollContainer/VBoxContainer" index="2"]
-layout_mode = 2
-size_flags_horizontal = 4
-theme_override_fonts/font = ExtResource("9_s6a8v")
-theme_override_font_sizes/font_size = 18
-text = "CLOSE"
-
 [node name="ResourceSplitTutorial" parent="." instance=ExtResource("10")]
 custom_minimum_size = Vector2(260, 310)
 layout_mode = 1
@@ -585,8 +568,6 @@ Description = "TUTORIAL_MICROBE_STAGE_RESOURCE_SPLIT"
 [connection signal="pressed" from="EarlyMulticellularWelcome/ScrollContainer/VBoxContainer/Button" to="." method="OnSpecificCloseClicked" binds= ["EarlyMulticellularWelcome"]]
 [connection signal="hidden" from="OpenProcessPanelTutorial" to="." method="OnSpecificCloseClicked" binds= ["OpenProcessPanelTutorial"]]
 [connection signal="hidden" from="ProcessPanelTutorial" to="." method="OnSpecificCloseClicked" binds= ["ProcessPanelTutorial"]]
-[connection signal="pressed" from="ProcessPanelTutorial/ScrollContainer/VBoxContainer/Button" to="." method="OnSpecificCloseClicked" binds= ["ProcessPanelTutorial"]]
 [connection signal="hidden" from="ResourceSplitTutorial" to="." method="OnSpecificCloseClicked" binds= ["ResourcesAfterSplitTutorial"]]
 
 [editable path="EarlyMulticellularWelcome"]
-[editable path="ProcessPanelTutorial"]

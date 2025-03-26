@@ -79,6 +79,11 @@ public enum TutorialEventType
     ProcessPanelOpened,
 
     /// <summary>
+    ///   Triggered when a process panel process is set to be enabled
+    /// </summary>
+    ProcessPanelProcessEnabled,
+
+    /// <summary>
     ///   Player presses the button the exit the microbe editor but has made no changes
     /// </summary>
     MicrobeEditorNoChangesMade,

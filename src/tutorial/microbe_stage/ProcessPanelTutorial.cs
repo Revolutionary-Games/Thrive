@@ -30,6 +30,16 @@ public class ProcessPanelTutorial : TutorialPhase
 
                 break;
             }
+
+            case TutorialEventType.ProcessPanelProcessEnabled:
+            {
+                if (ShownCurrently)
+                {
+                    Hide();
+                }
+
+                break;
+            }
         }
 
         return false;

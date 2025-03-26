@@ -947,6 +947,13 @@ public partial class MicrobeStage : CreatureStageBase<Entity, MicrobeWorldSimula
             HUD.ShowEnvironmentPanel();
             environmentPanelAutomaticallyOpened = true;
         }
+
+        if (TutorialState.Enabled && !TutorialState.ProcessPanelTutorial.Complete)
+        {
+            // Give some free glucose to make sure the player doesn't die during the tutorial at a terrible time
+            // if they haven't been collecting glucose diligently
+            playerCompounds.AddCompound(Compound.Glucose, 1.5f);
+        }
     }
 
     public override void OnSuicide()

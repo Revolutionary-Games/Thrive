@@ -945,6 +945,12 @@ public partial class MicrobeHUD : CreatureStageHUDBase<MicrobeStage>
         {
             ref var bioProcesses = ref stage.Player.Get<BioProcesses>();
             ToggleProcessOnEntity(equation, enabled, ref bioProcesses);
+
+            if (enabled)
+            {
+                stage?.CurrentGame?.TutorialState.SendEvent(TutorialEventType.ProcessPanelProcessEnabled,
+                    EventArgs.Empty, this);
+            }
         }
     }
 
