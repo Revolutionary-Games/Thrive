@@ -97,6 +97,11 @@ public partial class MicrobeEditor : EditorBase<EditorAction, MicrobeStage>, IEd
             TutorialState.EditorRedoTutorial.OnOpened -= OnShowStatisticsForTutorial;
             TutorialState.EditorTutorialEnd.OnOpened -= cellEditorTab.ShowBasicEditingTabs;
             TutorialState.EditorTutorialEnd.OnClosed -= OnShowConfirmForTutorial;
+
+            // Tab bar fiddling
+            TutorialState.AtpBalanceIntroduction.OnClosed -= ShowTabBarAfterTutorial;
+            TutorialState.AutoEvoPrediction.OnClosed -= ShowTabBarAfterTutorial;
+            TutorialState.StaySmallTutorial.OnClosed -= ShowTabBarAfterTutorial;
         }
     }
 
@@ -157,6 +162,11 @@ public partial class MicrobeEditor : EditorBase<EditorAction, MicrobeStage>, IEd
         TutorialState.EditorRedoTutorial.OnOpened += OnShowStatisticsForTutorial;
         TutorialState.EditorTutorialEnd.OnOpened += cellEditorTab.ShowBasicEditingTabs;
         TutorialState.EditorTutorialEnd.OnClosed += OnShowConfirmForTutorial;
+
+        // Tab bar fiddling
+        TutorialState.AtpBalanceIntroduction.OnClosed += ShowTabBarAfterTutorial;
+        TutorialState.AutoEvoPrediction.OnClosed += ShowTabBarAfterTutorial;
+        TutorialState.StaySmallTutorial.OnClosed += ShowTabBarAfterTutorial;
 
         base.InitEditor(fresh);
 
@@ -289,6 +299,7 @@ public partial class MicrobeEditor : EditorBase<EditorAction, MicrobeStage>, IEd
                 editorTabSelector.ShowReportTab = false;
 
                 cellEditorTab.HideGUIElementsForInitialTutorial();
+                HideTabBar();
             }
             else if (TutorialState.EarlyGameGoalTutorial is { CanTrigger: false, Complete: false })
             {
@@ -298,18 +309,26 @@ public partial class MicrobeEditor : EditorBase<EditorAction, MicrobeStage>, IEd
 
                 cellEditorTab.HideAutoEvoPredictionForTutorial();
                 cellEditorTab.HideAdvancedTabs();
+                HideTabBar();
             }
             else if (!TutorialState.AutoEvoPrediction.Complete)
             {
                 // Third editor cycle
                 cellEditorTab.HideAdvancedTabs();
+                HideTabBar();
+            }
+            else if (!TutorialState.MigrationTutorial.Complete && !TutorialState.StaySmallTutorial.Complete)
+            {
+                // Until the last tutorial from other tabs is complete, we hide the tab bar each editor cycle so the
+                // player cannot skip stuff and cause problems
+                HideTabBar();
             }
         }
     }
 
     protected override void UpdatePatchDetails()
     {
-        // Patch events are able to change the stage's background so it needs to be updated here.
+        // Patch events are able to change the stage's background, so it needs to be updated here.
         cellEditorTab.UpdateBackgroundImage(CurrentPatch);
     }
 
