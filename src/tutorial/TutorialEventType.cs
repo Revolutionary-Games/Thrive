@@ -197,4 +197,9 @@ public enum TutorialEventType
     ///   Triggers when the first non-cytoplasm organelle divided
     /// </summary>
     MicrobeNonCytoplasmOrganelleDivided,
+
+    /// <summary>
+    ///   Triggered when the game is resumed from the paused state
+    /// </summary>
+    GameResumedByPlayer,
 }

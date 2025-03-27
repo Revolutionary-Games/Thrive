@@ -115,6 +115,9 @@ public partial class MicrobeTutorialGUI : Control, ITutorialGUI
     [Export]
     private CustomWindow resourceSplitTutorial = null!;
 
+    [Export]
+    private CustomWindow pausingTutorial = null!;
+
 #pragma warning restore CA2213
 
     [Signal]
@@ -504,6 +507,25 @@ public partial class MicrobeTutorialGUI : Control, ITutorialGUI
             else
             {
                 resourceSplitTutorial.Hide();
+            }
+        }
+    }
+
+    public bool PausingTutorialVisible
+    {
+        get => pausingTutorial.Visible;
+        set
+        {
+            if (value == pausingTutorial.Visible)
+                return;
+
+            if (value)
+            {
+                pausingTutorial.Show();
+            }
+            else
+            {
+                pausingTutorial.Hide();
             }
         }
     }

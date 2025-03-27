@@ -673,6 +673,8 @@ public partial class CreatureStageHUDBase<TStage> : HUDWithPausing, ICreatureSta
         else
         {
             HideFossilisationButtons();
+
+            stage?.CurrentGame?.TutorialState.SendEvent(TutorialEventType.GameResumedByPlayer, EventArgs.Empty, this);
         }
     }
 
