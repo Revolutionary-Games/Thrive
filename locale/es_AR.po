@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2025-03-25 22:07+0100\n"
+"POT-Creation-Date: 2025-03-27 09:59+0200\n"
 "PO-Revision-Date: 2025-01-21 12:01+0000\n"
 "Last-Translator: Anonymous <noreply@weblate.org>\n"
 "Language-Team: Spanish (Argentina) <https://translate.revolutionarygamesstudio.com/projects/thrive/thrive-game/es_AR/>\n"
@@ -3613,21 +3613,6 @@ msgstr ""
 msgid "MICROBE_STAGE_CONTROL_TEXT_CONTROLLER"
 msgstr ""
 
-#, fuzzy
-msgid "MICROBE_STAGE_DAY_NIGHT_TEXT"
-msgstr ""
-"Estructuras Procarioticas\n"
-"\n"
-"Citoplasma: Tiene espacio de almacenamiento y hace glicólisis (produce un poco de ATP).\n"
-"\n"
-"Metabolosomas: Convierten sulfuro de hidrógeno en glucosa a la mitad de la eficiencia de los quimioplastos, pero también hacen glicólisis.\n"
-"\n"
-"Tilacoides: Producen un tercio de la cantidad de glucosa de un cloroplasto, pero hace glicólisis.\n"
-"\n"
-"Rusticianina: Convierte el hierro en ATP.\n"
-"\n"
-"Nitrogenasa: Convierte el nitrógeno atmosférico en amoníaco y consume ATP."
-
 msgid "MICROBE_STAGE_HEALTH_TEXT"
 msgstr ""
 
@@ -6212,11 +6197,34 @@ msgstr ""
 "Nitrogenasa: Convierte el nitrógeno atmosférico en amoníaco y consume ATP."
 
 #, fuzzy
+msgid "TUTORIAL_MICROBE_EDITOR_COMPOUND_BALANCES"
+msgstr "Usá W, A, S y D y el mouse para moverte. E para disparar OxiToxi NT si tenés una vacuola de toxinas. G para activar o desactivar el modo engullir."
+
+#, fuzzy
 msgid "TUTORIAL_MICROBE_EDITOR_ENDING_TEXT"
 msgstr "Usá W, A, S y D y el mouse para moverte. E para disparar OxiToxi NT si tenés una vacuola de toxinas. G para activar o desactivar el modo engullir."
 
 #, fuzzy
 msgid "TUTORIAL_MICROBE_EDITOR_FLAGELLUM"
+msgstr ""
+"Estructuras Procarioticas\n"
+"\n"
+"Citoplasma: Tiene espacio de almacenamiento y hace glicólisis (produce un poco de ATP).\n"
+"\n"
+"Metabolosomas: Convierten sulfuro de hidrógeno en glucosa a la mitad de la eficiencia de los quimioplastos, pero también hacen glicólisis.\n"
+"\n"
+"Tilacoides: Producen un tercio de la cantidad de glucosa de un cloroplasto, pero hace glicólisis.\n"
+"\n"
+"Rusticianina: Convierte el hierro en ATP.\n"
+"\n"
+"Nitrogenasa: Convierte el nitrógeno atmosférico en amoníaco y consume ATP."
+
+#, fuzzy
+msgid "TUTORIAL_MICROBE_EDITOR_FOOD_CHAIN"
+msgstr "Usá W, A, S y D y el mouse para moverte. E para disparar OxiToxi NT si tenés una vacuola de toxinas. G para activar o desactivar el modo engullir."
+
+#, fuzzy
+msgid "TUTORIAL_MICROBE_EDITOR_MIGRATION"
 msgstr ""
 "Estructuras Procarioticas\n"
 "\n"
@@ -6290,6 +6298,10 @@ msgid "TUTORIAL_MICROBE_STAGE_ENGULFMENT_TEXT"
 msgstr "Usá W, A, S y D y el mouse para moverte. E para disparar OxiToxi NT si tenés una vacuola de toxinas. G para activar o desactivar el modo engullir."
 
 #, fuzzy
+msgid "TUTORIAL_MICROBE_STAGE_ENVIRONMENT_PANEL"
+msgstr "Usá W, A, S y D y el mouse para moverte. E para disparar OxiToxi NT si tenés una vacuola de toxinas. G para activar o desactivar el modo engullir."
+
+#, fuzzy
 msgid "TUTORIAL_MICROBE_STAGE_HELP_MENU_AND_ZOOM"
 msgstr "Usá W, A, S y D y el mouse para moverte. E para disparar OxiToxi NT si tenés una vacuola de toxinas. G para activar o desactivar el modo engullir."
 
@@ -6298,7 +6310,23 @@ msgid "TUTORIAL_MICROBE_STAGE_LEAVE_COLONY_TEXT"
 msgstr "Usá W, A, S y D y el mouse para moverte. E para disparar OxiToxi NT si tenés una vacuola de toxinas. G para activar o desactivar el modo engullir."
 
 #, fuzzy
+msgid "TUTORIAL_MICROBE_STAGE_OPEN_PROCESS_PANEL"
+msgstr "Usá W, A, S y D y el mouse para moverte. E para disparar OxiToxi NT si tenés una vacuola de toxinas. G para activar o desactivar el modo engullir."
+
+#, fuzzy
+msgid "TUTORIAL_MICROBE_STAGE_PAUSING"
+msgstr "Usá W, A, S y D y el mouse para moverte. E para disparar OxiToxi NT si tenés una vacuola de toxinas. G para activar o desactivar el modo engullir."
+
+#, fuzzy
+msgid "TUTORIAL_MICROBE_STAGE_PROCESS_PANEL"
+msgstr "Usá W, A, S y D y el mouse para moverte. E para disparar OxiToxi NT si tenés una vacuola de toxinas. G para activar o desactivar el modo engullir."
+
+#, fuzzy
 msgid "TUTORIAL_MICROBE_STAGE_REPRODUCE_TEXT"
+msgstr "Usá W, A, S y D y el mouse para moverte. E para disparar OxiToxi NT si tenés una vacuola de toxinas. G para activar o desactivar el modo engullir."
+
+#, fuzzy
+msgid "TUTORIAL_MICROBE_STAGE_RESOURCE_SPLIT"
 msgstr "Usá W, A, S y D y el mouse para moverte. E para disparar OxiToxi NT si tenés una vacuola de toxinas. G para activar o desactivar el modo engullir."
 
 #, fuzzy
@@ -8736,6 +8764,21 @@ msgstr "Acercar la pantalla"
 
 msgid "ZOOM_OUT"
 msgstr "Alejar la pantalla"
+
+#, fuzzy
+#~ msgid "MICROBE_STAGE_DAY_NIGHT_TEXT"
+#~ msgstr ""
+#~ "Estructuras Procarioticas\n"
+#~ "\n"
+#~ "Citoplasma: Tiene espacio de almacenamiento y hace glicólisis (produce un poco de ATP).\n"
+#~ "\n"
+#~ "Metabolosomas: Convierten sulfuro de hidrógeno en glucosa a la mitad de la eficiencia de los quimioplastos, pero también hacen glicólisis.\n"
+#~ "\n"
+#~ "Tilacoides: Producen un tercio de la cantidad de glucosa de un cloroplasto, pero hace glicólisis.\n"
+#~ "\n"
+#~ "Rusticianina: Convierte el hierro en ATP.\n"
+#~ "\n"
+#~ "Nitrogenasa: Convierte el nitrógeno atmosférico en amoníaco y consume ATP."
 
 #, fuzzy
 #~ msgid "GLOBAL_GLACIATION_EVENT_LOG"

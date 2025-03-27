@@ -464,6 +464,7 @@ public partial class CreatureStageHUDBase<TStage> : HUDWithPausing, ICreatureSta
     public void SendObjectsToTutorials(TutorialState tutorialState)
     {
         tutorialState.MicrobePressEditorButton.PressEditorButtonControl = editorButton;
+        tutorialState.OpenProcessPanelTutorial.ProcessPanelButtonControl = bottomLeftBar.ProcessPanelButtonControl;
 
         tutorialState.GlucoseCollecting.CompoundPanels = compoundsPanel;
         tutorialState.GlucoseCollecting.HUDBottomBar = bottomLeftBar;
@@ -496,6 +497,15 @@ public partial class CreatureStageHUDBase<TStage> : HUDWithPausing, ICreatureSta
     public void HideReproductionDialog()
     {
         editorButton.HideReproductionDialog();
+    }
+
+    public void CloseProcessPanel()
+    {
+        if (processPanel.Visible)
+        {
+            bottomLeftBar.ProcessesPressed = false;
+            processPanel.Hide();
+        }
     }
 
     public override void OnEnterStageTransition(bool longerDuration, bool returningFromEditor)
@@ -663,6 +673,8 @@ public partial class CreatureStageHUDBase<TStage> : HUDWithPausing, ICreatureSta
         else
         {
             HideFossilisationButtons();
+
+            stage?.CurrentGame?.TutorialState.SendEvent(TutorialEventType.GameResumedByPlayer, EventArgs.Empty, this);
         }
     }
 
@@ -702,12 +714,20 @@ public partial class CreatureStageHUDBase<TStage> : HUDWithPausing, ICreatureSta
     /// <summary>
     ///   Hides both the compounds panel and the environment panel for tutorial purposes
     /// </summary>
-    public void HideEnvironmentAndCompoundPanels()
+    public void HideEnvironmentAndCompoundPanels(bool playAnimation)
     {
-        compoundsPanel.ShowPanel = false;
-        bottomLeftBar.CompoundsPressed = false;
+        if (playAnimation)
+        {
+            compoundsPanel.ShowPanel = false;
+            environmentPanel.ShowPanel = false;
+        }
+        else
+        {
+            compoundsPanel.HideWithoutAnimation();
+            environmentPanel.HideWithoutAnimation();
+        }
 
-        environmentPanel.ShowPanel = false;
+        bottomLeftBar.CompoundsPressed = false;
         bottomLeftBar.EnvironmentPressed = false;
     }
 
@@ -1257,6 +1277,9 @@ public partial class CreatureStageHUDBase<TStage> : HUDWithPausing, ICreatureSta
         {
             processPanel.Show();
             bottomLeftBar.ProcessesPressed = true;
+
+            // Send a tutorial event about this opening
+            stage?.CurrentGame?.TutorialState.SendEvent(TutorialEventType.ProcessPanelOpened, EventArgs.Empty, this);
         }
     }
 

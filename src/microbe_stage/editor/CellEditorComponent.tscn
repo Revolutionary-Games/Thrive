@@ -1,4 +1,4 @@
-[gd_scene load_steps=56 format=3 uid="uid://cwot2e52r7lx0"]
+[gd_scene load_steps=60 format=3 uid="uid://cwot2e52r7lx0"]
 
 [ext_resource type="PackedScene" uid="uid://bwegwjlcioasf" path="res://src/microbe_stage/editor/EditorComponentBottomLeftButtons.tscn" id="3"]
 [ext_resource type="PackedScene" uid="uid://0hb8nq18ljr8" path="res://src/microbe_stage/editor/LightConfigurationPanel.tscn" id="3_yy73o"]
@@ -336,7 +336,168 @@ _data = {
 &"show": SubResource("44")
 }
 
-[node name="CellEditorComponent" type="Control" node_paths=PackedStringArray("growthOrderTabButton", "toleranceTabButton", "growthOrderTab", "growthOrderGUI", "tolerancesEditor", "toleranceTab", "toleranceWarningContainer", "organelleSuggestionLoadingIndicator", "organelleSuggestionLabel", "pendingEndosymbiosisPopup", "endosymbiosisButton", "endosymbiosisPopup", "showGrowthOrderCoordinates", "growthOrderNumberContainer", "micheViewer", "organismStatisticsPanel")]
+[sub_resource type="Animation" id="Animation_o1pli"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("RightPanel/VBoxContainer/AutoEvoInfoPanel:visible")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("RightPanel/VBoxContainer/AutoEvoInfoPanel:modulate")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(1, 1, 1, 1)]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("RightPanel/VBoxContainer/AutoEvoInfoPanel:custom_minimum_size")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(0, 236)]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("TopPanel:visible")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
+}
+tracks/4/type = "value"
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/path = NodePath("TopPanel/LightConfigurationPanel:visible")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
+}
+tracks/5/type = "value"
+tracks/5/imported = false
+tracks/5/enabled = true
+tracks/5/path = NodePath("TopPanel:position")
+tracks/5/interp = 1
+tracks/5/loop_wrap = true
+tracks/5/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(470, 10)]
+}
+
+[sub_resource type="Animation" id="Animation_wbwlm"]
+resource_name = "ShowAutoEvoPrediction"
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("RightPanel/VBoxContainer/AutoEvoInfoPanel:visible")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("RightPanel/VBoxContainer/AutoEvoInfoPanel:modulate")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 1),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Color(1, 1, 1, 0), Color(1, 1, 1, 1)]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("RightPanel/VBoxContainer/AutoEvoInfoPanel:custom_minimum_size")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0, 1),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector2(0, 5), Vector2(0, 236)]
+}
+
+[sub_resource type="Animation" id="Animation_pcyan"]
+resource_name = "ShowTopPanel"
+length = 0.5
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("TopPanel:visible")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("TopPanel/LightConfigurationPanel:visible")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("TopPanel:position")
+tracks/2/interp = 2
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0, 0.5),
+"transitions": PackedFloat32Array(1, 0.517632),
+"update": 0,
+"values": [Vector2(470, -60), Vector2(470, 10)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_o1pli"]
+_data = {
+&"RESET": SubResource("Animation_o1pli"),
+&"ShowAutoEvoPrediction": SubResource("Animation_wbwlm"),
+&"ShowTopPanel": SubResource("Animation_pcyan")
+}
+
+[node name="CellEditorComponent" type="Control" node_paths=PackedStringArray("growthOrderTabButton", "toleranceTabButton", "growthOrderTab", "growthOrderGUI", "tolerancesEditor", "toleranceTab", "toleranceWarningContainer", "organelleSuggestionLoadingIndicator", "organelleSuggestionLabel", "pendingEndosymbiosisPopup", "endosymbiosisButton", "endosymbiosisPopup", "showGrowthOrderCoordinates", "growthOrderNumberContainer", "micheViewer", "organismStatisticsPanel", "rightPanel", "rightPanelScrollContainer", "bottomRightPanel", "tutorialAnimationPlayer")]
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
@@ -370,7 +531,6 @@ OrganelleMenuPath = NodePath("OrganellePopupMenu")
 AutoEvoPredictionExplanationPopupPath = NodePath("PredictionExplanation")
 AutoEvoPredictionExplanationLabelPath = NodePath("PredictionExplanation/VBoxContainer/ScrollContainer/MarginContainer/VBoxContainer/ExplanationText")
 OrganelleUpgradeGUIPath = NodePath("OrganelleUpgradeGUI")
-RightPanelScrollContainerPath = NodePath("RightPanel/VBoxContainer/OrganismStatisticsPanel/VBoxContainer/Body/ScrollContainer")
 growthOrderTabButton = NodePath("LeftPanel/MainPanel/VBoxContainer/MarginContainer/EditingPanel/TabButtons/Growth")
 toleranceTabButton = NodePath("LeftPanel/MainPanel/VBoxContainer/MarginContainer/EditingPanel/TabButtons/Tolerances")
 growthOrderTab = NodePath("LeftPanel/MainPanel/VBoxContainer/MarginContainer/EditingPanel/Growth")
@@ -387,6 +547,10 @@ showGrowthOrderCoordinates = NodePath("LeftPanel/MainPanel/VBoxContainer/MarginC
 growthOrderNumberContainer = NodePath("GrowthOrderNumberContainer")
 micheViewer = NodePath("PopupMicheViewer")
 organismStatisticsPanel = NodePath("RightPanel/VBoxContainer/OrganismStatisticsPanel")
+rightPanel = NodePath("RightPanel")
+rightPanelScrollContainer = NodePath("RightPanel/VBoxContainer/OrganismStatisticsPanel/VBoxContainer/Body/ScrollContainer")
+bottomRightPanel = NodePath("BottomRight")
+tutorialAnimationPlayer = NodePath("TutorialAnimations")
 toleranceWarningsFont = ExtResource("28_qclxk")
 IslandErrorPath = NodePath("IslandError")
 MutationPointsBarPath = NodePath("LeftPanel/MainPanel/VBoxContainer/MarginContainer2/MutationPointsBar")
@@ -411,8 +575,8 @@ anchor_left = 0.5
 anchor_right = 0.5
 offset_left = -170.0
 offset_top = 10.0
-offset_right = 170.0
-offset_bottom = 57.0
+offset_right = 491.0
+offset_bottom = 64.0
 
 [node name="LightConfigurationPanel" parent="TopPanel" instance=ExtResource("3_yy73o")]
 layout_mode = 2
@@ -800,7 +964,7 @@ anchors_preset = 1
 anchor_left = 1.0
 anchor_right = 1.0
 offset_left = -285.0
-offset_bottom = 629.0
+offset_bottom = 657.0
 grow_horizontal = 0
 theme_override_constants/margin_top = 10
 theme_override_constants/margin_right = 10
@@ -1003,8 +1167,8 @@ anchor_left = 1.0
 anchor_top = 1.0
 anchor_right = 1.0
 anchor_bottom = 1.0
-offset_left = -160.0
-offset_top = -49.0
+offset_left = -162.0
+offset_top = -50.0
 offset_right = -10.0
 offset_bottom = -9.0
 grow_horizontal = 0
@@ -1198,6 +1362,11 @@ text = "CLOSE"
 [node name="PopupMicheViewer" parent="." instance=ExtResource("44_bxafd")]
 layout_mode = 1
 
+[node name="TutorialAnimations" type="AnimationPlayer" parent="."]
+libraries = {
+&"": SubResource("AnimationLibrary_o1pli")
+}
+
 [connection signal="Clicked" from="." to="EditorComponentBottomLeftButtons" method="OnClickedOffName"]
 [connection signal="gui_input" from="." to="." method="OnHexEditorGuiInput"]
 [connection signal="mouse_entered" from="." to="." method="OnHexEditorMouseEntered"]
@@ -1241,4 +1410,5 @@ layout_mode = 1
 [connection signal="pressed" from="PredictionExplanation/VBoxContainer/ScrollContainer/MarginContainer/VBoxContainer/MichesViewButton" to="." method="OnMicheViewRequested"]
 [connection signal="pressed" from="PredictionExplanation/VBoxContainer/Close" to="." method="CloseAutoEvoPrediction"]
 
+[editable path="RightPanel/VBoxContainer/OrganismStatisticsPanel"]
 [editable path="CompleteEndosymbiosisWarning"]

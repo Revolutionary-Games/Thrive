@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2025-03-25 22:07+0100\n"
+"POT-Creation-Date: 2025-03-27 09:59+0200\n"
 "PO-Revision-Date: 2025-03-21 00:47+0000\n"
 "Last-Translator: punctdan <yunusemredilek@hotmail.com>\n"
 "Language-Team: Turkish <https://translate.revolutionarygamesstudio.com/projects/thrive/thrive-game/tr/>\n"
@@ -3502,14 +3502,6 @@ msgstr ""
 "UYARI: Kontrol cihazı girişleri deneyseldir ve tam anlamıyla kullanılamaz (dokunmatik yüzey olmadan). Ayrıca, bazı hatalar olabilir.\n"
 "Devam etmek için birkaç saniyeliğine ekranda gösterilen tüm yönlendirmeleri deneyin."
 
-msgid "MICROBE_STAGE_DAY_NIGHT_TEXT"
-msgstr ""
-"Ekranınızın solundaki [b]ortam paneli[/b] ile, yerel koşulları takip edebilirsiniz.\n"
-"\n"
-"Gözler henüz evrimleşmemiştir. Ama bir tür, besin üretmek için güneş ışığına (ya da sıcaklığa) bağımlı olabilir. Eğer bu sizseniz, dikkat edin!\n"
-"\n"
-"Fotosentez gece vaktinde etkisizdir. Bu yüzden fotosenteze muhtaç olan herhangi bir hücrenin, gece hayatta kalmak için yeterli depoya [thrive:icon]StorageIcon[/thrive:icon] sahip olması gerekir."
-
 msgid "MICROBE_STAGE_HEALTH_TEXT"
 msgstr ""
 "Gözünüz enerji ([thrive:compound type=\"atp\"]ATP[/thrive:compound]) çubuğunun (sağ altta) yanındaki sağlık çubuğunda olsun.\n"
@@ -5987,6 +5979,15 @@ msgstr ""
 "\n"
 "Bir tane yerleştirmek [thrive:compound type=\"glucose\"]glukoz[/thrive:compound] gibi bileşikleri algılamanızı sağlar ve sizi o bileşiklere yönlendirir. Bu organel, diğer türlerin hücrelerini algılamak için de kullanılabilir."
 
+#, fuzzy
+msgid "TUTORIAL_MICROBE_EDITOR_COMPOUND_BALANCES"
+msgstr ""
+"Hücrenizi farklı [b]çevresel koşullara[/b] adapte edebilirsiniz.\n"
+"\n"
+"Çevresel koşullar, olumlu [b]ve[/b] olumsuz etkilere neden olabilir. Bu yüzden, yeni arazilere geçerken uygun toleransların ayarlandığından emin olmak önemlidir.\n"
+"\n"
+"Devam etmek için sol paneldeki \"tolerans\" sekmesini seçin."
+
 msgid "TUTORIAL_MICROBE_EDITOR_ENDING_TEXT"
 msgstr ""
 "Adaptasyon zordur. Birçok [thrive:compound type=\"atp\"]ATP[/thrive:compound] kaynağı vardır. Ancak, bunların hepsi her arazide bulunmaz. En bilinçli seçimi yapabilmeniz için buradaki tüm sekmeleri ve panelleri kullanabilir ya da herhangi bir şeyi deneyip nasıl çalıştığını görebilirsiniz!\n"
@@ -6006,6 +6007,24 @@ msgstr ""
 "Kamçılar, yoğun [thrive:compound type=\"atp\"]ATP[/thrive:compound] gerektiren organellerdir ve bu yüzden küçük hücreler için çok iyi değildirler.\n"
 "\n"
 "[b]Hareket hızını [/b] [thrive:icon]MovementIcon[/thrive:icon] arttırmanın başka bir yolu, [u]hücre zarı sekmesi[/u] üzerinden hücre zarınızı daha akışkan hale getirmektir."
+
+#, fuzzy
+msgid "TUTORIAL_MICROBE_EDITOR_FOOD_CHAIN"
+msgstr ""
+"Türünüzde herhangi bir değişiklik yapmadınız.\n"
+"\n"
+"Editörden ayrıldığınızda, [u]bir sonraki sefer çoğalana dek türünüzü düzenleyemeyeceksiniz[/u].\n"
+"\n"
+"Oyunda ilerlemek için evrimleşmeniz ve uyum sağlamanız gerekir. Bu yüzden türünüzü, çoğu editör sürecinde, düzenlemeniz tavsiye edilir."
+
+#, fuzzy
+msgid "TUTORIAL_MICROBE_EDITOR_MIGRATION"
+msgstr ""
+"Hücrenize bir [b]kemoreseptör[/b] organeli ekleyebilirsiniz.\n"
+"\n"
+"Kemoreseptörler, türünüzün etrafındaki şeyleri algılama becerisini arttırır.\n"
+"\n"
+"Bir tane yerleştirmek [thrive:compound type=\"glucose\"]glukoz[/thrive:compound] gibi bileşikleri algılamanızı sağlar ve sizi o bileşiklere yönlendirir. Bu organel, diğer türlerin hücrelerini algılamak için de kullanılabilir."
 
 msgid "TUTORIAL_MICROBE_EDITOR_MODIFY_ORGANELLE"
 msgstr ""
@@ -6127,6 +6146,15 @@ msgstr ""
 "\n"
 "Bu çizgi, yutmak için [i]yeterince büyük olduğunuz[/i] bir nesneye işaret eder. Ancak, o nesneyi gerçekten [i]yakalayamayabilirsiniz[/i]."
 
+#, fuzzy
+msgid "TUTORIAL_MICROBE_STAGE_ENVIRONMENT_PANEL"
+msgstr ""
+"Yutma modunda, nesnelerin üzerlerine gelerek onları yutun. Yutma moduna geçmek için [thrive:input]g_toggle_engulf[/thrive:input] tuşuna basın.\n"
+"\n"
+"Nesne tamamen içeri alındığında yutmayı durdurun.\n"
+"\n"
+"Bu çizgi, yutmak için [i]yeterince büyük olduğunuz[/i] bir nesneye işaret eder. Ancak, o nesneyi gerçekten [i]yakalayamayabilirsiniz[/i]."
+
 msgid "TUTORIAL_MICROBE_STAGE_HELP_MENU_AND_ZOOM"
 msgstr ""
 "Zorlanıyor musunuz? Yardım menüsünü inceleyin. Bu menüyü sol alttaki soru işaretli butona basarak açabilirsiniz.\n"
@@ -6140,7 +6168,35 @@ msgstr ""
 "Çok hücreli olmayı planlıyorsanız, koloniden ayrılıp editöre girmeniz gerekir.\n"
 "Gelişiminize devam etmek için [thrive:input]g_unbind_all[/thrive:input] tuşuna basarak koloniden ayrılın."
 
+#, fuzzy
+msgid "TUTORIAL_MICROBE_STAGE_OPEN_PROCESS_PANEL"
+msgstr ""
+"Hayat, şekerden daha fazla moleküle ihtiyaç duyar. Mikrobunuzun başka ne tür bulutlar toplayabileceğini keşfedin!\n"
+"\n"
+"Sağ alttaki turuncu [thrive:compound type=\"ammonia\"]amonyak[/thrive:compound] ve mor [thrive:compound type=\"phosphates\"]fosfat[/thrive:compound] çubukları [b]ilerlemenizi[/b] gösterir. Hücreniz çoğalmaya hazır olduğunda, bu çubuklar beyaza döner."
+
+#, fuzzy
+msgid "TUTORIAL_MICROBE_STAGE_PAUSING"
+msgstr ""
+"Bağ koparma moduna girdiniz. Bu modda, bağınızı koparmak istediğiniz koloni üyelerine tıklayabilirsiniz.\n"
+"\n"
+"Koloniden tamamen ayrılmak için kendi hücrenize tıklayabilir veya [thrive:input]g_unbind_all[/thrive:input] tuşuna basabilirsiniz."
+
+#, fuzzy
+msgid "TUTORIAL_MICROBE_STAGE_PROCESS_PANEL"
+msgstr ""
+"Hayat, şekerden daha fazla moleküle ihtiyaç duyar. Mikrobunuzun başka ne tür bulutlar toplayabileceğini keşfedin!\n"
+"\n"
+"Sağ alttaki turuncu [thrive:compound type=\"ammonia\"]amonyak[/thrive:compound] ve mor [thrive:compound type=\"phosphates\"]fosfat[/thrive:compound] çubukları [b]ilerlemenizi[/b] gösterir. Hücreniz çoğalmaya hazır olduğunda, bu çubuklar beyaza döner."
+
 msgid "TUTORIAL_MICROBE_STAGE_REPRODUCE_TEXT"
+msgstr ""
+"Hayat, şekerden daha fazla moleküle ihtiyaç duyar. Mikrobunuzun başka ne tür bulutlar toplayabileceğini keşfedin!\n"
+"\n"
+"Sağ alttaki turuncu [thrive:compound type=\"ammonia\"]amonyak[/thrive:compound] ve mor [thrive:compound type=\"phosphates\"]fosfat[/thrive:compound] çubukları [b]ilerlemenizi[/b] gösterir. Hücreniz çoğalmaya hazır olduğunda, bu çubuklar beyaza döner."
+
+#, fuzzy
+msgid "TUTORIAL_MICROBE_STAGE_RESOURCE_SPLIT"
 msgstr ""
 "Hayat, şekerden daha fazla moleküle ihtiyaç duyar. Mikrobunuzun başka ne tür bulutlar toplayabileceğini keşfedin!\n"
 "\n"
@@ -8889,6 +8945,14 @@ msgstr "Yakınlaştır"
 
 msgid "ZOOM_OUT"
 msgstr "Uzaklaştır"
+
+#~ msgid "MICROBE_STAGE_DAY_NIGHT_TEXT"
+#~ msgstr ""
+#~ "Ekranınızın solundaki [b]ortam paneli[/b] ile, yerel koşulları takip edebilirsiniz.\n"
+#~ "\n"
+#~ "Gözler henüz evrimleşmemiştir. Ama bir tür, besin üretmek için güneş ışığına (ya da sıcaklığa) bağımlı olabilir. Eğer bu sizseniz, dikkat edin!\n"
+#~ "\n"
+#~ "Fotosentez gece vaktinde etkisizdir. Bu yüzden fotosenteze muhtaç olan herhangi bir hücrenin, gece hayatta kalmak için yeterli depoya [thrive:icon]StorageIcon[/thrive:icon] sahip olması gerekir."
 
 #, fuzzy
 #~ msgid "GLOBAL_GLACIATION_EVENT_LOG"

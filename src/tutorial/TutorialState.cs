@@ -71,7 +71,19 @@ public class TutorialState : ITutorialInput, ISaveLoadable
     public MicrobeEngulfmentStorageFull EngulfmentStorageFull { get; private set; } = new();
 
     [JsonProperty]
-    public EditorWelcome EditorWelcome { get; private set; } = new();
+    public OpenProcessPanelTutorial OpenProcessPanelTutorial { get; private set; } = new();
+
+    [JsonProperty]
+    public ProcessPanelTutorial ProcessPanelTutorial { get; private set; } = new();
+
+    [JsonProperty]
+    public ResourcesAfterSplitTutorial ResourcesAfterSplitTutorial { get; private set; } = new();
+
+    [JsonProperty]
+    public MigrationTutorial MigrationTutorial { get; private set; } = new();
+
+    [JsonProperty]
+    public EditorReportWelcome EditorReportWelcome { get; private set; } = new();
 
     [JsonProperty]
     public Tutorial.PatchMap PatchMap { get; private set; } = new();
@@ -104,7 +116,16 @@ public class TutorialState : ITutorialInput, ISaveLoadable
     public AtpBalanceIntroduction AtpBalanceIntroduction { get; private set; } = new();
 
     [JsonProperty]
+    public CompoundBalancesTutorial CompoundBalancesTutorial { get; private set; } = new();
+
+    [JsonProperty]
+    public FoodChainTabTutorial FoodChainTabTutorial { get; private set; } = new();
+
+    [JsonProperty]
     public LeaveColonyTutorial LeaveColonyTutorial { get; private set; } = new();
+
+    [JsonProperty]
+    public PausingTutorial PausingTutorial { get; private set; } = new();
 
     /// <summary>
     ///   Tutorial for the become multicellular button. Needs to be before <see cref="MulticellularWelcome"/>
@@ -485,18 +506,23 @@ public class TutorialState : ITutorialInput, ISaveLoadable
             MicrobeEngulfmentExplanation,
             MicrobeEngulfedExplanation,
             EngulfmentStorageFull,
+            OpenProcessPanelTutorial,
+            ProcessPanelTutorial,
+            ResourcesAfterSplitTutorial,
             CheckTheHelpMenu,
-            EditorWelcome,
+            EditorReportWelcome,
             PatchMap,
+            MigrationTutorial,
             CellEditorIntroduction,
             NucleusTutorial,
             EditorUndoTutorial,
             EditorRedoTutorial,
             EditorTutorialEnd,
-            AutoEvoPrediction,
             StaySmallTutorial,
             ChemoreceptorPlacementTutorial,
             NegativeAtpBalanceTutorial,
+            CompoundBalancesTutorial,
+            FoodChainTabTutorial,
             LeaveColonyTutorial,
             BecomeMulticellularTutorial,
             MulticellularWelcome,
@@ -508,7 +534,9 @@ public class TutorialState : ITutorialInput, ISaveLoadable
             AtpBalanceIntroduction,
             OpenTolerancesTabTutorial,
             TolerancesTabTutorial,
+            AutoEvoPrediction,
             EarlyGameGoalTutorial,
+            PausingTutorial,
         };
     }
 }

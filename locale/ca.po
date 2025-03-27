@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2025-03-25 22:07+0100\n"
+"POT-Creation-Date: 2025-03-27 09:59+0200\n"
 "PO-Revision-Date: 2025-03-20 20:10+0000\n"
 "Last-Translator: Anonymous <noreply@weblate.org>\n"
 "Language-Team: Catalan <https://translate.revolutionarygamesstudio.com/projects/thrive/thrive-game/ca/>\n"
@@ -3757,14 +3757,6 @@ msgstr ""
 "Prova totes les tecles durant uns instants per tal de continuar."
 
 #, fuzzy
-msgid "MICROBE_STAGE_DAY_NIGHT_TEXT"
-msgstr ""
-"Estigues atent a la barra de salut, que hi ha al costat de la barra d'ATP (a la part inferior dreta de la pantalla).\n"
-"Si la teva cèl·lula es queda sense energia, es morirà.\n"
-"Pots recuperar la teva salut (autoregeneració) si tens prou quantitat d'ATP.\n"
-"Assegurat de recol·lectar prou Glucosa per no quedar-te sense ATP."
-
-#, fuzzy
 msgid "MICROBE_STAGE_HEALTH_TEXT"
 msgstr ""
 "Estigues atent a la barra de salut, que hi ha al costat de la barra d'ATP (a la part inferior dreta de la pantalla).\n"
@@ -6463,6 +6455,17 @@ msgstr ""
 "Per continuar, selecciona una part del tauler de l'esquerra. Tot seguit, fes clic-esquerra a l'hexàgon per a col·locar-la. Pots fer rotar les parts amb les tecles [thrive:input]e_rotate_left[/thrive:input] and [thrive:input]e_rotate_right[/thrive:input]."
 
 #, fuzzy
+msgid "TUTORIAL_MICROBE_EDITOR_COMPOUND_BALANCES"
+msgstr ""
+"Aquest és el mapa de zones.\n"
+"\n"
+"Cada icona representa un ecosistema o bioma que pot ser habitat. El tauler de la dreta indica les condicions del bioma seleccionat.\n"
+"\n"
+"Si selecciones un bioma connectat al que ocupes actualment, ressaltat amb una vora blau cian, pots premer el botó \"Moure's a aquesta zona\" per tal de migrar-hi.\n"
+"\n"
+"Selecciona una zona per continuar."
+
+#, fuzzy
 msgid "TUTORIAL_MICROBE_EDITOR_ENDING_TEXT"
 msgstr ""
 "Aquests són els fonaments per editar la teva espècie. També pots canviar el nom de la teva espècie clicant el requadre de sota i a l'esquerra i editant-ne el text. \n"
@@ -6475,6 +6478,26 @@ msgstr ""
 
 #, fuzzy
 msgid "TUTORIAL_MICROBE_EDITOR_FLAGELLUM"
+msgstr ""
+"Aquest és l'editor de microbi, on pots fer evolucionar la teva espècie invertint punts de mutació (MP). En cada generació disposaràs de 100 MP per invertir, de manera que no cal que n'estalviïs!\n"
+"\n"
+"L'hexàgon del centre de la pantalla és la teva cèl·lula, formada per una sola part de citoplasma.\n"
+"\n"
+"Per continuar, selecciona una part del tauler de l'esquerra. Tot seguit, fes clic-esquerra a l'hexàgon per a col·locar-la. Pots fer rotar les parts amb les tecles [thrive:input]e_rotate_left[/thrive:input] and [thrive:input]e_rotate_right[/thrive:input]."
+
+#, fuzzy
+msgid "TUTORIAL_MICROBE_EDITOR_FOOD_CHAIN"
+msgstr ""
+"Aquests són els fonaments per editar la teva espècie. També pots canviar el nom de la teva espècie clicant el requadre de sota i a l'esquerra i editant-ne el text. \n"
+"\n"
+"Explora les altres pestanyes a sota la barra de Punts de Mutació per veure altres possibilitats de personalitzar la teva cèl·lula. de l'Editor de Microbi per descobrir totes les opcions que tens disponibles.\n"
+"\n"
+"Per sobreviure en aquest món hostil, hauràs de trobar una font d'energia fiable, ja que la concentració de glucosa lliure s'anirà reduïnt al planeta.\n"
+"\n"
+"Bona sort!"
+
+#, fuzzy
+msgid "TUTORIAL_MICROBE_EDITOR_MIGRATION"
 msgstr ""
 "Aquest és l'editor de microbi, on pots fer evolucionar la teva espècie invertint punts de mutació (MP). En cada generació disposaràs de 100 MP per invertir, de manera que no cal que n'estalviïs!\n"
 "\n"
@@ -6604,6 +6627,15 @@ msgstr ""
 "\n"
 "Segueix la línia de la teva cèl·lula fins a l'objecte engolible proper."
 
+#, fuzzy
+msgid "TUTORIAL_MICROBE_STAGE_ENVIRONMENT_PANEL"
+msgstr ""
+"Engoleix objectes movent-hi per sobre mentre estiguis en el mode d'engoliment. Activa el mode d'engoliment prement [thrive:input]g_toggle_engulf[/thrive:input].\n"
+"\n"
+"Deixa d'engolir quan l'objecte estigui essent arrossegat cap a l'interior.\n"
+"\n"
+"Segueix la línia de la teva cèl·lula fins a l'objecte engolible proper."
+
 msgid "TUTORIAL_MICROBE_STAGE_HELP_MENU_AND_ZOOM"
 msgstr ""
 "Si encara no acabes d'entendre les mecàniques de joc, fes una ullada al menú d'ajuda. El pots obrir amb el signe d'interrogació a baix a la dreta.\n"
@@ -6618,7 +6650,32 @@ msgstr ""
 "Per abandonar la colònia del tot, pots clicar en la teva pròpia cèl·lula o pressionar la tecla per desunir-les a totes."
 
 #, fuzzy
+msgid "TUTORIAL_MICROBE_STAGE_OPEN_PROCESS_PANEL"
+msgstr ""
+"Per reproduïr-te, has de duplicar tots els teus orgànuls recol·lectant prou Amoníac i Fosfat.\n"
+"Estigues atent a les barres que envolten els botó de sota a la dreta per veure quant et falta. Aquestes barres es tornaran de color blanc quan s'hagin omplert."
+
+#, fuzzy
+msgid "TUTORIAL_MICROBE_STAGE_PAUSING"
+msgstr ""
+"Has entrat en el \"Mode de Desunió\". En aquest mode, pots clicar a sobre dels membres de la teva colònia per desunir-los.\n"
+"\n"
+"Per abandonar la colònia del tot, pots clicar en la teva pròpia cèl·lula o pressionar la tecla [thrive:input]g_unbind_all[/thrive:input]."
+
+#, fuzzy
+msgid "TUTORIAL_MICROBE_STAGE_PROCESS_PANEL"
+msgstr ""
+"Per reproduïr-te, has de duplicar tots els teus orgànuls recol·lectant prou Amoníac i Fosfat.\n"
+"Estigues atent a les barres que envolten els botó de sota a la dreta per veure quant et falta. Aquestes barres es tornaran de color blanc quan s'hagin omplert."
+
+#, fuzzy
 msgid "TUTORIAL_MICROBE_STAGE_REPRODUCE_TEXT"
+msgstr ""
+"Per reproduïr-te, has de duplicar tots els teus orgànuls recol·lectant prou Amoníac i Fosfat.\n"
+"Estigues atent a les barres que envolten els botó de sota a la dreta per veure quant et falta. Aquestes barres es tornaran de color blanc quan s'hagin omplert."
+
+#, fuzzy
+msgid "TUTORIAL_MICROBE_STAGE_RESOURCE_SPLIT"
 msgstr ""
 "Per reproduïr-te, has de duplicar tots els teus orgànuls recol·lectant prou Amoníac i Fosfat.\n"
 "Estigues atent a les barres que envolten els botó de sota a la dreta per veure quant et falta. Aquestes barres es tornaran de color blanc quan s'hagin omplert."
@@ -8880,6 +8937,14 @@ msgstr "Enfocar la visió de la càmera"
 
 msgid "ZOOM_OUT"
 msgstr "Zoom enfora"
+
+#, fuzzy
+#~ msgid "MICROBE_STAGE_DAY_NIGHT_TEXT"
+#~ msgstr ""
+#~ "Estigues atent a la barra de salut, que hi ha al costat de la barra d'ATP (a la part inferior dreta de la pantalla).\n"
+#~ "Si la teva cèl·lula es queda sense energia, es morirà.\n"
+#~ "Pots recuperar la teva salut (autoregeneració) si tens prou quantitat d'ATP.\n"
+#~ "Assegurat de recol·lectar prou Glucosa per no quedar-te sense ATP."
 
 #, fuzzy
 #~ msgid "GLOBAL_GLACIATION_EVENT_LOG"

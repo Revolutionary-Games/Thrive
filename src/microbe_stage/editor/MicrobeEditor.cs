@@ -91,6 +91,18 @@ public partial class MicrobeEditor : EditorBase<EditorAction, MicrobeStage>, IEd
 
         CheatManager.OnRevealAllPatches -= OnRevealAllPatchesCheatUsed;
         CheatManager.OnUnlockAllOrganelles -= OnUnlockAllOrganellesCheatUsed;
+
+        if (currentGame != null)
+        {
+            TutorialState.EditorRedoTutorial.OnOpened -= OnShowStatisticsForTutorial;
+            TutorialState.EditorTutorialEnd.OnOpened -= cellEditorTab.ShowBasicEditingTabs;
+            TutorialState.EditorTutorialEnd.OnClosed -= OnShowConfirmForTutorial;
+
+            // Tab bar fiddling
+            TutorialState.AtpBalanceIntroduction.OnClosed -= ShowTabBarAfterTutorial;
+            TutorialState.AutoEvoPrediction.OnClosed -= ShowTabBarAfterTutorial;
+            TutorialState.StaySmallTutorial.OnClosed -= ShowTabBarAfterTutorial;
+        }
     }
 
     public void SendAutoEvoResultsToReportComponent()
@@ -146,6 +158,16 @@ public partial class MicrobeEditor : EditorBase<EditorAction, MicrobeStage>, IEd
     {
         patchMapTab.SetMap(CurrentGame.GameWorld.Map);
 
+        // Register showing certain parts of the GUI as the tutorial progresses
+        TutorialState.EditorRedoTutorial.OnOpened += OnShowStatisticsForTutorial;
+        TutorialState.EditorTutorialEnd.OnOpened += cellEditorTab.ShowBasicEditingTabs;
+        TutorialState.EditorTutorialEnd.OnClosed += OnShowConfirmForTutorial;
+
+        // Tab bar fiddling
+        TutorialState.AtpBalanceIntroduction.OnClosed += ShowTabBarAfterTutorial;
+        TutorialState.AutoEvoPrediction.OnClosed += ShowTabBarAfterTutorial;
+        TutorialState.StaySmallTutorial.OnClosed += ShowTabBarAfterTutorial;
+
         base.InitEditor(fresh);
 
         reportTab.UpdateReportTabPatchSelector();
@@ -180,7 +202,16 @@ public partial class MicrobeEditor : EditorBase<EditorAction, MicrobeStage>, IEd
 
     protected override void InitEditorGUI(bool fresh)
     {
-        reportTab.OnNextTab = () => SetEditorTab(EditorTab.PatchMap);
+        if (TutorialState.Enabled && !TutorialState.EditorReportWelcome.Complete)
+        {
+            GD.Print("Will skip patch map tab for tutorial purposes");
+            reportTab.OnNextTab = () => SetEditorTab(EditorTab.CellEditor);
+        }
+        else
+        {
+            reportTab.OnNextTab = () => SetEditorTab(EditorTab.PatchMap);
+        }
+
         patchMapTab.OnNextTab = () => SetEditorTab(EditorTab.CellEditor);
         cellEditorTab.OnFinish = ForwardEditorComponentFinishRequest;
 
@@ -251,11 +282,53 @@ public partial class MicrobeEditor : EditorBase<EditorAction, MicrobeStage>, IEd
         reportTab.UpdateEvents(CurrentGame.GameWorld.EventsLog, CurrentGame.GameWorld.TotalPassedTime);
 
         patchMapTab.UpdatePatchEvents();
+
+        if (TutorialState.Enabled)
+        {
+            if (editorTabSelector == null)
+                throw new InvalidOperationException("Editor GUI not setup");
+
+            // Tutorial handling
+            // On the first go, go directly to the cell editor tab
+            if (!TutorialState.CellEditorIntroduction.Complete && !TutorialState.TutorialActive())
+            {
+                GD.Print("Going to cell editor tab for tutorial purposes (and hiding other tabs)");
+                SetEditorTab(EditorTab.CellEditor);
+
+                editorTabSelector.ShowMapTab = false;
+                editorTabSelector.ShowReportTab = false;
+
+                cellEditorTab.HideGUIElementsForInitialTutorial();
+                HideTabBar();
+            }
+            else if (TutorialState.EarlyGameGoalTutorial is { CanTrigger: false, Complete: false })
+            {
+                // On the second go, hide the patch map
+                GD.Print("Hiding patch map tab for tutorial purposes");
+                editorTabSelector.ShowMapTab = false;
+
+                cellEditorTab.HideAutoEvoPredictionForTutorial();
+                cellEditorTab.HideAdvancedTabs();
+                HideTabBar();
+            }
+            else if (!TutorialState.AutoEvoPrediction.Complete)
+            {
+                // Third editor cycle
+                cellEditorTab.HideAdvancedTabs();
+                HideTabBar();
+            }
+            else if (!TutorialState.MigrationTutorial.Complete && !TutorialState.StaySmallTutorial.Complete)
+            {
+                // Until the last tutorial from other tabs is complete, we hide the tab bar each editor cycle so the
+                // player cannot skip stuff and cause problems
+                HideTabBar();
+            }
+        }
     }
 
     protected override void UpdatePatchDetails()
     {
-        // Patch events are able to change the stage's background so it needs to be updated here.
+        // Patch events are able to change the stage's background, so it needs to be updated here.
         cellEditorTab.UpdateBackgroundImage(CurrentPatch);
     }
 
@@ -282,10 +355,9 @@ public partial class MicrobeEditor : EditorBase<EditorAction, MicrobeStage>, IEd
     protected override void ApplyEditorTab()
     {
         // This now triggers also when loading the editor initially, but no tutorial relies on the player going back
-        // to the report tab so this shouldn't matter
+        // to the report tab, so this shouldn't matter
         TutorialState.SendEvent(TutorialEventType.MicrobeEditorTabChanged,
-            new StringEventArgs(selectedEditorTab.ToString()),
-            this);
+            new StringEventArgs(selectedEditorTab.ToString()), this);
 
         // Hide all
         reportTab.Hide();
@@ -355,6 +427,16 @@ public partial class MicrobeEditor : EditorBase<EditorAction, MicrobeStage>, IEd
         // This creates a new callable each time, but the garbage amount should be negligible
         reportTab.UpdateAutoEvoResults(autoEvoResults, autoEvoExternal?.ToString() ?? "error",
             () => autoEvoResults.MakeSummary(true));
+    }
+
+    private void OnShowStatisticsForTutorial()
+    {
+        cellEditorTab.ShowStatisticsPanel(true);
+    }
+
+    private void OnShowConfirmForTutorial()
+    {
+        cellEditorTab.ShowConfirmButton(true);
     }
 
     private void OnRevealAllPatchesCheatUsed(object? sender, EventArgs args)

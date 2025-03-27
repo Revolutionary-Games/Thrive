@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2025-03-25 22:07+0100\n"
+"POT-Creation-Date: 2025-03-27 09:59+0200\n"
 "PO-Revision-Date: 2025-03-20 20:10+0000\n"
 "Last-Translator: Anonymous <noreply@weblate.org>\n"
 "Language-Team: Chinese (Simplified Han script) <https://translate.revolutionarygamesstudio.com/projects/thrive/thrive-game/zh_Hans/>\n"
@@ -3594,15 +3594,6 @@ msgstr ""
 "尝试所有按键几秒钟以继续。"
 
 #, fuzzy
-msgid "MICROBE_STAGE_DAY_NIGHT_TEXT"
-msgstr ""
-"注意环境面板上的[b]光强变化[/b]。\n"
-"\n"
-"随着环境变暗，夜晚来临。\n"
-"光合作用在夜间无效。\n"
-"因此，请确保您储存[thrive:icon]StorageIcon[/thrive:icon]了足够的能量来过夜。"
-
-#, fuzzy
 msgid "MICROBE_STAGE_HEALTH_TEXT"
 msgstr ""
 "随时注意你的ATP条旁边的生命值条（在屏幕右下角）。\n"
@@ -6140,6 +6131,16 @@ msgstr ""
 "放置一个将允许你探测例如[thrive:compound type=\"glucose\"][/thrive:compound]之类的化合物，并且指引你找到它们。它也能用来探测其他物种的细胞。"
 
 #, fuzzy
+msgid "TUTORIAL_MICROBE_EDITOR_COMPOUND_BALANCES"
+msgstr ""
+"右侧的ATP生产条显示你的细胞生产和消耗[thrive:compound type=\"atp\"][/thrive:compound]的比例。如果顶段条比底段条短，说明你没有产生足够的[thrive:compound type=\"atp\"][/thrive:compound]。\n"
+"\n"
+"低端条包含[b]渗透调节[/b][thrive:icon]OsmoIcon[/thrive:icon]消耗和[b]移动[/b][thrive:icon]MovementIcon[/thrive:icon]消耗。\n"
+"[b]渗透调节[/b][thrive:icon]OsmoIcon[/thrive:icon]是[u]维持生命的基本消耗[/u]。你添加的每一个部件都会增加这种消耗。\n"
+"\n"
+"如果你的[thrive:compound type=\"atp\"][/thrive:compound]生产为负，务必增加[thrive:compound type=\"atp\"][/thrive:compound]生产或添加[b]储存[/b][thrive:icon]StorageIcon[/thrive:icon]来允许爆发式移动。"
+
+#, fuzzy
 msgid "TUTORIAL_MICROBE_EDITOR_ENDING_TEXT"
 msgstr ""
 "这些就是改变物种的基础操作了。作为点睛之笔，你可以通过点击左下角的名称来重新命名你的物种。\n"
@@ -6159,6 +6160,23 @@ msgstr ""
 "鞭毛是[thrive:compound type=\"atp\"][/thrive:compound]消耗量极大的细胞器，所以不是很适合小型细胞。\n"
 "\n"
 "另一个轻微提升你的[b]移动速度[/b][thrive:icon]MovementIcon[/thrive:icon]的方法是在[u]细胞膜菜单[/u]中让你的细胞膜流动性更强。"
+
+#, fuzzy
+msgid "TUTORIAL_MICROBE_EDITOR_FOOD_CHAIN"
+msgstr ""
+"您还没有对您的物种做出任何改变。\n"
+"\n"
+"一旦您离开编辑器[u]，您将不能编辑你的物种，直到下一次繁殖[/u]。\n"
+"为了在游戏中取得进展，您将需要进化和适应，所以您最好在每一次循环中都编辑你的物种。"
+
+#, fuzzy
+msgid "TUTORIAL_MICROBE_EDITOR_MIGRATION"
+msgstr ""
+"你可以添加一个[b]化学受体[/b]细胞器到你的细胞。\n"
+"\n"
+"化学受体表现为你的物种感知化合物的能力。\n"
+"\n"
+"放置一个将允许你探测例如[thrive:compound type=\"glucose\"][/thrive:compound]之类的化合物，并且指引你找到它们。它也能用来探测其他物种的细胞。"
 
 msgid "TUTORIAL_MICROBE_EDITOR_MODIFY_ORGANELLE"
 msgstr ""
@@ -6274,6 +6292,15 @@ msgstr ""
 "\n"
 "沿着你的细胞上出现的路线前往附近的可吞噬物体。"
 
+#, fuzzy
+msgid "TUTORIAL_MICROBE_STAGE_ENVIRONMENT_PANEL"
+msgstr ""
+"在吞噬模式下，通过在物体上移动来吞噬它们。按[thrive:input]g_toggle_engulf[/thrive:input]来切换吞噬模式。\n"
+"\n"
+"物体被拉入后即可停止吞噬。\n"
+"\n"
+"沿着你的细胞上出现的路线前往附近的可吞噬物体。"
+
 msgid "TUTORIAL_MICROBE_STAGE_HELP_MENU_AND_ZOOM"
 msgstr ""
 "遇到困难？请查看帮助菜单。你可以用左下角的问号按钮打开它。\n"
@@ -6288,7 +6315,35 @@ msgstr ""
 "按下 [thrive:input]g_unbind_all[/thrive:input] 以离开这个细胞群落从而继续繁殖。"
 
 #, fuzzy
+msgid "TUTORIAL_MICROBE_STAGE_OPEN_PROCESS_PANEL"
+msgstr ""
+"繁殖需要你存活的足够久以将所有细胞器都复制一份。收集氨和磷酸盐可以加快繁殖速度。\n"
+"\n"
+"右下角的按钮周围的条形图会显示你的进度。这些条形图在完成后会变成白色。"
+
+#, fuzzy
+msgid "TUTORIAL_MICROBE_STAGE_PAUSING"
+msgstr ""
+"你已经进入解连接模式。在这个模式中你可以点击细胞群成员解除连接。\n"
+"\n"
+"要完全离开细胞群，你可以点击你自己的细胞或按[thrive:input]g_unbind_all[/thrive:input]。"
+
+#, fuzzy
+msgid "TUTORIAL_MICROBE_STAGE_PROCESS_PANEL"
+msgstr ""
+"繁殖需要你存活的足够久以将所有细胞器都复制一份。收集氨和磷酸盐可以加快繁殖速度。\n"
+"\n"
+"右下角的按钮周围的条形图会显示你的进度。这些条形图在完成后会变成白色。"
+
+#, fuzzy
 msgid "TUTORIAL_MICROBE_STAGE_REPRODUCE_TEXT"
+msgstr ""
+"繁殖需要你存活的足够久以将所有细胞器都复制一份。收集氨和磷酸盐可以加快繁殖速度。\n"
+"\n"
+"右下角的按钮周围的条形图会显示你的进度。这些条形图在完成后会变成白色。"
+
+#, fuzzy
+msgid "TUTORIAL_MICROBE_STAGE_RESOURCE_SPLIT"
 msgstr ""
 "繁殖需要你存活的足够久以将所有细胞器都复制一份。收集氨和磷酸盐可以加快繁殖速度。\n"
 "\n"
@@ -8789,6 +8844,15 @@ msgstr "放大"
 
 msgid "ZOOM_OUT"
 msgstr "缩小"
+
+#, fuzzy
+#~ msgid "MICROBE_STAGE_DAY_NIGHT_TEXT"
+#~ msgstr ""
+#~ "注意环境面板上的[b]光强变化[/b]。\n"
+#~ "\n"
+#~ "随着环境变暗，夜晚来临。\n"
+#~ "光合作用在夜间无效。\n"
+#~ "因此，请确保您储存[thrive:icon]StorageIcon[/thrive:icon]了足够的能量来过夜。"
 
 #, fuzzy
 #~ msgid "GLOBAL_GLACIATION_EVENT_LOG"

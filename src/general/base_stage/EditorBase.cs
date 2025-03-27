@@ -370,6 +370,62 @@ public partial class EditorBase<TAction, TStage> : NodeWithInput, IEditor, ILoad
         mutationPointsCache = null;
     }
 
+    public void HideTabBar()
+    {
+        if (editorTabSelector == null)
+        {
+            GD.PrintErr("Tab bar not initialized");
+            return;
+        }
+
+        editorTabSelector.Visible = false;
+    }
+
+    public void ShowTabBar(bool animate, double delay = 0)
+    {
+        if (editorTabSelector == null)
+        {
+            GD.PrintErr("Tab bar not initialized");
+            return;
+        }
+
+        if (editorTabSelector.Visible)
+            return;
+
+        if (!animate)
+        {
+            editorTabSelector.Visible = true;
+            return;
+        }
+
+        // Play a quick animation (made with tween to ensure positioning is always correct)
+        var tween = CreateTween();
+        tween.SetEase(Tween.EaseType.InOut);
+        tween.SetTrans(Tween.TransitionType.Quad);
+
+        var target = editorTabSelector.Position;
+        var from = target - new Vector2(0, editorTabSelector.Size.Y + 5);
+
+        if (delay > 0)
+        {
+            // Need to do this kind of hack to ensure the button doesn't briefly become visible at the final position
+            tween.TweenProperty(editorTabSelector, "position", from, 0.01f);
+
+            tween.TweenProperty(editorTabSelector, "visible", true, delay);
+            tween.TweenProperty(editorTabSelector, "position", target, 0.6f).From(from);
+        }
+        else
+        {
+            editorTabSelector.Visible = true;
+            tween.TweenProperty(editorTabSelector, "position", target, 0.6f).From(from);
+        }
+    }
+
+    public void ShowTabBarAfterTutorial()
+    {
+        ShowTabBar(true, 0.5);
+    }
+
     public bool HexPlacedThisSession<THex, TContext>(THex hex)
         where THex : class, IActionHex
     {
@@ -811,7 +867,7 @@ public partial class EditorBase<TAction, TStage> : NodeWithInput, IEditor, ILoad
 
     protected IEditorComponent? GetActiveEditorComponent()
     {
-        // Assume first visible editor component is the active one
+        // Assume the first visible editor component is the active one
         foreach (var editorComponent in GetAllEditorComponents())
         {
             if (editorComponent.Visible)

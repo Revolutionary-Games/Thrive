@@ -5,11 +5,17 @@ using System;
 /// <summary>
 ///   Welcome message and intro to the report tab
 /// </summary>
-public class EditorWelcome : TutorialPhase
+public class EditorReportWelcome : EditorEntryCountingTutorial
 {
     private readonly string reportTab = EditorTab.Report.ToString();
 
     public override string ClosedByName => "MicrobeEditorReport";
+
+    /// <summary>
+    ///   On the first time in the editor we go directly to the cell editor tab, so this tutorial triggers on the
+    ///   second go of the editor
+    /// </summary>
+    protected override int TriggersOnNthEditorSession => 2;
 
     public override void ApplyGUIState(MicrobeEditorTutorialGUI gui)
     {
@@ -19,6 +25,9 @@ public class EditorWelcome : TutorialPhase
     public override bool CheckEvent(TutorialState overallState, TutorialEventType eventType, EventArgs args,
         object sender)
     {
+        if (base.CheckEvent(overallState, eventType, args, sender))
+            return false;
+
         switch (eventType)
         {
             case TutorialEventType.EnteredMicrobeEditor:
