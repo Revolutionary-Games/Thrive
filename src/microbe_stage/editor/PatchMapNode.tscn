@@ -33,7 +33,7 @@ corner_radius_top_right = 5
 corner_radius_bottom_right = 5
 corner_radius_bottom_left = 5
 
-[node name="PatchMapNode" type="MarginContainer" node_paths=PackedStringArray("eruptionEventIndicator", "glaciationEventIndicator")]
+[node name="PatchMapNode" type="MarginContainer" node_paths=PackedStringArray("eruptionEventIndicator", "glaciationEventIndicator", "meteorPlainEventIndicator", "meteorIronEventIndicator", "meteorPhosphatesEventIndicator", "meteorRadioactiveEventIndicator", "meteorGlucoseEventIndicator", "meteorSulfurEventIndicator")]
 custom_minimum_size = Vector2(80, 80)
 offset_right = 64.0
 offset_bottom = 64.0
@@ -47,6 +47,12 @@ UnknownLabelPath = NodePath("InnerContainer/MarginContainer/MarginContainer/Unkn
 UnknownTextureFilePath = "res://assets/textures/gui/bevel/PatchAbyss.svg"
 eruptionEventIndicator = NodePath("EventIcons/Eruption")
 glaciationEventIndicator = NodePath("EventIcons/GlobalGlaciation")
+meteorPlainEventIndicator = NodePath("EventIcons/MeteorPlain")
+meteorIronEventIndicator = NodePath("EventIcons/MeteorIron")
+meteorPhosphatesEventIndicator = NodePath("EventIcons/MeteorPhosphates")
+meteorRadioactiveEventIndicator = NodePath("EventIcons/MeteorRadioactive")
+meteorGlucoseEventIndicator = NodePath("EventIcons/MeteorGlucose")
+meteorSulfurEventIndicator = NodePath("EventIcons/MeteorSulfur")
 
 [node name="InnerContainer" type="MarginContainer" parent="."]
 custom_minimum_size = Vector2(64, 64)
