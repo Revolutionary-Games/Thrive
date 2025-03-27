@@ -27,7 +27,7 @@ public class ModifyOrganelleTutorial : TutorialPhase
                 var upgradable = organellePlacedEventArgs.Definition.AvailableUpgrades.Count > 0 ||
                     !string.IsNullOrEmpty(organellePlacedEventArgs.Definition.UpgradeGUI);
 
-                if (!HasBeenShown && CanTrigger && upgradable)
+                if (!HasBeenShown && CanTrigger && upgradable && !overallState.TutorialActive())
                 {
                     Show();
                 }
