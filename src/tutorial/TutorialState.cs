@@ -515,7 +515,6 @@ public class TutorialState : ITutorialInput, ISaveLoadable
             EditorUndoTutorial,
             EditorRedoTutorial,
             EditorTutorialEnd,
-            AutoEvoPrediction,
             StaySmallTutorial,
             ChemoreceptorPlacementTutorial,
             NegativeAtpBalanceTutorial,
@@ -532,6 +531,7 @@ public class TutorialState : ITutorialInput, ISaveLoadable
             AtpBalanceIntroduction,
             OpenTolerancesTabTutorial,
             TolerancesTabTutorial,
+            AutoEvoPrediction,
             EarlyGameGoalTutorial,
         };
     }

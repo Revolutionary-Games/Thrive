@@ -6,7 +6,7 @@ using Tutorial;
 /// <summary>
 ///   GUI control that contains the microbe stage tutorial.
 ///   Should be placed over any game state GUI so that things drawn by this are on top. Visibility of things is
-///   Controlled by TutorialState object
+///   Controlled by the TutorialState object
 /// </summary>
 public partial class MicrobeTutorialGUI : Control, ITutorialGUI
 {
