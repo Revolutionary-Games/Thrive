@@ -950,9 +950,21 @@ public partial class MicrobeStage : CreatureStageBase<Entity, MicrobeWorldSimula
 
         if (TutorialState.Enabled && !TutorialState.ProcessPanelTutorial.Complete)
         {
+            // Ensure the player accepts the glucose, this only really happens when going directly from starting in
+            // the editor to the game
+            playerCompounds.SetUseful(Compound.Glucose);
+
             // Give some free glucose to make sure the player doesn't die during the tutorial at a terrible time
             // if they haven't been collecting glucose diligently
             playerCompounds.AddCompound(Compound.Glucose, 1.5f);
+
+            // If the player immediately switched to iron eating, make sure they don't die immediately
+            if (playerSpecies.InitialCompounds.TryGetValue(Compound.Iron, out var ironAmount) &&
+                ironAmount > MathUtils.EPSILON)
+            {
+                playerCompounds.SetUseful(Compound.Iron);
+                playerCompounds.AddCompound(Compound.Iron, 1.5f);
+            }
         }
     }
 
