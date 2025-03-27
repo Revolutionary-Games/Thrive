@@ -520,7 +520,6 @@ public class TutorialState : ITutorialInput, ISaveLoadable
             EditorTutorialEnd,
             StaySmallTutorial,
             ChemoreceptorPlacementTutorial,
-            NegativeAtpBalanceTutorial,
             CompoundBalancesTutorial,
             LeaveColonyTutorial,
             BecomeMulticellularTutorial,
@@ -536,6 +535,7 @@ public class TutorialState : ITutorialInput, ISaveLoadable
             AutoEvoPrediction,
             EarlyGameGoalTutorial,
             FoodChainTabTutorial,
+            NegativeAtpBalanceTutorial,
             PausingTutorial,
         };
     }
