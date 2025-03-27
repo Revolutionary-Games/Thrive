@@ -587,9 +587,18 @@ public class GameWorld : ISaveLoadable
             {
                 GD.PrintErr(
                     $"World history is out of order, expected generation {nextGeneration} but got {generation.Key}");
-            }
 
-            ++nextGeneration;
+                // Force the key to match, even if this causes gaps in the history
+                if (generation.Key > nextGeneration)
+                {
+                    nextGeneration = generation.Key;
+                    GD.PrintErr("Adjusted generation key to match");
+                }
+            }
+            else
+            {
+                ++nextGeneration;
+            }
 
             foreach (var recordSpecies in generation.Value.AllSpeciesData)
             {
@@ -914,9 +923,18 @@ public class GameWorld : ISaveLoadable
             {
                 GD.PrintErr(
                     $"World history is out of order, expected generation {nextGeneration} but got {generation.Key}");
-            }
 
-            ++nextGeneration;
+                // Force the key to match, even if this causes gaps in the history
+                if (generation.Key > nextGeneration)
+                {
+                    nextGeneration = generation.Key;
+                    GD.PrintErr("Adjusted generation key to match");
+                }
+            }
+            else
+            {
+                ++nextGeneration;
+            }
 
             var record = generation.Value;
 
