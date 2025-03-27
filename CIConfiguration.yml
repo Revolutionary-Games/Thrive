@@ -117,7 +117,7 @@ jobs:
           name: Unit tests
           command: GODOT_BIN=$(which godot) dotnet test
       - run:
-          name: files localization steam-build rewrite checks
+          name: files exists localization steam-build rewrite checks
           command: dotnet run --project Scripts -- check files localization steam-build rewrite
       - run:
           when: always

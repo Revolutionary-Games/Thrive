@@ -2,6 +2,7 @@
 
 using System;
 using System.Collections.Generic;
+using System.Linq;
 using System.Text.RegularExpressions;
 using System.Threading;
 using System.Threading.Tasks;
@@ -12,7 +13,7 @@ using ScriptsBase.Utilities;
 
 public class CodeChecks : CodeChecksBase<Program.CheckOptions>
 {
-    private static readonly string[] FilesNotAllowedToHaveBom = { "global.json", "dotnet-tools.json" };
+    private static readonly string[] FilesNotAllowedToHaveBom = ["global.json", "dotnet-tools.json"];
 
     public CodeChecks(Program.CheckOptions opts,
         Func<LocalizationOptionsBase, CancellationToken, Task<bool>> runLocalizationTool) :
@@ -35,7 +36,7 @@ public class CodeChecks : CodeChecksBase<Program.CheckOptions>
                 new FileChecks(true,
                     new BomChecker(BomChecker.Mode.Required, ".cs", ".json")
                     {
-                        IgnoredFiles = new List<string>(FilesNotAllowedToHaveBom),
+                        IgnoredFiles = FilesNotAllowedToHaveBom.ToList(),
                     },
                     new BomChecker(BomChecker.Mode.Disallowed, FilesNotAllowedToHaveBom),
                     new CfgCheck(thriveVersion),
@@ -47,6 +48,11 @@ public class CodeChecks : CodeChecksBase<Program.CheckOptions>
                             { ".gltf", "glTF files should be compressed into .glb files to save space" },
                         },
                     })
+            },
+            {
+                "exists",
+                new FileMustExist("third_party/JoltPhysics/Build/CMakeLists.txt",
+                    "third_party/concurrentqueue/CMakeLists.txt", "third_party/godot-cpp/CMakeLists.txt")
             },
             { "compile", new CompileCheck(!opts.NoExtraRebuild) },
             { "inspectcode", inspectCode },
@@ -61,11 +67,11 @@ public class CodeChecks : CodeChecksBase<Program.CheckOptions>
         FilePathsToAlwaysIgnore.Add(new Regex(@"mono_crash\..+"));
         FilePathsToAlwaysIgnore.Add(new Regex(@"RevolutionaryGamesCommon\/"));
 
-        // Downloaded json files
+        // Downloaded JSON files
         FilePathsToAlwaysIgnore.Add(new Regex(@"patrons\.json"));
         FilePathsToAlwaysIgnore.Add(new Regex(@"translators\.json"));
 
-        // Generated json files that are intentionally minimized
+        // Generated JSON files that are intentionally minimised
         FilePathsToAlwaysIgnore.Add(new Regex(@"older_patch_notes\.json$"));
         FilePathsToAlwaysIgnore.Add(new Regex(@"extension_api\.json$"));
 

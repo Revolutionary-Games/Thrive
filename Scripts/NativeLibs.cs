@@ -562,7 +562,7 @@ public class NativeLibs
         PrecompiledTag targetTags;
 
         // The extension library defaults to installing without AVX
-        // Due to the "if" above this is always true
+        // Due to the "if" above, this is always true
         // ReSharper disable once ConditionIsAlwaysTrueOrFalse
         if (library == NativeConstants.Library.ThriveExtension)
             tag = PrecompiledTag.WithoutAvx;
@@ -1120,6 +1120,10 @@ public class NativeLibs
         {
             ColourConsole.WriteErrorLine($"Failed to run compile in container (exit: {result.ExitCode}). " +
                 "Is the container built and available or did an unexpected error happen inside the container?");
+
+            ColourConsole.WriteErrorLine(
+                "NOTE: YOU MUST LOCALLY BUILD THE IMAGE FIRST! This will not be done automatically.");
+            ColourConsole.WriteNormalLine("Run the Scripts project with -- container -i NativeBuilder 1");
 
             return false;
         }
