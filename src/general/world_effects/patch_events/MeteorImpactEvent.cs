@@ -255,12 +255,6 @@ public class MeteorImpactEvent : IWorldEffect
         patch.LogEvent(new LocalizedString("METEOR_IMPACT_EVENT"),
             true, true, "MeteorImpactEvent.svg");
 
-        if (patch.Visibility == MapElementVisibility.Shown)
-        {
-            targetWorld.LogEvent(new LocalizedString("METEOR_IMPACT_EVENT_LOG", patch.Name),
-                true, false, "MeteorImpactEvent.svg");
-        }
-
         patch.AddPatchEventRecord(selectedMeteor.VisualEffect, totalTimePassed);
     }
 
@@ -306,7 +300,9 @@ public class MeteorImpactEvent : IWorldEffect
 
     private void LogBeginningOfMeteorStrike()
     {
-        targetWorld.LogEvent(new LocalizedString("METEOR_STRIKE_START_EVENT_LOG", modifiedPatchesIds.Count),
-            true, true, "MeteorImpactEvent.svg");
+        var translatedText = modifiedPatchesIds.Count == 1 ?
+            new LocalizedString("METEOR_STRIKE_START_EVENT_LOG_SINGULAR", modifiedPatchesIds.Count) :
+            new LocalizedString("METEOR_STRIKE_START_EVENT_LOG_PLURAL", modifiedPatchesIds.Count);
+        targetWorld.LogEvent(translatedText, true, true, "GlobalGlaciationEvent.svg");
     }
 }

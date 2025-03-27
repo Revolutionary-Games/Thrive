@@ -306,12 +306,6 @@ public partial class MulticellularEditor : EditorBase<EditorAction, MicrobeStage
         cellEditorTab.UpdateBackgroundImage(CurrentPatch);
     }
 
-    protected override void UpdatePatchDetails()
-    {
-        // Patch events are able to change the stage's background so it needs to be updated here.
-        cellEditorTab.UpdateBackgroundImage(CurrentPatch);
-    }
-
     protected override GameProperties StartNewGameForEditor()
     {
         return GameProperties.StartNewMulticellularGame(new WorldGenerationSettings());

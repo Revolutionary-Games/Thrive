@@ -6,7 +6,7 @@
 [ext_resource type="Texture2D" uid="uid://bsg6xcrlspkdt" path="res://assets/textures/gui/bevel/hSeparatorLeftSide.png" id="3_ri2xt"]
 [ext_resource type="LabelSettings" uid="uid://cw40l6f6fo8ml" path="res://src/gui_common/fonts/Body-Regular-Small-Green.tres" id="4_15qmx"]
 [ext_resource type="LabelSettings" uid="uid://brgbuduvjby6a" path="res://src/gui_common/fonts/Title-SemiBold-Smaller.tres" id="5_6mela"]
-[ext_resource type="PackedScene" path="res://src/microbe_stage/editor/ToleranceOptimalMarker.tscn" id="7_sg3ru"]
+[ext_resource type="PackedScene" uid="uid://dccswprlmgtel" path="res://src/microbe_stage/editor/ToleranceOptimalMarker.tscn" id="7_sg3ru"]
 [ext_resource type="LabelSettings" uid="uid://dvqx73nhtr0y2" path="res://src/gui_common/fonts/Body-Regular-Small.tres" id="8_ktuy7"]
 [ext_resource type="LabelSettings" uid="uid://o0tip7etc0x2" path="res://src/gui_common/fonts/Body-Bold-Small-Red.tres" id="8_mharw"]
 [ext_resource type="Texture2D" uid="uid://dmjlic63rpnug" path="res://assets/textures/gui/bevel/markerMoreThan.svg" id="10_q4a2w"]
@@ -106,7 +106,7 @@ _data = {
 &"RESET": SubResource("Animation_fmah3")
 }
 
-[node name="TolerancesEditorSubComponent" type="VBoxContainer" node_paths=PackedStringArray("temperatureContainer", "temperatureToleranceContainer", "pressureContainer", "pressureRangeContainer", "oxygenResistanceContainer", "uvResistanceContainer", "invalidChangeAnimation", "temperatureSlider", "temperatureToleranceRangeSlider", "pressureMinSlider", "pressureMaxSlider", "oxygenResistanceSlider", "uvResistanceSlider", "temperatureMinLabel", "temperatureMaxLabel", "temperatureToleranceLabel", "temperatureToleranceModifierLabel", "pressureMinLabel", "pressureMaxLabel", "pressureToleranceModifierLabel", "oxygenResistanceLabel", "oxygenResistanceModifierLabel", "uvResistanceLabel", "uvResistanceModifierLabel", "temperatureToleranceMarker", "minPressureToleranceMarker", "maxPressureToleranceMarker", "oxygenToleranceMarker", "uvToleranceMarker")]
+[node name="TolerancesEditorSubComponent" type="VBoxContainer" node_paths=PackedStringArray("temperatureContainer", "temperatureToleranceContainer", "pressureContainer", "pressureRangeContainer", "oxygenResistanceContainer", "uvResistanceContainer", "invalidChangeAnimation", "temperatureSlider", "temperatureToleranceRangeSlider", "pressureMinSlider", "pressureMaxSlider", "oxygenResistanceSlider", "uvResistanceSlider", "temperatureMinLabel", "temperatureMaxLabel", "temperatureToleranceLabel", "temperatureToleranceModifierLabel", "pressureMinLabel", "pressureMaxLabel", "pressureToleranceModifierLabel", "oxygenResistanceLabel", "oxygenResistanceModifierLabel", "uvResistanceLabel", "uvResistanceModifierLabel")]
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
@@ -138,11 +138,6 @@ oxygenResistanceLabel = NodePath("Oxygen/HBoxContainer3/HBoxContainer/OxygenValu
 oxygenResistanceModifierLabel = NodePath("Oxygen/HBoxContainer3/HBoxContainer/OxygenModifier")
 uvResistanceLabel = NodePath("UV/HBoxContainer2/HBoxContainer/HBoxContainer/UVProtectionValue")
 uvResistanceModifierLabel = NodePath("UV/HBoxContainer2/HBoxContainer/HBoxContainer/UVModifier")
-temperatureToleranceMarker = NodePath("Temperature/TemperatureSlider/TemperatureMarker")
-minPressureToleranceMarker = NodePath("Pressure/PressureSliderMin/MinPressureMarker")
-maxPressureToleranceMarker = NodePath("Pressure/PressureSliderMax/MaxPressureMarker")
-oxygenToleranceMarker = NodePath("Oxygen/OxgenSlider/OxygenMarker")
-uvToleranceMarker = NodePath("UV/UVSlider/UVMarker")
 badValueFont = ExtResource("3_q5r3n")
 perfectValueFont = ExtResource("4_15qmx")
 modifierBadFont = ExtResource("3_q5r3n")

@@ -911,15 +911,6 @@ public partial class EditorBase<TAction, TStage> : NodeWithInput, IEditor, ILoad
         throw new GodotAbstractMethodNotOverriddenException();
     }
 
-    /// <summary>
-    ///   This method should be called after <see cref="ElapseEditorEntryTime"/> so that any changes to the patches
-    ///   caused by patch events will be updated (such as background)
-    /// </summary>
-    protected virtual void UpdatePatchDetails()
-    {
-        throw new GodotAbstractMethodNotOverriddenException();
-    }
-
     protected virtual void PerformAutoSave()
     {
         throw new GodotAbstractMethodNotOverriddenException();

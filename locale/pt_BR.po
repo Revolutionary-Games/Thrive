@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2025-03-27 09:59+0200\n"
+"POT-Creation-Date: 2025-03-27 20:24+0100\n"
 "PO-Revision-Date: 2025-03-20 20:10+0000\n"
 "Last-Translator: Anonymous <noreply@weblate.org>\n"
 "Language-Team: Portuguese (Brazil) <https://translate.revolutionarygamesstudio.com/projects/thrive/thrive-game/pt_BR/>\n"
@@ -1992,6 +1992,29 @@ msgstr ""
 "Evento de Região: Erupção\n"
 "Cria mais sulfeto de hidrogênio e dióxido de carbono"
 
+msgid "EVENT_METEOR_GLUCOSE"
+msgstr ""
+
+#, fuzzy
+msgid "EVENT_METEOR_IRON"
+msgstr "{0}: +{1} ATP"
+
+#, fuzzy
+msgid "EVENT_METEOR_PHOSPHATES"
+msgstr "Gerar fosfato"
+
+#, fuzzy
+msgid "EVENT_METEOR_PLAIN"
+msgstr ""
+"Evento de Região: Erupção\n"
+"Cria mais sulfeto de hidrogênio e dióxido de carbono"
+
+msgid "EVENT_METEOR_RADIOACTIVE"
+msgstr ""
+
+msgid "EVENT_METEOR_SULFUR"
+msgstr ""
+
 msgid "EVOLUTIONARY_TREE"
 msgstr "Árvore Evolucionária"
 
@@ -2344,6 +2367,10 @@ msgstr ""
 
 #, fuzzy
 msgid "GLOBAL_GLACIATION_EVENT"
+msgstr "População Global:"
+
+#, fuzzy
+msgid "GLOBAL_GLACIATION_EVENT_LOG"
 msgstr "População Global:"
 
 #, fuzzy
@@ -3315,6 +3342,15 @@ msgstr "Transforma [thrive:compound type=\"glucose\"][/thrive:compound] em [thri
 
 msgid "META_THREADS_TOOLTIP"
 msgstr "Visite nosso perfil no Threads"
+
+msgid "METEOR_IMPACT_EVENT"
+msgstr ""
+
+msgid "METEOR_STRIKE_START_EVENT_LOG_PLURAL"
+msgstr ""
+
+msgid "METEOR_STRIKE_START_EVENT_LOG_SINGULAR"
+msgstr ""
 
 msgid "METRICS"
 msgstr "Exibir Métricas"
@@ -8438,10 +8474,6 @@ msgstr "Diminuir o zoom"
 #~ "\n"
 #~ "A fotossíntese não funciona à noite. Então, células que dependem de fotossíntese precisam ter um armazenamento suficiente de compostos [thrive:icon]StorageIcon[/thrive:icon] para sobreviver a noite."
 
-#, fuzzy
-#~ msgid "GLOBAL_GLACIATION_EVENT_LOG"
-#~ msgstr "População Global:"
-
 #~ msgid "IRON_CHEMOLITHOAUTOTROPHY"
 #~ msgstr "Quimiolitoautotrofia Férrica"
 
@@ -8618,10 +8650,6 @@ msgstr "Diminuir o zoom"
 #, fuzzy
 #~ msgid "ERUPTION_IN"
 #~ msgstr "Gemulação"
-
-#, fuzzy
-#~ msgid "EVENT_TOOLTIP_ERUPTION"
-#~ msgstr "{0}: +{1} ATP"
 
 #~ msgid "THE_AMOUNT_OF_GLUCOSE_HAS_BEEN_REDUCED"
 #~ msgstr "A quantidade de glicose foi reduzida para {0} da quantidade anterior."

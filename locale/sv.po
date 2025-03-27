@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2025-03-27 09:59+0200\n"
+"POT-Creation-Date: 2025-03-27 20:24+0100\n"
 "PO-Revision-Date: 2025-02-06 13:29+0000\n"
 "Last-Translator: Anonymous <noreply@weblate.org>\n"
 "Language-Team: Swedish <https://translate.revolutionarygamesstudio.com/projects/thrive/thrive-game/sv/>\n"
@@ -2085,6 +2085,27 @@ msgstr "Flodmynning"
 msgid "EVENT_ERUPTION_TOOLTIP"
 msgstr "Självmord"
 
+msgid "EVENT_METEOR_GLUCOSE"
+msgstr ""
+
+#, fuzzy
+msgid "EVENT_METEOR_IRON"
+msgstr "{0}:+{1} ATP"
+
+#, fuzzy
+msgid "EVENT_METEOR_PHOSPHATES"
+msgstr "Spawna fosfat"
+
+#, fuzzy
+msgid "EVENT_METEOR_PLAIN"
+msgstr "Självmord"
+
+msgid "EVENT_METEOR_RADIOACTIVE"
+msgstr ""
+
+msgid "EVENT_METEOR_SULFUR"
+msgstr ""
+
 #, fuzzy
 msgid "EVOLUTIONARY_TREE"
 msgstr "Av Revolutionary Games Studio"
@@ -2492,6 +2513,10 @@ msgstr ""
 
 #, fuzzy
 msgid "GLOBAL_GLACIATION_EVENT"
+msgstr "{0} befolkning förändrades av {1} på grund av: {2}"
+
+#, fuzzy
+msgid "GLOBAL_GLACIATION_EVENT_LOG"
 msgstr "{0} befolkning förändrades av {1} på grund av: {2}"
 
 #, fuzzy
@@ -3538,6 +3563,15 @@ msgid "META_THREADS_TOOLTIP"
 msgstr ""
 "Det går inte att automatiskt upptäcka om flertrådning är aktivt eller inte.\n"
 "Detta påverkar standardantalet trådar eftersom flertrådnings-trådar inte är lika snabba som riktiga CPU-kärnor."
+
+msgid "METEOR_IMPACT_EVENT"
+msgstr ""
+
+msgid "METEOR_STRIKE_START_EVENT_LOG_PLURAL"
+msgstr ""
+
+msgid "METEOR_STRIKE_START_EVENT_LOG_SINGULAR"
+msgstr ""
 
 #, fuzzy
 msgid "METRICS"
@@ -8890,10 +8924,6 @@ msgstr "Zooma ut"
 #~ "[b]Grundhexstorlek[/b]\n"
 #~ "  {4}"
 
-#, fuzzy
-#~ msgid "GLOBAL_GLACIATION_EVENT_LOG"
-#~ msgstr "{0} befolkning förändrades av {1} på grund av: {2}"
-
 #~ msgid "IRON_CHEMOLITHOAUTOTROPHY"
 #~ msgstr "Järnkemolitoautotrofi"
 
@@ -9059,10 +9089,6 @@ msgstr "Zooma ut"
 #, fuzzy
 #~ msgid "ERUPTION_IN"
 #~ msgstr "Producerar"
-
-#, fuzzy
-#~ msgid "EVENT_TOOLTIP_ERUPTION"
-#~ msgstr "{0}:+{1} ATP"
 
 #~ msgid "THE_AMOUNT_OF_GLUCOSE_HAS_BEEN_REDUCED"
 #~ msgstr "Mängden glukos har minskats med {0} av den tidigare mängden."
