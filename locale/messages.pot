@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Thrive VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2025-03-26 14:53+0200\n"
+"POT-Creation-Date: 2025-03-27 09:59+0200\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -818,27 +818,27 @@ msgstr ""
 msgid "CARBON_DIOXIDE"
 msgstr ""
 
-#: ../src/general/base_stage/CreatureStageHUDBase.cs:981
+#: ../src/general/base_stage/CreatureStageHUDBase.cs:992
 msgid "CATEGORY_AN_ABUNDANCE"
 msgstr ""
 
-#: ../src/general/base_stage/CreatureStageHUDBase.cs:985
+#: ../src/general/base_stage/CreatureStageHUDBase.cs:996
 msgid "CATEGORY_A_FAIR_AMOUNT"
 msgstr ""
 
-#: ../src/general/base_stage/CreatureStageHUDBase.cs:989
+#: ../src/general/base_stage/CreatureStageHUDBase.cs:1000
 msgid "CATEGORY_LITTLE"
 msgstr ""
 
-#: ../src/general/base_stage/CreatureStageHUDBase.cs:983
+#: ../src/general/base_stage/CreatureStageHUDBase.cs:994
 msgid "CATEGORY_QUITE_A_BIT"
 msgstr ""
 
-#: ../src/general/base_stage/CreatureStageHUDBase.cs:987
+#: ../src/general/base_stage/CreatureStageHUDBase.cs:998
 msgid "CATEGORY_SOME"
 msgstr ""
 
-#: ../src/general/base_stage/CreatureStageHUDBase.cs:991
+#: ../src/general/base_stage/CreatureStageHUDBase.cs:1002
 msgid "CATEGORY_VERY_LITTLE"
 msgstr ""
 
@@ -1074,11 +1074,10 @@ msgstr ""
 #: ../src/microbe_stage/editor/MicrobeEditorReportComponent.tscn:602
 #: ../src/microbe_stage/ProcessPanel.tscn:58 ../src/modding/ModManager.tscn:710
 #: ../src/thriveopedia/Thriveopedia.tscn:293
-#: ../src/tutorial/microbe_editor/MicrobeEditorTutorialGUI.tscn:311
-#: ../src/tutorial/microbe_editor/MicrobeEditorTutorialGUI.tscn:378
-#: ../src/tutorial/microbe_editor/MicrobeEditorTutorialGUI.tscn:428
-#: ../src/tutorial/microbe_editor/MicrobeEditorTutorialGUI.tscn:473
-#: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:548
+#: ../src/tutorial/microbe_editor/MicrobeEditorTutorialGUI.tscn:215
+#: ../src/tutorial/microbe_editor/MicrobeEditorTutorialGUI.tscn:308
+#: ../src/tutorial/microbe_editor/MicrobeEditorTutorialGUI.tscn:425
+#: ../src/tutorial/microbe_editor/MicrobeEditorTutorialGUI.tscn:470
 msgid "CLOSE"
 msgstr ""
 
@@ -2304,7 +2303,7 @@ msgstr ""
 msgid "EDITOR_BUTTON_TOOLTIP"
 msgstr ""
 
-#: ../src/tutorial/microbe_editor/MicrobeEditorTutorialGUI.tscn:575
+#: ../src/tutorial/microbe_editor/MicrobeEditorTutorialGUI.tscn:574
 msgid "EDITOR_TUTORIAL_EARLY_GOAL"
 msgstr ""
 
@@ -2312,7 +2311,7 @@ msgstr ""
 msgid "EDITOR_TUTORIAL_EDITOR_TEXT"
 msgstr ""
 
-#: ../src/tutorial/microbe_editor/MicrobeEditorTutorialGUI.tscn:593
+#: ../src/tutorial/microbe_editor/MicrobeEditorTutorialGUI.tscn:592
 msgid "EDITOR_TUTORIAL_MICROBE_EDITOR_NUCLEUS"
 msgstr ""
 
@@ -2533,7 +2532,7 @@ msgstr ""
 msgid "ESCAPE"
 msgstr ""
 
-#: ../src/microbe_stage/MicrobeStage.cs:1700
+#: ../src/microbe_stage/MicrobeStage.cs:1710
 msgid "ESCAPE_ENGULFING"
 msgstr ""
 
@@ -3098,9 +3097,9 @@ msgstr ""
 msgid "GOOGLY_EYE_CELL"
 msgstr ""
 
-#: ../src/tutorial/microbe_editor/MicrobeEditorTutorialGUI.tscn:218
-#: ../src/tutorial/microbe_editor/MicrobeEditorTutorialGUI.tscn:524
-#: ../src/tutorial/microbe_editor/MicrobeEditorTutorialGUI.tscn:639
+#: ../src/tutorial/microbe_editor/MicrobeEditorTutorialGUI.tscn:375
+#: ../src/tutorial/microbe_editor/MicrobeEditorTutorialGUI.tscn:523
+#: ../src/tutorial/microbe_editor/MicrobeEditorTutorialGUI.tscn:640
 msgid "GOT_IT"
 msgstr ""
 
@@ -4924,11 +4923,11 @@ msgstr ""
 msgid "MICROBE_STAGE_INITIAL"
 msgstr ""
 
-#: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.cs:631
+#: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.cs:653
 msgid "MICROBE_STAGE_INITIAL_PANSPERMIA"
 msgstr ""
 
-#: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.cs:630
+#: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.cs:652
 msgid "MICROBE_STAGE_INITIAL_POND"
 msgstr ""
 
@@ -7342,7 +7341,7 @@ msgstr ""
 msgid "SPAWN_ENEMY"
 msgstr ""
 
-#: ../src/microbe_stage/MicrobeStage.cs:1364
+#: ../src/microbe_stage/MicrobeStage.cs:1374
 msgid "SPAWN_ENEMY_CHEAT_FAIL"
 msgstr ""
 
@@ -7643,11 +7642,11 @@ msgstr ""
 msgid "STRUCTURE_STEAM_POWERED_FACTORY"
 msgstr ""
 
-#: ../src/microbe_stage/MicrobeStage.cs:1698
+#: ../src/microbe_stage/MicrobeStage.cs:1708
 msgid "SUCCESSFUL_KILL"
 msgstr ""
 
-#: ../src/microbe_stage/MicrobeStage.cs:1699
+#: ../src/microbe_stage/MicrobeStage.cs:1709
 msgid "SUCCESSFUL_SCAVENGE"
 msgstr ""
 
@@ -7945,8 +7944,8 @@ msgstr ""
 msgid "TIMELINE_SELECTION_PRESSURE_SPLIT"
 msgstr ""
 
-#: ../src/microbe_stage/MicrobeStage.cs:618
-#: ../src/microbe_stage/MicrobeStage.cs:622
+#: ../src/microbe_stage/MicrobeStage.cs:620
+#: ../src/microbe_stage/MicrobeStage.cs:624
 msgid "TIMELINE_SPECIES_BECAME_MULTICELLULAR"
 msgstr ""
 
@@ -8263,13 +8262,13 @@ msgid "TRY_TAKING_SOME_SCREENSHOTS"
 msgstr ""
 
 #: ../src/gui_common/dialogs/TutorialDialog.tscn:18
-#: ../src/tutorial/microbe_editor/MicrobeEditorTutorialGUI.tscn:190
-#: ../src/tutorial/microbe_editor/MicrobeEditorTutorialGUI.tscn:283
-#: ../src/tutorial/microbe_editor/MicrobeEditorTutorialGUI.tscn:350
-#: ../src/tutorial/microbe_editor/MicrobeEditorTutorialGUI.tscn:399
-#: ../src/tutorial/microbe_editor/MicrobeEditorTutorialGUI.tscn:444
-#: ../src/tutorial/microbe_editor/MicrobeEditorTutorialGUI.tscn:495
-#: ../src/tutorial/microbe_editor/MicrobeEditorTutorialGUI.tscn:611
+#: ../src/tutorial/microbe_editor/MicrobeEditorTutorialGUI.tscn:187
+#: ../src/tutorial/microbe_editor/MicrobeEditorTutorialGUI.tscn:280
+#: ../src/tutorial/microbe_editor/MicrobeEditorTutorialGUI.tscn:347
+#: ../src/tutorial/microbe_editor/MicrobeEditorTutorialGUI.tscn:396
+#: ../src/tutorial/microbe_editor/MicrobeEditorTutorialGUI.tscn:441
+#: ../src/tutorial/microbe_editor/MicrobeEditorTutorialGUI.tscn:494
+#: ../src/tutorial/microbe_editor/MicrobeEditorTutorialGUI.tscn:612
 #: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:69
 #: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:371
 msgid "TUTORIAL"
@@ -8279,55 +8278,55 @@ msgstr ""
 msgid "TUTORIAL_ALL_NOT_ENABLED_EXPLANATION"
 msgstr ""
 
-#: ../src/tutorial/microbe_editor/MicrobeEditorTutorialGUI.tscn:494
+#: ../src/tutorial/microbe_editor/MicrobeEditorTutorialGUI.tscn:493
 msgid "TUTORIAL_MICROBE_EDITOR_ATP_BALANCE_INTRO"
 msgstr ""
 
-#: ../src/tutorial/microbe_editor/MicrobeEditorTutorialGUI.tscn:240
+#: ../src/tutorial/microbe_editor/MicrobeEditorTutorialGUI.tscn:237
 msgid "TUTORIAL_MICROBE_EDITOR_AUTO-EVO_PREDICTION"
 msgstr ""
 
-#: ../src/tutorial/microbe_editor/MicrobeEditorTutorialGUI.tscn:120
+#: ../src/tutorial/microbe_editor/MicrobeEditorTutorialGUI.tscn:117
 msgid "TUTORIAL_MICROBE_EDITOR_CELL_TEXT"
 msgstr ""
 
-#: ../src/tutorial/microbe_editor/MicrobeEditorTutorialGUI.tscn:327
+#: ../src/tutorial/microbe_editor/MicrobeEditorTutorialGUI.tscn:324
 msgid "TUTORIAL_MICROBE_EDITOR_CHEMORECEPTOR"
 msgstr ""
 
-#: ../src/tutorial/microbe_editor/MicrobeEditorTutorialGUI.tscn:610
+#: ../src/tutorial/microbe_editor/MicrobeEditorTutorialGUI.tscn:611
 msgid "TUTORIAL_MICROBE_EDITOR_COMPOUND_BALANCES"
 msgstr ""
 
-#: ../src/tutorial/microbe_editor/MicrobeEditorTutorialGUI.tscn:187
+#: ../src/tutorial/microbe_editor/MicrobeEditorTutorialGUI.tscn:184
 msgid "TUTORIAL_MICROBE_EDITOR_ENDING_TEXT"
 msgstr ""
 
-#: ../src/tutorial/microbe_editor/MicrobeEditorTutorialGUI.tscn:280
+#: ../src/tutorial/microbe_editor/MicrobeEditorTutorialGUI.tscn:277
 msgid "TUTORIAL_MICROBE_EDITOR_FLAGELLUM"
 msgstr ""
 
-#: ../src/tutorial/microbe_editor/MicrobeEditorTutorialGUI.tscn:661
+#: ../src/tutorial/microbe_editor/MicrobeEditorTutorialGUI.tscn:662
 msgid "TUTORIAL_MICROBE_EDITOR_FOOD_CHAIN"
 msgstr ""
 
-#: ../src/tutorial/microbe_editor/MicrobeEditorTutorialGUI.tscn:103
+#: ../src/tutorial/microbe_editor/MicrobeEditorTutorialGUI.tscn:100
 msgid "TUTORIAL_MICROBE_EDITOR_MIGRATION"
 msgstr ""
 
-#: ../src/tutorial/microbe_editor/MicrobeEditorTutorialGUI.tscn:259
+#: ../src/tutorial/microbe_editor/MicrobeEditorTutorialGUI.tscn:256
 msgid "TUTORIAL_MICROBE_EDITOR_MODIFY_ORGANELLE"
 msgstr ""
 
-#: ../src/tutorial/microbe_editor/MicrobeEditorTutorialGUI.tscn:443
+#: ../src/tutorial/microbe_editor/MicrobeEditorTutorialGUI.tscn:440
 msgid "TUTORIAL_MICROBE_EDITOR_NEGATIVE_ATP_BALANCE"
 msgstr ""
 
-#: ../src/tutorial/microbe_editor/MicrobeEditorTutorialGUI.tscn:396
+#: ../src/tutorial/microbe_editor/MicrobeEditorTutorialGUI.tscn:393
 msgid "TUTORIAL_MICROBE_EDITOR_NO_CHANGES_MADE"
 msgstr ""
 
-#: ../src/tutorial/microbe_editor/MicrobeEditorTutorialGUI.tscn:557
+#: ../src/tutorial/microbe_editor/MicrobeEditorTutorialGUI.tscn:556
 msgid "TUTORIAL_MICROBE_EDITOR_OPEN_TOLERANCES"
 msgstr ""
 
@@ -8335,19 +8334,19 @@ msgstr ""
 msgid "TUTORIAL_MICROBE_EDITOR_PATCH_TEXT"
 msgstr ""
 
-#: ../src/tutorial/microbe_editor/MicrobeEditorTutorialGUI.tscn:138
+#: ../src/tutorial/microbe_editor/MicrobeEditorTutorialGUI.tscn:135
 msgid "TUTORIAL_MICROBE_EDITOR_REMOVE_ORGANELLE_TEXT"
 msgstr ""
 
-#: ../src/tutorial/microbe_editor/MicrobeEditorTutorialGUI.tscn:160
+#: ../src/tutorial/microbe_editor/MicrobeEditorTutorialGUI.tscn:157
 msgid "TUTORIAL_MICROBE_EDITOR_SELECT_ORGANELLE_TEXT"
 msgstr ""
 
-#: ../src/tutorial/microbe_editor/MicrobeEditorTutorialGUI.tscn:347
+#: ../src/tutorial/microbe_editor/MicrobeEditorTutorialGUI.tscn:344
 msgid "TUTORIAL_MICROBE_EDITOR_STAY_SMALL"
 msgstr ""
 
-#: ../src/tutorial/microbe_editor/MicrobeEditorTutorialGUI.tscn:539
+#: ../src/tutorial/microbe_editor/MicrobeEditorTutorialGUI.tscn:538
 msgid "TUTORIAL_MICROBE_EDITOR_TOLERANCES_TAB"
 msgstr ""
 
@@ -8383,6 +8382,10 @@ msgstr ""
 msgid "TUTORIAL_MICROBE_STAGE_OPEN_PROCESS_PANEL"
 msgstr ""
 
+#: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:563
+msgid "TUTORIAL_MICROBE_STAGE_PAUSING"
+msgstr ""
+
 #: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:530
 msgid "TUTORIAL_MICROBE_STAGE_PROCESS_PANEL"
 msgstr ""
@@ -8391,7 +8394,7 @@ msgstr ""
 msgid "TUTORIAL_MICROBE_STAGE_REPRODUCE_TEXT"
 msgstr ""
 
-#: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:564
+#: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:547
 msgid "TUTORIAL_MICROBE_STAGE_RESOURCE_SPLIT"
 msgstr ""
 

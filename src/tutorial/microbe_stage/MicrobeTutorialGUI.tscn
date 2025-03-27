@@ -13,7 +13,7 @@
 [ext_resource type="PackedScene" uid="uid://du8sc8kjirguk" path="res://src/gui_common/dialogs/CustomWindow.tscn" id="13"]
 [ext_resource type="PackedScene" uid="uid://tna206f2gtkv" path="res://src/gui_common/AddWindowReorderingSupportToSiblings.tscn" id="14"]
 
-[node name="MicrobeTutorialGUI" type="Control" node_paths=PackedStringArray("tutorialDisabledExplanation", "welcomeTutorialScrollContainer", "openProcessPanelTutorial", "processPanelTutorial", "resourceSplitTutorial", "ProcessPanelButtonHighlight")]
+[node name="MicrobeTutorialGUI" type="Control" node_paths=PackedStringArray("tutorialDisabledExplanation", "welcomeTutorialScrollContainer", "openProcessPanelTutorial", "processPanelTutorial", "resourceSplitTutorial", "pausingTutorial", "ProcessPanelButtonHighlight")]
 process_mode = 3
 layout_mode = 3
 anchors_preset = 15
@@ -51,6 +51,7 @@ welcomeTutorialScrollContainer = NodePath("MicrobeWelcome/VBoxContainer/ScrollCo
 openProcessPanelTutorial = NodePath("OpenProcessPanelTutorial")
 processPanelTutorial = NodePath("ProcessPanelTutorial")
 resourceSplitTutorial = NodePath("ResourceSplitTutorial")
+pausingTutorial = NodePath("PausingTutorial")
 ProcessPanelButtonHighlight = NodePath("ProcessButtonHighlight")
 
 [node name="AddWindowReorderingSupportToSiblings" parent="." instance=ExtResource("14")]
@@ -547,7 +548,7 @@ grow_vertical = 2
 Description = "TUTORIAL_MICROBE_STAGE_RESOURCE_SPLIT"
 
 [node name="PausingTutorial" parent="." instance=ExtResource("10")]
-custom_minimum_size = Vector2(260, 310)
+custom_minimum_size = Vector2(260, 330)
 layout_mode = 1
 anchors_preset = 6
 anchor_left = 1.0
@@ -557,7 +558,7 @@ anchor_bottom = 0.5
 offset_left = -260.0
 offset_top = -214.0
 offset_right = 0.0
-offset_bottom = 96.0
+offset_bottom = 111.0
 grow_horizontal = 0
 grow_vertical = 2
 Description = "TUTORIAL_MICROBE_STAGE_PAUSING"
