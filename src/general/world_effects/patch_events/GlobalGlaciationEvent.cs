@@ -209,7 +209,6 @@ public class GlobalGlaciationEvent : IWorldEffect
         foreach (var configuration in IceChunksConfigurations)
         {
             var iceChunkConfiguration = templateBiome.Conditions.Chunks[configuration];
-            iceChunkConfiguration.Density *= 10;
             patch.Biome.Chunks.Add(configuration, iceChunkConfiguration);
         }
     }
