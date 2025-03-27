@@ -7,8 +7,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2025-03-18 21:56+0100\n"
-"PO-Revision-Date: 2025-02-06 13:29+0000\n"
+"POT-Creation-Date: 2025-03-27 09:59+0200\n"
+"PO-Revision-Date: 2025-03-20 20:10+0000\n"
 "Last-Translator: Anonymous <noreply@weblate.org>\n"
 "Language-Team: Serbian (Cyrillic script) <https://translate.revolutionarygamesstudio.com/projects/thrive/thrive-game/sr_Cyrl/>\n"
 "Language: sr_Cyrl\n"
@@ -332,6 +332,10 @@ msgstr "{0:F1}% завршено. {1:n0}/{2:n0} корака."
 #, fuzzy
 msgid "AUTO-EVO_PREDICTION_BOX_DESCRIPTION"
 msgstr "Моћ ћелије. Митохондрион (множина: митохондрије) је двострука мембранска структура испуњена протеинима и ензимима. То је прокариот који је асимилирао за употребу од свог еукариотског домаћина. У стању је да претвори глукозу у ATP са много већом ефикасношћу него што се то може учинити у цитоплазми у процесу који се назива аеробно дисање. Међутим, потребан му је кисеоник да би функционисао, а нижи нивои кисеоника у околини успориће брзину његове производње ATP."
+
+#, fuzzy
+msgid "AUTO-EVO_RESULTS_TITLE"
+msgstr "Резултати аутоматске-еволуције:"
 
 msgid "AUTO-EVO_STEPS_DONE"
 msgstr "{0:F1}% завршено. {1:n0}/{2:n0} корака."
@@ -693,6 +697,10 @@ msgstr "Наставити"
 msgid "CELL_STAT_SPEED_TOOLTIP"
 msgstr "Наставити"
 
+#, fuzzy
+msgid "CELL_STAT_STORAGE_TOOLTIP"
+msgstr "Наставити"
+
 msgid "CELL_TYPE_BUTTON_ATP_CONSUMPTION"
 msgstr ""
 
@@ -835,6 +843,10 @@ msgstr "Очистите Старе Чување"
 
 msgid "CLEAR_CACHE"
 msgstr ""
+
+#, fuzzy
+msgid "CLICK_TO_SELECT"
+msgstr "Избриши Изабрано"
 
 msgid "CLOSE"
 msgstr "Затвори"
@@ -2089,27 +2101,6 @@ msgstr "Ушће"
 msgid "EVENT_ERUPTION_TOOLTIP"
 msgstr "Додајте ново везивање тастера"
 
-msgid "EVENT_METEOR_GLUCOSE"
-msgstr ""
-
-#, fuzzy
-msgid "EVENT_METEOR_IRON"
-msgstr "Подводна Пећина"
-
-#, fuzzy
-msgid "EVENT_METEOR_PHOSPHATES"
-msgstr "Поставите фосфат"
-
-#, fuzzy
-msgid "EVENT_METEOR_PLAIN"
-msgstr "Додајте ново везивање тастера"
-
-msgid "EVENT_METEOR_RADIOACTIVE"
-msgstr ""
-
-msgid "EVENT_METEOR_SULFUR"
-msgstr ""
-
 msgid "EVOLUTIONARY_TREE"
 msgstr ""
 
@@ -2511,16 +2502,14 @@ msgid "GLOBAL_GLACIATION_EVENT"
 msgstr "Број популације од {0} променио се за {1} због: {2}"
 
 #, fuzzy
-msgid "GLOBAL_GLACIATION_EVENT_LOG"
-msgstr "Број популације од {0} променио се за {1} због: {2}"
-
-#, fuzzy
 msgid "GLOBAL_GLACIATION_EVENT_TOOLTIP"
 msgstr "Додајте ново везивање тастера"
 
-#, fuzzy
-msgid "GLOBAL_GLACIATION_EVENT_WARNING_LOG"
-msgstr "Број популације од {0} променио се за {1} због: {2}"
+msgid "GLOBAL_GLACIATION_EVENT_WARNING_LOG_PLURAL"
+msgstr ""
+
+msgid "GLOBAL_GLACIATION_EVENT_WARNING_LOG_SINGULAR"
+msgstr ""
 
 msgid "GLOBAL_GLACIATION_START_EVENT_LOG"
 msgstr ""
@@ -3572,16 +3561,6 @@ msgstr "Метаболосоми су грозди протеина умотан
 msgid "META_THREADS_TOOLTIP"
 msgstr "Додајте ново везивање тастера"
 
-msgid "METEOR_IMPACT_EVENT"
-msgstr ""
-
-#, fuzzy
-msgid "METEOR_IMPACT_EVENT_LOG"
-msgstr "Број популације од {0} променио се за {1} због: {2}"
-
-msgid "METEOR_STRIKE_START_EVENT_LOG"
-msgstr ""
-
 #, fuzzy
 msgid "METRICS"
 msgstr "Паљење FPS приказа"
@@ -3812,12 +3791,14 @@ msgstr ""
 "Вашој ћелији је потребна глукоза да би произвела енергију да би остала жива.\n"
 "Пратите линију од ћелије до оближње глукозе."
 
+#, fuzzy
 msgid "MICROBE_STAGE_COLLECT_TEXT"
 msgstr ""
 "Сакупљајте глукозу (бели облаци) премештањем преко њих.\n"
 "Вашој ћелији је потребна глукоза да би произвела енергију да би остала жива.\n"
 "Пратите линију од ћелије до оближње глукозе."
 
+#, fuzzy
 msgid "MICROBE_STAGE_CONTROL_TEXT"
 msgstr ""
 "За контролу ћелије користите тастере приказане у близини ћелије (центар екрана) и мишем за контролу оријентације ћелије.\n"
@@ -3832,13 +3813,6 @@ msgstr ""
 "Покушајте неколико тастера неколико секунди да бисте наставили."
 
 #, fuzzy
-msgid "MICROBE_STAGE_DAY_NIGHT_TEXT"
-msgstr ""
-"Припазите на своју здравствену траку поред ATP траке (доле десно).\n"
-"Ваша ћелија ће умрети ако остане без здравља.\n"
-"Обнављате здравље док имате ATP.\n"
-"Обавезно сакупите довољно глукозе за производњу ATP."
-
 msgid "MICROBE_STAGE_HEALTH_TEXT"
 msgstr ""
 "Припазите на своју здравствену траку поред ATP траке (доле десно).\n"
@@ -3984,6 +3958,9 @@ msgid "MODDING_INSTRUCTIONS_ON"
 msgstr ""
 
 msgid "MODELS"
+msgstr ""
+
+msgid "MODE_CAN_BE_CHANGED_IN_OPTIONS"
 msgstr ""
 
 msgid "MODIFY"
@@ -4956,6 +4933,10 @@ msgstr "играч је умро"
 msgid "PLAYER_RELATIVE_MOVEMENT"
 msgstr "играч је умро"
 
+#, fuzzy
+msgid "PLAYER_RELATIVE_MOVEMENT_TOOLTIP"
+msgstr "играч је умро"
+
 msgid "PLAYER_REPRODUCED"
 msgstr "Играч се репродуковао"
 
@@ -5041,6 +5022,10 @@ msgstr ""
 msgid "PROCESS_SPEED_MODIFIER"
 msgstr ""
 
+#, fuzzy
+msgid "PROCESS_TOGGLE_TOOLTIP"
+msgstr "Вратите се у Мени"
+
 msgid "PROGRAMMING_TEAM"
 msgstr ""
 
@@ -5055,6 +5040,10 @@ msgstr "Протоплазма"
 
 msgid "PULL_REQUESTS_PROGRAMMING"
 msgstr ""
+
+#, fuzzy
+msgid "QUADRILLION_ABBREVIATION"
+msgstr "/секунду"
 
 msgid "QUICK_LOAD"
 msgstr "Учитајте брзу копију"
@@ -5191,6 +5180,14 @@ msgstr "Ресетујте Уноси"
 
 msgid "RESET_SETTINGS_TO_DEFAULTS"
 msgstr "Подразумеване вредности"
+
+#, fuzzy
+msgid "RESET_SHOWN_TUTORIALS"
+msgstr "Прикажи туторијале"
+
+#, fuzzy
+msgid "RESET_SHOWN_TUTORIALS_TOOLTIP"
+msgstr "Додајте ново везивање тастера"
 
 msgid "RESET_TO_DEFAULTS"
 msgstr "Ресетуј до почетног?"
@@ -5460,6 +5457,10 @@ msgstr "Способности"
 msgid "SCREEN_RELATIVE_MOVEMENT"
 msgstr "за повећање кретања"
 
+#, fuzzy
+msgid "SCREEN_RELATIVE_MOVEMENT_TOOLTIP"
+msgstr "за повећање кретања"
+
 msgid "SCROLLLOCK"
 msgstr ""
 
@@ -5485,6 +5486,10 @@ msgstr "Наставити"
 #, fuzzy
 msgid "SEED_LABEL"
 msgstr "Биом: {0}"
+
+#, fuzzy
+msgid "SELECTED"
+msgstr "Одабрано:"
 
 msgid "SELECTED_COLON"
 msgstr "Одабрано:"
@@ -5527,6 +5532,9 @@ msgstr ""
 msgid "SELECT_ENZYME"
 msgstr "Одабрано:"
 
+msgid "SELECT_MOVEMENT_MODE_TITLE"
+msgstr ""
+
 #, fuzzy
 msgid "SELECT_OPTION"
 msgstr "Одабрано:"
@@ -5564,6 +5572,14 @@ msgid "SHIFT"
 msgstr "Shift"
 
 #, fuzzy
+msgid "SHOW_ALL_TUTORIALS"
+msgstr "Прикажи туторијале"
+
+#, fuzzy
+msgid "SHOW_ALL_TUTORIALS_TOOLTIP"
+msgstr "Додајте ново везивање тастера"
+
+#, fuzzy
 msgid "SHOW_DAMAGE_EFFECT"
 msgstr "Бич (множина: бичеви) је сноп протеинских влакана који се протеже од ћелијске мембране која може да користи ATP да би се поваљао и покренуо ћелију у правцу."
 
@@ -5582,14 +5598,15 @@ msgstr "Пећина"
 msgid "SHOW_NEW_PATCH_NOTES_TOOLTIP"
 msgstr "Пећина"
 
-msgid "SHOW_TUTORIALS"
-msgstr "Прикажи туторијале"
-
 msgid "SHOW_TUTORIALS_IN_NEW_CURRENT_OPTION"
 msgstr "Прикажи водиче (у тренутној игри)"
 
 msgid "SHOW_TUTORIALS_IN_NEW_GAMES_OPTION"
 msgstr "Прикажи водиче (у новим играма)"
+
+#, fuzzy
+msgid "SHOW_TUTORIALS_OPTION_TOOLTIP"
+msgstr "Додајте ново везивање тастера"
 
 #, fuzzy
 msgid "SHOW_UNSAVED_PROGRESS_WARNING"
@@ -5937,6 +5954,10 @@ msgstr ""
 msgid "STORE_LOGGED_IN_AS"
 msgstr ""
 
+#, fuzzy
+msgid "STRAIN_BAR_TOOLTIP"
+msgstr "Додајте ново везивање тастера"
+
 msgid "STRAIN_BAR_VISIBILITY"
 msgstr ""
 
@@ -6213,6 +6234,12 @@ msgstr ""
 msgid "TIMELINE_NICHE_FILL"
 msgstr "генетски код:"
 
+msgid "TIMELINE_PLAYER_MIGRATED"
+msgstr ""
+
+msgid "TIMELINE_PLAYER_MIGRATED_TO"
+msgstr ""
+
 #, fuzzy
 msgid "TIMELINE_SELECTION_PRESSURE_SPLIT"
 msgstr "се проширила на зоне:"
@@ -6229,6 +6256,10 @@ msgstr ""
 
 msgid "TIMELINE_SPECIES_EXTINCT_LOCAL"
 msgstr ""
+
+#, fuzzy
+msgid "TIMELINE_SPECIES_FOLLOWED"
+msgstr "Врсте:"
 
 msgid "TIMELINE_SPECIES_MIGRATED_FROM"
 msgstr ""
@@ -6459,6 +6490,10 @@ msgid "TRANSPARENCY"
 msgstr ""
 
 #, fuzzy
+msgid "TRILLION_ABBREVIATION"
+msgstr "/секунду"
+
+#, fuzzy
 msgid "TRY_FOSSILISING_SOME_SPECIES"
 msgstr "Направите снимак екрана"
 
@@ -6471,6 +6506,10 @@ msgstr "Направите снимак екрана"
 
 msgid "TUTORIAL"
 msgstr "Приручник"
+
+#, fuzzy
+msgid "TUTORIAL_ALL_NOT_ENABLED_EXPLANATION"
+msgstr "Избодите друге ћелије са ово."
 
 #, fuzzy
 msgid "TUTORIAL_MICROBE_EDITOR_ATP_BALANCE_INTRO"
@@ -6515,6 +6554,16 @@ msgstr ""
 "Да бисте прешли на следећу картицу уређивача, притисните следеће дугме у доњем десном углу."
 
 #, fuzzy
+msgid "TUTORIAL_MICROBE_EDITOR_COMPOUND_BALANCES"
+msgstr ""
+"Добродошли у Уредник Микроба.\n"
+"Овде можете прегледати шта се догодило од почетка игре или када сте последњи пут били у уредник. А затим унесите промене у своју врсту.\n"
+"\n"
+"На овој картици можете видети извештај о томе које врсте постоје, где и које су њихове популације. Такође можете видети промене животне средине на врху.\n"
+"\n"
+"Да бисте прешли на следећу картицу уређивача, притисните следеће дугме у доњем десном углу."
+
+#, fuzzy
 msgid "TUTORIAL_MICROBE_EDITOR_ENDING_TEXT"
 msgstr ""
 "То су основе уређивања ваше врсте. Можете потражити још картица на уређивачу ћелија да бисте пронашли још више опција.\n"
@@ -6527,6 +6576,27 @@ msgstr ""
 
 #, fuzzy
 msgid "TUTORIAL_MICROBE_EDITOR_FLAGELLUM"
+msgstr ""
+"Добродошли у Уредник Микроба.\n"
+"Овде можете прегледати шта се догодило од почетка игре или када сте последњи пут били у уредник. А затим унесите промене у своју врсту.\n"
+"\n"
+"На овој картици можете видети извештај о томе које врсте постоје, где и које су њихове популације. Такође можете видети промене животне средине на врху.\n"
+"\n"
+"Да бисте прешли на следећу картицу уређивача, притисните следеће дугме у доњем десном углу."
+
+#, fuzzy
+msgid "TUTORIAL_MICROBE_EDITOR_FOOD_CHAIN"
+msgstr ""
+"То су основе уређивања ваше врсте. Можете потражити још картица на уређивачу ћелија да бисте пронашли још више опција.\n"
+"\n"
+"Можете преименовати своју врсту тако што ћете кликнути на тренутно име врсте и уредити текст.\n"
+"\n"
+"У почетку би требало да држите ћелију малом и кренете ка површинским зонама.\n"
+"\n"
+"Срећно!"
+
+#, fuzzy
+msgid "TUTORIAL_MICROBE_EDITOR_MIGRATION"
 msgstr ""
 "Добродошли у Уредник Микроба.\n"
 "Овде можете прегледати шта се догодило од почетка игре или када сте последњи пут били у уредник. А затим унесите промене у своју врсту.\n"
@@ -6659,6 +6729,13 @@ msgstr ""
 "Покушајте неколико тастера неколико секунди да бисте наставили."
 
 #, fuzzy
+msgid "TUTORIAL_MICROBE_STAGE_ENVIRONMENT_PANEL"
+msgstr ""
+"За контролу ћелије користите тастере приказане у близини ћелије (центар екрана) и мишем за контролу оријентације ћелије.\n"
+"\n"
+"Покушајте неколико тастера неколико секунди да бисте наставили."
+
+#, fuzzy
 msgid "TUTORIAL_MICROBE_STAGE_HELP_MENU_AND_ZOOM"
 msgstr "W, A, S, D и миш за кретање. Е да пуцате ОксиТокси НТ ако имате отровна вацуоле. G за пребацивање режима гутања."
 
@@ -6670,7 +6747,32 @@ msgstr ""
 "Покушајте неколико тастера неколико секунди да бисте наставили."
 
 #, fuzzy
+msgid "TUTORIAL_MICROBE_STAGE_OPEN_PROCESS_PANEL"
+msgstr ""
+"Да бисте се репродуковали, потребно је да дуплирате све своје органеле сакупљајући довољно амонијака и фосфата.\n"
+"Погледајте индикатор у доњем десном углу да бисте видели колико вам још треба."
+
+#, fuzzy
+msgid "TUTORIAL_MICROBE_STAGE_PAUSING"
+msgstr ""
+"За контролу ћелије користите тастере приказане у близини ћелије (центар екрана) и мишем за контролу оријентације ћелије.\n"
+"\n"
+"Покушајте неколико тастера неколико секунди да бисте наставили."
+
+#, fuzzy
+msgid "TUTORIAL_MICROBE_STAGE_PROCESS_PANEL"
+msgstr ""
+"Да бисте се репродуковали, потребно је да дуплирате све своје органеле сакупљајући довољно амонијака и фосфата.\n"
+"Погледајте индикатор у доњем десном углу да бисте видели колико вам још треба."
+
+#, fuzzy
 msgid "TUTORIAL_MICROBE_STAGE_REPRODUCE_TEXT"
+msgstr ""
+"Да бисте се репродуковали, потребно је да дуплирате све своје органеле сакупљајући довољно амонијака и фосфата.\n"
+"Погледајте индикатор у доњем десном углу да бисте видели колико вам још треба."
+
+#, fuzzy
+msgid "TUTORIAL_MICROBE_STAGE_RESOURCE_SPLIT"
 msgstr ""
 "Да бисте се репродуковали, потребно је да дуплирате све своје органеле сакупљајући довољно амонијака и фосфата.\n"
 "Погледајте индикатор у доњем десном углу да бисте видели колико вам још треба."
@@ -7015,6 +7117,9 @@ msgstr ""
 
 msgid "VIEW_SOURCE_CODE"
 msgstr "Погледајте Изворни Код"
+
+msgid "VIEW_TEXT_REPORT"
+msgstr ""
 
 msgid "VIP_PATRONS"
 msgstr ""
@@ -9090,20 +9195,16 @@ msgid "ZOOM_OUT"
 msgstr "Одзумирати"
 
 #, fuzzy
-#~ msgid "GLUCOSE_METEOR"
-#~ msgstr "Глукоза"
+#~ msgid "MICROBE_STAGE_DAY_NIGHT_TEXT"
+#~ msgstr ""
+#~ "Припазите на своју здравствену траку поред ATP траке (доле десно).\n"
+#~ "Ваша ћелија ће умрети ако остане без здравља.\n"
+#~ "Обнављате здравље док имате ATP.\n"
+#~ "Обавезно сакупите довољно глукозе за производњу ATP."
 
 #, fuzzy
-#~ msgid "IRON_METEOR"
-#~ msgstr "Животна средина"
-
-#, fuzzy
-#~ msgid "PHOSPHATE_METEOR"
-#~ msgstr "Фосфат"
-
-#, fuzzy
-#~ msgid "RADIOACTIVE_METEOR"
-#~ msgstr "Велики комад гвожђа"
+#~ msgid "GLOBAL_GLACIATION_EVENT_LOG"
+#~ msgstr "Број популације од {0} променио се за {1} због: {2}"
 
 #~ msgid "IRON_CHEMOLITHOAUTOTROPHY"
 #~ msgstr "Хемолитоаутотрофија гвожђа"
@@ -9295,6 +9396,10 @@ msgstr "Одзумирати"
 #, fuzzy
 #~ msgid "ERUPTION_IN"
 #~ msgstr "Производи"
+
+#, fuzzy
+#~ msgid "EVENT_TOOLTIP_ERUPTION"
+#~ msgstr "Подводна Пећина"
 
 #~ msgid "THE_AMOUNT_OF_GLUCOSE_HAS_BEEN_REDUCED"
 #~ msgstr "Количина глукозе је смањена на {0} од претходне количине."

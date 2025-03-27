@@ -7,8 +7,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2025-03-18 21:56+0100\n"
-"PO-Revision-Date: 2025-03-12 15:26+0000\n"
+"POT-Creation-Date: 2025-03-27 09:59+0200\n"
+"PO-Revision-Date: 2025-03-21 00:47+0000\n"
 "Last-Translator: punctdan <yunusemredilek@hotmail.com>\n"
 "Language-Team: Turkish <https://translate.revolutionarygamesstudio.com/projects/thrive/thrive-game/tr/>\n"
 "Language: tr\n"
@@ -190,7 +190,7 @@ msgid "AND_UNLOCK_CONDITION"
 msgstr "ve"
 
 msgid "ANISOTROPIC_FILTERING"
-msgstr ""
+msgstr "Eşyönsüz süzme:"
 
 msgid "APPEARANCE"
 msgstr "Görünüm"
@@ -324,6 +324,9 @@ msgid "AUTO-EVO_PREDICTION_BOX_DESCRIPTION"
 msgstr ""
 "Bu panel; düzenlenen türler için oto-evrimden tahmini olarak çıkan, kazanılan toplam enerji ve popülasyon rakamlarını (parantez içinde) gösterir.\n"
 "Oto-evrim, sizin popülasyonunuzu etkileyen diğer kısımların (sizin kendi performansınızın yanı sıra) olduğu popülasyon simülasyonunu çalıştırır."
+
+msgid "AUTO-EVO_RESULTS_TITLE"
+msgstr "Oto-Evrim Sonuçları"
 
 msgid "AUTO-EVO_STEPS_DONE"
 msgstr "%{0:F1} tamamlandı. {1:n0}/{2:n0} adım."
@@ -642,6 +645,12 @@ msgstr ""
 "Örneğin, kamçı uzunluğunu değiştirdiğinizde, hız değerleri tamamen anlamlı olmayabilir ve evrede meydana gelen olaylar ile uyuşmayabilir.\n"
 "Bu sorun, bilinen bir sorundur. Ancak, diğer birçok sorun ve yeni özelliğe göre daha düşük öncelikte olduğu için bu sorun henüz düzeltilmemiştir."
 
+msgid "CELL_STAT_STORAGE_TOOLTIP"
+msgstr ""
+"Hücrenin depolama kapasitesi. Daha fazla depo, daha fazla bileşiği aynı anda depolamayı sağlar.\n"
+"Yüksek depolu hücreler, sürekli hareket edemediği ama ATP depolarını bir süre doldurduktan sonra hareket edeceği bir strateji izleyebilir.\n"
+"Unutmayın, düşük depolama kapasitesi, ATP dengesi pozitif olsa bile ATP kıtlığına yol açabilir. Bu sorunlar, ani gecikmeler veya oyun genelindeki düşük performans nedeniyle daha da kötüleşebilir. Daha fazla depo eklemek bu sorunlara yardımcı olur."
+
 msgid "CELL_TYPE_BUTTON_ATP_CONSUMPTION"
 msgstr "Bu hücre türünün ATP tüketim miktarı {0}."
 
@@ -770,6 +779,9 @@ msgstr "Eski Kayıtları Temizle"
 
 msgid "CLEAR_CACHE"
 msgstr "Önbelleği Temizle"
+
+msgid "CLICK_TO_SELECT"
+msgstr "Seç"
 
 msgid "CLOSE"
 msgstr "Kapat"
@@ -1309,7 +1321,7 @@ msgstr "Mevcut boyut:"
 
 msgid "CURRENT_CACHE_SIZE_TOOLTIP"
 msgstr ""
-"Diskte mevcut olarak depolanan bütün önbellek öğelerinin boyutu. Bu öğeler, herhangi bir zamanda, güvenle temizlenebilir.\n"
+"Diskte mevcut olarak depolanan bütün önbellek öğelerinin boyutu. Bu öğeler, her an güvenle temizlenebilir.\n"
 "Ancak, önbellekte bulunması gereken bir öğeye bir sonraki sefer ihtiyaç duyulduğunda, bu öğenin yeniden oluşturulması daha uzun sürer."
 
 msgid "CURRENT_DEVELOPERS"
@@ -1961,29 +1973,6 @@ msgstr ""
 "Yanardağ Patlaması Arazi Olayı\n"
 "Fazladan hidrojen sülfür ve karbondioksit oluşturur"
 
-msgid "EVENT_METEOR_GLUCOSE"
-msgstr ""
-
-#, fuzzy
-msgid "EVENT_METEOR_IRON"
-msgstr "{0}: +{1} ATP"
-
-#, fuzzy
-msgid "EVENT_METEOR_PHOSPHATES"
-msgstr "Fosfat oluştur"
-
-#, fuzzy
-msgid "EVENT_METEOR_PLAIN"
-msgstr ""
-"Yanardağ Patlaması Arazi Olayı\n"
-"Fazladan hidrojen sülfür ve karbondioksit oluşturur"
-
-msgid "EVENT_METEOR_RADIOACTIVE"
-msgstr ""
-
-msgid "EVENT_METEOR_SULFUR"
-msgstr ""
-
 msgid "EVOLUTIONARY_TREE"
 msgstr "Evrim Ağacı"
 
@@ -2337,16 +2326,14 @@ msgid "GLOBAL_GLACIATION_EVENT"
 msgstr "Genel popülasyon:"
 
 #, fuzzy
-msgid "GLOBAL_GLACIATION_EVENT_LOG"
-msgstr "Genel popülasyon:"
-
-#, fuzzy
 msgid "GLOBAL_GLACIATION_EVENT_TOOLTIP"
 msgstr "Uyanış Evresi'ne geç. Yeterli zihin gücüne sahip olduğunuzda açılır (aksonlu doku türü)."
 
-#, fuzzy
-msgid "GLOBAL_GLACIATION_EVENT_WARNING_LOG"
-msgstr "Genel popülasyon:"
+msgid "GLOBAL_GLACIATION_EVENT_WARNING_LOG_PLURAL"
+msgstr ""
+
+msgid "GLOBAL_GLACIATION_EVENT_WARNING_LOG_SINGULAR"
+msgstr ""
 
 msgid "GLOBAL_GLACIATION_START_EVENT_LOG"
 msgstr ""
@@ -3297,16 +3284,6 @@ msgstr "[thrive:compound type=\"glucose\"]Glukozu[/thrive:compound], [thrive:com
 msgid "META_THREADS_TOOLTIP"
 msgstr "Threads profilimizi ziyaret edin"
 
-msgid "METEOR_IMPACT_EVENT"
-msgstr ""
-
-#, fuzzy
-msgid "METEOR_IMPACT_EVENT_LOG"
-msgstr "Genel popülasyon:"
-
-msgid "METEOR_STRIKE_START_EVENT_LOG"
-msgstr ""
-
 msgid "METRICS"
 msgstr "Performans Ölçümleri"
 
@@ -3507,17 +3484,15 @@ msgstr ""
 
 msgid "MICROBE_STAGE_COLLECT_TEXT"
 msgstr ""
-"[thrive:compound type=\"glucose\"]Glukozu[/thrive:compound] (beyaz bulutlar), onun üzerine gelerek toplayın.\n"
+"Bir mikrop hayatta kalmak için enerjiye ([thrive:compound type=\"atp\"]ATP[/thrive:compound]) ihtiyaç duyar. Türünüz için bu, [thrive:compound type=\"glucose\"]glukoz[/thrive:compound] bulmak demektir.\n"
 "\n"
-"Hücreniz hayatta kalmak için [thrive:compound type=\"atp\"]ATP[/thrive:compound] (enerji) üretmeye yarayan [thrive:compound type=\"glucose\"]glukoz[/thrive:compound] kaynağına ihtiyaç duyar.\n"
-"\n"
-"Yakınlardaki bir [thrive:compound type=\"glucose\"]glukoz[/thrive:compound] kaynağına doğru uzanan bu çizgiyi takip edin."
+"Yakınlardaki bir beyaz bulut şeklindeki [thrive:compound type=\"glucose\"]glukoz[/thrive:compound] kaynağına doğru uzanan bu çizgiyi takip edin."
 
 msgid "MICROBE_STAGE_CONTROL_TEXT"
 msgstr ""
 "Hücrenizi kontrol etmek amacıyla, hücrenin etrafında gösterilen tuşları (ekranın ortası) hareket etmek için ve fareyi ise hücrenin yönünü kontrol etmek için kullanın.\n"
 "\n"
-"Hareket modu, ayarlar menüsünden değiştirilebilir.\n"
+"[b]Hareket modu, ayarlar menüsünden değiştirilebilir.[/b]\n"
 "\n"
 "Devam etmek için birkaç saniyeliğine bütün tuşları deneyin."
 
@@ -3527,20 +3502,12 @@ msgstr ""
 "UYARI: Kontrol cihazı girişleri deneyseldir ve tam anlamıyla kullanılamaz (dokunmatik yüzey olmadan). Ayrıca, bazı hatalar olabilir.\n"
 "Devam etmek için birkaç saniyeliğine ekranda gösterilen tüm yönlendirmeleri deneyin."
 
-msgid "MICROBE_STAGE_DAY_NIGHT_TEXT"
-msgstr ""
-"Ortam panelinde, [b]güneş ışığı[/b] göstergesindeki düşüşlere dikkat edin.\n"
-"\n"
-"Ortam karardıkça gece vakti yaklaşır.\n"
-"\n"
-"Fotosentez gece vaktinde etkisizdir. Bu yüzden fotosenteze muhtaç olan herhangi bir hücrenin, gece hayatta kalmak için yeterli depoya [thrive:icon]StorageIcon[/thrive:icon] sahip olması gerekir."
-
 msgid "MICROBE_STAGE_HEALTH_TEXT"
 msgstr ""
-"Gözünüz [thrive:compound type=\"atp\"]ATP[/thrive:compound] çubuğunun (sağ altta) yanındaki sağlık çubuğunda olsun.\n"
+"Gözünüz enerji ([thrive:compound type=\"atp\"]ATP[/thrive:compound]) çubuğunun (sağ altta) yanındaki sağlık çubuğunda olsun.\n"
 "Hücreniz, canı tükenirse ölür.\n"
-"[thrive:compound type=\"atp\"]ATP[/thrive:compound] varken ise hücreniz iyileşir.\n"
-"[thrive:compound type=\"atp\"]ATP[/thrive:compound] üretmek için yeterli [thrive:compound type=\"glucose\"]glukoz[/thrive:compound] topladığınızdan emin olun."
+"[thrive:compound type=\"atp\"]ATP[/thrive:compound] varken hücreniz iyileşir.\n"
+"Eğer [thrive:compound type=\"atp\"]ATP'niz[/thrive:compound] yoksa, [b]can kaybedersiniz[/b]."
 
 msgid "MICROBE_STAGE_INITIAL"
 msgstr ""
@@ -3574,7 +3541,7 @@ msgstr ""
 
 msgid "MICROBE_STAGE_ORGANELLE_DIVISION"
 msgstr ""
-"Organellerinizden biri bölündü.\n"
+"Çoğalmak için yeterince büyüme işlemi sırasında, organellerinizin her biri ikiye ayrılır. Bu yeni organeller, mikrobunuzun birlikte başladığı organeller gibi, bonus (ve ozmoregülasyon maliyetleri) sağlar.\n"
 "\n"
 "Bileşikler topladıkça, hücreniz bazılarını çoğalmak için kullanır.\n"
 "\n"
@@ -3660,6 +3627,9 @@ msgstr "Mod yapma talimatları burada mevcut"
 
 msgid "MODELS"
 msgstr "Modeller"
+
+msgid "MODE_CAN_BE_CHANGED_IN_OPTIONS"
+msgstr "2D hareket modu daha sonra ayarlar menüsünden her an değiştirilebilir"
 
 msgid "MODIFY"
 msgstr "Değişiklik Yap"
@@ -4043,16 +4013,14 @@ msgstr "Burada bir şey yok"
 msgid "NOTHING_TO_INTERACT_WITH"
 msgstr "Etkileşim kurulacak bir şey yok"
 
-#, fuzzy
 msgid "NOTICE_BINDING_OUT_OF_ATP"
-msgstr "ATP kalmadığından dolayı hasar alınıyor"
+msgstr "ATP kalmadığından dolayı bağ kurma modundan çıkılıyor"
 
 msgid "NOTICE_DAMAGED_BY_NO_ATP"
 msgstr "ATP kalmadığından dolayı hasar alınıyor"
 
-#, fuzzy
 msgid "NOTICE_ENGULFING_OUT_OF_ATP"
-msgstr "Mevcut hücre büyüklüğü, hedefi yutmak için çok küçük"
+msgstr "ATP kalmadığından dolayı yutma modundan çıkılıyor"
 
 msgid "NOTICE_ENGULF_DAMAGE_FROM_TOXIN"
 msgstr "İçeri alınan maddedeki toksinler yüzünden hasar alınıyor"
@@ -4552,6 +4520,12 @@ msgstr "Oyuncunun nesli tükendi"
 msgid "PLAYER_RELATIVE_MOVEMENT"
 msgstr "Oyuncuya bağlı"
 
+msgid "PLAYER_RELATIVE_MOVEMENT_TOOLTIP"
+msgstr ""
+"Oyuncuya bağlı hareket modunda, hareket tuşları oyuncu hücresinin mevcut dönme açısına karşılık gelir.\n"
+"Bu yüzden imleci hareket ettirmek, hücre için hangi yönün ileri olarak kabul edildiğini değiştirir.\n"
+"Bu mod, Thrive için varsayılan hareket modudur."
+
 msgid "PLAYER_REPRODUCED"
 msgstr "oyuncu çoğaldı"
 
@@ -4632,6 +4606,12 @@ msgstr "Hücre İşlemleri"
 msgid "PROCESS_SPEED_MODIFIER"
 msgstr "Biyoişlem Hızı"
 
+msgid "PROCESS_TOGGLE_TOOLTIP"
+msgstr ""
+"Bu işlemi aç veya kapat. Bu seçenek, hücre işlemleri üzerinde daha gelişmiş bir kontrol sağlar.\n"
+"Örneğin bu seçenek, toksin üretimi gereksiz olduğu zaman bu üretimi devre dışı bırakmak için kullanılabilir.\n"
+"Bu seçenek ayrıca, daha fazla verimlilik için hangi enerji kaynaklarının kullanılacağını manuel olarak dengelemek amacıyla kullanılabilir. Ancak, bu oldukça ileri düzey bir oyun taktiğidir."
+
 msgid "PROGRAMMING_TEAM"
 msgstr "Programlama Ekibi"
 
@@ -4646,6 +4626,9 @@ msgstr "Protoplazma"
 
 msgid "PULL_REQUESTS_PROGRAMMING"
 msgstr "Çekme İstekleri / Programlama"
+
+msgid "QUADRILLION_ABBREVIATION"
+msgstr "{0} Kn"
 
 msgid "QUICK_LOAD"
 msgstr "Hızlı yükle"
@@ -4767,6 +4750,12 @@ msgstr "Tuş atamalarını sıfırla"
 
 msgid "RESET_SETTINGS_TO_DEFAULTS"
 msgstr "Varsayılan"
+
+msgid "RESET_SHOWN_TUTORIALS"
+msgstr "Gösterilen Oyun Rehberlerini Sıfırla"
+
+msgid "RESET_SHOWN_TUTORIALS_TOOLTIP"
+msgstr "Bütün oyun rehberlerini henüz görülmemiş olarak işaretle. Bu seçenek, bütün rehberleri tekrar gösterir."
 
 msgid "RESET_TO_DEFAULTS"
 msgstr "Varsayılanlara sıfırlansın mı?"
@@ -5015,6 +5004,12 @@ msgstr "Yok"
 msgid "SCREEN_RELATIVE_MOVEMENT"
 msgstr "Ekrana bağlı"
 
+msgid "SCREEN_RELATIVE_MOVEMENT_TOOLTIP"
+msgstr ""
+"Ekrana bağlı hareket modunda, hareket tuşları her zaman ekrana karşılık gelen bir yönü belirtir.\n"
+"Bu yüzden hücre dönme açısı, her bir tuşun hangi yöne karşılık geldiğini etkilemez.\n"
+"Bu mod, yeni Thrive oyuncuları için daha uygun olabilir."
+
 msgid "SCROLLLOCK"
 msgstr "Scroll Lock"
 
@@ -5038,6 +5033,9 @@ msgstr "Hız artışı ve balçığa saplanan hücreleri yavaşlatmak için müs
 
 msgid "SEED_LABEL"
 msgstr "Gezegen tohumu: {0}"
+
+msgid "SELECTED"
+msgstr "Seçili"
 
 msgid "SELECTED_COLON"
 msgstr "Seçilen:"
@@ -5072,6 +5070,9 @@ msgstr "Burayı düzenlemek için editör sekmesinden bir hücre türü seçin"
 msgid "SELECT_ENZYME"
 msgstr "Enzim Seç:"
 
+msgid "SELECT_MOVEMENT_MODE_TITLE"
+msgstr "Hareket Modunu Seç"
+
 msgid "SELECT_OPTION"
 msgstr "Bir Seçenek Seç"
 
@@ -5105,6 +5106,12 @@ msgstr "Ses efektleri"
 msgid "SHIFT"
 msgstr "Shift"
 
+msgid "SHOW_ALL_TUTORIALS"
+msgstr "Bütün oyun rehberlerini göster"
+
+msgid "SHOW_ALL_TUTORIALS_TOOLTIP"
+msgstr "Bütün oyun rehberlerini her zaman göstermek ile yalnızca herhangi bir oyunda henüz tamamlanmamış olan oyun rehberlerini göstermek arasında seçim yap"
+
 msgid "SHOW_DAMAGE_EFFECT"
 msgstr "Ekran üzerindeki hasar efektini göster"
 
@@ -5120,14 +5127,17 @@ msgstr "Yeni yama notlarını otomatik olarak göster"
 msgid "SHOW_NEW_PATCH_NOTES_TOOLTIP"
 msgstr "Yeni Thrive sürümlerinin yama notlarını ana menüde otomatik olarak göster"
 
-msgid "SHOW_TUTORIALS"
-msgstr "Rehberi göster"
-
 msgid "SHOW_TUTORIALS_IN_NEW_CURRENT_OPTION"
 msgstr "Rehberi göster (mevcut oyunda)"
 
 msgid "SHOW_TUTORIALS_IN_NEW_GAMES_OPTION"
 msgstr "Rehberi göster (yeni oyunlarda)"
+
+msgid "SHOW_TUTORIALS_OPTION_TOOLTIP"
+msgstr ""
+"Oyun rehberlerini göster ya da tamamen devre dışı bırak.\n"
+"Bu seçeneğin devre dışı bırakılması önerilmez. Buna karşılık, yeni bir oyuna başlarken tüm oyun rehberlerini devre dışı bırakmak, yalnızca daha önce görmediğiniz oyun rehberlerinin gösterilmesini sağlar.\n"
+"Bu seçenek, özellikle daha önce Thrive oynamış oyuncuların kaçırabileceği yeni oyun rehberleri düzenli olarak eklendiği için, şiddetle önerilmektedir."
 
 msgid "SHOW_UNSAVED_PROGRESS_WARNING"
 msgstr "Kaydedilmemiş ilerlemeler uyarısını göster"
@@ -5423,6 +5433,11 @@ msgstr "saniye hızda"
 msgid "STORE_LOGGED_IN_AS"
 msgstr "{0} olarak giriş yapıldı"
 
+msgid "STRAIN_BAR_TOOLTIP"
+msgstr ""
+"Bu çubuk mevcut hızlanma yükünü gösterir. Çubuk ne kadar yükselirse, hızlanmaya devam etmek bir o kadar ATP gerektirir.\n"
+"Yükten kurtulmak da fazladan ATP'ye mal olur ve çubuk tamamen boşalana kadar devam eder."
+
 msgid "STRAIN_BAR_VISIBILITY"
 msgstr "Yorgunluk çubuğu görünürlüğü"
 
@@ -5692,6 +5707,12 @@ msgstr "Yerel olayları göster"
 msgid "TIMELINE_NICHE_FILL"
 msgstr "[b][u]{0}[/u][/b], alanı doldurmak için, yeni bir tür olarak, [b][u]{1}[/u][/b] türünden ayrıldı"
 
+msgid "TIMELINE_PLAYER_MIGRATED"
+msgstr "[b][u]{0}[/u][/b] popülasyonu bu araziye göç etti"
+
+msgid "TIMELINE_PLAYER_MIGRATED_TO"
+msgstr "[b][u]{0}[/u][/b] popülasyonu {1} arazisine göç etti"
+
 msgid "TIMELINE_SELECTION_PRESSURE_SPLIT"
 msgstr "[b][u]{0}[/u][/b], farklı seçilim baskılarından dolayı, yeni bir tür olarak, [b][u]{1}[/u][/b] türünden ayrıldı"
 
@@ -5703,6 +5724,9 @@ msgstr "[b][u]{0}[/u][/b] türünün nesli tükendi!"
 
 msgid "TIMELINE_SPECIES_EXTINCT_LOCAL"
 msgstr "[b][u]{0}[/u][/b], bu araziden yok oldu"
+
+msgid "TIMELINE_SPECIES_FOLLOWED"
+msgstr "[b][u]{0}[/u][/b] popülasyonu, [b][u]{1}[/u][/b] popülasyonu ile birlikte bu araziye taşındı"
 
 msgid "TIMELINE_SPECIES_MIGRATED_FROM"
 msgstr "[b][u]{0}[/u][/b] popülasyonunun bir kısmı {1} arazisinden bu araziye göç etti"
@@ -5903,6 +5927,9 @@ msgstr "Çevirmenler"
 msgid "TRANSPARENCY"
 msgstr "Saydamlık"
 
+msgid "TRILLION_ABBREVIATION"
+msgstr "{0} Tn"
+
 msgid "TRY_FOSSILISING_SOME_SPECIES"
 msgstr "Bazı türleri fosilleştirmeyi deneyin!"
 
@@ -5915,11 +5942,14 @@ msgstr "Bir ekran görüntüsü almayı deneyin!"
 msgid "TUTORIAL"
 msgstr "Oyun Rehberi"
 
+msgid "TUTORIAL_ALL_NOT_ENABLED_EXPLANATION"
+msgstr "Yalnızca, herhangi bir oyunda henüz görülmemiş olan oyun rehberleri gösterilir. Oyun rehberleri ayarlar menüsünden tamamen devre dışı bırakılabilir. Ancak, en azından yeni oyun rehberlerinin etkinleştirilmiş şekilde bırakılması ŞİDDETLE ÖNERİLMEKTEDİR."
+
 msgid "TUTORIAL_MICROBE_EDITOR_ATP_BALANCE_INTRO"
 msgstr ""
 "Sağdaki ATP Üretim çubuğu, tüketilen ATP'ye nazaran, hücrenizin ne kadar [thrive:compound type=\"atp\"]ATP[/thrive:compound] ürettiğini gösterir. Eğer üstteki çubuk alttakinden daha kısa ise, bu yeterince [thrive:compound type=\"atp\"]ATP[/thrive:compound] üretmiyorsunuz demektir.\n"
 "\n"
-"Alttaki çubuk, [b]ozmoregülasyon[/b] [thrive:icon]OsmoIcon[/thrive:icon] maliyetini ve [b]hareket[/b] [thrive:icon]MovementIcon[/thrive:icon] maliyetini kapsar. [b]Ozmoregülasyon[/b] [thrive:icon]OsmoIcon[/thrive:icon], [u]hayatta kalmanın taban fiyatıdır[/u]. Eklediğiniz her parça, bu fiyatı arttırır.\n"
+"Alttaki çubuk, [b]ozmoregülasyon[/b] [thrive:icon]OsmoIcon[/thrive:icon] maliyetini ve [b]hareket[/b] [thrive:icon]MovementIcon[/thrive:icon] maliyetini kapsar. [b]Ozmoregülasyon[/b] [thrive:icon]OsmoIcon[/thrive:icon], [u]hayatta kalmanın taban fiyatıdır[/u]. Eklediğiniz her parça, bu fiyatı arttırır. Hareket etmediğinizde, [b]Hareket maliyetini[/b] [thrive:icon]MovementIcon[/thrive:icon] ödemek zorunda değilsiniz. \n"
 "\n"
 "Eğer [thrive:compound type=\"atp\"]ATP[/thrive:compound] üretiminiz negatif ise, [thrive:compound type=\"atp\"]ATP[/thrive:compound] üretimini arttırdığınızdan emin olun veya kısa süreliğine dinlenip hareket etmek için [b]depo[/b] [thrive:icon]StorageIcon[/thrive:icon] ekleyin."
 
@@ -5937,7 +5967,7 @@ msgid "TUTORIAL_MICROBE_EDITOR_CELL_TEXT"
 msgstr ""
 "Bu hücre editörü. Burada [b]mutasyon puanları[/b] (MP) [thrive:icon]MP[/thrive:icon] harcayarak türünüzü evrimleştirebilirsiniz. Her kuşak için en fazla [b]100 MP[/b] [thrive:icon]MP[/thrive:icon] harcayabilirsiniz, bu yüzden kalanları biriktirmenize gerek yoktur.\n"
 "\n"
-"Ekranın ortasındaki altıgen sizin [b]hücreniz[/b]. Hücreniz bir tek sitoplazma parçasından oluşmaktadır.\n"
+"Ekranın ortasındaki altıgen, sizin türünüzdür.\n"
 "\n"
 "Devam etmek için soldaki panelden bir parça seçin. Daha sonra, onu yerleştirmek için altıgenin yanındaki alana sol tıklayın. [thrive:input]e_rotate_left[/thrive:input] ve [thrive:input]e_rotate_right[/thrive:input] tuşları ile parçaları döndürebilirsiniz."
 
@@ -5949,15 +5979,24 @@ msgstr ""
 "\n"
 "Bir tane yerleştirmek [thrive:compound type=\"glucose\"]glukoz[/thrive:compound] gibi bileşikleri algılamanızı sağlar ve sizi o bileşiklere yönlendirir. Bu organel, diğer türlerin hücrelerini algılamak için de kullanılabilir."
 
+#, fuzzy
+msgid "TUTORIAL_MICROBE_EDITOR_COMPOUND_BALANCES"
+msgstr ""
+"Hücrenizi farklı [b]çevresel koşullara[/b] adapte edebilirsiniz.\n"
+"\n"
+"Çevresel koşullar, olumlu [b]ve[/b] olumsuz etkilere neden olabilir. Bu yüzden, yeni arazilere geçerken uygun toleransların ayarlandığından emin olmak önemlidir.\n"
+"\n"
+"Devam etmek için sol paneldeki \"tolerans\" sekmesini seçin."
+
 msgid "TUTORIAL_MICROBE_EDITOR_ENDING_TEXT"
 msgstr ""
-"Bunlar türünüzü düzenlerken bilmeniz gereken temel hususlar. Son olarak, sol alttaki isme tıklayıp metni düzenleyerek türünüzü yeniden adlandırabilirsiniz.\n"
+"Adaptasyon zordur. Birçok [thrive:compound type=\"atp\"]ATP[/thrive:compound] kaynağı vardır. Ancak, bunların hepsi her arazide bulunmaz. En bilinçli seçimi yapabilmeniz için buradaki tüm sekmeleri ve panelleri kullanabilir ya da herhangi bir şeyi deneyip nasıl çalıştığını görebilirsiniz!\n"
 "\n"
-"Hücrenizi başka türlü nasıl özelleştirebileceğinizi görmek için [b]MP [thrive:icon]MP[/thrive:icon] çubuğunun[/b] altında bulunan diğer sekmeleri keşfetmeyi deneyin.\n"
+"Yalnız unutmayın; [u]eğer yeterince [thrive:compound type=\"atp\"]ATP[/thrive:compound] yapmazsanız, hayatta kalamazsınız[/u].\n"
 "\n"
-"Doğal [thrive:compound type=\"glucose\"]glukoz[/thrive:compound] miktarı [b]süratle azalacağı[/b] için, bu haşin dünyada hayatta kalmak için güvenilir bir [thrive:compound type=\"atp\"]ATP[/thrive:compound] kaynağı bulmaya ihtiyacınız var.\n"
+"[thrive:compound type=\"glucose\"]Glukoz[/thrive:compound] bulma ve bunu [thrive:compound type=\"atp\"]ATP'ye[/thrive:compound] dönüştürmeye dayalı bir yaşam tarzı şimdilik işe yarayacaktır. Ancak, doğal olarak meydana gelen [thrive:compound type=\"glucose\"]glukoz[/thrive:compound] miktarı her kuşakta azalacaktır.\n"
 "\n"
-"Bol şans!"
+"Son olarak, sol alttaki isme tıklayıp metni düzenleyerek türünüzü yeniden adlandırabilirsiniz. Bol şans!"
 
 msgid "TUTORIAL_MICROBE_EDITOR_FLAGELLUM"
 msgstr ""
@@ -5968,6 +6007,24 @@ msgstr ""
 "Kamçılar, yoğun [thrive:compound type=\"atp\"]ATP[/thrive:compound] gerektiren organellerdir ve bu yüzden küçük hücreler için çok iyi değildirler.\n"
 "\n"
 "[b]Hareket hızını [/b] [thrive:icon]MovementIcon[/thrive:icon] arttırmanın başka bir yolu, [u]hücre zarı sekmesi[/u] üzerinden hücre zarınızı daha akışkan hale getirmektir."
+
+#, fuzzy
+msgid "TUTORIAL_MICROBE_EDITOR_FOOD_CHAIN"
+msgstr ""
+"Türünüzde herhangi bir değişiklik yapmadınız.\n"
+"\n"
+"Editörden ayrıldığınızda, [u]bir sonraki sefer çoğalana dek türünüzü düzenleyemeyeceksiniz[/u].\n"
+"\n"
+"Oyunda ilerlemek için evrimleşmeniz ve uyum sağlamanız gerekir. Bu yüzden türünüzü, çoğu editör sürecinde, düzenlemeniz tavsiye edilir."
+
+#, fuzzy
+msgid "TUTORIAL_MICROBE_EDITOR_MIGRATION"
+msgstr ""
+"Hücrenize bir [b]kemoreseptör[/b] organeli ekleyebilirsiniz.\n"
+"\n"
+"Kemoreseptörler, türünüzün etrafındaki şeyleri algılama becerisini arttırır.\n"
+"\n"
+"Bir tane yerleştirmek [thrive:compound type=\"glucose\"]glukoz[/thrive:compound] gibi bileşikleri algılamanızı sağlar ve sizi o bileşiklere yönlendirir. Bu organel, diğer türlerin hücrelerini algılamak için de kullanılabilir."
 
 msgid "TUTORIAL_MICROBE_EDITOR_MODIFY_ORGANELLE"
 msgstr ""
@@ -6005,11 +6062,11 @@ msgstr ""
 
 msgid "TUTORIAL_MICROBE_EDITOR_PATCH_TEXT"
 msgstr ""
-"Bu [b]arazi haritası[/b].\n"
+"Hayat, bu dünyanın ufak bir köşesinde başladı ve şimdi de yayılmaya devam ediyor.\n"
 "\n"
-"Her simge yaşayabileceğiniz eşsiz bir ortamı temsil eder. Sağ tarafta bulunan panelde ise mevcut seçili arazinin koşulları tarif edilmektedir.\n"
+"Her simge yaşayabileceğiniz eşsiz bir ortamı temsil eder. Sağ tarafta bulunan panelde, mevcut seçili arazinin koşulları tarif edilmektedir.\n"
 "\n"
-"Eğer bulunduğunuz araziye (yanıp sönen bir yeşil kenarlık ile vurgulanır) bağlı bir arazi seçerseniz, sağdaki \"Bu Araziye Git\" butonuna basarak oraya gidebilirsiniz.\n"
+"Eğer seyahat etmeyi seçerseniz, koşullar arasındaki farkları incelediğinizden ve [b]editörün[/b] [b]tolerans[/b] sekmesini ziyaret ettiğinizden emin olun.\n"
 "\n"
 "Devam etmek için bir arazi seçmeyi deneyin."
 
@@ -6035,11 +6092,19 @@ msgstr ""
 
 msgid "TUTORIAL_MICROBE_EDITOR_STAY_SMALL"
 msgstr ""
-"Bir ya da iki [thrive:compound type=\"atp\"]ATP[/thrive:compound] kaynağıyla hayatta kalmak için [b]özelleşmeye[/b] odaklanmalısınız. Böylece birçok farklı kaynağa aynı anda ihtiyaç duymadan yolunuza devam edebilirsiniz.\n"
+"Evrim merdivenine giden birçok yol vardır. Ancak, başlamak için göz önünde bulundurulması gereken bazı noktalar bulunmaktadır:\n"
 "\n"
-"Ayrıca bir organeli eklemenin gerçekten yararlı olup olmadığını dikkatli bir şekilde düşünün. Her bir parçayı sürdürmek [thrive:icon]OsmoIcon[/thrive:icon] [thrive:compound type=\"atp\"]ATP'ye[/thrive:compound] mal olduğu için ve çoğalmak için daha fazla kaynak gerektirdiği için, genellikle herhangi bir değişiklik yapmamak iyi bir seçimdir.\n"
+"Bir ya da iki [thrive:compound type=\"atp\"]ATP[/thrive:compound] kaynağıyla hayatta kalmak için [b]özelleşmeye[/b] odaklanın. Böylece birçok farklı kaynağa aynı anda ihtiyaç duymadan yolunuza devam edebilirsiniz.\n"
 "\n"
-"Oyunda kullanılabilecek olası bir strateji, bir tek altıgen sitoplazma olarak kalmak ve [b]fotosentez[/b] organellerini almadan önce, ilk olarak yüzey arazilerine varmak."
+"Çok aşamalı metabolizma yollarını yönetmek daha karmaşıktır. Örneğin bazı organeller, doğrudan [thrive:compound type=\"atp\"]ATP[/thrive:compound] üretmek yerine [thrive:compound type=\"glucose\"]glukoz[/thrive:compound] üretir ve bu [thrive:compound type=\"glucose\"]glukozu[/thrive:compound] enerjiye dönüştürmek için ikinci bir organele ihtiyaç duyar.\n"
+"\n"
+"Olabildiğince hızlı bir şekilde büyüme dürtüsüne karşı koyun. Her bir parçayı sürdürmek [thrive:icon]OsmoIcon[/thrive:icon] [thrive:compound type=\"atp\"]ATP'ye[/thrive:compound] mal olduğu için, genellikle herhangi bir değişiklik yapmamak iyi bir seçimdir.\n"
+"\n"
+"Ototrof (örneğin, fotosentez yapan bir tür) olarak hayatta kalmak çok daha kolaydır. Ancak, diğer mikropları yemek daha heyecan vericidir.\n"
+"\n"
+"Oyunda kullanılabilecek olası bir strateji, çok küçük kalmak ve [b]fotosentez[/b] organellerini almadan önce, ilk olarak yüzey arazilerine varmaktır.\n"
+"\n"
+"Bunun üzerine çok düşünmeyin. Bir hücre kullanışlı bir adaptasyon bulana kadar trilyonlarca hücre ölür. Eğer bir çıkmaza girerseniz, her zaman bir önceki kaydı yükleyebilirsiniz."
 
 msgid "TUTORIAL_MICROBE_EDITOR_TOLERANCES_TAB"
 msgstr ""
@@ -6079,7 +6144,16 @@ msgstr ""
 "\n"
 "Nesne tamamen içeri alındığında yutmayı durdurun.\n"
 "\n"
-"Yakınlardaki bir yutulabilir nesneye doğru uzanan bu çizgiyi takip edin."
+"Bu çizgi, yutmak için [i]yeterince büyük olduğunuz[/i] bir nesneye işaret eder. Ancak, o nesneyi gerçekten [i]yakalayamayabilirsiniz[/i]."
+
+#, fuzzy
+msgid "TUTORIAL_MICROBE_STAGE_ENVIRONMENT_PANEL"
+msgstr ""
+"Yutma modunda, nesnelerin üzerlerine gelerek onları yutun. Yutma moduna geçmek için [thrive:input]g_toggle_engulf[/thrive:input] tuşuna basın.\n"
+"\n"
+"Nesne tamamen içeri alındığında yutmayı durdurun.\n"
+"\n"
+"Bu çizgi, yutmak için [i]yeterince büyük olduğunuz[/i] bir nesneye işaret eder. Ancak, o nesneyi gerçekten [i]yakalayamayabilirsiniz[/i]."
 
 msgid "TUTORIAL_MICROBE_STAGE_HELP_MENU_AND_ZOOM"
 msgstr ""
@@ -6094,11 +6168,39 @@ msgstr ""
 "Çok hücreli olmayı planlıyorsanız, koloniden ayrılıp editöre girmeniz gerekir.\n"
 "Gelişiminize devam etmek için [thrive:input]g_unbind_all[/thrive:input] tuşuna basarak koloniden ayrılın."
 
+#, fuzzy
+msgid "TUTORIAL_MICROBE_STAGE_OPEN_PROCESS_PANEL"
+msgstr ""
+"Hayat, şekerden daha fazla moleküle ihtiyaç duyar. Mikrobunuzun başka ne tür bulutlar toplayabileceğini keşfedin!\n"
+"\n"
+"Sağ alttaki turuncu [thrive:compound type=\"ammonia\"]amonyak[/thrive:compound] ve mor [thrive:compound type=\"phosphates\"]fosfat[/thrive:compound] çubukları [b]ilerlemenizi[/b] gösterir. Hücreniz çoğalmaya hazır olduğunda, bu çubuklar beyaza döner."
+
+#, fuzzy
+msgid "TUTORIAL_MICROBE_STAGE_PAUSING"
+msgstr ""
+"Bağ koparma moduna girdiniz. Bu modda, bağınızı koparmak istediğiniz koloni üyelerine tıklayabilirsiniz.\n"
+"\n"
+"Koloniden tamamen ayrılmak için kendi hücrenize tıklayabilir veya [thrive:input]g_unbind_all[/thrive:input] tuşuna basabilirsiniz."
+
+#, fuzzy
+msgid "TUTORIAL_MICROBE_STAGE_PROCESS_PANEL"
+msgstr ""
+"Hayat, şekerden daha fazla moleküle ihtiyaç duyar. Mikrobunuzun başka ne tür bulutlar toplayabileceğini keşfedin!\n"
+"\n"
+"Sağ alttaki turuncu [thrive:compound type=\"ammonia\"]amonyak[/thrive:compound] ve mor [thrive:compound type=\"phosphates\"]fosfat[/thrive:compound] çubukları [b]ilerlemenizi[/b] gösterir. Hücreniz çoğalmaya hazır olduğunda, bu çubuklar beyaza döner."
+
 msgid "TUTORIAL_MICROBE_STAGE_REPRODUCE_TEXT"
 msgstr ""
-"Hücrenizi çoğaltmak için bütün organellerinizi ikiye katlamak zorundasınız. Bu, hayatta kaldığınız sürece, kademeli şekilde meydana gelir. Ama [thrive:compound type=\"ammonia\"]amonyak[/thrive:compound] ve [thrive:compound type=\"phosphates\"]fosfat[/thrive:compound] toplayarak bu işlemi hızlandırabilirsiniz.\n"
+"Hayat, şekerden daha fazla moleküle ihtiyaç duyar. Mikrobunuzun başka ne tür bulutlar toplayabileceğini keşfedin!\n"
 "\n"
-"Sağ alttaki turuncu ve mor çubuklar ilerlemenizi gösterir. Hücreniz çoğalmaya hazır olduğunda, bu çubuklar beyaza döner."
+"Sağ alttaki turuncu [thrive:compound type=\"ammonia\"]amonyak[/thrive:compound] ve mor [thrive:compound type=\"phosphates\"]fosfat[/thrive:compound] çubukları [b]ilerlemenizi[/b] gösterir. Hücreniz çoğalmaya hazır olduğunda, bu çubuklar beyaza döner."
+
+#, fuzzy
+msgid "TUTORIAL_MICROBE_STAGE_RESOURCE_SPLIT"
+msgstr ""
+"Hayat, şekerden daha fazla moleküle ihtiyaç duyar. Mikrobunuzun başka ne tür bulutlar toplayabileceğini keşfedin!\n"
+"\n"
+"Sağ alttaki turuncu [thrive:compound type=\"ammonia\"]amonyak[/thrive:compound] ve mor [thrive:compound type=\"phosphates\"]fosfat[/thrive:compound] çubukları [b]ilerlemenizi[/b] gösterir. Hücreniz çoğalmaya hazır olduğunda, bu çubuklar beyaza döner."
 
 msgid "TUTORIAL_MICROBE_STAGE_UNBIND_TEXT"
 msgstr ""
@@ -6398,6 +6500,9 @@ msgstr "Şimdi Görüntüle"
 
 msgid "VIEW_SOURCE_CODE"
 msgstr "Kaynak Kodunu İncele"
+
+msgid "VIEW_TEXT_REPORT"
+msgstr "Metin Raporunu İncele"
 
 msgid "VIP_PATRONS"
 msgstr "VIP Destekçiler"
@@ -7753,7 +7858,7 @@ msgstr ""
 "\n"
 "Fare tekerleğini kullanarak oyuncu görüş alanını ayarlayabilir. Bu kontrol, oyuncunun etrafındaki ortamı seyretmesi veya hücresine yakından bakması için oldukça kullanışlıdır.\n"
 "\n"
-"X tuşuna basmak otomatik hareketi etkinleştirir ve oyuncunun hücresini otomatik olarak ileri hareket ettirir. Bu kontrol, hassas kontrol gerekmediğinde oyuncunun sürekli hareket tuşlarına basmasını önler. Bu durumdayken oyuncu hala fareyi kullanarak hücreyi yönlendirebilir ve herhangi bir hareket tuşuna basarak otomatik hareketi iptal edebilir.\n"
+"X tuşuna basmak otomatik hareketi etkinleştirir ve oyuncunun hücresini otomatik olarak ileri hareket ettirir. Bu kontrol, hassas kontrol gerekmediğinde oyuncunun sürekli hareket tuşlarına basmasını önler. Bu durumdayken oyuncu hala fareyi kullanarak hücreyi yönlendirebilir ve herhangi bir hareket tuşuna basarak otomatik hareketi her an iptal edebilir.\n"
 "\n"
 "[b][u]Ortam[/u][/b]\n"
 "\n"
@@ -8841,21 +8946,20 @@ msgstr "Yakınlaştır"
 msgid "ZOOM_OUT"
 msgstr "Uzaklaştır"
 
-#, fuzzy
-#~ msgid "GLUCOSE_METEOR"
-#~ msgstr "Glukoz"
+#~ msgid "MICROBE_STAGE_DAY_NIGHT_TEXT"
+#~ msgstr ""
+#~ "Ekranınızın solundaki [b]ortam paneli[/b] ile, yerel koşulları takip edebilirsiniz.\n"
+#~ "\n"
+#~ "Gözler henüz evrimleşmemiştir. Ama bir tür, besin üretmek için güneş ışığına (ya da sıcaklığa) bağımlı olabilir. Eğer bu sizseniz, dikkat edin!\n"
+#~ "\n"
+#~ "Fotosentez gece vaktinde etkisizdir. Bu yüzden fotosenteze muhtaç olan herhangi bir hücrenin, gece hayatta kalmak için yeterli depoya [thrive:icon]StorageIcon[/thrive:icon] sahip olması gerekir."
 
 #, fuzzy
-#~ msgid "IRON_METEOR"
-#~ msgstr "Ortam"
+#~ msgid "GLOBAL_GLACIATION_EVENT_LOG"
+#~ msgstr "Genel popülasyon:"
 
-#, fuzzy
-#~ msgid "PHOSPHATE_METEOR"
-#~ msgstr "Fosfat"
-
-#, fuzzy
-#~ msgid "RADIOACTIVE_METEOR"
-#~ msgstr "Radyoaktif Taş Parçası"
+#~ msgid "SHOW_TUTORIALS"
+#~ msgstr "Rehberi göster"
 
 #~ msgid "PASSIVE_REPRODUCTION_PROGRESS"
 #~ msgstr "Üreme işlemini pasif olarak gerçekleştir"
@@ -9043,6 +9147,10 @@ msgstr "Uzaklaştır"
 #, fuzzy
 #~ msgid "ERUPTION_IN"
 #~ msgstr "Tomurcuklanma"
+
+#, fuzzy
+#~ msgid "EVENT_TOOLTIP_ERUPTION"
+#~ msgstr "{0}: +{1} ATP"
 
 #~ msgid "THE_AMOUNT_OF_GLUCOSE_HAS_BEEN_REDUCED"
 #~ msgstr "Glukoz miktarı, önceki miktarın {0} kadarı düştü."

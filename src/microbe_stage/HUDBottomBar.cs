@@ -173,6 +173,9 @@ public partial class HUDBottomBar : HBoxContainer
         }
     }
 
+    [Export]
+    public Control? ProcessPanelButtonControl { get; set; }
+
     public override void _Ready()
     {
         pauseButton = GetNode<PlayButton>(PauseButtonPath);

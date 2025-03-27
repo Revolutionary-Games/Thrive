@@ -7,8 +7,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2025-03-18 21:56+0100\n"
-"PO-Revision-Date: 2025-03-12 14:39+0000\n"
+"POT-Creation-Date: 2025-03-27 09:59+0200\n"
+"PO-Revision-Date: 2025-03-20 20:10+0000\n"
 "Last-Translator: Anonymous <noreply@weblate.org>\n"
 "Language-Team: German <https://translate.revolutionarygamesstudio.com/projects/thrive/thrive-game/de/>\n"
 "Language: de\n"
@@ -324,6 +324,10 @@ msgid "AUTO-EVO_PREDICTION_BOX_DESCRIPTION"
 msgstr ""
 "Dieses Feld zeigt die von Auto-Evo erwarteten Populationszahlen für die bearbeitete Art an.\n"
 "Auto-Evo führt die Populationssimulation durch, die der andere Teil (neben Ihrer eigenen Leistung) ist, der Ihre Population beeinflusst."
+
+#, fuzzy
+msgid "AUTO-EVO_RESULTS_TITLE"
+msgstr "Auto-Evo Ergebnisse:"
 
 msgid "AUTO-EVO_STEPS_DONE"
 msgstr "{0:F1}% fertig. {1:n0}/{2:n0} Schritte."
@@ -642,6 +646,13 @@ msgstr ""
 "Wenn zum Beispiel die Länge der Flagelle verändert wird, sind die Geschwindigkeitswerte nicht ganz sinnvoll und entsprechen nicht dem Effekt auf der Ebene.\n"
 "Das Problem ist bekannt, wird aber wegen höher priorisierten Problemen und neuen Funktionen nicht behoben."
 
+#, fuzzy
+msgid "CELL_STAT_STORAGE_TOOLTIP"
+msgstr ""
+"Geschwindigkeit der Zelle. Durch Limitierungen des Algorithmus ist dieser Wert eine Annahme.\n"
+"Wenn zum Beispiel die Länge der Flagelle verändert wird, sind die Geschwindigkeitswerte nicht ganz sinnvoll und entsprechen nicht dem Effekt auf der Ebene.\n"
+"Das Problem ist bekannt, wird aber wegen höher priorisierten Problemen und neuen Funktionen nicht behoben."
+
 msgid "CELL_TYPE_BUTTON_ATP_CONSUMPTION"
 msgstr "Der ATP-Verbrauch dieses Zelltyps ist {0}."
 
@@ -770,6 +781,10 @@ msgstr "Alte Speicherstände aufräumen"
 
 msgid "CLEAR_CACHE"
 msgstr "Cache leeren"
+
+#, fuzzy
+msgid "CLICK_TO_SELECT"
+msgstr "Ausgewählte löschen"
 
 msgid "CLOSE"
 msgstr "Schließen"
@@ -1960,29 +1975,6 @@ msgstr ""
 "Eruption Bereichsereignis\n"
 "Zusätzliche Substanzen erscheinen: Schwefelwasserstoff und Kohlendioxid"
 
-msgid "EVENT_METEOR_GLUCOSE"
-msgstr ""
-
-#, fuzzy
-msgid "EVENT_METEOR_IRON"
-msgstr "{0}: +{1} ATP"
-
-#, fuzzy
-msgid "EVENT_METEOR_PHOSPHATES"
-msgstr "Phosphat erzeugen"
-
-#, fuzzy
-msgid "EVENT_METEOR_PLAIN"
-msgstr ""
-"Eruption Bereichsereignis\n"
-"Zusätzliche Substanzen erscheinen: Schwefelwasserstoff und Kohlendioxid"
-
-msgid "EVENT_METEOR_RADIOACTIVE"
-msgstr ""
-
-msgid "EVENT_METEOR_SULFUR"
-msgstr ""
-
 msgid "EVOLUTIONARY_TREE"
 msgstr "Evolutionsbaum"
 
@@ -2338,16 +2330,14 @@ msgid "GLOBAL_GLACIATION_EVENT"
 msgstr "Gesamtpopulation:"
 
 #, fuzzy
-msgid "GLOBAL_GLACIATION_EVENT_LOG"
-msgstr "Gesamtpopulation:"
-
-#, fuzzy
 msgid "GLOBAL_GLACIATION_EVENT_TOOLTIP"
 msgstr "Fortschritt zum Erwachen-Stadium. Erst möglich wenn ausreichend Gehirnkapazität zur Verfügung steht (Hirngewebe mit Axonen) ."
 
-#, fuzzy
-msgid "GLOBAL_GLACIATION_EVENT_WARNING_LOG"
-msgstr "Gesamtpopulation:"
+msgid "GLOBAL_GLACIATION_EVENT_WARNING_LOG_PLURAL"
+msgstr ""
+
+msgid "GLOBAL_GLACIATION_EVENT_WARNING_LOG_SINGULAR"
+msgstr ""
 
 msgid "GLOBAL_GLACIATION_START_EVENT_LOG"
 msgstr ""
@@ -3292,16 +3282,6 @@ msgstr "Wandelt [thrive:compound type=\"glucose\"][/thrive:compound] in [thrive:
 msgid "META_THREADS_TOOLTIP"
 msgstr "Besuche unser Threads-Profil"
 
-msgid "METEOR_IMPACT_EVENT"
-msgstr ""
-
-#, fuzzy
-msgid "METEOR_IMPACT_EVENT_LOG"
-msgstr "Gesamtpopulation:"
-
-msgid "METEOR_STRIKE_START_EVENT_LOG"
-msgstr ""
-
 msgid "METRICS"
 msgstr "Leistungs Daten"
 
@@ -3508,6 +3488,7 @@ msgstr ""
 "\n"
 "Um fortzufahren, drücke die [b]\"Multizellulär werden\"[/b] Schaltfläche."
 
+#, fuzzy
 msgid "MICROBE_STAGE_COLLECT_TEXT"
 msgstr ""
 "Sammle Glukose (weiße Wolken), indem du dich über sie bewegst.\n"
@@ -3516,6 +3497,7 @@ msgstr ""
 "\n"
 "Folge der Linie von deiner Zelle bis zur einer nahe gelegenen Glukosewolke."
 
+#, fuzzy
 msgid "MICROBE_STAGE_CONTROL_TEXT"
 msgstr ""
 "Um deine Zelle zu steuern, verwende die Tasten in der Nähe deiner Zelle (Mitte des Bildschirms) und die Maus, um die Ausrichtung der Zelle zu steuern.\n"
@@ -3529,14 +3511,7 @@ msgstr ""
 "\n"
 "Probiere alle Tasten für einige Sekunden aus, um fortzufahren."
 
-msgid "MICROBE_STAGE_DAY_NIGHT_TEXT"
-msgstr ""
-"Achte auf Abfälle im [b]Sonnenlichtmesser[/b] im Umweltdashboard.\n"
-"\n"
-"Die Nacht kommt, wenn die Umgebung dunkler wird.\n"
-"\n"
-"Fotosynthese ist während der Nachtzeit nicht effektiv. Daher müssen alle Zellen, die auf Fotosynthese angewiesen sind, ausreichend Vorrat an [thrive:icon]StorageIcon[/thrive:icon] haben, um die Nacht zu überstehen."
-
+#, fuzzy
 msgid "MICROBE_STAGE_HEALTH_TEXT"
 msgstr ""
 "Achte auf deinen Gesundheitsbalken neben dem ATP-Balken (unten rechts).\n"
@@ -3576,6 +3551,7 @@ msgstr ""
 "\n"
 "Um in dieser lebensfeindlichen Welt zu überleben, musst du jegliche Substanzen sammeln, die du finden kannst, und dich über Generationen hinweg weiterentwickeln, um gegen die anderen Arten von Mikroben zu bestehen."
 
+#, fuzzy
 msgid "MICROBE_STAGE_ORGANELLE_DIVISION"
 msgstr ""
 "Eine deiner Organellen hat sich geteilt.\n"
@@ -3665,6 +3641,10 @@ msgstr "Anleitungen zum Erstellen eines Mods findest du unter"
 
 msgid "MODELS"
 msgstr "Modelle"
+
+#, fuzzy
+msgid "MODE_CAN_BE_CHANGED_IN_OPTIONS"
+msgstr "Strategische Ansicht schwenken, wenn Cursor am Bildschirmrand"
 
 msgid "MODIFY"
 msgstr "Verändern"
@@ -4600,6 +4580,10 @@ msgstr "Spieler ist ausgestorben"
 msgid "PLAYER_RELATIVE_MOVEMENT"
 msgstr "Spielerabhängig"
 
+#, fuzzy
+msgid "PLAYER_RELATIVE_MOVEMENT_TOOLTIP"
+msgstr "Spielerabhängig"
+
 msgid "PLAYER_REPRODUCED"
 msgstr "Spieler-Reproduktion"
 
@@ -4680,6 +4664,10 @@ msgstr "Zellprozesse"
 msgid "PROCESS_SPEED_MODIFIER"
 msgstr "Bioprozess-Geschwindigkeit"
 
+#, fuzzy
+msgid "PROCESS_TOGGLE_TOOLTIP"
+msgstr "Der Umgebungsdruck, den deine Spezies bevorzugt. Minimal- und Maximalwerte können in separaten Schiebern eingestellt werden. Wenn die Umweltbedingungen außerhalb des Bereichs liegen, hat das viele negative Auswirkungen auf deine Spezies. Die Bereichsgröße kannst du mit der Checkbox unter den Schiebern verändern."
+
 msgid "PROGRAMMING_TEAM"
 msgstr "Programmierer Team"
 
@@ -4694,6 +4682,10 @@ msgstr "Protoplasma"
 
 msgid "PULL_REQUESTS_PROGRAMMING"
 msgstr "Pull Requests / Programmierung"
+
+#, fuzzy
+msgid "QUADRILLION_ABBREVIATION"
+msgstr "{0} Mrd"
 
 msgid "QUICK_LOAD"
 msgstr "Schnellladen"
@@ -4815,6 +4807,14 @@ msgstr "Tastenkombinationen zurücksetzen"
 
 msgid "RESET_SETTINGS_TO_DEFAULTS"
 msgstr "Standardeinstellungen"
+
+#, fuzzy
+msgid "RESET_SHOWN_TUTORIALS"
+msgstr "Einführung anzeigen"
+
+#, fuzzy
+msgid "RESET_SHOWN_TUTORIALS_TOOLTIP"
+msgstr "Exportiere die Daten aller Welten im CSV-Format (durch Kommas getrennte Werte)"
 
 msgid "RESET_TO_DEFAULTS"
 msgstr "Auf Standardeinstellungen zurücksetzen?"
@@ -5081,6 +5081,10 @@ msgstr "Fähigkeitenleiste anzeigen"
 msgid "SCREEN_RELATIVE_MOVEMENT"
 msgstr "um die Mobilität zu erhöhen"
 
+#, fuzzy
+msgid "SCREEN_RELATIVE_MOVEMENT_TOOLTIP"
+msgstr "um die Mobilität zu erhöhen"
+
 msgid "SCROLLLOCK"
 msgstr "Rollen"
 
@@ -5105,6 +5109,10 @@ msgstr "Schleim absondern"
 
 msgid "SEED_LABEL"
 msgstr "Planetenseed: {0}"
+
+#, fuzzy
+msgid "SELECTED"
+msgstr "Ausgewählte Mods:"
 
 msgid "SELECTED_COLON"
 msgstr "Ausgewählt:"
@@ -5140,6 +5148,10 @@ msgstr "Wähle im Editor-Tab eine Zelle aus um sie hier zu editieren"
 msgid "SELECT_ENZYME"
 msgstr "Wähle Enzyme aus:"
 
+#, fuzzy
+msgid "SELECT_MOVEMENT_MODE_TITLE"
+msgstr "Thrive im abgesicherten Modus gestartet"
+
 msgid "SELECT_OPTION"
 msgstr "Eine Option auswählen"
 
@@ -5174,6 +5186,14 @@ msgid "SHIFT"
 msgstr "Shift"
 
 #, fuzzy
+msgid "SHOW_ALL_TUTORIALS"
+msgstr "Einführung anzeigen"
+
+#, fuzzy
+msgid "SHOW_ALL_TUTORIALS_TOOLTIP"
+msgstr "Exportiere die Daten aller Welten im CSV-Format (durch Kommas getrennte Werte)"
+
+#, fuzzy
 msgid "SHOW_DAMAGE_EFFECT"
 msgstr "Schadensauswirkung anzeigen"
 
@@ -5189,14 +5209,15 @@ msgstr "Neue Patchnotizen automatisch anzeigen"
 msgid "SHOW_NEW_PATCH_NOTES_TOOLTIP"
 msgstr "Patchnotizen neuer Thrive-Versionen automatisch im Hauptmenü anzeigen"
 
-msgid "SHOW_TUTORIALS"
-msgstr "Einführung anzeigen"
-
 msgid "SHOW_TUTORIALS_IN_NEW_CURRENT_OPTION"
 msgstr "Tutorials anzeigen (im aktuellen Spiel)"
 
 msgid "SHOW_TUTORIALS_IN_NEW_GAMES_OPTION"
 msgstr "Tutorials anzeigen (in neuen Spielen)"
+
+#, fuzzy
+msgid "SHOW_TUTORIALS_OPTION_TOOLTIP"
+msgstr "Exportiere die Daten aller Welten im CSV-Format (durch Kommas getrennte Werte)"
 
 msgid "SHOW_UNSAVED_PROGRESS_WARNING"
 msgstr "Warnung vor ungesichertem Fortschritt anzeigen"
@@ -5497,6 +5518,10 @@ msgstr "Sekunden für"
 msgid "STORE_LOGGED_IN_AS"
 msgstr "Angemeldet als: {0}"
 
+#, fuzzy
+msgid "STRAIN_BAR_TOOLTIP"
+msgstr "Sprint-Modus aktivieren. Im Sprint-Modus bewegen sich Zellen schneller, aber verbrauchen mehr ATP. Je länger die Belastung durch den Sprint dauert, desto mehr ATP wird verbraucht."
+
 msgid "STRAIN_BAR_VISIBILITY"
 msgstr "Belastungsbalken Sichtbarkeit"
 
@@ -5771,6 +5796,14 @@ msgstr "Lokale Ereignisse anzeigen"
 msgid "TIMELINE_NICHE_FILL"
 msgstr "[b][u]{0}[/u][/b] spaltet sich von [b][u]{1}[/u][/b] als neue Art ab, um eine Nische zu füllen"
 
+#, fuzzy
+msgid "TIMELINE_PLAYER_MIGRATED"
+msgstr "Ein Teil der [b][u]{0}[/u][/b]-Bevölkerung ist nach {1} migriert"
+
+#, fuzzy
+msgid "TIMELINE_PLAYER_MIGRATED_TO"
+msgstr "Ein Teil der [b][u]{0}[/u][/b]-Bevölkerung ist nach {1} migriert"
+
 msgid "TIMELINE_SELECTION_PRESSURE_SPLIT"
 msgstr "[b][u]{0}[/u][/b] spaltet sich von [b][u]{1}[/u][/b] als neue Art ab aufgrund von unterschiedlichem Selektionsdruck"
 
@@ -5782,6 +5815,10 @@ msgstr "[b][u]{0}[/u][/b] ist ausgestorben!"
 
 msgid "TIMELINE_SPECIES_EXTINCT_LOCAL"
 msgstr "[b][u]{0}[/u][/b] ist aus diesem Gebiet verschwunden"
+
+#, fuzzy
+msgid "TIMELINE_SPECIES_FOLLOWED"
+msgstr "[b][u]{0}[/u][/b] ist ausgestorben!"
 
 msgid "TIMELINE_SPECIES_MIGRATED_FROM"
 msgstr "Ein Teil der [b][u]{0}[/u][/b]-Bevölkerung ist von {1} in dieses Gebiet eingewandert"
@@ -6004,6 +6041,10 @@ msgstr "Übersetzer"
 msgid "TRANSPARENCY"
 msgstr "Transparenz"
 
+#, fuzzy
+msgid "TRILLION_ABBREVIATION"
+msgstr "{0} Mrd"
+
 msgid "TRY_FOSSILISING_SOME_SPECIES"
 msgstr "Versuche ein paar Fossilien zu machen!"
 
@@ -6016,6 +6057,11 @@ msgstr "Versuche ein paar Screenshots zu machen!"
 msgid "TUTORIAL"
 msgstr "Anleitung"
 
+#, fuzzy
+msgid "TUTORIAL_ALL_NOT_ENABLED_EXPLANATION"
+msgstr "(WARNUNG: Photosynthese wird wesentlich weniger effizient)"
+
+#, fuzzy
 msgid "TUTORIAL_MICROBE_EDITOR_ATP_BALANCE_INTRO"
 msgstr ""
 "Die ATP-Produktionsanzeige rechts zeigt an, wie viel [thrive:compound type=\"atp\"][/thrive:compound] deine Zelle produziert im Vergleich dazu, wie viel verbraucht wird. Wenn die obere Leiste kürzer ist als die untere, produzierst du nicht genug [thrive:compound type=\"atp\"][/thrive:compound].\n"
@@ -6034,6 +6080,7 @@ msgstr ""
 "\n"
 "Du kannst detailliertere Informationen hinter der Vorhersage einsehen, indem du [b]auf die Fragezeichen-Schaltfläche im Panel drückst. Drücke sie, um fortzufahren.[/b]"
 
+#, fuzzy
 msgid "TUTORIAL_MICROBE_EDITOR_CELL_TEXT"
 msgstr ""
 "Dies ist der Zell-Editor, in dem du deine Spezies weiterentwickeln kannst, indem du [b]Mutationspunkte[/b] (MP) [thrive:icon]MP[/thrive:icon] ausgibst. Jede Generation hast du immer [b]100 MP[/b] [thrive:icon]MP[/thrive:icon] zum Ausgeben, also mach dir keine Sorgen, sie zu sparen!\n"
@@ -6050,6 +6097,16 @@ msgstr ""
 "\n"
 "Wenn du einen platzierst, ermöglicht er dir, Verbindungen wie [thrive:compound type=\"glucose\"][/thrive:compound] zu erkennen und wird dich zu ihnen führen. Er kann auch verwendet werden, um Zellen anderer Spezies zu erkennen."
 
+#, fuzzy
+msgid "TUTORIAL_MICROBE_EDITOR_COMPOUND_BALANCES"
+msgstr ""
+"Di kannst dein Zelle an verschiedene [b]Umweltbedingungen[/b] anpassen.\n"
+"\n"
+"Umweltbedingungen können negative [b]und[/b] positive Effekte haben. Vor der Migration in andere Bereiche sollten daher entsprechende Toleranzen entwickelt werden.\n"
+"\n"
+"Wähle den Toleranzen-Tab im linken Anzeigefenster um fortzufahren."
+
+#, fuzzy
 msgid "TUTORIAL_MICROBE_EDITOR_ENDING_TEXT"
 msgstr ""
 "Das sind die Grundlagen zum Bearbeiten deiner Spezies. Als letzten Schliff kannst du deiner Spezies einen Namen geben, indem du auf den Namen unten links klickst und den Text bearbeitest.\n"
@@ -6069,6 +6126,24 @@ msgstr ""
 "Flagellen sind sehr [thrive:compound type=\"atp\"][/thrive:compound]-intensive Organellen und daher nicht besonders gut für kleine Zellen.\n"
 "\n"
 "Eine andere Möglichkeit, die [b]Bewegungsgeschwindigkeit[/b] [thrive:icon]MovementIcon[/thrive:icon] leicht zu erhöhen, besteht darin, deine Membran im [u]Membrantab[/u] flüssiger zu machen."
+
+#, fuzzy
+msgid "TUTORIAL_MICROBE_EDITOR_FOOD_CHAIN"
+msgstr ""
+"Du hast an deiner Spezies keine Änderungen vorgenommen.\n"
+"\n"
+"Wenn du den Editor verlässt, [u]wirst du erst wieder Änderungen vornehmen können, wenn du dich das nächste Mal reproduzierst[/u].\n"
+"\n"
+"Um im Spiel voranzukommen, musst du deine Spezies entwickeln und anpassen. Es wird daher empfohlen, in den meisten Editor-Sitzungen Änderungen vorzunehmen."
+
+#, fuzzy
+msgid "TUTORIAL_MICROBE_EDITOR_MIGRATION"
+msgstr ""
+"Du kannst deiner Zelle ein [b]Chemorezeptor[/b] -Organell hinzufügen.\n"
+"\n"
+"Chemorezeptoren erhöhen die Fähigkeit deiner Spezies, Dinge in ihrer Umgebung wahrzunehmen.\n"
+"\n"
+"Wenn du einen platzierst, ermöglicht er dir, Verbindungen wie [thrive:compound type=\"glucose\"][/thrive:compound] zu erkennen und wird dich zu ihnen führen. Er kann auch verwendet werden, um Zellen anderer Spezies zu erkennen."
 
 msgid "TUTORIAL_MICROBE_EDITOR_MODIFY_ORGANELLE"
 msgstr ""
@@ -6106,6 +6181,7 @@ msgstr ""
 "\n"
 "Wähle den Toleranzen-Tab im linken Anzeigefenster um fortzufahren."
 
+#, fuzzy
 msgid "TUTORIAL_MICROBE_EDITOR_PATCH_TEXT"
 msgstr ""
 "Dies ist die Gebietskarte.\n"
@@ -6134,6 +6210,7 @@ msgstr ""
 "\n"
 "Drücke die Wiederherstellen-Taste (in der Nähe der Rückgängig-Taste), um fortzufahren."
 
+#, fuzzy
 msgid "TUTORIAL_MICROBE_EDITOR_STAY_SMALL"
 msgstr ""
 "Du solltest dich auf ein oder zwei Energiequellen fokussieren, damit du nicht zu viele Stoffe benötigst um genügend ATP zum Überleben zu erzeugen.\n"
@@ -6177,7 +6254,17 @@ msgstr ""
 "\n"
 "Eine volle Zelle kann nichts mehr verschlingen. Warte bis einige verschlungene Objekte verdaut sind."
 
+#, fuzzy
 msgid "TUTORIAL_MICROBE_STAGE_ENGULFMENT_TEXT"
+msgstr ""
+"Verschlinge Objekte indem du dich im Verschling-Modus über sie bewegst. Schalte Verschlingen an oder aus indem du [thrive:input]g_toggle_engulf[/thrive:input] drückst. \n"
+"\n"
+"Verlasse den Modus, sobald das Objekt von dir eingesogen wird. \n"
+"\n"
+"Folge der Linie zum nächsten verschlingbaren Objekt."
+
+#, fuzzy
+msgid "TUTORIAL_MICROBE_STAGE_ENVIRONMENT_PANEL"
 msgstr ""
 "Verschlinge Objekte indem du dich im Verschling-Modus über sie bewegst. Schalte Verschlingen an oder aus indem du [thrive:input]g_toggle_engulf[/thrive:input] drückst. \n"
 "\n"
@@ -6198,7 +6285,36 @@ msgstr ""
 "Wenn du nicht planst multizellulär zu werden, musst du die Kolonie verlassen um dich fortzupflanzen und zum Editor zu gelangen. \n"
 "Verlasse die Kolonie und wachse weiter, indem du [thrive:input]g_unbind_all[/thrive:input] drückst."
 
+#, fuzzy
+msgid "TUTORIAL_MICROBE_STAGE_OPEN_PROCESS_PANEL"
+msgstr ""
+"Um sich mittels Mitose zu vermehren, müssen sich zunächst alle deiner Organellen verdoppeln, indem Du genügend [thrive:compound type=\"ammonia\"][/thrive:compound] und [thrive:compound type=\"phosphates\"][/thrive:compound] sammelst.\n"
+"\n"
+"Schaue auf die Indikatoren unten rechts, um zu sehen, wie viele Ressourcen noch für eine Zellteilung benötigt werden. Diese Indikatoren werden weiß, wenn sie komplett gefüllt sind."
+
+#, fuzzy
+msgid "TUTORIAL_MICROBE_STAGE_PAUSING"
+msgstr ""
+"Du hast den \"Bindung aufheben\"-Modus aufgerufen. In diesem Modus kannst du auf die Mitglieder deiner Kolonie klicken, um deren Verbindung zu lösen.\n"
+"\n"
+"Um die Kolonie ganz zu verlassen, kannst du auf deine eigene Zelle klicken oder [thrive:input]g_unbind_all[/thrive:input] drücken."
+
+#, fuzzy
+msgid "TUTORIAL_MICROBE_STAGE_PROCESS_PANEL"
+msgstr ""
+"Um sich mittels Mitose zu vermehren, müssen sich zunächst alle deiner Organellen verdoppeln, indem Du genügend [thrive:compound type=\"ammonia\"][/thrive:compound] und [thrive:compound type=\"phosphates\"][/thrive:compound] sammelst.\n"
+"\n"
+"Schaue auf die Indikatoren unten rechts, um zu sehen, wie viele Ressourcen noch für eine Zellteilung benötigt werden. Diese Indikatoren werden weiß, wenn sie komplett gefüllt sind."
+
+#, fuzzy
 msgid "TUTORIAL_MICROBE_STAGE_REPRODUCE_TEXT"
+msgstr ""
+"Um sich mittels Mitose zu vermehren, müssen sich zunächst alle deiner Organellen verdoppeln, indem Du genügend [thrive:compound type=\"ammonia\"][/thrive:compound] und [thrive:compound type=\"phosphates\"][/thrive:compound] sammelst.\n"
+"\n"
+"Schaue auf die Indikatoren unten rechts, um zu sehen, wie viele Ressourcen noch für eine Zellteilung benötigt werden. Diese Indikatoren werden weiß, wenn sie komplett gefüllt sind."
+
+#, fuzzy
+msgid "TUTORIAL_MICROBE_STAGE_RESOURCE_SPLIT"
 msgstr ""
 "Um sich mittels Mitose zu vermehren, müssen sich zunächst alle deiner Organellen verdoppeln, indem Du genügend [thrive:compound type=\"ammonia\"][/thrive:compound] und [thrive:compound type=\"phosphates\"][/thrive:compound] sammelst.\n"
 "\n"
@@ -6507,6 +6623,9 @@ msgstr "Jetzt anzeigen"
 
 msgid "VIEW_SOURCE_CODE"
 msgstr "Quellcode anschauen"
+
+msgid "VIEW_TEXT_REPORT"
+msgstr ""
 
 msgid "VIP_PATRONS"
 msgstr "VIP Unterstützer"
@@ -8507,20 +8626,17 @@ msgid "ZOOM_OUT"
 msgstr "Herauszoomen"
 
 #, fuzzy
-#~ msgid "GLUCOSE_METEOR"
-#~ msgstr "Glukose"
+#~ msgid "MICROBE_STAGE_DAY_NIGHT_TEXT"
+#~ msgstr ""
+#~ "Achte auf Abfälle im [b]Sonnenlichtmesser[/b] im Umweltdashboard.\n"
+#~ "\n"
+#~ "Die Nacht kommt, wenn die Umgebung dunkler wird.\n"
+#~ "\n"
+#~ "Fotosynthese ist während der Nachtzeit nicht effektiv. Daher müssen alle Zellen, die auf Fotosynthese angewiesen sind, ausreichend Vorrat an [thrive:icon]StorageIcon[/thrive:icon] haben, um die Nacht zu überstehen."
 
 #, fuzzy
-#~ msgid "IRON_METEOR"
-#~ msgstr "Umgebung"
-
-#, fuzzy
-#~ msgid "PHOSPHATE_METEOR"
-#~ msgstr "Phosphat"
-
-#, fuzzy
-#~ msgid "RADIOACTIVE_METEOR"
-#~ msgstr "Radioaktiver Gesteinsbrocken"
+#~ msgid "GLOBAL_GLACIATION_EVENT_LOG"
+#~ msgstr "Gesamtpopulation:"
 
 #~ msgid "PASSIVE_REPRODUCTION_PROGRESS"
 #~ msgstr "Passiven Reproduktionsfortschritt erhalten"
@@ -8690,6 +8806,10 @@ msgstr "Herauszoomen"
 #, fuzzy
 #~ msgid "ERUPTION_IN"
 #~ msgstr "Knospend"
+
+#, fuzzy
+#~ msgid "EVENT_TOOLTIP_ERUPTION"
+#~ msgstr "{0}: +{1} ATP"
 
 #~ msgid "THE_AMOUNT_OF_GLUCOSE_HAS_BEEN_REDUCED"
 #~ msgstr "Die Glukosemenge wurde auf {0} der vorherigen Menge reduziert."

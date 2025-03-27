@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2025-03-18 21:56+0100\n"
+"POT-Creation-Date: 2025-03-27 09:59+0200\n"
 "PO-Revision-Date: 2025-02-06 13:29+0000\n"
 "Last-Translator: Anonymous <noreply@weblate.org>\n"
 "Language-Team: Thai <https://translate.revolutionarygamesstudio.com/projects/thrive/thrive-game/th/>\n"
@@ -318,6 +318,10 @@ msgstr "{0: F1}% เสร็จสิ้น {1: n0} / {2: n0} ขั้นต�
 #, fuzzy
 msgid "AUTO-EVO_PREDICTION_BOX_DESCRIPTION"
 msgstr "โรงไฟฟ้าของเซลล์ mitochondrion (พหูพจน์: mitochondria) เป็นโครงสร้างเมมเบรนสองชั้นที่เต็มไปด้วยโปรตีนและเอนไซม์ เป็นโปรคาริโอตที่ถูกดูดซึมเพื่อใช้โดยโฮสต์ยูคาริโอต สามารถเปลี่ยนกลูโคสเป็น ATP ได้อย่างมีประสิทธิภาพสูงกว่าที่ทำได้ในไซโตพลาสซึมในกระบวนการที่เรียกว่า Aerobic Respiration อย่างไรก็ตามมันต้องการออกซิเจนในการทำงานและระดับออกซิเจนในสิ่งแวดล้อมที่ต่ำลงจะทำให้อัตราการผลิต ATP ช้าลง"
+
+#, fuzzy
+msgid "AUTO-EVO_RESULTS_TITLE"
+msgstr "{0: F1}% เสร็จสิ้น {1: n0} / {2: n0} ขั้นตอน"
 
 msgid "AUTO-EVO_STEPS_DONE"
 msgstr "{0: F1}% เสร็จสิ้น {1: n0} / {2: n0} ขั้นตอน"
@@ -660,6 +664,10 @@ msgstr "ดำเนินการต่อ"
 msgid "CELL_STAT_SPEED_TOOLTIP"
 msgstr "ดำเนินการต่อ"
 
+#, fuzzy
+msgid "CELL_STAT_STORAGE_TOOLTIP"
+msgstr "ดำเนินการต่อ"
+
 msgid "CELL_TYPE_BUTTON_ATP_CONSUMPTION"
 msgstr ""
 
@@ -797,6 +805,9 @@ msgid "CLEAN_UP_OLD_SAVES"
 msgstr ""
 
 msgid "CLEAR_CACHE"
+msgstr ""
+
+msgid "CLICK_TO_SELECT"
 msgstr ""
 
 msgid "CLOSE"
@@ -1992,27 +2003,6 @@ msgstr "ปากน้ำ"
 msgid "EVENT_ERUPTION_TOOLTIP"
 msgstr "ดำเนินการต่อ"
 
-msgid "EVENT_METEOR_GLUCOSE"
-msgstr ""
-
-#, fuzzy
-msgid "EVENT_METEOR_IRON"
-msgstr "ถ้ำใต้น้ำ"
-
-#, fuzzy
-msgid "EVENT_METEOR_PHOSPHATES"
-msgstr "ฟอสเฟตวางไข่"
-
-#, fuzzy
-msgid "EVENT_METEOR_PLAIN"
-msgstr "ดำเนินการต่อ"
-
-msgid "EVENT_METEOR_RADIOACTIVE"
-msgstr ""
-
-msgid "EVENT_METEOR_SULFUR"
-msgstr ""
-
 msgid "EVOLUTIONARY_TREE"
 msgstr ""
 
@@ -2409,16 +2399,14 @@ msgid "GLOBAL_GLACIATION_EVENT"
 msgstr "{0} ประชากรเปลี่ยนแปลงโดย {1} เนื่องจาก: {2}"
 
 #, fuzzy
-msgid "GLOBAL_GLACIATION_EVENT_LOG"
-msgstr "{0} ประชากรเปลี่ยนแปลงโดย {1} เนื่องจาก: {2}"
-
-#, fuzzy
 msgid "GLOBAL_GLACIATION_EVENT_TOOLTIP"
 msgstr "ดำเนินการต่อ"
 
-#, fuzzy
-msgid "GLOBAL_GLACIATION_EVENT_WARNING_LOG"
-msgstr "{0} ประชากรเปลี่ยนแปลงโดย {1} เนื่องจาก: {2}"
+msgid "GLOBAL_GLACIATION_EVENT_WARNING_LOG_PLURAL"
+msgstr ""
+
+msgid "GLOBAL_GLACIATION_EVENT_WARNING_LOG_SINGULAR"
+msgstr ""
 
 msgid "GLOBAL_GLACIATION_START_EVENT_LOG"
 msgstr ""
@@ -3433,16 +3421,6 @@ msgstr "เปลี่ยน [thrive:compound]glucose[/thrive:compound] เป�
 msgid "META_THREADS_TOOLTIP"
 msgstr "ดำเนินการต่อ"
 
-msgid "METEOR_IMPACT_EVENT"
-msgstr ""
-
-#, fuzzy
-msgid "METEOR_IMPACT_EVENT_LOG"
-msgstr "{0} ประชากรเปลี่ยนแปลงโดย {1} เนื่องจาก: {2}"
-
-msgid "METEOR_STRIKE_START_EVENT_LOG"
-msgstr ""
-
 #, fuzzy
 msgid "METRICS"
 msgstr "สลับการแสดง FPS"
@@ -3680,23 +3658,6 @@ msgstr ""
 msgid "MICROBE_STAGE_CONTROL_TEXT_CONTROLLER"
 msgstr ""
 
-#, fuzzy
-msgid "MICROBE_STAGE_DAY_NIGHT_TEXT"
-msgstr ""
-"โครงสร้างโปรคาริโอต\n"
-"\n"
-"เมตาโบโลโซม: ผลิต ATP จากกลูโคส\n"
-"\n"
-"Chemosynthisizing Proteins: ผลิตกลูโคสครึ่งหนึ่งจากไฮโดรเจนซัลไฟด์เป็นเคมีโมพลาสต์ แต่ยังทำหน้าที่เป็นไกลโคไลซิสและใช้เวลาถึง 1 Hex\n"
-"\n"
-"Thylakoids: ผลิตกลูโคสในปริมาณ 1 ใน 3 เป็นคลอโรพลาสต์ปกติ แต่ยังทำหน้าที่เป็นไกลโคไลซิสและใช้ 1 Hex\n"
-"\n"
-"Rusticyanin: แปลงเหล็กเป็น ATP\n"
-"\n"
-"Nitrogenase: แปลงไนโตรเจนในบรรยากาศและ ATP เป็นแอมโมเนียแบบไม่ใช้ออกซิเจน\n"
-"\n"
-"ไซโทพลาสซึม: มีพื้นที่จัดเก็บและทำปฏิกิริยาไกลโคไลซิส (ผลิต ATP จำนวนเล็กน้อย)"
-
 msgid "MICROBE_STAGE_HEALTH_TEXT"
 msgstr ""
 
@@ -3831,6 +3792,9 @@ msgid "MODDING_INSTRUCTIONS_ON"
 msgstr ""
 
 msgid "MODELS"
+msgstr ""
+
+msgid "MODE_CAN_BE_CHANGED_IN_OPTIONS"
 msgstr ""
 
 msgid "MODIFY"
@@ -4773,6 +4737,10 @@ msgstr "สูญพันธุ์ไปแล้วใน {0}"
 msgid "PLAYER_RELATIVE_MOVEMENT"
 msgstr "สูญพันธุ์ไปแล้วใน {0}"
 
+#, fuzzy
+msgid "PLAYER_RELATIVE_MOVEMENT_TOOLTIP"
+msgstr "สูญพันธุ์ไปแล้วใน {0}"
+
 msgid "PLAYER_REPRODUCED"
 msgstr ""
 
@@ -4856,6 +4824,10 @@ msgstr ""
 msgid "PROCESS_SPEED_MODIFIER"
 msgstr ""
 
+#, fuzzy
+msgid "PROCESS_TOGGLE_TOOLTIP"
+msgstr "กลับไปที่เมนู"
+
 msgid "PROGRAMMING_TEAM"
 msgstr ""
 
@@ -4870,6 +4842,10 @@ msgstr "โปรโตพลาสซึม"
 
 msgid "PULL_REQUESTS_PROGRAMMING"
 msgstr ""
+
+#, fuzzy
+msgid "QUADRILLION_ABBREVIATION"
+msgstr "{0} B"
 
 msgid "QUICK_LOAD"
 msgstr "โหลดด่วน"
@@ -5001,6 +4977,14 @@ msgstr "รีเซ็ตอินพุต"
 
 msgid "RESET_SETTINGS_TO_DEFAULTS"
 msgstr "ค่าเริ่มต้น"
+
+#, fuzzy
+msgid "RESET_SHOWN_TUTORIALS"
+msgstr "บทช่วยสอน"
+
+#, fuzzy
+msgid "RESET_SHOWN_TUTORIALS_TOOLTIP"
+msgstr "ดำเนินการต่อ"
 
 msgid "RESET_TO_DEFAULTS"
 msgstr "รีเซ็ตเป็นค่าเริ่มต้นไหม"
@@ -5268,6 +5252,10 @@ msgstr "ความสามารถ"
 msgid "SCREEN_RELATIVE_MOVEMENT"
 msgstr "เพื่อเพิ่มการเคลื่อนไหว"
 
+#, fuzzy
+msgid "SCREEN_RELATIVE_MOVEMENT_TOOLTIP"
+msgstr "เพื่อเพิ่มการเคลื่อนไหว"
+
 msgid "SCROLLLOCK"
 msgstr "เลื่อนล็อค"
 
@@ -5292,6 +5280,10 @@ msgstr "ดำเนินการต่อ"
 
 msgid "SEED_LABEL"
 msgstr ""
+
+#, fuzzy
+msgid "SELECTED"
+msgstr "ปิดตัวเลือกไหม"
 
 msgid "SELECTED_COLON"
 msgstr ""
@@ -5332,6 +5324,9 @@ msgstr ""
 msgid "SELECT_ENZYME"
 msgstr "ปิดตัวเลือกไหม"
 
+msgid "SELECT_MOVEMENT_MODE_TITLE"
+msgstr ""
+
 #, fuzzy
 msgid "SELECT_OPTION"
 msgstr "ปิดตัวเลือกไหม"
@@ -5369,6 +5364,14 @@ msgid "SHIFT"
 msgstr "Shift"
 
 #, fuzzy
+msgid "SHOW_ALL_TUTORIALS"
+msgstr "บทช่วยสอน"
+
+#, fuzzy
+msgid "SHOW_ALL_TUTORIALS_TOOLTIP"
+msgstr "ดำเนินการต่อ"
+
+#, fuzzy
 msgid "SHOW_DAMAGE_EFFECT"
 msgstr "แฟลกเจลลัม (พหูพจน์: แฟลกเจลลา) เป็นกลุ่มเส้นใยโปรตีนคล้ายแส้ที่ยื่นออกมาจากเยื่อหุ้มเซลล์ซึ่งสามารถใช้ ATP เพื่อทำให้เป็นคลื่นและขับเคลื่อนเซลล์ไปในทิศทาง"
 
@@ -5387,9 +5390,6 @@ msgstr "\"{0}\" - {1}"
 msgid "SHOW_NEW_PATCH_NOTES_TOOLTIP"
 msgstr "\"{0}\" - {1}"
 
-msgid "SHOW_TUTORIALS"
-msgstr ""
-
 #, fuzzy
 msgid "SHOW_TUTORIALS_IN_NEW_CURRENT_OPTION"
 msgstr "แสดงบทช่วยสอน (ในเกมปัจจุบัน)"
@@ -5397,6 +5397,10 @@ msgstr "แสดงบทช่วยสอน (ในเกมปัจจุ�
 #, fuzzy
 msgid "SHOW_TUTORIALS_IN_NEW_GAMES_OPTION"
 msgstr "แสดงบทช่วยสอน (ในเกมใหม่)"
+
+#, fuzzy
+msgid "SHOW_TUTORIALS_OPTION_TOOLTIP"
+msgstr "ดำเนินการต่อ"
 
 #, fuzzy
 msgid "SHOW_UNSAVED_PROGRESS_WARNING"
@@ -5724,6 +5728,10 @@ msgstr ""
 msgid "STORE_LOGGED_IN_AS"
 msgstr ""
 
+#, fuzzy
+msgid "STRAIN_BAR_TOOLTIP"
+msgstr "ดำเนินการต่อ"
+
 msgid "STRAIN_BAR_VISIBILITY"
 msgstr ""
 
@@ -5990,6 +5998,12 @@ msgstr ""
 msgid "TIMELINE_NICHE_FILL"
 msgstr "รหัสยีน:"
 
+msgid "TIMELINE_PLAYER_MIGRATED"
+msgstr ""
+
+msgid "TIMELINE_PLAYER_MIGRATED_TO"
+msgstr ""
+
 #, fuzzy
 msgid "TIMELINE_SELECTION_PRESSURE_SPLIT"
 msgstr "แพร่กระจายไปยังแพทช์:"
@@ -6016,6 +6030,10 @@ msgstr ""
 
 msgid "TIMELINE_SPECIES_EXTINCT_LOCAL"
 msgstr ""
+
+#, fuzzy
+msgid "TIMELINE_SPECIES_FOLLOWED"
+msgstr "รหัสยีน:"
 
 msgid "TIMELINE_SPECIES_MIGRATED_FROM"
 msgstr ""
@@ -6247,6 +6265,10 @@ msgid "TRANSPARENCY"
 msgstr "ช่วยแปลเกม"
 
 #, fuzzy
+msgid "TRILLION_ABBREVIATION"
+msgstr "{0} B"
+
+#, fuzzy
 msgid "TRY_FOSSILISING_SOME_SPECIES"
 msgstr "จับภาพหน้าจอ"
 
@@ -6260,6 +6282,10 @@ msgstr "จับภาพหน้าจอ"
 #, fuzzy
 msgid "TUTORIAL"
 msgstr "บทช่วยสอน"
+
+#, fuzzy
+msgid "TUTORIAL_ALL_NOT_ENABLED_EXPLANATION"
+msgstr "แทงเซลล์อื่นด้วยสิ่งนี้"
 
 #, fuzzy
 msgid "TUTORIAL_MICROBE_EDITOR_ATP_BALANCE_INTRO"
@@ -6304,11 +6330,36 @@ msgstr ""
 "ไซโทพลาสซึม: มีพื้นที่จัดเก็บและทำปฏิกิริยาไกลโคไลซิส (ผลิต ATP จำนวนเล็กน้อย)"
 
 #, fuzzy
+msgid "TUTORIAL_MICROBE_EDITOR_COMPOUND_BALANCES"
+msgstr "สร้างจุลินทรีย์ฟรี"
+
+#, fuzzy
 msgid "TUTORIAL_MICROBE_EDITOR_ENDING_TEXT"
 msgstr "สร้างจุลินทรีย์ฟรี"
 
 #, fuzzy
 msgid "TUTORIAL_MICROBE_EDITOR_FLAGELLUM"
+msgstr ""
+"โครงสร้างโปรคาริโอต\n"
+"\n"
+"เมตาโบโลโซม: ผลิต ATP จากกลูโคส\n"
+"\n"
+"Chemosynthisizing Proteins: ผลิตกลูโคสครึ่งหนึ่งจากไฮโดรเจนซัลไฟด์เป็นเคมีโมพลาสต์ แต่ยังทำหน้าที่เป็นไกลโคไลซิสและใช้เวลาถึง 1 Hex\n"
+"\n"
+"Thylakoids: ผลิตกลูโคสในปริมาณ 1 ใน 3 เป็นคลอโรพลาสต์ปกติ แต่ยังทำหน้าที่เป็นไกลโคไลซิสและใช้ 1 Hex\n"
+"\n"
+"Rusticyanin: แปลงเหล็กเป็น ATP\n"
+"\n"
+"Nitrogenase: แปลงไนโตรเจนในบรรยากาศและ ATP เป็นแอมโมเนียแบบไม่ใช้ออกซิเจน\n"
+"\n"
+"ไซโทพลาสซึม: มีพื้นที่จัดเก็บและทำปฏิกิริยาไกลโคไลซิส (ผลิต ATP จำนวนเล็กน้อย)"
+
+#, fuzzy
+msgid "TUTORIAL_MICROBE_EDITOR_FOOD_CHAIN"
+msgstr "สร้างจุลินทรีย์ฟรี"
+
+#, fuzzy
+msgid "TUTORIAL_MICROBE_EDITOR_MIGRATION"
 msgstr ""
 "โครงสร้างโปรคาริโอต\n"
 "\n"
@@ -6386,6 +6437,10 @@ msgid "TUTORIAL_MICROBE_STAGE_ENGULFMENT_TEXT"
 msgstr "สร้างจุลินทรีย์ฟรี"
 
 #, fuzzy
+msgid "TUTORIAL_MICROBE_STAGE_ENVIRONMENT_PANEL"
+msgstr "สร้างจุลินทรีย์ฟรี"
+
+#, fuzzy
 msgid "TUTORIAL_MICROBE_STAGE_HELP_MENU_AND_ZOOM"
 msgstr "W, A, S, D และเมาส์เพื่อย้าย กด E เพื่อยิง OxyToxy NT หากคุณมีสารพิษแวคิวโอล กด G เพื่อสลับโหมดเขมือบ"
 
@@ -6394,7 +6449,23 @@ msgid "TUTORIAL_MICROBE_STAGE_LEAVE_COLONY_TEXT"
 msgstr "สร้างจุลินทรีย์ฟรี"
 
 #, fuzzy
+msgid "TUTORIAL_MICROBE_STAGE_OPEN_PROCESS_PANEL"
+msgstr "สร้างจุลินทรีย์ฟรี"
+
+#, fuzzy
+msgid "TUTORIAL_MICROBE_STAGE_PAUSING"
+msgstr "สร้างจุลินทรีย์ฟรี"
+
+#, fuzzy
+msgid "TUTORIAL_MICROBE_STAGE_PROCESS_PANEL"
+msgstr "สร้างจุลินทรีย์ฟรี"
+
+#, fuzzy
 msgid "TUTORIAL_MICROBE_STAGE_REPRODUCE_TEXT"
+msgstr "สร้างจุลินทรีย์ฟรี"
+
+#, fuzzy
+msgid "TUTORIAL_MICROBE_STAGE_RESOURCE_SPLIT"
 msgstr "สร้างจุลินทรีย์ฟรี"
 
 #, fuzzy
@@ -6724,6 +6795,9 @@ msgstr ""
 
 msgid "VIEW_SOURCE_CODE"
 msgstr "ดูซอร์สโค้ด"
+
+msgid "VIEW_TEXT_REPORT"
+msgstr ""
 
 msgid "VIP_PATRONS"
 msgstr ""
@@ -8620,16 +8694,25 @@ msgid "ZOOM_OUT"
 msgstr "ซูมออก"
 
 #, fuzzy
-#~ msgid "GLUCOSE_METEOR"
-#~ msgstr "กลูโคส"
+#~ msgid "MICROBE_STAGE_DAY_NIGHT_TEXT"
+#~ msgstr ""
+#~ "โครงสร้างโปรคาริโอต\n"
+#~ "\n"
+#~ "เมตาโบโลโซม: ผลิต ATP จากกลูโคส\n"
+#~ "\n"
+#~ "Chemosynthisizing Proteins: ผลิตกลูโคสครึ่งหนึ่งจากไฮโดรเจนซัลไฟด์เป็นเคมีโมพลาสต์ แต่ยังทำหน้าที่เป็นไกลโคไลซิสและใช้เวลาถึง 1 Hex\n"
+#~ "\n"
+#~ "Thylakoids: ผลิตกลูโคสในปริมาณ 1 ใน 3 เป็นคลอโรพลาสต์ปกติ แต่ยังทำหน้าที่เป็นไกลโคไลซิสและใช้ 1 Hex\n"
+#~ "\n"
+#~ "Rusticyanin: แปลงเหล็กเป็น ATP\n"
+#~ "\n"
+#~ "Nitrogenase: แปลงไนโตรเจนในบรรยากาศและ ATP เป็นแอมโมเนียแบบไม่ใช้ออกซิเจน\n"
+#~ "\n"
+#~ "ไซโทพลาสซึม: มีพื้นที่จัดเก็บและทำปฏิกิริยาไกลโคไลซิส (ผลิต ATP จำนวนเล็กน้อย)"
 
 #, fuzzy
-#~ msgid "PHOSPHATE_METEOR"
-#~ msgstr "ฟอสเฟต"
-
-#, fuzzy
-#~ msgid "RADIOACTIVE_METEOR"
-#~ msgstr "ก้อนเหล็กขนาดใหญ่"
+#~ msgid "GLOBAL_GLACIATION_EVENT_LOG"
+#~ msgstr "{0} ประชากรเปลี่ยนแปลงโดย {1} เนื่องจาก: {2}"
 
 #~ msgid "IRON_CHEMOLITHOAUTOTROPHY"
 #~ msgstr "เหล็กเคโมลิโทออโตโทรฟี"
@@ -8806,6 +8889,10 @@ msgstr "ซูมออก"
 #, fuzzy
 #~ msgid "ERUPTION_IN"
 #~ msgstr "{0} ประชากรเปลี่ยนแปลงโดย {1} เนื่องจาก: {2}"
+
+#, fuzzy
+#~ msgid "EVENT_TOOLTIP_ERUPTION"
+#~ msgstr "ถ้ำใต้น้ำ"
 
 #, fuzzy
 #~ msgid "OXYTOXISOME_DESC"

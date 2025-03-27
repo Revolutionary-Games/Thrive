@@ -184,22 +184,22 @@ public partial class CreatureStageBase<TPlayer, TSimulation> : StageBase, ICreat
             GameWorld.GenerationHistory[lastGeneration].UpdateSpeciesData(GameWorld.PlayerSpecies);
         }
 
-        // Now the editor increases the generation, so we don't do that here anymore
+        // Now the editor increases the generation, so we don't do that here any more
 
-        // Make sure player is spawned
+        // Make sure the player is spawned
         SpawnPlayer();
 
         BaseHUD.OnEnterStageTransition(false, true);
         BaseHUD.HideReproductionDialog();
 
         // Pass some extra time to hud messages to make short-lived messages from the previous life (like editor ready
-        // disappear)
+        // to disappear)
         BaseHUD.HUDMessages.PassExtraTime(Constants.HUD_MESSAGES_EXTRA_ELAPSE_TIME_FROM_EDITOR);
 
         StartMusic();
 
-        // Reset locale to assure the stage's language.
-        // Because the stage scene tree being unattached during editor, if language was
+        // Reset locale to ensure the stage's language.
+        // Because the stage scene tree being unattached during the editor, if the language was
         // changed while in the editor, it doesn't update this stage's translation cache.
         TranslationServer.SetLocale(TranslationServer.GetLocale());
 
@@ -209,7 +209,7 @@ public partial class CreatureStageBase<TPlayer, TSimulation> : StageBase, ICreat
 
         pauseMenu.SetNewSaveNameFromSpeciesName();
 
-        // Collect any accumulated garbage before running the main game stage which is much more framerate-sensitive
+        // Collect any accumulated garbage before running the main game stage, which is much more framerate-sensitive
         // than the scene switching process
         GC.Collect();
     }
@@ -464,5 +464,61 @@ public partial class CreatureStageBase<TPlayer, TSimulation> : StageBase, ICreat
         // they will go extinct the next time they die
 
         BaseHUD.HidePatchExtinctionBox();
+
+        // Ensure the player is adapted to the patch they are continuing in so that they have a good chance to survive
+        var playerSpecies = GameWorld.PlayerSpecies;
+
+        if (GameWorld.Map.CurrentPatch != null)
+        {
+            if (playerSpecies is MicrobeSpecies microbeSpecies)
+            {
+                AdjustTolerancesToWorkInPatch(microbeSpecies, GameWorld.Map.CurrentPatch);
+            }
+            else
+            {
+                GD.PrintErr("Unhandled species type for tolerances when player continues from patch extinction");
+            }
+        }
+        else
+        {
+            GD.PrintErr("Player species has no current patch after resolving patch extinction");
+        }
+
+        // TODO: to be fully accurate we probably should re-trigger auto-evo to start from scratch here
+    }
+
+    private void AdjustTolerancesToWorkInPatch(MicrobeSpecies species, Patch currentPatch)
+    {
+        var optimal = currentPatch.GenerateTolerancesForMicrobe();
+
+        var current = MicrobeEnvironmentalToleranceCalculations.CalculateTolerances(species, currentPatch.Biome);
+
+        if (current.OverallScore >= 1)
+            return;
+
+        GD.Print("Adjusting player tolerances so that they are fine for the patch they are continuing in");
+
+        if (current.OxygenScore < 1)
+        {
+            species.Tolerances.OxygenResistance = optimal.OxygenResistance;
+        }
+
+        if (current.UVScore < 1)
+        {
+            species.Tolerances.UVResistance = optimal.UVResistance;
+        }
+
+        if (current.TemperatureScore < 1)
+        {
+            species.Tolerances.PreferredTemperature = optimal.PreferredTemperature;
+
+            // TODO: should this reset tolerance range if it is calculated to be perfect?
+        }
+
+        if (current.PressureScore < 1)
+        {
+            species.Tolerances.PressureMinimum = optimal.PressureMinimum;
+            species.Tolerances.PressureMaximum = optimal.PressureMaximum;
+        }
     }
 }

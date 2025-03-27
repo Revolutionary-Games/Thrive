@@ -8,7 +8,7 @@ public class EarlyGameGoalTutorial : EditorEntryCountingTutorial
 
     public override string ClosedByName => "EarlyGameGoalTutorial";
 
-    protected override int TriggersOnNthEditorSession => 2;
+    protected override int TriggersOnNthEditorSession => 3;
 
     public override void ApplyGUIState(MicrobeEditorTutorialGUI gui)
     {

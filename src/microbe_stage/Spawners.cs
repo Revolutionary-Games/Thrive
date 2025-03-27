@@ -497,6 +497,7 @@ public static class SpawnHelpers
             entity.Set(new SoundEffectPlayer
             {
                 AbsoluteMaxDistanceSquared = Constants.MICROBE_SOUND_MAX_DISTANCE_SQUARED,
+                SoundVolumeMultiplier = Constants.NON_PLAYER_ENTITY_VOLUME_MULTIPLIER,
             });
         }
         else

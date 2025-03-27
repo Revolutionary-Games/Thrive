@@ -11,9 +11,11 @@ public static class TutorialHelper
         GUICommon.Instance.PlayButtonPressSound();
         gui.EventReceiver?.OnTutorialClosed();
 
-        if (!gui.TutorialEnabledSelected)
+        if (!gui.AllTutorialsDesiredState)
         {
-            gui.EventReceiver?.OnTutorialDisabled();
+            // TODO: restoring this based on some conditions? Would be pretty hard to make as this would need to
+            // remember which tutorials were disabled due to this
+            gui.EventReceiver?.OnCompleteTutorialsAlreadySeen();
         }
     }
 
@@ -27,7 +29,7 @@ public static class TutorialHelper
     }
 
     /// <summary>
-    ///   Handles process for all tutorial GUI derived classes.
+    ///   Handles processing for all tutorial GUI-derived classes.
     ///   This passes time to the TutorialState as the tutorial GUI Node shouldn't stop processing on pause
     /// </summary>
     public static void ProcessTutorialGUI(ITutorialGUI gui, float delta)

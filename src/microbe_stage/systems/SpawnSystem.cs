@@ -82,7 +82,7 @@ public sealed class SpawnSystem : ISystem<float>, ISpawnSystem
     }
 
     /// <summary>
-    ///   Used to construct temporary instance to copy data from to the real instance when loading from a save
+    ///   Used to construct a temporary instance to copy data from to the real instance when loading from a save
     /// </summary>
     [JsonConstructor]
     public SpawnSystem(XoShiRo256starstar random)

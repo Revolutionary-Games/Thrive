@@ -7,9 +7,9 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2025-03-18 21:56+0100\n"
-"PO-Revision-Date: 2025-03-06 07:27+0000\n"
-"Last-Translator: Henri Hyyryläinen <hhyyrylainen@revolutionarygamesstudio.com>\n"
+"POT-Creation-Date: 2025-03-27 09:59+0200\n"
+"PO-Revision-Date: 2025-03-20 20:10+0000\n"
+"Last-Translator: Anonymous <noreply@weblate.org>\n"
 "Language-Team: Finnish <https://translate.revolutionarygamesstudio.com/projects/thrive/thrive-game/fi/>\n"
 "Language: fi\n"
 "MIME-Version: 1.0\n"
@@ -334,6 +334,10 @@ msgid "AUTO-EVO_PREDICTION_BOX_DESCRIPTION"
 msgstr ""
 "Tämä paneeli näyttää ennusteen muokatun lajin populaatiolle auto-evon mukaan.\n"
 "Auto-evo ajaa populaatiosimulaatiota, joka oman suoriutumisen lisäksi vaikuttaa lajisi populaatioon."
+
+#, fuzzy
+msgid "AUTO-EVO_RESULTS_TITLE"
+msgstr "Auto-evo tulokset:"
 
 msgid "AUTO-EVO_STEPS_DONE"
 msgstr "{0:F1}% valmis. {1:n0}/{2:n0} vaihetta."
@@ -687,6 +691,10 @@ msgid "CELL_STAT_SPEED_TOOLTIP"
 msgstr "Laita peli tauolle"
 
 #, fuzzy
+msgid "CELL_STAT_STORAGE_TOOLTIP"
+msgstr "Laita peli tauolle"
+
+#, fuzzy
 msgid "CELL_TYPE_BUTTON_ATP_CONSUMPTION"
 msgstr "Ohjaimen herkkyys"
 
@@ -823,6 +831,10 @@ msgstr "Siivoa vanhat tallennukset"
 
 msgid "CLEAR_CACHE"
 msgstr ""
+
+#, fuzzy
+msgid "CLICK_TO_SELECT"
+msgstr "Poista valitut"
 
 msgid "CLOSE"
 msgstr "Sulje"
@@ -2146,27 +2158,6 @@ msgstr "Estuaari"
 msgid "EVENT_ERUPTION_TOOLTIP"
 msgstr "Lisää uusi syöte"
 
-msgid "EVENT_METEOR_GLUCOSE"
-msgstr ""
-
-#, fuzzy
-msgid "EVENT_METEOR_IRON"
-msgstr "{0}: +{1} ATP"
-
-#, fuzzy
-msgid "EVENT_METEOR_PHOSPHATES"
-msgstr "Luo fosfaattia"
-
-#, fuzzy
-msgid "EVENT_METEOR_PLAIN"
-msgstr "Lisää uusi syöte"
-
-msgid "EVENT_METEOR_RADIOACTIVE"
-msgstr ""
-
-msgid "EVENT_METEOR_SULFUR"
-msgstr ""
-
 #, fuzzy
 msgid "EVOLUTIONARY_TREE"
 msgstr "Tehnyt Revolutionary Games Studio"
@@ -2582,16 +2573,14 @@ msgid "GLOBAL_GLACIATION_EVENT"
 msgstr "Kanta:"
 
 #, fuzzy
-msgid "GLOBAL_GLACIATION_EVENT_LOG"
-msgstr "Kanta:"
-
-#, fuzzy
 msgid "GLOBAL_GLACIATION_EVENT_TOOLTIP"
 msgstr "Herää"
 
-#, fuzzy
-msgid "GLOBAL_GLACIATION_EVENT_WARNING_LOG"
-msgstr "Kanta:"
+msgid "GLOBAL_GLACIATION_EVENT_WARNING_LOG_PLURAL"
+msgstr ""
+
+msgid "GLOBAL_GLACIATION_EVENT_WARNING_LOG_SINGULAR"
+msgstr ""
 
 msgid "GLOBAL_GLACIATION_START_EVENT_LOG"
 msgstr ""
@@ -3629,16 +3618,6 @@ msgstr ""
 "Hyperthreadingin päällä oloa ei voida automaattisesti tunnistaa.\n"
 "Tämä säätää kuinka monta taustatyöskentelijää käytetään oletusarvoisesti, koska hyperthreading ei ole yhtä tehokasta kuin oikeat prosessoriytimet."
 
-msgid "METEOR_IMPACT_EVENT"
-msgstr ""
-
-#, fuzzy
-msgid "METEOR_IMPACT_EVENT_LOG"
-msgstr "Kanta:"
-
-msgid "METEOR_STRIKE_START_EVENT_LOG"
-msgstr ""
-
 #, fuzzy
 msgid "METRICS"
 msgstr "Näytä FPS-laskuri"
@@ -3871,6 +3850,7 @@ msgstr ""
 "\n"
 "Seuraa viivaa, joka kulkee solustasi lähimpään glukoosipilveen."
 
+#, fuzzy
 msgid "MICROBE_STAGE_COLLECT_TEXT"
 msgstr ""
 "Kerää glukooria (valkeat yhdistepilvet) liikkumalla niihin.\n"
@@ -3879,6 +3859,7 @@ msgstr ""
 "\n"
 "Seuraa viivaa, joka kulkee solustasi lähimpään glukoosipilveen."
 
+#, fuzzy
 msgid "MICROBE_STAGE_CONTROL_TEXT"
 msgstr ""
 "Liikkuaksesi käytä solun ympärillä näkyviä näppäimiä yhdessä hiiren kursorin kanssa.\n"
@@ -3893,13 +3874,6 @@ msgstr ""
 "Kokeile painella näytettyjä painikeita muutaman sekunnin jatkaaksesi."
 
 #, fuzzy
-msgid "MICROBE_STAGE_DAY_NIGHT_TEXT"
-msgstr ""
-"Seuraa tarkoin alhaalla oikealla näkyviä palkkeja.\n"
-"Solusi kuolee, jos sen terveyspalkki loppuu.\n"
-"Terveyspalkkisi kasvaa silloin kun solullasi on ATP:tä.\n"
-"Pidä huolta, että keräät tarpeeksi glukoosia tuottaaksesi ATP:tä."
-
 msgid "MICROBE_STAGE_HEALTH_TEXT"
 msgstr ""
 "Seuraa tarkoin alhaalla oikealla näkyviä palkkeja.\n"
@@ -4050,6 +4024,9 @@ msgstr ""
 
 msgid "MODELS"
 msgstr "Mallit"
+
+msgid "MODE_CAN_BE_CHANGED_IN_OPTIONS"
+msgstr ""
 
 msgid "MODIFY"
 msgstr "Muokkaa"
@@ -5024,6 +5001,10 @@ msgstr "pelaaja kuoli"
 msgid "PLAYER_RELATIVE_MOVEMENT"
 msgstr "Suhteellinen pelaajaan"
 
+#, fuzzy
+msgid "PLAYER_RELATIVE_MOVEMENT_TOOLTIP"
+msgstr "Suhteellinen pelaajaan"
+
 msgid "PLAYER_REPRODUCED"
 msgstr "pelaaja jatkoi sukuaan"
 
@@ -5108,6 +5089,10 @@ msgstr "Solun prosessit"
 msgid "PROCESS_SPEED_MODIFIER"
 msgstr "Solun prosessit"
 
+#, fuzzy
+msgid "PROCESS_TOGGLE_TOOLTIP"
+msgstr "Palaa Päävalikkoon"
+
 msgid "PROGRAMMING_TEAM"
 msgstr "Ohjelmointitiimi"
 
@@ -5122,6 +5107,10 @@ msgstr "Protoplasma"
 
 msgid "PULL_REQUESTS_PROGRAMMING"
 msgstr "Pull Requests / ohjelmointi"
+
+#, fuzzy
+msgid "QUADRILLION_ABBREVIATION"
+msgstr "{0} G"
 
 msgid "QUICK_LOAD"
 msgstr "Lataa viimeisin tallennus"
@@ -5255,6 +5244,14 @@ msgstr "Palauta syötteet oletuksiksi"
 
 msgid "RESET_SETTINGS_TO_DEFAULTS"
 msgstr "Palauta oletukset"
+
+#, fuzzy
+msgid "RESET_SHOWN_TUTORIALS"
+msgstr "Näytä tutoriaalit"
+
+#, fuzzy
+msgid "RESET_SHOWN_TUTORIALS_TOOLTIP"
+msgstr "Lisää uusi syöte"
 
 msgid "RESET_TO_DEFAULTS"
 msgstr "Palauta oletukset?"
@@ -5522,6 +5519,10 @@ msgstr "Näytä kykypalkki"
 msgid "SCREEN_RELATIVE_MOVEMENT"
 msgstr "Suhteellinen peli-ikkunaan"
 
+#, fuzzy
+msgid "SCREEN_RELATIVE_MOVEMENT_TOOLTIP"
+msgstr "Suhteellinen peli-ikkunaan"
+
 msgid "SCROLLLOCK"
 msgstr "Scroll Lock"
 
@@ -5547,6 +5548,10 @@ msgstr "Jatka"
 #, fuzzy
 msgid "SEED_LABEL"
 msgstr "Biomi: {0}"
+
+#, fuzzy
+msgid "SELECTED"
+msgstr "Valittu:"
 
 msgid "SELECTED_COLON"
 msgstr "Valittu:"
@@ -5589,6 +5594,10 @@ msgstr "Valitse muokattavan soluelimen tyyppi editorin sivulta"
 msgid "SELECT_ENZYME"
 msgstr "Valittu:"
 
+#, fuzzy
+msgid "SELECT_MOVEMENT_MODE_TITLE"
+msgstr "Poista Paikallinen Data"
+
 msgid "SELECT_OPTION"
 msgstr "Valitse vaihtoehto"
 
@@ -5625,6 +5634,14 @@ msgstr "Efektien voimakkuus"
 msgid "SHIFT"
 msgstr "Vaihto"
 
+#, fuzzy
+msgid "SHOW_ALL_TUTORIALS"
+msgstr "Näytä tutoriaalit"
+
+#, fuzzy
+msgid "SHOW_ALL_TUTORIALS_TOOLTIP"
+msgstr "Lisää uusi syöte"
+
 msgid "SHOW_DAMAGE_EFFECT"
 msgstr ""
 
@@ -5644,16 +5661,16 @@ msgid "SHOW_NEW_PATCH_NOTES_TOOLTIP"
 msgstr "{0} {1}"
 
 #, fuzzy
-msgid "SHOW_TUTORIALS"
-msgstr "Näytä tutoriaalit"
-
-#, fuzzy
 msgid "SHOW_TUTORIALS_IN_NEW_CURRENT_OPTION"
 msgstr "Näytä tutoriaalit (nykyisessä pelissä)"
 
 #, fuzzy
 msgid "SHOW_TUTORIALS_IN_NEW_GAMES_OPTION"
 msgstr "Näytä tutoriaalit (uusissa peleissä)"
+
+#, fuzzy
+msgid "SHOW_TUTORIALS_OPTION_TOOLTIP"
+msgstr "Lisää uusi syöte"
 
 msgid "SHOW_UNSAVED_PROGRESS_WARNING"
 msgstr "Näytä varoitus tallentamattomista muutoksista"
@@ -5984,6 +6001,10 @@ msgstr ""
 msgid "STORE_LOGGED_IN_AS"
 msgstr "Sisäänkirjauduttu käyttäjänä: {0}"
 
+#, fuzzy
+msgid "STRAIN_BAR_TOOLTIP"
+msgstr "Laita peli tauolle"
+
 msgid "STRAIN_BAR_VISIBILITY"
 msgstr ""
 
@@ -6265,6 +6286,14 @@ msgstr "Näytä paikalliset tapahtumat"
 msgid "TIMELINE_NICHE_FILL"
 msgstr "[u]{0}[/u] jakautui [u]{1}[/u]:sta erikoistuen omaksi lajikseen"
 
+#, fuzzy
+msgid "TIMELINE_PLAYER_MIGRATED"
+msgstr "Osa populaatiosta ([u]{0}[/u]) ovat muuttaneet {1}"
+
+#, fuzzy
+msgid "TIMELINE_PLAYER_MIGRATED_TO"
+msgstr "Osa populaatiosta ([u]{0}[/u]) ovat muuttaneet {1}"
+
 msgid "TIMELINE_SELECTION_PRESSURE_SPLIT"
 msgstr "[u]{0}[/u] jakautui [u]{1}[/u]:sta uudeksi lajiksi lajin valintapaineista johtuen"
 
@@ -6282,6 +6311,10 @@ msgstr "[u]{0}[/u] on kuollut sukupuuttoon!"
 
 msgid "TIMELINE_SPECIES_EXTINCT_LOCAL"
 msgstr "[u]{0}[/u] on kadonnut tältä alueelta"
+
+#, fuzzy
+msgid "TIMELINE_SPECIES_FOLLOWED"
+msgstr "[u]{0}[/u] on kuollut sukupuuttoon!"
 
 msgid "TIMELINE_SPECIES_MIGRATED_FROM"
 msgstr "Osa lajin [u]{0}[/u] populaatiosta on muuttanut alueelta {1} tälle alueelle"
@@ -6516,6 +6549,10 @@ msgid "TRANSPARENCY"
 msgstr "Läpinäkyvyys"
 
 #, fuzzy
+msgid "TRILLION_ABBREVIATION"
+msgstr "{0} G"
+
+#, fuzzy
 msgid "TRY_FOSSILISING_SOME_SPECIES"
 msgstr "Kokeile ottaa ruudunkaappauksia!"
 
@@ -6528,6 +6565,13 @@ msgstr "Kokeile ottaa ruudunkaappauksia!"
 #, fuzzy
 msgid "TUTORIAL"
 msgstr "Tutoriaali"
+
+#, fuzzy
+msgid "TUTORIAL_ALL_NOT_ENABLED_EXPLANATION"
+msgstr ""
+"Keskittyneet mikrobit etsivät yhdisteitä, kappaleita ja saaliita pidemmän matkan päästä\n"
+"ja voivat olla kunnianhimoisempia löytyvien palasten keruussa.\n"
+"Responssiiviset mikrobit vaihtavat kohdetta nopeammin, jos ei niitä heti saa kiinni."
 
 #, fuzzy
 msgid "TUTORIAL_MICROBE_EDITOR_ATP_BALANCE_INTRO"
@@ -6550,6 +6594,7 @@ msgstr ""
 "\n"
 "Voit katsoa tarkempaa tietoa ennusteesta klikkaamalla ?-merkkiä paneelista. Klikkaa sitä jatkaaksesi."
 
+#, fuzzy
 msgid "TUTORIAL_MICROBE_EDITOR_CELL_TEXT"
 msgstr ""
 "Tämä on solueditori, jossa voit jalostaa lajiasi käyttämällä mutaatiopisteitä (MP). Jokaisella sukupolvella sinulla on 100MP:tä käytettävänä, eivätkä ne siirry seuraavalle sukupolvelle - älä siis turhaan säästä niitä!\n"
@@ -6567,6 +6612,18 @@ msgstr ""
 "\n"
 "Valitse soluelinosa vasemmasta paneelista jatkaaksesi. Sitten klikkaa vasemmalla hiiren painikkeella hexaa, johon haluat osan sijoittaa. Voit kiertää osia painamalla A tai D."
 
+#, fuzzy
+msgid "TUTORIAL_MICROBE_EDITOR_COMPOUND_BALANCES"
+msgstr ""
+"Tämä on ympäristökartta.\n"
+"\n"
+"Kuvakkeet esittävät erilaisia ympäristöjä, joihin solusi voi levittyä. Oikealla näkyvästä paneelista voit katsoa millaiset olosuhteet ympäristöllä valitsevat.\n"
+"\n"
+"Siirtyäksesi valitsemaasi ympäristöön (korostettu vaaleansinisellä reunalla) klikkaa Siirry-painiketta levitäksesi.\n"
+"\n"
+"Kokeile valita uusi ympäristö jatkaaksesi."
+
+#, fuzzy
 msgid "TUTORIAL_MICROBE_EDITOR_ENDING_TEXT"
 msgstr ""
 "Olet nyt käynyt solun rakentamisen perusteet. Viimeistelläksesi voit vielä nimetä lajisi klikkaamalla lajin nimeä alhaalla vasemmalla, ja muokkaamalla nimeä.\n"
@@ -6579,6 +6636,26 @@ msgstr ""
 
 #, fuzzy
 msgid "TUTORIAL_MICROBE_EDITOR_FLAGELLUM"
+msgstr ""
+"Tämä on solueditori, jossa voit jalostaa lajiasi käyttämällä mutaatiopisteitä (MP). Jokaisella sukupolvella sinulla on 100MP:tä käytettävänä, eivätkä ne siirry seuraavalle sukupolvelle - älä siis turhaan säästä niitä!\n"
+"\n"
+"Hexa(goni) ruudun keskellä kuvastaa soluasi, joka muodostuu toistaiseksi yhdestä solulima-osasta.\n"
+"\n"
+"Valitse soluelinosa vasemmasta paneelista jatkaaksesi. Sitten klikkaa vasemmalla hiiren painikkeella hexaa, johon haluat osan sijoittaa. Voit kiertää osia painamalla A tai D."
+
+#, fuzzy
+msgid "TUTORIAL_MICROBE_EDITOR_FOOD_CHAIN"
+msgstr ""
+"Olet nyt käynyt solun rakentamisen perusteet. Viimeistelläksesi voit vielä nimetä lajisi klikkaamalla lajin nimeä alhaalla vasemmalla, ja muokkaamalla nimeä.\n"
+"\n"
+"Tutki vapaasti muita sivuja MP-palkin alla nähdäksesi miten muuten voit vielä muovata lajisi mutaatiota.\n"
+"\n"
+"Selvitäksesi tässä raa'assa maailmassa, on sinun löydettävä varma energian lähde, sillä luonnossa esiintyvä glukoosi vähentyy nopeasti.\n"
+"\n"
+"Lykkyä tykö!"
+
+#, fuzzy
+msgid "TUTORIAL_MICROBE_EDITOR_MIGRATION"
 msgstr ""
 "Tämä on solueditori, jossa voit jalostaa lajiasi käyttämällä mutaatiopisteitä (MP). Jokaisella sukupolvella sinulla on 100MP:tä käytettävänä, eivätkä ne siirry seuraavalle sukupolvelle - älä siis turhaan säästä niitä!\n"
 "\n"
@@ -6630,6 +6707,7 @@ msgstr ""
 "\n"
 "Kokeile valita uusi ympäristö jatkaaksesi."
 
+#, fuzzy
 msgid "TUTORIAL_MICROBE_EDITOR_PATCH_TEXT"
 msgstr ""
 "Tämä on ympäristökartta.\n"
@@ -6658,6 +6736,7 @@ msgstr ""
 "\n"
 "Paina redo-painiketta jatkaaksesi (undo-painikkeen vieressä)."
 
+#, fuzzy
 msgid "TUTORIAL_MICROBE_EDITOR_STAY_SMALL"
 msgstr ""
 "On suositeltavaa erikoistua vain yhteen tai kahteen energianlähteeseen, jotta et tarvitse montaa yhdistettä elääksesi.\n"
@@ -6707,6 +6786,13 @@ msgstr ""
 "Jättääksesi solukon kokonaan, klikkaa omaa soluasi ja klikkaa erota-kaikki (unbind all) painiketta."
 
 #, fuzzy
+msgid "TUTORIAL_MICROBE_STAGE_ENVIRONMENT_PANEL"
+msgstr ""
+"Valitsit erkaantumismoodin. Tässä moodissa voit klikata solukkosi jäseniä erottautuaksesi niistä.\n"
+"\n"
+"Jättääksesi solukon kokonaan, klikkaa omaa soluasi ja klikkaa erota-kaikki (unbind all) painiketta."
+
+#, fuzzy
 msgid "TUTORIAL_MICROBE_STAGE_HELP_MENU_AND_ZOOM"
 msgstr "W,A,S,D ja hiiri ovat liikkumisen näppäimet. E ampuu happimyrkkyä, jos solussa on myrkkyvakuoli. G aloittaa tai lopettaa nielemisen."
 
@@ -6717,7 +6803,33 @@ msgstr ""
 "\n"
 "Jättääksesi solukon kokonaan, klikkaa omaa soluasi ja klikkaa erota-kaikki (unbind all) painiketta."
 
+#, fuzzy
+msgid "TUTORIAL_MICROBE_STAGE_OPEN_PROCESS_PANEL"
+msgstr ""
+"Lisääntyäksesi sinun on kerättävä tarpeeksi ammoniakkia ja fosfaatteja monistautumiseen.\n"
+"Seuraa alhaalla oikealla pyöreän painiketta reunustavia palkkeja tietääksesi, paljonko näitä on vielä kerättävä. Palkit muuttuvat valkoisiksi, kun ne ovat täynnä."
+
+#, fuzzy
+msgid "TUTORIAL_MICROBE_STAGE_PAUSING"
+msgstr ""
+"Valitsit erkaantumismoodin. Tässä moodissa voit klikata solukkosi jäseniä erottautuaksesi niistä.\n"
+"\n"
+"Jättääksesi solukon kokonaan, klikkaa omaa soluasi ja klikkaa erota-kaikki (unbind all) painiketta."
+
+#, fuzzy
+msgid "TUTORIAL_MICROBE_STAGE_PROCESS_PANEL"
+msgstr ""
+"Lisääntyäksesi sinun on kerättävä tarpeeksi ammoniakkia ja fosfaatteja monistautumiseen.\n"
+"Seuraa alhaalla oikealla pyöreän painiketta reunustavia palkkeja tietääksesi, paljonko näitä on vielä kerättävä. Palkit muuttuvat valkoisiksi, kun ne ovat täynnä."
+
+#, fuzzy
 msgid "TUTORIAL_MICROBE_STAGE_REPRODUCE_TEXT"
+msgstr ""
+"Lisääntyäksesi sinun on kerättävä tarpeeksi ammoniakkia ja fosfaatteja monistautumiseen.\n"
+"Seuraa alhaalla oikealla pyöreän painiketta reunustavia palkkeja tietääksesi, paljonko näitä on vielä kerättävä. Palkit muuttuvat valkoisiksi, kun ne ovat täynnä."
+
+#, fuzzy
+msgid "TUTORIAL_MICROBE_STAGE_RESOURCE_SPLIT"
 msgstr ""
 "Lisääntyäksesi sinun on kerättävä tarpeeksi ammoniakkia ja fosfaatteja monistautumiseen.\n"
 "Seuraa alhaalla oikealla pyöreän painiketta reunustavia palkkeja tietääksesi, paljonko näitä on vielä kerättävä. Palkit muuttuvat valkoisiksi, kun ne ovat täynnä."
@@ -7057,6 +7169,9 @@ msgstr ""
 
 msgid "VIEW_SOURCE_CODE"
 msgstr "Katsele lähdekoodia"
+
+msgid "VIEW_TEXT_REPORT"
+msgstr ""
 
 msgid "VIP_PATRONS"
 msgstr "VIP-tukijat"
@@ -9094,20 +9209,16 @@ msgid "ZOOM_OUT"
 msgstr "Zoomaa ulospäin"
 
 #, fuzzy
-#~ msgid "GLUCOSE_METEOR"
-#~ msgstr "Glukoosi"
+#~ msgid "MICROBE_STAGE_DAY_NIGHT_TEXT"
+#~ msgstr ""
+#~ "Seuraa tarkoin alhaalla oikealla näkyviä palkkeja.\n"
+#~ "Solusi kuolee, jos sen terveyspalkki loppuu.\n"
+#~ "Terveyspalkkisi kasvaa silloin kun solullasi on ATP:tä.\n"
+#~ "Pidä huolta, että keräät tarpeeksi glukoosia tuottaaksesi ATP:tä."
 
 #, fuzzy
-#~ msgid "IRON_METEOR"
-#~ msgstr "Ympäristö"
-
-#, fuzzy
-#~ msgid "PHOSPHATE_METEOR"
-#~ msgstr "Fosfaatti"
-
-#, fuzzy
-#~ msgid "RADIOACTIVE_METEOR"
-#~ msgstr "Iso rautalohkare"
+#~ msgid "GLOBAL_GLACIATION_EVENT_LOG"
+#~ msgstr "Kanta:"
 
 #~ msgid "IRON_CHEMOLITHOAUTOTROPHY"
 #~ msgstr "Rautakemolitoautotrofia"
@@ -9311,6 +9422,10 @@ msgstr "Zoomaa ulospäin"
 #, fuzzy
 #~ msgid "ERUPTION_IN"
 #~ msgstr "Orastuminen"
+
+#, fuzzy
+#~ msgid "EVENT_TOOLTIP_ERUPTION"
+#~ msgstr "{0}: +{1} ATP"
 
 #~ msgid "THE_AMOUNT_OF_GLUCOSE_HAS_BEEN_REDUCED"
 #~ msgstr "Glukoosin määrä on vähentynyt {0}:iin edellisestä määrästä."

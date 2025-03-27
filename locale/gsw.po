@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Thrive VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2025-03-18 21:56+0100\n"
+"POT-Creation-Date: 2025-03-27 09:59+0200\n"
 "PO-Revision-Date: 2025-03-01 13:57+0000\n"
 "Last-Translator: Argakyan <andrinmueller@hotmail.ch>\n"
 "Language-Team: Alemannic <https://translate.revolutionarygamesstudio.com/projects/thrive/thrive-game/gsw/>\n"
@@ -190,7 +190,7 @@ msgid "AND_UNLOCK_CONDITION"
 msgstr "und"
 
 msgid "ANISOTROPIC_FILTERING"
-msgstr ""
+msgstr "Anisotropische Filter:"
 
 msgid "APPEARANCE"
 msgstr "Erschiingsbild"
@@ -324,6 +324,9 @@ msgid "AUTO-EVO_PREDICTION_BOX_DESCRIPTION"
 msgstr ""
 "Das Feld zeigt die vode Auto-Evo erwartete Bevölkerigszahle für d'bearbeiteti Art aa.\n"
 "Auto-Evo führt die Bevölkerigssimulation dure, wo de anderi Teil darstellt (nebet dinere eigete Leischtig), wo dini Bevölkerig beiflusst."
+
+msgid "AUTO-EVO_RESULTS_TITLE"
+msgstr "Auto-Evo Ergebnis"
 
 msgid "AUTO-EVO_STEPS_DONE"
 msgstr "{0:F1}% fertig. {1:n0}/{2:n0} Schritt."
@@ -642,6 +645,13 @@ msgstr ""
 "Und zum Biispiel wemmer es Flagellum ide Längi veränderet, denn stimmet d'Zahle nöd mit dem was tatsächlich passiert überii und machet wenig Sinn.\n"
 "Das isch es bekannts Problem aber nonig glöst bisher, will es e niedrigeri Priorität hett als vieli anderi Problem und neue Inhalt."
 
+#, fuzzy
+msgid "CELL_STAT_STORAGE_TOOLTIP"
+msgstr ""
+"Gschwindigkeit vode Zelle. Bitte beacht, dass weg Beschränkige vom Algorythmus die Berrechnig numme approximativ isch.\n"
+"Und zum Biispiel wemmer es Flagellum ide Längi veränderet, denn stimmet d'Zahle nöd mit dem was tatsächlich passiert überii und machet wenig Sinn.\n"
+"Das isch es bekannts Problem aber nonig glöst bisher, will es e niedrigeri Priorität hett als vieli anderi Problem und neue Inhalt."
+
 msgid "CELL_TYPE_BUTTON_ATP_CONSUMPTION"
 msgstr "De ATP-Konsum vo dem Zelletyp isch {0}."
 
@@ -770,6 +780,9 @@ msgstr "Alti Spiicherständ uufruume"
 
 msgid "CLEAR_CACHE"
 msgstr "Cache leere"
+
+msgid "CLICK_TO_SELECT"
+msgstr "Uuswähle"
 
 msgid "CLOSE"
 msgstr "Schlüüse"
@@ -1021,394 +1034,433 @@ msgid "CONTINUE"
 msgstr "Wiiter"
 
 msgid "CONTINUE_AS_SPECIES"
-msgstr ""
+msgstr "[center]Trotzdem isch s'Spiel nonig vorbii. Du chasch [b]wiiter[/b] idem du mit de Spezies {0} mit enere Population vo {1} wiiterspielsch.[/center]"
 
 msgid "CONTINUE_THRIVING"
-msgstr ""
+msgstr "Wiiterhin Gedeihe"
 
 msgid "CONTINUE_TO_PROTOTYPES"
 msgstr ""
+"[b]Du hesch s'Endi vom \"komplette\" Teil vo Thrive erreicht.[/b]\n"
+"\n"
+"Wenn du wettsch, chasch du mit de [b]Prototype vo wiitere Stadie[/b] wiitermache, sowiit sie im Moment implementiert sind.\n"
+"\n"
+"Sie chönnd sehr unvollständig sii, Platzhalter Graphike ha und allgemein sehr roh sii. Sie sind trotzdem enthalte, um d'möglichi Zuekunft und oisi Vision vom wiitere Spielverlauft z'zeige.\n"
+"\n"
+"Du wirsch ide meischte Prototype [b]nöd spiichere chönne[/b] und au nöd i vorherigi Stadie vom Spieli zrugg gah chönne. Wenn du zum [i]aktuelle[/i] Stadium zrugg gah wettsch, [b]spiichere bitte bevor du wiitermachsch[/b].\n"
+"\n"
+"Wenn du dich entschiidsch wiiter z'spiele, bis dir bewusst, dass die kommendi Stadie Prototype sind und beschwer dich nöd über fehlendi Inhalt."
 
 msgid "CONTINUE_TO_PROTOTYPES_PROMPT"
-msgstr ""
+msgstr "Mit Prototyp-Stadie wiitermache?"
 
 msgid "CONTROLLER_ANY_DEVICE"
-msgstr ""
+msgstr "Beliebigs Grät"
 
 msgid "CONTROLLER_AXIS_L2"
-msgstr ""
+msgstr "L2"
 
 msgid "CONTROLLER_AXIS_LEFT_TRIGGER"
-msgstr ""
+msgstr "Lingge Uuslöser"
 
 msgid "CONTROLLER_AXIS_LEFT_X"
-msgstr ""
+msgstr "Lingge Stick Horizontal"
 
 msgid "CONTROLLER_AXIS_LEFT_Y"
-msgstr ""
+msgstr "Lingge Stick Vertikal"
 
 msgid "CONTROLLER_AXIS_NEGATIVE_DIRECTION"
-msgstr ""
+msgstr "Negativi Richtig"
 
 msgid "CONTROLLER_AXIS_POSITIVE_DIRECTION"
-msgstr ""
+msgstr "Positivi Richtig"
 
 msgid "CONTROLLER_AXIS_R2"
-msgstr ""
+msgstr "R2"
 
 msgid "CONTROLLER_AXIS_RIGHT_TRIGGER"
-msgstr ""
+msgstr "Rechte Uuslöser"
 
 msgid "CONTROLLER_AXIS_RIGHT_X"
-msgstr ""
+msgstr "Rechte Stick Horizontal"
 
 msgid "CONTROLLER_AXIS_RIGHT_Y"
-msgstr ""
+msgstr "Rechte Stick Vertikal"
 
 msgid "CONTROLLER_AXIS_VISUALIZERS"
-msgstr ""
+msgstr "Controllerachsevisualisierer:"
 
 msgid "CONTROLLER_BUTTON_DPAD_DOWN"
-msgstr ""
+msgstr "Stüürchrütz Unte"
 
 msgid "CONTROLLER_BUTTON_DPAD_LEFT"
-msgstr ""
+msgstr "Stüürchrütz Lings"
 
 msgid "CONTROLLER_BUTTON_DPAD_RIGHT"
-msgstr ""
+msgstr "Stüürchrütz Rechts"
 
 msgid "CONTROLLER_BUTTON_DPAD_UP"
-msgstr ""
+msgstr "Stüürchrütz Obbe"
 
 msgid "CONTROLLER_BUTTON_LEFT_SHOULDER"
-msgstr ""
+msgstr "Lingi Schultertaste"
 
 msgid "CONTROLLER_BUTTON_LEFT_STICK"
-msgstr ""
+msgstr "Lingge Stick Click"
 
 msgid "CONTROLLER_BUTTON_MISC1"
-msgstr ""
+msgstr "Controller Süschtigs Chnopf"
 
 msgid "CONTROLLER_BUTTON_PADDLE1"
-msgstr ""
+msgstr "Paddel-Taste 1"
 
 msgid "CONTROLLER_BUTTON_PADDLE2"
-msgstr ""
+msgstr "Paddel-Taste 2"
 
 msgid "CONTROLLER_BUTTON_PADDLE3"
-msgstr ""
+msgstr "Paddel-Taste 3"
 
 msgid "CONTROLLER_BUTTON_PADDLE4"
-msgstr ""
+msgstr "Paddel-Taste 4"
 
 msgid "CONTROLLER_BUTTON_PS3_SELECT"
-msgstr ""
+msgstr "Uuswähle"
 
 msgid "CONTROLLER_BUTTON_PS3_START"
-msgstr ""
+msgstr "Start"
 
 msgid "CONTROLLER_BUTTON_PS_CIRCLE"
-msgstr ""
+msgstr "Kreis"
 
 msgid "CONTROLLER_BUTTON_PS_CROSS"
-msgstr ""
+msgstr "Chrütz"
 
 msgid "CONTROLLER_BUTTON_PS_L1"
-msgstr ""
+msgstr "L1"
 
 msgid "CONTROLLER_BUTTON_PS_L3"
-msgstr ""
+msgstr "L3"
 
 msgid "CONTROLLER_BUTTON_PS_OPTIONS"
-msgstr ""
+msgstr "Optione"
 
 msgid "CONTROLLER_BUTTON_PS_R1"
-msgstr ""
+msgstr "R1"
 
 msgid "CONTROLLER_BUTTON_PS_R3"
-msgstr ""
+msgstr "R3"
 
 msgid "CONTROLLER_BUTTON_PS_SHARE"
-msgstr ""
+msgstr "Teile"
 
 msgid "CONTROLLER_BUTTON_PS_SONY_BUTTON"
-msgstr ""
+msgstr "Logo-Taste"
 
 msgid "CONTROLLER_BUTTON_PS_SQUARE"
-msgstr ""
+msgstr "Quadrat"
 
 msgid "CONTROLLER_BUTTON_PS_TRIANGLE"
-msgstr ""
+msgstr "Drüüegg"
 
 msgid "CONTROLLER_BUTTON_RIGHT_SHOULDER"
-msgstr ""
+msgstr "Rechti Schultertaste"
 
 msgid "CONTROLLER_BUTTON_RIGHT_STICK"
-msgstr ""
+msgstr "Rechte Stick-Click"
 
 msgid "CONTROLLER_BUTTON_TOUCH_PAD"
-msgstr ""
+msgstr "Touchpad"
 
 msgid "CONTROLLER_BUTTON_UNKNOWN"
-msgstr ""
+msgstr "Unbekannte Chnopf"
 
 msgid "CONTROLLER_BUTTON_XBOX_A"
-msgstr ""
+msgstr "A"
 
 msgid "CONTROLLER_BUTTON_XBOX_B"
-msgstr ""
+msgstr "B"
 
 msgid "CONTROLLER_BUTTON_XBOX_BACK"
-msgstr ""
+msgstr "Zrugg"
 
 msgid "CONTROLLER_BUTTON_XBOX_GUIDE"
-msgstr ""
+msgstr "Leitfadde"
 
 msgid "CONTROLLER_BUTTON_XBOX_START"
-msgstr ""
+msgstr "Start"
 
 msgid "CONTROLLER_BUTTON_XBOX_X"
-msgstr ""
+msgstr "X"
 
 msgid "CONTROLLER_BUTTON_XBOX_Y"
-msgstr ""
+msgstr "Y"
 
 msgid "CONTROLLER_DEADZONES"
-msgstr ""
+msgstr "Totzone Kalibriere"
 
 msgid "CONTROLLER_DEADZONE_CALIBRATION_EXPLANATION"
 msgstr ""
+"Mit dem Werchzüüg chasch d'Totzone vode Controllerachse konfiguriere. D'Grössi vode Totzone kontrolliert wieviel en Controlstick (oder analogi Taste) bewegt werde muen, bevor d'Bewegig als Iigab erkannt wird.\n"
+"Bitte beweg alli Controlsticks und lah sie wieder los, denn druck alli analoge Taste und lah die wieder los."
 
 msgid "CONTROLLER_DEADZONE_COLON"
-msgstr ""
+msgstr "Totzone:"
 
 msgid "CONTROLLER_PROMPT_TYPE_SETTING"
-msgstr ""
+msgstr "Art vode Controller-Tasteaazeig:"
 
 msgid "CONTROLLER_SENSITIVITY"
-msgstr ""
+msgstr "Controllerempfindlichkeit"
 
 msgid "CONTROLLER_UNKNOWN_AXIS"
-msgstr ""
+msgstr "Unbekannti Achse"
 
 msgid "COPY_ERROR_TO_CLIPBOARD"
-msgstr ""
+msgstr "Fehler ide Zwüscheablage kopiere"
 
 msgid "COPY_RESULTS"
-msgstr ""
+msgstr "Ergebnis kopiere"
 
 msgid "CORRECTION_PROTANOPE"
-msgstr ""
+msgstr "Rotblindheit (Rot-Grüen)"
 
 msgid "CORRECTION_TRITANOPE"
-msgstr ""
+msgstr "Blaublindheit (Blau-Gäl)"
 
 msgid "CPU_THREADS"
-msgstr ""
+msgstr "Threads"
 
 msgid "CRAFTING_CLEAR_INPUTS"
-msgstr ""
+msgstr "Uusgwählti Iigab lösche"
 
 msgid "CRAFTING_ERROR_INTERNAL_CONSUME_PROBLEM"
-msgstr ""
+msgstr "Fehler: Interne Fehler bim Verbruuche vo Handwechsobjekt"
 
 msgid "CRAFTING_ERROR_TAKING_ITEMS"
-msgstr ""
+msgstr "Hett d'Handwerchs-Iigabeobjekt nöd chönne dinge"
 
 msgid "CRAFTING_FILTER_INPUTS"
-msgstr ""
+msgstr "Iigab"
 
 msgid "CRAFTING_KNOWN_ITEMS"
-msgstr ""
+msgstr "Unbekannti Rezept"
 
 msgid "CRAFTING_NOT_ENOUGH_MATERIAL"
-msgstr ""
+msgstr "Nöd gnueg {0}, um s'Rezept her z'stelle"
 
 msgid "CRAFTING_NO_RECIPE_SELECTED"
-msgstr ""
+msgstr "Wähl z'erscht en Bauplan uus"
 
 msgid "CRAFTING_NO_ROOM_TO_TAKE_CRAFTING_RESULTS"
-msgstr ""
+msgstr "Nöd gnueng Platz, um alli Gegeständ z'lagere"
 
 msgid "CRAFTING_RECIPE_DISPLAY"
-msgstr ""
+msgstr "{0} ({1})"
 
 msgid "CRAFTING_RECIPE_HAND_AXE"
-msgstr ""
+msgstr "Stei-Fuuschtkeil"
 
 msgid "CRAFTING_RESULTS"
-msgstr ""
+msgstr "Ergebnis"
 
 msgid "CRAFTING_SELECT_RECIPE_OR_ITEMS_TO_FILTER"
-msgstr ""
+msgstr "Wähl en Bouplan oder Gegestand zum Filtere"
 
 msgid "CRAFTING_TAKE_ALL"
-msgstr ""
+msgstr "Nimm alles"
 
 msgid "CRAFTING_TITLE"
-msgstr ""
+msgstr "Herstelle"
 
 msgid "CREATE"
-msgstr ""
+msgstr "Erschaffe"
 
 msgid "CREATED_AT"
-msgstr ""
+msgstr "Erschafft am:"
 
 msgid "CREATED_ON_PLATFORM"
-msgstr ""
+msgstr "Erschafft uf Plattform:"
 
 msgid "CREATE_A_NEW_MICROBE"
-msgstr ""
+msgstr "E neui Mikrobe erschaffe"
 
 msgid "CREATE_NEW"
-msgstr ""
+msgstr "Neu erschaffe"
 
 msgid "CREATE_NEW_CELL_TYPE"
-msgstr ""
+msgstr "Neue Zelltyp erschaffe"
 
 msgid "CREATE_NEW_CELL_TYPE_DESCRIPTION"
-msgstr ""
+msgstr "Du chasch neui Zelltype zuefüege, idem du bestehendi Type dupliziersch und denn benennsch. Zelltype chönnd modifiziert werde, um sie für verschiedenigi Uufgabe z'spezialisiere. Wenn en Zelletyp g'änderet wird, werdet alli platzierte Zelle vodem Typ aktualisiert."
 
 msgid "CREATE_NEW_MOD"
-msgstr ""
+msgstr "Neue Mod erstelle"
 
 msgid "CREATE_NEW_SAVE"
-msgstr ""
+msgstr "Neue Spiicherstand aalegge"
 
 msgid "CREATE_NEW_TISSUE_TYPE"
-msgstr ""
+msgstr "Neue Gewebetyp erschaffe"
 
 msgid "CREATE_NEW_TISSUE_TYPE_DESCRIPTION"
-msgstr ""
+msgstr "Du chasch neue Gewebetype zuefüege, idem du bestehendi Type dupliziersch und denn umbenennsch. Gewebetype chönnd modifiziert werde, um sie fpr verschiedenigi Uufgabe z'spezialisiere."
 
 msgid "CREATING_DOT_DOT_DOT"
-msgstr ""
+msgstr "Erschaffe..."
 
 msgid "CREATING_OBJECTS_FROM_SAVE"
-msgstr ""
+msgstr "Objekt us Spiicherstand erschaffe"
 
 msgid "CREDITS"
-msgstr ""
+msgstr "Abspann"
 
 msgid "CTRL"
-msgstr ""
+msgstr "Strg"
 
 msgid "CURRENT_CACHE_SIZE"
-msgstr ""
+msgstr "Aktuelli Grössi:"
 
 msgid "CURRENT_CACHE_SIZE_TOOLTIP"
 msgstr ""
+"Grössi vo allne Element momental im Cache g'spiicheret. Chammer jederziit sicher entleere,\n"
+"aber wenn es Element s'nöchschte mal verwendet wird bruuchts meh Ziit es wieder z'generiere."
 
 msgid "CURRENT_DEVELOPERS"
-msgstr ""
+msgstr "Momentani Entwickler(inne)"
 
 msgid "CURRENT_LOCATION_CAPITAL"
-msgstr ""
+msgstr "AKTUELLI POSITION"
 
 msgid "CURRENT_RESEARCH_NONE"
-msgstr ""
+msgstr "Nüüt wird erforscht"
 
 msgid "CURRENT_RESEARCH_PROGRESS"
-msgstr ""
+msgstr "Laufendi Forschig: {0} ({1})"
 
 msgid "CURRENT_WORLD"
-msgstr ""
+msgstr "Aktuelli Welt"
 
 msgid "CURRENT_WORLD_STATISTICS"
 msgstr ""
+"[b]Generatione:[/b]\n"
+"  {0}\n"
+"[b]Gsamtzahl Beriich:[/b]\n"
+"  {1}\n"
+"[b]Gsamtzahl Auto-Evo-Ziit:[/b]\n"
+"  {2}\n"
+"[b]Geamtzahl Spezies:[/b]\n"
+"  {3}\n"
+"[b]Spezies no am Lebbe:[/b]\n"
+"  {4}\n"
+"[b]Spezies Anzahl pro Beriich:[/b]\n"
+"  Durchschnitt {5}; Standardabwiichig {6}\n"
+"[b]Gsamtpopulation:[/b]\n"
+"  {7}\n"
+"[b]Populationsstärchschti Spezies:[/b]\n"
+"  {8}\n"
+"[b]Grundlegendi Mikroben-Spezies Date:[/b]\n"
+"  Durchschnittlichi Grössi (i Hex-Feldern): {9}\n"
+"\n"
+"[b]Generischi Organellen-Date:[/b]"
 
 msgid "CUSTOM_USERNAME"
-msgstr ""
+msgstr "Eigete Benutzername:"
 
 msgid "CYTOPLASM"
-msgstr ""
+msgstr "Zytoplasma"
 
 msgid "CYTOPLASM_DESCRIPTION"
-msgstr ""
+msgstr "D'schliimigi Innereie vo enere Zelle. S'Zytoplasma isch e grundleggendi Mischig us Ione, Proteine und andere Stoff wo i Wasser g'löst sind wo s'innere vode Zelle füllt. Eini vode Funktione wos macht isch [b]Glykolyse[/b], d'Umsetzig vo [thrive:compound type=\"glucose\"][/thrive:compound] zu [thrive:compound type=\"atp\"][/thrive:compound]. Für Zelle wo kei Organelle für komplexeri Metabolisme hend isch das d'Energie wo sie druff aagwiese sind. Es wird ebefalls dezue verwendet, Molekül ide Zelle z'spiichere und d'Zelle z'wachse."
 
 msgid "CYTOPLASM_GLYCOLYSIS"
-msgstr ""
+msgstr "Zytoplasma-Glykolyse"
 
 msgid "CYTOPLASM_PROCESSES_DESCRIPTION"
-msgstr ""
+msgstr "Wandlet [thrive:compound type=\"glucose\"][/thrive:compound] i [thrive:compound type=\"atp\"][/thrive:compound] um."
 
 msgid "CYTOTOXIN_SYNTHESIS"
-msgstr ""
+msgstr "Zytotoxin-Synthese"
 
 msgid "DAMAGE_SOURCE_RADIATION"
-msgstr ""
+msgstr "Strahlig"
 
 msgid "DAY_LENGTH"
-msgstr ""
+msgstr "Tageslängi"
 
 msgid "DAY_LENGTH_EXPLANATION"
-msgstr ""
+msgstr "(Längi in echtziit-Sekunde vo emene ingame Tag)"
 
 msgid "DAY_NIGHT_CYCLE_ENABLED"
-msgstr ""
+msgstr "Tag-/Nachtzyklus aktiviere"
 
 msgid "DAY_NIGHT_CYCLE_ENABLED_EXPLANATION_2"
-msgstr ""
+msgstr "(Photosynthese wird ide Nacht ineffektiv, was meh Planig bruucht)"
 
 msgid "DEADZONE_CALIBRATION_FINISHED"
-msgstr ""
+msgstr "Totzonekalibrierig abgschlosse. D'neui Totzone werdet unte aazeiget."
 
 msgid "DEADZONE_CALIBRATION_INPROGRESS"
-msgstr ""
+msgstr "Totzonekalibrierig isch am laufe. Bitte druck kei Taste und beweg kei Sticks uf dim Controller, und warte es paar Sekunde."
 
 msgid "DEADZONE_CALIBRATION_IS_RESET"
-msgstr ""
+msgstr "Totzonekalibrierig wird zrugg g'setzt"
 
 msgid "DEADZONE_CONFIGURATION"
-msgstr ""
+msgstr "Totzone kalibriere"
 
 msgid "DEATH"
-msgstr ""
+msgstr "Tot"
 
 msgid "DEBUG_COORDINATES"
 msgstr ""
+"Position: {0}\n"
+"Richtig: {1}"
 
 msgid "DEBUG_DRAW_NOT_AVAILABLE"
-msgstr ""
+msgstr "Physik-Debugging Darstellig isch nöd verfüegbar uf dere Version"
 
 msgid "DEBUG_HEAT_AT_CURSOR"
-msgstr ""
+msgstr "Hitzewert: {0}"
 
 msgid "DEBUG_PANEL"
-msgstr ""
+msgstr "Debug-Fenster"
 
 msgid "DECEMBER"
-msgstr ""
+msgstr "Dezember"
 
 msgid "DECREASE_ITEM_SIZE"
-msgstr ""
+msgstr "Objektgrössi verchliinere"
 
 msgid "DEFAULT_AUDIO_OUTPUT_DEVICE"
-msgstr ""
+msgstr "Standarduusgabegrät"
 
 msgid "DELETE"
-msgstr ""
+msgstr "Lösche"
 
 msgid "DELETE_ALL_OLD_SAVE_WARNING_2"
 msgstr ""
+"S'lösche vo allene alte Auto- und Schnellspiicherige chammer nöd rückgängig mache. Bisch sicher, dass s'folgende glöscht werde söll:\n"
+" - {0} Automatischi Spiicherständ\n"
+" - {1} Schnellspiicherständ\n"
+" - {2} Backup Spiicherständ"
 
 msgid "DELETE_FOSSIL_CONFIRMATION"
-msgstr ""
+msgstr "S'lösche vo dem Fossil chammer nöd rückgängig mache, bisch du also sicher, dass mer's permanent lösche sött?"
 
 msgid "DELETE_OLD_SAVES_PROMPT"
-msgstr ""
+msgstr "Alti Spiicherständ lösche?"
 
 msgid "DELETE_ORGANELLE"
-msgstr ""
+msgstr "Organelle lösche"
 
 msgid "DELETE_SAVE_CONFIRMATION"
-msgstr ""
+msgstr "S'lösche vo dem Spiicherstand chammer nöd rückgängig mache, bisch sicher, dass mer das permanent lösche sött?"
 
 msgid "DELETE_SELECTED"
-msgstr ""
+msgstr "Uusgwählti lösche"
 
 msgid "DELETE_SELECTED_SAVES_PROMPT"
-msgstr ""
+msgstr "Uusgwählti Spiicherständ wirklich lösche?"
 
 msgid "DELETE_SELECTED_SAVE_WARNING"
 msgstr ""
@@ -1869,24 +1921,6 @@ msgstr ""
 msgid "EVENT_ERUPTION_TOOLTIP"
 msgstr ""
 
-msgid "EVENT_METEOR_GLUCOSE"
-msgstr ""
-
-msgid "EVENT_METEOR_IRON"
-msgstr ""
-
-msgid "EVENT_METEOR_PHOSPHATES"
-msgstr ""
-
-msgid "EVENT_METEOR_PLAIN"
-msgstr ""
-
-msgid "EVENT_METEOR_RADIOACTIVE"
-msgstr ""
-
-msgid "EVENT_METEOR_SULFUR"
-msgstr ""
-
 msgid "EVOLUTIONARY_TREE"
 msgstr ""
 
@@ -2226,16 +2260,15 @@ msgstr ""
 msgid "GLOBAL_GLACIATION_EVENT"
 msgstr ""
 
-msgid "GLOBAL_GLACIATION_EVENT_LOG"
-msgstr ""
-
 #, fuzzy
 msgid "GLOBAL_GLACIATION_EVENT_TOOLTIP"
 msgstr "Fortschritt zum Erwachene-Stadium. Erscht mögli wenn uusriichend Ghirnkapazität z'Verfüegig staht (Hirngwäb mit Axone) ."
 
-#, fuzzy
-msgid "GLOBAL_GLACIATION_EVENT_WARNING_LOG"
-msgstr "Fortschritt zum Erwachene-Stadium. Erscht mögli wenn uusriichend Ghirnkapazität z'Verfüegig staht (Hirngwäb mit Axone) ."
+msgid "GLOBAL_GLACIATION_EVENT_WARNING_LOG_PLURAL"
+msgstr ""
+
+msgid "GLOBAL_GLACIATION_EVENT_WARNING_LOG_SINGULAR"
+msgstr ""
 
 msgid "GLOBAL_GLACIATION_START_EVENT_LOG"
 msgstr ""
@@ -3161,15 +3194,6 @@ msgstr ""
 msgid "META_THREADS_TOOLTIP"
 msgstr ""
 
-msgid "METEOR_IMPACT_EVENT"
-msgstr ""
-
-msgid "METEOR_IMPACT_EVENT_LOG"
-msgstr ""
-
-msgid "METEOR_STRIKE_START_EVENT_LOG"
-msgstr ""
-
 msgid "METRICS"
 msgstr ""
 
@@ -3341,9 +3365,6 @@ msgstr ""
 msgid "MICROBE_STAGE_CONTROL_TEXT_CONTROLLER"
 msgstr ""
 
-msgid "MICROBE_STAGE_DAY_NIGHT_TEXT"
-msgstr ""
-
 msgid "MICROBE_STAGE_HEALTH_TEXT"
 msgstr ""
 
@@ -3438,6 +3459,9 @@ msgid "MODDING_INSTRUCTIONS_ON"
 msgstr ""
 
 msgid "MODELS"
+msgstr ""
+
+msgid "MODE_CAN_BE_CHANGED_IN_OPTIONS"
 msgstr ""
 
 msgid "MODIFY"
@@ -4280,6 +4304,12 @@ msgstr ""
 msgid "PLAYER_RELATIVE_MOVEMENT"
 msgstr ""
 
+msgid "PLAYER_RELATIVE_MOVEMENT_TOOLTIP"
+msgstr ""
+"Im Spieler-relative Bewegigsmodus sind d'Bewegigstaste relativ zum jetzige Ort vode Spielerzelle.\n"
+"Wemmer d'Muus bewegt änderet sich also wo sich \"forwärts\" befindet für d'Zelle.\n"
+"Das isch de Standartbewegigsmodus i Thrive."
+
 msgid "PLAYER_REPRODUCED"
 msgstr ""
 
@@ -4358,6 +4388,13 @@ msgstr ""
 msgid "PROCESS_SPEED_MODIFIER"
 msgstr ""
 
+#, fuzzy
+msgid "PROCESS_TOGGLE_TOOLTIP"
+msgstr ""
+"Gschwindigkeit vode Zelle. Bitte beacht, dass weg Beschränkige vom Algorythmus die Berrechnig numme approximativ isch.\n"
+"Und zum Biispiel wemmer es Flagellum ide Längi veränderet, denn stimmet d'Zahle nöd mit dem was tatsächlich passiert überii und machet wenig Sinn.\n"
+"Das isch es bekannts Problem aber nonig glöst bisher, will es e niedrigeri Priorität hett als vieli anderi Problem und neue Inhalt."
+
 msgid "PROGRAMMING_TEAM"
 msgstr ""
 
@@ -4372,6 +4409,9 @@ msgstr ""
 
 msgid "PULL_REQUESTS_PROGRAMMING"
 msgstr ""
+
+msgid "QUADRILLION_ABBREVIATION"
+msgstr "{0} Q"
 
 msgid "QUICK_LOAD"
 msgstr ""
@@ -4485,6 +4525,12 @@ msgid "RESET_KEYBINDINGS"
 msgstr ""
 
 msgid "RESET_SETTINGS_TO_DEFAULTS"
+msgstr ""
+
+msgid "RESET_SHOWN_TUTORIALS"
+msgstr ""
+
+msgid "RESET_SHOWN_TUTORIALS_TOOLTIP"
 msgstr ""
 
 msgid "RESET_TO_DEFAULTS"
@@ -4718,6 +4764,9 @@ msgstr ""
 msgid "SCREEN_RELATIVE_MOVEMENT"
 msgstr ""
 
+msgid "SCREEN_RELATIVE_MOVEMENT_TOOLTIP"
+msgstr ""
+
 msgid "SCROLLLOCK"
 msgstr ""
 
@@ -4740,6 +4789,9 @@ msgid "SECRETE_SLIME_TOOLTIP"
 msgstr ""
 
 msgid "SEED_LABEL"
+msgstr ""
+
+msgid "SELECTED"
 msgstr ""
 
 msgid "SELECTED_COLON"
@@ -4775,6 +4827,9 @@ msgstr ""
 msgid "SELECT_ENZYME"
 msgstr ""
 
+msgid "SELECT_MOVEMENT_MODE_TITLE"
+msgstr ""
+
 msgid "SELECT_OPTION"
 msgstr ""
 
@@ -4808,6 +4863,12 @@ msgstr ""
 msgid "SHIFT"
 msgstr ""
 
+msgid "SHOW_ALL_TUTORIALS"
+msgstr ""
+
+msgid "SHOW_ALL_TUTORIALS_TOOLTIP"
+msgstr ""
+
 msgid "SHOW_DAMAGE_EFFECT"
 msgstr ""
 
@@ -4823,14 +4884,17 @@ msgstr ""
 msgid "SHOW_NEW_PATCH_NOTES_TOOLTIP"
 msgstr ""
 
-msgid "SHOW_TUTORIALS"
-msgstr ""
-
 msgid "SHOW_TUTORIALS_IN_NEW_CURRENT_OPTION"
 msgstr ""
 
 msgid "SHOW_TUTORIALS_IN_NEW_GAMES_OPTION"
 msgstr ""
+
+#, fuzzy
+msgid "SHOW_TUTORIALS_OPTION_TOOLTIP"
+msgstr ""
+"Rotationsrate vode Zelle. Grösseri Zelle rotieret langsamer, aber Zilie chammer zuefüege ums z'kompensiere.\n"
+"Organelleplazierig beiiflusst Rotation indem Organelle wiiter ewegg vom Zentrum d'Rotation meh reduzieret."
 
 msgid "SHOW_UNSAVED_PROGRESS_WARNING"
 msgstr ""
@@ -5114,6 +5178,10 @@ msgstr ""
 msgid "STORE_LOGGED_IN_AS"
 msgstr ""
 
+#, fuzzy
+msgid "STRAIN_BAR_TOOLTIP"
+msgstr "Fortschritt zum Erwachene-Stadium. Erscht mögli wenn uusriichend Ghirnkapazität z'Verfüegig staht (Hirngwäb mit Axone) ."
+
 msgid "STRAIN_BAR_VISIBILITY"
 msgstr ""
 
@@ -5366,6 +5434,12 @@ msgstr ""
 msgid "TIMELINE_NICHE_FILL"
 msgstr ""
 
+msgid "TIMELINE_PLAYER_MIGRATED"
+msgstr ""
+
+msgid "TIMELINE_PLAYER_MIGRATED_TO"
+msgstr ""
+
 msgid "TIMELINE_SELECTION_PRESSURE_SPLIT"
 msgstr ""
 
@@ -5376,6 +5450,9 @@ msgid "TIMELINE_SPECIES_EXTINCT"
 msgstr ""
 
 msgid "TIMELINE_SPECIES_EXTINCT_LOCAL"
+msgstr ""
+
+msgid "TIMELINE_SPECIES_FOLLOWED"
 msgstr ""
 
 msgid "TIMELINE_SPECIES_MIGRATED_FROM"
@@ -5570,6 +5647,9 @@ msgstr ""
 msgid "TRANSPARENCY"
 msgstr ""
 
+msgid "TRILLION_ABBREVIATION"
+msgstr "{0} Bil"
+
 msgid "TRY_FOSSILISING_SOME_SPECIES"
 msgstr ""
 
@@ -5580,6 +5660,9 @@ msgid "TRY_TAKING_SOME_SCREENSHOTS"
 msgstr ""
 
 msgid "TUTORIAL"
+msgstr ""
+
+msgid "TUTORIAL_ALL_NOT_ENABLED_EXPLANATION"
 msgstr ""
 
 msgid "TUTORIAL_MICROBE_EDITOR_ATP_BALANCE_INTRO"
@@ -5594,10 +5677,19 @@ msgstr ""
 msgid "TUTORIAL_MICROBE_EDITOR_CHEMORECEPTOR"
 msgstr ""
 
+msgid "TUTORIAL_MICROBE_EDITOR_COMPOUND_BALANCES"
+msgstr ""
+
 msgid "TUTORIAL_MICROBE_EDITOR_ENDING_TEXT"
 msgstr ""
 
 msgid "TUTORIAL_MICROBE_EDITOR_FLAGELLUM"
+msgstr ""
+
+msgid "TUTORIAL_MICROBE_EDITOR_FOOD_CHAIN"
+msgstr ""
+
+msgid "TUTORIAL_MICROBE_EDITOR_MIGRATION"
 msgstr ""
 
 msgid "TUTORIAL_MICROBE_EDITOR_MODIFY_ORGANELLE"
@@ -5639,13 +5731,28 @@ msgstr ""
 msgid "TUTORIAL_MICROBE_STAGE_ENGULFMENT_TEXT"
 msgstr ""
 
+msgid "TUTORIAL_MICROBE_STAGE_ENVIRONMENT_PANEL"
+msgstr ""
+
 msgid "TUTORIAL_MICROBE_STAGE_HELP_MENU_AND_ZOOM"
 msgstr ""
 
 msgid "TUTORIAL_MICROBE_STAGE_LEAVE_COLONY_TEXT"
 msgstr ""
 
+msgid "TUTORIAL_MICROBE_STAGE_OPEN_PROCESS_PANEL"
+msgstr ""
+
+msgid "TUTORIAL_MICROBE_STAGE_PAUSING"
+msgstr ""
+
+msgid "TUTORIAL_MICROBE_STAGE_PROCESS_PANEL"
+msgstr ""
+
 msgid "TUTORIAL_MICROBE_STAGE_REPRODUCE_TEXT"
+msgstr ""
+
+msgid "TUTORIAL_MICROBE_STAGE_RESOURCE_SPLIT"
 msgstr ""
 
 msgid "TUTORIAL_MICROBE_STAGE_UNBIND_TEXT"
@@ -5931,6 +6038,9 @@ msgid "VIEW_PENDING_ACTIONS"
 msgstr ""
 
 msgid "VIEW_SOURCE_CODE"
+msgstr ""
+
+msgid "VIEW_TEXT_REPORT"
 msgstr ""
 
 msgid "VIP_PATRONS"

@@ -7,8 +7,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2025-03-18 21:56+0100\n"
-"PO-Revision-Date: 2025-02-06 13:29+0000\n"
+"POT-Creation-Date: 2025-03-27 09:59+0200\n"
+"PO-Revision-Date: 2025-03-20 20:10+0000\n"
 "Last-Translator: Anonymous <noreply@weblate.org>\n"
 "Language-Team: Estonian <https://translate.revolutionarygamesstudio.com/projects/thrive/thrive-game/et/>\n"
 "Language: et\n"
@@ -341,6 +341,10 @@ msgid "AUTO-EVO_PREDICTION_BOX_DESCRIPTION"
 msgstr ""
 "See paneel näitab redigeeritud liikide eeldatavat auto-evo populatsiooni arvu.\n"
 "Auto-evo käivitab populatsiooni simulatsiooni, mis on teine osa (peale teie enda jõudluse), mis mõjutab teie populatsiooni."
+
+#, fuzzy
+msgid "AUTO-EVO_RESULTS_TITLE"
+msgstr "Auto-evo tulemused:"
 
 msgid "AUTO-EVO_STEPS_DONE"
 msgstr "{0:F1}% valmis. {1:n0}/{2:n0} sammu."
@@ -692,6 +696,10 @@ msgid "CELL_STAT_SPEED_TOOLTIP"
 msgstr "Peata mäng"
 
 #, fuzzy
+msgid "CELL_STAT_STORAGE_TOOLTIP"
+msgstr "Peata mäng"
+
+#, fuzzy
 msgid "CELL_TYPE_BUTTON_ATP_CONSUMPTION"
 msgstr "{0}: -{1} ATP"
 
@@ -824,6 +832,10 @@ msgstr "Vanade salvestuste puhastamine"
 
 msgid "CLEAR_CACHE"
 msgstr ""
+
+#, fuzzy
+msgid "CLICK_TO_SELECT"
+msgstr "Kustuta valitud"
 
 msgid "CLOSE"
 msgstr "Sulge"
@@ -2110,27 +2122,6 @@ msgstr "lehtersuue"
 msgid "EVENT_ERUPTION_TOOLTIP"
 msgstr "vabasurm"
 
-msgid "EVENT_METEOR_GLUCOSE"
-msgstr ""
-
-#, fuzzy
-msgid "EVENT_METEOR_IRON"
-msgstr "{0}: +{1} ATP"
-
-#, fuzzy
-msgid "EVENT_METEOR_PHOSPHATES"
-msgstr "Kudede fosfaat"
-
-#, fuzzy
-msgid "EVENT_METEOR_PLAIN"
-msgstr "vabasurm"
-
-msgid "EVENT_METEOR_RADIOACTIVE"
-msgstr ""
-
-msgid "EVENT_METEOR_SULFUR"
-msgstr ""
-
 #, fuzzy
 msgid "EVOLUTIONARY_TREE"
 msgstr "Autor Revolutionary Games Studio"
@@ -2558,16 +2549,14 @@ msgid "GLOBAL_GLACIATION_EVENT"
 msgstr "Rahvaarv kokku:"
 
 #, fuzzy
-msgid "GLOBAL_GLACIATION_EVENT_LOG"
-msgstr "Rahvaarv kokku:"
-
-#, fuzzy
 msgid "GLOBAL_GLACIATION_EVENT_TOOLTIP"
 msgstr "vabasurm"
 
-#, fuzzy
-msgid "GLOBAL_GLACIATION_EVENT_WARNING_LOG"
-msgstr "Rahvaarv kokku:"
+msgid "GLOBAL_GLACIATION_EVENT_WARNING_LOG_PLURAL"
+msgstr ""
+
+msgid "GLOBAL_GLACIATION_EVENT_WARNING_LOG_SINGULAR"
+msgstr ""
 
 msgid "GLOBAL_GLACIATION_START_EVENT_LOG"
 msgstr ""
@@ -3623,16 +3612,6 @@ msgstr ""
 "Seda ei saa automaatselt tuvastada, kas hüperkeermestamine on lubatud või mitte.\n"
 "See mõjutab lõimede vaikearvu, kuna hüperlõime lõimed ei ole nii kiired kui tõelised protsessori tuumad."
 
-msgid "METEOR_IMPACT_EVENT"
-msgstr ""
-
-#, fuzzy
-msgid "METEOR_IMPACT_EVENT_LOG"
-msgstr "Rahvaarv kokku:"
-
-msgid "METEOR_STRIKE_START_EVENT_LOG"
-msgstr ""
-
 #, fuzzy
 msgid "METRICS"
 msgstr "FPS-kuva sisse- ja väljalülitamine"
@@ -3866,6 +3845,7 @@ msgstr ""
 "\n"
 "Järgige joont oma rakust lähedalasuva glükoosini."
 
+#, fuzzy
 msgid "MICROBE_STAGE_COLLECT_TEXT"
 msgstr ""
 "Koguge glükoosi (valged pilved), liikudes nende kohal.\n"
@@ -3874,6 +3854,7 @@ msgstr ""
 "\n"
 "Järgige joont oma rakust lähedalasuva glükoosini."
 
+#, fuzzy
 msgid "MICROBE_STAGE_CONTROL_TEXT"
 msgstr ""
 "Lahtri juhtimiseks kasutage lahtri lähedal (ekraani keskel) kuvatavaid klahve ja lahtri orientatsiooni juhtimiseks hiirt.\n"
@@ -3888,13 +3869,6 @@ msgstr ""
 "Jätkamiseks proovige mõni sekund kõiki klahve."
 
 #, fuzzy
-msgid "MICROBE_STAGE_DAY_NIGHT_TEXT"
-msgstr ""
-"Hoidke oma terviseribal silm peal ATP riba kõrval (all paremal).\n"
-"Teie rakk sureb, kui selle tervis otsa saab.\n"
-"Kui teil on ATP, taastate tervist.\n"
-"Veenduge, et kogute piisavalt glükoosi ATP tootmiseks."
-
 msgid "MICROBE_STAGE_HEALTH_TEXT"
 msgstr ""
 "Hoidke oma terviseribal silm peal ATP riba kõrval (all paremal).\n"
@@ -4045,6 +4019,9 @@ msgstr "Modifitseerimisjuhised on saadaval aadressil"
 #, fuzzy
 msgid "MODELS"
 msgstr "Jumalarežiim"
+
+msgid "MODE_CAN_BE_CHANGED_IN_OPTIONS"
+msgstr ""
 
 msgid "MODIFY"
 msgstr "Muutma"
@@ -5040,6 +5017,10 @@ msgstr "Mängija on välja surnud"
 msgid "PLAYER_RELATIVE_MOVEMENT"
 msgstr "Mängija on välja surnud"
 
+#, fuzzy
+msgid "PLAYER_RELATIVE_MOVEMENT_TOOLTIP"
+msgstr "Mängija on välja surnud"
+
 msgid "PLAYER_REPRODUCED"
 msgstr "mängija reprodutseeritud"
 
@@ -5123,6 +5104,10 @@ msgstr "Rakuprotsessid"
 msgid "PROCESS_SPEED_MODIFIER"
 msgstr "Rakuprotsessid"
 
+#, fuzzy
+msgid "PROCESS_TOGGLE_TOOLTIP"
+msgstr "Tagasi menüüsse"
+
 msgid "PROGRAMMING_TEAM"
 msgstr "Programmeerimismeeskond"
 
@@ -5137,6 +5122,10 @@ msgstr "Protoplasma"
 
 msgid "PULL_REQUESTS_PROGRAMMING"
 msgstr "Tõmbetaotlused / programmeerimine"
+
+#, fuzzy
+msgid "QUADRILLION_ABBREVIATION"
+msgstr "{0} B"
 
 msgid "QUICK_LOAD"
 msgstr "Kiire laadimine"
@@ -5271,6 +5260,14 @@ msgstr "Lähtestage sisendid"
 
 msgid "RESET_SETTINGS_TO_DEFAULTS"
 msgstr "normaalne"
+
+#, fuzzy
+msgid "RESET_SHOWN_TUTORIALS"
+msgstr "Näita õpetusi"
+
+#, fuzzy
+msgid "RESET_SHOWN_TUTORIALS_TOOLTIP"
+msgstr "Möödunud aeg: {0:#,#} aastat"
 
 msgid "RESET_TO_DEFAULTS"
 msgstr "Kas lähtestada normaalseks?"
@@ -5539,6 +5536,10 @@ msgstr "Kuvamisvõimaluste riba"
 msgid "SCREEN_RELATIVE_MOVEMENT"
 msgstr ""
 
+#, fuzzy
+msgid "SCREEN_RELATIVE_MOVEMENT_TOOLTIP"
+msgstr "Aluse liikumine"
+
 msgid "SCROLLLOCK"
 msgstr "Kerimislukk"
 
@@ -5564,6 +5565,10 @@ msgstr "Jätkake mängu"
 #, fuzzy
 msgid "SEED_LABEL"
 msgstr "biome: {0}"
+
+#, fuzzy
+msgid "SELECTED"
+msgstr "Valitud mod:"
 
 msgid "SELECTED_COLON"
 msgstr "Valitud:"
@@ -5603,6 +5608,10 @@ msgstr "Valige redigeerija vahekaardil lahtri tüüp, mida siin redigeerida"
 msgid "SELECT_ENZYME"
 msgstr "Valitud mod:"
 
+#, fuzzy
+msgid "SELECT_MOVEMENT_MODE_TITLE"
+msgstr "Eemaldage kohalikud andmed"
+
 msgid "SELECT_OPTION"
 msgstr "Valige valik"
 
@@ -5640,6 +5649,14 @@ msgid "SHIFT"
 msgstr "SHIFT"
 
 #, fuzzy
+msgid "SHOW_ALL_TUTORIALS"
+msgstr "Näita õpetusi"
+
+#, fuzzy
+msgid "SHOW_ALL_TUTORIALS_TOOLTIP"
+msgstr "Möödunud aeg: {0:#,#} aastat"
+
+#, fuzzy
 msgid "SHOW_DAMAGE_EFFECT"
 msgstr "Lipu (mitmuses: flagella) on piitsataoline valgukiudude kimp, mis ulatub välja rakumembraanist, mis kasutab ATP-d raku lainetamiseks ja liikumiseks teatud suunas. Lipu asend määrab suuna, milles see raku liikumiseks tõukejõu annab. Tõukejõu suund on vastupidine suunale, kuhu lipp on suunatud, näiteks raku vasakule küljele asetatud lipp annab paremale liikumisel tõukejõu."
 
@@ -5658,14 +5675,15 @@ msgstr "{0} {1}"
 msgid "SHOW_NEW_PATCH_NOTES_TOOLTIP"
 msgstr "{0} {1}"
 
-msgid "SHOW_TUTORIALS"
-msgstr "Näita õpetusi"
-
 msgid "SHOW_TUTORIALS_IN_NEW_CURRENT_OPTION"
 msgstr "Näita õpetusi (praeguses mängus)"
 
 msgid "SHOW_TUTORIALS_IN_NEW_GAMES_OPTION"
 msgstr "Näita õpetusi (uutes mängudes)"
+
+#, fuzzy
+msgid "SHOW_TUTORIALS_OPTION_TOOLTIP"
+msgstr "Möödunud aeg: {0:#,#} aastat"
 
 msgid "SHOW_UNSAVED_PROGRESS_WARNING"
 msgstr "Kuva salvestamata edenemise hoiatus"
@@ -5991,6 +6009,10 @@ msgstr ""
 msgid "STORE_LOGGED_IN_AS"
 msgstr "Sisse logitud kui: {0}"
 
+#, fuzzy
+msgid "STRAIN_BAR_TOOLTIP"
+msgstr "Peata mäng"
+
 msgid "STRAIN_BAR_VISIBILITY"
 msgstr ""
 
@@ -6272,6 +6294,14 @@ msgstr "Näita kohalikke sündmusi"
 msgid "TIMELINE_NICHE_FILL"
 msgstr "[u]{0}[/u] eraldus niši täitmiseks uue liigina [u]{1}[/u]-st"
 
+#, fuzzy
+msgid "TIMELINE_PLAYER_MIGRATED"
+msgstr "Osa elanikkonnast [u]{0}[/u] on rännanud asukohta {1}"
+
+#, fuzzy
+msgid "TIMELINE_PLAYER_MIGRATED_TO"
+msgstr "Osa elanikkonnast [u]{0}[/u] on rännanud asukohta {1}"
+
 msgid "TIMELINE_SELECTION_PRESSURE_SPLIT"
 msgstr "[u]{0}[/u] eraldus erineva valikusurve tõttu uuest liigist [u]{1}[/u]"
 
@@ -6289,6 +6319,10 @@ msgstr "[u]{0}[/u] on välja surnud!"
 
 msgid "TIMELINE_SPECIES_EXTINCT_LOCAL"
 msgstr "[u]{0}[/u] on sellelt paigalt kadunud"
+
+#, fuzzy
+msgid "TIMELINE_SPECIES_FOLLOWED"
+msgstr "[u]{0}[/u] on välja surnud!"
 
 msgid "TIMELINE_SPECIES_MIGRATED_FROM"
 msgstr "Osa [u]{0}[/u] elanikkonnast on sellesse plaastrisse rännanud asukohast {1}"
@@ -6526,6 +6560,10 @@ msgid "TRANSPARENCY"
 msgstr "Tõlkijad"
 
 #, fuzzy
+msgid "TRILLION_ABBREVIATION"
+msgstr "{0} B"
+
+#, fuzzy
 msgid "TRY_FOSSILISING_SOME_SPECIES"
 msgstr "Proovige teha ekraanipilte!"
 
@@ -6537,6 +6575,13 @@ msgstr "Proovige teha ekraanipilte!"
 
 msgid "TUTORIAL"
 msgstr "Õpetus"
+
+#, fuzzy
+msgid "TUTORIAL_ALL_NOT_ENABLED_EXPLANATION"
+msgstr ""
+"Keskendunud mikroobid otsivad tükke või saaki suuremate vahemaade tagant\n"
+"ja võib olla tükkide osas palju ambitsioonikam.\n"
+"Reageerivad mikroobid lülituvad varem uutele sihtmärkidele."
 
 #, fuzzy
 msgid "TUTORIAL_MICROBE_EDITOR_ATP_BALANCE_INTRO"
@@ -6559,6 +6604,7 @@ msgstr ""
 "\n"
 "Täpsemat teavet ennustuse taga saate vaadata, kui vajutate paneelil küsimärgi nuppu. Jätkamiseks vajutage seda."
 
+#, fuzzy
 msgid "TUTORIAL_MICROBE_EDITOR_CELL_TEXT"
 msgstr ""
 "See on rakuredaktor, kus saate mutatsioonipunkte (MP) kulutades oma liike arendada. Igal põlvkonnal on teil alati kulutamiseks 100 MP, nii et ärge vaevu säästma!\n"
@@ -6576,6 +6622,18 @@ msgstr ""
 "\n"
 "Jätkamiseks valige vasakpoolsest paneelist osa. Seejärel klõpsake selle asetamiseks vasakklahvi kuusiku kõrval. Osasid saate pöörata A ja D abil (vaikeklahvid)."
 
+#, fuzzy
+msgid "TUTORIAL_MICROBE_EDITOR_COMPOUND_BALANCES"
+msgstr ""
+"See on plaastri kaart.\n"
+"\n"
+"Iga ikoon tähistab unikaalset keskkonda, kus saate asuda. Paremal olev paneel kirjeldab hetkel valitud paiga tingimusi.\n"
+"\n"
+"Kui valite teie hõivatud paigaga ühendatud paiga, mis on esile tõstetud õhukese tsüaani äärisega, saate sinna migreerimiseks vajutada paremal asuvat nuppu \"Teisalda sellele paigale\".\n"
+"\n"
+"Jätkamiseks proovige valida plaaster."
+
+#, fuzzy
 msgid "TUTORIAL_MICROBE_EDITOR_ENDING_TEXT"
 msgstr ""
 "Need on teie liigi redigeerimise põhitõed. Viimase lihvina saate oma liigi ümber nimetada, klõpsates all vasakus nimes ja muutes teksti.\n"
@@ -6588,6 +6646,26 @@ msgstr ""
 
 #, fuzzy
 msgid "TUTORIAL_MICROBE_EDITOR_FLAGELLUM"
+msgstr ""
+"See on rakuredaktor, kus saate mutatsioonipunkte (MP) kulutades oma liike arendada. Igal põlvkonnal on teil alati kulutamiseks 100 MP, nii et ärge vaevu säästma!\n"
+"\n"
+"Ekraani keskel olev kuusnurk on teie rakk, mis koosneb ühest tsütoplasma osast.\n"
+"\n"
+"Jätkamiseks valige vasakpoolsest paneelist osa. Seejärel klõpsake selle asetamiseks vasakklahvi kuusiku kõrval. Osasid saate pöörata A ja D abil (vaikeklahvid)."
+
+#, fuzzy
+msgid "TUTORIAL_MICROBE_EDITOR_FOOD_CHAIN"
+msgstr ""
+"Need on teie liigi redigeerimise põhitõed. Viimase lihvina saate oma liigi ümber nimetada, klõpsates all vasakus nimes ja muutes teksti.\n"
+"\n"
+"Proovige uurida teisi MP-riba all olevaid vahekaarte, et näha, kuidas saate oma lahtrit veel kohandada.\n"
+"\n"
+"Selles karmis maailmas ellujäämiseks peate leidma usaldusväärse energiaallika, kuna looduslik glükoosisisaldus väheneb kiiresti.\n"
+"\n"
+"Edu!"
+
+#, fuzzy
+msgid "TUTORIAL_MICROBE_EDITOR_MIGRATION"
 msgstr ""
 "See on rakuredaktor, kus saate mutatsioonipunkte (MP) kulutades oma liike arendada. Igal põlvkonnal on teil alati kulutamiseks 100 MP, nii et ärge vaevu säästma!\n"
 "\n"
@@ -6639,6 +6717,7 @@ msgstr ""
 "\n"
 "Jätkamiseks proovige valida plaaster."
 
+#, fuzzy
 msgid "TUTORIAL_MICROBE_EDITOR_PATCH_TEXT"
 msgstr ""
 "See on plaastri kaart.\n"
@@ -6667,6 +6746,7 @@ msgstr ""
 "\n"
 "Jätkamiseks vajutage taastegemise nuppu (tagasivõtmisnupu kõrval)."
 
+#, fuzzy
 msgid "TUTORIAL_MICROBE_EDITOR_STAY_SMALL"
 msgstr ""
 "Peaksite keskenduma spetsialiseerumisele, et ühest või kahest energiaallikast ellu jääda, nii et te ei vaja enda ülalpidamiseks korraga palju erinevaid ressursse.\n"
@@ -6715,6 +6795,13 @@ msgstr ""
 "\n"
 "Kolooniast täielikult lahkumiseks võite klõpsata oma lahtril või vajutada lahti sidumise klahvi."
 
+#, fuzzy
+msgid "TUTORIAL_MICROBE_STAGE_ENVIRONMENT_PANEL"
+msgstr ""
+"Olete sisenenud sidumise tühistamise režiimi. Selles režiimis saate klõpsata koloonia liikmetel, et need lahti siduda.\n"
+"\n"
+"Kolooniast täielikult lahkumiseks võite klõpsata oma lahtril või vajutada lahti sidumise klahvi."
+
 msgid "TUTORIAL_MICROBE_STAGE_HELP_MENU_AND_ZOOM"
 msgstr ""
 "Hädas? Kontrollige abimenüüd. Saate selle avada vasakus alanurgas oleva küsimärgi nupuga.\n"
@@ -6728,7 +6815,33 @@ msgstr ""
 "\n"
 "Kolooniast täielikult lahkumiseks võite klõpsata oma lahtril või vajutada lahti sidumise klahvi."
 
+#, fuzzy
+msgid "TUTORIAL_MICROBE_STAGE_OPEN_PROCESS_PANEL"
+msgstr ""
+"Paljunemiseks peate dubleerima kõik oma organellid, kogudes piisavalt ammoniaaki ja fosfaate.\n"
+"Vaadake all paremal asuvat suurt nuppu ümbritsevaid ribasid, et näha, kui palju rohkem vajate. Need ribad muutuvad täitmisel valgeks."
+
+#, fuzzy
+msgid "TUTORIAL_MICROBE_STAGE_PAUSING"
+msgstr ""
+"Olete sisenenud sidumise tühistamise režiimi. Selles režiimis saate klõpsata koloonia liikmetel, et need lahti siduda.\n"
+"\n"
+"Kolooniast täielikult lahkumiseks võite klõpsata oma lahtril või vajutada lahti sidumise klahvi."
+
+#, fuzzy
+msgid "TUTORIAL_MICROBE_STAGE_PROCESS_PANEL"
+msgstr ""
+"Paljunemiseks peate dubleerima kõik oma organellid, kogudes piisavalt ammoniaaki ja fosfaate.\n"
+"Vaadake all paremal asuvat suurt nuppu ümbritsevaid ribasid, et näha, kui palju rohkem vajate. Need ribad muutuvad täitmisel valgeks."
+
+#, fuzzy
 msgid "TUTORIAL_MICROBE_STAGE_REPRODUCE_TEXT"
+msgstr ""
+"Paljunemiseks peate dubleerima kõik oma organellid, kogudes piisavalt ammoniaaki ja fosfaate.\n"
+"Vaadake all paremal asuvat suurt nuppu ümbritsevaid ribasid, et näha, kui palju rohkem vajate. Need ribad muutuvad täitmisel valgeks."
+
+#, fuzzy
+msgid "TUTORIAL_MICROBE_STAGE_RESOURCE_SPLIT"
 msgstr ""
 "Paljunemiseks peate dubleerima kõik oma organellid, kogudes piisavalt ammoniaaki ja fosfaate.\n"
 "Vaadake all paremal asuvat suurt nuppu ümbritsevaid ribasid, et näha, kui palju rohkem vajate. Need ribad muutuvad täitmisel valgeks."
@@ -7067,6 +7180,9 @@ msgstr ""
 
 msgid "VIEW_SOURCE_CODE"
 msgstr "Vaadake lähtekoodi"
+
+msgid "VIEW_TEXT_REPORT"
+msgstr ""
 
 msgid "VIP_PATRONS"
 msgstr "VIP toetajad"
@@ -9112,20 +9228,16 @@ msgid "ZOOM_OUT"
 msgstr "Suumi välja"
 
 #, fuzzy
-#~ msgid "GLUCOSE_METEOR"
-#~ msgstr "Glükoos"
+#~ msgid "MICROBE_STAGE_DAY_NIGHT_TEXT"
+#~ msgstr ""
+#~ "Hoidke oma terviseribal silm peal ATP riba kõrval (all paremal).\n"
+#~ "Teie rakk sureb, kui selle tervis otsa saab.\n"
+#~ "Kui teil on ATP, taastate tervist.\n"
+#~ "Veenduge, et kogute piisavalt glükoosi ATP tootmiseks."
 
 #, fuzzy
-#~ msgid "IRON_METEOR"
-#~ msgstr "Keskkond"
-
-#, fuzzy
-#~ msgid "PHOSPHATE_METEOR"
-#~ msgstr "fosfaat"
-
-#, fuzzy
-#~ msgid "RADIOACTIVE_METEOR"
-#~ msgstr "Suur raua tükk"
+#~ msgid "GLOBAL_GLACIATION_EVENT_LOG"
+#~ msgstr "Rahvaarv kokku:"
 
 #~ msgid "IRON_CHEMOLITHOAUTOTROPHY"
 #~ msgstr "Raua kemolitoautotroofia"
@@ -9321,6 +9433,10 @@ msgstr "Suumi välja"
 #, fuzzy
 #~ msgid "ERUPTION_IN"
 #~ msgstr "lootustandev"
+
+#, fuzzy
+#~ msgid "EVENT_TOOLTIP_ERUPTION"
+#~ msgstr "{0}: +{1} ATP"
 
 #~ msgid "THE_AMOUNT_OF_GLUCOSE_HAS_BEEN_REDUCED"
 #~ msgstr "Glükoosi kogust on vähendatud {0}-ni eelmisest kogusest."

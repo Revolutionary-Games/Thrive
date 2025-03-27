@@ -166,43 +166,45 @@ public static class MicrobeEnvironmentalToleranceCalculations
 
         if (data.TemperatureScore < 1)
         {
-            result.ProcessSpeedModifier *= Math.Max(0.9f, data.TemperatureScore);
+            result.ProcessSpeedModifier *=
+                Math.Max(Constants.TOLERANCE_TEMPERATURE_SPEED_MODIFIER_MIN, data.TemperatureScore);
 
-            result.OsmoregulationModifier *= Math.Min(1.1f, 2 - data.TemperatureScore);
+            result.OsmoregulationModifier *= Math.Min(Constants.TOLERANCE_TEMPERATURE_OSMOREGULATION_MAX,
+                2 - data.TemperatureScore);
 
-            result.HealthModifier *= Math.Max(0.9f, data.TemperatureScore);
+            result.HealthModifier *= Math.Max(Constants.TOLERANCE_TEMPERATURE_HEALTH_MIN, data.TemperatureScore);
         }
         else if (data.TemperatureScore > 1)
         {
-            result.ProcessSpeedModifier *= Math.Max(1.1f, data.TemperatureScore);
+            result.ProcessSpeedModifier *=
+                Math.Max(Constants.TOLERANCE_TEMPERATURE_SPEED_BUFF_MAX, data.TemperatureScore);
         }
 
         if (data.PressureScore < 1)
         {
-            result.ProcessSpeedModifier *= Math.Max(0.9f, data.PressureScore);
-            result.OsmoregulationModifier *= Math.Min(1.1f, 2 - data.PressureScore);
-            result.HealthModifier *= Math.Max(0.5f, data.PressureScore);
+            result.ProcessSpeedModifier *=
+                Math.Max(Constants.TOLERANCE_PRESSURE_SPEED_MODIFIER_MIN, data.PressureScore);
+            result.OsmoregulationModifier *=
+                Math.Min(Constants.TOLERANCE_PRESSURE_OSMOREGULATION_MAX, 2 - data.PressureScore);
+            result.HealthModifier *= Math.Max(Constants.TOLERANCE_PRESSURE_HEALTH_MIN, data.PressureScore);
         }
         else if (data.PressureScore > 1)
         {
-            result.HealthModifier *= Math.Max(1.2f, data.PressureScore);
+            result.HealthModifier *= Math.Max(Constants.TOLERANCE_PRESSURE_HEALTH_BUFF_MAX, data.PressureScore);
         }
 
         if (data.OxygenScore < 1)
         {
-            result.HealthModifier *= Math.Max(0.5f, data.OxygenScore);
-            result.OsmoregulationModifier *= Math.Min(1.5f, 2 - data.OxygenScore);
+            result.HealthModifier *= Math.Max(Constants.TOLERANCE_OXYGEN_HEALTH_MIN, data.OxygenScore);
+            result.OsmoregulationModifier *=
+                Math.Min(Constants.TOLERANCE_OXYGEN_OSMOREGULATION_MAX, 2 - data.OxygenScore);
         }
 
         if (data.UVScore < 1)
         {
-            result.HealthModifier *= Math.Max(0.5f, data.UVScore);
-            result.OsmoregulationModifier *= Math.Min(1.5f, 2 - data.UVScore);
+            result.HealthModifier *= Math.Max(Constants.TOLERANCE_UV_HEALTH_MIN, data.UVScore);
+            result.OsmoregulationModifier *= Math.Min(Constants.TOLERANCE_UV_OSMOREGULATION_MAX, 2 - data.UVScore);
         }
-
-        // TODO: figure out why really bad pressure score species appear in the first generation
-        /*if(data.PressureScore <= 0)
-            Debugger.Break();*/
 
 #if DEBUG
         if (result.OsmoregulationModifier <= MathUtils.EPSILON)

@@ -1,0 +1,156 @@
+[gd_scene load_steps=5 format=3 uid="uid://cjo7cvvdvljxm"]
+
+[ext_resource type="Script" uid="uid://thf0wxjgtadk" path="res://src/microbe_stage/gui/MovementModeSelectionPopup.cs" id="1_j4wd8"]
+[ext_resource type="PackedScene" uid="uid://du8sc8kjirguk" path="res://src/gui_common/dialogs/CustomWindow.tscn" id="2_k7xhd"]
+[ext_resource type="PackedScene" uid="uid://bgeijgq7runaw" path="res://src/gui_common/FocusGrabber.tscn" id="3_k7xhd"]
+[ext_resource type="LabelSettings" uid="uid://dvqx73nhtr0y2" path="res://src/gui_common/fonts/Body-Regular-Small.tres" id="3_xgpmt"]
+
+[node name="MovementModeSelectionPopup" type="Control" node_paths=PackedStringArray("actualPopup", "cellRelativePlayer", "cellRelativeCheckBox", "screenRelativePlayer", "screenRelativeCheckBox", "dismissPermanentlyCheckBox")]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+script = ExtResource("1_j4wd8")
+actualPopup = NodePath("Popup")
+cellRelativePlayer = NodePath("Popup/VBoxContainer/HBoxContainer/Left/MarginContainer/CellPlayer")
+cellRelativeCheckBox = NodePath("Popup/VBoxContainer/HBoxContainer/Left/SelectLeft")
+screenRelativePlayer = NodePath("Popup/VBoxContainer/HBoxContainer/Right/MarginContainer/ScreenPlayer")
+screenRelativeCheckBox = NodePath("Popup/VBoxContainer/HBoxContainer/Right/SelectRight")
+dismissPermanentlyCheckBox = NodePath("Popup/VBoxContainer/DismissPermanently")
+
+[node name="Popup" parent="." instance=ExtResource("2_k7xhd")]
+process_mode = 3
+custom_minimum_size = Vector2(750, 450)
+WindowTitle = "SELECT_MOVEMENT_MODE_TITLE"
+Resizable = true
+Exclusive = true
+
+[node name="VBoxContainer" type="VBoxContainer" parent="Popup"]
+custom_minimum_size = Vector2(750, 0)
+layout_mode = 0
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="HBoxContainer" type="HBoxContainer" parent="Popup/VBoxContainer"]
+layout_mode = 2
+
+[node name="Left" type="VBoxContainer" parent="Popup/VBoxContainer/HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+tooltip_text = "PLAYER_RELATIVE_MOVEMENT_TOOLTIP"
+mouse_filter = 0
+
+[node name="Label" type="Label" parent="Popup/VBoxContainer/HBoxContainer/Left"]
+layout_mode = 2
+mouse_filter = 1
+text = "PLAYER_RELATIVE_MOVEMENT"
+horizontal_alignment = 1
+
+[node name="MarginContainer" type="MarginContainer" parent="Popup/VBoxContainer/HBoxContainer/Left"]
+layout_mode = 2
+
+[node name="CellPlayer" type="VideoStreamPlayer" parent="Popup/VBoxContainer/HBoxContainer/Left/MarginContainer"]
+custom_minimum_size = Vector2(240, 300)
+layout_mode = 2
+mouse_filter = 1
+volume_db = -80.0
+expand = true
+loop = true
+
+[node name="SelectLeft" type="CheckBox" parent="Popup/VBoxContainer/HBoxContainer/Left"]
+layout_mode = 2
+size_flags_horizontal = 4
+focus_neighbor_left = NodePath(".")
+focus_neighbor_top = NodePath(".")
+focus_neighbor_right = NodePath("../../Right/SelectRight")
+focus_neighbor_bottom = NodePath("../../../DismissPermanently")
+focus_next = NodePath("../../../DismissPermanently")
+focus_previous = NodePath("../../Right/SelectRight")
+text = "SELECTED"
+
+[node name="VSeparator" type="VSeparator" parent="Popup/VBoxContainer/HBoxContainer"]
+layout_mode = 2
+
+[node name="Right" type="VBoxContainer" parent="Popup/VBoxContainer/HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+tooltip_text = "SCREEN_RELATIVE_MOVEMENT_TOOLTIP"
+mouse_filter = 0
+
+[node name="Label" type="Label" parent="Popup/VBoxContainer/HBoxContainer/Right"]
+layout_mode = 2
+mouse_filter = 1
+text = "SCREEN_RELATIVE_MOVEMENT"
+horizontal_alignment = 1
+
+[node name="MarginContainer" type="MarginContainer" parent="Popup/VBoxContainer/HBoxContainer/Right"]
+layout_mode = 2
+
+[node name="ScreenPlayer" type="VideoStreamPlayer" parent="Popup/VBoxContainer/HBoxContainer/Right/MarginContainer"]
+custom_minimum_size = Vector2(240, 300)
+layout_mode = 2
+mouse_filter = 1
+volume_db = -80.0
+expand = true
+loop = true
+
+[node name="SelectRight" type="CheckBox" parent="Popup/VBoxContainer/HBoxContainer/Right"]
+layout_mode = 2
+size_flags_horizontal = 4
+focus_neighbor_left = NodePath("../../Left/SelectLeft")
+focus_neighbor_top = NodePath(".")
+focus_neighbor_right = NodePath(".")
+focus_neighbor_bottom = NodePath("../../../DismissPermanently")
+focus_next = NodePath("../../../DismissPermanently")
+focus_previous = NodePath("../../Left/SelectLeft")
+text = "SELECTED"
+
+[node name="Label" type="Label" parent="Popup/VBoxContainer"]
+custom_minimum_size = Vector2(100, 0)
+layout_mode = 2
+text = "MODE_CAN_BE_CHANGED_IN_OPTIONS"
+label_settings = ExtResource("3_xgpmt")
+horizontal_alignment = 1
+autowrap_mode = 3
+
+[node name="Spacer" type="Control" parent="Popup/VBoxContainer"]
+layout_mode = 2
+size_flags_vertical = 3
+
+[node name="FocusGrabber" parent="Popup/VBoxContainer" instance=ExtResource("3_k7xhd")]
+layout_mode = 2
+Priority = 2
+NodeToGiveFocusTo = NodePath("../Accept")
+GrabFocusWhenBecomingVisible = true
+
+[node name="DismissPermanently" type="CheckBox" parent="Popup/VBoxContainer"]
+layout_mode = 2
+focus_neighbor_left = NodePath("../HBoxContainer/Left/SelectLeft")
+focus_neighbor_top = NodePath("../HBoxContainer/Left/SelectLeft")
+focus_neighbor_right = NodePath("../HBoxContainer/Right/SelectRight")
+focus_neighbor_bottom = NodePath("../Accept")
+focus_next = NodePath("../Accept")
+focus_previous = NodePath("../HBoxContainer/Left/SelectLeft")
+button_pressed = true
+text = "DISMISS_INFORMATION_PERMANENTLY"
+
+[node name="Accept" type="Button" parent="Popup/VBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 4
+focus_neighbor_left = NodePath("../DismissPermanently")
+focus_neighbor_top = NodePath("../DismissPermanently")
+focus_neighbor_right = NodePath("../DismissPermanently")
+focus_neighbor_bottom = NodePath(".")
+focus_next = NodePath("../HBoxContainer/Left/SelectLeft")
+focus_previous = NodePath("../DismissPermanently")
+text = "ACCEPT"
+
+[connection signal="Canceled" from="Popup" to="." method="OnClose"]
+[connection signal="gui_input" from="Popup/VBoxContainer/HBoxContainer/Left" to="." method="LeftSideGUIInput"]
+[connection signal="toggled" from="Popup/VBoxContainer/HBoxContainer/Left/SelectLeft" to="." method="LeftSelectionChanged"]
+[connection signal="gui_input" from="Popup/VBoxContainer/HBoxContainer/Right" to="." method="RightSideGUIInput"]
+[connection signal="toggled" from="Popup/VBoxContainer/HBoxContainer/Right/SelectRight" to="." method="RightSelectionChanged"]
+[connection signal="pressed" from="Popup/VBoxContainer/Accept" to="." method="OnAccepted"]
