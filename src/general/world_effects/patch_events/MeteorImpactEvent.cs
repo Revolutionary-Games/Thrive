@@ -87,7 +87,7 @@ public class MeteorImpactEvent : IWorldEffect
         }
 
         double cumulative = 0.0;
-        for (var i = 0; i < chances.Count; i++)
+        for (var i = 0; i < chances.Count; ++i)
         {
             cumulative += chances[i];
             if (probability <= cumulative)
