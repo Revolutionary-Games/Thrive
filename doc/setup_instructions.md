@@ -24,7 +24,7 @@ Prerequisites
 Godot .NET version
 ------------------
 
-The currently used Godot version is __4.4 .NET__. The regular version
+The currently used Godot version is __4.4.1 .NET__. The regular version
 will not work. You can download Godot here: https://godotengine.org/download/
 if it is still the latest stable version. If a new version of Godot has
 been released but Thrive has not been updated yet, you need to look
