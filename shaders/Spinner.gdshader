@@ -5,8 +5,8 @@ Vertex is used for better performance, however it requires the size property val
 Fragment is less performant but can be used to avoid passing the size in case the assets using this shader become too many.
 */
 
-
-uniform float rotationSpeed = 1.0; //Use negative numbers to rotate counterclockwise
+//Use negative numbers to rotate counterclockwise
+uniform float rotationSpeed = 1.0;
 
 //This is done to ensure this shader will work with assets that have been scaled down in engine. Comment to use fragment
 uniform float sizeX = 0;
