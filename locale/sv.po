@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2025-03-09 11:58-0300\n"
+"POT-Creation-Date: 2025-03-27 09:59+0200\n"
 "PO-Revision-Date: 2025-02-06 13:29+0000\n"
 "Last-Translator: Anonymous <noreply@weblate.org>\n"
 "Language-Team: Swedish <https://translate.revolutionarygamesstudio.com/projects/thrive/thrive-game/sv/>\n"
@@ -189,6 +189,9 @@ msgstr "Anaerob kvävefixering"
 msgid "AND_UNLOCK_CONDITION"
 msgstr "och"
 
+msgid "ANISOTROPIC_FILTERING"
+msgstr ""
+
 msgid "APPEARANCE"
 msgstr "Utseende"
 
@@ -324,6 +327,10 @@ msgid "AUTO-EVO_PREDICTION_BOX_DESCRIPTION"
 msgstr ""
 "Den här panelen visar den förväntade totala energin fått och populationsnummrerna (i paranteser) från auto-evo för den redigerade arten.\n"
 "Auto-evo kör populationssimulationen som är den andra delen (förutom din egen prestanda) som påverkar din population."
+
+#, fuzzy
+msgid "AUTO-EVO_RESULTS_TITLE"
+msgstr "Auto-evo resultat:"
 
 msgid "AUTO-EVO_STEPS_DONE"
 msgstr "{0:F1}% klart. {1:n0}/{2:n0} steg."
@@ -662,6 +669,10 @@ msgid "CELL_STAT_SPEED_TOOLTIP"
 msgstr "Fortsätt"
 
 #, fuzzy
+msgid "CELL_STAT_STORAGE_TOOLTIP"
+msgstr "Fortsätt"
+
+#, fuzzy
 msgid "CELL_TYPE_BUTTON_ATP_CONSUMPTION"
 msgstr "{0}: -{1} ATP"
 
@@ -800,6 +811,10 @@ msgstr ""
 
 msgid "CLEAR_CACHE"
 msgstr ""
+
+#, fuzzy
+msgid "CLICK_TO_SELECT"
+msgstr "Radera Valda"
 
 msgid "CLOSE"
 msgstr "Stäng"
@@ -2472,6 +2487,26 @@ msgstr "Självmord"
 msgid "GLES3"
 msgstr ""
 
+msgid "GLOBAL_GLACIATION_END_EVENT_LOG"
+msgstr ""
+
+#, fuzzy
+msgid "GLOBAL_GLACIATION_EVENT"
+msgstr "{0} befolkning förändrades av {1} på grund av: {2}"
+
+#, fuzzy
+msgid "GLOBAL_GLACIATION_EVENT_TOOLTIP"
+msgstr "Nå uppvakningsteget. Tillgänglig när du har tillräckigt med hjärnkraft (axonvävnad)."
+
+msgid "GLOBAL_GLACIATION_EVENT_WARNING_LOG_PLURAL"
+msgstr ""
+
+msgid "GLOBAL_GLACIATION_EVENT_WARNING_LOG_SINGULAR"
+msgstr ""
+
+msgid "GLOBAL_GLACIATION_START_EVENT_LOG"
+msgstr ""
+
 msgid "GLOBAL_INITIAL_LETTER"
 msgstr ""
 
@@ -2857,8 +2892,9 @@ msgstr "Protanope (Röd-Grön)"
 msgid "IRON"
 msgstr "Järn"
 
-msgid "IRON_CHEMOLITHOAUTOTROPHY"
-msgstr "Järnkemolitoautotrofi"
+#, fuzzy
+msgid "IRON_OXIDATION"
+msgstr "Donationer"
 
 #, fuzzy
 msgid "ITCH_TOOLTIP"
@@ -3746,22 +3782,6 @@ msgstr ""
 msgid "MICROBE_STAGE_CONTROL_TEXT_CONTROLLER"
 msgstr ""
 
-#, fuzzy
-msgid "MICROBE_STAGE_DAY_NIGHT_TEXT"
-msgstr ""
-"[b]Stadie[/b]\n"
-"  Mikrob\n"
-"[b]Membrantyp[/b]\n"
-"  {0}\n"
-"[b]Membranstelhet[/b]\n"
-"  {1}\n"
-"[b]Grundhastighet[/b]\n"
-"  {2}\n"
-"[b]Grunrotationshastighet[/b]\n"
-"  {3}\n"
-"[b]Grundhexstorlek[/b]\n"
-"  {4}"
-
 msgid "MICROBE_STAGE_HEALTH_TEXT"
 msgstr ""
 
@@ -3899,6 +3919,9 @@ msgstr ""
 
 msgid "MODELS"
 msgstr "Modeller"
+
+msgid "MODE_CAN_BE_CHANGED_IN_OPTIONS"
+msgstr ""
 
 msgid "MODIFY"
 msgstr "Modifiera"
@@ -4300,7 +4323,14 @@ msgstr "Ingenting här"
 msgid "NOTHING_TO_INTERACT_WITH"
 msgstr ""
 
+#, fuzzy
+msgid "NOTICE_BINDING_OUT_OF_ATP"
+msgstr "Växla bindning av och på"
+
 msgid "NOTICE_DAMAGED_BY_NO_ATP"
+msgstr ""
+
+msgid "NOTICE_ENGULFING_OUT_OF_ATP"
 msgstr ""
 
 msgid "NOTICE_ENGULF_DAMAGE_FROM_TOXIN"
@@ -4859,6 +4889,10 @@ msgstr "Duplicera Spelare"
 msgid "PLAYER_RELATIVE_MOVEMENT"
 msgstr "Duplicera Spelare"
 
+#, fuzzy
+msgid "PLAYER_RELATIVE_MOVEMENT_TOOLTIP"
+msgstr "Duplicera Spelare"
+
 msgid "PLAYER_REPRODUCED"
 msgstr "spelare fortplantad"
 
@@ -4941,6 +4975,10 @@ msgstr "Cellprocesser"
 msgid "PROCESS_SPEED_MODIFIER"
 msgstr "Cellprocesser"
 
+#, fuzzy
+msgid "PROCESS_TOGGLE_TOOLTIP"
+msgstr "Tillbaka till Menyn"
+
 msgid "PROGRAMMING_TEAM"
 msgstr "Programmering"
 
@@ -4955,6 +4993,10 @@ msgstr "Protoplasma"
 
 msgid "PULL_REQUESTS_PROGRAMMING"
 msgstr "Pull Requests / Programmering"
+
+#, fuzzy
+msgid "QUADRILLION_ABBREVIATION"
+msgstr "{0} B"
 
 msgid "QUICK_LOAD"
 msgstr "Snabbladda"
@@ -5091,6 +5133,14 @@ msgstr "Nollställ Inputs"
 
 msgid "RESET_SETTINGS_TO_DEFAULTS"
 msgstr "Default"
+
+#, fuzzy
+msgid "RESET_SHOWN_TUTORIALS"
+msgstr "Visa handledningar"
+
+#, fuzzy
+msgid "RESET_SHOWN_TUTORIALS_TOOLTIP"
+msgstr "Hjälp"
 
 msgid "RESET_TO_DEFAULTS"
 msgstr "Nollställ till default?"
@@ -5359,6 +5409,10 @@ msgstr "Visa förmågor"
 msgid "SCREEN_RELATIVE_MOVEMENT"
 msgstr "för att öka hastigheten"
 
+#, fuzzy
+msgid "SCREEN_RELATIVE_MOVEMENT_TOOLTIP"
+msgstr "för att öka hastigheten"
+
 msgid "SCROLLLOCK"
 msgstr "Scroll Lock"
 
@@ -5384,6 +5438,10 @@ msgstr "Slem sekretion"
 #, fuzzy
 msgid "SEED_LABEL"
 msgstr "Omgivning: {0}"
+
+#, fuzzy
+msgid "SELECTED"
+msgstr "Vald:"
 
 msgid "SELECTED_COLON"
 msgstr "Vald:"
@@ -5424,6 +5482,9 @@ msgstr "Välj en celltyp att redigera här från redigerarfliken"
 msgid "SELECT_ENZYME"
 msgstr "Välj Ett Alternativ"
 
+msgid "SELECT_MOVEMENT_MODE_TITLE"
+msgstr ""
+
 msgid "SELECT_OPTION"
 msgstr "Välj Ett Alternativ"
 
@@ -5460,6 +5521,14 @@ msgstr "SFX Volym"
 msgid "SHIFT"
 msgstr "SHIFT"
 
+#, fuzzy
+msgid "SHOW_ALL_TUTORIALS"
+msgstr "Visa handledningar"
+
+#, fuzzy
+msgid "SHOW_ALL_TUTORIALS_TOOLTIP"
+msgstr "Hjälp"
+
 msgid "SHOW_DAMAGE_EFFECT"
 msgstr ""
 
@@ -5478,9 +5547,6 @@ msgstr "Grotta"
 msgid "SHOW_NEW_PATCH_NOTES_TOOLTIP"
 msgstr "Grotta"
 
-msgid "SHOW_TUTORIALS"
-msgstr "Visa handledningar"
-
 #, fuzzy
 msgid "SHOW_TUTORIALS_IN_NEW_CURRENT_OPTION"
 msgstr "Visa hjälp (i nuvarande spel)"
@@ -5488,6 +5554,10 @@ msgstr "Visa hjälp (i nuvarande spel)"
 #, fuzzy
 msgid "SHOW_TUTORIALS_IN_NEW_GAMES_OPTION"
 msgstr "Visa hjälp (i nya spel)"
+
+#, fuzzy
+msgid "SHOW_TUTORIALS_OPTION_TOOLTIP"
+msgstr "Hjälp"
 
 msgid "SHOW_UNSAVED_PROGRESS_WARNING"
 msgstr "Visa osparade framstegsvarning"
@@ -5549,6 +5619,9 @@ msgstr "Kiseldioxid"
 
 msgid "SILICA_MEMBRANE_DESCRIPTION"
 msgstr ""
+
+msgid "SIXTEEN_TIMES"
+msgstr "16x"
 
 msgid "SIZE_COLON"
 msgstr "Storlek:"
@@ -5814,6 +5887,10 @@ msgstr ""
 
 msgid "STORE_LOGGED_IN_AS"
 msgstr "Inloggad som: {0}"
+
+#, fuzzy
+msgid "STRAIN_BAR_TOOLTIP"
+msgstr "Självmord"
 
 msgid "STRAIN_BAR_VISIBILITY"
 msgstr ""
@@ -6087,6 +6164,14 @@ msgstr ""
 msgid "TIMELINE_NICHE_FILL"
 msgstr "[u]{0}[/u] avvek från [u]{1}[/u] som en ny art för att fylla nisch"
 
+#, fuzzy
+msgid "TIMELINE_PLAYER_MIGRATED"
+msgstr "En del av [u]{0}[/u] befolkningen har migrerat till {1}"
+
+#, fuzzy
+msgid "TIMELINE_PLAYER_MIGRATED_TO"
+msgstr "En del av [u]{0}[/u] befolkningen har migrerat till {1}"
+
 msgid "TIMELINE_SELECTION_PRESSURE_SPLIT"
 msgstr "[u]{0}[/u] avvek från [u]{1}[/u] som en ny art på grund av olika urvalstryck"
 
@@ -6111,6 +6196,10 @@ msgstr "[u]{0}[/u] har gått utdöd!"
 
 msgid "TIMELINE_SPECIES_EXTINCT_LOCAL"
 msgstr "[u]{0}[/u] har lämnat denna platsen"
+
+#, fuzzy
+msgid "TIMELINE_SPECIES_FOLLOWED"
+msgstr "[u]{0}[/u] har gått utdöd!"
 
 msgid "TIMELINE_SPECIES_MIGRATED_FROM"
 msgstr "En del av [u]{0}[/u] befolkningen har migrerat till denna plats från {1}"
@@ -6350,6 +6439,10 @@ msgid "TRANSPARENCY"
 msgstr "Översättare"
 
 #, fuzzy
+msgid "TRILLION_ABBREVIATION"
+msgstr "{0} B"
+
+#, fuzzy
 msgid "TRY_FOSSILISING_SOME_SPECIES"
 msgstr "Testa att ta några screenshots!"
 
@@ -6361,6 +6454,14 @@ msgstr "Testa att ta några screenshots!"
 
 msgid "TUTORIAL"
 msgstr "Handledning"
+
+#, fuzzy
+msgid "TUTORIAL_ALL_NOT_ENABLED_EXPLANATION"
+msgstr ""
+"Aggressiva mikrober jagar byte över större avstånd\n"
+"och har större sannolikhet att kämpa emot när rovdjur attackerar.\n"
+"Fredliga mikrober attackerar inte andra över större avstånd\n"
+"och har lägre sannolikhet att använda gifter mot rovdjur."
 
 #, fuzzy
 msgid "TUTORIAL_MICROBE_EDITOR_ATP_BALANCE_INTRO"
@@ -6405,11 +6506,36 @@ msgstr ""
 "Cytoplasmer: Har lagringsutrymme och utför glykolys (producerar små mängder ATP)"
 
 #, fuzzy
+msgid "TUTORIAL_MICROBE_EDITOR_COMPOUND_BALANCES"
+msgstr "Mikrob Fri Byggredigerare"
+
+#, fuzzy
 msgid "TUTORIAL_MICROBE_EDITOR_ENDING_TEXT"
 msgstr "Mikrob Fri Byggredigerare"
 
 #, fuzzy
 msgid "TUTORIAL_MICROBE_EDITOR_FLAGELLUM"
+msgstr ""
+"Prokaryota strukturer\n"
+"\n"
+"Metabolosomer: Producerar ATP från glukos\n"
+"\n"
+"Kemosyntiserande proteiner: Producerar hälften av glukosen ur svavelväte som en kemoplast, men utför också glykolys, tar upp 1 hex\n"
+"\n"
+"Thylakoider: Producerar 1/3 av mängden glukos som en normal kloroplast, men utför också glykolys och tar upp 1 Hex\n"
+"\n"
+"Rusticyanin: Omvandlar järn till ATP\n"
+"\n"
+"Nitrogenas: Konverterar atmosfäriskt kväve och ATP till ammoniak anaerobt\n"
+"\n"
+"Cytoplasmer: Har lagringsutrymme och utför glykolys (producerar små mängder ATP)"
+
+#, fuzzy
+msgid "TUTORIAL_MICROBE_EDITOR_FOOD_CHAIN"
+msgstr "Mikrob Fri Byggredigerare"
+
+#, fuzzy
+msgid "TUTORIAL_MICROBE_EDITOR_MIGRATION"
 msgstr ""
 "Prokaryota strukturer\n"
 "\n"
@@ -6487,6 +6613,10 @@ msgid "TUTORIAL_MICROBE_STAGE_ENGULFMENT_TEXT"
 msgstr "Mikrob Fri Byggredigerare"
 
 #, fuzzy
+msgid "TUTORIAL_MICROBE_STAGE_ENVIRONMENT_PANEL"
+msgstr "Mikrob Fri Byggredigerare"
+
+#, fuzzy
 msgid "TUTORIAL_MICROBE_STAGE_HELP_MENU_AND_ZOOM"
 msgstr "W,A,S,D och musen för att röra dig. E för att skjuta OxyToxy NT om du har en giftvakuol. G för att växla av och på upslukarläge."
 
@@ -6495,7 +6625,29 @@ msgid "TUTORIAL_MICROBE_STAGE_LEAVE_COLONY_TEXT"
 msgstr "Mikrob Fri Byggredigerare"
 
 #, fuzzy
+msgid "TUTORIAL_MICROBE_STAGE_OPEN_PROCESS_PANEL"
+msgstr ""
+"För att kunna utföra fortplantning behöver du duplicera alla dina organeller genom att insamla tillräckligt med ammoniak och fosfater.\n"
+"Se indikatorn längst ned i högra hörn för att visa mängden kvar som krävs."
+
+#, fuzzy
+msgid "TUTORIAL_MICROBE_STAGE_PAUSING"
+msgstr "Mikrob Fri Byggredigerare"
+
+#, fuzzy
+msgid "TUTORIAL_MICROBE_STAGE_PROCESS_PANEL"
+msgstr ""
+"För att kunna utföra fortplantning behöver du duplicera alla dina organeller genom att insamla tillräckligt med ammoniak och fosfater.\n"
+"Se indikatorn längst ned i högra hörn för att visa mängden kvar som krävs."
+
+#, fuzzy
 msgid "TUTORIAL_MICROBE_STAGE_REPRODUCE_TEXT"
+msgstr ""
+"För att kunna utföra fortplantning behöver du duplicera alla dina organeller genom att insamla tillräckligt med ammoniak och fosfater.\n"
+"Se indikatorn längst ned i högra hörn för att visa mängden kvar som krävs."
+
+#, fuzzy
+msgid "TUTORIAL_MICROBE_STAGE_RESOURCE_SPLIT"
 msgstr ""
 "För att kunna utföra fortplantning behöver du duplicera alla dina organeller genom att insamla tillräckligt med ammoniak och fosfater.\n"
 "Se indikatorn längst ned i högra hörn för att visa mängden kvar som krävs."
@@ -6837,6 +6989,9 @@ msgstr ""
 
 msgid "VIEW_SOURCE_CODE"
 msgstr "Visa Källkod"
+
+msgid "VIEW_TEXT_REPORT"
+msgstr ""
 
 msgid "VIP_PATRONS"
 msgstr "VIP-supportrar"
@@ -8720,6 +8875,29 @@ msgid "ZOOM_OUT"
 msgstr "Zooma ut"
 
 #, fuzzy
+#~ msgid "MICROBE_STAGE_DAY_NIGHT_TEXT"
+#~ msgstr ""
+#~ "[b]Stadie[/b]\n"
+#~ "  Mikrob\n"
+#~ "[b]Membrantyp[/b]\n"
+#~ "  {0}\n"
+#~ "[b]Membranstelhet[/b]\n"
+#~ "  {1}\n"
+#~ "[b]Grundhastighet[/b]\n"
+#~ "  {2}\n"
+#~ "[b]Grunrotationshastighet[/b]\n"
+#~ "  {3}\n"
+#~ "[b]Grundhexstorlek[/b]\n"
+#~ "  {4}"
+
+#, fuzzy
+#~ msgid "GLOBAL_GLACIATION_EVENT_LOG"
+#~ msgstr "{0} befolkning förändrades av {1} på grund av: {2}"
+
+#~ msgid "IRON_CHEMOLITHOAUTOTROPHY"
+#~ msgstr "Järnkemolitoautotrofi"
+
+#, fuzzy
 #~ msgid "PASSIVE_REPRODUCTION_PROGRESS"
 #~ msgstr "{0} befolkning förändrades av {1} på grund av: {2}"
 
@@ -9056,9 +9234,6 @@ msgstr "Zooma ut"
 #, fuzzy
 #~ msgid "UNKNOWN_ON_WINDOWS"
 #~ msgstr "Okänd mus"
-
-#~ msgid "SIXTEEN_TIMES"
-#~ msgstr "16x"
 
 #, fuzzy
 #~ msgid "TARGET_TIME"

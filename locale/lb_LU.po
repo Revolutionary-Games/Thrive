@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2025-03-09 11:58-0300\n"
+"POT-Creation-Date: 2025-03-27 09:59+0200\n"
 "PO-Revision-Date: 2025-01-21 12:01+0000\n"
 "Last-Translator: Anonymous <noreply@weblate.org>\n"
 "Language-Team: Luxembourgish <https://translate.revolutionarygamesstudio.com/projects/thrive/thrive-game/lb/>\n"
@@ -197,6 +197,9 @@ msgstr "Anaerobe Stéckstofffixeirung"
 msgid "AND_UNLOCK_CONDITION"
 msgstr "an"
 
+msgid "ANISOTROPIC_FILTERING"
+msgstr ""
+
 msgid "APPEARANCE"
 msgstr "Erscheinung"
 
@@ -336,6 +339,10 @@ msgid "AUTO-EVO_PREDICTION_BOX_DESCRIPTION"
 msgstr ""
 "Deen hei Panneau weist déi erwaarten total Energie déi vun der Aart gesammelt gouf an d'Unzuel vun der Aart (a Klammeren)  vun Auto-Évo vir di beaarbecht Aart.\n"
 "Auto-Évo ass responsabel d'Populatiouns Simulatioun déi (nieft denger eegener Leeschtung) deng Populatioun affectéiert."
+
+#, fuzzy
+msgid "AUTO-EVO_RESULTS_TITLE"
+msgstr "Auto-Évo Resultater:"
 
 msgid "AUTO-EVO_STEPS_DONE"
 msgstr "{0:F1}% fäerdeg. {1:n0}/{2:n0} Schrëtt."
@@ -661,6 +668,10 @@ msgstr "Geschwindegkeet vun der Zell"
 msgid "CELL_STAT_SPEED_TOOLTIP"
 msgstr "Geschwindegkeet vun der Zell"
 
+#, fuzzy
+msgid "CELL_STAT_STORAGE_TOOLTIP"
+msgstr "Geschwindegkeet vun der Zell"
+
 msgid "CELL_TYPE_BUTTON_ATP_CONSUMPTION"
 msgstr ""
 
@@ -787,6 +798,9 @@ msgid "CLEAN_UP_OLD_SAVES"
 msgstr "Al Späicherdateien raumen"
 
 msgid "CLEAR_CACHE"
+msgstr ""
+
+msgid "CLICK_TO_SELECT"
 msgstr ""
 
 msgid "CLOSE"
@@ -2240,6 +2254,26 @@ msgstr ""
 msgid "GLES3"
 msgstr ""
 
+msgid "GLOBAL_GLACIATION_END_EVENT_LOG"
+msgstr ""
+
+#, fuzzy
+msgid "GLOBAL_GLACIATION_EVENT"
+msgstr "Halbeier Populatioun"
+
+#, fuzzy
+msgid "GLOBAL_GLACIATION_EVENT_TOOLTIP"
+msgstr "Op d' 'Erwaachen Stuf' weidergoen. Accessibel wann's de genuch Gehier hues (eng Zort Geweebe mat Axonen)."
+
+msgid "GLOBAL_GLACIATION_EVENT_WARNING_LOG_PLURAL"
+msgstr ""
+
+msgid "GLOBAL_GLACIATION_EVENT_WARNING_LOG_SINGULAR"
+msgstr ""
+
+msgid "GLOBAL_GLACIATION_START_EVENT_LOG"
+msgstr ""
+
 msgid "GLOBAL_INITIAL_LETTER"
 msgstr ""
 
@@ -2583,8 +2617,9 @@ msgstr ""
 msgid "IRON"
 msgstr "Eisen"
 
-msgid "IRON_CHEMOLITHOAUTOTROPHY"
-msgstr "Eisen Chemolithoautotrophie"
+#, fuzzy
+msgid "IRON_OXIDATION"
+msgstr "Aerobeg Ootmung"
 
 msgid "ITCH_TOOLTIP"
 msgstr ""
@@ -3442,9 +3477,6 @@ msgstr ""
 msgid "MICROBE_STAGE_CONTROL_TEXT_CONTROLLER"
 msgstr ""
 
-msgid "MICROBE_STAGE_DAY_NIGHT_TEXT"
-msgstr ""
-
 msgid "MICROBE_STAGE_HEALTH_TEXT"
 msgstr ""
 
@@ -3544,6 +3576,9 @@ msgid "MODDING_INSTRUCTIONS_ON"
 msgstr ""
 
 msgid "MODELS"
+msgstr ""
+
+msgid "MODE_CAN_BE_CHANGED_IN_OPTIONS"
 msgstr ""
 
 msgid "MODIFY"
@@ -3907,7 +3942,13 @@ msgstr ""
 msgid "NOTHING_TO_INTERACT_WITH"
 msgstr ""
 
+msgid "NOTICE_BINDING_OUT_OF_ATP"
+msgstr ""
+
 msgid "NOTICE_DAMAGED_BY_NO_ATP"
+msgstr ""
+
+msgid "NOTICE_ENGULFING_OUT_OF_ATP"
 msgstr ""
 
 msgid "NOTICE_ENGULF_DAMAGE_FROM_TOXIN"
@@ -4397,6 +4438,10 @@ msgstr ""
 msgid "PLAYER_RELATIVE_MOVEMENT"
 msgstr ""
 
+#, fuzzy
+msgid "PLAYER_RELATIVE_MOVEMENT_TOOLTIP"
+msgstr "Rechent den Niveau an aner Chifferen an dësem Panneau, ugeholl dat d'Zell sech ëmmer beweegt"
+
 msgid "PLAYER_REPRODUCED"
 msgstr ""
 
@@ -4481,6 +4526,15 @@ msgstr ""
 msgid "PROCESS_SPEED_MODIFIER"
 msgstr ""
 
+#, fuzzy
+msgid "PROCESS_TOGGLE_TOOLTIP"
+msgstr ""
+"Dei hei Sektioun weist di total Balance (Produktioun - Verbrauch) fier all Stoff.\n"
+"Fir ze iwwerliewen muss d'Balance positif sinn.\n"
+"Den Menü hei drenner kann benotzt ginn fir ze gesinn wat passéiert wann d'Zell verschidde Stoffer net huet.\n"
+"Verschidden Zellen kennen nemmen eng positif ATB Balance areechen wann se multipel Substanzen hun fir ATP ze generéieren.\n"
+"Des sort Zell ass méi schwéier ze spillen."
+
 msgid "PROGRAMMING_TEAM"
 msgstr ""
 
@@ -4495,6 +4549,10 @@ msgstr "Protoplasma"
 
 msgid "PULL_REQUESTS_PROGRAMMING"
 msgstr ""
+
+#, fuzzy
+msgid "QUADRILLION_ABBREVIATION"
+msgstr "{0} Mrd"
 
 msgid "QUICK_LOAD"
 msgstr "Séier Lueden"
@@ -4616,6 +4674,13 @@ msgstr ""
 
 msgid "RESET_SETTINGS_TO_DEFAULTS"
 msgstr "Standarden"
+
+msgid "RESET_SHOWN_TUTORIALS"
+msgstr ""
+
+#, fuzzy
+msgid "RESET_SHOWN_TUTORIALS_TOOLTIP"
+msgstr "Weis d'Tutorialen (an dësem Spill)"
 
 msgid "RESET_TO_DEFAULTS"
 msgstr "Standarden zerécksetzen?"
@@ -4851,6 +4916,10 @@ msgstr ""
 msgid "SCREEN_RELATIVE_MOVEMENT"
 msgstr ""
 
+#, fuzzy
+msgid "SCREEN_RELATIVE_MOVEMENT_TOOLTIP"
+msgstr "Nei Tastebindung bäifügen"
+
 msgid "SCROLLLOCK"
 msgstr ""
 
@@ -4873,6 +4942,9 @@ msgid "SECRETE_SLIME_TOOLTIP"
 msgstr ""
 
 msgid "SEED_LABEL"
+msgstr ""
+
+msgid "SELECTED"
 msgstr ""
 
 msgid "SELECTED_COLON"
@@ -4908,6 +4980,9 @@ msgstr ""
 msgid "SELECT_ENZYME"
 msgstr ""
 
+msgid "SELECT_MOVEMENT_MODE_TITLE"
+msgstr ""
+
 msgid "SELECT_OPTION"
 msgstr ""
 
@@ -4941,6 +5016,13 @@ msgstr "SFX Lautstäerkt"
 msgid "SHIFT"
 msgstr "Shift"
 
+msgid "SHOW_ALL_TUTORIALS"
+msgstr ""
+
+#, fuzzy
+msgid "SHOW_ALL_TUTORIALS_TOOLTIP"
+msgstr "Weis d'Tutorialen (an dësem Spill)"
+
 msgid "SHOW_DAMAGE_EFFECT"
 msgstr ""
 
@@ -4956,14 +5038,15 @@ msgstr ""
 msgid "SHOW_NEW_PATCH_NOTES_TOOLTIP"
 msgstr ""
 
-msgid "SHOW_TUTORIALS"
-msgstr ""
-
 msgid "SHOW_TUTORIALS_IN_NEW_CURRENT_OPTION"
 msgstr "Weis d'Tutorialen (an dësem Spill)"
 
 msgid "SHOW_TUTORIALS_IN_NEW_GAMES_OPTION"
 msgstr "Weis d'Tutorialen (an all neiem Spill)"
+
+#, fuzzy
+msgid "SHOW_TUTORIALS_OPTION_TOOLTIP"
+msgstr "Weis d'Tutorialen (an dësem Spill)"
 
 msgid "SHOW_UNSAVED_PROGRESS_WARNING"
 msgstr ""
@@ -5012,6 +5095,9 @@ msgstr ""
 
 msgid "SILICA_MEMBRANE_DESCRIPTION"
 msgstr "Di hei Membran huet eng staark Mauer aus Silicondioxid, di bessere Schutz géint all Schued, mee speziell géint physesche Schued, bitt. Et kascht et och manner Energie fir d'Form ze behalen, me kann Ressourcen net séier absorbéieren an d'Zell ass méi vill lues."
+
+msgid "SIXTEEN_TIMES"
+msgstr ""
 
 msgid "SIZE_COLON"
 msgstr ""
@@ -5245,6 +5331,10 @@ msgstr ""
 
 msgid "STORE_LOGGED_IN_AS"
 msgstr ""
+
+#, fuzzy
+msgid "STRAIN_BAR_TOOLTIP"
+msgstr "Op d' 'Erwaachen Stuf' weidergoen. Accessibel wann's de genuch Gehier hues (eng Zort Geweebe mat Axonen)."
 
 msgid "STRAIN_BAR_VISIBILITY"
 msgstr ""
@@ -5505,6 +5595,12 @@ msgstr ""
 msgid "TIMELINE_NICHE_FILL"
 msgstr ""
 
+msgid "TIMELINE_PLAYER_MIGRATED"
+msgstr ""
+
+msgid "TIMELINE_PLAYER_MIGRATED_TO"
+msgstr ""
+
 msgid "TIMELINE_SELECTION_PRESSURE_SPLIT"
 msgstr ""
 
@@ -5515,6 +5611,9 @@ msgid "TIMELINE_SPECIES_EXTINCT"
 msgstr ""
 
 msgid "TIMELINE_SPECIES_EXTINCT_LOCAL"
+msgstr ""
+
+msgid "TIMELINE_SPECIES_FOLLOWED"
 msgstr ""
 
 msgid "TIMELINE_SPECIES_MIGRATED_FROM"
@@ -5726,6 +5825,10 @@ msgstr ""
 msgid "TRANSPARENCY"
 msgstr ""
 
+#, fuzzy
+msgid "TRILLION_ABBREVIATION"
+msgstr "{0} Mrd"
+
 msgid "TRY_FOSSILISING_SOME_SPECIES"
 msgstr ""
 
@@ -5737,6 +5840,10 @@ msgstr ""
 
 msgid "TUTORIAL"
 msgstr ""
+
+#, fuzzy
+msgid "TUTORIAL_ALL_NOT_ENABLED_EXPLANATION"
+msgstr "(Geschwindegkeet mat der dei kënschtlech Intelligenz hier Arten mutéieren)"
 
 msgid "TUTORIAL_MICROBE_EDITOR_ATP_BALANCE_INTRO"
 msgstr ""
@@ -5750,11 +5857,23 @@ msgstr ""
 msgid "TUTORIAL_MICROBE_EDITOR_CHEMORECEPTOR"
 msgstr ""
 
+#, fuzzy
+msgid "TUTORIAL_MICROBE_EDITOR_COMPOUND_BALANCES"
+msgstr "3D Editor"
+
 msgid "TUTORIAL_MICROBE_EDITOR_ENDING_TEXT"
 msgstr ""
 
 msgid "TUTORIAL_MICROBE_EDITOR_FLAGELLUM"
 msgstr ""
+
+#, fuzzy
+msgid "TUTORIAL_MICROBE_EDITOR_FOOD_CHAIN"
+msgstr "3D Editor"
+
+#, fuzzy
+msgid "TUTORIAL_MICROBE_EDITOR_MIGRATION"
+msgstr "3D Editor"
 
 msgid "TUTORIAL_MICROBE_EDITOR_MODIFY_ORGANELLE"
 msgstr ""
@@ -5796,14 +5915,34 @@ msgstr ""
 msgid "TUTORIAL_MICROBE_STAGE_ENGULFMENT_TEXT"
 msgstr ""
 
+#, fuzzy
+msgid "TUTORIAL_MICROBE_STAGE_ENVIRONMENT_PANEL"
+msgstr "3D Editor"
+
 msgid "TUTORIAL_MICROBE_STAGE_HELP_MENU_AND_ZOOM"
 msgstr ""
 
 msgid "TUTORIAL_MICROBE_STAGE_LEAVE_COLONY_TEXT"
 msgstr ""
 
+#, fuzzy
+msgid "TUTORIAL_MICROBE_STAGE_OPEN_PROCESS_PANEL"
+msgstr "3D Editor"
+
+#, fuzzy
+msgid "TUTORIAL_MICROBE_STAGE_PAUSING"
+msgstr "3D Editor"
+
+#, fuzzy
+msgid "TUTORIAL_MICROBE_STAGE_PROCESS_PANEL"
+msgstr "3D Editor"
+
 msgid "TUTORIAL_MICROBE_STAGE_REPRODUCE_TEXT"
 msgstr ""
+
+#, fuzzy
+msgid "TUTORIAL_MICROBE_STAGE_RESOURCE_SPLIT"
+msgstr "3D Editor"
 
 msgid "TUTORIAL_MICROBE_STAGE_UNBIND_TEXT"
 msgstr ""
@@ -6100,6 +6239,9 @@ msgstr ""
 
 msgid "VIEW_SOURCE_CODE"
 msgstr "Quellcode Gesinn"
+
+msgid "VIEW_TEXT_REPORT"
+msgstr ""
 
 msgid "VIP_PATRONS"
 msgstr ""
@@ -7848,6 +7990,13 @@ msgstr "Eran Zoomen"
 
 msgid "ZOOM_OUT"
 msgstr "Eraus Zoomen"
+
+#, fuzzy
+#~ msgid "GLOBAL_GLACIATION_EVENT_LOG"
+#~ msgstr "Halbeier Populatioun"
+
+#~ msgid "IRON_CHEMOLITHOAUTOTROPHY"
+#~ msgstr "Eisen Chemolithoautotrophie"
 
 #, fuzzy
 #~ msgid "WIKI_RADIOSYNTHESIS"

@@ -32,6 +32,15 @@ public class AutoEvoPrediction : CellEditorEntryCountingTutorial
     public override bool CheckEvent(TutorialState overallState, TutorialEventType eventType, EventArgs args,
         object sender)
     {
+        // Disallow showing if the control we highlight is not visible.
+        // Or if the prerequisite tutorial is not complete.
+        if (eventType == TutorialEventType.MicrobeEditorTabChanged && (EditorAutoEvoPredictionPanel == null ||
+                !GodotObject.IsInstanceValid(EditorAutoEvoPredictionPanel) || !EditorAutoEvoPredictionPanel.Visible ||
+                !overallState.EarlyGameGoalTutorial.Complete))
+        {
+            return false;
+        }
+
         if (base.CheckEvent(overallState, eventType, args, sender))
             return true;
 

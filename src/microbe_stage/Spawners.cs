@@ -358,13 +358,11 @@ public static class SpawnHelpers
                 DisableCollisions = true,
                 RemoveVelocity = true,
                 DisableParticles = selectedMesh.IsParticles,
-                UsesMicrobialDissolveEffect = !selectedMesh.IsParticles,
                 VentCompounds = ventCompounds,
-            });
 
-            // Particles should be supported so don't need to trigger this warning
-            if (!hasMicrobeShaderParameters && !selectedMesh.IsParticles)
-                GD.PrintErr("Chunk is non-dissolving but no microbe shader parameters were found for animation");
+                // Easter Egg chunk doesn't have microbe shader parameters even though it is not particles
+                UsesMicrobialDissolveEffect = !selectedMesh.IsParticles && hasMicrobeShaderParameters,
+            });
         }
 
         entity.Set(new Physics
@@ -499,6 +497,7 @@ public static class SpawnHelpers
             entity.Set(new SoundEffectPlayer
             {
                 AbsoluteMaxDistanceSquared = Constants.MICROBE_SOUND_MAX_DISTANCE_SQUARED,
+                SoundVolumeMultiplier = Constants.NON_PLAYER_ENTITY_VOLUME_MULTIPLIER,
             });
         }
         else

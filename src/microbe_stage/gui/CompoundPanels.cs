@@ -27,7 +27,7 @@ public partial class CompoundPanels : BarPanelBase
     private bool currentCompoundsState = true;
 
     /// <summary>
-    ///   Shows / hides agents panel. Can only be visible if compounds panel is also visible.
+    ///   Shows / hides the agents panel. Can only be visible if the compounds panel is also visible.
     /// </summary>
     [Export]
     public bool ShowAgents
@@ -62,7 +62,7 @@ public partial class CompoundPanels : BarPanelBase
     {
         base.AddPrimaryBar(bar);
 
-        // When compressed the column state depends on bar count so that must be kept up to date
+        // When compressed, the column state depends on bar count, so that must be kept up to date
         if (PanelCompressed)
         {
             UpdateCompressedColumnCount();
@@ -158,42 +158,43 @@ public partial class CompoundPanels : BarPanelBase
         if (panelHideAnimationPlayer == null)
             return;
 
-        if (currentAgentsState == ShowAgents && currentCompoundsState == ShowPanel)
+        bool needToChangeAgents = currentAgentsState != ShowAgents;
+        bool needToChangeCompounds = currentCompoundsState != ShowPanel;
+
+        if (!needToChangeAgents && !needToChangeCompounds)
             return;
+
+        // To not mess up the state, don't start a new animation if we are currently playing, instead try again next
+        // frame to eventually get into the correct state
+        if (panelHideAnimationPlayer.IsPlaying())
+        {
+            Invoke.Instance.QueueForObject(UpdatePanelShowAnimation, this);
+            return;
+        }
 
         // Determine which of the 6 animations we should play
         // TODO: if there was a way for animation player to allow having the initial animation key frame grab the
         // previous state, that would allow cutting this down
-
-        // Handle the more complex state first where we also need to handle agents panel
-        if (currentAgentsState != ShowAgents)
+        if (needToChangeCompounds)
         {
-            if (ShowPanel == currentCompoundsState)
+            if (ShowPanel)
             {
-                // Showing / hiding agents panel while other part stays visible
-
                 if (ShowAgents)
                 {
-                    panelHideAnimationPlayer.Play("AddAgents");
+                    panelHideAnimationPlayer.Play("ShowBoth");
+                    currentCompoundsState = true;
                     currentAgentsState = true;
                 }
                 else
-                {
-                    panelHideAnimationPlayer.Play("HideAgents");
-                    currentAgentsState = false;
-                }
-            }
-            else
-            {
-                // Both panels move at once
-
-                if (!ShowAgents && ShowPanel)
                 {
                     panelHideAnimationPlayer.Play("ShowOnlyCompounds");
                     currentCompoundsState = true;
                     currentAgentsState = false;
                 }
-                else if (!ShowPanel)
+            }
+            else
+            {
+                if (ShowAgents || (needToChangeAgents && !ShowAgents))
                 {
                     panelHideAnimationPlayer.Play("HideBoth");
                     currentCompoundsState = false;
@@ -201,23 +202,28 @@ public partial class CompoundPanels : BarPanelBase
                 }
                 else
                 {
-                    panelHideAnimationPlayer.Play("ShowBoth");
+                    panelHideAnimationPlayer.Play("HideOnlyCompounds");
                     currentCompoundsState = false;
                     currentAgentsState = false;
                 }
             }
         }
-        else if (ShowPanel)
+        else if (needToChangeAgents)
         {
-            panelHideAnimationPlayer.Play("ShowOnlyCompounds");
-            currentCompoundsState = true;
-            currentAgentsState = false;
+            if (ShowAgents)
+            {
+                panelHideAnimationPlayer.Play("AddAgents");
+                currentAgentsState = true;
+            }
+            else
+            {
+                panelHideAnimationPlayer.Play("HideAgents");
+                currentAgentsState = false;
+            }
         }
         else
         {
-            panelHideAnimationPlayer.Play("HideOnlyCompounds");
-            currentCompoundsState = false;
-            currentAgentsState = false;
+            GD.PrintErr("Either need to change compounds or agents, both should not be false");
         }
 
         if (currentAgentsState != ShowAgents || currentCompoundsState != ShowPanel)

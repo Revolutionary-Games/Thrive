@@ -91,9 +91,6 @@ public partial class CellEditorComponent :
     [Export]
     public NodePath OrganelleUpgradeGUIPath = null!;
 
-    [Export]
-    public NodePath RightPanelScrollContainerPath = null!;
-
     /// <summary>
     ///   Temporary hex memory for use by the main thread in this component
     /// </summary>
@@ -199,7 +196,14 @@ public partial class CellEditorComponent :
     private CustomWindow autoEvoPredictionExplanationPopup = null!;
     private CustomRichTextLabel autoEvoPredictionExplanationLabel = null!;
 
+    [Export]
+    private Control rightPanel = null!;
+
+    [Export]
     private ScrollContainer rightPanelScrollContainer = null!;
+
+    [Export]
+    private Control bottomRightPanel = null!;
 
     private PackedScene organelleSelectionButtonScene = null!;
 
@@ -208,6 +212,9 @@ public partial class CellEditorComponent :
     private PackedScene undiscoveredOrganellesTooltipScene = null!;
 
     private Node3D? cellPreviewVisualsRoot;
+
+    [Export]
+    private AnimationPlayer tutorialAnimationPlayer = null!;
 
     [Export]
     private LabelSettings toleranceWarningsFont = null!;
@@ -646,8 +653,6 @@ public partial class CellEditorComponent :
         organelleMenu = GetNode<OrganellePopupMenu>(OrganelleMenuPath);
         organelleUpgradeGUI = GetNode<OrganelleUpgradeGUI>(OrganelleUpgradeGUIPath);
 
-        rightPanelScrollContainer = GetNode<ScrollContainer>(RightPanelScrollContainerPath);
-
         autoEvoPredictionExplanationPopup = GetNode<CustomWindow>(AutoEvoPredictionExplanationPopupPath);
         autoEvoPredictionExplanationLabel = GetNode<CustomRichTextLabel>(AutoEvoPredictionExplanationLabelPath);
     }
@@ -869,6 +874,30 @@ public partial class CellEditorComponent :
                 MouseHoverPositions = hoveredHexes.ToList();
             }
         }
+
+        // Safety if the tutorial is disabled and some core GUI is disabled
+        if (TutorialState is { Enabled: false })
+        {
+            if (!finishOrNextButton.Visible)
+            {
+                GD.Print("Restoring visibility of cell editor GUI that tutorial disabled");
+                ShowStatisticsPanel(true);
+                ShowConfirmButton(true);
+
+                // Probably need to have this safety here to ensure that unintended things don't become visible in
+                // multicellular
+                if (!IsMulticellularEditor)
+                {
+                    ShowAutoEvoPredictionPanel(true);
+
+                    growthOrderTabButton.Visible = true;
+                    toleranceTabButton.Visible = true;
+                    behaviourTabButton.Visible = true;
+                }
+
+                appearanceTabButton.Visible = true;
+            }
+        }
     }
 
     public override void OnEditorReady()
@@ -1037,6 +1066,14 @@ public partial class CellEditorComponent :
         if (!base.CanFinishEditing(editorUserOverrides))
             return false;
 
+        // Disallow exiting if the confirmation button hasn't been enabled yet (by the tutorial). This is just a safety
+        // check against accidentally skipping the tutorial
+        if (tutorialState is { Enabled: true } && !finishOrNextButton.Visible)
+        {
+            GD.Print("Disallowing exit of cell editor as tutorial is still active (and confirm is hidden)");
+            return false;
+        }
+
         // Show a warning if the editor has an endosymbiosis that should be finished
         if (HasFinishedPendingEndosymbiosis && !editorUserOverrides.Contains(EditorUserOverride.EndosymbiosisPending))
         {
@@ -1071,6 +1108,84 @@ public partial class CellEditorComponent :
         }
 
         return true;
+    }
+
+    public void HideGUIElementsForInitialTutorial()
+    {
+        organismStatisticsPanel.Visible = false;
+        finishOrNextButton.Visible = false;
+        HideAutoEvoPredictionForTutorial();
+
+        // Don't show the most advanced tabs
+        growthOrderTabButton.Visible = false;
+        toleranceTabButton.Visible = false;
+
+        // And don't show these yet
+        behaviourTabButton.Visible = false;
+        appearanceTabButton.Visible = false;
+    }
+
+    public void HideAdvancedTabs()
+    {
+        // Hide the most advanced tabs
+        growthOrderTabButton.Visible = false;
+        toleranceTabButton.Visible = false;
+    }
+
+    public void HideAutoEvoPredictionForTutorial()
+    {
+        autoEvoPredictionPanel.Visible = false;
+    }
+
+    public void ShowStatisticsPanel(bool animate)
+    {
+        organismStatisticsPanel.Visible = true;
+
+        if (!animate)
+            return;
+
+        // Due to anchor positioning, this needs an animation defined with code to work correctly; otherwise the final
+        // position will not be correct
+        var tween = CreateTween();
+
+        var targetPosition = rightPanel.Position;
+        tween.SetEase(Tween.EaseType.InOut);
+        tween.SetTrans(Tween.TransitionType.Expo);
+        tween.TweenProperty(rightPanel, "position", targetPosition, 0.5)
+            .From(targetPosition + new Vector2(rightPanel.Size.X + 5, 0));
+    }
+
+    public void ShowBasicEditingTabs()
+    {
+        appearanceTabButton.Visible = true;
+
+        if (!IsMulticellularEditor)
+            behaviourTabButton.Visible = true;
+    }
+
+    public void ShowConfirmButton(bool animate)
+    {
+        finishOrNextButton.Visible = true;
+
+        if (!animate)
+            return;
+
+        var tween = CreateTween();
+
+        var targetPosition = bottomRightPanel.Position;
+        tween.SetTrans(Tween.TransitionType.Sine);
+        tween.TweenProperty(bottomRightPanel, "position", targetPosition, 0.4)
+            .From(targetPosition + new Vector2(0, bottomRightPanel.Size.Y + 5));
+    }
+
+    public void ShowAutoEvoPredictionPanel(bool animate)
+    {
+        autoEvoPredictionPanel.Visible = true;
+
+        if (!animate)
+            return;
+
+        tutorialAnimationPlayer.Play("ShowAutoEvoPrediction");
     }
 
     /// <summary>
@@ -1579,7 +1694,6 @@ public partial class CellEditorComponent :
                 AutoEvoPredictionExplanationPopupPath.Dispose();
                 AutoEvoPredictionExplanationLabelPath.Dispose();
                 OrganelleUpgradeGUIPath.Dispose();
-                RightPanelScrollContainerPath.Dispose();
             }
 
             previewSimulation?.Dispose();
@@ -2963,9 +3077,10 @@ public partial class CellEditorComponent :
 
         var formatted = StringUtils.ThreeDigitFormat(totalEnergy);
 
-        totalEnergyLabel.SetMultipartValue($"{formatted} ({newPopulation})", totalEnergy);
+        totalEnergyLabel.SetMultipartValue($"{formatted} ({newPopulation} {Constants.MICROBE_POPULATION_SUFFIX})",
+            totalEnergy);
 
-        // Set best and worst patch displays
+        // Set the best and worst patch displays
         worstPatchName = worstPatch?.Name.ToString();
         worstPatchEnergyGathered = worstPatchEnergy;
 
@@ -3009,7 +3124,7 @@ public partial class CellEditorComponent :
             if (value > 0.0005f)
                 return Math.Round(value, 3);
 
-            // Small values can get tiny (and still be different from getting 0 energy due to fitness) so
+            // Small values can get tiny (and still be different from getting 0 energy due to fitness), so
             // this is here for that reason
             return Math.Round(value, 8);
         }
@@ -3023,7 +3138,7 @@ public partial class CellEditorComponent :
 
             predictionDetailsText.Append(new LocalizedString("ENERGY_SUMMARY_LINE",
                 Round(energyResult.Value.TotalEnergyGathered), Round(energyResult.Value.IndividualCost),
-                energyResult.Value.UnadjustedPopulation));
+                $"{energyResult.Value.UnadjustedPopulation} {Constants.MICROBE_POPULATION_SUFFIX}"));
 
             predictionDetailsText.Append('\n');
             predictionDetailsText.Append('\n');

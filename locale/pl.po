@@ -7,8 +7,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2025-03-09 11:58-0300\n"
-"PO-Revision-Date: 2025-03-07 10:46+0000\n"
+"POT-Creation-Date: 2025-03-27 09:59+0200\n"
+"PO-Revision-Date: 2025-03-20 20:10+0000\n"
 "Last-Translator: Anonymous <noreply@weblate.org>\n"
 "Language-Team: Polish <https://translate.revolutionarygamesstudio.com/projects/thrive/thrive-game/pl/>\n"
 "Language: pl\n"
@@ -189,6 +189,9 @@ msgstr "Beztlenowe Wiązanie Azotu"
 msgid "AND_UNLOCK_CONDITION"
 msgstr "i"
 
+msgid "ANISOTROPIC_FILTERING"
+msgstr "Filtrowanie anizotropowe:"
+
 msgid "APPEARANCE"
 msgstr "Wygląd"
 
@@ -233,7 +236,7 @@ msgstr ""
 "Całkowita liczba wniebowstąpień w tym zapisie: {0}"
 
 msgid "ASCENSION_STAGE"
-msgstr "Etap Boskości"
+msgstr "Etap ewolucji"
 
 msgid "ASSEMBLY_CLASS_REQUIRED"
 msgstr "Klasa Mod assembly jest wymagana, jeśli klasa assembly jest określona"
@@ -321,6 +324,10 @@ msgid "AUTO-EVO_PREDICTION_BOX_DESCRIPTION"
 msgstr ""
 "Ten panel pokazuje prawdopodobne dane populacji z auto-ewolucji dla edytowanego gatunku.\n"
 "Auto-ewolucja przeprowadza symulację populacji, czyli drugą rzecz wpływającą (poza twoim wkładem własnym) na liczebność gatunku."
+
+#, fuzzy
+msgid "AUTO-EVO_RESULTS_TITLE"
+msgstr "Rezultat Auto-Ewolucji:"
 
 msgid "AUTO-EVO_STEPS_DONE"
 msgstr "{0:F1}% zrobione. {1:n0}/{2:n0} kroków."
@@ -644,6 +651,13 @@ msgstr ""
 "Wiemy o tym problemie, jednak nie jest jeszcze naprawiony ze względu na mniejszy priorytet w porównaniu do innych problemów i nowych funkcji."
 
 #, fuzzy
+msgid "CELL_STAT_STORAGE_TOOLTIP"
+msgstr ""
+"Szybkość poruszania komórki. Prosimy zrozumieć, że z powodu limitacji algorytmu, ta wartość jest tylko przybliżeniem.\n"
+"Dodatkowo przy np. zmianie długości wici, wartości szybkości nie mają w pełni sensu i nie będą pasować do tego, co dzieje się w grze.\n"
+"Wiemy o tym problemie, jednak nie jest jeszcze naprawiony ze względu na mniejszy priorytet w porównaniu do innych problemów i nowych funkcji."
+
+#, fuzzy
 msgid "CELL_TYPE_BUTTON_ATP_CONSUMPTION"
 msgstr "Opcje"
 
@@ -774,6 +788,10 @@ msgstr "Usuń stare zapisy"
 msgid "CLEAR_CACHE"
 msgstr "Wyczyść pamięć podręczną"
 
+#, fuzzy
+msgid "CLICK_TO_SELECT"
+msgstr "Usuń zaznaczone"
+
 msgid "CLOSE"
 msgstr "Zamknij"
 
@@ -793,9 +811,8 @@ msgstr "Dzielnik rozdzielczości chmur:"
 msgid "CLOUD_SIMULATION_MINIMUM_INTERVAL"
 msgstr "Minimalny interwał symulacji chmur:"
 
-#, fuzzy
 msgid "CLOUD_SIMULATION_MULTIPLIER"
-msgstr "Mnożnik kosztu osmoregulacji"
+msgstr "Mnożnik symulacji chmur"
 
 msgid "COASTAL"
 msgstr "Przybrzeże"
@@ -2148,9 +2165,11 @@ msgstr ""
 msgid "FERROPLAST"
 msgstr "Termoplast"
 
+#, fuzzy
 msgid "FERROPLAST_DESCRIPTION"
 msgstr "Ferroplast jest strukturą z podwójną membraną wypełnioną białkami i enzymami. Jest prokariontem, który został przyswojony do użytku przez eukariotycznego hosta. Utlenia [thrive:compound type=\"iron\"]Żelazo[/thrive:compound] z jednego stanu chemicznego do innego o wiele sprawniej niż rustycyjanina. Ten proces, zwany [b]oddychaniem żelazowym[/b], wydziela energię wykorzystywaną przez komórkę. Wymaga on jednak [thrive:compound type=\"carbondioxide\"]Dwutlenku Węgla[/thrive:compound] by funkcjonować, a niższe stężenia tego związku w środowisku spowolnią tempo produkcji [thrive:compound type=\"atp\"][/thrive:compound]."
 
+#, fuzzy
 msgid "FERROPLAST_PROCESSES_DESCRIPTION"
 msgstr "Przekształca [thrive:compound type=\"iron\"]Żelazo[/thrive:compound] w [thrive:compound type=\"atp\"][/thrive:compound]. Tempo skaluje się ze stężeniem [thrive:compound type=\"carbondioxide\"]Dwutlenku Węgla[/thrive:compound]."
 
@@ -2371,6 +2390,26 @@ msgstr "Odwiedź naszą stronę GitHub"
 
 msgid "GLES3"
 msgstr "GLES3"
+
+msgid "GLOBAL_GLACIATION_END_EVENT_LOG"
+msgstr ""
+
+#, fuzzy
+msgid "GLOBAL_GLACIATION_EVENT"
+msgstr "Całkowita populacja:"
+
+#, fuzzy
+msgid "GLOBAL_GLACIATION_EVENT_TOOLTIP"
+msgstr "Przejdź do Fazy Przebudzenia. Dostępne w momencie osiągniecia wystarczającej siły umysłu (typ komórki z aksonem)."
+
+msgid "GLOBAL_GLACIATION_EVENT_WARNING_LOG_PLURAL"
+msgstr ""
+
+msgid "GLOBAL_GLACIATION_EVENT_WARNING_LOG_SINGULAR"
+msgstr ""
+
+msgid "GLOBAL_GLACIATION_START_EVENT_LOG"
+msgstr ""
 
 msgid "GLOBAL_INITIAL_LETTER"
 msgstr "G"
@@ -2735,8 +2774,9 @@ msgstr ""
 msgid "IRON"
 msgstr "Żelazo (Fe²⁺)"
 
-msgid "IRON_CHEMOLITHOAUTOTROPHY"
-msgstr "Utlenianie Żelaza"
+#, fuzzy
+msgid "IRON_OXIDATION"
+msgstr "Wsparcie"
 
 msgid "ITCH_TOOLTIP"
 msgstr "Odwiedź naszą stronę Itch.io"
@@ -3602,6 +3642,7 @@ msgstr "Etap Mikroba"
 msgid "MICROBE_STAGE_BECOME_MULTICELLULAR_TEXT"
 msgstr ""
 
+#, fuzzy
 msgid "MICROBE_STAGE_COLLECT_TEXT"
 msgstr ""
 "Zbieraj [thrive:compound type=\"glucose\"]Glukozę[/thrive:compound] (białe chmury) przepływając przez nie.\n"
@@ -3610,6 +3651,7 @@ msgstr ""
 "\n"
 "Podążaj za linią wychodzącą z twojej komórki do pobliskiej [thrive:compound type=\"glucose\"]Glukozy[/thrive:compound]."
 
+#, fuzzy
 msgid "MICROBE_STAGE_CONTROL_TEXT"
 msgstr ""
 "Aby kontrolować twoją komórkę, użyj klawiszy pokazanych przy twojej komórce na środku ekranu i myszki aby kontrolować kierunek komórki.\n"
@@ -3625,14 +3667,7 @@ msgstr ""
 "\n"
 "Wypróbuj wszystkie klawisze przez kilka sekund aby kontynuować."
 
-msgid "MICROBE_STAGE_DAY_NIGHT_TEXT"
-msgstr ""
-"Wypatruj spadku poziomu [b]światła słonecznego[/b] na panelu środowiska.\n"
-"\n"
-"Noc nadchodzi wraz ze ściemnieniem otoczenia.\n"
-"Fotosynteza jest nieefektywna nocą.\n"
-"Upewnij się, że masz wystarczająco magazynu[thrive:icon]StorageIcon[/thrive:icon] by przetrwać noc."
-
+#, fuzzy
 msgid "MICROBE_STAGE_HEALTH_TEXT"
 msgstr ""
 "Miej oko na swoim pasku zdrowia obok paska [thrive:compound type=\"atp\"][/thrive:compound] (prawy dolny róg).\n"
@@ -3672,6 +3707,7 @@ msgstr ""
 "\n"
 "Żeby przetrwać w tym niesprzyjającym świecie, musisz zbierać różne związki chemiczne i ewoluować aby wygrać rywalizację z innymi gatunkami."
 
+#, fuzzy
 msgid "MICROBE_STAGE_ORGANELLE_DIVISION"
 msgstr ""
 "Jedna z twoich organelli się podzieliła.\n"
@@ -3776,6 +3812,9 @@ msgstr "Instrukcje dla moderów są dostępne na"
 
 msgid "MODELS"
 msgstr "Modele"
+
+msgid "MODE_CAN_BE_CHANGED_IN_OPTIONS"
+msgstr ""
 
 msgid "MODIFY"
 msgstr "Modyfikuj"
@@ -4163,7 +4202,14 @@ msgstr "Nic tu nie ma"
 msgid "NOTHING_TO_INTERACT_WITH"
 msgstr ""
 
+#, fuzzy
+msgid "NOTICE_BINDING_OUT_OF_ATP"
+msgstr "Przełącz tryb łączenia. Dotykaj innych komórek by stworzyć kolonię."
+
 msgid "NOTICE_DAMAGED_BY_NO_ATP"
+msgstr ""
+
+msgid "NOTICE_ENGULFING_OUT_OF_ATP"
 msgstr ""
 
 msgid "NOTICE_ENGULF_DAMAGE_FROM_TOXIN"
@@ -4691,6 +4737,10 @@ msgstr "gracz wyginął"
 msgid "PLAYER_RELATIVE_MOVEMENT"
 msgstr "Krewny gracza"
 
+#, fuzzy
+msgid "PLAYER_RELATIVE_MOVEMENT_TOOLTIP"
+msgstr "Krewny gracza"
+
 msgid "PLAYER_REPRODUCED"
 msgstr "gracz się rozmnożył"
 
@@ -4774,6 +4824,10 @@ msgstr "Procesy Komórki"
 msgid "PROCESS_SPEED_MODIFIER"
 msgstr "Procesy Komórki"
 
+#, fuzzy
+msgid "PROCESS_TOGGLE_TOOLTIP"
+msgstr "Wróć do menu główego"
+
 msgid "PROGRAMMING_TEAM"
 msgstr "Programiści"
 
@@ -4788,6 +4842,10 @@ msgstr "Protoplazma"
 
 msgid "PULL_REQUESTS_PROGRAMMING"
 msgstr "Pull Requesty / Programowanie"
+
+#, fuzzy
+msgid "QUADRILLION_ABBREVIATION"
+msgstr "{0} MD"
 
 msgid "QUICK_LOAD"
 msgstr "Szybkie wczytanie"
@@ -4913,6 +4971,14 @@ msgstr "Zresetuj Skróty Klawiszowe"
 msgid "RESET_SETTINGS_TO_DEFAULTS"
 msgstr "Domyślne"
 
+#, fuzzy
+msgid "RESET_SHOWN_TUTORIALS"
+msgstr "Pokazuj samouczki"
+
+#, fuzzy
+msgid "RESET_SHOWN_TUTORIALS_TOOLTIP"
+msgstr "Pokazuj samouczki"
+
 msgid "RESET_TO_DEFAULTS"
 msgstr "Przywrócić do domyślnych?"
 
@@ -5034,9 +5100,11 @@ msgstr ""
 msgid "RUSTICYANIN"
 msgstr "Rusticyjanina"
 
+#, fuzzy
 msgid "RUSTICYANIN_DESCRIPTION"
 msgstr "Rusticyjanina to białko mogące użyć gazowego [thrive:compound type=\"carbondioxide\"]Dwutlenku Węgla[/thrive:compound] do utleniania [thrive:compound type=\"iron\"]Żelaza[/thrive:compound] z jednego stanu chemicznego do innego. Ten proces, nazywany [b]oddychaniem żelazowym[/b], uwalnia energię którą komórka może zebrać."
 
+#, fuzzy
 msgid "RUSTICYANIN_PROCESSES_DESCRIPTION"
 msgstr "Utlenia [thrive:compound type=\"iron\"]Żelazo[/thrive:compound] wydzielając [thrive:compound type=\"atp\"][/thrive:compound]. Tempo skaluje się ze stężeniem [thrive:compound type=\"carbondioxide\"]Dwutlenku Węgla[/thrive:compound]."
 
@@ -5159,6 +5227,10 @@ msgstr "Pokaż nazwy przycisków wyboru części"
 msgid "SCREEN_RELATIVE_MOVEMENT"
 msgstr "żeby zwiększyć ruch"
 
+#, fuzzy
+msgid "SCREEN_RELATIVE_MOVEMENT_TOOLTIP"
+msgstr "żeby zwiększyć ruch"
+
 msgid "SCROLLLOCK"
 msgstr "Scroll Lock"
 
@@ -5183,6 +5255,10 @@ msgstr "Wydziel śluz"
 
 msgid "SEED_LABEL"
 msgstr "Ziarno planety: {0}"
+
+#, fuzzy
+msgid "SELECTED"
+msgstr "Wybrany Mod:"
 
 msgid "SELECTED_COLON"
 msgstr "Wybrane:"
@@ -5217,6 +5293,10 @@ msgstr "Wybierz typ komórki do edytowania"
 
 msgid "SELECT_ENZYME"
 msgstr "Wybież Enzym:"
+
+#, fuzzy
+msgid "SELECT_MOVEMENT_MODE_TITLE"
+msgstr "Thrive Uruchomiło Się W Trybie Bezpiecznym"
 
 msgid "SELECT_OPTION"
 msgstr "Wybierz Opcję"
@@ -5253,6 +5333,14 @@ msgid "SHIFT"
 msgstr "Shift"
 
 #, fuzzy
+msgid "SHOW_ALL_TUTORIALS"
+msgstr "Pokazuj samouczki"
+
+#, fuzzy
+msgid "SHOW_ALL_TUTORIALS_TOOLTIP"
+msgstr "Pokazuj samouczki"
+
+#, fuzzy
 msgid "SHOW_DAMAGE_EFFECT"
 msgstr "Wić to biczo-podobny zbiór białek wysunięty z błony komórkowej, który zużywa ATP do obracania się i poruszania komórki w danym kierunku. Pozycja wici determinuje kierunek w którym napędza komórkę. Kierunek siły napędowej jest przeciwny do strony po której wić jest umiejscowiona, na przykład wić umieszczona po lewej napędza komórkę w prawo."
 
@@ -5271,14 +5359,15 @@ msgstr ""
 msgid "SHOW_NEW_PATCH_NOTES_TOOLTIP"
 msgstr ""
 
-msgid "SHOW_TUTORIALS"
-msgstr "Pokazuj samouczki"
-
 msgid "SHOW_TUTORIALS_IN_NEW_CURRENT_OPTION"
 msgstr "Pokazuj samouczki (w aktualnej rozgrywce)"
 
 msgid "SHOW_TUTORIALS_IN_NEW_GAMES_OPTION"
 msgstr "Pokazuj samouczki (w nowych rozgrywkach)"
+
+#, fuzzy
+msgid "SHOW_TUTORIALS_OPTION_TOOLTIP"
+msgstr "Pokazuj samouczki"
 
 msgid "SHOW_UNSAVED_PROGRESS_WARNING"
 msgstr "Pokaż ostrzeżenie o niezapisanym postępie"
@@ -5328,6 +5417,9 @@ msgstr "Krzemionkowa"
 
 msgid "SILICA_MEMBRANE_DESCRIPTION"
 msgstr "Ta membrana ma silne ściany z silikonu. Może opierać się ogólnym obrażeniom i jest szczególnie odporna na uszkodzenia fizyczne. Wymaga też mniej energii do utrzymania kształtu. Jednak spowalnia mocno komórkę i zmniejsza tempo wchłaniania zasobów."
+
+msgid "SIXTEEN_TIMES"
+msgstr "16x"
 
 msgid "SIZE_COLON"
 msgstr "Wielkość:"
@@ -5586,6 +5678,10 @@ msgstr ""
 
 msgid "STORE_LOGGED_IN_AS"
 msgstr "Zalogowano jako: {0}"
+
+#, fuzzy
+msgid "STRAIN_BAR_TOOLTIP"
+msgstr "Odwiedź naszego Patreona"
 
 msgid "STRAIN_BAR_VISIBILITY"
 msgstr ""
@@ -5860,6 +5956,14 @@ msgstr "Pokaż wydarzenia lokalne"
 msgid "TIMELINE_NICHE_FILL"
 msgstr "[b][u]{0}[/u][/b] oddzielił się od [b][u]{1}[/u][/b] jako nowy gatunek by zapełnić niszę"
 
+#, fuzzy
+msgid "TIMELINE_PLAYER_MIGRATED"
+msgstr "Część populacji [b][u]{0}[/u][/b] przeniosła się do obszaru {1}"
+
+#, fuzzy
+msgid "TIMELINE_PLAYER_MIGRATED_TO"
+msgstr "Część populacji [b][u]{0}[/u][/b] przeniosła się do obszaru {1}"
+
 msgid "TIMELINE_SELECTION_PRESSURE_SPLIT"
 msgstr "[b][u]{0}[/u][/b] oddzielił się od [b][u]{1}[/u][/b] jako nowy gatunek ze względu na zróżnicowane naciski selekcyjne"
 
@@ -5871,6 +5975,10 @@ msgstr "[b][u]{0}[/u][/b] wymarł!"
 
 msgid "TIMELINE_SPECIES_EXTINCT_LOCAL"
 msgstr "Gatunek [b][u]{0}[/u][/b] wyginął z tego obszaru"
+
+#, fuzzy
+msgid "TIMELINE_SPECIES_FOLLOWED"
+msgstr "[b][u]{0}[/u][/b] wymarł!"
 
 msgid "TIMELINE_SPECIES_MIGRATED_FROM"
 msgstr "Część populacji [b][u]{0}[/u][/b] przeniosła się do tego obszaru z {1}"
@@ -6097,6 +6205,10 @@ msgid "TRANSPARENCY"
 msgstr "Przejrzystość"
 
 #, fuzzy
+msgid "TRILLION_ABBREVIATION"
+msgstr "{0} MD"
+
+#, fuzzy
 msgid "TRY_FOSSILISING_SOME_SPECIES"
 msgstr "Spróbuj zrobić kilka zrzutów ekranu!"
 
@@ -6109,6 +6221,11 @@ msgstr "Spróbuj zrobić kilka zrzutów ekranu!"
 msgid "TUTORIAL"
 msgstr "Samouczek"
 
+#, fuzzy
+msgid "TUTORIAL_ALL_NOT_ENABLED_EXPLANATION"
+msgstr "(Niektóre organelle będą mieć warunki odblokowania wymagane by je postawić)"
+
+#, fuzzy
 msgid "TUTORIAL_MICROBE_EDITOR_ATP_BALANCE_INTRO"
 msgstr ""
 "Grafik produkcji ATP po prawej pokazuje ile [thrive:compound type=\"atp\"][/thrive:compound] twoja komórka produkuje w porównaniu do ile jest zużywane. Jeżeli górny słupek jest krótszy od dolnego, to produkcja [thrive:compound type=\"atp\"][/thrive:compound] jest za niska.\n"
@@ -6128,6 +6245,7 @@ msgstr ""
 "\n"
 "Możesz dowiedzieć się więcej klikając pytajnik na tym panelu. Naciśnij go, by kontynuować."
 
+#, fuzzy
 msgid "TUTORIAL_MICROBE_EDITOR_CELL_TEXT"
 msgstr ""
 "To jest edytor komórki gdzie możesz ewoluować swój gatunek poprzez wydawanie [b]punktów mutacji[/b] (PM) [thrive:icon]MP[/thrive:icon]. W każdym pokoleniu zawsze masz [b]100[/b] [/b][/b][thrive:icon]MP[/thrive:icon], więc nie przejmuj się oszczędzaniem!\n"
@@ -6139,6 +6257,17 @@ msgstr ""
 msgid "TUTORIAL_MICROBE_EDITOR_CHEMORECEPTOR"
 msgstr ""
 
+#, fuzzy
+msgid "TUTORIAL_MICROBE_EDITOR_COMPOUND_BALANCES"
+msgstr ""
+"Grafik produkcji ATP po prawej pokazuje ile [thrive:compound type=\"atp\"][/thrive:compound] twoja komórka produkuje w porównaniu do ile jest zużywane. Jeżeli górny słupek jest krótszy od dolnego, to produkcja [thrive:compound type=\"atp\"][/thrive:compound] jest za niska.\n"
+"\n"
+"Dolny słupek obejmuje koszt [b]osmoregulacji[/b] [thrive:icon]OsmoIcon[/thrive:icon] i koszt [b]ruchu[/b] [thrive:icon]MovementIcon[/thrive:icon].\n"
+"Koszt [b]osmoregulacji[/b] [thrive:icon]OsmoIcon[/thrive:icon] to [u] bazowy koszt potrzebny to przeżycia[/u]. Każda część którą dodasz zwiększa ten koszt.\n"
+"\n"
+"Jeśli twoja produkcja [thrive:compound type=\"atp\"][/thrive:compound] jest negatywna, postaraj się ją zwiększyć albo dodać [b]przechowywanie[/b] [thrive:icon]StorageIcon[/thrive:icon] by móc się poruszać w małych impulsach."
+
+#, fuzzy
 msgid "TUTORIAL_MICROBE_EDITOR_ENDING_TEXT"
 msgstr ""
 "To są podstawy edycji twojego gatunku. Na koniec, możesz zmienić nazwę swojego gatunku poprzez kliknięcie nazwy w lewym, dolnym rogu i edycję tekstu.\n"
@@ -6151,6 +6280,25 @@ msgstr ""
 
 msgid "TUTORIAL_MICROBE_EDITOR_FLAGELLUM"
 msgstr ""
+
+#, fuzzy
+msgid "TUTORIAL_MICROBE_EDITOR_FOOD_CHAIN"
+msgstr ""
+"Nie dokonałeś żadnych zmian w swoim gatunku.\n"
+"\n"
+"Kiedy wyjdziesz z edytora[u]nie będziesz mógł edytować swojego gatunku dopóki znów się nie rozmnożysz[/u].\n"
+"Aby czynić postępy w grze musisz ewoluować, więc edycja gatunku jest zalecana przy większości wizyt w edytorze."
+
+#, fuzzy
+msgid "TUTORIAL_MICROBE_EDITOR_MIGRATION"
+msgstr ""
+"To są podstawy edycji twojego gatunku. Na koniec, możesz zmienić nazwę swojego gatunku poprzez kliknięcie nazwy w lewym, dolnym rogu i edycję tekstu.\n"
+"\n"
+"Możesz wypróbować inne zakładki pod paskiem [b]PM [thrive:icon]MP[/thrive:icon][/b] aby sprawdzić inne sposoby w jakie możesz zmienić swoją komórkę.\n"
+"\n"
+"Żeby przetrwać w tym nieprzyjaznym świecie, będziesz musiał znaleźć niezawodne źródło [thrive:compound type=\"atp\"][/thrive:compound] jako iż poziom naturalnej [thrive:compound type=\"glucose\"][/thrive:compound] [b]gwałtownie spadnie[/b].\n"
+"\n"
+"Powodzenia!"
 
 msgid "TUTORIAL_MICROBE_EDITOR_MODIFY_ORGANELLE"
 msgstr ""
@@ -6182,6 +6330,7 @@ msgstr ""
 "\n"
 "Jeśli twoja produkcja [thrive:compound type=\"atp\"][/thrive:compound] jest negatywna, postaraj się ją zwiększyć albo dodać [b]przechowywanie[/b] [thrive:icon]StorageIcon[/thrive:icon] by móc się poruszać w małych impulsach."
 
+#, fuzzy
 msgid "TUTORIAL_MICROBE_EDITOR_PATCH_TEXT"
 msgstr ""
 "To jest [b]mapa obszarów[/b].\n"
@@ -6212,6 +6361,7 @@ msgstr ""
 "\n"
 "Naciśnij przycisk ponów (obok przycisku cofnij) by kontynuować."
 
+#, fuzzy
 msgid "TUTORIAL_MICROBE_EDITOR_STAY_SMALL"
 msgstr ""
 "Skup się [b]specjalizacji[/b] by przetrwać na jednym lub dwóch źródłach [thrive:compound type=\"atp\"][/thrive:compound], żebyś nie potrzebował wielu różnych zasobów aby się utrzymać.\n"
@@ -6250,7 +6400,17 @@ msgstr ""
 "\n"
 "Gdy pełna, komórka nie może pochłaniać więcej rzeczy. By kontynuować wchłanianie, poczekaj aż jeden lub więcej wchłoniętych obiektów zostało w pełni strawionych."
 
+#, fuzzy
 msgid "TUTORIAL_MICROBE_STAGE_ENGULFMENT_TEXT"
+msgstr ""
+"Wchałniaj obiekty poprzez poruszanie się nad nimi w trybie pochłaniania. Włącz ten tryb naciskając [thrive:input]g_toggle_engulf[/thrive:input].\n"
+"\n"
+"Przestań wchłaniać kiedy obiekt zaczyna być wciągany.\n"
+"\n"
+"Podążaj za linią z twojej komórki do pobliskiego wchłanialnego obiektu."
+
+#, fuzzy
+msgid "TUTORIAL_MICROBE_STAGE_ENVIRONMENT_PANEL"
 msgstr ""
 "Wchałniaj obiekty poprzez poruszanie się nad nimi w trybie pochłaniania. Włącz ten tryb naciskając [thrive:input]g_toggle_engulf[/thrive:input].\n"
 "\n"
@@ -6271,7 +6431,36 @@ msgstr ""
 "Musisz opuścić kolonię by dostać się do edytora o ile nie planujesz przejścia do wielokomórkowości.\n"
 "Opuść kolonię by kontynuować swój wzrost poprzez naciśnięcie [thrive:input]g_unbind_all[/thrive:input]."
 
+#, fuzzy
+msgid "TUTORIAL_MICROBE_STAGE_OPEN_PROCESS_PANEL"
+msgstr ""
+"Aby się rozmnożyć musisz rozdwoić wszystkie swoje organelle. Stanie się to samoczynnie, ale możesz przyspieszyć ten proces poprzez zbieranie [thrive:compound type=\"ammonia\"]Amoniaku[/thrive:compound] i [thrive:compound type=\"phosphates\"]Fosforanów[/thrive:compound].\n"
+"\n"
+"Paski w prawym dolnym rogu pokazują twój postęp. Staną się białe gdy będziesz gotowy do reprodukcji."
+
+#, fuzzy
+msgid "TUTORIAL_MICROBE_STAGE_PAUSING"
+msgstr ""
+"Wszedłeś w tryb odwiązywania. W tym trybie możesz klikać na członków kolonii aby ich odseparować.\n"
+"\n"
+"Żeby całkowicie opuścić kolonię możesz kliknąć własną komórkę lub nacisnąć klawisz [thrive:input]g_unbind_all[/thrive:input]."
+
+#, fuzzy
+msgid "TUTORIAL_MICROBE_STAGE_PROCESS_PANEL"
+msgstr ""
+"Aby się rozmnożyć musisz rozdwoić wszystkie swoje organelle. Stanie się to samoczynnie, ale możesz przyspieszyć ten proces poprzez zbieranie [thrive:compound type=\"ammonia\"]Amoniaku[/thrive:compound] i [thrive:compound type=\"phosphates\"]Fosforanów[/thrive:compound].\n"
+"\n"
+"Paski w prawym dolnym rogu pokazują twój postęp. Staną się białe gdy będziesz gotowy do reprodukcji."
+
+#, fuzzy
 msgid "TUTORIAL_MICROBE_STAGE_REPRODUCE_TEXT"
+msgstr ""
+"Aby się rozmnożyć musisz rozdwoić wszystkie swoje organelle. Stanie się to samoczynnie, ale możesz przyspieszyć ten proces poprzez zbieranie [thrive:compound type=\"ammonia\"]Amoniaku[/thrive:compound] i [thrive:compound type=\"phosphates\"]Fosforanów[/thrive:compound].\n"
+"\n"
+"Paski w prawym dolnym rogu pokazują twój postęp. Staną się białe gdy będziesz gotowy do reprodukcji."
+
+#, fuzzy
+msgid "TUTORIAL_MICROBE_STAGE_RESOURCE_SPLIT"
 msgstr ""
 "Aby się rozmnożyć musisz rozdwoić wszystkie swoje organelle. Stanie się to samoczynnie, ale możesz przyspieszyć ten proces poprzez zbieranie [thrive:compound type=\"ammonia\"]Amoniaku[/thrive:compound] i [thrive:compound type=\"phosphates\"]Fosforanów[/thrive:compound].\n"
 "\n"
@@ -6603,6 +6792,9 @@ msgstr ""
 
 msgid "VIEW_SOURCE_CODE"
 msgstr "Zobacz Kod Źródłowy"
+
+msgid "VIEW_TEXT_REPORT"
+msgstr ""
 
 msgid "VIP_PATRONS"
 msgstr "VIP Wspierający"
@@ -8499,6 +8691,22 @@ msgstr "Przybliż"
 msgid "ZOOM_OUT"
 msgstr "Oddal"
 
+#, fuzzy
+#~ msgid "MICROBE_STAGE_DAY_NIGHT_TEXT"
+#~ msgstr ""
+#~ "Wypatruj spadku poziomu [b]światła słonecznego[/b] na panelu środowiska.\n"
+#~ "\n"
+#~ "Noc nadchodzi wraz ze ściemnieniem otoczenia.\n"
+#~ "Fotosynteza jest nieefektywna nocą.\n"
+#~ "Upewnij się, że masz wystarczająco magazynu[thrive:icon]StorageIcon[/thrive:icon] by przetrwać noc."
+
+#, fuzzy
+#~ msgid "GLOBAL_GLACIATION_EVENT_LOG"
+#~ msgstr "Całkowita populacja:"
+
+#~ msgid "IRON_CHEMOLITHOAUTOTROPHY"
+#~ msgstr "Utlenianie Żelaza"
+
 #~ msgid "PASSIVE_REPRODUCTION_PROGRESS"
 #~ msgstr "Biernie uzyskuj postęp reprodukcji"
 
@@ -8874,9 +9082,6 @@ msgstr "Oddal"
 
 #~ msgid "GLES2"
 #~ msgstr "GLES2"
-
-#~ msgid "SIXTEEN_TIMES"
-#~ msgstr "16x"
 
 #, fuzzy
 #~ msgid "TARGET_TIME"

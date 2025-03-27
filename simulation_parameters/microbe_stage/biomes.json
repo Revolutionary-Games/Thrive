@@ -207,7 +207,7 @@
     },
     "WaterCurrentSpeed": 0.6,
     "WaterCurrentChaoticness": 0.5,
-    "WaterCurrentScale": 0.6,
+    "WaterCurrentScale": 1.0,
     "WaterCurrentParticleCount": 350,
     "ActiveMusicContexts": [
       "PatchVents"
@@ -2163,7 +2163,7 @@
               "IsParticles": true
             }
           ],
-          "Density": 0.00003,
+          "Density": 0.000005,
           "Dissolves": false,
           "Radius": 2,
           "ChunkScale": 1,
@@ -2207,7 +2207,7 @@
               "MissingDefaultShaderSupport": true
             }
           ],
-          "Density": 0.00008,
+          "Density": 0.00009,
           "Dissolves": false,
           "Radius": 2,
           "ChunkScale": 1,
@@ -2237,7 +2237,7 @@
               "MissingDefaultShaderSupport": true
             }
           ],
-          "Density": 0.00003,
+          "Density": 0.00005,
           "Dissolves": false,
           "Radius": 6,
           "ChunkScale": 1,

@@ -37,6 +37,9 @@ public partial class MicrobeStage : CreatureStageBase<Entity, MicrobeWorldSimula
     [Export]
     private FluidCurrentDisplay fluidCurrentDisplay = null!;
 
+    [Export]
+    private MovementModeSelectionPopup movementModeSelectionPopup = null!;
+
     private MicrobeTutorialGUI tutorialGUI = null!;
     private GuidanceLine guidanceLine = null!;
 #pragma warning restore CA2213
@@ -55,6 +58,24 @@ public partial class MicrobeStage : CreatureStageBase<Entity, MicrobeWorldSimula
 
     [JsonProperty]
     private bool wonOnce;
+
+    [JsonProperty]
+    private double movementModeShowTimer;
+
+    /// <summary>
+    ///   Used to mark the first time the player turns off tutorials in the game
+    /// </summary>
+    [JsonProperty]
+    private bool tutorialCanceledOnce;
+
+    /// <summary>
+    ///   Used to detect when the welcome tutorial is over and some state should be checked.
+    ///   For example, having already played certain tutorials requires restoring the compounds panel to open.
+    /// </summary>
+    private bool waitingForWelcomeTutorialToEnd;
+
+    [JsonProperty]
+    private bool environmentPanelAutomaticallyOpened;
 
     /// <summary>
     ///   Used to give increasing numbers to player offspring to know which is the latest
@@ -193,6 +214,14 @@ public partial class MicrobeStage : CreatureStageBase<Entity, MicrobeWorldSimula
         CheatManager.OnSpawnEnemyCheatUsed += OnSpawnEnemyCheatUsed;
         CheatManager.OnPlayerDuplicationCheatUsed += OnDuplicatePlayerCheatUsed;
         CheatManager.OnDespawnAllEntitiesCheatUsed += OnDespawnAllEntitiesCheatUsed;
+
+        // Re-register these callbacks in case it is necessary
+        // The primary registration for this is in OnGameStarted
+        if (CurrentGame != null && HUD != null!)
+        {
+            TutorialState.GlucoseCollecting.OnOpened += SetupPlayerForGlucoseCollecting;
+            TutorialState.DayNightTutorial.OnOpened += HUD.CloseProcessPanel;
+        }
     }
 
     public override void _ExitTree()
@@ -203,6 +232,12 @@ public partial class MicrobeStage : CreatureStageBase<Entity, MicrobeWorldSimula
         CheatManager.OnDespawnAllEntitiesCheatUsed -= OnDespawnAllEntitiesCheatUsed;
 
         DebugOverlays.Instance.OnWorldDisabled(WorldSimulation);
+
+        if (CurrentGame != null)
+        {
+            TutorialState.GlucoseCollecting.OnOpened -= SetupPlayerForGlucoseCollecting;
+            TutorialState.DayNightTutorial.OnOpened -= HUD.CloseProcessPanel;
+        }
     }
 
     public override void _Process(double delta)
@@ -224,6 +259,8 @@ public partial class MicrobeStage : CreatureStageBase<Entity, MicrobeWorldSimula
             {
                 GD.PrintErr("Can't read player position: " + e);
             }
+
+            HandleMovementModePrompt(delta);
         }
 
         bool playerAlive = HasAlivePlayer;
@@ -297,8 +334,7 @@ public partial class MicrobeStage : CreatureStageBase<Entity, MicrobeWorldSimula
                 {
                     TutorialState.SendEvent(TutorialEventType.MicrobeCompoundsNearPlayer,
                         new EntityPositionEventArgs(Clouds.FindCompoundNearPoint(playerPosition.Position,
-                            Compound.Glucose)),
-                        this);
+                            Compound.Glucose)), this);
                 }
 
                 if (TutorialState.WantsNearbyEngulfableInfo())
@@ -328,6 +364,36 @@ public partial class MicrobeStage : CreatureStageBase<Entity, MicrobeWorldSimula
             else
             {
                 guidanceLine.Visible = false;
+            }
+
+            if (waitingForWelcomeTutorialToEnd)
+            {
+                // Check if the welcome tutorial has ended
+                if (TutorialState.MicrobeStageWelcome.Complete)
+                {
+                    waitingForWelcomeTutorialToEnd = false;
+
+                    // Restore panel state if tutorials won't be played
+                    bool showCompounds = TutorialState.GlucoseCollecting.Complete;
+                    bool showEnvironment = TutorialState.DayNightTutorial.Complete;
+
+                    if (showEnvironment)
+                        HUD.ShowEnvironmentPanel();
+
+                    if (showCompounds)
+                        HUD.ShowCompoundPanel();
+                }
+            }
+
+            if (!environmentPanelAutomaticallyOpened)
+            {
+                // Open panel automatically if taking radiation
+                var compounds = Player.Get<CompoundStorage>().Compounds;
+                if (compounds.GetCompoundAmount(Compound.Radiation) > 0.1f)
+                {
+                    HUD.ShowEnvironmentPanel();
+                    environmentPanelAutomaticallyOpened = true;
+                }
             }
 
             // Apply player god mode
@@ -718,6 +784,7 @@ public partial class MicrobeStage : CreatureStageBase<Entity, MicrobeWorldSimula
 
         var workData1 = new List<Hex>();
         var workData2 = new List<Hex>();
+        bool playerHasThermoplast = false;
 
         // Update the player's cell
         ref var cellProperties = ref Player.Get<CellProperties>();
@@ -749,6 +816,15 @@ public partial class MicrobeStage : CreatureStageBase<Entity, MicrobeWorldSimula
             cellProperties.ReApplyCellTypeProperties(ref environmentalEffects, Player,
                 species.Species, species.Species, WorldSimulation,
                 workData1, workData2);
+
+            foreach (var organelle in species.Species.Organelles)
+            {
+                if (organelle.Definition.HasHeatCollection)
+                {
+                    playerHasThermoplast = true;
+                    break;
+                }
+            }
         }
 
         Player.Set(environmentalEffects);
@@ -840,6 +916,15 @@ public partial class MicrobeStage : CreatureStageBase<Entity, MicrobeWorldSimula
         if (!CurrentGame.TutorialState.Enabled)
         {
             tutorialGUI.EventReceiver?.OnTutorialDisabled();
+
+            if (!tutorialCanceledOnce)
+            {
+                GD.Print("Showing compounds panel as tutorial has been cancelled");
+                HUD.ShowCompoundPanel();
+                HUD.ShowEnvironmentPanel();
+
+                tutorialCanceledOnce = true;
+            }
         }
         else
         {
@@ -855,6 +940,32 @@ public partial class MicrobeStage : CreatureStageBase<Entity, MicrobeWorldSimula
                 }
             }
         }
+
+        // When adding a thermoplast, the environment panel should be made visible
+        if (!environmentPanelAutomaticallyOpened && playerHasThermoplast)
+        {
+            HUD.ShowEnvironmentPanel();
+            environmentPanelAutomaticallyOpened = true;
+        }
+
+        if (TutorialState.Enabled && !TutorialState.ProcessPanelTutorial.Complete)
+        {
+            // Ensure the player accepts the glucose, this only really happens when going directly from starting in
+            // the editor to the game
+            playerCompounds.SetUseful(Compound.Glucose);
+
+            // Give some free glucose to make sure the player doesn't die during the tutorial at a terrible time
+            // if they haven't been collecting glucose diligently
+            playerCompounds.AddCompound(Compound.Glucose, 1.5f);
+
+            // If the player immediately switched to iron eating, make sure they don't die immediately
+            if (playerSpecies.InitialCompounds.TryGetValue(Compound.Iron, out var ironAmount) &&
+                ironAmount > MathUtils.EPSILON)
+            {
+                playerCompounds.SetUseful(Compound.Iron);
+                playerCompounds.AddCompound(Compound.Iron, 1.5f);
+            }
+        }
     }
 
     public override void OnSuicide()
@@ -867,7 +978,8 @@ public partial class MicrobeStage : CreatureStageBase<Entity, MicrobeWorldSimula
             health.Invulnerable = false;
 
             // This doesn't use the microbe damage calculation as this damage can't be resisted
-            health.Kill();
+            // And Kill() would skip the population penalty
+            health.CurrentHealth = 0;
 
             // Force digestion to complete immediately
             if (Player.Has<Engulfable>())
@@ -922,18 +1034,28 @@ public partial class MicrobeStage : CreatureStageBase<Entity, MicrobeWorldSimula
         WorldSimulation.CameraFollowSystem.Camera = Camera;
         HoverInfo.PhysicalWorld = WorldSimulation.PhysicalWorld;
 
-        // Init the simulation and finish setting up the systems (for example cloud init happens here)
+        // Init the simulation and finish setting up the systems (for example, cloud init happens here)
         WorldSimulation.InitForCurrentGame(CurrentGame!);
 
         tutorialGUI.EventReceiver = TutorialState;
-        HUD.SendEditorButtonToTutorial(TutorialState);
+        HUD.SendObjectsToTutorials(TutorialState);
 
         ProceduralDataCache.Instance.OnEnterState(MainGameState.MicrobeStage);
 
-        // If this is a new game, place some phosphates as a learning tool
+        // If this is a new game, place some clouds as a learning tool
         if (!IsLoadedFromSave)
         {
-            Clouds.AddCloud(Compound.Phosphates, 50000.0f, new Vector3(50.0f, 0.0f, 0.0f));
+            // Place some phosphates to have something on screen at the start
+            Clouds.AddCloud(Compound.Phosphates, 5000.0f, new Vector3(40.0f, 0.0f, 0.5f));
+            Clouds.AddCloud(Compound.Phosphates, 20000.0f, new Vector3(45.0f, 0.0f, 0.0f));
+            Clouds.AddCloud(Compound.Phosphates, 30000.0f, new Vector3(50.0f, 0.0f, 0.0f));
+
+            // If we are starting with tutorials on, disable extra panels that don't matter right now
+            if (TutorialState.Enabled)
+            {
+                HUD.HideEnvironmentAndCompoundPanels(false);
+                waitingForWelcomeTutorialToEnd = true;
+            }
         }
 
         patchManager.CurrentGame = CurrentGame;
@@ -954,6 +1076,10 @@ public partial class MicrobeStage : CreatureStageBase<Entity, MicrobeWorldSimula
         UpdatePatchSettings(!TutorialState.Enabled);
 
         SpawnPlayer();
+
+        // Can now register this callback with the game set
+        TutorialState.GlucoseCollecting.OnOpened += SetupPlayerForGlucoseCollecting;
+        TutorialState.DayNightTutorial.OnOpened += HUD.CloseProcessPanel;
     }
 
     protected override void SpawnPlayer()
@@ -1162,8 +1288,7 @@ public partial class MicrobeStage : CreatureStageBase<Entity, MicrobeWorldSimula
 
     private void UpdateBackground()
     {
-        Camera.SetBackground(SimulationParameters.Instance.GetBackground(
-            GameWorld.Map.CurrentPatch!.BiomeTemplate.Background));
+        Camera.SetBackground(SimulationParameters.Instance.GetBackground(GameWorld.Map.CurrentPatch!.Background));
     }
 
     private void UpdatePatchLightLevelSettings()
@@ -1193,6 +1318,36 @@ public partial class MicrobeStage : CreatureStageBase<Entity, MicrobeWorldSimula
         if (!HasPlayer)
         {
             GD.Print("Loaded game doesn't have a currently alive player");
+        }
+    }
+
+    /// <summary>
+    ///   Handles showing a movement mode selection prompt when using the keyboard as that seems to be a pretty
+    ///   common complaint of many new Thrive players that they can't find the movement mode and change it
+    /// </summary>
+    /// <param name="delta">Process delta time</param>
+    private void HandleMovementModePrompt(double delta)
+    {
+        if (KeyPromptHelper.InputMethod != ActiveInputMethod.Keyboard)
+            return;
+
+        var previous = movementModeShowTimer;
+        movementModeShowTimer += delta;
+
+        // Trigger movement mode selection prompt just once
+        if (previous < Constants.MOVEMENT_MODE_SELECTION_DELAY &&
+            movementModeShowTimer >= Constants.MOVEMENT_MODE_SELECTION_DELAY)
+        {
+            // But only if it hasn't been permanently dismissed
+            if (!Settings.Instance.IsNoticePermanentlyDismissed(DismissibleNotice.MicrobeMovementMode))
+            {
+                GD.Print("Showing movement mode selection prompt");
+                movementModeSelectionPopup.ShowSelection();
+            }
+            else
+            {
+                GD.Print("Movement mode selection notice permanently dismissed");
+            }
         }
     }
 
@@ -1537,6 +1692,26 @@ public partial class MicrobeStage : CreatureStageBase<Entity, MicrobeWorldSimula
         {
             resolvedTolerancesCache.Clear();
         }
+    }
+
+    private void SetupPlayerForGlucoseCollecting()
+    {
+        // Reduce player glucose amount to have enough storage space to collect stuff
+        if (!HasAlivePlayer)
+        {
+            GD.PrintErr("Cannot adjust player glucose as no alive player exists");
+            return;
+        }
+
+        var compounds = Player.Get<CompoundStorage>().Compounds;
+
+        var glucoseMax = compounds.GetCapacityForCompound(Compound.Glucose);
+
+        var excess = compounds.GetCompoundAmount(Compound.Glucose) -
+            (glucoseMax - Constants.TUTORIAL_GLUCOSE_MAKE_EMPTY_SPACE_AT_LEAST);
+
+        if (excess > 0)
+            compounds.TakeCompound(Compound.Glucose, excess);
     }
 
     private void TranslationsForFeaturesToReimplement()

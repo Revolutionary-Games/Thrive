@@ -87,12 +87,21 @@ public partial class MicrobeEditorTutorialGUI : Control, ITutorialGUI
 
     [Export]
     private CustomWindow earlyGameGoalTutorial = null!;
+
+    [Export]
+    private CustomWindow compoundBalanceTutorial = null!;
+
+    [Export]
+    private CustomWindow migrationTutorial = null!;
+
+    [Export]
+    private CustomWindow foodChainTutorial = null!;
 #pragma warning restore CA2213
 
     public MainGameState AssociatedGameState => MainGameState.MicrobeEditor;
     public ITutorialInput? EventReceiver { get; set; }
     public bool IsClosingAutomatically { get; set; }
-    public bool TutorialEnabledSelected { get; private set; } = true;
+    public bool AllTutorialsDesiredState { get; private set; } = true;
     public Node GUINode => this;
 
     public ControlHighlight? CellEditorUndoHighlight { get; private set; }
@@ -103,8 +112,11 @@ public partial class MicrobeEditorTutorialGUI : Control, ITutorialGUI
 
     public ControlHighlight? AtpBalanceBarHighlight { get; private set; }
 
+    [Export]
+    public ControlHighlight? CompoundBalanceHighlight { get; private set; }
+
     /// <summary>
-    ///   This is used to ensure scroll position shows elements related to active tutorials
+    ///   This is used to ensure the scroll position shows elements related to active tutorials
     /// </summary>
     public ScrollContainer RightPanelScrollContainer { get; set; } = null!;
 
@@ -450,6 +462,64 @@ public partial class MicrobeEditorTutorialGUI : Control, ITutorialGUI
         }
     }
 
+    public bool CompoundBalanceTutorialVisible
+    {
+        get => compoundBalanceTutorial.Visible;
+        set
+        {
+            if (value == compoundBalanceTutorial.Visible)
+                return;
+
+            if (value)
+            {
+                compoundBalanceTutorial.Show();
+                RightPanelScrollContainer.ScrollVertical = 150;
+            }
+            else
+            {
+                compoundBalanceTutorial.Hide();
+            }
+        }
+    }
+
+    public bool MigrationTutorialVisible
+    {
+        get => migrationTutorial.Visible;
+        set
+        {
+            if (value == migrationTutorial.Visible)
+                return;
+
+            if (value)
+            {
+                migrationTutorial.Show();
+            }
+            else
+            {
+                migrationTutorial.Hide();
+            }
+        }
+    }
+
+    public bool FoodChainTutorialVisible
+    {
+        get => foodChainTutorial.Visible;
+        set
+        {
+            if (value == foodChainTutorial.Visible)
+                return;
+
+            if (value)
+            {
+                foodChainTutorial.Show();
+            }
+            else
+            {
+                foodChainTutorial.Hide();
+            }
+        }
+    }
+
     public override void _Ready()
     {
         editorEntryReport = GetNode<CustomWindow>(EditorEntryReportPath);
@@ -492,7 +562,7 @@ public partial class MicrobeEditorTutorialGUI : Control, ITutorialGUI
 
     public void OnTutorialEnabledValueChanged(bool value)
     {
-        TutorialEnabledSelected = value;
+        AllTutorialsDesiredState = value;
     }
 
     public void HandleShowingATPBarHighlight()
@@ -503,11 +573,10 @@ public partial class MicrobeEditorTutorialGUI : Control, ITutorialGUI
         bool eitherVisible = atpBalanceIntroduction.Visible || negativeAtpBalanceTutorial.Visible;
         AtpBalanceBarHighlight.Visible = atpBalanceIntroduction.Visible;
 
-        // Force the scroll panel to scroll down. This is done to show the ATP Balance Bar.
-        // It seems like Godot doesn't have a scroll into view, so we need to ensure that the scroll cannot be too
-        // much or too little ever.
+        // With the stats now not being that tall, we can scroll all the way to the top to still see the whole ATP
+        // bar
         if (eitherVisible)
-            RightPanelScrollContainer.ScrollVertical = 150;
+            RightPanelScrollContainer.ScrollVertical = 0;
     }
 
     protected override void Dispose(bool disposing)

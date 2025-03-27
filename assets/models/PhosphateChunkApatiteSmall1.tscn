@@ -10,7 +10,7 @@
 resource_local_to_scene = true
 render_priority = 18
 shader = ExtResource("1_g5rlt")
-shader_parameter/albedo = Color(9.62615e-07, 0.878612, 0.837866, 0.956863)
+shader_parameter/albedo = Color(0, 0.760784, 0.839216, 0.529412)
 shader_parameter/albedoTexture = ExtResource("2_6ymvq")
 shader_parameter/useNormal = false
 shader_parameter/roughness = 0.6
@@ -24,7 +24,6 @@ shader_parameter/dissolveTexture = ExtResource("3_o04en")
 shader_parameter/dissolveValue = 0.0
 shader_parameter/dissolveScale = 1.0
 shader_parameter/outlineWidth = 0.0
-shader_parameter/growColor = Color(0.0823529, 0.541176, 0.705882, 1)
 
 [node name="Apatite" type="MeshInstance3D"]
 material_override = SubResource("ShaderMaterial_6mvut")

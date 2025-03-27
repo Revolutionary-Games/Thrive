@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2025-03-09 11:58-0300\n"
+"POT-Creation-Date: 2025-03-27 09:59+0200\n"
 "PO-Revision-Date: 2024-10-17 07:24+0000\n"
 "Last-Translator: Anonymous <noreply@weblate.org>\n"
 "Language-Team: Latvian <https://translate.revolutionarygamesstudio.com/projects/thrive/thrive-game/lv/>\n"
@@ -200,6 +200,9 @@ msgstr "Anaerobiskā slāpekļa fiksācija"
 msgid "AND_UNLOCK_CONDITION"
 msgstr "Fiziskie apstākļi"
 
+msgid "ANISOTROPIC_FILTERING"
+msgstr ""
+
 msgid "APPEARANCE"
 msgstr ""
 
@@ -320,6 +323,10 @@ msgstr "Automātiska-Evo Pareģošana"
 
 msgid "AUTO-EVO_PREDICTION_BOX_DESCRIPTION"
 msgstr ""
+
+#, fuzzy
+msgid "AUTO-EVO_RESULTS_TITLE"
+msgstr "Auto-evo rezultāti:"
 
 msgid "AUTO-EVO_STEPS_DONE"
 msgstr "{0:F1}% pabeigts. {1:n0}/{2:n0} pakāpieni."
@@ -666,6 +673,10 @@ msgid "CELL_STAT_SPEED_TOOLTIP"
 msgstr "Atsākt spēli"
 
 #, fuzzy
+msgid "CELL_STAT_STORAGE_TOOLTIP"
+msgstr "Atsākt spēli"
+
+#, fuzzy
 msgid "CELL_TYPE_BUTTON_ATP_CONSUMPTION"
 msgstr "{0}: -{1} ATP"
 
@@ -802,6 +813,10 @@ msgstr "Dzēst vecos saglabāšanas failus"
 
 msgid "CLEAR_CACHE"
 msgstr ""
+
+#, fuzzy
+msgid "CLICK_TO_SELECT"
+msgstr "Dzēst atlasītos failus"
 
 msgid "CLOSE"
 msgstr "Aizvērt"
@@ -2443,6 +2458,26 @@ msgstr "Atsākt spēli"
 msgid "GLES3"
 msgstr ""
 
+msgid "GLOBAL_GLACIATION_END_EVENT_LOG"
+msgstr ""
+
+#, fuzzy
+msgid "GLOBAL_GLACIATION_EVENT"
+msgstr "Kopējā Populācija:"
+
+#, fuzzy
+msgid "GLOBAL_GLACIATION_EVENT_TOOLTIP"
+msgstr "Apskatiet detalizētu informāciju aiz pareģošanas"
+
+msgid "GLOBAL_GLACIATION_EVENT_WARNING_LOG_PLURAL"
+msgstr ""
+
+msgid "GLOBAL_GLACIATION_EVENT_WARNING_LOG_SINGULAR"
+msgstr ""
+
+msgid "GLOBAL_GLACIATION_START_EVENT_LOG"
+msgstr ""
+
 msgid "GLOBAL_INITIAL_LETTER"
 msgstr ""
 
@@ -2817,8 +2852,9 @@ msgstr ""
 msgid "IRON"
 msgstr "Dzelzs"
 
-msgid "IRON_CHEMOLITHOAUTOTROPHY"
-msgstr "Dzelža Ķīmolitoautotrofija"
+#, fuzzy
+msgid "IRON_OXIDATION"
+msgstr "Ziedojumi"
 
 #, fuzzy
 msgid "ITCH_TOOLTIP"
@@ -3705,23 +3741,6 @@ msgstr ""
 msgid "MICROBE_STAGE_CONTROL_TEXT_CONTROLLER"
 msgstr ""
 
-#, fuzzy
-msgid "MICROBE_STAGE_DAY_NIGHT_TEXT"
-msgstr ""
-"Prokariotu struktūras\n"
-"\n"
-"Metabolosomas: ražo ATP no glikozes\n"
-"\n"
-"Hemosintezējošas olbaltumvielas: No sērūdeņraža saražo uz pusi mazāk glikozes nekā hemoplasts, bet arī veic glikolīzi, aizņem 1 daļu\n"
-"\n"
-"Tilakoīdi: ražo 3 reizes mazāk glikozes nekā parasts hloroplasts, bet arī veic glikolīzi un aizņem 1 daļu\n"
-"\n"
-"Rusticianīns : pārvērš dzelzi ATP\n"
-"\n"
-"Nitrogenāze: no atmosfēras slāpekli un ATP ražo amonjaku\n"
-"\n"
-"Citoplazma: uzglabā savienojumus un veic glikolīzi (ražo ATP nelielos daudzumos)"
-
 msgid "MICROBE_STAGE_HEALTH_TEXT"
 msgstr ""
 
@@ -3861,6 +3880,9 @@ msgid "MODDING_INSTRUCTIONS_ON"
 msgstr ""
 
 msgid "MODELS"
+msgstr ""
+
+msgid "MODE_CAN_BE_CHANGED_IN_OPTIONS"
 msgstr ""
 
 msgid "MODIFY"
@@ -4252,7 +4274,14 @@ msgstr "Nekas šeit"
 msgid "NOTHING_TO_INTERACT_WITH"
 msgstr ""
 
+#, fuzzy
+msgid "NOTICE_BINDING_OUT_OF_ATP"
+msgstr "Ieslēgt absorbēšanas režīmu"
+
 msgid "NOTICE_DAMAGED_BY_NO_ATP"
+msgstr ""
+
+msgid "NOTICE_ENGULFING_OUT_OF_ATP"
 msgstr ""
 
 msgid "NOTICE_ENGULF_DAMAGE_FROM_TOXIN"
@@ -4813,6 +4842,10 @@ msgstr "Spēlētājs ir izmiris"
 msgid "PLAYER_RELATIVE_MOVEMENT"
 msgstr "Spēlētājs ir izmiris"
 
+#, fuzzy
+msgid "PLAYER_RELATIVE_MOVEMENT_TOOLTIP"
+msgstr "Spēlētājs ir izmiris"
+
 msgid "PLAYER_REPRODUCED"
 msgstr ""
 
@@ -4898,6 +4931,10 @@ msgstr "Šūnas procesi"
 msgid "PROCESS_SPEED_MODIFIER"
 msgstr "Šūnas procesi"
 
+#, fuzzy
+msgid "PROCESS_TOGGLE_TOOLTIP"
+msgstr "Atgriezties izvēlnē"
+
 msgid "PROGRAMMING_TEAM"
 msgstr ""
 
@@ -4911,6 +4948,9 @@ msgid "PROTOPLASM"
 msgstr "Protoplazma"
 
 msgid "PULL_REQUESTS_PROGRAMMING"
+msgstr ""
+
+msgid "QUADRILLION_ABBREVIATION"
 msgstr ""
 
 msgid "QUICK_LOAD"
@@ -5042,6 +5082,14 @@ msgstr ""
 
 msgid "RESET_SETTINGS_TO_DEFAULTS"
 msgstr ""
+
+#, fuzzy
+msgid "RESET_SHOWN_TUTORIALS"
+msgstr "Rādīt tutoriālus"
+
+#, fuzzy
+msgid "RESET_SHOWN_TUTORIALS_TOOLTIP"
+msgstr "Apskatiet detalizētu informāciju aiz pareģošanas"
 
 msgid "RESET_TO_DEFAULTS"
 msgstr ""
@@ -5298,6 +5346,10 @@ msgstr "Automātiski saglabāt progresu spēles laikā"
 msgid "SCREEN_RELATIVE_MOVEMENT"
 msgstr ""
 
+#, fuzzy
+msgid "SCREEN_RELATIVE_MOVEMENT_TOOLTIP"
+msgstr "Atsākt spēli"
+
 msgid "SCROLLLOCK"
 msgstr "Scroll Lock (taustiņš)"
 
@@ -5322,6 +5374,10 @@ msgstr "Atsākt spēli"
 
 msgid "SEED_LABEL"
 msgstr ""
+
+#, fuzzy
+msgid "SELECTED"
+msgstr "Atlasītā Modifikācija:"
 
 msgid "SELECTED_COLON"
 msgstr "Atlasīts:"
@@ -5363,6 +5419,9 @@ msgstr ""
 msgid "SELECT_ENZYME"
 msgstr "Atlasītā Modifikācija:"
 
+msgid "SELECT_MOVEMENT_MODE_TITLE"
+msgstr ""
+
 #, fuzzy
 msgid "SELECT_OPTION"
 msgstr "Atlasīts:"
@@ -5399,6 +5458,14 @@ msgstr "SFX skaļums"
 msgid "SHIFT"
 msgstr "Shift"
 
+#, fuzzy
+msgid "SHOW_ALL_TUTORIALS"
+msgstr "Rādīt tutoriālus"
+
+#, fuzzy
+msgid "SHOW_ALL_TUTORIALS_TOOLTIP"
+msgstr "Apskatiet detalizētu informāciju aiz pareģošanas"
+
 msgid "SHOW_DAMAGE_EFFECT"
 msgstr ""
 
@@ -5418,16 +5485,16 @@ msgid "SHOW_NEW_PATCH_NOTES_TOOLTIP"
 msgstr "Ala"
 
 #, fuzzy
-msgid "SHOW_TUTORIALS"
-msgstr "Rādīt tutoriālus"
-
-#, fuzzy
 msgid "SHOW_TUTORIALS_IN_NEW_CURRENT_OPTION"
 msgstr "Rādīt tutoriālus (pašreizējā spēlē)"
 
 #, fuzzy
 msgid "SHOW_TUTORIALS_IN_NEW_GAMES_OPTION"
 msgstr "Rādīt tutoriālus (jaunās spēlēs)"
+
+#, fuzzy
+msgid "SHOW_TUTORIALS_OPTION_TOOLTIP"
+msgstr "Apskatiet detalizētu informāciju aiz pareģošanas"
 
 msgid "SHOW_UNSAVED_PROGRESS_WARNING"
 msgstr ""
@@ -5483,6 +5550,10 @@ msgstr "Silīcija dioksīds"
 
 msgid "SILICA_MEMBRANE_DESCRIPTION"
 msgstr ""
+
+#, fuzzy
+msgid "SIXTEEN_TIMES"
+msgstr "{0} (x{1})"
 
 msgid "SIZE_COLON"
 msgstr "Izmērs:"
@@ -5740,6 +5811,10 @@ msgstr ""
 
 msgid "STORE_LOGGED_IN_AS"
 msgstr ""
+
+#, fuzzy
+msgid "STRAIN_BAR_TOOLTIP"
+msgstr "Apskatiet detalizētu informāciju aiz pareģošanas"
 
 msgid "STRAIN_BAR_VISIBILITY"
 msgstr ""
@@ -6007,6 +6082,12 @@ msgstr ""
 msgid "TIMELINE_NICHE_FILL"
 msgstr "Radās, lai aizpildītu nišu"
 
+msgid "TIMELINE_PLAYER_MIGRATED"
+msgstr ""
+
+msgid "TIMELINE_PLAYER_MIGRATED_TO"
+msgstr ""
+
 #, fuzzy
 msgid "TIMELINE_SELECTION_PRESSURE_SPLIT"
 msgstr "Radās dažādās atlases spiediena dēļ"
@@ -6033,6 +6114,10 @@ msgstr ""
 
 msgid "TIMELINE_SPECIES_EXTINCT_LOCAL"
 msgstr ""
+
+#, fuzzy
+msgid "TIMELINE_SPECIES_FOLLOWED"
+msgstr "Sugas populācija"
 
 msgid "TIMELINE_SPECIES_MIGRATED_FROM"
 msgstr ""
@@ -6268,6 +6353,9 @@ msgstr "Tulkotāji"
 msgid "TRANSPARENCY"
 msgstr "Tulkotāji"
 
+msgid "TRILLION_ABBREVIATION"
+msgstr ""
+
 msgid "TRY_FOSSILISING_SOME_SPECIES"
 msgstr ""
 
@@ -6280,6 +6368,13 @@ msgstr ""
 #, fuzzy
 msgid "TUTORIAL"
 msgstr "Tutoriāls"
+
+#, fuzzy
+msgid "TUTORIAL_ALL_NOT_ENABLED_EXPLANATION"
+msgstr ""
+"Koncentrēti mikrobi meklēs gabalus vai upurus tālas distances\n"
+"un visticamāk būs ambiciozāki par gabaliem.\n"
+"Atsaucīgi mikrobi ātrāk pāries uz jauniem mērķiem."
 
 #, fuzzy
 msgid "TUTORIAL_MICROBE_EDITOR_ATP_BALANCE_INTRO"
@@ -6327,6 +6422,13 @@ msgstr ""
 "Citoplazma: uzglabā savienojumus un veic glikolīzi (ražo ATP nelielos daudzumos)"
 
 #, fuzzy
+msgid "TUTORIAL_MICROBE_EDITOR_COMPOUND_BALANCES"
+msgstr ""
+"Jūs esat iegājuši atsaistīšanas režīmā. Šajā režīmā jūs varat uzklikšķināt uz kolonijas locekļiem, lai tos atsaistītu.\n"
+"\n"
+"Lai pamestu koloniju vispārīgi, jūs varat uzklikšķināt uz savas šūnas vai uzspiest atsaistīt visu pogu."
+
+#, fuzzy
 msgid "TUTORIAL_MICROBE_EDITOR_ENDING_TEXT"
 msgstr ""
 "Jūs esat iegājuši atsaistīšanas režīmā. Šajā režīmā jūs varat uzklikšķināt uz kolonijas locekļiem, lai tos atsaistītu.\n"
@@ -6335,6 +6437,30 @@ msgstr ""
 
 #, fuzzy
 msgid "TUTORIAL_MICROBE_EDITOR_FLAGELLUM"
+msgstr ""
+"Prokariotu struktūras\n"
+"\n"
+"Metabolosomas: ražo ATP no glikozes\n"
+"\n"
+"Hemosintezējošas olbaltumvielas: No sērūdeņraža saražo uz pusi mazāk glikozes nekā hemoplasts, bet arī veic glikolīzi, aizņem 1 daļu\n"
+"\n"
+"Tilakoīdi: ražo 3 reizes mazāk glikozes nekā parasts hloroplasts, bet arī veic glikolīzi un aizņem 1 daļu\n"
+"\n"
+"Rusticianīns : pārvērš dzelzi ATP\n"
+"\n"
+"Nitrogenāze: no atmosfēras slāpekli un ATP ražo amonjaku\n"
+"\n"
+"Citoplazma: uzglabā savienojumus un veic glikolīzi (ražo ATP nelielos daudzumos)"
+
+#, fuzzy
+msgid "TUTORIAL_MICROBE_EDITOR_FOOD_CHAIN"
+msgstr ""
+"Jūs esat iegājuši atsaistīšanas režīmā. Šajā režīmā jūs varat uzklikšķināt uz kolonijas locekļiem, lai tos atsaistītu.\n"
+"\n"
+"Lai pamestu koloniju vispārīgi, jūs varat uzklikšķināt uz savas šūnas vai uzspiest atsaistīt visu pogu."
+
+#, fuzzy
+msgid "TUTORIAL_MICROBE_EDITOR_MIGRATION"
 msgstr ""
 "Prokariotu struktūras\n"
 "\n"
@@ -6438,6 +6564,13 @@ msgstr ""
 "Lai pamestu koloniju vispārīgi, jūs varat uzklikšķināt uz savas šūnas vai uzspiest atsaistīt visu pogu."
 
 #, fuzzy
+msgid "TUTORIAL_MICROBE_STAGE_ENVIRONMENT_PANEL"
+msgstr ""
+"Jūs esat iegājuši atsaistīšanas režīmā. Šajā režīmā jūs varat uzklikšķināt uz kolonijas locekļiem, lai tos atsaistītu.\n"
+"\n"
+"Lai pamestu koloniju vispārīgi, jūs varat uzklikšķināt uz savas šūnas vai uzspiest atsaistīt visu pogu."
+
+#, fuzzy
 msgid "TUTORIAL_MICROBE_STAGE_HELP_MENU_AND_ZOOM"
 msgstr ""
 "Ja jums joprojām ir grūtības ar spēles mehāniku, pārskatiet palīdzības izvēlni. Jūs varat to atvērt ar jautājuma zīmes pogu lejējā kreisajā stūrī.\n"
@@ -6452,7 +6585,35 @@ msgstr ""
 "Lai pamestu koloniju vispārīgi, jūs varat uzklikšķināt uz savas šūnas vai uzspiest atsaistīt visu pogu."
 
 #, fuzzy
+msgid "TUTORIAL_MICROBE_STAGE_OPEN_PROCESS_PANEL"
+msgstr ""
+"Jūs esat iegājuši atsaistīšanas režīmā. Šajā režīmā jūs varat uzklikšķināt uz kolonijas locekļiem, lai tos atsaistītu.\n"
+"\n"
+"Lai pamestu koloniju vispārīgi, jūs varat uzklikšķināt uz savas šūnas vai uzspiest atsaistīt visu pogu."
+
+#, fuzzy
+msgid "TUTORIAL_MICROBE_STAGE_PAUSING"
+msgstr ""
+"Jūs esat iegājuši atsaistīšanas režīmā. Šajā režīmā jūs varat uzklikšķināt uz kolonijas locekļiem, lai tos atsaistītu.\n"
+"\n"
+"Lai pamestu koloniju vispārīgi, jūs varat uzklikšķināt uz savas šūnas vai uzspiest atsaistīt visu pogu."
+
+#, fuzzy
+msgid "TUTORIAL_MICROBE_STAGE_PROCESS_PANEL"
+msgstr ""
+"Jūs esat iegājuši atsaistīšanas režīmā. Šajā režīmā jūs varat uzklikšķināt uz kolonijas locekļiem, lai tos atsaistītu.\n"
+"\n"
+"Lai pamestu koloniju vispārīgi, jūs varat uzklikšķināt uz savas šūnas vai uzspiest atsaistīt visu pogu."
+
+#, fuzzy
 msgid "TUTORIAL_MICROBE_STAGE_REPRODUCE_TEXT"
+msgstr ""
+"Jūs esat iegājuši atsaistīšanas režīmā. Šajā režīmā jūs varat uzklikšķināt uz kolonijas locekļiem, lai tos atsaistītu.\n"
+"\n"
+"Lai pamestu koloniju vispārīgi, jūs varat uzklikšķināt uz savas šūnas vai uzspiest atsaistīt visu pogu."
+
+#, fuzzy
+msgid "TUTORIAL_MICROBE_STAGE_RESOURCE_SPLIT"
 msgstr ""
 "Jūs esat iegājuši atsaistīšanas režīmā. Šajā režīmā jūs varat uzklikšķināt uz kolonijas locekļiem, lai tos atsaistītu.\n"
 "\n"
@@ -6785,6 +6946,9 @@ msgstr ""
 
 msgid "VIEW_SOURCE_CODE"
 msgstr "Apskatīt pirmkodu"
+
+msgid "VIEW_TEXT_REPORT"
+msgstr ""
 
 msgid "VIP_PATRONS"
 msgstr ""
@@ -8651,6 +8815,30 @@ msgid "ZOOM_OUT"
 msgstr "Attālināt"
 
 #, fuzzy
+#~ msgid "MICROBE_STAGE_DAY_NIGHT_TEXT"
+#~ msgstr ""
+#~ "Prokariotu struktūras\n"
+#~ "\n"
+#~ "Metabolosomas: ražo ATP no glikozes\n"
+#~ "\n"
+#~ "Hemosintezējošas olbaltumvielas: No sērūdeņraža saražo uz pusi mazāk glikozes nekā hemoplasts, bet arī veic glikolīzi, aizņem 1 daļu\n"
+#~ "\n"
+#~ "Tilakoīdi: ražo 3 reizes mazāk glikozes nekā parasts hloroplasts, bet arī veic glikolīzi un aizņem 1 daļu\n"
+#~ "\n"
+#~ "Rusticianīns : pārvērš dzelzi ATP\n"
+#~ "\n"
+#~ "Nitrogenāze: no atmosfēras slāpekli un ATP ražo amonjaku\n"
+#~ "\n"
+#~ "Citoplazma: uzglabā savienojumus un veic glikolīzi (ražo ATP nelielos daudzumos)"
+
+#, fuzzy
+#~ msgid "GLOBAL_GLACIATION_EVENT_LOG"
+#~ msgstr "Kopējā Populācija:"
+
+#~ msgid "IRON_CHEMOLITHOAUTOTROPHY"
+#~ msgstr "Dzelža Ķīmolitoautotrofija"
+
+#, fuzzy
 #~ msgid "PASSIVE_REPRODUCTION_PROGRESS"
 #~ msgstr ""
 #~ "Aktīvi mikrobi skraidīs apkārt un gāzīsies, kad nekas interesants nenotiek.\n"
@@ -8973,9 +9161,6 @@ msgstr "Attālināt"
 #, fuzzy
 #~ msgid "LOOKING_AT"
 #~ msgstr "Lai labotu kļūdu redaktorā, nospied \"atsaukt\""
-
-#~ msgid "SPECIES_N_TIMES"
-#~ msgstr "{0} (x{1})"
 
 #, fuzzy
 #~ msgid "CONFIRM_NORMAL"

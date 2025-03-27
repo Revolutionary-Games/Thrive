@@ -57,6 +57,7 @@ max_lines_visible = 5
 [node name="ToggleProcess" type="CheckButton" parent="HBoxContainer"]
 process_mode = 3
 layout_mode = 2
+tooltip_text = "PROCESS_TOGGLE_TOOLTIP"
 button_pressed = true
 
 [node name="FirstLine" type="HBoxContainer" parent="."]

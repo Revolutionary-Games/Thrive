@@ -7,8 +7,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2025-03-09 11:58-0300\n"
-"PO-Revision-Date: 2025-02-06 13:29+0000\n"
+"POT-Creation-Date: 2025-03-27 09:59+0200\n"
+"PO-Revision-Date: 2025-03-20 20:10+0000\n"
 "Last-Translator: Anonymous <noreply@weblate.org>\n"
 "Language-Team: Hungarian <https://translate.revolutionarygamesstudio.com/projects/thrive/thrive-game/hu/>\n"
 "Language: hu\n"
@@ -201,6 +201,9 @@ msgstr "Anaerob Nitrifikáció"
 msgid "AND_UNLOCK_CONDITION"
 msgstr "és"
 
+msgid "ANISOTROPIC_FILTERING"
+msgstr ""
+
 msgid "APPEARANCE"
 msgstr "Kinézet"
 
@@ -330,6 +333,10 @@ msgid "AUTO-EVO_PREDICTION_BOX_DESCRIPTION"
 msgstr ""
 "Ez a panel megmutatja a szerkesztett élőlényeknek az auto-evo által megbecsült populációinak egyedszámait.\n"
 "Az auto-evo egy populáció szimulációt futtat, ami a saját fajod populációját (és a játék teljesítményét) is befolyásolja."
+
+#, fuzzy
+msgid "AUTO-EVO_RESULTS_TITLE"
+msgstr "Auto-Evo eredmények:"
 
 msgid "AUTO-EVO_STEPS_DONE"
 msgstr "{0:F1}% kész. {1:n0}/{2:n0} lépés."
@@ -660,6 +667,10 @@ msgid "CELL_STAT_SPEED_TOOLTIP"
 msgstr "Az az érték, ami a világok generálásáért felelős. Ennek az értéknek pozitívnak kell lennie."
 
 #, fuzzy
+msgid "CELL_STAT_STORAGE_TOOLTIP"
+msgstr "Az az érték, ami a világok generálásáért felelős. Ennek az értéknek pozitívnak kell lennie."
+
+#, fuzzy
 msgid "CELL_TYPE_BUTTON_ATP_CONSUMPTION"
 msgstr "Options"
 
@@ -791,6 +802,10 @@ msgstr "Régi mentések törlése"
 
 msgid "CLEAR_CACHE"
 msgstr "Gyorsítótár törlése"
+
+#, fuzzy
+msgid "CLICK_TO_SELECT"
+msgstr "Mentés/-ek törlése"
 
 msgid "CLOSE"
 msgstr "Bezár"
@@ -2496,6 +2511,26 @@ msgstr "Kilépés a játékból"
 msgid "GLES3"
 msgstr ""
 
+msgid "GLOBAL_GLACIATION_END_EVENT_LOG"
+msgstr ""
+
+#, fuzzy
+msgid "GLOBAL_GLACIATION_EVENT"
+msgstr "Teljes populáció:"
+
+#, fuzzy
+msgid "GLOBAL_GLACIATION_EVENT_TOOLTIP"
+msgstr "Lépj át az Ébredés szakaszába. Elérhető, ha rendelkezel elegendő agykapacitással (axonokkal rendelkező szövettípus)."
+
+msgid "GLOBAL_GLACIATION_EVENT_WARNING_LOG_PLURAL"
+msgstr ""
+
+msgid "GLOBAL_GLACIATION_EVENT_WARNING_LOG_SINGULAR"
+msgstr ""
+
+msgid "GLOBAL_GLACIATION_START_EVENT_LOG"
+msgstr ""
+
 msgid "GLOBAL_INITIAL_LETTER"
 msgstr "G"
 
@@ -2880,8 +2915,9 @@ msgstr "Protanóp (Piros-Zöld)"
 msgid "IRON"
 msgstr "Vas"
 
-msgid "IRON_CHEMOLITHOAUTOTROPHY"
-msgstr "Vas oxidálása"
+#, fuzzy
+msgid "IRON_OXIDATION"
+msgstr "Adományok"
 
 #, fuzzy
 msgid "ITCH_TOOLTIP"
@@ -3758,12 +3794,14 @@ msgstr ""
 "A sejtednek szüksége van glükózra, hogy energiát tudjon előállítani és túl tudjon így élni.\n"
 "Kövesd a vonalat, hogy találj egy kis glükózt."
 
+#, fuzzy
 msgid "MICROBE_STAGE_COLLECT_TEXT"
 msgstr ""
 "Gyűjts glükózt úgy, hogy áthaladsz a fehér felhőkön.\n"
 "A sejtednek szüksége van glükózra, hogy energiát tudjon előállítani és túl tudjon így élni.\n"
 "Kövesd a vonalat, hogy találj egy kis glükózt."
 
+#, fuzzy
 msgid "MICROBE_STAGE_CONTROL_TEXT"
 msgstr ""
 "A sejted irányításához használd azokat a gombokat, amik a sejted közelében vannak (a képernyő közepén), plusz az egeret, hogy irányítsd a sejted irányát.\n"
@@ -3778,13 +3816,6 @@ msgstr ""
 "Nyomd meg a képen látható gombokat egyesével egy pár másodpercig a folytatáshoz."
 
 #, fuzzy
-msgid "MICROBE_STAGE_DAY_NIGHT_TEXT"
-msgstr ""
-"Tartsd szemmel az életerő csíkot az ATP mérő mellett (jobb alsó sarok).\n"
-"A sejted meghal, ha elfogy az életereje.\n"
-"Addig regenerálódik a sejted, amíg rendelkezik ATP-vel.\n"
-"Figyelj arra, hogy elegendő glükózt gyűjts az ATP előállításához."
-
 msgid "MICROBE_STAGE_HEALTH_TEXT"
 msgstr ""
 "Tartsd szemmel az életerő csíkot az ATP mérő mellett (jobb alsó sarok).\n"
@@ -3930,6 +3961,9 @@ msgstr "A modolási instrukciók elérhetők"
 
 msgid "MODELS"
 msgstr "Modellek"
+
+msgid "MODE_CAN_BE_CHANGED_IN_OPTIONS"
+msgstr ""
 
 msgid "MODIFY"
 msgstr "Módosít"
@@ -4361,7 +4395,14 @@ msgstr "Semmi nincs itt"
 msgid "NOTHING_TO_INTERACT_WITH"
 msgstr ""
 
+#, fuzzy
+msgid "NOTICE_BINDING_OUT_OF_ATP"
+msgstr "Összekapcsolás be/ki"
+
 msgid "NOTICE_DAMAGED_BY_NO_ATP"
+msgstr ""
+
+msgid "NOTICE_ENGULFING_OUT_OF_ATP"
 msgstr ""
 
 msgid "NOTICE_ENGULF_DAMAGE_FROM_TOXIN"
@@ -4903,6 +4944,10 @@ msgstr "A játékos faja kihalt"
 msgid "PLAYER_RELATIVE_MOVEMENT"
 msgstr "A játékos faja kihalt"
 
+#, fuzzy
+msgid "PLAYER_RELATIVE_MOVEMENT_TOOLTIP"
+msgstr "A játékos faja kihalt"
+
 msgid "PLAYER_REPRODUCED"
 msgstr "játékos szaporodott"
 
@@ -4986,6 +5031,10 @@ msgstr "Sejtfolyamatok"
 msgid "PROCESS_SPEED_MODIFIER"
 msgstr "Sejtfolyamatok"
 
+#, fuzzy
+msgid "PROCESS_TOGGLE_TOOLTIP"
+msgstr "Kilépés a főmenübe"
+
 msgid "PROGRAMMING_TEAM"
 msgstr "Programozó csapat"
 
@@ -5000,6 +5049,10 @@ msgstr "Protoplazma"
 
 msgid "PULL_REQUESTS_PROGRAMMING"
 msgstr "Pull requestek / Programozás"
+
+#, fuzzy
+msgid "QUADRILLION_ABBREVIATION"
+msgstr "{0} B"
 
 msgid "QUICK_LOAD"
 msgstr "Gyorstöltés"
@@ -5132,6 +5185,14 @@ msgstr "Bemeneti eszközök visszaállítása"
 
 msgid "RESET_SETTINGS_TO_DEFAULTS"
 msgstr "Alapok"
+
+#, fuzzy
+msgid "RESET_SHOWN_TUTORIALS"
+msgstr "Tutorial-ok mutatása"
+
+#, fuzzy
+msgid "RESET_SHOWN_TUTORIALS_TOOLTIP"
+msgstr "Segítség"
 
 msgid "RESET_TO_DEFAULTS"
 msgstr "Visszaállítja-e az alap dolgokat?"
@@ -5396,6 +5457,10 @@ msgstr "Képesség sáv megjelenítése"
 msgid "SCREEN_RELATIVE_MOVEMENT"
 msgstr ""
 
+#, fuzzy
+msgid "SCREEN_RELATIVE_MOVEMENT_TOOLTIP"
+msgstr "Alap mozgás"
+
 msgid "SCROLLLOCK"
 msgstr "Scroll Lock"
 
@@ -5421,6 +5486,10 @@ msgstr "Játék folytatása"
 #, fuzzy
 msgid "SEED_LABEL"
 msgstr "Biom: {0}"
+
+#, fuzzy
+msgid "SELECTED"
+msgstr "Kijelölt mod:"
 
 msgid "SELECTED_COLON"
 msgstr "Kijelölve:"
@@ -5458,6 +5527,10 @@ msgstr "Válassz ki egy sejttípust, hogy szerkeszteni tudd"
 msgid "SELECT_ENZYME"
 msgstr "Kijelölt mod:"
 
+#, fuzzy
+msgid "SELECT_MOVEMENT_MODE_TITLE"
+msgstr "Helyi adatok törlése"
+
 msgid "SELECT_OPTION"
 msgstr "Válassz ki egy lehetőséget"
 
@@ -5494,6 +5567,14 @@ msgstr "SFX hangerő"
 msgid "SHIFT"
 msgstr "Shift"
 
+#, fuzzy
+msgid "SHOW_ALL_TUTORIALS"
+msgstr "Tutorial-ok mutatása"
+
+#, fuzzy
+msgid "SHOW_ALL_TUTORIALS_TOOLTIP"
+msgstr "Segítség"
+
 msgid "SHOW_DAMAGE_EFFECT"
 msgstr ""
 
@@ -5512,15 +5593,15 @@ msgstr "{0} {1}"
 msgid "SHOW_NEW_PATCH_NOTES_TOOLTIP"
 msgstr "{0} {1}"
 
-#, fuzzy
-msgid "SHOW_TUTORIALS"
-msgstr "Tutorial-ok mutatása"
-
 msgid "SHOW_TUTORIALS_IN_NEW_CURRENT_OPTION"
 msgstr "Tutoriálok mutatása (jelenlegi játékban)"
 
 msgid "SHOW_TUTORIALS_IN_NEW_GAMES_OPTION"
 msgstr "Tutoriálok mutatása (új játék esetén)"
+
+#, fuzzy
+msgid "SHOW_TUTORIALS_OPTION_TOOLTIP"
+msgstr "Segítség"
 
 msgid "SHOW_UNSAVED_PROGRESS_WARNING"
 msgstr "\"Mentetlen játék\" figyelmeztetés mutatása"
@@ -5573,6 +5654,9 @@ msgstr "Kovasav"
 
 msgid "SILICA_MEMBRANE_DESCRIPTION"
 msgstr ""
+
+msgid "SIXTEEN_TIMES"
+msgstr "16x"
 
 msgid "SIZE_COLON"
 msgstr "Méret:"
@@ -5840,6 +5924,10 @@ msgstr ""
 
 msgid "STORE_LOGGED_IN_AS"
 msgstr "Belépve mint: {0}"
+
+#, fuzzy
+msgid "STRAIN_BAR_TOOLTIP"
+msgstr "Játék szüneteltetése"
 
 msgid "STRAIN_BAR_VISIBILITY"
 msgstr ""
@@ -6110,6 +6198,14 @@ msgstr ""
 msgid "TIMELINE_NICHE_FILL"
 msgstr "[u]{0}[/u] egy új fajként vált le [u]{1}[/u]-tól/től, hogy betöltsön egy ökológiai niche-t"
 
+#, fuzzy
+msgid "TIMELINE_PLAYER_MIGRATED"
+msgstr "[u]{0}[/u] populációjának egy része ide vándorolt: {1}"
+
+#, fuzzy
+msgid "TIMELINE_PLAYER_MIGRATED_TO"
+msgstr "[u]{0}[/u] populációjának egy része ide vándorolt: {1}"
+
 msgid "TIMELINE_SELECTION_PRESSURE_SPLIT"
 msgstr "kölönböző kiválasztódási nyomások miatt, [u]{0}[/u] egy új fajként vált le [u]{1}[/u]-tól/től"
 
@@ -6125,6 +6221,10 @@ msgstr "[u]{0}[/u] kihalt!"
 
 msgid "TIMELINE_SPECIES_EXTINCT_LOCAL"
 msgstr "[u]{0}[/u] eltűnt ebből a patch-ből"
+
+#, fuzzy
+msgid "TIMELINE_SPECIES_FOLLOWED"
+msgstr "[u]{0}[/u] kihalt!"
 
 msgid "TIMELINE_SPECIES_MIGRATED_FROM"
 msgstr "[u]{0}[/u] populációjának egy része ebbe a patch-be vándorolt ebből a patch-ből: {1}"
@@ -6356,6 +6456,10 @@ msgid "TRANSPARENCY"
 msgstr "Átlátszóság"
 
 #, fuzzy
+msgid "TRILLION_ABBREVIATION"
+msgstr "{0} B"
+
+#, fuzzy
 msgid "TRY_FOSSILISING_SOME_SPECIES"
 msgstr "Próbálj pár képernyőképet készíteni!"
 
@@ -6367,6 +6471,10 @@ msgstr "Próbálj pár képernyőképet készíteni!"
 
 msgid "TUTORIAL"
 msgstr "Tutorial"
+
+#, fuzzy
+msgid "TUTORIAL_ALL_NOT_ENABLED_EXPLANATION"
+msgstr "(a szerkesztő elhagyása után egy közeli glükózfelhő mellett lesz a sejted)"
 
 #, fuzzy
 msgid "TUTORIAL_MICROBE_EDITOR_ATP_BALANCE_INTRO"
@@ -6402,6 +6510,17 @@ msgstr ""
 "\n"
 "A következő szerkesztő ablakba való lépéshez nyomd meg jobb lenti gombot."
 
+#, fuzzy
+msgid "TUTORIAL_MICROBE_EDITOR_COMPOUND_BALANCES"
+msgstr ""
+"Üdvözöllek a Sejtszerkesztőben.\n"
+"Itt megnézheted, hogy mi történt, mióta elkezdted a játékot, vagy mióta elhagytad a szerkesztőt. Ezek után pedig változtathatsz a fajodon.\n"
+"\n"
+"Ezen a lapon láthatsz egy jelentést, hogy mely fajok léteznek még rajtad kívül. Továbbá azt is megmutatja, hogy hol találhatóak, és mekkora a létszámuk. Plusz fent a változásokat is mutatja a környezetedben.\n"
+"\n"
+"A következő szerkesztő ablakba való lépéshez nyomd meg jobb lenti gombot."
+
+#, fuzzy
 msgid "TUTORIAL_MICROBE_EDITOR_ENDING_TEXT"
 msgstr ""
 "Ezek a fajok szerkesztésének alapjai. Befejezésként átnevezheted a fajodat, ha a bal alsó sarokban lévő névre kattintasz, és szerkeszted a szöveget.\n"
@@ -6414,6 +6533,27 @@ msgstr ""
 
 #, fuzzy
 msgid "TUTORIAL_MICROBE_EDITOR_FLAGELLUM"
+msgstr ""
+"Üdvözöllek a Sejtszerkesztőben.\n"
+"Itt megnézheted, hogy mi történt, mióta elkezdted a játékot, vagy mióta elhagytad a szerkesztőt. Ezek után pedig változtathatsz a fajodon.\n"
+"\n"
+"Ezen a lapon láthatsz egy jelentést, hogy mely fajok léteznek még rajtad kívül. Továbbá azt is megmutatja, hogy hol találhatóak, és mekkora a létszámuk. Plusz fent a változásokat is mutatja a környezetedben.\n"
+"\n"
+"A következő szerkesztő ablakba való lépéshez nyomd meg jobb lenti gombot."
+
+#, fuzzy
+msgid "TUTORIAL_MICROBE_EDITOR_FOOD_CHAIN"
+msgstr ""
+"Ezek a fajok szerkesztésének alapjai. Befejezésként átnevezheted a fajodat, ha a bal alsó sarokban lévő névre kattintasz, és szerkeszted a szöveget.\n"
+"\n"
+"Próbáld meg felfedezni a többi fület az MP sáv alatt, hogy megnézzd, hogyan tudod még testre szabni a celládat.\n"
+"\n"
+"Ahhoz, hogy túlélj ebben a zord világban, megbízható energiaforrást kell találnod, mivel a természetes glükóz gyorsan csökken.\n"
+"\n"
+"Sok szerencsét!"
+
+#, fuzzy
+msgid "TUTORIAL_MICROBE_EDITOR_MIGRATION"
 msgstr ""
 "Üdvözöllek a Sejtszerkesztőben.\n"
 "Itt megnézheted, hogy mi történt, mióta elkezdted a játékot, vagy mióta elhagytad a szerkesztőt. Ezek után pedig változtathatsz a fajodon.\n"
@@ -6527,6 +6667,13 @@ msgstr ""
 "Nyomd meg a képen látható gombokat egyesével egy pár másodpercig a folytatáshoz."
 
 #, fuzzy
+msgid "TUTORIAL_MICROBE_STAGE_ENVIRONMENT_PANEL"
+msgstr ""
+"A sejted irányításához használd azokat a gombokat, amik a sejted közelében vannak (a képernyő közepén), plusz az egeret, hogy irányítsd a sejted irányát.\n"
+"\n"
+"Nyomd meg a képen látható gombokat egyesével egy pár másodpercig a folytatáshoz."
+
+#, fuzzy
 msgid "TUTORIAL_MICROBE_STAGE_HELP_MENU_AND_ZOOM"
 msgstr ""
 "Hogyha netán bajlódsz a játék mechanikáival, akkor nézd meg a segítség menüt. A bal alsó sarokban található kérdőjel ikonnal tudod megnyitni.\n"
@@ -6541,7 +6688,32 @@ msgstr ""
 "Nyomd meg a képen látható gombokat egyesével egy pár másodpercig a folytatáshoz."
 
 #, fuzzy
+msgid "TUTORIAL_MICROBE_STAGE_OPEN_PROCESS_PANEL"
+msgstr ""
+"Ahhoz, hogy szaporodni tudj, meg kell dupláznod a sejted sejtszervecskéinek mennyiségét. Ehhez elegendő mennyiségű ammóniát és foszfátot kell gyűjtened.\n"
+"A képernyő jobb alsó sarkában láthatsz egy mérőt, ami mutatja, hogy mennyire van még szükséged ebből a két anyagból."
+
+#, fuzzy
+msgid "TUTORIAL_MICROBE_STAGE_PAUSING"
+msgstr ""
+"A sejted irányításához használd azokat a gombokat, amik a sejted közelében vannak (a képernyő közepén), plusz az egeret, hogy irányítsd a sejted irányát.\n"
+"\n"
+"Nyomd meg a képen látható gombokat egyesével egy pár másodpercig a folytatáshoz."
+
+#, fuzzy
+msgid "TUTORIAL_MICROBE_STAGE_PROCESS_PANEL"
+msgstr ""
+"Ahhoz, hogy szaporodni tudj, meg kell dupláznod a sejted sejtszervecskéinek mennyiségét. Ehhez elegendő mennyiségű ammóniát és foszfátot kell gyűjtened.\n"
+"A képernyő jobb alsó sarkában láthatsz egy mérőt, ami mutatja, hogy mennyire van még szükséged ebből a két anyagból."
+
+#, fuzzy
 msgid "TUTORIAL_MICROBE_STAGE_REPRODUCE_TEXT"
+msgstr ""
+"Ahhoz, hogy szaporodni tudj, meg kell dupláznod a sejted sejtszervecskéinek mennyiségét. Ehhez elegendő mennyiségű ammóniát és foszfátot kell gyűjtened.\n"
+"A képernyő jobb alsó sarkában láthatsz egy mérőt, ami mutatja, hogy mennyire van még szükséged ebből a két anyagból."
+
+#, fuzzy
+msgid "TUTORIAL_MICROBE_STAGE_RESOURCE_SPLIT"
 msgstr ""
 "Ahhoz, hogy szaporodni tudj, meg kell dupláznod a sejted sejtszervecskéinek mennyiségét. Ehhez elegendő mennyiségű ammóniát és foszfátot kell gyűjtened.\n"
 "A képernyő jobb alsó sarkában láthatsz egy mérőt, ami mutatja, hogy mennyire van még szükséged ebből a két anyagból."
@@ -6880,6 +7052,9 @@ msgstr ""
 
 msgid "VIEW_SOURCE_CODE"
 msgstr "A forráskód megtekintése"
+
+msgid "VIEW_TEXT_REPORT"
+msgstr ""
 
 msgid "VIP_PATRONS"
 msgstr "VIP támogatók"
@@ -8787,6 +8962,21 @@ msgid "ZOOM_OUT"
 msgstr "Távolodás"
 
 #, fuzzy
+#~ msgid "MICROBE_STAGE_DAY_NIGHT_TEXT"
+#~ msgstr ""
+#~ "Tartsd szemmel az életerő csíkot az ATP mérő mellett (jobb alsó sarok).\n"
+#~ "A sejted meghal, ha elfogy az életereje.\n"
+#~ "Addig regenerálódik a sejted, amíg rendelkezik ATP-vel.\n"
+#~ "Figyelj arra, hogy elegendő glükózt gyűjts az ATP előállításához."
+
+#, fuzzy
+#~ msgid "GLOBAL_GLACIATION_EVENT_LOG"
+#~ msgstr "Teljes populáció:"
+
+#~ msgid "IRON_CHEMOLITHOAUTOTROPHY"
+#~ msgstr "Vas oxidálása"
+
+#, fuzzy
 #~ msgid "PASSIVE_REPRODUCTION_PROGRESS"
 #~ msgstr "(a sebesség, mely alatt az MI fajok mutálódnak)"
 
@@ -9098,9 +9288,6 @@ msgstr "Távolodás"
 
 #~ msgid "UNKNOWN_ON_WINDOWS"
 #~ msgstr "Ismeretlen a Windows-on"
-
-#~ msgid "SIXTEEN_TIMES"
-#~ msgstr "16x"
 
 #, fuzzy
 #~ msgid "TARGET_TIME"

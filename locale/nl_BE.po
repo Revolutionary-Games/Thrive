@@ -7,8 +7,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2025-03-09 11:58-0300\n"
-"PO-Revision-Date: 2025-02-06 13:29+0000\n"
+"POT-Creation-Date: 2025-03-27 09:59+0200\n"
+"PO-Revision-Date: 2025-03-20 20:10+0000\n"
 "Last-Translator: Anonymous <noreply@weblate.org>\n"
 "Language-Team: Dutch (Belgium) <https://translate.revolutionarygamesstudio.com/projects/thrive/thrive-game/nl_BE/>\n"
 "Language: nl_BE\n"
@@ -201,6 +201,9 @@ msgstr "Anaerobe Stikstoffixatie"
 msgid "AND_UNLOCK_CONDITION"
 msgstr "en"
 
+msgid "ANISOTROPIC_FILTERING"
+msgstr ""
+
 msgid "APPEARANCE"
 msgstr "Uiterlijk"
 
@@ -331,6 +334,10 @@ msgid "AUTO-EVO_PREDICTION_BOX_DESCRIPTION"
 msgstr ""
 "Dit paneel toont de verwachte populatie van auto-evo voor de bewerkte soort.\n"
 "Auto-evo voert de populatiesimulatie uit die het andere deel is (naast uw eigen prestaties) dat uw populatie beïnvloedt."
+
+#, fuzzy
+msgid "AUTO-EVO_RESULTS_TITLE"
+msgstr "Auto-evo resultaten:"
 
 msgid "AUTO-EVO_STEPS_DONE"
 msgstr "{0:F1}% klaar. {1:n0}/{2:n0} stappen."
@@ -663,6 +670,10 @@ msgid "CELL_STAT_SPEED_TOOLTIP"
 msgstr "Pauzeer het spel"
 
 #, fuzzy
+msgid "CELL_STAT_STORAGE_TOOLTIP"
+msgstr "Pauzeer het spel"
+
+#, fuzzy
 msgid "CELL_TYPE_BUTTON_ATP_CONSUMPTION"
 msgstr "{0}: -{1} ATP"
 
@@ -797,6 +808,10 @@ msgstr "Ruim Oude Opgeslagen Bestanden Op"
 
 msgid "CLEAR_CACHE"
 msgstr ""
+
+#, fuzzy
+msgid "CLICK_TO_SELECT"
+msgstr "Verwijder het geselecteerde"
 
 msgid "CLOSE"
 msgstr "Sluit"
@@ -2486,6 +2501,26 @@ msgstr "Zelfmoord"
 msgid "GLES3"
 msgstr ""
 
+msgid "GLOBAL_GLACIATION_END_EVENT_LOG"
+msgstr ""
+
+#, fuzzy
+msgid "GLOBAL_GLACIATION_EVENT"
+msgstr "Totale populatie:"
+
+#, fuzzy
+msgid "GLOBAL_GLACIATION_EVENT_TOOLTIP"
+msgstr "Ga door naar de Ontwaakfase. Beschikbaar wanneer u genoeg breinkracht hebt (weefseltype met axonen)."
+
+msgid "GLOBAL_GLACIATION_EVENT_WARNING_LOG_PLURAL"
+msgstr ""
+
+msgid "GLOBAL_GLACIATION_EVENT_WARNING_LOG_SINGULAR"
+msgstr ""
+
+msgid "GLOBAL_GLACIATION_START_EVENT_LOG"
+msgstr ""
+
 msgid "GLOBAL_INITIAL_LETTER"
 msgstr ""
 
@@ -2869,8 +2904,9 @@ msgstr "Protanope (Rood-Groen)"
 msgid "IRON"
 msgstr "Ijzer"
 
-msgid "IRON_CHEMOLITHOAUTOTROPHY"
-msgstr "Ijzer Chemolithoautotrofie"
+#, fuzzy
+msgid "IRON_OXIDATION"
+msgstr "Donaties"
 
 #, fuzzy
 msgid "ITCH_TOOLTIP"
@@ -3731,12 +3767,14 @@ msgstr ""
 "Je cel heeft glucose nodig om energie te produceren en in leven te blijven.\n"
 "Volg de lijn van uw cel naar de nabijgelegen glucose."
 
+#, fuzzy
 msgid "MICROBE_STAGE_COLLECT_TEXT"
 msgstr ""
 "Verzamel glucose (witte wolken) door eroverheen te bewegen.\n"
 "Je cel heeft glucose nodig om energie te produceren en in leven te blijven.\n"
 "Volg de lijn van uw cel naar de nabijgelegen glucose."
 
+#, fuzzy
 msgid "MICROBE_STAGE_CONTROL_TEXT"
 msgstr ""
 "Om uw cel te besturen, gebruikt u de toetsen die in de buurt van uw cel worden weergegeven (midden van het scherm) en de muis om de richting van de cel te regelen.\n"
@@ -3751,13 +3789,6 @@ msgstr ""
 "Probeer alle toetsen een paar seconden om door te gaan."
 
 #, fuzzy
-msgid "MICROBE_STAGE_DAY_NIGHT_TEXT"
-msgstr ""
-"Houd je gezondheidsbalk naast de ATP-balk (rechtsonder) in de gaten.\n"
-"Je cel sterft als hij geen gezondheid meer heeft.\n"
-"Je regenereert gezondheid terwijl je ATP hebt.\n"
-"Zorg ervoor dat u voldoende glucose verzamelt om ATP te produceren."
-
 msgid "MICROBE_STAGE_HEALTH_TEXT"
 msgstr ""
 "Houd je gezondheidsbalk naast de ATP-balk (rechtsonder) in de gaten.\n"
@@ -3797,6 +3828,7 @@ msgstr ""
 "\n"
 "Om te overleven in deze vijandige wereld, moet je alle verbindingen die je kunt vinden verzamelen en elke generatie evolueren om te concurreren met de andere soorten microben."
 
+#, fuzzy
 msgid "MICROBE_STAGE_ORGANELLE_DIVISION"
 msgstr ""
 "Één van jouw organellen heeft zich verdeeld.\n"
@@ -3905,6 +3937,10 @@ msgstr "Modding instructies zijn beschikbaar op"
 
 msgid "MODELS"
 msgstr "Modellen"
+
+#, fuzzy
+msgid "MODE_CAN_BE_CHANGED_IN_OPTIONS"
+msgstr "Verschuif strategische weergave wanneer muis aan de schermrand is"
 
 msgid "MODIFY"
 msgstr "Pas aan"
@@ -4299,8 +4335,16 @@ msgstr "Hier is niets"
 msgid "NOTHING_TO_INTERACT_WITH"
 msgstr "Niets om te interageren"
 
+#, fuzzy
+msgid "NOTICE_BINDING_OUT_OF_ATP"
+msgstr "Beschadigd door een gebrek aan ATP"
+
 msgid "NOTICE_DAMAGED_BY_NO_ATP"
 msgstr "Beschadigd door een gebrek aan ATP"
+
+#, fuzzy
+msgid "NOTICE_ENGULFING_OUT_OF_ATP"
+msgstr "Grootte van huidige cel is te klein om doelwit op te slokken"
 
 msgid "NOTICE_ENGULF_DAMAGE_FROM_TOXIN"
 msgstr "Beschadigd door gifstoffen in opgeslokte materie"
@@ -4864,6 +4908,10 @@ msgstr "Speler is uitgestorven"
 msgid "PLAYER_RELATIVE_MOVEMENT"
 msgstr "Speler is uitgestorven"
 
+#, fuzzy
+msgid "PLAYER_RELATIVE_MOVEMENT_TOOLTIP"
+msgstr "Speler is uitgestorven"
+
 msgid "PLAYER_REPRODUCED"
 msgstr "speler reproduceerde"
 
@@ -4951,6 +4999,10 @@ msgstr "Celprocessen"
 msgid "PROCESS_SPEED_MODIFIER"
 msgstr "Celprocessen"
 
+#, fuzzy
+msgid "PROCESS_TOGGLE_TOOLTIP"
+msgstr "Ga terug naar het menu"
+
 msgid "PROGRAMMING_TEAM"
 msgstr "Programmeerteam"
 
@@ -4965,6 +5017,10 @@ msgstr "Protoplasma"
 
 msgid "PULL_REQUESTS_PROGRAMMING"
 msgstr "Pull-verzoeken / programmering"
+
+#, fuzzy
+msgid "QUADRILLION_ABBREVIATION"
+msgstr "{0} B"
 
 msgid "QUICK_LOAD"
 msgstr "Snel laden"
@@ -5102,6 +5158,14 @@ msgstr "Reset Invoer"
 
 msgid "RESET_SETTINGS_TO_DEFAULTS"
 msgstr "Standaardwaarden"
+
+#, fuzzy
+msgid "RESET_SHOWN_TUTORIALS"
+msgstr "Toon tutorials"
+
+#, fuzzy
+msgid "RESET_SHOWN_TUTORIALS_TOOLTIP"
+msgstr "Voeg een nieuwe sneltoets toe"
 
 msgid "RESET_TO_DEFAULTS"
 msgstr "Standaardinstellingen herstellen?"
@@ -5373,6 +5437,10 @@ msgstr "Toon vaardigheden balk"
 msgid "SCREEN_RELATIVE_MOVEMENT"
 msgstr "voor het verhogen van de"
 
+#, fuzzy
+msgid "SCREEN_RELATIVE_MOVEMENT_TOOLTIP"
+msgstr "voor het verhogen van de"
+
 msgid "SCROLLLOCK"
 msgstr "Scroll Lock(toets)"
 
@@ -5398,6 +5466,10 @@ msgstr "Hervat het spel"
 #, fuzzy
 msgid "SEED_LABEL"
 msgstr "Bioom: {0}"
+
+#, fuzzy
+msgid "SELECTED"
+msgstr "Geselecteerde mod:"
 
 msgid "SELECTED_COLON"
 msgstr "Geselecteerd:"
@@ -5439,6 +5511,10 @@ msgid "SELECT_ENZYME"
 msgstr "Geselecteerde mod:"
 
 #, fuzzy
+msgid "SELECT_MOVEMENT_MODE_TITLE"
+msgstr "Verwijder lokale Data"
+
+#, fuzzy
 msgid "SELECT_OPTION"
 msgstr "Geselecteerd:"
 
@@ -5475,6 +5551,14 @@ msgid "SHIFT"
 msgstr "Shift"
 
 #, fuzzy
+msgid "SHOW_ALL_TUTORIALS"
+msgstr "Toon tutorials"
+
+#, fuzzy
+msgid "SHOW_ALL_TUTORIALS_TOOLTIP"
+msgstr "Voeg een nieuwe sneltoets toe"
+
+#, fuzzy
 msgid "SHOW_DAMAGE_EFFECT"
 msgstr "Het flagellum (meervoud: flagella) is een zweepachtige bundel van proteïne vezels, dat vasthangt aan het celmembraan, die ATP gebruikt om golven te vormen en zo de cel voort te stuwen in een bepaalde richting. De positie van het flagellum bepaalt de richting waarin het stuwkracht levert voor de cel. De stuwrichting is tegengesteld aan de richting waarin de flagellum wijst, bijvoorbeeld een flagellum die aan de linkerkant van een cel is geplaatst, geeft stuwkracht wanneer hij naar rechts beweegt."
 
@@ -5494,16 +5578,16 @@ msgid "SHOW_NEW_PATCH_NOTES_TOOLTIP"
 msgstr "Grot"
 
 #, fuzzy
-msgid "SHOW_TUTORIALS"
-msgstr "Toon tutorials"
-
-#, fuzzy
 msgid "SHOW_TUTORIALS_IN_NEW_CURRENT_OPTION"
 msgstr "Laat instructies zien (in huidig spel)"
 
 #, fuzzy
 msgid "SHOW_TUTORIALS_IN_NEW_GAMES_OPTION"
 msgstr "Laat instructies zien (in nieuwe spellen)"
+
+#, fuzzy
+msgid "SHOW_TUTORIALS_OPTION_TOOLTIP"
+msgstr "Voeg een nieuwe sneltoets toe"
 
 msgid "SHOW_UNSAVED_PROGRESS_WARNING"
 msgstr "Toon niet opgeslagen voortgang waarschuwing"
@@ -5559,6 +5643,9 @@ msgstr "Siliciumdioxide"
 
 msgid "SILICA_MEMBRANE_DESCRIPTION"
 msgstr "Dit membraan heeft een sterke wand van siliciumdioxide. Het kan algemene schade goed weerstaan en is zeer resistent tegen fysieke schade. Het heeft ook minder energie nodig om zijn vorm te behouden. Echter, het vertraagt de cel met een grote factor en de cel absorbeert stoffen minder snel."
+
+msgid "SIXTEEN_TIMES"
+msgstr "16x"
 
 msgid "SIZE_COLON"
 msgstr "Grootte:"
@@ -5817,6 +5904,10 @@ msgstr ""
 
 msgid "STORE_LOGGED_IN_AS"
 msgstr "Ingelogd als : {0}"
+
+#, fuzzy
+msgid "STRAIN_BAR_TOOLTIP"
+msgstr "Pauzeer het spel"
 
 msgid "STRAIN_BAR_VISIBILITY"
 msgstr ""
@@ -6092,6 +6183,12 @@ msgstr ""
 msgid "TIMELINE_NICHE_FILL"
 msgstr "Ontstaan om een niche te vullen"
 
+msgid "TIMELINE_PLAYER_MIGRATED"
+msgstr ""
+
+msgid "TIMELINE_PLAYER_MIGRATED_TO"
+msgstr ""
+
 #, fuzzy
 msgid "TIMELINE_SELECTION_PRESSURE_SPLIT"
 msgstr "ontstaan door verschillende selectiedruk"
@@ -6108,6 +6205,10 @@ msgstr ""
 
 msgid "TIMELINE_SPECIES_EXTINCT_LOCAL"
 msgstr ""
+
+#, fuzzy
+msgid "TIMELINE_SPECIES_FOLLOWED"
+msgstr "Soortenpopulatie"
 
 msgid "TIMELINE_SPECIES_MIGRATED_FROM"
 msgstr ""
@@ -6345,6 +6446,10 @@ msgid "TRANSPARENCY"
 msgstr "Vertalers"
 
 #, fuzzy
+msgid "TRILLION_ABBREVIATION"
+msgstr "{0} B"
+
+#, fuzzy
 msgid "TRY_FOSSILISING_SOME_SPECIES"
 msgstr "Probeer wat screenshots te pakken!"
 
@@ -6357,6 +6462,13 @@ msgstr "Probeer wat schermopnamen te nemen!"
 #, fuzzy
 msgid "TUTORIAL"
 msgstr "Tutorial"
+
+#, fuzzy
+msgid "TUTORIAL_ALL_NOT_ENABLED_EXPLANATION"
+msgstr ""
+"Gefocuste microben zullen over grotere afstanden naar brokken of prooien zoeken\n"
+"en misschien veel ambitieuzer over brokken zijn.\n"
+"Responsieve microben zullen sneller overschakelen naar nieuwe doelen."
 
 #, fuzzy
 msgid "TUTORIAL_MICROBE_EDITOR_ATP_BALANCE_INTRO"
@@ -6400,6 +6512,16 @@ msgstr ""
 "Om naar het volgende tabblad te gaan druk je op de volgende knop rechts onder."
 
 #, fuzzy
+msgid "TUTORIAL_MICROBE_EDITOR_COMPOUND_BALANCES"
+msgstr ""
+"Welkom bij de Microbe Editor.\n"
+"Hier kan je zien wat er is gebeurd sinds het begin van het spel of wanneer je het laatste in de editor was. Dan kan je hier ook aanpassingen maken aan je soort.\n"
+"\n"
+"In dit tabblad kan je een verslag zien van welke soorten er bestaan, waar en wat hun populaties zijn. Je kan ook omgevingsveranderingen zien bovenaan.\n"
+"\n"
+"Om naar het volgende tabblad te gaan druk je op de volgende knop rechts onder."
+
+#, fuzzy
 msgid "TUTORIAL_MICROBE_EDITOR_ENDING_TEXT"
 msgstr ""
 "Dat zijn de basisprincipes van het bewerken van je soort. U kunt de andere tabbladen van de celeditor controleren voor nog meer opties.\n"
@@ -6412,6 +6534,23 @@ msgstr ""
 
 #, fuzzy
 msgid "TUTORIAL_MICROBE_EDITOR_FLAGELLUM"
+msgstr ""
+"Welkom bij de Microbe Editor.\n"
+"Hier kan je zien wat er is gebeurd sinds het begin van het spel of wanneer je het laatste in de editor was. Dan kan je hier ook aanpassingen maken aan je soort.\n"
+"\n"
+"In dit tabblad kan je een verslag zien van welke soorten er bestaan, waar en wat hun populaties zijn. Je kan ook omgevingsveranderingen zien bovenaan.\n"
+"\n"
+"Om naar het volgende tabblad te gaan druk je op de volgende knop rechts onder."
+
+#, fuzzy
+msgid "TUTORIAL_MICROBE_EDITOR_FOOD_CHAIN"
+msgstr ""
+"Jij hebt geen verandering gemaakt in uw soort!\n"
+"[u]Het gaat niet meer mogelijk zijn om uw soort te bewerken tot de volgende keer je voortplant[/u], wanneer je de bewerker verlaat.\n"
+"Om in het spel verder te gaan zal je moeten evolueren en adapteren, dus het is aangeraden om uw soort bewerken in de meeste bewerkingscycli."
+
+#, fuzzy
+msgid "TUTORIAL_MICROBE_EDITOR_MIGRATION"
 msgstr ""
 "Welkom bij de Microbe Editor.\n"
 "Hier kan je zien wat er is gebeurd sinds het begin van het spel of wanneer je het laatste in de editor was. Dan kan je hier ook aanpassingen maken aan je soort.\n"
@@ -6539,6 +6678,13 @@ msgstr ""
 "Om de kolonie helemaal te verlaten kun je op je eigen cel klikken of op de unbind all-toets drukken."
 
 #, fuzzy
+msgid "TUTORIAL_MICROBE_STAGE_ENVIRONMENT_PANEL"
+msgstr ""
+"U bent in de ontbind-modus gekomen. In deze modus kun je op kolonieleden klikken om ze te ontbinden.\n"
+"\n"
+"Om de kolonie helemaal te verlaten kun je op je eigen cel klikken of op de unbind all-toets drukken."
+
+#, fuzzy
 msgid "TUTORIAL_MICROBE_STAGE_HELP_MENU_AND_ZOOM"
 msgstr ""
 "Als je nog steeds worstelt met de werking van het spel. Kijk dan in het helpmenu. Je kunt het openen met de vraagtekenknop linksonder.\n"
@@ -6553,7 +6699,32 @@ msgstr ""
 "Om de kolonie helemaal te verlaten kun je op je eigen cel klikken of op de unbind all-toets drukken."
 
 #, fuzzy
+msgid "TUTORIAL_MICROBE_STAGE_OPEN_PROCESS_PANEL"
+msgstr ""
+"Om te reproduceren moet je al je organellen dupliceren door voldoende ammoniak en fosfaten te verzamelen.\n"
+"Kijk naar de indicator rechtsonder om te zien hoeveel je nog nodig hebt."
+
+#, fuzzy
+msgid "TUTORIAL_MICROBE_STAGE_PAUSING"
+msgstr ""
+"U bent in de ontbind-modus gekomen. In deze modus kun je op kolonieleden klikken om ze te ontbinden.\n"
+"\n"
+"Om de kolonie helemaal te verlaten kun je op je eigen cel klikken of op de unbind all-toets drukken."
+
+#, fuzzy
+msgid "TUTORIAL_MICROBE_STAGE_PROCESS_PANEL"
+msgstr ""
+"Om te reproduceren moet je al je organellen dupliceren door voldoende ammoniak en fosfaten te verzamelen.\n"
+"Kijk naar de indicator rechtsonder om te zien hoeveel je nog nodig hebt."
+
+#, fuzzy
 msgid "TUTORIAL_MICROBE_STAGE_REPRODUCE_TEXT"
+msgstr ""
+"Om te reproduceren moet je al je organellen dupliceren door voldoende ammoniak en fosfaten te verzamelen.\n"
+"Kijk naar de indicator rechtsonder om te zien hoeveel je nog nodig hebt."
+
+#, fuzzy
+msgid "TUTORIAL_MICROBE_STAGE_RESOURCE_SPLIT"
 msgstr ""
 "Om te reproduceren moet je al je organellen dupliceren door voldoende ammoniak en fosfaten te verzamelen.\n"
 "Kijk naar de indicator rechtsonder om te zien hoeveel je nog nodig hebt."
@@ -6893,6 +7064,9 @@ msgstr "Aanpassingen"
 
 msgid "VIEW_SOURCE_CODE"
 msgstr "Bekijk de broncode"
+
+msgid "VIEW_TEXT_REPORT"
+msgstr ""
 
 msgid "VIP_PATRONS"
 msgstr "VIP Ondersteuners"
@@ -8831,6 +9005,21 @@ msgid "ZOOM_OUT"
 msgstr "Uitzoomen"
 
 #, fuzzy
+#~ msgid "MICROBE_STAGE_DAY_NIGHT_TEXT"
+#~ msgstr ""
+#~ "Houd je gezondheidsbalk naast de ATP-balk (rechtsonder) in de gaten.\n"
+#~ "Je cel sterft als hij geen gezondheid meer heeft.\n"
+#~ "Je regenereert gezondheid terwijl je ATP hebt.\n"
+#~ "Zorg ervoor dat u voldoende glucose verzamelt om ATP te produceren."
+
+#, fuzzy
+#~ msgid "GLOBAL_GLACIATION_EVENT_LOG"
+#~ msgstr "Totale populatie:"
+
+#~ msgid "IRON_CHEMOLITHOAUTOTROPHY"
+#~ msgstr "Ijzer Chemolithoautotrofie"
+
+#, fuzzy
 #~ msgid "PASSIVE_REPRODUCTION_PROGRESS"
 #~ msgstr "{0} bevolking veranderd met {1} door: {2}"
 
@@ -9161,9 +9350,6 @@ msgstr "Uitzoomen"
 #, fuzzy
 #~ msgid "UNKNOWN_ON_WINDOWS"
 #~ msgstr "Onbekende Workshop ID voor deze mod"
-
-#~ msgid "SIXTEEN_TIMES"
-#~ msgstr "16x"
 
 #, fuzzy
 #~ msgid "TARGET_TIME"

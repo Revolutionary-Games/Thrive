@@ -7,8 +7,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2025-03-09 11:58-0300\n"
-"PO-Revision-Date: 2025-03-07 10:46+0000\n"
+"POT-Creation-Date: 2025-03-27 09:59+0200\n"
+"PO-Revision-Date: 2025-03-20 20:10+0000\n"
 "Last-Translator: Anonymous <noreply@weblate.org>\n"
 "Language-Team: Dutch <https://translate.revolutionarygamesstudio.com/projects/thrive/thrive-game/nl/>\n"
 "Language: nl\n"
@@ -189,6 +189,9 @@ msgstr "Anaerobe Stikstoffixatie"
 msgid "AND_UNLOCK_CONDITION"
 msgstr "En"
 
+msgid "ANISOTROPIC_FILTERING"
+msgstr ""
+
 msgid "APPEARANCE"
 msgstr "Uiterlijk"
 
@@ -321,6 +324,10 @@ msgid "AUTO-EVO_PREDICTION_BOX_DESCRIPTION"
 msgstr ""
 "Dit paneel toont de verwachte bevolking van auto-evo voor de bewerkte soort.\n"
 "Auto-evo draait een bevolkingssimulatie die (samen met jou eigen prestaties) de bevolking van je soort bepaalt."
+
+#, fuzzy
+msgid "AUTO-EVO_RESULTS_TITLE"
+msgstr "Auto-evo-resultaten:"
 
 msgid "AUTO-EVO_STEPS_DONE"
 msgstr "{0:F1}% klaar. {1:n0}/{2:n0} stappen."
@@ -493,9 +500,8 @@ msgstr "Bioluminescente Vacuole"
 msgid "BIOME_LABEL"
 msgstr "Bioom: {0}"
 
-#, fuzzy
 msgid "BLOOM_RENDER_EFFECT"
-msgstr "Schermeffect"
+msgstr "Bloom-effect"
 
 msgid "BLUESKY_TOOLTIP"
 msgstr "Bezoek ons Bluesky-profiel"
@@ -632,12 +638,17 @@ msgstr "Cellulose"
 msgid "CELLULOSE_MEMBRANE_DESCRIPTION"
 msgstr "Dit membraan heeft een celwand, waardoor het beter beschermd is tegen schade en specifiek tegen fysieke schade. Het kost ook minder energie om zijn vorm te houden, maar kan grondstoffen minder snel absorberen. [b]Cellulase kan deze celwand verteren[/b] waardoor het vatbaar is voor verzwelging door roofdieren."
 
-#, fuzzy
 msgid "CELL_STAT_ROTATION_TOOLTIP"
-msgstr "De waarde die gebruikt wordt om de wereld te genereren; moet een natuurlijk getal zijn"
+msgstr ""
+"Draaisnelheid van de cel. Grotere cellen draaien langzamer, maar trilhaartjes kunnen worden toegevoegd om te compenseren.\n"
+"De plaatsing van organellen beïnvloedt de draaisnelheid, waarbij organellen verder van het centrum de draaisnelheid meer verlagen."
 
 #, fuzzy
 msgid "CELL_STAT_SPEED_TOOLTIP"
+msgstr "De waarde die gebruikt wordt om de wereld te genereren; moet een natuurlijk getal zijn"
+
+#, fuzzy
+msgid "CELL_STAT_STORAGE_TOOLTIP"
 msgstr "De waarde die gebruikt wordt om de wereld te genereren; moet een natuurlijk getal zijn"
 
 msgid "CELL_TYPE_BUTTON_ATP_CONSUMPTION"
@@ -766,6 +777,9 @@ msgstr "Oude Opslagbestanden Opschonen"
 msgid "CLEAR_CACHE"
 msgstr "Cache Legen"
 
+msgid "CLICK_TO_SELECT"
+msgstr "Selecteer"
+
 msgid "CLOSE"
 msgstr "Sluiten"
 
@@ -773,7 +787,7 @@ msgid "CLOSE_OPTIONS"
 msgstr "Opties sluiten?"
 
 msgid "CLOSTRIDIAL_FERMENTATION"
-msgstr ""
+msgstr "Clostridiale Fermentatie"
 
 #, fuzzy
 msgid "CLOUD_BENCHMARK"
@@ -907,7 +921,7 @@ msgstr "Samenstellings-wolken"
 
 #, fuzzy
 msgid "COMPOUND_CLOUD_BENCHMARK"
-msgstr "Dichtheid van stofwolken"
+msgstr "Stofwolken Prestatietest"
 
 msgid "COMPOUND_CLOUD_DENSITY"
 msgstr "Dichtheid van stofwolken"
@@ -935,20 +949,18 @@ msgstr "Toon / verberg stoffen"
 msgid "COMPOUND_HANDLE_TOP_UP_ON_CHANGE"
 msgstr "Dichtheid van stofwolken"
 
-#, fuzzy
 msgid "COMPOUND_STORAGE_AMOUNT_DOES_NOT_LAST_NIGHT"
-msgstr "Stofbalanzen"
+msgstr "(niet genoeg om de nachtduur van {0} s te overleven)"
 
 msgid "COMPOUND_STORAGE_NOT_ENOUGH_GENERATED_DURING_DAY"
-msgstr ""
+msgstr "Maar {1} [thrive:compound type=\"{0}\"][/thrive:compound] kan overdag gegenereerd worden, maar {2} is nodig om de nacht te overleven."
 
 #, fuzzy
 msgid "COMPOUND_STORAGE_NOT_ENOUGH_SPACE"
-msgstr "Verbruik van {0}"
+msgstr "Er is niet genoeg opslagruimte voor [thrive:compound type=\"{0}\"][/thrive:compound] aangezien de nacht {2} s duurt, terwijl de opslag maar {1} s aan stoffen kan bevatten."
 
-#, fuzzy
 msgid "COMPOUND_STORAGE_STATS_TITLE"
-msgstr "Stofbalanzen"
+msgstr "Opslagcapaciteiten"
 
 #, fuzzy
 msgid "COMPOUND_STORAGE_STATS_TOOLTIP"
@@ -1015,9 +1027,8 @@ msgstr "Eenheid: {0}"
 msgid "CONTENT_UPLOADED_FROM"
 msgstr "Workshopinhoud zal geupload worden uit de map: {0}"
 
-#, fuzzy
 msgid "CONTINUE"
-msgstr "Ga door met Thrive"
+msgstr "Verder"
 
 msgid "CONTINUE_AS_SPECIES"
 msgstr "[center]De game is echter nog niet afgelopen. Je kunt [b]doorgaan[/b] door over te schakelen naar het spelen van soort {0} met een populatie van {1}.[/center]"
@@ -1043,90 +1054,72 @@ msgstr "Elk Apparaat"
 msgid "CONTROLLER_AXIS_L2"
 msgstr "L2"
 
-#, fuzzy
 msgid "CONTROLLER_AXIS_LEFT_TRIGGER"
-msgstr "Visualizatie Assen Spelbesturingsapparaat:"
+msgstr "Linker Trigger"
 
-#, fuzzy
 msgid "CONTROLLER_AXIS_LEFT_X"
-msgstr "Visualizatie Assen Spelbesturingsapparaat:"
+msgstr "Linker Stick Horizontaal"
 
-#, fuzzy
 msgid "CONTROLLER_AXIS_LEFT_Y"
-msgstr "Visualizatie Assen Spelbesturingsapparaat:"
+msgstr "Linker Stick Verticaal"
 
-#, fuzzy
 msgid "CONTROLLER_AXIS_NEGATIVE_DIRECTION"
-msgstr "Visualizatie Assen Spelbesturingsapparaat:"
+msgstr "Negatieve Richting"
 
-#, fuzzy
 msgid "CONTROLLER_AXIS_POSITIVE_DIRECTION"
-msgstr "Gevoeligheid spelbesturingsapparaat"
+msgstr "Positieve Richting"
 
 msgid "CONTROLLER_AXIS_R2"
 msgstr "R2"
 
-#, fuzzy
 msgid "CONTROLLER_AXIS_RIGHT_TRIGGER"
-msgstr "Visualizatie Assen Spelbesturingsapparaat:"
+msgstr "Rechter Trigger"
 
-#, fuzzy
 msgid "CONTROLLER_AXIS_RIGHT_X"
-msgstr "Visualizatie Assen Spelbesturingsapparaat:"
+msgstr "Rechter Stick Horizontaal"
 
-#, fuzzy
 msgid "CONTROLLER_AXIS_RIGHT_Y"
-msgstr "Visualizatie Assen Spelbesturingsapparaat:"
+msgstr "Rechter Stick Verticaal"
 
 msgid "CONTROLLER_AXIS_VISUALIZERS"
 msgstr "Visualizatie Assen Spelbesturingsapparaat:"
 
-#, fuzzy
 msgid "CONTROLLER_BUTTON_DPAD_DOWN"
-msgstr "Deadzones Spelbesturingsapparaat"
+msgstr "D-pad Omlaag"
 
-#, fuzzy
 msgid "CONTROLLER_BUTTON_DPAD_LEFT"
-msgstr "Deadzones Spelbesturingsapparaat"
+msgstr "D-pad Links"
 
 msgid "CONTROLLER_BUTTON_DPAD_RIGHT"
 msgstr "D-pad Rechts"
 
-#, fuzzy
 msgid "CONTROLLER_BUTTON_DPAD_UP"
-msgstr "Deadzones Spelbesturingsapparaat"
+msgstr "D-pad Omhoog"
 
-#, fuzzy
 msgid "CONTROLLER_BUTTON_LEFT_SHOULDER"
-msgstr "Deadzone:"
+msgstr "Linkerschouder"
 
-#, fuzzy
 msgid "CONTROLLER_BUTTON_LEFT_STICK"
-msgstr "Deadzones Spelbesturingsapparaat"
+msgstr "Linker Stick Klik"
 
 #, fuzzy
 msgid "CONTROLLER_BUTTON_MISC1"
 msgstr "Deadzones Spelbesturingsapparaat"
 
-#, fuzzy
 msgid "CONTROLLER_BUTTON_PADDLE1"
-msgstr "Deadzones Spelbesturingsapparaat"
+msgstr "Peddelknop 1"
 
-#, fuzzy
 msgid "CONTROLLER_BUTTON_PADDLE2"
-msgstr "Deadzones Spelbesturingsapparaat"
+msgstr "Peddelknop 2"
 
-#, fuzzy
 msgid "CONTROLLER_BUTTON_PADDLE3"
-msgstr "Deadzones Spelbesturingsapparaat"
+msgstr "Peddelknop 3"
 
-#, fuzzy
 msgid "CONTROLLER_BUTTON_PADDLE4"
-msgstr "Deadzones Spelbesturingsapparaat"
+msgstr "Peddelknop 4"
 
-#, fuzzy
 msgid "CONTROLLER_BUTTON_PS3_SELECT"
-msgstr "Spelbesturingsapparaatknop aanwijzingen type:"
+msgstr "Select"
 
 msgid "CONTROLLER_BUTTON_PS3_START"
 msgstr "Start"
@@ -1155,9 +1148,8 @@ msgstr "R3"
 msgid "CONTROLLER_BUTTON_PS_SHARE"
 msgstr "Share"
 
-#, fuzzy
 msgid "CONTROLLER_BUTTON_PS_SONY_BUTTON"
-msgstr "Spelbesturingsapparaatknop aanwijzingen type:"
+msgstr "Logo-knop"
 
 msgid "CONTROLLER_BUTTON_PS_SQUARE"
 msgstr "Vierkant"
@@ -1165,13 +1157,11 @@ msgstr "Vierkant"
 msgid "CONTROLLER_BUTTON_PS_TRIANGLE"
 msgstr "Driehoek"
 
-#, fuzzy
 msgid "CONTROLLER_BUTTON_RIGHT_SHOULDER"
-msgstr "Visualizatie Assen Spelbesturingsapparaat:"
+msgstr "Rechterschouder"
 
-#, fuzzy
 msgid "CONTROLLER_BUTTON_RIGHT_STICK"
-msgstr "Spelbesturingsapparaatknop aanwijzingen type:"
+msgstr "Rechter Stick Klik"
 
 msgid "CONTROLLER_BUTTON_TOUCH_PAD"
 msgstr "Touch Pad"
@@ -1382,13 +1372,11 @@ msgstr "Cytoplasma Glycolyse"
 msgid "CYTOPLASM_PROCESSES_DESCRIPTION"
 msgstr "Zet [thrive:compound type=\"glucose\"][/thrive:compound] om in [thrive:compound type=\"atp\"][/thrive:compound]."
 
-#, fuzzy
 msgid "CYTOTOXIN_SYNTHESIS"
-msgstr "OxyToxy-synthse"
+msgstr "Cytotoxine-synthese"
 
-#, fuzzy
 msgid "DAMAGE_SOURCE_RADIATION"
-msgstr "(kost van organellen, membranen en andere items in de editor)"
+msgstr "straling"
 
 msgid "DAY_LENGTH"
 msgstr "Daglengte"
@@ -1399,9 +1387,8 @@ msgstr "(lengte in werkelijke seconden voor een speldag)"
 msgid "DAY_NIGHT_CYCLE_ENABLED"
 msgstr "Zet dag/nacht cyclus aan"
 
-#, fuzzy
 msgid "DAY_NIGHT_CYCLE_ENABLED_EXPLANATION_2"
-msgstr "(WAARSCHUWING: fotosynthese wordt veel minder levensvatbaar)"
+msgstr "(fotosynthese wordt 's nachts ineffectief, wat meer planning vereist)"
 
 msgid "DEADZONE_CALIBRATION_FINISHED"
 msgstr "Calibratie van deadzone is afgerond. De nieuwe deadzones worden weergegeven onder de assenwaardeweergave."
@@ -1426,9 +1413,8 @@ msgstr ""
 msgid "DEBUG_DRAW_NOT_AVAILABLE"
 msgstr "physics-debug tekenwijze niet beschikbaar in deze build"
 
-#, fuzzy
 msgid "DEBUG_HEAT_AT_CURSOR"
-msgstr "Bij Cursor:"
+msgstr "Valore calorico: {0}"
 
 msgid "DEBUG_PANEL"
 msgstr "Debugpaneel"
@@ -1436,9 +1422,8 @@ msgstr "Debugpaneel"
 msgid "DECEMBER"
 msgstr "December"
 
-#, fuzzy
 msgid "DECREASE_ITEM_SIZE"
-msgstr "Slijm vrijlaten"
+msgstr "Verminder Objectgrootte"
 
 msgid "DEFAULT_AUDIO_OUTPUT_DEVICE"
 msgstr "Standaard uitvoer apparaat"
@@ -1539,19 +1524,17 @@ msgstr "Bijdragers aan Devbuilds"
 msgid "DIFFICULTY"
 msgstr "Moeilijkheidsgraad"
 
-#, fuzzy
 msgid "DIFFICULTY_DETAILS_STRING"
 msgstr ""
 "Moeilijkheidsgraad: {0}\n"
-"Schaling kosten van muteren: {1}\n"
-"Snelheid van AI mutaties: {2}\n"
-"Dichtheid van stofwolk: {3}\n"
-"Impact op bevolking door dood speler: {4}\n"
-"Retentie van omgevingsglucose: {5}\n"
-"Schaling kosten osmoregulatie: {6}\n"
-"Vrij beschikbare glucose bij sluiten bewerker: {7}\n"
-"Krijg passief reproduktievoortgang: {8}\n"
-"Beperk groei stofgebruik: {9}"
+"Mutatiekostenfactor: {1}\n"
+"AI-mutatiesnelheid: {2}\n"
+"Wolkdichtheid: {3}\n"
+"Populatiestraf bij dood speler: {4}\n"
+"Glucosebehoud in de omgeving: {5}\n"
+"Osmoregulatiekostenfactor: {6}\n"
+"Gratis glucosewolk bij sluiten bewerker: {7}\n"
+"Beperk groei stofgebruik: {8}"
 
 msgid "DIFFICULTY_PRESET"
 msgstr "Vooraf ingestelde moelijkheidsgraad"
@@ -1595,9 +1578,8 @@ msgstr "Annuleren en doorgaan"
 msgid "DISCARD_CHANGES"
 msgstr "Annuleren en Doorgaan"
 
-#, fuzzy
 msgid "DISCARD_MIGRATION"
-msgstr "Annuleren en doorgaan"
+msgstr "Migratie Verwerpen"
 
 msgid "DISCONNECTED_CELLS"
 msgstr "Onverbonden cellen"
@@ -1650,24 +1632,20 @@ msgstr "3D menu achtergronden weergeven"
 msgid "DISPLAY_ABILITIES_BAR"
 msgstr "Toon Capaciteiten Balk"
 
-#, fuzzy
 msgid "DISPLAY_BACKGROUND_DISTORTION_EFFECT"
-msgstr "Achtergronddeeltjes weergeven"
+msgstr "Pas vervorming toe op microbe-achtergronden"
 
 msgid "DISPLAY_BACKGROUND_PARTICLES"
 msgstr "Achtergronddeeltjes weergeven"
 
-#, fuzzy
 msgid "DISPLAY_DRIVER_OPENGL"
-msgstr "Toon Capaciteiten Balk"
+msgstr "OpenGL"
 
-#, fuzzy
 msgid "DISPLAY_DRIVER_VULKAN"
-msgstr "Toon Capaciteiten Balk"
+msgstr "Vulkan"
 
-#, fuzzy
 msgid "DISPLAY_MODE"
-msgstr "Toon knopnamen van onderdelenselectie"
+msgstr "Weergavemodus:"
 
 msgid "DISPLAY_PART_NAMES"
 msgstr "Toon knopnamen van onderdelenselectie"
@@ -1693,12 +1671,11 @@ msgstr "Dubbelklikken om in volledige schermweergave te zien"
 msgid "DOUBLE_MEMBRANE_DESCRIPTION"
 msgstr "Een membraan met twee lagen, waardoor het beter beschermd is tegen schade en minder energie kost om zijn vorm te houden. Echter wordt de cel wel langzamer en grondstoffen worden iets minder snel opgenomen."
 
-#, fuzzy
 msgid "DOUBLE_SPEED_TOGGLE_TOOLTIP"
-msgstr "De waarde die gebruikt wordt om de wereld te genereren; moet een natuurlijk getal zijn"
+msgstr "Schakel tussen normale en dubbele gameplay-snelheid"
 
 msgid "DRAG_TO_REORDER_ITEMS_WITH_MOUSE"
-msgstr ""
+msgstr "Versleep dit om items met de muis te herordenen"
 
 msgid "DUMP_SCENE_TREE"
 msgstr "Dump SceneTree"
@@ -1766,23 +1743,20 @@ msgstr "Voeg Paaseieren toe"
 msgid "EASTER_EGGS_EXPLANATION"
 msgstr "(willekeurig geplaatste geheimen in het spel)"
 
-#, fuzzy
 msgid "EASTER_EGG_BANANA_BIOME"
-msgstr "(willekeurig geplaatste geheimen in het spel)"
+msgstr "Bananenbioom"
 
 msgid "EDGE_PAN_SPEED"
 msgstr "Schuifsnelheid:"
 
-#, fuzzy
 msgid "EDITING_TITLE"
-msgstr "Titel mist"
+msgstr "Aanpassen"
 
 msgid "EDITOR"
 msgstr "Editor"
 
-#, fuzzy
 msgid "EDITORS_AND_MUTATIONS_BUTTON"
-msgstr "is gemuteerd"
+msgstr "Editors en Mutaties"
 
 msgid "EDITOR_BUTTON_TOOLTIP"
 msgstr "Open bewerker en bewerk je soort"
@@ -1817,9 +1791,8 @@ msgstr ""
 "\n"
 "Selecteer een onderdeel uit het linkerpaneel om verder te gaan. Plaats het onderdeel door naast het hex met de linkermuisknop te klikken. Je kunt delen roteren met [thrive:input]e_rotate_left[/thrive:input] en [thrive:input]e_rotate_right[/thrive:input]."
 
-#, fuzzy
 msgid "EFFECTIVE_VALUE"
-msgstr "{0}%"
+msgstr "Effectieve Waarde"
 
 msgid "EIGHT_TIMES"
 msgstr "8x"
@@ -1830,9 +1803,8 @@ msgstr "Verzwolgen objecten uitstoten"
 msgid "EJECT_ENGULFED_TOOLTIP"
 msgstr "Verzwolgen objecten uitstoten"
 
-#, fuzzy
 msgid "EMITTERS_COUNT"
-msgstr "Hoeveelheid microben:"
+msgstr "Uitstoters:"
 
 msgid "ENABLED_MODS"
 msgstr "Aangezette Mods"
@@ -1847,7 +1819,7 @@ msgid "ENABLE_GUI_LIGHT_EFFECTS"
 msgstr "Zet GUI Licht Effecten Aan"
 
 msgid "ENDOSYMBIONT_ENGULFED_ALREADY_DONE"
-msgstr ""
+msgstr "Endosymbioseproces al compleet, voltooi het in de editor"
 
 msgid "ENDOSYMBIONT_ENGULFED_PROGRESS"
 msgstr ""
@@ -2185,7 +2157,7 @@ msgid "FIRE_TOXIN_TOOLTIP"
 msgstr "Sommige opties kunnen uitgeschakeld zijn als \"Enkel LZWHK\" ingeschakeld is"
 
 msgid "FLAGELLUM"
-msgstr "Flagellum"
+msgstr "Zweepstaartje"
 
 msgid "FLAGELLUM_DESCRIPTION"
 msgstr "Het flagel (meervoud: flagellen) is een zweepachtige bundel van eiwitdraadjes die uit het celmembraan komen. Een flagel gebruikt [thrive:compound type=\"atp\"][/thrive:compound] om te golven en de cel een richting in te duwen. De positie van het flagel bepaalt de richting waar het de cel heen duwt. De richting van de beweging is tegenover de richting waar het flagel heen wijst. Als de flagel bijvoorbeeld aan de linkerkant van de cel wordt geplaatst, dan duwt het de cel richting rechts."
@@ -2378,6 +2350,26 @@ msgstr "Bezoek onze Github opslagplek"
 
 msgid "GLES3"
 msgstr "GLES3"
+
+msgid "GLOBAL_GLACIATION_END_EVENT_LOG"
+msgstr ""
+
+#, fuzzy
+msgid "GLOBAL_GLACIATION_EVENT"
+msgstr "Totale Bevolking:"
+
+#, fuzzy
+msgid "GLOBAL_GLACIATION_EVENT_TOOLTIP"
+msgstr "Ga door naar de Ontwaakfase. Beschikbaar wanneer je genoeg breinkracht hebt (weefseltype met axonen)."
+
+msgid "GLOBAL_GLACIATION_EVENT_WARNING_LOG_PLURAL"
+msgstr ""
+
+msgid "GLOBAL_GLACIATION_EVENT_WARNING_LOG_SINGULAR"
+msgstr ""
+
+msgid "GLOBAL_GLACIATION_START_EVENT_LOG"
+msgstr ""
 
 msgid "GLOBAL_INITIAL_LETTER"
 msgstr "G"
@@ -2738,8 +2730,9 @@ msgstr ""
 msgid "IRON"
 msgstr "Ijzer"
 
-msgid "IRON_CHEMOLITHOAUTOTROPHY"
-msgstr "Ijzer-chemolithoautotrofie"
+#, fuzzy
+msgid "IRON_OXIDATION"
+msgstr "Donaties"
 
 msgid "ITCH_TOOLTIP"
 msgstr "Bezoek onze Itch.io pagina"
@@ -3466,9 +3459,8 @@ msgstr "Microbe Prestatietest"
 msgid "MICROBE_EDITOR"
 msgstr "Microbe Bewerker"
 
-#, fuzzy
 msgid "MICROBE_ENZYME_STATISTICS"
-msgstr "  {0}: Gevonden in {1} soorten, gemiddeld {2} per soort"
+msgstr "[b]Enzymendata:[/b]"
 
 msgid "MICROBE_FREEBUILD_EDITOR"
 msgstr "Microbe vrij bouwen bewerker"
@@ -3561,13 +3553,11 @@ msgstr "Klik de ongedaan maken knop in de bewerker om een fout te corrigeren"
 msgid "MICROBE_LOADING_TIP_9"
 msgstr "Klik de ongedaan maken knop in de bewerker om een fout te corrigeren"
 
-#, fuzzy
 msgid "MICROBE_MEMBRANE_PERCENTAGE_STATISTICS"
-msgstr "  {0}: Gevonden in {1} soorten, gemiddeld {2} per soort"
+msgstr "{0}: Gevonden in {1} soorten"
 
-#, fuzzy
 msgid "MICROBE_MEMBRANE_STATISTICS"
-msgstr "  {0}: Gevonden in {1} soorten, gemiddeld {2} per soort"
+msgstr "[b]Membranendata:[/b]"
 
 msgid "MICROBE_ORGANELLE_STATISTICS"
 msgstr "  {0}: Gevonden in {1} soorten, gemiddeld {2} per soort"
@@ -3600,6 +3590,7 @@ msgstr ""
 "\n"
 "Om verder te gaan, klik op de \"Wordt Meercellig\" knop."
 
+#, fuzzy
 msgid "MICROBE_STAGE_COLLECT_TEXT"
 msgstr ""
 "Verzamel glucoze (witte wolken) door er overheen te bewegen.\n"
@@ -3608,6 +3599,7 @@ msgstr ""
 "\n"
 "Volg de lijn van je cel naar glucose in de buurt."
 
+#, fuzzy
 msgid "MICROBE_STAGE_CONTROL_TEXT"
 msgstr ""
 "Om je cel te controleren gebruik je de knoppen die in de buurt van je cel (midden van het scherm) worden weergegeven. De richting van de cel controleer je met de muis.\n"
@@ -3622,14 +3614,7 @@ msgstr ""
 "WAARSCHUWING: invoer vanuit een spelbesturingsapparaat is experimenteel en niet geheel bruikbaar (zonder een touchpad). Er zijn waarschijnlijk bug.\n"
 "Probeer alle richtingen voor enkele seconden om verder te gaan."
 
-msgid "MICROBE_STAGE_DAY_NIGHT_TEXT"
-msgstr ""
-"Kijk uit voor verlagingen in de zonlichtmeter op het omgevingspaneel.\n"
-"\n"
-"De nacht komt wanneer de omgeving donker wordt.\n"
-"Fotosynthese werkt niet tijdens de nacht.\n"
-"Zorg ervoor dat je genoeg opgeslagen hebt om de nacht te overleven."
-
+#, fuzzy
 msgid "MICROBE_STAGE_HEALTH_TEXT"
 msgstr ""
 "Houdt de gezondheidsbalk naast de ATP-balk in de gaten (rechtsonder).\n"
@@ -3773,6 +3758,10 @@ msgstr "Instructies voor modificeren zijn beschikbaar op"
 
 msgid "MODELS"
 msgstr "Modellen"
+
+#, fuzzy
+msgid "MODE_CAN_BE_CHANGED_IN_OPTIONS"
+msgstr "Schuif strategische weergave wanneer muisaanwijzer aan de rand van het scherm is"
 
 msgid "MODIFY"
 msgstr "Aanpassen"
@@ -4167,8 +4156,16 @@ msgstr "Niets hier"
 msgid "NOTHING_TO_INTERACT_WITH"
 msgstr "Niets om op te reageren"
 
+#, fuzzy
+msgid "NOTICE_BINDING_OUT_OF_ATP"
+msgstr "Beschadigd vanwege een tekort aan ATP"
+
 msgid "NOTICE_DAMAGED_BY_NO_ATP"
 msgstr "Beschadigd vanwege een tekort aan ATP"
+
+#, fuzzy
+msgid "NOTICE_ENGULFING_OUT_OF_ATP"
+msgstr "Formaat van huidige cel is te klein om doelwit te verzwelgen"
 
 msgid "NOTICE_ENGULF_DAMAGE_FROM_TOXIN"
 msgstr "Beschadigd door gifstoffen in ingeslikte materie"
@@ -4698,6 +4695,10 @@ msgstr "Speler is uitgestorven"
 msgid "PLAYER_RELATIVE_MOVEMENT"
 msgstr "Speler relatief"
 
+#, fuzzy
+msgid "PLAYER_RELATIVE_MOVEMENT_TOOLTIP"
+msgstr "Speler relatief"
+
 msgid "PLAYER_REPRODUCED"
 msgstr "speler reproduceerde"
 
@@ -4781,6 +4782,10 @@ msgstr "Celprocessen"
 msgid "PROCESS_SPEED_MODIFIER"
 msgstr "Celprocessen"
 
+#, fuzzy
+msgid "PROCESS_TOGGLE_TOOLTIP"
+msgstr "Sluit en terug naar hoofdmenu"
+
 msgid "PROGRAMMING_TEAM"
 msgstr "Programmeerteam"
 
@@ -4795,6 +4800,10 @@ msgstr "Protoplasma"
 
 msgid "PULL_REQUESTS_PROGRAMMING"
 msgstr "Pull Aanvragen / Programmeren"
+
+#, fuzzy
+msgid "QUADRILLION_ABBREVIATION"
+msgstr "{0} Mld"
 
 msgid "QUICK_LOAD"
 msgstr "Snel laden"
@@ -4813,9 +4822,8 @@ msgstr ""
 "Weet je zeker dat je het spel wil verlaten?\n"
 "Je zult voortgang die niet is opgeslagen verliezen."
 
-#, fuzzy
 msgid "RADIATION"
-msgstr "aërobe ademhaling"
+msgstr "Straling"
 
 #, fuzzy
 msgid "RADIOACTIVE_CHUNK"
@@ -4918,6 +4926,14 @@ msgstr "Herstel Toetsbindingen"
 
 msgid "RESET_SETTINGS_TO_DEFAULTS"
 msgstr "Standaard"
+
+#, fuzzy
+msgid "RESET_SHOWN_TUTORIALS"
+msgstr "Toon instructies"
+
+#, fuzzy
+msgid "RESET_SHOWN_TUTORIALS_TOOLTIP"
+msgstr "Exporteer alle data van deze wereld naar een komma-gescheiden waarden (csv) formaat"
 
 msgid "RESET_TO_DEFAULTS"
 msgstr "Resetten naar standaard?"
@@ -5037,9 +5053,11 @@ msgstr "Voer een zekere hoeveelheid werelden uit. De hoeveelheid generaties voor
 msgid "RUSTICYANIN"
 msgstr "Rusticyanine"
 
+#, fuzzy
 msgid "RUSTICYANIN_DESCRIPTION"
 msgstr "Rusticyanine is een eiwat dat [thrive:compound type=\"carbondioxide\"][/thrive:compound] en [thrive:compound type=\"oxygen\"][/thrive:compound] gebruikt om [thrive:compound type=\"iron\"][/thrive:compound] van een chemische staat naar een andere te oxideren. Dit proces heet [b]ijzerademhaling[/b] en maakt energie vrij die de cel kan gebruiken."
 
+#, fuzzy
 msgid "RUSTICYANIN_PROCESSES_DESCRIPTION"
 msgstr "Zet [thrive:compound type=\"iron\"][/thrive:compound] om in [thrive:compound type=\"atp\"][/thrive:compound]. Snelheid schaalt met contentratie van [thrive:compound type=\"carbondioxide\"][/thrive:compound]."
 
@@ -5167,6 +5185,10 @@ msgstr "Geen"
 msgid "SCREEN_RELATIVE_MOVEMENT"
 msgstr "Relatief aan scherm"
 
+#, fuzzy
+msgid "SCREEN_RELATIVE_MOVEMENT_TOOLTIP"
+msgstr "Relatief aan scherm"
+
 msgid "SCROLLLOCK"
 msgstr "Scroll Lock"
 
@@ -5191,6 +5213,10 @@ msgstr "Slijm vrijlaten"
 
 msgid "SEED_LABEL"
 msgstr "Kiem van Planeet: {0}"
+
+#, fuzzy
+msgid "SELECTED"
+msgstr "Geselecteerde Mod:"
 
 msgid "SELECTED_COLON"
 msgstr "Geselecteerd:"
@@ -5224,6 +5250,10 @@ msgstr "Kies een celtype om hier te bewerken vanuit het Editortabblad"
 
 msgid "SELECT_ENZYME"
 msgstr "Selecteer Enzym:"
+
+#, fuzzy
+msgid "SELECT_MOVEMENT_MODE_TITLE"
+msgstr "Thrive is in Veilige Modus Gestart"
 
 msgid "SELECT_OPTION"
 msgstr "Selecteer Een Optie"
@@ -5259,6 +5289,14 @@ msgid "SHIFT"
 msgstr "Shift"
 
 #, fuzzy
+msgid "SHOW_ALL_TUTORIALS"
+msgstr "Toon instructies"
+
+#, fuzzy
+msgid "SHOW_ALL_TUTORIALS_TOOLTIP"
+msgstr "Exporteer alle data van deze wereld naar een komma-gescheiden waarden (csv) formaat"
+
+#, fuzzy
 msgid "SHOW_DAMAGE_EFFECT"
 msgstr "Het flagel (meervoud: flagellen) is een zweepachtige bundel van eiwitdraadjes die uit het celmembraan komen. Een flagel gebruikt [thrive:compound type=\"atp\"][/thrive:compound] om te golven en de cel een richting in te duwen. De positie van het flagel bepaalt de richting waar het de cel heen duwt. De richting van de beweging is tegenover de richting waar het flagel heen wijst. Als de flagel bijvoorbeeld aan de linkerkant van de cel wordt geplaatst, dan duwt het de cel richting rechts."
 
@@ -5277,14 +5315,15 @@ msgstr "Toon nieuwe patchnotities automatisch"
 msgid "SHOW_NEW_PATCH_NOTES_TOOLTIP"
 msgstr "Toon patchnotities van nieuwe Thrive uitgaven automatisch in het hoofdmenu"
 
-msgid "SHOW_TUTORIALS"
-msgstr "Toon instructies"
-
 msgid "SHOW_TUTORIALS_IN_NEW_CURRENT_OPTION"
 msgstr "Toon instructies (in huidige spel)"
 
 msgid "SHOW_TUTORIALS_IN_NEW_GAMES_OPTION"
 msgstr "Toon instructies (in nieuwe spellen)"
+
+#, fuzzy
+msgid "SHOW_TUTORIALS_OPTION_TOOLTIP"
+msgstr "Exporteer alle data van deze wereld naar een komma-gescheiden waarden (csv) formaat"
 
 msgid "SHOW_UNSAVED_PROGRESS_WARNING"
 msgstr "Toon waarschuwing voor niet opgeslagen voortgang"
@@ -5335,6 +5374,9 @@ msgstr "Siliciumdioxide"
 
 msgid "SILICA_MEMBRANE_DESCRIPTION"
 msgstr "Dit membraan heeft een sterke celmuur van silica. Het kan zeer goed tegen schade en is zeer resistent voor fysieke schade. Het heeft ook minder energie nodig om zijn vorm te behouden. Echter, het vertraagt de cel ernstig en de cel kan grondstoffen minder snel opnemen."
+
+msgid "SIXTEEN_TIMES"
+msgstr "16x"
 
 msgid "SIZE_COLON"
 msgstr "Grootte:"
@@ -5586,6 +5628,10 @@ msgstr ""
 msgid "STORE_LOGGED_IN_AS"
 msgstr "Ingelogd als: {0}"
 
+#, fuzzy
+msgid "STRAIN_BAR_TOOLTIP"
+msgstr "Bezoek onze Patreonpagina"
+
 msgid "STRAIN_BAR_VISIBILITY"
 msgstr ""
 
@@ -5777,9 +5823,8 @@ msgstr "Thermosynthase"
 msgid "THERMOSYNTHASE_DESCRIPTION"
 msgstr "Thermosynthase is een eiwit dat thermische convectie gebruikt om zijn vorm aan te passen. Wanneer het opwarmt, vouwt het zichzelf op en bindt het aan ADP, waarbij het dit omzet in [thrive:compound type=\"atp\"][/thrive:compound]. Dit proces heet [b]thermosynthese[/b]. Het eiwit ontvouwt weer als het afkoelt, waardoor het de cyclus kan herhalen als de [thrive:compound type=\"temperature\"][/thrive:compound] weer toeneemt. De snelheid van de productie van [thrive:compound type=\"atp\"][/thrive:compound] schaalt met [thrive:compound type=\"temperature\"][/thrive:compound] delta."
 
-#, fuzzy
 msgid "THERMOSYNTHASE_PROCESSES_DESCRIPTION"
-msgstr "Gebruikt toenemende temperaturen om [thrive:compound type=\"atp\"][/thrive:compound] te produceren. Snelheid schaalt met toename van [thrive:compound type=\"temperature\"][/thrive:compound]. Gebruik [b]warmtevisie[b] om hete en koude gebieden te vinden."
+msgstr "Gebruikt toenemende temperaturen om [thrive:compound type=\"atp\"][/thrive:compound] te produceren. Snelheid schaalt met toename van [thrive:compound type=\"temperature\"][/thrive:compound]. Gebruik [b]warmtevisie[/b] om hete en koude gebieden te vinden."
 
 msgid "THERMOSYNTHESIS"
 msgstr "Thermosynthese"
@@ -5861,6 +5906,14 @@ msgstr "Toon lokale gebeurtenissen"
 msgid "TIMELINE_NICHE_FILL"
 msgstr "[b][u]{0}[/u][/b] is afgesplitst van [b][u]{1}[/u][/b] als een nieuwe soort om een niche te vullen"
 
+#, fuzzy
+msgid "TIMELINE_PLAYER_MIGRATED"
+msgstr "Een deel van de bevolking van [b][u]{0}[/u][/b] is gemigreerd naar {1}"
+
+#, fuzzy
+msgid "TIMELINE_PLAYER_MIGRATED_TO"
+msgstr "Een deel van de bevolking van [b][u]{0}[/u][/b] is gemigreerd naar {1}"
+
 msgid "TIMELINE_SELECTION_PRESSURE_SPLIT"
 msgstr "[b][u]{0}[/u][/b] is afgesplitst van [b][u]{1}[/u][/b] als een nieuwe soort door een verschil in selectiedruk"
 
@@ -5872,6 +5925,10 @@ msgstr "[b][u]{0}[/u][/b] is uitgestorven!"
 
 msgid "TIMELINE_SPECIES_EXTINCT_LOCAL"
 msgstr "[b][u]{0}[/u][/b] is verdwenen van dit gebied"
+
+#, fuzzy
+msgid "TIMELINE_SPECIES_FOLLOWED"
+msgstr "[b][u]{0}[/u][/b] is uitgestorven!"
 
 msgid "TIMELINE_SPECIES_MIGRATED_FROM"
 msgstr "Een deel van de bevolking van [b][u]{0}[/u][/b] is gemigreerd van dit gebied naar {1}"
@@ -6105,6 +6162,10 @@ msgstr "Vertalers"
 msgid "TRANSPARENCY"
 msgstr "Transparantie"
 
+#, fuzzy
+msgid "TRILLION_ABBREVIATION"
+msgstr "{0} Mld"
+
 msgid "TRY_FOSSILISING_SOME_SPECIES"
 msgstr "Probeer enkele soorten te fossilizeren!"
 
@@ -6116,6 +6177,10 @@ msgstr "Maak een screenshot!"
 
 msgid "TUTORIAL"
 msgstr "Instructie"
+
+#, fuzzy
+msgid "TUTORIAL_ALL_NOT_ENABLED_EXPLANATION"
+msgstr "(WAARSCHUWING: fotosynthese wordt veel minder levensvatbaar)"
 
 #, fuzzy
 msgid "TUTORIAL_MICROBE_EDITOR_ATP_BALANCE_INTRO"
@@ -6138,6 +6203,7 @@ msgstr ""
 "\n"
 "Je kunt meer gedetailleerde informatie over de voorspelling inzien door op de vraagtekenknop in het paneel te drukken. Druk hier op om door te gaan."
 
+#, fuzzy
 msgid "TUTORIAL_MICROBE_EDITOR_CELL_TEXT"
 msgstr ""
 "Dit is de celbewerker waar je je soort kunt evolueren door mutatiepunten (MP) uit te geven. Iedere generatie heb je altijd precies 100 MP, dus doe geen moeite om ze op te sparen.\n"
@@ -6155,6 +6221,18 @@ msgstr ""
 "\n"
 "Selecteer een onderdeel uit het linkerpaneel om verder te gaan. Plaats het onderdeel door naast het hex met de linkermuisknop te klikken. Je kunt delen roteren met [thrive:input]e_rotate_left[/thrive:input] en [thrive:input]e_rotate_right[/thrive:input]."
 
+#, fuzzy
+msgid "TUTORIAL_MICROBE_EDITOR_COMPOUND_BALANCES"
+msgstr ""
+"Dit is de gebiedenkaart.\n"
+"\n"
+"Elk icoon representeert een unieke omgeving die je kan bewonen. Het paneel aan de rechterkant beschrijft de omstandigheden van het geselecteerde gebied.\n"
+"\n"
+"Als je een gebied selecteert wat verbonden is met het gebied waar je je nu in bevindt, weergegeven door een knipperende groene rand, dan kun je met de \"Ga naar Dit Gebied\" aan de rechterkant naar dat gebied migreren. \n"
+"\n"
+"Selecteer een gebied om verder te gaan."
+
+#, fuzzy
 msgid "TUTORIAL_MICROBE_EDITOR_ENDING_TEXT"
 msgstr ""
 "Dit is de basis van het bewerken van je soort. Om het helemaal af te maken, kun je je soort een andere naam geven door linksonder op de naam te klikken en de tekst aan te passen.\n"
@@ -6167,6 +6245,26 @@ msgstr ""
 
 #, fuzzy
 msgid "TUTORIAL_MICROBE_EDITOR_FLAGELLUM"
+msgstr ""
+"Dit is de celbewerker waar je je soort kunt evolueren door mutatiepunten (MP) uit te geven. Iedere generatie heb je altijd precies 100 MP, dus doe geen moeite om ze op te sparen.\n"
+"\n"
+"De hex in het centrum van je scherm is je cel, die nu bestaat uit een enkel cytoplasmadeel.\n"
+"\n"
+"Selecteer een onderdeel uit het linkerpaneel om verder te gaan. Plaats het onderdeel door naast het hex met de linkermuisknop te klikken. Je kunt delen roteren met [thrive:input]e_rotate_left[/thrive:input] en [thrive:input]e_rotate_right[/thrive:input]."
+
+#, fuzzy
+msgid "TUTORIAL_MICROBE_EDITOR_FOOD_CHAIN"
+msgstr ""
+"Dit is de basis van het bewerken van je soort. Om het helemaal af te maken, kun je je soort een andere naam geven door linksonder op de naam te klikken en de tekst aan te passen.\n"
+"\n"
+"Probeer ook de andere tabbladen onder de MP-balk uit om te zien hoe je je cel nog meer kunt aanpassen.\n"
+"\n"
+"Om in deze hardvochtige wereld te overleven, zul je een betrouwbare energiebron moeten vinden aangezien natuurlijk glucose snel zal verdwijnen.\n"
+"\n"
+"Succes!"
+
+#, fuzzy
+msgid "TUTORIAL_MICROBE_EDITOR_MIGRATION"
 msgstr ""
 "Dit is de celbewerker waar je je soort kunt evolueren door mutatiepunten (MP) uit te geven. Iedere generatie heb je altijd precies 100 MP, dus doe geen moeite om ze op te sparen.\n"
 "\n"
@@ -6218,6 +6316,7 @@ msgstr ""
 "\n"
 "Selecteer een gebied om verder te gaan."
 
+#, fuzzy
 msgid "TUTORIAL_MICROBE_EDITOR_PATCH_TEXT"
 msgstr ""
 "Dit is de gebiedenkaart.\n"
@@ -6246,6 +6345,7 @@ msgstr ""
 "\n"
 "Klik op de opnieuw doen knop (naast de ongedaan maken knop) om verder te gaan."
 
+#, fuzzy
 msgid "TUTORIAL_MICROBE_EDITOR_STAY_SMALL"
 msgstr ""
 "Om te overleven kun je je het beste richten op specializatie van een of twee energiebronnen. Met teveel energiebronnen heb je namelijk te veel grondstoffen nodig.\n"
@@ -6285,7 +6385,17 @@ msgstr ""
 "\n"
 "Wanneer een cel vol is kan het geen nieuwe dingen meer verzwelgen. Om weer te kunnen verzwelgen zul je moeten wachten tot er genoeg verzwolgen objecten volledig verteerd zijn."
 
+#, fuzzy
 msgid "TUTORIAL_MICROBE_STAGE_ENGULFMENT_TEXT"
+msgstr ""
+"Verzwelg objecten door over ze heen te bewegen terwijl de verzwelgmodus aanstaat. Zet verzwelgmodus aan door [thrive:input]g_toggle_engulf[/thrive:input] in te drukken.\n"
+"\n"
+"Stop de verzwelgmodus zodra je de objecten naar binnen hebt getrokken.\n"
+"\n"
+"Volg de lijn van je cel naar een verzwelgbaar object in de buurt."
+
+#, fuzzy
+msgid "TUTORIAL_MICROBE_STAGE_ENVIRONMENT_PANEL"
 msgstr ""
 "Verzwelg objecten door over ze heen te bewegen terwijl de verzwelgmodus aanstaat. Zet verzwelgmodus aan door [thrive:input]g_toggle_engulf[/thrive:input] in te drukken.\n"
 "\n"
@@ -6306,7 +6416,36 @@ msgstr ""
 "Als je niet meercellig wenst te worden, zul je de kolonie moeten verlaten om de bewerker te kunnen openen.\n"
 "Verlaat de kolonie om weer te kunnen groeien door [thrive:input]g_unbind_all[/thrive:input] in te drukken."
 
+#, fuzzy
+msgid "TUTORIAL_MICROBE_STAGE_OPEN_PROCESS_PANEL"
+msgstr ""
+"Om jezelf voort te planten, moet je organellen dupliceren. Dit gebeurt geleidelijk als je overleeft maar je kunt dit proces versnellen door ammonia en fosfaat te verzamelen.\n"
+"\n"
+"Je balken rechtsonder tonen je voortgang. Ze worden wit wanneer je klaar bent om jezelf voort te planten."
+
+#, fuzzy
+msgid "TUTORIAL_MICROBE_STAGE_PAUSING"
+msgstr ""
+"Je hebt de ontbindingsmodus aangezet. In deze modus kun je op kolonieleden klikken om ze te ontkoppelen.\n"
+"\n"
+"Om de kolonie geheel te verlaten klik je op je eigen cel of druk je de knop [thrive:input]g_unbind_all[/thrive:input] in."
+
+#, fuzzy
+msgid "TUTORIAL_MICROBE_STAGE_PROCESS_PANEL"
+msgstr ""
+"Om jezelf voort te planten, moet je organellen dupliceren. Dit gebeurt geleidelijk als je overleeft maar je kunt dit proces versnellen door ammonia en fosfaat te verzamelen.\n"
+"\n"
+"Je balken rechtsonder tonen je voortgang. Ze worden wit wanneer je klaar bent om jezelf voort te planten."
+
+#, fuzzy
 msgid "TUTORIAL_MICROBE_STAGE_REPRODUCE_TEXT"
+msgstr ""
+"Om jezelf voort te planten, moet je organellen dupliceren. Dit gebeurt geleidelijk als je overleeft maar je kunt dit proces versnellen door ammonia en fosfaat te verzamelen.\n"
+"\n"
+"Je balken rechtsonder tonen je voortgang. Ze worden wit wanneer je klaar bent om jezelf voort te planten."
+
+#, fuzzy
+msgid "TUTORIAL_MICROBE_STAGE_RESOURCE_SPLIT"
 msgstr ""
 "Om jezelf voort te planten, moet je organellen dupliceren. Dit gebeurt geleidelijk als je overleeft maar je kunt dit proces versnellen door ammonia en fosfaat te verzamelen.\n"
 "\n"
@@ -6638,6 +6777,9 @@ msgstr ""
 
 msgid "VIEW_SOURCE_CODE"
 msgstr "Ga naar broncode"
+
+msgid "VIEW_TEXT_REPORT"
+msgstr ""
 
 msgid "VIP_PATRONS"
 msgstr "VIP Ondersteuners"
@@ -7864,11 +8006,9 @@ msgstr "Bindmiddel"
 msgid "WIKI_PAGE_BIOLUMINESCENT_VACUOLE"
 msgstr "Bioluminescente Vacuole"
 
-#, fuzzy
 msgid "WIKI_PAGE_CHEMOPLAST"
 msgstr "Chemoplast"
 
-#, fuzzy
 msgid "WIKI_PAGE_CHEMORECEPTOR"
 msgstr "Chemoreceptor"
 
@@ -7876,7 +8016,6 @@ msgstr "Chemoreceptor"
 msgid "WIKI_PAGE_CHEMOSYNTHESIZING_PROTEINS"
 msgstr "Chemosynthetiserende eiwitten"
 
-#, fuzzy
 msgid "WIKI_PAGE_CHLOROPLAST"
 msgstr "Chloroplast"
 
@@ -7910,9 +8049,8 @@ msgstr "Mitochondrion"
 msgid "WIKI_PAGE_FERROPLAST"
 msgstr "Thermoplast"
 
-#, fuzzy
 msgid "WIKI_PAGE_FLAGELLUM"
-msgstr "Flagellum"
+msgstr "Zweepstaartje"
 
 #, fuzzy
 msgid "WIKI_PAGE_HELP_AND_TIPS"
@@ -8561,6 +8699,22 @@ msgstr "Inzoomen"
 msgid "ZOOM_OUT"
 msgstr "Uitzoomen"
 
+#, fuzzy
+#~ msgid "MICROBE_STAGE_DAY_NIGHT_TEXT"
+#~ msgstr ""
+#~ "Kijk uit voor verlagingen in de zonlichtmeter op het omgevingspaneel.\n"
+#~ "\n"
+#~ "De nacht komt wanneer de omgeving donker wordt.\n"
+#~ "Fotosynthese werkt niet tijdens de nacht.\n"
+#~ "Zorg ervoor dat je genoeg opgeslagen hebt om de nacht te overleven."
+
+#, fuzzy
+#~ msgid "GLOBAL_GLACIATION_EVENT_LOG"
+#~ msgstr "Totale Bevolking:"
+
+#~ msgid "IRON_CHEMOLITHOAUTOTROPHY"
+#~ msgstr "Ijzer-chemolithoautotrofie"
+
 #~ msgid "PASSIVE_REPRODUCTION_PROGRESS"
 #~ msgstr "Krijg passief reproduktievoortgang"
 
@@ -8925,9 +9079,6 @@ msgstr "Uitzoomen"
 
 #~ msgid "GLES2"
 #~ msgstr "GLES2"
-
-#~ msgid "SIXTEEN_TIMES"
-#~ msgstr "16x"
 
 #, fuzzy
 #~ msgid "TARGET_TIME"

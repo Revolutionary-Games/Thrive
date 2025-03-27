@@ -7,8 +7,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2025-03-09 11:58-0300\n"
-"PO-Revision-Date: 2025-02-06 13:29+0000\n"
+"POT-Creation-Date: 2025-03-27 09:59+0200\n"
+"PO-Revision-Date: 2025-03-20 20:10+0000\n"
 "Last-Translator: Anonymous <noreply@weblate.org>\n"
 "Language-Team: Esperanto <https://translate.revolutionarygamesstudio.com/projects/thrive/thrive-game/eo/>\n"
 "Language: eo\n"
@@ -199,6 +199,9 @@ msgstr "Malaerobia Nitrogena Riparado"
 msgid "AND_UNLOCK_CONDITION"
 msgstr "Fizikaj Kondiĉoj"
 
+msgid "ANISOTROPIC_FILTERING"
+msgstr ""
+
 msgid "APPEARANCE"
 msgstr "Aspekto"
 
@@ -324,6 +327,10 @@ msgstr "{0:F1}% finita. {1:n0}/{2:n0} paŝoj."
 #, fuzzy
 msgid "AUTO-EVO_PREDICTION_BOX_DESCRIPTION"
 msgstr "La potencocentro de la ĉelo. La mitokondrio (pluralo: mitokondrioj) estas duobla membrana strukturo plenigita de proteinoj kaj enzimoj. Ĝi estas prokarioto asimilita por uzo de sia eŭkariota gastiganto. Ĝi povas konverti glukozon en ATP-on kun multe pli alta efikeco ol oni povas fari ĝin en la citoplasmo en proceso nomata Aeroba Respirado. Tamen ĝi postulas oksigenon por funkcii, kaj pli malaltaj niveloj de oksigeno en la medio malrapidigos la rapidon de ĝia produktado de ATP."
+
+#, fuzzy
+msgid "AUTO-EVO_RESULTS_TITLE"
+msgstr "Resultoj de aŭtomata evoluo:"
 
 msgid "AUTO-EVO_STEPS_DONE"
 msgstr "{0:F1}% finita. {1:n0}/{2:n0} paŝoj."
@@ -682,6 +689,10 @@ msgid "CELL_STAT_SPEED_TOOLTIP"
 msgstr "Rekomenci"
 
 #, fuzzy
+msgid "CELL_STAT_STORAGE_TOOLTIP"
+msgstr "Rekomenci"
+
+#, fuzzy
 msgid "CELL_TYPE_BUTTON_ATP_CONSUMPTION"
 msgstr "{0}: -{1} ATP"
 
@@ -826,6 +837,10 @@ msgstr "Forigi Malnovajn Konservadojn"
 
 msgid "CLEAR_CACHE"
 msgstr ""
+
+#, fuzzy
+msgid "CLICK_TO_SELECT"
+msgstr "Forigi Elektita(j)n"
 
 msgid "CLOSE"
 msgstr "Fermu"
@@ -2479,6 +2494,26 @@ msgstr "Aldonunovan funkcion por klavo"
 msgid "GLES3"
 msgstr ""
 
+msgid "GLOBAL_GLACIATION_END_EVENT_LOG"
+msgstr ""
+
+#, fuzzy
+msgid "GLOBAL_GLACIATION_EVENT"
+msgstr "{0} loĝantaro ŝanĝiĝis per {1} pro: {2}"
+
+#, fuzzy
+msgid "GLOBAL_GLACIATION_EVENT_TOOLTIP"
+msgstr "Aldonunovan funkcion por klavo"
+
+msgid "GLOBAL_GLACIATION_EVENT_WARNING_LOG_PLURAL"
+msgstr ""
+
+msgid "GLOBAL_GLACIATION_EVENT_WARNING_LOG_SINGULAR"
+msgstr ""
+
+msgid "GLOBAL_GLACIATION_START_EVENT_LOG"
+msgstr ""
+
 msgid "GLOBAL_INITIAL_LETTER"
 msgstr ""
 
@@ -2866,8 +2901,9 @@ msgstr ""
 msgid "IRON"
 msgstr "Fero"
 
-msgid "IRON_CHEMOLITHOAUTOTROPHY"
-msgstr "Fera Kemolitoaŭtotrofio"
+#, fuzzy
+msgid "IRON_OXIDATION"
+msgstr "Agordoj"
 
 #, fuzzy
 msgid "ITCH_TOOLTIP"
@@ -3755,12 +3791,14 @@ msgstr ""
 "Via ĉelo bezonas glukozon por produkti energion por resti viva.\n"
 "Sekvu la linion de via ĉelo al proksima glukozo."
 
+#, fuzzy
 msgid "MICROBE_STAGE_COLLECT_TEXT"
 msgstr ""
 "Kolektu glukozon (blankajn nubojn) moviĝante super ili.\n"
 "Via ĉelo bezonas glukozon por produkti energion por resti viva.\n"
 "Sekvu la linion de via ĉelo al proksima glukozo."
 
+#, fuzzy
 msgid "MICROBE_STAGE_CONTROL_TEXT"
 msgstr ""
 "Por regi vian ĉelon, uzu la klavojn montritajn proksime al via ĉelo (centro de ekrano) kaj la muson por regi la ĉelan orientiĝon.\n"
@@ -3775,13 +3813,6 @@ msgstr ""
 "Provu ĉiujn klavojn dum kelkaj sekundoj por daŭrigi."
 
 #, fuzzy
-msgid "MICROBE_STAGE_DAY_NIGHT_TEXT"
-msgstr ""
-"Rigardu vian sanstaton apud la ATP-breto (malsupre dekstre).\n"
-"Via ĉelo mortas, se ĝi elĉerpiĝas.\n"
-"Vi regeneras sanon dum vi havas ATP-ojn.\n"
-"Certigu kolekti sufiĉe da glukozo por produkti ATP-ojn."
-
 msgid "MICROBE_STAGE_HEALTH_TEXT"
 msgstr ""
 "Rigardu vian sanstaton apud la ATP-breto (malsupre dekstre).\n"
@@ -3927,6 +3958,9 @@ msgid "MODDING_INSTRUCTIONS_ON"
 msgstr ""
 
 msgid "MODELS"
+msgstr ""
+
+msgid "MODE_CAN_BE_CHANGED_IN_OPTIONS"
 msgstr ""
 
 msgid "MODIFY"
@@ -4331,7 +4365,14 @@ msgstr "Nenio estas ĉi tie"
 msgid "NOTHING_TO_INTERACT_WITH"
 msgstr ""
 
+#, fuzzy
+msgid "NOTICE_BINDING_OUT_OF_ATP"
+msgstr "Ŝaltu engluton"
+
 msgid "NOTICE_DAMAGED_BY_NO_ATP"
+msgstr ""
+
+msgid "NOTICE_ENGULFING_OUT_OF_ATP"
 msgstr ""
 
 msgid "NOTICE_ENGULF_DAMAGE_FROM_TOXIN"
@@ -4896,6 +4937,10 @@ msgstr "ludanto mortis"
 msgid "PLAYER_RELATIVE_MOVEMENT"
 msgstr "ludanto mortis"
 
+#, fuzzy
+msgid "PLAYER_RELATIVE_MOVEMENT_TOOLTIP"
+msgstr "ludanto mortis"
+
 msgid "PLAYER_REPRODUCED"
 msgstr "ludanto reproduktita"
 
@@ -4983,6 +5028,10 @@ msgstr "Ĉelaj Procezoj"
 msgid "PROCESS_SPEED_MODIFIER"
 msgstr "Ĉelaj Procezoj"
 
+#, fuzzy
+msgid "PROCESS_TOGGLE_TOOLTIP"
+msgstr "Revenu al Menuo"
+
 msgid "PROGRAMMING_TEAM"
 msgstr ""
 
@@ -4997,6 +5046,10 @@ msgstr "Protoplasmo"
 
 msgid "PULL_REQUESTS_PROGRAMMING"
 msgstr ""
+
+#, fuzzy
+msgid "QUADRILLION_ABBREVIATION"
+msgstr "{0} Mrd"
 
 msgid "QUICK_LOAD"
 msgstr "Rapida ŝarĝo"
@@ -5132,6 +5185,14 @@ msgstr "Restarigu"
 
 msgid "RESET_SETTINGS_TO_DEFAULTS"
 msgstr "Defaŭlte"
+
+#, fuzzy
+msgid "RESET_SHOWN_TUTORIALS"
+msgstr "Montru lernilojn"
+
+#, fuzzy
+msgid "RESET_SHOWN_TUTORIALS_TOOLTIP"
+msgstr "Aldonunovan funkcion por klavo"
 
 msgid "RESET_TO_DEFAULTS"
 msgstr "Ĉu restarigu al defaŭltaj?"
@@ -5403,6 +5464,10 @@ msgstr "Kapabloj"
 msgid "SCREEN_RELATIVE_MOVEMENT"
 msgstr "popliigi la movadon"
 
+#, fuzzy
+msgid "SCREEN_RELATIVE_MOVEMENT_TOOLTIP"
+msgstr "popliigi la movadon"
+
 msgid "SCROLLLOCK"
 msgstr ""
 
@@ -5428,6 +5493,10 @@ msgstr "Rekomenci"
 #, fuzzy
 msgid "SEED_LABEL"
 msgstr "Biomo: {0}"
+
+#, fuzzy
+msgid "SELECTED"
+msgstr "Elektita(j):"
 
 msgid "SELECTED_COLON"
 msgstr "Elektita(j):"
@@ -5470,6 +5539,9 @@ msgstr ""
 msgid "SELECT_ENZYME"
 msgstr "Elektita(j):"
 
+msgid "SELECT_MOVEMENT_MODE_TITLE"
+msgstr ""
+
 #, fuzzy
 msgid "SELECT_OPTION"
 msgstr "Elektita(j):"
@@ -5507,6 +5579,14 @@ msgid "SHIFT"
 msgstr "Shift"
 
 #, fuzzy
+msgid "SHOW_ALL_TUTORIALS"
+msgstr "Montru lernilojn"
+
+#, fuzzy
+msgid "SHOW_ALL_TUTORIALS_TOOLTIP"
+msgstr "Aldonunovan funkcion por klavo"
+
+#, fuzzy
 msgid "SHOW_DAMAGE_EFFECT"
 msgstr "La flagelo estas vip-simila fasko de proteinaj fibroj etendiĝantaj de la membrano de la ĉelo, kiu povas uzi ATP por ondigi kaj peli la ĉelon en direkto."
 
@@ -5525,14 +5605,15 @@ msgstr "Kaverno"
 msgid "SHOW_NEW_PATCH_NOTES_TOOLTIP"
 msgstr "Kaverno"
 
-msgid "SHOW_TUTORIALS"
-msgstr "Montru lernilojn"
-
 msgid "SHOW_TUTORIALS_IN_NEW_CURRENT_OPTION"
 msgstr "Montru lernilojn (en ĉi tiu ludo)"
 
 msgid "SHOW_TUTORIALS_IN_NEW_GAMES_OPTION"
 msgstr "Montru lernilojn (en novaj ludoj)"
+
+#, fuzzy
+msgid "SHOW_TUTORIALS_OPTION_TOOLTIP"
+msgstr "Aldonunovan funkcion por klavo"
 
 #, fuzzy
 msgid "SHOW_UNSAVED_PROGRESS_WARNING"
@@ -5600,6 +5681,10 @@ msgstr "Siliko"
 
 msgid "SILICA_MEMBRANE_DESCRIPTION"
 msgstr "Ĉi tiu membrano havas fortan silikan muron. Ĝi povas bone rezisti ĝeneralan damaĝon kaj tre rezistas al fizika damaĝo. Ĝi ankaŭ postulas malpli da energio por konservi sian formon. Tamen ĝi malrapidigas la ĉelon kaj la ĉelo sorbas resurson kun malpli granda rapideco."
+
+#, fuzzy
+msgid "SIXTEEN_TIMES"
+msgstr "Listo de Specioj"
 
 msgid "SIZE_COLON"
 msgstr "Grandeco:"
@@ -5875,6 +5960,10 @@ msgstr ""
 
 msgid "STORE_LOGGED_IN_AS"
 msgstr ""
+
+#, fuzzy
+msgid "STRAIN_BAR_TOOLTIP"
+msgstr "Aldonunovan funkcion por klavo"
 
 msgid "STRAIN_BAR_VISIBILITY"
 msgstr ""
@@ -6152,6 +6241,12 @@ msgstr ""
 msgid "TIMELINE_NICHE_FILL"
 msgstr "genkodo:"
 
+msgid "TIMELINE_PLAYER_MIGRATED"
+msgstr ""
+
+msgid "TIMELINE_PLAYER_MIGRATED_TO"
+msgstr ""
+
 #, fuzzy
 msgid "TIMELINE_SELECTION_PRESSURE_SPLIT"
 msgstr "disvastiĝas al flikĵj:"
@@ -6168,6 +6263,10 @@ msgstr ""
 
 msgid "TIMELINE_SPECIES_EXTINCT_LOCAL"
 msgstr ""
+
+#, fuzzy
+msgid "TIMELINE_SPECIES_FOLLOWED"
+msgstr "Specio loĝantaro"
 
 msgid "TIMELINE_SPECIES_MIGRATED_FROM"
 msgstr ""
@@ -6403,6 +6502,10 @@ msgid "TRANSPARENCY"
 msgstr "Helpu Traduki La Ludon"
 
 #, fuzzy
+msgid "TRILLION_ABBREVIATION"
+msgstr "{0} Mrd"
+
+#, fuzzy
 msgid "TRY_FOSSILISING_SOME_SPECIES"
 msgstr "Prenu ekrankopion"
 
@@ -6416,6 +6519,10 @@ msgstr "Prenu ekrankopion"
 #, fuzzy
 msgid "TUTORIAL"
 msgstr "Lernilo"
+
+#, fuzzy
+msgid "TUTORIAL_ALL_NOT_ENABLED_EXPLANATION"
+msgstr "Piku aliajn ĉelojn per ĉi tio."
 
 #, fuzzy
 msgid "TUTORIAL_MICROBE_EDITOR_ATP_BALANCE_INTRO"
@@ -6460,6 +6567,16 @@ msgstr ""
 "Por iri al la sekva redakta langeto, premu la sekvan butonon en la dekstra fundo."
 
 #, fuzzy
+msgid "TUTORIAL_MICROBE_EDITOR_COMPOUND_BALANCES"
+msgstr ""
+"Bonvenon al la Mikrobredaktilo.\n"
+"Ĉi tie vi povas revizii, kio okazis ekde la komenco de la ludo aŭ kiam vi laste estis en la redaktilo. Kaj ekde nun vi povas ŝanĝi viajn speciojn.\n"
+"\n"
+"En ĉi tiu langeto vi povas vidi raporton pri kiaj specioj ekzistas, kie kaj kiaj estas iliaj populacioj. Vi ankaŭ povas vidi mediajn ŝanĝojn supre.\n"
+"\n"
+"Por iri al la sekva redakta langeto, premu la sekvan butonon en la dekstra fundo."
+
+#, fuzzy
 msgid "TUTORIAL_MICROBE_EDITOR_ENDING_TEXT"
 msgstr ""
 "Tiuj estas la bazoj por redakti vian specion. Vi povas kontroli la aliajn langetojn de ĉelredaktilo por eĉ pli da agardoj.\n"
@@ -6472,6 +6589,27 @@ msgstr ""
 
 #, fuzzy
 msgid "TUTORIAL_MICROBE_EDITOR_FLAGELLUM"
+msgstr ""
+"Bonvenon al la Mikrobredaktilo.\n"
+"Ĉi tie vi povas revizii, kio okazis ekde la komenco de la ludo aŭ kiam vi laste estis en la redaktilo. Kaj ekde nun vi povas ŝanĝi viajn speciojn.\n"
+"\n"
+"En ĉi tiu langeto vi povas vidi raporton pri kiaj specioj ekzistas, kie kaj kiaj estas iliaj populacioj. Vi ankaŭ povas vidi mediajn ŝanĝojn supre.\n"
+"\n"
+"Por iri al la sekva redakta langeto, premu la sekvan butonon en la dekstra fundo."
+
+#, fuzzy
+msgid "TUTORIAL_MICROBE_EDITOR_FOOD_CHAIN"
+msgstr ""
+"Tiuj estas la bazoj por redakti vian specion. Vi povas kontroli la aliajn langetojn de ĉelredaktilo por eĉ pli da agardoj.\n"
+"\n"
+"Vi povas renomi vian specion alklakante la nunan specian nomon kaj redaktante la tekston.\n"
+"\n"
+"Komence vi devas teni vian ĉelon malgranda kaj direktiĝi al la surfacaj flikaĵoj.\n"
+"\n"
+"Bonŝancon!"
+
+#, fuzzy
+msgid "TUTORIAL_MICROBE_EDITOR_MIGRATION"
 msgstr ""
 "Bonvenon al la Mikrobredaktilo.\n"
 "Ĉi tie vi povas revizii, kio okazis ekde la komenco de la ludo aŭ kiam vi laste estis en la redaktilo. Kaj ekde nun vi povas ŝanĝi viajn speciojn.\n"
@@ -6606,6 +6744,13 @@ msgstr ""
 "Provu ĉiujn klavojn dum kelkaj sekundoj por daŭrigi."
 
 #, fuzzy
+msgid "TUTORIAL_MICROBE_STAGE_ENVIRONMENT_PANEL"
+msgstr ""
+"Por regi vian ĉelon, uzu la klavojn montritajn proksime al via ĉelo (centro de ekrano) kaj la muson por regi la ĉelan orientiĝon.\n"
+"\n"
+"Provu ĉiujn klavojn dum kelkaj sekundoj por daŭrigi."
+
+#, fuzzy
 msgid "TUTORIAL_MICROBE_STAGE_HELP_MENU_AND_ZOOM"
 msgstr "W, A, S, D kaj muso por moviĝi. E por pafi OxyToxy NT-on (se vi havas toksinan vakuolon). G por ŝalti englutan reĝimon."
 
@@ -6617,7 +6762,32 @@ msgstr ""
 "Provu ĉiujn klavojn dum kelkaj sekundoj por daŭrigi."
 
 #, fuzzy
+msgid "TUTORIAL_MICROBE_STAGE_OPEN_PROCESS_PANEL"
+msgstr ""
+"Por reproduktiĝi, vi devas duplikati ĉiujn ĝiajn organetojn per kolektado de sufiĉe da amoniako kaj fosfatoj.\n"
+"Rigardu la indikilon en la dekstra malsupra parto por vidi kiom pli vi bezonas."
+
+#, fuzzy
+msgid "TUTORIAL_MICROBE_STAGE_PAUSING"
+msgstr ""
+"Por regi vian ĉelon, uzu la klavojn montritajn proksime al via ĉelo (centro de ekrano) kaj la muson por regi la ĉelan orientiĝon.\n"
+"\n"
+"Provu ĉiujn klavojn dum kelkaj sekundoj por daŭrigi."
+
+#, fuzzy
+msgid "TUTORIAL_MICROBE_STAGE_PROCESS_PANEL"
+msgstr ""
+"Por reproduktiĝi, vi devas duplikati ĉiujn ĝiajn organetojn per kolektado de sufiĉe da amoniako kaj fosfatoj.\n"
+"Rigardu la indikilon en la dekstra malsupra parto por vidi kiom pli vi bezonas."
+
+#, fuzzy
 msgid "TUTORIAL_MICROBE_STAGE_REPRODUCE_TEXT"
+msgstr ""
+"Por reproduktiĝi, vi devas duplikati ĉiujn ĝiajn organetojn per kolektado de sufiĉe da amoniako kaj fosfatoj.\n"
+"Rigardu la indikilon en la dekstra malsupra parto por vidi kiom pli vi bezonas."
+
+#, fuzzy
+msgid "TUTORIAL_MICROBE_STAGE_RESOURCE_SPLIT"
 msgstr ""
 "Por reproduktiĝi, vi devas duplikati ĉiujn ĝiajn organetojn per kolektado de sufiĉe da amoniako kaj fosfatoj.\n"
 "Rigardu la indikilon en la dekstra malsupra parto por vidi kiom pli vi bezonas."
@@ -6963,6 +7133,9 @@ msgstr ""
 
 msgid "VIEW_SOURCE_CODE"
 msgstr "Rigardi Fontkodon"
+
+msgid "VIEW_TEXT_REPORT"
+msgstr ""
 
 msgid "VIP_PATRONS"
 msgstr ""
@@ -9040,6 +9213,21 @@ msgid "ZOOM_OUT"
 msgstr "Malzomu"
 
 #, fuzzy
+#~ msgid "MICROBE_STAGE_DAY_NIGHT_TEXT"
+#~ msgstr ""
+#~ "Rigardu vian sanstaton apud la ATP-breto (malsupre dekstre).\n"
+#~ "Via ĉelo mortas, se ĝi elĉerpiĝas.\n"
+#~ "Vi regeneras sanon dum vi havas ATP-ojn.\n"
+#~ "Certigu kolekti sufiĉe da glukozo por produkti ATP-ojn."
+
+#, fuzzy
+#~ msgid "GLOBAL_GLACIATION_EVENT_LOG"
+#~ msgstr "{0} loĝantaro ŝanĝiĝis per {1} pro: {2}"
+
+#~ msgid "IRON_CHEMOLITHOAUTOTROPHY"
+#~ msgstr "Fera Kemolitoaŭtotrofio"
+
+#, fuzzy
 #~ msgid "PASSIVE_REPRODUCTION_PROGRESS"
 #~ msgstr "{0} loĝantaro ŝanĝiĝis per {1} pro: {2}"
 
@@ -9386,10 +9574,6 @@ msgstr "Malzomu"
 #, fuzzy
 #~ msgid "LOOKING_AT"
 #~ msgstr "Premu la malfaran butonon en la redaktilo por korekti eraron"
-
-#, fuzzy
-#~ msgid "SPECIES_N_TIMES"
-#~ msgstr "Listo de Specioj"
 
 #, fuzzy
 #~ msgid "BECOME_AWARE"

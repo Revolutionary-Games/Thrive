@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2025-03-09 11:58-0300\n"
+"POT-Creation-Date: 2025-03-27 09:59+0200\n"
 "PO-Revision-Date: 2025-02-06 13:29+0000\n"
 "Last-Translator: Anonymous <noreply@weblate.org>\n"
 "Language-Team: Slovak <https://translate.revolutionarygamesstudio.com/projects/thrive/thrive-game/sk/>\n"
@@ -189,6 +189,9 @@ msgstr "Anaeróbna fixácia dusíka"
 msgid "AND_UNLOCK_CONDITION"
 msgstr "Fyzické podmienky"
 
+msgid "ANISOTROPIC_FILTERING"
+msgstr ""
+
 msgid "APPEARANCE"
 msgstr "Vzhľad"
 
@@ -310,6 +313,10 @@ msgstr "Auto-Evo predpoveď"
 
 msgid "AUTO-EVO_PREDICTION_BOX_DESCRIPTION"
 msgstr ""
+
+#, fuzzy
+msgid "AUTO-EVO_RESULTS_TITLE"
+msgstr "Výsledok automatickej evolúcie:"
 
 msgid "AUTO-EVO_STEPS_DONE"
 msgstr "{0:F1} % hotovo. {1:n0}/{2:n0} krokov."
@@ -652,6 +659,10 @@ msgid "CELL_STAT_SPEED_TOOLTIP"
 msgstr "Hodnota, ktorá sa používa pri generovaní sveta (musí kladné byť číslo)"
 
 #, fuzzy
+msgid "CELL_STAT_STORAGE_TOOLTIP"
+msgstr "Hodnota, ktorá sa používa pri generovaní sveta (musí kladné byť číslo)"
+
+#, fuzzy
 msgid "CELL_TYPE_BUTTON_ATP_CONSUMPTION"
 msgstr "{0}: -{1} ATP"
 
@@ -779,6 +790,9 @@ msgid "CLEAN_UP_OLD_SAVES"
 msgstr ""
 
 msgid "CLEAR_CACHE"
+msgstr ""
+
+msgid "CLICK_TO_SELECT"
 msgstr ""
 
 msgid "CLOSE"
@@ -2362,6 +2376,26 @@ msgstr "Opustiť hru"
 msgid "GLES3"
 msgstr ""
 
+msgid "GLOBAL_GLACIATION_END_EVENT_LOG"
+msgstr ""
+
+#, fuzzy
+msgid "GLOBAL_GLACIATION_EVENT"
+msgstr "Celková populácia:"
+
+#, fuzzy
+msgid "GLOBAL_GLACIATION_EVENT_TOOLTIP"
+msgstr "Prebudiť sa"
+
+msgid "GLOBAL_GLACIATION_EVENT_WARNING_LOG_PLURAL"
+msgstr ""
+
+msgid "GLOBAL_GLACIATION_EVENT_WARNING_LOG_SINGULAR"
+msgstr ""
+
+msgid "GLOBAL_GLACIATION_START_EVENT_LOG"
+msgstr ""
+
 msgid "GLOBAL_INITIAL_LETTER"
 msgstr "G"
 
@@ -2736,8 +2770,9 @@ msgstr ""
 msgid "IRON"
 msgstr "Železo"
 
-msgid "IRON_CHEMOLITHOAUTOTROPHY"
-msgstr "Chemolitoautotrofia železa"
+#, fuzzy
+msgid "IRON_OXIDATION"
+msgstr "Príspevky"
 
 #, fuzzy
 msgid "ITCH_TOOLTIP"
@@ -3587,10 +3622,6 @@ msgstr ""
 msgid "MICROBE_STAGE_CONTROL_TEXT_CONTROLLER"
 msgstr ""
 
-#, fuzzy
-msgid "MICROBE_STAGE_DAY_NIGHT_TEXT"
-msgstr "[b][u]{0}[/u][/b] vyhynul!"
-
 msgid "MICROBE_STAGE_HEALTH_TEXT"
 msgstr ""
 
@@ -3698,6 +3729,9 @@ msgstr ""
 
 msgid "MODELS"
 msgstr "Modely"
+
+msgid "MODE_CAN_BE_CHANGED_IN_OPTIONS"
+msgstr ""
 
 msgid "MODIFY"
 msgstr "Upraviť"
@@ -4082,7 +4116,14 @@ msgstr "Tu nič nie je"
 msgid "NOTHING_TO_INTERACT_WITH"
 msgstr ""
 
+#, fuzzy
+msgid "NOTICE_BINDING_OUT_OF_ATP"
+msgstr "Prepnúť spájanie"
+
 msgid "NOTICE_DAMAGED_BY_NO_ATP"
+msgstr ""
+
+msgid "NOTICE_ENGULFING_OUT_OF_ATP"
 msgstr ""
 
 msgid "NOTICE_ENGULF_DAMAGE_FROM_TOXIN"
@@ -4620,6 +4661,10 @@ msgstr "Hráč vyhynul"
 msgid "PLAYER_RELATIVE_MOVEMENT"
 msgstr "Hráč vyhynul"
 
+#, fuzzy
+msgid "PLAYER_RELATIVE_MOVEMENT_TOOLTIP"
+msgstr "Hráč vyhynul"
+
 msgid "PLAYER_REPRODUCED"
 msgstr "hráč sa rozmnožil"
 
@@ -4705,6 +4750,10 @@ msgstr "Bunkové procesy"
 msgid "PROCESS_SPEED_MODIFIER"
 msgstr "Bunkové procesy"
 
+#, fuzzy
+msgid "PROCESS_TOGGLE_TOOLTIP"
+msgstr "Vrátiť sa do hlavného menu"
+
 msgid "PROGRAMMING_TEAM"
 msgstr "Programátori"
 
@@ -4719,6 +4768,10 @@ msgstr "Protoplazma"
 
 msgid "PULL_REQUESTS_PROGRAMMING"
 msgstr "Externí programátori"
+
+#, fuzzy
+msgid "QUADRILLION_ABBREVIATION"
+msgstr "{0} mld"
 
 msgid "QUICK_LOAD"
 msgstr "Rýchle načítanie"
@@ -4847,6 +4900,14 @@ msgstr "Resetovať ovládanie"
 
 msgid "RESET_SETTINGS_TO_DEFAULTS"
 msgstr "Predvolené"
+
+#, fuzzy
+msgid "RESET_SHOWN_TUTORIALS"
+msgstr "Zobraziť návody"
+
+#, fuzzy
+msgid "RESET_SHOWN_TUTORIALS_TOOLTIP"
+msgstr "Uplynulý čas: {0:#,#} rokov"
 
 msgid "RESET_TO_DEFAULTS"
 msgstr "Obnoviť predvolené nastavenia?"
@@ -5102,6 +5163,10 @@ msgstr "Zobraziť názvy tlačidiel pri výbere častí"
 msgid "SCREEN_RELATIVE_MOVEMENT"
 msgstr ""
 
+#, fuzzy
+msgid "SCREEN_RELATIVE_MOVEMENT_TOOLTIP"
+msgstr "Základný pohyb"
+
 msgid "SCROLLLOCK"
 msgstr "Scroll Lock"
 
@@ -5127,6 +5192,10 @@ msgstr "Pozastaviť hru"
 #, fuzzy
 msgid "SEED_LABEL"
 msgstr "Bióm: {0}"
+
+#, fuzzy
+msgid "SELECTED"
+msgstr "Vybraný mód:"
 
 msgid "SELECTED_COLON"
 msgstr "Vybrané:"
@@ -5164,6 +5233,10 @@ msgstr "Na karte editora, vyber typ bunky, ktorú chceš upraviť"
 msgid "SELECT_ENZYME"
 msgstr "Vybrať enzým:"
 
+#, fuzzy
+msgid "SELECT_MOVEMENT_MODE_TITLE"
+msgstr "Odstrániť lokálne údaje"
+
 msgid "SELECT_OPTION"
 msgstr "Vyber možnosť"
 
@@ -5199,6 +5272,14 @@ msgstr "Hlasitosť SFX"
 msgid "SHIFT"
 msgstr "Shift"
 
+#, fuzzy
+msgid "SHOW_ALL_TUTORIALS"
+msgstr "Zobraziť návody"
+
+#, fuzzy
+msgid "SHOW_ALL_TUTORIALS_TOOLTIP"
+msgstr "Uplynulý čas: {0:#,#} rokov"
+
 msgid "SHOW_DAMAGE_EFFECT"
 msgstr ""
 
@@ -5217,15 +5298,15 @@ msgstr "{0} {1}"
 msgid "SHOW_NEW_PATCH_NOTES_TOOLTIP"
 msgstr "{0} {1}"
 
-#, fuzzy
-msgid "SHOW_TUTORIALS"
-msgstr "Zobraziť návody"
-
 msgid "SHOW_TUTORIALS_IN_NEW_CURRENT_OPTION"
 msgstr "Zobraziť tutoriál (v aktuálnej hre)"
 
 msgid "SHOW_TUTORIALS_IN_NEW_GAMES_OPTION"
 msgstr "Zobraziť tutoriál (v nových hrách)"
+
+#, fuzzy
+msgid "SHOW_TUTORIALS_OPTION_TOOLTIP"
+msgstr "Uplynulý čas: {0:#,#} rokov"
 
 msgid "SHOW_UNSAVED_PROGRESS_WARNING"
 msgstr "Zobraziť upozornenie na neuložený postup"
@@ -5277,6 +5358,9 @@ msgstr "Oxid kremičitý"
 
 msgid "SILICA_MEMBRANE_DESCRIPTION"
 msgstr ""
+
+msgid "SIXTEEN_TIMES"
+msgstr "16x"
 
 msgid "SIZE_COLON"
 msgstr "Veľkosť:"
@@ -5531,6 +5615,10 @@ msgstr ""
 
 msgid "STORE_LOGGED_IN_AS"
 msgstr "Prihlásený ako: {0}"
+
+#, fuzzy
+msgid "STRAIN_BAR_TOOLTIP"
+msgstr "Pozastaviť hru"
 
 msgid "STRAIN_BAR_VISIBILITY"
 msgstr ""
@@ -5802,6 +5890,14 @@ msgstr "Zobraziť lokálne udalosti"
 msgid "TIMELINE_NICHE_FILL"
 msgstr "[b][u]{0}[/u] sa oddelil od [b][u]{1}[/u][/b] ako nový druh, aby vyplnil miesto"
 
+#, fuzzy
+msgid "TIMELINE_PLAYER_MIGRATED"
+msgstr "Časť populácie [b][u]{0}[/u][/b] migrovala do {1}"
+
+#, fuzzy
+msgid "TIMELINE_PLAYER_MIGRATED_TO"
+msgstr "Časť populácie [b][u]{0}[/u][/b] migrovala do {1}"
+
 msgid "TIMELINE_SELECTION_PRESSURE_SPLIT"
 msgstr "[b][u]{0}[/u][/b] sa oddelil od [b][u]{1}[/u][/b] ako nový druh v dôsledku rôznych selekčných tlakov"
 
@@ -5814,6 +5910,10 @@ msgstr "[b][u]{0}[/u][/b] vyhynul!"
 
 msgid "TIMELINE_SPECIES_EXTINCT_LOCAL"
 msgstr "[b][u]{0}[/u][/b] zmizol z tejto oblasti"
+
+#, fuzzy
+msgid "TIMELINE_SPECIES_FOLLOWED"
+msgstr "[b][u]{0}[/u][/b] vyhynul!"
 
 msgid "TIMELINE_SPECIES_MIGRATED_FROM"
 msgstr "Časť populácie [b][u]{0}[/u][/b] z {1} migrovala do tejto oblasti"
@@ -6036,6 +6136,10 @@ msgid "TRANSPARENCY"
 msgstr "Priehľadnosť"
 
 #, fuzzy
+msgid "TRILLION_ABBREVIATION"
+msgstr "{0} mld"
+
+#, fuzzy
 msgid "TRY_FOSSILISING_SOME_SPECIES"
 msgstr "Skús spraviť zopár snímiek obrazovky!"
 
@@ -6047,6 +6151,10 @@ msgstr "Skús spraviť zopár snímiek obrazovky!"
 
 msgid "TUTORIAL"
 msgstr "Tutoriál"
+
+#, fuzzy
+msgid "TUTORIAL_ALL_NOT_ENABLED_EXPLANATION"
+msgstr "(začni s oblakom glukózy v blízkosti každou generáciou)"
 
 #, fuzzy
 msgid "TUTORIAL_MICROBE_EDITOR_ATP_BALANCE_INTRO"
@@ -6062,11 +6170,23 @@ msgstr ""
 msgid "TUTORIAL_MICROBE_EDITOR_CHEMORECEPTOR"
 msgstr "Záporná bilancia ATP"
 
+#, fuzzy
+msgid "TUTORIAL_MICROBE_EDITOR_COMPOUND_BALANCES"
+msgstr "Záporná bilancia ATP"
+
 msgid "TUTORIAL_MICROBE_EDITOR_ENDING_TEXT"
 msgstr ""
 
 #, fuzzy
 msgid "TUTORIAL_MICROBE_EDITOR_FLAGELLUM"
+msgstr "Záporná bilancia ATP"
+
+#, fuzzy
+msgid "TUTORIAL_MICROBE_EDITOR_FOOD_CHAIN"
+msgstr "Záporná bilancia ATP"
+
+#, fuzzy
+msgid "TUTORIAL_MICROBE_EDITOR_MIGRATION"
 msgstr "Záporná bilancia ATP"
 
 #, fuzzy
@@ -6113,14 +6233,34 @@ msgstr ""
 msgid "TUTORIAL_MICROBE_STAGE_ENGULFMENT_TEXT"
 msgstr ""
 
+#, fuzzy
+msgid "TUTORIAL_MICROBE_STAGE_ENVIRONMENT_PANEL"
+msgstr "Záporná bilancia ATP"
+
 msgid "TUTORIAL_MICROBE_STAGE_HELP_MENU_AND_ZOOM"
 msgstr ""
 
 msgid "TUTORIAL_MICROBE_STAGE_LEAVE_COLONY_TEXT"
 msgstr ""
 
+#, fuzzy
+msgid "TUTORIAL_MICROBE_STAGE_OPEN_PROCESS_PANEL"
+msgstr "Záporná bilancia ATP"
+
+#, fuzzy
+msgid "TUTORIAL_MICROBE_STAGE_PAUSING"
+msgstr "Záporná bilancia ATP"
+
+#, fuzzy
+msgid "TUTORIAL_MICROBE_STAGE_PROCESS_PANEL"
+msgstr "Záporná bilancia ATP"
+
 msgid "TUTORIAL_MICROBE_STAGE_REPRODUCE_TEXT"
 msgstr ""
+
+#, fuzzy
+msgid "TUTORIAL_MICROBE_STAGE_RESOURCE_SPLIT"
+msgstr "Záporná bilancia ATP"
 
 msgid "TUTORIAL_MICROBE_STAGE_UNBIND_TEXT"
 msgstr ""
@@ -6446,6 +6586,9 @@ msgstr ""
 
 msgid "VIEW_SOURCE_CODE"
 msgstr "Zobraziť zdrojový kód"
+
+msgid "VIEW_TEXT_REPORT"
+msgstr ""
 
 msgid "VIP_PATRONS"
 msgstr "VIP podporovatelia"
@@ -8290,6 +8433,17 @@ msgid "ZOOM_OUT"
 msgstr "Oddialiť"
 
 #, fuzzy
+#~ msgid "MICROBE_STAGE_DAY_NIGHT_TEXT"
+#~ msgstr "[b][u]{0}[/u][/b] vyhynul!"
+
+#, fuzzy
+#~ msgid "GLOBAL_GLACIATION_EVENT_LOG"
+#~ msgstr "Celková populácia:"
+
+#~ msgid "IRON_CHEMOLITHOAUTOTROPHY"
+#~ msgstr "Chemolitoautotrofia železa"
+
+#, fuzzy
 #~ msgid "PASSIVE_REPRODUCTION_PROGRESS"
 #~ msgstr "(rýchlosť, akou druhy AI mutujú)"
 
@@ -8583,9 +8737,6 @@ msgstr "Oddialiť"
 
 #~ msgid "UNKNOWN_ON_WINDOWS"
 #~ msgstr "Neznáme na Windowse"
-
-#~ msgid "SIXTEEN_TIMES"
-#~ msgstr "16x"
 
 #, fuzzy
 #~ msgid "TARGET_TIME"
