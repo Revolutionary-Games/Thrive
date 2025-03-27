@@ -150,6 +150,9 @@ public class TutorialState : ITutorialInput, ISaveLoadable
     public FlagellumPlacementTutorial FlagellumPlacementTutorial { get; private set; } = new();
 
     [JsonProperty]
+    public DigestionStatTutorial DigestionStatTutorial { get; private set; } = new();
+
+    [JsonProperty]
     public ModifyOrganelleTutorial ModifyOrganelleTutorial { get; private set; } = new();
 
     [JsonProperty]
@@ -528,6 +531,7 @@ public class TutorialState : ITutorialInput, ISaveLoadable
             MadeNoChangesTutorial,
             OrganelleDivisionTutorial,
             FlagellumPlacementTutorial,
+            DigestionStatTutorial,
             ModifyOrganelleTutorial,
             AtpBalanceIntroduction,
             OpenTolerancesTabTutorial,
