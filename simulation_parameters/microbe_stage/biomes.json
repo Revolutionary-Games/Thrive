@@ -3437,5 +3437,391 @@
         }
       }
     }
+  },
+  "patch_event_template_biome": {
+    "Name": "VOLCANIC_VENT",
+    "Background": "vent",
+    "Panorama": "res://assets/textures/background/panoramas/HydrothermalVents.png",
+    "Icon": "res://assets/textures/gui/bevel/PatchVents.svg",
+    "Sunlight": {
+      "Colour": {
+        "r": 0.972,
+        "g": 0.788,
+        "b": 0.788,
+        "a": 1
+      },
+      "Energy": 0.8,
+      "Specular": 0.5,
+      "Shadows": true,
+      "Direction": {
+        "x": 0.25,
+        "y": -0.3,
+        "z": 0.75
+      }
+    },
+    "WaterCurrentSpeed": 0.6,
+    "WaterCurrentChaoticness": 0.5,
+    "WaterCurrentScale": 0.6,
+    "WaterCurrentParticleCount": 350,
+    "ActiveMusicContexts": [
+      "PatchVents"
+    ],
+    "GasVolume": 1,
+    "TemperatureVarianceScale": 70,
+    "Conditions": {
+      "Chunks": {
+        "glaciationIceShard": {
+          "Name": "ICESHARD",
+          "Meshes": [
+            {
+              "ScenePath": "res://assets/models/Iceshard1.tscn",
+              "ConvexShapePath": "res://assets/models/Iceshard1.shape"
+            }
+          ],
+          "Density": 0.00009,
+          "Dissolves": true,
+          "Radius": 1,
+          "ChunkScale": 1,
+          "PhysicsDensity": 4000,
+          "Size": 500,
+          "Damages": 10,
+          "DeleteOnTouch": true,
+          "Compounds": {},
+          "DamageType": "ice"
+        },
+        "glaciationIceChunkSmall": {
+          "Name": "ICE_CHUNK_SMALL",
+          "Meshes": [
+            {
+              "ScenePath": "res://assets/models/IceChunkSmall1.tscn",
+              "ConvexShapePath": "res://assets/models/IceChunkSmall1.shape",
+              "MissingDefaultShaderSupport": true
+            },
+            {
+              "ScenePath": "res://assets/models/IceChunkSmall2.tscn",
+              "ConvexShapePath": "res://assets/models/IceChunkSmall2.shape",
+              "MissingDefaultShaderSupport": true
+            }
+          ],
+          "Density": 0.00009,
+          "Dissolves": false,
+          "Radius": 2,
+          "ChunkScale": 1,
+          "PhysicsDensity": 4000,
+          "Size": 1000,
+          "Damages": 30,
+          "DeleteOnTouch": false,
+          "Compounds": {},
+          "DamageType": "ice"
+        },
+        "glaciationIceChunkBig": {
+          "Name": "ICE_CHUNK_BIG",
+          "Meshes": [
+            {
+              "ScenePath": "res://assets/models/IceChunkLarge1.tscn",
+              "ConvexShapePath": "res://assets/models/IceChunkLarge1.shape",
+              "MissingDefaultShaderSupport": true
+            },
+            {
+              "ScenePath": "res://assets/models/IceChunkLarge2.tscn",
+              "ConvexShapePath": "res://assets/models/IceChunkLarge2.shape",
+              "MissingDefaultShaderSupport": true
+            },
+            {
+              "ScenePath": "res://assets/models/IceChunkLarge3.tscn",
+              "ConvexShapePath": "res://assets/models/IceChunkLarge3.shape",
+              "MissingDefaultShaderSupport": true
+            }
+          ],
+          "Density": 0.00009,
+          "Dissolves": false,
+          "Radius": 6,
+          "ChunkScale": 1,
+          "PhysicsDensity": 4000,
+          "Size": 1200,
+          "Damages": 30,
+          "DeleteOnTouch": false,
+          "Compounds": {},
+          "DamageType": "ice"
+        },
+        "glaciationIceSnowflake": {
+          "Name": "SNOWFLAKE",
+          "Meshes": [
+            {
+              "ScenePath": "res://assets/models/IceChunkSnowflake.tscn",
+              "ConvexShapePath": "res://assets/models/IceChunkSnowflake.shape"
+            }
+          ],
+          "Density": 0.00005,
+          "Dissolves": true,
+          "Radius": 6,
+          "ChunkScale": 1,
+          "PhysicsDensity": 4000,
+          "Size": 1500,
+          "VentAmount": 0.01,
+          "Damages": 30,
+          "DeleteOnTouch": false,
+          "Compounds": {
+            "phosphates": {
+              "Amount": 0.6
+            }
+          },
+          "DamageType": "ice"
+        },
+        "meteorIronSmallChunk": {
+          "Name": "SMALL_IRON_CHUNK",
+          "Meshes": [
+            {
+              "ScenePath": "res://assets/models/IronRock1.tscn",
+              "ConvexShapePath": "res://assets/models/IronRock1.shape"
+            },
+            {
+              "ScenePath": "res://assets/models/IronRock2.tscn",
+              "ConvexShapePath": "res://assets/models/IronRock2.shape"
+            },
+            {
+              "ScenePath": "res://assets/models/Iron3.tscn",
+              "ConvexShapePath": "res://assets/models/Iron3.shape"
+            },
+            {
+              "ScenePath": "res://assets/models/Iron4.tscn",
+              "ConvexShapePath": "res://assets/models/Iron4.shape"
+            }
+          ],
+          "Density": 0.00009,
+          "Dissolves": true,
+          "Radius": 1,
+          "ChunkScale": 1,
+          "PhysicsDensity": 4000,
+          "Size": 3,
+          "VentAmount": 0.1,
+          "Damages": 0,
+          "DeleteOnTouch": false,
+          "Compounds": {
+            "iron": {
+              "Amount": 15
+            }
+          },
+          "DissolverEnzyme": "rusticyanin"
+        },
+        "meteorIronBigChunk": {
+          "Name": "BIG_IRON_CHUNK",
+          "Meshes": [
+            {
+              "ScenePath": "res://assets/models/Iron5.tscn",
+              "ConvexShapePath": "res://assets/models/Iron5.shape"
+            },
+            {
+              "ScenePath": "res://assets/models/IronRockLarge2.tscn",
+              "ConvexShapePath": "res://assets/models/IronRockLarge2.shape"
+            }
+          ],
+          "Density": 0.00009,
+          "Dissolves": true,
+          "Radius": 10,
+          "ChunkScale": 1,
+          "PhysicsDensity": 1400,
+          "Size": 100,
+          "VentAmount": 20,
+          "Damages": 0,
+          "DeleteOnTouch": false,
+          "Compounds": {
+            "iron": {
+              "Amount": 60000
+            }
+          },
+          "DissolverEnzyme": "rusticyanin"
+        },
+        "meteorSulfurSmallChunk": {
+          "Name": "SMALL_SULFUR_CHUNK",
+          "Meshes": [
+            {
+              "ScenePath": "res://assets/models/SulfurChunkSmall1.tscn",
+              "ConvexShapePath": "res://assets/models/SulfurChunkSmall1.shape"
+            },
+            {
+              "ScenePath": "res://assets/models/SulfurChunkAluniteSmall1.tscn",
+              "ConvexShapePath": "res://assets/models/SulfurChunkAluniteSmall1.shape"
+            }
+          ],
+          "Density": 0.00009,
+          "Dissolves": true,
+          "Radius": 3,
+          "ChunkScale": 1,
+          "PhysicsDensity": 2500,
+          "Size": 10,
+          "VentAmount": 0.7,
+          "Damages": 0,
+          "DeleteOnTouch": false,
+          "Compounds": {
+            "hydrogensulfide": {
+              "Amount": 60
+            }
+          }
+        },
+        "meteorSulfurMediumChunk": {
+          "Name": "MEDIUM_SULFUR_CHUNK",
+          "Meshes": [
+            {
+              "ScenePath": "res://assets/models/SulfurChunkAluniteMedium1.tscn",
+              "ConvexShapePath": "res://assets/models/SulfurChunkAluniteMedium1.shape"
+            }
+          ],
+          "Density": 0.00009,
+          "Dissolves": true,
+          "Radius": 7,
+          "ChunkScale": 1,
+          "PhysicsDensity": 1500,
+          "Size": 55,
+          "VentAmount": 1.6,
+          "Damages": 0,
+          "DeleteOnTouch": false,
+          "Compounds": {
+            "hydrogensulfide": {
+              "Amount": 4000
+            }
+          }
+        },
+        "meteorSulfurLargeChunk": {
+          "Name": "LARGE_SULFUR_CHUNK",
+          "Meshes": [
+            {
+              "ScenePath": "res://assets/models/SulfurChunkAluniteLarge1.tscn",
+              "ConvexShapePath": "res://assets/models/SulfurChunkAluniteLarge1.shape"
+            }
+          ],
+          "Density": 0.00004,
+          "Dissolves": true,
+          "Radius": 10,
+          "ChunkScale": 1,
+          "PhysicsDensity": 1500,
+          "Size": 100,
+          "VentAmount": 8,
+          "Damages": 0,
+          "DeleteOnTouch": false,
+          "Compounds": {
+            "hydrogensulfide": {
+              "Amount": 16000
+            }
+          }
+        },
+        "meteorPhosphateSmallChunk": {
+          "Name": "SMALL_PHOSPHATE_CHUNK",
+          "Meshes": [
+            {
+              "ScenePath": "res://assets/models/PhosphateChunkApatiteSmall1.tscn",
+              "ConvexShapePath": "res://assets/models/PhosphateChunkApatiteSmall1.shape"
+            }
+          ],
+          "Density": 0.00009,
+          "Dissolves": true,
+          "Radius": 3,
+          "ChunkScale": 1,
+          "PhysicsDensity": 2100,
+          "Size": 8,
+          "VentAmount": 0.3,
+          "Damages": 0,
+          "DeleteOnTouch": false,
+          "Compounds": {
+            "phosphates": {
+              "Amount": 10
+            }
+          }
+        },
+        "meteorPhosphateBigChunk": {
+          "Name": "BIG_PHOSPHATE_CHUNK",
+          "Meshes": [
+            {
+              "ScenePath": "res://assets/models/PhosphateChunkApatiteLarge1.tscn",
+              "ConvexShapePath": "res://assets/models/PhosphateChunkApatiteLarge1.shape"
+            }
+          ],
+          "Density": 0.00006,
+          "Dissolves": true,
+          "Radius": 6,
+          "ChunkScale": 1,
+          "PhysicsDensity": 2100,
+          "Size": 65,
+          "VentAmount": 8,
+          "Damages": 0,
+          "DeleteOnTouch": false,
+          "Compounds": {
+            "phosphates": {
+              "Amount": 15000
+            }
+          }
+        },
+        "meteorRadioactiveChunk": {
+          "Name": "RADIOACTIVE_CHUNK",
+          "Meshes": [
+            {
+              "ScenePath": "res://assets/models/RadioactiveChunk1.tscn",
+              "ConvexShapePath": "res://assets/models/RadioactiveChunk1.shape"
+            }
+          ],
+          "Density": 0.000025,
+          "Dissolves": false,
+          "Radius": 10,
+          "ChunkScale": 1,
+          "PhysicsDensity": 2500,
+          "Size": 0,
+          "VentAmount": 0,
+          "Damages": 0,
+          "DeleteOnTouch": false,
+          "Compounds": {
+            "radiation": {
+              "Amount": 10000
+            }
+          }
+        }
+      },
+      "Compounds": {
+        "ammonia": {
+          "Amount": 200000,
+          "Density": 0.00006,
+          "Ambient": 0
+        },
+        "glucose": {
+          "Amount": 125000,
+          "Density": 0.00004,
+          "Ambient": 0
+        },
+        "phosphates": {
+          "Amount": 250000,
+          "Density": 0.00006,
+          "Ambient": 0
+        },
+        "hydrogensulfide": {
+          "Amount": 0,
+          "Density": 0,
+          "Ambient": 0
+        },
+        "oxygen": {
+          "Amount": 0,
+          "Density": 0,
+          "Ambient": 0
+        },
+        "carbondioxide": {
+          "Amount": 0,
+          "Density": 0,
+          "Ambient": 0.08
+        },
+        "nitrogen": {
+          "Amount": 0,
+          "Density": 0,
+          "Ambient": 0.6
+        },
+        "sunlight": {
+          "Amount": 0,
+          "Density": 0,
+          "Ambient": 0.5
+        },
+        "temperature": {
+          "Amount": 0,
+          "Density": 0,
+          "Ambient": -1
+        }
+      }
+    }
   }
 }

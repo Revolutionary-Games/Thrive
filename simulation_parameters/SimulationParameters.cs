@@ -31,6 +31,7 @@ public partial class SimulationParameters : Node
     private Dictionary<string, Biome> biomes = null!;
     private Dictionary<string, BioProcess> bioProcesses = null!;
     private Dictionary<string, CompoundDefinition> compounds = null!;
+    private Dictionary<string, Meteor> meteors = null!;
     private Dictionary<string, OrganelleDefinition> organelles = null!;
     private Dictionary<string, Enzyme> enzymes = null!;
     private Dictionary<string, MusicCategory> musicCategories = null!;
@@ -138,6 +139,7 @@ public partial class SimulationParameters : Node
         membranes = LoadRegistry<MembraneType>("res://simulation_parameters/microbe_stage/membranes.json");
         backgrounds = LoadRegistry<Background>("res://simulation_parameters/microbe_stage/backgrounds.json");
         bioProcesses = LoadRegistry<BioProcess>("res://simulation_parameters/microbe_stage/bio_processes.json");
+        meteors = LoadRegistry<Meteor>("res://simulation_parameters/microbe_stage/meteors.json");
 
         NameGenerator = LoadDirectObject<NameGenerator>("res://simulation_parameters/microbe_stage/species_names.json");
 
@@ -291,6 +293,16 @@ public partial class SimulationParameters : Node
     public BioProcess GetBioProcess(string name)
     {
         return bioProcesses[name];
+    }
+
+    public Meteor GetMeteor(string name)
+    {
+        return meteors[name];
+    }
+
+    public IEnumerable<Meteor> GetAllMeteors()
+    {
+        return meteors.Values;
     }
 
     public Compound GetCompound(string name)
@@ -553,6 +565,7 @@ public partial class SimulationParameters : Node
         ApplyRegistryObjectTranslations(backgrounds);
         ApplyRegistryObjectTranslations(biomes);
         ApplyRegistryObjectTranslations(bioProcesses);
+        ApplyRegistryObjectTranslations(meteors);
         ApplyRegistryObjectTranslations(compounds);
         ApplyRegistryObjectTranslations(organelles);
         ApplyRegistryObjectTranslations(enzymes);
@@ -724,6 +737,7 @@ public partial class SimulationParameters : Node
         CheckRegistryType(backgrounds);
         CheckRegistryType(biomes);
         CheckRegistryType(bioProcesses);
+        CheckRegistryType(meteors);
         CheckRegistryType(compounds);
         CheckRegistryType(organelles);
         CheckRegistryType(enzymes);
