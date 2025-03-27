@@ -5,7 +5,6 @@ using System;
 public class FoodChainTabTutorial : TutorialPhase
 {
     private readonly string reportTab = EditorTab.Report.ToString();
-
     private readonly string foodChainTab = MicrobeEditorReportComponent.ReportSubtab.FoodChain.ToString();
 
     public override string ClosedByName => "FoodChainTabTutorial";

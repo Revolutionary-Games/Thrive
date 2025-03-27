@@ -8,6 +8,7 @@ using System;
 public class EditorReportWelcome : EditorEntryCountingTutorial
 {
     private readonly string reportTab = EditorTab.Report.ToString();
+    private readonly string foodChainTab = MicrobeEditorReportComponent.ReportSubtab.FoodChain.ToString();
 
     public override string ClosedByName => "MicrobeEditorReport";
 
@@ -51,6 +52,17 @@ public class EditorReportWelcome : EditorEntryCountingTutorial
                     {
                         Hide();
                     }
+                }
+
+                break;
+            }
+
+            case TutorialEventType.ReportComponentSubtabChanged:
+            {
+                // Hide this when the food chain tutorial would trigger to let that proceed
+                if (ShownCurrently && ((StringEventArgs)args).Data == foodChainTab)
+                {
+                    Hide();
                 }
 
                 break;

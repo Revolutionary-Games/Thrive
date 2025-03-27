@@ -522,7 +522,6 @@ public class TutorialState : ITutorialInput, ISaveLoadable
             ChemoreceptorPlacementTutorial,
             NegativeAtpBalanceTutorial,
             CompoundBalancesTutorial,
-            FoodChainTabTutorial,
             LeaveColonyTutorial,
             BecomeMulticellularTutorial,
             MulticellularWelcome,
@@ -536,6 +535,7 @@ public class TutorialState : ITutorialInput, ISaveLoadable
             TolerancesTabTutorial,
             AutoEvoPrediction,
             EarlyGameGoalTutorial,
+            FoodChainTabTutorial,
             PausingTutorial,
         };
     }
