@@ -49,6 +49,23 @@ public class OpenProcessPanelTutorial : SwimmingAroundCountingTutorial
                 }
                 else if (!HasBeenShown)
                 {
+                    CanTrigger = false;
+
+                    // Permanently inhibit only if the process panel tutorial has been shown
+                    if (overallState.ProcessPanelTutorial.HasBeenShown || overallState.ProcessPanelTutorial.Complete)
+                    {
+                        Inhibit();
+                    }
+                }
+
+                break;
+            }
+
+            case TutorialEventType.ProcessPanelProcessEnabled:
+            {
+                // Another check for the player going through the process panel tutorial
+                if (overallState.ProcessPanelTutorial.HasBeenShown)
+                {
                     Inhibit();
                 }
 

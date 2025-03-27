@@ -34,11 +34,11 @@ public class AutoEvoPrediction : CellEditorEntryCountingTutorial
     {
         // Disallow showing if the control we highlight is not visible.
         // Or if the prerequisite tutorial is not complete.
-        if (EditorAutoEvoPredictionPanel == null || !EditorAutoEvoPredictionPanel.Visible ||
-            !overallState.EarlyGameGoalTutorial.Complete)
+        if (eventType == TutorialEventType.MicrobeEditorTabChanged && (EditorAutoEvoPredictionPanel == null ||
+                !GodotObject.IsInstanceValid(EditorAutoEvoPredictionPanel) || !EditorAutoEvoPredictionPanel.Visible ||
+                !overallState.EarlyGameGoalTutorial.Complete))
         {
-            if (eventType == TutorialEventType.MicrobeEditorTabChanged)
-                return false;
+            return false;
         }
 
         if (base.CheckEvent(overallState, eventType, args, sender))

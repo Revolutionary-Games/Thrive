@@ -23,7 +23,7 @@ public class ProcessPanelTutorial : TutorialPhase
         {
             case TutorialEventType.ProcessPanelOpened:
             {
-                if (!HasBeenShown && CanTrigger)
+                if (!HasBeenShown && CanTrigger && !overallState.TutorialActive())
                 {
                     Show();
                 }
