@@ -74,6 +74,16 @@ public enum TutorialEventType
     MicrobePlayerReadyToEdit,
 
     /// <summary>
+    ///   Triggered when the player opens the process panel
+    /// </summary>
+    ProcessPanelOpened,
+
+    /// <summary>
+    ///   Triggered when a process panel process is set to be enabled
+    /// </summary>
+    ProcessPanelProcessEnabled,
+
+    /// <summary>
     ///   Player presses the button the exit the microbe editor but has made no changes
     /// </summary>
     MicrobeEditorNoChangesMade,
@@ -102,6 +112,11 @@ public enum TutorialEventType
     ///   Player changed the microbe editor tab, args is <see cref="StringEventArgs"/>
     /// </summary>
     MicrobeEditorTabChanged,
+
+    /// <summary>
+    ///   Player changed the <see cref="MicrobeEditorReportComponent"/> subtab, args is <see cref="StringEventArgs"/>
+    /// </summary>
+    ReportComponentSubtabChanged,
 
     /// <summary>
     ///   Player changed the sub-tab of the cell editor, args is <see cref="StringEventArgs"/>
@@ -174,7 +189,17 @@ public enum TutorialEventType
     MicrobeEditorPlayerEnergyBalanceChanged,
 
     /// <summary>
+    ///   Player created a migration with the migration manager
+    /// </summary>
+    EditorMigrationCreated,
+
+    /// <summary>
     ///   Triggers when the first non-cytoplasm organelle divided
     /// </summary>
     MicrobeNonCytoplasmOrganelleDivided,
+
+    /// <summary>
+    ///   Triggered when the game is resumed from the paused state
+    /// </summary>
+    GameResumedByPlayer,
 }

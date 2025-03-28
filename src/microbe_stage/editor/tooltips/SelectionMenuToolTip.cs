@@ -47,6 +47,9 @@ public partial class SelectionMenuToolTip : ControlWithInput, ICustomToolTip
     private CustomRichTextLabel? processesDescriptionLabel;
 
     [Export]
+    private Control processesDescriptionSeparator = null!;
+
+    [Export]
     private ProcessList processList = null!;
 
     [Export]
@@ -61,6 +64,7 @@ public partial class SelectionMenuToolTip : ControlWithInput, ICustomToolTip
     private bool showOsmoregulation = true;
     private bool requiresNucleus;
     private string? thriveopediaPageName;
+    private bool hasProcesses;
 
     [Export]
     public string DisplayName
@@ -74,7 +78,7 @@ public partial class SelectionMenuToolTip : ControlWithInput, ICustomToolTip
     }
 
     /// <summary>
-    ///   Description of processes an organelle does if any.
+    ///   Description of processes an organelle does, if any.
     /// </summary>
     /// <remarks>
     ///   <para>
@@ -136,7 +140,7 @@ public partial class SelectionMenuToolTip : ControlWithInput, ICustomToolTip
     }
 
     /// <summary>
-    ///   If set to false hides the osmoregulation cost section of this tooltip.
+    ///   If set to false, hides the osmoregulation cost section of this tooltip.
     /// </summary>
     [Export]
     public bool ShowOsmoregulation
@@ -218,7 +222,7 @@ public partial class SelectionMenuToolTip : ControlWithInput, ICustomToolTip
     }
 
     /// <summary>
-    ///   Instances the UI element for a modifier info
+    ///   Instances the UI element for modifier info
     /// </summary>
     public void AddModifierInfo(string name, string value, float valueForColourApplying = 0,
         string? iconPath = null, StringName? nodeName = null)
@@ -283,8 +287,9 @@ public partial class SelectionMenuToolTip : ControlWithInput, ICustomToolTip
     }
 
     /// <summary>
-    ///   Creates UI elements for the processes info in a specific patch. Note that this doesn't refresh so this must
-    ///   be always called again when the process speed information has changed.
+    ///   Creates UI elements for the processes info in a specific patch.
+    ///   Note that this doesn't refresh, so this must always be called again when the process speed information
+    ///   has changed.
     /// </summary>
     public void WriteOrganelleProcessList(List<ProcessSpeedInformation>? processes)
     {
@@ -302,6 +307,7 @@ public partial class SelectionMenuToolTip : ControlWithInput, ICustomToolTip
             };
 
             processList.AddChild(noProcessLabel);
+            hasProcesses = false;
             return;
         }
 
@@ -309,6 +315,9 @@ public partial class SelectionMenuToolTip : ControlWithInput, ICustomToolTip
         processList.ShowToggles = false;
         processList.MarkRedOnLimitingCompounds = true;
         processList.ProcessesToShow = processes;
+
+        hasProcesses = true;
+        UpdateDescriptionAndProcessSeparator();
     }
 
     /// <summary>
@@ -350,7 +359,7 @@ public partial class SelectionMenuToolTip : ControlWithInput, ICustomToolTip
                     throw new Exception("Unhandled modifier type: " + modifier.Name);
             }
 
-            // All stats with +0 value are made hidden on the tooltip so it'll be easier
+            // All stats with +0 value are made hidden on the tooltip, so it'll be easier
             // to digest and compare modifier changes
             modifier.Visible = deltaValue != 0;
 
@@ -425,6 +434,15 @@ public partial class SelectionMenuToolTip : ControlWithInput, ICustomToolTip
 
         processesDescriptionLabel.ExtendedBbcode = Localization.Translate(ProcessesDescription);
         processesDescriptionLabel.Visible = !string.IsNullOrEmpty(ProcessesDescription);
+
+        UpdateDescriptionAndProcessSeparator();
+    }
+
+    private void UpdateDescriptionAndProcessSeparator()
+    {
+        // When not showing any description, should hide a separator so that there aren't double separators in many
+        // tooltips
+        processesDescriptionSeparator.Visible = !string.IsNullOrEmpty(ProcessesDescription) || hasProcesses;
     }
 
     private void UpdateMpCost()

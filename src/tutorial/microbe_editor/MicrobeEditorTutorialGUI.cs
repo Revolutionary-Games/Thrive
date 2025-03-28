@@ -87,6 +87,18 @@ public partial class MicrobeEditorTutorialGUI : Control, ITutorialGUI
 
     [Export]
     private CustomWindow earlyGameGoalTutorial = null!;
+
+    [Export]
+    private CustomWindow compoundBalanceTutorial = null!;
+
+    [Export]
+    private CustomWindow migrationTutorial = null!;
+
+    [Export]
+    private CustomWindow foodChainTutorial = null!;
+
+    [Export]
+    private CustomWindow digestionStatTutorial = null!;
 #pragma warning restore CA2213
 
     public MainGameState AssociatedGameState => MainGameState.MicrobeEditor;
@@ -102,6 +114,9 @@ public partial class MicrobeEditorTutorialGUI : Control, ITutorialGUI
     public ControlHighlight? AutoEvoPredictionHighlight { get; private set; }
 
     public ControlHighlight? AtpBalanceBarHighlight { get; private set; }
+
+    [Export]
+    public ControlHighlight? CompoundBalanceHighlight { get; private set; }
 
     /// <summary>
     ///   This is used to ensure the scroll position shows elements related to active tutorials
@@ -450,6 +465,86 @@ public partial class MicrobeEditorTutorialGUI : Control, ITutorialGUI
         }
     }
 
+    public bool CompoundBalanceTutorialVisible
+    {
+        get => compoundBalanceTutorial.Visible;
+        set
+        {
+            if (value == compoundBalanceTutorial.Visible)
+                return;
+
+            if (value)
+            {
+                compoundBalanceTutorial.Show();
+                RightPanelScrollContainer.ScrollVertical = 150;
+            }
+            else
+            {
+                compoundBalanceTutorial.Hide();
+            }
+        }
+    }
+
+    public bool MigrationTutorialVisible
+    {
+        get => migrationTutorial.Visible;
+        set
+        {
+            if (value == migrationTutorial.Visible)
+                return;
+
+            if (value)
+            {
+                migrationTutorial.Show();
+            }
+            else
+            {
+                migrationTutorial.Hide();
+            }
+        }
+    }
+
+    public bool FoodChainTutorialVisible
+    {
+        get => foodChainTutorial.Visible;
+        set
+        {
+            if (value == foodChainTutorial.Visible)
+                return;
+
+            if (value)
+            {
+                foodChainTutorial.Show();
+            }
+            else
+            {
+                foodChainTutorial.Hide();
+            }
+        }
+    }
+
+    public bool DigestionStatTutorialVisible
+    {
+        get => digestionStatTutorial.Visible;
+        set
+        {
+            if (value == digestionStatTutorial.Visible)
+                return;
+
+            if (value)
+            {
+                digestionStatTutorial.Show();
+
+                // This is right at the bottom now, so scroll surely down enough
+                RightPanelScrollContainer.ScrollVertical = 800;
+            }
+            else
+            {
+                digestionStatTutorial.Hide();
+            }
+        }
+    }
+
     public override void _Ready()
     {
         editorEntryReport = GetNode<CustomWindow>(EditorEntryReportPath);
@@ -503,12 +598,10 @@ public partial class MicrobeEditorTutorialGUI : Control, ITutorialGUI
         bool eitherVisible = atpBalanceIntroduction.Visible || negativeAtpBalanceTutorial.Visible;
         AtpBalanceBarHighlight.Visible = atpBalanceIntroduction.Visible;
 
-        // Force the scroll panel to scroll down. This is done to show the ATP Balance Bar.
-        // It seems like Godot doesn't have a scroll into view, so we need to ensure that the scroll cannot be too
-        // much or too little ever.
-        // TODO: adjust this with the new reordered panel and upcoming tutorial rework
+        // With the stats now not being that tall, we can scroll all the way to the top to still see the whole ATP
+        // bar
         if (eitherVisible)
-            RightPanelScrollContainer.ScrollVertical = 150;
+            RightPanelScrollContainer.ScrollVertical = 0;
     }
 
     protected override void Dispose(bool disposing)

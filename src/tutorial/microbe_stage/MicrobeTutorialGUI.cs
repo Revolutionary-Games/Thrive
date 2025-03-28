@@ -6,7 +6,7 @@ using Tutorial;
 /// <summary>
 ///   GUI control that contains the microbe stage tutorial.
 ///   Should be placed over any game state GUI so that things drawn by this are on top. Visibility of things is
-///   Controlled by TutorialState object
+///   Controlled by the TutorialState object
 /// </summary>
 public partial class MicrobeTutorialGUI : Control, ITutorialGUI
 {
@@ -105,6 +105,19 @@ public partial class MicrobeTutorialGUI : Control, ITutorialGUI
     private CustomWindow dayNightTutorial = null!;
     private CustomWindow becomeMulticellularTutorial = null!;
     private CustomWindow organelleDivisionTutorial = null!;
+
+    [Export]
+    private CustomWindow openProcessPanelTutorial = null!;
+
+    [Export]
+    private CustomWindow processPanelTutorial = null!;
+
+    [Export]
+    private CustomWindow resourceSplitTutorial = null!;
+
+    [Export]
+    private CustomWindow pausingTutorial = null!;
+
 #pragma warning restore CA2213
 
     [Signal]
@@ -119,6 +132,9 @@ public partial class MicrobeTutorialGUI : Control, ITutorialGUI
     public Node GUINode => this;
 
     public ControlHighlight? PressEditorButtonHighlight { get; private set; }
+
+    [Export]
+    public ControlHighlight? ProcessPanelButtonHighlight { get; private set; }
 
     public bool IsClosingAutomatically { get; set; }
 
@@ -435,6 +451,82 @@ public partial class MicrobeTutorialGUI : Control, ITutorialGUI
                 return;
 
             becomeMulticellularTutorial.Visible = value;
+        }
+    }
+
+    public bool OpenProcessPanelTutorialVisible
+    {
+        get => openProcessPanelTutorial.Visible;
+        set
+        {
+            if (value == openProcessPanelTutorial.Visible)
+                return;
+
+            if (value)
+            {
+                openProcessPanelTutorial.Show();
+            }
+            else
+            {
+                openProcessPanelTutorial.Hide();
+            }
+        }
+    }
+
+    public bool ProcessPanelTutorialVisible
+    {
+        get => processPanelTutorial.Visible;
+        set
+        {
+            if (value == processPanelTutorial.Visible)
+                return;
+
+            if (value)
+            {
+                processPanelTutorial.Show();
+            }
+            else
+            {
+                processPanelTutorial.Hide();
+            }
+        }
+    }
+
+    public bool ResourceSplitTutorialVisible
+    {
+        get => resourceSplitTutorial.Visible;
+        set
+        {
+            if (value == resourceSplitTutorial.Visible)
+                return;
+
+            if (value)
+            {
+                resourceSplitTutorial.Show();
+            }
+            else
+            {
+                resourceSplitTutorial.Hide();
+            }
+        }
+    }
+
+    public bool PausingTutorialVisible
+    {
+        get => pausingTutorial.Visible;
+        set
+        {
+            if (value == pausingTutorial.Visible)
+                return;
+
+            if (value)
+            {
+                pausingTutorial.Show();
+            }
+            else
+            {
+                pausingTutorial.Hide();
+            }
         }
     }
 

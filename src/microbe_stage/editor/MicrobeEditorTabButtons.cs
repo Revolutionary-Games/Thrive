@@ -7,9 +7,11 @@ using Godot;
 public partial class MicrobeEditorTabButtons : MarginContainer
 {
     [Export]
+    [ExportCategory("Configuration")]
     public bool IsForMulticellular;
 
     [Export]
+    [ExportCategory("Internal")]
     public NodePath? TabButtonsPath;
 
     [Export]
@@ -27,16 +29,58 @@ public partial class MicrobeEditorTabButtons : MarginContainer
 #pragma warning disable CA2213
 
     // Editor tab selector buttons
-    private Button reportTabButton = null!;
-    private Button patchMapButton = null!;
+    private Button? reportTabButton;
+    private Button? patchMapButton;
     private Button cellEditorButton = null!;
     private Button cellTypeTab = null!;
 #pragma warning restore CA2213
 
     private EditorTab selectedTab = EditorTab.Report;
 
+    private bool showReportTab = true;
+    private bool showMapTab = true;
+
     [Signal]
     public delegate void OnTabSelectedEventHandler(EditorTab selectedTab);
+
+    [Export]
+    [ExportCategory("TabConfig")]
+    public bool ShowReportTab
+    {
+        get => showReportTab;
+        set
+        {
+            showReportTab = value;
+
+            if (reportTabButton != null)
+                reportTabButton.Visible = showReportTab;
+
+            if (!value && selectedTab == EditorTab.Report)
+            {
+                GD.Print("Forcing cell editor tab to be selected as report tab is not visible");
+                SetEditorTab(nameof(EditorTab.CellEditor));
+            }
+        }
+    }
+
+    [Export]
+    public bool ShowMapTab
+    {
+        get => showMapTab;
+        set
+        {
+            showMapTab = value;
+
+            if (patchMapButton != null)
+                patchMapButton.Visible = showMapTab;
+
+            if (!value && selectedTab == EditorTab.PatchMap)
+            {
+                GD.Print("Forcing cell editor tab to be selected as map tab is not visible");
+                SetEditorTab(nameof(EditorTab.CellEditor));
+            }
+        }
+    }
 
     public override void _Ready()
     {
@@ -51,6 +95,8 @@ public partial class MicrobeEditorTabButtons : MarginContainer
         cellTypeTab = GetNode<Button>(tabButtons.GetAdjustedButtonPath(TabButtonsPath, CellTypeTabPath));
 
         cellTypeTab.Visible = IsForMulticellular;
+        reportTabButton.Visible = showReportTab;
+        patchMapButton.Visible = showMapTab;
     }
 
     public void SetCurrentTab(EditorTab tab)
@@ -97,8 +143,12 @@ public partial class MicrobeEditorTabButtons : MarginContainer
 
     private void ApplyButtonStates()
     {
-        reportTabButton.ButtonPressed = selectedTab == EditorTab.Report;
-        patchMapButton.ButtonPressed = selectedTab == EditorTab.PatchMap;
+        if (reportTabButton != null)
+            reportTabButton.ButtonPressed = selectedTab == EditorTab.Report;
+
+        if (patchMapButton != null)
+            patchMapButton.ButtonPressed = selectedTab == EditorTab.PatchMap;
+
         cellEditorButton.ButtonPressed = selectedTab == EditorTab.CellEditor;
         cellTypeTab.ButtonPressed = selectedTab == EditorTab.CellTypeEditor;
     }

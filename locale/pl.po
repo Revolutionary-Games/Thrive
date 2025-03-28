@@ -7,8 +7,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2025-03-25 22:07+0100\n"
-"PO-Revision-Date: 2025-03-20 20:10+0000\n"
+"POT-Creation-Date: 2025-03-27 15:19+0200\n"
+"PO-Revision-Date: 2025-03-28 07:42+0000\n"
 "Last-Translator: Anonymous <noreply@weblate.org>\n"
 "Language-Team: Polish <https://translate.revolutionarygamesstudio.com/projects/thrive/thrive-game/pl/>\n"
 "Language: pl\n"
@@ -1824,6 +1824,7 @@ msgstr ""
 "\n"
 "Aby kontynuować, wybierz organellum z lewego panelu (cytozol będzie dobrym wyborem), następnie kliknij na heks na środku ekranu aby dodać to organellum do twojej komórki."
 
+#, fuzzy
 msgid "EDITOR_TUTORIAL_EDITOR_TEXT"
 msgstr ""
 "Witaj w [b]Edytorze Mikrobów[/b].\n"
@@ -3668,15 +3669,6 @@ msgstr ""
 "Wypróbuj wszystkie klawisze przez kilka sekund aby kontynuować."
 
 #, fuzzy
-msgid "MICROBE_STAGE_DAY_NIGHT_TEXT"
-msgstr ""
-"Wypatruj spadku poziomu [b]światła słonecznego[/b] na panelu środowiska.\n"
-"\n"
-"Noc nadchodzi wraz ze ściemnieniem otoczenia.\n"
-"Fotosynteza jest nieefektywna nocą.\n"
-"Upewnij się, że masz wystarczająco magazynu[thrive:icon]StorageIcon[/thrive:icon] by przetrwać noc."
-
-#, fuzzy
 msgid "MICROBE_STAGE_HEALTH_TEXT"
 msgstr ""
 "Miej oko na swoim pasku zdrowia obok paska [thrive:compound type=\"atp\"][/thrive:compound] (prawy dolny róg).\n"
@@ -3684,6 +3676,7 @@ msgstr ""
 "Kiedy masz [thrive:compound type=\"atp\"][/thrive:compound], twoje zdrowie się regeneruje.\n"
 "Pilnuj aby zbierać wystarczająco [thrive:compound type=\"glucose\"]Glukozy[/thrive:compound] by móc produkować [thrive:compound type=\"atp\"][/thrive:compound]."
 
+#, fuzzy
 msgid "MICROBE_STAGE_INITIAL"
 msgstr ""
 "Na odległej obcej planecie, eony aktywności wulkanicznej i upadków meteorytów doprowadziły do powstania prawdziwego fenomenu we wszechświecie.\n"
@@ -6267,6 +6260,27 @@ msgid "TUTORIAL_MICROBE_EDITOR_CHEMORECEPTOR"
 msgstr ""
 
 #, fuzzy
+msgid "TUTORIAL_MICROBE_EDITOR_COMPOUND_BALANCES"
+msgstr ""
+"Grafik produkcji ATP po prawej pokazuje ile [thrive:compound type=\"atp\"][/thrive:compound] twoja komórka produkuje w porównaniu do ile jest zużywane. Jeżeli górny słupek jest krótszy od dolnego, to produkcja [thrive:compound type=\"atp\"][/thrive:compound] jest za niska.\n"
+"\n"
+"Dolny słupek obejmuje koszt [b]osmoregulacji[/b] [thrive:icon]OsmoIcon[/thrive:icon] i koszt [b]ruchu[/b] [thrive:icon]MovementIcon[/thrive:icon].\n"
+"Koszt [b]osmoregulacji[/b] [thrive:icon]OsmoIcon[/thrive:icon] to [u] bazowy koszt potrzebny to przeżycia[/u]. Każda część którą dodasz zwiększa ten koszt.\n"
+"\n"
+"Jeśli twoja produkcja [thrive:compound type=\"atp\"][/thrive:compound] jest negatywna, postaraj się ją zwiększyć albo dodać [b]przechowywanie[/b] [thrive:icon]StorageIcon[/thrive:icon] by móc się poruszać w małych impulsach."
+
+#, fuzzy
+msgid "TUTORIAL_MICROBE_EDITOR_DIGESTION_STAT"
+msgstr ""
+"To są podstawy edycji twojego gatunku. Na koniec, możesz zmienić nazwę swojego gatunku poprzez kliknięcie nazwy w lewym, dolnym rogu i edycję tekstu.\n"
+"\n"
+"Możesz wypróbować inne zakładki pod paskiem [b]PM [thrive:icon]MP[/thrive:icon][/b] aby sprawdzić inne sposoby w jakie możesz zmienić swoją komórkę.\n"
+"\n"
+"Żeby przetrwać w tym nieprzyjaznym świecie, będziesz musiał znaleźć niezawodne źródło [thrive:compound type=\"atp\"][/thrive:compound] jako iż poziom naturalnej [thrive:compound type=\"glucose\"][/thrive:compound] [b]gwałtownie spadnie[/b].\n"
+"\n"
+"Powodzenia!"
+
+#, fuzzy
 msgid "TUTORIAL_MICROBE_EDITOR_ENDING_TEXT"
 msgstr ""
 "To są podstawy edycji twojego gatunku. Na koniec, możesz zmienić nazwę swojego gatunku poprzez kliknięcie nazwy w lewym, dolnym rogu i edycję tekstu.\n"
@@ -6280,9 +6294,29 @@ msgstr ""
 msgid "TUTORIAL_MICROBE_EDITOR_FLAGELLUM"
 msgstr ""
 
+#, fuzzy
+msgid "TUTORIAL_MICROBE_EDITOR_FOOD_CHAIN"
+msgstr ""
+"Nie dokonałeś żadnych zmian w swoim gatunku.\n"
+"\n"
+"Kiedy wyjdziesz z edytora[u]nie będziesz mógł edytować swojego gatunku dopóki znów się nie rozmnożysz[/u].\n"
+"Aby czynić postępy w grze musisz ewoluować, więc edycja gatunku jest zalecana przy większości wizyt w edytorze."
+
+#, fuzzy
+msgid "TUTORIAL_MICROBE_EDITOR_MIGRATION"
+msgstr ""
+"To są podstawy edycji twojego gatunku. Na koniec, możesz zmienić nazwę swojego gatunku poprzez kliknięcie nazwy w lewym, dolnym rogu i edycję tekstu.\n"
+"\n"
+"Możesz wypróbować inne zakładki pod paskiem [b]PM [thrive:icon]MP[/thrive:icon][/b] aby sprawdzić inne sposoby w jakie możesz zmienić swoją komórkę.\n"
+"\n"
+"Żeby przetrwać w tym nieprzyjaznym świecie, będziesz musiał znaleźć niezawodne źródło [thrive:compound type=\"atp\"][/thrive:compound] jako iż poziom naturalnej [thrive:compound type=\"glucose\"][/thrive:compound] [b]gwałtownie spadnie[/b].\n"
+"\n"
+"Powodzenia!"
+
 msgid "TUTORIAL_MICROBE_EDITOR_MODIFY_ORGANELLE"
 msgstr ""
 
+#, fuzzy
 msgid "TUTORIAL_MICROBE_EDITOR_NEGATIVE_ATP_BALANCE"
 msgstr ""
 "Twój bilans [thrive:compound type=\"atp\"][/thrive:compound] jest negatywny.\n"
@@ -6293,6 +6327,7 @@ msgstr ""
 "\n"
 "Alternatywnie, możesz usunąć niepotrzebne organelle."
 
+#, fuzzy
 msgid "TUTORIAL_MICROBE_EDITOR_NO_CHANGES_MADE"
 msgstr ""
 "Nie dokonałeś żadnych zmian w swoim gatunku.\n"
@@ -6331,6 +6366,7 @@ msgstr ""
 "\n"
 "Kliknij przycisk cofnij aby kontynuować."
 
+#, fuzzy
 msgid "TUTORIAL_MICROBE_EDITOR_SELECT_ORGANELLE_TEXT"
 msgstr ""
 "Wybierając części z menu, [u]zwracaj szczególną uwagę na podpowiedzi[/u], które wyskakują, by zrozumieć co te części robią. Mogą one [u]bardziej szkodzić niż pomagać jeśli nie przejmujesz się ich działaniem[/u].\n"
@@ -6389,6 +6425,16 @@ msgstr ""
 "\n"
 "Podążaj za linią z twojej komórki do pobliskiego wchłanialnego obiektu."
 
+#, fuzzy
+msgid "TUTORIAL_MICROBE_STAGE_ENVIRONMENT_PANEL"
+msgstr ""
+"Wchałniaj obiekty poprzez poruszanie się nad nimi w trybie pochłaniania. Włącz ten tryb naciskając [thrive:input]g_toggle_engulf[/thrive:input].\n"
+"\n"
+"Przestań wchłaniać kiedy obiekt zaczyna być wciągany.\n"
+"\n"
+"Podążaj za linią z twojej komórki do pobliskiego wchłanialnego obiektu."
+
+#, fuzzy
 msgid "TUTORIAL_MICROBE_STAGE_HELP_MENU_AND_ZOOM"
 msgstr ""
 "Trudno ci? Sprawdź menu pomocy. Możesz je otworzyć klikając na znak zapytania w lewym dolnym rogu.\n"
@@ -6403,7 +6449,35 @@ msgstr ""
 "Opuść kolonię by kontynuować swój wzrost poprzez naciśnięcie [thrive:input]g_unbind_all[/thrive:input]."
 
 #, fuzzy
+msgid "TUTORIAL_MICROBE_STAGE_OPEN_PROCESS_PANEL"
+msgstr ""
+"Aby się rozmnożyć musisz rozdwoić wszystkie swoje organelle. Stanie się to samoczynnie, ale możesz przyspieszyć ten proces poprzez zbieranie [thrive:compound type=\"ammonia\"]Amoniaku[/thrive:compound] i [thrive:compound type=\"phosphates\"]Fosforanów[/thrive:compound].\n"
+"\n"
+"Paski w prawym dolnym rogu pokazują twój postęp. Staną się białe gdy będziesz gotowy do reprodukcji."
+
+#, fuzzy
+msgid "TUTORIAL_MICROBE_STAGE_PAUSING"
+msgstr ""
+"Wszedłeś w tryb odwiązywania. W tym trybie możesz klikać na członków kolonii aby ich odseparować.\n"
+"\n"
+"Żeby całkowicie opuścić kolonię możesz kliknąć własną komórkę lub nacisnąć klawisz [thrive:input]g_unbind_all[/thrive:input]."
+
+#, fuzzy
+msgid "TUTORIAL_MICROBE_STAGE_PROCESS_PANEL"
+msgstr ""
+"Aby się rozmnożyć musisz rozdwoić wszystkie swoje organelle. Stanie się to samoczynnie, ale możesz przyspieszyć ten proces poprzez zbieranie [thrive:compound type=\"ammonia\"]Amoniaku[/thrive:compound] i [thrive:compound type=\"phosphates\"]Fosforanów[/thrive:compound].\n"
+"\n"
+"Paski w prawym dolnym rogu pokazują twój postęp. Staną się białe gdy będziesz gotowy do reprodukcji."
+
+#, fuzzy
 msgid "TUTORIAL_MICROBE_STAGE_REPRODUCE_TEXT"
+msgstr ""
+"Aby się rozmnożyć musisz rozdwoić wszystkie swoje organelle. Stanie się to samoczynnie, ale możesz przyspieszyć ten proces poprzez zbieranie [thrive:compound type=\"ammonia\"]Amoniaku[/thrive:compound] i [thrive:compound type=\"phosphates\"]Fosforanów[/thrive:compound].\n"
+"\n"
+"Paski w prawym dolnym rogu pokazują twój postęp. Staną się białe gdy będziesz gotowy do reprodukcji."
+
+#, fuzzy
+msgid "TUTORIAL_MICROBE_STAGE_RESOURCE_SPLIT"
 msgstr ""
 "Aby się rozmnożyć musisz rozdwoić wszystkie swoje organelle. Stanie się to samoczynnie, ale możesz przyspieszyć ten proces poprzez zbieranie [thrive:compound type=\"ammonia\"]Amoniaku[/thrive:compound] i [thrive:compound type=\"phosphates\"]Fosforanów[/thrive:compound].\n"
 "\n"
@@ -8633,6 +8707,15 @@ msgstr "Przybliż"
 
 msgid "ZOOM_OUT"
 msgstr "Oddal"
+
+#, fuzzy
+#~ msgid "MICROBE_STAGE_DAY_NIGHT_TEXT"
+#~ msgstr ""
+#~ "Wypatruj spadku poziomu [b]światła słonecznego[/b] na panelu środowiska.\n"
+#~ "\n"
+#~ "Noc nadchodzi wraz ze ściemnieniem otoczenia.\n"
+#~ "Fotosynteza jest nieefektywna nocą.\n"
+#~ "Upewnij się, że masz wystarczająco magazynu[thrive:icon]StorageIcon[/thrive:icon] by przetrwać noc."
 
 #, fuzzy
 #~ msgid "GLOBAL_GLACIATION_EVENT_LOG"
