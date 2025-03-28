@@ -1,4 +1,4 @@
-[gd_scene load_steps=12 format=3 uid="uid://d386dbkjbq2rh"]
+[gd_scene load_steps=14 format=3 uid="uid://d386dbkjbq2rh"]
 
 [ext_resource type="Script" uid="uid://bg5x6f3rbsqy" path="res://src/engine/LoadingScreen.cs" id="1"]
 [ext_resource type="PackedScene" uid="uid://cgdp2u78cxxe7" path="res://src/gui_common/CrossFadableTextureRect.tscn" id="2"]
@@ -7,6 +7,7 @@
 [ext_resource type="Shader" uid="uid://lf6igwl1dy7j" path="res://shaders/UVFlipper.gdshader" id="6"]
 [ext_resource type="LabelSettings" uid="uid://bnhcbmq3brx0s" path="res://src/gui_common/fonts/Title-SemiBold-Normal.tres" id="6_rw556"]
 [ext_resource type="LabelSettings" uid="uid://fua052cwp5ap" path="res://src/gui_common/fonts/Body-Regular-AlmostSmaller.tres" id="7_dhkod"]
+[ext_resource type="Shader" uid="uid://ccqfxdx4iqla5" path="res://shaders/SpinnerVertex.gdshader" id="8_kw2xg"]
 [ext_resource type="Script" uid="uid://c0itxwsgtedpj" path="res://src/gui_common/CustomRichTextLabel.cs" id="9"]
 
 [sub_resource type="ShaderMaterial" id="1"]
@@ -18,6 +19,12 @@ colors = PackedColorArray(0.0117647, 0.027451, 0.0392157, 1, 0, 0, 0.00392157, 0
 
 [sub_resource type="GradientTexture2D" id="3"]
 gradient = SubResource("2")
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_3t0ay"]
+shader = ExtResource("8_kw2xg")
+shader_parameter/rotationSpeed = 1.0
+shader_parameter/sizeX = 64.0
+shader_parameter/sizeY = 64.0
 
 [node name="LoadingScreen" type="Control"]
 process_mode = 3
@@ -128,6 +135,7 @@ custom_minimum_size = Vector2(64, 64)
 layout_mode = 2
 
 [node name="TextureRect" type="TextureRect" parent="MarginContainer/HBoxContainer/Spinner/Control"]
+material = SubResource("ShaderMaterial_3t0ay")
 custom_minimum_size = Vector2(64, 64)
 layout_mode = 2
 offset_right = 64.0

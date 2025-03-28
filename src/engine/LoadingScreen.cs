@@ -55,8 +55,6 @@ public partial class LoadingScreen : Control
     private string loadingDescription = string.Empty;
     private string? artDescription;
 
-    private double totalElapsed;
-
     private LoadingScreen()
     {
         instance = this;
@@ -157,10 +155,6 @@ public partial class LoadingScreen : Control
             return;
         }
 
-        // Spin the spinner
-        totalElapsed += delta;
-
-        spinner.Rotation = (float)(totalElapsed * SpinnerSpeed) % MathF.Tau;
     }
 
     /// <summary>
@@ -233,8 +227,7 @@ public partial class LoadingScreen : Control
     private void OnBecomeVisible()
     {
         wasVisible = true;
-        totalElapsed = 0;
-
+        
         RandomizeContent();
 
         randomizeTimer.Start();
