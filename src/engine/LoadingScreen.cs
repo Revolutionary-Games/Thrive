@@ -154,7 +154,6 @@ public partial class LoadingScreen : Control
 
             return;
         }
-
     }
 
     /// <summary>
@@ -200,7 +199,6 @@ public partial class LoadingScreen : Control
 
         var category = gallery.AssetCategories.ContainsKey(gameStateName) ? gameStateName : "General";
         var artwork = gallery.AssetCategories[category].Assets.Random(random);
-
         artworkRect.Image = GD.Load<Texture2D>(artwork.ResourcePath);
         ArtDescription = artwork.BuildDescription(true);
     }
@@ -227,7 +225,7 @@ public partial class LoadingScreen : Control
     private void OnBecomeVisible()
     {
         wasVisible = true;
-        
+
         RandomizeContent();
 
         randomizeTimer.Start();
