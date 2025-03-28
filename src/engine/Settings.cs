@@ -904,7 +904,9 @@ public class Settings
         bool allowTAA = true;
 
         // When oversampling only bilinear is supported
-        if (RenderScale.Value > 1)
+        // And when exactly at 1 upscaling is not used, so also then turn off the effective mode (as FSR causes
+        // warnings in compatibility renderer mode)
+        if (RenderScale.Value >= 1)
         {
             effectiveMode = UpscalingMode.Bilinear;
         }
