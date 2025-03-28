@@ -151,8 +151,6 @@ public partial class LoadingScreen : Control
                 wasVisible = false;
                 randomizeTimer.Stop();
             }
-
-            return;
         }
     }
 
