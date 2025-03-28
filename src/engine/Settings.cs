@@ -901,7 +901,7 @@ public class Settings
 
         var effectiveMode = UpscalingMethod.Value;
 
-        bool allowTAA = true;
+        bool allowTemporal = true;
 
         // When oversampling only bilinear is supported
         // And when exactly at 1 upscaling is not used, so also then turn off the effective mode (as FSR causes
@@ -916,7 +916,7 @@ public class Settings
         {
             // TODO: if we add metal fx the check above needs to be updated
 
-            allowTAA = false;
+            allowTemporal = false;
         }
 
         // TODO: do we need the Mac-specific metal upscaling modes?
@@ -944,12 +944,12 @@ public class Settings
                 viewport.ScreenSpaceAA = Viewport.ScreenSpaceAAEnum.Disabled;
                 break;
             case AntiAliasingMode.TemporalAntiAliasing:
-                viewport.UseTaa = allowTAA;
+                viewport.UseTaa = allowTemporal;
                 viewport.Msaa3D = Viewport.Msaa.Disabled;
                 viewport.ScreenSpaceAA = Viewport.ScreenSpaceAAEnum.Disabled;
                 break;
             case AntiAliasingMode.MSAAAndTemporal:
-                viewport.UseTaa = allowTAA;
+                viewport.UseTaa = allowTemporal;
                 viewport.Msaa3D = MSAAResolution;
                 viewport.ScreenSpaceAA = Viewport.ScreenSpaceAAEnum.Disabled;
                 break;
