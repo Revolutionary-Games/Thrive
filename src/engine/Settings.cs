@@ -59,15 +59,15 @@ public class Settings
     public enum UpscalingMode
     {
         Bilinear,
-        FSR1,
-        FSR2,
+        Fsr1,
+        Fsr2,
     }
 
     public enum AntiAliasingMode
     {
         MSAA,
-        TAA,
-        MSAAAndTAA,
+        TemporalAntiAliasing,
+        MSAAAndTemporal,
         ScreenSpaceFx,
         Disabled,
     }
@@ -126,7 +126,7 @@ public class Settings
     ///   Upscaling method to use when the render scale is less than 1
     /// </summary>
     [JsonProperty]
-    public SettingValue<UpscalingMode> UpscalingMethod { get; private set; } = new(UpscalingMode.FSR2);
+    public SettingValue<UpscalingMode> UpscalingMethod { get; private set; } = new(UpscalingMode.Fsr2);
 
     /// <summary>
     ///   How much FSR sharpening to use. Lower values are sharper.
@@ -911,8 +911,8 @@ public class Settings
             effectiveMode = UpscalingMode.Bilinear;
         }
 
-        // Disable TAA automatically to prevent a warning
-        if (RenderScale.Value < 1 && effectiveMode is UpscalingMode.FSR2)
+        // Disable TemporalAntiAliasing automatically to prevent a warning
+        if (RenderScale.Value < 1 && effectiveMode is UpscalingMode.Fsr2)
         {
             // TODO: if we add metal fx the check above needs to be updated
 
@@ -925,10 +925,10 @@ public class Settings
             case UpscalingMode.Bilinear:
                 viewport.Scaling3DMode = Viewport.Scaling3DModeEnum.Bilinear;
                 break;
-            case UpscalingMode.FSR1:
+            case UpscalingMode.Fsr1:
                 viewport.Scaling3DMode = Viewport.Scaling3DModeEnum.Fsr;
                 break;
-            case UpscalingMode.FSR2:
+            case UpscalingMode.Fsr2:
                 viewport.Scaling3DMode = Viewport.Scaling3DModeEnum.Fsr2;
                 break;
             default:
@@ -943,12 +943,12 @@ public class Settings
                 viewport.Msaa3D = MSAAResolution;
                 viewport.ScreenSpaceAA = Viewport.ScreenSpaceAAEnum.Disabled;
                 break;
-            case AntiAliasingMode.TAA:
+            case AntiAliasingMode.TemporalAntiAliasing:
                 viewport.UseTaa = allowTAA;
                 viewport.Msaa3D = Viewport.Msaa.Disabled;
                 viewport.ScreenSpaceAA = Viewport.ScreenSpaceAAEnum.Disabled;
                 break;
-            case AntiAliasingMode.MSAAAndTAA:
+            case AntiAliasingMode.MSAAAndTemporal:
                 viewport.UseTaa = allowTAA;
                 viewport.Msaa3D = MSAAResolution;
                 viewport.ScreenSpaceAA = Viewport.ScreenSpaceAAEnum.Disabled;

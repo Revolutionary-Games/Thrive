@@ -1623,9 +1623,9 @@ public partial class OptionsMenu : ControlWithInput
         {
             case Settings.UpscalingMode.Bilinear:
                 return 0;
-            case Settings.UpscalingMode.FSR1:
+            case Settings.UpscalingMode.Fsr1:
                 return 1;
-            case Settings.UpscalingMode.FSR2:
+            case Settings.UpscalingMode.Fsr2:
                 return 2;
             default:
                 GD.PrintErr("invalid upscaling method value");
@@ -1640,9 +1640,9 @@ public partial class OptionsMenu : ControlWithInput
             case 0:
                 return Settings.UpscalingMode.Bilinear;
             case 1:
-                return Settings.UpscalingMode.FSR1;
+                return Settings.UpscalingMode.Fsr1;
             case 2:
-                return Settings.UpscalingMode.FSR2;
+                return Settings.UpscalingMode.Fsr2;
             default:
                 GD.PrintErr("invalid upscaling index");
                 return Settings.UpscalingMode.Bilinear;
@@ -1655,9 +1655,9 @@ public partial class OptionsMenu : ControlWithInput
         {
             case Settings.AntiAliasingMode.MSAA:
                 return 0;
-            case Settings.AntiAliasingMode.TAA:
+            case Settings.AntiAliasingMode.TemporalAntiAliasing:
                 return 1;
-            case Settings.AntiAliasingMode.MSAAAndTAA:
+            case Settings.AntiAliasingMode.MSAAAndTemporal:
                 return 2;
             case Settings.AntiAliasingMode.ScreenSpaceFx:
                 return 3;
@@ -1676,9 +1676,9 @@ public partial class OptionsMenu : ControlWithInput
             case 0:
                 return Settings.AntiAliasingMode.MSAA;
             case 1:
-                return Settings.AntiAliasingMode.TAA;
+                return Settings.AntiAliasingMode.TemporalAntiAliasing;
             case 2:
-                return Settings.AntiAliasingMode.MSAAAndTAA;
+                return Settings.AntiAliasingMode.MSAAAndTemporal;
             case 3:
                 return Settings.AntiAliasingMode.ScreenSpaceFx;
             case 4:
@@ -2136,7 +2136,7 @@ public partial class OptionsMenu : ControlWithInput
     {
         msaaSection.Visible =
             Settings.Instance.AntiAliasing.Value is Settings.AntiAliasingMode.MSAA
-                or Settings.AntiAliasingMode.MSAAAndTAA;
+                or Settings.AntiAliasingMode.MSAAAndTemporal;
     }
 
     private void OnMSAAResolutionSelected(int index)
