@@ -10,7 +10,7 @@
 [ext_resource type="FontVariation" uid="uid://cqork3l186w1c" path="res://assets/fonts/variants/Jura-Bold.tres" id="9_jkhed"]
 [ext_resource type="PackedScene" uid="uid://tna206f2gtkv" path="res://src/gui_common/AddWindowReorderingSupportToSiblings.tscn" id="10"]
 
-[node name="MicrobeEditorTutorialGUI" type="Control" node_paths=PackedStringArray("nucleusTutorial", "tolerancesTabTutorial", "openTolerancesTabTutorial", "earlyGameGoalTutorial", "compoundBalanceTutorial", "migrationTutorial", "foodChainTutorial", "CompoundBalanceHighlight")]
+[node name="MicrobeEditorTutorialGUI" type="Control" node_paths=PackedStringArray("nucleusTutorial", "tolerancesTabTutorial", "openTolerancesTabTutorial", "earlyGameGoalTutorial", "compoundBalanceTutorial", "migrationTutorial", "foodChainTutorial", "digestionStatTutorial", "CompoundBalanceHighlight")]
 process_mode = 3
 layout_mode = 3
 anchors_preset = 15
@@ -46,6 +46,7 @@ earlyGameGoalTutorial = NodePath("EarlyGoalTutorial")
 compoundBalanceTutorial = NodePath("CompoundBalanceTutorial")
 migrationTutorial = NodePath("MigrationTutorial")
 foodChainTutorial = NodePath("FoodChainTutorial")
+digestionStatTutorial = NodePath("DigestionStat")
 CompoundBalanceHighlight = NodePath("CompoundBalanceHighlight")
 
 [node name="AddWindowReorderingSupportToSiblings" parent="." instance=ExtResource("10")]
@@ -426,7 +427,7 @@ text = "CLOSE"
 
 [node name="NegativeAtpBalanceTutorial" type="Control" parent="."]
 visible = false
-custom_minimum_size = Vector2(260, 400)
+custom_minimum_size = Vector2(260, 420)
 anchors_preset = 0
 anchor_left = 0.5
 anchor_right = 0.5
@@ -653,14 +654,63 @@ anchor_left = 1.0
 anchor_top = 0.5
 anchor_right = 1.0
 anchor_bottom = 0.5
-offset_left = -533.0
-offset_top = -191.5
-offset_right = -173.0
-offset_bottom = 168.5
+offset_left = -365.0
+offset_top = -179.0
+offset_right = -5.0
+offset_bottom = 181.0
 grow_horizontal = 0
 grow_vertical = 2
 Description = "TUTORIAL_MICROBE_EDITOR_FOOD_CHAIN"
 PreventsMouseCaptureWhileOpen = true
+
+[node name="DigestionStat" parent="." instance=ExtResource("9")]
+custom_minimum_size = Vector2(380, 420)
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -181.0
+offset_top = -177.0
+offset_right = 179.0
+offset_bottom = 183.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("7")
+LabelPath = NodePath("ScrollContainer/VBoxContainer/CustomRichTextLabel")
+Description = "TUTORIAL_MICROBE_EDITOR_DIGESTION_STAT"
+DescriptionForController = ""
+ShowDelay = 0.7
+WindowTitle = "TUTORIAL"
+
+[node name="ScrollContainer" type="ScrollContainer" parent="DigestionStat"]
+custom_minimum_size = Vector2(230, 230)
+layout_mode = 0
+anchor_right = 1.0
+anchor_bottom = 1.0
+
+[node name="VBoxContainer" type="VBoxContainer" parent="DigestionStat/ScrollContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+
+[node name="CustomRichTextLabel" parent="DigestionStat/ScrollContainer/VBoxContainer" instance=ExtResource("5")]
+layout_mode = 2
+theme_override_font_sizes/normal_font_size = 15
+fit_content = true
+
+[node name="Control" type="Control" parent="DigestionStat/ScrollContainer/VBoxContainer"]
+layout_mode = 2
+size_flags_vertical = 3
+
+[node name="Button" type="Button" parent="DigestionStat/ScrollContainer/VBoxContainer"]
+custom_minimum_size = Vector2(110, 0)
+layout_mode = 2
+size_flags_horizontal = 4
+theme_override_fonts/font = ExtResource("9_jkhed")
+theme_override_font_sizes/font_size = 18
+text = "GOT_IT"
 
 [connection signal="hidden" from="EditorEntryReport" to="." method="OnSpecificCloseClicked" binds= ["MicrobeEditorReport"]]
 [connection signal="hidden" from="PatchMapTutorial" to="." method="OnSpecificCloseClicked" binds= ["PatchMap"]]
@@ -690,3 +740,5 @@ PreventsMouseCaptureWhileOpen = true
 [connection signal="hidden" from="CompoundBalanceTutorial" to="." method="OnSpecificCloseClicked" binds= ["CompoundBalancesTutorial"]]
 [connection signal="pressed" from="CompoundBalanceTutorial/ScrollContainer/VBoxContainer/Button" to="." method="OnSpecificCloseClicked" binds= ["CompoundBalancesTutorial"]]
 [connection signal="hidden" from="FoodChainTutorial" to="." method="OnSpecificCloseClicked" binds= ["FoodChainTabTutorial"]]
+[connection signal="hidden" from="DigestionStat" to="." method="OnSpecificCloseClicked" binds= ["DigestionStatTutorial"]]
+[connection signal="pressed" from="DigestionStat/ScrollContainer/VBoxContainer/Button" to="." method="OnSpecificCloseClicked" binds= ["DigestionStatTutorial"]]
