@@ -56,6 +56,22 @@ public class Settings
         ExclusiveFullscreen = 2,
     }
 
+    public enum UpscalingMode
+    {
+        Bilinear,
+        FSR1,
+        FSR2,
+    }
+
+    public enum AntiAliasingMode
+    {
+        MSAA,
+        TAA,
+        MSAAAndTAA,
+        ScreenSpaceFx,
+        Disabled,
+    }
+
     public static Settings Instance => SingletonInstance;
 
     public static string DefaultLanguage => DefaultLanguageValue;
@@ -83,8 +99,11 @@ public class Settings
     [JsonProperty]
     public SettingValue<bool> VSync { get; private set; } = new(true);
 
+    [JsonProperty]
+    public SettingValue<AntiAliasingMode> AntiAliasing { get; private set; } = new(AntiAliasingMode.MSAA);
+
     /// <summary>
-    ///   Sets amount of MSAA to apply to the viewport
+    ///   Sets the amount of MSAA to apply to the viewport
     /// </summary>
     [JsonProperty]
     public SettingValue<Viewport.Msaa> MSAAResolution { get; private set; } =
@@ -96,6 +115,24 @@ public class Settings
     [JsonProperty]
     public SettingValue<Viewport.AnisotropicFiltering> AnisotropicFilterLevel { get; private set; } =
         new(Viewport.AnisotropicFiltering.Anisotropy8X);
+
+    /// <summary>
+    ///   Game rendering scale. Lower values enable upscaling from a lower resolution image
+    /// </summary>
+    [JsonProperty]
+    public SettingValue<float> RenderScale { get; private set; } = new(1.0f);
+
+    /// <summary>
+    ///   Upscaling method to use when the render scale is less than 1
+    /// </summary>
+    [JsonProperty]
+    public SettingValue<UpscalingMode> UpscalingMethod { get; private set; } = new(UpscalingMode.FSR2);
+
+    /// <summary>
+    ///   How much FSR sharpening to use. Lower values are sharper.
+    /// </summary>
+    [JsonProperty]
+    public SettingValue<float> UpscalingSharpening { get; private set; } = new(0.2f);
 
     /// <summary>
     ///   Sets the maximum framerate of the game window
@@ -842,13 +879,94 @@ public class Settings
     public void ApplyGraphicsSettings()
     {
         var viewport = GUICommon.Instance.GetTree().Root.GetViewport();
-        viewport.Msaa3D = MSAAResolution;
         viewport.AnisotropicFilteringLevel = AnisotropicFilterLevel;
 
         // Values less than 0 are undefined behaviour
         int max = MaxFramesPerSecond;
         Engine.MaxFps = max >= 0 ? max : 0;
         ColourblindScreenFilter.Instance.SetColourblindSetting(ColourblindSetting);
+
+        // Upscaling settings
+        var scale = RenderScale.Value;
+
+        // Safety check against invalid data. Probably no one will find any use trying to set a value lower than this
+        if (scale < 0.1f)
+        {
+            GD.Print("Setting minimum render scale of 0.1, was: ", scale);
+            scale = 0.1f;
+        }
+
+        viewport.Scaling3DScale = scale;
+        viewport.FsrSharpness = UpscalingSharpening;
+
+        var effectiveMode = UpscalingMethod.Value;
+
+        bool allowTAA = true;
+
+        // When oversampling only bilinear is supported
+        // And when exactly at 1 upscaling is not used, so also then turn off the effective mode (as FSR causes
+        // warnings in compatibility renderer mode)
+        if (RenderScale.Value >= 1)
+        {
+            effectiveMode = UpscalingMode.Bilinear;
+        }
+
+        // Disable TAA automatically to prevent a warning
+        if (RenderScale.Value < 1 && effectiveMode is UpscalingMode.FSR2)
+        {
+            // TODO: if we add metal fx the check above needs to be updated
+
+            allowTAA = false;
+        }
+
+        // TODO: do we need the Mac-specific metal upscaling modes?
+        switch (effectiveMode)
+        {
+            case UpscalingMode.Bilinear:
+                viewport.Scaling3DMode = Viewport.Scaling3DModeEnum.Bilinear;
+                break;
+            case UpscalingMode.FSR1:
+                viewport.Scaling3DMode = Viewport.Scaling3DModeEnum.Fsr;
+                break;
+            case UpscalingMode.FSR2:
+                viewport.Scaling3DMode = Viewport.Scaling3DModeEnum.Fsr2;
+                break;
+            default:
+                GD.PrintErr("Unknown upscaling method: ", UpscalingMethod.Value);
+                break;
+        }
+
+        switch (AntiAliasing.Value)
+        {
+            case AntiAliasingMode.MSAA:
+                viewport.UseTaa = false;
+                viewport.Msaa3D = MSAAResolution;
+                viewport.ScreenSpaceAA = Viewport.ScreenSpaceAAEnum.Disabled;
+                break;
+            case AntiAliasingMode.TAA:
+                viewport.UseTaa = allowTAA;
+                viewport.Msaa3D = Viewport.Msaa.Disabled;
+                viewport.ScreenSpaceAA = Viewport.ScreenSpaceAAEnum.Disabled;
+                break;
+            case AntiAliasingMode.MSAAAndTAA:
+                viewport.UseTaa = allowTAA;
+                viewport.Msaa3D = MSAAResolution;
+                viewport.ScreenSpaceAA = Viewport.ScreenSpaceAAEnum.Disabled;
+                break;
+            case AntiAliasingMode.ScreenSpaceFx:
+                viewport.UseTaa = false;
+                viewport.Msaa3D = Viewport.Msaa.Disabled;
+                viewport.ScreenSpaceAA = Viewport.ScreenSpaceAAEnum.Fxaa;
+                break;
+            case AntiAliasingMode.Disabled:
+                viewport.UseTaa = false;
+                viewport.Msaa3D = Viewport.Msaa.Disabled;
+                viewport.ScreenSpaceAA = Viewport.ScreenSpaceAAEnum.Disabled;
+                break;
+            default:
+                GD.PrintErr("Unknown anti aliasing mode: ", AntiAliasing.Value);
+                break;
+        }
     }
 
     /// <summary>
