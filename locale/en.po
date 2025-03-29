@@ -7,8 +7,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2025-03-27 15:19+0200\n"
-"PO-Revision-Date: 2025-03-27 15:26+0200\n"
+"POT-Creation-Date: 2025-03-28 15:15+0200\n"
+"PO-Revision-Date: 2025-03-28 15:23+0200\n"
 "Last-Translator: Henri Hyyryläinen <hhyyrylainen@revolutionarygamesstudio.com>\n"
 "Language-Team: English <https://translate.revolutionarygamesstudio.com/projects/thrive/thrive-game/en/>\n"
 "Language: en\n"
@@ -191,6 +191,21 @@ msgstr "and"
 
 msgid "ANISOTROPIC_FILTERING"
 msgstr "Anisotropic filtering:"
+
+msgid "ANTIALIASING_MSAA_TAA"
+msgstr "MSAA + TAA"
+
+msgid "ANTI_ALIASING_FXAA"
+msgstr "FXAA"
+
+msgid "ANTI_ALIASING_MODE"
+msgstr "Anti-aliasing mode:"
+
+msgid "ANTI_ALIASING_MSAA"
+msgstr "MSAA"
+
+msgid "ANTI_ALIASING_TAA"
+msgstr "TAA"
 
 msgid "APPEARANCE"
 msgstr "Appearance"
@@ -1652,7 +1667,7 @@ msgid "DISPLAY_DRIVER_VULKAN"
 msgstr "Vulkan"
 
 msgid "DISPLAY_MODE"
-msgstr "Display Mode:"
+msgstr "Display mode:"
 
 msgid "DISPLAY_PART_NAMES"
 msgstr "Display part selection button names"
@@ -2492,6 +2507,9 @@ msgstr "ID is not a valid number"
 msgid "ID_NUMBER"
 msgstr "ID Number"
 
+msgid "IF_FALLBACK_RENDERER_USED_ALL_NOT_AVAILABLE"
+msgstr "(depending on rendering mode and upscaling not all methods are available)"
+
 msgid "IMAGE_FILE_TYPES"
 msgstr "Supported Image Files"
 
@@ -3154,6 +3172,12 @@ msgstr "L"
 
 msgid "LOCK_DAY_NIGHT_CYCLE"
 msgstr "Lock Day Night Cycle"
+
+msgid "LOWER_SCALE_INCREASES_PERFORMANCE"
+msgstr "(lower values increase performance)"
+
+msgid "LOWER_VALUE_MAKES_SHARPER_IMAGE"
+msgstr "(lower values make a sharper image)"
 
 msgid "LOW_MENU_PERFORMANCE"
 msgstr "Low Performance Detected"
@@ -4691,6 +4715,9 @@ msgstr "Redo the last action"
 
 msgid "REFRESH"
 msgstr "Refresh"
+
+msgid "RENDER_SCALE"
+msgstr "Resolution scale"
 
 msgid "REPORT"
 msgstr "Report"
@@ -6429,6 +6456,18 @@ msgstr "Uploading..."
 
 msgid "UPLOAD_SUCCEEDED"
 msgstr "Upload Succeeded"
+
+msgid "UPSCALE_BILINEAR"
+msgstr "Bilinear Upscaling"
+
+msgid "UPSCALE_FSR_1"
+msgstr "FSR 1 Upscaling"
+
+msgid "UPSCALE_FSR_22"
+msgstr "FSR 2.2 Upscaling"
+
+msgid "UPSCALE_SHARPENING_FSR"
+msgstr "FSR sharpening"
 
 msgid "USED_LIBRARIES_LICENSES"
 msgstr "Licenses And Used Libraries"
@@ -9499,9 +9538,6 @@ msgstr "Zoom out"
 
 #~ msgid "ASCIICIRCUM"
 #~ msgstr "^"
-
-#~ msgid "UNDERSCORE"
-#~ msgstr "_"
 
 #~ msgid "QUOTELEFT"
 #~ msgstr "`"
