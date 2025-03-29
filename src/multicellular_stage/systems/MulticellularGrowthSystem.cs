@@ -203,17 +203,11 @@ public sealed class MulticellularGrowthSystem : AEntitySetSystem<float>
                 temporaryWorkData.Add(entry.Key);
             }
 
-            if (microbeStatus.ConsumeReproductionCompoundsReverse)
-            {
-                ProcessGrowthCompound(temporaryWorkData[temporaryWorkData.Count - 1], ref compounds,
-                    ref multicellularGrowth, remainingAllowedCompoundUse, remainingFreeCompounds,
-                    ref stillNeedsSomething);
-            }
-            else
-            {
-                ProcessGrowthCompound(temporaryWorkData[0], ref compounds, ref multicellularGrowth,
-                    remainingAllowedCompoundUse, remainingFreeCompounds, ref stillNeedsSomething);
-            }
+            // As we modify the list, we are content just consuming one type of compound per frame
+            var compound = temporaryWorkData[microbeStatus.ConsumeReproductionCompoundsReverse ?
+                temporaryWorkData.Count - 1 : 0];
+            ProcessGrowthCompound(compound, ref compounds, ref multicellularGrowth, remainingAllowedCompoundUse,
+                remainingFreeCompounds, ref stillNeedsSomething);
         }
 
         if (!stillNeedsSomething)
