@@ -209,7 +209,8 @@ public sealed class MulticellularGrowthSystem : AEntitySetSystem<float>
             {
                 // As we modify the list, we are content just consuming one type of compound per frame
                 var compound = temporaryWorkData[microbeStatus.ConsumeReproductionCompoundsReverse ?
-                    temporaryWorkData.Count - 1 : 0];
+                    temporaryWorkData.Count - 1 :
+                    0];
                 float amountNeeded = multicellularGrowth.CompoundsNeededForNextCell![compound];
 
                 float usedAmount = 0;
