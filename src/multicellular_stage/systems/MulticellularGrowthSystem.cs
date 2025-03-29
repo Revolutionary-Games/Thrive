@@ -195,6 +195,8 @@ public sealed class MulticellularGrowthSystem : AEntitySetSystem<float>
         ref var microbeStatus = ref entity.Get<MicrobeStatus>();
         microbeStatus.ConsumeReproductionCompoundsReverse = !microbeStatus.ConsumeReproductionCompoundsReverse;
 
+        // Consume some compounds for the next cell in the layout
+        // Similar logic for "growing" more cells than in PlacedOrganelle growth
         lock (temporaryWorkData)
         {
             temporaryWorkData.Clear();
@@ -203,11 +205,14 @@ public sealed class MulticellularGrowthSystem : AEntitySetSystem<float>
                 temporaryWorkData.Add(entry.Key);
             }
 
-            // As we modify the list, we are content just consuming one type of compound per frame
-            var compound = temporaryWorkData[microbeStatus.ConsumeReproductionCompoundsReverse ?
-                temporaryWorkData.Count - 1 : 0];
-            ProcessGrowthCompound(compound, ref compounds, ref multicellularGrowth, remainingAllowedCompoundUse,
-                remainingFreeCompounds, ref stillNeedsSomething);
+            if (temporaryWorkData.Count > 0)
+            {
+                // As we modify the list, we are content just consuming one type of compound per frame
+                var compound = temporaryWorkData[microbeStatus.ConsumeReproductionCompoundsReverse ?
+                    temporaryWorkData.Count - 1 : 0];
+                ProcessGrowthCompound(compound, ref compounds, ref multicellularGrowth, remainingAllowedCompoundUse,
+                    remainingFreeCompounds, out stillNeedsSomething);
+            }
         }
 
         if (!stillNeedsSomething)
@@ -234,7 +239,7 @@ public sealed class MulticellularGrowthSystem : AEntitySetSystem<float>
 
     private void ProcessGrowthCompound(Compound compound, ref CompoundBag compounds,
         ref MulticellularGrowth multicellularGrowth, float remainingAllowedCompoundUse,
-        float remainingFreeCompounds, ref bool stillNeedsSomething)
+        float remainingFreeCompounds, out bool stillNeedsSomething)
     {
         float amountNeeded = multicellularGrowth.CompoundsNeededForNextCell![compound];
 
