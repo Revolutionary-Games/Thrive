@@ -61,14 +61,16 @@ shader_parameter/PastPositions = PackedVector2Array(0, 0, 0, 0, 0, 0, 0, 0, 0, 0
 shader_parameter/PastPositionsCount = 0
 shader_parameter/Phase = 0.2
 shader_parameter/Attenuation = 0.998
+shader_parameter/StillnessFactor = 0.0
+shader_parameter/MembraneRadius = 5.0
 
 [sub_resource type="PlaneMesh" id="PlaneMesh_ripple"]
 resource_local_to_scene = true
 size = Vector2(18, 18)
-subdivide_width = 90
-subdivide_depth = 90
+subdivide_width = 120
+subdivide_depth = 120
 
-[node name="Membrane" type="MeshInstance3D" node_paths=PackedStringArray("engulfAnimationMeshInstance", "mucocystAnimationMeshInstance")]
+[node name="Membrane" type="MeshInstance3D" node_paths=PackedStringArray("engulfAnimationMeshInstance", "mucocystAnimationMeshInstance", "waterRipple")]
 process_priority = 2
 cast_shadow = 0
 mesh = SubResource("1")
@@ -78,6 +80,7 @@ EngulfShaderMaterial = SubResource("ShaderMaterial_p8cmc")
 MucocystShaderMaterial = SubResource("ShaderMaterial_lboqi")
 engulfAnimationMeshInstance = NodePath("EngulfMesh")
 mucocystAnimationMeshInstance = NodePath("MucocystMesh")
+waterRipple = NodePath("WaterRipple")
 
 [node name="EngulfMesh" type="MeshInstance3D" parent="."]
 visible = false
@@ -85,8 +88,9 @@ visible = false
 [node name="MucocystMesh" type="MeshInstance3D" parent="."]
 visible = false
 
-[node name="WaterRipple" type="Node" parent="."]
+[node name="WaterRipple" type="Node" parent="." node_paths=PackedStringArray("waterPlane")]
 script = ExtResource("9_water")
+waterPlane = NodePath("WaterPlane")
 
 [node name="WaterPlane" type="MeshInstance3D" parent="WaterRipple"]
 visible = false
