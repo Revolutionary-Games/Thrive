@@ -22,7 +22,7 @@ public struct MulticellularGrowth
     public List<int>? LostPartsOfBodyPlan;
 
     // TODO: update the growth system to reuse these objects instead of needing to clear these to null
-    public Dictionary<Compound, float>? CompoundsNeededForNextCell;
+    public List<(Compound Compound, float AmountNeeded)>? CompoundsNeededForNextCell;
 
     public Dictionary<Compound, float>? CompoundsUsedForMulticellularGrowth;
 
@@ -178,7 +178,7 @@ public static class MulticellularGrowthHelpers
             multicellularGrowth.LostPartsOfBodyPlan.Add(multicellularGrowth.NextBodyPlanCellToGrowIndex);
         }
 
-        var usedForProgress = new Dictionary<Compound, float>();
+        var usedForProgress = new List<(Compound Compound, float AmountNeeded)>();
 
         if (multicellularGrowth.CompoundsNeededForNextCell != null)
         {
@@ -186,15 +186,15 @@ public static class MulticellularGrowthHelpers
 
             foreach (var entry in totalNeededForCurrentlyGrowingCell)
             {
-                var compound = entry.Key;
-                var neededAmount = entry.Value;
+                var id = multicellularGrowth.CompoundsNeededForNextCell!.FindIndex(a => a.Compound == entry.Compound);
 
-                if (multicellularGrowth.CompoundsNeededForNextCell!.TryGetValue(compound, out var left))
+                if (id != -1)
                 {
-                    var alreadyUsed = neededAmount - left;
+                    var alreadyUsed = entry.AmountNeeded
+                        - multicellularGrowth.CompoundsNeededForNextCell[id].AmountNeeded;
 
                     if (alreadyUsed > 0)
-                        usedForProgress.Add(compound, alreadyUsed);
+                        usedForProgress.Add((entry.Compound, alreadyUsed));
                 }
             }
 
@@ -212,8 +212,8 @@ public static class MulticellularGrowthHelpers
         // just add those to our storage (even with the risk of us losing some compounds due to too little storage)
         foreach (var entry in usedForProgress)
         {
-            if (entry.Value > MathUtils.EPSILON)
-                compoundRefundLocation.AddCompound(entry.Key, entry.Value);
+            if (entry.AmountNeeded > MathUtils.EPSILON)
+                compoundRefundLocation.AddCompound(entry.Compound, entry.AmountNeeded);
         }
 
         // Adjust the already used compound amount to lose the progress we made for the current cell and also
@@ -227,12 +227,14 @@ public static class MulticellularGrowthHelpers
             {
                 var totalUsed = multicellularGrowth.CompoundsUsedForMulticellularGrowth[compound];
 
-                if (usedForProgress.TryGetValue(compound, out var wasted))
+                int index = usedForProgress.FindIndex(a => a.Compound == compound);
+
+                if (index != -1)
                 {
-                    totalUsed -= wasted;
+                    totalUsed -= usedForProgress[index].AmountNeeded;
                 }
 
-                if (totalNeededForLostCell.TryGetValue(compound, out wasted))
+                if (totalNeededForLostCell.TryGetValue(compound, out var wasted))
                 {
                     totalUsed -= wasted;
                 }
@@ -245,13 +247,13 @@ public static class MulticellularGrowthHelpers
         }
     }
 
-    public static Dictionary<Compound, float> GetCompoundsNeededForNextCell(
+    public static List<(Compound Compound, float AmountNeeded)> GetCompoundsNeededForNextCell(
         this ref MulticellularGrowth multicellularGrowth, MulticellularSpecies species)
     {
         return species
             .Cells[
                 multicellularGrowth.IsFullyGrownMulticellular ? 0 : multicellularGrowth.NextBodyPlanCellToGrowIndex]
-            .CellType.CalculateTotalComposition();
+            .CellType.CalculateTotalCompositionList();
     }
 
     public static void CalculateTotalBodyPlanCompounds(this ref MulticellularGrowth multicellularGrowth,

@@ -197,64 +197,58 @@ public sealed class MulticellularGrowthSystem : AEntitySetSystem<float>
 
         // Consume some compounds for the next cell in the layout
         // Similar logic for "growing" more cells than in PlacedOrganelle growth
-        lock (temporaryWorkData)
+        if (multicellularGrowth.CompoundsNeededForNextCell.Count > 0)
         {
-            temporaryWorkData.Clear();
-            foreach (var entry in multicellularGrowth.CompoundsNeededForNextCell)
+            int index = microbeStatus.ConsumeReproductionCompoundsReverse ?
+                multicellularGrowth.CompoundsNeededForNextCell.Count - 1 : 0;
+
+            // As we modify the list, we are content just consuming one type of compound per frame
+            var pair = multicellularGrowth.CompoundsNeededForNextCell![index];
+
+            var compound = pair.Compound;
+            float amountNeeded = pair.AmountNeeded;
+
+            float usedAmount = 0;
+
+            float allowedUseAmount = Math.Min(amountNeeded, remainingAllowedCompoundUse);
+
+            if (remainingFreeCompounds > 0)
             {
-                temporaryWorkData.Add(entry.Key);
+                var usedFreeCompounds = Math.Min(allowedUseAmount, remainingFreeCompounds);
+                usedAmount += usedFreeCompounds;
+                allowedUseAmount -= usedFreeCompounds;
+
+                // As we loop just once we don't need to update the free compounds or allowed use compounds
+                // variables
             }
 
-            if (temporaryWorkData.Count > 0)
+            stillNeedsSomething = true;
+
+            var amountAvailable = compounds.GetCompoundAmount(compound) -
+                Constants.ORGANELLE_GROW_STORAGE_MUST_HAVE_AT_LEAST;
+
+            if (amountAvailable > MathUtils.EPSILON)
             {
-                // As we modify the list, we are content just consuming one type of compound per frame
-                var compound = temporaryWorkData[microbeStatus.ConsumeReproductionCompoundsReverse ?
-                    temporaryWorkData.Count - 1 :
-                    0];
-                float amountNeeded = multicellularGrowth.CompoundsNeededForNextCell![compound];
+                // We can take some
+                var amountToTake = MathF.Min(allowedUseAmount, amountAvailable);
 
-                float usedAmount = 0;
-
-                float allowedUseAmount = Math.Min(amountNeeded, remainingAllowedCompoundUse);
-
-                if (remainingFreeCompounds > 0)
-                {
-                    var usedFreeCompounds = Math.Min(allowedUseAmount, remainingFreeCompounds);
-                    usedAmount += usedFreeCompounds;
-                    allowedUseAmount -= usedFreeCompounds;
-
-                    // As we loop just once we don't need to update the free compounds or allowed use compounds
-                    // variables
-                }
-
-                stillNeedsSomething = true;
-
-                var amountAvailable = compounds.GetCompoundAmount(compound) -
-                    Constants.ORGANELLE_GROW_STORAGE_MUST_HAVE_AT_LEAST;
-
-                if (amountAvailable > MathUtils.EPSILON)
-                {
-                    // We can take some
-                    var amountToTake = MathF.Min(allowedUseAmount, amountAvailable);
-
-                    usedAmount += compounds.TakeCompound(compound, amountToTake);
-                }
-
-                var left = amountNeeded - usedAmount;
-
-                if (left < 0.0001f)
-                {
-                    multicellularGrowth.CompoundsNeededForNextCell.Remove(compound);
-                }
-                else
-                {
-                    multicellularGrowth.CompoundsNeededForNextCell[compound] = left;
-                }
-
-                multicellularGrowth.CompoundsUsedForMulticellularGrowth!.TryGetValue(compound, out float alreadyUsed);
-
-                multicellularGrowth.CompoundsUsedForMulticellularGrowth[compound] = alreadyUsed + usedAmount;
+                usedAmount += compounds.TakeCompound(compound, amountToTake);
             }
+
+            var left = amountNeeded - usedAmount;
+
+            if (left < 0.0001f)
+            {
+                multicellularGrowth.CompoundsNeededForNextCell.RemoveAt(index);
+            }
+            else
+            {
+                multicellularGrowth.CompoundsNeededForNextCell[index] = (compound, left);
+            }
+
+            multicellularGrowth.CompoundsUsedForMulticellularGrowth!.TryGetValue(compound, out float alreadyUsed);
+
+            multicellularGrowth.CompoundsUsedForMulticellularGrowth[compound] = alreadyUsed + usedAmount;
         }
 
         if (!stillNeedsSomething)
