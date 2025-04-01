@@ -155,7 +155,7 @@ public partial class MacroscopicStage : CreatureStageBase<MacroscopicCreature, D
     {
         base._Process(delta);
 
-        if (gameOver)
+        if (gameOver || StageLoadingState != LoadState.NotLoading)
             return;
 
         if (playerExtinctInCurrentPatch)
@@ -314,6 +314,8 @@ public partial class MacroscopicStage : CreatureStageBase<MacroscopicCreature, D
 
         // Reset all growth progress of the player
         Player.ResetGrowth();
+
+        // TODO: HUD animation and loading screen
 
         if (!CurrentGame!.TutorialState.Enabled)
         {

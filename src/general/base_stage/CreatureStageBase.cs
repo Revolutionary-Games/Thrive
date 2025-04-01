@@ -101,6 +101,9 @@ public partial class CreatureStageBase<TPlayer, TSimulation> : StageBase, ICreat
     {
         base._Process(delta);
 
+        if (StageLoadingState != LoadState.Finished)
+            return;
+
         if (gameOver)
         {
             // Player is extinct and has lost the game Show the game lost popup if not already visible
@@ -189,7 +192,9 @@ public partial class CreatureStageBase<TPlayer, TSimulation> : StageBase, ICreat
         // Make sure the player is spawned
         SpawnPlayer();
 
-        BaseHUD.OnEnterStageTransition(false, true);
+        OnStartLoading();
+
+        BaseHUD.OnEnterStageLoadingScreen(false, true);
         BaseHUD.HideReproductionDialog();
 
         // Pass some extra time to hud messages to make short-lived messages from the previous life (like editor ready
@@ -208,10 +213,6 @@ public partial class CreatureStageBase<TPlayer, TSimulation> : StageBase, ICreat
             wantsToSave = true;
 
         pauseMenu.SetNewSaveNameFromSpeciesName();
-
-        // Collect any accumulated garbage before running the main game stage, which is much more framerate-sensitive
-        // than the scene switching process
-        GC.Collect();
     }
 
     public virtual void MoveToEditor()
@@ -277,7 +278,7 @@ public partial class CreatureStageBase<TPlayer, TSimulation> : StageBase, ICreat
         // Auto-evo needs to be redone as player species is different
         CurrentGame.GameWorld.ResetAutoEvoRun();
 
-        // Stop the extinction music
+        // Stop the extinction of player music
         StartMusic();
     }
 
@@ -295,7 +296,7 @@ public partial class CreatureStageBase<TPlayer, TSimulation> : StageBase, ICreat
 
     protected void EnsureWorldSimulationIsCreated()
     {
-        // When loading a save the world simulation is loaded from the save, otherwise it needs to be created
+        // When loading a save, the world simulation is loaded from the save; otherwise it needs to be created
         if (WorldSimulation == null!)
         {
             WorldSimulation = new TSimulation();
@@ -305,7 +306,12 @@ public partial class CreatureStageBase<TPlayer, TSimulation> : StageBase, ICreat
 
     protected override void StartGUIStageTransition(bool longDuration, bool returnFromEditor)
     {
-        BaseHUD.OnEnterStageTransition(longDuration, returnFromEditor);
+        BaseHUD.OnEnterStageLoadingScreen(longDuration, returnFromEditor);
+    }
+
+    protected override void OnTriggerHUDFinalLoadFadeIn()
+    {
+        BaseHUD.OnStageLoaded(this);
     }
 
     protected virtual void UpdatePatchSettings(bool promptPatchNameChange = true)

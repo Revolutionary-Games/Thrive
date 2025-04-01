@@ -5,7 +5,7 @@
 /// </summary>
 /// <remarks>
 ///   <para>
-///     In the Thrive project there is also MainGameState. Reordering values here will cause issues.
+///     In the Thrive project there is also <c>MainGameState</c>. Reordering values here will cause issues.
 ///   </para>
 /// </remarks>
 public enum Stage

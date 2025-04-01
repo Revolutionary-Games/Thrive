@@ -430,7 +430,8 @@ public partial class SpaceStage : StrategyStageBase, ISocietyStructureDataAccess
         strategicCamera.ZoomLevel = defaultZoomLevel;
 
         // Replay the animation
-        HUD.OnEnterStageTransition(true, true);
+        OnStartLoading();
+        HUD.OnEnterStageLoadingScreen(true, true);
 
         // And finally setup things right for the ascension
         OnBecomeAscended();

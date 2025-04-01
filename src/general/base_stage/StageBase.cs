@@ -48,6 +48,15 @@ public partial class StageBase : NodeWithInput, IStageBase, IGodotEarlyNodeResol
     {
     }
 
+    public enum LoadState
+    {
+        NotLoading,
+        Loading,
+        GraphicsPreload,
+        GraphicsClear,
+        Finished,
+    }
+
     /// <summary>
     ///   The main current game object holding various details
     /// </summary>
@@ -95,6 +104,13 @@ public partial class StageBase : NodeWithInput, IStageBase, IGodotEarlyNodeResol
         }
     }
 
+    /// <summary>
+    ///   True when the stage is showing a loading screen and waiting to start.
+    ///   Normal processing should be skipped in this state.
+    /// </summary>
+    [JsonIgnore]
+    protected LoadState StageLoadingState { get; private set; }
+
     public virtual void ResolveNodeReferences()
     {
         if (NodeReferencesResolved)
@@ -111,6 +127,16 @@ public partial class StageBase : NodeWithInput, IStageBase, IGodotEarlyNodeResol
     public override void _Process(double delta)
     {
         base._Process(delta);
+
+        if (StageLoadingState != LoadState.NotLoading)
+        {
+            if (PerformStageLoadingAction())
+            {
+                StartFinalFadeInIfNotStarted();
+            }
+
+            return;
+        }
 
         // Save if wanted
         if (TransitionFinished && wantsToSave)
@@ -145,6 +171,19 @@ public partial class StageBase : NodeWithInput, IStageBase, IGodotEarlyNodeResol
     public virtual void StartNewGame()
     {
         OnGameStarted();
+    }
+
+    public virtual void OnBlankScreenBeforeFadeIn()
+    {
+        // Collect any accumulated garbage before running the main game stage, which is much more framerate-sensitive
+        // than the scene switching process
+        GC.Collect();
+
+        // Let gameplay code start running while fading in as that makes things smoother
+        StageLoadingState = LoadState.NotLoading;
+
+        // Unpause gameplay nodes and code
+        world.ProcessMode = ProcessModeEnum.Inherit;
     }
 
     [RunOnKeyDown("g_toggle_gui")]
@@ -235,7 +274,69 @@ public partial class StageBase : NodeWithInput, IStageBase, IGodotEarlyNodeResol
 
         StartMusic();
 
+        OnStartLoading();
         StartGUIStageTransition(!IsLoadedFromSave, false);
+    }
+
+    protected virtual void OnStartLoading()
+    {
+        // Ignore duplicate requests to start loading which happen when exiting the editor
+        if (StageLoadingState != LoadState.NotLoading)
+            return;
+
+        StageLoadingState = LoadState.Loading;
+        world.ProcessMode = ProcessModeEnum.Disabled;
+
+        // Preloading of graphics assets and showing a loading screen
+        ResourceManager.Instance.OnStageLoadStart(GameState);
+    }
+
+    protected virtual bool PerformStageLoadingAction()
+    {
+        if (StageLoadingState <= LoadState.Loading)
+        {
+            if (ResourceManager.Instance.ProgressStageLoad())
+            {
+                StageLoadingState = LoadState.GraphicsPreload;
+            }
+
+            return false;
+        }
+
+        if (StageLoadingState == LoadState.GraphicsPreload)
+        {
+            // TODO:
+
+            StageLoadingState = LoadState.GraphicsClear;
+            return false;
+        }
+
+        if (StageLoadingState == LoadState.GraphicsClear)
+        {
+            // TODO:
+            return true;
+        }
+
+        if (StageLoadingState == LoadState.Finished)
+        {
+            // Nothing more to do
+            return true;
+        }
+
+        GD.PrintErr("Unknown stage loading state: ", StageLoadingState);
+        return true;
+    }
+
+    protected void StartFinalFadeInIfNotStarted()
+    {
+        // Avoid triggering the fade a bunch of times
+        if (StageLoadingState == LoadState.Finished)
+            return;
+
+        StageLoadingState = LoadState.Finished;
+
+        GD.Print("Stage load finished, will enter properly now");
+        OnTriggerHUDFinalLoadFadeIn();
     }
 
     /// <summary>
@@ -247,6 +348,11 @@ public partial class StageBase : NodeWithInput, IStageBase, IGodotEarlyNodeResol
     }
 
     protected virtual void StartGUIStageTransition(bool longDuration, bool returnFromEditor)
+    {
+        throw new GodotAbstractMethodNotOverriddenException();
+    }
+
+    protected virtual void OnTriggerHUDFinalLoadFadeIn()
     {
         throw new GodotAbstractMethodNotOverriddenException();
     }

@@ -244,6 +244,9 @@ public partial class MicrobeStage : CreatureStageBase<Entity, MicrobeWorldSimula
     {
         base._Process(delta);
 
+        if (StageLoadingState != LoadState.NotLoading)
+            return;
+
         WorldPosition playerPosition = default;
 
         if (HasPlayer)

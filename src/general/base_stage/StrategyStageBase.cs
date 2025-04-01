@@ -64,6 +64,9 @@ public partial class StrategyStageBase : StageBase, IStrategyStage
     {
         base._Process(delta);
 
+        if (StageLoadingState != LoadState.Finished)
+            return;
+
         if (!IsGameOver())
         {
             BaseHUD.UpdateScienceSpeed(activeResearchContributions.SumValues());
@@ -165,7 +168,12 @@ public partial class StrategyStageBase : StageBase, IStrategyStage
 
     protected override void StartGUIStageTransition(bool longDuration, bool returnFromEditor)
     {
-        BaseHUD.OnEnterStageTransition(longDuration, returnFromEditor);
+        BaseHUD.OnEnterStageLoadingScreen(longDuration, returnFromEditor);
+    }
+
+    protected override void OnTriggerHUDFinalLoadFadeIn()
+    {
+        BaseHUD.OnStageLoaded(this);
     }
 
     protected override void SetupStage()

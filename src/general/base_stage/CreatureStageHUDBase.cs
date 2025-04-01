@@ -508,7 +508,7 @@ public partial class CreatureStageHUDBase<TStage> : HUDWithPausing, ICreatureSta
         }
     }
 
-    public override void OnEnterStageTransition(bool longerDuration, bool returningFromEditor)
+    public override void OnEnterStageLoadingScreen(bool longerDuration, bool returningFromEditor)
     {
         if (stage == null)
             throw new InvalidOperationException("Stage not setup for HUD");
@@ -520,7 +520,7 @@ public partial class CreatureStageHUDBase<TStage> : HUDWithPausing, ICreatureSta
             return;
         }
 
-        AddFadeIn(stage, longerDuration);
+        ShowLoadingScreen(stage);
     }
 
     public void OnSuicide()

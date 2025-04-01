@@ -17,4 +17,10 @@ public interface IStageBase : ILoadableGameState, ICurrentGameInfo
     ///   Called by the HUD when the stage has faded in from a black screen
     /// </summary>
     public void OnFinishTransitioning();
+
+    /// <summary>
+    ///   Called on the fully black frame just before the stage starts to fade in, this is the last time to load
+    ///   something that causes a lag spike
+    /// </summary>
+    public void OnBlankScreenBeforeFadeIn();
 }
