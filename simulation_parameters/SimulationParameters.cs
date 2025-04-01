@@ -56,7 +56,8 @@ public partial class SimulationParameters : Node
     private Dictionary<string, Technology> technologies = null!;
     private Dictionary<string, VisualResourceData> visualResources = null!;
     private Dictionary<VisualResourceIdentifier, VisualResourceData> visualResourceByIdentifier = null!;
-    private Dictionary<MainGameState, StageResourcesList> stageResources = null!;
+    private Dictionary<string, StageResourcesList> stageResources = null!;
+    private Dictionary<MainGameState, StageResourcesList> stageResourcesByEnum = null!;
 
     private List<CompoundDefinition>? cachedCloudCompounds;
     private List<Enzyme>? cachedDigestiveEnzymes;
@@ -210,10 +211,7 @@ public partial class SimulationParameters : Node
         visualResources =
             LoadRegistry<VisualResourceData>("res://simulation_parameters/common/visual_resources.json");
 
-        var tempStage = LoadRegistry<StageResourcesList>("res://simulation_parameters/common/stage_resources.json");
-
-        // Resources are indexed by the enum key, so convert the dictionary keys
-        stageResources = tempStage.ToDictionary(t => Enum.Parse<MainGameState>(t.Key), t => t.Value);
+        stageResources = LoadRegistry<StageResourcesList>("res://simulation_parameters/common/stage_resources.json");
 
         // Build info is only loaded if the file is present
         if (FileAccess.FileExists(ThriveScriptConstants.BUILD_INFO_RES))
@@ -547,7 +545,7 @@ public partial class SimulationParameters : Node
 
     public StageResourcesList GetStageResources(MainGameState gameState)
     {
-        return stageResources[gameState];
+        return stageResourcesByEnum[gameState];
     }
 
     /// <summary>
@@ -848,9 +846,13 @@ public partial class SimulationParameters : Node
 
         NameGenerator.Resolve(this);
 
-        // TODO: there could also be a check for making sure non-existent compounds, processes etc. are not used
+        visualResourceByIdentifier = visualResources.ToDictionary(t => t.Value.VisualIdentifier, t => t.Value);
+        stageResourcesByEnum = stageResources.ToDictionary(t => t.Value.Stage, t => t.Value);
 
-        visualResourceByIdentifier = visualResources.ToDictionary(t => t.Value.Identifier, t => t.Value);
+        foreach (var entry in stageResources)
+        {
+            entry.Value.Resolve(this);
+        }
     }
 
     private List<CompoundDefinition> ComputeCloudCompounds()
