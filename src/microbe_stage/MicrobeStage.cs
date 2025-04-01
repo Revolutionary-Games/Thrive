@@ -1175,6 +1175,29 @@ public partial class MicrobeStage : CreatureStageBase<Entity, MicrobeWorldSimula
 
         if (!Player.Has<MulticellularSpeciesMember>())
             TutorialState.SendEvent(TutorialEventType.MicrobePlayerReadyToEdit, EventArgs.Empty, this);
+
+        if (CurrentGame == null)
+        {
+            GD.PrintErr("Current game is null when player is ready to edit");
+            return;
+        }
+
+        // Trigger an auto-save the first time the editor becomes available
+        if (!CurrentGame.IsBoolSet("edited_microbe") && Settings.Instance.AutoSaveEnabled.Value)
+        {
+            // But not if already triggered, this is important when loading such an auto-save so that an immediate save
+            // isn't triggered
+            if (!CurrentGame.IsBoolSet("first_editor_autosaved"))
+            {
+                CurrentGame.SetBool("first_editor_autosaved", true);
+
+                Invoke.Instance.QueueForObject(() =>
+                {
+                    GD.Print("Auto-saving game for the first time editor is available");
+                    AutoSave();
+                }, this);
+            }
+        }
     }
 
     protected override void OnGameOver()
