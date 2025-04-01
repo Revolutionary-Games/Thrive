@@ -69,7 +69,7 @@ public static class GeneralCellPropertiesHelpers
         {
             foreach (var pair in organelle.Definition.InitialComposition)
             {
-                var index = result.FindIndex(a => a.Compound == pair.Key);
+                var index = result.FindIndexByKey(pair.Key);
                 if (index != -1)
                 {
                     result[index] = (pair.Key, pair.Value + result[index].Amount);

@@ -227,7 +227,7 @@ public static class MulticellularGrowthHelpers
             {
                 var totalUsed = multicellularGrowth.CompoundsUsedForMulticellularGrowth[compound];
 
-                int index = usedForProgress.FindIndex(a => a.Compound == compound);
+                int index = usedForProgress.FindIndexByKey(compound);
 
                 if (index != -1)
                 {

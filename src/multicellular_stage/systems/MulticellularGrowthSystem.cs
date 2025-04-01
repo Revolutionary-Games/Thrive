@@ -200,7 +200,8 @@ public sealed class MulticellularGrowthSystem : AEntitySetSystem<float>
         if (multicellularGrowth.CompoundsNeededForNextCell.Count > 0)
         {
             int index = microbeStatus.ConsumeReproductionCompoundsReverse ?
-                multicellularGrowth.CompoundsNeededForNextCell.Count - 1 : 0;
+                multicellularGrowth.CompoundsNeededForNextCell.Count - 1 :
+                0;
 
             // As we modify the list, we are content just consuming one type of compound per frame
             var pair = multicellularGrowth.CompoundsNeededForNextCell![index];
