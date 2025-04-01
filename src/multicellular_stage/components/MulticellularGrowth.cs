@@ -186,12 +186,12 @@ public static class MulticellularGrowthHelpers
 
             foreach (var entry in totalNeededForCurrentlyGrowingCell)
             {
-                var id = multicellularGrowth.CompoundsNeededForNextCell!.FindIndex(a => a.Compound == entry.Compound);
+                var id = multicellularGrowth.CompoundsNeededForNextCell!.FindIndexByKey(entry.Compound);
 
                 if (id != -1)
                 {
                     var alreadyUsed = entry.AmountNeeded
-                        - multicellularGrowth.CompoundsNeededForNextCell[id].AmountNeeded;
+                        - multicellularGrowth.CompoundsNeededForNextCell![id].AmountNeeded;
 
                     if (alreadyUsed > 0)
                         usedForProgress.Add((entry.Compound, alreadyUsed));
