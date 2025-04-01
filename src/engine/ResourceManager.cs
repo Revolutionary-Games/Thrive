@@ -6,15 +6,12 @@ using Godot;
 using Nito.Collections;
 
 /// <summary>
-///   Manages loading game resources
+///   Manages loading of the game resources
 /// </summary>
 /// <remarks>
 ///   <para>
-///     The plan for this is to eventually to allow the game to show a loading screen while loading all microbe stage
-///     assets for example. For now this is just a loading work queue.
-///   </para>
-///   <para>
-///     Godot 4.0 should make background loading much more doable so this should be reworked at that time.
+///     Godot 4.0 should make background loading much more usable, so this should be experimented with to add some
+///     threading.
 ///   </para>
 /// </remarks>
 [GodotAutoload]
@@ -62,6 +59,7 @@ public partial class ResourceManager : Node
 
         // TODO: should this instead use a budget approach based exclusively on delta (and multiply it by
         // some fraction)?
+        // TODO: maybe also considering a "deficit" from previous frame would be good for very long load tasks?
         var originalBudget =
             TimeSpan.FromSeconds(Math.Max(Constants.RESOURCE_TIME_BUDGET_PER_FRAME - delta,
                     Constants.RESOURCE_TIME_BUDGET_PER_FRAME * 0.05f) +
@@ -102,7 +100,7 @@ public partial class ResourceManager : Node
 
                     if (!resource.LoadingPrepared)
                     {
-                        // Need to prepare this
+                        // Need to prepare for loading this
                         if (preparingBackgroundResource == null)
                         {
                             TaskExecutor.Instance.AddTask(new Task(() => { PrepareLoad(resource); }), false);
