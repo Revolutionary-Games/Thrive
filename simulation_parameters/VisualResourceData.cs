@@ -36,7 +36,9 @@ public class VisualResourceData : IRegistryType
             throw new InvalidRegistryDataException(name, GetType().Name, "Resource identifier type is none");
 
         // Don't load any of the scenes here as otherwise all of the game visuals would always be forced to be loaded
-        // in memory. Instead individual game states should manage keeping scenes loaded while they might instance them
+        // in memory.
+        // Instead, individual game states should manage scenes that must be loaded while they might instance them
+        // See StageResourcesList
     }
 
     public void ApplyTranslations()

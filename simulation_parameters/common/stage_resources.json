@@ -1,0 +1,52 @@
+{
+  "MicrobeStage": {
+    "RequiredVisualResources": [
+      "Error",
+      "CellBurstEffect",
+      "AgentProjectile",
+      "AgentProjectileCytotoxin",
+      "AgentProjectileMacrolide",
+      "AgentProjectileCyanide",
+      "AgentProjectileChannelInhibitor",
+      "SiderophoreProjectile"
+    ],
+    "RequiredScenes": [
+      "res://assets/models/IceChunkLarge1.tscn",
+      "res://assets/models/IceChunkLarge2.tscn",
+      "res://assets/models/IceChunkLarge3.tscn",
+      "res://assets/models/IceChunkSmall1.tscn",
+      "res://assets/models/IceChunkSmall2.tscn",
+      "res://assets/models/Iceshard1.tscn",
+      "res://assets/models/Iron3.tscn",
+      "res://assets/models/Iron4.tscn",
+      "res://assets/models/Iron5.tscn",
+      "res://assets/models/IronRock1.tscn",
+      "res://assets/models/IronRock2.tscn",
+      "res://assets/models/IronRockLarge2.tscn",
+      "res://assets/models/PhosphateChunkApatiteLarge1.tscn",
+      "res://assets/models/PhosphateChunkApatiteSmall1.tscn",
+      "res://assets/models/PhosphateChunkStruviteLarge.tscn",
+      "res://assets/models/PhosphateChunkStruviteSmall1.tscn",
+      "res://assets/models/PhosphateChunkStruviteSmall2.tscn",
+      "res://assets/models/RadioactiveChunk1.tscn",
+      "res://assets/models/SulfurChunkAluniteLarge1.tscn",
+      "res://assets/models/SulfurChunkAluniteMedium1.tscn",
+      "res://assets/models/SulfurChunkAluniteMedium2.tscn",
+      "res://assets/models/SulfurChunkAluniteSmall1.tscn",
+      "res://assets/models/SulfurChunkSmall1.tscn",
+      "res://assets/models/easter_eggs/GooglyEyeCell.tscn",
+      "res://assets/models/easter_eggs/IronRockBigBanana.tscn",
+      "res://assets/models/easter_eggs/IronRockLittleBanana.tscn",
+      "res://assets/models/easter_eggs/PhosphateRockBigBanana.tscn",
+      "res://assets/models/easter_eggs/PhosphateRockLittleBanana.tscn",
+      "res://assets/models/organelles/Flagellum.tscn",
+      "res://assets/models/organelles/Hydrogenase.tscn",
+      "res://assets/models/organelles/Metabolosome.tscn",
+      "res://assets/models/organelles/Mitochondrion.tscn",
+      "res://assets/models/organelles/NitrogenFixingPlastid.tscn",
+      "res://assets/models/organelles/Nucleus.tscn",
+      "res://src/microbe_stage/CellGraphicsPreload.tscn",
+      "res://src/microbe_stage/ToxinCloud.tscn"
+    ]
+  }
+}

@@ -56,6 +56,7 @@ public partial class SimulationParameters : Node
     private Dictionary<string, Technology> technologies = null!;
     private Dictionary<string, VisualResourceData> visualResources = null!;
     private Dictionary<VisualResourceIdentifier, VisualResourceData> visualResourceByIdentifier = null!;
+    private Dictionary<MainGameState, StageResourcesList> stageResources = null!;
 
     private List<CompoundDefinition>? cachedCloudCompounds;
     private List<Enzyme>? cachedDigestiveEnzymes;
@@ -208,6 +209,11 @@ public partial class SimulationParameters : Node
 
         visualResources =
             LoadRegistry<VisualResourceData>("res://simulation_parameters/common/visual_resources.json");
+
+        var tempStage = LoadRegistry<StageResourcesList>("res://simulation_parameters/common/stage_resources.json");
+
+        // Resources are indexed by the enum key, so convert the dictionary keys
+        stageResources = tempStage.ToDictionary(t => Enum.Parse<MainGameState>(t.Key), t => t.Value);
 
         // Build info is only loaded if the file is present
         if (FileAccess.FileExists(ThriveScriptConstants.BUILD_INFO_RES))
@@ -539,8 +545,13 @@ public partial class SimulationParameters : Node
         return visualResourceByIdentifier[VisualResourceIdentifier.Error];
     }
 
+    public StageResourcesList GetStageResources(MainGameState gameState)
+    {
+        return stageResources[gameState];
+    }
+
     /// <summary>
-    ///   Applies translations to all registry loaded types. Called whenever the locale is changed
+    ///   Applies translations to all registry-loaded types. Called whenever the locale is changed
     /// </summary>
     public void ApplyTranslations()
     {
@@ -572,6 +583,7 @@ public partial class SimulationParameters : Node
         ApplyRegistryObjectTranslations(spaceStructures);
         ApplyRegistryObjectTranslations(technologies);
         ApplyRegistryObjectTranslations(visualResources);
+        ApplyRegistryObjectTranslations(stageResources);
     }
 
     private static void CheckRegistryType<T>(Dictionary<string, T> registry)
@@ -581,6 +593,19 @@ public partial class SimulationParameters : Node
         {
             entry.Value.InternalName = entry.Key;
             entry.Value.Check(entry.Key);
+        }
+    }
+
+    private static void CheckRegistryType<T, TKey>(Dictionary<TKey, T> registry)
+        where T : class, IRegistryType
+        where TKey : notnull
+    {
+        foreach (var entry in registry)
+        {
+            var asString = entry.Key.ToString() ??
+                throw new Exception("registry dictionary key should be convertible to string");
+            entry.Value.InternalName = asString;
+            entry.Value.Check(asString);
         }
     }
 
@@ -596,8 +621,9 @@ public partial class SimulationParameters : Node
         }
     }
 
-    private static void ApplyRegistryObjectTranslations<T>(Dictionary<string, T> registry)
+    private static void ApplyRegistryObjectTranslations<T, TKey>(Dictionary<TKey, T> registry)
         where T : class, IRegistryType
+        where TKey : notnull
     {
         foreach (var entry in registry)
         {
@@ -743,6 +769,7 @@ public partial class SimulationParameters : Node
         CheckRegistryType(spaceStructures);
         CheckRegistryType(technologies);
         CheckRegistryType(visualResources);
+        CheckRegistryType(stageResources);
 
         NameGenerator.Check(string.Empty);
         PatchMapNameGenerator.Check(string.Empty);
