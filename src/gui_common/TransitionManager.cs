@@ -287,10 +287,6 @@ public partial class TransitionManager : ControlWithInput
                     if (fade.CurrentFadeType == Instance.LastFadedType)
                     {
                         front.Skip();
-
-                        // Ensure callbacks aren't lost when skipping
-                        onFinishedCallback?.Invoke();
-
                         return;
                     }
                 }
