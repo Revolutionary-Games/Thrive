@@ -203,7 +203,7 @@ public partial class ResourceManager : Node
         // Controlled by a constant variable that we want to toggle
         // ReSharper disable HeuristicUnreachableCode
 #pragma warning disable CS0162
-        if (Constants.TRACK_ACTUAL_RESOURCE_LOAD_TIMES)
+        if (Constants.TRACK_ACTUAL_RESOURCE_LOAD_TIMES || Constants.REPORT_ALL_LOAD_TIMES)
             stopwatch = Stopwatch.StartNew();
 
         resource.Load();
@@ -214,7 +214,7 @@ public partial class ResourceManager : Node
         if (!resource.Loaded)
             throw new InvalidOperationException("Loading a resource didn't end up setting loaded flag");
 
-        if (Constants.TRACK_ACTUAL_RESOURCE_LOAD_TIMES)
+        if (Constants.TRACK_ACTUAL_RESOURCE_LOAD_TIMES || Constants.REPORT_ALL_LOAD_TIMES)
         {
             var elapsed = stopwatch.Elapsed;
 
