@@ -203,7 +203,8 @@ public sealed class MulticellularGrowthSystem : AEntitySetSystem<float>
                 multicellularGrowth.CompoundsNeededForNextCell.Count - 1 :
                 0;
 
-            // As we modify the list, we are content just consuming one type of compound per frame
+            // TODO: now that CompoundsNeededForNextCell is a list, it should be possible to consume multiple compounds
+            // per frame
             var pair = multicellularGrowth.CompoundsNeededForNextCell![index];
 
             var compound = pair.Compound;

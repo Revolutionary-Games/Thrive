@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Runtime.CompilerServices;
 using Godot;
 using Godot.Collections;
 using Array = Godot.Collections.Array;
@@ -94,6 +95,7 @@ public static class ListUtils
     /// <param name="list">The list to seartch through</param>
     /// <param name="key">The first element of the pair that needs to be found</param>
     /// <returns>The index of the found element or -1 if not found</returns>
+    [MethodImpl(MethodImplOptions.AggressiveInlining)]
     public static int FindIndexByKey<TKey, TValue>(this IReadOnlyList<(TKey Key, TValue Value)> list, TKey key)
     {
         var comparer = EqualityComparer<TKey>.Default;
