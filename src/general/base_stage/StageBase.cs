@@ -21,6 +21,8 @@ public partial class StageBase : NodeWithInput, IStageBase, IGodotEarlyNodeResol
     protected Node rootOfDynamicallySpawned = null!;
     protected PauseMenu pauseMenu = null!;
     protected Control hudRoot = null!;
+
+    protected Node3D? graphicsPreloadNode;
 #pragma warning restore CA2213
 
     [JsonProperty]
@@ -53,6 +55,7 @@ public partial class StageBase : NodeWithInput, IStageBase, IGodotEarlyNodeResol
         NotLoading,
         Loading,
         GraphicsPreload,
+        RenderWithPreload,
         GraphicsClear,
         Finished,
     }
@@ -293,38 +296,103 @@ public partial class StageBase : NodeWithInput, IStageBase, IGodotEarlyNodeResol
 
     protected virtual bool PerformStageLoadingAction()
     {
-        if (StageLoadingState <= LoadState.Loading)
+        switch (StageLoadingState)
         {
-            if (ResourceManager.Instance.ProgressStageLoad())
+            case <= LoadState.Loading:
             {
-                StageLoadingState = LoadState.GraphicsPreload;
+                if (ResourceManager.Instance.ProgressStageLoad())
+                {
+                    StageLoadingState = LoadState.GraphicsPreload;
+                }
+
+                return false;
             }
 
-            return false;
-        }
+            case LoadState.GraphicsPreload:
+                InstantiateGraphicsPreload();
+                StageLoadingState = LoadState.RenderWithPreload;
+                return false;
 
-        if (StageLoadingState == LoadState.GraphicsPreload)
+            case LoadState.RenderWithPreload:
+                StageLoadingState = LoadState.GraphicsClear;
+                return false;
+
+            case LoadState.GraphicsClear:
+                CleanupGraphicsPreload();
+                return true;
+
+            case LoadState.Finished:
+                // Nothing more to do
+                return true;
+
+            default:
+                GD.PrintErr("Unknown stage loading state: ", StageLoadingState);
+                return true;
+        }
+    }
+
+    protected virtual Node3D CreateGraphicsPreloadNode()
+    {
+        throw new GodotAbstractMethodNotOverriddenException();
+    }
+
+    protected virtual void InstantiateGraphicsPreload()
+    {
+        if (graphicsPreloadNode != null)
         {
-            // TODO:
-
-            StageLoadingState = LoadState.GraphicsClear;
-            return false;
+            GD.PrintErr("Graphics pre-load node already exists");
+            graphicsPreloadNode.QueueFree();
         }
 
-        if (StageLoadingState == LoadState.GraphicsClear)
+        graphicsPreloadNode = CreateGraphicsPreloadNode();
+
+        if (graphicsPreloadNode.GetParent() == null)
+            throw new Exception("Graphics preload node has no parent");
+
+        var resources = SimulationParameters.Instance.GetStageResources(GameState);
+
+        CreateGraphicsPreloads(graphicsPreloadNode, resources);
+    }
+
+    protected virtual void CreateGraphicsPreloads(Node3D parent, StageResourcesList resources)
+    {
+        foreach (var resource in resources.RequiredScenes)
         {
-            // TODO:
-            return true;
+            var scene = resource.LoadedScene;
+
+            if (scene == null)
+            {
+                GD.PrintErr("Scene not loaded for preload resource: ", resource.Path);
+                continue;
+            }
+
+            parent.AddChild(scene.Instantiate());
         }
 
-        if (StageLoadingState == LoadState.Finished)
+        foreach (var resource in resources.RequiredVisualResources)
         {
-            // Nothing more to do
-            return true;
+            var scene = resource.LoadedNormalQuality;
+
+            if (scene == null)
+            {
+                GD.PrintErr("Visual not loaded for preload resource: ", resource.VisualIdentifier);
+                continue;
+            }
+
+            parent.AddChild(scene.Instantiate());
+        }
+    }
+
+    protected virtual void CleanupGraphicsPreload()
+    {
+        if (graphicsPreloadNode == null)
+        {
+            GD.PrintErr("No graphics preload to delete");
+            return;
         }
 
-        GD.PrintErr("Unknown stage loading state: ", StageLoadingState);
-        return true;
+        graphicsPreloadNode.QueueFree();
+        graphicsPreloadNode = null;
     }
 
     protected void StartFinalFadeInIfNotStarted()

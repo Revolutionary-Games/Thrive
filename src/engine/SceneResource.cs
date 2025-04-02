@@ -25,7 +25,7 @@ public class SceneResource : IResource
     public bool RequiresSyncPostProcess { get; private set; }
 
     [JsonProperty]
-    public float EstimatedTimeRequired { get; private set; } = 0.1f;
+    public float EstimatedTimeRequired { get; private set; } = 0.025f;
 
     [JsonIgnore]
     public bool LoadingPrepared { get; set; }

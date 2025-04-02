@@ -186,6 +186,16 @@ public partial class StrategyStageBase : StageBase, IStrategyStage
         CurrentGame.TechWeb.OnTechnologyUnlockedHandler += ShowTechnologyUnlockMessage;
     }
 
+    protected override Node3D CreateGraphicsPreloadNode()
+    {
+        // The world point should always be under the camera so that it can be seen
+        var result = new Node3D();
+        rootOfDynamicallySpawned.AddChild(result);
+        result.Position = strategicCamera.WorldLocation;
+
+        return result;
+    }
+
     protected override void OnLightLevelUpdate()
     {
         // TODO: day/night light effects

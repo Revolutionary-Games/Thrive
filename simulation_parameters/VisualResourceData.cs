@@ -33,7 +33,7 @@ public class VisualResourceData : IRegistryType, IResource
     public bool RequiresSyncPostProcess => false;
 
     [JsonProperty]
-    public float EstimatedTimeRequired { get; set; } = 0.05f;
+    public float EstimatedTimeRequired { get; set; } = 0.02f;
 
     [JsonIgnore]
     public bool LoadingPrepared { get; set; }

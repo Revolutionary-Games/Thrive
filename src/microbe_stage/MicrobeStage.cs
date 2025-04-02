@@ -1148,6 +1148,17 @@ public partial class MicrobeStage : CreatureStageBase<Entity, MicrobeWorldSimula
         ModLoader.ModInterface.TriggerOnPlayerMicrobeSpawned(Player);
     }
 
+    protected override Node3D CreateGraphicsPreloadNode()
+    {
+        var result = new Node3D();
+        rootOfDynamicallySpawned.AddChild(result);
+
+        // Point below the camera should always be visible
+        result.Position = new Vector3(Camera.Position.X, -1, Camera.Position.Z);
+
+        return result;
+    }
+
     protected override void OnCanEditStatusChanged(bool canEdit)
     {
         // Ensure the can edit status is still up to date as the change signal is triggered with one frame delay

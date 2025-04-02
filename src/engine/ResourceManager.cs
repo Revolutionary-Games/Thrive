@@ -144,9 +144,10 @@ public partial class ResourceManager : Node
 
         if (totalStageResourcesToLoad == -1)
         {
-            if (!StartStageResourceLoad())
+            if (StartStageResourceLoad())
             {
                 // This returns only true on error
+                gameStateLoaded = true;
                 return true;
             }
 
@@ -154,13 +155,14 @@ public partial class ResourceManager : Node
         }
 
         // Wait until the pending loads are empty
-        if (processingResources.Count > 0)
+        if (queuedResources.Count > 0)
         {
             totalStageResourcesLoaded = stageResources.Count(r => r.Loaded);
             return false;
         }
 
         // Make sure all resources are loaded
+        // As some can still be processing by this point
         if (stageResources.Any(r => !r.Loaded))
         {
             // TODO: does this need unstuck logic if some resource is not getting loaded?
@@ -171,6 +173,7 @@ public partial class ResourceManager : Node
 
         // Done loading
         totalStageResourcesLoaded = totalStageResourcesToLoad;
+        gameStateLoaded = true;
         return true;
     }
 
@@ -220,6 +223,11 @@ public partial class ResourceManager : Node
             if (Math.Abs(difference) > Constants.REPORT_LOAD_TIMES_OF_BY)
             {
                 GD.Print($"Load time estimate off by {difference}s for {resource.Identifier}");
+            }
+
+            if (Constants.REPORT_ALL_LOAD_TIMES)
+            {
+                GD.Print($"Load time: {elapsed.TotalSeconds}s for {resource.Identifier}");
             }
         }
 
@@ -351,7 +359,6 @@ public partial class ResourceManager : Node
 
             GD.PrintErr("Error while trying to get stage resources: ", e);
             GD.PrintErr("WILL NOT PRELOAD RESOURCES; THIS WILL CAUSE LAG SPIKES!");
-            gameStateLoaded = true;
             return true;
         }
 
@@ -386,8 +393,6 @@ public partial class ResourceManager : Node
 
             if (unloaded > 0)
                 GD.Print($"Unloaded {unloaded} stage resources");
-
-            return false;
         }
 
         // The next frame after unloading, start loading new stuff

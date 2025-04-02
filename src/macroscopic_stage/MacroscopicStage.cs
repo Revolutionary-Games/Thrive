@@ -747,6 +747,25 @@ public partial class MacroscopicStage : CreatureStageBase<MacroscopicCreature, D
         SpawnPlayer();
     }
 
+    protected override Node3D CreateGraphicsPreloadNode()
+    {
+        var result = new Node3D();
+
+        // Calculate a point forwards from the camera
+        if (PlayerCamera.CameraNode.IsCurrent() || animationCamera == null)
+        {
+            PlayerCamera.CameraNode.AddChild(result);
+            result.Position = MathUtils.CalculateCameraVisiblePosition(PlayerCamera.CameraNode);
+        }
+        else
+        {
+            animationCamera.AddChild(result);
+            result.Position = MathUtils.CalculateCameraVisiblePosition(animationCamera);
+        }
+
+        return result;
+    }
+
     protected override void UpdatePatchSettings(bool promptPatchNameChange = true)
     {
         // TODO: would be nice to skip this if we are loading a save made in the editor as this gets called twice when
