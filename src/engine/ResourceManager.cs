@@ -407,7 +407,7 @@ public partial class ResourceManager : Node
         }
 
         totalStageResourcesToLoad = stageResources.Count;
-        GD.Print($"Starting preload of {totalStageResourcesLoaded} stage resources");
+        GD.Print($"Starting preload of {totalStageResourcesToLoad} stage resources");
         return false;
     }
 }
