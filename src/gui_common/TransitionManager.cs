@@ -7,6 +7,11 @@ using Godot;
 /// </summary>
 public partial class TransitionManager : ControlWithInput
 {
+    /// <summary>
+    ///   Debugging helper for transitions. Makes all transitions take longer by this factor.
+    /// </summary>
+    private const float FadeDurationMultiplier = 1;
+
     private static TransitionManager? instance;
 
 #pragma warning disable CA2213
@@ -38,9 +43,9 @@ public partial class TransitionManager : ControlWithInput
 
     public override void _Process(double delta)
     {
-        // This is a loop to allow multiple sequences to finish on the same frame (for example if multiple transitions
-        // are queued with the mode to cancel the previous one this wouldn't work correctly if not all sequences could
-        // be deleted during a single update)
+        // This is a loop to allow multiple sequences to finish on the same frame.
+        // For example, if multiple transitions are queued with the mode to cancel the previous one,
+        // this wouldn't work correctly if not all sequences could be deleted during a single update.
         while (queuedSequences.Count > 0)
         {
             var sequence = queuedSequences.Peek();
@@ -70,7 +75,7 @@ public partial class TransitionManager : ControlWithInput
         var screenFade = (ScreenFade)screenFadeScene.Instantiate();
 
         screenFade.CurrentFadeType = type;
-        screenFade.FadeDuration = fadeDuration;
+        screenFade.FadeDuration = fadeDuration * FadeDurationMultiplier;
 
         return screenFade;
     }
@@ -226,7 +231,7 @@ public partial class TransitionManager : ControlWithInput
         public bool Finished { get; private set; }
 
         /// <summary>
-        ///   If true this means this sequence is in the state of executing/has executed a transition.
+        ///   If true, this means this sequence is in the state of executing/has executed a transition.
         /// </summary>
         public bool Running { get; private set; }
 
@@ -276,11 +281,18 @@ public partial class TransitionManager : ControlWithInput
             {
                 var front = queuedTransitions.Peek();
 
-                // Hard disallow incorrect fade order
-                if (front is ScreenFade fade && fade.CurrentFadeType == Instance.LastFadedType)
+                if (front is ScreenFade fade)
                 {
-                    front.Skip();
-                    return;
+                    // Hard-disallow incorrect fade order
+                    if (fade.CurrentFadeType == Instance.LastFadedType)
+                    {
+                        front.Skip();
+
+                        // Ensure callbacks aren't lost when skipping
+                        onFinishedCallback?.Invoke();
+
+                        return;
+                    }
                 }
 
                 Instance.LastFadedType = null;
@@ -288,7 +300,7 @@ public partial class TransitionManager : ControlWithInput
                 return;
             }
 
-            Instance.LastFadedType = null;
+            // This used to set the last fade type to null, however; that causes problems with duplicate fades
 
             // Assume all transitions are finished if the queue is empty.
             Finished = true;
