@@ -513,13 +513,6 @@ public partial class CreatureStageHUDBase<TStage> : HUDWithPausing, ICreatureSta
         if (stage == null)
             throw new InvalidOperationException("Stage not setup for HUD");
 
-        if (stage.IsLoadedFromSave && !returningFromEditor)
-        {
-            // TODO: make it so that the below sequence can be added anyway to not have to have this special logic here
-            stage.OnFinishTransitioning();
-            return;
-        }
-
         ShowLoadingScreen(stage);
     }
 
