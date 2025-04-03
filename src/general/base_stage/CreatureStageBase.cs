@@ -101,7 +101,7 @@ public partial class CreatureStageBase<TPlayer, TSimulation> : StageBase, ICreat
     {
         base._Process(delta);
 
-        if (StageLoadingState != LoadState.Finished)
+        if (StageLoadingState != LoadState.NotLoading)
             return;
 
         if (gameOver)
