@@ -134,6 +134,9 @@ public partial class SpaceStage : StrategyStageBase, ISocietyStructureDataAccess
     {
         base._Process(delta);
 
+        if (StageLoadingState != LoadState.NotLoading)
+            return;
+
         if (zoomingOutFromFleet)
         {
             if (AnimateCameraZoomTowards(targetZoomOutLevel, delta, Constants.SPACE_INITIAL_ANIMATION_ZOOM_SPEED))
