@@ -59,6 +59,15 @@ public sealed class DamageOnTouchSystem : AEntitySetSystem<float>
             if (!collision.SecondEntity.Has<Health>())
                 continue;
 
+            // If this doesn't cause any damage, we can consider this hit here immediately a success
+            if (damageTouch.DamageAmount <= 0)
+            {
+                // TODO: if we don't want a pilus touch to trigger this destroy, then more complex handling here is
+                // needed
+                collided = true;
+                break;
+            }
+
             ref var health = ref collision.SecondEntity.Get<Health>();
 
             if (DealDamage(collision.SecondEntity, ref health, ref damageTouch, delta,
