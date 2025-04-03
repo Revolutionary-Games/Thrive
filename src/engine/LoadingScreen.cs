@@ -55,8 +55,6 @@ public partial class LoadingScreen : Control
     private string loadingDescription = string.Empty;
     private string? artDescription;
 
-    private double totalElapsed;
-
     private LoadingScreen()
     {
         instance = this;
@@ -153,14 +151,7 @@ public partial class LoadingScreen : Control
                 wasVisible = false;
                 randomizeTimer.Stop();
             }
-
-            return;
         }
-
-        // Spin the spinner
-        totalElapsed += delta;
-
-        spinner.Rotation = (float)(totalElapsed * SpinnerSpeed) % MathF.Tau;
     }
 
     /// <summary>
@@ -206,7 +197,6 @@ public partial class LoadingScreen : Control
 
         var category = gallery.AssetCategories.ContainsKey(gameStateName) ? gameStateName : "General";
         var artwork = gallery.AssetCategories[category].Assets.Random(random);
-
         artworkRect.Image = GD.Load<Texture2D>(artwork.ResourcePath);
         ArtDescription = artwork.BuildDescription(true);
     }
@@ -233,7 +223,6 @@ public partial class LoadingScreen : Control
     private void OnBecomeVisible()
     {
         wasVisible = true;
-        totalElapsed = 0;
 
         RandomizeContent();
 
