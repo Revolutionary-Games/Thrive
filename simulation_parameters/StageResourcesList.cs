@@ -13,6 +13,11 @@ public class StageResourcesList : IRegistryType
 
     public List<SceneResource> RequiredScenes = new();
 
+    /// <summary>
+    ///   If set, then grabs all resources from the given stage
+    /// </summary>
+    public MainGameState InheritFrom = MainGameState.Invalid;
+
     // Set through JSON
 #pragma warning disable CS0649
     [JsonProperty("RequiredVisualResources")]
@@ -39,6 +44,24 @@ public class StageResourcesList : IRegistryType
 
         if ((requiredVisualResourcesRaw == null || requiredVisualResourcesRaw.Count < 1) && RequiredScenes.Count < 1)
             throw new InvalidRegistryDataException(name, GetType().Name, "No resources specified");
+
+        if (InheritFrom != MainGameState.Invalid && InheritFrom == Stage)
+            throw new InvalidRegistryDataException(name, GetType().Name, "Cannot inherit from itself");
+
+        // Fail if duplicate items are in the data lists
+#if DEBUG
+        if (requiredVisualResourcesRaw != null)
+        {
+            if (new HashSet<VisualResourceIdentifier>(requiredVisualResourcesRaw).Count !=
+                requiredVisualResourcesRaw.Count)
+            {
+                throw new InvalidRegistryDataException(name, GetType().Name, "Duplicate resources specified");
+            }
+        }
+
+        if (new HashSet<SceneResource>(RequiredScenes).Count != RequiredScenes.Count)
+            throw new InvalidRegistryDataException(name, GetType().Name, "Duplicate scenes specified");
+#endif
     }
 
     public void Resolve(SimulationParameters simulationParameters)
@@ -49,6 +72,15 @@ public class StageResourcesList : IRegistryType
             {
                 RequiredVisualResources.Add(simulationParameters.GetVisualResource(resourceIdentifier));
             }
+        }
+
+        if (InheritFrom != MainGameState.Invalid)
+        {
+            var resources = simulationParameters.GetStageResources(InheritFrom);
+            RequiredVisualResources.AddRange(resources.RequiredVisualResources);
+            RequiredScenes.AddRange(resources.RequiredScenes);
+
+            // TODO: textures
         }
     }
 
