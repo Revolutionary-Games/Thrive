@@ -8,7 +8,7 @@ msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2025-03-28 15:15+0200\n"
-"PO-Revision-Date: 2025-04-03 15:02+0300\n"
+"PO-Revision-Date: 2025-04-03 15:05+0300\n"
 "Last-Translator: Henri Hyyryläinen <hhyyrylainen@revolutionarygamesstudio.com>\n"
 "Language-Team: English <https://translate.revolutionarygamesstudio.com/projects/thrive/thrive-game/en/>\n"
 "Language: en\n"
@@ -4356,7 +4356,7 @@ msgid "OXYGEN_TOLERANCE_TOOLTIP"
 msgstr "How much oxygen-caused damage your species can mitigate before harmful effects. If you are in a patch with too much oxygen compared to your resistance, you will receive negative effects."
 
 msgid "OXYTOXISOME_PROCESSES_DESCRIPTION"
-msgstr "Turns [thrive:compound type=\"atp\"][/thrive:compound] into [thrive:compound type=\"oxytoxy\"][/thrive:compound]. Rate scales with concentration of [thrive:compound type=\"oxygen\"][/thrive:compound]. Can release toxins by pressing [thrive:input]g_fire_toxin[/thrive:input]. When [thrive:compound type=\"oxytoxy\"][/thrive:compound] amount is low, shooting is still possible but will have reduced damage."
+msgstr "Turns [thrive:compound type=\"atp\"][/thrive:compound] into [thrive:compound type=\"oxytoxy\"][/thrive:compound]. Can release toxins by pressing [thrive:input]g_fire_toxin[/thrive:input]. When [thrive:compound type=\"oxytoxy\"][/thrive:compound] amount is low, shooting is still possible but will have reduced damage."
 
 msgid "OXYTOXY_NT"
 msgstr "OxyToxy NT"
@@ -5935,16 +5935,16 @@ msgid "TOXIN_VACUOLE"
 msgstr "Toxin Vacuole"
 
 msgid "TOXIN_VACUOLE_DESCRIPTION"
-msgstr "The toxin vacuole is a vacuole that has been modified for the specific production, storage, and secretion of [thrive:compound type=\"oxytoxy\"][/thrive:compound]. More toxin vacuoles will increase the rate at which toxins can be released. Can be modified to switch the generated toxin type for other effects."
+msgstr "The toxin vacuole is a vacuole that has been modified for the specific production, storage, and secretion of [thrive:compound type=\"oxytoxy\"][/thrive:compound]. More toxin vacuoles will increase the rate at which toxins can be released. Can be modified to switch the generated toxin type for other effects, which may require [thrive:compound type=\"oxygen\"][/thrive:compound] to produce."
 
 msgid "TOXIN_VACUOLE_PROCESSES_DESCRIPTION"
-msgstr "Turns [thrive:compound type=\"atp\"][/thrive:compound] into [thrive:compound type=\"oxytoxy\"][/thrive:compound]. Rate scales with concentration of [thrive:compound type=\"oxygen\"][/thrive:compound]. Can release toxins by pressing [thrive:input]g_fire_toxin[/thrive:input]. When [thrive:compound type=\"oxytoxy\"][/thrive:compound] amount is low, shooting is still possible but will have a reduced damage."
+msgstr "Turns [thrive:compound type=\"atp\"][/thrive:compound] into [thrive:compound type=\"oxytoxy\"][/thrive:compound]. Can release toxins by pressing [thrive:input]g_fire_toxin[/thrive:input]. When [thrive:compound type=\"oxytoxy\"][/thrive:compound] amount is low, shooting is still possible but will have a reduced damage."
 
 msgid "TOXISOME"
 msgstr "Toxisome"
 
 msgid "TOXISOME_DESCRIPTION"
-msgstr "A modified metabolosome responsible for the production of a primitive form of the toxic agent [thrive:compound type=\\\"oxytoxy\\\"][/thrive:compound]. Can be modified to switch the generated toxin type for other effects."
+msgstr "A modified metabolosome responsible for the production of a primitive form of the toxic agent [thrive:compound type=\\\"oxytoxy\\\"][/thrive:compound]. Can be modified to switch the generated toxin type for other effects, which may require [thrive:compound type=\"oxygen\"][/thrive:compound] to produce."
 
 msgid "TO_BE_IMPLEMENTED"
 msgstr "To be Implemented."
