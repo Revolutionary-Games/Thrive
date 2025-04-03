@@ -187,7 +187,7 @@ public partial class MicrobeStage : CreatureStageBase<Entity, MicrobeWorldSimula
         HUD.Init(this);
         HoverInfo.Init(Clouds, Camera);
 
-        // Do stage setup to spawn things and setup all parts of the stage
+        // Do stage setup to spawn things and set up all parts of the stage
         SetupStage();
 
         fluidCurrentDisplay.Init(WorldSimulation, Camera);
