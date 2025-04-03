@@ -100,7 +100,7 @@ public static class ListUtils
     {
         var comparer = EqualityComparer<TKey>.Default;
 
-        for (int i = 0; i < list.Count; i++)
+        for (int i = 0; i < list.Count; ++i)
         {
             if (comparer.Equals(key, list[i].Key))
                 return i;
