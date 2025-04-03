@@ -300,9 +300,16 @@ public partial class StageBase : NodeWithInput, IStageBase, IGodotEarlyNodeResol
         {
             case <= LoadState.Loading:
             {
-                if (ResourceManager.Instance.ProgressStageLoad())
+                var resourceManager = ResourceManager.Instance;
+                if (resourceManager.ProgressStageLoad())
                 {
                     StageLoadingState = LoadState.GraphicsPreload;
+                    UpdateStageLoadingMessage(StageLoadingState, 0, 0);
+                }
+                else
+                {
+                    UpdateStageLoadingMessage(StageLoadingState, resourceManager.StageLoadCurrentProgress,
+                        resourceManager.StageLoadTotalItems);
                 }
 
                 return false;
@@ -311,18 +318,22 @@ public partial class StageBase : NodeWithInput, IStageBase, IGodotEarlyNodeResol
             case LoadState.GraphicsPreload:
                 InstantiateGraphicsPreload();
                 StageLoadingState = LoadState.RenderWithPreload;
+                UpdateStageLoadingMessage(StageLoadingState, 0, 0);
                 return false;
 
             case LoadState.RenderWithPreload:
                 StageLoadingState = LoadState.GraphicsClear;
+                UpdateStageLoadingMessage(StageLoadingState, 0, 0);
                 return false;
 
             case LoadState.GraphicsClear:
                 CleanupGraphicsPreload();
+                UpdateStageLoadingMessage(StageLoadingState, 0, 0);
                 return true;
 
             case LoadState.Finished:
                 // Nothing more to do
+                UpdateStageLoadingMessage(StageLoadingState, 0, 0);
                 return true;
 
             default:
@@ -405,6 +416,26 @@ public partial class StageBase : NodeWithInput, IStageBase, IGodotEarlyNodeResol
 
         GD.Print("Stage load finished, will enter properly now");
         OnTriggerHUDFinalLoadFadeIn();
+    }
+
+    protected virtual void UpdateStageLoadingMessage(LoadState loadState, int currentProgress, int totalItems)
+    {
+        LoadingScreen.Instance.LoadingMessage = Localization.Translate("LOADING_STAGE");
+
+        SetStageLoadingDescription(loadState, currentProgress, totalItems);
+    }
+
+    protected void SetStageLoadingDescription(LoadState loadState, int currentProgress, int totalItems)
+    {
+        if (loadState <= LoadState.GraphicsPreload)
+        {
+            LoadingScreen.Instance.LoadingDescription =
+                Localization.Translate("LOADING_STAGE_ASSETS").FormatSafe(currentProgress, totalItems);
+        }
+        else
+        {
+            LoadingScreen.Instance.LoadingDescription = Localization.Translate("LOADING_GRAPHICS_SHADERS");
+        }
     }
 
     /// <summary>

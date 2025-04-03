@@ -1159,6 +1159,20 @@ public partial class MicrobeStage : CreatureStageBase<Entity, MicrobeWorldSimula
         return result;
     }
 
+    protected override void UpdateStageLoadingMessage(LoadState loadState, int currentProgress, int totalItems)
+    {
+        if (GameWorld.PlayerSpecies is MulticellularSpecies)
+        {
+            LoadingScreen.Instance.LoadingMessage = Localization.Translate("LOADING_MULTICELLULAR_STAGE");
+        }
+        else
+        {
+            LoadingScreen.Instance.LoadingMessage = Localization.Translate("LOADING_MICROBE_STAGE");
+        }
+
+        SetStageLoadingDescription(loadState, currentProgress, totalItems);
+    }
+
     protected override void OnCanEditStatusChanged(bool canEdit)
     {
         // Ensure the can edit status is still up to date as the change signal is triggered with one frame delay

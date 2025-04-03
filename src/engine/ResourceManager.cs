@@ -59,6 +59,9 @@ public partial class ResourceManager : Node
 
     public Texture2D LoadingIcon { get; private set; } = null!;
 
+    public int StageLoadCurrentProgress => totalStageResourcesLoaded;
+    public int StageLoadTotalItems => totalStageResourcesToLoad;
+
     public override void _Ready()
     {
         base._Ready();
