@@ -64,7 +64,7 @@ public partial class StrategyStageBase : StageBase, IStrategyStage
     {
         base._Process(delta);
 
-        if (StageLoadingState != LoadState.Finished)
+        if (StageLoadingState != LoadState.NotLoading)
             return;
 
         if (!IsGameOver())
