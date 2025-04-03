@@ -13,8 +13,11 @@ public class StageResourcesList : IRegistryType
 
     public List<SceneResource> RequiredScenes = new();
 
+    // Set through JSON
+#pragma warning disable CS0649
     [JsonProperty("RequiredVisualResources")]
     private List<VisualResourceIdentifier>? requiredVisualResourcesRaw;
+#pragma warning restore CS0649
 
     [JsonIgnore]
     public string InternalName { get; set; } = null!;
