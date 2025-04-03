@@ -204,7 +204,7 @@ public class EnzymeStringConverter : RegistryTypeStringSingleTypeConverter<Enzym
 /// <summary>
 ///   Specific converter for <see cref="Meteor"/>
 /// </summary>
-public class MeteorStringConverter : RegistryTypeStringSingleTypeConverter<Enzyme>
+public class MeteorStringConverter : RegistryTypeStringSingleTypeConverter<Meteor>
 {
     protected override string TypeName => "meteor";
 }

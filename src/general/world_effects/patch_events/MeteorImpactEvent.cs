@@ -8,7 +8,7 @@ using Xoshiro.PRNG64;
 [JSONDynamicTypeAllowed]
 public class MeteorImpactEvent : IWorldEffect
 {
-    private const string TemplateBiomeForChunks = "patch_event_template_biome";
+    private const string TemplateBiomeForChunks = "patchEventTemplateBiome";
 
     [JsonProperty]
     private readonly HashSet<int> modifiedPatchesIds = new();
@@ -264,7 +264,7 @@ public class MeteorImpactEvent : IWorldEffect
         {
             if (!targetWorld.Map.Patches.TryGetValue(index, out var patch))
             {
-                GD.PrintErr("Patch exited the world");
+                GD.PrintErr("Patch exited the world in meteor impact event");
                 continue;
             }
 

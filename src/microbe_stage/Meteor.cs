@@ -10,7 +10,7 @@ public class Meteor : IRegistryType
 
     public List<string> Chunks = new();
 
-    public Dictionary<Compound, double> Compounds = new();
+    public Dictionary<Compound, float> Compounds = new();
 
     public double Probability;
 
@@ -22,7 +22,6 @@ public class Meteor : IRegistryType
 
     public void ApplyTranslations()
     {
-        TranslationHelper.ApplyTranslations(this);
     }
 
     public override string ToString()

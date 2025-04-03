@@ -6,7 +6,7 @@ using Xoshiro.PRNG64;
 [JSONDynamicTypeAllowed]
 public class GlobalGlaciationEvent : IWorldEffect
 {
-    private const string TemplateBiomeForIceChunks = "patch_event_template_biome";
+    private const string TemplateBiomeForIceChunks = "patchEventTemplateBiome";
     private const string Background = "iceshelf";
 
     private static readonly string[] IceChunksConfigurations =
@@ -218,12 +218,6 @@ public class GlobalGlaciationEvent : IWorldEffect
         patch.LogEvent(new LocalizedString("GLOBAL_GLACIATION_EVENT"),
             true, true, "GlobalGlaciationEvent.svg");
 
-        if (patch.Visibility == MapElementVisibility.Shown)
-        {
-            targetWorld.LogEvent(new LocalizedString("GLOBAL_GLACIATION_EVENT_LOG", patch.Name),
-                true, false, "GlobalGlaciationEvent.svg");
-        }
-
         patch.AddPatchEventRecord(WorldEffectVisuals.GlobalGlaciation, totalTimePassed);
     }
 
@@ -254,7 +248,7 @@ public class GlobalGlaciationEvent : IWorldEffect
         {
             if (!modifiedPatchesIds.Contains(patch.ID))
             {
-                GD.PrintErr("Patch exited the world");
+                GD.PrintErr("Patch exited the world in global glaciation event");
                 continue;
             }
 
