@@ -1,0 +1,13 @@
+[gd_scene load_steps=3 format=3 uid="uid://b6euks73m58pm"]
+
+[ext_resource type="Texture2D" uid="uid://c8mvyi3d47yvq" path="res://assets/textures/gui/bevel/Eruption.svg" id="1_fs3h8"]
+[ext_resource type="Script" uid="uid://c7si5gn0lkq5l" path="res://src/microbe_stage/editor/PatchMapEventIcon.cs" id="2_q8kkb"]
+
+[node name="Eruption" type="TextureRect"]
+custom_minimum_size = Vector2(16, 16)
+tooltip_text = "EVENT_ERUPTION_TOOLTIP"
+mouse_filter = 0
+texture = ExtResource("1_fs3h8")
+expand_mode = 2
+stretch_mode = 4
+script = ExtResource("2_q8kkb")

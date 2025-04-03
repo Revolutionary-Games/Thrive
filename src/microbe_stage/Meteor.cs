@@ -6,7 +6,7 @@ using ThriveScriptsShared;
 /// </summary>
 public class Meteor : IRegistryType
 {
-    public WorldEffectVisuals VisualEffect;
+    public WorldEffectVisuals.WorldEffectTypes VisualEffect;
 
     public List<string> Chunks = new();
 
