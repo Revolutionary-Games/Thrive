@@ -427,7 +427,7 @@ public partial class StageBase : NodeWithInput, IStageBase, IGodotEarlyNodeResol
 
     protected void SetStageLoadingDescription(LoadState loadState, int currentProgress, int totalItems)
     {
-        if (loadState <= LoadState.GraphicsPreload)
+        if (loadState < LoadState.GraphicsPreload)
         {
             LoadingScreen.Instance.LoadingDescription =
                 Localization.Translate("LOADING_STAGE_ASSETS").FormatSafe(currentProgress, totalItems);
