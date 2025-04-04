@@ -7,8 +7,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2025-03-27 20:24+0100\n"
-"PO-Revision-Date: 2025-03-20 20:10+0000\n"
+"POT-Creation-Date: 2025-04-04 13:53+0300\n"
+"PO-Revision-Date: 2025-04-04 10:42+0000\n"
 "Last-Translator: Anonymous <noreply@weblate.org>\n"
 "Language-Team: Polish <https://translate.revolutionarygamesstudio.com/projects/thrive/thrive-game/pl/>\n"
 "Language: pl\n"
@@ -192,6 +192,25 @@ msgstr "i"
 msgid "ANISOTROPIC_FILTERING"
 msgstr "Filtrowanie anizotropowe:"
 
+msgid "ANTIALIASING_MSAA_TAA"
+msgstr ""
+
+#, fuzzy
+msgid "ANTI_ALIASING_FXAA"
+msgstr "Wygładzanie krawędzi:"
+
+#, fuzzy
+msgid "ANTI_ALIASING_MODE"
+msgstr "Wygładzanie krawędzi:"
+
+#, fuzzy
+msgid "ANTI_ALIASING_MSAA"
+msgstr "Wygładzanie krawędzi:"
+
+#, fuzzy
+msgid "ANTI_ALIASING_TAA"
+msgstr "Wygładzanie krawędzi:"
+
 msgid "APPEARANCE"
 msgstr "Wygląd"
 
@@ -311,6 +330,7 @@ msgstr "Sierpień"
 msgid "AUTO"
 msgstr "Auto"
 
+#, fuzzy
 msgid "AUTO-EVO_EXPLANATION_EXPLANATION"
 msgstr "Ten panel pokazuje liczby na których bazuje przewidywanie auto-ewolucji. Całkowita energia, którą gątunek jest w stanie przyswoić, i koszt utrzymania każdego osobnika determinują ostateczną populację. Auto-ewolucja wykorzystuje uproszczony model rzeczywistości w celu obliczenia jak dobrze dany gatunek sobie poradzi. Na każde źródło pożywienia dana jest informacja ile energii gatunek z niego czerpie."
 
@@ -1824,6 +1844,7 @@ msgstr ""
 "\n"
 "Aby kontynuować, wybierz organellum z lewego panelu (cytozol będzie dobrym wyborem), następnie kliknij na heks na środku ekranu aby dodać to organellum do twojej komórki."
 
+#, fuzzy
 msgid "EDITOR_TUTORIAL_EDITOR_TEXT"
 msgstr ""
 "Witaj w [b]Edytorze Mikrobów[/b].\n"
@@ -2028,27 +2049,6 @@ msgstr "Eustarium"
 #, fuzzy
 msgid "EVENT_ERUPTION_TOOLTIP"
 msgstr "To jest dokładne zatwierdzenie kodu, z którego została złożona ta wersja Thrive"
-
-msgid "EVENT_METEOR_GLUCOSE"
-msgstr ""
-
-#, fuzzy
-msgid "EVENT_METEOR_IRON"
-msgstr "{0}: +{1} ATP"
-
-#, fuzzy
-msgid "EVENT_METEOR_PHOSPHATES"
-msgstr "Stwórz fosforany"
-
-#, fuzzy
-msgid "EVENT_METEOR_PLAIN"
-msgstr "To jest dokładne zatwierdzenie kodu, z którego została złożona ta wersja Thrive"
-
-msgid "EVENT_METEOR_RADIOACTIVE"
-msgstr ""
-
-msgid "EVENT_METEOR_SULFUR"
-msgstr ""
 
 msgid "EVOLUTIONARY_TREE"
 msgstr "Drzewo Filogenetyczne"
@@ -2420,10 +2420,6 @@ msgid "GLOBAL_GLACIATION_EVENT"
 msgstr "Całkowita populacja:"
 
 #, fuzzy
-msgid "GLOBAL_GLACIATION_EVENT_LOG"
-msgstr "Całkowita populacja:"
-
-#, fuzzy
 msgid "GLOBAL_GLACIATION_EVENT_TOOLTIP"
 msgstr "Przejdź do Fazy Przebudzenia. Dostępne w momencie osiągniecia wystarczającej siły umysłu (typ komórki z aksonem)."
 
@@ -2592,6 +2588,9 @@ msgstr "ID nie jest prawidłowym numerem"
 
 msgid "ID_NUMBER"
 msgstr "Numer ID"
+
+msgid "IF_FALLBACK_RENDERER_USED_ALL_NOT_AVAILABLE"
+msgstr ""
 
 #, fuzzy
 msgid "IMAGE_FILE_TYPES"
@@ -3235,14 +3234,34 @@ msgid "LOADING_GAME"
 msgstr "Wczytywanie Gry"
 
 #, fuzzy
+msgid "LOADING_GRAPHICS_SHADERS"
+msgstr "Wczytywanie Gry"
+
+#, fuzzy
 msgid "LOADING_MACROSCOPIC_EDITOR"
 msgstr "Wczytywanie edytora mikrobów"
 
 msgid "LOADING_MICROBE_EDITOR"
 msgstr "Wczytywanie edytora mikrobów"
 
+#, fuzzy
+msgid "LOADING_MICROBE_STAGE"
+msgstr "Etap Mikroba"
+
 msgid "LOADING_MULTICELLULAR_EDITOR"
 msgstr "Wczytywanie Edytora Wielokomórkowca"
+
+#, fuzzy
+msgid "LOADING_MULTICELLULAR_STAGE"
+msgstr "Wczytywanie Edytora Wielokomórkowca"
+
+#, fuzzy
+msgid "LOADING_STAGE"
+msgstr "Wczytywanie Gry"
+
+#, fuzzy
+msgid "LOADING_STAGE_ASSETS"
+msgstr "Wczytywanie Gry"
 
 msgid "LOAD_FINISHED"
 msgstr "Wczytywanie zakończone"
@@ -3283,6 +3302,13 @@ msgstr "L"
 #, fuzzy
 msgid "LOCK_DAY_NIGHT_CYCLE"
 msgstr "Włącz cykl dnia i nocy"
+
+#, fuzzy
+msgid "LOWER_SCALE_INCREASES_PERFORMANCE"
+msgstr "(większe wartości zwiększają wydajność)"
+
+msgid "LOWER_VALUE_MAKES_SHARPER_IMAGE"
+msgstr ""
 
 #, fuzzy
 msgid "LOW_MENU_PERFORMANCE"
@@ -3432,15 +3458,6 @@ msgid "META_THREADS_TOOLTIP"
 msgstr ""
 "Nie można automatycznie wykryć czy hyperthreading jest włączony.\n"
 "Dotyczy to domyślnej liczby wątków, ponieważ wątki hyperthreadingu nie są tak szybkie jak prawdziwe rdzenie procesora."
-
-msgid "METEOR_IMPACT_EVENT"
-msgstr ""
-
-msgid "METEOR_STRIKE_START_EVENT_LOG_PLURAL"
-msgstr ""
-
-msgid "METEOR_STRIKE_START_EVENT_LOG_SINGULAR"
-msgstr ""
 
 msgid "METRICS"
 msgstr "Wskaźniki Wydajności"
@@ -3709,6 +3726,7 @@ msgstr ""
 "Kiedy masz [thrive:compound type=\"atp\"][/thrive:compound], twoje zdrowie się regeneruje.\n"
 "Pilnuj aby zbierać wystarczająco [thrive:compound type=\"glucose\"]Glukozy[/thrive:compound] by móc produkować [thrive:compound type=\"atp\"][/thrive:compound]."
 
+#, fuzzy
 msgid "MICROBE_STAGE_INITIAL"
 msgstr ""
 "Na odległej obcej planecie, eony aktywności wulkanicznej i upadków meteorytów doprowadziły do powstania prawdziwego fenomenu we wszechświecie.\n"
@@ -4576,6 +4594,7 @@ msgstr ""
 "Ta część pokazuje bilans całkowity (produkcja - konsumpcja) dla każdego związku.\n"
 "Na przykład by stworzyć komórkę roślinną, bilans glukozy powinien być pozytywny z zapasem."
 
+#, fuzzy
 msgid "OXYTOXISOME_PROCESSES_DESCRIPTION"
 msgstr "Przekształca [thrive:compound type=\"atp\"][/thrive:compound] w [thrive:compound type=\"oxytoxy\"]Oksytoksynę[/thrive:compound]. Tempo skaluje się ze stężeniem [thrive:compound type=\"oxygen\"]Tlenu[/thrive:compound]. Może wypuszczać toksyny naciskając [thrive:input]g_fire_toxin[/thrive:input]. Gdy ilość [thrive:compound type=\"oxytoxy\"]Oksytoksyny[/thrive:compound] jest niska, strzelanie jest dalej możliwe, ale będzie zadawać mniejsze obrażenia."
 
@@ -4942,6 +4961,10 @@ msgstr "Powtórz ostatnią czynność"
 
 msgid "REFRESH"
 msgstr "Odśwież"
+
+#, fuzzy
+msgid "RENDER_SCALE"
+msgstr "Wykorzystany renderer:"
 
 msgid "REPORT"
 msgstr "Raport"
@@ -6215,9 +6238,11 @@ msgstr ""
 "Toksyczna\n"
 "Wakuola"
 
+#, fuzzy
 msgid "TOXIN_VACUOLE_DESCRIPTION"
 msgstr "Toksyczna wakuola to wakuola zmodyfikowana do specyficznej produkcji, magazynowania i uwalniania [thrive:compound type=\"oxytoxy\"]Oksytoksyny[/thrive:compound]. Więcej toksycznych wakuoli zwiększa tempo z którym można wypuszczać toksyny. Może być modyfikowana aby zmienić produkowany typ toksyny dla uzyskania innych efektów."
 
+#, fuzzy
 msgid "TOXIN_VACUOLE_PROCESSES_DESCRIPTION"
 msgstr "Przekształca [thrive:compound type=\"atp\"][/thrive:compound] w [thrive:compound type=\"oxytoxy\"]Oksytoksynę[/thrive:compound]. Tempo skaluje się ze stężeniem [thrive:compound type=\"oxygen\"][/thrive:compound]. Może wypuszczać toksyny po naciśnięciu [thrive:input]g_fire_toxin[/thrive:input]. Gdy ilość [thrive:compound type=\"oxytoxy\"]Oksytoksyny[/thrive:compound] jest niska, strzelanie jest dalej możliwe, ale będzie zadawać mniejsze obrażenia."
 
@@ -6302,6 +6327,17 @@ msgstr ""
 "Jeśli twoja produkcja [thrive:compound type=\"atp\"][/thrive:compound] jest negatywna, postaraj się ją zwiększyć albo dodać [b]przechowywanie[/b] [thrive:icon]StorageIcon[/thrive:icon] by móc się poruszać w małych impulsach."
 
 #, fuzzy
+msgid "TUTORIAL_MICROBE_EDITOR_DIGESTION_STAT"
+msgstr ""
+"To są podstawy edycji twojego gatunku. Na koniec, możesz zmienić nazwę swojego gatunku poprzez kliknięcie nazwy w lewym, dolnym rogu i edycję tekstu.\n"
+"\n"
+"Możesz wypróbować inne zakładki pod paskiem [b]PM [thrive:icon]MP[/thrive:icon][/b] aby sprawdzić inne sposoby w jakie możesz zmienić swoją komórkę.\n"
+"\n"
+"Żeby przetrwać w tym nieprzyjaznym świecie, będziesz musiał znaleźć niezawodne źródło [thrive:compound type=\"atp\"][/thrive:compound] jako iż poziom naturalnej [thrive:compound type=\"glucose\"][/thrive:compound] [b]gwałtownie spadnie[/b].\n"
+"\n"
+"Powodzenia!"
+
+#, fuzzy
 msgid "TUTORIAL_MICROBE_EDITOR_ENDING_TEXT"
 msgstr ""
 "To są podstawy edycji twojego gatunku. Na koniec, możesz zmienić nazwę swojego gatunku poprzez kliknięcie nazwy w lewym, dolnym rogu i edycję tekstu.\n"
@@ -6337,6 +6373,7 @@ msgstr ""
 msgid "TUTORIAL_MICROBE_EDITOR_MODIFY_ORGANELLE"
 msgstr ""
 
+#, fuzzy
 msgid "TUTORIAL_MICROBE_EDITOR_NEGATIVE_ATP_BALANCE"
 msgstr ""
 "Twój bilans [thrive:compound type=\"atp\"][/thrive:compound] jest negatywny.\n"
@@ -6347,6 +6384,7 @@ msgstr ""
 "\n"
 "Alternatywnie, możesz usunąć niepotrzebne organelle."
 
+#, fuzzy
 msgid "TUTORIAL_MICROBE_EDITOR_NO_CHANGES_MADE"
 msgstr ""
 "Nie dokonałeś żadnych zmian w swoim gatunku.\n"
@@ -6385,6 +6423,7 @@ msgstr ""
 "\n"
 "Kliknij przycisk cofnij aby kontynuować."
 
+#, fuzzy
 msgid "TUTORIAL_MICROBE_EDITOR_SELECT_ORGANELLE_TEXT"
 msgstr ""
 "Wybierając części z menu, [u]zwracaj szczególną uwagę na podpowiedzi[/u], które wyskakują, by zrozumieć co te części robią. Mogą one [u]bardziej szkodzić niż pomagać jeśli nie przejmujesz się ich działaniem[/u].\n"
@@ -6452,6 +6491,7 @@ msgstr ""
 "\n"
 "Podążaj za linią z twojej komórki do pobliskiego wchłanialnego obiektu."
 
+#, fuzzy
 msgid "TUTORIAL_MICROBE_STAGE_HELP_MENU_AND_ZOOM"
 msgstr ""
 "Trudno ci? Sprawdź menu pomocy. Możesz je otworzyć klikając na znak zapytania w lewym dolnym rogu.\n"
@@ -6715,6 +6755,18 @@ msgstr "Ładowanie..."
 
 msgid "UPLOAD_SUCCEEDED"
 msgstr "Ładowanie Powiodło Się"
+
+msgid "UPSCALE_BILINEAR"
+msgstr ""
+
+msgid "UPSCALE_FSR_1"
+msgstr ""
+
+msgid "UPSCALE_FSR_22"
+msgstr ""
+
+msgid "UPSCALE_SHARPENING_FSR"
+msgstr ""
 
 msgid "USED_LIBRARIES_LICENSES"
 msgstr "Licencje I Użyte Biblioteki Zasobów"
@@ -8734,6 +8786,10 @@ msgstr "Oddal"
 #~ "Fotosynteza jest nieefektywna nocą.\n"
 #~ "Upewnij się, że masz wystarczająco magazynu[thrive:icon]StorageIcon[/thrive:icon] by przetrwać noc."
 
+#, fuzzy
+#~ msgid "GLOBAL_GLACIATION_EVENT_LOG"
+#~ msgstr "Całkowita populacja:"
+
 #~ msgid "IRON_CHEMOLITHOAUTOTROPHY"
 #~ msgstr "Utlenianie Żelaza"
 
@@ -8926,6 +8982,10 @@ msgstr "Oddal"
 #, fuzzy
 #~ msgid "ERUPTION_IN"
 #~ msgstr "Pączkowanie"
+
+#, fuzzy
+#~ msgid "EVENT_TOOLTIP_ERUPTION"
+#~ msgstr "{0}: +{1} ATP"
 
 #~ msgid "THE_AMOUNT_OF_GLUCOSE_HAS_BEEN_REDUCED"
 #~ msgstr "Ilość glukozy została zredukowana do {0} poprzedniej ilości."

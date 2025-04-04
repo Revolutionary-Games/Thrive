@@ -7,8 +7,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2025-03-27 20:24+0100\n"
-"PO-Revision-Date: 2025-02-06 13:29+0000\n"
+"POT-Creation-Date: 2025-04-04 13:53+0300\n"
+"PO-Revision-Date: 2025-04-04 10:42+0000\n"
 "Last-Translator: Anonymous <noreply@weblate.org>\n"
 "Language-Team: Swedish <https://translate.revolutionarygamesstudio.com/projects/thrive/thrive-game/sv/>\n"
 "Language: sv\n"
@@ -192,6 +192,25 @@ msgstr "och"
 msgid "ANISOTROPIC_FILTERING"
 msgstr ""
 
+msgid "ANTIALIASING_MSAA_TAA"
+msgstr ""
+
+#, fuzzy
+msgid "ANTI_ALIASING_FXAA"
+msgstr "Multispel anti-aliasing:"
+
+#, fuzzy
+msgid "ANTI_ALIASING_MODE"
+msgstr "Multispel anti-aliasing:"
+
+#, fuzzy
+msgid "ANTI_ALIASING_MSAA"
+msgstr "Multispel anti-aliasing:"
+
+#, fuzzy
+msgid "ANTI_ALIASING_TAA"
+msgstr "Multispel anti-aliasing:"
+
 msgid "APPEARANCE"
 msgstr "Utseende"
 
@@ -314,6 +333,7 @@ msgstr "Augusti"
 msgid "AUTO"
 msgstr "Automatiskt"
 
+#, fuzzy
 msgid "AUTO-EVO_EXPLANATION_EXPLANATION"
 msgstr "Den här panelen visar talen som auto-evolutionen funkar från. Den totala energin en art är kapabel av att fånga, och kosten per individ av arten, bestämmer den slutliga befolkningen. Auto-evolutionen använder en simplifierad modell av verkligheten för att beräkna hur bra en art utför baserat på energin de kan samla. För varje matkälla, det visas hur mycket energi arten får från det. Additionelt är den totala energin som är tillgänglig från den källan är visad. En liten del av arten får ut av den totala energin baserat på hur stor fitness är mätit mot den totala fitness. Fitness är en metric av hur bra en art kan utilisera den matkällan."
 
@@ -2085,27 +2105,6 @@ msgstr "Flodmynning"
 msgid "EVENT_ERUPTION_TOOLTIP"
 msgstr "Självmord"
 
-msgid "EVENT_METEOR_GLUCOSE"
-msgstr ""
-
-#, fuzzy
-msgid "EVENT_METEOR_IRON"
-msgstr "{0}:+{1} ATP"
-
-#, fuzzy
-msgid "EVENT_METEOR_PHOSPHATES"
-msgstr "Spawna fosfat"
-
-#, fuzzy
-msgid "EVENT_METEOR_PLAIN"
-msgstr "Självmord"
-
-msgid "EVENT_METEOR_RADIOACTIVE"
-msgstr ""
-
-msgid "EVENT_METEOR_SULFUR"
-msgstr ""
-
 #, fuzzy
 msgid "EVOLUTIONARY_TREE"
 msgstr "Av Revolutionary Games Studio"
@@ -2516,10 +2515,6 @@ msgid "GLOBAL_GLACIATION_EVENT"
 msgstr "{0} befolkning förändrades av {1} på grund av: {2}"
 
 #, fuzzy
-msgid "GLOBAL_GLACIATION_EVENT_LOG"
-msgstr "{0} befolkning förändrades av {1} på grund av: {2}"
-
-#, fuzzy
 msgid "GLOBAL_GLACIATION_EVENT_TOOLTIP"
 msgstr "Nå uppvakningsteget. Tillgänglig när du har tillräckigt med hjärnkraft (axonvävnad)."
 
@@ -2688,6 +2683,9 @@ msgid "ID_IS_NOT_A_NUMBER"
 msgstr ""
 
 msgid "ID_NUMBER"
+msgstr ""
+
+msgid "IF_FALLBACK_RENDERER_USED_ALL_NOT_AVAILABLE"
 msgstr ""
 
 #, fuzzy
@@ -3373,6 +3371,10 @@ msgid "LOADING_GAME"
 msgstr "Laddar Spel"
 
 #, fuzzy
+msgid "LOADING_GRAPHICS_SHADERS"
+msgstr "Laddar Spel"
+
+#, fuzzy
 msgid "LOADING_MACROSCOPIC_EDITOR"
 msgstr "Laddar mikrobredigerare"
 
@@ -3380,8 +3382,24 @@ msgid "LOADING_MICROBE_EDITOR"
 msgstr "Laddar mikrobredigerare"
 
 #, fuzzy
+msgid "LOADING_MICROBE_STAGE"
+msgstr "Mikrob Stadiet"
+
+#, fuzzy
 msgid "LOADING_MULTICELLULAR_EDITOR"
 msgstr "Laddar mikrobredigerare"
+
+#, fuzzy
+msgid "LOADING_MULTICELLULAR_STAGE"
+msgstr "Laddar mikrobredigerare"
+
+#, fuzzy
+msgid "LOADING_STAGE"
+msgstr "Laddar Spel"
+
+#, fuzzy
+msgid "LOADING_STAGE_ASSETS"
+msgstr "Laddar Spel"
 
 msgid "LOAD_FINISHED"
 msgstr "Färdigladdat"
@@ -3412,6 +3430,13 @@ msgid "LOCAL_INITIAL_LETTER"
 msgstr ""
 
 msgid "LOCK_DAY_NIGHT_CYCLE"
+msgstr ""
+
+#, fuzzy
+msgid "LOWER_SCALE_INCREASES_PERFORMANCE"
+msgstr "(högre värden ökar spelhastighet)"
+
+msgid "LOWER_VALUE_MAKES_SHARPER_IMAGE"
 msgstr ""
 
 #, fuzzy
@@ -3563,15 +3588,6 @@ msgid "META_THREADS_TOOLTIP"
 msgstr ""
 "Det går inte att automatiskt upptäcka om flertrådning är aktivt eller inte.\n"
 "Detta påverkar standardantalet trådar eftersom flertrådnings-trådar inte är lika snabba som riktiga CPU-kärnor."
-
-msgid "METEOR_IMPACT_EVENT"
-msgstr ""
-
-msgid "METEOR_STRIKE_START_EVENT_LOG_PLURAL"
-msgstr ""
-
-msgid "METEOR_STRIKE_START_EVENT_LOG_SINGULAR"
-msgstr ""
 
 #, fuzzy
 msgid "METRICS"
@@ -5099,6 +5115,9 @@ msgstr "Gör om den senaste handlingen"
 msgid "REFRESH"
 msgstr "Ladda om"
 
+msgid "RENDER_SCALE"
+msgstr ""
+
 msgid "REPORT"
 msgstr "Rapportera"
 
@@ -6544,6 +6563,23 @@ msgid "TUTORIAL_MICROBE_EDITOR_COMPOUND_BALANCES"
 msgstr "Mikrob Fri Byggredigerare"
 
 #, fuzzy
+msgid "TUTORIAL_MICROBE_EDITOR_DIGESTION_STAT"
+msgstr ""
+"Prokaryota strukturer\n"
+"\n"
+"Metabolosomer: Producerar ATP från glukos\n"
+"\n"
+"Kemosyntiserande proteiner: Producerar hälften av glukosen ur svavelväte som en kemoplast, men utför också glykolys, tar upp 1 hex\n"
+"\n"
+"Thylakoider: Producerar 1/3 av mängden glukos som en normal kloroplast, men utför också glykolys och tar upp 1 Hex\n"
+"\n"
+"Rusticyanin: Omvandlar järn till ATP\n"
+"\n"
+"Nitrogenas: Konverterar atmosfäriskt kväve och ATP till ammoniak anaerobt\n"
+"\n"
+"Cytoplasmer: Har lagringsutrymme och utför glykolys (producerar små mängder ATP)"
+
+#, fuzzy
 msgid "TUTORIAL_MICROBE_EDITOR_ENDING_TEXT"
 msgstr "Mikrob Fri Byggredigerare"
 
@@ -6902,6 +6938,18 @@ msgid "UPLOADING_DOT_DOT_DOT"
 msgstr "Laddar upp..."
 
 msgid "UPLOAD_SUCCEEDED"
+msgstr ""
+
+msgid "UPSCALE_BILINEAR"
+msgstr ""
+
+msgid "UPSCALE_FSR_1"
+msgstr ""
+
+msgid "UPSCALE_FSR_22"
+msgstr ""
+
+msgid "UPSCALE_SHARPENING_FSR"
 msgstr ""
 
 msgid "USED_LIBRARIES_LICENSES"
@@ -8924,6 +8972,10 @@ msgstr "Zooma ut"
 #~ "[b]Grundhexstorlek[/b]\n"
 #~ "  {4}"
 
+#, fuzzy
+#~ msgid "GLOBAL_GLACIATION_EVENT_LOG"
+#~ msgstr "{0} befolkning förändrades av {1} på grund av: {2}"
+
 #~ msgid "IRON_CHEMOLITHOAUTOTROPHY"
 #~ msgstr "Järnkemolitoautotrofi"
 
@@ -9089,6 +9141,10 @@ msgstr "Zooma ut"
 #, fuzzy
 #~ msgid "ERUPTION_IN"
 #~ msgstr "Producerar"
+
+#, fuzzy
+#~ msgid "EVENT_TOOLTIP_ERUPTION"
+#~ msgstr "{0}:+{1} ATP"
 
 #~ msgid "THE_AMOUNT_OF_GLUCOSE_HAS_BEEN_REDUCED"
 #~ msgstr "Mängden glukos har minskats med {0} av den tidigare mängden."

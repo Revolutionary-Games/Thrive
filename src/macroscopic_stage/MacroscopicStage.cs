@@ -155,7 +155,7 @@ public partial class MacroscopicStage : CreatureStageBase<MacroscopicCreature, D
     {
         base._Process(delta);
 
-        if (gameOver)
+        if (gameOver || StageLoadingState != LoadState.NotLoading)
             return;
 
         if (playerExtinctInCurrentPatch)
@@ -314,6 +314,8 @@ public partial class MacroscopicStage : CreatureStageBase<MacroscopicCreature, D
 
         // Reset all growth progress of the player
         Player.ResetGrowth();
+
+        // TODO: HUD animation and loading screen
 
         if (!CurrentGame!.TutorialState.Enabled)
         {
@@ -743,6 +745,25 @@ public partial class MacroscopicStage : CreatureStageBase<MacroscopicCreature, D
         UpdatePatchSettings();
 
         SpawnPlayer();
+    }
+
+    protected override Node3D CreateGraphicsPreloadNode()
+    {
+        var result = new Node3D();
+
+        // Calculate a point forwards from the camera
+        if (PlayerCamera.CameraNode.IsCurrent() || animationCamera == null)
+        {
+            PlayerCamera.CameraNode.AddChild(result);
+            result.Position = MathUtils.CalculateCameraVisiblePosition(PlayerCamera.CameraNode);
+        }
+        else
+        {
+            animationCamera.AddChild(result);
+            result.Position = MathUtils.CalculateCameraVisiblePosition(animationCamera);
+        }
+
+        return result;
     }
 
     protected override void UpdatePatchSettings(bool promptPatchNameChange = true)

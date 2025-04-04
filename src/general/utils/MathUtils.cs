@@ -176,4 +176,11 @@ public static class MathUtils
         float distance = Math.Abs(p1 - p2);
         return distance <= Math.PI ? distance : (float)(2 * Math.PI) - distance;
     }
+
+    public static Vector3 CalculateCameraVisiblePosition(Node3D camera, float distance = 25)
+    {
+        var forward = camera.Transform.Basis.GetRotationQuaternion() * Vector3.Forward;
+
+        return forward * distance;
+    }
 }

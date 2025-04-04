@@ -104,6 +104,9 @@ public partial class IndustrialStage : StrategyStageBase, ISocietyStructureDataA
     {
         base._Process(delta);
 
+        if (StageLoadingState != LoadState.NotLoading)
+            return;
+
         if (!IsGameOver())
         {
             citySystem.Process((float)delta, this);

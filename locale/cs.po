@@ -7,8 +7,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2025-03-27 20:24+0100\n"
-"PO-Revision-Date: 2025-03-20 20:10+0000\n"
+"POT-Creation-Date: 2025-04-04 13:53+0300\n"
+"PO-Revision-Date: 2025-04-04 10:41+0000\n"
 "Last-Translator: Anonymous <noreply@weblate.org>\n"
 "Language-Team: Czech <https://translate.revolutionarygamesstudio.com/projects/thrive/thrive-game/cs/>\n"
 "Language: cs\n"
@@ -192,6 +192,25 @@ msgstr "Fyzické podmínky"
 msgid "ANISOTROPIC_FILTERING"
 msgstr ""
 
+msgid "ANTIALIASING_MSAA_TAA"
+msgstr ""
+
+#, fuzzy
+msgid "ANTI_ALIASING_FXAA"
+msgstr "Vícevzorové vyhlazování:"
+
+#, fuzzy
+msgid "ANTI_ALIASING_MODE"
+msgstr "Vícevzorové vyhlazování:"
+
+#, fuzzy
+msgid "ANTI_ALIASING_MSAA"
+msgstr "Vícevzorové vyhlazování:"
+
+#, fuzzy
+msgid "ANTI_ALIASING_TAA"
+msgstr "Vícevzorové vyhlazování:"
+
 msgid "APPEARANCE"
 msgstr "Vzhled"
 
@@ -309,6 +328,7 @@ msgstr "Srpen"
 msgid "AUTO"
 msgstr "Automaticky"
 
+#, fuzzy
 msgid "AUTO-EVO_EXPLANATION_EXPLANATION"
 msgstr "Na tomto panelu jsou zobrazena čísla, na jejichž základě funguje predikce auto-evo. Celková energie, kterou je druh schopen zachytit, a náklady na jednoho jedince druhu určují konečnou populaci. Auto-evo používá zjednodušený model reality k výpočtu toho, jak dobře si druhy vedou na základě energie, kterou jsou schopny nasbírat. U každého zdroje potravy je zobrazeno, kolik energie z něj druh získá. Kromě toho je zobrazena celková energie, která je z daného zdroje k dispozici. Podíl, který druh získá z celkové energie, je založen na tom, jak velká je jeho Biologická zdatnost v porovnání s celkovou Biologickou zdatností. Biologická zdatnost je měřítkem toho, jak dobře dokáže druh daný zdroj potravy využít."
 
@@ -1882,6 +1902,7 @@ msgstr ""
 "\n"
 "Pokračuj výběrem organely z panelu vlevo (cytoplazma je dobrá volba). Potom klikni levým tlačítkem vedle zobrazeného šestiúhelníku (Hexu) uprostřed obrazovky a přidej tuto organelu ke svému druhu."
 
+#, fuzzy
 msgid "EDITOR_TUTORIAL_EDITOR_TEXT"
 msgstr ""
 "Vítejte v editoru mikrobů.\n"
@@ -2106,27 +2127,6 @@ msgstr "Ústí"
 #, fuzzy
 msgid "EVENT_ERUPTION_TOOLTIP"
 msgstr "Automaticky načítat Harmony patche ze sestavy (nepotřebuje specifikování třídy modu)"
-
-msgid "EVENT_METEOR_GLUCOSE"
-msgstr ""
-
-#, fuzzy
-msgid "EVENT_METEOR_IRON"
-msgstr "{0}: +{1} ATP"
-
-#, fuzzy
-msgid "EVENT_METEOR_PHOSPHATES"
-msgstr "Spawnout Fosfát"
-
-#, fuzzy
-msgid "EVENT_METEOR_PLAIN"
-msgstr "Automaticky načítat Harmony patche ze sestavy (nepotřebuje specifikování třídy modu)"
-
-msgid "EVENT_METEOR_RADIOACTIVE"
-msgstr ""
-
-msgid "EVENT_METEOR_SULFUR"
-msgstr ""
 
 msgid "EVOLUTIONARY_TREE"
 msgstr "Evoluční strom"
@@ -2546,10 +2546,6 @@ msgid "GLOBAL_GLACIATION_EVENT"
 msgstr "Celková populace:"
 
 #, fuzzy
-msgid "GLOBAL_GLACIATION_EVENT_LOG"
-msgstr "Celková populace:"
-
-#, fuzzy
 msgid "GLOBAL_GLACIATION_EVENT_TOOLTIP"
 msgstr "Přejděte do fáze Probuzení. Dostupné, jakmile máte dostatečnou sílu mozku (typ tkáně s axony)."
 
@@ -2723,6 +2719,9 @@ msgstr "ID není platné číslo"
 
 msgid "ID_NUMBER"
 msgstr "ID číslo"
+
+msgid "IF_FALLBACK_RENDERER_USED_ALL_NOT_AVAILABLE"
+msgstr ""
 
 #, fuzzy
 msgid "IMAGE_FILE_TYPES"
@@ -3392,14 +3391,34 @@ msgid "LOADING_GAME"
 msgstr "Načítání hry"
 
 #, fuzzy
+msgid "LOADING_GRAPHICS_SHADERS"
+msgstr "Načítání hry"
+
+#, fuzzy
 msgid "LOADING_MACROSCOPIC_EDITOR"
 msgstr "Načítání editoru mikrobů"
 
 msgid "LOADING_MICROBE_EDITOR"
 msgstr "Načítání editoru mikrobů"
 
+#, fuzzy
+msgid "LOADING_MICROBE_STAGE"
+msgstr "Společné fáze editoru a strategie"
+
 msgid "LOADING_MULTICELLULAR_EDITOR"
 msgstr "Načítání mnohobuněčného editoru"
+
+#, fuzzy
+msgid "LOADING_MULTICELLULAR_STAGE"
+msgstr "Načítání mnohobuněčného editoru"
+
+#, fuzzy
+msgid "LOADING_STAGE"
+msgstr "Načítání hry"
+
+#, fuzzy
+msgid "LOADING_STAGE_ASSETS"
+msgstr "Načítání hry"
 
 msgid "LOAD_FINISHED"
 msgstr "Načítání dokončeno"
@@ -3440,6 +3459,13 @@ msgstr "L"
 #, fuzzy
 msgid "LOCK_DAY_NIGHT_CYCLE"
 msgstr "Povolení cyklu den/noc"
+
+#, fuzzy
+msgid "LOWER_SCALE_INCREASES_PERFORMANCE"
+msgstr "(vyšší hodnoty zvyšují výkon)"
+
+msgid "LOWER_VALUE_MAKES_SHARPER_IMAGE"
+msgstr ""
 
 #, fuzzy
 msgid "LOW_MENU_PERFORMANCE"
@@ -3584,15 +3610,6 @@ msgid "META_THREADS_TOOLTIP"
 msgstr ""
 "Není možné automaticky detekovat, jestli je hyperthreading povolen nebo ne.\n"
 "To ovlivňuje výchozí počet vláken, protože hyperthreading vlákna nejsou tak rychlá jako skutečná jádra CPU."
-
-msgid "METEOR_IMPACT_EVENT"
-msgstr ""
-
-msgid "METEOR_STRIKE_START_EVENT_LOG_PLURAL"
-msgstr ""
-
-msgid "METEOR_STRIKE_START_EVENT_LOG_SINGULAR"
-msgstr ""
 
 msgid "METRICS"
 msgstr "Metriky výkonu"
@@ -3870,6 +3887,7 @@ msgstr ""
 "Regenerace zdraví probíhá za předpokladu, že máš dostatek ATP.\n"
 "Nezapomeň shromáždit dostatek glukózy k produkci ATP."
 
+#, fuzzy
 msgid "MICROBE_STAGE_INITIAL"
 msgstr ""
 "Na vzdálené cizí planetě probíhaly vulkanické činnosti a dopady meteorů, což vedlo k vývoji nového fenoménu ve vesmíru.\n"
@@ -4782,6 +4800,7 @@ msgstr "Rezistence vůči toxinům"
 msgid "OXYGEN_TOLERANCE_TOOLTIP"
 msgstr "Zobrazit / skrýt sloučeniny"
 
+#, fuzzy
 msgid "OXYTOXISOME_PROCESSES_DESCRIPTION"
 msgstr "Přeměňuje [thrive:compound type=\"atp\"][/thrive:compound] na [thrive:compound type=\"oxytoxy\"][/thrive:compound]. Rychlost je úměrná koncentraci [thrive:compound type=\"oxygen\"][/thrive:compound]. Toxiny mohou být uvolněny stisknutím [thrive:input]g_fire_toxin[/thrive:input]. Pokud je množství [thrive:compound type=\"oxytoxy\"][/thrive:compound] nízké, střelba je stále možná, ale bude mít snížené poškození."
 
@@ -5159,6 +5178,10 @@ msgstr "Zopakovat poslední akci zpět"
 
 msgid "REFRESH"
 msgstr "Obnovit"
+
+#, fuzzy
+msgid "RENDER_SCALE"
+msgstr "Použitý renderer:"
 
 msgid "REPORT"
 msgstr "Zpráva"
@@ -6470,6 +6493,7 @@ msgstr ""
 msgid "TOXIN_VACUOLE_DESCRIPTION"
 msgstr "Toxinová vakuola je vakuola, která byla upravena pro specifickou produkci, skladování a sekreci oxytoxytoxinů. Více toxinových vakuol zvýší rychlost uvolňování toxinů."
 
+#, fuzzy
 msgid "TOXIN_VACUOLE_PROCESSES_DESCRIPTION"
 msgstr "Přeměňuje [thrive:compound type=\"atp\"][/thrive:compound] na [thrive:compound type=\"oxytoxy\"][/thrive:compound]. Rychlost je úměrná koncentraci [thrive:compound type=\"oxygen\"][/thrive:compound]. Toxiny můžete vypustit stisknutím [thrive:input]g_fire_toxin[/thrive:input]. Pokud je množství [thrive:compound type=\"oxytoxy\"][/thrive:compound] nízké, střelba je stále možná, ale bude mít snížené poškození."
 
@@ -6560,6 +6584,15 @@ msgstr ""
 "Pokud vyberete prostředí které je spojené s tím ve kterém právě jste, které je ohraničené blikající zelenou, můžete zmáčknout tlačítko \"Přesunout se do tohoto prostředí\" napravo, abyste do něj migrovali.\n"
 "\n"
 "Pro pokračování, zkuste vybrat některé z prostředí."
+
+#, fuzzy
+msgid "TUTORIAL_MICROBE_EDITOR_DIGESTION_STAT"
+msgstr ""
+"Toto je editor buněk, kde můžete vyvinout svůj druh utrácením mutačních bodů (MP). Při každé nové generaci vždy začínáte se 100 MP na utracení, takže nemá cenu šetřit!\n"
+"\n"
+"Hex uprostřed obrazovky je vaše buňka, která se skládá z jedné cytoplazmy.\n"
+"\n"
+"Abyste pokračovali, vyberte jednu s částí v levém panelu. Poté ho umístíte vedle hexu kliknutím levého tlačítka myši. Můžete s částmi otáčet pomocí [thrive:input]e_rotate_left[/thrive:input] a [thrive:input]e_rotate_right[/thrive:input]."
 
 #, fuzzy
 msgid "TUTORIAL_MICROBE_EDITOR_ENDING_TEXT"
@@ -6666,6 +6699,7 @@ msgstr ""
 "\n"
 "Pokračuj kliknutím na tlačítko Zpět."
 
+#, fuzzy
 msgid "TUTORIAL_MICROBE_EDITOR_SELECT_ORGANELLE_TEXT"
 msgstr ""
 "Když vybíráš, které organely přidat, věnuj pozornost tipům pro organely, na kterých procesech se podílejí a jaké sloučeniny používají a vyrábějí.\n"
@@ -6735,6 +6769,7 @@ msgstr ""
 "\n"
 "Jeď po čáře od tvé buňky k nedalekému jedlému předmětu."
 
+#, fuzzy
 msgid "TUTORIAL_MICROBE_STAGE_HELP_MENU_AND_ZOOM"
 msgstr ""
 "Pokud si stále nevíte rady s herními mechanismy, podívejte se do nápovědy. Otevřete ji tlačítkem s otazníkem v levém dolním rohu.\n"
@@ -7001,6 +7036,18 @@ msgstr "Nahrávání..."
 
 msgid "UPLOAD_SUCCEEDED"
 msgstr "Nahrání bylo úspěšné"
+
+msgid "UPSCALE_BILINEAR"
+msgstr ""
+
+msgid "UPSCALE_FSR_1"
+msgstr ""
+
+msgid "UPSCALE_FSR_22"
+msgstr ""
+
+msgid "UPSCALE_SHARPENING_FSR"
+msgstr ""
 
 msgid "USED_LIBRARIES_LICENSES"
 msgstr "Licence a použité knihovny"
@@ -9045,6 +9092,10 @@ msgstr "Oddálit"
 #~ "Regenerace zdraví probíhá za předpokladu, že máš dostatek ATP.\n"
 #~ "Nezapomeň shromáždit dostatek glukózy k produkci ATP."
 
+#, fuzzy
+#~ msgid "GLOBAL_GLACIATION_EVENT_LOG"
+#~ msgstr "Celková populace:"
+
 #~ msgid "IRON_CHEMOLITHOAUTOTROPHY"
 #~ msgstr "Chemolithoautotrofie železa"
 
@@ -9216,6 +9267,10 @@ msgstr "Oddálit"
 #, fuzzy
 #~ msgid "ERUPTION_IN"
 #~ msgstr "Pučení"
+
+#, fuzzy
+#~ msgid "EVENT_TOOLTIP_ERUPTION"
+#~ msgstr "{0}: +{1} ATP"
 
 #~ msgid "THE_AMOUNT_OF_GLUCOSE_HAS_BEEN_REDUCED"
 #~ msgstr "Množství glukózy bylo sníženo na {0} z předchozího množství."

@@ -2,15 +2,15 @@ version: 1
 
 jobs:
   build:
-    image: thrive/godot-ci:v27
+    image: thrive/godot-ci:v28
     cache:
       loadFrom:
-        - v12-{Branch}-build
-        - v12-master-build
-      writeTo: v12-{Branch}-build
+        - v13-{Branch}-build
+        - v13-master-build
+      writeTo: v13-{Branch}-build
       shared:
         .git/lfs: v7-lfs
-        .import: v13-import
+        .import: v14-import
         builds: v7-builds
         native_libs: v1-native
       system:
@@ -29,18 +29,14 @@ jobs:
           name: Download native libraries
           # This doesn't fetch or install debug variants as they aren't strictly necessary for packaging
           command: dotnet run --project Scripts -- native Fetch Install --debug false
-      # BUILD DISABLED FOR NOW AS GODOT 4.4 SEEMS TO GET STUCK IMPORTING FONTS
-      #- run:
-      #    name: Create build (Linux)
-      #    command: dotnet run --project Scripts -- package --dehydrated Linux
-      #- run:
-      #    name: Create build (Windows)
-      #    command: dotnet run --project Scripts -- package --dehydrated Windows
-      #- run:
-      #    name: Upload devbuilds
-      #    command: dotnet run --project Scripts -- upload
+      - run:
+         name: Create builds (Linux, Windows)
+         command: dotnet run --project Scripts -- package --dehydrated Linux Windows
+      - run:
+         name: Upload devbuilds
+         command: dotnet run --project Scripts -- upload
   jetbrains:
-    image: thrive/godot-ci:v27
+    image: thrive/godot-ci:v28
     cache:
       loadFrom:
         - v9-{Branch}-jetbrains
@@ -97,7 +93,7 @@ jobs:
                 rm -f cleanup_diff.patch
             fi
   format_test:
-    image: thrive/godot-ci:v27
+    image: thrive/godot-ci:v28
     cache:
       loadFrom:
         - v9-{Branch}-format

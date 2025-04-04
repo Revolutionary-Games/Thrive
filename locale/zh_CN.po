@@ -7,8 +7,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2025-03-27 20:24+0100\n"
-"PO-Revision-Date: 2025-03-20 20:10+0000\n"
+"POT-Creation-Date: 2025-04-04 13:53+0300\n"
+"PO-Revision-Date: 2025-04-04 10:42+0000\n"
 "Last-Translator: Anonymous <noreply@weblate.org>\n"
 "Language-Team: Chinese (Simplified Han script) <https://translate.revolutionarygamesstudio.com/projects/thrive/thrive-game/zh_Hans/>\n"
 "Language: zh_CN\n"
@@ -194,6 +194,25 @@ msgstr "和"
 msgid "ANISOTROPIC_FILTERING"
 msgstr ""
 
+msgid "ANTIALIASING_MSAA_TAA"
+msgstr ""
+
+#, fuzzy
+msgid "ANTI_ALIASING_FXAA"
+msgstr "多重采样抗锯齿："
+
+#, fuzzy
+msgid "ANTI_ALIASING_MODE"
+msgstr "多重采样抗锯齿："
+
+#, fuzzy
+msgid "ANTI_ALIASING_MSAA"
+msgstr "多重采样抗锯齿："
+
+#, fuzzy
+msgid "ANTI_ALIASING_TAA"
+msgstr "多重采样抗锯齿："
+
 msgid "APPEARANCE"
 msgstr "外观"
 
@@ -317,6 +336,7 @@ msgstr "八月"
 msgid "AUTO"
 msgstr "自动"
 
+#, fuzzy
 msgid "AUTO-EVO_EXPLANATION_EXPLANATION"
 msgstr "这个板块显示了auto-evo预测工作所依据的数字。一个物种能够捕获的总能量以及该物种个体的成本决定最终的种群数量。Auto-evo使用一个简化的现实模型，根据物种能够采集的能量来计算其表现如何。对于每个食物来源，它显示了该物种从其获得的能量以及该食物来源能提供的总能量。物种从总能量中获得的量基于与总适应性相比的适应性的大小。适应性是衡量该物种对该食物来源的利用程度的指标。"
 
@@ -1796,6 +1816,7 @@ msgstr ""
 "\n"
 "想要继续的话，从左侧面板选中一个细胞器（细胞质是个好选择）。然后再点击右侧面板中央附近的六角格以将此细胞器放入你的物种中。"
 
+#, fuzzy
 msgid "EDITOR_TUTORIAL_EDITOR_TEXT"
 msgstr ""
 "欢迎来到[b]微生物编辑器[/b]。\n"
@@ -1992,29 +2013,6 @@ msgid "EVENT_ERUPTION_TOOLTIP"
 msgstr ""
 "地区事件：喷发\n"
 "产生额外的硫化氢与二氧化碳"
-
-msgid "EVENT_METEOR_GLUCOSE"
-msgstr ""
-
-#, fuzzy
-msgid "EVENT_METEOR_IRON"
-msgstr "{0}： +{1} ATP"
-
-#, fuzzy
-msgid "EVENT_METEOR_PHOSPHATES"
-msgstr "生成磷酸盐"
-
-#, fuzzy
-msgid "EVENT_METEOR_PLAIN"
-msgstr ""
-"地区事件：喷发\n"
-"产生额外的硫化氢与二氧化碳"
-
-msgid "EVENT_METEOR_RADIOACTIVE"
-msgstr ""
-
-msgid "EVENT_METEOR_SULFUR"
-msgstr ""
 
 msgid "EVOLUTIONARY_TREE"
 msgstr "进化树"
@@ -2383,10 +2381,6 @@ msgid "GLOBAL_GLACIATION_EVENT"
 msgstr "种群数量总数："
 
 #, fuzzy
-msgid "GLOBAL_GLACIATION_EVENT_LOG"
-msgstr "种群数量总数："
-
-#, fuzzy
 msgid "GLOBAL_GLACIATION_EVENT_TOOLTIP"
 msgstr "进入启蒙阶段。一旦你有足够的脑力就可以使用（需要带轴突的组织）。"
 
@@ -2549,6 +2543,9 @@ msgstr "ID无效"
 
 msgid "ID_NUMBER"
 msgstr "编号"
+
+msgid "IF_FALLBACK_RENDERER_USED_ALL_NOT_AVAILABLE"
+msgstr ""
 
 msgid "IMAGE_FILE_TYPES"
 msgstr "支持的图片文件"
@@ -3176,14 +3173,34 @@ msgid "LOADING_GAME"
 msgstr "载入游戏"
 
 #, fuzzy
+msgid "LOADING_GRAPHICS_SHADERS"
+msgstr "载入游戏"
+
+#, fuzzy
 msgid "LOADING_MACROSCOPIC_EDITOR"
 msgstr "载入微生物编辑器中"
 
 msgid "LOADING_MICROBE_EDITOR"
 msgstr "载入微生物编辑器中"
 
+#, fuzzy
+msgid "LOADING_MICROBE_STAGE"
+msgstr "代谢过程"
+
 msgid "LOADING_MULTICELLULAR_EDITOR"
 msgstr "载入多细胞编辑器中"
+
+#, fuzzy
+msgid "LOADING_MULTICELLULAR_STAGE"
+msgstr "载入多细胞编辑器中"
+
+#, fuzzy
+msgid "LOADING_STAGE"
+msgstr "载入游戏"
+
+#, fuzzy
+msgid "LOADING_STAGE_ASSETS"
+msgstr "载入游戏"
 
 msgid "LOAD_FINISHED"
 msgstr "载入完成"
@@ -3223,6 +3240,13 @@ msgstr "L"
 
 msgid "LOCK_DAY_NIGHT_CYCLE"
 msgstr "锁定昼夜循环"
+
+#, fuzzy
+msgid "LOWER_SCALE_INCREASES_PERFORMANCE"
+msgstr "（更高的数值有助于提升性能）"
+
+msgid "LOWER_VALUE_MAKES_SHARPER_IMAGE"
+msgstr ""
 
 msgid "LOW_MENU_PERFORMANCE"
 msgstr "性能过低"
@@ -3368,15 +3392,6 @@ msgid "META_THREADS_TOOLTIP"
 msgstr ""
 "游戏无法自动检测是否启用了超线程。\n"
 "这个选项会影响默认线程数，因为超线程的速度不如真正的CPU内核快。"
-
-msgid "METEOR_IMPACT_EVENT"
-msgstr ""
-
-msgid "METEOR_STRIKE_START_EVENT_LOG_PLURAL"
-msgstr ""
-
-msgid "METEOR_STRIKE_START_EVENT_LOG_SINGULAR"
-msgstr ""
 
 msgid "METRICS"
 msgstr "性能参数"
@@ -3637,6 +3652,7 @@ msgstr ""
 "只要你还有ATP，你的生命值就会不断恢复。\n"
 "所以要确保总是有足够的葡萄糖来产出ATP。"
 
+#, fuzzy
 msgid "MICROBE_STAGE_INITIAL"
 msgstr ""
 "在一个遥远的外星球上，恒古的火山活动和陨石冲击引发了一种新现象的出现。\n"
@@ -3647,6 +3663,7 @@ msgstr ""
 "\n"
 "要在这个艰难的世界存活下来，你将需要任何你能找到的化合物并在多个世代里不断进化，才能跟其它的微生物竞争。"
 
+#, fuzzy
 msgid "MICROBE_STAGE_INITIAL_PANSPERMIA"
 msgstr ""
 "在一颗遥远的外星球上，一颗流星在穿越了遥远的星空之后，撞击于此，带来了在这个星球产生全新现象的种子——\n"
@@ -3657,6 +3674,7 @@ msgstr ""
 "\n"
 "要在这个充满敌意的世界活下去，您需要收集任何你能找到的化合物，并且在每个世代不断地进化，才能够跟其它的微生物竞争。"
 
+#, fuzzy
 msgid "MICROBE_STAGE_INITIAL_POND"
 msgstr ""
 "在一颗遥远的外星球上，亿万年的化学进化产生了自我复制的分子，于是，宇宙中发展出了一种新现象——\n"
@@ -4475,6 +4493,7 @@ msgstr ""
 "这个区域显示了各化合物的总平衡情况（生产 - 消耗）\n"
 "比如说对植物细胞而言葡萄糖的平衡情况需要是一个不小的正数。"
 
+#, fuzzy
 msgid "OXYTOXISOME_PROCESSES_DESCRIPTION"
 msgstr "将[thrive:compound type=\"atp\"][/thrive:compound]转换成[thrive:compound type=\"oxytoxy\"][/thrive:compound]。速率跟[thrive:compound type=\"oxygen\"][/thrive:compound]浓度成正比。可以通过按下[thrive:input]g_fire_toxin[/thrive:input]来释放毒素。当[thrive:compound type=\"oxytoxy\"][/thrive:compound]数量不足时仍能释放，但是伤害会降低。"
 
@@ -4842,6 +4861,10 @@ msgstr "重做上一个动作"
 
 msgid "REFRESH"
 msgstr "刷新"
+
+#, fuzzy
+msgid "RENDER_SCALE"
+msgstr "使用的渲染器："
 
 msgid "REPORT"
 msgstr "报告"
@@ -6087,9 +6110,11 @@ msgstr "不同种类的毒素的效果不同，有些对特定种类的细胞会
 msgid "TOXIN_VACUOLE"
 msgstr "毒素液泡"
 
+#, fuzzy
 msgid "TOXIN_VACUOLE_DESCRIPTION"
 msgstr "毒素液泡是一种专门用于产出，存储和分泌[thrive:compound type=\"oxytoxy\"][/thrive:compound]的液泡。更多毒素液泡可以加快释放毒素的速度。可以修改其产生的毒素种类以产生不同效果。"
 
+#, fuzzy
 msgid "TOXIN_VACUOLE_PROCESSES_DESCRIPTION"
 msgstr "将[thrive:compound type=\"atp\"][/thrive:compound]转换成[thrive:compound type=\"oxytoxy\"][/thrive:compound]。速率跟[thrive:compound type=\"oxygen\"][/thrive:compound]的浓度成正比。按[thrive:input]g_fire_toxin[/thrive:input]以释放毒素。当[thrive:compound type=\"oxytoxy\"][/thrive:compound]储量不足时也能释放，但伤害会降低。"
 
@@ -6177,6 +6202,15 @@ msgstr ""
 "如果你的[thrive:compound type=\"atp\"][/thrive:compound]生产为负，务必增加[thrive:compound type=\"atp\"][/thrive:compound]生产或添加[b]储存[/b][thrive:icon]StorageIcon[/thrive:icon]来允许爆发式移动。"
 
 #, fuzzy
+msgid "TUTORIAL_MICROBE_EDITOR_DIGESTION_STAT"
+msgstr ""
+"你可以添加一个[b]化学受体[/b]细胞器到你的细胞。\n"
+"\n"
+"化学受体表现为你的物种感知化合物的能力。\n"
+"\n"
+"放置一个将允许你探测例如[thrive:compound type=\"glucose\"][/thrive:compound]之类的化合物，并且指引你找到它们。它也能用来探测其他物种的细胞。"
+
+#, fuzzy
 msgid "TUTORIAL_MICROBE_EDITOR_ENDING_TEXT"
 msgstr ""
 "这些就是改变物种的基础操作了。作为点睛之笔，你可以通过点击左下角的名称来重新命名你的物种。\n"
@@ -6214,6 +6248,7 @@ msgstr ""
 "\n"
 "放置一个将允许你探测例如[thrive:compound type=\"glucose\"][/thrive:compound]之类的化合物，并且指引你找到它们。它也能用来探测其他物种的细胞。"
 
+#, fuzzy
 msgid "TUTORIAL_MICROBE_EDITOR_MODIFY_ORGANELLE"
 msgstr ""
 "你可以[b]修改[/b]这个细胞器。这将会给它解锁[b]新功能[/b]或[b]升级[/b]\n"
@@ -6222,6 +6257,7 @@ msgstr ""
 "\n"
 "修改这个细胞器以继续。"
 
+#, fuzzy
 msgid "TUTORIAL_MICROBE_EDITOR_NEGATIVE_ATP_BALANCE"
 msgstr ""
 "你的[thrive:compound type=\"atp\"][/thrive:compound]平衡为负。\n"
@@ -6232,6 +6268,7 @@ msgstr ""
 "\n"
 "或者，你也可以移除不需要的或多余的细胞器。"
 
+#, fuzzy
 msgid "TUTORIAL_MICROBE_EDITOR_NO_CHANGES_MADE"
 msgstr ""
 "您还没有对您的物种做出任何改变。\n"
@@ -6270,6 +6307,7 @@ msgstr ""
 "\n"
 "按撤销按钮以继续。"
 
+#, fuzzy
 msgid "TUTORIAL_MICROBE_EDITOR_SELECT_ORGANELLE_TEXT"
 msgstr ""
 "在菜单中选择细胞器时，[u]请务必详读并理解弹出的提示[/u]。不考虑其机能的使用可能会变得[u]弊大于利[/u]。\n"
@@ -6337,6 +6375,7 @@ msgstr ""
 "\n"
 "沿着你的细胞上出现的路线前往附近的可吞噬物体。"
 
+#, fuzzy
 msgid "TUTORIAL_MICROBE_STAGE_HELP_MENU_AND_ZOOM"
 msgstr ""
 "遇到困难？请查看帮助菜单。你可以用左下角的问号按钮打开它。\n"
@@ -6588,6 +6627,18 @@ msgstr "上传中……"
 
 msgid "UPLOAD_SUCCEEDED"
 msgstr "上传成功"
+
+msgid "UPSCALE_BILINEAR"
+msgstr ""
+
+msgid "UPSCALE_FSR_1"
+msgstr ""
+
+msgid "UPSCALE_FSR_22"
+msgstr ""
+
+msgid "UPSCALE_SHARPENING_FSR"
+msgstr ""
 
 msgid "USED_LIBRARIES_LICENSES"
 msgstr "许可证和使用的库"
@@ -8890,6 +8941,10 @@ msgstr "缩小"
 #~ "光合作用在夜间无效。\n"
 #~ "因此，请确保您储存[thrive:icon]StorageIcon[/thrive:icon]了足够的能量来过夜。"
 
+#, fuzzy
+#~ msgid "GLOBAL_GLACIATION_EVENT_LOG"
+#~ msgstr "种群数量总数："
+
 #~ msgid "IRON_CHEMOLITHOAUTOTROPHY"
 #~ msgstr "铁化能无机自养"
 
@@ -9076,6 +9131,10 @@ msgstr "缩小"
 #, fuzzy
 #~ msgid "ERUPTION_IN"
 #~ msgstr "出芽"
+
+#, fuzzy
+#~ msgid "EVENT_TOOLTIP_ERUPTION"
+#~ msgstr "{0}： +{1} ATP"
 
 #~ msgid "THE_AMOUNT_OF_GLUCOSE_HAS_BEEN_REDUCED"
 #~ msgstr "环境中的葡萄糖已减少到原先量的{0}。"

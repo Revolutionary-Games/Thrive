@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2025-03-27 20:24+0100\n"
+"POT-Creation-Date: 2025-04-04 13:53+0300\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: Automatically generated\n"
 "Language-Team: none\n"
@@ -45,7 +45,7 @@ msgid "ABYSSOPELAGIC"
 msgstr "Abissale vlakte(niks nie)"
 
 msgid "ACCEPT"
-msgstr ""
+msgstr "aanvaar"
 
 msgid "ACTION_AWAKEN"
 msgstr "Word wakker ({0:F1}/{1:F1})"
@@ -56,24 +56,20 @@ msgstr "Beweeg na die wakker stadium. Besikbaar na jy genoeg brain krag het (tie
 msgid "ACTION_BLOCKED_WHILE_ANOTHER_IN_PROGRESS"
 msgstr "Aksie is geblock terwyl ander aksies aan die gang is"
 
-#, fuzzy
 msgid "ACTION_DELETE"
-msgstr "Word wakker ({0:F1}/{1:F1})"
+msgstr ""
 
 msgid "ACTION_DOUBLE_POPULATION"
 msgstr ""
 
-#, fuzzy
 msgid "ACTION_DUPLICATE_UNITS"
-msgstr "Word wakker ({0:F1}/{1:F1})"
+msgstr ""
 
-#, fuzzy
 msgid "ACTION_HALF_POPULATION"
-msgstr "Beweeg na die wakker stadium. Besikbaar na jy genoeg brain krag het (tiepe selle met \"axons\")."
+msgstr ""
 
-#, fuzzy
 msgid "ACTION_TELEPORT"
-msgstr "Word wakker ({0:F1}/{1:F1})"
+msgstr ""
 
 msgid "ACTIVE"
 msgstr "Aktief"
@@ -150,7 +146,7 @@ msgid "ALT"
 msgstr ""
 
 msgid "ALWAYS_VISIBLE"
-msgstr ""
+msgstr "Altyd sigbaar"
 
 msgid "AMBIANCE_VOLUME"
 msgstr ""
@@ -171,9 +167,24 @@ msgid "ANAEROBIC_NITROGEN_FIXATION"
 msgstr ""
 
 msgid "AND_UNLOCK_CONDITION"
-msgstr ""
+msgstr "en"
 
 msgid "ANISOTROPIC_FILTERING"
+msgstr ""
+
+msgid "ANTIALIASING_MSAA_TAA"
+msgstr ""
+
+msgid "ANTI_ALIASING_FXAA"
+msgstr ""
+
+msgid "ANTI_ALIASING_MODE"
+msgstr ""
+
+msgid "ANTI_ALIASING_MSAA"
+msgstr ""
+
+msgid "ANTI_ALIASING_TAA"
 msgstr ""
 
 msgid "APPEARANCE"
@@ -1828,25 +1839,6 @@ msgstr ""
 msgid "EVENT_ERUPTION_TOOLTIP"
 msgstr "Beweeg na die wakker stadium. Besikbaar na jy genoeg brain krag het (tiepe selle met \"axons\")."
 
-msgid "EVENT_METEOR_GLUCOSE"
-msgstr ""
-
-msgid "EVENT_METEOR_IRON"
-msgstr ""
-
-msgid "EVENT_METEOR_PHOSPHATES"
-msgstr ""
-
-#, fuzzy
-msgid "EVENT_METEOR_PLAIN"
-msgstr "Beweeg na die wakker stadium. Besikbaar na jy genoeg brain krag het (tiepe selle met \"axons\")."
-
-msgid "EVENT_METEOR_RADIOACTIVE"
-msgstr ""
-
-msgid "EVENT_METEOR_SULFUR"
-msgstr ""
-
 msgid "EVOLUTIONARY_TREE"
 msgstr ""
 
@@ -2190,10 +2182,6 @@ msgid "GLOBAL_GLACIATION_EVENT"
 msgstr "Beweeg na die wakker stadium. Besikbaar na jy genoeg brain krag het (tiepe selle met \"axons\")."
 
 #, fuzzy
-msgid "GLOBAL_GLACIATION_EVENT_LOG"
-msgstr "Beweeg na die wakker stadium. Besikbaar na jy genoeg brain krag het (tiepe selle met \"axons\")."
-
-#, fuzzy
 msgid "GLOBAL_GLACIATION_EVENT_TOOLTIP"
 msgstr "Beweeg na die wakker stadium. Besikbaar na jy genoeg brain krag het (tiepe selle met \"axons\")."
 
@@ -2350,6 +2338,9 @@ msgid "ID_IS_NOT_A_NUMBER"
 msgstr ""
 
 msgid "ID_NUMBER"
+msgstr ""
+
+msgid "IF_FALLBACK_RENDERER_USED_ALL_NOT_AVAILABLE"
 msgstr ""
 
 msgid "IMAGE_FILE_TYPES"
@@ -2963,13 +2954,31 @@ msgstr ""
 msgid "LOADING_GAME"
 msgstr ""
 
+msgid "LOADING_GRAPHICS_SHADERS"
+msgstr ""
+
 msgid "LOADING_MACROSCOPIC_EDITOR"
 msgstr ""
 
 msgid "LOADING_MICROBE_EDITOR"
 msgstr ""
 
+#, fuzzy
+msgid "LOADING_MICROBE_STAGE"
+msgstr "3D redakteurder"
+
 msgid "LOADING_MULTICELLULAR_EDITOR"
+msgstr ""
+
+#, fuzzy
+msgid "LOADING_MULTICELLULAR_STAGE"
+msgstr "3D redakteurder"
+
+#, fuzzy
+msgid "LOADING_STAGE"
+msgstr "3D redakteurder"
+
+msgid "LOADING_STAGE_ASSETS"
 msgstr ""
 
 msgid "LOAD_FINISHED"
@@ -3000,6 +3009,12 @@ msgid "LOCAL_INITIAL_LETTER"
 msgstr ""
 
 msgid "LOCK_DAY_NIGHT_CYCLE"
+msgstr ""
+
+msgid "LOWER_SCALE_INCREASES_PERFORMANCE"
+msgstr ""
+
+msgid "LOWER_VALUE_MAKES_SHARPER_IMAGE"
 msgstr ""
 
 msgid "LOW_MENU_PERFORMANCE"
@@ -3135,15 +3150,6 @@ msgstr ""
 #, fuzzy
 msgid "META_THREADS_TOOLTIP"
 msgstr "Beweeg na die wakker stadium. Besikbaar na jy genoeg brain krag het (tiepe selle met \"axons\")."
-
-msgid "METEOR_IMPACT_EVENT"
-msgstr ""
-
-msgid "METEOR_STRIKE_START_EVENT_LOG_PLURAL"
-msgstr ""
-
-msgid "METEOR_STRIKE_START_EVENT_LOG_SINGULAR"
-msgstr ""
 
 msgid "METRICS"
 msgstr ""
@@ -4428,6 +4434,9 @@ msgstr ""
 msgid "REFRESH"
 msgstr ""
 
+msgid "RENDER_SCALE"
+msgstr ""
+
 msgid "REPORT"
 msgstr ""
 
@@ -5650,6 +5659,10 @@ msgstr ""
 msgid "TUTORIAL_MICROBE_EDITOR_COMPOUND_BALANCES"
 msgstr "3D redakteurder"
 
+#, fuzzy
+msgid "TUTORIAL_MICROBE_EDITOR_DIGESTION_STAT"
+msgstr "3D redakteurder"
+
 msgid "TUTORIAL_MICROBE_EDITOR_ENDING_TEXT"
 msgstr ""
 
@@ -5918,6 +5931,18 @@ msgid "UPLOADING_DOT_DOT_DOT"
 msgstr ""
 
 msgid "UPLOAD_SUCCEEDED"
+msgstr ""
+
+msgid "UPSCALE_BILINEAR"
+msgstr ""
+
+msgid "UPSCALE_FSR_1"
+msgstr ""
+
+msgid "UPSCALE_FSR_22"
+msgstr ""
+
+msgid "UPSCALE_SHARPENING_FSR"
 msgstr ""
 
 msgid "USED_LIBRARIES_LICENSES"
@@ -7645,6 +7670,10 @@ msgstr ""
 
 msgid "ZOOM_OUT"
 msgstr ""
+
+#, fuzzy
+#~ msgid "GLOBAL_GLACIATION_EVENT_LOG"
+#~ msgstr "Beweeg na die wakker stadium. Besikbaar na jy genoeg brain krag het (tiepe selle met \"axons\")."
 
 #, fuzzy
 #~ msgid "WIKI_RADIOSYNTHESIS"

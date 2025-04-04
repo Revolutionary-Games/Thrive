@@ -5,7 +5,7 @@ RUN dnf install -y --setopt=deltarpm=false git git-lfs unzip wget dotnet-sdk-9.0
 RUN git lfs install
 
 # Godot install
-ENV GODOT_VERSION "4.4"
+ENV GODOT_VERSION "4.4.1"
 
 RUN wget https://github.com/godotengine/godot/releases/download/${GODOT_VERSION}-stable/Godot_v${GODOT_VERSION}-stable_mono_linux_x86_64.zip \
     && wget https://github.com/godotengine/godot/releases/download/${GODOT_VERSION}-stable/Godot_v${GODOT_VERSION}-stable_mono_export_templates.tpz \

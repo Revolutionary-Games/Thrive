@@ -22,6 +22,11 @@ using World = DefaultEcs.World;
 ///     TODO: could pool some visuals to decrease the performance hit spawning a bunch of stuff causes
 ///   </para>
 /// </remarks>
+/// <remarks>
+///   <para>
+///     TODO: merge the loading logic of this to leverage <see cref="ResourceManager"/>
+///   </para>
+/// </remarks>
 [With(typeof(PredefinedVisuals))]
 [With(typeof(SpatialInstance))]
 [RuntimeCost]

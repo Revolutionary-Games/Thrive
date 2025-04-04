@@ -7,8 +7,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2025-03-27 20:24+0100\n"
-"PO-Revision-Date: 2025-03-20 20:10+0000\n"
+"POT-Creation-Date: 2025-04-04 13:53+0300\n"
+"PO-Revision-Date: 2025-04-04 10:42+0000\n"
 "Last-Translator: Anonymous <noreply@weblate.org>\n"
 "Language-Team: Portuguese (Portugal) <https://translate.revolutionarygamesstudio.com/projects/thrive/thrive-game/pt_PT/>\n"
 "Language: pt_PT\n"
@@ -204,6 +204,25 @@ msgstr "e"
 msgid "ANISOTROPIC_FILTERING"
 msgstr ""
 
+msgid "ANTIALIASING_MSAA_TAA"
+msgstr ""
+
+#, fuzzy
+msgid "ANTI_ALIASING_FXAA"
+msgstr "Multisample anti-aliasing:"
+
+#, fuzzy
+msgid "ANTI_ALIASING_MODE"
+msgstr "Multisample anti-aliasing:"
+
+#, fuzzy
+msgid "ANTI_ALIASING_MSAA"
+msgstr "Multisample anti-aliasing:"
+
+#, fuzzy
+msgid "ANTI_ALIASING_TAA"
+msgstr "Multisample anti-aliasing:"
+
 msgid "APPEARANCE"
 msgstr "Aparência"
 
@@ -315,6 +334,7 @@ msgstr "Agosto"
 msgid "AUTO"
 msgstr "auto"
 
+#, fuzzy
 msgid "AUTO-EVO_EXPLANATION_EXPLANATION"
 msgstr "Este painel mostra os números a partir dos quais a previsão de auto-evo funciona. A energia total que uma espécie é capaz de capturar e o custo por indivíduo da espécie determinam a população final. O Auto-evo usa um modelo simplificado da realidade para calcular o desempenho das espécies com base na energia que conseguem obter. Para cada fonte de alimento, mostra quanta energia é que a espécie ganha com isso. Além disso, aparece o total de energia disponível na fonte. A fração que a espécie ganha da energia total é baseada em quão grande a aptidão é comparada com a aptidão total. A aptidão é uma métrica de quão bem a espécie pode utilizar essa fonte de alimento."
 
@@ -1811,6 +1831,7 @@ msgstr ""
 "\n"
 "Para continuar, seleciona um organelo no painel à esquerda (o citoplasma é uma boa escolha). Em seguida, clica com o botão esquerdo próximo ao hexágono mostrado no meio da tela para adicionar aquele organelo à tua espécie."
 
+#, fuzzy
 msgid "EDITOR_TUTORIAL_EDITOR_TEXT"
 msgstr ""
 "Bem-vindo ao [b]Editor de Microrganismos[/b].\n"
@@ -2024,27 +2045,6 @@ msgstr "Estuário"
 #, fuzzy
 msgid "EVENT_ERUPTION_TOOLTIP"
 msgstr "Este é o codigo exato do commit que esta versão do Thrive foi compilada de"
-
-msgid "EVENT_METEOR_GLUCOSE"
-msgstr ""
-
-#, fuzzy
-msgid "EVENT_METEOR_IRON"
-msgstr "{0}: +{1} ATP"
-
-#, fuzzy
-msgid "EVENT_METEOR_PHOSPHATES"
-msgstr "Gerar fosfato"
-
-#, fuzzy
-msgid "EVENT_METEOR_PLAIN"
-msgstr "Este é o codigo exato do commit que esta versão do Thrive foi compilada de"
-
-msgid "EVENT_METEOR_RADIOACTIVE"
-msgstr ""
-
-msgid "EVENT_METEOR_SULFUR"
-msgstr ""
 
 msgid "EVOLUTIONARY_TREE"
 msgstr "Árvore evolutiva"
@@ -2414,10 +2414,6 @@ msgid "GLOBAL_GLACIATION_EVENT"
 msgstr "População:"
 
 #, fuzzy
-msgid "GLOBAL_GLACIATION_EVENT_LOG"
-msgstr "População:"
-
-#, fuzzy
 msgid "GLOBAL_GLACIATION_EVENT_TOOLTIP"
 msgstr "Suicídio"
 
@@ -2585,6 +2581,9 @@ msgstr "O ID não é um número válido"
 
 msgid "ID_NUMBER"
 msgstr "Número de ID"
+
+msgid "IF_FALLBACK_RENDERER_USED_ALL_NOT_AVAILABLE"
+msgstr ""
 
 #, fuzzy
 msgid "IMAGE_FILE_TYPES"
@@ -3228,14 +3227,34 @@ msgid "LOADING_GAME"
 msgstr "A carregar o jogo"
 
 #, fuzzy
+msgid "LOADING_GRAPHICS_SHADERS"
+msgstr "A carregar o jogo"
+
+#, fuzzy
 msgid "LOADING_MACROSCOPIC_EDITOR"
 msgstr "A carregar o Editor de Micróbio"
 
 msgid "LOADING_MICROBE_EDITOR"
 msgstr "A carregar o Editor de Micróbio"
 
+#, fuzzy
+msgid "LOADING_MICROBE_STAGE"
+msgstr "Fase Microbial"
+
 msgid "LOADING_MULTICELLULAR_EDITOR"
 msgstr "A carregar o Editor de Multicelular"
+
+#, fuzzy
+msgid "LOADING_MULTICELLULAR_STAGE"
+msgstr "A carregar o Editor de Multicelular"
+
+#, fuzzy
+msgid "LOADING_STAGE"
+msgstr "A carregar o jogo"
+
+#, fuzzy
+msgid "LOADING_STAGE_ASSETS"
+msgstr "A carregar o jogo"
 
 msgid "LOAD_FINISHED"
 msgstr "Carregamento terminado"
@@ -3277,6 +3296,13 @@ msgstr "L"
 #, fuzzy
 msgid "LOCK_DAY_NIGHT_CYCLE"
 msgstr "Trancar Ciclo Dia/Noite"
+
+#, fuzzy
+msgid "LOWER_SCALE_INCREASES_PERFORMANCE"
+msgstr "(valores mais altos melhoram o desempenho)"
+
+msgid "LOWER_VALUE_MAKES_SHARPER_IMAGE"
+msgstr ""
 
 msgid "LOW_MENU_PERFORMANCE"
 msgstr "Desempenho Baixo Detetado"
@@ -3421,15 +3447,6 @@ msgid "META_THREADS_TOOLTIP"
 msgstr ""
 "Não pode ser detectado automaticamente se o hyperthreading está ativo ou não.\n"
 "Isso afeta o número padrão de threads, pois os threads de hyperthreading não são tão rápidos quanto os núcleos reais do CPU."
-
-msgid "METEOR_IMPACT_EVENT"
-msgstr ""
-
-msgid "METEOR_STRIKE_START_EVENT_LOG_PLURAL"
-msgstr ""
-
-msgid "METEOR_STRIKE_START_EVENT_LOG_SINGULAR"
-msgstr ""
 
 msgid "METRICS"
 msgstr "Métricas de desempenho"
@@ -3684,6 +3701,7 @@ msgstr ""
 "Tu regeneras saúde enquanto tiveres ATP.\n"
 "Certifica-te de que consegues glicose suficiente para produzires ATP."
 
+#, fuzzy
 msgid "MICROBE_STAGE_INITIAL"
 msgstr ""
 "Num planeta alienígena distante, eras de atividades vulcânicas e impactos de meteoros causaram o desenvolvimento de um novo fenómeno no universo.\n"
@@ -3694,6 +3712,7 @@ msgstr ""
 "\n"
 "Para sobreviver neste mundo hostil, precisarás de acumular compostos e evoluir para competir contra outras espécies de micróbios."
 
+#, fuzzy
 msgid "MICROBE_STAGE_INITIAL_PANSPERMIA"
 msgstr ""
 "Num planeta alienígena distante,um meteoro caiu após percorrer grandes distâncias astronómicas, levando consigo as sementes necessárias para um novo fenómeno no planeta.\n"
@@ -4552,6 +4571,7 @@ msgstr "Resistência a Toxinas"
 msgid "OXYGEN_TOLERANCE_TOOLTIP"
 msgstr "Mostrar / ocultar compostos"
 
+#, fuzzy
 msgid "OXYTOXISOME_PROCESSES_DESCRIPTION"
 msgstr "Transforma [thrive:compound type=\"atp\"][/thrive:compound] em [thrive:compound type=\"oxytoxy\"][/thrive:compound]. A taxa aumenta com a concentração de [thrive:compound type=\"oxygen\"][/thrive:compound]. Pode libertar toxinas pressionado [thrive:input]g_fire_toxin[/thrive:input]. Quando a quantidade de [thrive:compound type=\"oxytoxy\"][/thrive:compound] é baixa, será possível disparar, mas o dano irá ser reduzido."
 
@@ -4927,6 +4947,10 @@ msgstr "Refazer a última ação"
 
 msgid "REFRESH"
 msgstr "Atualizar"
+
+#, fuzzy
+msgid "RENDER_SCALE"
+msgstr "Renderizador utilizado:"
 
 msgid "REPORT"
 msgstr "Relatório"
@@ -6309,6 +6333,15 @@ msgstr ""
 "Seleciona uma região para continuar."
 
 #, fuzzy
+msgid "TUTORIAL_MICROBE_EDITOR_DIGESTION_STAT"
+msgstr ""
+"Este é o editor de células onde podes adicionar ou remover organelos da tua espécie gastando pontos de mutação (PM). Cada geração terá sempre 100 PM para gastar, então não te preocupes em economizar!\n"
+"\n"
+"O hexágono no centro do ecrã é a tua célula, que é composta por um unidade de citoplasma.\n"
+"\n"
+"Para continuar, seleciona uma parte no painel à esquerda. Em seguida, clica com o botão esquerdo ao lado do hexágono para colocá-la. Consegues rotacionar partes com [thrive:input]e_rotate_left[/thrive:input] e [thrive:input]e_rotate_right[/thrive:input]."
+
+#, fuzzy
 msgid "TUTORIAL_MICROBE_EDITOR_ENDING_TEXT"
 msgstr ""
 "Estes são os básicos do editor das espécies.Como toque final, pode mudar o nome das tuas espécies clicando no nome no canto inferior esquerdo e editando o texto.\n"
@@ -6345,6 +6378,7 @@ msgstr ""
 "\n"
 "Para continuar, seleciona uma parte no painel à esquerda. Em seguida, clica com o botão esquerdo ao lado do hexágono para colocá-la. Consegues rotacionar partes com [thrive:input]e_rotate_left[/thrive:input] e [thrive:input]e_rotate_right[/thrive:input]."
 
+#, fuzzy
 msgid "TUTORIAL_MICROBE_EDITOR_MODIFY_ORGANELLE"
 msgstr ""
 "Podes [b]modificar[/b] este organelo. Isto irá desbloquear [b]novas funções[/b] ou [b]atualizações[/b] para o organelo.\n"
@@ -6353,6 +6387,7 @@ msgstr ""
 "\n"
 "Modifica o organelo para continuar."
 
+#, fuzzy
 msgid "TUTORIAL_MICROBE_EDITOR_NEGATIVE_ATP_BALANCE"
 msgstr ""
 "O teu balanço de [thrive:compound type=\"atp\"][/thrive:compound] é negativo.\n"
@@ -6471,6 +6506,7 @@ msgstr ""
 "\n"
 "Para abandonar a colónia totalmente podes clicar na tua própria célula ou pressionar o botão Desvincular tudo."
 
+#, fuzzy
 msgid "TUTORIAL_MICROBE_STAGE_HELP_MENU_AND_ZOOM"
 msgstr ""
 "Está com dificuldades? Consulta o menu de ajuda. Podes abri-lo com o botão de ponto de interrogação no canto inferior esquerdo.\n"
@@ -6722,6 +6758,18 @@ msgstr "A carregar..."
 
 msgid "UPLOAD_SUCCEEDED"
 msgstr "Carregamento bem-sucedido"
+
+msgid "UPSCALE_BILINEAR"
+msgstr ""
+
+msgid "UPSCALE_FSR_1"
+msgstr ""
+
+msgid "UPSCALE_FSR_22"
+msgstr ""
+
+msgid "UPSCALE_SHARPENING_FSR"
+msgstr ""
 
 msgid "USED_LIBRARIES_LICENSES"
 msgstr "Licenças e Bibliotecas Utilizadas"
@@ -8732,6 +8780,10 @@ msgstr "Reduzir"
 #~ "Tu regeneras saúde enquanto tiveres ATP.\n"
 #~ "Certifica-te de que consegues glicose suficiente para produzires ATP."
 
+#, fuzzy
+#~ msgid "GLOBAL_GLACIATION_EVENT_LOG"
+#~ msgstr "População:"
+
 #~ msgid "IRON_CHEMOLITHOAUTOTROPHY"
 #~ msgstr "Quimiolitoautotrofia Férrica"
 
@@ -8902,6 +8954,10 @@ msgstr "Reduzir"
 #, fuzzy
 #~ msgid "ERUPTION_IN"
 #~ msgstr "reproduzido"
+
+#, fuzzy
+#~ msgid "EVENT_TOOLTIP_ERUPTION"
+#~ msgstr "{0}: +{1} ATP"
 
 #~ msgid "THE_AMOUNT_OF_GLUCOSE_HAS_BEEN_REDUCED"
 #~ msgstr "A quantidade de glicose foi reduzida para {0} da quantidade anterior."

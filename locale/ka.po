@@ -7,9 +7,9 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2025-03-27 20:24+0100\n"
-"PO-Revision-Date: 2025-03-20 20:10+0000\n"
-"Last-Translator: NorwayFun <temuri.doghonadze@gmail.com>\n"
+"POT-Creation-Date: 2025-04-04 13:53+0300\n"
+"PO-Revision-Date: 2025-04-04 10:42+0000\n"
+"Last-Translator: Anonymous <noreply@weblate.org>\n"
 "Language-Team: Georgian <https://translate.revolutionarygamesstudio.com/projects/thrive/thrive-game/ka/>\n"
 "Language: ka\n"
 "MIME-Version: 1.0\n"
@@ -191,6 +191,21 @@ msgstr "და"
 
 msgid "ANISOTROPIC_FILTERING"
 msgstr "ანიზოტროპული გაფილტვრა:"
+
+msgid "ANTIALIASING_MSAA_TAA"
+msgstr "MSAA + TAA"
+
+msgid "ANTI_ALIASING_FXAA"
+msgstr "FXAA"
+
+msgid "ANTI_ALIASING_MODE"
+msgstr "მოგლუვების რეჟიმი:"
+
+msgid "ANTI_ALIASING_MSAA"
+msgstr "MSAA"
+
+msgid "ANTI_ALIASING_TAA"
+msgstr "TAA"
 
 msgid "APPEARANCE"
 msgstr "გარეგნობა"
@@ -1863,29 +1878,6 @@ msgstr ""
 "პაჩის ამოფრქვევის მოვლენა\n"
 "შექმნის დამატებით გოგირდწყალბადს და ნახშირბადის დიოქსიდს"
 
-msgid "EVENT_METEOR_GLUCOSE"
-msgstr ""
-
-#, fuzzy
-msgid "EVENT_METEOR_IRON"
-msgstr "{0}: +{1} ატფ"
-
-#, fuzzy
-msgid "EVENT_METEOR_PHOSPHATES"
-msgstr "ფოსფატის შექმნა"
-
-#, fuzzy
-msgid "EVENT_METEOR_PLAIN"
-msgstr ""
-"პაჩის ამოფრქვევის მოვლენა\n"
-"შექმნის დამატებით გოგირდწყალბადს და ნახშირბადის დიოქსიდს"
-
-msgid "EVENT_METEOR_RADIOACTIVE"
-msgstr ""
-
-msgid "EVENT_METEOR_SULFUR"
-msgstr ""
-
 msgid "EVOLUTIONARY_TREE"
 msgstr "ევოლუციის ხე"
 
@@ -2225,28 +2217,26 @@ msgid "GLES3"
 msgstr "GLES3"
 
 msgid "GLOBAL_GLACIATION_END_EVENT_LOG"
-msgstr ""
+msgstr "გლობალური გამყინვარება დასრულდა ყველა ზედაპირის ბიომში"
 
-#, fuzzy
 msgid "GLOBAL_GLACIATION_EVENT"
-msgstr "გლობალური პოპულაცია:"
+msgstr "გლობალური გამყინვარების მოვლენა"
 
-#, fuzzy
-msgid "GLOBAL_GLACIATION_EVENT_LOG"
-msgstr "გლობალური პოპულაცია:"
-
-#, fuzzy
 msgid "GLOBAL_GLACIATION_EVENT_TOOLTIP"
-msgstr "გამოღვიძების ფაზაზე გადასვლა. ხელმისაწვდომი გახდება, როცა საკმარისი ტვინის სიმძლავრე (ქსოვილის ტიპი აქსონებით) გექნებათ."
+msgstr ""
+"გლობალური გამყინვარება\n"
+"ეს მოვლენა ატმოსფეროში ჟანგბადის დონის ზრდამ გამოიწვია.\n"
+"ის რამდენიმე თაობით გაგრძელდა და დედამიწის ზედაპირამდე მოღწეული მზის სხივები და ტემპერატურა ძალიან შეამცირა.\n"
+"ახლა ამ ბიომებში ყინულის ფრაგმენტებიც გამოჩნდება."
 
 msgid "GLOBAL_GLACIATION_EVENT_WARNING_LOG_PLURAL"
-msgstr ""
+msgstr "გლობალური გამყინვარება {0} თაობაში მოხდება"
 
 msgid "GLOBAL_GLACIATION_EVENT_WARNING_LOG_SINGULAR"
-msgstr ""
+msgstr "გლობალური გამყინვარება {0} თაობაში მოხდება"
 
 msgid "GLOBAL_GLACIATION_START_EVENT_LOG"
-msgstr ""
+msgstr "გლობალური გამყინვარება დაიწყო ყველა ზედაპირის ბიომში"
 
 msgid "GLOBAL_INITIAL_LETTER"
 msgstr "გ"
@@ -2391,6 +2381,9 @@ msgstr "ID არაწორი რიცხვია"
 
 msgid "ID_NUMBER"
 msgstr "ID ნომერი"
+
+msgid "IF_FALLBACK_RENDERER_USED_ALL_NOT_AVAILABLE"
+msgstr "(რენდერის რეჟიმზე და მასთაბზე დამოკიდებულებით ყველა მეთოდი ხელმისაწვდომი არაა)"
 
 msgid "IMAGE_FILE_TYPES"
 msgstr "მხარდაჭერილი გამოსახულების ფაილები"
@@ -3003,14 +2996,34 @@ msgstr "ჩატვირთვა..."
 msgid "LOADING_GAME"
 msgstr "თამაშის ჩატვირთვა"
 
+#, fuzzy
+msgid "LOADING_GRAPHICS_SHADERS"
+msgstr "თამაშის ჩატვირთვა"
+
 msgid "LOADING_MACROSCOPIC_EDITOR"
 msgstr "იტვირთება მაკროსკოპული რედაქტორი"
 
 msgid "LOADING_MICROBE_EDITOR"
 msgstr "იტვირთება მიკრობის რედაქტორი"
 
+#, fuzzy
+msgid "LOADING_MICROBE_STAGE"
+msgstr "მიკრობის ფაზა"
+
 msgid "LOADING_MULTICELLULAR_EDITOR"
 msgstr "მრავალუჯრედიანი რედაქტორის ჩატვირთვა"
+
+#, fuzzy
+msgid "LOADING_MULTICELLULAR_STAGE"
+msgstr "მრავალუჯრედიანი რედაქტორის ჩატვირთვა"
+
+#, fuzzy
+msgid "LOADING_STAGE"
+msgstr "თამაშის ჩატვირთვა"
+
+#, fuzzy
+msgid "LOADING_STAGE_ASSETS"
+msgstr "თამაშის ჩატვირთვა"
 
 msgid "LOAD_FINISHED"
 msgstr "ჩატვირთვა დასრულდა"
@@ -3041,6 +3054,12 @@ msgstr "ლ"
 
 msgid "LOCK_DAY_NIGHT_CYCLE"
 msgstr "დღეღამის ციკლის ჩაკეტვა"
+
+msgid "LOWER_SCALE_INCREASES_PERFORMANCE"
+msgstr "(დაბალი მნიშვნელობები ზრდის წარმადობას)"
+
+msgid "LOWER_VALUE_MAKES_SHARPER_IMAGE"
+msgstr "(დაბალი მნიშვნელობა გამოსახულებას უფრო გაამკვეთრებს)"
 
 msgid "LOW_MENU_PERFORMANCE"
 msgstr "აღმოჩენილია დაბალი წარმადობა"
@@ -3170,15 +3189,6 @@ msgstr "გადაჰყავს [thrive:compound type=\"glucose\"][/thrive:c
 
 msgid "META_THREADS_TOOLTIP"
 msgstr "ეწვიეთ ჩვენს Thread-ის პროფილს"
-
-msgid "METEOR_IMPACT_EVENT"
-msgstr ""
-
-msgid "METEOR_STRIKE_START_EVENT_LOG_PLURAL"
-msgstr ""
-
-msgid "METEOR_STRIKE_START_EVENT_LOG_SINGULAR"
-msgstr ""
 
 msgid "METRICS"
 msgstr "წარმადობის ჩვენება"
@@ -3383,13 +3393,13 @@ msgstr ""
 
 msgid "MICROBE_STAGE_INITIAL_POND"
 msgstr ""
-"დაშორებულ უცხოპლანეტელების პლატენაზე, ქიმიური ევოლუციის ეონები აშენდება თვით-გამრავლებად მოლეკულებამდე, რომლების სამყაროში ახალი ფენომენის გაჩენის საწყისები გახდნენ.\n"
+"შორ უცხო პლანეტაზე - ეონზე, ქიმიურმა რევოლუციამ გამთბარ აუზებში შექმნა რაღაც შესანიშნავი.\n"
 "\n"
-"სიცოცხლე.\n"
+"სიცოცხლე\n"
 "\n"
-"მარტივი მიკრობები ცხოვრობენ წყალმარჩხ თბილ აუზებში. თქვენ ამ პლანეტაზე 'უკანასკნელი უნივერსალური საერთო წინაპარი (LUCA) ბრძანდებით.\n"
+"თქვენ ბრძანდებით ბოლო უნივერსალური საერთო წინაპარი (ბუსწი) ამ პლანეტაზე. ამ მარტივ ბუშტს თავისით შეუძლია, გამრავლდეს წყალში არსებული მოლეკულებით. რაღაც დროის შემდეგ ის შეიძლება, განვითარდეს უფრო რთულ სახეობამდე, რომლებიც ვარკსვლავებზეც კი იბატობენენ.\n"
 "\n"
-"იმისათვის, რომ ამ მტრულ გარემოში გადარჩეთ, საჭიროა მოაგროვოთ ყველა ნაერთი, რომელსაც იპოვით და განვითარდეთ თაობებს შუა, რომ მიკრობების სხვა სახეობებს კონკურენცია გაუწიოთ."
+"მაგრამ ჯერ უნდა გადარჩეთ ამ მტრულ გარემოში ნაერთების შეგროვებით, რომ გადარჩეთ, გამრავლდეთ და განვითარდეთ და ამავდროულად გაეჯიბროთ სხვა მიკრობებსაც."
 
 msgid "MICROBE_STAGE_ORGANELLE_DIVISION"
 msgstr ""
@@ -4499,6 +4509,9 @@ msgstr "ბოლო ქმედების გამეორება"
 
 msgid "REFRESH"
 msgstr "განახლება"
+
+msgid "RENDER_SCALE"
+msgstr "რევოლუციის მასშტაბი"
 
 msgid "REPORT"
 msgstr "ანგარიში"
@@ -5685,6 +5698,7 @@ msgstr ""
 msgid "TOXISOME"
 msgstr "ტოქსისომა"
 
+#, fuzzy
 msgid "TOXISOME_DESCRIPTION"
 msgstr "შეცვლილი მეტაბოლოსომა პასუხისმგებელია ტოქსიკური ნივთიერება [thrive:compound type=\\\"oxytoxy\\\"][/thrive:compound]-ის პრიმიტიული ფორმის წარმოებაში .შეიძლება, სხვა ეფექტების მქონე ტოქსინზე გადაირთოს."
 
@@ -5732,14 +5746,11 @@ msgstr ""
 "\n"
 "თუ მას ჩასვამთ, ის საშუალებას მოგცემთ, აღმოაჩინოთ ნაერთები, როგორიცაა [thrive:compound type=\"glucose\"][/thrive:compound] და გაგიძღვებათ მისკენ. ასევე შეიძლება გამოყენებული იყოს სხვა სახეობების უჯრედების აღმოსაჩენადაც."
 
-#, fuzzy
 msgid "TUTORIAL_MICROBE_EDITOR_COMPOUND_BALANCES"
 msgstr ""
-"თქვენს სახეობებში ცვლილებები არ შეგიტანიათ.\n"
-"\n"
-"როცა რედაქტორიდან გახვალთ, [u]თქვენს სახეობას ვერ ჩაასწორებთ, სანამ მორიგ ჯერზე არ გამრავლდებით.[/u].\n"
-"\n"
-"იმისათვის, რომ თამაშში წინ წახვიდეთ, უნდა განვითარდეთ და შეეგუოთ, ასე რომ, რეკომენდებულია, თქვენი სახეობა ყოველ ჯერზე გააუმჯობესოთ."
+
+msgid "TUTORIAL_MICROBE_EDITOR_DIGESTION_STAT"
+msgstr ""
 
 msgid "TUTORIAL_MICROBE_EDITOR_ENDING_TEXT"
 msgstr ""
@@ -5754,23 +5765,11 @@ msgstr ""
 "\n"
 "[b]გადაადგილების სიჩქარის[/b] ოდნავ გასაზრდელად [thrive:icon]MovementIcon[/thrive:icon] თქვენს მემბრანას უფრო თხევადს ხდის [u]მემბრანის ჩანართში[/u]."
 
-#, fuzzy
 msgid "TUTORIAL_MICROBE_EDITOR_FOOD_CHAIN"
 msgstr ""
-"თქვენს სახეობებში ცვლილებები არ შეგიტანიათ.\n"
-"\n"
-"როცა რედაქტორიდან გახვალთ, [u]თქვენს სახეობას ვერ ჩაასწორებთ, სანამ მორიგ ჯერზე არ გამრავლდებით.[/u].\n"
-"\n"
-"იმისათვის, რომ თამაშში წინ წახვიდეთ, უნდა განვითარდეთ და შეეგუოთ, ასე რომ, რეკომენდებულია, თქვენი სახეობა ყოველ ჯერზე გააუმჯობესოთ."
 
-#, fuzzy
 msgid "TUTORIAL_MICROBE_EDITOR_MIGRATION"
 msgstr ""
-"შეგიძლიათ, თქვენს უჯრედს [b]ქემორეცეპტორის[/b] ორგანელა დაამატოთ.\n"
-"\n"
-"ქემორეცეპტორები წარმოადგენს თქვენი სახეობის შესაძლებლობას, ნაერთები იგრძნოს.\n"
-"\n"
-"თუ მას ჩასვამთ, ის საშუალებას მოგცემთ, აღმოაჩინოთ ნაერთები, როგორიცაა [thrive:compound type=\"glucose\"][/thrive:compound] და გაგიძღვებათ მისკენ. ასევე შეიძლება გამოყენებული იყოს სხვა სახეობების უჯრედების აღმოსაჩენადაც."
 
 msgid "TUTORIAL_MICROBE_EDITOR_MODIFY_ORGANELLE"
 msgstr ""
@@ -5780,11 +5779,6 @@ msgstr ""
 
 msgid "TUTORIAL_MICROBE_EDITOR_NO_CHANGES_MADE"
 msgstr ""
-"თქვენს სახეობებში ცვლილებები არ შეგიტანიათ.\n"
-"\n"
-"როცა რედაქტორიდან გახვალთ, [u]თქვენს სახეობას ვერ ჩაასწორებთ, სანამ მორიგ ჯერზე არ გამრავლდებით.[/u].\n"
-"\n"
-"იმისათვის, რომ თამაშში წინ წახვიდეთ, უნდა განვითარდეთ და შეეგუოთ, ასე რომ, რეკომენდებულია, თქვენი სახეობა ყოველ ჯერზე გააუმჯობესოთ."
 
 msgid "TUTORIAL_MICROBE_EDITOR_OPEN_TOLERANCES"
 msgstr ""
@@ -5816,14 +5810,8 @@ msgstr ""
 msgid "TUTORIAL_MICROBE_STAGE_ENGULFMENT_TEXT"
 msgstr ""
 
-#, fuzzy
 msgid "TUTORIAL_MICROBE_STAGE_ENVIRONMENT_PANEL"
 msgstr ""
-"თქვენს სახეობებში ცვლილებები არ შეგიტანიათ.\n"
-"\n"
-"როცა რედაქტორიდან გახვალთ, [u]თქვენს სახეობას ვერ ჩაასწორებთ, სანამ მორიგ ჯერზე არ გამრავლდებით.[/u].\n"
-"\n"
-"იმისათვის, რომ თამაშში წინ წახვიდეთ, უნდა განვითარდეთ და შეეგუოთ, ასე რომ, რეკომენდებულია, თქვენი სახეობა ყოველ ჯერზე გააუმჯობესოთ."
 
 msgid "TUTORIAL_MICROBE_STAGE_HELP_MENU_AND_ZOOM"
 msgstr ""
@@ -5831,44 +5819,20 @@ msgstr ""
 msgid "TUTORIAL_MICROBE_STAGE_LEAVE_COLONY_TEXT"
 msgstr ""
 
-#, fuzzy
 msgid "TUTORIAL_MICROBE_STAGE_OPEN_PROCESS_PANEL"
 msgstr ""
-"თქვენს სახეობებში ცვლილებები არ შეგიტანიათ.\n"
-"\n"
-"როცა რედაქტორიდან გახვალთ, [u]თქვენს სახეობას ვერ ჩაასწორებთ, სანამ მორიგ ჯერზე არ გამრავლდებით.[/u].\n"
-"\n"
-"იმისათვის, რომ თამაშში წინ წახვიდეთ, უნდა განვითარდეთ და შეეგუოთ, ასე რომ, რეკომენდებულია, თქვენი სახეობა ყოველ ჯერზე გააუმჯობესოთ."
 
-#, fuzzy
 msgid "TUTORIAL_MICROBE_STAGE_PAUSING"
 msgstr ""
-"თქვენს სახეობებში ცვლილებები არ შეგიტანიათ.\n"
-"\n"
-"როცა რედაქტორიდან გახვალთ, [u]თქვენს სახეობას ვერ ჩაასწორებთ, სანამ მორიგ ჯერზე არ გამრავლდებით.[/u].\n"
-"\n"
-"იმისათვის, რომ თამაშში წინ წახვიდეთ, უნდა განვითარდეთ და შეეგუოთ, ასე რომ, რეკომენდებულია, თქვენი სახეობა ყოველ ჯერზე გააუმჯობესოთ."
 
-#, fuzzy
 msgid "TUTORIAL_MICROBE_STAGE_PROCESS_PANEL"
 msgstr ""
-"თქვენს სახეობებში ცვლილებები არ შეგიტანიათ.\n"
-"\n"
-"როცა რედაქტორიდან გახვალთ, [u]თქვენს სახეობას ვერ ჩაასწორებთ, სანამ მორიგ ჯერზე არ გამრავლდებით.[/u].\n"
-"\n"
-"იმისათვის, რომ თამაშში წინ წახვიდეთ, უნდა განვითარდეთ და შეეგუოთ, ასე რომ, რეკომენდებულია, თქვენი სახეობა ყოველ ჯერზე გააუმჯობესოთ."
 
 msgid "TUTORIAL_MICROBE_STAGE_REPRODUCE_TEXT"
 msgstr ""
 
-#, fuzzy
 msgid "TUTORIAL_MICROBE_STAGE_RESOURCE_SPLIT"
 msgstr ""
-"შეგიძლიათ, თქვენს უჯრედს [b]ქემორეცეპტორის[/b] ორგანელა დაამატოთ.\n"
-"\n"
-"ქემორეცეპტორები წარმოადგენს თქვენი სახეობის შესაძლებლობას, ნაერთები იგრძნოს.\n"
-"\n"
-"თუ მას ჩასვამთ, ის საშუალებას მოგცემთ, აღმოაჩინოთ ნაერთები, როგორიცაა [thrive:compound type=\"glucose\"][/thrive:compound] და გაგიძღვებათ მისკენ. ასევე შეიძლება გამოყენებული იყოს სხვა სახეობების უჯრედების აღმოსაჩენადაც."
 
 msgid "TUTORIAL_MICROBE_STAGE_UNBIND_TEXT"
 msgstr ""
@@ -6067,6 +6031,18 @@ msgstr "ატვირთვა..."
 
 msgid "UPLOAD_SUCCEEDED"
 msgstr "ატვირთვა წარმატებულია"
+
+msgid "UPSCALE_BILINEAR"
+msgstr "ბილინეარული დამასშტაბება"
+
+msgid "UPSCALE_FSR_1"
+msgstr "FSR 1 Upscaling"
+
+msgid "UPSCALE_FSR_22"
+msgstr "FSR 2.2 Upscaling"
+
+msgid "UPSCALE_SHARPENING_FSR"
+msgstr "FSR გამოკვეთა"
 
 msgid "USED_LIBRARIES_LICENSES"
 msgstr "ლიცენზიები და გამოყენებული ბიბლიოთეკები"
@@ -7719,6 +7695,10 @@ msgstr "გადიდება"
 msgid "ZOOM_OUT"
 msgstr "დაპატარავება"
 
+#, fuzzy
+#~ msgid "GLOBAL_GLACIATION_EVENT_LOG"
+#~ msgstr "გლობალური პოპულაცია:"
+
 #~ msgid "SHOW_TUTORIALS"
 #~ msgstr "სახელმძღვანელოების ჩვენება"
 
@@ -7795,6 +7775,10 @@ msgstr "დაპატარავება"
 #, fuzzy
 #~ msgid "ERUPTION_IN"
 #~ msgstr "გამრავლება"
+
+#, fuzzy
+#~ msgid "EVENT_TOOLTIP_ERUPTION"
+#~ msgstr "{0}: +{1} ატფ"
 
 #~ msgid "THE_AMOUNT_OF_GLUCOSE_HAS_BEEN_REDUCED"
 #~ msgstr "გლუკოზის რაოდენობა წინა რაოდენობასთან შედარებით {0}-მდე შემცირდა."

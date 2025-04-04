@@ -150,6 +150,9 @@ public class TutorialState : ITutorialInput, ISaveLoadable
     public FlagellumPlacementTutorial FlagellumPlacementTutorial { get; private set; } = new();
 
     [JsonProperty]
+    public DigestionStatTutorial DigestionStatTutorial { get; private set; } = new();
+
+    [JsonProperty]
     public ModifyOrganelleTutorial ModifyOrganelleTutorial { get; private set; } = new();
 
     [JsonProperty]
@@ -520,9 +523,7 @@ public class TutorialState : ITutorialInput, ISaveLoadable
             EditorTutorialEnd,
             StaySmallTutorial,
             ChemoreceptorPlacementTutorial,
-            NegativeAtpBalanceTutorial,
             CompoundBalancesTutorial,
-            FoodChainTabTutorial,
             LeaveColonyTutorial,
             BecomeMulticellularTutorial,
             MulticellularWelcome,
@@ -530,12 +531,15 @@ public class TutorialState : ITutorialInput, ISaveLoadable
             MadeNoChangesTutorial,
             OrganelleDivisionTutorial,
             FlagellumPlacementTutorial,
+            DigestionStatTutorial,
             ModifyOrganelleTutorial,
             AtpBalanceIntroduction,
             OpenTolerancesTabTutorial,
             TolerancesTabTutorial,
             AutoEvoPrediction,
             EarlyGameGoalTutorial,
+            FoodChainTabTutorial,
+            NegativeAtpBalanceTutorial,
             PausingTutorial,
         };
     }

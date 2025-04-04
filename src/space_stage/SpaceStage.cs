@@ -77,6 +77,8 @@ public partial class SpaceStage : StrategyStageBase, ISocietyStructureDataAccess
 
     private float defaultZoomLevel;
 
+    private bool showAscensionCongratulations;
+
     [JsonProperty]
     [AssignOnlyChildItemsOnDeserialize]
     public SpaceHUD HUD { get; private set; } = null!;
@@ -134,6 +136,9 @@ public partial class SpaceStage : StrategyStageBase, ISocietyStructureDataAccess
     {
         base._Process(delta);
 
+        if (StageLoadingState != LoadState.NotLoading)
+            return;
+
         if (zoomingOutFromFleet)
         {
             if (AnimateCameraZoomTowards(targetZoomOutLevel, delta, Constants.SPACE_INITIAL_ANIMATION_ZOOM_SPEED))
@@ -163,6 +168,19 @@ public partial class SpaceStage : StrategyStageBase, ISocietyStructureDataAccess
                         Constants.SPACE_ASCEND_SCREEN_FADE, SwitchToAscensionScene, false);
                 }
             }
+        }
+        else if (showAscensionCongratulations)
+        {
+            if (CurrentGame == null)
+            {
+                GD.PrintErr("Current game not set for ascension congratulations popup");
+            }
+            else
+            {
+                ascensionCongratulationsPopup.ShowWithInfo(CurrentGame);
+            }
+
+            showAscensionCongratulations = false;
         }
 
         if (!IsGameOver())
@@ -421,22 +439,24 @@ public partial class SpaceStage : StrategyStageBase, ISocietyStructureDataAccess
         if (CurrentGame == null)
             throw new InvalidOperationException("Current game info not set");
 
-        // Stop the credits music if it got started
+        // Stop the music played during the credits if it got started
         StartMusic();
 
         // Restore player input to the camera
         strategicCamera.AllowPlayerInput = true;
         strategicCamera.MinZoomLevel = minZoomLevelToRestore;
         strategicCamera.ZoomLevel = defaultZoomLevel;
+        playingAscensionAnimation = false;
 
         // Replay the animation
-        HUD.OnEnterStageTransition(true, true);
+        OnStartLoading();
+        HUD.OnEnterStageLoadingScreen(true, true);
 
-        // And finally setup things right for the ascension
+        // And finally set up things right for the ascension
         OnBecomeAscended();
 
-        // Show the congratulations popup for being ascended
-        ascensionCongratulationsPopup.ShowWithInfo(CurrentGame);
+        // Show the congratulations popup for being ascended (once we are back in the stage)
+        showAscensionCongratulations = true;
     }
 
     public void OnBecomeAscended()

@@ -7,8 +7,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2025-03-27 20:24+0100\n"
-"PO-Revision-Date: 2025-01-21 12:01+0000\n"
+"POT-Creation-Date: 2025-04-04 13:53+0300\n"
+"PO-Revision-Date: 2025-04-04 10:42+0000\n"
 "Last-Translator: Anonymous <noreply@weblate.org>\n"
 "Language-Team: Lithuanian <https://translate.revolutionarygamesstudio.com/projects/thrive/thrive-game/lt/>\n"
 "Language: lt\n"
@@ -204,6 +204,21 @@ msgstr ""
 msgid "ANISOTROPIC_FILTERING"
 msgstr ""
 
+msgid "ANTIALIASING_MSAA_TAA"
+msgstr ""
+
+msgid "ANTI_ALIASING_FXAA"
+msgstr ""
+
+msgid "ANTI_ALIASING_MODE"
+msgstr ""
+
+msgid "ANTI_ALIASING_MSAA"
+msgstr ""
+
+msgid "ANTI_ALIASING_TAA"
+msgstr ""
+
 msgid "APPEARANCE"
 msgstr "Išvaizda"
 
@@ -319,6 +334,7 @@ msgstr "Rugpjūtis"
 msgid "AUTO"
 msgstr "Automatinis"
 
+#, fuzzy
 msgid "AUTO-EVO_EXPLANATION_EXPLANATION"
 msgstr "Šiame skydelyje rodomi skaičiai, pagal kuriuos atliekama automatinės evoliucijos prognozė. Nuo bendros energijos, kurią rūšis gali surinkti, ir sąnaudų, tenkančių vienam rūšies individui, priklauso galutinė populiacija. Auto-evo naudoja supaprastintą tikrovės modelį, kad apskaičiuotų, kaip gerai rūšims sekasi pagal energiją, kurią jos sugeba surinkti. Kiekvieno maisto šaltinio atveju parodoma, kiek energijos rūšis iš jo gauna. Be to, rodoma bendra iš to šaltinio gaunama energija. Dalis, kurią rūšis gauna iš visos energijos, priklauso nuo to, koks yra jos tinkamumas, palyginti su bendru tinkamumu. Tinkamumas - tai rodiklis, parodantis, kaip gerai rūšis gali panaudoti tą maisto šaltinį."
 
@@ -2012,25 +2028,6 @@ msgstr ""
 msgid "EVENT_ERUPTION_TOOLTIP"
 msgstr "Baigti žaidimą"
 
-msgid "EVENT_METEOR_GLUCOSE"
-msgstr ""
-
-msgid "EVENT_METEOR_IRON"
-msgstr ""
-
-msgid "EVENT_METEOR_PHOSPHATES"
-msgstr ""
-
-#, fuzzy
-msgid "EVENT_METEOR_PLAIN"
-msgstr "Baigti žaidimą"
-
-msgid "EVENT_METEOR_RADIOACTIVE"
-msgstr ""
-
-msgid "EVENT_METEOR_SULFUR"
-msgstr ""
-
 msgid "EVOLUTIONARY_TREE"
 msgstr ""
 
@@ -2404,10 +2401,6 @@ msgid "GLOBAL_GLACIATION_EVENT"
 msgstr "Sumažinti Perpus Populiaciją"
 
 #, fuzzy
-msgid "GLOBAL_GLACIATION_EVENT_LOG"
-msgstr "Sumažinti Perpus Populiaciją"
-
-#, fuzzy
 msgid "GLOBAL_GLACIATION_EVENT_TOOLTIP"
 msgstr "Pereiti į Nubudimo Stadiją. Ji galima, kai turi pakankamai protinės galios (audinio tipas su aksonais)."
 
@@ -2571,6 +2564,9 @@ msgstr ""
 
 msgid "ID_NUMBER"
 msgstr "ID kodas"
+
+msgid "IF_FALLBACK_RENDERER_USED_ALL_NOT_AVAILABLE"
+msgstr ""
 
 msgid "IMAGE_FILE_TYPES"
 msgstr ""
@@ -3211,14 +3207,34 @@ msgid "LOADING_GAME"
 msgstr "Įkeliamas žaidimas"
 
 #, fuzzy
+msgid "LOADING_GRAPHICS_SHADERS"
+msgstr "Įkeliamas žaidimas"
+
+#, fuzzy
 msgid "LOADING_MACROSCOPIC_EDITOR"
 msgstr "Tapti Makroskopiniu ({0}/{1})"
 
 msgid "LOADING_MICROBE_EDITOR"
 msgstr ""
 
+#, fuzzy
+msgid "LOADING_MICROBE_STAGE"
+msgstr "Bendri Redaktoriaus ir Strategijos Etapai"
+
 msgid "LOADING_MULTICELLULAR_EDITOR"
 msgstr ""
+
+#, fuzzy
+msgid "LOADING_MULTICELLULAR_STAGE"
+msgstr "Daugialąstis"
+
+#, fuzzy
+msgid "LOADING_STAGE"
+msgstr "Įkeliamas žaidimas"
+
+#, fuzzy
+msgid "LOADING_STAGE_ASSETS"
+msgstr "Įkeliamas žaidimas"
 
 msgid "LOAD_FINISHED"
 msgstr "Įkrovimas baigtas"
@@ -3248,6 +3264,12 @@ msgid "LOCAL_INITIAL_LETTER"
 msgstr ""
 
 msgid "LOCK_DAY_NIGHT_CYCLE"
+msgstr ""
+
+msgid "LOWER_SCALE_INCREASES_PERFORMANCE"
+msgstr ""
+
+msgid "LOWER_VALUE_MAKES_SHARPER_IMAGE"
 msgstr ""
 
 msgid "LOW_MENU_PERFORMANCE"
@@ -3391,15 +3413,6 @@ msgid "META_THREADS_TOOLTIP"
 msgstr ""
 "Negalima automatiškai nustatyti, ar įjungtas \"hyperthreading\", ar ne.\n"
 "Tai turi įtakos numatytajam gijų skaičiui, nes hipertreadingo gijos nėra tokios greitos kaip tikrieji procesoriaus branduoliai."
-
-msgid "METEOR_IMPACT_EVENT"
-msgstr ""
-
-msgid "METEOR_STRIKE_START_EVENT_LOG_PLURAL"
-msgstr ""
-
-msgid "METEOR_STRIKE_START_EVENT_LOG_SINGULAR"
-msgstr ""
 
 msgid "METRICS"
 msgstr ""
@@ -4774,6 +4787,9 @@ msgstr ""
 msgid "REFRESH"
 msgstr ""
 
+msgid "RENDER_SCALE"
+msgstr ""
+
 msgid "REPORT"
 msgstr ""
 
@@ -6053,6 +6069,10 @@ msgstr "Chemoreceptorius"
 msgid "TUTORIAL_MICROBE_EDITOR_COMPOUND_BALANCES"
 msgstr "Chemoreceptorius"
 
+#, fuzzy
+msgid "TUTORIAL_MICROBE_EDITOR_DIGESTION_STAT"
+msgstr "Chemoreceptorius"
+
 msgid "TUTORIAL_MICROBE_EDITOR_ENDING_TEXT"
 msgstr ""
 
@@ -6331,6 +6351,18 @@ msgid "UPLOADING_DOT_DOT_DOT"
 msgstr "Įkeliama..."
 
 msgid "UPLOAD_SUCCEEDED"
+msgstr ""
+
+msgid "UPSCALE_BILINEAR"
+msgstr ""
+
+msgid "UPSCALE_FSR_1"
+msgstr ""
+
+msgid "UPSCALE_FSR_22"
+msgstr ""
+
+msgid "UPSCALE_SHARPENING_FSR"
 msgstr ""
 
 msgid "USED_LIBRARIES_LICENSES"
@@ -8406,6 +8438,10 @@ msgstr ""
 #, fuzzy
 #~ msgid "MICROBE_STAGE_DAY_NIGHT_TEXT"
 #~ msgstr "Mikroorganizmo būsena"
+
+#, fuzzy
+#~ msgid "GLOBAL_GLACIATION_EVENT_LOG"
+#~ msgstr "Sumažinti Perpus Populiaciją"
 
 #, fuzzy
 #~ msgid "PASSIVE_REPRODUCTION_PROGRESS"

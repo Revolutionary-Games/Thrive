@@ -7,9 +7,9 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Thrive VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2025-03-27 20:24+0100\n"
-"PO-Revision-Date: 2025-03-01 13:57+0000\n"
-"Last-Translator: Argakyan <andrinmueller@hotmail.ch>\n"
+"POT-Creation-Date: 2025-04-04 13:53+0300\n"
+"PO-Revision-Date: 2025-04-04 10:42+0000\n"
+"Last-Translator: Anonymous <noreply@weblate.org>\n"
 "Language-Team: Alemannic <https://translate.revolutionarygamesstudio.com/projects/thrive/thrive-game/gsw/>\n"
 "Language: gsw\n"
 "MIME-Version: 1.0\n"
@@ -192,6 +192,21 @@ msgstr "und"
 msgid "ANISOTROPIC_FILTERING"
 msgstr "Anisotropische Filter:"
 
+msgid "ANTIALIASING_MSAA_TAA"
+msgstr "MSAA + TAA"
+
+msgid "ANTI_ALIASING_FXAA"
+msgstr "FXAA"
+
+msgid "ANTI_ALIASING_MODE"
+msgstr "Anti-Aliasing-Modus:"
+
+msgid "ANTI_ALIASING_MSAA"
+msgstr "MSAA"
+
+msgid "ANTI_ALIASING_TAA"
+msgstr "TAA"
+
 msgid "APPEARANCE"
 msgstr "Erschiingsbild"
 
@@ -311,6 +326,7 @@ msgstr "Auguscht"
 msgid "AUTO"
 msgstr "Auto"
 
+#, fuzzy
 msgid "AUTO-EVO_EXPLANATION_EXPLANATION"
 msgstr "Die Tafle zeigt d'Wert aa, mit dene d'Auto-Evo-Vorhersag schafft. D'Gsammtenergie, wo e Spezies uufnäh chann, und d'Köschte pro Einzeltier vode Spezies bestimmet d'endgültigi Bevölkerig. Auto-Evo verwendet es vereifachtes Modell vode Realität um z'berechne, wie guet die Spezies uf Basis vo ihre erbrachte Energie abschniidet. Für jedi Nahrigsquelle wird aazeiget, wie viel Energie d'Art us dere gwünnt. Zuesätzlich wird d'Gsammtenergie, wo us dere Quelle zur Verfüegig staht, aazeiget. De Aateil wo die Art a dere Gsammtenergie gwünnt, basiert druff, wie gross ihri Fitness im Vergliich zur Gsammtfitness isch. Die Fitness isch es Maas defür, wie guet die Spezies die Nahrigsquelle verwende cha."
 
@@ -645,12 +661,12 @@ msgstr ""
 "Und zum Biispiel wemmer es Flagellum ide Längi veränderet, denn stimmet d'Zahle nöd mit dem was tatsächlich passiert überii und machet wenig Sinn.\n"
 "Das isch es bekannts Problem aber nonig glöst bisher, will es e niedrigeri Priorität hett als vieli anderi Problem und neue Inhalt."
 
-#, fuzzy
 msgid "CELL_STAT_STORAGE_TOOLTIP"
 msgstr ""
-"Gschwindigkeit vode Zelle. Bitte beacht, dass weg Beschränkige vom Algorythmus die Berrechnig numme approximativ isch.\n"
-"Und zum Biispiel wemmer es Flagellum ide Längi veränderet, denn stimmet d'Zahle nöd mit dem was tatsächlich passiert überii und machet wenig Sinn.\n"
-"Das isch es bekannts Problem aber nonig glöst bisher, will es e niedrigeri Priorität hett als vieli anderi Problem und neue Inhalt."
+"Spiicherkapazität vode Zelle. Höheri Kapazität erlaubt s'lagere vo meh Stoffe gliichziitig.\n"
+"Zelle mit grosse Spiicherkapazitäte chönnd e Strategie verfolge, i dere sie sich nöd durchgehend bewege chönnd aber ihres ATP erneueret und denn sich beweget.\n"
+"Beachte, dass e niedriges Fassvermöge zu ATP-Knappheite führe chann au wenn d'ATP Balance positiv isch. Die Problem chönnd schlimmer werde wegge Lag\n"
+"oder generell niedrigere Performance vom Spiel. Meh Spiicherkapazität hilft mit dene Problem."
 
 msgid "CELL_TYPE_BUTTON_ATP_CONSUMPTION"
 msgstr "De ATP-Konsum vo dem Zelletyp isch {0}."
@@ -1463,190 +1479,217 @@ msgid "DELETE_SELECTED_SAVES_PROMPT"
 msgstr "Uusgwählti Spiicherständ wirklich lösche?"
 
 msgid "DELETE_SELECTED_SAVE_WARNING"
-msgstr ""
+msgstr "S'lösche vom uusgwählte Spielstand chann nöd rückgängig gmacht werde. Bisch sicher, dass du die {0} Spiicherständ duurhaft lösche wettsch?"
 
 msgid "DELETE_THIS_SAVE_PROMPT"
-msgstr ""
+msgstr "Dä Spielstand wirkli lösche?"
 
 msgid "DESCEND_BUTTON"
-msgstr ""
+msgstr "Zruggentwickle"
 
 msgid "DESCEND_CONFIRMATION"
-msgstr ""
+msgstr "Bisch sicher, dass du dich zrugg entwickle wettsch?"
 
 msgid "DESCEND_CONFIRMATION_EXPLANATION"
 msgstr ""
+"Abstieg entfernt de Uufstiegsstatus und wirft dich zrugg is Mikrobestatium. Vo dötte uus chasch im derziitige Spielstand nommal durs Spiel spiele.\n"
+"\n"
+"Du bechunnsch en Abstiegsbonus für de neui Spieldurchlauf. I zuekünftige Versione chasch du de Bonus selber wähle, aber im Moment ischer immer en 20%-ige Vorteil bi Osmoseregolierig.\n"
+"\n"
+"Wenn de Abstieg bestätigt isch, chasch du Spiel- und Startweltiistellige ändere."
 
 msgid "DESCRIPTION"
-msgstr ""
+msgstr "Beschriibig:"
 
 msgid "DESCRIPTION_COLON"
-msgstr ""
+msgstr "Beschriibig:"
 
 msgid "DESCRIPTION_TOO_LONG"
-msgstr ""
+msgstr "Beschriibig isch z'lang"
 
 msgid "DESPAWN_ENTITIES"
-msgstr ""
+msgstr "Alli Objekte entferne"
 
 msgid "DETECTED_CPU_COUNT"
-msgstr ""
+msgstr "Ermittle CPU-Aazahl:"
 
 msgid "DEVBUILD_VERSION_INFO"
 msgstr ""
+"DevBuild {0}\n"
+"uf Zweig {1} bi {2}\n"
+"{3}"
 
 msgid "DEVELOPERS"
-msgstr ""
+msgstr "Entwickler(inne)"
 
 msgid "DEVELOPMENT_FORUM"
-msgstr ""
+msgstr "Entwicklerforum"
 
 msgid "DEVELOPMENT_FORUM_BUTTON_TOOLTIP"
-msgstr ""
+msgstr "Lueg diir Entwicklernachrichte i oisem Entwicklerforum aa"
 
 msgid "DEVELOPMENT_SUPPORTED_BY"
-msgstr ""
+msgstr "Entwicklig unterstützt vo Revolutionary Games Studio ry"
 
 msgid "DEVELOPMENT_WIKI"
-msgstr ""
+msgstr "Entwickler-Wiki"
 
 msgid "DEVELOPMENT_WIKI_BUTTON_TOOLTIP"
-msgstr ""
+msgstr "Bsuech oisi Entwickler-Wiki"
 
 msgid "DEVOURED"
-msgstr ""
+msgstr "Verschlunge"
 
 msgid "DEV_BUILD_PATRONS"
-msgstr ""
+msgstr "Entwickligsversionsunterstützer"
 
 msgid "DIFFICULTY"
-msgstr ""
+msgstr "Schwierigskeitsgrad"
 
 msgid "DIFFICULTY_DETAILS_STRING"
 msgstr ""
+"Schwierigkeitsgrad: {0}\n"
+"Mutationskostemultiplikator: {1}\n"
+"KI Mutationsrate: {2}\n"
+"Wulchedichti: {3}\n"
+"Bevölkerigsstrafe bi Spielertod: {4}\n"
+"Glukoseerhalt ide Umwelt: {5}\n"
+"Osmoregulationskostenmultiplikator: {6}\n"
+"Verfügbari Glukosewulche bi Verlasse vom Editor: {7}\n"
+"Beschränk d'Nutzig vo Wachstums-Substanze: {8}"
 
 msgid "DIFFICULTY_PRESET"
-msgstr ""
+msgstr "Schwierigkeitsgrad"
 
 msgid "DIFFICULTY_PRESET_CUSTOM"
-msgstr ""
+msgstr "Benutzerdefiniert"
 
 msgid "DIFFICULTY_PRESET_EASY"
-msgstr ""
+msgstr "Liecht"
 
 msgid "DIFFICULTY_PRESET_HARD"
-msgstr ""
+msgstr "Schwer"
 
 msgid "DIFFICULTY_PRESET_NORMAL"
-msgstr ""
+msgstr "Normal"
 
 msgid "DIGESTION_EFFICIENCY"
-msgstr ""
+msgstr "Verdauigseffizienz"
 
 msgid "DIGESTION_EFFICIENCY_COLON"
-msgstr ""
+msgstr "Verdauigseffizienz:"
 
 msgid "DIGESTION_SPEED"
-msgstr ""
+msgstr "Ressource-Absorptionsgeschwindigkeit"
 
 msgid "DIGESTION_SPEED_COLON"
-msgstr ""
+msgstr "Ressource-Absorptionsgeschwindigkeit:"
 
 msgid "DIGESTION_SPEED_VALUE"
-msgstr ""
+msgstr "{0}/s"
 
 msgid "DISABLED"
-msgstr ""
+msgstr "Deaktiviert"
 
 msgid "DISABLE_ALL"
-msgstr ""
+msgstr "Alli deaktiviert"
 
 msgid "DISCARD_AND_CONTINUE"
-msgstr ""
+msgstr "Verwerfe und wiitermache"
 
 msgid "DISCARD_CHANGES"
-msgstr ""
+msgstr "Verwerfe und wiitermache"
 
 msgid "DISCARD_MIGRATION"
-msgstr ""
+msgstr "Migration verwerfe"
 
 msgid "DISCONNECTED_CELLS"
-msgstr ""
+msgstr "Trennti Zelle"
 
 msgid "DISCONNECTED_CELLS_TEXT"
 msgstr ""
+"Es git Zelle, wo nöd mit em Rest verbunde sind.\n"
+"Bitte verbinde alli platzierte Zelle mitenander oder mach dini Änderige rückgängig."
 
 msgid "DISCONNECTED_METABALLS"
-msgstr ""
+msgstr "Trennti Zelle"
 
 msgid "DISCONNECTED_METABALLS_TEXT"
 msgstr ""
+"Es git Zelle, wo nöd mit em Rest verbunde sind.\n"
+"Bitte verbinde alli platzierte Zelle miteinander oder mach dini Änderige rückgängig."
 
 msgid "DISCONNECTED_ORGANELLES"
-msgstr ""
+msgstr "Trennti Organelle"
 
 msgid "DISCONNECTED_ORGANELLES_TEXT"
 msgstr ""
+"Es git Organelle, wo nöd mit em Rest verbunde sind.\n"
+"Bitte verbinde alli platzierte Organelle miteinander oder mach dini Änderige rückgängig."
 
 msgid "DISCORD_TOOLTIP"
-msgstr ""
+msgstr "Tritt oisem Discord Server bi"
 
 msgid "DISK_CACHE_TOOLTIP"
 msgstr ""
+"Wenn aktiviert, werdet einigi tüür z'generierende Date uf de Festplatte gspiicheret, demit sie bim nächschte Ladde schneller verfüegbar sind.\n"
+"Wenn deaktiviert, wird nur de Cache im Arbeitsspiicher verwendet."
 
 msgid "DISMISSED_POPUPS_COLON"
-msgstr ""
+msgstr "Deaktivierti Pop-ups:"
 
 msgid "DISMISSED_POPUPS_EXPLANATION"
 msgstr ""
+"Das zeigt a, wie viel Pop-ups vom Spieler duurhaft deaktiviert worde sind.\n"
+"Wenn einigi devo wieder sichtbar werde söttet, chammer mit de Schaltfläche nebet diesi alli deaktivierti Pop-ups wieder aazeiget werde."
 
 msgid "DISMISS_INFORMATION_PERMANENTLY"
-msgstr ""
+msgstr "Nümme aazeige"
 
 msgid "DISMISS_WARNING_PERMANENTLY"
-msgstr ""
+msgstr "Warnig nümme aazeige"
 
 msgid "DISPLAY_3D_MENU_BACKGROUNDS"
-msgstr ""
+msgstr "3D-Hintergrund im Menü aazeige"
 
 msgid "DISPLAY_ABILITIES_BAR"
-msgstr ""
+msgstr "Fähigkeiteleiste aazeige"
 
 msgid "DISPLAY_BACKGROUND_DISTORTION_EFFECT"
-msgstr ""
+msgstr "Verzerrig bi Mikrobe-Hintergrund aawende"
 
 msgid "DISPLAY_BACKGROUND_PARTICLES"
-msgstr ""
+msgstr "Hintergrundpartikel aazeige"
 
 msgid "DISPLAY_DRIVER_OPENGL"
-msgstr ""
+msgstr "OpenGL"
 
 msgid "DISPLAY_DRIVER_VULKAN"
-msgstr ""
+msgstr "Vulkan"
 
 msgid "DISPLAY_MODE"
-msgstr ""
+msgstr "Displaymodus:"
 
 msgid "DISPLAY_PART_NAMES"
-msgstr ""
+msgstr "Namme vo Schaltfläche ide Teil Uuswahl aazeige"
 
 msgid "DISSOLVED_COMPOUND_FOOD_SOURCE"
-msgstr ""
+msgstr "Gliichmässig verteilti ökologischi Nahrigsquelle vo {0}"
 
 msgid "DOES_NOT_USE_FEATURE"
-msgstr ""
+msgstr "Nei"
 
 msgid "DONATIONS"
-msgstr ""
+msgstr "Spende"
 
 msgid "DOT_DOT_DOT"
-msgstr ""
+msgstr "..."
 
 msgid "DOUBLE"
-msgstr ""
+msgstr "Dopplet"
 
 msgid "DOUBLE_CLICK_TO_VIEW_IN_FULLSCREEN"
-msgstr ""
+msgstr "Doppelklicke zum Aaluege in Vollbildmodus"
 
 msgid "DOUBLE_MEMBRANE_DESCRIPTION"
 msgstr ""
@@ -1919,24 +1962,6 @@ msgid "ESTUARY"
 msgstr ""
 
 msgid "EVENT_ERUPTION_TOOLTIP"
-msgstr ""
-
-msgid "EVENT_METEOR_GLUCOSE"
-msgstr ""
-
-msgid "EVENT_METEOR_IRON"
-msgstr ""
-
-msgid "EVENT_METEOR_PHOSPHATES"
-msgstr ""
-
-msgid "EVENT_METEOR_PLAIN"
-msgstr ""
-
-msgid "EVENT_METEOR_RADIOACTIVE"
-msgstr ""
-
-msgid "EVENT_METEOR_SULFUR"
 msgstr ""
 
 msgid "EVOLUTIONARY_TREE"
@@ -2278,13 +2303,12 @@ msgstr ""
 msgid "GLOBAL_GLACIATION_EVENT"
 msgstr ""
 
-#, fuzzy
-msgid "GLOBAL_GLACIATION_EVENT_LOG"
-msgstr "Fortschritt zum Erwachene-Stadium. Erscht mögli wenn uusriichend Ghirnkapazität z'Verfüegig staht (Hirngwäb mit Axone) ."
-
-#, fuzzy
 msgid "GLOBAL_GLACIATION_EVENT_TOOLTIP"
-msgstr "Fortschritt zum Erwachene-Stadium. Erscht mögli wenn uusriichend Ghirnkapazität z'Verfüegig staht (Hirngwäb mit Axone) ."
+msgstr ""
+"Globales Veriisigsevent\n"
+"S'Event isch vo wachsende Suurstoffkonzentratione ide Atmosphäre verursacht worde.\n"
+"Es wird mehreri Generatione aahalte, was Sunneliecht und Temperature reduziert.\n"
+"Iispartikel werdet ebbefalls i dene Gebiet vorcho."
 
 msgid "GLOBAL_GLACIATION_EVENT_WARNING_LOG_PLURAL"
 msgstr ""
@@ -2437,6 +2461,9 @@ msgid "ID_IS_NOT_A_NUMBER"
 msgstr ""
 
 msgid "ID_NUMBER"
+msgstr ""
+
+msgid "IF_FALLBACK_RENDERER_USED_ALL_NOT_AVAILABLE"
 msgstr ""
 
 msgid "IMAGE_FILE_TYPES"
@@ -3048,13 +3075,30 @@ msgstr ""
 msgid "LOADING_GAME"
 msgstr ""
 
+msgid "LOADING_GRAPHICS_SHADERS"
+msgstr ""
+
 msgid "LOADING_MACROSCOPIC_EDITOR"
 msgstr ""
 
 msgid "LOADING_MICROBE_EDITOR"
 msgstr ""
 
+msgid "LOADING_MICROBE_STAGE"
+msgstr ""
+
 msgid "LOADING_MULTICELLULAR_EDITOR"
+msgstr ""
+
+#, fuzzy
+msgid "LOADING_MULTICELLULAR_STAGE"
+msgstr "Multizellulär werde ({0}/{1})"
+
+#, fuzzy
+msgid "LOADING_STAGE"
+msgstr "Phase vom Verwache"
+
+msgid "LOADING_STAGE_ASSETS"
 msgstr ""
 
 msgid "LOAD_FINISHED"
@@ -3085,6 +3129,12 @@ msgid "LOCAL_INITIAL_LETTER"
 msgstr ""
 
 msgid "LOCK_DAY_NIGHT_CYCLE"
+msgstr ""
+
+msgid "LOWER_SCALE_INCREASES_PERFORMANCE"
+msgstr ""
+
+msgid "LOWER_VALUE_MAKES_SHARPER_IMAGE"
 msgstr ""
 
 msgid "LOW_MENU_PERFORMANCE"
@@ -3214,15 +3264,6 @@ msgid "METABOLOSOMES_PROCESSES_DESCRIPTION"
 msgstr ""
 
 msgid "META_THREADS_TOOLTIP"
-msgstr ""
-
-msgid "METEOR_IMPACT_EVENT"
-msgstr ""
-
-msgid "METEOR_STRIKE_START_EVENT_LOG_PLURAL"
-msgstr ""
-
-msgid "METEOR_STRIKE_START_EVENT_LOG_SINGULAR"
 msgstr ""
 
 msgid "METRICS"
@@ -4419,12 +4460,11 @@ msgstr ""
 msgid "PROCESS_SPEED_MODIFIER"
 msgstr ""
 
-#, fuzzy
 msgid "PROCESS_TOGGLE_TOOLTIP"
 msgstr ""
-"Gschwindigkeit vode Zelle. Bitte beacht, dass weg Beschränkige vom Algorythmus die Berrechnig numme approximativ isch.\n"
-"Und zum Biispiel wemmer es Flagellum ide Längi veränderet, denn stimmet d'Zahle nöd mit dem was tatsächlich passiert überii und machet wenig Sinn.\n"
-"Das isch es bekannts Problem aber nonig glöst bisher, will es e niedrigeri Priorität hett als vieli anderi Problem und neue Inhalt."
+"Schalt de Prozess a oder uus. Das erlaubt fortgschritteni Kontrolle über Zelleprozess.\n"
+"Zum Biispiel chammer Toxinproduktion abstelle sofern unnötig.\n"
+"Oder mer chann manuell balanciere welli Energiequelle mer benutze wett um effizienter z'sii, aber das isch e Fortschritteni Taktik."
 
 msgid "PROGRAMMING_TEAM"
 msgstr ""
@@ -4499,6 +4539,9 @@ msgid "REDO_THE_LAST_ACTION"
 msgstr ""
 
 msgid "REFRESH"
+msgstr ""
+
+msgid "RENDER_SCALE"
 msgstr ""
 
 msgid "REPORT"
@@ -4921,11 +4964,11 @@ msgstr ""
 msgid "SHOW_TUTORIALS_IN_NEW_GAMES_OPTION"
 msgstr ""
 
-#, fuzzy
 msgid "SHOW_TUTORIALS_OPTION_TOOLTIP"
 msgstr ""
-"Rotationsrate vode Zelle. Grösseri Zelle rotieret langsamer, aber Zilie chammer zuefüege ums z'kompensiere.\n"
-"Organelleplazierig beiiflusst Rotation indem Organelle wiiter ewegg vom Zentrum d'Rotation meh reduzieret."
+"Zeig oder entferne Tutorials. Es isch nöd g'rate das ab z'stelle.\n"
+"Wemmer es neu's Spiel startet chammer alli Tutorials abstelle, was numme die Tutorials uufschaltet wommer no nöd gseh hett.\n"
+"Das isch durchuus empfohle da neui Tutorials immer wieder dezue chömmed, was ansüschte vo Spieler überseh werde chann wo früener mal Thrive g'spielt hend."
 
 msgid "SHOW_UNSAVED_PROGRESS_WARNING"
 msgstr ""
@@ -5209,9 +5252,10 @@ msgstr ""
 msgid "STORE_LOGGED_IN_AS"
 msgstr ""
 
-#, fuzzy
 msgid "STRAIN_BAR_TOOLTIP"
-msgstr "Fortschritt zum Erwachene-Stadium. Erscht mögli wenn uusriichend Ghirnkapazität z'Verfüegig staht (Hirngwäb mit Axone) ."
+msgstr ""
+"Die Linie zeigt d'momentani Erschöpfig durch Laufe. Je höher die Linie chunnt desto meh ATP bruuchts um wiiterhin Laufe z'chönne.\n"
+"Erholig choschtet ebbefalls extra ATP bis d'Linie wieder weg isch."
 
 msgid "STRAIN_BAR_VISIBILITY"
 msgstr ""
@@ -5711,6 +5755,9 @@ msgstr ""
 msgid "TUTORIAL_MICROBE_EDITOR_COMPOUND_BALANCES"
 msgstr ""
 
+msgid "TUTORIAL_MICROBE_EDITOR_DIGESTION_STAT"
+msgstr ""
+
 msgid "TUTORIAL_MICROBE_EDITOR_ENDING_TEXT"
 msgstr ""
 
@@ -5970,6 +6017,18 @@ msgid "UPLOADING_DOT_DOT_DOT"
 msgstr ""
 
 msgid "UPLOAD_SUCCEEDED"
+msgstr ""
+
+msgid "UPSCALE_BILINEAR"
+msgstr ""
+
+msgid "UPSCALE_FSR_1"
+msgstr ""
+
+msgid "UPSCALE_FSR_22"
+msgstr ""
+
+msgid "UPSCALE_SHARPENING_FSR"
 msgstr ""
 
 msgid "USED_LIBRARIES_LICENSES"

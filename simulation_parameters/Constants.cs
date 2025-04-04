@@ -1711,7 +1711,8 @@ public static class Constants
     public const int RESOURCE_LOAD_TARGET_MIN_FPS = 60;
     public const float RESOURCE_TIME_BUDGET_PER_FRAME = 1.0f / RESOURCE_LOAD_TARGET_MIN_FPS;
     public const bool TRACK_ACTUAL_RESOURCE_LOAD_TIMES = false;
-    public const float REPORT_LOAD_TIMES_OF_BY = 0.1f;
+    public const bool REPORT_ALL_LOAD_TIMES = false;
+    public const float REPORT_LOAD_TIMES_OF_BY = 0.100f;
 
     public const int GALLERY_THUMBNAIL_MAX_WIDTH = 500;
 

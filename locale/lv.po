@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2025-03-27 20:24+0100\n"
+"POT-Creation-Date: 2025-04-04 13:53+0300\n"
 "PO-Revision-Date: 2024-10-17 07:24+0000\n"
 "Last-Translator: Anonymous <noreply@weblate.org>\n"
 "Language-Team: Latvian <https://translate.revolutionarygamesstudio.com/projects/thrive/thrive-game/lv/>\n"
@@ -202,6 +202,25 @@ msgstr "Fiziskie apstākļi"
 
 msgid "ANISOTROPIC_FILTERING"
 msgstr ""
+
+msgid "ANTIALIASING_MSAA_TAA"
+msgstr ""
+
+#, fuzzy
+msgid "ANTI_ALIASING_FXAA"
+msgstr "Vairāku paraugu kropļojumnovērse:"
+
+#, fuzzy
+msgid "ANTI_ALIASING_MODE"
+msgstr "Vairāku paraugu kropļojumnovērse:"
+
+#, fuzzy
+msgid "ANTI_ALIASING_MSAA"
+msgstr "Vairāku paraugu kropļojumnovērse:"
+
+#, fuzzy
+msgid "ANTI_ALIASING_TAA"
+msgstr "Vairāku paraugu kropļojumnovērse:"
 
 msgid "APPEARANCE"
 msgstr ""
@@ -2058,27 +2077,6 @@ msgstr "Grīva"
 msgid "EVENT_ERUPTION_TOOLTIP"
 msgstr "Apskatiet detalizētu informāciju aiz pareģošanas"
 
-msgid "EVENT_METEOR_GLUCOSE"
-msgstr ""
-
-#, fuzzy
-msgid "EVENT_METEOR_IRON"
-msgstr "{0}: +{1} ATP"
-
-#, fuzzy
-msgid "EVENT_METEOR_PHOSPHATES"
-msgstr "Iespavnot fosfātu"
-
-#, fuzzy
-msgid "EVENT_METEOR_PLAIN"
-msgstr "Apskatiet detalizētu informāciju aiz pareģošanas"
-
-msgid "EVENT_METEOR_RADIOACTIVE"
-msgstr ""
-
-msgid "EVENT_METEOR_SULFUR"
-msgstr ""
-
 msgid "EVOLUTIONARY_TREE"
 msgstr ""
 
@@ -2487,10 +2485,6 @@ msgid "GLOBAL_GLACIATION_EVENT"
 msgstr "Kopējā Populācija:"
 
 #, fuzzy
-msgid "GLOBAL_GLACIATION_EVENT_LOG"
-msgstr "Kopējā Populācija:"
-
-#, fuzzy
 msgid "GLOBAL_GLACIATION_EVENT_TOOLTIP"
 msgstr "Apskatiet detalizētu informāciju aiz pareģošanas"
 
@@ -2657,6 +2651,9 @@ msgid "ID_IS_NOT_A_NUMBER"
 msgstr ""
 
 msgid "ID_NUMBER"
+msgstr ""
+
+msgid "IF_FALLBACK_RENDERER_USED_ALL_NOT_AVAILABLE"
 msgstr ""
 
 #, fuzzy
@@ -3334,6 +3331,10 @@ msgid "LOADING_GAME"
 msgstr ""
 
 #, fuzzy
+msgid "LOADING_GRAPHICS_SHADERS"
+msgstr "Novietot organoīdu"
+
+#, fuzzy
 msgid "LOADING_MACROSCOPIC_EDITOR"
 msgstr "Novietot organoīdu"
 
@@ -3341,8 +3342,24 @@ msgid "LOADING_MICROBE_EDITOR"
 msgstr ""
 
 #, fuzzy
+msgid "LOADING_MICROBE_STAGE"
+msgstr "[thrive:input]g_move_forward[/thrive:input],[thrive:input]g_move_left[/thrive:input],[thrive:input]g_move_backwards[/thrive:input],[thrive:input]g_move_right[/thrive:input] un peli, lai kustētos. [thrive:input]g_fire_toxin[/thrive:input], lai šautu [thrive:compound type=\"oxytoxy\"][/thrive:compound], ja jums ir toksīnu vakuola. [thrive:input]g_toggle_engulf[/thrive:input], lai pārslēgtu aprīšanas režīmu. Jūs varat attālinātas un pietuvināties ar peles riteni."
+
+#, fuzzy
 msgid "LOADING_MULTICELLULAR_EDITOR"
 msgstr "Novietot organoīdu"
+
+#, fuzzy
+msgid "LOADING_MULTICELLULAR_STAGE"
+msgstr "Novietot organoīdu"
+
+#, fuzzy
+msgid "LOADING_STAGE"
+msgstr "Lādējas"
+
+#, fuzzy
+msgid "LOADING_STAGE_ASSETS"
+msgstr "Notiek datu lasīšana no saglabāšanas faila"
 
 msgid "LOAD_FINISHED"
 msgstr ""
@@ -3380,6 +3397,12 @@ msgid "LOCAL_INITIAL_LETTER"
 msgstr ""
 
 msgid "LOCK_DAY_NIGHT_CYCLE"
+msgstr ""
+
+msgid "LOWER_SCALE_INCREASES_PERFORMANCE"
+msgstr ""
+
+msgid "LOWER_VALUE_MAKES_SHARPER_IMAGE"
 msgstr ""
 
 msgid "LOW_MENU_PERFORMANCE"
@@ -3527,15 +3550,6 @@ msgstr "Pārveido [thrive:compound type=\"glucose\"][/thrive:compound] par [thri
 #, fuzzy
 msgid "META_THREADS_TOOLTIP"
 msgstr "Apskatiet detalizētu informāciju aiz pareģošanas"
-
-msgid "METEOR_IMPACT_EVENT"
-msgstr ""
-
-msgid "METEOR_STRIKE_START_EVENT_LOG_PLURAL"
-msgstr ""
-
-msgid "METEOR_STRIKE_START_EVENT_LOG_SINGULAR"
-msgstr ""
 
 #, fuzzy
 msgid "METRICS"
@@ -5050,6 +5064,9 @@ msgstr "Atcelt pēdējo atsaukšanu"
 msgid "REFRESH"
 msgstr "Atsvaidzināt"
 
+msgid "RENDER_SCALE"
+msgstr ""
+
 msgid "REPORT"
 msgstr ""
 
@@ -6463,6 +6480,23 @@ msgstr ""
 "Lai pamestu koloniju vispārīgi, jūs varat uzklikšķināt uz savas šūnas vai uzspiest atsaistīt visu pogu."
 
 #, fuzzy
+msgid "TUTORIAL_MICROBE_EDITOR_DIGESTION_STAT"
+msgstr ""
+"Prokariotu struktūras\n"
+"\n"
+"Metabolosomas: ražo ATP no glikozes\n"
+"\n"
+"Hemosintezējošas olbaltumvielas: No sērūdeņraža saražo uz pusi mazāk glikozes nekā hemoplasts, bet arī veic glikolīzi, aizņem 1 daļu\n"
+"\n"
+"Tilakoīdi: ražo 3 reizes mazāk glikozes nekā parasts hloroplasts, bet arī veic glikolīzi un aizņem 1 daļu\n"
+"\n"
+"Rusticianīns : pārvērš dzelzi ATP\n"
+"\n"
+"Nitrogenāze: no atmosfēras slāpekli un ATP ražo amonjaku\n"
+"\n"
+"Citoplazma: uzglabā savienojumus un veic glikolīzi (ražo ATP nelielos daudzumos)"
+
+#, fuzzy
 msgid "TUTORIAL_MICROBE_EDITOR_ENDING_TEXT"
 msgstr ""
 "Jūs esat iegājuši atsaistīšanas režīmā. Šajā režīmā jūs varat uzklikšķināt uz kolonijas locekļiem, lai tos atsaistītu.\n"
@@ -6867,6 +6901,18 @@ msgstr "Augšuplādē..."
 
 msgid "UPLOAD_SUCCEEDED"
 msgstr "Augšuplāde Veiksmīga"
+
+msgid "UPSCALE_BILINEAR"
+msgstr ""
+
+msgid "UPSCALE_FSR_1"
+msgstr ""
+
+msgid "UPSCALE_FSR_22"
+msgstr ""
+
+msgid "UPSCALE_SHARPENING_FSR"
+msgstr ""
 
 msgid "USED_LIBRARIES_LICENSES"
 msgstr ""
@@ -8865,6 +8911,10 @@ msgstr "Attālināt"
 #~ "\n"
 #~ "Citoplazma: uzglabā savienojumus un veic glikolīzi (ražo ATP nelielos daudzumos)"
 
+#, fuzzy
+#~ msgid "GLOBAL_GLACIATION_EVENT_LOG"
+#~ msgstr "Kopējā Populācija:"
+
 #~ msgid "IRON_CHEMOLITHOAUTOTROPHY"
 #~ msgstr "Dzelža Ķīmolitoautotrofija"
 
@@ -9043,6 +9093,10 @@ msgstr "Attālināt"
 #, fuzzy
 #~ msgid "ERUPTION_IN"
 #~ msgstr "Apraksts ir pārāk garš"
+
+#, fuzzy
+#~ msgid "EVENT_TOOLTIP_ERUPTION"
+#~ msgstr "{0}: +{1} ATP"
 
 #~ msgid "THE_AMOUNT_OF_GLUCOSE_HAS_BEEN_REDUCED"
 #~ msgstr "Glikozes daudzums ir samazināts līdz {0} no iepriekšējā daudzuma."

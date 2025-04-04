@@ -1,4 +1,5 @@
-﻿using Godot;
+﻿using System;
+using Godot;
 
 /// <summary>
 ///   Manages the microbe background plane, optionally applies blur.
@@ -172,13 +173,28 @@ public partial class BackgroundPlane : Node3D
     {
         Vector2I newSize;
 
-        if (Settings.Instance.MicrobeBackgroundBlurLowQuality)
+        var settings = Settings.Instance;
+
+        float renderScale = settings.RenderScale.Value;
+
+        var rawSize = GetWindow().Size;
+
+        var scaledSize = new Vector2I((int)Math.Round(rawSize.X * renderScale),
+            (int)Math.Round(rawSize.Y * renderScale));
+
+        if (settings.MicrobeBackgroundBlurLowQuality.Value)
         {
             newSize = new Vector2I(1280, 720);
+
+            // If low quality is higher than the scaled value, go down to that resolution
+            if (scaledSize.X < newSize.X || scaledSize.Y < newSize.Y)
+            {
+                newSize = scaledSize;
+            }
         }
         else
         {
-            newSize = GetWindow().Size;
+            newSize = scaledSize;
         }
 
         if (previousWindowSize != newSize)

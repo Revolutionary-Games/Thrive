@@ -96,6 +96,9 @@ public partial class MicrobeEditorTutorialGUI : Control, ITutorialGUI
 
     [Export]
     private CustomWindow foodChainTutorial = null!;
+
+    [Export]
+    private CustomWindow digestionStatTutorial = null!;
 #pragma warning restore CA2213
 
     public MainGameState AssociatedGameState => MainGameState.MicrobeEditor;
@@ -516,6 +519,28 @@ public partial class MicrobeEditorTutorialGUI : Control, ITutorialGUI
             else
             {
                 foodChainTutorial.Hide();
+            }
+        }
+    }
+
+    public bool DigestionStatTutorialVisible
+    {
+        get => digestionStatTutorial.Visible;
+        set
+        {
+            if (value == digestionStatTutorial.Visible)
+                return;
+
+            if (value)
+            {
+                digestionStatTutorial.Show();
+
+                // This is right at the bottom now, so scroll surely down enough
+                RightPanelScrollContainer.ScrollVertical = 800;
+            }
+            else
+            {
+                digestionStatTutorial.Hide();
             }
         }
     }

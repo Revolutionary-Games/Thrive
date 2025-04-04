@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Thrive VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2025-03-27 20:24+0100\n"
+"POT-Creation-Date: 2025-04-04 13:53+0300\n"
 "PO-Revision-Date: 2023-02-06 07:13+0000\n"
 "Last-Translator: jan-sopi <jansopi303@genocide.fun>\n"
 "Language-Team: Toki Pona <https://translate.revolutionarygamesstudio.com/projects/thrive/thrive-game/tok/>\n"
@@ -196,6 +196,21 @@ msgid "AND_UNLOCK_CONDITION"
 msgstr ""
 
 msgid "ANISOTROPIC_FILTERING"
+msgstr ""
+
+msgid "ANTIALIASING_MSAA_TAA"
+msgstr ""
+
+msgid "ANTI_ALIASING_FXAA"
+msgstr ""
+
+msgid "ANTI_ALIASING_MODE"
+msgstr ""
+
+msgid "ANTI_ALIASING_MSAA"
+msgstr ""
+
+msgid "ANTI_ALIASING_TAA"
 msgstr ""
 
 msgid "APPEARANCE"
@@ -1900,25 +1915,6 @@ msgstr ""
 msgid "EVENT_ERUPTION_TOOLTIP"
 msgstr "open e lipu pi ante lili"
 
-msgid "EVENT_METEOR_GLUCOSE"
-msgstr ""
-
-msgid "EVENT_METEOR_IRON"
-msgstr ""
-
-msgid "EVENT_METEOR_PHOSPHATES"
-msgstr ""
-
-#, fuzzy
-msgid "EVENT_METEOR_PLAIN"
-msgstr "open e lipu pi ante lili"
-
-msgid "EVENT_METEOR_RADIOACTIVE"
-msgstr ""
-
-msgid "EVENT_METEOR_SULFUR"
-msgstr ""
-
 msgid "EVOLUTIONARY_TREE"
 msgstr ""
 
@@ -2265,10 +2261,6 @@ msgid "GLOBAL_GLACIATION_EVENT"
 msgstr "(nanpa ni: sike ante li kama ante kepeken tenpo seme)"
 
 #, fuzzy
-msgid "GLOBAL_GLACIATION_EVENT_LOG"
-msgstr "(nanpa ni: sike ante li kama ante kepeken tenpo seme)"
-
-#, fuzzy
 msgid "GLOBAL_GLACIATION_EVENT_TOOLTIP"
 msgstr "kama lon tenpo pi kama sona. open la sina jo e sona mute."
 
@@ -2426,6 +2418,9 @@ msgid "ID_IS_NOT_A_NUMBER"
 msgstr ""
 
 msgid "ID_NUMBER"
+msgstr ""
+
+msgid "IF_FALLBACK_RENDERER_USED_ALL_NOT_AVAILABLE"
 msgstr ""
 
 msgid "IMAGE_FILE_TYPES"
@@ -3049,13 +3044,31 @@ msgstr ""
 msgid "LOADING_GAME"
 msgstr ""
 
+msgid "LOADING_GRAPHICS_SHADERS"
+msgstr ""
+
 msgid "LOADING_MACROSCOPIC_EDITOR"
 msgstr ""
 
 msgid "LOADING_MICROBE_EDITOR"
 msgstr ""
 
+#, fuzzy
+msgid "LOADING_MICROBE_STAGE"
+msgstr "pali pi kon ilo kepeken kon"
+
 msgid "LOADING_MULTICELLULAR_EDITOR"
+msgstr ""
+
+#, fuzzy
+msgid "LOADING_MULTICELLULAR_STAGE"
+msgstr "pali pi kon ilo kepeken kon"
+
+#, fuzzy
+msgid "LOADING_STAGE"
+msgstr "kama ante pi sike ante"
+
+msgid "LOADING_STAGE_ASSETS"
 msgstr ""
 
 msgid "LOAD_FINISHED"
@@ -3086,6 +3099,12 @@ msgid "LOCAL_INITIAL_LETTER"
 msgstr ""
 
 msgid "LOCK_DAY_NIGHT_CYCLE"
+msgstr ""
+
+msgid "LOWER_SCALE_INCREASES_PERFORMANCE"
+msgstr ""
+
+msgid "LOWER_VALUE_MAKES_SHARPER_IMAGE"
 msgstr ""
 
 msgid "LOW_MENU_PERFORMANCE"
@@ -3224,15 +3243,6 @@ msgstr ""
 #, fuzzy
 msgid "META_THREADS_TOOLTIP"
 msgstr "nanpa pi ijo pali:"
-
-msgid "METEOR_IMPACT_EVENT"
-msgstr ""
-
-msgid "METEOR_STRIKE_START_EVENT_LOG_PLURAL"
-msgstr ""
-
-msgid "METEOR_STRIKE_START_EVENT_LOG_SINGULAR"
-msgstr ""
 
 msgid "METRICS"
 msgstr ""
@@ -4583,6 +4593,9 @@ msgstr ""
 msgid "REFRESH"
 msgstr ""
 
+msgid "RENDER_SCALE"
+msgstr ""
+
 msgid "REPORT"
 msgstr ""
 
@@ -5816,6 +5829,10 @@ msgstr ""
 msgid "TUTORIAL_MICROBE_EDITOR_COMPOUND_BALANCES"
 msgstr "pali pi kon ilo kepeken kon ala"
 
+#, fuzzy
+msgid "TUTORIAL_MICROBE_EDITOR_DIGESTION_STAT"
+msgstr "pali pi kon ilo kepeken kon ala"
+
 msgid "TUTORIAL_MICROBE_EDITOR_ENDING_TEXT"
 msgstr ""
 
@@ -6086,6 +6103,18 @@ msgid "UPLOADING_DOT_DOT_DOT"
 msgstr ""
 
 msgid "UPLOAD_SUCCEEDED"
+msgstr ""
+
+msgid "UPSCALE_BILINEAR"
+msgstr ""
+
+msgid "UPSCALE_FSR_1"
+msgstr ""
+
+msgid "UPSCALE_FSR_22"
+msgstr ""
+
+msgid "UPSCALE_SHARPENING_FSR"
 msgstr ""
 
 msgid "USED_LIBRARIES_LICENSES"
@@ -7990,6 +8019,10 @@ msgstr ""
 
 msgid "ZOOM_OUT"
 msgstr ""
+
+#, fuzzy
+#~ msgid "GLOBAL_GLACIATION_EVENT_LOG"
+#~ msgstr "(nanpa ni: sike ante li kama ante kepeken tenpo seme)"
 
 #, fuzzy
 #~ msgid "WIKI_RADIOSYNTHESIS"

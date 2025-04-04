@@ -187,7 +187,7 @@ public partial class MicrobeStage : CreatureStageBase<Entity, MicrobeWorldSimula
         HUD.Init(this);
         HoverInfo.Init(Clouds, Camera);
 
-        // Do stage setup to spawn things and setup all parts of the stage
+        // Do stage setup to spawn things and set up all parts of the stage
         SetupStage();
 
         fluidCurrentDisplay.Init(WorldSimulation, Camera);
@@ -243,6 +243,9 @@ public partial class MicrobeStage : CreatureStageBase<Entity, MicrobeWorldSimula
     public override void _Process(double delta)
     {
         base._Process(delta);
+
+        if (StageLoadingState != LoadState.NotLoading)
+            return;
 
         WorldPosition playerPosition = default;
 
@@ -1145,6 +1148,31 @@ public partial class MicrobeStage : CreatureStageBase<Entity, MicrobeWorldSimula
         ModLoader.ModInterface.TriggerOnPlayerMicrobeSpawned(Player);
     }
 
+    protected override Node3D CreateGraphicsPreloadNode()
+    {
+        var result = new Node3D();
+        rootOfDynamicallySpawned.AddChild(result);
+
+        // Point below the camera should always be visible
+        result.Position = new Vector3(Camera.Position.X, -1, Camera.Position.Z);
+
+        return result;
+    }
+
+    protected override void UpdateStageLoadingMessage(LoadState loadState, int currentProgress, int totalItems)
+    {
+        if (GameWorld.PlayerSpecies is MulticellularSpecies)
+        {
+            LoadingScreen.Instance.LoadingMessage = Localization.Translate("LOADING_MULTICELLULAR_STAGE");
+        }
+        else
+        {
+            LoadingScreen.Instance.LoadingMessage = Localization.Translate("LOADING_MICROBE_STAGE");
+        }
+
+        SetStageLoadingDescription(loadState, currentProgress, totalItems);
+    }
+
     protected override void OnCanEditStatusChanged(bool canEdit)
     {
         // Ensure the can edit status is still up to date as the change signal is triggered with one frame delay
@@ -1175,6 +1203,29 @@ public partial class MicrobeStage : CreatureStageBase<Entity, MicrobeWorldSimula
 
         if (!Player.Has<MulticellularSpeciesMember>())
             TutorialState.SendEvent(TutorialEventType.MicrobePlayerReadyToEdit, EventArgs.Empty, this);
+
+        if (CurrentGame == null)
+        {
+            GD.PrintErr("Current game is null when player is ready to edit");
+            return;
+        }
+
+        // Trigger an auto-save the first time the editor becomes available
+        if (!CurrentGame.IsBoolSet("edited_microbe") && Settings.Instance.AutoSaveEnabled.Value)
+        {
+            // But not if already triggered, this is important when loading such an auto-save so that an immediate save
+            // isn't triggered
+            if (!CurrentGame.IsBoolSet("first_editor_autosaved"))
+            {
+                CurrentGame.SetBool("first_editor_autosaved", true);
+
+                Invoke.Instance.QueueForObject(() =>
+                {
+                    GD.Print("Auto-saving game for the first time editor is available");
+                    AutoSave();
+                }, this);
+            }
+        }
     }
 
     protected override void OnGameOver()
