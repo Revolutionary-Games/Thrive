@@ -48,12 +48,15 @@ public partial class HUDBase : Control, IStageHUD
 
         loadingScreenStartTime = DateTime.UtcNow;
 
-        // Fade in the loading screen. When loading a save, the load screen is already up and faded in.
-        if (!stageBase.IsLoadedFromSave)
-        {
-            TransitionManager.Instance.AddSequence(ScreenFade.FadeType.FadeIn, 0.35f, OnStartLoadingFinished, false,
-                false);
-        }
+        // When loading a save, the load screen is already up and faded in.
+        // However, this flag doesn't reset, so the next time we return from the editor,
+        // a harsh transition will happen. So that's why the next line is commented out.
+
+        // if (!stageBase.IsLoadedFromSave)
+
+        // Fade in the loading screen.
+        TransitionManager.Instance.AddSequence(ScreenFade.FadeType.FadeIn, 0.35f, OnStartLoadingFinished, false,
+            false);
 
         LoadingScreen.Instance.Show(Localization.Translate("LOADING_STAGE"), stageBase.GameState);
     }
