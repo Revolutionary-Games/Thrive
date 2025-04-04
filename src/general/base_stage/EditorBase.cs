@@ -286,7 +286,7 @@ public partial class EditorBase<TAction, TStage> : NodeWithInput, IEditor, ILoad
             TransitionManager.Instance.AddSequence(ScreenFade.FadeType.FadeOut, 0.5f, OnEditorReady, false, false);
         }
 
-        // Auto save after editor entry is complete
+        // Auto save after the editor entry is complete
         if (TransitionFinished && wantsToSave)
         {
             if (!CurrentGame.FreeBuild)
@@ -304,12 +304,18 @@ public partial class EditorBase<TAction, TStage> : NodeWithInput, IEditor, ILoad
         // for fixing the stuff in order to return there
         // TODO: this could be probably moved now to just happen when it enters the scene first time
         ReturnToStage?.OnFinishLoading(save);
+
+        // We don't use a loading screen when loaded from a save, so handle hiding the loading screen here
+        GD.Print("Hiding loading screen for editor as we were loaded from a save");
+        TransitionManager.Instance.AddSequence(ScreenFade.FadeType.FadeOut, 0.5f, () => LoadingScreen.Instance.Hide(),
+            false, false);
+        TransitionManager.Instance.AddSequence(ScreenFade.FadeType.FadeIn, 0.5f, null, false, false);
     }
 
     /// <summary>
     ///   Tries to start editor apply results and exit
     /// </summary>
-    /// <returns>True if started. False if something is not good and editor can't be exited currently.</returns>
+    /// <returns>True if started. False if something is not good and the editor can't be exited currently.</returns>
     public bool OnFinishEditing(List<EditorUserOverride>? overrides = null)
     {
         // Prevent exiting when the transition hasn't finished
