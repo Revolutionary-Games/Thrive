@@ -8,7 +8,7 @@ msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2025-04-04 10:11+0300\n"
-"PO-Revision-Date: 2025-04-02 11:01+0000\n"
+"PO-Revision-Date: 2025-04-04 10:42+0000\n"
 "Last-Translator: Anonymous <noreply@weblate.org>\n"
 "Language-Team: Portuguese (Brazil) <https://translate.revolutionarygamesstudio.com/projects/thrive/thrive-game/pt_BR/>\n"
 "Language: pt_BR\n"
@@ -331,6 +331,7 @@ msgstr "Agosto"
 msgid "AUTO"
 msgstr "Auto"
 
+#, fuzzy
 msgid "AUTO-EVO_EXPLANATION_EXPLANATION"
 msgstr "Esse painel mostra os números que a previsão da auto-evo usa. A energia total que uma espécie é capaz de possuir e o custo por indivíduo da espécie determina a população final. A auto-evo usa um modelo simplificado da realidade para calcular quão bem as espécies estão desempenhando baseado na energia que elas são capazes de obter. É mostrada quanta energia cada fonte de alimento fornece para a espécie. Além disso, é mostrada a energia total disponível dessa fonte. A fração da energia total fornecida à espécie é baseada em quão adaptada a espécie é comparada à adaptação total. A adaptação é a métrica de quão bem a espécie pode utilizar essa fonte de alimento."
 
@@ -4430,6 +4431,7 @@ msgstr "Resistência a Oxigênio"
 msgid "OXYGEN_TOLERANCE_TOOLTIP"
 msgstr "Quanto dano causado por oxigênio a sua espécie pode mitigar antes de sofrer efeitos nocivos. Se você está em uma região com oxigênio demais comparado à sua resistência, você vai sofrer efeitos negativos."
 
+#, fuzzy
 msgid "OXYTOXISOME_PROCESSES_DESCRIPTION"
 msgstr "Transforma [thrive:compound type=\"atp\"][/thrive:compound] em [thrive:compound type=\"oxytoxy\"][/thrive:compound]. Quantidade aumenta com a concentração de [thrive:compound type=\"oxygen\"][/thrive:compound]. Pode disparar toxinas apertando [thrive:input]g_fire_toxin[/thrive:input]. Quando a quantidade de [thrive:compound type=\"oxytoxy\"][/thrive:compound] ficar baixa, será possível disparar, mas o dano irá ser reduzido."
 
@@ -6014,15 +6016,18 @@ msgstr "Diferentes tipos de toxina têm efeitos variados que são mais efetivos 
 msgid "TOXIN_VACUOLE"
 msgstr "Vacúolo de Toxinas"
 
+#, fuzzy
 msgid "TOXIN_VACUOLE_DESCRIPTION"
 msgstr "O vacúolo de toxinas é um vacúolo que foi modificado para a produção, armazenamento, e secreção específica de [thrive:compound type=\"oxytoxy\"][/thrive:compound]. Mais vacúolos de toxinas vão aumentar a taxa na qual toxinas podem ser liberadas. Pode ser modificado para trocar o tipo de toxina gerada para outros efeitos."
 
+#, fuzzy
 msgid "TOXIN_VACUOLE_PROCESSES_DESCRIPTION"
 msgstr "Transforma [thrive:compound type=\"atp\"][/thrive:compound] em [thrive:compound type=\"oxytoxy\"][/thrive:compound]. Quantidade aumenta com a concentração de [thrive:compound type=\"oxygen\"][/thrive:compound]. Pode disparar toxinas apertando [thrive:input]g_fire_toxin[/thrive:input]. Quando a quantidade de [thrive:compound type=\"oxytoxy\"][/thrive:compound] ficar baixa, será possível disparar, mas o dano irá ser reduzido."
 
 msgid "TOXISOME"
 msgstr "Toxissomo"
 
+#, fuzzy
 msgid "TOXISOME_DESCRIPTION"
 msgstr "Um metabolossomo modificado responsável pela prodição de uma forma primitiva do agente tóxico [thrive:compound type=\\\"oxytoxy\\\"][/thrive:compound]. Pode ser modificado para trocar o tipo de toxina gerada para outros efeitos."
 

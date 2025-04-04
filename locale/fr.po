@@ -8,8 +8,8 @@ msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2025-04-04 10:11+0300\n"
-"PO-Revision-Date: 2025-03-31 14:37+0000\n"
-"Last-Translator: luke <aidow@netcourrier.com>\n"
+"PO-Revision-Date: 2025-04-04 10:41+0000\n"
+"Last-Translator: Anonymous <noreply@weblate.org>\n"
 "Language-Team: French <https://translate.revolutionarygamesstudio.com/projects/thrive/thrive-game/fr/>\n"
 "Language: fr\n"
 "MIME-Version: 1.0\n"
@@ -333,6 +333,7 @@ msgstr "Août"
 msgid "AUTO"
 msgstr "Automatique"
 
+#, fuzzy
 msgid "AUTO-EVO_EXPLANATION_EXPLANATION"
 msgstr "Ce panneau affiche les données qu'utilise l'Auto-Évo pour sa prédiction. L'énergie totale que peut accaparer une espèce, et le coût de survie pour chacun de ses individus, détermine la population finale. L'Auto-Évo utilise un modèle simplifié de la réalité pour calculer à quel point une espèce est adaptée à son milieu, en fonction de l'énergie qu'elle parvient à capturer. La quantité d'énergie qu'une source de nourriture fournit à l'espèce est ainsi affichée à côté de la quantité totale d'énergie que chacune d'entre elles est en mesure d'offrir. La fraction ainsi obtenue de cette énergie totale est calculée à partir de l'adaptation de l'espèce, c'est-à-dire de sa capacité à utiliser cette source, rapportée à l'adaptation totale de toutes les espèces."
 
@@ -4584,6 +4585,7 @@ msgstr ""
 "Cette section montre la balance totale (production - consommation) pour chaque composé.\n"
 "Par exemple, pour former une cellule végétale, le bilan du glucose doit être très positif."
 
+#, fuzzy
 msgid "OXYTOXISOME_PROCESSES_DESCRIPTION"
 msgstr "Transforme [thrive:compound type=\"atp\"][/thrive:compound] en [thrive:compound type=\"oxytoxy\"][/thrive:compound]. Taux proportionnels à la concentration d'[thrive:compound type=\"oxygen\"][/thrive:compound]. Peut libérer des toxines en appuyant sur [thrive:input]g_fire_toxin[/thrive:input]."
 
@@ -6229,9 +6231,11 @@ msgstr ""
 "Vacuole\n"
 "à toxine"
 
+#, fuzzy
 msgid "TOXIN_VACUOLE_DESCRIPTION"
 msgstr "La vacuole à toxines est une vacuole ayant évolué de manière à spécifiquement produire, stocker et sécréter des [thrive:compound type=\"oxytoxy\"][/thrive:compound]. Un plus grand nombre de vacuoles à toxines augmente la vitesse à laquelle les toxines peuvent être libérées. Peut être modifié pour changer le type de toxine généré pour obtenir d'autres effets."
 
+#, fuzzy
 msgid "TOXIN_VACUOLE_PROCESSES_DESCRIPTION"
 msgstr "Transforme l'[thrive:compound type=\"atp\"][/thrive:compound] en [thrive:compound type=\"oxytoxy\"][/thrive:compound]. Taux proportionnel à la concentration d'[thrive:compound type=\"oxygen\"][/thrive:compound]. Peut libérer des toxines en appuyant sur [thrive:input]g_fire_toxin[/thrive:input]. Lorsque la quantité d'[thrive:compound type=\"oxytoxy\"][/thrive:compound] est faible, il est toujours possible de tirer mais les dégâts sont réduits."
 

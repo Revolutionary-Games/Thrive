@@ -8,7 +8,7 @@ msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2025-04-04 10:11+0300\n"
-"PO-Revision-Date: 2025-04-02 11:01+0000\n"
+"PO-Revision-Date: 2025-04-04 10:42+0000\n"
 "Last-Translator: Anonymous <noreply@weblate.org>\n"
 "Language-Team: Chinese (Traditional Han script) <https://translate.revolutionarygamesstudio.com/projects/thrive/thrive-game/zh_Hant/>\n"
 "Language: zh_TW\n"
@@ -326,6 +326,7 @@ msgstr "八月"
 msgid "AUTO"
 msgstr "自動"
 
+#, fuzzy
 msgid "AUTO-EVO_EXPLANATION_EXPLANATION"
 msgstr "此面板顯示 Auto-Evo 預測所依據的數字。一個物種能夠捕獲的總能量以及該物種每個個體的成本決定了最終的物種量。Auto-Evo 使用簡化的現實模型，根據物種能夠收集的能量來計算它們的表現。對於每種食物來源，它顯示了該物種從其獲得的能量以及該食物來源所能提供的總能量。物種從總能量中獲得的分數取決於適應度與總適應度相比的大小。適應性是衡量物種利用食物來源能力的指標。"
 
@@ -4384,6 +4385,7 @@ msgstr "氧抗性"
 msgid "OXYGEN_TOLERANCE_TOOLTIP"
 msgstr "在產生有害影響之前，您的物種可以減輕多少由氧造成的傷害。如果您所處區域的氧含量超過您的抵抗能力，您將會受到負面影響。"
 
+#, fuzzy
 msgid "OXYTOXISOME_PROCESSES_DESCRIPTION"
 msgstr "將[thrive:compound type=\"atp\"][/thrive:compound] 轉化為[thrive:compound type=\"oxytoxy\"][/thrive:compound]。速率與[thrive:compound type=\"oxygen\"][/thrive:compound] 的濃度成正比。可以透過按下[thrive:input]g_fire_toxin[/thrive:input]釋放毒素。當[thrive:compound type=\"oxytoxy\"][/thrive:compound] 儲量較低時仍然可以釋放，但傷害會降低。"
 
@@ -5965,15 +5967,18 @@ msgstr "不同類型的毒素具有不同的作用，對某些類型的細胞更
 msgid "TOXIN_VACUOLE"
 msgstr "毒素液泡"
 
+#, fuzzy
 msgid "TOXIN_VACUOLE_DESCRIPTION"
 msgstr "毒素液泡是為了專門生產、儲存與分泌[thrive:compound type=\"oxytoxy\"][/thrive:compound] 而經過修飾的液泡。更多的毒素液泡能增加釋放毒素的速度。可以修改以切換生成的毒素類型來獲得其他效果。"
 
+#, fuzzy
 msgid "TOXIN_VACUOLE_PROCESSES_DESCRIPTION"
 msgstr "將[thrive:compound type=\"atp\"][/thrive:compound] 轉化為[thrive:compound type=\"oxytoxy\"][/thrive:compound]。速率與[thrive:compound type=\"oxygen\"][/thrive:compound] 的濃度成正比。可以透過按下[thrive:input]g_fire_toxin[/thrive:input]釋放毒素。當[thrive:compound type=\"oxytoxy\"][/thrive:compound] 儲量較低時仍然可以釋放，但傷害會降低。"
 
 msgid "TOXISOME"
 msgstr "毒素體"
 
+#, fuzzy
 msgid "TOXISOME_DESCRIPTION"
 msgstr "一種修改過的代謝體，負責產生原始形式的有毒物質[thrive:compound type=\\\"oxytoxy\\\"][/thrive:compound]。可以修改以切換生成的毒素類型以獲得其他效果。"
 
