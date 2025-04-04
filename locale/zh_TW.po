@@ -8,7 +8,7 @@ msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2025-04-03 09:41+0300\n"
-"PO-Revision-Date: 2025-03-28 07:42+0000\n"
+"PO-Revision-Date: 2025-04-02 11:01+0000\n"
 "Last-Translator: Anonymous <noreply@weblate.org>\n"
 "Language-Team: Chinese (Traditional Han script) <https://translate.revolutionarygamesstudio.com/projects/thrive/thrive-game/zh_Hant/>\n"
 "Language: zh_TW\n"
@@ -193,23 +193,19 @@ msgid "ANISOTROPIC_FILTERING"
 msgstr "各向異性過濾："
 
 msgid "ANTIALIASING_MSAA_TAA"
-msgstr ""
+msgstr "MSAA + TAA"
 
-#, fuzzy
 msgid "ANTI_ALIASING_FXAA"
-msgstr "多重採樣抗鋸齒："
+msgstr "FXAA"
 
-#, fuzzy
 msgid "ANTI_ALIASING_MODE"
-msgstr "多重採樣抗鋸齒："
+msgstr "抗鋸齒模式："
 
-#, fuzzy
 msgid "ANTI_ALIASING_MSAA"
-msgstr "多重採樣抗鋸齒："
+msgstr "MSAA"
 
-#, fuzzy
 msgid "ANTI_ALIASING_TAA"
-msgstr "多重採樣抗鋸齒："
+msgstr "TAA"
 
 msgid "APPEARANCE"
 msgstr "外觀"
@@ -1787,28 +1783,27 @@ msgstr "編輯器與突變"
 msgid "EDITOR_BUTTON_TOOLTIP"
 msgstr "進入編輯器並修改您的物種"
 
-#, fuzzy
 msgid "EDITOR_TUTORIAL_EARLY_GOAL"
 msgstr ""
-"歡迎回到編輯器。每次成功繁殖後您都會回到此處。\n"
+"您的微生物已再次成功繁殖，朝著更高級的生命形式邁進了一步。\n"
 "\n"
-"[b]早期遊戲的目標[/b]是找到一個適合居住的地區與一個可靠的食物來源。\n"
+"[b]早期遊戲的目標[/b]是找到一個適合居住的[u]區域[/u]與一個可靠的食物來源。\n"
 "\n"
 "稍後您可以開始考慮添加[b]細胞核[/b]，這是在遊戲中進步的方式，但不要太早添加它，因為它是一種非常昂貴的細胞器。\n"
 "\n"
-"按「下一步」按鈕以繼續。"
+"按「下一步」按鈕繼續到[b]區域地圖[/b]。"
 
-#, fuzzy
 msgid "EDITOR_TUTORIAL_EDITOR_TEXT"
 msgstr ""
-"歡迎來到[b]微生物編輯器[/b]。\n"
+"歡迎回到微生物編輯器。每次繁殖時您都會回到此處。\n"
 "\n"
-"在這裡，您可以回顧自前幾代發生的事情。並對您的物種進行修改。\n"
+"此分頁提供當前地區中的變化列表。嘗試探索您可以使用的各種工具，以了解有關您世界中事件的更多資訊！\n"
 "\n"
-"此分頁提供當前區域中的變化列表。嘗試探索您可以使用的各種工具，以了解有關您世界中事件的更多資訊！\n"
+"回顧發生的事情後，您可以[b]做出改變[/b]使您的物種適應。\n"
 "\n"
-"準備好後，按右下角的「下一頁」按鈕繼續。"
+"當您準備好後，按右下角的「下一頁」按鈕繼續。"
 
+#, fuzzy
 msgid "EDITOR_TUTORIAL_MICROBE_EDITOR_NUCLEUS"
 msgstr ""
 "為了繼續進步，您最終需要放置一個[b]細胞核[/b]。\n"
@@ -3597,6 +3592,7 @@ msgstr ""
 "\n"
 "為了在這個充滿敵意的世界中生存，您需要收集任何您能找到的化合物，並在多世代中不斷演化來與其他微生物競爭。"
 
+#, fuzzy
 msgid "MICROBE_STAGE_ORGANELLE_DIVISION"
 msgstr ""
 "在生長到足以繁殖的過程中，每個細胞器都會分裂。這些新的細胞器會像微生物開始時的細胞器一樣，提供獎勵（與滲透調節成本）。\n"
