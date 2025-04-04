@@ -187,7 +187,7 @@ public partial class MicrobeStage : CreatureStageBase<Entity, MicrobeWorldSimula
         HUD.Init(this);
         HoverInfo.Init(Clouds, Camera);
 
-        // Do stage setup to spawn things and setup all parts of the stage
+        // Do stage setup to spawn things and set up all parts of the stage
         SetupStage();
 
         fluidCurrentDisplay.Init(WorldSimulation, Camera);
@@ -243,6 +243,9 @@ public partial class MicrobeStage : CreatureStageBase<Entity, MicrobeWorldSimula
     public override void _Process(double delta)
     {
         base._Process(delta);
+
+        if (StageLoadingState != LoadState.NotLoading)
+            return;
 
         WorldPosition playerPosition = default;
 
@@ -1143,6 +1146,31 @@ public partial class MicrobeStage : CreatureStageBase<Entity, MicrobeWorldSimula
         playerRespawnTimer = Constants.PLAYER_RESPAWN_TIME;
 
         ModLoader.ModInterface.TriggerOnPlayerMicrobeSpawned(Player);
+    }
+
+    protected override Node3D CreateGraphicsPreloadNode()
+    {
+        var result = new Node3D();
+        rootOfDynamicallySpawned.AddChild(result);
+
+        // Point below the camera should always be visible
+        result.Position = new Vector3(Camera.Position.X, -1, Camera.Position.Z);
+
+        return result;
+    }
+
+    protected override void UpdateStageLoadingMessage(LoadState loadState, int currentProgress, int totalItems)
+    {
+        if (GameWorld.PlayerSpecies is MulticellularSpecies)
+        {
+            LoadingScreen.Instance.LoadingMessage = Localization.Translate("LOADING_MULTICELLULAR_STAGE");
+        }
+        else
+        {
+            LoadingScreen.Instance.LoadingMessage = Localization.Translate("LOADING_MICROBE_STAGE");
+        }
+
+        SetStageLoadingDescription(loadState, currentProgress, totalItems);
     }
 
     protected override void OnCanEditStatusChanged(bool canEdit)

@@ -1,8 +1,9 @@
 ﻿using System;
+using System.Collections.Generic;
 using Godot;
 
 /// <summary>
-///   A loading screen that shows cool stuff. This is autoloaded overlay on top of other scenes.
+///   A loading screen that shows cool stuff. This is an autoloaded overlay on top of other scenes.
 /// </summary>
 public partial class LoadingScreen : Control
 {
@@ -36,6 +37,8 @@ public partial class LoadingScreen : Control
     private static LoadingScreen? instance;
 
     private readonly Random random = new();
+
+    private readonly List<(Action Action, double Delay)> postLoadingActions = new();
 
 #pragma warning disable CA2213
     private CrossFadableTextureRect artworkRect = null!;
@@ -154,6 +157,23 @@ public partial class LoadingScreen : Control
                 randomizeTimer.Stop();
             }
 
+            // Run post-loading screen actions
+            for (int i = 0; i < postLoadingActions.Count; ++i)
+            {
+                var item = postLoadingActions[i];
+
+                if (item.Delay > 0)
+                {
+                    postLoadingActions[i] = (item.Action, item.Delay - delta);
+                }
+                else
+                {
+                    item.Action();
+                    postLoadingActions.RemoveAt(i);
+                    --i;
+                }
+            }
+
             return;
         }
 
@@ -164,7 +184,7 @@ public partial class LoadingScreen : Control
     }
 
     /// <summary>
-    ///   Shows this and updates the shown messages. If this just became visible also loads new art and tip
+    ///   Shows this and updates the shown messages. If this just became visible, also loads new art and tip
     /// </summary>
     public void Show(string message, MainGameState target, string description = "")
     {
@@ -177,6 +197,17 @@ public partial class LoadingScreen : Control
             OnBecomeVisible();
             Show();
         }
+    }
+
+    /// <summary>
+    ///   Allows queueing actions for when the loading screen ends. Used for the save load system to display the save
+    ///   load message at an opportune time independent of how long the stage's loading screen lasts
+    /// </summary>
+    /// <param name="action">Action to run when the loading screen is next closed</param>
+    /// <param name="delay">How long in seconds to wait when being visible</param>
+    public void QueueActionForWhenHidden(Action action, double delay = 0)
+    {
+        postLoadingActions.Add((action, delay));
     }
 
     public void RandomizeContent()
@@ -244,7 +275,7 @@ public partial class LoadingScreen : Control
     {
         artworkRect.Texture = null;
 
-        // The loading screen is still visible, so a lag spike from GC here should be not noticeable so we do a
+        // The loading screen is still visible, so a lag spike from GC here should be not noticeable, so we do a
         // collection here so that during gameplay it is less likely to run garbage collection
         GC.Collect();
     }

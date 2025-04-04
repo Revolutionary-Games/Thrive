@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Thrive VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2025-03-28 15:15+0200\n"
+"POT-Creation-Date: 2025-04-03 09:41+0300\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -67,7 +67,7 @@ msgstr ""
 msgid "ACTION_AWAKEN_TOOLTIP"
 msgstr ""
 
-#: ../src/general/base_stage/EditorBase.cs:846
+#: ../src/general/base_stage/EditorBase.cs:852
 #: ../src/macroscopic_stage/editor/MacroscopicEditor.cs:529
 #: ../src/microbe_stage/editor/CellEditorComponent.GUI.cs:62
 #: ../src/multicellular_stage/editor/MulticellularEditor.cs:453
@@ -838,27 +838,27 @@ msgstr ""
 msgid "CARBON_DIOXIDE"
 msgstr ""
 
-#: ../src/general/base_stage/CreatureStageHUDBase.cs:992
+#: ../src/general/base_stage/CreatureStageHUDBase.cs:985
 msgid "CATEGORY_AN_ABUNDANCE"
 msgstr ""
 
-#: ../src/general/base_stage/CreatureStageHUDBase.cs:996
+#: ../src/general/base_stage/CreatureStageHUDBase.cs:989
 msgid "CATEGORY_A_FAIR_AMOUNT"
 msgstr ""
 
-#: ../src/general/base_stage/CreatureStageHUDBase.cs:1000
+#: ../src/general/base_stage/CreatureStageHUDBase.cs:993
 msgid "CATEGORY_LITTLE"
 msgstr ""
 
-#: ../src/general/base_stage/CreatureStageHUDBase.cs:994
+#: ../src/general/base_stage/CreatureStageHUDBase.cs:987
 msgid "CATEGORY_QUITE_A_BIT"
 msgstr ""
 
-#: ../src/general/base_stage/CreatureStageHUDBase.cs:998
+#: ../src/general/base_stage/CreatureStageHUDBase.cs:991
 msgid "CATEGORY_SOME"
 msgstr ""
 
-#: ../src/general/base_stage/CreatureStageHUDBase.cs:1002
+#: ../src/general/base_stage/CreatureStageHUDBase.cs:995
 msgid "CATEGORY_VERY_LITTLE"
 msgstr ""
 
@@ -2537,7 +2537,7 @@ msgstr ""
 msgid "ERROR_FETCHING_NEWS"
 msgstr ""
 
-#: ../src/saving/InProgressLoad.cs:217
+#: ../src/saving/InProgressLoad.cs:209
 msgid "ERROR_LOADING"
 msgstr ""
 
@@ -2553,7 +2553,7 @@ msgstr ""
 msgid "ESCAPE"
 msgstr ""
 
-#: ../src/microbe_stage/MicrobeStage.cs:1722
+#: ../src/microbe_stage/MicrobeStage.cs:1750
 msgid "ESCAPE_ENGULFING"
 msgstr ""
 
@@ -2660,7 +2660,7 @@ msgstr ""
 msgid "EXTINCT_FROM_THE_PLANET"
 msgstr ""
 
-#: ../src/general/base_stage/CreatureStageBase.cs:459
+#: ../src/general/base_stage/CreatureStageBase.cs:465
 msgid "EXTINCT_IN_PATCH"
 msgstr ""
 
@@ -4429,7 +4429,7 @@ msgstr ""
 msgid "LOAD"
 msgstr ""
 
-#: ../src/engine/LoadingScreen.cs:69 ../src/engine/LoadingScreen.tscn:114
+#: ../src/engine/LoadingScreen.cs:72 ../src/engine/LoadingScreen.tscn:114
 msgid "LOADING"
 msgstr ""
 
@@ -4443,6 +4443,10 @@ msgstr ""
 msgid "LOADING_GAME"
 msgstr ""
 
+#: ../src/general/base_stage/StageBase.cs:437
+msgid "LOADING_GRAPHICS_SHADERS"
+msgstr ""
+
 #: ../src/macroscopic_stage/editor/MacroscopicEditor.cs:123
 msgid "LOADING_MACROSCOPIC_EDITOR"
 msgstr ""
@@ -4451,8 +4455,25 @@ msgstr ""
 msgid "LOADING_MICROBE_EDITOR"
 msgstr ""
 
+#: ../src/microbe_stage/MicrobeStage.cs:1170
+msgid "LOADING_MICROBE_STAGE"
+msgstr ""
+
 #: ../src/multicellular_stage/editor/MulticellularEditor.cs:101
 msgid "LOADING_MULTICELLULAR_EDITOR"
+msgstr ""
+
+#: ../src/microbe_stage/MicrobeStage.cs:1166
+msgid "LOADING_MULTICELLULAR_STAGE"
+msgstr ""
+
+#: ../src/general/base_stage/HUDBase.cs:58
+#: ../src/general/base_stage/StageBase.cs:423
+msgid "LOADING_STAGE"
+msgstr ""
+
+#: ../src/general/base_stage/StageBase.cs:433
+msgid "LOADING_STAGE_ASSETS"
 msgstr ""
 
 #: ../src/saving/InProgressLoad.cs:182
@@ -5349,7 +5370,7 @@ msgstr ""
 msgid "MOVING_TO_LAND_PROTOTYPE_TITLE"
 msgstr ""
 
-#: ../src/macroscopic_stage/MacroscopicStage.cs:604
+#: ../src/macroscopic_stage/MacroscopicStage.cs:606
 msgid "MOVING_TO_SOCIETY_STAGE"
 msgstr ""
 
@@ -5655,7 +5676,7 @@ msgstr ""
 msgid "NOTHING_HERE"
 msgstr ""
 
-#: ../src/macroscopic_stage/MacroscopicStage.cs:523
+#: ../src/macroscopic_stage/MacroscopicStage.cs:525
 msgid "NOTHING_TO_INTERACT_WITH"
 msgstr ""
 
@@ -6354,7 +6375,7 @@ msgstr ""
 msgid "PLAYER_DEATH_POPULATION_PENALTY_EXPLANATION"
 msgstr ""
 
-#: ../src/general/base_stage/CreatureStageBase.cs:379
+#: ../src/general/base_stage/CreatureStageBase.cs:385
 msgid "PLAYER_DIED"
 msgstr ""
 
@@ -6375,7 +6396,7 @@ msgstr ""
 msgid "PLAYER_RELATIVE_MOVEMENT_TOOLTIP"
 msgstr ""
 
-#: ../src/general/base_stage/CreatureStageBase.cs:324
+#: ../src/general/base_stage/CreatureStageBase.cs:330
 msgid "PLAYER_REPRODUCED"
 msgstr ""
 
@@ -6935,7 +6956,7 @@ msgstr ""
 msgid "SAVE_IS_UPGRADEABLE_DESCRIPTION"
 msgstr ""
 
-#: ../src/saving/InProgressLoad.cs:255
+#: ../src/saving/InProgressLoad.cs:247
 msgid "SAVE_LOAD_ALREADY_LOADED_FREE_FAILURE"
 msgstr ""
 
@@ -7380,7 +7401,7 @@ msgstr ""
 msgid "SPAWN_ENEMY"
 msgstr ""
 
-#: ../src/microbe_stage/MicrobeStage.cs:1386
+#: ../src/microbe_stage/MicrobeStage.cs:1414
 msgid "SPAWN_ENEMY_CHEAT_FAIL"
 msgstr ""
 
@@ -7681,11 +7702,11 @@ msgstr ""
 msgid "STRUCTURE_STEAM_POWERED_FACTORY"
 msgstr ""
 
-#: ../src/microbe_stage/MicrobeStage.cs:1720
+#: ../src/microbe_stage/MicrobeStage.cs:1748
 msgid "SUCCESSFUL_KILL"
 msgstr ""
 
-#: ../src/microbe_stage/MicrobeStage.cs:1721
+#: ../src/microbe_stage/MicrobeStage.cs:1749
 msgid "SUCCESSFUL_SCAVENGE"
 msgstr ""
 
@@ -7809,8 +7830,8 @@ msgstr ""
 msgid "TECHNOLOGY_STEAM_POWER"
 msgstr ""
 
-#: ../src/general/base_stage/StrategyStageBase.cs:189
-#: ../src/macroscopic_stage/MacroscopicStage.cs:893
+#: ../src/general/base_stage/StrategyStageBase.cs:207
+#: ../src/macroscopic_stage/MacroscopicStage.cs:914
 msgid "TECHNOLOGY_UNLOCKED_NOTICE"
 msgstr ""
 
@@ -7983,8 +8004,8 @@ msgstr ""
 msgid "TIMELINE_SELECTION_PRESSURE_SPLIT"
 msgstr ""
 
-#: ../src/microbe_stage/MicrobeStage.cs:620
-#: ../src/microbe_stage/MicrobeStage.cs:624
+#: ../src/microbe_stage/MicrobeStage.cs:623
+#: ../src/microbe_stage/MicrobeStage.cs:627
 msgid "TIMELINE_SPECIES_BECAME_MULTICELLULAR"
 msgstr ""
 
