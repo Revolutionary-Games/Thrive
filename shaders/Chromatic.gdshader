@@ -123,11 +123,6 @@ vec3 render(vec2 uv, sampler2D tex)
     return srgb2lin(texture(tex, uv).rgb);
 }
 
-float nrand( vec2 n )
-{
-    return fract(sin(dot(n.xy, vec2(12.9898, 78.233))) * 43758.5453);
-}
-
 void fragment()
 {
     vec4 px = texture(screenTexture, SCREEN_UV);
@@ -144,8 +139,7 @@ void fragment()
 
     const int num_iter = 7;
     const float stepsiz = 1.0 / (float(num_iter)-1.0);
-    float rnd = nrand(UV + fract(TIME));
-    float t = rnd * stepsiz;
+    float t = stepsiz;
 
     vec3 sumcol = vec3(0.0);
     vec3 sumw = vec3(0.0);
@@ -162,7 +156,6 @@ void fragment()
 
     vec3 outcol = sumcol.rgb;
     outcol = lin2srgb(outcol);
-    outcol += rnd / 255.0f;
 
     COLOR = vec4(outcol,1.0);
 }
