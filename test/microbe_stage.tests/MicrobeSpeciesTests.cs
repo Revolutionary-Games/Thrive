@@ -1,4 +1,5 @@
 ﻿using GdUnit4;
+using Godot;
 using static GdUnit4.Assertions;
 
 [TestSuite]
@@ -163,6 +164,24 @@ public class MicrobeSpeciesTests
                 ]
             }
         }";
+
+    [BeforeTest]
+    public void Setup()
+    {
+        GD.Print("Loading simulation parameters...");
+
+        try
+        {
+            _ = SimulationParameters.Instance;
+        }
+        catch
+        {
+            // Initialize simulation parameters
+            GD.Print("Loading simulation parameters...");
+            var simulationParameters = new SimulationParameters();
+            simulationParameters._Ready();
+        }
+    }
 
     [TestCase]
     public void DeserializedHashIsConsistent()
