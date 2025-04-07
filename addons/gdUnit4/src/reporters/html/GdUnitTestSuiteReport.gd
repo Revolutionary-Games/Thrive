@@ -37,7 +37,7 @@ func test_suite_failure_report() -> String:
 
 
 func write(report_dir :String) -> String:
-	var template := GdUnitHtmlPatterns.load_template("res://addons/gdUnit4/src/report/template/suite_report.html")
+	var template := GdUnitHtmlPatterns.load_template("res://addons/gdUnit4/src/reporters/html/template/suite_report.html")
 	template = GdUnitHtmlPatterns.build(template, self, "")
 
 	var report_output_path := output_path(report_dir)
@@ -91,13 +91,18 @@ func add_or_create_test_report(test_report: GdUnitTestCaseReport) -> void:
 	_reports.append(test_report)
 
 
-func update_testsuite_counters(p_error_count: int, p_failure_count: int, p_orphan_count: int,
-	p_is_skipped: bool, p_is_flaky: bool, p_duration: int) -> void:
+func update_testsuite_counters(
+	p_error_count: int,
+	p_failure_count: int,
+	p_orphan_count: int,
+	p_skipped_count: int,
+	p_flaky_count: int,
+	p_duration: int) -> void:
 	_error_count += p_error_count
 	_failure_count += p_failure_count
 	_orphan_count += p_orphan_count
-	_skipped_count += p_is_skipped as int
-	_flaky_count += p_is_flaky as int
+	_skipped_count += p_skipped_count
+	_flaky_count += p_flaky_count
 	_duration += p_duration
 
 

@@ -36,7 +36,7 @@ const TABLE_RECORD_PATH = """
 									<td>${duration}</td>
 									<td>
 										<div class="status-bar">
-											<div class="status-bar-column status-skipped" style="width: ${passed-skipped};"></div>
+											<div class="status-bar-column status-skipped" style="width: ${skipped-percent};"></div>
 											<div class="status-bar-column status-passed" style="width: ${passed-percent};"></div>
 											<div class="status-bar-column status-flaky" style="width: ${flaky-percent};"></div>
 											<div class="status-bar-column status-error" style="width: ${error-percent};"></div>

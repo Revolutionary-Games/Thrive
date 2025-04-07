@@ -7,7 +7,7 @@ extends GdUnitTestSuite
 
 
 func test_inital() -> void:
-	var discoverer := GdUnitTestDiscoverGuard.new()
+	var discoverer: GdUnitTestDiscoverGuard = auto_free(GdUnitTestDiscoverGuard.new())
 
 	assert_dict(discoverer._discover_cache).is_empty()
 
@@ -18,7 +18,7 @@ func test_sync_cache() -> void:
 	var test2 := GdUnitTestCase.from("res://test/my_test_suite.gd", 42, "test_b")
 
 	# simulate running test dicovery
-	var discoverer := GdUnitTestDiscoverGuard.new()
+	var discoverer: GdUnitTestDiscoverGuard = auto_free(GdUnitTestDiscoverGuard.new())
 	discoverer.sync_test_added(test1)
 	discoverer.sync_test_added(test2)
 	# verify the cache contains the discovered test id's
@@ -36,8 +36,7 @@ func test_discover_new_suite_GDScript() -> void:
 	if script == null:
 		return
 
-
-	var discoverer: GdUnitTestDiscoverGuard = GdUnitTestDiscoverGuard.new()
+	var discoverer: GdUnitTestDiscoverGuard = auto_free(GdUnitTestDiscoverGuard.new())
 	# test initial the cache is empty
 	assert_dict(discoverer._discover_cache).is_empty()
 
@@ -74,7 +73,7 @@ func test_discover_new_suite_GDScript() -> void:
 func test_discover_deleted_test_GDScript() -> void:
 	var script := load_non_cached("res://addons/gdUnit4/test/core/discovery/resources/DiscoverExampleTestSuite.gd")
 	# using debug mode to true to collect the change set
-	var discoverer: GdUnitTestDiscoverGuard = GdUnitTestDiscoverGuard.new(true)
+	var discoverer: GdUnitTestDiscoverGuard = auto_free(GdUnitTestDiscoverGuard.new(true))
 
 	var discovered_tests: Array[GdUnitTestCase] = []
 	var expected_deleted_tests: Array[GdUnitTestCase] = []
@@ -129,7 +128,7 @@ func test_discover_deleted_test_GDScript() -> void:
 func test_discover_added_test_GDScript() -> void:
 	var script := load_non_cached("res://addons/gdUnit4/test/core/discovery/resources/DiscoverExampleTestSuite.gd")
 	# using debug mode to true to collect the change set
-	var discoverer: GdUnitTestDiscoverGuard = GdUnitTestDiscoverGuard.new(true)
+	var discoverer: GdUnitTestDiscoverGuard = auto_free(GdUnitTestDiscoverGuard.new(true))
 
 	var discovered_tests: Array[GdUnitTestCase] = []
 	# simulate initial discovery of a new test suite
@@ -192,7 +191,7 @@ func test_discover_added_test_GDScript() -> void:
 func test_discover_renamed_test_GDScript() -> void:
 	var script := load_non_cached("res://addons/gdUnit4/test/core/discovery/resources/DiscoverExampleTestSuite.gd")
 	# using debug mode to true to collect the change set
-	var discoverer: GdUnitTestDiscoverGuard = GdUnitTestDiscoverGuard.new(true)
+	var discoverer: GdUnitTestDiscoverGuard = auto_free(GdUnitTestDiscoverGuard.new(true))
 
 	var discovered_tests: Array[GdUnitTestCase] = []
 	var expected_renamed_tests: Array[GdUnitTestCase] = []
@@ -248,7 +247,7 @@ func test_discover_renamed_test_GDScript() -> void:
 func test_discover_moved_test_GDScript() -> void:
 	var script := load_non_cached("res://addons/gdUnit4/test/core/discovery/resources/DiscoverExampleTestSuite.gd")
 	# using debug mode to true to collect the change set
-	var discoverer: GdUnitTestDiscoverGuard = GdUnitTestDiscoverGuard.new(true)
+	var discoverer: GdUnitTestDiscoverGuard = auto_free(GdUnitTestDiscoverGuard.new(true))
 
 	var discovered_tests: Array[GdUnitTestCase] = []
 	var expected_renamed_tests: Array[GdUnitTestCase] = []
@@ -319,7 +318,7 @@ func test_discover_moved_test_GDScript() -> void:
 
 
 @warning_ignore("unused_parameter")
-func _test_discover_on_CSharpScript(do_skip := !GdUnit4CSharpApiLoader.is_mono_supported()) -> void:
+func _test_discover_on_CSharpScript(do_skip := !GdUnit4CSharpApiLoader.is_dotnet_supported()) -> void:
 	var discoverer :GdUnitTestDiscoverGuard = spy(GdUnitTestDiscoverGuard.new())
 
 	# connect to catch the events emitted by the test discoverer

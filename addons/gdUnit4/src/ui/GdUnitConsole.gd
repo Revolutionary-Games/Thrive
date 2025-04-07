@@ -9,7 +9,7 @@ const TITLE = "gdUnit4 ${version} Console"
 @onready var output: RichTextLabel = $VBoxContainer/Console/TextEdit
 
 
-var _test_reporter: GdUnitTestResultReporter
+var _test_reporter: GdUnitConsoleTestReporter
 
 
 @warning_ignore("return_value_discarded")
@@ -20,7 +20,7 @@ func _ready() -> void:
 	GdUnitSignals.instance().gdunit_message.connect(_on_gdunit_message)
 	GdUnitSignals.instance().gdunit_client_connected.connect(_on_gdunit_client_connected)
 	GdUnitSignals.instance().gdunit_client_disconnected.connect(_on_gdunit_client_disconnected)
-	_test_reporter = GdUnitTestResultReporter.new(GdUnitRichTextMessageWriter.new(output))
+	_test_reporter = GdUnitConsoleTestReporter.new(GdUnitRichTextMessageWriter.new(output))
 
 
 func _notification(what: int) -> void:
@@ -71,7 +71,7 @@ func setup_update_notification(control: Button) -> void:
 
 
 func _on_gdunit_event(event: GdUnitEvent) -> void:
-	_test_reporter._on_gdunit_event(event)
+	_test_reporter.on_gdunit_event(event)
 
 
 func _on_gdunit_client_connected(client_id: int) -> void:
@@ -84,4 +84,4 @@ func _on_gdunit_client_disconnected(client_id: int) -> void:
 
 
 func _on_gdunit_message(message: String) -> void:
-	_test_reporter.println_message(message)
+	_test_reporter.println_message(message, Color.CORNFLOWER_BLUE)

@@ -103,8 +103,6 @@ func succes_rate() -> String:
 
 
 func calculate_state(p_error_count :int, p_failure_count :int, p_orphan_count :int, p_flaky_count: int, p_skipped_count: int) -> String:
-	if p_skipped_count > 0:
-		return "SKIPPED"
 	if p_error_count > 0:
 		return "ERROR"
 	if p_failure_count > 0:
@@ -113,6 +111,8 @@ func calculate_state(p_error_count :int, p_failure_count :int, p_orphan_count :i
 		return "FLAKY"
 	if p_orphan_count > 0:
 		return "WARNING"
+	if p_skipped_count > 0:
+		return "SKIPPED"
 	return "PASSED"
 
 

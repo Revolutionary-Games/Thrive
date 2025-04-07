@@ -1,29 +1,14 @@
 extends GdUnitTestSuite
 
 
-func test_discover_single_test() -> void:
-	var script: GDScript = load("res://addons/gdUnit4/test/core/discovery/resources/DiscoverExampleTestSuite.gd")
-
-	var discovered_tests := []
-	GdUnitTestDiscoverer.discover_test(script,
-		["test_case1"],
-		func discover(test_case: GdUnitTestCase) -> void:
-			discovered_tests.append(test_case)
-	)
-
-	assert_array(discovered_tests)\
-		.extractv(extr("test_name"), extr("display_name"))\
-		.contains_exactly([tuple("test_case1", "test_case1")])
-
-
 func test_discover_many_test() -> void:
 	var script: GDScript = load("res://addons/gdUnit4/test/core/discovery/resources/DiscoverExampleTestSuite.gd")
 
 	var discovered_tests := []
-	GdUnitTestDiscoverer.discover_test(script,
-		["test_case1", "test_case2", "test_parameterized_static"],
+	GdUnitTestDiscoverer.discover_tests(script,
 		func discover(test_case: GdUnitTestCase) -> void:
-			discovered_tests.append(test_case)
+			if test_case.test_name in ["test_case1", "test_case2", "test_parameterized_static"]:
+				discovered_tests.append(test_case)
 	)
 
 	assert_array(discovered_tests)\
@@ -41,10 +26,10 @@ func test_discover_parameterized_test() -> void:
 	var script: GDScript = load("res://addons/gdUnit4/test/core/discovery/resources/DiscoverExampleTestSuite.gd")
 
 	var discovered_tests := []
-	GdUnitTestDiscoverer.discover_test(script,
-		["test_parameterized_static"],
+	GdUnitTestDiscoverer.discover_tests(script,
 		func discover(test_case: GdUnitTestCase) -> void:
-			discovered_tests.append(test_case)
+			if test_case.test_name == "test_parameterized_static":
+				discovered_tests.append(test_case)
 	)
 
 	assert_array(discovered_tests)\

@@ -19,7 +19,7 @@ static func sort_reports_by_path(report_summaries :Array[GdUnitReportSummary]) -
 
 
 func path() -> String:
-	return _resource_path.replace("res://", "")
+	return _resource_path.replace("res://", "").trim_suffix("/")
 
 
 func create_record(report_link :String) -> String:
@@ -28,7 +28,7 @@ func create_record(report_link :String) -> String:
 
 func write(report_dir :String) -> String:
 	calculate_summary()
-	var template := GdUnitHtmlPatterns.load_template("res://addons/gdUnit4/src/report/template/folder_report.html")
+	var template := GdUnitHtmlPatterns.load_template("res://addons/gdUnit4/src/reporters/html/template/folder_report.html")
 	var path_report := GdUnitHtmlPatterns.build(template, self, "")
 	path_report = apply_testsuite_reports(report_dir, path_report, _reports)
 

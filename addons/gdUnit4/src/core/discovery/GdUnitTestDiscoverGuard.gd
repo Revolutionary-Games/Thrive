@@ -35,7 +35,14 @@
 ## await guard.discover(test_script)
 ## [/codeblock]
 class_name GdUnitTestDiscoverGuard
-extends RefCounted
+extends Object
+
+
+
+static func instance() -> GdUnitTestDiscoverGuard:
+	return GdUnitSingleton.instance("GdUnitTestDiscoverGuard", func() -> GdUnitTestDiscoverGuard:
+		return GdUnitTestDiscoverGuard.new()
+	)
 
 
 ## Maps source files to their discovered test cases.[br]
@@ -144,28 +151,24 @@ func find_test_by_id(id: GdUnitGUID) -> GdUnitTestCase:
 ## [param script] The test script to analyze[br]
 ## [param discover_sink] Optional callback for test discovery events
 func discover(script: Script, discover_sink: Callable = default_discover_sink) -> void:
-	# for cs scripts we need to recomplie before discover new tests
-	if GdObjects.is_cs_script(script):
-		await rebuild_project(script)
 
 	if _is_debug:
 		_discovered_changes["changed_tests"] = Array([], TYPE_OBJECT, "RefCounted", GdUnitTestCase)
 		_discovered_changes["deleted_tests"] = Array([], TYPE_OBJECT, "RefCounted", GdUnitTestCase)
 		_discovered_changes["added_tests"] = Array([], TYPE_OBJECT, "RefCounted", GdUnitTestCase)
 
-	if GdObjects.is_test_suite(script):
+	if GdUnitTestSuiteScanner.is_test_suite(script):
+		# for cs scripts we need to recomplie before discover new tests
+		if script.get_class() == "CSharpScript":
+			await rebuild_project(script)
+
 		# rediscover all tests
 		var source_file := script.resource_path
 		var discovered_tests: Array[GdUnitTestCase] = []
 
-		if script is GDScript:
-			var gd_script: GDScript = script
-			GdUnitTestDiscoverer.discover_tests(gd_script, func(test_case: GdUnitTestCase) -> void:
-				discovered_tests.append(test_case)
-			)
-		else:
-			## TODO add c# test sidcovery here
-			pass
+		GdUnitTestDiscoverer.discover_tests(script, func(test_case: GdUnitTestCase) -> void:
+			discovered_tests.append(test_case)
+		)
 
 		# The suite is never discovered, we add all discovered tests
 		if not _discover_cache.has(source_file):

@@ -172,15 +172,12 @@ func cmd_run_test_suites(scripts: Array[Script], debug: bool, rerun := false) ->
 	GdUnitSignals.instance().gdunit_event.emit(GdUnitEventTestDiscoverStart.new())
 	var tests_to_execute: Array[GdUnitTestCase] = []
 	for script in scripts:
-		if script is GDScript:
-			GdUnitTestDiscoverer.discover_tests(script as GDScript, func(test_case: GdUnitTestCase) -> void:
-				tests_to_execute.append(test_case)
-				GdUnitTestDiscoverSink.discover(test_case)
-			)
-		else:
-			## TODO call gdunit4Net discovery
-			print_debug("CSharpScript discovery not implemented!")
+		GdUnitTestDiscoverer.discover_tests(script, func(test_case: GdUnitTestCase) -> void:
+			tests_to_execute.append(test_case)
+			GdUnitTestDiscoverSink.discover(test_case)
+		)
 	GdUnitSignals.instance().gdunit_event.emit(GdUnitEventTestDiscoverEnd.new(0, 0))
+	GdUnitTestDiscoverer.console_log_discover_results(tests_to_execute)
 
 	# create new runner runner_config for fresh run otherwise use saved one
 	if not rerun:
@@ -193,25 +190,22 @@ func cmd_run_test_suites(scripts: Array[Script], debug: bool, rerun := false) ->
 	cmd_run(debug)
 
 
-func cmd_run_test_case(test_suite_resource_path: String, test_case: String, test_param_index: int, debug: bool, rerun := false) -> void:
+func cmd_run_test_case(script: Script, test_case: String, test_param_index: int, debug: bool, rerun := false) -> void:
 	# Update test discovery
-	var script := load(test_suite_resource_path)
 	var tests_to_execute: Array[GdUnitTestCase] = []
 	GdUnitSignals.instance().gdunit_event.emit(GdUnitEventTestDiscoverStart.new())
-	if script is GDScript:
-		GdUnitTestDiscoverer.discover_test(script as GDScript, [test_case], func(test: GdUnitTestCase) -> void:
-				# We only add selected parameterized test to the execution list
-				if test_param_index == -1:
-					tests_to_execute.append(test)
-				elif test.attribute_index == test_param_index:
-					tests_to_execute.append(test)
-				GdUnitTestDiscoverSink.discover(test)
-		)
-	else:
-		## TODO call gdunit4Net discovery
-		print_debug("CSharpScript discovery not implemented!")
-		return
+	GdUnitTestDiscoverer.discover_tests(script, func(test: GdUnitTestCase) -> void:
+		# We filter for a single test
+		if test.test_name == test_case:
+			# We only add selected parameterized test to the execution list
+			if test_param_index == -1:
+				tests_to_execute.append(test)
+			elif test.attribute_index == test_param_index:
+				tests_to_execute.append(test)
+			GdUnitTestDiscoverSink.discover(test)
+	)
 	GdUnitSignals.instance().gdunit_event.emit(GdUnitEventTestDiscoverEnd.new(0, 0))
+	GdUnitTestDiscoverer.console_log_discover_results(tests_to_execute)
 
 	# create new runner config for fresh run otherwise use saved one
 	if not rerun:
@@ -296,7 +290,7 @@ func cmd_editor_run_test(debug: bool) -> void:
 		if result:
 			var func_name := result.get_string(2).strip_edges()
 			if func_name.begins_with("test_"):
-				cmd_run_test_case(active_script().resource_path, func_name, -1, debug)
+				cmd_run_test_case(active_script(), func_name, -1, debug)
 				return
 	# otherwise run the full test suite
 	var selected_test_suites: Array[Script] = [active_script()]
@@ -321,12 +315,14 @@ func cmd_create_test() -> void:
 func cmd_discover_tests() -> void:
 	await GdUnitTestDiscoverer.run()
 
+
 static func scan_all_test_directories(root: String) -> PackedStringArray:
 	var base_directory := "res://"
 	# If the test root folder is configured as blank, "/", or "res://", use the root folder as described in the settings panel
 	if root.is_empty() or root == "/" or root == base_directory:
 		return [base_directory]
 	return scan_test_directories(base_directory, root, [])
+
 
 static func scan_test_directories(base_directory: String, test_directory: String, test_suite_paths: PackedStringArray) -> PackedStringArray:
 	print_verbose("Scannning for test directory '%s' at %s" % [test_directory, base_directory])

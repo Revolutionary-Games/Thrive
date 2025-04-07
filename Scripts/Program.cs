@@ -93,14 +93,15 @@ public class Program
     {
         CommandLineHelpers.HandleDefaultOptions(options);
 
-        ColourConsole.WriteDebugLine("Running dotnet tests");
-
-        // TODO: we should maybe think about writing some tests runnable through dotnet
-        ColourConsole.WriteWarningLine("Thrive doesn't currently have any implemented dotnet test compatible tests");
+        ColourConsole.WriteInfoLine("Running 'dotnet test'");
 
         var tokenSource = ConsoleHelpers.CreateSimpleConsoleCancellationSource();
 
-        return ProcessRunHelpers.RunProcessAsync(new ProcessStartInfo("dotnet", "test"), tokenSource.Token, false)
+        var startInfo = new ProcessStartInfo("dotnet", "test");
+
+        startInfo.Environment.Add("GODOT_BIN", "godot");
+
+        return ProcessRunHelpers.RunProcessAsync(startInfo, tokenSource.Token, false)
             .Result.ExitCode;
     }
 

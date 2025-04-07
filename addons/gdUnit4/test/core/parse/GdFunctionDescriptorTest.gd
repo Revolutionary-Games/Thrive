@@ -156,6 +156,7 @@ func test_extract_return_type(info: String, expected: int, descriptor: Dictionar
 	assert_that(return_type).is_equal(expected)
 
 
+@warning_ignore("unused_parameter")
 func example_signature(info: String, expected: int, test_parameters := [
 	["aaa", 10],
 	["bbb", 11],
