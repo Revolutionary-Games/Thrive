@@ -99,7 +99,15 @@ public class Program
 
         var startInfo = new ProcessStartInfo("dotnet", "test");
 
-        startInfo.Environment.Add("GODOT_BIN", "godot");
+        var godot = ExecutableFinder.Which("godot");
+
+        if (string.IsNullOrEmpty(godot))
+        {
+            ColourConsole.WriteErrorLine("Could not find 'godot' executable, make sure it is in PATH");
+            return 2;
+        }
+
+        startInfo.Environment.Add("GODOT_BIN", godot);
 
         return ProcessRunHelpers.RunProcessAsync(startInfo, tokenSource.Token, false)
             .Result.ExitCode;

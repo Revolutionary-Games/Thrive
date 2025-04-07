@@ -111,7 +111,7 @@ jobs:
           command: dotnet restore Scripts/Scripts.csproj
       - run:
           name: Unit tests
-          command: GODOT_BIN=$(which godot) dotnet test
+          command: dotnet run --project Scripts -- test
       - run:
           name: files localization steam-build rewrite checks
           command: dotnet run --project Scripts -- check files localization steam-build rewrite
