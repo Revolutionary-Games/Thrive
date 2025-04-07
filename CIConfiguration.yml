@@ -110,6 +110,9 @@ jobs:
       - run:
           command: dotnet restore Scripts/Scripts.csproj
       - run:
+          name: Build all projects
+          command: dotnet build Thrive.sln
+      - run:
           name: Unit tests
           command: dotnet run --project Scripts -- test
       - run:
