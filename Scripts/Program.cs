@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Diagnostics;
+using System.IO;
 using CommandLine;
 using CommandLine.Text;
 using Scripts;
@@ -16,7 +17,7 @@ public class Program
     {
         RunFolderChecker.EnsureRightRunningFolder("Thrive.sln");
 
-        // This has too many verbs now so some more manual work is required here as this has run out of the template
+        // This has too many verbs now, so some more manual work is required here as this has run out of the template
         // arguments available from the library
         var parserResult = CommandLineHelpers.CreateParser()
             .ParseArguments(args, typeof(CheckOptions), typeof(NativeLibOptions), typeof(TestOptions),
@@ -109,8 +110,14 @@ public class Program
 
         startInfo.Environment.Add("GODOT_BIN", godot);
 
-        return ProcessRunHelpers.RunProcessAsync(startInfo, tokenSource.Token, false)
+        var result = ProcessRunHelpers.RunProcessAsync(startInfo, tokenSource.Token, false)
             .Result.ExitCode;
+
+        // Edit the gdUnit wrapper to suppress warnings in it
+        if (File.Exists("gdunit4_testadapter/GdUnit4TestRunnerScene.cs"))
+            EnsureStartsWithPragmaSuppression("gdunit4_testadapter/GdUnit4TestRunnerScene.cs");
+
+        return result;
     }
 
     private static int RunChangesFinding(ChangesOptions options)
@@ -296,6 +303,23 @@ public class Program
         var tool = new GodotProjectCompiler(options);
 
         return tool.Run(tokenSource.Token).Result;
+    }
+
+    private static void EnsureStartsWithPragmaSuppression(string file)
+    {
+        var text = File.ReadAllText(file);
+
+        var requiredText = text.Contains("\r\n") ? "#pragma warning disable\r\n\r\n" : "#pragma warning disable\n\n";
+
+        if (!text.StartsWith(requiredText))
+        {
+            ColourConsole.WriteNormalLine($"Adding pragma suppression to file '{file}'");
+            File.WriteAllText(file, requiredText + text);
+        }
+        else
+        {
+            ColourConsole.WriteDebugLine("File already has pragma suppression");
+        }
     }
 
     public class CheckOptions : CheckOptionsBase;
