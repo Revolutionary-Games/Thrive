@@ -180,7 +180,7 @@ public class MicrobeSpeciesTests
         AssertThat(hexesHash).IsNotEqual(desiredHash).IsNotEqual(species.GetVisualHashCode())
             .IsEqual(6703374232947739281);
 
-        // Check that result has not changed
+        // Check that the result has not changed
         AssertThat(species.GetVisualHashCode()).IsEqual(desiredHash);
     }
 
