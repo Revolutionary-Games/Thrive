@@ -21,6 +21,11 @@ public class CustomDifficulty : IDifficulty
     /// </summary>
     public float PlayerAutoEvoStrength { get; set; } = 0.2f;
 
+    /// <summary>
+    ///   This defaults to 0 to keep this off in old saves
+    /// </summary>
+    public float PlayerSpeciesAIPopulationStrength { get; set; }
+
     public bool FreeGlucoseCloud { get; set; }
 
     public ReproductionCompoundHandling ReproductionCompounds { get; set; } =
