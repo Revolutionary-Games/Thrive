@@ -5,8 +5,8 @@
         <TestAdaptersPaths>.</TestAdaptersPaths>
         <ResultsDirectory>./TestResults</ResultsDirectory>
         <TargetFrameworks>net9.0</TargetFrameworks>
-        <!-- set default session timeout to 30m (1800000ms)-->
-        <TestSessionTimeout>1800000</TestSessionTimeout>
+        <!-- set default session timeout to 10m (600000ms)-->
+        <TestSessionTimeout>600000</TestSessionTimeout>
         <TreatNoTestsAsError>true</TreatNoTestsAsError>
         <EnvironmentVariables>
             <GODOT_BIN>/usr/local/bin/godot</GODOT_BIN>
@@ -39,7 +39,7 @@
 
     <GdUnit4>
         <!-- Additional Godot runtime parameters. These are passed to the Godot executable when running tests.-->
-        <Parameters>"--headless --audio-driver Dummy --verbose"</Parameters>
+        <Parameters>"--audio-driver Dummy --display-driver x11 --rendering-driver opengl3 --screen 0 --headless --verbose"</Parameters>
 
         <!-- Controls the display name format of test cases in the test results.
                  Allowed values:
