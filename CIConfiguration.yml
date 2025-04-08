@@ -101,6 +101,7 @@ jobs:
       writeTo: v9-{Branch}-format
       shared:
         .git/lfs: v7-lfs
+        native_libs: v1-native
       system:
         /root/.nuget: v7-nuget
     artifacts:
@@ -115,15 +116,12 @@ jobs:
       - run:
           name: Download native libraries
           command: dotnet run --project Scripts -- native Fetch Install --debug true
-      - run:
-          name: Try to let Godot sort out importing the addons
-          command: godot -e --headless --quit-after 200 .
       # - run:
-      #     name: Unit tests
-      #     command: dotnet run --project Scripts -- test
+      #     name: Try to let Godot sort out importing the addons
+      #     command: godot -e --headless --quit-after 200 .
       - run:
-          name: Unit test with .runsettings
-          command: dotnet test --settings .runsettings --verbosity normal
+          name: Unit tests
+          command: dotnet run --project Scripts -- test
       - run:
           name: files localization steam-build rewrite checks
           command: dotnet run --project Scripts -- check files localization steam-build rewrite
