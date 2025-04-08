@@ -115,9 +115,12 @@ jobs:
       - run:
           name: Try to let Godot sort out importing the addons
           command: godot -e --headless --quit-after 200 .
+      # - run:
+      #     name: Unit tests
+      #     command: dotnet run --project Scripts -- test
       - run:
-          name: Unit tests
-          command: dotnet run --project Scripts -- test
+          name: Unit test with .runsettings
+          command: dotnet test --settings .runsettings --verbosity normal
       - run:
           name: files localization steam-build rewrite checks
           command: dotnet run --project Scripts -- check files localization steam-build rewrite
