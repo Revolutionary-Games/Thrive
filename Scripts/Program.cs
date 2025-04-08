@@ -74,7 +74,15 @@ public class Program
             return updater.Run(cancellationToken);
         });
 
-        return checker.Run().Result;
+        var result = checker.Run().Result;
+
+        if (Directory.Exists(NativeConstants.LibraryFolder))
+        {
+            // TODO: figure out how this keeps getting deleted
+            PackageTool.EnsureGodotIgnoreFileExistsInFolder(NativeConstants.LibraryFolder).Wait();
+        }
+
+        return result;
     }
 
     private static int RunNativeLibsTool(NativeLibOptions options)
@@ -137,13 +145,6 @@ public class Program
         // Edit the gdUnit wrapper to suppress warnings in it
         if (File.Exists("gdunit4_testadapter/GdUnit4TestRunnerScene.cs"))
             TestRunningHelpers.EnsureStartsWithPragmaSuppression("gdunit4_testadapter/GdUnit4TestRunnerScene.cs");
-
-        if (Directory.Exists(NativeConstants.LibraryFolder))
-        {
-            // Ensure tests somehow don't delete this file
-            // TODO: figure out how this keeps getting deleted
-            PackageTool.EnsureGodotIgnoreFileExistsInFolder(NativeConstants.LibraryFolder).Wait(tokenSource.Token);
-        }
 
         return result;
     }
