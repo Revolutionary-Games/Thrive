@@ -329,13 +329,20 @@ public class AutoEvoRun
     /// <param name="coefficient">The population change amount (coefficient part).</param>
     /// <param name="eventType">The external event type.</param>
     /// <param name="patch">The patch this effect affects.</param>
+    /// <param name="markImmediate">
+    ///   If true, then the external effect gets a record that this was an immediate effect.
+    ///   This is handled elsewhere, so this is purely a marker for later inspecting the data.
+    /// </param>
     public void AddExternalPopulationEffect(Species species, int constant, float coefficient, string eventType,
-        Patch patch)
+        Patch patch, bool markImmediate)
     {
         if (string.IsNullOrEmpty(eventType))
             throw new ArgumentException("external effect type is required", nameof(eventType));
 
-        ExternalEffects.Add(new ExternalEffect(species, constant, coefficient, eventType, patch));
+        ExternalEffects.Add(new ExternalEffect(species, constant, coefficient, eventType, patch)
+        {
+            Immediate = markImmediate,
+        });
     }
 
     /// <summary>

@@ -84,6 +84,12 @@ public enum TutorialEventType
     ProcessPanelProcessEnabled,
 
     /// <summary>
+    ///   Triggered when there is at least one member of the player species that has died / caused a
+    ///   negative external effect
+    /// </summary>
+    PlayerSpeciesMemberDied,
+
+    /// <summary>
     ///   Player presses the button the exit the microbe editor but has made no changes
     /// </summary>
     MicrobeEditorNoChangesMade,

@@ -118,6 +118,9 @@ public partial class MicrobeTutorialGUI : Control, ITutorialGUI
     [Export]
     private CustomWindow pausingTutorial = null!;
 
+    [Export]
+    private CustomWindow speciesMemberDied = null!;
+
 #pragma warning restore CA2213
 
     [Signal]
@@ -526,6 +529,25 @@ public partial class MicrobeTutorialGUI : Control, ITutorialGUI
             else
             {
                 pausingTutorial.Hide();
+            }
+        }
+    }
+
+    public bool SpeciesMemberDiedVisible
+    {
+        get => speciesMemberDied.Visible;
+        set
+        {
+            if (value == speciesMemberDied.Visible)
+                return;
+
+            if (value)
+            {
+                speciesMemberDied.Show();
+            }
+            else
+            {
+                speciesMemberDied.Hide();
             }
         }
     }

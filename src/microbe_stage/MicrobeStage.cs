@@ -47,7 +47,7 @@ public partial class MicrobeStage : CreatureStageBase<Entity, MicrobeWorldSimula
     private Vector3? guidancePosition;
 
     /// <summary>
-    ///   Used to track chemoreception lines. If TargetMicrobe is null the target is static.
+    ///   Used to track chemoreception lines. If TargetMicrobe is null, the target is static.
     /// </summary>
     private List<(GuidanceLine Line, Entity TargetEntity)> chemoreceptionLines = new();
 
@@ -396,6 +396,14 @@ public partial class MicrobeStage : CreatureStageBase<Entity, MicrobeWorldSimula
                 {
                     HUD.ShowEnvironmentPanel();
                     environmentPanelAutomaticallyOpened = true;
+                }
+            }
+
+            if (TutorialState.Enabled)
+            {
+                if (GameWorld.HasExternalEffectForSpecies(GameWorld.PlayerSpecies, true))
+                {
+                    TutorialState.SendEvent(TutorialEventType.PlayerSpeciesMemberDied, EventArgs.Empty, this);
                 }
             }
 
