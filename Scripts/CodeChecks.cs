@@ -61,13 +61,15 @@ public class CodeChecks : CodeChecksBase<Program.CheckOptions>
         FilePathsToAlwaysIgnore.Add(new Regex(@"mono_crash\..+"));
         FilePathsToAlwaysIgnore.Add(new Regex(@"RevolutionaryGamesCommon\/"));
 
-        // Downloaded json files
+        // Downloaded JSON files
         FilePathsToAlwaysIgnore.Add(new Regex(@"patrons\.json"));
         FilePathsToAlwaysIgnore.Add(new Regex(@"translators\.json"));
 
-        // Generated json files that are intentionally minimized
+        // Generated JSON files that are intentionally minimized
         FilePathsToAlwaysIgnore.Add(new Regex(@"older_patch_notes\.json$"));
         FilePathsToAlwaysIgnore.Add(new Regex(@"extension_api\.json$"));
+
+        FilePathsToAlwaysIgnore.Add(new Regex(@"gdunit4_testadapter\/"));
 
         // We ignore the .godot folder as it has godot temporary data and a bunch of files that don't conform to any
         // styles
