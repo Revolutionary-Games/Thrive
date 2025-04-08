@@ -39,7 +39,7 @@
 
     <GdUnit4>
         <!-- Additional Godot runtime parameters. These are passed to the Godot executable when running tests.-->
-        <Parameters>"--audio-driver Dummy --display-driver x11 --rendering-driver opengl3 --screen 0 --headless --verbose"</Parameters>
+        <Parameters>"--headless"</Parameters>
 
         <!-- Controls the display name format of test cases in the test results.
                  Allowed values:
