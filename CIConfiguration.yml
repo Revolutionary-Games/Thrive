@@ -116,9 +116,9 @@ jobs:
       - run:
           name: Download native libraries
           command: dotnet run --project Scripts -- native Fetch Install --debug true
-      # - run:
-      #     name: Try to let Godot sort out importing the addons
-      #     command: godot -e --headless --quit-after 200 .
+      - run:
+          name: Try to let Godot sort out importing the addons
+          command: godot --editor --headless --quit-after 200 .
       - run:
           name: Unit tests
           command: dotnet run --project Scripts -- test
