@@ -32,23 +32,23 @@ public partial class PatchMapNode : MarginContainer
     public NodePath UnknownLabelPath = null!;
 
     [Export]
+    public NodePath EventIconsPath = null!;
+
+    [Export]
     public string UnknownTextureFilePath = null!;
 
     // TODO: Move this to Constants.cs
     private const float HalfBlinkInterval = 0.5f;
 
 #pragma warning disable CA2213
-    [Export]
-    private TextureRect eruptionEventIndicator = null!;
 
-    [Export]
-    private TextureRect glaciationEventIndicator = null!;
-
+    private PackedScene eventIconScene = null!;
     private TextureRect? iconRect;
     private Panel? highlightPanel;
     private Panel? markPanel;
     private Panel? adjacentHighlightPanel;
     private Label? unknownLabel;
+    private HBoxContainer eventIconsContainer = null!;
 
     private Texture2D? patchIcon;
 #pragma warning restore CA2213
@@ -192,6 +192,8 @@ public partial class PatchMapNode : MarginContainer
     {
         base._Ready();
 
+        eventIconScene = GD.Load<PackedScene>("res://src/microbe_stage/editor/PatchMapEventIcon.tscn");
+
         if (patch == null)
             GD.PrintErr($"{nameof(PatchMapNode)} should have {nameof(Patch)} set");
 
@@ -200,6 +202,7 @@ public partial class PatchMapNode : MarginContainer
         markPanel = GetNode<Panel>(MarkPanelPath);
         adjacentHighlightPanel = GetNode<Panel>(AdjacentPanelPath);
         unknownLabel = GetNode<Label>(UnknownLabelPath);
+        eventIconsContainer = GetNode<HBoxContainer>(EventIconsPath);
 
         UpdateSelectHighlightRing();
         UpdateMarkRing();
@@ -276,29 +279,32 @@ public partial class PatchMapNode : MarginContainer
         }
     }
 
-    public void ShowEventVisuals(IReadOnlyList<WorldEffectVisuals> list)
+    public void ShowEventVisuals(IReadOnlyList<WorldEffectVisuals.WorldEffectTypes> list)
     {
-        eruptionEventIndicator.Visible = false;
-        glaciationEventIndicator.Visible = false;
+        if (eventIconsContainer == null)
+            return;
 
-        var count = list.Count;
+        eventIconsContainer.QueueFreeChildren(false);
 
-        for (int i = 0; i < count; ++i)
+        foreach (var effectType in list)
         {
-            switch (list[i])
+            var eventIcon = eventIconScene.Instantiate<PatchMapEventIcon>();
+
+            if (!WorldEffectVisuals.EventsTooltips.TryGetValue(effectType, out var tooltipText))
             {
-                case WorldEffectVisuals.None:
-                    break;
-                case WorldEffectVisuals.UnderwaterVentEruption:
-                    eruptionEventIndicator.Visible = true;
-                    break;
-                case WorldEffectVisuals.GlobalGlaciation:
-                    glaciationEventIndicator.Visible = true;
-                    break;
-                default:
-                    GD.PrintErr($"Unknown event to display on patch map node: {list[i]}");
-                    break;
+                throw new Exception($"Missing tooltip for {effectType}");
             }
+
+            eventIcon.TooltipText = Localization.Translate(tooltipText);
+
+            if (!WorldEffectVisuals.EventsIcons.TryGetValue(effectType, out var iconPath) ||
+                string.IsNullOrEmpty(iconPath))
+            {
+                throw new Exception($"Missing icon for {effectType}");
+            }
+
+            eventIcon.Texture = GD.Load<Texture2D>(iconPath);
+            eventIconsContainer.AddChild(eventIcon);
         }
     }
 
@@ -331,6 +337,7 @@ public partial class PatchMapNode : MarginContainer
                 MarkPanelPath.Dispose();
                 AdjacentPanelPath.Dispose();
                 UnknownLabelPath.Dispose();
+                EventIconsPath.Dispose();
             }
         }
 

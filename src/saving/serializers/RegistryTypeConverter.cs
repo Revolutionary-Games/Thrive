@@ -61,6 +61,9 @@ public class RegistryTypeConverter : BaseThriveConverter
         if (objectType == typeof(BioProcess))
             return Context.Simulation.GetBioProcess(name);
 
+        if (objectType == typeof(Meteor))
+            return Context.Simulation.GetMeteor(name);
+
         if (objectType == typeof(Biome))
             return Context.Simulation.GetBiome(name);
 

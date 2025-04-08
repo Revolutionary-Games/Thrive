@@ -83,10 +83,14 @@ public class GameWorld : ISaveLoadable
             TimedEffects.RegisterEffect("photosynthesis_production", new PhotosynthesisProductionEffect(this));
             TimedEffects.RegisterEffect("volcanism", new VolcanismEffect(this));
             TimedEffects.RegisterEffect("nitrogen_control", new NitrogenControlEffect(this));
-            TimedEffects.RegisterEffect("underwater_vent_eruption",
-                new UnderwaterVentEruptionEffect(this, random.Next64()));
+
+            // Patch events. Their sequence SHOULD NOT be changed!
             TimedEffects.RegisterEffect("global_glaciation_event",
                 new GlobalGlaciationEvent(this, random.Next64()));
+            TimedEffects.RegisterEffect("meteor_impact_event",
+                new MeteorImpactEvent(this, random.Next64()));
+            TimedEffects.RegisterEffect("underwater_vent_eruption",
+                new UnderwaterVentEruptionEffect(this, random.Next64()));
 
             TimedEffects.RegisterEffect("sulfide_consumption", new HydrogenSulfideConsumptionEffect(this));
             TimedEffects.RegisterEffect("compound_diffusion", new CompoundDiffusionEffect(this));
