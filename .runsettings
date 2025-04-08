@@ -39,7 +39,7 @@
 
     <GdUnit4>
         <!-- Additional Godot runtime parameters. These are passed to the Godot executable when running tests.-->
-        <Parameters>"--verbose"</Parameters>
+        <Parameters>"--headless --audio-driver Dummy --verbose"</Parameters>
 
         <!-- Controls the display name format of test cases in the test results.
                  Allowed values:
