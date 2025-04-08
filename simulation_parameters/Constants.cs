@@ -1364,7 +1364,7 @@ public static class Constants
     public const int GLOBAL_GLACIATION_HEADS_UP_DURATION = 1;
     public const float GLOBAL_GLACIATION_SUNLIGHT_MULTIPLICATION = 0.5f;
 
-    public const float METEOR_IMPACT_CHANCE = 0.18f;
+    public const float METEOR_IMPACT_CHANCE = 0.2f;
     public const float METEOR_IMPACT_SUNLIGHT_MULTIPLICATION = 0.75f;
 
     // These control how many game entities can exist at once

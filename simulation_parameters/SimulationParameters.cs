@@ -62,6 +62,7 @@ public partial class SimulationParameters : Node
 
     private List<CompoundDefinition>? cachedCloudCompounds;
     private List<Enzyme>? cachedDigestiveEnzymes;
+    private List<double>? cachedMeteorChances;
 
     public static SimulationParameters Instance => instance ?? throw new InstanceNotLoadedYetException();
 
@@ -387,6 +388,11 @@ public partial class SimulationParameters : Node
     public IReadOnlyList<Enzyme> GetHydrolyticEnzymes()
     {
         return cachedDigestiveEnzymes ??= ComputeHydrolyticEnzymes();
+    }
+
+    public IReadOnlyList<double> GetMeteorChances()
+    {
+        return cachedMeteorChances ??= ComputeMeteorChances();
     }
 
     public IReadOnlyDictionary<string, MusicCategory> GetMusicCategories()
@@ -794,6 +800,8 @@ public partial class SimulationParameters : Node
         lightCycle.InternalName = DAY_NIGHT_CYCLE_NAME;
         buildInfo?.Check(string.Empty);
 
+        Meteor.CheckAllMeteors(meteors.Values.ToList());
+
         if (oldVersionNotes.Count < 1)
             throw new Exception("Could not read old versions data");
 
@@ -877,5 +885,10 @@ public partial class SimulationParameters : Node
     private List<Enzyme> ComputeHydrolyticEnzymes()
     {
         return enzymes.Where(e => e.Value.Property == Enzyme.EnzymeProperty.Hydrolytic).Select(e => e.Value).ToList();
+    }
+
+    private List<double> ComputeMeteorChances()
+    {
+        return meteors.Values.Select(meteor => meteor.Probability).ToList();
     }
 }

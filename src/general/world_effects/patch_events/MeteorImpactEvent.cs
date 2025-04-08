@@ -72,20 +72,13 @@ public class MeteorImpactEvent : IWorldEffect
     private void ChooseMeteorType()
     {
         var meteors = SimulationParameters.Instance.GetAllMeteors().ToList();
-        var index = GetRandomElementByProbability(meteors.Select(meteor => meteor.Probability).ToList(),
+        var index = GetRandomElementByProbability(SimulationParameters.Instance.GetMeteorChances(),
             random.NextDouble());
         selectedMeteor = meteors.ElementAt(index);
     }
 
-    private int GetRandomElementByProbability(List<double> chances, double probability)
+    private int GetRandomElementByProbability(IReadOnlyList<double> chances, double probability)
     {
-        double totalSum = chances.Sum();
-        if (Math.Abs(totalSum - 1.0) > 1e-6)
-        {
-            GD.PrintErr($"Probability sum mismatch: {totalSum}. Expected: 1.0");
-            return 0;
-        }
-
         double cumulative = 0.0;
         for (var i = 0; i < chances.Count; ++i)
         {
@@ -100,9 +93,17 @@ public class MeteorImpactEvent : IWorldEffect
     private void ChooseAffectedPatches()
     {
         var impactSize = random.Next(0, 3);
-        var surfacePatches = targetWorld.Map.Patches.Values.Where(IsSurfacePatch).ToList();
+
+        var surfacePatches = new List<Patch>();
+        foreach (var patch in targetWorld.Map.Patches.Values)
+        {
+            if (IsSurfacePatch(patch))
+                surfacePatches.Add(patch);
+        }
+
         var selectedPatch = surfacePatches[random.Next(surfacePatches.Count)];
-        var adjacentRegion = selectedPatch.Region.Adjacent.ToList()[random.Next(selectedPatch.Region.Adjacent.Count)];
+        var adjacentList = selectedPatch.Region.Adjacent;
+        var adjacentRegion = adjacentList.ToList()[random.Next(adjacentList.Count)];
 
         // 1 patch
         if (impactSize >= 0)
