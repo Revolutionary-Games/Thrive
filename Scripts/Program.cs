@@ -99,6 +99,10 @@ public class Program
         var tokenSource = ConsoleHelpers.CreateSimpleConsoleCancellationSource();
 
         var startInfo = new ProcessStartInfo("dotnet", "test");
+        startInfo.ArgumentList.Add("--settings");
+        startInfo.ArgumentList.Add(TestRunningHelpers.RUN_SETTINGS_FILE);
+        startInfo.ArgumentList.Add("--verbosity");
+        startInfo.ArgumentList.Add("normal");
 
         var godot = ExecutableFinder.Which("godot");
 
@@ -108,14 +112,14 @@ public class Program
             return 2;
         }
 
-        startInfo.Environment.Add("GODOT_BIN", godot);
+        TestRunningHelpers.GenerateRunSettings(godot, AssemblyInfoReader.ReadRunTimeFromCsproj("Thrive.csproj"), false);
 
         var result = ProcessRunHelpers.RunProcessAsync(startInfo, tokenSource.Token, false)
             .Result.ExitCode;
 
         // Edit the gdUnit wrapper to suppress warnings in it
         if (File.Exists("gdunit4_testadapter/GdUnit4TestRunnerScene.cs"))
-            EnsureStartsWithPragmaSuppression("gdunit4_testadapter/GdUnit4TestRunnerScene.cs");
+            TestRunningHelpers.EnsureStartsWithPragmaSuppression("gdunit4_testadapter/GdUnit4TestRunnerScene.cs");
 
         return result;
     }
@@ -303,23 +307,6 @@ public class Program
         var tool = new GodotProjectCompiler(options);
 
         return tool.Run(tokenSource.Token).Result;
-    }
-
-    private static void EnsureStartsWithPragmaSuppression(string file)
-    {
-        var text = File.ReadAllText(file);
-
-        var requiredText = text.Contains("\r\n") ? "#pragma warning disable\r\n\r\n" : "#pragma warning disable\n\n";
-
-        if (!text.StartsWith(requiredText))
-        {
-            ColourConsole.WriteNormalLine($"Adding pragma suppression to file '{file}'");
-            File.WriteAllText(file, requiredText + text);
-        }
-        else
-        {
-            ColourConsole.WriteDebugLine("File already has pragma suppression");
-        }
     }
 
     public class CheckOptions : CheckOptionsBase;
