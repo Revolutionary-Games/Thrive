@@ -98,7 +98,8 @@ public class Program
 
         var tokenSource = ConsoleHelpers.CreateSimpleConsoleCancellationSource();
 
-        var startInfo = new ProcessStartInfo("dotnet", "test");
+        var startInfo = new ProcessStartInfo("dotnet");
+        startInfo.ArgumentList.Add("test");
         startInfo.ArgumentList.Add("--settings");
         startInfo.ArgumentList.Add(TestRunningHelpers.RUN_SETTINGS_FILE);
         startInfo.ArgumentList.Add("--verbosity");

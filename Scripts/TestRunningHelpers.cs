@@ -28,7 +28,8 @@ public static class TestRunningHelpers
                                                      </RunConfiguration>
                                                      <LoggerRunSettings>
                                                          <Loggers>
-                                                             <Logger friendlyName="console" enabled="True">
+                                                             <!-- Seems to cause duplicate output -->
+                                                             <Logger friendlyName="console" enabled="False">
                                                                  <Configuration>
                                                                      <Verbosity>normal</Verbosity>
                                                                  </Configuration>
@@ -48,8 +49,6 @@ public static class TestRunningHelpers
                                                      <GdUnit4>
                                                          <Parameters>"--headless"</Parameters>
                                                          <DisplayName>FullyQualifiedName</DisplayName>
-                                                         <!-- When set to true, standard output (stdout) from test cases is captured
-                                                                  and included in the test result. This can be useful for debugging. -->
                                                          <CaptureStdOut>true</CaptureStdOut>
                                                      </GdUnit4>
                                                  </RunSettings>
