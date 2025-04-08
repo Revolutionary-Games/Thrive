@@ -123,9 +123,6 @@ jobs:
           name: Unit tests
           command: dotnet run --project Scripts -- test
       - run:
-          name: Make sure no changes to git tracked files at this point
-          command: GIT_LFS_SKIP_SMUDGE=1 git reset --hard HEAD
-      - run:
           name: files localization steam-build rewrite checks
           command: dotnet run --project Scripts -- check files localization steam-build rewrite
       - run:
