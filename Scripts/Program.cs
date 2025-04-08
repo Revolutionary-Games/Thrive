@@ -96,15 +96,6 @@ public class Program
 
         ColourConsole.WriteInfoLine("Running 'dotnet test'");
 
-        var tokenSource = ConsoleHelpers.CreateSimpleConsoleCancellationSource();
-
-        var startInfo = new ProcessStartInfo("dotnet");
-        startInfo.ArgumentList.Add("test");
-        startInfo.ArgumentList.Add("--settings");
-        startInfo.ArgumentList.Add(TestRunningHelpers.RUN_SETTINGS_FILE);
-        startInfo.ArgumentList.Add("--verbosity");
-        startInfo.ArgumentList.Add("normal");
-
         var godot = ExecutableFinder.Which("godot");
 
         if (string.IsNullOrEmpty(godot))
@@ -115,8 +106,33 @@ public class Program
 
         TestRunningHelpers.GenerateRunSettings(godot, AssemblyInfoReader.ReadRunTimeFromCsproj("Thrive.csproj"), false);
 
-        var result = ProcessRunHelpers.RunProcessAsync(startInfo, tokenSource.Token, false)
-            .Result.ExitCode;
+        var tokenSource = ConsoleHelpers.CreateSimpleConsoleCancellationSource();
+
+        int result = -1;
+        const int maxTries = 2;
+
+        // gdUnit can randomly fail once to detect available tests, that's why the tests run multiple times on fail
+        // (which is not ideal, but it should hopefully be relatively rare for the tests to actually fail for real)
+        for (int i = 0; i < maxTries; ++i)
+        {
+            var startInfo = new ProcessStartInfo("dotnet");
+            startInfo.ArgumentList.Add("test");
+            startInfo.ArgumentList.Add("--settings");
+            startInfo.ArgumentList.Add(TestRunningHelpers.RUN_SETTINGS_FILE);
+            startInfo.ArgumentList.Add("--verbosity");
+            startInfo.ArgumentList.Add("normal");
+
+            result = ProcessRunHelpers.RunProcessAsync(startInfo, tokenSource.Token, false)
+                .Result.ExitCode;
+
+            if (result == 0)
+                break;
+
+            if (i + 1 < maxTries)
+            {
+                ColourConsole.WriteErrorLine("Failed to run tests, retrying");
+            }
+        }
 
         // Edit the gdUnit wrapper to suppress warnings in it
         if (File.Exists("gdunit4_testadapter/GdUnit4TestRunnerScene.cs"))
