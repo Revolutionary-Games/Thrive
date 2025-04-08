@@ -62,10 +62,6 @@ public class GlobalGlaciationEvent : IWorldEffect
         if (generationsLeft > 0)
             generationsLeft -= 1;
 
-        // Mark patches with the event icon while the event lasts
-        if (generationsLeft > 0)
-            MarkPatches(totalTimePassed);
-
         if (generationsLeft == -1)
         {
             TryToTriggerEvent(totalTimePassed);
@@ -74,6 +70,10 @@ public class GlobalGlaciationEvent : IWorldEffect
         {
             FinishEvent();
         }
+
+        // Mark patches with the event icon while the event lasts
+        if (generationsLeft > 0)
+            MarkPatches(totalTimePassed);
     }
 
     private bool IsSurfacePatch(Patch patch)
