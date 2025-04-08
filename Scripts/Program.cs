@@ -74,15 +74,7 @@ public class Program
             return updater.Run(cancellationToken);
         });
 
-        var result = checker.Run().Result;
-
-        if (Directory.Exists(NativeConstants.LibraryFolder))
-        {
-            // TODO: figure out how this keeps getting deleted
-            PackageTool.EnsureGodotIgnoreFileExistsInFolder(NativeConstants.LibraryFolder).Wait();
-        }
-
-        return result;
+        return checker.Run().Result;
     }
 
     private static int RunNativeLibsTool(NativeLibOptions options)
