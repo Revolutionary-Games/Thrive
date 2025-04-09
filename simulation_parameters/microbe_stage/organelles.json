@@ -1134,15 +1134,26 @@
         "q": 0
       }
     ],
-    "Processes": {},
+    "Processes": {
+      "luciferaseSynthesis": 1
+    },
     "Components": {},
+    "ToleranceEffects": {
+      "Oxygen": 0.02
+    },
+    "Density": 1100,
+    "Graphics": {
+      "ScenePath": "res://assets/models/organelles/BioluminescentVacuole.tscn"
+    },
     "Name": "BIOLUMINESCENT_VACUOLE",
-    "Description": "TO_BE_IMPLEMENTED",
+    "Description": "BIOLUMINESCENT_VACUOLE_DESCRIPTION",
+    "ProcessesDescription": "BIOLUMINESCENT_VACUOLE_PROCESSES_DESCRIPTION",
+    "ProductionColour": "#45f0ff",
+    "ConsumptionColour": "#2fa2ac",
     "IconPath": "res://assets/textures/gui/bevel/parts/BioluminescentIcon.png",
     "RequiresNucleus": true,
     "EditorButtonGroup": "Organelle",
-    "EditorButtonOrder": 13,
-    "Unimplemented": true
+    "EditorButtonOrder": 13
   },
   "thermoplast": {
     "MPCost": 55,

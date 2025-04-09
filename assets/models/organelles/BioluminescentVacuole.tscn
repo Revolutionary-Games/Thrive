@@ -1,0 +1,28 @@
+[gd_scene load_steps=6 format=3 uid="uid://cn2w4pm0v5y15"]
+
+[ext_resource type="Shader" uid="uid://d25y8w0858fqi" path="res://shaders/OrganelleEmissive.gdshader" id="1_rt4jn"]
+[ext_resource type="Texture2D" uid="uid://baxuoyeo83r2u" path="res://assets/textures/dissolve_noise.tres" id="2_gytsy"]
+[ext_resource type="Texture2D" uid="uid://2hbye6cfsiaf" path="res://assets/textures/Vacuole.png" id="3_nci1h"]
+[ext_resource type="ArrayMesh" uid="uid://bcip0xy0b1px1" path="res://assets/models/organelles/Vacuole.mesh" id="4_uycx8"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_qaowp"]
+resource_local_to_scene = true
+render_priority = 0
+shader = ExtResource("1_rt4jn")
+shader_parameter/albedoTexture = ExtResource("3_nci1h")
+shader_parameter/dissolveValue = 0.0
+shader_parameter/dissolveScale = 1.0
+shader_parameter/tint = Color(0.950589, 1, 0.984819, 1)
+shader_parameter/roughness = 0.5
+shader_parameter/specular = 0.2
+shader_parameter/emission = Color(0.330446, 0.787202, 1, 1)
+shader_parameter/emissionEnergy = 5.0
+shader_parameter/useTextureEmission = false
+shader_parameter/outlineWidth = 0.05
+shader_parameter/growColor = Color(0.303233, 0.303233, 0.303233, 1)
+shader_parameter/jiggleAmount = 0.0005
+shader_parameter/dissolveTexture = ExtResource("2_gytsy")
+
+[node name="BioluminescentVacuole" type="MeshInstance3D"]
+material_override = SubResource("ShaderMaterial_qaowp")
+mesh = ExtResource("4_uycx8")
