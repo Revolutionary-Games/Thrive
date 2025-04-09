@@ -1137,9 +1137,15 @@
     "Processes": {
       "luciferaseSynthesis": 1
     },
-    "Components": {},
+    "Components": {
+      "Bioluminescence": {
+        "Consumption": 1,
+        "EmissionStrength": 20.5,
+        "LightStrength": 5
+      }
+    },
     "ToleranceEffects": {
-      "Oxygen": 0.02
+      "Oxygen": 0.1
     },
     "Density": 1100,
     "Graphics": {

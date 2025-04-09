@@ -35,6 +35,7 @@ using World = DefaultEcs.World;
 [RunsAfter(typeof(MicrobeMovementSystem))]
 [RunsAfter(typeof(OrganelleComponentFetchSystem))]
 [RunsBefore(typeof(PhysicsSensorSystem))]
+[RunsBefore(typeof(EntityLightSystem))]
 [RuntimeCost(14)]
 [RunsOnMainThread]
 public sealed class OrganelleTickSystem : AEntitySetSystem<float>
