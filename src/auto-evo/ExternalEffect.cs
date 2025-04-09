@@ -35,4 +35,7 @@ public class ExternalEffect
     /// </summary>
     [JsonProperty]
     public Patch Patch { get; set; }
+
+    [JsonProperty]
+    public bool Immediate { get; set; }
 }

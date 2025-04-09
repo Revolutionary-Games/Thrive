@@ -1428,6 +1428,7 @@ public static class Constants
     public const float OPEN_MICROBE_BECOME_MULTICELLULAR_TUTORIAL_AFTER = 30;
     public const float MICROBE_EDITOR_BUTTON_TUTORIAL_DELAY = 20;
     public const float HIDE_MICROBE_RESOURCE_SPLIT_TUTORIAL_AFTER = 60;
+    public const float HIDE_MICROBE_SPECIES_MEMBER_DIED_AFTER = 60;
 
     public const float DAY_NIGHT_TUTORIAL_LIGHT_MIN = 0.01f;
 
