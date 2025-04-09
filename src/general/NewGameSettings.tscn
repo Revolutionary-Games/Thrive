@@ -9,7 +9,7 @@
 [ext_resource type="Texture2D" uid="uid://ch76ktrn1xy7r" path="res://assets/textures/gui/bevel/randomizeButtonDisabled.png" id="7"]
 [ext_resource type="Texture2D" uid="uid://jm2munbr7078" path="res://assets/textures/gui/bevel/randomizeButtonHover.png" id="8"]
 [ext_resource type="Texture2D" uid="uid://c6pe536xf5ime" path="res://assets/concept_art/planet_generation.jpg" id="10"]
-[ext_resource type="PackedScene" path="res://src/gui_common/CustomRichTextLabel.tscn" id="11"]
+[ext_resource type="PackedScene" uid="uid://bhpjtbtaeunat" path="res://src/gui_common/CustomRichTextLabel.tscn" id="11"]
 [ext_resource type="PackedScene" uid="uid://bgeijgq7runaw" path="res://src/gui_common/FocusGrabber.tscn" id="12"]
 [ext_resource type="PackedScene" uid="uid://dw3ubsraoopin" path="res://src/gui_common/TabButtons.tscn" id="13"]
 [ext_resource type="LabelSettings" uid="uid://58teykjxnrdt" path="res://src/gui_common/fonts/Body-Regular-AlmostTiny-Red.tres" id="13_yxxhr"]
@@ -28,7 +28,7 @@ font = ExtResource("5_otvf3")
 
 [sub_resource type="StyleBoxEmpty" id="4"]
 
-[node name="NewGameSettings" type="Control" node_paths=PackedStringArray("autoEvoStrengthMultiplier", "autoEvoStrengthReadout", "reproductionCompoundsDropdown", "switchSpeciesOnExtinctionButton", "worldSizeButton", "experimentalFeatures", "experimentalExplanation", "experimentalWarning")]
+[node name="NewGameSettings" type="Control" node_paths=PackedStringArray("playerSpeciesAIPopulationStrength", "playerSpeciesAIPopulationStrengthReadout", "autoEvoStrengthMultiplier", "autoEvoStrengthReadout", "reproductionCompoundsDropdown", "switchSpeciesOnExtinctionButton", "worldSizeButton", "experimentalFeatures", "experimentalExplanation", "experimentalWarning")]
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
@@ -82,6 +82,8 @@ IncludeMulticellularButtonPath = NodePath("CenterContainer/VBoxContainer/Advance
 EasterEggsButtonPath = NodePath("CenterContainer/VBoxContainer/AdvancedOptions/Misc/VBoxContainer/VBoxContainer3/EasterEggs")
 StartButtonPath = NodePath("CenterContainer/VBoxContainer/HBoxContainer/Start")
 CheckOptionsMenuAdviceContainerPath = NodePath("CenterContainer/VBoxContainer/BasicOptions/Main/VBoxContainer/CheckPerformanceSettingsContainer")
+playerSpeciesAIPopulationStrength = NodePath("CenterContainer/VBoxContainer/AdvancedOptions/Difficulty/ScrollContainer/HBoxContainer/VBoxContainer/VBoxContainer16/HBoxContainer/HBoxContainer/PlayerSpeciesAIPopStrength")
+playerSpeciesAIPopulationStrengthReadout = NodePath("CenterContainer/VBoxContainer/AdvancedOptions/Difficulty/ScrollContainer/HBoxContainer/VBoxContainer/VBoxContainer16/HBoxContainer/HBoxContainer/SpeciesMemberStrengthDisplay")
 autoEvoStrengthMultiplier = NodePath("CenterContainer/VBoxContainer/AdvancedOptions/Difficulty/ScrollContainer/HBoxContainer/VBoxContainer/VBoxContainer15/HBoxContainer/HBoxContainer/AutoEvoMultiplier")
 autoEvoStrengthReadout = NodePath("CenterContainer/VBoxContainer/AdvancedOptions/Difficulty/ScrollContainer/HBoxContainer/VBoxContainer/VBoxContainer15/HBoxContainer/HBoxContainer/AutoEvoReadout")
 reproductionCompoundsDropdown = NodePath("CenterContainer/VBoxContainer/AdvancedOptions/Difficulty/ScrollContainer/HBoxContainer/VBoxContainer/VBoxContainer14/HBoxContainer/HBoxContainer/ReproductionCompounds")
@@ -185,6 +187,7 @@ tooltip_text = "LIFE_ORIGIN_TOOLTIP"
 selected = 0
 item_count = 3
 popup/item_0/text = "LIFE_ORIGIN_VENTS"
+popup/item_0/id = 0
 popup/item_1/text = "LIFE_ORIGIN_POND"
 popup/item_1/id = 1
 popup/item_2/text = "LIFE_ORIGIN_PANSPERMIA"
@@ -636,6 +639,49 @@ text = "AUTO-EVO_STRENGHT_MULTIPLIER_EXPLANATION"
 label_settings = ExtResource("5_rnvau")
 autowrap_mode = 3
 
+[node name="VBoxContainer16" type="VBoxContainer" parent="CenterContainer/VBoxContainer/AdvancedOptions/Difficulty/ScrollContainer/HBoxContainer/VBoxContainer"]
+layout_mode = 2
+
+[node name="HBoxContainer" type="HBoxContainer" parent="CenterContainer/VBoxContainer/AdvancedOptions/Difficulty/ScrollContainer/HBoxContainer/VBoxContainer/VBoxContainer16"]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="Label" type="Label" parent="CenterContainer/VBoxContainer/AdvancedOptions/Difficulty/ScrollContainer/HBoxContainer/VBoxContainer/VBoxContainer16/HBoxContainer"]
+custom_minimum_size = Vector2(250, 0)
+layout_mode = 2
+size_flags_horizontal = 3
+text = "SPECIES_MEMBER_IMPACT_ON_POP"
+
+[node name="HBoxContainer" type="HBoxContainer" parent="CenterContainer/VBoxContainer/AdvancedOptions/Difficulty/ScrollContainer/HBoxContainer/VBoxContainer/VBoxContainer16/HBoxContainer"]
+layout_mode = 2
+
+[node name="PlayerSpeciesAIPopStrength" type="HSlider" parent="CenterContainer/VBoxContainer/AdvancedOptions/Difficulty/ScrollContainer/HBoxContainer/VBoxContainer/VBoxContainer16/HBoxContainer/HBoxContainer"]
+custom_minimum_size = Vector2(140, 0)
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 1
+max_value = 1.0
+step = 0.01
+
+[node name="HSeparator" type="HSeparator" parent="CenterContainer/VBoxContainer/AdvancedOptions/Difficulty/ScrollContainer/HBoxContainer/VBoxContainer/VBoxContainer16/HBoxContainer/HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_styles/separator = SubResource("6")
+
+[node name="SpeciesMemberStrengthDisplay" type="LineEdit" parent="CenterContainer/VBoxContainer/AdvancedOptions/Difficulty/ScrollContainer/HBoxContainer/VBoxContainer/VBoxContainer16/HBoxContainer/HBoxContainer"]
+custom_minimum_size = Vector2(20, 0)
+layout_mode = 2
+text = "0%"
+editable = false
+
+[node name="Label" type="Label" parent="CenterContainer/VBoxContainer/AdvancedOptions/Difficulty/ScrollContainer/HBoxContainer/VBoxContainer/VBoxContainer16"]
+custom_minimum_size = Vector2(200, 0)
+layout_mode = 2
+size_flags_horizontal = 3
+text = "SPECIES_MEMBER_IMPACT_ON_POPULATION_EXPLANATION"
+label_settings = ExtResource("5_rnvau")
+autowrap_mode = 3
+
 [node name="VBoxContainer14" type="VBoxContainer" parent="CenterContainer/VBoxContainer/AdvancedOptions/Difficulty/ScrollContainer/HBoxContainer/VBoxContainer"]
 layout_mode = 2
 
@@ -660,6 +706,7 @@ tooltip_text = "REPRODUCTION_COMPOUND_HANDLING_TOOLTIP"
 selected = 0
 item_count = 4
 popup/item_0/text = "COMPOUND_HANDLE_SPLIT_SISTER"
+popup/item_0/id = 0
 popup/item_1/text = "COMPOUND_HANDLE_KEEP"
 popup/item_1/id = 1
 popup/item_2/text = "COMPOUND_HANDLE_TOP_UP"
@@ -846,6 +893,7 @@ tooltip_text = "LIFE_ORIGIN_TOOLTIP"
 selected = 0
 item_count = 3
 popup/item_0/text = "LIFE_ORIGIN_VENTS"
+popup/item_0/id = 0
 popup/item_1/text = "LIFE_ORIGIN_POND"
 popup/item_1/id = 1
 popup/item_2/text = "LIFE_ORIGIN_PANSPERMIA"
@@ -979,6 +1027,7 @@ tooltip_text = "WORLD_SIZE_TOOLTIP"
 selected = 1
 item_count = 3
 popup/item_0/text = "WORLD_SIZE_SMALL"
+popup/item_0/id = 0
 popup/item_1/text = "WORLD_SIZE_MEDIUM"
 popup/item_1/id = 1
 popup/item_2/text = "WORLD_SIZE_LARGE"
@@ -1141,6 +1190,7 @@ text = "START_GAME"
 [connection signal="value_changed" from="CenterContainer/VBoxContainer/AdvancedOptions/Difficulty/ScrollContainer/HBoxContainer/VBoxContainer/VBoxContainer4/HBoxContainer/HBoxContainer/GlucoseDecayRate" to="." method="OnGlucoseDecayRateValueChanged"]
 [connection signal="value_changed" from="CenterContainer/VBoxContainer/AdvancedOptions/Difficulty/ScrollContainer/HBoxContainer/VBoxContainer/VBoxContainer7/HBoxContainer/HBoxContainer/OsmoregulationMultiplier" to="." method="OnOsmoregulationMultiplierValueChanged"]
 [connection signal="value_changed" from="CenterContainer/VBoxContainer/AdvancedOptions/Difficulty/ScrollContainer/HBoxContainer/VBoxContainer/VBoxContainer15/HBoxContainer/HBoxContainer/AutoEvoMultiplier" to="." method="OnAutoEvoStrengthValueChanged"]
+[connection signal="value_changed" from="CenterContainer/VBoxContainer/AdvancedOptions/Difficulty/ScrollContainer/HBoxContainer/VBoxContainer/VBoxContainer16/HBoxContainer/HBoxContainer/PlayerSpeciesAIPopStrength" to="." method="OnPlayerSpeciesAIPopulationStrengthValueChanged"]
 [connection signal="item_selected" from="CenterContainer/VBoxContainer/AdvancedOptions/Difficulty/ScrollContainer/HBoxContainer/VBoxContainer/VBoxContainer14/HBoxContainer/HBoxContainer/ReproductionCompounds" to="." method="OnReproductionCompoundModeChanged"]
 [connection signal="item_selected" from="CenterContainer/VBoxContainer/AdvancedOptions/Difficulty/ScrollContainer/HBoxContainer/VBoxContainer/VBoxContainer11/HBoxContainer/HBoxContainer/FogOfWarMode" to="." method="OnFogOfWarModeChanged"]
 [connection signal="toggled" from="CenterContainer/VBoxContainer/AdvancedOptions/Difficulty/ScrollContainer/HBoxContainer/VBoxContainer/VBoxContainer5/FreeGlucoseCloud" to="." method="OnFreeGlucoseCloudToggled"]

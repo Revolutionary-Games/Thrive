@@ -355,7 +355,7 @@ public abstract class Species : ICloneable
         species.Generation = Generation;
         species.PlayerSpecies = PlayerSpecies;
 
-        // Preserve endosymbiosis progress object as the same, as this is meant to be used when converting species
+        // Preserve an endosymbiosis progress object as the same, as this is meant to be used when converting species
         // types
         species.Endosymbiosis = Endosymbiosis;
     }

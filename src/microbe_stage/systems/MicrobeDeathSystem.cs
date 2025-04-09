@@ -18,11 +18,11 @@ using World = DefaultEcs.World;
 /// <remarks>
 ///   <para>
 ///     Currently the use of <see cref="ManualPhysicsControl"/> to stop movement when dying is commented out. If
-///     eventually that is removed that component should also be removed from the With attribute list below.
+///     eventually that is removed, that component should also be removed from the With attribute list below.
 ///   </para>
 ///   <para>
 ///     As death is pretty rare, this doesn't really show up in profiling, but just to guard against potential lag
-///     spikes this is marked with a bit of a runtime cost.
+///     spikes, this is marked with a bit of a runtime cost.
 ///   </para>
 /// </remarks>
 [With(typeof(Health))]
@@ -58,6 +58,7 @@ public sealed class MicrobeDeathSystem : AEntitySetSystem<float>
     private readonly Random random = new();
 
     private GameWorld? gameWorld;
+    private IDifficulty? difficulty;
 
     public MicrobeDeathSystem(IWorldSimulation worldSimulation, ISpawnSystem spawnSystem, World world,
         IParallelRunner parallelRunner) : base(world, parallelRunner)
@@ -80,7 +81,7 @@ public sealed class MicrobeDeathSystem : AEntitySetSystem<float>
         if (organelleContainer.Organelles == null)
             throw new InvalidOperationException("Organelles can't be null when determining chunks to drop");
 
-        // Eject the compounds that was in the microbe
+        // Eject the compounds that were in the microbe
         var compoundsToRelease = new Dictionary<Compound, float>();
 
         foreach (var type in SimulationParameters.Instance.GetCloudCompounds())
@@ -97,7 +98,7 @@ public sealed class MicrobeDeathSystem : AEntitySetSystem<float>
             {
                 compoundsToRelease.TryGetValue(entry.Key, out var existing);
 
-                // Only add up if there's still some compounds left, otherwise
+                // Only add up if there are still some compounds left, otherwise
                 // we're releasing compounds out of thin air.
                 if (existing > 0)
                 {
@@ -173,12 +174,12 @@ public sealed class MicrobeDeathSystem : AEntitySetSystem<float>
                 Name = chunkName,
             };
 
-            // They were added in order already so looping through this other thing is fine
+            // They were added in order already, so looping through this other thing is fine
             foreach (var entry in compoundsToRelease)
             {
                 var compoundValue = new ChunkConfiguration.ChunkCompound
                 {
-                    // Randomize compound amount a bit so things "rot away"
+                    // Randomize the compound amount a bit so things "rot away"
                     Amount = (entry.Value / (random.Next(amount / 3.0f, amount) *
                         Constants.CHUNK_ENGULF_COMPOUND_DIVISOR)) * Constants.CORPSE_COMPOUND_COMPENSATION,
                 };
@@ -210,7 +211,7 @@ public sealed class MicrobeDeathSystem : AEntitySetSystem<float>
                     continue;
                 }
 
-                // ScenePath is always valid now here so we just break after the first organelle we were able to
+                // ScenePath is always valid now here, so we just break after the first organelle we were able to
                 // use
                 break;
             }
@@ -225,12 +226,12 @@ public sealed class MicrobeDeathSystem : AEntitySetSystem<float>
                 velocity = customizeCallback.Invoke(ref position);
             }
 
-            // Finally spawn a chunk with the settings
+            // Finally, spawn a chunk with the settings
 
             var chunk = SpawnHelpers.SpawnChunkWithoutFinalizing(worldSimulation, recorder, chunkType,
                 position, random, true, velocity);
 
-            // Add to the spawn system to make these chunks limit possible number of entities
+            // Add to the spawn system to make these chunks limit the possible number of entities
             spawnSystem.NotifyExternalEntitySpawned(chunk, Constants.MICROBE_DESPAWN_RADIUS_SQUARED, 1);
 
             ModLoader.ModInterface.TriggerOnChunkSpawned(chunk, false);
@@ -240,13 +241,14 @@ public sealed class MicrobeDeathSystem : AEntitySetSystem<float>
     public void SetWorld(GameWorld world)
     {
         gameWorld = world;
+        difficulty = world.WorldSettings.Difficulty;
     }
 
     protected override void PreUpdate(float state)
     {
         base.PreUpdate(state);
 
-        if (gameWorld == null)
+        if (gameWorld == null || difficulty == null)
             throw new InvalidOperationException("GameWorld not set");
     }
 
@@ -352,7 +354,7 @@ public sealed class MicrobeDeathSystem : AEntitySetSystem<float>
         {
             GD.Print("Can't kill a microbe yet with uninitialized organelles");
 
-            // This might cause some bugs so there's a warning print here
+            // This might cause some bugs, so there's a warning print here
             if (suppressChunks)
                 GD.PrintErr("Will handle a microbe killed in engulfment as a retry that will forge this state");
 
@@ -363,7 +365,7 @@ public sealed class MicrobeDeathSystem : AEntitySetSystem<float>
         ref var physics = ref entity.Get<Physics>();
 
         // Reset some stuff
-        // This uses normal set to allow still potentially alive colony members to stay in their states
+        // This uses a normal set to allow still potentially alive colony members to stay in their states
         control.State = MicrobeState.Normal;
         control.MovementDirection = new Vector3(0, 0, 0);
         organelleContainer.AllOrganellesDivided = false;
@@ -384,16 +386,25 @@ public sealed class MicrobeDeathSystem : AEntitySetSystem<float>
         var species = entity.Get<SpeciesMember>().Species;
 
         // Subtract population
-        if (!entity.Has<PlayerMarker>() && !species.PlayerSpecies)
+        if (entity.Has<PlayerMarker>())
+        {
+            // Record player death in statistics
+            gameWorld!.StatisticsTracker.TotalPlayerDeaths.Increment(1);
+        }
+        else if (!species.PlayerSpecies)
         {
             gameWorld!.AlterSpeciesPopulationInCurrentPatch(species,
                 Constants.CREATURE_DEATH_POPULATION_LOSS, Localization.Translate("DEATH"));
         }
-
-        // Record player death in statistics
-        if (entity.Has<PlayerMarker>())
+        else
         {
-            gameWorld!.StatisticsTracker.TotalPlayerDeaths.Increment(1);
+            // Member of the player species died
+            if (difficulty is { PlayerSpeciesAIPopulationStrength: > 0 })
+            {
+                gameWorld!.AlterSpeciesPopulationInCurrentPatch(species,
+                    (int)Math.Ceiling(Constants.CREATURE_DEATH_POPULATION_LOSS *
+                        difficulty.PlayerSpeciesAIPopulationStrength), Localization.Translate("DEATH"));
+            }
         }
 
         ref var engulfable = ref entity.Get<Engulfable>();

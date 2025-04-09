@@ -72,6 +72,7 @@ public sealed class MicrobeReproductionSystem : AEntitySetSystem<float>
     private readonly HashSet<Hex> hexWorkData3 = new();
 
     private GameWorld? gameWorld;
+    private IDifficulty? difficulty;
 
     private float reproductionDelta;
 
@@ -109,6 +110,7 @@ public sealed class MicrobeReproductionSystem : AEntitySetSystem<float>
     public void SetWorld(GameWorld world)
     {
         gameWorld = world;
+        difficulty = world.WorldSettings.Difficulty;
     }
 
     public override void Dispose()
@@ -179,7 +181,7 @@ public sealed class MicrobeReproductionSystem : AEntitySetSystem<float>
 
     protected override void PreUpdate(float delta)
     {
-        if (gameWorld == null)
+        if (gameWorld == null || difficulty == null)
             throw new InvalidOperationException("GameWorld not set");
 
         base.PreUpdate(delta);
@@ -597,6 +599,17 @@ public sealed class MicrobeReproductionSystem : AEntitySetSystem<float>
             {
                 gameWorld!.AlterSpeciesPopulationInCurrentPatch(species,
                     Constants.CREATURE_REPRODUCE_POPULATION_GAIN, Localization.Translate("REPRODUCED"));
+            }
+            else if (!entity.Has<PlayerMarker>())
+            {
+                // Member of the player species reproduced that wasn't the player
+
+                if (difficulty is { PlayerSpeciesAIPopulationStrength: > 0 })
+                {
+                    gameWorld!.AlterSpeciesPopulationInCurrentPatch(species,
+                        (int)Math.Ceiling(Constants.CREATURE_REPRODUCE_POPULATION_GAIN *
+                            difficulty.PlayerSpeciesAIPopulationStrength), Localization.Translate("REPRODUCED"));
+                }
             }
 
             ref var cellProperties = ref entity.Get<CellProperties>();
