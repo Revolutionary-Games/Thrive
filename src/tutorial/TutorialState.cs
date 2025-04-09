@@ -127,6 +127,9 @@ public class TutorialState : ITutorialInput, ISaveLoadable
     [JsonProperty]
     public PausingTutorial PausingTutorial { get; private set; } = new();
 
+    [JsonProperty]
+    public SpeciesMemberDiedTutorial SpeciesMemberDiedTutorial { get; private set; } = new();
+
     /// <summary>
     ///   Tutorial for the become multicellular button. Needs to be before <see cref="MulticellularWelcome"/>
     ///   as this should see the become multicellular event before that other tutorial consumes it.
@@ -541,6 +544,7 @@ public class TutorialState : ITutorialInput, ISaveLoadable
             FoodChainTabTutorial,
             NegativeAtpBalanceTutorial,
             PausingTutorial,
+            SpeciesMemberDiedTutorial,
         };
     }
 }

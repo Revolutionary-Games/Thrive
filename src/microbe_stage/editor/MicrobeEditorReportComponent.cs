@@ -584,7 +584,7 @@ public partial class MicrobeEditorReportComponent : EditorComponentBase<IEditorR
                 Localization.Translate("EXTINCT_FROM_THE_PLANET") :
                 Localization.Translate("EXTINCT_FROM_PATCH");
 
-            // Override datapoint tooltip to show extinction type instead of just zero.
+            // Override the datapoint tooltip to show the extinction type instead of just zero.
             // Doesn't need to account for ToolTipAxesFormat as we don't have it for species pop graph
             speciesPopulationChart.OverrideDataPointToolTipDescription(point.Name, point.ExtinctPoint,
                 $"{point.Name}\n{point.TimePeriod.FormatNumber()}\n{extinctionType}");
