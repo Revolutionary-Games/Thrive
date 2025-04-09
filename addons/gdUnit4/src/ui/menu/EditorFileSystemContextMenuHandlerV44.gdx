@@ -9,7 +9,7 @@ func _init() -> void:
 	var is_test_suite := func is_visible(script: Script, is_ts: bool) -> bool:
 		if script == null:
 			return false
-		return GdObjects.is_test_suite(script) == is_ts
+		return GdUnitTestSuiteScanner.is_test_suite(script) == is_ts
 	_context_menus[GdUnitContextMenuItem.MENU_ID.TEST_RUN] = GdUnitContextMenuItem.new(GdUnitContextMenuItem.MENU_ID.TEST_RUN, "Run Testsuites", "Play", is_test_suite.bind(true), _command_handler.command(GdUnitCommandHandler.CMD_RUN_TESTSUITE))
 	_context_menus[GdUnitContextMenuItem.MENU_ID.TEST_DEBUG] = GdUnitContextMenuItem.new(GdUnitContextMenuItem.MENU_ID.TEST_DEBUG, "Debug Testsuites", "PlayStart", is_test_suite.bind(true), _command_handler.command(GdUnitCommandHandler.CMD_RUN_TESTSUITE_DEBUG))
 
@@ -33,7 +33,7 @@ func _popup_menu(paths: PackedStringArray) -> void:
 		var file_type := resource_path.get_extension()
 		if file_type == "gd" or file_type == "cs":
 			var script: Script = ResourceLoader.load(resource_path, "Script", ResourceLoader.CACHE_MODE_REUSE)
-			if GdObjects.is_test_suite(script):
+			if GdUnitTestSuiteScanner.is_test_suite(script):
 				test_suites.append(script)
 
 	# no direcory or test-suites selected?

@@ -10,7 +10,7 @@ func _init() -> void:
 	set_name("ScriptEditorContextMenuHandler")
 
 	var is_test_suite := func is_visible(script: Script, is_ts: bool) -> bool:
-		return GdObjects.is_test_suite(script) == is_ts
+		return GdUnitTestSuiteScanner.is_test_suite(script) == is_ts
 	var context_menus :Array[GdUnitContextMenuItem] = [
 		GdUnitContextMenuItem.new(GdUnitContextMenuItem.MENU_ID.TEST_RUN, "Run Tests", "Play", is_test_suite.bind(true), _command_handler.command(GdUnitCommandHandler.CMD_RUN_TESTCASE)),
 		GdUnitContextMenuItem.new(GdUnitContextMenuItem.MENU_ID.TEST_DEBUG, "Debug Tests", "PlayStart", is_test_suite.bind(true), _command_handler.command(GdUnitCommandHandler.CMD_RUN_TESTCASE_DEBUG)),

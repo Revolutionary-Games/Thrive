@@ -64,13 +64,14 @@ func scan_directory(resource_path: String) -> Array[Script]:
 	if base_dir == null:
 			prints("Given directory or file does not exists:", resource_path)
 			return []
+
+	prints("Scanning for test suites in:", resource_path)
 	return _scan_test_suites_scripts(base_dir, [])
 
 
 func _scan_test_suites_scripts(dir: DirAccess, collected_suites: Array[Script]) -> Array[Script]:
 	if exclude_scan_directories.has(dir.get_current_dir()):
 		return collected_suites
-	prints("Scanning for test suites in:", dir.get_current_dir())
 	var err := dir.list_dir_begin()
 	if err != OK:
 		push_error("Error on scanning directory %s" % dir.get_current_dir(), error_string(err))
@@ -114,13 +115,13 @@ func _load_is_test_suite(resource_path: String) -> Script:
 
 	# Otherwise we need to scan manual, we need to exclude classes where direct extends form Godot classes
 	# the resource loader can fail to load e.g. plugin classes with do preload other scripts
-	var extends_from := get_extends_classname(resource_path)
+	#var extends_from := get_extends_classname(resource_path)
 	# If not extends is defined or extends from a Godot class
-	if extends_from.is_empty() or ClassDB.class_exists(extends_from):
-		return null
+	#if extends_from.is_empty() or ClassDB.class_exists(extends_from):
+	#	return null
 	# Finally, we need to load the class to determine it is a test suite
 	var script := GdUnitTestSuiteScanner.load_with_disabled_warnings(resource_path)
-	if not GdObjects.is_test_suite(script):
+	if not is_test_suite(script):
 		return null
 	return script
 
@@ -196,14 +197,14 @@ func _build_test_attribute(script: GDScript, fd: GdFunctionDescriptor) -> TestCa
 
 # We load the test suites with disabled unsafe_method_access to avoid spamming loading errors
 # `unsafe_method_access` will happen when using `assert_that`
-static func load_with_disabled_warnings(resource_path: String) -> GDScript:
+static func load_with_disabled_warnings(resource_path: String) -> Script:
 	# grap current level
 	var unsafe_method_access: Variant = ProjectSettings.get_setting("debug/gdscript/warnings/unsafe_method_access")
 
 	# disable and load the script
 	ProjectSettings.set_setting("debug/gdscript/warnings/unsafe_method_access", 0)
 
-	var script: GDScript = (
+	var script: Script = (
 		GdUnitTestResourceLoader.load_gd_script(resource_path) if resource_path.ends_with("resource")
 		else ResourceLoader.load(resource_path))
 
@@ -212,11 +213,24 @@ static func load_with_disabled_warnings(resource_path: String) -> GDScript:
 	return script
 
 
+static func is_test_suite(script: Script) -> bool:
+	if script is GDScript:
+		var stack := [script]
+		while not stack.is_empty():
+			var current: Script = stack.pop_front()
+			var base: Script = current.get_base_script()
+			if base != null:
+				if base.resource_path.find("GdUnitTestSuite") != -1:
+					return true
+				stack.push_back(base)
+	elif script != null and script.get_class() == "CSharpScript":
+		return GdUnit4CSharpApiLoader.is_test_suite(script)
+	return false
+
+
 static func _is_script_format_supported(resource_path: String) -> bool:
 	var ext := resource_path.get_extension()
-	if ext == "gd":
-		return true
-	return GdUnit4CSharpApiLoader.is_csharp_file(resource_path)
+	return ext == "gd" or ext == "cs"
 
 
 static func parse_test_suite_name(script: Script) -> String:
@@ -353,7 +367,7 @@ static func add_test_case(resource_path: String, func_name: String)  -> GdUnitRe
 	return GdUnitResult.success({ "path" : resource_path, "line" : line_number})
 
 
-static func count_lines(script: GDScript) -> int:
+static func count_lines(script: Script) -> int:
 	return script.source_code.split("\n").size()
 
 

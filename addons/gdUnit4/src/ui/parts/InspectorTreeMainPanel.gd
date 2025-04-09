@@ -728,7 +728,7 @@ func show_failed_report(selected_item: TreeItem) -> void:
 func update_test_suite(event: GdUnitEvent) -> void:
 	var item := _find_tree_item_by_path(extract_resource_path(event), event.suite_name())
 	if not item:
-		push_error("Internal Error: Can't find test suite %s" % event.suite_name())
+		push_error("[GdUnitInspector:731] Internal Error: Can't find tree item for\n %s" % event)
 		return
 	if event.type() == GdUnitEvent.TESTSUITE_BEFORE:
 		set_state_running(item)
@@ -974,12 +974,13 @@ func create_items_tree_mode_tree(test_case: GdUnitTestCase, parts: PackedStringA
 		if next != null:
 			parent = next
 			continue
+
 		if item_name == test_case.display_name:
 			next = create_item(parent, test_case, item_name, GdUnitType.TEST_CASE)
 		# On grouped tests (parameterized tests)
 		elif item_name == test_case.test_name:
 			next = create_item(parent, test_case, item_name, GdUnitType.TEST_GROUP)
-		elif item_name == test_case.suite_name:
+		elif test_case.suite_name.ends_with(item_name):
 			next = create_item(parent, test_case, item_name, GdUnitType.TEST_SUITE)
 		else:
 			next = create_item(parent, test_case, item_name, GdUnitType.FOLDER)
