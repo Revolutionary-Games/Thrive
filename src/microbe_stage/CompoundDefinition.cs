@@ -14,7 +14,7 @@ using ThriveScriptsShared;
 public class CompoundDefinition : IRegistryType, IEquatable<CompoundDefinition>
 {
     /// <summary>
-    ///   Display name for the user to see
+    ///   Display-name for the user to see
     /// </summary>
     [TranslateFrom(nameof(untranslatedName))]
     public string Name = null!;
