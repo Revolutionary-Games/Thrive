@@ -532,7 +532,6 @@ public partial class MicrobeEditorReportComponent : EditorComponentBase<IEditorR
 
         sunlightChart.TooltipYAxisFormat = percentageFormat + " lx";
         atmosphericGassesChart.TooltipYAxisFormat = percentageFormat;
-        compoundsChart.TooltipYAxisFormat = percentageFormat;
 
         speciesPopulationChart.LegendMode = LineChart.LegendDisplayMode.DropDown;
 
@@ -573,7 +572,7 @@ public partial class MicrobeEditorReportComponent : EditorComponentBase<IEditorR
         speciesPopulationChart.Plot(Localization.Translate("YEARS"), string.Empty, 5,
             Localization.Translate("SPECIES_LIST"), speciesPopDatasetsLegend,
             Editor.CurrentGame.GameWorld.PlayerSpecies.FormattedName, 5);
-        compoundsChart.Plot(Localization.Translate("YEARS"), "%", 5, Localization.Translate("COMPOUNDS"),
+        compoundsChart.Plot(Localization.Translate("YEARS"), string.Empty, 5, Localization.Translate("COMPOUNDS"),
             null, null, 5);
 
         OnPhysicalConditionsChartLegendPressed("temperature");
