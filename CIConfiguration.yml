@@ -112,25 +112,13 @@ jobs:
       - run:
           command: dotnet restore Scripts/Scripts.csproj
       - run:
-          name: Build all projects
-          command: dotnet build Thrive.sln
-      - run:
-          name: Download native libraries
-          command: dotnet run --project Scripts -- native Fetch Install --debug true
-      - run:
-          name: Make sure Godot resources are imported for test detection
-          command: godot --editor --headless --quit-after 200 .
-      - run:
-          name: Unit tests
-          command: dotnet run --project Scripts -- test
-      - run:
           name: Make sure no changes to git tracked files at this point
           command: GIT_LFS_SKIP_SMUDGE=1 git reset --hard HEAD
       - run:
           name: files localization steam-build rewrite checks
           command: dotnet run --project Scripts -- check files localization steam-build rewrite
       - run:
-          name: Make sure no lib files were not modified
+          name: Make sure no lib files were modified
           command: GIT_LFS_SKIP_SMUDGE=1 git checkout HEAD -- native_libs/
       - run:
           when: always
@@ -146,3 +134,16 @@ jobs:
                 echo "No changes made"
                 rm -f format_diff.patch
             fi
+      - run:
+          name: Build all projects
+          command: dotnet build Thrive.sln
+      - run:
+          name: Download native libraries
+          command: dotnet run --project Scripts -- native Fetch Install --debug true
+      - run:
+          name: Make sure Godot resources are imported for test detection
+          command: godot --editor --headless --quit-after 200 .
+      - run:
+          name: Unit tests
+          command: dotnet run --project Scripts -- test
+
