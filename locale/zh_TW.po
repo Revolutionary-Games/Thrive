@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2025-04-08 15:42+0300\n"
+"POT-Creation-Date: 2025-04-10 11:33+0300\n"
 "PO-Revision-Date: 2025-04-04 10:42+0000\n"
 "Last-Translator: Anonymous <noreply@weblate.org>\n"
 "Language-Team: Chinese (Traditional Han script) <https://translate.revolutionarygamesstudio.com/projects/thrive/thrive-game/zh_Hant/>\n"
@@ -511,6 +511,14 @@ msgstr "綁定座標軸"
 
 msgid "BIOLUMINESCENT_VACUOLE"
 msgstr "生物發光液泡"
+
+#, fuzzy
+msgid "BIOLUMINESCENT_VACUOLE_DESCRIPTION"
+msgstr "生物發光液泡"
+
+#, fuzzy
+msgid "BIOLUMINESCENT_VACUOLE_PROCESSES_DESCRIPTION"
+msgstr "將[thrive:compound type=\"atp\"][/thrive:compound] 轉化為[thrive:compound type=\"oxytoxy\"][/thrive:compound]。速率與[thrive:compound type=\"oxygen\"][/thrive:compound] 的濃度成正比。可以透過按下[thrive:input]g_fire_toxin[/thrive:input]釋放毒素。當[thrive:compound type=\"oxytoxy\"][/thrive:compound] 儲量較低時仍然可以釋放，但傷害會降低。"
 
 msgid "BIOME_LABEL"
 msgstr "生物群系：{0}"
@@ -3216,6 +3224,13 @@ msgstr "低解析度背景模糊"
 
 msgid "LOW_QUALITY_BACKGROUND_BLUR_TOOLTIP"
 msgstr "使背景模糊使用較低的分辨率，從而提高效能。"
+
+msgid "LUCIFERASE"
+msgstr ""
+
+#, fuzzy
+msgid "LUCIFERASE_SYNTHESIS"
+msgstr "黏液合成"
 
 msgid "LYSOSOME"
 msgstr "溶酶體"
@@ -5989,9 +6004,6 @@ msgstr "毒素體"
 #, fuzzy
 msgid "TOXISOME_DESCRIPTION"
 msgstr "一種修改過的代謝體，負責產生原始形式的有毒物質[thrive:compound type=\\\"oxytoxy\\\"][/thrive:compound]。可以修改以切換生成的毒素類型以獲得其他效果。"
-
-msgid "TO_BE_IMPLEMENTED"
-msgstr "等待實現。"
 
 msgid "TRANSLATORS"
 msgstr "翻譯人員"
@@ -8938,6 +8950,9 @@ msgstr "放大"
 
 msgid "ZOOM_OUT"
 msgstr "縮小"
+
+#~ msgid "TO_BE_IMPLEMENTED"
+#~ msgstr "等待實現。"
 
 #, fuzzy
 #~ msgid "GLOBAL_GLACIATION_EVENT_LOG"

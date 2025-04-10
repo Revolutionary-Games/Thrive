@@ -7,8 +7,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2025-04-08 15:42+0300\n"
-"PO-Revision-Date: 2025-04-08 15:58+0300\n"
+"POT-Creation-Date: 2025-04-10 11:33+0300\n"
+"PO-Revision-Date: 2025-04-10 11:43+0300\n"
 "Last-Translator: Henri Hyyryläinen <hhyyrylainen@revolutionarygamesstudio.com>\n"
 "Language-Team: English <https://translate.revolutionarygamesstudio.com/projects/thrive/thrive-game/en/>\n"
 "Language: en\n"
@@ -510,6 +510,12 @@ msgstr "Bind axes together"
 
 msgid "BIOLUMINESCENT_VACUOLE"
 msgstr "Bioluminescent Vacuole"
+
+msgid "BIOLUMINESCENT_VACUOLE_DESCRIPTION"
+msgstr "A vacuole that contains reaction sites where luciferase is consumed to release visible light. It is hypothesised that bioluminescence evolved originally as a protection mechanism against [thrive:compound type=\"oxygen\"][/thrive:compound]. When the Great Oxygenation Event happened microbes accustomed to anaerobic conditions faced a lot of new problems due to oxygen's very high reactivity that caused a lot of damage. These vacuoles can be added to increase oxygen resistance and get some pretty lights. In the future bioluminescence may be a means of communication."
+
+msgid "BIOLUMINESCENT_VACUOLE_PROCESSES_DESCRIPTION"
+msgstr "Uses [thrive:compound type=\"atp\"][/thrive:compound] to turn [thrive:compound type=\"oxygen\"][/thrive:compound] into light. Has no other gameplay impact yet except increasing the oxygen resistance."
 
 msgid "BIOME_LABEL"
 msgstr "Biome: {0}"
@@ -3208,6 +3214,12 @@ msgstr "Low resolution background blur"
 
 msgid "LOW_QUALITY_BACKGROUND_BLUR_TOOLTIP"
 msgstr "Makes background blur use a lower resolution, improving performance."
+
+msgid "LUCIFERASE"
+msgstr "Luciferase"
+
+msgid "LUCIFERASE_SYNTHESIS"
+msgstr "Luciferase Synthesis"
 
 msgid "LYSOSOME"
 msgstr "Lysosome"
@@ -5966,9 +5978,6 @@ msgstr "Toxisome"
 
 msgid "TOXISOME_DESCRIPTION"
 msgstr "A modified metabolosome responsible for the production of a primitive form of the toxic agent [thrive:compound type=\\\"oxytoxy\\\"][/thrive:compound]. Can be modified to switch the generated toxin type for other effects, which may require [thrive:compound type=\"oxygen\"][/thrive:compound] to produce."
-
-msgid "TO_BE_IMPLEMENTED"
-msgstr "To be Implemented."
 
 msgid "TRANSLATORS"
 msgstr "Translators"
@@ -9038,6 +9047,9 @@ msgstr "Zoom in"
 
 msgid "ZOOM_OUT"
 msgstr "Zoom out"
+
+#~ msgid "TO_BE_IMPLEMENTED"
+#~ msgstr "To be Implemented."
 
 #~ msgid "SHOW_TUTORIALS"
 #~ msgstr "Show tutorials"
