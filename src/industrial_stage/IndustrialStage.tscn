@@ -20,7 +20,7 @@ uv1_scale = Vector3(105, 105, 105)
 
 [sub_resource type="PlaneMesh" id="2"]
 material = SubResource("3")
-size = Vector2(400, 400)
+size = Vector2(1200, 800)
 
 [sub_resource type="StandardMaterial3D" id="4"]
 albedo_texture = ExtResource("6")
@@ -30,7 +30,7 @@ uv1_scale = Vector3(105, 105, 105)
 
 [sub_resource type="PlaneMesh" id="5"]
 material = SubResource("4")
-size = Vector2(400, 400)
+size = Vector2(600, 600)
 
 [node name="IndustrialStage" type="Node"]
 script = ExtResource("1")
@@ -57,7 +57,7 @@ MaxZoomLevel = 3.0
 mesh = SubResource("2")
 
 [node name="Visual2" type="MeshInstance3D" parent="World/TemporaryGround"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -400)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -700)
 mesh = SubResource("5")
 
 [node name="PlayerIndustrialInput" parent="." instance=ExtResource("9")]
