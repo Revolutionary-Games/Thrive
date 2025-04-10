@@ -22,10 +22,9 @@ extends "res://addons/gdUnit4/src/core/runners/GdUnitBaseTestRunner.gd"
 
 const GdUnitTools := preload("res://addons/gdUnit4/src/core/GdUnitTools.gd")
 
-## HTML report writer instance
-var _report: GdUnitHtmlReport
 var _console := GdUnitCSIMessageWriter.new()
-var _test_reporter: GdUnitTestResultReporter
+var _console_reporter: GdUnitTestReporter
+var _html_reporter: GdUnitHtmlTestReporter
 var _report_dir: String
 var _report_max: int = DEFAULT_REPORT_COUNT
 var _headless_mode_ignore := false
@@ -109,8 +108,8 @@ func _init() -> void:
 
 func _ready() -> void:
 	super()
-	_test_reporter = GdUnitTestResultReporter.new(_console, true)
 	_report_dir = GdUnitFileAccess.current_dir() + "reports"
+	_console_reporter = GdUnitConsoleTestReporter.new(_console, true)
 	# stop checked first test failure to fail fast
 	_executor.fail_fast(true)
 
@@ -128,7 +127,7 @@ func init_runner() -> void:
 ## Returns the exit code based on test results.[br]
 ## Maps test report status to process exit codes.
 func get_exit_code() -> int:
-	return report_exit_code(_report)
+	return report_exit_code()
 
 
 ## Cleanup and quit the runner.[br]
@@ -137,7 +136,6 @@ func get_exit_code() -> int:
 func quit(code: int) -> void:
 	if code != RETURN_SUCCESS:
 		_state = EXIT
-	_cs_executor = null
 	GdUnitTools.dispose_all()
 	await GdUnitMemoryObserver.gc_on_guarded_instances()
 	await super(code)
@@ -389,6 +387,7 @@ func init_gd_unit() -> void:
 			quit(RETURN_ERROR_HEADLESS_NOT_SUPPORTED)
 			return
 
+	_html_reporter = GdUnitHtmlTestReporter.new(_report_dir, _report_max)
 	discover_tests()
 	if _test_cases.is_empty():
 		console_info("No test cases found, abort test run!", Color.YELLOW)
@@ -406,17 +405,12 @@ func discover_tests() -> Array[GdUnitTestCase]:
 	for path in _included_tests:
 		var scripts := scanner.scan(path)
 		for script in scripts:
-			if script is GDScript:
-				var gd_script: GDScript = script
-				GdUnitTestDiscoverer.discover_tests(gd_script, func(test: GdUnitTestCase) -> void:
-					if not is_skipped(test):
-						#_console.println_message("discoverd %s" % test.display_name)
-						_test_cases.append(test)
-						gdunit_test_discover_added.emit(test)
-				)
-			else:
-				## TODO implement c# test discovery here
-				pass
+			GdUnitTestDiscoverer.discover_tests(script, func(test: GdUnitTestCase) -> void:
+				if not is_skipped(test):
+					#_console.println_message("discoverd %s" % test.display_name)
+					_test_cases.append(test)
+					gdunit_test_discover_added.emit(test)
+			)
 
 	return _test_cases
 
@@ -458,50 +452,24 @@ func is_skipped(test: GdUnitTestCase) -> bool:
 
 
 func _on_gdunit_event(event: GdUnitEvent) -> void:
-	_test_reporter._on_gdunit_event(event)
+	_console_reporter.on_gdunit_event(event)
+	_html_reporter.on_gdunit_event(event)
 
-	## TODO extract to HtmlReport writer
 	match event.type():
-		GdUnitEvent.INIT:
-			_report = GdUnitHtmlReport.new(_report_dir, _report_max)
 		GdUnitEvent.STOP:
-			var report_path := _report.write()
-			_report.delete_history(_report_max)
-			JUnitXmlReport.new(_report._report_path, _report.iteration()).write(_report)
+			# TODO move to `GdUnitJUnitXMLTestReporter`
+			JUnitXmlReport.new(_html_reporter._report._report_path, _html_reporter._report.iteration()).write(_html_reporter._report)
 			console_info(
-				"Open Report at: file://%s" % report_path,
+				"Open HTML Report at: file://%s" % _html_reporter.report_file(),
 				Color.CORNFLOWER_BLUE
 			)
-		GdUnitEvent.TESTSUITE_BEFORE:
-			_report.add_testsuite_report(event.resource_path(), event.suite_name(), event.total_count())
-		GdUnitEvent.TESTSUITE_AFTER:
-			_report.add_testsuite_reports(
-				event.resource_path(),
-				event.error_count(),
-				event.failed_count(),
-				event.orphan_nodes(),
-				event.elapsed_time(),
-				event.reports()
-			)
-		GdUnitEvent.TESTCASE_BEFORE:
-			_report.add_testcase(event.resource_path(), event.suite_name(), event.test_name())
-		GdUnitEvent.TESTCASE_AFTER:
-			_report.set_testcase_counters(event.resource_path(),
-				event.test_name(),
-				event.is_error(),
-				event.failed_count(),
-				event.orphan_nodes(),
-				event.is_skipped(),
-				event.is_flaky(),
-				event.elapsed_time())
-			_report.add_testcase_reports(event.resource_path(), event.test_name(), event.reports())
 
 
-func report_exit_code(report: GdUnitHtmlReport) -> int:
-	if _test_reporter.total_error_count() + _test_reporter.total_failure_count() > 0:
+func report_exit_code() -> int:
+	if _console_reporter.total_error_count() + _console_reporter.total_failure_count() > 0:
 		console_info("Exit code: %d" % RETURN_ERROR, Color.FIREBRICK)
 		return RETURN_ERROR
-	if _test_reporter.total_orphan_count() > 0:
+	if _console_reporter.total_orphan_count() > 0:
 		console_info("Exit code: %d" % RETURN_WARNING, Color.GOLDENROD)
 		return RETURN_WARNING
 	console_info("Exit code: %d" % RETURN_SUCCESS, Color.DARK_SALMON)

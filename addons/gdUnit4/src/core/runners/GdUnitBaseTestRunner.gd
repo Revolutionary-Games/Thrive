@@ -31,7 +31,6 @@ var _runner_config := GdUnitRunnerConfig.new()
 
 ## The test suite executor instance
 var _executor: GdUnitTestSuiteExecutor
-var _cs_executor: RefCounted
 
 ## Current runner state
 var _state := READY
@@ -67,7 +66,6 @@ func _ready() -> void:
 		quit(RETURN_ERROR_GODOT_VERSION_NOT_SUPPORTED)
 		return
 	_executor = GdUnitTestSuiteExecutor.new()
-	_cs_executor = GdUnit4CSharpApiLoader.create_executor(self)
 
 	GdUnitSignals.instance().gdunit_event.connect(_on_gdunit_event)
 	_state = INIT
