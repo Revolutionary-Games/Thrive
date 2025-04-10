@@ -7,6 +7,7 @@ using Systems;
 /// <summary>
 ///   Allows specifying lights on an entity to use with <see cref="EntityLightSystem"/>
 /// </summary>
+[JSONDynamicTypeAllowed]
 public struct EntityLight
 {
     public Light[]? Lights;
