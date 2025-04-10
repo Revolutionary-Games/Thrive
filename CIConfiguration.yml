@@ -118,7 +118,7 @@ jobs:
           name: files localization steam-build rewrite checks
           command: dotnet run --project Scripts -- check files localization steam-build rewrite
       - run:
-          name: Make sure no lib files were not modified
+          name: Make sure no lib files were modified
           command: GIT_LFS_SKIP_SMUDGE=1 git checkout HEAD -- native_libs/
       - run:
           when: always
