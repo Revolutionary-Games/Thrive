@@ -16,9 +16,37 @@ public struct EntityLight
 
     public struct Light
     {
-        public bool Enabled;
+        public Color Color;
+        public Vector3 Position;
+
+        /// <summary>
+        ///   Don't touch, internal variable used by <see cref="EntityLightSystem"/>
+        /// </summary>
+        [JsonIgnore]
+        public OmniLight3D? CreatedLight;
+
         public float Intensity;
         public float Range;
-        public Vector3 Color;
+        public float Attenuation;
+
+        public bool Enabled;
+    }
+}
+
+public static class EntityLightHelpers
+{
+    public static void DisableAllLights(this ref EntityLight entityLight)
+    {
+        entityLight.LightsApplied = false;
+
+        var lights = entityLight.Lights;
+        if (lights != null)
+        {
+            int count = lights.Length;
+            for (int i = 0; i < count; ++i)
+            {
+                lights[i].Enabled = false;
+            }
+        }
     }
 }

@@ -302,6 +302,13 @@ public static class OrganelleContainerHelpers
             entity.Get<TemporaryEndosymbiontInfo>().Clear();
         }
 
+        // Clear light information if the entity has lights, newly added organelles will set things right
+        if (entity.Has<EntityLight>())
+        {
+            ref var lights = ref entity.Get<EntityLight>();
+            lights.DisableAllLights();
+        }
+
         // Reproduction progress is lost
         container.AllOrganellesDivided = false;
 

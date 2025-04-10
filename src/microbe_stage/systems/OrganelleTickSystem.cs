@@ -15,12 +15,12 @@ using World = DefaultEcs.World;
 /// <remarks>
 ///   <para>
 ///     This runs after <see cref="MicrobeMovementSystem"/> as this mostly deals with animating movement
-///     organelles. Other operations are less time sensitive so they are fine to be detected next frame.
+///     organelles. Other operations are less time-sensitive, so they are fine to be detected next frame.
 ///   </para>
 /// </remarks>
 /// <remarks>
 ///   <para>
-///     This is marked as needing a few common components that the organelle component types use but this doesn't
+///     This is marked as needing a few common components that the organelle component types use, but this doesn't
 ///     reference directly
 ///   </para>
 /// </remarks>

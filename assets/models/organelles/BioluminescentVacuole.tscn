@@ -12,11 +12,11 @@ shader = ExtResource("1_rt4jn")
 shader_parameter/albedoTexture = ExtResource("3_nci1h")
 shader_parameter/dissolveValue = 0.0
 shader_parameter/dissolveScale = 1.0
-shader_parameter/tint = Color(0.950589, 1, 0.984819, 1)
+shader_parameter/tint = Color(0.611883, 0.740603, 1, 1)
 shader_parameter/roughness = 0.5
 shader_parameter/specular = 0.2
 shader_parameter/emission = Color(0.330446, 0.787202, 1, 1)
-shader_parameter/emissionEnergy = 20.1
+shader_parameter/emissionEnergy = 0.0
 shader_parameter/useTextureEmission = false
 shader_parameter/outlineWidth = 0.05
 shader_parameter/growColor = Color(0.303233, 0.303233, 0.303233, 1)
@@ -24,5 +24,6 @@ shader_parameter/jiggleAmount = 0.0005
 shader_parameter/dissolveTexture = ExtResource("2_gytsy")
 
 [node name="BioluminescentVacuole" type="MeshInstance3D"]
+editor_description = "In the code this defaults to off, so if emission is turned on by default, the code needs changes"
 material_override = SubResource("ShaderMaterial_qaowp")
 mesh = ExtResource("4_uycx8")
