@@ -76,6 +76,8 @@ public class CodeChecks : CodeChecksBase<Program.CheckOptions>
         FilePathsToAlwaysIgnore.Add(new Regex(@"\.godot\/"));
 
         FilePathsToAlwaysIgnore.Add(new Regex(@"Scripts\/GodotAPIData"));
+
+        FilePathsToAlwaysIgnore.Add(new Regex(@"\.generated\.cs$"));
     }
 
     protected override Dictionary<string, CodeCheck> ValidChecks { get; }
@@ -89,6 +91,7 @@ public class CodeChecks : CodeChecksBase<Program.CheckOptions>
         "third_party/**.hpp",
         "Scripts/GodotAPIData/*",
         "addons/**",
+        "*.generated.cs",
     ];
 
     protected override IEnumerable<string> ExtraIgnoredJetbrainsCleanUpWildcards =>
@@ -99,6 +102,7 @@ public class CodeChecks : CodeChecksBase<Program.CheckOptions>
         "third_party/godot-cpp/**",
         "Scripts/GodotAPIData/*",
         "addons/**",
+        "*.generated.cs",
     ];
 
     protected override string MainSolutionFile => "Thrive.sln";
