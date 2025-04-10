@@ -24,10 +24,14 @@ var TOKEN_ARGUMENT_TYPE_ASIGNMENT := Token.new(":=")
 var TOKEN_ARGUMENT_FUZZER := FuzzerToken.new(GdUnitTools.to_regex("((?!(fuzzer_(seed|iterations)))fuzzer?\\w+)( ?+= ?+| ?+:= ?+| ?+:Fuzzer ?+= ?+|)"))
 var TOKEN_ARGUMENT_TYPE := Token.new(":")
 var TOKEN_ARGUMENT_SEPARATOR := Token.new(",")
-var TOKEN_BRACKET_OPEN := Token.new("(")
-var TOKEN_BRACKET_CLOSE := Token.new(")")
-var TOKEN_ARRAY_OPEN := Token.new("[")
-var TOKEN_ARRAY_CLOSE := Token.new("]")
+var TOKEN_BRACKET_ROUND_OPEN := Token.new("(")
+var TOKEN_BRACKET_ROUND_CLOSE := Token.new(")")
+var TOKEN_BRACKET_SQUARE_OPEN := Token.new("[")
+var TOKEN_BRACKET_SQUARE_CLOSE := Token.new("]")
+var TOKEN_BRACKET_CURLY_OPEN := Token.new("{")
+var TOKEN_BRACKET_CURLY_CLOSE := Token.new("}")
+
+
 
 var OPERATOR_ADD := Operator.new("+")
 var OPERATOR_SUB := Operator.new("-")
@@ -40,10 +44,12 @@ var TOKENS :Array[Token] = [
 	TOKEN_TABULATOR,
 	TOKEN_NEW_LINE,
 	TOKEN_COMMENT,
-	TOKEN_BRACKET_OPEN,
-	TOKEN_BRACKET_CLOSE,
-	TOKEN_ARRAY_OPEN,
-	TOKEN_ARRAY_CLOSE,
+	TOKEN_BRACKET_ROUND_OPEN,
+	TOKEN_BRACKET_ROUND_CLOSE,
+	TOKEN_BRACKET_SQUARE_OPEN,
+	TOKEN_BRACKET_SQUARE_CLOSE,
+	TOKEN_BRACKET_CURLY_OPEN,
+	TOKEN_BRACKET_CURLY_CLOSE,
 	TOKEN_CLASS_NAME,
 	TOKEN_INNER_CLASS,
 	TOKEN_EXTENDS,
@@ -407,11 +413,11 @@ func _parse_function_arguments(input: String) -> Dictionary:
 		current_index += token._consumed
 		if token.is_skippable():
 			continue
-		if token == TOKEN_BRACKET_OPEN:
+		if token == TOKEN_BRACKET_ROUND_OPEN :
 			in_function = true
 			bracket += 1
 			continue
-		if token == TOKEN_BRACKET_CLOSE:
+		if token == TOKEN_BRACKET_ROUND_CLOSE:
 			bracket -= 1
 		# if function end?
 		if in_function and bracket == 0:
@@ -438,6 +444,7 @@ func _parse_function_arguments(input: String) -> Dictionary:
 				current_index += token._consumed
 				if token.is_skippable():
 					continue
+
 				match token:
 					TOKEN_ARGUMENT_TYPE:
 						token = next_token(input, current_index)
@@ -451,17 +458,25 @@ func _parse_function_arguments(input: String) -> Dictionary:
 						token = next_token(input, current_index)
 						arg_value = _parse_end_function(input.substr(current_index), true)
 						current_index += arg_value.length()
-					TOKEN_BRACKET_OPEN:
+					TOKEN_BRACKET_SQUARE_OPEN:
+						bracket += 1
+					TOKEN_BRACKET_CURLY_OPEN:
+						bracket += 1
+					TOKEN_BRACKET_ROUND_OPEN :
 						bracket += 1
 						# if value a function?
 						if bracket > 1:
 							# complete the argument value
-							var func_begin := input.substr(current_index-TOKEN_BRACKET_OPEN._consumed)
+							var func_begin := input.substr(current_index-TOKEN_BRACKET_ROUND_OPEN ._consumed)
 							var func_body := _parse_end_function(func_begin)
 							arg_value += func_body
 							# fix parse index to end of value
-							current_index += func_body.length() - TOKEN_BRACKET_OPEN._consumed - TOKEN_BRACKET_CLOSE._consumed
-					TOKEN_BRACKET_CLOSE:
+							current_index += func_body.length() - TOKEN_BRACKET_ROUND_OPEN ._consumed - TOKEN_BRACKET_ROUND_CLOSE._consumed
+					TOKEN_BRACKET_SQUARE_CLOSE:
+						bracket -= 1
+					TOKEN_BRACKET_CURLY_CLOSE:
+						bracket -= 1
+					TOKEN_BRACKET_ROUND_CLOSE:
 						bracket -= 1
 						# end of function
 						if bracket == 0:

@@ -11,7 +11,7 @@ func _init() -> void:
 	var is_test_suite := func is_visible(script: Script, is_ts: bool) -> bool:
 		if script == null:
 			return false
-		return GdObjects.is_test_suite(script) == is_ts
+		return GdUnitTestSuiteScanner.is_test_suite(script) == is_ts
 	var context_menus :Array[GdUnitContextMenuItem] = [
 		GdUnitContextMenuItem.new(GdUnitContextMenuItem.MENU_ID.TEST_RUN, "Run Testsuites", "Play", is_test_suite.bind(true), _command_handler.command(GdUnitCommandHandler.CMD_RUN_TESTSUITE)),
 		GdUnitContextMenuItem.new(GdUnitContextMenuItem.MENU_ID.TEST_DEBUG, "Debug Testsuites", "PlayStart", is_test_suite.bind(true), _command_handler.command(GdUnitCommandHandler.CMD_RUN_TESTSUITE_DEBUG)),
@@ -45,6 +45,7 @@ func on_context_menu_pressed(id: int, file_tree: Tree) -> void:
 		return
 	var menu_item: GdUnitContextMenuItem = _context_menus[id]
 	var test_suites := collect_testsuites(menu_item, file_tree)
+
 	menu_item.execute([test_suites])
 
 
