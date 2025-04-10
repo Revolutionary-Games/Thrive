@@ -82,8 +82,9 @@ jobs:
       - run:
           when: always
           name: Check cleanup changes
+          # Mode changes are ignored as that can cause spurious failures due to hardlink-based caching
           command: |
-            git diff > cleanup_diff.patch
+            git -c core.fileMode=false diff > cleanup_diff.patch
             if grep -q '[^[:space:]]' < cleanup_diff.patch; then
                 echo "Code cleanup found things to be fixed:"
                 cat cleanup_diff.patch
@@ -134,8 +135,9 @@ jobs:
       - run:
           when: always
           name: Check format changes
+          # Mode changes are ignored as that can cause spurious failures due to hardlink-based caching
           command: |
-            git diff > format_diff.patch
+            git -c core.fileMode=false diff > format_diff.patch
             if grep -q '[^[:space:]]' < format_diff.patch; then
                 echo "Formatter found things to be fixed:"
                 cat format_diff.patch
