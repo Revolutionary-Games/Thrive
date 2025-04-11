@@ -32,6 +32,7 @@ using World = DefaultEcs.World;
 [ReadsComponent(typeof(Physics))]
 [ReadsComponent(typeof(WorldPosition))]
 [WritesToComponent(typeof(ManualPhysicsControl))]
+[WritesToComponent(typeof(EntityLight))]
 [RunsAfter(typeof(MicrobeMovementSystem))]
 [RunsAfter(typeof(OrganelleComponentFetchSystem))]
 [RunsBefore(typeof(PhysicsSensorSystem))]
