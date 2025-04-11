@@ -5,12 +5,14 @@ using System.Buffers;
 using System.Collections.Concurrent;
 using System.Collections.Generic;
 using System.Diagnostics;
+using System.Linq;
 using System.Threading;
 using System.Threading.Tasks;
 using Components;
 using DefaultEcs;
 using DefaultEcs.System;
 using Godot;
+using HarmonyLib;
 using World = DefaultEcs.World;
 
 /// <summary>
@@ -136,8 +138,22 @@ public sealed class MicrobeVisualsSystem : AEntitySetSystem<float>
 
         ref var materialStorage = ref entity.Get<EntityMaterial>();
 
+        MembranePointData? data = null;
+
         // Background thread membrane generation
-        var data = GetMembraneDataIfReadyOrStartGenerating(ref cellProperties, ref organelleContainer);
+        if (entity.Has<MulticellularSpeciesMember>())
+        {
+            var multi = entity.Get<MulticellularSpeciesMember>();
+            for (var i = 0; i < multi.Species.Cells.Count(); i++)
+            {
+                var cell = multi.Species.Cells[i];
+                data = GetMulticellularMembraneDataIfReadyOrStartGenerating(cell, cell.Organelles, ref multi, i);
+            }
+        }
+        else
+        {
+            data = GetMembraneDataIfReadyOrStartGenerating(ref cellProperties, ref organelleContainer);
+        }
 
         if (data == null)
         {
@@ -230,7 +246,7 @@ public sealed class MicrobeVisualsSystem : AEntitySetSystem<float>
         {
             // TODO: hopefully this can't get into a permanent loop where 2 conflicting membranes want to
             // re-generate on each game update cycle
-            if (!cachedMembrane.MembraneDataFieldsEqual(hexes, hexCount, cellProperties.MembraneType))
+            if (!cachedMembrane.MembraneDataFieldsEqual(hexes, hexCount, cellProperties.MembraneType, null))
             {
                 CacheableDataExtensions.OnCacheHashCollision<MembranePointData>(hash);
                 cachedMembrane = null;
@@ -258,7 +274,73 @@ public sealed class MicrobeVisualsSystem : AEntitySetSystem<float>
             }
         }
 
-        membranesToGenerate.Enqueue(new MembraneGenerationParameters(hexes, hexCount, cellProperties.MembraneType));
+        membranesToGenerate.Enqueue(new MembraneGenerationParameters(hexes, hexCount, cellProperties.MembraneType, null, null));
+
+        // Immediately start some jobs to give background threads something to do while the main thread is busy
+        // potentially setting up other visuals
+        StartMembraneGenerationJobs();
+
+        return null;
+    }
+
+    private MembranePointData? GetMulticellularMembraneDataIfReadyOrStartGenerating(CellTemplate cellProperties,
+        OrganelleLayout<OrganelleTemplate> organelleContainer, ref MulticellularSpeciesMember multicellular, int position)
+    {
+        // TODO: should we consider the situation where a membrane was requested on the previous update but is not
+        // ready yet? This causes extra memory usage here in those cases.
+        var hexes = MembraneComputationHelpers.PrepareHexPositionsForMembraneCalculations(
+            organelleContainer.Organelles, out var hexCount);
+
+        List<Vector2> positions = new List<Vector2>();
+
+        foreach (var cell in multicellular.Species.Cells)
+        {
+            var cartesian = Hex.AxialToCartesian(cell.Position);
+            positions.Add(new Vector2(cartesian.X, cartesian.Z));
+        }
+
+        var positionsArray = positions.ToArray();
+
+        var thisCartesian = Hex.AxialToCartesian(multicellular.Species.Cells[multicellular.MulticellularBodyPlanPartIndex].Position);
+        var thisVector2 = new Vector2(thisCartesian.X, thisCartesian.Z);
+
+        var hash = MembraneComputationHelpers.ComputeMembraneDataHash(hexes, hexCount, cellProperties.MembraneType, thisVector2);
+
+        var cachedMembrane = ProceduralDataCache.Instance.ReadMembraneData(hash);
+
+        if (cachedMembrane != null)
+        {
+            // TODO: hopefully this can't get into a permanent loop where 2 conflicting membranes want to
+            // re-generate on each game update cycle
+            if (!cachedMembrane.MembraneDataFieldsEqual(hexes, hexCount, cellProperties.MembraneType, thisVector2))
+            {
+                CacheableDataExtensions.OnCacheHashCollision<MembranePointData>(hash);
+                cachedMembrane = null;
+            }
+        }
+
+        if (cachedMembrane != null)
+        {
+            // Membrane was ready now
+            return cachedMembrane;
+        }
+
+        // Need to generate a new membrane
+
+        lock (pendingGenerationsOfMembraneHashes)
+        {
+            if (!pendingGenerationsOfMembraneHashes.Add(hash))
+            {
+                // Already queued, don't need to queue again
+
+                // Return the unnecessary array that there won't be a cache entry to hold to the pool
+                ArrayPool<Vector2>.Shared.Return(hexes);
+
+                return null;
+            }
+        }
+
+        membranesToGenerate.Enqueue(new MembraneGenerationParameters(hexes, hexCount, cellProperties.MembraneType, positionsArray, thisVector2));
 
         // Immediately start some jobs to give background threads something to do while the main thread is busy
         // potentially setting up other visuals
