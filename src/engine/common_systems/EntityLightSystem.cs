@@ -14,8 +14,19 @@ using Godot;
 [RuntimeCost(0.5f)]
 public class EntityLightSystem : AEntitySetSystem<float>
 {
+    // TODO: light quality selection (this is lower quality)
+    private OmniLight3D.ShadowMode lightShadowMode = OmniLight3D.ShadowMode.DualParaboloid;
+
     public EntityLightSystem(World world) : base(world, null)
     {
+        // The low-quality light is not supported in fallback renderer, so switch to the other light mode if that
+        // is detected
+        if (lightShadowMode != OmniLight3D.ShadowMode.Cube &&
+            FeatureInformation.GetVideoDriver() == OS.RenderingDriver.Opengl3)
+        {
+            lightShadowMode = OmniLight3D.ShadowMode.Cube;
+            GD.PrintErr("Falling back to cube shadows for light quality due to used renderer");
+        }
     }
 
     protected override void Update(float delta, in Entity entity)
@@ -60,8 +71,7 @@ public class EntityLightSystem : AEntitySetSystem<float>
                             DistanceFadeLength = 30,
                             DistanceFadeShadow = 100,
 
-                            // TODO: light quality selection (this is lower quality)
-                            OmniShadowMode = OmniLight3D.ShadowMode.DualParaboloid,
+                            OmniShadowMode = lightShadowMode,
                         };
 
                         spatialInstance.GraphicalInstance.AddChild(light);
