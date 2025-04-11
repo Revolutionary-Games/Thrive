@@ -158,8 +158,8 @@ public static class NodeHelpers
     /// </summary>
     /// <param name="node">Node to get material from.</param>
     /// <param name="result">Where to store the found materials</param>
-    /// <param name="modelPath">Path to model within the scene. If null takes scene root as model.</param>
-    /// <returns>True on success, false on problem</returns>
+    /// <param name="modelPath">Path to model within the scene. If null takes scene root as the model.</param>
+    /// <returns>True on success, false on a problem</returns>
     public static bool GetMaterial(this Node node, List<ShaderMaterial> result, NodePath? modelPath = null)
     {
         GeometryInstance3D? geometry;

@@ -698,6 +698,14 @@ DescriptionLabelPath = NodePath("../cytoplasm/MarginContainer/VBoxContainer/Desc
 DisplayDelay = 0.0
 Positioning = 1
 
+[node name="bioluminescentVacuole" parent="GroupHolder/processesProduction" instance=ExtResource("1")]
+visible = false
+layout_mode = 2
+offset_bottom = 34.0
+DescriptionLabelPath = NodePath("../cytoplasm/MarginContainer/VBoxContainer/Description")
+DisplayDelay = 0.0
+Positioning = 1
+
 [node name="processesConsumption" type="Control" parent="GroupHolder"]
 anchors_preset = 0
 offset_right = 40.0
@@ -778,6 +786,14 @@ Positioning = 1
 visible = false
 layout_mode = 0
 DescriptionLabelPath = NodePath("../../../GroupHolder/processesConsumption/oxytoxy/MarginContainer/VBoxContainer/Description")
+DisplayDelay = 0.0
+Positioning = 1
+
+[node name="bioluminescentVacuole" parent="GroupHolder/processesConsumption" instance=ExtResource("1")]
+visible = false
+layout_mode = 0
+offset_bottom = 34.0
+DescriptionLabelPath = NodePath("../chromatophore/MarginContainer/VBoxContainer/Description")
 DisplayDelay = 0.0
 Positioning = 1
 
