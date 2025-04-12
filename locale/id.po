@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2025-04-12 20:18+0200\n"
+"POT-Creation-Date: 2025-04-11 10:12+0300\n"
 "PO-Revision-Date: 2025-04-04 10:42+0000\n"
 "Last-Translator: Anonymous <noreply@weblate.org>\n"
 "Language-Team: Indonesian <https://translate.revolutionarygamesstudio.com/projects/thrive/thrive-game/id/>\n"
@@ -551,6 +551,14 @@ msgstr ""
 
 msgid "BIOLUMINESCENT_VACUOLE"
 msgstr "Vakuola Bioluminesensi"
+
+#, fuzzy
+msgid "BIOLUMINESCENT_VACUOLE_DESCRIPTION"
+msgstr "Vakuola Bioluminesensi"
+
+#, fuzzy
+msgid "BIOLUMINESCENT_VACUOLE_PROCESSES_DESCRIPTION"
+msgstr "Mengubah [thrive:compound type=\"atp\"][/thrive:compound] menjadi [thrive:compound type=\"oxytoxy\"][/thrive:compound]. Laju berbanding lurus dengan konsentrasi [thrive:compound type=\"oxygen\"][/thrive:compound]. Dapat meluncurkan toksin dengan menekan tombol [thrive:input]g_fire_toxin[/thrive:input]."
 
 msgid "BIOME_LABEL"
 msgstr "Bioma: {0}"
@@ -2100,27 +2108,6 @@ msgstr "Muara"
 msgid "EVENT_ERUPTION_TOOLTIP"
 msgstr "Tambah keybind baru"
 
-msgid "EVENT_METEOR_GLUCOSE"
-msgstr ""
-
-#, fuzzy
-msgid "EVENT_METEOR_IRON"
-msgstr "{0}: +{1} ATP"
-
-#, fuzzy
-msgid "EVENT_METEOR_PHOSPHATES"
-msgstr "Munculkan fosfat"
-
-#, fuzzy
-msgid "EVENT_METEOR_PLAIN"
-msgstr "Tambah keybind baru"
-
-msgid "EVENT_METEOR_RADIOACTIVE"
-msgstr ""
-
-msgid "EVENT_METEOR_SULFUR"
-msgstr ""
-
 msgid "EVOLUTIONARY_TREE"
 msgstr "Pohon Evolusi"
 
@@ -3486,6 +3473,13 @@ msgstr ""
 msgid "LOW_QUALITY_BACKGROUND_BLUR_TOOLTIP"
 msgstr ""
 
+msgid "LUCIFERASE"
+msgstr ""
+
+#, fuzzy
+msgid "LUCIFERASE_SYNTHESIS"
+msgstr "Kemosintesis"
+
 msgid "LYSOSOME"
 msgstr "Lisosom"
 
@@ -3619,15 +3613,6 @@ msgid "META_THREADS_TOOLTIP"
 msgstr ""
 "Tidak dapat dideteksi secara otomatis apakah hyperthreading aktif atau tidak.\n"
 "Ini memengaruhi jumlah default thread karena thread dari hyperthreading tidak secepat inti CPU asli."
-
-msgid "METEOR_IMPACT_EVENT"
-msgstr ""
-
-msgid "METEOR_STRIKE_START_EVENT_LOG_PLURAL"
-msgstr ""
-
-msgid "METEOR_STRIKE_START_EVENT_LOG_SINGULAR"
-msgstr ""
 
 msgid "METRICS"
 msgstr "Metrik Performa"
@@ -5855,6 +5840,14 @@ msgstr "mengalami mutasi"
 msgid "SPECIES_LIST"
 msgstr "Daftar Spesies"
 
+#, fuzzy
+msgid "SPECIES_MEMBER_IMPACT_ON_POP"
+msgstr "Nama spesies..."
+
+#, fuzzy
+msgid "SPECIES_MEMBER_IMPACT_ON_POPULATION_EXPLANATION"
+msgstr "{0} populasi berubah {1} karena: {2}"
+
 msgid "SPECIES_NAME_DOT_DOT_DOT"
 msgstr "Nama spesies..."
 
@@ -6534,9 +6527,6 @@ msgstr "Oksitoksisom"
 msgid "TOXISOME_DESCRIPTION"
 msgstr "Metabolosom adalah gugusan protein terbungkus dalam kulit protein. Mereka dapat mengkonversi glukosa menjadi ATP pada laju yang lebih tinggi daripada yang terjadi di sitoplasma dengan proses yang dinamakan Respirasi Aerob. Namun, proses tersebut tentu membutuhkan oksigen untuk berfungsi, dan tingkat oksigen yang lebih rendah di lingkungan akan memperlambat laju produksi ATP-nya. Karena metabolosom tersuspensi secara langsung dalam sitoplasma, cairan sekelilingnya juga melakukan beberapa glikolisis."
 
-msgid "TO_BE_IMPLEMENTED"
-msgstr "Untuk di implementasi."
-
 #, fuzzy
 msgid "TRANSLATORS"
 msgstr "Bantu Alih Bahasa Permainan"
@@ -6807,6 +6797,13 @@ msgstr "[thrive:input]g_move_forward[/thrive:input],[thrive:input]g_move_left[/t
 
 #, fuzzy
 msgid "TUTORIAL_MICROBE_STAGE_LEAVE_COLONY_TEXT"
+msgstr ""
+"Kamu telah memasuki mode lepas. Di mode ini kamu dapat mengklik anggota koloni untuk melepaskan mereka.\n"
+"\n"
+"Untuk lepas seluruhnya dari koloni kamu dapat mengklik pada selmu sendiri atau tekan tombol unbind all."
+
+#, fuzzy
+msgid "TUTORIAL_MICROBE_STAGE_MEMBER_DIED"
 msgstr ""
 "Kamu telah memasuki mode lepas. Di mode ini kamu dapat mengklik anggota koloni untuk melepaskan mereka.\n"
 "\n"
@@ -9103,6 +9100,9 @@ msgstr "Perbesar"
 msgid "ZOOM_OUT"
 msgstr "Perkecil"
 
+#~ msgid "TO_BE_IMPLEMENTED"
+#~ msgstr "Untuk di implementasi."
+
 #, fuzzy
 #~ msgid "MICROBE_STAGE_DAY_NIGHT_TEXT"
 #~ msgstr ""
@@ -9279,6 +9279,10 @@ msgstr "Perkecil"
 #, fuzzy
 #~ msgid "ERUPTION_IN"
 #~ msgstr "Tunas"
+
+#, fuzzy
+#~ msgid "EVENT_TOOLTIP_ERUPTION"
+#~ msgstr "{0}: +{1} ATP"
 
 #~ msgid "THE_AMOUNT_OF_GLUCOSE_HAS_BEEN_REDUCED"
 #~ msgstr "Jumlah glukosa telah dikurang menjadi {0} dari jumlah sebelumya."

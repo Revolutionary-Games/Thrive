@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2025-04-12 20:18+0200\n"
+"POT-Creation-Date: 2025-04-11 10:12+0300\n"
 "PO-Revision-Date: 2025-04-04 10:42+0000\n"
 "Last-Translator: Anonymous <noreply@weblate.org>\n"
 "Language-Team: Korean <https://translate.revolutionarygamesstudio.com/projects/thrive/thrive-game/ko/>\n"
@@ -553,6 +553,14 @@ msgstr ""
 
 msgid "BIOLUMINESCENT_VACUOLE"
 msgstr "생물발광 액포"
+
+#, fuzzy
+msgid "BIOLUMINESCENT_VACUOLE_DESCRIPTION"
+msgstr "생물발광 액포"
+
+#, fuzzy
+msgid "BIOLUMINESCENT_VACUOLE_PROCESSES_DESCRIPTION"
+msgstr "[thrive:compound type=\"atp\"][/thrive:compound]를 [thrive:compound type=\"oxytoxy\"][/thrive:compound]로 변환합니다. 변환 속도는 [thrive:compound type=\"oxygen\"][/thrive:compound]의 농도에 비례합니다. [thrive:input]g_fire_toxin[/thrive:input]를 눌러 독소를 분비할 수 있습니다. [thrive:compound type=\"oxytoxy\"][/thrive:compound] 양이 적다면, 독소를 발사할 수는 있지만 피해량이 적어집니다."
 
 msgid "BIOME_LABEL"
 msgstr "생태계: {0}"
@@ -2123,27 +2131,6 @@ msgstr "어귀"
 msgid "EVENT_ERUPTION_TOOLTIP"
 msgstr "새로운 키 배치 추가"
 
-msgid "EVENT_METEOR_GLUCOSE"
-msgstr ""
-
-#, fuzzy
-msgid "EVENT_METEOR_IRON"
-msgstr "수중 동굴"
-
-#, fuzzy
-msgid "EVENT_METEOR_PHOSPHATES"
-msgstr "인산염 배치"
-
-#, fuzzy
-msgid "EVENT_METEOR_PLAIN"
-msgstr "새로운 키 배치 추가"
-
-msgid "EVENT_METEOR_RADIOACTIVE"
-msgstr ""
-
-msgid "EVENT_METEOR_SULFUR"
-msgstr ""
-
 msgid "EVOLUTIONARY_TREE"
 msgstr "진화 계보"
 
@@ -3485,6 +3472,13 @@ msgstr "배경 흐림 처리:"
 msgid "LOW_QUALITY_BACKGROUND_BLUR_TOOLTIP"
 msgstr "배경 흐림 처리:"
 
+msgid "LUCIFERASE"
+msgstr ""
+
+#, fuzzy
+msgid "LUCIFERASE_SYNTHESIS"
+msgstr "점액 합성"
+
 msgid "LYSOSOME"
 msgstr "리소좀"
 
@@ -3619,15 +3613,6 @@ msgstr "대사체는 단백질 껍질에 싸인 단백질 집합입니다. 그�
 #, fuzzy
 msgid "META_THREADS_TOOLTIP"
 msgstr "새로운 키 배치 추가"
-
-msgid "METEOR_IMPACT_EVENT"
-msgstr ""
-
-msgid "METEOR_STRIKE_START_EVENT_LOG_PLURAL"
-msgstr ""
-
-msgid "METEOR_STRIKE_START_EVENT_LOG_SINGULAR"
-msgstr ""
 
 #, fuzzy
 msgid "METRICS"
@@ -5839,6 +5824,14 @@ msgstr "변이함"
 msgid "SPECIES_LIST"
 msgstr "존재하는 종"
 
+#, fuzzy
+msgid "SPECIES_MEMBER_IMPACT_ON_POP"
+msgstr "종 명칭..."
+
+#, fuzzy
+msgid "SPECIES_MEMBER_IMPACT_ON_POPULATION_EXPLANATION"
+msgstr "이 패널은 Auto-Evo가 예측에 사용하는 숫자들을 보여줍니다. 하나의 종이 얻을 수 있는 에너지의 총량과 그 종의 한 개체당 필요한 에너지 비용이 최종 개체수를 결정합니다. Auto-Evo는 현실을 간략화한 모델을 사용하여 하나의 종이 얻을 수 있는 에너지로부터 그 종이 얼마나 잘 기능하고 있는지 계산합니다. 각각의 에너지원에 대해, 종이 해당 에너지원으로부터 얻는 에너지의 양이 표시됩니다. 이에 더하여 해당 에너지원으로부터 얻을 수 있는 에너지의 총량이 표시됩니다. 주어진 에너지의 총량에 비해 해당 종이 얻는 양의 비율은 해당 종의 적합도가 적합도 총량에 비해 얼마나 높은지에 따라 결정됩니다. 적합도는 종이 에너지원을 얼마나 잘 활용할 수 있는지 측정하는 지표입니다."
+
 msgid "SPECIES_NAME_DOT_DOT_DOT"
 msgstr "종 명칭..."
 
@@ -6509,9 +6502,6 @@ msgstr "옥시톡시솜"
 msgid "TOXISOME_DESCRIPTION"
 msgstr "대사체는 단백질 껍질에 싸인 단백질 집합입니다. 그들은 호기성 호흡이라는 과정을 통해 세포질에서 할 수있는 것보다 훨씬 더 빠른 속도로 포도당을 ATP로 전환 할 수 있습니다. 그러나 이를 위해 산소가 필요하며 산소가 적은 환경에선 ATP 생산 속도가 느려집니다. 대사체가 세포질에 의해 직접 둘러싸이면 주변 유체가 일부 발효를 수행합니다."
 
-msgid "TO_BE_IMPLEMENTED"
-msgstr "실행됨."
-
 #, fuzzy
 msgid "TRANSLATORS"
 msgstr "게임을 번역하는 것을 도와주세요"
@@ -6781,6 +6771,13 @@ msgstr "W,A,S,D 와 마우스로 이동합니다. 독성 액포가 있다면 E �
 
 #, fuzzy
 msgid "TUTORIAL_MICROBE_STAGE_LEAVE_COLONY_TEXT"
+msgstr ""
+"세포 주위에 보이는 키 (화면 중앙)로 세포를 움직이고 마우스로 방향을 조절하세요.\n"
+"\n"
+"모든 키로 수 초간 움직여서 진행하세요."
+
+#, fuzzy
+msgid "TUTORIAL_MICROBE_STAGE_MEMBER_DIED"
 msgstr ""
 "세포 주위에 보이는 키 (화면 중앙)로 세포를 움직이고 마우스로 방향을 조절하세요.\n"
 "\n"
@@ -9088,6 +9085,9 @@ msgstr "확대"
 msgid "ZOOM_OUT"
 msgstr "축소"
 
+#~ msgid "TO_BE_IMPLEMENTED"
+#~ msgstr "실행됨."
+
 #, fuzzy
 #~ msgid "MICROBE_STAGE_DAY_NIGHT_TEXT"
 #~ msgstr ""
@@ -9269,6 +9269,10 @@ msgstr "축소"
 #, fuzzy
 #~ msgid "ERUPTION_IN"
 #~ msgstr "생산"
+
+#, fuzzy
+#~ msgid "EVENT_TOOLTIP_ERUPTION"
+#~ msgstr "수중 동굴"
 
 #~ msgid "THE_AMOUNT_OF_GLUCOSE_HAS_BEEN_REDUCED"
 #~ msgstr "포도당의 양이 이전 양보다 {0} 만큼 감소되었습니다."

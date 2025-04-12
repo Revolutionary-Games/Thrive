@@ -406,11 +406,21 @@ public static class Constants
     public const float MICROBE_AI_THINK_INTERVAL = 0.3f;
 
     /// <summary>
-    ///   This is how often entities for emitted signals from other entities.
-    ///   This is set relatively high to reduce the performance impact. This is used for example for AI microbes to
-    ///   detect signaling agents.
+    ///   This is how often entities emitted signals from other entities are updated.
+    ///   This is set relatively high to reduce the performance impact.
+    ///   This is used, for example, for AI microbes to detect signalling agents.
     /// </summary>
     public const float ENTITY_SIGNAL_UPDATE_INTERVAL = 0.15f;
+
+    public const float ENTITY_LIGHT_REALISTIC_ATTENUATION = 2;
+
+    /// <summary>
+    ///   Max lights a single entity should have. Note that compatibility renderer supports only 8 lights per mesh, so
+    ///   we might need to increase that limit.
+    /// </summary>
+    public const int ENTITY_REASONABLE_MAX_LIGHTS = 6;
+
+    public const float ENTITY_BIOLUMINESCENCE_LIGHT_RANGE = 20;
 
     public const int INITIAL_SPECIES_POPULATION = 100;
 
@@ -1432,6 +1442,7 @@ public static class Constants
     public const float OPEN_MICROBE_BECOME_MULTICELLULAR_TUTORIAL_AFTER = 30;
     public const float MICROBE_EDITOR_BUTTON_TUTORIAL_DELAY = 20;
     public const float HIDE_MICROBE_RESOURCE_SPLIT_TUTORIAL_AFTER = 60;
+    public const float HIDE_MICROBE_SPECIES_MEMBER_DIED_AFTER = 60;
 
     public const float DAY_NIGHT_TUTORIAL_LIGHT_MIN = 0.01f;
 

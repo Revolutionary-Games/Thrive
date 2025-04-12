@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2025-04-12 20:18+0200\n"
+"POT-Creation-Date: 2025-04-11 10:12+0300\n"
 "PO-Revision-Date: 2025-04-04 10:42+0000\n"
 "Last-Translator: Anonymous <noreply@weblate.org>\n"
 "Language-Team: Swedish <https://translate.revolutionarygamesstudio.com/projects/thrive/thrive-game/sv/>\n"
@@ -410,7 +410,7 @@ msgid "AWARE_STAGE"
 msgstr "Medvetande Stadiet"
 
 msgid "BACK"
-msgstr "Backåt"
+msgstr "Bakåt"
 
 msgid "BACKGROUND_BLUR"
 msgstr ""
@@ -532,6 +532,14 @@ msgstr "Binder samman axlar"
 
 msgid "BIOLUMINESCENT_VACUOLE"
 msgstr "Bioluminescerande vakuol"
+
+#, fuzzy
+msgid "BIOLUMINESCENT_VACUOLE_DESCRIPTION"
+msgstr "Bioluminescerande vakuol"
+
+#, fuzzy
+msgid "BIOLUMINESCENT_VACUOLE_PROCESSES_DESCRIPTION"
+msgstr "Vakuolen är en inre membranorganell som används för lagring i cellen. De består av flera blåsor, mindre membranstrukturer som ofta används i celler för lagring, som har smält samman. Den är fylld med vatten som används för att hålla kvar molekyler, enzymer, fasta ämnen och andra ämnen. Deras form är flytande och kan variera mellan celler."
 
 msgid "BIOME_LABEL"
 msgstr "Omgivning: {0}"
@@ -2105,27 +2113,6 @@ msgstr "Flodmynning"
 msgid "EVENT_ERUPTION_TOOLTIP"
 msgstr "Självmord"
 
-msgid "EVENT_METEOR_GLUCOSE"
-msgstr ""
-
-#, fuzzy
-msgid "EVENT_METEOR_IRON"
-msgstr "{0}:+{1} ATP"
-
-#, fuzzy
-msgid "EVENT_METEOR_PHOSPHATES"
-msgstr "Spawna fosfat"
-
-#, fuzzy
-msgid "EVENT_METEOR_PLAIN"
-msgstr "Självmord"
-
-msgid "EVENT_METEOR_RADIOACTIVE"
-msgstr ""
-
-msgid "EVENT_METEOR_SULFUR"
-msgstr ""
-
 #, fuzzy
 msgid "EVOLUTIONARY_TREE"
 msgstr "Av Revolutionary Games Studio"
@@ -2985,11 +2972,10 @@ msgid "KEEP_MIGRATION"
 msgstr "Anding"
 
 msgid "KEY_BACK"
-msgstr "Backåt"
+msgstr "Bakåt"
 
-#, fuzzy
 msgid "KEY_BACKTAB"
-msgstr "Backåt"
+msgstr "Bakåt"
 
 msgid "KEY_BINDING_CHANGE_CONFLICT"
 msgstr ""
@@ -3474,6 +3460,13 @@ msgstr ""
 msgid "LOW_QUALITY_BACKGROUND_BLUR_TOOLTIP"
 msgstr ""
 
+msgid "LUCIFERASE"
+msgstr ""
+
+#, fuzzy
+msgid "LUCIFERASE_SYNTHESIS"
+msgstr "Mucilagesyntes"
+
 msgid "LYSOSOME"
 msgstr "Lysosom"
 
@@ -3609,15 +3602,6 @@ msgid "META_THREADS_TOOLTIP"
 msgstr ""
 "Det går inte att automatiskt upptäcka om flertrådning är aktivt eller inte.\n"
 "Detta påverkar standardantalet trådar eftersom flertrådnings-trådar inte är lika snabba som riktiga CPU-kärnor."
-
-msgid "METEOR_IMPACT_EVENT"
-msgstr ""
-
-msgid "METEOR_STRIKE_START_EVENT_LOG_PLURAL"
-msgstr ""
-
-msgid "METEOR_STRIKE_START_EVENT_LOG_SINGULAR"
-msgstr ""
 
 #, fuzzy
 msgid "METRICS"
@@ -4775,9 +4759,8 @@ msgstr "Page down"
 msgid "PAGEUP"
 msgstr "Page Up"
 
-#, fuzzy
 msgid "PAGE_BACK"
-msgstr "Backåt"
+msgstr "Bakåt"
 
 #, fuzzy
 msgid "PAGE_FORWARD"
@@ -5818,6 +5801,14 @@ msgstr "har muterat"
 msgid "SPECIES_LIST"
 msgstr "Artlista"
 
+#, fuzzy
+msgid "SPECIES_MEMBER_IMPACT_ON_POP"
+msgstr "Artnamn..."
+
+#, fuzzy
+msgid "SPECIES_MEMBER_IMPACT_ON_POPULATION_EXPLANATION"
+msgstr "Den här panelen visar talen som auto-evolutionen funkar från. Den totala energin en art är kapabel av att fånga, och kosten per individ av arten, bestämmer den slutliga befolkningen. Auto-evolutionen använder en simplifierad modell av verkligheten för att beräkna hur bra en art utför baserat på energin de kan samla. För varje matkälla, det visas hur mycket energi arten"
+
 msgid "SPECIES_NAME_DOT_DOT_DOT"
 msgstr "Artnamn..."
 
@@ -5986,7 +5977,7 @@ msgid "STRICT_NICHE_COMPETITION"
 msgstr "Sträng nischkonkurrens (skillnader i fitness är överdrivna)"
 
 msgid "STRUCTURAL"
-msgstr "Strukturel"
+msgstr "Strukturell"
 
 msgid "STRUCTURE"
 msgstr "Struktur"
@@ -6511,9 +6502,6 @@ msgstr "Oxytoxisom"
 msgid "TOXISOME_DESCRIPTION"
 msgstr "Metabolosomer är kluster av proteiner förpackade i proteinskal. De kan omvandla glukos till ATP i mycket högre takt än vad som kan göras i cytoplasman i en process som kallas Aerobisk Andning. Det kräver dock syre för att fungera, och lägre nivåer av syre i miljön kommer att sakta ner hastigheten för dess ATP-produktion. Eftersom metabolosomerna är suspenderade direkt i cytoplasman utför den omgivande vätskan viss jäsning."
 
-msgid "TO_BE_IMPLEMENTED"
-msgstr "Ej implementerat än."
-
 msgid "TRANSLATORS"
 msgstr "Översättare"
 
@@ -6722,6 +6710,10 @@ msgstr "W,A,S,D och musen för att röra dig. E för att skjuta OxyToxy NT om du
 
 #, fuzzy
 msgid "TUTORIAL_MICROBE_STAGE_LEAVE_COLONY_TEXT"
+msgstr "Mikrob Fri Byggredigerare"
+
+#, fuzzy
+msgid "TUTORIAL_MICROBE_STAGE_MEMBER_DIED"
 msgstr "Mikrob Fri Byggredigerare"
 
 #, fuzzy
@@ -9171,6 +9163,10 @@ msgstr "Zooma ut"
 #, fuzzy
 #~ msgid "ERUPTION_IN"
 #~ msgstr "Producerar"
+
+#, fuzzy
+#~ msgid "EVENT_TOOLTIP_ERUPTION"
+#~ msgstr "{0}:+{1} ATP"
 
 #~ msgid "THE_AMOUNT_OF_GLUCOSE_HAS_BEEN_REDUCED"
 #~ msgstr "Mängden glukos har minskats med {0} av den tidigare mängden."

@@ -49,6 +49,11 @@ public interface IDifficulty : IRegistryAssignable
     public bool FreeGlucoseCloud { get; }
 
     /// <summary>
+    ///   How strongly members of the player species dying affect the player's population
+    /// </summary>
+    public float PlayerSpeciesAIPopulationStrength { get; }
+
+    /// <summary>
     ///   Sets what happens when the player reproduces to their stored compounds
     /// </summary>
     public ReproductionCompoundHandling ReproductionCompounds { get; }
@@ -115,6 +120,7 @@ public static class DifficultyHelpers
             $", Glucose decay: {difficulty.GlucoseDecay}" +
             $", Osmoregulation multiplier: {difficulty.OsmoregulationMultiplier}" +
             $", auto-evo strength: {difficulty.PlayerAutoEvoStrength}" +
+            $", AI dying strength: {difficulty.PlayerSpeciesAIPopulationStrength}" +
             $", Free glucose cloud: {difficulty.FreeGlucoseCloud}" +
             $", Switch on Extinction: {difficulty.SwitchSpeciesOnExtinction}" +
             $", Limit Growth Rate: {difficulty.LimitGrowthRate}" +

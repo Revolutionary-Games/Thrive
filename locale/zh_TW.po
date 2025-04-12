@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2025-04-12 20:18+0200\n"
+"POT-Creation-Date: 2025-04-11 10:12+0300\n"
 "PO-Revision-Date: 2025-04-04 10:42+0000\n"
 "Last-Translator: Anonymous <noreply@weblate.org>\n"
 "Language-Team: Chinese (Traditional Han script) <https://translate.revolutionarygamesstudio.com/projects/thrive/thrive-game/zh_Hant/>\n"
@@ -326,7 +326,6 @@ msgstr "八月"
 msgid "AUTO"
 msgstr "自動"
 
-#, fuzzy
 msgid "AUTO-EVO_EXPLANATION_EXPLANATION"
 msgstr "此面板顯示 Auto-Evo 預測所依據的數字。一個物種能夠捕獲的總能量以及該物種每個個體的成本決定了最終的物種量。Auto-Evo 使用簡化的現實模型，根據物種能夠收集的能量來計算它們的表現。對於每種食物來源，它顯示了該物種從其獲得的能量以及該食物來源所能提供的總能量。物種從總能量中獲得的分數取決於適應度與總適應度相比的大小。適應性是衡量物種利用食物來源能力的指標。"
 
@@ -511,6 +510,14 @@ msgstr "綁定座標軸"
 
 msgid "BIOLUMINESCENT_VACUOLE"
 msgstr "生物發光液泡"
+
+#, fuzzy
+msgid "BIOLUMINESCENT_VACUOLE_DESCRIPTION"
+msgstr "生物發光液泡"
+
+#, fuzzy
+msgid "BIOLUMINESCENT_VACUOLE_PROCESSES_DESCRIPTION"
+msgstr "將[thrive:compound type=\"atp\"][/thrive:compound] 轉化為[thrive:compound type=\"oxytoxy\"][/thrive:compound]。速率與[thrive:compound type=\"oxygen\"][/thrive:compound] 的濃度成正比。可以透過按下[thrive:input]g_fire_toxin[/thrive:input]釋放毒素。當[thrive:compound type=\"oxytoxy\"][/thrive:compound] 儲量較低時仍然可以釋放，但傷害會降低。"
 
 msgid "BIOME_LABEL"
 msgstr "生物群系：{0}"
@@ -1804,7 +1811,6 @@ msgstr ""
 "\n"
 "當您準備好後，按右下角的「下一頁」按鈕繼續。"
 
-#, fuzzy
 msgid "EDITOR_TUTORIAL_MICROBE_EDITOR_NUCLEUS"
 msgstr ""
 "為了繼續進步，您最終需要放置一個[b]細胞核[/b]。\n"
@@ -1813,7 +1819,7 @@ msgstr ""
 "\n"
 "嘗試放置一個[b]細胞核[/b]來結束本教學。\n"
 "\n"
-"如果您的細胞尚未準備好演化細胞核，您可以使用[b]撤銷按鈕[/b]以還原細胞核。"
+"如果您的細胞尚未準備好演化細胞核，您可以使用[b]撤銷按鈕[/b]以[u]還原[/u]細胞核。"
 
 msgid "EFFECTIVE_VALUE"
 msgstr "有效值"
@@ -1990,29 +1996,6 @@ msgid "EVENT_ERUPTION_TOOLTIP"
 msgstr ""
 "區域事件：噴發\n"
 "產生額外的硫化氫與二氧化碳"
-
-msgid "EVENT_METEOR_GLUCOSE"
-msgstr ""
-
-#, fuzzy
-msgid "EVENT_METEOR_IRON"
-msgstr "{0}：+{1} ATP"
-
-#, fuzzy
-msgid "EVENT_METEOR_PHOSPHATES"
-msgstr "生成磷酸鹽"
-
-#, fuzzy
-msgid "EVENT_METEOR_PLAIN"
-msgstr ""
-"區域事件：噴發\n"
-"產生額外的硫化氫與二氧化碳"
-
-msgid "EVENT_METEOR_RADIOACTIVE"
-msgstr ""
-
-msgid "EVENT_METEOR_SULFUR"
-msgstr ""
 
 msgid "EVOLUTIONARY_TREE"
 msgstr "演化樹"
@@ -2533,7 +2516,7 @@ msgid "ID_NUMBER"
 msgstr "ID 號碼"
 
 msgid "IF_FALLBACK_RENDERER_USED_ALL_NOT_AVAILABLE"
-msgstr ""
+msgstr "（取決於渲染模式與解析度提升方式，並非所有方法都可用）"
 
 msgid "IMAGE_FILE_TYPES"
 msgstr "支援的圖像檔案"
@@ -3150,9 +3133,8 @@ msgstr "載入中…"
 msgid "LOADING_GAME"
 msgstr "載入遊戲中"
 
-#, fuzzy
 msgid "LOADING_GRAPHICS_SHADERS"
-msgstr "載入遊戲中"
+msgstr "載入著色器"
 
 msgid "LOADING_MACROSCOPIC_EDITOR"
 msgstr "載入宏觀生物編輯器中"
@@ -3160,24 +3142,20 @@ msgstr "載入宏觀生物編輯器中"
 msgid "LOADING_MICROBE_EDITOR"
 msgstr "載入微生物編輯器中"
 
-#, fuzzy
 msgid "LOADING_MICROBE_STAGE"
-msgstr "微生物階段"
+msgstr "載入微生物階段"
 
 msgid "LOADING_MULTICELLULAR_EDITOR"
 msgstr "載入多細胞編輯器中"
 
-#, fuzzy
 msgid "LOADING_MULTICELLULAR_STAGE"
-msgstr "載入多細胞編輯器中"
+msgstr "載入多細胞階段"
 
-#, fuzzy
 msgid "LOADING_STAGE"
-msgstr "載入遊戲中"
+msgstr "載入階段"
 
-#, fuzzy
 msgid "LOADING_STAGE_ASSETS"
-msgstr "載入遊戲中"
+msgstr "載入階段資產 {0} / {1}"
 
 msgid "LOAD_FINISHED"
 msgstr "載入完成"
@@ -3218,12 +3196,11 @@ msgstr "L"
 msgid "LOCK_DAY_NIGHT_CYCLE"
 msgstr "鎖定晝夜循環"
 
-#, fuzzy
 msgid "LOWER_SCALE_INCREASES_PERFORMANCE"
-msgstr "（較高的值可提高性能）"
+msgstr "（較低的值可提高性能）"
 
 msgid "LOWER_VALUE_MAKES_SHARPER_IMAGE"
-msgstr ""
+msgstr "（較低的值使圖像更銳利）"
 
 msgid "LOW_MENU_PERFORMANCE"
 msgstr "偵測到性能低下"
@@ -3239,6 +3216,13 @@ msgstr "低解析度背景模糊"
 
 msgid "LOW_QUALITY_BACKGROUND_BLUR_TOOLTIP"
 msgstr "使背景模糊使用較低的分辨率，從而提高效能。"
+
+msgid "LUCIFERASE"
+msgstr ""
+
+#, fuzzy
+msgid "LUCIFERASE_SYNTHESIS"
+msgstr "黏液合成"
 
 msgid "LYSOSOME"
 msgstr "溶酶體"
@@ -3356,15 +3340,6 @@ msgstr "將[thrive:compound type=\"glucose\"][/thrive:compound] 轉化為[thrive
 
 msgid "META_THREADS_TOOLTIP"
 msgstr "造訪我們的 Threads 檔案"
-
-msgid "METEOR_IMPACT_EVENT"
-msgstr ""
-
-msgid "METEOR_STRIKE_START_EVENT_LOG_PLURAL"
-msgstr ""
-
-msgid "METEOR_STRIKE_START_EVENT_LOG_SINGULAR"
-msgstr ""
 
 msgid "METRICS"
 msgstr "性能指標"
@@ -3564,12 +3539,11 @@ msgstr ""
 "\n"
 "若要繼續，請按下「[b]成為多細胞[/b]」按鈕。"
 
-#, fuzzy
 msgid "MICROBE_STAGE_COLLECT_TEXT"
 msgstr ""
 "為了生存，微生物需要能量（[thrive:compound type=\"atp\"][/thrive:compound]）。對您的物種來說，這意味著找到糖（[thrive:compound type=\"glucose\"][/thrive:compound]）。\n"
 "\n"
-"跟隨顯示的線尋找附近的[thrive:compound type=\"glucose\"][/thrive:compound] 白雲。"
+"跟隨顯示的線尋找附近的[thrive:compound type=\"glucose\"][/thrive:compound] 白雲，然後移動到它的上面來吸收它。"
 
 msgid "MICROBE_STAGE_CONTROL_TEXT"
 msgstr ""
@@ -3592,47 +3566,41 @@ msgstr ""
 "當您擁有[thrive:compound type=\"atp\"][/thrive:compound] 時，您的生命值就會恢復。\n"
 "如果沒有[thrive:compound type=\"atp\"][/thrive:compound]，您就會[b]失去生命值[/b]。"
 
-#, fuzzy
 msgid "MICROBE_STAGE_INITIAL"
 msgstr ""
-"在一顆遙遠的外星球上，萬古的火山活動與流星撞擊導致了宇宙中一種新現象的發展。\n"
+"在一顆遙遠的外星球上，深海中億萬年的火山活動創造了一些非凡的東西。\n"
 "\n"
 "生命。\n"
 "\n"
-"簡單的微生物居住在海洋深處。您是這個星球上最近普適共同祖先（LUCA）。\n"
+"您是這個星球上的最近普適共同祖先（LUCA）。這種簡單的泡泡可以透過水中的分子進行自我複製。隨著時間的推移，它可能會發展成為一個主宰恆星的複雜物種。\n"
 "\n"
-"為了在這個充滿敵意的世界中生存，您需要收集任何您能找到的化合物，並在多世代中不斷演化來與其他微生物競爭。"
+"但首先，您需要透過收集化合物來生長、擴散與演化，同時與其他微生物競爭，才能在這個充滿敵意的世界中生存。"
 
-#, fuzzy
 msgid "MICROBE_STAGE_INITIAL_PANSPERMIA"
 msgstr ""
-"在一顆遙遠的外星球上，一顆流星在經過遙遠的天文距離後撞擊星球，並攜帶著星球上新現象發展所需的種子。\n"
+"在一顆遙遠的外星球上，一顆流星在經過遙遠的距離後撞擊星球，並攜帶著星球上新現象發展的種子。\n"
 "\n"
 "生命。\n"
 "\n"
-"簡單的微生物居住在海洋深處。您是這個星球上最近普適共同祖先（LUCA）。\n"
+"您是這個星球上的最近普適共同祖先（LUCA）。這種能夠自我複製的泡泡可以在海洋中生存，就像在它的家鄉一樣。也許有一天，它的遙遠後代會再次找到那個世界。\n"
 "\n"
-"為了在這個充滿敵意的世界中生存，您需要收集任何您能找到的化合物，並在多世代中不斷演化來與其他微生物競爭。"
+"但首先，您需要透過收集化合物來生長、擴散與演化，同時與其他微生物競爭，才能在這些惡劣的水域中生存。"
 
-#, fuzzy
 msgid "MICROBE_STAGE_INITIAL_POND"
 msgstr ""
-"在一顆遙遠的外星球上，經過數億年的化學演化，形成了自我複製的分子，導致了宇宙中一種新現象的發展。\n"
+"在一顆遙遠的外星球上，在熱水池中經過萬億年的化學演化，創造出了一些非凡的東西。\n"
 "\n"
 "生命。\n"
 "\n"
-"簡單的微生物居住在海洋深處。您是這個星球上最近普適共同祖先（LUCA）。\n"
+"您是這個星球上的最近普適共同祖先（LUCA）。這種簡單的泡泡可以透過水中的分子進行自我複製。隨著時間的推移，它可能會發展成為一個主宰恆星的複雜物種。\n"
 "\n"
-"為了在這個充滿敵意的世界中生存，您需要收集任何您能找到的化合物，並在多世代中不斷演化來與其他微生物競爭。"
+"但首先，您需要透過收集化合物來生長、擴散與演化，同時與其他微生物競爭，才能在這個充滿敵意的世界中生存。"
 
-#, fuzzy
 msgid "MICROBE_STAGE_ORGANELLE_DIVISION"
 msgstr ""
 "在生長到足以繁殖的過程中，每個細胞器都會分裂。這些新的細胞器會像微生物開始時的細胞器一樣，提供獎勵（與滲透調節成本）。\n"
 "\n"
-"當您獲得化合物時，您的細胞會使用一些化合物進行繁殖。\n"
-"\n"
-"有了足夠的化合物，細胞器就會開始分裂與複製。一旦所有細胞器分裂完成，您的細胞就可以繁殖並進入編輯器。"
+"隨著時間的推移，細胞器將開始複製。收集化合物可以加速這一過程。一旦所有細胞器分裂完成，您的細胞就可以繁殖並進入編輯器。"
 
 msgid "MIDDLE_MOUSE"
 msgstr "滑鼠中鍵"
@@ -4417,9 +4385,8 @@ msgstr "氧抗性"
 msgid "OXYGEN_TOLERANCE_TOOLTIP"
 msgstr "在產生有害影響之前，您的物種可以減輕多少由氧造成的傷害。如果您所處區域的氧含量超過您的抵抗能力，您將會受到負面影響。"
 
-#, fuzzy
 msgid "OXYTOXISOME_PROCESSES_DESCRIPTION"
-msgstr "將[thrive:compound type=\"atp\"][/thrive:compound] 轉化為[thrive:compound type=\"oxytoxy\"][/thrive:compound]。速率與[thrive:compound type=\"oxygen\"][/thrive:compound] 的濃度成正比。可以透過按下[thrive:input]g_fire_toxin[/thrive:input]釋放毒素。當[thrive:compound type=\"oxytoxy\"][/thrive:compound] 儲量較低時仍然可以釋放，但傷害會降低。"
+msgstr "將[thrive:compound type=\"atp\"][/thrive:compound] 轉化為[thrive:compound type=\"oxytoxy\"][/thrive:compound]。可以透過按下[thrive:input]g_fire_toxin[/thrive:input]釋放毒素。當[thrive:compound type=\"oxytoxy\"][/thrive:compound] 儲量較低時仍然可以釋放，但傷害會降低。"
 
 msgid "OXYTOXY_NT"
 msgstr "氧化毒素"
@@ -4777,9 +4744,8 @@ msgstr "重做上一個動作"
 msgid "REFRESH"
 msgstr "重新整理"
 
-#, fuzzy
 msgid "RENDER_SCALE"
-msgstr "使用的渲染器："
+msgstr "解析度比例"
 
 msgid "REPORT"
 msgstr "回報"
@@ -5225,9 +5191,11 @@ msgstr "顯示教學（在當前遊戲中）"
 msgid "SHOW_TUTORIALS_IN_NEW_GAMES_OPTION"
 msgstr "顯示教學（在新遊戲中）"
 
-#, fuzzy
 msgid "SHOW_TUTORIALS_OPTION_TOOLTIP"
-msgstr "以逗號分隔值（csv）格式匯出所有世界的數據"
+msgstr ""
+"顯示或完全停用教學。不建議關閉此功能。\n"
+"相對的，在開始新遊戲時停用所有教學只會顯示您尚未看過的教學。\n"
+"這是非常推薦的設定，因為會經常新增新的教學，否則過去玩過 Thrive 的玩家可能會錯過這些新教學。"
 
 msgid "SHOW_UNSAVED_PROGRESS_WARNING"
 msgstr "顯示未儲存進度警告"
@@ -5383,6 +5351,12 @@ msgstr "發生突變"
 msgid "SPECIES_LIST"
 msgstr "物種列表"
 
+msgid "SPECIES_MEMBER_IMPACT_ON_POP"
+msgstr "物種成員死亡的影響"
+
+msgid "SPECIES_MEMBER_IMPACT_ON_POPULATION_EXPLANATION"
+msgstr "（玩家物種的 AI 成員死亡或繁殖作為外部影響對物種量的影響程度）"
+
 msgid "SPECIES_NAME_DOT_DOT_DOT"
 msgstr "物種名稱…"
 
@@ -5523,9 +5497,10 @@ msgstr "秒數"
 msgid "STORE_LOGGED_IN_AS"
 msgstr "登入身分：{0}"
 
-#, fuzzy
 msgid "STRAIN_BAR_TOOLTIP"
-msgstr "切換衝刺模式。衝刺時細胞移動得更快，但會消耗更多的 ATP，隨著壓力增加會消耗更多的 ATP。"
+msgstr ""
+"此欄顯示目前的衝刺壓力。數值越高，繼續衝刺所需的 ATP 就越多。\n"
+"從壓力中恢復也會消耗額外的 ATP，直到數值完全為空。"
 
 msgid "STRAIN_BAR_VISIBILITY"
 msgstr "壓力值條可見性"
@@ -5796,13 +5771,11 @@ msgstr "顯示本地事件"
 msgid "TIMELINE_NICHE_FILL"
 msgstr "[b][u]{0}[/u][/b] 從 [b][u]{1}[/u][/b] 中分支出來，作為一個新物種來填補生態棲位"
 
-#, fuzzy
 msgid "TIMELINE_PLAYER_MIGRATED"
-msgstr "部分 [b][u]{0}[/u][/b] 種群已遷移至 {1}"
+msgstr "[b][u]{0}[/u][/b] 已遷移至此區域"
 
-#, fuzzy
 msgid "TIMELINE_PLAYER_MIGRATED_TO"
-msgstr "部分 [b][u]{0}[/u][/b] 種群已遷移至 {1}"
+msgstr "[b][u]{0}[/u][/b] 已遷移至 {1}"
 
 msgid "TIMELINE_SELECTION_PRESSURE_SPLIT"
 msgstr "[b][u]{0}[/u][/b] 從 [b][u]{1}[/u][/b] 中分支出來，成為了一個新物種，原因是演化壓力"
@@ -5816,9 +5789,8 @@ msgstr "[b][u]{0}[/u][/b] 滅絕了！"
 msgid "TIMELINE_SPECIES_EXTINCT_LOCAL"
 msgstr "[b][u]{0}[/u][/b] 已從此區域中消失"
 
-#, fuzzy
 msgid "TIMELINE_SPECIES_FOLLOWED"
-msgstr "[b][u]{0}[/u][/b] 滅絕了！"
+msgstr "[b][u]{0}[/u][/b] 隨著 [b][u]{1}[/u][/b] 一同遷移至此區域"
 
 msgid "TIMELINE_SPECIES_MIGRATED_FROM"
 msgstr "部分 [b][u]{0}[/u][/b] 種群從 {1}遷移到此區域"
@@ -5912,9 +5884,8 @@ msgstr "紫外線（UV）保護過低，需要提高 {0}%"
 msgid "TOLERANCES_UNSUITABLE_DEBUFFS"
 msgstr "不適應當前的環境條件。滲透調節成本 {0}%、代謝速度 {1}%、生命值 {2}%"
 
-#, fuzzy
 msgid "TOLERANCE_FROM_ORGANELLES_TOOLTIP"
-msgstr "您的物種在受到有害影響之前能抵抗多少紫外線輻射。如果您處在光照過強的地方，您就會受到負面影響，直到抗性增加。"
+msgstr "有些細胞器會對耐性產生正面與負面的影響。這裡顯示的是基礎值與細胞器的變化相加後的有效值。有些細胞器與某些遊戲玩法產生協同作用，但對其他遊戲玩法有害。"
 
 msgid "TOLERANCE_RANGE_LABEL"
 msgstr "適應範圍："
@@ -5999,23 +5970,17 @@ msgstr "不同類型的毒素具有不同的作用，對某些類型的細胞更
 msgid "TOXIN_VACUOLE"
 msgstr "毒素液泡"
 
-#, fuzzy
 msgid "TOXIN_VACUOLE_DESCRIPTION"
-msgstr "毒素液泡是為了專門生產、儲存與分泌[thrive:compound type=\"oxytoxy\"][/thrive:compound] 而經過修飾的液泡。更多的毒素液泡能增加釋放毒素的速度。可以修改以切換生成的毒素類型來獲得其他效果。"
+msgstr "毒素液泡是為了專門生產、儲存與分泌[thrive:compound type=\"oxytoxy\"][/thrive:compound] 而經過修飾的液泡。更多的毒素液泡能增加釋放毒素的速度。可以修改以切換生成的毒素類型來獲得其他效果，可能需要[thrive:compound type=\"oxygen\"][/thrive:compound] 來製造。"
 
-#, fuzzy
 msgid "TOXIN_VACUOLE_PROCESSES_DESCRIPTION"
-msgstr "將[thrive:compound type=\"atp\"][/thrive:compound] 轉化為[thrive:compound type=\"oxytoxy\"][/thrive:compound]。速率與[thrive:compound type=\"oxygen\"][/thrive:compound] 的濃度成正比。可以透過按下[thrive:input]g_fire_toxin[/thrive:input]釋放毒素。當[thrive:compound type=\"oxytoxy\"][/thrive:compound] 儲量較低時仍然可以釋放，但傷害會降低。"
+msgstr "將[thrive:compound type=\"atp\"][/thrive:compound] 轉化為[thrive:compound type=\"oxytoxy\"][/thrive:compound]。可以透過按下[thrive:input]g_fire_toxin[/thrive:input]釋放毒素。當[thrive:compound type=\"oxytoxy\"][/thrive:compound] 儲量較低時仍然可以釋放，但傷害會降低。"
 
 msgid "TOXISOME"
 msgstr "毒素體"
 
-#, fuzzy
 msgid "TOXISOME_DESCRIPTION"
-msgstr "一種修改過的代謝體，負責產生原始形式的有毒物質[thrive:compound type=\\\"oxytoxy\\\"][/thrive:compound]。可以修改以切換生成的毒素類型以獲得其他效果。"
-
-msgid "TO_BE_IMPLEMENTED"
-msgstr "等待實現。"
+msgstr "一種修改過的代謝體，負責產生原始形式的有毒物質[thrive:compound type=\\\"oxytoxy\\\"][/thrive:compound]。可以修改以切換生成的毒素類型以獲得其他效果，可能需要[thrive:compound type=\"oxygen\"][/thrive:compound] 來製造。"
 
 msgid "TRANSLATORS"
 msgstr "翻譯人員"
@@ -6038,16 +6003,14 @@ msgstr "嘗試截一些圖吧！"
 msgid "TUTORIAL"
 msgstr "教學"
 
-#, fuzzy
 msgid "TUTORIAL_ALL_NOT_ENABLED_EXPLANATION"
-msgstr "（某些細胞器需要滿足特定解鎖條件才能放置）"
+msgstr "僅顯示任何遊戲中尚未見過的教學。可以從選項選單中完全停用教學，但強烈建議保留此選項啟用新教學。"
 
-#, fuzzy
 msgid "TUTORIAL_MICROBE_EDITOR_ATP_BALANCE_INTRO"
 msgstr ""
 "右側的 ATP 生產欄顯示您細胞生產的[thrive:compound type=\"atp\"][/thrive:compound] 與消耗的比例。如果頂欄比底欄短，則表示您沒有生產足夠的[thrive:compound type=\"atp\"][/thrive:compound]。\n"
 "\n"
-"底欄包含[b]滲透調節[/b] [thrive:icon]OsmoIcon[/thrive:icon] 成本與[b]移動[/b] [thrive:icon]MovementIcon[/thrive:icon] 成本。[b]滲透調節[/b] [thrive:icon]OsmoIcon[/thrive:icon] 是[u]維持生命的基本成本[/u]。您添加的每個部件都會增加此成本。\n"
+"底欄包含[b]滲透調節[/b] [thrive:icon]OsmoIcon[/thrive:icon] 成本與[b]移動[/b] [thrive:icon]MovementIcon[/thrive:icon] 成本。[b]滲透調節[/b] [thrive:icon]OsmoIcon[/thrive:icon] 是[u]維持生命的基本成本[/u]。您添加的每個部件都會增加此成本。當您不移動時，您無需消耗[b]移動成本[/b] [thrive:icon]MovementIcon[/thrive:icon]。\n"
 "\n"
 "如果您的[thrive:compound type=\"atp\"][/thrive:compound] 平衡為負，請務必增加[thrive:compound type=\"atp\"][/thrive:compound] 產量或增加[b]儲存空間[/b] [thrive:icon]StorageIcon[/thrive:icon] 以允許突發移動。"
 
@@ -6061,14 +6024,15 @@ msgstr ""
 "\n"
 "您可以[b]按下面板中的問號按鈕查看預測背後的更多詳細資訊。按下按鈕以繼續。[/b]"
 
-#, fuzzy
 msgid "TUTORIAL_MICROBE_EDITOR_CELL_TEXT"
 msgstr ""
-"這是細胞編輯器，您可以透過花費[b]突變點數[/b]（MP）[thrive:icon]MP[/thrive:icon] 來演化您的物種。每一代您都會有[b]100 MP[/b] [thrive:icon]MP[/thrive:icon] 可以花費，所以不必費心保留！\n"
+"這是[b]微生物編輯器[/b]，您可以透過花費[b]突變點數[/b]（MP）[thrive:icon]MP[/thrive:icon] 來演化您的物種。每一代您都會有[b]100 MP[/b] [thrive:icon]MP[/thrive:icon] 可以花費，所以不必費心保留！\n"
 "\n"
-"螢幕中央的六邊形是您的[b]細胞[/b]，它由單一細胞質組成。\n"
+"螢幕中央的六邊形代表您的物種。目前，它只是一種簡單的微生物。\n"
 "\n"
-"要繼續，請從左側面板中選擇一個組件。然後左鍵單擊六邊形網格旁邊來放置它。您可以使用[thrive:input]e_rotate_left[/thrive:input]與[thrive:input]e_rotate_right[/thrive:input]旋轉部件。"
+"要繼續，請從左側面板中選擇一個組件。然後左鍵單擊六邊形網格旁邊來放置它。您可以使用[thrive:input]e_rotate_left[/thrive:input]與[thrive:input]e_rotate_right[/thrive:input]旋轉部件。\n"
+"\n"
+"安全的第一次演化是為您的物種添加 1 到 2 個細胞質或[b]氫化酶[/b]。"
 
 msgid "TUTORIAL_MICROBE_EDITOR_CHEMORECEPTOR"
 msgstr ""
@@ -6277,6 +6241,15 @@ msgstr ""
 "\n"
 "除非您成為多細胞生物，否則您需要離開群體才能進入編輯器。\n"
 "按下[thrive:input]g_unbind_all[/thrive:input]離開細胞群體以進行繁殖。"
+
+#, fuzzy
+msgid "TUTORIAL_MICROBE_STAGE_MEMBER_DIED"
+msgstr ""
+"在吞噬模式下透過在物體上移動來吞噬它們。按下[thrive:input]g_toggle_engulf[/thrive:input]切換吞噬模式。\n"
+"\n"
+"一旦物體被拉進去即可停止吞噬。\n"
+"\n"
+"沿著您細胞上出現的路線前往附近的可吞噬物體。"
 
 #, fuzzy
 msgid "TUTORIAL_MICROBE_STAGE_OPEN_PROCESS_PANEL"
@@ -9147,6 +9120,10 @@ msgstr "縮小"
 #, fuzzy
 #~ msgid "ERUPTION_IN"
 #~ msgstr "出芽生殖"
+
+#, fuzzy
+#~ msgid "EVENT_TOOLTIP_ERUPTION"
+#~ msgstr "{0}：+{1} ATP"
 
 #~ msgid "THE_AMOUNT_OF_GLUCOSE_HAS_BEEN_REDUCED"
 #~ msgstr "環境葡萄糖量已減少至先前的 {0}。"

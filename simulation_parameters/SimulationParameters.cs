@@ -128,7 +128,7 @@ public partial class SimulationParameters : Node
             enzymes = LoadRegistry<Enzyme>("res://simulation_parameters/microbe_stage/enzymes.json", deserializers);
             biomes = LoadRegistry<Biome>("res://simulation_parameters/microbe_stage/biomes.json", deserializers);
 
-            // These later things already depend on the earlier things so another phase of direct loaders are needed
+            // These later things already depend on the earlier things, so another phase of direct loaders is needed
 
             deserializers =
             [

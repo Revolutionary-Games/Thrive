@@ -498,14 +498,14 @@ public class GameWorld : ISaveLoadable
     /// <param name="description">What caused the change</param>
     /// <param name="patch">The patch this effect affects.</param>
     /// <param name="immediate">
-    ///   If true applied immediately. Should only be used for the player dying
+    ///   If true, applied immediately. Should only be used for the player dying
     /// </param>
     /// <param name="coefficient">Change amount (coefficient part)</param>
     public void AlterSpeciesPopulation(Species species, int constant, string description, Patch patch,
         bool immediate = false, float coefficient = 1)
     {
-        // It sort of makes sense to allow 0 coefficient to force population to 0, that's why this check is here
-        // now if this effect would do nothing, then it is skipped
+        // It sort of makes sense to allow coefficient 0 to force population to 0, that's why this check is here
+        // now if this effect does nothing, then it is skipped
         if (constant == 0 && Math.Abs(coefficient - 1) < MathUtils.EPSILON)
             return;
 
@@ -518,7 +518,7 @@ public class GameWorld : ISaveLoadable
         if (string.IsNullOrEmpty(description))
             throw new ArgumentException("May not be empty or null", nameof(description));
 
-        // Immediate is only allowed to use for the player dying
+        // Immediate is only allowed to be used for the player dying
         if (immediate)
         {
             if (!species.PlayerSpecies)
@@ -532,7 +532,33 @@ public class GameWorld : ISaveLoadable
 
         CreateRunIfMissing();
 
-        autoEvo!.AddExternalPopulationEffect(species, constant, coefficient, description, patch);
+        autoEvo!.AddExternalPopulationEffect(species, constant, coefficient, description, patch, immediate);
+    }
+
+    public bool HasExternalEffectForSpecies(Species species, bool negativeOnly)
+    {
+        if (autoEvo == null)
+            return false;
+
+        foreach (var externalEffect in autoEvo.ExternalEffects)
+        {
+            if (externalEffect.Species != species)
+                continue;
+
+            // Ignore immediate effects, which are from the player as these don't want to be reported in teh GUI
+            if (externalEffect.Immediate)
+                continue;
+
+            if (negativeOnly)
+            {
+                if (externalEffect.Constant > 0)
+                    continue;
+            }
+
+            return true;
+        }
+
+        return false;
     }
 
     /// <summary>
@@ -542,7 +568,7 @@ public class GameWorld : ISaveLoadable
     /// <param name="constant">Change amount (constant part)</param>
     /// <param name="description">What caused the change</param>
     /// <param name="immediate">
-    ///   If true applied immediately. Should only be used for the player dying
+    ///   If true, applied immediately. Should only be used for the player dying
     /// </param>
     /// <param name="coefficient">Change amount (coefficient part)</param>
     public void AlterSpeciesPopulationInCurrentPatch(Species species, int constant, string description,

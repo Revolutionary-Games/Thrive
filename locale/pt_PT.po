@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2025-04-12 20:18+0200\n"
+"POT-Creation-Date: 2025-04-11 10:12+0300\n"
 "PO-Revision-Date: 2025-04-04 10:42+0000\n"
 "Last-Translator: Anonymous <noreply@weblate.org>\n"
 "Language-Team: Portuguese (Portugal) <https://translate.revolutionarygamesstudio.com/projects/thrive/thrive-game/pt_PT/>\n"
@@ -528,6 +528,14 @@ msgstr "Unir eixos"
 
 msgid "BIOLUMINESCENT_VACUOLE"
 msgstr "Vacúolo Bioluminescente"
+
+#, fuzzy
+msgid "BIOLUMINESCENT_VACUOLE_DESCRIPTION"
+msgstr "Vacúolo Bioluminescente"
+
+#, fuzzy
+msgid "BIOLUMINESCENT_VACUOLE_PROCESSES_DESCRIPTION"
+msgstr "Transforma [thrive:compound type=\"atp\"][/thrive:compound] em [thrive:compound type=\"oxytoxy\"][/thrive:compound]. A taxa aumenta com a concentração de [thrive:compound type=\"oxygen\"][/thrive:compound]. Pode libertar toxinas pressionando [thrive:input]g_fire_toxin[/thrive:input]. Quando a quantidade de [thrive:compound type=\"oxytoxy\"][/thrive:compound] é baixa, pode libertar toxinas, mas terá um dano reduzido."
 
 msgid "BIOME_LABEL"
 msgstr "Bioma: {0}"
@@ -2046,27 +2054,6 @@ msgstr "Estuário"
 msgid "EVENT_ERUPTION_TOOLTIP"
 msgstr "Este é o codigo exato do commit que esta versão do Thrive foi compilada de"
 
-msgid "EVENT_METEOR_GLUCOSE"
-msgstr ""
-
-#, fuzzy
-msgid "EVENT_METEOR_IRON"
-msgstr "{0}: +{1} ATP"
-
-#, fuzzy
-msgid "EVENT_METEOR_PHOSPHATES"
-msgstr "Gerar fosfato"
-
-#, fuzzy
-msgid "EVENT_METEOR_PLAIN"
-msgstr "Este é o codigo exato do commit que esta versão do Thrive foi compilada de"
-
-msgid "EVENT_METEOR_RADIOACTIVE"
-msgstr ""
-
-msgid "EVENT_METEOR_SULFUR"
-msgstr ""
-
 msgid "EVOLUTIONARY_TREE"
 msgstr "Árvore evolutiva"
 
@@ -3338,6 +3325,13 @@ msgstr ""
 msgid "LOW_QUALITY_BACKGROUND_BLUR_TOOLTIP"
 msgstr ""
 
+msgid "LUCIFERASE"
+msgstr ""
+
+#, fuzzy
+msgid "LUCIFERASE_SYNTHESIS"
+msgstr "Quimiossíntese"
+
 msgid "LYSOSOME"
 msgstr "Lisossoma"
 
@@ -3468,15 +3462,6 @@ msgid "META_THREADS_TOOLTIP"
 msgstr ""
 "Não pode ser detectado automaticamente se o hyperthreading está ativo ou não.\n"
 "Isso afeta o número padrão de threads, pois os threads de hyperthreading não são tão rápidos quanto os núcleos reais do CPU."
-
-msgid "METEOR_IMPACT_EVENT"
-msgstr ""
-
-msgid "METEOR_STRIKE_START_EVENT_LOG_PLURAL"
-msgstr ""
-
-msgid "METEOR_STRIKE_START_EVENT_LOG_SINGULAR"
-msgstr ""
 
 msgid "METRICS"
 msgstr "Métricas de desempenho"
@@ -5607,6 +5592,14 @@ msgstr "tem uma mutação"
 msgid "SPECIES_LIST"
 msgstr "Lista de Espécies"
 
+#, fuzzy
+msgid "SPECIES_MEMBER_IMPACT_ON_POP"
+msgstr "Nome da espécie é demasiado longo!"
+
+#, fuzzy
+msgid "SPECIES_MEMBER_IMPACT_ON_POPULATION_EXPLANATION"
+msgstr "(custo de organelas, membranas e outros itens no editor)"
+
 msgid "SPECIES_NAME_DOT_DOT_DOT"
 msgstr "Nome da espécie..."
 
@@ -6281,9 +6274,6 @@ msgstr "Oxitoxissoma"
 msgid "TOXISOME_DESCRIPTION"
 msgstr "O lisossoma é um organelo ligado à membrana que contém enzimas hidrolíticas capazes de decompor várias biomoléculas. Os lisossomas permitem à célula digerir materiais ingeridos por endocitose e limpar os resíduos da célula num processo chamado [b]autofagia[/b]."
 
-msgid "TO_BE_IMPLEMENTED"
-msgstr "A ser implementado."
-
 msgid "TRANSLATORS"
 msgstr "Tradutores"
 
@@ -6545,6 +6535,13 @@ msgstr ""
 
 #, fuzzy
 msgid "TUTORIAL_MICROBE_STAGE_LEAVE_COLONY_TEXT"
+msgstr ""
+"Entraste no modo de desvinculação. Neste modo podes clicar num membro da colónia para o desvincular.\n"
+"\n"
+"Para abandonar a colónia totalmente podes clicar na tua própria célula ou pressionar o botão Desvincular tudo."
+
+#, fuzzy
+msgid "TUTORIAL_MICROBE_STAGE_MEMBER_DIED"
 msgstr ""
 "Entraste no modo de desvinculação. Neste modo podes clicar num membro da colónia para o desvincular.\n"
 "\n"
@@ -8802,6 +8799,9 @@ msgstr "Ampliar"
 msgid "ZOOM_OUT"
 msgstr "Reduzir"
 
+#~ msgid "TO_BE_IMPLEMENTED"
+#~ msgstr "A ser implementado."
+
 #, fuzzy
 #~ msgid "MICROBE_STAGE_DAY_NIGHT_TEXT"
 #~ msgstr ""
@@ -8984,6 +8984,10 @@ msgstr "Reduzir"
 #, fuzzy
 #~ msgid "ERUPTION_IN"
 #~ msgstr "reproduzido"
+
+#, fuzzy
+#~ msgid "EVENT_TOOLTIP_ERUPTION"
+#~ msgstr "{0}: +{1} ATP"
 
 #~ msgid "THE_AMOUNT_OF_GLUCOSE_HAS_BEEN_REDUCED"
 #~ msgstr "A quantidade de glicose foi reduzida para {0} da quantidade anterior."

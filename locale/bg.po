@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2025-04-12 20:18+0200\n"
+"POT-Creation-Date: 2025-04-11 10:12+0300\n"
 "PO-Revision-Date: 2025-04-04 10:42+0000\n"
 "Last-Translator: Anonymous <noreply@weblate.org>\n"
 "Language-Team: Bulgarian <https://translate.revolutionarygamesstudio.com/projects/thrive/thrive-game/bg/>\n"
@@ -527,6 +527,14 @@ msgstr "Свързване на осите"
 
 msgid "BIOLUMINESCENT_VACUOLE"
 msgstr "Биолуминесцентна вакуола"
+
+#, fuzzy
+msgid "BIOLUMINESCENT_VACUOLE_DESCRIPTION"
+msgstr "Биолуминесцентна вакуола"
+
+#, fuzzy
+msgid "BIOLUMINESCENT_VACUOLE_PROCESSES_DESCRIPTION"
+msgstr "Превръща [thrive:compound type=\"atp\"]АТФ[/thrive:compound] в [thrive:compound type=\"oxytoxy\"]окситоксин[/thrive:compound]. Количеството зависи от концентрацията на [thrive:compound type=\"oxygen\"]кислород[/thrive:compound] в околната среда. Изстрелва токсини с натискане на [thrive:input]g_fire_toxin[/thrive:input]. Тяхната ефективност зависи от количеството на [thrive:compound type=\"oxytoxy\"]окситоксин[/thrive:compound] в клетката."
 
 msgid "BIOME_LABEL"
 msgstr "Биом: {0}"
@@ -2123,27 +2131,6 @@ msgstr "Естуар"
 msgid "EVENT_ERUPTION_TOOLTIP"
 msgstr "Това е кодовото наименование на текущата версия на „Thrive“"
 
-msgid "EVENT_METEOR_GLUCOSE"
-msgstr ""
-
-#, fuzzy
-msgid "EVENT_METEOR_IRON"
-msgstr "{0}: +{1} АТФ"
-
-#, fuzzy
-msgid "EVENT_METEOR_PHOSPHATES"
-msgstr "Създаване на фосфат"
-
-#, fuzzy
-msgid "EVENT_METEOR_PLAIN"
-msgstr "Това е кодовото наименование на текущата версия на „Thrive“"
-
-msgid "EVENT_METEOR_RADIOACTIVE"
-msgstr ""
-
-msgid "EVENT_METEOR_SULFUR"
-msgstr ""
-
 msgid "EVOLUTIONARY_TREE"
 msgstr "Еволюционно дърво"
 
@@ -3449,6 +3436,13 @@ msgstr ""
 msgid "LOW_QUALITY_BACKGROUND_BLUR_TOOLTIP"
 msgstr ""
 
+msgid "LUCIFERASE"
+msgstr ""
+
+#, fuzzy
+msgid "LUCIFERASE_SYNTHESIS"
+msgstr "Секреция"
+
 msgid "LYSOSOME"
 msgstr "Лизозома"
 
@@ -3579,15 +3573,6 @@ msgid "META_THREADS_TOOLTIP"
 msgstr ""
 "Проверката за хипернишковата технология е неуспешна.\n"
 "Броят на нишките по подразбиране зависи от това, понеже хипернишките са по-бавни от физическите ядра на процесора."
-
-msgid "METEOR_IMPACT_EVENT"
-msgstr ""
-
-msgid "METEOR_STRIKE_START_EVENT_LOG_PLURAL"
-msgstr ""
-
-msgid "METEOR_STRIKE_START_EVENT_LOG_SINGULAR"
-msgstr ""
 
 msgid "METRICS"
 msgstr "Показатели за производителност"
@@ -5753,6 +5738,14 @@ msgstr "претърпяха мутация"
 msgid "SPECIES_LIST"
 msgstr "Списък на създанията"
 
+#, fuzzy
+msgid "SPECIES_MEMBER_IMPACT_ON_POP"
+msgstr "Наименованието е твърде дълго!"
+
+#, fuzzy
+msgid "SPECIES_MEMBER_IMPACT_ON_POPULATION_EXPLANATION"
+msgstr "(определя разхода на мутационни точки в редактора)"
+
 msgid "SPECIES_NAME_DOT_DOT_DOT"
 msgstr "Наименование..."
 
@@ -6429,9 +6422,6 @@ msgstr "Окситоксизома"
 msgid "TOXISOME_DESCRIPTION"
 msgstr "Лизозомата е мембранен органел, съдържащ хидролази, които разграждат различните биомолекули. Тя позволява усвояването на обектите, погълнати чрез ендоцитоза и изхвърлянето на отпадъчните продукти на клетката в процес, който се нарича [b]автофагия[/b]."
 
-msgid "TO_BE_IMPLEMENTED"
-msgstr "В процес на разработка."
-
 msgid "TRANSLATORS"
 msgstr "Преводачи"
 
@@ -6702,6 +6692,15 @@ msgstr ""
 "\n"
 "За да се възпроизведете, трябва да напуснете клетъчната колония.\n"
 "За разпадане на клетъчната колония, натиснете [thrive:input]g_unbind_all[/thrive:input]."
+
+#, fuzzy
+msgid "TUTORIAL_MICROBE_STAGE_MEMBER_DIED"
+msgstr ""
+"Вашата клетка е погълната, това означава, че поглъщащата клетка ще започне храносмилането си.\n"
+"\n"
+"Напредъкът на храносмилането се показва в лентата на здравето (долу вдясно) като процент. Вашата клетка ще умре, след като той достигне 100% или бъде достигнато максималното време на изчакване.\n"
+"\n"
+"Натиснете бутона за извършване на самоубийство, за да пропуснете този процес, но не забравяйте, че винаги има шанс да се спасите!"
 
 #, fuzzy
 msgid "TUTORIAL_MICROBE_STAGE_OPEN_PROCESS_PANEL"
@@ -9019,6 +9018,9 @@ msgstr "Приближаване"
 msgid "ZOOM_OUT"
 msgstr "Отдалечаване"
 
+#~ msgid "TO_BE_IMPLEMENTED"
+#~ msgstr "В процес на разработка."
+
 #, fuzzy
 #~ msgid "MICROBE_STAGE_DAY_NIGHT_TEXT"
 #~ msgstr ""
@@ -9216,6 +9218,10 @@ msgstr "Отдалечаване"
 #, fuzzy
 #~ msgid "ERUPTION_IN"
 #~ msgstr "Пъпкуване"
+
+#, fuzzy
+#~ msgid "EVENT_TOOLTIP_ERUPTION"
+#~ msgstr "{0}: +{1} АТФ"
 
 #~ msgid "THE_AMOUNT_OF_GLUCOSE_HAS_BEEN_REDUCED"
 #~ msgstr "Глюкозата се понижи на {0} от предишното си състояние."
@@ -9832,14 +9838,6 @@ msgstr "Отдалечаване"
 
 #~ msgid "NOT_RUNNING_DOT"
 #~ msgstr "Не се изпълнява."
-
-#~ msgid "TUTORIAL_MICROBE_STAGE_ENGULED_TEXT"
-#~ msgstr ""
-#~ "Вашата клетка е погълната, това означава, че поглъщащата клетка ще започне храносмилането си.\n"
-#~ "\n"
-#~ "Напредъкът на храносмилането се показва в лентата на здравето (долу вдясно) като процент. Вашата клетка ще умре, след като той достигне 100% или бъде достигнато максималното време на изчакване.\n"
-#~ "\n"
-#~ "Натиснете бутона за извършване на самоубийство, за да пропуснете този процес, но не забравяйте, че винаги има шанс да се спасите!"
 
 #~ msgid "EDITOR_TUTORIAL_CELL_TEXT"
 #~ msgstr ""

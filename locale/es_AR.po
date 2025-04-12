@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2025-04-12 20:18+0200\n"
+"POT-Creation-Date: 2025-04-11 10:12+0300\n"
 "PO-Revision-Date: 2025-04-04 10:42+0000\n"
 "Last-Translator: Anonymous <noreply@weblate.org>\n"
 "Language-Team: Spanish (Argentina) <https://translate.revolutionarygamesstudio.com/projects/thrive/thrive-game/es_AR/>\n"
@@ -527,6 +527,16 @@ msgstr "Unir Axis"
 #, fuzzy
 msgid "BIOLUMINESCENT_VACUOLE"
 msgstr "Vacuola Bioluminiscente"
+
+#, fuzzy
+msgid "BIOLUMINESCENT_VACUOLE_DESCRIPTION"
+msgstr "Vacuola Bioluminiscente"
+
+#, fuzzy
+msgid "BIOLUMINESCENT_VACUOLE_PROCESSES_DESCRIPTION"
+msgstr ""
+"Vacuola de\n"
+"Toxinas"
 
 #, fuzzy
 msgid "BIOME_LABEL"
@@ -1995,27 +2005,6 @@ msgstr "Estuario"
 msgid "EVENT_ERUPTION_TOOLTIP"
 msgstr "Disparar toxina"
 
-msgid "EVENT_METEOR_GLUCOSE"
-msgstr ""
-
-#, fuzzy
-msgid "EVENT_METEOR_IRON"
-msgstr "Cueva marítima"
-
-#, fuzzy
-msgid "EVENT_METEOR_PHOSPHATES"
-msgstr "Spawnear fosfato"
-
-#, fuzzy
-msgid "EVENT_METEOR_PLAIN"
-msgstr "Disparar toxina"
-
-msgid "EVENT_METEOR_RADIOACTIVE"
-msgstr ""
-
-msgid "EVENT_METEOR_SULFUR"
-msgstr ""
-
 msgid "EVOLUTIONARY_TREE"
 msgstr ""
 
@@ -3299,6 +3288,13 @@ msgstr "Borrosidad del fondo:"
 msgid "LOW_QUALITY_BACKGROUND_BLUR_TOOLTIP"
 msgstr "Borrosidad del fondo:"
 
+msgid "LUCIFERASE"
+msgstr ""
+
+#, fuzzy
+msgid "LUCIFERASE_SYNTHESIS"
+msgstr "Fotosíntesis"
+
 #, fuzzy
 msgid "LYSOSOME"
 msgstr "Oxitocina"
@@ -3437,15 +3433,6 @@ msgstr ""
 #, fuzzy
 msgid "META_THREADS_TOOLTIP"
 msgstr "Hilos actuales:"
-
-msgid "METEOR_IMPACT_EVENT"
-msgstr ""
-
-msgid "METEOR_STRIKE_START_EVENT_LOG_PLURAL"
-msgstr ""
-
-msgid "METEOR_STRIKE_START_EVENT_LOG_SINGULAR"
-msgstr ""
 
 #, fuzzy
 msgid "METRICS"
@@ -5542,6 +5529,13 @@ msgstr "posee una mutación"
 msgid "SPECIES_LIST"
 msgstr ""
 
+msgid "SPECIES_MEMBER_IMPACT_ON_POP"
+msgstr ""
+
+#, fuzzy
+msgid "SPECIES_MEMBER_IMPACT_ON_POPULATION_EXPLANATION"
+msgstr "Normal"
+
 msgid "SPECIES_NAME_DOT_DOT_DOT"
 msgstr ""
 
@@ -6212,9 +6206,6 @@ msgstr "Oxitocina"
 msgid "TOXISOME_DESCRIPTION"
 msgstr "población:"
 
-msgid "TO_BE_IMPLEMENTED"
-msgstr ""
-
 msgid "TRANSLATORS"
 msgstr ""
 
@@ -6404,6 +6395,10 @@ msgstr "Usá W, A, S y D y el mouse para moverte. E para disparar OxiToxi NT si 
 
 #, fuzzy
 msgid "TUTORIAL_MICROBE_STAGE_LEAVE_COLONY_TEXT"
+msgstr "Usá W, A, S y D y el mouse para moverte. E para disparar OxiToxi NT si tenés una vacuola de toxinas. G para activar o desactivar el modo engullir."
+
+#, fuzzy
+msgid "TUTORIAL_MICROBE_STAGE_MEMBER_DIED"
 msgstr "Usá W, A, S y D y el mouse para moverte. E para disparar OxiToxi NT si tenés una vacuola de toxinas. G para activar o desactivar el modo engullir."
 
 #, fuzzy
@@ -9088,6 +9083,10 @@ msgstr "Alejar la pantalla"
 #, fuzzy
 #~ msgid "ERUPTION_IN"
 #~ msgstr "población:"
+
+#, fuzzy
+#~ msgid "EVENT_TOOLTIP_ERUPTION"
+#~ msgstr "Cueva marítima"
 
 #, fuzzy
 #~ msgid "WIKI_CHEMOSYNTHESIS"

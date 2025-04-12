@@ -13,7 +13,7 @@ using Container = Godot.Container;
 public partial class NewGameSettings : ControlWithInput
 {
     /// <summary>
-    ///   When true this menu works differently to facilitate beginning the microbe stage in a descended game
+    ///   When true, this menu works differently to facilitate beginning the microbe stage in a descended game
     /// </summary>
     [Export]
     public bool Descending;
@@ -181,6 +181,13 @@ public partial class NewGameSettings : ControlWithInput
     private LineEdit compoundDensityReadout = null!;
     private HSlider playerDeathPopulationPenalty = null!;
     private LineEdit playerDeathPopulationPenaltyReadout = null!;
+
+    [Export]
+    private HSlider playerSpeciesAIPopulationStrength = null!;
+
+    [Export]
+    private LineEdit playerSpeciesAIPopulationStrengthReadout = null!;
+
     private HSlider glucoseDecayRate = null!;
     private LineEdit glucoseDecayRateReadout = null!;
     private HSlider osmoregulationMultiplier = null!;
@@ -241,7 +248,7 @@ public partial class NewGameSettings : ControlWithInput
     private SelectedOptionsTab selectedOptionsTab;
 
     /// <summary>
-    ///   If not null this is used as the base to start a new descended game
+    ///   If not null, this is used as the base to start a new descended game
     /// </summary>
     private GameProperties? descendedGame;
 
@@ -371,6 +378,8 @@ public partial class NewGameSettings : ControlWithInput
         // Make sure non-lawk options are disabled if lawk is set to true on start-up
         UpdateLifeOriginOptions(lawkButton.ButtonPressed);
 
+        UpdatePlayerPopulationStrengthReadout((float)playerSpeciesAIPopulationStrength.Value);
+
         OnExperimentalFeaturesChanged(experimentalFeatures.ButtonPressed);
 
         if (Descending)
@@ -398,7 +407,7 @@ public partial class NewGameSettings : ControlWithInput
 
     public void OpenFromMainMenu()
     {
-        // Shouldn't do anything if options is already open.
+        // Shouldn't do anything if options are already open.
         if (Visible)
             return;
 
@@ -424,6 +433,8 @@ public partial class NewGameSettings : ControlWithInput
         aiMutationRate.Value = difficulty.AIMutationMultiplier;
         compoundDensity.Value = difficulty.CompoundDensity;
         playerDeathPopulationPenalty.Value = difficulty.PlayerDeathPopulationPenalty;
+        playerSpeciesAIPopulationStrength.Value = difficulty.PlayerSpeciesAIPopulationStrength;
+        UpdatePlayerPopulationStrengthReadout(difficulty.PlayerSpeciesAIPopulationStrength);
         glucoseDecayRate.Value = difficulty.GlucoseDecay * 100;
         osmoregulationMultiplier.Value = difficulty.OsmoregulationMultiplier;
         autoEvoStrengthMultiplier.Value = difficulty.PlayerAutoEvoStrength;
@@ -464,8 +475,9 @@ public partial class NewGameSettings : ControlWithInput
         // Always set prototypes to true as the player must have been there to descend
         includeMulticellularButton.ButtonPressed = true;
 
-        // And also turn LAWK off because if the player initially played with it on they'll probably want to experience
-        // what they missed now. If they still wanted to play with LAWK on they can just put the checkbox back
+        // And also turn LAWK off because if the player initially played with it on, they'll probably want to experience
+        // what they missed now.
+        // If they still want to play with LAWK on, they can just put the checkbox back
         lawkButton.ButtonPressed = false;
 
         easterEggsButton.ButtonPressed = settings.EasterEggs;
@@ -576,7 +588,7 @@ public partial class NewGameSettings : ControlWithInput
     }
 
     /// <summary>
-    ///   Changes the active settings tab that is displayed, or returns if the tab is already active.
+    ///   Changes the active settings tab that is displayed or returns if the tab is already active.
     /// </summary>
     private void ChangeSettingsTab(string newTabName)
     {
@@ -628,6 +640,7 @@ public partial class NewGameSettings : ControlWithInput
                 AIMutationMultiplier = (float)aiMutationRate.Value,
                 CompoundDensity = (float)compoundDensity.Value,
                 PlayerDeathPopulationPenalty = (float)playerDeathPopulationPenalty.Value,
+                PlayerSpeciesAIPopulationStrength = (float)playerSpeciesAIPopulationStrength.Value,
                 GlucoseDecay = (float)glucoseDecayRate.Value * 0.01f,
                 OsmoregulationMultiplier = (float)osmoregulationMultiplier.Value,
                 PlayerAutoEvoStrength = (float)autoEvoStrengthMultiplier.Value,
@@ -695,7 +708,7 @@ public partial class NewGameSettings : ControlWithInput
         }
         else
         {
-            // People who disable the cutscene are impatient anyway so use a reduced fade time
+            // People who disable the cutscene are impatient anyway, so use a reduced fade time
             TransitionManager.Instance.AddSequence(
                 TransitionManager.Instance.CreateScreenFade(ScreenFade.FadeType.FadeOut, 0.2f), OnStartGame);
         }
@@ -768,6 +781,7 @@ public partial class NewGameSettings : ControlWithInput
         aiMutationRate.Value = preset.AIMutationMultiplier;
         compoundDensity.Value = preset.CompoundDensity;
         playerDeathPopulationPenalty.Value = preset.PlayerDeathPopulationPenalty;
+        playerSpeciesAIPopulationStrength.Value = preset.PlayerSpeciesAIPopulationStrength;
         glucoseDecayRate.Value = preset.GlucoseDecay * 100;
         osmoregulationMultiplier.Value = preset.OsmoregulationMultiplier;
         autoEvoStrengthMultiplier.Value = preset.PlayerAutoEvoStrength;
@@ -803,7 +817,15 @@ public partial class NewGameSettings : ControlWithInput
 
             if (Math.Abs((float)playerDeathPopulationPenalty.Value - preset.PlayerDeathPopulationPenalty)
                 > MathUtils.EPSILON)
+            {
                 continue;
+            }
+
+            if (Math.Abs((float)playerSpeciesAIPopulationStrength.Value - preset.PlayerSpeciesAIPopulationStrength) >
+                MathUtils.EPSILON)
+            {
+                continue;
+            }
 
             if ((int)glucoseDecayRate.Value != (int)(preset.GlucoseDecay * 100))
                 continue;
@@ -873,6 +895,20 @@ public partial class NewGameSettings : ControlWithInput
         playerDeathPopulationPenaltyReadout.Text = amount.ToString(CultureInfo.CurrentCulture);
 
         UpdateSelectedDifficultyPresetControl();
+    }
+
+    private void OnPlayerSpeciesAIPopulationStrengthValueChanged(double amount)
+    {
+        UpdatePlayerPopulationStrengthReadout((float)amount);
+
+        UpdateSelectedDifficultyPresetControl();
+    }
+
+    private void UpdatePlayerPopulationStrengthReadout(float amount)
+    {
+        amount = MathF.Round(amount * 100);
+        playerSpeciesAIPopulationStrengthReadout.Text = Localization.Translate("PERCENTAGE_VALUE")
+            .FormatSafe(amount.ToString(CultureInfo.CurrentCulture));
     }
 
     private void OnGlucoseDecayRateValueChanged(double percentage)
@@ -1014,14 +1050,14 @@ public partial class NewGameSettings : ControlWithInput
 
     private void OnGameSeedChangedFromBasic(string text)
     {
-        // Need different methods to handle each view, otherwise we overwrite caret position
+        // Need different methods to handle each view; otherwise we overwrite caret position
         gameSeedAdvanced.Text = text;
         SetSeed(text);
     }
 
     private void OnGameSeedChangedFromAdvanced(string text)
     {
-        // Need different methods to handle each view, otherwise we overwrite caret position
+        // Need different methods to handle each view; otherwise we overwrite caret position
         gameSeed.Text = text;
         SetSeed(text);
     }

@@ -16,7 +16,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=n != 1;\n"
-"X-Generator: Weblate 5.7.2\n"
+"X-Generator: Poedit 3.5\n"
 "Generated-By: Babel 2.8.0\n"
 
 msgid "2D_MOVEMENT_TYPE_SELECTION"
@@ -510,6 +510,12 @@ msgstr "Bind axes together"
 
 msgid "BIOLUMINESCENT_VACUOLE"
 msgstr "Bioluminescent Vacuole"
+
+msgid "BIOLUMINESCENT_VACUOLE_DESCRIPTION"
+msgstr "A vacuole that contains reaction sites where luciferase is consumed to release visible light. It is hypothesised that bioluminescence evolved originally as a protection mechanism against [thrive:compound type=\"oxygen\"][/thrive:compound]. When the Great Oxygenation Event happened microbes accustomed to anaerobic conditions faced a lot of new problems due to oxygen's very high reactivity that caused a lot of damage. These vacuoles can be added to increase oxygen resistance and get some pretty lights. In the future bioluminescence may be a means of communication."
+
+msgid "BIOLUMINESCENT_VACUOLE_PROCESSES_DESCRIPTION"
+msgstr "Uses [thrive:compound type=\"atp\"][/thrive:compound] to turn [thrive:compound type=\"oxygen\"][/thrive:compound] into light. Has no other gameplay impact yet except increasing the oxygen resistance."
 
 msgid "BIOME_LABEL"
 msgstr "Biome: {0}"
@@ -3243,6 +3249,12 @@ msgstr "Low resolution background blur"
 msgid "LOW_QUALITY_BACKGROUND_BLUR_TOOLTIP"
 msgstr "Makes background blur use a lower resolution, improving performance."
 
+msgid "LUCIFERASE"
+msgstr "Luciferase"
+
+msgid "LUCIFERASE_SYNTHESIS"
+msgstr "Luciferase Synthesis"
+
 msgid "LYSOSOME"
 msgstr "Lysosome"
 
@@ -5379,6 +5391,12 @@ msgstr "has mutated"
 msgid "SPECIES_LIST"
 msgstr "Species List"
 
+msgid "SPECIES_MEMBER_IMPACT_ON_POP"
+msgstr "Species members dying impact"
+
+msgid "SPECIES_MEMBER_IMPACT_ON_POPULATION_EXPLANATION"
+msgstr "(how much AI members of the player species dying or reproducing affects the population as external effects)"
+
 msgid "SPECIES_NAME_DOT_DOT_DOT"
 msgstr "Species name..."
 
@@ -6004,9 +6022,6 @@ msgstr "Toxisome"
 msgid "TOXISOME_DESCRIPTION"
 msgstr "A modified metabolosome responsible for the production of a primitive form of the toxic agent [thrive:compound type=\\\"oxytoxy\\\"][/thrive:compound]. Can be modified to switch the generated toxin type for other effects, which may require [thrive:compound type=\"oxygen\"][/thrive:compound] to produce."
 
-msgid "TO_BE_IMPLEMENTED"
-msgstr "To be Implemented."
-
 msgid "TRANSLATORS"
 msgstr "Translators"
 
@@ -6269,6 +6284,12 @@ msgstr ""
 "\n"
 "You need to leave the colony to get to the editor unless you plan to become multicellular.\n"
 "Exit the colony to resume your growth by pressing [thrive:input]g_unbind_all[/thrive:input]."
+
+msgid "TUTORIAL_MICROBE_STAGE_MEMBER_DIED"
+msgstr ""
+"A member of your species has just sadly died! This will affect your population as an external effect once you reach the editor.\n"
+"\n"
+"You can edit the behaviour of your species in the editor to tweak the AI behaviour. Or make helpful edits, like adding the chemoreceptor, that make the gameplay easier."
 
 msgid "TUTORIAL_MICROBE_STAGE_OPEN_PROCESS_PANEL"
 msgstr ""
@@ -9072,6 +9093,9 @@ msgstr "Zoom out"
 
 #~ msgid "GLOBAL_GLACIATION_EVENT_LOG"
 #~ msgstr "Global glaciation event has ended across all surface patches"
+
+#~ msgid "TO_BE_IMPLEMENTED"
+#~ msgstr "To be Implemented."
 
 #~ msgid "SHOW_TUTORIALS"
 #~ msgstr "Show tutorials"
