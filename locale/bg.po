@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2025-04-11 10:12+0300\n"
+"POT-Creation-Date: 2025-04-12 20:42+0200\n"
 "PO-Revision-Date: 2025-04-04 10:42+0000\n"
 "Last-Translator: Anonymous <noreply@weblate.org>\n"
 "Language-Team: Bulgarian <https://translate.revolutionarygamesstudio.com/projects/thrive/thrive-game/bg/>\n"
@@ -2131,6 +2131,27 @@ msgstr "Естуар"
 msgid "EVENT_ERUPTION_TOOLTIP"
 msgstr "Това е кодовото наименование на текущата версия на „Thrive“"
 
+msgid "EVENT_METEOR_GLUCOSE"
+msgstr ""
+
+#, fuzzy
+msgid "EVENT_METEOR_IRON"
+msgstr "{0}: +{1} АТФ"
+
+#, fuzzy
+msgid "EVENT_METEOR_PHOSPHATES"
+msgstr "Създаване на фосфат"
+
+#, fuzzy
+msgid "EVENT_METEOR_PLAIN"
+msgstr "Това е кодовото наименование на текущата версия на „Thrive“"
+
+msgid "EVENT_METEOR_RADIOACTIVE"
+msgstr ""
+
+msgid "EVENT_METEOR_SULFUR"
+msgstr ""
+
 msgid "EVOLUTIONARY_TREE"
 msgstr "Еволюционно дърво"
 
@@ -3573,6 +3594,15 @@ msgid "META_THREADS_TOOLTIP"
 msgstr ""
 "Проверката за хипернишковата технология е неуспешна.\n"
 "Броят на нишките по подразбиране зависи от това, понеже хипернишките са по-бавни от физическите ядра на процесора."
+
+msgid "METEOR_IMPACT_EVENT"
+msgstr ""
+
+msgid "METEOR_STRIKE_START_EVENT_LOG_PLURAL"
+msgstr ""
+
+msgid "METEOR_STRIKE_START_EVENT_LOG_SINGULAR"
+msgstr ""
 
 msgid "METRICS"
 msgstr "Показатели за производителност"
@@ -9218,10 +9248,6 @@ msgstr "Отдалечаване"
 #, fuzzy
 #~ msgid "ERUPTION_IN"
 #~ msgstr "Пъпкуване"
-
-#, fuzzy
-#~ msgid "EVENT_TOOLTIP_ERUPTION"
-#~ msgstr "{0}: +{1} АТФ"
 
 #~ msgid "THE_AMOUNT_OF_GLUCOSE_HAS_BEEN_REDUCED"
 #~ msgstr "Глюкозата се понижи на {0} от предишното си състояние."

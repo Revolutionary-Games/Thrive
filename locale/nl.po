@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2025-04-11 10:12+0300\n"
+"POT-Creation-Date: 2025-04-12 20:42+0200\n"
 "PO-Revision-Date: 2025-04-04 10:42+0000\n"
 "Last-Translator: Anonymous <noreply@weblate.org>\n"
 "Language-Team: Dutch <https://translate.revolutionarygamesstudio.com/projects/thrive/thrive-game/nl/>\n"
@@ -2014,6 +2014,27 @@ msgstr "Estuarium"
 msgid "EVENT_ERUPTION_TOOLTIP"
 msgstr "Dit is de exacte code commit die gebruikt is bij het compileren van deze versie van Thrive"
 
+msgid "EVENT_METEOR_GLUCOSE"
+msgstr ""
+
+#, fuzzy
+msgid "EVENT_METEOR_IRON"
+msgstr "{0}: +{1} ATP"
+
+#, fuzzy
+msgid "EVENT_METEOR_PHOSPHATES"
+msgstr "Plaats fosfaat"
+
+#, fuzzy
+msgid "EVENT_METEOR_PLAIN"
+msgstr "Dit is de exacte code commit die gebruikt is bij het compileren van deze versie van Thrive"
+
+msgid "EVENT_METEOR_RADIOACTIVE"
+msgstr ""
+
+msgid "EVENT_METEOR_SULFUR"
+msgstr ""
+
 msgid "EVOLUTIONARY_TREE"
 msgstr "Stamboom"
 
@@ -3429,6 +3450,15 @@ msgid "META_THREADS_TOOLTIP"
 msgstr ""
 "Het kon niet worden vastgesteld of hyperthreading aan staat.\n"
 "Dit heeft effect op de standaardhoeveelheid threads aangezien hyperthreading threads niet zo snel zijn als volwaardige CPU rekenkernen."
+
+msgid "METEOR_IMPACT_EVENT"
+msgstr ""
+
+msgid "METEOR_STRIKE_START_EVENT_LOG_PLURAL"
+msgstr ""
+
+msgid "METEOR_STRIKE_START_EVENT_LOG_SINGULAR"
+msgstr ""
 
 msgid "METRICS"
 msgstr "Prestatietellers"
@@ -9008,10 +9038,6 @@ msgstr "Uitzoomen"
 #, fuzzy
 #~ msgid "ERUPTION_IN"
 #~ msgstr "Ontkiemen"
-
-#, fuzzy
-#~ msgid "EVENT_TOOLTIP_ERUPTION"
-#~ msgstr "{0}: +{1} ATP"
 
 #~ msgid "THE_AMOUNT_OF_GLUCOSE_HAS_BEEN_REDUCED"
 #~ msgstr "De hoeveelheid glucose is verminderd tot {0} van de voorgaande hoeveelheid."

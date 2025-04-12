@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2025-04-11 10:12+0300\n"
+"POT-Creation-Date: 2025-04-12 20:42+0200\n"
 "PO-Revision-Date: 2025-04-04 10:42+0000\n"
 "Last-Translator: Anonymous <noreply@weblate.org>\n"
 "Language-Team: Hungarian <https://translate.revolutionarygamesstudio.com/projects/thrive/thrive-game/hu/>\n"
@@ -2125,6 +2125,29 @@ msgstr ""
 "Kitörési patch esemény\n"
 "További hidrogén-szulfidot és szén-dioxidot hoz létre"
 
+msgid "EVENT_METEOR_GLUCOSE"
+msgstr ""
+
+#, fuzzy
+msgid "EVENT_METEOR_IRON"
+msgstr "{0}: +{1} ATP"
+
+#, fuzzy
+msgid "EVENT_METEOR_PHOSPHATES"
+msgstr "Foszfát létrehozása"
+
+#, fuzzy
+msgid "EVENT_METEOR_PLAIN"
+msgstr ""
+"Kitörési patch esemény\n"
+"További hidrogén-szulfidot és szén-dioxidot hoz létre"
+
+msgid "EVENT_METEOR_RADIOACTIVE"
+msgstr ""
+
+msgid "EVENT_METEOR_SULFUR"
+msgstr ""
+
 #, fuzzy
 msgid "EVOLUTIONARY_TREE"
 msgstr "A Revolutionary Games Studio-tól"
@@ -3617,6 +3640,15 @@ msgid "META_THREADS_TOOLTIP"
 msgstr ""
 "Nem lehet automatikusan felismerni, hogy a hyperthreading engedélyezve van-e vagy sem.\n"
 "Ez befolyásolja a szálak alapértelmezett számát, mivel a hyperthreading szálak nem olyan gyorsak, mint a valódi CPU-magok."
+
+msgid "METEOR_IMPACT_EVENT"
+msgstr ""
+
+msgid "METEOR_STRIKE_START_EVENT_LOG_PLURAL"
+msgstr ""
+
+msgid "METEOR_STRIKE_START_EVENT_LOG_SINGULAR"
+msgstr ""
 
 msgid "METRICS"
 msgstr "Teljesítmény metrikák"
@@ -9252,10 +9284,6 @@ msgstr "Távolodás"
 #, fuzzy
 #~ msgid "ERUPTION_IN"
 #~ msgstr "Bimbózás"
-
-#, fuzzy
-#~ msgid "EVENT_TOOLTIP_ERUPTION"
-#~ msgstr "{0}: +{1} ATP"
 
 #~ msgid "THE_AMOUNT_OF_GLUCOSE_HAS_BEEN_REDUCED"
 #~ msgstr "A glükóz mennyisége {0}-ra/-re redukálódott az előző mennyiséghez képest."

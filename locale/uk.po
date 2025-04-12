@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2025-04-11 10:12+0300\n"
+"POT-Creation-Date: 2025-04-12 20:42+0200\n"
 "PO-Revision-Date: 2025-04-04 10:42+0000\n"
 "Last-Translator: Anonymous <noreply@weblate.org>\n"
 "Language-Team: Ukrainian <https://translate.revolutionarygamesstudio.com/projects/thrive/thrive-game/uk/>\n"
@@ -2013,6 +2013,27 @@ msgstr "Гирло"
 msgid "EVENT_ERUPTION_TOOLTIP"
 msgstr "Це точний підтверджувальний код компіляції цієї версії Thrive"
 
+msgid "EVENT_METEOR_GLUCOSE"
+msgstr ""
+
+#, fuzzy
+msgid "EVENT_METEOR_IRON"
+msgstr "{0}: +{1} АТФ"
+
+#, fuzzy
+msgid "EVENT_METEOR_PHOSPHATES"
+msgstr "Спавн фосфатів"
+
+#, fuzzy
+msgid "EVENT_METEOR_PLAIN"
+msgstr "Це точний підтверджувальний код компіляції цієї версії Thrive"
+
+msgid "EVENT_METEOR_RADIOACTIVE"
+msgstr ""
+
+msgid "EVENT_METEOR_SULFUR"
+msgstr ""
+
 msgid "EVOLUTIONARY_TREE"
 msgstr "Еволюційне дерево"
 
@@ -3411,6 +3432,15 @@ msgid "META_THREADS_TOOLTIP"
 msgstr ""
 "Його не можна автоматично, увімкнене гіперпотокове або ні.\n"
 "Це впливає на кількість потоків за замовчуваням, бо гіперпотоки не такі швидкі, як реальні ядра ЦП."
+
+msgid "METEOR_IMPACT_EVENT"
+msgstr ""
+
+msgid "METEOR_STRIKE_START_EVENT_LOG_PLURAL"
+msgstr ""
+
+msgid "METEOR_STRIKE_START_EVENT_LOG_SINGULAR"
+msgstr ""
 
 msgid "METRICS"
 msgstr "Панель змін"
@@ -8945,10 +8975,6 @@ msgstr "Віддалитись"
 #, fuzzy
 #~ msgid "ERUPTION_IN"
 #~ msgstr "Брункування"
-
-#, fuzzy
-#~ msgid "EVENT_TOOLTIP_ERUPTION"
-#~ msgstr "{0}: +{1} АТФ"
 
 #~ msgid "THE_AMOUNT_OF_GLUCOSE_HAS_BEEN_REDUCED"
 #~ msgstr "Кількість глюкози зменшена до {0} з попередньої кількості."
