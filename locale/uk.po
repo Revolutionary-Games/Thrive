@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2025-04-08 22:31+0200\n"
+"POT-Creation-Date: 2025-04-12 20:18+0200\n"
 "PO-Revision-Date: 2025-04-04 10:42+0000\n"
 "Last-Translator: Anonymous <noreply@weblate.org>\n"
 "Language-Team: Ukrainian <https://translate.revolutionarygamesstudio.com/projects/thrive/thrive-game/uk/>\n"
@@ -2005,6 +2005,27 @@ msgstr "Гирло"
 msgid "EVENT_ERUPTION_TOOLTIP"
 msgstr "Це точний підтверджувальний код компіляції цієї версії Thrive"
 
+msgid "EVENT_METEOR_GLUCOSE"
+msgstr ""
+
+#, fuzzy
+msgid "EVENT_METEOR_IRON"
+msgstr "{0}: +{1} АТФ"
+
+#, fuzzy
+msgid "EVENT_METEOR_PHOSPHATES"
+msgstr "Спавн фосфатів"
+
+#, fuzzy
+msgid "EVENT_METEOR_PLAIN"
+msgstr "Це точний підтверджувальний код компіляції цієї версії Thrive"
+
+msgid "EVENT_METEOR_RADIOACTIVE"
+msgstr ""
+
+msgid "EVENT_METEOR_SULFUR"
+msgstr ""
+
 msgid "EVOLUTIONARY_TREE"
 msgstr "Еволюційне дерево"
 
@@ -2371,6 +2392,10 @@ msgstr ""
 #, fuzzy
 msgid "GLOBAL_GLACIATION_EVENT"
 msgstr "Загальна популяція:"
+
+#, fuzzy
+msgid "GLOBAL_GLACIATION_EVENT_TOOLTIP"
+msgstr "Перейдіть до стадії пробудження. Доступно, коли у вас достатня сила мозку (тип клітини з аксонами)."
 
 msgid "GLOBAL_GLACIATION_EVENT_WARNING_LOG_PLURAL"
 msgstr ""
@@ -8716,10 +8741,6 @@ msgid "ZOOM_OUT"
 msgstr "Віддалитись"
 
 #, fuzzy
-#~ msgid "GLOBAL_GLACIATION_EVENT_TOOLTIP"
-#~ msgstr "Перейдіть до стадії пробудження. Доступно, коли у вас достатня сила мозку (тип клітини з аксонами)."
-
-#, fuzzy
 #~ msgid "MICROBE_STAGE_DAY_NIGHT_TEXT"
 #~ msgstr ""
 #~ "Слідкуйте за змінами [b]показника сонячного світла[/b] на панелі оточення.\n"
@@ -8922,10 +8943,6 @@ msgstr "Віддалитись"
 #, fuzzy
 #~ msgid "ERUPTION_IN"
 #~ msgstr "Брункування"
-
-#, fuzzy
-#~ msgid "EVENT_TOOLTIP_ERUPTION"
-#~ msgstr "{0}: +{1} АТФ"
 
 #~ msgid "THE_AMOUNT_OF_GLUCOSE_HAS_BEEN_REDUCED"
 #~ msgstr "Кількість глюкози зменшена до {0} з попередньої кількості."

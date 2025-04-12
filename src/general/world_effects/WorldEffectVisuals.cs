@@ -1,5 +1,22 @@
 ﻿using System.Collections.Generic;
 
+public enum WorldEffectTypes
+{
+    /// <summary>
+    ///   Used as a placeholder value instead of null
+    /// </summary>
+    None,
+
+    UnderwaterVentEruption,
+    GlobalGlaciation,
+    MeteorPlainImpact,
+    MeteorIronImpact,
+    MeteorPhosphatesImpact,
+    MeteorRadioactiveImpact,
+    MeteorGlucoseImpact,
+    MeteorSulfurImpact,
+}
+
 public class WorldEffectVisuals
 {
     public static readonly Dictionary<WorldEffectTypes, string> EventsIcons = new()
@@ -16,30 +33,13 @@ public class WorldEffectVisuals
 
     public static readonly Dictionary<WorldEffectTypes, string> EventsTooltips = new()
     {
-        [WorldEffectTypes.UnderwaterVentEruption] = "EVENT_ERUPTION_TOOLTIP",
-        [WorldEffectTypes.GlobalGlaciation] = "GLOBAL_GLACIATION_EVENT_TOOLTIP",
-        [WorldEffectTypes.MeteorPlainImpact] = "EVENT_METEOR_PLAIN",
-        [WorldEffectTypes.MeteorIronImpact] = "EVENT_METEOR_IRON",
-        [WorldEffectTypes.MeteorPhosphatesImpact] = "EVENT_METEOR_PHOSPHATES",
-        [WorldEffectTypes.MeteorRadioactiveImpact] = "EVENT_METEOR_RADIOACTIVE",
-        [WorldEffectTypes.MeteorGlucoseImpact] = "EVENT_METEOR_GLUCOSE",
-        [WorldEffectTypes.MeteorSulfurImpact] = "EVENT_METEOR_SULFUR",
+        [WorldEffectTypes.UnderwaterVentEruption] = Localization.Translate("EVENT_ERUPTION_TOOLTIP"),
+        [WorldEffectTypes.GlobalGlaciation] = Localization.Translate("GLOBAL_GLACIATION_EVENT_TOOLTIP"),
+        [WorldEffectTypes.MeteorPlainImpact] = Localization.Translate("EVENT_METEOR_PLAIN"),
+        [WorldEffectTypes.MeteorIronImpact] = Localization.Translate("EVENT_METEOR_IRON"),
+        [WorldEffectTypes.MeteorPhosphatesImpact] = Localization.Translate("EVENT_METEOR_PHOSPHATES"),
+        [WorldEffectTypes.MeteorRadioactiveImpact] = Localization.Translate("EVENT_METEOR_RADIOACTIVE"),
+        [WorldEffectTypes.MeteorGlucoseImpact] = Localization.Translate("EVENT_METEOR_GLUCOSE"),
+        [WorldEffectTypes.MeteorSulfurImpact] = Localization.Translate("EVENT_METEOR_SULFUR"),
     };
-
-    public enum WorldEffectTypes
-    {
-        /// <summary>
-        ///   Used as a placeholder value instead of null
-        /// </summary>
-        None,
-
-        UnderwaterVentEruption,
-        GlobalGlaciation,
-        MeteorPlainImpact,
-        MeteorIronImpact,
-        MeteorPhosphatesImpact,
-        MeteorRadioactiveImpact,
-        MeteorGlucoseImpact,
-        MeteorSulfurImpact,
-    }
 }

@@ -81,7 +81,7 @@ public class UnderwaterVentEruptionEffect : IWorldEffect
                     true, true, "EruptionEvent.svg");
             }
 
-            patch.AddPatchEventRecord(WorldEffectVisuals.WorldEffectTypes.UnderwaterVentEruption, totalTimePassed);
+            patch.AddPatchEventRecord(WorldEffectTypes.UnderwaterVentEruption, totalTimePassed);
         }
     }
 }

@@ -87,7 +87,7 @@ public class GlobalGlaciationEvent : IWorldEffect
         {
             if (IsSurfacePatch(patch))
             {
-                patch.AddPatchEventRecord(WorldEffectVisuals.WorldEffectTypes.GlobalGlaciation, totalTimePassed);
+                patch.AddPatchEventRecord(WorldEffectTypes.GlobalGlaciation, totalTimePassed);
             }
         }
     }
@@ -218,7 +218,7 @@ public class GlobalGlaciationEvent : IWorldEffect
         patch.LogEvent(new LocalizedString("GLOBAL_GLACIATION_EVENT"),
             true, true, "GlobalGlaciationEvent.svg");
 
-        patch.AddPatchEventRecord(WorldEffectVisuals.WorldEffectTypes.GlobalGlaciation, totalTimePassed);
+        patch.AddPatchEventRecord(WorldEffectTypes.GlobalGlaciation, totalTimePassed);
     }
 
     private void LogHeadUpEventWarning()

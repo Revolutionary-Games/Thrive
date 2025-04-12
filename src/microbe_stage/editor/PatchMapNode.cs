@@ -32,13 +32,10 @@ public partial class PatchMapNode : MarginContainer
     public NodePath UnknownLabelPath = null!;
 
     [Export]
-    public NodePath EventIconsPath = null!;
-
-    [Export]
     public string UnknownTextureFilePath = null!;
 
-    // TODO: Move this to Constants.cs
-    private const float HalfBlinkInterval = 0.5f;
+    [Export]
+    private HBoxContainer eventIconsContainer = null!;
 
 #pragma warning disable CA2213
 
@@ -48,7 +45,6 @@ public partial class PatchMapNode : MarginContainer
     private Panel? markPanel;
     private Panel? adjacentHighlightPanel;
     private Label? unknownLabel;
-    private HBoxContainer eventIconsContainer = null!;
 
     private Texture2D? patchIcon;
 #pragma warning restore CA2213
@@ -202,7 +198,6 @@ public partial class PatchMapNode : MarginContainer
         markPanel = GetNode<Panel>(MarkPanelPath);
         adjacentHighlightPanel = GetNode<Panel>(AdjacentPanelPath);
         unknownLabel = GetNode<Label>(UnknownLabelPath);
-        eventIconsContainer = GetNode<HBoxContainer>(EventIconsPath);
 
         UpdateSelectHighlightRing();
         UpdateMarkRing();
@@ -217,7 +212,7 @@ public partial class PatchMapNode : MarginContainer
         base._Process(delta);
 
         currentBlinkTime += delta;
-        if (currentBlinkTime > HalfBlinkInterval)
+        if (currentBlinkTime > Constants.HALF_BLINK_INTERVAL)
         {
             currentBlinkTime = 0;
 
@@ -279,23 +274,20 @@ public partial class PatchMapNode : MarginContainer
         }
     }
 
-    public void ShowEventVisuals(IReadOnlyList<WorldEffectVisuals.WorldEffectTypes> list)
+    public void ShowEventVisuals(IReadOnlyList<WorldEffectTypes> list)
     {
-        if (eventIconsContainer == null)
-            return;
-
         eventIconsContainer.QueueFreeChildren(false);
 
         foreach (var effectType in list)
         {
-            var eventIcon = eventIconScene.Instantiate<PatchMapEventIcon>();
+            var eventIcon = (TextureRect)eventIconScene.Instantiate();
 
             if (!WorldEffectVisuals.EventsTooltips.TryGetValue(effectType, out var tooltipText))
             {
                 throw new Exception($"Missing tooltip for {effectType}");
             }
 
-            eventIcon.TooltipText = Localization.Translate(tooltipText);
+            eventIcon.TooltipText = tooltipText;
 
             if (!WorldEffectVisuals.EventsIcons.TryGetValue(effectType, out var iconPath) ||
                 string.IsNullOrEmpty(iconPath))
@@ -337,7 +329,7 @@ public partial class PatchMapNode : MarginContainer
                 MarkPanelPath.Dispose();
                 AdjacentPanelPath.Dispose();
                 UnknownLabelPath.Dispose();
-                EventIconsPath.Dispose();
+                eventIconsContainer.Dispose();
             }
         }
 

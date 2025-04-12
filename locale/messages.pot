@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Thrive VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2025-04-08 22:31+0200\n"
+"POT-Creation-Date: 2025-04-12 20:18+0200\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -2563,8 +2563,33 @@ msgstr ""
 msgid "ESTUARY"
 msgstr ""
 
+#: ../src/general/world_effects/WorldEffectVisuals.cs:19
 #: ../src/microbe_stage/editor/PatchMapEventIcon.tscn:8
 msgid "EVENT_ERUPTION_TOOLTIP"
+msgstr ""
+
+#: ../src/general/world_effects/WorldEffectVisuals.cs:25
+msgid "EVENT_METEOR_GLUCOSE"
+msgstr ""
+
+#: ../src/general/world_effects/WorldEffectVisuals.cs:22
+msgid "EVENT_METEOR_IRON"
+msgstr ""
+
+#: ../src/general/world_effects/WorldEffectVisuals.cs:23
+msgid "EVENT_METEOR_PHOSPHATES"
+msgstr ""
+
+#: ../src/general/world_effects/WorldEffectVisuals.cs:21
+msgid "EVENT_METEOR_PLAIN"
+msgstr ""
+
+#: ../src/general/world_effects/WorldEffectVisuals.cs:24
+msgid "EVENT_METEOR_RADIOACTIVE"
+msgstr ""
+
+#: ../src/general/world_effects/WorldEffectVisuals.cs:26
+msgid "EVENT_METEOR_SULFUR"
 msgstr ""
 
 #: ../src/auto-evo/AutoEvoExploringTool.tscn:569
@@ -3075,6 +3100,10 @@ msgstr ""
 
 #: ../src/general/world_effects/patch_events/GlobalGlaciationEvent.cs:218
 msgid "GLOBAL_GLACIATION_EVENT"
+msgstr ""
+
+#: ../src/general/world_effects/WorldEffectVisuals.cs:20
+msgid "GLOBAL_GLACIATION_EVENT_TOOLTIP"
 msgstr ""
 
 #: ../src/general/world_effects/patch_events/GlobalGlaciationEvent.cs:228

@@ -889,6 +889,6 @@ public partial class SimulationParameters : Node
 
     private List<double> ComputeMeteorChances()
     {
-        return meteors.Values.Select(meteor => meteor.Probability).ToList();
+        return meteors.Values.Select(m => m.Probability).ToList();
     }
 }

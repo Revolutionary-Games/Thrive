@@ -1772,6 +1772,8 @@ public static class Constants
     public const float MIN_AUTO_EVO_STRENGTH_MULTIPLIER = 0.01f;
     public const float MAX_AUTO_EVO_STRENGTH_MULTIPLIER = 1.0f;
 
+    public const float HALF_BLINK_INTERVAL = 0.5f;
+
     // Constants for the procedural patch map
     public const float PATCH_NODE_RECT_LENGTH = 80.0f;
     public const float PATCH_AND_REGION_MARGIN = 14.0f;
