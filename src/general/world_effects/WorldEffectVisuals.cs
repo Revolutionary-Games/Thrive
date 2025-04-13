@@ -31,15 +31,15 @@ public class WorldEffectVisuals
         [WorldEffectTypes.MeteorSulfurImpact] = "res://assets/textures/gui/bevel/MeteorSulfur.svg",
     };
 
-    public static readonly Dictionary<WorldEffectTypes, string> EventsTooltips = new()
+    public static readonly Dictionary<WorldEffectTypes, LocalizedString> EventsTooltips = new()
     {
-        [WorldEffectTypes.UnderwaterVentEruption] = Localization.Translate("EVENT_ERUPTION_TOOLTIP"),
-        [WorldEffectTypes.GlobalGlaciation] = Localization.Translate("GLOBAL_GLACIATION_EVENT_TOOLTIP"),
-        [WorldEffectTypes.MeteorPlainImpact] = Localization.Translate("EVENT_METEOR_PLAIN"),
-        [WorldEffectTypes.MeteorIronImpact] = Localization.Translate("EVENT_METEOR_IRON"),
-        [WorldEffectTypes.MeteorPhosphatesImpact] = Localization.Translate("EVENT_METEOR_PHOSPHATES"),
-        [WorldEffectTypes.MeteorRadioactiveImpact] = Localization.Translate("EVENT_METEOR_RADIOACTIVE"),
-        [WorldEffectTypes.MeteorGlucoseImpact] = Localization.Translate("EVENT_METEOR_GLUCOSE"),
-        [WorldEffectTypes.MeteorSulfurImpact] = Localization.Translate("EVENT_METEOR_SULFUR"),
+        [WorldEffectTypes.UnderwaterVentEruption] = new LocalizedString("EVENT_ERUPTION_TOOLTIP"),
+        [WorldEffectTypes.GlobalGlaciation] = new LocalizedString("GLOBAL_GLACIATION_EVENT_TOOLTIP"),
+        [WorldEffectTypes.MeteorPlainImpact] = new LocalizedString("EVENT_METEOR_PLAIN"),
+        [WorldEffectTypes.MeteorIronImpact] = new LocalizedString("EVENT_METEOR_IRON"),
+        [WorldEffectTypes.MeteorPhosphatesImpact] = new LocalizedString("EVENT_METEOR_PHOSPHATES"),
+        [WorldEffectTypes.MeteorRadioactiveImpact] = new LocalizedString("EVENT_METEOR_RADIOACTIVE"),
+        [WorldEffectTypes.MeteorGlucoseImpact] = new LocalizedString("EVENT_METEOR_GLUCOSE"),
+        [WorldEffectTypes.MeteorSulfurImpact] = new LocalizedString("EVENT_METEOR_SULFUR"),
     };
 }

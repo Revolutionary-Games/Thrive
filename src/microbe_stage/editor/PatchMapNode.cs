@@ -287,7 +287,7 @@ public partial class PatchMapNode : MarginContainer
                 throw new Exception($"Missing tooltip for {effectType}");
             }
 
-            eventIcon.TooltipText = tooltipText;
+            eventIcon.TooltipText = tooltipText.ToString();
 
             if (!WorldEffectVisuals.EventsIcons.TryGetValue(effectType, out var iconPath) ||
                 string.IsNullOrEmpty(iconPath))
