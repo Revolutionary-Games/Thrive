@@ -9,39 +9,23 @@ public partial class PatchNotesDisplayer : VBoxContainer
     [Export]
     public bool InsideDialogStyle;
 
-    [Export]
-    public NodePath? PatchNotesPath;
-
-    [Export]
-    public NodePath TitlePath = null!;
-
-    [Export]
-    public NodePath NewVersionsCountLabelPath = null!;
-
-    [Export]
-    public NodePath ViewAllButtonPath = null!;
-
-    [Export]
-    public NodePath ViewAllButtonOutsideScrollPath = null!;
-
 #pragma warning disable CA2213
+    [Export]
     private PatchNotesList patchNotes = null!;
 
+    [Export]
     private Label title = null!;
+    [Export]
     private Label newVersionsCountLabel = null!;
 
+    [Export]
     private Button viewAllButton = null!;
+    [Export]
     private Button viewAllButtonOutsideScroll = null!;
 #pragma warning restore CA2213
 
     public override void _Ready()
     {
-        patchNotes = GetNode<PatchNotesList>(PatchNotesPath);
-        title = GetNode<Label>(TitlePath);
-        newVersionsCountLabel = GetNode<Label>(NewVersionsCountLabelPath);
-        viewAllButton = GetNode<Button>(ViewAllButtonPath);
-        viewAllButtonOutsideScroll = GetNode<Button>(ViewAllButtonOutsideScrollPath);
-
         patchNotes.Visible = false;
         newVersionsCountLabel.Visible = false;
 
@@ -144,13 +128,7 @@ public partial class PatchNotesDisplayer : VBoxContainer
     {
         if (disposing)
         {
-            if (PatchNotesPath != null)
             {
-                PatchNotesPath.Dispose();
-                TitlePath.Dispose();
-                NewVersionsCountLabelPath.Dispose();
-                ViewAllButtonPath.Dispose();
-                ViewAllButtonOutsideScrollPath.Dispose();
             }
         }
 

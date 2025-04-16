@@ -11,26 +11,16 @@ using Newtonsoft.Json;
 [SceneLoadedClass("res://src/microbe_stage/editor/BehaviourEditorSubComponent.tscn", UsesEarlyResolve = false)]
 public partial class BehaviourEditorSubComponent : EditorComponentBase<ICellEditorData>
 {
-    [Export]
-    public NodePath? AggressionSliderPath;
-
-    [Export]
-    public NodePath OpportunismSliderPath = null!;
-
-    [Export]
-    public NodePath FearSliderPath = null!;
-
-    [Export]
-    public NodePath ActivitySliderPath = null!;
-
-    [Export]
-    public NodePath FocusSliderPath = null!;
-
 #pragma warning disable CA2213
+    [Export]
     private Slider aggressionSlider = null!;
+    [Export]
     private Slider opportunismSlider = null!;
+    [Export]
     private Slider fearSlider = null!;
+    [Export]
     private Slider activitySlider = null!;
+    [Export]
     private Slider focusSlider = null!;
 #pragma warning restore CA2213
 
@@ -57,12 +47,6 @@ public partial class BehaviourEditorSubComponent : EditorComponentBase<ICellEdit
     public override void _Ready()
     {
         base._Ready();
-
-        aggressionSlider = GetNode<Slider>(AggressionSliderPath);
-        opportunismSlider = GetNode<Slider>(OpportunismSliderPath);
-        fearSlider = GetNode<Slider>(FearSliderPath);
-        activitySlider = GetNode<Slider>(ActivitySliderPath);
-        focusSlider = GetNode<Slider>(FocusSliderPath);
 
         RegisterTooltips();
     }
@@ -176,13 +160,7 @@ public partial class BehaviourEditorSubComponent : EditorComponentBase<ICellEdit
     {
         if (disposing)
         {
-            if (AggressionSliderPath != null)
             {
-                AggressionSliderPath.Dispose();
-                OpportunismSliderPath.Dispose();
-                FearSliderPath.Dispose();
-                ActivitySliderPath.Dispose();
-                FocusSliderPath.Dispose();
             }
         }
 

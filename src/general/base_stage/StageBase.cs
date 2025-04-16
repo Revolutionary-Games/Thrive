@@ -10,16 +10,12 @@ using Newtonsoft.Json;
 [GodotAbstract]
 public partial class StageBase : NodeWithInput, IStageBase, IGodotEarlyNodeResolve
 {
-    [Export]
-    public NodePath? PauseMenuPath;
-
-    [Export]
-    public NodePath HUDRootPath = null!;
-
 #pragma warning disable CA2213
     protected Node world = null!;
     protected Node rootOfDynamicallySpawned = null!;
+    [Export]
     protected PauseMenu pauseMenu = null!;
+    [Export]
     protected Control hudRoot = null!;
 
     protected Node3D? graphicsPreloadNode;
@@ -121,9 +117,6 @@ public partial class StageBase : NodeWithInput, IStageBase, IGodotEarlyNodeResol
 
         world = GetNode<Node>("World");
         rootOfDynamicallySpawned = world.GetNode<Node>("DynamicallySpawned");
-        pauseMenu = GetNode<PauseMenu>(PauseMenuPath);
-        hudRoot = GetNode<Control>(HUDRootPath);
-
         NodeReferencesResolved = true;
     }
 
@@ -491,10 +484,7 @@ public partial class StageBase : NodeWithInput, IStageBase, IGodotEarlyNodeResol
     {
         if (disposing)
         {
-            if (PauseMenuPath != null)
             {
-                PauseMenuPath.Dispose();
-                HUDRootPath.Dispose();
             }
         }
 

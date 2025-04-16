@@ -9,22 +9,16 @@ using Godot;
 [GodotAbstract]
 public partial class StructureToBuildPopupBase<TSelection> : Control
 {
-    [Export]
-    public NodePath? PopupPath;
-
-    [Export]
-    public NodePath ButtonsContainerPath = null!;
-
-    [Export]
-    public NodePath CancelButtonPath = null!;
-
     // Cached string builders used to generate the structure button labels
     protected readonly StringBuilder stringBuilder = new();
     protected readonly StringBuilder stringBuilder2 = new();
 
 #pragma warning disable CA2213
+    [Export]
     protected CustomWindow popup = null!;
+    [Export]
     protected Container buttonsContainer = null!;
+    [Export]
     protected Button cancelButton = null!;
 
     protected PackedScene richTextScene = null!;
@@ -38,10 +32,6 @@ public partial class StructureToBuildPopupBase<TSelection> : Control
 
     public override void _Ready()
     {
-        popup = GetNode<CustomWindow>(PopupPath);
-        buttonsContainer = GetNode<Container>(ButtonsContainerPath);
-        cancelButton = GetNode<Button>(CancelButtonPath);
-
         richTextScene = GD.Load<PackedScene>("res://src/gui_common/CustomRichTextLabel.tscn");
 
         // This is invisible in the editor to make it nicer to edit things
@@ -131,11 +121,7 @@ public partial class StructureToBuildPopupBase<TSelection> : Control
     {
         if (disposing)
         {
-            if (PopupPath != null)
             {
-                PopupPath.Dispose();
-                ButtonsContainerPath.Dispose();
-                CancelButtonPath.Dispose();
             }
         }
 

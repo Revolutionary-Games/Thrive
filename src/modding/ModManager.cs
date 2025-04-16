@@ -12,186 +12,104 @@ using FileAccess = Godot.FileAccess;
 /// </summary>
 public partial class ModManager : Control
 {
-    [Export]
-    public NodePath? LeftArrowPath;
-
-    [Export]
-    public NodePath RightArrowPath = null!;
-
-    [Export]
-    public NodePath AvailableModsContainerPath = null!;
-
-    [Export]
-    public NodePath EnabledModsContainerPath = null!;
-
-    [Export]
-    public NodePath OpenModInfoButtonPath = null!;
-
-    [Export]
-    public NodePath OpenModUrlButtonPath = null!;
-
-    [Export]
-    public NodePath DisableAllModsButtonPath = null!;
-
-    [Export]
-    public NodePath SelectedModNamePath = null!;
-
-    [Export]
-    public NodePath SelectedModIconPath = null!;
-
-    [Export]
-    public NodePath SelectedModAuthorPath = null!;
-
-    [Export]
-    public NodePath SelectedModVersionPath = null!;
-
-    [Export]
-    public NodePath SelectedModRecommendedThriveVersionPath = null!;
-
-    [Export]
-    public NodePath SelectedModMinimumThriveVersionPath = null!;
-
-    [Export]
-    public NodePath SelectedModDescriptionPath = null!;
-
-    [Export]
-    public NodePath ApplyChangesButtonPath = null!;
-
-    [Export]
-    public NodePath UnAppliedChangesWarningPath = null!;
-
-    [Export]
-    public NodePath ModFullInfoPopupPath = null!;
-
-    [Export]
-    public NodePath FullInfoNamePath = null!;
-
-    [Export]
-    public NodePath FullInfoInternalNamePath = null!;
-
-    [Export]
-    public NodePath FullInfoAuthorPath = null!;
-
-    [Export]
-    public NodePath FullInfoVersionPath = null!;
-
-    [Export]
-    public NodePath FullInfoDescriptionPath = null!;
-
-    [Export]
-    public NodePath FullInfoLongDescriptionPath = null!;
-
-    [Export]
-    public NodePath FullInfoFromWorkshopPath = null!;
-
-    [Export]
-    public NodePath FullInfoIconFilePath = null!;
-
-    [Export]
-    public NodePath FullInfoInfoUrlPath = null!;
-
-    [Export]
-    public NodePath FullInfoLicensePath = null!;
-
-    [Export]
-    public NodePath FullInfoRecommendedThrivePath = null!;
-
-    [Export]
-    public NodePath FullInfoMinimumThrivePath = null!;
-
-    [Export]
-    public NodePath FullInfoMaximumThrivePath = null!;
-
-    [Export]
-    public NodePath FullInfoPckNamePath = null!;
-
-    [Export]
-    public NodePath FullInfoModAssemblyPath = null!;
-
-    [Export]
-    public NodePath FullInfoAssemblyModClassPath = null!;
-
-    [Export]
-    public NodePath FullInfoAutoHarmonyPath = null!;
-
-    [Export]
-    public NodePath OpenWorkshopButtonPath = null!;
-
-    [Export]
-    public NodePath ModUploaderButtonPath = null!;
-
-    [Export]
-    public NodePath NewModGUIPath = null!;
-
-    [Export]
-    public NodePath ModCreateErrorDialogPath = null!;
-
-    [Export]
-    public NodePath ModUploaderPath = null!;
-
-    [Export]
-    public NodePath ModErrorDialogPath = null!;
-
-    [Export]
-    public NodePath RestartRequiredPath = null!;
-
     private readonly List<FullModDetails> validMods = new();
 
     private List<FullModDetails>? notEnabledMods;
     private List<FullModDetails>? enabledMods;
 
 #pragma warning disable CA2213
+    [Export]
     private Button leftArrow = null!;
+    [Export]
     private Button rightArrow = null!;
 
+    [Export]
     private ItemList availableModsContainer = null!;
+    [Export]
     private ItemList enabledModsContainer = null!;
 
+    [Export]
     private Button openModInfoButton = null!;
+    [Export]
     private Button openModUrlButton = null!;
+    [Export]
     private Button disableAllModsButton = null!;
+    [Export]
     private Label selectedModName = null!;
+    [Export]
     private TextureRect selectedModIcon = null!;
+    [Export]
     private Label selectedModAuthor = null!;
+    [Export]
     private Label selectedModVersion = null!;
+    [Export]
     private Label selectedModRecommendedThriveVersion = null!;
+    [Export]
     private Label selectedModMinimumThriveVersion = null!;
+    [Export]
     private Label selectedModDescription = null!;
 
+    [Export]
     private Button applyChangesButton = null!;
 
+    [Export]
     private CustomWindow unAppliedChangesWarning = null!;
 
+    [Export]
     private CustomWindow modFullInfoPopup = null!;
+    [Export]
     private Label fullInfoName = null!;
+    [Export]
     private Label fullInfoInternalName = null!;
+    [Export]
     private Label fullInfoAuthor = null!;
+    [Export]
     private Label fullInfoVersion = null!;
+    [Export]
     private Label fullInfoDescription = null!;
+    [Export]
     private Label fullInfoLongDescription = null!;
+    [Export]
     private Label fullInfoFromWorkshop = null!;
+    [Export]
     private Label fullInfoIconFile = null!;
+    [Export]
     private Label fullInfoInfoUrl = null!;
+    [Export]
     private Label fullInfoLicense = null!;
+    [Export]
     private Label fullInfoRecommendedThrive = null!;
+    [Export]
     private Label fullInfoMinimumThrive = null!;
+    [Export]
     private Label fullInfoMaximumThrive = null!;
+    [Export]
     private Label fullInfoPckName = null!;
+    [Export]
     private Label fullInfoModAssembly = null!;
+    [Export]
     private Label fullInfoAssemblyModClass = null!;
+    [Export]
     private Label fullInfoAutoHarmony = null!;
 
+    [Export]
     private Button openWorkshopButton = null!;
+    [Export]
     private Button modUploaderButton = null!;
 
+    [Export]
     private NewModGUI newModGUI = null!;
 
+    [Export]
     private ErrorDialog modCreateErrorDialog = null!;
 
+    [Export]
     private ModUploader modUploader = null!;
 
+    [Export]
     private ErrorDialog modErrorDialog = null!;
 
+    [Export]
     private CustomWindow restartRequired = null!;
 #pragma warning restore CA2213
 
@@ -351,60 +269,9 @@ public partial class ModManager : Control
     {
         base._Ready();
 
-        leftArrow = GetNode<Button>(LeftArrowPath);
-        rightArrow = GetNode<Button>(RightArrowPath);
-
-        availableModsContainer = GetNode<ItemList>(AvailableModsContainerPath);
-        enabledModsContainer = GetNode<ItemList>(EnabledModsContainerPath);
-
-        openModInfoButton = GetNode<Button>(OpenModInfoButtonPath);
-        openModUrlButton = GetNode<Button>(OpenModUrlButtonPath);
-        disableAllModsButton = GetNode<Button>(DisableAllModsButtonPath);
-        selectedModName = GetNode<Label>(SelectedModNamePath);
-        selectedModIcon = GetNode<TextureRect>(SelectedModIconPath);
-        selectedModAuthor = GetNode<Label>(SelectedModAuthorPath);
-        selectedModVersion = GetNode<Label>(SelectedModVersionPath);
-        selectedModRecommendedThriveVersion = GetNode<Label>(SelectedModRecommendedThriveVersionPath);
-        selectedModMinimumThriveVersion = GetNode<Label>(SelectedModMinimumThriveVersionPath);
-        selectedModDescription = GetNode<Label>(SelectedModDescriptionPath);
-
-        applyChangesButton = GetNode<Button>(ApplyChangesButtonPath);
-
-        unAppliedChangesWarning = GetNode<CustomWindow>(UnAppliedChangesWarningPath);
-
-        modFullInfoPopup = GetNode<CustomWindow>(ModFullInfoPopupPath);
-        fullInfoName = GetNode<Label>(FullInfoNamePath);
-        fullInfoInternalName = GetNode<Label>(FullInfoInternalNamePath);
-        fullInfoAuthor = GetNode<Label>(FullInfoAuthorPath);
-        fullInfoVersion = GetNode<Label>(FullInfoVersionPath);
-        fullInfoDescription = GetNode<Label>(FullInfoDescriptionPath);
-        fullInfoLongDescription = GetNode<Label>(FullInfoLongDescriptionPath);
-        fullInfoIconFile = GetNode<Label>(FullInfoIconFilePath);
-        fullInfoFromWorkshop = GetNode<Label>(FullInfoFromWorkshopPath);
-        fullInfoInfoUrl = GetNode<Label>(FullInfoInfoUrlPath);
-        fullInfoLicense = GetNode<Label>(FullInfoLicensePath);
-        fullInfoRecommendedThrive = GetNode<Label>(FullInfoRecommendedThrivePath);
-        fullInfoMinimumThrive = GetNode<Label>(FullInfoMinimumThrivePath);
-        fullInfoMaximumThrive = GetNode<Label>(FullInfoMaximumThrivePath);
-        fullInfoPckName = GetNode<Label>(FullInfoPckNamePath);
-        fullInfoModAssembly = GetNode<Label>(FullInfoModAssemblyPath);
-        fullInfoAssemblyModClass = GetNode<Label>(FullInfoAssemblyModClassPath);
-        fullInfoAutoHarmony = GetNode<Label>(FullInfoAutoHarmonyPath);
-
-        openWorkshopButton = GetNode<Button>(OpenWorkshopButtonPath);
-        modUploaderButton = GetNode<Button>(ModUploaderButtonPath);
-
-        newModGUI = GetNode<NewModGUI>(NewModGUIPath);
-        modUploader = GetNode<ModUploader>(ModUploaderPath);
-
-        modErrorDialog = GetNode<ErrorDialog>(ModErrorDialogPath);
-        restartRequired = GetNode<CustomWindow>(RestartRequiredPath);
-
         // These are hidden in the editor to make selecting UI elements there easier
         newModGUI.Visible = true;
         modUploader.Visible = true;
-
-        modCreateErrorDialog = GetNode<ErrorDialog>(ModCreateErrorDialogPath);
 
         UpdateSelectedModInfo();
 
@@ -434,49 +301,7 @@ public partial class ModManager : Control
     {
         if (disposing)
         {
-            if (LeftArrowPath != null)
             {
-                LeftArrowPath.Dispose();
-                RightArrowPath.Dispose();
-                AvailableModsContainerPath.Dispose();
-                EnabledModsContainerPath.Dispose();
-                OpenModInfoButtonPath.Dispose();
-                OpenModUrlButtonPath.Dispose();
-                DisableAllModsButtonPath.Dispose();
-                SelectedModNamePath.Dispose();
-                SelectedModIconPath.Dispose();
-                SelectedModAuthorPath.Dispose();
-                SelectedModVersionPath.Dispose();
-                SelectedModRecommendedThriveVersionPath.Dispose();
-                SelectedModMinimumThriveVersionPath.Dispose();
-                SelectedModDescriptionPath.Dispose();
-                ApplyChangesButtonPath.Dispose();
-                UnAppliedChangesWarningPath.Dispose();
-                ModFullInfoPopupPath.Dispose();
-                FullInfoNamePath.Dispose();
-                FullInfoInternalNamePath.Dispose();
-                FullInfoAuthorPath.Dispose();
-                FullInfoVersionPath.Dispose();
-                FullInfoDescriptionPath.Dispose();
-                FullInfoLongDescriptionPath.Dispose();
-                FullInfoFromWorkshopPath.Dispose();
-                FullInfoIconFilePath.Dispose();
-                FullInfoInfoUrlPath.Dispose();
-                FullInfoLicensePath.Dispose();
-                FullInfoRecommendedThrivePath.Dispose();
-                FullInfoMinimumThrivePath.Dispose();
-                FullInfoMaximumThrivePath.Dispose();
-                FullInfoPckNamePath.Dispose();
-                FullInfoModAssemblyPath.Dispose();
-                FullInfoAssemblyModClassPath.Dispose();
-                FullInfoAutoHarmonyPath.Dispose();
-                OpenWorkshopButtonPath.Dispose();
-                ModUploaderButtonPath.Dispose();
-                NewModGUIPath.Dispose();
-                ModCreateErrorDialogPath.Dispose();
-                ModUploaderPath.Dispose();
-                ModErrorDialogPath.Dispose();
-                RestartRequiredPath.Dispose();
             }
         }
 

@@ -11,17 +11,13 @@ using Godot;
 public partial class StrategicUnitScreen<T> : CustomWindow
     where T : GodotObject, IStrategicUnit, IEntity
 {
-    [Export]
-    public NodePath? ActionButtonsContainerPath;
-
     /// <summary>
     ///   Optional container for unit screens that have a list of subunits
     /// </summary>
-    [Export]
-    public NodePath? UnitListContainerPath;
-
 #pragma warning disable CA2213
+    [Export]
     protected Container actionButtonsContainer = null!;
+    [Export]
     protected Container? unitListContainer;
 #pragma warning restore CA2213
 
@@ -47,10 +43,6 @@ public partial class StrategicUnitScreen<T> : CustomWindow
     {
         base._Ready();
 
-        actionButtonsContainer = GetNode<Container>(ActionButtonsContainerPath);
-
-        if (UnitListContainerPath != null)
-            unitListContainer = GetNode<Container>(UnitListContainerPath);
     }
 
     public override void _Process(double delta)
@@ -201,8 +193,6 @@ public partial class StrategicUnitScreen<T> : CustomWindow
     {
         if (disposing)
         {
-            ActionButtonsContainerPath?.Dispose();
-            UnitListContainerPath?.Dispose();
         }
 
         base.Dispose(disposing);

@@ -17,33 +17,17 @@ public partial class EditorComponentBottomLeftButtons : MarginContainer
     [Export]
     public bool UseSpeciesNameValidation = true;
 
-    [Export]
-    public NodePath? SymmetryButtonPath;
-
-    [Export]
-    public NodePath SymmetryIconPath = null!;
-
-    [Export]
-    public NodePath UndoButtonPath = null!;
-
-    [Export]
-    public NodePath RedoButtonPath = null!;
-
-    [Export]
-    public NodePath NewButtonPath = null!;
-
-    [Export]
-    public NodePath NameEditPath = null!;
-
-    [Export]
-    public NodePath RandomizeNameButtonPath = null!;
-
 #pragma warning disable CA2213
+    [Export]
     private TextureButton? newButton;
+    [Export]
     private LineEdit speciesNameEdit = null!;
+    [Export]
     private TextureButton? randomizeNameButton;
 
+    [Export]
     private TextureButton symmetryButton = null!;
+    [Export]
     private TextureRect symmetryIcon = null!;
 
     private Texture2D symmetryIconDefault = null!;
@@ -101,8 +85,10 @@ public partial class EditorComponentBottomLeftButtons : MarginContainer
         }
     }
 
+    [Export]
     public TextureButton UndoButton { get; private set; } = null!;
 
+    [Export]
     public TextureButton RedoButton { get; private set; } = null!;
 
     public bool UndoEnabled { get => !UndoButton.Disabled; set => UndoButton.Disabled = !value; }
@@ -111,16 +97,6 @@ public partial class EditorComponentBottomLeftButtons : MarginContainer
 
     public override void _Ready()
     {
-        UndoButton = GetNode<TextureButton>(UndoButtonPath);
-        RedoButton = GetNode<TextureButton>(RedoButtonPath);
-
-        newButton = GetNode<TextureButton>(NewButtonPath);
-        speciesNameEdit = GetNode<LineEdit>(NameEditPath);
-        randomizeNameButton = GetNode<TextureButton>(RandomizeNameButtonPath);
-
-        symmetryButton = GetNode<TextureButton>(SymmetryButtonPath);
-        symmetryIcon = GetNode<TextureRect>(SymmetryIconPath);
-
         symmetryIconDefault = GD.Load<Texture2D>("res://assets/textures/gui/bevel/1xSymmetry.svg");
         symmetryIcon2X = GD.Load<Texture2D>("res://assets/textures/gui/bevel/2xSymmetry.svg");
         symmetryIcon4X = GD.Load<Texture2D>("res://assets/textures/gui/bevel/4xSymmetry.svg");
@@ -201,15 +177,7 @@ public partial class EditorComponentBottomLeftButtons : MarginContainer
     {
         if (disposing)
         {
-            if (SymmetryButtonPath != null)
             {
-                SymmetryButtonPath.Dispose();
-                SymmetryIconPath.Dispose();
-                UndoButtonPath.Dispose();
-                RedoButtonPath.Dispose();
-                NewButtonPath.Dispose();
-                NameEditPath.Dispose();
-                RandomizeNameButtonPath.Dispose();
             }
         }
 

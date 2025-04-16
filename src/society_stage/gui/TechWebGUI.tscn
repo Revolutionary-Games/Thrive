@@ -5,23 +5,23 @@
 [ext_resource type="Script" uid="uid://cdn1mk1sq7aj7" path="res://src/society_stage/gui/TechWebGUI.cs" id="3"]
 [ext_resource type="PackedScene" uid="uid://bhpjtbtaeunat" path="res://src/gui_common/CustomRichTextLabel.tscn" id="4"]
 
-[node name="TechWebGUI" type="HBoxContainer"]
+[node name="TechWebGUI" type="HBoxContainer" node_paths=PackedStringArray("techNodesContainer", "researchButton", "selectedTechnologyDescriptionLabel", "technologyNameLabel")]
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
 theme = ExtResource("2")
 script = ExtResource("3")
-TechnologyNameLabelPath = NodePath("VBoxContainer/ScrollContainer/VBoxContainer/TechnologyName")
-SelectedTechnologyDescriptionLabelPath = NodePath("VBoxContainer/ScrollContainer/VBoxContainer/FullDescription")
-ResearchButtonPath = NodePath("VBoxContainer/StartResearch")
-TechNodesContainerPath = NodePath("DraggableScrollContainer/WebNodesContainer")
+technologyNameLabel = NodePath("VBoxContainer/ScrollContainer/VBoxContainer/TechnologyName")
+selectedTechnologyDescriptionLabel = NodePath("VBoxContainer/ScrollContainer/VBoxContainer/FullDescription")
+researchButton = NodePath("VBoxContainer/StartResearch")
+techNodesContainer = NodePath("DraggableScrollContainer/WebNodesContainer")
 
-[node name="DraggableScrollContainer" parent="." instance=ExtResource("1")]
+[node name="DraggableScrollContainer" parent="." instance=ExtResource("1") node_paths=PackedStringArray("content")]
 layout_mode = 2
 size_flags_horizontal = 3
 size_flags_vertical = 3
 size_flags_stretch_ratio = 2.5
-ContentPath = NodePath("WebNodesContainer")
+content = NodePath("WebNodesContainer")
 
 [node name="WebNodesContainer" type="Control" parent="DraggableScrollContainer"]
 custom_minimum_size = Vector2(400, 400)

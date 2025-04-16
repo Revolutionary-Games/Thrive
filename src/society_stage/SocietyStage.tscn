@@ -35,13 +35,13 @@ uv1_scale = Vector3(42, 42, 42)
 material = SubResource("4")
 size = Vector2(400, 400)
 
-[node name="SocietyStage" type="Node"]
+[node name="SocietyStage" type="Node" node_paths=PackedStringArray("hudRoot", "pauseMenu", "strategicCamera", "industrialStageConfirmPopup", "selectBuildingPopup")]
 script = ExtResource("1")
-SelectBuildingPopupPath = NodePath("SelectBuildingPopup")
-IndustrialStageConfirmPopupPath = NodePath("ConfirmIndustrialStage")
-StrategicCameraPath = NodePath("World/StrategicCamera")
-PauseMenuPath = NodePath("PauseMenu")
-HUDRootPath = NodePath("SocietyHUD")
+selectBuildingPopup = NodePath("SelectBuildingPopup")
+industrialStageConfirmPopup = NodePath("ConfirmIndustrialStage")
+strategicCamera = NodePath("World/StrategicCamera")
+pauseMenu = NodePath("PauseMenu")
+hudRoot = NodePath("SocietyHUD")
 
 [node name="World" type="Node" parent="."]
 

@@ -16,9 +16,6 @@ using Newtonsoft.Json;
 [UseThriveSerializer]
 public partial class MicrobeStage : CreatureStageBase<Entity, MicrobeWorldSimulation>, IMicrobeSpawnEnvironment
 {
-    [Export]
-    public NodePath? GuidanceLinePath;
-
     private readonly Dictionary<MicrobeSpecies, ResolvedMicrobeTolerances> resolvedTolerancesCache = new();
 
     private OrganelleDefinition cytoplasm = null!;
@@ -41,6 +38,7 @@ public partial class MicrobeStage : CreatureStageBase<Entity, MicrobeWorldSimula
     private MovementModeSelectionPopup movementModeSelectionPopup = null!;
 
     private MicrobeTutorialGUI tutorialGUI = null!;
+    [Export]
     private GuidanceLine guidanceLine = null!;
 #pragma warning restore CA2213
 
@@ -205,7 +203,6 @@ public partial class MicrobeStage : CreatureStageBase<Entity, MicrobeWorldSimula
         HoverInfo = GetNode<MicrobeInspectInfo>("PlayerHoverInfo");
         Camera = world.GetNode<MicrobeCamera>("PrimaryCamera");
         Clouds = world.GetNode<CompoundCloudSystem>("CompoundClouds");
-        guidanceLine = GetNode<GuidanceLine>(GuidanceLinePath);
     }
 
     public override void _EnterTree()
@@ -1339,7 +1336,6 @@ public partial class MicrobeStage : CreatureStageBase<Entity, MicrobeWorldSimula
     {
         if (disposing)
         {
-            GuidanceLinePath?.Dispose();
         }
 
         base.Dispose(disposing);

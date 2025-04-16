@@ -12,12 +12,10 @@ using Newtonsoft.Json;
 public partial class EditorComponentBase<TEditor> : ControlWithInput, IEditorComponent
     where TEditor : IEditor
 {
-    [Export]
-    public NodePath? FinishOrNextButtonPath;
-
 #pragma warning disable CA2213
     protected AudioStream unableToPerformActionSound = null!;
 
+    [Export]
     protected Button finishOrNextButton = null!;
 #pragma warning restore CA2213
 
@@ -57,8 +55,6 @@ public partial class EditorComponentBase<TEditor> : ControlWithInput, IEditorCom
 
         if (IsSubComponent)
             return;
-
-        finishOrNextButton = GetNode<Button>(FinishOrNextButtonPath);
     }
 
     public override void _EnterTree()
@@ -241,15 +237,5 @@ public partial class EditorComponentBase<TEditor> : ControlWithInput, IEditorCom
         {
             OnNextTab!.Invoke();
         }
-    }
-
-    protected override void Dispose(bool disposing)
-    {
-        if (disposing)
-        {
-            FinishOrNextButtonPath?.Dispose();
-        }
-
-        base.Dispose(disposing);
     }
 }

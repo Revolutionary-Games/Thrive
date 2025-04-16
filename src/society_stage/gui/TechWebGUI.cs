@@ -8,25 +8,17 @@ using Godot;
 /// </summary>
 public partial class TechWebGUI : HBoxContainer
 {
-    [Export]
-    public NodePath? TechnologyNameLabelPath;
-
-    [Export]
-    public NodePath SelectedTechnologyDescriptionLabelPath = null!;
-
-    [Export]
-    public NodePath ResearchButtonPath = null!;
-
-    [Export]
-    public NodePath TechNodesContainerPath = null!;
-
     private readonly StringBuilder descriptionBuilder = new();
 
 #pragma warning disable CA2213
+    [Export]
     private Label technologyNameLabel = null!;
+    [Export]
     private CustomRichTextLabel selectedTechnologyDescriptionLabel = null!;
+    [Export]
     private Button researchButton = null!;
 
+    [Export]
     private Control techNodesContainer = null!;
 #pragma warning restore CA2213
 
@@ -38,10 +30,6 @@ public partial class TechWebGUI : HBoxContainer
 
     public override void _Ready()
     {
-        technologyNameLabel = GetNode<Label>(TechnologyNameLabelPath);
-        selectedTechnologyDescriptionLabel = GetNode<CustomRichTextLabel>(SelectedTechnologyDescriptionLabelPath);
-        researchButton = GetNode<Button>(ResearchButtonPath);
-        techNodesContainer = GetNode<Control>(TechNodesContainerPath);
     }
 
     public override void _EnterTree()
@@ -106,12 +94,7 @@ public partial class TechWebGUI : HBoxContainer
     {
         if (disposing)
         {
-            if (TechnologyNameLabelPath != null)
             {
-                TechnologyNameLabelPath.Dispose();
-                SelectedTechnologyDescriptionLabelPath.Dispose();
-                ResearchButtonPath.Dispose();
-                TechNodesContainerPath.Dispose();
             }
         }
 

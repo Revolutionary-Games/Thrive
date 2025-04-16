@@ -20,18 +20,6 @@ public partial class MetaballEditorComponentBase<TEditor, TCombinedAction, TActi
     where TAction : EditorAction
     where TMetaball : Metaball
 {
-    [Export]
-    public NodePath? CameraPath;
-
-    [Export]
-    public NodePath EditorArrowPath = null!;
-
-    [Export]
-    public NodePath EditorGroundPath = null!;
-
-    [Export]
-    public NodePath IslandErrorPath = null!;
-
     /// <summary>
     ///   Set above 0 to make sure the arrow doesn't overlap with the ground circle graphics
     /// </summary>
@@ -39,11 +27,14 @@ public partial class MetaballEditorComponentBase<TEditor, TCombinedAction, TActi
     public float ForwardArrowOffsetFromGround = 0.1f;
 
 #pragma warning disable CA2213
+    [Export]
     protected EditorCamera3D? camera;
 
     [JsonIgnore]
+    [Export]
     protected MeshInstance3D editorArrow = null!;
 
+    [Export]
     protected MeshInstance3D editorGround = null!;
 
     protected AudioStream hexPlacementSound = null!;
@@ -104,6 +95,7 @@ public partial class MetaballEditorComponentBase<TEditor, TCombinedAction, TActi
     [Export]
     private HSlider? metaballResizeScroll;
 
+    [Export]
     private CustomConfirmationDialog islandPopup = null!;
 #pragma warning restore CA2213
 
@@ -203,18 +195,12 @@ public partial class MetaballEditorComponentBase<TEditor, TCombinedAction, TActi
 
     public virtual void ResolveNodeReferences()
     {
-        islandPopup = GetNode<CustomConfirmationDialog>(IslandErrorPath);
-
         if (IsLoadedFromSave)
         {
             // When directly loaded from the base scene (which is done when loading from a save), some of our
             // node paths are not set so we need to skip them
             return;
         }
-
-        camera = GetNode<EditorCamera3D>(CameraPath);
-        editorArrow = GetNode<MeshInstance3D>(EditorArrowPath);
-        editorGround = GetNode<MeshInstance3D>(EditorGroundPath);
 
         camera.Connect(EditorCamera3D.SignalName.OnPositionChanged,
             new Callable(this, nameof(OnCameraPositionChanged)));
@@ -976,14 +962,6 @@ public partial class MetaballEditorComponentBase<TEditor, TCombinedAction, TActi
     {
         if (disposing)
         {
-            if (CameraPath != null)
-            {
-                CameraPath.Dispose();
-                EditorArrowPath.Dispose();
-                EditorGroundPath.Dispose();
-                IslandErrorPath.Dispose();
-            }
-
             positionReference.Dispose();
         }
 

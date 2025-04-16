@@ -3,15 +3,15 @@
 [ext_resource type="Script" uid="uid://lafc2o7dqdb7" path="res://src/space_stage/gui/SpaceConstructionPopup.cs" id="1"]
 [ext_resource type="PackedScene" uid="uid://du8sc8kjirguk" path="res://src/gui_common/dialogs/CustomWindow.tscn" id="2"]
 
-[node name="SpaceConstructionPopup" type="Control"]
+[node name="SpaceConstructionPopup" type="Control" node_paths=PackedStringArray("cancelButton", "buttonsContainer", "popup")]
 visible = false
 anchor_right = 1.0
 anchor_bottom = 1.0
 mouse_filter = 2
 script = ExtResource("1")
-PopupPath = NodePath("CustomWindow")
-ButtonsContainerPath = NodePath("CustomWindow/VBoxContainer/ScrollContainer/ButtonContainer")
-CancelButtonPath = NodePath("CustomWindow/VBoxContainer/Cancel")
+popup = NodePath("CustomWindow")
+buttonsContainer = NodePath("CustomWindow/VBoxContainer/ScrollContainer/ButtonContainer")
+cancelButton = NodePath("CustomWindow/VBoxContainer/Cancel")
 
 [node name="CustomWindow" parent="." instance=ExtResource("2")]
 offset_right = 0.0

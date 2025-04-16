@@ -13,22 +13,14 @@ public partial class VacuoleUpgradeGUI : VBoxContainer, IOrganelleUpgrader
     /// </summary>
     public static readonly Compound[] BlockedSpecializedCompounds = [Compound.Radiation, Compound.Temperature];
 
-    [Export]
-    public NodePath? CompoundsPath;
-
-    [Export]
-    public NodePath IsSpecializedCheckboxPath = null!;
-
-    [Export]
-    public NodePath CompoundDescriptionPath = null!;
-
-    [Export]
-    public NodePath CompoundSelectionPath = null!;
-
 #pragma warning disable CA2213
+    [Export]
     private OptionButton compounds = null!;
+    [Export]
     private Label description = null!;
+    [Export]
     private CheckBox isSpecializedCheckbox = null!;
+    [Export]
     private VBoxContainer compoundSelection = null!;
 #pragma warning restore CA2213
 
@@ -36,11 +28,6 @@ public partial class VacuoleUpgradeGUI : VBoxContainer, IOrganelleUpgrader
 
     public override void _Ready()
     {
-        compounds = GetNode<OptionButton>(CompoundsPath);
-        description = GetNode<Label>(CompoundDescriptionPath);
-        isSpecializedCheckbox = GetNode<CheckBox>(IsSpecializedCheckboxPath);
-        compoundSelection = GetNode<VBoxContainer>(CompoundSelectionPath);
-
         compounds.Clear();
     }
 
@@ -110,12 +97,7 @@ public partial class VacuoleUpgradeGUI : VBoxContainer, IOrganelleUpgrader
     {
         if (disposing)
         {
-            if (CompoundsPath != null)
             {
-                CompoundsPath.Dispose();
-                CompoundDescriptionPath.Dispose();
-                IsSpecializedCheckboxPath.Dispose();
-                CompoundSelectionPath.Dispose();
             }
         }
 

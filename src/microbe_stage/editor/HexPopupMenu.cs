@@ -8,22 +8,14 @@ using Godot;
 [GodotAbstract]
 public partial class HexPopupMenu : CustomPopupMenu
 {
-    [Export]
-    public NodePath? TitleLabelPath;
-
-    [Export]
-    public NodePath DeleteButtonPath = null!;
-
-    [Export]
-    public NodePath MoveButtonPath = null!;
-
-    [Export]
-    public NodePath ModifyButtonPath = null!;
-
 #pragma warning disable CA2213
+    [Export]
     protected Label? titleLabel;
+    [Export]
     protected Button? deleteButton;
+    [Export]
     protected Button? moveButton;
+    [Export]
     protected Button? modifyButton;
 #pragma warning restore CA2213
 
@@ -168,10 +160,6 @@ public partial class HexPopupMenu : CustomPopupMenu
 
     protected override void ResolveNodeReferences()
     {
-        titleLabel = GetNode<Label>(TitleLabelPath);
-        deleteButton = GetNode<Button>(DeleteButtonPath);
-        moveButton = GetNode<Button>(MoveButtonPath);
-        modifyButton = GetNode<Button>(ModifyButtonPath);
     }
 
     protected virtual void UpdateTitleLabel()
@@ -193,12 +181,7 @@ public partial class HexPopupMenu : CustomPopupMenu
     {
         if (disposing)
         {
-            if (TitleLabelPath != null)
             {
-                TitleLabelPath.Dispose();
-                DeleteButtonPath.Dispose();
-                MoveButtonPath.Dispose();
-                ModifyButtonPath.Dispose();
             }
         }
 

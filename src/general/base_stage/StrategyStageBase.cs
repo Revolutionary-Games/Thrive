@@ -9,15 +9,13 @@ using Newtonsoft.Json;
 [GodotAbstract]
 public partial class StrategyStageBase : StageBase, IStrategyStage
 {
-    [Export]
-    public NodePath? StrategicCameraPath;
-
     [JsonProperty]
     protected SocietyResourceStorage resourceStorage = new();
 
 #pragma warning disable CA2213
     [JsonProperty]
     [AssignOnlyChildItemsOnDeserialize]
+    [Export]
     protected StrategicCamera strategicCamera = null!;
 #pragma warning restore CA2213
 
@@ -49,7 +47,6 @@ public partial class StrategyStageBase : StageBase, IStrategyStage
 
         base.ResolveNodeReferences();
 
-        strategicCamera = GetNode<StrategicCamera>(StrategicCameraPath);
     }
 
     public override void _ExitTree()
@@ -227,8 +224,6 @@ public partial class StrategyStageBase : StageBase, IStrategyStage
     {
         if (disposing)
         {
-            StrategicCameraPath?.Dispose();
-
             if (CurrentGame != null)
                 CurrentGame.TechWeb.OnTechnologyUnlockedHandler -= ShowTechnologyUnlockMessage;
         }

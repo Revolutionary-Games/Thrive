@@ -27,7 +27,7 @@ border_color = Color(0, 0, 0, 1)
 corner_radius_top_left = 3
 corner_radius_top_right = 3
 
-[node name="MuseumCard" type="Button"]
+[node name="MuseumCard" type="Button" node_paths=PackedStringArray("deleteButton", "speciesPreview", "speciesNameLabel")]
 custom_minimum_size = Vector2(170, 182)
 anchors_preset = 15
 anchor_right = 1.0
@@ -40,9 +40,9 @@ theme_override_styles/normal = SubResource("29")
 toggle_mode = true
 action_mode = 0
 script = ExtResource("4")
-SpeciesNameLabelPath = NodePath("MarginContainer/VBoxContainer/PanelContainer/MarginContainer/Label")
-SpeciesPreviewPath = NodePath("MarginContainer/VBoxContainer/MarginContainer/PreviewMargin/PreviewImage")
-DeleteButtonPath = NodePath("MarginContainer/VBoxContainer/PanelContainer/MarginContainer/HBoxContainer/Delete")
+speciesNameLabel = NodePath("MarginContainer/VBoxContainer/PanelContainer/MarginContainer/Label")
+speciesPreview = NodePath("MarginContainer/VBoxContainer/MarginContainer/PreviewMargin/PreviewImage")
+deleteButton = NodePath("MarginContainer/VBoxContainer/PanelContainer/MarginContainer/HBoxContainer/Delete")
 
 [node name="MarginContainer" type="MarginContainer" parent="."]
 layout_mode = 0

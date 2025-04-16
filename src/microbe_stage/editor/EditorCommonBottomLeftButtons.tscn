@@ -11,7 +11,7 @@
 [ext_resource type="Texture2D" uid="uid://dt32f5t6b4u1u" path="res://assets/textures/gui/bevel/statisticsButtonActive.png" id="9"]
 [ext_resource type="Script" uid="uid://bc2jpnna335le" path="res://src/microbe_stage/editor/EditorCommonBottomLeftButtons.cs" id="10"]
 
-[node name="EditorCommonBottomLeftButtons" type="MarginContainer"]
+[node name="EditorCommonBottomLeftButtons" type="MarginContainer" node_paths=PackedStringArray("helpButton", "menuButton")]
 anchors_preset = 2
 anchor_top = 1.0
 anchor_bottom = 1.0
@@ -21,8 +21,8 @@ theme_override_constants/margin_left = 10
 theme_override_constants/margin_top = 5
 theme_override_constants/margin_bottom = 5
 script = ExtResource("10")
-MenuButtonPath = NodePath("HBoxContainer/MenuButton")
-HelpButtonPath = NodePath("HBoxContainer/HelpButton")
+menuButton = NodePath("HBoxContainer/MenuButton")
+helpButton = NodePath("HBoxContainer/HelpButton")
 
 [node name="HBoxContainer" type="HBoxContainer" parent="."]
 layout_mode = 2

@@ -5,14 +5,10 @@
 /// </summary>
 public partial class UndiscoveredOrganellesTooltip : Control, ICustomToolTip
 {
-    [Export]
-    public NodePath? NameLabelPath;
-
-    [Export]
-    public NodePath UnlockTextPath = null!;
-
 #pragma warning disable CA2213
+    [Export]
     private Label? nameLabel;
+    [Export]
     private CustomRichTextLabel? unlockTextLabel;
 #pragma warning restore CA2213
 
@@ -54,9 +50,6 @@ public partial class UndiscoveredOrganellesTooltip : Control, ICustomToolTip
 
     public override void _Ready()
     {
-        unlockTextLabel = GetNode<CustomRichTextLabel>(UnlockTextPath);
-        nameLabel = GetNode<Label>(NameLabelPath);
-
         UpdateName();
         UpdateUnlockText();
     }
@@ -77,10 +70,7 @@ public partial class UndiscoveredOrganellesTooltip : Control, ICustomToolTip
     {
         if (disposing)
         {
-            if (NameLabelPath != null)
             {
-                NameLabelPath.Dispose();
-                UnlockTextPath.Dispose();
             }
         }
 

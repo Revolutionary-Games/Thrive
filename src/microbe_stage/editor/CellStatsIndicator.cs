@@ -25,10 +25,8 @@ public partial class CellStatsIndicator : HBoxContainer
     [Export]
     public Texture2D? Icon;
 
-    [Export]
-    public NodePath? ValuePath;
-
     private Label? descriptionLabel;
+    [Export]
     private Label? valueLabel;
     private TextureRect? changeIndicator;
     private TextureRect? iconRect;
@@ -101,7 +99,6 @@ public partial class CellStatsIndicator : HBoxContainer
     public override void _Ready()
     {
         descriptionLabel = GetNode<Label>("Description");
-        valueLabel = GetNode<Label>(ValuePath);
         changeIndicator = GetNode<TextureRect>("Indicator");
         iconRect = GetNode<TextureRect>("Icon");
 
@@ -164,7 +161,6 @@ public partial class CellStatsIndicator : HBoxContainer
     {
         if (disposing)
         {
-            ValuePath?.Dispose();
         }
 
         base.Dispose(disposing);

@@ -32,13 +32,13 @@ uv1_scale = Vector3(105, 105, 105)
 material = SubResource("4")
 size = Vector2(600, 600)
 
-[node name="IndustrialStage" type="Node"]
+[node name="IndustrialStage" type="Node" node_paths=PackedStringArray("hudRoot", "pauseMenu", "strategicCamera", "spaceMoveConfirmationPopup", "nameLabelSystem")]
 script = ExtResource("1")
-NameLabelSystemPath = NodePath("StrategicEntityNameLabelSystem")
-SpaceMoveConfirmationPopupPath = NodePath("ConfirmSpaceStage")
-StrategicCameraPath = NodePath("World/StrategicCamera")
-PauseMenuPath = NodePath("PauseMenu")
-HUDRootPath = NodePath("IndustrialHUD")
+nameLabelSystem = NodePath("StrategicEntityNameLabelSystem")
+spaceMoveConfirmationPopup = NodePath("ConfirmSpaceStage")
+strategicCamera = NodePath("World/StrategicCamera")
+pauseMenu = NodePath("PauseMenu")
+hudRoot = NodePath("IndustrialHUD")
 
 [node name="World" type="Node" parent="."]
 

@@ -172,7 +172,7 @@ _data = {
 &"RESET": SubResource("Animation_ih5uy")
 }
 
-[node name="PauseMenu" instance=ExtResource("10")]
+[node name="PauseMenu" instance=ExtResource("10") node_paths=PackedStringArray("unsavedProgressWarning", "saveMenu", "optionsMenu", "loadMenu", "thriveopedia", "primaryMenu")]
 process_mode = 3
 visible = true
 offset_right = 1280.0
@@ -181,13 +181,13 @@ size_flags_horizontal = 3
 size_flags_vertical = 3
 theme = ExtResource("2")
 script = ExtResource("1")
-PrimaryMenuPath = NodePath("CenterContainer/PrimaryMenu")
-ThriveopediaPath = NodePath("Thriveopedia")
-LoadMenuPath = NodePath("CenterContainer/LoadMenu")
-OptionsMenuPath = NodePath("OptionsMenu")
-SaveMenuPath = NodePath("CenterContainer/NewSaveMenu")
+primaryMenu = NodePath("CenterContainer/PrimaryMenu")
+thriveopedia = NodePath("Thriveopedia")
+loadMenu = NodePath("CenterContainer/LoadMenu")
+optionsMenu = NodePath("OptionsMenu")
+saveMenu = NodePath("CenterContainer/NewSaveMenu")
 LoadSaveListPath = NodePath("CenterContainer/LoadMenu/SaveList")
-UnsavedProgressWarningPath = NodePath("UnsavedProgressWarning")
+unsavedProgressWarning = NodePath("UnsavedProgressWarning")
 ExclusiveAllowCloseOnEscape = false
 FullRect = true
 

@@ -5,14 +5,10 @@
 /// </summary>
 public partial class PlanetScreen : CustomWindow
 {
-    [Export]
-    public NodePath? ShortStatsLabelPath;
-
-    [Export]
-    public NodePath GodToolsButtonPath = null!;
-
 #pragma warning disable CA2213
+    [Export]
     private Label shortStatsLabel = null!;
+    [Export]
     private Button godToolsButton = null!;
 #pragma warning restore CA2213
 
@@ -27,8 +23,6 @@ public partial class PlanetScreen : CustomWindow
     {
         base._Ready();
 
-        shortStatsLabel = GetNode<Label>(ShortStatsLabelPath);
-        godToolsButton = GetNode<Button>(GodToolsButtonPath);
     }
 
     public override void _Process(double delta)
@@ -80,10 +74,7 @@ public partial class PlanetScreen : CustomWindow
     {
         if (disposing)
         {
-            if (ShortStatsLabelPath != null)
             {
-                ShortStatsLabelPath.Dispose();
-                GodToolsButtonPath.Dispose();
             }
         }
 

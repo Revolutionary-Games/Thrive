@@ -6,15 +6,11 @@
 public partial class IndustrialHUD : StrategyStageHUDBase<IndustrialStage>
 {
     // TODO: merge the common parts with the society stage hud into its own sub-scenes
-    [Export]
-    public NodePath? PopulationLabelPath;
-
-    [Export]
-    public NodePath CityScreenPopupPath = null!;
-
 #pragma warning disable CA2213
+    [Export]
     private Label populationLabel = null!;
 
+    [Export]
     private CityScreen cityScreenPopup = null!;
 #pragma warning restore CA2213
 
@@ -25,8 +21,6 @@ public partial class IndustrialHUD : StrategyStageHUDBase<IndustrialStage>
     {
         base._Ready();
 
-        populationLabel = GetNode<Label>(PopulationLabelPath);
-        cityScreenPopup = GetNode<CityScreen>(CityScreenPopupPath);
     }
 
     public void UpdatePopulationDisplay(long population)
@@ -52,10 +46,7 @@ public partial class IndustrialHUD : StrategyStageHUDBase<IndustrialStage>
     {
         if (disposing)
         {
-            if (PopulationLabelPath != null)
             {
-                PopulationLabelPath.Dispose();
-                CityScreenPopupPath.Dispose();
             }
         }
 

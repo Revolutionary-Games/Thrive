@@ -4,7 +4,7 @@
 [ext_resource type="Script" uid="uid://dfxrptwf7r135" path="res://src/awakening_stage/gui/InteractablePopup.cs" id="2"]
 [ext_resource type="LabelSettings" uid="uid://dvqx73nhtr0y2" path="res://src/gui_common/fonts/Body-Regular-Small.tres" id="4_ig0ml"]
 
-[node name="InteractablePopup" type="Control"]
+[node name="InteractablePopup" type="Control" node_paths=PackedStringArray("extraInfoLabel", "cancelButton", "buttonsContainer", "popup")]
 visible = false
 layout_mode = 3
 anchors_preset = 15
@@ -14,10 +14,10 @@ grow_horizontal = 2
 grow_vertical = 2
 mouse_filter = 2
 script = ExtResource("2")
-PopupPath = NodePath("CustomWindow")
-ButtonsContainerPath = NodePath("CustomWindow/VBoxContainer/ScrollContainer/VBoxContainer/ButtonContainer")
-CancelButtonPath = NodePath("CustomWindow/VBoxContainer/Cancel")
-ExtraInfoLabelPath = NodePath("CustomWindow/VBoxContainer/ScrollContainer/VBoxContainer/ExtraInfo")
+popup = NodePath("CustomWindow")
+buttonsContainer = NodePath("CustomWindow/VBoxContainer/ScrollContainer/VBoxContainer/ButtonContainer")
+cancelButton = NodePath("CustomWindow/VBoxContainer/Cancel")
+extraInfoLabel = NodePath("CustomWindow/VBoxContainer/ScrollContainer/VBoxContainer/ExtraInfo")
 InteractionButtonFont = ExtResource("4_ig0ml")
 
 [node name="CustomWindow" parent="." instance=ExtResource("1")]

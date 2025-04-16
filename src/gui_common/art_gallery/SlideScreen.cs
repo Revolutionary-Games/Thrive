@@ -9,48 +9,28 @@ public partial class SlideScreen : TopLevelContainer
     public const float SLIDESHOW_INTERVAL = 6.0f;
     public const float TOOLBAR_DISPLAY_DURATION = 4.0f;
 
-    [Export]
-    public NodePath? SlideTextureRectPath;
-
-    [Export]
-    public NodePath SlideToolbarPath = null!;
-
-    [Export]
-    public NodePath SlideCloseButtonPath = null!;
-
-    [Export]
-    public NodePath SlideShowModeButtonPath = null!;
-
-    [Export]
-    public NodePath SlideTitleLabelPath = null!;
-
-    [Export]
-    public NodePath ModelViewerContainerPath = null!;
-
-    [Export]
-    public NodePath ModelViewerPath = null!;
-
-    [Export]
-    public NodePath ModelHolderPath = null!;
-
-    [Export]
-    public NodePath ModelViewerCameraPath = null!;
-
-    [Export]
-    public NodePath PlaybackControlsPath = null!;
-
     private readonly NodePath modulateAlphaReference = new("modulate:a");
 
 #pragma warning disable CA2213
+    [Export]
     private CrossFadableTextureRect? slideTextureRect;
+    [Export]
     private Control? toolbar;
+    [Export]
     private Button? closeButton;
+    [Export]
     private Button? slideShowModeButton;
+    [Export]
     private Label? slideTitleLabel;
+    [Export]
     private CrossFadableGalleryViewport? modelViewerContainer;
+    [Export]
     private SubViewport? modelViewer;
+    [Export]
     private Node3D? modelHolder;
+    [Export]
     private OrbitCamera? modelViewerCamera;
+    [Export]
     private PlaybackControls? playbackControls;
 #pragma warning restore CA2213
 
@@ -108,17 +88,6 @@ public partial class SlideScreen : TopLevelContainer
 
     public override void _Ready()
     {
-        slideTextureRect = GetNode<CrossFadableTextureRect>(SlideTextureRectPath);
-        toolbar = GetNode<Control>(SlideToolbarPath);
-        closeButton = GetNode<Button>(SlideCloseButtonPath);
-        slideShowModeButton = GetNode<Button>(SlideShowModeButtonPath);
-        slideTitleLabel = GetNode<Label>(SlideTitleLabelPath);
-        modelViewerContainer = GetNode<CrossFadableGalleryViewport>(ModelViewerContainerPath);
-        modelViewer = GetNode<SubViewport>(ModelViewerPath);
-        modelHolder = GetNode<Node3D>(ModelHolderPath);
-        modelViewerCamera = GetNode<OrbitCamera>(ModelViewerCameraPath);
-        playbackControls = GetNode<PlaybackControls>(PlaybackControlsPath);
-
         UpdateScreen();
     }
 
@@ -299,18 +268,7 @@ public partial class SlideScreen : TopLevelContainer
     {
         if (disposing)
         {
-            if (SlideTextureRectPath != null)
             {
-                SlideTextureRectPath.Dispose();
-                SlideToolbarPath.Dispose();
-                SlideCloseButtonPath.Dispose();
-                SlideShowModeButtonPath.Dispose();
-                SlideTitleLabelPath.Dispose();
-                ModelViewerContainerPath.Dispose();
-                ModelViewerPath.Dispose();
-                ModelHolderPath.Dispose();
-                ModelViewerCameraPath.Dispose();
-                PlaybackControlsPath.Dispose();
             }
 
             modulateAlphaReference.Dispose();

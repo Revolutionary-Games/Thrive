@@ -61,7 +61,7 @@ corner_radius_top_right = 3
 corner_radius_bottom_right = 3
 corner_radius_bottom_left = 3
 
-[node name="MicrobeEditorPatchMap" type="Control" node_paths=PackedStringArray("micheViewer", "mapDrawer", "detailsPanel", "seedLabel")]
+[node name="MicrobeEditorPatchMap" type="Control" node_paths=PackedStringArray("micheViewer", "mapDrawer", "detailsPanel", "seedLabel", "finishOrNextButton")]
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
@@ -74,7 +74,7 @@ micheViewer = NodePath("PopupMicheViewer")
 mapDrawer = NodePath("MarginContainer/HSplitContainer/MapPanel/MarginContainer/DraggableScrollContainer/PatchMapDrawer")
 detailsPanel = NodePath("MarginContainer/HSplitContainer/PatchDetailsPanel")
 seedLabel = NodePath("MarginContainer/HSplitContainer/MapPanel/MarginContainer/VBoxContainer2/SeedLabel")
-FinishOrNextButtonPath = NodePath("MarginContainer2/NextTabButton")
+finishOrNextButton = NodePath("MarginContainer2/NextTabButton")
 
 [node name="MarginContainer" type="MarginContainer" parent="."]
 layout_mode = 0
@@ -101,9 +101,9 @@ theme_override_constants/margin_top = 10
 theme_override_constants/margin_right = 10
 theme_override_constants/margin_bottom = 10
 
-[node name="DraggableScrollContainer" parent="MarginContainer/HSplitContainer/MapPanel/MarginContainer" instance=ExtResource("30")]
+[node name="DraggableScrollContainer" parent="MarginContainer/HSplitContainer/MapPanel/MarginContainer" instance=ExtResource("30") node_paths=PackedStringArray("content")]
 layout_mode = 2
-ContentPath = NodePath("PatchMapDrawer")
+content = NodePath("PatchMapDrawer")
 
 [node name="PatchMapDrawer" parent="MarginContainer/HSplitContainer/MapPanel/MarginContainer/DraggableScrollContainer" instance=ExtResource("18")]
 custom_minimum_size = Vector2(1500, 1500)

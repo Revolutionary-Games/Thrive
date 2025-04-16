@@ -7,38 +7,22 @@ using Godot;
 /// </summary>
 public partial class ThriveopediaMuseumPage : ThriveopediaPage, IThriveopediaPage
 {
-    [Export]
-    public NodePath? CardContainerPath;
-
-    [Export]
-    public NodePath WelcomeLabelPath = null!;
-
-    [Export]
-    public NodePath SpeciesPreviewContainerPath = null!;
-
-    [Export]
-    public NodePath SpeciesPreviewPanelPath = null!;
-
-    [Export]
-    public NodePath LeaveGameConfirmationDialogPath = null!;
-
-    [Export]
-    public NodePath FossilDirectoryWarningBoxPath = null!;
-
-    [Export]
-    public NodePath DeleteConfirmationDialogPath = null!;
-
-    [Export]
-    public NodePath DeletionFailedDialogPath = null!;
-
 #pragma warning disable CA2213
+    [Export]
     private HFlowContainer cardContainer = null!;
+    [Export]
     private Control welcomeLabel = null!;
+    [Export]
     private VBoxContainer speciesPreviewContainer = null!;
+    [Export]
     private SpeciesDetailsPanel speciesPreviewPanel = null!;
+    [Export]
     private CustomConfirmationDialog leaveGameConfirmationDialog = null!;
+    [Export]
     private CustomConfirmationDialog fossilDirectoryWarningBox = null!;
+    [Export]
     private CustomConfirmationDialog deleteConfirmationDialog = null!;
+    [Export]
     private CustomConfirmationDialog deletionFailedDialog = null!;
     private PackedScene museumCardScene = null!;
 
@@ -53,15 +37,6 @@ public partial class ThriveopediaMuseumPage : ThriveopediaPage, IThriveopediaPag
     public override void _Ready()
     {
         base._Ready();
-
-        cardContainer = GetNode<HFlowContainer>(CardContainerPath);
-        welcomeLabel = GetNode<Control>(WelcomeLabelPath);
-        speciesPreviewContainer = GetNode<VBoxContainer>(SpeciesPreviewContainerPath);
-        speciesPreviewPanel = GetNode<SpeciesDetailsPanel>(SpeciesPreviewPanelPath);
-        leaveGameConfirmationDialog = GetNode<CustomConfirmationDialog>(LeaveGameConfirmationDialogPath);
-        fossilDirectoryWarningBox = GetNode<CustomConfirmationDialog>(FossilDirectoryWarningBoxPath);
-        deleteConfirmationDialog = GetNode<CustomConfirmationDialog>(DeleteConfirmationDialogPath);
-        deletionFailedDialog = GetNode<CustomConfirmationDialog>(DeletionFailedDialogPath);
 
         museumCardScene = GD.Load<PackedScene>("res://src/thriveopedia/fossilisation/MuseumCard.tscn");
     }
@@ -95,16 +70,7 @@ public partial class ThriveopediaMuseumPage : ThriveopediaPage, IThriveopediaPag
     {
         if (disposing)
         {
-            if (CardContainerPath != null)
             {
-                CardContainerPath.Dispose();
-                WelcomeLabelPath.Dispose();
-                SpeciesPreviewContainerPath.Dispose();
-                SpeciesPreviewPanelPath.Dispose();
-                LeaveGameConfirmationDialogPath.Dispose();
-                FossilDirectoryWarningBoxPath.Dispose();
-                DeleteConfirmationDialogPath.Dispose();
-                DeletionFailedDialogPath.Dispose();
             }
         }
 

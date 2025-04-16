@@ -6,18 +6,14 @@ using Godot;
 /// </summary>
 public partial class RadialPopup : CustomWindow
 {
-    [Export]
-    public NodePath? RadialPath;
-
     [Signal]
     public delegate void OnItemSelectedEventHandler(int itemId);
 
+    [Export]
     public RadialMenu Radial { get; private set; } = null!;
 
     public override void _Ready()
     {
-        Radial = GetNode<RadialMenu>(RadialPath);
-
         FullRect = true;
         Decorate = false;
 
@@ -66,7 +62,6 @@ public partial class RadialPopup : CustomWindow
     {
         if (disposing)
         {
-            RadialPath?.Dispose();
         }
 
         base.Dispose(disposing);

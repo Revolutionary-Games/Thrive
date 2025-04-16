@@ -10,12 +10,6 @@ using Godot;
 public partial class PhotoStudio : SubViewport
 {
     [Export]
-    public NodePath? CameraPath;
-
-    [Export]
-    public NodePath RenderedObjectHolderPath = null!;
-
-    [Export]
     public NodePath SimulationWorldsParentPath = null!;
 
     [Export]
@@ -58,7 +52,9 @@ public partial class PhotoStudio : SubViewport
 
     private Node3D? instancedScene;
 
+    [Export]
     private Camera3D camera = null!;
+    [Export]
     private Node3D renderedObjectHolder = null!;
 
     private Node simulationWorldsParent = null!;
@@ -117,8 +113,6 @@ public partial class PhotoStudio : SubViewport
 
         base._Ready();
 
-        camera = GetNode<Camera3D>(CameraPath);
-        renderedObjectHolder = GetNode<Node3D>(RenderedObjectHolderPath);
         simulationWorldsParent = GetNode(SimulationWorldsParentPath);
 
         // We manually trigger rendering when we want
@@ -395,10 +389,7 @@ public partial class PhotoStudio : SubViewport
     {
         if (disposing)
         {
-            if (CameraPath != null)
             {
-                CameraPath.Dispose();
-                RenderedObjectHolderPath.Dispose();
                 SimulationWorldsParentPath.Dispose();
             }
 

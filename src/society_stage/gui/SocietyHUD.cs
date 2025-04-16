@@ -5,10 +5,8 @@
 /// </summary>
 public partial class SocietyHUD : StrategyStageHUDBase<SocietyStage>
 {
-    [Export]
-    public NodePath? PopulationLabelPath;
-
 #pragma warning disable CA2213
+    [Export]
     private Label populationLabel = null!;
 
 #pragma warning restore CA2213
@@ -23,7 +21,6 @@ public partial class SocietyHUD : StrategyStageHUDBase<SocietyStage>
     {
         base._Ready();
 
-        populationLabel = GetNode<Label>(PopulationLabelPath);
     }
 
     public void ForwardBuildingPlacingRequest()
@@ -41,7 +38,6 @@ public partial class SocietyHUD : StrategyStageHUDBase<SocietyStage>
     {
         if (disposing)
         {
-            PopulationLabelPath?.Dispose();
         }
 
         base.Dispose(disposing);

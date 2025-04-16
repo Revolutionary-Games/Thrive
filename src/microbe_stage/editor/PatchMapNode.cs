@@ -7,30 +7,15 @@ using Godot;
 /// </summary>
 public partial class PatchMapNode : MarginContainer
 {
-    [Export]
-    public NodePath? IconPath;
-
     /// <summary>
     ///   Selected patch graphics
     /// </summary>
-    [Export]
-    public NodePath HighlightPanelPath = null!;
-
     /// <summary>
     ///   Player patch graphics
     /// </summary>
-    [Export]
-    public NodePath MarkPanelPath = null!;
-
     /// <summary>
     ///   For patches adjacent to the selected one
     /// </summary>
-    [Export]
-    public NodePath AdjacentPanelPath = null!;
-
-    [Export]
-    public NodePath UnknownLabelPath = null!;
-
     [Export]
     public string UnknownTextureFilePath = null!;
 
@@ -44,11 +29,16 @@ public partial class PatchMapNode : MarginContainer
     [Export]
     private TextureRect glaciationEventIndicator = null!;
 
-    private TextureRect? iconRect;
-    private Panel? highlightPanel;
-    private Panel? markPanel;
-    private Panel? adjacentHighlightPanel;
-    private Label? unknownLabel;
+    [Export]
+    private TextureRect iconRect = null!;
+    [Export]
+    private Panel highlightPanel = null!;
+    [Export]
+    private Panel markPanel = null!;
+    [Export]
+    private Panel adjacentHighlightPanel = null!;
+    [Export]
+    private Label unknownLabel = null!;
 
     private Texture2D? patchIcon;
 #pragma warning restore CA2213
@@ -195,12 +185,6 @@ public partial class PatchMapNode : MarginContainer
         if (patch == null)
             GD.PrintErr($"{nameof(PatchMapNode)} should have {nameof(Patch)} set");
 
-        iconRect = GetNode<TextureRect>(IconPath);
-        highlightPanel = GetNode<Panel>(HighlightPanelPath);
-        markPanel = GetNode<Panel>(MarkPanelPath);
-        adjacentHighlightPanel = GetNode<Panel>(AdjacentPanelPath);
-        unknownLabel = GetNode<Label>(UnknownLabelPath);
-
         UpdateSelectHighlightRing();
         UpdateMarkRing();
         UpdateIcon();
@@ -320,28 +304,8 @@ public partial class PatchMapNode : MarginContainer
         Highlighted = false;
     }
 
-    protected override void Dispose(bool disposing)
-    {
-        if (disposing)
-        {
-            if (IconPath != null)
-            {
-                IconPath.Dispose();
-                HighlightPanelPath.Dispose();
-                MarkPanelPath.Dispose();
-                AdjacentPanelPath.Dispose();
-                UnknownLabelPath.Dispose();
-            }
-        }
-
-        base.Dispose(disposing);
-    }
-
     private void UpdateSelectHighlightRing()
     {
-        if (highlightPanel == null || adjacentHighlightPanel == null)
-            return;
-
         if (Enabled)
         {
             highlightPanel.Visible = Highlighted || Selected;
@@ -356,15 +320,12 @@ public partial class PatchMapNode : MarginContainer
 
     private void UpdateMarkRing()
     {
-        if (markPanel == null)
-            return;
-
         markPanel.Visible = Marked;
     }
 
     private void UpdateIcon()
     {
-        if (PatchIcon == null || iconRect == null)
+        if (PatchIcon == null)
             return;
 
         iconRect.Texture = PatchIcon;
@@ -372,9 +333,6 @@ public partial class PatchMapNode : MarginContainer
 
     private void UpdateGreyscale()
     {
-        if (iconRect == null)
-            return;
-
         iconRect.Material = Enabled ? null : MonochromeMaterial;
     }
 }

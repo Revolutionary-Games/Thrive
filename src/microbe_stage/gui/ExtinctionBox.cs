@@ -5,14 +5,10 @@
 /// </summary>
 public partial class ExtinctionBox : CustomWindow
 {
-    [Export]
-    public NodePath? ExtinctionMenuPath;
-
-    [Export]
-    public NodePath LoadMenuPath = null!;
-
 #pragma warning disable CA2213
+    [Export]
     private Control extinctionMenu = null!;
+    [Export]
     private Control loadMenu = null!;
 
     [Export]
@@ -42,9 +38,6 @@ public partial class ExtinctionBox : CustomWindow
 
     public override void _Ready()
     {
-        extinctionMenu = GetNode<Control>(ExtinctionMenuPath);
-        loadMenu = GetNode<Control>(LoadMenuPath);
-
         UpdateContinueOption();
     }
 
@@ -77,10 +70,7 @@ public partial class ExtinctionBox : CustomWindow
     {
         if (disposing)
         {
-            if (ExtinctionMenuPath != null)
             {
-                ExtinctionMenuPath.Dispose();
-                LoadMenuPath.Dispose();
             }
         }
 

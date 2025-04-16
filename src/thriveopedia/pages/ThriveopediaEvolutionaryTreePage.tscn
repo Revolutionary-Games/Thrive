@@ -5,12 +5,12 @@
 [ext_resource type="PackedScene" uid="uid://cckki1kx0cnol" path="res://src/thriveopedia/ThriveopediaPage.tscn" id="6"]
 [ext_resource type="Script" uid="uid://jgsqx1bgxjjo" path="res://src/thriveopedia/pages/ThriveopediaEvolutionaryTreePage.cs" id="8"]
 
-[node name="ThriveopediaEvolutionaryTreePage" instance=ExtResource("6")]
+[node name="ThriveopediaEvolutionaryTreePage" instance=ExtResource("6") node_paths=PackedStringArray("speciesDetailsPanelWithFossilisation", "evolutionaryTree", "errorContainer")]
 script = ExtResource("8")
 DisplayBackground = false
-ErrorContainerPath = NodePath("Viewer/HBoxContainer/PanelContainer/MarginContainer/VBoxContainer/ErrorContainer")
-EvolutionaryTreePath = NodePath("Viewer/HBoxContainer/PanelContainer/MarginContainer/VBoxContainer/EvolutionaryTree")
-SpeciesDetailsPanelPath = NodePath("Viewer/HBoxContainer/PanelContainer2/MarginContainer/SpeciesDetailsPanel")
+errorContainer = NodePath("Viewer/HBoxContainer/PanelContainer/MarginContainer/VBoxContainer/ErrorContainer")
+evolutionaryTree = NodePath("Viewer/HBoxContainer/PanelContainer/MarginContainer/VBoxContainer/EvolutionaryTree")
+speciesDetailsPanelWithFossilisation = NodePath("Viewer/HBoxContainer/PanelContainer2/MarginContainer/SpeciesDetailsPanel")
 
 [node name="Viewer" type="Control" parent="." index="1"]
 offset_left = 1.0

@@ -5,7 +5,7 @@
 [ext_resource type="PackedScene" path="res://src/engine/input/ControllerInputAxisVisualizationContainer.tscn" id="3"]
 [ext_resource type="LabelSettings" uid="uid://bx7mw3uvqpo42" path="res://src/gui_common/fonts/Body-Regular-Smaller.tres" id="3_3jtjp"]
 
-[node name="ControllerDeadzoneConfiguration" instance=ExtResource("1")]
+[node name="ControllerDeadzoneConfiguration" instance=ExtResource("1") node_paths=PackedStringArray("statusLabel", "applyButton", "startButton", "visualizationContainer")]
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
@@ -14,10 +14,10 @@ offset_bottom = 0.0
 grow_horizontal = 2
 grow_vertical = 2
 script = ExtResource("2")
-VisualizationContainerPath = NodePath("VBoxContainer/ScrollContainer/VBoxContainer/ControllerInputAxisVisualizationContainer")
-StartButtonPath = NodePath("VBoxContainer/ScrollContainer/VBoxContainer/HBoxContainer/Start")
-ApplyButtonPath = NodePath("VBoxContainer/Apply")
-StatusLabelPath = NodePath("VBoxContainer/ScrollContainer/VBoxContainer/Result")
+visualizationContainer = NodePath("VBoxContainer/ScrollContainer/VBoxContainer/ControllerInputAxisVisualizationContainer")
+startButton = NodePath("VBoxContainer/ScrollContainer/VBoxContainer/HBoxContainer/Start")
+applyButton = NodePath("VBoxContainer/Apply")
+statusLabel = NodePath("VBoxContainer/ScrollContainer/VBoxContainer/Result")
 ExplanationLabelPath = NodePath("VBoxContainer/ScrollContainer/VBoxContainer/Explanation")
 WindowTitle = "DEADZONE_CONFIGURATION"
 Exclusive = true

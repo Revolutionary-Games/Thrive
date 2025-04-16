@@ -1,9 +1,11 @@
-[gd_scene load_steps=17 format=3 uid="uid://dva08tpqyn15k"]
+[gd_scene load_steps=22 format=3 uid="uid://dva08tpqyn15k"]
 
 [ext_resource type="Script" uid="uid://di2y5gnlbsclr" path="res://src/microbe_stage/MicrobeStage.cs" id="1"]
 [ext_resource type="PackedScene" uid="uid://bako5jivv1dji" path="res://src/microbe_stage/MicrobeCamera.tscn" id="2"]
 [ext_resource type="PackedScene" uid="uid://bt2fv82h01ice" path="res://src/microbe_stage/MicrobeHUD.tscn" id="3"]
 [ext_resource type="PackedScene" uid="uid://dew8qwd0buvnb" path="res://src/thriveopedia/fossilisation/FossilisationDialog.tscn" id="4"]
+[ext_resource type="Shader" uid="uid://b12xtoy67lhb" path="res://shaders/HeatGradient.gdshader" id="4_xncm1"]
+[ext_resource type="Texture2D" uid="uid://5y2h7opa1yq6" path="res://src/microbe_stage/HeatGradientNoise.tres" id="5_3c4mw"]
 [ext_resource type="PackedScene" uid="uid://dqpjtfkjeuwmq" path="res://src/microbe_stage/MicrobeWorldEnvironment.tscn" id="5_jtm5v"]
 [ext_resource type="PackedScene" uid="uid://d3hkouff6asri" path="res://src/microbe_stage/FluidCurrentDisplay.tscn" id="6_4kiki"]
 [ext_resource type="Script" uid="uid://cksngbvpy82k0" path="res://src/microbe_stage/PlayerMicrobeInput.cs" id="7"]
@@ -17,15 +19,34 @@
 [ext_resource type="PackedScene" uid="uid://b5yuo8sj21lnf" path="res://src/engine/GuidanceLine.tscn" id="75"]
 [ext_resource type="PackedScene" uid="uid://dwkek50fju0fu" path="res://src/microbe_stage/PatchNameOverlay.tscn" id="85"]
 
-[node name="MicrobeStage" type="Node" node_paths=PackedStringArray("heatViewOverlay", "fluidCurrentDisplay", "movementModeSelectionPopup")]
+[sub_resource type="FastNoiseLite" id="FastNoiseLite_q12wg"]
+frequency = 0.2401
+
+[sub_resource type="NoiseTexture2D" id="NoiseTexture2D_d28l8"]
+noise = SubResource("FastNoiseLite_q12wg")
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_fltkg"]
+resource_local_to_scene = true
+render_priority = -2
+shader = ExtResource("4_xncm1")
+shader_parameter/heat = ExtResource("5_3c4mw")
+shader_parameter/noise = SubResource("NoiseTexture2D_d28l8")
+shader_parameter/warmColour = Color(1, 0.359565, 0.239655, 1)
+shader_parameter/coldColour = Color(0.233659, 0.0244511, 0.882812, 1)
+shader_parameter/uvOffset = Vector2(0, 0)
+shader_parameter/heatThreshold = 0.5
+shader_parameter/alphaMultiplier = 0.077
+shader_parameter/noiseMultiplier = 0.099
+
+[node name="MicrobeStage" type="Node" node_paths=PackedStringArray("heatViewOverlay", "fluidCurrentDisplay", "movementModeSelectionPopup", "guidanceLine", "pauseMenu", "hudRoot")]
 process_priority = -1
 script = ExtResource("1")
-GuidanceLinePath = NodePath("World/GuidanceLine")
 heatViewOverlay = NodePath("World/PrimaryCamera/HeatGradientPlane")
 fluidCurrentDisplay = NodePath("World/PrimaryCamera/FluidCurrentDisplay")
 movementModeSelectionPopup = NodePath("MovementModeSelectionPopup")
-PauseMenuPath = NodePath("PauseMenu")
-HUDRootPath = NodePath("MicrobeHUD")
+guidanceLine = NodePath("World/GuidanceLine")
+pauseMenu = NodePath("PauseMenu")
+hudRoot = NodePath("MicrobeHUD")
 
 [node name="World" type="Node" parent="."]
 
@@ -36,6 +57,7 @@ AutoProcessWhilePaused = true
 [node name="HeatGradientPlane" parent="World/PrimaryCamera" instance=ExtResource("8_7ghg3")]
 transform = Transform3D(1, 0, 0, 0, -1.62921e-07, -1, 0, 1, -1.62921e-07, 0, 1.62921e-06, -10)
 visible = false
+material_override = SubResource("ShaderMaterial_fltkg")
 
 [node name="FluidCurrentDisplay" parent="World/PrimaryCamera" instance=ExtResource("6_4kiki")]
 
@@ -62,9 +84,10 @@ script = ExtResource("7")
 
 [node name="ChromaticFilter" parent="." instance=ExtResource("67")]
 
-[node name="MicrobeHUD" parent="." node_paths=PackedStringArray("menu") instance=ExtResource("3")]
-FossilisationButtonLayerPath = NodePath("FossilisationButtonLayer")
-FossilisationDialogPath = NodePath("FossilisationDialog")
+[node name="MicrobeHUD" parent="." node_paths=PackedStringArray("patchName", "fossilisationButtonLayer", "fossilisationDialog", "menu") instance=ExtResource("3")]
+patchName = NodePath("../PatchNameOverlay")
+fossilisationButtonLayer = NodePath("FossilisationButtonLayer")
+fossilisationDialog = NodePath("FossilisationDialog")
 menu = NodePath("../PauseMenu")
 
 [node name="FossilisationButtonLayer" type="Control" parent="MicrobeHUD"]

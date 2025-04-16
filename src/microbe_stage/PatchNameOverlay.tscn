@@ -46,7 +46,7 @@ _data = {
 &"FadeInOut": SubResource("37")
 }
 
-[node name="PatchNameOverlay" type="PanelContainer"]
+[node name="PatchNameOverlay" type="PanelContainer" node_paths=PackedStringArray("patchOverlayAnimator", "patchLabel")]
 modulate = Color(1, 1, 1, 0)
 custom_minimum_size = Vector2(0, 130)
 anchors_preset = 14
@@ -60,8 +60,8 @@ mouse_filter = 2
 theme = ExtResource("1_um53y")
 theme_override_styles/panel = SubResource("StyleBoxEmpty_02uav")
 script = ExtResource("3")
-PatchLabelPath = NodePath("VBoxContainer/PatchLabel")
-PatchOverlayAnimatorPath = NodePath("AnimationPlayer")
+patchLabel = NodePath("VBoxContainer/PatchLabel")
+patchOverlayAnimator = NodePath("AnimationPlayer")
 
 [node name="TextureRect" type="TextureRect" parent="."]
 layout_mode = 2

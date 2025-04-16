@@ -9,40 +9,24 @@ using Newtonsoft.Json;
 [JsonObject(MemberSerialization.OptIn)]
 public partial class MacroscopicHUD : CreatureStageHUDBase<MacroscopicStage>
 {
-    [Export]
-    public NodePath? MoveToLandPopupPath;
-
-    [Export]
-    public NodePath ToLandButtonPath = null!;
-
-    [Export]
-    public NodePath AwakenButtonPath = null!;
-
-    [Export]
-    public NodePath AwakenConfirmPopupPath = null!;
-
-    [Export]
-    public NodePath InteractActionPath = null!;
-
-    [Export]
-    public NodePath InventoryButtonPath = null!;
-
-    [Export]
-    public NodePath BuildButtonPath = null!;
-
-    [Export]
-    public NodePath InventoryScreenPath = null!;
-
 #pragma warning disable CA2213
+    [Export]
     private CustomWindow moveToLandPopup = null!;
+    [Export]
     private Button toLandButton = null!;
+    [Export]
     private Button awakenButton = null!;
+    [Export]
     private CustomWindow awakenConfirmPopup = null!;
 
+    [Export]
     private ActionButton interactAction = null!;
+    [Export]
     private ActionButton inventoryButton = null!;
+    [Export]
     private ActionButton buildButton = null!;
 
+    [Export]
     private InventoryScreen inventoryScreen = null!;
 #pragma warning restore CA2213
 
@@ -66,16 +50,6 @@ public partial class MacroscopicHUD : CreatureStageHUDBase<MacroscopicStage>
     {
         base._Ready();
 
-        moveToLandPopup = GetNode<CustomWindow>(MoveToLandPopupPath);
-        toLandButton = GetNode<Button>(ToLandButtonPath);
-        awakenButton = GetNode<Button>(AwakenButtonPath);
-        awakenConfirmPopup = GetNode<CustomWindow>(AwakenConfirmPopupPath);
-
-        interactAction = GetNode<ActionButton>(InteractActionPath);
-        inventoryButton = GetNode<ActionButton>(InventoryButtonPath);
-        buildButton = GetNode<ActionButton>(BuildButtonPath);
-
-        inventoryScreen = GetNode<InventoryScreen>(InventoryScreenPath);
     }
 
     public override void _Process(double delta)
@@ -211,16 +185,7 @@ public partial class MacroscopicHUD : CreatureStageHUDBase<MacroscopicStage>
     {
         if (disposing)
         {
-            if (MoveToLandPopupPath != null)
             {
-                MoveToLandPopupPath.Dispose();
-                ToLandButtonPath.Dispose();
-                AwakenButtonPath.Dispose();
-                AwakenConfirmPopupPath.Dispose();
-                InteractActionPath.Dispose();
-                InventoryButtonPath.Dispose();
-                BuildButtonPath.Dispose();
-                InventoryScreenPath.Dispose();
             }
         }
 

@@ -10,28 +10,16 @@ public partial class MicrobeEditorTabButtons : MarginContainer
     [ExportCategory("Configuration")]
     public bool IsForMulticellular;
 
-    [Export]
-    [ExportCategory("Internal")]
-    public NodePath? TabButtonsPath;
-
-    [Export]
-    public NodePath ReportTabButtonPath = null!;
-
-    [Export]
-    public NodePath PatchMapButtonPath = null!;
-
-    [Export]
-    public NodePath CellEditorButtonPath = null!;
-
-    [Export]
-    public NodePath CellTypeTabPath = null!;
-
 #pragma warning disable CA2213
 
     // Editor tab selector buttons
-    private Button? reportTabButton;
-    private Button? patchMapButton;
+    [Export]
+    private Button reportTabButton = null!;
+    [Export]
+    private Button patchMapButton = null!;
+    [Export]
     private Button cellEditorButton = null!;
+    [Export]
     private Button cellTypeTab = null!;
 #pragma warning restore CA2213
 
@@ -84,16 +72,6 @@ public partial class MicrobeEditorTabButtons : MarginContainer
 
     public override void _Ready()
     {
-        if (TabButtonsPath == null)
-            throw new MissingExportVariableValueException();
-
-        var tabButtons = GetNode<TabButtons>(TabButtonsPath);
-
-        reportTabButton = GetNode<Button>(tabButtons.GetAdjustedButtonPath(TabButtonsPath, ReportTabButtonPath));
-        patchMapButton = GetNode<Button>(tabButtons.GetAdjustedButtonPath(TabButtonsPath, PatchMapButtonPath));
-        cellEditorButton = GetNode<Button>(tabButtons.GetAdjustedButtonPath(TabButtonsPath, CellEditorButtonPath));
-        cellTypeTab = GetNode<Button>(tabButtons.GetAdjustedButtonPath(TabButtonsPath, CellTypeTabPath));
-
         cellTypeTab.Visible = IsForMulticellular;
         reportTabButton.Visible = showReportTab;
         patchMapButton.Visible = showMapTab;
@@ -106,23 +84,6 @@ public partial class MicrobeEditorTabButtons : MarginContainer
 
         selectedTab = tab;
         ApplyButtonStates();
-    }
-
-    protected override void Dispose(bool disposing)
-    {
-        if (disposing)
-        {
-            if (TabButtonsPath != null)
-            {
-                TabButtonsPath.Dispose();
-                ReportTabButtonPath.Dispose();
-                PatchMapButtonPath.Dispose();
-                CellEditorButtonPath.Dispose();
-                CellTypeTabPath.Dispose();
-            }
-        }
-
-        base.Dispose(disposing);
     }
 
     private void SetEditorTab(string tab)

@@ -14,20 +14,14 @@ using Godot;
 /// </remarks>
 public partial class ThriveopediaEvolutionaryTreePage : ThriveopediaPage, IThriveopediaPage
 {
-    [Export]
-    public NodePath? ErrorContainerPath;
-
-    [Export]
-    public NodePath EvolutionaryTreePath = null!;
-
-    [Export]
-    public NodePath SpeciesDetailsPanelPath = null!;
-
     private readonly List<Dictionary<uint, Species>> speciesHistoryList = new();
 
 #pragma warning disable CA2213
+    [Export]
     private VBoxContainer errorContainer = null!;
+    [Export]
     private EvolutionaryTree evolutionaryTree = null!;
+    [Export]
     private SpeciesDetailsPanelWithFossilisation speciesDetailsPanelWithFossilisation = null!;
 #pragma warning restore CA2213
 
@@ -40,10 +34,6 @@ public partial class ThriveopediaEvolutionaryTreePage : ThriveopediaPage, IThriv
     public override void _Ready()
     {
         base._Ready();
-
-        errorContainer = GetNode<VBoxContainer>(ErrorContainerPath);
-        evolutionaryTree = GetNode<EvolutionaryTree>(EvolutionaryTreePath);
-        speciesDetailsPanelWithFossilisation = GetNode<SpeciesDetailsPanelWithFossilisation>(SpeciesDetailsPanelPath);
 
         UpdateCurrentWorldDetails();
     }
@@ -72,11 +62,7 @@ public partial class ThriveopediaEvolutionaryTreePage : ThriveopediaPage, IThriv
     {
         if (disposing)
         {
-            if (ErrorContainerPath != null)
             {
-                ErrorContainerPath.Dispose();
-                EvolutionaryTreePath.Dispose();
-                SpeciesDetailsPanelPath.Dispose();
             }
         }
 

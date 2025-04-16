@@ -3,7 +3,7 @@
 [ext_resource type="PackedScene" uid="uid://du8sc8kjirguk" path="res://src/gui_common/dialogs/CustomWindow.tscn" id="1"]
 [ext_resource type="Script" uid="uid://266a8q1ir02r" path="res://src/industrial_stage/gui/CityScreen.cs" id="2"]
 
-[node name="CityScreen" instance=ExtResource("1")]
+[node name="CityScreen" instance=ExtResource("1") node_paths=PackedStringArray("buildQueueContainer", "constructedBuildingsContainer", "availableBuildingsContainer", "shortStatsLabel")]
 offset_left = 5.0
 offset_top = 70.0
 offset_right = 505.0
@@ -11,10 +11,10 @@ offset_bottom = 420.0
 custom_minimum_size = Vector2(350, 300)
 script = ExtResource("2")
 Resizable = true
-ShortStatsLabelPath = NodePath("VBoxContainer/CityStats")
-AvailableBuildingsContainerPath = NodePath("VBoxContainer/HBoxContainer/LeftSide/ScrollContainer/AvailableBuildings")
-ConstructedBuildingsContainerPath = NodePath("VBoxContainer/HBoxContainer/LeftSide/ScrollContainer2/ConstructedBuildings")
-BuildQueueContainerPath = NodePath("VBoxContainer/HBoxContainer/BuildQueueSide/ScrollContainer/Queue")
+shortStatsLabel = NodePath("VBoxContainer/CityStats")
+availableBuildingsContainer = NodePath("VBoxContainer/HBoxContainer/LeftSide/ScrollContainer/AvailableBuildings")
+constructedBuildingsContainer = NodePath("VBoxContainer/HBoxContainer/LeftSide/ScrollContainer2/ConstructedBuildings")
+buildQueueContainer = NodePath("VBoxContainer/HBoxContainer/BuildQueueSide/ScrollContainer/Queue")
 
 [node name="VBoxContainer" type="VBoxContainer" parent="." index="0"]
 offset_right = 40.0

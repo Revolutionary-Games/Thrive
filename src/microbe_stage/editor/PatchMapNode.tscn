@@ -27,20 +27,20 @@ corner_radius_top_right = 5
 corner_radius_bottom_right = 5
 corner_radius_bottom_left = 5
 
-[node name="PatchMapNode" type="MarginContainer" node_paths=PackedStringArray("eruptionEventIndicator", "glaciationEventIndicator")]
+[node name="PatchMapNode" type="MarginContainer" node_paths=PackedStringArray("eruptionEventIndicator", "glaciationEventIndicator", "iconRect", "highlightPanel", "markPanel", "adjacentHighlightPanel", "unknownLabel")]
 custom_minimum_size = Vector2(64, 64)
 offset_right = 64.0
 offset_bottom = 64.0
 mouse_default_cursor_shape = 2
 script = ExtResource("2")
-IconPath = NodePath("MarginContainer/MarginContainer/TextureRect")
-HighlightPanelPath = NodePath("HoveredHighlight")
-MarkPanelPath = NodePath("PlayerHereHighlight")
-AdjacentPanelPath = NodePath("AdjacentToHighlight")
-UnknownLabelPath = NodePath("MarginContainer/MarginContainer/UnknownLabel")
 UnknownTextureFilePath = "res://assets/textures/gui/bevel/PatchAbyss.svg"
 eruptionEventIndicator = NodePath("EventIcons/Eruption")
 glaciationEventIndicator = NodePath("EventIcons/GlobalGlaciation")
+iconRect = NodePath("MarginContainer/MarginContainer/TextureRect")
+highlightPanel = NodePath("HoveredHighlight")
+markPanel = NodePath("PlayerHereHighlight")
+adjacentHighlightPanel = NodePath("AdjacentToHighlight")
+unknownLabel = NodePath("MarginContainer/MarginContainer/UnknownLabel")
 
 [node name="AdjacentToHighlight" type="Panel" parent="."]
 visible = false

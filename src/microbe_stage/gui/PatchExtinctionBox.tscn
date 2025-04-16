@@ -37,7 +37,7 @@ _data = {
 &"FadeIn": SubResource("2")
 }
 
-[node name="PatchExtinctionBox" type="Control"]
+[node name="PatchExtinctionBox" type="Control" node_paths=PackedStringArray("animationPlayer", "detailsPanel", "mapDrawer")]
 modulate = Color(1, 1, 1, 0)
 layout_mode = 3
 anchors_preset = 15
@@ -46,9 +46,9 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 script = ExtResource("4")
-PatchMapDrawerPath = NodePath("PanelContainer/MarginContainer/PatchExtinctionBoxMenu/HBoxContainer/MarginContainer/MapPanel/MarginContainer/DraggableScrollContainer/PatchMapDrawer")
-PatchDetailsPanelPath = NodePath("PanelContainer/MarginContainer/PatchExtinctionBoxMenu/HBoxContainer/MarginContainer2/PatchDetailsPanel")
-AnimationPlayer = NodePath("AnimationPlayer")
+mapDrawer = NodePath("PanelContainer/MarginContainer/PatchExtinctionBoxMenu/HBoxContainer/MarginContainer/MapPanel/MarginContainer/DraggableScrollContainer/PatchMapDrawer")
+detailsPanel = NodePath("PanelContainer/MarginContainer/PatchExtinctionBoxMenu/HBoxContainer/MarginContainer2/PatchDetailsPanel")
+animationPlayer = NodePath("AnimationPlayer")
 
 [node name="PanelContainer" type="PanelContainer" parent="."]
 layout_mode = 0
@@ -109,9 +109,9 @@ theme_override_constants/margin_top = 10
 theme_override_constants/margin_right = 10
 theme_override_constants/margin_bottom = 10
 
-[node name="DraggableScrollContainer" parent="PanelContainer/MarginContainer/PatchExtinctionBoxMenu/HBoxContainer/MarginContainer/MapPanel/MarginContainer" instance=ExtResource("7")]
+[node name="DraggableScrollContainer" parent="PanelContainer/MarginContainer/PatchExtinctionBoxMenu/HBoxContainer/MarginContainer/MapPanel/MarginContainer" instance=ExtResource("7") node_paths=PackedStringArray("content")]
 layout_mode = 2
-ContentPath = NodePath("PatchMapDrawer")
+content = NodePath("PatchMapDrawer")
 
 [node name="PatchMapDrawer" parent="PanelContainer/MarginContainer/PatchExtinctionBoxMenu/HBoxContainer/MarginContainer/MapPanel/MarginContainer/DraggableScrollContainer" instance=ExtResource("3")]
 custom_minimum_size = Vector2(1500, 1500)

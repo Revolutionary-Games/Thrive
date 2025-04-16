@@ -5,21 +5,15 @@
 /// </summary>
 public partial class PatchNameOverlay : PanelContainer
 {
-    [Export]
-    public NodePath? PatchLabelPath;
-
-    [Export]
-    public NodePath PatchOverlayAnimatorPath = null!;
-
 #pragma warning disable CA2213
+    [Export]
     private Label patchLabel = null!;
+    [Export]
     private AnimationPlayer patchOverlayAnimator = null!;
 #pragma warning restore CA2213
 
     public override void _Ready()
     {
-        patchLabel = GetNode<Label>(PatchLabelPath);
-        patchOverlayAnimator = GetNode<AnimationPlayer>(PatchOverlayAnimatorPath);
     }
 
     public void ShowName(string patchName)
@@ -32,10 +26,7 @@ public partial class PatchNameOverlay : PanelContainer
     {
         if (disposing)
         {
-            if (PatchLabelPath != null)
             {
-                PatchLabelPath.Dispose();
-                PatchOverlayAnimatorPath.Dispose();
             }
         }
 

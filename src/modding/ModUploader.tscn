@@ -7,7 +7,7 @@
 [ext_resource type="LabelSettings" uid="uid://fua052cwp5ap" path="res://src/gui_common/fonts/Body-Regular-AlmostSmaller.tres" id="4_77d33"]
 [ext_resource type="PackedScene" uid="uid://du8sc8kjirguk" path="res://src/gui_common/dialogs/CustomWindow.tscn" id="5"]
 
-[node name="ModUploader" type="Control"]
+[node name="ModUploader" type="Control" node_paths=PackedStringArray("uploadSucceededText", "uploadSucceededDialog", "changeNotes", "workshopNotice", "fileSelectDialog", "errorDisplay", "toBeUploadedContentLocation", "previewImageRect", "editedTags", "editedVisibility", "editedDescription", "editedTitle", "detailsEditor", "manualEnterIdSection", "acceptManualId", "manualIdEntry", "showManualEnterId", "createNewButton", "unknownItemActions", "modSelect", "uploadDialog")]
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
@@ -17,27 +17,27 @@ grow_vertical = 2
 mouse_filter = 2
 theme = ExtResource("1")
 script = ExtResource("3")
-UploadDialogPath = NodePath("Dialog")
-ModSelectPath = NodePath("Dialog/VBoxContainer2/ScrollContainer/VBoxContainer/HBoxContainer/Mods")
-UnknownItemActionsPath = NodePath("Dialog/VBoxContainer2/ScrollContainer/VBoxContainer/UnknownItem")
-CreateNewButtonPath = NodePath("Dialog/VBoxContainer2/ScrollContainer/VBoxContainer/UnknownItem/HBoxContainer/New")
-ShowManualEnterIdPath = NodePath("Dialog/VBoxContainer2/ScrollContainer/VBoxContainer/UnknownItem/HBoxContainer/Existing")
-ManualIdEntryPath = NodePath("Dialog/VBoxContainer2/ScrollContainer/VBoxContainer/UnknownItem/ManualId/HBoxContainer/Id")
-AcceptManualIdPath = NodePath("Dialog/VBoxContainer2/ScrollContainer/VBoxContainer/UnknownItem/ManualId/HBoxContainer/Apply")
-ManualEnterIdSectionPath = NodePath("Dialog/VBoxContainer2/ScrollContainer/VBoxContainer/UnknownItem/ManualId")
-DetailsEditorPath = NodePath("Dialog/VBoxContainer2/ScrollContainer/VBoxContainer/DetailsEditor")
-EditedTitlePath = NodePath("Dialog/VBoxContainer2/ScrollContainer/VBoxContainer/DetailsEditor/Title")
-EditedDescriptionPath = NodePath("Dialog/VBoxContainer2/ScrollContainer/VBoxContainer/DetailsEditor/Description")
-EditedVisibilityPath = NodePath("Dialog/VBoxContainer2/ScrollContainer/VBoxContainer/DetailsEditor/HBoxContainer/CheckBox")
-EditedTagsPath = NodePath("Dialog/VBoxContainer2/ScrollContainer/VBoxContainer/DetailsEditor/Tags")
-PreviewImageRectPath = NodePath("Dialog/VBoxContainer2/ScrollContainer/VBoxContainer/DetailsEditor/HBoxContainer2/TextureRect")
-ToBeUploadedContentLocationPath = NodePath("Dialog/VBoxContainer2/ScrollContainer/VBoxContainer/DetailsEditor/ContentLocation")
-ErrorDisplayPath = NodePath("Dialog/VBoxContainer2/ScrollContainer/VBoxContainer/Error")
-FileSelectDialogPath = NodePath("PreviewSelector")
-WorkshopNoticePath = NodePath("Dialog/VBoxContainer2/ScrollContainer/VBoxContainer/WorkshopNotice")
-ChangeNotesPath = NodePath("Dialog/VBoxContainer2/ScrollContainer/VBoxContainer/DetailsEditor/ChangeNotes")
-UploadSucceededDialogPath = NodePath("UploadSuccess")
-UploadSucceededTextPath = NodePath("UploadSuccess/VBoxContainer/CustomRichTextLabel")
+uploadDialog = NodePath("Dialog")
+modSelect = NodePath("Dialog/VBoxContainer2/ScrollContainer/VBoxContainer/HBoxContainer/Mods")
+unknownItemActions = NodePath("Dialog/VBoxContainer2/ScrollContainer/VBoxContainer/UnknownItem")
+createNewButton = NodePath("Dialog/VBoxContainer2/ScrollContainer/VBoxContainer/UnknownItem/HBoxContainer/New")
+showManualEnterId = NodePath("Dialog/VBoxContainer2/ScrollContainer/VBoxContainer/UnknownItem/HBoxContainer/Existing")
+manualIdEntry = NodePath("Dialog/VBoxContainer2/ScrollContainer/VBoxContainer/UnknownItem/ManualId/HBoxContainer/Id")
+acceptManualId = NodePath("Dialog/VBoxContainer2/ScrollContainer/VBoxContainer/UnknownItem/ManualId/HBoxContainer/Apply")
+manualEnterIdSection = NodePath("Dialog/VBoxContainer2/ScrollContainer/VBoxContainer/UnknownItem/ManualId")
+detailsEditor = NodePath("Dialog/VBoxContainer2/ScrollContainer/VBoxContainer/DetailsEditor")
+editedTitle = NodePath("Dialog/VBoxContainer2/ScrollContainer/VBoxContainer/DetailsEditor/Title")
+editedDescription = NodePath("Dialog/VBoxContainer2/ScrollContainer/VBoxContainer/DetailsEditor/Description")
+editedVisibility = NodePath("Dialog/VBoxContainer2/ScrollContainer/VBoxContainer/DetailsEditor/HBoxContainer/CheckBox")
+editedTags = NodePath("Dialog/VBoxContainer2/ScrollContainer/VBoxContainer/DetailsEditor/Tags")
+previewImageRect = NodePath("Dialog/VBoxContainer2/ScrollContainer/VBoxContainer/DetailsEditor/HBoxContainer2/TextureRect")
+toBeUploadedContentLocation = NodePath("Dialog/VBoxContainer2/ScrollContainer/VBoxContainer/DetailsEditor/ContentLocation")
+errorDisplay = NodePath("Dialog/VBoxContainer2/ScrollContainer/VBoxContainer/Error")
+fileSelectDialog = NodePath("PreviewSelector")
+workshopNotice = NodePath("Dialog/VBoxContainer2/ScrollContainer/VBoxContainer/WorkshopNotice")
+changeNotes = NodePath("Dialog/VBoxContainer2/ScrollContainer/VBoxContainer/DetailsEditor/ChangeNotes")
+uploadSucceededDialog = NodePath("UploadSuccess")
+uploadSucceededText = NodePath("UploadSuccess/VBoxContainer/CustomRichTextLabel")
 
 [node name="Dialog" parent="." instance=ExtResource("2")]
 offset_right = 580.0

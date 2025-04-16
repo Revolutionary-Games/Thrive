@@ -7,18 +7,12 @@ using Godot;
 /// </summary>
 public partial class PatchExtinctionBox : Control
 {
-    [Export]
-    public NodePath? PatchMapDrawerPath;
-
-    [Export]
-    public NodePath PatchDetailsPanelPath = null!;
-
-    [Export]
-    public NodePath AnimationPlayer = null!;
-
 #pragma warning disable CA2213
+    [Export]
     private PatchMapDrawer mapDrawer = null!;
+    [Export]
     private PatchDetailsPanel detailsPanel = null!;
+    [Export]
     private AnimationPlayer animationPlayer = null!;
 #pragma warning restore CA2213
 
@@ -43,10 +37,6 @@ public partial class PatchExtinctionBox : Control
 
     public override void _Ready()
     {
-        mapDrawer = GetNode<PatchMapDrawer>(PatchMapDrawerPath);
-        detailsPanel = GetNode<PatchDetailsPanel>(PatchDetailsPanelPath);
-        animationPlayer = GetNode<AnimationPlayer>(AnimationPlayer);
-
         detailsPanel.CurrentPatch = Map?.CurrentPatch;
         detailsPanel.SelectedPatch = null;
 
@@ -60,21 +50,6 @@ public partial class PatchExtinctionBox : Control
 
         if (what == NotificationVisibilityChanged && Visible)
             animationPlayer.Play();
-    }
-
-    protected override void Dispose(bool disposing)
-    {
-        if (disposing)
-        {
-            if (PatchMapDrawerPath != null)
-            {
-                PatchMapDrawerPath.Dispose();
-                PatchDetailsPanelPath.Dispose();
-                AnimationPlayer.Dispose();
-            }
-        }
-
-        base.Dispose(disposing);
     }
 
     private void NewPatchSelected(Patch patch)

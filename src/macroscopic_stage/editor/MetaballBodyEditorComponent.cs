@@ -13,9 +13,6 @@ public partial class MetaballBodyEditorComponent :
     IGodotEarlyNodeResolve
 {
     [Export]
-    public NodePath? TabButtonsPath;
-
-    [Export]
     public NodePath StructureTabButtonPath = null!;
 
     [Export]
@@ -27,45 +24,6 @@ public partial class MetaballBodyEditorComponent :
     [Export]
     public NodePath AppearanceTabButtonPath = null!;
 
-    [Export]
-    public NodePath StructureTabPath = null!;
-
-    [Export]
-    public NodePath ReproductionTabPath = null!;
-
-    [Export]
-    public NodePath BehaviourTabPath = null!;
-
-    [Export]
-    public NodePath AppearanceTabPath = null!;
-
-    [Export]
-    public NodePath CellTypeSelectionListPath = null!;
-
-    [Export]
-    public NodePath ModifyTypeButtonPath = null!;
-
-    [Export]
-    public NodePath DeleteTypeButtonPath = null!;
-
-    [Export]
-    public NodePath DuplicateTypeButtonPath = null!;
-
-    [Export]
-    public NodePath CannotDeleteInUseTypeDialogPath = null!;
-
-    [Export]
-    public NodePath DuplicateCellTypeDialogPath = null!;
-
-    [Export]
-    public NodePath DuplicateCellTypeNamePath = null!;
-
-    [Export]
-    public NodePath MetaballPopupMenuPath = null!;
-
-    [Export]
-    public NodePath CannotReduceBrainPowerPopupPath = null!;
-
     private readonly Dictionary<string, CellTypeSelection> cellTypeSelectionButtons = new();
 
 #pragma warning disable CA2213
@@ -76,34 +34,47 @@ public partial class MetaballBodyEditorComponent :
     private Button behaviourTabButton = null!;
     private Button appearanceTabButton = null!;
 
+    [Export]
     private PanelContainer structureTab = null!;
+    [Export]
     private PanelContainer reproductionTab = null!;
+    [Export]
     private PanelContainer appearanceTab = null!;
 
     [JsonProperty]
     [AssignOnlyChildItemsOnDeserialize]
+    [Export]
     private BehaviourEditorSubComponent behaviourEditor = null!;
 
+    [Export]
     private CollapsibleList cellTypeSelectionList = null!;
 
+    [Export]
     private Button modifyTypeButton = null!;
 
+    [Export]
     private Button deleteTypeButton = null!;
 
+    [Export]
     private Button duplicateTypeButton = null!;
 
+    [Export]
     private CustomWindow cannotDeleteInUseTypeDialog = null!;
 
+    [Export]
     private CustomWindow duplicateCellTypeDialog = null!;
 
+    [Export]
     private LineEdit duplicateCellTypeName = null!;
 
     private PackedScene cellTypeSelectionButtonScene = null!;
 
     private ButtonGroup cellTypeButtonGroup = new();
 
+    [Export]
     private MetaballPopupMenu metaballPopupMenu = null!;
 
+    [Export]
     private CustomConfirmationDialog cannotReduceBrainPowerPopup = null!;
 
     private PackedScene visualMetaballDisplayerScene = null!;
@@ -164,42 +135,8 @@ public partial class MetaballBodyEditorComponent :
 
         NodeReferencesResolved = true;
 
-        if (TabButtonsPath == null)
             throw new MissingExportVariableValueException();
 
-        var tabButtons = GetNode<TabButtons>(TabButtonsPath);
-
-        structureTab = GetNode<PanelContainer>(StructureTabPath);
-        structureTabButton = GetNode<Button>(tabButtons.GetAdjustedButtonPath(TabButtonsPath, StructureTabButtonPath));
-
-        reproductionTab = GetNode<PanelContainer>(ReproductionTabPath);
-        reproductionTabButton =
-            GetNode<Button>(tabButtons.GetAdjustedButtonPath(TabButtonsPath, ReproductionTabButtonPath));
-
-        behaviourEditor = GetNode<BehaviourEditorSubComponent>(BehaviourTabPath);
-        behaviourTabButton = GetNode<Button>(tabButtons.GetAdjustedButtonPath(TabButtonsPath, BehaviourTabButtonPath));
-
-        appearanceTab = GetNode<PanelContainer>(AppearanceTabPath);
-        appearanceTabButton =
-            GetNode<Button>(tabButtons.GetAdjustedButtonPath(TabButtonsPath, AppearanceTabButtonPath));
-
-        cellTypeSelectionList = GetNode<CollapsibleList>(CellTypeSelectionListPath);
-
-        modifyTypeButton = GetNode<Button>(ModifyTypeButtonPath);
-
-        deleteTypeButton = GetNode<Button>(DeleteTypeButtonPath);
-
-        duplicateTypeButton = GetNode<Button>(DuplicateTypeButtonPath);
-
-        cannotDeleteInUseTypeDialog = GetNode<CustomWindow>(CannotDeleteInUseTypeDialogPath);
-
-        duplicateCellTypeDialog = GetNode<CustomWindow>(DuplicateCellTypeDialogPath);
-
-        duplicateCellTypeName = GetNode<LineEdit>(DuplicateCellTypeNamePath);
-
-        metaballPopupMenu = GetNode<MetaballPopupMenu>(MetaballPopupMenuPath);
-
-        cannotReduceBrainPowerPopup = GetNode<CustomConfirmationDialog>(CannotReduceBrainPowerPopupPath);
     }
 
     public override void Init(MacroscopicEditor owningEditor, bool fresh)
@@ -545,26 +482,11 @@ public partial class MetaballBodyEditorComponent :
     {
         if (disposing)
         {
-            if (TabButtonsPath != null)
             {
-                TabButtonsPath.Dispose();
                 StructureTabButtonPath.Dispose();
                 ReproductionTabButtonPath.Dispose();
                 BehaviourTabButtonPath.Dispose();
                 AppearanceTabButtonPath.Dispose();
-                StructureTabPath.Dispose();
-                ReproductionTabPath.Dispose();
-                BehaviourTabPath.Dispose();
-                AppearanceTabPath.Dispose();
-                CellTypeSelectionListPath.Dispose();
-                ModifyTypeButtonPath.Dispose();
-                DeleteTypeButtonPath.Dispose();
-                DuplicateTypeButtonPath.Dispose();
-                CannotDeleteInUseTypeDialogPath.Dispose();
-                DuplicateCellTypeDialogPath.Dispose();
-                DuplicateCellTypeNamePath.Dispose();
-                MetaballPopupMenuPath.Dispose();
-                CannotReduceBrainPowerPopupPath.Dispose();
             }
         }
 

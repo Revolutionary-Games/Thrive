@@ -5,14 +5,12 @@
 /// </summary>
 public partial class DefaultToolTip : Control, ICustomToolTip
 {
-    [Export]
-    public NodePath? DescriptionLabelPath;
-
 #pragma warning disable CA2213
 
     /// <summary>
     ///   TODO: Use RichTextLabel once its sizing issue is fixed
     /// </summary>
+    [Export]
     private Label? descriptionLabel;
 #pragma warning restore CA2213
 
@@ -66,7 +64,6 @@ public partial class DefaultToolTip : Control, ICustomToolTip
     {
         if (disposing)
         {
-            DescriptionLabelPath?.Dispose();
         }
 
         base.Dispose(disposing);

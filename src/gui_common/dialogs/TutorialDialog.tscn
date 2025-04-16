@@ -4,14 +4,14 @@
 [ext_resource type="PackedScene" path="res://src/gui_common/CustomRichTextLabel.tscn" id="2"]
 [ext_resource type="Script" uid="uid://c22vgu2gpm74j" path="res://src/gui_common/dialogs/TutorialDialog.cs" id="3"]
 
-[node name="TutorialDialog" instance=ExtResource("1")]
+[node name="TutorialDialog" instance=ExtResource("1") node_paths=PackedStringArray("label")]
 custom_minimum_size = Vector2(260, 240)
 layout_mode = 3
 anchors_preset = 0
 offset_right = 260.0
 offset_bottom = 240.0
 script = ExtResource("3")
-LabelPath = NodePath("ScrollContainer/VBoxContainer/CustomRichTextLabel")
+label = NodePath("ScrollContainer/VBoxContainer/CustomRichTextLabel")
 Description = ""
 DescriptionForController = ""
 ShowDelay = 0.5

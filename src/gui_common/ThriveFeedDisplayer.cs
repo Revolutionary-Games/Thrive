@@ -7,12 +7,6 @@ using Godot;
 /// </summary>
 public partial class ThriveFeedDisplayer : VBoxContainer
 {
-    [Export]
-    public NodePath? NewsContainerPath;
-
-    [Export]
-    public NodePath LoadingIndicatorPath = null!;
-
 #pragma warning disable CA2213
     [Export]
     public Font TitleFont = null!;
@@ -23,7 +17,9 @@ public partial class ThriveFeedDisplayer : VBoxContainer
     [Export]
     public LabelSettings FooterFontSettings = null!;
 
+    [Export]
     private Container newsContainer = null!;
+    [Export]
     private Control loadingIndicator = null!;
 
     private PackedScene customRichTextScene = null!;
@@ -39,9 +35,6 @@ public partial class ThriveFeedDisplayer : VBoxContainer
 
     public override void _Ready()
     {
-        newsContainer = GetNode<Container>(NewsContainerPath);
-        loadingIndicator = GetNode<Control>(LoadingIndicatorPath);
-
         customRichTextScene = GD.Load<PackedScene>("res://src/gui_common/CustomRichTextLabel.tscn");
 
         feedItemBackground = new StyleBoxFlat
@@ -145,10 +138,7 @@ public partial class ThriveFeedDisplayer : VBoxContainer
     {
         if (disposing)
         {
-            if (NewsContainerPath != null)
             {
-                NewsContainerPath.Dispose();
-                LoadingIndicatorPath.Dispose();
                 feedItemBackground.Dispose();
             }
 

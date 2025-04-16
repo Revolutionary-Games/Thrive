@@ -10,9 +10,6 @@ public partial class DraggableScrollContainer : ScrollContainer
     /// <summary>
     ///   If set to null, the first child is used.
     /// </summary>
-    [Export]
-    public NodePath? ContentPath;
-
     /// <summary>
     ///   Whether we're currently dragging, to prevent us starting dragging again.
     /// </summary>
@@ -30,6 +27,7 @@ public partial class DraggableScrollContainer : ScrollContainer
     private bool centering;
 
 #pragma warning disable CA2213
+    [Export]
     private Control content = null!;
 #pragma warning restore CA2213
 
@@ -63,10 +61,6 @@ public partial class DraggableScrollContainer : ScrollContainer
 
         // As this now in Godot 4 ignores internal nodes, child index 0 is the first actual child (and not the
         // scrollbars)
-        ContentPath ??= GetChild(0).GetPath();
-
-        content = GetNode<Control>(ContentPath);
-
         // Workaround a bug in Godot (https://github.com/godotengine/godot/issues/22936).
         GetVScrollBar().Connect(Range.SignalName.ValueChanged, new Callable(this, nameof(OnScrollStarted)));
         GetHScrollBar().Connect(Range.SignalName.ValueChanged, new Callable(this, nameof(OnScrollStarted)));
@@ -222,7 +216,6 @@ public partial class DraggableScrollContainer : ScrollContainer
     {
         if (disposing)
         {
-            ContentPath?.Dispose();
         }
 
         base.Dispose(disposing);

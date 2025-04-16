@@ -3,7 +3,7 @@
 [ext_resource type="PackedScene" path="res://src/gui_common/dialogs/CustomWindow.tscn" id="1"]
 [ext_resource type="Script" uid="uid://yl81laet141y" path="res://src/ascension_stage/gui/GodToolsPopup.cs" id="2"]
 
-[node name="GodToolsPopup" instance=ExtResource("1")]
+[node name="GodToolsPopup" instance=ExtResource("1") node_paths=PackedStringArray("targetEntityNameLabel", "actionButtonsContainer")]
 visible = true
 custom_minimum_size = Vector2(200, 235)
 anchors_preset = 1
@@ -15,8 +15,8 @@ offset_right = 0.0
 offset_bottom = 285.0
 grow_horizontal = 0
 script = ExtResource("2")
-ActionButtonsContainerPath = NodePath("ScrollContainer/VBoxContainer/ActionButtons")
-TargetEntityNameLabelPath = NodePath("ScrollContainer/VBoxContainer/TargetEntity")
+actionButtonsContainer = NodePath("ScrollContainer/VBoxContainer/ActionButtons")
+targetEntityNameLabel = NodePath("ScrollContainer/VBoxContainer/TargetEntity")
 WindowTitle = "GOD_TOOLS_TITLE"
 Resizable = true
 Exclusive = true

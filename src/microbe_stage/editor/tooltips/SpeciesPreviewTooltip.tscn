@@ -18,7 +18,7 @@ corner_radius_top_right = 5
 corner_radius_bottom_right = 5
 corner_radius_bottom_left = 5
 
-[node name="SpeciesDetailsTooltip" type="PanelContainer"]
+[node name="SpeciesDetailsTooltip" type="PanelContainer" node_paths=PackedStringArray("hexesPreview", "speciesPreview")]
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
@@ -28,8 +28,8 @@ mouse_filter = 2
 theme = ExtResource("1")
 theme_override_styles/panel = SubResource("1")
 script = ExtResource("5")
-SpeciesPreviewPath = NodePath("HBoxContainer/SpeciesPreview")
-HexPreviewPath = NodePath("HBoxContainer/CellHexPreview")
+speciesPreview = NodePath("HBoxContainer/SpeciesPreview")
+hexesPreview = NodePath("HBoxContainer/CellHexPreview")
 
 [node name="HBoxContainer" type="HBoxContainer" parent="."]
 custom_minimum_size = Vector2(332, 200)

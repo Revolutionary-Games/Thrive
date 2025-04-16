@@ -4,7 +4,7 @@
 [ext_resource type="PackedScene" uid="uid://cwe0bjv8qtrtr" path="res://src/gui_common/TweakedColourPicker.tscn" id="2"]
 [ext_resource type="Script" uid="uid://baukp1n6xhx5o" path="res://src/microbe_stage/editor/upgrades/ChemoreceptorUpgradeGUI.cs" id="3"]
 
-[node name="ChemoreceptorUpgradeGUI" type="VBoxContainer"]
+[node name="ChemoreceptorUpgradeGUI" type="VBoxContainer" node_paths=PackedStringArray("colourSelector", "minimumAmountLabel", "minimumAmountSlider", "maximumDistanceSlider", "speciesLabel", "speciesSelector", "compoundLabel", "compoundsSelector", "targetTypeSelector")]
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
@@ -12,15 +12,15 @@ size_flags_horizontal = 3
 mouse_filter = 0
 theme = ExtResource("1")
 script = ExtResource("3")
-TargetTypeSelectorPath = NodePath("TargetType")
-CompoundsSelectorPath = NodePath("Compound")
-CompoundsLabelPath = NodePath("CompoundLabel")
-SpeciesSelectorPath = NodePath("Species")
-SpeciesLabelPath = NodePath("SpeciesLabel")
-MaximumDistanceSliderPath = NodePath("Distance")
-MinimumAmountSliderPath = NodePath("MinimumAmount")
-MinimumAmountLabelPath = NodePath("MinimumAmountLabel")
-ColourSelectorPath = NodePath("Colour")
+targetTypeSelector = NodePath("TargetType")
+compoundsSelector = NodePath("Compound")
+compoundLabel = NodePath("CompoundLabel")
+speciesSelector = NodePath("Species")
+speciesLabel = NodePath("SpeciesLabel")
+maximumDistanceSlider = NodePath("Distance")
+minimumAmountSlider = NodePath("MinimumAmount")
+minimumAmountLabel = NodePath("MinimumAmountLabel")
+colourSelector = NodePath("Colour")
 
 [node name="Label" type="Label" parent="."]
 layout_mode = 2

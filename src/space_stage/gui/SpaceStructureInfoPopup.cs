@@ -7,15 +7,11 @@ using Container = Godot.Container;
 /// </summary>
 public partial class SpaceStructureInfoPopup : CustomWindow
 {
-    [Export]
-    public NodePath? StructureStatusTextLabelPath;
-
-    [Export]
-    public NodePath InteractionButtonContainerPath = null!;
-
 #pragma warning disable CA2213
+    [Export]
     private Label structureStatusTextLabel = null!;
 
+    [Export]
     private Container interactionButtonContainer = null!;
 #pragma warning restore CA2213
 
@@ -28,9 +24,6 @@ public partial class SpaceStructureInfoPopup : CustomWindow
     public override void _Ready()
     {
         base._Ready();
-
-        structureStatusTextLabel = GetNode<Label>(StructureStatusTextLabelPath);
-        interactionButtonContainer = GetNode<Container>(InteractionButtonContainerPath);
 
         interactionButtons =
             new ChildObjectCache<InteractionType, CreatedInteractionButton>(interactionButtonContainer,
@@ -90,10 +83,7 @@ public partial class SpaceStructureInfoPopup : CustomWindow
     {
         if (disposing)
         {
-            if (StructureStatusTextLabelPath != null)
             {
-                StructureStatusTextLabelPath.Dispose();
-                InteractionButtonContainerPath.Dispose();
             }
         }
 

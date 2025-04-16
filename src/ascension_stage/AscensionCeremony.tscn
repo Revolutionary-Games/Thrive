@@ -47,20 +47,20 @@ albedo_color = Color(0.270588, 0.909804, 0.976471, 0.666667)
 emission_enabled = true
 emission = Color(0.247059, 0.996078, 1, 1)
 
-[node name="AscensionCeremony" type="Node"]
+[node name="AscensionCeremony" type="Node" node_paths=PackedStringArray("worldCameraToDisable", "customScreenBlanker", "creditsSkipPrompt", "creditsSkipInfoContainer", "creditsDisplay", "ascensionPoint", "rampEndPoint", "rampStartPoint", "rootOfDynamicallySpawned", "gateWalkerSpawn")]
 process_mode = 3
 script = ExtResource("1")
-GateWalkerSpawnPointPath = NodePath("World/GateWalkerSpawnPoint")
+gateWalkerSpawn = NodePath("World/GateWalkerSpawnPoint")
 ObserverSpawnPointPaths = [NodePath("World/ObserverSpawnPoint"), NodePath("World/ObserverSpawnPoint2"), NodePath("World/ObserverSpawnPoint3")]
-RootOfDynamicallySpawnedPath = NodePath("World/DynamicallySpawned")
-RampStartPointPath = NodePath("World/RampStartPoint")
-RampEndPointPath = NodePath("World/RampEndPoint")
-AscensionPointPath = NodePath("World/AscensionGatePoint")
-CreditsDisplayPath = NodePath("CreditsDisplay/CreditsScroll")
-CreditsSkipInfoContainerPath = NodePath("CreditsDisplay/SkipInfoContainer")
-CreditsSkipPromptPath = NodePath("CreditsDisplay/SkipInfoContainer/SkipPrompt")
-CustomScreenBlankerPath = NodePath("CustomBlanker")
-WorldCameraToDisablePath = NodePath("World/StaticCamera")
+rootOfDynamicallySpawned = NodePath("World/DynamicallySpawned")
+rampStartPoint = NodePath("World/RampStartPoint")
+rampEndPoint = NodePath("World/RampEndPoint")
+ascensionPoint = NodePath("World/AscensionGatePoint")
+creditsDisplay = NodePath("CreditsDisplay/CreditsScroll")
+creditsSkipInfoContainer = NodePath("CreditsDisplay/SkipInfoContainer")
+creditsSkipPrompt = NodePath("CreditsDisplay/SkipInfoContainer/SkipPrompt")
+customScreenBlanker = NodePath("CustomBlanker")
+worldCameraToDisable = NodePath("World/StaticCamera")
 
 [node name="World" type="Node" parent="."]
 

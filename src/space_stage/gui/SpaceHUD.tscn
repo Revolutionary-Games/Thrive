@@ -8,13 +8,13 @@
 [ext_resource type="PackedScene" uid="uid://5li3f8hbav0q" path="res://src/space_stage/gui/SpaceConstructionPopup.tscn" id="6"]
 [ext_resource type="PackedScene" uid="uid://cdngxfctlsoox" path="res://src/space_stage/gui/SpaceStructureInfoPopup.tscn" id="7"]
 
-[node name="SpaceHUD" instance=ExtResource("1")]
+[node name="SpaceHUD" instance=ExtResource("1") node_paths=PackedStringArray("descendButton", "structurePopup", "constructionPopup", "fleetPopup", "planetScreenPopup")]
 script = ExtResource("3")
-PlanetScreenPopupPath = NodePath("PlanetScreen")
-FleetPopupPath = NodePath("SpaceFleetInfoPopup")
-ConstructionPopupPath = NodePath("SpaceConstructionPopup")
-StructurePopupPath = NodePath("SpaceStructureInfoPopup")
-DescendButtonPath = NodePath("Descend")
+planetScreenPopup = NodePath("PlanetScreen")
+fleetPopup = NodePath("SpaceFleetInfoPopup")
+constructionPopup = NodePath("SpaceConstructionPopup")
+structurePopup = NodePath("SpaceStructureInfoPopup")
+descendButton = NodePath("Descend")
 
 [node name="AddWindowReorderingSupportToSiblings" parent="." index="0" instance=ExtResource("5")]
 anchors_preset = 0

@@ -5,18 +5,12 @@
 /// </summary>
 public partial class SpeciesDetailsPanel : MarginContainer
 {
-    [Export]
-    public NodePath? SpeciesDetailsLabelPath;
-
-    [Export]
-    public NodePath SpeciesPreviewPath = null!;
-
-    [Export]
-    public NodePath HexPreviewPath = null!;
-
 #pragma warning disable CA2213
+    [Export]
+    public SpeciesPreview SpeciesPreview = null!;
+    [Export]
     private CustomRichTextLabel? speciesDetailsLabel;
-    private SpeciesPreview speciesPreview = null!;
+    [Export]
     private CellHexesPreview hexesPreview = null!;
 #pragma warning restore CA2213
 
@@ -41,10 +35,6 @@ public partial class SpeciesDetailsPanel : MarginContainer
     {
         base._Ready();
 
-        speciesDetailsLabel = GetNode<CustomRichTextLabel>(SpeciesDetailsLabelPath);
-        speciesPreview = GetNode<SpeciesPreview>(SpeciesPreviewPath);
-        hexesPreview = GetNode<CellHexesPreview>(HexPreviewPath);
-
         if (previewSpecies != null)
             UpdateSpeciesPreview();
     }
@@ -65,11 +55,7 @@ public partial class SpeciesDetailsPanel : MarginContainer
     {
         if (disposing)
         {
-            if (SpeciesDetailsLabelPath != null)
             {
-                SpeciesDetailsLabelPath.Dispose();
-                SpeciesPreviewPath.Dispose();
-                HexPreviewPath.Dispose();
             }
         }
 
@@ -81,7 +67,7 @@ public partial class SpeciesDetailsPanel : MarginContainer
     /// </summary>
     private void UpdateSpeciesPreview()
     {
-        speciesPreview.PreviewSpecies = PreviewSpecies;
+        SpeciesPreview.PreviewSpecies = PreviewSpecies;
 
         if (PreviewSpecies == null)
         {

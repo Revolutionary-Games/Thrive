@@ -15,13 +15,13 @@ corner_radius_top_right = 5
 corner_radius_bottom_right = 5
 corner_radius_bottom_left = 5
 
-[node name="DefaultTooltip" type="PanelContainer"]
+[node name="DefaultTooltip" type="PanelContainer" node_paths=PackedStringArray("descriptionLabel")]
 offset_right = 14.0
 offset_bottom = 14.0
 mouse_filter = 2
 theme_override_styles/panel = SubResource("1")
 script = ExtResource("3")
-DescriptionLabelPath = NodePath("../DefaultTooltip/MarginContainer/VBoxContainer/Description")
+descriptionLabel = NodePath("../DefaultTooltip/MarginContainer/VBoxContainer/Description")
 
 [node name="MarginContainer" type="MarginContainer" parent="."]
 layout_mode = 2

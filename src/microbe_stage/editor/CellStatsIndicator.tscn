@@ -4,12 +4,12 @@
 [ext_resource type="Script" uid="uid://ck3f8x1475wda" path="res://src/microbe_stage/editor/CellStatsIndicator.cs" id="3"]
 [ext_resource type="LabelSettings" uid="uid://deaqhtet373fq" path="res://src/gui_common/fonts/Body-Regular-AlmostSmall-Yellow.tres" id="3_crdng"]
 
-[node name="CellStatIndicator" type="HBoxContainer"]
+[node name="CellStatIndicator" type="HBoxContainer" node_paths=PackedStringArray("valueLabel")]
 offset_right = 213.0
 offset_bottom = 25.0
 size_flags_horizontal = 3
 script = ExtResource("3")
-ValuePath = NodePath("HBoxContainer/Value")
+valueLabel = NodePath("HBoxContainer/Value")
 
 [node name="Indicator" type="TextureRect" parent="."]
 visible = false

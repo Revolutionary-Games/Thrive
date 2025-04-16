@@ -6,11 +6,9 @@
 /// </summary>
 public partial class ThriveopediaOrganellesRootPage : ThriveopediaWikiPage
 {
-    [Export]
-    public NodePath? OrganelleListContainerPath;
-
 #pragma warning disable CA2213
     private PackedScene linkButtonScene = null!;
+    [Export]
     private HFlowContainer organelleListContainer = null!;
 #pragma warning restore CA2213
 
@@ -26,7 +24,6 @@ public partial class ThriveopediaOrganellesRootPage : ThriveopediaWikiPage
     {
         base._Ready();
 
-        organelleListContainer = GetNode<HFlowContainer>(OrganelleListContainerPath);
         linkButtonScene = GD.Load<PackedScene>("res://src/thriveopedia/pages/wiki/IconPageLinkButton.tscn");
     }
 
@@ -69,7 +66,6 @@ public partial class ThriveopediaOrganellesRootPage : ThriveopediaWikiPage
     {
         if (disposing)
         {
-            OrganelleListContainerPath?.Dispose();
         }
 
         base.Dispose(disposing);

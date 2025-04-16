@@ -8,34 +8,20 @@ public partial class MutationPointsBar : HBoxContainer
     [Export]
     public bool ShowPercentageSymbol = true;
 
-    [Export]
-    public NodePath? CurrentMutationPointsLabelPath;
-
-    [Export]
-    public NodePath MutationPointsArrowPath = null!;
-
-    [Export]
-    public NodePath ResultingMutationPointsLabelPath = null!;
-
-    [Export]
-    public NodePath BaseMutationPointsLabelPath = null!;
-
-    [Export]
-    public NodePath MutationPointsBarPath = null!;
-
-    [Export]
-    public NodePath MutationPointsSubtractBarPath = null!;
-
-    [Export]
-    public NodePath AnimationPlayerPath = null!;
-
 #pragma warning disable CA2213
+    [Export]
     private Label currentMutationPointsLabel = null!;
+    [Export]
     private TextureRect mutationPointsArrow = null!;
+    [Export]
     private Label resultingMutationPointsLabel = null!;
+    [Export]
     private Label baseMutationPointsLabel = null!;
+    [Export]
     private ProgressBar mutationPointsBar = null!;
+    [Export]
     private ProgressBar mutationPointsSubtractBar = null!;
+    [Export]
     private AnimationPlayer animationPlayer = null!;
 #pragma warning restore CA2213
 
@@ -43,14 +29,6 @@ public partial class MutationPointsBar : HBoxContainer
 
     public override void _Ready()
     {
-        currentMutationPointsLabel = GetNode<Label>(CurrentMutationPointsLabelPath);
-        mutationPointsArrow = GetNode<TextureRect>(MutationPointsArrowPath);
-        resultingMutationPointsLabel = GetNode<Label>(ResultingMutationPointsLabelPath);
-        baseMutationPointsLabel = GetNode<Label>(BaseMutationPointsLabelPath);
-        mutationPointsBar = GetNode<ProgressBar>(MutationPointsBarPath);
-        mutationPointsSubtractBar = GetNode<ProgressBar>(MutationPointsSubtractBarPath);
-        animationPlayer = GetNode<AnimationPlayer>(AnimationPlayerPath);
-
         freebuildingText = Localization.Translate("FREEBUILDING");
     }
 
@@ -126,24 +104,5 @@ public partial class MutationPointsBar : HBoxContainer
     public void PlayFlashAnimation()
     {
         animationPlayer.Play("FlashBar");
-    }
-
-    protected override void Dispose(bool disposing)
-    {
-        if (disposing)
-        {
-            if (CurrentMutationPointsLabelPath != null)
-            {
-                CurrentMutationPointsLabelPath.Dispose();
-                MutationPointsArrowPath.Dispose();
-                ResultingMutationPointsLabelPath.Dispose();
-                BaseMutationPointsLabelPath.Dispose();
-                MutationPointsBarPath.Dispose();
-                MutationPointsSubtractBarPath.Dispose();
-                AnimationPlayerPath.Dispose();
-            }
-        }
-
-        base.Dispose(disposing);
     }
 }

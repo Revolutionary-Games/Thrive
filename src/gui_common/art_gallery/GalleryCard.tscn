@@ -26,7 +26,7 @@ border_color = Color(0, 0, 0, 1)
 corner_radius_top_left = 3
 corner_radius_top_right = 3
 
-[node name="GalleryCard" type="Button"]
+[node name="GalleryCard" type="Button" node_paths=PackedStringArray("imagePreview", "titleLabel")]
 custom_minimum_size = Vector2(172, 182)
 offset_right = 172.0
 offset_bottom = 182.0
@@ -36,8 +36,8 @@ theme_override_styles/normal = SubResource("29")
 toggle_mode = true
 action_mode = 0
 script = ExtResource("1")
-TitleLabelPath = NodePath("MarginContainer/VBoxContainer/PanelContainer/MarginContainer/Label")
-TextureRectPath = NodePath("MarginContainer/VBoxContainer/MarginContainer/PreviewMargin/TextureRect")
+titleLabel = NodePath("MarginContainer/VBoxContainer/PanelContainer/MarginContainer/Label")
+imagePreview = NodePath("MarginContainer/VBoxContainer/MarginContainer/PreviewMargin/TextureRect")
 MissingTexture = ExtResource("3")
 
 [node name="MarginContainer" type="MarginContainer" parent="."]

@@ -12,12 +12,6 @@ using Godot;
 /// </remarks>
 public partial class InputEventItem : MarginContainer
 {
-    [Export]
-    public NodePath? ButtonPath;
-
-    [Export]
-    public NodePath XButtonPath = null!;
-
     private readonly StringName uiSelectAction = new("ui_select");
     private readonly StringName uiAcceptAction = new("ui_accept");
 
@@ -25,7 +19,9 @@ public partial class InputEventItem : MarginContainer
     [Export]
     private LabelSettings graphicalLabelSettings = null!;
 
+    [Export]
     private Button button = null!;
+    [Export]
     private Button xButton = null!;
     private bool wasPressingButton;
 
@@ -110,9 +106,6 @@ public partial class InputEventItem : MarginContainer
 
     public override void _Ready()
     {
-        button = GetNode<Button>(ButtonPath);
-        xButton = GetNode<Button>(XButtonPath);
-
         if (JustAdded)
         {
             OnRebindButtonPressed();
@@ -444,10 +437,7 @@ public partial class InputEventItem : MarginContainer
     {
         if (disposing)
         {
-            if (ButtonPath != null)
             {
-                ButtonPath.Dispose();
-                XButtonPath.Dispose();
             }
 
             uiSelectAction.Dispose();

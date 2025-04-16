@@ -7,32 +7,20 @@ using Godot;
 public partial class PauseMenu : TopLevelContainer
 {
     [Export]
-    public NodePath? PrimaryMenuPath;
-
-    [Export]
-    public NodePath ThriveopediaPath = null!;
-
-    [Export]
-    public NodePath LoadMenuPath = null!;
-
-    [Export]
-    public NodePath OptionsMenuPath = null!;
-
-    [Export]
-    public NodePath SaveMenuPath = null!;
-
-    [Export]
     public NodePath LoadSaveListPath = null!;
 
-    [Export]
-    public NodePath UnsavedProgressWarningPath = null!;
-
 #pragma warning disable CA2213
+    [Export]
     private Control primaryMenu = null!;
+    [Export]
     private Thriveopedia? thriveopedia;
+    [Export]
     private Control loadMenu = null!;
+    [Export]
     private OptionsMenu optionsMenu = null!;
+    [Export]
     private NewSaveMenu saveMenu = null!;
+    [Export]
     private CustomConfirmationDialog unsavedProgressWarning = null!;
     private AnimationPlayer animationPlayer = null!;
 #pragma warning restore CA2213
@@ -205,12 +193,6 @@ public partial class PauseMenu : TopLevelContainer
         // We have our custom logic for this
         PreventsMouseCaptureWhileOpen = false;
 
-        primaryMenu = GetNode<Control>(PrimaryMenuPath);
-        thriveopedia = GetNode<Thriveopedia>(ThriveopediaPath);
-        loadMenu = GetNode<Control>(LoadMenuPath);
-        optionsMenu = GetNode<OptionsMenu>(OptionsMenuPath);
-        saveMenu = GetNode<NewSaveMenu>(SaveMenuPath);
-        unsavedProgressWarning = GetNode<CustomConfirmationDialog>(UnsavedProgressWarningPath);
         animationPlayer = GetNode<AnimationPlayer>("AnimationPlayer");
 
         unsavedProgressWarning.Connect(CustomWindow.SignalName.Canceled, new Callable(this, nameof(CancelExit)));
@@ -336,15 +318,8 @@ public partial class PauseMenu : TopLevelContainer
     {
         if (disposing)
         {
-            if (PrimaryMenuPath != null)
             {
-                PrimaryMenuPath.Dispose();
-                ThriveopediaPath.Dispose();
-                LoadMenuPath.Dispose();
-                OptionsMenuPath.Dispose();
-                SaveMenuPath.Dispose();
                 LoadSaveListPath.Dispose();
-                UnsavedProgressWarningPath.Dispose();
             }
         }
 

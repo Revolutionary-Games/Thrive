@@ -10,19 +10,19 @@
 [ext_resource type="LabelSettings" uid="uid://c7r7hod24qer8" path="res://src/gui_common/fonts/Body-Regular-Small-Blue.tres" id="6_05a1v"]
 [ext_resource type="LabelSettings" uid="uid://dj8uej1eg2iuh" path="res://src/gui_common/fonts/Body-Regular-Small-Orange.tres" id="7_8xdu2"]
 
-[node name="DebugOverlay" type="Control"]
+[node name="DebugOverlay" type="Control" node_paths=PackedStringArray("inspectorDialog", "labelsLayer", "performanceMetrics", "fpsCounter", "debugPanelDialog", "inspectorCheckbox", "performanceMetricsCheckBox", "fpsCheckBox", "debugCoordinates")]
 layout_mode = 3
 anchors_preset = 0
 script = ExtResource("3")
-DebugCoordinatesPath = NodePath("Inspector/ScrollContainer/DebugCoordinates")
-FPSCheckBoxPath = NodePath("DebugPanel/VBoxContainer/Checkboxes/FPSCheckBox")
-PerformanceMetricsCheckBoxPath = NodePath("DebugPanel/VBoxContainer/Checkboxes/PerformanceMetricsCheckBox")
-InspectorCheckboxPath = NodePath("DebugPanel/VBoxContainer/Checkboxes/InspectorCheckBox")
-DebugPanelDialogPath = NodePath("DebugPanel")
-FPSCounterPath = NodePath("FPSCounter")
-PerformanceMetricsPath = NodePath("PerformanceMetrics")
-EntityLabelsPath = NodePath("EntityLabels")
-InspectorDialogPath = NodePath("Inspector")
+debugCoordinates = NodePath("Inspector/ScrollContainer/DebugCoordinates")
+fpsCheckBox = NodePath("DebugPanel/VBoxContainer/Checkboxes/FPSCheckBox")
+performanceMetricsCheckBox = NodePath("DebugPanel/VBoxContainer/Checkboxes/PerformanceMetricsCheckBox")
+inspectorCheckbox = NodePath("DebugPanel/VBoxContainer/Checkboxes/InspectorCheckBox")
+debugPanelDialog = NodePath("DebugPanel")
+fpsCounter = NodePath("FPSCounter")
+performanceMetrics = NodePath("PerformanceMetrics")
+labelsLayer = NodePath("EntityLabels")
+inspectorDialog = NodePath("Inspector")
 entityLabelSmallFont = ExtResource("2_gkxar")
 entityLabelDefaultFont = ExtResource("3_fussq")
 entityDeadFont = ExtResource("4_rmq2c")

@@ -8,54 +8,6 @@ using Godot;
 /// </summary>
 public partial class InventoryScreen : ControlWithInput
 {
-    [Export]
-    public NodePath? InventoryPopupPath;
-
-    [Export]
-    public NodePath InventorySlotContainerPath = null!;
-
-    [Export]
-    public NodePath EquipmentSlotParentPath = null!;
-
-    [Export]
-    public NodePath EquipmentBackgroundImagePath = null!;
-
-    [Export]
-    public NodePath CraftingPanelButtonPath = null!;
-
-    [Export]
-    public NodePath GroundPanelButtonPath = null!;
-
-    [Export]
-    public NodePath CraftingPanelPopupPath = null!;
-
-    [Export]
-    public NodePath CraftingRecipesContainerPath = null!;
-
-    [Export]
-    public NodePath CraftingSlotsContainerPath = null!;
-
-    [Export]
-    public NodePath CraftingResultSlotsContainerPath = null!;
-
-    [Export]
-    public NodePath CraftingErrorStatusLabelPath = null!;
-
-    [Export]
-    public NodePath CraftingAnimationPlayerPath = null!;
-
-    [Export]
-    public NodePath TakeAllCraftingResultsPath = null!;
-
-    [Export]
-    public NodePath ClearCraftingInputsPath = null!;
-
-    [Export]
-    public NodePath GroundPanelPopupPath = null!;
-
-    [Export]
-    public NodePath GroundSlotContainerPath = null!;
-
     private readonly ButtonGroup inventorySlotGroup = new();
     private readonly ButtonGroup recipeSelectionGroup = new();
 
@@ -71,23 +23,39 @@ public partial class InventoryScreen : ControlWithInput
     private readonly List<InventorySlot> craftingResultSlots = new();
 
 #pragma warning disable CA2213
+    [Export]
     private CustomWindow inventoryPopup = null!;
+    [Export]
     private Container inventorySlotContainer = null!;
+    [Export]
     private Control equipmentSlotParent = null!;
+    [Export]
     private TextureRect equipmentBackgroundImage = null!;
+    [Export]
     private Button craftingPanelButton = null!;
+    [Export]
     private Button groundPanelButton = null!;
 
+    [Export]
     private CustomWindow craftingPanelPopup = null!;
+    [Export]
     private Container craftingRecipesContainer = null!;
+    [Export]
     private Container craftingSlotsContainer = null!;
+    [Export]
     private Container craftingResultSlotsContainer = null!;
+    [Export]
     private Label craftingErrorStatusLabel = null!;
+    [Export]
     private AnimationPlayer craftingAnimationPlayer = null!;
+    [Export]
     private Button takeAllCraftingResults = null!;
+    [Export]
     private TextureButton clearCraftingInputs = null!;
 
+    [Export]
     private CustomWindow groundPanelPopup = null!;
+    [Export]
     private Container groundSlotContainer = null!;
 
     private PackedScene inventorySlotScene = null!;
@@ -129,25 +97,6 @@ public partial class InventoryScreen : ControlWithInput
 
     public override void _Ready()
     {
-        inventoryPopup = GetNode<CustomWindow>(InventoryPopupPath);
-        inventorySlotContainer = GetNode<Container>(InventorySlotContainerPath);
-        equipmentSlotParent = GetNode<Control>(EquipmentSlotParentPath);
-        equipmentBackgroundImage = GetNode<TextureRect>(EquipmentBackgroundImagePath);
-        craftingPanelButton = GetNode<Button>(CraftingPanelButtonPath);
-        groundPanelButton = GetNode<Button>(GroundPanelButtonPath);
-
-        craftingPanelPopup = GetNode<CustomWindow>(CraftingPanelPopupPath);
-        craftingRecipesContainer = GetNode<Container>(CraftingRecipesContainerPath);
-        craftingSlotsContainer = GetNode<Container>(CraftingSlotsContainerPath);
-        craftingResultSlotsContainer = GetNode<Container>(CraftingResultSlotsContainerPath);
-        craftingErrorStatusLabel = GetNode<Label>(CraftingErrorStatusLabelPath);
-        craftingAnimationPlayer = GetNode<AnimationPlayer>(CraftingAnimationPlayerPath);
-        takeAllCraftingResults = GetNode<Button>(TakeAllCraftingResultsPath);
-        clearCraftingInputs = GetNode<TextureButton>(ClearCraftingInputsPath);
-
-        groundPanelPopup = GetNode<CustomWindow>(GroundPanelPopupPath);
-        groundSlotContainer = GetNode<Container>(GroundSlotContainerPath);
-
         inventorySlotScene = GD.Load<PackedScene>("res://src/awakening_stage/gui/InventorySlot.tscn");
         recipeListItemScene = GD.Load<PackedScene>("res://src/awakening_stage/gui/RecipeListItem.tscn");
 
@@ -325,24 +274,7 @@ public partial class InventoryScreen : ControlWithInput
     {
         if (disposing)
         {
-            if (InventoryPopupPath != null)
             {
-                InventoryPopupPath.Dispose();
-                InventorySlotContainerPath.Dispose();
-                EquipmentSlotParentPath.Dispose();
-                EquipmentBackgroundImagePath.Dispose();
-                CraftingPanelButtonPath.Dispose();
-                GroundPanelButtonPath.Dispose();
-                CraftingPanelPopupPath.Dispose();
-                CraftingRecipesContainerPath.Dispose();
-                CraftingSlotsContainerPath.Dispose();
-                CraftingResultSlotsContainerPath.Dispose();
-                CraftingErrorStatusLabelPath.Dispose();
-                CraftingAnimationPlayerPath.Dispose();
-                TakeAllCraftingResultsPath.Dispose();
-                ClearCraftingInputsPath.Dispose();
-                GroundPanelPopupPath.Dispose();
-                GroundSlotContainerPath.Dispose();
             }
 
             inventorySlotGroup.Dispose();

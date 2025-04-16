@@ -13,38 +13,28 @@ using Newtonsoft.Json;
 public partial class MulticellularEditor : EditorBase<EditorAction, MicrobeStage>, IEditorReportData,
     ICellEditorData
 {
-    [Export]
-    public NodePath? ReportTabPath;
-
-    [Export]
-    public NodePath PatchMapTabPath = null!;
-
-    [Export]
-    public NodePath BodyPlanEditorTabPath = null!;
-
-    [Export]
-    public NodePath CellEditorTabPath = null!;
-
-    [Export]
-    public NodePath NoCellTypeSelectedPath = null!;
-
 #pragma warning disable CA2213
     [JsonProperty]
     [AssignOnlyChildItemsOnDeserialize]
+    [Export]
     private MicrobeEditorReportComponent reportTab = null!;
 
     [JsonProperty]
     [AssignOnlyChildItemsOnDeserialize]
+    [Export]
     private MicrobeEditorPatchMap patchMapTab = null!;
 
     [JsonProperty]
     [AssignOnlyChildItemsOnDeserialize]
+    [Export]
     private CellBodyPlanEditorComponent bodyPlanEditorTab = null!;
 
     [JsonProperty]
     [AssignOnlyChildItemsOnDeserialize]
+    [Export]
     private CellEditorComponent cellEditorTab = null!;
 
+    [Export]
     private Control noCellTypeSelected = null!;
 #pragma warning restore CA2213
 
@@ -190,11 +180,6 @@ public partial class MulticellularEditor : EditorBase<EditorAction, MicrobeStage
 
     protected override void ResolveDerivedTypeNodeReferences()
     {
-        reportTab = GetNode<MicrobeEditorReportComponent>(ReportTabPath);
-        patchMapTab = GetNode<MicrobeEditorPatchMap>(PatchMapTabPath);
-        bodyPlanEditorTab = GetNode<CellBodyPlanEditorComponent>(BodyPlanEditorTabPath);
-        cellEditorTab = GetNode<CellEditorComponent>(CellEditorTabPath);
-        noCellTypeSelected = GetNode<Control>(NoCellTypeSelectedPath);
     }
 
     protected override void InitEditor(bool fresh)
@@ -423,13 +408,7 @@ public partial class MulticellularEditor : EditorBase<EditorAction, MicrobeStage
     {
         if (disposing)
         {
-            if (ReportTabPath != null)
             {
-                ReportTabPath.Dispose();
-                PatchMapTabPath.Dispose();
-                BodyPlanEditorTabPath.Dispose();
-                CellEditorTabPath.Dispose();
-                NoCellTypeSelectedPath.Dispose();
             }
         }
 

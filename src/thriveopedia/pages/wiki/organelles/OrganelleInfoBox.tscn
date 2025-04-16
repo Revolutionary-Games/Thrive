@@ -7,26 +7,26 @@
 [ext_resource type="Script" uid="uid://dh5l86bxf1fua" path="res://src/thriveopedia/pages/wiki/organelles/OrganelleInfoBox.cs" id="6"]
 [ext_resource type="Texture2D" uid="uid://bx240joai3755" path="res://assets/textures/gui/bevel/RequirementFulfilled.png" id="7"]
 
-[node name="PanelContainer" type="PanelContainer"]
+[node name="PanelContainer" type="PanelContainer" node_paths=PackedStringArray("internalNameLabel", "upgradesLabel", "uniqueIcon", "storageLabel", "osmoregulationCostLabel", "sizeLabel", "massLabel", "enzymesLabel", "processesLabel", "requiresNucleusIcon", "costLabel", "model", "icon", "nameLabel")]
 custom_minimum_size = Vector2(330, 0)
 offset_right = 286.0
 offset_bottom = 732.0
 theme = ExtResource("5")
 script = ExtResource("6")
-NamePath = NodePath("MarginContainer/VBoxContainer/HBoxContainer/Name")
-IconPath = NodePath("MarginContainer/VBoxContainer/HBoxContainer/Icon")
-ModelPath = NodePath("MarginContainer/VBoxContainer/Model")
-CostLabelPath = NodePath("MarginContainer/VBoxContainer/Cost/Value")
-RequiresNucleusIconPath = NodePath("MarginContainer/VBoxContainer/RequiresNucleus/Value")
-ProcessesLabelPath = NodePath("MarginContainer/VBoxContainer/Processes/Value")
-EnzymesLabelPath = NodePath("MarginContainer/VBoxContainer/Enzymes/Value")
-MassLabelPath = NodePath("MarginContainer/VBoxContainer/Mass/Value")
-SizeLabelPath = NodePath("MarginContainer/VBoxContainer/Size/Value")
-OsmoregulationCostLabelPath = NodePath("MarginContainer/VBoxContainer/OsmoregulationCost/Value")
-StorageLabelPath = NodePath("MarginContainer/VBoxContainer/Storage/Value")
-UniqueIconPath = NodePath("MarginContainer/VBoxContainer/Unique/Value")
-UpgradesLabelPath = NodePath("MarginContainer/VBoxContainer/Ugrades/Value")
-InternalNameLabelPath = NodePath("MarginContainer/VBoxContainer/InternalName/Value")
+nameLabel = NodePath("MarginContainer/VBoxContainer/HBoxContainer/Name")
+icon = NodePath("MarginContainer/VBoxContainer/HBoxContainer/Icon")
+model = NodePath("MarginContainer/VBoxContainer/Model")
+costLabel = NodePath("MarginContainer/VBoxContainer/Cost/Value")
+requiresNucleusIcon = NodePath("MarginContainer/VBoxContainer/RequiresNucleus/Value")
+processesLabel = NodePath("MarginContainer/VBoxContainer/Processes/Value")
+enzymesLabel = NodePath("MarginContainer/VBoxContainer/Enzymes/Value")
+massLabel = NodePath("MarginContainer/VBoxContainer/Mass/Value")
+sizeLabel = NodePath("MarginContainer/VBoxContainer/Size/Value")
+osmoregulationCostLabel = NodePath("MarginContainer/VBoxContainer/OsmoregulationCost/Value")
+storageLabel = NodePath("MarginContainer/VBoxContainer/Storage/Value")
+uniqueIcon = NodePath("MarginContainer/VBoxContainer/Unique/Value")
+upgradesLabel = NodePath("MarginContainer/VBoxContainer/Ugrades/Value")
+internalNameLabel = NodePath("MarginContainer/VBoxContainer/InternalName/Value")
 
 [node name="MarginContainer" type="MarginContainer" parent="."]
 layout_mode = 2

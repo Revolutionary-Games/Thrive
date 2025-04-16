@@ -11,7 +11,7 @@
 
 [sub_resource type="StyleBoxEmpty" id="38"]
 
-[node name="BehaviourEditorSubComponent" type="PanelContainer"]
+[node name="BehaviourEditorSubComponent" type="PanelContainer" node_paths=PackedStringArray("focusSlider", "activitySlider", "fearSlider", "opportunismSlider", "aggressionSlider")]
 offset_top = 303.0
 offset_right = 318.0
 offset_bottom = 556.0
@@ -20,11 +20,11 @@ mouse_filter = 1
 theme = ExtResource("3")
 theme_override_styles/panel = SubResource("16")
 script = ExtResource("4")
-AggressionSliderPath = NodePath("ScrollContainer/MarginContainer/VBoxContainer/Aggression/AggressionSlider")
-OpportunismSliderPath = NodePath("ScrollContainer/MarginContainer/VBoxContainer/Opportunism/OpportunismSlider")
-FearSliderPath = NodePath("ScrollContainer/MarginContainer/VBoxContainer/Fear/FearSlider")
-ActivitySliderPath = NodePath("ScrollContainer/MarginContainer/VBoxContainer/Activity/ActivitySlider")
-FocusSliderPath = NodePath("ScrollContainer/MarginContainer/VBoxContainer/Focus/FocusSlider")
+aggressionSlider = NodePath("ScrollContainer/MarginContainer/VBoxContainer/Aggression/AggressionSlider")
+opportunismSlider = NodePath("ScrollContainer/MarginContainer/VBoxContainer/Opportunism/OpportunismSlider")
+fearSlider = NodePath("ScrollContainer/MarginContainer/VBoxContainer/Fear/FearSlider")
+activitySlider = NodePath("ScrollContainer/MarginContainer/VBoxContainer/Activity/ActivitySlider")
+focusSlider = NodePath("ScrollContainer/MarginContainer/VBoxContainer/Focus/FocusSlider")
 
 [node name="ScrollContainer" type="ScrollContainer" parent="."]
 layout_mode = 2

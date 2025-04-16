@@ -11,50 +11,28 @@ using Godot;
 /// </summary>
 public partial class SaveManagerGUI : Control
 {
-    [Export]
-    public NodePath? SaveListPath;
-
-    [Export]
-    public NodePath SelectedItemCountPath = null!;
-
-    [Export]
-    public NodePath TotalSaveCountPath = null!;
-
-    [Export]
-    public NodePath TotalSaveSizePath = null!;
-
-    [Export]
-    public NodePath LoadButtonPath = null!;
-
-    [Export]
-    public NodePath DeleteSelectedButtonPath = null!;
-
-    [Export]
-    public NodePath DeleteOldButtonPath = null!;
-
-    [Export]
-    public NodePath DeleteSelectedConfirmDialogPath = null!;
-
-    [Export]
-    public NodePath DeleteOldConfirmDialogPath = null!;
-
-    [Export]
-    public NodePath SaveDirectoryWarningDialogPath = null!;
-
-    [Export]
-    public NodePath SaveDeletionFailedErrorPath = null!;
-
 #pragma warning disable CA2213
+    [Export]
     private SaveList saveList = null!;
+    [Export]
     private Label selectedItemCount = null!;
+    [Export]
     private Label totalSaveCount = null!;
+    [Export]
     private Label totalSaveSize = null!;
+    [Export]
     private Button loadButton = null!;
+    [Export]
     private Button deleteSelectedButton = null!;
+    [Export]
     private Button deleteOldButton = null!;
+    [Export]
     private CustomConfirmationDialog deleteSelectedConfirmDialog = null!;
+    [Export]
     private CustomConfirmationDialog deleteOldConfirmDialog = null!;
+    [Export]
     private CustomConfirmationDialog saveDirectoryWarningDialog = null!;
+    [Export]
     private CustomConfirmationDialog errorSaveDeletionFailed = null!;
 #pragma warning restore CA2213
 
@@ -92,18 +70,6 @@ public partial class SaveManagerGUI : Control
 
     public override void _Ready()
     {
-        saveList = GetNode<SaveList>(SaveListPath);
-        selectedItemCount = GetNode<Label>(SelectedItemCountPath);
-        totalSaveCount = GetNode<Label>(TotalSaveCountPath);
-        totalSaveSize = GetNode<Label>(TotalSaveSizePath);
-        loadButton = GetNode<Button>(LoadButtonPath);
-        deleteSelectedButton = GetNode<Button>(DeleteSelectedButtonPath);
-        deleteOldButton = GetNode<Button>(DeleteOldButtonPath);
-        deleteSelectedConfirmDialog = GetNode<CustomConfirmationDialog>(DeleteSelectedConfirmDialogPath);
-        deleteOldConfirmDialog = GetNode<CustomConfirmationDialog>(DeleteOldConfirmDialogPath);
-        saveDirectoryWarningDialog = GetNode<CustomConfirmationDialog>(SaveDirectoryWarningDialogPath);
-        errorSaveDeletionFailed = GetNode<CustomConfirmationDialog>(SaveDeletionFailedErrorPath);
-
         saveList.Connect(SaveList.SignalName.OnItemsChanged, new Callable(this, nameof(RefreshSaveCounts)));
     }
 
@@ -149,19 +115,7 @@ public partial class SaveManagerGUI : Control
     {
         if (disposing)
         {
-            if (SaveListPath != null)
             {
-                SaveListPath.Dispose();
-                SelectedItemCountPath.Dispose();
-                TotalSaveCountPath.Dispose();
-                TotalSaveSizePath.Dispose();
-                LoadButtonPath.Dispose();
-                DeleteSelectedButtonPath.Dispose();
-                DeleteOldButtonPath.Dispose();
-                DeleteSelectedConfirmDialogPath.Dispose();
-                DeleteOldConfirmDialogPath.Dispose();
-                SaveDirectoryWarningDialogPath.Dispose();
-                SaveDeletionFailedErrorPath.Dispose();
             }
         }
 

@@ -3,7 +3,7 @@
 [ext_resource type="PackedScene" path="res://src/gui_common/dialogs/CustomWindow.tscn" id="1"]
 [ext_resource type="Script" uid="uid://dq7avc5py7nbb" path="res://src/awakening_stage/gui/SelectBuildingPopup.cs" id="2"]
 
-[node name="SelectBuildingPopup" type="Control"]
+[node name="SelectBuildingPopup" type="Control" node_paths=PackedStringArray("cancelButton", "buttonsContainer", "popup")]
 visible = false
 layout_mode = 3
 anchors_preset = 15
@@ -11,9 +11,9 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 mouse_filter = 2
 script = ExtResource("2")
-PopupPath = NodePath("CustomWindow")
-ButtonsContainerPath = NodePath("CustomWindow/VBoxContainer/ScrollContainer/ButtonContainer")
-CancelButtonPath = NodePath("CustomWindow/VBoxContainer/Cancel")
+popup = NodePath("CustomWindow")
+buttonsContainer = NodePath("CustomWindow/VBoxContainer/ScrollContainer/ButtonContainer")
+cancelButton = NodePath("CustomWindow/VBoxContainer/Cancel")
 
 [node name="CustomWindow" parent="." instance=ExtResource("1")]
 anchors_preset = 0

@@ -2,7 +2,7 @@
 
 [ext_resource type="Script" uid="uid://5ptm1w4024ay" path="res://src/auto-evo/EvolutionaryTree.cs" id="1"]
 
-[node name="EvolutionaryTree" type="VBoxContainer"]
+[node name="EvolutionaryTree" type="VBoxContainer" node_paths=PackedStringArray("tree", "timeline")]
 clip_contents = true
 anchors_preset = 15
 anchor_right = 1.0
@@ -10,8 +10,8 @@ anchor_bottom = 1.0
 mouse_filter = 0
 mouse_force_pass_scroll_events = false
 script = ExtResource("1")
-TimelinePath = NodePath("Timeline")
-TreePath = NodePath("Tree")
+timeline = NodePath("Timeline")
+tree = NodePath("Tree")
 
 [node name="Timeline" type="Control" parent="."]
 custom_minimum_size = Vector2(0, 50)

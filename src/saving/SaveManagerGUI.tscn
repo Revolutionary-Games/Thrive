@@ -6,22 +6,22 @@
 [ext_resource type="PackedScene" uid="uid://cl64wvnxs6ivs" path="res://src/gui_common/dialogs/CustomConfirmationDialog.tscn" id="4"]
 [ext_resource type="PackedScene" uid="uid://bgeijgq7runaw" path="res://src/gui_common/FocusGrabber.tscn" id="5"]
 
-[node name="SaveManagerGUI" type="Control"]
+[node name="SaveManagerGUI" type="Control" node_paths=PackedStringArray("errorSaveDeletionFailed", "saveDirectoryWarningDialog", "deleteOldConfirmDialog", "deleteSelectedConfirmDialog", "deleteOldButton", "deleteSelectedButton", "loadButton", "totalSaveSize", "totalSaveCount", "selectedItemCount", "saveList")]
 anchor_right = 1.0
 anchor_bottom = 1.0
 theme = ExtResource("2")
 script = ExtResource("1")
-SaveListPath = NodePath("CenterContainer/VBoxContainer/SaveList")
-SelectedItemCountPath = NodePath("CenterContainer/VBoxContainer/BottomBox/SelectedCount")
-TotalSaveCountPath = NodePath("CenterContainer/VBoxContainer/BottomBox/SaveCount")
-TotalSaveSizePath = NodePath("CenterContainer/VBoxContainer/BottomBox/SavesSpaceUsed")
-LoadButtonPath = NodePath("CenterContainer/VBoxContainer/TopBox/LoadButton")
-DeleteSelectedButtonPath = NodePath("CenterContainer/VBoxContainer/TopBox/DeleteSelected")
-DeleteOldButtonPath = NodePath("CenterContainer/VBoxContainer/TopBox/DeleteOld")
-DeleteSelectedConfirmDialogPath = NodePath("CenterContainer/VBoxContainer/DeleteSelectedConfirmDialog")
-DeleteOldConfirmDialogPath = NodePath("CenterContainer/VBoxContainer/DeleteOldConfirmDialog")
-SaveDirectoryWarningDialogPath = NodePath("CenterContainer/VBoxContainer/SaveDirectoryWarning")
-SaveDeletionFailedErrorPath = NodePath("CenterContainer/SaveDeletionFailedDialog")
+saveList = NodePath("CenterContainer/VBoxContainer/SaveList")
+selectedItemCount = NodePath("CenterContainer/VBoxContainer/BottomBox/SelectedCount")
+totalSaveCount = NodePath("CenterContainer/VBoxContainer/BottomBox/SaveCount")
+totalSaveSize = NodePath("CenterContainer/VBoxContainer/BottomBox/SavesSpaceUsed")
+loadButton = NodePath("CenterContainer/VBoxContainer/TopBox/LoadButton")
+deleteSelectedButton = NodePath("CenterContainer/VBoxContainer/TopBox/DeleteSelected")
+deleteOldButton = NodePath("CenterContainer/VBoxContainer/TopBox/DeleteOld")
+deleteSelectedConfirmDialog = NodePath("CenterContainer/VBoxContainer/DeleteSelectedConfirmDialog")
+deleteOldConfirmDialog = NodePath("CenterContainer/VBoxContainer/DeleteOldConfirmDialog")
+saveDirectoryWarningDialog = NodePath("CenterContainer/VBoxContainer/SaveDirectoryWarning")
+errorSaveDeletionFailed = NodePath("CenterContainer/SaveDeletionFailedDialog")
 
 [node name="CenterContainer" type="CenterContainer" parent="."]
 anchor_right = 1.0

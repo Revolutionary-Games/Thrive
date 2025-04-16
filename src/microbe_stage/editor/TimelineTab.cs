@@ -9,21 +9,6 @@ using Godot;
 /// </summary>
 public partial class TimelineTab : PanelContainer
 {
-    [Export]
-    public NodePath? GlobalEventsContainerPath;
-
-    [Export]
-    public NodePath LocalEventsContainerPath = null!;
-
-    [Export]
-    public NodePath ScrollContainerPath = null!;
-
-    [Export]
-    public NodePath LocalFilterButtonPath = null!;
-
-    [Export]
-    public NodePath GlobalFilterButtonPath = null!;
-
 #pragma warning disable CA2213
     [Export]
     public LabelSettings TimePeriodTitleFont = null!;
@@ -38,10 +23,15 @@ public partial class TimelineTab : PanelContainer
 
     private readonly StyleBoxTexture eventHighlightStyleBox;
 
+    [Export]
     private VBoxContainer globalEventsContainer = null!;
+    [Export]
     private VBoxContainer localEventsContainer = null!;
+    [Export]
     private ScrollContainer scrollContainer = null!;
+    [Export]
     private Button localFilterButton = null!;
+    [Export]
     private Button globalFilterButton = null!;
 #pragma warning restore CA2213
 
@@ -87,11 +77,6 @@ public partial class TimelineTab : PanelContainer
 
     public override void _Ready()
     {
-        globalEventsContainer = GetNode<VBoxContainer>(GlobalEventsContainerPath);
-        localEventsContainer = GetNode<VBoxContainer>(LocalEventsContainerPath);
-        scrollContainer = GetNode<ScrollContainer>(ScrollContainerPath);
-        localFilterButton = GetNode<Button>(LocalFilterButtonPath);
-        globalFilterButton = GetNode<Button>(GlobalFilterButtonPath);
     }
 
     public void UpdateTimeline(IEditorReportData editor, Patch targetPatch)
@@ -172,13 +157,7 @@ public partial class TimelineTab : PanelContainer
     {
         if (disposing)
         {
-            if (GlobalEventsContainerPath != null)
             {
-                GlobalEventsContainerPath.Dispose();
-                LocalEventsContainerPath.Dispose();
-                ScrollContainerPath.Dispose();
-                LocalFilterButtonPath.Dispose();
-                GlobalFilterButtonPath.Dispose();
             }
         }
 

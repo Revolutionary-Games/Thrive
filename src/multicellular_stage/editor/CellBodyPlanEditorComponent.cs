@@ -13,51 +13,6 @@ public partial class CellBodyPlanEditorComponent :
     HexEditorComponentBase<MulticellularEditor, CombinedEditorAction, EditorAction, HexWithData<CellTemplate>,
         MulticellularSpecies>, IGodotEarlyNodeResolve
 {
-    [Export]
-    public NodePath? TabButtonsPath;
-
-    [Export]
-    public NodePath StructureTabButtonPath = null!;
-
-    [Export]
-    public NodePath ReproductionTabButtonPath = null!;
-
-    [Export]
-    public NodePath BehaviourTabButtonPath = null!;
-
-    [Export]
-    public NodePath StructureTabPath = null!;
-
-    [Export]
-    public NodePath ReproductionTabPath = null!;
-
-    [Export]
-    public NodePath BehaviourTabPath = null!;
-
-    [Export]
-    public NodePath CellTypeSelectionListPath = null!;
-
-    [Export]
-    public NodePath ModifyTypeButtonPath = null!;
-
-    [Export]
-    public NodePath DeleteTypeButtonPath = null!;
-
-    [Export]
-    public NodePath DuplicateTypeButtonPath = null!;
-
-    [Export]
-    public NodePath CannotDeleteInUseTypeDialogPath = null!;
-
-    [Export]
-    public NodePath DuplicateCellTypeDialogPath = null!;
-
-    [Export]
-    public NodePath DuplicateCellTypeNamePath = null!;
-
-    [Export]
-    public NodePath CellPopupMenuPath = null!;
-
     private static Vector3 microbeModelOffset = new(0, -0.1f, 0);
 
     private readonly Dictionary<string, CellTypeSelection> cellTypeSelectionButtons = new();
@@ -78,35 +33,49 @@ public partial class CellBodyPlanEditorComponent :
 #pragma warning disable CA2213
 
     // Selection menu tab selector buttons
+    [Export]
     private Button structureTabButton = null!;
+    [Export]
     private Button reproductionTabButton = null!;
+    [Export]
     private Button behaviourTabButton = null!;
 
+    [Export]
     private PanelContainer structureTab = null!;
+    [Export]
     private PanelContainer reproductionTab = null!;
 
     [JsonProperty]
     [AssignOnlyChildItemsOnDeserialize]
+    [Export]
     private BehaviourEditorSubComponent behaviourEditor = null!;
 
+    [Export]
     private CollapsibleList cellTypeSelectionList = null!;
 
+    [Export]
     private Button modifyTypeButton = null!;
 
+    [Export]
     private Button deleteTypeButton = null!;
 
+    [Export]
     private Button duplicateTypeButton = null!;
 
+    [Export]
     private CustomWindow cannotDeleteInUseTypeDialog = null!;
 
+    [Export]
     private CustomWindow duplicateCellTypeDialog = null!;
 
+    [Export]
     private LineEdit duplicateCellTypeName = null!;
 
     private PackedScene cellTypeSelectionButtonScene = null!;
 
     private ButtonGroup cellTypeButtonGroup = new();
 
+    [Export]
     private CellPopupMenu cellPopupMenu = null!;
 
     private PackedScene billboardScene = null!;
@@ -199,37 +168,6 @@ public partial class CellBodyPlanEditorComponent :
         base.ResolveNodeReferences();
 
         NodeReferencesResolved = true;
-
-        if (TabButtonsPath == null)
-            throw new MissingExportVariableValueException();
-
-        var tabButtons = GetNode<TabButtons>(TabButtonsPath);
-
-        structureTab = GetNode<PanelContainer>(StructureTabPath);
-        structureTabButton = GetNode<Button>(tabButtons.GetAdjustedButtonPath(TabButtonsPath, StructureTabButtonPath));
-
-        reproductionTab = GetNode<PanelContainer>(ReproductionTabPath);
-        reproductionTabButton =
-            GetNode<Button>(tabButtons.GetAdjustedButtonPath(TabButtonsPath, ReproductionTabButtonPath));
-
-        behaviourEditor = GetNode<BehaviourEditorSubComponent>(BehaviourTabPath);
-        behaviourTabButton = GetNode<Button>(tabButtons.GetAdjustedButtonPath(TabButtonsPath, BehaviourTabButtonPath));
-
-        cellTypeSelectionList = GetNode<CollapsibleList>(CellTypeSelectionListPath);
-
-        modifyTypeButton = GetNode<Button>(ModifyTypeButtonPath);
-
-        deleteTypeButton = GetNode<Button>(DeleteTypeButtonPath);
-
-        duplicateTypeButton = GetNode<Button>(DuplicateTypeButtonPath);
-
-        cannotDeleteInUseTypeDialog = GetNode<CustomWindow>(CannotDeleteInUseTypeDialogPath);
-
-        duplicateCellTypeDialog = GetNode<CustomWindow>(DuplicateCellTypeDialogPath);
-
-        duplicateCellTypeName = GetNode<LineEdit>(DuplicateCellTypeNamePath);
-
-        cellPopupMenu = GetNode<CellPopupMenu>(CellPopupMenuPath);
     }
 
     public override void Init(MulticellularEditor owningEditor, bool fresh)
@@ -662,33 +600,6 @@ public partial class CellBodyPlanEditorComponent :
         }
 
         return highestPointInMiddleRows;
-    }
-
-    protected override void Dispose(bool disposing)
-    {
-        if (disposing)
-        {
-            if (TabButtonsPath != null)
-            {
-                TabButtonsPath.Dispose();
-                StructureTabButtonPath.Dispose();
-                ReproductionTabButtonPath.Dispose();
-                BehaviourTabButtonPath.Dispose();
-                StructureTabPath.Dispose();
-                ReproductionTabPath.Dispose();
-                BehaviourTabPath.Dispose();
-                CellTypeSelectionListPath.Dispose();
-                ModifyTypeButtonPath.Dispose();
-                DeleteTypeButtonPath.Dispose();
-                DuplicateTypeButtonPath.Dispose();
-                CannotDeleteInUseTypeDialogPath.Dispose();
-                DuplicateCellTypeDialogPath.Dispose();
-                DuplicateCellTypeNamePath.Dispose();
-                CellPopupMenuPath.Dispose();
-            }
-        }
-
-        base.Dispose(disposing);
     }
 
     private void SetLightLevelOption(int option)

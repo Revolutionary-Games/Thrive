@@ -4,9 +4,9 @@
 [ext_resource type="PackedScene" uid="uid://b0315b3i5bs5s" path="res://src/general/NewGameSettings.tscn" id="2"]
 [ext_resource type="Script" uid="uid://d1nvaqsw0q6f4" path="res://src/ascension_stage/gui/DescendSetupScreen.cs" id="3"]
 
-[node name="DescendSetupScreen" type="Node"]
+[node name="DescendSetupScreen" type="Node" node_paths=PackedStringArray("newGameSettings")]
 script = ExtResource("3")
-NewGameSettingsPath = NodePath("GUIRoot/NewGameSettings")
+newGameSettings = NodePath("GUIRoot/NewGameSettings")
 
 [node name="Background" type="Node3D" parent="."]
 transform = Transform3D(-0.173648, 0, 0.984808, 0, 1, 0, -0.984808, 0, -0.173648, 0, 0, 0)

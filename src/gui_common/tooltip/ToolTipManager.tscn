@@ -50,23 +50,23 @@ offset_right = 40.0
 offset_bottom = 40.0
 mouse_filter = 2
 
-[node name="menuButton" parent="GroupHolder/default" instance=ExtResource("1")]
+[node name="menuButton" parent="GroupHolder/default" instance=ExtResource("1") node_paths=PackedStringArray("descriptionLabel")]
 visible = false
 layout_mode = 0
-DescriptionLabelPath = NodePath("MarginContainer/VBoxContainer/Description")
+descriptionLabel = NodePath("MarginContainer/VBoxContainer/Description")
 Description = "OPEN_THE_MENU"
 
-[node name="helpButton" parent="GroupHolder/default" instance=ExtResource("1")]
+[node name="helpButton" parent="GroupHolder/default" instance=ExtResource("1") node_paths=PackedStringArray("descriptionLabel")]
 visible = false
 layout_mode = 0
 theme_override_styles/panel = SubResource("1")
-DescriptionLabelPath = NodePath("MarginContainer/VBoxContainer/Description")
+descriptionLabel = NodePath("MarginContainer/VBoxContainer/Description")
 Description = "OPEN_HELP_SCREEN"
 
-[node name="popup" parent="GroupHolder/default" instance=ExtResource("1")]
+[node name="popup" parent="GroupHolder/default" instance=ExtResource("1") node_paths=PackedStringArray("descriptionLabel")]
 visible = false
 layout_mode = 0
-DescriptionLabelPath = NodePath("MarginContainer/VBoxContainer/Description")
+descriptionLabel = NodePath("MarginContainer/VBoxContainer/Description")
 DisplayDelay = 0.0
 
 [node name="speciesPreview" parent="GroupHolder/default" instance=ExtResource("3")]
@@ -84,10 +84,10 @@ offset_right = 40.0
 offset_bottom = 40.0
 mouse_filter = 2
 
-[node name="thriveLogoEasterEgg" parent="GroupHolder/mainMenu" instance=ExtResource("1")]
+[node name="thriveLogoEasterEgg" parent="GroupHolder/mainMenu" instance=ExtResource("1") node_paths=PackedStringArray("descriptionLabel")]
 visible = false
 layout_mode = 0
-DescriptionLabelPath = NodePath("../../../GroupHolder/mainMenu/thriveLogoEasterEgg/MarginContainer/VBoxContainer/Description")
+descriptionLabel = NodePath("../../../GroupHolder/mainMenu/thriveLogoEasterEgg/MarginContainer/VBoxContainer/Description")
 Description = "WILL_YOU_THRIVE"
 
 [node name="editor" type="Control" parent="GroupHolder"]
@@ -96,50 +96,50 @@ offset_right = 40.0
 offset_bottom = 40.0
 mouse_filter = 2
 
-[node name="cancelButton" parent="GroupHolder/editor" instance=ExtResource("1")]
+[node name="cancelButton" parent="GroupHolder/editor" instance=ExtResource("1") node_paths=PackedStringArray("descriptionLabel")]
 visible = false
 layout_mode = 0
-DescriptionLabelPath = NodePath("../../../GroupHolder/editor/finishButton/MarginContainer/VBoxContainer/Description")
+descriptionLabel = NodePath("../../../GroupHolder/editor/finishButton/MarginContainer/VBoxContainer/Description")
 Description = "CANCEL_CURRENT_ACTION"
 
-[node name="finishButton" parent="GroupHolder/editor" instance=ExtResource("1")]
+[node name="finishButton" parent="GroupHolder/editor" instance=ExtResource("1") node_paths=PackedStringArray("descriptionLabel")]
 visible = false
 layout_mode = 0
-DescriptionLabelPath = NodePath("../../../GroupHolder/editor/finishButton/MarginContainer/VBoxContainer/Description")
+descriptionLabel = NodePath("../../../GroupHolder/editor/finishButton/MarginContainer/VBoxContainer/Description")
 Description = "FINISH_EDITING_AND_RETURN_TO_ENVIRONMENT"
 
-[node name="nextTabButton" parent="GroupHolder/editor" instance=ExtResource("1")]
+[node name="nextTabButton" parent="GroupHolder/editor" instance=ExtResource("1") node_paths=PackedStringArray("descriptionLabel")]
 visible = false
 layout_mode = 0
-DescriptionLabelPath = NodePath("../finishButton/MarginContainer/VBoxContainer/Description")
+descriptionLabel = NodePath("../finishButton/MarginContainer/VBoxContainer/Description")
 Description = "NEXT_EDITOR_TAB"
 
-[node name="symmetryButton" parent="GroupHolder/editor" instance=ExtResource("1")]
+[node name="symmetryButton" parent="GroupHolder/editor" instance=ExtResource("1") node_paths=PackedStringArray("descriptionLabel")]
 visible = false
 layout_mode = 0
 theme_override_styles/panel = SubResource("1")
-DescriptionLabelPath = NodePath("../../../GroupHolder/editor/symmetryButton/MarginContainer/VBoxContainer/Description")
+descriptionLabel = NodePath("../../../GroupHolder/editor/symmetryButton/MarginContainer/VBoxContainer/Description")
 Description = "CHANGE_THE_SYMMETRY"
 
-[node name="undoButton" parent="GroupHolder/editor" instance=ExtResource("1")]
+[node name="undoButton" parent="GroupHolder/editor" instance=ExtResource("1") node_paths=PackedStringArray("descriptionLabel")]
 visible = false
 layout_mode = 0
 theme_override_styles/panel = SubResource("1")
-DescriptionLabelPath = NodePath("../undoButton/MarginContainer/VBoxContainer/Description")
+descriptionLabel = NodePath("../undoButton/MarginContainer/VBoxContainer/Description")
 Description = "UNDO_THE_LAST_ACTION"
 
-[node name="redoButton" parent="GroupHolder/editor" instance=ExtResource("1")]
+[node name="redoButton" parent="GroupHolder/editor" instance=ExtResource("1") node_paths=PackedStringArray("descriptionLabel")]
 visible = false
 layout_mode = 0
 theme_override_styles/panel = SubResource("1")
-DescriptionLabelPath = NodePath("../../../GroupHolder/editor/redoButton/MarginContainer/VBoxContainer/Description")
+descriptionLabel = NodePath("../../../GroupHolder/editor/redoButton/MarginContainer/VBoxContainer/Description")
 Description = "REDO_THE_LAST_ACTION"
 
-[node name="newCellButton" parent="GroupHolder/editor" instance=ExtResource("1")]
+[node name="newCellButton" parent="GroupHolder/editor" instance=ExtResource("1") node_paths=PackedStringArray("descriptionLabel")]
 visible = false
 layout_mode = 0
 theme_override_styles/panel = SubResource("1")
-DescriptionLabelPath = NodePath("../../../GroupHolder/editor/newCellButton/MarginContainer/VBoxContainer/Description")
+descriptionLabel = NodePath("../../../GroupHolder/editor/newCellButton/MarginContainer/VBoxContainer/Description")
 Description = "CREATE_A_NEW_MICROBE"
 
 [node name="randomizeNameButton" parent="GroupHolder/editor" instance=ExtResource("1")]
@@ -147,11 +147,11 @@ visible = false
 layout_mode = 0
 Description = "RANDOMIZE_SPECIES_NAME"
 
-[node name="timeIndicator" parent="GroupHolder/editor" instance=ExtResource("1")]
+[node name="timeIndicator" parent="GroupHolder/editor" instance=ExtResource("1") node_paths=PackedStringArray("descriptionLabel")]
 visible = false
 layout_mode = 0
 theme_override_styles/panel = SubResource("1")
-DescriptionLabelPath = NodePath("../../../GroupHolder/editor/timeIndicator/MarginContainer/VBoxContainer/Description")
+descriptionLabel = NodePath("../../../GroupHolder/editor/timeIndicator/MarginContainer/VBoxContainer/Description")
 DisplayDelay = 0.5
 
 [node name="rigiditySlider" parent="GroupHolder/editor" instance=ExtResource("5")]
@@ -187,63 +187,63 @@ visible = false
 [node name="OrganelleCostList" parent="GroupHolder/editor/rigiditySlider/MarginContainer/VBoxContainer" index="6"]
 visible = false
 
-[node name="aggressionSlider" parent="GroupHolder/editor" instance=ExtResource("1")]
+[node name="aggressionSlider" parent="GroupHolder/editor" instance=ExtResource("1") node_paths=PackedStringArray("descriptionLabel")]
 visible = false
 layout_mode = 0
 theme_override_styles/panel = SubResource("1")
-DescriptionLabelPath = NodePath("../timeIndicator/MarginContainer/VBoxContainer/Description")
+descriptionLabel = NodePath("../timeIndicator/MarginContainer/VBoxContainer/Description")
 Description = "AGGRESSION_EXPLANATION"
 DisplayDelay = 0.0
 Positioning = 2
 
-[node name="opportunismSlider" parent="GroupHolder/editor" instance=ExtResource("1")]
+[node name="opportunismSlider" parent="GroupHolder/editor" instance=ExtResource("1") node_paths=PackedStringArray("descriptionLabel")]
 visible = false
 layout_mode = 0
 theme_override_styles/panel = SubResource("1")
-DescriptionLabelPath = NodePath("../timeIndicator/MarginContainer/VBoxContainer/Description")
+descriptionLabel = NodePath("../timeIndicator/MarginContainer/VBoxContainer/Description")
 Description = "OPPORTUNISM_EXPLANATION"
 DisplayDelay = 0.0
 Positioning = 2
 
-[node name="fearSlider" parent="GroupHolder/editor" instance=ExtResource("1")]
+[node name="fearSlider" parent="GroupHolder/editor" instance=ExtResource("1") node_paths=PackedStringArray("descriptionLabel")]
 visible = false
 layout_mode = 0
 theme_override_styles/panel = SubResource("1")
-DescriptionLabelPath = NodePath("../timeIndicator/MarginContainer/VBoxContainer/Description")
+descriptionLabel = NodePath("../timeIndicator/MarginContainer/VBoxContainer/Description")
 Description = "FEAR_EXPLANATION"
 DisplayDelay = 0.0
 Positioning = 2
 
-[node name="activitySlider" parent="GroupHolder/editor" instance=ExtResource("1")]
+[node name="activitySlider" parent="GroupHolder/editor" instance=ExtResource("1") node_paths=PackedStringArray("descriptionLabel")]
 visible = false
 layout_mode = 0
 theme_override_styles/panel = SubResource("1")
-DescriptionLabelPath = NodePath("../timeIndicator/MarginContainer/VBoxContainer/Description")
+descriptionLabel = NodePath("../timeIndicator/MarginContainer/VBoxContainer/Description")
 Description = "ACTIVITY_EXPLANATION"
 DisplayDelay = 0.0
 Positioning = 2
 
-[node name="focusSlider" parent="GroupHolder/editor" instance=ExtResource("1")]
+[node name="focusSlider" parent="GroupHolder/editor" instance=ExtResource("1") node_paths=PackedStringArray("descriptionLabel")]
 visible = false
 layout_mode = 0
 theme_override_styles/panel = SubResource("1")
-DescriptionLabelPath = NodePath("../timeIndicator/MarginContainer/VBoxContainer/Description")
+descriptionLabel = NodePath("../timeIndicator/MarginContainer/VBoxContainer/Description")
 Description = "FOCUS_EXPLANATION"
 DisplayDelay = 0.0
 Positioning = 2
 
-[node name="digestionEfficiencyDetails" parent="GroupHolder/editor" instance=ExtResource("1")]
+[node name="digestionEfficiencyDetails" parent="GroupHolder/editor" instance=ExtResource("1") node_paths=PackedStringArray("descriptionLabel")]
 visible = false
 layout_mode = 0
-DescriptionLabelPath = NodePath("MarginContainer/VBoxContainer/Description")
+descriptionLabel = NodePath("MarginContainer/VBoxContainer/Description")
 DisplayDelay = 0.0
 Positioning = 1
 HideOnMouseAction = false
 
-[node name="storageDetails" parent="GroupHolder/editor" instance=ExtResource("1")]
+[node name="storageDetails" parent="GroupHolder/editor" instance=ExtResource("1") node_paths=PackedStringArray("descriptionLabel")]
 visible = false
 layout_mode = 0
-DescriptionLabelPath = NodePath("MarginContainer/VBoxContainer/Description")
+descriptionLabel = NodePath("MarginContainer/VBoxContainer/Description")
 DisplayDelay = 0.0
 Positioning = 1
 HideOnMouseAction = false
@@ -585,124 +585,124 @@ offset_right = 40.0
 offset_bottom = 40.0
 mouse_filter = 2
 
-[node name="cytoplasm" parent="GroupHolder/processesProduction" instance=ExtResource("1")]
+[node name="cytoplasm" parent="GroupHolder/processesProduction" instance=ExtResource("1") node_paths=PackedStringArray("descriptionLabel")]
 visible = false
 layout_mode = 0
-DescriptionLabelPath = NodePath("../../processesProduction/cytoplasm/MarginContainer/VBoxContainer/Description")
+descriptionLabel = NodePath("../../processesProduction/cytoplasm/MarginContainer/VBoxContainer/Description")
 DisplayDelay = 0.0
 Positioning = 1
 
-[node name="metabolosome" parent="GroupHolder/processesProduction" instance=ExtResource("1")]
+[node name="metabolosome" parent="GroupHolder/processesProduction" instance=ExtResource("1") node_paths=PackedStringArray("descriptionLabel")]
 visible = false
 layout_mode = 0
-DescriptionLabelPath = NodePath("../../processesProduction/metabolosome/MarginContainer/VBoxContainer/Description")
+descriptionLabel = NodePath("../../processesProduction/metabolosome/MarginContainer/VBoxContainer/Description")
 DisplayDelay = 0.0
 Positioning = 1
 
-[node name="hydrogenase" parent="GroupHolder/processesProduction" instance=ExtResource("1")]
+[node name="hydrogenase" parent="GroupHolder/processesProduction" instance=ExtResource("1") node_paths=PackedStringArray("descriptionLabel")]
 visible = false
 layout_mode = 0
-DescriptionLabelPath = NodePath("../metabolosome/MarginContainer/VBoxContainer/Description")
+descriptionLabel = NodePath("../metabolosome/MarginContainer/VBoxContainer/Description")
 DisplayDelay = 0.0
 Positioning = 1
 
-[node name="chromatophore" parent="GroupHolder/processesProduction" instance=ExtResource("1")]
+[node name="chromatophore" parent="GroupHolder/processesProduction" instance=ExtResource("1") node_paths=PackedStringArray("descriptionLabel")]
 visible = false
 layout_mode = 0
-DescriptionLabelPath = NodePath("../../processesProduction/chromatophore/MarginContainer/VBoxContainer/Description")
+descriptionLabel = NodePath("../../processesProduction/chromatophore/MarginContainer/VBoxContainer/Description")
 DisplayDelay = 0.0
 Positioning = 1
 
-[node name="chemoSynthesizingProteins" parent="GroupHolder/processesProduction" instance=ExtResource("1")]
+[node name="chemoSynthesizingProteins" parent="GroupHolder/processesProduction" instance=ExtResource("1") node_paths=PackedStringArray("descriptionLabel")]
 visible = false
 layout_mode = 0
-DescriptionLabelPath = NodePath("../../processesProduction/chemoSynthesizingProteins/MarginContainer/VBoxContainer/Description")
+descriptionLabel = NodePath("../../processesProduction/chemoSynthesizingProteins/MarginContainer/VBoxContainer/Description")
 DisplayDelay = 0.0
 Positioning = 1
 
-[node name="rusticyanin" parent="GroupHolder/processesProduction" instance=ExtResource("1")]
+[node name="rusticyanin" parent="GroupHolder/processesProduction" instance=ExtResource("1") node_paths=PackedStringArray("descriptionLabel")]
 visible = false
 layout_mode = 0
-DescriptionLabelPath = NodePath("../../processesProduction/rusticyanin/MarginContainer/VBoxContainer/Description")
+descriptionLabel = NodePath("../../processesProduction/rusticyanin/MarginContainer/VBoxContainer/Description")
 DisplayDelay = 0.0
 Positioning = 1
 
-[node name="nitrogenase" parent="GroupHolder/processesProduction" instance=ExtResource("1")]
+[node name="nitrogenase" parent="GroupHolder/processesProduction" instance=ExtResource("1") node_paths=PackedStringArray("descriptionLabel")]
 visible = false
 layout_mode = 0
-DescriptionLabelPath = NodePath("../../processesProduction/nitrogenase/MarginContainer/VBoxContainer/Description")
+descriptionLabel = NodePath("../../processesProduction/nitrogenase/MarginContainer/VBoxContainer/Description")
 DisplayDelay = 0.0
 Positioning = 1
 
-[node name="oxytoxyProteins" parent="GroupHolder/processesProduction" instance=ExtResource("1")]
+[node name="oxytoxyProteins" parent="GroupHolder/processesProduction" instance=ExtResource("1") node_paths=PackedStringArray("descriptionLabel")]
 visible = false
 layout_mode = 0
-DescriptionLabelPath = NodePath("../../processesProduction/oxytoxyProteins/MarginContainer/VBoxContainer/Description")
+descriptionLabel = NodePath("../../processesProduction/oxytoxyProteins/MarginContainer/VBoxContainer/Description")
 DisplayDelay = 0.0
 Positioning = 1
 
-[node name="thermosynthase" parent="GroupHolder/processesProduction" instance=ExtResource("1")]
+[node name="thermosynthase" parent="GroupHolder/processesProduction" instance=ExtResource("1") node_paths=PackedStringArray("descriptionLabel")]
 visible = false
 layout_mode = 0
-DescriptionLabelPath = NodePath("../thermosynthase/MarginContainer/VBoxContainer/Description")
+descriptionLabel = NodePath("../thermosynthase/MarginContainer/VBoxContainer/Description")
 DisplayDelay = 0.0
 Positioning = 1
 
-[node name="mitochondrion" parent="GroupHolder/processesProduction" instance=ExtResource("1")]
+[node name="mitochondrion" parent="GroupHolder/processesProduction" instance=ExtResource("1") node_paths=PackedStringArray("descriptionLabel")]
 visible = false
 layout_mode = 0
-DescriptionLabelPath = NodePath("../../processesProduction/mitochondrion/MarginContainer/VBoxContainer/Description")
+descriptionLabel = NodePath("../../processesProduction/mitochondrion/MarginContainer/VBoxContainer/Description")
 DisplayDelay = 0.0
 Positioning = 1
 
-[node name="ferroplast" parent="GroupHolder/processesProduction" instance=ExtResource("1")]
+[node name="ferroplast" parent="GroupHolder/processesProduction" instance=ExtResource("1") node_paths=PackedStringArray("descriptionLabel")]
 visible = false
 layout_mode = 0
 offset_bottom = 34.0
-DescriptionLabelPath = NodePath("../mitochondrion/MarginContainer/VBoxContainer/Description")
+descriptionLabel = NodePath("../mitochondrion/MarginContainer/VBoxContainer/Description")
 DisplayDelay = 0.0
 Positioning = 1
 
-[node name="thermoplast" parent="GroupHolder/processesProduction" instance=ExtResource("1")]
+[node name="thermoplast" parent="GroupHolder/processesProduction" instance=ExtResource("1") node_paths=PackedStringArray("descriptionLabel")]
 visible = false
 layout_mode = 0
-DescriptionLabelPath = NodePath("../thermoplast/MarginContainer/VBoxContainer/Description")
+descriptionLabel = NodePath("../thermoplast/MarginContainer/VBoxContainer/Description")
 DisplayDelay = 0.0
 Positioning = 1
 
-[node name="nitrogenfixingplastid" parent="GroupHolder/processesProduction" instance=ExtResource("1")]
+[node name="nitrogenfixingplastid" parent="GroupHolder/processesProduction" instance=ExtResource("1") node_paths=PackedStringArray("descriptionLabel")]
 visible = false
 layout_mode = 0
-DescriptionLabelPath = NodePath("../../processesProduction/nitrogenfixingplastid/MarginContainer/VBoxContainer/Description")
+descriptionLabel = NodePath("../../processesProduction/nitrogenfixingplastid/MarginContainer/VBoxContainer/Description")
 DisplayDelay = 0.0
 Positioning = 1
 
-[node name="oxytoxy" parent="GroupHolder/processesProduction" instance=ExtResource("1")]
+[node name="oxytoxy" parent="GroupHolder/processesProduction" instance=ExtResource("1") node_paths=PackedStringArray("descriptionLabel")]
 visible = false
 layout_mode = 0
-DescriptionLabelPath = NodePath("../../processesProduction/oxytoxy/MarginContainer/VBoxContainer/Description")
+descriptionLabel = NodePath("../../processesProduction/oxytoxy/MarginContainer/VBoxContainer/Description")
 DisplayDelay = 0.0
 Positioning = 1
 
-[node name="protoplasm" parent="GroupHolder/processesProduction" instance=ExtResource("1")]
+[node name="protoplasm" parent="GroupHolder/processesProduction" instance=ExtResource("1") node_paths=PackedStringArray("descriptionLabel")]
 visible = false
 layout_mode = 0
-DescriptionLabelPath = NodePath("../cytoplasm/MarginContainer/VBoxContainer/Description")
+descriptionLabel = NodePath("../cytoplasm/MarginContainer/VBoxContainer/Description")
 DisplayDelay = 0.0
 Positioning = 1
 
-[node name="melanosome" parent="GroupHolder/processesProduction" instance=ExtResource("1")]
+[node name="melanosome" parent="GroupHolder/processesProduction" instance=ExtResource("1") node_paths=PackedStringArray("descriptionLabel")]
 visible = false
 layout_mode = 0
-DescriptionLabelPath = NodePath("../cytoplasm/MarginContainer/VBoxContainer/Description")
+descriptionLabel = NodePath("../cytoplasm/MarginContainer/VBoxContainer/Description")
 DisplayDelay = 0.0
 Positioning = 1
 
-[node name="bioluminescentVacuole" parent="GroupHolder/processesProduction" instance=ExtResource("1")]
+[node name="bioluminescentVacuole" parent="GroupHolder/processesProduction" instance=ExtResource("1") node_paths=PackedStringArray("descriptionLabel")]
 visible = false
 layout_mode = 2
 offset_bottom = 34.0
-DescriptionLabelPath = NodePath("../cytoplasm/MarginContainer/VBoxContainer/Description")
+descriptionLabel = NodePath("../cytoplasm/MarginContainer/VBoxContainer/Description")
 DisplayDelay = 0.0
 Positioning = 1
 
@@ -712,88 +712,88 @@ offset_right = 40.0
 offset_bottom = 40.0
 mouse_filter = 2
 
-[node name="osmoregulation" parent="GroupHolder/processesConsumption" instance=ExtResource("1")]
+[node name="osmoregulation" parent="GroupHolder/processesConsumption" instance=ExtResource("1") node_paths=PackedStringArray("descriptionLabel")]
 visible = false
 layout_mode = 0
-DescriptionLabelPath = NodePath("../../../GroupHolder/processesConsumption/osmoregulation/MarginContainer/VBoxContainer/Description")
+descriptionLabel = NodePath("../../../GroupHolder/processesConsumption/osmoregulation/MarginContainer/VBoxContainer/Description")
 DisplayDelay = 0.0
 Positioning = 1
 
-[node name="baseMovement" parent="GroupHolder/processesConsumption" instance=ExtResource("1")]
+[node name="baseMovement" parent="GroupHolder/processesConsumption" instance=ExtResource("1") node_paths=PackedStringArray("descriptionLabel")]
 visible = false
 layout_mode = 0
-DescriptionLabelPath = NodePath("../../../GroupHolder/processesConsumption/baseMovement/MarginContainer/VBoxContainer/Description")
+descriptionLabel = NodePath("../../../GroupHolder/processesConsumption/baseMovement/MarginContainer/VBoxContainer/Description")
 DisplayDelay = 0.0
 Positioning = 1
 
-[node name="chromatophore" parent="GroupHolder/processesConsumption" instance=ExtResource("1")]
+[node name="chromatophore" parent="GroupHolder/processesConsumption" instance=ExtResource("1") node_paths=PackedStringArray("descriptionLabel")]
 visible = false
 layout_mode = 0
-DescriptionLabelPath = NodePath("../../../GroupHolder/processesConsumption/chromatophore/MarginContainer/VBoxContainer/Description")
+descriptionLabel = NodePath("../../../GroupHolder/processesConsumption/chromatophore/MarginContainer/VBoxContainer/Description")
 DisplayDelay = 0.0
 Positioning = 1
 
-[node name="chemoSynthesizingProteins" parent="GroupHolder/processesConsumption" instance=ExtResource("1")]
+[node name="chemoSynthesizingProteins" parent="GroupHolder/processesConsumption" instance=ExtResource("1") node_paths=PackedStringArray("descriptionLabel")]
 visible = false
 layout_mode = 0
-DescriptionLabelPath = NodePath("../../../GroupHolder/processesConsumption/chemoSynthesizingProteins/MarginContainer/VBoxContainer/Description")
+descriptionLabel = NodePath("../../../GroupHolder/processesConsumption/chemoSynthesizingProteins/MarginContainer/VBoxContainer/Description")
 DisplayDelay = 0.0
 Positioning = 1
 
-[node name="rusticyanin" parent="GroupHolder/processesConsumption" instance=ExtResource("1")]
+[node name="rusticyanin" parent="GroupHolder/processesConsumption" instance=ExtResource("1") node_paths=PackedStringArray("descriptionLabel")]
 visible = false
 layout_mode = 0
-DescriptionLabelPath = NodePath("../../../GroupHolder/processesConsumption/rusticyanin/MarginContainer/VBoxContainer/Description")
+descriptionLabel = NodePath("../../../GroupHolder/processesConsumption/rusticyanin/MarginContainer/VBoxContainer/Description")
 DisplayDelay = 0.0
 Positioning = 1
 
-[node name="nitrogenase" parent="GroupHolder/processesConsumption" instance=ExtResource("1")]
+[node name="nitrogenase" parent="GroupHolder/processesConsumption" instance=ExtResource("1") node_paths=PackedStringArray("descriptionLabel")]
 visible = false
 layout_mode = 0
-DescriptionLabelPath = NodePath("../../../GroupHolder/processesConsumption/nitrogenase/MarginContainer/VBoxContainer/Description")
+descriptionLabel = NodePath("../../../GroupHolder/processesConsumption/nitrogenase/MarginContainer/VBoxContainer/Description")
 DisplayDelay = 0.0
 Positioning = 1
 
-[node name="oxytoxyProteins" parent="GroupHolder/processesConsumption" instance=ExtResource("1")]
+[node name="oxytoxyProteins" parent="GroupHolder/processesConsumption" instance=ExtResource("1") node_paths=PackedStringArray("descriptionLabel")]
 visible = false
 layout_mode = 0
-DescriptionLabelPath = NodePath("../../../GroupHolder/processesConsumption/oxytoxyProteins/MarginContainer/VBoxContainer/Description")
+descriptionLabel = NodePath("../../../GroupHolder/processesConsumption/oxytoxyProteins/MarginContainer/VBoxContainer/Description")
 DisplayDelay = 0.0
 Positioning = 1
 
-[node name="flagellum" parent="GroupHolder/processesConsumption" instance=ExtResource("1")]
+[node name="flagellum" parent="GroupHolder/processesConsumption" instance=ExtResource("1") node_paths=PackedStringArray("descriptionLabel")]
 visible = false
 layout_mode = 0
-DescriptionLabelPath = NodePath("../../../GroupHolder/processesConsumption/flagellum/MarginContainer/VBoxContainer/Description")
+descriptionLabel = NodePath("../../../GroupHolder/processesConsumption/flagellum/MarginContainer/VBoxContainer/Description")
 DisplayDelay = 0.0
 Positioning = 1
 
-[node name="cilia" parent="GroupHolder/processesConsumption" instance=ExtResource("1")]
+[node name="cilia" parent="GroupHolder/processesConsumption" instance=ExtResource("1") node_paths=PackedStringArray("descriptionLabel")]
 visible = false
 layout_mode = 0
-DescriptionLabelPath = NodePath("../flagellum/MarginContainer/VBoxContainer/Description")
+descriptionLabel = NodePath("../flagellum/MarginContainer/VBoxContainer/Description")
 DisplayDelay = 0.0
 Positioning = 1
 
-[node name="nitrogenfixingplastid" parent="GroupHolder/processesConsumption" instance=ExtResource("1")]
+[node name="nitrogenfixingplastid" parent="GroupHolder/processesConsumption" instance=ExtResource("1") node_paths=PackedStringArray("descriptionLabel")]
 visible = false
 layout_mode = 0
-DescriptionLabelPath = NodePath("../../../GroupHolder/processesConsumption/nitrogenfixingplastid/MarginContainer/VBoxContainer/Description")
+descriptionLabel = NodePath("../../../GroupHolder/processesConsumption/nitrogenfixingplastid/MarginContainer/VBoxContainer/Description")
 DisplayDelay = 0.0
 Positioning = 1
 
-[node name="oxytoxy" parent="GroupHolder/processesConsumption" instance=ExtResource("1")]
+[node name="oxytoxy" parent="GroupHolder/processesConsumption" instance=ExtResource("1") node_paths=PackedStringArray("descriptionLabel")]
 visible = false
 layout_mode = 0
-DescriptionLabelPath = NodePath("../../../GroupHolder/processesConsumption/oxytoxy/MarginContainer/VBoxContainer/Description")
+descriptionLabel = NodePath("../../../GroupHolder/processesConsumption/oxytoxy/MarginContainer/VBoxContainer/Description")
 DisplayDelay = 0.0
 Positioning = 1
 
-[node name="bioluminescentVacuole" parent="GroupHolder/processesConsumption" instance=ExtResource("1")]
+[node name="bioluminescentVacuole" parent="GroupHolder/processesConsumption" instance=ExtResource("1") node_paths=PackedStringArray("descriptionLabel")]
 visible = false
 layout_mode = 0
 offset_bottom = 34.0
-DescriptionLabelPath = NodePath("../chromatophore/MarginContainer/VBoxContainer/Description")
+descriptionLabel = NodePath("../chromatophore/MarginContainer/VBoxContainer/Description")
 DisplayDelay = 0.0
 Positioning = 1
 
@@ -803,24 +803,24 @@ offset_right = 40.0
 offset_bottom = 40.0
 mouse_filter = 2
 
-[node name="addInputButton" parent="GroupHolder/options" instance=ExtResource("1")]
+[node name="addInputButton" parent="GroupHolder/options" instance=ExtResource("1") node_paths=PackedStringArray("descriptionLabel")]
 visible = false
 layout_mode = 0
-DescriptionLabelPath = NodePath("../cloudResolution/MarginContainer/VBoxContainer/Description")
+descriptionLabel = NodePath("../cloudResolution/MarginContainer/VBoxContainer/Description")
 Description = "ADD_INPUT_BUTTON_TOOLTIP"
 DisplayDelay = 0.5
 
-[node name="cloudResolution" parent="GroupHolder/options" instance=ExtResource("1")]
+[node name="cloudResolution" parent="GroupHolder/options" instance=ExtResource("1") node_paths=PackedStringArray("descriptionLabel")]
 visible = false
 layout_mode = 0
-DescriptionLabelPath = NodePath("MarginContainer/VBoxContainer/Description")
+descriptionLabel = NodePath("MarginContainer/VBoxContainer/Description")
 Description = "SETTING_ONLY_APPLIES_TO_NEW_GAMES"
 DisplayDelay = 0.5
 
-[node name="guiLightEffects" parent="GroupHolder/options" instance=ExtResource("1")]
+[node name="guiLightEffects" parent="GroupHolder/options" instance=ExtResource("1") node_paths=PackedStringArray("descriptionLabel")]
 visible = false
 layout_mode = 0
-DescriptionLabelPath = NodePath("MarginContainer/VBoxContainer/Description")
+descriptionLabel = NodePath("MarginContainer/VBoxContainer/Description")
 Description = "GUI_LIGHT_EFFECTS_OPTION_DESCRIPTION"
 DisplayDelay = 0.5
 
@@ -841,16 +841,16 @@ offset_right = 40.0
 offset_bottom = 40.0
 mouse_filter = 2
 
-[node name="temperature" parent="GroupHolder/chartLegendPhysicalConditions" instance=ExtResource("1")]
+[node name="temperature" parent="GroupHolder/chartLegendPhysicalConditions" instance=ExtResource("1") node_paths=PackedStringArray("descriptionLabel")]
 visible = false
 layout_mode = 0
-DescriptionLabelPath = NodePath("MarginContainer/VBoxContainer/Description")
+descriptionLabel = NodePath("MarginContainer/VBoxContainer/Description")
 Description = "TEMPERATURE"
 
-[node name="sunlight" parent="GroupHolder/chartLegendPhysicalConditions" instance=ExtResource("1")]
+[node name="sunlight" parent="GroupHolder/chartLegendPhysicalConditions" instance=ExtResource("1") node_paths=PackedStringArray("descriptionLabel")]
 visible = false
 layout_mode = 0
-DescriptionLabelPath = NodePath("MarginContainer/VBoxContainer/Description")
+descriptionLabel = NodePath("MarginContainer/VBoxContainer/Description")
 Description = "SUNLIGHT"
 
 [node name="patchMap" type="Control" parent="GroupHolder"]
@@ -859,9 +859,9 @@ offset_right = 40.0
 offset_bottom = 40.0
 mouse_filter = 2
 
-[node name="navigationHint" parent="GroupHolder/patchMap" instance=ExtResource("1")]
+[node name="navigationHint" parent="GroupHolder/patchMap" instance=ExtResource("1") node_paths=PackedStringArray("descriptionLabel")]
 layout_mode = 0
-DescriptionLabelPath = NodePath("MarginContainer/VBoxContainer/Description")
+descriptionLabel = NodePath("MarginContainer/VBoxContainer/Description")
 Description = "PATCH_MAP_NAVIGATION_TOOLTIP"
 DisplayDelay = 2.5
 

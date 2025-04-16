@@ -10,26 +10,16 @@ using Path = System.IO.Path;
 /// </summary>
 public partial class NewSaveMenu : Control
 {
-    [Export]
-    public NodePath? SaveListPath;
-
-    [Export]
-    public NodePath SaveNameBoxPath = null!;
-
-    [Export]
-    public NodePath OverwriteConfirmPath = null!;
-
-    [Export]
-    public NodePath AttemptWriteFailAcceptPath = null!;
-
-    [Export]
-    public NodePath SaveButtonPath = null!;
-
 #pragma warning disable CA2213
+    [Export]
     private SaveList saveList = null!;
+    [Export]
     private LineEdit saveNameBox = null!;
+    [Export]
     private Button saveButton = null!;
+    [Export]
     private CustomConfirmationDialog overwriteConfirm = null!;
+    [Export]
     private CustomConfirmationDialog attemptWriteFailAccept = null!;
 #pragma warning restore CA2213
 
@@ -43,11 +33,6 @@ public partial class NewSaveMenu : Control
 
     public override void _Ready()
     {
-        saveList = GetNode<SaveList>(SaveListPath);
-        saveNameBox = GetNode<LineEdit>(SaveNameBoxPath);
-        saveButton = GetNode<Button>(SaveButtonPath);
-        overwriteConfirm = GetNode<CustomConfirmationDialog>(OverwriteConfirmPath);
-        attemptWriteFailAccept = GetNode<CustomConfirmationDialog>(AttemptWriteFailAcceptPath);
     }
 
     public override void _Notification(int what)
@@ -75,13 +60,7 @@ public partial class NewSaveMenu : Control
     {
         if (disposing)
         {
-            if (SaveListPath != null)
             {
-                SaveListPath.Dispose();
-                SaveNameBoxPath.Dispose();
-                OverwriteConfirmPath.Dispose();
-                AttemptWriteFailAcceptPath.Dispose();
-                SaveButtonPath.Dispose();
             }
         }
 

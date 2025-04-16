@@ -6,10 +6,8 @@ using Godot;
 /// </summary>
 public partial class GalleryCardAudio : GalleryCard, IGalleryCardPlayback
 {
-    [Export]
-    public NodePath? PlaybackControlsPath;
-
 #pragma warning disable CA2213
+    [Export]
     private PlaybackControls? playbackControls;
     private AudioStreamPlayer? ownPlayer;
 #pragma warning restore CA2213
@@ -41,8 +39,6 @@ public partial class GalleryCardAudio : GalleryCard, IGalleryCardPlayback
     {
         base._Ready();
 
-        playbackControls = GetNode<PlaybackControls>(PlaybackControlsPath);
-
         EnsurePlayerExist();
     }
 
@@ -60,7 +56,6 @@ public partial class GalleryCardAudio : GalleryCard, IGalleryCardPlayback
     {
         if (disposing)
         {
-            PlaybackControlsPath?.Dispose();
         }
 
         base.Dispose(disposing);

@@ -6,15 +6,11 @@ using Godot;
 /// </summary>
 public partial class ResearchScreen : CustomWindow
 {
-    [Export]
-    public NodePath? TechWebGUIPath;
-
-    [Export]
-    public NodePath CurrentResearchProgressLabelPath = null!;
-
 #pragma warning disable CA2213
+    [Export]
     private TechWebGUI techWebGUI = null!;
 
+    [Export]
     private Label currentResearchProgressLabel = null!;
 #pragma warning restore CA2213
 
@@ -27,8 +23,6 @@ public partial class ResearchScreen : CustomWindow
     {
         base._Ready();
 
-        techWebGUI = GetNode<TechWebGUI>(TechWebGUIPath);
-        currentResearchProgressLabel = GetNode<Label>(CurrentResearchProgressLabelPath);
     }
 
     public void DisplayProgress(TechnologyProgress? currentResearch)
@@ -64,10 +58,7 @@ public partial class ResearchScreen : CustomWindow
     {
         if (disposing)
         {
-            if (TechWebGUIPath != null)
             {
-                TechWebGUIPath.Dispose();
-                CurrentResearchProgressLabelPath.Dispose();
             }
         }
 

@@ -7,44 +7,26 @@
 [GodotAutoload]
 public partial class DebugOverlays : Control
 {
-    [Export]
-    public NodePath? DebugCoordinatesPath;
-
-    [Export]
-    public NodePath FPSCheckBoxPath = null!;
-
-    [Export]
-    public NodePath PerformanceMetricsCheckBoxPath = null!;
-
-    [Export]
-    public NodePath InspectorCheckboxPath = null!;
-
-    [Export]
-    public NodePath DebugPanelDialogPath = null!;
-
-    [Export]
-    public NodePath FPSCounterPath = null!;
-
-    [Export]
-    public NodePath PerformanceMetricsPath = null!;
-
-    [Export]
-    public NodePath EntityLabelsPath = null!;
-
-    [Export]
-    public NodePath InspectorDialogPath = null!;
-
     private static DebugOverlays? instance;
 
 #pragma warning disable CA2213
+    [Export]
     private Label debugCoordinates = null!;
+    [Export]
     private CustomWindow inspectorDialog = null!;
+    [Export]
     private CustomWindow debugPanelDialog = null!;
+    [Export]
     private CheckBox fpsCheckBox = null!;
+    [Export]
     private CheckBox performanceMetricsCheckBox = null!;
+    [Export]
     private CheckBox inspectorCheckbox = null!;
+    [Export]
     private Control fpsCounter = null!;
+    [Export]
     private CustomWindow performanceMetrics = null!;
+    [Export]
     private Control labelsLayer = null!;
 #pragma warning restore CA2213
 
@@ -61,15 +43,6 @@ public partial class DebugOverlays : Control
     {
         base._Ready();
 
-        debugCoordinates = GetNode<Label>(DebugCoordinatesPath);
-        inspectorDialog = GetNode<CustomWindow>(InspectorDialogPath);
-        inspectorCheckbox = GetNode<CheckBox>(InspectorCheckboxPath);
-        fpsCheckBox = GetNode<CheckBox>(FPSCheckBoxPath);
-        performanceMetricsCheckBox = GetNode<CheckBox>(PerformanceMetricsCheckBoxPath);
-        debugPanelDialog = GetNode<CustomWindow>(DebugPanelDialogPath);
-        fpsCounter = GetNode<Control>(FPSCounterPath);
-        performanceMetrics = GetNode<CustomWindow>(PerformanceMetricsPath);
-        labelsLayer = GetNode<Control>(EntityLabelsPath);
         fpsLabel = GetNode<Label>(FPSLabelPath);
         deltaLabel = GetNode<Label>(DeltaLabelPath);
         metricsText = GetNode<Label>(MetricsTextPath);
@@ -154,21 +127,10 @@ public partial class DebugOverlays : Control
     {
         if (disposing)
         {
-            if (DebugCoordinatesPath != null)
             {
-                DebugCoordinatesPath.Dispose();
-                FPSCheckBoxPath.Dispose();
                 FPSLabelPath.Dispose();
                 DeltaLabelPath.Dispose();
                 MetricsTextPath.Dispose();
-                InspectorDialogPath.Dispose();
-
-                PerformanceMetricsCheckBoxPath.Dispose();
-                InspectorCheckboxPath.Dispose();
-                DebugPanelDialogPath.Dispose();
-                FPSCounterPath.Dispose();
-                PerformanceMetricsPath.Dispose();
-                EntityLabelsPath.Dispose();
                 FPSDisplayLabelPath.Dispose();
             }
         }

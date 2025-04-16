@@ -6,7 +6,7 @@
 [ext_resource type="LabelSettings" uid="uid://bv3bnu0g1wdw3" path="res://src/gui_common/fonts/Title-SemiBold-Big.tres" id="4_o16iy"]
 [ext_resource type="LabelSettings" uid="uid://bx7mw3uvqpo42" path="res://src/gui_common/fonts/Body-Regular-Smaller.tres" id="5_gf8j8"]
 
-[node name="PatchNotesDisplayer" type="VBoxContainer"]
+[node name="PatchNotesDisplayer" type="VBoxContainer" node_paths=PackedStringArray("viewAllButtonOutsideScroll", "viewAllButton", "newVersionsCountLabel", "title", "patchNotes")]
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
@@ -14,11 +14,11 @@ pivot_offset = Vector2(-448, -88)
 mouse_filter = 2
 theme = ExtResource("2")
 script = ExtResource("4")
-PatchNotesPath = NodePath("ScrollContainer/VBoxContainer/PatchNotesList")
-TitlePath = NodePath("NotesTitle")
-NewVersionsCountLabelPath = NodePath("ScrollContainer/VBoxContainer/LastPlayedInfo")
-ViewAllButtonPath = NodePath("ScrollContainer/VBoxContainer/All")
-ViewAllButtonOutsideScrollPath = NodePath("All")
+patchNotes = NodePath("ScrollContainer/VBoxContainer/PatchNotesList")
+title = NodePath("NotesTitle")
+newVersionsCountLabel = NodePath("ScrollContainer/VBoxContainer/LastPlayedInfo")
+viewAllButton = NodePath("ScrollContainer/VBoxContainer/All")
+viewAllButtonOutsideScroll = NodePath("All")
 
 [node name="NotesTitle" type="Label" parent="."]
 layout_mode = 2

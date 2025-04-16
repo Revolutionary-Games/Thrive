@@ -10,9 +10,6 @@ using Godot;
 /// </summary>
 public partial class LicensesDisplay : CustomWindow
 {
-    [Export]
-    public NodePath? TextsContainerPath;
-
 #pragma warning disable CA2213
     [Export]
     public LabelSettings HeadingFont = null!;
@@ -26,6 +23,7 @@ public partial class LicensesDisplay : CustomWindow
     private bool licensesLoaded;
 
 #pragma warning disable CA2213
+    [Export]
     private Container textsContainer = null!;
 #pragma warning restore CA2213
 
@@ -59,8 +57,6 @@ public partial class LicensesDisplay : CustomWindow
 
     public override void _Ready()
     {
-        textsContainer = GetNode<Container>(TextsContainerPath);
-
         bool isSteamVersion = SteamHandler.IsTaggedSteamRelease();
 
         // These don't react to language change, but I doubt it's important enough to fix
@@ -108,7 +104,6 @@ public partial class LicensesDisplay : CustomWindow
     {
         if (disposing)
         {
-            TextsContainerPath?.Dispose();
         }
 
         base.Dispose(disposing);

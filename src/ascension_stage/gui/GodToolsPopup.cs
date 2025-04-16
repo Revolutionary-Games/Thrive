@@ -6,14 +6,10 @@ using Godot;
 /// </summary>
 public partial class GodToolsPopup : CustomWindow
 {
-    [Export]
-    public NodePath? ActionButtonsContainerPath;
-
-    [Export]
-    public NodePath TargetEntityNameLabelPath = null!;
-
 #pragma warning disable CA2213
+    [Export]
     private Container actionButtonsContainer = null!;
+    [Export]
     private Label targetEntityNameLabel = null!;
 #pragma warning restore CA2213
 
@@ -25,8 +21,6 @@ public partial class GodToolsPopup : CustomWindow
 
     public override void _Ready()
     {
-        actionButtonsContainer = GetNode<Container>(ActionButtonsContainerPath);
-        targetEntityNameLabel = GetNode<Label>(TargetEntityNameLabelPath);
     }
 
     public override void _Process(double delta)
@@ -118,10 +112,7 @@ public partial class GodToolsPopup : CustomWindow
     {
         if (disposing)
         {
-            if (ActionButtonsContainerPath != null)
             {
-                ActionButtonsContainerPath.Dispose();
-                TargetEntityNameLabelPath.Dispose();
             }
         }
 
