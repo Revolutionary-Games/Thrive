@@ -39,10 +39,7 @@ public class SocietyResourceStorage : IResourceContainer, IAggregateResourceSour
 
     public float GetAvailableAmount(WorldResource resource)
     {
-        if (!resources.TryGetValue(resource, out var amount))
-            return 0;
-
-        return amount;
+        return resources.GetValueOrDefault(resource, 0);
     }
 
     public float Take(WorldResource resource, float wantedAmount, bool takePartial = false)

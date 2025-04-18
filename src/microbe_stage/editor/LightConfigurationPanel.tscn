@@ -71,6 +71,8 @@ corner_radius_bottom_left = 5
 [sub_resource type="ButtonGroup" id="ButtonGroup_qst1k"]
 
 [node name="LightConfiguration" type="PanelContainer" node_paths=PackedStringArray("dayButton", "nightButton", "averageLightButton", "currentLightButton")]
+offset_right = 659.0
+offset_bottom = 52.0
 script = ExtResource("1_ynmkx")
 dayButton = NodePath("MarginContainer/HBoxContainer/DayButton")
 nightButton = NodePath("MarginContainer/HBoxContainer/NightButton")
@@ -138,6 +140,8 @@ button_group = SubResource("ButtonGroup_qst1k")
 text = "LIGHT_LEVEL_DAY"
 
 [node name="NightButton" type="Button" parent="MarginContainer/HBoxContainer"]
+editor_description = "This is hidden in the editor so that the sizing can be done right but is automatically shown by _Ready"
+visible = false
 layout_mode = 2
 size_flags_horizontal = 3
 mouse_filter = 1
@@ -155,6 +159,7 @@ button_group = SubResource("ButtonGroup_qst1k")
 text = "LIGHT_LEVEL_NIGHT"
 
 [node name="AverageLightButton" type="Button" parent="MarginContainer/HBoxContainer"]
+visible = false
 layout_mode = 2
 size_flags_horizontal = 3
 mouse_filter = 1

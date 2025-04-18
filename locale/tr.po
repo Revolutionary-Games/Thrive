@@ -7,9 +7,9 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2025-03-28 15:15+0200\n"
-"PO-Revision-Date: 2025-03-28 07:42+0000\n"
-"Last-Translator: Anonymous <noreply@weblate.org>\n"
+"POT-Creation-Date: 2025-04-11 10:12+0300\n"
+"PO-Revision-Date: 2025-04-11 09:18+0000\n"
+"Last-Translator: punctdan <yunusemredilek@hotmail.com>\n"
 "Language-Team: Turkish <https://translate.revolutionarygamesstudio.com/projects/thrive/thrive-game/tr/>\n"
 "Language: tr\n"
 "MIME-Version: 1.0\n"
@@ -193,23 +193,19 @@ msgid "ANISOTROPIC_FILTERING"
 msgstr "Eşyönsüz süzme:"
 
 msgid "ANTIALIASING_MSAA_TAA"
-msgstr ""
+msgstr "MSAA + TAA"
 
-#, fuzzy
 msgid "ANTI_ALIASING_FXAA"
-msgstr "Çoklu örnekleme kenar yumuşatma:"
+msgstr "FXAA"
 
-#, fuzzy
 msgid "ANTI_ALIASING_MODE"
-msgstr "Çoklu örnekleme kenar yumuşatma:"
+msgstr "Kenar yumuşatma modu:"
 
-#, fuzzy
 msgid "ANTI_ALIASING_MSAA"
-msgstr "Çoklu örnekleme kenar yumuşatma:"
+msgstr "MSAA"
 
-#, fuzzy
 msgid "ANTI_ALIASING_TAA"
-msgstr "Çoklu örnekleme kenar yumuşatma:"
+msgstr "TAA"
 
 msgid "APPEARANCE"
 msgstr "Görünüm"
@@ -514,6 +510,12 @@ msgstr "Eksenleri birbirine bağla"
 
 msgid "BIOLUMINESCENT_VACUOLE"
 msgstr "Biyolüminesan Koful"
+
+msgid "BIOLUMINESCENT_VACUOLE_DESCRIPTION"
+msgstr "Lusiferazın görünür ışık yayarak tüketildiği tepkime bölgelerini içeren bir kofuldur. Biyolüminesansın, başlangıçta [thrive:compound type=\"oxygen\"]oksijene[/thrive:compound] karşı bir savunma mekanizması olarak evrimleştiği düşünülmektedir. Büyük Oksidasyon Olayı gerçekleştiğinde, oksijensiz koşullara alışmış mikroplar, çok fazla hasara neden olan oksijenin yüksek tepkime gücü nedeniyle birçok yeni sorunla karşılaştı. Bu kofullar, oksijen direncini artırmak ve biraz da göz alıcı ışıklar üretmek için eklenebilir. Gelecekte biyolüminesans, bir iletişim yöntemi olarak da kullanılabilir."
+
+msgid "BIOLUMINESCENT_VACUOLE_PROCESSES_DESCRIPTION"
+msgstr "[thrive:compound type=\"oxygen\"]Oksijeni[/thrive:compound], ışığa dönüştürmek için [thrive:compound type=\"atp\"]ATP[/thrive:compound] kullanır. Oksijen direncini arttırmak haricinde oyuna başka bir etkisi yoktur."
 
 msgid "BIOME_LABEL"
 msgstr "Biyom: {0}"
@@ -1670,7 +1672,7 @@ msgid "DISPLAY_DRIVER_VULKAN"
 msgstr "Vulkan"
 
 msgid "DISPLAY_MODE"
-msgstr "Görüntü Modu:"
+msgstr "Görüntü modu:"
 
 msgid "DISPLAY_PART_NAMES"
 msgstr "Parça seçim butonunun altında parça isimlerini göster"
@@ -1766,7 +1768,7 @@ msgid "EASTER_EGGS"
 msgstr "Sürpriz yumurtaları dahil et"
 
 msgid "EASTER_EGGS_EXPLANATION"
-msgstr "(oyunda rastgele oluşan gizemli şeyler)"
+msgstr "(oyunda rastgele ortaya çıkan gizemler)"
 
 msgid "EASTER_EGG_BANANA_BIOME"
 msgstr "Muz Biyomu"
@@ -1814,7 +1816,7 @@ msgstr ""
 "\n"
 "Bu oyun rehberini kapatmak için bir [b]çekirdek[/b] eklemeyi deneyin.\n"
 "\n"
-"Eğer hücreniz henüz çekirdeğe hazır değilse, [b]geri al butonunu[/b] kullanarak çekirdeği geri alabilirsiniz."
+"Eğer hücreniz henüz çekirdeğe hazır değilse, [b]geri al butonunu[/b] kullanarak çekirdeği [u]geri alabilirsiniz[/u]."
 
 msgid "EFFECTIVE_VALUE"
 msgstr "Etkili Değer"
@@ -2511,7 +2513,7 @@ msgid "ID_NUMBER"
 msgstr "ID Numarası"
 
 msgid "IF_FALLBACK_RENDERER_USED_ALL_NOT_AVAILABLE"
-msgstr ""
+msgstr "(görüntü modu ve yükseltme ayarlarına bağlı olarak, bütün yöntemler mevcut olmayabilir)"
 
 msgid "IMAGE_FILE_TYPES"
 msgstr "Desteklenen Resim Dosyaları"
@@ -3039,7 +3041,7 @@ msgid "LIFE_ORIGIN"
 msgstr "Hayat kökeni"
 
 msgid "LIFE_ORIGIN_EXPLANATION"
-msgstr "(başlama yeri)"
+msgstr "(başlangıç yeri)"
 
 msgid "LIFE_ORIGIN_PANSPERMIA"
 msgstr "Panspermi (rastgele)"
@@ -3128,14 +3130,29 @@ msgstr "Yükleniyor..."
 msgid "LOADING_GAME"
 msgstr "Oyun Yükleniyor"
 
+msgid "LOADING_GRAPHICS_SHADERS"
+msgstr "Shader'lar Yükleniyor"
+
 msgid "LOADING_MACROSCOPIC_EDITOR"
 msgstr "Makroskopik Editörü Yükleniyor"
 
 msgid "LOADING_MICROBE_EDITOR"
 msgstr "Mikrop Editörü Yükleniyor"
 
+msgid "LOADING_MICROBE_STAGE"
+msgstr "Mikrop Evresi Yükleniyor"
+
 msgid "LOADING_MULTICELLULAR_EDITOR"
 msgstr "Çok Hücreli Editörü Yükleniyor"
+
+msgid "LOADING_MULTICELLULAR_STAGE"
+msgstr "Çok Hücreli Evresi Yükleniyor"
+
+msgid "LOADING_STAGE"
+msgstr "Evre Yükleniyor"
+
+msgid "LOADING_STAGE_ASSETS"
+msgstr "Evre Varlıkları Yükleniyor {0} / {1}"
 
 msgid "LOAD_FINISHED"
 msgstr "Yükleme bitti"
@@ -3176,12 +3193,11 @@ msgstr "Y"
 msgid "LOCK_DAY_NIGHT_CYCLE"
 msgstr "Gece Gündüz Döngüsünü Kilitle"
 
-#, fuzzy
 msgid "LOWER_SCALE_INCREASES_PERFORMANCE"
-msgstr "(daha üst değerler performansı arttırır)"
+msgstr "(daha düşük değerler performansı arttırır)"
 
 msgid "LOWER_VALUE_MAKES_SHARPER_IMAGE"
-msgstr ""
+msgstr "(daha düşük değerler daha keskin bir görüntü sağlar)"
 
 msgid "LOW_MENU_PERFORMANCE"
 msgstr "Düşük Performans Algılandı"
@@ -3197,6 +3213,12 @@ msgstr "Düşük çözünürlük arkaplan bulanıklığı"
 
 msgid "LOW_QUALITY_BACKGROUND_BLUR_TOOLTIP"
 msgstr "Performansı arttırmak için arkaplan bulanıklığının daha düşük bir çözünürlük kullanmasını sağlar."
+
+msgid "LUCIFERASE"
+msgstr "Lusiferaz"
+
+msgid "LUCIFERASE_SYNTHESIS"
+msgstr "Lusiferaz Sentezi"
 
 msgid "LYSOSOME"
 msgstr "Lizozom"
@@ -3574,9 +3596,7 @@ msgid "MICROBE_STAGE_ORGANELLE_DIVISION"
 msgstr ""
 "Çoğalmak için yeterince büyüme işlemi sırasında, organellerinizin her biri ikiye ayrılır. Bu yeni organeller, mikrobunuzun birlikte başladığı organeller gibi, bonus (ve ozmoregülasyon maliyetleri) sağlar.\n"
 "\n"
-"Bileşikler topladıkça, hücreniz bazılarını çoğalmak için kullanır.\n"
-"\n"
-"Yeterli bileşik ile, organeller bölünmeye ve ikiye katlanmaya başlar. Bütün organeller bölündüğünde, hücreniz çoğalabilir ve editöre girebilir."
+"Zamanla, organeller ikiye katlanmaya başlar. Bileşikler toplamak bu işlemi hızlandırır. Bütün organeller bölündüğünde, hücreniz çoğalabilir ve editöre girebilir."
 
 msgid "MIDDLE_MOUSE"
 msgstr "Orta fare tuşu"
@@ -3873,7 +3893,7 @@ msgid "MOVING_TO_LAND_PROTOTYPE_TITLE"
 msgstr "Karaya Çıkılsın mı?"
 
 msgid "MOVING_TO_SOCIETY_STAGE"
-msgstr "Bir topluluğa dönüştürülüyor..."
+msgstr "Bir topluma dönüştürülüyor..."
 
 msgid "MP_COST"
 msgstr "{0} MP"
@@ -4362,7 +4382,7 @@ msgid "OXYGEN_TOLERANCE_TOOLTIP"
 msgstr "Zararlı etkilere maruz kalmadan önce türünüzün oksijen kaynaklı hasarı ne kadar azaltabileceğini gösterir. Eğer direncinize kıyasla çok fazla oksijen olan bir arazide bulunuyorsanız, olumsuz etkilerle karşılaşırsınız."
 
 msgid "OXYTOXISOME_PROCESSES_DESCRIPTION"
-msgstr "[thrive:compound type=\"atp\"]ATP'yi[/thrive:compound], [thrive:compound type=\"oxytoxy\"]OksiToksi NT'ye[/thrive:compound] dönüştürür. Bu oran, [thrive:compound type=\"oxygen\"]oksijen[/thrive:compound] konsantrasyonu ile doğru orantılıdır. [thrive:input]g_fire_toxin[/thrive:input] tuşuna basıldığında toksin salabilir. [thrive:compound type=\"oxytoxy\"]OksiToksi NT[/thrive:compound] miktarı düşük olduğunda, ateş etmek mümkün ancak toksinler daha düşük hasara neden olur."
+msgstr "[thrive:compound type=\"atp\"]ATP'yi[/thrive:compound], [thrive:compound type=\"oxytoxy\"]OksiToksi NT'ye[/thrive:compound] dönüştürür. Bu organel, [thrive:input]g_fire_toxin[/thrive:input] tuşuna basıldığında toksin salabilir. [thrive:compound type=\"oxytoxy\"]OksiToksi NT[/thrive:compound] miktarı düşük olduğunda, ateş etmek mümkündür. Ancak, toksinler daha düşük hasara sahip olur."
 
 msgid "OXYTOXY_NT"
 msgstr "OksiToksi NT"
@@ -4688,7 +4708,7 @@ msgid "RADIOSYNTHESIS"
 msgstr "Radyosentez"
 
 msgid "RANDOMIZE_SPECIES_NAME"
-msgstr "Tür adını rastgele seç"
+msgstr "Tür adını rastgele belirle"
 
 msgid "RANDOM_SEED_TOOLTIP"
 msgstr "Dünya oluşturmak için kullanılan değer pozitif bir tam sayı olmalıdır"
@@ -4720,9 +4740,8 @@ msgstr "Son eylemi tekrarla"
 msgid "REFRESH"
 msgstr "Yenile"
 
-#, fuzzy
 msgid "RENDER_SCALE"
-msgstr "Kullanılan işleyici:"
+msgstr "Çözünürlük ölçeği"
 
 msgid "REPORT"
 msgstr "Rapor"
@@ -5253,7 +5272,7 @@ msgid "SNOWFLAKE"
 msgstr "Kar Tanesi"
 
 msgid "SOCIETY_STAGE"
-msgstr "Topluluk Evresi"
+msgstr "Toplum Evresi"
 
 msgid "SOUND"
 msgstr "Ses"
@@ -5327,6 +5346,12 @@ msgstr "mutasyona uğradı"
 
 msgid "SPECIES_LIST"
 msgstr "Tür Listesi"
+
+msgid "SPECIES_MEMBER_IMPACT_ON_POP"
+msgstr "Ölen tür üyelerinin etkisi"
+
+msgid "SPECIES_MEMBER_IMPACT_ON_POPULATION_EXPLANATION"
+msgstr "(oyuncu türünün AI üyelerinin ölmesi veya çoğalmasının popülasyon üzerindeki dış etkisi)"
 
 msgid "SPECIES_NAME_DOT_DOT_DOT"
 msgstr "Tür adı..."
@@ -5513,7 +5538,7 @@ msgid "STRUCTURE_SELECTION_MENU_ENTRY_NOT_ENOUGH_RESOURCES"
 msgstr "{0} (BAŞLAMAK İÇİN YETERLİ DEĞİL: {1}, toplam: {2})"
 
 msgid "STRUCTURE_SOCIETY_CENTER"
-msgstr "Topluluk Merkezi"
+msgstr "Toplum Merkezi"
 
 msgid "STRUCTURE_STEAM_POWERED_FACTORY"
 msgstr "Buharla Çalışan Fabrika"
@@ -5585,7 +5610,7 @@ msgid "TECHNOLOGY_LEVEL_INDUSTRIAL"
 msgstr "Sanayi"
 
 msgid "TECHNOLOGY_LEVEL_PRE_SOCIETY"
-msgstr "Topluluk Öncesi"
+msgstr "Toplum Öncesi"
 
 msgid "TECHNOLOGY_LEVEL_PRIMITIVE"
 msgstr "İlkel"
@@ -5606,7 +5631,7 @@ msgid "TECHNOLOGY_SIMPLE_STONE_TOOLS"
 msgstr "Basit Taş Aletler"
 
 msgid "TECHNOLOGY_SOCIETY_CENTER"
-msgstr "Topluluk Merkezi İnşaatı"
+msgstr "Toplum Merkezi İnşaatı"
 
 msgid "TECHNOLOGY_STEAM_POWER"
 msgstr "Buhar Gücü"
@@ -5628,11 +5653,11 @@ msgstr "Deneme Ekibi"
 
 msgid "THANKS_FOR_BUYING_THRIVE_2"
 msgstr ""
-"Thrive'ın bu kopyasını [color=#3796e1][url={0}]{1}[/url][/color] sitesinden satın alarak Thrive'ın gelişimine katkıda bulunduğunuz için teşekkür ederiz.\n"
+"Thrive'ın bu kopyasını [color=#3796e1][url={0}]{1}[/url][/color] sitesinden satın alarak Thrive'ın gelişimine katkıda bulunduğunuz için sizlere teşekkür ederiz.\n"
 "\n"
 "Thrive'ın devamlı gelişiminin hızı, aldığımız desteğin miktarına bağlıdır. [color=#3796e1][url={2}]Web sitemizden[/url][/color] veya ekranın sol altında bağlantısı verilen sosyal medya platformlarından daha fazlasını öğrenebilirsiniz. \n"
 "\n"
-"Eğer Thrive başlatılmadan önce Thrive Başlatıcı'yı görmek isterseniz, başlatıcıya dönmek için ana menüdeki butonu kullanabilir ve sonra başlatıcı ayarları menüsünden kesintisiz modu devre dışı bırakabilirsiniz."
+"Eğer Thrive başlatılmadan önce Thrive Başlatıcısı'nı görmek isterseniz, başlatıcıya dönmek için ana menüdeki butonu kullanabilir ve ardından başlatıcı ayarları menüsünden kesintisiz modu devre dışı bırakabilirsiniz."
 
 msgid "THANKS_FOR_PLAYING"
 msgstr ""
@@ -5942,19 +5967,16 @@ msgid "TOXIN_VACUOLE"
 msgstr "Toksin Kofulu"
 
 msgid "TOXIN_VACUOLE_DESCRIPTION"
-msgstr "Toksin kofulu, [thrive:compound type=\"oxytoxy\"]OksiToksi NT'lerin[/thrive:compound] özel üretimi, depolanması ve salgılanması için özelleşmiş bir kofuldur. Daha fazla toksin kofulu, salınabilecek toksin oranını arttırır. Diğer etkiler için, üretilen toksin türünü değiştirmek amacıyla, üzerinde değişiklik yapılabilir."
+msgstr "Toksin kofulu, [thrive:compound type=\"oxytoxy\"]OksiToksi NT'lerin[/thrive:compound] özel üretimi, depolanması ve salgılanması için özelleşmiş bir kofuldur. Daha fazla toksin kofulu, salınabilecek toksin oranını arttırır. Başka etkiler elde etmek için üretilen toksin türü değiştirilebilir. Bunun üretilmesi [thrive:compound type=\"oxygen\"]oksijen[/thrive:compound] gerektirebilir."
 
 msgid "TOXIN_VACUOLE_PROCESSES_DESCRIPTION"
-msgstr "[thrive:compound type=\"atp\"]ATP'yi[/thrive:compound], [thrive:compound type=\"oxytoxy\"]OksiToksi NT'ye[/thrive:compound] dönüştürür. Bu oran, [thrive:compound type=\"oxygen\"]oksijen[/thrive:compound] konsantrasyonu ile doğru orantılıdır. [thrive:input]g_fire_toxin[/thrive:input] tuşuna basıldığında toksin salabilir. [thrive:compound type=\"oxytoxy\"]OksiToksi NT[/thrive:compound] miktarı düşük olduğunda, ateş etmek mümkün ancak toksinler daha düşük hasara neden olur."
+msgstr "[thrive:compound type=\"atp\"]ATP'yi[/thrive:compound], [thrive:compound type=\"oxytoxy\"]OksiToksi NT'ye[/thrive:compound] dönüştürür.[thrive:input]g_fire_toxin[/thrive:input] tuşuna basıldığında toksin salabilir. [thrive:compound type=\"oxytoxy\"]OksiToksi NT[/thrive:compound] miktarı düşük olduğunda, ateş etmek mümkün ancak toksinler daha düşük hasara neden olur."
 
 msgid "TOXISOME"
 msgstr "Toksizom"
 
 msgid "TOXISOME_DESCRIPTION"
-msgstr "[thrive:compound type=\\\"oxytoxy\\\"]OksiToksi[/thrive:compound] zehirli ajanının ilkel bir formunun üretiminden sorumlu, değiştirilmiş bir metabolozomdur. Diğer etkiler için, oluşturulan toksin türünü değiştirmek amacıyla modifiye edilebilir."
-
-msgid "TO_BE_IMPLEMENTED"
-msgstr "Henüz Eklenmedi."
+msgstr "[thrive:compound type=\\\"oxytoxy\\\"]OksiToksi[/thrive:compound] zehirli ajanının ilkel bir formunun üretiminden sorumlu, değiştirilmiş bir metabolozomdur. Başka etkiler elde etmek için üretilen toksin türü değiştirilebilir. Bunun üretilmesi, [thrive:compound type=\"oxygen\"]oksijen[/thrive:compound] gerektirebilir."
 
 msgid "TRANSLATORS"
 msgstr "Çevirmenler"
@@ -6026,14 +6048,15 @@ msgstr ""
 "\n"
 "Bazı organellerin önce [u]ara ürünler[/u] ürettiğini ve bunların ancak [i]sonrasında[/i] [thrive:compound type=\"atp\"]ATP'ye[/thrive:compound] dönüştüğünü anlamak, daha gelişmiş metabolik yolları anlamak için kilit bir kavramdır. Bu ekranın altındaki depolama süreleri de gelişmiş hücrelerde giderek daha önemli hale gelir."
 
-#, fuzzy
 msgid "TUTORIAL_MICROBE_EDITOR_DIGESTION_STAT"
 msgstr ""
-"Hücrenize bir [b]kemoreseptör[/b] organeli ekleyebilirsiniz.\n"
+"Sindirim hızı ve etkinlik istatistikleri, Organizma İstatistikleri panelinin altında görülebilir.\n"
 "\n"
-"Kemoreseptörler, türünüzün etrafındaki şeyleri algılama becerisini arttırır.\n"
+"Bu istatistikleri arttırmak, [u]avcılığı daha etkili[/u] hale getirir. Lizozomlarda, farklı [b]enzimler[/b] sağlamak için de değişiklik yapılabilir.\n"
 "\n"
-"Bir tane yerleştirmek [thrive:compound type=\"glucose\"]glukoz[/thrive:compound] gibi bileşikleri algılamanızı sağlar ve sizi o bileşiklere yönlendirir. Bu organel, diğer türlerin hücrelerini algılamak için de kullanılabilir."
+"Yeni enzim türleri, temel sindirime karşı dayanıklı olan farklı av türlerini sindirmeyi sağlar. Her enzim türünün ayrı bir etkinlik istatistiği vardır.\n"
+"\n"
+"Etkinlik istatistiğinin üzerine gelerek bireysel etkinlikleri görebilirsiniz. Bir enzim türünde özelleşmek, daha fazla verimlilik sağlar. Ancak, daha az çeşit av ile sınırlı kalırsınız."
 
 msgid "TUTORIAL_MICROBE_EDITOR_ENDING_TEXT"
 msgstr ""
@@ -6085,16 +6108,15 @@ msgstr ""
 "\n"
 "Devam etmek için organelde değişiklik yapın."
 
-#, fuzzy
 msgid "TUTORIAL_MICROBE_EDITOR_NEGATIVE_ATP_BALANCE"
 msgstr ""
 "[thrive:compound type=\"atp\"]ATP[/thrive:compound] tutarınız negatif.\n"
 "\n"
 "Bütün işlemleri çalıştırırken ve hareket ederken, hücreniz [thrive:compound type=\"atp\"]ATP'sini[/thrive:compound] tüketecek ve ölecek.\n"
 "\n"
-"[thrive:compound type=\"atp\"]ATP[/thrive:compound] üretimini düzenlemek için birçok yol var. Üretimi arttırmak için [b]Hidrojenaz[/b] gibi [thrive:compound type=\"atp\"]ATP[/thrive:compound] üreten organeller ekleyebilirsiniz. Ayrıca bazı [b]hücre zarları[/b] size ozmoregülasyon [thrive:icon]OsmoIcon[/thrive:icon] indirimleri verir.\n"
+"[thrive:compound type=\"atp\"]ATP[/thrive:compound] üretimini düzenlemek için birçok yol var. Üretimi arttırmak için [b]hidrojenaz[/b] gibi [u]doğrudan[/u] [thrive:compound type=\"atp\"]ATP[/thrive:compound] üreten organeller ekleyebilirsiniz. Ayrıca bazı [b]hücre zarları[/b] size ozmoregülasyon [thrive:icon]OsmoIcon[/thrive:icon] indirimleri verir.\n"
 "\n"
-"Alternatif olarak, ihtiyaç duyulmayan ya da gereksiz organelleri kaldırabilirsiniz."
+"Alternatif olarak, ihtiyaç duyulmayan ya da gereksiz organelleri kaldırabilirsiniz. Eğer biraz önce değişiklik yaptıysanız, onu geri alabilirsiniz."
 
 msgid "TUTORIAL_MICROBE_EDITOR_NO_CHANGES_MADE"
 msgstr ""
@@ -6218,6 +6240,12 @@ msgstr ""
 "\n"
 "Çok hücreli olmayı planlıyorsanız, koloniden ayrılıp editöre girmeniz gerekir.\n"
 "Gelişiminize devam etmek için [thrive:input]g_unbind_all[/thrive:input] tuşuna basarak koloniden ayrılın."
+
+msgid "TUTORIAL_MICROBE_STAGE_MEMBER_DIED"
+msgstr ""
+"Türünüzün bir üyesi ne yazık ki öldü! Editöre ulaştığınızda, bu durum popülasyonunuzu dış etki olarak etkileyecek.\n"
+"\n"
+"AI davranışlarını değiştirmek için, editörde, türünüzün davranışlarında ince ayar yapabilirsiniz. Ayrıca, kemoreseptör eklemek gibi, oynanışı kolaylaştıran faydalı düzenlemeler yapabilirsiniz."
 
 msgid "TUTORIAL_MICROBE_STAGE_OPEN_PROCESS_PANEL"
 msgstr ""
@@ -6463,16 +6491,16 @@ msgid "UPLOAD_SUCCEEDED"
 msgstr "Yükleme Başarılı"
 
 msgid "UPSCALE_BILINEAR"
-msgstr ""
+msgstr "Bilineer Yükseltme"
 
 msgid "UPSCALE_FSR_1"
-msgstr ""
+msgstr "FSR 1 Yükseltme"
 
 msgid "UPSCALE_FSR_22"
-msgstr ""
+msgstr "FSR 2.2 Yükseltme"
 
 msgid "UPSCALE_SHARPENING_FSR"
-msgstr ""
+msgstr "FSR keskinleştirme"
 
 msgid "USED_LIBRARIES_LICENSES"
 msgstr "Lisanslar ve Kullanılan Kitaplıklar"
@@ -6682,22 +6710,22 @@ msgid "WIKI_AWAKENING_STAGE_FEATURES"
 msgstr "Çok yakında."
 
 msgid "WIKI_AWAKENING_STAGE_INTRO"
-msgstr "Özetle; aletlerin kullanımını keşfetmeye başlayan bir canlı ile bu evreye başlıyorsunuz ve hayatta kalmak ve rekabeti geride bırakmak için bu aletleri hızla geliştirmeniz gerekiyor. Bu evre, Topluluk Merkezi'ni inşa ettiğinizde sona erer."
+msgstr "Özetle; aletlerin kullanımını keşfetmeye başlayan bir canlı ile bu evreye başlıyorsunuz ve hayatta kalmak ve rekabeti geride bırakmak için bu aletleri hızla geliştirmeniz gerekiyor. Bu evre, Toplum Merkezi'ni inşa ettiğinizde sona erer."
 
 msgid "WIKI_AWAKENING_STAGE_OVERVIEW"
 msgstr "Çok yakında."
 
 msgid "WIKI_AWAKENING_STAGE_TRANSITIONS"
 msgstr ""
-"Uyanış Evresi, oyuncu türünün bilinç kazanmasıyla başlar. Ancak bu noktada, oyuncu türü için evrimin sona ermesi dışında pek bir değişiklik olmaz. Zaman ölçeği büyük ölçüde kısaldığı için artık yalnızca küçük evrimsel değişiklikler meydana gelebilir. Strateji Modu hala kilitlidir, Ulus Editörü kapalıdır ve Topluluk Merkezleri de mevcut değildir. Bu evrenin başlangıcı, büyük ölçüde sembolik bir geçiştir (tür düzenleme yeteneğinin büyük ölçüde azaltılması haricinde) ve değişikliklerin özü kademeli olarak ortaya çıkar.\n"
+"Uyanış Evresi, oyuncu türünün bilinç kazanmasıyla başlar. Ancak bu noktada, oyuncu türü için evrimin sona ermesi dışında pek bir değişiklik olmaz. Zaman ölçeği büyük ölçüde kısaldığı için artık yalnızca küçük evrimsel değişiklikler meydana gelebilir. Strateji Modu hala kilitlidir, Ulus Editörü kapalıdır ve Toplum Merkezleri de mevcut değildir. Bu evrenin başlangıcı, büyük ölçüde sembolik bir geçiştir (tür düzenleme yeteneğinin büyük ölçüde azaltılması haricinde) ve değişikliklerin özü kademeli olarak ortaya çıkar.\n"
 "\n"
 "İlk başta görünmese de Araştırma Ağı bu evrede etkinleştirilir. Araştırma Ağı, Kayıt Tutma keşfedilene kadar görüntülenemez. Etkileşim de otomatik olarak keşfedilir. Araştırılabilir teknolojiler bu noktada doğrudan araştırılamaz. Bunun yerine, oyuncunun gerçekleştirdiği eylemler, örneğin iletişim kurmak veya çevre ile etkileşime geçmek, yeni teknolojilerin veya Buluşların keşfedilmesine yönelik ilerleme sağlar. Bu durum, oyuncunun teknolojisini geliştirmesine olanak tanır ve Etkileşimin keşfedilmesinin bir sonucudur. Örneğin, ortamdaki nesneleri araç olarak kullanmak (dünya etrafında bulunan hammaddeleri birleştirdikten sonra), Araçlar isimli buluşu keşfetme şansını artırır (oyunculara tamamen rastgele bir deneyim sunmamak adına bu ilerlemenin garantili olması gerekmektedir). Zanaat kullanılabilir hale geldikten sonra Teknoloji Editörü de etkinleştirilir. Araçlar, oyuncunun Teknoloji Editörü'nde \"Araçlar\" olarak etiketlediği Teknoloji Nesnelerinin tür üyeleri tarafından kullanılmasını sağlar.\n"
 "\n"
 "Dil buluşu ise oyuncunun, kendi türünün diğer üyelerine daha özel görevler vermesini sağlar. Bu özellik, önceki evrelerdeki komut takımı üzerine inşa edilmiştir (bunlar mikroorganizma evresindeki sinyal veren ajanlardır). Her görev atandığında (veya yerine getirildiğinde), İşbirliği buluşuna doğru ilerleme kaydedilir (ilerleme, tamamen rastgele bir şansa bağlı olmamalıdır, ancak ilk şanslı keşifler mümkün olabilir). İşbirliği, Dil üzerine inşa edilir ve diğer tür üyelerinin, bu noktada kabile üyesi olarak adlandırılacak kadar gelişmişlerdir, kendi eylemleri sonucunda yeni teknolojiler keşfetmelerini sağlar. Bunun öncesinde, yalnızca oyuncu organizmasının yeni teknolojileri keşfedebildiğini hatırlayın. Bu durum, oyuncunun hızla gelişen kabilesinde daha fazla yönetim rolü üstlenmesini sağlar.\n"
 "\n"
-"Bu noktada, Strateji Modu hala kilitlidir. Ancak oyuncu, türünün üyelerine çeşitli görevler atamak için komut takımını kullanabilir (en önemlisi kaynak ve yiyecek toplamadır), bu da İşbirliği Buluşunun keşfedilmesiyle mümkün olur. Oyuncu, kaynak toplayıcılarını atadıktan ve yapılar inşa ettikten sonra, Toplu Yaşam buluşu keşfedilir. Bu buluş, Topluluk Merkezi binasının inşa edilmesini sağlar ve böylece bir yerleşim kurulmuş olur.\n"
+"Bu noktada, Strateji Modu hala kilitlidir. Ancak oyuncu, türünün üyelerine çeşitli görevler atamak için komut takımını kullanabilir (en önemlisi kaynak ve yiyecek toplamadır), bu da İşbirliği Buluşunun keşfedilmesiyle mümkün olur. Oyuncu, kaynak toplayıcılarını atadıktan ve yapılar inşa ettikten sonra, Toplu Yaşam buluşu keşfedilir. Bu buluş, Toplum Merkezi binasının inşa edilmesini sağlar ve böylece bir yerleşim kurulmuş olur.\n"
 "\n"
-"Bu evre, oyuncu ilk Topluluk Merkezi'ni inşa ettiğinde sona erer. Bu noktada, oyuncunun görüş alanı Strateji Modu'na geçer. Bu durum, evreler arasındaki değişimi ve oyunun strateji evrelerine geçişini vurgular."
+"Bu evre, oyuncu ilk Toplum Merkezi'ni inşa ettiğinde sona erer. Bu noktada, oyuncunun görüş alanı Strateji Modu'na geçer. Bu durum, evreler arasındaki değişimi ve oyunun strateji evrelerine geçişini vurgular."
 
 msgid "WIKI_AWAKENING_STAGE_UI"
 msgstr "Çok yakında."
@@ -7671,14 +7699,14 @@ msgid "WIKI_HYDROGENASE_UPGRADES"
 msgstr "Geliştirme yok."
 
 msgid "WIKI_INDUSTRIAL_STAGE_CURRENT_DEVELOPMENT"
-msgstr "Bu evrenin geliştirilmesine henüz başlanmadı. Bu evrenin oynanışı ve teori tasarımı, [color=#3796e1][url=thriveopedia:society_stage]Topluluk Evresi[/url][/color] üzerinde çalışılmaya başlandığında daha belirgin hale gelecektir."
+msgstr "Bu evrenin geliştirilmesine henüz başlanmadı. Bu evrenin oynanışı ve teori tasarımı, [color=#3796e1][url=thriveopedia:society_stage]Toplum Evresi[/url][/color] üzerinde çalışılmaya başlandığında daha belirgin hale gelecektir."
 
 msgid "WIKI_INDUSTRIAL_STAGE_FEATURES"
 msgstr "Çok yakında."
 
 msgid "WIKI_INDUSTRIAL_STAGE_INTRO"
 msgstr ""
-"Sanayi Evresi, Thrive'ın dokuz oyun evresinden yedincisidir ve [color=#3796e1][url=thriveopedia:society_stage]Topluluk Evresi'nden[/url][/color] sonra, sanayi makinelerinin icadıyla başlar. Teknoloji ve kültür artık çok daha gelişmiş durumdadır ve medeniyet kendini sürdürebilmek için makinelere büyük ölçüde bağımlıdır. Artık tüm gezegen büyük oranda keşfedilmiş ve nüfuslanmış olup, neredeyse her yerde iletişim kurmak ya da savaş açmak mümkündür. Diplomasi ve liderlik becerileri her zamankinden daha çok gereklidir.\n"
+"Sanayi Evresi, Thrive'ın dokuz oyun evresinden yedincisidir ve [color=#3796e1][url=thriveopedia:society_stage]Toplum Evresi'nden[/url][/color] sonra, sanayi makinelerinin icadıyla başlar. Teknoloji ve kültür artık çok daha gelişmiş durumdadır ve medeniyet kendini sürdürebilmek için makinelere büyük ölçüde bağımlıdır. Artık tüm gezegen büyük oranda keşfedilmiş ve nüfuslanmış olup, neredeyse her yerde iletişim kurmak ya da savaş açmak mümkündür. Diplomasi ve liderlik becerileri her zamankinden daha çok gereklidir.\n"
 "\n"
 "Teknolojik gelişme hızla artmakta ve karmaşık makineler eskiden yüzlerce yılda icat edilirken, şimdi onlarca yıl içinde üretilmektedir. Yeni motorlu araçlar, tıbbi yöntemler, sanayi makineleri ve kitle imha silahları da dahil olmak üzere yeni teknolojiler ortaya çıkmaktadır.\n"
 "\n"
@@ -8379,7 +8407,7 @@ msgid "WIKI_PAGE_SLIME_JET"
 msgstr "Balçık Fışkırtıcı"
 
 msgid "WIKI_PAGE_SOCIETY_STAGE"
-msgstr "Topluluk Evresi"
+msgstr "Toplum Evresi"
 
 msgid "WIKI_PAGE_SPACE_STAGE"
 msgstr "Uzay Evresi"
@@ -8621,7 +8649,7 @@ msgid "WIKI_SLIME_JET_UPGRADES"
 msgstr "Geliştirme yok."
 
 msgid "WIKI_SOCIETY_STAGE_CURRENT_DEVELOPMENT"
-msgstr "Bu evrenin geliştirilmesine henüz başlanmadı. Bu evre için son yıllarda teori ve oynanış üzerine pek fazla tartışma yapılmadı. Tartışmaların, resmi geliştirme sürecinde Topluluk Evresi'ne ulaştığımızda yeniden başlaması gerekecektir."
+msgstr "Bu evrenin geliştirilmesine henüz başlanmadı. Bu evre için son yıllarda teori ve oynanış üzerine pek fazla tartışma yapılmadı. Tartışmaların, resmi geliştirme sürecinde Toplum Evresi'ne ulaştığımızda yeniden başlaması gerekecektir."
 
 msgid "WIKI_SOCIETY_STAGE_FEATURES"
 msgstr "Çok yakında."
@@ -8630,25 +8658,25 @@ msgid "WIKI_SOCIETY_STAGE_INTRO"
 msgstr ""
 "Özetle; bu evrede ilk yerleşiminizi geliştirip genişletir ve yenilerini inşa edersiniz. Bu evrede dönem, Orta Çağ'a benzemektedir. Bu evre, teknolojiniz yeterince geliştiğinde sona erer.\n"
 "\n"
-"Thrive'ın yedi oynanabilir evresinden biri olan Topluluk Evresi, bilinç kazanan türünüzün ([color=#3796e1][url=thriveopedia:awakening_stage]Uyanış Evresi'nde[/url][/color] gelişmiş olan) daha büyük gruplar veya topluluklar oluşturmaya başlamasıyla başlar. Bu noktada, Organizma Modu (oyuncu bu moda her an erişebilir ancak bu mod düşük önceliktedir) yerine, Strateji Modu oyunun odak noktası haline gelir. Bu evrede ayrıca Ulus Editörü kullanıma açılır. Oyuncu türü, yerleşim yerleri oluşturmak için bu evrede Topluluk Merkezleri kurmaya başlayabilir.\n"
+"Thrive'ın yedi oynanabilir evresinden biri olan Toplum Evresi, bilinç kazanan türünüzün ([color=#3796e1][url=thriveopedia:awakening_stage]Uyanış Evresi'nde[/url][/color] gelişmiş olan) daha büyük gruplar veya toplumlar oluşturmaya başlamasıyla başlar. Bu noktada, Organizma Modu (oyuncu bu moda her an erişebilir ancak bu mod düşük önceliktedir) yerine, Strateji Modu oyunun odak noktası haline gelir. Bu evrede ayrıca Ulus Editörü kullanıma açılır. Oyuncu türü, yerleşim yerleri oluşturmak için bu evrede Toplum Merkezleri kurmaya başlayabilir.\n"
 "\n"
-"Topluluk Evresi boyunca ana hedeflerden biri, git gide daha da gelişmiş teknolojiler geliştirmektir. Bu nedenle Topluluk Evresi, türünüzün [color=#3796e1][url=thriveopedia:industrial_stage]Sanayi Evresi'ne[/url][/color] geçmesine yetecek kadar gelişmiş bir teknolojiye ulaşmasıyla sona erer."
+"Toplum Evresi boyunca ana hedeflerden biri, git gide daha da gelişmiş teknolojiler geliştirmektir. Bu nedenle Toplum Evresi, türünüzün [color=#3796e1][url=thriveopedia:industrial_stage]Sanayi Evresi'ne[/url][/color] geçmesine yetecek kadar gelişmiş bir teknolojiye ulaşmasıyla sona erer."
 
 msgid "WIKI_SOCIETY_STAGE_OVERVIEW"
 msgstr ""
-"Topluluk Evresi, oyuncu türünün basit bir kabileden gelişen bir Medeniyete geçişini simgeler. Bu evre, Araştırma Ağı'nın görüntülenmesi ve bu ağa yatırım yapılmasını sağlayan belirli teknolojiler, hükümet politikalarının uygulanması, dinlerin ortaya çıkışı ve daha büyük çaplı çatışmaların başlaması ile öne çıkar. Ulus Editörü kadar, Teknoloji Editörü ve Birlik Editörü de, bu evre boyunca giderek daha önemli hale gelir. Oyuncu, türünün tek organizması ile oynamaya geri dönmekte serbest olsa da, bütün önemli olaylar ve kararlar geniş çapta gerçekleşir ve artan nüfusu yönetmek kritik hale gelir. Oyuncu, halkının ihtiyaçları ve ulusunun çıkarları arasında denge kurarak medeniyetini ileriye taşımak zorunda kalacaktır.\n"
+"Toplum Evresi, oyuncu türünün basit bir kabileden gelişen bir Medeniyete geçişini simgeler. Bu evre, Araştırma Ağı'nın görüntülenmesi ve bu ağa yatırım yapılmasını sağlayan belirli teknolojiler, hükümet politikalarının uygulanması, dinlerin ortaya çıkışı ve daha büyük çaplı çatışmaların başlaması ile öne çıkar. Ulus Editörü kadar, Teknoloji Editörü ve Birlik Editörü de, bu evre boyunca giderek daha önemli hale gelir. Oyuncu, türünün tek organizması ile oynamaya geri dönmekte serbest olsa da, bütün önemli olaylar ve kararlar geniş çapta gerçekleşir ve artan nüfusu yönetmek kritik hale gelir. Oyuncu, halkının ihtiyaçları ve ulusunun çıkarları arasında denge kurarak medeniyetini ileriye taşımak zorunda kalacaktır.\n"
 "\n"
 "Organizma modunu daha sonraki evrelerde çalışır durumda tutmak büyük bir çalışma gerektireceği için bu önceliğimiz değildir. Sonuçta, mevcut evreyi oynamak için en önemli ve amaçlanan yol Strateji Modu'ndan geçmektedir ve ilerlemek için bu mod gereklidir. Ayrıca, bu evrede tek bir bireyin etkisinin küçük olacağı göz önüne alındığında, organizma modunun yalnızca etrafta dolaşmak için kullanılması hoş olabilir. Ancak, organizma modunun oyuna çok az katkısı olacağı için bu modu eklemek büyük bir çaba gerektirecektir."
 
 msgid "WIKI_SOCIETY_STAGE_TRANSITIONS"
 msgstr ""
-"Topluluk Evresi, ilk Topluluk Merkezi'niz (yerleşim) inşa edildiğinde başlar. Toplu Yaşam, Topluluk Merkezleri'nin oluşturulmasına olanak sağlar. Topluluk Merkezi binası, bir grup yapının bir araya gelmesi ile ortak bir girişim sonucu ortaya çıkan ve rastgele oluşturulmuş bir isme sahip bir yerleşim merkezi olarak görev görür. Ayrıca, bu yerleşim için mutluluk, sağlık ve istikrar gibi yeni istatistikler de görünür. Oyunun kontrolü, Strateji Modu'na geçer ve Ulus Editörü açılır. Böylece oyuncu, daha önce oynadığı bir bireysel organizmayı kontrol etmeyi bırakır, bunun yerine, türünün tamamına RTS (gerçek zamanlı strateji) perspektifinden ulaşmak için görüş alanını arttırır. Oyuncu, farklı kabile birimlerine emirler verip aynı anda birden fazla birimi kontrol edebilir. Tür üyeleri artık bu yerleşimleri Doldurmak üzere görevlendirilebilir. Bu eylem, bu birimlerin kontrol edilir bir birim olmaktan çıkıp o yerleşimin popülasyonunda (nüfusunda) bir sayı olarak temsil edilmeleri anlamına gelir. Varsayılan olarak, bu nüfus İşçi olarak atanır. Birimleri yerleşimlere doldurmak, birimlerin sahadaki birçok yeteneğini azaltsa da, bu eylem, yeni fırsatların kapısını aralar ve oyuncunun çok fazla birimi aynı anda kontrol etme yükünü azaltır. Bilgisayar, nüfusun bütün üyelerini bir bütün olarak değerlendiği için, artık İşçi, Esnaf gibi nüfus türleri önemli hale gelir. Örneğin, işçiler yerleşimde elle yapılan işleri yerine getirirken esnaflar belirli üretim görevlerini gerçekleştirir. Vergiler, nüfustan toplanabilir; birimler Nüfus Artışına tabi tutulur ve operatör gerektiren binalarda çalıştırılabilir. Artık bu birimler, ekranda yalnızca sayılardan ibarettir. Bu birimlerin modelleri sadece yerleşimin kalabalık görünmesini sağlamak için yerleşimde rastgele dolaşır. Bu nedenle, Organizma Modu artık bu evre için önemli değildir (ama yine de düşük öncelikli bir özellik olarak planlanmaktadır). Oyuncu, Organizma Modu'na girmek için bir kabile üyesini seçebilir ve daha önce sahip olduğu tüm yeteneklere erişerek bu türü Organizma Modu'nda kontrol edebilir.\n"
+"Toplum Evresi, ilk Toplum Merkezi'niz (yerleşim) inşa edildiğinde başlar. Toplu Yaşam, Toplum Merkezleri'nin oluşturulmasına olanak sağlar. Toplum Merkezi binası, bir grup yapının bir araya gelmesi ile ortak bir girişim sonucu ortaya çıkan ve rastgele oluşturulmuş bir isme sahip bir yerleşim merkezi olarak görev görür. Ayrıca, bu yerleşim için mutluluk, sağlık ve istikrar gibi yeni istatistikler de görünür. Oyunun kontrolü, Strateji Modu'na geçer ve Ulus Editörü açılır. Böylece oyuncu, daha önce oynadığı bir bireysel organizmayı kontrol etmeyi bırakır, bunun yerine, türünün tamamına RTS (gerçek zamanlı strateji) perspektifinden ulaşmak için görüş alanını arttırır. Oyuncu, farklı kabile birimlerine emirler verip aynı anda birden fazla birimi kontrol edebilir. Tür üyeleri artık bu yerleşimleri Doldurmak üzere görevlendirilebilir. Bu eylem, bu birimlerin kontrol edilir bir birim olmaktan çıkıp o yerleşimin popülasyonunda (nüfusunda) bir sayı olarak temsil edilmeleri anlamına gelir. Varsayılan olarak, bu nüfus İşçi olarak atanır. Birimleri yerleşimlere doldurmak, birimlerin sahadaki birçok yeteneğini azaltsa da, bu eylem, yeni fırsatların kapısını aralar ve oyuncunun çok fazla birimi aynı anda kontrol etme yükünü azaltır. Bilgisayar, nüfusun bütün üyelerini bir bütün olarak değerlendiği için, artık İşçi, Esnaf gibi nüfus türleri önemli hale gelir. Örneğin, işçiler yerleşimde elle yapılan işleri yerine getirirken esnaflar belirli üretim görevlerini gerçekleştirir. Vergiler, nüfustan toplanabilir; birimler Nüfus Artışına tabi tutulur ve operatör gerektiren binalarda çalıştırılabilir. Artık bu birimler, ekranda yalnızca sayılardan ibarettir. Bu birimlerin modelleri sadece yerleşimin kalabalık görünmesini sağlamak için yerleşimde rastgele dolaşır. Bu nedenle, Organizma Modu artık bu evre için önemli değildir (ama yine de düşük öncelikli bir özellik olarak planlanmaktadır). Oyuncu, Organizma Modu'na girmek için bir kabile üyesini seçebilir ve daha önce sahip olduğu tüm yeteneklere erişerek bu türü Organizma Modu'nda kontrol edebilir.\n"
 "\n"
-"Bununla birlikte, yerleşimlerde yaşayan nüfus üyeleri her zaman dağıtılabilir. Bu eylem, onları yerleşimden çıkararak oyun içinde tekrar bir birim haline getirir. Yeni yerleşimler kurmak bu şekilde olur. Birimler, özellikle İşçiler, yeni bir yerleşim başlatmak için mevcut bir yerleşimden çıkarılmak zorundadır. Bu birimler, yeni bir konuma seyahat eder ve yeni bir topluluk merkezi ve destek binaları inşa eder. Daha sonra, yerleşimi kuran İşçiler bu yerleşimi kalkındırmak amacıyla yerleşimi doldurmak için kullanılabilir. Bu arada, yalnızca İşçiler binalar inşa edebilir.\n"
+"Bununla birlikte, yerleşimlerde yaşayan nüfus üyeleri her zaman dağıtılabilir. Bu eylem, onları yerleşimden çıkararak oyun içinde tekrar bir birim haline getirir. Yeni yerleşimler kurmak bu şekilde olur. Birimler, özellikle İşçiler, yeni bir yerleşim başlatmak için mevcut bir yerleşimden çıkarılmak zorundadır. Bu birimler, yeni bir konuma seyahat eder ve yeni bir toplum merkezi ve destek binaları inşa eder. Daha sonra, yerleşimi kuran İşçiler bu yerleşimi kalkındırmak amacıyla yerleşimi doldurmak için kullanılabilir. Bu arada, yalnızca İşçiler binalar inşa edebilir.\n"
 "\n"
 "Toplumsal Gelenek, Rastgele Kültür Oluşumu'nun kilidini açar, bu da ulusunuzda Sanatın ortaya çıkmasına neden olur. Toplumsal ilerleme, zamanla Ulus Editörü'nün birçok özelliğinin kilidini açar.\n"
 "\n"
-"Buna karşılık, bütün bu ilerleme süresince, oyuncu türüne ait başka kabileler de ortaya çıkmaya başlar. Oyuncu türünden türeyen her kabile, türün bir kısmında nüfus olarak yer alır. Böylece, aynı türden sınırlı sayıda kabile oluşur. Diğer türler de bilince ulaşabilir ve kabileler oluşturmaya başlayabilir. Bunun ne sıklıkta olacağının gerçekçi olması için ince ayar yapılması gerekecektir. Çünkü zaman ölçeği, oyuncu gezegenindeki bütün evrim esas alındığında, birden fazla türün çok dar bir zaman aralığında bilinç kazanması gerektiğini göstermektedir. Eğer bir tür çok daha çabuk ilerlerse, kendi teknolojisi ile diğer rakipleri çok hızlı bir şekilde (sadece birkaç on bin yıl içinde) ortadan kaldırabilir. Yalnızca oyuncu tarafından kurulan kabile, ve sonrasında ulus, oyuncu tarafından kontrol edilebilir. Diğer uluslar ise bilgisayar tarafından yönetilecek ve oyuncunun uzun vadede karşılaşacağı rekabetin kaynağı olacaktır. Bu uluslar, hala aynı türün bir parçası olsalar dahi kontrol edilemeyecek ve oyuncuya karşı düşmanca bile davranabilecek. Bu uluslar kendi teknolojilerini keşfedecek, kendi topluluk merkezlerini kuracak ve medeniyete giden yolu kendileri çizecektir.\n"
+"Buna karşılık, bütün bu ilerleme süresince, oyuncu türüne ait başka kabileler de ortaya çıkmaya başlar. Oyuncu türünden türeyen her kabile, türün bir kısmında nüfus olarak yer alır. Böylece, aynı türden sınırlı sayıda kabile oluşur. Diğer türler de bilince ulaşabilir ve kabileler oluşturmaya başlayabilir. Bunun ne sıklıkta olacağının gerçekçi olması için ince ayar yapılması gerekecektir. Çünkü zaman ölçeği, oyuncu gezegenindeki bütün evrim esas alındığında, birden fazla türün çok dar bir zaman aralığında bilinç kazanması gerektiğini göstermektedir. Eğer bir tür çok daha çabuk ilerlerse, kendi teknolojisi ile diğer rakipleri çok hızlı bir şekilde (sadece birkaç on bin yıl içinde) ortadan kaldırabilir. Yalnızca oyuncu tarafından kurulan kabile, ve sonrasında ulus, oyuncu tarafından kontrol edilebilir. Diğer uluslar ise bilgisayar tarafından yönetilecek ve oyuncunun uzun vadede karşılaşacağı rekabetin kaynağı olacaktır. Bu uluslar, hala aynı türün bir parçası olsalar dahi kontrol edilemeyecek ve oyuncuya karşı düşmanca bile davranabilecek. Bu uluslar kendi teknolojilerini keşfedecek, kendi toplum merkezlerini kuracak ve medeniyete giden yolu kendileri çizecektir.\n"
 "\n"
 "Bu evre, oyuncu ilk sanayi makinesini keşfedip inşa ettiğinde sona erer."
 
@@ -8694,7 +8722,7 @@ msgstr ""
 "\n"
 "Thrive'da ilerledikçe çeşitli evrelere geçiş yaparsınız ve nihayetinde Tırmanış Evresi'ne ulaşırsınız.\n"
 "\n"
-"Oyuna tek hücreli bir organizma olarak başlıyorsunuz. Daha sonra, organlar ve dokular geliştiriyor, ardından bilge oluyor ve bir topluluk kurarak uzayı fethetmeye doğru yol alıyorsunuz."
+"Oyuna tek hücreli bir organizma olarak başlıyorsunuz. Daha sonra, organlar ve dokular geliştiriyor, ardından bilge oluyor ve bir toplum kurarak uzayı fethetmeye doğru yol alıyorsunuz."
 
 msgid "WIKI_TBA"
 msgstr "TBA"

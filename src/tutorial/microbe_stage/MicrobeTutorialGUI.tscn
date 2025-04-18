@@ -13,7 +13,7 @@
 [ext_resource type="PackedScene" uid="uid://du8sc8kjirguk" path="res://src/gui_common/dialogs/CustomWindow.tscn" id="13"]
 [ext_resource type="PackedScene" uid="uid://tna206f2gtkv" path="res://src/gui_common/AddWindowReorderingSupportToSiblings.tscn" id="14"]
 
-[node name="MicrobeTutorialGUI" type="Control" node_paths=PackedStringArray("tutorialDisabledExplanation", "welcomeTutorialScrollContainer", "openProcessPanelTutorial", "processPanelTutorial", "resourceSplitTutorial", "pausingTutorial", "ProcessPanelButtonHighlight")]
+[node name="MicrobeTutorialGUI" type="Control" node_paths=PackedStringArray("tutorialDisabledExplanation", "welcomeTutorialScrollContainer", "openProcessPanelTutorial", "processPanelTutorial", "resourceSplitTutorial", "pausingTutorial", "speciesMemberDied", "ProcessPanelButtonHighlight")]
 process_mode = 3
 layout_mode = 3
 anchors_preset = 15
@@ -52,6 +52,7 @@ openProcessPanelTutorial = NodePath("OpenProcessPanelTutorial")
 processPanelTutorial = NodePath("ProcessPanelTutorial")
 resourceSplitTutorial = NodePath("ResourceSplitTutorial")
 pausingTutorial = NodePath("PausingTutorial")
+speciesMemberDied = NodePath("MemberDiedTutorial")
 ProcessPanelButtonHighlight = NodePath("ProcessButtonHighlight")
 
 [node name="AddWindowReorderingSupportToSiblings" parent="." instance=ExtResource("14")]
@@ -249,17 +250,17 @@ Description = "TUTORIAL_MICROBE_STAGE_ENVIRONMENT_PANEL"
 ShowDelay = 1.0
 
 [node name="OrganelleDivisionTutorial" parent="." instance=ExtResource("10")]
-custom_minimum_size = Vector2(260, 280)
+custom_minimum_size = Vector2(260, 335)
 layout_mode = 1
 anchors_preset = 6
 anchor_left = 1.0
 anchor_top = 0.5
 anchor_right = 1.0
 anchor_bottom = 0.5
-offset_left = -298.0
-offset_top = -179.0
-offset_right = 0.0
-offset_bottom = 61.0
+offset_left = -299.0
+offset_top = -217.0
+offset_right = -1.0
+offset_bottom = 118.0
 grow_horizontal = 0
 grow_vertical = 2
 Description = "MICROBE_STAGE_ORGANELLE_DIVISION"
@@ -564,6 +565,24 @@ grow_vertical = 2
 Description = "TUTORIAL_MICROBE_STAGE_PAUSING"
 PreventsMouseCaptureWhileOpen = true
 
+[node name="MemberDiedTutorial" parent="." instance=ExtResource("10")]
+custom_minimum_size = Vector2(260, 310)
+layout_mode = 1
+anchors_preset = 6
+anchor_left = 1.0
+anchor_top = 0.5
+anchor_right = 1.0
+anchor_bottom = 0.5
+offset_left = -260.0
+offset_top = -214.0
+offset_right = 0.0
+offset_bottom = 96.0
+grow_horizontal = 0
+grow_vertical = 2
+Description = "TUTORIAL_MICROBE_STAGE_MEMBER_DIED"
+ShowDelay = 1.0
+PreventsMouseCaptureWhileOpen = true
+
 [connection signal="hidden" from="MicrobeWelcome" to="." method="OnClickedCloseAll"]
 [connection signal="toggled" from="MicrobeWelcome/VBoxContainer/ScrollContainer/VBoxContainer/HBoxContainer/CheckBox" to="." method="OnTutorialEnabledValueChanged"]
 [connection signal="pressed" from="MicrobeWelcome/VBoxContainer/Button" to="." method="OnClickedCloseAll"]
@@ -588,5 +607,6 @@ PreventsMouseCaptureWhileOpen = true
 [connection signal="hidden" from="ProcessPanelTutorial" to="." method="OnSpecificCloseClicked" binds= ["ProcessPanelTutorial"]]
 [connection signal="hidden" from="ResourceSplitTutorial" to="." method="OnSpecificCloseClicked" binds= ["ResourcesAfterSplitTutorial"]]
 [connection signal="hidden" from="PausingTutorial" to="." method="OnSpecificCloseClicked" binds= ["PausingTutorial"]]
+[connection signal="hidden" from="MemberDiedTutorial" to="." method="OnSpecificCloseClicked" binds= ["SpeciesMemberDiedTutorial"]]
 
 [editable path="EarlyMulticellularWelcome"]

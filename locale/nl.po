@@ -7,8 +7,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2025-03-28 15:15+0200\n"
-"PO-Revision-Date: 2025-03-27 11:38+0000\n"
+"POT-Creation-Date: 2025-04-11 10:12+0300\n"
+"PO-Revision-Date: 2025-04-04 10:42+0000\n"
 "Last-Translator: Anonymous <noreply@weblate.org>\n"
 "Language-Team: Dutch <https://translate.revolutionarygamesstudio.com/projects/thrive/thrive-game/nl/>\n"
 "Language: nl\n"
@@ -330,6 +330,7 @@ msgstr "Augustus"
 msgid "AUTO"
 msgstr "Automatisch"
 
+#, fuzzy
 msgid "AUTO-EVO_EXPLANATION_EXPLANATION"
 msgstr "Dit paneel toont de waarden die auto-evo gebruikt. De totale energie die een soort kan verkrijgen, en de kosten per individu van de soort, bepalen de uiteindelijke bevolking. Auto-evo gebruikt een versimpeld model van de werkelijkheid om te berekenen hoe goed een soort zou presteren op basis van de energie die ze kunnen verkrijgen. Voor elke voedselbron wordt getoond hoeveel energie de soort er van verkrijgt. Verder wordt de totale hoeveelheid energie die van die bron beschikbaar is getoond. De fractie die de soort verkrijgt uit de totale energie is gebaseerd op hoe groot de fitheid is in vergelijking tot de totale fitheid. Fitheid is een metriek die toont hoe goed een soort een voedselbron kan gebruiken."
 
@@ -515,6 +516,14 @@ msgstr "Bind assen samen"
 
 msgid "BIOLUMINESCENT_VACUOLE"
 msgstr "Bioluminescente Vacuole"
+
+#, fuzzy
+msgid "BIOLUMINESCENT_VACUOLE_DESCRIPTION"
+msgstr "Bioluminescente Vacuole"
+
+#, fuzzy
+msgid "BIOLUMINESCENT_VACUOLE_PROCESSES_DESCRIPTION"
+msgstr "Zet [thrive:compound type=\"atp\"][/thrive:compound] om in [thrive:compound type=\"oxytoxy\"][/thrive:compound]. Snelheid schaalt met de concentractie van [thrive:compound type=\"oxygen\"][/thrive:compound]. De gifstoffen kunnen worden vrijgelaten door [thrive:input]g_fire_toxin[/thrive:input]. Wanneer er weinig [thrive:compound type=\"oxytoxy\"][/thrive:compound] is, blijft het mogelijk om deze te schieten maar er zal minder schade worden aangedaan."
 
 msgid "BIOME_LABEL"
 msgstr "Bioom: {0}"
@@ -1663,6 +1672,7 @@ msgstr "OpenGL"
 msgid "DISPLAY_DRIVER_VULKAN"
 msgstr "Vulkan"
 
+#, fuzzy
 msgid "DISPLAY_MODE"
 msgstr "Weergavemodus:"
 
@@ -3189,14 +3199,34 @@ msgid "LOADING_GAME"
 msgstr "Spel Wordt Geladen"
 
 #, fuzzy
+msgid "LOADING_GRAPHICS_SHADERS"
+msgstr "Spel Wordt Geladen"
+
+#, fuzzy
 msgid "LOADING_MACROSCOPIC_EDITOR"
 msgstr "Microbe-editor Laden"
 
 msgid "LOADING_MICROBE_EDITOR"
 msgstr "Microbe-editor Laden"
 
+#, fuzzy
+msgid "LOADING_MICROBE_STAGE"
+msgstr "Gedeelde Bewerken en Strategiefasen"
+
 msgid "LOADING_MULTICELLULAR_EDITOR"
 msgstr "Multicellulaire Bewerker Laden"
+
+#, fuzzy
+msgid "LOADING_MULTICELLULAR_STAGE"
+msgstr "Multicellulaire Bewerker Laden"
+
+#, fuzzy
+msgid "LOADING_STAGE"
+msgstr "Spel Wordt Geladen"
+
+#, fuzzy
+msgid "LOADING_STAGE_ASSETS"
+msgstr "Spel Wordt Geladen"
 
 msgid "LOAD_FINISHED"
 msgstr "Laden afgerond"
@@ -3261,6 +3291,13 @@ msgstr "Achtergrondvervaging:"
 #, fuzzy
 msgid "LOW_QUALITY_BACKGROUND_BLUR_TOOLTIP"
 msgstr "Achtergrondvervaging:"
+
+msgid "LUCIFERASE"
+msgstr ""
+
+#, fuzzy
+msgid "LUCIFERASE_SYNTHESIS"
+msgstr "Slijmsynthese"
 
 msgid "LYSOSOME"
 msgstr "Lysozoom"
@@ -4527,6 +4564,7 @@ msgstr "Weerstand tegen Gifstoffen"
 msgid "OXYGEN_TOLERANCE_TOOLTIP"
 msgstr "Toon / verberg stoffen"
 
+#, fuzzy
 msgid "OXYTOXISOME_PROCESSES_DESCRIPTION"
 msgstr "Zet [thrive:compound type=\"atp\"][/thrive:compound] om in [thrive:compound type=\"oxytoxy\"][/thrive:compound]. Snelheid schaalt met concentratie van [thrive:compound type=\"oxygen\"][/thrive:compound]. De gifstoffen kunnen worden vrijgelaten door [thrive:input]g_fire_toxin[/thrive:input]. Wanneer er weinig [thrive:compound type=\"oxytoxy\"][/thrive:compound] is, blijft het mogelijk om deze te schieten maar er zal minder schade worden aangedaan."
 
@@ -5518,6 +5556,14 @@ msgstr "is gemuteerd"
 msgid "SPECIES_LIST"
 msgstr "Soortenlijst"
 
+#, fuzzy
+msgid "SPECIES_MEMBER_IMPACT_ON_POP"
+msgstr "Soortnaam is te lang!"
+
+#, fuzzy
+msgid "SPECIES_MEMBER_IMPACT_ON_POPULATION_EXPLANATION"
+msgstr "(kost van organellen, membranen en andere items in de editor)"
+
 msgid "SPECIES_NAME_DOT_DOT_DOT"
 msgstr "Soortnaam..."
 
@@ -6174,9 +6220,11 @@ msgstr ""
 msgid "TOXIN_VACUOLE"
 msgstr "Toxinevacuole"
 
+#, fuzzy
 msgid "TOXIN_VACUOLE_DESCRIPTION"
 msgstr "De toxinevacuole is een vacuole die aangepast is voor de specifieke productie, opslag, en afscheiding van [thrive:compound type=\"oxytoxy\"][/thrive:compound]. Meer toxinevacuolen zullen de snelheid waarmee gifstoffen kunnen worden afgegeven verhogen. Kan aangepast worden om het gegenereerde toxinetype te veranderen voor andere effecten."
 
+#, fuzzy
 msgid "TOXIN_VACUOLE_PROCESSES_DESCRIPTION"
 msgstr "Zet [thrive:compound type=\"atp\"][/thrive:compound] om in [thrive:compound type=\"oxytoxy\"][/thrive:compound]. Snelheid schaalt met de concentractie van [thrive:compound type=\"oxygen\"][/thrive:compound]. De gifstoffen kunnen worden vrijgelaten door [thrive:input]g_fire_toxin[/thrive:input]. Wanneer er weinig [thrive:compound type=\"oxytoxy\"][/thrive:compound] is, blijft het mogelijk om deze te schieten maar er zal minder schade worden aangedaan."
 
@@ -6187,9 +6235,6 @@ msgstr "Oxytoxysoom"
 #, fuzzy
 msgid "TOXISOME_DESCRIPTION"
 msgstr "Het lysosoom is een organel wat aan een membraan is gebonden en bevat hydrolytische enzymen die diverse biomoleculen kunnen afbreken. Lysosomen maken het mogelijk voor de cel om opgeslokte materie af te breken door middel van endocytose. Ook kan het afvalstoffen in de cel opruimen door middel van [b]autofagie[/b]."
-
-msgid "TO_BE_IMPLEMENTED"
-msgstr "Wordt Nog Geimplementeerd."
 
 msgid "TRANSLATORS"
 msgstr "Vertalers"
@@ -6461,6 +6506,15 @@ msgstr ""
 "\n"
 "Als je niet meercellig wenst te worden, zul je de kolonie moeten verlaten om de bewerker te kunnen openen.\n"
 "Verlaat de kolonie om weer te kunnen groeien door [thrive:input]g_unbind_all[/thrive:input] in te drukken."
+
+#, fuzzy
+msgid "TUTORIAL_MICROBE_STAGE_MEMBER_DIED"
+msgstr ""
+"Verzwelg objecten door over ze heen te bewegen terwijl de verzwelgmodus aanstaat. Zet verzwelgmodus aan door [thrive:input]g_toggle_engulf[/thrive:input] in te drukken.\n"
+"\n"
+"Stop de verzwelgmodus zodra je de objecten naar binnen hebt getrokken.\n"
+"\n"
+"Volg de lijn van je cel naar een verzwelgbaar object in de buurt."
 
 #, fuzzy
 msgid "TUTORIAL_MICROBE_STAGE_OPEN_PROCESS_PANEL"
@@ -8756,6 +8810,9 @@ msgstr "Inzoomen"
 
 msgid "ZOOM_OUT"
 msgstr "Uitzoomen"
+
+#~ msgid "TO_BE_IMPLEMENTED"
+#~ msgstr "Wordt Nog Geimplementeerd."
 
 #, fuzzy
 #~ msgid "MICROBE_STAGE_DAY_NIGHT_TEXT"

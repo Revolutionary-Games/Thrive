@@ -7,9 +7,9 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2025-03-28 15:15+0200\n"
-"PO-Revision-Date: 2025-02-06 13:29+0000\n"
-"Last-Translator: Anonymous <noreply@weblate.org>\n"
+"POT-Creation-Date: 2025-04-11 10:12+0300\n"
+"PO-Revision-Date: 2025-04-14 12:24+0000\n"
+"Last-Translator: Werka03 <weronica03@hotmail.com>\n"
 "Language-Team: Swedish <https://translate.revolutionarygamesstudio.com/projects/thrive/thrive-game/sv/>\n"
 "Language: sv\n"
 "MIME-Version: 1.0\n"
@@ -91,7 +91,7 @@ msgid "ADD_INPUT_BUTTON_TOOLTIP"
 msgstr "Lägg till ny tangentbindning"
 
 msgid "ADVANCED_VIEW"
-msgstr "Avancerad"
+msgstr "Avancerat"
 
 msgid "ADVANCED_VIEW_BUTTON_TOOLTIP"
 msgstr "Öppna vyn för avancerade inställningar"
@@ -333,6 +333,7 @@ msgstr "Augusti"
 msgid "AUTO"
 msgstr "Automatiskt"
 
+#, fuzzy
 msgid "AUTO-EVO_EXPLANATION_EXPLANATION"
 msgstr "Den här panelen visar talen som auto-evolutionen funkar från. Den totala energin en art är kapabel av att fånga, och kosten per individ av arten, bestämmer den slutliga befolkningen. Auto-evolutionen använder en simplifierad modell av verkligheten för att beräkna hur bra en art utför baserat på energin de kan samla. För varje matkälla, det visas hur mycket energi arten får från det. Additionelt är den totala energin som är tillgänglig från den källan är visad. En liten del av arten får ut av den totala energin baserat på hur stor fitness är mätit mot den totala fitness. Fitness är en metric av hur bra en art kan utilisera den matkällan."
 
@@ -409,7 +410,7 @@ msgid "AWARE_STAGE"
 msgstr "Medvetande Stadiet"
 
 msgid "BACK"
-msgstr "Backåt"
+msgstr "Bakåt"
 
 msgid "BACKGROUND_BLUR"
 msgstr ""
@@ -431,7 +432,7 @@ msgid "BALANCE_DISPLAY_AT_DAY_ALWAYS_TOOLTIP"
 msgstr ""
 
 msgid "BALANCE_DISPLAY_WHILE_MOVING"
-msgstr ""
+msgstr "Inkludera rörelse kostnad"
 
 #, fuzzy
 msgid "BALANCE_DISPLAY_WHILE_MOVING_TOOLTIP"
@@ -508,9 +509,8 @@ msgstr "Bästa Biom:"
 msgid "BIG_IRON_CHUNK"
 msgstr "Stor järnbit"
 
-#, fuzzy
 msgid "BIG_PHOSPHATE_CHUNK"
-msgstr "Stor järnbit"
+msgstr "Stor fosfatbit"
 
 msgid "BILLION_ABBREVIATION"
 msgstr "{0} B"
@@ -531,6 +531,14 @@ msgstr "Binder samman axlar"
 
 msgid "BIOLUMINESCENT_VACUOLE"
 msgstr "Bioluminescerande vakuol"
+
+#, fuzzy
+msgid "BIOLUMINESCENT_VACUOLE_DESCRIPTION"
+msgstr "Bioluminescerande vakuol"
+
+#, fuzzy
+msgid "BIOLUMINESCENT_VACUOLE_PROCESSES_DESCRIPTION"
+msgstr "Vakuolen är en inre membranorganell som används för lagring i cellen. De består av flera blåsor, mindre membranstrukturer som ofta används i celler för lagring, som har smält samman. Den är fylld med vatten som används för att hålla kvar molekyler, enzymer, fasta ämnen och andra ämnen. Deras form är flytande och kan variera mellan celler."
 
 msgid "BIOME_LABEL"
 msgstr "Omgivning: {0}"
@@ -723,7 +731,7 @@ msgid "CHEAT_MENU"
 msgstr "Fusk meny"
 
 msgid "CHEMICAL_BUTTON_MICROBE_TOOLTIP"
-msgstr ""
+msgstr "Visa / göm cellprocesser"
 
 msgid "CHEMOPLAST"
 msgstr "Kemoplast"
@@ -959,9 +967,8 @@ msgstr "Molekylmoln"
 msgid "COMPOUNDS_AT_MAX_SPEED"
 msgstr "Molekylmoln"
 
-#, fuzzy
 msgid "COMPOUNDS_BUTTON_MICROBE_TOOLTIP"
-msgstr "Hjälp"
+msgstr "Visa / göm föreningar"
 
 msgid "COMPOUNDS_COLON"
 msgstr "Föreningar:"
@@ -977,7 +984,7 @@ msgid "COMPOUND_BALANCE_MODE_TOOLTIP"
 msgstr "Hjälp"
 
 msgid "COMPOUND_BALANCE_TITLE"
-msgstr ""
+msgstr "Föreningsbalans"
 
 #, fuzzy
 msgid "COMPOUND_BALANCE_TOOLTIP"
@@ -990,9 +997,8 @@ msgstr "Molekylmoln"
 msgid "COMPOUND_CLOUD_BENCHMARK"
 msgstr "Molekylmoln"
 
-#, fuzzy
 msgid "COMPOUND_CLOUD_DENSITY"
-msgstr "Molekylmoln"
+msgstr "Molekylmoln densitet"
 
 #, fuzzy
 msgid "COMPOUND_CLOUD_DENSITY_EXPLANATION"
@@ -1516,9 +1522,8 @@ msgstr "Radera"
 msgid "DELETE_ALL_OLD_SAVE_WARNING_2"
 msgstr ""
 
-#, fuzzy
 msgid "DELETE_FOSSIL_CONFIRMATION"
-msgstr "Skriv över aktuell sparfil:"
+msgstr "Att radera denna fossil är permanent och kan inte ångras. Är du säker på att du vill radera den för gott?"
 
 msgid "DELETE_OLD_SAVES_PROMPT"
 msgstr ""
@@ -1606,14 +1611,22 @@ msgid "DEV_BUILD_PATRONS"
 msgstr ""
 
 msgid "DIFFICULTY"
-msgstr ""
+msgstr "Svårighetsgrad"
 
-#, fuzzy
 msgid "DIFFICULTY_DETAILS_STRING"
-msgstr "Anpassat"
+msgstr ""
+"Förinställd svårighetsgrad: {0}\n"
+"Faktor för mutationskostnad: {1} \n"
+"Mutations frekvens för AI: {2}\n"
+"Föreningsmoln-densitet: {3}\n"
+"Populations-straff vid spelarens död: {4}\n"
+"Kvarhållning av glukos i miljön: {5} \n"
+"Faktor för kostnaden av osmoreglering: {6}\n"
+"Gratis glukosmoln när redigeraren lämnas: {7}\n"
+"Begränsa användningen av tillväxtföreningar: {8}"
 
 msgid "DIFFICULTY_PRESET"
-msgstr ""
+msgstr "Förinställd svårighetsgrad"
 
 msgid "DIFFICULTY_PRESET_CUSTOM"
 msgstr "Anpassat"
@@ -1711,10 +1724,10 @@ msgstr ""
 "och har lägre sannolikhet att använda gifter mot rovdjur."
 
 msgid "DISMISS_INFORMATION_PERMANENTLY"
-msgstr ""
+msgstr "Visa inte detta igen"
 
 msgid "DISMISS_WARNING_PERMANENTLY"
-msgstr ""
+msgstr "Varna inte om detta igen"
 
 msgid "DISPLAY_3D_MENU_BACKGROUNDS"
 msgstr ""
@@ -1809,10 +1822,10 @@ msgid "EASTEREGG_MESSAGE_18"
 msgstr "Rolig fakta, The Stentor är ett ciliat som kan sträcka sig och fånga byten i en slags trumpet som mun som drar in byten genom att generera vattenströmmar med cilia."
 
 msgid "EASTEREGG_MESSAGE_2"
-msgstr "Här är ett tips, gifter kan användas för att putta andra gifter ifrån dig om du är snabb nog."
+msgstr "En av de första spelbara prototyperna skapades av vår grymma programmerare, Untrustedlife!"
 
 msgid "EASTEREGG_MESSAGE_3"
-msgstr "Här är ett tips, Osmoregulering kostar 1 ATP per sekund per hex som din cell har, varje tom hex av cytoplasma genererar också 5 ATP per sekund, vilket innebär att om du tappar ATP på grund av osmoregulering, lägg bara till ett par tomma hexecytoplasmer eller ta bort några organeller ."
+msgstr "Alla varelser i spelet kommer utvecklats från en gemensam förfader. Se om du kan L identifiera vilka som är närmst besläktade med varandra!"
 
 msgid "EASTEREGG_MESSAGE_4"
 msgstr "Rolig fakta, i verkliga livet har prokaryoter något som heter Biocompartments som fungerar som organeller och kallas faktiskt Polyhedrala organeller."
@@ -1824,7 +1837,7 @@ msgid "EASTEREGG_MESSAGE_6"
 msgstr "Här är ett tips, ibland är det bäst att bara fly från andra celler."
 
 msgid "EASTEREGG_MESSAGE_7"
-msgstr "Här är ett tips, om en cell är ungefär hälften så stor som det är då du kan svälja dem."
+msgstr "Thrive är tänkt som en simulering av en utomjordisk planet, så förvänta dig inte att hitta samma varelser som här på jorden!"
 
 msgid "EASTEREGG_MESSAGE_8"
 msgstr "Här är ett tips, bakterier kan vara starkare än de ser ut, de kan se små ut, men vissa av dem kan gräva sig in i dig och döda dig på det sättet!"
@@ -2042,9 +2055,8 @@ msgstr ""
 msgid "ENVIRONMENTAL_GLUCOSE_RETENTION_EXPLANATION"
 msgstr "{0} befolkning förändrades av {1} på grund av: {2}"
 
-#, fuzzy
 msgid "ENVIRONMENT_BUTTON_MICROBE_TOOLTIP"
-msgstr "Hjälp"
+msgstr "Visa / göm miljö"
 
 #, fuzzy
 msgid "ENVIRONMENT_TOLERANCE"
@@ -2139,13 +2151,11 @@ msgstr "Skriv över aktuell sparfil:"
 msgid "EXIT"
 msgstr "Lämna"
 
-#, fuzzy
 msgid "EXIT_EDITOR"
-msgstr "Aktivera Cellredigeraren"
+msgstr "Lämna cellredigeraren"
 
-#, fuzzy
 msgid "EXIT_TO_LAUNCHER"
-msgstr "Avfyra E"
+msgstr "Lämna till startprogrammet"
 
 msgid "EXPERIMENTAL_FEATURES"
 msgstr ""
@@ -2571,9 +2581,8 @@ msgstr "Grafik"
 msgid "GRAPHICS_TEAM"
 msgstr "Grafik"
 
-#, fuzzy
 msgid "GROWTH_ORDER"
-msgstr "BEKRÄFTA"
+msgstr "Tillväxtordning"
 
 msgid "GUI"
 msgstr ""
@@ -2745,9 +2754,8 @@ msgstr ""
 msgid "INFO_BOX_NEXT_STAGE"
 msgstr "DU HAR FRODATS!"
 
-#, fuzzy
 msgid "INFO_BOX_OSMOREGULATION_COST"
-msgstr "Osmoreguleringskost"
+msgstr "Osmoreguleringskostnad"
 
 #, fuzzy
 msgid "INFO_BOX_PREVIOUS_STAGE"
@@ -2963,11 +2971,10 @@ msgid "KEEP_MIGRATION"
 msgstr "Anding"
 
 msgid "KEY_BACK"
-msgstr "Backåt"
+msgstr "Bakåt"
 
-#, fuzzy
 msgid "KEY_BACKTAB"
-msgstr "Backåt"
+msgstr "Bakåt"
 
 msgid "KEY_BINDING_CHANGE_CONFLICT"
 msgstr ""
@@ -3261,28 +3268,23 @@ msgid "LICENSES_COVERING_THRIVE"
 msgstr "Licenserna för delar av Thrive visas här"
 
 msgid "LIFE_ORIGIN"
-msgstr ""
+msgstr "Livets ursprung"
 
-#, fuzzy
 msgid "LIFE_ORIGIN_EXPLANATION"
-msgstr ""
-"Aggressiva mikrober jagar byte över större avstånd\n"
-"och har större sannolikhet att kämpa emot när rovdjur attackerar.\n"
-"Fredliga mikrober attackerar inte andra över större avstånd\n"
-"och har lägre sannolikhet att använda gifter mot rovdjur."
+msgstr "(start plats)"
 
 msgid "LIFE_ORIGIN_PANSPERMIA"
-msgstr ""
+msgstr "Panspermi (slumpmässig)"
 
 msgid "LIFE_ORIGIN_POND"
-msgstr ""
+msgstr "Warm liten damm"
 
 #, fuzzy
 msgid "LIFE_ORIGIN_TOOLTIP"
 msgstr "Självmord"
 
 msgid "LIFE_ORIGIN_VENTS"
-msgstr ""
+msgstr "Hydrotermala källor"
 
 msgid "LIGHT"
 msgstr "Ljus"
@@ -3370,6 +3372,10 @@ msgid "LOADING_GAME"
 msgstr "Laddar Spel"
 
 #, fuzzy
+msgid "LOADING_GRAPHICS_SHADERS"
+msgstr "Laddar Spel"
+
+#, fuzzy
 msgid "LOADING_MACROSCOPIC_EDITOR"
 msgstr "Laddar mikrobredigerare"
 
@@ -3377,8 +3383,24 @@ msgid "LOADING_MICROBE_EDITOR"
 msgstr "Laddar mikrobredigerare"
 
 #, fuzzy
+msgid "LOADING_MICROBE_STAGE"
+msgstr "Mikrob Stadiet"
+
+#, fuzzy
 msgid "LOADING_MULTICELLULAR_EDITOR"
 msgstr "Laddar mikrobredigerare"
+
+#, fuzzy
+msgid "LOADING_MULTICELLULAR_STAGE"
+msgstr "Laddar mikrobredigerare"
+
+#, fuzzy
+msgid "LOADING_STAGE"
+msgstr "Laddar Spel"
+
+#, fuzzy
+msgid "LOADING_STAGE_ASSETS"
+msgstr "Laddar Spel"
 
 msgid "LOAD_FINISHED"
 msgstr "Färdigladdat"
@@ -3431,6 +3453,13 @@ msgstr ""
 
 msgid "LOW_QUALITY_BACKGROUND_BLUR_TOOLTIP"
 msgstr ""
+
+msgid "LUCIFERASE"
+msgstr ""
+
+#, fuzzy
+msgid "LUCIFERASE_SYNTHESIS"
+msgstr "Mucilagesyntes"
 
 msgid "LYSOSOME"
 msgstr "Lysosom"
@@ -4288,12 +4317,11 @@ msgstr ""
 msgid "NEW_GAME"
 msgstr "Nytt spel"
 
-#, fuzzy
 msgid "NEW_GAME_BUTTON_TOOLTIP"
-msgstr "Hjälp"
+msgstr "Starta ett nytt spel"
 
 msgid "NEW_GAME_SETTINGS_PERFORMANCE_OPTIONS_INFO"
-msgstr ""
+msgstr "Observera: Du kan när som helst justera prestandainställningarna i [color=#3796e1][url=thrive://GUI/OptionsMenu/Performance]options menu[/url][/color] för att förbättra spelets prestanda"
 
 #, fuzzy
 msgid "NEW_MOD_DEFAULT_DESCRIPTION"
@@ -4724,9 +4752,8 @@ msgstr "Page down"
 msgid "PAGEUP"
 msgstr "Page Up"
 
-#, fuzzy
 msgid "PAGE_BACK"
-msgstr "Backåt"
+msgstr "Bakåt"
 
 #, fuzzy
 msgid "PAGE_FORWARD"
@@ -4821,7 +4848,7 @@ msgid "PAUSE_PROMPT"
 msgstr ""
 
 msgid "PAUSE_TOOLTIP"
-msgstr ""
+msgstr "Pausa spelet"
 
 #, fuzzy
 msgid "PCK_LOAD_FAILED"
@@ -4864,9 +4891,8 @@ msgstr "/sekund"
 msgid "PHOSPHATE"
 msgstr "Fosfat"
 
-#, fuzzy
 msgid "PHOSPHATES_COST"
-msgstr "Fosfat"
+msgstr "Fosfat kostnad:"
 
 msgid "PHOTOSYNTHESIS"
 msgstr "Fotosyntes"
@@ -5036,9 +5062,8 @@ msgstr "Snabbspara"
 msgid "QUIT"
 msgstr "Lämna"
 
-#, fuzzy
 msgid "QUIT_BUTTON_TOOLTIP"
-msgstr "Självmord"
+msgstr "Lämna spelet"
 
 msgid "QUIT_GAME_WARNING"
 msgstr ""
@@ -5229,9 +5254,8 @@ msgstr "Fortsätt"
 msgid "RETURN_TO_MENU"
 msgstr "Tillbaka till Menyn"
 
-#, fuzzy
 msgid "RETURN_TO_MENU_TOOLTIP"
-msgstr "Tillbaka till Menyn"
+msgstr "Tillbaka till huvudmenyn"
 
 msgid "RETURN_TO_MENU_WARNING"
 msgstr ""
@@ -5331,7 +5355,7 @@ msgid "SAVE_AUTOSAVE"
 msgstr "Autospar"
 
 msgid "SAVE_DELETE_WARNING"
-msgstr ""
+msgstr "Att radera denna sparfil är permanent och kan inte ångras. Är du säker på att du vill radera {0} för gott?"
 
 msgid "SAVE_ERROR_INCLUDE_JSON_DEBUG_NOTE"
 msgstr ""
@@ -5675,9 +5699,8 @@ msgstr "Det slemiga inre av en cell. Cytoplasman är den grundläggande blandnin
 msgid "SMALL_IRON_CHUNK"
 msgstr "Liten Järnbit"
 
-#, fuzzy
 msgid "SMALL_PHOSPHATE_CHUNK"
-msgstr "Liten Järnbit"
+msgstr "Liten fosfatbit"
 
 #, fuzzy
 msgid "SMALL_SULFUR_CHUNK"
@@ -5767,6 +5790,14 @@ msgstr "har muterat"
 msgid "SPECIES_LIST"
 msgstr "Artlista"
 
+#, fuzzy
+msgid "SPECIES_MEMBER_IMPACT_ON_POP"
+msgstr "Artnamn..."
+
+#, fuzzy
+msgid "SPECIES_MEMBER_IMPACT_ON_POPULATION_EXPLANATION"
+msgstr "Den här panelen visar talen som auto-evolutionen funkar från. Den totala energin en art är kapabel av att fånga, och kosten per individ av arten, bestämmer den slutliga befolkningen. Auto-evolutionen använder en simplifierad modell av verkligheten för att beräkna hur bra en art utför baserat på energin de kan samla. För varje matkälla, det visas hur mycket energi arten"
+
 msgid "SPECIES_NAME_DOT_DOT_DOT"
 msgstr "Artnamn..."
 
@@ -5806,7 +5837,7 @@ msgid "SPRINT_ACTION_TOOLTIP"
 msgstr "Självmord"
 
 msgid "STAGE_MENU_BUTTON_TOOLTIP"
-msgstr ""
+msgstr "Pausmeny"
 
 #, fuzzy
 msgid "START"
@@ -5818,9 +5849,8 @@ msgstr "Börjar"
 msgid "START_CALIBRATION"
 msgstr ""
 
-#, fuzzy
 msgid "START_GAME"
-msgstr "Spara Spel"
+msgstr "Starta spelet"
 
 msgid "START_RESEARCH"
 msgstr ""
@@ -5935,7 +5965,7 @@ msgid "STRICT_NICHE_COMPETITION"
 msgstr "Sträng nischkonkurrens (skillnader i fitness är överdrivna)"
 
 msgid "STRUCTURAL"
-msgstr "Strukturel"
+msgstr "Strukturell"
 
 msgid "STRUCTURE"
 msgstr "Struktur"
@@ -6438,11 +6468,8 @@ msgstr ""
 "Fredliga mikrober attackerar inte andra över större avstånd\n"
 "och har lägre sannolikhet att använda gifter mot rovdjur."
 
-#, fuzzy
 msgid "TOXIN_VACUOLE"
-msgstr ""
-"Gift\n"
-"vakuol"
+msgstr "Giftvakuol"
 
 #, fuzzy
 msgid "TOXIN_VACUOLE_DESCRIPTION"
@@ -6459,9 +6486,6 @@ msgstr "Oxytoxisom"
 #, fuzzy
 msgid "TOXISOME_DESCRIPTION"
 msgstr "Metabolosomer är kluster av proteiner förpackade i proteinskal. De kan omvandla glukos till ATP i mycket högre takt än vad som kan göras i cytoplasman i en process som kallas Aerobisk Andning. Det kräver dock syre för att fungera, och lägre nivåer av syre i miljön kommer att sakta ner hastigheten för dess ATP-produktion. Eftersom metabolosomerna är suspenderade direkt i cytoplasman utför den omgivande vätskan viss jäsning."
-
-msgid "TO_BE_IMPLEMENTED"
-msgstr "Ej implementerat än."
 
 msgid "TRANSLATORS"
 msgstr "Översättare"
@@ -6671,6 +6695,10 @@ msgstr "W,A,S,D och musen för att röra dig. E för att skjuta OxyToxy NT om du
 
 #, fuzzy
 msgid "TUTORIAL_MICROBE_STAGE_LEAVE_COLONY_TEXT"
+msgstr "Mikrob Fri Byggredigerare"
+
+#, fuzzy
+msgid "TUTORIAL_MICROBE_STAGE_MEMBER_DIED"
 msgstr "Mikrob Fri Byggredigerare"
 
 #, fuzzy
@@ -8881,14 +8909,14 @@ msgstr ""
 "och har lägre sannolikhet att använda gifter mot rovdjur."
 
 msgid "WORLD_SIZE_LARGE"
-msgstr ""
+msgstr "Stor"
 
 #, fuzzy
 msgid "WORLD_SIZE_MEDIUM"
 msgstr "för att öka hastigheten"
 
 msgid "WORLD_SIZE_SMALL"
-msgstr ""
+msgstr "Liten"
 
 #, fuzzy
 msgid "WORLD_SIZE_TOOLTIP"

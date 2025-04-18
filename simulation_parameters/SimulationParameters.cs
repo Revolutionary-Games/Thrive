@@ -56,6 +56,8 @@ public partial class SimulationParameters : Node
     private Dictionary<string, Technology> technologies = null!;
     private Dictionary<string, VisualResourceData> visualResources = null!;
     private Dictionary<VisualResourceIdentifier, VisualResourceData> visualResourceByIdentifier = null!;
+    private Dictionary<string, StageResourcesList> stageResources = null!;
+    private Dictionary<MainGameState, StageResourcesList> stageResourcesByEnum = null!;
 
     private List<CompoundDefinition>? cachedCloudCompounds;
     private List<Enzyme>? cachedDigestiveEnzymes;
@@ -124,7 +126,7 @@ public partial class SimulationParameters : Node
             enzymes = LoadRegistry<Enzyme>("res://simulation_parameters/microbe_stage/enzymes.json", deserializers);
             biomes = LoadRegistry<Biome>("res://simulation_parameters/microbe_stage/biomes.json", deserializers);
 
-            // These later things already depend on the earlier things so another phase of direct loaders are needed
+            // These later things already depend on the earlier things, so another phase of direct loaders is needed
 
             deserializers =
             [
@@ -208,6 +210,8 @@ public partial class SimulationParameters : Node
 
         visualResources =
             LoadRegistry<VisualResourceData>("res://simulation_parameters/common/visual_resources.json");
+
+        stageResources = LoadRegistry<StageResourcesList>("res://simulation_parameters/common/stage_resources.json");
 
         // Build info is only loaded if the file is present
         if (FileAccess.FileExists(ThriveScriptConstants.BUILD_INFO_RES))
@@ -539,8 +543,13 @@ public partial class SimulationParameters : Node
         return visualResourceByIdentifier[VisualResourceIdentifier.Error];
     }
 
+    public StageResourcesList GetStageResources(MainGameState gameState)
+    {
+        return stageResourcesByEnum[gameState];
+    }
+
     /// <summary>
-    ///   Applies translations to all registry loaded types. Called whenever the locale is changed
+    ///   Applies translations to all registry-loaded types. Called whenever the locale is changed
     /// </summary>
     public void ApplyTranslations()
     {
@@ -572,6 +581,7 @@ public partial class SimulationParameters : Node
         ApplyRegistryObjectTranslations(spaceStructures);
         ApplyRegistryObjectTranslations(technologies);
         ApplyRegistryObjectTranslations(visualResources);
+        ApplyRegistryObjectTranslations(stageResources);
     }
 
     private static void CheckRegistryType<T>(Dictionary<string, T> registry)
@@ -581,6 +591,19 @@ public partial class SimulationParameters : Node
         {
             entry.Value.InternalName = entry.Key;
             entry.Value.Check(entry.Key);
+        }
+    }
+
+    private static void CheckRegistryType<T, TKey>(Dictionary<TKey, T> registry)
+        where T : class, IRegistryType
+        where TKey : notnull
+    {
+        foreach (var entry in registry)
+        {
+            var asString = entry.Key.ToString() ??
+                throw new Exception("registry dictionary key should be convertible to string");
+            entry.Value.InternalName = asString;
+            entry.Value.Check(asString);
         }
     }
 
@@ -596,8 +619,9 @@ public partial class SimulationParameters : Node
         }
     }
 
-    private static void ApplyRegistryObjectTranslations<T>(Dictionary<string, T> registry)
+    private static void ApplyRegistryObjectTranslations<T, TKey>(Dictionary<TKey, T> registry)
         where T : class, IRegistryType
+        where TKey : notnull
     {
         foreach (var entry in registry)
         {
@@ -743,6 +767,7 @@ public partial class SimulationParameters : Node
         CheckRegistryType(spaceStructures);
         CheckRegistryType(technologies);
         CheckRegistryType(visualResources);
+        CheckRegistryType(stageResources);
 
         NameGenerator.Check(string.Empty);
         PatchMapNameGenerator.Check(string.Empty);
@@ -821,9 +846,13 @@ public partial class SimulationParameters : Node
 
         NameGenerator.Resolve(this);
 
-        // TODO: there could also be a check for making sure non-existent compounds, processes etc. are not used
+        visualResourceByIdentifier = visualResources.ToDictionary(t => t.Value.VisualIdentifier, t => t.Value);
+        stageResourcesByEnum = stageResources.ToDictionary(t => t.Value.Stage, t => t.Value);
 
-        visualResourceByIdentifier = visualResources.ToDictionary(t => t.Value.Identifier, t => t.Value);
+        foreach (var entry in stageResources)
+        {
+            entry.Value.Resolve(this);
+        }
     }
 
     private List<CompoundDefinition> ComputeCloudCompounds()

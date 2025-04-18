@@ -7,8 +7,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2025-03-28 15:15+0200\n"
-"PO-Revision-Date: 2025-03-27 11:38+0000\n"
+"POT-Creation-Date: 2025-04-11 10:12+0300\n"
+"PO-Revision-Date: 2025-04-04 10:42+0000\n"
 "Last-Translator: Anonymous <noreply@weblate.org>\n"
 "Language-Team: Indonesian <https://translate.revolutionarygamesstudio.com/projects/thrive/thrive-game/id/>\n"
 "Language: id\n"
@@ -551,6 +551,14 @@ msgstr ""
 
 msgid "BIOLUMINESCENT_VACUOLE"
 msgstr "Vakuola Bioluminesensi"
+
+#, fuzzy
+msgid "BIOLUMINESCENT_VACUOLE_DESCRIPTION"
+msgstr "Vakuola Bioluminesensi"
+
+#, fuzzy
+msgid "BIOLUMINESCENT_VACUOLE_PROCESSES_DESCRIPTION"
+msgstr "Mengubah [thrive:compound type=\"atp\"][/thrive:compound] menjadi [thrive:compound type=\"oxytoxy\"][/thrive:compound]. Laju berbanding lurus dengan konsentrasi [thrive:compound type=\"oxygen\"][/thrive:compound]. Dapat meluncurkan toksin dengan menekan tombol [thrive:input]g_fire_toxin[/thrive:input]."
 
 msgid "BIOME_LABEL"
 msgstr "Bioma: {0}"
@@ -3372,6 +3380,10 @@ msgid "LOADING_GAME"
 msgstr "Memuat Permainan"
 
 #, fuzzy
+msgid "LOADING_GRAPHICS_SHADERS"
+msgstr "Memuat Permainan"
+
+#, fuzzy
 msgid "LOADING_MACROSCOPIC_EDITOR"
 msgstr "Memuat Editor Mikroba"
 
@@ -3379,8 +3391,24 @@ msgid "LOADING_MICROBE_EDITOR"
 msgstr "Memuat Editor Mikroba"
 
 #, fuzzy
+msgid "LOADING_MICROBE_STAGE"
+msgstr "Tahapan Mikrob"
+
+#, fuzzy
 msgid "LOADING_MULTICELLULAR_EDITOR"
 msgstr "Memuat Editor Mikroba"
+
+#, fuzzy
+msgid "LOADING_MULTICELLULAR_STAGE"
+msgstr "Memuat Editor Mikroba"
+
+#, fuzzy
+msgid "LOADING_STAGE"
+msgstr "Memuat Permainan"
+
+#, fuzzy
+msgid "LOADING_STAGE_ASSETS"
+msgstr "Memuat Permainan"
 
 msgid "LOAD_FINISHED"
 msgstr "Selesai memuat"
@@ -3444,6 +3472,13 @@ msgstr ""
 
 msgid "LOW_QUALITY_BACKGROUND_BLUR_TOOLTIP"
 msgstr ""
+
+msgid "LUCIFERASE"
+msgstr ""
+
+#, fuzzy
+msgid "LUCIFERASE_SYNTHESIS"
+msgstr "Kemosintesis"
 
 msgid "LYSOSOME"
 msgstr "Lisosom"
@@ -4742,6 +4777,7 @@ msgstr "Kekebalan Racun"
 msgid "OXYGEN_TOLERANCE_TOOLTIP"
 msgstr "Tambah keybind baru"
 
+#, fuzzy
 msgid "OXYTOXISOME_PROCESSES_DESCRIPTION"
 msgstr "Mengubah [thrive:compound type=\"atp\"][/thrive:compound] menjadi [thrive:compound type=\"oxytoxy\"][/thrive:compound]. Laju berbanding lurus dengan konsentrasi [thrive:compound type=\"oxygen\"][/thrive:compound]. Dapat meluncurkan toksin dengan menekan tombol [thrive:input]g_fire_toxin[/thrive:input]."
 
@@ -5804,6 +5840,14 @@ msgstr "mengalami mutasi"
 msgid "SPECIES_LIST"
 msgstr "Daftar Spesies"
 
+#, fuzzy
+msgid "SPECIES_MEMBER_IMPACT_ON_POP"
+msgstr "Nama spesies..."
+
+#, fuzzy
+msgid "SPECIES_MEMBER_IMPACT_ON_POPULATION_EXPLANATION"
+msgstr "{0} populasi berubah {1} karena: {2}"
+
 msgid "SPECIES_NAME_DOT_DOT_DOT"
 msgstr "Nama spesies..."
 
@@ -6471,6 +6515,7 @@ msgstr ""
 msgid "TOXIN_VACUOLE_DESCRIPTION"
 msgstr "Vakuola racun adalah vakuola yang telah dimodifikasi untuk pembuatan khusus, penyimpanan dan sekresi racun oksitoksi. Vakuola racun yang lebih banyak akan mempercepat laju pengeluaran racun tersebut."
 
+#, fuzzy
 msgid "TOXIN_VACUOLE_PROCESSES_DESCRIPTION"
 msgstr "Mengubah [thrive:compound type=\"atp\"][/thrive:compound] menjadi [thrive:compound type=\"oxytoxy\"][/thrive:compound]. Laju berbanding lurus dengan konsentrasi [thrive:compound type=\"oxygen\"][/thrive:compound]. Dapat meluncurkan toksin dengan menekan tombol [thrive:input]g_fire_toxin[/thrive:input]."
 
@@ -6481,9 +6526,6 @@ msgstr "Oksitoksisom"
 #, fuzzy
 msgid "TOXISOME_DESCRIPTION"
 msgstr "Metabolosom adalah gugusan protein terbungkus dalam kulit protein. Mereka dapat mengkonversi glukosa menjadi ATP pada laju yang lebih tinggi daripada yang terjadi di sitoplasma dengan proses yang dinamakan Respirasi Aerob. Namun, proses tersebut tentu membutuhkan oksigen untuk berfungsi, dan tingkat oksigen yang lebih rendah di lingkungan akan memperlambat laju produksi ATP-nya. Karena metabolosom tersuspensi secara langsung dalam sitoplasma, cairan sekelilingnya juga melakukan beberapa glikolisis."
-
-msgid "TO_BE_IMPLEMENTED"
-msgstr "Untuk di implementasi."
 
 #, fuzzy
 msgid "TRANSLATORS"
@@ -6755,6 +6797,13 @@ msgstr "[thrive:input]g_move_forward[/thrive:input],[thrive:input]g_move_left[/t
 
 #, fuzzy
 msgid "TUTORIAL_MICROBE_STAGE_LEAVE_COLONY_TEXT"
+msgstr ""
+"Kamu telah memasuki mode lepas. Di mode ini kamu dapat mengklik anggota koloni untuk melepaskan mereka.\n"
+"\n"
+"Untuk lepas seluruhnya dari koloni kamu dapat mengklik pada selmu sendiri atau tekan tombol unbind all."
+
+#, fuzzy
+msgid "TUTORIAL_MICROBE_STAGE_MEMBER_DIED"
 msgstr ""
 "Kamu telah memasuki mode lepas. Di mode ini kamu dapat mengklik anggota koloni untuk melepaskan mereka.\n"
 "\n"
@@ -9050,6 +9099,9 @@ msgstr "Perbesar"
 
 msgid "ZOOM_OUT"
 msgstr "Perkecil"
+
+#~ msgid "TO_BE_IMPLEMENTED"
+#~ msgstr "Untuk di implementasi."
 
 #, fuzzy
 #~ msgid "MICROBE_STAGE_DAY_NIGHT_TEXT"

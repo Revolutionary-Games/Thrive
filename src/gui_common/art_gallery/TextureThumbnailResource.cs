@@ -52,4 +52,10 @@ public class TextureThumbnailResource : ITextureResource
     public void PerformPostProcessing()
     {
     }
+
+    public void UnLoad()
+    {
+        loadedTexture = null;
+        Loaded = false;
+    }
 }

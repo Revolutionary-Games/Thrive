@@ -139,9 +139,7 @@ void fragment()
 
     const int num_iter = 7;
     const float stepsiz = 1.0 / (float(num_iter)-1.0);
-    float rnd = fract(1.61803398875 + texture(screenTexture,
-        FRAGCOORD.xy/vec2(textureSize(screenTexture,0)), -10.0 ).x); // nrand( uv + fract(iTime) );
-    float t = rnd * stepsiz;
+    float t = stepsiz;
 
     vec3 sumcol = vec3(0.0);
     vec3 sumw = vec3(0.0);
@@ -158,7 +156,6 @@ void fragment()
 
     vec3 outcol = sumcol.rgb;
     outcol = lin2srgb(outcol);
-    outcol += rnd/255.0;
 
     COLOR = vec4(outcol,1.0);
 }

@@ -454,6 +454,12 @@ public class BiomeConditions : IBiomeConditions, ICloneable
             {
                 throw new InvalidRegistryDataException(name, GetType().Name, "Missing physics density for chunk type");
             }
+
+            if (chunk.Value.Damages > 0 && string.IsNullOrEmpty(chunk.Value.DamageType))
+            {
+                throw new InvalidRegistryDataException(name, GetType().Name,
+                    "Missing damage type for chunk type that deals damage");
+            }
         }
     }
 

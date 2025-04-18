@@ -32,8 +32,11 @@ func run_and_wait(tests: Array[GdUnitTestCase]) -> void:
 		@warning_ignore("unsafe_call_argument")
 		var suite_tests: Array[GdUnitTestCase] = Array(grouped_by_suites[suite_path], TYPE_OBJECT, "RefCounted", GdUnitTestCase)
 		var script := GdUnitTestSuiteScanner.load_with_disabled_warnings(suite_path)
-		var test_suite := scanner.load_suite(script, suite_tests)
-		await execute(test_suite)
+		if script.get_class() == "GDScript":
+			var test_suite := scanner.load_suite(script as GDScript, suite_tests)
+			await execute(test_suite)
+		else:
+			await GdUnit4CSharpApiLoader.execute(suite_tests)
 
 
 func fail_fast(enabled :bool) -> void:

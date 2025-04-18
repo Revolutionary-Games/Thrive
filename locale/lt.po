@@ -7,8 +7,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2025-03-28 15:15+0200\n"
-"PO-Revision-Date: 2025-01-21 12:01+0000\n"
+"POT-Creation-Date: 2025-04-11 10:12+0300\n"
+"PO-Revision-Date: 2025-04-04 10:42+0000\n"
 "Last-Translator: Anonymous <noreply@weblate.org>\n"
 "Language-Team: Lithuanian <https://translate.revolutionarygamesstudio.com/projects/thrive/thrive-game/lt/>\n"
 "Language: lt\n"
@@ -334,6 +334,7 @@ msgstr "Rugpjūtis"
 msgid "AUTO"
 msgstr "Automatinis"
 
+#, fuzzy
 msgid "AUTO-EVO_EXPLANATION_EXPLANATION"
 msgstr "Šiame skydelyje rodomi skaičiai, pagal kuriuos atliekama automatinės evoliucijos prognozė. Nuo bendros energijos, kurią rūšis gali surinkti, ir sąnaudų, tenkančių vienam rūšies individui, priklauso galutinė populiacija. Auto-evo naudoja supaprastintą tikrovės modelį, kad apskaičiuotų, kaip gerai rūšims sekasi pagal energiją, kurią jos sugeba surinkti. Kiekvieno maisto šaltinio atveju parodoma, kiek energijos rūšis iš jo gauna. Be to, rodoma bendra iš to šaltinio gaunama energija. Dalis, kurią rūšis gauna iš visos energijos, priklauso nuo to, koks yra jos tinkamumas, palyginti su bendru tinkamumu. Tinkamumas - tai rodiklis, parodantis, kaip gerai rūšis gali panaudoti tą maisto šaltinį."
 
@@ -525,6 +526,14 @@ msgid "BIND_AXES_SENSITIVITY"
 msgstr "Susieti ašis"
 
 msgid "BIOLUMINESCENT_VACUOLE"
+msgstr "Bioluminescencinė Vakuolė"
+
+#, fuzzy
+msgid "BIOLUMINESCENT_VACUOLE_DESCRIPTION"
+msgstr "Bioluminescencinė Vakuolė"
+
+#, fuzzy
+msgid "BIOLUMINESCENT_VACUOLE_PROCESSES_DESCRIPTION"
 msgstr "Bioluminescencinė Vakuolė"
 
 msgid "BIOME_LABEL"
@@ -3206,14 +3215,34 @@ msgid "LOADING_GAME"
 msgstr "Įkeliamas žaidimas"
 
 #, fuzzy
+msgid "LOADING_GRAPHICS_SHADERS"
+msgstr "Įkeliamas žaidimas"
+
+#, fuzzy
 msgid "LOADING_MACROSCOPIC_EDITOR"
 msgstr "Tapti Makroskopiniu ({0}/{1})"
 
 msgid "LOADING_MICROBE_EDITOR"
 msgstr ""
 
+#, fuzzy
+msgid "LOADING_MICROBE_STAGE"
+msgstr "Bendri Redaktoriaus ir Strategijos Etapai"
+
 msgid "LOADING_MULTICELLULAR_EDITOR"
 msgstr ""
+
+#, fuzzy
+msgid "LOADING_MULTICELLULAR_STAGE"
+msgstr "Daugialąstis"
+
+#, fuzzy
+msgid "LOADING_STAGE"
+msgstr "Įkeliamas žaidimas"
+
+#, fuzzy
+msgid "LOADING_STAGE_ASSETS"
+msgstr "Įkeliamas žaidimas"
 
 msgid "LOAD_FINISHED"
 msgstr "Įkrovimas baigtas"
@@ -3263,6 +3292,13 @@ msgstr ""
 
 msgid "LOW_QUALITY_BACKGROUND_BLUR_TOOLTIP"
 msgstr ""
+
+msgid "LUCIFERASE"
+msgstr ""
+
+#, fuzzy
+msgid "LUCIFERASE_SYNTHESIS"
+msgstr "Chemosintezė"
 
 msgid "LYSOSOME"
 msgstr ""
@@ -5364,6 +5400,13 @@ msgstr ""
 msgid "SPECIES_LIST"
 msgstr ""
 
+msgid "SPECIES_MEMBER_IMPACT_ON_POP"
+msgstr ""
+
+#, fuzzy
+msgid "SPECIES_MEMBER_IMPACT_ON_POPULATION_EXPLANATION"
+msgstr "(organelių sąnaudos, membranos ir kiti elementai redaktoriuje)"
+
 msgid "SPECIES_NAME_DOT_DOT_DOT"
 msgstr ""
 
@@ -6002,9 +6045,6 @@ msgstr ""
 msgid "TOXISOME_DESCRIPTION"
 msgstr "Chitinazė leidžia ląstelei suardyti chitino membraną. Kiekvienas papildymas didina veiksmingumą."
 
-msgid "TO_BE_IMPLEMENTED"
-msgstr ""
-
 msgid "TRANSLATORS"
 msgstr ""
 
@@ -6116,6 +6156,10 @@ msgstr ""
 
 msgid "TUTORIAL_MICROBE_STAGE_LEAVE_COLONY_TEXT"
 msgstr ""
+
+#, fuzzy
+msgid "TUTORIAL_MICROBE_STAGE_MEMBER_DIED"
+msgstr "Chemoreceptorius"
 
 #, fuzzy
 msgid "TUTORIAL_MICROBE_STAGE_OPEN_PROCESS_PANEL"
@@ -8472,10 +8516,6 @@ msgstr ""
 #, fuzzy
 #~ msgid "WIKI_MICROBE_EDITOR"
 #~ msgstr "Mikroorganizmų redaktorius"
-
-#, fuzzy
-#~ msgid "WIKI_MUCILAGE_SYNTHESIS"
-#~ msgstr "Chemosintezė"
 
 #, fuzzy
 #~ msgid "WIKI_PHOTOSYNTHESIS"

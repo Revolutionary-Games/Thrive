@@ -7,8 +7,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2025-03-28 15:15+0200\n"
-"PO-Revision-Date: 2025-03-27 11:38+0000\n"
+"POT-Creation-Date: 2025-04-11 10:12+0300\n"
+"PO-Revision-Date: 2025-04-04 10:42+0000\n"
 "Last-Translator: Anonymous <noreply@weblate.org>\n"
 "Language-Team: Dutch (Belgium) <https://translate.revolutionarygamesstudio.com/projects/thrive/thrive-game/nl_BE/>\n"
 "Language: nl_BE\n"
@@ -340,6 +340,7 @@ msgstr "Augustus"
 msgid "AUTO"
 msgstr "Auto"
 
+#, fuzzy
 msgid "AUTO-EVO_EXPLANATION_EXPLANATION"
 msgstr "Dit paneel toont de waarden die de auto-evo voorspelling gebruikt. De totale energie die een soort kan verzamelen en de kosten per individu van de soort bepalen de uiteindelijke bevolkingsaantal. Auto-evo gebruikt een versimpeld beeld van de werkelijkheid om te berekenen hoe goed een soort presteert op basis van de energie die ze kunnen verzamelen. Voor elke voedselbron wordt er getoond hoeveel energie een soort daar van krijgt. Verder wordt de totale hoeveelheid energie die van die bron beschikbaar is getoond. Het deel dat de soort uit de totale energie krijgt is gebaseerd op hoe groot de geschiktheid is in vergelijking tot de totale geschiktheid. Geschiktheid is een metriek die toont hoe goed een soort die voedselbron kan gebruiken."
 
@@ -536,6 +537,14 @@ msgstr "Bind assen bij elkaar"
 
 msgid "BIOLUMINESCENT_VACUOLE"
 msgstr "Bioluminescente Vacuole"
+
+#, fuzzy
+msgid "BIOLUMINESCENT_VACUOLE_DESCRIPTION"
+msgstr "Bioluminescente Vacuole"
+
+#, fuzzy
+msgid "BIOLUMINESCENT_VACUOLE_PROCESSES_DESCRIPTION"
+msgstr "Verandert [thrive:compound type=\"atp\"][/thrive:compound] in [thrive:compound type=\"oxytoxy\"][/thrive:compound]. Snelheid schaalt met de concentratie van [thrive:compound type=\"oxygen\"][/thrive:compound]. Kan gifstoffen afvuren door op [thrive:input]g_fire_toxin[/thrive:input] te drukken. Wanneer de hoeveelheid van [thrive:compound type=\"oxytoxy\"][/thrive:compound] laag is, is afvuren nog altijd mogelijk maar het zal minder schade doen."
 
 msgid "BIOME_LABEL"
 msgstr "Bioom: {0}"
@@ -3380,6 +3389,10 @@ msgid "LOADING_GAME"
 msgstr "Spel laden"
 
 #, fuzzy
+msgid "LOADING_GRAPHICS_SHADERS"
+msgstr "Spel laden"
+
+#, fuzzy
 msgid "LOADING_MACROSCOPIC_EDITOR"
 msgstr "Microbe editor laden"
 
@@ -3387,8 +3400,24 @@ msgid "LOADING_MICROBE_EDITOR"
 msgstr "Microbe editor laden"
 
 #, fuzzy
+msgid "LOADING_MICROBE_STAGE"
+msgstr "Processen"
+
+#, fuzzy
 msgid "LOADING_MULTICELLULAR_EDITOR"
 msgstr "Microbe editor laden"
+
+#, fuzzy
+msgid "LOADING_MULTICELLULAR_STAGE"
+msgstr "Microbe editor laden"
+
+#, fuzzy
+msgid "LOADING_STAGE"
+msgstr "Spel laden"
+
+#, fuzzy
+msgid "LOADING_STAGE_ASSETS"
+msgstr "Spel laden"
 
 msgid "LOAD_FINISHED"
 msgstr "Laden voltooid"
@@ -3453,6 +3482,13 @@ msgstr ""
 
 msgid "LOW_QUALITY_BACKGROUND_BLUR_TOOLTIP"
 msgstr ""
+
+msgid "LUCIFERASE"
+msgstr ""
+
+#, fuzzy
+msgid "LUCIFERASE_SYNTHESIS"
+msgstr "Chemosynthese"
 
 #, fuzzy
 msgid "LYSOSOME"
@@ -4726,6 +4762,7 @@ msgstr "Toxine-resistentie"
 msgid "OXYGEN_TOLERANCE_TOOLTIP"
 msgstr "Toon / verstop omgeving en verbindingen"
 
+#, fuzzy
 msgid "OXYTOXISOME_PROCESSES_DESCRIPTION"
 msgstr "verandert [thrive:compound type=\"atp\"][/thrive:compound] in [thrive:compound type=\"oxytoxy\"][/thrive:compound]. Ratio schaalt met concentratie van [thrive:compound type=\"oxygen\"][/thrive:compound]. Kan gif afvuren door te drukken op [thrive:input]g_fire_toxin[/thrive:input]."
 
@@ -5784,6 +5821,14 @@ msgstr "heeft een mutatie"
 msgid "SPECIES_LIST"
 msgstr "Soortenlijst"
 
+#, fuzzy
+msgid "SPECIES_MEMBER_IMPACT_ON_POP"
+msgstr "Soortnaam is te lang!"
+
+#, fuzzy
+msgid "SPECIES_MEMBER_IMPACT_ON_POPULATION_EXPLANATION"
+msgstr "(kost van organellen, membranen en andere items in de bewerker)"
+
 msgid "SPECIES_NAME_DOT_DOT_DOT"
 msgstr "Soortnaam..."
 
@@ -6457,6 +6502,7 @@ msgstr ""
 msgid "TOXIN_VACUOLE_DESCRIPTION"
 msgstr "De gifstoffenvacuole is een vacuole die speciaal aangepast is voor de specifieke productie, opslag en afscheiding van oxytoxy gifstoffen. Meer gifstoffenvacuolen zullen de snelheid waarmee gifstoffen worden vrijgelaten kunnen vergroten."
 
+#, fuzzy
 msgid "TOXIN_VACUOLE_PROCESSES_DESCRIPTION"
 msgstr "Verandert [thrive:compound type=\"atp\"][/thrive:compound] in [thrive:compound type=\"oxytoxy\"][/thrive:compound]. Snelheid schaalt met de concentratie van [thrive:compound type=\"oxygen\"][/thrive:compound]. Kan gifstoffen afvuren door op [thrive:input]g_fire_toxin[/thrive:input] te drukken. Wanneer de hoeveelheid van [thrive:compound type=\"oxytoxy\"][/thrive:compound] laag is, is afvuren nog altijd mogelijk maar het zal minder schade doen."
 
@@ -6467,9 +6513,6 @@ msgstr "Oxytoxisoom"
 #, fuzzy
 msgid "TOXISOME_DESCRIPTION"
 msgstr "Metabolosomen zijn clusters van proteïnen verpakt in eiwitomhulsels. Ze zijn in staat om veel sneller glucose om te zetten in ATP dan cytoplasma, dit door middel van een proces genaamd aerobe respiratie. Het heeft echter wel zuurstof nodig om te functioneren en lagere zuurstofniveaus in de omgeving vertragen dus de ATP-productie. Omdat de metabolosomen direct in het cytoplasma zijn gesuspendeerd, voert de omringende vloeistof enige glycolyse uit."
-
-msgid "TO_BE_IMPLEMENTED"
-msgstr "Moet nog toegevoegd worden."
 
 msgid "TRANSLATORS"
 msgstr "Vertalers"
@@ -6736,6 +6779,13 @@ msgstr ""
 
 #, fuzzy
 msgid "TUTORIAL_MICROBE_STAGE_LEAVE_COLONY_TEXT"
+msgstr ""
+"U bent in de ontbind-modus gekomen. In deze modus kun je op kolonieleden klikken om ze te ontbinden.\n"
+"\n"
+"Om de kolonie helemaal te verlaten kun je op je eigen cel klikken of op de unbind all-toets drukken."
+
+#, fuzzy
+msgid "TUTORIAL_MICROBE_STAGE_MEMBER_DIED"
 msgstr ""
 "U bent in de ontbind-modus gekomen. In deze modus kun je op kolonieleden klikken om ze te ontbinden.\n"
 "\n"
@@ -9058,6 +9108,9 @@ msgstr "Inzoomen"
 
 msgid "ZOOM_OUT"
 msgstr "Uitzoomen"
+
+#~ msgid "TO_BE_IMPLEMENTED"
+#~ msgstr "Moet nog toegevoegd worden."
 
 #, fuzzy
 #~ msgid "MICROBE_STAGE_DAY_NIGHT_TEXT"

@@ -25,6 +25,14 @@ public partial class LightConfigurationPanel : PanelContainer
     [Signal]
     public delegate void OnLightButtonClickEventHandler(int type);
 
+    public override void _Ready()
+    {
+        base._Ready();
+
+        nightButton.Visible = true;
+        averageLightButton.Visible = true;
+    }
+
     public void OnLightButtonClicked(string type)
     {
         EmitSignal(SignalName.OnLightButtonClick, (int)Enum.Parse<LightLevelOption>(type));

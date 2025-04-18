@@ -7,8 +7,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2025-03-28 15:15+0200\n"
-"PO-Revision-Date: 2025-03-27 11:38+0000\n"
+"POT-Creation-Date: 2025-04-11 10:12+0300\n"
+"PO-Revision-Date: 2025-04-04 10:41+0000\n"
 "Last-Translator: Anonymous <noreply@weblate.org>\n"
 "Language-Team: French <https://translate.revolutionarygamesstudio.com/projects/thrive/thrive-game/fr/>\n"
 "Language: fr\n"
@@ -333,6 +333,7 @@ msgstr "Août"
 msgid "AUTO"
 msgstr "Automatique"
 
+#, fuzzy
 msgid "AUTO-EVO_EXPLANATION_EXPLANATION"
 msgstr "Ce panneau affiche les données qu'utilise l'Auto-Évo pour sa prédiction. L'énergie totale que peut accaparer une espèce, et le coût de survie pour chacun de ses individus, détermine la population finale. L'Auto-Évo utilise un modèle simplifié de la réalité pour calculer à quel point une espèce est adaptée à son milieu, en fonction de l'énergie qu'elle parvient à capturer. La quantité d'énergie qu'une source de nourriture fournit à l'espèce est ainsi affichée à côté de la quantité totale d'énergie que chacune d'entre elles est en mesure d'offrir. La fraction ainsi obtenue de cette énergie totale est calculée à partir de l'adaptation de l'espèce, c'est-à-dire de sa capacité à utiliser cette source, rapportée à l'adaptation totale de toutes les espèces."
 
@@ -522,6 +523,14 @@ msgstr "Lier les axes ensemble"
 
 msgid "BIOLUMINESCENT_VACUOLE"
 msgstr "Vacuole bioluminescente"
+
+#, fuzzy
+msgid "BIOLUMINESCENT_VACUOLE_DESCRIPTION"
+msgstr "Vacuole bioluminescente"
+
+#, fuzzy
+msgid "BIOLUMINESCENT_VACUOLE_PROCESSES_DESCRIPTION"
+msgstr "Transforme l'[thrive:compound type=\"atp\"][/thrive:compound] en [thrive:compound type=\"oxytoxy\"][/thrive:compound]. Taux proportionnel à la concentration d'[thrive:compound type=\"oxygen\"][/thrive:compound]. Peut libérer des toxines en appuyant sur [thrive:input]g_fire_toxin[/thrive:input]. Lorsque la quantité d'[thrive:compound type=\"oxytoxy\"][/thrive:compound] est faible, il est toujours possible de tirer mais les dégâts sont réduits."
 
 msgid "BIOME_LABEL"
 msgstr "Terrain : {0}"
@@ -2407,7 +2416,7 @@ msgid "GLES3"
 msgstr "GLES3"
 
 msgid "GLOBAL_GLACIATION_END_EVENT_LOG"
-msgstr ""
+msgstr "L'ère glaciaire a pris fin sur toutes les tuiles de surface"
 
 #, fuzzy
 msgid "GLOBAL_GLACIATION_EVENT"
@@ -2418,13 +2427,13 @@ msgid "GLOBAL_GLACIATION_EVENT_TOOLTIP"
 msgstr "Passer à la Phase d'Éveil. Disponible une fois que vous avez assez de puissance cérébrale (Type de tissu avec axones)."
 
 msgid "GLOBAL_GLACIATION_EVENT_WARNING_LOG_PLURAL"
-msgstr ""
+msgstr "L’ère glaciaire se déclenchera dans {0} générations"
 
 msgid "GLOBAL_GLACIATION_EVENT_WARNING_LOG_SINGULAR"
-msgstr ""
+msgstr "L'ère glaciale se déclenchera dans {0} génération"
 
 msgid "GLOBAL_GLACIATION_START_EVENT_LOG"
-msgstr ""
+msgstr "L'ère glaciaire a commencé sur toutes les tuiles de surface"
 
 msgid "GLOBAL_INITIAL_LETTER"
 msgstr "G"
@@ -2484,7 +2493,7 @@ msgstr ""
 "vous pouvez essayer de désactiver cette option."
 
 msgid "GUI_TAB_NAVIGATION"
-msgstr ""
+msgstr "Onglet navigation UI"
 
 msgid "GUI_VOLUME"
 msgstr "Volume de l'interface"
@@ -2583,7 +2592,7 @@ msgid "ID_NUMBER"
 msgstr "Identifiant numérique"
 
 msgid "IF_FALLBACK_RENDERER_USED_ALL_NOT_AVAILABLE"
-msgstr ""
+msgstr "(en fonction du mode de rendu et de la mise à l’échelle, toutes les méthodes ne sont pas disponibles)"
 
 #, fuzzy
 msgid "IMAGE_FILE_TYPES"
@@ -3217,14 +3226,34 @@ msgid "LOADING_GAME"
 msgstr "Chargement du jeu"
 
 #, fuzzy
+msgid "LOADING_GRAPHICS_SHADERS"
+msgstr "Chargement du jeu"
+
+#, fuzzy
 msgid "LOADING_MACROSCOPIC_EDITOR"
 msgstr "Chargement de l'Éditeur de microbe"
 
 msgid "LOADING_MICROBE_EDITOR"
 msgstr "Chargement de l'Éditeur de microbe"
 
+#, fuzzy
+msgid "LOADING_MICROBE_STAGE"
+msgstr "Phase microbienne"
+
 msgid "LOADING_MULTICELLULAR_EDITOR"
 msgstr "Chargement de l'Éditeur multicellulaire"
+
+#, fuzzy
+msgid "LOADING_MULTICELLULAR_STAGE"
+msgstr "Chargement de l'Éditeur multicellulaire"
+
+#, fuzzy
+msgid "LOADING_STAGE"
+msgstr "Chargement du jeu"
+
+#, fuzzy
+msgid "LOADING_STAGE_ASSETS"
+msgstr "Chargement du jeu"
 
 msgid "LOAD_FINISHED"
 msgstr "Chargement terminé"
@@ -3270,7 +3299,7 @@ msgid "LOWER_SCALE_INCREASES_PERFORMANCE"
 msgstr "(des valeurs plus hautes améliorent les performances)"
 
 msgid "LOWER_VALUE_MAKES_SHARPER_IMAGE"
-msgstr ""
+msgstr "(les valeurs inférieures rendent l’image plus nette)"
 
 msgid "LOW_MENU_PERFORMANCE"
 msgstr "Faibles performances détectées"
@@ -3286,6 +3315,13 @@ msgstr "Faible résolution du flou d'arrière plan"
 
 msgid "LOW_QUALITY_BACKGROUND_BLUR_TOOLTIP"
 msgstr "Faire que le flou d'arrière plan soit de faible résolution ce qui améliore les performances."
+
+msgid "LUCIFERASE"
+msgstr ""
+
+#, fuzzy
+msgid "LUCIFERASE_SYNTHESIS"
+msgstr "Synthèse de mucilage"
 
 msgid "LYSOSOME"
 msgstr "Lysosome"
@@ -3451,7 +3487,7 @@ msgid "MICHE_AVOID_PREDATION_SELECTION_PRESSURE"
 msgstr "[b][u]{0}[/u][/b] s'est séparé de [b][u]{1}[/u][/b] en tant que nouvelle espèce en raison de différentes pressions sélectives"
 
 msgid "MICHE_CHUNK_PRESSURE"
-msgstr ""
+msgstr "Tension lié aux nuages de composés"
 
 #, fuzzy
 msgid "MICHE_COMPOUND_CLOUD_PRESSURE"
@@ -3744,7 +3780,7 @@ msgstr ""
 "Faites en sorte de collecter assez de [thrive:compound type=\"glucose\"][/thrive:compound] pour produire de l'[thrive:compound type=\"atp\"][/thrive:compound]."
 
 msgid "MIGRATION_STATUS_DESTINATION_NOT_SELECTED"
-msgstr ""
+msgstr "La population va migrer de {0} à ..."
 
 #, fuzzy
 msgid "MIGRATION_STATUS_TEXT"
@@ -4564,6 +4600,7 @@ msgstr ""
 "Cette section montre la balance totale (production - consommation) pour chaque composé.\n"
 "Par exemple, pour former une cellule végétale, le bilan du glucose doit être très positif."
 
+#, fuzzy
 msgid "OXYTOXISOME_PROCESSES_DESCRIPTION"
 msgstr "Transforme [thrive:compound type=\"atp\"][/thrive:compound] en [thrive:compound type=\"oxytoxy\"][/thrive:compound]. Taux proportionnels à la concentration d'[thrive:compound type=\"oxygen\"][/thrive:compound]. Peut libérer des toxines en appuyant sur [thrive:input]g_fire_toxin[/thrive:input]."
 
@@ -5556,6 +5593,14 @@ msgstr "a muté"
 msgid "SPECIES_LIST"
 msgstr "Liste des espèces"
 
+#, fuzzy
+msgid "SPECIES_MEMBER_IMPACT_ON_POP"
+msgstr "Le nom de l’espèce est trop long !"
+
+#, fuzzy
+msgid "SPECIES_MEMBER_IMPACT_ON_POPULATION_EXPLANATION"
+msgstr "(coût des organites, membranes et autres éléments dans l'éditeur)"
+
 msgid "SPECIES_NAME_DOT_DOT_DOT"
 msgstr "Nom de l’espèce..."
 
@@ -5622,7 +5667,7 @@ msgid "STAT_DAMAGE"
 msgstr "Dégâts"
 
 msgid "STAT_DAMAGE_PER_OXYGEN"
-msgstr ""
+msgstr "Échelle des dommages par organelle utilisant de l’oxygène"
 
 msgid "STEAM_CLIENT_INIT_FAILED"
 msgstr "L'initialisation de la bibliothèque du client Steam a échoué"
@@ -5705,7 +5750,7 @@ msgid "STRAIN_BAR_TOOLTIP"
 msgstr "Visitez notre page Patreon"
 
 msgid "STRAIN_BAR_VISIBILITY"
-msgstr ""
+msgstr "Visibilité de la barre de contrainte"
 
 msgid "STRATEGY_STAGES"
 msgstr "Phases stratégie"
@@ -5818,13 +5863,13 @@ msgid "TECHNOLOGY_HUNTER_GATHERING"
 msgstr "Chasseur - Cueilleur"
 
 msgid "TECHNOLOGY_LEVEL_ADVANCED_SPACE"
-msgstr ""
+msgstr "Espace avancé"
 
 msgid "TECHNOLOGY_LEVEL_INDUSTRIAL"
 msgstr "Industriel"
 
 msgid "TECHNOLOGY_LEVEL_PRE_SOCIETY"
-msgstr ""
+msgstr "Société primitive"
 
 msgid "TECHNOLOGY_LEVEL_PRIMITIVE"
 msgstr "Primitif"
@@ -6209,9 +6254,11 @@ msgstr ""
 "Vacuole\n"
 "à toxine"
 
+#, fuzzy
 msgid "TOXIN_VACUOLE_DESCRIPTION"
 msgstr "La vacuole à toxines est une vacuole ayant évolué de manière à spécifiquement produire, stocker et sécréter des [thrive:compound type=\"oxytoxy\"][/thrive:compound]. Un plus grand nombre de vacuoles à toxines augmente la vitesse à laquelle les toxines peuvent être libérées. Peut être modifié pour changer le type de toxine généré pour obtenir d'autres effets."
 
+#, fuzzy
 msgid "TOXIN_VACUOLE_PROCESSES_DESCRIPTION"
 msgstr "Transforme l'[thrive:compound type=\"atp\"][/thrive:compound] en [thrive:compound type=\"oxytoxy\"][/thrive:compound]. Taux proportionnel à la concentration d'[thrive:compound type=\"oxygen\"][/thrive:compound]. Peut libérer des toxines en appuyant sur [thrive:input]g_fire_toxin[/thrive:input]. Lorsque la quantité d'[thrive:compound type=\"oxytoxy\"][/thrive:compound] est faible, il est toujours possible de tirer mais les dégâts sont réduits."
 
@@ -6222,9 +6269,6 @@ msgstr "Oxytoxisome"
 #, fuzzy
 msgid "TOXISOME_DESCRIPTION"
 msgstr "Le lysosome est un organite lié à la membrane qui contient des enzymes hydrolytiques capables de décomposer diverses biomolécules. Les lysosomes permettent à la cellule de digérer les matières ingérées par endocytose et de nettoyer les déchets de la cellule dans un processus appelé [b]autophagie[/b]."
-
-msgid "TO_BE_IMPLEMENTED"
-msgstr "Doit être implémenté."
 
 msgid "TRANSLATORS"
 msgstr "Traducteurs"
@@ -6496,6 +6540,15 @@ msgstr ""
 "Quittez la colonie pour reprendre votre croissance en appuyant sur [thrive:input]g_unbind_all[/thrive:input]."
 
 #, fuzzy
+msgid "TUTORIAL_MICROBE_STAGE_MEMBER_DIED"
+msgstr ""
+"Engloutissez les objets en vous déplaçant au-dessus d'eux en mode engloutissement. Passez en mode engloutissement en appuyant sur [thrive:input]g_toggle_engulf[/thrive:input].\n"
+"\n"
+"Arrêtez d'engloutir une fois que l'objet est aspiré.\n"
+"\n"
+"Suivez la ligne qui va de votre cellule à l'objet engloutissable le plus proche."
+
+#, fuzzy
 msgid "TUTORIAL_MICROBE_STAGE_OPEN_PROCESS_PANEL"
 msgstr ""
 "Afin de vous reproduire vous devez dupliquer tous vos organites. Cela se fait progressivement mais vous pouvez accélérer le processus en collectant assez d'[thrive:compound type=\"ammonia\"][/thrive:compound] et de [thrive:compound type=\"phosphates\"][/thrive:compound].\n"
@@ -6750,16 +6803,16 @@ msgid "UPLOAD_SUCCEEDED"
 msgstr "Sauvegarde réussi"
 
 msgid "UPSCALE_BILINEAR"
-msgstr ""
+msgstr "Mise à l’échelle bilinéaire"
 
 msgid "UPSCALE_FSR_1"
-msgstr ""
+msgstr "Mise à l’échelle FSR 1"
 
 msgid "UPSCALE_FSR_22"
-msgstr ""
+msgstr "Mise à l'échelle FSR 2.2"
 
 msgid "UPSCALE_SHARPENING_FSR"
-msgstr ""
+msgstr "Aiguisage FSR"
 
 msgid "USED_LIBRARIES_LICENSES"
 msgstr "Licences et bibliothèques utilisés"
@@ -7131,7 +7184,7 @@ msgid "WIKI_BIOLUMINESCENT_VACUOLE_UPGRADES"
 msgstr "Pas d'améliorations. Doit être implémenté."
 
 msgid "WIKI_BODY_PLAN_EDITOR_COMMA_CELL_EDITOR"
-msgstr ""
+msgstr "Editeur de corps, éditeur de cellule"
 
 msgid "WIKI_CHEMOPLAST_EFFECTS"
 msgstr "Pas d'effets."
@@ -7334,6 +7387,44 @@ msgstr ""
 
 msgid "WIKI_COMPOUNDS_TYPES_OF_COMPOUNDS"
 msgstr ""
+"Il existe plusieurs [b]Composés[/b] différents dans Thrive.\n"
+"\n"
+"[b][u]Nuage de composés[/u][/b]\n"
+"\n"
+"Ces composés apparaissent dans des nuages générés dans l’[b]environnement[/b].\n"
+"\n"
+"[indent]— [thrive:compound type=\"glucose\"][/thrive:compound][/indent]\n"
+"[indent]— [thrive:compound type=\"iron\"][/thrive:compound] (Également émis par les [b]Fragments[/b])[/indent]\n"
+"[indent]— [thrive:compound type=\"hydrogensulfide\"][/thrive:compound][/indent]\n"
+"[indent]— [thrive:compound type=\"ammonia\"][/thrive:compound][/indent]\n"
+"[indent]— [thrive:compound type=\"phosphates\"][/thrive:compound][/indent]\n"
+"\n"
+"[b][u]Gaz Environnementaux[/u][/b]\n"
+"\n"
+"Ces composés n’apparaissent pas sous forme de nuages dans l’environnement, mais sont présents dans toute la zone et affectent certains processus. Le total de ces composés atteint toujours 100 % dans une zone. Pour en savoir plus sur les gaz, voir [color=#3796e1][url=thriveopedia:EnvironmentalConditions]Conditions Environnementales[/url][/color].\n"
+"\n"
+"[indent]— [thrive:compound type=\"oxygen\"][/thrive:compound][/indent]\n"
+"[indent]— [thrive:compound type=\"nitrogen\"][/thrive:compound][/indent]\n"
+"[indent]— [thrive:compound type=\"carbondioxide\"][/thrive:compound][/indent]\n"
+"\n"
+"[b][u]Composés des Fragments Flottants[/u][/b]\n"
+"\n"
+"Ces composés se trouvent dans des fragments de minéraux flottant dans certaines zones.\n"
+"\n"
+"[indent]— [thrive:compound type=\"iron\"][/thrive:compound][/indent]\n"
+"[indent]— [thrive:compound type=\"hydrogensulfide\"][/thrive:compound][/indent]\n"
+"[indent]— [thrive:compound type=\"phosphates\"][/thrive:compound][/indent]\n"
+"\n"
+"[b][u]Agents[/u][/b]\n"
+"\n"
+"Ces composés sont créés dans des [color=#3796e1][url=thriveopedia:OrganellesRoot]organites[/url][/color] spéciaux et ont des usages particuliers.\n"
+"\n"
+"[indent]— [thrive:compound type=\"oxytoxy\"][/thrive:compound][/indent]\n"
+"[indent]— [thrive:compound type=\"mucilage\"][/thrive:compound][/indent]\n"
+"\n"
+"[b][u]ATP[/u][/b]\n"
+"\n"
+"[thrive:compound type=\"atp\"][/thrive:compound] est principalement produit à partir de [thrive:compound type=\"glucose\"][/thrive:compound] et est essentiel à la survie de votre organisme."
 
 msgid "WIKI_COMPOUND_SYSTEM_DEVELOPMENT_COMPOUNDS_LIST"
 msgstr "Pour la liste complète des composés du niveau Microbe, voir la table annexe des Composés du niveau Microbe."
@@ -9070,6 +9161,9 @@ msgstr "Zoomer"
 
 msgid "ZOOM_OUT"
 msgstr "Dézoomer"
+
+#~ msgid "TO_BE_IMPLEMENTED"
+#~ msgstr "Doit être implémenté."
 
 #, fuzzy
 #~ msgid "GLOBAL_GLACIATION_EVENT_LOG"

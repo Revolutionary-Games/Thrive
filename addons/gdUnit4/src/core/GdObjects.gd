@@ -419,10 +419,6 @@ static func is_script(value :Variant) -> bool:
 	return is_object(value) and value is Script
 
 
-static func is_test_suite(script :Script) -> bool:
-	return script != null and (is_gd_testsuite(script) or GdUnit4CSharpApiLoader.is_test_suite(script.resource_path))
-
-
 static func is_native_class(value :Variant) -> bool:
 	return is_object(value) and is_engine_type(value)
 
@@ -434,28 +430,6 @@ static func is_scene(value :Variant) -> bool:
 static func is_scene_resource_path(value :Variant) -> bool:
 	@warning_ignore("unsafe_cast")
 	return value is String and (value as String).ends_with(".tscn")
-
-
-static func is_gd_script(script :Script) -> bool:
-	return script is GDScript
-
-
-static func is_cs_script(script :Script) -> bool:
-	# we need to check by stringify name because checked non mono Godot the class CSharpScript is not available
-	return str(script).find("CSharpScript") != -1
-
-
-static func is_gd_testsuite(script :Script) -> bool:
-	if is_gd_script(script):
-		var stack := [script]
-		while not stack.is_empty():
-			var current: Script = stack.pop_front()
-			var base: Script = current.get_base_script()
-			if base != null:
-				if base.resource_path.find("GdUnitTestSuite") != -1:
-					return true
-				stack.push_back(base)
-	return false
 
 
 static func is_singleton(value: Variant) -> bool:

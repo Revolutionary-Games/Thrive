@@ -96,14 +96,14 @@ public class ThriveJsonConverter : IDisposable
     }
 
     /// <summary>
-    ///   Deserializes a fully dynamic object from json (object type is defined only in the json).
+    ///   Deserializes a fully dynamic object from JSON (the object type is defined only in the JSON).
     ///   Note that this uses the deserializer type for <see cref="object"/> which means that no custom deserializer
     ///   logic works! That means this is only usable for basic types. Other types must have an interface or other
     ///   base type and be used through <see cref="DeserializeObject{T}"/>.
     /// </summary>
     /// <remarks>
     ///   <para>
-    ///     Even though this uses only basic deserialization this uses the <see cref="BaseThriveConverter"/> through
+    ///     Even though this uses only basic deserialization, this uses the <see cref="BaseThriveConverter"/> through
     ///     <see cref="DynamicDeserializeObjectConverter"/> for the base object of the deserialized string. So some
     ///     of our custom logic works, but for example <see cref="Node"/> deserialization won't use the specialized
     ///     Node logic.

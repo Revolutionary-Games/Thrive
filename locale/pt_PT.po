@@ -7,8 +7,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2025-03-28 15:15+0200\n"
-"PO-Revision-Date: 2025-03-28 07:42+0000\n"
+"POT-Creation-Date: 2025-04-11 10:12+0300\n"
+"PO-Revision-Date: 2025-04-04 10:42+0000\n"
 "Last-Translator: Anonymous <noreply@weblate.org>\n"
 "Language-Team: Portuguese (Portugal) <https://translate.revolutionarygamesstudio.com/projects/thrive/thrive-game/pt_PT/>\n"
 "Language: pt_PT\n"
@@ -334,6 +334,7 @@ msgstr "Agosto"
 msgid "AUTO"
 msgstr "auto"
 
+#, fuzzy
 msgid "AUTO-EVO_EXPLANATION_EXPLANATION"
 msgstr "Este painel mostra os números a partir dos quais a previsão de auto-evo funciona. A energia total que uma espécie é capaz de capturar e o custo por indivíduo da espécie determinam a população final. O Auto-evo usa um modelo simplificado da realidade para calcular o desempenho das espécies com base na energia que conseguem obter. Para cada fonte de alimento, mostra quanta energia é que a espécie ganha com isso. Além disso, aparece o total de energia disponível na fonte. A fração que a espécie ganha da energia total é baseada em quão grande a aptidão é comparada com a aptidão total. A aptidão é uma métrica de quão bem a espécie pode utilizar essa fonte de alimento."
 
@@ -527,6 +528,14 @@ msgstr "Unir eixos"
 
 msgid "BIOLUMINESCENT_VACUOLE"
 msgstr "Vacúolo Bioluminescente"
+
+#, fuzzy
+msgid "BIOLUMINESCENT_VACUOLE_DESCRIPTION"
+msgstr "Vacúolo Bioluminescente"
+
+#, fuzzy
+msgid "BIOLUMINESCENT_VACUOLE_PROCESSES_DESCRIPTION"
+msgstr "Transforma [thrive:compound type=\"atp\"][/thrive:compound] em [thrive:compound type=\"oxytoxy\"][/thrive:compound]. A taxa aumenta com a concentração de [thrive:compound type=\"oxygen\"][/thrive:compound]. Pode libertar toxinas pressionando [thrive:input]g_fire_toxin[/thrive:input]. Quando a quantidade de [thrive:compound type=\"oxytoxy\"][/thrive:compound] é baixa, pode libertar toxinas, mas terá um dano reduzido."
 
 msgid "BIOME_LABEL"
 msgstr "Bioma: {0}"
@@ -3226,14 +3235,34 @@ msgid "LOADING_GAME"
 msgstr "A carregar o jogo"
 
 #, fuzzy
+msgid "LOADING_GRAPHICS_SHADERS"
+msgstr "A carregar o jogo"
+
+#, fuzzy
 msgid "LOADING_MACROSCOPIC_EDITOR"
 msgstr "A carregar o Editor de Micróbio"
 
 msgid "LOADING_MICROBE_EDITOR"
 msgstr "A carregar o Editor de Micróbio"
 
+#, fuzzy
+msgid "LOADING_MICROBE_STAGE"
+msgstr "Fase Microbial"
+
 msgid "LOADING_MULTICELLULAR_EDITOR"
 msgstr "A carregar o Editor de Multicelular"
+
+#, fuzzy
+msgid "LOADING_MULTICELLULAR_STAGE"
+msgstr "A carregar o Editor de Multicelular"
+
+#, fuzzy
+msgid "LOADING_STAGE"
+msgstr "A carregar o jogo"
+
+#, fuzzy
+msgid "LOADING_STAGE_ASSETS"
+msgstr "A carregar o jogo"
 
 msgid "LOAD_FINISHED"
 msgstr "Carregamento terminado"
@@ -3295,6 +3324,13 @@ msgstr ""
 
 msgid "LOW_QUALITY_BACKGROUND_BLUR_TOOLTIP"
 msgstr ""
+
+msgid "LUCIFERASE"
+msgstr ""
+
+#, fuzzy
+msgid "LUCIFERASE_SYNTHESIS"
+msgstr "Quimiossíntese"
 
 msgid "LYSOSOME"
 msgstr "Lisossoma"
@@ -4550,6 +4586,7 @@ msgstr "Resistência a Toxinas"
 msgid "OXYGEN_TOLERANCE_TOOLTIP"
 msgstr "Mostrar / ocultar compostos"
 
+#, fuzzy
 msgid "OXYTOXISOME_PROCESSES_DESCRIPTION"
 msgstr "Transforma [thrive:compound type=\"atp\"][/thrive:compound] em [thrive:compound type=\"oxytoxy\"][/thrive:compound]. A taxa aumenta com a concentração de [thrive:compound type=\"oxygen\"][/thrive:compound]. Pode libertar toxinas pressionado [thrive:input]g_fire_toxin[/thrive:input]. Quando a quantidade de [thrive:compound type=\"oxytoxy\"][/thrive:compound] é baixa, será possível disparar, mas o dano irá ser reduzido."
 
@@ -5555,6 +5592,14 @@ msgstr "tem uma mutação"
 msgid "SPECIES_LIST"
 msgstr "Lista de Espécies"
 
+#, fuzzy
+msgid "SPECIES_MEMBER_IMPACT_ON_POP"
+msgstr "Nome da espécie é demasiado longo!"
+
+#, fuzzy
+msgid "SPECIES_MEMBER_IMPACT_ON_POPULATION_EXPLANATION"
+msgstr "(custo de organelas, membranas e outros itens no editor)"
+
 msgid "SPECIES_NAME_DOT_DOT_DOT"
 msgstr "Nome da espécie..."
 
@@ -6229,9 +6274,6 @@ msgstr "Oxitoxissoma"
 msgid "TOXISOME_DESCRIPTION"
 msgstr "O lisossoma é um organelo ligado à membrana que contém enzimas hidrolíticas capazes de decompor várias biomoléculas. Os lisossomas permitem à célula digerir materiais ingeridos por endocitose e limpar os resíduos da célula num processo chamado [b]autofagia[/b]."
 
-msgid "TO_BE_IMPLEMENTED"
-msgstr "A ser implementado."
-
 msgid "TRANSLATORS"
 msgstr "Tradutores"
 
@@ -6493,6 +6535,13 @@ msgstr ""
 
 #, fuzzy
 msgid "TUTORIAL_MICROBE_STAGE_LEAVE_COLONY_TEXT"
+msgstr ""
+"Entraste no modo de desvinculação. Neste modo podes clicar num membro da colónia para o desvincular.\n"
+"\n"
+"Para abandonar a colónia totalmente podes clicar na tua própria célula ou pressionar o botão Desvincular tudo."
+
+#, fuzzy
+msgid "TUTORIAL_MICROBE_STAGE_MEMBER_DIED"
 msgstr ""
 "Entraste no modo de desvinculação. Neste modo podes clicar num membro da colónia para o desvincular.\n"
 "\n"
@@ -8749,6 +8798,9 @@ msgstr "Ampliar"
 
 msgid "ZOOM_OUT"
 msgstr "Reduzir"
+
+#~ msgid "TO_BE_IMPLEMENTED"
+#~ msgstr "A ser implementado."
 
 #, fuzzy
 #~ msgid "MICROBE_STAGE_DAY_NIGHT_TEXT"

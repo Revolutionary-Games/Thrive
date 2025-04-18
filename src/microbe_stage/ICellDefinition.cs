@@ -58,6 +58,32 @@ public static class GeneralCellPropertiesHelpers
         return result;
     }
 
+    /// <summary>
+    ///   The total compounds in the composition of all organelles
+    /// </summary>
+    public static List<(Compound Compound, float Amount)> CalculateTotalCompositionList(this ICellDefinition definition)
+    {
+        var result = new List<(Compound Compound, float Amount)>();
+
+        foreach (var organelle in definition.Organelles)
+        {
+            foreach (var pair in organelle.Definition.InitialComposition)
+            {
+                var index = result.FindIndexByKey(pair.Key);
+                if (index != -1)
+                {
+                    result[index] = (pair.Key, pair.Value + result[index].Amount);
+                }
+                else
+                {
+                    result.Add((pair.Key, pair.Value));
+                }
+            }
+        }
+
+        return result;
+    }
+
     public static void SetupWorldEntities(this ICellDefinition definition, IWorldSimulation worldSimulation)
     {
         // TODO: would there be a way to avoid this temporary memory allocation? This gets used each time the

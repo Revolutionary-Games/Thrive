@@ -77,6 +77,7 @@ public partial class MovementModeSelectionPopup : Control
             PauseManager.Instance.AddPause(nameof(MovementModeSelectionPopup));
 
             // Start the video players
+            GD.Print("Starting movement mode video streams");
             cellRelativePlayer.Stream =
                 GD.Load<VideoStream>("res://assets/videos/movementDemonstrationCellRelative.ogv");
             cellRelativePlayer.Play();

@@ -7,8 +7,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2025-03-28 15:15+0200\n"
-"PO-Revision-Date: 2025-03-28 15:23+0200\n"
+"POT-Creation-Date: 2025-04-11 10:12+0300\n"
+"PO-Revision-Date: 2025-04-10 11:43+0300\n"
 "Last-Translator: Henri Hyyryläinen <hhyyrylainen@revolutionarygamesstudio.com>\n"
 "Language-Team: English <https://translate.revolutionarygamesstudio.com/projects/thrive/thrive-game/en/>\n"
 "Language: en\n"
@@ -327,7 +327,7 @@ msgid "AUTO"
 msgstr "Auto"
 
 msgid "AUTO-EVO_EXPLANATION_EXPLANATION"
-msgstr "This panel shows the numbers that the auto-evo prediction works from. The total energy a species is able to capture, and the cost per individual of the species, determines the final population. Auto-evo uses a simplified model of reality to calculate how well species are performing based on the energy they are able to gather. For each food source, it is shown much energy the species gains from it. Additionally the total energy that is available from that source is shown. The fraction the species gains out of the total energy is based on how large the fitness is compared to the total fitness. Fitness is a metric of how well the species can utilize that food source."
+msgstr "This panel shows the numbers that the auto-evo prediction works from. The total energy a species is able to capture, and the cost per individual of the species, determines the final population. Auto-evo uses a simplified model of reality to calculate how well species are performing based on the energy they are able to gather. For each food source, it is shown how much energy the species gains from it. Additionally the total energy that is available from that source is shown. The fraction the species gains out of the total energy is based on how large the fitness is compared to the total fitness. Fitness is a metric of how well the species can utilize that food source."
 
 msgid "AUTO-EVO_POPULATION_CHANGED_2"
 msgstr "{0} population changed by {1} in {2} because of: {3}"
@@ -510,6 +510,12 @@ msgstr "Bind axes together"
 
 msgid "BIOLUMINESCENT_VACUOLE"
 msgstr "Bioluminescent Vacuole"
+
+msgid "BIOLUMINESCENT_VACUOLE_DESCRIPTION"
+msgstr "A vacuole that contains reaction sites where luciferase is consumed to release visible light. It is hypothesised that bioluminescence evolved originally as a protection mechanism against [thrive:compound type=\"oxygen\"][/thrive:compound]. When the Great Oxygenation Event happened microbes accustomed to anaerobic conditions faced a lot of new problems due to oxygen's very high reactivity that caused a lot of damage. These vacuoles can be added to increase oxygen resistance and get some pretty lights. In the future bioluminescence may be a means of communication."
+
+msgid "BIOLUMINESCENT_VACUOLE_PROCESSES_DESCRIPTION"
+msgstr "Uses [thrive:compound type=\"atp\"][/thrive:compound] to turn [thrive:compound type=\"oxygen\"][/thrive:compound] into light. Has no other gameplay impact yet except increasing the oxygen resistance."
 
 msgid "BIOME_LABEL"
 msgstr "Biome: {0}"
@@ -1811,7 +1817,7 @@ msgstr ""
 "\n"
 "Try placing a [b]nucleus[/b] to close this tutorial.\n"
 "\n"
-"If your cell is not ready for the nucleus yet, you can use the [b]undo button[/b] to revert the nucleus."
+"If your cell is not ready for the nucleus yet, you can use the [b]undo button[/b] to [u]revert[/u] the nucleus."
 
 msgid "EFFECTIVE_VALUE"
 msgstr "Effective Value"
@@ -3125,14 +3131,29 @@ msgstr "Loading..."
 msgid "LOADING_GAME"
 msgstr "Loading Game"
 
+msgid "LOADING_GRAPHICS_SHADERS"
+msgstr "Loading Shaders"
+
 msgid "LOADING_MACROSCOPIC_EDITOR"
 msgstr "Loading Macroscopic Editor"
 
 msgid "LOADING_MICROBE_EDITOR"
 msgstr "Loading Microbe Editor"
 
+msgid "LOADING_MICROBE_STAGE"
+msgstr "Loading Microbe Stage"
+
 msgid "LOADING_MULTICELLULAR_EDITOR"
 msgstr "Loading Multicellular Editor"
+
+msgid "LOADING_MULTICELLULAR_STAGE"
+msgstr "Loading Multicellular Stage"
+
+msgid "LOADING_STAGE"
+msgstr "Loading Stage"
+
+msgid "LOADING_STAGE_ASSETS"
+msgstr "Loading Stage Assets {0} / {1}"
 
 msgid "LOAD_FINISHED"
 msgstr "Load finished"
@@ -3193,6 +3214,12 @@ msgstr "Low resolution background blur"
 
 msgid "LOW_QUALITY_BACKGROUND_BLUR_TOOLTIP"
 msgstr "Makes background blur use a lower resolution, improving performance."
+
+msgid "LUCIFERASE"
+msgstr "Luciferase"
+
+msgid "LUCIFERASE_SYNTHESIS"
+msgstr "Luciferase Synthesis"
 
 msgid "LYSOSOME"
 msgstr "Lysosome"
@@ -3570,9 +3597,7 @@ msgid "MICROBE_STAGE_ORGANELLE_DIVISION"
 msgstr ""
 "In the process of growing enough to reproduce, each of your organelles will divide. These new organelles provide bonuses (and osmoregulation costs) just like the organelles your microbe started with.\n"
 "\n"
-"As you gain compounds, your cell uses some for reproduction.\n"
-"\n"
-"With enough compounds, organelles will start to divide and duplicate. Once all the organelles have divided, your cell can reproduce and enter the editor."
+"With time, organelles will start to duplicate. Collecting compounds speeds this up. Once all the organelles have divided, your cell can reproduce and enter the editor."
 
 msgid "MIDDLE_MOUSE"
 msgstr "Middle mouse"
@@ -4358,7 +4383,7 @@ msgid "OXYGEN_TOLERANCE_TOOLTIP"
 msgstr "How much oxygen-caused damage your species can mitigate before harmful effects. If you are in a patch with too much oxygen compared to your resistance, you will receive negative effects."
 
 msgid "OXYTOXISOME_PROCESSES_DESCRIPTION"
-msgstr "Turns [thrive:compound type=\"atp\"][/thrive:compound] into [thrive:compound type=\"oxytoxy\"][/thrive:compound]. Rate scales with concentration of [thrive:compound type=\"oxygen\"][/thrive:compound]. Can release toxins by pressing [thrive:input]g_fire_toxin[/thrive:input]. When [thrive:compound type=\"oxytoxy\"][/thrive:compound] amount is low, shooting is still possible but will have reduced damage."
+msgstr "Turns [thrive:compound type=\"atp\"][/thrive:compound] into [thrive:compound type=\"oxytoxy\"][/thrive:compound]. Can release toxins by pressing [thrive:input]g_fire_toxin[/thrive:input]. When [thrive:compound type=\"oxytoxy\"][/thrive:compound] amount is low, shooting is still possible but will have reduced damage."
 
 msgid "OXYTOXY_NT"
 msgstr "OxyToxy NT"
@@ -5323,6 +5348,12 @@ msgstr "has mutated"
 msgid "SPECIES_LIST"
 msgstr "Species List"
 
+msgid "SPECIES_MEMBER_IMPACT_ON_POP"
+msgstr "Species members dying impact"
+
+msgid "SPECIES_MEMBER_IMPACT_ON_POPULATION_EXPLANATION"
+msgstr "(how much AI members of the player species dying or reproducing affects the population as external effects)"
+
 msgid "SPECIES_NAME_DOT_DOT_DOT"
 msgstr "Species name..."
 
@@ -5937,19 +5968,16 @@ msgid "TOXIN_VACUOLE"
 msgstr "Toxin Vacuole"
 
 msgid "TOXIN_VACUOLE_DESCRIPTION"
-msgstr "The toxin vacuole is a vacuole that has been modified for the specific production, storage, and secretion of [thrive:compound type=\"oxytoxy\"][/thrive:compound]. More toxin vacuoles will increase the rate at which toxins can be released. Can be modified to switch the generated toxin type for other effects."
+msgstr "The toxin vacuole is a vacuole that has been modified for the specific production, storage, and secretion of [thrive:compound type=\"oxytoxy\"][/thrive:compound]. More toxin vacuoles will increase the rate at which toxins can be released. Can be modified to switch the generated toxin type for other effects, which may require [thrive:compound type=\"oxygen\"][/thrive:compound] to produce."
 
 msgid "TOXIN_VACUOLE_PROCESSES_DESCRIPTION"
-msgstr "Turns [thrive:compound type=\"atp\"][/thrive:compound] into [thrive:compound type=\"oxytoxy\"][/thrive:compound]. Rate scales with concentration of [thrive:compound type=\"oxygen\"][/thrive:compound]. Can release toxins by pressing [thrive:input]g_fire_toxin[/thrive:input]. When [thrive:compound type=\"oxytoxy\"][/thrive:compound] amount is low, shooting is still possible but will have a reduced damage."
+msgstr "Turns [thrive:compound type=\"atp\"][/thrive:compound] into [thrive:compound type=\"oxytoxy\"][/thrive:compound]. Can release toxins by pressing [thrive:input]g_fire_toxin[/thrive:input]. When [thrive:compound type=\"oxytoxy\"][/thrive:compound] amount is low, shooting is still possible but will have a reduced damage."
 
 msgid "TOXISOME"
 msgstr "Toxisome"
 
 msgid "TOXISOME_DESCRIPTION"
-msgstr "A modified metabolosome responsible for the production of a primitive form of the toxic agent [thrive:compound type=\\\"oxytoxy\\\"][/thrive:compound]. Can be modified to switch the generated toxin type for other effects."
-
-msgid "TO_BE_IMPLEMENTED"
-msgstr "To be Implemented."
+msgstr "A modified metabolosome responsible for the production of a primitive form of the toxic agent [thrive:compound type=\\\"oxytoxy\\\"][/thrive:compound]. Can be modified to switch the generated toxin type for other effects, which may require [thrive:compound type=\"oxygen\"][/thrive:compound] to produce."
 
 msgid "TRANSLATORS"
 msgstr "Translators"
@@ -6213,6 +6241,12 @@ msgstr ""
 "\n"
 "You need to leave the colony to get to the editor unless you plan to become multicellular.\n"
 "Exit the colony to resume your growth by pressing [thrive:input]g_unbind_all[/thrive:input]."
+
+msgid "TUTORIAL_MICROBE_STAGE_MEMBER_DIED"
+msgstr ""
+"A member of your species has just sadly died! This will affect your population as an external effect once you reach the editor.\n"
+"\n"
+"You can edit the behaviour of your species in the editor to tweak the AI behaviour. Or make helpful edits, like adding the chemoreceptor, that make the gameplay easier."
 
 msgid "TUTORIAL_MICROBE_STAGE_OPEN_PROCESS_PANEL"
 msgstr ""
@@ -9013,6 +9047,9 @@ msgstr "Zoom in"
 
 msgid "ZOOM_OUT"
 msgstr "Zoom out"
+
+#~ msgid "TO_BE_IMPLEMENTED"
+#~ msgstr "To be Implemented."
 
 #~ msgid "SHOW_TUTORIALS"
 #~ msgstr "Show tutorials"
