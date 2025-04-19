@@ -27,20 +27,19 @@ background_mode = 2
 sky = SubResource("Sky_3aerp")
 ambient_light_color = Color(1, 1, 1, 1)
 
-[node name="MacroscopicEditor" type="Node" node_paths=PackedStringArray("editorTabSelector", "editorGUIBaseNode", "pauseMenu", "worldEnvironmentNode", "bodyEditorLight", "body3DEditorCamera", "cellEditorLight", "cellEditorCamera", "noCellTypeSelected", "cellEditorTab", "bodyPlanEditorTab", "patchMapTab", "reportTab")]
+[node name="MacroscopicEditor" type="Node" node_paths=PackedStringArray("reportTab", "patchMapTab", "bodyPlanEditorTab", "cellEditorTab", "cellEditorCamera", "cellEditorLight", "body3DEditorCamera", "bodyEditorLight", "worldEnvironmentNode", "noCellTypeSelected", "pauseMenu", "editorTabSelector")]
 script = ExtResource("5")
 reportTab = NodePath("MacroscopicEditorGUI/Report")
 patchMapTab = NodePath("MacroscopicEditorGUI/PatchMap")
 bodyPlanEditorTab = NodePath("MacroscopicEditorGUI/MetaballBodyEditorComponent")
 cellEditorTab = NodePath("MacroscopicEditorGUI/CellEditor")
-noCellTypeSelected = NodePath("MacroscopicEditorGUI/NoCellSelected")
 cellEditorCamera = NodePath("MicrobeEditorWorld/PrimaryCamera")
 cellEditorLight = NodePath("MicrobeEditorWorld/EditorLight")
 body3DEditorCamera = NodePath("EditorWorld/PrimaryCamera")
 bodyEditorLight = NodePath("EditorWorld/EditorLight")
 worldEnvironmentNode = NodePath("EditorWorld/WorldEnvironment")
+noCellTypeSelected = NodePath("MacroscopicEditorGUI/NoCellSelected")
 pauseMenu = NodePath("PauseMenu")
-editorGUIBaseNode = NodePath("MacroscopicEditorGUI")
 editorTabSelector = NodePath("MacroscopicEditorGUI/MicrobeEditorTabButtons")
 
 [node name="EditorWorld" parent="." instance=ExtResource("7")]
@@ -65,22 +64,22 @@ grow_horizontal = 2
 grow_vertical = 2
 theme = ExtResource("1")
 
-[node name="MetaballBodyEditorComponent" parent="MacroscopicEditorGUI" instance=ExtResource("11") node_paths=PackedStringArray("editorGround", "editorArrow", "camera")]
+[node name="MetaballBodyEditorComponent" parent="MacroscopicEditorGUI" node_paths=PackedStringArray("camera", "editorArrow", "editorGround") instance=ExtResource("11")]
 visible = false
 layout_mode = 1
 camera = NodePath("../../EditorWorld/PrimaryCamera")
 editorArrow = NodePath("../../EditorWorld/EditorArrow")
 editorGround = NodePath("../../EditorWorld/Ground")
 
-[node name="CellEditor" parent="MacroscopicEditorGUI" instance=ExtResource("9") node_paths=PackedStringArray("cameraFollow", "editorGrid", "editorArrow", "camera")]
+[node name="CellEditor" parent="MacroscopicEditorGUI" node_paths=PackedStringArray("cameraFollow", "camera", "editorArrow", "editorGrid") instance=ExtResource("9")]
 visible = false
 layout_mode = 1
 IsMulticellularEditor = true
 IsMacroscopicEditor = true
+cameraFollow = NodePath("../../MicrobeEditorWorld/CameraLookAt")
 camera = NodePath("../../MicrobeEditorWorld/PrimaryCamera")
 editorArrow = NodePath("../../MicrobeEditorWorld/EditorArrow")
 editorGrid = NodePath("../../MicrobeEditorWorld/Grid")
-cameraFollow = NodePath("../../MicrobeEditorWorld/CameraLookAt")
 
 [node name="Report" parent="MacroscopicEditorGUI" instance=ExtResource("10")]
 layout_mode = 1

@@ -12,26 +12,18 @@ public partial class MetaballBodyEditorComponent :
     MetaballEditorComponentBase<MacroscopicEditor, CombinedEditorAction, EditorAction, MacroscopicMetaball>,
     IGodotEarlyNodeResolve
 {
-    [Export]
-    public NodePath StructureTabButtonPath = null!;
-
-    [Export]
-    public NodePath ReproductionTabButtonPath = null!;
-
-    [Export]
-    public NodePath BehaviourTabButtonPath = null!;
-
-    [Export]
-    public NodePath AppearanceTabButtonPath = null!;
-
     private readonly Dictionary<string, CellTypeSelection> cellTypeSelectionButtons = new();
 
 #pragma warning disable CA2213
 
     // Selection menu tab selector buttons
+    [Export]
     private Button structureTabButton = null!;
+    [Export]
     private Button reproductionTabButton = null!;
+    [Export]
     private Button behaviourTabButton = null!;
+    [Export]
     private Button appearanceTabButton = null!;
 
     [Export]
@@ -134,9 +126,6 @@ public partial class MetaballBodyEditorComponent :
         base.ResolveNodeReferences();
 
         NodeReferencesResolved = true;
-
-            throw new MissingExportVariableValueException();
-
     }
 
     public override void Init(MacroscopicEditor owningEditor, bool fresh)
@@ -476,21 +465,6 @@ public partial class MetaballBodyEditorComponent :
         }
 
         return highestPointInMiddleRows;
-    }
-
-    protected override void Dispose(bool disposing)
-    {
-        if (disposing)
-        {
-            {
-                StructureTabButtonPath.Dispose();
-                ReproductionTabButtonPath.Dispose();
-                BehaviourTabButtonPath.Dispose();
-                AppearanceTabButtonPath.Dispose();
-            }
-        }
-
-        base.Dispose(disposing);
     }
 
     private void UpdateGUIAfterLoadingSpecies()
