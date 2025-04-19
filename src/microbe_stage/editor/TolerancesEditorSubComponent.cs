@@ -19,8 +19,6 @@ public partial class TolerancesEditorSubComponent : EditorComponentBase<ICellEdi
     private readonly StringName toleranceFlashName = new("FlashPressureRange");
     private readonly StringName tooWideRangeName = new("PopupPressureRangeWarning");
 
-    private readonly CompoundDefinition temperature = SimulationParameters.GetCompound(Compound.Temperature);
-
     private readonly Dictionary<OrganelleDefinition, float> tempToleranceModifiers = new();
 
 #pragma warning disable CA2213
@@ -732,11 +730,11 @@ public partial class TolerancesEditorSubComponent : EditorComponentBase<ICellEdi
         temperatureMinLabel.Text =
             unitFormat.FormatSafe(
                 Math.Round(preferredTemperatureWithOrganelles - temperatureToleranceWithOrganelles, 1),
-                temperature.Unit);
+                SimulationParameters.GetCompound(Compound.Temperature).Unit);
         temperatureMaxLabel.Text =
             unitFormat.FormatSafe(
                 Math.Round(preferredTemperatureWithOrganelles + temperatureToleranceWithOrganelles, 1),
-                temperature.Unit);
+                SimulationParameters.GetCompound(Compound.Temperature).Unit);
 
         // Show in red the conditions that are not matching to make them easier to notice
         if (Math.Abs(patchTemperature - preferredTemperatureWithOrganelles) >
@@ -829,9 +827,11 @@ public partial class TolerancesEditorSubComponent : EditorComponentBase<ICellEdi
 
         // Temperature
         temperatureToleranceLabel.Text =
-            unitFormat.FormatSafe(Math.Round(CurrentTolerances.TemperatureTolerance, 1), temperature.Unit);
+            unitFormat.FormatSafe(Math.Round(CurrentTolerances.TemperatureTolerance, 1),
+            SimulationParameters.GetCompound(Compound.Temperature).Unit);
 
-        var value = unitFormat.FormatSafe(Math.Round(organelleModifiers.TemperatureTolerance, 1), temperature.Unit);
+        var value = unitFormat.FormatSafe(Math.Round(organelleModifiers.TemperatureTolerance, 1),
+            SimulationParameters.GetCompound(Compound.Temperature).Unit);
 
         value = organelleModifiers.TemperatureTolerance >= 0 ? "+" + value : value;
 
