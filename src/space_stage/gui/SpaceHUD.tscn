@@ -8,7 +8,7 @@
 [ext_resource type="PackedScene" uid="uid://5li3f8hbav0q" path="res://src/space_stage/gui/SpaceConstructionPopup.tscn" id="6"]
 [ext_resource type="PackedScene" uid="uid://cdngxfctlsoox" path="res://src/space_stage/gui/SpaceStructureInfoPopup.tscn" id="7"]
 
-[node name="SpaceHUD" instance=ExtResource("1") node_paths=PackedStringArray("descendButton", "structurePopup", "constructionPopup", "fleetPopup", "planetScreenPopup")]
+[node name="SpaceHUD" node_paths=PackedStringArray("planetScreenPopup", "fleetPopup", "constructionPopup", "structurePopup", "descendButton") instance=ExtResource("1")]
 script = ExtResource("3")
 planetScreenPopup = NodePath("PlanetScreen")
 fleetPopup = NodePath("SpaceFleetInfoPopup")

@@ -68,7 +68,7 @@ emission = Color(0.843137, 0.780392, 0.627451, 1)
 emission_energy_multiplier = 10.0
 disable_receive_shadows = true
 
-[node name="SpaceStage" type="Node" node_paths=PackedStringArray("hudRoot", "pauseMenu", "strategicCamera", "godTools", "descendConfirmationPopup", "ascensionCongratulationsPopup", "ascensionMoveConfirmationPopup", "nameLabelSystem")]
+[node name="SpaceStage" type="Node" node_paths=PackedStringArray("nameLabelSystem", "ascensionMoveConfirmationPopup", "ascensionCongratulationsPopup", "descendConfirmationPopup", "godTools", "strategicCamera", "pauseMenu", "hudRoot")]
 script = ExtResource("1")
 nameLabelSystem = NodePath("StrategicEntityNameLabelSystem")
 ascensionMoveConfirmationPopup = NodePath("AscensionConfirmation")
