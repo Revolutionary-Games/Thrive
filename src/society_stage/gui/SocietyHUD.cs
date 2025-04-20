@@ -20,7 +20,6 @@ public partial class SocietyHUD : StrategyStageHUDBase<SocietyStage>
     public override void _Ready()
     {
         base._Ready();
-
     }
 
     public void ForwardBuildingPlacingRequest()

@@ -37,7 +37,6 @@ public partial class SpaceHUD : StrategyStageHUDBase<SpaceStage>, IStructureSele
     public override void _Ready()
     {
         base._Ready();
-
     }
 
     public override void Init(SpaceStage containedInStage)

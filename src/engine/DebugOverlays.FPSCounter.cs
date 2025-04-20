@@ -7,8 +7,8 @@
 public partial class DebugOverlays
 {
 #pragma warning disable CA2213
-	[Export]
-	private Label fpsDisplayLabel = null!;
+    [Export]
+    private Label fpsDisplayLabel = null!;
 #pragma warning restore CA2213
 
     private void UpdateFPS()
