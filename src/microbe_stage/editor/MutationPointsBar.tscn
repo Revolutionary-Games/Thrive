@@ -59,7 +59,7 @@ _data = {
 &"FlashBar": SubResource("7")
 }
 
-[node name="MutationPointsBar" type="HBoxContainer" node_paths=PackedStringArray("animationPlayer", "mutationPointsSubtractBar", "mutationPointsBar", "baseMutationPointsLabel", "resultingMutationPointsLabel", "mutationPointsArrow", "currentMutationPointsLabel")]
+[node name="MutationPointsBar" type="HBoxContainer" node_paths=PackedStringArray("currentMutationPointsLabel", "mutationPointsArrow", "resultingMutationPointsLabel", "baseMutationPointsLabel", "mutationPointsBar", "mutationPointsSubtractBar", "animationPlayer")]
 offset_left = 10.0
 offset_top = 10.0
 offset_right = 328.0
@@ -184,5 +184,5 @@ vertical_alignment = 1
 
 [node name="FlashAnimation" type="AnimationPlayer" parent="MarginContainer/MPBarMain"]
 libraries = {
-"": SubResource("AnimationLibrary_g5nvi")
+&"": SubResource("AnimationLibrary_g5nvi")
 }

@@ -92,8 +92,6 @@ offset_bottom = 540.0
 [node name="InteractablePopup" parent="." instance=ExtResource("8")]
 
 [node name="SelectBuildingPopup" parent="." instance=ExtResource("10")]
-grow_horizontal = 2
-grow_vertical = 2
 
 [node name="WinExtinctBoxHolder" type="Control" parent="."]
 visible = false

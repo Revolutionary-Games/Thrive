@@ -4,7 +4,7 @@
 [ext_resource type="Script" uid="uid://7eapfuk2t4u" path="res://src/microbe_stage/editor/upgrades/VacuoleUpgradeGUI.cs" id="2"]
 [ext_resource type="LabelSettings" uid="uid://dvqx73nhtr0y2" path="res://src/gui_common/fonts/Body-Regular-Small.tres" id="3_h8r74"]
 
-[node name="VacuoleUpgradeGUI" type="VBoxContainer" node_paths=PackedStringArray("compoundSelection", "description", "isSpecializedCheckbox", "compounds")]
+[node name="VacuoleUpgradeGUI" type="VBoxContainer" node_paths=PackedStringArray("compounds", "description", "isSpecializedCheckbox", "compoundSelection")]
 custom_minimum_size = Vector2(400, 0)
 anchors_preset = 15
 anchor_right = 1.0
@@ -14,8 +14,8 @@ offset_bottom = -650.0
 theme = ExtResource("1")
 script = ExtResource("2")
 compounds = NodePath("CompoundSelection/OptionButton")
-isSpecializedCheckbox = NodePath("CheckBox")
 description = NodePath("Description")
+isSpecializedCheckbox = NodePath("CheckBox")
 compoundSelection = NodePath("CompoundSelection")
 
 [node name="CheckBox" type="CheckBox" parent="."]

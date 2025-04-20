@@ -4,7 +4,7 @@
 [ext_resource type="Script" uid="uid://c40jvfvwvje3o" path="res://src/microbe_stage/editor/upgrades/LysosomeUpgradeGUI.cs" id="2"]
 [ext_resource type="LabelSettings" uid="uid://dvqx73nhtr0y2" path="res://src/gui_common/fonts/Body-Regular-Small.tres" id="3_t3oq1"]
 
-[node name="LysosomeUpgradeGUI" type="VBoxContainer" node_paths=PackedStringArray("description", "enzymes")]
+[node name="LysosomeUpgradeGUI" type="VBoxContainer" node_paths=PackedStringArray("enzymes", "description")]
 custom_minimum_size = Vector2(400, 0)
 anchors_preset = 15
 anchor_right = 1.0

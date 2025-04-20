@@ -4,7 +4,7 @@
 [ext_resource type="Theme" uid="uid://b4cx0o110g4b6" path="res://src/gui_common/thrive_theme.tres" id="2"]
 [ext_resource type="Script" uid="uid://s73paciqalj0" path="res://src/microbe_stage/editor/upgrades/OrganelleUpgradeGUI.cs" id="3"]
 
-[node name="OrganelleUpgradeGUI" type="Control" node_paths=PackedStringArray("upgradeSelectorButtonsContainer", "generalUpgradesContainer", "scrollContainer", "organelleSpecificContent", "popup")]
+[node name="OrganelleUpgradeGUI" type="Control" node_paths=PackedStringArray("popup", "organelleSpecificContent", "scrollContainer", "generalUpgradesContainer", "upgradeSelectorButtonsContainer")]
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0

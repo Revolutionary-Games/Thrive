@@ -74,6 +74,7 @@ public partial class EditorBase<TAction, TStage> : NodeWithInput, IEditor, ILoad
     protected GameProperties? currentGame;
 
 #pragma warning disable CA2213
+    [Export]
     private Control editorGUIBaseNode = null!;
 #pragma warning restore CA2213
 

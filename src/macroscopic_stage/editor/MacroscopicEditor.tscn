@@ -27,7 +27,7 @@ background_mode = 2
 sky = SubResource("Sky_3aerp")
 ambient_light_color = Color(1, 1, 1, 1)
 
-[node name="MacroscopicEditor" type="Node" node_paths=PackedStringArray("reportTab", "patchMapTab", "bodyPlanEditorTab", "cellEditorTab", "cellEditorCamera", "cellEditorLight", "body3DEditorCamera", "bodyEditorLight", "worldEnvironmentNode", "noCellTypeSelected", "pauseMenu", "editorTabSelector")]
+[node name="MacroscopicEditor" type="Node" node_paths=PackedStringArray("reportTab", "patchMapTab", "bodyPlanEditorTab", "cellEditorTab", "cellEditorCamera", "cellEditorLight", "body3DEditorCamera", "bodyEditorLight", "worldEnvironmentNode", "noCellTypeSelected", "pauseMenu", "editorTabSelector", "editorGUIBaseNode")]
 script = ExtResource("5")
 reportTab = NodePath("MacroscopicEditorGUI/Report")
 patchMapTab = NodePath("MacroscopicEditorGUI/PatchMap")
@@ -41,6 +41,7 @@ worldEnvironmentNode = NodePath("EditorWorld/WorldEnvironment")
 noCellTypeSelected = NodePath("MacroscopicEditorGUI/NoCellSelected")
 pauseMenu = NodePath("PauseMenu")
 editorTabSelector = NodePath("MacroscopicEditorGUI/MicrobeEditorTabButtons")
+editorGUIBaseNode = NodePath("MacroscopicEditorGUI")
 
 [node name="EditorWorld" parent="." instance=ExtResource("7")]
 

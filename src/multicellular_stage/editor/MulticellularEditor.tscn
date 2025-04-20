@@ -11,7 +11,7 @@
 [ext_resource type="PackedScene" uid="uid://de2sohb3fjvc1" path="res://src/microbe_stage/editor/EditorCommonBottomLeftButtons.tscn" id="9_v3ojp"]
 [ext_resource type="PackedScene" uid="uid://devtugnggmuol" path="res://src/general/PauseMenu.tscn" id="10_vh50g"]
 
-[node name="MulticellularEditor" type="Node" node_paths=PackedStringArray("reportTab", "patchMapTab", "bodyPlanEditorTab", "cellEditorTab", "noCellTypeSelected", "pauseMenu", "editorTabSelector")]
+[node name="MulticellularEditor" type="Node" node_paths=PackedStringArray("reportTab", "patchMapTab", "bodyPlanEditorTab", "cellEditorTab", "noCellTypeSelected", "pauseMenu", "editorTabSelector", "editorGUIBaseNode")]
 script = ExtResource("1_kpf0e")
 reportTab = NodePath("EarlyMulticellularEditorGUI/Report")
 patchMapTab = NodePath("EarlyMulticellularEditorGUI/PatchMap")
@@ -20,6 +20,7 @@ cellEditorTab = NodePath("EarlyMulticellularEditorGUI/CellEditor")
 noCellTypeSelected = NodePath("EarlyMulticellularEditorGUI/NoCellSelected")
 pauseMenu = NodePath("PauseMenu")
 editorTabSelector = NodePath("EarlyMulticellularEditorGUI/MicrobeEditorTabButtons")
+editorGUIBaseNode = NodePath("EarlyMulticellularEditorGUI")
 
 [node name="EditorWorld" parent="." instance=ExtResource("2_aqkc2")]
 

@@ -4,7 +4,7 @@
 [ext_resource type="PackedScene" uid="uid://cwe0bjv8qtrtr" path="res://src/gui_common/TweakedColourPicker.tscn" id="2"]
 [ext_resource type="Script" uid="uid://baukp1n6xhx5o" path="res://src/microbe_stage/editor/upgrades/ChemoreceptorUpgradeGUI.cs" id="3"]
 
-[node name="ChemoreceptorUpgradeGUI" type="VBoxContainer" node_paths=PackedStringArray("colourSelector", "minimumAmountLabel", "minimumAmountSlider", "maximumDistanceSlider", "speciesLabel", "speciesSelector", "compoundLabel", "compoundsSelector", "targetTypeSelector")]
+[node name="ChemoreceptorUpgradeGUI" type="VBoxContainer" node_paths=PackedStringArray("targetTypeSelector", "compoundsSelector", "compoundLabel", "speciesSelector", "speciesLabel", "maximumDistanceSlider", "minimumAmountSlider", "minimumAmountLabel", "colourSelector")]
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
@@ -31,6 +31,7 @@ layout_mode = 2
 selected = 0
 item_count = 2
 popup/item_0/text = "COMPOUNDS"
+popup/item_0/id = 0
 popup/item_1/text = "SPECIES"
 popup/item_1/id = 1
 

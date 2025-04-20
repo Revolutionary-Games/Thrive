@@ -46,7 +46,7 @@ _data = {
 &"invalidSpeciesNameFlash": SubResource("22")
 }
 
-[node name="EditorComponentBottomLeftButtons" type="MarginContainer" node_paths=PackedStringArray("randomizeNameButton", "speciesNameEdit", "newButton", "RedoButton", "UndoButton", "symmetryIcon", "symmetryButton")]
+[node name="EditorComponentBottomLeftButtons" type="MarginContainer" node_paths=PackedStringArray("newButton", "speciesNameEdit", "randomizeNameButton", "symmetryButton", "symmetryIcon", "UndoButton", "RedoButton")]
 custom_minimum_size = Vector2(641, 0)
 anchors_preset = 2
 anchor_top = 1.0
@@ -58,13 +58,13 @@ theme_override_constants/margin_left = 195
 theme_override_constants/margin_top = 5
 theme_override_constants/margin_bottom = 5
 script = ExtResource("22")
+newButton = NodePath("HBoxContainer/NewButton")
+speciesNameEdit = NodePath("HBoxContainer/HBoxContainer/SpeciesName")
+randomizeNameButton = NodePath("HBoxContainer/HBoxContainer/RandomizeButton")
 symmetryButton = NodePath("HBoxContainer/SymmetryButton")
 symmetryIcon = NodePath("HBoxContainer/SymmetryButton/SymmetryIcon")
 UndoButton = NodePath("HBoxContainer/UndoButton")
 RedoButton = NodePath("HBoxContainer/RedoButton")
-newButton = NodePath("HBoxContainer/NewButton")
-speciesNameEdit = NodePath("HBoxContainer/HBoxContainer/SpeciesName")
-randomizeNameButton = NodePath("HBoxContainer/HBoxContainer/RandomizeButton")
 
 [node name="HBoxContainer" type="HBoxContainer" parent="."]
 layout_mode = 2
@@ -148,7 +148,7 @@ caret_blink = true
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="HBoxContainer/HBoxContainer/SpeciesName"]
 libraries = {
-"": SubResource("AnimationLibrary_b77ra")
+&"": SubResource("AnimationLibrary_b77ra")
 }
 
 [node name="RandomizeButton" type="TextureButton" parent="HBoxContainer/HBoxContainer"]
