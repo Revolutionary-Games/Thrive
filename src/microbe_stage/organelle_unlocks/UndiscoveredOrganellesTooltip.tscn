@@ -17,7 +17,7 @@ corner_radius_top_right = 5
 corner_radius_bottom_right = 5
 corner_radius_bottom_left = 5
 
-[node name="UndiscoveredOrganellesTooltip" type="PanelContainer" node_paths=PackedStringArray("unlockTextLabel", "nameLabel")]
+[node name="UndiscoveredOrganellesTooltip" type="PanelContainer" node_paths=PackedStringArray("nameLabel", "unlockTextLabel")]
 custom_minimum_size = Vector2(350, 0)
 offset_right = 350.0
 offset_bottom = 155.0

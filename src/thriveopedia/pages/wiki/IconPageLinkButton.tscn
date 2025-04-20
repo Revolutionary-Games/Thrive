@@ -4,7 +4,7 @@
 [ext_resource type="Script" uid="uid://curmuufaswxwy" path="res://src/thriveopedia/pages/wiki/IconPageLinkButton.cs" id="2_ahh3x"]
 [ext_resource type="LabelSettings" uid="uid://dvqx73nhtr0y2" path="res://src/gui_common/fonts/Body-Regular-Small.tres" id="3_o5f0j"]
 
-[node name="PageLinkButton" type="VBoxContainer" node_paths=PackedStringArray("label", "button")]
+[node name="PageLinkButton" type="VBoxContainer" node_paths=PackedStringArray("button", "label")]
 custom_minimum_size = Vector2(0, 195)
 offset_right = 150.0
 offset_bottom = 195.0

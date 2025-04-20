@@ -7,6 +7,4 @@ script = ExtResource("1")
 visualsParent = NodePath("Visuals")
 
 [node name="Visuals" type="Node3D" parent="."]
-__meta__ = {
-"_editor_description_": "A scale through the code is applied to this when readied"
-}
+editor_description = "A scale through the code is applied to this when readied"

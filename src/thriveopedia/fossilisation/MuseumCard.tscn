@@ -27,7 +27,7 @@ border_color = Color(0, 0, 0, 1)
 corner_radius_top_left = 3
 corner_radius_top_right = 3
 
-[node name="MuseumCard" type="Button" node_paths=PackedStringArray("deleteButton", "speciesPreview", "speciesNameLabel")]
+[node name="MuseumCard" type="Button" node_paths=PackedStringArray("speciesNameLabel", "speciesPreview", "deleteButton")]
 custom_minimum_size = Vector2(170, 182)
 anchors_preset = 15
 anchor_right = 1.0

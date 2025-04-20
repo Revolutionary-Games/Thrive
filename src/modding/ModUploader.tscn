@@ -7,7 +7,7 @@
 [ext_resource type="LabelSettings" uid="uid://fua052cwp5ap" path="res://src/gui_common/fonts/Body-Regular-AlmostSmaller.tres" id="4_77d33"]
 [ext_resource type="PackedScene" uid="uid://du8sc8kjirguk" path="res://src/gui_common/dialogs/CustomWindow.tscn" id="5"]
 
-[node name="ModUploader" type="Control" node_paths=PackedStringArray("uploadSucceededText", "uploadSucceededDialog", "changeNotes", "workshopNotice", "fileSelectDialog", "errorDisplay", "toBeUploadedContentLocation", "previewImageRect", "editedTags", "editedVisibility", "editedDescription", "editedTitle", "detailsEditor", "manualEnterIdSection", "acceptManualId", "manualIdEntry", "showManualEnterId", "createNewButton", "unknownItemActions", "modSelect", "uploadDialog")]
+[node name="ModUploader" type="Control" node_paths=PackedStringArray("uploadDialog", "modSelect", "unknownItemActions", "createNewButton", "showManualEnterId", "manualIdEntry", "acceptManualId", "manualEnterIdSection", "detailsEditor", "editedTitle", "editedDescription", "editedVisibility", "editedTags", "previewImageRect", "toBeUploadedContentLocation", "changeNotes", "uploadSucceededDialog", "uploadSucceededText", "fileSelectDialog", "workshopNotice", "errorDisplay")]
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
@@ -32,12 +32,12 @@ editedVisibility = NodePath("Dialog/VBoxContainer2/ScrollContainer/VBoxContainer
 editedTags = NodePath("Dialog/VBoxContainer2/ScrollContainer/VBoxContainer/DetailsEditor/Tags")
 previewImageRect = NodePath("Dialog/VBoxContainer2/ScrollContainer/VBoxContainer/DetailsEditor/HBoxContainer2/TextureRect")
 toBeUploadedContentLocation = NodePath("Dialog/VBoxContainer2/ScrollContainer/VBoxContainer/DetailsEditor/ContentLocation")
-errorDisplay = NodePath("Dialog/VBoxContainer2/ScrollContainer/VBoxContainer/Error")
-fileSelectDialog = NodePath("PreviewSelector")
-workshopNotice = NodePath("Dialog/VBoxContainer2/ScrollContainer/VBoxContainer/WorkshopNotice")
 changeNotes = NodePath("Dialog/VBoxContainer2/ScrollContainer/VBoxContainer/DetailsEditor/ChangeNotes")
 uploadSucceededDialog = NodePath("UploadSuccess")
 uploadSucceededText = NodePath("UploadSuccess/VBoxContainer/CustomRichTextLabel")
+fileSelectDialog = NodePath("PreviewSelector")
+workshopNotice = NodePath("Dialog/VBoxContainer2/ScrollContainer/VBoxContainer/WorkshopNotice")
+errorDisplay = NodePath("Dialog/VBoxContainer2/ScrollContainer/VBoxContainer/Error")
 
 [node name="Dialog" parent="." instance=ExtResource("2")]
 offset_right = 580.0

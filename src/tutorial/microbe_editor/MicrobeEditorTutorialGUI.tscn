@@ -10,7 +10,7 @@
 [ext_resource type="FontVariation" uid="uid://cqork3l186w1c" path="res://assets/fonts/variants/Jura-Bold.tres" id="9_jkhed"]
 [ext_resource type="PackedScene" uid="uid://tna206f2gtkv" path="res://src/gui_common/AddWindowReorderingSupportToSiblings.tscn" id="10"]
 
-[node name="MicrobeEditorTutorialGUI" type="Control" node_paths=PackedStringArray("nucleusTutorial", "tolerancesTabTutorial", "openTolerancesTabTutorial", "earlyGameGoalTutorial", "compoundBalanceTutorial", "migrationTutorial", "foodChainTutorial", "digestionStatTutorial", "CompoundBalanceHighlight", "AtpBalanceBarHighlight", "atpBalanceIntroduction", "modifyOrganelleTutorial", "flagellumPlacementTutorial", "madeNoChangesTutorial", "negativeAtpBalanceTutorial", "chemoreceptorPlacementTutorial", "staySmallTutorial", "AutoEvoPredictionHighlight", "autoEvoPrediction", "cellEditorClosingWords", "CellEditorRedoHighlight", "cellEditorRedo", "CellEditorUndoHighlight", "cellEditorUndo", "cellEditorIntroduction", "patchMap", "editorEntryReport")]
+[node name="MicrobeEditorTutorialGUI" type="Control" node_paths=PackedStringArray("editorEntryReport", "patchMap", "cellEditorIntroduction", "cellEditorUndo", "cellEditorRedo", "cellEditorClosingWords", "autoEvoPrediction", "staySmallTutorial", "negativeAtpBalanceTutorial", "chemoreceptorPlacementTutorial", "madeNoChangesTutorial", "flagellumPlacementTutorial", "modifyOrganelleTutorial", "atpBalanceIntroduction", "nucleusTutorial", "tolerancesTabTutorial", "openTolerancesTabTutorial", "earlyGameGoalTutorial", "compoundBalanceTutorial", "migrationTutorial", "foodChainTutorial", "digestionStatTutorial", "CellEditorUndoHighlight", "CellEditorRedoHighlight", "AutoEvoPredictionHighlight", "AtpBalanceBarHighlight", "CompoundBalanceHighlight")]
 process_mode = 3
 layout_mode = 3
 anchors_preset = 15
@@ -25,20 +25,16 @@ editorEntryReport = NodePath("EditorEntryReport")
 patchMap = NodePath("PatchMapTutorial")
 cellEditorIntroduction = NodePath("CellEditorIntro")
 cellEditorUndo = NodePath("UndoTutorial")
-CellEditorUndoHighlight = NodePath("UndoButtonHighlight")
 cellEditorRedo = NodePath("RedoTutorial")
-CellEditorRedoHighlight = NodePath("RedoButtonHighlight")
 cellEditorClosingWords = NodePath("CellEditorClosingWords")
 autoEvoPrediction = NodePath("AutoEvoPrediction")
-AutoEvoPredictionHighlight = NodePath("AutoEvoPredictionHighlight")
 staySmallTutorial = NodePath("StaySmall")
-chemoreceptorPlacementTutorial = NodePath("ChemoreceptorPlacementTutorial")
 negativeAtpBalanceTutorial = NodePath("NegativeAtpBalanceTutorial")
+chemoreceptorPlacementTutorial = NodePath("ChemoreceptorPlacementTutorial")
 madeNoChangesTutorial = NodePath("MadeNoChangesTutorial")
 flagellumPlacementTutorial = NodePath("FlagellumPlacementTutorial")
 modifyOrganelleTutorial = NodePath("ModifyOrganelleTutorial")
 atpBalanceIntroduction = NodePath("AtpBalanceIntroduction")
-AtpBalanceBarHighlight = NodePath("AtpBalanceBarHighlight")
 nucleusTutorial = NodePath("NucleusTutorial")
 tolerancesTabTutorial = NodePath("TolerancesTabTutorial")
 openTolerancesTabTutorial = NodePath("OpenTolerancesTabTutorial")
@@ -47,10 +43,13 @@ compoundBalanceTutorial = NodePath("CompoundBalanceTutorial")
 migrationTutorial = NodePath("MigrationTutorial")
 foodChainTutorial = NodePath("FoodChainTutorial")
 digestionStatTutorial = NodePath("DigestionStat")
+CellEditorUndoHighlight = NodePath("UndoButtonHighlight")
+CellEditorRedoHighlight = NodePath("RedoButtonHighlight")
+AutoEvoPredictionHighlight = NodePath("AutoEvoPredictionHighlight")
+AtpBalanceBarHighlight = NodePath("AtpBalanceBarHighlight")
 CompoundBalanceHighlight = NodePath("CompoundBalanceHighlight")
 
 [node name="AddWindowReorderingSupportToSiblings" parent="." instance=ExtResource("10")]
-anchors_preset = 0
 
 [node name="EditorEntryReport" parent="." instance=ExtResource("8")]
 custom_minimum_size = Vector2(390, 280)
@@ -143,6 +142,8 @@ visible = false
 anchors_preset = 0
 anchor_right = 0.0
 anchor_bottom = 0.0
+grow_horizontal = 1
+grow_vertical = 1
 
 [node name="RedoTutorial" parent="." instance=ExtResource("8")]
 custom_minimum_size = Vector2(370, 20)
@@ -165,8 +166,10 @@ visible = false
 anchors_preset = 0
 anchor_right = 0.0
 anchor_bottom = 0.0
+grow_horizontal = 1
+grow_vertical = 1
 
-[node name="CellEditorClosingWords" parent="." instance=ExtResource("9") node_paths=PackedStringArray("label")]
+[node name="CellEditorClosingWords" parent="." node_paths=PackedStringArray("label") instance=ExtResource("9")]
 custom_minimum_size = Vector2(360, 390)
 layout_mode = 1
 anchors_preset = 8
@@ -220,6 +223,8 @@ visible = false
 anchors_preset = 0
 anchor_right = 0.0
 anchor_bottom = 0.0
+grow_horizontal = 1
+grow_vertical = 1
 
 [node name="AutoEvoPrediction" parent="." instance=ExtResource("8")]
 custom_minimum_size = Vector2(450, 430)
@@ -259,7 +264,7 @@ ShowDelay = 0.7
 ShowCloseButton = false
 PreventsMouseCaptureWhileOpen = true
 
-[node name="FlagellumPlacementTutorial" parent="." instance=ExtResource("9") node_paths=PackedStringArray("label")]
+[node name="FlagellumPlacementTutorial" parent="." node_paths=PackedStringArray("label") instance=ExtResource("9")]
 custom_minimum_size = Vector2(390, 395)
 layout_mode = 1
 anchors_preset = 8
@@ -326,7 +331,7 @@ Description = "TUTORIAL_MICROBE_EDITOR_CHEMORECEPTOR"
 ShowDelay = 0.7
 PreventsMouseCaptureWhileOpen = true
 
-[node name="StaySmall" parent="." instance=ExtResource("9") node_paths=PackedStringArray("label")]
+[node name="StaySmall" parent="." node_paths=PackedStringArray("label") instance=ExtResource("9")]
 custom_minimum_size = Vector2(375, 420)
 layout_mode = 1
 anchors_preset = 8
@@ -375,7 +380,7 @@ theme_override_fonts/font = ExtResource("9_jkhed")
 theme_override_font_sizes/font_size = 18
 text = "GOT_IT"
 
-[node name="MadeNoChangesTutorial" parent="." instance=ExtResource("9") node_paths=PackedStringArray("label")]
+[node name="MadeNoChangesTutorial" parent="." node_paths=PackedStringArray("label") instance=ExtResource("9")]
 custom_minimum_size = Vector2(375, 270)
 layout_mode = 1
 anchors_preset = 8
@@ -475,6 +480,8 @@ visible = false
 anchors_preset = 0
 anchor_right = 0.0
 anchor_bottom = 0.0
+grow_horizontal = 1
+grow_vertical = 1
 
 [node name="AtpBalanceIntroduction" type="Control" parent="." node_paths=PackedStringArray("label")]
 visible = false
@@ -645,6 +652,8 @@ visible = false
 anchors_preset = 0
 anchor_right = 0.0
 anchor_bottom = 0.0
+grow_horizontal = 1
+grow_vertical = 1
 
 [node name="FoodChainTutorial" parent="." instance=ExtResource("8")]
 custom_minimum_size = Vector2(360, 360)
@@ -663,7 +672,7 @@ grow_vertical = 2
 Description = "TUTORIAL_MICROBE_EDITOR_FOOD_CHAIN"
 PreventsMouseCaptureWhileOpen = true
 
-[node name="DigestionStat" parent="." instance=ExtResource("9") node_paths=PackedStringArray("label")]
+[node name="DigestionStat" parent="." node_paths=PackedStringArray("label") instance=ExtResource("9")]
 custom_minimum_size = Vector2(380, 420)
 layout_mode = 1
 anchors_preset = 8

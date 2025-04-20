@@ -7,7 +7,7 @@
 [ext_resource type="Script" uid="uid://dh5l86bxf1fua" path="res://src/thriveopedia/pages/wiki/organelles/OrganelleInfoBox.cs" id="6"]
 [ext_resource type="Texture2D" uid="uid://bx240joai3755" path="res://assets/textures/gui/bevel/RequirementFulfilled.png" id="7"]
 
-[node name="PanelContainer" type="PanelContainer" node_paths=PackedStringArray("internalNameLabel", "upgradesLabel", "uniqueIcon", "storageLabel", "osmoregulationCostLabel", "sizeLabel", "massLabel", "enzymesLabel", "processesLabel", "requiresNucleusIcon", "costLabel", "model", "icon", "nameLabel")]
+[node name="PanelContainer" type="PanelContainer" node_paths=PackedStringArray("nameLabel", "icon", "model", "costLabel", "requiresNucleusIcon", "processesLabel", "enzymesLabel", "massLabel", "sizeLabel", "osmoregulationCostLabel", "storageLabel", "uniqueIcon", "upgradesLabel", "internalNameLabel")]
 custom_minimum_size = Vector2(330, 0)
 offset_right = 286.0
 offset_bottom = 732.0

@@ -4,7 +4,7 @@
 [ext_resource type="Script" uid="uid://beiybaokjbygb" path="res://src/microbe_stage/MicrobeCheatMenu.cs" id="2"]
 [ext_resource type="LabelSettings" uid="uid://dvqx73nhtr0y2" path="res://src/gui_common/fonts/Body-Regular-Small.tres" id="4_4g68c"]
 
-[node name="MicrobeCheatMenu" instance=ExtResource("1") node_paths=PackedStringArray("targetTime", "manuallySetTime", "despawnAllEntities", "spawnEnemy", "playerDivide", "speed", "lockTime", "unlimitGrowthSpeed", "disableAI", "godMode", "infiniteCompounds")]
+[node name="MicrobeCheatMenu" node_paths=PackedStringArray("infiniteCompounds", "godMode", "disableAI", "unlimitGrowthSpeed", "lockTime", "speed", "playerDivide", "spawnEnemy", "despawnAllEntities", "manuallySetTime", "targetTime") instance=ExtResource("1")]
 offset_right = 0.0
 offset_bottom = 0.0
 script = ExtResource("2")

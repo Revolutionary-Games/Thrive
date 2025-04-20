@@ -53,7 +53,7 @@ _data = {
 &"SavingStatusFadeOut": SubResource("1")
 }
 
-[node name="SaveStatusOverlay" type="Control" node_paths=PackedStringArray("errorJsonDebugLabel", "errorJsonDebugAdvice", "errorDialog", "animationPlayer", "statusLabel")]
+[node name="SaveStatusOverlay" type="Control" node_paths=PackedStringArray("statusLabel", "animationPlayer", "errorDialog", "errorJsonDebugAdvice", "errorJsonDebugLabel")]
 process_mode = 3
 layout_mode = 3
 anchors_preset = 15
@@ -85,7 +85,7 @@ text = "Saving status goes here..."
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="CenterContainer"]
 libraries = {
-"": SubResource("AnimationLibrary_1toxe")
+&"": SubResource("AnimationLibrary_1toxe")
 }
 
 [node name="CenterContainer2" type="CenterContainer" parent="."]

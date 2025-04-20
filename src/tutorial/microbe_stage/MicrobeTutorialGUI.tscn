@@ -13,7 +13,7 @@
 [ext_resource type="PackedScene" uid="uid://du8sc8kjirguk" path="res://src/gui_common/dialogs/CustomWindow.tscn" id="13"]
 [ext_resource type="PackedScene" uid="uid://tna206f2gtkv" path="res://src/gui_common/AddWindowReorderingSupportToSiblings.tscn" id="14"]
 
-[node name="MicrobeTutorialGUI" type="Control" node_paths=PackedStringArray("tutorialDisabledExplanation", "welcomeTutorialScrollContainer", "openProcessPanelTutorial", "processPanelTutorial", "resourceSplitTutorial", "pausingTutorial", "speciesMemberDied", "ProcessPanelButtonHighlight", "PressEditorButtonHighlight", "engulfmentFullCapacity", "engulfedExplanation", "engulfmentExplanation", "checkTheHelpMenu", "becomeMulticellularTutorial", "organelleDivisionTutorial", "dayNightTutorial", "multicellularWelcome", "leaveColonyTutorial", "unbindTutorial", "editorButtonTutorial", "reproductionTutorial", "stayingAlive", "glucoseTutorial", "microbeMovementKeyBackwards", "microbeMovementKeyRight", "microbeMovementKeyLeft", "microbeMovementKeyForward", "microbeMovementPopup", "microbeMovementKeyPrompts", "microbeWelcomeMessage")]
+[node name="MicrobeTutorialGUI" type="Control" node_paths=PackedStringArray("microbeWelcomeMessage", "tutorialDisabledExplanation", "welcomeTutorialScrollContainer", "microbeMovementKeyPrompts", "microbeMovementKeyForward", "microbeMovementKeyLeft", "microbeMovementKeyRight", "microbeMovementKeyBackwards", "microbeMovementPopup", "glucoseTutorial", "stayingAlive", "reproductionTutorial", "editorButtonTutorial", "unbindTutorial", "checkTheHelpMenu", "engulfmentExplanation", "engulfedExplanation", "engulfmentFullCapacity", "leaveColonyTutorial", "multicellularWelcome", "dayNightTutorial", "becomeMulticellularTutorial", "organelleDivisionTutorial", "openProcessPanelTutorial", "processPanelTutorial", "resourceSplitTutorial", "pausingTutorial", "speciesMemberDied", "PressEditorButtonHighlight", "ProcessPanelButtonHighlight")]
 process_mode = 3
 layout_mode = 3
 anchors_preset = 15
@@ -25,40 +25,39 @@ mouse_filter = 2
 theme = ExtResource("2")
 script = ExtResource("1")
 microbeWelcomeMessage = NodePath("MicrobeWelcome")
+tutorialDisabledExplanation = NodePath("MicrobeWelcome/VBoxContainer/ScrollContainer/VBoxContainer/AllNotEnabledExplanation")
+welcomeTutorialScrollContainer = NodePath("MicrobeWelcome/VBoxContainer/ScrollContainer")
 microbeMovementKeyPrompts = NodePath("MicrobeMovementTutorial/KeyPrompts")
-microbeMovementPopup = NodePath("MicrobeMovementTutorial/ExplainingPopup")
 microbeMovementKeyForward = NodePath("MicrobeMovementTutorial/KeyPrompts/Forward")
 microbeMovementKeyLeft = NodePath("MicrobeMovementTutorial/KeyPrompts/Left")
 microbeMovementKeyRight = NodePath("MicrobeMovementTutorial/KeyPrompts/Right")
 microbeMovementKeyBackwards = NodePath("MicrobeMovementTutorial/KeyPrompts/Backwards")
+microbeMovementPopup = NodePath("MicrobeMovementTutorial/ExplainingPopup")
 glucoseTutorial = NodePath("GlucoseTutorial")
 stayingAlive = NodePath("StayingAliveTutorial")
 reproductionTutorial = NodePath("ReproductionTutorial")
 editorButtonTutorial = NodePath("EditorButtonTutorial")
 unbindTutorial = NodePath("UnbindTutorial")
-leaveColonyTutorial = NodePath("LeaveColonyTutorial")
-multicellularWelcome = NodePath("EarlyMulticellularWelcome")
-dayNightTutorial = NodePath("EnvironmentPanelTutorial")
-organelleDivisionTutorial = NodePath("OrganelleDivisionTutorial")
-becomeMulticellularTutorial = NodePath("BecomeMulticellularTutorial")
 checkTheHelpMenu = NodePath("CheckHelpMenu")
 engulfmentExplanation = NodePath("EngulfmentTutorial")
 engulfedExplanation = NodePath("EngulfedTutorial")
 engulfmentFullCapacity = NodePath("EngulfmentFullCapacity")
-PressEditorButtonHighlight = NodePath("EditorButtonHighlight")
-tutorialDisabledExplanation = NodePath("MicrobeWelcome/VBoxContainer/ScrollContainer/VBoxContainer/AllNotEnabledExplanation")
-welcomeTutorialScrollContainer = NodePath("MicrobeWelcome/VBoxContainer/ScrollContainer")
+leaveColonyTutorial = NodePath("LeaveColonyTutorial")
+multicellularWelcome = NodePath("EarlyMulticellularWelcome")
+dayNightTutorial = NodePath("EnvironmentPanelTutorial")
+becomeMulticellularTutorial = NodePath("BecomeMulticellularTutorial")
+organelleDivisionTutorial = NodePath("OrganelleDivisionTutorial")
 openProcessPanelTutorial = NodePath("OpenProcessPanelTutorial")
 processPanelTutorial = NodePath("ProcessPanelTutorial")
 resourceSplitTutorial = NodePath("ResourceSplitTutorial")
 pausingTutorial = NodePath("PausingTutorial")
 speciesMemberDied = NodePath("MemberDiedTutorial")
+PressEditorButtonHighlight = NodePath("EditorButtonHighlight")
 ProcessPanelButtonHighlight = NodePath("ProcessButtonHighlight")
 
 [node name="AddWindowReorderingSupportToSiblings" parent="." instance=ExtResource("14")]
-anchors_preset = 0
 
-[node name="MicrobeWelcome" parent="." instance=ExtResource("13") node_paths=PackedStringArray("label")]
+[node name="MicrobeWelcome" parent="." node_paths=PackedStringArray("label") instance=ExtResource("13")]
 custom_minimum_size = Vector2(450, 460)
 layout_mode = 1
 offset_right = 450.0
@@ -317,6 +316,8 @@ anchor_right = 0.0
 anchor_bottom = 0.0
 offset_right = 490.0
 offset_bottom = 490.0
+grow_horizontal = 1
+grow_vertical = 1
 
 [node name="EditorButtonTutorial" parent="." instance=ExtResource("10")]
 custom_minimum_size = Vector2(260, 260)
@@ -351,7 +352,7 @@ grow_vertical = 2
 Description = "TUTORIAL_MICROBE_STAGE_UNBIND_TEXT"
 PreventsMouseCaptureWhileOpen = true
 
-[node name="CheckHelpMenu" parent="." instance=ExtResource("13") node_paths=PackedStringArray("label")]
+[node name="CheckHelpMenu" parent="." node_paths=PackedStringArray("label") instance=ExtResource("13")]
 custom_minimum_size = Vector2(260, 290)
 layout_mode = 1
 anchors_preset = 6
@@ -515,8 +516,6 @@ PreventsMouseCaptureWhileOpen = true
 [node name="ProcessButtonHighlight" parent="." instance=ExtResource("11")]
 visible = false
 layout_mode = 1
-grow_horizontal = 2
-grow_vertical = 2
 
 [node name="ProcessPanelTutorial" parent="." instance=ExtResource("10")]
 custom_minimum_size = Vector2(490, 480)

@@ -5,7 +5,7 @@
 [ext_resource type="LabelSettings" uid="uid://bx7mw3uvqpo42" path="res://src/gui_common/fonts/Body-Regular-Smaller.tres" id="3_paixo"]
 [ext_resource type="FontVariation" uid="uid://cqork3l186w1c" path="res://assets/fonts/variants/Jura-Bold.tres" id="4_bos37"]
 
-[node name="NewModGUI" type="Control" node_paths=PackedStringArray("errorDisplay", "assemblyModAutoHarmony", "assemblyModClass", "modAssembly", "pckName", "maximumThrive", "minimumThrive", "recommendedThrive", "license", "infoUrl", "iconFile", "longDescription", "description", "version", "author", "nameLabel", "internalName", "dialog")]
+[node name="NewModGUI" type="Control" node_paths=PackedStringArray("dialog", "internalName", "name", "author", "version", "description", "longDescription", "iconFile", "infoUrl", "license", "recommendedThrive", "minimumThrive", "maximumThrive", "pckName", "modAssembly", "assemblyModClass", "assemblyModAutoHarmony", "errorDisplay")]
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
@@ -16,7 +16,7 @@ mouse_filter = 2
 script = ExtResource("2")
 dialog = NodePath("CustomWindow")
 internalName = NodePath("CustomWindow/ScrollContainer/MarginContainer/VBoxContainer/Form/InternalName")
-nameLabel = NodePath("CustomWindow/ScrollContainer/MarginContainer/VBoxContainer/Form/Name")
+name = NodePath("CustomWindow/ScrollContainer/MarginContainer/VBoxContainer/Form/Name")
 author = NodePath("CustomWindow/ScrollContainer/MarginContainer/VBoxContainer/Form/Author")
 version = NodePath("CustomWindow/ScrollContainer/MarginContainer/VBoxContainer/Form/Version")
 description = NodePath("CustomWindow/ScrollContainer/MarginContainer/VBoxContainer/Form/Description")
@@ -35,7 +35,6 @@ errorDisplay = NodePath("CustomWindow/ScrollContainer/MarginContainer/VBoxContai
 
 [node name="CustomWindow" parent="." instance=ExtResource("1")]
 visible = true
-anchors_preset = 0
 WindowTitle = "CREATE_NEW_MOD"
 Resizable = true
 ExclusiveAllowCloseOnEscape = false

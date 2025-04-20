@@ -5,7 +5,7 @@
 [ext_resource type="Script" uid="uid://cdn1mk1sq7aj7" path="res://src/society_stage/gui/TechWebGUI.cs" id="3"]
 [ext_resource type="PackedScene" uid="uid://bhpjtbtaeunat" path="res://src/gui_common/CustomRichTextLabel.tscn" id="4"]
 
-[node name="TechWebGUI" type="HBoxContainer" node_paths=PackedStringArray("techNodesContainer", "researchButton", "selectedTechnologyDescriptionLabel", "technologyNameLabel")]
+[node name="TechWebGUI" type="HBoxContainer" node_paths=PackedStringArray("technologyNameLabel", "selectedTechnologyDescriptionLabel", "researchButton", "techNodesContainer")]
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
@@ -16,7 +16,7 @@ selectedTechnologyDescriptionLabel = NodePath("VBoxContainer/ScrollContainer/VBo
 researchButton = NodePath("VBoxContainer/StartResearch")
 techNodesContainer = NodePath("DraggableScrollContainer/WebNodesContainer")
 
-[node name="DraggableScrollContainer" parent="." instance=ExtResource("1") node_paths=PackedStringArray("content")]
+[node name="DraggableScrollContainer" parent="." node_paths=PackedStringArray("content") instance=ExtResource("1")]
 layout_mode = 2
 size_flags_horizontal = 3
 size_flags_vertical = 3

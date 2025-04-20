@@ -26,7 +26,7 @@ corner_radius_bottom_left = 10
 [sub_resource type="StyleBoxFlat" id="2"]
 bg_color = Color(0, 0.435294, 0.52549, 0.27451)
 
-[node name="SaveListItem" type="PanelContainer" node_paths=PackedStringArray("highlightPanel", "loadButton", "description", "createdOnPlatform", "createdBy", "createdAt", "type", "versionWarning", "version", "screenshot", "saveNameLabel")]
+[node name="SaveListItem" type="PanelContainer" node_paths=PackedStringArray("saveNameLabel", "screenshot", "version", "versionWarning", "type", "createdAt", "createdBy", "createdOnPlatform", "description", "loadButton", "highlightPanel")]
 offset_right = 838.0
 offset_bottom = 142.0
 theme = ExtResource("2")

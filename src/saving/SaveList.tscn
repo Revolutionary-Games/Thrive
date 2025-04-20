@@ -5,7 +5,7 @@
 [ext_resource type="PackedScene" uid="uid://cl64wvnxs6ivs" path="res://src/gui_common/dialogs/CustomConfirmationDialog.tscn" id="3"]
 [ext_resource type="PackedScene" uid="uid://2nt57gfubafw" path="res://src/gui_common/dialogs/ErrorDialog.tscn" id="4"]
 
-[node name="SaveList" type="ScrollContainer" node_paths=PackedStringArray("errorSaveDeletionFailed", "loadIncompatiblePrototypeDialog", "upgradeFailedDialog", "upgradeSaveDialog", "loadIncompatibleDialog", "loadInvalidConfirmDialog", "loadOlderConfirmDialog", "loadNewerConfirmDialog", "deleteConfirmDialog", "savesList", "noSavesItem", "loadingItem")]
+[node name="SaveList" type="ScrollContainer" node_paths=PackedStringArray("loadingItem", "noSavesItem", "savesList", "deleteConfirmDialog", "loadNewerConfirmDialog", "loadOlderConfirmDialog", "loadInvalidConfirmDialog", "loadIncompatibleDialog", "upgradeSaveDialog", "loadIncompatiblePrototypeDialog", "upgradeFailedDialog", "errorSaveDeletionFailed")]
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
@@ -22,8 +22,8 @@ loadOlderConfirmDialog = NodePath("MarginContainer/VBoxContainer/LoadOlderSaveDi
 loadInvalidConfirmDialog = NodePath("MarginContainer/VBoxContainer/LoadInvalidSaveDialog")
 loadIncompatibleDialog = NodePath("MarginContainer/VBoxContainer/LoadKnownIncompatibleDialog")
 upgradeSaveDialog = NodePath("MarginContainer/VBoxContainer/UpgradeSelectedSaveDialog")
-upgradeFailedDialog = NodePath("MarginContainer/VBoxContainer/SaveUpgradeFailedDialog")
 loadIncompatiblePrototypeDialog = NodePath("MarginContainer/VBoxContainer/LoadIncompatiblePrototypeDialog")
+upgradeFailedDialog = NodePath("MarginContainer/VBoxContainer/SaveUpgradeFailedDialog")
 errorSaveDeletionFailed = NodePath("MarginContainer/VBoxContainer/ErrorSaveDeletionFailedDialog")
 
 [node name="MarginContainer" type="MarginContainer" parent="."]
