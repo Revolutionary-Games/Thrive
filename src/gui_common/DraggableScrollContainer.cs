@@ -212,15 +212,6 @@ public partial class DraggableScrollContainer : ScrollContainer
         ResetZoom(smoothed);
     }
 
-    protected override void Dispose(bool disposing)
-    {
-        if (disposing)
-        {
-        }
-
-        base.Dispose(disposing);
-    }
-
     private void ImmediateZoom(float value)
     {
         contentScale = value;

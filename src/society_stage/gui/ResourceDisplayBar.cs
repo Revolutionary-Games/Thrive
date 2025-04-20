@@ -77,17 +77,6 @@ public partial class ResourceDisplayBar : HBoxContainer
             StringUtils.FormatPositiveWithLeadingPlus(StringUtils.ThreeDigitFormat(amount), amount);
     }
 
-    protected override void Dispose(bool disposing)
-    {
-        if (disposing)
-        {
-            {
-            }
-        }
-
-        base.Dispose(disposing);
-    }
-
     private DisplayAmount CreateDisplayAmount(WorldResource resource)
     {
         return new DisplayAmount(resource, AmountLabelFontFull, AmountLabelFont);

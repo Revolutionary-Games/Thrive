@@ -31,13 +31,4 @@ public partial class QuickLoadHandler : NodeWithInput
             GD.Print("Quick load pressed, cancelled because another is already in progress");
         }
     }
-
-    protected override void Dispose(bool disposing)
-    {
-        if (disposing)
-        {
-        }
-
-        base.Dispose(disposing);
-    }
 }

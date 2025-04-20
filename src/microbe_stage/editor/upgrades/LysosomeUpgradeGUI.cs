@@ -70,17 +70,6 @@ public partial class LysosomeUpgradeGUI : VBoxContainer, IOrganelleUpgrader
         return new Vector2(420, 160);
     }
 
-    protected override void Dispose(bool disposing)
-    {
-        if (disposing)
-        {
-            {
-            }
-        }
-
-        base.Dispose(disposing);
-    }
-
     private void OnEnzymeSelected(int index)
     {
         _ = index;

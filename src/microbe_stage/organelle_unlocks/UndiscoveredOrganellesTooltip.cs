@@ -66,17 +66,6 @@ public partial class UndiscoveredOrganellesTooltip : Control, ICustomToolTip
         Localization.Instance.OnTranslationsChanged -= OnTranslationsChanged;
     }
 
-    protected override void Dispose(bool disposing)
-    {
-        if (disposing)
-        {
-            {
-            }
-        }
-
-        base.Dispose(disposing);
-    }
-
     private void UpdateName()
     {
         if (nameLabel == null)

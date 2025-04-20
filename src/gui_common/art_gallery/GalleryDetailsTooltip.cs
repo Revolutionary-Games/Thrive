@@ -75,17 +75,6 @@ public partial class GalleryDetailsTooltip : PanelContainer, ICustomToolTip
         Localization.Instance.OnTranslationsChanged -= UpdateContent;
     }
 
-    protected override void Dispose(bool disposing)
-    {
-        if (disposing)
-        {
-            {
-            }
-        }
-
-        base.Dispose(disposing);
-    }
-
     private void UpdateContent()
     {
         if (titleLabel == null || descriptionLabel == null || artistLabel == null)

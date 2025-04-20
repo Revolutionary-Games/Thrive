@@ -117,17 +117,6 @@ public partial class StructureToBuildPopupBase<TSelection> : Control
         }
     }
 
-    protected override void Dispose(bool disposing)
-    {
-        if (disposing)
-        {
-            {
-            }
-        }
-
-        base.Dispose(disposing);
-    }
-
     protected abstract class CreatedButtonBase
     {
         protected readonly Button nativeNode;

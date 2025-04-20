@@ -479,15 +479,4 @@ public partial class StageBase : NodeWithInput, IStageBase, IGodotEarlyNodeResol
     {
         GD.PrintErr("Non-implemented God tools opening for entity in stage type: ", GetType().Name);
     }
-
-    protected override void Dispose(bool disposing)
-    {
-        if (disposing)
-        {
-            {
-            }
-        }
-
-        base.Dispose(disposing);
-    }
 }

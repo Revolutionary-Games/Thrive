@@ -130,17 +130,6 @@ public partial class InteractablePopup : Control
         return false;
     }
 
-    protected override void Dispose(bool disposing)
-    {
-        if (disposing)
-        {
-            {
-            }
-        }
-
-        base.Dispose(disposing);
-    }
-
     private void OptionSelected(InteractionType interactionType)
     {
         if (openedFor == null)

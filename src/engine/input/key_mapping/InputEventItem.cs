@@ -437,9 +437,6 @@ public partial class InputEventItem : MarginContainer
     {
         if (disposing)
         {
-            {
-            }
-
             uiSelectAction.Dispose();
             uiAcceptAction.Dispose();
         }

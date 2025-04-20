@@ -18,24 +18,6 @@ using Godot;
 /// </remarks>
 public partial class AutoEvoExploringTool : NodeWithInput, ISpeciesDataProvider
 {
-    // Tab paths
-
-    // World controls paths
-
-    // Auto-evo parameters paths
-
-    // Status and control paths
-
-    // Map paths
-
-    // Report paths
-
-    // Viewer paths
-
-    // Miche paths
-
-    // Dialog paths
-
     private readonly List<AutoEvoExploringToolWorld> worldsList = new();
 
 #pragma warning disable CA2213
@@ -59,7 +41,6 @@ public partial class AutoEvoExploringTool : NodeWithInput, ISpeciesDataProvider
     private Control micheTab = null!;
 
     // World controls
-
     [Export]
     private CustomRichTextLabel allWorldsStatisticsLabel = null!;
     [Export]

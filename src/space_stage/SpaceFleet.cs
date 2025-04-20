@@ -154,15 +154,6 @@ public partial class SpaceFleet : Node3D, IEntityWithNameLabel, IStrategicUnit
         AliveMarker.Alive = false;
     }
 
-    protected override void Dispose(bool disposing)
-    {
-        if (disposing)
-        {
-        }
-
-        base.Dispose(disposing);
-    }
-
     /// <summary>
     ///   Sets the content of this fleet to the given ship(s)
     /// </summary>

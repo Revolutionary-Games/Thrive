@@ -297,17 +297,6 @@ public partial class ModManager : Control
         wasVisible = isCurrentlyVisible;
     }
 
-    protected override void Dispose(bool disposing)
-    {
-        if (disposing)
-        {
-            {
-            }
-        }
-
-        base.Dispose(disposing);
-    }
-
     private static bool IsAllowedModPath(string path)
     {
         if (string.IsNullOrWhiteSpace(path))

@@ -21,15 +21,4 @@ public partial class PatchNameOverlay : PanelContainer
         patchLabel.Text = patchName;
         patchOverlayAnimator.Play("FadeInOut");
     }
-
-    protected override void Dispose(bool disposing)
-    {
-        if (disposing)
-        {
-            {
-            }
-        }
-
-        base.Dispose(disposing);
-    }
 }

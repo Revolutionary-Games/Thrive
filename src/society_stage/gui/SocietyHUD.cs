@@ -33,13 +33,4 @@ public partial class SocietyHUD : StrategyStageHUDBase<SocietyStage>
     {
         populationLabel.Text = StringUtils.ThreeDigitFormat(population);
     }
-
-    protected override void Dispose(bool disposing)
-    {
-        if (disposing)
-        {
-        }
-
-        base.Dispose(disposing);
-    }
 }

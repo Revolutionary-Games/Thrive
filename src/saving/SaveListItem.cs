@@ -263,17 +263,6 @@ public partial class SaveListItem : PanelContainer
         EmitSignal(SignalName.OnProblemFreeSaveLoaded);
     }
 
-    protected override void Dispose(bool disposing)
-    {
-        if (disposing)
-        {
-            {
-            }
-        }
-
-        base.Dispose(disposing);
-    }
-
     private void LoadSaveData()
     {
         loadingData = true;

@@ -177,17 +177,6 @@ public partial class HexPopupMenu : CustomPopupMenu
         throw new GodotAbstractMethodNotOverriddenException();
     }
 
-    protected override void Dispose(bool disposing)
-    {
-        if (disposing)
-        {
-            {
-            }
-        }
-
-        base.Dispose(disposing);
-    }
-
     private void UpdateModifyButton()
     {
         if (modifyButton == null)

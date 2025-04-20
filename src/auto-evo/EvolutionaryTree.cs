@@ -277,9 +277,7 @@ public partial class EvolutionaryTree : Control
     {
         if (disposing)
         {
-            {
-                nodesGroup.Dispose();
-            }
+            nodesGroup.Dispose();
         }
 
         base.Dispose(disposing);

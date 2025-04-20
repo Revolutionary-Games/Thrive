@@ -214,9 +214,6 @@ public partial class AscensionCeremony : Node
     {
         if (disposing)
         {
-            {
-            }
-
             foreach (var spawnPointPath in ObserverSpawnPointPaths)
                 spawnPointPath.Dispose();
         }

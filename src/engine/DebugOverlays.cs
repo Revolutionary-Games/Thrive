@@ -42,11 +42,6 @@ public partial class DebugOverlays : Control
     public override void _Ready()
     {
         base._Ready();
-
-        fpsLabel = GetNode<Label>(FPSLabelPath);
-        deltaLabel = GetNode<Label>(DeltaLabelPath);
-        metricsText = GetNode<Label>(MetricsTextPath);
-        fpsDisplayLabel = GetNode<Label>(FPSDisplayLabelPath);
     }
 
     public override void _EnterTree()
@@ -121,21 +116,6 @@ public partial class DebugOverlays : Control
     public void OnFpsToggled()
     {
         fpsCheckBox.ButtonPressed = !fpsCheckBox.ButtonPressed;
-    }
-
-    protected override void Dispose(bool disposing)
-    {
-        if (disposing)
-        {
-            {
-                FPSLabelPath.Dispose();
-                DeltaLabelPath.Dispose();
-                MetricsTextPath.Dispose();
-                FPSDisplayLabelPath.Dispose();
-            }
-        }
-
-        base.Dispose(disposing);
     }
 
     private void OnPerformanceMetricsCheckBoxToggled(bool state)

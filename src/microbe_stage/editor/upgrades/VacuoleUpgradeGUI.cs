@@ -93,17 +93,6 @@ public partial class VacuoleUpgradeGUI : VBoxContainer, IOrganelleUpgrader
         return new Vector2(420, 135);
     }
 
-    protected override void Dispose(bool disposing)
-    {
-        if (disposing)
-        {
-            {
-            }
-        }
-
-        base.Dispose(disposing);
-    }
-
     private void OnIsSpecializedToggled(bool isSpecialized)
     {
         _ = isSpecialized;

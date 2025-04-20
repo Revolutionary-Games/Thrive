@@ -639,9 +639,6 @@ public partial class LineChart : VBoxContainer
     {
         if (disposing)
         {
-            {
-            }
-
             ProperlyRemovePointAndLineToolTips();
             ProperlyRemoveLegendToolTips();
         }

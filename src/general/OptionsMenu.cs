@@ -723,17 +723,6 @@ public partial class OptionsMenu : ControlWithInput
         ChangeSettingsTab(tab.ToString());
     }
 
-    protected override void Dispose(bool disposing)
-    {
-        if (disposing)
-        {
-            {
-            }
-        }
-
-        base.Dispose(disposing);
-    }
-
     private void InitializeOptionsSelections()
     {
         if (elementItemSelectionsInitialized)

@@ -10,9 +10,6 @@ using Godot;
 public partial class PhotoStudio : SubViewport
 {
     [Export]
-    public NodePath SimulationWorldsParentPath = null!;
-
-    [Export]
     public bool UseBackgroundSceneLoad;
 
     [Export]
@@ -57,6 +54,7 @@ public partial class PhotoStudio : SubViewport
     [Export]
     private Node3D renderedObjectHolder = null!;
 
+    [Export]
     private Node simulationWorldsParent = null!;
 
     private PackedScene? taskScene;
@@ -112,8 +110,6 @@ public partial class PhotoStudio : SubViewport
         instance = this;
 
         base._Ready();
-
-        simulationWorldsParent = GetNode(SimulationWorldsParentPath);
 
         // We manually trigger rendering when we want
         RenderTargetUpdateMode = UpdateMode.Disabled;
@@ -389,10 +385,6 @@ public partial class PhotoStudio : SubViewport
     {
         if (disposing)
         {
-            {
-                SimulationWorldsParentPath.Dispose();
-            }
-
             foreach (var entry in worldSimulations)
             {
                 entry.Value.Dispose();

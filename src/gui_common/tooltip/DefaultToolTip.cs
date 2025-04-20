@@ -60,15 +60,6 @@ public partial class DefaultToolTip : Control, ICustomToolTip
         UpdateDescription();
     }
 
-    protected override void Dispose(bool disposing)
-    {
-        if (disposing)
-        {
-        }
-
-        base.Dispose(disposing);
-    }
-
     private void UpdateDescription()
     {
         if (descriptionLabel == null)

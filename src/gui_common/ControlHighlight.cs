@@ -70,15 +70,4 @@ public partial class ControlHighlight : Control
             bottomPlane.Size = new Vector2(middleWidth, bottomHeight);
         }
     }
-
-    protected override void Dispose(bool disposing)
-    {
-        if (disposing)
-        {
-            {
-            }
-        }
-
-        base.Dispose(disposing);
-    }
 }

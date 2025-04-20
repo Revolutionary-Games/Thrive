@@ -153,17 +153,6 @@ public partial class TimelineTab : PanelContainer
         scrollContainer.ScrollVertical += (int)(diff - scrollRect.Position.Y);
     }
 
-    protected override void Dispose(bool disposing)
-    {
-        if (disposing)
-        {
-            {
-            }
-        }
-
-        base.Dispose(disposing);
-    }
-
     private void ApplyEventsFilter()
     {
         switch (EventFilter)

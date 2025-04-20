@@ -119,17 +119,6 @@ public partial class InputGroupItem : VBoxContainer
         return result;
     }
 
-    protected override void Dispose(bool disposing)
-    {
-        if (disposing)
-        {
-            {
-            }
-        }
-
-        base.Dispose(disposing);
-    }
-
     private void ApplyGroupName()
     {
         if (inputGroupHeader != null)

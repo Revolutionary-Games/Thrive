@@ -395,17 +395,6 @@ public partial class MicrobeEditor : EditorBase<EditorAction, MicrobeStage>, IEd
         base.SetupEditedSpecies();
     }
 
-    protected override void Dispose(bool disposing)
-    {
-        if (disposing)
-        {
-            {
-            }
-        }
-
-        base.Dispose(disposing);
-    }
-
     private void UpdateAutoEvoToReportTab()
     {
         if (autoEvoResults == null)

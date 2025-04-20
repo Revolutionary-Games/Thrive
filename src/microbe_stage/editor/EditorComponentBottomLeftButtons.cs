@@ -173,17 +173,6 @@ public partial class EditorComponentBottomLeftButtons : MarginContainer
         PerformValidation(speciesNameEdit.Text);
     }
 
-    protected override void Dispose(bool disposing)
-    {
-        if (disposing)
-        {
-            {
-            }
-        }
-
-        base.Dispose(disposing);
-    }
-
     private void OnSymmetryHold()
     {
         symmetryIcon.Modulate = new Color(0, 0, 0);

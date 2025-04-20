@@ -404,17 +404,6 @@ public partial class MulticellularEditor : EditorBase<EditorAction, MicrobeStage
         base.OnEditorExitTransitionFinished();
     }
 
-    protected override void Dispose(bool disposing)
-    {
-        if (disposing)
-        {
-            {
-            }
-        }
-
-        base.Dispose(disposing);
-    }
-
     private void UpdateAutoEvoToReportTab()
     {
         if (autoEvoResults == null)

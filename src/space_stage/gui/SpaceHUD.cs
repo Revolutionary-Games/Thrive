@@ -132,17 +132,6 @@ public partial class SpaceHUD : StrategyStageHUDBase<SpaceStage>, IStructureSele
         stage!.StartPlacingStructure(fleetToConstructWith, structureDefinition);
     }
 
-    protected override void Dispose(bool disposing)
-    {
-        if (disposing)
-        {
-            {
-            }
-        }
-
-        base.Dispose(disposing);
-    }
-
     private void UpdateButtonState()
     {
         descendButton.Visible = stage?.CurrentGame?.Ascended == true;

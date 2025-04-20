@@ -1118,9 +1118,6 @@ public partial class HexEditorComponentBase<TEditor, TCombinedAction, TAction, T
     {
         if (disposing)
         {
-            {
-            }
-
             positionZReference.Dispose();
         }
 

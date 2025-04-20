@@ -26,13 +26,4 @@ public partial class DescendSetupScreen : Node
         // Show a bit of a fade in for this screen
         TransitionManager.Instance.AddSequence(ScreenFade.FadeType.FadeIn, 0.5f, null, true);
     }
-
-    protected override void Dispose(bool disposing)
-    {
-        if (disposing)
-        {
-        }
-
-        base.Dispose(disposing);
-    }
 }

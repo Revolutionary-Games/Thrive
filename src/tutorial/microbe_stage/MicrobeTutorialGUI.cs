@@ -558,17 +558,6 @@ public partial class MicrobeTutorialGUI : Control, ITutorialGUI
         };
     }
 
-    protected override void Dispose(bool disposing)
-    {
-        if (disposing)
-        {
-            {
-            }
-        }
-
-        base.Dispose(disposing);
-    }
-
     private void CheckHelpMenuPressed()
     {
         TutorialHelper.HandleCloseSpecificForGUI(this, CheckTheHelpMenu.TUTORIAL_NAME);

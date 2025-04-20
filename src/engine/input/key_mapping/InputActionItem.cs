@@ -201,17 +201,6 @@ public partial class InputActionItem : VBoxContainer
         return inputActionItem;
     }
 
-    protected override void Dispose(bool disposing)
-    {
-        if (disposing)
-        {
-            {
-            }
-        }
-
-        base.Dispose(disposing);
-    }
-
     /// <summary>
     ///   The small + button has been pressed
     /// </summary>

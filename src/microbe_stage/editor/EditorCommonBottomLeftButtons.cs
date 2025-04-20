@@ -27,17 +27,6 @@ public partial class EditorCommonBottomLeftButtons : MarginContainer
         menuButton.RegisterToolTipForControl("menuButton");
     }
 
-    protected override void Dispose(bool disposing)
-    {
-        if (disposing)
-        {
-            {
-            }
-        }
-
-        base.Dispose(disposing);
-    }
-
     private void OnMenuButtonPressed()
     {
         GUICommon.Instance.PlayButtonPressSound();

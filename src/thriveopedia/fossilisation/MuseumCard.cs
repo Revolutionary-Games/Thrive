@@ -75,9 +75,6 @@ public partial class MuseumCard : Button
     {
         if (disposing)
         {
-            {
-            }
-
             modulateReference.Dispose();
         }
 

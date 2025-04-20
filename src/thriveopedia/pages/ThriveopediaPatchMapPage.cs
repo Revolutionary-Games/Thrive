@@ -76,17 +76,6 @@ public partial class ThriveopediaPatchMapPage : ThriveopediaPage, IThriveopediaP
         detailsPanel.UpdateShownPatchDetails();
     }
 
-    protected override void Dispose(bool disposing)
-    {
-        if (disposing)
-        {
-            {
-            }
-        }
-
-        base.Dispose(disposing);
-    }
-
     private void UpdatePlayerPatch(Patch? patch)
     {
         mapDrawer.PlayerPatch = patch ?? playerPatchOnEntry;

@@ -23,13 +23,4 @@ public partial class ThriveopediaOrganellePage : ThriveopediaWikiPage
 
         infoBox.Organelle = Organelle;
     }
-
-    protected override void Dispose(bool disposing)
-    {
-        if (disposing)
-        {
-        }
-
-        base.Dispose(disposing);
-    }
 }

@@ -268,9 +268,6 @@ public partial class SlideScreen : TopLevelContainer
     {
         if (disposing)
         {
-            {
-            }
-
             modulateAlphaReference.Dispose();
         }
 

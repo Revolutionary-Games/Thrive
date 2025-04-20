@@ -157,15 +157,6 @@ public partial class CellStatsIndicator : HBoxContainer
         valueLabel.Text = formattedValue;
     }
 
-    protected override void Dispose(bool disposing)
-    {
-        if (disposing)
-        {
-        }
-
-        base.Dispose(disposing);
-    }
-
     private void UpdateChangeIndicator()
     {
         if (changeIndicator == null)

@@ -419,9 +419,6 @@ public partial class MacroscopicEditor : EditorBase<EditorAction, MacroscopicSta
     {
         if (disposing)
         {
-            {
-            }
-
             environment?.Dispose();
         }
 

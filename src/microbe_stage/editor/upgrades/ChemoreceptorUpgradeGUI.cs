@@ -159,17 +159,6 @@ public partial class ChemoreceptorUpgradeGUI : VBoxContainer, IOrganelleUpgrader
         return new Vector2(400, 320);
     }
 
-    protected override void Dispose(bool disposing)
-    {
-        if (disposing)
-        {
-            {
-            }
-        }
-
-        base.Dispose(disposing);
-    }
-
     /// <summary>
     ///   Sets the GUI up to reflect an existing configuration
     /// </summary>

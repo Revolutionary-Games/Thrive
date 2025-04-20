@@ -18,15 +18,6 @@ public partial class NewGameSettings : ControlWithInput
     [Export]
     public bool Descending;
 
-    [Export]
-    public NodePath DifficultyTabButtonPath = null!;
-
-    [Export]
-    public NodePath PlanetTabButtonPath = null!;
-
-    [Export]
-    public NodePath MiscTabButtonPath = null!;
-
 #pragma warning disable CA2213
 
     // Main controls
@@ -42,8 +33,11 @@ public partial class NewGameSettings : ControlWithInput
     private Control planetTab = null!;
     [Export]
     private Control miscTab = null!;
+    [Export]
     private Button difficultyTabButton = null!;
+    [Export]
     private Button planetTabButton = null!;
+    [Export]
     private Button miscTabButton = null!;
     [Export]
     private Button basicButton = null!;
@@ -366,20 +360,6 @@ public partial class NewGameSettings : ControlWithInput
             startButton.Disabled = true;
             startButton.TooltipText = Localization.Translate("CONFIRM_NEW_GAME_BUTTON_TOOLTIP_DISABLED");
         }
-    }
-
-    protected override void Dispose(bool disposing)
-    {
-        if (disposing)
-        {
-            {
-                DifficultyTabButtonPath.Dispose();
-                PlanetTabButtonPath.Dispose();
-                MiscTabButtonPath.Dispose();
-            }
-        }
-
-        base.Dispose(disposing);
     }
 
     private void InitialiseToPreset(DifficultyPreset preset)

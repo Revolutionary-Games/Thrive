@@ -169,9 +169,6 @@ public partial class OrganelleUpgradeGUI : Control
     {
         if (disposing)
         {
-            {
-            }
-
             ReleaseTooltips();
         }
 

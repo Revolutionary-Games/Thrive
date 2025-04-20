@@ -1152,9 +1152,6 @@ public partial class CreatureStageHUDBase<TStage> : HUDWithPausing, ICreatureSta
     {
         if (disposing)
         {
-            {
-            }
-
             fadeParameterName.Dispose();
 
             strainBarRedFill?.Dispose();

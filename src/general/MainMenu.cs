@@ -367,17 +367,6 @@ public partial class MainMenu : NodeWithInput
         return false;
     }
 
-    protected override void Dispose(bool disposing)
-    {
-        if (disposing)
-        {
-            {
-            }
-        }
-
-        base.Dispose(disposing);
-    }
-
     /// <summary>
     ///   Setup the main menu.
     /// </summary>

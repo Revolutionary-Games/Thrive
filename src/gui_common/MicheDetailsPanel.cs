@@ -61,17 +61,6 @@ public partial class MicheDetailsPanel : MarginContainer
             micheDetailsLabel.ExtendedBbcode = null;
     }
 
-    protected override void Dispose(bool disposing)
-    {
-        if (disposing)
-        {
-            {
-            }
-        }
-
-        base.Dispose(disposing);
-    }
-
     /// <summary>
     ///   Updates displayed species information based on the set preview species.
     /// </summary>

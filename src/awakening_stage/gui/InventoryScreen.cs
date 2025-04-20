@@ -274,9 +274,6 @@ public partial class InventoryScreen : ControlWithInput
     {
         if (disposing)
         {
-            {
-            }
-
             inventorySlotGroup.Dispose();
             recipeSelectionGroup.Dispose();
 

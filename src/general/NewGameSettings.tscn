@@ -28,7 +28,7 @@ font = ExtResource("5_otvf3")
 
 [sub_resource type="StyleBoxEmpty" id="4"]
 
-[node name="NewGameSettings" type="Control" node_paths=PackedStringArray("basicOptions", "advancedOptions", "tabButtons", "difficultyTab", "planetTab", "miscTab", "basicButton", "advancedButton", "backButton", "startButton", "difficultyPresetButton", "difficultyPresetAdvancedButton", "mpMultiplier", "mpMultiplierReadout", "aiMutationRate", "aiMutationRateReadout", "compoundDensity", "compoundDensityReadout", "playerDeathPopulationPenalty", "playerDeathPopulationPenaltyReadout", "playerSpeciesAIPopulationStrength", "playerSpeciesAIPopulationStrengthReadout", "glucoseDecayRate", "glucoseDecayRateReadout", "osmoregulationMultiplier", "osmoregulationMultiplierReadout", "autoEvoStrengthMultiplier", "autoEvoStrengthReadout", "fogOfWarModeDropdown", "fogOfWarModeDescription", "reproductionCompoundsDropdown", "freeGlucoseCloudButton", "switchSpeciesOnExtinctionButton", "limitGrowthRateButton", "organelleUnlocksEnabled", "lifeOriginButton", "lifeOriginButtonAdvanced", "lawkButton", "lawkAdvancedButton", "dayNightCycleButton", "dayLength", "dayLengthReadout", "dayLengthContainer", "gameSeed", "gameSeedAdvanced", "worldSizeButton", "includeMulticellularButton", "easterEggsButton", "checkOptionsMenuAdviceContainer", "experimentalFeatures", "experimentalExplanation", "experimentalWarning")]
+[node name="NewGameSettings" type="Control" node_paths=PackedStringArray("basicOptions", "advancedOptions", "tabButtons", "difficultyTab", "planetTab", "miscTab", "difficultyTabButton", "planetTabButton", "miscTabButton", "basicButton", "advancedButton", "backButton", "startButton", "difficultyPresetButton", "difficultyPresetAdvancedButton", "mpMultiplier", "mpMultiplierReadout", "aiMutationRate", "aiMutationRateReadout", "compoundDensity", "compoundDensityReadout", "playerDeathPopulationPenalty", "playerDeathPopulationPenaltyReadout", "playerSpeciesAIPopulationStrength", "playerSpeciesAIPopulationStrengthReadout", "glucoseDecayRate", "glucoseDecayRateReadout", "osmoregulationMultiplier", "osmoregulationMultiplierReadout", "autoEvoStrengthMultiplier", "autoEvoStrengthReadout", "fogOfWarModeDropdown", "fogOfWarModeDescription", "reproductionCompoundsDropdown", "freeGlucoseCloudButton", "switchSpeciesOnExtinctionButton", "limitGrowthRateButton", "organelleUnlocksEnabled", "lifeOriginButton", "lifeOriginButtonAdvanced", "lawkButton", "lawkAdvancedButton", "dayNightCycleButton", "dayLength", "dayLengthReadout", "dayLengthContainer", "gameSeed", "gameSeedAdvanced", "worldSizeButton", "includeMulticellularButton", "easterEggsButton", "checkOptionsMenuAdviceContainer", "experimentalFeatures", "experimentalExplanation", "experimentalWarning")]
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
@@ -37,15 +37,15 @@ grow_horizontal = 2
 grow_vertical = 2
 theme = ExtResource("1")
 script = ExtResource("2")
-DifficultyTabButtonPath = NodePath("CenterContainer/VBoxContainer/TabButtons/DifficultyButton")
-PlanetTabButtonPath = NodePath("CenterContainer/VBoxContainer/TabButtons/PlanetButton")
-MiscTabButtonPath = NodePath("CenterContainer/VBoxContainer/TabButtons/MiscButton")
 basicOptions = NodePath("CenterContainer/VBoxContainer/BasicOptions")
 advancedOptions = NodePath("CenterContainer/VBoxContainer/AdvancedOptions")
 tabButtons = NodePath("CenterContainer/VBoxContainer/TabButtons")
 difficultyTab = NodePath("CenterContainer/VBoxContainer/AdvancedOptions/Difficulty")
 planetTab = NodePath("CenterContainer/VBoxContainer/AdvancedOptions/Planet")
 miscTab = NodePath("CenterContainer/VBoxContainer/AdvancedOptions/Misc")
+difficultyTabButton = NodePath("CenterContainer/VBoxContainer/TabButtons/DifficultyButton")
+planetTabButton = NodePath("CenterContainer/VBoxContainer/TabButtons/PlanetButton")
+miscTabButton = NodePath("CenterContainer/VBoxContainer/TabButtons/MiscButton")
 basicButton = NodePath("CenterContainer/VBoxContainer/HBoxContainer/Basic")
 advancedButton = NodePath("CenterContainer/VBoxContainer/HBoxContainer/Advanced")
 backButton = NodePath("CenterContainer/VBoxContainer/HBoxContainer/Back")

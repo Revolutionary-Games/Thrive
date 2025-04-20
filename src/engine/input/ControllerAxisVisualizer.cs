@@ -188,17 +188,6 @@ public partial class ControllerAxisVisualizer : MarginContainer
         }
     }
 
-    protected override void Dispose(bool disposing)
-    {
-        if (disposing)
-        {
-            {
-            }
-        }
-
-        base.Dispose(disposing);
-    }
-
     private void OnDrawerDraw()
     {
         var size = drawerNode.Size;

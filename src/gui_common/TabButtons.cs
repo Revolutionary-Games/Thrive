@@ -236,17 +236,6 @@ public partial class TabButtons : HBoxContainer
         return true;
     }
 
-    protected override void Dispose(bool disposing)
-    {
-        if (disposing)
-        {
-            {
-            }
-        }
-
-        base.Dispose(disposing);
-    }
-
     private void TryToMoveToNextTab()
     {
         bool foundPressed = false;

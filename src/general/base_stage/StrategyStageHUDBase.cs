@@ -62,7 +62,6 @@ public partial class StrategyStageHUDBase<TStage> : HUDWithPausing, IStrategySta
     public override void _Ready()
     {
         base._Ready();
-
     }
 
     public virtual void Init(TStage containedInStage)
@@ -131,17 +130,6 @@ public partial class StrategyStageHUDBase<TStage> : HUDWithPausing, IStrategySta
     protected void OpenHelp()
     {
         EmitSignal(SignalName.OnOpenMenuToHelp);
-    }
-
-    protected override void Dispose(bool disposing)
-    {
-        if (disposing)
-        {
-            {
-            }
-        }
-
-        base.Dispose(disposing);
     }
 
     private void StatisticsButtonPressed()

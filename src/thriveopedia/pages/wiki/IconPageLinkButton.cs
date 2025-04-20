@@ -31,15 +31,4 @@ public partial class IconPageLinkButton : VBoxContainer
     {
         ThriveopediaManager.OpenPage(PageName);
     }
-
-    protected override void Dispose(bool disposing)
-    {
-        if (disposing)
-        {
-            {
-            }
-        }
-
-        base.Dispose(disposing);
-    }
 }

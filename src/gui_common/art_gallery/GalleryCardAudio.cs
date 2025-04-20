@@ -52,15 +52,6 @@ public partial class GalleryCardAudio : GalleryCard, IGalleryCardPlayback
         playbackControls?.StopPlayback();
     }
 
-    protected override void Dispose(bool disposing)
-    {
-        if (disposing)
-        {
-        }
-
-        base.Dispose(disposing);
-    }
-
     private void EnsurePlayerExist()
     {
         if (ownPlayer == null)

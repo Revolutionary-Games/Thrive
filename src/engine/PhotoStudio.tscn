@@ -9,7 +9,7 @@ ambient_light_color = Color(1, 1, 1, 1)
 [sub_resource type="World3D" id="World3D_t70mg"]
 environment = SubResource("Environment_o7qnf")
 
-[node name="PhotoStudio" type="SubViewport" node_paths=PackedStringArray("camera", "renderedObjectHolder")]
+[node name="PhotoStudio" type="SubViewport" node_paths=PackedStringArray("camera", "renderedObjectHolder", "simulationWorldsParent")]
 own_world_3d = true
 world_3d = SubResource("World3D_t70mg")
 transparent_bg = true
@@ -18,11 +18,11 @@ msaa_3d = 1
 gui_disable_input = true
 size = Vector2i(600, 600)
 script = ExtResource("1")
-SimulationWorldsParentPath = NodePath("SimulationWorldsParent")
 UseBackgroundSceneLoad = true
 UseBackgroundSceneInstance = true
 camera = NodePath("Camera3D")
 renderedObjectHolder = NodePath("RenderedObjectHolder")
+simulationWorldsParent = NodePath("SimulationWorldsParent")
 
 [node name="Camera3D" type="Camera3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, -4.37114e-08, 1, 0, -1, -4.37114e-08, 0, 10, 0)

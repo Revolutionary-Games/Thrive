@@ -261,17 +261,6 @@ public partial class RadialMenu : CenterContainer
         return true;
     }
 
-    protected override void Dispose(bool disposing)
-    {
-        if (disposing)
-        {
-            {
-            }
-        }
-
-        base.Dispose(disposing);
-    }
-
     private void UpdateCenterText()
     {
         if (centerLabel == null)

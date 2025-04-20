@@ -6,11 +6,9 @@
 /// </summary>
 public partial class DebugOverlays
 {
-    [Export]
-    public NodePath FPSDisplayLabelPath = null!;
-
 #pragma warning disable CA2213
-    private Label fpsDisplayLabel = null!;
+	[Export]
+	private Label fpsDisplayLabel = null!;
 #pragma warning restore CA2213
 
     private void UpdateFPS()

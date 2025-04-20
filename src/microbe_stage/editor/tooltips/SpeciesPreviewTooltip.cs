@@ -45,17 +45,6 @@ public partial class SpeciesPreviewTooltip : PanelContainer, ICustomToolTip
             UpdateSpeciesPreview();
     }
 
-    protected override void Dispose(bool disposing)
-    {
-        if (disposing)
-        {
-            {
-            }
-        }
-
-        base.Dispose(disposing);
-    }
-
     /// <summary>
     ///   Updates displayed species information based on the set preview species.
     /// </summary>

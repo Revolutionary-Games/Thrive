@@ -56,17 +56,6 @@ public partial class NewSaveMenu : Control
             saveNameBox.SelectAll();
     }
 
-    protected override void Dispose(bool disposing)
-    {
-        if (disposing)
-        {
-            {
-            }
-        }
-
-        base.Dispose(disposing);
-    }
-
     private static bool IsSaveNameValid(string name)
     {
         return !string.IsNullOrWhiteSpace(name) && !name.Any(Constants.FILE_NAME_DISALLOWED_CHARACTERS.Contains);

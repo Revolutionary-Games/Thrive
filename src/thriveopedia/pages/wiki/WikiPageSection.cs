@@ -45,17 +45,6 @@ public partial class WikiPageSection : VBoxContainer
         UpdateText();
     }
 
-    protected override void Dispose(bool disposing)
-    {
-        if (disposing)
-        {
-            {
-            }
-        }
-
-        base.Dispose(disposing);
-    }
-
     private void UpdateText()
     {
         if (heading == null || separator == null || body == null)

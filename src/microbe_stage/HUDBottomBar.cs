@@ -176,17 +176,6 @@ public partial class HUDBottomBar : HBoxContainer
         UpdateButtonVisibility();
     }
 
-    protected override void Dispose(bool disposing)
-    {
-        if (disposing)
-        {
-            {
-            }
-        }
-
-        base.Dispose(disposing);
-    }
-
     private void MenuPressed()
     {
         GUICommon.Instance.PlayButtonPressSound();

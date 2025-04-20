@@ -6,14 +6,11 @@ using Godot;
 /// </summary>
 public partial class PauseMenu : TopLevelContainer
 {
-    [Export]
-    public NodePath LoadSaveListPath = null!;
-
 #pragma warning disable CA2213
     [Export]
     private Control primaryMenu = null!;
     [Export]
-    private Thriveopedia? thriveopedia;
+    private Thriveopedia thriveopedia = null!;
     [Export]
     private Control loadMenu = null!;
     [Export]
@@ -312,18 +309,6 @@ public partial class PauseMenu : TopLevelContainer
         // Uncapture the mouse while we are playing the close animation, this doesn't seem to actually uncapture the
         // mouse any faster, though, likely an engine problem
         MouseUnCaptureActive = false;
-    }
-
-    protected override void Dispose(bool disposing)
-    {
-        if (disposing)
-        {
-            {
-                LoadSaveListPath.Dispose();
-            }
-        }
-
-        base.Dispose(disposing);
     }
 
     private Control? GetControlFromMenuEnum(ActiveMenuType value)

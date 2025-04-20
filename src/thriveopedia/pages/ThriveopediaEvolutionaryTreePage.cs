@@ -58,17 +58,6 @@ public partial class ThriveopediaEvolutionaryTreePage : ThriveopediaPage, IThriv
     {
     }
 
-    protected override void Dispose(bool disposing)
-    {
-        if (disposing)
-        {
-            {
-            }
-        }
-
-        base.Dispose(disposing);
-    }
-
     /// <summary>
     ///   Clear and then rebuild the evolutionary tree each time we open the page. This way, we ensure the tree is
     ///   always up to date.

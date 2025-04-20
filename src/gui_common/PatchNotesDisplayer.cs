@@ -124,17 +124,6 @@ public partial class PatchNotesDisplayer : VBoxContainer
         viewAllButtonOutsideScroll.Disabled = false;
     }
 
-    protected override void Dispose(bool disposing)
-    {
-        if (disposing)
-        {
-            {
-            }
-        }
-
-        base.Dispose(disposing);
-    }
-
     private void OnViewAllPressed()
     {
         GUICommon.Instance.PlayButtonPressSound();

@@ -52,15 +52,4 @@ public partial class CustomPopupMenu : TopLevelContainer
             .SetEase(Tween.EaseType.Out);
         tween.TweenCallback(new Callable(this, nameof(OnClosingAnimationFinished)));
     }
-
-    protected override void Dispose(bool disposing)
-    {
-        if (disposing)
-        {
-            {
-            }
-        }
-
-        base.Dispose(disposing);
-    }
 }

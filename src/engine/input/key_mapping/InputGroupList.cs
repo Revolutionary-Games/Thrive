@@ -186,17 +186,6 @@ public partial class InputGroupList : VBoxContainer
         Invoke.Instance.Queue(EnsureNavigationFlowIsCorrect);
     }
 
-    protected override void Dispose(bool disposing)
-    {
-        if (disposing)
-        {
-            {
-            }
-        }
-
-        base.Dispose(disposing);
-    }
-
     /// <summary>
     ///   Processes the input data and saves the created GUI Controls in AllGroupItems
     /// </summary>

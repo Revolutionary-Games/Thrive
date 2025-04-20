@@ -128,17 +128,6 @@ public partial class SaveStatusOverlay : Control
         errorDialog.ShowError(title, message, exception, returnToMenu, onClosed, allowExceptionCopy);
     }
 
-    protected override void Dispose(bool disposing)
-    {
-        if (disposing)
-        {
-            {
-            }
-        }
-
-        base.Dispose(disposing);
-    }
-
     private void ExternalSetStatus(bool visible)
     {
         Visible = visible;

@@ -111,17 +111,6 @@ public partial class SaveManagerGUI : Control
         refreshing = false;
     }
 
-    protected override void Dispose(bool disposing)
-    {
-        if (disposing)
-        {
-            {
-            }
-        }
-
-        base.Dispose(disposing);
-    }
-
     private void OnSelectedChanged()
     {
         selectedDirty = true;

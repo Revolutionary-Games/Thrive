@@ -138,10 +138,7 @@ public partial class ThriveFeedDisplayer : VBoxContainer
     {
         if (disposing)
         {
-            {
-                feedItemBackground.Dispose();
-            }
-
+            feedItemBackground.Dispose();
             newsEnumerator?.Dispose();
         }
 

@@ -51,17 +51,6 @@ public partial class SpeciesDetailsPanel : MarginContainer
         Localization.Instance.OnTranslationsChanged -= OnTranslationsChanged;
     }
 
-    protected override void Dispose(bool disposing)
-    {
-        if (disposing)
-        {
-            {
-            }
-        }
-
-        base.Dispose(disposing);
-    }
-
     /// <summary>
     ///   Updates displayed species information based on the set preview species.
     /// </summary>

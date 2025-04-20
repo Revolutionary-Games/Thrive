@@ -179,17 +179,6 @@ public partial class SaveList : ScrollContainer
         EmitSignal(SignalName.OnItemsChanged);
     }
 
-    protected override void Dispose(bool disposing)
-    {
-        if (disposing)
-        {
-            {
-            }
-        }
-
-        base.Dispose(disposing);
-    }
-
     private void OnSubItemSelectedChanged()
     {
         EmitSignal(SignalName.OnSelectedChanged);

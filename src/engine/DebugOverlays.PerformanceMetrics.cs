@@ -11,15 +11,6 @@ using Nito.Collections;
 /// </summary>
 public partial class DebugOverlays
 {
-    [Export]
-    public NodePath FPSLabelPath = null!;
-
-    [Export]
-    public NodePath DeltaLabelPath = null!;
-
-    [Export]
-    public NodePath MetricsTextPath = null!;
-
     /// <summary>
     ///   How long to keep physical world's stats since the last time they were reported, used to clear old world data
     ///   out of the display.
@@ -38,8 +29,11 @@ public partial class DebugOverlays
     private readonly List<PhysicalWorldStats> customPhysicsToRemove = new();
 
 #pragma warning disable CA2213
+    [Export]
     private Label fpsLabel = null!;
+    [Export]
     private Label deltaLabel = null!;
+    [Export]
     private Label metricsText = null!;
 #pragma warning restore CA2213
 

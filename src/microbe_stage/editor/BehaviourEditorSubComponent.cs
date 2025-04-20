@@ -156,17 +156,6 @@ public partial class BehaviourEditorSubComponent : EditorComponentBase<ICellEdit
         focusSlider.RegisterToolTipForControl("focusSlider", "editor");
     }
 
-    protected override void Dispose(bool disposing)
-    {
-        if (disposing)
-        {
-            {
-            }
-        }
-
-        base.Dispose(disposing);
-    }
-
     private void OnBehaviourValueChanged(float value, string behaviourName)
     {
         if (!Enum.TryParse(behaviourName, out BehaviouralValueType behaviouralValueType))

@@ -547,15 +547,4 @@ public partial class MicrobeEditorTutorialGUI : Control, ITutorialGUI
         if (eitherVisible)
             RightPanelScrollContainer.ScrollVertical = 0;
     }
-
-    protected override void Dispose(bool disposing)
-    {
-        if (disposing)
-        {
-            {
-            }
-        }
-
-        base.Dispose(disposing);
-    }
 }

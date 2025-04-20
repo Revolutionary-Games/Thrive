@@ -72,17 +72,6 @@ public partial class NewModGUI : Control
         dialog.PopupCenteredShrink();
     }
 
-    protected override void Dispose(bool disposing)
-    {
-        if (disposing)
-        {
-            {
-            }
-        }
-
-        base.Dispose(disposing);
-    }
-
     private void Closed()
     {
         GUICommon.Instance.PlayButtonPressSound();

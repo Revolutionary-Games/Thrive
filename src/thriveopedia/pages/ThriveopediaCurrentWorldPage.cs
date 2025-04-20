@@ -42,15 +42,4 @@ public partial class ThriveopediaCurrentWorldPage : ThriveopediaPage, IThriveope
     {
         UpdateCurrentWorldDetails();
     }
-
-    protected override void Dispose(bool disposing)
-    {
-        if (disposing)
-        {
-            {
-            }
-        }
-
-        base.Dispose(disposing);
-    }
 }

@@ -90,17 +90,6 @@ public partial class TechWebGUI : HBoxContainer
         // TODO: draw lines connecting technologies
     }
 
-    protected override void Dispose(bool disposing)
-    {
-        if (disposing)
-        {
-            {
-            }
-        }
-
-        base.Dispose(disposing);
-    }
-
     private void OnTechnologySelected(Technology technology)
     {
         selectedTechnology = technology;

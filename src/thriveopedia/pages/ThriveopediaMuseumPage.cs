@@ -66,17 +66,6 @@ public partial class ThriveopediaMuseumPage : ThriveopediaPage, IThriveopediaPag
         }
     }
 
-    protected override void Dispose(bool disposing)
-    {
-        if (disposing)
-        {
-            {
-            }
-        }
-
-        base.Dispose(disposing);
-    }
-
     private void UpdateSpeciesPreview(MuseumCard card)
     {
         if (!speciesPreviewContainer.Visible)

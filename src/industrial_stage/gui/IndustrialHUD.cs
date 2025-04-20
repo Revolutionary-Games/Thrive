@@ -41,15 +41,4 @@ public partial class IndustrialHUD : StrategyStageHUDBase<IndustrialStage>
         cityScreenPopup.Close();
         researchScreen.Close();
     }
-
-    protected override void Dispose(bool disposing)
-    {
-        if (disposing)
-        {
-            {
-            }
-        }
-
-        base.Dispose(disposing);
-    }
 }

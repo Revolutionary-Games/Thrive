@@ -44,7 +44,6 @@ public partial class EditorComponentWithActionsBase<TEditor, TAction> : EditorCo
     public override void _Ready()
     {
         base._Ready();
-
     }
 
     public override void OnActionBlockedWhileAnotherIsInProgress()
@@ -200,16 +199,5 @@ public partial class EditorComponentWithActionsBase<TEditor, TAction> : EditorCo
         componentBottomLeftButtons.RegisterTooltips();
 
         cancelButton.RegisterToolTipForControl("cancelButton", "editor");
-    }
-
-    protected override void Dispose(bool disposing)
-    {
-        if (disposing)
-        {
-            {
-            }
-        }
-
-        base.Dispose(disposing);
     }
 }
