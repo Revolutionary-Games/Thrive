@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using Godot;
 using Godot.Collections;
 
@@ -112,6 +112,7 @@ public partial class MembraneWaterRipple : Node
     ///   Position tracking and effect state variables
     /// </summary>
     private Vector2[] pastPositions = new Vector2[14];
+
     private Vector3[] positionHistory = new Vector3[14];
     private Array<Vector2> godotPastPositions = new();
     private int currentPositionIndex;
@@ -131,6 +132,7 @@ public partial class MembraneWaterRipple : Node
     ///   Stillness tracking variables
     /// </summary>
     private float stillnessTimer;
+
     private float stillnessFactor;
     private bool wasMovingLastFrame;
     private float averageMovementSqr;
@@ -141,12 +143,13 @@ public partial class MembraneWaterRipple : Node
     /// <summary>
     ///   Ripple effect variables
     /// </summary>
-    private float targetAlpha = 0.0f;
-    private float currentAlpha = 0.0f;
+    private float targetAlpha;
+
+    private float currentAlpha;
     private float stillnessValue = 1.0f;
     private float targetStillness = 1.0f;
-    private bool isForming = false;
-    private float formingTime = 0.0f;
+    private bool isForming;
+    private float formingTime;
     private float minAlpha = 0.00002f;
     private float fullAlpha = 0.02f;
 
@@ -244,12 +247,10 @@ public partial class MembraneWaterRipple : Node
 
         if (positionTarget.IsInsideTree())
         {
-            Transform3D transform = new Transform3D(
-                Basis.Identity,
-                new Vector3(
-                    positionTarget.GlobalPosition.X,
-                    positionTarget.GlobalPosition.Y + VerticalOffset,
-                    positionTarget.GlobalPosition.Z));
+            Transform3D transform = new Transform3D(Basis.Identity,
+                new Vector3(positionTarget.GlobalPosition.X,
+                positionTarget.GlobalPosition.Y + VerticalOffset,
+                positionTarget.GlobalPosition.Z));
             waterPlane.GlobalTransform = transform;
         }
 
@@ -293,12 +294,10 @@ public partial class MembraneWaterRipple : Node
             previousPosition = lastPosition;
 
             // Update position in world space
-            Transform3D transform = new Transform3D(
-                Basis.Identity,
-                new Vector3(
-                    target.GlobalPosition.X,
-                    target.GlobalPosition.Y + VerticalOffset,
-                    target.GlobalPosition.Z));
+            Transform3D transform = new Transform3D(Basis.Identity,
+                new Vector3(target.GlobalPosition.X,
+                target.GlobalPosition.Y + VerticalOffset,
+                target.GlobalPosition.Z));
             waterPlane.GlobalTransform = transform;
 
             // Make visible if not already
