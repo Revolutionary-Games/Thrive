@@ -12,11 +12,13 @@ newGameSettings = NodePath("GUIRoot/NewGameSettings")
 transform = Transform3D(-0.173648, 0, 0.984808, 0, 1, 0, -0.984808, 0, -0.173648, 0, 0, 0)
 
 [node name="MainMenuScene1" parent="Background" instance=ExtResource("1")]
-transform = Transform3D(-0.305019, 0, 0.953396, 0, 1.001, 0, -0.953396, 0, -0.305019, 0, 0, 0)
 
 [node name="GUIRoot" type="Control" parent="."]
+layout_mode = 3
+anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
 
 [node name="NewGameSettings" parent="GUIRoot" instance=ExtResource("2")]
+layout_mode = 1
 Descending = true

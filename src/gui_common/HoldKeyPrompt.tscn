@@ -1,6 +1,6 @@
 [gd_scene load_steps=3 format=3 uid="uid://b04qko068vgmr"]
 
-[ext_resource type="PackedScene" path="res://src/gui_common/KeyPrompt.tscn" id="1"]
+[ext_resource type="PackedScene" uid="uid://ci8b4cca0q55h" path="res://src/gui_common/KeyPrompt.tscn" id="1"]
 [ext_resource type="Script" uid="uid://b64483tksdq" path="res://src/gui_common/HoldKeyPrompt.cs" id="2"]
 
 [node name="HoldKeyPrompt" instance=ExtResource("1")]
@@ -12,3 +12,11 @@ DecayRate = 4.0
 DecayRateAfterPress = 10.0
 HoldIndicatorColour = Color(0, 0.74902, 0.713726, 1)
 HoldIndicatorFilledColour = Color(0.0666667, 1, 0.835294, 1)
+
+[node name="Primary" parent="." index="0"]
+layout_mode = 2
+expand_mode = 1
+
+[node name="Secondary" parent="." index="1"]
+layout_mode = 2
+expand_mode = 1

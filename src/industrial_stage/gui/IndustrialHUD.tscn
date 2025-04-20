@@ -4,7 +4,7 @@
 [ext_resource type="Script" uid="uid://c1g4kmqlvsf78" path="res://src/industrial_stage/gui/IndustrialHUD.cs" id="2"]
 [ext_resource type="PackedScene" uid="uid://cfqiy6w37wxrm" path="res://src/industrial_stage/gui/CityScreen.tscn" id="3"]
 
-[node name="IndustrialHUD" instance=ExtResource("1") node_paths=PackedStringArray("cityScreenPopup")]
+[node name="IndustrialHUD" node_paths=PackedStringArray("cityScreenPopup") instance=ExtResource("1")]
 script = ExtResource("2")
 cityScreenPopup = NodePath("CityScreen")
 

@@ -21,7 +21,7 @@ offset_bottom = 14.0
 mouse_filter = 2
 theme_override_styles/panel = SubResource("1")
 script = ExtResource("3")
-descriptionLabel = NodePath("../DefaultTooltip/MarginContainer/VBoxContainer/Description")
+descriptionLabel = NodePath("MarginContainer/VBoxContainer/Description")
 
 [node name="MarginContainer" type="MarginContainer" parent="."]
 layout_mode = 2

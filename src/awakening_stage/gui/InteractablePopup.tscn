@@ -1,10 +1,10 @@
 [gd_scene load_steps=4 format=3 uid="uid://bo86k7ooatxyu"]
 
-[ext_resource type="PackedScene" path="res://src/gui_common/dialogs/CustomWindow.tscn" id="1"]
+[ext_resource type="PackedScene" uid="uid://du8sc8kjirguk" path="res://src/gui_common/dialogs/CustomWindow.tscn" id="1"]
 [ext_resource type="Script" uid="uid://dfxrptwf7r135" path="res://src/awakening_stage/gui/InteractablePopup.cs" id="2"]
 [ext_resource type="LabelSettings" uid="uid://dvqx73nhtr0y2" path="res://src/gui_common/fonts/Body-Regular-Small.tres" id="4_ig0ml"]
 
-[node name="InteractablePopup" type="Control" node_paths=PackedStringArray("extraInfoLabel", "cancelButton", "buttonsContainer", "popup")]
+[node name="InteractablePopup" type="Control" node_paths=PackedStringArray("popup", "buttonsContainer", "cancelButton", "extraInfoLabel")]
 visible = false
 layout_mode = 3
 anchors_preset = 15
@@ -14,14 +14,13 @@ grow_horizontal = 2
 grow_vertical = 2
 mouse_filter = 2
 script = ExtResource("2")
+InteractionButtonFont = ExtResource("4_ig0ml")
 popup = NodePath("CustomWindow")
 buttonsContainer = NodePath("CustomWindow/VBoxContainer/ScrollContainer/VBoxContainer/ButtonContainer")
 cancelButton = NodePath("CustomWindow/VBoxContainer/Cancel")
 extraInfoLabel = NodePath("CustomWindow/VBoxContainer/ScrollContainer/VBoxContainer/ExtraInfo")
-InteractionButtonFont = ExtResource("4_ig0ml")
 
 [node name="CustomWindow" parent="." instance=ExtResource("1")]
-anchors_preset = 0
 offset_right = 0.0
 offset_bottom = 0.0
 Resizable = true

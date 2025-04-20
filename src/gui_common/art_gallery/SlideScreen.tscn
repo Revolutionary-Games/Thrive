@@ -42,7 +42,7 @@ corner_radius_top_right = 3
 corner_radius_bottom_right = 3
 corner_radius_bottom_left = 3
 
-[node name="SlideScreen" instance=ExtResource("9") node_paths=PackedStringArray("playbackControls", "modelViewerCamera", "modelHolder", "modelViewer", "modelViewerContainer", "slideTitleLabel", "slideShowModeButton", "closeButton", "toolbar", "slideTextureRect")]
+[node name="SlideScreen" node_paths=PackedStringArray("slideTextureRect", "toolbar", "closeButton", "slideShowModeButton", "slideTitleLabel", "modelViewerContainer", "modelViewer", "modelHolder", "modelViewerCamera", "playbackControls") instance=ExtResource("9")]
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
@@ -84,7 +84,7 @@ own_world_3d = true
 world_3d = SubResource("World3D_cpjvi")
 handle_input_locally = false
 msaa_3d = 1
-size = Vector2i(1280, 720)
+size = Vector2i(2, 2)
 render_target_update_mode = 0
 
 [node name="ModelHolder" type="Node3D" parent="Overlay/SubViewportContainer/ModelViewer" index="0"]

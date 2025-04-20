@@ -7,7 +7,7 @@
 [ext_resource type="LabelSettings" uid="uid://cis0p1u7hveec" path="res://src/gui_common/fonts/Title-SemiBold-Huge.tres" id="6_8g7ur"]
 [ext_resource type="LabelSettings" uid="uid://dcekwe8j7ep16" path="res://src/gui_common/fonts/Title-SemiBold-AlmostHuge.tres" id="7_86jbp"]
 
-[node name="CreditsScroll" type="Control" node_paths=PackedStringArray("developersHeading", "supportedBy", "revolutionaryGames", "logo")]
+[node name="CreditsScroll" type="Control" node_paths=PackedStringArray("logo", "revolutionaryGames", "supportedBy", "developersHeading")]
 clip_contents = true
 layout_mode = 3
 anchors_preset = 15

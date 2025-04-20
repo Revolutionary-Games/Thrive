@@ -3,7 +3,7 @@
 [ext_resource type="Script" uid="uid://b482y88q3uiqw" path="res://src/ascension_stage/AscensionCeremony.cs" id="1"]
 [ext_resource type="PackedScene" uid="uid://cqwy12d33agr4" path="res://src/gui_common/CreditsScroll.tscn" id="2"]
 [ext_resource type="Theme" uid="uid://b4cx0o110g4b6" path="res://src/gui_common/thrive_theme.tres" id="3"]
-[ext_resource type="PackedScene" path="res://src/gui_common/HoldKeyPrompt.tscn" id="4"]
+[ext_resource type="PackedScene" uid="uid://b04qko068vgmr" path="res://src/gui_common/HoldKeyPrompt.tscn" id="4"]
 
 [sub_resource type="Sky" id="2"]
 
@@ -47,11 +47,11 @@ albedo_color = Color(0.270588, 0.909804, 0.976471, 0.666667)
 emission_enabled = true
 emission = Color(0.247059, 0.996078, 1, 1)
 
-[node name="AscensionCeremony" type="Node" node_paths=PackedStringArray("worldCameraToDisable", "customScreenBlanker", "creditsSkipPrompt", "creditsSkipInfoContainer", "creditsDisplay", "ascensionPoint", "rampEndPoint", "rampStartPoint", "rootOfDynamicallySpawned", "gateWalkerSpawn")]
+[node name="AscensionCeremony" type="Node" node_paths=PackedStringArray("gateWalkerSpawn", "rootOfDynamicallySpawned", "rampStartPoint", "rampEndPoint", "ascensionPoint", "creditsDisplay", "creditsSkipInfoContainer", "creditsSkipPrompt", "customScreenBlanker", "worldCameraToDisable")]
 process_mode = 3
 script = ExtResource("1")
+ObserverSpawnPointPaths = Array[NodePath]([NodePath("World/ObserverSpawnPoint"), NodePath("World/ObserverSpawnPoint2"), NodePath("World/ObserverSpawnPoint3")])
 gateWalkerSpawn = NodePath("World/GateWalkerSpawnPoint")
-ObserverSpawnPointPaths = [NodePath("World/ObserverSpawnPoint"), NodePath("World/ObserverSpawnPoint2"), NodePath("World/ObserverSpawnPoint3")]
 rootOfDynamicallySpawned = NodePath("World/DynamicallySpawned")
 rampStartPoint = NodePath("World/RampStartPoint")
 rampEndPoint = NodePath("World/RampEndPoint")
@@ -98,16 +98,12 @@ transform = Transform3D(2, 0, 0, 0, 1, 0, 0, 0, 2, 0, 0, 0)
 shape = SubResource("1")
 
 [node name="Floor" type="CSGBox3D" parent="World/AscensionGateInterior"]
-width = 50.0
-height = 0.048
-depth = 70.0
+size = Vector3(50, 0.048, 70)
 material = SubResource("5")
 
 [node name="Ceiling" type="CSGBox3D" parent="World/AscensionGateInterior"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 24.0129, 0)
-width = 50.0
-height = 0.0430779
-depth = 70.0
+size = Vector3(50, 0.0430779, 70)
 material = SubResource("5")
 
 [node name="Pillar" type="CSGCylinder3D" parent="World/AscensionGateInterior"]
@@ -137,22 +133,16 @@ sides = 12
 
 [node name="CSGBox3" type="CSGBox3D" parent="World/AscensionGateInterior"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -4.76837e-07, 0)
-width = 18.0
-height = 4.0
-depth = 4.0
+size = Vector3(18, 4, 4)
 
 [node name="CSGBox4" type="CSGBox3D" parent="World/AscensionGateInterior"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 7.76172, 0)
-width = 12.0
-height = 12.0
-depth = 0.396676
+size = Vector3(12, 12, 0.396676)
 material = SubResource("3")
 
 [node name="CSGBox5" type="CSGBox3D" parent="World/AscensionGateInterior"]
 transform = Transform3D(1, 0, 0, 0, 0.979845, -0.199761, 0, 0.199761, 0.979845, 0.0424042, 0.518774, 6.70115)
-width = 7.0
-height = 1.0
-depth = 10.0
+size = Vector3(7, 1, 10)
 
 [node name="GateWalkerSpawnPoint" type="Node3D" parent="World"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.0819778, -3.8147e-06, 34.3979)
@@ -177,19 +167,24 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 19.46, 0.926355, 11.5192)
 
 [node name="CustomBlanker" type="ColorRect" parent="."]
 visible = false
+anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
 color = Color(0, 0, 0, 1)
 
 [node name="CreditsDisplay" type="Control" parent="."]
+layout_mode = 3
+anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
 theme = ExtResource("3")
 
 [node name="CreditsScroll" parent="CreditsDisplay" instance=ExtResource("2")]
+layout_mode = 1
 AutoStart = false
 
 [node name="SkipInfoContainer" type="HBoxContainer" parent="CreditsDisplay"]
+layout_mode = 0
 anchor_left = 1.0
 anchor_top = 1.0
 anchor_right = 1.0
@@ -203,20 +198,17 @@ grow_vertical = 0
 alignment = 2
 
 [node name="Label" type="Label" parent="CreditsDisplay/SkipInfoContainer"]
-offset_top = 7.0
-offset_right = 233.0
-offset_bottom = 32.0
+layout_mode = 2
 text = "HOLD_TO_SKIP_CREDITS"
 
 [node name="SkipPrompt" parent="CreditsDisplay/SkipInfoContainer" instance=ExtResource("4")]
-offset_left = 237.0
-offset_right = 277.0
 custom_minimum_size = Vector2(40, 40)
-ActionName = "ui_cancel"
-ShowPress = false
+layout_mode = 2
 RequiredHoldTime = 5.0
 SinglePressHoldProgress = 0.15
 DecayRate = 3.0
+ShowPress = false
+ActionName = "ui_cancel"
 
 [connection signal="OnFinishedSignal" from="CreditsDisplay/CreditsScroll" to="." method="OnCeremonyEnded"]
 [connection signal="OnPressedLongEnough" from="CreditsDisplay/SkipInfoContainer/SkipPrompt" to="." method="OnSkipCredits"]

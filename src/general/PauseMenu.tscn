@@ -3,7 +3,7 @@
 [ext_resource type="Script" uid="uid://exlgkif2qbrm" path="res://src/general/PauseMenu.cs" id="1"]
 [ext_resource type="Theme" uid="uid://b4cx0o110g4b6" path="res://src/gui_common/thrive_theme.tres" id="2"]
 [ext_resource type="PackedScene" uid="uid://ddi31qylscfyh" path="res://src/saving/SaveList.tscn" id="3"]
-[ext_resource type="PackedScene" path="res://src/saving/NewSaveMenu.tscn" id="5"]
+[ext_resource type="PackedScene" uid="uid://u27aqj8gq4ep" path="res://src/saving/NewSaveMenu.tscn" id="5"]
 [ext_resource type="PackedScene" uid="uid://khgb1ctp1e5o" path="res://src/general/OptionsMenu.tscn" id="6"]
 [ext_resource type="PackedScene" uid="uid://cl64wvnxs6ivs" path="res://src/gui_common/dialogs/CustomConfirmationDialog.tscn" id="7"]
 [ext_resource type="PackedScene" uid="uid://bt4wq0ddch84i" path="res://src/thriveopedia/Thriveopedia.tscn" id="8"]
@@ -172,7 +172,7 @@ _data = {
 &"RESET": SubResource("Animation_ih5uy")
 }
 
-[node name="PauseMenu" instance=ExtResource("10") node_paths=PackedStringArray("unsavedProgressWarning", "saveMenu", "optionsMenu", "loadMenu", "thriveopedia", "primaryMenu")]
+[node name="PauseMenu" node_paths=PackedStringArray("primaryMenu", "thriveopedia", "loadMenu", "optionsMenu", "saveMenu", "unsavedProgressWarning") instance=ExtResource("10")]
 process_mode = 3
 visible = true
 offset_right = 1280.0
@@ -181,12 +181,12 @@ size_flags_horizontal = 3
 size_flags_vertical = 3
 theme = ExtResource("2")
 script = ExtResource("1")
+LoadSaveListPath = NodePath("CenterContainer/LoadMenu/SaveList")
 primaryMenu = NodePath("CenterContainer/PrimaryMenu")
 thriveopedia = NodePath("Thriveopedia")
 loadMenu = NodePath("CenterContainer/LoadMenu")
 optionsMenu = NodePath("OptionsMenu")
 saveMenu = NodePath("CenterContainer/NewSaveMenu")
-LoadSaveListPath = NodePath("CenterContainer/LoadMenu/SaveList")
 unsavedProgressWarning = NodePath("UnsavedProgressWarning")
 ExclusiveAllowCloseOnEscape = false
 FullRect = true
@@ -318,7 +318,7 @@ WindowTitle = "CONFIRM_EXIT"
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="." index="5"]
 libraries = {
-"": SubResource("AnimationLibrary_y4xuc")
+&"": SubResource("AnimationLibrary_y4xuc")
 }
 
 [connection signal="pressed" from="CenterContainer/PrimaryMenu/Resume" to="." method="ClosePressed"]

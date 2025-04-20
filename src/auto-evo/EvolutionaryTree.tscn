@@ -2,7 +2,7 @@
 
 [ext_resource type="Script" uid="uid://5ptm1w4024ay" path="res://src/auto-evo/EvolutionaryTree.cs" id="1"]
 
-[node name="EvolutionaryTree" type="VBoxContainer" node_paths=PackedStringArray("tree", "timeline")]
+[node name="EvolutionaryTree" type="VBoxContainer" node_paths=PackedStringArray("timeline", "tree")]
 clip_contents = true
 anchors_preset = 15
 anchor_right = 1.0

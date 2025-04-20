@@ -2,14 +2,14 @@
 
 [ext_resource type="Script" uid="uid://btl24nbg2dyml" path="res://src/auto-evo/AutoEvoExploringTool.cs" id="1"]
 [ext_resource type="Theme" uid="uid://b4cx0o110g4b6" path="res://src/gui_common/thrive_theme.tres" id="2"]
-[ext_resource type="PackedScene" path="res://src/gui_common/CustomRichTextLabel.tscn" id="5"]
+[ext_resource type="PackedScene" uid="uid://bhpjtbtaeunat" path="res://src/gui_common/CustomRichTextLabel.tscn" id="5"]
 [ext_resource type="LabelSettings" uid="uid://b6c60ljn172wp" path="res://src/gui_common/fonts/Body-Bold-Smaller.tres" id="5_6c001"]
 [ext_resource type="Texture2D" uid="uid://djklaunps1oyd" path="res://assets/concept_art/even-more-cells.jpg" id="8"]
 [ext_resource type="PackedScene" uid="uid://rfg25u72afai" path="res://src/gui_common/SpeciesDetailsPanelWithFossilisation.tscn" id="9"]
 [ext_resource type="PackedScene" uid="uid://cl64wvnxs6ivs" path="res://src/gui_common/dialogs/CustomConfirmationDialog.tscn" id="11"]
 [ext_resource type="LabelSettings" uid="uid://bx7mw3uvqpo42" path="res://src/gui_common/fonts/Body-Regular-Smaller.tres" id="11_crtm0"]
 [ext_resource type="Script" uid="uid://cnjatsx4a4qpl" path="res://src/gui_common/CustomDropDown.cs" id="12"]
-[ext_resource type="PackedScene" path="res://src/microbe_stage/editor/PatchMapDrawer.tscn" id="13"]
+[ext_resource type="PackedScene" uid="uid://cmhetwsk3qbb7" path="res://src/microbe_stage/editor/PatchMapDrawer.tscn" id="13"]
 [ext_resource type="PackedScene" uid="uid://cjbhth6wlc08l" path="res://src/auto-evo/EvolutionaryTree.tscn" id="14"]
 [ext_resource type="PackedScene" uid="uid://din62wkc2pcnk" path="res://src/gui_common/DraggableScrollContainer.tscn" id="16"]
 [ext_resource type="PackedScene" uid="uid://clhnq4g06pd62" path="res://src/auto-evo/MicheTree.tscn" id="16_hpnq1"]
@@ -23,7 +23,7 @@
 
 [sub_resource type="ButtonGroup" id="ButtonGroup_cxjso"]
 
-[node name="AutoEvoExploringTool" type="Node" node_paths=PackedStringArray("exportSuccessNotificationDialog", "exitConfirmationDialog", "micheSpeciesDetailsPanel", "micheDetailsPanel", "micheTree", "patchListMenu", "speciesDetailsPanelWithFossilisation", "evolutionaryTree", "speciesListMenu", "autoEvoResultsLabel", "historyListMenu", "detailsPanel", "mapDrawer", "playWithCurrentSettingButton", "abortButton", "runOneStepButton", "finishOneGenerationButton", "runXWorldsButton", "runXWorldsSpinBox", "finishXGenerationsButton", "finishXGenerationsSpinBox", "runStatusLabel", "strictNicheCompetitionCheckBox", "mutationsPerSpeciesSpinBox", "moveAttemptsPerSpeciesSpinBox", "worldExportButton", "currentWorldStatisticsLabel", "newWorldButton", "worldsListMenu", "allWorldsStatisticsLabel", "micheTab", "viewerTab", "reportTab", "mapTab", "speciesSelectPanel", "historyReportSplit", "configTab", "worldTab")]
+[node name="AutoEvoExploringTool" type="Node" node_paths=PackedStringArray("worldTab", "configTab", "historyReportSplit", "speciesSelectPanel", "mapTab", "reportTab", "viewerTab", "micheTab", "allWorldsStatisticsLabel", "worldsListMenu", "newWorldButton", "currentWorldStatisticsLabel", "worldExportButton", "moveAttemptsPerSpeciesSpinBox", "mutationsPerSpeciesSpinBox", "strictNicheCompetitionCheckBox", "runStatusLabel", "finishXGenerationsSpinBox", "finishXGenerationsButton", "runXWorldsSpinBox", "runXWorldsButton", "finishOneGenerationButton", "runOneStepButton", "abortButton", "playWithCurrentSettingButton", "autoEvoResultsLabel", "historyListMenu", "patchMapDrawer", "patchDetailsPanel", "speciesListMenu", "evolutionaryTree", "speciesDetailsPanelWithFossilisation", "patchListMenu", "micheTree", "micheDetailsPanel", "micheSpeciesDetailsPanel", "exitConfirmationDialog", "exportSuccessNotificationDialog")]
 script = ExtResource("1")
 worldTab = NodePath("GUI/VBoxContainer/WorldEditor")
 configTab = NodePath("GUI/VBoxContainer/ConfigEditor")
@@ -50,10 +50,10 @@ finishOneGenerationButton = NodePath("GUI/VBoxContainer/WorldEditor/VBoxContaine
 runOneStepButton = NodePath("GUI/VBoxContainer/WorldEditor/VBoxContainer/PanelContainer/MarginContainer/VBoxContainer/RunStep")
 abortButton = NodePath("GUI/VBoxContainer/WorldEditor/VBoxContainer/PanelContainer/MarginContainer/VBoxContainer/Abort")
 playWithCurrentSettingButton = NodePath("GUI/VBoxContainer/WorldEditor/VBoxContainer/PanelContainer/MarginContainer/VBoxContainer/PlayWithThis")
-mapDrawer = NodePath("GUI/VBoxContainer/HistoryReportSplit/PatchMap/HBoxContainer/PatchMap/MarginContainer/DraggableScrollContainer/PatchMapDrawer")
-detailsPanel = NodePath("GUI/VBoxContainer/HistoryReportSplit/PatchMap/HBoxContainer/PatchDetailsPanel")
-historyListMenu = NodePath("GUI/VBoxContainer/HistoryReportSplit/UpperSplit/GenerationPanel/MarginContainer/HBoxContainer/HistoryListMenu")
 autoEvoResultsLabel = NodePath("GUI/VBoxContainer/HistoryReportSplit/Report/ResultsPanel/MarginContainer/ScrollContainer/VBoxContainer/ResultsLabel")
+historyListMenu = NodePath("GUI/VBoxContainer/HistoryReportSplit/UpperSplit/GenerationPanel/MarginContainer/HBoxContainer/HistoryListMenu")
+patchMapDrawer = NodePath("GUI/VBoxContainer/HistoryReportSplit/PatchMap/HBoxContainer/PatchMap/MarginContainer/DraggableScrollContainer/PatchMapDrawer")
+patchDetailsPanel = NodePath("GUI/VBoxContainer/HistoryReportSplit/PatchMap/HBoxContainer/PatchDetailsPanel")
 speciesListMenu = NodePath("GUI/VBoxContainer/HistoryReportSplit/UpperSplit/SpeciesSelectPanel/MarginContainer/HBoxContainer/SpeciesListMenu")
 evolutionaryTree = NodePath("GUI/VBoxContainer/HistoryReportSplit/Viewer/HBoxContainer/PanelContainer/MarginContainer/VBoxContainer/EvolutionaryTree")
 speciesDetailsPanelWithFossilisation = NodePath("GUI/VBoxContainer/HistoryReportSplit/Viewer/HBoxContainer/PanelContainer2/MarginContainer/SpeciesDetailsPanel")
@@ -483,7 +483,7 @@ theme_override_constants/margin_top = 10
 theme_override_constants/margin_right = 10
 theme_override_constants/margin_bottom = 10
 
-[node name="DraggableScrollContainer" parent="GUI/VBoxContainer/HistoryReportSplit/PatchMap/HBoxContainer/PatchMap/MarginContainer" instance=ExtResource("16") node_paths=PackedStringArray("content")]
+[node name="DraggableScrollContainer" parent="GUI/VBoxContainer/HistoryReportSplit/PatchMap/HBoxContainer/PatchMap/MarginContainer" node_paths=PackedStringArray("content") instance=ExtResource("16")]
 layout_mode = 2
 content = NodePath("PatchMapDrawer")
 

@@ -2,7 +2,7 @@
 
 [ext_resource type="Script" uid="uid://bfnwp4axo5wle" path="res://src/industrial_stage/gui/BuildQueueItemGUI.cs" id="1"]
 
-[node name="BuildQueueItemGUI" type="VBoxContainer" node_paths=PackedStringArray("nameLabel", "progressBar")]
+[node name="BuildQueueItemGUI" type="VBoxContainer" node_paths=PackedStringArray("progressBar", "nameLabel")]
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0

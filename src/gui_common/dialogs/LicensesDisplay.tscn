@@ -20,16 +20,14 @@ corner_radius_top_right = 5
 corner_radius_bottom_right = 5
 corner_radius_bottom_left = 5
 
-[node name="LicensesDisplay" instance=ExtResource("6") node_paths=PackedStringArray("textsContainer")]
+[node name="LicensesDisplay" node_paths=PackedStringArray("textsContainer") instance=ExtResource("6")]
 custom_minimum_size = Vector2(900, 600)
-layout_mode = 3
-anchors_preset = 0
 offset_right = 900.0
 offset_bottom = 600.0
 script = ExtResource("1")
-textsContainer = NodePath("VBoxContainer/PanelContainer/MarginContainer/LicensesDisplay/MarginContainer/VBoxContainer/Texts")
 HeadingFont = ExtResource("4_158nk")
 ContentFont = ExtResource("4_cbphf")
+textsContainer = NodePath("VBoxContainer/PanelContainer/MarginContainer/LicensesDisplay/MarginContainer/VBoxContainer/Texts")
 WindowTitle = "THRIVE_LICENSES"
 Resizable = true
 Exclusive = true

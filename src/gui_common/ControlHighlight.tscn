@@ -2,13 +2,15 @@
 
 [ext_resource type="Script" uid="uid://dqvqt5ro0s3un" path="res://src/gui_common/ControlHighlight.cs" id="1"]
 
-[node name="ControlHighlight" type="Control" node_paths=PackedStringArray("bottomPlane", "rightPlane", "topPlane", "leftPlane")]
+[node name="ControlHighlight" type="Control" node_paths=PackedStringArray("leftPlane", "topPlane", "rightPlane", "bottomPlane")]
 process_mode = 3
 process_priority = 1000
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
 size_flags_horizontal = 3
 size_flags_vertical = 3
 mouse_filter = 2

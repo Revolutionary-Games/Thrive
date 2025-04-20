@@ -31,7 +31,7 @@ _data = {
 &"FadeIn": SubResource("2")
 }
 
-[node name="ExtinctionBox" type="Control" node_paths=PackedStringArray("continueText", "continueButton", "loadMenu", "extinctionMenu")]
+[node name="ExtinctionBox" type="Control" node_paths=PackedStringArray("extinctionMenu", "loadMenu", "continueText", "continueButton")]
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
@@ -146,7 +146,7 @@ text = "RETURN_TO_MENU"
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
 libraries = {
-"": SubResource("AnimationLibrary_exnap")
+&"": SubResource("AnimationLibrary_exnap")
 }
 autoplay = "FadeIn"
 

@@ -17,7 +17,7 @@ corner_radius_top_right = 5
 corner_radius_bottom_right = 5
 corner_radius_bottom_left = 5
 
-[node name="GalleryDetailsTooltip" type="PanelContainer" node_paths=PackedStringArray("artistLabel", "descriptionLabel", "titleLabel")]
+[node name="GalleryDetailsTooltip" type="PanelContainer" node_paths=PackedStringArray("titleLabel", "descriptionLabel", "artistLabel")]
 custom_minimum_size = Vector2(300, 0)
 offset_right = 362.0
 offset_bottom = 81.0

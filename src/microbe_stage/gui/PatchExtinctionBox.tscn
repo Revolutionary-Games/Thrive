@@ -37,7 +37,7 @@ _data = {
 &"FadeIn": SubResource("2")
 }
 
-[node name="PatchExtinctionBox" type="Control" node_paths=PackedStringArray("animationPlayer", "detailsPanel", "mapDrawer")]
+[node name="PatchExtinctionBox" type="Control" node_paths=PackedStringArray("mapDrawer", "detailsPanel", "animationPlayer")]
 modulate = Color(1, 1, 1, 0)
 layout_mode = 3
 anchors_preset = 15
@@ -109,7 +109,7 @@ theme_override_constants/margin_top = 10
 theme_override_constants/margin_right = 10
 theme_override_constants/margin_bottom = 10
 
-[node name="DraggableScrollContainer" parent="PanelContainer/MarginContainer/PatchExtinctionBoxMenu/HBoxContainer/MarginContainer/MapPanel/MarginContainer" instance=ExtResource("7") node_paths=PackedStringArray("content")]
+[node name="DraggableScrollContainer" parent="PanelContainer/MarginContainer/PatchExtinctionBoxMenu/HBoxContainer/MarginContainer/MapPanel/MarginContainer" node_paths=PackedStringArray("content") instance=ExtResource("7")]
 layout_mode = 2
 content = NodePath("PatchMapDrawer")
 
@@ -145,7 +145,7 @@ theme_override_styles/separator = SubResource("4")
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
 libraries = {
-"": SubResource("AnimationLibrary_818a6")
+&"": SubResource("AnimationLibrary_818a6")
 }
 autoplay = "FadeIn"
 

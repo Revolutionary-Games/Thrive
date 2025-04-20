@@ -4,7 +4,7 @@
 [ext_resource type="PackedScene" uid="uid://blv3j6t53xjq2" path="res://src/gui_common/RadialMenu.tscn" id="2"]
 [ext_resource type="PackedScene" uid="uid://du8sc8kjirguk" path="res://src/gui_common/dialogs/CustomWindow.tscn" id="3"]
 
-[node name="RadialPopup" instance=ExtResource("3") node_paths=PackedStringArray("Radial")]
+[node name="RadialPopup" node_paths=PackedStringArray("Radial") instance=ExtResource("3")]
 offset_right = 1280.0
 offset_bottom = 720.0
 script = ExtResource("1")

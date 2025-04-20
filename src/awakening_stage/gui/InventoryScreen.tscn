@@ -1,7 +1,7 @@
 [gd_scene load_steps=14 format=3 uid="uid://bqbt1jtgup58k"]
 
 [ext_resource type="Script" uid="uid://bjbt2nkr8o8sl" path="res://src/awakening_stage/gui/InventoryScreen.cs" id="1"]
-[ext_resource type="PackedScene" path="res://src/gui_common/dialogs/CustomWindow.tscn" id="2"]
+[ext_resource type="PackedScene" uid="uid://du8sc8kjirguk" path="res://src/gui_common/dialogs/CustomWindow.tscn" id="2"]
 [ext_resource type="Texture2D" uid="uid://bjd7m7yy3slb0" path="res://assets/textures/gui/CreaturePlaceholder.png" id="3"]
 [ext_resource type="Texture2D" uid="uid://bembxnxct020" path="res://assets/textures/gui/bevel/WhiteArrow.png" id="4"]
 [ext_resource type="LabelSettings" uid="uid://dvqx73nhtr0y2" path="res://src/gui_common/fonts/Body-Regular-Small.tres" id="5_aa5gb"]
@@ -9,7 +9,7 @@
 [ext_resource type="Texture2D" uid="uid://b5wnch57nfdkl" path="res://assets/textures/gui/bevel/undoButtonActive.svg" id="7_jce37"]
 [ext_resource type="Texture2D" uid="uid://bqw1s2p3cp5m7" path="res://assets/textures/gui/bevel/undoButtonHover.svg" id="8_1f4ig"]
 [ext_resource type="Texture2D" uid="uid://dkiesgcdqnups" path="res://assets/textures/gui/bevel/undoButtonDisabled.svg" id="9_jlso7"]
-[ext_resource type="PackedScene" path="res://src/gui_common/AddWindowReorderingSupportToSiblings.tscn" id="10"]
+[ext_resource type="PackedScene" uid="uid://tna206f2gtkv" path="res://src/gui_common/AddWindowReorderingSupportToSiblings.tscn" id="10"]
 
 [sub_resource type="Animation" id="1"]
 resource_name = "Flash"
@@ -47,7 +47,7 @@ _data = {
 &"RESET": SubResource("2")
 }
 
-[node name="InventoryScreen" type="Control" node_paths=PackedStringArray("groundSlotContainer", "groundPanelPopup", "clearCraftingInputs", "takeAllCraftingResults", "craftingAnimationPlayer", "craftingErrorStatusLabel", "craftingResultSlotsContainer", "craftingSlotsContainer", "craftingRecipesContainer", "craftingPanelPopup", "groundPanelButton", "craftingPanelButton", "equipmentBackgroundImage", "equipmentSlotParent", "inventorySlotContainer", "inventoryPopup")]
+[node name="InventoryScreen" type="Control" node_paths=PackedStringArray("inventoryPopup", "inventorySlotContainer", "equipmentSlotParent", "equipmentBackgroundImage", "craftingPanelButton", "groundPanelButton", "craftingPanelPopup", "craftingRecipesContainer", "craftingSlotsContainer", "craftingResultSlotsContainer", "craftingErrorStatusLabel", "craftingAnimationPlayer", "takeAllCraftingResults", "clearCraftingInputs", "groundPanelPopup", "groundSlotContainer")]
 visible = false
 layout_mode = 3
 anchors_preset = 15
@@ -278,7 +278,7 @@ text = "CRAFTING_TAKE_ALL"
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="CraftingPanel"]
 libraries = {
-"": SubResource("AnimationLibrary_ed7nr")
+&"": SubResource("AnimationLibrary_ed7nr")
 }
 
 [connection signal="Canceled" from="GroundPanel" to="." method="OnGroundPanelCanceled"]

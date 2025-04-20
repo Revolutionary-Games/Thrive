@@ -19,7 +19,7 @@ colors = PackedColorArray(0.0117647, 0.027451, 0.0392157, 1, 0, 0, 0.00392157, 0
 [sub_resource type="GradientTexture2D" id="3"]
 gradient = SubResource("2")
 
-[node name="LoadingScreen" type="Control" node_paths=PackedStringArray("spinner", "randomizeTimer", "tipLabel", "loadingDescriptionLabel", "loadingMessageLabel", "artDescriptionLabel", "artworkRect")]
+[node name="LoadingScreen" type="Control" node_paths=PackedStringArray("artworkRect", "artDescriptionLabel", "loadingMessageLabel", "loadingDescriptionLabel", "tipLabel", "spinner", "randomizeTimer")]
 process_mode = 3
 layout_mode = 3
 anchors_preset = 15
@@ -36,8 +36,8 @@ artDescriptionLabel = NodePath("CenterContainer/ArtDescription")
 loadingMessageLabel = NodePath("MarginContainer/HBoxContainer/VBoxContainer/LoadingMessage")
 loadingDescriptionLabel = NodePath("MarginContainer/HBoxContainer/VBoxContainer/LoadingDescription")
 tipLabel = NodePath("MarginContainer/HBoxContainer/TipLabel")
-randomizeTimer = NodePath("Timer")
 spinner = NodePath("MarginContainer/HBoxContainer/Spinner/Control/TextureRect")
+randomizeTimer = NodePath("Timer")
 
 [node name="ColorRect" type="ColorRect" parent="."]
 layout_mode = 0
