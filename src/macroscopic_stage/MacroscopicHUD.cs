@@ -46,12 +46,6 @@ public partial class MacroscopicHUD : CreatureStageHUDBase<MacroscopicStage>
 
     protected override string? UnPauseHelpText => null;
 
-    public override void _Ready()
-    {
-        base._Ready();
-
-    }
-
     public override void _Process(double delta)
     {
         base._Process(delta);

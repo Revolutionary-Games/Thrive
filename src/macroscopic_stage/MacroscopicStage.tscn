@@ -27,7 +27,7 @@ background_mode = 2
 sky = SubResource("1")
 ambient_light_color = Color(0.0313726, 0.443137, 0.482353, 1)
 
-[node name="MacroscopicStage" type="Node" node_paths=PackedStringArray("hudRoot", "pauseMenu", "worldLightNode", "worldEnvironmentNode", "selectBuildingPopup", "progressBarSystem", "interactionPopup", "interactableSystem")]
+[node name="MacroscopicStage" type="Node" node_paths=PackedStringArray("interactableSystem", "interactionPopup", "progressBarSystem", "selectBuildingPopup", "worldEnvironmentNode", "worldLightNode", "pauseMenu", "hudRoot")]
 process_priority = -1
 script = ExtResource("1")
 interactableSystem = NodePath("InteractableSystem")
@@ -70,7 +70,7 @@ grow_vertical = 2
 grow_horizontal = 2
 grow_vertical = 2
 
-[node name="MacroscopicHUD" parent="." node_paths=PackedStringArray("menu", "fossilisationDialog", "fossilisationButtonLayer") instance=ExtResource("3")]
+[node name="MacroscopicHUD" parent="." node_paths=PackedStringArray("fossilisationButtonLayer", "fossilisationDialog", "menu") instance=ExtResource("3")]
 fossilisationButtonLayer = NodePath("FossilisationButtonLayer")
 fossilisationDialog = NodePath("FossilisationDialog")
 menu = NodePath("../PauseMenu")

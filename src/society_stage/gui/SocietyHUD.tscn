@@ -42,7 +42,7 @@ corner_radius_top_right = 1
 corner_radius_bottom_right = 1
 corner_radius_bottom_left = 1
 
-[node name="SocietyHUD" type="Control" node_paths=PackedStringArray("pausePrompt", "pauseInfo", "hudMessages", "researchScreen", "resourceDisplay", "bottomLeftBar", "hotBar", "hintText", "populationLabel")]
+[node name="SocietyHUD" type="Control" node_paths=PackedStringArray("populationLabel", "hintText", "bottomLeftBar", "researchScreen", "hotBar", "resourceDisplay", "pausePrompt", "pauseInfo", "hudMessages")]
 process_mode = 3
 layout_mode = 3
 anchors_preset = 15
@@ -55,10 +55,10 @@ theme = ExtResource("2")
 script = ExtResource("12")
 populationLabel = NodePath("TopBar/HBoxContainer/PopulationContainer/Population")
 hintText = NodePath("HintText")
-hotBar = NodePath("ScrollContainer/HotBar")
 bottomLeftBar = NodePath("HUDBottomBar")
-resourceDisplay = NodePath("TopBar/HBoxContainer/ResourceDisplayBar")
 researchScreen = NodePath("ResearchScreen")
+hotBar = NodePath("ScrollContainer/HotBar")
+resourceDisplay = NodePath("TopBar/HBoxContainer/ResourceDisplayBar")
 pausePrompt = NodePath("PausePrompt")
 pauseInfo = NodePath("PausePrompt/PauseInfo")
 hudMessages = NodePath("HUDMessages")
