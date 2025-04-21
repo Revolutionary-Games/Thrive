@@ -21,6 +21,8 @@ public partial class TolerancesEditorSubComponent : EditorComponentBase<ICellEdi
 
     private readonly Dictionary<OrganelleDefinition, float> tempToleranceModifiers = new();
 
+    private CompoundDefinition temperature = null!;
+
 #pragma warning disable CA2213
 
     [Export]
@@ -177,6 +179,8 @@ public partial class TolerancesEditorSubComponent : EditorComponentBase<ICellEdi
     public override void Init(ICellEditorData owningEditor, bool fresh)
     {
         base.Init(owningEditor, fresh);
+
+        temperature = temperature;
 
         wasFreshInit = fresh;
     }
@@ -351,7 +355,7 @@ public partial class TolerancesEditorSubComponent : EditorComponentBase<ICellEdi
         // Copy the units here automatically
         if (temperatureRangeToolTip != null)
         {
-            temperatureRangeToolTip.ValueSuffix = SimulationParameters.GetCompound(Compound.Temperature).Unit;
+            temperatureRangeToolTip.ValueSuffix = temperature.Unit;
         }
         else
         {
@@ -730,11 +734,11 @@ public partial class TolerancesEditorSubComponent : EditorComponentBase<ICellEdi
         temperatureMinLabel.Text =
             unitFormat.FormatSafe(
                 Math.Round(preferredTemperatureWithOrganelles - temperatureToleranceWithOrganelles, 1),
-                SimulationParameters.GetCompound(Compound.Temperature).Unit);
+                temperature.Unit);
         temperatureMaxLabel.Text =
             unitFormat.FormatSafe(
                 Math.Round(preferredTemperatureWithOrganelles + temperatureToleranceWithOrganelles, 1),
-                SimulationParameters.GetCompound(Compound.Temperature).Unit);
+                temperature.Unit);
 
         // Show in red the conditions that are not matching to make them easier to notice
         if (Math.Abs(patchTemperature - preferredTemperatureWithOrganelles) >
@@ -828,10 +832,10 @@ public partial class TolerancesEditorSubComponent : EditorComponentBase<ICellEdi
         // Temperature
         temperatureToleranceLabel.Text =
             unitFormat.FormatSafe(Math.Round(CurrentTolerances.TemperatureTolerance, 1),
-            SimulationParameters.GetCompound(Compound.Temperature).Unit);
+            temperature.Unit);
 
         var value = unitFormat.FormatSafe(Math.Round(organelleModifiers.TemperatureTolerance, 1),
-            SimulationParameters.GetCompound(Compound.Temperature).Unit);
+            temperature.Unit);
 
         value = organelleModifiers.TemperatureTolerance >= 0 ? "+" + value : value;
 
