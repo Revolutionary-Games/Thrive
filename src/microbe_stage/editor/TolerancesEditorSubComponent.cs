@@ -180,7 +180,7 @@ public partial class TolerancesEditorSubComponent : EditorComponentBase<ICellEdi
     {
         base.Init(owningEditor, fresh);
 
-        temperature = temperature;
+        temperature = SimulationParameters.GetCompound(Compound.Temperature);
 
         wasFreshInit = fresh;
     }
@@ -831,11 +831,9 @@ public partial class TolerancesEditorSubComponent : EditorComponentBase<ICellEdi
 
         // Temperature
         temperatureToleranceLabel.Text =
-            unitFormat.FormatSafe(Math.Round(CurrentTolerances.TemperatureTolerance, 1),
-            temperature.Unit);
+            unitFormat.FormatSafe(Math.Round(CurrentTolerances.TemperatureTolerance, 1), temperature.Unit);
 
-        var value = unitFormat.FormatSafe(Math.Round(organelleModifiers.TemperatureTolerance, 1),
-            temperature.Unit);
+        var value = unitFormat.FormatSafe(Math.Round(organelleModifiers.TemperatureTolerance, 1), temperature.Unit);
 
         value = organelleModifiers.TemperatureTolerance >= 0 ? "+" + value : value;
 
