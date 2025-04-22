@@ -9,11 +9,10 @@ using Xoshiro.PRNG64;
 [JSONDynamicTypeAllowed]
 public class NitrogenControlEffect : IWorldEffect
 {
+    // ReSharper disable once CollectionNeverUpdated.Local
     /// <summary>
     ///   This doesn't add any clouds with sizes, so this is just a permanently empty dictionary
     /// </summary>
-
-    // ReSharper disable once CollectionNeverUpdated.Local
     private readonly Dictionary<Compound, float> cloudSizesDummy = new();
 
     [JsonProperty]

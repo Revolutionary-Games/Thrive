@@ -288,7 +288,6 @@ public partial class PatchMapNode : MarginContainer
                 ExpandMode = TextureRect.ExpandModeEnum.FitWidthProportional,
                 StretchMode = TextureRect.StretchModeEnum.KeepAspect,
                 MouseFilter = MouseFilterEnum.Stop,
-
             };
 
             if (!WorldEffectVisuals.EventsTooltips.TryGetValue(effectType, out var tooltipText))
