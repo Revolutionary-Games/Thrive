@@ -25,16 +25,6 @@ public partial class OptionsMenu : ControlWithInput
     [Export]
     public bool DisableInactiveSliders;
 
-    // GUI Control Paths
-
-    // Options control buttons.
-
-    // Tab selector buttons.
-    // Graphics tab.
-    // Sound tab.
-    // Performance tab.
-    // Inputs tab.
-    // Misc tab.
     private static readonly Lazy<List<string>> LanguagesCache = new(() =>
         TranslationServer.GetLoadedLocales().OrderBy(i => i, StringComparer.InvariantCulture).ToList());
 

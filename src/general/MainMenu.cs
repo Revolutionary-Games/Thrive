@@ -389,6 +389,7 @@ public partial class MainMenu : NodeWithInput
         newGameSettings = GetNode<NewGameSettings>("NewGameSettings");
         saves = GetNode<SaveManagerGUI>("SaveManagerGUI");
         thriveopedia = GetNode<Thriveopedia>("Thriveopedia");
+
         // Set initial menu
         SwitchMenu();
 

@@ -270,17 +270,6 @@ public partial class AutoEvoExploringTool : NodeWithInput, ISpeciesDataProvider
         return null;
     }
 
-    protected override void Dispose(bool disposing)
-    {
-        if (disposing)
-        {
-            {
-            }
-        }
-
-        base.Dispose(disposing);
-    }
-
     private void InitNewWorld()
     {
         InitNewWorld(SimulationParameters.Instance.AutoEvoConfiguration);

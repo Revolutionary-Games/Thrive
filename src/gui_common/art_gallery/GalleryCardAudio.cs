@@ -8,7 +8,7 @@ public partial class GalleryCardAudio : GalleryCard, IGalleryCardPlayback
 {
 #pragma warning disable CA2213
     [Export]
-    private PlaybackControls? playbackControls;
+    private PlaybackControls playbackControls = null!;
     private AudioStreamPlayer? ownPlayer;
 #pragma warning restore CA2213
 
@@ -56,7 +56,7 @@ public partial class GalleryCardAudio : GalleryCard, IGalleryCardPlayback
     {
         if (ownPlayer == null)
         {
-            ownPlayer = new AudioStreamPlayer { Stream = GD.Load<AudioStream>(Asset.ResourcePath) };
+            ownPlayer = new AudioStreamPlayer { Stream = GD.Load<AudioStream>(Asset!.ResourcePath) };
             UpdatePlaybackBar();
             AddChild(ownPlayer);
         }

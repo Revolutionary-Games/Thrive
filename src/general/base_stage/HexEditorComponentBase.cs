@@ -55,7 +55,7 @@ public partial class HexEditorComponentBase<TEditor, TCombinedAction, TAction, T
     protected Node3D cameraFollow = null!;
 
     [Export]
-    protected MicrobeCamera? camera;
+    protected MicrobeCamera camera = null!;
 
     [JsonIgnore]
     [Export]

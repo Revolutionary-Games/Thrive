@@ -13,25 +13,25 @@ public partial class SlideScreen : TopLevelContainer
 
 #pragma warning disable CA2213
     [Export]
-    private CrossFadableTextureRect? slideTextureRect;
+    private CrossFadableTextureRect slideTextureRect = null!;
     [Export]
-    private Control? toolbar;
+    private Control toolbar = null!;
     [Export]
-    private Button? closeButton;
+    private Button closeButton = null!;
     [Export]
-    private Button? slideShowModeButton;
+    private Button slideShowModeButton = null!;
     [Export]
-    private Label? slideTitleLabel;
+    private Label slideTitleLabel = null!;
     [Export]
-    private CrossFadableGalleryViewport? modelViewerContainer;
+    private CrossFadableGalleryViewport modelViewerContainer = null!;
     [Export]
-    private SubViewport? modelViewer;
+    private SubViewport modelViewer = null!;
     [Export]
-    private Node3D? modelHolder;
+    private Node3D modelHolder = null!;
     [Export]
-    private OrbitCamera? modelViewerCamera;
+    private OrbitCamera modelViewerCamera = null!;
     [Export]
-    private PlaybackControls? playbackControls;
+    private PlaybackControls playbackControls = null!;
 #pragma warning restore CA2213
 
     private double toolbarHideTimer;
@@ -289,6 +289,10 @@ public partial class SlideScreen : TopLevelContainer
             return;
 
         var item = items[currentSlideIndex];
+
+        if (item.Asset == null)
+            return;
+
         slideTextureRect.Image = GD.Load(item.Asset.ResourcePath) as Texture2D;
 
         if (slideTextureRect.Image != null)
@@ -313,6 +317,9 @@ public partial class SlideScreen : TopLevelContainer
 
         var item = items[currentSlideIndex];
 
+        if (item.Asset == null)
+            return;
+
         slideshowTimer = slideshowMode ? SLIDESHOW_INTERVAL : 0;
         slideShowModeButton.SetPressedNoSignal(slideshowMode);
         slideShowModeButton.Visible = item.CanBeShownInASlideshow;
@@ -325,7 +332,10 @@ public partial class SlideScreen : TopLevelContainer
     {
         var item = items?[currentSlideIndex] as GalleryCardModel;
 
-        if (item?.Asset.Type != AssetType.ModelScene || modelHolder == null || modelViewer == null ||
+        if (item?.Asset == null)
+            return;
+
+        if (item.Asset.Type != AssetType.ModelScene || modelHolder == null || modelViewer == null ||
             modelViewerCamera == null)
         {
             modelViewerContainer?.Hide();
@@ -358,7 +368,10 @@ public partial class SlideScreen : TopLevelContainer
         if (playbackControls == null || slideTextureRect == null)
             return;
 
-        if (item?.Asset.Type != AssetType.AudioPlayback)
+        if (item?.Asset == null)
+            return;
+
+        if (item.Asset.Type != AssetType.AudioPlayback)
         {
             playbackControls.Hide();
             playbackControls.AudioPlayer = null;

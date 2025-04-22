@@ -60,6 +60,16 @@ public partial class GalleryCard : Button
         }
     }
 
+    protected override void Dispose(bool disposing)
+    {
+        if (disposing)
+        {
+            modulationReference.Dispose();
+        }
+
+        base.Dispose(disposing);
+    }
+
     private void UpdatePreview()
     {
         if (Asset == null)
