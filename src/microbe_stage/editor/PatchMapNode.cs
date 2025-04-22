@@ -34,12 +34,11 @@ public partial class PatchMapNode : MarginContainer
     [Export]
     public string UnknownTextureFilePath = null!;
 
+#pragma warning disable CA2213
+
     [Export]
     private HBoxContainer eventIconsContainer = null!;
 
-#pragma warning disable CA2213
-
-    private PackedScene eventIconScene = null!;
     private TextureRect? iconRect;
     private Panel? highlightPanel;
     private Panel? markPanel;
@@ -188,8 +187,6 @@ public partial class PatchMapNode : MarginContainer
     {
         base._Ready();
 
-        eventIconScene = GD.Load<PackedScene>("res://src/microbe_stage/editor/PatchMapEventIcon.tscn");
-
         if (patch == null)
             GD.PrintErr($"{nameof(PatchMapNode)} should have {nameof(Patch)} set");
 
@@ -276,27 +273,44 @@ public partial class PatchMapNode : MarginContainer
 
     public void ShowEventVisuals(IReadOnlyList<WorldEffectTypes> list)
     {
+        // TODO: check if this had any active events and only then clear
+        // TODO: it would be slightly more efficient to only delete no longer required events
         eventIconsContainer.QueueFreeChildren(false);
 
-        foreach (var effectType in list)
+        // Manual loop to avoid enumerator allocation
+        var count = list.Count;
+        for (var i = 0; i < count; i++)
         {
-            var eventIcon = (TextureRect)eventIconScene.Instantiate();
+            var effectType = list[i];
+            var eventIcon = new TextureRect
+            {
+                CustomMinimumSize = new Vector2(16, 16),
+                ExpandMode = TextureRect.ExpandModeEnum.FitWidthProportional,
+                StretchMode = TextureRect.StretchModeEnum.KeepAspect,
+                MouseFilter = MouseFilterEnum.Stop,
+
+            };
 
             if (!WorldEffectVisuals.EventsTooltips.TryGetValue(effectType, out var tooltipText))
             {
-                throw new Exception($"Missing tooltip for {effectType}");
+                GD.PrintErr($"Missing tooltip for {effectType}");
             }
-
-            eventIcon.TooltipText = tooltipText.ToString();
+            else
+            {
+                eventIcon.TooltipText = tooltipText.ToString();
+            }
 
             if (!WorldEffectVisuals.EventsIcons.TryGetValue(effectType, out var iconPath) ||
                 string.IsNullOrEmpty(iconPath))
             {
-                throw new Exception($"Missing icon for {effectType}");
+                GD.PrintErr($"Missing icon for {effectType}");
+                eventIcon.Free();
             }
-
-            eventIcon.Texture = GD.Load<Texture2D>(iconPath);
-            eventIconsContainer.AddChild(eventIcon);
+            else
+            {
+                eventIcon.Texture = GD.Load<Texture2D>(iconPath);
+                eventIconsContainer.AddChild(eventIcon);
+            }
         }
     }
 
@@ -329,7 +343,6 @@ public partial class PatchMapNode : MarginContainer
                 MarkPanelPath.Dispose();
                 AdjacentPanelPath.Dispose();
                 UnknownLabelPath.Dispose();
-                eventIconsContainer.Dispose();
             }
         }
 
