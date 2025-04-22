@@ -26,7 +26,7 @@ public class WorldEffectVisuals
         [WorldEffectTypes.MeteorPlainImpact] = "res://assets/textures/gui/bevel/MeteorPlain.svg",
         [WorldEffectTypes.MeteorIronImpact] = "res://assets/textures/gui/bevel/MeteorIron.svg",
         [WorldEffectTypes.MeteorPhosphatesImpact] = "res://assets/textures/gui/bevel/MeteorPhosphates.svg",
-        [WorldEffectTypes.MeteorRadioactiveImpact] = "res://assets/textures/gui/bevel/MeteorRadioavtive.svg",
+        [WorldEffectTypes.MeteorRadioactiveImpact] = "res://assets/textures/gui/bevel/MeteorRadioactive.svg",
         [WorldEffectTypes.MeteorGlucoseImpact] = "res://assets/textures/gui/bevel/MeteorGlucose.svg",
         [WorldEffectTypes.MeteorSulfurImpact] = "res://assets/textures/gui/bevel/MeteorSulfur.svg",
     };
