@@ -305,7 +305,7 @@ public partial class SimulationParameters : Node
         return meteors[name];
     }
 
-    public IEnumerable<Meteor> GetAllMeteors()
+    public IReadOnlyCollection<Meteor> GetAllMeteors()
     {
         return meteors.Values;
     }

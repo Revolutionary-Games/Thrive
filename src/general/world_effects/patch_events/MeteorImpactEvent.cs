@@ -1,5 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Linq;
 using Godot;
 using Newtonsoft.Json;
@@ -9,6 +8,9 @@ using Xoshiro.PRNG64;
 public class MeteorImpactEvent : IWorldEffect
 {
     private const string TemplateBiomeForChunks = "patchEventTemplateBiome";
+
+    private readonly Dictionary<Compound, float> tempCompoundChanges = new();
+    private readonly Dictionary<Compound, float> tempCloudSizes = new();
 
     [JsonProperty]
     private readonly HashSet<int> modifiedPatchesIds = new();
@@ -20,7 +22,7 @@ public class MeteorImpactEvent : IWorldEffect
     private GameWorld targetWorld;
 
     [JsonProperty]
-    private Meteor selectedMeteor = null!;
+    private Meteor? selectedMeteor;
 
     public MeteorImpactEvent(GameWorld targetWorld, long randomSeed)
     {
@@ -71,23 +73,10 @@ public class MeteorImpactEvent : IWorldEffect
 
     private void ChooseMeteorType()
     {
-        var meteors = SimulationParameters.Instance.GetAllMeteors().ToList();
-        var index = GetRandomElementByProbability(SimulationParameters.Instance.GetMeteorChances(),
-            random.NextDouble());
+        var meteors = SimulationParameters.Instance.GetAllMeteors();
+        var index = SimulationParameters.Instance.GetMeteorChances()
+            .RandomElementIndexByProbability(random.NextDouble());
         selectedMeteor = meteors.ElementAt(index);
-    }
-
-    private int GetRandomElementByProbability(IReadOnlyList<double> chances, double probability)
-    {
-        double cumulative = 0.0;
-        for (var i = 0; i < chances.Count; ++i)
-        {
-            cumulative += chances[i];
-            if (probability <= cumulative)
-                return i;
-        }
-
-        throw new ArgumentException("Chances list is empty");
     }
 
     private void ChooseAffectedPatches()
@@ -101,9 +90,9 @@ public class MeteorImpactEvent : IWorldEffect
                 surfacePatches.Add(patch);
         }
 
-        var selectedPatch = surfacePatches[random.Next(surfacePatches.Count)];
+        var selectedPatch = surfacePatches.Random(random);
         var adjacentList = selectedPatch.Region.Adjacent;
-        var adjacentRegion = adjacentList.ToList()[random.Next(adjacentList.Count)];
+        var adjacentRegion = adjacentList.Random(random);
 
         // 1 patch
         if (impactSize >= 0)
@@ -150,10 +139,16 @@ public class MeteorImpactEvent : IWorldEffect
     }
 
     /// <summary>
-    ///   Gets chunks from event template patch and applies them to the patches.
+    ///   Gets chunks from the event template patch and applies them to the patches.
     /// </summary>
     private void AddChunks(Patch patch)
     {
+        if (selectedMeteor == null)
+        {
+            GD.PrintErr("Internal error in meteor impact event, no selected meteor type for patch chunks");
+            return;
+        }
+
         var templateBiome = SimulationParameters.Instance.GetBiome(TemplateBiomeForChunks);
         foreach (var configuration in selectedMeteor.Chunks)
         {
@@ -186,8 +181,14 @@ public class MeteorImpactEvent : IWorldEffect
 
     private void AdjustCompounds(Patch patch)
     {
-        var changes = new Dictionary<Compound, float>();
-        var cloudSizes = new Dictionary<Compound, float>();
+        if (selectedMeteor == null)
+        {
+            GD.PrintErr("Internal error in meteor impact event, no selected meteor type for patch compounds");
+            return;
+        }
+
+        tempCompoundChanges.Clear();
+        tempCloudSizes.Clear();
 
         foreach (var (compoundName, levelChange) in selectedMeteor.Compounds)
         {
@@ -206,55 +207,33 @@ public class MeteorImpactEvent : IWorldEffect
             {
                 // glucose, phosphates, iron, sulfur
                 currentCompoundLevel.Density = levelChange;
+
+                // TODO: instead of hardcoding the fallback value, maybe this could look in the event template biome?
                 currentCompoundLevel.Amount = currentCompoundLevel.Amount == 0 ? 10000 : currentCompoundLevel.Amount;
-                changes[compoundName] = currentCompoundLevel.Density;
-                cloudSizes[compoundName] = currentCompoundLevel.Amount;
+                tempCompoundChanges[compoundName] = currentCompoundLevel.Density;
+                tempCloudSizes[compoundName] = currentCompoundLevel.Amount;
             }
             else
             {
                 // CO2
                 currentCompoundLevel.Ambient = levelChange;
-                changes[compoundName] = currentCompoundLevel.Ambient;
+                tempCompoundChanges[compoundName] = currentCompoundLevel.Ambient;
             }
         }
 
-        patch.Biome.ApplyLongTermCompoundChanges(patch.BiomeTemplate, changes, cloudSizes);
-    }
-
-    private void ReduceCompounds(Patch patch)
-    {
-        var changes = new Dictionary<Compound, float>();
-        var cloudSizes = new Dictionary<Compound, float>();
-
-        foreach (var (compoundName, levelChange) in selectedMeteor.Compounds)
-        {
-            bool hasCompound =
-                patch.Biome.ChangeableCompounds.TryGetValue(compoundName, out var currentCompoundLevel);
-
-            if (!hasCompound)
-            {
-                GD.PrintErr($"Meteor impact event encountered patch with unexpectedly no {compoundName.ToString()}");
-                return;
-            }
-
-            var definition = SimulationParameters.Instance.GetCompoundDefinition(compoundName);
-
-            if (!definition.IsEnvironmental)
-            {
-                // glucose, phosphates, iron, sulfur
-                currentCompoundLevel.Density = -levelChange / 3;
-                changes[compoundName] = currentCompoundLevel.Density;
-                cloudSizes[compoundName] = currentCompoundLevel.Amount;
-            }
-        }
-
-        patch.Biome.ApplyLongTermCompoundChanges(patch.BiomeTemplate, changes, cloudSizes);
+        patch.Biome.ApplyLongTermCompoundChanges(patch.BiomeTemplate, tempCompoundChanges, tempCloudSizes);
     }
 
     private void LogEvent(Patch patch, double totalTimePassed)
     {
         patch.LogEvent(new LocalizedString("METEOR_IMPACT_EVENT"),
             true, true, "MeteorImpactEvent.svg");
+
+        if (selectedMeteor == null)
+        {
+            GD.PrintErr("Internal error in meteor impact event");
+            return;
+        }
 
         patch.AddPatchEventRecord(selectedMeteor.VisualEffect, totalTimePassed);
     }
@@ -277,6 +256,44 @@ public class MeteorImpactEvent : IWorldEffect
         modifiedPatchesIds.Clear();
     }
 
+    private void ReduceCompounds(Patch patch)
+    {
+        if (selectedMeteor == null)
+        {
+            GD.PrintErr("Internal error in meteor impact event, no selected meteor type for patch compounds reset");
+            return;
+        }
+
+        tempCompoundChanges.Clear();
+        tempCloudSizes.Clear();
+
+        foreach (var (compoundName, levelChange) in selectedMeteor.Compounds)
+        {
+            bool hasCompound =
+                patch.Biome.ChangeableCompounds.TryGetValue(compoundName, out var currentCompoundLevel);
+
+            if (!hasCompound)
+            {
+                GD.PrintErr($"Meteor impact event encountered patch with unexpectedly no {compoundName.ToString()}");
+                return;
+            }
+
+            var definition = SimulationParameters.Instance.GetCompoundDefinition(compoundName);
+
+            if (!definition.IsEnvironmental)
+            {
+                // glucose, phosphates, iron, sulfur
+                currentCompoundLevel.Density = -levelChange / 3;
+                tempCompoundChanges[compoundName] = currentCompoundLevel.Density;
+                tempCloudSizes[compoundName] = currentCompoundLevel.Amount;
+            }
+
+            // CO2 is not reduced back to normal values
+        }
+
+        patch.Biome.ApplyLongTermCompoundChanges(patch.BiomeTemplate, tempCompoundChanges, tempCloudSizes);
+    }
+
     private void ResetEnvironment(Patch patch)
     {
         bool hasSunlight = patch.Biome.ChangeableCompounds.TryGetValue(Compound.Sunlight, out var currentSunlight);
@@ -293,6 +310,12 @@ public class MeteorImpactEvent : IWorldEffect
 
     private void RemoveChunks(Patch patch)
     {
+        if (selectedMeteor == null)
+        {
+            GD.PrintErr("Internal error in meteor impact event, no meteor type to remove added chunks");
+            return;
+        }
+
         foreach (var configuration in selectedMeteor.Chunks)
         {
             patch.Biome.Chunks.Remove(configuration);
