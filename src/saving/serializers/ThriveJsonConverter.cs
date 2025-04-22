@@ -386,8 +386,8 @@ public abstract class BaseThriveConverter : JsonConverter
             if (settings is { MemberSerialization: MemberSerialization.OptIn })
             {
                 // Ignore all properties not opted in
-                properties = properties.Where(
-                    p => p.CustomAttributes.Any(a => a.AttributeType == JsonPropertyAttribute));
+                properties =
+                    properties.Where(p => p.CustomAttributes.Any(a => a.AttributeType == JsonPropertyAttribute));
             }
         }
 

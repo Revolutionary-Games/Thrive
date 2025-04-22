@@ -415,7 +415,6 @@ public sealed class MicrobeAISystem : AEntitySetSystem<float>, ISpeciesMemberLoc
                             Constants.AI_FOLLOW_DISTANCE_SQUARED)
                         {
                             ai.MoveToLocation(signalerPosition, ref control, entity);
-                            return;
                         }
 
                         return;
