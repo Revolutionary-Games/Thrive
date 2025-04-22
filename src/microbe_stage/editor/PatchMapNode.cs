@@ -212,7 +212,7 @@ public partial class PatchMapNode : MarginContainer
         base._Process(delta);
 
         currentBlinkTime += delta;
-        if (currentBlinkTime > Constants.HALF_BLINK_INTERVAL)
+        if (currentBlinkTime > Constants.CURRENT_MAP_PATCH_INDICATOR_HALF_BLINK_INTERVAL)
         {
             currentBlinkTime = 0;
 
