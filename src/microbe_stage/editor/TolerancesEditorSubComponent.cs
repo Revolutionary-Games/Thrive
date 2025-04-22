@@ -173,14 +173,14 @@ public partial class TolerancesEditorSubComponent : EditorComponentBase<ICellEdi
         originalPressureFont = pressureMinLabel.LabelSettings;
         originalModifierFont = temperatureToleranceModifierLabel.LabelSettings;
 
+        temperature = SimulationParameters.GetCompound(Compound.Temperature);
+
         RegisterTooltips();
     }
 
     public override void Init(ICellEditorData owningEditor, bool fresh)
     {
         base.Init(owningEditor, fresh);
-
-        temperature = SimulationParameters.GetCompound(Compound.Temperature);
 
         wasFreshInit = fresh;
     }
