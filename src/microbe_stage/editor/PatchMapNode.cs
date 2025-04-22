@@ -279,7 +279,7 @@ public partial class PatchMapNode : MarginContainer
 
         // Manual loop to avoid enumerator allocation
         var count = list.Count;
-        for (var i = 0; i < count; i++)
+        for (var i = 0; i < count; ++i)
         {
             var effectType = list[i];
             var eventIcon = new TextureRect
