@@ -28,7 +28,7 @@ public partial class MetaballEditorComponentBase<TEditor, TCombinedAction, TActi
 
 #pragma warning disable CA2213
     [Export]
-    protected EditorCamera3D? camera;
+    protected EditorCamera3D camera = null!;
 
     [JsonIgnore]
     [Export]

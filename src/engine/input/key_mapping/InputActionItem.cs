@@ -125,7 +125,6 @@ public partial class InputActionItem : VBoxContainer
             return;
 
         nodeReferencesResolved = true;
-
     }
 
     public override void _EnterTree()

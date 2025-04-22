@@ -22,7 +22,6 @@ public partial class PlanetScreen : CustomWindow
     public override void _Ready()
     {
         base._Ready();
-
     }
 
     public override void _Process(double delta)

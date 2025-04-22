@@ -22,7 +22,6 @@ public partial class ResearchScreen : CustomWindow
     public override void _Ready()
     {
         base._Ready();
-
     }
 
     public void DisplayProgress(TechnologyProgress? currentResearch)

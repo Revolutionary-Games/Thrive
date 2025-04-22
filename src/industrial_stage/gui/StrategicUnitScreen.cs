@@ -42,7 +42,6 @@ public partial class StrategicUnitScreen<T> : CustomWindow
     public override void _Ready()
     {
         base._Ready();
-
     }
 
     public override void _Process(double delta)

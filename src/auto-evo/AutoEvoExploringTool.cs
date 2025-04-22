@@ -163,8 +163,6 @@ public partial class AutoEvoExploringTool : NodeWithInput, ISpeciesDataProvider
 
         TransitionManager.Instance.AddSequence(ScreenFade.FadeType.FadeIn, 0.1f, null, false);
 
-        // Retrieve all node paths
-
         patchMapDrawer.OnSelectedPatchChanged += UpdatePatchDetailPanel;
 
         allOrganelles = SimulationParameters.Instance.GetAllOrganelles().ToList();

@@ -20,7 +20,6 @@ public partial class IndustrialHUD : StrategyStageHUDBase<IndustrialStage>
     public override void _Ready()
     {
         base._Ready();
-
     }
 
     public void UpdatePopulationDisplay(long population)

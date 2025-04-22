@@ -46,7 +46,6 @@ public partial class StrategyStageBase : StageBase, IStrategyStage
             return;
 
         base.ResolveNodeReferences();
-
     }
 
     public override void _ExitTree()
