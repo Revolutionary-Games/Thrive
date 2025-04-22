@@ -20,7 +20,7 @@ public class Meteor : IRegistryType
     public static void CheckAllMeteors(List<Meteor> meteors)
     {
         double totalSum = 0;
-        foreach (Meteor meteor in meteors)
+        foreach (var meteor in meteors)
         {
             totalSum += meteor.Probability;
         }
