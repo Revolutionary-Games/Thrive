@@ -37,6 +37,8 @@ public class PhotosynthesisProductionEffect : IWorldEffect
 
         List<TweakedProcess> microbeProcesses = [];
 
+        // Dummy cloud sizes as this effect doesn't add any clouds
+        // ReSharper disable once CollectionNeverUpdated.Local
         var cloudSizes = new Dictionary<Compound, float>();
 
         var changesToApply = new Dictionary<Compound, float>();

@@ -3,15 +3,17 @@ using Newtonsoft.Json;
 using Xoshiro.PRNG64;
 
 /// <summary>
-///   Makes sure nitrogen is between a defined safe limits and attempts to correct things if not (as pure processes
+///   Makes sure nitrogen is between a defined safe limit and attempts to correct things if not (as pure processes
 ///   don't result in nitrogen balance)
 /// </summary>
 [JSONDynamicTypeAllowed]
 public class NitrogenControlEffect : IWorldEffect
 {
     /// <summary>
-    ///   This doesn't add any clouds with sizes so this is just a permanently empty dictionary
+    ///   This doesn't add any clouds with sizes, so this is just a permanently empty dictionary
     /// </summary>
+
+    // ReSharper disable once CollectionNeverUpdated.Local
     private readonly Dictionary<Compound, float> cloudSizesDummy = new();
 
     [JsonProperty]
@@ -44,7 +46,7 @@ public class NitrogenControlEffect : IWorldEffect
 
         foreach (var patch in targetWorld.Map.Patches.Values)
         {
-            // Add the min level if missing entirely (shouldn't happen unless the biomes JSON file is wrong)
+            // Add the min level if missing entirely (shouldn't happen unless the biomes.json file is wrong)
             if (!patch.Biome.TryGetCompound(Compound.Nitrogen, CompoundAmountType.Biome, out var amount))
             {
                 nitrogenModification[Compound.Nitrogen] = minLevel;
@@ -65,7 +67,7 @@ public class NitrogenControlEffect : IWorldEffect
             {
                 var halfAmount = (minLevel - amount.Ambient) * 0.5f;
 
-                // Add a bit of randomness to not look as "clipped" result
+                // Add a bit of randomness to not look like a "clipped" result
                 nitrogenModification[Compound.Nitrogen] = halfAmount + halfAmount * random.NextFloat();
             }
             else
