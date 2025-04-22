@@ -8,8 +8,8 @@ msgstr ""
 "Project-Id-Version: Thrive VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2025-04-12 20:42+0200\n"
-"PO-Revision-Date: 2025-04-04 10:42+0000\n"
-"Last-Translator: Anonymous <noreply@weblate.org>\n"
+"PO-Revision-Date: 2025-04-17 12:10+0000\n"
+"Last-Translator: Argakyan <andrinmueller@hotmail.ch>\n"
 "Language-Team: Alemannic <https://translate.revolutionarygamesstudio.com/projects/thrive/thrive-game/gsw/>\n"
 "Language: gsw\n"
 "MIME-Version: 1.0\n"
@@ -511,13 +511,11 @@ msgstr "Achse verbinde"
 msgid "BIOLUMINESCENT_VACUOLE"
 msgstr "Biolumineszenz-Vakuole"
 
-#, fuzzy
 msgid "BIOLUMINESCENT_VACUOLE_DESCRIPTION"
-msgstr "Biolumineszenz-Vakuole"
+msgstr "E Vakuole wo Reaktionsorte besitzt wo Luciferase konsumiert wird um sichtbares Liecht frei z'lah. E Hypothese seit uus, dass Biolumineszenz uursprünglich als Abwehrmechianismus gege [thrive:compound type=\"oxygen\"][/thrive:compound] hervorcho isch. Als die Grossi Suurstoffkatastrophe passiert isch hend Mikrobe wo anaerobe Verhältnis aapasst sind vieli neui Problem gha will Suurstoff sehr höchi Reaktivität hett was grosse Schäde verursache cha. Die Vakuole chammer zuefüege um Suurstoffresistänz z'erhöhe und es paar schöni Liechter z'becho. Ide Zuekunft wird's villich sogar e Form vode Kommunikation."
 
-#, fuzzy
 msgid "BIOLUMINESCENT_VACUOLE_PROCESSES_DESCRIPTION"
-msgstr "Druck [thrive:input]g_toggle_binding[/thrive:input], um de Bindigsmodus um z'schalte. Im Bindigsmodus chasch du anderi Zelle vo dinere Spezies mit dinere Kolonie verbinde, idem du dich i sii innebewegsch. Um e Kolonie z'verlah, druck [thrive:input]g_unbind_all[/thrive:input]."
+msgstr "Benutzt [thrive:compound type=\"atp\"][/thrive:compound] um [thrive:compound type=\"oxygen\"][/thrive:compound] i Liecht um z'wandle. Hett kei anderi Gameplay Uuswürckige bis jetzt ussert höheri Suurstoffresistänz."
 
 msgid "BIOME_LABEL"
 msgstr "Biom: {0}"
@@ -1963,37 +1961,39 @@ msgid "ERROR_CREATING_FOLDER"
 msgstr "Fehler bim erstelle vom Ordner für en Mod"
 
 msgid "ERROR_CREATING_INFO_FILE"
-msgstr ""
+msgstr "Fehler bim Erstelle vode Modinformationsdatei"
 
 msgid "ERROR_FAILED_TO_SAVE_NEW_SETTINGS"
-msgstr ""
+msgstr "Fehler: S'spiichere vo neue Iistellige ide Konfigurationsdatei isch fehlgschlagge."
 
 msgid "ERROR_FETCHING_EXPLANATION"
-msgstr ""
+msgstr "Nachrichteabruef fehlgschlagge wege Fehler: {0}"
 
 msgid "ERROR_FETCHING_NEWS"
-msgstr ""
+msgstr "Fehler bim Nachrichteabruef"
 
 msgid "ERROR_LOADING"
-msgstr ""
+msgstr "Fehler bim Ladde"
 
 msgid "ERROR_SAVING"
-msgstr ""
+msgstr "Fehler bim Spiichere"
 
 msgid "ERROR_UPLOADING_EXCEPTION"
-msgstr ""
+msgstr "En Uusnahme-Fehler isch passiert: {0}"
 
 msgid "ESCAPE"
-msgstr ""
+msgstr "Esc"
 
 msgid "ESCAPE_ENGULFING"
-msgstr ""
+msgstr "Verschlingig entgah"
 
 msgid "ESTUARY"
-msgstr ""
+msgstr "Mündig"
 
 msgid "EVENT_ERUPTION_TOOLTIP"
 msgstr ""
+"Eruptionserignis im Breich\n"
+"Erschafft zuesätzliches Schwefelwasserstoff und Kohlestoffdioxid"
 
 msgid "EVENT_METEOR_GLUCOSE"
 msgstr ""
@@ -2014,133 +2014,140 @@ msgid "EVENT_METEOR_SULFUR"
 msgstr ""
 
 msgid "EVOLUTIONARY_TREE"
-msgstr ""
+msgstr "Evolutionsbaum"
 
 msgid "EVOLUTIONARY_TREE_BUILD_FAILED"
 msgstr ""
+"Erstellig vom Evolutionsbaum fehl g'schlagge.\n"
+"\n"
+"Bitte informier d'Entwickler und gib Logging Dateie zur Verfüegig."
 
 msgid "EXACT_VERSION_COLON"
-msgstr ""
+msgstr "Gnaui Thrive Version:"
 
 msgid "EXACT_VERSION_TOOLTIP"
-msgstr ""
+msgstr "Das isch d'exakti Version vo dere Thrive Instantz"
 
 msgid "EXCEPTION_HAPPENED_PROCESSING_SAVE"
-msgstr ""
+msgstr "Während de Verarbeitig vo g'laddene Objekte isch en Fehler passiert"
 
 msgid "EXCEPTION_HAPPENED_WHILE_LOADING"
-msgstr ""
+msgstr "Bim ladde vo Spiicherdate isch en Fehler passiert"
 
 msgid "EXCLUSIVE_FULLSCREEN"
-msgstr ""
+msgstr "Vollbild umschalte"
 
 msgid "EXISTING_BUILDINGS"
-msgstr ""
+msgstr "Gebäude"
 
 msgid "EXIT"
-msgstr ""
+msgstr "Verlah"
 
 msgid "EXIT_EDITOR"
-msgstr ""
+msgstr "Editor verlah"
 
 msgid "EXIT_TO_LAUNCHER"
-msgstr ""
+msgstr "Zum Launcher zrugg"
 
 msgid "EXPERIMENTAL_FEATURES"
-msgstr ""
+msgstr "Experimentelli Funktione"
 
 msgid "EXPERIMENTAL_FEATURES_EXPLANATION"
-msgstr ""
+msgstr "(experimentelli Spiele-Features aktiviere, wo standardmässig deaktiviert sind - mir sind interessiert a Feedback, wenn du das testisch)"
 
 msgid "EXPERIMENTAL_FEATURES_WARNING"
-msgstr ""
+msgstr "(OBACHT: Experimentelli Features sind nöd uusgreift und chönnd s'Spielerlebnis negativ beiiflusse. Empfohle nur für erfahreni Spieler. Bi Fehlerbrichte bitte aageh, dass mit aktivierte experimentelle Features gspielt worde isch.)"
 
 msgid "EXPORT_ALL_WORLDS"
-msgstr ""
+msgstr "Alli Welte exportiere"
 
 msgid "EXPORT_ALL_WORLDS_TOOLTIP"
-msgstr ""
+msgstr "Exportier d'Date vo allene Welte i CSV-Format (dur Kommas trennti Wert)"
 
 msgid "EXPORT_SUCCESS"
-msgstr ""
+msgstr "Erfolgriich exportiert"
 
 msgid "EXTERNAL"
-msgstr ""
+msgstr "Extern"
 
 msgid "EXTERNAL_EFFECTS"
-msgstr ""
+msgstr "Externi Effekt:"
 
 msgid "EXTINCTION_BOX_TEXT"
-msgstr ""
+msgstr "Gnau wie 99% vo allene Arte, wo's jemals gäh hett, isch au dini Art uus g'storbe. Anderi werdet wiiterhin dini Nische fülle und gedeihe, aber das wirsch nöd du sii. Du wirsch vergesse werde, es fehlgschlaggenes Experiment vode Evolution."
 
 msgid "EXTINCTION_CAPITAL"
-msgstr ""
+msgstr "UUSSTERBE"
 
 msgid "EXTINCT_FROM_PATCH"
-msgstr ""
+msgstr "isch im Gebiet uus g'storbe"
 
 msgid "EXTINCT_FROM_THE_PLANET"
-msgstr ""
+msgstr "isch vom Planete uus g'storbe"
 
 msgid "EXTINCT_IN_PATCH"
-msgstr ""
+msgstr "isch im Gebiet uus g'storbe"
 
 msgid "EXTINCT_SPECIES"
-msgstr ""
+msgstr "Uus g'storbeni Art"
 
 msgid "EXTRAS"
-msgstr ""
+msgstr "Extras"
 
 msgid "EXTRA_OPTIONS"
-msgstr ""
+msgstr "Zuesätzlichi Optione"
 
 msgid "FACEBOOK_TOOLTIP"
-msgstr ""
+msgstr "Bsuech oisi Facebook Siite"
 
 msgid "FAILED"
-msgstr ""
+msgstr "Fehlgschlagge"
 
 msgid "FAILED_ONE_OR_MORE_SAVE_DELETION_DESCRIPTION"
-msgstr ""
+msgstr "Fehler: Lösche vo eim oder mehrere Spiicherständ fehlgschlagge."
 
 msgid "FAILED_SAVE_DELETION"
-msgstr ""
+msgstr "Fehler: S'Spiichere vo neue Iistellige ide Konfigurationsdatei isch fehlgschlagge"
 
 msgid "FAILED_SAVE_DELETION_DESCRIPTION"
-msgstr ""
+msgstr "Spiicherstand hett mer nöd chönne lösche."
 
 msgid "FEARFUL"
-msgstr ""
+msgstr "Furchtsam"
 
 msgid "FEAR_EXPLANATION"
 msgstr ""
+"Furchtsami Mikrobe flüchtet über grösseri Entfernige\n"
+"und flüchtet allgemein eher vor Aagriifer.\n"
+"Muetigi Mikrobe löhnd sich vo Raubtier ide Nöchi nöd iischüchtere\n"
+"und werdet sich eher verteidige."
 
 msgid "FEATURE_DISABLED"
-msgstr ""
+msgstr "Deaktiviert"
 
 msgid "FEATURE_ENABLED"
-msgstr ""
+msgstr "Aktiviert"
 
 msgid "FEBRUARY"
-msgstr ""
+msgstr "Februar"
 
 msgid "FEED_ITEM_CONTENT_PARSING_FAILED"
-msgstr ""
+msgstr "Initialisierig vode Steam-Client-Bibliothek fehlgschlagge."
 
 msgid "FEED_ITEM_MISSING_CONTENT"
-msgstr ""
+msgstr "Leeres Element."
 
 msgid "FEED_ITEM_PUBLISHED_AT"
-msgstr ""
+msgstr "Veröffentlicht am {0}"
 
 msgid "FEED_ITEM_TRUNCATED_NOTICE"
-msgstr ""
+msgstr "Element isch t'lang gsi und kürzt worde. Für de Gsammtinhalt bitte s'Original lese. {0}"
 
 msgid "FERROPLAST"
-msgstr ""
+msgstr "Ferroplast"
 
 msgid "FERROPLAST_DESCRIPTION"
-msgstr ""
+msgstr "Es metallisches Chraftwerk. Es Ferroplast isch e Doppelmembranstruktur gfüllt mit Proteine und Enzyme. Es isch en Prokaryot wo assimiliert worde isch vo emene Eukaryotische Wirt. Es chann [thrive:compound type=\"iron\"][/thrive:compound] vo eim chemische Zuestand in en andere umwandle bi enere viel höchere Effizienz als mer mit Rusticyanin erreiche cha. De Prozess, gnannt [b]Ise Oxidation[/b], entlaht Energie wo d'Zelle denn ernte cha."
 
 msgid "FERROPLAST_PROCESSES_DESCRIPTION"
 msgstr ""
@@ -3199,9 +3206,8 @@ msgstr ""
 msgid "LUCIFERASE"
 msgstr ""
 
-#, fuzzy
 msgid "LUCIFERASE_SYNTHESIS"
-msgstr "Chemosynthese"
+msgstr "Luciferase Synthese"
 
 msgid "LYSOSOME"
 msgstr ""

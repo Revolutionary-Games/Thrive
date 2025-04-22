@@ -98,12 +98,12 @@ public partial class GUICommon : Node
 
     public static void MarkInputAsInvalid(LineEdit control)
     {
-        control.Set("custom_colors/font_color", new Color(1.0f, 0.3f, 0.3f));
+        control.AddThemeColorOverride("font_color", new Color(1.0f, 0.3f, 0.3f));
     }
 
     public static void MarkInputAsValid(LineEdit control)
     {
-        control.Set("custom_colors/font_color", new Color(1, 1, 1));
+        control.AddThemeColorOverride("font_color", new Color(1, 1, 1));
     }
 
     public override void _Ready()
