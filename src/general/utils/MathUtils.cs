@@ -4,7 +4,7 @@ using System.Runtime.CompilerServices;
 using Godot;
 
 /// <summary>
-///   Math related utility functions for Thrive
+///   Math-related utility functions for Thrive
 /// </summary>
 public static class MathUtils
 {
@@ -32,7 +32,7 @@ public static class MathUtils
     /// </summary>
     /// <remarks>
     ///   <para>
-    ///     Rotation is now the number of 60 degree rotations
+    ///     Rotation is now the number of 60-degree rotations
     ///   </para>
     /// </remarks>
     public static Quaternion CreateRotationForOrganelle(float rotation)

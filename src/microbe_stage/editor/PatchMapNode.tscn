@@ -1,10 +1,8 @@
-[gd_scene load_steps=9 format=3 uid="uid://c1qj43lbtctnv"]
+[gd_scene load_steps=7 format=3 uid="uid://c1qj43lbtctnv"]
 
 [ext_resource type="Script" uid="uid://b1d0k466rsyyw" path="res://src/microbe_stage/editor/PatchMapNode.cs" id="2"]
 [ext_resource type="Texture2D" uid="uid://rckgbb1e3ia7" path="res://assets/textures/gui/bevel/PatchVents.svg" id="2_e0cfn"]
-[ext_resource type="Texture2D" uid="uid://c8mvyi3d47yvq" path="res://assets/textures/gui/bevel/Eruption.svg" id="4_t22aw"]
 [ext_resource type="LabelSettings" uid="uid://dcekwe8j7ep16" path="res://src/gui_common/fonts/Title-SemiBold-AlmostHuge.tres" id="4_tygy2"]
-[ext_resource type="Texture2D" uid="uid://drrx0gse0iteo" path="res://assets/textures/gui/bevel/GlobalGlaciation.svg" id="5_0vro7"]
 
 [sub_resource type="StyleBoxFlat" id="3"]
 bg_color = Color(0.592157, 0.788235, 0.823529, 1)
@@ -27,46 +25,51 @@ corner_radius_top_right = 5
 corner_radius_bottom_right = 5
 corner_radius_bottom_left = 5
 
-[node name="PatchMapNode" type="MarginContainer" node_paths=PackedStringArray("eruptionEventIndicator", "glaciationEventIndicator")]
-custom_minimum_size = Vector2(64, 64)
+[node name="PatchMapNode" type="MarginContainer" node_paths=PackedStringArray("eventIconsContainer")]
+custom_minimum_size = Vector2(80, 80)
 offset_right = 64.0
 offset_bottom = 64.0
 mouse_default_cursor_shape = 2
 script = ExtResource("2")
-IconPath = NodePath("MarginContainer/MarginContainer/TextureRect")
-HighlightPanelPath = NodePath("HoveredHighlight")
-MarkPanelPath = NodePath("PlayerHereHighlight")
-AdjacentPanelPath = NodePath("AdjacentToHighlight")
-UnknownLabelPath = NodePath("MarginContainer/MarginContainer/UnknownLabel")
+IconPath = NodePath("InnerContainer/MarginContainer/MarginContainer/TextureRect")
+HighlightPanelPath = NodePath("InnerContainer/HoveredHighlight")
+MarkPanelPath = NodePath("InnerContainer/PlayerHereHighlight")
+AdjacentPanelPath = NodePath("InnerContainer/AdjacentToHighlight")
+UnknownLabelPath = NodePath("InnerContainer/MarginContainer/MarginContainer/UnknownLabel")
 UnknownTextureFilePath = "res://assets/textures/gui/bevel/PatchAbyss.svg"
-eruptionEventIndicator = NodePath("EventIcons/Eruption")
-glaciationEventIndicator = NodePath("EventIcons/GlobalGlaciation")
+eventIconsContainer = NodePath("EventIcons")
 
-[node name="AdjacentToHighlight" type="Panel" parent="."]
+[node name="InnerContainer" type="MarginContainer" parent="."]
+custom_minimum_size = Vector2(64, 64)
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+
+[node name="AdjacentToHighlight" type="Panel" parent="InnerContainer"]
 visible = false
 layout_mode = 2
 mouse_filter = 1
 theme_override_styles/panel = SubResource("3")
 
-[node name="HoveredHighlight" type="Panel" parent="."]
+[node name="HoveredHighlight" type="Panel" parent="InnerContainer"]
 layout_mode = 2
 mouse_filter = 1
 theme_override_styles/panel = SubResource("1")
 
-[node name="PlayerHereHighlight" type="Panel" parent="."]
+[node name="PlayerHereHighlight" type="Panel" parent="InnerContainer"]
 visible = false
 layout_mode = 2
 mouse_filter = 1
 theme_override_styles/panel = SubResource("4")
 
-[node name="MarginContainer" type="MarginContainer" parent="."]
+[node name="MarginContainer" type="MarginContainer" parent="InnerContainer"]
 layout_mode = 2
 theme_override_constants/margin_left = 4
 theme_override_constants/margin_top = 4
 theme_override_constants/margin_right = 4
 theme_override_constants/margin_bottom = 4
 
-[node name="MarginContainer" type="MarginContainer" parent="MarginContainer"]
+[node name="MarginContainer" type="MarginContainer" parent="InnerContainer/MarginContainer"]
 layout_mode = 2
 size_flags_horizontal = 3
 size_flags_vertical = 3
@@ -75,13 +78,13 @@ theme_override_constants/margin_top = 1
 theme_override_constants/margin_right = 1
 theme_override_constants/margin_bottom = 1
 
-[node name="TextureRect" type="TextureRect" parent="MarginContainer/MarginContainer"]
+[node name="TextureRect" type="TextureRect" parent="InnerContainer/MarginContainer/MarginContainer"]
 layout_mode = 2
 texture = ExtResource("2_e0cfn")
 expand_mode = 1
 stretch_mode = 6
 
-[node name="UnknownLabel" type="Label" parent="MarginContainer/MarginContainer"]
+[node name="UnknownLabel" type="Label" parent="InnerContainer/MarginContainer/MarginContainer"]
 visible = false
 layout_mode = 2
 text = "UNKNOWN_SHORT"
@@ -90,30 +93,11 @@ horizontal_alignment = 1
 vertical_alignment = 1
 
 [node name="EventIcons" type="HBoxContainer" parent="."]
-custom_minimum_size = Vector2(64, 16)
+custom_minimum_size = Vector2(64, 28)
 layout_mode = 2
 size_flags_vertical = 0
 mouse_filter = 2
-
-[node name="Eruption" type="TextureRect" parent="EventIcons"]
-visible = false
-custom_minimum_size = Vector2(16, 16)
-layout_mode = 2
-tooltip_text = "EVENT_ERUPTION_TOOLTIP"
-mouse_filter = 0
-texture = ExtResource("4_t22aw")
-expand_mode = 2
-stretch_mode = 4
-
-[node name="GlobalGlaciation" type="TextureRect" parent="EventIcons"]
-visible = false
-custom_minimum_size = Vector2(16, 16)
-layout_mode = 2
-tooltip_text = "GLOBAL_GLACIATION_EVENT_TOOLTIP"
-mouse_filter = 0
-texture = ExtResource("5_0vro7")
-expand_mode = 2
-stretch_mode = 4
+theme_override_constants/separation = -5
 
 [connection signal="mouse_entered" from="." to="." method="OnMouseEnter"]
 [connection signal="mouse_exited" from="." to="." method="OnMouseExit"]
