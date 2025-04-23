@@ -19,10 +19,6 @@ public partial class GodToolsPopup : CustomWindow
 
     public bool WantsPlayerToPickLocation { get; private set; }
 
-    public override void _Ready()
-    {
-    }
-
     public override void _Process(double delta)
     {
         if (!Visible)

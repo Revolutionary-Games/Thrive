@@ -39,10 +39,6 @@ public partial class HeatAccumulationBar : VBoxContainer
 
     private bool firstUpdate = true;
 
-    public override void _Ready()
-    {
-    }
-
     public override void _Process(double delta)
     {
         if (goodIndicatorTime > 0)

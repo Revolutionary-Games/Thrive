@@ -32,10 +32,6 @@ public partial class CrossFadableTextureRect : TextureRect
     [Export]
     public double FadeDuration { get; set; } = 0.5;
 
-    public override void _Ready()
-    {
-    }
-
     protected override void Dispose(bool disposing)
     {
         if (disposing)

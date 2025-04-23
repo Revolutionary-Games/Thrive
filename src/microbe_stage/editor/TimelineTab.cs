@@ -75,10 +75,6 @@ public partial class TimelineTab : PanelContainer
         }
     }
 
-    public override void _Ready()
-    {
-    }
-
     public void UpdateTimeline(IEditorReportData editor, Patch targetPatch)
     {
         if (editor.CurrentGame == null)

@@ -41,11 +41,6 @@ public partial class EditorComponentWithActionsBase<TEditor, TAction> : EditorCo
     [JsonIgnore]
     public virtual bool ShowFinishButtonWarning => CanCancelAction;
 
-    public override void _Ready()
-    {
-        base._Ready();
-    }
-
     public override void OnActionBlockedWhileAnotherIsInProgress()
     {
         PlayInvalidActionSound();

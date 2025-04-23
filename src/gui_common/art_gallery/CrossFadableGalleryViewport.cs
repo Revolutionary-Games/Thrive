@@ -14,10 +14,6 @@ public partial class CrossFadableGalleryViewport : SubViewportContainer
     [Export]
     public double FadeDuration { get; set; } = 0.5;
 
-    public override void _Ready()
-    {
-    }
-
     public void BeginFade()
     {
         var tween = CreateTween();

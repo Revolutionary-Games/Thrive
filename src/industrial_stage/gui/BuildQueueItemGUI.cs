@@ -5,6 +5,7 @@
 /// </summary>
 public partial class BuildQueueItemGUI : VBoxContainer
 {
+    // TODO: a cancel button?
 #pragma warning disable CA2213
     [Export]
     private ProgressBar progressBar = null!;
@@ -13,11 +14,6 @@ public partial class BuildQueueItemGUI : VBoxContainer
 #pragma warning restore CA2213
 
     private IBuildQueueProgressItem? progressItem;
-
-    public override void _Ready()
-    {
-        // TODO: a cancel button?
-    }
 
     public override void _Process(double delta)
     {

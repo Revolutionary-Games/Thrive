@@ -39,11 +39,6 @@ public partial class DebugOverlays : Control
 
     public static DebugOverlays Instance => instance ?? throw new InstanceNotLoadedYetException();
 
-    public override void _Ready()
-    {
-        base._Ready();
-    }
-
     public override void _EnterTree()
     {
         base._EnterTree();

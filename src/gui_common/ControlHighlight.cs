@@ -29,10 +29,6 @@ public partial class ControlHighlight : Control
     /// </summary>
     public Control? TargetControl { get; set; }
 
-    public override void _Ready()
-    {
-    }
-
     public override void _Process(double delta)
     {
         if (!Visible)

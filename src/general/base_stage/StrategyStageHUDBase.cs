@@ -59,11 +59,6 @@ public partial class StrategyStageHUDBase<TStage> : HUDWithPausing, IStrategySta
         set => hintText.Text = value;
     }
 
-    public override void _Ready()
-    {
-        base._Ready();
-    }
-
     public virtual void Init(TStage containedInStage)
     {
         stage = containedInStage;

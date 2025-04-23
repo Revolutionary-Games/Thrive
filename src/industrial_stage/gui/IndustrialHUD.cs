@@ -17,11 +17,6 @@ public partial class IndustrialHUD : StrategyStageHUDBase<IndustrialStage>
     // TODO: real button referencing text for this
     protected override string UnPauseHelpText => "TODO: unpause text for this stage";
 
-    public override void _Ready()
-    {
-        base._Ready();
-    }
-
     public void UpdatePopulationDisplay(long population)
     {
         populationLabel.Text = StringUtils.ThreeDigitFormat(population);
