@@ -1332,15 +1332,6 @@ public partial class MicrobeStage : CreatureStageBase<Entity, MicrobeWorldSimula
         }
     }
 
-    protected override void Dispose(bool disposing)
-    {
-        if (disposing)
-        {
-        }
-
-        base.Dispose(disposing);
-    }
-
     private void UpdateBackground()
     {
         Camera.SetBackground(SimulationParameters.Instance.GetBackground(GameWorld.Map.CurrentPatch!.Background));

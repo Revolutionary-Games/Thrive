@@ -64,17 +64,6 @@ public partial class PlanetScreen : CustomWindow
         godToolsButton.Visible = showGodTools;
     }
 
-    protected override void Dispose(bool disposing)
-    {
-        if (disposing)
-        {
-            {
-            }
-        }
-
-        base.Dispose(disposing);
-    }
-
     private void UpdateAllPlanetInfo()
     {
         UpdatePlanetStats();

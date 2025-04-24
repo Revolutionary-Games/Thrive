@@ -24,6 +24,10 @@ public partial class ShowWhenInputTypeMatches : Control
     [Export]
     public bool ReverseCheck;
 
+    public override void _Ready()
+    {
+    }
+
     public override void _EnterTree()
     {
         base._EnterTree();

@@ -98,17 +98,6 @@ public partial class FossilisationDialog : CustomWindow
         }
     }
 
-    protected override void Dispose(bool disposing)
-    {
-        if (disposing)
-        {
-            {
-            }
-        }
-
-        base.Dispose(disposing);
-    }
-
     private void OnNameTextChanged(string newText)
     {
         ReportValidityOfName(Regex.IsMatch(newText, Constants.SPECIES_NAME_REGEX));

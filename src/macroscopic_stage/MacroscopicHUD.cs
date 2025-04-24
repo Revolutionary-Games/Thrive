@@ -175,17 +175,6 @@ public partial class MacroscopicHUD : CreatureStageHUDBase<MacroscopicStage>
         inventoryButton.ButtonPressed = IsInventoryOpen;
     }
 
-    protected override void Dispose(bool disposing)
-    {
-        if (disposing)
-        {
-            {
-            }
-        }
-
-        base.Dispose(disposing);
-    }
-
     private void OnMoveToLandPressed()
     {
         GUICommon.Instance.PlayButtonPressSound();

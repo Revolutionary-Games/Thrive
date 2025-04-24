@@ -148,17 +148,6 @@ public partial class GalleryViewer : CustomWindow
         StopAllPlayback();
     }
 
-    protected override void Dispose(bool disposing)
-    {
-        if (disposing)
-        {
-            {
-            }
-        }
-
-        base.Dispose(disposing);
-    }
-
     private void InitializeGallery()
     {
         GD.Print("Initializing gallery viewer");

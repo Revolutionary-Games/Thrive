@@ -139,7 +139,6 @@ public partial class Thriveopedia : ControlWithInput, ISpeciesDataProvider
         pageTree.CreateItem();
         pageTree.HideRoot = true;
 
-        // Keep a special reference to the home page
         allPages.Add(homePage, CreateTreeItem(homePage, null));
 
         // Add all pages not associated with a game in progress

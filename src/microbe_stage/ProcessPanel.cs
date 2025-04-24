@@ -43,17 +43,6 @@ public partial class ProcessPanel : CustomWindow
         }
     }
 
-    protected override void Dispose(bool disposing)
-    {
-        if (disposing)
-        {
-            {
-            }
-        }
-
-        base.Dispose(disposing);
-    }
-
     private void ToggleProcessToggled(ChemicalEquation equation, bool enabled)
     {
         EmitSignal(SignalName.ToggleProcessPressed, equation, enabled);

@@ -81,17 +81,6 @@ public partial class CityScreen : CustomWindow
         Show();
     }
 
-    protected override void Dispose(bool disposing)
-    {
-        if (disposing)
-        {
-            {
-            }
-        }
-
-        base.Dispose(disposing);
-    }
-
     private void UpdateAllCityInfo()
     {
         UpdateCityStats();

@@ -61,10 +61,6 @@ public partial class NewModGUI : Control
     [Signal]
     public delegate void OnAcceptedEventHandler(string newModInfo);
 
-    public override void _Ready()
-    {
-    }
-
     public void Open()
     {
         ResetForm();

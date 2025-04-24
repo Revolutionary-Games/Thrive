@@ -106,6 +106,7 @@ public partial class OrganelleInfoBox : PanelContainer
         modelImageTask = PhotoStudio.Instance.TryGetFromCache(hash) ?? PhotoStudio.Instance.GenerateImage(
             new GalleryCardModel.ModelPreview(sceneWithModelInfo.LoadedScene.ResourcePath,
                 sceneWithModelInfo.ModelPath));
+
         ModelTexture = modelLoadingTexture;
     }
 

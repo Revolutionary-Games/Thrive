@@ -824,9 +824,7 @@ public partial class MacroscopicStage : CreatureStageBase<MacroscopicCreature, D
     {
         if (disposing)
         {
-            {
-                interactionPopup.OnInteractionSelectedHandler -= ForwardInteractionSelectionToPlayer;
-            }
+            interactionPopup.OnInteractionSelectedHandler -= ForwardInteractionSelectionToPlayer;
 
             if (CurrentGame != null)
                 CurrentGame.TechWeb.OnTechnologyUnlockedHandler -= ShowTechnologyUnlockMessage;

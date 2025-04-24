@@ -100,15 +100,6 @@ public partial class LicensesDisplay : CustomWindow
         }
     }
 
-    protected override void Dispose(bool disposing)
-    {
-        if (disposing)
-        {
-        }
-
-        base.Dispose(disposing);
-    }
-
     private static string LoadFile(string file)
     {
         using var reader = FileAccess.Open(file, FileAccess.ModeFlags.Read);

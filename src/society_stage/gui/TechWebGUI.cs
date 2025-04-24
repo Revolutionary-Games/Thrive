@@ -28,10 +28,6 @@ public partial class TechWebGUI : HBoxContainer
     [Signal]
     public delegate void OnTechnologyToResearchSelectedEventHandler(string technology);
 
-    public override void _Ready()
-    {
-    }
-
     public override void _EnterTree()
     {
         base._EnterTree();

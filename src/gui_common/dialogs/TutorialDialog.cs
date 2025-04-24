@@ -90,15 +90,6 @@ public partial class TutorialDialog : CustomWindow
         tween.TweenProperty(this, "scale", Vector2.One, 0.3).From(Vector2.Zero).SetDelay(ShowDelay);
     }
 
-    protected override void Dispose(bool disposing)
-    {
-        if (disposing)
-        {
-        }
-
-        base.Dispose(disposing);
-    }
-
     private void UpdateLabel()
     {
         if (label == null)

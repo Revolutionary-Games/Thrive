@@ -79,17 +79,6 @@ public partial class SpaceStructureInfoPopup : CustomWindow
         interactionButtons.Clear();
     }
 
-    protected override void Dispose(bool disposing)
-    {
-        if (disposing)
-        {
-            {
-            }
-        }
-
-        base.Dispose(disposing);
-    }
-
     private void UpdateInfo()
     {
         var target = managedStructure.Value;

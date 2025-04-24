@@ -48,17 +48,6 @@ public partial class ResearchScreen : CustomWindow
         }
     }
 
-    protected override void Dispose(bool disposing)
-    {
-        if (disposing)
-        {
-            {
-            }
-        }
-
-        base.Dispose(disposing);
-    }
-
     private void ForwardStartResearch(string technology)
     {
         EmitSignal(SignalName.OnStartResearching, technology);

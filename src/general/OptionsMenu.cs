@@ -409,22 +409,6 @@ public partial class OptionsMenu : ControlWithInput
         if (nodeReferencesResolved)
             return;
 
-        // Options control buttons
-        // Tab selector buttons
-        // When _Ready is called the tab buttons will have been adjusted, so how we find the buttons needs different
-        // approaches based on how early this is called
-        if (calledFromReady)
-        {
-        }
-        else
-        {
-        }
-
-        // Graphics
-        // Sound
-        // Performance
-        // Inputs
-        // Misc
         builtAtLabel.RegisterCustomFocusDrawer();
         nodeReferencesResolved = true;
     }

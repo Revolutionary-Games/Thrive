@@ -104,17 +104,6 @@ public partial class GodToolsPopup : CustomWindow
         return false;
     }
 
-    protected override void Dispose(bool disposing)
-    {
-        if (disposing)
-        {
-            {
-            }
-        }
-
-        base.Dispose(disposing);
-    }
-
     private void AddActionButton(string text, string methodName, bool toggleButton = false)
     {
         var button = new Button

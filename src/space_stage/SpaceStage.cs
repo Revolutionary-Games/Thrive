@@ -498,17 +498,6 @@ public partial class SpaceStage : StrategyStageBase, ISocietyStructureDataAccess
         godTools.OpenForEntity(entity);
     }
 
-    protected override void Dispose(bool disposing)
-    {
-        if (disposing)
-        {
-            {
-            }
-        }
-
-        base.Dispose(disposing);
-    }
-
     private bool PlaceCurrentStructureIfPossible()
     {
         if (structureTypeToPlace == null || structureToPlaceGhost == null)

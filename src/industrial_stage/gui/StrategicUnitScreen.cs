@@ -183,15 +183,6 @@ public partial class StrategicUnitScreen<T> : CustomWindow
         OnUnhandledActionType();
     }
 
-    protected override void Dispose(bool disposing)
-    {
-        if (disposing)
-        {
-        }
-
-        base.Dispose(disposing);
-    }
-
     private void OnUnhandledActionType()
     {
         GD.PrintErr("Non-overridden base action type method was called for a unit screen");

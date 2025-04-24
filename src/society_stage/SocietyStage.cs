@@ -274,17 +274,6 @@ public partial class SocietyStage : StrategyStageBase, ISocietyStructureDataAcce
         SaveHelper.ShowErrorAboutPrototypeSaving(this);
     }
 
-    protected override void Dispose(bool disposing)
-    {
-        if (disposing)
-        {
-            {
-            }
-        }
-
-        base.Dispose(disposing);
-    }
-
     private void HandlePopulationGrowth()
     {
         var housing = structureSystem.CachedHousingCapacity;

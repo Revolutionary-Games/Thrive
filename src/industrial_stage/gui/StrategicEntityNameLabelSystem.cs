@@ -25,6 +25,10 @@ public partial class StrategicEntityNameLabelSystem : Control
 
     private double elapsed = 1;
 
+    public override void _Ready()
+    {
+    }
+
     public void Init(Camera3D stageCamera, Node worldEntityRoot)
     {
         camera = stageCamera;

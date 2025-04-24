@@ -52,17 +52,6 @@ public partial class MicrobeCheatMenu : CheatMenu
         targetTime.Value = CheatManager.DayNightFraction;
     }
 
-    protected override void Dispose(bool disposing)
-    {
-        if (disposing)
-        {
-            {
-            }
-        }
-
-        base.Dispose(disposing);
-    }
-
     private void OnPlayerDivideClicked()
     {
         CheatManager.PlayerDuplication();

@@ -118,6 +118,10 @@ public partial class DraggableItem : Control
         };
     }
 
+    public override void _Ready()
+    {
+    }
+
     public override void _Notification(int what)
     {
         // Reset drag status as this is the only way to detect when our created drag data object is no longer used
