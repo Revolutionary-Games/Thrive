@@ -203,7 +203,7 @@ public partial class PatchMapNode : MarginContainer
             currentBlinkTime = 0;
 
             if (Marked)
-                markPanel!.Visible = !markPanel.Visible;
+                markPanel.Visible = !markPanel.Visible;
         }
     }
 

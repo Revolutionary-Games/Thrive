@@ -17,11 +17,6 @@ public partial class SocietyHUD : StrategyStageHUDBase<SocietyStage>
     // TODO: real button referencing text for this
     protected override string UnPauseHelpText => "TODO: unpause text for this stage";
 
-    public override void _Ready()
-    {
-        base._Ready();
-    }
-
     public void ForwardBuildingPlacingRequest()
     {
         GUICommon.Instance.PlayButtonPressSound();

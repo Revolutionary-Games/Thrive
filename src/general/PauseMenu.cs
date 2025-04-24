@@ -84,7 +84,7 @@ public partial class PauseMenu : TopLevelContainer
 
             // Forward the game properties to the Thriveopedia, even before it is opened for it to respond to
             // data requests
-            if (gameProperties != null && thriveopedia != null)
+            if (gameProperties != null)
                 thriveopedia.CurrentGame = value;
         }
     }
@@ -144,7 +144,7 @@ public partial class PauseMenu : TopLevelContainer
                             $"{nameof(GameProperties)} is required before opening options"));
                     break;
                 case ActiveMenuType.Thriveopedia:
-                    thriveopedia!.OpenInGame(GameProperties ??
+                    thriveopedia.OpenInGame(GameProperties ??
                         throw new InvalidOperationException(
                             $"{nameof(GameProperties)} is required before opening Thriveopedia in-game"));
                     break;

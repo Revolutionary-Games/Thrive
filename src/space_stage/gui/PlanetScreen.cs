@@ -19,11 +19,6 @@ public partial class PlanetScreen : CustomWindow
     [Signal]
     public delegate void OnOpenGodToolsEventHandler(GodotObject unit);
 
-    public override void _Ready()
-    {
-        base._Ready();
-    }
-
     public override void _Process(double delta)
     {
         base._Process(delta);

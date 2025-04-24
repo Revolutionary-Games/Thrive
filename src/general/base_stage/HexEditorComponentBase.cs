@@ -294,7 +294,7 @@ public partial class HexEditorComponentBase<TEditor, TCombinedAction, TAction, T
         if (!Visible)
             return;
 
-        editorGrid.Position = camera!.CursorWorldPos;
+        editorGrid.Position = camera.CursorWorldPos;
         editorGrid.Visible = Editor.ShowHover && !ForceHideHover;
 
         camera.UpdateCameraPosition(delta, cameraFollow.GlobalPosition);
@@ -346,9 +346,6 @@ public partial class HexEditorComponentBase<TEditor, TCombinedAction, TAction, T
 
     public void UpdateCamera()
     {
-        if (camera == null)
-            return;
-
         camera.CameraHeight = CameraHeight;
         cameraFollow.Position = CameraPosition;
     }
@@ -359,7 +356,7 @@ public partial class HexEditorComponentBase<TEditor, TCombinedAction, TAction, T
     public void UpdateBackgroundImage(Patch patch)
     {
         // TODO: make this be loaded in a background thread to avoid a lag spike
-        camera!.SetBackground(SimulationParameters.Instance.GetBackground(patch.Background));
+        camera.SetBackground(SimulationParameters.Instance.GetBackground(patch.Background));
     }
 
     [RunOnKeyDown("e_primary")]
@@ -412,11 +409,11 @@ public partial class HexEditorComponentBase<TEditor, TCombinedAction, TAction, T
 
         if (mousePanningStart == null)
         {
-            mousePanningStart = camera!.CursorWorldPos;
+            mousePanningStart = camera.CursorWorldPos;
         }
         else
         {
-            var mousePanDirection = mousePanningStart.Value - camera!.CursorWorldPos;
+            var mousePanDirection = mousePanningStart.Value - camera.CursorWorldPos;
             MoveCamera(mousePanDirection);
         }
 
@@ -435,12 +432,6 @@ public partial class HexEditorComponentBase<TEditor, TCombinedAction, TAction, T
     {
         if (!Visible)
             return false;
-
-        if (camera == null)
-        {
-            GD.PrintErr("Editor camera isn't set");
-            return false;
-        }
 
         CameraPosition = new Vector3(0, 0, 0);
         UpdateCamera();
@@ -659,7 +650,7 @@ public partial class HexEditorComponentBase<TEditor, TCombinedAction, TAction, T
     public virtual void OnPropertiesLoaded()
     {
         // A bit of a hack to make sure our camera doesn't lose its zoom level
-        camera!.IsLoadedFromSave = true;
+        camera.IsLoadedFromSave = true;
     }
 
     /// <summary>
@@ -701,12 +692,12 @@ public partial class HexEditorComponentBase<TEditor, TCombinedAction, TAction, T
         // is non-zero too.
         if (maxLightLevel > 0.0f && templateMaxLightLevel > 0.0f)
         {
-            camera!.LightLevel = dayLightFraction;
+            camera.LightLevel = dayLightFraction;
         }
         else
         {
             // Don't change lighting for patches without day/night effects
-            camera!.LightLevel = 1.0f;
+            camera.LightLevel = 1.0f;
         }
     }
 
@@ -844,7 +835,7 @@ public partial class HexEditorComponentBase<TEditor, TCombinedAction, TAction, T
     protected void GetMouseHex(out int q, out int r)
     {
         // Get the position of the cursor in the plane that the microbes is floating in
-        var cursorPos = camera!.CursorWorldPos;
+        var cursorPos = camera.CursorWorldPos;
 
         // Convert to the hex the cursor is currently located over.
         var hex = Hex.CartesianToAxial(cursorPos);

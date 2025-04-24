@@ -19,11 +19,6 @@ public partial class ResearchScreen : CustomWindow
 
     public TechWeb? AvailableTechnologies { get; set; }
 
-    public override void _Ready()
-    {
-        base._Ready();
-    }
-
     public void DisplayProgress(TechnologyProgress? currentResearch)
     {
         if (currentResearch == null)

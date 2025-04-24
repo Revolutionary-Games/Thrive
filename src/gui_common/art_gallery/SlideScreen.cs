@@ -109,7 +109,7 @@ public partial class SlideScreen : TopLevelContainer
         {
             toolbarHideTimer -= delta;
 
-            if (toolbar?.Modulate.A < 1)
+            if (toolbar.Modulate.A < 1)
             {
                 var tween = CreateTween();
                 tween.Parallel();
@@ -285,7 +285,7 @@ public partial class SlideScreen : TopLevelContainer
             return;
         }
 
-        if (items == null || slideTextureRect == null)
+        if (items == null)
             return;
 
         var item = items[currentSlideIndex];
@@ -300,7 +300,7 @@ public partial class SlideScreen : TopLevelContainer
 
         // If texture loading fails, the selected item is a model
         // These are handled here
-        modelViewerContainer!.BeginFade();
+        modelViewerContainer.BeginFade();
     }
 
     private void UpdateScreen()
@@ -312,7 +312,7 @@ public partial class SlideScreen : TopLevelContainer
 
     private void UpdateSlide()
     {
-        if (items == null || slideTitleLabel == null || slideTextureRect == null || slideShowModeButton == null)
+        if (items == null)
             return;
 
         var item = items[currentSlideIndex];
@@ -335,14 +335,13 @@ public partial class SlideScreen : TopLevelContainer
         if (item?.Asset == null)
             return;
 
-        if (item.Asset.Type != AssetType.ModelScene || modelHolder == null || modelViewer == null ||
-            modelViewerCamera == null)
+        if (item.Asset.Type != AssetType.ModelScene)
         {
-            modelViewerContainer?.Hide();
+            modelViewerContainer.Hide();
             return;
         }
 
-        modelViewerContainer?.Show();
+        modelViewerContainer.Show();
         modelHolder.QueueFreeChildren();
 
         modelViewer.Msaa3D = Settings.Instance.MSAAResolution;
@@ -379,7 +378,7 @@ public partial class SlideScreen : TopLevelContainer
         }
 
         playbackControls.AudioPlayer = item.Player;
-        playbackControls?.Show();
+        playbackControls.Show();
 
         // TODO: Temporary until there's a proper "album" art for audios
         slideTextureRect.Texture = item.MissingTexture;
@@ -387,9 +386,6 @@ public partial class SlideScreen : TopLevelContainer
 
     private void UpdateHandles()
     {
-        if (toolbar == null || closeButton == null)
-            return;
-
         toolbar.Visible = slideControlsVisible;
         closeButton.Visible = slideControlsVisible;
     }
@@ -431,7 +427,7 @@ public partial class SlideScreen : TopLevelContainer
 
     private void OnCloseButtonUpdate()
     {
-        var icon = closeButton!.GetChild<TextureRect>(0);
+        var icon = closeButton.GetChild<TextureRect>(0);
 
         if (closeButton.GetDrawMode() == BaseButton.DrawMode.Pressed)
         {

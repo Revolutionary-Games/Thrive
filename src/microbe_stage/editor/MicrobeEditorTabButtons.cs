@@ -40,8 +40,7 @@ public partial class MicrobeEditorTabButtons : MarginContainer
         {
             showReportTab = value;
 
-            if (reportTabButton != null)
-                reportTabButton.Visible = showReportTab;
+            reportTabButton.Visible = showReportTab;
 
             if (!value && selectedTab == EditorTab.Report)
             {
@@ -59,8 +58,7 @@ public partial class MicrobeEditorTabButtons : MarginContainer
         {
             showMapTab = value;
 
-            if (patchMapButton != null)
-                patchMapButton.Visible = showMapTab;
+            patchMapButton.Visible = showMapTab;
 
             if (!value && selectedTab == EditorTab.PatchMap)
             {
@@ -104,11 +102,9 @@ public partial class MicrobeEditorTabButtons : MarginContainer
 
     private void ApplyButtonStates()
     {
-        if (reportTabButton != null)
-            reportTabButton.ButtonPressed = selectedTab == EditorTab.Report;
+        reportTabButton.ButtonPressed = selectedTab == EditorTab.Report;
 
-        if (patchMapButton != null)
-            patchMapButton.ButtonPressed = selectedTab == EditorTab.PatchMap;
+        patchMapButton.ButtonPressed = selectedTab == EditorTab.PatchMap;
 
         cellEditorButton.ButtonPressed = selectedTab == EditorTab.CellEditor;
         cellTypeTab.ButtonPressed = selectedTab == EditorTab.CellTypeEditor;

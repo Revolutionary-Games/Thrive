@@ -52,9 +52,6 @@ public partial class EditorComponentBase<TEditor> : ControlWithInput, IEditorCom
         // makes it harder to directly run the individual editor component scenes from Godot editor to debug them
         // if (editor == null)
         //     throw new InvalidOperationException("Editor component not initialized before _Ready was called");
-
-        if (IsSubComponent)
-            return;
     }
 
     public override void _EnterTree()
