@@ -44,16 +44,6 @@ public partial class EditorComponentBase<TEditor> : ControlWithInput, IEditorCom
 
     protected TEditor Editor => editor ?? throw new InvalidOperationException("Editor component not initialized");
 
-    public override void _Ready()
-    {
-        base._Ready();
-
-        // TODO: redesign this check. This currently fails as the child nodes get _Ready called first and this also
-        // makes it harder to directly run the individual editor component scenes from Godot editor to debug them
-        // if (editor == null)
-        //     throw new InvalidOperationException("Editor component not initialized before _Ready was called");
-    }
-
     public override void _EnterTree()
     {
         base._EnterTree();
