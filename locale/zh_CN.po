@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2025-04-08 15:42+0300\n"
+"POT-Creation-Date: 2025-04-12 20:42+0200\n"
 "PO-Revision-Date: 2025-04-04 10:42+0000\n"
 "Last-Translator: Anonymous <noreply@weblate.org>\n"
 "Language-Team: Chinese (Simplified Han script) <https://translate.revolutionarygamesstudio.com/projects/thrive/thrive-game/zh_Hans/>\n"
@@ -524,6 +524,14 @@ msgstr "将坐标轴绑定在一起"
 
 msgid "BIOLUMINESCENT_VACUOLE"
 msgstr "生物发光液泡"
+
+#, fuzzy
+msgid "BIOLUMINESCENT_VACUOLE_DESCRIPTION"
+msgstr "生物发光液泡"
+
+#, fuzzy
+msgid "BIOLUMINESCENT_VACUOLE_PROCESSES_DESCRIPTION"
+msgstr "将[thrive:compound type=\"atp\"][/thrive:compound]转换成[thrive:compound type=\"oxytoxy\"][/thrive:compound]。速率跟[thrive:compound type=\"oxygen\"][/thrive:compound]的浓度成正比。按[thrive:input]g_fire_toxin[/thrive:input]以释放毒素。当[thrive:compound type=\"oxytoxy\"][/thrive:compound]储量不足时也能释放，但伤害会降低。"
 
 msgid "BIOME_LABEL"
 msgstr "生物群系：{0}"
@@ -2014,6 +2022,29 @@ msgstr ""
 "地区事件：喷发\n"
 "产生额外的硫化氢与二氧化碳"
 
+msgid "EVENT_METEOR_GLUCOSE"
+msgstr ""
+
+#, fuzzy
+msgid "EVENT_METEOR_IRON"
+msgstr "{0}： +{1} ATP"
+
+#, fuzzy
+msgid "EVENT_METEOR_PHOSPHATES"
+msgstr "生成磷酸盐"
+
+#, fuzzy
+msgid "EVENT_METEOR_PLAIN"
+msgstr ""
+"地区事件：喷发\n"
+"产生额外的硫化氢与二氧化碳"
+
+msgid "EVENT_METEOR_RADIOACTIVE"
+msgstr ""
+
+msgid "EVENT_METEOR_SULFUR"
+msgstr ""
+
 msgid "EVOLUTIONARY_TREE"
 msgstr "进化树"
 
@@ -3263,6 +3294,13 @@ msgstr "低分辨率背景模糊"
 msgid "LOW_QUALITY_BACKGROUND_BLUR_TOOLTIP"
 msgstr ""
 
+msgid "LUCIFERASE"
+msgstr ""
+
+#, fuzzy
+msgid "LUCIFERASE_SYNTHESIS"
+msgstr "黏液合成"
+
 msgid "LYSOSOME"
 msgstr "溶酶体"
 
@@ -3392,6 +3430,15 @@ msgid "META_THREADS_TOOLTIP"
 msgstr ""
 "游戏无法自动检测是否启用了超线程。\n"
 "这个选项会影响默认线程数，因为超线程的速度不如真正的CPU内核快。"
+
+msgid "METEOR_IMPACT_EVENT"
+msgstr ""
+
+msgid "METEOR_STRIKE_START_EVENT_LOG_PLURAL"
+msgstr ""
+
+msgid "METEOR_STRIKE_START_EVENT_LOG_SINGULAR"
+msgstr ""
 
 msgid "METRICS"
 msgstr "性能参数"
@@ -6132,9 +6179,6 @@ msgstr "毒素体"
 #, fuzzy
 msgid "TOXISOME_DESCRIPTION"
 msgstr "溶酶体是一种具膜细胞器，含有水解酶，可以分解各种生物分子。溶酶体允许细胞消化通过内吞作用吸收的物质，并在一个称为[b]自噬[/b]的过程中清洁细胞的废物。"
-
-msgid "TO_BE_IMPLEMENTED"
-msgstr "仍在开发中。"
 
 msgid "TRANSLATORS"
 msgstr "翻译者"
@@ -8949,6 +8993,9 @@ msgstr "放大"
 msgid "ZOOM_OUT"
 msgstr "缩小"
 
+#~ msgid "TO_BE_IMPLEMENTED"
+#~ msgstr "仍在开发中。"
+
 #, fuzzy
 #~ msgid "MICROBE_STAGE_DAY_NIGHT_TEXT"
 #~ msgstr ""
@@ -9148,10 +9195,6 @@ msgstr "缩小"
 #, fuzzy
 #~ msgid "ERUPTION_IN"
 #~ msgstr "出芽"
-
-#, fuzzy
-#~ msgid "EVENT_TOOLTIP_ERUPTION"
-#~ msgstr "{0}： +{1} ATP"
 
 #~ msgid "THE_AMOUNT_OF_GLUCOSE_HAS_BEEN_REDUCED"
 #~ msgstr "环境中的葡萄糖已减少到原先量的{0}。"

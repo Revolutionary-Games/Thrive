@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2025-04-08 15:42+0300\n"
+"POT-Creation-Date: 2025-04-12 20:42+0200\n"
 "PO-Revision-Date: 2025-04-04 10:42+0000\n"
 "Last-Translator: Anonymous <noreply@weblate.org>\n"
 "Language-Team: Estonian <https://translate.revolutionarygamesstudio.com/projects/thrive/thrive-game/et/>\n"
@@ -560,6 +560,14 @@ msgstr ""
 
 msgid "BIOLUMINESCENT_VACUOLE"
 msgstr "Bioluminestseeruv vakuool"
+
+#, fuzzy
+msgid "BIOLUMINESCENT_VACUOLE_DESCRIPTION"
+msgstr "Bioluminestseeruv vakuool"
+
+#, fuzzy
+msgid "BIOLUMINESCENT_VACUOLE_PROCESSES_DESCRIPTION"
+msgstr "Muudab [thrive:compound type=\"atp\"][/thrive:compound] tüübiks [thrive:compound type=\"oxytoxy\"][/thrive:compound]. Hindamisskaalad kontsentratsiooniga [thrive:compound type=\"oxygen\"][/thrive:compound]. Võib vabastada toksiine, vajutades nuppu [thrive:input]g_fire_toxin[/thrive:input]. Kui [thrive:compound type=\"oxytoxy\"][/thrive:compound] kogus on väike, on pildistamine siiski võimalik, kuid sellega kaasneb väiksem kahju."
 
 msgid "BIOME_LABEL"
 msgstr "biome: {0}"
@@ -2143,6 +2151,27 @@ msgstr "lehtersuue"
 msgid "EVENT_ERUPTION_TOOLTIP"
 msgstr "vabasurm"
 
+msgid "EVENT_METEOR_GLUCOSE"
+msgstr ""
+
+#, fuzzy
+msgid "EVENT_METEOR_IRON"
+msgstr "{0}: +{1} ATP"
+
+#, fuzzy
+msgid "EVENT_METEOR_PHOSPHATES"
+msgstr "Kudede fosfaat"
+
+#, fuzzy
+msgid "EVENT_METEOR_PLAIN"
+msgstr "vabasurm"
+
+msgid "EVENT_METEOR_RADIOACTIVE"
+msgstr ""
+
+msgid "EVENT_METEOR_SULFUR"
+msgstr ""
+
 #, fuzzy
 msgid "EVOLUTIONARY_TREE"
 msgstr "Autor Revolutionary Games Studio"
@@ -3527,6 +3556,13 @@ msgstr ""
 msgid "LOW_QUALITY_BACKGROUND_BLUR_TOOLTIP"
 msgstr ""
 
+msgid "LUCIFERASE"
+msgstr ""
+
+#, fuzzy
+msgid "LUCIFERASE_SYNTHESIS"
+msgstr "Kemosüntees"
+
 #, fuzzy
 msgid "LYSOSOME"
 msgstr "Oksütoksisoom"
@@ -3669,6 +3705,15 @@ msgid "META_THREADS_TOOLTIP"
 msgstr ""
 "Seda ei saa automaatselt tuvastada, kas hüperkeermestamine on lubatud või mitte.\n"
 "See mõjutab lõimede vaikearvu, kuna hüperlõime lõimed ei ole nii kiired kui tõelised protsessori tuumad."
+
+msgid "METEOR_IMPACT_EVENT"
+msgstr ""
+
+msgid "METEOR_STRIKE_START_EVENT_LOG_PLURAL"
+msgstr ""
+
+msgid "METEOR_STRIKE_START_EVENT_LOG_SINGULAR"
+msgstr ""
 
 #, fuzzy
 msgid "METRICS"
@@ -6623,9 +6668,6 @@ msgstr "Oksütoksisoom"
 msgid "TOXISOME_DESCRIPTION"
 msgstr "Metabolosoomid on valkude klastrid, mis on mähitud valgukestesse. Nad on võimelised muutma glükoosi ATP-ks palju suurema kiirusega, kui seda saab teha tsütoplasmas protsessis, mida nimetatakse aeroobseks hingamiseks. Siiski vajab see toimimiseks hapnikku ja madalam hapnikusisaldus keskkonnas aeglustab selle ATP tootmist. Kuna metabolosoomid suspendeeritakse otse tsütoplasmas, teostab ümbritsev vedelik teatud määral glükolüüsi."
 
-msgid "TO_BE_IMPLEMENTED"
-msgstr "Pole veel mängus."
-
 msgid "TRANSLATORS"
 msgstr "Tõlkijad"
 
@@ -9331,6 +9373,9 @@ msgstr "Suurenda"
 msgid "ZOOM_OUT"
 msgstr "Suumi välja"
 
+#~ msgid "TO_BE_IMPLEMENTED"
+#~ msgstr "Pole veel mängus."
+
 #, fuzzy
 #~ msgid "MICROBE_STAGE_DAY_NIGHT_TEXT"
 #~ msgstr ""
@@ -9537,10 +9582,6 @@ msgstr "Suumi välja"
 #, fuzzy
 #~ msgid "ERUPTION_IN"
 #~ msgstr "lootustandev"
-
-#, fuzzy
-#~ msgid "EVENT_TOOLTIP_ERUPTION"
-#~ msgstr "{0}: +{1} ATP"
 
 #~ msgid "THE_AMOUNT_OF_GLUCOSE_HAS_BEEN_REDUCED"
 #~ msgstr "Glükoosi kogust on vähendatud {0}-ni eelmisest kogusest."

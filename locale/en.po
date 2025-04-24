@@ -7,8 +7,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2025-04-08 15:42+0300\n"
-"PO-Revision-Date: 2025-04-08 15:58+0300\n"
+"POT-Creation-Date: 2025-04-12 20:42+0200\n"
+"PO-Revision-Date: 2025-04-22 14:54+0300\n"
 "Last-Translator: Henri Hyyryläinen <hhyyrylainen@revolutionarygamesstudio.com>\n"
 "Language-Team: English <https://translate.revolutionarygamesstudio.com/projects/thrive/thrive-game/en/>\n"
 "Language: en\n"
@@ -16,7 +16,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=n != 1;\n"
-"X-Generator: Poedit 3.5\n"
+"X-Generator: Poedit 3.6\n"
 "Generated-By: Babel 2.8.0\n"
 
 msgid "2D_MOVEMENT_TYPE_SELECTION"
@@ -510,6 +510,12 @@ msgstr "Bind axes together"
 
 msgid "BIOLUMINESCENT_VACUOLE"
 msgstr "Bioluminescent Vacuole"
+
+msgid "BIOLUMINESCENT_VACUOLE_DESCRIPTION"
+msgstr "A vacuole that contains reaction sites where luciferase is consumed to release visible light. It is hypothesised that bioluminescence evolved originally as a protection mechanism against [thrive:compound type=\"oxygen\"][/thrive:compound]. When the Great Oxygenation Event happened microbes accustomed to anaerobic conditions faced a lot of new problems due to oxygen's very high reactivity that caused a lot of damage. These vacuoles can be added to increase oxygen resistance and get some pretty lights. In the future bioluminescence may be a means of communication."
+
+msgid "BIOLUMINESCENT_VACUOLE_PROCESSES_DESCRIPTION"
+msgstr "Uses [thrive:compound type=\"atp\"][/thrive:compound] to turn [thrive:compound type=\"oxygen\"][/thrive:compound] into light. Has no other gameplay impact yet except increasing the oxygen resistance."
 
 msgid "BIOME_LABEL"
 msgstr "Biome: {0}"
@@ -1986,8 +1992,42 @@ msgstr "Estuary"
 
 msgid "EVENT_ERUPTION_TOOLTIP"
 msgstr ""
-"Eruption Patch Event\n"
+"Eruption event\n"
 "Creates extra hydrogen sulfide and carbon dioxide"
+
+msgid "EVENT_METEOR_GLUCOSE"
+msgstr ""
+"Glucose meteor impact event\n"
+"Raises carbon dioxide and glucose levels."
+
+msgid "EVENT_METEOR_IRON"
+msgstr ""
+"Iron meteor impact event\n"
+"Raises carbon dioxide and iron levels.\n"
+"Spawns iron chunks."
+
+msgid "EVENT_METEOR_PHOSPHATES"
+msgstr ""
+"Phosphate meteor impact event\n"
+"Raises carbon dioxide and phosphate levels.\n"
+"Spawns phosphate chunks."
+
+msgid "EVENT_METEOR_PLAIN"
+msgstr ""
+"Meteor impact event\n"
+"Raises carbon dioxide levels."
+
+msgid "EVENT_METEOR_RADIOACTIVE"
+msgstr ""
+"Radioactive meteor impact event\n"
+"Raises carbon dioxide levels.\n"
+"Spawns radioactive chunks."
+
+msgid "EVENT_METEOR_SULFUR"
+msgstr ""
+"Sulfur meteor impact event\n"
+"Raises carbon dioxide and sulfur levels.\n"
+"Spawns sulfur chunks."
 
 msgid "EVOLUTIONARY_TREE"
 msgstr "Evolutionary Tree"
@@ -3209,6 +3249,12 @@ msgstr "Low resolution background blur"
 msgid "LOW_QUALITY_BACKGROUND_BLUR_TOOLTIP"
 msgstr "Makes background blur use a lower resolution, improving performance."
 
+msgid "LUCIFERASE"
+msgstr "Luciferase"
+
+msgid "LUCIFERASE_SYNTHESIS"
+msgstr "Luciferase Synthesis"
+
 msgid "LYSOSOME"
 msgstr "Lysosome"
 
@@ -3325,6 +3371,15 @@ msgstr "Turns [thrive:compound type=\"glucose\"][/thrive:compound] into [thrive:
 
 msgid "META_THREADS_TOOLTIP"
 msgstr "Visit our Threads profile"
+
+msgid "METEOR_IMPACT_EVENT"
+msgstr "Meteor impact event"
+
+msgid "METEOR_STRIKE_START_EVENT_LOG_PLURAL"
+msgstr "Meteor impact event affected {0} patches"
+
+msgid "METEOR_STRIKE_START_EVENT_LOG_SINGULAR"
+msgstr "Meteor impact event affected {0} patch"
 
 msgid "METRICS"
 msgstr "Performance Metrics"
@@ -5966,9 +6021,6 @@ msgstr "Toxisome"
 
 msgid "TOXISOME_DESCRIPTION"
 msgstr "A modified metabolosome responsible for the production of a primitive form of the toxic agent [thrive:compound type=\\\"oxytoxy\\\"][/thrive:compound]. Can be modified to switch the generated toxin type for other effects, which may require [thrive:compound type=\"oxygen\"][/thrive:compound] to produce."
-
-msgid "TO_BE_IMPLEMENTED"
-msgstr "To be Implemented."
 
 msgid "TRANSLATORS"
 msgstr "Translators"
@@ -9039,8 +9091,29 @@ msgstr "Zoom in"
 msgid "ZOOM_OUT"
 msgstr "Zoom out"
 
+#~ msgid "GLOBAL_GLACIATION_EVENT_LOG"
+#~ msgstr "Global glaciation event has ended across all surface patches"
+
+#~ msgid "TO_BE_IMPLEMENTED"
+#~ msgstr "To be Implemented."
+
 #~ msgid "SHOW_TUTORIALS"
 #~ msgstr "Show tutorials"
+
+#~ msgid "GLUCOSE_METEOR"
+#~ msgstr "Glucose meteor"
+
+#~ msgid "IRON_METEOR"
+#~ msgstr "Iron meteor"
+
+#~ msgid "PHOSPHATE_METEOR"
+#~ msgstr "Phosphate meteor"
+
+#~ msgid "PLAIN_METEOR"
+#~ msgstr "Plain meteor"
+
+#~ msgid "RADIOACTIVE_METEOR"
+#~ msgstr "Radioactive meteor"
 
 #~ msgid "PASSIVE_REPRODUCTION_PROGRESS"
 #~ msgstr "Passively gain reproduction progress"
@@ -9073,11 +9146,6 @@ msgstr "Zoom out"
 
 #~ msgid "ERUPTION_IN"
 #~ msgstr "Eruption in {0}"
-
-#~ msgid "EVENT_TOOLTIP_ERUPTION"
-#~ msgstr ""
-#~ "Eruption Patch Event\n"
-#~ "Creates extra hydrogen sulfide and carbon dioxide"
 
 #~ msgid "THE_AMOUNT_OF_GLUCOSE_HAS_BEEN_REDUCED"
 #~ msgstr "The amount of glucose has been reduced to {0} of the previous amount."

@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2025-04-08 15:42+0300\n"
+"POT-Creation-Date: 2025-04-12 20:42+0200\n"
 "PO-Revision-Date: 2025-04-04 10:41+0000\n"
 "Last-Translator: Anonymous <noreply@weblate.org>\n"
 "Language-Team: German <https://translate.revolutionarygamesstudio.com/projects/thrive/thrive-game/de/>\n"
@@ -514,6 +514,14 @@ msgstr "Achsen verbinden"
 
 msgid "BIOLUMINESCENT_VACUOLE"
 msgstr "Biolumineszenz-Vakuole"
+
+#, fuzzy
+msgid "BIOLUMINESCENT_VACUOLE_DESCRIPTION"
+msgstr "Biolumineszenz-Vakuole"
+
+#, fuzzy
+msgid "BIOLUMINESCENT_VACUOLE_PROCESSES_DESCRIPTION"
+msgstr "Wandelt [thrive:compound type=\"atp\"][/thrive:compound] in [thrive:compound type=\"oxytoxy\"][/thrive:compound] um. Die Rate hängt von der Konzentration von [thrive:compound type=\"oxygen\"][/thrive:compound] ab. Kann durch Drücken von [thrive:input]g_fire_toxin[/thrive:input] Giftstoffe freisetzen. Wenn die [thrive:compound type=\"oxytoxy\"][/thrive:compound]-Menge niedrig ist, ist das Schießen immer noch möglich, aber der Schaden ist geringer."
 
 msgid "BIOME_LABEL"
 msgstr "Biom: {0}"
@@ -1993,6 +2001,29 @@ msgstr ""
 "Eruption Bereichsereignis\n"
 "Zusätzliche Substanzen erscheinen: Schwefelwasserstoff und Kohlendioxid"
 
+msgid "EVENT_METEOR_GLUCOSE"
+msgstr ""
+
+#, fuzzy
+msgid "EVENT_METEOR_IRON"
+msgstr "{0}: +{1} ATP"
+
+#, fuzzy
+msgid "EVENT_METEOR_PHOSPHATES"
+msgstr "Phosphat erzeugen"
+
+#, fuzzy
+msgid "EVENT_METEOR_PLAIN"
+msgstr ""
+"Eruption Bereichsereignis\n"
+"Zusätzliche Substanzen erscheinen: Schwefelwasserstoff und Kohlendioxid"
+
+msgid "EVENT_METEOR_RADIOACTIVE"
+msgstr ""
+
+msgid "EVENT_METEOR_SULFUR"
+msgstr ""
+
 msgid "EVOLUTIONARY_TREE"
 msgstr "Evolutionsbaum"
 
@@ -3213,6 +3244,13 @@ msgstr "Hintergrundunschärfe in niedriger Auflösung"
 msgid "LOW_QUALITY_BACKGROUND_BLUR_TOOLTIP"
 msgstr "Zeigt die Hintergrundunschärfe in niedriger Auflösung an, was die Leistung verbessert."
 
+msgid "LUCIFERASE"
+msgstr ""
+
+#, fuzzy
+msgid "LUCIFERASE_SYNTHESIS"
+msgstr "Schleimstoff-Synthese"
+
 msgid "LYSOSOME"
 msgstr "Lysosom"
 
@@ -3329,6 +3367,15 @@ msgstr "Wandelt [thrive:compound type=\"glucose\"][/thrive:compound] in [thrive:
 
 msgid "META_THREADS_TOOLTIP"
 msgstr "Besuche unser Threads-Profil"
+
+msgid "METEOR_IMPACT_EVENT"
+msgstr ""
+
+msgid "METEOR_STRIKE_START_EVENT_LOG_PLURAL"
+msgstr ""
+
+msgid "METEOR_STRIKE_START_EVENT_LOG_SINGULAR"
+msgstr ""
 
 msgid "METRICS"
 msgstr "Leistungs Daten"
@@ -6095,9 +6142,6 @@ msgstr "Toxisom"
 msgid "TOXISOME_DESCRIPTION"
 msgstr "Das Lysosom ist eine von einer Membran umschlossene Organelle. Es enthält hydrolytische Enzyme, welche verschiedenste Biomoleküle aufbrechen können. Lysosomen erlauben der Zelle Materialien zu verdauen, welche mit Endozytose aufgenommen wurden und Abfallprodukte der Zelle mit einen Prozess namens [b]Autophagie[/b] auszuscheiden."
 
-msgid "TO_BE_IMPLEMENTED"
-msgstr "Noch zu implementieren."
-
 msgid "TRANSLATORS"
 msgstr "Übersetzer"
 
@@ -8722,6 +8766,9 @@ msgstr "Hereinzoomen"
 msgid "ZOOM_OUT"
 msgstr "Herauszoomen"
 
+#~ msgid "TO_BE_IMPLEMENTED"
+#~ msgstr "Noch zu implementieren."
+
 #, fuzzy
 #~ msgid "MICROBE_STAGE_DAY_NIGHT_TEXT"
 #~ msgstr ""
@@ -8903,10 +8950,6 @@ msgstr "Herauszoomen"
 #, fuzzy
 #~ msgid "ERUPTION_IN"
 #~ msgstr "Knospend"
-
-#, fuzzy
-#~ msgid "EVENT_TOOLTIP_ERUPTION"
-#~ msgstr "{0}: +{1} ATP"
 
 #~ msgid "THE_AMOUNT_OF_GLUCOSE_HAS_BEEN_REDUCED"
 #~ msgstr "Die Glukosemenge wurde auf {0} der vorherigen Menge reduziert."

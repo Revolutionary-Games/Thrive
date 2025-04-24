@@ -34,15 +34,10 @@ public partial class PatchMapNode : MarginContainer
     [Export]
     public string UnknownTextureFilePath = null!;
 
-    // TODO: Move this to Constants.cs
-    private const float HalfBlinkInterval = 0.5f;
-
 #pragma warning disable CA2213
-    [Export]
-    private TextureRect eruptionEventIndicator = null!;
 
     [Export]
-    private TextureRect glaciationEventIndicator = null!;
+    private HBoxContainer eventIconsContainer = null!;
 
     private TextureRect? iconRect;
     private Panel? highlightPanel;
@@ -214,7 +209,7 @@ public partial class PatchMapNode : MarginContainer
         base._Process(delta);
 
         currentBlinkTime += delta;
-        if (currentBlinkTime > HalfBlinkInterval)
+        if (currentBlinkTime > Constants.CURRENT_MAP_PATCH_INDICATOR_HALF_BLINK_INTERVAL)
         {
             currentBlinkTime = 0;
 
@@ -276,28 +271,44 @@ public partial class PatchMapNode : MarginContainer
         }
     }
 
-    public void ShowEventVisuals(IReadOnlyList<WorldEffectVisuals> list)
+    public void ShowEventVisuals(IReadOnlyList<WorldEffectTypes> list)
     {
-        eruptionEventIndicator.Visible = false;
-        glaciationEventIndicator.Visible = false;
+        // TODO: check if this had any active events and only then clear
+        // TODO: it would be slightly more efficient to only delete no longer required events
+        eventIconsContainer.QueueFreeChildren(false);
 
+        // Manual loop to avoid enumerator allocation
         var count = list.Count;
-
-        for (int i = 0; i < count; ++i)
+        for (var i = 0; i < count; ++i)
         {
-            switch (list[i])
+            var effectType = list[i];
+            var eventIcon = new TextureRect
             {
-                case WorldEffectVisuals.None:
-                    break;
-                case WorldEffectVisuals.UnderwaterVentEruption:
-                    eruptionEventIndicator.Visible = true;
-                    break;
-                case WorldEffectVisuals.GlobalGlaciation:
-                    glaciationEventIndicator.Visible = true;
-                    break;
-                default:
-                    GD.PrintErr($"Unknown event to display on patch map node: {list[i]}");
-                    break;
+                CustomMinimumSize = new Vector2(16, 16),
+                ExpandMode = TextureRect.ExpandModeEnum.FitWidthProportional,
+                StretchMode = TextureRect.StretchModeEnum.KeepAspect,
+                MouseFilter = MouseFilterEnum.Stop,
+            };
+
+            if (!WorldEffectVisuals.EventsTooltips.TryGetValue(effectType, out var tooltipText))
+            {
+                GD.PrintErr($"Missing tooltip for {effectType}");
+            }
+            else
+            {
+                eventIcon.TooltipText = tooltipText.ToString();
+            }
+
+            if (!WorldEffectVisuals.EventsIcons.TryGetValue(effectType, out var iconPath) ||
+                string.IsNullOrEmpty(iconPath))
+            {
+                GD.PrintErr($"Missing icon for {effectType}");
+                eventIcon.Free();
+            }
+            else
+            {
+                eventIcon.Texture = GD.Load<Texture2D>(iconPath);
+                eventIconsContainer.AddChild(eventIcon);
             }
         }
     }

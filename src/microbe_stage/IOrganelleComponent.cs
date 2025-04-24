@@ -7,23 +7,23 @@ using DefaultEcs;
 public interface IOrganelleComponent
 {
     /// <summary>
-    ///   When true this component gets sync processing (Godot calls, other non-thread safe things allowed)
+    ///   When true, this component gets sync processing (Godot calls, other non-thread safe things allowed)
     /// </summary>
     public bool UsesSyncProcess { get; }
 
     public void OnAttachToCell(PlacedOrganelle organelle);
 
     /// <summary>
-    ///   This update is called from multiple threads at once so only operations that aren't timing sensitive between
+    ///   This update is called from multiple threads at once, so only operations that aren't timing-sensitive between
     ///   multiple objects and don't modify Godot data are allowed. Everything else needs to be in
     ///   <see cref="UpdateSync"/>
     /// </summary>
     /// <param name="organelleContainer">Organelle container instance this organelle is inside</param>
     /// <param name="microbeEntity">Entity reference of the entity that contains this organelle</param>
     /// <param name="worldSimulation">
-    ///   The simulation this entity is in. Care needs to be taken on what operations are safe to perform here in async
-    ///   manner. This is provided to allow a bit more complex organelles to work without needing to create systems
-    ///   that are basically clones of <see cref="Systems.OrganelleTickSystem"/> with a tiny bit of different
+    ///   The simulation this entity is in. Care needs to be taken on what operations are safe to perform here in an
+    ///   async manner. This is provided to allow a bit more complex organelles to work without needing to create
+    ///   systems that are basically clones of <see cref="Systems.OrganelleTickSystem"/> with a tiny bit of different
     ///   functionality.
     /// </param>
     /// <param name="delta">Time since the last update in seconds</param>

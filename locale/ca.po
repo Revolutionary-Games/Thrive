@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2025-04-08 15:42+0300\n"
+"POT-Creation-Date: 2025-04-12 20:42+0200\n"
 "PO-Revision-Date: 2025-04-04 10:42+0000\n"
 "Last-Translator: Anonymous <noreply@weblate.org>\n"
 "Language-Team: Catalan <https://translate.revolutionarygamesstudio.com/projects/thrive/thrive-game/ca/>\n"
@@ -531,6 +531,14 @@ msgstr ""
 
 msgid "BIOLUMINESCENT_VACUOLE"
 msgstr "Vacúol Bioluminescent"
+
+#, fuzzy
+msgid "BIOLUMINESCENT_VACUOLE_DESCRIPTION"
+msgstr "Vacúol Bioluminescent"
+
+#, fuzzy
+msgid "BIOLUMINESCENT_VACUOLE_PROCESSES_DESCRIPTION"
+msgstr "Transforma [thrive:compound type=\"atp\"][/thrive:compound] en [thrive:compound type=\"oxytoxy\"][/thrive:compound]. La velocitat és proporcional a la concentració de [thrive:compound type=\"oxygen\"][/thrive:compound]. Allibera toxines quan es prem la tecla [thrive:input]g_fire_toxin[/thrive:input]. Quan la quantitat de [thrive:compound type=\"oxytoxy\"][/thrive:compound] és baixa, encara és possible disparar, però el dany causat serà menor."
 
 msgid "BIOME_LABEL"
 msgstr "Bioma: {0}"
@@ -2058,6 +2066,27 @@ msgstr "Estuari"
 msgid "EVENT_ERUPTION_TOOLTIP"
 msgstr "Automàticament carregar els ecosistemes Harmony de l'Ensamblatge (no requereix especificar una classe de mod)"
 
+msgid "EVENT_METEOR_GLUCOSE"
+msgstr ""
+
+#, fuzzy
+msgid "EVENT_METEOR_IRON"
+msgstr "{0}: +{1} ATP"
+
+#, fuzzy
+msgid "EVENT_METEOR_PHOSPHATES"
+msgstr "Fer aparéixer Fosfats"
+
+#, fuzzy
+msgid "EVENT_METEOR_PLAIN"
+msgstr "Automàticament carregar els ecosistemes Harmony de l'Ensamblatge (no requereix especificar una classe de mod)"
+
+msgid "EVENT_METEOR_RADIOACTIVE"
+msgstr ""
+
+msgid "EVENT_METEOR_SULFUR"
+msgstr ""
+
 #, fuzzy
 msgid "EVOLUTIONARY_TREE"
 msgstr "Per Revolutionary Games Studio"
@@ -3409,6 +3438,13 @@ msgstr ""
 msgid "LOW_QUALITY_BACKGROUND_BLUR_TOOLTIP"
 msgstr ""
 
+msgid "LUCIFERASE"
+msgstr ""
+
+#, fuzzy
+msgid "LUCIFERASE_SYNTHESIS"
+msgstr "Síntesi de mucílag"
+
 msgid "LYSOSOME"
 msgstr "Lisosoma"
 
@@ -3539,6 +3575,15 @@ msgid "META_THREADS_TOOLTIP"
 msgstr ""
 "No pot ser automàticament detectat si el \"hyperthreading\" està activat o no.\n"
 "Això afecta el nombre de \"threads\" per defecte ja que el \"hyperthreading threads\" no són tan ràpids com els núclis CPU reals."
+
+msgid "METEOR_IMPACT_EVENT"
+msgstr ""
+
+msgid "METEOR_STRIKE_START_EVENT_LOG_PLURAL"
+msgstr ""
+
+msgid "METEOR_STRIKE_START_EVENT_LOG_SINGULAR"
+msgstr ""
 
 msgid "METRICS"
 msgstr "Mètriques de rendiment"
@@ -6450,9 +6495,6 @@ msgstr "Oxytoxysoma"
 msgid "TOXISOME_DESCRIPTION"
 msgstr "El lisosoma és un orgànul adherit a la membrana que conté enzims hidrolítics que poden trencar diverses biomolècules. Els lisosomes permeten a la cèl·lula digerir materials ingerits mitjançant endocitosi i netejar els productes de rebuig de la cèl·lula en un procés anomenat autofàgia."
 
-msgid "TO_BE_IMPLEMENTED"
-msgstr "Encara no s'ha implementat."
-
 msgid "TRANSLATORS"
 msgstr "Traductors"
 
@@ -9035,6 +9077,9 @@ msgstr "Enfocar la visió de la càmera"
 msgid "ZOOM_OUT"
 msgstr "Zoom enfora"
 
+#~ msgid "TO_BE_IMPLEMENTED"
+#~ msgstr "Encara no s'ha implementat."
+
 #, fuzzy
 #~ msgid "MICROBE_STAGE_DAY_NIGHT_TEXT"
 #~ msgstr ""
@@ -9231,10 +9276,6 @@ msgstr "Zoom enfora"
 #, fuzzy
 #~ msgid "ERUPTION_IN"
 #~ msgstr "Gemmació"
-
-#, fuzzy
-#~ msgid "EVENT_TOOLTIP_ERUPTION"
-#~ msgstr "{0}: +{1} ATP"
 
 #~ msgid "THE_AMOUNT_OF_GLUCOSE_HAS_BEEN_REDUCED"
 #~ msgstr "La quantitat de Glucosa s'ha reduït un percentatge de {0} respecte a la Generació anterior."

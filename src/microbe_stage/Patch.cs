@@ -41,7 +41,7 @@ public class Patch
     ///   The current effects on patch node (shown in the patch map)
     /// </summary>
     [JsonProperty]
-    private readonly List<WorldEffectVisuals> activeWorldEffectVisuals = new();
+    private readonly List<WorldEffectTypes> activeWorldEffectVisuals = new();
 
     [JsonProperty]
     private Deque<PatchSnapshot> history = new();
@@ -602,12 +602,12 @@ public class Patch
             Region.Visibility = visibility;
     }
 
-    public void AddPatchEventRecord(WorldEffectVisuals visual, double happenedAt)
+    public void AddPatchEventRecord(WorldEffectTypes worldEffect, double happenedAt)
     {
         // TODO: switch this class to have more of the logic for keeping event history together
         _ = happenedAt;
 
-        activeWorldEffectVisuals.Add(visual);
+        activeWorldEffectVisuals.Add(worldEffect);
     }
 
     public void ClearPatchNodeEventVisuals()

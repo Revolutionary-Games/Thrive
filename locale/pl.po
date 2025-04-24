@@ -7,9 +7,9 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2025-04-08 15:42+0300\n"
-"PO-Revision-Date: 2025-04-04 10:42+0000\n"
-"Last-Translator: Anonymous <noreply@weblate.org>\n"
+"POT-Creation-Date: 2025-04-12 20:42+0200\n"
+"PO-Revision-Date: 2025-04-13 07:48+0000\n"
+"Last-Translator: Nie <tym@wrozynski.com>\n"
 "Language-Team: Polish <https://translate.revolutionarygamesstudio.com/projects/thrive/thrive-game/pl/>\n"
 "Language: pl\n"
 "MIME-Version: 1.0\n"
@@ -193,23 +193,19 @@ msgid "ANISOTROPIC_FILTERING"
 msgstr "Filtrowanie anizotropowe:"
 
 msgid "ANTIALIASING_MSAA_TAA"
-msgstr ""
+msgstr "MSAA + TAA"
 
-#, fuzzy
 msgid "ANTI_ALIASING_FXAA"
-msgstr "Wygładzanie krawędzi:"
+msgstr "FXAA"
 
-#, fuzzy
 msgid "ANTI_ALIASING_MODE"
-msgstr "Wygładzanie krawędzi:"
+msgstr "Antyaliasing:"
 
-#, fuzzy
 msgid "ANTI_ALIASING_MSAA"
-msgstr "Wygładzanie krawędzi:"
+msgstr "MSAA"
 
-#, fuzzy
 msgid "ANTI_ALIASING_TAA"
-msgstr "Wygładzanie krawędzi:"
+msgstr "TAA"
 
 msgid "APPEARANCE"
 msgstr "Wygląd"
@@ -261,7 +257,7 @@ msgid "ASSEMBLY_CLASS_REQUIRED"
 msgstr "Klasa Mod assembly jest wymagana, jeśli klasa assembly jest określona"
 
 msgid "ASSEMBLY_REQUIRED_WITH_HARMONY"
-msgstr ""
+msgstr "Assembly modu jest wymagane kiedy auto harmony jest włączone"
 
 msgid "ASSUME_HYPERTHREADING"
 msgstr "Załóż, że procesor pozwala na hyperthreading"
@@ -516,6 +512,14 @@ msgstr "Złącz osie ze sobą"
 
 msgid "BIOLUMINESCENT_VACUOLE"
 msgstr "Świecąca Wakuola"
+
+#, fuzzy
+msgid "BIOLUMINESCENT_VACUOLE_DESCRIPTION"
+msgstr "Świecąca Wakuola"
+
+#, fuzzy
+msgid "BIOLUMINESCENT_VACUOLE_PROCESSES_DESCRIPTION"
+msgstr "Przekształca [thrive:compound type=\"atp\"][/thrive:compound] w [thrive:compound type=\"oxytoxy\"]Oksytoksynę[/thrive:compound]. Tempo skaluje się ze stężeniem [thrive:compound type=\"oxygen\"][/thrive:compound]. Może wypuszczać toksyny po naciśnięciu [thrive:input]g_fire_toxin[/thrive:input]. Gdy ilość [thrive:compound type=\"oxytoxy\"]Oksytoksyny[/thrive:compound] jest niska, strzelanie jest dalej możliwe, ale będzie zadawać mniejsze obrażenia."
 
 msgid "BIOME_LABEL"
 msgstr "Biom: {0}"
@@ -2050,6 +2054,27 @@ msgstr "Eustarium"
 msgid "EVENT_ERUPTION_TOOLTIP"
 msgstr "To jest dokładne zatwierdzenie kodu, z którego została złożona ta wersja Thrive"
 
+msgid "EVENT_METEOR_GLUCOSE"
+msgstr ""
+
+#, fuzzy
+msgid "EVENT_METEOR_IRON"
+msgstr "{0}: +{1} ATP"
+
+#, fuzzy
+msgid "EVENT_METEOR_PHOSPHATES"
+msgstr "Stwórz fosforany"
+
+#, fuzzy
+msgid "EVENT_METEOR_PLAIN"
+msgstr "To jest dokładne zatwierdzenie kodu, z którego została złożona ta wersja Thrive"
+
+msgid "EVENT_METEOR_RADIOACTIVE"
+msgstr ""
+
+msgid "EVENT_METEOR_SULFUR"
+msgstr ""
+
 msgid "EVOLUTIONARY_TREE"
 msgstr "Drzewo Filogenetyczne"
 
@@ -3328,6 +3353,13 @@ msgstr "Rozmycie tła:"
 msgid "LOW_QUALITY_BACKGROUND_BLUR_TOOLTIP"
 msgstr "Rozmycie tła:"
 
+msgid "LUCIFERASE"
+msgstr ""
+
+#, fuzzy
+msgid "LUCIFERASE_SYNTHESIS"
+msgstr "Synteza śluzu"
+
 msgid "LYSOSOME"
 msgstr "Lizosom"
 
@@ -3362,7 +3394,7 @@ msgid "MARINE_SNOW"
 msgstr "Śnieg morski"
 
 msgid "MASTER_VOLUME"
-msgstr "Ogólna głośność"
+msgstr "Głośność ogólna"
 
 #, fuzzy
 msgid "MASTODON_TOOLTIP"
@@ -3458,6 +3490,15 @@ msgid "META_THREADS_TOOLTIP"
 msgstr ""
 "Nie można automatycznie wykryć czy hyperthreading jest włączony.\n"
 "Dotyczy to domyślnej liczby wątków, ponieważ wątki hyperthreadingu nie są tak szybkie jak prawdziwe rdzenie procesora."
+
+msgid "METEOR_IMPACT_EVENT"
+msgstr ""
+
+msgid "METEOR_STRIKE_START_EVENT_LOG_PLURAL"
+msgstr ""
+
+msgid "METEOR_STRIKE_START_EVENT_LOG_SINGULAR"
+msgstr ""
 
 msgid "METRICS"
 msgstr "Wskaźniki Wydajności"
@@ -6262,9 +6303,6 @@ msgstr "Oxytoksysoma"
 msgid "TOXISOME_DESCRIPTION"
 msgstr "Lizosom jest organellą przymocowaną do błony komórkowej która zawiera hydrolityczne enzymy które mogą rozbijać wiele biomolekuł. Lizosomy umożliwiają komórce trawienie materiałów przyjmowanych poprzez endocytozę oraz oczyszczanie odpadów komórki w procesie zwanym [b]autofagią[/b]."
 
-msgid "TO_BE_IMPLEMENTED"
-msgstr "Do zaimplementowania."
-
 msgid "TRANSLATORS"
 msgstr "Tłumacze"
 
@@ -8794,6 +8832,9 @@ msgstr "Przybliż"
 msgid "ZOOM_OUT"
 msgstr "Oddal"
 
+#~ msgid "TO_BE_IMPLEMENTED"
+#~ msgstr "Do zaimplementowania."
+
 #, fuzzy
 #~ msgid "MICROBE_STAGE_DAY_NIGHT_TEXT"
 #~ msgstr ""
@@ -8999,10 +9040,6 @@ msgstr "Oddal"
 #, fuzzy
 #~ msgid "ERUPTION_IN"
 #~ msgstr "Pączkowanie"
-
-#, fuzzy
-#~ msgid "EVENT_TOOLTIP_ERUPTION"
-#~ msgstr "{0}: +{1} ATP"
 
 #~ msgid "THE_AMOUNT_OF_GLUCOSE_HAS_BEEN_REDUCED"
 #~ msgstr "Ilość glukozy została zredukowana do {0} poprzedniej ilości."

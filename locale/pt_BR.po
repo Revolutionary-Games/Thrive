@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2025-04-08 15:42+0300\n"
+"POT-Creation-Date: 2025-04-12 20:42+0200\n"
 "PO-Revision-Date: 2025-04-04 10:42+0000\n"
 "Last-Translator: Anonymous <noreply@weblate.org>\n"
 "Language-Team: Portuguese (Brazil) <https://translate.revolutionarygamesstudio.com/projects/thrive/thrive-game/pt_BR/>\n"
@@ -517,6 +517,14 @@ msgstr "Unir eixos"
 
 msgid "BIOLUMINESCENT_VACUOLE"
 msgstr "Vacúolo Bioluminescente"
+
+#, fuzzy
+msgid "BIOLUMINESCENT_VACUOLE_DESCRIPTION"
+msgstr "Vacúolo Bioluminescente"
+
+#, fuzzy
+msgid "BIOLUMINESCENT_VACUOLE_PROCESSES_DESCRIPTION"
+msgstr "Transforma [thrive:compound type=\"atp\"][/thrive:compound] em [thrive:compound type=\"oxytoxy\"][/thrive:compound]. Quantidade aumenta com a concentração de [thrive:compound type=\"oxygen\"][/thrive:compound]. Pode disparar toxinas apertando [thrive:input]g_fire_toxin[/thrive:input]. Quando a quantidade de [thrive:compound type=\"oxytoxy\"][/thrive:compound] ficar baixa, será possível disparar, mas o dano irá ser reduzido."
 
 msgid "BIOME_LABEL"
 msgstr "Bioma: {0}"
@@ -2015,6 +2023,29 @@ msgstr ""
 "Evento de Região: Erupção\n"
 "Cria mais sulfeto de hidrogênio e dióxido de carbono"
 
+msgid "EVENT_METEOR_GLUCOSE"
+msgstr ""
+
+#, fuzzy
+msgid "EVENT_METEOR_IRON"
+msgstr "{0}: +{1} ATP"
+
+#, fuzzy
+msgid "EVENT_METEOR_PHOSPHATES"
+msgstr "Gerar fosfato"
+
+#, fuzzy
+msgid "EVENT_METEOR_PLAIN"
+msgstr ""
+"Evento de Região: Erupção\n"
+"Cria mais sulfeto de hidrogênio e dióxido de carbono"
+
+msgid "EVENT_METEOR_RADIOACTIVE"
+msgstr ""
+
+msgid "EVENT_METEOR_SULFUR"
+msgstr ""
+
 msgid "EVOLUTIONARY_TREE"
 msgstr "Árvore Evolucionária"
 
@@ -3250,6 +3281,13 @@ msgstr "Desfoque de plano de fundo:"
 msgid "LOW_QUALITY_BACKGROUND_BLUR_TOOLTIP"
 msgstr "Desfoque de plano de fundo:"
 
+msgid "LUCIFERASE"
+msgstr ""
+
+#, fuzzy
+msgid "LUCIFERASE_SYNTHESIS"
+msgstr "Síntese de Mucilagem"
+
 msgid "LYSOSOME"
 msgstr "Lisossomo"
 
@@ -3368,6 +3406,15 @@ msgstr "Transforma [thrive:compound type=\"glucose\"][/thrive:compound] em [thri
 
 msgid "META_THREADS_TOOLTIP"
 msgstr "Visite nosso perfil no Threads"
+
+msgid "METEOR_IMPACT_EVENT"
+msgstr ""
+
+msgid "METEOR_STRIKE_START_EVENT_LOG_PLURAL"
+msgstr ""
+
+msgid "METEOR_STRIKE_START_EVENT_LOG_SINGULAR"
+msgstr ""
 
 msgid "METRICS"
 msgstr "Exibir Métricas"
@@ -6039,9 +6086,6 @@ msgstr "Toxissomo"
 msgid "TOXISOME_DESCRIPTION"
 msgstr "Um metabolossomo modificado responsável pela prodição de uma forma primitiva do agente tóxico [thrive:compound type=\\\"oxytoxy\\\"][/thrive:compound]. Pode ser modificado para trocar o tipo de toxina gerada para outros efeitos."
 
-msgid "TO_BE_IMPLEMENTED"
-msgstr "A ser implementado."
-
 msgid "TRANSLATORS"
 msgstr "Tradutores"
 
@@ -8536,6 +8580,9 @@ msgstr "Aumentar o zoom"
 msgid "ZOOM_OUT"
 msgstr "Diminuir o zoom"
 
+#~ msgid "TO_BE_IMPLEMENTED"
+#~ msgstr "A ser implementado."
+
 #, fuzzy
 #~ msgid "MICROBE_STAGE_DAY_NIGHT_TEXT"
 #~ msgstr ""
@@ -8725,10 +8772,6 @@ msgstr "Diminuir o zoom"
 #, fuzzy
 #~ msgid "ERUPTION_IN"
 #~ msgstr "Gemulação"
-
-#, fuzzy
-#~ msgid "EVENT_TOOLTIP_ERUPTION"
-#~ msgstr "{0}: +{1} ATP"
 
 #~ msgid "THE_AMOUNT_OF_GLUCOSE_HAS_BEEN_REDUCED"
 #~ msgstr "A quantidade de glicose foi reduzida para {0} da quantidade anterior."

@@ -406,11 +406,21 @@ public static class Constants
     public const float MICROBE_AI_THINK_INTERVAL = 0.3f;
 
     /// <summary>
-    ///   This is how often entities for emitted signals from other entities.
-    ///   This is set relatively high to reduce the performance impact. This is used for example for AI microbes to
-    ///   detect signaling agents.
+    ///   This is how often entities emitted signals from other entities are updated.
+    ///   This is set relatively high to reduce the performance impact.
+    ///   This is used, for example, for AI microbes to detect signalling agents.
     /// </summary>
     public const float ENTITY_SIGNAL_UPDATE_INTERVAL = 0.15f;
+
+    public const float ENTITY_LIGHT_REALISTIC_ATTENUATION = 2;
+
+    /// <summary>
+    ///   Max lights a single entity should have. Note that compatibility renderer supports only 8 lights per mesh, so
+    ///   we might need to increase that limit.
+    /// </summary>
+    public const int ENTITY_REASONABLE_MAX_LIGHTS = 6;
+
+    public const float ENTITY_BIOLUMINESCENCE_LIGHT_RANGE = 20;
 
     public const int INITIAL_SPECIES_POPULATION = 100;
 
@@ -1362,6 +1372,10 @@ public static class Constants
     public const int GLOBAL_GLACIATION_MIN_DURATION = 2;
     public const int GLOBAL_GLACIATION_MAX_DURATION = 6;
     public const int GLOBAL_GLACIATION_HEADS_UP_DURATION = 1;
+    public const float GLOBAL_GLACIATION_SUNLIGHT_MULTIPLICATION = 0.5f;
+
+    public const float METEOR_IMPACT_CHANCE = 0.23f;
+    public const float METEOR_IMPACT_SUNLIGHT_MULTIPLICATION = 0.75f;
 
     // These control how many game entities can exist at once
     public const int TINY_MAX_SPAWNED_ENTITIES = 80;
@@ -1769,9 +1783,11 @@ public static class Constants
     public const float MIN_AUTO_EVO_STRENGTH_MULTIPLIER = 0.01f;
     public const float MAX_AUTO_EVO_STRENGTH_MULTIPLIER = 1.0f;
 
+    public const float CURRENT_MAP_PATCH_INDICATOR_HALF_BLINK_INTERVAL = 0.5f;
+
     // Constants for the procedural patch map
-    public const float PATCH_NODE_RECT_LENGTH = 64.0f;
-    public const float PATCH_AND_REGION_MARGIN = 20.0f;
+    public const float PATCH_NODE_RECT_LENGTH = 80.0f;
+    public const float PATCH_AND_REGION_MARGIN = 14.0f;
     public const float PATCH_REGION_CONNECTION_LINE_WIDTH = 4.0f;
     public const float PATCH_REGION_BORDER_WIDTH = 6.0f;
     public const float PATCH_REGION_MARGIN = 5.0f;

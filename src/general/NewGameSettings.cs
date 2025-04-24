@@ -399,7 +399,8 @@ public partial class NewGameSettings : ControlWithInput
         if (!Exit())
         {
             // We are prevented from exiting, consume this input
-            return true;
+
+            // return true;
         }
 
         return true;

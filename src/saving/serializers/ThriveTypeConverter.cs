@@ -29,8 +29,8 @@ public class ThriveTypeConverter : TypeConverter
         if (destinationType == null)
             throw new ArgumentNullException(nameof(destinationType));
 
-        return destinationType == StringType || destinationType.CustomAttributes.Any(
-            a => a.AttributeType == typeof(UseThriveConverterAttribute));
+        return destinationType == StringType ||
+            destinationType.CustomAttributes.Any(a => a.AttributeType == typeof(UseThriveConverterAttribute));
     }
 
     public override object? ConvertFrom(ITypeDescriptorContext? context, CultureInfo? culture, object? value)

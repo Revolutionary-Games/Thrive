@@ -89,7 +89,9 @@ public static class SoundEffectPlayerHelpers
             soundEffectPlayer.SoundEffectSlots = slots;
         }
 
-        lock (slots)
+        // Used to suppress incorrect warning CS0728
+        var slotsRef = slots;
+        lock (slotsRef)
         {
             int slotCount = slots.Length;
 
@@ -165,7 +167,9 @@ public static class SoundEffectPlayerHelpers
         if (slots == null)
             return false;
 
-        lock (slots)
+        // Used to suppress incorrect warning CS0728
+        var slotsRef = slots;
+        lock (slotsRef)
         {
             int slotCount = slots.Length;
 
@@ -209,7 +213,9 @@ public static class SoundEffectPlayerHelpers
         if (slots == null)
             return;
 
-        lock (slots)
+        // Used to suppress incorrect warning CS0728
+        var slotsRef = slots;
+        lock (slotsRef)
         {
             int slotCount = slots.Length;
 
@@ -222,7 +228,7 @@ public static class SoundEffectPlayerHelpers
 
                 if (slot.Loop && !immediately)
                 {
-                    // Stop after current loop
+                    // Stop after the current loop
                     slot.Loop = false;
                 }
                 else
@@ -254,7 +260,9 @@ public static class SoundEffectPlayerHelpers
             soundEffectPlayer.SoundEffectSlots = slots;
         }
 
-        lock (slots)
+        // Used to suppress incorrect warning CS0728
+        var slotsRef = slots;
+        lock (slotsRef)
         {
             int slotCount = slots.Length;
 
@@ -324,7 +332,9 @@ public static class SoundEffectPlayerHelpers
         if (slots == null)
             return false;
 
-        lock (slots)
+        // Used to suppress incorrect warning CS0728
+        var slotsRef = slots;
+        lock (slotsRef)
         {
             int slotCount = slots.Length;
 
@@ -371,7 +381,9 @@ public static class SoundEffectPlayerHelpers
             soundEffectPlayer.SoundEffectSlots = slots;
         }
 
-        lock (slots)
+        // Used to suppress incorrect warning CS0728
+        var slotsRef = slots;
+        lock (slotsRef)
         {
             int slotCount = slots.Length;
 

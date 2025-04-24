@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2025-04-08 15:42+0300\n"
+"POT-Creation-Date: 2025-04-12 20:42+0200\n"
 "PO-Revision-Date: 2025-04-04 10:42+0000\n"
 "Last-Translator: Anonymous <noreply@weblate.org>\n"
 "Language-Team: Luxembourgish <https://translate.revolutionarygamesstudio.com/projects/thrive/thrive-game/lb/>\n"
@@ -535,6 +535,14 @@ msgstr "Verbann d'Achse mateneen"
 
 msgid "BIOLUMINESCENT_VACUOLE"
 msgstr "Biolumineszenz-Vakuol"
+
+#, fuzzy
+msgid "BIOLUMINESCENT_VACUOLE_DESCRIPTION"
+msgstr "Biolumineszenz-Vakuol"
+
+#, fuzzy
+msgid "BIOLUMINESCENT_VACUOLE_PROCESSES_DESCRIPTION"
+msgstr "Dréck [thrive:input]g_toggle_binding[/thrive:input] fir de Pech-Modus ëmgeschalten. Am Pech-Modus kanns de aner Zellen vun denger Aart un deng Kolonie upechen an deem se a se renns. Fir aus enger Kolonie rauszekommen, dréck [thrive:input]g_unbind_all[/thrive:input]. Du kenns net an den Beaarbechter wärend's de un aneren Zellen dru pechs."
 
 msgid "BIOME_LABEL"
 msgstr "Biom: {0}"
@@ -1929,6 +1937,27 @@ msgstr "Ästuar"
 msgid "EVENT_ERUPTION_TOOLTIP"
 msgstr "Nei Tastebindung bäifügen"
 
+msgid "EVENT_METEOR_GLUCOSE"
+msgstr ""
+
+#, fuzzy
+msgid "EVENT_METEOR_IRON"
+msgstr "Ënnerwaasser Hiel"
+
+#, fuzzy
+msgid "EVENT_METEOR_PHOSPHATES"
+msgstr "Phosphat Erstellen"
+
+#, fuzzy
+msgid "EVENT_METEOR_PLAIN"
+msgstr "Nei Tastebindung bäifügen"
+
+msgid "EVENT_METEOR_RADIOACTIVE"
+msgstr ""
+
+msgid "EVENT_METEOR_SULFUR"
+msgstr ""
+
 msgid "EVOLUTIONARY_TREE"
 msgstr ""
 
@@ -3143,6 +3172,13 @@ msgstr ""
 msgid "LOW_QUALITY_BACKGROUND_BLUR_TOOLTIP"
 msgstr ""
 
+msgid "LUCIFERASE"
+msgstr ""
+
+#, fuzzy
+msgid "LUCIFERASE_SYNTHESIS"
+msgstr "Chemosythese"
+
 msgid "LYSOSOME"
 msgstr ""
 
@@ -3274,6 +3310,15 @@ msgid "META_THREADS_TOOLTIP"
 msgstr ""
 "Di hei Sektioun weist di total Balance (Produktioun - Verbrauch) fier all Stoff.\n"
 "Vier zum Beispill eng Planzenzell ze maachen muss d'Glucose Balance wäit positiv sinn."
+
+msgid "METEOR_IMPACT_EVENT"
+msgstr ""
+
+msgid "METEOR_STRIKE_START_EVENT_LOG_PLURAL"
+msgstr ""
+
+msgid "METEOR_STRIKE_START_EVENT_LOG_SINGULAR"
+msgstr ""
 
 msgid "METRICS"
 msgstr ""
@@ -5874,9 +5919,6 @@ msgstr "Oxytoxisome"
 msgid "TOXISOME_DESCRIPTION"
 msgstr "Metabolosomen sinn Klompen un Eewäiss, an Eewäiss Schuelen ëmwéckelt. Se kennen [thrive:compound type=\"glucose\"][/thrive:compound] an [thrive:compound type=\"atp\"]/thrive:compound] vill méi séier ëmwandelen wéi wat am Zytoplasma geschitt an engem Prozess genannt [b]Aerobeg Ootmung[/b]. Et brauch awer[thrive:compound type=\"oxygen\"][/thrive:compound] fir ze funktionéieren an méi niddereg [thrive:compound type=\"oxygen\"][/thrive:compound] Niveauen an der Ëmwelt wäerten den Ëmsaz vun der [thrive:compound type=\"atp\"][/thrive:compound] Produktioun entschleunegen. Well d'Metabolosomen direkt am Zytoplasma schwammen meescht d'Flëssegkeet ronderëm [b]Glycolyse[/b]."
 
-msgid "TO_BE_IMPLEMENTED"
-msgstr "Ze Implementéieren."
-
 msgid "TRANSLATORS"
 msgstr ""
 
@@ -8069,6 +8111,9 @@ msgstr "Eran Zoomen"
 msgid "ZOOM_OUT"
 msgstr "Eraus Zoomen"
 
+#~ msgid "TO_BE_IMPLEMENTED"
+#~ msgstr "Ze Implementéieren."
+
 #, fuzzy
 #~ msgid "GLOBAL_GLACIATION_EVENT_LOG"
 #~ msgstr "Halbeier Populatioun"
@@ -8196,10 +8241,6 @@ msgstr "Eraus Zoomen"
 #, fuzzy
 #~ msgid "WIKI_MACROSCOPIC_STAGE"
 #~ msgstr "ATP PRODUKTIOUN ZE NIEDREG!"
-
-#, fuzzy
-#~ msgid "EVENT_TOOLTIP_ERUPTION"
-#~ msgstr "Ënnerwaasser Hiel"
 
 #~ msgid "OXYTOXISOME_DESC"
 #~ msgstr "Ee modifizéierten Metabolosome responsabel fir d'Produktioun vun enger primitiver form un Gëftstoff [thrive:compound type=\"oxytoxy\"][/thrive:compound]. Ka modifizéiert ginn fir de generéiert Zort u Gëftstoff ze änneren fir aner Effekter."

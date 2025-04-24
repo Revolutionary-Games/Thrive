@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2025-04-08 15:42+0300\n"
+"POT-Creation-Date: 2025-04-12 20:42+0200\n"
 "PO-Revision-Date: 2025-02-06 13:29+0000\n"
 "Last-Translator: Anonymous <noreply@weblate.org>\n"
 "Language-Team: Serbian (Latin script) <https://translate.revolutionarygamesstudio.com/projects/thrive/thrive-game/sr_Latn/>\n"
@@ -534,6 +534,14 @@ msgstr ""
 
 msgid "BIOLUMINESCENT_VACUOLE"
 msgstr "Bioluminiscentna Vakuola"
+
+#, fuzzy
+msgid "BIOLUMINESCENT_VACUOLE_DESCRIPTION"
+msgstr "Bioluminiscentna Vakuola"
+
+#, fuzzy
+msgid "BIOLUMINESCENT_VACUOLE_PROCESSES_DESCRIPTION"
+msgstr "Otrovna vakuola je vakuola koja je modifikovana za specifičnu proizvodnju, skladištenje i izlučivanje oksitoksi toksina. Više otrovne vakuola povećaće brzinu oslobađanja toksina."
 
 msgid "BIOME_LABEL"
 msgstr ""
@@ -2059,6 +2067,27 @@ msgstr "Ušće"
 msgid "EVENT_ERUPTION_TOOLTIP"
 msgstr "Dodajte novo vezivanje tastera"
 
+msgid "EVENT_METEOR_GLUCOSE"
+msgstr ""
+
+#, fuzzy
+msgid "EVENT_METEOR_IRON"
+msgstr "Podvodna Pećina"
+
+#, fuzzy
+msgid "EVENT_METEOR_PHOSPHATES"
+msgstr "Stavite fosfat"
+
+#, fuzzy
+msgid "EVENT_METEOR_PLAIN"
+msgstr "Dodajte novo vezivanje tastera"
+
+msgid "EVENT_METEOR_RADIOACTIVE"
+msgstr ""
+
+msgid "EVENT_METEOR_SULFUR"
+msgstr ""
+
 msgid "EVOLUTIONARY_TREE"
 msgstr ""
 
@@ -3374,6 +3403,13 @@ msgstr ""
 msgid "LOW_QUALITY_BACKGROUND_BLUR_TOOLTIP"
 msgstr ""
 
+msgid "LUCIFERASE"
+msgstr ""
+
+#, fuzzy
+msgid "LUCIFERASE_SYNTHESIS"
+msgstr "Hemosinteza"
+
 #, fuzzy
 msgid "LYSOSOME"
 msgstr "OksiToksizom"
@@ -3508,6 +3544,15 @@ msgstr "Metabolosomi su grozdi proteina umotani u proteinske ljuske. Oni su u st
 #, fuzzy
 msgid "META_THREADS_TOOLTIP"
 msgstr "Dodajte novo vezivanje tastera"
+
+msgid "METEOR_IMPACT_EVENT"
+msgstr ""
+
+msgid "METEOR_STRIKE_START_EVENT_LOG_PLURAL"
+msgstr ""
+
+msgid "METEOR_STRIKE_START_EVENT_LOG_SINGULAR"
+msgstr ""
 
 #, fuzzy
 msgid "METRICS"
@@ -6301,9 +6346,6 @@ msgstr "OksiToksizom"
 msgid "TOXISOME_DESCRIPTION"
 msgstr "Metabolosomi su grozdi proteina umotani u proteinske ljuske. Oni su u stanju da pretvore glukozu u ATP mnogo većom brzinom nego što se to može učiniti u citoplazmi sa procesu koji se naziva aerobno disanje. Međutim, potreban mu je kiseonik da bi funkcionisao, a niži nivoi kiseonika u okolini usporiće brzinu njegove proizvodnje ATP. Pošto su metabolosomi suspendovani direktno u citoplazmi, okolna tečnost vrši određenu fermentaciju."
 
-msgid "TO_BE_IMPLEMENTED"
-msgstr "Da se implementira."
-
 msgid "TRANSLATORS"
 msgstr ""
 
@@ -8707,6 +8749,9 @@ msgstr "Zumirati"
 msgid "ZOOM_OUT"
 msgstr "Odzumirati"
 
+#~ msgid "TO_BE_IMPLEMENTED"
+#~ msgstr "Da se implementira."
+
 #, fuzzy
 #~ msgid "MICROBE_STAGE_DAY_NIGHT_TEXT"
 #~ msgstr "Učitavanje Uređivača Mikroba"
@@ -8894,10 +8939,6 @@ msgstr "Odzumirati"
 #, fuzzy
 #~ msgid "ERUPTION_IN"
 #~ msgstr "Proizvodi"
-
-#, fuzzy
-#~ msgid "EVENT_TOOLTIP_ERUPTION"
-#~ msgstr "Podvodna Pećina"
 
 #, fuzzy
 #~ msgid "OXYTOXISOME_DESC"
