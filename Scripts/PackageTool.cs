@@ -786,8 +786,6 @@ public class PackageTool : PackageToolBase<Program.PackageOptions>
 
         ColourConsole.WriteInfoLine("Performing final signing for Mac build");
 
-        // TODO: need to do something with options.MacTeamId
-
         if (string.IsNullOrEmpty(options.MacSigningKey))
         {
             ColourConsole.WriteWarningLine(
