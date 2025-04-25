@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Thrive VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2025-04-12 20:42+0200\n"
+"POT-Creation-Date: 2025-04-25 10:38+0300\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -53,7 +53,7 @@ msgstr ""
 msgid "ABYSSOPELAGIC"
 msgstr ""
 
-#: ../src/microbe_stage/gui/MovementModeSelectionPopup.tscn:149
+#: ../src/microbe_stage/gui/MovementModeSelectionPopup.tscn:151
 #: ../src/microbe_stage/gui/PatchDetailsPanel.tscn:622
 msgid "ACCEPT"
 msgstr ""
@@ -183,7 +183,7 @@ msgstr ""
 msgid "ALL_WORLDS_STATISTICS"
 msgstr ""
 
-#: ../src/space_stage/SpaceStage.cs:426
+#: ../src/space_stage/SpaceStage.cs:427
 msgid "ALREADY_ASCENDED"
 msgstr ""
 
@@ -1089,7 +1089,7 @@ msgstr ""
 msgid "CLEAR_CACHE"
 msgstr ""
 
-#: ../src/microbe_stage/gui/MovementModeSelectionPopup.cs:182
+#: ../src/microbe_stage/gui/MovementModeSelectionPopup.cs:183
 msgid "CLICK_TO_SELECT"
 msgstr ""
 
@@ -1394,12 +1394,12 @@ msgstr ""
 msgid "CONFIRM_MOVE_TO_SPACE_STAGE_EXPLANATION"
 msgstr ""
 
-#: ../src/general/NewGameSettings.cs:493
+#: ../src/general/NewGameSettings.cs:494
 #: ../src/general/NewGameSettings.tscn:1171
 msgid "CONFIRM_NEW_GAME_BUTTON_TOOLTIP"
 msgstr ""
 
-#: ../src/general/NewGameSettings.cs:500
+#: ../src/general/NewGameSettings.cs:501
 msgid "CONFIRM_NEW_GAME_BUTTON_TOOLTIP_DISABLED"
 msgstr ""
 
@@ -2142,7 +2142,7 @@ msgid "DISMISSED_POPUPS_EXPLANATION"
 msgstr ""
 
 #: ../src/gui_common/dialogs/PermanentlyDismissibleDialog.cs:56
-#: ../src/microbe_stage/gui/MovementModeSelectionPopup.tscn:138
+#: ../src/microbe_stage/gui/MovementModeSelectionPopup.tscn:140
 msgid "DISMISS_INFORMATION_PERMANENTLY"
 msgstr ""
 
@@ -2573,7 +2573,6 @@ msgid "ESTUARY"
 msgstr ""
 
 #: ../src/general/world_effects/WorldEffectVisuals.cs:36
-#: ../src/microbe_stage/editor/PatchMapEventIcon.tscn:8
 msgid "EVENT_ERUPTION_TOOLTIP"
 msgstr ""
 
@@ -2878,7 +2877,7 @@ msgstr ""
 msgid "FOG_OF_WAR_DISABLED"
 msgstr ""
 
-#: ../src/general/NewGameSettings.cs:958
+#: ../src/general/NewGameSettings.cs:959
 msgid "FOG_OF_WAR_DISABLED_DESCRIPTION"
 msgstr ""
 
@@ -2886,7 +2885,7 @@ msgstr ""
 msgid "FOG_OF_WAR_INTENSE"
 msgstr ""
 
-#: ../src/general/NewGameSettings.cs:964
+#: ../src/general/NewGameSettings.cs:965
 msgid "FOG_OF_WAR_INTENSE_DESCRIPTION"
 msgstr ""
 
@@ -2898,7 +2897,7 @@ msgstr ""
 msgid "FOG_OF_WAR_REGULAR"
 msgstr ""
 
-#: ../src/general/NewGameSettings.cs:961
+#: ../src/general/NewGameSettings.cs:962
 msgid "FOG_OF_WAR_REGULAR_DESCRIPTION"
 msgstr ""
 
@@ -4782,15 +4781,15 @@ msgstr ""
 msgid "META_THREADS_TOOLTIP"
 msgstr ""
 
-#: ../src/general/world_effects/patch_events/MeteorImpactEvent.cs:256
+#: ../src/general/world_effects/patch_events/MeteorImpactEvent.cs:229
 msgid "METEOR_IMPACT_EVENT"
 msgstr ""
 
-#: ../src/general/world_effects/patch_events/MeteorImpactEvent.cs:306
+#: ../src/general/world_effects/patch_events/MeteorImpactEvent.cs:329
 msgid "METEOR_STRIKE_START_EVENT_LOG_PLURAL"
 msgstr ""
 
-#: ../src/general/world_effects/patch_events/MeteorImpactEvent.cs:305
+#: ../src/general/world_effects/patch_events/MeteorImpactEvent.cs:328
 msgid "METEOR_STRIKE_START_EVENT_LOG_SINGULAR"
 msgstr ""
 
@@ -5183,7 +5182,7 @@ msgstr ""
 msgid "MODELS"
 msgstr ""
 
-#: ../src/microbe_stage/gui/MovementModeSelectionPopup.tscn:114
+#: ../src/microbe_stage/gui/MovementModeSelectionPopup.tscn:116
 msgid "MODE_CAN_BE_CHANGED_IN_OPTIONS"
 msgstr ""
 
@@ -6345,14 +6344,14 @@ msgstr ""
 msgid "PENDING_ENDOSYMBIOSIS_TITLE"
 msgstr ""
 
-#: ../src/general/NewGameSettings.cs:910 ../src/general/NewGameSettings.cs:917
-#: ../src/general/NewGameSettings.cs:933 ../src/general/OptionsMenu.cs:2179
+#: ../src/general/NewGameSettings.cs:911 ../src/general/NewGameSettings.cs:918
+#: ../src/general/NewGameSettings.cs:934 ../src/general/OptionsMenu.cs:2179
 #: ../src/general/world_effects/GlucoseReductionEffect.cs:74
 #: ../src/general/world_effects/GlucoseReductionEffect.cs:99
 #: ../src/general/WorldGenerationSettings.cs:183
 #: ../src/gui_common/CompoundAmount.cs:316
 #: ../src/microbe_stage/editor/MicrobeEditorReportComponent.cs:531
-#: ../src/microbe_stage/editor/TolerancesEditorSubComponent.cs:714
+#: ../src/microbe_stage/editor/TolerancesEditorSubComponent.cs:716
 #: ../src/microbe_stage/editor/tooltips/EnvironmentalToleranceToolTip.cs:98
 #: ../src/microbe_stage/editor/tooltips/StatModifierToolTip.cs:157
 #: ../src/microbe_stage/editor/tooltips/StatModifierToolTip.cs:237
@@ -7117,11 +7116,11 @@ msgid "SCREEN_EFFECT_NONE"
 msgstr ""
 
 #: ../src/general/OptionsMenu.tscn:1740 ../src/general/OptionsMenu.tscn:1763
-#: ../src/microbe_stage/gui/MovementModeSelectionPopup.tscn:86
+#: ../src/microbe_stage/gui/MovementModeSelectionPopup.tscn:87
 msgid "SCREEN_RELATIVE_MOVEMENT"
 msgstr ""
 
-#: ../src/microbe_stage/gui/MovementModeSelectionPopup.tscn:80
+#: ../src/microbe_stage/gui/MovementModeSelectionPopup.tscn:81
 msgid "SCREEN_RELATIVE_MOVEMENT_TOOLTIP"
 msgstr ""
 
@@ -7161,8 +7160,8 @@ msgstr ""
 msgid "SEED_LABEL"
 msgstr ""
 
-#: ../src/microbe_stage/gui/MovementModeSelectionPopup.tscn:72
-#: ../src/microbe_stage/gui/MovementModeSelectionPopup.tscn:109
+#: ../src/microbe_stage/gui/MovementModeSelectionPopup.tscn:73
+#: ../src/microbe_stage/gui/MovementModeSelectionPopup.tscn:111
 msgid "SELECTED"
 msgstr ""
 
@@ -8905,7 +8904,7 @@ msgid "VACUOLE_SPECIALIZED_DESCRIPTION"
 msgstr ""
 
 #: ../src/gui_common/CompoundAmount.cs:311
-#: ../src/microbe_stage/editor/TolerancesEditorSubComponent.cs:713
+#: ../src/microbe_stage/editor/TolerancesEditorSubComponent.cs:715
 #: ../src/microbe_stage/gui/CompoundProgressBar.cs:509
 #: ../src/microbe_stage/gui/CompoundProgressBar.cs:585
 #: ../src/microbe_stage/gui/PatchDetailsPanel.cs:371
