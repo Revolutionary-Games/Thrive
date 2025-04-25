@@ -554,6 +554,8 @@ limits/message_queue/max_size_kb=8192
 [rendering]
 
 textures/canvas_textures/default_texture_filter=2
+renderer/rendering_method="gl_compatibility"
+renderer/rendering_method.mobile="gl_compatibility"
 textures/vram_compression/import_etc2_astc=true
 textures/default_filters/anisotropic_filtering_level=3
 anti_aliasing/quality/msaa_2d=1
