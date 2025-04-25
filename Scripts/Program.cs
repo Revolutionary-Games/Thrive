@@ -476,6 +476,16 @@ public class Program
             HelpText = "Use a specific signing key for mac builds (defaults to 'SelfSigned')")]
         public string? MacSigningKey { get; set; }
 
+        [Option("apple-team-id", Default = null, HelpText = "Specify Apple developer team ID for signing purposes")]
+        public string? MacTeamId { get; set; }
+
+        [Option("app-notarization-user", Default = null,
+            HelpText = "Specify Apple developer account email for signing")]
+        public string? AppleId { get; set; }
+
+        [Option("app-specific-password", Default = null, HelpText = "Apple developer account login")]
+        public string? AppleAppPassword { get; set; }
+
         [Option("skip-godot-check", Default = false,
             HelpText = "Skip checking if godot is installed and correct version and just try to use it")]
         public bool SkipGodotCheck { get; set; }
