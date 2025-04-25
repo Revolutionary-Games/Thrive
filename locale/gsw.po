@@ -8,7 +8,7 @@ msgstr ""
 "Project-Id-Version: Thrive VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2025-04-12 20:42+0200\n"
-"PO-Revision-Date: 2025-04-17 12:10+0000\n"
+"PO-Revision-Date: 2025-04-23 16:49+0000\n"
 "Last-Translator: Argakyan <andrinmueller@hotmail.ch>\n"
 "Language-Team: Alemannic <https://translate.revolutionarygamesstudio.com/projects/thrive/thrive-game/gsw/>\n"
 "Language: gsw\n"
@@ -1992,26 +1992,42 @@ msgstr "Mündig"
 
 msgid "EVENT_ERUPTION_TOOLTIP"
 msgstr ""
-"Eruptionserignis im Breich\n"
+"Eruptionserignis\n"
 "Erschafft zuesätzliches Schwefelwasserstoff und Kohlestoffdioxid"
 
 msgid "EVENT_METEOR_GLUCOSE"
 msgstr ""
+"Glukosehaltige Meteoriteniinschlag\n"
+"Erhöht d'Kohlestoff- & Glukosewert."
 
 msgid "EVENT_METEOR_IRON"
 msgstr ""
+"Isehaltige Meteoriteiischlag\n"
+"Erhöht d'Kohlestoff- & Isewert.\n"
+"Generiert Isechlumpe."
 
 msgid "EVENT_METEOR_PHOSPHATES"
 msgstr ""
+"Phosphathaltige Meteoriteiischlag\n"
+"Erhöht d'Kohlestoff- & Phosphatwert.\n"
+"Generiert Phosphatchlumpe."
 
 msgid "EVENT_METEOR_PLAIN"
 msgstr ""
+"Meteoriteiischlag\n"
+"Erhöht Kohlestoffdioxid Wert."
 
 msgid "EVENT_METEOR_RADIOACTIVE"
 msgstr ""
+"Radioaktive Meteoriteiischlag\n"
+"Erhöht Kohlestoffdioxid Wert.\n"
+"Generiert radioaktivi Chlumpe."
 
 msgid "EVENT_METEOR_SULFUR"
 msgstr ""
+"Schwefelhaltige Meteoriteiischlag\n"
+"Erhöht Kohlestoff- & Schwefelwert.\n"
+"Generiert Schwefelchlumpe."
 
 msgid "EVOLUTIONARY_TREE"
 msgstr "Evolutionsbaum"
@@ -2150,91 +2166,94 @@ msgid "FERROPLAST_DESCRIPTION"
 msgstr "Es metallisches Chraftwerk. Es Ferroplast isch e Doppelmembranstruktur gfüllt mit Proteine und Enzyme. Es isch en Prokaryot wo assimiliert worde isch vo emene Eukaryotische Wirt. Es chann [thrive:compound type=\"iron\"][/thrive:compound] vo eim chemische Zuestand in en andere umwandle bi enere viel höchere Effizienz als mer mit Rusticyanin erreiche cha. De Prozess, gnannt [b]Ise Oxidation[/b], entlaht Energie wo d'Zelle denn ernte cha."
 
 msgid "FERROPLAST_PROCESSES_DESCRIPTION"
-msgstr ""
+msgstr "Benutzt [thrive:compound type=\"iron\"][/thrive:compound] um [thrive:compound type=\"atp\"][/thrive:compound] z'produziere."
 
 msgid "FILTER_ITEMS_BY_CATEGORY_COLON"
-msgstr ""
+msgstr "Nach Kategorie filtere:"
 
 msgid "FIND_CURRENT_PATCH"
-msgstr ""
+msgstr "Zum aktuelle Gebiet"
 
 msgid "FINISHED_DOT"
-msgstr ""
+msgstr "Fertig."
 
 msgid "FINISH_EDITING_AND_RETURN_TO_ENVIRONMENT"
-msgstr ""
+msgstr "Bearbeitig beende und zur Umgebig zrugg"
 
 msgid "FINISH_ONE_GENERATION"
-msgstr ""
+msgstr "E Generation beende"
 
 msgid "FINISH_X_GENERATIONS"
-msgstr ""
+msgstr "{0} Generatione beende"
 
 msgid "FIRE_TOXIN"
-msgstr ""
+msgstr "Gift schlüdere"
 
 msgid "FIRE_TOXIN_TOOLTIP"
-msgstr ""
+msgstr "Schlüderet es Giftpartikel und schadet d'troffeni Zelle"
 
 msgid "FLAGELLUM"
-msgstr ""
+msgstr "Geissel"
 
 msgid "FLAGELLUM_DESCRIPTION"
-msgstr ""
+msgstr "D'Geissel (Plural: Geissle, au Flagelle) isch es peitscheartiges Bündel vo Proteinfasere, wo sich vode Zellmembran us erstreckt und mit Hilfe vo ATP d'Zelle welleförmig in e Richtig triibe laht. D'Position vom Flagellum bestimmt d'Richtig, idere es Schub für'd Zellbewegig bringt. D'Schubrichtig isch entgege g'setzt zu de Richtig, idere s'Flagellum luegt. Es Flagellum wo links ade Zelle isch git öppe Schub wenn's nach rechts gaht."
 
 msgid "FLAGELLUM_LENGTH_DESCRIPTION"
-msgstr ""
+msgstr "Geissellängi. Längeri Geissle erzüüget meh Aatrieb aber verbruuchet au meh ATP."
 
 msgid "FLAGELLUM_PROCESSES_DESCRIPTION"
-msgstr ""
+msgstr "Nimmt [thrive:compound type=\"atp\"][/thrive:compound] um d'Bewegigsgschwindigkeit vode Zelle z'erhöhe."
 
 msgid "FLEET_NAME_FROM_PLACE"
-msgstr ""
+msgstr "{0} Flotte"
 
 msgid "FLEET_UNITS"
-msgstr ""
+msgstr "Flotteeinheite"
 
 msgid "FLOATING_CHUNKS_COLON"
-msgstr ""
+msgstr "Schwebendi Chlumpe:"
 
 msgid "FLOATING_HAZARD"
-msgstr ""
+msgstr "Schwimmendi Gfahr"
 
 msgid "FLUID"
-msgstr ""
+msgstr "flüssig"
 
 msgid "FLUIDITY_RIGIDITY"
-msgstr ""
+msgstr "Flüssigkeit / Härti"
 
 msgid "FOCUSED"
-msgstr ""
+msgstr "Fokussiert"
 
 msgid "FOCUS_EXPLANATION"
 msgstr ""
+"Fokussierti Mikrobe werdet über e grösseri Entfernig nach Chlumpe oder Beuti luege\n"
+"und sind möglicherwiis sehr viel ehrgiziger, wenn's um Chlumpe gaht.\n"
+"Inkonsequenti Mikrobe wechslet schneller zu neue Ziel."
 
 msgid "FOG_OF_WAR_DISABLED"
-msgstr ""
+msgstr "Chriegsnebel deaktiviert"
 
 msgid "FOG_OF_WAR_DISABLED_DESCRIPTION"
-msgstr ""
+msgstr "(alli Bereich werdet uufdeckt)"
 
 msgid "FOG_OF_WAR_INTENSE"
-msgstr ""
+msgstr "Dichte Chriegsnebel"
 
 msgid "FOG_OF_WAR_INTENSE_DESCRIPTION"
-msgstr ""
+msgstr "(nur bekannti Bereich werdet uufdeckt)"
 
 msgid "FOG_OF_WAR_MODE"
-msgstr ""
+msgstr "Chriegsnebel Modus"
 
 msgid "FOG_OF_WAR_REGULAR"
-msgstr ""
+msgstr "Normale Chriegsnebel"
 
 msgid "FOG_OF_WAR_REGULAR_DESCRIPTION"
-msgstr ""
+msgstr "(bereich wommer gsi isch, sowie Nachbarbereich, werdet uufdeckt)"
 
 msgid "FOOD_CHAIN"
-msgstr ""
+msgstr "Nahrigschette"
 
 msgid "FOOD_SOURCE_ENERGY_INFO"
 msgstr ""
