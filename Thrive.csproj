@@ -40,8 +40,8 @@
   </ItemGroup>
   <!-- Test resources -->
   <ItemGroup Condition="'$(Configuration)' != 'ExportRelease'">
-    <PackageReference Include="gdUnit4.api" Version="4.4.0-rc12" />
-    <PackageReference Include="gdUnit4.test.adapter" Version="2.1.0-rc4" />
+    <PackageReference Include="gdUnit4.api" Version="4.4.0-rc13" />
+    <PackageReference Include="gdUnit4.test.adapter" Version="2.1.0-rc5" />
     <PackageReference Include="gdUnit4.analyzers" Version="1.0.0-rc5">
       <PrivateAssets>none</PrivateAssets>
       <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
