@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2025-03-14 11:08+0200\n"
+"POT-Creation-Date: 2025-04-26 10:53+0300\n"
 "PO-Revision-Date: 2025-01-21 12:01+0000\n"
 "Last-Translator: Anonymous <noreply@weblate.org>\n"
 "Language-Team: Romanian <https://translate.revolutionarygamesstudio.com/projects/thrive/thrive-game/ro/>\n"
@@ -198,6 +198,21 @@ msgstr "și"
 msgid "ANISOTROPIC_FILTERING"
 msgstr ""
 
+msgid "ANTIALIASING_MSAA_TAA"
+msgstr ""
+
+msgid "ANTI_ALIASING_FXAA"
+msgstr ""
+
+msgid "ANTI_ALIASING_MODE"
+msgstr ""
+
+msgid "ANTI_ALIASING_MSAA"
+msgstr ""
+
+msgid "ANTI_ALIASING_TAA"
+msgstr ""
+
 msgid "APPEARANCE"
 msgstr "Apariție"
 
@@ -329,6 +344,10 @@ msgid "AUTO-EVO_PREDICTION_BOX_DESCRIPTION"
 msgstr ""
 "Acest panou arată energia totală așteptată colectată și numărul populației (în paranteze) din auto-evo pentru speciile editate.\n"
 "Auto-evo rulează simularea populației care este cealaltă parte (în afară de propria performanță) care afectează populația."
+
+#, fuzzy
+msgid "AUTO-EVO_RESULTS_TITLE"
+msgstr "Rezultate Auto-evo:"
 
 msgid "AUTO-EVO_STEPS_DONE"
 msgstr "{0:F1}% terminat. {1:n0}/{2:n0} pași."
@@ -511,6 +530,14 @@ msgstr "Legați axele împreună"
 msgid "BIOLUMINESCENT_VACUOLE"
 msgstr ""
 
+#, fuzzy
+msgid "BIOLUMINESCENT_VACUOLE_DESCRIPTION"
+msgstr "Etapa Microbilor"
+
+#, fuzzy
+msgid "BIOLUMINESCENT_VACUOLE_PROCESSES_DESCRIPTION"
+msgstr "Apăsați [thrive:input]g_toggle_binding[/thrive:input] pentru a activa/dezactiva modul de unire. Când sunteți în modul de unire, puteți atașa alte celule ale speciei dvs. la colonie prin a vă muta în ele. Pentru a părăsi o colonie, apăsați [thrive:input]g_unbind_all[/thrive:input]. Nu puteți intra în editor în timp ce sunteți unit cu alte celule."
+
 msgid "BIOME_LABEL"
 msgstr ""
 
@@ -658,6 +685,10 @@ msgstr "Treceți la etapa de trezire. Disponibil odată ce aveți creierul sufic
 msgid "CELL_STAT_SPEED_TOOLTIP"
 msgstr "Treceți la etapa de trezire. Disponibil odată ce aveți creierul suficient de dezvoltat (tip de țesut cu axoni)."
 
+#, fuzzy
+msgid "CELL_STAT_STORAGE_TOOLTIP"
+msgstr "Treceți la etapa de trezire. Disponibil odată ce aveți creierul suficient de dezvoltat (tip de țesut cu axoni)."
+
 msgid "CELL_TYPE_BUTTON_ATP_CONSUMPTION"
 msgstr ""
 
@@ -783,6 +814,9 @@ msgid "CLEAN_UP_OLD_SAVES"
 msgstr ""
 
 msgid "CLEAR_CACHE"
+msgstr ""
+
+msgid "CLICK_TO_SELECT"
 msgstr ""
 
 msgid "CLOSE"
@@ -1904,6 +1938,25 @@ msgstr ""
 msgid "EVENT_ERUPTION_TOOLTIP"
 msgstr "Treceți la etapa de trezire. Disponibil odată ce aveți creierul suficient de dezvoltat (tip de țesut cu axoni)."
 
+msgid "EVENT_METEOR_GLUCOSE"
+msgstr ""
+
+msgid "EVENT_METEOR_IRON"
+msgstr ""
+
+msgid "EVENT_METEOR_PHOSPHATES"
+msgstr ""
+
+#, fuzzy
+msgid "EVENT_METEOR_PLAIN"
+msgstr "Treceți la etapa de trezire. Disponibil odată ce aveți creierul suficient de dezvoltat (tip de țesut cu axoni)."
+
+msgid "EVENT_METEOR_RADIOACTIVE"
+msgstr ""
+
+msgid "EVENT_METEOR_SULFUR"
+msgstr ""
+
 msgid "EVOLUTIONARY_TREE"
 msgstr ""
 
@@ -2244,6 +2297,26 @@ msgstr ""
 msgid "GLES3"
 msgstr ""
 
+msgid "GLOBAL_GLACIATION_END_EVENT_LOG"
+msgstr ""
+
+#, fuzzy
+msgid "GLOBAL_GLACIATION_EVENT"
+msgstr "Înjumătățește Populația"
+
+#, fuzzy
+msgid "GLOBAL_GLACIATION_EVENT_TOOLTIP"
+msgstr "Treceți la etapa de trezire. Disponibil odată ce aveți creierul suficient de dezvoltat (tip de țesut cu axoni)."
+
+msgid "GLOBAL_GLACIATION_EVENT_WARNING_LOG_PLURAL"
+msgstr ""
+
+msgid "GLOBAL_GLACIATION_EVENT_WARNING_LOG_SINGULAR"
+msgstr ""
+
+msgid "GLOBAL_GLACIATION_START_EVENT_LOG"
+msgstr ""
+
 msgid "GLOBAL_INITIAL_LETTER"
 msgstr ""
 
@@ -2390,6 +2463,9 @@ msgid "ID_IS_NOT_A_NUMBER"
 msgstr ""
 
 msgid "ID_NUMBER"
+msgstr ""
+
+msgid "IF_FALLBACK_RENDERER_USED_ALL_NOT_AVAILABLE"
 msgstr ""
 
 msgid "IMAGE_FILE_TYPES"
@@ -3006,13 +3082,31 @@ msgstr ""
 msgid "LOADING_GAME"
 msgstr ""
 
+msgid "LOADING_GRAPHICS_SHADERS"
+msgstr ""
+
 msgid "LOADING_MACROSCOPIC_EDITOR"
 msgstr ""
 
 msgid "LOADING_MICROBE_EDITOR"
 msgstr ""
 
+#, fuzzy
+msgid "LOADING_MICROBE_STAGE"
+msgstr "Etapa Microbilor"
+
 msgid "LOADING_MULTICELLULAR_EDITOR"
+msgstr ""
+
+#, fuzzy
+msgid "LOADING_MULTICELLULAR_STAGE"
+msgstr "Etapa Multicelulară"
+
+#, fuzzy
+msgid "LOADING_STAGE"
+msgstr "Stagiul de trezire"
+
+msgid "LOADING_STAGE_ASSETS"
 msgstr ""
 
 msgid "LOAD_FINISHED"
@@ -3045,6 +3139,12 @@ msgstr ""
 msgid "LOCK_DAY_NIGHT_CYCLE"
 msgstr ""
 
+msgid "LOWER_SCALE_INCREASES_PERFORMANCE"
+msgstr ""
+
+msgid "LOWER_VALUE_MAKES_SHARPER_IMAGE"
+msgstr ""
+
 msgid "LOW_MENU_PERFORMANCE"
 msgstr ""
 
@@ -3056,6 +3156,13 @@ msgstr ""
 
 msgid "LOW_QUALITY_BACKGROUND_BLUR_TOOLTIP"
 msgstr ""
+
+msgid "LUCIFERASE"
+msgstr ""
+
+#, fuzzy
+msgid "LUCIFERASE_SYNTHESIS"
+msgstr "Etapa Microbilor"
 
 msgid "LYSOSOME"
 msgstr ""
@@ -3184,6 +3291,15 @@ msgid "META_THREADS_TOOLTIP"
 msgstr ""
 "Nu poate fi detectat automat dacă hyperthreading-ul este activat sau nu.\n"
 "Acest lucru afectează numărul implicit de thread-uri, deoarece thread-urile hiperthreading nu sunt la fel de rapide ca nucleele CPU reale."
+
+msgid "METEOR_IMPACT_EVENT"
+msgstr ""
+
+msgid "METEOR_STRIKE_START_EVENT_LOG_PLURAL"
+msgstr ""
+
+msgid "METEOR_STRIKE_START_EVENT_LOG_SINGULAR"
+msgstr ""
 
 msgid "METRICS"
 msgstr ""
@@ -3387,10 +3503,6 @@ msgstr ""
 msgid "MICROBE_STAGE_CONTROL_TEXT_CONTROLLER"
 msgstr ""
 
-#, fuzzy
-msgid "MICROBE_STAGE_DAY_NIGHT_TEXT"
-msgstr "Etapa Microbilor"
-
 msgid "MICROBE_STAGE_HEALTH_TEXT"
 msgstr ""
 
@@ -3495,6 +3607,9 @@ msgstr ""
 
 msgid "MODELS"
 msgstr "Modele"
+
+msgid "MODE_CAN_BE_CHANGED_IN_OPTIONS"
+msgstr ""
 
 msgid "MODIFY"
 msgstr ""
@@ -4368,6 +4483,10 @@ msgstr ""
 msgid "PLAYER_RELATIVE_MOVEMENT"
 msgstr ""
 
+#, fuzzy
+msgid "PLAYER_RELATIVE_MOVEMENT_TOOLTIP"
+msgstr "Deschide meniul setărilor avansate"
+
 msgid "PLAYER_REPRODUCED"
 msgstr ""
 
@@ -4447,6 +4566,10 @@ msgstr ""
 msgid "PROCESS_SPEED_MODIFIER"
 msgstr ""
 
+#, fuzzy
+msgid "PROCESS_TOGGLE_TOOLTIP"
+msgstr "Treceți la etapa de trezire. Disponibil odată ce aveți creierul suficient de dezvoltat (tip de țesut cu axoni)."
+
 msgid "PROGRAMMING_TEAM"
 msgstr ""
 
@@ -4525,6 +4648,9 @@ msgstr ""
 msgid "REFRESH"
 msgstr ""
 
+msgid "RENDER_SCALE"
+msgstr ""
+
 msgid "REPORT"
 msgstr ""
 
@@ -4584,6 +4710,15 @@ msgstr ""
 
 msgid "RESET_SETTINGS_TO_DEFAULTS"
 msgstr ""
+
+msgid "RESET_SHOWN_TUTORIALS"
+msgstr ""
+
+#, fuzzy
+msgid "RESET_SHOWN_TUTORIALS_TOOLTIP"
+msgstr ""
+"Nu poate fi detectat automat dacă hyperthreading-ul este activat sau nu.\n"
+"Acest lucru afectează numărul implicit de thread-uri, deoarece thread-urile hiperthreading nu sunt la fel de rapide ca nucleele CPU reale."
 
 msgid "RESET_TO_DEFAULTS"
 msgstr ""
@@ -4816,6 +4951,10 @@ msgstr ""
 msgid "SCREEN_RELATIVE_MOVEMENT"
 msgstr ""
 
+#, fuzzy
+msgid "SCREEN_RELATIVE_MOVEMENT_TOOLTIP"
+msgstr "Treceți la etapa de trezire. Disponibil odată ce aveți creierul suficient de dezvoltat (tip de țesut cu axoni)."
+
 msgid "SCROLLLOCK"
 msgstr ""
 
@@ -4838,6 +4977,9 @@ msgid "SECRETE_SLIME_TOOLTIP"
 msgstr ""
 
 msgid "SEED_LABEL"
+msgstr ""
+
+msgid "SELECTED"
 msgstr ""
 
 msgid "SELECTED_COLON"
@@ -4873,6 +5015,9 @@ msgstr ""
 msgid "SELECT_ENZYME"
 msgstr ""
 
+msgid "SELECT_MOVEMENT_MODE_TITLE"
+msgstr ""
+
 msgid "SELECT_OPTION"
 msgstr ""
 
@@ -4906,6 +5051,15 @@ msgstr ""
 msgid "SHIFT"
 msgstr ""
 
+msgid "SHOW_ALL_TUTORIALS"
+msgstr ""
+
+#, fuzzy
+msgid "SHOW_ALL_TUTORIALS_TOOLTIP"
+msgstr ""
+"Nu poate fi detectat automat dacă hyperthreading-ul este activat sau nu.\n"
+"Acest lucru afectează numărul implicit de thread-uri, deoarece thread-urile hiperthreading nu sunt la fel de rapide ca nucleele CPU reale."
+
 msgid "SHOW_DAMAGE_EFFECT"
 msgstr ""
 
@@ -4921,14 +5075,17 @@ msgstr ""
 msgid "SHOW_NEW_PATCH_NOTES_TOOLTIP"
 msgstr ""
 
-msgid "SHOW_TUTORIALS"
-msgstr ""
-
 msgid "SHOW_TUTORIALS_IN_NEW_CURRENT_OPTION"
 msgstr ""
 
 msgid "SHOW_TUTORIALS_IN_NEW_GAMES_OPTION"
 msgstr ""
+
+#, fuzzy
+msgid "SHOW_TUTORIALS_OPTION_TOOLTIP"
+msgstr ""
+"Nu poate fi detectat automat dacă hyperthreading-ul este activat sau nu.\n"
+"Acest lucru afectează numărul implicit de thread-uri, deoarece thread-urile hiperthreading nu sunt la fel de rapide ca nucleele CPU reale."
 
 msgid "SHOW_UNSAVED_PROGRESS_WARNING"
 msgstr ""
@@ -5077,6 +5234,13 @@ msgstr ""
 msgid "SPECIES_LIST"
 msgstr ""
 
+msgid "SPECIES_MEMBER_IMPACT_ON_POP"
+msgstr ""
+
+#, fuzzy
+msgid "SPECIES_MEMBER_IMPACT_ON_POPULATION_EXPLANATION"
+msgstr "(viteza cu care speciile IA suferă mutații)"
+
 msgid "SPECIES_NAME_DOT_DOT_DOT"
 msgstr ""
 
@@ -5217,6 +5381,10 @@ msgstr ""
 
 msgid "STORE_LOGGED_IN_AS"
 msgstr ""
+
+#, fuzzy
+msgid "STRAIN_BAR_TOOLTIP"
+msgstr "Treceți la etapa de trezire. Disponibil odată ce aveți creierul suficient de dezvoltat (tip de țesut cu axoni)."
 
 msgid "STRAIN_BAR_VISIBILITY"
 msgstr ""
@@ -5473,6 +5641,12 @@ msgstr ""
 msgid "TIMELINE_NICHE_FILL"
 msgstr ""
 
+msgid "TIMELINE_PLAYER_MIGRATED"
+msgstr ""
+
+msgid "TIMELINE_PLAYER_MIGRATED_TO"
+msgstr ""
+
 msgid "TIMELINE_SELECTION_PRESSURE_SPLIT"
 msgstr ""
 
@@ -5485,6 +5659,10 @@ msgstr ""
 
 msgid "TIMELINE_SPECIES_EXTINCT_LOCAL"
 msgstr ""
+
+#, fuzzy
+msgid "TIMELINE_SPECIES_FOLLOWED"
+msgstr "Etapa Microbilor"
 
 msgid "TIMELINE_SPECIES_MIGRATED_FROM"
 msgstr ""
@@ -5682,9 +5860,6 @@ msgstr ""
 msgid "TOXISOME_DESCRIPTION"
 msgstr "Permite unirea cu alte celule. Acesta este primul pas către multicelularitate. Când celula face parte dintr-o colonie, compușii sunt împărțiți între celule. Nu puteți intra în editor în timp ce faceți parte dintr-o colonie, deci trebuie să vă despărțiți odată ce colectați suficienți compuși pentru a vă împărți celula."
 
-msgid "TO_BE_IMPLEMENTED"
-msgstr ""
-
 msgid "TRANSLATORS"
 msgstr ""
 
@@ -5706,6 +5881,10 @@ msgstr ""
 
 msgid "TUTORIAL"
 msgstr ""
+
+#, fuzzy
+msgid "TUTORIAL_ALL_NOT_ENABLED_EXPLANATION"
+msgstr "(viteza cu care speciile IA suferă mutații)"
 
 msgid "TUTORIAL_MICROBE_EDITOR_ATP_BALANCE_INTRO"
 msgstr ""
@@ -5737,11 +5916,95 @@ msgstr ""
 "\n"
 "Termosintază: Produce [thrive:compound type=\"atp\"][/thrive:compound] folosind variații din temperatură"
 
+#, fuzzy
+msgid "TUTORIAL_MICROBE_EDITOR_COMPOUND_BALANCES"
+msgstr ""
+"Structuri Procariote\n"
+"\n"
+"Citoplasmă: Poate depozita compuși și face glicoliză (produce un pic de [thrive:compound type=\"atp\"][/thrive:compound] din [thrive:compound type=\"glucose\"][/thrive:compound])\n"
+"\n"
+"Metabolozomi: Produc [thrive:compound type=\"atp\"][/thrive:compound] din [thrive:compound type=\"glucose\"][/thrive:compound]\n"
+"\n"
+"Tilacoide: Produc 1/3 din [thrive:compound type=\"glucose\"][/thrive:compound] care un cloroplast produce, dar mai și face glicoliză, și ocupă doar un hexagon.\n"
+"\n"
+"Proteine Care Chemosintează: Produc o jumătate mai puțină [thrive:compound type=\"glucose\"][/thrive:compound] din [thrive:compound type=\"hydrogensulfide\"][/thrive:compound] ca un chemoplast, dar mai și fac glicoliză, și ocupă doar un hexagon.\n"
+"\n"
+"Ruginină: Utilizează [thrive:compound type=\"iron\"][/thrive:compound] ca să producă [thrive:compound type=\"atp\"][/thrive:compound]\n"
+"\n"
+"Azotenază: Utilizează azot atmosferic și [thrive:compound type=\"atp\"][/thrive:compound] ca să producă [thrive:compound type=\"ammonia\"][/thrive:compound] fără nevoie de aer.\n"
+"\n"
+"Oxitoxizom: Utilizează [thrive:compound type=\"atp\"][/thrive:compound] ca să facă [thrive:compound type=\"oxytoxy\"][/thrive:compound]\n"
+"\n"
+"Termosintază: Produce [thrive:compound type=\"atp\"][/thrive:compound] folosind variații din temperatură"
+
+#, fuzzy
+msgid "TUTORIAL_MICROBE_EDITOR_DIGESTION_STAT"
+msgstr ""
+"Structuri Procariote\n"
+"\n"
+"Citoplasmă: Poate depozita compuși și face glicoliză (produce un pic de [thrive:compound type=\"atp\"][/thrive:compound] din [thrive:compound type=\"glucose\"][/thrive:compound])\n"
+"\n"
+"Metabolozomi: Produc [thrive:compound type=\"atp\"][/thrive:compound] din [thrive:compound type=\"glucose\"][/thrive:compound]\n"
+"\n"
+"Tilacoide: Produc 1/3 din [thrive:compound type=\"glucose\"][/thrive:compound] care un cloroplast produce, dar mai și face glicoliză, și ocupă doar un hexagon.\n"
+"\n"
+"Proteine Care Chemosintează: Produc o jumătate mai puțină [thrive:compound type=\"glucose\"][/thrive:compound] din [thrive:compound type=\"hydrogensulfide\"][/thrive:compound] ca un chemoplast, dar mai și fac glicoliză, și ocupă doar un hexagon.\n"
+"\n"
+"Ruginină: Utilizează [thrive:compound type=\"iron\"][/thrive:compound] ca să producă [thrive:compound type=\"atp\"][/thrive:compound]\n"
+"\n"
+"Azotenază: Utilizează azot atmosferic și [thrive:compound type=\"atp\"][/thrive:compound] ca să producă [thrive:compound type=\"ammonia\"][/thrive:compound] fără nevoie de aer.\n"
+"\n"
+"Oxitoxizom: Utilizează [thrive:compound type=\"atp\"][/thrive:compound] ca să facă [thrive:compound type=\"oxytoxy\"][/thrive:compound]\n"
+"\n"
+"Termosintază: Produce [thrive:compound type=\"atp\"][/thrive:compound] folosind variații din temperatură"
+
 msgid "TUTORIAL_MICROBE_EDITOR_ENDING_TEXT"
 msgstr ""
 
 #, fuzzy
 msgid "TUTORIAL_MICROBE_EDITOR_FLAGELLUM"
+msgstr ""
+"Structuri Procariote\n"
+"\n"
+"Citoplasmă: Poate depozita compuși și face glicoliză (produce un pic de [thrive:compound type=\"atp\"][/thrive:compound] din [thrive:compound type=\"glucose\"][/thrive:compound])\n"
+"\n"
+"Metabolozomi: Produc [thrive:compound type=\"atp\"][/thrive:compound] din [thrive:compound type=\"glucose\"][/thrive:compound]\n"
+"\n"
+"Tilacoide: Produc 1/3 din [thrive:compound type=\"glucose\"][/thrive:compound] care un cloroplast produce, dar mai și face glicoliză, și ocupă doar un hexagon.\n"
+"\n"
+"Proteine Care Chemosintează: Produc o jumătate mai puțină [thrive:compound type=\"glucose\"][/thrive:compound] din [thrive:compound type=\"hydrogensulfide\"][/thrive:compound] ca un chemoplast, dar mai și fac glicoliză, și ocupă doar un hexagon.\n"
+"\n"
+"Ruginină: Utilizează [thrive:compound type=\"iron\"][/thrive:compound] ca să producă [thrive:compound type=\"atp\"][/thrive:compound]\n"
+"\n"
+"Azotenază: Utilizează azot atmosferic și [thrive:compound type=\"atp\"][/thrive:compound] ca să producă [thrive:compound type=\"ammonia\"][/thrive:compound] fără nevoie de aer.\n"
+"\n"
+"Oxitoxizom: Utilizează [thrive:compound type=\"atp\"][/thrive:compound] ca să facă [thrive:compound type=\"oxytoxy\"][/thrive:compound]\n"
+"\n"
+"Termosintază: Produce [thrive:compound type=\"atp\"][/thrive:compound] folosind variații din temperatură"
+
+#, fuzzy
+msgid "TUTORIAL_MICROBE_EDITOR_FOOD_CHAIN"
+msgstr ""
+"Structuri Procariote\n"
+"\n"
+"Citoplasmă: Poate depozita compuși și face glicoliză (produce un pic de [thrive:compound type=\"atp\"][/thrive:compound] din [thrive:compound type=\"glucose\"][/thrive:compound])\n"
+"\n"
+"Metabolozomi: Produc [thrive:compound type=\"atp\"][/thrive:compound] din [thrive:compound type=\"glucose\"][/thrive:compound]\n"
+"\n"
+"Tilacoide: Produc 1/3 din [thrive:compound type=\"glucose\"][/thrive:compound] care un cloroplast produce, dar mai și face glicoliză, și ocupă doar un hexagon.\n"
+"\n"
+"Proteine Care Chemosintează: Produc o jumătate mai puțină [thrive:compound type=\"glucose\"][/thrive:compound] din [thrive:compound type=\"hydrogensulfide\"][/thrive:compound] ca un chemoplast, dar mai și fac glicoliză, și ocupă doar un hexagon.\n"
+"\n"
+"Ruginină: Utilizează [thrive:compound type=\"iron\"][/thrive:compound] ca să producă [thrive:compound type=\"atp\"][/thrive:compound]\n"
+"\n"
+"Azotenază: Utilizează azot atmosferic și [thrive:compound type=\"atp\"][/thrive:compound] ca să producă [thrive:compound type=\"ammonia\"][/thrive:compound] fără nevoie de aer.\n"
+"\n"
+"Oxitoxizom: Utilizează [thrive:compound type=\"atp\"][/thrive:compound] ca să facă [thrive:compound type=\"oxytoxy\"][/thrive:compound]\n"
+"\n"
+"Termosintază: Produce [thrive:compound type=\"atp\"][/thrive:compound] folosind variații din temperatură"
+
+#, fuzzy
+msgid "TUTORIAL_MICROBE_EDITOR_MIGRATION"
 msgstr ""
 "Structuri Procariote\n"
 "\n"
@@ -5854,14 +6117,140 @@ msgstr ""
 msgid "TUTORIAL_MICROBE_STAGE_ENGULFMENT_TEXT"
 msgstr ""
 
+#, fuzzy
+msgid "TUTORIAL_MICROBE_STAGE_ENVIRONMENT_PANEL"
+msgstr ""
+"Structuri Procariote\n"
+"\n"
+"Citoplasmă: Poate depozita compuși și face glicoliză (produce un pic de [thrive:compound type=\"atp\"][/thrive:compound] din [thrive:compound type=\"glucose\"][/thrive:compound])\n"
+"\n"
+"Metabolozomi: Produc [thrive:compound type=\"atp\"][/thrive:compound] din [thrive:compound type=\"glucose\"][/thrive:compound]\n"
+"\n"
+"Tilacoide: Produc 1/3 din [thrive:compound type=\"glucose\"][/thrive:compound] care un cloroplast produce, dar mai și face glicoliză, și ocupă doar un hexagon.\n"
+"\n"
+"Proteine Care Chemosintează: Produc o jumătate mai puțină [thrive:compound type=\"glucose\"][/thrive:compound] din [thrive:compound type=\"hydrogensulfide\"][/thrive:compound] ca un chemoplast, dar mai și fac glicoliză, și ocupă doar un hexagon.\n"
+"\n"
+"Ruginină: Utilizează [thrive:compound type=\"iron\"][/thrive:compound] ca să producă [thrive:compound type=\"atp\"][/thrive:compound]\n"
+"\n"
+"Azotenază: Utilizează azot atmosferic și [thrive:compound type=\"atp\"][/thrive:compound] ca să producă [thrive:compound type=\"ammonia\"][/thrive:compound] fără nevoie de aer.\n"
+"\n"
+"Oxitoxizom: Utilizează [thrive:compound type=\"atp\"][/thrive:compound] ca să facă [thrive:compound type=\"oxytoxy\"][/thrive:compound]\n"
+"\n"
+"Termosintază: Produce [thrive:compound type=\"atp\"][/thrive:compound] folosind variații din temperatură"
+
 msgid "TUTORIAL_MICROBE_STAGE_HELP_MENU_AND_ZOOM"
 msgstr ""
 
 msgid "TUTORIAL_MICROBE_STAGE_LEAVE_COLONY_TEXT"
 msgstr ""
 
+#, fuzzy
+msgid "TUTORIAL_MICROBE_STAGE_MEMBER_DIED"
+msgstr ""
+"Structuri Procariote\n"
+"\n"
+"Citoplasmă: Poate depozita compuși și face glicoliză (produce un pic de [thrive:compound type=\"atp\"][/thrive:compound] din [thrive:compound type=\"glucose\"][/thrive:compound])\n"
+"\n"
+"Metabolozomi: Produc [thrive:compound type=\"atp\"][/thrive:compound] din [thrive:compound type=\"glucose\"][/thrive:compound]\n"
+"\n"
+"Tilacoide: Produc 1/3 din [thrive:compound type=\"glucose\"][/thrive:compound] care un cloroplast produce, dar mai și face glicoliză, și ocupă doar un hexagon.\n"
+"\n"
+"Proteine Care Chemosintează: Produc o jumătate mai puțină [thrive:compound type=\"glucose\"][/thrive:compound] din [thrive:compound type=\"hydrogensulfide\"][/thrive:compound] ca un chemoplast, dar mai și fac glicoliză, și ocupă doar un hexagon.\n"
+"\n"
+"Ruginină: Utilizează [thrive:compound type=\"iron\"][/thrive:compound] ca să producă [thrive:compound type=\"atp\"][/thrive:compound]\n"
+"\n"
+"Azotenază: Utilizează azot atmosferic și [thrive:compound type=\"atp\"][/thrive:compound] ca să producă [thrive:compound type=\"ammonia\"][/thrive:compound] fără nevoie de aer.\n"
+"\n"
+"Oxitoxizom: Utilizează [thrive:compound type=\"atp\"][/thrive:compound] ca să facă [thrive:compound type=\"oxytoxy\"][/thrive:compound]\n"
+"\n"
+"Termosintază: Produce [thrive:compound type=\"atp\"][/thrive:compound] folosind variații din temperatură"
+
+#, fuzzy
+msgid "TUTORIAL_MICROBE_STAGE_OPEN_PROCESS_PANEL"
+msgstr ""
+"Structuri Procariote\n"
+"\n"
+"Citoplasmă: Poate depozita compuși și face glicoliză (produce un pic de [thrive:compound type=\"atp\"][/thrive:compound] din [thrive:compound type=\"glucose\"][/thrive:compound])\n"
+"\n"
+"Metabolozomi: Produc [thrive:compound type=\"atp\"][/thrive:compound] din [thrive:compound type=\"glucose\"][/thrive:compound]\n"
+"\n"
+"Tilacoide: Produc 1/3 din [thrive:compound type=\"glucose\"][/thrive:compound] care un cloroplast produce, dar mai și face glicoliză, și ocupă doar un hexagon.\n"
+"\n"
+"Proteine Care Chemosintează: Produc o jumătate mai puțină [thrive:compound type=\"glucose\"][/thrive:compound] din [thrive:compound type=\"hydrogensulfide\"][/thrive:compound] ca un chemoplast, dar mai și fac glicoliză, și ocupă doar un hexagon.\n"
+"\n"
+"Ruginină: Utilizează [thrive:compound type=\"iron\"][/thrive:compound] ca să producă [thrive:compound type=\"atp\"][/thrive:compound]\n"
+"\n"
+"Azotenază: Utilizează azot atmosferic și [thrive:compound type=\"atp\"][/thrive:compound] ca să producă [thrive:compound type=\"ammonia\"][/thrive:compound] fără nevoie de aer.\n"
+"\n"
+"Oxitoxizom: Utilizează [thrive:compound type=\"atp\"][/thrive:compound] ca să facă [thrive:compound type=\"oxytoxy\"][/thrive:compound]\n"
+"\n"
+"Termosintază: Produce [thrive:compound type=\"atp\"][/thrive:compound] folosind variații din temperatură"
+
+#, fuzzy
+msgid "TUTORIAL_MICROBE_STAGE_PAUSING"
+msgstr ""
+"Structuri Procariote\n"
+"\n"
+"Citoplasmă: Poate depozita compuși și face glicoliză (produce un pic de [thrive:compound type=\"atp\"][/thrive:compound] din [thrive:compound type=\"glucose\"][/thrive:compound])\n"
+"\n"
+"Metabolozomi: Produc [thrive:compound type=\"atp\"][/thrive:compound] din [thrive:compound type=\"glucose\"][/thrive:compound]\n"
+"\n"
+"Tilacoide: Produc 1/3 din [thrive:compound type=\"glucose\"][/thrive:compound] care un cloroplast produce, dar mai și face glicoliză, și ocupă doar un hexagon.\n"
+"\n"
+"Proteine Care Chemosintează: Produc o jumătate mai puțină [thrive:compound type=\"glucose\"][/thrive:compound] din [thrive:compound type=\"hydrogensulfide\"][/thrive:compound] ca un chemoplast, dar mai și fac glicoliză, și ocupă doar un hexagon.\n"
+"\n"
+"Ruginină: Utilizează [thrive:compound type=\"iron\"][/thrive:compound] ca să producă [thrive:compound type=\"atp\"][/thrive:compound]\n"
+"\n"
+"Azotenază: Utilizează azot atmosferic și [thrive:compound type=\"atp\"][/thrive:compound] ca să producă [thrive:compound type=\"ammonia\"][/thrive:compound] fără nevoie de aer.\n"
+"\n"
+"Oxitoxizom: Utilizează [thrive:compound type=\"atp\"][/thrive:compound] ca să facă [thrive:compound type=\"oxytoxy\"][/thrive:compound]\n"
+"\n"
+"Termosintază: Produce [thrive:compound type=\"atp\"][/thrive:compound] folosind variații din temperatură"
+
+#, fuzzy
+msgid "TUTORIAL_MICROBE_STAGE_PROCESS_PANEL"
+msgstr ""
+"Structuri Procariote\n"
+"\n"
+"Citoplasmă: Poate depozita compuși și face glicoliză (produce un pic de [thrive:compound type=\"atp\"][/thrive:compound] din [thrive:compound type=\"glucose\"][/thrive:compound])\n"
+"\n"
+"Metabolozomi: Produc [thrive:compound type=\"atp\"][/thrive:compound] din [thrive:compound type=\"glucose\"][/thrive:compound]\n"
+"\n"
+"Tilacoide: Produc 1/3 din [thrive:compound type=\"glucose\"][/thrive:compound] care un cloroplast produce, dar mai și face glicoliză, și ocupă doar un hexagon.\n"
+"\n"
+"Proteine Care Chemosintează: Produc o jumătate mai puțină [thrive:compound type=\"glucose\"][/thrive:compound] din [thrive:compound type=\"hydrogensulfide\"][/thrive:compound] ca un chemoplast, dar mai și fac glicoliză, și ocupă doar un hexagon.\n"
+"\n"
+"Ruginină: Utilizează [thrive:compound type=\"iron\"][/thrive:compound] ca să producă [thrive:compound type=\"atp\"][/thrive:compound]\n"
+"\n"
+"Azotenază: Utilizează azot atmosferic și [thrive:compound type=\"atp\"][/thrive:compound] ca să producă [thrive:compound type=\"ammonia\"][/thrive:compound] fără nevoie de aer.\n"
+"\n"
+"Oxitoxizom: Utilizează [thrive:compound type=\"atp\"][/thrive:compound] ca să facă [thrive:compound type=\"oxytoxy\"][/thrive:compound]\n"
+"\n"
+"Termosintază: Produce [thrive:compound type=\"atp\"][/thrive:compound] folosind variații din temperatură"
+
 msgid "TUTORIAL_MICROBE_STAGE_REPRODUCE_TEXT"
 msgstr ""
+
+#, fuzzy
+msgid "TUTORIAL_MICROBE_STAGE_RESOURCE_SPLIT"
+msgstr ""
+"Structuri Procariote\n"
+"\n"
+"Citoplasmă: Poate depozita compuși și face glicoliză (produce un pic de [thrive:compound type=\"atp\"][/thrive:compound] din [thrive:compound type=\"glucose\"][/thrive:compound])\n"
+"\n"
+"Metabolozomi: Produc [thrive:compound type=\"atp\"][/thrive:compound] din [thrive:compound type=\"glucose\"][/thrive:compound]\n"
+"\n"
+"Tilacoide: Produc 1/3 din [thrive:compound type=\"glucose\"][/thrive:compound] care un cloroplast produce, dar mai și face glicoliză, și ocupă doar un hexagon.\n"
+"\n"
+"Proteine Care Chemosintează: Produc o jumătate mai puțină [thrive:compound type=\"glucose\"][/thrive:compound] din [thrive:compound type=\"hydrogensulfide\"][/thrive:compound] ca un chemoplast, dar mai și fac glicoliză, și ocupă doar un hexagon.\n"
+"\n"
+"Ruginină: Utilizează [thrive:compound type=\"iron\"][/thrive:compound] ca să producă [thrive:compound type=\"atp\"][/thrive:compound]\n"
+"\n"
+"Azotenază: Utilizează azot atmosferic și [thrive:compound type=\"atp\"][/thrive:compound] ca să producă [thrive:compound type=\"ammonia\"][/thrive:compound] fără nevoie de aer.\n"
+"\n"
+"Oxitoxizom: Utilizează [thrive:compound type=\"atp\"][/thrive:compound] ca să facă [thrive:compound type=\"oxytoxy\"][/thrive:compound]\n"
+"\n"
+"Termosintază: Produce [thrive:compound type=\"atp\"][/thrive:compound] folosind variații din temperatură"
 
 msgid "TUTORIAL_MICROBE_STAGE_UNBIND_TEXT"
 msgstr ""
@@ -6050,6 +6439,18 @@ msgstr ""
 msgid "UPLOAD_SUCCEEDED"
 msgstr ""
 
+msgid "UPSCALE_BILINEAR"
+msgstr ""
+
+msgid "UPSCALE_FSR_1"
+msgstr ""
+
+msgid "UPSCALE_FSR_22"
+msgstr ""
+
+msgid "UPSCALE_SHARPENING_FSR"
+msgstr ""
+
 msgid "USED_LIBRARIES_LICENSES"
 msgstr ""
 
@@ -6149,6 +6550,9 @@ msgid "VIEW_PENDING_ACTIONS"
 msgstr ""
 
 msgid "VIEW_SOURCE_CODE"
+msgstr ""
+
+msgid "VIEW_TEXT_REPORT"
 msgstr ""
 
 msgid "VIP_PATRONS"
@@ -6557,6 +6961,10 @@ msgstr "Etapa Microbilor"
 
 msgid "WIKI_COMPOUND_SYSTEM_DEVELOPMENT_OVERVIEW"
 msgstr ""
+
+#, fuzzy
+msgid "WIKI_CREATURE_EDITOR_COMMA_TECH_EDITOR"
+msgstr "Editorul De Microbi"
 
 msgid "WIKI_CYTOPLASM_EFFECTS"
 msgstr ""
@@ -7675,6 +8083,9 @@ msgstr ""
 msgid "WIKI_TBA"
 msgstr "Etapa Microbilor"
 
+msgid "WIKI_TECH_EDITOR_COMMA_NATION_EDITOR_COMMA_SQUAD_EDITOR"
+msgstr ""
+
 msgid "WIKI_THERMOPLAST_EFFECTS"
 msgstr ""
 
@@ -7943,6 +8354,14 @@ msgstr ""
 
 msgid "ZOOM_OUT"
 msgstr ""
+
+#, fuzzy
+#~ msgid "MICROBE_STAGE_DAY_NIGHT_TEXT"
+#~ msgstr "Etapa Microbilor"
+
+#, fuzzy
+#~ msgid "GLOBAL_GLACIATION_EVENT_LOG"
+#~ msgstr "Înjumătățește Populația"
 
 #, fuzzy
 #~ msgid "WIKI_RADIOSYNTHESIS"

@@ -4,7 +4,7 @@ using System.Runtime.CompilerServices;
 using Godot;
 
 /// <summary>
-///   Math related utility functions for Thrive
+///   Math-related utility functions for Thrive
 /// </summary>
 public static class MathUtils
 {
@@ -32,7 +32,7 @@ public static class MathUtils
     /// </summary>
     /// <remarks>
     ///   <para>
-    ///     Rotation is now the number of 60 degree rotations
+    ///     Rotation is now the number of 60-degree rotations
     ///   </para>
     /// </remarks>
     public static Quaternion CreateRotationForOrganelle(float rotation)
@@ -175,5 +175,12 @@ public static class MathUtils
     {
         float distance = Math.Abs(p1 - p2);
         return distance <= Math.PI ? distance : (float)(2 * Math.PI) - distance;
+    }
+
+    public static Vector3 CalculateCameraVisiblePosition(Node3D camera, float distance = 25)
+    {
+        var forward = camera.Transform.Basis.GetRotationQuaternion() * Vector3.Forward;
+
+        return forward * distance;
     }
 }

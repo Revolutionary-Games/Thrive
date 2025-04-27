@@ -7,8 +7,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Thrive VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2025-03-14 11:08+0200\n"
-"PO-Revision-Date: 2025-03-01 13:57+0000\n"
+"POT-Creation-Date: 2025-04-26 10:53+0300\n"
+"PO-Revision-Date: 2025-04-25 12:11+0000\n"
 "Last-Translator: Argakyan <andrinmueller@hotmail.ch>\n"
 "Language-Team: Alemannic <https://translate.revolutionarygamesstudio.com/projects/thrive/thrive-game/gsw/>\n"
 "Language: gsw\n"
@@ -192,6 +192,21 @@ msgstr "und"
 msgid "ANISOTROPIC_FILTERING"
 msgstr "Anisotropische Filter:"
 
+msgid "ANTIALIASING_MSAA_TAA"
+msgstr "MSAA + TAA"
+
+msgid "ANTI_ALIASING_FXAA"
+msgstr "FXAA"
+
+msgid "ANTI_ALIASING_MODE"
+msgstr "Anti-Aliasing-Modus:"
+
+msgid "ANTI_ALIASING_MSAA"
+msgstr "MSAA"
+
+msgid "ANTI_ALIASING_TAA"
+msgstr "TAA"
+
 msgid "APPEARANCE"
 msgstr "Erschiingsbild"
 
@@ -324,6 +339,9 @@ msgid "AUTO-EVO_PREDICTION_BOX_DESCRIPTION"
 msgstr ""
 "Das Feld zeigt die vode Auto-Evo erwartete Bevölkerigszahle für d'bearbeiteti Art aa.\n"
 "Auto-Evo führt die Bevölkerigssimulation dure, wo de anderi Teil darstellt (nebet dinere eigete Leischtig), wo dini Bevölkerig beiflusst."
+
+msgid "AUTO-EVO_RESULTS_TITLE"
+msgstr "Auto-Evo Ergebnis"
 
 msgid "AUTO-EVO_STEPS_DONE"
 msgstr "{0:F1}% fertig. {1:n0}/{2:n0} Schritt."
@@ -493,6 +511,12 @@ msgstr "Achse verbinde"
 msgid "BIOLUMINESCENT_VACUOLE"
 msgstr "Biolumineszenz-Vakuole"
 
+msgid "BIOLUMINESCENT_VACUOLE_DESCRIPTION"
+msgstr "E Vakuole wo Reaktionsorte besitzt wo Luciferase konsumiert wird um sichtbares Liecht frei z'lah. E Hypothese seit uus, dass Biolumineszenz uursprünglich als Abwehrmechianismus gege [thrive:compound type=\"oxygen\"][/thrive:compound] hervorcho isch. Als die Grossi Suurstoffkatastrophe passiert isch hend Mikrobe wo anaerobe Verhältnis aapasst sind vieli neui Problem gha will Suurstoff sehr höchi Reaktivität hett was grosse Schäde verursache cha. Die Vakuole chammer zuefüege um Suurstoffresistänz z'erhöhe und es paar schöni Liechter z'becho. Ide Zuekunft wird's villich sogar e Form vode Kommunikation."
+
+msgid "BIOLUMINESCENT_VACUOLE_PROCESSES_DESCRIPTION"
+msgstr "Benutzt [thrive:compound type=\"atp\"][/thrive:compound] um [thrive:compound type=\"oxygen\"][/thrive:compound] i Liecht um z'wandle. Hett kei anderi Gameplay Uuswürckige bis jetzt ussert höheri Suurstoffresistänz."
+
 msgid "BIOME_LABEL"
 msgstr "Biom: {0}"
 
@@ -642,6 +666,13 @@ msgstr ""
 "Und zum Biispiel wemmer es Flagellum ide Längi veränderet, denn stimmet d'Zahle nöd mit dem was tatsächlich passiert überii und machet wenig Sinn.\n"
 "Das isch es bekannts Problem aber nonig glöst bisher, will es e niedrigeri Priorität hett als vieli anderi Problem und neue Inhalt."
 
+msgid "CELL_STAT_STORAGE_TOOLTIP"
+msgstr ""
+"Spiicherkapazität vode Zelle. Höheri Kapazität erlaubt s'lagere vo meh Stoffe gliichziitig.\n"
+"Zelle mit grosse Spiicherkapazitäte chönnd e Strategie verfolge, i dere sie sich nöd durchgehend bewege chönnd aber ihres ATP erneueret und denn sich beweget.\n"
+"Beachte, dass e niedriges Fassvermöge zu ATP-Knappheite führe chann au wenn d'ATP Balance positiv isch. Die Problem chönnd schlimmer werde wegge Lag\n"
+"oder generell niedrigere Performance vom Spiel. Meh Spiicherkapazität hilft mit dene Problem."
+
 msgid "CELL_TYPE_BUTTON_ATP_CONSUMPTION"
 msgstr "De ATP-Konsum vo dem Zelletyp isch {0}."
 
@@ -770,6 +801,9 @@ msgstr "Alti Spiicherständ uufruume"
 
 msgid "CLEAR_CACHE"
 msgstr "Cache leere"
+
+msgid "CLICK_TO_SELECT"
+msgstr "Uuswähle"
 
 msgid "CLOSE"
 msgstr "Schlüüse"
@@ -1251,946 +1285,1073 @@ msgid "CRAFTING_RESULTS"
 msgstr "Ergebnis"
 
 msgid "CRAFTING_SELECT_RECIPE_OR_ITEMS_TO_FILTER"
-msgstr ""
+msgstr "Wähl en Bouplan oder Gegestand zum Filtere"
 
 msgid "CRAFTING_TAKE_ALL"
-msgstr ""
+msgstr "Nimm alles"
 
 msgid "CRAFTING_TITLE"
-msgstr ""
+msgstr "Herstelle"
 
 msgid "CREATE"
-msgstr ""
+msgstr "Erschaffe"
 
 msgid "CREATED_AT"
-msgstr ""
+msgstr "Erschafft am:"
 
 msgid "CREATED_ON_PLATFORM"
-msgstr ""
+msgstr "Erschafft uf Plattform:"
 
 msgid "CREATE_A_NEW_MICROBE"
-msgstr ""
+msgstr "E neui Mikrobe erschaffe"
 
 msgid "CREATE_NEW"
-msgstr ""
+msgstr "Neu erschaffe"
 
 msgid "CREATE_NEW_CELL_TYPE"
-msgstr ""
+msgstr "Neue Zelltyp erschaffe"
 
 msgid "CREATE_NEW_CELL_TYPE_DESCRIPTION"
-msgstr ""
+msgstr "Du chasch neui Zelltype zuefüege, idem du bestehendi Type dupliziersch und denn benennsch. Zelltype chönnd modifiziert werde, um sie für verschiedenigi Uufgabe z'spezialisiere. Wenn en Zelletyp g'änderet wird, werdet alli platzierte Zelle vodem Typ aktualisiert."
 
 msgid "CREATE_NEW_MOD"
-msgstr ""
+msgstr "Neue Mod erstelle"
 
 msgid "CREATE_NEW_SAVE"
-msgstr ""
+msgstr "Neue Spiicherstand aalegge"
 
 msgid "CREATE_NEW_TISSUE_TYPE"
-msgstr ""
+msgstr "Neue Gewebetyp erschaffe"
 
 msgid "CREATE_NEW_TISSUE_TYPE_DESCRIPTION"
-msgstr ""
+msgstr "Du chasch neue Gewebetype zuefüege, idem du bestehendi Type dupliziersch und denn umbenennsch. Gewebetype chönnd modifiziert werde, um sie fpr verschiedenigi Uufgabe z'spezialisiere."
 
 msgid "CREATING_DOT_DOT_DOT"
-msgstr ""
+msgstr "Erschaffe..."
 
 msgid "CREATING_OBJECTS_FROM_SAVE"
-msgstr ""
+msgstr "Objekt us Spiicherstand erschaffe"
 
 msgid "CREDITS"
-msgstr ""
+msgstr "Abspann"
 
 msgid "CTRL"
-msgstr ""
+msgstr "Strg"
 
 msgid "CURRENT_CACHE_SIZE"
-msgstr ""
+msgstr "Aktuelli Grössi:"
 
 msgid "CURRENT_CACHE_SIZE_TOOLTIP"
 msgstr ""
+"Grössi vo allne Element momental im Cache g'spiicheret. Chammer jederziit sicher entleere,\n"
+"aber wenn es Element s'nöchschte mal verwendet wird bruuchts meh Ziit es wieder z'generiere."
 
 msgid "CURRENT_DEVELOPERS"
-msgstr ""
+msgstr "Momentani Entwickler(inne)"
 
 msgid "CURRENT_LOCATION_CAPITAL"
-msgstr ""
+msgstr "AKTUELLI POSITION"
 
 msgid "CURRENT_RESEARCH_NONE"
-msgstr ""
+msgstr "Nüüt wird erforscht"
 
 msgid "CURRENT_RESEARCH_PROGRESS"
-msgstr ""
+msgstr "Laufendi Forschig: {0} ({1})"
 
 msgid "CURRENT_WORLD"
-msgstr ""
+msgstr "Aktuelli Welt"
 
 msgid "CURRENT_WORLD_STATISTICS"
 msgstr ""
+"[b]Generatione:[/b]\n"
+"  {0}\n"
+"[b]Gsamtzahl Beriich:[/b]\n"
+"  {1}\n"
+"[b]Gsamtzahl Auto-Evo-Ziit:[/b]\n"
+"  {2}\n"
+"[b]Geamtzahl Spezies:[/b]\n"
+"  {3}\n"
+"[b]Spezies no am Lebbe:[/b]\n"
+"  {4}\n"
+"[b]Spezies Anzahl pro Beriich:[/b]\n"
+"  Durchschnitt {5}; Standardabwiichig {6}\n"
+"[b]Gsamtpopulation:[/b]\n"
+"  {7}\n"
+"[b]Populationsstärchschti Spezies:[/b]\n"
+"  {8}\n"
+"[b]Grundlegendi Mikroben-Spezies Date:[/b]\n"
+"  Durchschnittlichi Grössi (i Hex-Feldern): {9}\n"
+"\n"
+"[b]Generischi Organellen-Date:[/b]"
 
 msgid "CUSTOM_USERNAME"
-msgstr ""
+msgstr "Eigete Benutzername:"
 
 msgid "CYTOPLASM"
-msgstr ""
+msgstr "Zytoplasma"
 
 msgid "CYTOPLASM_DESCRIPTION"
-msgstr ""
+msgstr "D'schliimigi Innereie vo enere Zelle. S'Zytoplasma isch e grundleggendi Mischig us Ione, Proteine und andere Stoff wo i Wasser g'löst sind wo s'innere vode Zelle füllt. Eini vode Funktione wos macht isch [b]Glykolyse[/b], d'Umsetzig vo [thrive:compound type=\"glucose\"][/thrive:compound] zu [thrive:compound type=\"atp\"][/thrive:compound]. Für Zelle wo kei Organelle für komplexeri Metabolisme hend isch das d'Energie wo sie druff aagwiese sind. Es wird ebefalls dezue verwendet, Molekül ide Zelle z'spiichere und d'Zelle z'wachse."
 
 msgid "CYTOPLASM_GLYCOLYSIS"
-msgstr ""
+msgstr "Zytoplasma-Glykolyse"
 
 msgid "CYTOPLASM_PROCESSES_DESCRIPTION"
-msgstr ""
+msgstr "Wandlet [thrive:compound type=\"glucose\"][/thrive:compound] i [thrive:compound type=\"atp\"][/thrive:compound] um."
 
 msgid "CYTOTOXIN_SYNTHESIS"
-msgstr ""
+msgstr "Zytotoxin-Synthese"
 
 msgid "DAMAGE_SOURCE_RADIATION"
-msgstr ""
+msgstr "Strahlig"
 
 msgid "DAY_LENGTH"
-msgstr ""
+msgstr "Tageslängi"
 
 msgid "DAY_LENGTH_EXPLANATION"
-msgstr ""
+msgstr "(Längi in echtziit-Sekunde vo emene ingame Tag)"
 
 msgid "DAY_NIGHT_CYCLE_ENABLED"
-msgstr ""
+msgstr "Tag-/Nachtzyklus aktiviere"
 
 msgid "DAY_NIGHT_CYCLE_ENABLED_EXPLANATION_2"
-msgstr ""
+msgstr "(Photosynthese wird ide Nacht ineffektiv, was meh Planig bruucht)"
 
 msgid "DEADZONE_CALIBRATION_FINISHED"
-msgstr ""
+msgstr "Totzonekalibrierig abgschlosse. D'neui Totzone werdet unte aazeiget."
 
 msgid "DEADZONE_CALIBRATION_INPROGRESS"
-msgstr ""
+msgstr "Totzonekalibrierig isch am laufe. Bitte druck kei Taste und beweg kei Sticks uf dim Controller, und warte es paar Sekunde."
 
 msgid "DEADZONE_CALIBRATION_IS_RESET"
-msgstr ""
+msgstr "Totzonekalibrierig wird zrugg g'setzt"
 
 msgid "DEADZONE_CONFIGURATION"
-msgstr ""
+msgstr "Totzone kalibriere"
 
 msgid "DEATH"
-msgstr ""
+msgstr "Tot"
 
 msgid "DEBUG_COORDINATES"
 msgstr ""
+"Position: {0}\n"
+"Richtig: {1}"
 
 msgid "DEBUG_DRAW_NOT_AVAILABLE"
-msgstr ""
+msgstr "Physik-Debugging Darstellig isch nöd verfüegbar uf dere Version"
 
 msgid "DEBUG_HEAT_AT_CURSOR"
-msgstr ""
+msgstr "Hitzewert: {0}"
 
 msgid "DEBUG_PANEL"
-msgstr ""
+msgstr "Debug-Fenster"
 
 msgid "DECEMBER"
-msgstr ""
+msgstr "Dezember"
 
 msgid "DECREASE_ITEM_SIZE"
-msgstr ""
+msgstr "Objektgrössi verchliinere"
 
 msgid "DEFAULT_AUDIO_OUTPUT_DEVICE"
-msgstr ""
+msgstr "Standarduusgabegrät"
 
 msgid "DELETE"
-msgstr ""
+msgstr "Lösche"
 
 msgid "DELETE_ALL_OLD_SAVE_WARNING_2"
 msgstr ""
+"S'lösche vo allene alte Auto- und Schnellspiicherige chammer nöd rückgängig mache. Bisch sicher, dass s'folgende glöscht werde söll:\n"
+" - {0} Automatischi Spiicherständ\n"
+" - {1} Schnellspiicherständ\n"
+" - {2} Backup Spiicherständ"
 
 msgid "DELETE_FOSSIL_CONFIRMATION"
-msgstr ""
+msgstr "S'lösche vo dem Fossil chammer nöd rückgängig mache, bisch du also sicher, dass mer's permanent lösche sött?"
 
 msgid "DELETE_OLD_SAVES_PROMPT"
-msgstr ""
+msgstr "Alti Spiicherständ lösche?"
 
 msgid "DELETE_ORGANELLE"
-msgstr ""
+msgstr "Organelle lösche"
 
 msgid "DELETE_SAVE_CONFIRMATION"
-msgstr ""
+msgstr "S'lösche vo dem Spiicherstand chammer nöd rückgängig mache, bisch sicher, dass mer das permanent lösche sött?"
 
 msgid "DELETE_SELECTED"
-msgstr ""
+msgstr "Uusgwählti lösche"
 
 msgid "DELETE_SELECTED_SAVES_PROMPT"
-msgstr ""
+msgstr "Uusgwählti Spiicherständ wirklich lösche?"
 
 msgid "DELETE_SELECTED_SAVE_WARNING"
-msgstr ""
+msgstr "S'lösche vom uusgwählte Spielstand chann nöd rückgängig gmacht werde. Bisch sicher, dass du die {0} Spiicherständ duurhaft lösche wettsch?"
 
 msgid "DELETE_THIS_SAVE_PROMPT"
-msgstr ""
+msgstr "Dä Spielstand wirkli lösche?"
 
 msgid "DESCEND_BUTTON"
-msgstr ""
+msgstr "Zruggentwickle"
 
 msgid "DESCEND_CONFIRMATION"
-msgstr ""
+msgstr "Bisch sicher, dass du dich zrugg entwickle wettsch?"
 
 msgid "DESCEND_CONFIRMATION_EXPLANATION"
 msgstr ""
+"Abstieg entfernt de Uufstiegsstatus und wirft dich zrugg is Mikrobestatium. Vo dötte uus chasch im derziitige Spielstand nommal durs Spiel spiele.\n"
+"\n"
+"Du bechunnsch en Abstiegsbonus für de neui Spieldurchlauf. I zuekünftige Versione chasch du de Bonus selber wähle, aber im Moment ischer immer en 20%-ige Vorteil bi Osmoseregolierig.\n"
+"\n"
+"Wenn de Abstieg bestätigt isch, chasch du Spiel- und Startweltiistellige ändere."
 
 msgid "DESCRIPTION"
-msgstr ""
+msgstr "Beschriibig:"
 
 msgid "DESCRIPTION_COLON"
-msgstr ""
+msgstr "Beschriibig:"
 
 msgid "DESCRIPTION_TOO_LONG"
-msgstr ""
+msgstr "Beschriibig isch z'lang"
 
 msgid "DESPAWN_ENTITIES"
-msgstr ""
+msgstr "Alli Objekte entferne"
 
 msgid "DETECTED_CPU_COUNT"
-msgstr ""
+msgstr "Ermittle CPU-Aazahl:"
 
 msgid "DEVBUILD_VERSION_INFO"
 msgstr ""
+"DevBuild {0}\n"
+"uf Zweig {1} bi {2}\n"
+"{3}"
 
 msgid "DEVELOPERS"
-msgstr ""
+msgstr "Entwickler(inne)"
 
 msgid "DEVELOPMENT_FORUM"
-msgstr ""
+msgstr "Entwicklerforum"
 
 msgid "DEVELOPMENT_FORUM_BUTTON_TOOLTIP"
-msgstr ""
+msgstr "Lueg diir Entwicklernachrichte i oisem Entwicklerforum aa"
 
 msgid "DEVELOPMENT_SUPPORTED_BY"
-msgstr ""
+msgstr "Entwicklig unterstützt vo Revolutionary Games Studio ry"
 
 msgid "DEVELOPMENT_WIKI"
-msgstr ""
+msgstr "Entwickler-Wiki"
 
 msgid "DEVELOPMENT_WIKI_BUTTON_TOOLTIP"
-msgstr ""
+msgstr "Bsuech oisi Entwickler-Wiki"
 
 msgid "DEVOURED"
-msgstr ""
+msgstr "Verschlunge"
 
 msgid "DEV_BUILD_PATRONS"
-msgstr ""
+msgstr "Entwickligsversionsunterstützer"
 
 msgid "DIFFICULTY"
-msgstr ""
+msgstr "Schwierigskeitsgrad"
 
 msgid "DIFFICULTY_DETAILS_STRING"
 msgstr ""
+"Schwierigkeitsgrad: {0}\n"
+"Mutationskostemultiplikator: {1}\n"
+"KI Mutationsrate: {2}\n"
+"Wulchedichti: {3}\n"
+"Bevölkerigsstrafe bi Spielertod: {4}\n"
+"Glukoseerhalt ide Umwelt: {5}\n"
+"Osmoregulationskostenmultiplikator: {6}\n"
+"Verfügbari Glukosewulche bi Verlasse vom Editor: {7}\n"
+"Beschränk d'Nutzig vo Wachstums-Substanze: {8}"
 
 msgid "DIFFICULTY_PRESET"
-msgstr ""
+msgstr "Schwierigkeitsgrad"
 
 msgid "DIFFICULTY_PRESET_CUSTOM"
-msgstr ""
+msgstr "Benutzerdefiniert"
 
 msgid "DIFFICULTY_PRESET_EASY"
-msgstr ""
+msgstr "Liecht"
 
 msgid "DIFFICULTY_PRESET_HARD"
-msgstr ""
+msgstr "Schwer"
 
 msgid "DIFFICULTY_PRESET_NORMAL"
-msgstr ""
+msgstr "Normal"
 
 msgid "DIGESTION_EFFICIENCY"
-msgstr ""
+msgstr "Verdauigseffizienz"
 
 msgid "DIGESTION_EFFICIENCY_COLON"
-msgstr ""
+msgstr "Verdauigseffizienz:"
 
 msgid "DIGESTION_SPEED"
-msgstr ""
+msgstr "Ressource-Absorptionsgeschwindigkeit"
 
 msgid "DIGESTION_SPEED_COLON"
-msgstr ""
+msgstr "Ressource-Absorptionsgeschwindigkeit:"
 
 msgid "DIGESTION_SPEED_VALUE"
-msgstr ""
+msgstr "{0}/s"
 
 msgid "DISABLED"
-msgstr ""
+msgstr "Deaktiviert"
 
 msgid "DISABLE_ALL"
-msgstr ""
+msgstr "Alli deaktiviert"
 
 msgid "DISCARD_AND_CONTINUE"
-msgstr ""
+msgstr "Verwerfe und wiitermache"
 
 msgid "DISCARD_CHANGES"
-msgstr ""
+msgstr "Verwerfe und wiitermache"
 
 msgid "DISCARD_MIGRATION"
-msgstr ""
+msgstr "Migration verwerfe"
 
 msgid "DISCONNECTED_CELLS"
-msgstr ""
+msgstr "Trennti Zelle"
 
 msgid "DISCONNECTED_CELLS_TEXT"
 msgstr ""
+"Es git Zelle, wo nöd mit em Rest verbunde sind.\n"
+"Bitte verbinde alli platzierte Zelle mitenander oder mach dini Änderige rückgängig."
 
 msgid "DISCONNECTED_METABALLS"
-msgstr ""
+msgstr "Trennti Zelle"
 
 msgid "DISCONNECTED_METABALLS_TEXT"
 msgstr ""
+"Es git Zelle, wo nöd mit em Rest verbunde sind.\n"
+"Bitte verbinde alli platzierte Zelle miteinander oder mach dini Änderige rückgängig."
 
 msgid "DISCONNECTED_ORGANELLES"
-msgstr ""
+msgstr "Trennti Organelle"
 
 msgid "DISCONNECTED_ORGANELLES_TEXT"
 msgstr ""
+"Es git Organelle, wo nöd mit em Rest verbunde sind.\n"
+"Bitte verbinde alli platzierte Organelle miteinander oder mach dini Änderige rückgängig."
 
 msgid "DISCORD_TOOLTIP"
-msgstr ""
+msgstr "Tritt oisem Discord Server bi"
 
 msgid "DISK_CACHE_TOOLTIP"
 msgstr ""
+"Wenn aktiviert, werdet einigi tüür z'generierende Date uf de Festplatte gspiicheret, demit sie bim nächschte Ladde schneller verfüegbar sind.\n"
+"Wenn deaktiviert, wird nur de Cache im Arbeitsspiicher verwendet."
 
 msgid "DISMISSED_POPUPS_COLON"
-msgstr ""
+msgstr "Deaktivierti Pop-ups:"
 
 msgid "DISMISSED_POPUPS_EXPLANATION"
 msgstr ""
+"Das zeigt a, wie viel Pop-ups vom Spieler duurhaft deaktiviert worde sind.\n"
+"Wenn einigi devo wieder sichtbar werde söttet, chammer mit de Schaltfläche nebet diesi alli deaktivierti Pop-ups wieder aazeiget werde."
 
 msgid "DISMISS_INFORMATION_PERMANENTLY"
-msgstr ""
+msgstr "Nümme aazeige"
 
 msgid "DISMISS_WARNING_PERMANENTLY"
-msgstr ""
+msgstr "Warnig nümme aazeige"
 
 msgid "DISPLAY_3D_MENU_BACKGROUNDS"
-msgstr ""
+msgstr "3D-Hintergrund im Menü aazeige"
 
 msgid "DISPLAY_ABILITIES_BAR"
-msgstr ""
+msgstr "Fähigkeiteleiste aazeige"
 
 msgid "DISPLAY_BACKGROUND_DISTORTION_EFFECT"
-msgstr ""
+msgstr "Verzerrig bi Mikrobe-Hintergrund aawende"
 
 msgid "DISPLAY_BACKGROUND_PARTICLES"
-msgstr ""
+msgstr "Hintergrundpartikel aazeige"
 
 msgid "DISPLAY_DRIVER_OPENGL"
-msgstr ""
+msgstr "OpenGL"
 
 msgid "DISPLAY_DRIVER_VULKAN"
-msgstr ""
+msgstr "Vulkan"
 
 msgid "DISPLAY_MODE"
-msgstr ""
+msgstr "Displaymodus:"
 
 msgid "DISPLAY_PART_NAMES"
-msgstr ""
+msgstr "Namme vo Schaltfläche ide Teil Uuswahl aazeige"
 
 msgid "DISSOLVED_COMPOUND_FOOD_SOURCE"
-msgstr ""
+msgstr "Gliichmässig verteilti ökologischi Nahrigsquelle vo {0}"
 
 msgid "DOES_NOT_USE_FEATURE"
-msgstr ""
+msgstr "Nei"
 
 msgid "DONATIONS"
-msgstr ""
+msgstr "Spende"
 
 msgid "DOT_DOT_DOT"
-msgstr ""
+msgstr "..."
 
 msgid "DOUBLE"
-msgstr ""
+msgstr "Dopplet"
 
 msgid "DOUBLE_CLICK_TO_VIEW_IN_FULLSCREEN"
-msgstr ""
+msgstr "Doppelklicke zum Aaluege in Vollbildmodus"
 
 msgid "DOUBLE_MEMBRANE_DESCRIPTION"
-msgstr ""
+msgstr "E zweischichtigi Membran bütet bessere Schutz vor Schade und benötigt weniger Energie um sich nöd z'deformiere. Sie verlangsamt allerdings d'Zelle und senkt ihri Fähigkeit Ressource z'absorbiere."
 
 msgid "DOUBLE_SPEED_TOGGLE_TOOLTIP"
-msgstr ""
+msgstr "Umschalt zwüschet normale und doppelte Gameplay-gschwindigkeit"
 
 msgid "DRAG_TO_REORDER_ITEMS_WITH_MOUSE"
-msgstr ""
+msgstr "Mit de Muus zieh um Objekte neu aa z'ordne"
 
 msgid "DUMP_SCENE_TREE"
-msgstr ""
+msgstr "SceneTree uusgäh"
 
 msgid "DUPLICATE_TYPE"
-msgstr ""
+msgstr "Typ dupliziere"
 
 msgid "EASTEREGG_MESSAGE_1"
-msgstr ""
+msgstr "Interessante Fakt: S'Nasetierli und Pantoffeltierli sind es Musterbiispiel für es Räuber-Beute-Verhältnis, was über jahrzähnd untersuecht worde isch. Bisch du etze s'Nasetierli oder s'Pantoffeltierli? Jäger oder Gjagte?"
 
 msgid "EASTEREGG_MESSAGE_10"
-msgstr ""
+msgstr "JUDIHUI!!"
 
 msgid "EASTEREGG_MESSAGE_11"
-msgstr ""
+msgstr "Nei Patrick, hydrothermischi Schlote eignet sich nöd zum schmelze vo Ise."
 
 msgid "EASTEREGG_MESSAGE_12"
-msgstr ""
+msgstr "Aber die blaue Zelle..."
 
 msgid "EASTEREGG_MESSAGE_13"
-msgstr ""
+msgstr "Wenn dini Zelle 150 Hexeblöck gross isch, chasch sogar die grosse Isechlumpe schlucke!"
 
 msgid "EASTEREGG_MESSAGE_14"
-msgstr ""
+msgstr "Chliises Trivia: s'hett über 8000 Spezie vo Wimpertierli uf de Erde."
 
 msgid "EASTEREGG_MESSAGE_15"
-msgstr ""
+msgstr "Chliises Trivia: s'Trompetetierli isch es Wimpertierli wo sich strecke chann und Beute fangt mit emene Trompete-artige Muul wo Beute inne suugt idems e Strömig mit Zilie erzüügt."
 
 msgid "EASTEREGG_MESSAGE_16"
-msgstr ""
+msgstr "Chliines Trivia: Es Didinium isch es Wimpertierli wo Paramecia jagt."
 
 msgid "EASTEREGG_MESSAGE_17"
-msgstr ""
+msgstr "Chliises Trivia: En Amöbe jagt und fangt Beute mit 'Bei' wo's us Zytoplasma erzüügt, sogenannti Pseudopode, wommer eventuell au in Thrive darstelle wennd."
 
 msgid "EASTEREGG_MESSAGE_18"
-msgstr ""
+msgstr "Bakterie sind stärcher als sie uusgsehnd; sie tüend zwar chlii uusgseh, aber einigi vo ihne chönnd sich i dich iinischte und dich so umbringe!"
 
 msgid "EASTEREGG_MESSAGE_2"
-msgstr ""
+msgstr "Eis vo de erschte spielbare gameplay Prototype isch vo oisem g'schätztem Programmierer, Untrustedlife erstellt worde!"
 
 msgid "EASTEREGG_MESSAGE_3"
-msgstr ""
+msgstr "Alli Kreature i dem Spiel werdet vom gliiche gmeinsame Vorfahr stamme. Lueg öb du identifiziere chasch, welli am nöchschte mit enander verwandt sind!"
 
 msgid "EASTEREGG_MESSAGE_4"
-msgstr ""
+msgstr "Chliises Trivia: im echte Lebbe hend Prokaryote öppis was mer Zellkompartimente nennt, welchi als Organelle handlet und durchuus Polyedrischi Organelle sind."
 
 msgid "EASTEREGG_MESSAGE_5"
-msgstr ""
+msgstr "Chliises Trivia: Metabolosome sind was mer e Polyedrischi Organelle nennt."
 
 msgid "EASTEREGG_MESSAGE_6"
-msgstr ""
+msgstr "De Füehrer vom Thrive Audioteam hett mängi Tracks erschaffe wo no garnöd im Spiel sind. Du chasch die aalose oder sini Streams aaluege uf sim YouTubekanal, Oliver Lugg."
 
 msgid "EASTEREGG_MESSAGE_7"
-msgstr ""
+msgstr "Thrive söll e Simulation vo Lebbe uf emene andere Planet sii also erwarte nöd, dass du alles da finde wirsch was mer uf de Erde hennd!"
 
 msgid "EASTEREGG_MESSAGE_8"
-msgstr ""
+msgstr "Chliises Trivia: s'Thrive Team macht ammigs en Podcast wo du zuelose chasch!"
 
 msgid "EASTEREGG_MESSAGE_9"
-msgstr ""
+msgstr "Chliises Trivia: Thrive isch mit de öffentliche Godot-engine erstellt worde und de gsammti Quellcode chammer online iigseh."
 
 msgid "EASTER_EGGS"
-msgstr ""
+msgstr "Easter-eggs mit iibezieh"
 
 msgid "EASTER_EGGS_EXPLANATION"
-msgstr ""
+msgstr "(zuefällig generierti Easter-eggs während em Spiel)"
 
 msgid "EASTER_EGG_BANANA_BIOME"
-msgstr ""
+msgstr "Banane-Biom"
 
 msgid "EDGE_PAN_SPEED"
-msgstr ""
+msgstr "Schwenkgschwindigkeit:"
 
 msgid "EDITING_TITLE"
-msgstr ""
+msgstr "Titel bearbeite"
 
 msgid "EDITOR"
-msgstr ""
+msgstr "Editor"
 
 msgid "EDITORS_AND_MUTATIONS_BUTTON"
-msgstr ""
+msgstr "Editore und Mutatione"
 
 msgid "EDITOR_BUTTON_TOOLTIP"
-msgstr ""
+msgstr "Gahne in Editor und bearbeite dini Spezies"
 
 msgid "EDITOR_TUTORIAL_EARLY_GOAL"
 msgstr ""
+"Willkomme im Editor. Du landisch immer da, wenn du dich erfolgriich reproduziersch.\n"
+"\n"
+"S'[b]Ziel vom früehnere Spielstadium[/b] isch es, en guete [u]Breich[/u] mit enere zueverlässige Nahrigsquelle z'finde.\n"
+"\n"
+"Spöter im Spiel chammer drüber nahdenke, en [b]Zellkern[/b] z'entwickle, was eim im Spiel wiiterbringt. Das sötti mer aber nöd z'früeh mache, will de Zellkern e sehr kostspieligi Organelle isch.\n"
+"\n"
+"Druck uf Wiiter um zur [b]Breichskarte[/b] z'cho."
 
 msgid "EDITOR_TUTORIAL_EDITOR_TEXT"
 msgstr ""
+"Wilkomme zrugg zum Mikrobe Editor. Du wirsch immer da zrugg cho, wenn du dich fortpflanzisch.\n"
+"\n"
+"De Reportbildschirm git dir e Lischte vo Veränderige i de Region wo du Momentan lebsch. Versuech's verschiedenigi Werchzüüg dezue z'verwende, meh über d'Gschehnisse i dinere Welt z'erfahre.\n"
+"\n"
+"Nachdem du das iigseh hesch, was passiert isch, chasch [b]du denn dini Spezies aapasse[/b] demit sie adaptiert isch.\n"
+"\n"
+"Wenn du fertig bisch, druck \"wiiter\" unde rechts um wiiter z'cho."
 
 msgid "EDITOR_TUTORIAL_MICROBE_EDITOR_NUCLEUS"
 msgstr ""
+"Um wiiter z'cho muesch irgendwenn en [b]Zellkern[/b]\n"
+"\n"
+"En [b]Zellkern[/b] tuet fortgschritteni Organelle freischalte, sowie [b]Bindemittel[/b] was es diir erlaubt dich mit andere Zelle us de gliiche Spezies z'verbinde und [b]multizellulär[/b] z'werde.\n"
+"\n"
+"Versuechs en [b]Nukleus[/b] z'platziere um das Tutorial z'schlüüse.\n"
+"\n"
+"Wenn dini Zelle nonig parat isch für en Zellkern, chasch de [b]rückgängig mache[/b] chnopf verwende um de Nukleus [u]rückgänig z'mache[/u]."
 
 msgid "EFFECTIVE_VALUE"
-msgstr ""
+msgstr "Effektive Wert"
 
 msgid "EIGHT_TIMES"
-msgstr ""
+msgstr "8x"
 
 msgid "EJECT_ENGULFED"
-msgstr ""
+msgstr "Verschlungeni Objekte erbreche"
 
 msgid "EJECT_ENGULFED_TOOLTIP"
-msgstr ""
+msgstr "Verschlungeni Objekte erbreche"
 
 msgid "EMITTERS_COUNT"
-msgstr ""
+msgstr "Sender:"
 
 msgid "ENABLED_MODS"
-msgstr ""
+msgstr "Aktivi Mods"
 
 msgid "ENABLE_ALL_COMPATIBLE"
-msgstr ""
+msgstr "Alli kompatible Mods aktiviere"
 
 msgid "ENABLE_EDITOR"
-msgstr ""
+msgstr "Editor aktiviere"
 
 msgid "ENABLE_GUI_LIGHT_EFFECTS"
-msgstr ""
+msgstr "GUI-Liechteffekt aktiviere"
 
 msgid "ENDOSYMBIONT_ENGULFED_ALREADY_DONE"
-msgstr ""
+msgstr "Endosymbiose-Prozess vollständig, schlüüs en ab im Editor"
 
 msgid "ENDOSYMBIONT_ENGULFED_PROGRESS"
-msgstr ""
+msgstr "S'Ziel vode Endosymbiose isch vorübergehend in en Organelle um g'wandlet worde. Überleb bis zum Editor um im Endosymbioseprosess wiiter z'cho"
 
 msgid "ENDOSYMBIONT_TYPE_ALREADY_PRESENT"
-msgstr ""
+msgstr "Endosymbiontetyp bereits vorhande. Bitte mach de Endosymbioseprosess im Editor wiiter"
 
 msgid "ENDOSYMBIOSIS_AVAILABLE_ORGANELLES"
-msgstr ""
+msgstr "verfüegbari Organelle zur Umwandlig"
 
 msgid "ENDOSYMBIOSIS_BUTTON"
-msgstr ""
+msgstr "Endosymbiose"
 
 msgid "ENDOSYMBIOSIS_CANCEL_TOOLTIP"
-msgstr ""
+msgstr "De Endosymbioseprozess abbreche. De breits vorhandeni Fortschritt gaht debi verlore!"
 
 msgid "ENDOSYMBIOSIS_COMPLETE_TOOLTIP"
-msgstr ""
+msgstr "Schlüüs de Endosymbioseprozess ab und platzier es als neui Organelle"
 
 msgid "ENDOSYMBIOSIS_EXPLANATION"
-msgstr ""
+msgstr "Endosymbiose wandlet anderi Spezie i Endosymbionte um (Spezies, wo mit enere andere Spezies in enere symbiotische Beziehig läbbt). Dadur wird die entstandeni Organelle freigschaltet und es git e Kopie gratis devo. Möglichi Kandidatespezie für Endosymbiose werdet unte aazeiget, wenn sie zuvor breits emale verschlunge worde isch. D'Duur hängt vode Eignig vo dere Spezies ab und wird ebefalls aazeiget."
 
 msgid "ENDOSYMBIOSIS_NOTHING_ENGULFED"
-msgstr ""
+msgstr "Es isch no kei geigneti Spezies verschlunge worde, wommer in emene Endosymbiont umwandle chönnti"
 
 msgid "ENDOSYMBIOSIS_NO_CANDIDATE_ORGANELLES"
-msgstr ""
+msgstr "Die Spezies chammer nöd in e Organelle umwandle"
 
 msgid "ENDOSYMBIOSIS_PROGRESSING_EXPLANATION"
-msgstr ""
+msgstr "De Endosymbioseprozess gaht wiiter, wemmer d'Zielspezies verschlunge hett und in e temporäri Organelle umgwandlet worde isch (immer numme eini ufs mal). De Fortschritt wird nur denn g'spiicheret, wenn die Zelle bis zur nöchschte Editor-Sitzig mit dere temporäre Organelle überlebt."
 
 msgid "ENDOSYMBIOSIS_PROKARYOTIC_LIMIT_EXPLANATION"
-msgstr ""
+msgstr "Prokaryote chönnd höchschtens ein einzelne Endosymbiont ha"
 
 msgid "ENDOSYMBIOSIS_SINGLE_SPECIES_PROGRESS_DESCRIPTION"
-msgstr ""
+msgstr "Überleb mit dere temporäre Organelle bis zur nöchschte Editor-Sitzig"
 
 msgid "ENDOSYMBIOSIS_START_TOOLTIP"
-msgstr ""
+msgstr "Fang mit Endosymbiose für die Spezies aa (verfüegbar, wenn Zielorganelletyp uusgwählt isch)"
 
 msgid "ENDOSYMBIOSIS_TITLE"
-msgstr ""
+msgstr "Endosymbiose"
 
 msgid "ENERGY_BALANCE_REQUIRED_COMPOUND_LINE"
-msgstr ""
+msgstr "- {0}: {1} /Sekunde"
 
 msgid "ENERGY_BALANCE_TOOLTIP_CONSUMPTION"
-msgstr ""
+msgstr "{0}: -{1} ATP"
 
 msgid "ENERGY_BALANCE_TOOLTIP_PRODUCTION"
-msgstr ""
+msgstr "{0}: +{1} ATP"
 
 msgid "ENERGY_BALANCE_TOOLTIP_PRODUCTION_WITH_REQUIREMENT"
 msgstr ""
+"{0}: +{1} ATP\n"
+"Bim Verbruuch vo:\n"
+"{2}"
 
 msgid "ENERGY_IN_PATCH_FOR"
-msgstr ""
+msgstr "Energie i {0} für {1}"
 
 msgid "ENERGY_IN_PATCH_SHORT"
-msgstr ""
+msgstr "{0}, {1}"
 
 msgid "ENERGY_SOURCES"
-msgstr ""
+msgstr "Energiequelle:"
 
 msgid "ENERGY_SUMMARY_LINE"
-msgstr ""
+msgstr "D'gsammelti Gsammtenergie isch {0} mit individuelle Koste vo {1}, was zu enere unbereinigte Bevölkerig vo {2} führt"
 
 msgid "ENGULF_NO_ATP_DAMAGE_MESSAGE"
-msgstr ""
+msgstr "Beschädigt dur Iitritt in Verschlingigsmodus ohni verfüegbares ATP"
 
 msgid "ENTER_EXISTING_ID"
-msgstr ""
+msgstr "Bekannti ID aageh"
 
 msgid "ENTER_EXISTING_WORKSHOP_ID"
-msgstr ""
+msgstr "Bekannti Workshop-ID aagäh"
 
 msgid "ENTITY_LABEL"
-msgstr ""
+msgstr "Entitätskennzeichnig"
 
 msgid "ENVIRONMENT"
-msgstr ""
+msgstr "Umgebig"
 
 msgid "ENVIRONMENTAL_CONDITIONS_BUTTON"
-msgstr ""
+msgstr "Umweltbedingige"
 
 msgid "ENVIRONMENTAL_GLUCOSE_RETENTION"
-msgstr ""
+msgstr "Glukoseerhalt ide Umwelt"
 
 msgid "ENVIRONMENTAL_GLUCOSE_RETENTION_EXPLANATION"
-msgstr ""
+msgstr "(Aateil a Glukose ide Umwelt, wo jede Generation erhalte blibt)"
 
 msgid "ENVIRONMENT_BUTTON_MICROBE_TOOLTIP"
-msgstr ""
+msgstr "Umgebig i-/usblende"
 
 msgid "ENVIRONMENT_TOLERANCE"
-msgstr ""
+msgstr "Toleranz"
 
 msgid "EPIPELAGIC"
-msgstr ""
+msgstr "Epipelagial"
 
 msgid "EQUIPMENT_TYPE_AXE"
-msgstr ""
+msgstr "Agscht"
 
 msgid "ERROR"
-msgstr ""
+msgstr "Fehler"
 
 msgid "ERROR_CREATING_FOLDER"
-msgstr ""
+msgstr "Fehler bim erstelle vom Ordner für en Mod"
 
 msgid "ERROR_CREATING_INFO_FILE"
-msgstr ""
+msgstr "Fehler bim Erstelle vode Modinformationsdatei"
 
 msgid "ERROR_FAILED_TO_SAVE_NEW_SETTINGS"
-msgstr ""
+msgstr "Fehler: S'spiichere vo neue Iistellige ide Konfigurationsdatei isch fehlgschlagge."
 
 msgid "ERROR_FETCHING_EXPLANATION"
-msgstr ""
+msgstr "Nachrichteabruef fehlgschlagge wege Fehler: {0}"
 
 msgid "ERROR_FETCHING_NEWS"
-msgstr ""
+msgstr "Fehler bim Nachrichteabruef"
 
 msgid "ERROR_LOADING"
-msgstr ""
+msgstr "Fehler bim Ladde"
 
 msgid "ERROR_SAVING"
-msgstr ""
+msgstr "Fehler bim Spiichere"
 
 msgid "ERROR_UPLOADING_EXCEPTION"
-msgstr ""
+msgstr "En Uusnahme-Fehler isch passiert: {0}"
 
 msgid "ESCAPE"
-msgstr ""
+msgstr "Esc"
 
 msgid "ESCAPE_ENGULFING"
-msgstr ""
+msgstr "Verschlingig entgah"
 
 msgid "ESTUARY"
-msgstr ""
+msgstr "Mündig"
 
 msgid "EVENT_ERUPTION_TOOLTIP"
 msgstr ""
+"Eruptionserignis\n"
+"Erschafft zuesätzliches Schwefelwasserstoff und Kohlestoffdioxid"
+
+msgid "EVENT_METEOR_GLUCOSE"
+msgstr ""
+"Glukosehaltige Meteoriteniinschlag\n"
+"Erhöht d'Kohlestoff- & Glukosewert."
+
+msgid "EVENT_METEOR_IRON"
+msgstr ""
+"Isehaltige Meteoriteiischlag\n"
+"Erhöht d'Kohlestoff- & Isewert.\n"
+"Generiert Isechlumpe."
+
+msgid "EVENT_METEOR_PHOSPHATES"
+msgstr ""
+"Phosphathaltige Meteoriteiischlag\n"
+"Erhöht d'Kohlestoff- & Phosphatwert.\n"
+"Generiert Phosphatchlumpe."
+
+msgid "EVENT_METEOR_PLAIN"
+msgstr ""
+"Meteoriteiischlag\n"
+"Erhöht Kohlestoffdioxid Wert."
+
+msgid "EVENT_METEOR_RADIOACTIVE"
+msgstr ""
+"Radioaktive Meteoriteiischlag\n"
+"Erhöht Kohlestoffdioxid Wert.\n"
+"Generiert radioaktivi Chlumpe."
+
+msgid "EVENT_METEOR_SULFUR"
+msgstr ""
+"Schwefelhaltige Meteoriteiischlag\n"
+"Erhöht Kohlestoff- & Schwefelwert.\n"
+"Generiert Schwefelchlumpe."
 
 msgid "EVOLUTIONARY_TREE"
-msgstr ""
+msgstr "Evolutionsbaum"
 
 msgid "EVOLUTIONARY_TREE_BUILD_FAILED"
 msgstr ""
+"Erstellig vom Evolutionsbaum fehl g'schlagge.\n"
+"\n"
+"Bitte informier d'Entwickler und gib Logging Dateie zur Verfüegig."
 
 msgid "EXACT_VERSION_COLON"
-msgstr ""
+msgstr "Gnaui Thrive Version:"
 
 msgid "EXACT_VERSION_TOOLTIP"
-msgstr ""
+msgstr "Das isch d'exakti Version vo dere Thrive Instantz"
 
 msgid "EXCEPTION_HAPPENED_PROCESSING_SAVE"
-msgstr ""
+msgstr "Während de Verarbeitig vo g'laddene Objekte isch en Fehler passiert"
 
 msgid "EXCEPTION_HAPPENED_WHILE_LOADING"
-msgstr ""
+msgstr "Bim ladde vo Spiicherdate isch en Fehler passiert"
 
 msgid "EXCLUSIVE_FULLSCREEN"
-msgstr ""
+msgstr "Vollbild umschalte"
 
 msgid "EXISTING_BUILDINGS"
-msgstr ""
+msgstr "Gebäude"
 
 msgid "EXIT"
-msgstr ""
+msgstr "Verlah"
 
 msgid "EXIT_EDITOR"
-msgstr ""
+msgstr "Editor verlah"
 
 msgid "EXIT_TO_LAUNCHER"
-msgstr ""
+msgstr "Zum Launcher zrugg"
 
 msgid "EXPERIMENTAL_FEATURES"
-msgstr ""
+msgstr "Experimentelli Funktione"
 
 msgid "EXPERIMENTAL_FEATURES_EXPLANATION"
-msgstr ""
+msgstr "(experimentelli Spiele-Features aktiviere, wo standardmässig deaktiviert sind - mir sind interessiert a Feedback, wenn du das testisch)"
 
 msgid "EXPERIMENTAL_FEATURES_WARNING"
-msgstr ""
+msgstr "(OBACHT: Experimentelli Features sind nöd uusgreift und chönnd s'Spielerlebnis negativ beiiflusse. Empfohle nur für erfahreni Spieler. Bi Fehlerbrichte bitte aageh, dass mit aktivierte experimentelle Features gspielt worde isch.)"
 
 msgid "EXPORT_ALL_WORLDS"
-msgstr ""
+msgstr "Alli Welte exportiere"
 
 msgid "EXPORT_ALL_WORLDS_TOOLTIP"
-msgstr ""
+msgstr "Exportier d'Date vo allene Welte i CSV-Format (dur Kommas trennti Wert)"
 
 msgid "EXPORT_SUCCESS"
-msgstr ""
+msgstr "Erfolgriich exportiert"
 
 msgid "EXTERNAL"
-msgstr ""
+msgstr "Extern"
 
 msgid "EXTERNAL_EFFECTS"
-msgstr ""
+msgstr "Externi Effekt:"
 
 msgid "EXTINCTION_BOX_TEXT"
-msgstr ""
+msgstr "Gnau wie 99% vo allene Arte, wo's jemals gäh hett, isch au dini Art uus g'storbe. Anderi werdet wiiterhin dini Nische fülle und gedeihe, aber das wirsch nöd du sii. Du wirsch vergesse werde, es fehlgschlaggenes Experiment vode Evolution."
 
 msgid "EXTINCTION_CAPITAL"
-msgstr ""
+msgstr "UUSSTERBE"
 
 msgid "EXTINCT_FROM_PATCH"
-msgstr ""
+msgstr "isch im Gebiet uus g'storbe"
 
 msgid "EXTINCT_FROM_THE_PLANET"
-msgstr ""
+msgstr "isch vom Planete uus g'storbe"
 
 msgid "EXTINCT_IN_PATCH"
-msgstr ""
+msgstr "isch im Gebiet uus g'storbe"
 
 msgid "EXTINCT_SPECIES"
-msgstr ""
+msgstr "Uus g'storbeni Art"
 
 msgid "EXTRAS"
-msgstr ""
+msgstr "Extras"
 
 msgid "EXTRA_OPTIONS"
-msgstr ""
+msgstr "Zuesätzlichi Optione"
 
 msgid "FACEBOOK_TOOLTIP"
-msgstr ""
+msgstr "Bsuech oisi Facebook Siite"
 
 msgid "FAILED"
-msgstr ""
+msgstr "Fehlgschlagge"
 
 msgid "FAILED_ONE_OR_MORE_SAVE_DELETION_DESCRIPTION"
-msgstr ""
+msgstr "Fehler: Lösche vo eim oder mehrere Spiicherständ fehlgschlagge."
 
 msgid "FAILED_SAVE_DELETION"
-msgstr ""
+msgstr "Fehler: S'Spiichere vo neue Iistellige ide Konfigurationsdatei isch fehlgschlagge"
 
 msgid "FAILED_SAVE_DELETION_DESCRIPTION"
-msgstr ""
+msgstr "Spiicherstand hett mer nöd chönne lösche."
 
 msgid "FEARFUL"
-msgstr ""
+msgstr "Furchtsam"
 
 msgid "FEAR_EXPLANATION"
 msgstr ""
+"Furchtsami Mikrobe flüchtet über grösseri Entfernige\n"
+"und flüchtet allgemein eher vor Aagriifer.\n"
+"Muetigi Mikrobe löhnd sich vo Raubtier ide Nöchi nöd iischüchtere\n"
+"und werdet sich eher verteidige."
 
 msgid "FEATURE_DISABLED"
-msgstr ""
+msgstr "Deaktiviert"
 
 msgid "FEATURE_ENABLED"
-msgstr ""
+msgstr "Aktiviert"
 
 msgid "FEBRUARY"
-msgstr ""
+msgstr "Februar"
 
 msgid "FEED_ITEM_CONTENT_PARSING_FAILED"
-msgstr ""
+msgstr "Initialisierig vode Steam-Client-Bibliothek fehlgschlagge."
 
 msgid "FEED_ITEM_MISSING_CONTENT"
-msgstr ""
+msgstr "Leeres Element."
 
 msgid "FEED_ITEM_PUBLISHED_AT"
-msgstr ""
+msgstr "Veröffentlicht am {0}"
 
 msgid "FEED_ITEM_TRUNCATED_NOTICE"
-msgstr ""
+msgstr "Element isch t'lang gsi und kürzt worde. Für de Gsammtinhalt bitte s'Original lese. {0}"
 
 msgid "FERROPLAST"
-msgstr ""
+msgstr "Ferroplast"
 
 msgid "FERROPLAST_DESCRIPTION"
-msgstr ""
+msgstr "Es metallisches Chraftwerk. Es Ferroplast isch e Doppelmembranstruktur gfüllt mit Proteine und Enzyme. Es isch en Prokaryot wo assimiliert worde isch vo emene Eukaryotische Wirt. Es chann [thrive:compound type=\"iron\"][/thrive:compound] vo eim chemische Zuestand in en andere umwandle bi enere viel höchere Effizienz als mer mit Rusticyanin erreiche cha. De Prozess, gnannt [b]Ise Oxidation[/b], entlaht Energie wo d'Zelle denn ernte cha."
 
 msgid "FERROPLAST_PROCESSES_DESCRIPTION"
-msgstr ""
+msgstr "Benutzt [thrive:compound type=\"iron\"][/thrive:compound] um [thrive:compound type=\"atp\"][/thrive:compound] z'produziere."
 
 msgid "FILTER_ITEMS_BY_CATEGORY_COLON"
-msgstr ""
+msgstr "Nach Kategorie filtere:"
 
 msgid "FIND_CURRENT_PATCH"
-msgstr ""
+msgstr "Zum aktuelle Gebiet"
 
 msgid "FINISHED_DOT"
-msgstr ""
+msgstr "Fertig."
 
 msgid "FINISH_EDITING_AND_RETURN_TO_ENVIRONMENT"
-msgstr ""
+msgstr "Bearbeitig beende und zur Umgebig zrugg"
 
 msgid "FINISH_ONE_GENERATION"
-msgstr ""
+msgstr "E Generation beende"
 
 msgid "FINISH_X_GENERATIONS"
-msgstr ""
+msgstr "{0} Generatione beende"
 
 msgid "FIRE_TOXIN"
-msgstr ""
+msgstr "Gift schlüdere"
 
 msgid "FIRE_TOXIN_TOOLTIP"
-msgstr ""
+msgstr "Schlüderet es Giftpartikel und schadet d'troffeni Zelle"
 
 msgid "FLAGELLUM"
-msgstr ""
+msgstr "Geissel"
 
 msgid "FLAGELLUM_DESCRIPTION"
-msgstr ""
+msgstr "D'Geissel (Plural: Geissle, au Flagelle) isch es peitscheartiges Bündel vo Proteinfasere, wo sich vode Zellmembran us erstreckt und mit Hilfe vo ATP d'Zelle welleförmig in e Richtig triibe laht. D'Position vom Flagellum bestimmt d'Richtig, idere es Schub für'd Zellbewegig bringt. D'Schubrichtig isch entgege g'setzt zu de Richtig, idere s'Flagellum luegt. Es Flagellum wo links ade Zelle isch git öppe Schub wenn's nach rechts gaht."
 
 msgid "FLAGELLUM_LENGTH_DESCRIPTION"
-msgstr ""
+msgstr "Geissellängi. Längeri Geissle erzüüget meh Aatrieb aber verbruuchet au meh ATP."
 
 msgid "FLAGELLUM_PROCESSES_DESCRIPTION"
-msgstr ""
+msgstr "Nimmt [thrive:compound type=\"atp\"][/thrive:compound] um d'Bewegigsgschwindigkeit vode Zelle z'erhöhe."
 
 msgid "FLEET_NAME_FROM_PLACE"
-msgstr ""
+msgstr "{0} Flotte"
 
 msgid "FLEET_UNITS"
-msgstr ""
+msgstr "Flotteeinheite"
 
 msgid "FLOATING_CHUNKS_COLON"
-msgstr ""
+msgstr "Schwebendi Chlumpe:"
 
 msgid "FLOATING_HAZARD"
-msgstr ""
+msgstr "Schwimmendi Gfahr"
 
 msgid "FLUID"
-msgstr ""
+msgstr "flüssig"
 
 msgid "FLUIDITY_RIGIDITY"
-msgstr ""
+msgstr "Flüssigkeit / Härti"
 
 msgid "FOCUSED"
-msgstr ""
+msgstr "Fokussiert"
 
 msgid "FOCUS_EXPLANATION"
 msgstr ""
+"Fokussierti Mikrobe werdet über e grösseri Entfernig nach Chlumpe oder Beuti luege\n"
+"und sind möglicherwiis sehr viel ehrgiziger, wenn's um Chlumpe gaht.\n"
+"Inkonsequenti Mikrobe wechslet schneller zu neue Ziel."
 
 msgid "FOG_OF_WAR_DISABLED"
-msgstr ""
+msgstr "Chriegsnebel deaktiviert"
 
 msgid "FOG_OF_WAR_DISABLED_DESCRIPTION"
-msgstr ""
+msgstr "(alli Bereich werdet uufdeckt)"
 
 msgid "FOG_OF_WAR_INTENSE"
-msgstr ""
+msgstr "Dichte Chriegsnebel"
 
 msgid "FOG_OF_WAR_INTENSE_DESCRIPTION"
-msgstr ""
+msgstr "(nur bekannti Bereich werdet uufdeckt)"
 
 msgid "FOG_OF_WAR_MODE"
-msgstr ""
+msgstr "Chriegsnebel Modus"
 
 msgid "FOG_OF_WAR_REGULAR"
-msgstr ""
+msgstr "Normale Chriegsnebel"
 
 msgid "FOG_OF_WAR_REGULAR_DESCRIPTION"
-msgstr ""
+msgstr "(bereich wommer gsi isch, sowie Nachbarbereich, werdet uufdeckt)"
 
 msgid "FOOD_CHAIN"
-msgstr ""
+msgstr "Nahrigschette"
 
 msgid "FOOD_SOURCE_ENERGY_INFO"
-msgstr ""
+msgstr "{0}Energie:{1}(Fitness:{2})insgesamt verfüegbare Energie:{3} (gsamti Fitness:{4})"
 
 msgid "FORGET_MOD_DETAILS"
-msgstr ""
+msgstr "Lokali Date entferne"
 
 msgid "FORGET_MOD_DETAILS_TOOLTIP"
-msgstr ""
+msgstr "Lokali Date zu dem Gegestand entferne. Das isch hilfriich, wenn du d'falschi ID aageh hesch oder e Version als neue Gegestand ufeladde wettsch."
 
 msgid "FORM_ERROR_MESSAGE"
-msgstr ""
+msgstr "Fehler: {0}"
 
 msgid "FOSSILISATION"
-msgstr ""
+msgstr "Versteinerig"
 
 msgid "FOSSILISATION_EXPLANATION"
-msgstr ""
+msgstr "Mach die Art zu emene Fossil um s' im Museum z'spiichere. Du chasch vode Thriveopedia uf's Museum zuegriife oder Fossilie im Sandboxeditor ladde."
 
 msgid "FOSSILISATION_FAILED"
-msgstr ""
+msgstr "Verteinerig fehlgschlagge"
 
 msgid "FOSSILISATION_FAILED_DESCRIPTION"
-msgstr ""
+msgstr "D'Fossildatei hett mer nöd schriibe chönne"
 
 msgid "FOSSILISATION_HINT"
-msgstr ""
+msgstr "Die Art versteinere"
 
 msgid "FOSSILISATION_HINT_ALREADY_FOSSILISED"
-msgstr ""
+msgstr "Die Art versteinere (isch scho versteinert)"
 
 msgid "FOSSILISE"
-msgstr ""
+msgstr "Versteinere"
 
 msgid "FOSSIL_DELETION_FAILED"
-msgstr ""
+msgstr "Löschig vom Fossil fehl g'schlagge"
 
 msgid "FOSSIL_DELETION_FAILED_DESCRIPTION"
-msgstr ""
+msgstr "Fossildatei hett mer nöd chönne lösche"
 
 msgid "FOUR_TIMES"
-msgstr ""
+msgstr "4x"
 
 msgid "FPS"
-msgstr ""
+msgstr "FPS: {0}"
 
 msgid "FPS_DISPLAY"
-msgstr ""
+msgstr "FPS Darstellig"
 
 msgid "FRAME_DURATION"
-msgstr ""
+msgstr "Delta: {0}"
 
 msgid "FREEBUILDING"
-msgstr ""
+msgstr "Sandboxmodus"
 
 msgid "FREE_GLUCOSE_CLOUD"
-msgstr ""
+msgstr "Verfüegbari Glukosewulche bim verlah vom Editor"
 
 msgid "FREE_GLUCOSE_CLOUD_EXPLANATION"
-msgstr ""
+msgstr "(Fang jedi Generation mit enere Glukosewulche ide Nöchi aa)"
 
 msgid "FULLSCREEN"
-msgstr ""
+msgstr "Vollbild"
 
 msgid "FULL_MOD_INFO"
-msgstr ""
+msgstr "Vollständigi Modinformationen"
 
 msgid "GALLERY_VIEWER"
-msgstr ""
+msgstr "Kunstgalerie"
 
 msgid "GAMEPLAY_BASICS_TITLE"
-msgstr ""
+msgstr "Grundlage vom Spiel"
 
 msgid "GAME_DESIGN_TEAM"
-msgstr ""
+msgstr "Spieldesigner Team"
 
 msgid "GAME_SYSTEMS_TITLE"
-msgstr ""
+msgstr "Spielsystem"
 
 msgid "GATHERED_ENERGY_TOOLTIP"
 msgstr ""
+"Zeigt d'gsammti vo dinere Art g'sammelti Energie i allne Bereich und d'dadurch resultierendi Population (I Chlammere).\n"
+"Energie zuvor: {0}"
 
 msgid "GENERAL"
-msgstr ""
+msgstr "Allgemein"
 
 msgid "GENERAL_LOADING_TIP_1"
-msgstr ""
+msgstr "Druck d'Rückgängigtaste im Editor um en Fehler z'korrigiere"
 
 msgid "GENERAL_LOADING_TIP_2"
-msgstr ""
+msgstr "Pass uf grösseri Organisme uuf. Sie werdet dich fresse und verdaut z'werde isch kes Zuckerspiel!"
 
 msgid "GENERAL_LOADING_TIP_3"
-msgstr ""
+msgstr "Bis vorsichtig, wenn du d'gliichi Spezies d'ganzi Ziit über jagsch. Sie chönnd dadur uussterbe."
 
 msgid "GENERAL_LOADING_TIP_4"
-msgstr ""
+msgstr "Mängisch isches am beste efach ab z'haue."
 
 msgid "GENERAL_LOADING_TIP_5"
 msgstr ""
@@ -2211,6 +2372,28 @@ msgid "GITHUB_TOOLTIP"
 msgstr ""
 
 msgid "GLES3"
+msgstr ""
+
+msgid "GLOBAL_GLACIATION_END_EVENT_LOG"
+msgstr ""
+
+msgid "GLOBAL_GLACIATION_EVENT"
+msgstr ""
+
+msgid "GLOBAL_GLACIATION_EVENT_TOOLTIP"
+msgstr ""
+"Globales Veriisigsevent\n"
+"S'Event isch vo wachsende Suurstoffkonzentratione ide Atmosphäre verursacht worde.\n"
+"Es wird mehreri Generatione aahalte, was Sunneliecht und Temperature reduziert.\n"
+"Iispartikel werdet ebbefalls i dene Gebiet vorcho."
+
+msgid "GLOBAL_GLACIATION_EVENT_WARNING_LOG_PLURAL"
+msgstr ""
+
+msgid "GLOBAL_GLACIATION_EVENT_WARNING_LOG_SINGULAR"
+msgstr ""
+
+msgid "GLOBAL_GLACIATION_START_EVENT_LOG"
 msgstr ""
 
 msgid "GLOBAL_INITIAL_LETTER"
@@ -2355,6 +2538,9 @@ msgid "ID_IS_NOT_A_NUMBER"
 msgstr ""
 
 msgid "ID_NUMBER"
+msgstr ""
+
+msgid "IF_FALLBACK_RENDERER_USED_ALL_NOT_AVAILABLE"
 msgstr ""
 
 msgid "IMAGE_FILE_TYPES"
@@ -2966,13 +3152,28 @@ msgstr ""
 msgid "LOADING_GAME"
 msgstr ""
 
+msgid "LOADING_GRAPHICS_SHADERS"
+msgstr ""
+
 msgid "LOADING_MACROSCOPIC_EDITOR"
 msgstr ""
 
 msgid "LOADING_MICROBE_EDITOR"
 msgstr ""
 
+msgid "LOADING_MICROBE_STAGE"
+msgstr ""
+
 msgid "LOADING_MULTICELLULAR_EDITOR"
+msgstr ""
+
+msgid "LOADING_MULTICELLULAR_STAGE"
+msgstr "Multizelluläres Stadium laded"
+
+msgid "LOADING_STAGE"
+msgstr "Stadium Ladde"
+
+msgid "LOADING_STAGE_ASSETS"
 msgstr ""
 
 msgid "LOAD_FINISHED"
@@ -3005,6 +3206,12 @@ msgstr ""
 msgid "LOCK_DAY_NIGHT_CYCLE"
 msgstr ""
 
+msgid "LOWER_SCALE_INCREASES_PERFORMANCE"
+msgstr ""
+
+msgid "LOWER_VALUE_MAKES_SHARPER_IMAGE"
+msgstr ""
+
 msgid "LOW_MENU_PERFORMANCE"
 msgstr ""
 
@@ -3016,6 +3223,12 @@ msgstr ""
 
 msgid "LOW_QUALITY_BACKGROUND_BLUR_TOOLTIP"
 msgstr ""
+
+msgid "LUCIFERASE"
+msgstr ""
+
+msgid "LUCIFERASE_SYNTHESIS"
+msgstr "Luciferase Synthese"
 
 msgid "LYSOSOME"
 msgstr ""
@@ -3132,6 +3345,15 @@ msgid "METABOLOSOMES_PROCESSES_DESCRIPTION"
 msgstr ""
 
 msgid "META_THREADS_TOOLTIP"
+msgstr ""
+
+msgid "METEOR_IMPACT_EVENT"
+msgstr ""
+
+msgid "METEOR_STRIKE_START_EVENT_LOG_PLURAL"
+msgstr ""
+
+msgid "METEOR_STRIKE_START_EVENT_LOG_SINGULAR"
 msgstr ""
 
 msgid "METRICS"
@@ -3305,9 +3527,6 @@ msgstr ""
 msgid "MICROBE_STAGE_CONTROL_TEXT_CONTROLLER"
 msgstr ""
 
-msgid "MICROBE_STAGE_DAY_NIGHT_TEXT"
-msgstr ""
-
 msgid "MICROBE_STAGE_HEALTH_TEXT"
 msgstr ""
 
@@ -3402,6 +3621,9 @@ msgid "MODDING_INSTRUCTIONS_ON"
 msgstr ""
 
 msgid "MODELS"
+msgstr ""
+
+msgid "MODE_CAN_BE_CHANGED_IN_OPTIONS"
 msgstr ""
 
 msgid "MODIFY"
@@ -4244,6 +4466,12 @@ msgstr ""
 msgid "PLAYER_RELATIVE_MOVEMENT"
 msgstr ""
 
+msgid "PLAYER_RELATIVE_MOVEMENT_TOOLTIP"
+msgstr ""
+"Im Spieler-relative Bewegigsmodus sind d'Bewegigstaste relativ zum jetzige Ort vode Spielerzelle.\n"
+"Wemmer d'Muus bewegt änderet sich also wo sich \"forwärts\" befindet für d'Zelle.\n"
+"Das isch de Standartbewegigsmodus i Thrive."
+
 msgid "PLAYER_REPRODUCED"
 msgstr ""
 
@@ -4322,6 +4550,12 @@ msgstr ""
 msgid "PROCESS_SPEED_MODIFIER"
 msgstr ""
 
+msgid "PROCESS_TOGGLE_TOOLTIP"
+msgstr ""
+"Schalt de Prozess a oder uus. Das erlaubt fortgschritteni Kontrolle über Zelleprozess.\n"
+"Zum Biispiel chammer Toxinproduktion abstelle sofern unnötig.\n"
+"Oder mer chann manuell balanciere welli Energiequelle mer benutze wett um effizienter z'sii, aber das isch e Fortschritteni Taktik."
+
 msgid "PROGRAMMING_TEAM"
 msgstr ""
 
@@ -4337,9 +4571,8 @@ msgstr ""
 msgid "PULL_REQUESTS_PROGRAMMING"
 msgstr ""
 
-#, fuzzy
 msgid "QUADRILLION_ABBREVIATION"
-msgstr "{0}mia"
+msgstr "{0} Q"
 
 msgid "QUICK_LOAD"
 msgstr ""
@@ -4398,6 +4631,9 @@ msgstr ""
 msgid "REFRESH"
 msgstr ""
 
+msgid "RENDER_SCALE"
+msgstr ""
+
 msgid "REPORT"
 msgstr ""
 
@@ -4453,6 +4689,12 @@ msgid "RESET_KEYBINDINGS"
 msgstr ""
 
 msgid "RESET_SETTINGS_TO_DEFAULTS"
+msgstr ""
+
+msgid "RESET_SHOWN_TUTORIALS"
+msgstr ""
+
+msgid "RESET_SHOWN_TUTORIALS_TOOLTIP"
 msgstr ""
 
 msgid "RESET_TO_DEFAULTS"
@@ -4686,6 +4928,9 @@ msgstr ""
 msgid "SCREEN_RELATIVE_MOVEMENT"
 msgstr ""
 
+msgid "SCREEN_RELATIVE_MOVEMENT_TOOLTIP"
+msgstr ""
+
 msgid "SCROLLLOCK"
 msgstr ""
 
@@ -4708,6 +4953,9 @@ msgid "SECRETE_SLIME_TOOLTIP"
 msgstr ""
 
 msgid "SEED_LABEL"
+msgstr ""
+
+msgid "SELECTED"
 msgstr ""
 
 msgid "SELECTED_COLON"
@@ -4743,6 +4991,9 @@ msgstr ""
 msgid "SELECT_ENZYME"
 msgstr ""
 
+msgid "SELECT_MOVEMENT_MODE_TITLE"
+msgstr ""
+
 msgid "SELECT_OPTION"
 msgstr ""
 
@@ -4776,6 +5027,12 @@ msgstr ""
 msgid "SHIFT"
 msgstr ""
 
+msgid "SHOW_ALL_TUTORIALS"
+msgstr ""
+
+msgid "SHOW_ALL_TUTORIALS_TOOLTIP"
+msgstr ""
+
 msgid "SHOW_DAMAGE_EFFECT"
 msgstr ""
 
@@ -4791,14 +5048,17 @@ msgstr ""
 msgid "SHOW_NEW_PATCH_NOTES_TOOLTIP"
 msgstr ""
 
-msgid "SHOW_TUTORIALS"
-msgstr ""
-
 msgid "SHOW_TUTORIALS_IN_NEW_CURRENT_OPTION"
 msgstr ""
 
 msgid "SHOW_TUTORIALS_IN_NEW_GAMES_OPTION"
 msgstr ""
+
+msgid "SHOW_TUTORIALS_OPTION_TOOLTIP"
+msgstr ""
+"Zeig oder entferne Tutorials. Es isch nöd g'rate das ab z'stelle.\n"
+"Wemmer es neu's Spiel startet chammer alli Tutorials abstelle, was numme die Tutorials uufschaltet wommer no nöd gseh hett.\n"
+"Das isch durchuus empfohle da neui Tutorials immer wieder dezue chömmed, was ansüschte vo Spieler überseh werde chann wo früener mal Thrive g'spielt hend."
 
 msgid "SHOW_UNSAVED_PROGRESS_WARNING"
 msgstr ""
@@ -4944,6 +5204,12 @@ msgstr ""
 msgid "SPECIES_LIST"
 msgstr ""
 
+msgid "SPECIES_MEMBER_IMPACT_ON_POP"
+msgstr ""
+
+msgid "SPECIES_MEMBER_IMPACT_ON_POPULATION_EXPLANATION"
+msgstr "(De Grad zu dem s'Sterbe und Reproduziere vo KI-Tier ide Spezies vom Spieler diesi Population beiflusst als externale Effekt)"
+
 msgid "SPECIES_NAME_DOT_DOT_DOT"
 msgstr ""
 
@@ -5081,6 +5347,11 @@ msgstr ""
 
 msgid "STORE_LOGGED_IN_AS"
 msgstr ""
+
+msgid "STRAIN_BAR_TOOLTIP"
+msgstr ""
+"Die Linie zeigt d'momentani Erschöpfig durch Laufe. Je höher die Linie chunnt desto meh ATP bruuchts um wiiterhin Laufe z'chönne.\n"
+"Erholig choschtet ebbefalls extra ATP bis d'Linie wieder weg isch."
 
 msgid "STRAIN_BAR_VISIBILITY"
 msgstr ""
@@ -5334,6 +5605,12 @@ msgstr ""
 msgid "TIMELINE_NICHE_FILL"
 msgstr ""
 
+msgid "TIMELINE_PLAYER_MIGRATED"
+msgstr ""
+
+msgid "TIMELINE_PLAYER_MIGRATED_TO"
+msgstr ""
+
 msgid "TIMELINE_SELECTION_PRESSURE_SPLIT"
 msgstr ""
 
@@ -5344,6 +5621,9 @@ msgid "TIMELINE_SPECIES_EXTINCT"
 msgstr ""
 
 msgid "TIMELINE_SPECIES_EXTINCT_LOCAL"
+msgstr ""
+
+msgid "TIMELINE_SPECIES_FOLLOWED"
 msgstr ""
 
 msgid "TIMELINE_SPECIES_MIGRATED_FROM"
@@ -5529,18 +5809,14 @@ msgstr ""
 msgid "TOXISOME_DESCRIPTION"
 msgstr ""
 
-msgid "TO_BE_IMPLEMENTED"
-msgstr ""
-
 msgid "TRANSLATORS"
 msgstr ""
 
 msgid "TRANSPARENCY"
 msgstr ""
 
-#, fuzzy
 msgid "TRILLION_ABBREVIATION"
-msgstr "{0}mia"
+msgstr "{0} Bil"
 
 msgid "TRY_FOSSILISING_SOME_SPECIES"
 msgstr ""
@@ -5552,6 +5828,9 @@ msgid "TRY_TAKING_SOME_SCREENSHOTS"
 msgstr ""
 
 msgid "TUTORIAL"
+msgstr ""
+
+msgid "TUTORIAL_ALL_NOT_ENABLED_EXPLANATION"
 msgstr ""
 
 msgid "TUTORIAL_MICROBE_EDITOR_ATP_BALANCE_INTRO"
@@ -5566,10 +5845,22 @@ msgstr ""
 msgid "TUTORIAL_MICROBE_EDITOR_CHEMORECEPTOR"
 msgstr ""
 
+msgid "TUTORIAL_MICROBE_EDITOR_COMPOUND_BALANCES"
+msgstr ""
+
+msgid "TUTORIAL_MICROBE_EDITOR_DIGESTION_STAT"
+msgstr ""
+
 msgid "TUTORIAL_MICROBE_EDITOR_ENDING_TEXT"
 msgstr ""
 
 msgid "TUTORIAL_MICROBE_EDITOR_FLAGELLUM"
+msgstr ""
+
+msgid "TUTORIAL_MICROBE_EDITOR_FOOD_CHAIN"
+msgstr ""
+
+msgid "TUTORIAL_MICROBE_EDITOR_MIGRATION"
 msgstr ""
 
 msgid "TUTORIAL_MICROBE_EDITOR_MODIFY_ORGANELLE"
@@ -5611,13 +5902,31 @@ msgstr ""
 msgid "TUTORIAL_MICROBE_STAGE_ENGULFMENT_TEXT"
 msgstr ""
 
+msgid "TUTORIAL_MICROBE_STAGE_ENVIRONMENT_PANEL"
+msgstr ""
+
 msgid "TUTORIAL_MICROBE_STAGE_HELP_MENU_AND_ZOOM"
 msgstr ""
 
 msgid "TUTORIAL_MICROBE_STAGE_LEAVE_COLONY_TEXT"
 msgstr ""
 
+msgid "TUTORIAL_MICROBE_STAGE_MEMBER_DIED"
+msgstr ""
+
+msgid "TUTORIAL_MICROBE_STAGE_OPEN_PROCESS_PANEL"
+msgstr ""
+
+msgid "TUTORIAL_MICROBE_STAGE_PAUSING"
+msgstr ""
+
+msgid "TUTORIAL_MICROBE_STAGE_PROCESS_PANEL"
+msgstr ""
+
 msgid "TUTORIAL_MICROBE_STAGE_REPRODUCE_TEXT"
+msgstr ""
+
+msgid "TUTORIAL_MICROBE_STAGE_RESOURCE_SPLIT"
 msgstr ""
 
 msgid "TUTORIAL_MICROBE_STAGE_UNBIND_TEXT"
@@ -5806,6 +6115,18 @@ msgstr ""
 msgid "UPLOAD_SUCCEEDED"
 msgstr ""
 
+msgid "UPSCALE_BILINEAR"
+msgstr ""
+
+msgid "UPSCALE_FSR_1"
+msgstr ""
+
+msgid "UPSCALE_FSR_22"
+msgstr ""
+
+msgid "UPSCALE_SHARPENING_FSR"
+msgstr ""
+
 msgid "USED_LIBRARIES_LICENSES"
 msgstr ""
 
@@ -5903,6 +6224,9 @@ msgid "VIEW_PENDING_ACTIONS"
 msgstr ""
 
 msgid "VIEW_SOURCE_CODE"
+msgstr ""
+
+msgid "VIEW_TEXT_REPORT"
 msgstr ""
 
 msgid "VIP_PATRONS"
@@ -6260,6 +6584,9 @@ msgid "WIKI_COMPOUND_SYSTEM_DEVELOPMENT_MICROBE_STAGE"
 msgstr ""
 
 msgid "WIKI_COMPOUND_SYSTEM_DEVELOPMENT_OVERVIEW"
+msgstr ""
+
+msgid "WIKI_CREATURE_EDITOR_COMMA_TECH_EDITOR"
 msgstr ""
 
 msgid "WIKI_CYTOPLASM_EFFECTS"
@@ -7175,6 +7502,9 @@ msgid "WIKI_STAGES_ROOT_INTRO"
 msgstr ""
 
 msgid "WIKI_TBA"
+msgstr ""
+
+msgid "WIKI_TECH_EDITOR_COMMA_NATION_EDITOR_COMMA_SQUAD_EDITOR"
 msgstr ""
 
 msgid "WIKI_THERMOPLAST_EFFECTS"

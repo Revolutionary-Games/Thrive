@@ -3,6 +3,7 @@ using System.Linq;
 using Godot;
 using Godot.Collections;
 using LauncherThriveShared;
+using Tutorial;
 using Xoshiro.PRNG32;
 
 /// <summary>
@@ -336,6 +337,10 @@ public partial class MainMenu : NodeWithInput
                 }
             }
         }
+
+        // This makes saving seen tutorials work if a tutorial was just closed and the player exited to the main menu
+        // before the delayed save was able to trigger
+        AlreadySeenTutorials.Process(delta);
     }
 
     public override void _Notification(int notification)

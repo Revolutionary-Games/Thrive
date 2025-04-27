@@ -10,7 +10,7 @@
 ///     new last value).
 ///   </para>
 ///   <para>
-///     This is defined as being the size of 16 bits to be more space efficient when processing a lot of compound data.
+///     This is defined as being the size of 16 bits to be more space-efficient when processing a lot of compound data.
 ///   </para>
 /// </remarks>
 public enum Compound : ushort
@@ -39,11 +39,12 @@ public enum Compound : ushort
     Sunlight = 12,
     Temperature = 13,
     Radiation = 14,
+    Luciferase = 15,
 
     /// <summary>
     ///   Last defined compound. When adding new values, this *must be* updated to match the value of the last compound.
     /// </summary>
-    LastInbuiltCompound = 14,
+    LastInbuiltCompound = 15,
 
     // This should be plenty for us to implement anything and leaves a lot of space for mods to load custom compound
     // types into

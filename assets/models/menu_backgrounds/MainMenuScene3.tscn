@@ -215,7 +215,7 @@ far = 8192.0
 [node name="CameraAnimation" type="AnimationPlayer" parent="."]
 root_node = NodePath("../Camera3D")
 libraries = {
-"": SubResource("AnimationLibrary_f2p6t")
+&"": SubResource("AnimationLibrary_f2p6t")
 }
 autoplay = "CameraAnim"
 speed_scale = 0.5
@@ -243,6 +243,8 @@ transform = Transform3D(0.959115, -0.0637075, 0.142029, 0.159017, 0.773711, 0.61
 [node name="VentParticles1" parent="." instance=ExtResource("4_hjk10")]
 transform = Transform3D(4.872, 0, 0, 0, 1.8, 0, 0, 0, 5.616, -8.972, 10.75, 24.703)
 amount = 45
+interpolate = true
+fract_delta = true
 visibility_aabb = AABB(-3.14709, -4, -6.35581, 8, 8, 7.76436)
 draw_pass_1 = SubResource("QuadMesh_2tyhq")
 
@@ -262,6 +264,8 @@ omni_attenuation = 2.2974
 
 [node name="VentParticles2" parent="UnderwaterChimney3" instance=ExtResource("4_hjk10")]
 transform = Transform3D(16, 0, -3.8147e-07, 0, 2.3, 0, 3.8147e-07, 0, 16, 0, 1.6, 0)
+interpolate = true
+fract_delta = true
 
 [node name="UnderwaterChimney4" parent="." instance=ExtResource("1")]
 transform = Transform3D(-0.41343, 0.183527, -0.133774, 0.134676, 0.598819, 6.59842e-08, 0.10367, -0.0460202, -0.533483, -28.6633, 6.39463, 18.5842)
@@ -279,6 +283,8 @@ omni_attenuation = 2.2974
 [node name="VentParticles3" parent="UnderwaterChimney4" instance=ExtResource("4_hjk10")]
 transform = Transform3D(14.6335, 0.659123, 1.79483e-06, -3.29562, 2.9267, -2.88208e-06, -2.38419e-06, 4.83463e-07, 15, -0.691605, 0.768367, -1.90735e-06)
 amount = 25
+interpolate = true
+fract_delta = true
 
 [node name="UnderwaterChimney5" parent="." instance=ExtResource("1")]
 transform = Transform3D(-0.631706, 0.365301, -0.188013, 0.20578, 1.19192, 7.87585e-08, 0.158404, -0.091601, -0.749787, -31.3255, -0.424461, 4.90141)
@@ -298,6 +304,8 @@ omni_attenuation = 3.03144
 [node name="VentParticles4" parent="UnderwaterChimney5" instance=ExtResource("4_hjk10")]
 transform = Transform3D(14.7806, 0.511238, -9.01509e-07, -2.55619, 2.95612, -3.8137e-06, 2.38419e-07, 7.8231e-07, 15, -0.653919, 0.551311, 0.408634)
 amount = 30
+interpolate = true
+fract_delta = true
 
 [node name="UnderwaterChimney6" parent="." instance=ExtResource("1")]
 transform = Transform3D(0.973435, 0.223152, -0.0512572, -0.224611, 0.974137, -0.024659, 0.0444288, 0.0355169, 0.998381, -11.463, 4.481, -14.427)
@@ -320,6 +328,8 @@ omni_attenuation = 2.2974
 [node name="VentParticles5" parent="." instance=ExtResource("4_hjk10")]
 transform = Transform3D(-16.4895, -2.63366e-06, -4.13486, -1.86862e-05, 2.3, -5.51403e-06, 4.13486, -1.08702e-07, -16.4895, -11.0402, 5.77586, -14.0467)
 amount = 45
+interpolate = true
+fract_delta = true
 
 [node name="DirectionalLight3D" type="DirectionalLight3D" parent="."]
 transform = Transform3D(-0.0543926, -0.99852, -2.37757e-09, -4.37114e-08, 1.91069e-15, 1, -0.99852, 0.0543926, -4.36467e-08, 0, 17.284, 0)

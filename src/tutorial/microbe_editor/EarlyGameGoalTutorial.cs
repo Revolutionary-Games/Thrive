@@ -5,10 +5,11 @@ using System;
 public class EarlyGameGoalTutorial : EditorEntryCountingTutorial
 {
     private readonly string reportTab = EditorTab.Report.ToString();
+    private readonly string foodChainTab = MicrobeEditorReportComponent.ReportSubtab.FoodChain.ToString();
 
     public override string ClosedByName => "EarlyGameGoalTutorial";
 
-    protected override int TriggersOnNthEditorSession => 2;
+    protected override int TriggersOnNthEditorSession => 3;
 
     public override void ApplyGUIState(MicrobeEditorTutorialGUI gui)
     {
@@ -44,6 +45,17 @@ public class EarlyGameGoalTutorial : EditorEntryCountingTutorial
                     {
                         Hide();
                     }
+                }
+
+                break;
+            }
+
+            case TutorialEventType.ReportComponentSubtabChanged:
+            {
+                // Hide this when the food chain tutorial would trigger to let that proceed
+                if (ShownCurrently && ((StringEventArgs)args).Data == foodChainTab)
+                {
+                    Hide();
                 }
 
                 break;

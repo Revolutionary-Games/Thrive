@@ -18,7 +18,7 @@ public partial class EditorComponentBase<TEditor> : ControlWithInput, IEditorCom
 #pragma warning disable CA2213
     protected AudioStream unableToPerformActionSound = null!;
 
-    private Button finishOrNextButton = null!;
+    protected Button finishOrNextButton = null!;
 #pragma warning restore CA2213
 
     private TEditor? editor;

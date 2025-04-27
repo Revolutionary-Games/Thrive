@@ -929,6 +929,7 @@ public class OrganelleDefinition : IRegistryType
         public ChemoreceptorComponentFactory? Chemoreceptor;
         public CiliaComponentFactory? Cilia;
         public LysosomeComponentFactory? Lysosome;
+        public BioluminescenceComponentFactory? Bioluminescence;
 
         private readonly List<IOrganelleComponentFactory> allFactories = new();
 
@@ -995,6 +996,13 @@ public class OrganelleDefinition : IRegistryType
             {
                 Lysosome.Check(name);
                 allFactories.Add(Lysosome);
+                ++count;
+            }
+
+            if (Bioluminescence != null)
+            {
+                Bioluminescence.Check(name);
+                allFactories.Add(Bioluminescence);
                 ++count;
             }
         }

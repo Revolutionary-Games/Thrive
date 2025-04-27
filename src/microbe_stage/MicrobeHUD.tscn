@@ -577,10 +577,10 @@ grow_horizontal = 2
 grow_vertical = 2
 
 [node name="ProcessPanel" parent="." instance=ExtResource("61")]
-offset_left = 8.0
-offset_top = 72.0
-offset_right = -872.0
-offset_bottom = -48.0
+offset_left = 2.0
+offset_top = 71.0
+offset_right = 402.0
+offset_bottom = 671.0
 
 [node name="MicrobeCheatMenu" parent="." instance=ExtResource("55")]
 offset_left = 10.0
@@ -778,6 +778,7 @@ offset_right = 125.0
 offset_bottom = 198.0
 grow_horizontal = 2
 grow_vertical = 2
+tooltip_text = "STRAIN_BAR_TOOLTIP"
 theme_type_variation = &"SprintBar"
 max_value = 0.9
 step = 0.001

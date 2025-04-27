@@ -49,7 +49,6 @@ public partial class CellEditorComponent
     public void SendObjectsToTutorials(TutorialState tutorial, MicrobeEditorTutorialGUI gui)
     {
         tutorial.EditorUndoTutorial.EditorUndoButtonControl = componentBottomLeftButtons.UndoButton;
-        tutorial.EditorRedoTutorial.EditorRedoButtonControl = componentBottomLeftButtons.RedoButton;
 
         tutorial.AutoEvoPrediction.EditorAutoEvoPredictionPanel = autoEvoPredictionPanel;
 
@@ -811,6 +810,12 @@ public partial class CellEditorComponent
             // This allocates a delegate, but it's probably not a significant amount of garbage
             MicrobeEnvironmentalToleranceCalculations.GenerateToleranceProblemList(tolerances,
                 MicrobeEnvironmentalToleranceCalculations.ResolveToleranceValues(tolerances), AddToleranceWarning);
+
+            if (usedToleranceWarnings > 0)
+            {
+                // Need to make sure the player is not locked out of the tab to address these
+                toleranceTabButton.Visible = true;
+            }
         }
 
         // Remove excess text that is no longer used

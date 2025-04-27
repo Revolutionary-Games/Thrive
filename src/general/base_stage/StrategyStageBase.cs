@@ -64,6 +64,9 @@ public partial class StrategyStageBase : StageBase, IStrategyStage
     {
         base._Process(delta);
 
+        if (StageLoadingState != LoadState.NotLoading)
+            return;
+
         if (!IsGameOver())
         {
             BaseHUD.UpdateScienceSpeed(activeResearchContributions.SumValues());
@@ -165,7 +168,12 @@ public partial class StrategyStageBase : StageBase, IStrategyStage
 
     protected override void StartGUIStageTransition(bool longDuration, bool returnFromEditor)
     {
-        BaseHUD.OnEnterStageTransition(longDuration, returnFromEditor);
+        BaseHUD.OnEnterStageLoadingScreen(longDuration, returnFromEditor);
+    }
+
+    protected override void OnTriggerHUDFinalLoadFadeIn()
+    {
+        BaseHUD.OnStageLoaded(this);
     }
 
     protected override void SetupStage()
@@ -176,6 +184,16 @@ public partial class StrategyStageBase : StageBase, IStrategyStage
             throw new InvalidOperationException("Base setup stage did not setup current game");
 
         CurrentGame.TechWeb.OnTechnologyUnlockedHandler += ShowTechnologyUnlockMessage;
+    }
+
+    protected override Node3D CreateGraphicsPreloadNode()
+    {
+        // The world point should always be under the camera so that it can be seen
+        var result = new Node3D();
+        rootOfDynamicallySpawned.AddChild(result);
+        result.Position = strategicCamera.WorldLocation;
+
+        return result;
     }
 
     protected override void OnLightLevelUpdate()

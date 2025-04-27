@@ -41,7 +41,7 @@ public class Patch
     ///   The current effects on patch node (shown in the patch map)
     /// </summary>
     [JsonProperty]
-    private readonly List<WorldEffectVisuals> activeWorldEffectVisuals = new();
+    private readonly List<WorldEffectTypes> activeWorldEffectVisuals = new();
 
     [JsonProperty]
     private Deque<PatchSnapshot> history = new();
@@ -52,7 +52,8 @@ public class Patch
         ID = id;
         BiomeTemplate = biomeTemplate;
         BiomeType = biomeType;
-        currentSnapshot = new PatchSnapshot((BiomeConditions)biomeTemplate.Conditions.Clone());
+        currentSnapshot =
+            new PatchSnapshot((BiomeConditions)biomeTemplate.Conditions.Clone(), biomeTemplate.Background);
         Region = region;
     }
 
@@ -137,6 +138,9 @@ public class Patch
 
     [JsonIgnore]
     public BiomeConditions Biome => currentSnapshot.Biome;
+
+    [JsonIgnore]
+    public string Background => currentSnapshot.Background ?? BiomeTemplate.Background;
 
     /// <summary>
     ///   Logged events that specifically occurred in this patch.
@@ -279,6 +283,19 @@ public class Patch
     public bool RemoveSpecies(Species species)
     {
         return currentSnapshot.SpeciesInPatch.Remove(species);
+    }
+
+    public int GetSpeciesCount()
+    {
+        int result = 0;
+
+        foreach (var entry in SpeciesInPatch)
+        {
+            if (entry.Value > 0)
+                ++result;
+        }
+
+        return result;
     }
 
     /// <summary>
@@ -585,12 +602,12 @@ public class Patch
             Region.Visibility = visibility;
     }
 
-    public void AddPatchEventRecord(WorldEffectVisuals visual, double happenedAt)
+    public void AddPatchEventRecord(WorldEffectTypes worldEffect, double happenedAt)
     {
         // TODO: switch this class to have more of the logic for keeping event history together
         _ = happenedAt;
 
-        activeWorldEffectVisuals.Add(visual);
+        activeWorldEffectVisuals.Add(worldEffect);
     }
 
     public void ClearPatchNodeEventVisuals()
@@ -648,12 +665,14 @@ public class PatchSnapshot : ICloneable
     public Dictionary<Species, SpeciesInfo> RecordedSpeciesInfo = new();
 
     public BiomeConditions Biome;
+    public string? Background;
 
     public List<GameEventDescription> EventsLog = new();
 
-    public PatchSnapshot(BiomeConditions biome)
+    public PatchSnapshot(BiomeConditions biome, string? background)
     {
         Biome = biome;
+        Background = background;
     }
 
     public void ReplaceSpecies(Species old, Species newSpecies)
@@ -676,7 +695,7 @@ public class PatchSnapshot : ICloneable
     public object Clone()
     {
         // We only do a shallow copy of RecordedSpeciesInfo here as SpeciesInfo objects are never modified.
-        var result = new PatchSnapshot((BiomeConditions)Biome.Clone())
+        var result = new PatchSnapshot((BiomeConditions)Biome.Clone(), Background)
         {
             TimePeriod = TimePeriod,
             SpeciesInPatch = new Dictionary<Species, long>(SpeciesInPatch),

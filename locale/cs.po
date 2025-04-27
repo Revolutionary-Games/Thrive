@@ -7,8 +7,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2025-03-14 11:08+0200\n"
-"PO-Revision-Date: 2025-03-07 10:46+0000\n"
+"POT-Creation-Date: 2025-04-26 10:53+0300\n"
+"PO-Revision-Date: 2025-04-04 10:41+0000\n"
 "Last-Translator: Anonymous <noreply@weblate.org>\n"
 "Language-Team: Czech <https://translate.revolutionarygamesstudio.com/projects/thrive/thrive-game/cs/>\n"
 "Language: cs\n"
@@ -192,6 +192,25 @@ msgstr "Fyzické podmínky"
 msgid "ANISOTROPIC_FILTERING"
 msgstr ""
 
+msgid "ANTIALIASING_MSAA_TAA"
+msgstr ""
+
+#, fuzzy
+msgid "ANTI_ALIASING_FXAA"
+msgstr "Vícevzorové vyhlazování:"
+
+#, fuzzy
+msgid "ANTI_ALIASING_MODE"
+msgstr "Vícevzorové vyhlazování:"
+
+#, fuzzy
+msgid "ANTI_ALIASING_MSAA"
+msgstr "Vícevzorové vyhlazování:"
+
+#, fuzzy
+msgid "ANTI_ALIASING_TAA"
+msgstr "Vícevzorové vyhlazování:"
+
 msgid "APPEARANCE"
 msgstr "Vzhled"
 
@@ -309,6 +328,7 @@ msgstr "Srpen"
 msgid "AUTO"
 msgstr "Automaticky"
 
+#, fuzzy
 msgid "AUTO-EVO_EXPLANATION_EXPLANATION"
 msgstr "Na tomto panelu jsou zobrazena čísla, na jejichž základě funguje predikce auto-evo. Celková energie, kterou je druh schopen zachytit, a náklady na jednoho jedince druhu určují konečnou populaci. Auto-evo používá zjednodušený model reality k výpočtu toho, jak dobře si druhy vedou na základě energie, kterou jsou schopny nasbírat. U každého zdroje potravy je zobrazeno, kolik energie z něj druh získá. Kromě toho je zobrazena celková energie, která je z daného zdroje k dispozici. Podíl, který druh získá z celkové energie, je založen na tom, jak velká je jeho Biologická zdatnost v porovnání s celkovou Biologickou zdatností. Biologická zdatnost je měřítkem toho, jak dobře dokáže druh daný zdroj potravy využít."
 
@@ -322,6 +342,10 @@ msgid "AUTO-EVO_PREDICTION_BOX_DESCRIPTION"
 msgstr ""
 "Tento panel ukazuje očekávané počty populací z auto-evo pro editované druhy.\n"
 "Auto-evo provádí simulaci populace, což je další část (kromě vašeho vlastního výkonu), která ovlivňuje vaši populaci."
+
+#, fuzzy
+msgid "AUTO-EVO_RESULTS_TITLE"
+msgstr "Výsledky Auto-evo:"
 
 msgid "AUTO-EVO_STEPS_DONE"
 msgstr "{0:F1}% splněno. {1:n0}/{2:n0} kroků."
@@ -504,6 +528,14 @@ msgstr "Svázat osy k sobě"
 msgid "BIOLUMINESCENT_VACUOLE"
 msgstr "Bioluminiscenční vakuola"
 
+#, fuzzy
+msgid "BIOLUMINESCENT_VACUOLE_DESCRIPTION"
+msgstr "Bioluminiscenční vakuola"
+
+#, fuzzy
+msgid "BIOLUMINESCENT_VACUOLE_PROCESSES_DESCRIPTION"
+msgstr "Přeměňuje [thrive:compound type=\"atp\"][/thrive:compound] na [thrive:compound type=\"oxytoxy\"][/thrive:compound]. Rychlost je úměrná koncentraci [thrive:compound type=\"oxygen\"][/thrive:compound]. Toxiny můžete vypustit stisknutím [thrive:input]g_fire_toxin[/thrive:input]. Pokud je množství [thrive:compound type=\"oxytoxy\"][/thrive:compound] nízké, střelba je stále možná, ale bude mít snížené poškození."
+
 msgid "BIOME_LABEL"
 msgstr "Biom: {0}"
 
@@ -657,6 +689,10 @@ msgid "CELL_STAT_SPEED_TOOLTIP"
 msgstr "Hodnota použita pro generování světa, která musí být pozitivní celé číslo"
 
 #, fuzzy
+msgid "CELL_STAT_STORAGE_TOOLTIP"
+msgstr "Hodnota použita pro generování světa, která musí být pozitivní celé číslo"
+
+#, fuzzy
 msgid "CELL_TYPE_BUTTON_ATP_CONSUMPTION"
 msgstr "Mrtvá zóna:"
 
@@ -785,6 +821,10 @@ msgstr "Vyčistit staré zálohy"
 
 msgid "CLEAR_CACHE"
 msgstr "vymazat cache"
+
+#, fuzzy
+msgid "CLICK_TO_SELECT"
+msgstr "Smazat vybrané"
 
 msgid "CLOSE"
 msgstr "Zavřít"
@@ -1870,6 +1910,7 @@ msgstr ""
 "\n"
 "Pokračuj výběrem organely z panelu vlevo (cytoplazma je dobrá volba). Potom klikni levým tlačítkem vedle zobrazeného šestiúhelníku (Hexu) uprostřed obrazovky a přidej tuto organelu ke svému druhu."
 
+#, fuzzy
 msgid "EDITOR_TUTORIAL_EDITOR_TEXT"
 msgstr ""
 "Vítejte v editoru mikrobů.\n"
@@ -2094,6 +2135,27 @@ msgstr "Ústí"
 #, fuzzy
 msgid "EVENT_ERUPTION_TOOLTIP"
 msgstr "Automaticky načítat Harmony patche ze sestavy (nepotřebuje specifikování třídy modu)"
+
+msgid "EVENT_METEOR_GLUCOSE"
+msgstr ""
+
+#, fuzzy
+msgid "EVENT_METEOR_IRON"
+msgstr "{0}: +{1} ATP"
+
+#, fuzzy
+msgid "EVENT_METEOR_PHOSPHATES"
+msgstr "Spawnout Fosfát"
+
+#, fuzzy
+msgid "EVENT_METEOR_PLAIN"
+msgstr "Automaticky načítat Harmony patche ze sestavy (nepotřebuje specifikování třídy modu)"
+
+msgid "EVENT_METEOR_RADIOACTIVE"
+msgstr ""
+
+msgid "EVENT_METEOR_SULFUR"
+msgstr ""
 
 msgid "EVOLUTIONARY_TREE"
 msgstr "Evoluční strom"
@@ -2505,6 +2567,26 @@ msgstr "Navštiv náš GitHub repozitář"
 msgid "GLES3"
 msgstr "GLES3"
 
+msgid "GLOBAL_GLACIATION_END_EVENT_LOG"
+msgstr ""
+
+#, fuzzy
+msgid "GLOBAL_GLACIATION_EVENT"
+msgstr "Celková populace:"
+
+#, fuzzy
+msgid "GLOBAL_GLACIATION_EVENT_TOOLTIP"
+msgstr "Přejděte do fáze Probuzení. Dostupné, jakmile máte dostatečnou sílu mozku (typ tkáně s axony)."
+
+msgid "GLOBAL_GLACIATION_EVENT_WARNING_LOG_PLURAL"
+msgstr ""
+
+msgid "GLOBAL_GLACIATION_EVENT_WARNING_LOG_SINGULAR"
+msgstr ""
+
+msgid "GLOBAL_GLACIATION_START_EVENT_LOG"
+msgstr ""
+
 msgid "GLOBAL_INITIAL_LETTER"
 msgstr "G"
 
@@ -2666,6 +2748,9 @@ msgstr "ID není platné číslo"
 
 msgid "ID_NUMBER"
 msgstr "ID číslo"
+
+msgid "IF_FALLBACK_RENDERER_USED_ALL_NOT_AVAILABLE"
+msgstr ""
 
 #, fuzzy
 msgid "IMAGE_FILE_TYPES"
@@ -3335,14 +3420,34 @@ msgid "LOADING_GAME"
 msgstr "Načítání hry"
 
 #, fuzzy
+msgid "LOADING_GRAPHICS_SHADERS"
+msgstr "Načítání hry"
+
+#, fuzzy
 msgid "LOADING_MACROSCOPIC_EDITOR"
 msgstr "Načítání editoru mikrobů"
 
 msgid "LOADING_MICROBE_EDITOR"
 msgstr "Načítání editoru mikrobů"
 
+#, fuzzy
+msgid "LOADING_MICROBE_STAGE"
+msgstr "Společné fáze editoru a strategie"
+
 msgid "LOADING_MULTICELLULAR_EDITOR"
 msgstr "Načítání mnohobuněčného editoru"
+
+#, fuzzy
+msgid "LOADING_MULTICELLULAR_STAGE"
+msgstr "Načítání mnohobuněčného editoru"
+
+#, fuzzy
+msgid "LOADING_STAGE"
+msgstr "Načítání hry"
+
+#, fuzzy
+msgid "LOADING_STAGE_ASSETS"
+msgstr "Načítání hry"
 
 msgid "LOAD_FINISHED"
 msgstr "Načítání dokončeno"
@@ -3385,6 +3490,13 @@ msgid "LOCK_DAY_NIGHT_CYCLE"
 msgstr "Povolení cyklu den/noc"
 
 #, fuzzy
+msgid "LOWER_SCALE_INCREASES_PERFORMANCE"
+msgstr "(vyšší hodnoty zvyšují výkon)"
+
+msgid "LOWER_VALUE_MAKES_SHARPER_IMAGE"
+msgstr ""
+
+#, fuzzy
 msgid "LOW_MENU_PERFORMANCE"
 msgstr "Výkon"
 
@@ -3397,6 +3509,13 @@ msgstr ""
 
 msgid "LOW_QUALITY_BACKGROUND_BLUR_TOOLTIP"
 msgstr ""
+
+msgid "LUCIFERASE"
+msgstr ""
+
+#, fuzzy
+msgid "LUCIFERASE_SYNTHESIS"
+msgstr "Syntéza slizů"
 
 msgid "LYSOSOME"
 msgstr "Lysozom"
@@ -3527,6 +3646,15 @@ msgid "META_THREADS_TOOLTIP"
 msgstr ""
 "Není možné automaticky detekovat, jestli je hyperthreading povolen nebo ne.\n"
 "To ovlivňuje výchozí počet vláken, protože hyperthreading vlákna nejsou tak rychlá jako skutečná jádra CPU."
+
+msgid "METEOR_IMPACT_EVENT"
+msgstr ""
+
+msgid "METEOR_STRIKE_START_EVENT_LOG_PLURAL"
+msgstr ""
+
+msgid "METEOR_STRIKE_START_EVENT_LOG_SINGULAR"
+msgstr ""
 
 msgid "METRICS"
 msgstr "Metriky výkonu"
@@ -3773,6 +3901,7 @@ msgstr ""
 "\n"
 "Následujte čáru vedoucí z vaší buňky k blízké glukóze."
 
+#, fuzzy
 msgid "MICROBE_STAGE_COLLECT_TEXT"
 msgstr ""
 "Pohybem skrze glukózu (bílé oblaky) ji lze posbírat.\n"
@@ -3781,6 +3910,7 @@ msgstr ""
 "\n"
 "Následujte čáru vedoucí z vaší buňky k blízké glukóze."
 
+#, fuzzy
 msgid "MICROBE_STAGE_CONTROL_TEXT"
 msgstr ""
 "Chceš-li ovládat buňku, použij klávesy zobrazené v blízkosti buňky (střed obrazovky) a myš pro ovládání orientace buňky.\n"
@@ -3795,13 +3925,6 @@ msgstr ""
 "Chceš-li pokračovat, vyzkoušejte na několik sekund všechny klávesy."
 
 #, fuzzy
-msgid "MICROBE_STAGE_DAY_NIGHT_TEXT"
-msgstr ""
-"Dávej pozor na svou zdravotní lištu vedle lišty ATP (vpravo dole).\n"
-"Tvá buňka zemře, pokud jí dojde zdraví.\n"
-"Regenerace zdraví probíhá za předpokladu, že máš dostatek ATP.\n"
-"Nezapomeň shromáždit dostatek glukózy k produkci ATP."
-
 msgid "MICROBE_STAGE_HEALTH_TEXT"
 msgstr ""
 "Dávej pozor na svou zdravotní lištu vedle lišty ATP (vpravo dole).\n"
@@ -3809,6 +3932,7 @@ msgstr ""
 "Regenerace zdraví probíhá za předpokladu, že máš dostatek ATP.\n"
 "Nezapomeň shromáždit dostatek glukózy k produkci ATP."
 
+#, fuzzy
 msgid "MICROBE_STAGE_INITIAL"
 msgstr ""
 "Na vzdálené cizí planetě probíhaly vulkanické činnosti a dopady meteorů, což vedlo k vývoji nového fenoménu ve vesmíru.\n"
@@ -3946,6 +4070,9 @@ msgstr "Modding instrukce jsou dostupné na"
 
 msgid "MODELS"
 msgstr "Modely"
+
+msgid "MODE_CAN_BE_CHANGED_IN_OPTIONS"
+msgstr ""
 
 msgid "MODIFY"
 msgstr "Upravit"
@@ -4718,6 +4845,7 @@ msgstr "Rezistence vůči toxinům"
 msgid "OXYGEN_TOLERANCE_TOOLTIP"
 msgstr "Zobrazit / skrýt sloučeniny"
 
+#, fuzzy
 msgid "OXYTOXISOME_PROCESSES_DESCRIPTION"
 msgstr "Přeměňuje [thrive:compound type=\"atp\"][/thrive:compound] na [thrive:compound type=\"oxytoxy\"][/thrive:compound]. Rychlost je úměrná koncentraci [thrive:compound type=\"oxygen\"][/thrive:compound]. Toxiny mohou být uvolněny stisknutím [thrive:input]g_fire_toxin[/thrive:input]. Pokud je množství [thrive:compound type=\"oxytoxy\"][/thrive:compound] nízké, střelba je stále možná, ale bude mít snížené poškození."
 
@@ -4924,6 +5052,10 @@ msgstr "Hráč vyhynul"
 msgid "PLAYER_RELATIVE_MOVEMENT"
 msgstr "Hráč vyhynul"
 
+#, fuzzy
+msgid "PLAYER_RELATIVE_MOVEMENT_TOOLTIP"
+msgstr "Hráč vyhynul"
+
 msgid "PLAYER_REPRODUCED"
 msgstr "hráč se rozmnožil"
 
@@ -5007,6 +5139,10 @@ msgstr "Proces buňky"
 msgid "PROCESS_SPEED_MODIFIER"
 msgstr "Proces buňky"
 
+#, fuzzy
+msgid "PROCESS_TOGGLE_TOOLTIP"
+msgstr "Návrat do hlavního menu"
+
 msgid "PROGRAMMING_TEAM"
 msgstr "Programátoři"
 
@@ -5088,6 +5224,10 @@ msgstr "Zopakovat poslední akci zpět"
 msgid "REFRESH"
 msgstr "Obnovit"
 
+#, fuzzy
+msgid "RENDER_SCALE"
+msgstr "Použitý renderer:"
+
 msgid "REPORT"
 msgstr "Zpráva"
 
@@ -5151,6 +5291,14 @@ msgstr "Resetovat ovládání"
 
 msgid "RESET_SETTINGS_TO_DEFAULTS"
 msgstr "Výchozí"
+
+#, fuzzy
+msgid "RESET_SHOWN_TUTORIALS"
+msgstr "Zobrazit tutoriál"
+
+#, fuzzy
+msgid "RESET_SHOWN_TUTORIALS_TOOLTIP"
+msgstr "Připoj se na náš komunitní Discord server"
 
 msgid "RESET_TO_DEFAULTS"
 msgstr "Obnovit výchozí nastavení?"
@@ -5415,6 +5563,10 @@ msgstr "Zobrazit panel schopností"
 msgid "SCREEN_RELATIVE_MOVEMENT"
 msgstr "ke zvýšení pohyblivosti"
 
+#, fuzzy
+msgid "SCREEN_RELATIVE_MOVEMENT_TOOLTIP"
+msgstr "ke zvýšení pohyblivosti"
+
 msgid "SCROLLLOCK"
 msgstr "Scroll Lock"
 
@@ -5439,6 +5591,10 @@ msgstr "Vyměšuj sliz"
 
 msgid "SEED_LABEL"
 msgstr "Seed planety: {0}"
+
+#, fuzzy
+msgid "SELECTED"
+msgstr "Vybraný mod:"
 
 msgid "SELECTED_COLON"
 msgstr "Vybráno:"
@@ -5473,6 +5629,10 @@ msgstr "V záložce editoru vyberte typ buňky pro úpravu"
 
 msgid "SELECT_ENZYME"
 msgstr "Vyberte enzym:"
+
+#, fuzzy
+msgid "SELECT_MOVEMENT_MODE_TITLE"
+msgstr "Odstranit místní data"
 
 msgid "SELECT_OPTION"
 msgstr "Vyberte možnost"
@@ -5510,6 +5670,14 @@ msgid "SHIFT"
 msgstr "Shift"
 
 #, fuzzy
+msgid "SHOW_ALL_TUTORIALS"
+msgstr "Zobrazit tutoriál"
+
+#, fuzzy
+msgid "SHOW_ALL_TUTORIALS_TOOLTIP"
+msgstr "Připoj se na náš komunitní Discord server"
+
+#, fuzzy
 msgid "SHOW_DAMAGE_EFFECT"
 msgstr "Bičík (množné číslo bičíky) je svazek proteinových vláken, který vychází z buněčné membrány a může se pomocí ATP vlnit a pohánět buňku v určitém směru. Pozice bičíku určuje směr, ve kterém je rychlost buňky ovlivněna. Například bičík umístěný na levé straně buňky zvýší její rychlost pohybu doprava."
 
@@ -5530,14 +5698,15 @@ msgstr "{0} {1}"
 msgid "SHOW_NEW_PATCH_NOTES_TOOLTIP"
 msgstr "{0} {1}"
 
-msgid "SHOW_TUTORIALS"
-msgstr "Zobrazit tutoriál"
-
 msgid "SHOW_TUTORIALS_IN_NEW_CURRENT_OPTION"
 msgstr "Zobrazit tutoriály (v aktuální hře)"
 
 msgid "SHOW_TUTORIALS_IN_NEW_GAMES_OPTION"
 msgstr "Zobrazit tutoriály (v nových hrách)"
+
+#, fuzzy
+msgid "SHOW_TUTORIALS_OPTION_TOOLTIP"
+msgstr "Připoj se na náš komunitní Discord server"
 
 msgid "SHOW_UNSAVED_PROGRESS_WARNING"
 msgstr "Zobrazení upozornění na neuložený postup"
@@ -5703,6 +5872,14 @@ msgstr "zmutoval se"
 msgid "SPECIES_LIST"
 msgstr "Přítomné druhy"
 
+#, fuzzy
+msgid "SPECIES_MEMBER_IMPACT_ON_POP"
+msgstr "Jméno druhu..."
+
+#, fuzzy
+msgid "SPECIES_MEMBER_IMPACT_ON_POPULATION_EXPLANATION"
+msgstr "(cena organel, membrán a jiných věcí v editoru)"
+
 msgid "SPECIES_NAME_DOT_DOT_DOT"
 msgstr "Jméno druhu..."
 
@@ -5852,6 +6029,10 @@ msgstr ""
 
 msgid "STORE_LOGGED_IN_AS"
 msgstr "Přihlášen jako: {0}"
+
+#, fuzzy
+msgid "STRAIN_BAR_TOOLTIP"
+msgstr "Navštivte náš Patreon"
 
 msgid "STRAIN_BAR_VISIBILITY"
 msgstr ""
@@ -6125,6 +6306,14 @@ msgstr "Zobrazit lokální události"
 msgid "TIMELINE_NICHE_FILL"
 msgstr "[b][u]{0}[/u][/b] se oddělil od [b][u]{1}[/u][/b] jako nový druh, aby zaplnil mezeru"
 
+#, fuzzy
+msgid "TIMELINE_PLAYER_MIGRATED"
+msgstr "Část populace [b][u]{0}[/u][/b] migrovala do {1}"
+
+#, fuzzy
+msgid "TIMELINE_PLAYER_MIGRATED_TO"
+msgstr "Část populace [b][u]{0}[/u][/b] migrovala do {1}"
+
 msgid "TIMELINE_SELECTION_PRESSURE_SPLIT"
 msgstr "[b][u]{0}[/u][/b] se oddělil od [b][u]{1}[/u][/b] jako nový druh kvůli jiných selekčních tlaků"
 
@@ -6142,6 +6331,10 @@ msgstr "[b][u]{0}[/u][/b] vyhynul!"
 
 msgid "TIMELINE_SPECIES_EXTINCT_LOCAL"
 msgstr "[b][u]{0}[/u][/b] zmizel z tohoto prostředí"
+
+#, fuzzy
+msgid "TIMELINE_SPECIES_FOLLOWED"
+msgstr "[b][u]{0}[/u][/b] vyhynul!"
 
 msgid "TIMELINE_SPECIES_MIGRATED_FROM"
 msgstr "Část populace [b][u]{0}[/u][/b] migrovala do tohoto prostředí z {1}"
@@ -6353,6 +6546,7 @@ msgstr ""
 msgid "TOXIN_VACUOLE_DESCRIPTION"
 msgstr "Toxinová vakuola je vakuola, která byla upravena pro specifickou produkci, skladování a sekreci oxytoxytoxinů. Více toxinových vakuol zvýší rychlost uvolňování toxinů."
 
+#, fuzzy
 msgid "TOXIN_VACUOLE_PROCESSES_DESCRIPTION"
 msgstr "Přeměňuje [thrive:compound type=\"atp\"][/thrive:compound] na [thrive:compound type=\"oxytoxy\"][/thrive:compound]. Rychlost je úměrná koncentraci [thrive:compound type=\"oxygen\"][/thrive:compound]. Toxiny můžete vypustit stisknutím [thrive:input]g_fire_toxin[/thrive:input]. Pokud je množství [thrive:compound type=\"oxytoxy\"][/thrive:compound] nízké, střelba je stále možná, ale bude mít snížené poškození."
 
@@ -6363,9 +6557,6 @@ msgstr "Oxytoxizom"
 #, fuzzy
 msgid "TOXISOME_DESCRIPTION"
 msgstr "Lysozom je organela připojena na membránu, která obsahuje hydrolytické enzymy, které mohou rozkládat různé biomolekuly. Lysozomy umožnují buňce strávit materiály vstřebány skrze endocytózu a čistit odpadní látky buňky skrze proces zvaný [b]autofagie[/b]."
-
-msgid "TO_BE_IMPLEMENTED"
-msgstr "K implementaci."
 
 msgid "TRANSLATORS"
 msgstr "Překladatelé"
@@ -6391,6 +6582,10 @@ msgid "TUTORIAL"
 msgstr "Tutoriál"
 
 #, fuzzy
+msgid "TUTORIAL_ALL_NOT_ENABLED_EXPLANATION"
+msgstr "(POZOR: fotosyntéza se stává mnohem méně životaschopnou)"
+
+#, fuzzy
 msgid "TUTORIAL_MICROBE_EDITOR_ATP_BALANCE_INTRO"
 msgstr ""
 "Toto je mapa prostředí.\n"
@@ -6411,6 +6606,7 @@ msgstr ""
 "\n"
 "Podrobnější informace za předpovědí si můžete zobrazit stisknutím tlačítka s otazníkem na panelu. Chcete-li pokračovat, stiskněte jej."
 
+#, fuzzy
 msgid "TUTORIAL_MICROBE_EDITOR_CELL_TEXT"
 msgstr ""
 "Toto je editor buněk, kde můžete vyvinout svůj druh utrácením mutačních bodů (MP). Při každé nové generaci vždy začínáte se 100 MP na utracení, takže nemá cenu šetřit!\n"
@@ -6428,6 +6624,27 @@ msgstr ""
 "\n"
 "Abyste pokračovali, vyberte jednu s částí v levém panelu. Poté ho umístíte vedle hexu kliknutím levého tlačítka myši. Můžete s částmi otáčet pomocí [thrive:input]e_rotate_left[/thrive:input] a [thrive:input]e_rotate_right[/thrive:input]."
 
+#, fuzzy
+msgid "TUTORIAL_MICROBE_EDITOR_COMPOUND_BALANCES"
+msgstr ""
+"Toto je mapa prostředí.\n"
+"\n"
+"Každá ikona reprezentuje unikátní prostředí ve kterém můžete žít. Panel napravo popisuje kondice v právě vybraném prostředí.\n"
+"\n"
+"Pokud vyberete prostředí které je spojené s tím ve kterém právě jste, které je ohraničené blikající zelenou, můžete zmáčknout tlačítko \"Přesunout se do tohoto prostředí\" napravo, abyste do něj migrovali.\n"
+"\n"
+"Pro pokračování, zkuste vybrat některé z prostředí."
+
+#, fuzzy
+msgid "TUTORIAL_MICROBE_EDITOR_DIGESTION_STAT"
+msgstr ""
+"Toto je editor buněk, kde můžete vyvinout svůj druh utrácením mutačních bodů (MP). Při každé nové generaci vždy začínáte se 100 MP na utracení, takže nemá cenu šetřit!\n"
+"\n"
+"Hex uprostřed obrazovky je vaše buňka, která se skládá z jedné cytoplazmy.\n"
+"\n"
+"Abyste pokračovali, vyberte jednu s částí v levém panelu. Poté ho umístíte vedle hexu kliknutím levého tlačítka myši. Můžete s částmi otáčet pomocí [thrive:input]e_rotate_left[/thrive:input] a [thrive:input]e_rotate_right[/thrive:input]."
+
+#, fuzzy
 msgid "TUTORIAL_MICROBE_EDITOR_ENDING_TEXT"
 msgstr ""
 "To jsou základní úpravy tvého druhu. Další možnosti můžeš zhlédnout na ostatních kartách editoru buněk.\n"
@@ -6440,6 +6657,26 @@ msgstr ""
 
 #, fuzzy
 msgid "TUTORIAL_MICROBE_EDITOR_FLAGELLUM"
+msgstr ""
+"Toto je editor buněk, kde můžete vyvinout svůj druh utrácením mutačních bodů (MP). Při každé nové generaci vždy začínáte se 100 MP na utracení, takže nemá cenu šetřit!\n"
+"\n"
+"Hex uprostřed obrazovky je vaše buňka, která se skládá z jedné cytoplazmy.\n"
+"\n"
+"Abyste pokračovali, vyberte jednu s částí v levém panelu. Poté ho umístíte vedle hexu kliknutím levého tlačítka myši. Můžete s částmi otáčet pomocí [thrive:input]e_rotate_left[/thrive:input] a [thrive:input]e_rotate_right[/thrive:input]."
+
+#, fuzzy
+msgid "TUTORIAL_MICROBE_EDITOR_FOOD_CHAIN"
+msgstr ""
+"To jsou základní úpravy tvého druhu. Další možnosti můžeš zhlédnout na ostatních kartách editoru buněk.\n"
+"\n"
+"Svůj druh můžeš přejmenovat kliknutím na název aktuálního druhu a upravením textu.\n"
+"\n"
+"Abys přežil v tomu drsnému světu si musíš najít spolehliví zdroj energie poněvadž přírodní množství glukózy bude rychle klesat. Zpočátku bys měl/a mít svoji buňku malou a směřovat k povrchovým skvrnám.\n"
+"\n"
+"Hodně štěstí!"
+
+#, fuzzy
+msgid "TUTORIAL_MICROBE_EDITOR_MIGRATION"
 msgstr ""
 "Toto je editor buněk, kde můžete vyvinout svůj druh utrácením mutačních bodů (MP). Při každé nové generaci vždy začínáte se 100 MP na utracení, takže nemá cenu šetřit!\n"
 "\n"
@@ -6491,6 +6728,7 @@ msgstr ""
 "\n"
 "Pro pokračování, zkuste vybrat některé z prostředí."
 
+#, fuzzy
 msgid "TUTORIAL_MICROBE_EDITOR_PATCH_TEXT"
 msgstr ""
 "Toto je mapa prostředí.\n"
@@ -6511,6 +6749,7 @@ msgstr ""
 "\n"
 "Pokračuj kliknutím na tlačítko Zpět."
 
+#, fuzzy
 msgid "TUTORIAL_MICROBE_EDITOR_SELECT_ORGANELLE_TEXT"
 msgstr ""
 "Když vybíráš, které organely přidat, věnuj pozornost tipům pro organely, na kterých procesech se podílejí a jaké sloučeniny používají a vyrábějí.\n"
@@ -6521,6 +6760,7 @@ msgstr ""
 "\n"
 "Pokračuj stisknutím tlačítka vrátit (poblíž tlačítka Zpět)."
 
+#, fuzzy
 msgid "TUTORIAL_MICROBE_EDITOR_STAY_SMALL"
 msgstr ""
 "Měli byste se soustředit na jeden nebo dva zdroje energie, abyste nemuseli mít všechny zdroje k vytvoření dostatečného množství ATP pro přežití.\n"
@@ -6561,6 +6801,7 @@ msgstr ""
 "\n"
 "Buňka, když plna, nic víc nemůže jíst. Abys mohl/a jist dál, musíš počkat až jeden nebo dvě předměty jsou úplně strávený."
 
+#, fuzzy
 msgid "TUTORIAL_MICROBE_STAGE_ENGULFMENT_TEXT"
 msgstr ""
 "Můžeš sníst předměty když se přes ně pohybuješ a jsi během toho v pohlcovacího módu. Abys zapnul pohlcovací mód zmáčkni [thrive:input]g_toggle_engulf[/thrive:input]\n"
@@ -6569,6 +6810,16 @@ msgstr ""
 "\n"
 "Jeď po čáře od tvé buňky k nedalekému jedlému předmětu."
 
+#, fuzzy
+msgid "TUTORIAL_MICROBE_STAGE_ENVIRONMENT_PANEL"
+msgstr ""
+"Můžeš sníst předměty když se přes ně pohybuješ a jsi během toho v pohlcovacího módu. Abys zapnul pohlcovací mód zmáčkni [thrive:input]g_toggle_engulf[/thrive:input]\n"
+"\n"
+"Přestaň pohlcovat až se ten předmět vtáhne dovnitř do buňky.\n"
+"\n"
+"Jeď po čáře od tvé buňky k nedalekému jedlému předmětu."
+
+#, fuzzy
 msgid "TUTORIAL_MICROBE_STAGE_HELP_MENU_AND_ZOOM"
 msgstr ""
 "Pokud si stále nevíte rady s herními mechanismy, podívejte se do nápovědy. Otevřete ji tlačítkem s otazníkem v levém dolním rohu.\n"
@@ -6582,7 +6833,45 @@ msgstr ""
 "\n"
 "K rozpuštění kolonie klikni na svou buňku nebo stiskni klávesu pro odpojení všech."
 
+#, fuzzy
+msgid "TUTORIAL_MICROBE_STAGE_MEMBER_DIED"
+msgstr ""
+"Můžeš sníst předměty když se přes ně pohybuješ a jsi během toho v pohlcovacího módu. Abys zapnul pohlcovací mód zmáčkni [thrive:input]g_toggle_engulf[/thrive:input]\n"
+"\n"
+"Přestaň pohlcovat až se ten předmět vtáhne dovnitř do buňky.\n"
+"\n"
+"Jeď po čáře od tvé buňky k nedalekému jedlému předmětu."
+
+#, fuzzy
+msgid "TUTORIAL_MICROBE_STAGE_OPEN_PROCESS_PANEL"
+msgstr ""
+"Aby ses mohl/a rozmnožovat, musíš duplikovat všechny své organely shromážděním dostatečného množství amoniaku a fosfátů.\n"
+"\n"
+"Podívej se na indikátor v pravém dolním rohu a uvidíš, kolik toho ještě potřebuješ. Pruhy, když dokončeno, zbělali."
+
+#, fuzzy
+msgid "TUTORIAL_MICROBE_STAGE_PAUSING"
+msgstr ""
+"Vstoupil/a jsi do odpojovacího módu. V tomto módu můžeš kliknout na členy kolonie, čímž je odpojíš.\n"
+"\n"
+"Na odpuštění kolonie klikni na svou buňku nebo stiskni klávesu [thrive:input]g_unbind_all[/thrive:input]pro odpojení všech."
+
+#, fuzzy
+msgid "TUTORIAL_MICROBE_STAGE_PROCESS_PANEL"
+msgstr ""
+"Aby ses mohl/a rozmnožovat, musíš duplikovat všechny své organely shromážděním dostatečného množství amoniaku a fosfátů.\n"
+"\n"
+"Podívej se na indikátor v pravém dolním rohu a uvidíš, kolik toho ještě potřebuješ. Pruhy, když dokončeno, zbělali."
+
+#, fuzzy
 msgid "TUTORIAL_MICROBE_STAGE_REPRODUCE_TEXT"
+msgstr ""
+"Aby ses mohl/a rozmnožovat, musíš duplikovat všechny své organely shromážděním dostatečného množství amoniaku a fosfátů.\n"
+"\n"
+"Podívej se na indikátor v pravém dolním rohu a uvidíš, kolik toho ještě potřebuješ. Pruhy, když dokončeno, zbělali."
+
+#, fuzzy
+msgid "TUTORIAL_MICROBE_STAGE_RESOURCE_SPLIT"
 msgstr ""
 "Aby ses mohl/a rozmnožovat, musíš duplikovat všechny své organely shromážděním dostatečného množství amoniaku a fosfátů.\n"
 "\n"
@@ -6807,6 +7096,18 @@ msgstr "Nahrávání..."
 msgid "UPLOAD_SUCCEEDED"
 msgstr "Nahrání bylo úspěšné"
 
+msgid "UPSCALE_BILINEAR"
+msgstr ""
+
+msgid "UPSCALE_FSR_1"
+msgstr ""
+
+msgid "UPSCALE_FSR_22"
+msgstr ""
+
+msgid "UPSCALE_SHARPENING_FSR"
+msgstr ""
+
 msgid "USED_LIBRARIES_LICENSES"
 msgstr "Licence a použité knihovny"
 
@@ -6917,6 +7218,9 @@ msgstr ""
 
 msgid "VIEW_SOURCE_CODE"
 msgstr "Zdrojový kód"
+
+msgid "VIEW_TEXT_REPORT"
+msgstr ""
 
 msgid "VIP_PATRONS"
 msgstr "VIP Podporovatelé"
@@ -7354,6 +7658,10 @@ msgstr ""
 
 msgid "WIKI_COMPOUND_SYSTEM_DEVELOPMENT_OVERVIEW"
 msgstr ""
+
+#, fuzzy
+msgid "WIKI_CREATURE_EDITOR_COMMA_TECH_EDITOR"
+msgstr "Mikrobiální Editor"
 
 #, fuzzy
 msgid "WIKI_CYTOPLASM_EFFECTS"
@@ -8541,6 +8849,9 @@ msgstr "Organely"
 msgid "WIKI_TBA"
 msgstr "naše Wiki"
 
+msgid "WIKI_TECH_EDITOR_COMMA_NATION_EDITOR_COMMA_SQUAD_EDITOR"
+msgstr ""
+
 #, fuzzy
 msgid "WIKI_THERMOPLAST_EFFECTS"
 msgstr "Termoplast je struktura dvou membrán, která obsahuje termosenzitivní pigmenty složené dohromady v membránových vacích. Jedná se o prokaryotu, která byla asimilována pro použití svým eukaryotickým hostitelem. Pigmenty v termoplastu jsou schopny využít energii rozdílných teplot v prostředí k produkci [thrive:compound type=\"atp\"][/thrive:compound] ve vodě v procesu známem jako [b]termosyntéza[/b]. Rychlost produkce [thrive:compound type=\"atp\"][/thrive:compound] je úměrná [thrive:compound type=\"temperature\"][/thrive:compound]."
@@ -8839,6 +9150,21 @@ msgstr "Přiblížit"
 msgid "ZOOM_OUT"
 msgstr "Oddálit"
 
+#~ msgid "TO_BE_IMPLEMENTED"
+#~ msgstr "K implementaci."
+
+#, fuzzy
+#~ msgid "MICROBE_STAGE_DAY_NIGHT_TEXT"
+#~ msgstr ""
+#~ "Dávej pozor na svou zdravotní lištu vedle lišty ATP (vpravo dole).\n"
+#~ "Tvá buňka zemře, pokud jí dojde zdraví.\n"
+#~ "Regenerace zdraví probíhá za předpokladu, že máš dostatek ATP.\n"
+#~ "Nezapomeň shromáždit dostatek glukózy k produkci ATP."
+
+#, fuzzy
+#~ msgid "GLOBAL_GLACIATION_EVENT_LOG"
+#~ msgstr "Celková populace:"
+
 #~ msgid "IRON_CHEMOLITHOAUTOTROPHY"
 #~ msgstr "Chemolithoautotrofie železa"
 
@@ -9010,10 +9336,6 @@ msgstr "Oddálit"
 #, fuzzy
 #~ msgid "ERUPTION_IN"
 #~ msgstr "Pučení"
-
-#, fuzzy
-#~ msgid "EVENT_TOOLTIP_ERUPTION"
-#~ msgstr "{0}: +{1} ATP"
 
 #~ msgid "THE_AMOUNT_OF_GLUCOSE_HAS_BEEN_REDUCED"
 #~ msgstr "Množství glukózy bylo sníženo na {0} z předchozího množství."

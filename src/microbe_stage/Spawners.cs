@@ -497,6 +497,7 @@ public static class SpawnHelpers
             entity.Set(new SoundEffectPlayer
             {
                 AbsoluteMaxDistanceSquared = Constants.MICROBE_SOUND_MAX_DISTANCE_SQUARED,
+                SoundVolumeMultiplier = Constants.NON_PLAYER_ENTITY_VOLUME_MULTIPLIER,
             });
         }
         else
@@ -517,6 +518,9 @@ public static class SpawnHelpers
                 // As this takes a bit of extra performance, this is just set for the player
                 AutoDetectPlayer = true,
             });
+
+            // Player entity can display real lights which are performance-intensive (so AI cannot)
+            entity.Set<EntityLight>();
         }
 
         // Base species-based data initialization

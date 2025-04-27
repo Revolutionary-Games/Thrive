@@ -6,6 +6,8 @@ public interface ITutorialInput
     public void OnTutorialDisabled();
     public void OnTutorialEnabled();
 
+    public void OnCompleteTutorialsAlreadySeen();
+
     /// <summary>
     ///   Player closed the current tutorial
     /// </summary>

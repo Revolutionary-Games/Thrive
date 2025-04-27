@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using AutoEvo;
 using Godot;
 using Newtonsoft.Json;
 
@@ -138,11 +139,29 @@ public partial class PatchMapEditorComponent<TEditor> : EditorComponentBase<TEdi
         if (targetPatch != null)
         {
             GD.Print(GetType().Name, ": applying player move to patch: ", targetPatch.Name);
+            var previousPatch = Editor.CurrentGame.GameWorld.Map.CurrentPatch;
             Editor.CurrentGame.GameWorld.Map.CurrentPatch = targetPatch;
 
+            bool migrateAI = targetPatch.GetSpeciesCount() <
+                Constants.AI_FOLLOW_PLAYER_MIGRATION_TO_EMPTY_PATCH_THRESHOLD;
+
             // Add the edited species to that patch to allow the species to gain population there
-            // TODO: Log player species' migration
             targetPatch.AddSpecies(Editor.EditedBaseSpecies, 0);
+
+            // Log the player migration
+            Editor.CurrentGame.GameWorld.LogEvent(new LocalizedString("TIMELINE_PLAYER_MIGRATED_TO",
+                Editor.EditedBaseSpecies.FormattedNameBbCodeUnstyled,
+                targetPatch.Name), true, false, "popMigrated.png", Editor.CalculateNextGenerationTimePoint());
+            targetPatch.LogEvent(
+                new LocalizedString("TIMELINE_PLAYER_MIGRATED", Editor.EditedBaseSpecies.FormattedNameBbCodeUnstyled),
+                true, false, "popMigrated.png");
+
+            if (migrateAI)
+            {
+                GD.Print("AI will try to follow player migration to make the world less empty");
+                AddExtraAISpeciesMigrationTo(targetPatch, previousPatch ?? targetPatch.Adjacent.First(),
+                    Editor.CurrentGame.GameWorld, Editor.EditedBaseSpecies);
+            }
         }
 
         // Migrations
@@ -340,6 +359,87 @@ public partial class PatchMapEditorComponent<TEditor> : EditorComponentBase<TEdi
         SetPlayerPatch(mapDrawer.SelectedPatch);
     }
 
+    /// <summary>
+    ///   Finds a suitable AI species to add to the target patch from a nearby one. This is done to make the player
+    ///   feel less lonely.
+    /// </summary>
+    /// <param name="patch">Target patch</param>
+    /// <param name="preferredSourcePatch">Patch to look first in to move something to the target</param>
+    /// <param name="world">World to set event information in (and read configuration data from)</param>
+    /// <param name="followedSpecies">Purely used for logging purposes</param>
+    private void AddExtraAISpeciesMigrationTo(Patch patch, Patch preferredSourcePatch, GameWorld world,
+        Species followedSpecies)
+    {
+        if (preferredSourcePatch == patch)
+        {
+            GD.PrintErr("Trying to add an extra AI species migration to the same patch it is from");
+            return;
+        }
+
+        // Create a miche tree to only find species that would actually survive in the target patch
+        var cache = new SimulationCache(world.WorldSettings);
+        var generation = new GenerateMiche(patch, cache, world.AutoEvoGlobalCache);
+        var miche = generation.GenerateMicheTree(world.AutoEvoGlobalCache);
+        generation.PopulateMiche(miche);
+
+        Species? foundSpecies = null;
+
+        var workMemory = new Miche.InsertWorkingMemory();
+
+        void CheckForMoveCandidates(Patch from)
+        {
+            foreach (var entry in from.SpeciesInPatch)
+            {
+                if (entry.Key.PlayerSpecies || entry.Value <= 0)
+                    continue;
+
+                if (miche.InsertSpecies(entry.Key, patch, null, cache, false, workMemory))
+                {
+                    foundSpecies = entry.Key;
+                    break;
+                }
+            }
+        }
+
+        // Then we can look for good move candidates
+        // First, check the preferred patch
+        CheckForMoveCandidates(preferredSourcePatch);
+
+        if (foundSpecies == null)
+        {
+            // Then any other possible patch
+            foreach (var adjacent in patch.Adjacent)
+            {
+                // Skip this already checked one
+                if (adjacent == preferredSourcePatch)
+                    continue;
+
+                CheckForMoveCandidates(adjacent);
+                if (foundSpecies != null)
+                    break;
+            }
+        }
+
+        if (foundSpecies == null)
+        {
+            // TODO: if this is common we might need to have a fallback to pick just whatever species?
+            // Though we are pretty lenient on just requiring the species to fit into the miche tree and not gain
+            // population from the initial 100
+            GD.PrintErr("No suitable AI species found to add to patch to keep the player company");
+            return;
+        }
+
+        if (!patch.AddSpecies(foundSpecies, Constants.AI_FOLLOW_FREE_POPULATION_GIVEN))
+        {
+            GD.PrintErr("Failed to add extra AI species migration to patch");
+        }
+        else
+        {
+            patch.LogEvent(new LocalizedString("TIMELINE_SPECIES_FOLLOWED", foundSpecies.FormattedNameBbCodeUnstyled,
+                followedSpecies.FormattedNameBbCodeUnstyled), false, false, "popMigrated.png");
+        }
+    }
+
     private void ValidateMigration(PatchDetailsPanel.Migration migration)
     {
         if (migration.SourcePatch == null || migration.Amount <= 0)
@@ -353,6 +453,10 @@ public partial class PatchMapEditorComponent<TEditor> : EditorComponentBase<TEdi
             migration.Amount || migration.Amount < 0)
         {
             detailsPanel.Migrations.Remove(migration);
+        }
+        else
+        {
+            Editor.CurrentGame.TutorialState.SendEvent(TutorialEventType.EditorMigrationCreated, EventArgs.Empty, this);
         }
     }
 

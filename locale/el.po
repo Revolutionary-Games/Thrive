@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2025-03-14 11:08+0200\n"
+"POT-Creation-Date: 2025-04-26 10:53+0300\n"
 "PO-Revision-Date: 2022-03-31 05:02+0000\n"
 "Last-Translator: Apostolos Paschidis <tolissius@gmail.com>\n"
 "Language-Team: Greek <https://translate.revolutionarygamesstudio.com/projects/thrive/thrive-game/el/>\n"
@@ -177,6 +177,21 @@ msgstr ""
 msgid "ANISOTROPIC_FILTERING"
 msgstr ""
 
+msgid "ANTIALIASING_MSAA_TAA"
+msgstr ""
+
+msgid "ANTI_ALIASING_FXAA"
+msgstr ""
+
+msgid "ANTI_ALIASING_MODE"
+msgstr ""
+
+msgid "ANTI_ALIASING_MSAA"
+msgstr ""
+
+msgid "ANTI_ALIASING_TAA"
+msgstr ""
+
 msgid "APPEARANCE"
 msgstr ""
 
@@ -290,6 +305,9 @@ msgid "AUTO-EVO_PREDICTION"
 msgstr ""
 
 msgid "AUTO-EVO_PREDICTION_BOX_DESCRIPTION"
+msgstr ""
+
+msgid "AUTO-EVO_RESULTS_TITLE"
 msgstr ""
 
 msgid "AUTO-EVO_STEPS_DONE"
@@ -462,6 +480,14 @@ msgstr ""
 msgid "BIOLUMINESCENT_VACUOLE"
 msgstr ""
 
+#, fuzzy
+msgid "BIOLUMINESCENT_VACUOLE_DESCRIPTION"
+msgstr "Χρησιμοποιήστε τα πλήκτρα [thrive:input]g_move_forward[/thrive:input],[thrive:input]g_move_left[/thrive:input],[thrive:input]g_move_backwards[/thrive:input],[thrive:input]g_move_right[/thrive:input] και το ποντίκι για να κινηθείτε. Το[thrive:input]g_fire_toxin[/thrive:input] για να απελευθερώσετε [thrive:compound type=\"oxytoxy\"][/thrive:compound] εάν έχετε κενοτόπιο τοξίνης και το [thrive:input]g_toggle_engulf[/thrive:input] για να εναλλάξετε την λειτουργία απορρόφησης. Μπορείτε να αλλάξετε την μεγέθυνση με την ροδέλα τού ποντικιού."
+
+#, fuzzy
+msgid "BIOLUMINESCENT_VACUOLE_PROCESSES_DESCRIPTION"
+msgstr "Χρησιμοποιήστε τα πλήκτρα [thrive:input]g_move_forward[/thrive:input],[thrive:input]g_move_left[/thrive:input],[thrive:input]g_move_backwards[/thrive:input],[thrive:input]g_move_right[/thrive:input] και το ποντίκι για να κινηθείτε. Το[thrive:input]g_fire_toxin[/thrive:input] για να απελευθερώσετε [thrive:compound type=\"oxytoxy\"][/thrive:compound] εάν έχετε κενοτόπιο τοξίνης και το [thrive:input]g_toggle_engulf[/thrive:input] για να εναλλάξετε την λειτουργία απορρόφησης. Μπορείτε να αλλάξετε την μεγέθυνση με την ροδέλα τού ποντικιού."
+
 msgid "BIOME_LABEL"
 msgstr ""
 
@@ -606,6 +632,9 @@ msgstr ""
 msgid "CELL_STAT_SPEED_TOOLTIP"
 msgstr ""
 
+msgid "CELL_STAT_STORAGE_TOOLTIP"
+msgstr ""
+
 msgid "CELL_TYPE_BUTTON_ATP_CONSUMPTION"
 msgstr ""
 
@@ -729,6 +758,9 @@ msgid "CLEAN_UP_OLD_SAVES"
 msgstr ""
 
 msgid "CLEAR_CACHE"
+msgstr ""
+
+msgid "CLICK_TO_SELECT"
 msgstr ""
 
 msgid "CLOSE"
@@ -1809,6 +1841,24 @@ msgstr ""
 msgid "EVENT_ERUPTION_TOOLTIP"
 msgstr ""
 
+msgid "EVENT_METEOR_GLUCOSE"
+msgstr ""
+
+msgid "EVENT_METEOR_IRON"
+msgstr ""
+
+msgid "EVENT_METEOR_PHOSPHATES"
+msgstr ""
+
+msgid "EVENT_METEOR_PLAIN"
+msgstr ""
+
+msgid "EVENT_METEOR_RADIOACTIVE"
+msgstr ""
+
+msgid "EVENT_METEOR_SULFUR"
+msgstr ""
+
 msgid "EVOLUTIONARY_TREE"
 msgstr ""
 
@@ -2150,6 +2200,24 @@ msgstr ""
 msgid "GLES3"
 msgstr ""
 
+msgid "GLOBAL_GLACIATION_END_EVENT_LOG"
+msgstr ""
+
+msgid "GLOBAL_GLACIATION_EVENT"
+msgstr ""
+
+msgid "GLOBAL_GLACIATION_EVENT_TOOLTIP"
+msgstr ""
+
+msgid "GLOBAL_GLACIATION_EVENT_WARNING_LOG_PLURAL"
+msgstr ""
+
+msgid "GLOBAL_GLACIATION_EVENT_WARNING_LOG_SINGULAR"
+msgstr ""
+
+msgid "GLOBAL_GLACIATION_START_EVENT_LOG"
+msgstr ""
+
 msgid "GLOBAL_INITIAL_LETTER"
 msgstr ""
 
@@ -2292,6 +2360,9 @@ msgid "ID_IS_NOT_A_NUMBER"
 msgstr ""
 
 msgid "ID_NUMBER"
+msgstr ""
+
+msgid "IF_FALLBACK_RENDERER_USED_ALL_NOT_AVAILABLE"
 msgstr ""
 
 msgid "IMAGE_FILE_TYPES"
@@ -2906,13 +2977,31 @@ msgstr ""
 msgid "LOADING_GAME"
 msgstr ""
 
+msgid "LOADING_GRAPHICS_SHADERS"
+msgstr ""
+
 msgid "LOADING_MACROSCOPIC_EDITOR"
 msgstr ""
 
 msgid "LOADING_MICROBE_EDITOR"
 msgstr ""
 
+#, fuzzy
+msgid "LOADING_MICROBE_STAGE"
+msgstr "Χρησιμοποιήστε τα πλήκτρα [thrive:input]g_move_forward[/thrive:input],[thrive:input]g_move_left[/thrive:input],[thrive:input]g_move_backwards[/thrive:input],[thrive:input]g_move_right[/thrive:input] και το ποντίκι για να κινηθείτε. Το[thrive:input]g_fire_toxin[/thrive:input] για να απελευθερώσετε [thrive:compound type=\"oxytoxy\"][/thrive:compound] εάν έχετε κενοτόπιο τοξίνης και το [thrive:input]g_toggle_engulf[/thrive:input] για να εναλλάξετε την λειτουργία απορρόφησης. Μπορείτε να αλλάξετε την μεγέθυνση με την ροδέλα τού ποντικιού."
+
 msgid "LOADING_MULTICELLULAR_EDITOR"
+msgstr ""
+
+#, fuzzy
+msgid "LOADING_MULTICELLULAR_STAGE"
+msgstr "Χρησιμοποιήστε τα πλήκτρα [thrive:input]g_move_forward[/thrive:input],[thrive:input]g_move_left[/thrive:input],[thrive:input]g_move_backwards[/thrive:input],[thrive:input]g_move_right[/thrive:input] και το ποντίκι για να κινηθείτε. Το[thrive:input]g_fire_toxin[/thrive:input] για να απελευθερώσετε [thrive:compound type=\"oxytoxy\"][/thrive:compound] εάν έχετε κενοτόπιο τοξίνης και το [thrive:input]g_toggle_engulf[/thrive:input] για να εναλλάξετε την λειτουργία απορρόφησης. Μπορείτε να αλλάξετε την μεγέθυνση με την ροδέλα τού ποντικιού."
+
+#, fuzzy
+msgid "LOADING_STAGE"
+msgstr "Χρησιμοποιήστε τα πλήκτρα [thrive:input]g_move_forward[/thrive:input],[thrive:input]g_move_left[/thrive:input],[thrive:input]g_move_backwards[/thrive:input],[thrive:input]g_move_right[/thrive:input] και το ποντίκι για να κινηθείτε. Το[thrive:input]g_fire_toxin[/thrive:input] για να απελευθερώσετε [thrive:compound type=\"oxytoxy\"][/thrive:compound] εάν έχετε κενοτόπιο τοξίνης και το [thrive:input]g_toggle_engulf[/thrive:input] για να εναλλάξετε την λειτουργία απορρόφησης. Μπορείτε να αλλάξετε την μεγέθυνση με την ροδέλα τού ποντικιού."
+
+msgid "LOADING_STAGE_ASSETS"
 msgstr ""
 
 msgid "LOAD_FINISHED"
@@ -2945,6 +3034,12 @@ msgstr ""
 msgid "LOCK_DAY_NIGHT_CYCLE"
 msgstr ""
 
+msgid "LOWER_SCALE_INCREASES_PERFORMANCE"
+msgstr ""
+
+msgid "LOWER_VALUE_MAKES_SHARPER_IMAGE"
+msgstr ""
+
 msgid "LOW_MENU_PERFORMANCE"
 msgstr ""
 
@@ -2956,6 +3051,13 @@ msgstr ""
 
 msgid "LOW_QUALITY_BACKGROUND_BLUR_TOOLTIP"
 msgstr ""
+
+msgid "LUCIFERASE"
+msgstr ""
+
+#, fuzzy
+msgid "LUCIFERASE_SYNTHESIS"
+msgstr "Χρησιμοποιήστε τα πλήκτρα [thrive:input]g_move_forward[/thrive:input],[thrive:input]g_move_left[/thrive:input],[thrive:input]g_move_backwards[/thrive:input],[thrive:input]g_move_right[/thrive:input] και το ποντίκι για να κινηθείτε. Το[thrive:input]g_fire_toxin[/thrive:input] για να απελευθερώσετε [thrive:compound type=\"oxytoxy\"][/thrive:compound] εάν έχετε κενοτόπιο τοξίνης και το [thrive:input]g_toggle_engulf[/thrive:input] για να εναλλάξετε την λειτουργία απορρόφησης. Μπορείτε να αλλάξετε την μεγέθυνση με την ροδέλα τού ποντικιού."
 
 msgid "LYSOSOME"
 msgstr ""
@@ -3074,6 +3176,15 @@ msgid "METABOLOSOMES_PROCESSES_DESCRIPTION"
 msgstr ""
 
 msgid "META_THREADS_TOOLTIP"
+msgstr ""
+
+msgid "METEOR_IMPACT_EVENT"
+msgstr ""
+
+msgid "METEOR_STRIKE_START_EVENT_LOG_PLURAL"
+msgstr ""
+
+msgid "METEOR_STRIKE_START_EVENT_LOG_SINGULAR"
 msgstr ""
 
 msgid "METRICS"
@@ -3282,10 +3393,6 @@ msgstr ""
 msgid "MICROBE_STAGE_CONTROL_TEXT_CONTROLLER"
 msgstr ""
 
-#, fuzzy
-msgid "MICROBE_STAGE_DAY_NIGHT_TEXT"
-msgstr "Χρησιμοποιήστε τα πλήκτρα [thrive:input]g_move_forward[/thrive:input],[thrive:input]g_move_left[/thrive:input],[thrive:input]g_move_backwards[/thrive:input],[thrive:input]g_move_right[/thrive:input] και το ποντίκι για να κινηθείτε. Το[thrive:input]g_fire_toxin[/thrive:input] για να απελευθερώσετε [thrive:compound type=\"oxytoxy\"][/thrive:compound] εάν έχετε κενοτόπιο τοξίνης και το [thrive:input]g_toggle_engulf[/thrive:input] για να εναλλάξετε την λειτουργία απορρόφησης. Μπορείτε να αλλάξετε την μεγέθυνση με την ροδέλα τού ποντικιού."
-
 msgid "MICROBE_STAGE_HEALTH_TEXT"
 msgstr ""
 
@@ -3383,6 +3490,9 @@ msgid "MODDING_INSTRUCTIONS_ON"
 msgstr ""
 
 msgid "MODELS"
+msgstr ""
+
+msgid "MODE_CAN_BE_CHANGED_IN_OPTIONS"
 msgstr ""
 
 msgid "MODIFY"
@@ -4227,6 +4337,9 @@ msgstr ""
 msgid "PLAYER_RELATIVE_MOVEMENT"
 msgstr ""
 
+msgid "PLAYER_RELATIVE_MOVEMENT_TOOLTIP"
+msgstr ""
+
 msgid "PLAYER_REPRODUCED"
 msgstr ""
 
@@ -4305,6 +4418,9 @@ msgstr ""
 msgid "PROCESS_SPEED_MODIFIER"
 msgstr ""
 
+msgid "PROCESS_TOGGLE_TOOLTIP"
+msgstr ""
+
 msgid "PROGRAMMING_TEAM"
 msgstr ""
 
@@ -4381,6 +4497,9 @@ msgstr ""
 msgid "REFRESH"
 msgstr ""
 
+msgid "RENDER_SCALE"
+msgstr ""
+
 msgid "REPORT"
 msgstr ""
 
@@ -4438,6 +4557,12 @@ msgid "RESET_KEYBINDINGS"
 msgstr ""
 
 msgid "RESET_SETTINGS_TO_DEFAULTS"
+msgstr ""
+
+msgid "RESET_SHOWN_TUTORIALS"
+msgstr ""
+
+msgid "RESET_SHOWN_TUTORIALS_TOOLTIP"
 msgstr ""
 
 msgid "RESET_TO_DEFAULTS"
@@ -4671,6 +4796,9 @@ msgstr ""
 msgid "SCREEN_RELATIVE_MOVEMENT"
 msgstr ""
 
+msgid "SCREEN_RELATIVE_MOVEMENT_TOOLTIP"
+msgstr ""
+
 msgid "SCROLLLOCK"
 msgstr ""
 
@@ -4693,6 +4821,9 @@ msgid "SECRETE_SLIME_TOOLTIP"
 msgstr ""
 
 msgid "SEED_LABEL"
+msgstr ""
+
+msgid "SELECTED"
 msgstr ""
 
 msgid "SELECTED_COLON"
@@ -4728,6 +4859,9 @@ msgstr ""
 msgid "SELECT_ENZYME"
 msgstr ""
 
+msgid "SELECT_MOVEMENT_MODE_TITLE"
+msgstr ""
+
 msgid "SELECT_OPTION"
 msgstr ""
 
@@ -4761,6 +4895,12 @@ msgstr ""
 msgid "SHIFT"
 msgstr ""
 
+msgid "SHOW_ALL_TUTORIALS"
+msgstr ""
+
+msgid "SHOW_ALL_TUTORIALS_TOOLTIP"
+msgstr ""
+
 msgid "SHOW_DAMAGE_EFFECT"
 msgstr ""
 
@@ -4776,13 +4916,13 @@ msgstr ""
 msgid "SHOW_NEW_PATCH_NOTES_TOOLTIP"
 msgstr ""
 
-msgid "SHOW_TUTORIALS"
-msgstr ""
-
 msgid "SHOW_TUTORIALS_IN_NEW_CURRENT_OPTION"
 msgstr ""
 
 msgid "SHOW_TUTORIALS_IN_NEW_GAMES_OPTION"
+msgstr ""
+
+msgid "SHOW_TUTORIALS_OPTION_TOOLTIP"
 msgstr ""
 
 msgid "SHOW_UNSAVED_PROGRESS_WARNING"
@@ -4931,6 +5071,12 @@ msgstr ""
 msgid "SPECIES_LIST"
 msgstr ""
 
+msgid "SPECIES_MEMBER_IMPACT_ON_POP"
+msgstr ""
+
+msgid "SPECIES_MEMBER_IMPACT_ON_POPULATION_EXPLANATION"
+msgstr ""
+
 msgid "SPECIES_NAME_DOT_DOT_DOT"
 msgstr ""
 
@@ -5067,6 +5213,9 @@ msgid "STORAGE_STATISTICS_SECONDS_OF_COMPOUND"
 msgstr ""
 
 msgid "STORE_LOGGED_IN_AS"
+msgstr ""
+
+msgid "STRAIN_BAR_TOOLTIP"
 msgstr ""
 
 msgid "STRAIN_BAR_VISIBILITY"
@@ -5322,6 +5471,12 @@ msgstr ""
 msgid "TIMELINE_NICHE_FILL"
 msgstr ""
 
+msgid "TIMELINE_PLAYER_MIGRATED"
+msgstr ""
+
+msgid "TIMELINE_PLAYER_MIGRATED_TO"
+msgstr ""
+
 msgid "TIMELINE_SELECTION_PRESSURE_SPLIT"
 msgstr ""
 
@@ -5334,6 +5489,10 @@ msgstr ""
 
 msgid "TIMELINE_SPECIES_EXTINCT_LOCAL"
 msgstr ""
+
+#, fuzzy
+msgid "TIMELINE_SPECIES_FOLLOWED"
+msgstr "Χρησιμοποιήστε τα πλήκτρα [thrive:input]g_move_forward[/thrive:input],[thrive:input]g_move_left[/thrive:input],[thrive:input]g_move_backwards[/thrive:input],[thrive:input]g_move_right[/thrive:input] και το ποντίκι για να κινηθείτε. Το[thrive:input]g_fire_toxin[/thrive:input] για να απελευθερώσετε [thrive:compound type=\"oxytoxy\"][/thrive:compound] εάν έχετε κενοτόπιο τοξίνης και το [thrive:input]g_toggle_engulf[/thrive:input] για να εναλλάξετε την λειτουργία απορρόφησης. Μπορείτε να αλλάξετε την μεγέθυνση με την ροδέλα τού ποντικιού."
 
 msgid "TIMELINE_SPECIES_MIGRATED_FROM"
 msgstr ""
@@ -5519,9 +5678,6 @@ msgstr ""
 msgid "TOXISOME_DESCRIPTION"
 msgstr ""
 
-msgid "TO_BE_IMPLEMENTED"
-msgstr ""
-
 msgid "TRANSLATORS"
 msgstr ""
 
@@ -5543,6 +5699,9 @@ msgstr ""
 msgid "TUTORIAL"
 msgstr ""
 
+msgid "TUTORIAL_ALL_NOT_ENABLED_EXPLANATION"
+msgstr ""
+
 msgid "TUTORIAL_MICROBE_EDITOR_ATP_BALANCE_INTRO"
 msgstr ""
 
@@ -5556,11 +5715,27 @@ msgstr ""
 msgid "TUTORIAL_MICROBE_EDITOR_CHEMORECEPTOR"
 msgstr "Σε κάθε γενεά, έχετε 100 πόντους μετάλλαξης (ΠΜ) για να ξοδεύσετε και κάθε αλλαγή (ή μετάλλαξη) κοστίζει συγκεκριμένο ποσό ΠΜ. Η πρόσθεση και η αφαίρεση οργανιδίων κοστίζει ΠΜ. Ωστόσο, η αφαίρεση οργανιδίων που τοποθετήθηκαν κατά την τρέχουσα συνεδρία μετάλλαξης επιστρέφει τους ΠΜ αυτού τού οργανιδίου. Μπορείτε να περιστρέψετε τα οργανίδια ενώ τα τοποθετείτε με τα πλήκτρα [thrive:input]e_rotate_left[/thrive:input] και [thrive:input]e_rotate_right[/thrive:input]."
 
+#, fuzzy
+msgid "TUTORIAL_MICROBE_EDITOR_COMPOUND_BALANCES"
+msgstr "Σε κάθε γενεά, έχετε 100 πόντους μετάλλαξης (ΠΜ) για να ξοδεύσετε και κάθε αλλαγή (ή μετάλλαξη) κοστίζει συγκεκριμένο ποσό ΠΜ. Η πρόσθεση και η αφαίρεση οργανιδίων κοστίζει ΠΜ. Ωστόσο, η αφαίρεση οργανιδίων που τοποθετήθηκαν κατά την τρέχουσα συνεδρία μετάλλαξης επιστρέφει τους ΠΜ αυτού τού οργανιδίου. Μπορείτε να περιστρέψετε τα οργανίδια ενώ τα τοποθετείτε με τα πλήκτρα [thrive:input]e_rotate_left[/thrive:input] και [thrive:input]e_rotate_right[/thrive:input]."
+
+#, fuzzy
+msgid "TUTORIAL_MICROBE_EDITOR_DIGESTION_STAT"
+msgstr "Σε κάθε γενεά, έχετε 100 πόντους μετάλλαξης (ΠΜ) για να ξοδεύσετε και κάθε αλλαγή (ή μετάλλαξη) κοστίζει συγκεκριμένο ποσό ΠΜ. Η πρόσθεση και η αφαίρεση οργανιδίων κοστίζει ΠΜ. Ωστόσο, η αφαίρεση οργανιδίων που τοποθετήθηκαν κατά την τρέχουσα συνεδρία μετάλλαξης επιστρέφει τους ΠΜ αυτού τού οργανιδίου. Μπορείτε να περιστρέψετε τα οργανίδια ενώ τα τοποθετείτε με τα πλήκτρα [thrive:input]e_rotate_left[/thrive:input] και [thrive:input]e_rotate_right[/thrive:input]."
+
 msgid "TUTORIAL_MICROBE_EDITOR_ENDING_TEXT"
 msgstr ""
 
 #, fuzzy
 msgid "TUTORIAL_MICROBE_EDITOR_FLAGELLUM"
+msgstr "Σε κάθε γενεά, έχετε 100 πόντους μετάλλαξης (ΠΜ) για να ξοδεύσετε και κάθε αλλαγή (ή μετάλλαξη) κοστίζει συγκεκριμένο ποσό ΠΜ. Η πρόσθεση και η αφαίρεση οργανιδίων κοστίζει ΠΜ. Ωστόσο, η αφαίρεση οργανιδίων που τοποθετήθηκαν κατά την τρέχουσα συνεδρία μετάλλαξης επιστρέφει τους ΠΜ αυτού τού οργανιδίου. Μπορείτε να περιστρέψετε τα οργανίδια ενώ τα τοποθετείτε με τα πλήκτρα [thrive:input]e_rotate_left[/thrive:input] και [thrive:input]e_rotate_right[/thrive:input]."
+
+#, fuzzy
+msgid "TUTORIAL_MICROBE_EDITOR_FOOD_CHAIN"
+msgstr "Σε κάθε γενεά, έχετε 100 πόντους μετάλλαξης (ΠΜ) για να ξοδεύσετε και κάθε αλλαγή (ή μετάλλαξη) κοστίζει συγκεκριμένο ποσό ΠΜ. Η πρόσθεση και η αφαίρεση οργανιδίων κοστίζει ΠΜ. Ωστόσο, η αφαίρεση οργανιδίων που τοποθετήθηκαν κατά την τρέχουσα συνεδρία μετάλλαξης επιστρέφει τους ΠΜ αυτού τού οργανιδίου. Μπορείτε να περιστρέψετε τα οργανίδια ενώ τα τοποθετείτε με τα πλήκτρα [thrive:input]e_rotate_left[/thrive:input] και [thrive:input]e_rotate_right[/thrive:input]."
+
+#, fuzzy
+msgid "TUTORIAL_MICROBE_EDITOR_MIGRATION"
 msgstr "Σε κάθε γενεά, έχετε 100 πόντους μετάλλαξης (ΠΜ) για να ξοδεύσετε και κάθε αλλαγή (ή μετάλλαξη) κοστίζει συγκεκριμένο ποσό ΠΜ. Η πρόσθεση και η αφαίρεση οργανιδίων κοστίζει ΠΜ. Ωστόσο, η αφαίρεση οργανιδίων που τοποθετήθηκαν κατά την τρέχουσα συνεδρία μετάλλαξης επιστρέφει τους ΠΜ αυτού τού οργανιδίου. Μπορείτε να περιστρέψετε τα οργανίδια ενώ τα τοποθετείτε με τα πλήκτρα [thrive:input]e_rotate_left[/thrive:input] και [thrive:input]e_rotate_right[/thrive:input]."
 
 msgid "TUTORIAL_MICROBE_EDITOR_MODIFY_ORGANELLE"
@@ -5605,14 +5780,38 @@ msgstr ""
 msgid "TUTORIAL_MICROBE_STAGE_ENGULFMENT_TEXT"
 msgstr ""
 
+#, fuzzy
+msgid "TUTORIAL_MICROBE_STAGE_ENVIRONMENT_PANEL"
+msgstr "Σε κάθε γενεά, έχετε 100 πόντους μετάλλαξης (ΠΜ) για να ξοδεύσετε και κάθε αλλαγή (ή μετάλλαξη) κοστίζει συγκεκριμένο ποσό ΠΜ. Η πρόσθεση και η αφαίρεση οργανιδίων κοστίζει ΠΜ. Ωστόσο, η αφαίρεση οργανιδίων που τοποθετήθηκαν κατά την τρέχουσα συνεδρία μετάλλαξης επιστρέφει τους ΠΜ αυτού τού οργανιδίου. Μπορείτε να περιστρέψετε τα οργανίδια ενώ τα τοποθετείτε με τα πλήκτρα [thrive:input]e_rotate_left[/thrive:input] και [thrive:input]e_rotate_right[/thrive:input]."
+
 msgid "TUTORIAL_MICROBE_STAGE_HELP_MENU_AND_ZOOM"
 msgstr ""
 
 msgid "TUTORIAL_MICROBE_STAGE_LEAVE_COLONY_TEXT"
 msgstr ""
 
+#, fuzzy
+msgid "TUTORIAL_MICROBE_STAGE_MEMBER_DIED"
+msgstr "Σε κάθε γενεά, έχετε 100 πόντους μετάλλαξης (ΠΜ) για να ξοδεύσετε και κάθε αλλαγή (ή μετάλλαξη) κοστίζει συγκεκριμένο ποσό ΠΜ. Η πρόσθεση και η αφαίρεση οργανιδίων κοστίζει ΠΜ. Ωστόσο, η αφαίρεση οργανιδίων που τοποθετήθηκαν κατά την τρέχουσα συνεδρία μετάλλαξης επιστρέφει τους ΠΜ αυτού τού οργανιδίου. Μπορείτε να περιστρέψετε τα οργανίδια ενώ τα τοποθετείτε με τα πλήκτρα [thrive:input]e_rotate_left[/thrive:input] και [thrive:input]e_rotate_right[/thrive:input]."
+
+#, fuzzy
+msgid "TUTORIAL_MICROBE_STAGE_OPEN_PROCESS_PANEL"
+msgstr "Σε κάθε γενεά, έχετε 100 πόντους μετάλλαξης (ΠΜ) για να ξοδεύσετε και κάθε αλλαγή (ή μετάλλαξη) κοστίζει συγκεκριμένο ποσό ΠΜ. Η πρόσθεση και η αφαίρεση οργανιδίων κοστίζει ΠΜ. Ωστόσο, η αφαίρεση οργανιδίων που τοποθετήθηκαν κατά την τρέχουσα συνεδρία μετάλλαξης επιστρέφει τους ΠΜ αυτού τού οργανιδίου. Μπορείτε να περιστρέψετε τα οργανίδια ενώ τα τοποθετείτε με τα πλήκτρα [thrive:input]e_rotate_left[/thrive:input] και [thrive:input]e_rotate_right[/thrive:input]."
+
+#, fuzzy
+msgid "TUTORIAL_MICROBE_STAGE_PAUSING"
+msgstr "Σε κάθε γενεά, έχετε 100 πόντους μετάλλαξης (ΠΜ) για να ξοδεύσετε και κάθε αλλαγή (ή μετάλλαξη) κοστίζει συγκεκριμένο ποσό ΠΜ. Η πρόσθεση και η αφαίρεση οργανιδίων κοστίζει ΠΜ. Ωστόσο, η αφαίρεση οργανιδίων που τοποθετήθηκαν κατά την τρέχουσα συνεδρία μετάλλαξης επιστρέφει τους ΠΜ αυτού τού οργανιδίου. Μπορείτε να περιστρέψετε τα οργανίδια ενώ τα τοποθετείτε με τα πλήκτρα [thrive:input]e_rotate_left[/thrive:input] και [thrive:input]e_rotate_right[/thrive:input]."
+
+#, fuzzy
+msgid "TUTORIAL_MICROBE_STAGE_PROCESS_PANEL"
+msgstr "Σε κάθε γενεά, έχετε 100 πόντους μετάλλαξης (ΠΜ) για να ξοδεύσετε και κάθε αλλαγή (ή μετάλλαξη) κοστίζει συγκεκριμένο ποσό ΠΜ. Η πρόσθεση και η αφαίρεση οργανιδίων κοστίζει ΠΜ. Ωστόσο, η αφαίρεση οργανιδίων που τοποθετήθηκαν κατά την τρέχουσα συνεδρία μετάλλαξης επιστρέφει τους ΠΜ αυτού τού οργανιδίου. Μπορείτε να περιστρέψετε τα οργανίδια ενώ τα τοποθετείτε με τα πλήκτρα [thrive:input]e_rotate_left[/thrive:input] και [thrive:input]e_rotate_right[/thrive:input]."
+
 msgid "TUTORIAL_MICROBE_STAGE_REPRODUCE_TEXT"
 msgstr ""
+
+#, fuzzy
+msgid "TUTORIAL_MICROBE_STAGE_RESOURCE_SPLIT"
+msgstr "Σε κάθε γενεά, έχετε 100 πόντους μετάλλαξης (ΠΜ) για να ξοδεύσετε και κάθε αλλαγή (ή μετάλλαξη) κοστίζει συγκεκριμένο ποσό ΠΜ. Η πρόσθεση και η αφαίρεση οργανιδίων κοστίζει ΠΜ. Ωστόσο, η αφαίρεση οργανιδίων που τοποθετήθηκαν κατά την τρέχουσα συνεδρία μετάλλαξης επιστρέφει τους ΠΜ αυτού τού οργανιδίου. Μπορείτε να περιστρέψετε τα οργανίδια ενώ τα τοποθετείτε με τα πλήκτρα [thrive:input]e_rotate_left[/thrive:input] και [thrive:input]e_rotate_right[/thrive:input]."
 
 msgid "TUTORIAL_MICROBE_STAGE_UNBIND_TEXT"
 msgstr ""
@@ -5801,6 +6000,18 @@ msgstr ""
 msgid "UPLOAD_SUCCEEDED"
 msgstr ""
 
+msgid "UPSCALE_BILINEAR"
+msgstr ""
+
+msgid "UPSCALE_FSR_1"
+msgstr ""
+
+msgid "UPSCALE_FSR_22"
+msgstr ""
+
+msgid "UPSCALE_SHARPENING_FSR"
+msgstr ""
+
 msgid "USED_LIBRARIES_LICENSES"
 msgstr ""
 
@@ -5898,6 +6109,9 @@ msgid "VIEW_PENDING_ACTIONS"
 msgstr ""
 
 msgid "VIEW_SOURCE_CODE"
+msgstr ""
+
+msgid "VIEW_TEXT_REPORT"
 msgstr ""
 
 msgid "VIP_PATRONS"
@@ -6296,6 +6510,10 @@ msgstr "Χρησιμοποιήστε τα πλήκτρα [thrive:input]g_move_fo
 
 msgid "WIKI_COMPOUND_SYSTEM_DEVELOPMENT_OVERVIEW"
 msgstr ""
+
+#, fuzzy
+msgid "WIKI_CREATURE_EDITOR_COMMA_TECH_EDITOR"
+msgstr "Σε κάθε γενεά, έχετε 100 πόντους μετάλλαξης (ΠΜ) για να ξοδεύσετε και κάθε αλλαγή (ή μετάλλαξη) κοστίζει συγκεκριμένο ποσό ΠΜ. Η πρόσθεση και η αφαίρεση οργανιδίων κοστίζει ΠΜ. Ωστόσο, η αφαίρεση οργανιδίων που τοποθετήθηκαν κατά την τρέχουσα συνεδρία μετάλλαξης επιστρέφει τους ΠΜ αυτού τού οργανιδίου. Μπορείτε να περιστρέψετε τα οργανίδια ενώ τα τοποθετείτε με τα πλήκτρα [thrive:input]e_rotate_left[/thrive:input] και [thrive:input]e_rotate_right[/thrive:input]."
 
 msgid "WIKI_CYTOPLASM_EFFECTS"
 msgstr ""
@@ -7386,6 +7604,9 @@ msgstr ""
 msgid "WIKI_TBA"
 msgstr "Χρησιμοποιήστε τα πλήκτρα [thrive:input]g_move_forward[/thrive:input],[thrive:input]g_move_left[/thrive:input],[thrive:input]g_move_backwards[/thrive:input],[thrive:input]g_move_right[/thrive:input] και το ποντίκι για να κινηθείτε. Το[thrive:input]g_fire_toxin[/thrive:input] για να απελευθερώσετε [thrive:compound type=\"oxytoxy\"][/thrive:compound] εάν έχετε κενοτόπιο τοξίνης και το [thrive:input]g_toggle_engulf[/thrive:input] για να εναλλάξετε την λειτουργία απορρόφησης. Μπορείτε να αλλάξετε την μεγέθυνση με την ροδέλα τού ποντικιού."
 
+msgid "WIKI_TECH_EDITOR_COMMA_NATION_EDITOR_COMMA_SQUAD_EDITOR"
+msgstr ""
+
 msgid "WIKI_THERMOPLAST_EFFECTS"
 msgstr ""
 
@@ -7642,6 +7863,10 @@ msgstr ""
 
 msgid "ZOOM_OUT"
 msgstr ""
+
+#, fuzzy
+#~ msgid "MICROBE_STAGE_DAY_NIGHT_TEXT"
+#~ msgstr "Χρησιμοποιήστε τα πλήκτρα [thrive:input]g_move_forward[/thrive:input],[thrive:input]g_move_left[/thrive:input],[thrive:input]g_move_backwards[/thrive:input],[thrive:input]g_move_right[/thrive:input] και το ποντίκι για να κινηθείτε. Το[thrive:input]g_fire_toxin[/thrive:input] για να απελευθερώσετε [thrive:compound type=\"oxytoxy\"][/thrive:compound] εάν έχετε κενοτόπιο τοξίνης και το [thrive:input]g_toggle_engulf[/thrive:input] για να εναλλάξετε την λειτουργία απορρόφησης. Μπορείτε να αλλάξετε την μεγέθυνση με την ροδέλα τού ποντικιού."
 
 #, fuzzy
 #~ msgid "WIKI_RADIOSYNTHESIS"

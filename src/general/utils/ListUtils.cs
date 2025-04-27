@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Runtime.CompilerServices;
 using Godot;
 using Godot.Collections;
 using Array = Godot.Collections.Array;
@@ -46,6 +47,20 @@ public static class ListUtils
         return items[random.Next(0, items.Count)];
     }
 
+    public static int RandomElementIndexByProbability(this IReadOnlyList<double> chances, double probability)
+    {
+        double cumulative = 0.0;
+        var count = chances.Count;
+        for (var i = 0; i < count; ++i)
+        {
+            cumulative += chances[i];
+            if (probability <= cumulative)
+                return i;
+        }
+
+        throw new ArgumentException("Chances list is empty");
+    }
+
     /// <summary>
     ///   <inheritdoc cref="ShuffleBag{T}.Shuffle"/>
     /// </summary>
@@ -80,6 +95,28 @@ public static class ListUtils
         for (int i = 0; i < length; ++i)
         {
             if (match.Invoke(list[i]))
+                return i;
+        }
+
+        return -1;
+    }
+
+    /// <summary>
+    ///   Finds the index of the first pair, the first element of which is equl to <paramref name="key"/>
+    /// </summary>
+    /// <typeparam name="TKey">Type of the pairs' first element</typeparam>
+    /// <typeparam name="TValue">Type of the pairs' second element</typeparam>
+    /// <param name="list">The list to seartch through</param>
+    /// <param name="key">The first element of the pair that needs to be found</param>
+    /// <returns>The index of the found element or -1 if not found</returns>
+    [MethodImpl(MethodImplOptions.AggressiveInlining)]
+    public static int FindIndexByKey<TKey, TValue>(this IReadOnlyList<(TKey Key, TValue Value)> list, TKey key)
+    {
+        var comparer = EqualityComparer<TKey>.Default;
+
+        for (int i = 0; i < list.Count; ++i)
+        {
+            if (comparer.Equals(key, list[i].Key))
                 return i;
         }
 

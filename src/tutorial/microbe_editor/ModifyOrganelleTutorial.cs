@@ -27,9 +27,20 @@ public class ModifyOrganelleTutorial : TutorialPhase
                 var upgradable = organellePlacedEventArgs.Definition.AvailableUpgrades.Count > 0 ||
                     !string.IsNullOrEmpty(organellePlacedEventArgs.Definition.UpgradeGUI);
 
-                if (!HasBeenShown && CanTrigger && upgradable)
+                if (!HasBeenShown && CanTrigger && upgradable && !overallState.TutorialActive())
                 {
                     Show();
+                }
+
+                break;
+            }
+
+            // If undo is pressed, assume for now that it was the upgradable organelle, and close
+            case TutorialEventType.EditorUndo:
+            {
+                if (ShownCurrently)
+                {
+                    Hide();
                 }
 
                 break;

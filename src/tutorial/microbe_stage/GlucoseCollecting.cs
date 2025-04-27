@@ -24,6 +24,12 @@ public class GlucoseCollecting : TutorialPhase
         CanTrigger = false;
     }
 
+    [JsonIgnore]
+    public HUDBottomBar? HUDBottomBar { get; set; }
+
+    [JsonIgnore]
+    public CompoundPanels? CompoundPanels { get; set; }
+
     public override string ClosedByName => "GlucoseCollecting";
 
     public override void ApplyGUIState(MicrobeTutorialGUI gui)
@@ -33,7 +39,7 @@ public class GlucoseCollecting : TutorialPhase
 
     public override void Hide()
     {
-        // Whenever this is hidden we want to let the next tutorial know it can start
+        // Whenever this is hidden, we want to let the next tutorial know it can start
         if (ShownCurrently)
         {
             if (nextTutorial != null)
@@ -72,6 +78,16 @@ public class GlucoseCollecting : TutorialPhase
 
                 if (!HasBeenShown && data.EntityPosition.HasValue && CanTrigger && !overallState.TutorialActive())
                 {
+                    if (CompoundPanels != null && HUDBottomBar != null)
+                    {
+                        CompoundPanels.ShowPanel = true;
+                        HUDBottomBar.CompoundsPressed = true;
+                    }
+                    else
+                    {
+                        GD.PrintErr("Missing GUI panels in glucose tutorial");
+                    }
+
                     nextTutorial = overallState.MicrobeReproduction;
                     Show();
                 }

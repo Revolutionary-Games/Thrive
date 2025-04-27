@@ -1,0 +1,37 @@
+[gd_scene load_steps=6 format=3 uid="uid://kme66mj8p305"]
+
+[ext_resource type="Shader" uid="uid://buhqlk4dv4wy4" path="res://shaders/EngulfEffect.gdshader" id="7_qq4s8"]
+[ext_resource type="Shader" uid="uid://duvkpd0301bv0" path="res://shaders/MucocystEffect.gdshader" id="8_0n3nj"]
+
+[sub_resource type="BoxMesh" id="BoxMesh_bp2ij"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_7kw28"]
+resource_local_to_scene = true
+render_priority = 0
+shader = ExtResource("7_qq4s8")
+shader_parameter/wigglyNess = 1.0
+shader_parameter/movementWigglyNess = 1.0
+shader_parameter/waviness = 40.0
+shader_parameter/waveSpeed = 10.0
+shader_parameter/fade = 0.2
+shader_parameter/tint = Color(0, 0.55, 0.8, 1)
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_3rchp"]
+resource_local_to_scene = true
+render_priority = 0
+shader = ExtResource("8_0n3nj")
+shader_parameter/wigglyNess = 1.0
+shader_parameter/movementWigglyNess = 1.0
+shader_parameter/fade = 0.25
+shader_parameter/tint = Color(0.4, 0.8, 0.6, 1)
+
+[node name="CellGraphicsPreload" type="Node3D"]
+editor_description = "Preloads cell membrane graphics effects"
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="."]
+mesh = SubResource("BoxMesh_bp2ij")
+surface_material_override/0 = SubResource("ShaderMaterial_7kw28")
+
+[node name="MeshInstance3D2" type="MeshInstance3D" parent="."]
+mesh = SubResource("BoxMesh_bp2ij")
+surface_material_override/0 = SubResource("ShaderMaterial_3rchp")

@@ -7,8 +7,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2025-03-14 11:08+0200\n"
-"PO-Revision-Date: 2025-02-06 13:29+0000\n"
+"POT-Creation-Date: 2025-04-26 10:53+0300\n"
+"PO-Revision-Date: 2025-04-04 10:42+0000\n"
 "Last-Translator: Anonymous <noreply@weblate.org>\n"
 "Language-Team: Indonesian <https://translate.revolutionarygamesstudio.com/projects/thrive/thrive-game/id/>\n"
 "Language: id\n"
@@ -210,6 +210,25 @@ msgstr "Kondisi Fisik"
 msgid "ANISOTROPIC_FILTERING"
 msgstr ""
 
+msgid "ANTIALIASING_MSAA_TAA"
+msgstr ""
+
+#, fuzzy
+msgid "ANTI_ALIASING_FXAA"
+msgstr "Anti-aliasing multisampel:"
+
+#, fuzzy
+msgid "ANTI_ALIASING_MODE"
+msgstr "Anti-aliasing multisampel:"
+
+#, fuzzy
+msgid "ANTI_ALIASING_MSAA"
+msgstr "Anti-aliasing multisampel:"
+
+#, fuzzy
+msgid "ANTI_ALIASING_TAA"
+msgstr "Anti-aliasing multisampel:"
+
 msgid "APPEARANCE"
 msgstr "Penampilan"
 
@@ -342,6 +361,10 @@ msgstr "{0:F1}% selesai. {1:n0}/{2:n0} tahap."
 #, fuzzy
 msgid "AUTO-EVO_PREDICTION_BOX_DESCRIPTION"
 msgstr "Pembangkit listrik sel. Mitokondria adalah struktur membran ganda yang terisi oleh protein dan enzim. Mitokondria merupakan prokariota yang telah terasimilasi untuk kegunaan induk sel eukariota-nya. Ia juga dapat mengkonversi glukosa menjadi ATP pada efisiensi yang lebih tinggi daripada yang dapat dilakukan oleh sitoplasma dalam proses yang disebut Respirasi Aerob. Namun, ini tentunya memerlukan oksigen untuk berfungsi dan tingkat oksigen yang lebih rendah di lingkungan dapat memperlambat laju produksi ATP-nya."
+
+#, fuzzy
+msgid "AUTO-EVO_RESULTS_TITLE"
+msgstr "Hasil auto-evo:"
 
 msgid "AUTO-EVO_STEPS_DONE"
 msgstr "{0:F1}% selesai. {1:n0}/{2:n0} tahap."
@@ -529,6 +552,14 @@ msgstr ""
 msgid "BIOLUMINESCENT_VACUOLE"
 msgstr "Vakuola Bioluminesensi"
 
+#, fuzzy
+msgid "BIOLUMINESCENT_VACUOLE_DESCRIPTION"
+msgstr "Vakuola Bioluminesensi"
+
+#, fuzzy
+msgid "BIOLUMINESCENT_VACUOLE_PROCESSES_DESCRIPTION"
+msgstr "Mengubah [thrive:compound type=\"atp\"][/thrive:compound] menjadi [thrive:compound type=\"oxytoxy\"][/thrive:compound]. Laju berbanding lurus dengan konsentrasi [thrive:compound type=\"oxygen\"][/thrive:compound]. Dapat meluncurkan toksin dengan menekan tombol [thrive:input]g_fire_toxin[/thrive:input]."
+
 msgid "BIOME_LABEL"
 msgstr "Bioma: {0}"
 
@@ -685,6 +716,10 @@ msgid "CELL_STAT_SPEED_TOOLTIP"
 msgstr "Lanjutkan"
 
 #, fuzzy
+msgid "CELL_STAT_STORAGE_TOOLTIP"
+msgstr "Lanjutkan"
+
+#, fuzzy
 msgid "CELL_TYPE_BUTTON_ATP_CONSUMPTION"
 msgstr "{0}: -{1} ATP"
 
@@ -821,6 +856,10 @@ msgstr "Bersihkan Save Lama"
 
 msgid "CLEAR_CACHE"
 msgstr ""
+
+#, fuzzy
+msgid "CLICK_TO_SELECT"
+msgstr "Hapus terpilih"
 
 msgid "CLOSE"
 msgstr "Tutup"
@@ -2069,6 +2108,27 @@ msgstr "Muara"
 msgid "EVENT_ERUPTION_TOOLTIP"
 msgstr "Tambah keybind baru"
 
+msgid "EVENT_METEOR_GLUCOSE"
+msgstr ""
+
+#, fuzzy
+msgid "EVENT_METEOR_IRON"
+msgstr "{0}: +{1} ATP"
+
+#, fuzzy
+msgid "EVENT_METEOR_PHOSPHATES"
+msgstr "Munculkan fosfat"
+
+#, fuzzy
+msgid "EVENT_METEOR_PLAIN"
+msgstr "Tambah keybind baru"
+
+msgid "EVENT_METEOR_RADIOACTIVE"
+msgstr ""
+
+msgid "EVENT_METEOR_SULFUR"
+msgstr ""
+
 msgid "EVOLUTIONARY_TREE"
 msgstr "Pohon Evolusi"
 
@@ -2483,6 +2543,26 @@ msgstr "Keluar dari permainan"
 msgid "GLES3"
 msgstr ""
 
+msgid "GLOBAL_GLACIATION_END_EVENT_LOG"
+msgstr ""
+
+#, fuzzy
+msgid "GLOBAL_GLACIATION_EVENT"
+msgstr "{0} populasi berubah {1} karena: {2}"
+
+#, fuzzy
+msgid "GLOBAL_GLACIATION_EVENT_TOOLTIP"
+msgstr "Tambah keybind baru"
+
+msgid "GLOBAL_GLACIATION_EVENT_WARNING_LOG_PLURAL"
+msgstr ""
+
+msgid "GLOBAL_GLACIATION_EVENT_WARNING_LOG_SINGULAR"
+msgstr ""
+
+msgid "GLOBAL_GLACIATION_START_EVENT_LOG"
+msgstr ""
+
 msgid "GLOBAL_INITIAL_LETTER"
 msgstr ""
 
@@ -2644,6 +2724,9 @@ msgid "ID_IS_NOT_A_NUMBER"
 msgstr ""
 
 msgid "ID_NUMBER"
+msgstr ""
+
+msgid "IF_FALLBACK_RENDERER_USED_ALL_NOT_AVAILABLE"
 msgstr ""
 
 #, fuzzy
@@ -3318,6 +3401,10 @@ msgid "LOADING_GAME"
 msgstr "Memuat Permainan"
 
 #, fuzzy
+msgid "LOADING_GRAPHICS_SHADERS"
+msgstr "Memuat Permainan"
+
+#, fuzzy
 msgid "LOADING_MACROSCOPIC_EDITOR"
 msgstr "Memuat Editor Mikroba"
 
@@ -3325,8 +3412,24 @@ msgid "LOADING_MICROBE_EDITOR"
 msgstr "Memuat Editor Mikroba"
 
 #, fuzzy
+msgid "LOADING_MICROBE_STAGE"
+msgstr "Tahapan Mikrob"
+
+#, fuzzy
 msgid "LOADING_MULTICELLULAR_EDITOR"
 msgstr "Memuat Editor Mikroba"
+
+#, fuzzy
+msgid "LOADING_MULTICELLULAR_STAGE"
+msgstr "Memuat Editor Mikroba"
+
+#, fuzzy
+msgid "LOADING_STAGE"
+msgstr "Memuat Permainan"
+
+#, fuzzy
+msgid "LOADING_STAGE_ASSETS"
+msgstr "Memuat Permainan"
 
 msgid "LOAD_FINISHED"
 msgstr "Selesai memuat"
@@ -3371,6 +3474,13 @@ msgid "LOCK_DAY_NIGHT_CYCLE"
 msgstr ""
 
 #, fuzzy
+msgid "LOWER_SCALE_INCREASES_PERFORMANCE"
+msgstr "(Nilai tinggi menambah performa)"
+
+msgid "LOWER_VALUE_MAKES_SHARPER_IMAGE"
+msgstr ""
+
+#, fuzzy
 msgid "LOW_MENU_PERFORMANCE"
 msgstr "Performa"
 
@@ -3383,6 +3493,13 @@ msgstr ""
 
 msgid "LOW_QUALITY_BACKGROUND_BLUR_TOOLTIP"
 msgstr ""
+
+msgid "LUCIFERASE"
+msgstr ""
+
+#, fuzzy
+msgid "LUCIFERASE_SYNTHESIS"
+msgstr "Kemosintesis"
 
 msgid "LYSOSOME"
 msgstr "Lisosom"
@@ -3517,6 +3634,15 @@ msgid "META_THREADS_TOOLTIP"
 msgstr ""
 "Tidak dapat dideteksi secara otomatis apakah hyperthreading aktif atau tidak.\n"
 "Ini memengaruhi jumlah default thread karena thread dari hyperthreading tidak secepat inti CPU asli."
+
+msgid "METEOR_IMPACT_EVENT"
+msgstr ""
+
+msgid "METEOR_STRIKE_START_EVENT_LOG_PLURAL"
+msgstr ""
+
+msgid "METEOR_STRIKE_START_EVENT_LOG_SINGULAR"
+msgstr ""
 
 msgid "METRICS"
 msgstr "Metrik Performa"
@@ -3760,12 +3886,14 @@ msgstr ""
 "Selmu membutuhkan glukosa agar dapat memproduksi energi untuk bertahan hidup.\n"
 "Ikuti garis yang membujur dari selmu ke glukosa terdekat."
 
+#, fuzzy
 msgid "MICROBE_STAGE_COLLECT_TEXT"
 msgstr ""
 "Kumpulkan glukosa (awan putih) dengan bergerak ke atas mereka.\n"
 "Selmu membutuhkan glukosa agar dapat memproduksi energi untuk bertahan hidup.\n"
 "Ikuti garis yang membujur dari selmu ke glukosa terdekat."
 
+#, fuzzy
 msgid "MICROBE_STAGE_CONTROL_TEXT"
 msgstr ""
 "Untuk mengendalikan selmu gunakan tombol-tombol yang tertampil dekat selmu (pusat layar) dan gunakan mouse untuk mengendalikan orientasi sel.\n"
@@ -3780,13 +3908,6 @@ msgstr ""
 "Coba semua tombol selama beberapa detik untuk lanjut."
 
 #, fuzzy
-msgid "MICROBE_STAGE_DAY_NIGHT_TEXT"
-msgstr ""
-"Perhatikan bilah health di sebelah bilah ATP (kanan bawah).\n"
-"Selmu mati jika kehabisan health.\n"
-"Kamu memperbarui health ketika memiliki ATP.\n"
-"Pastikan telah mengumpulkan glukosa yang cukup untuk memproduksi ATP."
-
 msgid "MICROBE_STAGE_HEALTH_TEXT"
 msgstr ""
 "Perhatikan bilah health di sebelah bilah ATP (kanan bawah).\n"
@@ -3794,6 +3915,7 @@ msgstr ""
 "Kamu memperbarui health ketika memiliki ATP.\n"
 "Pastikan telah mengumpulkan glukosa yang cukup untuk memproduksi ATP."
 
+#, fuzzy
 msgid "MICROBE_STAGE_INITIAL"
 msgstr ""
 "Di planet asing yang jauh, ribuan tahun lamanya aktifitas vulkanik dan tumbukan meteor menyebabkan berkembangnya sebuah fenomena baru di alam semesta.\n"
@@ -3931,6 +4053,9 @@ msgstr ""
 
 msgid "MODELS"
 msgstr "Model"
+
+msgid "MODE_CAN_BE_CHANGED_IN_OPTIONS"
+msgstr ""
 
 msgid "MODIFY"
 msgstr "Ubah"
@@ -4682,6 +4807,7 @@ msgstr "Kekebalan Racun"
 msgid "OXYGEN_TOLERANCE_TOOLTIP"
 msgstr "Tambah keybind baru"
 
+#, fuzzy
 msgid "OXYTOXISOME_PROCESSES_DESCRIPTION"
 msgstr "Mengubah [thrive:compound type=\"atp\"][/thrive:compound] menjadi [thrive:compound type=\"oxytoxy\"][/thrive:compound]. Laju berbanding lurus dengan konsentrasi [thrive:compound type=\"oxygen\"][/thrive:compound]. Dapat meluncurkan toksin dengan menekan tombol [thrive:input]g_fire_toxin[/thrive:input]."
 
@@ -4895,6 +5021,10 @@ msgstr "Gandakan Pemain"
 msgid "PLAYER_RELATIVE_MOVEMENT"
 msgstr "Gandakan Pemain"
 
+#, fuzzy
+msgid "PLAYER_RELATIVE_MOVEMENT_TOOLTIP"
+msgstr "Gandakan Pemain"
+
 msgid "PLAYER_REPRODUCED"
 msgstr "pemain bereproduksi"
 
@@ -4978,6 +5108,10 @@ msgstr "Proses Sel"
 #, fuzzy
 msgid "PROCESS_SPEED_MODIFIER"
 msgstr "Proses Sel"
+
+#, fuzzy
+msgid "PROCESS_TOGGLE_TOOLTIP"
+msgstr "Kembali ke Menu"
 
 msgid "PROGRAMMING_TEAM"
 msgstr ""
@@ -5063,6 +5197,9 @@ msgstr "Ulang tindakan terakhir"
 msgid "REFRESH"
 msgstr "Segarkan"
 
+msgid "RENDER_SCALE"
+msgstr ""
+
 msgid "REPORT"
 msgstr "Laporan"
 
@@ -5129,6 +5266,14 @@ msgstr "Setel Ulang Input"
 
 msgid "RESET_SETTINGS_TO_DEFAULTS"
 msgstr "Semula"
+
+#, fuzzy
+msgid "RESET_SHOWN_TUTORIALS"
+msgstr "Tampilkan tutorial"
+
+#, fuzzy
+msgid "RESET_SHOWN_TUTORIALS_TOOLTIP"
+msgstr "Tambah keybind baru"
 
 msgid "RESET_TO_DEFAULTS"
 msgstr "Setel ulang ke semula?"
@@ -5398,6 +5543,10 @@ msgstr "Tampilkan Bilah Kemampuan Sel"
 msgid "SCREEN_RELATIVE_MOVEMENT"
 msgstr ""
 
+#, fuzzy
+msgid "SCREEN_RELATIVE_MOVEMENT_TOOLTIP"
+msgstr "Pergerakan Dasar"
+
 msgid "SCROLLLOCK"
 msgstr "Scroll Lock"
 
@@ -5423,6 +5572,10 @@ msgstr "Lanjutkan"
 #, fuzzy
 msgid "SEED_LABEL"
 msgstr "Bioma: {0}"
+
+#, fuzzy
+msgid "SELECTED"
+msgstr "Terpilih:"
 
 msgid "SELECTED_COLON"
 msgstr "Terpilih:"
@@ -5463,6 +5616,9 @@ msgstr "Pilih jenis sel untuk menyuntingnya disini dari tab penyunting"
 msgid "SELECT_ENZYME"
 msgstr "Terpilih:"
 
+msgid "SELECT_MOVEMENT_MODE_TITLE"
+msgstr ""
+
 #, fuzzy
 msgid "SELECT_OPTION"
 msgstr "Terpilih:"
@@ -5500,6 +5656,14 @@ msgid "SHIFT"
 msgstr ""
 
 #, fuzzy
+msgid "SHOW_ALL_TUTORIALS"
+msgstr "Tampilkan tutorial"
+
+#, fuzzy
+msgid "SHOW_ALL_TUTORIALS_TOOLTIP"
+msgstr "Tambah keybind baru"
+
+#, fuzzy
 msgid "SHOW_DAMAGE_EFFECT"
 msgstr "Flagela adalah bundelan serat protein yang berbentuk seperti cambuk memanjang dari membran sel yang menggunakan ATP untuk berputar dan mendorong sel ke suatu arah. Posisi flagela menentukan arah mana flagela tersebut memberi daya dorong untuk pergerakan sel. Arah dorongan berlawanan dengan arah flagela tersebut menuju, contohnya sebuah flagela yang di letakkan pada sisi kiri sebuah sel menyediakan daya dorong ketika bergerak ke kanan."
 
@@ -5519,16 +5683,16 @@ msgid "SHOW_NEW_PATCH_NOTES_TOOLTIP"
 msgstr "Gua"
 
 #, fuzzy
-msgid "SHOW_TUTORIALS"
-msgstr "Tampilkan tutorial"
-
-#, fuzzy
 msgid "SHOW_TUTORIALS_IN_NEW_CURRENT_OPTION"
 msgstr "Tampilkan tutorial (di permainan saat ini)"
 
 #, fuzzy
 msgid "SHOW_TUTORIALS_IN_NEW_GAMES_OPTION"
 msgstr "Tampilkan tutorial (di permainan baru)"
+
+#, fuzzy
+msgid "SHOW_TUTORIALS_OPTION_TOOLTIP"
+msgstr "Tambah keybind baru"
 
 #, fuzzy
 msgid "SHOW_UNSAVED_PROGRESS_WARNING"
@@ -5706,6 +5870,14 @@ msgstr "mengalami mutasi"
 msgid "SPECIES_LIST"
 msgstr "Daftar Spesies"
 
+#, fuzzy
+msgid "SPECIES_MEMBER_IMPACT_ON_POP"
+msgstr "Nama spesies..."
+
+#, fuzzy
+msgid "SPECIES_MEMBER_IMPACT_ON_POPULATION_EXPLANATION"
+msgstr "{0} populasi berubah {1} karena: {2}"
+
 msgid "SPECIES_NAME_DOT_DOT_DOT"
 msgstr "Nama spesies..."
 
@@ -5863,6 +6035,10 @@ msgstr ""
 
 msgid "STORE_LOGGED_IN_AS"
 msgstr "Masuk sebagai {0}"
+
+#, fuzzy
+msgid "STRAIN_BAR_TOOLTIP"
+msgstr "Tambah keybind baru"
 
 msgid "STRAIN_BAR_VISIBILITY"
 msgstr ""
@@ -6138,6 +6314,14 @@ msgstr ""
 msgid "TIMELINE_NICHE_FILL"
 msgstr "[b][u]{0}[/u][/b] berpisah dari [b][u]{1}[/u][/b] sebagai spesies baru untuk mengisi sebuah relung"
 
+#, fuzzy
+msgid "TIMELINE_PLAYER_MIGRATED"
+msgstr "Sebagian dari populasi [b][u]{0}[/u][/b] telah bermigrasi ke {1}"
+
+#, fuzzy
+msgid "TIMELINE_PLAYER_MIGRATED_TO"
+msgstr "Sebagian dari populasi [b][u]{0}[/u][/b] telah bermigrasi ke {1}"
+
 msgid "TIMELINE_SELECTION_PRESSURE_SPLIT"
 msgstr "[b][u]{0}[/u][/b] berpisah dari [b][u]{1}[/u][/b] sebagai spesies baru karena tekanan seleksi yang berbeda"
 
@@ -6153,6 +6337,10 @@ msgstr "[b][u]{0}[/u][/b] telah punah!"
 
 msgid "TIMELINE_SPECIES_EXTINCT_LOCAL"
 msgstr "[b][u]{0}[/u][/b] telah lenyap dari daerah ini"
+
+#, fuzzy
+msgid "TIMELINE_SPECIES_FOLLOWED"
+msgstr "[b][u]{0}[/u][/b] telah punah!"
 
 msgid "TIMELINE_SPECIES_MIGRATED_FROM"
 msgstr "Sebagian dari populasi [b][u]{0}[/u][/b] telah bermigrasi ke daerah ini dari {1}"
@@ -6357,6 +6545,7 @@ msgstr ""
 msgid "TOXIN_VACUOLE_DESCRIPTION"
 msgstr "Vakuola racun adalah vakuola yang telah dimodifikasi untuk pembuatan khusus, penyimpanan dan sekresi racun oksitoksi. Vakuola racun yang lebih banyak akan mempercepat laju pengeluaran racun tersebut."
 
+#, fuzzy
 msgid "TOXIN_VACUOLE_PROCESSES_DESCRIPTION"
 msgstr "Mengubah [thrive:compound type=\"atp\"][/thrive:compound] menjadi [thrive:compound type=\"oxytoxy\"][/thrive:compound]. Laju berbanding lurus dengan konsentrasi [thrive:compound type=\"oxygen\"][/thrive:compound]. Dapat meluncurkan toksin dengan menekan tombol [thrive:input]g_fire_toxin[/thrive:input]."
 
@@ -6367,9 +6556,6 @@ msgstr "Oksitoksisom"
 #, fuzzy
 msgid "TOXISOME_DESCRIPTION"
 msgstr "Metabolosom adalah gugusan protein terbungkus dalam kulit protein. Mereka dapat mengkonversi glukosa menjadi ATP pada laju yang lebih tinggi daripada yang terjadi di sitoplasma dengan proses yang dinamakan Respirasi Aerob. Namun, proses tersebut tentu membutuhkan oksigen untuk berfungsi, dan tingkat oksigen yang lebih rendah di lingkungan akan memperlambat laju produksi ATP-nya. Karena metabolosom tersuspensi secara langsung dalam sitoplasma, cairan sekelilingnya juga melakukan beberapa glikolisis."
-
-msgid "TO_BE_IMPLEMENTED"
-msgstr "Untuk di implementasi."
 
 #, fuzzy
 msgid "TRANSLATORS"
@@ -6396,6 +6582,10 @@ msgstr "Ambil tangkapan layar"
 #, fuzzy
 msgid "TUTORIAL"
 msgstr "Tutorial"
+
+#, fuzzy
+msgid "TUTORIAL_ALL_NOT_ENABLED_EXPLANATION"
+msgstr "Tusuk sel lain dengan ini."
 
 #, fuzzy
 msgid "TUTORIAL_MICROBE_EDITOR_ATP_BALANCE_INTRO"
@@ -6440,6 +6630,26 @@ msgstr ""
 "Untuk pindah ke tab editor selanjutnya, tekan tombol lanjut di sebelah kanan bawah."
 
 #, fuzzy
+msgid "TUTORIAL_MICROBE_EDITOR_COMPOUND_BALANCES"
+msgstr ""
+"Selamat Datang ke Editor Mikroba.\n"
+"Disini kamu bisa meninjau apa saja yang telah terjadi sejak pertama kali memulai permainan atau terakhir kali kamu di editor. Dan kemudian membuat perubahan pada spesiesmu.\n"
+"\n"
+"Di tab ini kamu bisa melihat laporan tentang spesies yang ada, dimana dan berapa populasi mereka. Kamu juga bisa melihat perubahan lingkungan di atas.\n"
+"\n"
+"Untuk pindah ke tab editor selanjutnya, tekan tombol lanjut di sebelah kanan bawah."
+
+#, fuzzy
+msgid "TUTORIAL_MICROBE_EDITOR_DIGESTION_STAT"
+msgstr ""
+"Selamat Datang ke Editor Mikroba.\n"
+"Disini kamu bisa meninjau apa saja yang telah terjadi sejak pertama kali memulai permainan atau terakhir kali kamu di editor. Dan kemudian membuat perubahan pada spesiesmu.\n"
+"\n"
+"Di tab ini kamu bisa melihat laporan tentang spesies yang ada, dimana dan berapa populasi mereka. Kamu juga bisa melihat perubahan lingkungan di atas.\n"
+"\n"
+"Untuk pindah ke tab editor selanjutnya, tekan tombol lanjut di sebelah kanan bawah."
+
+#, fuzzy
 msgid "TUTORIAL_MICROBE_EDITOR_ENDING_TEXT"
 msgstr ""
 "Itulah dasar-dasar untuk menyunting spesiesmu. Kamu dapat memeriksa tab editor lain untuk pilihan yang lebih banyak.\n"
@@ -6452,6 +6662,27 @@ msgstr ""
 
 #, fuzzy
 msgid "TUTORIAL_MICROBE_EDITOR_FLAGELLUM"
+msgstr ""
+"Selamat Datang ke Editor Mikroba.\n"
+"Disini kamu bisa meninjau apa saja yang telah terjadi sejak pertama kali memulai permainan atau terakhir kali kamu di editor. Dan kemudian membuat perubahan pada spesiesmu.\n"
+"\n"
+"Di tab ini kamu bisa melihat laporan tentang spesies yang ada, dimana dan berapa populasi mereka. Kamu juga bisa melihat perubahan lingkungan di atas.\n"
+"\n"
+"Untuk pindah ke tab editor selanjutnya, tekan tombol lanjut di sebelah kanan bawah."
+
+#, fuzzy
+msgid "TUTORIAL_MICROBE_EDITOR_FOOD_CHAIN"
+msgstr ""
+"Itulah dasar-dasar untuk menyunting spesiesmu. Kamu dapat memeriksa tab editor lain untuk pilihan yang lebih banyak.\n"
+"\n"
+"Kamu dapat menamakan kembali spesiesmu dengan menggunakan textbox nama spesies di bawah.\n"
+"\n"
+"Untuk awal kamu sebaiknya menjaga selmu tetap kecil dan pergi menuju daerah-daerah permukaan.\n"
+"\n"
+"Semoga beruntung!"
+
+#, fuzzy
+msgid "TUTORIAL_MICROBE_EDITOR_MIGRATION"
 msgstr ""
 "Selamat Datang ke Editor Mikroba.\n"
 "Disini kamu bisa meninjau apa saja yang telah terjadi sejak pertama kali memulai permainan atau terakhir kali kamu di editor. Dan kemudian membuat perubahan pada spesiesmu.\n"
@@ -6584,6 +6815,13 @@ msgstr ""
 "Untuk lepas seluruhnya dari koloni kamu dapat mengklik pada selmu sendiri atau tekan tombol unbind all."
 
 #, fuzzy
+msgid "TUTORIAL_MICROBE_STAGE_ENVIRONMENT_PANEL"
+msgstr ""
+"Kamu telah memasuki mode lepas. Di mode ini kamu dapat mengklik anggota koloni untuk melepaskan mereka.\n"
+"\n"
+"Untuk lepas seluruhnya dari koloni kamu dapat mengklik pada selmu sendiri atau tekan tombol unbind all."
+
+#, fuzzy
 msgid "TUTORIAL_MICROBE_STAGE_HELP_MENU_AND_ZOOM"
 msgstr "[thrive:input]g_move_forward[/thrive:input],[thrive:input]g_move_left[/thrive:input],[thrive:input]g_move_backwards[/thrive:input],[thrive:input]g_move_right[/thrive:input] dan mouse untuk bergerak. [thrive:input]g_fire_toxin[/thrive:input] untuk menembakkan [thrive:compound type=\"oxytoxy\"][/thrive:compound] jika kamu punya vakula toksin. [thrive:input]g_toggle_engulf[/thrive:input] untuk menyalakan/mematikan mode penelanan (engulf)."
 
@@ -6595,7 +6833,39 @@ msgstr ""
 "Untuk lepas seluruhnya dari koloni kamu dapat mengklik pada selmu sendiri atau tekan tombol unbind all."
 
 #, fuzzy
+msgid "TUTORIAL_MICROBE_STAGE_MEMBER_DIED"
+msgstr ""
+"Kamu telah memasuki mode lepas. Di mode ini kamu dapat mengklik anggota koloni untuk melepaskan mereka.\n"
+"\n"
+"Untuk lepas seluruhnya dari koloni kamu dapat mengklik pada selmu sendiri atau tekan tombol unbind all."
+
+#, fuzzy
+msgid "TUTORIAL_MICROBE_STAGE_OPEN_PROCESS_PANEL"
+msgstr ""
+"Agar dapat reproduksi kamu butuh menggandakan semua organelmu dengan muengumpulkan amonia dan fosfat yang cukup.\n"
+"Lihat indikator di kanan bawah untuk melihat berapa banyak yang kamu perlukan."
+
+#, fuzzy
+msgid "TUTORIAL_MICROBE_STAGE_PAUSING"
+msgstr ""
+"Kamu telah memasuki mode lepas. Di mode ini kamu dapat mengklik anggota koloni untuk melepaskan mereka.\n"
+"\n"
+"Untuk lepas seluruhnya dari koloni kamu dapat mengklik pada selmu sendiri atau tekan tombol unbind all."
+
+#, fuzzy
+msgid "TUTORIAL_MICROBE_STAGE_PROCESS_PANEL"
+msgstr ""
+"Agar dapat reproduksi kamu butuh menggandakan semua organelmu dengan muengumpulkan amonia dan fosfat yang cukup.\n"
+"Lihat indikator di kanan bawah untuk melihat berapa banyak yang kamu perlukan."
+
+#, fuzzy
 msgid "TUTORIAL_MICROBE_STAGE_REPRODUCE_TEXT"
+msgstr ""
+"Agar dapat reproduksi kamu butuh menggandakan semua organelmu dengan muengumpulkan amonia dan fosfat yang cukup.\n"
+"Lihat indikator di kanan bawah untuk melihat berapa banyak yang kamu perlukan."
+
+#, fuzzy
+msgid "TUTORIAL_MICROBE_STAGE_RESOURCE_SPLIT"
 msgstr ""
 "Agar dapat reproduksi kamu butuh menggandakan semua organelmu dengan muengumpulkan amonia dan fosfat yang cukup.\n"
 "Lihat indikator di kanan bawah untuk melihat berapa banyak yang kamu perlukan."
@@ -6827,6 +7097,18 @@ msgstr "Memuat..."
 msgid "UPLOAD_SUCCEEDED"
 msgstr "Sukses menyimpan"
 
+msgid "UPSCALE_BILINEAR"
+msgstr ""
+
+msgid "UPSCALE_FSR_1"
+msgstr ""
+
+msgid "UPSCALE_FSR_22"
+msgstr ""
+
+msgid "UPSCALE_SHARPENING_FSR"
+msgstr ""
+
 msgid "USED_LIBRARIES_LICENSES"
 msgstr "Lisensi dan Libraries yang Digunakan"
 
@@ -6940,6 +7222,9 @@ msgstr ""
 
 msgid "VIEW_SOURCE_CODE"
 msgstr "Lihat Kode Sumber"
+
+msgid "VIEW_TEXT_REPORT"
+msgstr ""
 
 msgid "VIP_PATRONS"
 msgstr "Pendukung VIP"
@@ -7369,6 +7654,10 @@ msgstr ""
 
 msgid "WIKI_COMPOUND_SYSTEM_DEVELOPMENT_OVERVIEW"
 msgstr ""
+
+#, fuzzy
+msgid "WIKI_CREATURE_EDITOR_COMMA_TECH_EDITOR"
+msgstr "Editor Mikrob"
 
 #, fuzzy
 msgid "WIKI_CYTOPLASM_EFFECTS"
@@ -8545,6 +8834,9 @@ msgstr "Organel"
 msgid "WIKI_TBA"
 msgstr ""
 
+msgid "WIKI_TECH_EDITOR_COMMA_NATION_EDITOR_COMMA_SQUAD_EDITOR"
+msgstr ""
+
 #, fuzzy
 msgid "WIKI_THERMOPLAST_EFFECTS"
 msgstr "Termoplas adalah struktur membran ganda mengandung pigmen termosensitif tertumpuk bersamaan dalam kantung membran. Ia merupakan prokariota yang terasimilasi untuk kegunaan induk sel eukariota-nya. Pigmen yang ada di termoplas dapat menggunakan perbedaan energi panas di sekelilingnya untuk memproduksi glukosa dari air dan gas karbon dioksida dalam proses yang disebut Termosintesis. Laju produksi glukosa tersebut berbanding lurus dengan konsentrasi karbon dioksida dan suhu."
@@ -8845,6 +9137,21 @@ msgstr "Perbesar"
 msgid "ZOOM_OUT"
 msgstr "Perkecil"
 
+#~ msgid "TO_BE_IMPLEMENTED"
+#~ msgstr "Untuk di implementasi."
+
+#, fuzzy
+#~ msgid "MICROBE_STAGE_DAY_NIGHT_TEXT"
+#~ msgstr ""
+#~ "Perhatikan bilah health di sebelah bilah ATP (kanan bawah).\n"
+#~ "Selmu mati jika kehabisan health.\n"
+#~ "Kamu memperbarui health ketika memiliki ATP.\n"
+#~ "Pastikan telah mengumpulkan glukosa yang cukup untuk memproduksi ATP."
+
+#, fuzzy
+#~ msgid "GLOBAL_GLACIATION_EVENT_LOG"
+#~ msgstr "{0} populasi berubah {1} karena: {2}"
+
 #~ msgid "IRON_CHEMOLITHOAUTOTROPHY"
 #~ msgstr "Kemolitoautotrofi Besi"
 
@@ -9009,10 +9316,6 @@ msgstr "Perkecil"
 #, fuzzy
 #~ msgid "ERUPTION_IN"
 #~ msgstr "Tunas"
-
-#, fuzzy
-#~ msgid "EVENT_TOOLTIP_ERUPTION"
-#~ msgstr "{0}: +{1} ATP"
 
 #~ msgid "THE_AMOUNT_OF_GLUCOSE_HAS_BEEN_REDUCED"
 #~ msgstr "Jumlah glukosa telah dikurang menjadi {0} dari jumlah sebelumya."

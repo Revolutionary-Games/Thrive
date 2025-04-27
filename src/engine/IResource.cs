@@ -13,8 +13,8 @@ public interface IResource
 
     /// <summary>
     ///   Should estimate roughly how long loading this resource takes in the usual case. This is used to skip more
-    ///   loading work if there isn't that much time budget remaining in a frame. This should be very cheap to ask
-    ///   and if not then this should be cached by the resource type.
+    ///   loading work if there isn't that much time budget remaining in a frame. This should be very cheap to ask,
+    ///   and if not, then this should be cached by the resource type. This is the estimated time in seconds.
     /// </summary>
     public float EstimatedTimeRequired { get; }
 
@@ -24,7 +24,7 @@ public interface IResource
     public bool LoadingPrepared { get; set; }
 
     /// <summary>
-    ///   Set to true once the resource is loaded (either in <see cref="Load"/> or after post processing)
+    ///   Set to true once the resource is loaded (either in <see cref="Load"/> or after post-processing)
     /// </summary>
     public bool Loaded { get; }
 
@@ -34,7 +34,7 @@ public interface IResource
     public string Identifier { get; }
 
     /// <summary>
-    ///   If not null this is called on the main thread once this resource has been loaded
+    ///   If not null, this is called on the main thread once this resource has been loaded
     /// </summary>
     public Action<IResource>? OnComplete { get; set; }
 
@@ -49,8 +49,14 @@ public interface IResource
     public void Load();
 
     /// <summary>
-    ///   Post processing of the resource. Only called if <see cref="UsesPostProcessing"/> is true.
+    ///   Post-processing of the resource. Only called if <see cref="UsesPostProcessing"/> is true.
     ///   If <see cref="RequiresSyncPostProcess"/> is true this is called on the main thread.
     /// </summary>
     public void PerformPostProcessing();
+
+    /// <summary>
+    ///   Called when the game state no longer requires this object and this should let go of the Godot resources to
+    ///   allow the engine to unload things to save on memory
+    /// </summary>
+    public void UnLoad();
 }

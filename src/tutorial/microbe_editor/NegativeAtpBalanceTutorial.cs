@@ -7,11 +7,6 @@ using System;
 /// </summary>
 public class NegativeAtpBalanceTutorial : TutorialPhase
 {
-    public NegativeAtpBalanceTutorial()
-    {
-        CanTrigger = false;
-    }
-
     public override string ClosedByName => "NegativeAtpBalanceTutorial";
 
     public override void ApplyGUIState(MicrobeEditorTutorialGUI gui)

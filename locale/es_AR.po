@@ -7,8 +7,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2025-03-14 11:08+0200\n"
-"PO-Revision-Date: 2025-01-21 12:01+0000\n"
+"POT-Creation-Date: 2025-04-26 10:53+0300\n"
+"PO-Revision-Date: 2025-04-04 10:42+0000\n"
 "Last-Translator: Anonymous <noreply@weblate.org>\n"
 "Language-Team: Spanish (Argentina) <https://translate.revolutionarygamesstudio.com/projects/thrive/thrive-game/es_AR/>\n"
 "Language: es_AR\n"
@@ -195,6 +195,25 @@ msgstr "y"
 msgid "ANISOTROPIC_FILTERING"
 msgstr ""
 
+msgid "ANTIALIASING_MSAA_TAA"
+msgstr ""
+
+#, fuzzy
+msgid "ANTI_ALIASING_FXAA"
+msgstr "Multiejemplo anti-aliasing:"
+
+#, fuzzy
+msgid "ANTI_ALIASING_MODE"
+msgstr "Multiejemplo anti-aliasing:"
+
+#, fuzzy
+msgid "ANTI_ALIASING_MSAA"
+msgstr "Multiejemplo anti-aliasing:"
+
+#, fuzzy
+msgid "ANTI_ALIASING_TAA"
+msgstr "Multiejemplo anti-aliasing:"
+
 msgid "APPEARANCE"
 msgstr "Apariencia"
 
@@ -317,6 +336,7 @@ msgstr "Agosto"
 msgid "AUTO"
 msgstr "Automática"
 
+#, fuzzy
 msgid "AUTO-EVO_EXPLANATION_EXPLANATION"
 msgstr "Este panel muestra los números que utiliza auto-evo para predecir. La energía total que una especie es capaz de capturar y el costo por individuo de la especie determina la población final. Auto-evo utiliza un modelo simplificado de la realidad para calcular qué tan bien se desempeñan las especies, basándose en la energía que pueden recolectar. Por cada fuente de alimento se muestra cuánta energía obtiene la especie. Adicionalmente, se muestra la energía total disponible de esa fuente. La fracción que la especie obtiene de la energía total disponible está basada en qué tan grande es la Aptitud comparada a la Aptitud total. La Aptitud es una métrica de qué tan bien la especie puede utilizar una fuente de alimento."
 
@@ -330,6 +350,10 @@ msgid "AUTO-EVO_PREDICTION_BOX_DESCRIPTION"
 msgstr ""
 "Este panel muestra la energía total esperada recolectada y cifras de población (en paréntesis) desde auto-evo para las especies editadas\n"
 "Auto-Evo ejecuta la simulación de población, que es la otra parte (además de tu propio rendimiento) que afecta tu población."
+
+#, fuzzy
+msgid "AUTO-EVO_RESULTS_TITLE"
+msgstr "Resultado del Auto-evo:"
 
 msgid "AUTO-EVO_STEPS_DONE"
 msgstr "{0:F1}% hecho. {1:n0}/{2:n0} pasos."
@@ -505,6 +529,16 @@ msgid "BIOLUMINESCENT_VACUOLE"
 msgstr "Vacuola Bioluminiscente"
 
 #, fuzzy
+msgid "BIOLUMINESCENT_VACUOLE_DESCRIPTION"
+msgstr "Vacuola Bioluminiscente"
+
+#, fuzzy
+msgid "BIOLUMINESCENT_VACUOLE_PROCESSES_DESCRIPTION"
+msgstr ""
+"Vacuola de\n"
+"Toxinas"
+
+#, fuzzy
 msgid "BIOME_LABEL"
 msgstr "Bioma: {0}"
 
@@ -660,6 +694,10 @@ msgstr "Activar/Desactivar engullir"
 msgid "CELL_STAT_SPEED_TOOLTIP"
 msgstr "Activar/Desactivar engullir"
 
+#, fuzzy
+msgid "CELL_STAT_STORAGE_TOOLTIP"
+msgstr "Activar/Desactivar engullir"
+
 msgid "CELL_TYPE_BUTTON_ATP_CONSUMPTION"
 msgstr ""
 
@@ -786,6 +824,9 @@ msgid "CLEAN_UP_OLD_SAVES"
 msgstr ""
 
 msgid "CLEAR_CACHE"
+msgstr ""
+
+msgid "CLICK_TO_SELECT"
 msgstr ""
 
 msgid "CLOSE"
@@ -1964,6 +2005,27 @@ msgstr "Estuario"
 msgid "EVENT_ERUPTION_TOOLTIP"
 msgstr "Disparar toxina"
 
+msgid "EVENT_METEOR_GLUCOSE"
+msgstr ""
+
+#, fuzzy
+msgid "EVENT_METEOR_IRON"
+msgstr "Cueva marítima"
+
+#, fuzzy
+msgid "EVENT_METEOR_PHOSPHATES"
+msgstr "Spawnear fosfato"
+
+#, fuzzy
+msgid "EVENT_METEOR_PLAIN"
+msgstr "Disparar toxina"
+
+msgid "EVENT_METEOR_RADIOACTIVE"
+msgstr ""
+
+msgid "EVENT_METEOR_SULFUR"
+msgstr ""
+
 msgid "EVOLUTIONARY_TREE"
 msgstr ""
 
@@ -2337,6 +2399,26 @@ msgstr ""
 msgid "GLES3"
 msgstr ""
 
+msgid "GLOBAL_GLACIATION_END_EVENT_LOG"
+msgstr ""
+
+#, fuzzy
+msgid "GLOBAL_GLACIATION_EVENT"
+msgstr "población:"
+
+#, fuzzy
+msgid "GLOBAL_GLACIATION_EVENT_TOOLTIP"
+msgstr "Moverse a la etapa Despertar. Solo accesible cuando tengas suficiente poder cerebral (tipo de tejido con axones)."
+
+msgid "GLOBAL_GLACIATION_EVENT_WARNING_LOG_PLURAL"
+msgstr ""
+
+msgid "GLOBAL_GLACIATION_EVENT_WARNING_LOG_SINGULAR"
+msgstr ""
+
+msgid "GLOBAL_GLACIATION_START_EVENT_LOG"
+msgstr ""
+
 msgid "GLOBAL_INITIAL_LETTER"
 msgstr ""
 
@@ -2492,6 +2574,9 @@ msgid "ID_IS_NOT_A_NUMBER"
 msgstr ""
 
 msgid "ID_NUMBER"
+msgstr ""
+
+msgid "IF_FALLBACK_RENDERER_USED_ALL_NOT_AVAILABLE"
 msgstr ""
 
 msgid "IMAGE_FILE_TYPES"
@@ -3142,6 +3227,10 @@ msgid "LOADING_GAME"
 msgstr ""
 
 #, fuzzy
+msgid "LOADING_GRAPHICS_SHADERS"
+msgstr "Poner organela"
+
+#, fuzzy
 msgid "LOADING_MACROSCOPIC_EDITOR"
 msgstr "Poner organela"
 
@@ -3149,8 +3238,23 @@ msgid "LOADING_MICROBE_EDITOR"
 msgstr ""
 
 #, fuzzy
+msgid "LOADING_MICROBE_STAGE"
+msgstr "Recién levantado"
+
+#, fuzzy
 msgid "LOADING_MULTICELLULAR_EDITOR"
 msgstr "Poner organela"
+
+#, fuzzy
+msgid "LOADING_MULTICELLULAR_STAGE"
+msgstr "Poner organela"
+
+#, fuzzy
+msgid "LOADING_STAGE"
+msgstr "Etapa de despertar"
+
+msgid "LOADING_STAGE_ASSETS"
+msgstr ""
 
 msgid "LOAD_FINISHED"
 msgstr ""
@@ -3183,6 +3287,13 @@ msgid "LOCK_DAY_NIGHT_CYCLE"
 msgstr ""
 
 #, fuzzy
+msgid "LOWER_SCALE_INCREASES_PERFORMANCE"
+msgstr "(mayor valor te queman la pc)"
+
+msgid "LOWER_VALUE_MAKES_SHARPER_IMAGE"
+msgstr ""
+
+#, fuzzy
 msgid "LOW_MENU_PERFORMANCE"
 msgstr "Rendimiento"
 
@@ -3197,6 +3308,13 @@ msgstr "Borrosidad del fondo:"
 #, fuzzy
 msgid "LOW_QUALITY_BACKGROUND_BLUR_TOOLTIP"
 msgstr "Borrosidad del fondo:"
+
+msgid "LUCIFERASE"
+msgstr ""
+
+#, fuzzy
+msgid "LUCIFERASE_SYNTHESIS"
+msgstr "Fotosíntesis"
 
 #, fuzzy
 msgid "LYSOSOME"
@@ -3336,6 +3454,15 @@ msgstr ""
 #, fuzzy
 msgid "META_THREADS_TOOLTIP"
 msgstr "Hilos actuales:"
+
+msgid "METEOR_IMPACT_EVENT"
+msgstr ""
+
+msgid "METEOR_STRIKE_START_EVENT_LOG_PLURAL"
+msgstr ""
+
+msgid "METEOR_STRIKE_START_EVENT_LOG_SINGULAR"
+msgstr ""
 
 #, fuzzy
 msgid "METRICS"
@@ -3582,21 +3709,6 @@ msgstr ""
 msgid "MICROBE_STAGE_CONTROL_TEXT_CONTROLLER"
 msgstr ""
 
-#, fuzzy
-msgid "MICROBE_STAGE_DAY_NIGHT_TEXT"
-msgstr ""
-"Estructuras Procarioticas\n"
-"\n"
-"Citoplasma: Tiene espacio de almacenamiento y hace glicólisis (produce un poco de ATP).\n"
-"\n"
-"Metabolosomas: Convierten sulfuro de hidrógeno en glucosa a la mitad de la eficiencia de los quimioplastos, pero también hacen glicólisis.\n"
-"\n"
-"Tilacoides: Producen un tercio de la cantidad de glucosa de un cloroplasto, pero hace glicólisis.\n"
-"\n"
-"Rusticianina: Convierte el hierro en ATP.\n"
-"\n"
-"Nitrogenasa: Convierte el nitrógeno atmosférico en amoníaco y consume ATP."
-
 msgid "MICROBE_STAGE_HEALTH_TEXT"
 msgstr ""
 
@@ -3725,6 +3837,9 @@ msgid "MODDING_INSTRUCTIONS_ON"
 msgstr ""
 
 msgid "MODELS"
+msgstr ""
+
+msgid "MODE_CAN_BE_CHANGED_IN_OPTIONS"
 msgstr ""
 
 msgid "MODIFY"
@@ -4638,6 +4753,10 @@ msgstr ""
 msgid "PLAYER_RELATIVE_MOVEMENT"
 msgstr ""
 
+#, fuzzy
+msgid "PLAYER_RELATIVE_MOVEMENT_TOOLTIP"
+msgstr "Cuando está seleccionado, calcula el balance y otros números en el panel asumiendo que la célula está moviéndose constantemente"
+
 msgid "PLAYER_REPRODUCED"
 msgstr ""
 
@@ -4726,6 +4845,15 @@ msgstr ""
 msgid "PROCESS_SPEED_MODIFIER"
 msgstr ""
 
+#, fuzzy
+msgid "PROCESS_TOGGLE_TOOLTIP"
+msgstr ""
+"Esta sección muestra el balance total de ATP (energía) de la célula actual.\n"
+"Para poder sobrevivir, el balance tiene que ser positivo. Para las célular sésiles se puede considerar el balance positivo con el movimiento excluído.\n"
+"El menú desplegable de ahí abajo lo podés usar para chequear que pasaría si la célula no tuviese ningún recurso disponible para poder crear ATP.\n"
+"Por ejemplo, algunas células solo pueden mantener un balance de ATP positivo cuando tienen múltiples tipos de componentes de los que pueden crear ATP al mísmo tiempo.\n"
+"Ese tipo de células son más difíciles de jugar porque requieren que almacenes varios tipos de componentes al mísmo tiempo para poder sobrevivir."
+
 msgid "PROGRAMMING_TEAM"
 msgstr ""
 
@@ -4806,6 +4934,9 @@ msgstr ""
 msgid "REFRESH"
 msgstr ""
 
+msgid "RENDER_SCALE"
+msgstr ""
+
 msgid "REPORT"
 msgstr ""
 
@@ -4869,6 +5000,13 @@ msgstr ""
 
 msgid "RESET_SETTINGS_TO_DEFAULTS"
 msgstr ""
+
+msgid "RESET_SHOWN_TUTORIALS"
+msgstr ""
+
+#, fuzzy
+msgid "RESET_SHOWN_TUTORIALS_TOOLTIP"
+msgstr "\" {0} \" - {1}"
 
 msgid "RESET_TO_DEFAULTS"
 msgstr ""
@@ -5115,6 +5253,10 @@ msgstr "Barrita de habilidades (recomendado)"
 msgid "SCREEN_RELATIVE_MOVEMENT"
 msgstr ""
 
+#, fuzzy
+msgid "SCREEN_RELATIVE_MOVEMENT_TOOLTIP"
+msgstr "Disparar toxina"
+
 msgid "SCROLLLOCK"
 msgstr "Scroll Lock"
 
@@ -5138,6 +5280,10 @@ msgstr ""
 
 msgid "SEED_LABEL"
 msgstr ""
+
+#, fuzzy
+msgid "SELECTED"
+msgstr "población:"
 
 msgid "SELECTED_COLON"
 msgstr ""
@@ -5176,6 +5322,9 @@ msgstr ""
 msgid "SELECT_ENZYME"
 msgstr "población:"
 
+msgid "SELECT_MOVEMENT_MODE_TITLE"
+msgstr ""
+
 #, fuzzy
 msgid "SELECT_OPTION"
 msgstr "población:"
@@ -5211,6 +5360,13 @@ msgstr "Volumen de efectos"
 msgid "SHIFT"
 msgstr ""
 
+msgid "SHOW_ALL_TUTORIALS"
+msgstr ""
+
+#, fuzzy
+msgid "SHOW_ALL_TUTORIALS_TOOLTIP"
+msgstr "\" {0} \" - {1}"
+
 msgid "SHOW_DAMAGE_EFFECT"
 msgstr ""
 
@@ -5227,14 +5383,15 @@ msgstr ""
 msgid "SHOW_NEW_PATCH_NOTES_TOOLTIP"
 msgstr "\" {0} \" - {1}"
 
-msgid "SHOW_TUTORIALS"
-msgstr ""
-
 msgid "SHOW_TUTORIALS_IN_NEW_CURRENT_OPTION"
 msgstr ""
 
 msgid "SHOW_TUTORIALS_IN_NEW_GAMES_OPTION"
 msgstr ""
+
+#, fuzzy
+msgid "SHOW_TUTORIALS_OPTION_TOOLTIP"
+msgstr "\" {0} \" - {1}"
 
 msgid "SHOW_UNSAVED_PROGRESS_WARNING"
 msgstr ""
@@ -5402,6 +5559,13 @@ msgstr "posee una mutación"
 msgid "SPECIES_LIST"
 msgstr ""
 
+msgid "SPECIES_MEMBER_IMPACT_ON_POP"
+msgstr ""
+
+#, fuzzy
+msgid "SPECIES_MEMBER_IMPACT_ON_POPULATION_EXPLANATION"
+msgstr "Normal"
+
 msgid "SPECIES_NAME_DOT_DOT_DOT"
 msgstr ""
 
@@ -5549,6 +5713,10 @@ msgstr ""
 
 msgid "STORE_LOGGED_IN_AS"
 msgstr "Logeado como: {0}"
+
+#, fuzzy
+msgid "STRAIN_BAR_TOOLTIP"
+msgstr "Disparar toxina"
 
 msgid "STRAIN_BAR_VISIBILITY"
 msgstr ""
@@ -5815,6 +5983,12 @@ msgstr ""
 msgid "TIMELINE_NICHE_FILL"
 msgstr "Han emergido para rellenar únicamente mas tumbas"
 
+msgid "TIMELINE_PLAYER_MIGRATED"
+msgstr ""
+
+msgid "TIMELINE_PLAYER_MIGRATED_TO"
+msgstr ""
+
 #, fuzzy
 msgid "TIMELINE_SELECTION_PRESSURE_SPLIT"
 msgstr "emergieron debido a la selección natural"
@@ -5839,6 +6013,10 @@ msgstr ""
 
 msgid "TIMELINE_SPECIES_EXTINCT_LOCAL"
 msgstr ""
+
+#, fuzzy
+msgid "TIMELINE_SPECIES_FOLLOWED"
+msgstr "Han emergido para rellenar únicamente mas tumbas"
 
 msgid "TIMELINE_SPECIES_MIGRATED_FROM"
 msgstr ""
@@ -6058,9 +6236,6 @@ msgstr "Oxitocina"
 msgid "TOXISOME_DESCRIPTION"
 msgstr "población:"
 
-msgid "TO_BE_IMPLEMENTED"
-msgstr ""
-
 msgid "TRANSLATORS"
 msgstr ""
 
@@ -6082,6 +6257,10 @@ msgstr ""
 
 msgid "TUTORIAL"
 msgstr ""
+
+#, fuzzy
+msgid "TUTORIAL_ALL_NOT_ENABLED_EXPLANATION"
+msgstr "población:"
 
 #, fuzzy
 msgid "TUTORIAL_MICROBE_EDITOR_ATP_BALANCE_INTRO"
@@ -6121,11 +6300,49 @@ msgstr ""
 "Nitrogenasa: Convierte el nitrógeno atmosférico en amoníaco y consume ATP."
 
 #, fuzzy
+msgid "TUTORIAL_MICROBE_EDITOR_COMPOUND_BALANCES"
+msgstr "Usá W, A, S y D y el mouse para moverte. E para disparar OxiToxi NT si tenés una vacuola de toxinas. G para activar o desactivar el modo engullir."
+
+#, fuzzy
+msgid "TUTORIAL_MICROBE_EDITOR_DIGESTION_STAT"
+msgstr ""
+"Estructuras Procarioticas\n"
+"\n"
+"Citoplasma: Tiene espacio de almacenamiento y hace glicólisis (produce un poco de ATP).\n"
+"\n"
+"Metabolosomas: Convierten sulfuro de hidrógeno en glucosa a la mitad de la eficiencia de los quimioplastos, pero también hacen glicólisis.\n"
+"\n"
+"Tilacoides: Producen un tercio de la cantidad de glucosa de un cloroplasto, pero hace glicólisis.\n"
+"\n"
+"Rusticianina: Convierte el hierro en ATP.\n"
+"\n"
+"Nitrogenasa: Convierte el nitrógeno atmosférico en amoníaco y consume ATP."
+
+#, fuzzy
 msgid "TUTORIAL_MICROBE_EDITOR_ENDING_TEXT"
 msgstr "Usá W, A, S y D y el mouse para moverte. E para disparar OxiToxi NT si tenés una vacuola de toxinas. G para activar o desactivar el modo engullir."
 
 #, fuzzy
 msgid "TUTORIAL_MICROBE_EDITOR_FLAGELLUM"
+msgstr ""
+"Estructuras Procarioticas\n"
+"\n"
+"Citoplasma: Tiene espacio de almacenamiento y hace glicólisis (produce un poco de ATP).\n"
+"\n"
+"Metabolosomas: Convierten sulfuro de hidrógeno en glucosa a la mitad de la eficiencia de los quimioplastos, pero también hacen glicólisis.\n"
+"\n"
+"Tilacoides: Producen un tercio de la cantidad de glucosa de un cloroplasto, pero hace glicólisis.\n"
+"\n"
+"Rusticianina: Convierte el hierro en ATP.\n"
+"\n"
+"Nitrogenasa: Convierte el nitrógeno atmosférico en amoníaco y consume ATP."
+
+#, fuzzy
+msgid "TUTORIAL_MICROBE_EDITOR_FOOD_CHAIN"
+msgstr "Usá W, A, S y D y el mouse para moverte. E para disparar OxiToxi NT si tenés una vacuola de toxinas. G para activar o desactivar el modo engullir."
+
+#, fuzzy
+msgid "TUTORIAL_MICROBE_EDITOR_MIGRATION"
 msgstr ""
 "Estructuras Procarioticas\n"
 "\n"
@@ -6199,6 +6416,10 @@ msgid "TUTORIAL_MICROBE_STAGE_ENGULFMENT_TEXT"
 msgstr "Usá W, A, S y D y el mouse para moverte. E para disparar OxiToxi NT si tenés una vacuola de toxinas. G para activar o desactivar el modo engullir."
 
 #, fuzzy
+msgid "TUTORIAL_MICROBE_STAGE_ENVIRONMENT_PANEL"
+msgstr "Usá W, A, S y D y el mouse para moverte. E para disparar OxiToxi NT si tenés una vacuola de toxinas. G para activar o desactivar el modo engullir."
+
+#, fuzzy
 msgid "TUTORIAL_MICROBE_STAGE_HELP_MENU_AND_ZOOM"
 msgstr "Usá W, A, S y D y el mouse para moverte. E para disparar OxiToxi NT si tenés una vacuola de toxinas. G para activar o desactivar el modo engullir."
 
@@ -6207,7 +6428,27 @@ msgid "TUTORIAL_MICROBE_STAGE_LEAVE_COLONY_TEXT"
 msgstr "Usá W, A, S y D y el mouse para moverte. E para disparar OxiToxi NT si tenés una vacuola de toxinas. G para activar o desactivar el modo engullir."
 
 #, fuzzy
+msgid "TUTORIAL_MICROBE_STAGE_MEMBER_DIED"
+msgstr "Usá W, A, S y D y el mouse para moverte. E para disparar OxiToxi NT si tenés una vacuola de toxinas. G para activar o desactivar el modo engullir."
+
+#, fuzzy
+msgid "TUTORIAL_MICROBE_STAGE_OPEN_PROCESS_PANEL"
+msgstr "Usá W, A, S y D y el mouse para moverte. E para disparar OxiToxi NT si tenés una vacuola de toxinas. G para activar o desactivar el modo engullir."
+
+#, fuzzy
+msgid "TUTORIAL_MICROBE_STAGE_PAUSING"
+msgstr "Usá W, A, S y D y el mouse para moverte. E para disparar OxiToxi NT si tenés una vacuola de toxinas. G para activar o desactivar el modo engullir."
+
+#, fuzzy
+msgid "TUTORIAL_MICROBE_STAGE_PROCESS_PANEL"
+msgstr "Usá W, A, S y D y el mouse para moverte. E para disparar OxiToxi NT si tenés una vacuola de toxinas. G para activar o desactivar el modo engullir."
+
+#, fuzzy
 msgid "TUTORIAL_MICROBE_STAGE_REPRODUCE_TEXT"
+msgstr "Usá W, A, S y D y el mouse para moverte. E para disparar OxiToxi NT si tenés una vacuola de toxinas. G para activar o desactivar el modo engullir."
+
+#, fuzzy
+msgid "TUTORIAL_MICROBE_STAGE_RESOURCE_SPLIT"
 msgstr "Usá W, A, S y D y el mouse para moverte. E para disparar OxiToxi NT si tenés una vacuola de toxinas. G para activar o desactivar el modo engullir."
 
 #, fuzzy
@@ -6418,6 +6659,18 @@ msgstr ""
 msgid "UPLOAD_SUCCEEDED"
 msgstr ""
 
+msgid "UPSCALE_BILINEAR"
+msgstr ""
+
+msgid "UPSCALE_FSR_1"
+msgstr ""
+
+msgid "UPSCALE_FSR_22"
+msgstr ""
+
+msgid "UPSCALE_SHARPENING_FSR"
+msgstr ""
+
 msgid "USED_LIBRARIES_LICENSES"
 msgstr ""
 
@@ -6529,6 +6782,9 @@ msgid "VIEW_PENDING_ACTIONS"
 msgstr ""
 
 msgid "VIEW_SOURCE_CODE"
+msgstr ""
+
+msgid "VIEW_TEXT_REPORT"
 msgstr ""
 
 msgid "VIP_PATRONS"
@@ -7027,6 +7283,10 @@ msgstr "Poner organela"
 #, fuzzy
 msgid "WIKI_COMPOUND_SYSTEM_DEVELOPMENT_OVERVIEW"
 msgstr "Poner organela"
+
+#, fuzzy
+msgid "WIKI_CREATURE_EDITOR_COMMA_TECH_EDITOR"
+msgstr "Habilitar el editor"
 
 #, fuzzy
 msgid "WIKI_CYTOPLASM_EFFECTS"
@@ -8317,6 +8577,9 @@ msgstr "Pili de depredador"
 msgid "WIKI_TBA"
 msgstr "Oxitocina"
 
+msgid "WIKI_TECH_EDITOR_COMMA_NATION_EDITOR_COMMA_SQUAD_EDITOR"
+msgstr ""
+
 #, fuzzy
 msgid "WIKI_THERMOPLAST_EFFECTS"
 msgstr "Quimioplastia"
@@ -8644,6 +8907,25 @@ msgid "ZOOM_OUT"
 msgstr "Alejar la pantalla"
 
 #, fuzzy
+#~ msgid "MICROBE_STAGE_DAY_NIGHT_TEXT"
+#~ msgstr ""
+#~ "Estructuras Procarioticas\n"
+#~ "\n"
+#~ "Citoplasma: Tiene espacio de almacenamiento y hace glicólisis (produce un poco de ATP).\n"
+#~ "\n"
+#~ "Metabolosomas: Convierten sulfuro de hidrógeno en glucosa a la mitad de la eficiencia de los quimioplastos, pero también hacen glicólisis.\n"
+#~ "\n"
+#~ "Tilacoides: Producen un tercio de la cantidad de glucosa de un cloroplasto, pero hace glicólisis.\n"
+#~ "\n"
+#~ "Rusticianina: Convierte el hierro en ATP.\n"
+#~ "\n"
+#~ "Nitrogenasa: Convierte el nitrógeno atmosférico en amoníaco y consume ATP."
+
+#, fuzzy
+#~ msgid "GLOBAL_GLACIATION_EVENT_LOG"
+#~ msgstr "población:"
+
+#, fuzzy
 #~ msgid "WIKI_RADIOSYNTHESIS"
 #~ msgstr "Fotosíntesis"
 
@@ -8838,10 +9120,6 @@ msgstr "Alejar la pantalla"
 #, fuzzy
 #~ msgid "ERUPTION_IN"
 #~ msgstr "población:"
-
-#, fuzzy
-#~ msgid "EVENT_TOOLTIP_ERUPTION"
-#~ msgstr "Cueva marítima"
 
 #, fuzzy
 #~ msgid "WIKI_CHEMOSYNTHESIS"

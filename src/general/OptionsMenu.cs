@@ -4,6 +4,7 @@ using System.Globalization;
 using System.Linq;
 using Godot;
 using Saving;
+using Tutorial;
 
 /// <summary>
 ///   Handles the logic for the options menu GUI.
@@ -65,9 +66,6 @@ public partial class OptionsMenu : ControlWithInput
 
     [Export]
     public NodePath DisplayModePath = null!;
-
-    [Export]
-    public NodePath MSAAResolutionPath = null!;
 
     [Export]
     public NodePath ResolutionPath = null!;
@@ -360,7 +358,28 @@ public partial class OptionsMenu : ControlWithInput
     private CheckBox vsync = null!;
     private Label? resolution;
     private OptionButton displayMode = null!;
+
+    [Export]
+    private OptionButton antiAliasingMode = null!;
+
+    [Export]
+    private Control msaaSection = null!;
+
+    [Export]
     private OptionButton msaaResolution = null!;
+
+    [Export]
+    private Slider renderScale = null!;
+
+    [Export]
+    private Label renderScaleLabel = null!;
+
+    [Export]
+    private OptionButton upscalingMethod = null!;
+
+    [Export]
+    private Slider upscalingSharpening = null!;
+
     private OptionButton maxFramesPerSecond = null!;
     private OptionButton colourblindSetting = null!;
     private CheckBox chromaticAberrationToggle = null!;
@@ -630,7 +649,6 @@ public partial class OptionsMenu : ControlWithInput
         graphicsTab = GetNode<Control>(GraphicsTabPath);
         vsync = GetNode<CheckBox>(VSyncPath);
         displayMode = GetNode<OptionButton>(DisplayModePath);
-        msaaResolution = GetNode<OptionButton>(MSAAResolutionPath);
         resolution = GetNode<Label>(ResolutionPath);
         maxFramesPerSecond = GetNode<OptionButton>(MaxFramesPerSecondPath);
         colourblindSetting = GetNode<OptionButton>(ColourblindSettingPath);
@@ -844,9 +862,14 @@ public partial class OptionsMenu : ControlWithInput
         // Graphics
         vsync.ButtonPressed = settings.VSync;
         displayMode.Selected = DisplayModeToIndex(settings.DisplayMode);
+        antiAliasingMode.Selected = AntiAliasingModeToIndex(settings.AntiAliasing);
         msaaResolution.Selected = MSAAResolutionToIndex(settings.MSAAResolution);
         anisotropicFilterLevel.Selected = AnisotropicFilterLevelToIndex(settings.AnisotropicFilterLevel);
         maxFramesPerSecond.Selected = MaxFPSValueToIndex(settings.MaxFramesPerSecond);
+        renderScale.Value = settings.RenderScale;
+        upscalingMethod.Selected = UpscalingMethodValueToIndex(settings.UpscalingMethod);
+        upscalingSharpening.Value = settings.UpscalingSharpening;
+        upscalingSharpening.Editable = settings.UpscalingMethod.Value != Settings.UpscalingMode.Bilinear;
         colourblindSetting.Selected = settings.ColourblindSetting;
         chromaticAberrationSlider.Value = settings.ChromaticAmount;
         chromaticAberrationToggle.ButtonPressed = settings.ChromaticEnabled;
@@ -867,6 +890,8 @@ public partial class OptionsMenu : ControlWithInput
         blurSlider.Value = settings.MicrobeBackgroundBlurStrength;
         DisplayResolution();
         DisplayGpuInfo();
+        UpdateRenderScale();
+        UpdateMSAAVisibility();
 
         // Sound
         masterVolume.Value = ConvertDbToSoundBar(settings.VolumeMaster);
@@ -974,6 +999,17 @@ public partial class OptionsMenu : ControlWithInput
 
         UpdateDismissedNoticeCount();
         UpdateShownCommit();
+
+        // Lock out some graphics settings based on the used renderer
+        if (FeatureInformation.GetVideoDriver() == OS.RenderingDriver.Opengl3)
+        {
+            upscalingMethod.Disabled = true;
+            upscalingSharpening.Editable = false;
+        }
+        else
+        {
+            upscalingMethod.Disabled = false;
+        }
     }
 
     [RunOnKeyDown("ui_cancel", Priority = Constants.SUBMENU_CANCEL_PRIORITY)]
@@ -1021,7 +1057,6 @@ public partial class OptionsMenu : ControlWithInput
                 GraphicsTabPath.Dispose();
                 VSyncPath.Dispose();
                 DisplayModePath.Dispose();
-                MSAAResolutionPath.Dispose();
                 ResolutionPath.Dispose();
                 MaxFramesPerSecondPath.Dispose();
                 ColourblindSettingPath.Dispose();
@@ -1168,8 +1203,14 @@ public partial class OptionsMenu : ControlWithInput
             return;
 
         var screenResolution = DisplayServer.WindowGetSize().AsFloats() * DisplayServer.ScreenGetScale();
+
+        // Apply scaling
+        var scale = renderScale.Value;
+
+        var adjusted = screenResolution * (float)scale;
+
         resolution.Text = Localization.Translate("AUTO_RESOLUTION")
-            .FormatSafe(screenResolution.X, screenResolution.Y);
+            .FormatSafe(Math.Round(adjusted.X), Math.Round(adjusted.Y));
     }
 
     /// <summary>
@@ -1573,6 +1614,78 @@ public partial class OptionsMenu : ControlWithInput
             default:
                 GD.PrintErr("invalid max frames per second index");
                 return 360;
+        }
+    }
+
+    private int UpscalingMethodValueToIndex(Settings.UpscalingMode value)
+    {
+        switch (value)
+        {
+            case Settings.UpscalingMode.Bilinear:
+                return 0;
+            case Settings.UpscalingMode.Fsr1:
+                return 1;
+            case Settings.UpscalingMode.Fsr2:
+                return 2;
+            default:
+                GD.PrintErr("invalid upscaling method value");
+                return 0;
+        }
+    }
+
+    private Settings.UpscalingMode UpscalingMethodIndexToValue(int index)
+    {
+        switch (index)
+        {
+            case 0:
+                return Settings.UpscalingMode.Bilinear;
+            case 1:
+                return Settings.UpscalingMode.Fsr1;
+            case 2:
+                return Settings.UpscalingMode.Fsr2;
+            default:
+                GD.PrintErr("invalid upscaling index");
+                return Settings.UpscalingMode.Bilinear;
+        }
+    }
+
+    private int AntiAliasingModeToIndex(Settings.AntiAliasingMode value)
+    {
+        switch (value)
+        {
+            case Settings.AntiAliasingMode.MSAA:
+                return 0;
+            case Settings.AntiAliasingMode.TemporalAntiAliasing:
+                return 1;
+            case Settings.AntiAliasingMode.MSAAAndTemporal:
+                return 2;
+            case Settings.AntiAliasingMode.ScreenSpaceFx:
+                return 3;
+            case Settings.AntiAliasingMode.Disabled:
+                return 4;
+            default:
+                GD.PrintErr("invalid anti-aliasing value");
+                return 0;
+        }
+    }
+
+    private Settings.AntiAliasingMode AntiAliasingIndexToValue(int index)
+    {
+        switch (index)
+        {
+            case 0:
+                return Settings.AntiAliasingMode.MSAA;
+            case 1:
+                return Settings.AntiAliasingMode.TemporalAntiAliasing;
+            case 2:
+                return Settings.AntiAliasingMode.MSAAAndTemporal;
+            case 3:
+                return Settings.AntiAliasingMode.ScreenSpaceFx;
+            case 4:
+                return Settings.AntiAliasingMode.Disabled;
+            default:
+                GD.PrintErr("invalid anti-aliasing index");
+                return Settings.AntiAliasingMode.MSAA;
         }
     }
 
@@ -2010,6 +2123,22 @@ public partial class OptionsMenu : ControlWithInput
         UpdateResetSaveButtonState();
     }
 
+    private void OnAntiAliasingModeSelected(int index)
+    {
+        Settings.Instance.AntiAliasing.Value = AntiAliasingIndexToValue(index);
+        Settings.Instance.ApplyGraphicsSettings();
+
+        UpdateResetSaveButtonState();
+        UpdateMSAAVisibility();
+    }
+
+    private void UpdateMSAAVisibility()
+    {
+        msaaSection.Visible =
+            Settings.Instance.AntiAliasing.Value is Settings.AntiAliasingMode.MSAA
+                or Settings.AntiAliasingMode.MSAAAndTemporal;
+    }
+
     private void OnMSAAResolutionSelected(int index)
     {
         Settings.Instance.MSAAResolution.Value = MSAAIndexToResolution(index);
@@ -2029,6 +2158,40 @@ public partial class OptionsMenu : ControlWithInput
     private void OnMaxFramesPerSecondSelected(int index)
     {
         Settings.Instance.MaxFramesPerSecond.Value = MaxFPSIndexToValue(index);
+        Settings.Instance.ApplyGraphicsSettings();
+
+        UpdateResetSaveButtonState();
+    }
+
+    private void OnRenderScaleChanged(float value)
+    {
+        Settings.Instance.RenderScale.Value = value;
+        Settings.Instance.ApplyGraphicsSettings();
+
+        UpdateResetSaveButtonState();
+        DisplayResolution();
+        UpdateRenderScale();
+    }
+
+    private void UpdateRenderScale()
+    {
+        renderScaleLabel.Text =
+            Localization.Translate("PERCENTAGE_VALUE").FormatSafe(Math.Round(renderScale.Value * 100));
+    }
+
+    private void OnUpscalingMethodSelected(int index)
+    {
+        Settings.Instance.UpscalingMethod.Value = UpscalingMethodIndexToValue(index);
+        Settings.Instance.ApplyGraphicsSettings();
+
+        UpdateResetSaveButtonState();
+
+        upscalingSharpening.Editable = Settings.Instance.UpscalingMethod.Value != Settings.UpscalingMode.Bilinear;
+    }
+
+    private void OnUpscalingSharpeningChanged(float value)
+    {
+        Settings.Instance.UpscalingSharpening.Value = value;
         Settings.Instance.ApplyGraphicsSettings();
 
         UpdateResetSaveButtonState();
@@ -2878,6 +3041,14 @@ public partial class OptionsMenu : ControlWithInput
 
         UpdateResetSaveButtonState();
         UpdateDismissedNoticeCount();
+    }
+
+    private void OnResetShownTutorials()
+    {
+        GUICommon.Instance.PlayButtonPressSound();
+
+        GD.Print("Clearing all seen tutorials");
+        AlreadySeenTutorials.ResetAllSeenTutorials();
     }
 
     private void OnOpenPatchNotesPressed()

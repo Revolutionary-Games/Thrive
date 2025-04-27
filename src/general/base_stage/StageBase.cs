@@ -21,6 +21,8 @@ public partial class StageBase : NodeWithInput, IStageBase, IGodotEarlyNodeResol
     protected Node rootOfDynamicallySpawned = null!;
     protected PauseMenu pauseMenu = null!;
     protected Control hudRoot = null!;
+
+    protected Node3D? graphicsPreloadNode;
 #pragma warning restore CA2213
 
     [JsonProperty]
@@ -46,6 +48,16 @@ public partial class StageBase : NodeWithInput, IStageBase, IGodotEarlyNodeResol
 
     protected StageBase()
     {
+    }
+
+    public enum LoadState
+    {
+        NotLoading,
+        Loading,
+        GraphicsPreload,
+        RenderWithPreload,
+        GraphicsClear,
+        Finished,
     }
 
     /// <summary>
@@ -95,6 +107,13 @@ public partial class StageBase : NodeWithInput, IStageBase, IGodotEarlyNodeResol
         }
     }
 
+    /// <summary>
+    ///   True when the stage is showing a loading screen and waiting to start.
+    ///   Normal processing should be skipped in this state.
+    /// </summary>
+    [JsonIgnore]
+    protected LoadState StageLoadingState { get; private set; }
+
     public virtual void ResolveNodeReferences()
     {
         if (NodeReferencesResolved)
@@ -111,6 +130,16 @@ public partial class StageBase : NodeWithInput, IStageBase, IGodotEarlyNodeResol
     public override void _Process(double delta)
     {
         base._Process(delta);
+
+        if (StageLoadingState != LoadState.NotLoading)
+        {
+            if (PerformStageLoadingAction())
+            {
+                StartFinalFadeInIfNotStarted();
+            }
+
+            return;
+        }
 
         // Save if wanted
         if (TransitionFinished && wantsToSave)
@@ -145,6 +174,19 @@ public partial class StageBase : NodeWithInput, IStageBase, IGodotEarlyNodeResol
     public virtual void StartNewGame()
     {
         OnGameStarted();
+    }
+
+    public virtual void OnBlankScreenBeforeFadeIn()
+    {
+        // Collect any accumulated garbage before running the main game stage, which is much more framerate-sensitive
+        // than the scene switching process
+        GC.Collect();
+
+        // Let gameplay code start running while fading in as that makes things smoother
+        StageLoadingState = LoadState.NotLoading;
+
+        // Unpause gameplay nodes and code
+        world.ProcessMode = ProcessModeEnum.Inherit;
     }
 
     [RunOnKeyDown("g_toggle_gui")]
@@ -235,7 +277,165 @@ public partial class StageBase : NodeWithInput, IStageBase, IGodotEarlyNodeResol
 
         StartMusic();
 
+        OnStartLoading();
         StartGUIStageTransition(!IsLoadedFromSave, false);
+    }
+
+    protected virtual void OnStartLoading()
+    {
+        // Ignore duplicate requests to start loading which happen when exiting the editor
+        if (StageLoadingState != LoadState.NotLoading)
+            return;
+
+        StageLoadingState = LoadState.Loading;
+        world.ProcessMode = ProcessModeEnum.Disabled;
+
+        // Preloading of graphics assets and showing a loading screen
+        ResourceManager.Instance.OnStageLoadStart(GameState);
+    }
+
+    protected virtual bool PerformStageLoadingAction()
+    {
+        switch (StageLoadingState)
+        {
+            case <= LoadState.Loading:
+            {
+                var resourceManager = ResourceManager.Instance;
+                if (resourceManager.ProgressStageLoad())
+                {
+                    StageLoadingState = LoadState.GraphicsPreload;
+                    UpdateStageLoadingMessage(StageLoadingState, 0, 0);
+                }
+                else
+                {
+                    UpdateStageLoadingMessage(StageLoadingState, resourceManager.StageLoadCurrentProgress,
+                        resourceManager.StageLoadTotalItems);
+                }
+
+                return false;
+            }
+
+            case LoadState.GraphicsPreload:
+                InstantiateGraphicsPreload();
+                StageLoadingState = LoadState.RenderWithPreload;
+                UpdateStageLoadingMessage(StageLoadingState, 0, 0);
+                return false;
+
+            case LoadState.RenderWithPreload:
+                StageLoadingState = LoadState.GraphicsClear;
+                UpdateStageLoadingMessage(StageLoadingState, 0, 0);
+                return false;
+
+            case LoadState.GraphicsClear:
+                CleanupGraphicsPreload();
+                UpdateStageLoadingMessage(StageLoadingState, 0, 0);
+                return true;
+
+            case LoadState.Finished:
+                // Nothing more to do
+                UpdateStageLoadingMessage(StageLoadingState, 0, 0);
+                return true;
+
+            default:
+                GD.PrintErr("Unknown stage loading state: ", StageLoadingState);
+                return true;
+        }
+    }
+
+    protected virtual Node3D CreateGraphicsPreloadNode()
+    {
+        throw new GodotAbstractMethodNotOverriddenException();
+    }
+
+    protected virtual void InstantiateGraphicsPreload()
+    {
+        if (graphicsPreloadNode != null)
+        {
+            GD.PrintErr("Graphics pre-load node already exists");
+            graphicsPreloadNode.QueueFree();
+        }
+
+        graphicsPreloadNode = CreateGraphicsPreloadNode();
+
+        if (graphicsPreloadNode.GetParent() == null)
+            throw new Exception("Graphics preload node has no parent");
+
+        var resources = SimulationParameters.Instance.GetStageResources(GameState);
+
+        CreateGraphicsPreloads(graphicsPreloadNode, resources);
+    }
+
+    protected virtual void CreateGraphicsPreloads(Node3D parent, StageResourcesList resources)
+    {
+        foreach (var resource in resources.RequiredScenes)
+        {
+            var scene = resource.LoadedScene;
+
+            if (scene == null)
+            {
+                GD.PrintErr("Scene not loaded for preload resource: ", resource.Path);
+                continue;
+            }
+
+            parent.AddChild(scene.Instantiate());
+        }
+
+        foreach (var resource in resources.RequiredVisualResources)
+        {
+            var scene = resource.LoadedNormalQuality;
+
+            if (scene == null)
+            {
+                GD.PrintErr("Visual not loaded for preload resource: ", resource.VisualIdentifier);
+                continue;
+            }
+
+            parent.AddChild(scene.Instantiate());
+        }
+    }
+
+    protected virtual void CleanupGraphicsPreload()
+    {
+        if (graphicsPreloadNode == null)
+        {
+            GD.PrintErr("No graphics preload to delete");
+            return;
+        }
+
+        graphicsPreloadNode.QueueFree();
+        graphicsPreloadNode = null;
+    }
+
+    protected void StartFinalFadeInIfNotStarted()
+    {
+        // Avoid triggering the fade a bunch of times
+        if (StageLoadingState == LoadState.Finished)
+            return;
+
+        StageLoadingState = LoadState.Finished;
+
+        GD.Print("Stage load finished, will enter properly now");
+        OnTriggerHUDFinalLoadFadeIn();
+    }
+
+    protected virtual void UpdateStageLoadingMessage(LoadState loadState, int currentProgress, int totalItems)
+    {
+        LoadingScreen.Instance.LoadingMessage = Localization.Translate("LOADING_STAGE");
+
+        SetStageLoadingDescription(loadState, currentProgress, totalItems);
+    }
+
+    protected void SetStageLoadingDescription(LoadState loadState, int currentProgress, int totalItems)
+    {
+        if (loadState < LoadState.GraphicsPreload)
+        {
+            LoadingScreen.Instance.LoadingDescription =
+                Localization.Translate("LOADING_STAGE_ASSETS").FormatSafe(currentProgress, totalItems);
+        }
+        else
+        {
+            LoadingScreen.Instance.LoadingDescription = Localization.Translate("LOADING_GRAPHICS_SHADERS");
+        }
     }
 
     /// <summary>
@@ -247,6 +447,11 @@ public partial class StageBase : NodeWithInput, IStageBase, IGodotEarlyNodeResol
     }
 
     protected virtual void StartGUIStageTransition(bool longDuration, bool returnFromEditor)
+    {
+        throw new GodotAbstractMethodNotOverriddenException();
+    }
+
+    protected virtual void OnTriggerHUDFinalLoadFadeIn()
     {
         throw new GodotAbstractMethodNotOverriddenException();
     }

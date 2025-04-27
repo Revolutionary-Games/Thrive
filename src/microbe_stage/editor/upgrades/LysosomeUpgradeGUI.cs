@@ -74,7 +74,7 @@ public partial class LysosomeUpgradeGUI : VBoxContainer, IOrganelleUpgrader
 
     public Vector2 GetMinDialogSize()
     {
-        return new Vector2(420, 145);
+        return new Vector2(420, 160);
     }
 
     protected override void Dispose(bool disposing)

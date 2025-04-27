@@ -126,6 +126,8 @@ public class PackageTool : PackageToolBase<Program.PackageOptions>
 
     private bool steamMode;
 
+    private bool notarize;
+
     private IDehydrateCache? cacheForNextMetaToWrite;
 
     public PackageTool(Program.PackageOptions options) : base(options)
@@ -140,6 +142,7 @@ public class PackageTool : PackageToolBase<Program.PackageOptions>
             if (OperatingSystem.IsMacOS())
             {
                 DefaultPlatforms = [PackagePlatform.Mac];
+                notarize = !string.IsNullOrEmpty(options.MacTeamId);
             }
             else
             {
@@ -788,6 +791,9 @@ public class PackageTool : PackageToolBase<Program.PackageOptions>
             ColourConsole.WriteWarningLine(
                 "Signing without a specific key for mac (this should work but in an optimal case " +
                 "a signing key would be set)");
+
+            if (Debugger.IsAttached)
+                Debugger.Break();
         }
         else
         {
@@ -806,7 +812,7 @@ public class PackageTool : PackageToolBase<Program.PackageOptions>
                 continue;
             }
 
-            // Main executable must be signed last
+            // The main executable must be signed last
             if (item.EndsWith(MAC_MAIN_EXECUTABLE))
                 continue;
 
@@ -836,14 +842,25 @@ public class PackageTool : PackageToolBase<Program.PackageOptions>
         {
             WorkingDirectory = tempFolder,
         };
-        startInfo.ArgumentList.Add("-9");
+
+        if (notarize)
+        {
+            ColourConsole.WriteNormalLine("Will notarize the result, so intermediate compression is used for now");
+            startInfo.ArgumentList.Add("-6");
+        }
+        else
+        {
+            startInfo.ArgumentList.Add("-9");
+        }
+
         startInfo.ArgumentList.Add("-r");
 
         startInfo.ArgumentList.Add(Path.GetFullPath(archiveFile));
 
         foreach (var item in Directory.EnumerateFileSystemEntries(tempFolder))
         {
-            // Need to remove prefix to have items in relative path to the temp folder for zip process to work
+            // Need to remove the prefix to have items in a relative path to the temp folder for the zip process
+            // to work
             startInfo.ArgumentList.Add(item.Substring(tempFolder.Length + 1));
         }
 
@@ -857,6 +874,30 @@ public class PackageTool : PackageToolBase<Program.PackageOptions>
             ColourConsole.WriteErrorLine("Running final zip create failed " +
                 $"(exit: {result.ExitCode}): {result.FullOutput}");
             return false;
+        }
+
+        // Notarization has to extract and re-create the zip, so this is before the final signature
+        if (notarize)
+        {
+            ColourConsole.WriteInfoLine("Notarizing Mac build");
+
+            if (string.IsNullOrEmpty(options.MacTeamId) || string.IsNullOrEmpty(options.AppleId) ||
+                string.IsNullOrEmpty(options.AppleAppPassword))
+            {
+                ColourConsole.WriteErrorLine("Notarizing Mac build requires Apple developer credentials and team id");
+                return false;
+            }
+
+            if (!await BinaryHelpers.NotarizeFile(archiveFile, options.MacTeamId,
+                    options.AppleId, options.AppleAppPassword, cancellationToken))
+            {
+                ColourConsole.WriteErrorLine("Failed to notarize Mac build (.app)");
+                return false;
+            }
+        }
+        else
+        {
+            ColourConsole.WriteErrorLine("Not notarizing App. Macs will not really want to run the result!");
         }
 
         ColourConsole.WriteInfoLine("Signing final zip");

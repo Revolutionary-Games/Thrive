@@ -58,7 +58,7 @@ public class HtmlToBbCodeConverter
             case IHtmlBodyElement:
                 break;
 
-            // Elements that only have post actions
+            // Elements that only have post-actions
             case IHtmlParagraphElement:
                 break;
 
@@ -79,6 +79,12 @@ public class HtmlToBbCodeConverter
                 if (stringBuilder.Length < 1)
                 {
                     textToAdd = textToAdd.TrimStart();
+                }
+
+                // Skip blank when at a certain type of section
+                if (string.IsNullOrWhiteSpace(textToAdd) && EndsWith("indent]"))
+                {
+                    break;
                 }
 
                 if (stringBuilder.Length + textToAdd.Length >= Constants.MAX_NEWS_FEED_ITEM_LENGTH)
@@ -151,12 +157,17 @@ public class HtmlToBbCodeConverter
             }*/
 
             case IHtmlUnorderedListElement or IHtmlOrderedListElement or IHtmlQuoteElement:
+                paragraphBreakQueued = false;
+                AddLastTextIfDoesNotEndWithAlready("\n");
+
                 stringBuilder.Append("[indent]");
                 break;
 
             case IHtmlListItemElement:
             {
-                AddLastTextIfDoesNotEndWithAlready("\n");
+                if (!EndsWith("\n") && !EndsWith("[indent]"))
+                    stringBuilder.Append('\n');
+
                 stringBuilder.Append("- ");
                 break;
             }
@@ -301,7 +312,7 @@ public class HtmlToBbCodeConverter
                 if (name == TagNames.Dd || name == TagNames.Dt || name == TagNames.Big || name == TagNames.S ||
                     name == TagNames.Small || name == TagNames.Tt || name == TagNames.NoBr)
                 {
-                    // This is placeholder for closing styles once more are implemented
+                    // This is a placeholder for closing styles once more are implemented
                     break;
                 }
 
@@ -330,23 +341,28 @@ public class HtmlToBbCodeConverter
     // TODO: combine these separate implementations into one once Thrive uses a general module
     private void AddLastTextIfDoesNotEndWithAlready(string text)
     {
+        if (EndsWith(text))
+            return;
+
+        stringBuilder.Append(text);
+    }
+
+    private bool EndsWith(string text)
+    {
         if (stringBuilder.Length < text.Length)
-        {
-            stringBuilder.Append(text);
-        }
+            return false;
 
         bool match = true;
 
         for (int i = text.Length; i > 0; --i)
         {
-            if (stringBuilder[stringBuilder.Length - i] != text[text.Length - i])
+            if (stringBuilder[^i] != text[^i])
             {
                 match = false;
                 break;
             }
         }
 
-        if (!match)
-            stringBuilder.Append(text);
+        return match;
     }
 }

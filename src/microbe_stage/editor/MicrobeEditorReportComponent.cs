@@ -73,6 +73,15 @@ public partial class MicrobeEditorReportComponent : EditorComponentBase<IEditorR
     [Export]
     private VBoxContainer majorEventsList = null!;
 
+    [Export]
+    private Button showTextReportButton = null!;
+
+    [Export]
+    private CustomWindow textReportDialog = null!;
+
+    [Export]
+    private CustomRichTextLabel textReportLabel = null!;
+
     private PackedScene eventTemplate = null!;
 
     private HBoxContainer physicalConditionsIconLegends = null!;
@@ -95,6 +104,7 @@ public partial class MicrobeEditorReportComponent : EditorComponentBase<IEditorR
     private Patch? currentlyDisplayedPatch;
 
     private RunResults? autoEvoResults;
+    private Func<LocalizedStringBuilder>? textReportGenerator;
 
     public enum ReportSubtab
     {
@@ -241,7 +251,7 @@ public partial class MicrobeEditorReportComponent : EditorComponentBase<IEditorR
         }
     }
 
-    public void UpdateAutoEvoResults(RunResults results, string external)
+    public void UpdateAutoEvoResults(RunResults results, string external, Func<LocalizedStringBuilder>? getTextReport)
     {
         noAutoEvoResultData.Visible = false;
         graphicalResultsContainer.Visible = true;
@@ -264,6 +274,9 @@ public partial class MicrobeEditorReportComponent : EditorComponentBase<IEditorR
                 foodChainData.DisplayFoodChainIfRequired(autoEvoResults, PatchToShowInfoFor, PlayerSpecies);
             }
         }
+
+        showTextReportButton.Visible = getTextReport != null;
+        textReportGenerator = getTextReport;
     }
 
     public void DisplayAutoEvoFailure(string extra)
@@ -519,7 +532,6 @@ public partial class MicrobeEditorReportComponent : EditorComponentBase<IEditorR
 
         sunlightChart.TooltipYAxisFormat = percentageFormat + " lx";
         atmosphericGassesChart.TooltipYAxisFormat = percentageFormat;
-        compoundsChart.TooltipYAxisFormat = percentageFormat;
 
         speciesPopulationChart.LegendMode = LineChart.LegendDisplayMode.DropDown;
 
@@ -560,7 +572,7 @@ public partial class MicrobeEditorReportComponent : EditorComponentBase<IEditorR
         speciesPopulationChart.Plot(Localization.Translate("YEARS"), string.Empty, 5,
             Localization.Translate("SPECIES_LIST"), speciesPopDatasetsLegend,
             Editor.CurrentGame.GameWorld.PlayerSpecies.FormattedName, 5);
-        compoundsChart.Plot(Localization.Translate("YEARS"), "%", 5, Localization.Translate("COMPOUNDS"),
+        compoundsChart.Plot(Localization.Translate("YEARS"), string.Empty, 5, Localization.Translate("COMPOUNDS"),
             null, null, 5);
 
         OnPhysicalConditionsChartLegendPressed("temperature");
@@ -571,7 +583,7 @@ public partial class MicrobeEditorReportComponent : EditorComponentBase<IEditorR
                 Localization.Translate("EXTINCT_FROM_THE_PLANET") :
                 Localization.Translate("EXTINCT_FROM_PATCH");
 
-            // Override datapoint tooltip to show extinction type instead of just zero.
+            // Override the datapoint tooltip to show the extinction type instead of just zero.
             // Doesn't need to account for ToolTipAxesFormat as we don't have it for species pop graph
             speciesPopulationChart.OverrideDataPointToolTipDescription(point.Name, point.ExtinctPoint,
                 $"{point.Name}\n{point.TimePeriod.FormatNumber()}\n{extinctionType}");
@@ -600,6 +612,9 @@ public partial class MicrobeEditorReportComponent : EditorComponentBase<IEditorR
 
         selectedReportSubtab = selection;
         ApplyReportSubtab();
+
+        Editor.CurrentGame.TutorialState.SendEvent(TutorialEventType.ReportComponentSubtabChanged,
+            new StringEventArgs(tab), this);
     }
 
     private void ApplyReportSubtab()
@@ -739,5 +754,19 @@ public partial class MicrobeEditorReportComponent : EditorComponentBase<IEditorR
 
             button.Modulate = button.ButtonPressed ? Colors.White : Colors.DarkGray;
         }
+    }
+
+    private void OnPressedOpenTextReport()
+    {
+        if (textReportGenerator == null)
+        {
+            GD.PrintErr("No text report generator function passed to the report component");
+            return;
+        }
+
+        GUICommon.Instance.PlayButtonPressSound();
+
+        textReportLabel.Text = textReportGenerator().ToString();
+        textReportDialog.Show();
     }
 }

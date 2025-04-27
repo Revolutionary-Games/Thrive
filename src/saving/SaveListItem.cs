@@ -444,5 +444,12 @@ public partial class SaveListItem : PanelContainer
 
             Loaded = true;
         }
+
+        public void UnLoad()
+        {
+            Loaded = false;
+            Save = null;
+            Screenshot = null;
+        }
     }
 }

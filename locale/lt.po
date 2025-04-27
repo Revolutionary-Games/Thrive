@@ -7,8 +7,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2025-03-14 11:08+0200\n"
-"PO-Revision-Date: 2025-01-21 12:01+0000\n"
+"POT-Creation-Date: 2025-04-26 10:53+0300\n"
+"PO-Revision-Date: 2025-04-04 10:42+0000\n"
 "Last-Translator: Anonymous <noreply@weblate.org>\n"
 "Language-Team: Lithuanian <https://translate.revolutionarygamesstudio.com/projects/thrive/thrive-game/lt/>\n"
 "Language: lt\n"
@@ -204,6 +204,21 @@ msgstr ""
 msgid "ANISOTROPIC_FILTERING"
 msgstr ""
 
+msgid "ANTIALIASING_MSAA_TAA"
+msgstr ""
+
+msgid "ANTI_ALIASING_FXAA"
+msgstr ""
+
+msgid "ANTI_ALIASING_MODE"
+msgstr ""
+
+msgid "ANTI_ALIASING_MSAA"
+msgstr ""
+
+msgid "ANTI_ALIASING_TAA"
+msgstr ""
+
 msgid "APPEARANCE"
 msgstr "Išvaizda"
 
@@ -319,6 +334,7 @@ msgstr "Rugpjūtis"
 msgid "AUTO"
 msgstr "Automatinis"
 
+#, fuzzy
 msgid "AUTO-EVO_EXPLANATION_EXPLANATION"
 msgstr "Šiame skydelyje rodomi skaičiai, pagal kuriuos atliekama automatinės evoliucijos prognozė. Nuo bendros energijos, kurią rūšis gali surinkti, ir sąnaudų, tenkančių vienam rūšies individui, priklauso galutinė populiacija. Auto-evo naudoja supaprastintą tikrovės modelį, kad apskaičiuotų, kaip gerai rūšims sekasi pagal energiją, kurią jos sugeba surinkti. Kiekvieno maisto šaltinio atveju parodoma, kiek energijos rūšis iš jo gauna. Be to, rodoma bendra iš to šaltinio gaunama energija. Dalis, kurią rūšis gauna iš visos energijos, priklauso nuo to, koks yra jos tinkamumas, palyginti su bendru tinkamumu. Tinkamumas - tai rodiklis, parodantis, kaip gerai rūšis gali panaudoti tą maisto šaltinį."
 
@@ -332,6 +348,10 @@ msgid "AUTO-EVO_PREDICTION_BOX_DESCRIPTION"
 msgstr ""
 "Šiame skydelyje parodytas tikėtinas redaguotų rūšių populiacijų skaičius pagal Auto-evo.\n"
 "Auto-evo atlieka populiacijos modeliavimą, kuris yra kita dalis (be jūsų pačių veiklos), daranti įtaką jūsų populiacijai."
+
+#, fuzzy
+msgid "AUTO-EVO_RESULTS_TITLE"
+msgstr "Auto-evo rezultatai:"
 
 msgid "AUTO-EVO_STEPS_DONE"
 msgstr "{0:F1}% atlikta. {1:n0}/{2:n0} žingsniai."
@@ -508,6 +528,14 @@ msgstr "Susieti ašis"
 msgid "BIOLUMINESCENT_VACUOLE"
 msgstr "Bioluminescencinė Vakuolė"
 
+#, fuzzy
+msgid "BIOLUMINESCENT_VACUOLE_DESCRIPTION"
+msgstr "Bioluminescencinė Vakuolė"
+
+#, fuzzy
+msgid "BIOLUMINESCENT_VACUOLE_PROCESSES_DESCRIPTION"
+msgstr "Bioluminescencinė Vakuolė"
+
 msgid "BIOME_LABEL"
 msgstr "Biomas: {0}"
 
@@ -658,6 +686,10 @@ msgid "CELL_STAT_SPEED_TOOLTIP"
 msgstr "Reikšmė, naudojama generuojant pasaulį, kuri turi būti teigiamas sveikas skaičius"
 
 #, fuzzy
+msgid "CELL_STAT_STORAGE_TOOLTIP"
+msgstr "Reikšmė, naudojama generuojant pasaulį, kuri turi būti teigiamas sveikas skaičius"
+
+#, fuzzy
 msgid "CELL_TYPE_BUTTON_ATP_CONSUMPTION"
 msgstr "Mirties Zona:"
 
@@ -784,6 +816,9 @@ msgid "CLEAN_UP_OLD_SAVES"
 msgstr "Išvalyti Senus Išsaugojimus"
 
 msgid "CLEAR_CACHE"
+msgstr ""
+
+msgid "CLICK_TO_SELECT"
 msgstr ""
 
 msgid "CLOSE"
@@ -2001,6 +2036,25 @@ msgstr ""
 msgid "EVENT_ERUPTION_TOOLTIP"
 msgstr "Baigti žaidimą"
 
+msgid "EVENT_METEOR_GLUCOSE"
+msgstr ""
+
+msgid "EVENT_METEOR_IRON"
+msgstr ""
+
+msgid "EVENT_METEOR_PHOSPHATES"
+msgstr ""
+
+#, fuzzy
+msgid "EVENT_METEOR_PLAIN"
+msgstr "Baigti žaidimą"
+
+msgid "EVENT_METEOR_RADIOACTIVE"
+msgstr ""
+
+msgid "EVENT_METEOR_SULFUR"
+msgstr ""
+
 msgid "EVOLUTIONARY_TREE"
 msgstr ""
 
@@ -2366,6 +2420,26 @@ msgstr "Baigti žaidimą"
 msgid "GLES3"
 msgstr ""
 
+msgid "GLOBAL_GLACIATION_END_EVENT_LOG"
+msgstr ""
+
+#, fuzzy
+msgid "GLOBAL_GLACIATION_EVENT"
+msgstr "Sumažinti Perpus Populiaciją"
+
+#, fuzzy
+msgid "GLOBAL_GLACIATION_EVENT_TOOLTIP"
+msgstr "Pereiti į Nubudimo Stadiją. Ji galima, kai turi pakankamai protinės galios (audinio tipas su aksonais)."
+
+msgid "GLOBAL_GLACIATION_EVENT_WARNING_LOG_PLURAL"
+msgstr ""
+
+msgid "GLOBAL_GLACIATION_EVENT_WARNING_LOG_SINGULAR"
+msgstr ""
+
+msgid "GLOBAL_GLACIATION_START_EVENT_LOG"
+msgstr ""
+
 msgid "GLOBAL_INITIAL_LETTER"
 msgstr ""
 
@@ -2517,6 +2591,9 @@ msgstr ""
 
 msgid "ID_NUMBER"
 msgstr "ID kodas"
+
+msgid "IF_FALLBACK_RENDERER_USED_ALL_NOT_AVAILABLE"
+msgstr ""
 
 msgid "IMAGE_FILE_TYPES"
 msgstr ""
@@ -3157,14 +3234,34 @@ msgid "LOADING_GAME"
 msgstr "Įkeliamas žaidimas"
 
 #, fuzzy
+msgid "LOADING_GRAPHICS_SHADERS"
+msgstr "Įkeliamas žaidimas"
+
+#, fuzzy
 msgid "LOADING_MACROSCOPIC_EDITOR"
 msgstr "Tapti Makroskopiniu ({0}/{1})"
 
 msgid "LOADING_MICROBE_EDITOR"
 msgstr ""
 
+#, fuzzy
+msgid "LOADING_MICROBE_STAGE"
+msgstr "Bendri Redaktoriaus ir Strategijos Etapai"
+
 msgid "LOADING_MULTICELLULAR_EDITOR"
 msgstr ""
+
+#, fuzzy
+msgid "LOADING_MULTICELLULAR_STAGE"
+msgstr "Daugialąstis"
+
+#, fuzzy
+msgid "LOADING_STAGE"
+msgstr "Įkeliamas žaidimas"
+
+#, fuzzy
+msgid "LOADING_STAGE_ASSETS"
+msgstr "Įkeliamas žaidimas"
 
 msgid "LOAD_FINISHED"
 msgstr "Įkrovimas baigtas"
@@ -3196,6 +3293,12 @@ msgstr ""
 msgid "LOCK_DAY_NIGHT_CYCLE"
 msgstr ""
 
+msgid "LOWER_SCALE_INCREASES_PERFORMANCE"
+msgstr ""
+
+msgid "LOWER_VALUE_MAKES_SHARPER_IMAGE"
+msgstr ""
+
 msgid "LOW_MENU_PERFORMANCE"
 msgstr ""
 
@@ -3208,6 +3311,13 @@ msgstr ""
 
 msgid "LOW_QUALITY_BACKGROUND_BLUR_TOOLTIP"
 msgstr ""
+
+msgid "LUCIFERASE"
+msgstr ""
+
+#, fuzzy
+msgid "LUCIFERASE_SYNTHESIS"
+msgstr "Chemosintezė"
 
 msgid "LYSOSOME"
 msgstr ""
@@ -3337,6 +3447,15 @@ msgid "META_THREADS_TOOLTIP"
 msgstr ""
 "Negalima automatiškai nustatyti, ar įjungtas \"hyperthreading\", ar ne.\n"
 "Tai turi įtakos numatytajam gijų skaičiui, nes hipertreadingo gijos nėra tokios greitos kaip tikrieji procesoriaus branduoliai."
+
+msgid "METEOR_IMPACT_EVENT"
+msgstr ""
+
+msgid "METEOR_STRIKE_START_EVENT_LOG_PLURAL"
+msgstr ""
+
+msgid "METEOR_STRIKE_START_EVENT_LOG_SINGULAR"
+msgstr ""
 
 msgid "METRICS"
 msgstr ""
@@ -3543,10 +3662,6 @@ msgstr ""
 msgid "MICROBE_STAGE_CONTROL_TEXT_CONTROLLER"
 msgstr ""
 
-#, fuzzy
-msgid "MICROBE_STAGE_DAY_NIGHT_TEXT"
-msgstr "Mikroorganizmo būsena"
-
 msgid "MICROBE_STAGE_HEALTH_TEXT"
 msgstr ""
 
@@ -3658,6 +3773,9 @@ msgstr ""
 
 msgid "MODELS"
 msgstr "Modeliai"
+
+msgid "MODE_CAN_BE_CHANGED_IN_OPTIONS"
+msgstr ""
 
 msgid "MODIFY"
 msgstr ""
@@ -4542,6 +4660,10 @@ msgstr ""
 msgid "PLAYER_RELATIVE_MOVEMENT"
 msgstr ""
 
+#, fuzzy
+msgid "PLAYER_RELATIVE_MOVEMENT_TOOLTIP"
+msgstr "Atidaryti papildomų nustatymų langą"
+
 msgid "PLAYER_REPRODUCED"
 msgstr ""
 
@@ -4621,6 +4743,10 @@ msgstr ""
 
 msgid "PROCESS_SPEED_MODIFIER"
 msgstr ""
+
+#, fuzzy
+msgid "PROCESS_TOGGLE_TOOLTIP"
+msgstr "Rodyti / slėpti junginius"
 
 msgid "PROGRAMMING_TEAM"
 msgstr ""
@@ -4704,6 +4830,9 @@ msgstr ""
 msgid "REFRESH"
 msgstr ""
 
+msgid "RENDER_SCALE"
+msgstr ""
+
 msgid "REPORT"
 msgstr ""
 
@@ -4763,6 +4892,14 @@ msgstr ""
 
 msgid "RESET_SETTINGS_TO_DEFAULTS"
 msgstr ""
+
+#, fuzzy
+msgid "RESET_SHOWN_TUTORIALS"
+msgstr "Pamoka"
+
+#, fuzzy
+msgid "RESET_SHOWN_TUTORIALS_TOOLTIP"
+msgstr "Reikšmė, naudojama generuojant pasaulį, kuri turi būti teigiamas sveikas skaičius"
 
 msgid "RESET_TO_DEFAULTS"
 msgstr ""
@@ -5007,6 +5144,10 @@ msgstr "Atidaryti pagalbos langą"
 msgid "SCREEN_RELATIVE_MOVEMENT"
 msgstr ""
 
+#, fuzzy
+msgid "SCREEN_RELATIVE_MOVEMENT_TOOLTIP"
+msgstr "Reikšmė, naudojama generuojant pasaulį, kuri turi būti teigiamas sveikas skaičius"
+
 msgid "SCROLLLOCK"
 msgstr ""
 
@@ -5030,6 +5171,9 @@ msgid "SECRETE_SLIME_TOOLTIP"
 msgstr "Reikšmė, naudojama generuojant pasaulį, kuri turi būti teigiamas sveikas skaičius"
 
 msgid "SEED_LABEL"
+msgstr ""
+
+msgid "SELECTED"
 msgstr ""
 
 msgid "SELECTED_COLON"
@@ -5065,6 +5209,9 @@ msgstr ""
 msgid "SELECT_ENZYME"
 msgstr ""
 
+msgid "SELECT_MOVEMENT_MODE_TITLE"
+msgstr ""
+
 msgid "SELECT_OPTION"
 msgstr ""
 
@@ -5098,6 +5245,14 @@ msgstr ""
 msgid "SHIFT"
 msgstr ""
 
+#, fuzzy
+msgid "SHOW_ALL_TUTORIALS"
+msgstr "Pamoka"
+
+#, fuzzy
+msgid "SHOW_ALL_TUTORIALS_TOOLTIP"
+msgstr "Reikšmė, naudojama generuojant pasaulį, kuri turi būti teigiamas sveikas skaičius"
+
 msgid "SHOW_DAMAGE_EFFECT"
 msgstr ""
 
@@ -5114,14 +5269,15 @@ msgstr ""
 msgid "SHOW_NEW_PATCH_NOTES_TOOLTIP"
 msgstr ""
 
-msgid "SHOW_TUTORIALS"
-msgstr ""
-
 msgid "SHOW_TUTORIALS_IN_NEW_CURRENT_OPTION"
 msgstr ""
 
 msgid "SHOW_TUTORIALS_IN_NEW_GAMES_OPTION"
 msgstr ""
+
+#, fuzzy
+msgid "SHOW_TUTORIALS_OPTION_TOOLTIP"
+msgstr "Reikšmė, naudojama generuojant pasaulį, kuri turi būti teigiamas sveikas skaičius"
 
 msgid "SHOW_UNSAVED_PROGRESS_WARNING"
 msgstr ""
@@ -5272,6 +5428,13 @@ msgstr ""
 msgid "SPECIES_LIST"
 msgstr ""
 
+msgid "SPECIES_MEMBER_IMPACT_ON_POP"
+msgstr ""
+
+#, fuzzy
+msgid "SPECIES_MEMBER_IMPACT_ON_POPULATION_EXPLANATION"
+msgstr "(organelių sąnaudos, membranos ir kiti elementai redaktoriuje)"
+
 msgid "SPECIES_NAME_DOT_DOT_DOT"
 msgstr ""
 
@@ -5417,6 +5580,10 @@ msgstr ""
 
 msgid "STORE_LOGGED_IN_AS"
 msgstr "Prisijungęs kaip: {0}"
+
+#, fuzzy
+msgid "STRAIN_BAR_TOOLTIP"
+msgstr "Baigti žaidimą"
 
 msgid "STRAIN_BAR_VISIBILITY"
 msgstr ""
@@ -5675,6 +5842,12 @@ msgstr ""
 msgid "TIMELINE_NICHE_FILL"
 msgstr ""
 
+msgid "TIMELINE_PLAYER_MIGRATED"
+msgstr ""
+
+msgid "TIMELINE_PLAYER_MIGRATED_TO"
+msgstr ""
+
 msgid "TIMELINE_SELECTION_PRESSURE_SPLIT"
 msgstr ""
 
@@ -5687,6 +5860,10 @@ msgstr ""
 
 msgid "TIMELINE_SPECIES_EXTINCT_LOCAL"
 msgstr ""
+
+#, fuzzy
+msgid "TIMELINE_SPECIES_FOLLOWED"
+msgstr "Mikroorganizmo būsena"
 
 msgid "TIMELINE_SPECIES_MIGRATED_FROM"
 msgstr ""
@@ -5896,9 +6073,6 @@ msgstr ""
 msgid "TOXISOME_DESCRIPTION"
 msgstr "Chitinazė leidžia ląstelei suardyti chitino membraną. Kiekvienas papildymas didina veiksmingumą."
 
-msgid "TO_BE_IMPLEMENTED"
-msgstr ""
-
 msgid "TRANSLATORS"
 msgstr ""
 
@@ -5921,6 +6095,10 @@ msgstr ""
 msgid "TUTORIAL"
 msgstr "Pamoka"
 
+#, fuzzy
+msgid "TUTORIAL_ALL_NOT_ENABLED_EXPLANATION"
+msgstr "Elemento aprašymas:"
+
 msgid "TUTORIAL_MICROBE_EDITOR_ATP_BALANCE_INTRO"
 msgstr ""
 
@@ -5934,11 +6112,27 @@ msgstr ""
 msgid "TUTORIAL_MICROBE_EDITOR_CHEMORECEPTOR"
 msgstr "Chemoreceptorius"
 
+#, fuzzy
+msgid "TUTORIAL_MICROBE_EDITOR_COMPOUND_BALANCES"
+msgstr "Chemoreceptorius"
+
+#, fuzzy
+msgid "TUTORIAL_MICROBE_EDITOR_DIGESTION_STAT"
+msgstr "Chemoreceptorius"
+
 msgid "TUTORIAL_MICROBE_EDITOR_ENDING_TEXT"
 msgstr ""
 
 msgid "TUTORIAL_MICROBE_EDITOR_FLAGELLUM"
 msgstr ""
+
+#, fuzzy
+msgid "TUTORIAL_MICROBE_EDITOR_FOOD_CHAIN"
+msgstr "Chemoreceptorius"
+
+#, fuzzy
+msgid "TUTORIAL_MICROBE_EDITOR_MIGRATION"
+msgstr "Chemoreceptorius"
 
 msgid "TUTORIAL_MICROBE_EDITOR_MODIFY_ORGANELLE"
 msgstr ""
@@ -5981,14 +6175,38 @@ msgstr ""
 msgid "TUTORIAL_MICROBE_STAGE_ENGULFMENT_TEXT"
 msgstr ""
 
+#, fuzzy
+msgid "TUTORIAL_MICROBE_STAGE_ENVIRONMENT_PANEL"
+msgstr "Chemoreceptorius"
+
 msgid "TUTORIAL_MICROBE_STAGE_HELP_MENU_AND_ZOOM"
 msgstr ""
 
 msgid "TUTORIAL_MICROBE_STAGE_LEAVE_COLONY_TEXT"
 msgstr ""
 
+#, fuzzy
+msgid "TUTORIAL_MICROBE_STAGE_MEMBER_DIED"
+msgstr "Chemoreceptorius"
+
+#, fuzzy
+msgid "TUTORIAL_MICROBE_STAGE_OPEN_PROCESS_PANEL"
+msgstr "Chemoreceptorius"
+
+#, fuzzy
+msgid "TUTORIAL_MICROBE_STAGE_PAUSING"
+msgstr "Chemoreceptorius"
+
+#, fuzzy
+msgid "TUTORIAL_MICROBE_STAGE_PROCESS_PANEL"
+msgstr "Chemoreceptorius"
+
 msgid "TUTORIAL_MICROBE_STAGE_REPRODUCE_TEXT"
 msgstr ""
+
+#, fuzzy
+msgid "TUTORIAL_MICROBE_STAGE_RESOURCE_SPLIT"
+msgstr "Chemoreceptorius"
 
 msgid "TUTORIAL_MICROBE_STAGE_UNBIND_TEXT"
 msgstr ""
@@ -6186,6 +6404,18 @@ msgstr "Įkeliama..."
 msgid "UPLOAD_SUCCEEDED"
 msgstr ""
 
+msgid "UPSCALE_BILINEAR"
+msgstr ""
+
+msgid "UPSCALE_FSR_1"
+msgstr ""
+
+msgid "UPSCALE_FSR_22"
+msgstr ""
+
+msgid "UPSCALE_SHARPENING_FSR"
+msgstr ""
+
 msgid "USED_LIBRARIES_LICENSES"
 msgstr ""
 
@@ -6293,6 +6523,9 @@ msgstr ""
 
 msgid "VIEW_SOURCE_CODE"
 msgstr "Peržiūrėti išeities kodą"
+
+msgid "VIEW_TEXT_REPORT"
+msgstr ""
 
 msgid "VIP_PATRONS"
 msgstr ""
@@ -6748,6 +6981,10 @@ msgstr "Junginiai:"
 #, fuzzy
 msgid "WIKI_COMPOUND_SYSTEM_DEVELOPMENT_OVERVIEW"
 msgstr "Junginiai:"
+
+#, fuzzy
+msgid "WIKI_CREATURE_EDITOR_COMMA_TECH_EDITOR"
+msgstr "Mikroorganizmų redaktorius"
 
 #, fuzzy
 msgid "WIKI_CYTOPLASM_EFFECTS"
@@ -7956,6 +8193,9 @@ msgstr "Elemento aprašymas:"
 msgid "WIKI_TBA"
 msgstr "Padidina didelių ląstelių sukimosi greitį."
 
+msgid "WIKI_TECH_EDITOR_COMMA_NATION_EDITOR_COMMA_SQUAD_EDITOR"
+msgstr ""
+
 #, fuzzy
 msgid "WIKI_THERMOPLAST_EFFECTS"
 msgstr "Chemoplastas yra dvigubos membranos struktūra, kurioje yra baltymų, galinčių paversti [thrive:compound type=\"hydrogensulfide\"][/thrive:compound], dujinį [thrive:compound type=\"carbondioxide\"][/thrive:compound] ir vandenį į [thrive:compound type=\"glucose\"][/thrive:compound], vykstant procesui, vadinamam [b]vandenilio sulfido chemosinteze[/b]. Jo [thrive:compound type=\"glucose\"][/thrive:compound] gamybos greitis priklauso nuo [thrive:compound type=\"carbondioxide\"][/thrive:compound] koncentracijos."
@@ -8254,6 +8494,14 @@ msgid "ZOOM_OUT"
 msgstr ""
 
 #, fuzzy
+#~ msgid "MICROBE_STAGE_DAY_NIGHT_TEXT"
+#~ msgstr "Mikroorganizmo būsena"
+
+#, fuzzy
+#~ msgid "GLOBAL_GLACIATION_EVENT_LOG"
+#~ msgstr "Sumažinti Perpus Populiaciją"
+
+#, fuzzy
 #~ msgid "PASSIVE_REPRODUCTION_PROGRESS"
 #~ msgstr "(greitis, kuriuo DI rūšys mutuoja)"
 
@@ -8303,10 +8551,6 @@ msgstr ""
 #, fuzzy
 #~ msgid "WIKI_MICROBE_EDITOR"
 #~ msgstr "Mikroorganizmų redaktorius"
-
-#, fuzzy
-#~ msgid "WIKI_MUCILAGE_SYNTHESIS"
-#~ msgstr "Chemosintezė"
 
 #, fuzzy
 #~ msgid "WIKI_PHOTOSYNTHESIS"

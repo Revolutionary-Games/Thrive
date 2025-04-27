@@ -90,11 +90,14 @@ public partial class SocietyStage : StrategyStageBase, ISocietyStructureDataAcce
     {
         base._Process(delta);
 
+        if (StageLoadingState != LoadState.NotLoading)
+            return;
+
         if (!IsGameOver())
         {
             structureSystem.Process((float)delta, this);
 
-            // This doesn't really need to update all that often but for now this is fine performance-wise and is
+            // This doesn't really need to update all that often, but for now this is fine performance-wise and is
             // easier to program
             resourceStorage.Capacity = structureSystem.CachedTotalStorage;
 
@@ -200,7 +203,8 @@ public partial class SocietyStage : StrategyStageBase, ISocietyStructureDataAcce
         {
             // TODO: play an invalid placement sound
             GD.Print("Couldn't place selected building");
-            return true;
+
+            // return true;
         }
 
         return true;
