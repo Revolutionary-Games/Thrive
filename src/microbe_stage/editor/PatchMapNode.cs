@@ -22,16 +22,19 @@ public partial class PatchMapNode : MarginContainer
 
     [Export]
     private TextureRect iconRect = null!;
+
     /// <summary>
     ///   Selected patch graphics
     /// </summary>
     [Export]
     private Panel highlightPanel = null!;
+
     /// <summary>
     ///   Player patch graphics
     /// </summary>
     [Export]
     private Panel markPanel = null!;
+
     /// <summary>
     ///   For patches adjacent to the selected one
     /// </summary>
