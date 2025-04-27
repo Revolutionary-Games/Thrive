@@ -29,7 +29,7 @@ public partial class GalleryCard : Button
     [Export]
     public bool CanBeShownInASlideshow { get; set; } = true;
 
-    public Asset Asset { get; set; } = null!;
+    public Asset? Asset { get; set; } = null!;
 
     public Texture2D Thumbnail
     {
