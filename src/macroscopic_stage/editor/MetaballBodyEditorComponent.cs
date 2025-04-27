@@ -9,8 +9,7 @@ using Newtonsoft.Json;
 /// </summary>
 [SceneLoadedClass("res://src/macroscopic_stage/editor/MetaballBodyEditorComponent.tscn")]
 public partial class MetaballBodyEditorComponent :
-    MetaballEditorComponentBase<MacroscopicEditor, CombinedEditorAction, EditorAction, MacroscopicMetaball>,
-    IGodotEarlyNodeResolve
+    MetaballEditorComponentBase<MacroscopicEditor, CombinedEditorAction, EditorAction, MacroscopicMetaball>
 {
     private readonly Dictionary<string, CellTypeSelection> cellTypeSelectionButtons = new();
 
@@ -99,16 +98,11 @@ public partial class MetaballBodyEditorComponent :
     [JsonIgnore]
     public override bool HasIslands => editedMetaballs.GetMetaballsNotTouchingParents().Any();
 
-    [JsonIgnore]
-    public bool NodeReferencesResolved { get; private set; }
-
     protected override bool ForceHideHover => false;
 
     public override void _Ready()
     {
         base._Ready();
-
-        ResolveNodeReferences();
 
         cellTypeSelectionButtonScene =
             GD.Load<PackedScene>("res://src/multicellular_stage/editor/CellTypeSelection.tscn");
@@ -116,16 +110,6 @@ public partial class MetaballBodyEditorComponent :
         ApplySelectionMenuTab();
 
         RegisterTooltips();
-    }
-
-    public override void ResolveNodeReferences()
-    {
-        if (NodeReferencesResolved)
-            return;
-
-        base.ResolveNodeReferences();
-
-        NodeReferencesResolved = true;
     }
 
     public override void Init(MacroscopicEditor owningEditor, bool fresh)

@@ -11,7 +11,7 @@ using Systems;
 [SceneLoadedClass("res://src/multicellular_stage/editor/CellBodyPlanEditorComponent.tscn")]
 public partial class CellBodyPlanEditorComponent :
     HexEditorComponentBase<MulticellularEditor, CombinedEditorAction, EditorAction, HexWithData<CellTemplate>,
-        MulticellularSpecies>, IGodotEarlyNodeResolve
+        MulticellularSpecies>
 {
     private static Vector3 microbeModelOffset = new(0, -0.1f, 0);
 
@@ -139,16 +139,11 @@ public partial class CellBodyPlanEditorComponent :
         }
     }
 
-    [JsonIgnore]
-    public bool NodeReferencesResolved { get; private set; }
-
     protected override bool ForceHideHover => false;
 
     public override void _Ready()
     {
         base._Ready();
-
-        ResolveNodeReferences();
 
         cellTypeSelectionButtonScene =
             GD.Load<PackedScene>("res://src/multicellular_stage/editor/CellTypeSelection.tscn");
@@ -158,16 +153,6 @@ public partial class CellBodyPlanEditorComponent :
         ApplySelectionMenuTab();
 
         RegisterTooltips();
-    }
-
-    public override void ResolveNodeReferences()
-    {
-        if (NodeReferencesResolved)
-            return;
-
-        base.ResolveNodeReferences();
-
-        NodeReferencesResolved = true;
     }
 
     public override void Init(MulticellularEditor owningEditor, bool fresh)

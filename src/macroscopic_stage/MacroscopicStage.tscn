@@ -67,8 +67,6 @@ grow_horizontal = 2
 grow_vertical = 2
 
 [node name="ProgressBarSystem" parent="." instance=ExtResource("12")]
-grow_horizontal = 2
-grow_vertical = 2
 
 [node name="MacroscopicHUD" parent="." node_paths=PackedStringArray("fossilisationButtonLayer", "fossilisationDialog", "menu") instance=ExtResource("3")]
 fossilisationButtonLayer = NodePath("FossilisationButtonLayer")

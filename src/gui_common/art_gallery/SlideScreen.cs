@@ -285,10 +285,10 @@ public partial class SlideScreen : TopLevelContainer
             return;
         }
 
-        var item = items?[currentSlideIndex];
-
-        if (item?.Asset == null)
+        if (items == null)
             return;
+
+        var item = items[currentSlideIndex];
 
         slideTextureRect.Image = GD.Load(item.Asset.ResourcePath) as Texture2D;
 
@@ -309,10 +309,10 @@ public partial class SlideScreen : TopLevelContainer
 
     private void UpdateSlide()
     {
-        var item = items?[currentSlideIndex];
-
-        if (item?.Asset == null)
+        if (items == null)
             return;
+
+        var item = items[currentSlideIndex];
 
         slideshowTimer = slideshowMode ? SLIDESHOW_INTERVAL : 0;
         slideShowModeButton.SetPressedNoSignal(slideshowMode);
@@ -326,12 +326,9 @@ public partial class SlideScreen : TopLevelContainer
     {
         var item = items?[currentSlideIndex] as GalleryCardModel;
 
-        if (item?.Asset == null)
-            return;
-
-        if (item.Asset.Type != AssetType.ModelScene)
+        if (item?.Asset.Type != AssetType.ModelScene)
         {
-            modelViewerContainer.Hide();
+            modelViewerContainer?.Hide();
             return;
         }
 
@@ -358,10 +355,7 @@ public partial class SlideScreen : TopLevelContainer
     {
         var item = items?[currentSlideIndex] as GalleryCardAudio;
 
-        if (item?.Asset == null)
-            return;
-
-        if (item.Asset.Type != AssetType.AudioPlayback)
+        if (item?.Asset.Type != AssetType.AudioPlayback)
         {
             playbackControls.Hide();
             playbackControls.AudioPlayer = null;

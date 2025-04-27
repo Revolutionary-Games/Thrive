@@ -40,14 +40,6 @@ public partial class StrategyStageBase : StageBase, IStrategyStage
     [JsonIgnore]
     protected virtual IStrategyStageHUD BaseHUD => throw new GodotAbstractPropertyNotOverriddenException();
 
-    public override void ResolveNodeReferences()
-    {
-        if (NodeReferencesResolved)
-            return;
-
-        base.ResolveNodeReferences();
-    }
-
     public override void _ExitTree()
     {
         base._ExitTree();

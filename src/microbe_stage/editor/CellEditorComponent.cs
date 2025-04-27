@@ -14,7 +14,7 @@ using Systems;
 [SceneLoadedClass("res://src/microbe_stage/editor/CellEditorComponent.tscn")]
 public partial class CellEditorComponent :
     HexEditorComponentBase<ICellEditorData, CombinedEditorAction, EditorAction, OrganelleTemplate, CellType>,
-    ICellEditorComponent, IGodotEarlyNodeResolve
+    ICellEditorComponent
 {
     [Export]
     public bool IsMulticellularEditor;
@@ -486,9 +486,6 @@ public partial class CellEditorComponent :
     public bool HasFinishedPendingEndosymbiosis =>
         Editor.EditorReady && Editor.EditedBaseSpecies.Endosymbiosis.HasCompleteEndosymbiosis();
 
-    [JsonIgnore]
-    public bool NodeReferencesResolved { get; private set; }
-
     protected override bool ForceHideHover => MicrobePreviewMode;
 
     private float CostMultiplier =>
@@ -540,8 +537,6 @@ public partial class CellEditorComponent :
     {
         base._Ready();
 
-        ResolveNodeReferences();
-
         // This works only after this is attached to the scene tree
         // Hidden in the Godot editor to make selecting other things easier
         organelleUpgradeGUI.Visible = true;
@@ -567,16 +562,6 @@ public partial class CellEditorComponent :
 
         ApplySelectionMenuTab();
         RegisterTooltips();
-    }
-
-    public override void ResolveNodeReferences()
-    {
-        if (NodeReferencesResolved)
-            return;
-
-        base.ResolveNodeReferences();
-
-        NodeReferencesResolved = true;
     }
 
     public override void Init(ICellEditorData owningEditor, bool fresh)
