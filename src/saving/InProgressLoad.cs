@@ -89,7 +89,7 @@ public class InProgressLoad
                 return;
             case State.ReadingData:
             {
-                // Make sure mouse is not being captured if anything left the capture on
+                // Make sure the mouse is not being captured if anything left the capture on
                 MouseCaptureManager.ForceDisableCapture();
 
                 // Start suppressing loaded node deletion
@@ -199,18 +199,10 @@ public class InProgressLoad
                 if (success)
                 {
                     MainMenu.OnEnteringGame();
+                    LoadingScreen.Instance.QueueActionForWhenHidden(() =>
+                        SaveStatusOverlay.Instance.ShowMessage(message), 0.5f);
 
-                    TransitionManager.Instance.AddSequence(ScreenFade.FadeType.FadeOut, 0.5f,
-                        () =>
-                        {
-                            LoadingScreen.Instance.Hide();
-
-                            // Collect any garbage before gameplay starts from the loading process
-                            GC.Collect();
-                        }, false, false);
-
-                    TransitionManager.Instance.AddSequence(ScreenFade.FadeType.FadeIn, 0.5f,
-                        () => SaveStatusOverlay.Instance.ShowMessage(message), false, false);
+                    // This used to hide the loading screen, but now game states are responsible for that themselves
                 }
                 else
                 {

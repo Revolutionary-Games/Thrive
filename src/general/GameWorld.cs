@@ -83,6 +83,12 @@ public class GameWorld : ISaveLoadable
             TimedEffects.RegisterEffect("photosynthesis_production", new PhotosynthesisProductionEffect(this));
             TimedEffects.RegisterEffect("volcanism", new VolcanismEffect(this));
             TimedEffects.RegisterEffect("nitrogen_control", new NitrogenControlEffect(this));
+
+            // Patch events. Their sequence SHOULD NOT be changed!
+            TimedEffects.RegisterEffect("global_glaciation_event",
+                new GlobalGlaciationEvent(this, random.Next64()));
+            TimedEffects.RegisterEffect("meteor_impact_event",
+                new MeteorImpactEvent(this, random.Next64()));
             TimedEffects.RegisterEffect("underwater_vent_eruption",
                 new UnderwaterVentEruptionEffect(this, random.Next64()));
 
@@ -405,9 +411,14 @@ public class GameWorld : ISaveLoadable
             patch.Value.ClearPatchNodeEventVisuals();
         }
 
-        TotalPassedTime += timePassed * Constants.EDITOR_TIME_JUMP_MILLION_YEARS * 1000000;
+        TotalPassedTime = CalculateNextTimeStep(timePassed);
 
         TimedEffects.OnTimePassed(timePassed, TotalPassedTime);
+    }
+
+    public double CalculateNextTimeStep(double timePassed)
+    {
+        return TotalPassedTime + timePassed * Constants.EDITOR_TIME_JUMP_MILLION_YEARS * 1000000;
     }
 
     /// <inheritdoc cref="RegisterAutoEvoCreatedSpecies"/>
@@ -487,14 +498,14 @@ public class GameWorld : ISaveLoadable
     /// <param name="description">What caused the change</param>
     /// <param name="patch">The patch this effect affects.</param>
     /// <param name="immediate">
-    ///   If true applied immediately. Should only be used for the player dying
+    ///   If true, applied immediately. Should only be used for the player dying
     /// </param>
     /// <param name="coefficient">Change amount (coefficient part)</param>
     public void AlterSpeciesPopulation(Species species, int constant, string description, Patch patch,
         bool immediate = false, float coefficient = 1)
     {
-        // It sort of makes sense to allow 0 coefficient to force population to 0, that's why this check is here
-        // now if this effect would do nothing, then it is skipped
+        // It sort of makes sense to allow coefficient 0 to force population to 0, that's why this check is here
+        // now if this effect does nothing, then it is skipped
         if (constant == 0 && Math.Abs(coefficient - 1) < MathUtils.EPSILON)
             return;
 
@@ -507,7 +518,7 @@ public class GameWorld : ISaveLoadable
         if (string.IsNullOrEmpty(description))
             throw new ArgumentException("May not be empty or null", nameof(description));
 
-        // Immediate is only allowed to use for the player dying
+        // Immediate is only allowed to be used for the player dying
         if (immediate)
         {
             if (!species.PlayerSpecies)
@@ -521,7 +532,33 @@ public class GameWorld : ISaveLoadable
 
         CreateRunIfMissing();
 
-        autoEvo!.AddExternalPopulationEffect(species, constant, coefficient, description, patch);
+        autoEvo!.AddExternalPopulationEffect(species, constant, coefficient, description, patch, immediate);
+    }
+
+    public bool HasExternalEffectForSpecies(Species species, bool negativeOnly)
+    {
+        if (autoEvo == null)
+            return false;
+
+        foreach (var externalEffect in autoEvo.ExternalEffects)
+        {
+            if (externalEffect.Species != species)
+                continue;
+
+            // Ignore immediate effects, which are from the player as these don't want to be reported in teh GUI
+            if (externalEffect.Immediate)
+                continue;
+
+            if (negativeOnly)
+            {
+                if (externalEffect.Constant > 0)
+                    continue;
+            }
+
+            return true;
+        }
+
+        return false;
     }
 
     /// <summary>
@@ -531,7 +568,7 @@ public class GameWorld : ISaveLoadable
     /// <param name="constant">Change amount (constant part)</param>
     /// <param name="description">What caused the change</param>
     /// <param name="immediate">
-    ///   If true applied immediately. Should only be used for the player dying
+    ///   If true, applied immediately. Should only be used for the player dying
     /// </param>
     /// <param name="coefficient">Change amount (coefficient part)</param>
     public void AlterSpeciesPopulationInCurrentPatch(Species species, int constant, string description,
@@ -580,9 +617,18 @@ public class GameWorld : ISaveLoadable
             {
                 GD.PrintErr(
                     $"World history is out of order, expected generation {nextGeneration} but got {generation.Key}");
-            }
 
-            ++nextGeneration;
+                // Force the key to match, even if this causes gaps in the history
+                if (generation.Key > nextGeneration)
+                {
+                    nextGeneration = generation.Key;
+                    GD.PrintErr("Adjusted generation key to match");
+                }
+            }
+            else
+            {
+                ++nextGeneration;
+            }
 
             foreach (var recordSpecies in generation.Value.AllSpeciesData)
             {
@@ -840,10 +886,14 @@ public class GameWorld : ISaveLoadable
     /// </summary>
     /// <param name="description">The event's description</param>
     /// <param name="highlight">If true, the event will be highlighted in the timeline UI</param>
-    /// <param name="showInReport">If true, the event will be shown on report tab main page</param>
+    /// <param name="showInReport">If true, the event will be shown on the report tab main page</param>
     /// <param name="iconPath">Resource path to the icon of the event</param>
+    /// <param name="overrideTime">
+    ///   If specified, overrides the time the event is for.
+    ///   This can be used to generate events for the next / previous generations.
+    /// </param>
     public void LogEvent(LocalizedString description, bool highlight = false,
-        bool showInReport = false, string? iconPath = null)
+        bool showInReport = false, string? iconPath = null, double overrideTime = -1)
     {
         if (eventsLog.Count > Constants.GLOBAL_EVENT_LOG_CAP)
         {
@@ -851,16 +901,18 @@ public class GameWorld : ISaveLoadable
             eventsLog.Remove(oldestKey);
         }
 
-        if (!eventsLog.ContainsKey(TotalPassedTime))
-            eventsLog.Add(TotalPassedTime, new List<GameEventDescription>());
+        var time = overrideTime > 0 ? overrideTime : TotalPassedTime;
+
+        if (!eventsLog.ContainsKey(time))
+            eventsLog.Add(time, new List<GameEventDescription>());
 
         // Event already logged in timeline
-        if (eventsLog[TotalPassedTime].Any(e => e.Description.Equals(description)))
+        if (eventsLog[time].Any(e => e.Description.Equals(description)))
         {
             return;
         }
 
-        eventsLog[TotalPassedTime].Add(new GameEventDescription(description, iconPath, highlight, showInReport));
+        eventsLog[time].Add(new GameEventDescription(description, iconPath, highlight, showInReport));
     }
 
     /// <summary>
@@ -901,9 +953,18 @@ public class GameWorld : ISaveLoadable
             {
                 GD.PrintErr(
                     $"World history is out of order, expected generation {nextGeneration} but got {generation.Key}");
-            }
 
-            ++nextGeneration;
+                // Force the key to match, even if this causes gaps in the history
+                if (generation.Key > nextGeneration)
+                {
+                    nextGeneration = generation.Key;
+                    GD.PrintErr("Adjusted generation key to match");
+                }
+            }
+            else
+            {
+                ++nextGeneration;
+            }
 
             var record = generation.Value;
 

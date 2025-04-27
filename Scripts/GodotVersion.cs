@@ -5,7 +5,7 @@ public class GodotVersion
     /// <summary>
     ///   The Godot version we use. UPDATE THIS IF WE UPDATE THE GODOT VERSION
     /// </summary>
-    public const string GODOT_VERSION = "4.4";
+    public const string GODOT_VERSION = "4.4.1";
 
     /// <summary>
     ///   The full name of the version. Don't edit this!

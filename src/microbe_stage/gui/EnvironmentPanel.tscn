@@ -274,7 +274,7 @@ layout_mode = 2
 
 [node name="PanelAnimationPlayer" type="AnimationPlayer" parent="."]
 libraries = {
-"": SubResource("AnimationLibrary_bjeaw")
+&"": SubResource("AnimationLibrary_bjeaw")
 }
 
 [connection signal="pressed" from="EnvironmentPanelPanel/VBoxContainer/Header/HBoxContainer/EnvironmentExpandButton" to="." method="OnExpandPressed"]

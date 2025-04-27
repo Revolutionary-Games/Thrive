@@ -42,9 +42,24 @@ public class GenerationRecord
         var speciesRecord = generationHistory[currentGeneration].AllSpeciesData[speciesID];
         Species? updatedSpecies = null;
 
+        bool warned = false;
+
         // Loop through previous generations until we find a non-null record and update the species
         for (int i = currentGeneration; i >= 0; i--)
         {
+            // As a safety precaution, skip trying to read generations that don't exist
+            if (!generationHistory.ContainsKey(i))
+            {
+                if (!warned)
+                {
+                    warned = true;
+                    GD.PrintErr($"Generation history is missing a generation, this shouldn't happen. " +
+                        $"Skipping generation {i} while looking for full record of species {speciesID}");
+                }
+
+                continue;
+            }
+
             if (generationHistory[i].AllSpeciesData.TryGetValue(speciesID, out var candidateRecord) &&
                 candidateRecord.Species != null)
             {

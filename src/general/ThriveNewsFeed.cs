@@ -11,14 +11,14 @@ using Godot;
 using HttpClient = System.Net.Http.HttpClient;
 
 /// <summary>
-///   Manages downloading and parsing the Thrive news feed into Godot-friendly bbcode
+///   Manages the downloading and parsing of the Thrive news feed into Godot-friendly bbcode
 /// </summary>
 public static class ThriveNewsFeed
 {
     private static readonly Lazy<Task<IReadOnlyCollection<FeedItem>>> FeedItemsTask = new(StartFetchingFeed);
 
     /// <summary>
-    ///   Gets the news feed contents. If already retrieved returns the existing copy
+    ///   Gets the news feed contents. If already retrieved, returns the existing copy
     /// </summary>
     /// <returns>Task that resolves with the feed content once ready (or an error representing item)</returns>
     public static Task<IReadOnlyCollection<FeedItem>> GetFeedContents()
@@ -107,7 +107,7 @@ public static class ThriveNewsFeed
 
     private static IEnumerable<ExtractedFeedItem> ExtractFeedItems(XDocument document)
     {
-        var potentialItems = document.Descendants().Where(e => e.Name.LocalName == "item");
+        var potentialItems = document.Descendants().Where(e => e.Name.LocalName is "item" or "entry");
 
         int seenItems = 0;
 

@@ -2,15 +2,15 @@ version: 1
 
 jobs:
   build:
-    image: thrive/godot-ci:v27
+    image: thrive/godot-ci:v28
     cache:
       loadFrom:
-        - v12-{Branch}-build
-        - v12-master-build
-      writeTo: v12-{Branch}-build
+        - v13-{Branch}-build
+        - v13-master-build
+      writeTo: v13-{Branch}-build
       shared:
         .git/lfs: v7-lfs
-        .import: v13-import
+        .import: v14-import
         builds: v7-builds
         native_libs: v1-native
       system:
@@ -29,18 +29,14 @@ jobs:
           name: Download native libraries
           # This doesn't fetch or install debug variants as they aren't strictly necessary for packaging
           command: dotnet run --project Scripts -- native Fetch Install --debug false
-      # BUILD DISABLED FOR NOW AS GODOT 4.4 SEEMS TO GET STUCK IMPORTING FONTS
-      #- run:
-      #    name: Create build (Linux)
-      #    command: dotnet run --project Scripts -- package --dehydrated Linux
-      #- run:
-      #    name: Create build (Windows)
-      #    command: dotnet run --project Scripts -- package --dehydrated Windows
-      #- run:
-      #    name: Upload devbuilds
-      #    command: dotnet run --project Scripts -- upload
+      - run:
+         name: Create builds (Linux, Windows)
+         command: dotnet run --project Scripts -- package --dehydrated Linux Windows
+      - run:
+         name: Upload devbuilds
+         command: dotnet run --project Scripts -- upload
   jetbrains:
-    image: thrive/godot-ci:v27
+    image: thrive/godot-ci:v28
     cache:
       loadFrom:
         - v9-{Branch}-jetbrains
@@ -86,8 +82,9 @@ jobs:
       - run:
           when: always
           name: Check cleanup changes
+          # Mode changes are ignored as that can cause spurious failures due to hardlink-based caching
           command: |
-            git diff > cleanup_diff.patch
+            git -c core.fileMode=false diff > cleanup_diff.patch
             if grep -q '[^[:space:]]' < cleanup_diff.patch; then
                 echo "Code cleanup found things to be fixed:"
                 cat cleanup_diff.patch
@@ -97,7 +94,7 @@ jobs:
                 rm -f cleanup_diff.patch
             fi
   format_test:
-    image: thrive/godot-ci:v27
+    image: thrive/godot-ci:v28
     cache:
       loadFrom:
         - v9-{Branch}-format
@@ -105,6 +102,7 @@ jobs:
       writeTo: v9-{Branch}-format
       shared:
         .git/lfs: v7-lfs
+        native_libs: v1-native
       system:
         /root/.nuget: v7-nuget
     artifacts:
@@ -114,16 +112,20 @@ jobs:
       - run:
           command: dotnet restore Scripts/Scripts.csproj
       - run:
-          name: Unit tests
-          command: GODOT_BIN=$(which godot) dotnet test
+          name: Make sure no changes to git tracked files at this point
+          command: GIT_LFS_SKIP_SMUDGE=1 git reset --hard HEAD
       - run:
           name: files localization steam-build rewrite checks
           command: dotnet run --project Scripts -- check files localization steam-build rewrite
       - run:
+          name: Make sure no lib files were modified
+          command: GIT_LFS_SKIP_SMUDGE=1 git checkout HEAD -- native_libs/
+      - run:
           when: always
           name: Check format changes
+          # Mode changes are ignored as that can cause spurious failures due to hardlink-based caching
           command: |
-            git diff > format_diff.patch
+            git -c core.fileMode=false diff > format_diff.patch
             if grep -q '[^[:space:]]' < format_diff.patch; then
                 echo "Formatter found things to be fixed:"
                 cat format_diff.patch
@@ -132,3 +134,16 @@ jobs:
                 echo "No changes made"
                 rm -f format_diff.patch
             fi
+      - run:
+          name: Build all projects
+          command: dotnet build Thrive.sln
+      - run:
+          name: Download native libraries
+          command: dotnet run --project Scripts -- native Fetch Install --debug true
+      - run:
+          name: Make sure Godot resources are imported for test detection
+          command: godot --editor --headless --quit-after 200 .
+      - run:
+          name: Unit tests
+          command: dotnet run --project Scripts -- test
+

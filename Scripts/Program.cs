@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Diagnostics;
+using System.IO;
 using CommandLine;
 using CommandLine.Text;
 using Scripts;
@@ -16,7 +17,7 @@ public class Program
     {
         RunFolderChecker.EnsureRightRunningFolder("Thrive.sln");
 
-        // This has too many verbs now so some more manual work is required here as this has run out of the template
+        // This has too many verbs now, so some more manual work is required here as this has run out of the template
         // arguments available from the library
         var parserResult = CommandLineHelpers.CreateParser()
             .ParseArguments(args, typeof(CheckOptions), typeof(NativeLibOptions), typeof(TestOptions),
@@ -93,15 +94,51 @@ public class Program
     {
         CommandLineHelpers.HandleDefaultOptions(options);
 
-        ColourConsole.WriteDebugLine("Running dotnet tests");
+        ColourConsole.WriteInfoLine("Running 'dotnet test'");
 
-        // TODO: we should maybe think about writing some tests runnable through dotnet
-        ColourConsole.WriteWarningLine("Thrive doesn't currently have any implemented dotnet test compatible tests");
+        var godot = ExecutableFinder.Which("godot");
+
+        if (string.IsNullOrEmpty(godot))
+        {
+            ColourConsole.WriteErrorLine("Could not find 'godot' executable, make sure it is in PATH");
+            return 2;
+        }
+
+        TestRunningHelpers.GenerateRunSettings(godot, AssemblyInfoReader.ReadRunTimeFromCsproj("Thrive.csproj"), false);
 
         var tokenSource = ConsoleHelpers.CreateSimpleConsoleCancellationSource();
 
-        return ProcessRunHelpers.RunProcessAsync(new ProcessStartInfo("dotnet", "test"), tokenSource.Token, false)
-            .Result.ExitCode;
+        int result = -1;
+        const int maxTries = 2;
+
+        // gdUnit can randomly fail once to detect available tests, that's why the tests run multiple times on fail
+        // (which is not ideal, but it should hopefully be relatively rare for the tests to actually fail for real)
+        for (int i = 0; i < maxTries; ++i)
+        {
+            var startInfo = new ProcessStartInfo("dotnet");
+            startInfo.ArgumentList.Add("test");
+            startInfo.ArgumentList.Add("--settings");
+            startInfo.ArgumentList.Add(TestRunningHelpers.RUN_SETTINGS_FILE);
+            startInfo.ArgumentList.Add("--verbosity");
+            startInfo.ArgumentList.Add("normal");
+
+            result = ProcessRunHelpers.RunProcessAsync(startInfo, tokenSource.Token, false)
+                .Result.ExitCode;
+
+            if (result == 0)
+                break;
+
+            if (i + 1 < maxTries)
+            {
+                ColourConsole.WriteErrorLine("Failed to run tests, retrying");
+            }
+        }
+
+        // Edit the gdUnit wrapper to suppress warnings in it
+        if (File.Exists("gdunit4_testadapter/GdUnit4TestRunnerScene.cs"))
+            TestRunningHelpers.EnsureStartsWithPragmaSuppression("gdunit4_testadapter/GdUnit4TestRunnerScene.cs");
+
+        return result;
     }
 
     private static int RunChangesFinding(ChangesOptions options)
@@ -438,6 +475,16 @@ public class Program
         [Option("mac-signing-key", Default = null,
             HelpText = "Use a specific signing key for mac builds (defaults to 'SelfSigned')")]
         public string? MacSigningKey { get; set; }
+
+        [Option("apple-team-id", Default = null, HelpText = "Specify Apple developer team ID for signing purposes")]
+        public string? MacTeamId { get; set; }
+
+        [Option("app-notarization-user", Default = null,
+            HelpText = "Specify Apple developer account email for signing")]
+        public string? AppleId { get; set; }
+
+        [Option("app-specific-password", Default = null, HelpText = "Apple developer account login")]
+        public string? AppleAppPassword { get; set; }
 
         [Option("skip-godot-check", Default = false,
             HelpText = "Skip checking if godot is installed and correct version and just try to use it")]

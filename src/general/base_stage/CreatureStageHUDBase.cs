@@ -461,9 +461,16 @@ public partial class CreatureStageHUDBase<TStage> : HUDWithPausing, ICreatureSta
         UpdateSpeedModeDisplay();
     }
 
-    public void SendEditorButtonToTutorial(TutorialState tutorialState)
+    public void SendObjectsToTutorials(TutorialState tutorialState)
     {
         tutorialState.MicrobePressEditorButton.PressEditorButtonControl = editorButton;
+        tutorialState.OpenProcessPanelTutorial.ProcessPanelButtonControl = bottomLeftBar.ProcessPanelButtonControl;
+
+        tutorialState.GlucoseCollecting.CompoundPanels = compoundsPanel;
+        tutorialState.GlucoseCollecting.HUDBottomBar = bottomLeftBar;
+
+        tutorialState.DayNightTutorial.EnvironmentPanel = environmentPanel;
+        tutorialState.DayNightTutorial.HUDBottomBar = bottomLeftBar;
     }
 
     /// <summary>
@@ -492,19 +499,21 @@ public partial class CreatureStageHUDBase<TStage> : HUDWithPausing, ICreatureSta
         editorButton.HideReproductionDialog();
     }
 
-    public override void OnEnterStageTransition(bool longerDuration, bool returningFromEditor)
+    public void CloseProcessPanel()
+    {
+        if (processPanel.Visible)
+        {
+            bottomLeftBar.ProcessesPressed = false;
+            processPanel.Hide();
+        }
+    }
+
+    public override void OnEnterStageLoadingScreen(bool longerDuration, bool returningFromEditor)
     {
         if (stage == null)
             throw new InvalidOperationException("Stage not setup for HUD");
 
-        if (stage.IsLoadedFromSave && !returningFromEditor)
-        {
-            // TODO: make it so that the below sequence can be added anyway to not have to have this special logic here
-            stage.OnFinishTransitioning();
-            return;
-        }
-
-        AddFadeIn(stage, longerDuration);
+        ShowLoadingScreen(stage);
     }
 
     public void OnSuicide()
@@ -657,6 +666,8 @@ public partial class CreatureStageHUDBase<TStage> : HUDWithPausing, ICreatureSta
         else
         {
             HideFossilisationButtons();
+
+            stage?.CurrentGame?.TutorialState.SendEvent(TutorialEventType.GameResumedByPlayer, EventArgs.Empty, this);
         }
     }
 
@@ -691,6 +702,44 @@ public partial class CreatureStageHUDBase<TStage> : HUDWithPausing, ICreatureSta
     public virtual bool GetCurrentSpeedMode()
     {
         return false;
+    }
+
+    /// <summary>
+    ///   Hides both the compounds panel and the environment panel for tutorial purposes
+    /// </summary>
+    public void HideEnvironmentAndCompoundPanels(bool playAnimation)
+    {
+        if (playAnimation)
+        {
+            compoundsPanel.ShowPanel = false;
+            environmentPanel.ShowPanel = false;
+        }
+        else
+        {
+            compoundsPanel.HideWithoutAnimation();
+            environmentPanel.HideWithoutAnimation();
+        }
+
+        bottomLeftBar.CompoundsPressed = false;
+        bottomLeftBar.EnvironmentPressed = false;
+    }
+
+    /// <summary>
+    ///   Restores the compound panel after it was closed for the tutorial
+    /// </summary>
+    public void ShowCompoundPanel()
+    {
+        compoundsPanel.ShowPanel = true;
+        bottomLeftBar.CompoundsPressed = true;
+    }
+
+    /// <summary>
+    ///   Restores the environment panel after it was closed for the tutorial
+    /// </summary>
+    public void ShowEnvironmentPanel()
+    {
+        environmentPanel.ShowPanel = true;
+        bottomLeftBar.EnvironmentPressed = true;
     }
 
     /// <summary>
@@ -1221,6 +1270,9 @@ public partial class CreatureStageHUDBase<TStage> : HUDWithPausing, ICreatureSta
         {
             processPanel.Show();
             bottomLeftBar.ProcessesPressed = true;
+
+            // Send a tutorial event about this opening
+            stage?.CurrentGame?.TutorialState.SendEvent(TutorialEventType.ProcessPanelOpened, EventArgs.Empty, this);
         }
     }
 

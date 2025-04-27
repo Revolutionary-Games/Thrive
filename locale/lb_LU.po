@@ -7,8 +7,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2025-03-14 11:08+0200\n"
-"PO-Revision-Date: 2025-01-21 12:01+0000\n"
+"POT-Creation-Date: 2025-04-26 10:53+0300\n"
+"PO-Revision-Date: 2025-04-04 10:42+0000\n"
 "Last-Translator: Anonymous <noreply@weblate.org>\n"
 "Language-Team: Luxembourgish <https://translate.revolutionarygamesstudio.com/projects/thrive/thrive-game/lb/>\n"
 "Language: lb_LU\n"
@@ -200,6 +200,25 @@ msgstr "an"
 msgid "ANISOTROPIC_FILTERING"
 msgstr ""
 
+msgid "ANTIALIASING_MSAA_TAA"
+msgstr ""
+
+#, fuzzy
+msgid "ANTI_ALIASING_FXAA"
+msgstr "Multisample anti-aliasing:"
+
+#, fuzzy
+msgid "ANTI_ALIASING_MODE"
+msgstr "Multisample anti-aliasing:"
+
+#, fuzzy
+msgid "ANTI_ALIASING_MSAA"
+msgstr "Multisample anti-aliasing:"
+
+#, fuzzy
+msgid "ANTI_ALIASING_TAA"
+msgstr "Multisample anti-aliasing:"
+
 msgid "APPEARANCE"
 msgstr "Erscheinung"
 
@@ -326,6 +345,7 @@ msgstr "August"
 msgid "AUTO"
 msgstr "Auto"
 
+#, fuzzy
 msgid "AUTO-EVO_EXPLANATION_EXPLANATION"
 msgstr "Dëse Panneau weist d'Chifferen di vun den Auto-Évo Viraussoe genotzt ginn. Di total Energie, déi eng Spezies notze kann an d'Käschte pro Individuum an der Spezies determinéieren di schlussendlech Populatioun.Auto-Évo notzt e vereinfachte model vun der Realitéit fir auszerechnen, wéi gutt eng Aart ofschneit, baséierend op der Energie, déi se kréie konnten. Fir all Ernierungsquell gëtt gewise wéi vill Energie d'Aart dovu kritt huet. Em plus gëtt d'total Energie déi zu Verfügung steet gewisen. De Rapport un Energie déi d'Aart vun der totaler Energie kritt baséiert dorobber wéi grouss hier Fitness ass am verglach mat der totaler Fitness. Fitness ass eng Metrik dovu wéi gutt d'Spezies eng Ernierungsquell notze kann."
 
@@ -339,6 +359,10 @@ msgid "AUTO-EVO_PREDICTION_BOX_DESCRIPTION"
 msgstr ""
 "Deen hei Panneau weist déi erwaarten total Energie déi vun der Aart gesammelt gouf an d'Unzuel vun der Aart (a Klammeren)  vun Auto-Évo vir di beaarbecht Aart.\n"
 "Auto-Évo ass responsabel d'Populatiouns Simulatioun déi (nieft denger eegener Leeschtung) deng Populatioun affectéiert."
+
+#, fuzzy
+msgid "AUTO-EVO_RESULTS_TITLE"
+msgstr "Auto-Évo Resultater:"
 
 msgid "AUTO-EVO_STEPS_DONE"
 msgstr "{0:F1}% fäerdeg. {1:n0}/{2:n0} Schrëtt."
@@ -512,6 +536,14 @@ msgstr "Verbann d'Achse mateneen"
 msgid "BIOLUMINESCENT_VACUOLE"
 msgstr "Biolumineszenz-Vakuol"
 
+#, fuzzy
+msgid "BIOLUMINESCENT_VACUOLE_DESCRIPTION"
+msgstr "Biolumineszenz-Vakuol"
+
+#, fuzzy
+msgid "BIOLUMINESCENT_VACUOLE_PROCESSES_DESCRIPTION"
+msgstr "Dréck [thrive:input]g_toggle_binding[/thrive:input] fir de Pech-Modus ëmgeschalten. Am Pech-Modus kanns de aner Zellen vun denger Aart un deng Kolonie upechen an deem se a se renns. Fir aus enger Kolonie rauszekommen, dréck [thrive:input]g_unbind_all[/thrive:input]. Du kenns net an den Beaarbechter wärend's de un aneren Zellen dru pechs."
+
 msgid "BIOME_LABEL"
 msgstr "Biom: {0}"
 
@@ -664,6 +696,10 @@ msgstr "Geschwindegkeet vun der Zell"
 msgid "CELL_STAT_SPEED_TOOLTIP"
 msgstr "Geschwindegkeet vun der Zell"
 
+#, fuzzy
+msgid "CELL_STAT_STORAGE_TOOLTIP"
+msgstr "Geschwindegkeet vun der Zell"
+
 msgid "CELL_TYPE_BUTTON_ATP_CONSUMPTION"
 msgstr ""
 
@@ -790,6 +826,9 @@ msgid "CLEAN_UP_OLD_SAVES"
 msgstr "Al Späicherdateien raumen"
 
 msgid "CLEAR_CACHE"
+msgstr ""
+
+msgid "CLICK_TO_SELECT"
 msgstr ""
 
 msgid "CLOSE"
@@ -1898,6 +1937,27 @@ msgstr "Ästuar"
 msgid "EVENT_ERUPTION_TOOLTIP"
 msgstr "Nei Tastebindung bäifügen"
 
+msgid "EVENT_METEOR_GLUCOSE"
+msgstr ""
+
+#, fuzzy
+msgid "EVENT_METEOR_IRON"
+msgstr "Ënnerwaasser Hiel"
+
+#, fuzzy
+msgid "EVENT_METEOR_PHOSPHATES"
+msgstr "Phosphat Erstellen"
+
+#, fuzzy
+msgid "EVENT_METEOR_PLAIN"
+msgstr "Nei Tastebindung bäifügen"
+
+msgid "EVENT_METEOR_RADIOACTIVE"
+msgstr ""
+
+msgid "EVENT_METEOR_SULFUR"
+msgstr ""
+
 msgid "EVOLUTIONARY_TREE"
 msgstr ""
 
@@ -2243,6 +2303,26 @@ msgstr ""
 msgid "GLES3"
 msgstr ""
 
+msgid "GLOBAL_GLACIATION_END_EVENT_LOG"
+msgstr ""
+
+#, fuzzy
+msgid "GLOBAL_GLACIATION_EVENT"
+msgstr "Halbeier Populatioun"
+
+#, fuzzy
+msgid "GLOBAL_GLACIATION_EVENT_TOOLTIP"
+msgstr "Op d' 'Erwaachen Stuf' weidergoen. Accessibel wann's de genuch Gehier hues (eng Zort Geweebe mat Axonen)."
+
+msgid "GLOBAL_GLACIATION_EVENT_WARNING_LOG_PLURAL"
+msgstr ""
+
+msgid "GLOBAL_GLACIATION_EVENT_WARNING_LOG_SINGULAR"
+msgstr ""
+
+msgid "GLOBAL_GLACIATION_START_EVENT_LOG"
+msgstr ""
+
 msgid "GLOBAL_INITIAL_LETTER"
 msgstr ""
 
@@ -2390,6 +2470,9 @@ msgid "ID_IS_NOT_A_NUMBER"
 msgstr ""
 
 msgid "ID_NUMBER"
+msgstr ""
+
+msgid "IF_FALLBACK_RENDERER_USED_ALL_NOT_AVAILABLE"
 msgstr ""
 
 msgid "IMAGE_FILE_TYPES"
@@ -3013,13 +3096,31 @@ msgstr ""
 msgid "LOADING_GAME"
 msgstr ""
 
+msgid "LOADING_GRAPHICS_SHADERS"
+msgstr ""
+
 msgid "LOADING_MACROSCOPIC_EDITOR"
 msgstr ""
 
 msgid "LOADING_MICROBE_EDITOR"
 msgstr ""
 
+#, fuzzy
+msgid "LOADING_MICROBE_STAGE"
+msgstr "ATP PRODUKTIOUN ZE NIEDREG!"
+
 msgid "LOADING_MULTICELLULAR_EDITOR"
+msgstr ""
+
+#, fuzzy
+msgid "LOADING_MULTICELLULAR_STAGE"
+msgstr "Multizellular ginn ({0}/{1})"
+
+#, fuzzy
+msgid "LOADING_STAGE"
+msgstr "Erwäche Stuf"
+
+msgid "LOADING_STAGE_ASSETS"
 msgstr ""
 
 msgid "LOAD_FINISHED"
@@ -3052,6 +3153,13 @@ msgstr ""
 msgid "LOCK_DAY_NIGHT_CYCLE"
 msgstr ""
 
+#, fuzzy
+msgid "LOWER_SCALE_INCREASES_PERFORMANCE"
+msgstr "(méi héich Wäerter verbesseren d'Leeschtung)"
+
+msgid "LOWER_VALUE_MAKES_SHARPER_IMAGE"
+msgstr ""
+
 msgid "LOW_MENU_PERFORMANCE"
 msgstr ""
 
@@ -3063,6 +3171,13 @@ msgstr ""
 
 msgid "LOW_QUALITY_BACKGROUND_BLUR_TOOLTIP"
 msgstr ""
+
+msgid "LUCIFERASE"
+msgstr ""
+
+#, fuzzy
+msgid "LUCIFERASE_SYNTHESIS"
+msgstr "Chemosythese"
 
 msgid "LYSOSOME"
 msgstr ""
@@ -3195,6 +3310,15 @@ msgid "META_THREADS_TOOLTIP"
 msgstr ""
 "Di hei Sektioun weist di total Balance (Produktioun - Verbrauch) fier all Stoff.\n"
 "Vier zum Beispill eng Planzenzell ze maachen muss d'Glucose Balance wäit positiv sinn."
+
+msgid "METEOR_IMPACT_EVENT"
+msgstr ""
+
+msgid "METEOR_STRIKE_START_EVENT_LOG_PLURAL"
+msgstr ""
+
+msgid "METEOR_STRIKE_START_EVENT_LOG_SINGULAR"
+msgstr ""
 
 msgid "METRICS"
 msgstr ""
@@ -3446,9 +3570,6 @@ msgstr ""
 msgid "MICROBE_STAGE_CONTROL_TEXT_CONTROLLER"
 msgstr ""
 
-msgid "MICROBE_STAGE_DAY_NIGHT_TEXT"
-msgstr ""
-
 msgid "MICROBE_STAGE_HEALTH_TEXT"
 msgstr ""
 
@@ -3548,6 +3669,9 @@ msgid "MODDING_INSTRUCTIONS_ON"
 msgstr ""
 
 msgid "MODELS"
+msgstr ""
+
+msgid "MODE_CAN_BE_CHANGED_IN_OPTIONS"
 msgstr ""
 
 msgid "MODIFY"
@@ -4407,6 +4531,10 @@ msgstr ""
 msgid "PLAYER_RELATIVE_MOVEMENT"
 msgstr ""
 
+#, fuzzy
+msgid "PLAYER_RELATIVE_MOVEMENT_TOOLTIP"
+msgstr "Rechent den Niveau an aner Chifferen an dësem Panneau, ugeholl dat d'Zell sech ëmmer beweegt"
+
 msgid "PLAYER_REPRODUCED"
 msgstr ""
 
@@ -4491,6 +4619,15 @@ msgstr ""
 msgid "PROCESS_SPEED_MODIFIER"
 msgstr ""
 
+#, fuzzy
+msgid "PROCESS_TOGGLE_TOOLTIP"
+msgstr ""
+"Dei hei Sektioun weist di total Balance (Produktioun - Verbrauch) fier all Stoff.\n"
+"Fir ze iwwerliewen muss d'Balance positif sinn.\n"
+"Den Menü hei drenner kann benotzt ginn fir ze gesinn wat passéiert wann d'Zell verschidde Stoffer net huet.\n"
+"Verschidden Zellen kennen nemmen eng positif ATB Balance areechen wann se multipel Substanzen hun fir ATP ze generéieren.\n"
+"Des sort Zell ass méi schwéier ze spillen."
+
 msgid "PROGRAMMING_TEAM"
 msgstr ""
 
@@ -4570,6 +4707,9 @@ msgstr "Läscht Aktioun Widderhierstellen"
 msgid "REFRESH"
 msgstr ""
 
+msgid "RENDER_SCALE"
+msgstr ""
+
 msgid "REPORT"
 msgstr ""
 
@@ -4630,6 +4770,13 @@ msgstr ""
 
 msgid "RESET_SETTINGS_TO_DEFAULTS"
 msgstr "Standarden"
+
+msgid "RESET_SHOWN_TUTORIALS"
+msgstr ""
+
+#, fuzzy
+msgid "RESET_SHOWN_TUTORIALS_TOOLTIP"
+msgstr "Weis d'Tutorialen (an dësem Spill)"
 
 msgid "RESET_TO_DEFAULTS"
 msgstr "Standarden zerécksetzen?"
@@ -4865,6 +5012,10 @@ msgstr ""
 msgid "SCREEN_RELATIVE_MOVEMENT"
 msgstr ""
 
+#, fuzzy
+msgid "SCREEN_RELATIVE_MOVEMENT_TOOLTIP"
+msgstr "Nei Tastebindung bäifügen"
+
 msgid "SCROLLLOCK"
 msgstr ""
 
@@ -4887,6 +5038,9 @@ msgid "SECRETE_SLIME_TOOLTIP"
 msgstr ""
 
 msgid "SEED_LABEL"
+msgstr ""
+
+msgid "SELECTED"
 msgstr ""
 
 msgid "SELECTED_COLON"
@@ -4922,6 +5076,9 @@ msgstr ""
 msgid "SELECT_ENZYME"
 msgstr ""
 
+msgid "SELECT_MOVEMENT_MODE_TITLE"
+msgstr ""
+
 msgid "SELECT_OPTION"
 msgstr ""
 
@@ -4955,6 +5112,13 @@ msgstr "SFX Lautstäerkt"
 msgid "SHIFT"
 msgstr "Shift"
 
+msgid "SHOW_ALL_TUTORIALS"
+msgstr ""
+
+#, fuzzy
+msgid "SHOW_ALL_TUTORIALS_TOOLTIP"
+msgstr "Weis d'Tutorialen (an dësem Spill)"
+
 msgid "SHOW_DAMAGE_EFFECT"
 msgstr ""
 
@@ -4970,14 +5134,15 @@ msgstr ""
 msgid "SHOW_NEW_PATCH_NOTES_TOOLTIP"
 msgstr ""
 
-msgid "SHOW_TUTORIALS"
-msgstr ""
-
 msgid "SHOW_TUTORIALS_IN_NEW_CURRENT_OPTION"
 msgstr "Weis d'Tutorialen (an dësem Spill)"
 
 msgid "SHOW_TUTORIALS_IN_NEW_GAMES_OPTION"
 msgstr "Weis d'Tutorialen (an all neiem Spill)"
+
+#, fuzzy
+msgid "SHOW_TUTORIALS_OPTION_TOOLTIP"
+msgstr "Weis d'Tutorialen (an dësem Spill)"
 
 msgid "SHOW_UNSAVED_PROGRESS_WARNING"
 msgstr ""
@@ -5124,6 +5289,13 @@ msgstr ""
 msgid "SPECIES_LIST"
 msgstr ""
 
+msgid "SPECIES_MEMBER_IMPACT_ON_POP"
+msgstr ""
+
+#, fuzzy
+msgid "SPECIES_MEMBER_IMPACT_ON_POPULATION_EXPLANATION"
+msgstr "(Geschwindegkeet mat der dei kënschtlech Intelligenz hier Arten mutéieren)"
+
 msgid "SPECIES_NAME_DOT_DOT_DOT"
 msgstr ""
 
@@ -5262,6 +5434,10 @@ msgstr ""
 
 msgid "STORE_LOGGED_IN_AS"
 msgstr ""
+
+#, fuzzy
+msgid "STRAIN_BAR_TOOLTIP"
+msgstr "Op d' 'Erwaachen Stuf' weidergoen. Accessibel wann's de genuch Gehier hues (eng Zort Geweebe mat Axonen)."
 
 msgid "STRAIN_BAR_VISIBILITY"
 msgstr ""
@@ -5522,6 +5698,12 @@ msgstr ""
 msgid "TIMELINE_NICHE_FILL"
 msgstr ""
 
+msgid "TIMELINE_PLAYER_MIGRATED"
+msgstr ""
+
+msgid "TIMELINE_PLAYER_MIGRATED_TO"
+msgstr ""
+
 msgid "TIMELINE_SELECTION_PRESSURE_SPLIT"
 msgstr ""
 
@@ -5532,6 +5714,9 @@ msgid "TIMELINE_SPECIES_EXTINCT"
 msgstr ""
 
 msgid "TIMELINE_SPECIES_EXTINCT_LOCAL"
+msgstr ""
+
+msgid "TIMELINE_SPECIES_FOLLOWED"
 msgstr ""
 
 msgid "TIMELINE_SPECIES_MIGRATED_FROM"
@@ -5734,9 +5919,6 @@ msgstr "Oxytoxisome"
 msgid "TOXISOME_DESCRIPTION"
 msgstr "Metabolosomen sinn Klompen un Eewäiss, an Eewäiss Schuelen ëmwéckelt. Se kennen [thrive:compound type=\"glucose\"][/thrive:compound] an [thrive:compound type=\"atp\"]/thrive:compound] vill méi séier ëmwandelen wéi wat am Zytoplasma geschitt an engem Prozess genannt [b]Aerobeg Ootmung[/b]. Et brauch awer[thrive:compound type=\"oxygen\"][/thrive:compound] fir ze funktionéieren an méi niddereg [thrive:compound type=\"oxygen\"][/thrive:compound] Niveauen an der Ëmwelt wäerten den Ëmsaz vun der [thrive:compound type=\"atp\"][/thrive:compound] Produktioun entschleunegen. Well d'Metabolosomen direkt am Zytoplasma schwammen meescht d'Flëssegkeet ronderëm [b]Glycolyse[/b]."
 
-msgid "TO_BE_IMPLEMENTED"
-msgstr "Ze Implementéieren."
-
 msgid "TRANSLATORS"
 msgstr ""
 
@@ -5759,6 +5941,10 @@ msgstr ""
 msgid "TUTORIAL"
 msgstr ""
 
+#, fuzzy
+msgid "TUTORIAL_ALL_NOT_ENABLED_EXPLANATION"
+msgstr "(Geschwindegkeet mat der dei kënschtlech Intelligenz hier Arten mutéieren)"
+
 msgid "TUTORIAL_MICROBE_EDITOR_ATP_BALANCE_INTRO"
 msgstr ""
 
@@ -5771,11 +5957,27 @@ msgstr ""
 msgid "TUTORIAL_MICROBE_EDITOR_CHEMORECEPTOR"
 msgstr ""
 
+#, fuzzy
+msgid "TUTORIAL_MICROBE_EDITOR_COMPOUND_BALANCES"
+msgstr "3D Editor"
+
+#, fuzzy
+msgid "TUTORIAL_MICROBE_EDITOR_DIGESTION_STAT"
+msgstr "3D Editor"
+
 msgid "TUTORIAL_MICROBE_EDITOR_ENDING_TEXT"
 msgstr ""
 
 msgid "TUTORIAL_MICROBE_EDITOR_FLAGELLUM"
 msgstr ""
+
+#, fuzzy
+msgid "TUTORIAL_MICROBE_EDITOR_FOOD_CHAIN"
+msgstr "3D Editor"
+
+#, fuzzy
+msgid "TUTORIAL_MICROBE_EDITOR_MIGRATION"
+msgstr "3D Editor"
 
 msgid "TUTORIAL_MICROBE_EDITOR_MODIFY_ORGANELLE"
 msgstr ""
@@ -5817,14 +6019,38 @@ msgstr ""
 msgid "TUTORIAL_MICROBE_STAGE_ENGULFMENT_TEXT"
 msgstr ""
 
+#, fuzzy
+msgid "TUTORIAL_MICROBE_STAGE_ENVIRONMENT_PANEL"
+msgstr "3D Editor"
+
 msgid "TUTORIAL_MICROBE_STAGE_HELP_MENU_AND_ZOOM"
 msgstr ""
 
 msgid "TUTORIAL_MICROBE_STAGE_LEAVE_COLONY_TEXT"
 msgstr ""
 
+#, fuzzy
+msgid "TUTORIAL_MICROBE_STAGE_MEMBER_DIED"
+msgstr "3D Editor"
+
+#, fuzzy
+msgid "TUTORIAL_MICROBE_STAGE_OPEN_PROCESS_PANEL"
+msgstr "3D Editor"
+
+#, fuzzy
+msgid "TUTORIAL_MICROBE_STAGE_PAUSING"
+msgstr "3D Editor"
+
+#, fuzzy
+msgid "TUTORIAL_MICROBE_STAGE_PROCESS_PANEL"
+msgstr "3D Editor"
+
 msgid "TUTORIAL_MICROBE_STAGE_REPRODUCE_TEXT"
 msgstr ""
+
+#, fuzzy
+msgid "TUTORIAL_MICROBE_STAGE_RESOURCE_SPLIT"
+msgstr "3D Editor"
 
 msgid "TUTORIAL_MICROBE_STAGE_UNBIND_TEXT"
 msgstr ""
@@ -6016,6 +6242,18 @@ msgstr ""
 msgid "UPLOAD_SUCCEEDED"
 msgstr ""
 
+msgid "UPSCALE_BILINEAR"
+msgstr ""
+
+msgid "UPSCALE_FSR_1"
+msgstr ""
+
+msgid "UPSCALE_FSR_22"
+msgstr ""
+
+msgid "UPSCALE_SHARPENING_FSR"
+msgstr ""
+
 msgid "USED_LIBRARIES_LICENSES"
 msgstr ""
 
@@ -6121,6 +6359,9 @@ msgstr ""
 
 msgid "VIEW_SOURCE_CODE"
 msgstr "Quellcode Gesinn"
+
+msgid "VIEW_TEXT_REPORT"
+msgstr ""
 
 msgid "VIP_PATRONS"
 msgstr ""
@@ -6514,6 +6755,10 @@ msgstr ""
 
 msgid "WIKI_COMPOUND_SYSTEM_DEVELOPMENT_OVERVIEW"
 msgstr ""
+
+#, fuzzy
+msgid "WIKI_CREATURE_EDITOR_COMMA_TECH_EDITOR"
+msgstr "ATP PRODUKTIOUN ZE NIEDREG!"
 
 msgid "WIKI_CYTOPLASM_EFFECTS"
 msgstr ""
@@ -7603,6 +7848,9 @@ msgstr ""
 msgid "WIKI_TBA"
 msgstr ""
 
+msgid "WIKI_TECH_EDITOR_COMMA_NATION_EDITOR_COMMA_SQUAD_EDITOR"
+msgstr ""
+
 msgid "WIKI_THERMOPLAST_EFFECTS"
 msgstr ""
 
@@ -7870,6 +8118,13 @@ msgstr "Eran Zoomen"
 msgid "ZOOM_OUT"
 msgstr "Eraus Zoomen"
 
+#~ msgid "TO_BE_IMPLEMENTED"
+#~ msgstr "Ze Implementéieren."
+
+#, fuzzy
+#~ msgid "GLOBAL_GLACIATION_EVENT_LOG"
+#~ msgstr "Halbeier Populatioun"
+
 #~ msgid "IRON_CHEMOLITHOAUTOTROPHY"
 #~ msgstr "Eisen Chemolithoautotrophie"
 
@@ -7993,10 +8248,6 @@ msgstr "Eraus Zoomen"
 #, fuzzy
 #~ msgid "WIKI_MACROSCOPIC_STAGE"
 #~ msgstr "ATP PRODUKTIOUN ZE NIEDREG!"
-
-#, fuzzy
-#~ msgid "EVENT_TOOLTIP_ERUPTION"
-#~ msgstr "Ënnerwaasser Hiel"
 
 #~ msgid "OXYTOXISOME_DESC"
 #~ msgstr "Ee modifizéierten Metabolosome responsabel fir d'Produktioun vun enger primitiver form un Gëftstoff [thrive:compound type=\"oxytoxy\"][/thrive:compound]. Ka modifizéiert ginn fir de generéiert Zort u Gëftstoff ze änneren fir aner Effekter."

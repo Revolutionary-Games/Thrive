@@ -1,5 +1,6 @@
 ﻿using System.Globalization;
 using Godot;
+using Tutorial;
 
 /// <summary>
 ///   This is the last autoloaded class to perform some actions there
@@ -43,5 +44,7 @@ public partial class PostStartupActions : Node
             GD.Print("This version of Thrive was built at ", time, " from commit ", info.Commit, " on branch ",
                 info.Branch);
         }
+
+        AlreadySeenTutorials.OnGameInit();
     }
 }

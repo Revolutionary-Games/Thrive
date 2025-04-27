@@ -195,12 +195,12 @@ public partial class NewSaveMenu : Control
     {
         if (IsSaveNameValid(newName))
         {
-            saveNameBox.Set("custom_colors/font_color", new Color(1, 1, 1));
+            GUICommon.MarkInputAsValid(saveNameBox);
             saveButton.Disabled = false;
         }
         else
         {
-            saveNameBox.Set("custom_colors/font_color", new Color(1.0f, 0.3f, 0.3f));
+            GUICommon.MarkInputAsInvalid(saveNameBox);
             saveButton.Disabled = true;
         }
     }

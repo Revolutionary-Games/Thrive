@@ -7,8 +7,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2025-03-14 11:08+0200\n"
-"PO-Revision-Date: 2025-03-07 10:46+0000\n"
+"POT-Creation-Date: 2025-04-26 10:53+0300\n"
+"PO-Revision-Date: 2025-04-26 09:18+0000\n"
 "Last-Translator: Anonymous <noreply@weblate.org>\n"
 "Language-Team: Bulgarian <https://translate.revolutionarygamesstudio.com/projects/thrive/thrive-game/bg/>\n"
 "Language: bg\n"
@@ -205,6 +205,25 @@ msgstr "Физически условия"
 msgid "ANISOTROPIC_FILTERING"
 msgstr ""
 
+msgid "ANTIALIASING_MSAA_TAA"
+msgstr ""
+
+#, fuzzy
+msgid "ANTI_ALIASING_FXAA"
+msgstr "Множествено изглаждане:"
+
+#, fuzzy
+msgid "ANTI_ALIASING_MODE"
+msgstr "Множествено изглаждане:"
+
+#, fuzzy
+msgid "ANTI_ALIASING_MSAA"
+msgstr "Множествено изглаждане:"
+
+#, fuzzy
+msgid "ANTI_ALIASING_TAA"
+msgstr "Множествено изглаждане:"
+
 msgid "APPEARANCE"
 msgstr "Външност"
 
@@ -314,6 +333,7 @@ msgstr "Август"
 msgid "AUTO"
 msgstr "Автоматично"
 
+#, fuzzy
 msgid "AUTO-EVO_EXPLANATION_EXPLANATION"
 msgstr "Това са стойностите, които използва прогнозата на автоматичната еволюция. Размерът на некоригираната популация се определя от общата усвоена енергийна стойност и индивидуалния разход на Вашите създания. Автоматичната еволюция използва опростен еволюционен модел, за да изчисли тяхното представяне на база общата усвоена енергийна стойност. Всеки източник на енергия има обща енергийна стойност, като част от нея се усвоява от Вашите създания. Усвоената енергийна стойност се определя от стойността на усвояване, сравнена с общата стойност на усвояване. Стойността на усвояване определя колко добре Вашите създания могат да използват този източник на енергия."
 
@@ -327,6 +347,10 @@ msgid "AUTO-EVO_PREDICTION_BOX_DESCRIPTION"
 msgstr ""
 "Това е очакваната популация на Вашите създания според автоматичната еволюция.\n"
 "Тя симулира тяхната популация, но не включва резултатите от Вашето индивидуално представяне."
+
+#, fuzzy
+msgid "AUTO-EVO_RESULTS_TITLE"
+msgstr "Резултати от автоматичната еволюция:"
 
 msgid "AUTO-EVO_STEPS_DONE"
 msgstr "{0:F1} % на стъпка {1:n0} от {2:n0}."
@@ -504,6 +528,14 @@ msgstr "Свързване на осите"
 msgid "BIOLUMINESCENT_VACUOLE"
 msgstr "Биолуминесцентна вакуола"
 
+#, fuzzy
+msgid "BIOLUMINESCENT_VACUOLE_DESCRIPTION"
+msgstr "Биолуминесцентна вакуола"
+
+#, fuzzy
+msgid "BIOLUMINESCENT_VACUOLE_PROCESSES_DESCRIPTION"
+msgstr "Превръща [thrive:compound type=\"atp\"]АТФ[/thrive:compound] в [thrive:compound type=\"oxytoxy\"]окситоксин[/thrive:compound]. Количеството зависи от концентрацията на [thrive:compound type=\"oxygen\"]кислород[/thrive:compound] в околната среда. Изстрелва токсини с натискане на [thrive:input]g_fire_toxin[/thrive:input]. Тяхната ефективност зависи от количеството на [thrive:compound type=\"oxytoxy\"]окситоксин[/thrive:compound] в клетката."
+
 msgid "BIOME_LABEL"
 msgstr "Биом: {0}"
 
@@ -659,6 +691,10 @@ msgid "CELL_STAT_SPEED_TOOLTIP"
 msgstr "Идентификаторът трябва да е положително цяло число"
 
 #, fuzzy
+msgid "CELL_STAT_STORAGE_TOOLTIP"
+msgstr "Идентификаторът трябва да е положително цяло число"
+
+#, fuzzy
 msgid "CELL_TYPE_BUTTON_ATP_CONSUMPTION"
 msgstr "Мъртва зона:"
 
@@ -806,6 +842,10 @@ msgstr "Изтриване на старите записи"
 
 msgid "CLEAR_CACHE"
 msgstr ""
+
+#, fuzzy
+msgid "CLICK_TO_SELECT"
+msgstr "Изтриване на избраните"
 
 msgid "CLOSE"
 msgstr "Затваряне"
@@ -1872,6 +1912,7 @@ msgstr ""
 "\n"
 "За да продължите, изберете органел от панела вляво (например цитоплазмата). След това, натиснете с мишката до шестоъгълника за да го добавите към Вашето създание."
 
+#, fuzzy
 msgid "EDITOR_TUTORIAL_EDITOR_TEXT"
 msgstr ""
 "Добре дошли в [b]микробния редактор[/b].\n"
@@ -2089,6 +2130,27 @@ msgstr "Естуар"
 #, fuzzy
 msgid "EVENT_ERUPTION_TOOLTIP"
 msgstr "Това е кодовото наименование на текущата версия на „Thrive“"
+
+msgid "EVENT_METEOR_GLUCOSE"
+msgstr ""
+
+#, fuzzy
+msgid "EVENT_METEOR_IRON"
+msgstr "{0}: +{1} АТФ"
+
+#, fuzzy
+msgid "EVENT_METEOR_PHOSPHATES"
+msgstr "Създаване на фосфат"
+
+#, fuzzy
+msgid "EVENT_METEOR_PLAIN"
+msgstr "Това е кодовото наименование на текущата версия на „Thrive“"
+
+msgid "EVENT_METEOR_RADIOACTIVE"
+msgstr ""
+
+msgid "EVENT_METEOR_SULFUR"
+msgstr ""
 
 msgid "EVOLUTIONARY_TREE"
 msgstr "Еволюционно дърво"
@@ -2468,6 +2530,26 @@ msgstr "Отваряне на хранилището ни в „GitHub“"
 msgid "GLES3"
 msgstr "GLES3"
 
+msgid "GLOBAL_GLACIATION_END_EVENT_LOG"
+msgstr ""
+
+#, fuzzy
+msgid "GLOBAL_GLACIATION_EVENT"
+msgstr "Обща популация:"
+
+#, fuzzy
+msgid "GLOBAL_GLACIATION_EVENT_TOOLTIP"
+msgstr "Пробуждане"
+
+msgid "GLOBAL_GLACIATION_EVENT_WARNING_LOG_PLURAL"
+msgstr ""
+
+msgid "GLOBAL_GLACIATION_EVENT_WARNING_LOG_SINGULAR"
+msgstr ""
+
+msgid "GLOBAL_GLACIATION_START_EVENT_LOG"
+msgstr ""
+
 msgid "GLOBAL_INITIAL_LETTER"
 msgstr "С"
 
@@ -2625,6 +2707,9 @@ msgstr "Идентификационният № не е валиден"
 
 msgid "ID_NUMBER"
 msgstr "Идентификационен №"
+
+msgid "IF_FALLBACK_RENDERER_USED_ALL_NOT_AVAILABLE"
+msgstr ""
 
 #, fuzzy
 msgid "IMAGE_FILE_TYPES"
@@ -3282,14 +3367,34 @@ msgid "LOADING_GAME"
 msgstr "Зареждане на играта"
 
 #, fuzzy
+msgid "LOADING_GRAPHICS_SHADERS"
+msgstr "Зареждане на играта"
+
+#, fuzzy
 msgid "LOADING_MACROSCOPIC_EDITOR"
 msgstr "Зареждане на микробния редактор"
 
 msgid "LOADING_MICROBE_EDITOR"
 msgstr "Зареждане на микробния редактор"
 
+#, fuzzy
+msgid "LOADING_MICROBE_STAGE"
+msgstr "Пробуждане"
+
 msgid "LOADING_MULTICELLULAR_EDITOR"
 msgstr "Зареждане на многоклетъчния редактор"
+
+#, fuzzy
+msgid "LOADING_MULTICELLULAR_STAGE"
+msgstr "Зареждане на многоклетъчния редактор"
+
+#, fuzzy
+msgid "LOADING_STAGE"
+msgstr "Зареждане на играта"
+
+#, fuzzy
+msgid "LOADING_STAGE_ASSETS"
+msgstr "Зареждане на играта"
 
 msgid "LOAD_FINISHED"
 msgstr "Зареждането приключи"
@@ -3332,6 +3437,13 @@ msgid "LOCK_DAY_NIGHT_CYCLE"
 msgstr "Денонощен цикъл"
 
 #, fuzzy
+msgid "LOWER_SCALE_INCREASES_PERFORMANCE"
+msgstr "(по-високите стойности подобряват производителността)"
+
+msgid "LOWER_VALUE_MAKES_SHARPER_IMAGE"
+msgstr ""
+
+#, fuzzy
 msgid "LOW_MENU_PERFORMANCE"
 msgstr "Производителност"
 
@@ -3344,6 +3456,13 @@ msgstr ""
 
 msgid "LOW_QUALITY_BACKGROUND_BLUR_TOOLTIP"
 msgstr ""
+
+msgid "LUCIFERASE"
+msgstr ""
+
+#, fuzzy
+msgid "LUCIFERASE_SYNTHESIS"
+msgstr "Секреция"
 
 msgid "LYSOSOME"
 msgstr "Лизозома"
@@ -3475,6 +3594,15 @@ msgid "META_THREADS_TOOLTIP"
 msgstr ""
 "Проверката за хипернишковата технология е неуспешна.\n"
 "Броят на нишките по подразбиране зависи от това, понеже хипернишките са по-бавни от физическите ядра на процесора."
+
+msgid "METEOR_IMPACT_EVENT"
+msgstr ""
+
+msgid "METEOR_STRIKE_START_EVENT_LOG_PLURAL"
+msgstr ""
+
+msgid "METEOR_STRIKE_START_EVENT_LOG_SINGULAR"
+msgstr ""
 
 msgid "METRICS"
 msgstr "Показатели за производителност"
@@ -3719,6 +3847,7 @@ msgstr ""
 "\n"
 "Следвайте напътствията за да намерите глюкозата."
 
+#, fuzzy
 msgid "MICROBE_STAGE_COLLECT_TEXT"
 msgstr ""
 "Събирайте [thrive:compound type=\"глюкоза\"][/thrive:compound] (белите облаци), като се движите през нея.\n"
@@ -3727,6 +3856,7 @@ msgstr ""
 "\n"
 "Следвайте напътствията за да намерите [thrive:compound type=\"глюкозата\"][/thrive:compound]."
 
+#, fuzzy
 msgid "MICROBE_STAGE_CONTROL_TEXT"
 msgstr ""
 "За да управлявате Вашата клетка, използвайте клавишите, които са показани около нея (в центъра на екрана) и мишката за посоката на движение.\n"
@@ -3743,13 +3873,6 @@ msgstr ""
 "Натиснете всеки един клавиш за няколко секунди за да продължите."
 
 #, fuzzy
-msgid "MICROBE_STAGE_DAY_NIGHT_TEXT"
-msgstr ""
-"Наблюдавайте здравето си (долу вдясно).\n"
-"Вашата клетка ще умре, ако изгуби всичките си точки здраве.\n"
-"Ако имате АТФ, точките здраве се възстановяват.\n"
-"Събирайте глюкоза за да произвеждате АТФ."
-
 msgid "MICROBE_STAGE_HEALTH_TEXT"
 msgstr ""
 "Наблюдавайте нивото на здравето си, което се намира до нивото на [thrive:compound type=\"АТФ\"][/thrive:compound] (долу вдясно).\n"
@@ -3757,6 +3880,7 @@ msgstr ""
 "Ако имате [thrive:compound type=\"АТФ\"][/thrive:compound], точките здраве се възстановяват.\n"
 "Събирайте [thrive:compound type=\"глюкоза\"][/thrive:compound] за да произвеждате [thrive:compound type=\"АТФ\"][/thrive:compound]."
 
+#, fuzzy
 msgid "MICROBE_STAGE_INITIAL"
 msgstr ""
 "На далечна извънземна планета, след дълъг период на вулканична активност и метеоритни удари, се заражда нов феномен.\n"
@@ -3889,6 +4013,9 @@ msgstr "За повече информация, посетете"
 
 msgid "MODELS"
 msgstr "Модели"
+
+msgid "MODE_CAN_BE_CHANGED_IN_OPTIONS"
+msgstr ""
 
 msgid "MODIFY"
 msgstr "Свойства"
@@ -4628,6 +4755,7 @@ msgstr "Токсична устойчивост"
 msgid "OXYGEN_TOLERANCE_TOOLTIP"
 msgstr "Превключване на химичните съединения"
 
+#, fuzzy
 msgid "OXYTOXISOME_PROCESSES_DESCRIPTION"
 msgstr "Превръща [thrive:compound type=\"atp\"]АТФ[/thrive:compound] в [thrive:compound type=\"oxytoxy\"]окситоксин[/thrive:compound]. Количеството зависи от концентрацията на [thrive:compound type=\"oxygen\"]кислород[/thrive:compound] в околната среда. Изстрелва токсини с натискане на [thrive:input]g_fire_toxin[/thrive:input]. Тяхната ефективност зависи от количеството на [thrive:compound type=\"oxytoxy\"]окситоксин[/thrive:compound] в клетката."
 
@@ -4834,6 +4962,10 @@ msgstr "измиране на създанията"
 msgid "PLAYER_RELATIVE_MOVEMENT"
 msgstr "измиране на създанията"
 
+#, fuzzy
+msgid "PLAYER_RELATIVE_MOVEMENT_TOOLTIP"
+msgstr "измиране на създанията"
+
 msgid "PLAYER_REPRODUCED"
 msgstr "възпроизвеждане"
 
@@ -4917,6 +5049,10 @@ msgstr "Клетъчни процеси"
 msgid "PROCESS_SPEED_MODIFIER"
 msgstr "Клетъчни процеси"
 
+#, fuzzy
+msgid "PROCESS_TOGGLE_TOOLTIP"
+msgstr "Връщане в главното меню"
+
 msgid "PROGRAMMING_TEAM"
 msgstr "Програмисти"
 
@@ -4998,6 +5134,10 @@ msgstr "Възстановяване на последното действие"
 msgid "REFRESH"
 msgstr "Опресняване"
 
+#, fuzzy
+msgid "RENDER_SCALE"
+msgstr "Визуализатор:"
+
 msgid "REPORT"
 msgstr "Отчет"
 
@@ -5059,6 +5199,14 @@ msgstr "Нулиране на контролите"
 
 msgid "RESET_SETTINGS_TO_DEFAULTS"
 msgstr "По подразбиране"
+
+#, fuzzy
+msgid "RESET_SHOWN_TUTORIALS"
+msgstr "Показване на упътването"
+
+#, fuzzy
+msgid "RESET_SHOWN_TUTORIALS_TOOLTIP"
+msgstr "Експортиране на данните за всички светове като стойности, разделени с запетая в .csv формат"
 
 msgid "RESET_TO_DEFAULTS"
 msgstr "Възстановяване на настройките по подразбиране?"
@@ -5318,6 +5466,10 @@ msgstr "Наименования на органелите"
 msgid "SCREEN_RELATIVE_MOVEMENT"
 msgstr "за да увеличи скоростта"
 
+#, fuzzy
+msgid "SCREEN_RELATIVE_MOVEMENT_TOOLTIP"
+msgstr "за да увеличи скоростта"
+
 msgid "SCROLLLOCK"
 msgstr "Клавиш „Scroll Lock“"
 
@@ -5342,6 +5494,10 @@ msgstr "Освобождаване на слуз"
 
 msgid "SEED_LABEL"
 msgstr "Идентификатор: {0}"
+
+#, fuzzy
+msgid "SELECTED"
+msgstr "Избрана:"
 
 msgid "SELECTED_COLON"
 msgstr "Избрани:"
@@ -5376,6 +5532,10 @@ msgstr "Изберете клетка от редактора за да пром
 
 msgid "SELECT_ENZYME"
 msgstr "Избиране на ензим:"
+
+#, fuzzy
+msgid "SELECT_MOVEMENT_MODE_TITLE"
+msgstr "Играта е стартирана в безопасен режим"
 
 msgid "SELECT_OPTION"
 msgstr "Изберете команда"
@@ -5413,6 +5573,14 @@ msgid "SHIFT"
 msgstr "Клавиш „Shift“"
 
 #, fuzzy
+msgid "SHOW_ALL_TUTORIALS"
+msgstr "Показване на упътването"
+
+#, fuzzy
+msgid "SHOW_ALL_TUTORIALS_TOOLTIP"
+msgstr "Експортиране на данните за всички светове като стойности, разделени с запетая в .csv формат"
+
+#, fuzzy
 msgid "SHOW_DAMAGE_EFFECT"
 msgstr "Подлежи на уточняване"
 
@@ -5430,14 +5598,15 @@ msgstr "Бележки към изданието"
 msgid "SHOW_NEW_PATCH_NOTES_TOOLTIP"
 msgstr "{0} — {1}"
 
-msgid "SHOW_TUTORIALS"
-msgstr "Показване на упътването"
-
 msgid "SHOW_TUTORIALS_IN_NEW_CURRENT_OPTION"
 msgstr "Упътване (в текущата игра)"
 
 msgid "SHOW_TUTORIALS_IN_NEW_GAMES_OPTION"
 msgstr "Упътване (при започване на нова игра)"
+
+#, fuzzy
+msgid "SHOW_TUTORIALS_OPTION_TOOLTIP"
+msgstr "Експортиране на данните за всички светове като стойности, разделени с запетая в .csv формат"
 
 msgid "SHOW_UNSAVED_PROGRESS_WARNING"
 msgstr "Предупреждение при излизане от играта"
@@ -5599,6 +5768,14 @@ msgstr "претърпяха мутация"
 msgid "SPECIES_LIST"
 msgstr "Списък на създанията"
 
+#, fuzzy
+msgid "SPECIES_MEMBER_IMPACT_ON_POP"
+msgstr "Наименованието е твърде дълго!"
+
+#, fuzzy
+msgid "SPECIES_MEMBER_IMPACT_ON_POPULATION_EXPLANATION"
+msgstr "(определя разхода на мутационни точки в редактора)"
+
 msgid "SPECIES_NAME_DOT_DOT_DOT"
 msgstr "Наименование..."
 
@@ -5745,6 +5922,10 @@ msgstr ""
 
 msgid "STORE_LOGGED_IN_AS"
 msgstr "Влезли сте като: {0}"
+
+#, fuzzy
+msgid "STRAIN_BAR_TOOLTIP"
+msgstr "Отваряне на страницата ни в „Patreon“"
 
 msgid "STRAIN_BAR_VISIBILITY"
 msgstr ""
@@ -6027,6 +6208,14 @@ msgstr "Местни събития"
 msgid "TIMELINE_NICHE_FILL"
 msgstr "[b][u]{0}[/u][/b] се отделиха от [b][u]{1}[/u][/b] за да запълнят ниша"
 
+#, fuzzy
+msgid "TIMELINE_PLAYER_MIGRATED"
+msgstr "Част от популацията на [b][u]{0}[/u][/b] се пресели в {1}"
+
+#, fuzzy
+msgid "TIMELINE_PLAYER_MIGRATED_TO"
+msgstr "Част от популацията на [b][u]{0}[/u][/b] се пресели в {1}"
+
 msgid "TIMELINE_SELECTION_PRESSURE_SPLIT"
 msgstr "[b][u]{0}[/u][/b] се отделиха от [b][u]{1}[/u][/b] поради селекционен натиск"
 
@@ -6044,6 +6233,10 @@ msgstr "[b][u]{0}[/u][/b] изчезнаха!"
 
 msgid "TIMELINE_SPECIES_EXTINCT_LOCAL"
 msgstr "[b][u]{0}[/u][/b] изчезнаха от тази зона"
+
+#, fuzzy
+msgid "TIMELINE_SPECIES_FOLLOWED"
+msgstr "[b][u]{0}[/u][/b] изчезнаха!"
 
 msgid "TIMELINE_SPECIES_MIGRATED_FROM"
 msgstr "Част от популацията на [b][u]{0}[/u][/b] се пресели в тази зона от {1}"
@@ -6247,6 +6440,7 @@ msgstr ""
 msgid "TOXIN_VACUOLE_DESCRIPTION"
 msgstr "Токсичната вакуола е видоизменена вакуола, която произвежда, съхранява и изстрелва [thrive:compound type=\"oxytoxy\"]окситоксин[/thrive:compound]. Всяка токсична вакуола увеличава скоростта на изстрелване на токсините."
 
+#, fuzzy
 msgid "TOXIN_VACUOLE_PROCESSES_DESCRIPTION"
 msgstr "Превръща [thrive:compound type=\"atp\"]АТФ[/thrive:compound] в [thrive:compound type=\"oxytoxy\"]окситоксин[/thrive:compound]. Количеството зависи от концентрацията на [thrive:compound type=\"oxygen\"]кислород[/thrive:compound] в околната среда. Изстрелва токсини с натискане на [thrive:input]g_fire_toxin[/thrive:input]. Тяхната ефективност зависи от количеството на [thrive:compound type=\"oxytoxy\"]окситоксин[/thrive:compound] в клетката."
 
@@ -6257,9 +6451,6 @@ msgstr "Окситоксизома"
 #, fuzzy
 msgid "TOXISOME_DESCRIPTION"
 msgstr "Лизозомата е мембранен органел, съдържащ хидролази, които разграждат различните биомолекули. Тя позволява усвояването на обектите, погълнати чрез ендоцитоза и изхвърлянето на отпадъчните продукти на клетката в процес, който се нарича [b]автофагия[/b]."
-
-msgid "TO_BE_IMPLEMENTED"
-msgstr "В процес на разработка."
 
 msgid "TRANSLATORS"
 msgstr "Преводачи"
@@ -6284,6 +6475,10 @@ msgid "TUTORIAL"
 msgstr "Упътване"
 
 #, fuzzy
+msgid "TUTORIAL_ALL_NOT_ENABLED_EXPLANATION"
+msgstr "(ВНИМАНИЕ: понижава ефективността на фотосинтезата)"
+
+#, fuzzy
 msgid "TUTORIAL_MICROBE_EDITOR_ATP_BALANCE_INTRO"
 msgstr ""
 "Това е картата на зоните.\n"
@@ -6304,6 +6499,7 @@ msgstr ""
 "\n"
 "За да продължите, натиснете бутона с въпросителния знак долу вдясно."
 
+#, fuzzy
 msgid "TUTORIAL_MICROBE_EDITOR_CELL_TEXT"
 msgstr ""
 "Това е клетъчният редактор, тук може да добавяте или премахвате органели от Вашите създания, чрез наличните [b]мутационни точки[/b] (МТ) [thrive:icon]MP[/thrive:icon]. Всяко поколение разполага със [b]100 MT[/b] [thrive:icon]MP[/thrive:icon].\n"
@@ -6321,6 +6517,27 @@ msgstr ""
 "\n"
 "За да продължите, изберете органел от панела вляво. След това, натиснете с мишката до шестоъгълника за да го добавите към Вашето създание. Може да завъртите органелите чрез натискане на [thrive:input]e_rotate_left[/thrive:input] или [thrive:input]e_rotate_right[/thrive:input]."
 
+#, fuzzy
+msgid "TUTORIAL_MICROBE_EDITOR_COMPOUND_BALANCES"
+msgstr ""
+"Това е картата на зоните.\n"
+"\n"
+"Тук може да видите полезна информация за различните зони, в които живеят микробите.\n"
+"\n"
+"Ако изберете зона, съседна на Вашето местообитание, което е подчертано в зелено, може да натиснете бутона „Преселване“ за да се придвижите в нея.\n"
+"\n"
+"Изберете зона за да продължите."
+
+#, fuzzy
+msgid "TUTORIAL_MICROBE_EDITOR_DIGESTION_STAT"
+msgstr ""
+"Това е клетъчният редактор, тук може да добавяте или премахвате органели от Вашите създания, чрез наличните мутационни точки (МТ). Всяко поколение разполага със 100 MT.\n"
+"\n"
+"Шестоъгълникът от цитоплазма в центъра на екрана е Вашата клетка.\n"
+"\n"
+"За да продължите, изберете органел от панела вляво. След това, натиснете с мишката до шестоъгълника за да го добавите към Вашето създание. Може да завъртите органелите чрез натискане на [thrive:input]e_rotate_left[/thrive:input] или [thrive:input]e_rotate_right[/thrive:input]."
+
+#, fuzzy
 msgid "TUTORIAL_MICROBE_EDITOR_ENDING_TEXT"
 msgstr ""
 "Това е основната информация за микробния редактор. Може да преименувате Вашите създания, като натиснете с мишката върху текущото им наименование долу вляво.\n"
@@ -6333,6 +6550,26 @@ msgstr ""
 
 #, fuzzy
 msgid "TUTORIAL_MICROBE_EDITOR_FLAGELLUM"
+msgstr ""
+"Това е клетъчният редактор, тук може да добавяте или премахвате органели от Вашите създания, чрез наличните мутационни точки (МТ). Всяко поколение разполага със 100 MT.\n"
+"\n"
+"Шестоъгълникът от цитоплазма в центъра на екрана е Вашата клетка.\n"
+"\n"
+"За да продължите, изберете органел от панела вляво. След това, натиснете с мишката до шестоъгълника за да го добавите към Вашето създание. Може да завъртите органелите чрез натискане на [thrive:input]e_rotate_left[/thrive:input] или [thrive:input]e_rotate_right[/thrive:input]."
+
+#, fuzzy
+msgid "TUTORIAL_MICROBE_EDITOR_FOOD_CHAIN"
+msgstr ""
+"Това е основната информация за микробния редактор. Може да преименувате Вашите създания, като натиснете с мишката върху текущото им наименование долу вляво.\n"
+"\n"
+"Разгледайте и останалите раздели в редактора, ако искате да направите допълнителни промени по Вашата клетка.\n"
+"\n"
+"За да оцелеете трябва да намерите надежден източник на енергия, защото концентрацията на глюкоза ще се понижи драстично.\n"
+"\n"
+"Успех!"
+
+#, fuzzy
+msgid "TUTORIAL_MICROBE_EDITOR_MIGRATION"
 msgstr ""
 "Това е клетъчният редактор, тук може да добавяте или премахвате органели от Вашите създания, чрез наличните мутационни точки (МТ). Всяко поколение разполага със 100 MT.\n"
 "\n"
@@ -6384,6 +6621,7 @@ msgstr ""
 "\n"
 "Изберете зона за да продължите."
 
+#, fuzzy
 msgid "TUTORIAL_MICROBE_EDITOR_PATCH_TEXT"
 msgstr ""
 "Това е [b]картата на зоните[/b].\n"
@@ -6404,6 +6642,7 @@ msgstr ""
 "\n"
 "Натиснете бутона „Отмяна“ за да продължите."
 
+#, fuzzy
 msgid "TUTORIAL_MICROBE_EDITOR_SELECT_ORGANELLE_TEXT"
 msgstr ""
 "Важно е да разберете какви ефекти има даден органел върху Вашата клетка, преди да го поставите, защото той може да окаже негативно влияние върху нея.\n"
@@ -6412,6 +6651,7 @@ msgstr ""
 "\n"
 "Натиснете бутона „Възстановяване“ (до бутона „Отмяна“) за да продължите."
 
+#, fuzzy
 msgid "TUTORIAL_MICROBE_EDITOR_STAY_SMALL"
 msgstr ""
 "Трябва да се [b]съсредоточите[/b] върху един или два източника на [thrive:compound type=\"АТФ\"][/thrive:compound], така че да не е необходимо да събирате всички хранителни вещества, за да оцелее Вашата клетка.\n"
@@ -6451,6 +6691,7 @@ msgstr ""
 "\n"
 "Поглъщането не е възможно, ако мястото за съхранение е пълно. За да продължите, изчакайте, докато погълнатите обекти бъдат усвоени."
 
+#, fuzzy
 msgid "TUTORIAL_MICROBE_STAGE_ENGULFMENT_TEXT"
 msgstr ""
 "Поглъщайте обектите, като се придвижвате към тях в режим на поглъщане, с натискане на [thrive:input]g_toggle_engulf[/thrive:input].\n"
@@ -6459,6 +6700,16 @@ msgstr ""
 "\n"
 "Следвайте линията от Вашата клетка до най-близкия обект, който може да погълнете."
 
+#, fuzzy
+msgid "TUTORIAL_MICROBE_STAGE_ENVIRONMENT_PANEL"
+msgstr ""
+"Поглъщайте обектите, като се придвижвате към тях в режим на поглъщане, с натискане на [thrive:input]g_toggle_engulf[/thrive:input].\n"
+"\n"
+"След като поглъщането приключи, спрете режима на поглъщане.\n"
+"\n"
+"Следвайте линията от Вашата клетка до най-близкия обект, който може да погълнете."
+
+#, fuzzy
 msgid "TUTORIAL_MICROBE_STAGE_HELP_MENU_AND_ZOOM"
 msgstr ""
 "Ако все още изпитвате затруднения, отворете ръководството (въпросителния знак) долу вляво.\n"
@@ -6472,7 +6723,45 @@ msgstr ""
 "За да се възпроизведете, трябва да напуснете клетъчната колония.\n"
 "За разпадане на клетъчната колония, натиснете [thrive:input]g_unbind_all[/thrive:input]."
 
+#, fuzzy
+msgid "TUTORIAL_MICROBE_STAGE_MEMBER_DIED"
+msgstr ""
+"Вашата клетка е погълната, това означава, че поглъщащата клетка ще започне храносмилането си.\n"
+"\n"
+"Напредъкът на храносмилането се показва в лентата на здравето (долу вдясно) като процент. Вашата клетка ще умре, след като той достигне 100% или бъде достигнато максималното време на изчакване.\n"
+"\n"
+"Натиснете бутона за извършване на самоубийство, за да пропуснете този процес, но не забравяйте, че винаги има шанс да се спасите!"
+
+#, fuzzy
+msgid "TUTORIAL_MICROBE_STAGE_OPEN_PROCESS_PANEL"
+msgstr ""
+"За възпроизвеждане, органелите на клетката трябва да се удвоят. Това се случва постепенно, но събирането на [thrive:compound type=\"амоняк\"][/thrive:compound] и [thrive:compound type=\"фосфат\"][/thrive:compound] ускорява този процес.\n"
+"\n"
+"Наблюдавайте запълването на индикаторите около бутона на редактора долу вдясно."
+
+#, fuzzy
+msgid "TUTORIAL_MICROBE_STAGE_PAUSING"
+msgstr ""
+"Вие сте в режим на отделяне. В този режим, може да натиснете с мишката върху членовете на клетъчната колония за да ги отделите от нея.\n"
+"\n"
+"За разпадане на цялата клетъчна колония, може да натиснете с мишката върху Вашата клетка или да натиснете [thrive:input]g_unbind_all[/thrive:input]."
+
+#, fuzzy
+msgid "TUTORIAL_MICROBE_STAGE_PROCESS_PANEL"
+msgstr ""
+"За възпроизвеждане, органелите на клетката трябва да се удвоят. Това се случва постепенно, но събирането на [thrive:compound type=\"амоняк\"][/thrive:compound] и [thrive:compound type=\"фосфат\"][/thrive:compound] ускорява този процес.\n"
+"\n"
+"Наблюдавайте запълването на индикаторите около бутона на редактора долу вдясно."
+
+#, fuzzy
 msgid "TUTORIAL_MICROBE_STAGE_REPRODUCE_TEXT"
+msgstr ""
+"За възпроизвеждане, органелите на клетката трябва да се удвоят. Това се случва постепенно, но събирането на [thrive:compound type=\"амоняк\"][/thrive:compound] и [thrive:compound type=\"фосфат\"][/thrive:compound] ускорява този процес.\n"
+"\n"
+"Наблюдавайте запълването на индикаторите около бутона на редактора долу вдясно."
+
+#, fuzzy
+msgid "TUTORIAL_MICROBE_STAGE_RESOURCE_SPLIT"
 msgstr ""
 "За възпроизвеждане, органелите на клетката трябва да се удвоят. Това се случва постепенно, но събирането на [thrive:compound type=\"амоняк\"][/thrive:compound] и [thrive:compound type=\"фосфат\"][/thrive:compound] ускорява този процес.\n"
 "\n"
@@ -6702,6 +6991,18 @@ msgstr "Качване..."
 msgid "UPLOAD_SUCCEEDED"
 msgstr "Качването е успешно"
 
+msgid "UPSCALE_BILINEAR"
+msgstr ""
+
+msgid "UPSCALE_FSR_1"
+msgstr ""
+
+msgid "UPSCALE_FSR_22"
+msgstr ""
+
+msgid "UPSCALE_SHARPENING_FSR"
+msgstr ""
+
 msgid "USED_LIBRARIES_LICENSES"
 msgstr "Лицензи и използвани материали"
 
@@ -6809,6 +7110,9 @@ msgstr ""
 
 msgid "VIEW_SOURCE_CODE"
 msgstr "Изходен код"
+
+msgid "VIEW_TEXT_REPORT"
+msgstr ""
 
 msgid "VIP_PATRONS"
 msgstr "Значими поддръжници"
@@ -7239,6 +7543,10 @@ msgstr ""
 
 msgid "WIKI_COMPOUND_SYSTEM_DEVELOPMENT_OVERVIEW"
 msgstr ""
+
+#, fuzzy
+msgid "WIKI_CREATURE_EDITOR_COMMA_TECH_EDITOR"
+msgstr "Микробен редактор"
 
 #, fuzzy
 msgid "WIKI_CYTOPLASM_EFFECTS"
@@ -8453,6 +8761,9 @@ msgstr "Аксон"
 msgid "WIKI_TBA"
 msgstr "нашата Уикипедия"
 
+msgid "WIKI_TECH_EDITOR_COMMA_NATION_EDITOR_COMMA_SQUAD_EDITOR"
+msgstr ""
+
 #, fuzzy
 msgid "WIKI_THERMOPLAST_EFFECTS"
 msgstr "Подлежи на уточняване"
@@ -8473,6 +8784,7 @@ msgstr "Подлежи на уточняване"
 msgid "WIKI_THERMOPLAST_REQUIREMENTS"
 msgstr "Подлежи на уточняване"
 
+#, fuzzy
 msgid "WIKI_THERMOPLAST_SCIENTIFIC_BACKGROUND"
 msgstr "Подлежи на уточняване"
 
@@ -8504,6 +8816,7 @@ msgstr "Подлежи на уточняване"
 msgid "WIKI_THERMOSYNTHASE_REQUIREMENTS"
 msgstr "Подлежи на уточняване"
 
+#, fuzzy
 msgid "WIKI_THERMOSYNTHASE_SCIENTIFIC_BACKGROUND"
 msgstr "Подлежи на уточняване"
 
@@ -8744,6 +9057,21 @@ msgstr "Приближаване"
 msgid "ZOOM_OUT"
 msgstr "Отдалечаване"
 
+#~ msgid "TO_BE_IMPLEMENTED"
+#~ msgstr "В процес на разработка."
+
+#, fuzzy
+#~ msgid "MICROBE_STAGE_DAY_NIGHT_TEXT"
+#~ msgstr ""
+#~ "Наблюдавайте здравето си (долу вдясно).\n"
+#~ "Вашата клетка ще умре, ако изгуби всичките си точки здраве.\n"
+#~ "Ако имате АТФ, точките здраве се възстановяват.\n"
+#~ "Събирайте глюкоза за да произвеждате АТФ."
+
+#, fuzzy
+#~ msgid "GLOBAL_GLACIATION_EVENT_LOG"
+#~ msgstr "Обща популация:"
+
 #~ msgid "IRON_CHEMOLITHOAUTOTROPHY"
 #~ msgstr "Желязна хемолитоавтотрофия"
 
@@ -8929,10 +9257,6 @@ msgstr "Отдалечаване"
 #, fuzzy
 #~ msgid "ERUPTION_IN"
 #~ msgstr "Пъпкуване"
-
-#, fuzzy
-#~ msgid "EVENT_TOOLTIP_ERUPTION"
-#~ msgstr "{0}: +{1} АТФ"
 
 #~ msgid "THE_AMOUNT_OF_GLUCOSE_HAS_BEEN_REDUCED"
 #~ msgstr "Глюкозата се понижи на {0} от предишното си състояние."
@@ -9549,14 +9873,6 @@ msgstr "Отдалечаване"
 
 #~ msgid "NOT_RUNNING_DOT"
 #~ msgstr "Не се изпълнява."
-
-#~ msgid "TUTORIAL_MICROBE_STAGE_ENGULED_TEXT"
-#~ msgstr ""
-#~ "Вашата клетка е погълната, това означава, че поглъщащата клетка ще започне храносмилането си.\n"
-#~ "\n"
-#~ "Напредъкът на храносмилането се показва в лентата на здравето (долу вдясно) като процент. Вашата клетка ще умре, след като той достигне 100% или бъде достигнато максималното време на изчакване.\n"
-#~ "\n"
-#~ "Натиснете бутона за извършване на самоубийство, за да пропуснете този процес, но не забравяйте, че винаги има шанс да се спасите!"
 
 #~ msgid "EDITOR_TUTORIAL_CELL_TEXT"
 #~ msgstr ""

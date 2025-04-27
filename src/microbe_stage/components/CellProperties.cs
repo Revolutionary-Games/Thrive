@@ -193,6 +193,7 @@ public static class CellPropertiesHelpers
         var organellePositions = organelles.Organelles.Select(o => Hex.AxialToCartesian(o.Position)).ToList();
 
         // TODO: switch this to using membrane radius as that'll hopefully fix the last few divide bugs
+        // TODO: there's a bug with small size and pili causing small cells to be stuck together
         float distanceRight =
             MathUtils.GetMaximumDistanceInDirection(Vector3.Right, Vector3.Zero, organellePositions);
         float distanceLeft =

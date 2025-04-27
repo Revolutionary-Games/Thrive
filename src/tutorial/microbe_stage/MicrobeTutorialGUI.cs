@@ -6,7 +6,7 @@ using Tutorial;
 /// <summary>
 ///   GUI control that contains the microbe stage tutorial.
 ///   Should be placed over any game state GUI so that things drawn by this are on top. Visibility of things is
-///   Controlled by TutorialState object
+///   Controlled by the TutorialState object
 /// </summary>
 public partial class MicrobeTutorialGUI : Control, ITutorialGUI
 {
@@ -78,6 +78,13 @@ public partial class MicrobeTutorialGUI : Control, ITutorialGUI
 
 #pragma warning disable CA2213
     private TutorialDialog microbeWelcomeMessage = null!;
+
+    [Export]
+    private Control tutorialDisabledExplanation = null!;
+
+    [Export]
+    private ScrollContainer welcomeTutorialScrollContainer = null!;
+
     private Control microbeMovementKeyPrompts = null!;
     private Control microbeMovementKeyForward = null!;
     private Control microbeMovementKeyLeft = null!;
@@ -98,6 +105,22 @@ public partial class MicrobeTutorialGUI : Control, ITutorialGUI
     private CustomWindow dayNightTutorial = null!;
     private CustomWindow becomeMulticellularTutorial = null!;
     private CustomWindow organelleDivisionTutorial = null!;
+
+    [Export]
+    private CustomWindow openProcessPanelTutorial = null!;
+
+    [Export]
+    private CustomWindow processPanelTutorial = null!;
+
+    [Export]
+    private CustomWindow resourceSplitTutorial = null!;
+
+    [Export]
+    private CustomWindow pausingTutorial = null!;
+
+    [Export]
+    private CustomWindow speciesMemberDied = null!;
+
 #pragma warning restore CA2213
 
     [Signal]
@@ -107,11 +130,14 @@ public partial class MicrobeTutorialGUI : Control, ITutorialGUI
 
     public MainGameState AssociatedGameState => MainGameState.MicrobeStage;
 
-    public bool TutorialEnabledSelected { get; private set; } = true;
+    public bool AllTutorialsDesiredState { get; private set; } = true;
 
     public Node GUINode => this;
 
     public ControlHighlight? PressEditorButtonHighlight { get; private set; }
+
+    [Export]
+    public ControlHighlight? ProcessPanelButtonHighlight { get; private set; }
 
     public bool IsClosingAutomatically { get; set; }
 
@@ -431,6 +457,101 @@ public partial class MicrobeTutorialGUI : Control, ITutorialGUI
         }
     }
 
+    public bool OpenProcessPanelTutorialVisible
+    {
+        get => openProcessPanelTutorial.Visible;
+        set
+        {
+            if (value == openProcessPanelTutorial.Visible)
+                return;
+
+            if (value)
+            {
+                openProcessPanelTutorial.Show();
+            }
+            else
+            {
+                openProcessPanelTutorial.Hide();
+            }
+        }
+    }
+
+    public bool ProcessPanelTutorialVisible
+    {
+        get => processPanelTutorial.Visible;
+        set
+        {
+            if (value == processPanelTutorial.Visible)
+                return;
+
+            if (value)
+            {
+                processPanelTutorial.Show();
+            }
+            else
+            {
+                processPanelTutorial.Hide();
+            }
+        }
+    }
+
+    public bool ResourceSplitTutorialVisible
+    {
+        get => resourceSplitTutorial.Visible;
+        set
+        {
+            if (value == resourceSplitTutorial.Visible)
+                return;
+
+            if (value)
+            {
+                resourceSplitTutorial.Show();
+            }
+            else
+            {
+                resourceSplitTutorial.Hide();
+            }
+        }
+    }
+
+    public bool PausingTutorialVisible
+    {
+        get => pausingTutorial.Visible;
+        set
+        {
+            if (value == pausingTutorial.Visible)
+                return;
+
+            if (value)
+            {
+                pausingTutorial.Show();
+            }
+            else
+            {
+                pausingTutorial.Hide();
+            }
+        }
+    }
+
+    public bool SpeciesMemberDiedVisible
+    {
+        get => speciesMemberDied.Visible;
+        set
+        {
+            if (value == speciesMemberDied.Visible)
+                return;
+
+            if (value)
+            {
+                speciesMemberDied.Show();
+            }
+            else
+            {
+                speciesMemberDied.Hide();
+            }
+        }
+    }
+
     public override void _Ready()
     {
         microbeWelcomeMessage = GetNode<TutorialDialog>(MicrobeWelcomeMessagePath);
@@ -477,7 +598,20 @@ public partial class MicrobeTutorialGUI : Control, ITutorialGUI
 
     public void OnTutorialEnabledValueChanged(bool value)
     {
-        TutorialEnabledSelected = value;
+        AllTutorialsDesiredState = value;
+
+        if (tutorialDisabledExplanation.Visible != !value)
+        {
+            tutorialDisabledExplanation.Visible = !value;
+
+            if (tutorialDisabledExplanation.Visible)
+            {
+                // Scroll down to ensure the new text is visible
+                // Need to invoke to make sure this happens after the new text appears
+                Invoke.Instance.QueueForObject(() => welcomeTutorialScrollContainer.ScrollVertical = 500,
+                    welcomeTutorialScrollContainer);
+            }
+        }
     }
 
     public void SetWelcomeTextForLifeOrigin(WorldGenerationSettings.LifeOrigin gameLifeOrigin)

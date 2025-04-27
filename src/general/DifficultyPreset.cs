@@ -55,6 +55,9 @@ public class DifficultyPreset : IDifficulty, IRegistryType
     public float PlayerAutoEvoStrength { get; private set; }
 
     [JsonProperty]
+    public float PlayerSpeciesAIPopulationStrength { get; private set; }
+
+    [JsonProperty]
     public bool FreeGlucoseCloud { get; private set; }
 
     [JsonProperty]
@@ -154,6 +157,12 @@ public class DifficultyPreset : IDifficulty, IRegistryType
         {
             throw new InvalidRegistryDataException(name, GetType().Name,
                 $"Invalid player auto-evo strength: {PlayerAutoEvoStrength}");
+        }
+
+        if (PlayerSpeciesAIPopulationStrength < 0)
+        {
+            throw new InvalidRegistryDataException(name, GetType().Name,
+                $"Invalid player species AI population strength: {PlayerSpeciesAIPopulationStrength}");
         }
     }
 

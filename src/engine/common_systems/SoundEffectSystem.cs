@@ -228,7 +228,9 @@ public sealed class SoundEffectSystem : AEntitySetSystem<float>
         if (slots == null)
             return;
 
-        lock (slots)
+        // Used to suppress incorrect warning CS0728
+        var slotsRef = slots;
+        lock (slotsRef)
         {
             var count = slots.Length;
 
@@ -293,11 +295,13 @@ public sealed class SoundEffectSystem : AEntitySetSystem<float>
             bool skippedSomething = false;
 
             // Slots are locked so that they aren't modified while this system runs. If any systems modify the
-            // sounds after this system, then that sound will be picked up on next sound update
-            lock (slots)
+            // sounds after this system, then that sound will be picked up on the next sound update
+            // Used to suppress incorrect warning CS0728
+            var slotsRef = slots;
+            lock (slotsRef)
             {
                 // The slots are intentionally left unlocked as if sound effects are modified while this system
-                // runs it would lead to sometimes unexpected results
+                // runs, it would lead to sometimes unexpected results
 
                 int slotCount = slots.Length;
 

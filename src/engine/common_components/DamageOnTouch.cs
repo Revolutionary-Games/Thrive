@@ -21,7 +21,7 @@ public struct DamageOnTouch
     public float DamageAmount;
 
     /// <summary>
-    ///   If true then this is destroyed when this collides with something this could deal damage to
+    ///   If true, then this is destroyed when this collides with something this could deal damage to
     /// </summary>
     public bool DestroyOnTouch;
 

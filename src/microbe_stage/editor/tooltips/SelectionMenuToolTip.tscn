@@ -1,6 +1,6 @@
 [gd_scene load_steps=12 format=3 uid="uid://bl77ntlowknmp"]
 
-[ext_resource type="PackedScene" path="res://src/microbe_stage/ProcessList.tscn" id="3"]
+[ext_resource type="PackedScene" uid="uid://dt4v2vma5p2s4" path="res://src/microbe_stage/ProcessList.tscn" id="3"]
 [ext_resource type="Texture2D" uid="uid://drdwtf2f6qqch" path="res://assets/textures/gui/bevel/MP.png" id="4"]
 [ext_resource type="LabelSettings" uid="uid://brgbuduvjby6a" path="res://src/gui_common/fonts/Title-SemiBold-Smaller.tres" id="4_olfrb"]
 [ext_resource type="LabelSettings" uid="uid://bv3bnu0g1wdw3" path="res://src/gui_common/fonts/Title-SemiBold-Big.tres" id="5_hsw5o"]
@@ -23,7 +23,7 @@ corner_radius_top_right = 5
 corner_radius_bottom_right = 5
 corner_radius_bottom_left = 5
 
-[node name="SelectionMenuTooltip" type="PanelContainer" node_paths=PackedStringArray("modifierInfoList", "organelleCostInfoList", "nameLabel", "mpLabel", "requiresNucleusLabel", "osmoregulationModifier", "descriptionLabel", "processesDescriptionLabel", "processList", "moreInfo")]
+[node name="SelectionMenuTooltip" type="PanelContainer" node_paths=PackedStringArray("modifierInfoList", "organelleCostInfoList", "nameLabel", "mpLabel", "requiresNucleusLabel", "osmoregulationModifier", "descriptionLabel", "processesDescriptionLabel", "processesDescriptionSeparator", "processList", "moreInfo")]
 custom_minimum_size = Vector2(400, 0)
 offset_right = 350.0
 offset_bottom = 155.0
@@ -39,6 +39,7 @@ requiresNucleusLabel = NodePath("MarginContainer/VBoxContainer/RequiresNucleus")
 osmoregulationModifier = NodePath("MarginContainer/VBoxContainer/ModifierList/osmoregulationCost")
 descriptionLabel = NodePath("MarginContainer/VBoxContainer/Description")
 processesDescriptionLabel = NodePath("MarginContainer/VBoxContainer/ProcessesDescription")
+processesDescriptionSeparator = NodePath("MarginContainer/VBoxContainer/HSeparator")
 processList = NodePath("MarginContainer/VBoxContainer/ProcessList")
 moreInfo = NodePath("MarginContainer/VBoxContainer/MoreInfo")
 

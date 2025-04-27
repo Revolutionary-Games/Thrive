@@ -19,9 +19,9 @@ public partial class TolerancesEditorSubComponent : EditorComponentBase<ICellEdi
     private readonly StringName toleranceFlashName = new("FlashPressureRange");
     private readonly StringName tooWideRangeName = new("PopupPressureRangeWarning");
 
-    private readonly CompoundDefinition temperature = SimulationParameters.GetCompound(Compound.Temperature);
-
     private readonly Dictionary<OrganelleDefinition, float> tempToleranceModifiers = new();
+
+    private CompoundDefinition temperature = null!;
 
 #pragma warning disable CA2213
 
@@ -100,6 +100,21 @@ public partial class TolerancesEditorSubComponent : EditorComponentBase<ICellEdi
     private Label uvResistanceModifierLabel = null!;
 
     [Export]
+    private ToleranceOptimalMarker temperatureToleranceMarker = null!;
+
+    [Export]
+    private ToleranceOptimalMarker minPressureToleranceMarker = null!;
+
+    [Export]
+    private ToleranceOptimalMarker maxPressureToleranceMarker = null!;
+
+    [Export]
+    private ToleranceOptimalMarker oxygenToleranceMarker = null!;
+
+    [Export]
+    private ToleranceOptimalMarker uvToleranceMarker = null!;
+
+    [Export]
     [ExportCategory("Style")]
     private LabelSettings badValueFont = null!;
 
@@ -157,6 +172,8 @@ public partial class TolerancesEditorSubComponent : EditorComponentBase<ICellEdi
         originalTemperatureFont = temperatureMinLabel.LabelSettings;
         originalPressureFont = pressureMinLabel.LabelSettings;
         originalModifierFont = temperatureToleranceModifierLabel.LabelSettings;
+
+        temperature = SimulationParameters.GetCompound(Compound.Temperature);
 
         RegisterTooltips();
     }
@@ -338,7 +355,7 @@ public partial class TolerancesEditorSubComponent : EditorComponentBase<ICellEdi
         // Copy the units here automatically
         if (temperatureRangeToolTip != null)
         {
-            temperatureRangeToolTip.ValueSuffix = SimulationParameters.GetCompound(Compound.Temperature).Unit;
+            temperatureRangeToolTip.ValueSuffix = temperature.Unit;
         }
         else
         {
@@ -903,6 +920,25 @@ public partial class TolerancesEditorSubComponent : EditorComponentBase<ICellEdi
         {
             uvResistanceModifierLabel.Visible = false;
         }
+
+        // Update markers
+        // For non-percentage sliders, OptimalValue is calculated as a fraction between the min and max slider values
+        temperatureToleranceMarker.OptimalValue = (patchTemperature - (float)temperatureSlider.MinValue)
+            / (float)(temperatureSlider.MaxValue - temperatureSlider.MinValue);
+
+        float pressureRangeFraction = (patchPressure - (float)pressureMaxSlider.MinValue)
+            / (float)(pressureMaxSlider.MaxValue - pressureMaxSlider.MinValue);
+
+        minPressureToleranceMarker.OptimalValue = pressureRangeFraction;
+        maxPressureToleranceMarker.OptimalValue = pressureRangeFraction;
+
+        // Don't show markers when they are at 0% as it looks confusing
+        oxygenToleranceMarker.ShowMarker = requiredOxygenResistance > MathUtils.EPSILON;
+        uvToleranceMarker.ShowMarker = requiredUVResistance > MathUtils.EPSILON;
+
+        oxygenToleranceMarker.OptimalValue = requiredOxygenResistance;
+
+        uvToleranceMarker.OptimalValue = requiredUVResistance;
     }
 
     [DeserializedCallbackAllowed]

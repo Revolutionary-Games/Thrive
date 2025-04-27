@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2025-03-14 11:08+0200\n"
+"POT-Creation-Date: 2025-04-26 10:53+0300\n"
 "PO-Revision-Date: 2025-02-06 13:29+0000\n"
 "Last-Translator: Anonymous <noreply@weblate.org>\n"
 "Language-Team: Serbian (Latin script) <https://translate.revolutionarygamesstudio.com/projects/thrive/thrive-game/sr_Latn/>\n"
@@ -198,6 +198,25 @@ msgstr ""
 msgid "ANISOTROPIC_FILTERING"
 msgstr ""
 
+msgid "ANTIALIASING_MSAA_TAA"
+msgstr ""
+
+#, fuzzy
+msgid "ANTI_ALIASING_FXAA"
+msgstr "Multisample anti-aliasing:"
+
+#, fuzzy
+msgid "ANTI_ALIASING_MODE"
+msgstr "Multisample anti-aliasing:"
+
+#, fuzzy
+msgid "ANTI_ALIASING_MSAA"
+msgstr "Multisample anti-aliasing:"
+
+#, fuzzy
+msgid "ANTI_ALIASING_TAA"
+msgstr "Multisample anti-aliasing:"
+
 #, fuzzy
 msgid "APPEARANCE"
 msgstr "Performanse"
@@ -323,6 +342,10 @@ msgstr "{0:F1}% završeno. {1:n0}/{2:n0} koraka."
 #, fuzzy
 msgid "AUTO-EVO_PREDICTION_BOX_DESCRIPTION"
 msgstr "Moć ćelije. Mitohondrion (množina: mitohondrije) je dvostruka membranska struktura ispunjena proteinima i enzimima. To je prokariot koji je asimilirao za upotrebu od svog eukariotskog domaćina. U stanju je da pretvori glukozu u ATP sa mnogo većom efikasnošću nego što se to može učiniti u citoplazmi u procesu koji se naziva aerobno disanje. Međutim, potreban mu je kiseonik da bi funkcionisao, a niži nivoi kiseonika u okolini usporiće brzinu njegove proizvodnje ATP."
+
+#, fuzzy
+msgid "AUTO-EVO_RESULTS_TITLE"
+msgstr "Rezultati automatske-evolucije:"
 
 msgid "AUTO-EVO_STEPS_DONE"
 msgstr "{0:F1}% završeno. {1:n0}/{2:n0} koraka."
@@ -512,6 +535,14 @@ msgstr ""
 msgid "BIOLUMINESCENT_VACUOLE"
 msgstr "Bioluminiscentna Vakuola"
 
+#, fuzzy
+msgid "BIOLUMINESCENT_VACUOLE_DESCRIPTION"
+msgstr "Bioluminiscentna Vakuola"
+
+#, fuzzy
+msgid "BIOLUMINESCENT_VACUOLE_PROCESSES_DESCRIPTION"
+msgstr "Otrovna vakuola je vakuola koja je modifikovana za specifičnu proizvodnju, skladištenje i izlučivanje oksitoksi toksina. Više otrovne vakuola povećaće brzinu oslobađanja toksina."
+
 msgid "BIOME_LABEL"
 msgstr ""
 
@@ -670,6 +701,10 @@ msgstr "Nastaviti"
 msgid "CELL_STAT_SPEED_TOOLTIP"
 msgstr "Nastaviti"
 
+#, fuzzy
+msgid "CELL_STAT_STORAGE_TOOLTIP"
+msgstr "Nastaviti"
+
 msgid "CELL_TYPE_BUTTON_ATP_CONSUMPTION"
 msgstr ""
 
@@ -812,6 +847,9 @@ msgid "CLEAN_UP_OLD_SAVES"
 msgstr ""
 
 msgid "CLEAR_CACHE"
+msgstr ""
+
+msgid "CLICK_TO_SELECT"
 msgstr ""
 
 msgid "CLOSE"
@@ -2029,6 +2067,27 @@ msgstr "Ušće"
 msgid "EVENT_ERUPTION_TOOLTIP"
 msgstr "Dodajte novo vezivanje tastera"
 
+msgid "EVENT_METEOR_GLUCOSE"
+msgstr ""
+
+#, fuzzy
+msgid "EVENT_METEOR_IRON"
+msgstr "Podvodna Pećina"
+
+#, fuzzy
+msgid "EVENT_METEOR_PHOSPHATES"
+msgstr "Stavite fosfat"
+
+#, fuzzy
+msgid "EVENT_METEOR_PLAIN"
+msgstr "Dodajte novo vezivanje tastera"
+
+msgid "EVENT_METEOR_RADIOACTIVE"
+msgstr ""
+
+msgid "EVENT_METEOR_SULFUR"
+msgstr ""
+
 msgid "EVOLUTIONARY_TREE"
 msgstr ""
 
@@ -2413,6 +2472,26 @@ msgstr "Dodajte novo vezivanje tastera"
 msgid "GLES3"
 msgstr ""
 
+msgid "GLOBAL_GLACIATION_END_EVENT_LOG"
+msgstr ""
+
+#, fuzzy
+msgid "GLOBAL_GLACIATION_EVENT"
+msgstr "Broj populacije od {0} promenio se za {1} zbog: {2}"
+
+#, fuzzy
+msgid "GLOBAL_GLACIATION_EVENT_TOOLTIP"
+msgstr "Dodajte novo vezivanje tastera"
+
+msgid "GLOBAL_GLACIATION_EVENT_WARNING_LOG_PLURAL"
+msgstr ""
+
+msgid "GLOBAL_GLACIATION_EVENT_WARNING_LOG_SINGULAR"
+msgstr ""
+
+msgid "GLOBAL_GLACIATION_START_EVENT_LOG"
+msgstr ""
+
 msgid "GLOBAL_INITIAL_LETTER"
 msgstr ""
 
@@ -2568,6 +2647,9 @@ msgid "ID_IS_NOT_A_NUMBER"
 msgstr ""
 
 msgid "ID_NUMBER"
+msgstr ""
+
+msgid "IF_FALLBACK_RENDERER_USED_ALL_NOT_AVAILABLE"
 msgstr ""
 
 #, fuzzy
@@ -3240,6 +3322,10 @@ msgid "LOADING_GAME"
 msgstr ""
 
 #, fuzzy
+msgid "LOADING_GRAPHICS_SHADERS"
+msgstr "Učitavanje Uređivača Mikroba"
+
+#, fuzzy
 msgid "LOADING_MACROSCOPIC_EDITOR"
 msgstr "Učitavanje Uređivača Mikroba"
 
@@ -3247,8 +3333,23 @@ msgid "LOADING_MICROBE_EDITOR"
 msgstr "Učitavanje Uređivača Mikroba"
 
 #, fuzzy
+msgid "LOADING_MICROBE_STAGE"
+msgstr "Zona: {0}"
+
+#, fuzzy
 msgid "LOADING_MULTICELLULAR_EDITOR"
 msgstr "Učitavanje Uređivača Mikroba"
+
+#, fuzzy
+msgid "LOADING_MULTICELLULAR_STAGE"
+msgstr "Učitavanje Uređivača Mikroba"
+
+#, fuzzy
+msgid "LOADING_STAGE"
+msgstr "Učitavanje"
+
+msgid "LOADING_STAGE_ASSETS"
+msgstr ""
 
 msgid "LOAD_FINISHED"
 msgstr ""
@@ -3282,6 +3383,13 @@ msgid "LOCK_DAY_NIGHT_CYCLE"
 msgstr ""
 
 #, fuzzy
+msgid "LOWER_SCALE_INCREASES_PERFORMANCE"
+msgstr "(veće vrednosti poboljšavaju performanse)"
+
+msgid "LOWER_VALUE_MAKES_SHARPER_IMAGE"
+msgstr ""
+
+#, fuzzy
 msgid "LOW_MENU_PERFORMANCE"
 msgstr "Performanse"
 
@@ -3294,6 +3402,13 @@ msgstr ""
 
 msgid "LOW_QUALITY_BACKGROUND_BLUR_TOOLTIP"
 msgstr ""
+
+msgid "LUCIFERASE"
+msgstr ""
+
+#, fuzzy
+msgid "LUCIFERASE_SYNTHESIS"
+msgstr "Hemosinteza"
 
 #, fuzzy
 msgid "LYSOSOME"
@@ -3429,6 +3544,15 @@ msgstr "Metabolosomi su grozdi proteina umotani u proteinske ljuske. Oni su u st
 #, fuzzy
 msgid "META_THREADS_TOOLTIP"
 msgstr "Dodajte novo vezivanje tastera"
+
+msgid "METEOR_IMPACT_EVENT"
+msgstr ""
+
+msgid "METEOR_STRIKE_START_EVENT_LOG_PLURAL"
+msgstr ""
+
+msgid "METEOR_STRIKE_START_EVENT_LOG_SINGULAR"
+msgstr ""
 
 #, fuzzy
 msgid "METRICS"
@@ -3641,10 +3765,6 @@ msgstr ""
 msgid "MICROBE_STAGE_CONTROL_TEXT_CONTROLLER"
 msgstr ""
 
-#, fuzzy
-msgid "MICROBE_STAGE_DAY_NIGHT_TEXT"
-msgstr "Učitavanje Uređivača Mikroba"
-
 msgid "MICROBE_STAGE_HEALTH_TEXT"
 msgstr ""
 
@@ -3753,6 +3873,9 @@ msgid "MODDING_INSTRUCTIONS_ON"
 msgstr ""
 
 msgid "MODELS"
+msgstr ""
+
+msgid "MODE_CAN_BE_CHANGED_IN_OPTIONS"
 msgstr ""
 
 msgid "MODIFY"
@@ -4698,6 +4821,10 @@ msgstr "igrač je umro"
 msgid "PLAYER_RELATIVE_MOVEMENT"
 msgstr "igrač je umro"
 
+#, fuzzy
+msgid "PLAYER_RELATIVE_MOVEMENT_TOOLTIP"
+msgstr "igrač je umro"
+
 msgid "PLAYER_REPRODUCED"
 msgstr "Igrač se reprodukovao"
 
@@ -4784,6 +4911,10 @@ msgstr ""
 msgid "PROCESS_SPEED_MODIFIER"
 msgstr ""
 
+#, fuzzy
+msgid "PROCESS_TOGGLE_TOOLTIP"
+msgstr "Vratite se u Meni"
+
 msgid "PROGRAMMING_TEAM"
 msgstr ""
 
@@ -4867,6 +4998,9 @@ msgstr "Ponovi poslednju akciju"
 msgid "REFRESH"
 msgstr ""
 
+msgid "RENDER_SCALE"
+msgstr ""
+
 msgid "REPORT"
 msgstr "Izveštaj"
 
@@ -4937,6 +5071,13 @@ msgstr "Resetujte Unosi"
 
 msgid "RESET_SETTINGS_TO_DEFAULTS"
 msgstr "Podrazumevane vrednosti"
+
+msgid "RESET_SHOWN_TUTORIALS"
+msgstr ""
+
+#, fuzzy
+msgid "RESET_SHOWN_TUTORIALS_TOOLTIP"
+msgstr "Dodajte novo vezivanje tastera"
 
 msgid "RESET_TO_DEFAULTS"
 msgstr "Resetuj do početnog?"
@@ -5207,6 +5348,10 @@ msgstr "Sposobnosti"
 msgid "SCREEN_RELATIVE_MOVEMENT"
 msgstr "za povećanje kretanja"
 
+#, fuzzy
+msgid "SCREEN_RELATIVE_MOVEMENT_TOOLTIP"
+msgstr "za povećanje kretanja"
+
 msgid "SCROLLLOCK"
 msgstr ""
 
@@ -5231,6 +5376,10 @@ msgstr "Nastaviti"
 
 msgid "SEED_LABEL"
 msgstr ""
+
+#, fuzzy
+msgid "SELECTED"
+msgstr "Zatvoriti opcije?"
 
 msgid "SELECTED_COLON"
 msgstr ""
@@ -5271,6 +5420,9 @@ msgstr ""
 msgid "SELECT_ENZYME"
 msgstr "Zatvoriti opcije?"
 
+msgid "SELECT_MOVEMENT_MODE_TITLE"
+msgstr ""
+
 #, fuzzy
 msgid "SELECT_OPTION"
 msgstr "Zatvoriti opcije?"
@@ -5307,6 +5459,13 @@ msgstr "Tom od zvučnih efekata"
 msgid "SHIFT"
 msgstr "Shift"
 
+msgid "SHOW_ALL_TUTORIALS"
+msgstr ""
+
+#, fuzzy
+msgid "SHOW_ALL_TUTORIALS_TOOLTIP"
+msgstr "Dodajte novo vezivanje tastera"
+
 #, fuzzy
 msgid "SHOW_DAMAGE_EFFECT"
 msgstr "Bič (množina: bičevi) je snop proteinskih vlakana koji se proteže od ćelijske membrane koja može da koristi ATP da bi se povaljao i pokrenuo ćeliju u pravcu."
@@ -5325,9 +5484,6 @@ msgstr "Pećina"
 msgid "SHOW_NEW_PATCH_NOTES_TOOLTIP"
 msgstr "Pećina"
 
-msgid "SHOW_TUTORIALS"
-msgstr ""
-
 #, fuzzy
 msgid "SHOW_TUTORIALS_IN_NEW_CURRENT_OPTION"
 msgstr "Prikaži vodiče (u trenutnoj igri)"
@@ -5335,6 +5491,10 @@ msgstr "Prikaži vodiče (u trenutnoj igri)"
 #, fuzzy
 msgid "SHOW_TUTORIALS_IN_NEW_GAMES_OPTION"
 msgstr "Prikaži vodiče (u novim igrama)"
+
+#, fuzzy
+msgid "SHOW_TUTORIALS_OPTION_TOOLTIP"
+msgstr "Dodajte novo vezivanje tastera"
 
 #, fuzzy
 msgid "SHOW_UNSAVED_PROGRESS_WARNING"
@@ -5512,6 +5672,14 @@ msgstr "ima mutaciju"
 msgid "SPECIES_LIST"
 msgstr ""
 
+#, fuzzy
+msgid "SPECIES_MEMBER_IMPACT_ON_POP"
+msgstr "Ime vrste..."
+
+#, fuzzy
+msgid "SPECIES_MEMBER_IMPACT_ON_POPULATION_EXPLANATION"
+msgstr "Broj populacije od {0} promenio se za {1} zbog: {2}"
+
 msgid "SPECIES_NAME_DOT_DOT_DOT"
 msgstr "Ime vrste..."
 
@@ -5663,6 +5831,10 @@ msgstr ""
 
 msgid "STORE_LOGGED_IN_AS"
 msgstr ""
+
+#, fuzzy
+msgid "STRAIN_BAR_TOOLTIP"
+msgstr "Dodajte novo vezivanje tastera"
 
 msgid "STRAIN_BAR_VISIBILITY"
 msgstr ""
@@ -5932,6 +6104,12 @@ msgstr ""
 msgid "TIMELINE_NICHE_FILL"
 msgstr "genetski kod:"
 
+msgid "TIMELINE_PLAYER_MIGRATED"
+msgstr ""
+
+msgid "TIMELINE_PLAYER_MIGRATED_TO"
+msgstr ""
+
 #, fuzzy
 msgid "TIMELINE_SELECTION_PRESSURE_SPLIT"
 msgstr "se proširila na zone:"
@@ -5945,6 +6123,10 @@ msgstr ""
 
 msgid "TIMELINE_SPECIES_EXTINCT_LOCAL"
 msgstr ""
+
+#, fuzzy
+msgid "TIMELINE_SPECIES_FOLLOWED"
+msgstr "genetski kod:"
 
 msgid "TIMELINE_SPECIES_MIGRATED_FROM"
 msgstr ""
@@ -6164,9 +6346,6 @@ msgstr "OksiToksizom"
 msgid "TOXISOME_DESCRIPTION"
 msgstr "Metabolosomi su grozdi proteina umotani u proteinske ljuske. Oni su u stanju da pretvore glukozu u ATP mnogo većom brzinom nego što se to može učiniti u citoplazmi sa procesu koji se naziva aerobno disanje. Međutim, potreban mu je kiseonik da bi funkcionisao, a niži nivoi kiseonika u okolini usporiće brzinu njegove proizvodnje ATP. Pošto su metabolosomi suspendovani direktno u citoplazmi, okolna tečnost vrši određenu fermentaciju."
 
-msgid "TO_BE_IMPLEMENTED"
-msgstr "Da se implementira."
-
 msgid "TRANSLATORS"
 msgstr ""
 
@@ -6191,6 +6370,10 @@ msgid "TUTORIAL"
 msgstr ""
 
 #, fuzzy
+msgid "TUTORIAL_ALL_NOT_ENABLED_EXPLANATION"
+msgstr "Izbodite druge ćelije sa ovo."
+
+#, fuzzy
 msgid "TUTORIAL_MICROBE_EDITOR_ATP_BALANCE_INTRO"
 msgstr "Učitavanje Uređivača Mikroba"
 
@@ -6207,11 +6390,27 @@ msgid "TUTORIAL_MICROBE_EDITOR_CHEMORECEPTOR"
 msgstr "Učitavanje Uređivača Mikroba"
 
 #, fuzzy
+msgid "TUTORIAL_MICROBE_EDITOR_COMPOUND_BALANCES"
+msgstr "Učitavanje Uređivača Mikroba"
+
+#, fuzzy
+msgid "TUTORIAL_MICROBE_EDITOR_DIGESTION_STAT"
+msgstr "Učitavanje Uređivača Mikroba"
+
+#, fuzzy
 msgid "TUTORIAL_MICROBE_EDITOR_ENDING_TEXT"
 msgstr "Slobodna-Gradnja Uređivač Mikroba"
 
 #, fuzzy
 msgid "TUTORIAL_MICROBE_EDITOR_FLAGELLUM"
+msgstr "Učitavanje Uređivača Mikroba"
+
+#, fuzzy
+msgid "TUTORIAL_MICROBE_EDITOR_FOOD_CHAIN"
+msgstr "Slobodna-Gradnja Uređivač Mikroba"
+
+#, fuzzy
+msgid "TUTORIAL_MICROBE_EDITOR_MIGRATION"
 msgstr "Učitavanje Uređivača Mikroba"
 
 #, fuzzy
@@ -6265,6 +6464,10 @@ msgid "TUTORIAL_MICROBE_STAGE_ENGULFMENT_TEXT"
 msgstr "Slobodna-Gradnja Uređivač Mikroba"
 
 #, fuzzy
+msgid "TUTORIAL_MICROBE_STAGE_ENVIRONMENT_PANEL"
+msgstr "Slobodna-Gradnja Uređivač Mikroba"
+
+#, fuzzy
 msgid "TUTORIAL_MICROBE_STAGE_HELP_MENU_AND_ZOOM"
 msgstr "W, A, S, D i miš za kretanje. E da pucate OksiToksi NT ako imate otrovna vacuole. G za prebacivanje režima gutanja."
 
@@ -6273,7 +6476,27 @@ msgid "TUTORIAL_MICROBE_STAGE_LEAVE_COLONY_TEXT"
 msgstr "Slobodna-Gradnja Uređivač Mikroba"
 
 #, fuzzy
+msgid "TUTORIAL_MICROBE_STAGE_MEMBER_DIED"
+msgstr "Slobodna-Gradnja Uređivač Mikroba"
+
+#, fuzzy
+msgid "TUTORIAL_MICROBE_STAGE_OPEN_PROCESS_PANEL"
+msgstr "Slobodna-Gradnja Uređivač Mikroba"
+
+#, fuzzy
+msgid "TUTORIAL_MICROBE_STAGE_PAUSING"
+msgstr "Slobodna-Gradnja Uređivač Mikroba"
+
+#, fuzzy
+msgid "TUTORIAL_MICROBE_STAGE_PROCESS_PANEL"
+msgstr "Slobodna-Gradnja Uređivač Mikroba"
+
+#, fuzzy
 msgid "TUTORIAL_MICROBE_STAGE_REPRODUCE_TEXT"
+msgstr "Slobodna-Gradnja Uređivač Mikroba"
+
+#, fuzzy
+msgid "TUTORIAL_MICROBE_STAGE_RESOURCE_SPLIT"
 msgstr "Slobodna-Gradnja Uređivač Mikroba"
 
 #, fuzzy
@@ -6494,6 +6717,18 @@ msgstr "Traži..."
 msgid "UPLOAD_SUCCEEDED"
 msgstr ""
 
+msgid "UPSCALE_BILINEAR"
+msgstr ""
+
+msgid "UPSCALE_FSR_1"
+msgstr ""
+
+msgid "UPSCALE_FSR_22"
+msgstr ""
+
+msgid "UPSCALE_SHARPENING_FSR"
+msgstr ""
+
 msgid "USED_LIBRARIES_LICENSES"
 msgstr ""
 
@@ -6607,6 +6842,9 @@ msgstr ""
 
 msgid "VIEW_SOURCE_CODE"
 msgstr "Pogledajte Izvorni Kod"
+
+msgid "VIEW_TEXT_REPORT"
+msgstr ""
 
 msgid "VIP_PATRONS"
 msgstr ""
@@ -7047,6 +7285,10 @@ msgstr ""
 
 msgid "WIKI_COMPOUND_SYSTEM_DEVELOPMENT_OVERVIEW"
 msgstr ""
+
+#, fuzzy
+msgid "WIKI_CREATURE_EDITOR_COMMA_TECH_EDITOR"
+msgstr "Učitavanje Uređivača Mikroba"
 
 #, fuzzy
 msgid "WIKI_CYTOPLASM_EFFECTS"
@@ -8215,6 +8457,9 @@ msgstr "Organele"
 msgid "WIKI_TBA"
 msgstr ""
 
+msgid "WIKI_TECH_EDITOR_COMMA_NATION_EDITOR_COMMA_SQUAD_EDITOR"
+msgstr ""
+
 #, fuzzy
 msgid "WIKI_THERMOPLAST_EFFECTS"
 msgstr "Termoplast je dvostruka membranska struktura koja sadrži termosenzibilne pigmente složene zajedno u membranske vrećice. To je prokariot koji je asimilirao za upotrebu od svog eukariotskog domaćina. Pigmenti u termoplastu mogu da koriste energiju toplotnih razlika u okolini za proizvodnju glukoze iz vode i gasovitog ugljen-dioksida u procesu koji se naziva termosinteza. Stopa njegove proizvodnje glukoze skalira se sa koncentracijom ugljen-dioksida i temperaturom."
@@ -8511,6 +8756,17 @@ msgstr "Zumirati"
 msgid "ZOOM_OUT"
 msgstr "Odzumirati"
 
+#~ msgid "TO_BE_IMPLEMENTED"
+#~ msgstr "Da se implementira."
+
+#, fuzzy
+#~ msgid "MICROBE_STAGE_DAY_NIGHT_TEXT"
+#~ msgstr "Učitavanje Uređivača Mikroba"
+
+#, fuzzy
+#~ msgid "GLOBAL_GLACIATION_EVENT_LOG"
+#~ msgstr "Broj populacije od {0} promenio se za {1} zbog: {2}"
+
 #~ msgid "IRON_CHEMOLITHOAUTOTROPHY"
 #~ msgstr "Hemolitoautotrofija gvožđa"
 
@@ -8690,10 +8946,6 @@ msgstr "Odzumirati"
 #, fuzzy
 #~ msgid "ERUPTION_IN"
 #~ msgstr "Proizvodi"
-
-#, fuzzy
-#~ msgid "EVENT_TOOLTIP_ERUPTION"
-#~ msgstr "Podvodna Pećina"
 
 #, fuzzy
 #~ msgid "OXYTOXISOME_DESC"

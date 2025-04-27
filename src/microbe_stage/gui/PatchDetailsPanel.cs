@@ -382,7 +382,7 @@ public partial class PatchDetailsPanel : PanelContainer
             unitFormat.FormatSafe(percentageFormat.FormatSafe(Math.Round(GetCompoundAmount(SelectedPatch,
                 Compound.Sunlight))), "lx");
         lightMax.Text = Localization.Translate("LIGHT_LEVEL_LABEL_AT_NOON").FormatSafe(
-            unitFormat.FormatSafe(percentageFormat.FormatSafe(maxLightLevel), "lx"));
+            unitFormat.FormatSafe(percentageFormat.FormatSafe(Math.Round(maxLightLevel, 1)), "lx"));
         lightMax.Visible = maxLightLevel > 0;
 
         oxygenLabel.Text = percentageFormat.FormatSafe(Math.Round(GetCompoundAmount(SelectedPatch, Compound.Oxygen),

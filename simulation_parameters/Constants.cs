@@ -291,8 +291,6 @@ public static class Constants
 
     public const float CONTEXTUAL_ONLY_MUSIC_CHANCE = 0.33f;
 
-    public const float MICROBE_MOVEMENT_SOUND_EMIT_COOLDOWN = 1.3f;
-
     // Note that the rotation speed is reversed, i.e. lower values mean faster
     public const float CELL_MAX_ROTATION = 8.0f;
     public const float CELL_MIN_ROTATION = 0.10f;
@@ -408,11 +406,21 @@ public static class Constants
     public const float MICROBE_AI_THINK_INTERVAL = 0.3f;
 
     /// <summary>
-    ///   This is how often entities for emitted signals from other entities.
-    ///   This is set relatively high to reduce the performance impact. This is used for example for AI microbes to
-    ///   detect signaling agents.
+    ///   This is how often entities emitted signals from other entities are updated.
+    ///   This is set relatively high to reduce the performance impact.
+    ///   This is used, for example, for AI microbes to detect signalling agents.
     /// </summary>
     public const float ENTITY_SIGNAL_UPDATE_INTERVAL = 0.15f;
+
+    public const float ENTITY_LIGHT_REALISTIC_ATTENUATION = 2;
+
+    /// <summary>
+    ///   Max lights a single entity should have. Note that compatibility renderer supports only 8 lights per mesh, so
+    ///   we might need to increase that limit.
+    /// </summary>
+    public const int ENTITY_REASONABLE_MAX_LIGHTS = 6;
+
+    public const float ENTITY_BIOLUMINESCENCE_LIGHT_RANGE = 20;
 
     public const int INITIAL_SPECIES_POPULATION = 100;
 
@@ -427,6 +435,7 @@ public static class Constants
     public const string MICROBE_ENGULFING_MODE_SOUND = "res://assets/sounds/soundeffects/engulfment.ogg";
     public const string MICROBE_BINDING_MODE_SOUND = "res://assets/sounds/soundeffects/binding.ogg";
 
+    public const float MICROBE_MOVEMENT_SOUND_EMIT_COOLDOWN = 1.3f;
     public const float MICROBE_MOVEMENT_SOUND_MAX_VOLUME = 0.4f;
 
     // TODO: should this volume be actually 0?
@@ -439,6 +448,12 @@ public static class Constants
 
     public const float MICROBE_SOUND_MAX_DISTANCE = 300;
     public const float MICROBE_SOUND_MAX_DISTANCE_SQUARED = MICROBE_SOUND_MAX_DISTANCE * MICROBE_SOUND_MAX_DISTANCE;
+
+    /// <summary>
+    ///   Makes sounds played by the non-player cell a bit quieter. This is added because death sounds from other
+    ///   entities can get overwhelming otherwise
+    /// </summary>
+    public const float NON_PLAYER_ENTITY_VOLUME_MULTIPLIER = 0.7f;
 
     public const int MAX_CONCURRENT_SOUNDS = 100;
 
@@ -1254,6 +1269,10 @@ public static class Constants
     public const float AUTO_EVO_CHUNK_ENERGY_AMOUNT = 90000000;
     public const float AUTO_EVO_CHUNK_AMOUNT_NERF = 0.01f;
 
+    public const int AI_FOLLOW_PLAYER_MIGRATION_TO_EMPTY_PATCH_THRESHOLD = 2;
+
+    public const int AI_FOLLOW_FREE_POPULATION_GIVEN = 100;
+
     /// <summary>
     ///   Default cell's score, value is compared to <see cref="AutoEvoLysosomeEnzymesScores"/>
     /// </summary>
@@ -1347,6 +1366,17 @@ public static class Constants
     public const float VENT_ERUPTION_HYDROGEN_SULFIDE_INCREASE = 0.00004f;
     public const float VENT_ERUPTION_CARBON_DIOXIDE_INCREASE = 0.3f;
 
+    public const float GLOBAL_GLACIATION_OXYGEN_THRESHOLD = 0.07f;
+    public const float GLOBAL_GLACIATION_PATCHES_THRESHOLD = 0.7f;
+    public const float GLOBAL_GLACIATION_CHANCE = 0.5F;
+    public const int GLOBAL_GLACIATION_MIN_DURATION = 2;
+    public const int GLOBAL_GLACIATION_MAX_DURATION = 6;
+    public const int GLOBAL_GLACIATION_HEADS_UP_DURATION = 1;
+    public const float GLOBAL_GLACIATION_SUNLIGHT_MULTIPLICATION = 0.5f;
+
+    public const float METEOR_IMPACT_CHANCE = 0.23f;
+    public const float METEOR_IMPACT_SUNLIGHT_MULTIPLICATION = 0.75f;
+
     // These control how many game entities can exist at once
     public const int TINY_MAX_SPAWNED_ENTITIES = 80;
     public const int VERY_SMALL_MAX_SPAWNED_ENTITIES = 150;
@@ -1389,19 +1419,30 @@ public static class Constants
 
     public const float TIME_BEFORE_TUTORIAL_CAN_PAUSE = 0.01f;
 
+    /// <summary>
+    ///   Time in the microbe stage (not counting when the game is paused) after which the movement type prompt can
+    ///   be shown.
+    ///   This doesn't count paused time. This value has to be long enough to not conflict with the microbe welcome
+    ///   tutorial.
+    /// </summary>
+    public const float MOVEMENT_MODE_SELECTION_DELAY = 1.55f;
+
     public const float MICROBE_MOVEMENT_EXPLAIN_TUTORIAL_DELAY = 12.0f;
     public const float MICROBE_MOVEMENT_EXPLAIN_TUTORIAL_DELAY_CONTROLLER = 1.0f;
     public const float MICROBE_MOVEMENT_TUTORIAL_REQUIRE_DIRECTION_PRESS_TIME = 2.2f;
     public const float TUTORIAL_ENTITY_POSITION_UPDATE_INTERVAL = 0.2f;
-    public const float GLUCOSE_TUTORIAL_TRIGGER_ENABLE_FREE_STORAGE_SPACE = 0.14f;
+    public const float TUTORIAL_GLUCOSE_MAKE_EMPTY_SPACE_AT_LEAST = 0.15f;
+    public const float GLUCOSE_TUTORIAL_TRIGGER_ENABLE_FREE_STORAGE_SPACE = 0.03f;
     public const float GLUCOSE_TUTORIAL_COLLECT_BEFORE_COMPLETE = 0.21f;
     public const float MICROBE_REPRODUCTION_TUTORIAL_DELAY = 10;
     public const float HIDE_MICROBE_STAYING_ALIVE_TUTORIAL_AFTER = 60;
-    public const float HIDE_MICROBE_DAY_NIGHT_TUTORIAL_AFTER = 20;
+    public const float HIDE_MICROBE_DAY_NIGHT_TUTORIAL_AFTER = 40;
     public const float HIDE_MICROBE_ORGANELLE_DIVISION_TUTORIAL_AFTER = 60;
     public const float HIDE_MICROBE_ENGULFED_TUTORIAL_AFTER = 35;
     public const float OPEN_MICROBE_BECOME_MULTICELLULAR_TUTORIAL_AFTER = 30;
     public const float MICROBE_EDITOR_BUTTON_TUTORIAL_DELAY = 20;
+    public const float HIDE_MICROBE_RESOURCE_SPLIT_TUTORIAL_AFTER = 60;
+    public const float HIDE_MICROBE_SPECIES_MEMBER_DIED_AFTER = 60;
 
     public const float DAY_NIGHT_TUTORIAL_LIGHT_MIN = 0.01f;
 
@@ -1532,6 +1573,8 @@ public static class Constants
     public const string SAVE_FOLDER = "user://saves";
     public const string FOSSILISED_SPECIES_FOLDER = "user://fossils";
     public const string AUTO_EVO_EXPORT_FOLDER = "user://auto-evo_exports";
+
+    public const string TUTORIAL_DATA_FILE = "user://tutorials.json.gz";
 
     public const string CACHE_FOLDER = "user://cache";
     public const string CACHE_IMAGES_FOLDER = "user://cache/img";
@@ -1679,7 +1722,8 @@ public static class Constants
     public const int RESOURCE_LOAD_TARGET_MIN_FPS = 60;
     public const float RESOURCE_TIME_BUDGET_PER_FRAME = 1.0f / RESOURCE_LOAD_TARGET_MIN_FPS;
     public const bool TRACK_ACTUAL_RESOURCE_LOAD_TIMES = false;
-    public const float REPORT_LOAD_TIMES_OF_BY = 0.1f;
+    public const bool REPORT_ALL_LOAD_TIMES = false;
+    public const float REPORT_LOAD_TIMES_OF_BY = 0.100f;
 
     public const int GALLERY_THUMBNAIL_MAX_WIDTH = 500;
 
@@ -1739,9 +1783,11 @@ public static class Constants
     public const float MIN_AUTO_EVO_STRENGTH_MULTIPLIER = 0.01f;
     public const float MAX_AUTO_EVO_STRENGTH_MULTIPLIER = 1.0f;
 
+    public const float CURRENT_MAP_PATCH_INDICATOR_HALF_BLINK_INTERVAL = 0.5f;
+
     // Constants for the procedural patch map
-    public const float PATCH_NODE_RECT_LENGTH = 64.0f;
-    public const float PATCH_AND_REGION_MARGIN = 20.0f;
+    public const float PATCH_NODE_RECT_LENGTH = 80.0f;
+    public const float PATCH_AND_REGION_MARGIN = 14.0f;
     public const float PATCH_REGION_CONNECTION_LINE_WIDTH = 4.0f;
     public const float PATCH_REGION_BORDER_WIDTH = 6.0f;
     public const float PATCH_REGION_MARGIN = 5.0f;

@@ -7,7 +7,7 @@ using Godot;
 using Newtonsoft.Json;
 
 /// <summary>
-///   Base common class with shared editor functionality. Note that most editor functionality is done by
+///   Base, common class with shared editor functionality. Note that most editor functionality is done by
 ///   <see cref="EditorComponentBase{TEditor}"/> derived types.
 /// </summary>
 /// <typeparam name="TAction">Editor action type the action history uses in this editor</typeparam>
@@ -205,6 +205,16 @@ public partial class EditorBase<TAction, TStage> : NodeWithInput, IEditor, ILoad
     /// </summary>
     protected virtual bool HasInProgressAction => throw new GodotAbstractPropertyNotOverriddenException();
 
+    /// <summary>
+    ///   How much time passes each editor cycle
+    /// </summary>
+    /// <remarks>
+    ///   <para>
+    ///     TODO: select which units will be used for the master elapsed time counter
+    ///   </para>
+    /// </remarks>
+    protected virtual double EditorTimeStep => 1;
+
     public override void _Ready()
     {
         base._Ready();
@@ -276,7 +286,7 @@ public partial class EditorBase<TAction, TStage> : NodeWithInput, IEditor, ILoad
             TransitionManager.Instance.AddSequence(ScreenFade.FadeType.FadeOut, 0.5f, OnEditorReady, false, false);
         }
 
-        // Auto save after editor entry is complete
+        // Auto save after the editor entry is complete
         if (TransitionFinished && wantsToSave)
         {
             if (!CurrentGame.FreeBuild)
@@ -294,12 +304,18 @@ public partial class EditorBase<TAction, TStage> : NodeWithInput, IEditor, ILoad
         // for fixing the stuff in order to return there
         // TODO: this could be probably moved now to just happen when it enters the scene first time
         ReturnToStage?.OnFinishLoading(save);
+
+        // We don't use a loading screen when loaded from a save, so handle hiding the loading screen here
+        GD.Print("Hiding loading screen for editor as we were loaded from a save");
+        TransitionManager.Instance.AddSequence(ScreenFade.FadeType.FadeOut, 0.5f, () => LoadingScreen.Instance.Hide(),
+            false, false);
+        TransitionManager.Instance.AddSequence(ScreenFade.FadeType.FadeIn, 0.5f, null, false, false);
     }
 
     /// <summary>
     ///   Tries to start editor apply results and exit
     /// </summary>
-    /// <returns>True if started. False if something is not good and editor can't be exited currently.</returns>
+    /// <returns>True if started. False if something is not good and the editor can't be exited currently.</returns>
     public bool OnFinishEditing(List<EditorUserOverride>? overrides = null)
     {
         // Prevent exiting when the transition hasn't finished
@@ -358,6 +374,62 @@ public partial class EditorBase<TAction, TStage> : NodeWithInput, IEditor, ILoad
     public void DirtyMutationPointsCache()
     {
         mutationPointsCache = null;
+    }
+
+    public void HideTabBar()
+    {
+        if (editorTabSelector == null)
+        {
+            GD.PrintErr("Tab bar not initialized");
+            return;
+        }
+
+        editorTabSelector.Visible = false;
+    }
+
+    public void ShowTabBar(bool animate, double delay = 0)
+    {
+        if (editorTabSelector == null)
+        {
+            GD.PrintErr("Tab bar not initialized");
+            return;
+        }
+
+        if (editorTabSelector.Visible)
+            return;
+
+        if (!animate)
+        {
+            editorTabSelector.Visible = true;
+            return;
+        }
+
+        // Play a quick animation (made with tween to ensure positioning is always correct)
+        var tween = CreateTween();
+        tween.SetEase(Tween.EaseType.InOut);
+        tween.SetTrans(Tween.TransitionType.Quad);
+
+        var target = editorTabSelector.Position;
+        var from = target - new Vector2(0, editorTabSelector.Size.Y + 5);
+
+        if (delay > 0)
+        {
+            // Need to do this kind of hack to ensure the button doesn't briefly become visible at the final position
+            tween.TweenProperty(editorTabSelector, "position", from, 0.01f);
+
+            tween.TweenProperty(editorTabSelector, "visible", true, delay);
+            tween.TweenProperty(editorTabSelector, "position", target, 0.6f).From(from);
+        }
+        else
+        {
+            editorTabSelector.Visible = true;
+            tween.TweenProperty(editorTabSelector, "position", target, 0.6f).From(from);
+        }
+    }
+
+    public void ShowTabBarAfterTutorial()
+    {
+        ShowTabBar(true, 0.5);
     }
 
     public bool HexPlacedThisSession<THex, TContext>(THex hex)
@@ -573,6 +645,14 @@ public partial class EditorBase<TAction, TStage> : NodeWithInput, IEditor, ILoad
         pauseMenu.OpenToSpeciesPage(species);
     }
 
+    public double CalculateNextGenerationTimePoint()
+    {
+        if (currentGame == null)
+            throw new InvalidOperationException("Editor not initialized, missing current game");
+
+        return currentGame.GameWorld.CalculateNextTimeStep(EditorTimeStep);
+    }
+
     protected virtual void ResolveDerivedTypeNodeReferences()
     {
         throw new GodotAbstractMethodNotOverriddenException();
@@ -724,6 +804,7 @@ public partial class EditorBase<TAction, TStage> : NodeWithInput, IEditor, ILoad
 
         GD.Print("Elapsing time on editor entry");
         ElapseEditorEntryTime();
+        UpdatePatchDetails();
 
         // Get summary before applying results in order to get comparisons to the previous populations
         var run = CurrentGame.GameWorld.GetAutoEvoRun();
@@ -792,7 +873,7 @@ public partial class EditorBase<TAction, TStage> : NodeWithInput, IEditor, ILoad
 
     protected IEditorComponent? GetActiveEditorComponent()
     {
-        // Assume first visible editor component is the active one
+        // Assume the first visible editor component is the active one
         foreach (var editorComponent in GetAllEditorComponents())
         {
             if (editorComponent.Visible)
@@ -823,6 +904,15 @@ public partial class EditorBase<TAction, TStage> : NodeWithInput, IEditor, ILoad
     }
 
     protected virtual void ElapseEditorEntryTime()
+    {
+        CurrentGame.GameWorld.OnTimePassed(EditorTimeStep);
+    }
+
+    /// <summary>
+    ///   This method should be called after <see cref="ElapseEditorEntryTime"/> so that any changes to the patches
+    ///   caused by patch events will be updated (such as background)
+    /// </summary>
+    protected virtual void UpdatePatchDetails()
     {
         throw new GodotAbstractMethodNotOverriddenException();
     }

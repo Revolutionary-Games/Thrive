@@ -22,6 +22,7 @@ public partial class MicrobeWorldSimulation : WorldSimulationWithPhysics
     private DamageCooldownSystem damageCooldownSystem = null!;
     private DamageOnTouchSystem damageOnTouchSystem = null!;
     private DisallowPlayerBodySleepSystem disallowPlayerBodySleepSystem = null!;
+    private EntityLightSystem entityLightSystem = null!;
     private EntityMaterialFetchSystem entityMaterialFetchSystem = null!;
     private FadeOutActionSystem fadeOutActionSystem = null!;
     private PathBasedSceneLoader pathBasedSceneLoader = null!;
@@ -156,7 +157,7 @@ public partial class MicrobeWorldSimulation : WorldSimulationWithPhysics
             parallelRunner = new DefaultParallelRunner(1);
         }
 
-        // Set on systems that can be run in parallel but aren't currently as there's no real performance improvement
+        // Set on systems that can be run in parallel but aren't right now as there's no real performance improvement
         // / the system entity count per thread needs tweaking before there's any benefit
         var couldParallelize = new DefaultParallelRunner(1);
 
@@ -168,6 +169,7 @@ public partial class MicrobeWorldSimulation : WorldSimulationWithPhysics
         damageCooldownSystem = new DamageCooldownSystem(EntitySystem, couldParallelize);
         damageOnTouchSystem = new DamageOnTouchSystem(this, EntitySystem, couldParallelize);
         disallowPlayerBodySleepSystem = new DisallowPlayerBodySleepSystem(physics, EntitySystem);
+        entityLightSystem = new EntityLightSystem(EntitySystem);
         entityMaterialFetchSystem = new EntityMaterialFetchSystem(EntitySystem);
         fadeOutActionSystem = new FadeOutActionSystem(this, cloudSystem, EntitySystem, couldParallelize);
         pathBasedSceneLoader = new PathBasedSceneLoader(EntitySystem, nonParallelRunner);
@@ -429,6 +431,7 @@ public partial class MicrobeWorldSimulation : WorldSimulationWithPhysics
                 damageCooldownSystem.Dispose();
                 damageOnTouchSystem.Dispose();
                 disallowPlayerBodySleepSystem.Dispose();
+                entityLightSystem.Dispose();
                 entityMaterialFetchSystem.Dispose();
                 fadeOutActionSystem.Dispose();
                 pathBasedSceneLoader.Dispose();
