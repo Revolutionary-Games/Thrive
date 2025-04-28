@@ -1132,6 +1132,11 @@ public partial class CellEditorComponent :
         toleranceTabButton.Visible = false;
     }
 
+    public bool AreAdvancedTabsVisible()
+    {
+        return growthOrderTabButton.Visible || toleranceTabButton.Visible;
+    }
+
     public void HideAutoEvoPredictionForTutorial()
     {
         autoEvoPredictionPanel.Visible = false;
