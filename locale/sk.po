@@ -8,7 +8,7 @@ msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2025-04-26 10:53+0300\n"
-"PO-Revision-Date: 2025-04-26 09:31+0000\n"
+"PO-Revision-Date: 2025-04-26 10:58+0000\n"
 "Last-Translator: Samuel Haššo <snurka1999@gmail.com>\n"
 "Language-Team: Slovak <https://translate.revolutionarygamesstudio.com/projects/thrive/thrive-game/sk/>\n"
 "Language: sk\n"
@@ -58,25 +58,20 @@ msgstr "Prejsť do štádia prebudenia. Dostupné, keď budete mať dostatok moz
 msgid "ACTION_BLOCKED_WHILE_ANOTHER_IN_PROGRESS"
 msgstr "Akcia je zablokovaná, kým prebieha iná"
 
-#, fuzzy
 msgid "ACTION_DELETE"
-msgstr "Potvrdiť ukončenie"
+msgstr "Vymazať"
 
-#, fuzzy
 msgid "ACTION_DOUBLE_POPULATION"
-msgstr "Populácia druhu"
+msgstr "Násob Populáciu"
 
-#, fuzzy
 msgid "ACTION_DUPLICATE_UNITS"
-msgstr "Potvrdiť ukončenie"
+msgstr "Duplikuj Jednotky"
 
-#, fuzzy
 msgid "ACTION_HALF_POPULATION"
-msgstr "Celková populácia:"
+msgstr "Celková populácia"
 
-#, fuzzy
 msgid "ACTION_TELEPORT"
-msgstr "Potvrdiť ukončenie"
+msgstr "Presuň"
 
 msgid "ACTIVE"
 msgstr "Aktívny"
@@ -86,12 +81,14 @@ msgstr "Súčasné vlákna:"
 
 msgid "ACTIVITY_EXPLANATION"
 msgstr ""
+"Aktívne mikróby budú utekať a zmätkovať, keď sa nič zaujímavé nebude diať.\n"
+"Spiace mikróby budú nehybné čakať, kým sa zmení prostredie, než začnú konať."
 
 msgid "ADDITIONAL_VALIDATION_FAILED"
 msgstr "Pri dodatočných validáciách bol zistený problém: {0}"
 
 msgid "ADD_INPUT_BUTTON_TOOLTIP"
-msgstr ""
+msgstr "Pridať novú klávesu"
 
 msgid "ADVANCED_VIEW"
 msgstr "Rozšírené"
@@ -99,30 +96,30 @@ msgstr "Rozšírené"
 msgid "ADVANCED_VIEW_BUTTON_TOOLTIP"
 msgstr "Otvoriť zobrazenie rozšírených nastavení"
 
-#, fuzzy
 msgid "AEROBIC_NITROGEN_FIXATION"
-msgstr "Anaeróbna fixácia dusíka"
+msgstr "Aeróbna fixácia dusíka"
 
 msgid "AEROBIC_NITROGEN_FIXING"
 msgstr "Aeróbna fixácia dusíka"
 
-#, fuzzy
 msgid "AEROBIC_RESPIRATION"
 msgstr "Aeróbne Dýchanie"
 
 msgid "AGENTS"
 msgstr "Činidlo"
 
-#, fuzzy
 msgid "AGENTS_COLON"
 msgstr "Autor:"
 
-#, fuzzy
 msgid "AGENT_NAME"
-msgstr "{0} {1}"
+msgstr "{0} Autor"
 
 msgid "AGGRESSION_EXPLANATION"
 msgstr ""
+"Agresívne mikróby budú prenasledovať korisť na väčšie vzdialenosti\n"
+"a pri útoku s väčšou pravdepodobnosťou budú bojovať s predátormi.\n"
+"Pokojné mikróby nebudú útočiť na ostatných na väčšie vzdialenosti\n"
+"a je menej pravdepodobné, že budú používať toxíny proti predátorom."
 
 msgid "AGGRESSIVE"
 msgstr "Agresívny"
@@ -136,17 +133,14 @@ msgstr "(rýchlosť, akou druhy AI mutujú)"
 msgid "ALL"
 msgstr "Všetko"
 
-#, fuzzy
 msgid "ALLOW_SPECIES_SWITCH_ON_EXTINCTION"
-msgstr "zmutoval"
+msgstr "Povoliť prechod na príbuzné druhy pri vyhynutí"
 
-#, fuzzy
 msgid "ALLOW_SPECIES_SWITCH_ON_EXTINCTION_EXPLANATION"
-msgstr "(začiatočná poloha)"
+msgstr "(umožňuje pokračovať v hre s iným druhom po vyhynutí namiesto ukončenia hry)"
 
-#, fuzzy
 msgid "ALL_WORLDS_GENERAL_STATISTICS"
-msgstr "Štatistika organizmu"
+msgstr "Všeobecná štatistika všetkých svetov"
 
 #, fuzzy
 msgid "ALL_WORLDS_STATISTICS"
