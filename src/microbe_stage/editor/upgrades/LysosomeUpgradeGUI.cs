@@ -9,6 +9,7 @@ public partial class LysosomeUpgradeGUI : VBoxContainer, IOrganelleUpgrader
 #pragma warning disable CA2213
     [Export]
     private OptionButton enzymes = null!;
+
     [Export]
     private Label description = null!;
 #pragma warning restore CA2213

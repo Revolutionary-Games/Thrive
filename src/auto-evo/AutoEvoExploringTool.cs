@@ -25,93 +25,122 @@ public partial class AutoEvoExploringTool : NodeWithInput, ISpeciesDataProvider
     // Tabs
     [Export]
     private Control worldTab = null!;
+
     [Export]
     private Control configTab = null!;
+
     [Export]
     private Control historyReportSplit = null!;
+
     [Export]
     private Control speciesSelectPanel = null!;
+
     [Export]
     private Control mapTab = null!;
+
     [Export]
     private Control reportTab = null!;
+
     [Export]
     private Control viewerTab = null!;
+
     [Export]
     private Control micheTab = null!;
 
     // World controls
     [Export]
     private CustomRichTextLabel allWorldsStatisticsLabel = null!;
+
     [Export]
     private CustomDropDown worldsListMenu = null!;
+
     [Export]
     private TextureButton newWorldButton = null!;
+
     [Export]
     private CustomRichTextLabel currentWorldStatisticsLabel = null!;
+
     [Export]
     private Button worldExportButton = null!;
 
     // Auto-evo parameters controls.
     [Export]
     private SpinBox moveAttemptsPerSpeciesSpinBox = null!;
+
     [Export]
     private SpinBox mutationsPerSpeciesSpinBox = null!;
+
     [Export]
     private CheckBox strictNicheCompetitionCheckBox = null!;
 
     // Status controls
     [Export]
     private Label runStatusLabel = null!;
+
     [Export]
     private SpinBox finishXGenerationsSpinBox = null!;
+
     [Export]
     private Button finishXGenerationsButton = null!;
+
     [Export]
     private SpinBox runXWorldsSpinBox = null!;
+
     [Export]
     private Button runXWorldsButton = null!;
+
     [Export]
     private Button finishOneGenerationButton = null!;
+
     [Export]
     private Button runOneStepButton = null!;
+
     [Export]
     private Button abortButton = null!;
+
     [Export]
     private Button playWithCurrentSettingButton = null!;
 
     // Report controls
     [Export]
     private CustomRichTextLabel autoEvoResultsLabel = null!;
+
     [Export]
     private CustomDropDown historyListMenu = null!;
 
     // Map controls
     [Export]
     private PatchMapDrawer patchMapDrawer = null!;
+
     [Export]
     private PatchDetailsPanel patchDetailsPanel = null!;
 
     // Viewer controls
     [Export]
     private CustomDropDown speciesListMenu = null!;
+
     [Export]
     private EvolutionaryTree evolutionaryTree = null!;
+
     [Export]
     private SpeciesDetailsPanelWithFossilisation speciesDetailsPanelWithFossilisation = null!;
 
     // Miche controls
     [Export]
     private CustomDropDown patchListMenu = null!;
+
     [Export]
     private MicheTree micheTree = null!;
+
     [Export]
     private MicheDetailsPanel micheDetailsPanel = null!;
+
     [Export]
     private SpeciesDetailsPanel micheSpeciesDetailsPanel = null!;
 
     [Export]
     private CustomConfirmationDialog exitConfirmationDialog = null!;
+
     [Export]
     private CustomConfirmationDialog exportSuccessNotificationDialog = null!;
 #pragma warning restore CA2213

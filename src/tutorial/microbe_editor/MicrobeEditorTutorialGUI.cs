@@ -9,30 +9,43 @@ public partial class MicrobeEditorTutorialGUI : Control, ITutorialGUI
 #pragma warning disable CA2213
     [Export]
     private CustomWindow editorEntryReport = null!;
+
     [Export]
     private CustomWindow patchMap = null!;
+
     [Export]
     private CustomWindow cellEditorIntroduction = null!;
+
     [Export]
     private CustomWindow cellEditorUndo = null!;
+
     [Export]
     private CustomWindow cellEditorRedo = null!;
+
     [Export]
     private CustomWindow cellEditorClosingWords = null!;
+
     [Export]
     private CustomWindow autoEvoPrediction = null!;
+
     [Export]
     private CustomWindow staySmallTutorial = null!;
+
     [Export]
     private CustomWindow negativeAtpBalanceTutorial = null!;
+
     [Export]
     private CustomWindow chemoreceptorPlacementTutorial = null!;
+
     [Export]
     private CustomWindow madeNoChangesTutorial = null!;
+
     [Export]
     private CustomWindow flagellumPlacementTutorial = null!;
+
     [Export]
     private CustomWindow modifyOrganelleTutorial = null!;
+
     [Export]
     private CustomWindow atpBalanceIntroduction = null!;
 

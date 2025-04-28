@@ -9,6 +9,7 @@ public partial class BuildQueueItemGUI : VBoxContainer
 #pragma warning disable CA2213
     [Export]
     private ProgressBar progressBar = null!;
+
     [Export]
     private Label nameLabel = null!;
 #pragma warning restore CA2213

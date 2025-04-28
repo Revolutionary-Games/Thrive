@@ -14,22 +14,31 @@ public partial class SlideScreen : TopLevelContainer
 #pragma warning disable CA2213
     [Export]
     private CrossFadableTextureRect slideTextureRect = null!;
+
     [Export]
     private Control toolbar = null!;
+
     [Export]
     private Button closeButton = null!;
+
     [Export]
     private Button slideShowModeButton = null!;
+
     [Export]
     private Label slideTitleLabel = null!;
+
     [Export]
     private CrossFadableGalleryViewport modelViewerContainer = null!;
+
     [Export]
     private SubViewport modelViewer = null!;
+
     [Export]
     private Node3D modelHolder = null!;
+
     [Export]
     private OrbitCamera modelViewerCamera = null!;
+
     [Export]
     private PlaybackControls playbackControls = null!;
 #pragma warning restore CA2213

@@ -10,8 +10,10 @@ public partial class PatchExtinctionBox : Control
 #pragma warning disable CA2213
     [Export]
     private PatchMapDrawer mapDrawer = null!;
+
     [Export]
     private PatchDetailsPanel detailsPanel = null!;
+
     [Export]
     private AnimationPlayer animationPlayer = null!;
 #pragma warning restore CA2213

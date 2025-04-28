@@ -19,6 +19,7 @@ public partial class ThriveFeedDisplayer : VBoxContainer
 
     [Export]
     private Container newsContainer = null!;
+
     [Export]
     private Control loadingIndicator = null!;
 

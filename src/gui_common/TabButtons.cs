@@ -37,20 +37,25 @@ public partial class TabButtons : HBoxContainer
 #pragma warning disable CA2213
     [Export]
     private Container? leftContainer;
+
     [Export]
     private Control leftPadding = null!;
+
     [Export]
     private KeyPrompt? leftButtonIndicator;
 
     [Export]
     private Container rightContainer = null!;
+
     [Export]
     private Control rightPadding = null!;
+
     [Export]
     private KeyPrompt rightButtonIndicator = null!;
 
     [Export]
     private Container tabButtonsContainer = null!;
+
     [Export]
     private Container tabButtonsContainerNoWrap = null!;
 #pragma warning restore CA2213

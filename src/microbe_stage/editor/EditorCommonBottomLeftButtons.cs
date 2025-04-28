@@ -9,6 +9,7 @@ public partial class EditorCommonBottomLeftButtons : MarginContainer
 #pragma warning disable CA2213
     [Export]
     private TextureButton menuButton = null!;
+
     [Export]
     private TextureButton helpButton = null!;
 #pragma warning restore CA2213

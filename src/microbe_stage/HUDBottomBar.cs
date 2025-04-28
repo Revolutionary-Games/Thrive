@@ -35,10 +35,13 @@ public partial class HUDBottomBar : HBoxContainer
 
     [Export]
     private TextureButton? compoundsButton;
+
     [Export]
     private TextureButton? environmentButton;
+
     [Export]
     private TextureButton? processPanelButton;
+
     [Export]
     private TextureButton? suicideButton;
 #pragma warning restore CA2213

@@ -14,6 +14,7 @@ public partial class InputGroupList : VBoxContainer
 #pragma warning disable CA2213
     [Export]
     private CustomConfirmationDialog conflictDialog = null!;
+
     [Export]
     private CustomConfirmationDialog resetInputsDialog = null!;
 

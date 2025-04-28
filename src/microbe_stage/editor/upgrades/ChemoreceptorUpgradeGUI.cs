@@ -11,20 +11,28 @@ public partial class ChemoreceptorUpgradeGUI : VBoxContainer, IOrganelleUpgrader
 #pragma warning disable CA2213
     [Export]
     private OptionButton targetTypeSelector = null!;
+
     [Export]
     private OptionButton compoundsSelector = null!;
+
     [Export]
     private Label compoundLabel = null!;
+
     [Export]
     private OptionButton speciesSelector = null!;
+
     [Export]
     private Label speciesLabel = null!;
+
     [Export]
     private Slider maximumDistanceSlider = null!;
+
     [Export]
     private Slider minimumAmountSlider = null!;
+
     [Export]
     private Label minimumAmountLabel = null!;
+
     [Export]
     private TweakedColourPicker colourSelector = null!;
 #pragma warning restore CA2213

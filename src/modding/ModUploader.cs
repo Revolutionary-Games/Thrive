@@ -18,37 +18,49 @@ public partial class ModUploader : Control
 
     [Export]
     private Control unknownItemActions = null!;
+
     [Export]
     private Button createNewButton = null!;
 
     [Export]
     private Button showManualEnterId = null!;
+
     [Export]
     private LineEdit manualIdEntry = null!;
+
     [Export]
     private Button acceptManualId = null!;
+
     [Export]
     private Control manualEnterIdSection = null!;
 
     [Export]
     private Control detailsEditor = null!;
+
     [Export]
     private LineEdit editedTitle = null!;
+
     [Export]
     private TextEdit editedDescription = null!;
+
     [Export]
     private CheckBox editedVisibility = null!;
+
     [Export]
     private LineEdit editedTags = null!;
+
     [Export]
     private TextureRect previewImageRect = null!;
+
     [Export]
     private Label toBeUploadedContentLocation = null!;
+
     [Export]
     private TextEdit changeNotes = null!;
 
     [Export]
     private CustomWindow uploadSucceededDialog = null!;
+
     [Export]
     private CustomRichTextLabel uploadSucceededText = null!;
 
@@ -57,6 +69,7 @@ public partial class ModUploader : Control
 
     [Export]
     private CustomRichTextLabel workshopNotice = null!;
+
     [Export]
     private Label errorDisplay = null!;
 #pragma warning restore CA2213

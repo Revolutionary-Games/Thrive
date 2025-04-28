@@ -40,6 +40,7 @@ public partial class PatchMapNode : MarginContainer
     /// </summary>
     [Export]
     private Panel adjacentHighlightPanel = null!;
+
     [Export]
     private Label unknownLabel = null!;
 

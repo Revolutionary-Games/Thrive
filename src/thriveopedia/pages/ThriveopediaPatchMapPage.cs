@@ -14,8 +14,10 @@ public partial class ThriveopediaPatchMapPage : ThriveopediaPage, IThriveopediaP
 #pragma warning disable CA2213
     [Export]
     private PatchMapDrawer mapDrawer = null!;
+
     [Export]
     private PatchDetailsPanel detailsPanel = null!;
+
     [Export]
     private Label seedLabel = null!;
 #pragma warning restore CA2213

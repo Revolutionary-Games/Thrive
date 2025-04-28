@@ -19,6 +19,7 @@ public partial class ControllerDeadzoneConfiguration : CustomWindow
 
     [Export]
     private Button startButton = null!;
+
     [Export]
     private Button applyButton = null!;
 

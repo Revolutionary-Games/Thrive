@@ -14,12 +14,16 @@ public partial class BehaviourEditorSubComponent : EditorComponentBase<ICellEdit
 #pragma warning disable CA2213
     [Export]
     private Slider aggressionSlider = null!;
+
     [Export]
     private Slider opportunismSlider = null!;
+
     [Export]
     private Slider fearSlider = null!;
+
     [Export]
     private Slider activitySlider = null!;
+
     [Export]
     private Slider focusSlider = null!;
 #pragma warning restore CA2213

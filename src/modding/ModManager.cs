@@ -20,32 +20,43 @@ public partial class ModManager : Control
 #pragma warning disable CA2213
     [Export]
     private Button leftArrow = null!;
+
     [Export]
     private Button rightArrow = null!;
 
     [Export]
     private ItemList availableModsContainer = null!;
+
     [Export]
     private ItemList enabledModsContainer = null!;
 
     [Export]
     private Button openModInfoButton = null!;
+
     [Export]
     private Button openModUrlButton = null!;
+
     [Export]
     private Button disableAllModsButton = null!;
+
     [Export]
     private Label selectedModName = null!;
+
     [Export]
     private TextureRect selectedModIcon = null!;
+
     [Export]
     private Label selectedModAuthor = null!;
+
     [Export]
     private Label selectedModVersion = null!;
+
     [Export]
     private Label selectedModRecommendedThriveVersion = null!;
+
     [Export]
     private Label selectedModMinimumThriveVersion = null!;
+
     [Export]
     private Label selectedModDescription = null!;
 
@@ -57,43 +68,61 @@ public partial class ModManager : Control
 
     [Export]
     private CustomWindow modFullInfoPopup = null!;
+
     [Export]
     private Label fullInfoName = null!;
+
     [Export]
     private Label fullInfoInternalName = null!;
+
     [Export]
     private Label fullInfoAuthor = null!;
+
     [Export]
     private Label fullInfoVersion = null!;
+
     [Export]
     private Label fullInfoDescription = null!;
+
     [Export]
     private Label fullInfoLongDescription = null!;
+
     [Export]
     private Label fullInfoFromWorkshop = null!;
+
     [Export]
     private Label fullInfoIconFile = null!;
+
     [Export]
     private Label fullInfoInfoUrl = null!;
+
     [Export]
     private Label fullInfoLicense = null!;
+
     [Export]
     private Label fullInfoRecommendedThrive = null!;
+
     [Export]
     private Label fullInfoMinimumThrive = null!;
+
     [Export]
     private Label fullInfoMaximumThrive = null!;
+
     [Export]
     private Label fullInfoPckName = null!;
+
     [Export]
     private Label fullInfoModAssembly = null!;
+
     [Export]
     private Label fullInfoAssemblyModClass = null!;
+
     [Export]
     private Label fullInfoAutoHarmony = null!;
 
     [Export]
     private Button openWorkshopButton = null!;
+
     [Export]
     private Button modUploaderButton = null!;
 

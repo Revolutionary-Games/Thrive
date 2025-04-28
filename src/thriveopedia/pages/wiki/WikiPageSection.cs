@@ -9,8 +9,10 @@ public partial class WikiPageSection : VBoxContainer
 #pragma warning disable CA2213
     [Export]
     private Label? heading;
+
     [Export]
     private HSeparator? separator;
+
     [Export]
     private CustomRichTextLabel? body;
 #pragma warning restore CA2213

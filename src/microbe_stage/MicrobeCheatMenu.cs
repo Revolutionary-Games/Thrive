@@ -8,24 +8,34 @@ public partial class MicrobeCheatMenu : CheatMenu
 #pragma warning disable CA2213
     [Export]
     private CheckBox infiniteCompounds = null!;
+
     [Export]
     private CheckBox godMode = null!;
+
     [Export]
     private CheckBox disableAI = null!;
+
     [Export]
     private CheckBox unlimitGrowthSpeed = null!;
+
     [Export]
     private CheckBox lockTime = null!;
+
     [Export]
     private Slider speed = null!;
+
     [Export]
     private Button playerDivide = null!;
+
     [Export]
     private Button spawnEnemy = null!;
+
     [Export]
     private Button despawnAllEntities = null!;
+
     [Export]
     private CheckBox manuallySetTime = null!;
+
     [Export]
     private Slider targetTime = null!;
 #pragma warning restore CA2213

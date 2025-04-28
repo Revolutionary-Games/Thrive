@@ -17,6 +17,7 @@ public partial class StrategicUnitScreen<T> : CustomWindow
 #pragma warning disable CA2213
     [Export]
     protected Container actionButtonsContainer = null!;
+
     [Export]
     protected Container? unitListContainer;
 #pragma warning restore CA2213

@@ -13,13 +13,16 @@ public partial class OrganelleUpgradeGUI : Control
 #pragma warning disable CA2213
     [Export]
     private CustomConfirmationDialog popup = null!;
+
     [Export]
     private Container organelleSpecificContent = null!;
+
     [Export]
     private ScrollContainer scrollContainer = null!;
 
     [Export]
     private Control generalUpgradesContainer = null!;
+
     [Export]
     private Container upgradeSelectorButtonsContainer = null!;
 

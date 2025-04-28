@@ -51,6 +51,7 @@ public partial class PhotoStudio : SubViewport
 
     [Export]
     private Camera3D camera = null!;
+
     [Export]
     private Node3D renderedObjectHolder = null!;
 

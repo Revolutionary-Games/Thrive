@@ -48,18 +48,22 @@ public partial class MainMenu : NodeWithInput
     private AnimationPlayer guiAnimations = null!;
     private SaveManagerGUI saves = null!;
     private Thriveopedia thriveopedia = null!;
+
     [Export]
     private ModManager modManager = null!;
+
     [Export]
     private GalleryViewer galleryViewer = null!;
 
     [Export]
     private ThriveFeedDisplayer newsFeed = null!;
+
     [Export]
     private Control newsFeedDisabler = null!;
 
     [Export]
     private PatchNotesDisplayer patchNotes = null!;
+
     [Export]
     private Control patchNotesDisabler = null!;
 
@@ -68,16 +72,22 @@ public partial class MainMenu : NodeWithInput
 
     [Export]
     private Control creditsContainer = null!;
+
     [Export]
     private CreditsScroll credits = null!;
+
     [Export]
     private LicensesDisplay licensesDisplay = null!;
+
     [Export]
     private Button freebuildButton = null!;
+
     [Export]
     private Button multicellularFreebuildButton = null!;
+
     [Export]
     private Button autoEvoExploringButton = null!;
+
     [Export]
     private Button microbeBenchmarkButton = null!;
 
@@ -95,6 +105,7 @@ public partial class MainMenu : NodeWithInput
 
     [Export]
     private TextureButton itchButton = null!;
+
     [Export]
     private TextureButton patreonButton = null!;
 
@@ -112,8 +123,10 @@ public partial class MainMenu : NodeWithInput
 
     [Export]
     private PermanentlyDismissibleDialog modsInstalledButNotEnabledWarning = null!;
+
     [Export]
     private PermanentlyDismissibleDialog lowPerformanceWarning = null!;
+
     [Export]
     private PermanentlyDismissibleDialog thanksDialog = null!;
 

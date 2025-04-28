@@ -15,6 +15,7 @@ public partial class GalleryCard : Button
 #pragma warning disable CA2213
     [Export]
     private Label titleLabel = null!;
+
     [Export]
     private TextureRect imagePreview = null!;
     private Texture2D? thumbnail;

@@ -8,6 +8,7 @@ public partial class PatchNameOverlay : PanelContainer
 #pragma warning disable CA2213
     [Export]
     private Label patchLabel = null!;
+
     [Export]
     private AnimationPlayer patchOverlayAnimator = null!;
 #pragma warning restore CA2213

@@ -14,8 +14,10 @@ public partial class InteractablePopup : Control
 
     [Export]
     private CustomWindow popup = null!;
+
     [Export]
     private Container buttonsContainer = null!;
+
     [Export]
     private Button cancelButton = null!;
 

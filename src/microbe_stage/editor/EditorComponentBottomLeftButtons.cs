@@ -20,13 +20,16 @@ public partial class EditorComponentBottomLeftButtons : MarginContainer
 #pragma warning disable CA2213
     [Export]
     private TextureButton? newButton;
+
     [Export]
     private LineEdit speciesNameEdit = null!;
+
     [Export]
     private TextureButton? randomizeNameButton;
 
     [Export]
     private TextureButton symmetryButton = null!;
+
     [Export]
     private TextureRect symmetryIcon = null!;
 

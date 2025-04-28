@@ -11,10 +11,13 @@ public partial class HexPopupMenu : CustomPopupMenu
 #pragma warning disable CA2213
     [Export]
     protected Label? titleLabel;
+
     [Export]
     protected Button? deleteButton;
+
     [Export]
     protected Button? moveButton;
+
     [Export]
     protected Button? modifyButton;
 #pragma warning restore CA2213

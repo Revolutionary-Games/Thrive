@@ -48,8 +48,10 @@ public partial class CellEditorComponent :
     // Selection menu tab selector buttons
     [Export]
     private Button structureTabButton = null!;
+
     [Export]
     private Button appearanceTabButton = null!;
+
     [Export]
     private Button behaviourTabButton = null!;
 
@@ -61,6 +63,7 @@ public partial class CellEditorComponent :
 
     [Export]
     private PanelContainer structureTab = null!;
+
     [Export]
     private PanelContainer appearanceTab = null!;
 
@@ -90,15 +93,19 @@ public partial class CellEditorComponent :
 
     [Export]
     private VBoxContainer partsSelectionContainer = null!;
+
     [Export]
     private CollapsibleList membraneTypeSelection = null!;
 
     [Export]
     private CellStatsIndicator totalEnergyLabel = null!;
+
     [Export]
     private Label autoEvoPredictionFailedLabel = null!;
+
     [Export]
     private Label bestPatchLabel = null!;
+
     [Export]
     private Label worstPatchLabel = null!;
 
@@ -113,6 +120,7 @@ public partial class CellEditorComponent :
 
     [Export]
     private Slider rigiditySlider = null!;
+
     [Export]
     private TweakedColourPicker membraneColorPicker = null!;
 
@@ -130,6 +138,7 @@ public partial class CellEditorComponent :
 
     [Export]
     private OrganellePopupMenu organelleMenu = null!;
+
     [Export]
     private OrganelleUpgradeGUI organelleUpgradeGUI = null!;
 
@@ -147,6 +156,7 @@ public partial class CellEditorComponent :
 
     [Export]
     private CustomWindow autoEvoPredictionExplanationPopup = null!;
+
     [Export]
     private CustomRichTextLabel autoEvoPredictionExplanationLabel = null!;
 

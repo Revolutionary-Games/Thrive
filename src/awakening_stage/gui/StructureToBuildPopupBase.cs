@@ -16,8 +16,10 @@ public partial class StructureToBuildPopupBase<TSelection> : Control
 #pragma warning disable CA2213
     [Export]
     protected CustomWindow popup = null!;
+
     [Export]
     protected Container buttonsContainer = null!;
+
     [Export]
     protected Button cancelButton = null!;
 

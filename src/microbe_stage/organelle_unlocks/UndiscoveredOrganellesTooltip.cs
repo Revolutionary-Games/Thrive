@@ -8,6 +8,7 @@ public partial class UndiscoveredOrganellesTooltip : Control, ICustomToolTip
 #pragma warning disable CA2213
     [Export]
     private Label? nameLabel;
+
     [Export]
     private CustomRichTextLabel? unlockTextLabel;
 #pragma warning restore CA2213

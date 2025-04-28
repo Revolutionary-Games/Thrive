@@ -11,16 +11,22 @@ public partial class MutationPointsBar : HBoxContainer
 #pragma warning disable CA2213
     [Export]
     private Label currentMutationPointsLabel = null!;
+
     [Export]
     private TextureRect mutationPointsArrow = null!;
+
     [Export]
     private Label resultingMutationPointsLabel = null!;
+
     [Export]
     private Label baseMutationPointsLabel = null!;
+
     [Export]
     private ProgressBar mutationPointsBar = null!;
+
     [Export]
     private ProgressBar mutationPointsSubtractBar = null!;
+
     [Export]
     private AnimationPlayer animationPlayer = null!;
 #pragma warning restore CA2213

@@ -31,9 +31,11 @@ public partial class GalleryViewer : CustomWindow
 
     [Export]
     private TabButtons tabButtons = null!;
+
     [Export]
     private OptionButton assetsCategoryDropdown = null!;
     private SlideScreen slideScreen = null!;
+
     [Export]
     private Button slideshowButton = null!;
 

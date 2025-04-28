@@ -22,42 +22,61 @@ public partial class MicrobeTutorialGUI : Control, ITutorialGUI
 
     [Export]
     private Control microbeMovementKeyPrompts = null!;
+
     [Export]
     private Control microbeMovementKeyForward = null!;
+
     [Export]
     private Control microbeMovementKeyLeft = null!;
+
     [Export]
     private Control microbeMovementKeyRight = null!;
+
     [Export]
     private Control microbeMovementKeyBackwards = null!;
+
     [Export]
     private CustomWindow microbeMovementPopup = null!;
+
     [Export]
     private CustomWindow glucoseTutorial = null!;
+
     [Export]
     private CustomWindow stayingAlive = null!;
+
     [Export]
     private CustomWindow reproductionTutorial = null!;
+
     [Export]
     private CustomWindow editorButtonTutorial = null!;
+
     [Export]
     private CustomWindow unbindTutorial = null!;
+
     [Export]
     private CustomWindow checkTheHelpMenu = null!;
+
     [Export]
     private CustomWindow engulfmentExplanation = null!;
+
     [Export]
     private CustomWindow engulfedExplanation = null!;
+
     [Export]
     private CustomWindow engulfmentFullCapacity = null!;
+
     [Export]
     private CustomWindow leaveColonyTutorial = null!;
+
     [Export]
     private CustomWindow multicellularWelcome = null!;
+
     [Export]
     private CustomWindow dayNightTutorial = null!;
+
     [Export]
     private CustomWindow becomeMulticellularTutorial = null!;
+
     [Export]
     private CustomWindow organelleDivisionTutorial = null!;
 

@@ -8,6 +8,7 @@ public partial class SpeciesPreviewTooltip : PanelContainer, ICustomToolTip
 #pragma warning disable CA2213
     [Export]
     private SpeciesPreview? speciesPreview;
+
     [Export]
     private CellHexesPreview? hexesPreview;
 #pragma warning restore CA2213

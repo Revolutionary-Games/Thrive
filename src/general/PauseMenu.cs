@@ -9,14 +9,19 @@ public partial class PauseMenu : TopLevelContainer
 #pragma warning disable CA2213
     [Export]
     private Control primaryMenu = null!;
+
     [Export]
     private Thriveopedia thriveopedia = null!;
+
     [Export]
     private Control loadMenu = null!;
+
     [Export]
     private OptionsMenu optionsMenu = null!;
+
     [Export]
     private NewSaveMenu saveMenu = null!;
+
     [Export]
     private CustomConfirmationDialog unsavedProgressWarning = null!;
     private AnimationPlayer animationPlayer = null!;

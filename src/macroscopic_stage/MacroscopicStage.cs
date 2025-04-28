@@ -21,6 +21,7 @@ public partial class MacroscopicStage : CreatureStageBase<MacroscopicCreature, D
 #pragma warning disable CA2213
     [Export]
     private InteractableSystem interactableSystem = null!;
+
     [Export]
     private InteractablePopup interactionPopup = null!;
 

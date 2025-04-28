@@ -8,6 +8,7 @@ public partial class ThriveopediaOrganellesRootPage : ThriveopediaWikiPage
 {
 #pragma warning disable CA2213
     private PackedScene linkButtonScene = null!;
+
     [Export]
     private HFlowContainer organelleListContainer = null!;
 #pragma warning restore CA2213

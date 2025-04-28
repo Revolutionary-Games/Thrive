@@ -15,10 +15,13 @@ public partial class MicrobeEditorTabButtons : MarginContainer
     // Editor tab selector buttons
     [Export]
     private Button reportTabButton = null!;
+
     [Export]
     private Button patchMapButton = null!;
+
     [Export]
     private Button cellEditorButton = null!;
+
     [Export]
     private Button cellTypeTab = null!;
 #pragma warning restore CA2213

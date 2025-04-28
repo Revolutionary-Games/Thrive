@@ -16,10 +16,13 @@ public partial class VacuoleUpgradeGUI : VBoxContainer, IOrganelleUpgrader
 #pragma warning disable CA2213
     [Export]
     private OptionButton compounds = null!;
+
     [Export]
     private Label description = null!;
+
     [Export]
     private CheckBox isSpecializedCheckbox = null!;
+
     [Export]
     private VBoxContainer compoundSelection = null!;
 #pragma warning restore CA2213

@@ -9,6 +9,7 @@ public partial class IconPageLinkButton : VBoxContainer
 #pragma warning disable CA2213
     [Export]
     private Button button = null!;
+
     [Export]
     private Label label = null!;
 #pragma warning restore CA2213

@@ -15,11 +15,13 @@ public partial class PatchNotesDisplayer : VBoxContainer
 
     [Export]
     private Label title = null!;
+
     [Export]
     private Label newVersionsCountLabel = null!;
 
     [Export]
     private Button viewAllButton = null!;
+
     [Export]
     private Button viewAllButtonOutsideScroll = null!;
 #pragma warning restore CA2213

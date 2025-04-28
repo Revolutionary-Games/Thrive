@@ -8,6 +8,7 @@ public partial class ExtinctionBox : CustomWindow
 #pragma warning disable CA2213
     [Export]
     private Control extinctionMenu = null!;
+
     [Export]
     private Control loadMenu = null!;
 

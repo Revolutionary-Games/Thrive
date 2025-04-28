@@ -8,8 +8,10 @@ public partial class ThriveopediaCurrentWorldPage : ThriveopediaPage, IThriveope
 #pragma warning disable CA2213
     [Export]
     private RichTextLabel difficultyDetails = null!;
+
     [Export]
     private RichTextLabel planetDetails = null!;
+
     [Export]
     private RichTextLabel miscDetails = null!;
 #pragma warning restore CA2213

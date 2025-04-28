@@ -10,8 +10,10 @@ public partial class MuseumCard : Button
 #pragma warning disable CA2213
     [Export]
     private Label? speciesNameLabel;
+
     [Export]
     private TextureRect? speciesPreview;
+
     [Export]
     private TextureButton deleteButton = null!;
 

@@ -14,24 +14,34 @@ public partial class SaveManagerGUI : Control
 #pragma warning disable CA2213
     [Export]
     private SaveList saveList = null!;
+
     [Export]
     private Label selectedItemCount = null!;
+
     [Export]
     private Label totalSaveCount = null!;
+
     [Export]
     private Label totalSaveSize = null!;
+
     [Export]
     private Button loadButton = null!;
+
     [Export]
     private Button deleteSelectedButton = null!;
+
     [Export]
     private Button deleteOldButton = null!;
+
     [Export]
     private CustomConfirmationDialog deleteSelectedConfirmDialog = null!;
+
     [Export]
     private CustomConfirmationDialog deleteOldConfirmDialog = null!;
+
     [Export]
     private CustomConfirmationDialog saveDirectoryWarningDialog = null!;
+
     [Export]
     private CustomConfirmationDialog errorSaveDeletionFailed = null!;
 #pragma warning restore CA2213

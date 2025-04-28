@@ -22,20 +22,28 @@ public partial class ControllerAxisVisualizer : MarginContainer
 #pragma warning disable CA2213
     [Export]
     private Control drawerNode = null!;
+
     [Export]
     private Label horizontalLabel = null!;
+
     [Export]
     private Label horizontalRawValue = null!;
+
     [Export]
     private Label horizontalDeadzoneValue = null!;
+
     [Export]
     private Label verticalLabel = null!;
+
     [Export]
     private Label verticalRawValue = null!;
+
     [Export]
     private Label verticalDeadzoneValue = null!;
+
     [Export]
     private Control verticalRawDisplayer = null!;
+
     [Export]
     private Control verticalDeadzoneDisplayer = null!;
 #pragma warning restore CA2213

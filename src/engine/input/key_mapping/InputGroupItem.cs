@@ -13,6 +13,7 @@ public partial class InputGroupItem : VBoxContainer
 #pragma warning disable CA2213
     [Export]
     private Label? inputGroupHeader;
+
     [Export]
     private VBoxContainer inputActionsContainer = null!;
 #pragma warning restore CA2213

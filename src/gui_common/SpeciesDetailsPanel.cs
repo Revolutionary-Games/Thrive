@@ -8,8 +8,10 @@ public partial class SpeciesDetailsPanel : MarginContainer
 #pragma warning disable CA2213
     [Export]
     public SpeciesPreview SpeciesPreview = null!;
+
     [Export]
     private CustomRichTextLabel? speciesDetailsLabel;
+
     [Export]
     private CellHexesPreview hexesPreview = null!;
 #pragma warning restore CA2213

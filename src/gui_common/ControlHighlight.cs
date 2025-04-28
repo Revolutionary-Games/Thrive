@@ -16,10 +16,13 @@ public partial class ControlHighlight : Control
 #pragma warning disable CA2213
     [Export]
     private Control leftPlane = null!;
+
     [Export]
     private Control topPlane = null!;
+
     [Export]
     private Control rightPlane = null!;
+
     [Export]
     private Control bottomPlane = null!;
 #pragma warning restore CA2213

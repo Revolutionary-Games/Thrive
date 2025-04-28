@@ -18,24 +18,34 @@ public partial class SaveListItem : PanelContainer
 #pragma warning disable CA2213
     [Export]
     private Label? saveNameLabel;
+
     [Export]
     private TextureRect screenshot = null!;
+
     [Export]
     private Label version = null!;
+
     [Export]
     private Label versionWarning = null!;
+
     [Export]
     private Label type = null!;
+
     [Export]
     private Label createdAt = null!;
+
     [Export]
     private Label createdBy = null!;
+
     [Export]
     private Label createdOnPlatform = null!;
+
     [Export]
     private Label description = null!;
+
     [Export]
     private Button loadButton = null!;
+
     [Export]
     private Panel? highlightPanel;
 #pragma warning restore CA2213

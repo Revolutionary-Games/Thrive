@@ -15,8 +15,10 @@ public partial class SpaceStage : StrategyStageBase, ISocietyStructureDataAccess
 
     [Export]
     private CustomConfirmationDialog ascensionMoveConfirmationPopup = null!;
+
     [Export]
     private AscensionCongratulationsPopup ascensionCongratulationsPopup = null!;
+
     [Export]
     private DescendConfirmationDialog descendConfirmationPopup = null!;
 

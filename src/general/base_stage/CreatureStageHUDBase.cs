@@ -54,10 +54,13 @@ public partial class CreatureStageHUDBase<TStage> : HUDWithPausing, ICreatureSta
 
     [Export]
     protected ActionButton engulfHotkey = null!;
+
     [Export]
     protected ActionButton secreteSlimeHotkey = null!;
+
     [Export]
     protected ActionButton ejectEngulfedHotkey = null!;
+
     [Export]
     protected ActionButton signalingAgentsHotkey = null!;
 
@@ -81,18 +84,25 @@ public partial class CreatureStageHUDBase<TStage> : HUDWithPausing, ICreatureSta
 
     [Export]
     protected TextureProgressBar atpBar = null!;
+
     [Export]
     protected TextureProgressBar healthBar = null!;
+
     [Export]
     protected Label atpLabel = null!;
+
     [Export]
     protected Label hpLabel = null!;
+
     [Export]
     protected Label populationLabel = null!;
+
     [Export]
     protected PatchNameOverlay patchName = null!;
+
     [Export]
     protected Label hintText = null!;
+
     [Export]
     protected RadialPopup packControlRadial = null!;
 
@@ -103,6 +113,7 @@ public partial class CreatureStageHUDBase<TStage> : HUDWithPausing, ICreatureSta
 
     [Export]
     protected Control fossilisationButtonLayer = null!;
+
     [Export]
     protected FossilisationDialog fossilisationDialog = null!;
 #pragma warning restore CA2213
@@ -136,11 +147,13 @@ public partial class CreatureStageHUDBase<TStage> : HUDWithPausing, ICreatureSta
 
     [Export]
     private HBoxContainer hotBar = null!;
+
     [Export]
     private ActionButton fireToxinHotkey = null!;
 
     private CustomWindow? extinctionBox;
     private PatchExtinctionBox? patchExtinctionBox;
+
     [Export]
     private ProcessPanel processPanel = null!;
 

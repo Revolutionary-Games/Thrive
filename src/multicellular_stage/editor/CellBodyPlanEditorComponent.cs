@@ -35,13 +35,16 @@ public partial class CellBodyPlanEditorComponent :
     // Selection menu tab selector buttons
     [Export]
     private Button structureTabButton = null!;
+
     [Export]
     private Button reproductionTabButton = null!;
+
     [Export]
     private Button behaviourTabButton = null!;
 
     [Export]
     private PanelContainer structureTab = null!;
+
     [Export]
     private PanelContainer reproductionTab = null!;
 

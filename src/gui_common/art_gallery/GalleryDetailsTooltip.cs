@@ -8,8 +8,10 @@ public partial class GalleryDetailsTooltip : PanelContainer, ICustomToolTip
 #pragma warning disable CA2213
     [Export]
     private Label? titleLabel;
+
     [Export]
     private Label? descriptionLabel;
+
     [Export]
     private Label? artistLabel;
 #pragma warning restore CA2213

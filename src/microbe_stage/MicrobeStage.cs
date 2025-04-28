@@ -38,6 +38,7 @@ public partial class MicrobeStage : CreatureStageBase<Entity, MicrobeWorldSimula
     private MovementModeSelectionPopup movementModeSelectionPopup = null!;
 
     private MicrobeTutorialGUI tutorialGUI = null!;
+
     [Export]
     private GuidanceLine guidanceLine = null!;
 #pragma warning restore CA2213

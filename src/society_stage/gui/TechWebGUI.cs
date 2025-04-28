@@ -13,8 +13,10 @@ public partial class TechWebGUI : HBoxContainer
 #pragma warning disable CA2213
     [Export]
     private Label technologyNameLabel = null!;
+
     [Export]
     private CustomRichTextLabel selectedTechnologyDescriptionLabel = null!;
+
     [Export]
     private Button researchButton = null!;
 

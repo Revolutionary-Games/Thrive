@@ -39,8 +39,10 @@ public partial class EditorBase<TAction, TStage> : NodeWithInput, IEditor, ILoad
 {
 #pragma warning disable CA2213
     protected Node world = null!;
+
     [Export]
     protected PauseMenu pauseMenu = null!;
+
     [Export]
     protected MicrobeEditorTabButtons? editorTabSelector;
 #pragma warning restore CA2213

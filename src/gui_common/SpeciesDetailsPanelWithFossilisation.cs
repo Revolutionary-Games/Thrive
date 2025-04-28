@@ -10,8 +10,10 @@ public partial class SpeciesDetailsPanelWithFossilisation : VBoxContainer
 #pragma warning disable CA2213
     [Export]
     private SpeciesDetailsPanel speciesDetailsPanel = null!;
+
     [Export]
     private Button fossilisationButton = null!;
+
     [Export]
     private FossilisationDialog fossilisationDialog = null!;
 #pragma warning restore CA2213

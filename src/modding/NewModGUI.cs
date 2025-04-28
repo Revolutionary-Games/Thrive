@@ -15,34 +15,49 @@ public partial class NewModGUI : Control
 
     [Export]
     private LineEdit internalName = null!;
+
     [Export]
     private LineEdit name = null!;
+
     [Export]
     private LineEdit author = null!;
+
     [Export]
     private LineEdit version = null!;
+
     [Export]
     private LineEdit description = null!;
+
     [Export]
     private TextEdit longDescription = null!;
+
     [Export]
     private LineEdit iconFile = null!;
+
     [Export]
     private LineEdit infoUrl = null!;
+
     [Export]
     private LineEdit license = null!;
+
     [Export]
     private LineEdit recommendedThrive = null!;
+
     [Export]
     private LineEdit minimumThrive = null!;
+
     [Export]
     private LineEdit maximumThrive = null!;
+
     [Export]
     private LineEdit pckName = null!;
+
     [Export]
     private LineEdit modAssembly = null!;
+
     [Export]
     private LineEdit assemblyModClass = null!;
+
     [Export]
     private CheckBox assemblyModAutoHarmony = null!;
 

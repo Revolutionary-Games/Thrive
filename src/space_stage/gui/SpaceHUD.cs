@@ -12,8 +12,10 @@ public partial class SpaceHUD : StrategyStageHUDBase<SpaceStage>, IStructureSele
 
     [Export]
     private PlanetScreen planetScreenPopup = null!;
+
     [Export]
     private SpaceFleetInfoPopup fleetPopup = null!;
+
     [Export]
     private SpaceConstructionPopup constructionPopup = null!;
 

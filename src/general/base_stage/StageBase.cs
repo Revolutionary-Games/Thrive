@@ -13,8 +13,10 @@ public partial class StageBase : NodeWithInput, IStageBase, IGodotEarlyNodeResol
 #pragma warning disable CA2213
     protected Node world = null!;
     protected Node rootOfDynamicallySpawned = null!;
+
     [Export]
     protected PauseMenu pauseMenu = null!;
+
     [Export]
     protected Control hudRoot = null!;
 

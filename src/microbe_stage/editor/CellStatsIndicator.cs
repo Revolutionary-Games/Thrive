@@ -26,6 +26,7 @@ public partial class CellStatsIndicator : HBoxContainer
     public Texture2D? Icon;
 
     private Label? descriptionLabel;
+
     [Export]
     private Label? valueLabel;
     private TextureRect? changeIndicator;

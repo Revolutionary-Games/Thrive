@@ -12,30 +12,43 @@ public partial class OrganelleInfoBox : PanelContainer
 #pragma warning disable CA2213
     [Export]
     private Label nameLabel = null!;
+
     [Export]
     private TextureRect icon = null!;
+
     [Export]
     private TextureRect? model;
+
     [Export]
     private Label costLabel = null!;
+
     [Export]
     private TextureRect requiresNucleusIcon = null!;
+
     [Export]
     private Label processesLabel = null!;
+
     [Export]
     private Label enzymesLabel = null!;
+
     [Export]
     private Label massLabel = null!;
+
     [Export]
     private Label sizeLabel = null!;
+
     [Export]
     private Label osmoregulationCostLabel = null!;
+
     [Export]
     private Label storageLabel = null!;
+
     [Export]
     private TextureRect uniqueIcon = null!;
+
     [Export]
     private Label upgradesLabel = null!;
+
     [Export]
     private Label internalNameLabel = null!;
 

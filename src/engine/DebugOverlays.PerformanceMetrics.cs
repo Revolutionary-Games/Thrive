@@ -31,8 +31,10 @@ public partial class DebugOverlays
 #pragma warning disable CA2213
     [Export]
     private Label fpsLabel = null!;
+
     [Export]
     private Label deltaLabel = null!;
+
     [Export]
     private Label metricsText = null!;
 #pragma warning restore CA2213

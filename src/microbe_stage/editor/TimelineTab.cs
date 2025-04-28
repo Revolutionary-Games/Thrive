@@ -25,12 +25,16 @@ public partial class TimelineTab : PanelContainer
 
     [Export]
     private VBoxContainer globalEventsContainer = null!;
+
     [Export]
     private VBoxContainer localEventsContainer = null!;
+
     [Export]
     private ScrollContainer scrollContainer = null!;
+
     [Export]
     private Button localFilterButton = null!;
+
     [Export]
     private Button globalFilterButton = null!;
 #pragma warning restore CA2213

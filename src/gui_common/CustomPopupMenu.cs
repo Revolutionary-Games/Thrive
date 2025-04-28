@@ -10,6 +10,7 @@ public partial class CustomPopupMenu : TopLevelContainer
 #pragma warning disable CA2213 // Disposable fields should be disposed
     [Export]
     private PanelContainer panelContainer = null!;
+
     [Export]
     private Container container = null!;
 #pragma warning restore CA2213 // Disposable fields should be disposed

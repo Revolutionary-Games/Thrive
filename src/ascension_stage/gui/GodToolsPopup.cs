@@ -9,6 +9,7 @@ public partial class GodToolsPopup : CustomWindow
 #pragma warning disable CA2213
     [Export]
     private Container actionButtonsContainer = null!;
+
     [Export]
     private Label targetEntityNameLabel = null!;
 #pragma warning restore CA2213

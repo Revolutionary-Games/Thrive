@@ -105,18 +105,25 @@ public partial class LineChart : VBoxContainer
 
     [Export]
     private Label? horizontalLabel;
+
     [Export]
     private Label? verticalLabel;
+
     [Export]
     private VBoxContainer verticalLabelsContainer = null!;
+
     [Export]
     private HBoxContainer horizontalLabelsContainer = null!;
+
     [Export]
     private Control drawArea = null!;
+
     [Export]
     private HBoxContainer legendContainer = null!;
+
     [Export]
     private GridContainer extraLegendContainer = null!;
+
     [Export]
     private TextureButton inspectButton = null!;
     private CustomWindow chartPopup = null!;

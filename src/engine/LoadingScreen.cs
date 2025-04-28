@@ -22,14 +22,19 @@ public partial class LoadingScreen : Control
 #pragma warning disable CA2213
     [Export]
     private CrossFadableTextureRect artworkRect = null!;
+
     [Export]
     private Label? artDescriptionLabel;
+
     [Export]
     private Label? loadingMessageLabel;
+
     [Export]
     private Label? loadingDescriptionLabel;
+
     [Export]
     private CustomRichTextLabel? tipLabel;
+
     [Export]
     private Control spinner = null!;
 

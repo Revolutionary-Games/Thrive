@@ -10,18 +10,25 @@ public partial class ThriveopediaMuseumPage : ThriveopediaPage, IThriveopediaPag
 #pragma warning disable CA2213
     [Export]
     private HFlowContainer cardContainer = null!;
+
     [Export]
     private Control welcomeLabel = null!;
+
     [Export]
     private VBoxContainer speciesPreviewContainer = null!;
+
     [Export]
     private SpeciesDetailsPanel speciesPreviewPanel = null!;
+
     [Export]
     private CustomConfirmationDialog leaveGameConfirmationDialog = null!;
+
     [Export]
     private CustomConfirmationDialog fossilDirectoryWarningBox = null!;
+
     [Export]
     private CustomConfirmationDialog deleteConfirmationDialog = null!;
+
     [Export]
     private CustomConfirmationDialog deletionFailedDialog = null!;
     private PackedScene museumCardScene = null!;

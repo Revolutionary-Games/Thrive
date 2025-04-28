@@ -30,18 +30,25 @@ public partial class Thriveopedia : ControlWithInput, ISpeciesDataProvider
 #pragma warning disable CA2213
     [Export]
     private TextureButton backButton = null!;
+
     [Export]
     private TextureButton forwardButton = null!;
+
     [Export]
     private MarginContainer pageContainer = null!;
+
     [Export]
     private PanelContainer pageTreeContainer = null!;
+
     [Export]
     private AnimationPlayer pageTreeContainerAnim = null!;
+
     [Export]
     private Label pageTitle = null!;
+
     [Export]
     private Button viewOnlineButton = null!;
+
     [Export]
     private Tree pageTree = null!;
 

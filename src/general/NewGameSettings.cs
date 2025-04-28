@@ -23,50 +23,71 @@ public partial class NewGameSettings : ControlWithInput
     // Main controls
     [Export]
     private PanelContainer basicOptions = null!;
+
     [Export]
     private PanelContainer advancedOptions = null!;
+
     [Export]
     private TabButtons tabButtons = null!;
+
     [Export]
     private Control difficultyTab = null!;
+
     [Export]
     private Control planetTab = null!;
+
     [Export]
     private Control miscTab = null!;
+
     [Export]
     private Button difficultyTabButton = null!;
+
     [Export]
     private Button planetTabButton = null!;
+
     [Export]
     private Button miscTabButton = null!;
+
     [Export]
     private Button basicButton = null!;
+
     [Export]
     private Button advancedButton = null!;
+
     [Export]
     private Button backButton = null!;
+
     [Export]
     private Button startButton = null!;
 
     // Difficulty controls
     [Export]
     private OptionButton difficultyPresetButton = null!;
+
     [Export]
     private OptionButton difficultyPresetAdvancedButton = null!;
+
     [Export]
     private HSlider mpMultiplier = null!;
+
     [Export]
     private LineEdit mpMultiplierReadout = null!;
+
     [Export]
     private HSlider aiMutationRate = null!;
+
     [Export]
     private LineEdit aiMutationRateReadout = null!;
+
     [Export]
     private HSlider compoundDensity = null!;
+
     [Export]
     private LineEdit compoundDensityReadout = null!;
+
     [Export]
     private HSlider playerDeathPopulationPenalty = null!;
+
     [Export]
     private LineEdit playerDeathPopulationPenaltyReadout = null!;
 
@@ -78,10 +99,13 @@ public partial class NewGameSettings : ControlWithInput
 
     [Export]
     private HSlider glucoseDecayRate = null!;
+
     [Export]
     private LineEdit glucoseDecayRateReadout = null!;
+
     [Export]
     private HSlider osmoregulationMultiplier = null!;
+
     [Export]
     private LineEdit osmoregulationMultiplierReadout = null!;
 
@@ -93,6 +117,7 @@ public partial class NewGameSettings : ControlWithInput
 
     [Export]
     private OptionButton fogOfWarModeDropdown = null!;
+
     [Export]
     private Label fogOfWarModeDescription = null!;
 
@@ -107,28 +132,38 @@ public partial class NewGameSettings : ControlWithInput
 
     [Export]
     private Button limitGrowthRateButton = null!;
+
     [Export]
     private Button organelleUnlocksEnabled = null!;
 
     // Planet controls
     [Export]
     private OptionButton lifeOriginButton = null!;
+
     [Export]
     private OptionButton lifeOriginButtonAdvanced = null!;
+
     [Export]
     private Button lawkButton = null!;
+
     [Export]
     private Button lawkAdvancedButton = null!;
+
     [Export]
     private Button dayNightCycleButton = null!;
+
     [Export]
     private HSlider dayLength = null!;
+
     [Export]
     private LineEdit dayLengthReadout = null!;
+
     [Export]
     private VBoxContainer dayLengthContainer = null!;
+
     [Export]
     private LineEdit gameSeed = null!;
+
     [Export]
     private LineEdit gameSeedAdvanced = null!;
 
@@ -138,6 +173,7 @@ public partial class NewGameSettings : ControlWithInput
     // Misc controls
     [Export]
     private Button includeMulticellularButton = null!;
+
     [Export]
     private Button easterEggsButton = null!;
 

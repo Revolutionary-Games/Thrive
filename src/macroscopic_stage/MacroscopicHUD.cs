@@ -12,17 +12,22 @@ public partial class MacroscopicHUD : CreatureStageHUDBase<MacroscopicStage>
 #pragma warning disable CA2213
     [Export]
     private CustomWindow moveToLandPopup = null!;
+
     [Export]
     private Button toLandButton = null!;
+
     [Export]
     private Button awakenButton = null!;
+
     [Export]
     private CustomWindow awakenConfirmPopup = null!;
 
     [Export]
     private ActionButton interactAction = null!;
+
     [Export]
     private ActionButton inventoryButton = null!;
+
     [Export]
     private ActionButton buildButton = null!;
 

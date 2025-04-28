@@ -25,36 +25,49 @@ public partial class InventoryScreen : ControlWithInput
 #pragma warning disable CA2213
     [Export]
     private CustomWindow inventoryPopup = null!;
+
     [Export]
     private Container inventorySlotContainer = null!;
+
     [Export]
     private Control equipmentSlotParent = null!;
+
     [Export]
     private TextureRect equipmentBackgroundImage = null!;
+
     [Export]
     private Button craftingPanelButton = null!;
+
     [Export]
     private Button groundPanelButton = null!;
 
     [Export]
     private CustomWindow craftingPanelPopup = null!;
+
     [Export]
     private Container craftingRecipesContainer = null!;
+
     [Export]
     private Container craftingSlotsContainer = null!;
+
     [Export]
     private Container craftingResultSlotsContainer = null!;
+
     [Export]
     private Label craftingErrorStatusLabel = null!;
+
     [Export]
     private AnimationPlayer craftingAnimationPlayer = null!;
+
     [Export]
     private Button takeAllCraftingResults = null!;
+
     [Export]
     private TextureButton clearCraftingInputs = null!;
 
     [Export]
     private CustomWindow groundPanelPopup = null!;
+
     [Export]
     private Container groundSlotContainer = null!;
 

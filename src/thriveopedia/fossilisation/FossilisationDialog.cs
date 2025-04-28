@@ -10,12 +10,16 @@ public partial class FossilisationDialog : CustomWindow
 #pragma warning disable CA2213
     [Export]
     private LineEdit speciesNameEdit = null!;
+
     [Export]
     private SpeciesDetailsPanel speciesDetailsPanel = null!;
+
     [Export]
     private Button fossiliseButton = null!;
+
     [Export]
     private CustomConfirmationDialog overwriteNameConfirmationDialog = null!;
+
     [Export]
     private CustomConfirmationDialog fossilisationFailedDialog = null!;
     private SpeciesPreview speciesPreview = null!;

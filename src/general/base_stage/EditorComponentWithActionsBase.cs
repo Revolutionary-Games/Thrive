@@ -20,6 +20,7 @@ public partial class EditorComponentWithActionsBase<TEditor, TAction> : EditorCo
 
     [Export]
     private Button cancelButton = null!;
+
     [Export]
     private TextureRect finishButtonWarningBadge = null!;
 #pragma warning restore CA2213

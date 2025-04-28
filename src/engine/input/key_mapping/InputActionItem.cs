@@ -25,8 +25,10 @@ public partial class InputActionItem : VBoxContainer
 #pragma warning disable CA2213
     [Export]
     private Label inputActionHeader = null!;
+
     [Export]
     private HBoxContainer inputEventsContainer = null!;
+
     [Export]
     private Button addInputEvent = null!;
 #pragma warning restore CA2213

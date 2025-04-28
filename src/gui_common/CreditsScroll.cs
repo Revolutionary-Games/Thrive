@@ -51,10 +51,13 @@ public partial class CreditsScroll : Control
 #pragma warning disable CA2213
     [Export]
     private Control logo = null!;
+
     [Export]
     private Control revolutionaryGames = null!;
+
     [Export]
     private Control supportedBy = null!;
+
     [Export]
     private Control developersHeading = null!;
 #pragma warning restore CA2213

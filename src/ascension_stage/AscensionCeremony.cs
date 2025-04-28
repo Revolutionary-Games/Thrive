@@ -28,15 +28,19 @@ public partial class AscensionCeremony : Node
 
     [Export]
     private Node3D rampStartPoint = null!;
+
     [Export]
     private Node3D rampEndPoint = null!;
+
     [Export]
     private Node3D ascensionPoint = null!;
 
     [Export]
     private CreditsScroll creditsDisplay = null!;
+
     [Export]
     private Control creditsSkipInfoContainer = null!;
+
     [Export]
     private HoldKeyPrompt creditsSkipPrompt = null!;
 

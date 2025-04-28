@@ -8,6 +8,7 @@ public partial class PlanetScreen : CustomWindow
 #pragma warning disable CA2213
     [Export]
     private Label shortStatsLabel = null!;
+
     [Export]
     private Button godToolsButton = null!;
 #pragma warning restore CA2213

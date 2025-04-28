@@ -36,32 +36,42 @@ public partial class OptionsMenu : ControlWithInput
 #pragma warning disable CA2213
     [Export]
     private Button backButton = null!;
+
     [Export]
     private Button resetButton = null!;
+
     [Export]
     private Button saveButton = null!;
 
     // Tab selector buttons
     [Export]
     private TabButtons tabButtons = null!;
+
     [Export]
     private Button graphicsButton = null!;
+
     [Export]
     private Button soundButton = null!;
+
     [Export]
     private Button performanceButton = null!;
+
     [Export]
     private Button inputsButton = null!;
+
     [Export]
     private Button miscButton = null!;
 
     // Graphics tab
     [Export]
     private Control graphicsTab = null!;
+
     [Export]
     private CheckBox vsync = null!;
+
     [Export]
     private Label? resolution;
+
     [Export]
     private OptionButton displayMode = null!;
 
@@ -88,14 +98,19 @@ public partial class OptionsMenu : ControlWithInput
 
     [Export]
     private OptionButton maxFramesPerSecond = null!;
+
     [Export]
     private OptionButton colourblindSetting = null!;
+
     [Export]
     private CheckBox chromaticAberrationToggle = null!;
+
     [Export]
     private Slider chromaticAberrationSlider = null!;
+
     [Export]
     private OptionButton controllerPromptType = null!;
+
     [Export]
     private CheckBox displayAbilitiesHotBarToggle = null!;
 
@@ -110,10 +125,13 @@ public partial class OptionsMenu : ControlWithInput
 
     [Export]
     private CheckBox displayBackgroundParticlesToggle = null!;
+
     [Export]
     private CheckBox guiLightEffectsToggle = null!;
+
     [Export]
     private CheckBox displayPartNamesToggle = null!;
+
     [Export]
     private CheckBox displayMenu3DBackgroundsToggle = null!;
 
@@ -134,70 +152,99 @@ public partial class OptionsMenu : ControlWithInput
 
     [Export]
     private Label gpuName = null!;
+
     [Export]
     private Label usedRendererName = null!;
+
     [Export]
     private Label videoMemory = null!;
 
     // Sound tab
     [Export]
     private Control soundTab = null!;
+
     [Export]
     private Slider masterVolume = null!;
+
     [Export]
     private CheckBox masterMuted = null!;
+
     [Export]
     private Slider musicVolume = null!;
+
     [Export]
     private CheckBox musicMuted = null!;
+
     [Export]
     private Slider ambianceVolume = null!;
+
     [Export]
     private CheckBox ambianceMuted = null!;
+
     [Export]
     private Slider sfxVolume = null!;
+
     [Export]
     private CheckBox sfxMuted = null!;
+
     [Export]
     private Slider guiVolume = null!;
+
     [Export]
     private CheckBox guiMuted = null!;
+
     [Export]
     private OptionButton audioOutputDeviceSelection = null!;
+
     [Export]
     private OptionButton languageSelection = null!;
+
     [Export]
     private Button resetLanguageButton = null!;
+
     [Export]
     private Label languageProgressLabel = null!;
 
     // Performance tab
     [Export]
     private Control performanceTab = null!;
+
     [Export]
     private OptionButton cloudInterval = null!;
+
     [Export]
     private VBoxContainer cloudResolutionTitle = null!;
+
     [Export]
     private OptionButton cloudResolution = null!;
+
     [Export]
     private CheckBox runAutoEvoDuringGameplay = null!;
+
     [Export]
     private CheckBox runGameSimulationMultithreaded = null!;
+
     [Export]
     private Label detectedCPUCount = null!;
+
     [Export]
     private Label activeThreadCount = null!;
+
     [Export]
     private CheckBox assumeHyperthreading = null!;
+
     [Export]
     private CheckBox useManualThreadCount = null!;
+
     [Export]
     private Slider threadCountSlider = null!;
+
     [Export]
     private CheckBox useManualNativeThreadCount = null!;
+
     [Export]
     private Slider nativeThreadCountSlider = null!;
+
     [Export]
     private OptionButton maxSpawnedEntities = null!;
 
@@ -244,37 +291,49 @@ public partial class OptionsMenu : ControlWithInput
 
     [Export]
     private Button mouseAxisSensitivitiesBound = null!;
+
     [Export]
     private Slider mouseHorizontalSensitivity = null!;
+
     [Export]
     private Button mouseHorizontalInverted = null!;
+
     [Export]
     private Slider mouseVerticalSensitivity = null!;
+
     [Export]
     private Button mouseVerticalInverted = null!;
+
     [Export]
     private OptionButton mouseWindowSizeScaling = null!;
+
     [Export]
     private Button mouseWindowSizeScalingWithLogicalSize = null!;
 
     [Export]
     private Button controllerAxisSensitivitiesBound = null!;
+
     [Export]
     private Slider controllerHorizontalSensitivity = null!;
+
     [Export]
     private Button controllerHorizontalInverted = null!;
+
     [Export]
     private Slider controllerVerticalSensitivity = null!;
+
     [Export]
     private Button controllerVerticalInverted = null!;
 
     [Export]
     private OptionButton twoDimensionalMovement = null!;
+
     [Export]
     private OptionButton threeDimensionalMovement = null!;
 
     [Export]
     private Button mouseEdgePanEnabled = null!;
+
     [Export]
     private Slider mouseEdgePanSensitivity = null!;
 
@@ -287,56 +346,77 @@ public partial class OptionsMenu : ControlWithInput
     // Misc tab
     [Export]
     private Control miscTab = null!;
+
     [Export]
     private CheckBox playIntro = null!;
+
     [Export]
     private CheckBox playMicrobeIntro = null!;
+
     [Export]
     private CheckBox cheats = null!;
+
     [Export]
     private CheckBox tutorialsEnabledOnNewGame = null!;
+
     [Export]
     private CheckBox autoSave = null!;
+
     [Export]
     private SpinBox maxAutoSaves = null!;
+
     [Export]
     private SpinBox maxQuickSaves = null!;
+
     [Export]
     private CheckBox customUsernameEnabled = null!;
+
     [Export]
     private LineEdit customUsername = null!;
+
     [Export]
     private CheckBox webFeedsEnabled = null!;
+
     [Export]
     private CheckBox showNewPatchNotes = null!;
+
     [Export]
     private Label dismissedNoticeCount = null!;
+
     [Export]
     private OptionButton jsonDebugMode = null!;
+
     [Export]
     private OptionButton screenEffectSelect = null!;
+
     [Export]
     private Label commitLabel = null!;
+
     [Export]
     private Label builtAtLabel = null!;
 
     [Export]
     private CheckBox tutorialsEnabled = null!;
+
     [Export]
     private CheckBox unsavedProgressWarningEnabled = null!;
 
     // Confirmation Boxes
     [Export]
     private CustomConfirmationDialog screenshotDirectoryWarningBox = null!;
+
     [Export]
     private CustomWindow backConfirmationBox = null!;
+
     [Export]
     private CustomConfirmationDialog defaultsConfirmationBox = null!;
+
     [Export]
     private ErrorDialog errorAcceptBox = null!;
 
     [Export]
     private CustomWindow patchNotesBox = null!;
+
     [Export]
     private PatchNotesDisplayer patchNotesDisplayer = null!;
 #pragma warning restore CA2213

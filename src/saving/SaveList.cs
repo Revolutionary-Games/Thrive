@@ -25,26 +25,37 @@ public partial class SaveList : ScrollContainer
 #pragma warning disable CA2213
     [Export]
     private Control loadingItem = null!;
+
     [Export]
     private Control noSavesItem = null!;
+
     [Export]
     private BoxContainer savesList = null!;
+
     [Export]
     private CustomConfirmationDialog deleteConfirmDialog = null!;
+
     [Export]
     private CustomConfirmationDialog loadNewerConfirmDialog = null!;
+
     [Export]
     private CustomConfirmationDialog loadOlderConfirmDialog = null!;
+
     [Export]
     private CustomConfirmationDialog loadInvalidConfirmDialog = null!;
+
     [Export]
     private CustomConfirmationDialog loadIncompatibleDialog = null!;
+
     [Export]
     private CustomConfirmationDialog upgradeSaveDialog = null!;
+
     [Export]
     private CustomConfirmationDialog loadIncompatiblePrototypeDialog = null!;
+
     [Export]
     private ErrorDialog upgradeFailedDialog = null!;
+
     [Export]
     private CustomConfirmationDialog errorSaveDeletionFailed = null!;
 

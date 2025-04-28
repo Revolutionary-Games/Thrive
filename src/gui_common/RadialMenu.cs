@@ -56,8 +56,10 @@ public partial class RadialMenu : CenterContainer
 #pragma warning disable CA2213
     [Export]
     private Label? centerLabel;
+
     [Export]
     private Node dynamicLabelsContainer = null!;
+
     [Export]
     private TextureRect indicator = null!;
 #pragma warning restore CA2213

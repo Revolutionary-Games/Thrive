@@ -39,8 +39,10 @@ public partial class PatchMapDrawer : Control
 
 #pragma warning disable CA2213
     private PackedScene nodeScene = null!;
+
     [Export]
     private Control patchNodeContainer = null!;
+
     [Export]
     private Control lineContainer = null!;
 #pragma warning restore CA2213

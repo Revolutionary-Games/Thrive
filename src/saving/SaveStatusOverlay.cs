@@ -15,13 +15,16 @@ public partial class SaveStatusOverlay : Control
 #pragma warning disable CA2213
     [Export]
     private Label statusLabel = null!;
+
     [Export]
     private AnimationPlayer animationPlayer = null!;
 
     [Export]
     private ErrorDialog errorDialog = null!;
+
     [Export]
     private Control errorJsonDebugAdvice = null!;
+
     [Export]
     private CustomRichTextLabel errorJsonDebugLabel = null!;
 #pragma warning restore CA2213

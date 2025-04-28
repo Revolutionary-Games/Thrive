@@ -13,12 +13,16 @@ public partial class NewSaveMenu : Control
 #pragma warning disable CA2213
     [Export]
     private SaveList saveList = null!;
+
     [Export]
     private LineEdit saveNameBox = null!;
+
     [Export]
     private Button saveButton = null!;
+
     [Export]
     private CustomConfirmationDialog overwriteConfirm = null!;
+
     [Export]
     private CustomConfirmationDialog attemptWriteFailAccept = null!;
 #pragma warning restore CA2213

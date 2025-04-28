@@ -37,11 +37,13 @@ public partial class MacroscopicEditor : EditorBase<EditorAction, MacroscopicSta
 
     [Export]
     private MicrobeCamera cellEditorCamera = null!;
+
     [Export]
     private Light3D cellEditorLight = null!;
 
     [Export]
     private Camera3D body3DEditorCamera = null!;
+
     [Export]
     private Light3D bodyEditorLight = null!;
 

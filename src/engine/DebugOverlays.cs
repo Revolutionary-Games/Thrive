@@ -12,20 +12,28 @@ public partial class DebugOverlays : Control
 #pragma warning disable CA2213
     [Export]
     private Label debugCoordinates = null!;
+
     [Export]
     private CustomWindow inspectorDialog = null!;
+
     [Export]
     private CustomWindow debugPanelDialog = null!;
+
     [Export]
     private CheckBox fpsCheckBox = null!;
+
     [Export]
     private CheckBox performanceMetricsCheckBox = null!;
+
     [Export]
     private CheckBox inspectorCheckbox = null!;
+
     [Export]
     private Control fpsCounter = null!;
+
     [Export]
     private CustomWindow performanceMetrics = null!;
+
     [Export]
     private Control labelsLayer = null!;
 #pragma warning restore CA2213

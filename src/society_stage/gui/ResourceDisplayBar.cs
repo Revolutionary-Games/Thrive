@@ -18,11 +18,13 @@ public partial class ResourceDisplayBar : HBoxContainer
 
     [Export]
     private Container earlyResourcesContainer = null!;
+
     [Export]
     private Container lateResourcesContainer = null!;
 
     [Export]
     private Control scienceIndicatorContainer = null!;
+
     [Export]
     private Label scienceAmountLabel = null!;
 #pragma warning restore CA2213

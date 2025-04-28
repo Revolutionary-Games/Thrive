@@ -19,8 +19,10 @@ public partial class ThriveopediaEvolutionaryTreePage : ThriveopediaPage, IThriv
 #pragma warning disable CA2213
     [Export]
     private VBoxContainer errorContainer = null!;
+
     [Export]
     private EvolutionaryTree evolutionaryTree = null!;
+
     [Export]
     private SpeciesDetailsPanelWithFossilisation speciesDetailsPanelWithFossilisation = null!;
 #pragma warning restore CA2213
