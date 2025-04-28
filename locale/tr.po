@@ -7,9 +7,9 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2025-04-11 10:12+0300\n"
-"PO-Revision-Date: 2025-04-11 09:18+0000\n"
-"Last-Translator: punctdan <yunusemredilek@hotmail.com>\n"
+"POT-Creation-Date: 2025-04-26 10:53+0300\n"
+"PO-Revision-Date: 2025-04-26 09:18+0000\n"
+"Last-Translator: Anonymous <noreply@weblate.org>\n"
 "Language-Team: Turkish <https://translate.revolutionarygamesstudio.com/projects/thrive/thrive-game/tr/>\n"
 "Language: tr\n"
 "MIME-Version: 1.0\n"
@@ -1991,8 +1991,42 @@ msgstr "Haliç"
 
 msgid "EVENT_ERUPTION_TOOLTIP"
 msgstr ""
-"Yanardağ Patlaması Arazi Olayı\n"
-"Fazladan hidrojen sülfür ve karbondioksit oluşturur"
+"Yanardağ patlaması olayı\n"
+"Fazladan hidrojen sülfür ve karbondioksit oluşturur."
+
+msgid "EVENT_METEOR_GLUCOSE"
+msgstr ""
+"Glukoz göktaşı etkisi olayı\n"
+"Karbondioksit ve glukoz seviyelerini arttırır."
+
+msgid "EVENT_METEOR_IRON"
+msgstr ""
+"Demir göktaşı etkisi olayı\n"
+"Karbondioksit ve demir seviyelerini arttırır.\n"
+"Demir parçaları oluşturur."
+
+msgid "EVENT_METEOR_PHOSPHATES"
+msgstr ""
+"Fosfat göktaşı etkisi olayı\n"
+"Karbondioksit ve fosfat seviyelerini arttırır.\n"
+"Fosfat parçaları oluşturur."
+
+msgid "EVENT_METEOR_PLAIN"
+msgstr ""
+"Göktaşı etkisi olayı\n"
+"Karbondioksit seviyelerini arttırır."
+
+msgid "EVENT_METEOR_RADIOACTIVE"
+msgstr ""
+"Radyoaktif göktaşı etkisi olayı\n"
+"Karbondioksit seviyelerini arttırır.\n"
+"Radyoaktif parçalar oluşturur."
+
+msgid "EVENT_METEOR_SULFUR"
+msgstr ""
+"Kükürt göktaşı etkisi olayı\n"
+"Karbondioksit ve kükürt seviyelerini arttırır.\n"
+"Kükürt parçaları oluşturur."
 
 msgid "EVOLUTIONARY_TREE"
 msgstr "Evrim Ağacı"
@@ -3336,6 +3370,15 @@ msgstr "[thrive:compound type=\"glucose\"]Glukozu[/thrive:compound], [thrive:com
 
 msgid "META_THREADS_TOOLTIP"
 msgstr "Threads profilimizi ziyaret edin"
+
+msgid "METEOR_IMPACT_EVENT"
+msgstr "Göktaşı etkisi olayı"
+
+msgid "METEOR_STRIKE_START_EVENT_LOG_PLURAL"
+msgstr "Göktaşı etkisi olayı {0} araziyi etkiledi"
+
+msgid "METEOR_STRIKE_START_EVENT_LOG_SINGULAR"
+msgstr "Göktaşı etkisi olayı {0} araziyi etkiledi"
 
 msgid "METRICS"
 msgstr "Performans Ölçümleri"
@@ -6712,6 +6755,7 @@ msgstr "Çok yakında."
 msgid "WIKI_AWAKENING_STAGE_INTRO"
 msgstr "Özetle; aletlerin kullanımını keşfetmeye başlayan bir canlı ile bu evreye başlıyorsunuz ve hayatta kalmak ve rekabeti geride bırakmak için bu aletleri hızla geliştirmeniz gerekiyor. Bu evre, Toplum Merkezi'ni inşa ettiğinizde sona erer."
 
+#, fuzzy
 msgid "WIKI_AWAKENING_STAGE_OVERVIEW"
 msgstr "Çok yakında."
 
@@ -7221,6 +7265,10 @@ msgstr ""
 "\n"
 "[indent]—   Temel olarak, oyundaki her şey bileşikten yapılır. Bileşik sistemi, organizmaların neyden yapıldığını, bu organizmaların ne yediklerini, bu yenilenleri neye dönüştürdüklerini ve hangi atık ürünlerini salgıladıklarını takip etmek içindir. Geri kalan her şey ortamın bir parçasıdır ve diğer organizmaların kullanımına açıktır.[/indent]"
 
+#, fuzzy
+msgid "WIKI_CREATURE_EDITOR_COMMA_TECH_EDITOR"
+msgstr "Beden Planı Editörü, Hücre Editörü"
+
 msgid "WIKI_CYTOPLASM_EFFECTS"
 msgstr "Herhangi bir organel, ek bir mutasyon puanına mal olmadan [b]Sitoplazmanın[/b] yerine geçebilir (organelin kendi maliyeti buna dahil değildir)."
 
@@ -7704,6 +7752,7 @@ msgstr "Bu evrenin geliştirilmesine henüz başlanmadı. Bu evrenin oynanışı
 msgid "WIKI_INDUSTRIAL_STAGE_FEATURES"
 msgstr "Çok yakında."
 
+#, fuzzy
 msgid "WIKI_INDUSTRIAL_STAGE_INTRO"
 msgstr ""
 "Sanayi Evresi, Thrive'ın dokuz oyun evresinden yedincisidir ve [color=#3796e1][url=thriveopedia:society_stage]Toplum Evresi'nden[/url][/color] sonra, sanayi makinelerinin icadıyla başlar. Teknoloji ve kültür artık çok daha gelişmiş durumdadır ve medeniyet kendini sürdürebilmek için makinelere büyük ölçüde bağımlıdır. Artık tüm gezegen büyük oranda keşfedilmiş ve nüfuslanmış olup, neredeyse her yerde iletişim kurmak ya da savaş açmak mümkündür. Diplomasi ve liderlik becerileri her zamankinden daha çok gereklidir.\n"
@@ -8654,6 +8703,7 @@ msgstr "Bu evrenin geliştirilmesine henüz başlanmadı. Bu evre için son yıl
 msgid "WIKI_SOCIETY_STAGE_FEATURES"
 msgstr "Çok yakında."
 
+#, fuzzy
 msgid "WIKI_SOCIETY_STAGE_INTRO"
 msgstr ""
 "Özetle; bu evrede ilk yerleşiminizi geliştirip genişletir ve yenilerini inşa edersiniz. Bu evrede dönem, Orta Çağ'a benzemektedir. Bu evre, teknolojiniz yeterince geliştiğinde sona erer.\n"
@@ -8662,6 +8712,7 @@ msgstr ""
 "\n"
 "Toplum Evresi boyunca ana hedeflerden biri, git gide daha da gelişmiş teknolojiler geliştirmektir. Bu nedenle Toplum Evresi, türünüzün [color=#3796e1][url=thriveopedia:industrial_stage]Sanayi Evresi'ne[/url][/color] geçmesine yetecek kadar gelişmiş bir teknolojiye ulaşmasıyla sona erer."
 
+#, fuzzy
 msgid "WIKI_SOCIETY_STAGE_OVERVIEW"
 msgstr ""
 "Toplum Evresi, oyuncu türünün basit bir kabileden gelişen bir Medeniyete geçişini simgeler. Bu evre, Araştırma Ağı'nın görüntülenmesi ve bu ağa yatırım yapılmasını sağlayan belirli teknolojiler, hükümet politikalarının uygulanması, dinlerin ortaya çıkışı ve daha büyük çaplı çatışmaların başlaması ile öne çıkar. Ulus Editörü kadar, Teknoloji Editörü ve Birlik Editörü de, bu evre boyunca giderek daha önemli hale gelir. Oyuncu, türünün tek organizması ile oynamaya geri dönmekte serbest olsa da, bütün önemli olaylar ve kararlar geniş çapta gerçekleşir ve artan nüfusu yönetmek kritik hale gelir. Oyuncu, halkının ihtiyaçları ve ulusunun çıkarları arasında denge kurarak medeniyetini ileriye taşımak zorunda kalacaktır.\n"
@@ -8727,9 +8778,15 @@ msgstr ""
 msgid "WIKI_TBA"
 msgstr "TBA"
 
+#, fuzzy
+msgid "WIKI_TECH_EDITOR_COMMA_NATION_EDITOR_COMMA_SQUAD_EDITOR"
+msgstr "Beden Planı Editörü, Hücre Editörü"
+
+#, fuzzy
 msgid "WIKI_THERMOPLAST_EFFECTS"
 msgstr "Etki yok."
 
+#, fuzzy
 msgid "WIKI_THERMOPLAST_INTRO"
 msgstr ""
 "Ortamdaki [thrive:compound type=\"temperature\"]sıcaklık[/thrive:compound] değişimini kullanarak enerjiyi [thrive:compound type=\"atp\"]ATP[/thrive:compound] şeklinde alır. Daha verimsiz olan [b][color=#3796e1][url=thriveopedia:thermosynthase]Termosentazın[/url][/color][/b] ökaryotik formudur.\n"
@@ -8739,12 +8796,14 @@ msgstr ""
 msgid "WIKI_THERMOPLAST_MODIFICATIONS"
 msgstr "Değişiklikler yok."
 
+#, fuzzy
 msgid "WIKI_THERMOPLAST_PROCESSES"
 msgstr ""
 "[b]Termosentez[/b]: [thrive:compound type=\"temperature\"]Sıcaklık[/thrive:compound] → [thrive:compound type=\"atp\"]ATP[/thrive:compound]\n"
 "\n"
 "Ortama ait çevresel [thrive:compound type=\"temperature\"]sıcaklıktan[/thrive:compound] pasif olarak enerji üretir. [b][color=#3796e1][url=thriveopedia:thermosynthase]Thermosentazda[/url][/color][/b] bulunan [b]Bakteri Termosentezinin[/b] daha verimli bir formudur."
 
+#, fuzzy
 msgid "WIKI_THERMOPLAST_REQUIREMENTS"
 msgstr ""
 "[b]Termoplastlar[/b], yalnızca ayarlarda BH seçeneği devre dışı olan oyunlarda görülür.\n"
@@ -8753,9 +8812,11 @@ msgstr ""
 "\n"
 "[indent]—   Üst üste en az [b]5[/b] kuşak boyunca, en az [b]3[/b] altıgenlik [b][color=#3796e1][url=thriveopedia:thermosynthase]Termosentaz[/url][/color][/b] içermek.[/indent]"
 
+#, fuzzy
 msgid "WIKI_THERMOPLAST_SCIENTIFIC_BACKGROUND"
 msgstr "TBA"
 
+#, fuzzy
 msgid "WIKI_THERMOPLAST_STRATEGY"
 msgstr ""
 "[b]Termosentez[/b], ortama ait [thrive:compound type=\"temperature\"]sıcaklıktan[/thrive:compound] başka bir şey gerektirmediği için bu tepkime, özünde bedava enerjidir. Dahası [b]Termoplastlar[/b], öncüleri olan [b][color=#3796e1][url=thriveopedia:thermosynthase]Termosentazdan[/url][/color][/b] daha verimlidir. Eğer yanardağ bacaları gibi sıcak arazilerde kalmaya hevesliyseniz; bu onları oyunda, tartışılır şekilde, enerji üretimindeki en kolay yol yapmaktadır.\n"
@@ -8765,9 +8826,11 @@ msgstr ""
 msgid "WIKI_THERMOPLAST_UPGRADES"
 msgstr "Geliştirme yok."
 
+#, fuzzy
 msgid "WIKI_THERMOSYNTHASE_EFFECTS"
 msgstr "Etki yok."
 
+#, fuzzy
 msgid "WIKI_THERMOSYNTHASE_INTRO"
 msgstr ""
 "Ortamdaki [thrive:compound type=\"temperature\"]sıcaklık[/thrive:compound] değişimini kullanarak enerjiyi [thrive:compound type=\"atp\"]ATP[/thrive:compound] şeklinde alır. Daha verimli olan [b][color=#3796e1][url=thriveopedia:thermoplast]Termoplastın[/url][/color][/b] prokaryotik formudur.\n"
@@ -8777,12 +8840,14 @@ msgstr ""
 msgid "WIKI_THERMOSYNTHASE_MODIFICATIONS"
 msgstr "Değişiklikler yok."
 
+#, fuzzy
 msgid "WIKI_THERMOSYNTHASE_PROCESSES"
 msgstr ""
 "[b]Bakteri Termosentezi[/b]: [thrive:compound type=\"temperature\"]Sıcaklık[/thrive:compound] → [thrive:compound type=\"atp\"]ATP[/thrive:compound]\n"
 "\n"
 "Ortama ait çevresel [thrive:compound type=\"temperature\"]sıcaklıktan[/thrive:compound] pasif olarak enerji üretir. [b][color=#3796e1][url=thriveopedia:thermoplast]Termoplastlarda[/url][/color][/b] bulunan [b]Termosentezin[/b] daha verimsiz bir formudur."
 
+#, fuzzy
 msgid "WIKI_THERMOSYNTHASE_REQUIREMENTS"
 msgstr ""
 "[b]Termosentaz[/b], yalnızca ayarlarda BH seçeneği devre dışı olan oyunlarda görülür.\n"
@@ -8791,9 +8856,11 @@ msgstr ""
 "\n"
 "[indent]—   En az [b]+50 °C[/b] [thrive:compound type=\"temperature\"]sıcaklığa[/thrive:compound] sahip bir arazide olmak.[/indent]"
 
+#, fuzzy
 msgid "WIKI_THERMOSYNTHASE_SCIENTIFIC_BACKGROUND"
 msgstr "TBA"
 
+#, fuzzy
 msgid "WIKI_THERMOSYNTHASE_STRATEGY"
 msgstr ""
 "Mevcut formunda, [b]Termosentaz[/b] özünde bedava enerjidir. Sıcak arazilerde kalmaktan memnun olduğunuz sürece, bu organelin gerçekten olumsuz bir tarafı yoktur. [b]Bakteri Termosentezi[/b], kabaca, [b]+23 °C[/b] [thrive:compound type=\"temperature\"]sıcaklıkta[/thrive:compound] bile dengede kalır ve [b]+98 °C[/b] [thrive:compound type=\"temperature\"]sıcaklığa[/thrive:compound] sahip yanardağ bacalarında önemli ölçüde daha güçlüdür.\n"
@@ -9239,10 +9306,6 @@ msgstr "Uzaklaştır"
 #, fuzzy
 #~ msgid "ERUPTION_IN"
 #~ msgstr "Tomurcuklanma"
-
-#, fuzzy
-#~ msgid "EVENT_TOOLTIP_ERUPTION"
-#~ msgstr "{0}: +{1} ATP"
 
 #~ msgid "THE_AMOUNT_OF_GLUCOSE_HAS_BEEN_REDUCED"
 #~ msgstr "Glukoz miktarı, önceki miktarın {0} kadarı düştü."

@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Thrive VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2025-04-11 10:12+0300\n"
+"POT-Creation-Date: 2025-04-26 10:53+0300\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -53,7 +53,7 @@ msgstr ""
 msgid "ABYSSOPELAGIC"
 msgstr ""
 
-#: ../src/microbe_stage/gui/MovementModeSelectionPopup.tscn:149
+#: ../src/microbe_stage/gui/MovementModeSelectionPopup.tscn:151
 #: ../src/microbe_stage/gui/PatchDetailsPanel.tscn:622
 msgid "ACCEPT"
 msgstr ""
@@ -183,7 +183,7 @@ msgstr ""
 msgid "ALL_WORLDS_STATISTICS"
 msgstr ""
 
-#: ../src/space_stage/SpaceStage.cs:426
+#: ../src/space_stage/SpaceStage.cs:427
 msgid "ALREADY_ASCENDED"
 msgstr ""
 
@@ -646,6 +646,7 @@ msgstr ""
 #: ../simulation_parameters/microbe_stage/biomes.json:2794
 #: ../simulation_parameters/microbe_stage/biomes.json:3143
 #: ../simulation_parameters/microbe_stage/biomes.json:3364
+#: ../simulation_parameters/microbe_stage/biomes.json:3608
 #: ../src/auto-evo/AutoEvoGlobalCache.cs:58
 msgid "BIG_IRON_CHUNK"
 msgstr ""
@@ -658,6 +659,7 @@ msgstr ""
 #: ../simulation_parameters/microbe_stage/biomes.json:2611
 #: ../simulation_parameters/microbe_stage/biomes.json:2934
 #: ../simulation_parameters/microbe_stage/biomes.json:3198
+#: ../simulation_parameters/microbe_stage/biomes.json:3732
 msgid "BIG_PHOSPHATE_CHUNK"
 msgstr ""
 
@@ -1087,7 +1089,7 @@ msgstr ""
 msgid "CLEAR_CACHE"
 msgstr ""
 
-#: ../src/microbe_stage/gui/MovementModeSelectionPopup.cs:182
+#: ../src/microbe_stage/gui/MovementModeSelectionPopup.cs:183
 msgid "CLICK_TO_SELECT"
 msgstr ""
 
@@ -1392,12 +1394,12 @@ msgstr ""
 msgid "CONFIRM_MOVE_TO_SPACE_STAGE_EXPLANATION"
 msgstr ""
 
-#: ../src/general/NewGameSettings.cs:493
+#: ../src/general/NewGameSettings.cs:494
 #: ../src/general/NewGameSettings.tscn:1171
 msgid "CONFIRM_NEW_GAME_BUTTON_TOOLTIP"
 msgstr ""
 
-#: ../src/general/NewGameSettings.cs:500
+#: ../src/general/NewGameSettings.cs:501
 msgid "CONFIRM_NEW_GAME_BUTTON_TOOLTIP_DISABLED"
 msgstr ""
 
@@ -2140,7 +2142,7 @@ msgid "DISMISSED_POPUPS_EXPLANATION"
 msgstr ""
 
 #: ../src/gui_common/dialogs/PermanentlyDismissibleDialog.cs:56
-#: ../src/microbe_stage/gui/MovementModeSelectionPopup.tscn:138
+#: ../src/microbe_stage/gui/MovementModeSelectionPopup.tscn:140
 msgid "DISMISS_INFORMATION_PERMANENTLY"
 msgstr ""
 
@@ -2570,8 +2572,32 @@ msgstr ""
 msgid "ESTUARY"
 msgstr ""
 
-#: ../src/microbe_stage/editor/PatchMapNode.tscn:102
+#: ../src/general/world_effects/WorldEffectVisuals.cs:36
 msgid "EVENT_ERUPTION_TOOLTIP"
+msgstr ""
+
+#: ../src/general/world_effects/WorldEffectVisuals.cs:42
+msgid "EVENT_METEOR_GLUCOSE"
+msgstr ""
+
+#: ../src/general/world_effects/WorldEffectVisuals.cs:39
+msgid "EVENT_METEOR_IRON"
+msgstr ""
+
+#: ../src/general/world_effects/WorldEffectVisuals.cs:40
+msgid "EVENT_METEOR_PHOSPHATES"
+msgstr ""
+
+#: ../src/general/world_effects/WorldEffectVisuals.cs:38
+msgid "EVENT_METEOR_PLAIN"
+msgstr ""
+
+#: ../src/general/world_effects/WorldEffectVisuals.cs:41
+msgid "EVENT_METEOR_RADIOACTIVE"
+msgstr ""
+
+#: ../src/general/world_effects/WorldEffectVisuals.cs:43
+msgid "EVENT_METEOR_SULFUR"
 msgstr ""
 
 #: ../src/auto-evo/AutoEvoExploringTool.tscn:569
@@ -2851,7 +2877,7 @@ msgstr ""
 msgid "FOG_OF_WAR_DISABLED"
 msgstr ""
 
-#: ../src/general/NewGameSettings.cs:958
+#: ../src/general/NewGameSettings.cs:959
 msgid "FOG_OF_WAR_DISABLED_DESCRIPTION"
 msgstr ""
 
@@ -2859,7 +2885,7 @@ msgstr ""
 msgid "FOG_OF_WAR_INTENSE"
 msgstr ""
 
-#: ../src/general/NewGameSettings.cs:964
+#: ../src/general/NewGameSettings.cs:965
 msgid "FOG_OF_WAR_INTENSE_DESCRIPTION"
 msgstr ""
 
@@ -2871,7 +2897,7 @@ msgstr ""
 msgid "FOG_OF_WAR_REGULAR"
 msgstr ""
 
-#: ../src/general/NewGameSettings.cs:961
+#: ../src/general/NewGameSettings.cs:962
 msgid "FOG_OF_WAR_REGULAR_DESCRIPTION"
 msgstr ""
 
@@ -3076,27 +3102,27 @@ msgstr ""
 msgid "GLES3"
 msgstr ""
 
-#: ../src/general/world_effects/patch_events/GlobalGlaciationEvent.cs:236
+#: ../src/general/world_effects/patch_events/GlobalGlaciationEvent.cs:240
 msgid "GLOBAL_GLACIATION_END_EVENT_LOG"
 msgstr ""
 
-#: ../src/general/world_effects/patch_events/GlobalGlaciationEvent.cs:214
+#: ../src/general/world_effects/patch_events/GlobalGlaciationEvent.cs:218
 msgid "GLOBAL_GLACIATION_EVENT"
 msgstr ""
 
-#: ../src/microbe_stage/editor/PatchMapNode.tscn:112
+#: ../src/general/world_effects/WorldEffectVisuals.cs:37
 msgid "GLOBAL_GLACIATION_EVENT_TOOLTIP"
 msgstr ""
 
-#: ../src/general/world_effects/patch_events/GlobalGlaciationEvent.cs:224
+#: ../src/general/world_effects/patch_events/GlobalGlaciationEvent.cs:228
 msgid "GLOBAL_GLACIATION_EVENT_WARNING_LOG_PLURAL"
 msgstr ""
 
-#: ../src/general/world_effects/patch_events/GlobalGlaciationEvent.cs:223
+#: ../src/general/world_effects/patch_events/GlobalGlaciationEvent.cs:227
 msgid "GLOBAL_GLACIATION_EVENT_WARNING_LOG_SINGULAR"
 msgstr ""
 
-#: ../src/general/world_effects/patch_events/GlobalGlaciationEvent.cs:230
+#: ../src/general/world_effects/patch_events/GlobalGlaciationEvent.cs:234
 msgid "GLOBAL_GLACIATION_START_EVENT_LOG"
 msgstr ""
 
@@ -3292,6 +3318,7 @@ msgid "HYDROGEN_SULFIDE"
 msgstr ""
 
 #: ../simulation_parameters/microbe_stage/biomes.json:2178
+#: ../simulation_parameters/microbe_stage/biomes.json:3474
 msgid "ICESHARD"
 msgstr ""
 
@@ -3300,10 +3327,12 @@ msgid "ICESHELF"
 msgstr ""
 
 #: ../simulation_parameters/microbe_stage/biomes.json:2222
+#: ../simulation_parameters/microbe_stage/biomes.json:3518
 msgid "ICE_CHUNK_BIG"
 msgstr ""
 
 #: ../simulation_parameters/microbe_stage/biomes.json:2197
+#: ../simulation_parameters/microbe_stage/biomes.json:3493
 msgid "ICE_CHUNK_SMALL"
 msgstr ""
 
@@ -4171,6 +4200,7 @@ msgstr ""
 #: ../simulation_parameters/microbe_stage/biomes.json:353
 #: ../simulation_parameters/microbe_stage/biomes.json:1954
 #: ../simulation_parameters/microbe_stage/biomes.json:2876
+#: ../simulation_parameters/microbe_stage/biomes.json:3686
 #: ../src/auto-evo/AutoEvoGlobalCache.cs:70
 msgid "LARGE_SULFUR_CHUNK"
 msgstr ""
@@ -4692,6 +4722,7 @@ msgstr ""
 #: ../simulation_parameters/microbe_stage/biomes.json:1927
 #: ../simulation_parameters/microbe_stage/biomes.json:2549
 #: ../simulation_parameters/microbe_stage/biomes.json:2853
+#: ../simulation_parameters/microbe_stage/biomes.json:3663
 #: ../src/auto-evo/AutoEvoGlobalCache.cs:68
 msgid "MEDIUM_SULFUR_CHUNK"
 msgstr ""
@@ -4748,6 +4779,18 @@ msgstr ""
 
 #: ../src/general/MainMenu.tscn:737
 msgid "META_THREADS_TOOLTIP"
+msgstr ""
+
+#: ../src/general/world_effects/patch_events/MeteorImpactEvent.cs:229
+msgid "METEOR_IMPACT_EVENT"
+msgstr ""
+
+#: ../src/general/world_effects/patch_events/MeteorImpactEvent.cs:329
+msgid "METEOR_STRIKE_START_EVENT_LOG_PLURAL"
+msgstr ""
+
+#: ../src/general/world_effects/patch_events/MeteorImpactEvent.cs:328
+msgid "METEOR_STRIKE_START_EVENT_LOG_SINGULAR"
 msgstr ""
 
 #: ../src/engine/DebugOverlays.tscn:48 ../src/engine/DebugOverlays.tscn:107
@@ -5139,7 +5182,7 @@ msgstr ""
 msgid "MODELS"
 msgstr ""
 
-#: ../src/microbe_stage/gui/MovementModeSelectionPopup.tscn:114
+#: ../src/microbe_stage/gui/MovementModeSelectionPopup.tscn:116
 msgid "MODE_CAN_BE_CHANGED_IN_OPTIONS"
 msgstr ""
 
@@ -6301,14 +6344,14 @@ msgstr ""
 msgid "PENDING_ENDOSYMBIOSIS_TITLE"
 msgstr ""
 
-#: ../src/general/NewGameSettings.cs:910 ../src/general/NewGameSettings.cs:917
-#: ../src/general/NewGameSettings.cs:933 ../src/general/OptionsMenu.cs:2179
+#: ../src/general/NewGameSettings.cs:911 ../src/general/NewGameSettings.cs:918
+#: ../src/general/NewGameSettings.cs:934 ../src/general/OptionsMenu.cs:2179
 #: ../src/general/world_effects/GlucoseReductionEffect.cs:74
 #: ../src/general/world_effects/GlucoseReductionEffect.cs:99
 #: ../src/general/WorldGenerationSettings.cs:183
 #: ../src/gui_common/CompoundAmount.cs:316
 #: ../src/microbe_stage/editor/MicrobeEditorReportComponent.cs:531
-#: ../src/microbe_stage/editor/TolerancesEditorSubComponent.cs:714
+#: ../src/microbe_stage/editor/TolerancesEditorSubComponent.cs:716
 #: ../src/microbe_stage/editor/tooltips/EnvironmentalToleranceToolTip.cs:98
 #: ../src/microbe_stage/editor/tooltips/StatModifierToolTip.cs:157
 #: ../src/microbe_stage/editor/tooltips/StatModifierToolTip.cs:237
@@ -6601,6 +6644,7 @@ msgstr ""
 
 #: ../simulation_parameters/microbe_stage/biomes.json:422
 #: ../simulation_parameters/microbe_stage/biomes.json:2031
+#: ../simulation_parameters/microbe_stage/biomes.json:3755
 #: ../src/auto-evo/AutoEvoGlobalCache.cs:79
 msgid "RADIOACTIVE_CHUNK"
 msgstr ""
@@ -7072,11 +7116,11 @@ msgid "SCREEN_EFFECT_NONE"
 msgstr ""
 
 #: ../src/general/OptionsMenu.tscn:1740 ../src/general/OptionsMenu.tscn:1763
-#: ../src/microbe_stage/gui/MovementModeSelectionPopup.tscn:86
+#: ../src/microbe_stage/gui/MovementModeSelectionPopup.tscn:87
 msgid "SCREEN_RELATIVE_MOVEMENT"
 msgstr ""
 
-#: ../src/microbe_stage/gui/MovementModeSelectionPopup.tscn:80
+#: ../src/microbe_stage/gui/MovementModeSelectionPopup.tscn:81
 msgid "SCREEN_RELATIVE_MOVEMENT_TOOLTIP"
 msgstr ""
 
@@ -7116,8 +7160,8 @@ msgstr ""
 msgid "SEED_LABEL"
 msgstr ""
 
-#: ../src/microbe_stage/gui/MovementModeSelectionPopup.tscn:72
-#: ../src/microbe_stage/gui/MovementModeSelectionPopup.tscn:109
+#: ../src/microbe_stage/gui/MovementModeSelectionPopup.tscn:73
+#: ../src/microbe_stage/gui/MovementModeSelectionPopup.tscn:111
 msgid "SELECTED"
 msgstr ""
 
@@ -7359,6 +7403,7 @@ msgstr ""
 #: ../simulation_parameters/microbe_stage/biomes.json:2758
 #: ../simulation_parameters/microbe_stage/biomes.json:3111
 #: ../simulation_parameters/microbe_stage/biomes.json:3328
+#: ../simulation_parameters/microbe_stage/biomes.json:3572
 #: ../src/auto-evo/AutoEvoGlobalCache.cs:56
 msgid "SMALL_IRON_CHUNK"
 msgstr ""
@@ -7371,6 +7416,7 @@ msgstr ""
 #: ../simulation_parameters/microbe_stage/biomes.json:2572
 #: ../simulation_parameters/microbe_stage/biomes.json:2899
 #: ../simulation_parameters/microbe_stage/biomes.json:3167
+#: ../simulation_parameters/microbe_stage/biomes.json:3709
 msgid "SMALL_PHOSPHATE_CHUNK"
 msgstr ""
 
@@ -7378,11 +7424,13 @@ msgstr ""
 #: ../simulation_parameters/microbe_stage/biomes.json:1900
 #: ../simulation_parameters/microbe_stage/biomes.json:2526
 #: ../simulation_parameters/microbe_stage/biomes.json:2822
+#: ../simulation_parameters/microbe_stage/biomes.json:3636
 #: ../src/auto-evo/AutoEvoGlobalCache.cs:66
 msgid "SMALL_SULFUR_CHUNK"
 msgstr ""
 
 #: ../simulation_parameters/microbe_stage/biomes.json:2252
+#: ../simulation_parameters/microbe_stage/biomes.json:3548
 msgid "SNOWFLAKE"
 msgstr ""
 
@@ -8621,7 +8669,7 @@ msgstr ""
 msgid "UNKNOWN_PATCH"
 msgstr ""
 
-#: ../src/microbe_stage/editor/PatchMapNode.tscn:87
+#: ../src/microbe_stage/editor/PatchMapNode.tscn:90
 msgid "UNKNOWN_SHORT"
 msgstr ""
 
@@ -8856,7 +8904,7 @@ msgid "VACUOLE_SPECIALIZED_DESCRIPTION"
 msgstr ""
 
 #: ../src/gui_common/CompoundAmount.cs:311
-#: ../src/microbe_stage/editor/TolerancesEditorSubComponent.cs:713
+#: ../src/microbe_stage/editor/TolerancesEditorSubComponent.cs:715
 #: ../src/microbe_stage/gui/CompoundProgressBar.cs:509
 #: ../src/microbe_stage/gui/CompoundProgressBar.cs:585
 #: ../src/microbe_stage/gui/PatchDetailsPanel.cs:371
@@ -8952,6 +9000,7 @@ msgstr ""
 
 #: ../simulation_parameters/microbe_stage/biomes.json:188
 #: ../simulation_parameters/microbe_stage/biomes.json:3300
+#: ../simulation_parameters/microbe_stage/biomes.json:3442
 msgid "VOLCANIC_VENT"
 msgstr ""
 
@@ -9410,6 +9459,10 @@ msgstr ""
 
 #: ../simulation_parameters/common/wiki.json:3154
 msgid "WIKI_COMPOUND_SYSTEM_DEVELOPMENT_OVERVIEW"
+msgstr ""
+
+#: ../simulation_parameters/common/wiki.json:2741
+msgid "WIKI_CREATURE_EDITOR_COMMA_TECH_EDITOR"
 msgstr ""
 
 #: ../simulation_parameters/common/wiki.json:678
@@ -10283,7 +10336,6 @@ msgstr ""
 msgid "WIKI_MYOFIBRIL_UPGRADES"
 msgstr ""
 
-#: ../simulation_parameters/common/wiki.json:2792
 #: ../simulation_parameters/common/wiki.json:2843
 msgid "WIKI_NATION_EDITOR"
 msgstr ""
@@ -10918,10 +10970,13 @@ msgid "WIKI_STAGES_ROOT_INTRO"
 msgstr ""
 
 #: ../simulation_parameters/common/wiki.json:2690
-#: ../simulation_parameters/common/wiki.json:2741
 #: ../simulation_parameters/common/wiki.json:2894
 #: ../simulation_parameters/common/wiki.json:2945
 msgid "WIKI_TBA"
+msgstr ""
+
+#: ../simulation_parameters/common/wiki.json:2792
+msgid "WIKI_TECH_EDITOR_COMMA_NATION_EDITOR_COMMA_SQUAD_EDITOR"
 msgstr ""
 
 #: ../simulation_parameters/common/wiki.json:2100

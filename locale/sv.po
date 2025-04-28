@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2025-04-11 10:12+0300\n"
+"POT-Creation-Date: 2025-04-26 10:53+0300\n"
 "PO-Revision-Date: 2025-04-14 12:24+0000\n"
 "Last-Translator: Werka03 <weronica03@hotmail.com>\n"
 "Language-Team: Swedish <https://translate.revolutionarygamesstudio.com/projects/thrive/thrive-game/sv/>\n"
@@ -190,7 +190,7 @@ msgid "AND_UNLOCK_CONDITION"
 msgstr "och"
 
 msgid "ANISOTROPIC_FILTERING"
-msgstr ""
+msgstr "Anisotropisk filtrering:"
 
 msgid "ANTIALIASING_MSAA_TAA"
 msgstr ""
@@ -413,7 +413,7 @@ msgid "BACK"
 msgstr "Bakåt"
 
 msgid "BACKGROUND_BLUR"
-msgstr ""
+msgstr "Bakgrunds oskärpa:"
 
 msgid "BACKSLASH"
 msgstr "Omvänt snedstreck"
@@ -426,7 +426,7 @@ msgid "BACTERIAL_THERMOSYNTHESIS"
 msgstr "Termosyntes"
 
 msgid "BALANCE_DISPLAY_AT_DAY_ALWAYS"
-msgstr ""
+msgstr "Beräkna som om det var dag"
 
 msgid "BALANCE_DISPLAY_AT_DAY_ALWAYS_TOOLTIP"
 msgstr ""
@@ -708,7 +708,7 @@ msgid "CELL_TYPE_BUTTON_ATP_PRODUCTION"
 msgstr "ATP Produktion"
 
 msgid "CELL_TYPE_NAME"
-msgstr ""
+msgstr "Celltyp namn"
 
 #, fuzzy
 msgid "CHANGE_DESCRIPTION_IS_TOO_LONG"
@@ -813,7 +813,7 @@ msgid "CHROMATOPHORE_PROCESSES_DESCRIPTION"
 msgstr "Kemosyntesproteiner är små kluster av proteiner i cytoplasman som kan omvandla vätesulfid, vatten och gasformig koldioxid till glukos i en process som kallas vätesulfidkemosyntes. Hastigheten för dess glukosproduktion skalas med koncentrationen av koldioxid. Eftersom de kemosyntetiserande proteinerna är suspenderade direkt i cytoplasman utför den omgivande vätskan viss jäsning."
 
 msgid "CHUNK_CELL_CORPSE_PART"
-msgstr ""
+msgstr "Död cellbit"
 
 msgid "CHUNK_FOOD_SOURCE"
 msgstr "{0} konsumtion"
@@ -834,7 +834,7 @@ msgid "CITY_SHORT_STATISTICS"
 msgstr "Organismstatistik"
 
 msgid "CLEAN_UP_OLD_SAVES"
-msgstr ""
+msgstr "Rensa gamla sparfiler"
 
 msgid "CLEAR_CACHE"
 msgstr ""
@@ -2116,6 +2116,27 @@ msgstr "Flodmynning"
 msgid "EVENT_ERUPTION_TOOLTIP"
 msgstr "Självmord"
 
+msgid "EVENT_METEOR_GLUCOSE"
+msgstr ""
+
+#, fuzzy
+msgid "EVENT_METEOR_IRON"
+msgstr "{0}:+{1} ATP"
+
+#, fuzzy
+msgid "EVENT_METEOR_PHOSPHATES"
+msgstr "Spawna fosfat"
+
+#, fuzzy
+msgid "EVENT_METEOR_PLAIN"
+msgstr "Självmord"
+
+msgid "EVENT_METEOR_RADIOACTIVE"
+msgstr ""
+
+msgid "EVENT_METEOR_SULFUR"
+msgstr ""
+
 #, fuzzy
 msgid "EVOLUTIONARY_TREE"
 msgstr "Av Revolutionary Games Studio"
@@ -3202,13 +3223,8 @@ msgstr "Media"
 msgid "LAWK_ONLY"
 msgstr ""
 
-#, fuzzy
 msgid "LAWK_ONLY_EXPLANATION"
-msgstr ""
-"Aggressiva mikrober jagar byte över större avstånd\n"
-"och har större sannolikhet att kämpa emot när rovdjur attackerar.\n"
-"Fredliga mikrober attackerar inte andra över större avstånd\n"
-"och har lägre sannolikhet att använda gifter mot rovdjur."
+msgstr "(Begränsa delar och förmågor till endast livet som vi känner till det; Life As We Know it)"
 
 msgid "LEAD_ARTIST"
 msgstr "Ledande Artist"
@@ -3277,11 +3293,10 @@ msgid "LIFE_ORIGIN_PANSPERMIA"
 msgstr "Panspermi (slumpmässig)"
 
 msgid "LIFE_ORIGIN_POND"
-msgstr "Warm liten damm"
+msgstr "Varm liten damm"
 
-#, fuzzy
 msgid "LIFE_ORIGIN_TOOLTIP"
-msgstr "Självmord"
+msgstr "Vissa alternativ kan vara inaktiverade om begränsningen till LAWK är aktiverat"
 
 msgid "LIFE_ORIGIN_VENTS"
 msgstr "Hydrotermala källor"
@@ -3597,6 +3612,15 @@ msgstr ""
 "Det går inte att automatiskt upptäcka om flertrådning är aktivt eller inte.\n"
 "Detta påverkar standardantalet trådar eftersom flertrådnings-trådar inte är lika snabba som riktiga CPU-kärnor."
 
+msgid "METEOR_IMPACT_EVENT"
+msgstr ""
+
+msgid "METEOR_STRIKE_START_EVENT_LOG_PLURAL"
+msgstr ""
+
+msgid "METEOR_STRIKE_START_EVENT_LOG_SINGULAR"
+msgstr ""
+
 #, fuzzy
 msgid "METRICS"
 msgstr "Växla FPS display"
@@ -3845,38 +3869,33 @@ msgstr ""
 
 msgid "MICROBE_STAGE_INITIAL"
 msgstr ""
+"På en avlägsen främmande planet har eoner av vulkanisk aktivitet i de djupa haven gett upphov till något anmärkningsvärt.\n"
+"\n"
+"Liv.\n"
+"\n"
+"Du är den Sista Universella Gemensamma Förfadern (Las Universal Common Ancestor - LUCA) på denna planet. Denna enkla bubbla kan kopiera sig själv från molekyler i vattnet. Med tiden kan den utvecklas till en komplex livsform som en dag kanske dominerar stjärnorna.\n"
+"\n"
+"Men först måste du överleva i denna ogästvänliga värld genom att samla ämnesföreningar för att växa, sprida dig och utvecklas – samtidigt som du konkurrerar med andra mikrober."
 
-#, fuzzy
 msgid "MICROBE_STAGE_INITIAL_PANSPERMIA"
 msgstr ""
-"[b]Stadie[/b]\n"
-"  Mikrob\n"
-"[b]Membrantyp[/b]\n"
-"  {0}\n"
-"[b]Membranstelhet[/b]\n"
-"  {1}\n"
-"[b]Grundhastighet[/b]\n"
-"  {2}\n"
-"[b]Grunrotationshastighet[/b]\n"
-"  {3}\n"
-"[b]Grundhexstorlek[/b]\n"
-"  {4}"
+"På en avlägsen främmande planet har en meteorit kraschat efter en lång färd genom rymden. Den bär med sig fröet till något helt nytt på denna värld.\n"
+"\n"
+"Liv.\n"
+"\n"
+"Du är den Sista Universella Gemensamma Förfadern (Las Universal Common Ancestor - LUCA) på denna planet. Denna självkopierande bubbla kan leva i detta hav lika väl som på sin ursprungliga hemvärld. Kanske kommer dess avlägsna ättlingar en dag att återfinna den världen.\n"
+"\n"
+"Men först måste du överleva i dessa fientliga vatten genom att samla ämnesföreningar för att växa, sprida dig och utvecklas – samtidigt som du konkurrerar med andra mikrober."
 
-#, fuzzy
 msgid "MICROBE_STAGE_INITIAL_POND"
 msgstr ""
-"[b]Stadie[/b]\n"
-"  Mikrob\n"
-"[b]Membrantyp[/b]\n"
-"  {0}\n"
-"[b]Membranstelhet[/b]\n"
-"  {1}\n"
-"[b]Grundhastighet[/b]\n"
-"  {2}\n"
-"[b]Grunrotationshastighet[/b]\n"
-"  {3}\n"
-"[b]Grundhexstorlek[/b]\n"
-"  {4}"
+"På en avlägsen främmande planet har eoner av kemisk evolution i varma källor gett upphov till något anmärkningsvärt.\n"
+"\n"
+"Liv.\n"
+"\n"
+"Du är den Sista Universella Gemensamma Förfadern (Las Universal Common Ancestor - LUCA) på denna planet. Denna enkla bubbla kan kopiera sig själv från molekyler i vattnet. Med tiden kan den utvecklas till en komplex livsform som en dag kanske dominerar stjärnorna.\n"
+"\n"
+"Men först måste du överleva i denna ogästvänliga värld genom att samla ämnesföreningar för att växa, sprida dig och utvecklas – samtidigt som du konkurrerar med andra mikrober."
 
 #, fuzzy
 msgid "MICROBE_STAGE_ORGANELLE_DIVISION"
@@ -7515,6 +7534,10 @@ msgid "WIKI_COMPOUND_SYSTEM_DEVELOPMENT_OVERVIEW"
 msgstr ""
 
 #, fuzzy
+msgid "WIKI_CREATURE_EDITOR_COMMA_TECH_EDITOR"
+msgstr "Mikrobredigerare"
+
+#, fuzzy
 msgid "WIKI_CYTOPLASM_EFFECTS"
 msgstr "Det slemiga inre av en cell. Cytoplasman är den grundläggande blandningen av joner, proteiner och andra ämnen lösta i vatten som fyller cellens inre. En av funktionerna den utför är jäsning, omvandlingen av glukos till ATP-energi. För celler som saknar organeller så den har mer avancerade ämnesomsättningar är det vad de använder för energi. Det används också för att lagra molekyler i cellen och för att öka cellens storlek."
 
@@ -8661,6 +8684,9 @@ msgstr "Organeller"
 msgid "WIKI_TBA"
 msgstr ""
 
+msgid "WIKI_TECH_EDITOR_COMMA_NATION_EDITOR_COMMA_SQUAD_EDITOR"
+msgstr ""
+
 #, fuzzy
 msgid "WIKI_THERMOPLAST_EFFECTS"
 msgstr "Termoplasten är en dubbelmembranstruktur som innehåller värmekänsliga pigment staplade tillsammans i membransäckar. Det är en prokaryot som har assimilerats för användning av sin eukaryota värd. Pigmenten i termoplasten kan använda energin från värmeskillnader i omgivningen för att producera glukos från vatten och gasformig koldioxid i en process som kallas termosyntes. Hastigheten för dess glukosproduktion skalas med koncentrationen av koldioxid och temperatur."
@@ -8896,17 +8922,12 @@ msgstr ""
 msgid "WORLD_RELATIVE_MOVEMENT"
 msgstr "för att öka hastigheten"
 
-#, fuzzy
 msgid "WORLD_SIZE"
-msgstr "Nuvarande utvecklare"
+msgstr "Värld storlek"
 
 #, fuzzy
 msgid "WORLD_SIZE_EXPLANATION"
-msgstr ""
-"Aggressiva mikrober jagar byte över större avstånd\n"
-"och har större sannolikhet att kämpa emot när rovdjur attackerar.\n"
-"Fredliga mikrober attackerar inte andra över större avstånd\n"
-"och har lägre sannolikhet att använda gifter mot rovdjur."
+msgstr "(Ändrar andelen patches i världen)"
 
 msgid "WORLD_SIZE_LARGE"
 msgstr "Stor"
@@ -8918,9 +8939,8 @@ msgstr "för att öka hastigheten"
 msgid "WORLD_SIZE_SMALL"
 msgstr "Liten"
 
-#, fuzzy
 msgid "WORLD_SIZE_TOOLTIP"
-msgstr "Hjälp"
+msgstr "En stor värld kan göra simuleringen långsammare och rekommenderas inte för långsammare datorer."
 
 msgid "WORST_PATCH_COLON"
 msgstr ""
@@ -8928,26 +8948,24 @@ msgstr ""
 msgid "XBOX360"
 msgstr ""
 
+#, fuzzy
 msgid "XBOX_ONE"
-msgstr ""
+msgstr "Xbox One"
 
 msgid "XBOX_SERIES"
 msgstr ""
 
-#, fuzzy
 msgid "X_TWITTER_TOOLTIP"
-msgstr "Hjälp"
+msgstr "Besök våran X (förut känd som Twitter) profil"
 
 msgid "YEARS"
 msgstr "år"
 
-#, fuzzy
 msgid "YET_TO_BE_IMPLEMENTED_NOTICE"
-msgstr "Ej implementerat än."
+msgstr "Innehållet på denna sida är ännu inte fullt implementerat i spelet och kan komma att ändras."
 
-#, fuzzy
 msgid "YOUTUBE_TOOLTIP"
-msgstr "Fortsätt"
+msgstr "Besök våran YouTube kanal"
 
 msgid "YOU_CAN_MAKE_PULL_REQUEST"
 msgstr ""
@@ -9148,10 +9166,6 @@ msgstr "Zooma ut"
 #, fuzzy
 #~ msgid "ERUPTION_IN"
 #~ msgstr "Producerar"
-
-#, fuzzy
-#~ msgid "EVENT_TOOLTIP_ERUPTION"
-#~ msgstr "{0}:+{1} ATP"
 
 #~ msgid "THE_AMOUNT_OF_GLUCOSE_HAS_BEEN_REDUCED"
 #~ msgstr "Mängden glukos har minskats med {0} av den tidigare mängden."
@@ -9559,3 +9573,7 @@ msgstr "Zooma ut"
 #, fuzzy
 #~ msgid "BACKTAB"
 #~ msgstr "Backåt"
+
+#, fuzzy
+#~ msgid "EVENT_TOOLTIP_ERUPTION"
+#~ msgstr "{0}:+{1} ATP"

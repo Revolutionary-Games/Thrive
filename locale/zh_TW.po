@@ -7,9 +7,9 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2025-04-11 10:12+0300\n"
-"PO-Revision-Date: 2025-04-17 02:37+0000\n"
-"Last-Translator: xzihnago <xzihnago@gmail.com>\n"
+"POT-Creation-Date: 2025-04-26 10:53+0300\n"
+"PO-Revision-Date: 2025-04-26 09:18+0000\n"
+"Last-Translator: Anonymous <noreply@weblate.org>\n"
 "Language-Team: Chinese (Traditional Han script) <https://translate.revolutionarygamesstudio.com/projects/thrive/thrive-game/zh_Hant/>\n"
 "Language: zh_TW\n"
 "MIME-Version: 1.0\n"
@@ -1990,10 +1990,34 @@ msgstr "逃離吞噬"
 msgid "ESTUARY"
 msgstr "河口灣"
 
+#, fuzzy
 msgid "EVENT_ERUPTION_TOOLTIP"
 msgstr ""
 "區域事件：噴發\n"
 "產生額外的硫化氫與二氧化碳"
+
+msgid "EVENT_METEOR_GLUCOSE"
+msgstr ""
+
+#, fuzzy
+msgid "EVENT_METEOR_IRON"
+msgstr "{0}：+{1} ATP"
+
+#, fuzzy
+msgid "EVENT_METEOR_PHOSPHATES"
+msgstr "生成磷酸鹽"
+
+#, fuzzy
+msgid "EVENT_METEOR_PLAIN"
+msgstr ""
+"區域事件：噴發\n"
+"產生額外的硫化氫與二氧化碳"
+
+msgid "EVENT_METEOR_RADIOACTIVE"
+msgstr ""
+
+msgid "EVENT_METEOR_SULFUR"
+msgstr ""
 
 msgid "EVOLUTIONARY_TREE"
 msgstr "演化樹"
@@ -3337,6 +3361,15 @@ msgstr "將[thrive:compound type=\"glucose\"][/thrive:compound] 轉化為[thrive
 
 msgid "META_THREADS_TOOLTIP"
 msgstr "造訪我們的 Threads 檔案"
+
+msgid "METEOR_IMPACT_EVENT"
+msgstr ""
+
+msgid "METEOR_STRIKE_START_EVENT_LOG_PLURAL"
+msgstr ""
+
+msgid "METEOR_STRIKE_START_EVENT_LOG_SINGULAR"
+msgstr ""
 
 msgid "METRICS"
 msgstr "性能指標"
@@ -6484,16 +6517,16 @@ msgid "UPLOAD_SUCCEEDED"
 msgstr "上傳成功"
 
 msgid "UPSCALE_BILINEAR"
-msgstr ""
+msgstr "雙線性解析度提升"
 
 msgid "UPSCALE_FSR_1"
-msgstr ""
+msgstr "FSR 1 解析度提升"
 
 msgid "UPSCALE_FSR_22"
-msgstr ""
+msgstr "FSR 2.2 解析度提升"
 
 msgid "UPSCALE_SHARPENING_FSR"
-msgstr ""
+msgstr "FSR 銳化"
 
 msgid "USED_LIBRARIES_LICENSES"
 msgstr "授權條款與使用的程式庫"
@@ -6595,7 +6628,7 @@ msgid "VIEW_SOURCE_CODE"
 msgstr "查看原始碼"
 
 msgid "VIEW_TEXT_REPORT"
-msgstr ""
+msgstr "查看文字報告"
 
 msgid "VIP_PATRONS"
 msgstr "VIP 支持者"
@@ -6705,6 +6738,7 @@ msgstr "即將推出。"
 msgid "WIKI_AWAKENING_STAGE_INTRO"
 msgstr "簡介：您從一個開始發現工具用途的生物開始，必須迅速進步才能生存並超越競爭對手。本階段將於您建造第一個社會中心後結束。"
 
+#, fuzzy
 msgid "WIKI_AWAKENING_STAGE_OVERVIEW"
 msgstr "即將推出。"
 
@@ -7214,6 +7248,10 @@ msgstr ""
 "\n"
 "[indent]—   基本上遊戲中的所有事物都是由某種化合物組成的。化合物系統的目的是追蹤生物體是由什麼組成的，追蹤生物體吃了什麼，將其轉化成什麼，以及它排出了哪些廢物。其他一切都是環境的一部分，可供其他生物體使用。[/indent]"
 
+#, fuzzy
+msgid "WIKI_CREATURE_EDITOR_COMMA_TECH_EDITOR"
+msgstr "軀體設計編輯器、細胞編輯器"
+
 msgid "WIKI_CYTOPLASM_EFFECTS"
 msgstr "任何其他細胞器都可以取代[b]細胞質[/b]，而無需額外的突變點數（僅消耗該細胞器本身的成本）。"
 
@@ -7579,6 +7617,7 @@ msgstr "此階段尚未開始開發。當[color=#3796e1][url=thriveopedia:societ
 msgid "WIKI_INDUSTRIAL_STAGE_FEATURES"
 msgstr "即將推出。"
 
+#, fuzzy
 msgid "WIKI_INDUSTRIAL_STAGE_INTRO"
 msgstr ""
 "工業階段是 Thrive 七個遊戲階段中的第六個，緊接在[color=#3796e1][url=thriveopedia:society_stage]社會階段[/url][/color]之後，從工業機械的發明開始。此時科技與文化已高度發展，文明高度依賴機械來維持運作。整個星球大部分地區已被探索並有人居住，使您幾乎可以在任何地方進行交流或發動戰爭。外交與領導能力比以往任何時候都更為重要。\n"
@@ -8532,6 +8571,7 @@ msgstr "此階段尚未開始開發。近年來，這一階段的理論與遊戲
 msgid "WIKI_SOCIETY_STAGE_FEATURES"
 msgstr "即將推出。"
 
+#, fuzzy
 msgid "WIKI_SOCIETY_STAGE_INTRO"
 msgstr ""
 "簡介：在這個階段中，您將發展與擴展您的第一個聚落，並建立更多的聚落。這個階段讓人聯想到中世紀。當您的科技發展到足夠先進的程度時，本階段結束。\n"
@@ -8540,6 +8580,7 @@ msgstr ""
 "\n"
 "在整個社會階段中，主要目標之一是發展越來越先進的科技。因此，當您的物種發展出足夠先進的科技進入[color=#3796e1][url=thriveopedia:industrial_stage]工業階段[/url][/color]時，社會階段結束。"
 
+#, fuzzy
 msgid "WIKI_SOCIETY_STAGE_OVERVIEW"
 msgstr ""
 "社會階段標誌著玩家的物種從簡單的部落到先進文明的轉變。社會階段的特色在於某些技術的出現，這些技術使研究網絡的查看與投資、政府政策的實施、宗教的出現以及更大規模衝突的開始成為可能。在這個階段，國家編輯器變得越來越重要，科技編輯器與隊伍編輯器也是如此。儘管玩家可以自由切換至以個體生物的視角來進行遊戲，但所有重要的事件與決策都發生在更大的範圍內，並且需要管理越來越多的人口。玩家必須在滿足人民需求與平衡國家利益之間做出抉擇，以帶領他們的文明向前發展。\n"
@@ -8605,9 +8646,15 @@ msgstr ""
 msgid "WIKI_TBA"
 msgstr "待定"
 
+#, fuzzy
+msgid "WIKI_TECH_EDITOR_COMMA_NATION_EDITOR_COMMA_SQUAD_EDITOR"
+msgstr "軀體設計編輯器、細胞編輯器"
+
+#, fuzzy
 msgid "WIKI_THERMOPLAST_EFFECTS"
 msgstr "無效果。"
 
+#, fuzzy
 msgid "WIKI_THERMOPLAST_INTRO"
 msgstr ""
 "利用環境中的[thrive:compound type=\"temperature\"][/thrive:compound] 梯度以[thrive:compound type=\"atp\"][/thrive:compound] 的形式提取能量。效率高於原核版本的[b][color=#3796e1][url=thriveopedia:thermosynthase]熱合成酶[/url][/color][/b]。\n"
@@ -8617,12 +8664,14 @@ msgstr ""
 msgid "WIKI_THERMOPLAST_MODIFICATIONS"
 msgstr "無修改。"
 
+#, fuzzy
 msgid "WIKI_THERMOPLAST_PROCESSES"
 msgstr ""
 "[b]熱合成[/b]：[thrive:compound type=\"temperature\"][/thrive:compound] → [thrive:compound type=\"atp\"][/thrive:compound]\n"
 "\n"
 "利用周圍環境[thrive:compound type=\"temperature\"][/thrive:compound] 被動生成能量。效率高於[b][color=#3796e1][url=thriveopedia:thermosynthase]熱合成酶[/url][/color][/b]中的[b]細菌熱合成[/b]。"
 
+#, fuzzy
 msgid "WIKI_THERMOPLAST_REQUIREMENTS"
 msgstr ""
 "[b]熱能體[/b]僅出現在關閉僅限已知生命形式選項的遊戲中。\n"
@@ -8631,9 +8680,11 @@ msgstr ""
 "\n"
 "[indent]—   至少連續 [b]5[/b] 代中包含 [b]3[/b] 個[b][color=#3796e1][url=thriveopedia:thermosynthase]熱合成酶[/url][/color][/b]。[/indent]"
 
+#, fuzzy
 msgid "WIKI_THERMOPLAST_SCIENTIFIC_BACKGROUND"
 msgstr "待定"
 
+#, fuzzy
 msgid "WIKI_THERMOPLAST_STRATEGY"
 msgstr ""
 "由於[b]熱合成[/b]除了環境[thrive:compound type=\"temperature\"][/thrive:compound] 以外不需要任何輸入，因此它本質上是免費能量。此外，[b]熱能體[/b]比其前身[b][color=#3796e1][url=thriveopedia:thermosynthase]熱合成酶[/url][/color][/b]更高效，這使得它們可以說是遊戲中最簡單的能量產生方法，前提是您願意留在海底熱泉等炎熱地區。\n"
@@ -8643,9 +8694,11 @@ msgstr ""
 msgid "WIKI_THERMOPLAST_UPGRADES"
 msgstr "無升級。"
 
+#, fuzzy
 msgid "WIKI_THERMOSYNTHASE_EFFECTS"
 msgstr "無效果。"
 
+#, fuzzy
 msgid "WIKI_THERMOSYNTHASE_INTRO"
 msgstr ""
 "利用環境中的[thrive:compound type=\"temperature\"][/thrive:compound] 梯度以[thrive:compound type=\"atp\"][/thrive:compound] 的形式提取能量。效率低於真核版本的[b][color=#3796e1][url=thriveopedia:thermoplast]熱能體[/url][/color][/b]。\n"
@@ -8655,12 +8708,14 @@ msgstr ""
 msgid "WIKI_THERMOSYNTHASE_MODIFICATIONS"
 msgstr "無修改。"
 
+#, fuzzy
 msgid "WIKI_THERMOSYNTHASE_PROCESSES"
 msgstr ""
 "[b]細菌熱合成[/b]：[thrive:compound type=\"temperature\"][/thrive:compound] → [thrive:compound type=\"atp\"][/thrive:compound]\n"
 "\n"
 "利用周圍環境[thrive:compound type=\"temperature\"][/thrive:compound] 被動生成能量。效率低於[b][color=#3796e1][url=thriveopedia:thermoplast]熱能體[/url][/color][/b]中的[b]熱合成[/b]。"
 
+#, fuzzy
 msgid "WIKI_THERMOSYNTHASE_REQUIREMENTS"
 msgstr ""
 "[b]熱能體[/b]僅出現在關閉僅限已知生命形式選項的遊戲中。\n"
@@ -8669,9 +8724,11 @@ msgstr ""
 "\n"
 "[indent]—   位於至少 [b]+50 °C[/b] [thrive:compound type=\"temperature\"][/thrive:compound] 的區域。[/indent]"
 
+#, fuzzy
 msgid "WIKI_THERMOSYNTHASE_SCIENTIFIC_BACKGROUND"
 msgstr "待定"
 
+#, fuzzy
 msgid "WIKI_THERMOSYNTHASE_STRATEGY"
 msgstr ""
 "在目前遊戲中，[b]熱合成酶[/b]本質上是免費能量。它沒有真正的缺點，只要您滿足於留在炎熱區域中即可。 [b]細菌熱合成[/b]在大約 [b]+23 °C[/b] [thrive:compound type=\"temperature\"][/thrive:compound] 的區域中保持平衡，並且在海底熱泉中更強大，其溫度為 [b]+98 °C[/b] [thrive:compound type=\"temperature\"][/thrive:compound]。\n"
@@ -9117,10 +9174,6 @@ msgstr "縮小"
 #, fuzzy
 #~ msgid "ERUPTION_IN"
 #~ msgstr "出芽生殖"
-
-#, fuzzy
-#~ msgid "EVENT_TOOLTIP_ERUPTION"
-#~ msgstr "{0}：+{1} ATP"
 
 #~ msgid "THE_AMOUNT_OF_GLUCOSE_HAS_BEEN_REDUCED"
 #~ msgstr "環境葡萄糖量已減少至先前的 {0}。"
@@ -9593,3 +9646,7 @@ msgstr "縮小"
 #~ "你還可以在細胞編輯器裡修改你的物種的其它屬性。\n"
 #~ "\n"
 #~ "想要繼續的話，從左側面板選中一個細胞器（細胞質是個好選擇）。然後再點擊右側面板中央附近的六角格以將此細胞器放入你的物種中。"
+
+#, fuzzy
+#~ msgid "EVENT_TOOLTIP_ERUPTION"
+#~ msgstr "{0}：+{1} ATP"

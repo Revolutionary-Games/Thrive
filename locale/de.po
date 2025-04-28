@@ -7,8 +7,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2025-04-11 10:12+0300\n"
-"PO-Revision-Date: 2025-04-04 10:41+0000\n"
+"POT-Creation-Date: 2025-04-26 10:53+0300\n"
+"PO-Revision-Date: 2025-04-26 09:18+0000\n"
 "Last-Translator: Anonymous <noreply@weblate.org>\n"
 "Language-Team: German <https://translate.revolutionarygamesstudio.com/projects/thrive/thrive-game/de/>\n"
 "Language: de\n"
@@ -1996,10 +1996,34 @@ msgstr "Verschlingung entflohen"
 msgid "ESTUARY"
 msgstr "Ästuar"
 
+#, fuzzy
 msgid "EVENT_ERUPTION_TOOLTIP"
 msgstr ""
 "Eruption Bereichsereignis\n"
 "Zusätzliche Substanzen erscheinen: Schwefelwasserstoff und Kohlendioxid"
+
+msgid "EVENT_METEOR_GLUCOSE"
+msgstr ""
+
+#, fuzzy
+msgid "EVENT_METEOR_IRON"
+msgstr "{0}: +{1} ATP"
+
+#, fuzzy
+msgid "EVENT_METEOR_PHOSPHATES"
+msgstr "Phosphat erzeugen"
+
+#, fuzzy
+msgid "EVENT_METEOR_PLAIN"
+msgstr ""
+"Eruption Bereichsereignis\n"
+"Zusätzliche Substanzen erscheinen: Schwefelwasserstoff und Kohlendioxid"
+
+msgid "EVENT_METEOR_RADIOACTIVE"
+msgstr ""
+
+msgid "EVENT_METEOR_SULFUR"
+msgstr ""
 
 msgid "EVOLUTIONARY_TREE"
 msgstr "Evolutionsbaum"
@@ -3222,7 +3246,7 @@ msgid "LOW_QUALITY_BACKGROUND_BLUR_TOOLTIP"
 msgstr "Zeigt die Hintergrundunschärfe in niedriger Auflösung an, was die Leistung verbessert."
 
 msgid "LUCIFERASE"
-msgstr ""
+msgstr "Luciferase"
 
 #, fuzzy
 msgid "LUCIFERASE_SYNTHESIS"
@@ -3344,6 +3368,15 @@ msgstr "Wandelt [thrive:compound type=\"glucose\"][/thrive:compound] in [thrive:
 
 msgid "META_THREADS_TOOLTIP"
 msgstr "Besuche unser Threads-Profil"
+
+msgid "METEOR_IMPACT_EVENT"
+msgstr ""
+
+msgid "METEOR_STRIKE_START_EVENT_LOG_PLURAL"
+msgstr ""
+
+msgid "METEOR_STRIKE_START_EVENT_LOG_SINGULAR"
+msgstr ""
 
 msgid "METRICS"
 msgstr "Leistungs Daten"
@@ -6845,6 +6878,7 @@ msgstr "Bald verfügbar."
 msgid "WIKI_AWAKENING_STAGE_INTRO"
 msgstr "Bindemittel"
 
+#, fuzzy
 msgid "WIKI_AWAKENING_STAGE_OVERVIEW"
 msgstr "Demnächst verfügbar."
 
@@ -7208,6 +7242,10 @@ msgstr ""
 
 msgid "WIKI_COMPOUND_SYSTEM_DEVELOPMENT_OVERVIEW"
 msgstr ""
+
+#, fuzzy
+msgid "WIKI_CREATURE_EDITOR_COMMA_TECH_EDITOR"
+msgstr "Mikrobeneditor"
 
 #, fuzzy
 msgid "WIKI_CYTOPLASM_EFFECTS"
@@ -8437,6 +8475,9 @@ msgstr "Organellen"
 msgid "WIKI_TBA"
 msgstr "unser Wiki"
 
+msgid "WIKI_TECH_EDITOR_COMMA_NATION_EDITOR_COMMA_SQUAD_EDITOR"
+msgstr ""
+
 #, fuzzy
 msgid "WIKI_THERMOPLAST_EFFECTS"
 msgstr "Der Thermoplast ist eine Doppelmembranstruktur, in der wärmeempfindliche Pigmente in Membransäcken gestapelt sind. Es handelt sich um einen Prokaryoten, der für die Verwendung durch seinen eukaryotischen Wirt assimiliert wurde. Die Pigmente im Thermoplast sind in der Lage, die Energie der Wärmeunterschiede in der Umgebung zu nutzen, um in einem Prozess namens Thermosynthese aus Wasser und gasförmigem Kohlendioxid Glukose zu produzieren. Die Geschwindigkeit seiner Glukoseproduktion hängt von der Konzentration des Kohlendioxids und der Temperatur ab."
@@ -8918,10 +8959,6 @@ msgstr "Herauszoomen"
 #, fuzzy
 #~ msgid "ERUPTION_IN"
 #~ msgstr "Knospend"
-
-#, fuzzy
-#~ msgid "EVENT_TOOLTIP_ERUPTION"
-#~ msgstr "{0}: +{1} ATP"
 
 #~ msgid "THE_AMOUNT_OF_GLUCOSE_HAS_BEEN_REDUCED"
 #~ msgstr "Die Glukosemenge wurde auf {0} der vorherigen Menge reduziert."
@@ -9447,3 +9484,7 @@ msgstr "Herauszoomen"
 #~ "Du kannst auch andere Eigenschaften deiner Spezies in den anderen Registern des Zelleneditors ändern.\n"
 #~ "\n"
 #~ "Um fortzufahren, wähle eine Organelle aus der Palette auf der linken Seite aus (Zytoplasma ist eine gute Wahl). Klicke dann mit der linken Maustaste neben das in der Mitte des Bildschirms angezeigte Feld, um diese Organelle zu deiner Spezies hinzuzufügen."
+
+#, fuzzy
+#~ msgid "EVENT_TOOLTIP_ERUPTION"
+#~ msgstr "{0}: +{1} ATP"

@@ -7,9 +7,9 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2025-04-11 10:12+0300\n"
-"PO-Revision-Date: 2025-04-14 12:24+0000\n"
-"Last-Translator: NorwayFun <temuri.doghonadze@gmail.com>\n"
+"POT-Creation-Date: 2025-04-26 10:53+0300\n"
+"PO-Revision-Date: 2025-04-26 09:18+0000\n"
+"Last-Translator: Anonymous <noreply@weblate.org>\n"
 "Language-Team: Georgian <https://translate.revolutionarygamesstudio.com/projects/thrive/thrive-game/ka/>\n"
 "Language: ka\n"
 "MIME-Version: 1.0\n"
@@ -1879,10 +1879,34 @@ msgstr "შთანთქმისგან გაქცევა"
 msgid "ESTUARY"
 msgstr "შესართავი"
 
+#, fuzzy
 msgid "EVENT_ERUPTION_TOOLTIP"
 msgstr ""
 "პაჩის ამოფრქვევის მოვლენა\n"
 "შექმნის დამატებით გოგირდწყალბადს და ნახშირბადის დიოქსიდს"
+
+msgid "EVENT_METEOR_GLUCOSE"
+msgstr ""
+
+#, fuzzy
+msgid "EVENT_METEOR_IRON"
+msgstr "{0}: +{1} ატფ"
+
+#, fuzzy
+msgid "EVENT_METEOR_PHOSPHATES"
+msgstr "ფოსფატის შექმნა"
+
+#, fuzzy
+msgid "EVENT_METEOR_PLAIN"
+msgstr ""
+"პაჩის ამოფრქვევის მოვლენა\n"
+"შექმნის დამატებით გოგირდწყალბადს და ნახშირბადის დიოქსიდს"
+
+msgid "EVENT_METEOR_RADIOACTIVE"
+msgstr ""
+
+msgid "EVENT_METEOR_SULFUR"
+msgstr ""
 
 msgid "EVOLUTIONARY_TREE"
 msgstr "ევოლუციის ხე"
@@ -3196,6 +3220,15 @@ msgstr "გადაჰყავს [thrive:compound type=\"glucose\"][/thrive:c
 
 msgid "META_THREADS_TOOLTIP"
 msgstr "ეწვიეთ ჩვენს Thread-ის პროფილს"
+
+msgid "METEOR_IMPACT_EVENT"
+msgstr ""
+
+msgid "METEOR_STRIKE_START_EVENT_LOG_PLURAL"
+msgstr ""
+
+msgid "METEOR_STRIKE_START_EVENT_LOG_SINGULAR"
+msgstr ""
 
 msgid "METRICS"
 msgstr "წარმადობის ჩვენება"
@@ -6263,6 +6296,7 @@ msgstr "სულ მალე."
 msgid "WIKI_AWAKENING_STAGE_INTRO"
 msgstr ""
 
+#, fuzzy
 msgid "WIKI_AWAKENING_STAGE_OVERVIEW"
 msgstr "სულ მალე."
 
@@ -6514,6 +6548,10 @@ msgstr ""
 
 msgid "WIKI_COMPOUND_SYSTEM_DEVELOPMENT_OVERVIEW"
 msgstr ""
+
+#, fuzzy
+msgid "WIKI_CREATURE_EDITOR_COMMA_TECH_EDITOR"
+msgstr "სხეულის გეგმის რედაქტორი, უჯრედის რედაქტორი"
 
 msgid "WIKI_CYTOPLASM_EFFECTS"
 msgstr "[b]ციტოპლაზმის[/b] შეცვლა ნებისმიერი სხვა ორგანელას შეუძლია დამატებითი მუტაციის ქულების გამოყენების გარეშე (თუ ორგანელის ფასი უფრო დიდი არაა)."
@@ -7451,6 +7489,11 @@ msgstr ""
 msgid "WIKI_TBA"
 msgstr "მზად არაა"
 
+#, fuzzy
+msgid "WIKI_TECH_EDITOR_COMMA_NATION_EDITOR_COMMA_SQUAD_EDITOR"
+msgstr "სხეულის გეგმის რედაქტორი, უჯრედის რედაქტორი"
+
+#, fuzzy
 msgid "WIKI_THERMOPLAST_EFFECTS"
 msgstr "ეფექტების გარეშე."
 
@@ -7460,6 +7503,7 @@ msgstr ""
 msgid "WIKI_THERMOPLAST_MODIFICATIONS"
 msgstr "ცვლილებების გარეშე."
 
+#, fuzzy
 msgid "WIKI_THERMOPLAST_PROCESSES"
 msgstr ""
 "[b]Thermosynthesis[/b]: [thrive:compound type=\"temperature\"][/thrive:compound] → [thrive:compound type=\"atp\"][/thrive:compound]\n"
@@ -7469,6 +7513,7 @@ msgstr ""
 msgid "WIKI_THERMOPLAST_REQUIREMENTS"
 msgstr ""
 
+#, fuzzy
 msgid "WIKI_THERMOPLAST_SCIENTIFIC_BACKGROUND"
 msgstr "ჯერ უცნობია"
 
@@ -7478,6 +7523,7 @@ msgstr ""
 msgid "WIKI_THERMOPLAST_UPGRADES"
 msgstr "გაუმჯობესებების გარეშე."
 
+#, fuzzy
 msgid "WIKI_THERMOSYNTHASE_EFFECTS"
 msgstr "ეფექტების გარეშე."
 
@@ -7487,6 +7533,7 @@ msgstr ""
 msgid "WIKI_THERMOSYNTHASE_MODIFICATIONS"
 msgstr "ცვლილებების გარეშე."
 
+#, fuzzy
 msgid "WIKI_THERMOSYNTHASE_PROCESSES"
 msgstr ""
 "[b]ბაქტერიული თერმოსინთეზი[/b]: [thrive:compound type=\"temperature\"][/thrive:compound] → [thrive:compound type=\"atp\"][/thrive:compound]\n"
@@ -7496,6 +7543,7 @@ msgstr ""
 msgid "WIKI_THERMOSYNTHASE_REQUIREMENTS"
 msgstr ""
 
+#, fuzzy
 msgid "WIKI_THERMOSYNTHASE_SCIENTIFIC_BACKGROUND"
 msgstr "ჯერ უცნობია"
 
@@ -7787,10 +7835,6 @@ msgstr "დაპატარავება"
 #, fuzzy
 #~ msgid "ERUPTION_IN"
 #~ msgstr "გამრავლება"
-
-#, fuzzy
-#~ msgid "EVENT_TOOLTIP_ERUPTION"
-#~ msgstr "{0}: +{1} ატფ"
 
 #~ msgid "THE_AMOUNT_OF_GLUCOSE_HAS_BEEN_REDUCED"
 #~ msgstr "გლუკოზის რაოდენობა წინა რაოდენობასთან შედარებით {0}-მდე შემცირდა."

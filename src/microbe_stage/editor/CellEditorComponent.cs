@@ -2778,8 +2778,8 @@ public partial class CellEditorComponent :
     {
         var input = newText.ToLower(CultureInfo.InvariantCulture);
 
-        var organelles = SimulationParameters.Instance.GetAllOrganelles().Where(
-            o => o.Name.ToLower(CultureInfo.CurrentCulture).Contains(input)).ToList();
+        var organelles = SimulationParameters.Instance.GetAllOrganelles()
+            .Where(o => o.Name.ToLower(CultureInfo.CurrentCulture).Contains(input)).ToList();
 
         foreach (var node in placeablePartSelectionElements.Values)
         {

@@ -19,9 +19,9 @@ public partial class TolerancesEditorSubComponent : EditorComponentBase<ICellEdi
     private readonly StringName toleranceFlashName = new("FlashPressureRange");
     private readonly StringName tooWideRangeName = new("PopupPressureRangeWarning");
 
-    private readonly CompoundDefinition temperature = SimulationParameters.GetCompound(Compound.Temperature);
-
     private readonly Dictionary<OrganelleDefinition, float> tempToleranceModifiers = new();
+
+    private CompoundDefinition temperature = null!;
 
 #pragma warning disable CA2213
 
@@ -172,6 +172,8 @@ public partial class TolerancesEditorSubComponent : EditorComponentBase<ICellEdi
         originalTemperatureFont = temperatureMinLabel.LabelSettings;
         originalPressureFont = pressureMinLabel.LabelSettings;
         originalModifierFont = temperatureToleranceModifierLabel.LabelSettings;
+
+        temperature = SimulationParameters.GetCompound(Compound.Temperature);
 
         RegisterTooltips();
     }
@@ -353,7 +355,7 @@ public partial class TolerancesEditorSubComponent : EditorComponentBase<ICellEdi
         // Copy the units here automatically
         if (temperatureRangeToolTip != null)
         {
-            temperatureRangeToolTip.ValueSuffix = SimulationParameters.GetCompound(Compound.Temperature).Unit;
+            temperatureRangeToolTip.ValueSuffix = temperature.Unit;
         }
         else
         {

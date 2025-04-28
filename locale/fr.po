@@ -7,8 +7,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2025-04-11 10:12+0300\n"
-"PO-Revision-Date: 2025-04-04 10:41+0000\n"
+"POT-Creation-Date: 2025-04-26 10:53+0300\n"
+"PO-Revision-Date: 2025-04-26 09:18+0000\n"
 "Last-Translator: Anonymous <noreply@weblate.org>\n"
 "Language-Team: French <https://translate.revolutionarygamesstudio.com/projects/thrive/thrive-game/fr/>\n"
 "Language: fr\n"
@@ -2048,6 +2048,27 @@ msgstr "Estuaire"
 msgid "EVENT_ERUPTION_TOOLTIP"
 msgstr "Ceci est le code exact à partir duquel cette version de Thrive a été compilée"
 
+msgid "EVENT_METEOR_GLUCOSE"
+msgstr ""
+
+#, fuzzy
+msgid "EVENT_METEOR_IRON"
+msgstr "{0} : +{1} ATP"
+
+#, fuzzy
+msgid "EVENT_METEOR_PHOSPHATES"
+msgstr "Créer du phosphate"
+
+#, fuzzy
+msgid "EVENT_METEOR_PLAIN"
+msgstr "Ceci est le code exact à partir duquel cette version de Thrive a été compilée"
+
+msgid "EVENT_METEOR_RADIOACTIVE"
+msgstr ""
+
+msgid "EVENT_METEOR_SULFUR"
+msgstr ""
+
 msgid "EVOLUTIONARY_TREE"
 msgstr "Arbre phylogénétique"
 
@@ -3317,7 +3338,7 @@ msgid "LOW_QUALITY_BACKGROUND_BLUR_TOOLTIP"
 msgstr "Faire que le flou d'arrière plan soit de faible résolution ce qui améliore les performances."
 
 msgid "LUCIFERASE"
-msgstr ""
+msgstr "Luciférase"
 
 #, fuzzy
 msgid "LUCIFERASE_SYNTHESIS"
@@ -3450,6 +3471,15 @@ msgid "META_THREADS_TOOLTIP"
 msgstr ""
 "Il n'est pas possible de détecter de manière automatique si l'hyper-threading est activé ou non.\n"
 "Cela a un impact sur le nombre de threads par défaut, car les threads de l'hyper-threading ne sont pas aussi performants que les véritables cœurs d'une unité centrale (CPU)."
+
+msgid "METEOR_IMPACT_EVENT"
+msgstr ""
+
+msgid "METEOR_STRIKE_START_EVENT_LOG_PLURAL"
+msgstr ""
+
+msgid "METEOR_STRIKE_START_EVENT_LOG_SINGULAR"
+msgstr ""
 
 msgid "METRICS"
 msgstr "Mesures de performance"
@@ -7047,6 +7077,7 @@ msgstr ""
 "\n"
 "La formation de colonies cellulaires est la première étape vers la multicellularité, et les [b]agents liants[/b] sont donc essentiels pour passer à la phase suivante."
 
+#, fuzzy
 msgid "WIKI_AWAKENING_STAGE_OVERVIEW"
 msgstr "Prochainement."
 
@@ -7551,6 +7582,10 @@ msgstr ""
 "[indent]— Dans Thrive, les substances qui composent les choses sont appelées composés, et peuvent être considérées comme des ressources. Elles ne se limitent pas à la définition scientifique de \"composé\" comme étant une combinaison de deux ou plusieurs éléments liés entre eux. Les composés au sens de ressource peuvent être des éléments (comme l’oxygène), des composés (comme l’ammoniac) ou d’autres substances (agents chimiques ou toxines).[/indent]\n"
 "\n"
 "[indent]— En gros, tout dans le jeu est fait d’un certain composé. Le système de composés sert à suivre de quoi les organismes sont constitués, ce qu’ils ont consommé, en quoi ils l’ont transformé et quels déchets ils expulsent. Tout le reste fait partie de l’environnement et est accessible aux autres organismes.[/indent]"
+
+#, fuzzy
+msgid "WIKI_CREATURE_EDITOR_COMMA_TECH_EDITOR"
+msgstr "Editeur de corps, éditeur de cellule"
 
 msgid "WIKI_CYTOPLASM_EFFECTS"
 msgstr "N'importe quel organite peut remplacer le [b]cytoplasme[/b] sans coût supplémentaire en points de mutation (en dehors du coût de l'organite en question)."
@@ -8862,6 +8897,11 @@ msgstr ""
 msgid "WIKI_TBA"
 msgstr "À venir"
 
+#, fuzzy
+msgid "WIKI_TECH_EDITOR_COMMA_NATION_EDITOR_COMMA_SQUAD_EDITOR"
+msgstr "Editeur de corps, éditeur de cellule"
+
+#, fuzzy
 msgid "WIKI_THERMOPLAST_EFFECTS"
 msgstr "Pas d'effets."
 
@@ -8876,6 +8916,7 @@ msgstr "Pas de modifications."
 msgid "WIKI_THERMOPLAST_PROCESSES"
 msgstr "Produit du [thrive:compound type=\"glucose\"][/thrive:compound]. Taux proportionnel à la concentration de [thrive:compound type=\"carbondioxide\"][/thrive:compound] et à la température."
 
+#, fuzzy
 msgid "WIKI_THERMOPLAST_REQUIREMENTS"
 msgstr ""
 "Les [b]Thermoplastes[/b] n'apparaissent que dans les jeux avec LAWK désactivé dans les paramètres du jeu.\n"
@@ -8884,6 +8925,7 @@ msgstr ""
 "\n"
 "[indent]— Contient au moins [b]3[/b] hexes de [b][color=#3796e1][url=thriveopedia:thermosynthase]Thermosynthase[/url][/color][/b] pendant au moins [b]5[/b] générations consécutives.[/indent]"
 
+#, fuzzy
 msgid "WIKI_THERMOPLAST_SCIENTIFIC_BACKGROUND"
 msgstr "À venir"
 
@@ -8894,6 +8936,7 @@ msgstr "Le thermoplaste est une structure à double membrane contenant des pigme
 msgid "WIKI_THERMOPLAST_UPGRADES"
 msgstr "Pas d'améliorations."
 
+#, fuzzy
 msgid "WIKI_THERMOSYNTHASE_EFFECTS"
 msgstr "Pas d'effets."
 
@@ -8912,6 +8955,7 @@ msgstr "Produit l'[thrive:compound type=\"atp\"][/thrive:compound] en utilisant 
 msgid "WIKI_THERMOSYNTHASE_REQUIREMENTS"
 msgstr "La thermosynthase est une protéine qui utilise la convection thermique pour changer de forme, ce qui lui permet de se replier et de se lier à l'ADP lorsqu'elle est exposée à la chaleur, puis de se déplier et de le recycler en [thrive:compound type=\"atp\"][/thrive:compound] lorsqu'elle est exposée au froid, dans un processus appelé [b]thermosynthèse[/b]. Le taux de production de [thrive:compound type=\"atp\"][/thrive:compound] varie avec [thrive:compound type=\"temperature\"][/thrive:compound]."
 
+#, fuzzy
 msgid "WIKI_THERMOSYNTHASE_SCIENTIFIC_BACKGROUND"
 msgstr "À venir"
 
@@ -9360,10 +9404,6 @@ msgstr "Dézoomer"
 #, fuzzy
 #~ msgid "ERUPTION_IN"
 #~ msgstr "Bourgeonnement"
-
-#, fuzzy
-#~ msgid "EVENT_TOOLTIP_ERUPTION"
-#~ msgstr "{0} : +{1} ATP"
 
 #~ msgid "THE_AMOUNT_OF_GLUCOSE_HAS_BEEN_REDUCED"
 #~ msgstr "La quantité de glucose a été réduite à {0} de sa valeur précédente."
@@ -9900,3 +9940,7 @@ msgstr "Dézoomer"
 #~ "Vous pouvez aussi changer d'autres propriétés de votre espèce dans les autres onglets de l'éditeur de cellule.\n"
 #~ "\n"
 #~ "Pour continuer, sélectionnez un organite sur le panneau de gauche (un cytoplasme serait un bon choix). Ensuite faites un clic gauche à côté de l'hexagone affiché au milieu de l'écran pour ajouter cet organite à votre espèce."
+
+#, fuzzy
+#~ msgid "EVENT_TOOLTIP_ERUPTION"
+#~ msgstr "{0} : +{1} ATP"

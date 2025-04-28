@@ -19,7 +19,7 @@ public static class SetUtils
         int selectedIndex = random.Next(0, items.Count);
         int index = 0;
 
-        // This allocates an enumerator but that's probably the best way
+        // This allocates an enumerator, but that's probably the best way
         using var enumerator = items.GetEnumerator();
 
         if (!enumerator.MoveNext())
