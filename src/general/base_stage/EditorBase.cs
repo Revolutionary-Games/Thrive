@@ -316,7 +316,7 @@ public partial class EditorBase<TAction, TStage> : NodeWithInput, IEditor, ILoad
     ///   Tries to start editor apply results and exit
     /// </summary>
     /// <returns>True if started. False if something is not good and the editor can't be exited currently.</returns>
-    public bool OnFinishEditing(List<EditorUserOverride>? overrides = null)
+    public virtual bool OnFinishEditing(List<EditorUserOverride>? overrides = null)
     {
         // Prevent exiting when the transition hasn't finished
         if (!TransitionFinished)
@@ -806,7 +806,7 @@ public partial class EditorBase<TAction, TStage> : NodeWithInput, IEditor, ILoad
         ElapseEditorEntryTime();
         UpdatePatchDetails();
 
-        // Get summary before applying results in order to get comparisons to the previous populations
+        // Get a summary before applying results in order to get comparisons to the previous populations
         var run = CurrentGame.GameWorld.GetAutoEvoRun();
 
         if (run.Results != null)
@@ -814,6 +814,16 @@ public partial class EditorBase<TAction, TStage> : NodeWithInput, IEditor, ILoad
             // External effects need to be finalized now before we use them for printing summaries or anything like
             // that
             run.CalculateAndApplyFinalExternalEffectSizes();
+
+            var safetyPatch = CurrentGame.GameWorld.Map.CurrentPatch ??
+                CurrentGame.GameWorld.Map.Patches.Values.First();
+
+            // If the player made it to the editor, it is intended that the player has not lost the game, so ensure
+            // the player species is not without population (and would thus get marked as extinct)
+            if (run.Results.EnsureIsNotExtinct(CurrentGame.GameWorld.PlayerSpecies, safetyPatch))
+            {
+                GD.Print("Rescued player species population from extinction thanks to making it to the editor");
+            }
 
             run.Results.RegisterNewSpeciesForSummary(CurrentGame.GameWorld);
 
