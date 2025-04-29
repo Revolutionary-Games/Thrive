@@ -316,7 +316,7 @@ public partial class EditorBase<TAction, TStage> : NodeWithInput, IEditor, ILoad
     ///   Tries to start editor apply results and exit
     /// </summary>
     /// <returns>True if started. False if something is not good and the editor can't be exited currently.</returns>
-    public bool OnFinishEditing(List<EditorUserOverride>? overrides = null)
+    public virtual bool OnFinishEditing(List<EditorUserOverride>? overrides = null)
     {
         // Prevent exiting when the transition hasn't finished
         if (!TransitionFinished)

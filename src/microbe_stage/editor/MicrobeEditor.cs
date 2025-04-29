@@ -20,6 +20,8 @@ public partial class MicrobeEditor : EditorBase<EditorAction, MicrobeStage>, IEd
     [Export]
     public NodePath CellEditorTabPath = null!;
 
+    private const string ADVANCED_TABS_SHOWN_BEFORE = "editor_advanced_tabs";
+
 #pragma warning disable CA2213
     [JsonProperty]
     [AssignOnlyChildItemsOnDeserialize]
@@ -139,6 +141,20 @@ public partial class MicrobeEditor : EditorBase<EditorAction, MicrobeStage>, IEd
         }
 
         return cellEditorTab.CancelCurrentAction();
+    }
+
+    public override bool OnFinishEditing(List<EditorUserOverride>? overrides = null)
+    {
+        var result = base.OnFinishEditing(overrides);
+
+        if (result)
+        {
+            // Remember if advanced cell editor tabs have been seen for tutorial purposes
+            if (cellEditorTab.AreAdvancedTabsVisible())
+                CurrentGame.SetBool(ADVANCED_TABS_SHOWN_BEFORE, true);
+        }
+
+        return result;
     }
 
     public override void AddContextToActions(IEnumerable<CombinableActionData> editorActions)
@@ -308,13 +324,24 @@ public partial class MicrobeEditor : EditorBase<EditorAction, MicrobeStage>, IEd
                 editorTabSelector.ShowMapTab = false;
 
                 cellEditorTab.HideAutoEvoPredictionForTutorial();
-                cellEditorTab.HideAdvancedTabs();
+
+                // Only hide the advanced tabs if they have not been seen before. This should hopefully reduce player
+                // confusion and the potential for useless bug reports to be submitted.
+                if (!CurrentGame.IsBoolSet(ADVANCED_TABS_SHOWN_BEFORE))
+                {
+                    cellEditorTab.HideAdvancedTabs();
+                }
+
                 HideTabBar();
             }
             else if (!TutorialState.AutoEvoPrediction.Complete)
             {
                 // Third editor cycle
-                cellEditorTab.HideAdvancedTabs();
+                if (!CurrentGame.IsBoolSet(ADVANCED_TABS_SHOWN_BEFORE))
+                {
+                    cellEditorTab.HideAdvancedTabs();
+                }
+
                 HideTabBar();
             }
             else if (!TutorialState.MigrationTutorial.Complete && !TutorialState.StaySmallTutorial.Complete)
