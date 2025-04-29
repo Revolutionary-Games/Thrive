@@ -271,7 +271,7 @@ public class RunResults
     }
 
     /// <summary>
-    ///   Checks if species has results. Species doesn't have results if it was extinct or was not part of the run.
+    ///   Checks if a species has results. Species doesn't have results if it was extinct or was not part of the run.
     ///   All species *should* have results for them that were part of the world at the start of the auto-evo run.
     /// </summary>
     /// <param name="species">The species to check</param>
@@ -285,7 +285,7 @@ public class RunResults
     }
 
     /// <summary>
-    ///   Creates a blank results for the player species
+    ///   Creates a blank result for the player species
     /// </summary>
     /// <param name="playerSpecies">The player species</param>
     /// <param name="patchesToFillResultsFor">
@@ -321,6 +321,62 @@ public class RunResults
 
             results[playerSpecies] = result;
         }
+    }
+
+    /// <summary>
+    ///   Makes sure that the given species is not extinct.
+    ///   So this adds population if it otherwise is zero. Mostly used on the player species to ensure the player
+    ///   isn't in a soft game over state.
+    /// </summary>
+    /// <param name="species">Species to make sure is not without population</param>
+    /// <param name="patchToAddToIfNothingElse">Patch to add some population in if there is no population</param>
+    /// <param name="givenPopulation">Population to give if extinct</param>
+    /// <returns>True if rescued from extinction, false if no action was taken</returns>
+    public bool EnsureIsNotExtinct(Species species, Patch patchToAddToIfNothingElse, long givenPopulation = 1)
+    {
+        if (givenPopulation < 1)
+            throw new ArgumentException("Given population must be at least 1");
+
+        SpeciesResult? result;
+        lock (results)
+        {
+            if (!results.TryGetValue(species, out result))
+            {
+                GD.PrintErr("Cannot ensure a species is not extinct that is not in results: " +
+                    species.FormattedIdentifier);
+                return false;
+            }
+        }
+
+        foreach (var resultPopulation in result.NewPopulationInPatches)
+        {
+            if (resultPopulation.Value > 0)
+            {
+                return false;
+            }
+        }
+
+        // Extinct, need to add some population
+
+        // First, add to the optimal patch if there's a result for it
+        foreach (var resultPopulation in result.NewPopulationInPatches)
+        {
+            if (resultPopulation.Key == patchToAddToIfNothingElse)
+            {
+                result.NewPopulationInPatches[patchToAddToIfNothingElse] = givenPopulation;
+                return true;
+            }
+        }
+
+        // Then add to the first patch with a result, or force add a result for the safety patch
+        foreach (var resultPopulation in result.NewPopulationInPatches)
+        {
+            result.NewPopulationInPatches[resultPopulation.Key] = givenPopulation;
+            return true;
+        }
+
+        result.NewPopulationInPatches[patchToAddToIfNothingElse] = givenPopulation;
+        return true;
     }
 
     public void ApplyResults(GameWorld world, bool skipMutations)
