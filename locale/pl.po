@@ -8,8 +8,8 @@ msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2025-04-30 10:54+0300\n"
-"PO-Revision-Date: 2025-04-26 09:18+0000\n"
-"Last-Translator: Anonymous <noreply@weblate.org>\n"
+"PO-Revision-Date: 2025-04-29 20:33+0000\n"
+"Last-Translator: Kajetan Kolański <dededemenene@gmail.com>\n"
 "Language-Team: Polish <https://translate.revolutionarygamesstudio.com/projects/thrive/thrive-game/pl/>\n"
 "Language: pl\n"
 "MIME-Version: 1.0\n"
@@ -513,13 +513,11 @@ msgstr "Złącz osie ze sobą"
 msgid "BIOLUMINESCENT_VACUOLE"
 msgstr "Świecąca Wakuola"
 
-#, fuzzy
 msgid "BIOLUMINESCENT_VACUOLE_DESCRIPTION"
-msgstr "Świecąca Wakuola"
+msgstr "Wakuola która utlenia lucyferaze w celu wytworzenia widzialnego światła. Istnieje teoria że ten mechanizm miał bronić przed [thrive:compound type=\"oxygen\"][/thrive:compound]. Kiedy doszło do Katastrofy tlenowej anaeroby zatruwały się tlenem ze względu na jego wysoką aktywność chemiczną. Te wakuole zwiększają odporność na tlen i dają ładne światełka. W przyszłości bioluminescencja może stać się jednym ze sposobów komunikacji."
 
-#, fuzzy
 msgid "BIOLUMINESCENT_VACUOLE_PROCESSES_DESCRIPTION"
-msgstr "Przekształca [thrive:compound type=\"atp\"][/thrive:compound] w [thrive:compound type=\"oxytoxy\"]Oksytoksynę[/thrive:compound]. Tempo skaluje się ze stężeniem [thrive:compound type=\"oxygen\"][/thrive:compound]. Może wypuszczać toksyny po naciśnięciu [thrive:input]g_fire_toxin[/thrive:input]. Gdy ilość [thrive:compound type=\"oxytoxy\"]Oksytoksyny[/thrive:compound] jest niska, strzelanie jest dalej możliwe, ale będzie zadawać mniejsze obrażenia."
+msgstr "Przekształca [thrive:compound type=\"atp\"][/thrive:compound] i [thrive:compound type=\"oxygen\"][/thrive:compound] w światło. Obecnie zwiększa tylko odporność na tlen."
 
 msgid "BIOME_LABEL"
 msgstr "Biom: {0}"
@@ -557,9 +555,8 @@ msgstr "Przez:"
 msgid "BY_REVOLUTIONARY_GAMES"
 msgstr "Wykonane Przez Revolutionary Games Studio"
 
-#, fuzzy
 msgid "CACHE_DISK_MAX_TIME"
-msgstr "Maksymalny czas przetrzymywania przedmiotów na dysku przed usunięciem"
+msgstr "Maksymalny czas przechowywania wpisów na dysku przed usunięciem"
 
 msgid "CACHE_MEMORY_MAX_ITEMS"
 msgstr ""
@@ -738,9 +735,11 @@ msgstr ""
 msgid "CHEMORECEPTOR_PROCESSES_DESCRIPTION"
 msgstr "Chemoreceptor umożliwia wykrywanie związków z oddali. Modyfikuj go po umieszczeniu by wybrać typ związku oraz kolor prowadzącej do niego linii."
 
-#, fuzzy
 msgid "CHEMORECEPTOR_SEARCH_RADIUS_TOOLTIP"
-msgstr "Wszystkie komórki \"widzą\" jedynie dzięki chemorecepcji. Tak zdobywają informacje o otaczającym je środowisku. Dodanie tego organellum oznacza wyewoluowanie dokładniej skoordynowanej chemorecepcji. Jest ona oznaczona przez linię wskazującą poza pole widzenia, pokazując pobliskie związki, których gracz nie był w stanie zobaczyć."
+msgstr ""
+"Ustaw odległość z jakiej chemoreceptory wykrywają szukane rzeczy.\n"
+"Może to pomóc szybciej znaleźć rzeczy wskazując najkrótszą trasę do nich.\n"
+"Alternatywnie zbyt duży zasięg może pokazać zasoby które znikną zanim do nich dotrzesz."
 
 #, fuzzy
 msgid "CHEMOSYNTHESIS"
@@ -1441,10 +1440,10 @@ msgid "DAMAGE_SOURCE_RADIATION"
 msgstr "(koszt organelli, błon i innych przedmiotów w edytorze)"
 
 msgid "DAY_LENGTH"
-msgstr "Długość Dnia"
+msgstr "Długość doby"
 
 msgid "DAY_LENGTH_EXPLANATION"
-msgstr "(długość w rzeczywistych sekundach dla dnia w grze)"
+msgstr "(długość doby gry w sekundach)"
 
 msgid "DAY_NIGHT_CYCLE_ENABLED"
 msgstr "Włącz cykl dnia i nocy"
@@ -1574,7 +1573,7 @@ msgid "DEVELOPMENT_FORUM_BUTTON_TOOLTIP"
 msgstr "Zobacz aktualności na naszym forum deweloperskim"
 
 msgid "DEVELOPMENT_SUPPORTED_BY"
-msgstr "Rozwój Wspierany Przez Revolutionary Games Studio"
+msgstr "Rozwój wspierany przez Revolutionary Games Studio"
 
 msgid "DEVELOPMENT_WIKI"
 msgstr "Wiki Deweloperskie"
@@ -1678,9 +1677,10 @@ msgstr ""
 msgid "DISCORD_TOOLTIP"
 msgstr "Dołącz do naszego serwera Discord"
 
-#, fuzzy
 msgid "DISK_CACHE_TOOLTIP"
-msgstr "Odwiedź naszą stronę Itch.io"
+msgstr ""
+"Sprawia, że część kosztownych do wygenerowania danych jest zapisywana na dysk, przez co można je szybciej załadować gdy znów będą potrzebne.\n"
+"Jeśli to wyłączysz, cache będzie przechowywany wyłącznie w pamięci operacyjnej."
 
 msgid "DISMISSED_POPUPS_COLON"
 msgstr "Ukryte popupy:"
@@ -1731,7 +1731,7 @@ msgid "DOES_NOT_USE_FEATURE"
 msgstr "Nie"
 
 msgid "DONATIONS"
-msgstr "Wsparcie"
+msgstr "Darowizny"
 
 msgid "DOT_DOT_DOT"
 msgstr "..."
@@ -2056,10 +2056,14 @@ msgstr "To jest dokładne zatwierdzenie kodu, z którego została złożona ta w
 
 msgid "EVENT_METEOR_GLUCOSE"
 msgstr ""
+"Upadek meteoru z glukozą\n"
+"Podnosi poziom glukozy i dwutlenku węgla."
 
-#, fuzzy
 msgid "EVENT_METEOR_IRON"
-msgstr "{0}: +{1} ATP"
+msgstr ""
+"Upadek żelaznego meteorytu\n"
+"Podnosi poziom żelaza i dwutlenku węgla.\n"
+"Rozbija się na odłamki żelaza."
 
 #, fuzzy
 msgid "EVENT_METEOR_PHOSPHATES"
@@ -2126,7 +2130,7 @@ msgid "EXPORT_ALL_WORLDS"
 msgstr "Eksportuj Wszystkie Światy"
 
 msgid "EXPORT_ALL_WORLDS_TOOLTIP"
-msgstr ""
+msgstr "Eksportuj wszystkie dane światów w formacie CSV"
 
 msgid "EXPORT_SUCCESS"
 msgstr "Sukces Eksportu"
@@ -2240,9 +2244,8 @@ msgstr "Zakończ {0} Pokoleń"
 msgid "FIRE_TOXIN"
 msgstr "Strzel toksyną"
 
-#, fuzzy
 msgid "FIRE_TOXIN_TOOLTIP"
-msgstr "Niektóre opcje mogą być wyłączone jeśli \"wyłącznie ŻTJZ\" jest włączone"
+msgstr "Wystrzel toksyczny pocisk uszkadzający trafione komórki."
 
 msgid "FLAGELLUM"
 msgstr "Wić"
@@ -2541,7 +2544,7 @@ msgid "HIGHER_VALUES_INCREASE_PERFORMANCE"
 msgstr "(większe wartości zwiększają wydajność)"
 
 msgid "HIGHER_VALUES_WORSEN_PERFORMANCE"
-msgstr "(wyższe wartością mogą obniżyć wydajność)"
+msgstr "(wyższe wartości mogą obniżyć wydajność)"
 
 msgid "HOLD_FOR_PAN_OR_ROTATE_MODE"
 msgstr "Przytrzymaj by przełączyć między trybami panoramicznym i obrotu"
@@ -4803,6 +4806,11 @@ msgstr "Planeta"
 
 msgid "PLANET_DETAILS_STRING"
 msgstr ""
+"Tylko życie jakie znamy: {0}\n"
+"Pochodzenie życia: {1}\n"
+"Cykl dnia i nocy: {2}\n"
+"Długość dnia w sekundach: {3}\n"
+"Losowe ziarno planety: {4}"
 
 msgid "PLANET_GENERATION_TEASER"
 msgstr "Generacja planety już wkrótce!"
@@ -8835,7 +8843,7 @@ msgstr ""
 "Możesz utworzyć pull request bez ubiegania się o miejsce w załodze."
 
 msgid "YOU_CAN_SUPPORT_THRIVE_ON_PATREON"
-msgstr "Możesz wspierać przyszłość rozwoju \"Thrive\" na Patreonie."
+msgstr "Możesz wspomóc przyszły rozwój Thrive na naszym Patreonie"
 
 msgid "ZOOM_IN"
 msgstr "Przybliż"
