@@ -24,6 +24,7 @@ public partial class InputEventItem : MarginContainer
 
     [Export]
     private Button xButton = null!;
+
     private bool wasPressingButton;
 
     private Control? alternativeButtonContentToText;

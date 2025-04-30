@@ -22,6 +22,7 @@ public partial class FossilisationDialog : CustomWindow
 
     [Export]
     private CustomConfirmationDialog fossilisationFailedDialog = null!;
+
     private SpeciesPreview speciesPreview = null!;
 #pragma warning restore CA2213
 

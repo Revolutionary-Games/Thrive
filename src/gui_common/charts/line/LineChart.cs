@@ -126,6 +126,7 @@ public partial class LineChart : VBoxContainer
 
     [Export]
     private TextureButton inspectButton = null!;
+
     private CustomWindow chartPopup = null!;
     private LineChart? childChart;
 

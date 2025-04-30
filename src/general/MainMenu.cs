@@ -43,6 +43,7 @@ public partial class MainMenu : NodeWithInput
 
     [Export]
     private TextureRect thriveLogo = null!;
+
     private OptionsMenu options = null!;
     private NewGameSettings newGameSettings = null!;
     private AnimationPlayer guiAnimations = null!;

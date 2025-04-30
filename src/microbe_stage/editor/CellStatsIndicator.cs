@@ -29,6 +29,7 @@ public partial class CellStatsIndicator : HBoxContainer
 
     [Export]
     private Label? valueLabel;
+
     private TextureRect? changeIndicator;
     private TextureRect? iconRect;
 

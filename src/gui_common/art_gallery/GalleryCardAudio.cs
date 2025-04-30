@@ -9,6 +9,7 @@ public partial class GalleryCardAudio : GalleryCard, IGalleryCardPlayback
 #pragma warning disable CA2213
     [Export]
     private PlaybackControls playbackControls = null!;
+
     private AudioStreamPlayer? ownPlayer;
 #pragma warning restore CA2213
 

@@ -18,6 +18,7 @@ public partial class GalleryCard : Button
 
     [Export]
     private TextureRect imagePreview = null!;
+
     private Texture2D? thumbnail;
 #pragma warning restore CA2213
 

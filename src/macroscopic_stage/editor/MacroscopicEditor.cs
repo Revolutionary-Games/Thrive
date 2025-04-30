@@ -49,6 +49,7 @@ public partial class MacroscopicEditor : EditorBase<EditorAction, MacroscopicSta
 
     [Export]
     private WorldEnvironment worldEnvironmentNode = null!;
+
     private Environment? environment;
 
     [Export]

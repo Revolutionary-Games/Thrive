@@ -24,6 +24,7 @@ public partial class PauseMenu : TopLevelContainer
 
     [Export]
     private CustomConfirmationDialog unsavedProgressWarning = null!;
+
     private AnimationPlayer animationPlayer = null!;
 #pragma warning restore CA2213
 

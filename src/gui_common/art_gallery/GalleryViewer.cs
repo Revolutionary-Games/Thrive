@@ -34,6 +34,7 @@ public partial class GalleryViewer : CustomWindow
 
     [Export]
     private OptionButton assetsCategoryDropdown = null!;
+
     private SlideScreen slideScreen = null!;
 
     [Export]

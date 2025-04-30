@@ -31,6 +31,7 @@ public partial class ThriveopediaMuseumPage : ThriveopediaPage, IThriveopediaPag
 
     [Export]
     private CustomConfirmationDialog deletionFailedDialog = null!;
+
     private PackedScene museumCardScene = null!;
 
     private MuseumCard? cardToBeDeleted;
