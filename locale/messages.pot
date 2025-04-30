@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Thrive VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2025-04-26 10:53+0300\n"
+"POT-Creation-Date: 2025-04-30 10:54+0300\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -67,7 +67,7 @@ msgstr ""
 msgid "ACTION_AWAKEN_TOOLTIP"
 msgstr ""
 
-#: ../src/general/base_stage/EditorBase.cs:852
+#: ../src/general/base_stage/EditorBase.cs:862
 #: ../src/macroscopic_stage/editor/MacroscopicEditor.cs:529
 #: ../src/microbe_stage/editor/CellEditorComponent.GUI.cs:62
 #: ../src/multicellular_stage/editor/MulticellularEditor.cs:453
@@ -451,11 +451,11 @@ msgstr ""
 msgid "AUTO_EVO_RESULTS"
 msgstr ""
 
-#: ../src/auto-evo/RunResults.cs:1156
+#: ../src/auto-evo/RunResults.cs:1212
 msgid "AUTO_EVO_RESULTS_GLOBAL_TITLE"
 msgstr ""
 
-#: ../src/auto-evo/RunResults.cs:1097
+#: ../src/auto-evo/RunResults.cs:1153
 msgid "AUTO_EVO_RESULTS_PATCH_TITLE"
 msgstr ""
 
@@ -2460,19 +2460,19 @@ msgstr ""
 msgid "ENERGY_BALANCE_TOOLTIP_PRODUCTION_WITH_REQUIREMENT"
 msgstr ""
 
-#: ../src/microbe_stage/editor/CellEditorComponent.cs:3135
+#: ../src/microbe_stage/editor/CellEditorComponent.cs:3140
 msgid "ENERGY_IN_PATCH_FOR"
 msgstr ""
 
-#: ../src/microbe_stage/editor/CellEditorComponent.cs:2970
+#: ../src/microbe_stage/editor/CellEditorComponent.cs:2975
 msgid "ENERGY_IN_PATCH_SHORT"
 msgstr ""
 
-#: ../src/microbe_stage/editor/CellEditorComponent.cs:3146
+#: ../src/microbe_stage/editor/CellEditorComponent.cs:3151
 msgid "ENERGY_SOURCES"
 msgstr ""
 
-#: ../src/microbe_stage/editor/CellEditorComponent.cs:3139
+#: ../src/microbe_stage/editor/CellEditorComponent.cs:3144
 msgid "ENERGY_SUMMARY_LINE"
 msgstr ""
 
@@ -2905,7 +2905,7 @@ msgstr ""
 msgid "FOOD_CHAIN"
 msgstr ""
 
-#: ../src/microbe_stage/editor/CellEditorComponent.cs:3152
+#: ../src/microbe_stage/editor/CellEditorComponent.cs:3157
 msgid "FOOD_SOURCE_ENERGY_INFO"
 msgstr ""
 
@@ -3014,7 +3014,7 @@ msgstr ""
 msgid "GAME_SYSTEMS_TITLE"
 msgstr ""
 
-#: ../src/microbe_stage/editor/CellEditorComponent.cs:3070
+#: ../src/microbe_stage/editor/CellEditorComponent.cs:3075
 #: ../src/microbe_stage/editor/CellEditorComponent.tscn:1064
 msgid "GATHERED_ENERGY_TOOLTIP"
 msgstr ""
@@ -3134,7 +3134,7 @@ msgstr ""
 msgid "GLOBAL_POPULATION_COLON"
 msgstr ""
 
-#: ../src/auto-evo/RunResults.cs:1328
+#: ../src/auto-evo/RunResults.cs:1384
 msgid "GLOBAL_TIMELINE_SPECIES_MIGRATED_TO"
 msgstr ""
 
@@ -4205,7 +4205,7 @@ msgstr ""
 msgid "LARGE_SULFUR_CHUNK"
 msgstr ""
 
-#: ../src/microbe_stage/editor/CellEditorComponent.cs:1826
+#: ../src/microbe_stage/editor/CellEditorComponent.cs:1831
 msgid "LAST_ORGANELLE_DELETE_OPTION_DISABLED_TOOLTIP"
 msgstr ""
 
@@ -4511,7 +4511,7 @@ msgstr ""
 msgid "LOADING_MACROSCOPIC_EDITOR"
 msgstr ""
 
-#: ../src/microbe_stage/editor/MicrobeEditor.cs:70
+#: ../src/microbe_stage/editor/MicrobeEditor.cs:72
 msgid "LOADING_MICROBE_EDITOR"
 msgstr ""
 
@@ -5823,7 +5823,7 @@ msgid "NO_AI"
 msgstr ""
 
 #: ../src/gui_common/charts/line/LineChart.cs:693
-#: ../src/microbe_stage/editor/CellEditorComponent.cs:3167
+#: ../src/microbe_stage/editor/CellEditorComponent.cs:3172
 msgid "NO_DATA_TO_SHOW"
 msgstr ""
 
@@ -5867,7 +5867,7 @@ msgstr ""
 msgid "NUCLEUS"
 msgstr ""
 
-#: ../src/microbe_stage/editor/CellEditorComponent.cs:1825
+#: ../src/microbe_stage/editor/CellEditorComponent.cs:1830
 msgid "NUCLEUS_DELETE_OPTION_DISABLED_TOOLTIP"
 msgstr ""
 
@@ -5891,8 +5891,8 @@ msgstr ""
 #: ../src/gui_common/art_gallery/GalleryDetailsTooltip.cs:29
 #: ../src/gui_common/art_gallery/GalleryDetailsTooltip.cs:39
 #: ../src/gui_common/art_gallery/GalleryDetailsTooltip.cs:49
-#: ../src/microbe_stage/editor/CellEditorComponent.cs:2981
-#: ../src/microbe_stage/editor/CellEditorComponent.cs:2993
+#: ../src/microbe_stage/editor/CellEditorComponent.cs:2986
+#: ../src/microbe_stage/editor/CellEditorComponent.cs:2998
 #: ../src/microbe_stage/editor/MicrobePartSelection.tscn:154
 #: ../src/microbe_stage/MicrobeHUD.cs:560
 msgid "N_A"
@@ -6515,15 +6515,15 @@ msgstr ""
 msgid "POPULATION_CAPITAL"
 msgstr ""
 
-#: ../src/auto-evo/RunResults.cs:820
+#: ../src/auto-evo/RunResults.cs:876
 msgid "POPULATION_COLON"
 msgstr ""
 
-#: ../src/auto-evo/RunResults.cs:951
+#: ../src/auto-evo/RunResults.cs:1007
 msgid "POPULATION_IN_PATCHES"
 msgstr ""
 
-#: ../src/microbe_stage/editor/CellEditorComponent.cs:3000
+#: ../src/microbe_stage/editor/CellEditorComponent.cs:3005
 msgid "POPULATION_IN_PATCH_SHORT"
 msgstr ""
 
@@ -6566,7 +6566,7 @@ msgstr ""
 msgid "PREVIEW_IMAGE_IS_TOO_LARGE"
 msgstr ""
 
-#: ../src/auto-evo/RunResults.cs:833
+#: ../src/auto-evo/RunResults.cs:889
 msgid "PREVIOUS_COLON"
 msgstr ""
 
@@ -6922,27 +6922,27 @@ msgstr ""
 msgid "RUN_ONE_STEP"
 msgstr ""
 
-#: ../src/auto-evo/RunResults.cs:932
+#: ../src/auto-evo/RunResults.cs:988
 msgid "RUN_RESULT_BY_SENDING_POPULATION"
 msgstr ""
 
-#: ../src/auto-evo/RunResults.cs:913
+#: ../src/auto-evo/RunResults.cs:969
 msgid "RUN_RESULT_GENE_CODE"
 msgstr ""
 
-#: ../src/auto-evo/RunResults.cs:864
+#: ../src/auto-evo/RunResults.cs:920
 msgid "RUN_RESULT_NICHE_FILL"
 msgstr ""
 
-#: ../src/auto-evo/RunResults.cs:867
+#: ../src/auto-evo/RunResults.cs:923
 msgid "RUN_RESULT_SELECTION_PRESSURE_SPLIT"
 msgstr ""
 
-#: ../src/auto-evo/RunResults.cs:851
+#: ../src/auto-evo/RunResults.cs:907
 msgid "RUN_RESULT_SPLIT_FROM"
 msgstr ""
 
-#: ../src/auto-evo/RunResults.cs:884
+#: ../src/auto-evo/RunResults.cs:940
 msgid "RUN_RESULT_SPLIT_OFF_TO"
 msgstr ""
 
@@ -7521,7 +7521,7 @@ msgstr ""
 msgid "SPECIES_DETAIL_TEXT"
 msgstr ""
 
-#: ../src/auto-evo/RunResults.cs:908
+#: ../src/auto-evo/RunResults.cs:964
 msgid "SPECIES_HAS_A_MUTATION"
 msgstr ""
 
@@ -7571,7 +7571,7 @@ msgstr ""
 msgid "SPEED_COLON"
 msgstr ""
 
-#: ../src/auto-evo/RunResults.cs:924
+#: ../src/auto-evo/RunResults.cs:980
 msgid "SPREAD_TO_PATCHES"
 msgstr ""
 
@@ -8083,7 +8083,7 @@ msgstr ""
 msgid "TIMELINE_LOCAL_FILTER_TOOLTIP"
 msgstr ""
 
-#: ../src/auto-evo/RunResults.cs:1353
+#: ../src/auto-evo/RunResults.cs:1409
 msgid "TIMELINE_NICHE_FILL"
 msgstr ""
 
@@ -8095,7 +8095,7 @@ msgstr ""
 msgid "TIMELINE_PLAYER_MIGRATED_TO"
 msgstr ""
 
-#: ../src/auto-evo/RunResults.cs:1359
+#: ../src/auto-evo/RunResults.cs:1415
 msgid "TIMELINE_SELECTION_PRESSURE_SPLIT"
 msgstr ""
 
@@ -8104,11 +8104,11 @@ msgstr ""
 msgid "TIMELINE_SPECIES_BECAME_MULTICELLULAR"
 msgstr ""
 
-#: ../src/auto-evo/RunResults.cs:1274
+#: ../src/auto-evo/RunResults.cs:1330
 msgid "TIMELINE_SPECIES_EXTINCT"
 msgstr ""
 
-#: ../src/auto-evo/RunResults.cs:1297
+#: ../src/auto-evo/RunResults.cs:1353
 msgid "TIMELINE_SPECIES_EXTINCT_LOCAL"
 msgstr ""
 
@@ -8116,19 +8116,19 @@ msgstr ""
 msgid "TIMELINE_SPECIES_FOLLOWED"
 msgstr ""
 
-#: ../src/auto-evo/RunResults.cs:1323
+#: ../src/auto-evo/RunResults.cs:1379
 msgid "TIMELINE_SPECIES_MIGRATED_FROM"
 msgstr ""
 
-#: ../src/auto-evo/RunResults.cs:1334
+#: ../src/auto-evo/RunResults.cs:1390
 msgid "TIMELINE_SPECIES_MIGRATED_TO"
 msgstr ""
 
-#: ../src/auto-evo/RunResults.cs:1290 ../src/auto-evo/RunResults.cs:1311
+#: ../src/auto-evo/RunResults.cs:1346 ../src/auto-evo/RunResults.cs:1367
 msgid "TIMELINE_SPECIES_POPULATION_DECREASE"
 msgstr ""
 
-#: ../src/auto-evo/RunResults.cs:1284 ../src/auto-evo/RunResults.cs:1305
+#: ../src/auto-evo/RunResults.cs:1340 ../src/auto-evo/RunResults.cs:1361
 msgid "TIMELINE_SPECIES_POPULATION_INCREASE"
 msgstr ""
 
@@ -9028,11 +9028,11 @@ msgstr ""
 msgid "WELCOME_TO_THRIVEOPEDIA"
 msgstr ""
 
-#: ../src/auto-evo/RunResults.cs:1030
+#: ../src/auto-evo/RunResults.cs:1086
 msgid "WENT_EXTINCT_FROM_PLANET"
 msgstr ""
 
-#: ../src/auto-evo/RunResults.cs:829
+#: ../src/auto-evo/RunResults.cs:885
 msgid "WENT_EXTINCT_IN"
 msgstr ""
 

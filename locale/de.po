@@ -7,9 +7,9 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2025-04-26 10:53+0300\n"
-"PO-Revision-Date: 2025-04-26 09:18+0000\n"
-"Last-Translator: Anonymous <noreply@weblate.org>\n"
+"POT-Creation-Date: 2025-04-30 10:54+0300\n"
+"PO-Revision-Date: 2025-04-30 11:10+0000\n"
+"Last-Translator: Matthias Ulbl <matthias.ulbl@gmx.at>\n"
 "Language-Team: German <https://translate.revolutionarygamesstudio.com/projects/thrive/thrive-game/de/>\n"
 "Language: de\n"
 "MIME-Version: 1.0\n"
@@ -2004,6 +2004,8 @@ msgstr ""
 
 msgid "EVENT_METEOR_GLUCOSE"
 msgstr ""
+"Einschlag eines Glucosemeteors\n"
+"Erhöht Kohlendioxid und Glucose in der Umwelt."
 
 #, fuzzy
 msgid "EVENT_METEOR_IRON"
@@ -2021,9 +2023,15 @@ msgstr ""
 
 msgid "EVENT_METEOR_RADIOACTIVE"
 msgstr ""
+"Einschlag eines radioaktiven Meteors\n"
+"Erhöht die Kohlendioxid-Konzentration.\n"
+"Erzeugt radioaktive Brocken."
 
 msgid "EVENT_METEOR_SULFUR"
 msgstr ""
+"Einschlag eines Schwefelmeteors\n"
+"Erhöht die Kohlendioxid- und Schwefelkonzentration.\n"
+"Erzeugt Schwefelbrocken."
 
 msgid "EVOLUTIONARY_TREE"
 msgstr "Evolutionsbaum"
@@ -2373,7 +2381,7 @@ msgid "GLES3"
 msgstr "GLES3"
 
 msgid "GLOBAL_GLACIATION_END_EVENT_LOG"
-msgstr ""
+msgstr "Die globale Eiszeit ist in allen Oberflächenbereichen vorbei"
 
 #, fuzzy
 msgid "GLOBAL_GLACIATION_EVENT"
@@ -2384,13 +2392,13 @@ msgid "GLOBAL_GLACIATION_EVENT_TOOLTIP"
 msgstr "Fortschritt zum Erwachen-Stadium. Erst möglich wenn ausreichend Gehirnkapazität zur Verfügung steht (Hirngewebe mit Axonen) ."
 
 msgid "GLOBAL_GLACIATION_EVENT_WARNING_LOG_PLURAL"
-msgstr ""
+msgstr "Globale Eiszeit wird in {0} Generationen eintreten"
 
 msgid "GLOBAL_GLACIATION_EVENT_WARNING_LOG_SINGULAR"
-msgstr ""
+msgstr "Globale Eiszeit wird in {0} Generation eintreten"
 
 msgid "GLOBAL_GLACIATION_START_EVENT_LOG"
-msgstr ""
+msgstr "Globale Eiszeit hat in allen Oberflächenbereichen begonnen"
 
 msgid "GLOBAL_INITIAL_LETTER"
 msgstr "G"
@@ -2541,7 +2549,7 @@ msgid "ID_NUMBER"
 msgstr "ID-Nummer"
 
 msgid "IF_FALLBACK_RENDERER_USED_ALL_NOT_AVAILABLE"
-msgstr ""
+msgstr "(abhängig vom Rendering-Modus und Upscaling sind nicht alle Methoden verfügbar)"
 
 msgid "IMAGE_FILE_TYPES"
 msgstr "Membrantypen"
@@ -3231,7 +3239,7 @@ msgid "LOWER_SCALE_INCREASES_PERFORMANCE"
 msgstr "(höhere Werte verbessern die Leistung)"
 
 msgid "LOWER_VALUE_MAKES_SHARPER_IMAGE"
-msgstr ""
+msgstr "(niedrigere Werte ergeben ein schärferes Bild)"
 
 msgid "LOW_MENU_PERFORMANCE"
 msgstr "Leistung"
@@ -3370,13 +3378,13 @@ msgid "META_THREADS_TOOLTIP"
 msgstr "Besuche unser Threads-Profil"
 
 msgid "METEOR_IMPACT_EVENT"
-msgstr ""
+msgstr "Meteoriteneinschlag"
 
 msgid "METEOR_STRIKE_START_EVENT_LOG_PLURAL"
-msgstr ""
+msgstr "Meteoriteneinschlag hat Auswirkungen auf {0} Bereiche"
 
 msgid "METEOR_STRIKE_START_EVENT_LOG_SINGULAR"
-msgstr ""
+msgstr "Meteoriteneinschlag hat Auswirkungen auf {0} Bereich"
 
 msgid "METRICS"
 msgstr "Leistungs Daten"
@@ -6767,7 +6775,7 @@ msgid "VIEW_SOURCE_CODE"
 msgstr "Quellcode anschauen"
 
 msgid "VIEW_TEXT_REPORT"
-msgstr ""
+msgstr "Textbericht ansehen"
 
 msgid "VIP_PATRONS"
 msgstr "VIP Unterstützer"
@@ -6933,7 +6941,7 @@ msgid "WIKI_AXON_SCIENTIFIC_BACKGROUND"
 msgstr ""
 
 msgid "WIKI_AXON_STRATEGY"
-msgstr ""
+msgstr "Das Hinzufügen von [b]Axonen[/b] ist wesentlich zur Erreichung künftiger Stadien. Wir empfehlen ein [b]Axon[/b] zu mehreren Zelltypen in deinem mehrzelligen Organismus hinzuzufügen. Das Hinzufügen mehrerer Axonen ist allerdings redundant. Im Moment bringen zusätzliche [b]Axonen[/b] keinen zusätzlichen Nutzen."
 
 msgid "WIKI_AXON_UPGRADES"
 msgstr "Keine Erweiterungen."

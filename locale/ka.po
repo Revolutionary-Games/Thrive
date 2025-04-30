@@ -7,9 +7,9 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2025-04-26 10:53+0300\n"
-"PO-Revision-Date: 2025-04-26 09:18+0000\n"
-"Last-Translator: Anonymous <noreply@weblate.org>\n"
+"POT-Creation-Date: 2025-04-30 10:54+0300\n"
+"PO-Revision-Date: 2025-04-29 20:33+0000\n"
+"Last-Translator: NorwayFun <temuri.doghonadze@gmail.com>\n"
 "Language-Team: Georgian <https://translate.revolutionarygamesstudio.com/projects/thrive/thrive-game/ka/>\n"
 "Language: ka\n"
 "MIME-Version: 1.0\n"
@@ -513,7 +513,7 @@ msgid "BIOLUMINESCENT_VACUOLE_DESCRIPTION"
 msgstr ""
 
 msgid "BIOLUMINESCENT_VACUOLE_PROCESSES_DESCRIPTION"
-msgstr ""
+msgstr "იყენებს [thrive:compound type=\"atp\"][/thrive:compound]ს, რომ [thrive:compound type=\"oxygen\"][/thrive:compound] სინათლედ გარდაქმნას. არ გააჩნია ეფექტები თამაშის მიმდინარეობაზე ჟანგბადის გამძლეობის გაზრდის გარდა."
 
 msgid "BIOME_LABEL"
 msgstr "ბიომა: {0}"
@@ -1879,34 +1879,44 @@ msgstr "შთანთქმისგან გაქცევა"
 msgid "ESTUARY"
 msgstr "შესართავი"
 
-#, fuzzy
 msgid "EVENT_ERUPTION_TOOLTIP"
 msgstr ""
-"პაჩის ამოფრქვევის მოვლენა\n"
+"ამოფრქვევის მოვლენა\n"
 "შექმნის დამატებით გოგირდწყალბადს და ნახშირბადის დიოქსიდს"
 
 msgid "EVENT_METEOR_GLUCOSE"
 msgstr ""
+"გლუკოზის მეტეორის დაცემის მოვლენა\n"
+"ნახშირბადის დიოქსიდის და გლუკოზის დონეებს აწევს."
 
-#, fuzzy
 msgid "EVENT_METEOR_IRON"
-msgstr "{0}: +{1} ატფ"
+msgstr ""
+"რკინის მეტეორიტის დარტყმის მოვლენა\n"
+"ასწევს ნახშირბადის დიოქსიდის და რკინის დონეებს.\n"
+"ასევე, შეიქმნება რკინის ნაგლეჯები."
 
-#, fuzzy
 msgid "EVENT_METEOR_PHOSPHATES"
-msgstr "ფოსფატის შექმნა"
+msgstr ""
+"ფოსფატების მეტეორის დაჯახების მოვლენა\n"
+"წევს მაღლა ნახშირბადის დიოქსიდისა და ფოსფატის დონეებს.\n"
+"აჩენს ფოსფატის ნაგლეჯებს."
 
-#, fuzzy
 msgid "EVENT_METEOR_PLAIN"
 msgstr ""
-"პაჩის ამოფრქვევის მოვლენა\n"
-"შექმნის დამატებით გოგირდწყალბადს და ნახშირბადის დიოქსიდს"
+"მეტეორის ჩამოვარდნის მოვლენა\n"
+"ნახშირბადის დიოქსიდის დონეს ზრდის."
 
 msgid "EVENT_METEOR_RADIOACTIVE"
 msgstr ""
+"რადიოაქტიური მეტეორის შეჯახების მოვლენა\n"
+"წევს მაღლა ნახშირბადის დიოქსიდის დონეს.\n"
+"აჩენს რადიოაქტიურ ნაგლეჯებს."
 
 msgid "EVENT_METEOR_SULFUR"
 msgstr ""
+"გოგირდის მეტეორის დაჯახების მოვლენა\n"
+"სწევს მაღლა ნახშირბადის დიოქსიდისა და გოგირდის დონეებს.\n"
+"აჩენს გოგირდის ნაგლეჯებს."
 
 msgid "EVOLUTIONARY_TREE"
 msgstr "ევოლუციის ხე"
@@ -3222,13 +3232,13 @@ msgid "META_THREADS_TOOLTIP"
 msgstr "ეწვიეთ ჩვენს Thread-ის პროფილს"
 
 msgid "METEOR_IMPACT_EVENT"
-msgstr ""
+msgstr "მეტეორის დაცემის მოვლენა"
 
 msgid "METEOR_STRIKE_START_EVENT_LOG_PLURAL"
-msgstr ""
+msgstr "მეტეორის ჩამოვარდნის მოვლენა შეეხო {0} ბიომს"
 
 msgid "METEOR_STRIKE_START_EVENT_LOG_SINGULAR"
-msgstr ""
+msgstr "მეტეორის ჩამოვარდნის მოვლენა შეეხო {0} ბიომს"
 
 msgid "METRICS"
 msgstr "წარმადობის ჩვენება"
@@ -4954,7 +4964,7 @@ msgid "SHOW_ALL_TUTORIALS"
 msgstr "ყველა სახელმძღვანელოს ჩვენება"
 
 msgid "SHOW_ALL_TUTORIALS_TOOLTIP"
-msgstr ""
+msgstr "აირჩიეთ ყველა სახელმღვანელოს ჩვენებასა და იმ სახელმძღვანელოების ჩვენებას შორის, რომელიც ჯერ არ გაგივლიათ"
 
 msgid "SHOW_DAMAGE_EFFECT"
 msgstr "დაზიანების ეფექტის ჩვენება ეკრანზე"
@@ -6296,9 +6306,8 @@ msgstr "სულ მალე."
 msgid "WIKI_AWAKENING_STAGE_INTRO"
 msgstr ""
 
-#, fuzzy
 msgid "WIKI_AWAKENING_STAGE_OVERVIEW"
-msgstr "სულ მალე."
+msgstr "გამოღვიძების ფაზა Thrive-ის ცხრიდან მეხუთე ფაზაა."
 
 msgid "WIKI_AWAKENING_STAGE_TRANSITIONS"
 msgstr ""
@@ -6549,9 +6558,8 @@ msgstr ""
 msgid "WIKI_COMPOUND_SYSTEM_DEVELOPMENT_OVERVIEW"
 msgstr ""
 
-#, fuzzy
 msgid "WIKI_CREATURE_EDITOR_COMMA_TECH_EDITOR"
-msgstr "სხეულის გეგმის რედაქტორი, უჯრედის რედაქტორი"
+msgstr "არსების რედაქტორი, ტექნიკური რედაქტორი"
 
 msgid "WIKI_CYTOPLASM_EFFECTS"
 msgstr "[b]ციტოპლაზმის[/b] შეცვლა ნებისმიერი სხვა ორგანელას შეუძლია დამატებითი მუტაციის ქულების გამოყენების გარეშე (თუ ორგანელის ფასი უფრო დიდი არაა)."
@@ -6618,6 +6626,9 @@ msgstr "ცვლილებების გარეშე."
 
 msgid "WIKI_FERROPLAST_PROCESSES"
 msgstr ""
+"[b]რკინის დაჟანგვა[/b]: [thrive:compound type=\"iron\"][/thrive:compound] → [thrive:compound type=\"atp\"][/thrive:compound]\n"
+"\n"
+"ენერგიის გენერაციის მეთოდი [thrive:compound type=\"glucose\"][/thrive:compound]ის გარეშე. იყენებს [thrive:compound type=\"iron\"][/thrive:compound]ს."
 
 msgid "WIKI_FERROPLAST_REQUIREMENTS"
 msgstr ""
@@ -7383,6 +7394,9 @@ msgstr "ცვლილებების გარეშე."
 
 msgid "WIKI_RUSTICYANIN_PROCESSES"
 msgstr ""
+"[b]რკინის დაჟანგვა[/b]: [thrive:compound type=\"iron\"][/thrive:compound] → [thrive:compound type=\"atp\"][/thrive:compound]\n"
+"\n"
+"ენერგიის გენერაციის რეჟიმი [thrive:compound type=\"glucose\"][/thrive:compound]-ის გარეშე. იყენებს [thrive:compound type=\"iron\"][/thrive:compound]ს."
 
 msgid "WIKI_RUSTICYANIN_REQUIREMENTS"
 msgstr "მოთხოვნების გარეშე."
@@ -7489,13 +7503,11 @@ msgstr ""
 msgid "WIKI_TBA"
 msgstr "მზად არაა"
 
-#, fuzzy
 msgid "WIKI_TECH_EDITOR_COMMA_NATION_EDITOR_COMMA_SQUAD_EDITOR"
-msgstr "სხეულის გეგმის რედაქტორი, უჯრედის რედაქტორი"
+msgstr "ტექნიკური რედაქტორი, ერის რედაქტორი, გუნდის რედაქტორი"
 
-#, fuzzy
 msgid "WIKI_THERMOPLAST_EFFECTS"
-msgstr "ეფექტების გარეშე."
+msgstr ""
 
 msgid "WIKI_THERMOPLAST_INTRO"
 msgstr ""
@@ -7503,19 +7515,14 @@ msgstr ""
 msgid "WIKI_THERMOPLAST_MODIFICATIONS"
 msgstr "ცვლილებების გარეშე."
 
-#, fuzzy
 msgid "WIKI_THERMOPLAST_PROCESSES"
 msgstr ""
-"[b]Thermosynthesis[/b]: [thrive:compound type=\"temperature\"][/thrive:compound] → [thrive:compound type=\"atp\"][/thrive:compound]\n"
-"\n"
-"აგენერირებს ენერგიას პასიურად გარემოს [thrive:compound type=\"temperature\"][/thrive:compound]-დან. [b][color=#3796e1][url=thriveopedia:thermosynthase]თერმოსინთაზაში[/url][/color][/b] არსებული [b] ბაქტერიული თერმოსინთეზის[/b] უფრო ეფექტური ვარიანტი."
 
 msgid "WIKI_THERMOPLAST_REQUIREMENTS"
 msgstr ""
 
-#, fuzzy
 msgid "WIKI_THERMOPLAST_SCIENTIFIC_BACKGROUND"
-msgstr "ჯერ უცნობია"
+msgstr ""
 
 msgid "WIKI_THERMOPLAST_STRATEGY"
 msgstr ""
@@ -7523,9 +7530,8 @@ msgstr ""
 msgid "WIKI_THERMOPLAST_UPGRADES"
 msgstr "გაუმჯობესებების გარეშე."
 
-#, fuzzy
 msgid "WIKI_THERMOSYNTHASE_EFFECTS"
-msgstr "ეფექტების გარეშე."
+msgstr ""
 
 msgid "WIKI_THERMOSYNTHASE_INTRO"
 msgstr ""
@@ -7533,19 +7539,14 @@ msgstr ""
 msgid "WIKI_THERMOSYNTHASE_MODIFICATIONS"
 msgstr "ცვლილებების გარეშე."
 
-#, fuzzy
 msgid "WIKI_THERMOSYNTHASE_PROCESSES"
 msgstr ""
-"[b]ბაქტერიული თერმოსინთეზი[/b]: [thrive:compound type=\"temperature\"][/thrive:compound] → [thrive:compound type=\"atp\"][/thrive:compound]\n"
-"\n"
-"ქმნის ენერგიას პასიურად გარემოს [thrive:compound type=\"temperature\"][/thrive:compound]-დან. [b][color=#3796e1][url=thriveopedia:thermoplast]Thermoplasts[/url][/color][/b]-ის [b]თერმოსინთეზის[/b] უფრო სუსტი ფორმა."
 
 msgid "WIKI_THERMOSYNTHASE_REQUIREMENTS"
 msgstr ""
 
-#, fuzzy
 msgid "WIKI_THERMOSYNTHASE_SCIENTIFIC_BACKGROUND"
-msgstr "ჯერ უცნობია"
+msgstr ""
 
 msgid "WIKI_THERMOSYNTHASE_STRATEGY"
 msgstr ""
