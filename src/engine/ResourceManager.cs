@@ -32,6 +32,7 @@ public partial class ResourceManager : Node
     private readonly Stopwatch timeTracker = new();
 
     private readonly HashSet<string> temporaryResourceIds = new();
+    private readonly HashSet<string> alreadyLoadedResources = new();
     private readonly List<IResource> stageResources = new();
 
     // TODO: do we need to keep visual resources / scenes loaded while the scene is active or is Godot's default memory
@@ -365,6 +366,8 @@ public partial class ResourceManager : Node
             return true;
         }
 
+        alreadyLoadedResources.Clear();
+
         if (stageResources.Count > 0)
         {
             // Unload resources that won't be needed in the new game state
@@ -389,6 +392,7 @@ public partial class ResourceManager : Node
                     return true;
                 }
 
+                alreadyLoadedResources.Add(resource.Identifier);
                 return false;
             });
 
@@ -398,17 +402,42 @@ public partial class ResourceManager : Node
                 GD.Print($"Unloaded {unloaded} stage resources");
         }
 
+        int reused = 0;
+
         // The next frame after unloading, start loading new stuff
-        stageResources.AddRange(resources.RequiredVisualResources);
-        stageResources.AddRange(resources.RequiredScenes);
+        // Only add resources that are not loaded already to save on resource loads when swapping between similar
+        // stages
+        foreach (var requiredVisualResource in resources.RequiredVisualResources)
+        {
+            if (!alreadyLoadedResources.Contains(requiredVisualResource.Identifier))
+            {
+                stageResources.Add(requiredVisualResource);
+            }
+            else
+            {
+                ++reused;
+            }
+        }
+
+        foreach (var requiredScene in resources.RequiredScenes)
+        {
+            if (!alreadyLoadedResources.Contains(requiredScene.Identifier))
+            {
+                stageResources.Add(requiredScene);
+            }
+            else
+            {
+                ++reused;
+            }
+        }
 
         // Queue all loads at once.
         // This is hopefully fine as this simplifies the throttling logic, and there shouldn't be that many resources
         // at any stage, so the time taken to add to the list should be minimal.
         foreach (var resource in stageResources)
         {
-            // All resources are queued just in case something ends up flipping a flag to false, and we'd otherwise miss
-            // a resource that needed to be loaded and got stuck indefinitely
+            // All resources are queued just in case something ends up flipping a flag to false, and we'd otherwise
+            // miss a resource that needed to be loaded and got stuck indefinitely
 
             // if (!resource.Loaded)
             QueueLoad(resource);
@@ -416,6 +445,12 @@ public partial class ResourceManager : Node
 
         totalStageResourcesToLoad = stageResources.Count;
         GD.Print($"Starting preload of {totalStageResourcesToLoad} stage resources");
+
+        if (reused > 0)
+        {
+            GD.Print($"Reused {reused} already loaded resources");
+        }
+
         return false;
     }
 }
