@@ -57,6 +57,14 @@ public partial class PlaybackControls : HBoxContainer
         UpdateSlider();
     }
 
+    public override void _EnterTree()
+    {
+        base._EnterTree();
+
+        // Stop an engine bug from resuming this player when our parent modal is closed
+        StopPlayback();
+    }
+
     public override void _ExitTree()
     {
         base._ExitTree();
@@ -84,6 +92,7 @@ public partial class PlaybackControls : HBoxContainer
         }
 
         AudioPlayer.StreamPaused = false;
+        AudioPlayer.VolumeLinear = 1;
         AudioPlayer.Play(PlaybackPosFromProgress(playbackProgress));
     }
 
@@ -99,8 +108,11 @@ public partial class PlaybackControls : HBoxContainer
         }
 
         AudioPlayer.StreamPaused = true;
-        AudioPlayer.Playing = false;
+        AudioPlayer.Stop();
         AudioPlayer.Seek(0);
+
+        // Prevent engine bugs from sounding bad when the sound is resumed for like a fraction of a second
+        AudioPlayer.VolumeLinear = 0;
     }
 
     private float ProgressFromPlaybackPos(float value)
@@ -164,6 +176,7 @@ public partial class PlaybackControls : HBoxContainer
             return;
 
         AudioPlayer.StreamPaused = paused;
+        AudioPlayer.VolumeLinear = paused ? 0 : 1;
 
         if (!paused && !Playing)
             StartPlayback();

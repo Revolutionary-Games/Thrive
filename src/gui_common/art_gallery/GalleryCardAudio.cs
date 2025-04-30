@@ -70,7 +70,7 @@ public partial class GalleryCardAudio : GalleryCard, IGalleryCardPlayback
     {
         if (ownPlayer == null)
         {
-            ownPlayer = new AudioStreamPlayer { Stream = GD.Load<AudioStream>(Asset.ResourcePath) };
+            ownPlayer = new AudioStreamPlayer { Stream = GD.Load<AudioStream>(Asset.ResourcePath), VolumeLinear = 0 };
             UpdatePlaybackBar();
             AddChild(ownPlayer);
         }
