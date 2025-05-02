@@ -70,10 +70,10 @@ public class GlobalGlaciationEvent : IWorldEffect
         {
             FinishEvent();
         }
-
-        // Mark patches with the event icon while the event lasts
-        if (generationsLeft > 0)
+        else if (generationsLeft > 0)
+        {
             MarkPatches(totalTimePassed);
+        }
     }
 
     private bool IsSurfacePatch(Patch patch)

@@ -817,3 +817,99 @@
     - Fixed extra horizontal separators being visible in the membrane tooltips
     - Added safeguards against cell colony members with missing components, now those colonies are force disbanded to allow the game to continue
     - Updated translations
+
+0.8.2:
+  IntroductionText: |
+    This release adds a bunch of new environmental things to the game. There's now water currents that move microbes around along them making sessile cells easier to reach new places. The currents are visualized with particles flowing along them. There's also much more violent events in the form of meteor impacts and a global glaciation events. These events shake up the gameplay with new resources and new challenges like the entire planet surface freezing over and limiting available sunlight to photosynthesisers. Existing players will also notice a reworked and expanded tutorial as well as various graphical changes, a plethora of minor new features, and many bugfixes.
+  ReleaseLink: https://github.com/Revolutionary-Games/Thrive/releases/tag/v0.8.2
+  PatchNotes:
+    - Added water currents that affect microbes and particles that visualize the currents
+    - Added a global glaciation event that reduces light on all surface patches and adds ice chunks
+    - Added meteor impact events
+    - Added resolution scaling options to render at lower resolutions for more performance
+    - Added a loading screen for stages during which graphics are loaded and shaders compiled to reduce stuttering during gameplay
+    - Implemented the bioluminescent vacuole, though the gameplay impact is minimal so far (the lights look pretty, though)
+    - Added an option to change the world size when setting up a new game
+    - Upgraded to Godot 4.4.1 (from 4.3) which has fixed many bugs we had with Godot 4
+    - Tutorials now have a new mode where only tutorials that haven't been seen before are shown. And the old option of completely turning off the tutorials is now only in the options menu. We hope that this will help returning players who have historically skipped all new tutorials that they hadn't even seen before.
+    - Added a popup after the welcome tutorial prompting the player to select their preferred 2D movement mode. Hopefully with this change there won't be more feedback on the default movement mode.
+    - Added 7 new tutorials covering some extra parts of the microbe editor as well as the microbe stage
+    - Fixed incorrect randomness sampling in the chromatic aberration effect which caused some weird looking edges
+    - Reordered the organism statistics panel to put less important stats at the bottom and make the compound balances visible without scrolling down
+    - Removed percentage symbol from the compounds chart
+    - AI members of the player species dying now affect the population and reproductions give population bonuses
+    - Added a button to play the game in double speed
+    - Made organelles in the cell affect environmental tolerances, now the tolerances feature is more strategic as organelles can save on MP that would otherwise be needed to be used in tweaking tolerances
+    - Increased maximum tolerance debuffs and MP costs
+    - Added optimal value markes to the tolerances GUI
+    - Made higher firerate toxins consume less toxin per shot
+    - Lowered the volume of sound effects from non-player entities by 30 percent
+    - Reduced player species spawn rate by 50% to make it less likely to experience the player's species overcrowding them
+    - 'Increased the radius at which AI cells are no longer forced to move towards the player to "get on stage"'
+    - Buffed chloroplasts 20% to make them a more tempting upgrade from thylakoids
+    - Iron metabolism no longer depends on co2
+    - Fixed realism issues in the wording of iron metabolism
+    - Added a large sulfur chunk variant
+    - Added a button to view the classic text-based auto-evo report
+    - Added instant kill protection for the player when the player's health is above a few units of health to prevent deaths from large single damage events
+    - If the player moves to an empty patch an AI species is now forced to teleport there to ensure the player always sees other species in the environment, even if auto-evo hasn't managed to spread there yet
+    - "Added a 'T' suffix to primary displays of population to finally try to solve the confusion some players have that think that a population of 100 microbes literally means just 100 individuals, whereas in reality there has always been an abstract multiplier for the numbers as entire oceans have very high number of bacteria"
+    - Added an auto-save the first time the editor becomes available
+    - Tweaked ice chunk visuals
+    - Updated the look of the hydrogenase organelle
+    - Added HUD message warnings when binding or engulfing mode ends due to running out of ATP
+    - Added a graphics option to use low quality background blur for more performance
+    - Added anti-aliasing type selection to allow switching to other kinds besides MSAA
+    - Added anisotropic filtering options
+    - Removed option to turn off passive reproduction as that mode was not balanced and was not going to receive any balancing work
+    - Disabled tolerance warnings in multicellular as tolerances are not implemented for multicellular yet
+    - Improved the performance of the patch map redraw logic to reduce lag when clicking on patches of the map
+    - Added a tutorial prompting the player to place a nucleus after many generations in the editor in case the player forgot the early goal
+    - Fixed the news feed no longer working with our new main website
+    - Fixed tolerances making it harder to survive after getting a patch extinction and having to return to a previous patch. The game now helps out by adjusting tolerances automatically to not get debuffs in the new environment.
+    - Fixed lag on the patch map with large maps
+    - Fixed jittery particle emitters in main menu background 3 by enabling interpolation
+    - Fixed some process input numbers not showing enough decimals and instead showing up as 0 when they are in fact above 0
+    - Fixed temperature compound inputs never showing any decimals
+    - Fixed ATP consumption bar to show 3 decimal places like the production bar already did
+    - Fixed at noon light level label not using rounding
+    - Fixed light level bar sizing in the editor
+    - Fixed incorrect indicator colour not applying to save name text box
+    - Fixed the radiation damage effect not being audible
+    - Fixed initial compounds in multicellular not giving glucose correctly. A fix had been made earlier to the microbe stage but was forgotten to apply to the later stage as well.
+    - Fixed incorrectly sized ground plane in the industrial stage
+    - Fixed sizing of some tutorials
+    - Fixed wording in toxin tooltips claiming they use oxygen by default
+    - Fixed a typo in the auto-evo explanation popup
+    - Fixed Easter Egg chunk causing warnings
+    - Fixed fossilization buttons not taking screen distortion into account, their positions are more accurate now
+    - Fixed an extra horizontal separator being visible in the rigidity tooltip
+    - Fixed extra horizontal separator visible in the organelle upgrade tooltips
+    - Fixed lysosome upgrade GUI being slighty too short
+    - Fixed the auto-evo explanation popup being slightly too short by default when using a single energy source
+    - Fixed art gallery sounds that were paused resuming on closing it
+    - Fixed microbe benchmark using a bad seed and not generating interesting species
+    - Fixed damage on touch system trying to deal 0 chunk damage
+    - Added a safety workaround for loading saves with invalid compound cloud system state (the state is reset on load)
+    - Added safety code to the evolutionary tree to allow displaying it even if some generation's data is missing. The tree can display itself now but the missing data will still be missing.
+    - Fixed our shuffle bag implementation to shuffle bags with just 2 items
+    - Fixed a crash when directly starting an editor scene through the Godot Editor
+    - The game window clear colour is now set to to black in exported versions to hopefully avoid some bugs where a grey background is sometimes visible on Windows
+    - Tweaked the minimum size of the process panel
+    - Added a tooltip for the process panel toggle buttons
+    - Improved multicellular growth code to not use a method for iterating that required extra memory each time
+    - Added Mac build signing and notarization to our build script
+    - Updated our style guide to begin with a brief section on special considerations as Thrive is a game
+    - Updated code checking tools
+    - Fixed some code warnings from new checking tool versions
+    - Fixed localization update script looking in some folders it shouldn't and finding unintended build files
+    - Enable automatic running of gdUnit4 tests by our CI pipeline
+    - Fixed technical issue where Dependabot had deleted the Jolt submodule
+    - Did various tweaks to our CI pipeline to try to share used disk space more efficiently
+    - Updated setup instructions regarding .NET and Godot version
+    - Updated System.IO.Hashing from 9.0.2 to 9.0.4
+    - Updated System.Numerics.Vectors from 4.6.0 to 4.6.1
+    - Updated Harmony from 2.3.5 to 2.3.6
+    - Updated AngleSharp from 1.2.0 to 1.3.0
+    - "Added a new language: Alemannic"
+    - Updated translations
