@@ -9,7 +9,7 @@ using SharedBase.Models;
 /// </summary>
 public class NativeConstants
 {
-    public const int Version = 19;
+    public const int Version = 20;
     public const int EarlyCheck = 2;
     public const int ExtensionVersion = 6;
 
