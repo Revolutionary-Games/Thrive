@@ -522,7 +522,7 @@ public partial class MacroscopicEditor : EditorBase<EditorAction, MacroscopicSta
         bodyEditorLight.Visible = bodyEditor;
     }
 
-    private void OnStartEditingCellType(string name)
+    private void OnStartEditingCellType(string? name)
     {
         if (CanCancelAction)
         {
