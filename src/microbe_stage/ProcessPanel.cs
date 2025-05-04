@@ -26,6 +26,24 @@ public partial class ProcessPanel : CustomWindow
 
     public ProcessStatistics? ShownData { get; set; }
 
+    public float ExternalSpeedModifier
+    {
+        get
+        {
+            if (processList != null)
+                return processList.ExternalSpeedModifier;
+
+            return 1.0f;
+
+        }
+
+        set
+        {
+            if (processList != null)
+                processList.ExternalSpeedModifier = value;
+        }
+    }
+
     public override void _Ready()
     {
         processList = GetNode<ProcessList>(ProcessListPath);

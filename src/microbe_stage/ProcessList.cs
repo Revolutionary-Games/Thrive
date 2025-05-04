@@ -34,6 +34,11 @@ public partial class ProcessList : VBoxContainer
     public LabelSettings? ProcessesTitleColour { get; set; }
 
     /// <summary>
+    ///   External, more technical modifiers for speed, like 2x gameplay speed modifier
+    /// </summary>
+    public float ExternalSpeedModifier { get; set; } = 1.0f;
+
+    /// <summary>
     ///   If true the color of one of the process titles in this list will be changed to red
     ///   if it has any limiting compounds.
     /// </summary>
@@ -91,6 +96,7 @@ public partial class ProcessList : VBoxContainer
         equation.ShowToggle = ShowToggles;
         equation.MarkRedOnLimitingCompounds = MarkRedOnLimitingCompounds;
         equation.AutoRefreshProcess = UpdateEquationAutomatically;
+        equation.ParentList = this;
 
         equation.Connect(SignalName.ToggleProcessPressed, new Callable(this, nameof(HandleToggleProcess)));
 

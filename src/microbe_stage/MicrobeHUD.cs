@@ -247,7 +247,10 @@ public partial class MicrobeHUD : CreatureStageHUDBase<MicrobeStage>
             return;
         }
 
-        stage.WorldSimulation.WorldTimeScale = fastModeEnabled ? 2 : 1;
+        var resultingModifier = fastModeEnabled ? 2 : 1;
+
+        stage.WorldSimulation.WorldTimeScale = resultingModifier;
+        UpdateProcessPanelExternalSpeedModifier(resultingModifier);
     }
 
     public override bool GetCurrentSpeedMode()
