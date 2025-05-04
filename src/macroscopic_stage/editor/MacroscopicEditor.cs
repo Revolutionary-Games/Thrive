@@ -531,6 +531,15 @@ public partial class MacroscopicEditor : EditorBase<EditorAction, MacroscopicSta
             return;
         }
 
+        // If there is a null name, that means there is no selected cell,
+        // so clear the selectedCellTypeToEdit and return early
+        if (string.IsNullOrEmpty(name))
+        {
+            selectedCellTypeToEdit = null;
+            GD.Print("Cleared editing cell type");
+            return;
+        }
+
         var newTypeToEdit = EditedSpecies.CellTypes.First(c => c.TypeName == name);
 
         // Only reinitialize the editor when required
