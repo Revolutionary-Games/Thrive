@@ -44,6 +44,16 @@ public enum TutorialEventType
     MicrobePlayerTotalCollected,
 
     /// <summary>
+    ///   The player has started sprinting
+    /// </summary>
+    MicrobePlayerStartSprint,
+
+    /// <summary>
+    ///   The player has stopped sprinting
+    /// </summary>
+    MicrobePlayerEndSprint,
+
+    /// <summary>
     ///   Player cell engulfment storage has reached full capacity
     /// </summary>
     MicrobePlayerEngulfmentFull,

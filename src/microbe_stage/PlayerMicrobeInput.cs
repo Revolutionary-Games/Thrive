@@ -360,6 +360,8 @@ public partial class PlayerMicrobeInput : NodeWithInput
 
         control.Sprinting = true;
 
+        stage.TutorialState.SendEvent(TutorialEventType.MicrobePlayerStartSprint, EventArgs.Empty, this);
+
         // We need to not consume the input, otherwise the key up for this will not run
         return false;
     }
@@ -373,6 +375,8 @@ public partial class PlayerMicrobeInput : NodeWithInput
         ref var control = ref stage.Player.Get<MicrobeControl>();
 
         control.Sprinting = false;
+
+        stage.TutorialState.SendEvent(TutorialEventType.MicrobePlayerEndSprint, EventArgs.Empty, this);
     }
 
     public void ToggleSprint()
