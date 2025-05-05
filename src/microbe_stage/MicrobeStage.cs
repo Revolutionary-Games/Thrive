@@ -361,7 +361,12 @@ public partial class MicrobeStage : CreatureStageBase<Entity, MicrobeWorldSimula
             if (guidancePosition != null)
             {
                 guidanceLine.Visible = true;
-                guidanceLine.LineStart = playerPosition.Position;
+
+                // To avoid line jitter, always make the line start from the camera's position
+                var start = Camera.GlobalPosition;
+                start.Y = 0;
+
+                guidanceLine.LineStart = start;
                 guidanceLine.LineEnd = guidancePosition.Value;
             }
             else
