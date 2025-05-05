@@ -869,6 +869,7 @@ DisplayDelay = 2.5
 anchors_preset = 0
 offset_right = 40.0
 offset_bottom = 40.0
+mouse_filter = 2
 
 [node name="temperature" parent="GroupHolder/tolerances" instance=ExtResource("14_k78dl")]
 visible = false
