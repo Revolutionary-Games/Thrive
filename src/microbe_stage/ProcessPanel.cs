@@ -34,7 +34,6 @@ public partial class ProcessPanel : CustomWindow
                 return processList.ExternalSpeedModifier;
 
             return 1.0f;
-
         }
 
         set

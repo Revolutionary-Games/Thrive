@@ -7,8 +7,6 @@ using Godot;
 /// </summary>
 public partial class ChemicalEquation : VBoxContainer
 {
-    public ProcessList ParentList = null!;
-
 #pragma warning disable CA2213
     [Export]
     public LabelSettings DefaultTitleFont = null!;
@@ -126,6 +124,8 @@ public partial class ChemicalEquation : VBoxContainer
     /// </summary>
     public bool ShowPerSecondLabel { get; set; } = true;
 
+    public float ExternalSpeedModifier { get; set; } = 1.0f;
+
     /// <summary>
     ///   Only if this is true, the text "/ second" is shown fully, instead of being abbreviated to ` / s`
     /// </summary>
@@ -175,7 +175,7 @@ public partial class ChemicalEquation : VBoxContainer
     {
         if (ShowSpinner && EquationFromProcess != null)
         {
-            currentSpinnerRotation += (float)delta * EquationFromProcess.CurrentSpeed * SpinnerBaseSpeed * ParentList.ExternalSpeedModifier;
+            currentSpinnerRotation += (float)delta * EquationFromProcess.CurrentSpeed * SpinnerBaseSpeed * ExternalSpeedModifier;
 
             // TODO: should we at some point subtract like 100000*360 from the spinner rotation to avoid float range
             // exceeding?

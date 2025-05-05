@@ -11,6 +11,8 @@ public partial class ProcessList : VBoxContainer
     private PackedScene chemicalEquationScene = null!;
 #pragma warning restore CA2213
 
+    private float externalSpeedModifier = 1.0f;
+
     private ChildObjectCache<StrictProcessDisplayInfoEquality, ChemicalEquation> createdProcessControls = null!;
     private List<StrictProcessDisplayInfoEquality>? processesToShow;
 
@@ -36,7 +38,17 @@ public partial class ProcessList : VBoxContainer
     /// <summary>
     ///   External, more technical modifiers for speed, like 2x gameplay speed modifier
     /// </summary>
-    public float ExternalSpeedModifier { get; set; } = 1.0f;
+    public float ExternalSpeedModifier
+    {
+        get => externalSpeedModifier;
+
+        set
+        {
+            externalSpeedModifier = value;
+
+            UpdateEquationsExternalSpeedModifier();
+        }
+    }
 
     /// <summary>
     ///   If true the color of one of the process titles in this list will be changed to red
@@ -96,7 +108,7 @@ public partial class ProcessList : VBoxContainer
         equation.ShowToggle = ShowToggles;
         equation.MarkRedOnLimitingCompounds = MarkRedOnLimitingCompounds;
         equation.AutoRefreshProcess = UpdateEquationAutomatically;
-        equation.ParentList = this;
+        equation.ExternalSpeedModifier = ExternalSpeedModifier;
 
         equation.Connect(SignalName.ToggleProcessPressed, new Callable(this, nameof(HandleToggleProcess)));
 
@@ -107,6 +119,14 @@ public partial class ProcessList : VBoxContainer
         equation.EquationFromProcess = process.DisplayInfo;
 
         return equation;
+    }
+
+    private void UpdateEquationsExternalSpeedModifier()
+    {
+        foreach (var equation in createdProcessControls.GetChildren())
+        {
+            equation.ExternalSpeedModifier = ExternalSpeedModifier;
+        }
     }
 
     private void HandleToggleProcess(ChemicalEquation equation, bool enabled)
