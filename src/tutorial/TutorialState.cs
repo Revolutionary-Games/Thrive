@@ -59,6 +59,9 @@ public class TutorialState : ITutorialInput, ISaveLoadable
     public MicrobeUnbind MicrobeUnbind { get; private set; } = new();
 
     [JsonProperty]
+    public MicrobeSprintExplanation MicrobeSprintExplanation { get; private set; } = new();
+
+    [JsonProperty]
     public MicrobeEngulfmentExplanation MicrobeEngulfmentExplanation { get; private set; } = new();
 
     [JsonProperty]
@@ -509,6 +512,7 @@ public class TutorialState : ITutorialInput, ISaveLoadable
             MicrobeStayingAlive,
             MicrobeReproduction,
             MicrobeUnbind,
+            MicrobeSprintExplanation,
             MicrobeEngulfmentExplanation,
             MicrobeEngulfedExplanation,
             EngulfmentStorageFull,

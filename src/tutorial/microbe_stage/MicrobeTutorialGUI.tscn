@@ -400,6 +400,22 @@ theme_override_fonts/font = ExtResource("9_s6a8v")
 theme_override_font_sizes/font_size = 18
 text = "TUTORIAL_VIEW_NOW"
 
+[node name="SprintTutorial" parent="." instance=ExtResource("10")]
+custom_minimum_size = Vector2(260, 200)
+layout_mode = 1
+anchors_preset = 6
+anchor_left = 1.0
+anchor_top = 0.5
+anchor_right = 1.0
+anchor_bottom = 0.5
+offset_left = -260.0
+offset_top = -191.0
+offset_right = 0.0
+offset_bottom = 73.0
+grow_horizontal = 0
+grow_vertical = 2
+Description = "TUTORIAL_MICROBE_STAGE_SPRINT_TEXT"
+
 [node name="EngulfmentFullCapacity" parent="." instance=ExtResource("10")]
 custom_minimum_size = Vector2(260, 310)
 layout_mode = 1
@@ -596,6 +612,7 @@ PreventsMouseCaptureWhileOpen = true
 [connection signal="hidden" from="UnbindTutorial" to="." method="OnSpecificCloseClicked" binds= ["MicrobeUnbind"]]
 [connection signal="hidden" from="CheckHelpMenu" to="." method="OnSpecificCloseClicked" binds= ["CheckTheHelpMenu"]]
 [connection signal="pressed" from="CheckHelpMenu/ScrollContainer/VBoxContainer/Button" to="." method="CheckHelpMenuPressed"]
+[connection signal="hidden" from="SprintTutorial" to="." method="OnSpecificCloseClicked" binds= ["MicrobeSprintExplanation"]]
 [connection signal="hidden" from="EngulfmentFullCapacity" to="." method="OnSpecificCloseClicked" binds= ["MicrobeEngulfmentStorageFull"]]
 [connection signal="hidden" from="EngulfmentTutorial" to="." method="OnSpecificCloseClicked" binds= ["MicrobeEngulfmentExplanation"]]
 [connection signal="hidden" from="EngulfedTutorial" to="." method="OnSpecificCloseClicked" binds= ["MicrobeEngulfedExplanation"]]
