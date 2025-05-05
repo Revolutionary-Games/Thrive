@@ -175,7 +175,8 @@ public partial class ChemicalEquation : VBoxContainer
     {
         if (ShowSpinner && EquationFromProcess != null)
         {
-            currentSpinnerRotation += (float)delta * EquationFromProcess.CurrentSpeed * SpinnerBaseSpeed * ExternalSpeedModifier;
+            currentSpinnerRotation += (float)delta * EquationFromProcess.CurrentSpeed * SpinnerBaseSpeed
+                * ExternalSpeedModifier;
 
             // TODO: should we at some point subtract like 100000*360 from the spinner rotation to avoid float range
             // exceeding?

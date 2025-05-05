@@ -30,16 +30,12 @@ public partial class ProcessPanel : CustomWindow
     {
         get
         {
-            if (processList != null)
-                return processList.ExternalSpeedModifier;
-
-            return 1.0f;
+            return processList.ExternalSpeedModifier;
         }
 
         set
         {
-            if (processList != null)
-                processList.ExternalSpeedModifier = value;
+            processList.ExternalSpeedModifier = value;
         }
     }
 
