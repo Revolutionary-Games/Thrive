@@ -1,4 +1,5 @@
-﻿using Godot;
+﻿using System;
+using Godot;
 using Xoshiro.PRNG32;
 
 /// <summary>
@@ -6,6 +7,8 @@ using Xoshiro.PRNG32;
 /// </summary>
 public partial class GuidanceLine : MeshInstance3D
 {
+    private readonly XoShiRo128plus random = new();
+
     private Vector3 lineStart;
 
     private Vector3 lineEnd;
@@ -16,14 +19,14 @@ public partial class GuidanceLine : MeshInstance3D
 
     private bool dirty = true;
 
-    private XoShiRo128plus random = new();
-
     private float yOffset;
 
-    // Assigned as a child resource so this should be disposed automatically
+    // Assigned as a child resource so this should be disposed of automatically
 #pragma warning disable CA2213
     private ImmediateMesh mesh = null!;
 #pragma warning restore CA2213
+
+    private StandardMaterial3D? material;
 
     [Export]
     public Vector3 LineStart
@@ -62,8 +65,10 @@ public partial class GuidanceLine : MeshInstance3D
             if (colour == value)
                 return;
 
-            dirty = true;
             colour = value;
+
+            if (material != null)
+                material.AlbedoColor = colour;
         }
     }
 
@@ -73,7 +78,7 @@ public partial class GuidanceLine : MeshInstance3D
         get => lineWidth;
         set
         {
-            if (lineWidth == value)
+            if (Math.Abs(lineWidth - value) < MathUtils.EPSILON)
                 return;
 
             dirty = true;
@@ -85,7 +90,7 @@ public partial class GuidanceLine : MeshInstance3D
     {
         base._Ready();
 
-        // ImmediateMesh is no longer a node type so this just needs to have one as a child
+        // ImmediateMesh is no longer a node type, so this just needs to have one as a child
         mesh = new ImmediateMesh();
         Mesh = mesh;
 
@@ -94,9 +99,9 @@ public partial class GuidanceLine : MeshInstance3D
         ProcessMode = ProcessModeEnum.Always;
 
         // This material is needed for SetColor to work at all
-        var material = new StandardMaterial3D();
-        material.VertexColorUseAsAlbedo = true;
-        MaterialOverride = material;
+        material = new StandardMaterial3D();
+        material.AlbedoColor = colour;
+
         yOffset = random.NextFloat() - 2.0f;
     }
 
@@ -114,15 +119,12 @@ public partial class GuidanceLine : MeshInstance3D
 
         mesh.SurfaceBegin(Mesh.PrimitiveType.Triangles);
 
-        mesh.SurfaceSetColor(colour);
-
-        // To form quad, we want it in 'orgin + vector' form, not 'start + end' form
+        // To form quad, we want it in 'origin + vector' form, not 'start + end' form
         // Be sure to flatten the Y-axis of the vector, so it's all on a 2D plane
         Vector3 lineVector = lineEnd - lineStart;
         lineVector[1] = 0.0f;
 
-        // To get a vector that is at a right angle to the line in 2D
-        // swap the coords and negate one term, then normalize.
+        // To get a vector at a right angle to the line in 2D, swap the coords and negate one term, then normalise.
         Vector3 lineNormal = new Vector3(-lineVector[2], 0.0f, lineVector[0]).Normalized();
 
         Vector3 yOffsetVector = new Vector3(0.0f, yOffset, 0.0f);
@@ -132,5 +134,16 @@ public partial class GuidanceLine : MeshInstance3D
         mesh.SurfaceAddVertex(LineStart - lineNormal * lineWidth + yOffsetVector);
 
         mesh.SurfaceEnd();
+        mesh.SurfaceSetMaterial(0, material);
+    }
+
+    protected override void Dispose(bool disposing)
+    {
+        if (disposing)
+        {
+            material?.Dispose();
+        }
+
+        base.Dispose(disposing);
     }
 }
