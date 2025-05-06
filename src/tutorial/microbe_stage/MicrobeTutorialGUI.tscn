@@ -13,7 +13,7 @@
 [ext_resource type="PackedScene" uid="uid://du8sc8kjirguk" path="res://src/gui_common/dialogs/CustomWindow.tscn" id="13"]
 [ext_resource type="PackedScene" uid="uid://tna206f2gtkv" path="res://src/gui_common/AddWindowReorderingSupportToSiblings.tscn" id="14"]
 
-[node name="MicrobeTutorialGUI" type="Control" node_paths=PackedStringArray("tutorialDisabledExplanation", "welcomeTutorialScrollContainer", "openProcessPanelTutorial", "processPanelTutorial", "resourceSplitTutorial", "pausingTutorial", "speciesMemberDied", "ProcessPanelButtonHighlight")]
+[node name="MicrobeTutorialGUI" type="Control" node_paths=PackedStringArray("tutorialDisabledExplanation", "welcomeTutorialScrollContainer", "openProcessPanelTutorial", "sprintExplanation", "processPanelTutorial", "resourceSplitTutorial", "pausingTutorial", "speciesMemberDied", "ProcessPanelButtonHighlight")]
 process_mode = 3
 layout_mode = 3
 anchors_preset = 15
@@ -42,7 +42,6 @@ DayNightTutorialPath = NodePath("EnvironmentPanelTutorial")
 OrganelleDivisionTutorialPath = NodePath("OrganelleDivisionTutorial")
 BecomeMulticellularTutorialPath = NodePath("BecomeMulticellularTutorial")
 CheckTheHelpMenuPath = NodePath("CheckHelpMenu")
-SprintExplanationPath = NodePath("SprintTutorial")
 EngulfmentExplanationPath = NodePath("EngulfmentTutorial")
 EngulfedExplanationPath = NodePath("EngulfedTutorial")
 EngulfmentFullCapacityPath = NodePath("EngulfmentFullCapacity")
@@ -50,6 +49,7 @@ EditorButtonHighlightPath = NodePath("EditorButtonHighlight")
 tutorialDisabledExplanation = NodePath("MicrobeWelcome/VBoxContainer/ScrollContainer/VBoxContainer/AllNotEnabledExplanation")
 welcomeTutorialScrollContainer = NodePath("MicrobeWelcome/VBoxContainer/ScrollContainer")
 openProcessPanelTutorial = NodePath("OpenProcessPanelTutorial")
+sprintExplanation = NodePath("SprintTutorial")
 processPanelTutorial = NodePath("ProcessPanelTutorial")
 resourceSplitTutorial = NodePath("ResourceSplitTutorial")
 pausingTutorial = NodePath("PausingTutorial")

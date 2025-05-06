@@ -65,9 +65,6 @@ public partial class MicrobeTutorialGUI : Control, ITutorialGUI
     public NodePath CheckTheHelpMenuPath = null!;
 
     [Export]
-    public NodePath SprintExplanationPath = null!;
-
-    [Export]
     public NodePath EngulfmentExplanationPath = null!;
 
     [Export]
@@ -100,7 +97,6 @@ public partial class MicrobeTutorialGUI : Control, ITutorialGUI
     private CustomWindow editorButtonTutorial = null!;
     private CustomWindow unbindTutorial = null!;
     private CustomWindow checkTheHelpMenu = null!;
-    private CustomWindow sprintExplanation = null!;
     private CustomWindow engulfmentExplanation = null!;
     private CustomWindow engulfedExplanation = null!;
     private CustomWindow engulfmentFullCapacity = null!;
@@ -112,6 +108,9 @@ public partial class MicrobeTutorialGUI : Control, ITutorialGUI
 
     [Export]
     private CustomWindow openProcessPanelTutorial = null!;
+
+    [Export]
+    private CustomWindow sprintExplanation = null!;
 
     [Export]
     private CustomWindow processPanelTutorial = null!;
@@ -583,7 +582,6 @@ public partial class MicrobeTutorialGUI : Control, ITutorialGUI
         editorButtonTutorial = GetNode<CustomWindow>(EditorButtonTutorialPath);
         unbindTutorial = GetNode<CustomWindow>(UnbindTutorialPath);
         checkTheHelpMenu = GetNode<CustomWindow>(CheckTheHelpMenuPath);
-        sprintExplanation = GetNode<CustomWindow>(SprintExplanationPath);
         engulfmentExplanation = GetNode<CustomWindow>(EngulfmentExplanationPath);
         engulfedExplanation = GetNode<CustomWindow>(EngulfedExplanationPath);
         engulfmentFullCapacity = GetNode<CustomWindow>(EngulfmentFullCapacityPath);
@@ -667,7 +665,6 @@ public partial class MicrobeTutorialGUI : Control, ITutorialGUI
                 OrganelleDivisionTutorialPath.Dispose();
                 BecomeMulticellularTutorialPath.Dispose();
                 CheckTheHelpMenuPath.Dispose();
-                SprintExplanationPath.Dispose();
                 EngulfmentExplanationPath.Dispose();
                 EngulfedExplanationPath.Dispose();
                 EngulfmentFullCapacityPath.Dispose();

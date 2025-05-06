@@ -5,7 +5,7 @@ using System;
 public class MicrobeSprintExplanation : TutorialPhase
 {
     /// <summary>
-    ///    Keep track of when the player starts sprinting. However the tutorial is only completed when the player stops sprinting.
+    ///   Tracks if the player has started sprinting. The tutorial is only completed when the player stops sprinting.
     /// </summary>
     private bool startedSprinting = false;
 
@@ -51,7 +51,8 @@ public class MicrobeSprintExplanation : TutorialPhase
 
             case TutorialEventType.MicrobePlayerEndSprint:
                 {
-                    if (!ShownCurrently || !startedSprinting)
+                    // The player must see the tutorial for 1 second.
+                    if (!ShownCurrently || !startedSprinting || Time < 1)
                         break;
 
                     // Tutorial is now complete
