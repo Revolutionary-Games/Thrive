@@ -121,9 +121,17 @@ public partial class GuidanceLine : MeshInstance3D
 
         mesh.SurfaceBegin(Mesh.PrimitiveType.Triangles);
 
-        // This needs to be darkened a ton here to make up for the unlit rendering mode now used on the material (which
-        // was changed to make exported game properly display the material)
-        mesh.SurfaceSetColor(colour.Darkened(0.95f));
+        if (FeatureInformation.GetVideoDriver() != OS.RenderingDriver.Opengl3)
+        {
+            // This needs to be darkened a ton here to make up for the unlit rendering mode now used on the material (which
+            // was changed to make exported game properly display the material)
+            mesh.SurfaceSetColor(colour.Darkened(0.95f));
+        }
+        else
+        {
+            // Visibility is seriously bad with this mode, so don't adjust colour
+            mesh.SurfaceSetColor(colour);
+        }
 
         // To form quad, we want it in 'origin + vector' form, not 'start + end' form
         // Be sure to flatten the Y-axis of the vector, so it's all on a 2D plane
