@@ -24,9 +24,13 @@ public partial class GuidanceLine : MeshInstance3D
     // Assigned as a child resource so this should be disposed of automatically
 #pragma warning disable CA2213
     private ImmediateMesh mesh = null!;
-#pragma warning restore CA2213
 
-    private StandardMaterial3D? material;
+    /// <summary>
+    ///   The line material that needs to be set through the editor and made to use vertex colours
+    /// </summary>
+    [Export]
+    private StandardMaterial3D lineMaterial = null!;
+#pragma warning restore CA2213
 
     [Export]
     public Vector3 LineStart
@@ -66,9 +70,7 @@ public partial class GuidanceLine : MeshInstance3D
                 return;
 
             colour = value;
-
-            if (material != null)
-                material.AlbedoColor = colour;
+            dirty = true;
         }
     }
 
@@ -98,9 +100,9 @@ public partial class GuidanceLine : MeshInstance3D
         ProcessPriority = 800;
         ProcessMode = ProcessModeEnum.Always;
 
-        // This material is needed for SetColor to work at all
-        material = new StandardMaterial3D();
-        material.AlbedoColor = colour;
+        // Maybe a separate resource that is just loaded here and then use the old vertex colour trick?
+        // Should have preloading and displaying the standard material for the microbe stage to make sure there isn't
+        // a lag spike when the line appears
 
         yOffset = random.NextFloat() - 2.0f;
     }
@@ -119,6 +121,8 @@ public partial class GuidanceLine : MeshInstance3D
 
         mesh.SurfaceBegin(Mesh.PrimitiveType.Triangles);
 
+        mesh.SurfaceSetColor(colour);
+
         // To form quad, we want it in 'origin + vector' form, not 'start + end' form
         // Be sure to flatten the Y-axis of the vector, so it's all on a 2D plane
         Vector3 lineVector = lineEnd - lineStart;
@@ -134,16 +138,6 @@ public partial class GuidanceLine : MeshInstance3D
         mesh.SurfaceAddVertex(LineStart - lineNormal * lineWidth + yOffsetVector);
 
         mesh.SurfaceEnd();
-        mesh.SurfaceSetMaterial(0, material);
-    }
-
-    protected override void Dispose(bool disposing)
-    {
-        if (disposing)
-        {
-            material?.Dispose();
-        }
-
-        base.Dispose(disposing);
+        mesh.SurfaceSetMaterial(0, lineMaterial);
     }
 }
