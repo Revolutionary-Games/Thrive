@@ -127,9 +127,6 @@ public partial class ProcessList : VBoxContainer
 
     private void UpdateEquationsExternalSpeedModifier()
     {
-        if (createdProcessControls == null)
-            return;
-
         if (ExternalSpeedModifier == previousExternalSpeedModifier)
             return;
 
