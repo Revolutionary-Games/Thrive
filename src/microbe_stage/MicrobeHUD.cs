@@ -156,6 +156,8 @@ public partial class MicrobeHUD : CreatureStageHUDBase<MicrobeStage>
             UpdateMacroscopicButton(stage.Player);
 
             UpdateHeatHelperWidget(stage.Player);
+
+            UpdateProcessPanelExternalSpeedModifier(stage.WorldSimulation.WorldTimeScale);
         }
         else
         {
@@ -250,7 +252,6 @@ public partial class MicrobeHUD : CreatureStageHUDBase<MicrobeStage>
         var resultingModifier = fastModeEnabled ? 2 : 1;
 
         stage.WorldSimulation.WorldTimeScale = resultingModifier;
-        UpdateProcessPanelExternalSpeedModifier(resultingModifier);
     }
 
     public override bool GetCurrentSpeedMode()

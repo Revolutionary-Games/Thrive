@@ -28,15 +28,9 @@ public partial class ProcessPanel : CustomWindow
 
     public float ExternalSpeedModifier
     {
-        get
-        {
-            return processList.ExternalSpeedModifier;
-        }
+        get => processList.ExternalSpeedModifier;
 
-        set
-        {
-            processList.ExternalSpeedModifier = value;
-        }
+        set => processList.ExternalSpeedModifier = value;
     }
 
     public override void _Ready()

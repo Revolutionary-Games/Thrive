@@ -12,6 +12,7 @@ public partial class ProcessList : VBoxContainer
 #pragma warning restore CA2213
 
     private float externalSpeedModifier = 1.0f;
+    private float previousExternalSpeedModifier;
 
     private ChildObjectCache<StrictProcessDisplayInfoEquality, ChemicalEquation> createdProcessControls = null!;
     private List<StrictProcessDisplayInfoEquality>? processesToShow;
@@ -44,6 +45,9 @@ public partial class ProcessList : VBoxContainer
 
         set
         {
+            if (value == externalSpeedModifier)
+                return;
+
             externalSpeedModifier = value;
 
             UpdateEquationsExternalSpeedModifier();
@@ -123,10 +127,18 @@ public partial class ProcessList : VBoxContainer
 
     private void UpdateEquationsExternalSpeedModifier()
     {
+        if (createdProcessControls == null)
+            return;
+
+        if (ExternalSpeedModifier == previousExternalSpeedModifier)
+            return;
+
         foreach (var equation in createdProcessControls.GetChildren())
         {
             equation.ExternalSpeedModifier = ExternalSpeedModifier;
         }
+
+        previousExternalSpeedModifier = ExternalSpeedModifier;
     }
 
     private void HandleToggleProcess(ChemicalEquation equation, bool enabled)
