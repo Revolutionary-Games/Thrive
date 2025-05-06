@@ -123,9 +123,9 @@ public partial class GuidanceLine : MeshInstance3D
 
         if (FeatureInformation.GetVideoDriver() != OS.RenderingDriver.Opengl3)
         {
-            // This needs to be darkened a ton here to make up for the unlit rendering mode now used on the material (which
-            // was changed to make exported game properly display the material)
-            mesh.SurfaceSetColor(colour.Darkened(0.95f));
+            // This needs to be darkened a ton here to make up for the unlit rendering mode now used on the material
+            // (which was changed to make exported game properly display the material)
+            mesh.SurfaceSetColor(colour.Darkened(0.94f));
         }
         else
         {
