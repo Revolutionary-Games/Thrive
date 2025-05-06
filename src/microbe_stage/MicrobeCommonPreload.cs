@@ -1,4 +1,4 @@
-using Godot;
+﻿using Godot;
 
 /// <summary>
 ///   Handles loading common resources for preloading their graphics and shaders in the microbe stage
