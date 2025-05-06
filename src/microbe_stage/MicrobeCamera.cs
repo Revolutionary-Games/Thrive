@@ -225,6 +225,10 @@ public partial class MicrobeCamera : Camera3D, IGodotEarlyNodeResolve, ISaveLoad
                     + currentCameraHeight.Lerp(newCameraHeight, InterpolateZoomSpeed);
             }
 
+            var targetWithOffset = target + new Vector3(cursorVisualWorldPos.X - Position.X, 0, cursorVisualWorldPos.Z - Position.Z) * 0.08f;
+
+            target = Position.Lerp(targetWithOffset, InterpolateSpeed);
+
             Position = target;
         }
         else
