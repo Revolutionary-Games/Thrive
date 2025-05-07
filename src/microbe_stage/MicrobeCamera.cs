@@ -50,6 +50,17 @@ public partial class MicrobeCamera : Camera3D, IGodotEarlyNodeResolve, ISaveLoad
     [JsonProperty]
     public float InterpolateZoomSpeed = 0.3f;
 
+    [Export]
+    [JsonProperty]
+    public float CursorTiltSpeed = 0.15f;
+
+    /// <summary>
+    ///   Size of fragment of camera-cursor vector to use to tilt the camera
+    /// </summary>
+    [Export]
+    [JsonProperty]
+    public float CursorTiltAmplitude = 0.04f;
+
     /// <summary>
     ///   Now required with native physics to ensure that there's no occasional hitching with the camera
     /// </summary>
@@ -79,6 +90,8 @@ public partial class MicrobeCamera : Camera3D, IGodotEarlyNodeResolve, ISaveLoad
 
     private Vector3 cursorVisualWorldPos = new(0, 0, 0);
     private bool cursorVisualDirty = true;
+
+    private Vector3 lastCursorTilt = new(0, 0, 0);
 
     [JsonProperty]
     private float lightLevel = 1.0f;
@@ -225,9 +238,12 @@ public partial class MicrobeCamera : Camera3D, IGodotEarlyNodeResolve, ISaveLoad
                     + currentCameraHeight.Lerp(newCameraHeight, InterpolateZoomSpeed);
             }
 
-            var targetWithOffset = target + new Vector3(cursorVisualWorldPos.X - Position.X, 0, cursorVisualWorldPos.Z - Position.Z) * 0.08f;
+            // Apply cursor-induced tilt
+            var tilt = new Vector3(cursorVisualWorldPos.X - Position.X, 0, cursorVisualWorldPos.Z - Position.Z) * CursorTiltAmplitude;
 
-            target = Position.Lerp(targetWithOffset, InterpolateSpeed);
+            lastCursorTilt = lastCursorTilt.Lerp(tilt, CursorTiltSpeed);
+
+            target += lastCursorTilt;
 
             Position = target;
         }
