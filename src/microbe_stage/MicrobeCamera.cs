@@ -242,7 +242,7 @@ public partial class MicrobeCamera : Camera3D, IGodotEarlyNodeResolve, ISaveLoad
             if (Settings.Instance.MicrobeCameraTilt)
             {
                 var tilt = new Vector3(cursorVisualWorldPos.X - Position.X, 0, cursorVisualWorldPos.Z - Position.Z) *
-                CursorTiltAmplitude;
+                    CursorTiltAmplitude;
 
                 lastCursorTilt = lastCursorTilt.Lerp(tilt, CursorTiltSpeed);
 
