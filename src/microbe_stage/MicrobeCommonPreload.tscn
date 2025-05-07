@@ -1,0 +1,9 @@
+[gd_scene load_steps=3 format=3 uid="uid://8qvvmcc7biyn"]
+
+[ext_resource type="Script" uid="uid://byk7qn04xivfj" path="res://src/microbe_stage/MicrobeCommonPreload.cs" id="1_073op"]
+[ext_resource type="PackedScene" uid="uid://b5yuo8sj21lnf" path="res://src/engine/GuidanceLine.tscn" id="2_fvwtv"]
+
+[node name="MicrobeCommonPreload" type="Node3D"]
+script = ExtResource("1_073op")
+
+[node name="GuidanceLine" parent="." instance=ExtResource("2_fvwtv")]
