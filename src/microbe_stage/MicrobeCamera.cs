@@ -239,11 +239,15 @@ public partial class MicrobeCamera : Camera3D, IGodotEarlyNodeResolve, ISaveLoad
             }
 
             // Apply cursor-induced tilt
-            var tilt = new Vector3(cursorVisualWorldPos.X - Position.X, 0, cursorVisualWorldPos.Z - Position.Z) * CursorTiltAmplitude;
+            if (Settings.Instance.MicrobeCameraTilt)
+            {
+                var tilt = new Vector3(cursorVisualWorldPos.X - Position.X, 0, cursorVisualWorldPos.Z - Position.Z) *
+                CursorTiltAmplitude;
 
-            lastCursorTilt = lastCursorTilt.Lerp(tilt, CursorTiltSpeed);
+                lastCursorTilt = lastCursorTilt.Lerp(tilt, CursorTiltSpeed);
 
-            target += lastCursorTilt;
+                target += lastCursorTilt;
+            }
 
             Position = target;
         }
