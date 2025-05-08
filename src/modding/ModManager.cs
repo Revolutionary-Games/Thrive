@@ -856,6 +856,11 @@ public partial class ModManager : Control
 
         GD.Print("Applying changes to enabled mods");
 
+        if (LaunchOptions.DisableAllMods)
+        {
+            GD.Print("Started with all mods disabled due to launch option but will apply new mod list now");
+        }
+
         Settings.Instance.EnabledMods.Value = enabledMods.Select(m => m.InternalName).ToList();
 
         var modLoader = ModLoader.Instance;
