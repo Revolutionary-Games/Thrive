@@ -606,6 +606,13 @@ DescriptionLabelPath = NodePath("../metabolosome/MarginContainer/VBoxContainer/D
 DisplayDelay = 0.0
 Positioning = 1
 
+[node name="hydrogenosome" parent="GroupHolder/processesProduction" instance=ExtResource("1")]
+visible = false
+layout_mode = 0
+DescriptionLabelPath = NodePath("../metabolosome/MarginContainer/VBoxContainer/Description")
+DisplayDelay = 0.0
+Positioning = 1
+
 [node name="chromatophore" parent="GroupHolder/processesProduction" instance=ExtResource("1")]
 visible = false
 layout_mode = 0
