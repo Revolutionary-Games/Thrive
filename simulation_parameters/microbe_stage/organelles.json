@@ -139,7 +139,7 @@
       }
     ],
     "EditorButtonGroup": "Protein",
-    "EditorButtonOrder": 5,
+    "EditorButtonOrder": 6,
     "EndosymbiosisUnlocks": "nitrogenfixingplastid"
   },
   "protoplasm": {
@@ -208,7 +208,7 @@
     "ConsumptionColour": "#ff7248",
     "IconPath": "res://assets/textures/gui/bevel/parts/ChemoproteinsIcon.png",
     "EditorButtonGroup": "Protein",
-    "EditorButtonOrder": 3,
+    "EditorButtonOrder": 5,
     "EndosymbiosisUnlocks": "chemoplast"
   },
   "oxytoxyProteins": {
@@ -311,7 +311,7 @@
         }
       }
     },
-    "EditorButtonOrder": 6,
+    "EditorButtonOrder": 7,
     "EndosymbiosisUnlocks": "oxytoxy"
   },
   "chromatophore": {
@@ -358,7 +358,7 @@
       }
     ],
     "EditorButtonGroup": "Protein",
-    "EditorButtonOrder": 2,
+    "EditorButtonOrder": 3,
     "EndosymbiosisUnlocks": "chloroplast"
   },
   "metabolosome": {
@@ -403,7 +403,7 @@
       }
     ],
     "EditorButtonGroup": "Protein",
-    "EditorButtonOrder": 1,
+    "EditorButtonOrder": 2,
     "EndosymbiosisUnlocks": "mitochondrion"
   },
   "hydrogenase": {
@@ -440,7 +440,61 @@
     "ConsumptionColour": "#ff5649",
     "IconPath": "res://assets/textures/gui/bevel/parts/HydrogenaseIcon.svg",
     "EditorButtonGroup": "Protein",
-    "EditorButtonOrder": 0
+    "EditorButtonOrder": 1
+  },
+  "hydrogenosome": {
+    "MPCost": 45,
+    "InitialComposition": {
+      "ammonia": 2,
+      "phosphates": 2
+    },
+    "Hexes": [
+      {
+        "r": 0,
+        "q": 0
+      },
+      {
+        "r": -1,
+        "q": 0
+      }
+    ],
+    "Processes": {
+      "hydrogenosome_fermentation": 1
+    },
+    "Components": {
+      "Storage": {
+        "Capacity": 1.0
+      }
+    },
+    "ToleranceEffects": {
+      "Oxygen": -0.06
+    },
+    "Density": 1100,
+    "Graphics": {
+      "ScenePath": "res://assets/models/organelles/Hydrogenosome.tscn"
+    },
+    "Name": "HYDROGENOSOME",
+    "Description": "HYDROGENOSOME_DESCRIPTION",
+    "ProcessesDescription": "HYDROGENOSOME_PROCESSES_DESCRIPTION",
+    "ProductionColour": "#aa291f",
+    "ConsumptionColour": "#ff5649",
+    "IconPath": "res://assets/textures/gui/bevel/parts/HydrogenosomeIcon.svg",
+    "UnlockConditions": [
+      {
+        "AtpProductionAbove": {
+          "Atp": 10
+        },
+        "ReproduceWithOrganelle": {
+          "Organelle": "hydrogenase",
+          "Generations": 5,
+          "MinimumCount": 4,
+          "InARow": true
+        }
+      }
+    ],
+    "RequiresNucleus": true,
+    "EditorButtonGroup": "Organelle",
+    "EditorButtonOrder": 3
   },
   "nitrogenfixingplastid": {
     "MPCost": 50,
@@ -481,7 +535,7 @@
     "IconPath": "res://assets/textures/gui/bevel/parts/NitroplastidIcon.png",
     "RequiresNucleus": true,
     "EditorButtonGroup": "Organelle",
-    "EditorButtonOrder": 9
+    "EditorButtonOrder": 10
   },
   "thermosynthase": {
     "MPCost": 50,
@@ -566,7 +620,7 @@
     "IconPath": "res://assets/textures/gui/bevel/parts/ChemoplastIcon.png",
     "RequiresNucleus": true,
     "EditorButtonGroup": "Organelle",
-    "EditorButtonOrder": 8
+    "EditorButtonOrder": 9
   },
   "flagellum": {
     "MPCost": 55,
@@ -650,7 +704,7 @@
     "UpgradeGUI": "res://src/microbe_stage/editor/upgrades/VacuoleUpgradeGUI.tscn",
     "RequiresNucleus": true,
     "EditorButtonGroup": "Organelle",
-    "EditorButtonOrder": 10
+    "EditorButtonOrder": 11
   },
   "mitochondrion": {
     "MPCost": 45,
@@ -704,7 +758,7 @@
     ],
     "RequiresNucleus": true,
     "EditorButtonGroup": "Organelle",
-    "EditorButtonOrder": 3
+    "EditorButtonOrder": 4
   },
   "oxytoxy": {
     "MPCost": 55,
@@ -803,7 +857,7 @@
       }
     },
     "EditorButtonGroup": "Organelle",
-    "EditorButtonOrder": 11
+    "EditorButtonOrder": 12
   },
   "bindingAgent": {
     "MPCost": 55,
@@ -902,7 +956,7 @@
     ],
     "RequiresNucleus": true,
     "EditorButtonGroup": "Organelle",
-    "EditorButtonOrder": 4
+    "EditorButtonOrder": 6
   },
   "cytoplasm": {
     "MPCost": 22,
@@ -1120,7 +1174,7 @@
     "RequiresNucleus": true,
     "Unique": true,
     "EditorButtonGroup": "Organelle",
-    "EditorButtonOrder": 12
+    "EditorButtonOrder": 14
   },
   "bioluminescentVacuole": {
     "MPCost": 40,
@@ -1164,7 +1218,7 @@
     "IconPath": "res://assets/textures/gui/bevel/parts/BioluminescentIcon.png",
     "RequiresNucleus": true,
     "EditorButtonGroup": "Organelle",
-    "EditorButtonOrder": 13
+    "EditorButtonOrder": 15
   },
   "thermoplast": {
     "MPCost": 55,
@@ -1218,7 +1272,7 @@
     ],
     "RequiresNucleus": true,
     "EditorButtonGroup": "Organelle",
-    "EditorButtonOrder": 7,
+    "EditorButtonOrder": 8,
     "LAWK": false
   },
   "cilia": {
@@ -1315,7 +1369,7 @@
     "UpgradeGUI": "res://src/microbe_stage/editor/upgrades/LysosomeUpgradeGUI.tscn",
     "RequiresNucleus": true,
     "EditorButtonGroup": "Organelle",
-    "EditorButtonOrder": 6
+    "EditorButtonOrder": 7
   },
   "ferroplast": {
     "MPCost": 45,
