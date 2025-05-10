@@ -1,6 +1,6 @@
 using Godot;
 
-public partial class PlanetSettings : PanelContainer
+public partial class PlanetSettings : VBoxContainer
 {
     [Export]
     public OptionButton lifeOriginButton = null!;

@@ -9,7 +9,7 @@ public partial class PlanetCustomizer : Node
     private PatchDetailsPanel patchDetailsPanel = null!;
 
     [Export]
-    private PlanetSettings settingsPanel = null!;
+    private PanelContainer settingsPanel = null!;
 
     [Export]
     private Control patchMapPanel = null!;
@@ -19,6 +19,9 @@ public partial class PlanetCustomizer : Node
 
     [Export]
     private Button generateButton = null!;
+
+    [Export]
+    private PlanetSettings planetSettings = null!;
 
     public WorldGenerationSettings WorldSettings;
 
@@ -39,15 +42,15 @@ public partial class PlanetCustomizer : Node
         WorldSettings = new WorldGenerationSettings
         {
             AutoEvoConfiguration = configuration,
-            WorldSize = (WorldGenerationSettings.WorldSizeEnum)settingsPanel.worldSizeButton.Selected,
+            WorldSize = (WorldGenerationSettings.WorldSizeEnum)planetSettings.worldSizeButton.Selected,
             WorldTemperature =
-                (WorldGenerationSettings.WorldTemperatureEnum)settingsPanel.worldTemperatureButton.Selected,
-            WorldSeaLevel = (WorldGenerationSettings.WorldSeaLevelEnum)settingsPanel.worldSeaLevelButton.Selected,
+                (WorldGenerationSettings.WorldTemperatureEnum)planetSettings.worldTemperatureButton.Selected,
+            WorldSeaLevel = (WorldGenerationSettings.WorldSeaLevelEnum)planetSettings.worldSeaLevelButton.Selected,
             GeologicalActivity =
-                (WorldGenerationSettings.GeologicalActivityEnum)settingsPanel.worldGeologicalActivityButton.Selected,
+                (WorldGenerationSettings.GeologicalActivityEnum)planetSettings.worldGeologicalActivityButton.Selected,
             ClimateInstability =
-                (WorldGenerationSettings.ClimateInstabilityEnum)settingsPanel.worldClimateInstabilityButton.Selected,
-            Origin = (WorldGenerationSettings.LifeOrigin)settingsPanel.lifeOriginButton.Selected,
+                (WorldGenerationSettings.ClimateInstabilityEnum)planetSettings.worldClimateInstabilityButton.Selected,
+            Origin = (WorldGenerationSettings.LifeOrigin)planetSettings.lifeOriginButton.Selected,
         };
 
         GameProperties = GameProperties.StartNewMicrobeGame(WorldSettings);

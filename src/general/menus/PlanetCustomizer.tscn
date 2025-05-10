@@ -10,7 +10,7 @@
 [ext_resource type="PackedScene" uid="uid://bgeijgq7runaw" path="res://src/gui_common/FocusGrabber.tscn" id="19_huykk"]
 [ext_resource type="PackedScene" uid="uid://cl64wvnxs6ivs" path="res://src/gui_common/dialogs/CustomConfirmationDialog.tscn" id="20_h0ypo"]
 
-[node name="PlanetCustomizationTool" type="Node" node_paths=PackedStringArray("patchMapDrawer", "patchDetailsPanel", "settingsPanel", "patchMapPanel", "patchMapButtons", "generateButton")]
+[node name="PlanetCustomizationTool" type="Node" node_paths=PackedStringArray("patchMapDrawer", "patchDetailsPanel", "settingsPanel", "patchMapPanel", "patchMapButtons", "generateButton", "planetSettings")]
 script = ExtResource("1_qm4a8")
 patchMapDrawer = NodePath("GUI/VBoxContainer/PatchMap/HBoxContainer/PatchMap/MarginContainer/DraggableScrollContainer/PatchMapDrawer")
 patchDetailsPanel = NodePath("GUI/VBoxContainer/PatchMap/HBoxContainer/PatchDetailsPanel")
@@ -18,6 +18,7 @@ settingsPanel = NodePath("GUI/VBoxContainer/SettingsPanel")
 patchMapPanel = NodePath("GUI/VBoxContainer/PatchMap")
 patchMapButtons = NodePath("GUI/VBoxContainer/HBoxContainer/HBoxContainer2/MapButtons")
 generateButton = NodePath("GUI/VBoxContainer/HBoxContainer/HBoxContainer2/GenerateButton")
+planetSettings = NodePath("GUI/VBoxContainer/SettingsPanel/MarginContainer/PlanetSettings")
 
 [node name="BackGround" type="TextureRect" parent="."]
 anchors_preset = 15
@@ -43,7 +44,19 @@ theme_override_constants/margin_bottom = 30
 layout_mode = 2
 theme_override_constants/separation = 10
 
-[node name="SettingsPanel" parent="GUI/VBoxContainer" instance=ExtResource("4_xkyxd")]
+[node name="SettingsPanel" type="PanelContainer" parent="GUI/VBoxContainer"]
+layout_mode = 2
+size_flags_vertical = 3
+theme = ExtResource("3_xrckq")
+
+[node name="MarginContainer" type="MarginContainer" parent="GUI/VBoxContainer/SettingsPanel"]
+layout_mode = 2
+theme_override_constants/margin_left = 15
+theme_override_constants/margin_top = 20
+theme_override_constants/margin_right = 15
+theme_override_constants/margin_bottom = 20
+
+[node name="PlanetSettings" parent="GUI/VBoxContainer/SettingsPanel/MarginContainer" instance=ExtResource("4_xkyxd")]
 layout_mode = 2
 
 [node name="PatchMap" type="Control" parent="GUI/VBoxContainer"]
@@ -144,4 +157,3 @@ Movable = false
 [connection signal="pressed" from="GUI/VBoxContainer/HBoxContainer/HBoxContainer/BackButton" to="." method="OnBackButtonPressed"]
 [connection signal="pressed" from="GUI/VBoxContainer/HBoxContainer/HBoxContainer2/MapButtons/RegenerateButton" to="." method="OnRegeneratePressed"]
 [connection signal="pressed" from="GUI/VBoxContainer/HBoxContainer/HBoxContainer2/GenerateButton" to="." method="OnGeneratePressed"]
-[connection signal="Confirmed" from="ExitConfirmationDialog" to="." method="ConfirmExit"]

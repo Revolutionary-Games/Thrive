@@ -1,4 +1,4 @@
-[gd_scene load_steps=21 format=3 uid="uid://b0315b3i5bs5s"]
+[gd_scene load_steps=22 format=3 uid="uid://b0315b3i5bs5s"]
 
 [ext_resource type="Theme" uid="uid://b4cx0o110g4b6" path="res://src/gui_common/thrive_theme.tres" id="1"]
 [ext_resource type="Script" uid="uid://c2fgxgloa4ura" path="res://src/general/menus/NewGameSettings.cs" id="2"]
@@ -10,6 +10,7 @@
 [ext_resource type="Texture2D" uid="uid://jm2munbr7078" path="res://assets/textures/gui/bevel/randomizeButtonHover.png" id="8"]
 [ext_resource type="Texture2D" uid="uid://c6pe536xf5ime" path="res://assets/concept_art/planet_generation.jpg" id="10"]
 [ext_resource type="PackedScene" uid="uid://bhpjtbtaeunat" path="res://src/gui_common/CustomRichTextLabel.tscn" id="11"]
+[ext_resource type="PackedScene" uid="uid://b3rrmtcvwufb" path="res://src/general/menus/PlanetSettings.tscn" id="11_ra08r"]
 [ext_resource type="PackedScene" uid="uid://bgeijgq7runaw" path="res://src/gui_common/FocusGrabber.tscn" id="12"]
 [ext_resource type="PackedScene" uid="uid://dw3ubsraoopin" path="res://src/gui_common/TabButtons.tscn" id="13"]
 [ext_resource type="LabelSettings" uid="uid://58teykjxnrdt" path="res://src/gui_common/fonts/Body-Regular-AlmostTiny-Red.tres" id="13_yxxhr"]
@@ -94,9 +95,12 @@ experimentalExplanation = NodePath("CenterContainer/VBoxContainer/AdvancedOption
 experimentalWarning = NodePath("CenterContainer/VBoxContainer/AdvancedOptions/Misc/VBoxContainer/VBoxContainer4/ExperimentalWarningLabel")
 
 [node name="CenterContainer" type="CenterContainer" parent="."]
-layout_mode = 0
+layout_mode = 1
+anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
 
 [node name="VBoxContainer" type="VBoxContainer" parent="CenterContainer"]
 layout_mode = 2
@@ -281,6 +285,7 @@ custom_minimum_size = Vector2(700, 600)
 layout_mode = 2
 
 [node name="Difficulty" type="MarginContainer" parent="CenterContainer/VBoxContainer/AdvancedOptions"]
+visible = false
 layout_mode = 2
 theme_override_constants/margin_left = 15
 theme_override_constants/margin_top = 15
@@ -832,7 +837,6 @@ theme = ExtResource("1")
 theme_override_styles/separator = SubResource("7")
 
 [node name="Planet" type="MarginContainer" parent="CenterContainer/VBoxContainer/AdvancedOptions"]
-visible = false
 layout_mode = 2
 theme_override_constants/margin_left = 15
 theme_override_constants/margin_top = 15
@@ -845,6 +849,9 @@ layout_mode = 2
 [node name="VBoxContainer" type="VBoxContainer" parent="CenterContainer/VBoxContainer/AdvancedOptions/Planet/ScrollContainer"]
 layout_mode = 2
 theme_override_constants/separation = 10
+
+[node name="SettingsPanel" parent="CenterContainer/VBoxContainer/AdvancedOptions/Planet/ScrollContainer/VBoxContainer" instance=ExtResource("11_ra08r")]
+layout_mode = 2
 
 [node name="VBoxContainer" type="VBoxContainer" parent="CenterContainer/VBoxContainer/AdvancedOptions/Planet/ScrollContainer/VBoxContainer"]
 layout_mode = 2
