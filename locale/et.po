@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2025-04-30 10:54+0300\n"
+"POT-Creation-Date: 2025-05-10 16:01+0200\n"
 "PO-Revision-Date: 2025-04-04 10:42+0000\n"
 "Last-Translator: Anonymous <noreply@weblate.org>\n"
 "Language-Team: Estonian <https://translate.revolutionarygamesstudio.com/projects/thrive/thrive-game/et/>\n"
@@ -412,6 +412,10 @@ msgstr "käitamise olek:"
 msgid "AUTO_EVO_STATUS_COLON"
 msgstr "käitamise olek:"
 
+#, fuzzy
+msgid "AUTO_EVO_TOOL_BUTTON"
+msgstr "Resolutsioon:"
+
 msgid "AUTO_MOVE_FORWARDS"
 msgstr "Automaatne edasiliikumine"
 
@@ -450,6 +454,9 @@ msgstr "Kaldkriips"
 
 msgid "BACKSPACE"
 msgstr "Tagasilükkeklahv"
+
+msgid "BACK_TO_SETTINGS"
+msgstr ""
 
 #, fuzzy
 msgid "BACTERIAL_THERMOSYNTHESIS"
@@ -864,6 +871,15 @@ msgstr ""
 #, fuzzy
 msgid "CLICK_TO_SELECT"
 msgstr "Kustuta valitud"
+
+msgid "CLIMATE_INSTABILITY"
+msgstr ""
+
+#, fuzzy
+msgid "CLIMATE_INSTABILITY_EXPLANATION"
+msgstr ""
+"Aktiivsed mikroobid jooksevad ja kukuvad, kui midagi huvitavat ei juhtu.\n"
+"Sessiilsed mikroobid on paigal ja ootavad enne tegutsemist, kuni keskkond muutub."
 
 msgid "CLOSE"
 msgstr "Sulge"
@@ -2578,11 +2594,33 @@ msgid "GENERAL_LOADING_TIP_7"
 msgstr "Vea parandamiseks vajutage redaktoris tagasivõtmisnuppu"
 
 #, fuzzy
+msgid "GENERATE_BUTTON"
+msgstr "Põlvkond:"
+
+#, fuzzy
 msgid "GENERATIONS"
 msgstr "Põlvkond:"
 
 msgid "GENERATION_COLON"
 msgstr "Põlvkond:"
+
+msgid "GEOLOGICAL_ACTIVITY"
+msgstr ""
+
+msgid "GEOLOGICAL_ACTIVITY_ACTIVE"
+msgstr ""
+
+msgid "GEOLOGICAL_ACTIVITY_AVERAGE"
+msgstr ""
+
+msgid "GEOLOGICAL_ACTIVITY_DORMANT"
+msgstr ""
+
+#, fuzzy
+msgid "GEOLOGICAL_ACTIVITY_EXPLANATION"
+msgstr ""
+"Aktiivsed mikroobid jooksevad ja kukuvad, kui midagi huvitavat ei juhtu.\n"
+"Sessiilsed mikroobid on paigal ja ootavad enne tegutsemist, kuni keskkond muutub."
 
 #, fuzzy
 msgid "GITHUB_TOOLTIP"
@@ -5089,6 +5127,10 @@ msgstr "Asetage organell"
 msgid "PLANET"
 msgstr ""
 
+#, fuzzy
+msgid "PLANET_CUSTOMIZER"
+msgstr "Kursori juures:"
+
 msgid "PLANET_DETAILS_STRING"
 msgstr ""
 
@@ -5150,6 +5192,9 @@ msgid "PLAY_MICROBE_INTRO_ON_NEW_GAME"
 msgstr "Mängige uues mängus mikroobide tutvustust"
 
 msgid "PLAY_WITH_CURRENT_SETTING"
+msgstr ""
+
+msgid "PLAY_WTH_CURRENT_SETTINGS"
 msgstr ""
 
 msgid "POPULATION_CAPITAL"
@@ -5298,6 +5343,10 @@ msgstr "Tehke viimane toiming uuesti"
 
 msgid "REFRESH"
 msgstr "Värskenda"
+
+#, fuzzy
+msgid "REGENERATE_BUTTON"
+msgstr "Organellid"
 
 msgid "RENDER_SCALE"
 msgstr ""
@@ -9315,6 +9364,28 @@ msgid "WORLD_RELATIVE_MOVEMENT"
 msgstr "Aluse liikumine"
 
 #, fuzzy
+msgid "WORLD_SEA_LEVEL"
+msgstr "{0}–{1} m allpool merepinda"
+
+#, fuzzy
+msgid "WORLD_SEA_LEVEL_DEEP"
+msgstr "{0}–{1} m allpool merepinda"
+
+#, fuzzy
+msgid "WORLD_SEA_LEVEL_EXPLANATION"
+msgstr ""
+"Keskendunud mikroobid otsivad tükke või saaki suuremate vahemaade tagant\n"
+"ja võib olla tükkide osas palju ambitsioonikam.\n"
+"Reageerivad mikroobid lülituvad varem uutele sihtmärkidele."
+
+#, fuzzy
+msgid "WORLD_SEA_LEVEL_MODERATE"
+msgstr "Aluse liikumine"
+
+msgid "WORLD_SEA_LEVEL_SHALLOW"
+msgstr ""
+
+#, fuzzy
 msgid "WORLD_SIZE"
 msgstr "Praegused arendajad"
 
@@ -9338,6 +9409,29 @@ msgstr ""
 #, fuzzy
 msgid "WORLD_SIZE_TOOLTIP"
 msgstr "Möödunud aeg: {0:#,#} aastat"
+
+#, fuzzy
+msgid "WORLD_TEMPERATURE"
+msgstr "Temperatuur"
+
+#, fuzzy
+msgid "WORLD_TEMPERATURE_COLD"
+msgstr "temperatuur."
+
+#, fuzzy
+msgid "WORLD_TEMPERATURE_EXPLANATION"
+msgstr ""
+"Keskendunud mikroobid otsivad tükke või saaki suuremate vahemaade tagant\n"
+"ja võib olla tükkide osas palju ambitsioonikam.\n"
+"Reageerivad mikroobid lülituvad varem uutele sihtmärkidele."
+
+#, fuzzy
+msgid "WORLD_TEMPERATURE_TEMPERATE"
+msgstr "temperatuur."
+
+#, fuzzy
+msgid "WORLD_TEMPERATURE_WARM"
+msgstr "temperatuur."
 
 msgid "WORST_PATCH_COLON"
 msgstr "Halvim plaaster:"

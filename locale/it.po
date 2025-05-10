@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2025-04-30 10:54+0300\n"
+"POT-Creation-Date: 2025-05-10 16:01+0200\n"
 "PO-Revision-Date: 2025-04-04 10:42+0000\n"
 "Last-Translator: Anonymous <noreply@weblate.org>\n"
 "Language-Team: Italian <https://translate.revolutionarygamesstudio.com/projects/thrive/thrive-game/it/>\n"
@@ -388,6 +388,10 @@ msgstr "stato d'esecuzione:"
 msgid "AUTO_EVO_STATUS_COLON"
 msgstr "Stato Auto-Evo:"
 
+#, fuzzy
+msgid "AUTO_EVO_TOOL_BUTTON"
+msgstr "Automatica ({0}x{1})"
+
 msgid "AUTO_MOVE_FORWARDS"
 msgstr "Muoviti automaticamente avanti"
 
@@ -417,6 +421,9 @@ msgstr "\\ Barra rovesciata [Backslash]"
 
 msgid "BACKSPACE"
 msgstr "Cancella [Backspace]"
+
+msgid "BACK_TO_SETTINGS"
+msgstr ""
 
 msgid "BACTERIAL_THERMOSYNTHESIS"
 msgstr "Termosintesi batterica"
@@ -812,6 +819,15 @@ msgstr "Pulisci Cache"
 
 msgid "CLICK_TO_SELECT"
 msgstr "Seleziona"
+
+msgid "CLIMATE_INSTABILITY"
+msgstr ""
+
+#, fuzzy
+msgid "CLIMATE_INSTABILITY_EXPLANATION"
+msgstr ""
+"I microbi attivi corrono e saltano anche quando non accade nulla di interessante.\n"
+"I microbi sessili sono stazionari e aspettano cambiamenti nell'ambiente prima di agire."
 
 msgid "CLOSE"
 msgstr "Chiudi"
@@ -2459,11 +2475,33 @@ msgstr "Nell'editor, premi il tasto \"Annulla l'ultima azione\" per correggere e
 msgid "GENERAL_LOADING_TIP_7"
 msgstr "Nell'editor, premi il tasto \"Annulla l'ultima azione\" per correggere eventuali errori"
 
+#, fuzzy
+msgid "GENERATE_BUTTON"
+msgstr "Generazioni"
+
 msgid "GENERATIONS"
 msgstr "Generazioni"
 
 msgid "GENERATION_COLON"
 msgstr "Generazione:"
+
+msgid "GEOLOGICAL_ACTIVITY"
+msgstr ""
+
+msgid "GEOLOGICAL_ACTIVITY_ACTIVE"
+msgstr ""
+
+msgid "GEOLOGICAL_ACTIVITY_AVERAGE"
+msgstr ""
+
+msgid "GEOLOGICAL_ACTIVITY_DORMANT"
+msgstr ""
+
+#, fuzzy
+msgid "GEOLOGICAL_ACTIVITY_EXPLANATION"
+msgstr ""
+"I microbi attivi corrono e saltano anche quando non accade nulla di interessante.\n"
+"I microbi sessili sono stazionari e aspettano cambiamenti nell'ambiente prima di agire."
 
 #, fuzzy
 msgid "GITHUB_TOOLTIP"
@@ -4913,6 +4951,10 @@ msgid "PLANET"
 msgstr "Pianeta"
 
 #, fuzzy
+msgid "PLANET_CUSTOMIZER"
+msgstr "Sotto il cursore:"
+
+#, fuzzy
 msgid "PLANET_DETAILS_STRING"
 msgstr "Dettagli"
 
@@ -4973,6 +5015,10 @@ msgid "PLAY_MICROBE_INTRO_ON_NEW_GAME"
 msgstr "Riproduci filmato iniziale microbico in nuove partite"
 
 msgid "PLAY_WITH_CURRENT_SETTING"
+msgstr "Gioca nello scenario attuale"
+
+#, fuzzy
+msgid "PLAY_WTH_CURRENT_SETTINGS"
 msgstr "Gioca nello scenario attuale"
 
 msgid "POPULATION_CAPITAL"
@@ -5118,6 +5164,10 @@ msgstr "Ripristina l'ultima azione"
 
 msgid "REFRESH"
 msgstr "Aggiorna"
+
+#, fuzzy
+msgid "REGENERATE_BUTTON"
+msgstr "Organuli"
 
 #, fuzzy
 msgid "RENDER_SCALE"
@@ -8972,6 +9022,28 @@ msgid "WORLD_RELATIVE_MOVEMENT"
 msgstr "per aumentare la"
 
 #, fuzzy
+msgid "WORLD_SEA_LEVEL"
+msgstr "{0}-{1}m sotto il livello del mare"
+
+#, fuzzy
+msgid "WORLD_SEA_LEVEL_DEEP"
+msgstr "{0}-{1}m sotto il livello del mare"
+
+#, fuzzy
+msgid "WORLD_SEA_LEVEL_EXPLANATION"
+msgstr ""
+"I microbi focalizzati inseguono le prede e i frammenti di cibo per lunghe distanze\n"
+"e potrebbero essere più ambiziosi per questi ultimi.\n"
+"I microbi reattivi cambiano più facilmente bersaglio."
+
+#, fuzzy
+msgid "WORLD_SEA_LEVEL_MODERATE"
+msgstr "per aumentare la"
+
+msgid "WORLD_SEA_LEVEL_SHALLOW"
+msgstr ""
+
+#, fuzzy
 msgid "WORLD_SIZE"
 msgstr "Mondo"
 
@@ -8995,6 +9067,29 @@ msgstr ""
 #, fuzzy
 msgid "WORLD_SIZE_TOOLTIP"
 msgstr "Tempo trascorso: {0:#,#} anni"
+
+#, fuzzy
+msgid "WORLD_TEMPERATURE"
+msgstr "Temperatura"
+
+#, fuzzy
+msgid "WORLD_TEMPERATURE_COLD"
+msgstr "Temp."
+
+#, fuzzy
+msgid "WORLD_TEMPERATURE_EXPLANATION"
+msgstr ""
+"I microbi focalizzati inseguono le prede e i frammenti di cibo per lunghe distanze\n"
+"e potrebbero essere più ambiziosi per questi ultimi.\n"
+"I microbi reattivi cambiano più facilmente bersaglio."
+
+#, fuzzy
+msgid "WORLD_TEMPERATURE_TEMPERATE"
+msgstr "Temp."
+
+#, fuzzy
+msgid "WORLD_TEMPERATURE_WARM"
+msgstr "Temp."
 
 msgid "WORST_PATCH_COLON"
 msgstr "Peggior zona:"

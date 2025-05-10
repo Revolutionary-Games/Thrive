@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2025-04-30 10:54+0300\n"
+"POT-Creation-Date: 2025-05-10 16:01+0200\n"
 "PO-Revision-Date: 2025-04-27 12:02+0000\n"
 "Last-Translator: Henri Hyyryläinen <hhyyrylainen@revolutionarygamesstudio.com>\n"
 "Language-Team: English <https://translate.revolutionarygamesstudio.com/projects/thrive/thrive-game/en/>\n"
@@ -382,6 +382,9 @@ msgstr "run status:"
 msgid "AUTO_EVO_STATUS_COLON"
 msgstr "Auto-evo Status:"
 
+msgid "AUTO_EVO_TOOL_BUTTON"
+msgstr "Use in Auto-Evo Tool"
+
 msgid "AUTO_MOVE_FORWARDS"
 msgstr "Auto move forwards"
 
@@ -411,6 +414,9 @@ msgstr "Backslash"
 
 msgid "BACKSPACE"
 msgstr "Backspace"
+
+msgid "BACK_TO_SETTINGS"
+msgstr "Back to Settings"
 
 msgid "BACTERIAL_THERMOSYNTHESIS"
 msgstr "Bacterial Thermosynthesis"
@@ -804,6 +810,12 @@ msgstr "Clear Cache"
 
 msgid "CLICK_TO_SELECT"
 msgstr "Select"
+
+msgid "CLIMATE_INSTABILITY"
+msgstr "Climate instability"
+
+msgid "CLIMATE_INSTABILITY_EXPLANATION"
+msgstr "(Changes the severity of patch events like global glaciation)"
 
 msgid "CLOSE"
 msgstr "Close"
@@ -2362,11 +2374,29 @@ msgstr "Don't forget, you can use the panel at the top right of the screen to se
 msgid "GENERAL_LOADING_TIP_7"
 msgstr "If your population drops to zero, you go extinct."
 
+msgid "GENERATE_BUTTON"
+msgstr "Generate world"
+
 msgid "GENERATIONS"
 msgstr "Generations"
 
 msgid "GENERATION_COLON"
 msgstr "Generation:"
+
+msgid "GEOLOGICAL_ACTIVITY"
+msgstr "Geological activity"
+
+msgid "GEOLOGICAL_ACTIVITY_ACTIVE"
+msgstr "Active"
+
+msgid "GEOLOGICAL_ACTIVITY_AVERAGE"
+msgstr "Average"
+
+msgid "GEOLOGICAL_ACTIVITY_DORMANT"
+msgstr "Dormant"
+
+msgid "GEOLOGICAL_ACTIVITY_EXPLANATION"
+msgstr "(Influences the frequency and severity of events like meteor impacts and volcanic eruptions.)"
 
 msgid "GITHUB_TOOLTIP"
 msgstr "Visit our GitHub repository"
@@ -3076,7 +3106,7 @@ msgid "LIFE_ORIGIN"
 msgstr "Life origin"
 
 msgid "LIFE_ORIGIN_EXPLANATION"
-msgstr "(starting location)"
+msgstr "(Starting location)"
 
 msgid "LIFE_ORIGIN_PANSPERMIA"
 msgstr "Panspermia (random)"
@@ -4580,6 +4610,9 @@ msgstr "Place organelle (or other placeable thing)"
 msgid "PLANET"
 msgstr "Planet"
 
+msgid "PLANET_CUSTOMIZER"
+msgstr "Planet Customizer"
+
 msgid "PLANET_DETAILS_STRING"
 msgstr ""
 "LAWK only: {0}\n"
@@ -4783,6 +4816,9 @@ msgstr "Redo the last action"
 
 msgid "REFRESH"
 msgstr "Refresh"
+
+msgid "REGENERATE_BUTTON"
+msgstr "Regenerate world"
 
 msgid "RENDER_SCALE"
 msgstr "Resolution scale"
@@ -9056,11 +9092,26 @@ msgstr ""
 msgid "WORLD_RELATIVE_MOVEMENT"
 msgstr "World relative"
 
+msgid "WORLD_SEA_LEVEL"
+msgstr "World sea level"
+
+msgid "WORLD_SEA_LEVEL_DEEP"
+msgstr "Deep"
+
+msgid "WORLD_SEA_LEVEL_EXPLANATION"
+msgstr "(Affects how many continental and ocean regions are created)"
+
+msgid "WORLD_SEA_LEVEL_MODERATE"
+msgstr "Moderate"
+
+msgid "WORLD_SEA_LEVEL_SHALLOW"
+msgstr "Shallow"
+
 msgid "WORLD_SIZE"
-msgstr "World Size"
+msgstr "World size"
 
 msgid "WORLD_SIZE_EXPLANATION"
-msgstr "(changes the number of patches in the world)"
+msgstr "(Changes the number of patches in the world)"
 
 msgid "WORLD_SIZE_LARGE"
 msgstr "Large"
@@ -9073,6 +9124,21 @@ msgstr "Small"
 
 msgid "WORLD_SIZE_TOOLTIP"
 msgstr "Having a large world may slow down simulation and is not recommended for slower computers."
+
+msgid "WORLD_TEMPERATURE"
+msgstr "World temperature"
+
+msgid "WORLD_TEMPERATURE_COLD"
+msgstr "Cold"
+
+msgid "WORLD_TEMPERATURE_EXPLANATION"
+msgstr "(Affects how many frozen sea patches are created)"
+
+msgid "WORLD_TEMPERATURE_TEMPERATE"
+msgstr "Temperate"
+
+msgid "WORLD_TEMPERATURE_WARM"
+msgstr "Warm"
 
 msgid "WORST_PATCH_COLON"
 msgstr "Worst Patch:"

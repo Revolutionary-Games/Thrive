@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2025-04-30 10:54+0300\n"
+"POT-Creation-Date: 2025-05-10 16:01+0200\n"
 "PO-Revision-Date: 2025-05-02 11:10+0000\n"
 "Last-Translator: Jorge Maldonado Ventura <jorgesumle@freakspot.net>\n"
 "Language-Team: Spanish <https://translate.revolutionarygamesstudio.com/projects/thrive/thrive-game/es/>\n"
@@ -391,6 +391,10 @@ msgstr "Estado:"
 msgid "AUTO_EVO_STATUS_COLON"
 msgstr "Estado del Auto-evo:"
 
+#, fuzzy
+msgid "AUTO_EVO_TOOL_BUTTON"
+msgstr "Auto ({0}x{1})"
+
 msgid "AUTO_MOVE_FORWARDS"
 msgstr "Moverse automáticamente hacia adelanteAuto"
 
@@ -420,6 +424,9 @@ msgstr "Barra diagonal inversa"
 
 msgid "BACKSPACE"
 msgstr "Retroceso"
+
+msgid "BACK_TO_SETTINGS"
+msgstr ""
 
 msgid "BACTERIAL_THERMOSYNTHESIS"
 msgstr "Termosíntesis Bacteriana"
@@ -818,6 +825,15 @@ msgstr "Limpiar Caché"
 #, fuzzy
 msgid "CLICK_TO_SELECT"
 msgstr "Eliminar selección"
+
+msgid "CLIMATE_INSTABILITY"
+msgstr ""
+
+#, fuzzy
+msgid "CLIMATE_INSTABILITY_EXPLANATION"
+msgstr ""
+"Los microbios activos correrán y darán vueltas cuando no suceda nada interesante.\n"
+"Los microbios sésiles permanecerán en reposo y esperarán a que cambie el entorno antes de actuar."
 
 msgid "CLOSE"
 msgstr "Cerrar"
@@ -2380,11 +2396,33 @@ msgstr "Presiona el botón de deshacer en el editor para corregir un error"
 msgid "GENERAL_LOADING_TIP_7"
 msgstr "Presiona el botón de deshacer en el editor para corregir un error"
 
+#, fuzzy
+msgid "GENERATE_BUTTON"
+msgstr "Generaciones"
+
 msgid "GENERATIONS"
 msgstr "Generaciones"
 
 msgid "GENERATION_COLON"
 msgstr "Generación:"
+
+msgid "GEOLOGICAL_ACTIVITY"
+msgstr ""
+
+msgid "GEOLOGICAL_ACTIVITY_ACTIVE"
+msgstr ""
+
+msgid "GEOLOGICAL_ACTIVITY_AVERAGE"
+msgstr ""
+
+msgid "GEOLOGICAL_ACTIVITY_DORMANT"
+msgstr ""
+
+#, fuzzy
+msgid "GEOLOGICAL_ACTIVITY_EXPLANATION"
+msgstr ""
+"Los microbios activos correrán y darán vueltas cuando no suceda nada interesante.\n"
+"Los microbios sésiles permanecerán en reposo y esperarán a que cambie el entorno antes de actuar."
 
 msgid "GITHUB_TOOLTIP"
 msgstr "Visita nuestro repositorio de GitHub"
@@ -4753,6 +4791,10 @@ msgstr "Colocar orgánulos"
 msgid "PLANET"
 msgstr "Planeta"
 
+#, fuzzy
+msgid "PLANET_CUSTOMIZER"
+msgstr "En el puntero:"
+
 msgid "PLANET_DETAILS_STRING"
 msgstr ""
 "Tipo de zona: {0}\n"
@@ -4820,6 +4862,10 @@ msgid "PLAY_MICROBE_INTRO_ON_NEW_GAME"
 msgstr "Reproducir cinemática de entrada del estadio de Microbio en nueva partida"
 
 msgid "PLAY_WITH_CURRENT_SETTING"
+msgstr "Jugar con la configuración actual"
+
+#, fuzzy
+msgid "PLAY_WTH_CURRENT_SETTINGS"
 msgstr "Jugar con la configuración actual"
 
 msgid "POPULATION_CAPITAL"
@@ -4963,6 +5009,10 @@ msgstr "Rehacer la última acción"
 
 msgid "REFRESH"
 msgstr "Actualizar"
+
+#, fuzzy
+msgid "REGENERATE_BUTTON"
+msgstr "Orgánulos"
 
 #, fuzzy
 msgid "RENDER_SCALE"
@@ -8875,6 +8925,28 @@ msgid "WORLD_RELATIVE_MOVEMENT"
 msgstr "para incrementar la velocidad de movimiento"
 
 #, fuzzy
+msgid "WORLD_SEA_LEVEL"
+msgstr "{0}-{1}m bajo el nivel del mar"
+
+#, fuzzy
+msgid "WORLD_SEA_LEVEL_DEEP"
+msgstr "{0}-{1}m bajo el nivel del mar"
+
+#, fuzzy
+msgid "WORLD_SEA_LEVEL_EXPLANATION"
+msgstr ""
+"Los microbios centrados buscarán recursos o presas más lejanas\n"
+"y es posible codicien más los fragmentos de recursos.\n"
+"Los microbios reactivos cambiarán de objetivo después de un tiempo."
+
+#, fuzzy
+msgid "WORLD_SEA_LEVEL_MODERATE"
+msgstr "para incrementar la velocidad de movimiento"
+
+msgid "WORLD_SEA_LEVEL_SHALLOW"
+msgstr ""
+
+#, fuzzy
 msgid "WORLD_SIZE"
 msgstr "Mundo"
 
@@ -8898,6 +8970,29 @@ msgstr ""
 #, fuzzy
 msgid "WORLD_SIZE_TOOLTIP"
 msgstr "Únete a nuestro servidor de Discord"
+
+#, fuzzy
+msgid "WORLD_TEMPERATURE"
+msgstr "Temperatura"
+
+#, fuzzy
+msgid "WORLD_TEMPERATURE_COLD"
+msgstr "Temp."
+
+#, fuzzy
+msgid "WORLD_TEMPERATURE_EXPLANATION"
+msgstr ""
+"Los microbios centrados buscarán recursos o presas más lejanas\n"
+"y es posible codicien más los fragmentos de recursos.\n"
+"Los microbios reactivos cambiarán de objetivo después de un tiempo."
+
+#, fuzzy
+msgid "WORLD_TEMPERATURE_TEMPERATE"
+msgstr "Temp."
+
+#, fuzzy
+msgid "WORLD_TEMPERATURE_WARM"
+msgstr "Temp."
 
 msgid "WORST_PATCH_COLON"
 msgstr "Peor bioma:"

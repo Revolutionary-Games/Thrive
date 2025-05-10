@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2025-04-30 10:54+0300\n"
+"POT-Creation-Date: 2025-05-10 16:01+0200\n"
 "PO-Revision-Date: 2025-04-04 10:42+0000\n"
 "Last-Translator: Anonymous <noreply@weblate.org>\n"
 "Language-Team: Portuguese (Portugal) <https://translate.revolutionarygamesstudio.com/projects/thrive/thrive-game/pt_PT/>\n"
@@ -396,6 +396,10 @@ msgstr "Estados de execução:"
 msgid "AUTO_EVO_STATUS_COLON"
 msgstr "Estado da Auto-Evo:"
 
+#, fuzzy
+msgid "AUTO_EVO_TOOL_BUTTON"
+msgstr "Auto ({0}x{1})"
+
 msgid "AUTO_MOVE_FORWARDS"
 msgstr "Mover para a frente automaticamente"
 
@@ -426,6 +430,9 @@ msgstr "Barra invertida"
 
 msgid "BACKSPACE"
 msgstr "Backspace"
+
+msgid "BACK_TO_SETTINGS"
+msgstr ""
 
 #, fuzzy
 msgid "BACTERIAL_THERMOSYNTHESIS"
@@ -822,6 +829,15 @@ msgstr ""
 #, fuzzy
 msgid "CLICK_TO_SELECT"
 msgstr "Apagar Selecionado"
+
+msgid "CLIMATE_INSTABILITY"
+msgstr ""
+
+#, fuzzy
+msgid "CLIMATE_INSTABILITY_EXPLANATION"
+msgstr ""
+"Micróbios ativos irão correr e cair quando nada de interessante acontecer.\n"
+"Micróbios sésseis ficarão parados e esperarão que o ambiente mude antes de agir."
 
 msgid "CLOSE"
 msgstr "Fechar"
@@ -2423,11 +2439,33 @@ msgstr "Pressione o botão \"reverter\" no editor para corrigir um erro"
 msgid "GENERAL_LOADING_TIP_7"
 msgstr "Pressione o botão \"reverter\" no editor para corrigir um erro"
 
+#, fuzzy
+msgid "GENERATE_BUTTON"
+msgstr "Gerações"
+
 msgid "GENERATIONS"
 msgstr "Gerações"
 
 msgid "GENERATION_COLON"
 msgstr "Geração:"
+
+msgid "GEOLOGICAL_ACTIVITY"
+msgstr ""
+
+msgid "GEOLOGICAL_ACTIVITY_ACTIVE"
+msgstr ""
+
+msgid "GEOLOGICAL_ACTIVITY_AVERAGE"
+msgstr ""
+
+msgid "GEOLOGICAL_ACTIVITY_DORMANT"
+msgstr ""
+
+#, fuzzy
+msgid "GEOLOGICAL_ACTIVITY_EXPLANATION"
+msgstr ""
+"Micróbios ativos irão correr e cair quando nada de interessante acontecer.\n"
+"Micróbios sésseis ficarão parados e esperarão que o ambiente mude antes de agir."
 
 msgid "GITHUB_TOOLTIP"
 msgstr "Visite o nosso repositório GitHub"
@@ -4786,6 +4824,10 @@ msgstr "Colocar organelo"
 msgid "PLANET"
 msgstr "Planeta"
 
+#, fuzzy
+msgid "PLANET_CUSTOMIZER"
+msgstr "No Cursor:"
+
 msgid "PLANET_DETAILS_STRING"
 msgstr ""
 "Só LAWK: {0}\n"
@@ -4849,6 +4891,10 @@ msgid "PLAY_MICROBE_INTRO_ON_NEW_GAME"
 msgstr "Jogar a Introdução ao Micróbio num Novo Jogo"
 
 msgid "PLAY_WITH_CURRENT_SETTING"
+msgstr "Jogar com definições atuais"
+
+#, fuzzy
+msgid "PLAY_WTH_CURRENT_SETTINGS"
 msgstr "Jogar com definições atuais"
 
 msgid "POPULATION_CAPITAL"
@@ -4992,6 +5038,10 @@ msgstr "Refazer a última ação"
 
 msgid "REFRESH"
 msgstr "Atualizar"
+
+#, fuzzy
+msgid "REGENERATE_BUTTON"
+msgstr "Axónio"
 
 #, fuzzy
 msgid "RENDER_SCALE"
@@ -8772,6 +8822,28 @@ msgid "WORLD_RELATIVE_MOVEMENT"
 msgstr "Movimento Base"
 
 #, fuzzy
+msgid "WORLD_SEA_LEVEL"
+msgstr "{0}-{1}m abaixo do nível do mar"
+
+#, fuzzy
+msgid "WORLD_SEA_LEVEL_DEEP"
+msgstr "{0}-{1}m abaixo do nível do mar"
+
+#, fuzzy
+msgid "WORLD_SEA_LEVEL_EXPLANATION"
+msgstr ""
+"Os micróbios focados irão procurar por pedaços ou presas em distâncias maiores\n"
+"e podem ser mais ambicioso em relação aos pedaços.\n"
+"Micróbios reativos mudarão para novos alvos depois de algum tempo."
+
+#, fuzzy
+msgid "WORLD_SEA_LEVEL_MODERATE"
+msgstr "Movimento Base"
+
+msgid "WORLD_SEA_LEVEL_SHALLOW"
+msgstr ""
+
+#, fuzzy
 msgid "WORLD_SIZE"
 msgstr "Mundo"
 
@@ -8795,6 +8867,29 @@ msgstr ""
 #, fuzzy
 msgid "WORLD_SIZE_TOOLTIP"
 msgstr "Tempo Passado: {0:#,#} anos"
+
+#, fuzzy
+msgid "WORLD_TEMPERATURE"
+msgstr "Temperatura"
+
+#, fuzzy
+msgid "WORLD_TEMPERATURE_COLD"
+msgstr "Temp."
+
+#, fuzzy
+msgid "WORLD_TEMPERATURE_EXPLANATION"
+msgstr ""
+"Os micróbios focados irão procurar por pedaços ou presas em distâncias maiores\n"
+"e podem ser mais ambicioso em relação aos pedaços.\n"
+"Micróbios reativos mudarão para novos alvos depois de algum tempo."
+
+#, fuzzy
+msgid "WORLD_TEMPERATURE_TEMPERATE"
+msgstr "Temp."
+
+#, fuzzy
+msgid "WORLD_TEMPERATURE_WARM"
+msgstr "Temp."
 
 msgid "WORST_PATCH_COLON"
 msgstr "Pior Região:"

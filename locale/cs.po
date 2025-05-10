@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2025-04-30 10:54+0300\n"
+"POT-Creation-Date: 2025-05-10 16:01+0200\n"
 "PO-Revision-Date: 2025-05-04 11:55+0000\n"
 "Last-Translator: Jiří Brychtra <jir.brychta@gmail.com>\n"
 "Language-Team: Czech <https://translate.revolutionarygamesstudio.com/projects/thrive/thrive-game/cs/>\n"
@@ -392,6 +392,10 @@ msgstr "status spuštění:"
 msgid "AUTO_EVO_STATUS_COLON"
 msgstr "status spuštění:"
 
+#, fuzzy
+msgid "AUTO_EVO_TOOL_BUTTON"
+msgstr "Automatické ({0}x{1})"
+
 msgid "AUTO_MOVE_FORWARDS"
 msgstr "Automatický pohyb kupředu"
 
@@ -422,6 +426,9 @@ msgstr "Lomítko"
 
 msgid "BACKSPACE"
 msgstr "Backspace"
+
+msgid "BACK_TO_SETTINGS"
+msgstr ""
 
 #, fuzzy
 msgid "BACTERIAL_THERMOSYNTHESIS"
@@ -825,6 +832,15 @@ msgstr "vymazat cache"
 #, fuzzy
 msgid "CLICK_TO_SELECT"
 msgstr "Smazat vybrané"
+
+msgid "CLIMATE_INSTABILITY"
+msgstr ""
+
+#, fuzzy
+msgid "CLIMATE_INSTABILITY_EXPLANATION"
+msgstr ""
+"Aktivní mikrobi se rozběhnou, když se nic zajímavého neděje.\n"
+"Přisedlé mikroby jsou nehybné a čekají na změnu prostředí, než začnou jednat."
 
 msgid "CLOSE"
 msgstr "Zavřít"
@@ -2555,11 +2571,33 @@ msgstr "Chybu opravíš stisknutím tlačítka Zpět v editoru"
 msgid "GENERAL_LOADING_TIP_7"
 msgstr "Chybu opravíš stisknutím tlačítka Zpět v editoru"
 
+#, fuzzy
+msgid "GENERATE_BUTTON"
+msgstr "Generace"
+
 msgid "GENERATIONS"
 msgstr "Generace"
 
 msgid "GENERATION_COLON"
 msgstr "Generace:"
+
+msgid "GEOLOGICAL_ACTIVITY"
+msgstr ""
+
+msgid "GEOLOGICAL_ACTIVITY_ACTIVE"
+msgstr ""
+
+msgid "GEOLOGICAL_ACTIVITY_AVERAGE"
+msgstr ""
+
+msgid "GEOLOGICAL_ACTIVITY_DORMANT"
+msgstr ""
+
+#, fuzzy
+msgid "GEOLOGICAL_ACTIVITY_EXPLANATION"
+msgstr ""
+"Aktivní mikrobi se rozběhnou, když se nic zajímavého neděje.\n"
+"Přisedlé mikroby jsou nehybné a čekají na změnu prostředí, než začnou jednat."
 
 msgid "GITHUB_TOOLTIP"
 msgstr "Navštiv náš GitHub repozitář"
@@ -5020,6 +5058,10 @@ msgid "PLANET"
 msgstr "Planeta"
 
 #, fuzzy
+msgid "PLANET_CUSTOMIZER"
+msgstr "Na kurzoru:"
+
+#, fuzzy
 msgid "PLANET_DETAILS_STRING"
 msgstr "Otevřít složku záznamů"
 
@@ -5080,6 +5122,10 @@ msgid "PLAY_MICROBE_INTRO_ON_NEW_GAME"
 msgstr "Spustit úvod do mikrobů v nové hře"
 
 msgid "PLAY_WITH_CURRENT_SETTING"
+msgstr "Hrát s vybraným nastavením"
+
+#, fuzzy
+msgid "PLAY_WTH_CURRENT_SETTINGS"
 msgstr "Hrát s vybraným nastavením"
 
 msgid "POPULATION_CAPITAL"
@@ -5223,6 +5269,10 @@ msgstr "Zopakovat poslední akci zpět"
 
 msgid "REFRESH"
 msgstr "Obnovit"
+
+#, fuzzy
+msgid "REGENERATE_BUTTON"
+msgstr "Organely"
 
 #, fuzzy
 msgid "RENDER_SCALE"
@@ -9086,6 +9136,28 @@ msgid "WORLD_RELATIVE_MOVEMENT"
 msgstr "ke zvýšení pohyblivosti"
 
 #, fuzzy
+msgid "WORLD_SEA_LEVEL"
+msgstr "{0}-{1}m pod mořskou hladinou"
+
+#, fuzzy
+msgid "WORLD_SEA_LEVEL_DEEP"
+msgstr "{0}-{1}m pod mořskou hladinou"
+
+#, fuzzy
+msgid "WORLD_SEA_LEVEL_EXPLANATION"
+msgstr ""
+"Soustředění mikrobi budou hledat kousky nebo kořist na větší vzdálenosti \n"
+"a mohou být mnohem náročnější na kusy.\n"
+"Reagující mikroby se dříve přepnou na nové cíle."
+
+#, fuzzy
+msgid "WORLD_SEA_LEVEL_MODERATE"
+msgstr "ke zvýšení pohyblivosti"
+
+msgid "WORLD_SEA_LEVEL_SHALLOW"
+msgstr ""
+
+#, fuzzy
 msgid "WORLD_SIZE"
 msgstr "Současní vývojáři"
 
@@ -9109,6 +9181,29 @@ msgstr ""
 #, fuzzy
 msgid "WORLD_SIZE_TOOLTIP"
 msgstr "Připoj se na náš komunitní Discord server"
+
+#, fuzzy
+msgid "WORLD_TEMPERATURE"
+msgstr "Teplota"
+
+#, fuzzy
+msgid "WORLD_TEMPERATURE_COLD"
+msgstr "Teplota."
+
+#, fuzzy
+msgid "WORLD_TEMPERATURE_EXPLANATION"
+msgstr ""
+"Soustředění mikrobi budou hledat kousky nebo kořist na větší vzdálenosti \n"
+"a mohou být mnohem náročnější na kusy.\n"
+"Reagující mikroby se dříve přepnou na nové cíle."
+
+#, fuzzy
+msgid "WORLD_TEMPERATURE_TEMPERATE"
+msgstr "Teplota."
+
+#, fuzzy
+msgid "WORLD_TEMPERATURE_WARM"
+msgstr "Teplota."
 
 msgid "WORST_PATCH_COLON"
 msgstr "Nejhorší oblast:"

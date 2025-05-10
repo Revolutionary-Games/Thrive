@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2025-04-30 10:54+0300\n"
+"POT-Creation-Date: 2025-05-10 16:01+0200\n"
 "PO-Revision-Date: 2025-04-04 10:42+0000\n"
 "Last-Translator: Anonymous <noreply@weblate.org>\n"
 "Language-Team: Luxembourgish <https://translate.revolutionarygamesstudio.com/projects/thrive/thrive-game/lb/>\n"
@@ -404,6 +404,10 @@ msgstr "Status vum Laaf:"
 msgid "AUTO_EVO_STATUS_COLON"
 msgstr "Auto-Évo Status:"
 
+#, fuzzy
+msgid "AUTO_EVO_TOOL_BUTTON"
+msgstr "Auto ({0}x{1})"
+
 msgid "AUTO_MOVE_FORWARDS"
 msgstr "Automatesch virun beweegen"
 
@@ -434,6 +438,9 @@ msgstr "Backslash"
 
 msgid "BACKSPACE"
 msgstr "Zréck-Taste"
+
+msgid "BACK_TO_SETTINGS"
+msgstr ""
 
 #, fuzzy
 msgid "BACTERIAL_THERMOSYNTHESIS"
@@ -830,6 +837,15 @@ msgstr ""
 
 msgid "CLICK_TO_SELECT"
 msgstr ""
+
+msgid "CLIMATE_INSTABILITY"
+msgstr ""
+
+#, fuzzy
+msgid "CLIMATE_INSTABILITY_EXPLANATION"
+msgstr ""
+"Actif Mikrobe wäerten duerch d'Géigend lafe wann näischt Interessantes geschitt.\n"
+"Sesshaft Mikrobe wäerte stationär sinn a waarde bis d'Ëmwelt sech ännert éier se agéieren."
 
 msgid "CLOSE"
 msgstr "Zoumaachen"
@@ -2291,11 +2307,32 @@ msgstr "Dréck den zeréck Knäppchen am Beaarbechter fier ee Fehler ze corrigé
 msgid "GENERAL_LOADING_TIP_7"
 msgstr "Dréck den zeréck Knäppchen am Beaarbechter fier ee Fehler ze corrigéieren"
 
+msgid "GENERATE_BUTTON"
+msgstr ""
+
 msgid "GENERATIONS"
 msgstr ""
 
 msgid "GENERATION_COLON"
 msgstr ""
+
+msgid "GEOLOGICAL_ACTIVITY"
+msgstr ""
+
+msgid "GEOLOGICAL_ACTIVITY_ACTIVE"
+msgstr ""
+
+msgid "GEOLOGICAL_ACTIVITY_AVERAGE"
+msgstr ""
+
+msgid "GEOLOGICAL_ACTIVITY_DORMANT"
+msgstr ""
+
+#, fuzzy
+msgid "GEOLOGICAL_ACTIVITY_EXPLANATION"
+msgstr ""
+"Actif Mikrobe wäerten duerch d'Géigend lafe wann näischt Interessantes geschitt.\n"
+"Sesshaft Mikrobe wäerte stationär sinn a waarde bis d'Ëmwelt sech ännert éier se agéieren."
 
 msgid "GITHUB_TOOLTIP"
 msgstr ""
@@ -4501,6 +4538,10 @@ msgstr "Organelle placéieren"
 msgid "PLANET"
 msgstr ""
 
+#, fuzzy
+msgid "PLANET_CUSTOMIZER"
+msgstr "Beim Feil:"
+
 msgid "PLANET_DETAILS_STRING"
 msgstr ""
 
@@ -4557,6 +4598,9 @@ msgid "PLAY_MICROBE_INTRO_ON_NEW_GAME"
 msgstr "Spill d'Mikroben Intro all neit Spill"
 
 msgid "PLAY_WITH_CURRENT_SETTING"
+msgstr ""
+
+msgid "PLAY_WTH_CURRENT_SETTINGS"
 msgstr ""
 
 msgid "POPULATION_CAPITAL"
@@ -4705,6 +4749,9 @@ msgid "REDO_THE_LAST_ACTION"
 msgstr "Läscht Aktioun Widderhierstellen"
 
 msgid "REFRESH"
+msgstr ""
+
+msgid "REGENERATE_BUTTON"
 msgstr ""
 
 msgid "RENDER_SCALE"
@@ -8053,6 +8100,28 @@ msgid "WORLD_RELATIVE_MOVEMENT"
 msgstr ""
 
 #, fuzzy
+msgid "WORLD_SEA_LEVEL"
+msgstr "{0}-{1}m ennert dem Mieresspiegel"
+
+#, fuzzy
+msgid "WORLD_SEA_LEVEL_DEEP"
+msgstr "{0}-{1}m ennert dem Mieresspiegel"
+
+#, fuzzy
+msgid "WORLD_SEA_LEVEL_EXPLANATION"
+msgstr ""
+"Aggressiv Mikrobe wäerte Beuten iwwer gréisser Distanze joen\n"
+"an se si méi warscheinlech Ugräifer ze bekämpfen, wann se ugegraff ginn.\n"
+"Friddlech Mikrobe wäerten net iwwert gréisser Distanzen engagéieren \n"
+"se si manner warscheinlech Gëftstoffer géint Ugräifer ze notzen."
+
+msgid "WORLD_SEA_LEVEL_MODERATE"
+msgstr ""
+
+msgid "WORLD_SEA_LEVEL_SHALLOW"
+msgstr ""
+
+#, fuzzy
 msgid "WORLD_SIZE"
 msgstr "\"{0}\" - {1}"
 
@@ -8078,6 +8147,32 @@ msgid "WORLD_SIZE_TOOLTIP"
 msgstr ""
 "Di hei Sektioun weist di total Balance (Produktioun - Verbrauch) fier all Stoff.\n"
 "Vier zum Beispill eng Planzenzell ze maachen muss d'Glucose Balance wäit positiv sinn."
+
+msgid "WORLD_TEMPERATURE"
+msgstr ""
+
+msgid "WORLD_TEMPERATURE_COLD"
+msgstr ""
+
+#, fuzzy
+msgid "WORLD_TEMPERATURE_EXPLANATION"
+msgstr ""
+"Aggressiv Mikrobe wäerte Beuten iwwer gréisser Distanze joen\n"
+"an se si méi warscheinlech Ugräifer ze bekämpfen, wann se ugegraff ginn.\n"
+"Friddlech Mikrobe wäerten net iwwert gréisser Distanzen engagéieren \n"
+"se si manner warscheinlech Gëftstoffer géint Ugräifer ze notzen."
+
+#, fuzzy
+msgid "WORLD_TEMPERATURE_TEMPERATE"
+msgstr ""
+"Dei hei Sektioun weist di total Balance (Produktioun - Verbrauch) fier all Stoff.\n"
+"Fir ze iwwerliewen muss d'Balance positif sinn.\n"
+"Den Menü hei drenner kann benotzt ginn fir ze gesinn wat passéiert wann d'Zell verschidde Stoffer net huet.\n"
+"Verschidden Zellen kennen nemmen eng positif ATB Balance areechen wann se multipel Substanzen hun fir ATP ze generéieren.\n"
+"Des sort Zell ass méi schwéier ze spillen."
+
+msgid "WORLD_TEMPERATURE_WARM"
+msgstr ""
 
 msgid "WORST_PATCH_COLON"
 msgstr ""

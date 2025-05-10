@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2025-04-30 10:54+0300\n"
+"POT-Creation-Date: 2025-05-10 16:01+0200\n"
 "PO-Revision-Date: 2025-05-09 14:04+0000\n"
 "Last-Translator: Koffeqk <mussus1215@gmail.com>\n"
 "Language-Team: Russian <https://translate.revolutionarygamesstudio.com/projects/thrive/thrive-game/ru/>\n"
@@ -383,6 +383,10 @@ msgstr "статус запуска:"
 msgid "AUTO_EVO_STATUS_COLON"
 msgstr "Статус Авто-Эво:"
 
+#, fuzzy
+msgid "AUTO_EVO_TOOL_BUTTON"
+msgstr "Авто ({0}x{1})"
+
 msgid "AUTO_MOVE_FORWARDS"
 msgstr "Авто движение вперед"
 
@@ -412,6 +416,9 @@ msgstr "Обратный Слэш"
 
 msgid "BACKSPACE"
 msgstr "Backspace"
+
+msgid "BACK_TO_SETTINGS"
+msgstr ""
 
 msgid "BACTERIAL_THERMOSYNTHESIS"
 msgstr "Бактериальный Термосинтез"
@@ -809,6 +816,15 @@ msgstr "Очистить Кэш"
 #, fuzzy
 msgid "CLICK_TO_SELECT"
 msgstr "выбрать"
+
+msgid "CLIMATE_INSTABILITY"
+msgstr ""
+
+#, fuzzy
+msgid "CLIMATE_INSTABILITY_EXPLANATION"
+msgstr ""
+"Активные микробы будут в движении, пока поблизости ничего не происходит.\n"
+"Оседлые микробы будут стоять и ждать изменения окружения, прежде чем действовать."
 
 msgid "CLOSE"
 msgstr "Закрыть"
@@ -2376,11 +2392,33 @@ msgstr "Вы можете узнать на что направлен ваш к�
 msgid "GENERAL_LOADING_TIP_7"
 msgstr "Если популяция вашего вида достигнет нуля, он вымрет."
 
+#, fuzzy
+msgid "GENERATE_BUTTON"
+msgstr "Поколения"
+
 msgid "GENERATIONS"
 msgstr "Поколения"
 
 msgid "GENERATION_COLON"
 msgstr "Поколение:"
+
+msgid "GEOLOGICAL_ACTIVITY"
+msgstr ""
+
+msgid "GEOLOGICAL_ACTIVITY_ACTIVE"
+msgstr ""
+
+msgid "GEOLOGICAL_ACTIVITY_AVERAGE"
+msgstr ""
+
+msgid "GEOLOGICAL_ACTIVITY_DORMANT"
+msgstr ""
+
+#, fuzzy
+msgid "GEOLOGICAL_ACTIVITY_EXPLANATION"
+msgstr ""
+"Активные микробы будут в движении, пока поблизости ничего не происходит.\n"
+"Оседлые микробы будут стоять и ждать изменения окружения, прежде чем действовать."
 
 msgid "GITHUB_TOOLTIP"
 msgstr "Посетить наш Github-репозиторий"
@@ -4641,6 +4679,10 @@ msgstr "Разместить органеллу (или другую вещь)"
 msgid "PLANET"
 msgstr "Планета"
 
+#, fuzzy
+msgid "PLANET_CUSTOMIZER"
+msgstr "Вы смотрите на:"
+
 msgid "PLANET_DETAILS_STRING"
 msgstr ""
 "Только LAWK: {0}\n"
@@ -4704,6 +4746,10 @@ msgid "PLAY_MICROBE_INTRO_ON_NEW_GAME"
 msgstr "Проигрывать вступление микроба при новой игре"
 
 msgid "PLAY_WITH_CURRENT_SETTING"
+msgstr "Играть с текущими настройками"
+
+#, fuzzy
+msgid "PLAY_WTH_CURRENT_SETTINGS"
 msgstr "Играть с текущими настройками"
 
 msgid "POPULATION_CAPITAL"
@@ -4846,6 +4892,10 @@ msgstr "Вернуть последнее действие"
 
 msgid "REFRESH"
 msgstr "Обновить"
+
+#, fuzzy
+msgid "REGENERATE_BUTTON"
+msgstr "Органеллы"
 
 msgid "RENDER_SCALE"
 msgstr "Масштаб отрисовки"
@@ -8857,6 +8907,29 @@ msgid "WORLD_RELATIVE_MOVEMENT"
 msgstr "Относительно мира"
 
 #, fuzzy
+msgid "WORLD_SEA_LEVEL"
+msgstr "{0}-{1}м ниже уровня моря"
+
+#, fuzzy
+msgid "WORLD_SEA_LEVEL_DEEP"
+msgstr "{0}-{1}м ниже уровня моря"
+
+#, fuzzy
+msgid "WORLD_SEA_LEVEL_EXPLANATION"
+msgstr ""
+"Целенаправленные микробы будут искать добычу на большем растоянии\n"
+"и будут соперничать за куски с большим рвением.\n"
+"Бдительные микробы будут быстрее переключаться на новые цели."
+
+#, fuzzy
+msgid "WORLD_SEA_LEVEL_MODERATE"
+msgstr "Относительно мира"
+
+#, fuzzy
+msgid "WORLD_SEA_LEVEL_SHALLOW"
+msgstr "Маленький"
+
+#, fuzzy
 msgid "WORLD_SIZE"
 msgstr "Мир"
 
@@ -8880,6 +8953,29 @@ msgstr "Маленький"
 #, fuzzy
 msgid "WORLD_SIZE_TOOLTIP"
 msgstr "Запустить определенное количество миров, количество генераций на каждый мир определяется в меню сверху."
+
+#, fuzzy
+msgid "WORLD_TEMPERATURE"
+msgstr "Температура"
+
+#, fuzzy
+msgid "WORLD_TEMPERATURE_COLD"
+msgstr "Темп."
+
+#, fuzzy
+msgid "WORLD_TEMPERATURE_EXPLANATION"
+msgstr ""
+"Целенаправленные микробы будут искать добычу на большем растоянии\n"
+"и будут соперничать за куски с большим рвением.\n"
+"Бдительные микробы будут быстрее переключаться на новые цели."
+
+#, fuzzy
+msgid "WORLD_TEMPERATURE_TEMPERATE"
+msgstr "Темп."
+
+#, fuzzy
+msgid "WORLD_TEMPERATURE_WARM"
+msgstr "Темп."
 
 msgid "WORST_PATCH_COLON"
 msgstr "Худший биом:"
