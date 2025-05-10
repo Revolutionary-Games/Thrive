@@ -752,7 +752,7 @@ public partial class HexEditorComponentBase<TEditor, TCombinedAction, TAction, T
     protected virtual void LoadScenes()
     {
         hexScene = GD.Load<PackedScene>("res://src/microbe_stage/editor/EditorHex.tscn");
-        modelScene = GD.Load<PackedScene>("res://src/general/SceneDisplayer.tscn");
+        modelScene = GD.Load<PackedScene>("res://src/general/menus/SceneDisplayer.tscn");
     }
 
     protected virtual void LoadAudioStreams()

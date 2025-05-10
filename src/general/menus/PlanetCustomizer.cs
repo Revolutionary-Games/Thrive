@@ -3,31 +3,13 @@ using Godot;
 public partial class PlanetCustomizer : Node
 {
     [Export]
-    private OptionButton worldSizeButton = null!;
-
-    [Export]
-    private OptionButton worldTemperatureButton = null!;
-
-    [Export]
-    private OptionButton worldSeaLevelButton = null!;
-
-    [Export]
-    private OptionButton worldGeologicalActivityButton = null!;
-
-    [Export]
-    private OptionButton worldClimateInstabilityButton = null!;
-
-    [Export]
-    private OptionButton lifeOriginButton = null!;
-
-    [Export]
     private PatchMapDrawer patchMapDrawer = null!;
 
     [Export]
     private PatchDetailsPanel patchDetailsPanel = null!;
 
     [Export]
-    private Control settingsPanel = null!;
+    private PlanetSettings settingsPanel = null!;
 
     [Export]
     private Control patchMapPanel = null!;
@@ -37,11 +19,6 @@ public partial class PlanetCustomizer : Node
 
     [Export]
     private Button generateButton = null!;
-
-    /// <summary>
-    ///   Local copy of auto-evo configuration. Used to avoid modifying the global one
-    /// </summary>
-    public AutoEvoConfiguration AutoEvoConfiguration;
 
     public WorldGenerationSettings WorldSettings;
 
@@ -62,12 +39,15 @@ public partial class PlanetCustomizer : Node
         WorldSettings = new WorldGenerationSettings
         {
             AutoEvoConfiguration = configuration,
-            WorldSize = (WorldGenerationSettings.WorldSizeEnum)worldSizeButton.Selected,
-            WorldTemperature = (WorldGenerationSettings.WorldTemperatureEnum)worldTemperatureButton.Selected,
-            WorldSeaLevel = (WorldGenerationSettings.WorldSeaLevelEnum)worldSeaLevelButton.Selected,
-            GeologicalActivity = (WorldGenerationSettings.GeologicalActivityEnum)worldGeologicalActivityButton.Selected,
-            ClimateInstability = (WorldGenerationSettings.ClimateInstabilityEnum)worldClimateInstabilityButton.Selected,
-            Origin = (WorldGenerationSettings.LifeOrigin)lifeOriginButton.Selected,
+            WorldSize = (WorldGenerationSettings.WorldSizeEnum)settingsPanel.worldSizeButton.Selected,
+            WorldTemperature =
+                (WorldGenerationSettings.WorldTemperatureEnum)settingsPanel.worldTemperatureButton.Selected,
+            WorldSeaLevel = (WorldGenerationSettings.WorldSeaLevelEnum)settingsPanel.worldSeaLevelButton.Selected,
+            GeologicalActivity =
+                (WorldGenerationSettings.GeologicalActivityEnum)settingsPanel.worldGeologicalActivityButton.Selected,
+            ClimateInstability =
+                (WorldGenerationSettings.ClimateInstabilityEnum)settingsPanel.worldClimateInstabilityButton.Selected,
+            Origin = (WorldGenerationSettings.LifeOrigin)settingsPanel.lifeOriginButton.Selected,
         };
 
         GameProperties = GameProperties.StartNewMicrobeGame(WorldSettings);
