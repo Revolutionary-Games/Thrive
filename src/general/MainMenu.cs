@@ -46,6 +46,9 @@ public partial class MainMenu : NodeWithInput
 
     [Export]
     public NodePath AutoEvoExploringButtonPath = null!;
+    
+    [Export]
+    public NodePath PlanetCustomizationButtonPath = null!;
 
     [Export]
     public NodePath MicrobeBenchmarkButtonPath = null!;
@@ -145,6 +148,7 @@ public partial class MainMenu : NodeWithInput
     private Button freebuildButton = null!;
     private Button multicellularFreebuildButton = null!;
     private Button autoEvoExploringButton = null!;
+    private Button planetCustomizationButton = null!;
     private Button microbeBenchmarkButton = null!;
 
     private Button exitToLauncherButton = null!;
@@ -431,6 +435,7 @@ public partial class MainMenu : NodeWithInput
                 FreebuildButtonPath.Dispose();
                 MulticellularFreebuildButtonPath.Dispose();
                 AutoEvoExploringButtonPath.Dispose();
+                PlanetCustomizationButtonPath.Dispose();
                 MicrobeBenchmarkButtonPath.Dispose();
                 ExitToLauncherButtonPath.Dispose();
                 CreditsContainerPath.Dispose();
@@ -471,6 +476,7 @@ public partial class MainMenu : NodeWithInput
         freebuildButton = GetNode<Button>(FreebuildButtonPath);
         multicellularFreebuildButton = GetNode<Button>(MulticellularFreebuildButtonPath);
         autoEvoExploringButton = GetNode<Button>(AutoEvoExploringButtonPath);
+        planetCustomizationButton = GetNode<Button>(PlanetCustomizationButtonPath);
         microbeBenchmarkButton = GetNode<Button>(MicrobeBenchmarkButtonPath);
         exitToLauncherButton = GetNode<Button>(ExitToLauncherButtonPath);
         creditsContainer = GetNode<Control>(CreditsContainerPath);
@@ -940,6 +946,16 @@ public partial class MainMenu : NodeWithInput
 
         TransitionManager.Instance.AddSequence(ScreenFade.FadeType.FadeOut, 0.1f,
             () => { SceneManager.Instance.SwitchToScene("res://src/auto-evo/AutoEvoExploringTool.tscn"); }, false);
+    }
+
+    private void PlanetCustomizerPressed()
+    {
+        GUICommon.Instance.PlayButtonPressSound();
+
+        planetCustomizationButton.Disabled = true;
+
+        TransitionManager.Instance.AddSequence(ScreenFade.FadeType.FadeOut, 0.1f,
+            () => { SceneManager.Instance.SwitchToScene("res://src/general/PlanetCustomizer.tscn"); }, false);
     }
 
     // TODO: this is now used by another sub menu as well so renaming this to be more generic would be good

@@ -7,11 +7,15 @@
 shader = ExtResource("2")
 
 [node name="PatchMapDrawer" type="Control"]
+layout_mode = 3
+anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
-mouse_filter = 1
+grow_horizontal = 2
+grow_vertical = 2
 size_flags_horizontal = 3
 size_flags_vertical = 3
+mouse_filter = 1
 script = ExtResource("1")
 DrawDefaultMapIfEmpty = true
 PatchNodeContainerPath = NodePath("PatchNodeContainer")
@@ -19,5 +23,7 @@ LineContainerPath = NodePath("LineContainer")
 MonochromeMaterial = SubResource("1")
 
 [node name="LineContainer" type="Control" parent="."]
+anchors_preset = 0
 
 [node name="PatchNodeContainer" type="Control" parent="."]
+anchors_preset = 0

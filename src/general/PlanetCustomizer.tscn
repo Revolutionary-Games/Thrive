@@ -1,0 +1,426 @@
+[gd_scene load_steps=10 format=3 uid="uid://cv87uwt0hwl6k"]
+
+[ext_resource type="Script" uid="uid://ce0gmv6i7cqgf" path="res://src/general/PlanetCustomizer.cs" id="1_qm4a8"]
+[ext_resource type="Texture2D" uid="uid://djklaunps1oyd" path="res://assets/concept_art/even-more-cells.jpg" id="2_6fxue"]
+[ext_resource type="Theme" uid="uid://b4cx0o110g4b6" path="res://src/gui_common/thrive_theme.tres" id="3_xrckq"]
+[ext_resource type="LabelSettings" uid="uid://uxdd8vb4xedn" path="res://src/gui_common/fonts/Body-Regular-AlmostTiny.tres" id="6_ku5hv"]
+[ext_resource type="PackedScene" uid="uid://din62wkc2pcnk" path="res://src/gui_common/DraggableScrollContainer.tscn" id="6_xkyxd"]
+[ext_resource type="PackedScene" uid="uid://cmhetwsk3qbb7" path="res://src/microbe_stage/editor/PatchMapDrawer.tscn" id="7_8flxh"]
+[ext_resource type="PackedScene" uid="uid://bjl5o7oy7yr15" path="res://src/microbe_stage/gui/PatchDetailsPanel.tscn" id="8_rj8sx"]
+[ext_resource type="PackedScene" uid="uid://bgeijgq7runaw" path="res://src/gui_common/FocusGrabber.tscn" id="19_huykk"]
+[ext_resource type="PackedScene" uid="uid://cl64wvnxs6ivs" path="res://src/gui_common/dialogs/CustomConfirmationDialog.tscn" id="20_h0ypo"]
+
+[node name="PlanetCustomizationTool" type="Node" node_paths=PackedStringArray("worldSizeButton", "worldTemperatureButton", "worldSeaLevelButton", "worldGeologicalActivityButton", "worldClimateInstabilityButton", "lifeOriginButton", "patchMapDrawer", "patchDetailsPanel", "settingsPanel", "patchMapPanel", "patchMapButtons", "generateButton")]
+script = ExtResource("1_qm4a8")
+worldSizeButton = NodePath("GUI/VBoxContainer/SettingsPanel/MarginContainer/VBoxContainer/HBoxContainer/WorldSize")
+worldTemperatureButton = NodePath("GUI/VBoxContainer/SettingsPanel/MarginContainer/VBoxContainer/HBoxContainer2/WorldTemperature")
+worldSeaLevelButton = NodePath("GUI/VBoxContainer/SettingsPanel/MarginContainer/VBoxContainer/HBoxContainer3/WorldSeaLevel")
+worldGeologicalActivityButton = NodePath("GUI/VBoxContainer/SettingsPanel/MarginContainer/VBoxContainer/HBoxContainer4/WorldGeologicalActivity")
+worldClimateInstabilityButton = NodePath("GUI/VBoxContainer/SettingsPanel/MarginContainer/VBoxContainer/HBoxContainer5/WorldClimateInstability")
+lifeOriginButton = NodePath("GUI/VBoxContainer/SettingsPanel/MarginContainer/VBoxContainer/HBoxContainer6/LifeOrigin")
+patchMapDrawer = NodePath("GUI/VBoxContainer/PatchMap/HBoxContainer/PatchMap/MarginContainer/DraggableScrollContainer/PatchMapDrawer")
+patchDetailsPanel = NodePath("GUI/VBoxContainer/PatchMap/HBoxContainer/PatchDetailsPanel")
+settingsPanel = NodePath("GUI/VBoxContainer/SettingsPanel")
+patchMapPanel = NodePath("GUI/VBoxContainer/PatchMap")
+patchMapButtons = NodePath("GUI/VBoxContainer/HBoxContainer/HBoxContainer2/MapButtons")
+generateButton = NodePath("GUI/VBoxContainer/HBoxContainer/HBoxContainer2/GenerateButton")
+
+[node name="BackGround" type="TextureRect" parent="."]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+texture = ExtResource("2_6fxue")
+expand_mode = 1
+stretch_mode = 6
+
+[node name="GUI" type="MarginContainer" parent="."]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+size_flags_horizontal = 3
+size_flags_vertical = 3
+theme = ExtResource("3_xrckq")
+theme_override_constants/margin_left = 50
+theme_override_constants/margin_top = 30
+theme_override_constants/margin_right = 50
+theme_override_constants/margin_bottom = 30
+
+[node name="VBoxContainer" type="VBoxContainer" parent="GUI"]
+layout_mode = 2
+theme_override_constants/separation = 10
+
+[node name="SettingsPanel" type="PanelContainer" parent="GUI/VBoxContainer"]
+layout_mode = 2
+size_flags_vertical = 3
+
+[node name="MarginContainer" type="MarginContainer" parent="GUI/VBoxContainer/SettingsPanel"]
+custom_minimum_size = Vector2(720, 0)
+layout_mode = 2
+theme_override_constants/margin_left = 15
+theme_override_constants/margin_top = 20
+theme_override_constants/margin_right = 15
+theme_override_constants/margin_bottom = 20
+
+[node name="VBoxContainer" type="VBoxContainer" parent="GUI/VBoxContainer/SettingsPanel/MarginContainer"]
+layout_mode = 2
+size_flags_vertical = 0
+theme_override_constants/separation = 10
+alignment = 1
+
+[node name="HBoxContainer6" type="HBoxContainer" parent="GUI/VBoxContainer/SettingsPanel/MarginContainer/VBoxContainer"]
+layout_mode = 2
+
+[node name="VBoxContainer" type="VBoxContainer" parent="GUI/VBoxContainer/SettingsPanel/MarginContainer/VBoxContainer/HBoxContainer6"]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="Label" type="Label" parent="GUI/VBoxContainer/SettingsPanel/MarginContainer/VBoxContainer/HBoxContainer6/VBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+mouse_filter = 0
+text = "LIFE_ORIGIN"
+
+[node name="Label2" type="Label" parent="GUI/VBoxContainer/SettingsPanel/MarginContainer/VBoxContainer/HBoxContainer6/VBoxContainer"]
+custom_minimum_size = Vector2(200, 0)
+layout_mode = 2
+size_flags_horizontal = 3
+text = "LIFE_ORIGIN_EXPLANATION"
+label_settings = ExtResource("6_ku5hv")
+autowrap_mode = 3
+
+[node name="Separator" type="Control" parent="GUI/VBoxContainer/SettingsPanel/MarginContainer/VBoxContainer/HBoxContainer6"]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="LifeOrigin" type="OptionButton" parent="GUI/VBoxContainer/SettingsPanel/MarginContainer/VBoxContainer/HBoxContainer6"]
+custom_minimum_size = Vector2(200, 25)
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 0
+tooltip_text = "LIFE_ORIGIN_TOOLTIP"
+selected = 0
+item_count = 3
+popup/item_0/text = "LIFE_ORIGIN_VENTS"
+popup/item_0/id = 0
+popup/item_1/text = "LIFE_ORIGIN_POND"
+popup/item_1/id = 1
+popup/item_2/text = "LIFE_ORIGIN_PANSPERMIA"
+popup/item_2/id = 2
+popup/item_2/disabled = true
+
+[node name="HBoxContainer" type="HBoxContainer" parent="GUI/VBoxContainer/SettingsPanel/MarginContainer/VBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="VBoxContainer" type="VBoxContainer" parent="GUI/VBoxContainer/SettingsPanel/MarginContainer/VBoxContainer/HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="Label" type="Label" parent="GUI/VBoxContainer/SettingsPanel/MarginContainer/VBoxContainer/HBoxContainer/VBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+mouse_filter = 0
+text = "WORLD_SIZE"
+
+[node name="Label2" type="Label" parent="GUI/VBoxContainer/SettingsPanel/MarginContainer/VBoxContainer/HBoxContainer/VBoxContainer"]
+custom_minimum_size = Vector2(200, 0)
+layout_mode = 2
+size_flags_horizontal = 3
+text = "WORLD_SIZE_EXPLANATION"
+label_settings = ExtResource("6_ku5hv")
+autowrap_mode = 3
+
+[node name="Separator" type="Control" parent="GUI/VBoxContainer/SettingsPanel/MarginContainer/VBoxContainer/HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="WorldSize" type="OptionButton" parent="GUI/VBoxContainer/SettingsPanel/MarginContainer/VBoxContainer/HBoxContainer"]
+custom_minimum_size = Vector2(200, 25)
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 0
+tooltip_text = "WORLD_SIZE_TOOLTIP"
+selected = 1
+item_count = 3
+popup/item_0/text = "WORLD_SIZE_SMALL"
+popup/item_0/id = 0
+popup/item_1/text = "WORLD_SIZE_MEDIUM"
+popup/item_1/id = 1
+popup/item_2/text = "WORLD_SIZE_LARGE"
+popup/item_2/id = 2
+
+[node name="HBoxContainer2" type="HBoxContainer" parent="GUI/VBoxContainer/SettingsPanel/MarginContainer/VBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="VBoxContainer" type="VBoxContainer" parent="GUI/VBoxContainer/SettingsPanel/MarginContainer/VBoxContainer/HBoxContainer2"]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="Label" type="Label" parent="GUI/VBoxContainer/SettingsPanel/MarginContainer/VBoxContainer/HBoxContainer2/VBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+mouse_filter = 0
+text = "WORLD_TEMPERATURE"
+
+[node name="Label2" type="Label" parent="GUI/VBoxContainer/SettingsPanel/MarginContainer/VBoxContainer/HBoxContainer2/VBoxContainer"]
+custom_minimum_size = Vector2(200, 0)
+layout_mode = 2
+size_flags_horizontal = 3
+text = "WORLD_TEMPERATURE_EXPLANATION"
+label_settings = ExtResource("6_ku5hv")
+autowrap_mode = 3
+
+[node name="Separator" type="Control" parent="GUI/VBoxContainer/SettingsPanel/MarginContainer/VBoxContainer/HBoxContainer2"]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="WorldTemperature" type="OptionButton" parent="GUI/VBoxContainer/SettingsPanel/MarginContainer/VBoxContainer/HBoxContainer2"]
+custom_minimum_size = Vector2(200, 25)
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 0
+tooltip_text = "WORLD_SIZE_TOOLTIP"
+selected = 1
+item_count = 3
+popup/item_0/text = "WORLD_TEMPERATURE_COLD"
+popup/item_0/id = 0
+popup/item_1/text = "WORLD_TEMPERATURE_TEMPERATE"
+popup/item_1/id = 1
+popup/item_2/text = "WORLD_TEMPERATURE_WARM"
+popup/item_2/id = 2
+
+[node name="HBoxContainer3" type="HBoxContainer" parent="GUI/VBoxContainer/SettingsPanel/MarginContainer/VBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="VBoxContainer" type="VBoxContainer" parent="GUI/VBoxContainer/SettingsPanel/MarginContainer/VBoxContainer/HBoxContainer3"]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="Label" type="Label" parent="GUI/VBoxContainer/SettingsPanel/MarginContainer/VBoxContainer/HBoxContainer3/VBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+mouse_filter = 0
+text = "WORLD_SEA_LEVEL"
+
+[node name="Label2" type="Label" parent="GUI/VBoxContainer/SettingsPanel/MarginContainer/VBoxContainer/HBoxContainer3/VBoxContainer"]
+custom_minimum_size = Vector2(200, 0)
+layout_mode = 2
+size_flags_horizontal = 3
+text = "WORLD_SEA_LEVEL_EXPLANATION"
+label_settings = ExtResource("6_ku5hv")
+autowrap_mode = 3
+
+[node name="Separator" type="Control" parent="GUI/VBoxContainer/SettingsPanel/MarginContainer/VBoxContainer/HBoxContainer3"]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="WorldSeaLevel" type="OptionButton" parent="GUI/VBoxContainer/SettingsPanel/MarginContainer/VBoxContainer/HBoxContainer3"]
+custom_minimum_size = Vector2(200, 25)
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 0
+tooltip_text = "WORLD_SIZE_TOOLTIP"
+selected = 1
+item_count = 3
+popup/item_0/text = "WORLD_SEA_LEVEL_SHALLOW"
+popup/item_0/id = 0
+popup/item_1/text = "WORLD_SEA_LEVEL_MODERATE"
+popup/item_1/id = 1
+popup/item_2/text = "WORLD_SEA_LEVEL_DEEP"
+popup/item_2/id = 2
+
+[node name="HBoxContainer4" type="HBoxContainer" parent="GUI/VBoxContainer/SettingsPanel/MarginContainer/VBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="VBoxContainer" type="VBoxContainer" parent="GUI/VBoxContainer/SettingsPanel/MarginContainer/VBoxContainer/HBoxContainer4"]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="Label" type="Label" parent="GUI/VBoxContainer/SettingsPanel/MarginContainer/VBoxContainer/HBoxContainer4/VBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+mouse_filter = 0
+text = "GEOLOGICAL_ACTIVITY"
+
+[node name="Label2" type="Label" parent="GUI/VBoxContainer/SettingsPanel/MarginContainer/VBoxContainer/HBoxContainer4/VBoxContainer"]
+custom_minimum_size = Vector2(200, 0)
+layout_mode = 2
+size_flags_horizontal = 3
+text = "GEOLOGICAL_ACTIVITY_EXPLANATION"
+label_settings = ExtResource("6_ku5hv")
+autowrap_mode = 3
+
+[node name="Separator" type="Control" parent="GUI/VBoxContainer/SettingsPanel/MarginContainer/VBoxContainer/HBoxContainer4"]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="WorldGeologicalActivity" type="OptionButton" parent="GUI/VBoxContainer/SettingsPanel/MarginContainer/VBoxContainer/HBoxContainer4"]
+custom_minimum_size = Vector2(200, 25)
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 0
+tooltip_text = "WORLD_SIZE_TOOLTIP"
+selected = 1
+item_count = 3
+popup/item_0/text = "GEOLOGICAL_ACTIVITY_DORMANT"
+popup/item_0/id = 0
+popup/item_1/text = "GEOLOGICAL_ACTIVITY_AVERAGE"
+popup/item_1/id = 1
+popup/item_2/text = "GEOLOGICAL_ACTIVITY_ACTIVE"
+popup/item_2/id = 2
+
+[node name="HBoxContainer5" type="HBoxContainer" parent="GUI/VBoxContainer/SettingsPanel/MarginContainer/VBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="VBoxContainer" type="VBoxContainer" parent="GUI/VBoxContainer/SettingsPanel/MarginContainer/VBoxContainer/HBoxContainer5"]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="Label" type="Label" parent="GUI/VBoxContainer/SettingsPanel/MarginContainer/VBoxContainer/HBoxContainer5/VBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+mouse_filter = 0
+text = "CLIMATE_INSTABILITY"
+
+[node name="Label2" type="Label" parent="GUI/VBoxContainer/SettingsPanel/MarginContainer/VBoxContainer/HBoxContainer5/VBoxContainer"]
+custom_minimum_size = Vector2(200, 0)
+layout_mode = 2
+size_flags_horizontal = 3
+text = "CLIMATE_INSTABILITY_EXPLANATION"
+label_settings = ExtResource("6_ku5hv")
+autowrap_mode = 3
+
+[node name="Separator" type="Control" parent="GUI/VBoxContainer/SettingsPanel/MarginContainer/VBoxContainer/HBoxContainer5"]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="WorldClimateInstability" type="OptionButton" parent="GUI/VBoxContainer/SettingsPanel/MarginContainer/VBoxContainer/HBoxContainer5"]
+custom_minimum_size = Vector2(200, 25)
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 0
+tooltip_text = "WORLD_SIZE_TOOLTIP"
+selected = 1
+item_count = 3
+popup/item_0/text = "WORLD_SIZE_SMALL"
+popup/item_0/id = 0
+popup/item_1/text = "WORLD_SIZE_MEDIUM"
+popup/item_1/id = 1
+popup/item_2/text = "WORLD_SIZE_LARGE"
+popup/item_2/id = 2
+
+[node name="PatchMap" type="Control" parent="GUI/VBoxContainer"]
+visible = false
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+
+[node name="HBoxContainer" type="HBoxContainer" parent="GUI/VBoxContainer/PatchMap"]
+layout_mode = 0
+anchor_right = 1.0
+anchor_bottom = 1.0
+size_flags_horizontal = 3
+size_flags_vertical = 3
+theme_override_constants/separation = 20
+
+[node name="PatchMap" type="PanelContainer" parent="GUI/VBoxContainer/PatchMap/HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+
+[node name="MarginContainer" type="MarginContainer" parent="GUI/VBoxContainer/PatchMap/HBoxContainer/PatchMap"]
+layout_mode = 2
+theme_override_constants/margin_left = 10
+theme_override_constants/margin_top = 10
+theme_override_constants/margin_right = 10
+theme_override_constants/margin_bottom = 10
+
+[node name="DraggableScrollContainer" parent="GUI/VBoxContainer/PatchMap/HBoxContainer/PatchMap/MarginContainer" instance=ExtResource("6_xkyxd")]
+layout_mode = 2
+ContentPath = NodePath("PatchMapDrawer")
+MaxZoom = 5.0
+MinZoom = 0.1
+
+[node name="PatchMapDrawer" parent="GUI/VBoxContainer/PatchMap/HBoxContainer/PatchMap/MarginContainer/DraggableScrollContainer" instance=ExtResource("7_8flxh")]
+layout_mode = 2
+DrawDefaultMapIfEmpty = false
+
+[node name="PatchDetailsPanel" parent="GUI/VBoxContainer/PatchMap/HBoxContainer" instance=ExtResource("8_rj8sx")]
+layout_mode = 2
+MoveToPatchButtonVisible = false
+MigrationManagerEnabled = false
+
+[node name="HBoxContainer" type="HBoxContainer" parent="GUI/VBoxContainer"]
+layout_mode = 2
+
+[node name="HBoxContainer" type="HBoxContainer" parent="GUI/VBoxContainer/HBoxContainer"]
+layout_mode = 2
+
+[node name="BackButton" type="Button" parent="GUI/VBoxContainer/HBoxContainer/HBoxContainer"]
+layout_mode = 2
+text = "BACK"
+
+[node name="FocusGrabber" parent="GUI/VBoxContainer/HBoxContainer/HBoxContainer" instance=ExtResource("19_huykk")]
+layout_mode = 2
+NodeToGiveFocusTo = NodePath("../BackButton")
+
+[node name="HBoxContainer2" type="HBoxContainer" parent="GUI/VBoxContainer/HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 10
+
+[node name="GenerateButton" type="Button" parent="GUI/VBoxContainer/HBoxContainer/HBoxContainer2"]
+layout_mode = 2
+text = "GENERATE_BUTTON"
+
+[node name="MapButtons" type="Control" parent="GUI/VBoxContainer/HBoxContainer/HBoxContainer2"]
+visible = false
+layout_mode = 2
+
+[node name="PlayButton" type="Button" parent="GUI/VBoxContainer/HBoxContainer/HBoxContainer2/MapButtons"]
+layout_mode = 2
+offset_left = -1017.0
+offset_right = -699.0
+offset_bottom = 39.0
+disabled = true
+text = "PLAY_WTH_CURRENT_SETTINGS"
+
+[node name="AutoEvoToolButton" type="Button" parent="GUI/VBoxContainer/HBoxContainer/HBoxContainer2/MapButtons"]
+layout_mode = 2
+offset_left = -695.0
+offset_right = -435.0
+offset_bottom = 39.0
+disabled = true
+text = "AUTO_EVO_TOOL_BUTTON"
+
+[node name="RegeenerateButton" type="Button" parent="GUI/VBoxContainer/HBoxContainer/HBoxContainer2/MapButtons"]
+layout_mode = 2
+offset_left = -431.0
+offset_right = -208.0
+offset_bottom = 39.0
+text = "REGENERATE_BUTTON"
+
+[node name="ExitConfirmationDialog" parent="." instance=ExtResource("20_h0ypo")]
+custom_minimum_size = Vector2(400, 0)
+DialogText = "RETURN_TO_MENU_WARNING"
+WindowTitle = "CONFIRM_EXIT"
+
+[node name="ExportSuccessNotificationDialog" parent="." instance=ExtResource("20_h0ypo")]
+custom_minimum_size = Vector2(400, 0)
+HideCancelButton = true
+WindowTitle = "EXPORT_SUCCESS"
+Movable = false
+
+[connection signal="item_selected" from="GUI/VBoxContainer/SettingsPanel/MarginContainer/VBoxContainer/HBoxContainer/WorldSize" to="." method="OnWorldSizeSelected"]
+[connection signal="item_selected" from="GUI/VBoxContainer/SettingsPanel/MarginContainer/VBoxContainer/HBoxContainer2/WorldTemperature" to="." method="OnTemperatureSelected"]
+[connection signal="item_selected" from="GUI/VBoxContainer/SettingsPanel/MarginContainer/VBoxContainer/HBoxContainer3/WorldSeaLevel" to="." method="OnSeaLevelSelected"]
+[connection signal="item_selected" from="GUI/VBoxContainer/SettingsPanel/MarginContainer/VBoxContainer/HBoxContainer4/WorldGeologicalActivity" to="." method="OnGeologicalActivitySelected"]
+[connection signal="item_selected" from="GUI/VBoxContainer/SettingsPanel/MarginContainer/VBoxContainer/HBoxContainer5/WorldClimateInstability" to="." method="OnClimateInstabilitySelected"]
+[connection signal="OnCurrentPatchCentered" from="GUI/VBoxContainer/PatchMap/HBoxContainer/PatchMap/MarginContainer/DraggableScrollContainer/PatchMapDrawer" to="GUI/VBoxContainer/PatchMap/HBoxContainer/PatchMap/MarginContainer/DraggableScrollContainer" method="CenterTo"]
+[connection signal="pressed" from="GUI/VBoxContainer/HBoxContainer/HBoxContainer/BackButton" to="." method="OnBackButtonPressed"]
+[connection signal="pressed" from="GUI/VBoxContainer/HBoxContainer/HBoxContainer2/GenerateButton" to="." method="OnGeneratePressed"]
+[connection signal="pressed" from="GUI/VBoxContainer/HBoxContainer/HBoxContainer2/MapButtons/RegeenerateButton" to="." method="OnRegeneratePressed"]
+[connection signal="Confirmed" from="ExitConfirmationDialog" to="." method="ConfirmExit"]

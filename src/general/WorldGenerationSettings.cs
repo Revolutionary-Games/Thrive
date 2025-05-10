@@ -71,6 +71,67 @@ public class WorldGenerationSettings
     }
 
     /// <summary>
+    ///   The possible temperature settings for the planet
+    /// </summary>
+    public enum WorldTemperatureEnum
+    {
+        [Description("WORLD_TEMPERATURE_COLD")]
+        Cold = 0,
+
+        [Description("WORLD_TEMPERATURE_TEMPERATE")]
+        Temperate = 1,
+
+        [Description("WORLD_TEMPERATURE_WARM")]
+        Warm = 2,
+    }
+
+    /// <summary>
+    ///   The possible sea level options for the planet
+    /// </summary>
+    public enum WorldSeaLevelEnum
+    {
+        [Description("WORLD_SEA_LEVEL_SHALLOW")]
+        Shallow = 0,
+
+        [Description("WORLD_SEA_LEVEL_MODERATE")]
+        Moderate = 1,
+
+        [Description("WORLD_SEA_LEVEL_DEEP")]
+        Deep = 2,
+    }
+
+    /// <summary>
+    ///   The geological activity levels of the planet
+    /// </summary>
+    public enum GeologicalActivityEnum
+    {
+        [Description("GEOLOGICAL_ACTIVITY_DORMANT")]
+        Dormant = 0,
+
+        [Description("GEOLOGICAL_ACTIVITY_AVERAGE")]
+        Average = 1,
+
+        [Description("GEOLOGICAL_ACTIVITY_ACTIVE")]
+        Active = 2,
+    }
+
+    /// <summary>
+    ///   The possible climate instability settings for the planet
+    /// </summary>
+    public enum ClimateInstabilityEnum
+    {
+        [Description("WORLD_SIZE_SMALL")]
+        Low = 0,
+
+        [Description("WORLD_SIZE_MEDIUM")]
+        Medium = 1,
+
+        [Description("WORLD_SIZE_LARGE")]
+        High = 2,
+    }
+
+
+    /// <summary>
     ///   Whether this game is restricted to only LAWK parts and abilities
     /// </summary>
     public bool LAWK { get; set; }
@@ -99,6 +160,26 @@ public class WorldGenerationSettings
     ///   Size of World
     /// </summary>
     public WorldSizeEnum WorldSize { get; set; } = WorldSizeEnum.Medium;
+
+    /// <summary>
+    ///   Temperature of World
+    /// </summary>
+    public WorldTemperatureEnum WorldTemperature { get; set; } = WorldTemperatureEnum.Temperate;
+
+    /// <summary>
+    ///   Sea level of World
+    /// </summary>
+    public WorldSeaLevelEnum WorldSeaLevel { get; set; } = WorldSeaLevelEnum.Moderate;
+
+    /// <summary>
+    ///   Geological activity of World
+    /// </summary>
+    public GeologicalActivityEnum GeologicalActivity { get; set; } = GeologicalActivityEnum.Average;
+
+    /// <summary>
+    ///   Climate instability of World
+    /// </summary>
+    public ClimateInstabilityEnum ClimateInstability { get; set; } = ClimateInstabilityEnum.Medium;
 
     // The following are helper proxies to the values from the difficulty
     [JsonIgnore]

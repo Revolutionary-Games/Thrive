@@ -132,6 +132,7 @@ Menu3DBackgroundScenes = ["res://assets/models/menu_backgrounds/MainMenuScene1.t
 FreebuildButtonPath = NodePath("MenuContainers/Menus/VBoxContainer/Tools/FreebuildMicrobeEditor")
 MulticellularFreebuildButtonPath = NodePath("MenuContainers/Menus/VBoxContainer/Tools/FreebuildMulticellularEditor")
 AutoEvoExploringButtonPath = NodePath("MenuContainers/Menus/VBoxContainer/Tools/AutoEvoExploring")
+PlanetCustomizationButtonPath = NodePath("MenuContainers/Menus/VBoxContainer/Tools/Planet Customizer")
 MicrobeBenchmarkButtonPath = NodePath("MenuContainers/Menus/VBoxContainer/Benchmarks/MicrobeBenchmark")
 ExitToLauncherButtonPath = NodePath("MenuContainers/Menus/VBoxContainer/MainMenu/Launcher")
 CreditsContainerPath = NodePath("CreditsView")
@@ -407,6 +408,15 @@ focus_neighbor_bottom = NodePath("../Back")
 focus_next = NodePath("../Back")
 mouse_filter = 1
 text = "BENCHMARKS"
+
+[node name="Planet Customizer" type="Button" parent="MenuContainers/Menus/VBoxContainer/Tools"]
+custom_minimum_size = Vector2(250, 40)
+layout_mode = 2
+size_flags_vertical = 0
+focus_neighbor_bottom = NodePath("../Back")
+focus_next = NodePath("../Back")
+mouse_filter = 1
+text = "PLANET_CUSTOMIZER"
 
 [node name="unknown3" type="Button" parent="MenuContainers/Menus/VBoxContainer/Tools"]
 editor_description = "PLACEHOLDER"
@@ -971,6 +981,7 @@ ShowCloseButton = false
 [connection signal="pressed" from="MenuContainers/Menus/VBoxContainer/Tools/FreebuildMulticellularEditor" to="." method="MulticellularFreebuildEditorPressed"]
 [connection signal="pressed" from="MenuContainers/Menus/VBoxContainer/Tools/AutoEvoExploring" to="." method="OnAutoEvoExploringPressed"]
 [connection signal="pressed" from="MenuContainers/Menus/VBoxContainer/Tools/Benchmarks" to="." method="BenchmarksPressed"]
+[connection signal="pressed" from="MenuContainers/Menus/VBoxContainer/Tools/Planet Customizer" to="." method="PlanetCustomizerPressed"]
 [connection signal="pressed" from="MenuContainers/Menus/VBoxContainer/Tools/Back" to="." method="BackFromToolsPressed"]
 [connection signal="pressed" from="MenuContainers/Menus/VBoxContainer/Extras/Thriveopedia" to="." method="ThriveopediaPressed"]
 [connection signal="pressed" from="MenuContainers/Menus/VBoxContainer/Extras/Mods" to="." method="ModsPressed"]
