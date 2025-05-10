@@ -1,22 +1,40 @@
 using Godot;
 
+/// <summary>
+/// Planet settings in the planet customizer.
+/// </summary>
 public partial class PlanetSettings : VBoxContainer
 {
     [Export]
-    public OptionButton lifeOriginButton = null!;
-    
-    [Export]
-    public OptionButton worldSizeButton = null!;
+    public OptionButton LifeOriginButton = null!;
 
     [Export]
-    public OptionButton worldTemperatureButton = null!;
+    public OptionButton WorldSizeButton = null!;
 
     [Export]
-    public OptionButton worldSeaLevelButton = null!;
+    public OptionButton WorldTemperatureButton = null!;
 
     [Export]
-    public OptionButton worldGeologicalActivityButton = null!;
+    public OptionButton WorldSeaLevelButton = null!;
 
     [Export]
-    public OptionButton worldClimateInstabilityButton = null!;
+    public OptionButton WorldGeologicalActivityButton = null!;
+
+    [Export]
+    public OptionButton WorldClimateInstabilityButton = null!;
+
+    protected override void Dispose(bool disposing)
+    {
+        if (disposing)
+        {
+            LifeOriginButton?.Dispose();
+            WorldSizeButton?.Dispose();
+            WorldTemperatureButton?.Dispose();
+            WorldSeaLevelButton?.Dispose();
+            WorldGeologicalActivityButton?.Dispose();
+            WorldClimateInstabilityButton?.Dispose();
+        }
+
+        base.Dispose(disposing);
+    }
 }

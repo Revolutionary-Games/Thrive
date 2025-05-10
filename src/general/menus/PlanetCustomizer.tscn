@@ -1,4 +1,4 @@
-[gd_scene load_steps=10 format=3 uid="uid://cv87uwt0hwl6k"]
+[gd_scene load_steps=11 format=3 uid="uid://cv87uwt0hwl6k"]
 
 [ext_resource type="Script" uid="uid://ce0gmv6i7cqgf" path="res://src/general/menus/PlanetCustomizer.cs" id="1_qm4a8"]
 [ext_resource type="Texture2D" uid="uid://djklaunps1oyd" path="res://assets/concept_art/even-more-cells.jpg" id="2_6fxue"]
@@ -10,6 +10,8 @@
 [ext_resource type="PackedScene" uid="uid://bgeijgq7runaw" path="res://src/gui_common/FocusGrabber.tscn" id="19_huykk"]
 [ext_resource type="PackedScene" uid="uid://cl64wvnxs6ivs" path="res://src/gui_common/dialogs/CustomConfirmationDialog.tscn" id="20_h0ypo"]
 
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_7q4fp"]
+
 [node name="PlanetCustomizationTool" type="Node" node_paths=PackedStringArray("patchMapDrawer", "patchDetailsPanel", "settingsPanel", "patchMapPanel", "patchMapButtons", "generateButton", "planetSettings")]
 script = ExtResource("1_qm4a8")
 patchMapDrawer = NodePath("GUI/VBoxContainer/PatchMap/HBoxContainer/PatchMap/MarginContainer/DraggableScrollContainer/PatchMapDrawer")
@@ -18,7 +20,7 @@ settingsPanel = NodePath("GUI/VBoxContainer/SettingsPanel")
 patchMapPanel = NodePath("GUI/VBoxContainer/PatchMap")
 patchMapButtons = NodePath("GUI/VBoxContainer/HBoxContainer/HBoxContainer2/MapButtons")
 generateButton = NodePath("GUI/VBoxContainer/HBoxContainer/HBoxContainer2/GenerateButton")
-planetSettings = NodePath("GUI/VBoxContainer/SettingsPanel/MarginContainer/PlanetSettings")
+planetSettings = NodePath("GUI/VBoxContainer/SettingsPanel/MarginContainer/ScrollContainer/HBoxContainer/PlanetSettings")
 
 [node name="BackGround" type="TextureRect" parent="."]
 anchors_preset = 15
@@ -56,8 +58,22 @@ theme_override_constants/margin_top = 20
 theme_override_constants/margin_right = 15
 theme_override_constants/margin_bottom = 20
 
-[node name="PlanetSettings" parent="GUI/VBoxContainer/SettingsPanel/MarginContainer" instance=ExtResource("4_xkyxd")]
+[node name="ScrollContainer" type="ScrollContainer" parent="GUI/VBoxContainer/SettingsPanel/MarginContainer"]
 layout_mode = 2
+
+[node name="HBoxContainer" type="HBoxContainer" parent="GUI/VBoxContainer/SettingsPanel/MarginContainer/ScrollContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="PlanetSettings" parent="GUI/VBoxContainer/SettingsPanel/MarginContainer/ScrollContainer/HBoxContainer" instance=ExtResource("4_xkyxd")]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="HSeparator" type="HSeparator" parent="GUI/VBoxContainer/SettingsPanel/MarginContainer/ScrollContainer/HBoxContainer"]
+custom_minimum_size = Vector2(10, 0)
+layout_mode = 2
+theme = ExtResource("3_xrckq")
+theme_override_styles/separator = SubResource("StyleBoxEmpty_7q4fp")
 
 [node name="PatchMap" type="Control" parent="GUI/VBoxContainer"]
 visible = false

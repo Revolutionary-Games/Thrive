@@ -46,7 +46,7 @@ public partial class MainMenu : NodeWithInput
 
     [Export]
     public NodePath AutoEvoExploringButtonPath = null!;
-    
+
     [Export]
     public NodePath PlanetCustomizationButtonPath = null!;
 

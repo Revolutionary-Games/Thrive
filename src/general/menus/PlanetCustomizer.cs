@@ -1,7 +1,17 @@
 using Godot;
 
+/// <summary>
+/// Customizes planet settings and world generation.
+/// </summary>
 public partial class PlanetCustomizer : Node
 {
+    public WorldGenerationSettings WorldSettings = null!;
+
+    /// <summary>
+    ///   The game itself
+    /// </summary>
+    public GameProperties GameProperties = null!;
+
     [Export]
     private PatchMapDrawer patchMapDrawer = null!;
 
@@ -23,13 +33,6 @@ public partial class PlanetCustomizer : Node
     [Export]
     private PlanetSettings planetSettings = null!;
 
-    public WorldGenerationSettings WorldSettings;
-
-    /// <summary>
-    ///   The game itself
-    /// </summary>
-    public GameProperties GameProperties;
-
     public override void _Ready()
     {
         base._Ready();
@@ -37,20 +40,36 @@ public partial class PlanetCustomizer : Node
         patchMapDrawer.OnSelectedPatchChanged += UpdatePatchDetailPanel;
     }
 
+    protected override void Dispose(bool disposing)
+    {
+        if (disposing)
+        {
+            patchMapDrawer.Dispose();
+            patchDetailsPanel.Dispose();
+            settingsPanel.Dispose();
+            patchMapPanel.Dispose();
+            patchMapButtons.Dispose();
+            generateButton.Dispose();
+            planetSettings.Dispose();
+        }
+
+        base.Dispose(disposing);
+    }
+
     private void InitNewWorld(IAutoEvoConfiguration configuration)
     {
         WorldSettings = new WorldGenerationSettings
         {
             AutoEvoConfiguration = configuration,
-            WorldSize = (WorldGenerationSettings.WorldSizeEnum)planetSettings.worldSizeButton.Selected,
+            WorldSize = (WorldGenerationSettings.WorldSizeEnum)planetSettings.WorldSizeButton.Selected,
             WorldTemperature =
-                (WorldGenerationSettings.WorldTemperatureEnum)planetSettings.worldTemperatureButton.Selected,
-            WorldSeaLevel = (WorldGenerationSettings.WorldSeaLevelEnum)planetSettings.worldSeaLevelButton.Selected,
+                (WorldGenerationSettings.WorldTemperatureEnum)planetSettings.WorldTemperatureButton.Selected,
+            WorldSeaLevel = (WorldGenerationSettings.WorldSeaLevelEnum)planetSettings.WorldSeaLevelButton.Selected,
             GeologicalActivity =
-                (WorldGenerationSettings.GeologicalActivityEnum)planetSettings.worldGeologicalActivityButton.Selected,
+                (WorldGenerationSettings.GeologicalActivityEnum)planetSettings.WorldGeologicalActivityButton.Selected,
             ClimateInstability =
-                (WorldGenerationSettings.ClimateInstabilityEnum)planetSettings.worldClimateInstabilityButton.Selected,
-            Origin = (WorldGenerationSettings.LifeOrigin)planetSettings.lifeOriginButton.Selected,
+                (WorldGenerationSettings.ClimateInstabilityEnum)planetSettings.WorldClimateInstabilityButton.Selected,
+            Origin = (WorldGenerationSettings.LifeOrigin)planetSettings.LifeOriginButton.Selected,
         };
 
         GameProperties = GameProperties.StartNewMicrobeGame(WorldSettings);
@@ -59,9 +78,7 @@ public partial class PlanetCustomizer : Node
         patchMapDrawer.Map = GameProperties.GameWorld.Map;
         patchMapDrawer.SelectedPatch = patchMapDrawer.PlayerPatch;
         patchDetailsPanel.SelectedPatch = patchMapDrawer.PlayerPatch;
-        UpdatePatchDetailPanel(patchMapDrawer);
-
-        // patchMapDrawer.CenterToCurrentPatch();
+        // UpdatePatchDetailPanel(patchMapDrawer);
     }
 
     private void UpdatePatchDetailPanel(PatchMapDrawer drawer)

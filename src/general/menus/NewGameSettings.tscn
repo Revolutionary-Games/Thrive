@@ -1,4 +1,4 @@
-[gd_scene load_steps=22 format=3 uid="uid://b0315b3i5bs5s"]
+[gd_scene load_steps=18 format=3 uid="uid://b0315b3i5bs5s"]
 
 [ext_resource type="Theme" uid="uid://b4cx0o110g4b6" path="res://src/gui_common/thrive_theme.tres" id="1"]
 [ext_resource type="Script" uid="uid://c2fgxgloa4ura" path="res://src/general/menus/NewGameSettings.cs" id="2"]
@@ -8,28 +8,22 @@
 [ext_resource type="Texture2D" uid="uid://baqkntjn5ng0y" path="res://assets/textures/gui/bevel/randomizeButton.png" id="6"]
 [ext_resource type="Texture2D" uid="uid://ch76ktrn1xy7r" path="res://assets/textures/gui/bevel/randomizeButtonDisabled.png" id="7"]
 [ext_resource type="Texture2D" uid="uid://jm2munbr7078" path="res://assets/textures/gui/bevel/randomizeButtonHover.png" id="8"]
-[ext_resource type="Texture2D" uid="uid://c6pe536xf5ime" path="res://assets/concept_art/planet_generation.jpg" id="10"]
 [ext_resource type="PackedScene" uid="uid://bhpjtbtaeunat" path="res://src/gui_common/CustomRichTextLabel.tscn" id="11"]
 [ext_resource type="PackedScene" uid="uid://b3rrmtcvwufb" path="res://src/general/menus/PlanetSettings.tscn" id="11_ra08r"]
 [ext_resource type="PackedScene" uid="uid://bgeijgq7runaw" path="res://src/gui_common/FocusGrabber.tscn" id="12"]
 [ext_resource type="PackedScene" uid="uid://dw3ubsraoopin" path="res://src/gui_common/TabButtons.tscn" id="13"]
 [ext_resource type="LabelSettings" uid="uid://58teykjxnrdt" path="res://src/gui_common/fonts/Body-Regular-AlmostTiny-Red.tres" id="13_yxxhr"]
-[ext_resource type="LabelSettings" uid="uid://cis0p1u7hveec" path="res://src/gui_common/fonts/Title-SemiBold-Huge.tres" id="14_36v86"]
 
 [sub_resource type="LabelSettings" id="LabelSettings_8kue3"]
 font = ExtResource("5_otvf3")
 
 [sub_resource type="ButtonGroup" id="ButtonGroup_48p0t"]
 
-[sub_resource type="StyleBoxEmpty" id="2"]
+[sub_resource type="StyleBoxEmpty" id="7"]
 
 [sub_resource type="StyleBoxEmpty" id="6"]
 
-[sub_resource type="StyleBoxEmpty" id="7"]
-
-[sub_resource type="StyleBoxEmpty" id="4"]
-
-[node name="NewGameSettings" type="Control" node_paths=PackedStringArray("playerSpeciesAIPopulationStrength", "playerSpeciesAIPopulationStrengthReadout", "autoEvoStrengthMultiplier", "autoEvoStrengthReadout", "reproductionCompoundsDropdown", "switchSpeciesOnExtinctionButton", "worldSizeButton", "experimentalFeatures", "experimentalExplanation", "experimentalWarning")]
+[node name="NewGameSettings" type="Control" node_paths=PackedStringArray("playerSpeciesAIPopulationStrength", "playerSpeciesAIPopulationStrengthReadout", "autoEvoStrengthMultiplier", "autoEvoStrengthReadout", "reproductionCompoundsDropdown", "switchSpeciesOnExtinctionButton", "experimentalFeatures", "experimentalExplanation", "experimentalWarning")]
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
@@ -70,15 +64,15 @@ FreeGlucoseCloudButtonPath = NodePath("CenterContainer/VBoxContainer/AdvancedOpt
 LimitGrowthRateButtonPath = NodePath("CenterContainer/VBoxContainer/AdvancedOptions/Difficulty/ScrollContainer/HBoxContainer/VBoxContainer/VBoxContainer10/LimitGrowthRate")
 OrganelleUnlocksEnabledPath = NodePath("CenterContainer/VBoxContainer/AdvancedOptions/Difficulty/ScrollContainer/HBoxContainer/VBoxContainer/VBoxContainer12/OrganelleUnlocksEnabled")
 LifeOriginButtonPath = NodePath("CenterContainer/VBoxContainer/BasicOptions/Main/VBoxContainer/HBoxContainer2/LifeOrigin")
-LifeOriginButtonAdvancedPath = NodePath("CenterContainer/VBoxContainer/AdvancedOptions/Planet/ScrollContainer/VBoxContainer/HBoxContainer2/LifeOriginAdvanced")
+LifeOriginButtonAdvancedPath = NodePath("")
 LAWKButtonPath = NodePath("CenterContainer/VBoxContainer/BasicOptions/Main/VBoxContainer/VBoxContainer2/LAWK")
-LAWKAdvancedButtonPath = NodePath("CenterContainer/VBoxContainer/AdvancedOptions/Planet/ScrollContainer/VBoxContainer/VBoxContainer/LAWKAdvanced")
-DayNightCycleButtonPath = NodePath("CenterContainer/VBoxContainer/AdvancedOptions/Planet/ScrollContainer/VBoxContainer/VBoxContainer2/DayNightCycleEnabled")
-DayLengthContainerPath = NodePath("CenterContainer/VBoxContainer/AdvancedOptions/Planet/ScrollContainer/VBoxContainer/VBoxContainer4")
-DayLengthPath = NodePath("CenterContainer/VBoxContainer/AdvancedOptions/Planet/ScrollContainer/VBoxContainer/VBoxContainer4/HBoxContainer/HBoxContainer/DayLength")
-DayLengthReadoutPath = NodePath("CenterContainer/VBoxContainer/AdvancedOptions/Planet/ScrollContainer/VBoxContainer/VBoxContainer4/HBoxContainer/HBoxContainer/DayLengthReadout")
+LAWKAdvancedButtonPath = NodePath("")
+DayNightCycleButtonPath = NodePath("")
+DayLengthContainerPath = NodePath("")
+DayLengthPath = NodePath("")
+DayLengthReadoutPath = NodePath("")
 GameSeedPath = NodePath("CenterContainer/VBoxContainer/BasicOptions/Main/VBoxContainer/HBoxContainer3/HBoxContainer/GameSeed")
-GameSeedAdvancedPath = NodePath("CenterContainer/VBoxContainer/AdvancedOptions/Planet/ScrollContainer/VBoxContainer/HBoxContainer3/HBoxContainer/GameSeedAdvanced")
+GameSeedAdvancedPath = NodePath("")
 IncludeMulticellularButtonPath = NodePath("CenterContainer/VBoxContainer/AdvancedOptions/Misc/VBoxContainer/VBoxContainer2/IncludeMulticellular")
 EasterEggsButtonPath = NodePath("CenterContainer/VBoxContainer/AdvancedOptions/Misc/VBoxContainer/VBoxContainer3/EasterEggs")
 StartButtonPath = NodePath("CenterContainer/VBoxContainer/HBoxContainer/Start")
@@ -89,7 +83,6 @@ autoEvoStrengthMultiplier = NodePath("CenterContainer/VBoxContainer/AdvancedOpti
 autoEvoStrengthReadout = NodePath("CenterContainer/VBoxContainer/AdvancedOptions/Difficulty/ScrollContainer/HBoxContainer/VBoxContainer/VBoxContainer15/HBoxContainer/HBoxContainer/AutoEvoReadout")
 reproductionCompoundsDropdown = NodePath("CenterContainer/VBoxContainer/AdvancedOptions/Difficulty/ScrollContainer/HBoxContainer/VBoxContainer/VBoxContainer14/HBoxContainer/HBoxContainer/ReproductionCompounds")
 switchSpeciesOnExtinctionButton = NodePath("CenterContainer/VBoxContainer/AdvancedOptions/Difficulty/ScrollContainer/HBoxContainer/VBoxContainer/VBoxContainer13/SwitchOnExtinct")
-worldSizeButton = NodePath("CenterContainer/VBoxContainer/AdvancedOptions/Planet/ScrollContainer/VBoxContainer/HBoxContainer4/WorldSize")
 experimentalFeatures = NodePath("CenterContainer/VBoxContainer/AdvancedOptions/Misc/VBoxContainer/VBoxContainer4/ExperimentalFeatures")
 experimentalExplanation = NodePath("CenterContainer/VBoxContainer/AdvancedOptions/Misc/VBoxContainer/VBoxContainer4/ExperimentalLabel")
 experimentalWarning = NodePath("CenterContainer/VBoxContainer/AdvancedOptions/Misc/VBoxContainer/VBoxContainer4/ExperimentalWarningLabel")
@@ -107,6 +100,7 @@ layout_mode = 2
 theme_override_constants/separation = 5
 
 [node name="BasicOptions" type="PanelContainer" parent="CenterContainer/VBoxContainer"]
+visible = false
 custom_minimum_size = Vector2(550, 200)
 layout_mode = 2
 
@@ -254,22 +248,22 @@ ExtendedBbcode = "NEW_GAME_SETTINGS_PERFORMANCE_OPTIONS_INFO"
 visible = false
 layout_mode = 2
 
-[node name="DifficultyButton" type="Button" parent="CenterContainer/VBoxContainer/TabButtons"]
+[node name="PlanetButton" type="Button" parent="CenterContainer/VBoxContainer/TabButtons"]
 custom_minimum_size = Vector2(130, 35)
 layout_mode = 2
 toggle_mode = true
 button_pressed = true
 action_mode = 0
 button_group = SubResource("ButtonGroup_48p0t")
-text = "DIFFICULTY"
+text = "PLANET"
 
-[node name="PlanetButton" type="Button" parent="CenterContainer/VBoxContainer/TabButtons"]
+[node name="DifficultyButton" type="Button" parent="CenterContainer/VBoxContainer/TabButtons"]
 custom_minimum_size = Vector2(130, 35)
 layout_mode = 2
 toggle_mode = true
 action_mode = 0
 button_group = SubResource("ButtonGroup_48p0t")
-text = "PLANET"
+text = "DIFFICULTY"
 
 [node name="MiscButton" type="Button" parent="CenterContainer/VBoxContainer/TabButtons"]
 custom_minimum_size = Vector2(130, 35)
@@ -280,12 +274,35 @@ button_group = SubResource("ButtonGroup_48p0t")
 text = "MISC"
 
 [node name="AdvancedOptions" type="PanelContainer" parent="CenterContainer/VBoxContainer"]
-visible = false
 custom_minimum_size = Vector2(700, 600)
 layout_mode = 2
 
-[node name="Difficulty" type="MarginContainer" parent="CenterContainer/VBoxContainer/AdvancedOptions"]
+[node name="Planet" type="MarginContainer" parent="CenterContainer/VBoxContainer/AdvancedOptions"]
 visible = false
+layout_mode = 2
+theme_override_constants/margin_left = 15
+theme_override_constants/margin_top = 15
+theme_override_constants/margin_right = 15
+theme_override_constants/margin_bottom = 15
+
+[node name="ScrollContainer" type="ScrollContainer" parent="CenterContainer/VBoxContainer/AdvancedOptions/Planet"]
+layout_mode = 2
+
+[node name="HBoxContainer" type="HBoxContainer" parent="CenterContainer/VBoxContainer/AdvancedOptions/Planet/ScrollContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="SettingsPanel" parent="CenterContainer/VBoxContainer/AdvancedOptions/Planet/ScrollContainer/HBoxContainer" instance=ExtResource("11_ra08r")]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="HSeparator" type="HSeparator" parent="CenterContainer/VBoxContainer/AdvancedOptions/Planet/ScrollContainer/HBoxContainer"]
+custom_minimum_size = Vector2(10, 0)
+layout_mode = 2
+theme = ExtResource("1")
+theme_override_styles/separator = SubResource("7")
+
+[node name="Difficulty" type="MarginContainer" parent="CenterContainer/VBoxContainer/AdvancedOptions"]
 layout_mode = 2
 theme_override_constants/margin_left = 15
 theme_override_constants/margin_top = 15
@@ -316,14 +333,10 @@ layout_mode = 2
 size_flags_horizontal = 3
 text = "DIFFICULTY_PRESET"
 
-[node name="HSeparator" type="HSeparator" parent="CenterContainer/VBoxContainer/AdvancedOptions/Difficulty/ScrollContainer/HBoxContainer/VBoxContainer/VBoxContainer6/HBoxContainer"]
-layout_mode = 2
-size_flags_horizontal = 3
-theme_override_styles/separator = SubResource("2")
-
 [node name="DifficultyPreset" type="OptionButton" parent="CenterContainer/VBoxContainer/AdvancedOptions/Difficulty/ScrollContainer/HBoxContainer/VBoxContainer/VBoxContainer6/HBoxContainer"]
 custom_minimum_size = Vector2(200, 25)
 layout_mode = 2
+size_flags_horizontal = 3
 
 [node name="Label" type="Label" parent="CenterContainer/VBoxContainer/AdvancedOptions/Difficulty/ScrollContainer/HBoxContainer/VBoxContainer/VBoxContainer6"]
 custom_minimum_size = Vector2(200, 0)
@@ -346,6 +359,7 @@ text = "MUTATION_COST_MULTIPLIER"
 
 [node name="HBoxContainer" type="HBoxContainer" parent="CenterContainer/VBoxContainer/AdvancedOptions/Difficulty/ScrollContainer/HBoxContainer/VBoxContainer/VBoxContainer/HBoxContainer"]
 layout_mode = 2
+size_flags_horizontal = 3
 
 [node name="MPMultiplier" type="HSlider" parent="CenterContainer/VBoxContainer/AdvancedOptions/Difficulty/ScrollContainer/HBoxContainer/VBoxContainer/VBoxContainer/HBoxContainer/HBoxContainer"]
 custom_minimum_size = Vector2(140, 0)
@@ -359,7 +373,6 @@ value = 1.0
 
 [node name="HSeparator" type="HSeparator" parent="CenterContainer/VBoxContainer/AdvancedOptions/Difficulty/ScrollContainer/HBoxContainer/VBoxContainer/VBoxContainer/HBoxContainer/HBoxContainer"]
 layout_mode = 2
-size_flags_horizontal = 3
 theme_override_styles/separator = SubResource("6")
 
 [node name="MPMultiplierReadout" type="LineEdit" parent="CenterContainer/VBoxContainer/AdvancedOptions/Difficulty/ScrollContainer/HBoxContainer/VBoxContainer/VBoxContainer/HBoxContainer/HBoxContainer"]
@@ -391,6 +404,7 @@ text = "AI_MUTATION_RATE"
 
 [node name="HBoxContainer" type="HBoxContainer" parent="CenterContainer/VBoxContainer/AdvancedOptions/Difficulty/ScrollContainer/HBoxContainer/VBoxContainer/VBoxContainer8/HBoxContainer"]
 layout_mode = 2
+size_flags_horizontal = 3
 
 [node name="AIMutationRate" type="HSlider" parent="CenterContainer/VBoxContainer/AdvancedOptions/Difficulty/ScrollContainer/HBoxContainer/VBoxContainer/VBoxContainer8/HBoxContainer/HBoxContainer"]
 custom_minimum_size = Vector2(140, 0)
@@ -404,7 +418,6 @@ value = 2.0
 
 [node name="HSeparator" type="HSeparator" parent="CenterContainer/VBoxContainer/AdvancedOptions/Difficulty/ScrollContainer/HBoxContainer/VBoxContainer/VBoxContainer8/HBoxContainer/HBoxContainer"]
 layout_mode = 2
-size_flags_horizontal = 3
 theme_override_styles/separator = SubResource("6")
 
 [node name="AIMutationRateReadout" type="LineEdit" parent="CenterContainer/VBoxContainer/AdvancedOptions/Difficulty/ScrollContainer/HBoxContainer/VBoxContainer/VBoxContainer8/HBoxContainer/HBoxContainer"]
@@ -436,6 +449,7 @@ text = "COMPOUND_CLOUD_DENSITY"
 
 [node name="HBoxContainer" type="HBoxContainer" parent="CenterContainer/VBoxContainer/AdvancedOptions/Difficulty/ScrollContainer/HBoxContainer/VBoxContainer/VBoxContainer2/HBoxContainer"]
 layout_mode = 2
+size_flags_horizontal = 3
 
 [node name="CompoundDensity" type="HSlider" parent="CenterContainer/VBoxContainer/AdvancedOptions/Difficulty/ScrollContainer/HBoxContainer/VBoxContainer/VBoxContainer2/HBoxContainer/HBoxContainer"]
 custom_minimum_size = Vector2(140, 0)
@@ -449,7 +463,6 @@ value = 1.0
 
 [node name="HSeparator" type="HSeparator" parent="CenterContainer/VBoxContainer/AdvancedOptions/Difficulty/ScrollContainer/HBoxContainer/VBoxContainer/VBoxContainer2/HBoxContainer/HBoxContainer"]
 layout_mode = 2
-size_flags_horizontal = 3
 theme_override_styles/separator = SubResource("6")
 
 [node name="CompoundDensityReadout" type="LineEdit" parent="CenterContainer/VBoxContainer/AdvancedOptions/Difficulty/ScrollContainer/HBoxContainer/VBoxContainer/VBoxContainer2/HBoxContainer/HBoxContainer"]
@@ -836,233 +849,6 @@ layout_mode = 2
 theme = ExtResource("1")
 theme_override_styles/separator = SubResource("7")
 
-[node name="Planet" type="MarginContainer" parent="CenterContainer/VBoxContainer/AdvancedOptions"]
-layout_mode = 2
-theme_override_constants/margin_left = 15
-theme_override_constants/margin_top = 15
-theme_override_constants/margin_right = 15
-theme_override_constants/margin_bottom = 15
-
-[node name="ScrollContainer" type="ScrollContainer" parent="CenterContainer/VBoxContainer/AdvancedOptions/Planet"]
-layout_mode = 2
-
-[node name="VBoxContainer" type="VBoxContainer" parent="CenterContainer/VBoxContainer/AdvancedOptions/Planet/ScrollContainer"]
-layout_mode = 2
-theme_override_constants/separation = 10
-
-[node name="SettingsPanel" parent="CenterContainer/VBoxContainer/AdvancedOptions/Planet/ScrollContainer/VBoxContainer" instance=ExtResource("11_ra08r")]
-layout_mode = 2
-
-[node name="VBoxContainer" type="VBoxContainer" parent="CenterContainer/VBoxContainer/AdvancedOptions/Planet/ScrollContainer/VBoxContainer"]
-layout_mode = 2
-
-[node name="LAWKAdvanced" type="CheckBox" parent="CenterContainer/VBoxContainer/AdvancedOptions/Planet/ScrollContainer/VBoxContainer/VBoxContainer"]
-layout_mode = 2
-button_pressed = true
-text = "LAWK_ONLY"
-autowrap_mode = 3
-
-[node name="Label" type="Label" parent="CenterContainer/VBoxContainer/AdvancedOptions/Planet/ScrollContainer/VBoxContainer/VBoxContainer"]
-custom_minimum_size = Vector2(200, 0)
-layout_mode = 2
-size_flags_horizontal = 3
-text = "LAWK_ONLY_EXPLANATION"
-label_settings = ExtResource("5_rnvau")
-autowrap_mode = 3
-
-[node name="HBoxContainer2" type="HBoxContainer" parent="CenterContainer/VBoxContainer/AdvancedOptions/Planet/ScrollContainer/VBoxContainer"]
-layout_mode = 2
-size_flags_horizontal = 3
-
-[node name="VBoxContainer" type="VBoxContainer" parent="CenterContainer/VBoxContainer/AdvancedOptions/Planet/ScrollContainer/VBoxContainer/HBoxContainer2"]
-layout_mode = 2
-size_flags_horizontal = 3
-
-[node name="Label" type="Label" parent="CenterContainer/VBoxContainer/AdvancedOptions/Planet/ScrollContainer/VBoxContainer/HBoxContainer2/VBoxContainer"]
-layout_mode = 2
-size_flags_horizontal = 3
-mouse_filter = 0
-text = "LIFE_ORIGIN"
-
-[node name="Label2" type="Label" parent="CenterContainer/VBoxContainer/AdvancedOptions/Planet/ScrollContainer/VBoxContainer/HBoxContainer2/VBoxContainer"]
-custom_minimum_size = Vector2(200, 0)
-layout_mode = 2
-size_flags_horizontal = 3
-text = "LIFE_ORIGIN_EXPLANATION"
-label_settings = ExtResource("5_rnvau")
-autowrap_mode = 3
-
-[node name="LifeOriginAdvanced" type="OptionButton" parent="CenterContainer/VBoxContainer/AdvancedOptions/Planet/ScrollContainer/VBoxContainer/HBoxContainer2"]
-custom_minimum_size = Vector2(200, 25)
-layout_mode = 2
-size_flags_vertical = 0
-tooltip_text = "LIFE_ORIGIN_TOOLTIP"
-selected = 0
-item_count = 3
-popup/item_0/text = "LIFE_ORIGIN_VENTS"
-popup/item_0/id = 0
-popup/item_1/text = "LIFE_ORIGIN_POND"
-popup/item_1/id = 1
-popup/item_2/text = "LIFE_ORIGIN_PANSPERMIA"
-popup/item_2/id = 2
-
-[node name="VBoxContainer2" type="VBoxContainer" parent="CenterContainer/VBoxContainer/AdvancedOptions/Planet/ScrollContainer/VBoxContainer"]
-layout_mode = 2
-
-[node name="DayNightCycleEnabled" type="CheckBox" parent="CenterContainer/VBoxContainer/AdvancedOptions/Planet/ScrollContainer/VBoxContainer/VBoxContainer2"]
-layout_mode = 2
-button_pressed = true
-text = "DAY_NIGHT_CYCLE_ENABLED"
-autowrap_mode = 3
-
-[node name="Label" type="Label" parent="CenterContainer/VBoxContainer/AdvancedOptions/Planet/ScrollContainer/VBoxContainer/VBoxContainer2"]
-custom_minimum_size = Vector2(200, 0)
-layout_mode = 2
-size_flags_horizontal = 3
-text = "DAY_NIGHT_CYCLE_ENABLED_EXPLANATION_2"
-label_settings = ExtResource("5_rnvau")
-autowrap_mode = 3
-
-[node name="VBoxContainer4" type="VBoxContainer" parent="CenterContainer/VBoxContainer/AdvancedOptions/Planet/ScrollContainer/VBoxContainer"]
-layout_mode = 2
-
-[node name="HBoxContainer" type="HBoxContainer" parent="CenterContainer/VBoxContainer/AdvancedOptions/Planet/ScrollContainer/VBoxContainer/VBoxContainer4"]
-layout_mode = 2
-size_flags_horizontal = 3
-
-[node name="Label" type="Label" parent="CenterContainer/VBoxContainer/AdvancedOptions/Planet/ScrollContainer/VBoxContainer/VBoxContainer4/HBoxContainer"]
-custom_minimum_size = Vector2(250, 0)
-layout_mode = 2
-size_flags_horizontal = 3
-text = "DAY_LENGTH"
-
-[node name="HBoxContainer" type="HBoxContainer" parent="CenterContainer/VBoxContainer/AdvancedOptions/Planet/ScrollContainer/VBoxContainer/VBoxContainer4/HBoxContainer"]
-layout_mode = 2
-
-[node name="DayLength" type="HSlider" parent="CenterContainer/VBoxContainer/AdvancedOptions/Planet/ScrollContainer/VBoxContainer/VBoxContainer4/HBoxContainer/HBoxContainer"]
-custom_minimum_size = Vector2(140, 0)
-layout_mode = 2
-size_flags_horizontal = 3
-size_flags_vertical = 1
-min_value = 60.0
-max_value = 300.0
-step = 30.0
-value = 180.0
-rounded = true
-scrollable = false
-
-[node name="HSeparator" type="HSeparator" parent="CenterContainer/VBoxContainer/AdvancedOptions/Planet/ScrollContainer/VBoxContainer/VBoxContainer4/HBoxContainer/HBoxContainer"]
-layout_mode = 2
-size_flags_horizontal = 3
-theme_override_styles/separator = SubResource("6")
-
-[node name="DayLengthReadout" type="LineEdit" parent="CenterContainer/VBoxContainer/AdvancedOptions/Planet/ScrollContainer/VBoxContainer/VBoxContainer4/HBoxContainer/HBoxContainer"]
-custom_minimum_size = Vector2(20, 0)
-layout_mode = 2
-text = "180"
-editable = false
-
-[node name="Label" type="Label" parent="CenterContainer/VBoxContainer/AdvancedOptions/Planet/ScrollContainer/VBoxContainer/VBoxContainer4"]
-custom_minimum_size = Vector2(200, 0)
-layout_mode = 2
-size_flags_horizontal = 3
-text = "DAY_LENGTH_EXPLANATION"
-label_settings = ExtResource("5_rnvau")
-autowrap_mode = 3
-
-[node name="HBoxContainer3" type="HBoxContainer" parent="CenterContainer/VBoxContainer/AdvancedOptions/Planet/ScrollContainer/VBoxContainer"]
-layout_mode = 2
-
-[node name="Label" type="Label" parent="CenterContainer/VBoxContainer/AdvancedOptions/Planet/ScrollContainer/VBoxContainer/HBoxContainer3"]
-layout_mode = 2
-size_flags_horizontal = 3
-text = "PLANET_RANDOM_SEED"
-
-[node name="HBoxContainer" type="HBoxContainer" parent="CenterContainer/VBoxContainer/AdvancedOptions/Planet/ScrollContainer/VBoxContainer/HBoxContainer3"]
-custom_minimum_size = Vector2(200, 0)
-layout_mode = 2
-
-[node name="GameSeedAdvanced" type="LineEdit" parent="CenterContainer/VBoxContainer/AdvancedOptions/Planet/ScrollContainer/VBoxContainer/HBoxContainer3/HBoxContainer"]
-custom_minimum_size = Vector2(155, 0)
-layout_mode = 2
-tooltip_text = "RANDOM_SEED_TOOLTIP"
-
-[node name="HSeparator" type="HSeparator" parent="CenterContainer/VBoxContainer/AdvancedOptions/Planet/ScrollContainer/VBoxContainer/HBoxContainer3/HBoxContainer"]
-layout_mode = 2
-size_flags_horizontal = 3
-theme_override_styles/separator = SubResource("4")
-
-[node name="RandomizeButtonAdvanced" type="TextureButton" parent="CenterContainer/VBoxContainer/AdvancedOptions/Planet/ScrollContainer/VBoxContainer/HBoxContainer3/HBoxContainer"]
-custom_minimum_size = Vector2(31, 31)
-layout_mode = 2
-size_flags_horizontal = 0
-size_flags_vertical = 4
-texture_normal = ExtResource("6")
-texture_pressed = ExtResource("5")
-texture_hover = ExtResource("8")
-texture_disabled = ExtResource("7")
-ignore_texture_size = true
-stretch_mode = 5
-
-[node name="HBoxContainer4" type="HBoxContainer" parent="CenterContainer/VBoxContainer/AdvancedOptions/Planet/ScrollContainer/VBoxContainer"]
-layout_mode = 2
-size_flags_horizontal = 3
-
-[node name="VBoxContainer" type="VBoxContainer" parent="CenterContainer/VBoxContainer/AdvancedOptions/Planet/ScrollContainer/VBoxContainer/HBoxContainer4"]
-layout_mode = 2
-size_flags_horizontal = 3
-
-[node name="Label" type="Label" parent="CenterContainer/VBoxContainer/AdvancedOptions/Planet/ScrollContainer/VBoxContainer/HBoxContainer4/VBoxContainer"]
-layout_mode = 2
-size_flags_horizontal = 3
-mouse_filter = 0
-text = "WORLD_SIZE"
-
-[node name="Label2" type="Label" parent="CenterContainer/VBoxContainer/AdvancedOptions/Planet/ScrollContainer/VBoxContainer/HBoxContainer4/VBoxContainer"]
-custom_minimum_size = Vector2(200, 0)
-layout_mode = 2
-size_flags_horizontal = 3
-text = "WORLD_SIZE_EXPLANATION"
-label_settings = ExtResource("5_rnvau")
-autowrap_mode = 3
-
-[node name="WorldSize" type="OptionButton" parent="CenterContainer/VBoxContainer/AdvancedOptions/Planet/ScrollContainer/VBoxContainer/HBoxContainer4"]
-custom_minimum_size = Vector2(200, 25)
-layout_mode = 2
-size_flags_vertical = 0
-tooltip_text = "WORLD_SIZE_TOOLTIP"
-selected = 1
-item_count = 3
-popup/item_0/text = "WORLD_SIZE_SMALL"
-popup/item_0/id = 0
-popup/item_1/text = "WORLD_SIZE_MEDIUM"
-popup/item_1/id = 1
-popup/item_2/text = "WORLD_SIZE_LARGE"
-popup/item_2/id = 2
-
-[node name="CenterContainer" type="CenterContainer" parent="CenterContainer/VBoxContainer/AdvancedOptions/Planet/ScrollContainer/VBoxContainer"]
-custom_minimum_size = Vector2(0, 100)
-layout_mode = 2
-size_flags_vertical = 3
-
-[node name="TextureRect" type="TextureRect" parent="CenterContainer/VBoxContainer/AdvancedOptions/Planet/ScrollContainer/VBoxContainer/CenterContainer"]
-modulate = Color(1, 1, 1, 0.4)
-custom_minimum_size = Vector2(600, 200)
-layout_mode = 2
-size_flags_vertical = 3
-texture = ExtResource("10")
-expand_mode = 1
-stretch_mode = 6
-
-[node name="Label" type="Label" parent="CenterContainer/VBoxContainer/AdvancedOptions/Planet/ScrollContainer/VBoxContainer/CenterContainer"]
-custom_minimum_size = Vector2(650, 0)
-layout_mode = 2
-size_flags_horizontal = 3
-text = "PLANET_GENERATION_TEASER"
-label_settings = ExtResource("14_36v86")
-horizontal_alignment = 1
-autowrap_mode = 3
-
 [node name="Misc" type="MarginContainer" parent="CenterContainer/VBoxContainer/AdvancedOptions"]
 visible = false
 layout_mode = 2
@@ -1186,8 +972,8 @@ text = "START_GAME"
 [connection signal="text_changed" from="CenterContainer/VBoxContainer/BasicOptions/Main/VBoxContainer/HBoxContainer3/HBoxContainer/GameSeed" to="." method="OnGameSeedChangedFromBasic"]
 [connection signal="pressed" from="CenterContainer/VBoxContainer/BasicOptions/Main/VBoxContainer/HBoxContainer3/HBoxContainer/RandomizeButton" to="." method="OnRandomisedGameSeedPressed"]
 [connection signal="meta_clicked" from="CenterContainer/VBoxContainer/BasicOptions/Main/VBoxContainer/CheckPerformanceSettingsContainer/CustomRichTextLabel" to="." method="PerformanceNoteLinkClicked"]
-[connection signal="pressed" from="CenterContainer/VBoxContainer/TabButtons/DifficultyButton" to="." method="ChangeSettingsTab" binds= ["Difficulty"]]
 [connection signal="pressed" from="CenterContainer/VBoxContainer/TabButtons/PlanetButton" to="." method="ChangeSettingsTab" binds= ["Planet"]]
+[connection signal="pressed" from="CenterContainer/VBoxContainer/TabButtons/DifficultyButton" to="." method="ChangeSettingsTab" binds= ["Difficulty"]]
 [connection signal="pressed" from="CenterContainer/VBoxContainer/TabButtons/MiscButton" to="." method="ChangeSettingsTab" binds= ["Miscellaneous"]]
 [connection signal="item_selected" from="CenterContainer/VBoxContainer/AdvancedOptions/Difficulty/ScrollContainer/HBoxContainer/VBoxContainer/VBoxContainer6/HBoxContainer/DifficultyPreset" to="." method="OnDifficultyPresetSelected"]
 [connection signal="value_changed" from="CenterContainer/VBoxContainer/AdvancedOptions/Difficulty/ScrollContainer/HBoxContainer/VBoxContainer/VBoxContainer/HBoxContainer/HBoxContainer/MPMultiplier" to="." method="OnMPMultiplierValueChanged"]
@@ -1204,13 +990,6 @@ text = "START_GAME"
 [connection signal="toggled" from="CenterContainer/VBoxContainer/AdvancedOptions/Difficulty/ScrollContainer/HBoxContainer/VBoxContainer/VBoxContainer13/SwitchOnExtinct" to="." method="OnSwapOnExtinctionToggled"]
 [connection signal="toggled" from="CenterContainer/VBoxContainer/AdvancedOptions/Difficulty/ScrollContainer/HBoxContainer/VBoxContainer/VBoxContainer10/LimitGrowthRate" to="." method="OnGrowthRateToggled"]
 [connection signal="toggled" from="CenterContainer/VBoxContainer/AdvancedOptions/Difficulty/ScrollContainer/HBoxContainer/VBoxContainer/VBoxContainer12/OrganelleUnlocksEnabled" to="." method="OnOrganelleUnlocksToggled"]
-[connection signal="toggled" from="CenterContainer/VBoxContainer/AdvancedOptions/Planet/ScrollContainer/VBoxContainer/VBoxContainer/LAWKAdvanced" to="." method="OnLAWKToggled"]
-[connection signal="item_selected" from="CenterContainer/VBoxContainer/AdvancedOptions/Planet/ScrollContainer/VBoxContainer/HBoxContainer2/LifeOriginAdvanced" to="." method="OnLifeOriginSelected"]
-[connection signal="toggled" from="CenterContainer/VBoxContainer/AdvancedOptions/Planet/ScrollContainer/VBoxContainer/VBoxContainer2/DayNightCycleEnabled" to="." method="OnDayNightCycleToggled"]
-[connection signal="value_changed" from="CenterContainer/VBoxContainer/AdvancedOptions/Planet/ScrollContainer/VBoxContainer/VBoxContainer4/HBoxContainer/HBoxContainer/DayLength" to="." method="OnDayLengthChanged"]
-[connection signal="text_changed" from="CenterContainer/VBoxContainer/AdvancedOptions/Planet/ScrollContainer/VBoxContainer/HBoxContainer3/HBoxContainer/GameSeedAdvanced" to="." method="OnGameSeedChangedFromAdvanced"]
-[connection signal="pressed" from="CenterContainer/VBoxContainer/AdvancedOptions/Planet/ScrollContainer/VBoxContainer/HBoxContainer3/HBoxContainer/RandomizeButtonAdvanced" to="." method="OnRandomisedGameSeedPressed"]
-[connection signal="item_selected" from="CenterContainer/VBoxContainer/AdvancedOptions/Planet/ScrollContainer/VBoxContainer/HBoxContainer4/WorldSize" to="." method="OnWorldSizeSelected"]
 [connection signal="toggled" from="CenterContainer/VBoxContainer/AdvancedOptions/Misc/VBoxContainer/VBoxContainer2/IncludeMulticellular" to="." method="OnIncludeMulticellularToggled"]
 [connection signal="toggled" from="CenterContainer/VBoxContainer/AdvancedOptions/Misc/VBoxContainer/VBoxContainer3/EasterEggs" to="." method="OnEasterEggsToggled"]
 [connection signal="toggled" from="CenterContainer/VBoxContainer/AdvancedOptions/Misc/VBoxContainer/VBoxContainer4/ExperimentalFeatures" to="." method="OnExperimentalFeaturesChanged"]
