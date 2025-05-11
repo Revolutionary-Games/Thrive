@@ -105,7 +105,7 @@ theme_override_constants/margin_bottom = 10
 layout_mode = 2
 ContentPath = NodePath("PatchMapDrawer")
 MaxZoom = 5.0
-MinZoom = 0.1
+MinZoom = 0.25
 
 [node name="PatchMapDrawer" parent="GUI/VBoxContainer/PatchMap/HBoxContainer/PatchMap/MarginContainer/DraggableScrollContainer" instance=ExtResource("7_8flxh")]
 layout_mode = 2

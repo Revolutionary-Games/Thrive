@@ -218,8 +218,8 @@ public class GlobalGlaciationEvent : IWorldEffect
         switch (targetWorld.WorldSettings.ClimateInstability)
         {
             case WorldGenerationSettings.ClimateInstabilityEnum.Low:
-                return random.Next((int)(Constants.GLOBAL_GLACIATION_MIN_DURATION / 1.5f),
-                    (int)(Constants.GLOBAL_GLACIATION_MAX_DURATION / 1.5f));
+                return random.Next(Math.Max((int)(Constants.GLOBAL_GLACIATION_MIN_DURATION / 1.5f), 1),
+                    Math.Max((int)(Constants.GLOBAL_GLACIATION_MAX_DURATION / 1.5f), 1));
             case WorldGenerationSettings.ClimateInstabilityEnum.High:
                 return random.Next((int)(Constants.GLOBAL_GLACIATION_MIN_DURATION * 1.5f),
                     (int)(Constants.GLOBAL_GLACIATION_MAX_DURATION * 1.5f));
