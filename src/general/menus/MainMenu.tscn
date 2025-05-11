@@ -132,7 +132,7 @@ Menu3DBackgroundScenes = ["res://assets/models/menu_backgrounds/MainMenuScene1.t
 FreebuildButtonPath = NodePath("MenuContainers/Menus/VBoxContainer/Tools/FreebuildMicrobeEditor")
 MulticellularFreebuildButtonPath = NodePath("MenuContainers/Menus/VBoxContainer/Tools/FreebuildMulticellularEditor")
 AutoEvoExploringButtonPath = NodePath("MenuContainers/Menus/VBoxContainer/Tools/AutoEvoExploring")
-PlanetCustomizationButtonPath = NodePath("MenuContainers/Menus/VBoxContainer/Tools/Planet Customizer")
+PlanetCustomizationButtonPath = NodePath("MenuContainers/Menus/VBoxContainer/Tools/PlanetCustomizer")
 MicrobeBenchmarkButtonPath = NodePath("MenuContainers/Menus/VBoxContainer/Benchmarks/MicrobeBenchmark")
 ExitToLauncherButtonPath = NodePath("MenuContainers/Menus/VBoxContainer/MainMenu/Launcher")
 CreditsContainerPath = NodePath("CreditsView")
@@ -980,7 +980,7 @@ ShowCloseButton = false
 [connection signal="pressed" from="MenuContainers/Menus/VBoxContainer/Tools/FreebuildMicrobeEditor" to="." method="FreebuildEditorPressed"]
 [connection signal="pressed" from="MenuContainers/Menus/VBoxContainer/Tools/FreebuildMulticellularEditor" to="." method="MulticellularFreebuildEditorPressed"]
 [connection signal="pressed" from="MenuContainers/Menus/VBoxContainer/Tools/AutoEvoExploring" to="." method="OnAutoEvoExploringPressed"]
-[connection signal="pressed" from="MenuContainers/Menus/VBoxContainer/Tools/Planet Customizer" to="." method="PlanetCustomizerPressed"]
+[connection signal="pressed" from="MenuContainers/Menus/VBoxContainer/Tools/PlanetCustomizer" to="." method="PlanetCustomizerPressed"]
 [connection signal="pressed" from="MenuContainers/Menus/VBoxContainer/Tools/Benchmarks" to="." method="BenchmarksPressed"]
 [connection signal="pressed" from="MenuContainers/Menus/VBoxContainer/Tools/Back" to="." method="BackFromToolsPressed"]
 [connection signal="pressed" from="MenuContainers/Menus/VBoxContainer/Extras/Thriveopedia" to="." method="ThriveopediaPressed"]
