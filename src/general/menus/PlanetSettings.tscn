@@ -17,12 +17,12 @@ theme = ExtResource("1_au4yw")
 theme_override_constants/separation = 10
 alignment = 1
 script = ExtResource("2_4astu")
-lifeOriginButton = NodePath("")
-worldSizeButton = NodePath("")
-worldTemperatureButton = NodePath("HBoxContainer2/WorldTemperature")
-worldSeaLevelButton = NodePath("HBoxContainer3/WorldSeaLevel")
-worldGeologicalActivityButton = NodePath("HBoxContainer4/WorldGeologicalActivity")
-worldClimateInstabilityButton = NodePath("HBoxContainer5/WorldClimateInstability")
+lifeOriginButton = NodePath("VBoxContainer3/HBoxContainer/LifeOrigin")
+worldSizeButton = NodePath("VBoxContainer4/HBoxContainer/WorldSize")
+worldTemperatureButton = NodePath("VBoxContainer5/HBoxContainer/WorldTemperature")
+worldSeaLevelButton = NodePath("VBoxContainer6/HBoxContainer/WorldSeaLevel")
+worldGeologicalActivityButton = NodePath("VBoxContainer7/HBoxContainer/WorldGeologicalActivity")
+worldClimateInstabilityButton = NodePath("VBoxContainer8/HBoxContainer/WorldClimateInstability")
 lawkOnlyButton = NodePath("VBoxContainer/HBoxContainer/LAWKButton")
 dayNightCycleButton = NodePath("VBoxContainer2/HBoxContainer/DayNightCycleButton")
 dayLength = NodePath("DayLengthContainer/HBoxContainer/HBoxContainer/DayLength")
@@ -39,6 +39,7 @@ layout_mode = 2
 [node name="Label2" type="Label" parent="VBoxContainer3/HBoxContainer"]
 layout_mode = 2
 size_flags_horizontal = 3
+size_flags_stretch_ratio = 3.0
 mouse_filter = 0
 text = "LIFE_ORIGIN"
 
@@ -47,6 +48,7 @@ custom_minimum_size = Vector2(200, 25)
 layout_mode = 2
 size_flags_horizontal = 3
 size_flags_vertical = 0
+size_flags_stretch_ratio = 2.0
 tooltip_text = "LIFE_ORIGIN_TOOLTIP"
 selected = 0
 item_count = 3
@@ -76,6 +78,7 @@ layout_mode = 2
 [node name="Label" type="Label" parent="VBoxContainer4/HBoxContainer"]
 layout_mode = 2
 size_flags_horizontal = 3
+size_flags_stretch_ratio = 3.0
 mouse_filter = 0
 text = "WORLD_SIZE"
 
@@ -84,6 +87,7 @@ custom_minimum_size = Vector2(200, 25)
 layout_mode = 2
 size_flags_horizontal = 3
 size_flags_vertical = 0
+size_flags_stretch_ratio = 2.0
 tooltip_text = "WORLD_SIZE_TOOLTIP"
 selected = 1
 item_count = 3
@@ -102,33 +106,26 @@ text = "WORLD_SIZE_EXPLANATION"
 label_settings = ExtResource("1_o0axg")
 autowrap_mode = 3
 
-[node name="HBoxContainer2" type="HBoxContainer" parent="."]
+[node name="VBoxContainer5" type="VBoxContainer" parent="."]
 layout_mode = 2
 size_flags_horizontal = 3
 
-[node name="VBoxContainer" type="VBoxContainer" parent="HBoxContainer2"]
+[node name="HBoxContainer" type="HBoxContainer" parent="VBoxContainer5"]
 layout_mode = 2
-size_flags_horizontal = 3
 
-[node name="Label" type="Label" parent="HBoxContainer2/VBoxContainer"]
+[node name="Label2" type="Label" parent="VBoxContainer5/HBoxContainer"]
 layout_mode = 2
 size_flags_horizontal = 3
+size_flags_stretch_ratio = 3.0
 mouse_filter = 0
 text = "WORLD_TEMPERATURE"
 
-[node name="Label2" type="Label" parent="HBoxContainer2/VBoxContainer"]
-custom_minimum_size = Vector2(200, 0)
-layout_mode = 2
-size_flags_horizontal = 3
-text = "WORLD_TEMPERATURE_EXPLANATION"
-label_settings = ExtResource("1_o0axg")
-autowrap_mode = 3
-
-[node name="WorldTemperature" type="OptionButton" parent="HBoxContainer2"]
+[node name="WorldTemperature" type="OptionButton" parent="VBoxContainer5/HBoxContainer"]
 custom_minimum_size = Vector2(200, 25)
 layout_mode = 2
 size_flags_horizontal = 3
 size_flags_vertical = 0
+size_flags_stretch_ratio = 2.0
 tooltip_text = "WORLD_SIZE_TOOLTIP"
 selected = 1
 item_count = 3
@@ -139,33 +136,34 @@ popup/item_1/id = 1
 popup/item_2/text = "WORLD_TEMPERATURE_WARM"
 popup/item_2/id = 2
 
-[node name="HBoxContainer3" type="HBoxContainer" parent="."]
-layout_mode = 2
-size_flags_horizontal = 3
-
-[node name="VBoxContainer" type="VBoxContainer" parent="HBoxContainer3"]
-layout_mode = 2
-size_flags_horizontal = 3
-
-[node name="Label" type="Label" parent="HBoxContainer3/VBoxContainer"]
-layout_mode = 2
-size_flags_horizontal = 3
-mouse_filter = 0
-text = "WORLD_SEA_LEVEL"
-
-[node name="Label2" type="Label" parent="HBoxContainer3/VBoxContainer"]
+[node name="Label3" type="Label" parent="VBoxContainer5"]
 custom_minimum_size = Vector2(200, 0)
 layout_mode = 2
 size_flags_horizontal = 3
-text = "WORLD_SEA_LEVEL_EXPLANATION"
+text = "WORLD_TEMPERATURE_EXPLANATION"
 label_settings = ExtResource("1_o0axg")
 autowrap_mode = 3
 
-[node name="WorldSeaLevel" type="OptionButton" parent="HBoxContainer3"]
+[node name="VBoxContainer6" type="VBoxContainer" parent="."]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="HBoxContainer" type="HBoxContainer" parent="VBoxContainer6"]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="VBoxContainer6/HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_stretch_ratio = 3.0
+mouse_filter = 0
+text = "WORLD_SEA_LEVEL"
+
+[node name="WorldSeaLevel" type="OptionButton" parent="VBoxContainer6/HBoxContainer"]
 custom_minimum_size = Vector2(200, 25)
 layout_mode = 2
 size_flags_horizontal = 3
 size_flags_vertical = 0
+size_flags_stretch_ratio = 2.0
 tooltip_text = "WORLD_SIZE_TOOLTIP"
 selected = 1
 item_count = 3
@@ -176,33 +174,34 @@ popup/item_1/id = 1
 popup/item_2/text = "WORLD_SEA_LEVEL_DEEP"
 popup/item_2/id = 2
 
-[node name="HBoxContainer4" type="HBoxContainer" parent="."]
-layout_mode = 2
-size_flags_horizontal = 3
-
-[node name="VBoxContainer" type="VBoxContainer" parent="HBoxContainer4"]
-layout_mode = 2
-size_flags_horizontal = 3
-
-[node name="Label" type="Label" parent="HBoxContainer4/VBoxContainer"]
-layout_mode = 2
-size_flags_horizontal = 3
-mouse_filter = 0
-text = "GEOLOGICAL_ACTIVITY"
-
-[node name="Label2" type="Label" parent="HBoxContainer4/VBoxContainer"]
+[node name="Label2" type="Label" parent="VBoxContainer6"]
 custom_minimum_size = Vector2(200, 0)
 layout_mode = 2
 size_flags_horizontal = 3
-text = "GEOLOGICAL_ACTIVITY_EXPLANATION"
+text = "WORLD_SEA_LEVEL_EXPLANATION"
 label_settings = ExtResource("1_o0axg")
 autowrap_mode = 3
 
-[node name="WorldGeologicalActivity" type="OptionButton" parent="HBoxContainer4"]
+[node name="VBoxContainer7" type="VBoxContainer" parent="."]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="HBoxContainer" type="HBoxContainer" parent="VBoxContainer7"]
+layout_mode = 2
+
+[node name="Label2" type="Label" parent="VBoxContainer7/HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_stretch_ratio = 3.0
+mouse_filter = 0
+text = "GEOLOGICAL_ACTIVITY"
+
+[node name="WorldGeologicalActivity" type="OptionButton" parent="VBoxContainer7/HBoxContainer"]
 custom_minimum_size = Vector2(200, 25)
 layout_mode = 2
 size_flags_horizontal = 3
 size_flags_vertical = 0
+size_flags_stretch_ratio = 2.0
 tooltip_text = "WORLD_SIZE_TOOLTIP"
 selected = 1
 item_count = 3
@@ -213,33 +212,34 @@ popup/item_1/id = 1
 popup/item_2/text = "GEOLOGICAL_ACTIVITY_ACTIVE"
 popup/item_2/id = 2
 
-[node name="HBoxContainer5" type="HBoxContainer" parent="."]
-layout_mode = 2
-size_flags_horizontal = 3
-
-[node name="VBoxContainer" type="VBoxContainer" parent="HBoxContainer5"]
-layout_mode = 2
-size_flags_horizontal = 3
-
-[node name="Label" type="Label" parent="HBoxContainer5/VBoxContainer"]
-layout_mode = 2
-size_flags_horizontal = 3
-mouse_filter = 0
-text = "CLIMATE_INSTABILITY"
-
-[node name="Label2" type="Label" parent="HBoxContainer5/VBoxContainer"]
+[node name="Label3" type="Label" parent="VBoxContainer7"]
 custom_minimum_size = Vector2(200, 0)
 layout_mode = 2
 size_flags_horizontal = 3
-text = "CLIMATE_INSTABILITY_EXPLANATION"
+text = "GEOLOGICAL_ACTIVITY_EXPLANATION"
 label_settings = ExtResource("1_o0axg")
 autowrap_mode = 3
 
-[node name="WorldClimateInstability" type="OptionButton" parent="HBoxContainer5"]
+[node name="VBoxContainer8" type="VBoxContainer" parent="."]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="HBoxContainer" type="HBoxContainer" parent="VBoxContainer8"]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="VBoxContainer8/HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_stretch_ratio = 3.0
+mouse_filter = 0
+text = "CLIMATE_INSTABILITY"
+
+[node name="WorldClimateInstability" type="OptionButton" parent="VBoxContainer8/HBoxContainer"]
 custom_minimum_size = Vector2(200, 25)
 layout_mode = 2
 size_flags_horizontal = 3
 size_flags_vertical = 0
+size_flags_stretch_ratio = 2.0
 tooltip_text = "WORLD_SIZE_TOOLTIP"
 selected = 1
 item_count = 3
@@ -249,6 +249,14 @@ popup/item_1/text = "WORLD_SIZE_MEDIUM"
 popup/item_1/id = 1
 popup/item_2/text = "WORLD_SIZE_LARGE"
 popup/item_2/id = 2
+
+[node name="Label3" type="Label" parent="VBoxContainer8"]
+custom_minimum_size = Vector2(200, 0)
+layout_mode = 2
+size_flags_horizontal = 3
+text = "CLIMATE_INSTABILITY_EXPLANATION"
+label_settings = ExtResource("1_o0axg")
+autowrap_mode = 3
 
 [node name="HSeparator" type="HSeparator" parent="."]
 custom_minimum_size = Vector2(0, 14)
@@ -315,11 +323,13 @@ size_flags_horizontal = 3
 custom_minimum_size = Vector2(250, 0)
 layout_mode = 2
 size_flags_horizontal = 3
+size_flags_stretch_ratio = 3.0
 text = "DAY_LENGTH"
 
 [node name="HBoxContainer" type="HBoxContainer" parent="DayLengthContainer/HBoxContainer"]
 layout_mode = 2
 size_flags_horizontal = 3
+size_flags_stretch_ratio = 2.0
 
 [node name="DayLength" type="HSlider" parent="DayLengthContainer/HBoxContainer/HBoxContainer"]
 custom_minimum_size = Vector2(140, 0)
