@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using Godot;
 using Newtonsoft.Json;
 using Xoshiro.PRNG64;
@@ -110,8 +111,7 @@ public class GlobalGlaciationEvent : IWorldEffect
         }
         else if (generationsToTrigger == 0)
         {
-            eventDuration = random.Next(Constants.GLOBAL_GLACIATION_MIN_DURATION,
-                Constants.GLOBAL_GLACIATION_MAX_DURATION);
+            eventDuration = GetEventDuration();
             generationsLeft = eventDuration;
 
             foreach (var patch in targetWorld.Map.Patches.Values)
@@ -189,7 +189,7 @@ public class GlobalGlaciationEvent : IWorldEffect
 
         if (patch.BiomeType != BiomeType.IceShelf)
         {
-            currentSunlight.Ambient *= Constants.GLOBAL_GLACIATION_SUNLIGHT_MULTIPLICATION;
+            currentSunlight.Ambient *= GetSunlightMultiplier();
             patch.Biome.ModifyLongTermCondition(Compound.Sunlight, currentSunlight);
         }
 
@@ -210,6 +210,37 @@ public class GlobalGlaciationEvent : IWorldEffect
         {
             var iceChunkConfiguration = templateBiome.Conditions.Chunks[configuration];
             patch.Biome.Chunks.Add(configuration, iceChunkConfiguration);
+        }
+    }
+
+    private int GetEventDuration()
+    {
+        switch (targetWorld.WorldSettings.ClimateInstability)
+        {
+            case WorldGenerationSettings.ClimateInstabilityEnum.Low:
+                return random.Next((int)(Constants.GLOBAL_GLACIATION_MIN_DURATION / 1.5f),
+                    (int)(Constants.GLOBAL_GLACIATION_MAX_DURATION / 1.5f));
+            case WorldGenerationSettings.ClimateInstabilityEnum.High:
+                return random.Next((int)(Constants.GLOBAL_GLACIATION_MIN_DURATION * 1.5f),
+                    (int)(Constants.GLOBAL_GLACIATION_MAX_DURATION * 1.5f));
+            case WorldGenerationSettings.ClimateInstabilityEnum.Medium:
+            default:
+                return random.Next(Constants.GLOBAL_GLACIATION_MIN_DURATION,
+                    Constants.GLOBAL_GLACIATION_MAX_DURATION);
+        }
+    }
+
+    private float GetSunlightMultiplier()
+    {
+        switch (targetWorld.WorldSettings.ClimateInstability)
+        {
+            case WorldGenerationSettings.ClimateInstabilityEnum.Low:
+                return Math.Min(Constants.GLOBAL_GLACIATION_SUNLIGHT_MULTIPLICATION * 1.25f, 1);
+            case WorldGenerationSettings.ClimateInstabilityEnum.High:
+                return Constants.GLOBAL_GLACIATION_SUNLIGHT_MULTIPLICATION * 0.75f;
+            case WorldGenerationSettings.ClimateInstabilityEnum.Medium:
+            default:
+                return Constants.GLOBAL_GLACIATION_SUNLIGHT_MULTIPLICATION;
         }
     }
 
@@ -279,7 +310,7 @@ public class GlobalGlaciationEvent : IWorldEffect
                 return;
             }
 
-            currentSunlight.Ambient /= Constants.GLOBAL_GLACIATION_SUNLIGHT_MULTIPLICATION;
+            currentSunlight.Ambient /= GetSunlightMultiplier();
             patch.Biome.ModifyLongTermCondition(Compound.Sunlight, currentSunlight);
         }
 
