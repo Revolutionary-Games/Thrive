@@ -23,11 +23,48 @@ worldTemperatureButton = NodePath("HBoxContainer2/WorldTemperature")
 worldSeaLevelButton = NodePath("HBoxContainer3/WorldSeaLevel")
 worldGeologicalActivityButton = NodePath("HBoxContainer4/WorldGeologicalActivity")
 worldClimateInstabilityButton = NodePath("HBoxContainer5/WorldClimateInstability")
-lawkOnlyButton = NodePath("HBoxContainer8/VBoxContainer/HBoxContainer/LAWKButton")
-dayNightCycleButton = NodePath("HBoxContainer9/VBoxContainer/HBoxContainer/DayNightCycleButton")
+lawkOnlyButton = NodePath("VBoxContainer/HBoxContainer/LAWKButton")
+dayNightCycleButton = NodePath("VBoxContainer2/HBoxContainer/DayNightCycleButton")
 dayLength = NodePath("DayLengthContainer/HBoxContainer/HBoxContainer/DayLength")
 dayLengthReadout = NodePath("DayLengthContainer/HBoxContainer/HBoxContainer/DayLengthReadout")
 dayLengthContainer = NodePath("DayLengthContainer")
+
+[node name="VBoxContainer3" type="VBoxContainer" parent="."]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="HBoxContainer" type="HBoxContainer" parent="VBoxContainer3"]
+layout_mode = 2
+
+[node name="Label2" type="Label" parent="VBoxContainer3/HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+mouse_filter = 0
+text = "LIFE_ORIGIN"
+
+[node name="LifeOrigin" type="OptionButton" parent="VBoxContainer3/HBoxContainer"]
+custom_minimum_size = Vector2(200, 25)
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 0
+tooltip_text = "LIFE_ORIGIN_TOOLTIP"
+selected = 0
+item_count = 3
+popup/item_0/text = "LIFE_ORIGIN_VENTS"
+popup/item_0/id = 0
+popup/item_1/text = "LIFE_ORIGIN_POND"
+popup/item_1/id = 1
+popup/item_2/text = "LIFE_ORIGIN_PANSPERMIA"
+popup/item_2/id = 2
+popup/item_2/disabled = true
+
+[node name="Label3" type="Label" parent="VBoxContainer3"]
+custom_minimum_size = Vector2(200, 0)
+layout_mode = 2
+size_flags_horizontal = 3
+text = "LIFE_ORIGIN_EXPLANATION"
+label_settings = ExtResource("1_o0axg")
+autowrap_mode = 3
 
 [node name="HBoxContainer6" type="HBoxContainer" parent="."]
 layout_mode = 2
@@ -255,28 +292,24 @@ popup/item_2/id = 2
 custom_minimum_size = Vector2(0, 14)
 layout_mode = 2
 
-[node name="HBoxContainer8" type="HBoxContainer" parent="."]
+[node name="VBoxContainer" type="VBoxContainer" parent="."]
 layout_mode = 2
 size_flags_horizontal = 3
 
-[node name="VBoxContainer" type="VBoxContainer" parent="HBoxContainer8"]
-layout_mode = 2
-size_flags_horizontal = 3
-
-[node name="HBoxContainer" type="HBoxContainer" parent="HBoxContainer8/VBoxContainer"]
+[node name="HBoxContainer" type="HBoxContainer" parent="VBoxContainer"]
 layout_mode = 2
 
-[node name="Label" type="Label" parent="HBoxContainer8/VBoxContainer/HBoxContainer"]
+[node name="Label" type="Label" parent="VBoxContainer/HBoxContainer"]
 layout_mode = 2
 size_flags_horizontal = 3
 mouse_filter = 0
 text = "LAWK_ONLY"
 
-[node name="LAWKButton" type="CheckButton" parent="HBoxContainer8/VBoxContainer/HBoxContainer"]
+[node name="LAWKButton" type="CheckButton" parent="VBoxContainer/HBoxContainer"]
 layout_mode = 2
 button_pressed = true
 
-[node name="Label2" type="Label" parent="HBoxContainer8/VBoxContainer"]
+[node name="Label2" type="Label" parent="VBoxContainer"]
 custom_minimum_size = Vector2(200, 0)
 layout_mode = 2
 size_flags_horizontal = 3
@@ -284,28 +317,24 @@ text = "LAWK_ONLY_EXPLANATION"
 label_settings = ExtResource("1_o0axg")
 autowrap_mode = 3
 
-[node name="HBoxContainer9" type="HBoxContainer" parent="."]
+[node name="VBoxContainer2" type="VBoxContainer" parent="."]
 layout_mode = 2
 size_flags_horizontal = 3
 
-[node name="VBoxContainer" type="VBoxContainer" parent="HBoxContainer9"]
-layout_mode = 2
-size_flags_horizontal = 3
-
-[node name="HBoxContainer" type="HBoxContainer" parent="HBoxContainer9/VBoxContainer"]
+[node name="HBoxContainer" type="HBoxContainer" parent="VBoxContainer2"]
 layout_mode = 2
 
-[node name="Label" type="Label" parent="HBoxContainer9/VBoxContainer/HBoxContainer"]
+[node name="Label" type="Label" parent="VBoxContainer2/HBoxContainer"]
 layout_mode = 2
 size_flags_horizontal = 3
 mouse_filter = 0
 text = "DAY_NIGHT_CYCLE_ENABLED"
 
-[node name="DayNightCycleButton" type="CheckButton" parent="HBoxContainer9/VBoxContainer/HBoxContainer"]
+[node name="DayNightCycleButton" type="CheckButton" parent="VBoxContainer2/HBoxContainer"]
 layout_mode = 2
 button_pressed = true
 
-[node name="Label2" type="Label" parent="HBoxContainer9/VBoxContainer"]
+[node name="Label2" type="Label" parent="VBoxContainer2"]
 custom_minimum_size = Vector2(200, 0)
 layout_mode = 2
 size_flags_horizontal = 3
@@ -361,7 +390,8 @@ text = "DAY_LENGTH_EXPLANATION"
 label_settings = ExtResource("1_o0axg")
 autowrap_mode = 3
 
+[connection signal="item_selected" from="VBoxContainer3/HBoxContainer/LifeOrigin" to="." method="OnLifeOriginSelected"]
 [connection signal="item_selected" from="HBoxContainer6/LifeOrigin" to="." method="OnLifeOriginSelected"]
-[connection signal="toggled" from="HBoxContainer8/VBoxContainer/HBoxContainer/LAWKButton" to="." method="OnLAWKToggled"]
-[connection signal="toggled" from="HBoxContainer9/VBoxContainer/HBoxContainer/DayNightCycleButton" to="." method="OnDayNightCycleToggled"]
+[connection signal="toggled" from="VBoxContainer/HBoxContainer/LAWKButton" to="." method="OnLAWKToggled"]
+[connection signal="toggled" from="VBoxContainer2/HBoxContainer/DayNightCycleButton" to="." method="OnDayNightCycleToggled"]
 [connection signal="value_changed" from="DayLengthContainer/HBoxContainer/HBoxContainer/DayLength" to="." method="OnDayLengthChanged"]

@@ -1,9 +1,8 @@
-[gd_scene load_steps=19 format=3 uid="uid://b0315b3i5bs5s"]
+[gd_scene load_steps=17 format=3 uid="uid://b0315b3i5bs5s"]
 
 [ext_resource type="Theme" uid="uid://b4cx0o110g4b6" path="res://src/gui_common/thrive_theme.tres" id="1"]
 [ext_resource type="Script" uid="uid://c2fgxgloa4ura" path="res://src/general/menus/NewGameSettings.cs" id="2"]
 [ext_resource type="Texture2D" uid="uid://c8qyts61c8a0y" path="res://assets/textures/gui/bevel/randomizeButtonActive.png" id="5"]
-[ext_resource type="FontFile" uid="uid://s8m5c8resd50" path="res://assets/fonts/Lato-Regular.ttf" id="5_otvf3"]
 [ext_resource type="LabelSettings" uid="uid://uxdd8vb4xedn" path="res://src/gui_common/fonts/Body-Regular-AlmostTiny.tres" id="5_rnvau"]
 [ext_resource type="Texture2D" uid="uid://baqkntjn5ng0y" path="res://assets/textures/gui/bevel/randomizeButton.png" id="6"]
 [ext_resource type="Texture2D" uid="uid://ch76ktrn1xy7r" path="res://assets/textures/gui/bevel/randomizeButtonDisabled.png" id="7"]
@@ -13,9 +12,6 @@
 [ext_resource type="PackedScene" uid="uid://bgeijgq7runaw" path="res://src/gui_common/FocusGrabber.tscn" id="12"]
 [ext_resource type="PackedScene" uid="uid://dw3ubsraoopin" path="res://src/gui_common/TabButtons.tscn" id="13"]
 [ext_resource type="LabelSettings" uid="uid://58teykjxnrdt" path="res://src/gui_common/fonts/Body-Regular-AlmostTiny-Red.tres" id="13_yxxhr"]
-
-[sub_resource type="LabelSettings" id="LabelSettings_8kue3"]
-font = ExtResource("5_otvf3")
 
 [sub_resource type="ButtonGroup" id="ButtonGroup_48p0t"]
 
@@ -46,7 +42,7 @@ MiscTabPath = NodePath("CenterContainer/VBoxContainer/AdvancedOptions/Misc")
 DifficultyTabButtonPath = NodePath("CenterContainer/VBoxContainer/TabButtons/DifficultyButton")
 PlanetTabButtonPath = NodePath("CenterContainer/VBoxContainer/TabButtons/PlanetButton")
 MiscTabButtonPath = NodePath("CenterContainer/VBoxContainer/TabButtons/MiscButton")
-DifficultyPresetButtonPath = NodePath("CenterContainer/VBoxContainer/BasicOptions/Main/VBoxContainer/HBoxContainer/DifficultyPreset")
+DifficultyPresetButtonPath = NodePath("CenterContainer/VBoxContainer/BasicOptions/Main/VBoxContainer/HBoxContainer4/DifficultyPreset")
 DifficultyPresetAdvancedButtonPath = NodePath("CenterContainer/VBoxContainer/AdvancedOptions/Difficulty/ScrollContainer/HBoxContainer/VBoxContainer/VBoxContainer6/HBoxContainer/DifficultyPreset")
 MPMultiplierPath = NodePath("CenterContainer/VBoxContainer/AdvancedOptions/Difficulty/ScrollContainer/HBoxContainer/VBoxContainer/VBoxContainer/HBoxContainer/HBoxContainer/MPMultiplier")
 MPMultiplierReadoutPath = NodePath("CenterContainer/VBoxContainer/AdvancedOptions/Difficulty/ScrollContainer/HBoxContainer/VBoxContainer/VBoxContainer/HBoxContainer/HBoxContainer/MPMultiplierReadout")
@@ -66,7 +62,7 @@ FreeGlucoseCloudButtonPath = NodePath("CenterContainer/VBoxContainer/AdvancedOpt
 LimitGrowthRateButtonPath = NodePath("CenterContainer/VBoxContainer/AdvancedOptions/Difficulty/ScrollContainer/HBoxContainer/VBoxContainer/VBoxContainer10/LimitGrowthRate")
 OrganelleUnlocksEnabledPath = NodePath("CenterContainer/VBoxContainer/AdvancedOptions/Difficulty/ScrollContainer/HBoxContainer/VBoxContainer/VBoxContainer12/OrganelleUnlocksEnabled")
 LifeOriginButtonPath = NodePath("CenterContainer/VBoxContainer/BasicOptions/Main/VBoxContainer/HBoxContainer2/LifeOrigin")
-LAWKButtonPath = NodePath("CenterContainer/VBoxContainer/BasicOptions/Main/VBoxContainer/VBoxContainer2/LAWK")
+LAWKButtonPath = NodePath("")
 GameSeedPath = NodePath("CenterContainer/VBoxContainer/BasicOptions/Main/VBoxContainer/HBoxContainer3/HBoxContainer/GameSeed")
 IncludeMulticellularButtonPath = NodePath("CenterContainer/VBoxContainer/AdvancedOptions/Misc/VBoxContainer/VBoxContainer2/IncludeMulticellular")
 EasterEggsButtonPath = NodePath("CenterContainer/VBoxContainer/AdvancedOptions/Misc/VBoxContainer/VBoxContainer3/EasterEggs")
@@ -110,40 +106,53 @@ theme_override_constants/margin_bottom = 15
 layout_mode = 2
 theme_override_constants/separation = 10
 
-[node name="HBoxContainer" type="HBoxContainer" parent="CenterContainer/VBoxContainer/BasicOptions/Main/VBoxContainer"]
-layout_mode = 2
-
-[node name="Label" type="Label" parent="CenterContainer/VBoxContainer/BasicOptions/Main/VBoxContainer/HBoxContainer"]
-custom_minimum_size = Vector2(250, 0)
-layout_mode = 2
-text = "DIFFICULTY_PRESET"
-
-[node name="Separator" type="Control" parent="CenterContainer/VBoxContainer/BasicOptions/Main/VBoxContainer/HBoxContainer"]
+[node name="HBoxContainer4" type="HBoxContainer" parent="CenterContainer/VBoxContainer/BasicOptions/Main/VBoxContainer"]
 layout_mode = 2
 size_flags_horizontal = 3
 
-[node name="DifficultyPreset" type="OptionButton" parent="CenterContainer/VBoxContainer/BasicOptions/Main/VBoxContainer/HBoxContainer"]
+[node name="VBoxContainer" type="VBoxContainer" parent="CenterContainer/VBoxContainer/BasicOptions/Main/VBoxContainer/HBoxContainer4"]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="Label3" type="Label" parent="CenterContainer/VBoxContainer/BasicOptions/Main/VBoxContainer/HBoxContainer4/VBoxContainer"]
+custom_minimum_size = Vector2(250, 0)
+layout_mode = 2
+size_flags_horizontal = 3
+text = "DIFFICULTY_PRESET"
+
+[node name="DifficultyPreset" type="OptionButton" parent="CenterContainer/VBoxContainer/BasicOptions/Main/VBoxContainer/HBoxContainer4"]
 custom_minimum_size = Vector2(200, 25)
 layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 0
 
-[node name="VBoxContainer2" type="VBoxContainer" parent="CenterContainer/VBoxContainer/BasicOptions/Main/VBoxContainer"]
+[node name="HBoxContainer" type="HBoxContainer" parent="CenterContainer/VBoxContainer/BasicOptions/Main/VBoxContainer"]
 layout_mode = 2
 
-[node name="LAWK" type="CheckBox" parent="CenterContainer/VBoxContainer/BasicOptions/Main/VBoxContainer/VBoxContainer2"]
+[node name="VBoxContainer4" type="VBoxContainer" parent="CenterContainer/VBoxContainer/BasicOptions/Main/VBoxContainer"]
 layout_mode = 2
-size_flags_horizontal = 0
-button_pressed = true
+size_flags_horizontal = 3
+
+[node name="HBoxContainer" type="HBoxContainer" parent="CenterContainer/VBoxContainer/BasicOptions/Main/VBoxContainer/VBoxContainer4"]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="CenterContainer/VBoxContainer/BasicOptions/Main/VBoxContainer/VBoxContainer4/HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+mouse_filter = 0
 text = "LAWK_ONLY"
 
-[node name="Label" type="Label" parent="CenterContainer/VBoxContainer/BasicOptions/Main/VBoxContainer/VBoxContainer2"]
+[node name="LAWKButton" type="CheckButton" parent="CenterContainer/VBoxContainer/BasicOptions/Main/VBoxContainer/VBoxContainer4/HBoxContainer"]
+layout_mode = 2
+button_pressed = true
+
+[node name="Label2" type="Label" parent="CenterContainer/VBoxContainer/BasicOptions/Main/VBoxContainer/VBoxContainer4"]
 custom_minimum_size = Vector2(200, 0)
 layout_mode = 2
+size_flags_horizontal = 3
 text = "LAWK_ONLY_EXPLANATION"
 label_settings = ExtResource("5_rnvau")
 autowrap_mode = 3
-
-[node name="VBoxContainer3" type="VBoxContainer" parent="CenterContainer/VBoxContainer/BasicOptions/Main/VBoxContainer"]
-layout_mode = 2
 
 [node name="HBoxContainer2" type="HBoxContainer" parent="CenterContainer/VBoxContainer/BasicOptions/Main/VBoxContainer"]
 layout_mode = 2
@@ -153,12 +162,11 @@ size_flags_horizontal = 3
 layout_mode = 2
 size_flags_horizontal = 3
 
-[node name="Label" type="Label" parent="CenterContainer/VBoxContainer/BasicOptions/Main/VBoxContainer/HBoxContainer2/VBoxContainer"]
+[node name="Label3" type="Label" parent="CenterContainer/VBoxContainer/BasicOptions/Main/VBoxContainer/HBoxContainer2/VBoxContainer"]
 layout_mode = 2
 size_flags_horizontal = 3
 mouse_filter = 0
 text = "LIFE_ORIGIN"
-label_settings = SubResource("LabelSettings_8kue3")
 
 [node name="Label2" type="Label" parent="CenterContainer/VBoxContainer/BasicOptions/Main/VBoxContainer/HBoxContainer2/VBoxContainer"]
 custom_minimum_size = Vector2(200, 0)
@@ -168,13 +176,10 @@ text = "LIFE_ORIGIN_EXPLANATION"
 label_settings = ExtResource("5_rnvau")
 autowrap_mode = 3
 
-[node name="Separator" type="Control" parent="CenterContainer/VBoxContainer/BasicOptions/Main/VBoxContainer/HBoxContainer2"]
-layout_mode = 2
-size_flags_horizontal = 3
-
 [node name="LifeOrigin" type="OptionButton" parent="CenterContainer/VBoxContainer/BasicOptions/Main/VBoxContainer/HBoxContainer2"]
 custom_minimum_size = Vector2(200, 25)
 layout_mode = 2
+size_flags_horizontal = 3
 size_flags_vertical = 0
 tooltip_text = "LIFE_ORIGIN_TOOLTIP"
 selected = 0
@@ -191,26 +196,21 @@ layout_mode = 2
 
 [node name="Label" type="Label" parent="CenterContainer/VBoxContainer/BasicOptions/Main/VBoxContainer/HBoxContainer3"]
 layout_mode = 2
-text = "PLANET_RANDOM_SEED"
-
-[node name="Separator" type="Control" parent="CenterContainer/VBoxContainer/BasicOptions/Main/VBoxContainer/HBoxContainer3"]
-layout_mode = 2
 size_flags_horizontal = 3
+text = "PLANET_RANDOM_SEED"
 
 [node name="HBoxContainer" type="HBoxContainer" parent="CenterContainer/VBoxContainer/BasicOptions/Main/VBoxContainer/HBoxContainer3"]
 custom_minimum_size = Vector2(200, 0)
 layout_mode = 2
+size_flags_horizontal = 3
 
 [node name="GameSeed" type="LineEdit" parent="CenterContainer/VBoxContainer/BasicOptions/Main/VBoxContainer/HBoxContainer3/HBoxContainer"]
 editor_description = "PLACEHOLDER"
 custom_minimum_size = Vector2(175, 0)
 layout_mode = 2
+size_flags_horizontal = 3
 tooltip_text = "RANDOM_SEED_TOOLTIP"
 text = "123456789"
-
-[node name="Separator" type="Control" parent="CenterContainer/VBoxContainer/BasicOptions/Main/VBoxContainer/HBoxContainer3/HBoxContainer"]
-layout_mode = 2
-size_flags_horizontal = 3
 
 [node name="RandomizeButton" type="TextureButton" parent="CenterContainer/VBoxContainer/BasicOptions/Main/VBoxContainer/HBoxContainer3/HBoxContainer"]
 custom_minimum_size = Vector2(31, 31)
@@ -966,8 +966,8 @@ focus_neighbor_left = NodePath("../Advanced")
 focus_previous = NodePath("../Advanced")
 text = "START_GAME"
 
-[connection signal="item_selected" from="CenterContainer/VBoxContainer/BasicOptions/Main/VBoxContainer/HBoxContainer/DifficultyPreset" to="." method="OnDifficultyPresetSelected"]
-[connection signal="toggled" from="CenterContainer/VBoxContainer/BasicOptions/Main/VBoxContainer/VBoxContainer2/LAWK" to="." method="OnLAWKToggled"]
+[connection signal="item_selected" from="CenterContainer/VBoxContainer/BasicOptions/Main/VBoxContainer/HBoxContainer4/DifficultyPreset" to="." method="OnDifficultyPresetSelected"]
+[connection signal="toggled" from="CenterContainer/VBoxContainer/BasicOptions/Main/VBoxContainer/VBoxContainer4/HBoxContainer/LAWKButton" to="." method="OnLAWKToggled"]
 [connection signal="item_selected" from="CenterContainer/VBoxContainer/BasicOptions/Main/VBoxContainer/HBoxContainer2/LifeOrigin" to="." method="OnLifeOriginSelected"]
 [connection signal="text_changed" from="CenterContainer/VBoxContainer/BasicOptions/Main/VBoxContainer/HBoxContainer3/HBoxContainer/GameSeed" to="." method="OnGameSeedChangedFromBasic"]
 [connection signal="pressed" from="CenterContainer/VBoxContainer/BasicOptions/Main/VBoxContainer/HBoxContainer3/HBoxContainer/RandomizeButton" to="." method="OnRandomisedGameSeedPressed"]

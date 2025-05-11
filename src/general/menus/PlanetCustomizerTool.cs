@@ -5,10 +5,6 @@
 /// </summary>
 public partial class PlanetCustomizerTool : Node
 {
-    public WorldGenerationSettings WorldSettings = null!;
-
-    public GameProperties GameProperties = null!;
-
     [Export]
     private PatchMapDrawer patchMapDrawer = null!;
 
@@ -29,6 +25,10 @@ public partial class PlanetCustomizerTool : Node
 
     [Export]
     private PlanetSettings planetSettings = null!;
+
+    private WorldGenerationSettings worldSettings = null!;
+
+    private GameProperties gameProperties = null!;
 
     public override void _Ready()
     {
@@ -56,7 +56,7 @@ public partial class PlanetCustomizerTool : Node
     private void InitNewWorld(IAutoEvoConfiguration configuration)
     {
         var planetGenerationSettings = planetSettings.GetPlanetSettings();
-        WorldSettings = new WorldGenerationSettings
+        worldSettings = new WorldGenerationSettings
         {
             AutoEvoConfiguration = configuration,
             WorldSize = planetGenerationSettings.WorldSize,
@@ -70,10 +70,10 @@ public partial class PlanetCustomizerTool : Node
             LAWK = planetGenerationSettings.LAWK,
         };
 
-        GameProperties = GameProperties.StartNewMicrobeGame(WorldSettings);
-        GameProperties.GameWorld.Map.RevealAllPatches();
+        gameProperties = GameProperties.StartNewMicrobeGame(worldSettings);
+        gameProperties.GameWorld.Map.RevealAllPatches();
         patchMapDrawer.PlayerPatch = null;
-        patchMapDrawer.Map = GameProperties.GameWorld.Map;
+        patchMapDrawer.Map = gameProperties.GameWorld.Map;
         patchMapDrawer.SelectedPatch = patchMapDrawer.PlayerPatch;
         patchDetailsPanel.SelectedPatch = patchMapDrawer.PlayerPatch;
     }
