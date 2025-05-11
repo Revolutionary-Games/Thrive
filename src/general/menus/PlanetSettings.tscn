@@ -17,8 +17,8 @@ theme = ExtResource("1_au4yw")
 theme_override_constants/separation = 10
 alignment = 1
 script = ExtResource("2_4astu")
-lifeOriginButton = NodePath("HBoxContainer6/LifeOrigin")
-worldSizeButton = NodePath("HBoxContainer/WorldSize")
+lifeOriginButton = NodePath("")
+worldSizeButton = NodePath("")
 worldTemperatureButton = NodePath("HBoxContainer2/WorldTemperature")
 worldSeaLevelButton = NodePath("HBoxContainer3/WorldSeaLevel")
 worldGeologicalActivityButton = NodePath("HBoxContainer4/WorldGeologicalActivity")
@@ -66,66 +66,20 @@ text = "LIFE_ORIGIN_EXPLANATION"
 label_settings = ExtResource("1_o0axg")
 autowrap_mode = 3
 
-[node name="HBoxContainer6" type="HBoxContainer" parent="."]
-layout_mode = 2
-
-[node name="VBoxContainer" type="VBoxContainer" parent="HBoxContainer6"]
+[node name="VBoxContainer4" type="VBoxContainer" parent="."]
 layout_mode = 2
 size_flags_horizontal = 3
 
-[node name="Label" type="Label" parent="HBoxContainer6/VBoxContainer"]
+[node name="HBoxContainer" type="HBoxContainer" parent="VBoxContainer4"]
 layout_mode = 2
-size_flags_horizontal = 3
-mouse_filter = 0
-text = "LIFE_ORIGIN"
 
-[node name="Label2" type="Label" parent="HBoxContainer6/VBoxContainer"]
-custom_minimum_size = Vector2(200, 0)
-layout_mode = 2
-size_flags_horizontal = 3
-text = "LIFE_ORIGIN_EXPLANATION"
-label_settings = ExtResource("1_o0axg")
-autowrap_mode = 3
-
-[node name="LifeOrigin" type="OptionButton" parent="HBoxContainer6"]
-custom_minimum_size = Vector2(200, 25)
-layout_mode = 2
-size_flags_horizontal = 3
-size_flags_vertical = 0
-tooltip_text = "LIFE_ORIGIN_TOOLTIP"
-selected = 0
-item_count = 3
-popup/item_0/text = "LIFE_ORIGIN_VENTS"
-popup/item_0/id = 0
-popup/item_1/text = "LIFE_ORIGIN_POND"
-popup/item_1/id = 1
-popup/item_2/text = "LIFE_ORIGIN_PANSPERMIA"
-popup/item_2/id = 2
-popup/item_2/disabled = true
-
-[node name="HBoxContainer" type="HBoxContainer" parent="."]
-layout_mode = 2
-size_flags_horizontal = 3
-
-[node name="VBoxContainer" type="VBoxContainer" parent="HBoxContainer"]
-layout_mode = 2
-size_flags_horizontal = 3
-
-[node name="Label" type="Label" parent="HBoxContainer/VBoxContainer"]
+[node name="Label" type="Label" parent="VBoxContainer4/HBoxContainer"]
 layout_mode = 2
 size_flags_horizontal = 3
 mouse_filter = 0
 text = "WORLD_SIZE"
 
-[node name="Label2" type="Label" parent="HBoxContainer/VBoxContainer"]
-custom_minimum_size = Vector2(200, 0)
-layout_mode = 2
-size_flags_horizontal = 3
-text = "WORLD_SIZE_EXPLANATION"
-label_settings = ExtResource("1_o0axg")
-autowrap_mode = 3
-
-[node name="WorldSize" type="OptionButton" parent="HBoxContainer"]
+[node name="WorldSize" type="OptionButton" parent="VBoxContainer4/HBoxContainer"]
 custom_minimum_size = Vector2(200, 25)
 layout_mode = 2
 size_flags_horizontal = 3
@@ -139,6 +93,14 @@ popup/item_1/text = "WORLD_SIZE_MEDIUM"
 popup/item_1/id = 1
 popup/item_2/text = "WORLD_SIZE_LARGE"
 popup/item_2/id = 2
+
+[node name="Label2" type="Label" parent="VBoxContainer4"]
+custom_minimum_size = Vector2(200, 0)
+layout_mode = 2
+size_flags_horizontal = 3
+text = "WORLD_SIZE_EXPLANATION"
+label_settings = ExtResource("1_o0axg")
+autowrap_mode = 3
 
 [node name="HBoxContainer2" type="HBoxContainer" parent="."]
 layout_mode = 2
@@ -391,7 +353,6 @@ label_settings = ExtResource("1_o0axg")
 autowrap_mode = 3
 
 [connection signal="item_selected" from="VBoxContainer3/HBoxContainer/LifeOrigin" to="." method="OnLifeOriginSelected"]
-[connection signal="item_selected" from="HBoxContainer6/LifeOrigin" to="." method="OnLifeOriginSelected"]
 [connection signal="toggled" from="VBoxContainer/HBoxContainer/LAWKButton" to="." method="OnLAWKToggled"]
 [connection signal="toggled" from="VBoxContainer2/HBoxContainer/DayNightCycleButton" to="." method="OnDayNightCycleToggled"]
 [connection signal="value_changed" from="DayLengthContainer/HBoxContainer/HBoxContainer/DayLength" to="." method="OnDayLengthChanged"]
