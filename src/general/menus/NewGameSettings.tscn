@@ -1,4 +1,4 @@
-[gd_scene load_steps=18 format=3 uid="uid://b0315b3i5bs5s"]
+[gd_scene load_steps=19 format=3 uid="uid://b0315b3i5bs5s"]
 
 [ext_resource type="Theme" uid="uid://b4cx0o110g4b6" path="res://src/gui_common/thrive_theme.tres" id="1"]
 [ext_resource type="Script" uid="uid://c2fgxgloa4ura" path="res://src/general/menus/NewGameSettings.cs" id="2"]
@@ -21,9 +21,11 @@ font = ExtResource("5_otvf3")
 
 [sub_resource type="StyleBoxEmpty" id="7"]
 
+[sub_resource type="StyleBoxEmpty" id="2"]
+
 [sub_resource type="StyleBoxEmpty" id="6"]
 
-[node name="NewGameSettings" type="Control" node_paths=PackedStringArray("playerSpeciesAIPopulationStrength", "playerSpeciesAIPopulationStrengthReadout", "autoEvoStrengthMultiplier", "autoEvoStrengthReadout", "reproductionCompoundsDropdown", "switchSpeciesOnExtinctionButton", "experimentalFeatures", "experimentalExplanation", "experimentalWarning")]
+[node name="NewGameSettings" type="Control" node_paths=PackedStringArray("playerSpeciesAIPopulationStrength", "playerSpeciesAIPopulationStrengthReadout", "autoEvoStrengthMultiplier", "autoEvoStrengthReadout", "reproductionCompoundsDropdown", "switchSpeciesOnExtinctionButton", "planetSettings", "experimentalFeatures", "experimentalExplanation", "experimentalWarning")]
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
@@ -64,15 +66,8 @@ FreeGlucoseCloudButtonPath = NodePath("CenterContainer/VBoxContainer/AdvancedOpt
 LimitGrowthRateButtonPath = NodePath("CenterContainer/VBoxContainer/AdvancedOptions/Difficulty/ScrollContainer/HBoxContainer/VBoxContainer/VBoxContainer10/LimitGrowthRate")
 OrganelleUnlocksEnabledPath = NodePath("CenterContainer/VBoxContainer/AdvancedOptions/Difficulty/ScrollContainer/HBoxContainer/VBoxContainer/VBoxContainer12/OrganelleUnlocksEnabled")
 LifeOriginButtonPath = NodePath("CenterContainer/VBoxContainer/BasicOptions/Main/VBoxContainer/HBoxContainer2/LifeOrigin")
-LifeOriginButtonAdvancedPath = NodePath("")
 LAWKButtonPath = NodePath("CenterContainer/VBoxContainer/BasicOptions/Main/VBoxContainer/VBoxContainer2/LAWK")
-LAWKAdvancedButtonPath = NodePath("")
-DayNightCycleButtonPath = NodePath("")
-DayLengthContainerPath = NodePath("")
-DayLengthPath = NodePath("")
-DayLengthReadoutPath = NodePath("")
 GameSeedPath = NodePath("CenterContainer/VBoxContainer/BasicOptions/Main/VBoxContainer/HBoxContainer3/HBoxContainer/GameSeed")
-GameSeedAdvancedPath = NodePath("")
 IncludeMulticellularButtonPath = NodePath("CenterContainer/VBoxContainer/AdvancedOptions/Misc/VBoxContainer/VBoxContainer2/IncludeMulticellular")
 EasterEggsButtonPath = NodePath("CenterContainer/VBoxContainer/AdvancedOptions/Misc/VBoxContainer/VBoxContainer3/EasterEggs")
 StartButtonPath = NodePath("CenterContainer/VBoxContainer/HBoxContainer/Start")
@@ -83,6 +78,7 @@ autoEvoStrengthMultiplier = NodePath("CenterContainer/VBoxContainer/AdvancedOpti
 autoEvoStrengthReadout = NodePath("CenterContainer/VBoxContainer/AdvancedOptions/Difficulty/ScrollContainer/HBoxContainer/VBoxContainer/VBoxContainer15/HBoxContainer/HBoxContainer/AutoEvoReadout")
 reproductionCompoundsDropdown = NodePath("CenterContainer/VBoxContainer/AdvancedOptions/Difficulty/ScrollContainer/HBoxContainer/VBoxContainer/VBoxContainer14/HBoxContainer/HBoxContainer/ReproductionCompounds")
 switchSpeciesOnExtinctionButton = NodePath("CenterContainer/VBoxContainer/AdvancedOptions/Difficulty/ScrollContainer/HBoxContainer/VBoxContainer/VBoxContainer13/SwitchOnExtinct")
+planetSettings = NodePath("CenterContainer/VBoxContainer/AdvancedOptions/Planet/ScrollContainer/HBoxContainer/SettingsPanel")
 experimentalFeatures = NodePath("CenterContainer/VBoxContainer/AdvancedOptions/Misc/VBoxContainer/VBoxContainer4/ExperimentalFeatures")
 experimentalExplanation = NodePath("CenterContainer/VBoxContainer/AdvancedOptions/Misc/VBoxContainer/VBoxContainer4/ExperimentalLabel")
 experimentalWarning = NodePath("CenterContainer/VBoxContainer/AdvancedOptions/Misc/VBoxContainer/VBoxContainer4/ExperimentalWarningLabel")
@@ -100,7 +96,6 @@ layout_mode = 2
 theme_override_constants/separation = 5
 
 [node name="BasicOptions" type="PanelContainer" parent="CenterContainer/VBoxContainer"]
-visible = false
 custom_minimum_size = Vector2(550, 200)
 layout_mode = 2
 
@@ -274,11 +269,11 @@ button_group = SubResource("ButtonGroup_48p0t")
 text = "MISC"
 
 [node name="AdvancedOptions" type="PanelContainer" parent="CenterContainer/VBoxContainer"]
+visible = false
 custom_minimum_size = Vector2(700, 600)
 layout_mode = 2
 
 [node name="Planet" type="MarginContainer" parent="CenterContainer/VBoxContainer/AdvancedOptions"]
-visible = false
 layout_mode = 2
 theme_override_constants/margin_left = 15
 theme_override_constants/margin_top = 15
@@ -303,6 +298,7 @@ theme = ExtResource("1")
 theme_override_styles/separator = SubResource("7")
 
 [node name="Difficulty" type="MarginContainer" parent="CenterContainer/VBoxContainer/AdvancedOptions"]
+visible = false
 layout_mode = 2
 theme_override_constants/margin_left = 15
 theme_override_constants/margin_top = 15
@@ -333,10 +329,14 @@ layout_mode = 2
 size_flags_horizontal = 3
 text = "DIFFICULTY_PRESET"
 
+[node name="HSeparator" type="HSeparator" parent="CenterContainer/VBoxContainer/AdvancedOptions/Difficulty/ScrollContainer/HBoxContainer/VBoxContainer/VBoxContainer6/HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_styles/separator = SubResource("2")
+
 [node name="DifficultyPreset" type="OptionButton" parent="CenterContainer/VBoxContainer/AdvancedOptions/Difficulty/ScrollContainer/HBoxContainer/VBoxContainer/VBoxContainer6/HBoxContainer"]
 custom_minimum_size = Vector2(200, 25)
 layout_mode = 2
-size_flags_horizontal = 3
 
 [node name="Label" type="Label" parent="CenterContainer/VBoxContainer/AdvancedOptions/Difficulty/ScrollContainer/HBoxContainer/VBoxContainer/VBoxContainer6"]
 custom_minimum_size = Vector2(200, 0)
@@ -359,7 +359,6 @@ text = "MUTATION_COST_MULTIPLIER"
 
 [node name="HBoxContainer" type="HBoxContainer" parent="CenterContainer/VBoxContainer/AdvancedOptions/Difficulty/ScrollContainer/HBoxContainer/VBoxContainer/VBoxContainer/HBoxContainer"]
 layout_mode = 2
-size_flags_horizontal = 3
 
 [node name="MPMultiplier" type="HSlider" parent="CenterContainer/VBoxContainer/AdvancedOptions/Difficulty/ScrollContainer/HBoxContainer/VBoxContainer/VBoxContainer/HBoxContainer/HBoxContainer"]
 custom_minimum_size = Vector2(140, 0)
@@ -373,6 +372,7 @@ value = 1.0
 
 [node name="HSeparator" type="HSeparator" parent="CenterContainer/VBoxContainer/AdvancedOptions/Difficulty/ScrollContainer/HBoxContainer/VBoxContainer/VBoxContainer/HBoxContainer/HBoxContainer"]
 layout_mode = 2
+size_flags_horizontal = 3
 theme_override_styles/separator = SubResource("6")
 
 [node name="MPMultiplierReadout" type="LineEdit" parent="CenterContainer/VBoxContainer/AdvancedOptions/Difficulty/ScrollContainer/HBoxContainer/VBoxContainer/VBoxContainer/HBoxContainer/HBoxContainer"]
@@ -404,7 +404,6 @@ text = "AI_MUTATION_RATE"
 
 [node name="HBoxContainer" type="HBoxContainer" parent="CenterContainer/VBoxContainer/AdvancedOptions/Difficulty/ScrollContainer/HBoxContainer/VBoxContainer/VBoxContainer8/HBoxContainer"]
 layout_mode = 2
-size_flags_horizontal = 3
 
 [node name="AIMutationRate" type="HSlider" parent="CenterContainer/VBoxContainer/AdvancedOptions/Difficulty/ScrollContainer/HBoxContainer/VBoxContainer/VBoxContainer8/HBoxContainer/HBoxContainer"]
 custom_minimum_size = Vector2(140, 0)
@@ -418,6 +417,7 @@ value = 2.0
 
 [node name="HSeparator" type="HSeparator" parent="CenterContainer/VBoxContainer/AdvancedOptions/Difficulty/ScrollContainer/HBoxContainer/VBoxContainer/VBoxContainer8/HBoxContainer/HBoxContainer"]
 layout_mode = 2
+size_flags_horizontal = 3
 theme_override_styles/separator = SubResource("6")
 
 [node name="AIMutationRateReadout" type="LineEdit" parent="CenterContainer/VBoxContainer/AdvancedOptions/Difficulty/ScrollContainer/HBoxContainer/VBoxContainer/VBoxContainer8/HBoxContainer/HBoxContainer"]
@@ -449,7 +449,6 @@ text = "COMPOUND_CLOUD_DENSITY"
 
 [node name="HBoxContainer" type="HBoxContainer" parent="CenterContainer/VBoxContainer/AdvancedOptions/Difficulty/ScrollContainer/HBoxContainer/VBoxContainer/VBoxContainer2/HBoxContainer"]
 layout_mode = 2
-size_flags_horizontal = 3
 
 [node name="CompoundDensity" type="HSlider" parent="CenterContainer/VBoxContainer/AdvancedOptions/Difficulty/ScrollContainer/HBoxContainer/VBoxContainer/VBoxContainer2/HBoxContainer/HBoxContainer"]
 custom_minimum_size = Vector2(140, 0)
@@ -463,6 +462,7 @@ value = 1.0
 
 [node name="HSeparator" type="HSeparator" parent="CenterContainer/VBoxContainer/AdvancedOptions/Difficulty/ScrollContainer/HBoxContainer/VBoxContainer/VBoxContainer2/HBoxContainer/HBoxContainer"]
 layout_mode = 2
+size_flags_horizontal = 3
 theme_override_styles/separator = SubResource("6")
 
 [node name="CompoundDensityReadout" type="LineEdit" parent="CenterContainer/VBoxContainer/AdvancedOptions/Difficulty/ScrollContainer/HBoxContainer/VBoxContainer/VBoxContainer2/HBoxContainer/HBoxContainer"]

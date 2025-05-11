@@ -1,16 +1,12 @@
-[gd_scene load_steps=9 format=3 uid="uid://b3rrmtcvwufb"]
+[gd_scene load_steps=5 format=3 uid="uid://b3rrmtcvwufb"]
 
 [ext_resource type="Theme" uid="uid://b4cx0o110g4b6" path="res://src/gui_common/thrive_theme.tres" id="1_au4yw"]
 [ext_resource type="LabelSettings" uid="uid://uxdd8vb4xedn" path="res://src/gui_common/fonts/Body-Regular-AlmostTiny.tres" id="1_o0axg"]
 [ext_resource type="Script" uid="uid://yuk23m1mb4pn" path="res://src/general/menus/PlanetSettings.cs" id="2_4astu"]
-[ext_resource type="Texture2D" uid="uid://baqkntjn5ng0y" path="res://assets/textures/gui/bevel/randomizeButton.png" id="4_7opna"]
-[ext_resource type="Texture2D" uid="uid://c8qyts61c8a0y" path="res://assets/textures/gui/bevel/randomizeButtonActive.png" id="5_l0lun"]
-[ext_resource type="Texture2D" uid="uid://jm2munbr7078" path="res://assets/textures/gui/bevel/randomizeButtonHover.png" id="6_etupr"]
-[ext_resource type="Texture2D" uid="uid://ch76ktrn1xy7r" path="res://assets/textures/gui/bevel/randomizeButtonDisabled.png" id="7_20exe"]
 
 [sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_p046t"]
 
-[node name="SettingsPanel" type="VBoxContainer" node_paths=PackedStringArray("LifeOriginButton", "WorldSizeButton", "WorldTemperatureButton", "WorldSeaLevelButton", "WorldGeologicalActivityButton", "WorldClimateInstabilityButton")]
+[node name="SettingsPanel" type="VBoxContainer" node_paths=PackedStringArray("lifeOriginButton", "worldSizeButton", "worldTemperatureButton", "worldSeaLevelButton", "worldGeologicalActivityButton", "worldClimateInstabilityButton", "lawkOnlyButton", "dayNightCycleButton", "dayLength", "dayLengthReadout", "dayLengthContainer")]
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
@@ -21,12 +17,17 @@ theme = ExtResource("1_au4yw")
 theme_override_constants/separation = 10
 alignment = 1
 script = ExtResource("2_4astu")
-LifeOriginButton = NodePath("HBoxContainer6/LifeOrigin")
-WorldSizeButton = NodePath("HBoxContainer/WorldSize")
-WorldTemperatureButton = NodePath("HBoxContainer2/WorldTemperature")
-WorldSeaLevelButton = NodePath("HBoxContainer3/WorldSeaLevel")
-WorldGeologicalActivityButton = NodePath("HBoxContainer4/WorldGeologicalActivity")
-WorldClimateInstabilityButton = NodePath("HBoxContainer5/WorldClimateInstability")
+lifeOriginButton = NodePath("HBoxContainer6/LifeOrigin")
+worldSizeButton = NodePath("HBoxContainer/WorldSize")
+worldTemperatureButton = NodePath("HBoxContainer2/WorldTemperature")
+worldSeaLevelButton = NodePath("HBoxContainer3/WorldSeaLevel")
+worldGeologicalActivityButton = NodePath("HBoxContainer4/WorldGeologicalActivity")
+worldClimateInstabilityButton = NodePath("HBoxContainer5/WorldClimateInstability")
+lawkOnlyButton = NodePath("HBoxContainer8/VBoxContainer/HBoxContainer/LAWKButton")
+dayNightCycleButton = NodePath("HBoxContainer9/VBoxContainer/HBoxContainer/DayNightCycleButton")
+dayLength = NodePath("DayLengthContainer/HBoxContainer/HBoxContainer/DayLength")
+dayLengthReadout = NodePath("DayLengthContainer/HBoxContainer/HBoxContainer/DayLengthReadout")
+dayLengthContainer = NodePath("DayLengthContainer")
 
 [node name="HBoxContainer6" type="HBoxContainer" parent="."]
 layout_mode = 2
@@ -312,24 +313,24 @@ text = "DAY_NIGHT_CYCLE_ENABLED_EXPLANATION_2"
 label_settings = ExtResource("1_o0axg")
 autowrap_mode = 3
 
-[node name="VBoxContainer4" type="VBoxContainer" parent="."]
+[node name="DayLengthContainer" type="VBoxContainer" parent="."]
 layout_mode = 2
 
-[node name="HBoxContainer" type="HBoxContainer" parent="VBoxContainer4"]
+[node name="HBoxContainer" type="HBoxContainer" parent="DayLengthContainer"]
 layout_mode = 2
 size_flags_horizontal = 3
 
-[node name="Label" type="Label" parent="VBoxContainer4/HBoxContainer"]
+[node name="Label" type="Label" parent="DayLengthContainer/HBoxContainer"]
 custom_minimum_size = Vector2(250, 0)
 layout_mode = 2
 size_flags_horizontal = 3
 text = "DAY_LENGTH"
 
-[node name="HBoxContainer" type="HBoxContainer" parent="VBoxContainer4/HBoxContainer"]
+[node name="HBoxContainer" type="HBoxContainer" parent="DayLengthContainer/HBoxContainer"]
 layout_mode = 2
 size_flags_horizontal = 3
 
-[node name="DayLength" type="HSlider" parent="VBoxContainer4/HBoxContainer/HBoxContainer"]
+[node name="DayLength" type="HSlider" parent="DayLengthContainer/HBoxContainer/HBoxContainer"]
 custom_minimum_size = Vector2(140, 0)
 layout_mode = 2
 size_flags_horizontal = 3
@@ -341,18 +342,18 @@ value = 180.0
 rounded = true
 scrollable = false
 
-[node name="HSeparator" type="HSeparator" parent="VBoxContainer4/HBoxContainer/HBoxContainer"]
+[node name="HSeparator" type="HSeparator" parent="DayLengthContainer/HBoxContainer/HBoxContainer"]
 layout_mode = 2
 size_flags_horizontal = 4
 theme_override_styles/separator = SubResource("StyleBoxEmpty_p046t")
 
-[node name="DayLengthReadout" type="LineEdit" parent="VBoxContainer4/HBoxContainer/HBoxContainer"]
+[node name="DayLengthReadout" type="LineEdit" parent="DayLengthContainer/HBoxContainer/HBoxContainer"]
 custom_minimum_size = Vector2(20, 0)
 layout_mode = 2
 text = "180"
 editable = false
 
-[node name="Label" type="Label" parent="VBoxContainer4"]
+[node name="Label" type="Label" parent="DayLengthContainer"]
 custom_minimum_size = Vector2(200, 0)
 layout_mode = 2
 size_flags_horizontal = 3
@@ -360,36 +361,7 @@ text = "DAY_LENGTH_EXPLANATION"
 label_settings = ExtResource("1_o0axg")
 autowrap_mode = 3
 
-[node name="HBoxContainer7" type="HBoxContainer" parent="."]
-layout_mode = 2
-
-[node name="Label" type="Label" parent="HBoxContainer7"]
-layout_mode = 2
-size_flags_horizontal = 3
-text = "PLANET_RANDOM_SEED"
-
-[node name="HBoxContainer" type="HBoxContainer" parent="HBoxContainer7"]
-custom_minimum_size = Vector2(200, 0)
-layout_mode = 2
-size_flags_horizontal = 3
-
-[node name="GameSeedAdvanced" type="LineEdit" parent="HBoxContainer7/HBoxContainer"]
-custom_minimum_size = Vector2(155, 0)
-layout_mode = 2
-size_flags_horizontal = 3
-tooltip_text = "RANDOM_SEED_TOOLTIP"
-
-[node name="RandomizeButtonAdvanced" type="TextureButton" parent="HBoxContainer7/HBoxContainer"]
-custom_minimum_size = Vector2(31, 31)
-layout_mode = 2
-size_flags_horizontal = 0
-size_flags_vertical = 4
-texture_normal = ExtResource("4_7opna")
-texture_pressed = ExtResource("5_l0lun")
-texture_hover = ExtResource("6_etupr")
-texture_disabled = ExtResource("7_20exe")
-ignore_texture_size = true
-stretch_mode = 5
-
+[connection signal="item_selected" from="HBoxContainer6/LifeOrigin" to="." method="OnLifeOriginSelected"]
 [connection signal="toggled" from="HBoxContainer8/VBoxContainer/HBoxContainer/LAWKButton" to="." method="OnLAWKToggled"]
 [connection signal="toggled" from="HBoxContainer9/VBoxContainer/HBoxContainer/DayNightCycleButton" to="." method="OnDayNightCycleToggled"]
+[connection signal="value_changed" from="DayLengthContainer/HBoxContainer/HBoxContainer/DayLength" to="." method="OnDayLengthChanged"]

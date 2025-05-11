@@ -1,15 +1,12 @@
 using Godot;
 
 /// <summary>
-/// Customizes planet settings and world generation.
+///   Customizes planet settings and world generation.
 /// </summary>
-public partial class PlanetCustomizer : Node
+public partial class PlanetCustomizerTool : Node
 {
     public WorldGenerationSettings WorldSettings = null!;
 
-    /// <summary>
-    ///   The game itself
-    /// </summary>
     public GameProperties GameProperties = null!;
 
     [Export]
@@ -58,18 +55,19 @@ public partial class PlanetCustomizer : Node
 
     private void InitNewWorld(IAutoEvoConfiguration configuration)
     {
+        var planetGenerationSettings = planetSettings.GetPlanetSettings();
         WorldSettings = new WorldGenerationSettings
         {
             AutoEvoConfiguration = configuration,
-            WorldSize = (WorldGenerationSettings.WorldSizeEnum)planetSettings.WorldSizeButton.Selected,
-            WorldTemperature =
-                (WorldGenerationSettings.WorldTemperatureEnum)planetSettings.WorldTemperatureButton.Selected,
-            WorldSeaLevel = (WorldGenerationSettings.WorldSeaLevelEnum)planetSettings.WorldSeaLevelButton.Selected,
-            GeologicalActivity =
-                (WorldGenerationSettings.GeologicalActivityEnum)planetSettings.WorldGeologicalActivityButton.Selected,
-            ClimateInstability =
-                (WorldGenerationSettings.ClimateInstabilityEnum)planetSettings.WorldClimateInstabilityButton.Selected,
-            Origin = (WorldGenerationSettings.LifeOrigin)planetSettings.LifeOriginButton.Selected,
+            WorldSize = planetGenerationSettings.WorldSize,
+            WorldTemperature = planetGenerationSettings.WorldTemperature,
+            WorldSeaLevel = planetGenerationSettings.WorldSeaLevel,
+            GeologicalActivity = planetGenerationSettings.GeologicalActivity,
+            ClimateInstability = planetGenerationSettings.ClimateInstability,
+            Origin = planetGenerationSettings.Origin,
+            DayNightCycleEnabled = planetGenerationSettings.DayNightCycleEnabled,
+            DayLength = planetGenerationSettings.DayLength,
+            LAWK = planetGenerationSettings.LAWK,
         };
 
         GameProperties = GameProperties.StartNewMicrobeGame(WorldSettings);
@@ -78,7 +76,6 @@ public partial class PlanetCustomizer : Node
         patchMapDrawer.Map = GameProperties.GameWorld.Map;
         patchMapDrawer.SelectedPatch = patchMapDrawer.PlayerPatch;
         patchDetailsPanel.SelectedPatch = patchMapDrawer.PlayerPatch;
-        // UpdatePatchDetailPanel(patchMapDrawer);
     }
 
     private void UpdatePatchDetailPanel(PatchMapDrawer drawer)

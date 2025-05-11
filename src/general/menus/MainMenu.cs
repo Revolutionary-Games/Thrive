@@ -955,7 +955,7 @@ public partial class MainMenu : NodeWithInput
         planetCustomizationButton.Disabled = true;
 
         TransitionManager.Instance.AddSequence(ScreenFade.FadeType.FadeOut, 0.1f,
-            () => { SceneManager.Instance.SwitchToScene("res://src/general/menus/PlanetCustomizer.tscn"); }, false);
+            () => { SceneManager.Instance.SwitchToScene("res://src/general/menus/PlanetCustomizerTool.tscn"); }, false);
     }
 
     // TODO: this is now used by another sub menu as well so renaming this to be more generic would be good

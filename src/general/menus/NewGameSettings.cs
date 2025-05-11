@@ -115,31 +115,10 @@ public partial class NewGameSettings : ControlWithInput
     public NodePath LifeOriginButtonPath = null!;
 
     [Export]
-    public NodePath LifeOriginButtonAdvancedPath = null!;
-
-    [Export]
     public NodePath LAWKButtonPath = null!;
 
     [Export]
-    public NodePath LAWKAdvancedButtonPath = null!;
-
-    [Export]
-    public NodePath DayNightCycleButtonPath = null!;
-
-    [Export]
-    public NodePath DayLengthContainerPath = null!;
-
-    [Export]
-    public NodePath DayLengthPath = null!;
-
-    [Export]
-    public NodePath DayLengthReadoutPath = null!;
-
-    [Export]
     public NodePath GameSeedPath = null!;
-
-    [Export]
-    public NodePath GameSeedAdvancedPath = null!;
 
     [Export]
     public NodePath IncludeMulticellularButtonPath = null!;
@@ -215,18 +194,11 @@ public partial class NewGameSettings : ControlWithInput
 
     // Planet controls
     private OptionButton lifeOriginButton = null!;
-    private OptionButton lifeOriginButtonAdvanced = null!;
     private Button lawkButton = null!;
-    private Button lawkAdvancedButton = null!;
-    private Button dayNightCycleButton = null!;
-    private HSlider dayLength = null!;
-    private LineEdit dayLengthReadout = null!;
-    private VBoxContainer dayLengthContainer = null!;
     private LineEdit gameSeed = null!;
-    private LineEdit gameSeedAdvanced = null!;
 
     [Export]
-    private OptionButton worldSizeButton = null!;
+    private PlanetSettings planetSettings = null!;
 
     // Misc controls
     private Button includeMulticellularButton = null!;
@@ -312,15 +284,10 @@ public partial class NewGameSettings : ControlWithInput
         limitGrowthRateButton = GetNode<Button>(LimitGrowthRateButtonPath);
         organelleUnlocksEnabled = GetNode<Button>(OrganelleUnlocksEnabledPath);
         lifeOriginButton = GetNode<OptionButton>(LifeOriginButtonPath);
-        lifeOriginButtonAdvanced = GetNode<OptionButton>(LifeOriginButtonAdvancedPath);
+
         lawkButton = GetNode<Button>(LAWKButtonPath);
-        lawkAdvancedButton = GetNode<Button>(LAWKAdvancedButtonPath);
-        dayNightCycleButton = GetNode<Button>(DayNightCycleButtonPath);
-        dayLengthContainer = GetNode<VBoxContainer>(DayLengthContainerPath);
-        dayLength = GetNode<HSlider>(DayLengthPath);
-        dayLengthReadout = GetNode<LineEdit>(DayLengthReadoutPath);
         gameSeed = GetNode<LineEdit>(GameSeedPath);
-        gameSeedAdvanced = GetNode<LineEdit>(GameSeedAdvancedPath);
+
         includeMulticellularButton = GetNode<Button>(IncludeMulticellularButtonPath);
         easterEggsButton = GetNode<Button>(EasterEggsButtonPath);
         backButton = GetNode<Button>(BackButtonPath);
@@ -372,7 +339,8 @@ public partial class NewGameSettings : ControlWithInput
 
         var seed = GenerateNewRandomSeed();
         gameSeed.Text = seed;
-        gameSeedAdvanced.Text = seed;
+
+        // gameSeedAdvanced.Text = seed;
         SetSeed(seed);
 
         // Make sure non-lawk options are disabled if lawk is set to true on start-up
@@ -387,6 +355,11 @@ public partial class NewGameSettings : ControlWithInput
             backButton.Visible = false;
             checkOptionsMenuAdviceContainer.Visible = false;
         }
+
+        planetSettings.Connect(PlanetSettings.SignalName.LawkSettingsChanged,
+            new Callable(this, nameof(OnLawkPlanetSettingChanged)));
+        planetSettings.Connect(PlanetSettings.SignalName.LifeOriginSettingsChanged,
+            new Callable(this, nameof(OnLifeOriginPlanetSettingChanged)));
     }
 
     [RunOnKeyDown("ui_cancel", Priority = Constants.SUBMENU_CANCEL_PRIORITY)]
@@ -457,21 +430,25 @@ public partial class NewGameSettings : ControlWithInput
         UpdateSelectedDifficultyPresetControl();
 
         lifeOriginButton.Selected = (int)settings.Origin;
-
         lawkButton.ButtonPressed = settings.LAWK;
         experimentalFeatures.ButtonPressed = settings.ExperimentalFeatures;
         OnExperimentalFeaturesChanged(settings.ExperimentalFeatures);
-        dayNightCycleButton.ButtonPressed = settings.DayNightCycleEnabled;
-        dayLength.Value = settings.DayLength;
+
+        planetSettings.SetWorldSize((int)settings.WorldSize);
+        planetSettings.SetWorldTemperature((int)settings.WorldTemperature);
+        planetSettings.SetWorldSeaLevel((int)settings.WorldSeaLevel);
+        planetSettings.SetWorldGeologicalActivity((int)settings.GeologicalActivity);
+        planetSettings.SetWorldClimateInstability((int)settings.ClimateInstability);
+        planetSettings.SetLifeOrigin((int)settings.Origin);
+        planetSettings.SetDayNightCycle(settings.DayNightCycleEnabled);
+        planetSettings.SetDayLength(settings.DayLength);
+        planetSettings.SetLawkOnly(settings.LAWK);
 
         // Copy the seed from the settings, as there isn't one method to set this, this is done a bit clumsily like
         // this
         var seedText = settings.Seed.ToString();
         gameSeed.Text = seedText;
-        gameSeedAdvanced.Text = seedText;
         SetSeed(seedText);
-
-        worldSizeButton.Selected = (int)settings.WorldSize;
 
         // Always set prototypes to true as the player must have been there to descend
         includeMulticellularButton.ButtonPressed = true;
@@ -489,14 +466,12 @@ public partial class NewGameSettings : ControlWithInput
         if (valid)
         {
             GUICommon.MarkInputAsValid(gameSeed);
-            GUICommon.MarkInputAsValid(gameSeedAdvanced);
             startButton.Disabled = false;
             startButton.TooltipText = Localization.Translate("CONFIRM_NEW_GAME_BUTTON_TOOLTIP");
         }
         else
         {
             GUICommon.MarkInputAsInvalid(gameSeed);
-            GUICommon.MarkInputAsInvalid(gameSeedAdvanced);
             startButton.Disabled = true;
             startButton.TooltipText = Localization.Translate("CONFIRM_NEW_GAME_BUTTON_TOOLTIP_DISABLED");
         }
@@ -539,15 +514,10 @@ public partial class NewGameSettings : ControlWithInput
                 LimitGrowthRateButtonPath.Dispose();
                 OrganelleUnlocksEnabledPath.Dispose();
                 LifeOriginButtonPath.Dispose();
-                LifeOriginButtonAdvancedPath.Dispose();
+
                 LAWKButtonPath.Dispose();
-                LAWKAdvancedButtonPath.Dispose();
-                DayNightCycleButtonPath.Dispose();
-                DayLengthContainerPath.Dispose();
-                DayLengthPath.Dispose();
-                DayLengthReadoutPath.Dispose();
                 GameSeedPath.Dispose();
-                GameSeedAdvancedPath.Dispose();
+
                 IncludeMulticellularButtonPath.Dispose();
                 EasterEggsButtonPath.Dispose();
                 BackButtonPath.Dispose();
@@ -582,7 +552,7 @@ public partial class NewGameSettings : ControlWithInput
 
     private void SetSeed(string text)
     {
-        bool valid = long.TryParse(text, out var seed) && seed > 0;
+        var valid = long.TryParse(text, out var seed) && seed > 0;
         ReportValidityOfGameSeed(valid);
         if (valid)
             latestValidSeed = seed;
@@ -594,7 +564,7 @@ public partial class NewGameSettings : ControlWithInput
     private void ChangeSettingsTab(string newTabName)
     {
         // Convert from the string binding to an enum.
-        SelectedOptionsTab selection = (SelectedOptionsTab)Enum.Parse(typeof(SelectedOptionsTab), newTabName);
+        var selection = (SelectedOptionsTab)Enum.Parse(typeof(SelectedOptionsTab), newTabName);
 
         // Pressing the same button that's already active, so just return.
         if (selection == selectedOptionsTab)
@@ -630,6 +600,7 @@ public partial class NewGameSettings : ControlWithInput
     private void StartGame()
     {
         var settings = new WorldGenerationSettings();
+        var planetGenerationSettings = planetSettings.GetPlanetSettings();
 
         var difficulty = SimulationParameters.Instance.GetDifficultyPresetByIndex(difficultyPresetButton.Selected);
 
@@ -660,17 +631,22 @@ public partial class NewGameSettings : ControlWithInput
             settings.Difficulty = difficulty;
         }
 
-        settings.Origin = (WorldGenerationSettings.LifeOrigin)lifeOriginButton.Selected;
-        settings.LAWK = lawkButton.ButtonPressed;
         settings.ExperimentalFeatures = experimentalFeatures.ButtonPressed;
         OnExperimentalFeaturesChanged(settings.ExperimentalFeatures);
-        settings.DayNightCycleEnabled = dayNightCycleButton.ButtonPressed;
-        settings.DayLength = (int)dayLength.Value;
-        settings.Seed = latestValidSeed;
-        settings.WorldSize = (WorldGenerationSettings.WorldSizeEnum)worldSizeButton.Selected;
 
+        settings.Seed = latestValidSeed;
         settings.IncludeMulticellular = includeMulticellularButton.ButtonPressed;
         settings.EasterEggs = easterEggsButton.ButtonPressed;
+
+        settings.WorldSize = planetGenerationSettings.WorldSize;
+        settings.WorldTemperature = planetGenerationSettings.WorldTemperature;
+        settings.WorldSeaLevel = planetGenerationSettings.WorldSeaLevel;
+        settings.GeologicalActivity = planetGenerationSettings.GeologicalActivity;
+        settings.ClimateInstability = planetGenerationSettings.ClimateInstability;
+        settings.Origin = planetGenerationSettings.Origin;
+        settings.DayNightCycleEnabled = planetGenerationSettings.DayNightCycleEnabled;
+        settings.DayLength = planetGenerationSettings.DayLength;
+        settings.LAWK = planetGenerationSettings.LAWK;
 
         // Stop music for the video (stop is used instead of pause to stop the menu music playing a bit after the video
         // before the stage music starts)
@@ -1001,9 +977,7 @@ public partial class NewGameSettings : ControlWithInput
 
     private void OnLifeOriginSelected(int index)
     {
-        // Set both buttons here as we only received a signal from one of them
-        lifeOriginButton.Selected = index;
-        lifeOriginButtonAdvanced.Selected = index;
+        planetSettings.SetLifeOrigin(index);
     }
 
     // This and a few other callbacks are not currently needed to detect anything, but I left them in, in case we
@@ -1015,23 +989,14 @@ public partial class NewGameSettings : ControlWithInput
 
     private void OnLAWKToggled(bool pressed)
     {
-        // Set both buttons here as we only received a signal from one of them
-        lawkButton.ButtonPressed = pressed;
-        lawkAdvancedButton.ButtonPressed = pressed;
-
         UpdateLifeOriginOptions(pressed);
+        planetSettings.SetLawkOnly(pressed);
     }
 
-    private void OnDayNightCycleToggled(bool pressed)
+    private void OnLawkPlanetSettingChanged(bool pressed)
     {
-        dayLengthContainer.Modulate = pressed ? Colors.White : new Color(1.0f, 1.0f, 1.0f, 0.5f);
-        dayLength.Editable = pressed;
-    }
-
-    private void OnDayLengthChanged(double length)
-    {
-        length = Math.Round(length, 1);
-        dayLengthReadout.Text = length.ToString(CultureInfo.CurrentCulture);
+        lawkButton.ButtonPressed = pressed;
+        UpdateLifeOriginOptions(pressed);
     }
 
     private void UpdateLifeOriginOptions(bool lawk)
@@ -1039,27 +1004,21 @@ public partial class NewGameSettings : ControlWithInput
         // If we've switched to LAWK only, disable panspermia
         var panspermiaIndex = (int)WorldGenerationSettings.LifeOrigin.Panspermia;
         lifeOriginButton.SetItemDisabled(panspermiaIndex, lawk);
-        lifeOriginButtonAdvanced.SetItemDisabled(panspermiaIndex, lawk);
 
         // If we had selected panspermia, reset to vents
         if (lawk && lifeOriginButton.Selected == panspermiaIndex)
         {
             lifeOriginButton.Selected = (int)WorldGenerationSettings.LifeOrigin.Vent;
-            lifeOriginButtonAdvanced.Selected = (int)WorldGenerationSettings.LifeOrigin.Vent;
         }
+    }
+
+    private void OnLifeOriginPlanetSettingChanged(int index)
+    {
+        lifeOriginButton.Selected = index;
     }
 
     private void OnGameSeedChangedFromBasic(string text)
     {
-        // Need different methods to handle each view; otherwise we overwrite caret position
-        gameSeedAdvanced.Text = text;
-        SetSeed(text);
-    }
-
-    private void OnGameSeedChangedFromAdvanced(string text)
-    {
-        // Need different methods to handle each view; otherwise we overwrite caret position
-        gameSeed.Text = text;
         SetSeed(text);
     }
 
@@ -1069,7 +1028,6 @@ public partial class NewGameSettings : ControlWithInput
 
         var seed = GenerateNewRandomSeed();
         gameSeed.Text = seed;
-        gameSeedAdvanced.Text = seed;
         SetSeed(seed);
     }
 
