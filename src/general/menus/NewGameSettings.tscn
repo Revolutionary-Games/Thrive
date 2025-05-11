@@ -62,8 +62,8 @@ OrganelleUnlocksEnabledPath = NodePath("CenterContainer/VBoxContainer/AdvancedOp
 LifeOriginButtonPath = NodePath("CenterContainer/VBoxContainer/BasicOptions/Main/VBoxContainer/VBoxContainer5/HBoxContainer/LifeOrigin")
 LAWKButtonPath = NodePath("CenterContainer/VBoxContainer/BasicOptions/Main/VBoxContainer/VBoxContainer4/HBoxContainer/LAWKButton")
 GameSeedPath = NodePath("CenterContainer/VBoxContainer/BasicOptions/Main/VBoxContainer/HBoxContainer3/HBoxContainer/GameSeed")
-IncludeMulticellularButtonPath = NodePath("CenterContainer/VBoxContainer/AdvancedOptions/Misc/VBoxContainer/VBoxContainer2/IncludeMulticellular")
-EasterEggsButtonPath = NodePath("CenterContainer/VBoxContainer/AdvancedOptions/Misc/VBoxContainer/VBoxContainer3/EasterEggs")
+IncludeMulticellularButtonPath = NodePath("CenterContainer/VBoxContainer/AdvancedOptions/Misc/VBoxContainer/VBoxContainer5/HBoxContainer/IncludeMulticellular")
+EasterEggsButtonPath = NodePath("CenterContainer/VBoxContainer/AdvancedOptions/Misc/VBoxContainer/VBoxContainer6/HBoxContainer/EasterEggs")
 StartButtonPath = NodePath("CenterContainer/VBoxContainer/HBoxContainer/Start")
 CheckOptionsMenuAdviceContainerPath = NodePath("CenterContainer/VBoxContainer/BasicOptions/Main/VBoxContainer/CheckPerformanceSettingsContainer")
 playerSpeciesAIPopulationStrength = NodePath("CenterContainer/VBoxContainer/AdvancedOptions/Difficulty/ScrollContainer/HBoxContainer/VBoxContainer/VBoxContainer16/HBoxContainer/HBoxContainer/PlayerSpeciesAIPopStrength")
@@ -73,9 +73,9 @@ autoEvoStrengthReadout = NodePath("CenterContainer/VBoxContainer/AdvancedOptions
 reproductionCompoundsDropdown = NodePath("CenterContainer/VBoxContainer/AdvancedOptions/Difficulty/ScrollContainer/HBoxContainer/VBoxContainer/VBoxContainer14/HBoxContainer/HBoxContainer/ReproductionCompounds")
 switchSpeciesOnExtinctionButton = NodePath("CenterContainer/VBoxContainer/AdvancedOptions/Difficulty/ScrollContainer/HBoxContainer/VBoxContainer/VBoxContainer18/HBoxContainer/AllowSpeciesSwitch")
 planetSettings = NodePath("CenterContainer/VBoxContainer/AdvancedOptions/Planet/ScrollContainer/HBoxContainer/SettingsPanel")
-experimentalFeatures = NodePath("CenterContainer/VBoxContainer/AdvancedOptions/Misc/VBoxContainer/VBoxContainer4/ExperimentalFeatures")
-experimentalExplanation = NodePath("CenterContainer/VBoxContainer/AdvancedOptions/Misc/VBoxContainer/VBoxContainer4/ExperimentalLabel")
-experimentalWarning = NodePath("CenterContainer/VBoxContainer/AdvancedOptions/Misc/VBoxContainer/VBoxContainer4/ExperimentalWarningLabel")
+experimentalFeatures = NodePath("CenterContainer/VBoxContainer/AdvancedOptions/Misc/VBoxContainer/VBoxContainer7/HBoxContainer/ExperimentalFeatures")
+experimentalExplanation = NodePath("CenterContainer/VBoxContainer/AdvancedOptions/Misc/VBoxContainer/VBoxContainer7/ExperimentalLabel")
+experimentalWarning = NodePath("CenterContainer/VBoxContainer/AdvancedOptions/Misc/VBoxContainer/VBoxContainer7/ExperimentalWarningLabel")
 
 [node name="CenterContainer" type="CenterContainer" parent="."]
 layout_mode = 1
@@ -929,16 +929,24 @@ theme_override_constants/margin_bottom = 15
 layout_mode = 2
 theme_override_constants/separation = 10
 
-[node name="VBoxContainer2" type="VBoxContainer" parent="CenterContainer/VBoxContainer/AdvancedOptions/Misc/VBoxContainer"]
+[node name="VBoxContainer5" type="VBoxContainer" parent="CenterContainer/VBoxContainer/AdvancedOptions/Misc/VBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="HBoxContainer" type="HBoxContainer" parent="CenterContainer/VBoxContainer/AdvancedOptions/Misc/VBoxContainer/VBoxContainer5"]
 layout_mode = 2
 
-[node name="IncludeMulticellular" type="CheckBox" parent="CenterContainer/VBoxContainer/AdvancedOptions/Misc/VBoxContainer/VBoxContainer2"]
+[node name="Label" type="Label" parent="CenterContainer/VBoxContainer/AdvancedOptions/Misc/VBoxContainer/VBoxContainer5/HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+mouse_filter = 0
+text = "INCLUDE_MULTICELLULAR_PROTOTYPE"
+
+[node name="IncludeMulticellular" type="CheckButton" parent="CenterContainer/VBoxContainer/AdvancedOptions/Misc/VBoxContainer/VBoxContainer5/HBoxContainer"]
 layout_mode = 2
 button_pressed = true
-text = "INCLUDE_MULTICELLULAR_PROTOTYPE"
-autowrap_mode = 3
 
-[node name="Label" type="Label" parent="CenterContainer/VBoxContainer/AdvancedOptions/Misc/VBoxContainer/VBoxContainer2"]
+[node name="Label" type="Label" parent="CenterContainer/VBoxContainer/AdvancedOptions/Misc/VBoxContainer/VBoxContainer5"]
 custom_minimum_size = Vector2(200, 0)
 layout_mode = 2
 size_flags_horizontal = 3
@@ -946,16 +954,24 @@ text = "INCLUDE_MULTICELLULAR_PROTOTYPE_EXPLANATION"
 label_settings = ExtResource("5_rnvau")
 autowrap_mode = 3
 
-[node name="VBoxContainer3" type="VBoxContainer" parent="CenterContainer/VBoxContainer/AdvancedOptions/Misc/VBoxContainer"]
+[node name="VBoxContainer6" type="VBoxContainer" parent="CenterContainer/VBoxContainer/AdvancedOptions/Misc/VBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="HBoxContainer" type="HBoxContainer" parent="CenterContainer/VBoxContainer/AdvancedOptions/Misc/VBoxContainer/VBoxContainer6"]
 layout_mode = 2
 
-[node name="EasterEggs" type="CheckBox" parent="CenterContainer/VBoxContainer/AdvancedOptions/Misc/VBoxContainer/VBoxContainer3"]
+[node name="Label" type="Label" parent="CenterContainer/VBoxContainer/AdvancedOptions/Misc/VBoxContainer/VBoxContainer6/HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+mouse_filter = 0
+text = "EASTER_EGGS"
+
+[node name="EasterEggs" type="CheckButton" parent="CenterContainer/VBoxContainer/AdvancedOptions/Misc/VBoxContainer/VBoxContainer6/HBoxContainer"]
 layout_mode = 2
 button_pressed = true
-text = "EASTER_EGGS"
-autowrap_mode = 3
 
-[node name="Label" type="Label" parent="CenterContainer/VBoxContainer/AdvancedOptions/Misc/VBoxContainer/VBoxContainer3"]
+[node name="Label2" type="Label" parent="CenterContainer/VBoxContainer/AdvancedOptions/Misc/VBoxContainer/VBoxContainer6"]
 custom_minimum_size = Vector2(200, 0)
 layout_mode = 2
 size_flags_horizontal = 3
@@ -963,15 +979,24 @@ text = "EASTER_EGGS_EXPLANATION"
 label_settings = ExtResource("5_rnvau")
 autowrap_mode = 3
 
-[node name="VBoxContainer4" type="VBoxContainer" parent="CenterContainer/VBoxContainer/AdvancedOptions/Misc/VBoxContainer"]
+[node name="VBoxContainer7" type="VBoxContainer" parent="CenterContainer/VBoxContainer/AdvancedOptions/Misc/VBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="HBoxContainer" type="HBoxContainer" parent="CenterContainer/VBoxContainer/AdvancedOptions/Misc/VBoxContainer/VBoxContainer7"]
 layout_mode = 2
 
-[node name="ExperimentalFeatures" type="CheckBox" parent="CenterContainer/VBoxContainer/AdvancedOptions/Misc/VBoxContainer/VBoxContainer4"]
+[node name="Label" type="Label" parent="CenterContainer/VBoxContainer/AdvancedOptions/Misc/VBoxContainer/VBoxContainer7/HBoxContainer"]
 layout_mode = 2
+size_flags_horizontal = 3
+mouse_filter = 0
 text = "EXPERIMENTAL_FEATURES"
-autowrap_mode = 3
 
-[node name="ExperimentalWarningLabel" type="Label" parent="CenterContainer/VBoxContainer/AdvancedOptions/Misc/VBoxContainer/VBoxContainer4"]
+[node name="ExperimentalFeatures" type="CheckButton" parent="CenterContainer/VBoxContainer/AdvancedOptions/Misc/VBoxContainer/VBoxContainer7/HBoxContainer"]
+layout_mode = 2
+button_pressed = true
+
+[node name="ExperimentalWarningLabel" type="Label" parent="CenterContainer/VBoxContainer/AdvancedOptions/Misc/VBoxContainer/VBoxContainer7"]
 custom_minimum_size = Vector2(200, 0)
 layout_mode = 2
 size_flags_horizontal = 3
@@ -979,7 +1004,7 @@ text = "EXPERIMENTAL_FEATURES_WARNING"
 label_settings = ExtResource("13_yxxhr")
 autowrap_mode = 3
 
-[node name="ExperimentalLabel" type="Label" parent="CenterContainer/VBoxContainer/AdvancedOptions/Misc/VBoxContainer/VBoxContainer4"]
+[node name="ExperimentalLabel" type="Label" parent="CenterContainer/VBoxContainer/AdvancedOptions/Misc/VBoxContainer/VBoxContainer7"]
 custom_minimum_size = Vector2(200, 0)
 layout_mode = 2
 size_flags_horizontal = 3
@@ -1058,9 +1083,9 @@ text = "START_GAME"
 [connection signal="toggled" from="CenterContainer/VBoxContainer/AdvancedOptions/Difficulty/ScrollContainer/HBoxContainer/VBoxContainer/VBoxContainer18/HBoxContainer/AllowSpeciesSwitch" to="." method="OnSwapOnExtinctionToggled"]
 [connection signal="toggled" from="CenterContainer/VBoxContainer/AdvancedOptions/Difficulty/ScrollContainer/HBoxContainer/VBoxContainer/VBoxContainer19/HBoxContainer/LimitGrowth" to="." method="OnGrowthRateToggled"]
 [connection signal="toggled" from="CenterContainer/VBoxContainer/AdvancedOptions/Difficulty/ScrollContainer/HBoxContainer/VBoxContainer/VBoxContainer20/HBoxContainer/OrganellesUnlocks" to="." method="OnOrganelleUnlocksToggled"]
-[connection signal="toggled" from="CenterContainer/VBoxContainer/AdvancedOptions/Misc/VBoxContainer/VBoxContainer2/IncludeMulticellular" to="." method="OnIncludeMulticellularToggled"]
-[connection signal="toggled" from="CenterContainer/VBoxContainer/AdvancedOptions/Misc/VBoxContainer/VBoxContainer3/EasterEggs" to="." method="OnEasterEggsToggled"]
-[connection signal="toggled" from="CenterContainer/VBoxContainer/AdvancedOptions/Misc/VBoxContainer/VBoxContainer4/ExperimentalFeatures" to="." method="OnExperimentalFeaturesChanged"]
+[connection signal="toggled" from="CenterContainer/VBoxContainer/AdvancedOptions/Misc/VBoxContainer/VBoxContainer5/HBoxContainer/IncludeMulticellular" to="." method="OnIncludeMulticellularToggled"]
+[connection signal="toggled" from="CenterContainer/VBoxContainer/AdvancedOptions/Misc/VBoxContainer/VBoxContainer6/HBoxContainer/EasterEggs" to="." method="OnEasterEggsToggled"]
+[connection signal="toggled" from="CenterContainer/VBoxContainer/AdvancedOptions/Misc/VBoxContainer/VBoxContainer7/HBoxContainer/ExperimentalFeatures" to="." method="OnExperimentalFeaturesChanged"]
 [connection signal="pressed" from="CenterContainer/VBoxContainer/HBoxContainer/Back" to="." method="OnBackPressed"]
 [connection signal="pressed" from="CenterContainer/VBoxContainer/HBoxContainer/Basic" to="." method="OnBasicPressed"]
 [connection signal="pressed" from="CenterContainer/VBoxContainer/HBoxContainer/Advanced" to="." method="OnAdvancedPressed"]

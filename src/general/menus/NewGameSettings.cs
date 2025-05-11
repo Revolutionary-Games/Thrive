@@ -208,7 +208,7 @@ public partial class NewGameSettings : ControlWithInput
     private Container checkOptionsMenuAdviceContainer = null!;
 
     [Export]
-    private CheckBox experimentalFeatures = null!;
+    private CheckButton experimentalFeatures = null!;
 
     [Export]
     private Label experimentalExplanation = null!;
