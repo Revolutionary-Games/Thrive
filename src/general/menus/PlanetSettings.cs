@@ -1,4 +1,4 @@
-using System;
+﻿using System;
 using System.Globalization;
 using Godot;
 
@@ -61,7 +61,7 @@ public partial class PlanetSettings : VBoxContainer
             LAWK = lawkOnlyButton.ButtonPressed,
         };
     }
-    
+
     public void SetLifeOrigin(int index)
     {
         lifeOriginButton.Selected = index;

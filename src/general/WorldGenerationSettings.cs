@@ -130,7 +130,6 @@ public class WorldGenerationSettings
         High = 2,
     }
 
-
     /// <summary>
     ///   Whether this game is restricted to only LAWK parts and abilities
     /// </summary>
@@ -252,7 +251,7 @@ public class WorldGenerationSettings
     /// </summary>
     public string GetTranslatedDifficultyString()
     {
-        string translatedDifficulty = Difficulty is DifficultyPreset difficulty ?
+        var translatedDifficulty = Difficulty is DifficultyPreset difficulty ?
             difficulty.Name :
             Localization.Translate("DIFFICULTY_PRESET_CUSTOM");
 
