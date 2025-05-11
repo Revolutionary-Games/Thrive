@@ -241,8 +241,8 @@ public partial class NewGameSettings : ControlWithInput
 
     private enum SelectedOptionsTab
     {
-        Difficulty,
         Planet,
+        Difficulty,
         Miscellaneous,
     }
 
