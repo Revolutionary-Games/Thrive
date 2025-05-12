@@ -499,6 +499,12 @@ public sealed class MicrobePhysicsCreationAndSizeSystem : AEntitySetSystem<float
             entity.Get<CompoundAbsorber>().AbsorbRadius =
                 Math.Max(cellProperties.Radius, Constants.MICROBE_MIN_ABSORB_RADIUS);
         }
+
+        if (entity.Has<CurrentAffected>())
+        {
+            entity.Get<CurrentAffected>().EffectStrength = cellProperties.Radius
+                * Constants.CURRENT_FORCE_CELL_MULTIPLIER;
+        }
     }
 
     private void Dispose(bool disposing)

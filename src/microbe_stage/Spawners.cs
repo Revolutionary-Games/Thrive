@@ -753,7 +753,7 @@ public static class SpawnHelpers
 
         entity.Set<StrainAffected>();
 
-        entity.Set(new CurrentAffected(20.0f));
+        entity.Set(new CurrentAffected(Constants.CURRENT_FORCE_CELL_MULTIPLIER));
 
         // Selecting is used to throw out specific colony members
         entity.Set<Selectable>();
