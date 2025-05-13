@@ -1362,7 +1362,7 @@ public static class Constants
     public const float OTHER_GASES_DECAY_SPEED = 0.08f;
 
     // Patch event variables
-    public const int VENT_ERUPTION_CHANCE = 15;
+    public const float VENT_ERUPTION_CHANCE = 0.15f;
     public const float VENT_ERUPTION_HYDROGEN_SULFIDE_INCREASE = 0.00004f;
     public const float VENT_ERUPTION_CARBON_DIOXIDE_INCREASE = 0.3f;
 

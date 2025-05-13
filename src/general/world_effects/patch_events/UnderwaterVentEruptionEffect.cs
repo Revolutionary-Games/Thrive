@@ -42,7 +42,7 @@ public class UnderwaterVentEruptionEffect : IWorldEffect
             if (patch.BiomeType != BiomeType.Vents)
                 continue;
 
-            if (random.Next(100) > Constants.VENT_ERUPTION_CHANCE)
+            if (random.Next(100) > GetVentEruptionChance())
                 continue;
 
             var hasHydrogenSulfide = patch.Biome.ChangeableCompounds.TryGetValue(Compound.Hydrogensulfide,
@@ -82,6 +82,20 @@ public class UnderwaterVentEruptionEffect : IWorldEffect
             }
 
             patch.AddPatchEventRecord(WorldEffectTypes.UnderwaterVentEruption, totalTimePassed);
+        }
+    }
+
+    private float GetVentEruptionChance()
+    {
+        switch (targetWorld.WorldSettings.GeologicalActivity)
+        {
+            case WorldGenerationSettings.GeologicalActivityEnum.Dormant:
+                return Constants.VENT_ERUPTION_CHANCE * 0.5f;
+            case WorldGenerationSettings.GeologicalActivityEnum.Active:
+                return Constants.VENT_ERUPTION_CHANCE * 2;
+            case WorldGenerationSettings.GeologicalActivityEnum.Average:
+            default:
+                return Constants.VENT_ERUPTION_CHANCE;
         }
     }
 }
