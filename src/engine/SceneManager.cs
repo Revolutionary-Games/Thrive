@@ -133,7 +133,7 @@ public partial class SceneManager : Node
     /// </summary>
     public void ReturnToMenu()
     {
-        var scene = LoadScene("res://src/general/menus/MainMenu.tscn");
+        var scene = LoadScene("res://src/gui_common/menus/MainMenu.tscn");
 
         var mainMenu = (MainMenu)scene.Instantiate();
 

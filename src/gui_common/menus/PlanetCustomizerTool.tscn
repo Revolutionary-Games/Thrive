@@ -1,9 +1,9 @@
 [gd_scene load_steps=11 format=3 uid="uid://cv87uwt0hwl6k"]
 
-[ext_resource type="Script" uid="uid://3s148k4h1g2m" path="res://src/general/menus/PlanetCustomizerTool.cs" id="1_qm4a8"]
+[ext_resource type="Script" uid="uid://3s148k4h1g2m" path="res://src/gui_common/menus/PlanetCustomizerTool.cs" id="1_qm4a8"]
 [ext_resource type="Texture2D" uid="uid://djklaunps1oyd" path="res://assets/concept_art/even-more-cells.jpg" id="2_6fxue"]
 [ext_resource type="Theme" uid="uid://b4cx0o110g4b6" path="res://src/gui_common/thrive_theme.tres" id="3_xrckq"]
-[ext_resource type="PackedScene" uid="uid://b3rrmtcvwufb" path="res://src/general/menus/PlanetSettings.tscn" id="4_xkyxd"]
+[ext_resource type="PackedScene" uid="uid://b3rrmtcvwufb" path="res://src/gui_common/menus/PlanetSettings.tscn" id="4_xkyxd"]
 [ext_resource type="PackedScene" uid="uid://din62wkc2pcnk" path="res://src/gui_common/DraggableScrollContainer.tscn" id="6_xkyxd"]
 [ext_resource type="PackedScene" uid="uid://cmhetwsk3qbb7" path="res://src/microbe_stage/editor/PatchMapDrawer.tscn" id="7_8flxh"]
 [ext_resource type="PackedScene" uid="uid://bjl5o7oy7yr15" path="res://src/microbe_stage/gui/PatchDetailsPanel.tscn" id="8_rj8sx"]

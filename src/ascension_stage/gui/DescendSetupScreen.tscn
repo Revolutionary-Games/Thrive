@@ -1,7 +1,7 @@
 [gd_scene load_steps=4 format=3 uid="uid://dt07r51t6n6sn"]
 
 [ext_resource type="PackedScene" uid="uid://jatxjxj6uy0d" path="res://assets/models/menu_backgrounds/MainMenuScene1.tscn" id="1"]
-[ext_resource type="PackedScene" uid="uid://b0315b3i5bs5s" path="res://src/general/menus/NewGameSettings.tscn" id="2"]
+[ext_resource type="PackedScene" uid="uid://b0315b3i5bs5s" path="res://src/gui_common/menus/NewGameSettings.tscn" id="2"]
 [ext_resource type="Script" uid="uid://d1nvaqsw0q6f4" path="res://src/ascension_stage/gui/DescendSetupScreen.cs" id="3"]
 
 [node name="DescendSetupScreen" type="Node"]
