@@ -913,3 +913,18 @@
     - Updated AngleSharp from 1.2.0 to 1.3.0
     - "Added a new language: Alemannic"
     - Updated translations
+
+0.8.2.1:
+  IntroductionText: |
+    This is a small patch release to address a few problems in the previous release. The most visible is that the cell guidance lines are now their proper colours instead of always being black. This small release is also meant to be the first version fully signed and supported on Mac (to coincide with Launcher 2.2.0 release).
+  ReleaseLink: https://github.com/Revolutionary-Games/Thrive/releases/tag/v0.8.2.1
+  PatchNotes:
+    - Fixed the tutorial and chemoreceptor guidance lines always being black and hard to see
+    - Improved background brightness for OpenGL mode when microbe background blur was enabled (it is still not as correct looking as Vulkan mode)
+    - Fixed the mouse being unable to click in the top left corner of the screen due to a always present node that was not set to mouse ignore
+    - Fixed process panel speed indicators not speeding up in double game speed mode
+    - Clear the selected cell type in macroscopic when the type is deleted
+    - Added a command line flag to skip initial mod loading
+    - Some native library build tweaks
+    - Updated unit testing packages
+    - Updated translations
