@@ -34,15 +34,22 @@ public static class SteamBuild
         switch (platform)
         {
             case SteamPlatform.Linux:
-                return @"third_party\linux\Steamworks.NET.dll";
+                return $@"third_party\linux\{SteamAssemblyNameForPlatform(platform)}";
             case SteamPlatform.Windows:
-                return @"third_party\windows\Steamworks.NET.dll";
+                return $@"third_party\windows\{SteamAssemblyNameForPlatform(platform)}";
+
             // TODO: lipo the binary?
             case SteamPlatform.Mac:
-                return @"third_party\mac\Steamworks.NET.dll";
+                return $@"third_party\mac\{SteamAssemblyNameForPlatform(platform)}";
             default:
                 throw new ArgumentOutOfRangeException(nameof(platform), platform, null);
         }
+    }
+
+    public static string SteamAssemblyNameForPlatform(SteamPlatform platform)
+    {
+        _ = platform;
+        return "Steamworks.NET.dll";
     }
 
     public static string SteamAssemblyReference(SteamPlatform platform)

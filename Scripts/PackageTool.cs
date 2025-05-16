@@ -360,8 +360,7 @@ public class PackageTool : PackageToolBase<Program.PackageOptions>
 
     protected override async Task<bool> PrepareToExport(PackagePlatform platform, CancellationToken cancellationToken)
     {
-        // TODO: Mac steam support
-        if (options.Steam != null && platform is not PackagePlatform.Mac and not PackagePlatform.Web)
+        if (options.Steam != null && platform is not PackagePlatform.Web)
         {
             if (!await SteamBuild.SetBuildMode(options.Steam.Value, true, cancellationToken,
                     SteamBuild.ConvertPackagePlatformToSteam(platform)))
@@ -471,7 +470,8 @@ public class PackageTool : PackageToolBase<Program.PackageOptions>
                 .PathToSteamAssemblyForPlatform(SteamBuild.ConvertPackagePlatformToSteam(platform))
                 .Replace("\\", "/"), folder);
         }
-        else if (platform == PackagePlatform.Mac)
+
+        if (platform == PackagePlatform.Mac)
         {
             ColourConsole.WriteNormalLine("Including licenses (and other common files) in mac .zip");
 
@@ -482,6 +482,29 @@ public class PackageTool : PackageToolBase<Program.PackageOptions>
             startInfo.ArgumentList.Add("-9");
             startInfo.ArgumentList.Add("-u");
             startInfo.ArgumentList.Add(Path.GetFileName(MacZipInFolder(folder)));
+
+            // Need to include the steam library in the .app for Mac
+            var relativePath = Path.Join(folder, "Thrive.app/Contents/MacOS/");
+            var toCleanUp = Path.Join(folder, "Thrive.app");
+
+            if (Directory.Exists(relativePath))
+            {
+                ColourConsole.WriteWarningLine("Removing Thrive app folder that exists and is in the way of " +
+                    "inserting data to the existing .zip");
+
+                Directory.Delete(toCleanUp, true);
+            }
+
+            var steamworksName =
+                SteamBuild.SteamAssemblyNameForPlatform(SteamBuild.ConvertPackagePlatformToSteam(platform));
+
+            Directory.CreateDirectory(relativePath);
+
+            var destination = Path.Join(relativePath, steamworksName);
+            File.Move(Path.Join(folder, steamworksName), destination);
+            startInfo.ArgumentList.Add(destination);
+
+            ColourConsole.WriteDebugLine($"Moved steamworks DLL to {destination}");
 
             foreach (var file in GetFilesToPackage().Where(f => f.IsForPlatform(platform)))
             {
