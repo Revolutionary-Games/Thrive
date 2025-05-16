@@ -89,8 +89,9 @@ public sealed class SteamClient : ISteamClient
         {
             GD.Print("Game is owned by current Steam user");
 
-            if (!SteamUserStats.RequestCurrentStats())
-                GD.PrintErr("Failed to request current Steam stats");
+            // Apparently, this is no longer required
+            // if (!SteamUserStats.RequestCurrentStats())
+            //     GD.PrintErr("Failed to request current Steam stats");
         }
 
         appId = SteamUtils.GetAppID();
