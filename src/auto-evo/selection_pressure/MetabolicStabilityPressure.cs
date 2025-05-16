@@ -41,14 +41,16 @@ public class MetabolicStabilityPressure : SelectionPressure
 
         if (energyBalance.FinalBalanceStationary > 0)
         {
-            // Only punish non-sessile species for not being able to move continuously
-            if (microbeSpecies.Behaviour.Activity > 0)
-            {
-                return 0.25f;
-            }
+    if (microbeSpecies.Behaviour.Activity > 0)
+        {
+        // Non-sessile species are punished for not moving continuously
+        return 0.25f;
+        }
 
-            // Sessile species get full score if they can maintain energy while stationary
-            return 1.0f;
+    // Sessile species are rewarded if they can maintain energy while stationary
+    return 1.0f;
+    }
+
         }
 
         return 0.0f;
