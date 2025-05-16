@@ -28,6 +28,7 @@ using World = DefaultEcs.World;
 [Without(typeof(AttachedToEntity))]
 [WritesToComponent(typeof(MicrobeColony))]
 [WritesToComponent(typeof(CompoundAbsorber))]
+[WritesToComponent(typeof(CurrentAffected))]
 [ReadsComponent(typeof(OrganelleContainer))]
 [ReadsComponent(typeof(AttachedToEntity))]
 [RunsAfter(typeof(MicrobeVisualsSystem))]
@@ -498,6 +499,12 @@ public sealed class MicrobePhysicsCreationAndSizeSystem : AEntitySetSystem<float
             // Max here buffs compound absorbing for the smallest cells
             entity.Get<CompoundAbsorber>().AbsorbRadius =
                 Math.Max(cellProperties.Radius, Constants.MICROBE_MIN_ABSORB_RADIUS);
+        }
+
+        if (entity.Has<CurrentAffected>())
+        {
+            entity.Get<CurrentAffected>().EffectStrength = cellProperties.Radius
+                * Constants.CURRENT_FORCE_CELL_MULTIPLIER;
         }
     }
 
