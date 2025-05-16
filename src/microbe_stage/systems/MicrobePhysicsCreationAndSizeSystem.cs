@@ -28,6 +28,7 @@ using World = DefaultEcs.World;
 [Without(typeof(AttachedToEntity))]
 [WritesToComponent(typeof(MicrobeColony))]
 [WritesToComponent(typeof(CompoundAbsorber))]
+[WritesToComponent(typeof(CurrentAffected))]
 [ReadsComponent(typeof(OrganelleContainer))]
 [ReadsComponent(typeof(AttachedToEntity))]
 [RunsAfter(typeof(MicrobeVisualsSystem))]
