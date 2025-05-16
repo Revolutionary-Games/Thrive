@@ -26,18 +26,20 @@ public static class SteamBuild
     {
         Linux,
         Windows,
+        Mac,
     }
 
     public static string PathToSteamAssemblyForPlatform(SteamPlatform platform)
     {
         switch (platform)
         {
-            // TODO: M1 mac compiled support?
-            // case SteamPlatform.Linux.Mac:
             case SteamPlatform.Linux:
                 return @"third_party\linux\Steamworks.NET.dll";
             case SteamPlatform.Windows:
                 return @"third_party\windows\Steamworks.NET.dll";
+            // TODO: lipo the binary?
+            case SteamPlatform.Mac:
+                return @"third_party\mac\Steamworks.NET.dll";
             default:
                 throw new ArgumentOutOfRangeException(nameof(platform), platform, null);
         }
@@ -76,6 +78,10 @@ public static class SteamBuild
             {
                 platform = SteamPlatform.Linux;
             }
+            else if (OperatingSystem.IsMacOS())
+            {
+                platform = SteamPlatform.Mac;
+            }
             else
             {
                 throw new Exception("Unknown platform for auto picking Steam platform");
@@ -90,7 +96,7 @@ public static class SteamBuild
             {
                 if (!await IsSteamworksReferenced(platform.Value, cancellationToken))
                 {
-                    // We have a partially enabled build so we need to disable and re-enable
+                    // We have a partially enabled build, so we need to disable and re-enable
                     if (!await SetBuildMode(false, verbose, cancellationToken, platform))
                         throw new Exception("Failed to disable Steam build in order to put it back on");
 
@@ -132,7 +138,7 @@ public static class SteamBuild
             case PackagePlatform.Windows:
                 return SteamPlatform.Windows;
             case PackagePlatform.Mac:
-                throw new Exception("Steam not implemented for mac yet");
+                return SteamPlatform.Mac;
             case PackagePlatform.Web:
                 throw new Exception("Web platform can't have Steam");
             default:
@@ -165,7 +171,7 @@ public static class SteamBuild
                 if (verbose)
                     ColourConsole.WriteInfoLine($"Removed Steam client suppress reference on line {lineNumber}");
 
-                // Replace with the assembly reference
+                // Replace it with the assembly reference
                 yield return $"    {STEAM_ENABLED_COMMENT}";
 
                 if (verbose)
