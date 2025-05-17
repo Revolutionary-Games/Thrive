@@ -1,4 +1,5 @@
-﻿using Godot;
+﻿using System;
+using Godot;
 using Xoshiro.PRNG32;
 
 /// <summary>
@@ -6,6 +7,8 @@ using Xoshiro.PRNG32;
 /// </summary>
 public partial class GuidanceLine : MeshInstance3D
 {
+    private readonly XoShiRo128plus random = new();
+
     private Vector3 lineStart;
 
     private Vector3 lineEnd;
@@ -16,13 +19,17 @@ public partial class GuidanceLine : MeshInstance3D
 
     private bool dirty = true;
 
-    private XoShiRo128plus random = new();
-
     private float yOffset;
 
-    // Assigned as a child resource so this should be disposed automatically
+    // Assigned as a child resource so this should be disposed of automatically
 #pragma warning disable CA2213
     private ImmediateMesh mesh = null!;
+
+    /// <summary>
+    ///   The line material that needs to be set through the editor and made to use vertex colours
+    /// </summary>
+    [Export]
+    private StandardMaterial3D lineMaterial = null!;
 #pragma warning restore CA2213
 
     [Export]
@@ -62,8 +69,8 @@ public partial class GuidanceLine : MeshInstance3D
             if (colour == value)
                 return;
 
-            dirty = true;
             colour = value;
+            dirty = true;
         }
     }
 
@@ -73,7 +80,7 @@ public partial class GuidanceLine : MeshInstance3D
         get => lineWidth;
         set
         {
-            if (lineWidth == value)
+            if (Math.Abs(lineWidth - value) < MathUtils.EPSILON)
                 return;
 
             dirty = true;
@@ -85,7 +92,7 @@ public partial class GuidanceLine : MeshInstance3D
     {
         base._Ready();
 
-        // ImmediateMesh is no longer a node type so this just needs to have one as a child
+        // ImmediateMesh is no longer a node type, so this just needs to have one as a child
         mesh = new ImmediateMesh();
         Mesh = mesh;
 
@@ -93,10 +100,10 @@ public partial class GuidanceLine : MeshInstance3D
         ProcessPriority = 800;
         ProcessMode = ProcessModeEnum.Always;
 
-        // This material is needed for SetColor to work at all
-        var material = new StandardMaterial3D();
-        material.VertexColorUseAsAlbedo = true;
-        MaterialOverride = material;
+        // Maybe a separate resource that is just loaded here and then use the old vertex colour trick?
+        // Should have preloading and displaying the standard material for the microbe stage to make sure there isn't
+        // a lag spike when the line appears
+
         yOffset = random.NextFloat() - 2.0f;
     }
 
@@ -114,15 +121,24 @@ public partial class GuidanceLine : MeshInstance3D
 
         mesh.SurfaceBegin(Mesh.PrimitiveType.Triangles);
 
-        mesh.SurfaceSetColor(colour);
+        if (FeatureInformation.GetVideoDriver() != OS.RenderingDriver.Opengl3)
+        {
+            // This needs to be darkened a ton here to make up for the unlit rendering mode now used on the material
+            // (which was changed to make exported game properly display the material)
+            mesh.SurfaceSetColor(colour.Darkened(0.94f));
+        }
+        else
+        {
+            // Visibility is seriously bad with this mode, so don't adjust colour
+            mesh.SurfaceSetColor(colour);
+        }
 
-        // To form quad, we want it in 'orgin + vector' form, not 'start + end' form
+        // To form quad, we want it in 'origin + vector' form, not 'start + end' form
         // Be sure to flatten the Y-axis of the vector, so it's all on a 2D plane
         Vector3 lineVector = lineEnd - lineStart;
         lineVector[1] = 0.0f;
 
-        // To get a vector that is at a right angle to the line in 2D
-        // swap the coords and negate one term, then normalize.
+        // To get a vector at a right angle to the line in 2D, swap the coords and negate one term, then normalise.
         Vector3 lineNormal = new Vector3(-lineVector[2], 0.0f, lineVector[0]).Normalized();
 
         Vector3 yOffsetVector = new Vector3(0.0f, yOffset, 0.0f);
@@ -132,5 +148,6 @@ public partial class GuidanceLine : MeshInstance3D
         mesh.SurfaceAddVertex(LineStart - lineNormal * lineWidth + yOffsetVector);
 
         mesh.SurfaceEnd();
+        mesh.SurfaceSetMaterial(0, lineMaterial);
     }
 }

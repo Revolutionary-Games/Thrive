@@ -84,8 +84,10 @@ set_target_properties(thrive_native PROPERTIES
 
 if(THRIVE_LTO)
   # TODO: figure out why msys2 fails with this or disable this by default there
-  set_target_properties(thrive_native PROPERTIES INTERPROCEDURAL_OPTIMIZATION ON)
-  message(STATUS "LTO is on for ThriveNative")
+  if(NOT CMAKE_BUILD_TYPE STREQUAL "Debug")
+    set_target_properties(thrive_native PROPERTIES INTERPROCEDURAL_OPTIMIZATION ON)
+    message(STATUS "LTO is on for ThriveNative")
+  endif()
 endif()
 
 install(TARGETS thrive_native)

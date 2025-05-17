@@ -1091,6 +1091,14 @@ public partial class CreatureStageHUDBase<TStage> : HUDWithPausing, ICreatureSta
         processPanel.ShownData = stage is { HasAlivePlayer: true } ? GetPlayerProcessStatistics() : null;
     }
 
+    protected void UpdateProcessPanelExternalSpeedModifier(float newValue)
+    {
+        if (!processPanel.Visible)
+            return;
+
+        processPanel.ExternalSpeedModifier = newValue;
+    }
+
     protected virtual ProcessStatistics? GetPlayerProcessStatistics()
     {
         throw new GodotAbstractMethodNotOverriddenException();

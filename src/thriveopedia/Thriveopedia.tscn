@@ -198,8 +198,11 @@ layout_mode = 2
 custom_minimum_size = Vector2(35, 35)
 layout_mode = 2
 tooltip_text = "TOGGLE_NAVIGATION_TREE"
+focus_neighbor_left = NodePath(".")
 focus_neighbor_right = NodePath("../BackButton")
+focus_neighbor_bottom = NodePath("../../HBoxContainer3/MarginContainer2/MarginContainer/VBoxContainer/PageTree")
 focus_next = NodePath("../BackButton")
+focus_previous = NodePath("../../HBoxContainer3/MarginContainer2/MarginContainer/VBoxContainer/PageTree")
 texture_normal = ExtResource("22")
 texture_pressed = ExtResource("24")
 texture_hover = ExtResource("23")
@@ -345,7 +348,7 @@ theme = ExtResource("2")
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="MarginContainer/VBoxContainer/HBoxContainer3/MarginContainer2/MarginContainer"]
 libraries = {
-"": SubResource("AnimationLibrary_4nf6r")
+&"": SubResource("AnimationLibrary_4nf6r")
 }
 
 [node name="MarginContainer" type="MarginContainer" parent="MarginContainer/VBoxContainer/HBoxContainer3"]
