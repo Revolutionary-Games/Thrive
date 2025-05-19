@@ -181,7 +181,7 @@ public class Settings
     ///   Sets whether the camera will slightly tilt toward cursor
     /// </summary>
     [JsonProperty]
-    public SettingValue<bool> MicrobeCameraTilt { get; private set; } = new(true);
+    public SettingValue<bool> MicrobeCameraTilt { get; private set; } = new(false);
 
     /// <summary>
     ///   Type of controller button prompts to show
