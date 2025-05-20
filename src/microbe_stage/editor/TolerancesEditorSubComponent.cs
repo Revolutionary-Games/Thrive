@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 using Godot;
 using Newtonsoft.Json;
 
@@ -270,8 +271,15 @@ public partial class TolerancesEditorSubComponent : EditorComponentBase<ICellEdi
 
     public void UpdateToolTipStats()
     {
-        // Calculate one stat at a time to get the individual changes per type instead of all combined
-        var optimal = Editor.CurrentPatch.GenerateTolerancesForMicrobe();
+        if (Editor.EditedCellOrganelles == null)
+        {
+            GD.PrintErr("No cell edited organelles set, tolerances editor cannot update!");
+            return;
+        }
+
+        // Calculate one stat at a time to get the individual changes per type instead of all being combined.
+        // And for that we need an optimal baseline that guarantees no other stat-related debuffs / buffs are mixed in.
+        var optimal = Editor.CurrentPatch.GenerateTolerancesForMicrobe(Editor.EditedCellOrganelles);
 
         // Set huge ranges so that there is no threat of optimal bonuses triggering with the default calculations
         optimal.PressureMinimum = 0;
@@ -279,6 +287,21 @@ public partial class TolerancesEditorSubComponent : EditorComponentBase<ICellEdi
         optimal.TemperatureTolerance += Constants.TOLERANCE_PERFECT_THRESHOLD_TEMPERATURE * 2;
 
         var tempTolerances = CurrentTolerances.Clone();
+
+#if DEBUG
+        tempTolerances.CopyFrom(optimal);
+        var optimalTest =
+            MicrobeEnvironmentalToleranceCalculations.CalculateTolerances(tempTolerances,
+                Editor.EditedCellOrganelles ?? throw new Exception("Organelles not set"), Editor.CurrentPatch.Biome);
+
+        if (optimalTest.OverallScore is < 1 or > 1 + MathUtils.EPSILON)
+        {
+            GD.PrintErr("Optimal tolerance calculation failed, score: " + optimalTest.OverallScore);
+
+            if (Debugger.IsAttached)
+                Debugger.Break();
+        }
+#endif
 
         if (temperatureToolTip != null)
         {

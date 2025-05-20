@@ -149,7 +149,20 @@ public class GameWorld : ISaveLoadable
 
             if (patch != null)
             {
-                PlayerSpecies.Tolerances.CopyFrom(patch.GenerateTolerancesForMicrobe());
+                if (PlayerSpecies is MicrobeSpecies microbeSpecies)
+                {
+                    PlayerSpecies.Tolerances.CopyFrom(patch.GenerateTolerancesForMicrobe(microbeSpecies.Organelles));
+                }
+                else if (PlayerSpecies is MulticellularSpecies multicellularSpecies)
+                {
+                    PlayerSpecies.Tolerances.CopyFrom(
+                        patch.GenerateTolerancesForMicrobe(multicellularSpecies.Cells[0].Organelles));
+                }
+                else
+                {
+                    // TODO: need to implement this once macroscopic has tolerances
+                    GD.PrintErr("Cannot set initial tolerances from a species that isn't MicrobeSpecies");
+                }
             }
             else
             {
