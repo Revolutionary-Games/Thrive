@@ -608,6 +608,8 @@ public partial class CreatureStageHUDBase<TStage> : HUDWithPausing, ICreatureSta
             patchExtinctionBox.PlayerSpecies = stage!.GameWorld.PlayerSpecies;
             patchExtinctionBox.Map = stage.GameWorld.Map;
 
+            patchExtinctionBox.ForgetSelectedPatch();
+
             patchExtinctionBox.Show();
         }
     }
