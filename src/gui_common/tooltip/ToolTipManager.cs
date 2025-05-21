@@ -378,7 +378,7 @@ public partial class ToolTipManager : CanvasLayer
         // Organelle tooltips
         foreach (var organelle in SimulationParameters.Instance.GetAllOrganelles())
         {
-            var tooltip = (SelectionMenuToolTip)GetToolTip(organelle.InternalName, "organelleSelection")!;
+            var tooltip = GetToolTip(organelle.InternalName, "organelleSelection") as SelectionMenuToolTip;
 
             if (tooltip == null)
                 continue;
