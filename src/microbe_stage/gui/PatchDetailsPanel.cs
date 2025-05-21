@@ -328,6 +328,10 @@ public partial class PatchDetailsPanel : PanelContainer
             nothingSelected.Visible = true;
             unknownPatch.Visible = false;
 
+            // If no selected patch, the move cannot be valid
+            if (moveToPatchButton != null)
+                moveToPatchButton.Disabled = true;
+
             return;
         }
 
