@@ -461,14 +461,26 @@ public class PackageTool : PackageToolBase<Program.PackageOptions>
     protected override async Task<bool> OnPostProcessExportedFolder(PackagePlatform platform, string folder,
         CancellationToken cancellationToken)
     {
+        var steamArchitectures = new List<SteamBuild.LibraryArchitecture>
+        {
+            SteamBuild.LibraryArchitecture.X64,
+        };
+
+        if (platform == PackagePlatform.Mac)
+            steamArchitectures.Add(SteamBuild.LibraryArchitecture.Arm64);
+
         if (steamMode)
         {
             // Create the Steam-specific resources
 
             // Copy the right Steamworks.NET library for the current target
-            CopyHelpers.CopyToFolder(SteamBuild
-                .PathToSteamAssemblyForPlatform(SteamBuild.ConvertPackagePlatformToSteam(platform))
-                .Replace("\\", "/"), folder);
+            foreach (var libraryArchitecture in steamArchitectures)
+            {
+                CopyHelpers.CopyToFolder(SteamBuild
+                    .PathToSteamAssemblyForPlatform(SteamBuild.ConvertPackagePlatformToSteam(platform),
+                        libraryArchitecture)
+                    .Replace("\\", "/"), folder);
+            }
         }
 
         if (platform == PackagePlatform.Mac)
@@ -483,28 +495,38 @@ public class PackageTool : PackageToolBase<Program.PackageOptions>
             startInfo.ArgumentList.Add("-u");
             startInfo.ArgumentList.Add(Path.GetFileName(MacZipInFolder(folder)));
 
+            string? toCleanUp = null;
+
             // Need to include the steam library in the .app for Mac
-            var relativePath = Path.Join(folder, "Thrive.app/Contents/MacOS/");
-            var toCleanUp = Path.Join(folder, "Thrive.app");
-
-            if (Directory.Exists(relativePath))
+            if (steamMode)
             {
-                ColourConsole.WriteWarningLine("Removing Thrive app folder that exists and is in the way of " +
-                    "inserting data to the existing .zip");
+                var zipRelative = "Thrive.app/Contents/MacOS/";
+                var relativePath = Path.Join(folder, zipRelative);
+                toCleanUp = Path.Join(folder, "Thrive.app");
 
-                Directory.Delete(toCleanUp, true);
+                if (Directory.Exists(relativePath))
+                {
+                    ColourConsole.WriteWarningLine("Removing Thrive app folder that exists and is in the way of " +
+                        "inserting data to the existing .zip");
+
+                    Directory.Delete(toCleanUp, true);
+                }
+
+                foreach (var libraryArchitecture in steamArchitectures)
+                {
+                    var steamworksName =
+                        SteamBuild.SteamAssemblyNameForPlatform(SteamBuild.ConvertPackagePlatformToSteam(platform),
+                            libraryArchitecture);
+
+                    Directory.CreateDirectory(relativePath);
+
+                    var destination = Path.Join(relativePath, steamworksName);
+                    File.Move(Path.Join(folder, steamworksName), destination);
+                    startInfo.ArgumentList.Add(Path.Join(zipRelative, steamworksName));
+
+                    ColourConsole.WriteDebugLine($"Moved steamworks DLL to {destination}");
+                }
             }
-
-            var steamworksName =
-                SteamBuild.SteamAssemblyNameForPlatform(SteamBuild.ConvertPackagePlatformToSteam(platform));
-
-            Directory.CreateDirectory(relativePath);
-
-            var destination = Path.Join(relativePath, steamworksName);
-            File.Move(Path.Join(folder, steamworksName), destination);
-            startInfo.ArgumentList.Add(destination);
-
-            ColourConsole.WriteDebugLine($"Moved steamworks DLL to {destination}");
 
             foreach (var file in GetFilesToPackage().Where(f => f.IsForPlatform(platform)))
             {
@@ -517,6 +539,9 @@ public class PackageTool : PackageToolBase<Program.PackageOptions>
             }
 
             var result = await ProcessRunHelpers.RunProcessAsync(startInfo, cancellationToken, true);
+
+            if (toCleanUp != null)
+                Directory.Delete(toCleanUp, true);
 
             if (result.ExitCode != 0)
             {
