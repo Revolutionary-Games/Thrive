@@ -378,12 +378,14 @@ public partial class ToolTipManager : CanvasLayer
         // Organelle tooltips
         foreach (var organelle in SimulationParameters.Instance.GetAllOrganelles())
         {
-            var tooltip = GetToolTip(organelle.InternalName, "organelleSelection");
+            var tooltip = (SelectionMenuToolTip)GetToolTip(organelle.InternalName, "organelleSelection")!;
 
             if (tooltip == null)
                 continue;
 
             UpdateModifierInfoWithTranslations(organelle, tooltip);
+
+            tooltip.DisplayName = organelle.Name;
         }
     }
 
