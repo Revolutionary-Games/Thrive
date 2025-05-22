@@ -384,7 +384,10 @@ public partial class ToolTipManager : CanvasLayer
                 continue;
 
             if (tooltip is not SelectionMenuToolTip selectionMenuToolTip)
+            {
+                GD.PrintErr("Organelle selection menu tooltip has a wrong type");
                 continue;
+            }
 
             UpdateModifierInfoWithTranslations(organelle, selectionMenuToolTip);
 
