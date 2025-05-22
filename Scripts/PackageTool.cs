@@ -33,7 +33,6 @@ public class PackageTool : PackageToolBase<Program.PackageOptions>
 
     private const string MAC_ZIP_LIBRARIES_PATH = "Thrive.app/Contents/MacOS";
     private const string MAC_ZIP_GD_EXTENSION_TARGET_PATH = "Thrive.app/Contents/MacOS";
-    private const string MAC_MAIN_EXECUTABLE = "Thrive.app/Contents/MacOS/Thrive";
 
     private const string MAC_ENTITLEMENTS = "Scripts/Thrive.entitlements";
 
@@ -848,42 +847,12 @@ public class PackageTool : PackageToolBase<Program.PackageOptions>
             ColourConsole.WriteInfoLine($"Signing mac build with key {options.MacSigningKey}");
         }
 
-        ColourConsole.WriteInfoLine("Signing all parts of the Mac build");
-        ColourConsole.WriteNormalLine("This may take a while as there are many items");
-
-        foreach (var item in Directory.EnumerateFiles(tempFolder, "*.*", SearchOption.AllDirectories))
-        {
-            // Skip stuff that shouldn't be signed
-            // TODO: would it offer any extra security if the .pck file was signed as well?
-            if (item.EndsWith(".txt") || item.EndsWith(".pck") || item.EndsWith(".md") || item.EndsWith(".7z"))
-            {
-                continue;
-            }
-
-            // The main executable must be signed last
-            if (item.EndsWith(MAC_MAIN_EXECUTABLE))
-                continue;
-
-            if (!await BinaryHelpers.SignFileForMac(item, MAC_ENTITLEMENTS, options.MacSigningKey,
-                    cancellationToken))
-            {
-                ColourConsole.WriteErrorLine($"Failed to sign part of Mac build: {item}");
-                return false;
-            }
-        }
-
-        ColourConsole.WriteSuccessLine("Successfully signed individual parts");
-
-        // Sign the main file last
-        if (!await BinaryHelpers.SignFileForMac(Path.Join(tempFolder, MAC_MAIN_EXECUTABLE), MAC_ENTITLEMENTS,
-                options.MacSigningKey,
+        if (!await BinaryHelpers.SignThriveAppMac(tempFolder, "./", MAC_ENTITLEMENTS, options.MacSigningKey,
                 cancellationToken))
         {
-            ColourConsole.WriteErrorLine("Failed to sign main of Mac build");
+            ColourConsole.WriteErrorLine("Failed to sign Mac Thrive build files");
             return false;
         }
-
-        ColourConsole.WriteSuccessLine("Signed the main file");
 
         ColourConsole.WriteInfoLine("Creating final archive file from signed items");
         var startInfo = new ProcessStartInfo("zip")
