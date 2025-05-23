@@ -105,13 +105,16 @@ public static class SteamBuild
             // Mac requires architecture specific references
 
             return
-                $"{STEAMWORKS_REFERENCE_START}.arm64\" {CONDITION_MAC_ARM64}><HintPath>{PathToSteamAssemblyForPlatform(platform, LibraryArchitecture.Arm64)}</HintPath></Reference>\n" +
-                $"    {STEAMWORKS_REFERENCE_START}.x64\" {CONDITION_MAC_X64}><HintPath>{PathToSteamAssemblyForPlatform(platform, LibraryArchitecture.X64)}</HintPath></Reference>";
+                $"{STEAMWORKS_REFERENCE_START}.arm64\" {CONDITION_MAC_ARM64}><HintPath>" +
+                $"{PathToSteamAssemblyForPlatform(platform, LibraryArchitecture.Arm64)}</HintPath></Reference>\n" +
+                $"    {STEAMWORKS_REFERENCE_START}.x64\" {CONDITION_MAC_X64}><HintPath>" +
+                $"{PathToSteamAssemblyForPlatform(platform, LibraryArchitecture.X64)}</HintPath></Reference>";
         }
 
         // Other platforms don't use architecture-specific references
         return
-            $"{STEAMWORKS_REFERENCE_START}\"><HintPath>{PathToSteamAssemblyForPlatform(platform, LibraryArchitecture.X64)}</HintPath></Reference>";
+            $"{STEAMWORKS_REFERENCE_START}\"><HintPath>" +
+            $"{PathToSteamAssemblyForPlatform(platform, LibraryArchitecture.X64)}</HintPath></Reference>";
     }
 
     public static async Task<bool> IsSteamBuildEnabled(CancellationToken cancellationToken)
