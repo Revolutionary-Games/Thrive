@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Thrive VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2025-05-17 13:06+0200\n"
+"POT-Creation-Date: 2025-05-23 10:31+0300\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -607,7 +607,7 @@ msgstr ""
 msgid "BEHAVIOUR_OPPORTUNISM"
 msgstr ""
 
-#: ../src/microbe_stage/gui/PatchDetailsPanel.cs:367
+#: ../src/microbe_stage/gui/PatchDetailsPanel.cs:371
 msgid "BELOW_SEA_LEVEL"
 msgstr ""
 
@@ -695,7 +695,7 @@ msgstr ""
 msgid "BIOLUMINESCENT_VACUOLE_PROCESSES_DESCRIPTION"
 msgstr ""
 
-#: ../src/microbe_stage/gui/PatchDetailsPanel.cs:364
+#: ../src/microbe_stage/gui/PatchDetailsPanel.cs:368
 msgid "BIOME_LABEL"
 msgstr ""
 
@@ -848,27 +848,27 @@ msgstr ""
 msgid "CARBON_DIOXIDE"
 msgstr ""
 
-#: ../src/general/base_stage/CreatureStageHUDBase.cs:985
+#: ../src/general/base_stage/CreatureStageHUDBase.cs:987
 msgid "CATEGORY_AN_ABUNDANCE"
 msgstr ""
 
-#: ../src/general/base_stage/CreatureStageHUDBase.cs:989
+#: ../src/general/base_stage/CreatureStageHUDBase.cs:991
 msgid "CATEGORY_A_FAIR_AMOUNT"
 msgstr ""
 
-#: ../src/general/base_stage/CreatureStageHUDBase.cs:993
+#: ../src/general/base_stage/CreatureStageHUDBase.cs:995
 msgid "CATEGORY_LITTLE"
 msgstr ""
 
-#: ../src/general/base_stage/CreatureStageHUDBase.cs:987
+#: ../src/general/base_stage/CreatureStageHUDBase.cs:989
 msgid "CATEGORY_QUITE_A_BIT"
 msgstr ""
 
-#: ../src/general/base_stage/CreatureStageHUDBase.cs:991
+#: ../src/general/base_stage/CreatureStageHUDBase.cs:993
 msgid "CATEGORY_SOME"
 msgstr ""
 
-#: ../src/general/base_stage/CreatureStageHUDBase.cs:995
+#: ../src/general/base_stage/CreatureStageHUDBase.cs:997
 msgid "CATEGORY_VERY_LITTLE"
 msgstr ""
 
@@ -2060,7 +2060,7 @@ msgstr ""
 msgid "DIFFICULTY_PRESET_NORMAL"
 msgstr ""
 
-#: ../src/gui_common/tooltip/ToolTipManager.cs:673
+#: ../src/gui_common/tooltip/ToolTipManager.cs:679
 msgid "DIGESTION_EFFICIENCY"
 msgstr ""
 
@@ -2068,7 +2068,7 @@ msgstr ""
 msgid "DIGESTION_EFFICIENCY_COLON"
 msgstr ""
 
-#: ../src/gui_common/tooltip/ToolTipManager.cs:672
+#: ../src/gui_common/tooltip/ToolTipManager.cs:678
 msgid "DIGESTION_SPEED"
 msgstr ""
 
@@ -2097,7 +2097,7 @@ msgstr ""
 msgid "DISCARD_CHANGES"
 msgstr ""
 
-#: ../src/microbe_stage/gui/PatchDetailsPanel.cs:829
+#: ../src/microbe_stage/gui/PatchDetailsPanel.cs:833
 msgid "DISCARD_MIGRATION"
 msgstr ""
 
@@ -3981,7 +3981,7 @@ msgstr ""
 msgid "KEEP_CURRENT_TOLERANCE_FLEXIBILITY_TOOLTIP"
 msgstr ""
 
-#: ../src/microbe_stage/gui/PatchDetailsPanel.cs:828
+#: ../src/microbe_stage/gui/PatchDetailsPanel.cs:832
 msgid "KEEP_MIGRATION"
 msgstr ""
 
@@ -4416,7 +4416,7 @@ msgstr ""
 msgid "LIGHT_LEVEL_DAY"
 msgstr ""
 
-#: ../src/microbe_stage/gui/PatchDetailsPanel.cs:384
+#: ../src/microbe_stage/gui/PatchDetailsPanel.cs:388
 msgid "LIGHT_LEVEL_LABEL_AT_NOON"
 msgstr ""
 
@@ -5079,7 +5079,7 @@ msgstr ""
 msgid "MIDDLE_MOUSE"
 msgstr ""
 
-#: ../src/microbe_stage/gui/PatchDetailsPanel.cs:696
+#: ../src/microbe_stage/gui/PatchDetailsPanel.cs:700
 msgid "MIGRATION_FAILED_TO_ADD"
 msgstr ""
 
@@ -5087,27 +5087,27 @@ msgstr ""
 msgid "MIGRATION_MANAGER"
 msgstr ""
 
-#: ../src/microbe_stage/gui/PatchDetailsPanel.cs:851
+#: ../src/microbe_stage/gui/PatchDetailsPanel.cs:855
 msgid "MIGRATION_STATUS_DESTINATION_NOT_SELECTED"
 msgstr ""
 
-#: ../src/microbe_stage/gui/PatchDetailsPanel.cs:856
+#: ../src/microbe_stage/gui/PatchDetailsPanel.cs:860
 msgid "MIGRATION_STATUS_TEXT"
 msgstr ""
 
-#: ../src/microbe_stage/gui/PatchDetailsPanel.cs:809
+#: ../src/microbe_stage/gui/PatchDetailsPanel.cs:813
 msgid "MIGRATION_STEP_DESTINATION_EXPLANATION"
 msgstr ""
 
-#: ../src/microbe_stage/gui/PatchDetailsPanel.cs:827
+#: ../src/microbe_stage/gui/PatchDetailsPanel.cs:831
 msgid "MIGRATION_STEP_ONLY_ONE_ALLOWED"
 msgstr ""
 
-#: ../src/microbe_stage/gui/PatchDetailsPanel.cs:818
+#: ../src/microbe_stage/gui/PatchDetailsPanel.cs:822
 msgid "MIGRATION_STEP_POPULATION_EXPLANATION"
 msgstr ""
 
-#: ../src/microbe_stage/gui/PatchDetailsPanel.cs:800
+#: ../src/microbe_stage/gui/PatchDetailsPanel.cs:804
 #: ../src/microbe_stage/gui/PatchDetailsPanel.tscn:562
 msgid "MIGRATION_STEP_SOURCE_EXPLANATION"
 msgstr ""
@@ -6351,14 +6351,14 @@ msgstr ""
 #: ../src/general/WorldGenerationSettings.cs:183
 #: ../src/gui_common/CompoundAmount.cs:316
 #: ../src/microbe_stage/editor/MicrobeEditorReportComponent.cs:531
-#: ../src/microbe_stage/editor/TolerancesEditorSubComponent.cs:716
+#: ../src/microbe_stage/editor/TolerancesEditorSubComponent.cs:739
 #: ../src/microbe_stage/editor/tooltips/EnvironmentalToleranceToolTip.cs:98
 #: ../src/microbe_stage/editor/tooltips/StatModifierToolTip.cs:157
 #: ../src/microbe_stage/editor/tooltips/StatModifierToolTip.cs:237
 #: ../src/microbe_stage/editor/upgrades/ToxinUpgradeGUI.cs:54
 #: ../src/microbe_stage/gui/CompoundProgressBar.cs:505
 #: ../src/microbe_stage/gui/CompoundProgressBar.cs:581
-#: ../src/microbe_stage/gui/PatchDetailsPanel.cs:370
+#: ../src/microbe_stage/gui/PatchDetailsPanel.cs:374
 #: ../src/microbe_stage/MicrobeHUD.cs:353
 #: ../src/microbe_stage/organelle_unlocks/WorldBasedUnlockCondition.cs:158
 #: ../src/microbe_stage/organelle_unlocks/WorldBasedUnlockCondition.cs:161
@@ -6382,13 +6382,13 @@ msgstr ""
 msgid "PERFORM_UNBINDING"
 msgstr ""
 
-#: ../src/gui_common/ChemicalEquation.cs:205
-#: ../src/gui_common/ChemicalEquation.cs:249
+#: ../src/gui_common/ChemicalEquation.cs:207
+#: ../src/gui_common/ChemicalEquation.cs:251
 msgid "PER_SECOND_ABBREVIATION"
 msgstr ""
 
-#: ../src/gui_common/ChemicalEquation.cs:204
-#: ../src/gui_common/ChemicalEquation.cs:248
+#: ../src/gui_common/ChemicalEquation.cs:206
+#: ../src/gui_common/ChemicalEquation.cs:250
 msgid "PER_SECOND_SLASH"
 msgstr ""
 
@@ -6574,7 +6574,7 @@ msgstr ""
 msgid "PROCESSING_LOADED_OBJECTS"
 msgstr ""
 
-#: ../src/gui_common/ChemicalEquation.cs:387
+#: ../src/gui_common/ChemicalEquation.cs:389
 msgid "PROCESS_ENVIRONMENT_SEPARATOR"
 msgstr ""
 
@@ -7559,11 +7559,11 @@ msgstr ""
 msgid "SPECIES_TO_FIND"
 msgstr ""
 
-#: ../src/microbe_stage/gui/PatchDetailsPanel.cs:436
+#: ../src/microbe_stage/gui/PatchDetailsPanel.cs:440
 msgid "SPECIES_WITH_POPULATION"
 msgstr ""
 
-#: ../src/gui_common/tooltip/ToolTipManager.cs:674
+#: ../src/gui_common/tooltip/ToolTipManager.cs:680
 msgid "SPEED"
 msgstr ""
 
@@ -7710,7 +7710,7 @@ msgstr ""
 msgid "STOP"
 msgstr ""
 
-#: ../src/gui_common/tooltip/ToolTipManager.cs:671
+#: ../src/gui_common/tooltip/ToolTipManager.cs:677
 msgid "STORAGE"
 msgstr ""
 
@@ -8904,10 +8904,10 @@ msgid "VACUOLE_SPECIALIZED_DESCRIPTION"
 msgstr ""
 
 #: ../src/gui_common/CompoundAmount.cs:311
-#: ../src/microbe_stage/editor/TolerancesEditorSubComponent.cs:715
+#: ../src/microbe_stage/editor/TolerancesEditorSubComponent.cs:738
 #: ../src/microbe_stage/gui/CompoundProgressBar.cs:509
 #: ../src/microbe_stage/gui/CompoundProgressBar.cs:585
-#: ../src/microbe_stage/gui/PatchDetailsPanel.cs:371
+#: ../src/microbe_stage/gui/PatchDetailsPanel.cs:375
 #: ../src/microbe_stage/organelle_unlocks/WorldBasedUnlockCondition.cs:158
 #: ../src/microbe_stage/organelle_unlocks/WorldBasedUnlockCondition.cs:161
 #: ../src/microbe_stage/organelle_unlocks/WorldBasedUnlockCondition.cs:167
