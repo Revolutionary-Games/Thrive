@@ -7,8 +7,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2025-05-14 23:25+0300\n"
-"PO-Revision-Date: 2025-05-15 12:12+0000\n"
+"POT-Creation-Date: 2025-05-23 10:31+0300\n"
+"PO-Revision-Date: 2025-05-22 16:21+0000\n"
 "Last-Translator: xzihnago <xzihnago@gmail.com>\n"
 "Language-Team: Chinese (Traditional Han script) <https://translate.revolutionarygamesstudio.com/projects/thrive/thrive-game/zh_Hant/>\n"
 "Language: zh_TW\n"
@@ -3468,6 +3468,9 @@ msgstr "微生物數量："
 msgid "MICROBE_BENCHMARK"
 msgstr "微生物性能基準測試"
 
+msgid "MICROBE_CAMERA_TILT_EFFECT"
+msgstr "微生物視角傾斜"
+
 msgid "MICROBE_EDITOR"
 msgstr "微生物編輯器"
 
@@ -6246,30 +6249,27 @@ msgstr ""
 "\n"
 "當細胞充滿時，就無法吞噬更多的東西。要繼續吞噬，請等待一個或多個攝入的物體被完全消化。"
 
-#, fuzzy
 msgid "TUTORIAL_MICROBE_STAGE_ENGULFMENT_TEXT"
 msgstr ""
-"在吞噬模式下透過在物體上移動來吞噬它們。按下[thrive:input]g_toggle_engulf[/thrive:input]切換吞噬模式。\n"
+"在吞噬模式下，移動到物體上即可吞噬它們。按下[thrive:input]g_toggle_engulf[/thrive:input]切換吞噬模式。\n"
 "\n"
-"一旦物體被拉進去即可停止吞噬。\n"
+"當物體被吸入後，吞噬會自動停止。\n"
 "\n"
-"沿著您細胞上出現的路線前往附近的可吞噬物體。"
+"這條線指向某個因為您[i]足夠大[/i]而能夠吞噬的物體，但您未必真的能[i]抓到[/i]它。"
 
-#, fuzzy
 msgid "TUTORIAL_MICROBE_STAGE_ENVIRONMENT_PANEL"
 msgstr ""
-"在吞噬模式下透過在物體上移動來吞噬它們。按下[thrive:input]g_toggle_engulf[/thrive:input]切換吞噬模式。\n"
+"當地環境條件顯示在螢幕左側的[b]環境面板[/b]中。\n"
 "\n"
-"一旦物體被拉進去即可停止吞噬。\n"
+"眼睛尚未演化，但某些物種可能已經依賴日光（或溫度）來生產能量。如果您是這樣的物種，請注意！\n"
 "\n"
-"沿著您細胞上出現的路線前往附近的可吞噬物體。"
+"在夜間，光合作用無法發揮作用。因此，任何依賴[b]光合作用[/b]的細胞都需要有足夠的化合物儲存 [thrive:icon]StorageIcon[/thrive:icon] 才能在夜晚生存。"
 
-#, fuzzy
 msgid "TUTORIAL_MICROBE_STAGE_HELP_MENU_AND_ZOOM"
 msgstr ""
-"遇到困難？請查看幫助選單。您可以使用左下角的問號按鈕開啟它。\n"
+"如果您需要更多指南，請查看幫助選單。您可以隨時使用左下角的問號按鈕開啟它。\n"
 "\n"
-"還有一點提示：您可以使用滾輪縮小畫面。"
+"還有一點提示：您可以使用[thrive:input]g_zoom_out[/thrive:input]縮小畫面。"
 
 msgid "TUTORIAL_MICROBE_STAGE_LEAVE_COLONY_TEXT"
 msgstr ""
@@ -6278,28 +6278,27 @@ msgstr ""
 "除非您成為多細胞生物，否則您需要離開群體才能進入編輯器。\n"
 "按下[thrive:input]g_unbind_all[/thrive:input]離開細胞群體以進行繁殖。"
 
-#, fuzzy
 msgid "TUTORIAL_MICROBE_STAGE_MEMBER_DIED"
 msgstr ""
-"在吞噬模式下透過在物體上移動來吞噬它們。按下[thrive:input]g_toggle_engulf[/thrive:input]切換吞噬模式。\n"
+"您的物種的一名成員剛剛不幸死亡！當您進入編輯器，這將作為外部效果影響您的物種量。\n"
 "\n"
-"一旦物體被拉進去即可停止吞噬。\n"
-"\n"
-"沿著您細胞上出現的路線前往附近的可吞噬物體。"
+"您可以在編輯器中編輯物種來調整 AI 行為。或進行一些有用的修改，例如添加化學感受器，讓遊玩變得更容易。"
 
-#, fuzzy
 msgid "TUTORIAL_MICROBE_STAGE_OPEN_PROCESS_PANEL"
 msgstr ""
-"為了繁殖，您必須複製您的細胞器。當細胞存活時，這種情況會逐漸發生，但您可以透過收集[thrive:compound type=\"ammonia\"][/thrive:compound] 與[thrive:compound type=\"phosphates\"][/thrive:compound] 來加速這個過程。\n"
+"在遊戲中與編輯器 ATP 顯示面板對應的是[b]代謝面板[/b]。\n"
 "\n"
-"右下角的欄位顯示您的進度。當細胞準備好繁殖時，它們會變成白色。"
+"它會即時顯示細胞內各種代謝過程的運行速度。\n"
+"\n"
+"您可以將您的細胞想像成[u]一座小型工廠[/u]，不斷地消耗與製造各種化合物。\n"
+"\n"
+"按下左下角的按鈕以開啟代謝面板。"
 
-#, fuzzy
 msgid "TUTORIAL_MICROBE_STAGE_PAUSING"
 msgstr ""
-"您已進入解散模式。在此模式下，您可以點擊群落成員來解除連接。\n"
+"您可以在任何時候暫停。例如，想專心看更長的教學時。暫停時，您還可以使用化石功能保存看到的有趣物種。\n"
 "\n"
-"要完全離開群落，您可以點擊自己的細胞或按[thrive:input]g_unbind_all[/thrive:input]鍵。"
+"按下左下角的暫停符號（左邊第二個按鈕）以查看暫停功能如何運作。然後繼續遊戲。"
 
 #, fuzzy
 msgid "TUTORIAL_MICROBE_STAGE_PROCESS_PANEL"
@@ -6308,12 +6307,11 @@ msgstr ""
 "\n"
 "右下角的欄位顯示您的進度。當細胞準備好繁殖時，它們會變成白色。"
 
-#, fuzzy
 msgid "TUTORIAL_MICROBE_STAGE_REPRODUCE_TEXT"
 msgstr ""
-"為了繁殖，您必須複製您的細胞器。當細胞存活時，這種情況會逐漸發生，但您可以透過收集[thrive:compound type=\"ammonia\"][/thrive:compound] 與[thrive:compound type=\"phosphates\"][/thrive:compound] 來加速這個過程。\n"
+"生命需要的分子不只有糖。看看您的微生物還能收集哪些種類的化合物！\n"
 "\n"
-"右下角的欄位顯示您的進度。當細胞準備好繁殖時，它們會變成白色。"
+"右下角的橘色（[thrive:compound type=\"ammonia\"][/thrive:compound]）與紫色（[thrive:compound type=\"phosphates\"][/thrive:compound]）條顯示繁殖[b]進度[/b]。當細胞準備好繁殖時，它們會變成白色。"
 
 #, fuzzy
 msgid "TUTORIAL_MICROBE_STAGE_RESOURCE_SPLIT"

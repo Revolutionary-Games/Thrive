@@ -190,6 +190,8 @@ public partial class ChemicalEquation : VBoxContainer
 
     private void OnTranslationsChanged()
     {
+        UpdateHeader();
+
         UpdateSecondLabel();
 
         if (environmentSeparator != null)

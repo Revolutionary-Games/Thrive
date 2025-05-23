@@ -384,6 +384,11 @@ public static class Constants
     /// </summary>
     public const float MAX_FORCE_APPLIED_BY_CURRENTS = 2000;
 
+    /// <summary>
+    ///   The multiplier to the force that currents apply to cells.
+    /// </summary>
+    public const float CURRENT_FORCE_CELL_MULTIPLIER = 15;
+
     public const int TRANSLATION_VERY_INCOMPLETE_THRESHOLD = 30;
     public const int TRANSLATION_INCOMPLETE_THRESHOLD = 70;
 

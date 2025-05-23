@@ -76,7 +76,6 @@ public static class CommonMutationFunctions
         var mutationStrategy = new AddOrganelleAnywhere(_ => true);
 
         GameWorld.SetInitialSpeciesProperties(mutated, workMemory.WorkingMemory1, workMemory.WorkingMemory2);
-        mutated.Tolerances.CopyFrom(forPatch.GenerateTolerancesForMicrobe());
 
         while (mp > 0)
         {
@@ -99,6 +98,8 @@ public static class CommonMutationFunctions
                 Math.Clamp((float)(oldColour.G + greenShift), 0, 1),
                 Math.Clamp((float)(oldColour.B + blueShift), 0, 1));
         }
+
+        mutated.Tolerances.CopyFrom(forPatch.GenerateTolerancesForMicrobe(mutated.Organelles));
 
         // Override the default species starting name to have more variability in the names
         var nameGenerator = SimulationParameters.Instance.NameGenerator;
