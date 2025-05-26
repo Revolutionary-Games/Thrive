@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2025-05-23 10:31+0300\n"
+"POT-Creation-Date: 2025-05-26 12:24+0300\n"
 "PO-Revision-Date: 2025-05-22 16:21+0000\n"
 "Last-Translator: xzihnago <xzihnago@gmail.com>\n"
 "Language-Team: Chinese (Traditional Han script) <https://translate.revolutionarygamesstudio.com/projects/thrive/thrive-game/zh_Hant/>\n"
@@ -2524,6 +2524,18 @@ msgid "HYDROGENASE_DESCRIPTION"
 msgstr "使用氫從[thrive:compound type=\\\"glucose\\\"][/thrive:compound] 獲取能量。在低[thrive:compound type=\\\"oxygen\\\"][/thrive:compound] 含量下比代謝體更有效。缺氧環境中的許多生物將其作為主要能量來源。"
 
 msgid "HYDROGENASE_PROCESSES_DESCRIPTION"
+msgstr "將[thrive:compound type=\\\"glucose\\\"][/thrive:compound] 轉化為[thrive:compound type=\\\"atp\\\"][/thrive:compound]。"
+
+#, fuzzy
+msgid "HYDROGENOSOME"
+msgstr "氫化酶"
+
+#, fuzzy
+msgid "HYDROGENOSOME_DESCRIPTION"
+msgstr "使用氫從[thrive:compound type=\\\"glucose\\\"][/thrive:compound] 獲取能量。在低[thrive:compound type=\\\"oxygen\\\"][/thrive:compound] 含量下比代謝體更有效。缺氧環境中的許多生物將其作為主要能量來源。"
+
+#, fuzzy
+msgid "HYDROGENOSOME_PROCESSES_DESCRIPTION"
 msgstr "將[thrive:compound type=\\\"glucose\\\"][/thrive:compound] 轉化為[thrive:compound type=\\\"atp\\\"][/thrive:compound]。"
 
 msgid "HYDROGEN_SULFIDE"
@@ -7613,6 +7625,51 @@ msgstr ""
 msgid "WIKI_HYDROGENASE_UPGRADES"
 msgstr "無升級。"
 
+#, fuzzy
+msgid "WIKI_HYDROGENOSOME_EFFECTS"
+msgstr "無效果。"
+
+#, fuzzy
+msgid "WIKI_HYDROGENOSOME_INTRO"
+msgstr "[b]氫化酶[/b]進行[b]梭菌發酵[/b]，這是[b]無氧呼吸[/b]的一種形式。它將[thrive:compound type=\"glucose\"][/thrive:compound] 轉化為[thrive:compound type=\"atp\"][/thrive:compound]。它是玩家擁有的第一個葡萄糖處理部件，也是目前唯一的無氧葡萄糖燃燒部件。"
+
+#, fuzzy
+msgid "WIKI_HYDROGENOSOME_MODIFICATIONS"
+msgstr "無修改。"
+
+#, fuzzy
+msgid "WIKI_HYDROGENOSOME_PROCESSES"
+msgstr ""
+"[b]梭菌發酵[/b]：[thrive:compound type=\"glucose\"][/thrive:compound] → [thrive:compound type=\"atp\"][/thrive:compound]\n"
+"\n"
+"一種能量生產方法，不需要[thrive:compound type=\"oxygen\"][/thrive:compound]，但存在氧時，其效率不如[b][color=#3796e1][url=thriveopedia:metabolosome]代謝體[/url][/color][/b]。需要穩定[thrive:compound type=\"glucose\"][/thrive:compound] 流入。"
+
+#, fuzzy
+msgid "WIKI_HYDROGENOSOME_REQUIREMENTS"
+msgstr "起始部件，無要求。"
+
+#, fuzzy
+msgid "WIKI_HYDROGENOSOME_SCIENTIFIC_BACKGROUND"
+msgstr ""
+"梭菌發酵存在於梭菌中，這是依據其代謝過程進行劃分的一類多樣且定義鬆散的原核生物群。它常用於生化、食品與生質燃料製造，以及廢水處理與土壤復育工作。雖然在不同細菌群中，梭菌發酵的表現有所不同，但其一般公式為：\n"
+"\n"
+"C6​H12​O6​→2C2​H5​OH+2CO2​+2H2​\n"
+"\n"
+"即葡萄糖被轉化為兩個乙醇分子、兩個二氧化碳分子與兩個氫氣分子。葡萄糖透過受質階層磷酸化分解，並且與其他發酵方法一樣，即使在厭氧條件下也可以維持糖解作用的重要反應。發酵可能是地球上非常古老的代謝策略。儘管氫化酶在梭菌發酵中起到廢物管理與氫氣生產的作用，但技術上來說，它並不是該過程的關鍵酶。其他酶，如丙酮酸：鐵氧還蛋白氧化還原酶（POR），在厭氧發酵中發揮更獨特與核心的作用；然而，由於這些酶在遊戲中相對較難表現，因此選擇了更熟悉的酶與易於管理的名稱。"
+
+#, fuzzy
+msgid "WIKI_HYDROGENOSOME_STRATEGY"
+msgstr ""
+"作為起始部件，氫化酶將成為無氧環境中基本的葡萄糖處理部件，使玩家能夠利用最初豐富的葡萄糖雲。它們持續產生能量，不依賴於任何大氣化合物，使其成為低能量原核生物的用途廣泛且重要的組成部分。希望利用葡萄糖的玩家通常應該適應梭菌發酵的使用。\n"
+"\n"
+"最終，氫化酶可能會被代謝體取代。由於其有氧性質，代謝體比氫化酶更高效，並且利用氧氣是成為真核生物並最終成為多細胞生物的重要一步。\n"
+"\n"
+"需要注意的是，當您的世界變得富含氧氣時，可能需要替換氫化酶。如果過度使用氫化酶，當世界氧氣增加時，可能會導致幾代生物需要不斷刪除與更換部件。因此，將氫化酶與其他代謝方式（例如化能合成）搭配使用，或維持相對低能量的生物體可能是一種有益的策略。隨著世界氧氣增加，氫化酶可能更適合於較深的、含氧量較低的區域。"
+
+#, fuzzy
+msgid "WIKI_HYDROGENOSOME_UPGRADES"
+msgstr "無升級。"
+
 msgid "WIKI_INDUSTRIAL_STAGE_CURRENT_DEVELOPMENT"
 msgstr "此階段尚未開始開發。當[color=#3796e1][url=thriveopedia:society_stage]社會階段[/url][/color]開始製作後，該階段的遊戲玩法與理論設計將變得相關。"
 
@@ -8258,6 +8315,10 @@ msgid "WIKI_PAGE_HELP_AND_TIPS"
 msgstr "幫助與提示"
 
 msgid "WIKI_PAGE_HYDROGENASE"
+msgstr "氫化酶"
+
+#, fuzzy
+msgid "WIKI_PAGE_HYDROGENOSOME"
 msgstr "氫化酶"
 
 msgid "WIKI_PAGE_INDUSTRIAL_STAGE"
