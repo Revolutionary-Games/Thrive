@@ -2,8 +2,8 @@
 using Godot;
 
 /// <summary>
-///   Shown when player is extinct in the current patch and needs to pick a new patch to play in. When fully extinct in
-///   all patches <see cref="ExtinctionBox"/> is shown instead.
+///   Shown when the player is extinct in the current patch and needs to pick a new patch to play in.
+///   When fully extinct in all patches <see cref="ExtinctionBox"/> is shown instead.
 /// </summary>
 public partial class PatchExtinctionBox : Control
 {
@@ -60,6 +60,16 @@ public partial class PatchExtinctionBox : Control
 
         if (what == NotificationVisibilityChanged && Visible)
             animationPlayer.Play();
+    }
+
+    /// <summary>
+    ///   Forgets the selected patch to make sure a player can't keep a disabled patch selected and thus exploit being
+    ///   able to play indefinitely in a patch they are extinct in.
+    /// </summary>
+    public void ForgetSelectedPatch()
+    {
+        detailsPanel.SelectedPatch = null;
+        mapDrawer.SelectedPatch = null;
     }
 
     protected override void Dispose(bool disposing)

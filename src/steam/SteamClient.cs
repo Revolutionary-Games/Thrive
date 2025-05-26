@@ -66,10 +66,20 @@ public sealed class SteamClient : ISteamClient
         NativeInterop.SetDllImportResolver(Assembly.GetAssembly(typeof(SteamAPI)) ??
             throw new Exception("Couldn't determine Steamworks.NET assembly"));
 
-        if (!SteamAPI.Init())
+        try
         {
-            GD.PrintErr("Failed to init Steam");
-            SetError(Localization.Translate("STEAM_CLIENT_INIT_FAILED"), "Steamworks initialization failed");
+            if (!SteamAPI.Init())
+            {
+                GD.PrintErr("Failed to init Steam");
+                SetError(Localization.Translate("STEAM_CLIENT_INIT_FAILED"), "Steamworks initialization failed");
+                return;
+            }
+        }
+        catch (Exception e)
+        {
+            GD.PrintErr("Failed to init Steam due to an exception");
+            GD.PrintErr(e);
+            SetError(Localization.Translate("STEAM_CLIENT_INIT_FAILED"), "Steam library loading failed");
             return;
         }
 
@@ -89,8 +99,9 @@ public sealed class SteamClient : ISteamClient
         {
             GD.Print("Game is owned by current Steam user");
 
-            if (!SteamUserStats.RequestCurrentStats())
-                GD.PrintErr("Failed to request current Steam stats");
+            // Apparently, this is no longer required
+            // if (!SteamUserStats.RequestCurrentStats())
+            //     GD.PrintErr("Failed to request current Steam stats");
         }
 
         appId = SteamUtils.GetAppID();

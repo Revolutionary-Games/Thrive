@@ -6,7 +6,7 @@ using Godot;
 /// </summary>
 public partial class FluidCurrentDisplay : GpuParticles3D
 {
-    private const float MIN_DISTANCE_TO_REPOSITION = 1.0f;
+    private const float MIN_DISTANCE_TO_REPOSITION = 10.0f;
     private readonly StringName gameTimeParameterName = new("gameTime");
     private readonly StringName speedParameterName = new("speed");
     private readonly StringName chaoticnessParameterName = new("chaoticness");
