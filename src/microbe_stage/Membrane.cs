@@ -51,12 +51,11 @@ public partial class Membrane : MeshInstance3D
     private float movementWigglyNess = 1.0f;
     private float sizeMovementWigglyNessDampeningFactor = 0.32f;
     private double engulfFade;
-    private bool isFirstAssignment = true;
 
     private bool mucocystEffectEnabled;
 
     /// <summary>
-    ///   When true the material properties need to be reapplied
+    ///   When true, the material properties need to be reapplied
     /// </summary>
     public bool Dirty { get; set; } = true;
 
@@ -84,29 +83,17 @@ public partial class Membrane : MeshInstance3D
             if (ReferenceEquals(membraneData, value))
                 return;
 
-            float oldRadius = 0;
-            if (!isFirstAssignment)
-            {
-                oldRadius = membraneData.Radius;
-            }
+            bool reapply = membraneData != null!;
 
             membraneData = value;
-            bool firstTime = isFirstAssignment;
-            isFirstAssignment = false;
             IsChangingShape = false;
 
             // This needs to be marked dirty purely to support swapping membrane types, other shader parameters would
             // just happily keep working when the material is applied to the new mesh
             Dirty = true;
 
-            if (!firstTime)
+            if (reapply)
                 SetMesh();
-
-            // Update water ripple size if the radius has changed
-            if (Math.Abs(oldRadius - value.Radius) > 0.1f)
-            {
-                waterRipple.UpdateTarget(this, EncompassingCircleRadius);
-            }
         }
     }
 
@@ -190,7 +177,7 @@ public partial class Membrane : MeshInstance3D
         if (EngulfShaderMaterial == null)
             throw new Exception("EngulfShaderMaterial on Membrane is not set");
 
-        waterRipple.UpdateTarget(this, EncompassingCircleRadius);
+        waterRipple.FollowTargetNode = this;
         SetMesh();
     }
 
@@ -201,6 +188,7 @@ public partial class Membrane : MeshInstance3D
 
         Dirty = false;
         ApplyAllMaterialParameters();
+        waterRipple.EffectRadius = EncompassingCircleRadius;
     }
 
     /// <summary>
@@ -389,12 +377,9 @@ public partial class Membrane : MeshInstance3D
         albedoTexture = Type.LoadedAlbedoTexture;
 
         // This is called rarely enough that this just plain re-creates StringName instances here each time
-        if (MembraneShaderMaterial != null)
-        {
-            MembraneShaderMaterial.SetShaderParameter("albedoTexture", albedoTexture);
-            MembraneShaderMaterial.SetShaderParameter("normalTexture", Type.LoadedNormalTexture);
-            MembraneShaderMaterial.SetShaderParameter("damagedTexture", Type.LoadedDamagedTexture);
-        }
+        MembraneShaderMaterial!.SetShaderParameter("albedoTexture", albedoTexture);
+        MembraneShaderMaterial.SetShaderParameter("normalTexture", Type.LoadedNormalTexture);
+        MembraneShaderMaterial.SetShaderParameter("damagedTexture", Type.LoadedDamagedTexture);
 
         currentlyLoadedAlbedoTexture = Type.AlbedoTexture;
     }
