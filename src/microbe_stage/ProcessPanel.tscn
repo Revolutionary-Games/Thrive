@@ -4,13 +4,15 @@
 [ext_resource type="PackedScene" uid="uid://dt4v2vma5p2s4" path="res://src/microbe_stage/ProcessList.tscn" id="2"]
 [ext_resource type="Script" uid="uid://cggb4tptu8us2" path="res://src/microbe_stage/ProcessPanel.cs" id="3"]
 
-[node name="ProcessPanel" instance=ExtResource("1")]
+[node name="ProcessPanel" node_paths=PackedStringArray("processList", "closeButtonContainer") instance=ExtResource("1")]
 process_priority = 5
 custom_minimum_size = Vector2(400, 300)
 offset_right = 400.0
 offset_bottom = 600.0
 script = ExtResource("3")
 ShowCustomCloseButton = false
+processList = NodePath("MarginContainer/VBoxContainer/ScrollContainer/VBoxContainer/ProcessList")
+closeButtonContainer = NodePath("MarginContainer/VBoxContainer/BottomButtonContainer")
 WindowTitle = "PROCESS_PANEL_TITLE"
 Resizable = true
 PreventsMouseCaptureWhileOpen = false

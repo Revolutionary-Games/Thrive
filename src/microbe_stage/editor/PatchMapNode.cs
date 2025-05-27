@@ -15,12 +15,6 @@ public partial class PatchMapNode : MarginContainer
 
 #pragma warning disable CA2213
     [Export]
-    private TextureRect eruptionEventIndicator = null!;
-
-    [Export]
-    private TextureRect glaciationEventIndicator = null!;
-
-    [Export]
     private TextureRect iconRect = null!;
 
     /// <summary>
