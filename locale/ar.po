@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2025-04-11 10:12+0300\n"
+"POT-Creation-Date: 2025-05-26 12:24+0300\n"
 "PO-Revision-Date: 2025-03-20 20:10+0000\n"
 "Last-Translator: Anonymous <noreply@weblate.org>\n"
 "Language-Team: Arabic <https://translate.revolutionarygamesstudio.com/projects/thrive/thrive-game/ar/>\n"
@@ -1878,6 +1878,25 @@ msgstr ""
 msgid "EVENT_ERUPTION_TOOLTIP"
 msgstr "استمر إلا مرحلة الاستيقاظ. يصبح متاحًا بمجرد أن تكون قوة العقل كافية (أنسجة مع محاور)."
 
+msgid "EVENT_METEOR_GLUCOSE"
+msgstr ""
+
+msgid "EVENT_METEOR_IRON"
+msgstr ""
+
+msgid "EVENT_METEOR_PHOSPHATES"
+msgstr ""
+
+#, fuzzy
+msgid "EVENT_METEOR_PLAIN"
+msgstr "استمر إلا مرحلة الاستيقاظ. يصبح متاحًا بمجرد أن تكون قوة العقل كافية (أنسجة مع محاور)."
+
+msgid "EVENT_METEOR_RADIOACTIVE"
+msgstr ""
+
+msgid "EVENT_METEOR_SULFUR"
+msgstr ""
+
 msgid "EVOLUTIONARY_TREE"
 msgstr ""
 
@@ -2359,6 +2378,22 @@ msgstr ""
 
 msgid "HYDROGENASE_PROCESSES_DESCRIPTION"
 msgstr ""
+
+msgid "HYDROGENOSOME"
+msgstr ""
+
+#, fuzzy
+msgid "HYDROGENOSOME_DESCRIPTION"
+msgstr "عام"
+
+#, fuzzy
+msgid "HYDROGENOSOME_PROCESSES_DESCRIPTION"
+msgstr ""
+"ابحث عن قطرات في مقياس ضوء الشمس على لوحة البيئة.\n"
+"\n"
+"يحل الليل عندما تظلم البيئة.\n"
+"التركيب الضوئي غير فعال خلال الليل.\n"
+"لذا تأكد من أنك تملك مدخرات كافية من أجل النجاة في الليل."
 
 msgid "HYDROGEN_SULFIDE"
 msgstr ""
@@ -3224,6 +3259,15 @@ msgstr ""
 msgid "META_THREADS_TOOLTIP"
 msgstr "استمر إلا مرحلة الاستيقاظ. يصبح متاحًا بمجرد أن تكون قوة العقل كافية (أنسجة مع محاور)."
 
+msgid "METEOR_IMPACT_EVENT"
+msgstr ""
+
+msgid "METEOR_STRIKE_START_EVENT_LOG_PLURAL"
+msgstr ""
+
+msgid "METEOR_STRIKE_START_EVENT_LOG_SINGULAR"
+msgstr ""
+
 msgid "METRICS"
 msgstr ""
 
@@ -3305,6 +3349,10 @@ msgstr "عدد الميكروبات:"
 #, fuzzy
 msgid "MICROBE_BENCHMARK"
 msgstr "فترة الميكروبات"
+
+#, fuzzy
+msgid "MICROBE_CAMERA_TILT_EFFECT"
+msgstr "تستخدم خليتك [thrive:compound type=\"atp\"][/thrive:compound] كمصدر للطاقة ، إذا نفد مصدر للطاقة تموت."
 
 msgid "MICROBE_EDITOR"
 msgstr ""
@@ -4285,9 +4333,6 @@ msgid "PAN_CAMERA_RIGHT"
 msgstr ""
 
 msgid "PAN_CAMERA_UP"
-msgstr ""
-
-msgid "PASSIVE_REPRODUCTION_PROGRESS_EXPLANATION"
 msgstr ""
 
 msgid "PAST_DEVELOPERS"
@@ -6710,6 +6755,10 @@ msgstr "فترة الميكروبات"
 msgid "WIKI_COMPOUND_SYSTEM_DEVELOPMENT_OVERVIEW"
 msgstr ""
 
+#, fuzzy
+msgid "WIKI_CREATURE_EDITOR_COMMA_TECH_EDITOR"
+msgstr "فترة الميكروبات"
+
 msgid "WIKI_CYTOPLASM_EFFECTS"
 msgstr ""
 
@@ -7045,6 +7094,43 @@ msgstr "فترة الميكروبات"
 
 #, fuzzy
 msgid "WIKI_HYDROGENASE_UPGRADES"
+msgstr "المصمم ثلاثي الأبعاد"
+
+#, fuzzy
+msgid "WIKI_HYDROGENOSOME_EFFECTS"
+msgstr "المصمم ثلاثي الأبعاد"
+
+#, fuzzy
+msgid "WIKI_HYDROGENOSOME_INTRO"
+msgstr ""
+"ابحث عن قطرات في مقياس ضوء الشمس على لوحة البيئة.\n"
+"\n"
+"يحل الليل عندما تظلم البيئة.\n"
+"التركيب الضوئي غير فعال خلال الليل.\n"
+"لذا تأكد من أنك تملك مدخرات كافية من أجل النجاة في الليل."
+
+#, fuzzy
+msgid "WIKI_HYDROGENOSOME_MODIFICATIONS"
+msgstr "عام"
+
+#, fuzzy
+msgid "WIKI_HYDROGENOSOME_PROCESSES"
+msgstr "فترة الميكروبات"
+
+#, fuzzy
+msgid "WIKI_HYDROGENOSOME_REQUIREMENTS"
+msgstr "المصمم ثلاثي الأبعاد"
+
+#, fuzzy
+msgid "WIKI_HYDROGENOSOME_SCIENTIFIC_BACKGROUND"
+msgstr "فن التصور"
+
+#, fuzzy
+msgid "WIKI_HYDROGENOSOME_STRATEGY"
+msgstr "فترة الميكروبات"
+
+#, fuzzy
+msgid "WIKI_HYDROGENOSOME_UPGRADES"
 msgstr "المصمم ثلاثي الأبعاد"
 
 #, fuzzy
@@ -7583,6 +7669,10 @@ msgid "WIKI_PAGE_HYDROGENASE"
 msgstr "فترة الميكروبات"
 
 #, fuzzy
+msgid "WIKI_PAGE_HYDROGENOSOME"
+msgstr "فترة الميكروبات"
+
+#, fuzzy
 msgid "WIKI_PAGE_INDUSTRIAL_STAGE"
 msgstr "فترة الميكروبات"
 
@@ -7930,6 +8020,9 @@ msgstr ""
 #, fuzzy
 msgid "WIKI_TBA"
 msgstr "عام"
+
+msgid "WIKI_TECH_EDITOR_COMMA_NATION_EDITOR_COMMA_SQUAD_EDITOR"
+msgstr ""
 
 msgid "WIKI_THERMOPLAST_EFFECTS"
 msgstr ""

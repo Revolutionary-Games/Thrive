@@ -1114,7 +1114,7 @@ public partial class PatchMapDrawer : Control
             bool highlight = (ContainsSelectedPatch(region1) && SelectedPatch?.Adjacent?.Contains(adjacent) == true) ||
                 (ContainsSelectedPatch(region2) && SelectedPatch?.ID == adjacent.ID);
 
-            float margin = Constants.PATCH_AND_REGION_MARGIN * 1.5f;
+            float margin = Constants.PATCH_AND_REGION_MARGIN * 2;
             if ((isHorizontal && regionPoint.X < regionPreviousPoint.X) || regionPoint.Y < regionPreviousPoint.Y)
                 margin = -margin;
 

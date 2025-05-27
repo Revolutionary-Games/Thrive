@@ -41,7 +41,7 @@ public class Patch
     ///   The current effects on patch node (shown in the patch map)
     /// </summary>
     [JsonProperty]
-    private readonly List<WorldEffectVisuals> activeWorldEffectVisuals = new();
+    private readonly List<WorldEffectTypes> activeWorldEffectVisuals = new();
 
     [JsonProperty]
     private Deque<PatchSnapshot> history = new();
@@ -500,12 +500,21 @@ public class Patch
 
     /// <summary>
     ///   Generates a set of tolerances for a microbe that starts living in this patch. The tolerances aren't exactly
-    ///   perfectly tailored for this patch (as that would make initial migrations harder).
+    ///   perfectly tailored for this patch (as that would make initial migrations harder), but are always without any
+    ///   negative effects. To balance out organelle tolerance debuffs, needs to be given the current organelles.
     /// </summary>
     /// <returns>Set of tolerances that can survive well in the current patch</returns>
-    public EnvironmentalTolerances GenerateTolerancesForMicrobe()
+    public EnvironmentalTolerances GenerateTolerancesForMicrobe(IReadOnlyList<OrganelleTemplate> organelles)
     {
-        var pressure = Biome.Pressure;
+        // To guarantee perfect tolerance, we need to apply reverse of the organelle effects so that when the organelle
+        // effects are applied, the final tolerances are well adapted
+        var organelleEffects = default(MicrobeEnvironmentalToleranceCalculations.ToleranceValues);
+
+        MicrobeEnvironmentalToleranceCalculations.ApplyOrganelleEffectsOnTolerances(organelles, ref organelleEffects);
+
+        // The multipliers cause things to be slightly higher than required so that there's no "rounding" errors with
+        // some tolerances not being exactly right
+        var pressure = Biome.Pressure - (organelleEffects.PressureMaximum - organelleEffects.PressureMinimum) * 0.51f;
         var minPressure = Constants.TOLERANCE_INITIAL_PRESSURE_MIN_FRACTION * pressure;
         var maxPressure = Constants.TOLERANCE_INITIAL_PRESSURE_MAX_FRACTION * pressure;
 
@@ -545,12 +554,32 @@ public class Patch
             UVResistance = GetAmbientCompound(Compound.Sunlight, CompoundAmountType.Biome),
             PressureMinimum = minPressure,
             PressureMaximum = maxPressure,
-            PreferredTemperature = GetAmbientCompound(Compound.Temperature, CompoundAmountType.Biome),
+            PreferredTemperature = GetAmbientCompound(Compound.Temperature, CompoundAmountType.Biome) -
+                organelleEffects.PreferredTemperature * 1.01f,
             TemperatureTolerance = Constants.TOLERANCE_INITIAL_TEMPERATURE_RANGE,
         };
 
+        // Apply the reverse of the negative effects to balance things out (and slightly exaggerate to not run into
+        // rounding issues)
+        if (organelleEffects.OxygenResistance < 0)
+            result.OxygenResistance -= organelleEffects.OxygenResistance * 1.01f;
+
+        if (organelleEffects.UVResistance < 0)
+            result.UVResistance -= organelleEffects.UVResistance * 1.01f;
+
 #if DEBUG
         result.SanityCheck();
+
+        var optimalTest =
+            MicrobeEnvironmentalToleranceCalculations.CalculateTolerances(result, organelles, currentSnapshot.Biome);
+
+        if (optimalTest.OverallScore is < 1 or > 1 + MathUtils.EPSILON)
+        {
+            GD.PrintErr("Optimal tolerance creation failed, score: " + optimalTest.OverallScore);
+
+            if (Debugger.IsAttached)
+                Debugger.Break();
+        }
 #endif
 
         return result;
@@ -602,12 +631,12 @@ public class Patch
             Region.Visibility = visibility;
     }
 
-    public void AddPatchEventRecord(WorldEffectVisuals visual, double happenedAt)
+    public void AddPatchEventRecord(WorldEffectTypes worldEffect, double happenedAt)
     {
         // TODO: switch this class to have more of the logic for keeping event history together
         _ = happenedAt;
 
-        activeWorldEffectVisuals.Add(visual);
+        activeWorldEffectVisuals.Add(worldEffect);
     }
 
     public void ClearPatchNodeEventVisuals()

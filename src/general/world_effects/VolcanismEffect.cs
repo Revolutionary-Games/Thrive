@@ -9,6 +9,11 @@ using Newtonsoft.Json;
 public class VolcanismEffect : IWorldEffect
 {
     private readonly Dictionary<Compound, float> addedCo2 = new();
+
+    // ReSharper disable once CollectionNeverUpdated.Local
+    /// <summary>
+    ///   Permanently empty cloud sizes as this doesn't need to add any cloud type compounds
+    /// </summary>
     private readonly Dictionary<Compound, float> cloudSizesDummy = new();
 
     [JsonProperty]

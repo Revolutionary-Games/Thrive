@@ -7,8 +7,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2025-04-11 10:12+0300\n"
-"PO-Revision-Date: 2025-04-04 10:42+0000\n"
+"POT-Creation-Date: 2025-05-26 12:24+0300\n"
+"PO-Revision-Date: 2025-05-25 15:00+0000\n"
 "Last-Translator: Anonymous <noreply@weblate.org>\n"
 "Language-Team: Polish <https://translate.revolutionarygamesstudio.com/projects/thrive/thrive-game/pl/>\n"
 "Language: pl\n"
@@ -16,7 +16,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=3; plural=n==1 ? 0 : n%10>=2 && n%10<=4 && (n%100<10 || n%100>=20) ? 1 : 2;\n"
-"X-Generator: Weblate 5.7.2\n"
+"X-Generator: Weblate 5.11.4\n"
 "Generated-By: Babel 2.8.0\n"
 
 msgid "2D_MOVEMENT_TYPE_SELECTION"
@@ -193,23 +193,19 @@ msgid "ANISOTROPIC_FILTERING"
 msgstr "Filtrowanie anizotropowe:"
 
 msgid "ANTIALIASING_MSAA_TAA"
-msgstr ""
+msgstr "MSAA + TAA"
 
-#, fuzzy
 msgid "ANTI_ALIASING_FXAA"
-msgstr "Wygładzanie krawędzi:"
+msgstr "FXAA"
 
-#, fuzzy
 msgid "ANTI_ALIASING_MODE"
-msgstr "Wygładzanie krawędzi:"
+msgstr "Antyaliasing:"
 
-#, fuzzy
 msgid "ANTI_ALIASING_MSAA"
-msgstr "Wygładzanie krawędzi:"
+msgstr "MSAA"
 
-#, fuzzy
 msgid "ANTI_ALIASING_TAA"
-msgstr "Wygładzanie krawędzi:"
+msgstr "TAA"
 
 msgid "APPEARANCE"
 msgstr "Wygląd"
@@ -261,7 +257,7 @@ msgid "ASSEMBLY_CLASS_REQUIRED"
 msgstr "Klasa Mod assembly jest wymagana, jeśli klasa assembly jest określona"
 
 msgid "ASSEMBLY_REQUIRED_WITH_HARMONY"
-msgstr ""
+msgstr "Assembly modu jest wymagane kiedy auto harmony jest włączone"
 
 msgid "ASSUME_HYPERTHREADING"
 msgstr "Załóż, że procesor pozwala na hyperthreading"
@@ -517,13 +513,11 @@ msgstr "Złącz osie ze sobą"
 msgid "BIOLUMINESCENT_VACUOLE"
 msgstr "Świecąca Wakuola"
 
-#, fuzzy
 msgid "BIOLUMINESCENT_VACUOLE_DESCRIPTION"
-msgstr "Świecąca Wakuola"
+msgstr "Wakuola która utlenia lucyferaze w celu wytworzenia widzialnego światła. Istnieje teoria że ten mechanizm miał bronić przed [thrive:compound type=\"oxygen\"][/thrive:compound]. Kiedy doszło do Katastrofy tlenowej anaeroby zatruwały się tlenem ze względu na jego wysoką aktywność chemiczną. Te wakuole zwiększają odporność na tlen i dają ładne światełka. W przyszłości bioluminescencja może stać się jednym ze sposobów komunikacji."
 
-#, fuzzy
 msgid "BIOLUMINESCENT_VACUOLE_PROCESSES_DESCRIPTION"
-msgstr "Przekształca [thrive:compound type=\"atp\"][/thrive:compound] w [thrive:compound type=\"oxytoxy\"]Oksytoksynę[/thrive:compound]. Tempo skaluje się ze stężeniem [thrive:compound type=\"oxygen\"][/thrive:compound]. Może wypuszczać toksyny po naciśnięciu [thrive:input]g_fire_toxin[/thrive:input]. Gdy ilość [thrive:compound type=\"oxytoxy\"]Oksytoksyny[/thrive:compound] jest niska, strzelanie jest dalej możliwe, ale będzie zadawać mniejsze obrażenia."
+msgstr "Przekształca [thrive:compound type=\"atp\"][/thrive:compound] i [thrive:compound type=\"oxygen\"][/thrive:compound] w światło. Obecnie zwiększa tylko odporność na tlen."
 
 msgid "BIOME_LABEL"
 msgstr "Biom: {0}"
@@ -561,9 +555,8 @@ msgstr "Przez:"
 msgid "BY_REVOLUTIONARY_GAMES"
 msgstr "Wykonane Przez Revolutionary Games Studio"
 
-#, fuzzy
 msgid "CACHE_DISK_MAX_TIME"
-msgstr "Maksymalny czas przetrzymywania przedmiotów na dysku przed usunięciem"
+msgstr "Maksymalny czas przechowywania wpisów na dysku przed usunięciem"
 
 msgid "CACHE_MEMORY_MAX_ITEMS"
 msgstr ""
@@ -742,13 +735,14 @@ msgstr ""
 msgid "CHEMORECEPTOR_PROCESSES_DESCRIPTION"
 msgstr "Chemoreceptor umożliwia wykrywanie związków z oddali. Modyfikuj go po umieszczeniu by wybrać typ związku oraz kolor prowadzącej do niego linii."
 
-#, fuzzy
 msgid "CHEMORECEPTOR_SEARCH_RADIUS_TOOLTIP"
-msgstr "Wszystkie komórki \"widzą\" jedynie dzięki chemorecepcji. Tak zdobywają informacje o otaczającym je środowisku. Dodanie tego organellum oznacza wyewoluowanie dokładniej skoordynowanej chemorecepcji. Jest ona oznaczona przez linię wskazującą poza pole widzenia, pokazując pobliskie związki, których gracz nie był w stanie zobaczyć."
+msgstr ""
+"Ustaw odległość z jakiej chemoreceptory wykrywają szukane rzeczy.\n"
+"Może to pomóc szybciej znaleźć rzeczy wskazując najkrótszą trasę do nich.\n"
+"Alternatywnie zbyt duży zasięg może pokazać zasoby które znikną zanim do nich dotrzesz."
 
-#, fuzzy
 msgid "CHEMOSYNTHESIS"
-msgstr "Chemosynteza siarkowa"
+msgstr "Chemosynteza"
 
 msgid "CHEMOSYNTHESIZING_PROTEINS"
 msgstr "Białka Chemosyntezujące"
@@ -1084,6 +1078,7 @@ msgstr "Wybierz gatunek"
 msgid "CONTINUE_THRIVING"
 msgstr "Kontynuuj Rozkwitanie"
 
+#, fuzzy
 msgid "CONTINUE_TO_PROTOTYPES"
 msgstr ""
 "Dotarłeś do końca \"ukończonej\" części Thrive.\n"
@@ -1445,10 +1440,10 @@ msgid "DAMAGE_SOURCE_RADIATION"
 msgstr "(koszt organelli, błon i innych przedmiotów w edytorze)"
 
 msgid "DAY_LENGTH"
-msgstr "Długość Dnia"
+msgstr "Długość doby"
 
 msgid "DAY_LENGTH_EXPLANATION"
-msgstr "(długość w rzeczywistych sekundach dla dnia w grze)"
+msgstr "(długość doby gry w sekundach)"
 
 msgid "DAY_NIGHT_CYCLE_ENABLED"
 msgstr "Włącz cykl dnia i nocy"
@@ -1578,7 +1573,7 @@ msgid "DEVELOPMENT_FORUM_BUTTON_TOOLTIP"
 msgstr "Zobacz aktualności na naszym forum deweloperskim"
 
 msgid "DEVELOPMENT_SUPPORTED_BY"
-msgstr "Rozwój Wspierany Przez Revolutionary Games Studio"
+msgstr "Rozwój wspierany przez Revolutionary Games Studio"
 
 msgid "DEVELOPMENT_WIKI"
 msgstr "Wiki Deweloperskie"
@@ -1682,9 +1677,10 @@ msgstr ""
 msgid "DISCORD_TOOLTIP"
 msgstr "Dołącz do naszego serwera Discord"
 
-#, fuzzy
 msgid "DISK_CACHE_TOOLTIP"
-msgstr "Odwiedź naszą stronę Itch.io"
+msgstr ""
+"Sprawia, że część kosztownych do wygenerowania danych jest zapisywana na dysk, przez co można je szybciej załadować gdy znów będą potrzebne.\n"
+"Jeśli to wyłączysz, cache będzie przechowywany wyłącznie w pamięci operacyjnej."
 
 msgid "DISMISSED_POPUPS_COLON"
 msgstr "Ukryte popupy:"
@@ -1735,7 +1731,7 @@ msgid "DOES_NOT_USE_FEATURE"
 msgstr "Nie"
 
 msgid "DONATIONS"
-msgstr "Wsparcie"
+msgstr "Darowizny"
 
 msgid "DOT_DOT_DOT"
 msgstr "..."
@@ -2058,6 +2054,31 @@ msgstr "Eustarium"
 msgid "EVENT_ERUPTION_TOOLTIP"
 msgstr "To jest dokładne zatwierdzenie kodu, z którego została złożona ta wersja Thrive"
 
+msgid "EVENT_METEOR_GLUCOSE"
+msgstr ""
+"Upadek meteoru z glukozą\n"
+"Podnosi poziom glukozy i dwutlenku węgla."
+
+msgid "EVENT_METEOR_IRON"
+msgstr ""
+"Upadek żelaznego meteorytu\n"
+"Podnosi poziom żelaza i dwutlenku węgla.\n"
+"Rozbija się na odłamki żelaza."
+
+#, fuzzy
+msgid "EVENT_METEOR_PHOSPHATES"
+msgstr "Stwórz fosforany"
+
+#, fuzzy
+msgid "EVENT_METEOR_PLAIN"
+msgstr "To jest dokładne zatwierdzenie kodu, z którego została złożona ta wersja Thrive"
+
+msgid "EVENT_METEOR_RADIOACTIVE"
+msgstr ""
+
+msgid "EVENT_METEOR_SULFUR"
+msgstr ""
+
 msgid "EVOLUTIONARY_TREE"
 msgstr "Drzewo Filogenetyczne"
 
@@ -2109,7 +2130,7 @@ msgid "EXPORT_ALL_WORLDS"
 msgstr "Eksportuj Wszystkie Światy"
 
 msgid "EXPORT_ALL_WORLDS_TOOLTIP"
-msgstr ""
+msgstr "Eksportuj wszystkie dane światów w formacie CSV"
 
 msgid "EXPORT_SUCCESS"
 msgstr "Sukces Eksportu"
@@ -2223,9 +2244,8 @@ msgstr "Zakończ {0} Pokoleń"
 msgid "FIRE_TOXIN"
 msgstr "Strzel toksyną"
 
-#, fuzzy
 msgid "FIRE_TOXIN_TOOLTIP"
-msgstr "Niektóre opcje mogą być wyłączone jeśli \"wyłącznie ŻTJZ\" jest włączone"
+msgstr "Wystrzel toksyczny pocisk uszkadzający trafione komórki."
 
 msgid "FLAGELLUM"
 msgstr "Wić"
@@ -2524,7 +2544,7 @@ msgid "HIGHER_VALUES_INCREASE_PERFORMANCE"
 msgstr "(większe wartości zwiększają wydajność)"
 
 msgid "HIGHER_VALUES_WORSEN_PERFORMANCE"
-msgstr "(wyższe wartością mogą obniżyć wydajność)"
+msgstr "(wyższe wartości mogą obniżyć wydajność)"
 
 msgid "HOLD_FOR_PAN_OR_ROTATE_MODE"
 msgstr "Przytrzymaj by przełączyć między trybami panoramicznym i obrotu"
@@ -2573,6 +2593,18 @@ msgid "HYDROGENASE_DESCRIPTION"
 msgstr "Wykorzystuje wodór do uzyskiwania energii z [thrive:compound type=\\\"glucose\\\"]Glukozy[/thrive:compound]. Bardziej skuteczna przy niższych stężeniach [thrive:compound type=\\\"oxygen\\\"]Tlenu[/thrive:compound] niż metabolosomy. Jest głównym źródłem energii dla wielu organizmów w środowiskach beztlenowych."
 
 msgid "HYDROGENASE_PROCESSES_DESCRIPTION"
+msgstr "Przekształca [thrive:compound type=\\\"glucose\\\"]Glukozę[/thrive:compound] w [thrive:compound type=\\\"atp\\\"][/thrive:compound]."
+
+#, fuzzy
+msgid "HYDROGENOSOME"
+msgstr "Siarkowodór (H₂S)"
+
+#, fuzzy
+msgid "HYDROGENOSOME_DESCRIPTION"
+msgstr "Wykorzystuje wodór do uzyskiwania energii z [thrive:compound type=\\\"glucose\\\"]Glukozy[/thrive:compound]. Bardziej skuteczna przy niższych stężeniach [thrive:compound type=\\\"oxygen\\\"]Tlenu[/thrive:compound] niż metabolosomy. Jest głównym źródłem energii dla wielu organizmów w środowiskach beztlenowych."
+
+#, fuzzy
+msgid "HYDROGENOSOME_PROCESSES_DESCRIPTION"
 msgstr "Przekształca [thrive:compound type=\\\"glucose\\\"]Glukozę[/thrive:compound] w [thrive:compound type=\\\"atp\\\"][/thrive:compound]."
 
 msgid "HYDROGEN_SULFIDE"
@@ -3377,7 +3409,7 @@ msgid "MARINE_SNOW"
 msgstr "Śnieg morski"
 
 msgid "MASTER_VOLUME"
-msgstr "Ogólna głośność"
+msgstr "Głośność ogólna"
 
 #, fuzzy
 msgid "MASTODON_TOOLTIP"
@@ -3473,6 +3505,15 @@ msgid "META_THREADS_TOOLTIP"
 msgstr ""
 "Nie można automatycznie wykryć czy hyperthreading jest włączony.\n"
 "Dotyczy to domyślnej liczby wątków, ponieważ wątki hyperthreadingu nie są tak szybkie jak prawdziwe rdzenie procesora."
+
+msgid "METEOR_IMPACT_EVENT"
+msgstr ""
+
+msgid "METEOR_STRIKE_START_EVENT_LOG_PLURAL"
+msgstr ""
+
+msgid "METEOR_STRIKE_START_EVENT_LOG_SINGULAR"
+msgstr ""
 
 msgid "METRICS"
 msgstr "Wskaźniki Wydajności"
@@ -3573,6 +3614,10 @@ msgstr "Ilość mikrobów:"
 #, fuzzy
 msgid "MICROBE_BENCHMARK"
 msgstr "Edytor Mikroba"
+
+#, fuzzy
+msgid "MICROBE_CAMERA_TILT_EFFECT"
+msgstr "  {0}: Znaleziono w {1} gatunkach, średnio {2} na każdy"
 
 msgid "MICROBE_EDITOR"
 msgstr "Edytor Mikroba"
@@ -4650,9 +4695,6 @@ msgstr "Przesuń w prawo"
 msgid "PAN_CAMERA_UP"
 msgstr "Przesuń w górę"
 
-msgid "PASSIVE_REPRODUCTION_PROGRESS_EXPLANATION"
-msgstr "(biernie uzyskuj związki reprodukcji ze środowiska bez potrzeby robienia czegokolwiek)"
-
 msgid "PAST_DEVELOPERS"
 msgstr "Dawni Developerzy"
 
@@ -4777,6 +4819,11 @@ msgstr "Planeta"
 
 msgid "PLANET_DETAILS_STRING"
 msgstr ""
+"Tylko życie jakie znamy: {0}\n"
+"Pochodzenie życia: {1}\n"
+"Cykl dnia i nocy: {2}\n"
+"Długość dnia w sekundach: {3}\n"
+"Losowe ziarno planety: {4}"
 
 msgid "PLANET_GENERATION_TEASER"
 msgstr "Generacja planety już wkrótce!"
@@ -6314,6 +6361,7 @@ msgstr ""
 "\n"
 "Jeśli twoja produkcja [thrive:compound type=\"atp\"][/thrive:compound] jest negatywna, postaraj się ją zwiększyć albo dodać [b]przechowywanie[/b] [thrive:icon]StorageIcon[/thrive:icon] by móc się poruszać w małych impulsach."
 
+#, fuzzy
 msgid "TUTORIAL_MICROBE_EDITOR_AUTO-EVO_PREDICTION"
 msgstr ""
 "Ten panel pokazuje przewidywania względem przyszłej populacji. Te liczby są populacją z symulacji [b]auto-ewolucji[/b].\n"
@@ -7342,6 +7390,10 @@ msgstr ""
 msgid "WIKI_COMPOUND_SYSTEM_DEVELOPMENT_OVERVIEW"
 msgstr ""
 
+#, fuzzy
+msgid "WIKI_CREATURE_EDITOR_COMMA_TECH_EDITOR"
+msgstr "Edytor Mikroba"
+
 msgid "WIKI_CYTOPLASM_EFFECTS"
 msgstr "Inna organella może zastąpić [b]Cytoplazmę[/b] bez dodatkowych kosztów (oprócz kosztu postawienia organelli)."
 
@@ -7686,6 +7738,47 @@ msgstr "Termosyntaza jest białkiem które używa konwekcji termicznej by zmieni
 
 #, fuzzy
 msgid "WIKI_HYDROGENASE_UPGRADES"
+msgstr "Nitrogenaza to białko mogące użyć gazowego [thrive:compound type=\"nitrogen\"][/thrive:compound] i energii komórkowej w formie [thrive:compound type=\"atp\"][/thrive:compound] do produkcji [thrive:compound type=\"ammonia\"][/thrive:compound], kluczowego składnika dla wzrostu komórek. Ten proces nazywany jest [b]anaerobic nitrogen fixation[/b]. Jako iż nitrogenaza jest zawieszona bezpośrednio w cytozolu, otaczający płyn przeprowadza [b]glycolysis[/b]."
+
+#, fuzzy
+msgid "WIKI_HYDROGENOSOME_EFFECTS"
+msgstr "Nitrogenaza to białko mogące użyć gazowego [thrive:compound type=\"nitrogen\"][/thrive:compound] i energii komórkowej w formie [thrive:compound type=\"atp\"][/thrive:compound] do produkcji [thrive:compound type=\"ammonia\"][/thrive:compound], kluczowego składnika dla wzrostu komórek. Ten proces nazywany jest [b]anaerobic nitrogen fixation[/b]. Jako iż nitrogenaza jest zawieszona bezpośrednio w cytozolu, otaczający płyn przeprowadza [b]glycolysis[/b]."
+
+#, fuzzy
+msgid "WIKI_HYDROGENOSOME_INTRO"
+msgstr ""
+"Zawiera enzymy trawienne. Może być zmodyfikowany by zmienić typ enzymu który zawiera. Każdy [b]Lizosom[/b] może korzystać z tylko jednego typu enzym. Enzymy przyspieszają trawienie i polepszają efektywność trawienia.\n"
+"\n"
+"[b]Lizosom[/b] jest organellą otoczoną błoną która zawiera enzymy hydrolityczne które potrafią rozkładać wiele związków biologicznych. [b]Lizosom[/b] daje komórce umiejętność trawienia materiałów pochłoniętych w procesie endocytozy, a także oczyszczają odpady komórki w procesie zwanym autofagią."
+
+#, fuzzy
+msgid "WIKI_HYDROGENOSOME_MODIFICATIONS"
+msgstr "Nitrogenaza to białko mogące użyć gazowego [thrive:compound type=\"nitrogen\"][/thrive:compound] i energii komórkowej w formie [thrive:compound type=\"atp\"][/thrive:compound] do produkcji [thrive:compound type=\"ammonia\"][/thrive:compound], kluczowego składnika dla wzrostu komórek. Ten proces nazywany jest [b]anaerobic nitrogen fixation[/b]. Jako iż nitrogenaza jest zawieszona bezpośrednio w cytozolu, otaczający płyn przeprowadza [b]glycolysis[/b]."
+
+#, fuzzy
+msgid "WIKI_HYDROGENOSOME_PROCESSES"
+msgstr "Produkuje [thrive:compound type=\"atp\"][/thrive:compound] używając gradientów temperatury. Tempo skaluje się ze stężeniem [thrive:compound type=\"temperature\"][/thrive:compound]."
+
+#, fuzzy
+msgid "WIKI_HYDROGENOSOME_REQUIREMENTS"
+msgstr ""
+"Komórka musi mieć [b][color=#3796e1][url=thriveopedia:nucleus]Jądro Komórkowe[/url][/color][/b] by wyewoluować [b]Czynniki Wiążące[/b].\n"
+"\n"
+"Jeżeli warunki odblokowania organelli są włączone w ustawieniach, [i]wszystkie[/i] poniższe warunki muszą być spełnione [i] dla komórki gracza[/i]:\n"
+"\n"
+"[indent]—   Zawiera [b][color=#3796e1][url=thriveopedia:nucleus]Jądro Komórkowe[/url][/color][/b] przez [b]5[/b] generacji.[/indent]\n"
+"[indent]—   Ma bilans [thrive:compound type=\"atp\"][/thrive:compound] równy [b]+15[/b] lub większy.[/indent]"
+
+#, fuzzy
+msgid "WIKI_HYDROGENOSOME_SCIENTIFIC_BACKGROUND"
+msgstr "Nitrogenaza to białko mogące użyć gazowego [thrive:compound type=\"nitrogen\"][/thrive:compound] i energii komórkowej w formie [thrive:compound type=\"atp\"][/thrive:compound] do produkcji [thrive:compound type=\"ammonia\"][/thrive:compound], kluczowego składnika dla wzrostu komórek. Ten proces nazywany jest [b]anaerobic nitrogen fixation[/b]. Jako iż nitrogenaza jest zawieszona bezpośrednio w cytozolu, otaczający płyn przeprowadza [b]glycolysis[/b]."
+
+#, fuzzy
+msgid "WIKI_HYDROGENOSOME_STRATEGY"
+msgstr "Termosyntaza jest białkiem które używa konwekcji termicznej by zmieniać swój kształt, pozwalając mu się zwinąć i związać z ADP pod wpływem ciepła, następnie rozwinąć i przetworzyć ADP na [thrive:compound type=\"atp\"][/thrive:compound] w kontakcie z niższą temperaturą w procesie zwanym [b]thermosynthesis[/b]. Szybkość produkcji [thrive:compound type=\"atp\"][/thrive:compound] wzrasta z [thrive:compound type=\"temperature\"][/thrive:compound]."
+
+#, fuzzy
+msgid "WIKI_HYDROGENOSOME_UPGRADES"
 msgstr "Nitrogenaza to białko mogące użyć gazowego [thrive:compound type=\"nitrogen\"][/thrive:compound] i energii komórkowej w formie [thrive:compound type=\"atp\"][/thrive:compound] do produkcji [thrive:compound type=\"ammonia\"][/thrive:compound], kluczowego składnika dla wzrostu komórek. Ten proces nazywany jest [b]anaerobic nitrogen fixation[/b]. Jako iż nitrogenaza jest zawieszona bezpośrednio w cytozolu, otaczający płyn przeprowadza [b]glycolysis[/b]."
 
 msgid "WIKI_INDUSTRIAL_STAGE_CURRENT_DEVELOPMENT"
@@ -8186,6 +8279,10 @@ msgid "WIKI_PAGE_HYDROGENASE"
 msgstr "Azotaza"
 
 #, fuzzy
+msgid "WIKI_PAGE_HYDROGENOSOME"
+msgstr "Azotaza"
+
+#, fuzzy
 msgid "WIKI_PAGE_INDUSTRIAL_STAGE"
 msgstr "Czynnik Wiążący"
 
@@ -8510,10 +8607,14 @@ msgstr ""
 msgid "WIKI_TBA"
 msgstr "Wiki"
 
+msgid "WIKI_TECH_EDITOR_COMMA_NATION_EDITOR_COMMA_SQUAD_EDITOR"
+msgstr ""
+
 #, fuzzy
 msgid "WIKI_THERMOPLAST_EFFECTS"
 msgstr "Termoplast jest strukturą z podwójną membraną zawierającą termo sensytywne pigmenty ułożone razem w membranowych workach. Jest prokariotem, który został przyswojony do użytku przez eukariotycznego hosta. Pigmenty w termoplaście mogą używać energii z różnic temperatur w otoczeniu do produkcji [thrive:compound type=\"atp\"][/thrive:compound] z wody w procesie zwanym [b]termosyntezą[/b]. Tempo produkcji [thrive:compound type=\"atp\"][/thrive:compound] skaluje się z [thrive:compound type=\"temperature\"][/thrive:compound]."
 
+#, fuzzy
 msgid "WIKI_THERMOPLAST_INTRO"
 msgstr ""
 "Wyciąga energię w formie [thrive:compound type=\"atp\"][/thrive:compound] używając gradientów [thrive:compound type=\"temperature\"][/thrive:compound] w środowisku. Eukariotyczny variant mniej wydajnej [b][color=#3796e1][url=thriveopedia:thermosynthase]Thermosyntazy[/url][/color][/b].\n"
@@ -8524,6 +8625,7 @@ msgstr ""
 msgid "WIKI_THERMOPLAST_MODIFICATIONS"
 msgstr "Termoplast jest strukturą z podwójną membraną zawierającą termo sensytywne pigmenty ułożone razem w membranowych workach. Jest prokariotem, który został przyswojony do użytku przez eukariotycznego hosta. Pigmenty w termoplaście mogą używać energii z różnic temperatur w otoczeniu do produkcji [thrive:compound type=\"atp\"][/thrive:compound] z wody w procesie zwanym [b]termosyntezą[/b]. Tempo produkcji [thrive:compound type=\"atp\"][/thrive:compound] skaluje się z [thrive:compound type=\"temperature\"][/thrive:compound]."
 
+#, fuzzy
 msgid "WIKI_THERMOPLAST_PROCESSES"
 msgstr ""
 "[b]Termosynteza[/b]: [thrive:compound type=\"temperature\"][/thrive:compound] → [thrive:compound type=\"atp\"][/thrive:compound]\n"
@@ -8537,6 +8639,7 @@ msgstr ""
 msgid "WIKI_THERMOPLAST_SCIENTIFIC_BACKGROUND"
 msgstr "Termoplast jest strukturą z podwójną membraną zawierającą termo sensytywne pigmenty ułożone razem w membranowych workach. Jest prokariotem, który został przyswojony do użytku przez eukariotycznego hosta. Pigmenty w termoplaście mogą używać energii z różnic temperatur w otoczeniu do produkcji [thrive:compound type=\"atp\"][/thrive:compound] z wody w procesie zwanym [b]termosyntezą[/b]. Tempo produkcji [thrive:compound type=\"atp\"][/thrive:compound] skaluje się z [thrive:compound type=\"temperature\"][/thrive:compound]."
 
+#, fuzzy
 msgid "WIKI_THERMOPLAST_STRATEGY"
 msgstr ""
 "Ponieważ [b]Termosynteza[/b] nie wymaga innych zasobów prócz [thrive:compound type=\"temperature\"][/thrive:compound], w praktyce jest darmową energią. Dodatkowo [b]Termoplast[/b] jest bardziej wydajny od [b][color=#3796e1][url=thriveopedia:thermosynthase]Termosyntazy[/url][/color][/b], co sprawia, że jest on najłatwiejszą metodą generacji energii w grze, pod warunkiem, że będziesz chciał zostać w gorącej strefie jak kominy hydrotermalne.\n"
@@ -8547,6 +8650,7 @@ msgstr ""
 msgid "WIKI_THERMOPLAST_UPGRADES"
 msgstr "Termoplast jest strukturą z podwójną membraną zawierającą termo sensytywne pigmenty ułożone razem w membranowych workach. Jest prokariotem, który został przyswojony do użytku przez eukariotycznego hosta. Pigmenty w termoplaście mogą używać energii z różnic temperatur w otoczeniu do produkcji [thrive:compound type=\"atp\"][/thrive:compound] z wody w procesie zwanym [b]termosyntezą[/b]. Tempo produkcji [thrive:compound type=\"atp\"][/thrive:compound] skaluje się z [thrive:compound type=\"temperature\"][/thrive:compound]."
 
+#, fuzzy
 msgid "WIKI_THERMOSYNTHASE_EFFECTS"
 msgstr "Brak efektów."
 
@@ -8798,13 +8902,16 @@ msgstr ""
 "Możesz utworzyć pull request bez ubiegania się o miejsce w załodze."
 
 msgid "YOU_CAN_SUPPORT_THRIVE_ON_PATREON"
-msgstr "Możesz wspierać przyszłość rozwoju \"Thrive\" na Patreonie."
+msgstr "Możesz wspomóc przyszły rozwój Thrive na naszym Patreonie"
 
 msgid "ZOOM_IN"
 msgstr "Przybliż"
 
 msgid "ZOOM_OUT"
 msgstr "Oddal"
+
+#~ msgid "PASSIVE_REPRODUCTION_PROGRESS_EXPLANATION"
+#~ msgstr "(biernie uzyskuj związki reprodukcji ze środowiska bez potrzeby robienia czegokolwiek)"
 
 #~ msgid "TO_BE_IMPLEMENTED"
 #~ msgstr "Do zaimplementowania."
@@ -9014,10 +9121,6 @@ msgstr "Oddal"
 #, fuzzy
 #~ msgid "ERUPTION_IN"
 #~ msgstr "Pączkowanie"
-
-#, fuzzy
-#~ msgid "EVENT_TOOLTIP_ERUPTION"
-#~ msgstr "{0}: +{1} ATP"
 
 #~ msgid "THE_AMOUNT_OF_GLUCOSE_HAS_BEEN_REDUCED"
 #~ msgstr "Ilość glukozy została zredukowana do {0} poprzedniej ilości."

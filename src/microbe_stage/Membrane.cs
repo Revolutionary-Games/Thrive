@@ -29,6 +29,10 @@ public partial class Membrane : MeshInstance3D
 
     [Export]
     private MeshInstance3D mucocystAnimationMeshInstance = null!;
+
+    [Export]
+    private MembraneWaterRipple waterRipple = null!;
+
 #pragma warning disable CA2213
     private Texture2D? albedoTexture;
 
@@ -51,7 +55,7 @@ public partial class Membrane : MeshInstance3D
     private bool mucocystEffectEnabled;
 
     /// <summary>
-    ///   When true the material properties need to be reapplied
+    ///   When true, the material properties need to be reapplied
     /// </summary>
     public bool Dirty { get; set; } = true;
 
@@ -173,6 +177,7 @@ public partial class Membrane : MeshInstance3D
         if (EngulfShaderMaterial == null)
             throw new Exception("EngulfShaderMaterial on Membrane is not set");
 
+        waterRipple.FollowTargetNode = this;
         SetMesh();
     }
 
@@ -183,6 +188,7 @@ public partial class Membrane : MeshInstance3D
 
         Dirty = false;
         ApplyAllMaterialParameters();
+        waterRipple.EffectRadius = EncompassingCircleRadius;
     }
 
     /// <summary>
@@ -296,6 +302,7 @@ public partial class Membrane : MeshInstance3D
             healthParameterName.Dispose();
             wigglynessParameterName.Dispose();
             movementWigglynessParameterName.Dispose();
+            fadeParameterName.Dispose();
         }
 
         base.Dispose(disposing);

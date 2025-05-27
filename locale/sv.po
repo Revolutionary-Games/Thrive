@@ -7,8 +7,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2025-04-11 10:12+0300\n"
-"PO-Revision-Date: 2025-04-04 10:42+0000\n"
+"POT-Creation-Date: 2025-05-26 12:24+0300\n"
+"PO-Revision-Date: 2025-05-25 15:00+0000\n"
 "Last-Translator: Anonymous <noreply@weblate.org>\n"
 "Language-Team: Swedish <https://translate.revolutionarygamesstudio.com/projects/thrive/thrive-game/sv/>\n"
 "Language: sv\n"
@@ -16,7 +16,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=n != 1;\n"
-"X-Generator: Weblate 5.7.2\n"
+"X-Generator: Weblate 5.11.4\n"
 "Generated-By: Babel 2.9.0\n"
 
 msgid "2D_MOVEMENT_TYPE_SELECTION"
@@ -91,7 +91,7 @@ msgid "ADD_INPUT_BUTTON_TOOLTIP"
 msgstr "Lägg till ny tangentbindning"
 
 msgid "ADVANCED_VIEW"
-msgstr "Avancerad"
+msgstr "Avancerat"
 
 msgid "ADVANCED_VIEW_BUTTON_TOOLTIP"
 msgstr "Öppna vyn för avancerade inställningar"
@@ -190,7 +190,7 @@ msgid "AND_UNLOCK_CONDITION"
 msgstr "och"
 
 msgid "ANISOTROPIC_FILTERING"
-msgstr ""
+msgstr "Anisotropisk filtrering:"
 
 msgid "ANTIALIASING_MSAA_TAA"
 msgstr ""
@@ -413,7 +413,7 @@ msgid "BACK"
 msgstr "Bakåt"
 
 msgid "BACKGROUND_BLUR"
-msgstr ""
+msgstr "Bakgrunds oskärpa:"
 
 msgid "BACKSLASH"
 msgstr "Omvänt snedstreck"
@@ -426,13 +426,13 @@ msgid "BACTERIAL_THERMOSYNTHESIS"
 msgstr "Termosyntes"
 
 msgid "BALANCE_DISPLAY_AT_DAY_ALWAYS"
-msgstr ""
+msgstr "Beräkna som om det var dag"
 
 msgid "BALANCE_DISPLAY_AT_DAY_ALWAYS_TOOLTIP"
 msgstr ""
 
 msgid "BALANCE_DISPLAY_WHILE_MOVING"
-msgstr ""
+msgstr "Inkludera rörelse kostnad"
 
 #, fuzzy
 msgid "BALANCE_DISPLAY_WHILE_MOVING_TOOLTIP"
@@ -509,9 +509,8 @@ msgstr "Bästa Biom:"
 msgid "BIG_IRON_CHUNK"
 msgstr "Stor järnbit"
 
-#, fuzzy
 msgid "BIG_PHOSPHATE_CHUNK"
-msgstr "Stor järnbit"
+msgstr "Stor fosfatbit"
 
 msgid "BILLION_ABBREVIATION"
 msgstr "{0} B"
@@ -709,7 +708,7 @@ msgid "CELL_TYPE_BUTTON_ATP_PRODUCTION"
 msgstr "ATP Produktion"
 
 msgid "CELL_TYPE_NAME"
-msgstr ""
+msgstr "Celltyp namn"
 
 #, fuzzy
 msgid "CHANGE_DESCRIPTION_IS_TOO_LONG"
@@ -732,11 +731,12 @@ msgid "CHEAT_MENU"
 msgstr "Fusk meny"
 
 msgid "CHEMICAL_BUTTON_MICROBE_TOOLTIP"
-msgstr ""
+msgstr "Visa / göm cellprocesser"
 
 msgid "CHEMOPLAST"
 msgstr "Kemoplast"
 
+#, fuzzy
 msgid "CHEMOPLAST_DESCRIPTION"
 msgstr "Kemoplasten är en dubbelmembranstruktur som innehåller proteiner som kan omvandla vätesulfid, vatten och gasformig koldioxid till glukos i en process som kallas vätesulfidkemosyntes. Hastigheten för dess glukosproduktion skalas med koncentrationen av vatten och koldioxid."
 
@@ -770,6 +770,7 @@ msgstr "Kemosyntes"
 msgid "CHEMOSYNTHESIZING_PROTEINS"
 msgstr "Kemosyntesiserande proteiner"
 
+#, fuzzy
 msgid "CHEMOSYNTHESIZING_PROTEINS_DESCRIPTION"
 msgstr "Kemosyntesproteiner är små kluster av proteiner i cytoplasman som kan omvandla vätesulfid, vatten och gasformig koldioxid till glukos i en process som kallas vätesulfidkemosyntes. Hastigheten för dess glukosproduktion skalas med koncentrationen av koldioxid. Eftersom de kemosyntetiserande proteinerna är suspenderade direkt i cytoplasman utför den omgivande vätskan viss jäsning."
 
@@ -814,7 +815,7 @@ msgid "CHROMATOPHORE_PROCESSES_DESCRIPTION"
 msgstr "Kemosyntesproteiner är små kluster av proteiner i cytoplasman som kan omvandla vätesulfid, vatten och gasformig koldioxid till glukos i en process som kallas vätesulfidkemosyntes. Hastigheten för dess glukosproduktion skalas med koncentrationen av koldioxid. Eftersom de kemosyntetiserande proteinerna är suspenderade direkt i cytoplasman utför den omgivande vätskan viss jäsning."
 
 msgid "CHUNK_CELL_CORPSE_PART"
-msgstr ""
+msgstr "Död cellbit"
 
 msgid "CHUNK_FOOD_SOURCE"
 msgstr "{0} konsumtion"
@@ -835,7 +836,7 @@ msgid "CITY_SHORT_STATISTICS"
 msgstr "Organismstatistik"
 
 msgid "CLEAN_UP_OLD_SAVES"
-msgstr ""
+msgstr "Rensa gamla sparfiler"
 
 msgid "CLEAR_CACHE"
 msgstr ""
@@ -968,9 +969,8 @@ msgstr "Molekylmoln"
 msgid "COMPOUNDS_AT_MAX_SPEED"
 msgstr "Molekylmoln"
 
-#, fuzzy
 msgid "COMPOUNDS_BUTTON_MICROBE_TOOLTIP"
-msgstr "Hjälp"
+msgstr "Visa / göm föreningar"
 
 msgid "COMPOUNDS_COLON"
 msgstr "Föreningar:"
@@ -986,7 +986,7 @@ msgid "COMPOUND_BALANCE_MODE_TOOLTIP"
 msgstr "Hjälp"
 
 msgid "COMPOUND_BALANCE_TITLE"
-msgstr ""
+msgstr "Föreningsbalans"
 
 #, fuzzy
 msgid "COMPOUND_BALANCE_TOOLTIP"
@@ -999,9 +999,8 @@ msgstr "Molekylmoln"
 msgid "COMPOUND_CLOUD_BENCHMARK"
 msgstr "Molekylmoln"
 
-#, fuzzy
 msgid "COMPOUND_CLOUD_DENSITY"
-msgstr "Molekylmoln"
+msgstr "Molekylmoln densitet"
 
 #, fuzzy
 msgid "COMPOUND_CLOUD_DENSITY_EXPLANATION"
@@ -1440,6 +1439,7 @@ msgstr "Anpassat Användarnamn:"
 msgid "CYTOPLASM"
 msgstr "Cytoplasma"
 
+#, fuzzy
 msgid "CYTOPLASM_DESCRIPTION"
 msgstr "Det slemiga inre av en cell. Cytoplasman är den grundläggande blandningen av joner, proteiner och andra ämnen lösta i vatten som fyller cellens inre. En av funktionerna den utför är jäsning, omvandlingen av glukos till ATP-energi. För celler som saknar organeller så den har mer avancerade ämnesomsättningar är det vad de använder för energi. Det används också för att lagra molekyler i cellen och för att öka cellens storlek."
 
@@ -1525,9 +1525,8 @@ msgstr "Radera"
 msgid "DELETE_ALL_OLD_SAVE_WARNING_2"
 msgstr ""
 
-#, fuzzy
 msgid "DELETE_FOSSIL_CONFIRMATION"
-msgstr "Skriv över aktuell sparfil:"
+msgstr "Att radera denna fossil är permanent och kan inte ångras. Är du säker på att du vill radera den för gott?"
 
 msgid "DELETE_OLD_SAVES_PROMPT"
 msgstr ""
@@ -1615,14 +1614,22 @@ msgid "DEV_BUILD_PATRONS"
 msgstr ""
 
 msgid "DIFFICULTY"
-msgstr ""
+msgstr "Svårighetsgrad"
 
-#, fuzzy
 msgid "DIFFICULTY_DETAILS_STRING"
-msgstr "Anpassat"
+msgstr ""
+"Förinställd svårighetsgrad: {0}\n"
+"Faktor för mutationskostnad: {1} \n"
+"Mutations frekvens för AI: {2}\n"
+"Föreningsmoln-densitet: {3}\n"
+"Populations-straff vid spelarens död: {4}\n"
+"Kvarhållning av glukos i miljön: {5} \n"
+"Faktor för kostnaden av osmoreglering: {6}\n"
+"Gratis glukosmoln när redigeraren lämnas: {7}\n"
+"Begränsa användningen av tillväxtföreningar: {8}"
 
 msgid "DIFFICULTY_PRESET"
-msgstr ""
+msgstr "Förinställd svårighetsgrad"
 
 msgid "DIFFICULTY_PRESET_CUSTOM"
 msgstr "Anpassat"
@@ -1720,10 +1727,10 @@ msgstr ""
 "och har lägre sannolikhet att använda gifter mot rovdjur."
 
 msgid "DISMISS_INFORMATION_PERMANENTLY"
-msgstr ""
+msgstr "Visa inte detta igen"
 
 msgid "DISMISS_WARNING_PERMANENTLY"
-msgstr ""
+msgstr "Varna inte om detta igen"
 
 msgid "DISPLAY_3D_MENU_BACKGROUNDS"
 msgstr ""
@@ -1818,10 +1825,10 @@ msgid "EASTEREGG_MESSAGE_18"
 msgstr "Rolig fakta, The Stentor är ett ciliat som kan sträcka sig och fånga byten i en slags trumpet som mun som drar in byten genom att generera vattenströmmar med cilia."
 
 msgid "EASTEREGG_MESSAGE_2"
-msgstr "Här är ett tips, gifter kan användas för att putta andra gifter ifrån dig om du är snabb nog."
+msgstr "En av de första spelbara prototyperna skapades av vår grymma programmerare, Untrustedlife!"
 
 msgid "EASTEREGG_MESSAGE_3"
-msgstr "Här är ett tips, Osmoregulering kostar 1 ATP per sekund per hex som din cell har, varje tom hex av cytoplasma genererar också 5 ATP per sekund, vilket innebär att om du tappar ATP på grund av osmoregulering, lägg bara till ett par tomma hexecytoplasmer eller ta bort några organeller ."
+msgstr "Alla varelser i spelet kommer utvecklats från en gemensam förfader. Se om du kan L identifiera vilka som är närmst besläktade med varandra!"
 
 msgid "EASTEREGG_MESSAGE_4"
 msgstr "Rolig fakta, i verkliga livet har prokaryoter något som heter Biocompartments som fungerar som organeller och kallas faktiskt Polyhedrala organeller."
@@ -1833,7 +1840,7 @@ msgid "EASTEREGG_MESSAGE_6"
 msgstr "Här är ett tips, ibland är det bäst att bara fly från andra celler."
 
 msgid "EASTEREGG_MESSAGE_7"
-msgstr "Här är ett tips, om en cell är ungefär hälften så stor som det är då du kan svälja dem."
+msgstr "Thrive är tänkt som en simulering av en utomjordisk planet, så förvänta dig inte att hitta samma varelser som här på jorden!"
 
 msgid "EASTEREGG_MESSAGE_8"
 msgstr "Här är ett tips, bakterier kan vara starkare än de ser ut, de kan se små ut, men vissa av dem kan gräva sig in i dig och döda dig på det sättet!"
@@ -2051,9 +2058,8 @@ msgstr ""
 msgid "ENVIRONMENTAL_GLUCOSE_RETENTION_EXPLANATION"
 msgstr "{0} befolkning förändrades av {1} på grund av: {2}"
 
-#, fuzzy
 msgid "ENVIRONMENT_BUTTON_MICROBE_TOOLTIP"
-msgstr "Hjälp"
+msgstr "Visa / göm miljö"
 
 #, fuzzy
 msgid "ENVIRONMENT_TOLERANCE"
@@ -2113,6 +2119,27 @@ msgstr "Flodmynning"
 msgid "EVENT_ERUPTION_TOOLTIP"
 msgstr "Självmord"
 
+msgid "EVENT_METEOR_GLUCOSE"
+msgstr ""
+
+#, fuzzy
+msgid "EVENT_METEOR_IRON"
+msgstr "{0}:+{1} ATP"
+
+#, fuzzy
+msgid "EVENT_METEOR_PHOSPHATES"
+msgstr "Spawna fosfat"
+
+#, fuzzy
+msgid "EVENT_METEOR_PLAIN"
+msgstr "Självmord"
+
+msgid "EVENT_METEOR_RADIOACTIVE"
+msgstr ""
+
+msgid "EVENT_METEOR_SULFUR"
+msgstr ""
+
 #, fuzzy
 msgid "EVOLUTIONARY_TREE"
 msgstr "Av Revolutionary Games Studio"
@@ -2148,13 +2175,11 @@ msgstr "Skriv över aktuell sparfil:"
 msgid "EXIT"
 msgstr "Lämna"
 
-#, fuzzy
 msgid "EXIT_EDITOR"
-msgstr "Aktivera Cellredigeraren"
+msgstr "Lämna cellredigeraren"
 
-#, fuzzy
 msgid "EXIT_TO_LAUNCHER"
-msgstr "Avfyra E"
+msgstr "Lämna till startprogrammet"
 
 msgid "EXPERIMENTAL_FEATURES"
 msgstr ""
@@ -2542,6 +2567,7 @@ msgstr ""
 msgid "GLOBAL_POPULATION_COLON"
 msgstr "{0} befolkning förändrades av {1} på grund av: {2}"
 
+#, fuzzy
 msgid "GLOBAL_TIMELINE_SPECIES_MIGRATED_TO"
 msgstr "En del av [u]{0}[/u] befolkningen har migrerat till {1} från {2}"
 
@@ -2580,9 +2606,8 @@ msgstr "Grafik"
 msgid "GRAPHICS_TEAM"
 msgstr "Grafik"
 
-#, fuzzy
 msgid "GROWTH_ORDER"
-msgstr "BEKRÄFTA"
+msgstr "Tillväxtordning"
 
 msgid "GUI"
 msgstr ""
@@ -2671,6 +2696,18 @@ msgstr "Nitrogenas är ett protein som kan använda gasformigt kväve och cellul
 msgid "HYDROGENASE_PROCESSES_DESCRIPTION"
 msgstr "Nitrogenas är ett protein som kan använda gasformigt kväve och cellulär energi i form av ATP för att producera ammoniak, ett viktigt tillväxtnäringsämne för celler. Detta är en process som kallas anaerob kvävefixering. Eftersom kvävgaset är suspenderat direkt i cytoplasman, utför den omgivande vätskan viss jäsning."
 
+#, fuzzy
+msgid "HYDROGENOSOME"
+msgstr "Svavelväte"
+
+#, fuzzy
+msgid "HYDROGENOSOME_DESCRIPTION"
+msgstr "Nitrogenas är ett protein som kan använda gasformigt kväve och cellulär energi i form av ATP för att producera ammoniak, ett viktigt tillväxtnäringsämne för celler. Detta är en process som kallas anaerob kvävefixering. Eftersom kvävgaset är suspenderat direkt i cytoplasman, utför den omgivande vätskan viss jäsning."
+
+#, fuzzy
+msgid "HYDROGENOSOME_PROCESSES_DESCRIPTION"
+msgstr "Nitrogenas är ett protein som kan använda gasformigt kväve och cellulär energi i form av ATP för att producera ammoniak, ett viktigt tillväxtnäringsämne för celler. Detta är en process som kallas anaerob kvävefixering. Eftersom kvävgaset är suspenderat direkt i cytoplasman, utför den omgivande vätskan viss jäsning."
+
 msgid "HYDROGEN_SULFIDE"
 msgstr "Svavelväte"
 
@@ -2754,9 +2791,8 @@ msgstr ""
 msgid "INFO_BOX_NEXT_STAGE"
 msgstr "DU HAR FRODATS!"
 
-#, fuzzy
 msgid "INFO_BOX_OSMOREGULATION_COST"
-msgstr "Osmoreguleringskost"
+msgstr "Osmoreguleringskostnad"
 
 #, fuzzy
 msgid "INFO_BOX_PREVIOUS_STAGE"
@@ -3203,13 +3239,8 @@ msgstr "Media"
 msgid "LAWK_ONLY"
 msgstr ""
 
-#, fuzzy
 msgid "LAWK_ONLY_EXPLANATION"
-msgstr ""
-"Aggressiva mikrober jagar byte över större avstånd\n"
-"och har större sannolikhet att kämpa emot när rovdjur attackerar.\n"
-"Fredliga mikrober attackerar inte andra över större avstånd\n"
-"och har lägre sannolikhet att använda gifter mot rovdjur."
+msgstr "(Begränsa delar och förmågor till endast livet som vi känner till det; Life As We Know it)"
 
 msgid "LEAD_ARTIST"
 msgstr "Ledande Artist"
@@ -3269,28 +3300,22 @@ msgid "LICENSES_COVERING_THRIVE"
 msgstr "Licenserna för delar av Thrive visas här"
 
 msgid "LIFE_ORIGIN"
-msgstr ""
+msgstr "Livets ursprung"
 
-#, fuzzy
 msgid "LIFE_ORIGIN_EXPLANATION"
-msgstr ""
-"Aggressiva mikrober jagar byte över större avstånd\n"
-"och har större sannolikhet att kämpa emot när rovdjur attackerar.\n"
-"Fredliga mikrober attackerar inte andra över större avstånd\n"
-"och har lägre sannolikhet att använda gifter mot rovdjur."
+msgstr "(start plats)"
 
 msgid "LIFE_ORIGIN_PANSPERMIA"
-msgstr ""
+msgstr "Panspermi (slumpmässig)"
 
 msgid "LIFE_ORIGIN_POND"
-msgstr ""
+msgstr "Varm liten damm"
 
-#, fuzzy
 msgid "LIFE_ORIGIN_TOOLTIP"
-msgstr "Självmord"
+msgstr "Vissa alternativ kan vara inaktiverade om begränsningen till LAWK är aktiverat"
 
 msgid "LIFE_ORIGIN_VENTS"
-msgstr ""
+msgstr "Hydrotermala källor"
 
 msgid "LIGHT"
 msgstr "Ljus"
@@ -3590,6 +3615,7 @@ msgstr "Mesopelagisk"
 msgid "METABOLOSOMES"
 msgstr "Metabolosomer"
 
+#, fuzzy
 msgid "METABOLOSOMES_DESCRIPTION"
 msgstr "Metabolosomer är kluster av proteiner förpackade i proteinskal. De kan omvandla glukos till ATP i mycket högre takt än vad som kan göras i cytoplasman i en process som kallas Aerobisk Andning. Det kräver dock syre för att fungera, och lägre nivåer av syre i miljön kommer att sakta ner hastigheten för dess ATP-produktion. Eftersom metabolosomerna är suspenderade direkt i cytoplasman utför den omgivande vätskan viss jäsning."
 
@@ -3602,6 +3628,15 @@ msgid "META_THREADS_TOOLTIP"
 msgstr ""
 "Det går inte att automatiskt upptäcka om flertrådning är aktivt eller inte.\n"
 "Detta påverkar standardantalet trådar eftersom flertrådnings-trådar inte är lika snabba som riktiga CPU-kärnor."
+
+msgid "METEOR_IMPACT_EVENT"
+msgstr ""
+
+msgid "METEOR_STRIKE_START_EVENT_LOG_PLURAL"
+msgstr ""
+
+msgid "METEOR_STRIKE_START_EVENT_LOG_SINGULAR"
+msgstr ""
 
 #, fuzzy
 msgid "METRICS"
@@ -3688,6 +3723,10 @@ msgstr "Mikrob Stadiet"
 #, fuzzy
 msgid "MICROBE_BENCHMARK"
 msgstr "Mikrobredigerare"
+
+#, fuzzy
+msgid "MICROBE_CAMERA_TILT_EFFECT"
+msgstr "Organismstatistik"
 
 msgid "MICROBE_EDITOR"
 msgstr "Mikrobredigerare"
@@ -3851,38 +3890,33 @@ msgstr ""
 
 msgid "MICROBE_STAGE_INITIAL"
 msgstr ""
+"På en avlägsen främmande planet har eoner av vulkanisk aktivitet i de djupa haven gett upphov till något anmärkningsvärt.\n"
+"\n"
+"Liv.\n"
+"\n"
+"Du är den Sista Universella Gemensamma Förfadern (Las Universal Common Ancestor - LUCA) på denna planet. Denna enkla bubbla kan kopiera sig själv från molekyler i vattnet. Med tiden kan den utvecklas till en komplex livsform som en dag kanske dominerar stjärnorna.\n"
+"\n"
+"Men först måste du överleva i denna ogästvänliga värld genom att samla ämnesföreningar för att växa, sprida dig och utvecklas – samtidigt som du konkurrerar med andra mikrober."
 
-#, fuzzy
 msgid "MICROBE_STAGE_INITIAL_PANSPERMIA"
 msgstr ""
-"[b]Stadie[/b]\n"
-"  Mikrob\n"
-"[b]Membrantyp[/b]\n"
-"  {0}\n"
-"[b]Membranstelhet[/b]\n"
-"  {1}\n"
-"[b]Grundhastighet[/b]\n"
-"  {2}\n"
-"[b]Grunrotationshastighet[/b]\n"
-"  {3}\n"
-"[b]Grundhexstorlek[/b]\n"
-"  {4}"
+"På en avlägsen främmande planet har en meteorit kraschat efter en lång färd genom rymden. Den bär med sig fröet till något helt nytt på denna värld.\n"
+"\n"
+"Liv.\n"
+"\n"
+"Du är den Sista Universella Gemensamma Förfadern (Las Universal Common Ancestor - LUCA) på denna planet. Denna självkopierande bubbla kan leva i detta hav lika väl som på sin ursprungliga hemvärld. Kanske kommer dess avlägsna ättlingar en dag att återfinna den världen.\n"
+"\n"
+"Men först måste du överleva i dessa fientliga vatten genom att samla ämnesföreningar för att växa, sprida dig och utvecklas – samtidigt som du konkurrerar med andra mikrober."
 
-#, fuzzy
 msgid "MICROBE_STAGE_INITIAL_POND"
 msgstr ""
-"[b]Stadie[/b]\n"
-"  Mikrob\n"
-"[b]Membrantyp[/b]\n"
-"  {0}\n"
-"[b]Membranstelhet[/b]\n"
-"  {1}\n"
-"[b]Grundhastighet[/b]\n"
-"  {2}\n"
-"[b]Grunrotationshastighet[/b]\n"
-"  {3}\n"
-"[b]Grundhexstorlek[/b]\n"
-"  {4}"
+"På en avlägsen främmande planet har eoner av kemisk evolution i varma källor gett upphov till något anmärkningsvärt.\n"
+"\n"
+"Liv.\n"
+"\n"
+"Du är den Sista Universella Gemensamma Förfadern (Las Universal Common Ancestor - LUCA) på denna planet. Denna enkla bubbla kan kopiera sig själv från molekyler i vattnet. Med tiden kan den utvecklas till en komplex livsform som en dag kanske dominerar stjärnorna.\n"
+"\n"
+"Men först måste du överleva i denna ogästvänliga värld genom att samla ämnesföreningar för att växa, sprida dig och utvecklas – samtidigt som du konkurrerar med andra mikrober."
 
 #, fuzzy
 msgid "MICROBE_STAGE_ORGANELLE_DIVISION"
@@ -4323,12 +4357,11 @@ msgstr ""
 msgid "NEW_GAME"
 msgstr "Nytt spel"
 
-#, fuzzy
 msgid "NEW_GAME_BUTTON_TOOLTIP"
-msgstr "Hjälp"
+msgstr "Starta ett nytt spel"
 
 msgid "NEW_GAME_SETTINGS_PERFORMANCE_OPTIONS_INFO"
-msgstr ""
+msgstr "Observera: Du kan när som helst justera prestandainställningarna i [color=#3796e1][url=thrive://GUI/OptionsMenu/Performance]options menu[/url][/color] för att förbättra spelets prestanda"
 
 #, fuzzy
 msgid "NEW_MOD_DEFAULT_DESCRIPTION"
@@ -4355,6 +4388,7 @@ msgstr "Kväve"
 msgid "NITROGENASE"
 msgstr "Kvävegenas"
 
+#, fuzzy
 msgid "NITROGENASE_DESCRIPTION"
 msgstr "Nitrogenas är ett protein som kan använda gasformigt kväve och cellulär energi i form av ATP för att producera ammoniak, ett viktigt tillväxtnäringsämne för celler. Detta är en process som kallas anaerob kvävefixering. Eftersom kvävgaset är suspenderat direkt i cytoplasman, utför den omgivande vätskan viss jäsning."
 
@@ -4365,6 +4399,7 @@ msgstr "Nitrogenas är ett protein som kan använda gasformigt kväve och cellul
 msgid "NITROPLAST"
 msgstr "Kväve-Fixande Plastid"
 
+#, fuzzy
 msgid "NITROPLAST_DESCRIPTION"
 msgstr "Nitrogen Fixing Plastid är ett protein som kan använda gasformigt kväve och syre och cellulär energi i form av ATP för att producera ammoniak, ett viktigt tillväxtnäringsämne för celler. Detta är en process som kallas aerob kvävefixering."
 
@@ -4785,10 +4820,6 @@ msgstr "Panorera höger"
 msgid "PAN_CAMERA_UP"
 msgstr "Panorera uppåt"
 
-#, fuzzy
-msgid "PASSIVE_REPRODUCTION_PROGRESS_EXPLANATION"
-msgstr "{0} befolkning förändrades av {1} på grund av: {2}"
-
 msgid "PAST_DEVELOPERS"
 msgstr "Tidigare utvecklare"
 
@@ -4855,7 +4886,7 @@ msgid "PAUSE_PROMPT"
 msgstr ""
 
 msgid "PAUSE_TOOLTIP"
-msgstr ""
+msgstr "Pausa spelet"
 
 #, fuzzy
 msgid "PCK_LOAD_FAILED"
@@ -4898,9 +4929,8 @@ msgstr "/sekund"
 msgid "PHOSPHATE"
 msgstr "Fosfat"
 
-#, fuzzy
 msgid "PHOSPHATES_COST"
-msgstr "Fosfat"
+msgstr "Fosfat kostnad:"
 
 msgid "PHOTOSYNTHESIS"
 msgstr "Fotosyntes"
@@ -5070,9 +5100,8 @@ msgstr "Snabbspara"
 msgid "QUIT"
 msgstr "Lämna"
 
-#, fuzzy
 msgid "QUIT_BUTTON_TOOLTIP"
-msgstr "Självmord"
+msgstr "Lämna spelet"
 
 msgid "QUIT_GAME_WARNING"
 msgstr ""
@@ -5263,9 +5292,8 @@ msgstr "Fortsätt"
 msgid "RETURN_TO_MENU"
 msgstr "Tillbaka till Menyn"
 
-#, fuzzy
 msgid "RETURN_TO_MENU_TOOLTIP"
-msgstr "Tillbaka till Menyn"
+msgstr "Tillbaka till huvudmenyn"
 
 msgid "RETURN_TO_MENU_WARNING"
 msgstr ""
@@ -5365,7 +5393,7 @@ msgid "SAVE_AUTOSAVE"
 msgstr "Autospar"
 
 msgid "SAVE_DELETE_WARNING"
-msgstr ""
+msgstr "Att radera denna sparfil är permanent och kan inte ångras. Är du säker på att du vill radera {0} för gott?"
 
 msgid "SAVE_ERROR_INCLUDE_JSON_DEBUG_NOTE"
 msgstr ""
@@ -5709,9 +5737,8 @@ msgstr "Det slemiga inre av en cell. Cytoplasman är den grundläggande blandnin
 msgid "SMALL_IRON_CHUNK"
 msgstr "Liten Järnbit"
 
-#, fuzzy
 msgid "SMALL_PHOSPHATE_CHUNK"
-msgstr "Liten Järnbit"
+msgstr "Liten fosfatbit"
 
 #, fuzzy
 msgid "SMALL_SULFUR_CHUNK"
@@ -5848,7 +5875,7 @@ msgid "SPRINT_ACTION_TOOLTIP"
 msgstr "Självmord"
 
 msgid "STAGE_MENU_BUTTON_TOOLTIP"
-msgstr ""
+msgstr "Pausmeny"
 
 #, fuzzy
 msgid "START"
@@ -5860,9 +5887,8 @@ msgstr "Börjar"
 msgid "START_CALIBRATION"
 msgstr ""
 
-#, fuzzy
 msgid "START_GAME"
-msgstr "Spara Spel"
+msgstr "Starta spelet"
 
 msgid "START_RESEARCH"
 msgstr ""
@@ -6220,6 +6246,7 @@ msgstr ""
 msgid "THYLAKOIDS"
 msgstr "Thylakoider"
 
+#, fuzzy
 msgid "THYLAKOIDS_DESCRIPTION"
 msgstr "Thylakoider är kluster av proteiner och ljuskänsliga pigment. Pigmenten kan använda ljusets energi för att producera glukos från vatten och gasformig koldioxid i en process som kallas fotosyntes. Dessa pigment är också det som ger dem en distinkt färg. Hastigheten för deras glukosproduktion skalas med koncentrationen av koldioxid och ljusintensiteten. Eftersom tylakoiderna är suspenderade direkt i cytoplasman utför den omgivande vätskan viss jäsning."
 
@@ -6235,6 +6262,7 @@ msgstr ""
 msgid "TIMELINE_LOCAL_FILTER_TOOLTIP"
 msgstr ""
 
+#, fuzzy
 msgid "TIMELINE_NICHE_FILL"
 msgstr "[u]{0}[/u] avvek från [u]{1}[/u] som en ny art för att fylla nisch"
 
@@ -6246,6 +6274,7 @@ msgstr "En del av [u]{0}[/u] befolkningen har migrerat till {1}"
 msgid "TIMELINE_PLAYER_MIGRATED_TO"
 msgstr "En del av [u]{0}[/u] befolkningen har migrerat till {1}"
 
+#, fuzzy
 msgid "TIMELINE_SELECTION_PRESSURE_SPLIT"
 msgstr "[u]{0}[/u] avvek från [u]{1}[/u] som en ny art på grund av olika urvalstryck"
 
@@ -6265,9 +6294,11 @@ msgstr ""
 "[b]Grundhexstorlek[/b]\n"
 "  {4}"
 
+#, fuzzy
 msgid "TIMELINE_SPECIES_EXTINCT"
 msgstr "[u]{0}[/u] har gått utdöd!"
 
+#, fuzzy
 msgid "TIMELINE_SPECIES_EXTINCT_LOCAL"
 msgstr "[u]{0}[/u] har lämnat denna platsen"
 
@@ -6275,15 +6306,19 @@ msgstr "[u]{0}[/u] har lämnat denna platsen"
 msgid "TIMELINE_SPECIES_FOLLOWED"
 msgstr "[u]{0}[/u] har gått utdöd!"
 
+#, fuzzy
 msgid "TIMELINE_SPECIES_MIGRATED_FROM"
 msgstr "En del av [u]{0}[/u] befolkningen har migrerat till denna plats från {1}"
 
+#, fuzzy
 msgid "TIMELINE_SPECIES_MIGRATED_TO"
 msgstr "En del av [u]{0}[/u] befolkningen har migrerat till {1}"
 
+#, fuzzy
 msgid "TIMELINE_SPECIES_POPULATION_DECREASE"
 msgstr "[u]{0}[/u] befolkning har minskat till {1}"
 
+#, fuzzy
 msgid "TIMELINE_SPECIES_POPULATION_INCREASE"
 msgstr "[u]{0}[/u] befolkning har ökat till {1}"
 
@@ -6480,11 +6515,8 @@ msgstr ""
 "Fredliga mikrober attackerar inte andra över större avstånd\n"
 "och har lägre sannolikhet att använda gifter mot rovdjur."
 
-#, fuzzy
 msgid "TOXIN_VACUOLE"
-msgstr ""
-"Gift\n"
-"vakuol"
+msgstr "Giftvakuol"
 
 #, fuzzy
 msgid "TOXIN_VACUOLE_DESCRIPTION"
@@ -7530,6 +7562,10 @@ msgid "WIKI_COMPOUND_SYSTEM_DEVELOPMENT_OVERVIEW"
 msgstr ""
 
 #, fuzzy
+msgid "WIKI_CREATURE_EDITOR_COMMA_TECH_EDITOR"
+msgstr "Mikrobredigerare"
+
+#, fuzzy
 msgid "WIKI_CYTOPLASM_EFFECTS"
 msgstr "Det slemiga inre av en cell. Cytoplasman är den grundläggande blandningen av joner, proteiner och andra ämnen lösta i vatten som fyller cellens inre. En av funktionerna den utför är jäsning, omvandlingen av glukos till ATP-energi. För celler som saknar organeller så den har mer avancerade ämnesomsättningar är det vad de använder för energi. Det används också för att lagra molekyler i cellen och för att öka cellens storlek."
 
@@ -7842,6 +7878,38 @@ msgstr "Nitrogenas är ett protein som kan använda gasformigt kväve och cellul
 
 #, fuzzy
 msgid "WIKI_HYDROGENASE_UPGRADES"
+msgstr "Nitrogenas är ett protein som kan använda gasformigt kväve och cellulär energi i form av ATP för att producera ammoniak, ett viktigt tillväxtnäringsämne för celler. Detta är en process som kallas anaerob kvävefixering. Eftersom kvävgaset är suspenderat direkt i cytoplasman, utför den omgivande vätskan viss jäsning."
+
+#, fuzzy
+msgid "WIKI_HYDROGENOSOME_EFFECTS"
+msgstr "Nitrogenas är ett protein som kan använda gasformigt kväve och cellulär energi i form av ATP för att producera ammoniak, ett viktigt tillväxtnäringsämne för celler. Detta är en process som kallas anaerob kvävefixering. Eftersom kvävgaset är suspenderat direkt i cytoplasman, utför den omgivande vätskan viss jäsning."
+
+#, fuzzy
+msgid "WIKI_HYDROGENOSOME_INTRO"
+msgstr "Nitrogenas är ett protein som kan använda gasformigt kväve och cellulär energi i form av ATP för att producera ammoniak, ett viktigt tillväxtnäringsämne för celler. Detta är en process som kallas anaerob kvävefixering. Eftersom kvävgaset är suspenderat direkt i cytoplasman, utför den omgivande vätskan viss jäsning."
+
+#, fuzzy
+msgid "WIKI_HYDROGENOSOME_MODIFICATIONS"
+msgstr "Nitrogenas är ett protein som kan använda gasformigt kväve och cellulär energi i form av ATP för att producera ammoniak, ett viktigt tillväxtnäringsämne för celler. Detta är en process som kallas anaerob kvävefixering. Eftersom kvävgaset är suspenderat direkt i cytoplasman, utför den omgivande vätskan viss jäsning."
+
+#, fuzzy
+msgid "WIKI_HYDROGENOSOME_PROCESSES"
+msgstr "Nitrogenas är ett protein som kan använda gasformigt kväve och cellulär energi i form av ATP för att producera ammoniak, ett viktigt tillväxtnäringsämne för celler. Detta är en process som kallas anaerob kvävefixering. Eftersom kvävgaset är suspenderat direkt i cytoplasman, utför den omgivande vätskan viss jäsning."
+
+#, fuzzy
+msgid "WIKI_HYDROGENOSOME_REQUIREMENTS"
+msgstr "Termoplasten är en dubbelmembranstruktur som innehåller värmekänsliga pigment staplade tillsammans i membransäckar. Det är en prokaryot som har assimilerats för användning av sin eukaryota värd. Pigmenten i termoplasten kan använda energin från värmeskillnader i omgivningen för att producera glukos från vatten och gasformig koldioxid i en process som kallas termosyntes. Hastigheten för dess glukosproduktion skalas med koncentrationen av koldioxid och temperatur."
+
+#, fuzzy
+msgid "WIKI_HYDROGENOSOME_SCIENTIFIC_BACKGROUND"
+msgstr "Nitrogenas är ett protein som kan använda gasformigt kväve och cellulär energi i form av ATP för att producera ammoniak, ett viktigt tillväxtnäringsämne för celler. Detta är en process som kallas anaerob kvävefixering. Eftersom kvävgaset är suspenderat direkt i cytoplasman, utför den omgivande vätskan viss jäsning."
+
+#, fuzzy
+msgid "WIKI_HYDROGENOSOME_STRATEGY"
+msgstr "Nitrogenas är ett protein som kan använda gasformigt kväve och cellulär energi i form av ATP för att producera ammoniak, ett viktigt tillväxtnäringsämne för celler. Detta är en process som kallas anaerob kvävefixering. Eftersom kvävgaset är suspenderat direkt i cytoplasman, utför den omgivande vätskan viss jäsning."
+
+#, fuzzy
+msgid "WIKI_HYDROGENOSOME_UPGRADES"
 msgstr "Nitrogenas är ett protein som kan använda gasformigt kväve och cellulär energi i form av ATP för att producera ammoniak, ett viktigt tillväxtnäringsämne för celler. Detta är en process som kallas anaerob kvävefixering. Eftersom kvävgaset är suspenderat direkt i cytoplasman, utför den omgivande vätskan viss jäsning."
 
 #, fuzzy
@@ -8335,6 +8403,10 @@ msgid "WIKI_PAGE_HYDROGENASE"
 msgstr "Kvävegenas"
 
 #, fuzzy
+msgid "WIKI_PAGE_HYDROGENOSOME"
+msgstr "Kvävegenas"
+
+#, fuzzy
 msgid "WIKI_PAGE_INDUSTRIAL_STAGE"
 msgstr "Bindemedel"
 
@@ -8676,6 +8748,9 @@ msgstr "Organeller"
 msgid "WIKI_TBA"
 msgstr ""
 
+msgid "WIKI_TECH_EDITOR_COMMA_NATION_EDITOR_COMMA_SQUAD_EDITOR"
+msgstr ""
+
 #, fuzzy
 msgid "WIKI_THERMOPLAST_EFFECTS"
 msgstr "Termoplasten är en dubbelmembranstruktur som innehåller värmekänsliga pigment staplade tillsammans i membransäckar. Det är en prokaryot som har assimilerats för användning av sin eukaryota värd. Pigmenten i termoplasten kan använda energin från värmeskillnader i omgivningen för att producera glukos från vatten och gasformig koldioxid i en process som kallas termosyntes. Hastigheten för dess glukosproduktion skalas med koncentrationen av koldioxid och temperatur."
@@ -8911,31 +8986,25 @@ msgstr ""
 msgid "WORLD_RELATIVE_MOVEMENT"
 msgstr "för att öka hastigheten"
 
-#, fuzzy
 msgid "WORLD_SIZE"
-msgstr "Nuvarande utvecklare"
+msgstr "Värld storlek"
 
 #, fuzzy
 msgid "WORLD_SIZE_EXPLANATION"
-msgstr ""
-"Aggressiva mikrober jagar byte över större avstånd\n"
-"och har större sannolikhet att kämpa emot när rovdjur attackerar.\n"
-"Fredliga mikrober attackerar inte andra över större avstånd\n"
-"och har lägre sannolikhet att använda gifter mot rovdjur."
+msgstr "(Ändrar andelen patches i världen)"
 
 msgid "WORLD_SIZE_LARGE"
-msgstr ""
+msgstr "Stor"
 
 #, fuzzy
 msgid "WORLD_SIZE_MEDIUM"
 msgstr "för att öka hastigheten"
 
 msgid "WORLD_SIZE_SMALL"
-msgstr ""
+msgstr "Liten"
 
-#, fuzzy
 msgid "WORLD_SIZE_TOOLTIP"
-msgstr "Hjälp"
+msgstr "En stor värld kan göra simuleringen långsammare och rekommenderas inte för långsammare datorer."
 
 msgid "WORST_PATCH_COLON"
 msgstr ""
@@ -8943,26 +9012,24 @@ msgstr ""
 msgid "XBOX360"
 msgstr ""
 
+#, fuzzy
 msgid "XBOX_ONE"
-msgstr ""
+msgstr "Xbox One"
 
 msgid "XBOX_SERIES"
 msgstr ""
 
-#, fuzzy
 msgid "X_TWITTER_TOOLTIP"
-msgstr "Hjälp"
+msgstr "Besök våran X (förut känd som Twitter) profil"
 
 msgid "YEARS"
 msgstr "år"
 
-#, fuzzy
 msgid "YET_TO_BE_IMPLEMENTED_NOTICE"
-msgstr "Ej implementerat än."
+msgstr "Innehållet på denna sida är ännu inte fullt implementerat i spelet och kan komma att ändras."
 
-#, fuzzy
 msgid "YOUTUBE_TOOLTIP"
-msgstr "Fortsätt"
+msgstr "Besök våran YouTube kanal"
 
 msgid "YOU_CAN_MAKE_PULL_REQUEST"
 msgstr ""
@@ -8977,6 +9044,10 @@ msgstr "Zooma in"
 
 msgid "ZOOM_OUT"
 msgstr "Zooma ut"
+
+#, fuzzy
+#~ msgid "PASSIVE_REPRODUCTION_PROGRESS_EXPLANATION"
+#~ msgstr "{0} befolkning förändrades av {1} på grund av: {2}"
 
 #, fuzzy
 #~ msgid "MICROBE_STAGE_DAY_NIGHT_TEXT"
@@ -9163,10 +9234,6 @@ msgstr "Zooma ut"
 #, fuzzy
 #~ msgid "ERUPTION_IN"
 #~ msgstr "Producerar"
-
-#, fuzzy
-#~ msgid "EVENT_TOOLTIP_ERUPTION"
-#~ msgstr "{0}:+{1} ATP"
 
 #~ msgid "THE_AMOUNT_OF_GLUCOSE_HAS_BEEN_REDUCED"
 #~ msgstr "Mängden glukos har minskats med {0} av den tidigare mängden."
@@ -9574,3 +9641,7 @@ msgstr "Zooma ut"
 #, fuzzy
 #~ msgid "BACKTAB"
 #~ msgstr "Backåt"
+
+#, fuzzy
+#~ msgid "EVENT_TOOLTIP_ERUPTION"
+#~ msgstr "{0}:+{1} ATP"

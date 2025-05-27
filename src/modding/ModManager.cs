@@ -491,8 +491,8 @@ public partial class ModManager : Control
         // If we found new mod folders that happen to be enabled already, add the mods to that list
         var foundStillEnabledMods = validMods.Where(IsModEnabled);
 
-        foreach (var newMod in foundStillEnabledMods.Where(
-                     m => !enabledMods.Contains(m) && !notEnabledMods.Contains(m)))
+        foreach (var newMod in
+                 foundStillEnabledMods.Where(m => !enabledMods.Contains(m) && !notEnabledMods.Contains(m)))
         {
             enabledMods.Add(newMod);
 
@@ -698,6 +698,11 @@ public partial class ModManager : Control
         }
 
         GD.Print("Applying changes to enabled mods");
+
+        if (LaunchOptions.DisableAllMods)
+        {
+            GD.Print("Started with all mods disabled due to launch option but will apply new mod list now");
+        }
 
         Settings.Instance.EnabledMods.Value = enabledMods.Select(m => m.InternalName).ToList();
 

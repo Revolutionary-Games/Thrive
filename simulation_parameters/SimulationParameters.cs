@@ -31,6 +31,7 @@ public partial class SimulationParameters : Node
     private Dictionary<string, Biome> biomes = null!;
     private Dictionary<string, BioProcess> bioProcesses = null!;
     private Dictionary<string, CompoundDefinition> compounds = null!;
+    private Dictionary<string, Meteor> meteors = null!;
     private Dictionary<string, OrganelleDefinition> organelles = null!;
     private Dictionary<string, Enzyme> enzymes = null!;
     private Dictionary<string, MusicCategory> musicCategories = null!;
@@ -61,6 +62,7 @@ public partial class SimulationParameters : Node
 
     private List<CompoundDefinition>? cachedCloudCompounds;
     private List<Enzyme>? cachedDigestiveEnzymes;
+    private List<double>? cachedMeteorChances;
 
     public static SimulationParameters Instance => instance ?? throw new InstanceNotLoadedYetException();
 
@@ -140,6 +142,7 @@ public partial class SimulationParameters : Node
         membranes = LoadRegistry<MembraneType>("res://simulation_parameters/microbe_stage/membranes.json");
         backgrounds = LoadRegistry<Background>("res://simulation_parameters/microbe_stage/backgrounds.json");
         bioProcesses = LoadRegistry<BioProcess>("res://simulation_parameters/microbe_stage/bio_processes.json");
+        meteors = LoadRegistry<Meteor>("res://simulation_parameters/microbe_stage/meteors.json");
 
         NameGenerator = LoadDirectObject<NameGenerator>("res://simulation_parameters/microbe_stage/species_names.json");
 
@@ -297,6 +300,16 @@ public partial class SimulationParameters : Node
         return bioProcesses[name];
     }
 
+    public Meteor GetMeteor(string name)
+    {
+        return meteors[name];
+    }
+
+    public IReadOnlyCollection<Meteor> GetAllMeteors()
+    {
+        return meteors.Values;
+    }
+
     public Compound GetCompound(string name)
     {
         return compounds[name].ID;
@@ -375,6 +388,11 @@ public partial class SimulationParameters : Node
     public IReadOnlyList<Enzyme> GetHydrolyticEnzymes()
     {
         return cachedDigestiveEnzymes ??= ComputeHydrolyticEnzymes();
+    }
+
+    public IReadOnlyList<double> GetMeteorChances()
+    {
+        return cachedMeteorChances ??= ComputeMeteorChances();
     }
 
     public IReadOnlyDictionary<string, MusicCategory> GetMusicCategories()
@@ -562,6 +580,7 @@ public partial class SimulationParameters : Node
         ApplyRegistryObjectTranslations(backgrounds);
         ApplyRegistryObjectTranslations(biomes);
         ApplyRegistryObjectTranslations(bioProcesses);
+        ApplyRegistryObjectTranslations(meteors);
         ApplyRegistryObjectTranslations(compounds);
         ApplyRegistryObjectTranslations(organelles);
         ApplyRegistryObjectTranslations(enzymes);
@@ -748,6 +767,7 @@ public partial class SimulationParameters : Node
         CheckRegistryType(backgrounds);
         CheckRegistryType(biomes);
         CheckRegistryType(bioProcesses);
+        CheckRegistryType(meteors);
         CheckRegistryType(compounds);
         CheckRegistryType(organelles);
         CheckRegistryType(enzymes);
@@ -779,6 +799,8 @@ public partial class SimulationParameters : Node
         lightCycle.Check(string.Empty);
         lightCycle.InternalName = DAY_NIGHT_CYCLE_NAME;
         buildInfo?.Check(string.Empty);
+
+        Meteor.CheckAllMeteors(meteors.Values.ToList());
 
         if (oldVersionNotes.Count < 1)
             throw new Exception("Could not read old versions data");
@@ -853,6 +875,24 @@ public partial class SimulationParameters : Node
         {
             entry.Value.Resolve(this);
         }
+
+        // Warn if there are duplicate organelle button orders
+        var seenOrders = new Dictionary<OrganelleDefinition.OrganelleGroup, HashSet<int>>();
+
+        foreach (var entry in organelles)
+        {
+            if (!seenOrders.TryGetValue(entry.Value.EditorButtonGroup, out var group))
+            {
+                group = new HashSet<int>();
+                seenOrders.Add(entry.Value.EditorButtonGroup, group);
+            }
+
+            if (!group.Add(entry.Value.EditorButtonOrder))
+            {
+                GD.PrintErr($"Duplicate editor button order detected! In group {entry.Value.EditorButtonGroup} " +
+                    $"value {entry.Value.EditorButtonOrder} is used multiple times.");
+            }
+        }
     }
 
     private List<CompoundDefinition> ComputeCloudCompounds()
@@ -863,5 +903,10 @@ public partial class SimulationParameters : Node
     private List<Enzyme> ComputeHydrolyticEnzymes()
     {
         return enzymes.Where(e => e.Value.Property == Enzyme.EnzymeProperty.Hydrolytic).Select(e => e.Value).ToList();
+    }
+
+    private List<double> ComputeMeteorChances()
+    {
+        return meteors.Values.Select(m => m.Probability).ToList();
     }
 }

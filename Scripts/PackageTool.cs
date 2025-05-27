@@ -33,7 +33,6 @@ public class PackageTool : PackageToolBase<Program.PackageOptions>
 
     private const string MAC_ZIP_LIBRARIES_PATH = "Thrive.app/Contents/MacOS";
     private const string MAC_ZIP_GD_EXTENSION_TARGET_PATH = "Thrive.app/Contents/MacOS";
-    private const string MAC_MAIN_EXECUTABLE = "Thrive.app/Contents/MacOS/Thrive";
 
     private const string MAC_ENTITLEMENTS = "Scripts/Thrive.entitlements";
 
@@ -126,6 +125,8 @@ public class PackageTool : PackageToolBase<Program.PackageOptions>
 
     private bool steamMode;
 
+    private bool notarize;
+
     private IDehydrateCache? cacheForNextMetaToWrite;
 
     public PackageTool(Program.PackageOptions options) : base(options)
@@ -140,6 +141,7 @@ public class PackageTool : PackageToolBase<Program.PackageOptions>
             if (OperatingSystem.IsMacOS())
             {
                 DefaultPlatforms = [PackagePlatform.Mac];
+                notarize = !string.IsNullOrEmpty(options.MacTeamId);
             }
             else
             {
@@ -357,8 +359,7 @@ public class PackageTool : PackageToolBase<Program.PackageOptions>
 
     protected override async Task<bool> PrepareToExport(PackagePlatform platform, CancellationToken cancellationToken)
     {
-        // TODO: Mac steam support
-        if (options.Steam != null && platform is not PackagePlatform.Mac and not PackagePlatform.Web)
+        if (options.Steam != null && platform is not PackagePlatform.Web)
         {
             if (!await SteamBuild.SetBuildMode(options.Steam.Value, true, cancellationToken,
                     SteamBuild.ConvertPackagePlatformToSteam(platform)))
@@ -459,16 +460,29 @@ public class PackageTool : PackageToolBase<Program.PackageOptions>
     protected override async Task<bool> OnPostProcessExportedFolder(PackagePlatform platform, string folder,
         CancellationToken cancellationToken)
     {
+        var steamArchitectures = new List<SteamBuild.LibraryArchitecture>
+        {
+            SteamBuild.LibraryArchitecture.X64,
+        };
+
+        if (platform == PackagePlatform.Mac)
+            steamArchitectures.Add(SteamBuild.LibraryArchitecture.Arm64);
+
         if (steamMode)
         {
             // Create the Steam-specific resources
 
             // Copy the right Steamworks.NET library for the current target
-            CopyHelpers.CopyToFolder(SteamBuild
-                .PathToSteamAssemblyForPlatform(SteamBuild.ConvertPackagePlatformToSteam(platform))
-                .Replace("\\", "/"), folder);
+            foreach (var libraryArchitecture in steamArchitectures)
+            {
+                CopyHelpers.CopyToFolder(SteamBuild
+                    .PathToSteamAssemblyForPlatform(SteamBuild.ConvertPackagePlatformToSteam(platform),
+                        libraryArchitecture)
+                    .Replace("\\", "/"), folder);
+            }
         }
-        else if (platform == PackagePlatform.Mac)
+
+        if (platform == PackagePlatform.Mac)
         {
             ColourConsole.WriteNormalLine("Including licenses (and other common files) in mac .zip");
 
@@ -479,6 +493,39 @@ public class PackageTool : PackageToolBase<Program.PackageOptions>
             startInfo.ArgumentList.Add("-9");
             startInfo.ArgumentList.Add("-u");
             startInfo.ArgumentList.Add(Path.GetFileName(MacZipInFolder(folder)));
+
+            string? toCleanUp = null;
+
+            // Need to include the steam library in the .app for Mac
+            if (steamMode)
+            {
+                var zipRelative = "Thrive.app/Contents/MacOS/";
+                var relativePath = Path.Join(folder, zipRelative);
+                toCleanUp = Path.Join(folder, "Thrive.app");
+
+                if (Directory.Exists(relativePath))
+                {
+                    ColourConsole.WriteWarningLine("Removing Thrive app folder that exists and is in the way of " +
+                        "inserting data to the existing .zip");
+
+                    Directory.Delete(toCleanUp, true);
+                }
+
+                foreach (var libraryArchitecture in steamArchitectures)
+                {
+                    var steamworksName =
+                        SteamBuild.SteamAssemblyNameForPlatform(SteamBuild.ConvertPackagePlatformToSteam(platform),
+                            libraryArchitecture);
+
+                    Directory.CreateDirectory(relativePath);
+
+                    var destination = Path.Join(relativePath, steamworksName);
+                    File.Move(Path.Join(folder, steamworksName), destination);
+                    startInfo.ArgumentList.Add(Path.Join(zipRelative, steamworksName));
+
+                    ColourConsole.WriteDebugLine($"Moved steamworks DLL to {destination}");
+                }
+            }
 
             foreach (var file in GetFilesToPackage().Where(f => f.IsForPlatform(platform)))
             {
@@ -491,6 +538,9 @@ public class PackageTool : PackageToolBase<Program.PackageOptions>
             }
 
             var result = await ProcessRunHelpers.RunProcessAsync(startInfo, cancellationToken, true);
+
+            if (toCleanUp != null)
+                Directory.Delete(toCleanUp, true);
 
             if (result.ExitCode != 0)
             {
@@ -788,62 +838,46 @@ public class PackageTool : PackageToolBase<Program.PackageOptions>
             ColourConsole.WriteWarningLine(
                 "Signing without a specific key for mac (this should work but in an optimal case " +
                 "a signing key would be set)");
+
+            if (Debugger.IsAttached)
+                Debugger.Break();
         }
         else
         {
             ColourConsole.WriteInfoLine($"Signing mac build with key {options.MacSigningKey}");
         }
 
-        ColourConsole.WriteInfoLine("Signing all parts of the Mac build");
-        ColourConsole.WriteNormalLine("This may take a while as there are many items");
-
-        foreach (var item in Directory.EnumerateFiles(tempFolder, "*.*", SearchOption.AllDirectories))
-        {
-            // Skip stuff that shouldn't be signed
-            // TODO: would it offer any extra security if the .pck file was signed as well?
-            if (item.EndsWith(".txt") || item.EndsWith(".pck") || item.EndsWith(".md") || item.EndsWith(".7z"))
-            {
-                continue;
-            }
-
-            // Main executable must be signed last
-            if (item.EndsWith(MAC_MAIN_EXECUTABLE))
-                continue;
-
-            if (!await BinaryHelpers.SignFileForMac(item, MAC_ENTITLEMENTS, options.MacSigningKey,
-                    cancellationToken))
-            {
-                ColourConsole.WriteErrorLine($"Failed to sign part of Mac build: {item}");
-                return false;
-            }
-        }
-
-        ColourConsole.WriteSuccessLine("Successfully signed individual parts");
-
-        // Sign the main file last
-        if (!await BinaryHelpers.SignFileForMac(Path.Join(tempFolder, MAC_MAIN_EXECUTABLE), MAC_ENTITLEMENTS,
-                options.MacSigningKey,
+        if (!await BinaryHelpers.SignThriveAppMac(tempFolder, "./", MAC_ENTITLEMENTS, options.MacSigningKey,
                 cancellationToken))
         {
-            ColourConsole.WriteErrorLine("Failed to sign main of Mac build");
+            ColourConsole.WriteErrorLine("Failed to sign Mac Thrive build files");
             return false;
         }
-
-        ColourConsole.WriteSuccessLine("Signed the main file");
 
         ColourConsole.WriteInfoLine("Creating final archive file from signed items");
         var startInfo = new ProcessStartInfo("zip")
         {
             WorkingDirectory = tempFolder,
         };
-        startInfo.ArgumentList.Add("-9");
+
+        if (notarize)
+        {
+            ColourConsole.WriteNormalLine("Will notarize the result, so intermediate compression is used for now");
+            startInfo.ArgumentList.Add("-6");
+        }
+        else
+        {
+            startInfo.ArgumentList.Add("-9");
+        }
+
         startInfo.ArgumentList.Add("-r");
 
         startInfo.ArgumentList.Add(Path.GetFullPath(archiveFile));
 
         foreach (var item in Directory.EnumerateFileSystemEntries(tempFolder))
         {
-            // Need to remove prefix to have items in relative path to the temp folder for zip process to work
+            // Need to remove the prefix to have items in a relative path to the temp folder for the zip process
+            // to work
             startInfo.ArgumentList.Add(item.Substring(tempFolder.Length + 1));
         }
 
@@ -857,6 +891,30 @@ public class PackageTool : PackageToolBase<Program.PackageOptions>
             ColourConsole.WriteErrorLine("Running final zip create failed " +
                 $"(exit: {result.ExitCode}): {result.FullOutput}");
             return false;
+        }
+
+        // Notarization has to extract and re-create the zip, so this is before the final signature
+        if (notarize)
+        {
+            ColourConsole.WriteInfoLine("Notarizing Mac build");
+
+            if (string.IsNullOrEmpty(options.MacTeamId) || string.IsNullOrEmpty(options.AppleId) ||
+                string.IsNullOrEmpty(options.AppleAppPassword))
+            {
+                ColourConsole.WriteErrorLine("Notarizing Mac build requires Apple developer credentials and team id");
+                return false;
+            }
+
+            if (!await BinaryHelpers.NotarizeFile(archiveFile, options.MacTeamId,
+                    options.AppleId, options.AppleAppPassword, cancellationToken))
+            {
+                ColourConsole.WriteErrorLine("Failed to notarize Mac build (.app)");
+                return false;
+            }
+        }
+        else
+        {
+            ColourConsole.WriteErrorLine("Not notarizing App. Macs will not really want to run the result!");
         }
 
         ColourConsole.WriteInfoLine("Signing final zip");

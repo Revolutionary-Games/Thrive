@@ -478,12 +478,21 @@ public partial class MacroscopicEditor : EditorBase<EditorAction, MacroscopicSta
         bodyEditorLight.Visible = bodyEditor;
     }
 
-    private void OnStartEditingCellType(string name)
+    private void OnStartEditingCellType(string? name)
     {
         if (CanCancelAction)
         {
             ToolTipManager.Instance.ShowPopup(Localization.Translate("ACTION_BLOCKED_WHILE_ANOTHER_IN_PROGRESS"),
                 1.5f);
+            return;
+        }
+
+        // If there is a null name, that means there is no selected cell,
+        // so clear the selectedCellTypeToEdit and return early
+        if (string.IsNullOrEmpty(name))
+        {
+            selectedCellTypeToEdit = null;
+            GD.Print("Cleared editing cell type");
             return;
         }
 

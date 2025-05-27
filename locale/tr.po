@@ -7,8 +7,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2025-04-11 10:12+0300\n"
-"PO-Revision-Date: 2025-04-11 09:18+0000\n"
+"POT-Creation-Date: 2025-05-26 12:24+0300\n"
+"PO-Revision-Date: 2025-05-19 23:17+0000\n"
 "Last-Translator: punctdan <yunusemredilek@hotmail.com>\n"
 "Language-Team: Turkish <https://translate.revolutionarygamesstudio.com/projects/thrive/thrive-game/tr/>\n"
 "Language: tr\n"
@@ -1991,8 +1991,42 @@ msgstr "Haliç"
 
 msgid "EVENT_ERUPTION_TOOLTIP"
 msgstr ""
-"Yanardağ Patlaması Arazi Olayı\n"
-"Fazladan hidrojen sülfür ve karbondioksit oluşturur"
+"Yanardağ patlaması olayı\n"
+"Fazladan hidrojen sülfür ve karbondioksit oluşturur."
+
+msgid "EVENT_METEOR_GLUCOSE"
+msgstr ""
+"Glukoz göktaşı etkisi olayı\n"
+"Karbondioksit ve glukoz seviyelerini arttırır."
+
+msgid "EVENT_METEOR_IRON"
+msgstr ""
+"Demir göktaşı etkisi olayı\n"
+"Karbondioksit ve demir seviyelerini arttırır.\n"
+"Demir parçaları oluşturur."
+
+msgid "EVENT_METEOR_PHOSPHATES"
+msgstr ""
+"Fosfat göktaşı etkisi olayı\n"
+"Karbondioksit ve fosfat seviyelerini arttırır.\n"
+"Fosfat parçaları oluşturur."
+
+msgid "EVENT_METEOR_PLAIN"
+msgstr ""
+"Göktaşı etkisi olayı\n"
+"Karbondioksit seviyelerini arttırır."
+
+msgid "EVENT_METEOR_RADIOACTIVE"
+msgstr ""
+"Radyoaktif göktaşı etkisi olayı\n"
+"Karbondioksit seviyelerini arttırır.\n"
+"Radyoaktif parçalar oluşturur."
+
+msgid "EVENT_METEOR_SULFUR"
+msgstr ""
+"Kükürt göktaşı etkisi olayı\n"
+"Karbondioksit ve kükürt seviyelerini arttırır.\n"
+"Kükürt parçaları oluşturur."
 
 msgid "EVOLUTIONARY_TREE"
 msgstr "Evrim Ağacı"
@@ -2489,6 +2523,18 @@ msgid "HYDROGENASE_DESCRIPTION"
 msgstr "[thrive:compound type=\"glucose\"]Glukozdan[/thrive:compound] enerji kazanmak için hidrojen kullanır. Düşük [thrive:compound type=\\\"oxygen\\\"]oksijen[/thrive:compound] seviyelerinde, metabolozomlardan daha etkilidir. Oksijensiz ortamlardaki birçok organizma bunu birincil enerji kaynağı olarak kullanır."
 
 msgid "HYDROGENASE_PROCESSES_DESCRIPTION"
+msgstr "[thrive:compound type=\"atp\"]ATP'yi[/thrive:compound], [thrive:compound type=\"glucose\"]glukoza[/thrive:compound] dönüştürür."
+
+#, fuzzy
+msgid "HYDROGENOSOME"
+msgstr "Hidrojenaz"
+
+#, fuzzy
+msgid "HYDROGENOSOME_DESCRIPTION"
+msgstr "[thrive:compound type=\"glucose\"]Glukozdan[/thrive:compound] enerji kazanmak için hidrojen kullanır. Düşük [thrive:compound type=\\\"oxygen\\\"]oksijen[/thrive:compound] seviyelerinde, metabolozomlardan daha etkilidir. Oksijensiz ortamlardaki birçok organizma bunu birincil enerji kaynağı olarak kullanır."
+
+#, fuzzy
+msgid "HYDROGENOSOME_PROCESSES_DESCRIPTION"
 msgstr "[thrive:compound type=\"atp\"]ATP'yi[/thrive:compound], [thrive:compound type=\"glucose\"]glukoza[/thrive:compound] dönüştürür."
 
 msgid "HYDROGEN_SULFIDE"
@@ -3131,7 +3177,7 @@ msgid "LOADING_GAME"
 msgstr "Oyun Yükleniyor"
 
 msgid "LOADING_GRAPHICS_SHADERS"
-msgstr "Shader'lar Yükleniyor"
+msgstr "Gölgelendiriciler Yükleniyor"
 
 msgid "LOADING_MACROSCOPIC_EDITOR"
 msgstr "Makroskopik Editörü Yükleniyor"
@@ -3337,6 +3383,15 @@ msgstr "[thrive:compound type=\"glucose\"]Glukozu[/thrive:compound], [thrive:com
 msgid "META_THREADS_TOOLTIP"
 msgstr "Threads profilimizi ziyaret edin"
 
+msgid "METEOR_IMPACT_EVENT"
+msgstr "Göktaşı etkisi olayı"
+
+msgid "METEOR_STRIKE_START_EVENT_LOG_PLURAL"
+msgstr "Göktaşı etkisi olayı {0} araziyi etkiledi"
+
+msgid "METEOR_STRIKE_START_EVENT_LOG_SINGULAR"
+msgstr "Göktaşı etkisi olayı {0} araziyi etkiledi"
+
 msgid "METRICS"
 msgstr "Performans Ölçümleri"
 
@@ -3423,6 +3478,9 @@ msgstr "Mikrop sayısı:"
 
 msgid "MICROBE_BENCHMARK"
 msgstr "Mikrop Performansı"
+
+msgid "MICROBE_CAMERA_TILT_EFFECT"
+msgstr "Mikrop kamera hareketi"
 
 msgid "MICROBE_EDITOR"
 msgstr "Mikrop Editörü"
@@ -4419,9 +4477,6 @@ msgstr "Kamerayı sağa çevir"
 
 msgid "PAN_CAMERA_UP"
 msgstr "Kamerayı yukarı çevir"
-
-msgid "PASSIVE_REPRODUCTION_PROGRESS_EXPLANATION"
-msgstr "(hiçbir şey yapmadan çevreden pasif olarak üreme bileşenleri elde et)"
 
 msgid "PAST_DEVELOPERS"
 msgstr "Eski Oyun Geliştiricileri"
@@ -6259,7 +6314,7 @@ msgstr ""
 
 msgid "TUTORIAL_MICROBE_STAGE_PAUSING"
 msgstr ""
-"Oyunu her an duraklatabilirsiniz. Örneğin, daha uzun bir oyun rehberine odaklanmak için. Ayrıca oyun duraklatılırken, fossilleştirme özelliği ile gördüğünüz ilginç türleri kaydedebilirsiniz.\n"
+"Oyunu her an duraklatabilirsiniz. Örneğin, oyun rehberine daha uzun süre odaklanmak için. Ayrıca oyun duraklatılırken, fosilleştirme özelliği ile gördüğünüz ilginç türleri kaydedebilirsiniz.\n"
 "\n"
 "Duraklatmanın nasıl çalıştığını görmek için sol alttaki duraklatma simgesine (soldan ikinci buton) basın. Sonra, devam etmek için oyuna devam edin."
 
@@ -6713,7 +6768,7 @@ msgid "WIKI_AWAKENING_STAGE_INTRO"
 msgstr "Özetle; aletlerin kullanımını keşfetmeye başlayan bir canlı ile bu evreye başlıyorsunuz ve hayatta kalmak ve rekabeti geride bırakmak için bu aletleri hızla geliştirmeniz gerekiyor. Bu evre, Toplum Merkezi'ni inşa ettiğinizde sona erer."
 
 msgid "WIKI_AWAKENING_STAGE_OVERVIEW"
-msgstr "Çok yakında."
+msgstr "Uyanış Evresi, Thrive'ın dokuz evresinden beşincisidir."
 
 msgid "WIKI_AWAKENING_STAGE_TRANSITIONS"
 msgstr ""
@@ -7221,6 +7276,9 @@ msgstr ""
 "\n"
 "[indent]—   Temel olarak, oyundaki her şey bileşikten yapılır. Bileşik sistemi, organizmaların neyden yapıldığını, bu organizmaların ne yediklerini, bu yenilenleri neye dönüştürdüklerini ve hangi atık ürünlerini salgıladıklarını takip etmek içindir. Geri kalan her şey ortamın bir parçasıdır ve diğer organizmaların kullanımına açıktır.[/indent]"
 
+msgid "WIKI_CREATURE_EDITOR_COMMA_TECH_EDITOR"
+msgstr "Canlı Editörü, Teknoloji Editörü"
+
 msgid "WIKI_CYTOPLASM_EFFECTS"
 msgstr "Herhangi bir organel, ek bir mutasyon puanına mal olmadan [b]Sitoplazmanın[/b] yerine geçebilir (organelin kendi maliyeti buna dahil değildir)."
 
@@ -7696,6 +7754,51 @@ msgstr ""
 "Dünyanız oksijenli hale geldiğinde, hidrojenazları değiştireceğinizi unutmamanız muhtemelen önemli olacaktır. Hidrojenazları fazla kullanmak, dünya oksijenle dolduğu zaman, bu parçaları birkaç kuşak boyunca silip değiştirmek zorunda kalmanıza yol açabilir. Bu nedenle, bazı hidrojenazları başka bir metabolik işlemle, örneğin kemosentez ile, birleştirmek ya da nispeten düşük enerjili bir organizma yapısını korumak faydalı bir strateji olabilir. Dünya daha oksijenli hale geldikçe, hidrojenaz muhtemelen daha derin ve oksijen açısından zengin olmayan arazilerde daha iyi çalışacaktır."
 
 msgid "WIKI_HYDROGENASE_UPGRADES"
+msgstr "Geliştirme yok."
+
+#, fuzzy
+msgid "WIKI_HYDROGENOSOME_EFFECTS"
+msgstr "Etki yok."
+
+#, fuzzy
+msgid "WIKI_HYDROGENOSOME_INTRO"
+msgstr "[b]Hidrojenaz[/b], [b]Oksijensiz Solunumun[/b] bir biçimi olan [b]Gazlı Fermentasyonu[/b] yapar. Bu işlem [thrive:compound type=\"glucose\"]glukozun[/thrive:compound], [thrive:compound type=\"atp\"]ATP'ye[/thrive:compound] dönüştürülmesi işlemidir. Bu parça, oyuncunun sahip olduğu glukoz işleyen ilk parçadır ve şu an için oksijen olmadan glukoz yakan tek parça olarak işlev görmektedir."
+
+#, fuzzy
+msgid "WIKI_HYDROGENOSOME_MODIFICATIONS"
+msgstr "Değişiklikler yok."
+
+#, fuzzy
+msgid "WIKI_HYDROGENOSOME_PROCESSES"
+msgstr ""
+"[b]Gazlı Fermentasyon[/b]: [thrive:compound type=\"glucose\"]Glukoz[/thrive:compound] → [thrive:compound type=\"atp\"]ATP[/thrive:compound]\n"
+"\n"
+"Bu işlem, [thrive:compound type=\"oxygen\"]oksijen[/thrive:compound] gerektirmeyen bir enerji üretim yöntemidir. Ancak oksijenin varlığında, [b][color=#3796e1][url=thriveopedia:metabolosome]Metabolozomlardan[/url][/color][/b] daha aşağıdadır. Düzenli bir [thrive:compound type=\"glucose\"]glukoz[/thrive:compound] girişi gerektirir."
+
+#, fuzzy
+msgid "WIKI_HYDROGENOSOME_REQUIREMENTS"
+msgstr "Başlangıç parçasıdır, gereksinim yok."
+
+#, fuzzy
+msgid "WIKI_HYDROGENOSOME_SCIENTIFIC_BACKGROUND"
+msgstr ""
+"Gazlı fermentasyon, metabolik süreçle tanımlanan ve prokaryotların çeşitli ve genel hatlarıyla tanımlanmış bir grubu olan Klostridlerde mevcuttur. Bu işlem, biyokimyasal, gıda ve biyoyakıt üretiminde sıkça kullanılır ve atık su arıtımı ile toprak yenileme çalışmalarında önemli bir rol oynar. Gazlı fermentasyon, farklı bakteri grupları arasında farklı görünse de, genel formülü şu şekildedir:\n"
+"\n"
+"C6​H12​O6​→2C2​H5​OH+2CO2​+2H2​\n"
+"\n"
+"Yani glukoz; iki etanol, iki karbondioksit ve iki hidrojen molekülüne dönüştürülür. Glukoz, substrat düzeyinde fosforilasyon yoluyla parçalanır ve, diğer fermentasyon yöntemlerinde olduğu gibi, glikolizin önemli unsurları oksijensiz koşullarda bile korunabilir. Fermentasyon, Dünya'daki en eski metabolik stratejilerden biri olabilir. Hidrojen üretimi ve atık yönetiminden sorumlu olan gazlı fermentasyonda hidrojenaz enzimi rol oynasa da, aslında bu süreçte temel bir enzim değildir. Piruvat-ferrodoksin oksidoredüktaz (POR) gibi enzimler, oksijensiz fermentasyonda daha özgün ve merkezi bir rol oynayan enzimlerdir. Ancak, oyun içinde bu enzimleri temsil etmek zor olduğundan, daha bilinir ve yönetilebilir bir enzim olan hidrojenaz seçilmiştir."
+
+#, fuzzy
+msgid "WIKI_HYDROGENOSOME_STRATEGY"
+msgstr ""
+"Bir başlangıç parçası olan hidrojenaz, oksijensiz bir atmosferde glukoz işlemek için temel bir parçadır ve oyuncuların başlangıçta bol bulunan glukoz bulutlarından faydalanmalarını sağlar. Hidrojenazın atmosferik bileşiklerle sınırlı olmayan devamlı enerji üretimi, onu düşük enerjili prokaryotlar için çok yönlü ve önemli bir parça yapar. Glukoz kullanmak isteyen oyuncuların genellikle gazlı fermentasyona uyum sağlamaları gerekir.\n"
+"\n"
+"Zamanla, hidrojenazın yerini metabolozomların alması muhtemelen daha iyidir. Oksijenli doğaları nedeniyle, metabolozomlar hidrojenazdan çok daha verimlidir ve oksijenden yararlanmak, ökaryot olmanın ve nihayetinde çok hücreli bir organizmaya doğru ilerlemenin önemli bir parçasıdır.\n"
+"\n"
+"Dünyanız oksijenli hale geldiğinde, hidrojenazları değiştireceğinizi unutmamanız muhtemelen önemli olacaktır. Hidrojenazları fazla kullanmak, dünya oksijenle dolduğu zaman, bu parçaları birkaç kuşak boyunca silip değiştirmek zorunda kalmanıza yol açabilir. Bu nedenle, bazı hidrojenazları başka bir metabolik işlemle, örneğin kemosentez ile, birleştirmek ya da nispeten düşük enerjili bir organizma yapısını korumak faydalı bir strateji olabilir. Dünya daha oksijenli hale geldikçe, hidrojenaz muhtemelen daha derin ve oksijen açısından zengin olmayan arazilerde daha iyi çalışacaktır."
+
+#, fuzzy
+msgid "WIKI_HYDROGENOSOME_UPGRADES"
 msgstr "Geliştirme yok."
 
 msgid "WIKI_INDUSTRIAL_STAGE_CURRENT_DEVELOPMENT"
@@ -8343,6 +8446,10 @@ msgstr "Yardım ve Tavsiyeler"
 msgid "WIKI_PAGE_HYDROGENASE"
 msgstr "Hidrojenaz"
 
+#, fuzzy
+msgid "WIKI_PAGE_HYDROGENOSOME"
+msgstr "Hidrojenaz"
+
 msgid "WIKI_PAGE_INDUSTRIAL_STAGE"
 msgstr "Sanayi Evresi"
 
@@ -8655,15 +8762,14 @@ msgid "WIKI_SOCIETY_STAGE_FEATURES"
 msgstr "Çok yakında."
 
 msgid "WIKI_SOCIETY_STAGE_INTRO"
-msgstr ""
-"Özetle; bu evrede ilk yerleşiminizi geliştirip genişletir ve yenilerini inşa edersiniz. Bu evrede dönem, Orta Çağ'a benzemektedir. Bu evre, teknolojiniz yeterince geliştiğinde sona erer.\n"
-"\n"
-"Thrive'ın yedi oynanabilir evresinden biri olan Toplum Evresi, bilinç kazanan türünüzün ([color=#3796e1][url=thriveopedia:awakening_stage]Uyanış Evresi'nde[/url][/color] gelişmiş olan) daha büyük gruplar veya toplumlar oluşturmaya başlamasıyla başlar. Bu noktada, Organizma Modu (oyuncu bu moda her an erişebilir ancak bu mod düşük önceliktedir) yerine, Strateji Modu oyunun odak noktası haline gelir. Bu evrede ayrıca Ulus Editörü kullanıma açılır. Oyuncu türü, yerleşim yerleri oluşturmak için bu evrede Toplum Merkezleri kurmaya başlayabilir.\n"
-"\n"
-"Toplum Evresi boyunca ana hedeflerden biri, git gide daha da gelişmiş teknolojiler geliştirmektir. Bu nedenle Toplum Evresi, türünüzün [color=#3796e1][url=thriveopedia:industrial_stage]Sanayi Evresi'ne[/url][/color] geçmesine yetecek kadar gelişmiş bir teknolojiye ulaşmasıyla sona erer."
+msgstr "Özetle; bu evrede ilk yerleşiminizi geliştirip genişletir ve yenilerini inşa edersiniz. Bu evrede dönem, Orta Çağ'a benzemektedir. Bu evre, teknolojiniz yeterince geliştiğinde sona erer."
 
 msgid "WIKI_SOCIETY_STAGE_OVERVIEW"
 msgstr ""
+"Thrive'ın dokuz oynanabilir evresinden altıncısı olan Toplum Evresi, bilinç kazanan türünüzün ([color=#3796e1][url=thriveopedia:awakening_stage]Uyanış Evresi'nde[/url][/color] gelişmiş olan) daha büyük gruplar veya toplumlar oluşturmaya başlamasıyla başlar. Bu noktada, Organizma Modu (oyuncu bu moda her an erişebilir ancak bu mod düşük önceliktedir) yerine, Strateji Modu oyunun odak noktası haline gelir. Bu evrede ayrıca Ulus Editörü kullanıma açılır. Oyuncu türü, yerleşim yerleri oluşturmak için bu evrede Toplum Merkezleri kurmaya başlayabilir.\n"
+"\n"
+"Toplum Evresi boyunca ana hedeflerden biri, git gide daha da gelişmiş teknolojiler geliştirmektir. Bu nedenle Toplum Evresi, türünüzün [color=#3796e1][url=thriveopedia:industrial_stage]Sanayi Evresi'ne[/url][/color] geçmesine yetecek kadar gelişmiş bir teknolojiye ulaşmasıyla sona erer.\n"
+"\n"
 "Toplum Evresi, oyuncu türünün basit bir kabileden gelişen bir Medeniyete geçişini simgeler. Bu evre, Araştırma Ağı'nın görüntülenmesi ve bu ağa yatırım yapılmasını sağlayan belirli teknolojiler, hükümet politikalarının uygulanması, dinlerin ortaya çıkışı ve daha büyük çaplı çatışmaların başlaması ile öne çıkar. Ulus Editörü kadar, Teknoloji Editörü ve Birlik Editörü de, bu evre boyunca giderek daha önemli hale gelir. Oyuncu, türünün tek organizması ile oynamaya geri dönmekte serbest olsa da, bütün önemli olaylar ve kararlar geniş çapta gerçekleşir ve artan nüfusu yönetmek kritik hale gelir. Oyuncu, halkının ihtiyaçları ve ulusunun çıkarları arasında denge kurarak medeniyetini ileriye taşımak zorunda kalacaktır.\n"
 "\n"
 "Organizma modunu daha sonraki evrelerde çalışır durumda tutmak büyük bir çalışma gerektireceği için bu önceliğimiz değildir. Sonuçta, mevcut evreyi oynamak için en önemli ve amaçlanan yol Strateji Modu'ndan geçmektedir ve ilerlemek için bu mod gereklidir. Ayrıca, bu evrede tek bir bireyin etkisinin küçük olacağı göz önüne alındığında, organizma modunun yalnızca etrafta dolaşmak için kullanılması hoş olabilir. Ancak, organizma modunun oyuna çok az katkısı olacağı için bu modu eklemek büyük bir çaba gerektirecektir."
@@ -8727,38 +8833,50 @@ msgstr ""
 msgid "WIKI_TBA"
 msgstr "TBA"
 
+msgid "WIKI_TECH_EDITOR_COMMA_NATION_EDITOR_COMMA_SQUAD_EDITOR"
+msgstr "Teknoloji Editörü, Ulus Editörü, Birlik Editörü"
+
 msgid "WIKI_THERMOPLAST_EFFECTS"
-msgstr "Etki yok."
+msgstr "İstenildiğinde, açılıp kapatılabilen [i]termal görüşü[/i] etkinleştirir. Bu özellik, suyun görece sıcaklık dağılımını ekrana yansıtır; daha sıcak bölgeler daha kırmızı görünür."
 
 msgid "WIKI_THERMOPLAST_INTRO"
 msgstr ""
-"Ortamdaki [thrive:compound type=\"temperature\"]sıcaklık[/thrive:compound] değişimini kullanarak enerjiyi [thrive:compound type=\"atp\"]ATP[/thrive:compound] şeklinde alır. Daha verimsiz olan [b][color=#3796e1][url=thriveopedia:thermosynthase]Termosentazın[/url][/color][/b] ökaryotik formudur.\n"
+"Ortamdaki [thrive:compound type=\"temperature\"]sıcaklık[/thrive:compound] değişimini kullanarak [thrive:compound type=\"atp\"]ATP'den[/thrive:compound] enerji üretir. Daha verimsiz olan [b][color=#3796e1][url=thriveopedia:thermosynthase]Termosentazın[/url][/color][/b] ökaryotik formudur.\n"
 "\n"
-"Gerçek hayatta bulunmayan kuramsal bir organeldir. BH (Bildiğimiz Hayat) seçeneği etkin olan oyunlarda mevcut değildir."
+"Gerçek hayatta bulunmayan kuramsal bir organeldir. [i]BH[/i] (Bildiğimiz Hayat) seçeneği etkin olan oyunlarda mevcut değildir.\n"
+"\n"
+"Bu organel, zarlı bölmeler içinde ısıya duyarlı enzimler barındıran, zarla çevrili bir organeldir. Bu yapı, kendi ökaryotik konağı tarafından kullanılmak üzere özümsenmiş bir prokaryottur. Enzimler, [i]termosentez[/i] adı verilen bir işlemde, [thrive:compound type=\"atp\"]ATP[/thrive:compound] üretmek için etraflarında bulunan artan[thrive:compound type=\"temperature\"]sıcaklığı[/thrive:compound] enerji olarak kullanırlar."
 
 msgid "WIKI_THERMOPLAST_MODIFICATIONS"
 msgstr "Değişiklikler yok."
 
 msgid "WIKI_THERMOPLAST_PROCESSES"
 msgstr ""
-"[b]Termosentez[/b]: [thrive:compound type=\"temperature\"]Sıcaklık[/thrive:compound] → [thrive:compound type=\"atp\"]ATP[/thrive:compound]\n"
+"[b]Termosentez[/b]: [thrive:compound type=\"temperature\"]Sıcaklık[/thrive:compound] [i]artışı[/i] → [thrive:compound type=\"atp\"]ATP[/thrive:compound]\n"
 "\n"
-"Ortama ait çevresel [thrive:compound type=\"temperature\"]sıcaklıktan[/thrive:compound] pasif olarak enerji üretir. [b][color=#3796e1][url=thriveopedia:thermosynthase]Thermosentazda[/url][/color][/b] bulunan [b]Bakteri Termosentezinin[/b] daha verimli bir formudur."
+"Artan [thrive:compound type=\"temperature\"]sıcaklık[/thrive:compound] ile enerji üretir. Isıya duyarlı enzimler, [thrive:compound type=\"temperature\"]sıcaklık[/thrive:compound] arttıkça şekil değiştirerek [i]ADP'nin[/i] [thrive:compound type=\"atp\"]ATP'ye[/thrive:compound] geri dönüştürülmesini sağlar. Hücre soğuduğunda ise enzimler eski şekillerine geri döner, böylece işlem tekrar edebilir. Bu işlem, [b][color=#3796e1][url=thriveopedia:thermosynthase]termosentazda[/url][/color][/b] bulunan [i]Bakteri Termosentezinin[/i] daha verimli bir formudur. [thrive:compound type=\"atp\"]ATP[/thrive:compound] üretimi, [thrive:compound type=\"temperature\"]sıcaklık[/thrive:compound] [i]farkı[/i] ile doğru orantılıdır."
 
 msgid "WIKI_THERMOPLAST_REQUIREMENTS"
 msgstr ""
-"[b]Termoplastlar[/b], yalnızca ayarlarda BH seçeneği devre dışı olan oyunlarda görülür.\n"
+"[b]Termoplastlar[/b], yalnızca ayarlarda [i]BH[/i] seçeneği devre dışı olan oyunlarda görülür.\n"
 "\n"
-"Eğer organel geliştirmeleri oyun ayarlarından etkinleştirildiyse, aşağıdaki şart [i]oyuncu hücresi[/i] için doğru olmalıdır:\n"
+"Eğer [i]organellerin kilidini açma[/i] seçeneği oyun ayarlarından etkinleştirildiyse, bu organelin kilidi aşağıdaki şart [i]oyuncu hücresi[/i] için karşılandığında, [i]endosimbiyoz[/i] olmadan, açılabilir:\n"
 "\n"
 "[indent]—   Üst üste en az [b]5[/b] kuşak boyunca, en az [b]3[/b] altıgenlik [b][color=#3796e1][url=thriveopedia:thermosynthase]Termosentaz[/url][/color][/b] içermek.[/indent]"
 
 msgid "WIKI_THERMOPLAST_SCIENTIFIC_BACKGROUND"
-msgstr "TBA"
+msgstr ""
+"Termosentez, ilk olarak Anthonie Muller tarafından 1983 yılında yayımlanan bir makalede (\"Thermoelectric Energy Conversion Could Be An Energy Source Of Living Organisms\", Physics Letters A, cilt 96, Sayı 6, s. 319-321) ileri sürülmüştür. Termosentezin, toplam enerji üretimi açısından solunumun sağladığı enerjinin yalnızca küçük bir kısmını sağlayabileceği öne sürülmüştür (A Search For Thermosynthesis: Starvation Survival In Thermally Cycled Bacteria).\n"
+"\n"
+"Muller termosentezin, en eski (kükürt temelli) fotosentezin öncüsü olabileceğini dahi ileri sürmüştür (Photosystem 0, A Proposed Ancestral Photosystem Without Reducing Power That Synthesized ATP During Light-Dark Cycling).\n"
+"\n"
+"[color=#3796e1][url=https://en.wikipedia.org/wiki/Thermosynthesis]Vikipedi'de Termosentez[/url][/color]"
 
 msgid "WIKI_THERMOPLAST_STRATEGY"
 msgstr ""
-"[b]Termosentez[/b], ortama ait [thrive:compound type=\"temperature\"]sıcaklıktan[/thrive:compound] başka bir şey gerektirmediği için bu tepkime, özünde bedava enerjidir. Dahası [b]Termoplastlar[/b], öncüleri olan [b][color=#3796e1][url=thriveopedia:thermosynthase]Termosentazdan[/url][/color][/b] daha verimlidir. Eğer yanardağ bacaları gibi sıcak arazilerde kalmaya hevesliyseniz; bu onları oyunda, tartışılır şekilde, enerji üretimindeki en kolay yol yapmaktadır.\n"
+"Muhtemelen ototrofinin en hareketli formu olan [b]Termosentez[/b], neredeyse sürekli hareket etmeyi gerektirir. Sürekli olarak soğuk alanlardan sıcak alanlara ve buradan tekrar geri gitmeniz gerekir. Hücrenin sıcaklığı artmayı durdurduğunda, [thrive:compound type=\"atp\"]ATP[/thrive:compound] üretimi sıfıra düşer. En etkili şekilde alanların içinden geçmek ve hücrenizin etrafındaki sıcak ve soğuk alanları görebilmek için [i]termal görüşü[/i] etkinleştirmeniz en iyi seçenektir. Termoplastlar, çok daha sıcak arazilerde çok daha etkilidir. Bu yüzden, bu organelin Yanardağ Bacaları gibi arazilerde kullanılması en iyisidir.\n"
+"\n"
+"[b]Termoplastın[/b] [thrive:compound type=\"atp\"]ATP[/thrive:compound] üretimi sık sık duracağından, ikinci bir enerji kaynağına sahip olmak önemlidir. Aksi takdirde, [thrive:compound type=\"atp\"]ATP[/thrive:compound] eksikliğinden dolayı devamlı hasar alırsınız.\n"
 "\n"
 "Organel kilidini açma etkinken, hücrenizde [b][color=#3796e1][url=thriveopedia:thermosynthase]Termosentaz[/url][/color][/b] ile birkaç kez çoğalmanın gerekli olması, [b]Termoplastları[/b] evrimleştiren bir oyuncunun, [b]Termoplastları[/b] kazandığı zaman, muhtemelen [b]Termosentez[/b] üzerinde ağırlıklı olarak uzmanlaşmış olacağı anlamına gelir."
 
@@ -8766,37 +8884,44 @@ msgid "WIKI_THERMOPLAST_UPGRADES"
 msgstr "Geliştirme yok."
 
 msgid "WIKI_THERMOSYNTHASE_EFFECTS"
-msgstr "Etki yok."
+msgstr "İstenildiğinde, açılıp kapatılabilen [i]termal görüşü[/i] etkinleştirir. Bu özellik, suyun görece sıcaklık dağılımını ekrana yansıtır; daha sıcak bölgeler daha kırmızı görünür."
 
 msgid "WIKI_THERMOSYNTHASE_INTRO"
 msgstr ""
-"Ortamdaki [thrive:compound type=\"temperature\"]sıcaklık[/thrive:compound] değişimini kullanarak enerjiyi [thrive:compound type=\"atp\"]ATP[/thrive:compound] şeklinde alır. Daha verimli olan [b][color=#3796e1][url=thriveopedia:thermoplast]Termoplastın[/url][/color][/b] prokaryotik formudur.\n"
+"Ortamdaki [thrive:compound type=\"temperature\"]sıcaklık[/thrive:compound] değişimini kullanarak [thrive:compound type=\"atp\"]ATP'den[/thrive:compound] enerji üretir. Daha verimli olan [b][color=#3796e1][url=thriveopedia:thermoplast]Termoplastın[/url][/color][/b] prokaryotik formudur.\n"
 "\n"
-"Gerçek hayatta bulunmayan kuramsal bir organeldir. BH (Bildiğimiz Hayat) seçeneği etkin olan oyunlarda mevcut değildir."
+"Gerçek hayatta bulunmayan kuramsal bir organeldir. [i]BH[/i] (Bildiğimiz Hayat) seçeneği etkin olan oyunlarda mevcut değildir.\n"
+"\n"
+"Bu organel, ısıya duyarlı enzimler barındıran zarlı bölmeler kümesidir. Enzimler, [i]termosentez[/i] adı verilen bir işlemde, [thrive:compound type=\"atp\"]ATP[/thrive:compound] üretmek için etraflarında bulunan artan[thrive:compound type=\"temperature\"]sıcaklığı[/thrive:compound] enerji olarak kullanırlar."
 
 msgid "WIKI_THERMOSYNTHASE_MODIFICATIONS"
 msgstr "Değişiklikler yok."
 
 msgid "WIKI_THERMOSYNTHASE_PROCESSES"
 msgstr ""
-"[b]Bakteri Termosentezi[/b]: [thrive:compound type=\"temperature\"]Sıcaklık[/thrive:compound] → [thrive:compound type=\"atp\"]ATP[/thrive:compound]\n"
+"[b]Bakteri Termosentezi[/b]: [thrive:compound type=\"temperature\"]Sıcaklık[/thrive:compound] [i]artışı[/i] → [thrive:compound type=\"atp\"]ATP[/thrive:compound]\n"
 "\n"
-"Ortama ait çevresel [thrive:compound type=\"temperature\"]sıcaklıktan[/thrive:compound] pasif olarak enerji üretir. [b][color=#3796e1][url=thriveopedia:thermoplast]Termoplastlarda[/url][/color][/b] bulunan [b]Termosentezin[/b] daha verimsiz bir formudur."
+"Artan [thrive:compound type=\"temperature\"]sıcaklık[/thrive:compound] ile enerji üretir. Isıya duyarlı enzimler, [thrive:compound type=\"temperature\"]sıcaklık[/thrive:compound] arttıkça şekil değiştirerek [i]ADP'nin[/i] [thrive:compound type=\"atp\"]ATP'ye[/thrive:compound] geri dönüştürülmesini sağlar. Hücre soğuduğunda ise enzimler eski şekillerine geri döner, böylece işlem tekrar edebilir. Bu işlem, [b][color=#3796e1][url=thriveopedia:thermoplast]termoplastlarda[/url][/color][/b] bulunan [b]Termosentezin[/b] daha verimsiz bir formudur. [thrive:compound type=\"atp\"]ATP[/thrive:compound] üretimi, [thrive:compound type=\"temperature\"]sıcaklık[/thrive:compound] [i]farkı[/i] ile doğru orantılıdır."
 
 msgid "WIKI_THERMOSYNTHASE_REQUIREMENTS"
 msgstr ""
-"[b]Termosentaz[/b], yalnızca ayarlarda BH seçeneği devre dışı olan oyunlarda görülür.\n"
+"[b]Termosentaz[/b], yalnızca oyun ayarlarında \"BH\" seçeneği devre dışı olan oyunlarda görülür. Eğer [i]organellerin kilidini açma[/i] seçeneği oyun ayarlarından etkinleştirildiyse, aşağıdaki şart [i]oyuncu hücresi[/i] için karşılandığında bu organelin kilidi açılır:\n"
 "\n"
-"Eğer organel geliştirmeleri oyun ayarlarından etkinleştirildiyse, aşağıdaki şart [i]oyuncu hücresi[/i] için doğru olmalıdır:\n"
-"\n"
-"[indent]—   En az [b]+50 °C[/b] [thrive:compound type=\"temperature\"]sıcaklığa[/thrive:compound] sahip bir arazide olmak.[/indent]"
+"[indent]—   En az [b]50 °C[/b] [thrive:compound type=\"temperature\"]sıcaklığa[/thrive:compound] sahip bir arazide olmak.[/indent]"
 
 msgid "WIKI_THERMOSYNTHASE_SCIENTIFIC_BACKGROUND"
-msgstr "TBA"
+msgstr ""
+"Termosentez, ilk olarak Anthonie Muller tarafından 1983 yılında yayımlanan \"Thermoelectric Energy Conversion Could Be An Energy Source Of Living Organisms\" (Physics Letters A, cilt 96, Sayı 6, s. 319-321) makalesinde ileri sürülmüştür.\n"
+"\n"
+"Muller termosentezin, en eski (kükürt temelli) fotosentezin öncüsü olabileceğini dahi ileri sürmüştür (In A Search For Thermosynthesis: Starvation Survival In Thermally Cycled Bacteria).\n"
+"\n"
+"[color=#3796e1][url=https://en.wikipedia.org/wiki/Thermosynthesis]Vikipedi'de Termosentez[/url][/color]"
 
 msgid "WIKI_THERMOSYNTHASE_STRATEGY"
 msgstr ""
-"Mevcut formunda, [b]Termosentaz[/b] özünde bedava enerjidir. Sıcak arazilerde kalmaktan memnun olduğunuz sürece, bu organelin gerçekten olumsuz bir tarafı yoktur. [b]Bakteri Termosentezi[/b], kabaca, [b]+23 °C[/b] [thrive:compound type=\"temperature\"]sıcaklıkta[/thrive:compound] bile dengede kalır ve [b]+98 °C[/b] [thrive:compound type=\"temperature\"]sıcaklığa[/thrive:compound] sahip yanardağ bacalarında önemli ölçüde daha güçlüdür.\n"
+"Muhtemelen ototrofinin en hareketli formu olan [i]Termosentez[/i], neredeyse sürekli hareket etmeyi gerektirir. Sürekli olarak soğuk alanlardan sıcak alanlara ve buradan tekrar geri gitmeniz gerekir. Hücrenin sıcaklığı artmayı durdurduğunda, [thrive:compound type=\"atp\"]ATP[/thrive:compound] üretimi sıfıra düşer. En etkili şekilde alanların içinden geçmek ve hücrenizin etrafındaki sıcak ve soğuk alanları görebilmek için [i]termal görüşü[/i] etkinleştirmeniz en iyi seçenektir. Termosentaz, çok daha sıcak arazilerde çok daha etkilidir. Bu yüzden, bu organelin Yanardağ Bacaları gibi arazilerde kullanılması en iyisidir.\n"
+"\n"
+"[b]Termosentazın[/b] [thrive:compound type=\"atp\"]ATP[/thrive:compound] üretimi sık sık duracağından, ikinci bir enerji kaynağına sahip olmak önemlidir. Aksi takdirde, [thrive:compound type=\"atp\"]ATP[/thrive:compound] eksikliğinden dolayı devamlı hasar alırsınız.\n"
 "\n"
 "Daha verimli olanı, bir hücre, [b][color=#3796e1][url=thriveopedia:nucleus]Çekirdeği[/url][/color][/b] evrimleştirdiğinde mevcut olan [b][color=#3796e1][url=thriveopedia:thermoplast]Termoplasttır[/url][/color][/b]. Ökaryotik karşılığı olan bütün prokaryotik organeller gibi, [b]Termosentazı[/b] da mümkün olduğunda [b][color=#3796e1][url=thriveopedia:thermoplast]Termoplastlar[/url][/color][/b] ile değiştirmenizi öneriyoruz."
 
@@ -9046,6 +9171,9 @@ msgstr "Yakınlaştır"
 msgid "ZOOM_OUT"
 msgstr "Uzaklaştır"
 
+#~ msgid "PASSIVE_REPRODUCTION_PROGRESS_EXPLANATION"
+#~ msgstr "(hiçbir şey yapmadan çevreden pasif olarak üreme bileşenleri elde et)"
+
 #, fuzzy
 #~ msgid "GLOBAL_GLACIATION_EVENT_LOG"
 #~ msgstr "Genel popülasyon:"
@@ -9239,10 +9367,6 @@ msgstr "Uzaklaştır"
 #, fuzzy
 #~ msgid "ERUPTION_IN"
 #~ msgstr "Tomurcuklanma"
-
-#, fuzzy
-#~ msgid "EVENT_TOOLTIP_ERUPTION"
-#~ msgstr "{0}: +{1} ATP"
 
 #~ msgid "THE_AMOUNT_OF_GLUCOSE_HAS_BEEN_REDUCED"
 #~ msgstr "Glukoz miktarı, önceki miktarın {0} kadarı düştü."

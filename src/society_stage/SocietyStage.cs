@@ -196,7 +196,8 @@ public partial class SocietyStage : StrategyStageBase, ISocietyStructureDataAcce
         {
             // TODO: play an invalid placement sound
             GD.Print("Couldn't place selected building");
-            return true;
+
+            // return true;
         }
 
         return true;

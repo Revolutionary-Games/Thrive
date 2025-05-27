@@ -384,6 +384,11 @@ public static class Constants
     /// </summary>
     public const float MAX_FORCE_APPLIED_BY_CURRENTS = 2000;
 
+    /// <summary>
+    ///   The multiplier to the force that currents apply to cells.
+    /// </summary>
+    public const float CURRENT_FORCE_CELL_MULTIPLIER = 15;
+
     public const int TRANSLATION_VERY_INCOMPLETE_THRESHOLD = 30;
     public const int TRANSLATION_INCOMPLETE_THRESHOLD = 70;
 
@@ -1372,6 +1377,10 @@ public static class Constants
     public const int GLOBAL_GLACIATION_MIN_DURATION = 2;
     public const int GLOBAL_GLACIATION_MAX_DURATION = 6;
     public const int GLOBAL_GLACIATION_HEADS_UP_DURATION = 1;
+    public const float GLOBAL_GLACIATION_SUNLIGHT_MULTIPLICATION = 0.5f;
+
+    public const float METEOR_IMPACT_CHANCE = 0.23f;
+    public const float METEOR_IMPACT_SUNLIGHT_MULTIPLICATION = 0.75f;
 
     // These control how many game entities can exist at once
     public const int TINY_MAX_SPAWNED_ENTITIES = 80;
@@ -1779,9 +1788,11 @@ public static class Constants
     public const float MIN_AUTO_EVO_STRENGTH_MULTIPLIER = 0.01f;
     public const float MAX_AUTO_EVO_STRENGTH_MULTIPLIER = 1.0f;
 
+    public const float CURRENT_MAP_PATCH_INDICATOR_HALF_BLINK_INTERVAL = 0.5f;
+
     // Constants for the procedural patch map
-    public const float PATCH_NODE_RECT_LENGTH = 64.0f;
-    public const float PATCH_AND_REGION_MARGIN = 20.0f;
+    public const float PATCH_NODE_RECT_LENGTH = 80.0f;
+    public const float PATCH_AND_REGION_MARGIN = 14.0f;
     public const float PATCH_REGION_CONNECTION_LINE_WIDTH = 4.0f;
     public const float PATCH_REGION_BORDER_WIDTH = 6.0f;
     public const float PATCH_REGION_MARGIN = 5.0f;

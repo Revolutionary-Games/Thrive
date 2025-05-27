@@ -432,7 +432,7 @@ public partial class GalleryViewer : CustomWindow
         if (sender == null)
             throw new ArgumentException("Invalid event sender");
 
-        // Assume sender is of playback type, as it should be
+        // Assume the sender is of the playback type, as it should be
         var playback = (IGalleryCardPlayback)sender;
 
         slideScreen.CurrentSlideIndex = CurrentCards.IndexOf((GalleryCard)playback);

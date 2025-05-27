@@ -39,6 +39,8 @@ public partial class MicrobeStage : CreatureStageBase<Entity, MicrobeWorldSimula
 
     private MicrobeTutorialGUI tutorialGUI = null!;
 
+    private PackedScene guidanceLineScene = null!;
+
     [Export]
     private GuidanceLine guidanceLine = null!;
 #pragma warning restore CA2213
@@ -178,6 +180,8 @@ public partial class MicrobeStage : CreatureStageBase<Entity, MicrobeWorldSimula
         CurrentGame ??= GameProperties.StartNewMicrobeGame(new WorldGenerationSettings());
 
         ResolveNodeReferences();
+
+        guidanceLineScene = GD.Load<PackedScene>("res://src/engine/GuidanceLine.tscn");
 
         var simulationParameters = SimulationParameters.Instance;
         cytoplasm = simulationParameters.GetOrganelleType("cytoplasm");
@@ -359,7 +363,12 @@ public partial class MicrobeStage : CreatureStageBase<Entity, MicrobeWorldSimula
             if (guidancePosition != null)
             {
                 guidanceLine.Visible = true;
-                guidanceLine.LineStart = playerPosition.Position;
+
+                // To avoid line jitter, always make the line start from the camera's position
+                var start = Camera.GlobalPosition;
+                start.Y = 0;
+
+                guidanceLine.LineStart = start;
                 guidanceLine.LineEnd = guidancePosition.Value;
             }
             else
@@ -1629,7 +1638,7 @@ public partial class MicrobeStage : CreatureStageBase<Entity, MicrobeWorldSimula
 
         var position = microbe.Get<WorldPosition>().Position;
 
-        // This must be ran on the main thread. For now this should be fine to allocate a bit of memory capturing
+        // This must be run on the main thread. For now this should be fine to allocate a bit of memory capturing
         // the parameters here.
         Invoke.Instance.QueueForObject(
             () => UpdateChemoreceptionLines(activeCompoundDetections, activeSpeciesDetections, position), this);
@@ -1702,9 +1711,9 @@ public partial class MicrobeStage : CreatureStageBase<Entity, MicrobeWorldSimula
     {
         if (index >= chemoreceptionLines.Count)
         {
-            // The lines are created here and added as children of the stage because if they were in the microbe
-            // then rotation and it moving cause implementation difficulties
-            var line = new GuidanceLine();
+            // The lines are created here and added as children of the stage because if they were in the microbe,
+            // then rotation and movement of it would cause implementation difficulties
+            var line = guidanceLineScene.Instantiate<GuidanceLine>();
 
             AddChild(line);
             chemoreceptionLines.Add((line, potentialTargetEntity));

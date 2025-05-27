@@ -7,8 +7,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2025-04-11 10:12+0300\n"
-"PO-Revision-Date: 2025-04-04 10:42+0000\n"
+"POT-Creation-Date: 2025-05-26 12:24+0300\n"
+"PO-Revision-Date: 2025-05-25 15:00+0000\n"
 "Last-Translator: Anonymous <noreply@weblate.org>\n"
 "Language-Team: Dutch <https://translate.revolutionarygamesstudio.com/projects/thrive/thrive-game/nl/>\n"
 "Language: nl\n"
@@ -16,7 +16,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=n != 1;\n"
-"X-Generator: Weblate 5.7.2\n"
+"X-Generator: Weblate 5.11.4\n"
 "Generated-By: Babel 2.9.0\n"
 
 msgid "2D_MOVEMENT_TYPE_SELECTION"
@@ -1064,6 +1064,7 @@ msgstr "[center]De game is echter nog niet afgelopen. Je kunt [b]doorgaan[/b] do
 msgid "CONTINUE_THRIVING"
 msgstr "Ga door met Thrive"
 
+#, fuzzy
 msgid "CONTINUE_TO_PROTOTYPES"
 msgstr ""
 "Je hebt het eind van het onderdeel van Thrive dat 'af' is bereikt.\n"
@@ -2014,6 +2015,27 @@ msgstr "Estuarium"
 msgid "EVENT_ERUPTION_TOOLTIP"
 msgstr "Dit is de exacte code commit die gebruikt is bij het compileren van deze versie van Thrive"
 
+msgid "EVENT_METEOR_GLUCOSE"
+msgstr ""
+
+#, fuzzy
+msgid "EVENT_METEOR_IRON"
+msgstr "{0}: +{1} ATP"
+
+#, fuzzy
+msgid "EVENT_METEOR_PHOSPHATES"
+msgstr "Plaats fosfaat"
+
+#, fuzzy
+msgid "EVENT_METEOR_PLAIN"
+msgstr "Dit is de exacte code commit die gebruikt is bij het compileren van deze versie van Thrive"
+
+msgid "EVENT_METEOR_RADIOACTIVE"
+msgstr ""
+
+msgid "EVENT_METEOR_SULFUR"
+msgstr ""
+
 msgid "EVOLUTIONARY_TREE"
 msgstr "Stamboom"
 
@@ -2532,6 +2554,18 @@ msgstr "Nitrogenase is een eiwet dat gasvormig [thrive:compound type=\"nitrogen\
 
 #, fuzzy
 msgid "HYDROGENASE_PROCESSES_DESCRIPTION"
+msgstr "Zet [thrive:compound type=\"atp\"][/thrive:compound] om in [thrive:compound type=\"ammonia\"][/thrive:compound]. Snelheid schaalt met de concentratie van [thrive:compound type=\"nitrogen\"][/thrive:compound]."
+
+#, fuzzy
+msgid "HYDROGENOSOME"
+msgstr "Hydrogenase"
+
+#, fuzzy
+msgid "HYDROGENOSOME_DESCRIPTION"
+msgstr "Nitrogenase is een eiwet dat gasvormig [thrive:compound type=\"nitrogen\"][/thrive:compound] en celenergie in de vorm van [thrive:compound type=\"atp\"][/thrive:compound] om kan zetten om [thrive:compound type=\"ammonia\"][/thrive:compound] te vormen. Dit is een essentiele voedingsstof voor de groei van cellen. Dit proces wordt ook wel [b]stikstoffixatie[/b] genoemd. Aangezien nitrogenase zich in suspensie in het cytoplasma bevind, voert de vloeistof er omheen enige [b]glycolyse[/b] uit."
+
+#, fuzzy
+msgid "HYDROGENOSOME_PROCESSES_DESCRIPTION"
 msgstr "Zet [thrive:compound type=\"atp\"][/thrive:compound] om in [thrive:compound type=\"ammonia\"][/thrive:compound]. Snelheid schaalt met de concentratie van [thrive:compound type=\"nitrogen\"][/thrive:compound]."
 
 msgid "HYDROGEN_SULFIDE"
@@ -3430,6 +3464,15 @@ msgstr ""
 "Het kon niet worden vastgesteld of hyperthreading aan staat.\n"
 "Dit heeft effect op de standaardhoeveelheid threads aangezien hyperthreading threads niet zo snel zijn als volwaardige CPU rekenkernen."
 
+msgid "METEOR_IMPACT_EVENT"
+msgstr ""
+
+msgid "METEOR_STRIKE_START_EVENT_LOG_PLURAL"
+msgstr ""
+
+msgid "METEOR_STRIKE_START_EVENT_LOG_SINGULAR"
+msgstr ""
+
 msgid "METRICS"
 msgstr "Prestatietellers"
 
@@ -3522,6 +3565,10 @@ msgstr "Hoeveelheid microben:"
 
 msgid "MICROBE_BENCHMARK"
 msgstr "Microbe Prestatietest"
+
+#, fuzzy
+msgid "MICROBE_CAMERA_TILT_EFFECT"
+msgstr "[b]Membranendata:[/b]"
 
 msgid "MICROBE_EDITOR"
 msgstr "Microbe Bewerker"
@@ -3651,6 +3698,7 @@ msgstr ""
 msgid "MICROBE_STAGE"
 msgstr "Microbieel Stage"
 
+#, fuzzy
 msgid "MICROBE_STAGE_BECOME_MULTICELLULAR_TEXT"
 msgstr ""
 "Je hebt de mogelijkheid om multicellulair te worden verkregen. Dit is de volgende stap in je tocht.\n"
@@ -4603,9 +4651,6 @@ msgstr "Draai naar rechts"
 
 msgid "PAN_CAMERA_UP"
 msgstr "Beweeg omhoog"
-
-msgid "PASSIVE_REPRODUCTION_PROGRESS_EXPLANATION"
-msgstr "(krijg passief reproductieve stoffen van de omgeving zonder iets te hoeven doen)"
 
 msgid "PAST_DEVELOPERS"
 msgstr "Eerdere Ontwikkelaars"
@@ -6273,6 +6318,7 @@ msgstr ""
 "\n"
 "Selecteer een gebied om verder te gaan."
 
+#, fuzzy
 msgid "TUTORIAL_MICROBE_EDITOR_AUTO-EVO_PREDICTION"
 msgstr ""
 "Dit paneel toont een voorspelling van je toekomstige bevolking. Deze getallen komen uit de bevolkingssimulatie van auto-evo.\n"
@@ -6416,6 +6462,7 @@ msgstr ""
 "\n"
 "Selecteer een gebied om verder te gaan."
 
+#, fuzzy
 msgid "TUTORIAL_MICROBE_EDITOR_REMOVE_ORGANELLE_TEXT"
 msgstr ""
 "Organellen verwijderen kost ook MP aangezien het een mutatie van je soort is. Dit is niet het geval als ze in de huidige bewerksessie zijn geplaatst.\n"
@@ -7327,6 +7374,10 @@ msgid "WIKI_COMPOUND_SYSTEM_DEVELOPMENT_OVERVIEW"
 msgstr ""
 
 #, fuzzy
+msgid "WIKI_CREATURE_EDITOR_COMMA_TECH_EDITOR"
+msgstr "Microbe Bewerker"
+
+#, fuzzy
 msgid "WIKI_CYTOPLASM_EFFECTS"
 msgstr "De gel-achtige binnenkant van een cel. Het cytoplasma is een mengsel van ionen, eiwitten, en andere stoffen die opgelost zijn in water. Dit cytoplasma vormt de binnenkant van de cel. Een van de functies die het vervult is [b]glycolyse[/b], de omzetting van [thrive:compound type=\"glucose\"][/thrive:compound] naar [thrive:compound type=\"atp\"][/thrive:compound]. Cellen die geen organellen met meer geavanceerde metabolische processen hebben, gebruiken dit als bron van energie. Het wordt ook gebruikt om moleculen in de cel te bewaren en het formaat van de cel te vergroten."
 
@@ -7648,6 +7699,38 @@ msgstr "Nitrogenase is een eiwet dat gasvormig [thrive:compound type=\"nitrogen\
 
 #, fuzzy
 msgid "WIKI_HYDROGENASE_UPGRADES"
+msgstr "Nitrogenase is een eiwet dat gasvormig [thrive:compound type=\"nitrogen\"][/thrive:compound] en celenergie in de vorm van [thrive:compound type=\"atp\"][/thrive:compound] om kan zetten om [thrive:compound type=\"ammonia\"][/thrive:compound] te vormen. Dit is een essentiele voedingsstof voor de groei van cellen. Dit proces wordt ook wel [b]stikstoffixatie[/b] genoemd. Aangezien nitrogenase zich in suspensie in het cytoplasma bevind, voert de vloeistof er omheen enige [b]glycolyse[/b] uit."
+
+#, fuzzy
+msgid "WIKI_HYDROGENOSOME_EFFECTS"
+msgstr "Nitrogenase is een eiwet dat gasvormig [thrive:compound type=\"nitrogen\"][/thrive:compound] en celenergie in de vorm van [thrive:compound type=\"atp\"][/thrive:compound] om kan zetten om [thrive:compound type=\"ammonia\"][/thrive:compound] te vormen. Dit is een essentiele voedingsstof voor de groei van cellen. Dit proces wordt ook wel [b]stikstoffixatie[/b] genoemd. Aangezien nitrogenase zich in suspensie in het cytoplasma bevind, voert de vloeistof er omheen enige [b]glycolyse[/b] uit."
+
+#, fuzzy
+msgid "WIKI_HYDROGENOSOME_INTRO"
+msgstr "Nitrogenase is een eiwet dat gasvormig [thrive:compound type=\"nitrogen\"][/thrive:compound] en celenergie in de vorm van [thrive:compound type=\"atp\"][/thrive:compound] om kan zetten om [thrive:compound type=\"ammonia\"][/thrive:compound] te vormen. Dit is een essentiele voedingsstof voor de groei van cellen. Dit proces wordt ook wel [b]stikstoffixatie[/b] genoemd. Aangezien nitrogenase zich in suspensie in het cytoplasma bevind, voert de vloeistof er omheen enige [b]glycolyse[/b] uit."
+
+#, fuzzy
+msgid "WIKI_HYDROGENOSOME_MODIFICATIONS"
+msgstr "Nitrogenase is een eiwet dat gasvormig [thrive:compound type=\"nitrogen\"][/thrive:compound] en celenergie in de vorm van [thrive:compound type=\"atp\"][/thrive:compound] om kan zetten om [thrive:compound type=\"ammonia\"][/thrive:compound] te vormen. Dit is een essentiele voedingsstof voor de groei van cellen. Dit proces wordt ook wel [b]stikstoffixatie[/b] genoemd. Aangezien nitrogenase zich in suspensie in het cytoplasma bevind, voert de vloeistof er omheen enige [b]glycolyse[/b] uit."
+
+#, fuzzy
+msgid "WIKI_HYDROGENOSOME_PROCESSES"
+msgstr "Zet [thrive:compound type=\"atp\"][/thrive:compound] om in [thrive:compound type=\"ammonia\"][/thrive:compound]. Snelheid schaalt met de concentratie van [thrive:compound type=\"nitrogen\"][/thrive:compound]."
+
+#, fuzzy
+msgid "WIKI_HYDROGENOSOME_REQUIREMENTS"
+msgstr "Thermosynthase is een eiwit dat thermische convectie gebruikt om zijn vorm aan te passen. Wanneer het aan hitte wordt blootgesteld vouwt het zichzelf op en bindt het aan ADP. Wanneer het weer afkoelt ontvouwt het zichzelf en vormt het [thrive:compound type=\"atp\"][/thrive:compound]. Dit proces heet [b]thermosynthese[/b]. De snelheid van de productie van [thrive:compound type=\"atp\"][/thrive:compound] schaalt met de [thrive:compound type=\"temperature\"][/thrive:compound]."
+
+#, fuzzy
+msgid "WIKI_HYDROGENOSOME_SCIENTIFIC_BACKGROUND"
+msgstr "Nitrogenase is een eiwet dat gasvormig [thrive:compound type=\"nitrogen\"][/thrive:compound] en celenergie in de vorm van [thrive:compound type=\"atp\"][/thrive:compound] om kan zetten om [thrive:compound type=\"ammonia\"][/thrive:compound] te vormen. Dit is een essentiele voedingsstof voor de groei van cellen. Dit proces wordt ook wel [b]stikstoffixatie[/b] genoemd. Aangezien nitrogenase zich in suspensie in het cytoplasma bevind, voert de vloeistof er omheen enige [b]glycolyse[/b] uit."
+
+#, fuzzy
+msgid "WIKI_HYDROGENOSOME_STRATEGY"
+msgstr "Nitrogenase is een eiwet dat gasvormig [thrive:compound type=\"nitrogen\"][/thrive:compound] en celenergie in de vorm van [thrive:compound type=\"atp\"][/thrive:compound] om kan zetten om [thrive:compound type=\"ammonia\"][/thrive:compound] te vormen. Dit is een essentiele voedingsstof voor de groei van cellen. Dit proces wordt ook wel [b]stikstoffixatie[/b] genoemd. Aangezien nitrogenase zich in suspensie in het cytoplasma bevind, voert de vloeistof er omheen enige [b]glycolyse[/b] uit."
+
+#, fuzzy
+msgid "WIKI_HYDROGENOSOME_UPGRADES"
 msgstr "Nitrogenase is een eiwet dat gasvormig [thrive:compound type=\"nitrogen\"][/thrive:compound] en celenergie in de vorm van [thrive:compound type=\"atp\"][/thrive:compound] om kan zetten om [thrive:compound type=\"ammonia\"][/thrive:compound] te vormen. Dit is een essentiele voedingsstof voor de groei van cellen. Dit proces wordt ook wel [b]stikstoffixatie[/b] genoemd. Aangezien nitrogenase zich in suspensie in het cytoplasma bevind, voert de vloeistof er omheen enige [b]glycolyse[/b] uit."
 
 #, fuzzy
@@ -8172,6 +8255,10 @@ msgid "WIKI_PAGE_HYDROGENASE"
 msgstr "Hydrogenase"
 
 #, fuzzy
+msgid "WIKI_PAGE_HYDROGENOSOME"
+msgstr "Hydrogenase"
+
+#, fuzzy
 msgid "WIKI_PAGE_INDUSTRIAL_STAGE"
 msgstr "Industriële Fase"
 
@@ -8515,6 +8602,9 @@ msgstr "Axon"
 msgid "WIKI_TBA"
 msgstr "Wiki"
 
+msgid "WIKI_TECH_EDITOR_COMMA_NATION_EDITOR_COMMA_SQUAD_EDITOR"
+msgstr ""
+
 #, fuzzy
 msgid "WIKI_THERMOPLAST_EFFECTS"
 msgstr "Het thermoplast is een structuur met dubbele membraan waar hittegevoelige pigmenten samen gepakt zitten in een vliezige zakjes. Het is een prokaryoot die door een eukaryoot is geassimileerd voor zijn eigen nut. De pigmenten in het thermoplast kunnen de energie van temperatuurverschillen in de omgeving gebruiken om [thrive:compound type=\"atp\"][/thrive:compound] van water te maken in een proces genaamd [b]thermosynthese[/b]. De snelheid van de productie van [thrive:compound type=\"atp\"][/thrive:compound] schaalt met de [thrive:compound type=\"temperature\"][/thrive:compound]."
@@ -8811,6 +8901,9 @@ msgstr "Inzoomen"
 msgid "ZOOM_OUT"
 msgstr "Uitzoomen"
 
+#~ msgid "PASSIVE_REPRODUCTION_PROGRESS_EXPLANATION"
+#~ msgstr "(krijg passief reproductieve stoffen van de omgeving zonder iets te hoeven doen)"
+
 #~ msgid "TO_BE_IMPLEMENTED"
 #~ msgstr "Wordt Nog Geimplementeerd."
 
@@ -9008,10 +9101,6 @@ msgstr "Uitzoomen"
 #, fuzzy
 #~ msgid "ERUPTION_IN"
 #~ msgstr "Ontkiemen"
-
-#, fuzzy
-#~ msgid "EVENT_TOOLTIP_ERUPTION"
-#~ msgstr "{0}: +{1} ATP"
 
 #~ msgid "THE_AMOUNT_OF_GLUCOSE_HAS_BEEN_REDUCED"
 #~ msgstr "De hoeveelheid glucose is verminderd tot {0} van de voorgaande hoeveelheid."

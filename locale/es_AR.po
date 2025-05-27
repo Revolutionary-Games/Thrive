@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2025-04-11 10:12+0300\n"
+"POT-Creation-Date: 2025-05-26 12:24+0300\n"
 "PO-Revision-Date: 2025-04-04 10:42+0000\n"
 "Last-Translator: Anonymous <noreply@weblate.org>\n"
 "Language-Team: Spanish (Argentina) <https://translate.revolutionarygamesstudio.com/projects/thrive/thrive-game/es_AR/>\n"
@@ -2005,6 +2005,27 @@ msgstr "Estuario"
 msgid "EVENT_ERUPTION_TOOLTIP"
 msgstr "Disparar toxina"
 
+msgid "EVENT_METEOR_GLUCOSE"
+msgstr ""
+
+#, fuzzy
+msgid "EVENT_METEOR_IRON"
+msgstr "Cueva marítima"
+
+#, fuzzy
+msgid "EVENT_METEOR_PHOSPHATES"
+msgstr "Spawnear fosfato"
+
+#, fuzzy
+msgid "EVENT_METEOR_PLAIN"
+msgstr "Disparar toxina"
+
+msgid "EVENT_METEOR_RADIOACTIVE"
+msgstr ""
+
+msgid "EVENT_METEOR_SULFUR"
+msgstr ""
+
 msgid "EVOLUTIONARY_TREE"
 msgstr ""
 
@@ -2530,6 +2551,18 @@ msgstr "población:"
 
 #, fuzzy
 msgid "HYDROGENASE_PROCESSES_DESCRIPTION"
+msgstr "población:"
+
+#, fuzzy
+msgid "HYDROGENOSOME"
+msgstr "Sulfuro de hidrógeno"
+
+#, fuzzy
+msgid "HYDROGENOSOME_DESCRIPTION"
+msgstr "población:"
+
+#, fuzzy
+msgid "HYDROGENOSOME_PROCESSES_DESCRIPTION"
 msgstr "población:"
 
 msgid "HYDROGEN_SULFIDE"
@@ -3434,6 +3467,15 @@ msgstr ""
 msgid "META_THREADS_TOOLTIP"
 msgstr "Hilos actuales:"
 
+msgid "METEOR_IMPACT_EVENT"
+msgstr ""
+
+msgid "METEOR_STRIKE_START_EVENT_LOG_PLURAL"
+msgstr ""
+
+msgid "METEOR_STRIKE_START_EVENT_LOG_SINGULAR"
+msgstr ""
+
 #, fuzzy
 msgid "METRICS"
 msgstr "Activar/Desactivar ver los FPS en la pantalla"
@@ -3520,6 +3562,10 @@ msgstr "Usá W, A, S y D y el mouse para moverte. E para disparar OxiToxi NT si 
 #, fuzzy
 msgid "MICROBE_BENCHMARK"
 msgstr "Habilitar el editor"
+
+#, fuzzy
+msgid "MICROBE_CAMERA_TILT_EFFECT"
+msgstr "Mover organela"
 
 #, fuzzy
 msgid "MICROBE_EDITOR"
@@ -4571,9 +4617,6 @@ msgid "PAN_CAMERA_RIGHT"
 msgstr ""
 
 msgid "PAN_CAMERA_UP"
-msgstr ""
-
-msgid "PASSIVE_REPRODUCTION_PROGRESS_EXPLANATION"
 msgstr ""
 
 msgid "PAST_DEVELOPERS"
@@ -7255,6 +7298,10 @@ msgid "WIKI_COMPOUND_SYSTEM_DEVELOPMENT_OVERVIEW"
 msgstr "Poner organela"
 
 #, fuzzy
+msgid "WIKI_CREATURE_EDITOR_COMMA_TECH_EDITOR"
+msgstr "Habilitar el editor"
+
+#, fuzzy
 msgid "WIKI_CYTOPLASM_EFFECTS"
 msgstr "Protoplasma"
 
@@ -7604,6 +7651,38 @@ msgstr "Nitrogenasa"
 
 #, fuzzy
 msgid "WIKI_HYDROGENASE_UPGRADES"
+msgstr "Nitrogenasa"
+
+#, fuzzy
+msgid "WIKI_HYDROGENOSOME_EFFECTS"
+msgstr "Nitrogenasa"
+
+#, fuzzy
+msgid "WIKI_HYDROGENOSOME_INTRO"
+msgstr "Nitrogenasa"
+
+#, fuzzy
+msgid "WIKI_HYDROGENOSOME_MODIFICATIONS"
+msgstr "población:"
+
+#, fuzzy
+msgid "WIKI_HYDROGENOSOME_PROCESSES"
+msgstr "Nitrogenasa"
+
+#, fuzzy
+msgid "WIKI_HYDROGENOSOME_REQUIREMENTS"
+msgstr "población:"
+
+#, fuzzy
+msgid "WIKI_HYDROGENOSOME_SCIENTIFIC_BACKGROUND"
+msgstr "población:"
+
+#, fuzzy
+msgid "WIKI_HYDROGENOSOME_STRATEGY"
+msgstr "Nitrogenasa"
+
+#, fuzzy
+msgid "WIKI_HYDROGENOSOME_UPGRADES"
 msgstr "Nitrogenasa"
 
 #, fuzzy
@@ -8150,6 +8229,10 @@ msgid "WIKI_PAGE_HYDROGENASE"
 msgstr "Nitrogenasa"
 
 #, fuzzy
+msgid "WIKI_PAGE_HYDROGENOSOME"
+msgstr "Nitrogenasa"
+
+#, fuzzy
 msgid "WIKI_PAGE_INDUSTRIAL_STAGE"
 msgstr ""
 "Agente de \n"
@@ -8542,6 +8625,9 @@ msgstr "Pili de depredador"
 #, fuzzy
 msgid "WIKI_TBA"
 msgstr "Oxitocina"
+
+msgid "WIKI_TECH_EDITOR_COMMA_NATION_EDITOR_COMMA_SQUAD_EDITOR"
+msgstr ""
 
 #, fuzzy
 msgid "WIKI_THERMOPLAST_EFFECTS"
@@ -9083,10 +9169,6 @@ msgstr "Alejar la pantalla"
 #, fuzzy
 #~ msgid "ERUPTION_IN"
 #~ msgstr "población:"
-
-#, fuzzy
-#~ msgid "EVENT_TOOLTIP_ERUPTION"
-#~ msgstr "Cueva marítima"
 
 #, fuzzy
 #~ msgid "WIKI_CHEMOSYNTHESIS"

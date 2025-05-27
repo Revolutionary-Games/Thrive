@@ -6,12 +6,11 @@ using Xoshiro.PRNG64;
 [JSONDynamicTypeAllowed]
 public class GlobalGlaciationEvent : IWorldEffect
 {
-    private const string TemplateBiomeForIceChunks = "ice_shelf";
-    private const string Prefix = "globalGlaciation_";
+    private const string TemplateBiomeForIceChunks = "patchEventTemplateBiome";
     private const string Background = "iceshelf";
 
     private static readonly string[] IceChunksConfigurations =
-        ["iceShard", "iceChunkSmall", "iceChunkBig", "iceSnowflake"];
+        ["glaciationIceShard", "glaciationIceChunkSmall", "glaciationIceChunkBig", "glaciationIceSnowflake"];
 
     [JsonProperty]
     private readonly XoShiRo256starstar random;
@@ -63,10 +62,6 @@ public class GlobalGlaciationEvent : IWorldEffect
         if (generationsLeft > 0)
             generationsLeft -= 1;
 
-        // Mark patches with the event icon while the event lasts
-        if (generationsLeft > 0)
-            MarkPatches(totalTimePassed);
-
         if (generationsLeft == -1)
         {
             TryToTriggerEvent(totalTimePassed);
@@ -74,6 +69,10 @@ public class GlobalGlaciationEvent : IWorldEffect
         else if (generationsLeft == 0)
         {
             FinishEvent();
+        }
+        else if (generationsLeft > 0)
+        {
+            MarkPatches(totalTimePassed);
         }
     }
 
@@ -88,7 +87,7 @@ public class GlobalGlaciationEvent : IWorldEffect
         {
             if (IsSurfacePatch(patch))
             {
-                patch.AddPatchEventRecord(WorldEffectVisuals.GlobalGlaciation, totalTimePassed);
+                patch.AddPatchEventRecord(WorldEffectTypes.GlobalGlaciation, totalTimePassed);
             }
         }
     }
@@ -188,6 +187,12 @@ public class GlobalGlaciationEvent : IWorldEffect
             return;
         }
 
+        if (patch.BiomeType != BiomeType.IceShelf)
+        {
+            currentSunlight.Ambient *= Constants.GLOBAL_GLACIATION_SUNLIGHT_MULTIPLICATION;
+            patch.Biome.ModifyLongTermCondition(Compound.Sunlight, currentSunlight);
+        }
+
         currentTemperature.Ambient = random.Next(0, 5);
         currentSunlight.Ambient = 0.5f;
 
@@ -196,7 +201,7 @@ public class GlobalGlaciationEvent : IWorldEffect
     }
 
     /// <summary>
-    ///   Gets chunks from Iceshelf patch template and applies them to the patches.
+    ///   Gets chunks from event template patch and applies them to the patches.
     /// </summary>
     private void AddIceChunks(Patch patch)
     {
@@ -204,8 +209,7 @@ public class GlobalGlaciationEvent : IWorldEffect
         foreach (var configuration in IceChunksConfigurations)
         {
             var iceChunkConfiguration = templateBiome.Conditions.Chunks[configuration];
-            iceChunkConfiguration.Density *= 10;
-            patch.Biome.Chunks.Add(Prefix + configuration, iceChunkConfiguration);
+            patch.Biome.Chunks.Add(configuration, iceChunkConfiguration);
         }
     }
 
@@ -214,7 +218,7 @@ public class GlobalGlaciationEvent : IWorldEffect
         patch.LogEvent(new LocalizedString("GLOBAL_GLACIATION_EVENT"),
             true, true, "GlobalGlaciationEvent.svg");
 
-        patch.AddPatchEventRecord(WorldEffectVisuals.GlobalGlaciation, totalTimePassed);
+        patch.AddPatchEventRecord(WorldEffectTypes.GlobalGlaciation, totalTimePassed);
     }
 
     private void LogHeadUpEventWarning()
@@ -244,6 +248,7 @@ public class GlobalGlaciationEvent : IWorldEffect
         {
             if (!modifiedPatchesIds.Contains(patch.ID))
             {
+                GD.PrintErr("Patch exited the world in global glaciation event");
                 continue;
             }
 
@@ -264,37 +269,29 @@ public class GlobalGlaciationEvent : IWorldEffect
 
     private void ResetEnvironment(Patch patch, PatchSnapshot patchSnapshot)
     {
-        if (patch.BiomeType == BiomeType.IceShelf)
+        if (patch.BiomeType != BiomeType.IceShelf)
         {
-            return;
+            bool hasSunlight = patch.Biome.ChangeableCompounds.TryGetValue(Compound.Sunlight, out var currentSunlight);
+
+            if (!hasSunlight)
+            {
+                GD.PrintErr("Glaciation event encountered patch with unexpectedly no sunlight");
+                return;
+            }
+
+            currentSunlight.Ambient /= Constants.GLOBAL_GLACIATION_SUNLIGHT_MULTIPLICATION;
+            patch.Biome.ModifyLongTermCondition(Compound.Sunlight, currentSunlight);
         }
 
-        var hasTemperature = patchSnapshot.Biome.TryGetCompound(Compound.Temperature, CompoundAmountType.Biome,
-            out var previousTemperature);
-        var hasSunlight =
-            patchSnapshot.Biome.TryGetCompound(Compound.Sunlight, CompoundAmountType.Biome, out var previousSunlight);
-
-        if (!hasTemperature)
-        {
-            GD.PrintErr("Glaciation event encountered patch with unexpectedly no temperature.");
-            return;
-        }
-
-        if (!hasSunlight)
-        {
-            GD.PrintErr("Glaciation event encountered patch with unexpectedly no sunlight.");
-            return;
-        }
-
+        var previousTemperature = patchSnapshot.Biome.ChangeableCompounds[Compound.Temperature];
         patch.Biome.ModifyLongTermCondition(Compound.Temperature, previousTemperature);
-        patch.Biome.ModifyLongTermCondition(Compound.Sunlight, previousSunlight);
     }
 
     private void RemoveChunks(Patch patch)
     {
         foreach (var configuration in IceChunksConfigurations)
         {
-            patch.Biome.Chunks.Remove(Prefix + configuration);
+            patch.Biome.Chunks.Remove(configuration);
         }
     }
 }

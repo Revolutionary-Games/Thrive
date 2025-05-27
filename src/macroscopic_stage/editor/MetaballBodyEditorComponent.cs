@@ -861,6 +861,9 @@ public partial class MetaballBodyEditorComponent :
     {
         activeActionName = null;
         OnCurrentActionChanged();
+
+        // Clear the edited cell type
+        EmitSignal(SignalName.OnCellTypeToEditSelected, default(Variant));
     }
 
     private void OnMetaballsChanged()

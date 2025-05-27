@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2025-04-11 10:12+0300\n"
+"POT-Creation-Date: 2025-05-26 12:24+0300\n"
 "PO-Revision-Date: 2025-01-21 12:01+0000\n"
 "Last-Translator: Anonymous <noreply@weblate.org>\n"
 "Language-Team: Romanian <https://translate.revolutionarygamesstudio.com/projects/thrive/thrive-game/ro/>\n"
@@ -1938,6 +1938,25 @@ msgstr ""
 msgid "EVENT_ERUPTION_TOOLTIP"
 msgstr "Treceți la etapa de trezire. Disponibil odată ce aveți creierul suficient de dezvoltat (tip de țesut cu axoni)."
 
+msgid "EVENT_METEOR_GLUCOSE"
+msgstr ""
+
+msgid "EVENT_METEOR_IRON"
+msgstr ""
+
+msgid "EVENT_METEOR_PHOSPHATES"
+msgstr ""
+
+#, fuzzy
+msgid "EVENT_METEOR_PLAIN"
+msgstr "Treceți la etapa de trezire. Disponibil odată ce aveți creierul suficient de dezvoltat (tip de țesut cu axoni)."
+
+msgid "EVENT_METEOR_RADIOACTIVE"
+msgstr ""
+
+msgid "EVENT_METEOR_SULFUR"
+msgstr ""
+
 msgid "EVOLUTIONARY_TREE"
 msgstr ""
 
@@ -2423,6 +2442,17 @@ msgstr "Permite unirea cu alte celule. Acesta este primul pas către multicelula
 
 #, fuzzy
 msgid "HYDROGENASE_PROCESSES_DESCRIPTION"
+msgstr "Apăsați [thrive:input]g_toggle_binding[/thrive:input] pentru a activa/dezactiva modul de unire. Când sunteți în modul de unire, puteți atașa alte celule ale speciei dvs. la colonie prin a vă muta în ele. Pentru a părăsi o colonie, apăsați [thrive:input]g_unbind_all[/thrive:input]. Nu puteți intra în editor în timp ce sunteți unit cu alte celule."
+
+msgid "HYDROGENOSOME"
+msgstr ""
+
+#, fuzzy
+msgid "HYDROGENOSOME_DESCRIPTION"
+msgstr "Permite unirea cu alte celule. Acesta este primul pas către multicelularitate. Când celula face parte dintr-o colonie, compușii sunt împărțiți între celule. Nu puteți intra în editor în timp ce faceți parte dintr-o colonie, deci trebuie să vă despărțiți odată ce colectați suficienți compuși pentru a vă împărți celula."
+
+#, fuzzy
+msgid "HYDROGENOSOME_PROCESSES_DESCRIPTION"
 msgstr "Apăsați [thrive:input]g_toggle_binding[/thrive:input] pentru a activa/dezactiva modul de unire. Când sunteți în modul de unire, puteți atașa alte celule ale speciei dvs. la colonie prin a vă muta în ele. Pentru a părăsi o colonie, apăsați [thrive:input]g_unbind_all[/thrive:input]. Nu puteți intra în editor în timp ce sunteți unit cu alte celule."
 
 msgid "HYDROGEN_SULFIDE"
@@ -3273,6 +3303,15 @@ msgstr ""
 "Nu poate fi detectat automat dacă hyperthreading-ul este activat sau nu.\n"
 "Acest lucru afectează numărul implicit de thread-uri, deoarece thread-urile hiperthreading nu sunt la fel de rapide ca nucleele CPU reale."
 
+msgid "METEOR_IMPACT_EVENT"
+msgstr ""
+
+msgid "METEOR_STRIKE_START_EVENT_LOG_PLURAL"
+msgstr ""
+
+msgid "METEOR_STRIKE_START_EVENT_LOG_SINGULAR"
+msgstr ""
+
 msgid "METRICS"
 msgstr ""
 
@@ -3342,6 +3381,10 @@ msgstr "Etapa Microbilor"
 #, fuzzy
 msgid "MICROBE_BENCHMARK"
 msgstr "Editorul De Microbi"
+
+#, fuzzy
+msgid "MICROBE_CAMERA_TILT_EFFECT"
+msgstr "[thrive:input]g_move_forward[/thrive:input],[thrive:input]g_move_left[/thrive:input],[thrive:input]g_move_backwards[/thrive:input],[thrive:input]g_move_right[/thrive:input] şi mouse-ul să vă deplasați. [thrive:input]g_fire_toxin[/thrive:input] pentru a trage [thrive:compound type=\"oxytoxy\"][/thrive:compound] dacă aveți o vacuolă de toxine. [thrive:input]g_toggle_engulf[/thrive:input] pentru a activa modul de înghițit. Puteți să zoomați mai aproape și mai departe cu rotița mouse-ului."
 
 msgid "MICROBE_EDITOR"
 msgstr "Editorul De Microbi"
@@ -4298,9 +4341,6 @@ msgid "PAN_CAMERA_RIGHT"
 msgstr ""
 
 msgid "PAN_CAMERA_UP"
-msgstr ""
-
-msgid "PASSIVE_REPRODUCTION_PROGRESS_EXPLANATION"
 msgstr ""
 
 msgid "PAST_DEVELOPERS"
@@ -6934,6 +6974,10 @@ msgstr "Etapa Microbilor"
 msgid "WIKI_COMPOUND_SYSTEM_DEVELOPMENT_OVERVIEW"
 msgstr ""
 
+#, fuzzy
+msgid "WIKI_CREATURE_EDITOR_COMMA_TECH_EDITOR"
+msgstr "Editorul De Microbi"
+
 msgid "WIKI_CYTOPLASM_EFFECTS"
 msgstr ""
 
@@ -7255,6 +7299,38 @@ msgstr "Etapa Microbilor"
 
 #, fuzzy
 msgid "WIKI_HYDROGENASE_UPGRADES"
+msgstr "Editor 3D"
+
+#, fuzzy
+msgid "WIKI_HYDROGENOSOME_EFFECTS"
+msgstr "Editor 3D"
+
+#, fuzzy
+msgid "WIKI_HYDROGENOSOME_INTRO"
+msgstr "Etapa Microbilor"
+
+#, fuzzy
+msgid "WIKI_HYDROGENOSOME_MODIFICATIONS"
+msgstr "Fixarea azotului anaerob"
+
+#, fuzzy
+msgid "WIKI_HYDROGENOSOME_PROCESSES"
+msgstr "Apăsați [thrive:input]g_toggle_binding[/thrive:input] pentru a activa/dezactiva modul de unire. Când sunteți în modul de unire, puteți atașa alte celule ale speciei dvs. la colonie prin a vă muta în ele. Pentru a părăsi o colonie, apăsați [thrive:input]g_unbind_all[/thrive:input]. Nu puteți intra în editor în timp ce sunteți unit cu alte celule."
+
+#, fuzzy
+msgid "WIKI_HYDROGENOSOME_REQUIREMENTS"
+msgstr "Editor 3D"
+
+#, fuzzy
+msgid "WIKI_HYDROGENOSOME_SCIENTIFIC_BACKGROUND"
+msgstr "Artă de concept"
+
+#, fuzzy
+msgid "WIKI_HYDROGENOSOME_STRATEGY"
+msgstr "Etapa Microbilor"
+
+#, fuzzy
+msgid "WIKI_HYDROGENOSOME_UPGRADES"
 msgstr "Editor 3D"
 
 #, fuzzy
@@ -7713,6 +7789,10 @@ msgid "WIKI_PAGE_HYDROGENASE"
 msgstr "Etapa Microbilor"
 
 #, fuzzy
+msgid "WIKI_PAGE_HYDROGENOSOME"
+msgstr "Etapa Microbilor"
+
+#, fuzzy
 msgid "WIKI_PAGE_INDUSTRIAL_STAGE"
 msgstr "Etapa Microbilor"
 
@@ -8050,6 +8130,9 @@ msgstr ""
 #, fuzzy
 msgid "WIKI_TBA"
 msgstr "Etapa Microbilor"
+
+msgid "WIKI_TECH_EDITOR_COMMA_NATION_EDITOR_COMMA_SQUAD_EDITOR"
+msgstr ""
 
 msgid "WIKI_THERMOPLAST_EFFECTS"
 msgstr ""

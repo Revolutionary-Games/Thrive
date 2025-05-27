@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 using Godot;
 using Newtonsoft.Json;
 
@@ -19,9 +20,9 @@ public partial class TolerancesEditorSubComponent : EditorComponentBase<ICellEdi
     private readonly StringName toleranceFlashName = new("FlashPressureRange");
     private readonly StringName tooWideRangeName = new("PopupPressureRangeWarning");
 
-    private readonly CompoundDefinition temperature = SimulationParameters.GetCompound(Compound.Temperature);
-
     private readonly Dictionary<OrganelleDefinition, float> tempToleranceModifiers = new();
+
+    private CompoundDefinition temperature = null!;
 
 #pragma warning disable CA2213
 
@@ -173,6 +174,8 @@ public partial class TolerancesEditorSubComponent : EditorComponentBase<ICellEdi
         originalPressureFont = pressureMinLabel.LabelSettings;
         originalModifierFont = temperatureToleranceModifierLabel.LabelSettings;
 
+        temperature = SimulationParameters.GetCompound(Compound.Temperature);
+
         RegisterTooltips();
     }
 
@@ -268,8 +271,15 @@ public partial class TolerancesEditorSubComponent : EditorComponentBase<ICellEdi
 
     public void UpdateToolTipStats()
     {
-        // Calculate one stat at a time to get the individual changes per type instead of all combined
-        var optimal = Editor.CurrentPatch.GenerateTolerancesForMicrobe();
+        if (Editor.EditedCellOrganelles == null)
+        {
+            GD.PrintErr("No cell edited organelles set, tolerances editor cannot update!");
+            return;
+        }
+
+        // Calculate one stat at a time to get the individual changes per type instead of all being combined.
+        // And for that we need an optimal baseline that guarantees no other stat-related debuffs / buffs are mixed in.
+        var optimal = Editor.CurrentPatch.GenerateTolerancesForMicrobe(Editor.EditedCellOrganelles);
 
         // Set huge ranges so that there is no threat of optimal bonuses triggering with the default calculations
         optimal.PressureMinimum = 0;
@@ -277,6 +287,21 @@ public partial class TolerancesEditorSubComponent : EditorComponentBase<ICellEdi
         optimal.TemperatureTolerance += Constants.TOLERANCE_PERFECT_THRESHOLD_TEMPERATURE * 2;
 
         var tempTolerances = CurrentTolerances.Clone();
+
+#if DEBUG
+        tempTolerances.CopyFrom(optimal);
+        var optimalTest =
+            MicrobeEnvironmentalToleranceCalculations.CalculateTolerances(tempTolerances,
+                Editor.EditedCellOrganelles ?? throw new Exception("Organelles not set"), Editor.CurrentPatch.Biome);
+
+        if (optimalTest.OverallScore is < 1 or > 1 + MathUtils.EPSILON)
+        {
+            GD.PrintErr("Optimal tolerance calculation failed, score: " + optimalTest.OverallScore);
+
+            if (Debugger.IsAttached)
+                Debugger.Break();
+        }
+#endif
 
         if (temperatureToolTip != null)
         {
@@ -353,7 +378,7 @@ public partial class TolerancesEditorSubComponent : EditorComponentBase<ICellEdi
         // Copy the units here automatically
         if (temperatureRangeToolTip != null)
         {
-            temperatureRangeToolTip.ValueSuffix = SimulationParameters.GetCompound(Compound.Temperature).Unit;
+            temperatureRangeToolTip.ValueSuffix = temperature.Unit;
         }
         else
         {

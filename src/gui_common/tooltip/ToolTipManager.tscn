@@ -606,7 +606,14 @@ descriptionLabel = NodePath("../metabolosome/MarginContainer/VBoxContainer/Descr
 DisplayDelay = 0.0
 Positioning = 1
 
-[node name="chromatophore" parent="GroupHolder/processesProduction" node_paths=PackedStringArray("descriptionLabel") instance=ExtResource("1")]
+[node name="hydrogenosome" parent="GroupHolder/processesProduction" node_paths=PackedStringArray("descriptionLabel")  instance=ExtResource("1")]
+visible = false
+layout_mode = 0
+descriptionLabel = NodePath("../metabolosome/MarginContainer/VBoxContainer/Description")
+DisplayDelay = 0.0
+Positioning = 1
+
+[node name="chromatophore" parent="GroupHolder/processesProduction" instance=ExtResource("1")]
 visible = false
 layout_mode = 0
 descriptionLabel = NodePath("MarginContainer/VBoxContainer/Description")
@@ -869,6 +876,7 @@ DisplayDelay = 2.5
 anchors_preset = 0
 offset_right = 40.0
 offset_bottom = 40.0
+mouse_filter = 2
 
 [node name="temperature" parent="GroupHolder/tolerances" instance=ExtResource("14_k78dl")]
 visible = false

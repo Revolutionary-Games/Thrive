@@ -495,7 +495,7 @@ public partial class CreatureStageBase<TPlayer, TSimulation> : StageBase, ICreat
 
     private void AdjustTolerancesToWorkInPatch(MicrobeSpecies species, Patch currentPatch)
     {
-        var optimal = currentPatch.GenerateTolerancesForMicrobe();
+        var optimal = currentPatch.GenerateTolerancesForMicrobe(species.Organelles);
 
         var current = MicrobeEnvironmentalToleranceCalculations.CalculateTolerances(species, currentPatch.Biome);
 

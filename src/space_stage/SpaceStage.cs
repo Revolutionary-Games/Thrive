@@ -357,7 +357,8 @@ public partial class SpaceStage : StrategyStageBase, ISocietyStructureDataAccess
             // TODO: play an invalid placement sound (and show a hud message when the condition for failure is
             // complex
             GD.Print("Couldn't place selected structure");
-            return true;
+
+            // return true;
         }
 
         return true;

@@ -47,6 +47,20 @@ public static class ListUtils
         return items[random.Next(0, items.Count)];
     }
 
+    public static int RandomElementIndexByProbability(this IReadOnlyList<double> chances, double probability)
+    {
+        double cumulative = 0.0;
+        var count = chances.Count;
+        for (var i = 0; i < count; ++i)
+        {
+            cumulative += chances[i];
+            if (probability <= cumulative)
+                return i;
+        }
+
+        throw new ArgumentException("Chances list is empty");
+    }
+
     /// <summary>
     ///   <inheritdoc cref="ShuffleBag{T}.Shuffle"/>
     /// </summary>

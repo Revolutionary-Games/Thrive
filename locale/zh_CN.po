@@ -7,8 +7,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2025-04-11 10:12+0300\n"
-"PO-Revision-Date: 2025-04-04 10:42+0000\n"
+"POT-Creation-Date: 2025-05-26 12:24+0300\n"
+"PO-Revision-Date: 2025-05-25 15:00+0000\n"
 "Last-Translator: Anonymous <noreply@weblate.org>\n"
 "Language-Team: Chinese (Simplified Han script) <https://translate.revolutionarygamesstudio.com/projects/thrive/thrive-game/zh_Hans/>\n"
 "Language: zh_CN\n"
@@ -16,7 +16,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=1; plural=0;\n"
-"X-Generator: Weblate 5.7.2\n"
+"X-Generator: Weblate 5.11.4\n"
 "Generated-By: Babel 2.8.0\n"
 
 msgid "2D_MOVEMENT_TYPE_SELECTION"
@@ -192,10 +192,10 @@ msgid "AND_UNLOCK_CONDITION"
 msgstr "和"
 
 msgid "ANISOTROPIC_FILTERING"
-msgstr ""
+msgstr "各向异性过滤:"
 
 msgid "ANTIALIASING_MSAA_TAA"
-msgstr ""
+msgstr "MSAA + TAA"
 
 #, fuzzy
 msgid "ANTI_ALIASING_FXAA"
@@ -575,7 +575,7 @@ msgid "CACHE_DISK_MAX_TIME"
 msgstr "自动存档删除的最大时间"
 
 msgid "CACHE_MEMORY_MAX_ITEMS"
-msgstr ""
+msgstr "在内存中保留的最大缓存项目"
 
 #, fuzzy
 msgid "CACHE_TIME_MEMORY"
@@ -1082,6 +1082,7 @@ msgstr "[center]游戏还未结束， 您可以通过转变到物种 {0}，种�
 msgid "CONTINUE_THRIVING"
 msgstr "继续游戏"
 
+#, fuzzy
 msgid "CONTINUE_TO_PROTOTYPES"
 msgstr ""
 "你已经达到了Thrive的 \"完整 \"部分的终点。\n"
@@ -2017,10 +2018,34 @@ msgstr "逃脱被吞噬的命运"
 msgid "ESTUARY"
 msgstr "河口"
 
+#, fuzzy
 msgid "EVENT_ERUPTION_TOOLTIP"
 msgstr ""
 "地区事件：喷发\n"
 "产生额外的硫化氢与二氧化碳"
+
+msgid "EVENT_METEOR_GLUCOSE"
+msgstr ""
+
+#, fuzzy
+msgid "EVENT_METEOR_IRON"
+msgstr "{0}： +{1} ATP"
+
+#, fuzzy
+msgid "EVENT_METEOR_PHOSPHATES"
+msgstr "生成磷酸盐"
+
+#, fuzzy
+msgid "EVENT_METEOR_PLAIN"
+msgstr ""
+"地区事件：喷发\n"
+"产生额外的硫化氢与二氧化碳"
+
+msgid "EVENT_METEOR_RADIOACTIVE"
+msgstr ""
+
+msgid "EVENT_METEOR_SULFUR"
+msgstr ""
 
 msgid "EVOLUTIONARY_TREE"
 msgstr "进化树"
@@ -2382,7 +2407,7 @@ msgid "GLES3"
 msgstr "GLES3"
 
 msgid "GLOBAL_GLACIATION_END_EVENT_LOG"
-msgstr ""
+msgstr "全球冰川活动已在所有地表斑块结束"
 
 #, fuzzy
 msgid "GLOBAL_GLACIATION_EVENT"
@@ -2393,13 +2418,13 @@ msgid "GLOBAL_GLACIATION_EVENT_TOOLTIP"
 msgstr "进入启蒙阶段。一旦你有足够的脑力就可以使用（需要带轴突的组织）。"
 
 msgid "GLOBAL_GLACIATION_EVENT_WARNING_LOG_PLURAL"
-msgstr ""
+msgstr "全球冰川融化事件将在{0}代触发"
 
 msgid "GLOBAL_GLACIATION_EVENT_WARNING_LOG_SINGULAR"
-msgstr ""
+msgstr "全球冰川融化事件将在{0}代触发"
 
 msgid "GLOBAL_GLACIATION_START_EVENT_LOG"
-msgstr ""
+msgstr "全球冰川活动已在所有地表斑块上开始"
 
 msgid "GLOBAL_INITIAL_LETTER"
 msgstr "G"
@@ -2529,6 +2554,18 @@ msgid "HYDROGENASE_DESCRIPTION"
 msgstr "氢化酶使用氢气来分解[thrive:compound type=\\\"glucose\\\"][/thrive:compound]获取能量。相比代谢体，它们在[thrive:compound type=\\\"oxygen\\\"][/thrive:compound]浓度较低时更加高效。许多生活在缺少氧气的环境中的生物都以此为主要的能量来源。"
 
 msgid "HYDROGENASE_PROCESSES_DESCRIPTION"
+msgstr "将[thrive:compound type=\\\"glucose\\\"][/thrive:compound]转换成[thrive:compound type=\\\"atp\\\"][/thrive:compound]。"
+
+#, fuzzy
+msgid "HYDROGENOSOME"
+msgstr "氢化酶"
+
+#, fuzzy
+msgid "HYDROGENOSOME_DESCRIPTION"
+msgstr "氢化酶使用氢气来分解[thrive:compound type=\\\"glucose\\\"][/thrive:compound]获取能量。相比代谢体，它们在[thrive:compound type=\\\"oxygen\\\"][/thrive:compound]浓度较低时更加高效。许多生活在缺少氧气的环境中的生物都以此为主要的能量来源。"
+
+#, fuzzy
+msgid "HYDROGENOSOME_PROCESSES_DESCRIPTION"
 msgstr "将[thrive:compound type=\\\"glucose\\\"][/thrive:compound]转换成[thrive:compound type=\\\"atp\\\"][/thrive:compound]。"
 
 msgid "HYDROGEN_SULFIDE"
@@ -3408,6 +3445,15 @@ msgstr ""
 "游戏无法自动检测是否启用了超线程。\n"
 "这个选项会影响默认线程数，因为超线程的速度不如真正的CPU内核快。"
 
+msgid "METEOR_IMPACT_EVENT"
+msgstr ""
+
+msgid "METEOR_STRIKE_START_EVENT_LOG_PLURAL"
+msgstr ""
+
+msgid "METEOR_STRIKE_START_EVENT_LOG_SINGULAR"
+msgstr ""
+
 msgid "METRICS"
 msgstr "性能参数"
 
@@ -3497,6 +3543,10 @@ msgstr "微生物计数："
 
 msgid "MICROBE_BENCHMARK"
 msgstr "微生物编辑器"
+
+#, fuzzy
+msgid "MICROBE_CAMERA_TILT_EFFECT"
+msgstr "  {0}：{1}的物种具有该细胞器，平均数量为{2}"
 
 msgid "MICROBE_EDITOR"
 msgstr "微生物编辑器"
@@ -3629,6 +3679,7 @@ msgstr ""
 msgid "MICROBE_STAGE"
 msgstr "微生物阶段"
 
+#, fuzzy
 msgid "MICROBE_STAGE_BECOME_MULTICELLULAR_TEXT"
 msgstr ""
 "你现在已经有能力向[b]多细胞生物[/b]进化，这会是进化之旅的下一步。\n"
@@ -4547,9 +4598,6 @@ msgstr "向右平移"
 
 msgid "PAN_CAMERA_UP"
 msgstr "向上平移"
-
-msgid "PASSIVE_REPRODUCTION_PROGRESS_EXPLANATION"
-msgstr "（从周围的环境中被动获得的用于繁殖的化合物）"
 
 msgid "PAST_DEVELOPERS"
 msgstr "过去的开发人员"
@@ -6184,6 +6232,7 @@ msgstr ""
 "\n"
 "如果你的[thrive:compound type=\"atp\"][/thrive:compound]生产为负，务必增加[thrive:compound type=\"atp\"][/thrive:compound]生产或添加[b]储存[/b][thrive:icon]StorageIcon[/thrive:icon]来允许爆发式移动。"
 
+#, fuzzy
 msgid "TUTORIAL_MICROBE_EDITOR_AUTO-EVO_PREDICTION"
 msgstr ""
 "这个面板显示对你未来种群数量的预测。[b]auto-evo[/b]的种群数量模拟提供了这些数字。\n"
@@ -6241,6 +6290,7 @@ msgstr ""
 "\n"
 "祝你好运！"
 
+#, fuzzy
 msgid "TUTORIAL_MICROBE_EDITOR_FLAGELLUM"
 msgstr ""
 "[b]鞭毛[/b]把你的微生物推向它被放置的相反方向。\n"
@@ -7247,6 +7297,10 @@ msgstr ""
 msgid "WIKI_COMPOUND_SYSTEM_DEVELOPMENT_OVERVIEW"
 msgstr ""
 
+#, fuzzy
+msgid "WIKI_CREATURE_EDITOR_COMMA_TECH_EDITOR"
+msgstr "微生物编辑器"
+
 msgid "WIKI_CYTOPLASM_EFFECTS"
 msgstr "任何其他细胞器在取代[b]细胞质[/b]时不会消耗额外的变异点数（仅消耗细胞器本身所需要的变异点数）。"
 
@@ -7613,6 +7667,54 @@ msgstr ""
 "由于[b]厌氧固氮[/b]消耗[thrive:compound type=\"atp\"][/thrive:compound]，您应该在将此细胞器添加到您的细胞之前检查是否有多余的[thrive: compound type=\"atp\"][/thrive:compound] 可用。 [b]固氮酶[/b]进行的少量[b]糖酵解[/b]不足以抵销其自身的渗透调节成本。"
 
 msgid "WIKI_HYDROGENASE_UPGRADES"
+msgstr "无升级。"
+
+#, fuzzy
+msgid "WIKI_HYDROGENOSOME_EFFECTS"
+msgstr "无效果。"
+
+#, fuzzy
+msgid "WIKI_HYDROGENOSOME_INTRO"
+msgstr ""
+"进行[b]厌氧固氮[/b]，消耗气态[thrive:compound type=\"nitrogen\"][/thrive:compound] 和[thrive:compound type=\"atp\"][/thrive:compound] 生产[thrive :compound type=\"ammonia\"][/thrive:compound]，产生细胞繁殖生长所需的成分之一。 效率低于真核版本的[b][color=#3796e1][url=thriveopedia:nitrogenfixingplastid]固氮质体[/url][/color][/b]。\n"
+"\n"
+"也会进行一些[b]糖酵解[/b]，消耗[thrive:compound type=\"glucose\"][/thrive:compound] 生产[thrive:compound type=\"atp\"][/thrive:compound]。"
+
+#, fuzzy
+msgid "WIKI_HYDROGENOSOME_MODIFICATIONS"
+msgstr "无修改。"
+
+#, fuzzy
+msgid "WIKI_HYDROGENOSOME_PROCESSES"
+msgstr ""
+"[b]厌氧固氮[/b]：[thrive:compound type=\"atp\"][/thrive:compound] + [thrive:compound type=\"nitrogen\"][/thrive:compound] → [thrive:compound type =\"ammonia\"][/thrive:compound]\n"
+"\n"
+"透过消耗能量将大气中的[thrive:compound type=\"nitrogen\"][/thrive:compound] 转化为[thrive:compound type=\"ammonia\"][/thrive:compound]。 速率与环境中[thrive:compound type=\"nitrogen\"][/thrive:compound] 的量成正比。 效率低于[b][color=#3796e1][url=thriveopedia:nitrogenfixingplastid]固氮质体[/url][/color][/b]中的同种代谢。\n"
+"\n"
+"[b]糖酵解[/b]\n"
+"\n"
+"与许多原核细胞器一样，[b]固氮酶[/b]周围的[b][color=#3796e1][url=thriveopedia:cytoplasm]细胞质[/url][/color][/b]会进行效率较低的[b]糖酵解[/b]，将[thrive:compound type=\"glucose\"][/thrive:compound] 转化为[thrive:compound type=\"atp\"][/thrive:compound]。"
+
+#, fuzzy
+msgid "WIKI_HYDROGENOSOME_REQUIREMENTS"
+msgstr ""
+"如果在游戏设定中启用了细胞器升级，则[i]玩家细胞[/i]必须满足以下条件：\n"
+"\n"
+"[indent]—   位于少于 [b]13[/b] [thrive:compound type=\"ammonia\"][/thrive:compound] 的区域中。 [/indent]"
+
+#, fuzzy
+msgid "WIKI_HYDROGENOSOME_SCIENTIFIC_BACKGROUND"
+msgstr "待定"
+
+#, fuzzy
+msgid "WIKI_HYDROGENOSOME_STRATEGY"
+msgstr ""
+"[b]固氮酶[/b]生产的[thrive:compound type=\"ammonia\"][/thrive:compound] 有助于储存用于繁殖的资源。 因此，具有[b]固氮酶[/b]的细胞只需要从环境中找到[thrive:compound type=\"phosphates\"][/thrive:compound]，就能以比基本速率更快的速率繁殖（如果在当前游戏选项中停用了被动繁殖进度，则基本速率为零）。\n"
+"\n"
+"由于[b]厌氧固氮[/b]消耗[thrive:compound type=\"atp\"][/thrive:compound]，您应该在将此细胞器添加到您的细胞之前检查是否有多余的[thrive: compound type=\"atp\"][/thrive:compound] 可用。 [b]固氮酶[/b]进行的少量[b]糖酵解[/b]不足以抵销其自身的渗透调节成本。"
+
+#, fuzzy
+msgid "WIKI_HYDROGENOSOME_UPGRADES"
 msgstr "无升级。"
 
 #, fuzzy
@@ -8249,6 +8351,10 @@ msgid "WIKI_PAGE_HYDROGENASE"
 msgstr "氢化酶"
 
 #, fuzzy
+msgid "WIKI_PAGE_HYDROGENOSOME"
+msgstr "氢化酶"
+
+#, fuzzy
 msgid "WIKI_PAGE_INDUSTRIAL_STAGE"
 msgstr "工业阶段"
 
@@ -8636,9 +8742,14 @@ msgstr ""
 msgid "WIKI_TBA"
 msgstr "Wiki"
 
+msgid "WIKI_TECH_EDITOR_COMMA_NATION_EDITOR_COMMA_SQUAD_EDITOR"
+msgstr ""
+
+#, fuzzy
 msgid "WIKI_THERMOPLAST_EFFECTS"
 msgstr "无效果。"
 
+#, fuzzy
 msgid "WIKI_THERMOPLAST_INTRO"
 msgstr ""
 "利用环境中的[thrive:compound type=\"temperature\"][/thrive:compound] 梯度以[thrive:compound type=\"atp\"][/thrive:compound] 的形式提取能量。 效率高于原核版本的[b][color=#3796e1][url=thriveopedia:thermosynthase]热合成酶[/url][/color][/b]。\n"
@@ -8648,12 +8759,14 @@ msgstr ""
 msgid "WIKI_THERMOPLAST_MODIFICATIONS"
 msgstr "无修改。"
 
+#, fuzzy
 msgid "WIKI_THERMOPLAST_PROCESSES"
 msgstr ""
 "[b]热合成[/b]：[thrive:compound type=\"temperature\"][/thrive:compound] → [thrive:compound type=\"atp\"][/thrive:compound]\n"
 "\n"
 "利用周围环境[thrive:compound type=\"temperature\"][/thrive:compound] 被动生成能量。 效率高于[b][color=#3796e1][url=thriveopedia:thermosynthase]热合成酶[/url][/color][/b]中的[b]细菌热合成[/b]。"
 
+#, fuzzy
 msgid "WIKI_THERMOPLAST_REQUIREMENTS"
 msgstr ""
 "[b]热能体[/b]仅出现在关闭仅限已知生命形式(LAWK)选项的游戏中。\n"
@@ -8662,9 +8775,11 @@ msgstr ""
 "\n"
 "[indent]—   至少连续[b]5[/b] 代中包含[b]3[/b] 个[b][color=#3796e1][url=thriveopedia:thermosynthase]热合成酶[/url][ /color][/b]。 [/indent]"
 
+#, fuzzy
 msgid "WIKI_THERMOPLAST_SCIENTIFIC_BACKGROUND"
 msgstr "待定"
 
+#, fuzzy
 msgid "WIKI_THERMOPLAST_STRATEGY"
 msgstr ""
 "由于[b]热合成[/b]除了环境[thrive:compound type=\"temperature\"][/thrive:compound] 以外不需要任何输入，因此它本质上是免费能量。 此外，[b]热能体[/b]比其前身[b][color=#3796e1][url=thriveopedia:thermosynthase]热合成酶[/url][/color][/b]更高效，这使得 它们可以说是游戏中最简单的能量产生方法，前提是您愿意留在海底热泉等炎热地区。\n"
@@ -8674,9 +8789,11 @@ msgstr ""
 msgid "WIKI_THERMOPLAST_UPGRADES"
 msgstr "无升级。"
 
+#, fuzzy
 msgid "WIKI_THERMOSYNTHASE_EFFECTS"
 msgstr "无效果"
 
+#, fuzzy
 msgid "WIKI_THERMOSYNTHASE_INTRO"
 msgstr ""
 "利用环境中的[thrive:compound type=\"temperature\"][/thrive:compound] 梯度以[thrive:compound type=\"atp\"][/thrive:compound] 的形式提取能量。 效率低于真核版本的[b][color=#3796e1][url=thriveopedia:thermoplast]热能体[/url][/color][/b]。\n"
@@ -8686,12 +8803,14 @@ msgstr ""
 msgid "WIKI_THERMOSYNTHASE_MODIFICATIONS"
 msgstr "无升级。"
 
+#, fuzzy
 msgid "WIKI_THERMOSYNTHASE_PROCESSES"
 msgstr ""
 "[b]细菌热合成[/b]：[thrive:compound type=\"temperature\"][/thrive:compound] → [thrive:compound type=\"atp\"][/thrive:compound]\n"
 "\n"
 "利用周围环境[thrive:compound type=\"temperature\"][/thrive:compound] 被动生成能量。 效率低于[b][color=#3796e1][url=thriveopedia:thermoplast]热能体[/url][/color][/b]中的[b]热合成[/b]。"
 
+#, fuzzy
 msgid "WIKI_THERMOSYNTHASE_REQUIREMENTS"
 msgstr ""
 "[b]热能体[/b]仅出现在关闭仅限已知生命形式选项的游戏中。\n"
@@ -8700,9 +8819,11 @@ msgstr ""
 "\n"
 "[indent]—   位于至少 [b]+50 °C[/b] [thrive:compound type=\"temperature\"][/thrive:compound] 的区域。 [/indent]"
 
+#, fuzzy
 msgid "WIKI_THERMOSYNTHASE_SCIENTIFIC_BACKGROUND"
 msgstr "待定"
 
+#, fuzzy
 msgid "WIKI_THERMOSYNTHASE_STRATEGY"
 msgstr ""
 "在目前游戏中，[b]热合成酶[/b]本质上是免费能量。 它没有真正的缺点，只要您满足于留在炎热区域中即可。 [b]细菌热合成[/b]在大约[b]+23 °C[/b] [thrive:compound type=\"temperature\"][/thrive:compound] 的区域中保持平衡，并且在海底热泉中更强大，其温度为[b]+98 °C[/b] [thrive:compound type=\"temperature\"][/thrive:compound]。\n"
@@ -8916,7 +9037,7 @@ msgid "WORLD_SIZE_MEDIUM"
 msgstr "相对世界移动"
 
 msgid "WORLD_SIZE_SMALL"
-msgstr ""
+msgstr "小"
 
 #, fuzzy
 msgid "WORLD_SIZE_TOOLTIP"
@@ -8960,6 +9081,9 @@ msgstr "放大"
 
 msgid "ZOOM_OUT"
 msgstr "缩小"
+
+#~ msgid "PASSIVE_REPRODUCTION_PROGRESS_EXPLANATION"
+#~ msgstr "（从周围的环境中被动获得的用于繁殖的化合物）"
 
 #~ msgid "TO_BE_IMPLEMENTED"
 #~ msgstr "仍在开发中。"
@@ -9163,10 +9287,6 @@ msgstr "缩小"
 #, fuzzy
 #~ msgid "ERUPTION_IN"
 #~ msgstr "出芽"
-
-#, fuzzy
-#~ msgid "EVENT_TOOLTIP_ERUPTION"
-#~ msgstr "{0}： +{1} ATP"
 
 #~ msgid "THE_AMOUNT_OF_GLUCOSE_HAS_BEEN_REDUCED"
 #~ msgstr "环境中的葡萄糖已减少到原先量的{0}。"

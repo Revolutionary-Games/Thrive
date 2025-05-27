@@ -7,8 +7,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2025-04-11 10:12+0300\n"
-"PO-Revision-Date: 2025-04-04 10:42+0000\n"
+"POT-Creation-Date: 2025-05-26 12:24+0300\n"
+"PO-Revision-Date: 2025-05-25 15:00+0000\n"
 "Last-Translator: Anonymous <noreply@weblate.org>\n"
 "Language-Team: Bulgarian <https://translate.revolutionarygamesstudio.com/projects/thrive/thrive-game/bg/>\n"
 "Language: bg\n"
@@ -16,7 +16,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=n != 1;\n"
-"X-Generator: Weblate 5.7.2\n"
+"X-Generator: Weblate 5.11.4\n"
 "Generated-By: Babel 2.8.0\n"
 
 msgid "2D_MOVEMENT_TYPE_SELECTION"
@@ -1112,6 +1112,7 @@ msgstr "Избиране на създания"
 msgid "CONTINUE_THRIVING"
 msgstr "Продължавайте да процъфтявате"
 
+#, fuzzy
 msgid "CONTINUE_TO_PROTOTYPES"
 msgstr ""
 "Достигнахте края на „завършената“ част на „Thrive“.\n"
@@ -2131,6 +2132,27 @@ msgstr "Естуар"
 msgid "EVENT_ERUPTION_TOOLTIP"
 msgstr "Това е кодовото наименование на текущата версия на „Thrive“"
 
+msgid "EVENT_METEOR_GLUCOSE"
+msgstr ""
+
+#, fuzzy
+msgid "EVENT_METEOR_IRON"
+msgstr "{0}: +{1} АТФ"
+
+#, fuzzy
+msgid "EVENT_METEOR_PHOSPHATES"
+msgstr "Създаване на фосфат"
+
+#, fuzzy
+msgid "EVENT_METEOR_PLAIN"
+msgstr "Това е кодовото наименование на текущата версия на „Thrive“"
+
+msgid "EVENT_METEOR_RADIOACTIVE"
+msgstr ""
+
+msgid "EVENT_METEOR_SULFUR"
+msgstr ""
+
 msgid "EVOLUTIONARY_TREE"
 msgstr "Еволюционно дърво"
 
@@ -2663,6 +2685,18 @@ msgstr "Нитрогеназата е протеин, който използв�
 
 #, fuzzy
 msgid "HYDROGENASE_PROCESSES_DESCRIPTION"
+msgstr "Превръща [thrive:compound type=\"atp\"]АТФ[/thrive:compound] в [thrive:compound type=\"ammonia\"]амоняк[/thrive:compound]. Количеството зависи от концентрацията на [thrive:compound type=\"nitrogen\"]азот[/thrive:compound] в околната среда."
+
+#, fuzzy
+msgid "HYDROGENOSOME"
+msgstr "Сероводород"
+
+#, fuzzy
+msgid "HYDROGENOSOME_DESCRIPTION"
+msgstr "Нитрогеназата е протеин, който използва газообразен [thrive:compound type=\"nitrogen\"]въглероден диоксид[/thrive:compound] и клетъчна енергия под формата на [thrive:compound type=\"atp\"]АТФ[/thrive:compound] за да произвежда [thrive:compound type=\"ammonia\"]амоняк[/thrive:compound], който е ключов за растежа на клетките. Този процес се нарича [b]анаеробна азотна фиксация[/b]. Понеже нитрогеназата е скачена с цитоплазма, тя извършва известна [b]гликолиза[/b]."
+
+#, fuzzy
+msgid "HYDROGENOSOME_PROCESSES_DESCRIPTION"
 msgstr "Превръща [thrive:compound type=\"atp\"]АТФ[/thrive:compound] в [thrive:compound type=\"ammonia\"]амоняк[/thrive:compound]. Количеството зависи от концентрацията на [thrive:compound type=\"nitrogen\"]азот[/thrive:compound] в околната среда."
 
 msgid "HYDROGEN_SULFIDE"
@@ -3574,6 +3608,15 @@ msgstr ""
 "Проверката за хипернишковата технология е неуспешна.\n"
 "Броят на нишките по подразбиране зависи от това, понеже хипернишките са по-бавни от физическите ядра на процесора."
 
+msgid "METEOR_IMPACT_EVENT"
+msgstr ""
+
+msgid "METEOR_STRIKE_START_EVENT_LOG_PLURAL"
+msgstr ""
+
+msgid "METEOR_STRIKE_START_EVENT_LOG_SINGULAR"
+msgstr ""
+
 msgid "METRICS"
 msgstr "Показатели за производителност"
 
@@ -3676,6 +3719,10 @@ msgstr "Микроб"
 #, fuzzy
 msgid "MICROBE_BENCHMARK"
 msgstr "Микробен редактор"
+
+#, fuzzy
+msgid "MICROBE_CAMERA_TILT_EFFECT"
+msgstr "  {0}: Среща се в {1} от създанията, средно по {2}"
 
 msgid "MICROBE_EDITOR"
 msgstr "Микробен редактор"
@@ -4765,9 +4812,6 @@ msgstr "Преместване надясно"
 
 msgid "PAN_CAMERA_UP"
 msgstr "Преместване нагоре"
-
-msgid "PASSIVE_REPRODUCTION_PROGRESS_EXPLANATION"
-msgstr "(създанията усвояват хранителните вещества от околната среда)"
 
 msgid "PAST_DEVELOPERS"
 msgstr "Бивши разработчици"
@@ -6459,6 +6503,7 @@ msgstr ""
 "\n"
 "Изберете зона за да продължите."
 
+#, fuzzy
 msgid "TUTORIAL_MICROBE_EDITOR_AUTO-EVO_PREDICTION"
 msgstr ""
 "Това е прогнозата за бъдещата популация на Вашите създания. Тези стойности са изчислени на база симулацията от [b]автоматичната еволюция[/b].\n"
@@ -7320,6 +7365,7 @@ msgstr "Подлежи на уточняване"
 msgid "WIKI_BIOLUMINESCENT_VACUOLE_REQUIREMENTS"
 msgstr "Подлежи на уточняване"
 
+#, fuzzy
 msgid "WIKI_BIOLUMINESCENT_VACUOLE_SCIENTIFIC_BACKGROUND"
 msgstr "Подлежи на уточняване"
 
@@ -7363,12 +7409,15 @@ msgstr "Подлежи на уточняване"
 msgid "WIKI_CHEMOPLAST_UPGRADES"
 msgstr "Подлежи на уточняване"
 
+#, fuzzy
 msgid "WIKI_CHEMORECEPTOR_EFFECTS"
 msgstr "Подлежи на уточняване"
 
+#, fuzzy
 msgid "WIKI_CHEMORECEPTOR_INTRO"
 msgstr "Подлежи на уточняване"
 
+#, fuzzy
 msgid "WIKI_CHEMORECEPTOR_MODIFICATIONS"
 msgstr "Подлежи на уточняване"
 
@@ -7381,6 +7430,7 @@ msgstr "Подлежи на уточняване"
 msgid "WIKI_CHEMORECEPTOR_SCIENTIFIC_BACKGROUND"
 msgstr "Подлежи на уточняване"
 
+#, fuzzy
 msgid "WIKI_CHEMORECEPTOR_STRATEGY"
 msgstr "Подлежи на уточняване"
 
@@ -7515,6 +7565,10 @@ msgid "WIKI_COMPOUND_SYSTEM_DEVELOPMENT_OVERVIEW"
 msgstr ""
 
 #, fuzzy
+msgid "WIKI_CREATURE_EDITOR_COMMA_TECH_EDITOR"
+msgstr "Микробен редактор"
+
+#, fuzzy
 msgid "WIKI_CYTOPLASM_EFFECTS"
 msgstr "Това е вътрешността на клетката. Цитоплазмата е комбинация от разтворени във вода йони, протеини и други вещества. Една от функциите, които изпълнява е [b]гликолизата[/b] — превръщането на [thrive:compound type=\"glucose\"]глюкоза[/thrive:compound] в [thrive:compound type=\"atp\"]АТФ[/thrive:compound]. Клетките, които нямат органели, разчитат на цитоплазмата за да произвеждат енергия. Също така, цитоплазмата служи за съхранение на молекули в клетката за да може тя да увеличава размера си."
 
@@ -7533,9 +7587,11 @@ msgstr "Превръща [thrive:compound type=\"glucose\"]глюкозата[/t
 msgid "WIKI_CYTOPLASM_REQUIREMENTS"
 msgstr ""
 
+#, fuzzy
 msgid "WIKI_CYTOPLASM_SCIENTIFIC_BACKGROUND"
 msgstr "Подлежи на уточняване"
 
+#, fuzzy
 msgid "WIKI_CYTOPLASM_STRATEGY"
 msgstr "Подлежи на уточняване"
 
@@ -7840,6 +7896,38 @@ msgstr "Подлежи на уточняване"
 
 #, fuzzy
 msgid "WIKI_HYDROGENASE_UPGRADES"
+msgstr "Подлежи на уточняване"
+
+#, fuzzy
+msgid "WIKI_HYDROGENOSOME_EFFECTS"
+msgstr "Подлежи на уточняване"
+
+#, fuzzy
+msgid "WIKI_HYDROGENOSOME_INTRO"
+msgstr "Подлежи на уточняване"
+
+#, fuzzy
+msgid "WIKI_HYDROGENOSOME_MODIFICATIONS"
+msgstr "Подлежи на уточняване"
+
+#, fuzzy
+msgid "WIKI_HYDROGENOSOME_PROCESSES"
+msgstr "Подлежи на уточняване"
+
+#, fuzzy
+msgid "WIKI_HYDROGENOSOME_REQUIREMENTS"
+msgstr "Подлежи на уточняване"
+
+#, fuzzy
+msgid "WIKI_HYDROGENOSOME_SCIENTIFIC_BACKGROUND"
+msgstr "Подлежи на уточняване"
+
+#, fuzzy
+msgid "WIKI_HYDROGENOSOME_STRATEGY"
+msgstr "Подлежи на уточняване"
+
+#, fuzzy
+msgid "WIKI_HYDROGENOSOME_UPGRADES"
 msgstr "Подлежи на уточняване"
 
 #, fuzzy
@@ -8267,6 +8355,7 @@ msgstr "Аксон"
 msgid "WIKI_OXYTOXISOME_EFFECTS"
 msgstr "Подлежи на уточняване"
 
+#, fuzzy
 msgid "WIKI_OXYTOXISOME_INTRO"
 msgstr "Подлежи на уточняване"
 
@@ -8277,6 +8366,7 @@ msgstr "Подлежи на уточняване"
 msgid "WIKI_OXYTOXISOME_PROCESSES"
 msgstr "Подлежи на уточняване"
 
+#, fuzzy
 msgid "WIKI_OXYTOXISOME_REQUIREMENTS"
 msgstr "Подлежи на уточняване"
 
@@ -8373,6 +8463,10 @@ msgstr "Митохондрия"
 
 #, fuzzy
 msgid "WIKI_PAGE_HYDROGENASE"
+msgstr "Нитрогеназа"
+
+#, fuzzy
+msgid "WIKI_PAGE_HYDROGENOSOME"
 msgstr "Нитрогеназа"
 
 #, fuzzy
@@ -8537,21 +8631,26 @@ msgstr "Аеробно дишане"
 msgid "WIKI_PROTOPLASM_EFFECTS"
 msgstr "Подлежи на уточняване"
 
+#, fuzzy
 msgid "WIKI_PROTOPLASM_INTRO"
 msgstr "Подлежи на уточняване"
 
 msgid "WIKI_PROTOPLASM_MODIFICATIONS"
 msgstr "Подлежи на уточняване"
 
+#, fuzzy
 msgid "WIKI_PROTOPLASM_PROCESSES"
 msgstr "Подлежи на уточняване"
 
+#, fuzzy
 msgid "WIKI_PROTOPLASM_REQUIREMENTS"
 msgstr "Подлежи на уточняване"
 
+#, fuzzy
 msgid "WIKI_PROTOPLASM_SCIENTIFIC_BACKGROUND"
 msgstr "Подлежи на уточняване"
 
+#, fuzzy
 msgid "WIKI_PROTOPLASM_STRATEGY"
 msgstr "Подлежи на уточняване"
 
@@ -8727,6 +8826,9 @@ msgstr "Аксон"
 msgid "WIKI_TBA"
 msgstr "нашата Уикипедия"
 
+msgid "WIKI_TECH_EDITOR_COMMA_NATION_EDITOR_COMMA_SQUAD_EDITOR"
+msgstr ""
+
 #, fuzzy
 msgid "WIKI_THERMOPLAST_EFFECTS"
 msgstr "Подлежи на уточняване"
@@ -8747,6 +8849,7 @@ msgstr "Подлежи на уточняване"
 msgid "WIKI_THERMOPLAST_REQUIREMENTS"
 msgstr "Подлежи на уточняване"
 
+#, fuzzy
 msgid "WIKI_THERMOPLAST_SCIENTIFIC_BACKGROUND"
 msgstr "Подлежи на уточняване"
 
@@ -8778,6 +8881,7 @@ msgstr "Подлежи на уточняване"
 msgid "WIKI_THERMOSYNTHASE_REQUIREMENTS"
 msgstr "Подлежи на уточняване"
 
+#, fuzzy
 msgid "WIKI_THERMOSYNTHASE_SCIENTIFIC_BACKGROUND"
 msgstr "Подлежи на уточняване"
 
@@ -8866,15 +8970,18 @@ msgstr "Подлежи на уточняване"
 msgid "WIKI_VACUOLE_EFFECTS"
 msgstr "Подлежи на уточняване"
 
+#, fuzzy
 msgid "WIKI_VACUOLE_INTRO"
 msgstr "Подлежи на уточняване"
 
+#, fuzzy
 msgid "WIKI_VACUOLE_MODIFICATIONS"
 msgstr "Подлежи на уточняване"
 
 msgid "WIKI_VACUOLE_PROCESSES"
 msgstr "Подлежи на уточняване"
 
+#, fuzzy
 msgid "WIKI_VACUOLE_REQUIREMENTS"
 msgstr "Подлежи на уточняване"
 
@@ -9017,6 +9124,9 @@ msgstr "Приближаване"
 
 msgid "ZOOM_OUT"
 msgstr "Отдалечаване"
+
+#~ msgid "PASSIVE_REPRODUCTION_PROGRESS_EXPLANATION"
+#~ msgstr "(създанията усвояват хранителните вещества от околната среда)"
 
 #~ msgid "TO_BE_IMPLEMENTED"
 #~ msgstr "В процес на разработка."
@@ -9218,10 +9328,6 @@ msgstr "Отдалечаване"
 #, fuzzy
 #~ msgid "ERUPTION_IN"
 #~ msgstr "Пъпкуване"
-
-#, fuzzy
-#~ msgid "EVENT_TOOLTIP_ERUPTION"
-#~ msgstr "{0}: +{1} АТФ"
 
 #~ msgid "THE_AMOUNT_OF_GLUCOSE_HAS_BEEN_REDUCED"
 #~ msgstr "Глюкозата се понижи на {0} от предишното си състояние."

@@ -166,7 +166,15 @@ public partial class ModLoader : Node
 
         modInterface = new ModInterface(GetTree());
 
-        LoadMods();
+        if (LaunchOptions.DisableAllMods)
+        {
+            GD.Print("Skipping initial mod loading due to launch options");
+        }
+        else
+        {
+            LoadMods();
+        }
+
         initialLoad = false;
     }
 
@@ -176,11 +184,14 @@ public partial class ModLoader : Node
 
         if (firstExecute)
         {
-            GD.Print("Loading mod Nodes into the scene tree");
-
-            foreach (var tuple in loadedModAssemblies)
+            if (loadedModAssemblies.Count > 0)
             {
-                RunCodeModFirstRunCallbacks(tuple.Value);
+                GD.Print("Loading mod Nodes into the scene tree");
+
+                foreach (var tuple in loadedModAssemblies)
+                {
+                    RunCodeModFirstRunCallbacks(tuple.Value);
+                }
             }
 
             firstExecute = false;

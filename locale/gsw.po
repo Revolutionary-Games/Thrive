@@ -7,9 +7,9 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Thrive VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2025-04-11 10:12+0300\n"
-"PO-Revision-Date: 2025-04-04 10:42+0000\n"
-"Last-Translator: Anonymous <noreply@weblate.org>\n"
+"POT-Creation-Date: 2025-05-26 12:24+0300\n"
+"PO-Revision-Date: 2025-05-12 22:52+0000\n"
+"Last-Translator: Argakyan <andrinmueller@hotmail.ch>\n"
 "Language-Team: Alemannic <https://translate.revolutionarygamesstudio.com/projects/thrive/thrive-game/gsw/>\n"
 "Language: gsw\n"
 "MIME-Version: 1.0\n"
@@ -511,13 +511,11 @@ msgstr "Achse verbinde"
 msgid "BIOLUMINESCENT_VACUOLE"
 msgstr "Biolumineszenz-Vakuole"
 
-#, fuzzy
 msgid "BIOLUMINESCENT_VACUOLE_DESCRIPTION"
-msgstr "Biolumineszenz-Vakuole"
+msgstr "E Vakuole wo Reaktionsorte besitzt wo Luciferase konsumiert wird um sichtbares Liecht frei z'lah. E Hypothese seit uus, dass Biolumineszenz uursprünglich als Abwehrmechianismus gege [thrive:compound type=\"oxygen\"][/thrive:compound] hervorcho isch. Als die Grossi Suurstoffkatastrophe passiert isch hend Mikrobe wo anaerobe Verhältnis aapasst sind vieli neui Problem gha will Suurstoff sehr höchi Reaktivität hett was grosse Schäde verursache cha. Die Vakuole chammer zuefüege um Suurstoffresistänz z'erhöhe und es paar schöni Liechter z'becho. Ide Zuekunft wird's villich sogar e Form vode Kommunikation."
 
-#, fuzzy
 msgid "BIOLUMINESCENT_VACUOLE_PROCESSES_DESCRIPTION"
-msgstr "Druck [thrive:input]g_toggle_binding[/thrive:input], um de Bindigsmodus um z'schalte. Im Bindigsmodus chasch du anderi Zelle vo dinere Spezies mit dinere Kolonie verbinde, idem du dich i sii innebewegsch. Um e Kolonie z'verlah, druck [thrive:input]g_unbind_all[/thrive:input]."
+msgstr "Benutzt [thrive:compound type=\"atp\"][/thrive:compound] um [thrive:compound type=\"oxygen\"][/thrive:compound] i Liecht um z'wandle. Hett kei anderi Gameplay Uuswürckige bis jetzt ussert höheri Suurstoffresistänz."
 
 msgid "BIOME_LABEL"
 msgstr "Biom: {0}"
@@ -1963,376 +1961,424 @@ msgid "ERROR_CREATING_FOLDER"
 msgstr "Fehler bim erstelle vom Ordner für en Mod"
 
 msgid "ERROR_CREATING_INFO_FILE"
-msgstr ""
+msgstr "Fehler bim Erstelle vode Modinformationsdatei"
 
 msgid "ERROR_FAILED_TO_SAVE_NEW_SETTINGS"
-msgstr ""
+msgstr "Fehler: S'spiichere vo neue Iistellige ide Konfigurationsdatei isch fehlgschlagge."
 
 msgid "ERROR_FETCHING_EXPLANATION"
-msgstr ""
+msgstr "Nachrichteabruef fehlgschlagge wege Fehler: {0}"
 
 msgid "ERROR_FETCHING_NEWS"
-msgstr ""
+msgstr "Fehler bim Nachrichteabruef"
 
 msgid "ERROR_LOADING"
-msgstr ""
+msgstr "Fehler bim Ladde"
 
 msgid "ERROR_SAVING"
-msgstr ""
+msgstr "Fehler bim Spiichere"
 
 msgid "ERROR_UPLOADING_EXCEPTION"
-msgstr ""
+msgstr "En Uusnahme-Fehler isch passiert: {0}"
 
 msgid "ESCAPE"
-msgstr ""
+msgstr "Esc"
 
 msgid "ESCAPE_ENGULFING"
-msgstr ""
+msgstr "Verschlingig entgah"
 
 msgid "ESTUARY"
-msgstr ""
+msgstr "Mündig"
 
 msgid "EVENT_ERUPTION_TOOLTIP"
 msgstr ""
+"Eruptionserignis\n"
+"Erschafft zuesätzliches Schwefelwasserstoff und Kohlestoffdioxid"
+
+msgid "EVENT_METEOR_GLUCOSE"
+msgstr ""
+"Glukosehaltige Meteoriteniinschlag\n"
+"Erhöht d'Kohlestoff- & Glukosewert."
+
+msgid "EVENT_METEOR_IRON"
+msgstr ""
+"Isehaltige Meteoriteiischlag\n"
+"Erhöht d'Kohlestoff- & Isewert.\n"
+"Generiert Isechlumpe."
+
+msgid "EVENT_METEOR_PHOSPHATES"
+msgstr ""
+"Phosphathaltige Meteoriteiischlag\n"
+"Erhöht d'Kohlestoff- & Phosphatwert.\n"
+"Generiert Phosphatchlumpe."
+
+msgid "EVENT_METEOR_PLAIN"
+msgstr ""
+"Meteoriteiischlag\n"
+"Erhöht Kohlestoffdioxid Wert."
+
+msgid "EVENT_METEOR_RADIOACTIVE"
+msgstr ""
+"Radioaktive Meteoriteiischlag\n"
+"Erhöht Kohlestoffdioxid Wert.\n"
+"Generiert radioaktivi Chlumpe."
+
+msgid "EVENT_METEOR_SULFUR"
+msgstr ""
+"Schwefelhaltige Meteoriteiischlag\n"
+"Erhöht Kohlestoff- & Schwefelwert.\n"
+"Generiert Schwefelchlumpe."
 
 msgid "EVOLUTIONARY_TREE"
-msgstr ""
+msgstr "Evolutionsbaum"
 
 msgid "EVOLUTIONARY_TREE_BUILD_FAILED"
 msgstr ""
+"Erstellig vom Evolutionsbaum fehl g'schlagge.\n"
+"\n"
+"Bitte informier d'Entwickler und gib Logging Dateie zur Verfüegig."
 
 msgid "EXACT_VERSION_COLON"
-msgstr ""
+msgstr "Gnaui Thrive Version:"
 
 msgid "EXACT_VERSION_TOOLTIP"
-msgstr ""
+msgstr "Das isch d'exakti Version vo dere Thrive Instantz"
 
 msgid "EXCEPTION_HAPPENED_PROCESSING_SAVE"
-msgstr ""
+msgstr "Während de Verarbeitig vo g'laddene Objekte isch en Fehler passiert"
 
 msgid "EXCEPTION_HAPPENED_WHILE_LOADING"
-msgstr ""
+msgstr "Bim ladde vo Spiicherdate isch en Fehler passiert"
 
 msgid "EXCLUSIVE_FULLSCREEN"
-msgstr ""
+msgstr "Vollbild umschalte"
 
 msgid "EXISTING_BUILDINGS"
-msgstr ""
+msgstr "Gebäude"
 
 msgid "EXIT"
-msgstr ""
+msgstr "Verlah"
 
 msgid "EXIT_EDITOR"
-msgstr ""
+msgstr "Editor verlah"
 
 msgid "EXIT_TO_LAUNCHER"
-msgstr ""
+msgstr "Zum Launcher zrugg"
 
 msgid "EXPERIMENTAL_FEATURES"
-msgstr ""
+msgstr "Experimentelli Funktione"
 
 msgid "EXPERIMENTAL_FEATURES_EXPLANATION"
-msgstr ""
+msgstr "(experimentelli Spiele-Features aktiviere, wo standardmässig deaktiviert sind - mir sind interessiert a Feedback, wenn du das testisch)"
 
 msgid "EXPERIMENTAL_FEATURES_WARNING"
-msgstr ""
+msgstr "(OBACHT: Experimentelli Features sind nöd uusgreift und chönnd s'Spielerlebnis negativ beiiflusse. Empfohle nur für erfahreni Spieler. Bi Fehlerbrichte bitte aageh, dass mit aktivierte experimentelle Features gspielt worde isch.)"
 
 msgid "EXPORT_ALL_WORLDS"
-msgstr ""
+msgstr "Alli Welte exportiere"
 
 msgid "EXPORT_ALL_WORLDS_TOOLTIP"
-msgstr ""
+msgstr "Exportier d'Date vo allene Welte i CSV-Format (dur Kommas trennti Wert)"
 
 msgid "EXPORT_SUCCESS"
-msgstr ""
+msgstr "Erfolgriich exportiert"
 
 msgid "EXTERNAL"
-msgstr ""
+msgstr "Extern"
 
 msgid "EXTERNAL_EFFECTS"
-msgstr ""
+msgstr "Externi Effekt:"
 
 msgid "EXTINCTION_BOX_TEXT"
-msgstr ""
+msgstr "Gnau wie 99% vo allene Arte, wo's jemals gäh hett, isch au dini Art uus g'storbe. Anderi werdet wiiterhin dini Nische fülle und gedeihe, aber das wirsch nöd du sii. Du wirsch vergesse werde, es fehlgschlaggenes Experiment vode Evolution."
 
 msgid "EXTINCTION_CAPITAL"
-msgstr ""
+msgstr "UUSSTERBE"
 
 msgid "EXTINCT_FROM_PATCH"
-msgstr ""
+msgstr "isch im Gebiet uus g'storbe"
 
 msgid "EXTINCT_FROM_THE_PLANET"
-msgstr ""
+msgstr "isch vom Planete uus g'storbe"
 
 msgid "EXTINCT_IN_PATCH"
-msgstr ""
+msgstr "isch im Gebiet uus g'storbe"
 
 msgid "EXTINCT_SPECIES"
-msgstr ""
+msgstr "Uus g'storbeni Art"
 
 msgid "EXTRAS"
-msgstr ""
+msgstr "Extras"
 
 msgid "EXTRA_OPTIONS"
-msgstr ""
+msgstr "Zuesätzlichi Optione"
 
 msgid "FACEBOOK_TOOLTIP"
-msgstr ""
+msgstr "Bsuech oisi Facebook Siite"
 
 msgid "FAILED"
-msgstr ""
+msgstr "Fehlgschlagge"
 
 msgid "FAILED_ONE_OR_MORE_SAVE_DELETION_DESCRIPTION"
-msgstr ""
+msgstr "Fehler: Lösche vo eim oder mehrere Spiicherständ fehlgschlagge."
 
 msgid "FAILED_SAVE_DELETION"
-msgstr ""
+msgstr "Fehler: S'Spiichere vo neue Iistellige ide Konfigurationsdatei isch fehlgschlagge"
 
 msgid "FAILED_SAVE_DELETION_DESCRIPTION"
-msgstr ""
+msgstr "Spiicherstand hett mer nöd chönne lösche."
 
 msgid "FEARFUL"
-msgstr ""
+msgstr "Furchtsam"
 
 msgid "FEAR_EXPLANATION"
 msgstr ""
+"Furchtsami Mikrobe flüchtet über grösseri Entfernige\n"
+"und flüchtet allgemein eher vor Aagriifer.\n"
+"Muetigi Mikrobe löhnd sich vo Raubtier ide Nöchi nöd iischüchtere\n"
+"und werdet sich eher verteidige."
 
 msgid "FEATURE_DISABLED"
-msgstr ""
+msgstr "Deaktiviert"
 
 msgid "FEATURE_ENABLED"
-msgstr ""
+msgstr "Aktiviert"
 
 msgid "FEBRUARY"
-msgstr ""
+msgstr "Februar"
 
 msgid "FEED_ITEM_CONTENT_PARSING_FAILED"
-msgstr ""
+msgstr "Initialisierig vode Steam-Client-Bibliothek fehlgschlagge."
 
 msgid "FEED_ITEM_MISSING_CONTENT"
-msgstr ""
+msgstr "Leeres Element."
 
 msgid "FEED_ITEM_PUBLISHED_AT"
-msgstr ""
+msgstr "Veröffentlicht am {0}"
 
 msgid "FEED_ITEM_TRUNCATED_NOTICE"
-msgstr ""
+msgstr "Element isch t'lang gsi und kürzt worde. Für de Gsammtinhalt bitte s'Original lese. {0}"
 
 msgid "FERROPLAST"
-msgstr ""
+msgstr "Ferroplast"
 
 msgid "FERROPLAST_DESCRIPTION"
-msgstr ""
+msgstr "Es metallisches Chraftwerk. Es Ferroplast isch e Doppelmembranstruktur gfüllt mit Proteine und Enzyme. Es isch en Prokaryot wo assimiliert worde isch vo emene Eukaryotische Wirt. Es chann [thrive:compound type=\"iron\"][/thrive:compound] vo eim chemische Zuestand in en andere umwandle bi enere viel höchere Effizienz als mer mit Rusticyanin erreiche cha. De Prozess, gnannt [b]Ise Oxidation[/b], entlaht Energie wo d'Zelle denn ernte cha."
 
 msgid "FERROPLAST_PROCESSES_DESCRIPTION"
-msgstr ""
+msgstr "Benutzt [thrive:compound type=\"iron\"][/thrive:compound] um [thrive:compound type=\"atp\"][/thrive:compound] z'produziere."
 
 msgid "FILTER_ITEMS_BY_CATEGORY_COLON"
-msgstr ""
+msgstr "Nach Kategorie filtere:"
 
 msgid "FIND_CURRENT_PATCH"
-msgstr ""
+msgstr "Zum aktuelle Gebiet"
 
 msgid "FINISHED_DOT"
-msgstr ""
+msgstr "Fertig."
 
 msgid "FINISH_EDITING_AND_RETURN_TO_ENVIRONMENT"
-msgstr ""
+msgstr "Bearbeitig beende und zur Umgebig zrugg"
 
 msgid "FINISH_ONE_GENERATION"
-msgstr ""
+msgstr "E Generation beende"
 
 msgid "FINISH_X_GENERATIONS"
-msgstr ""
+msgstr "{0} Generatione beende"
 
 msgid "FIRE_TOXIN"
-msgstr ""
+msgstr "Gift schlüdere"
 
 msgid "FIRE_TOXIN_TOOLTIP"
-msgstr ""
+msgstr "Schlüderet es Giftpartikel und schadet d'troffeni Zelle"
 
 msgid "FLAGELLUM"
-msgstr ""
+msgstr "Geissel"
 
 msgid "FLAGELLUM_DESCRIPTION"
-msgstr ""
+msgstr "D'Geissel (Plural: Geissle, au Flagelle) isch es peitscheartiges Bündel vo Proteinfasere, wo sich vode Zellmembran us erstreckt und mit Hilfe vo ATP d'Zelle welleförmig in e Richtig triibe laht. D'Position vom Flagellum bestimmt d'Richtig, idere es Schub für'd Zellbewegig bringt. D'Schubrichtig isch entgege g'setzt zu de Richtig, idere s'Flagellum luegt. Es Flagellum wo links ade Zelle isch git öppe Schub wenn's nach rechts gaht."
 
 msgid "FLAGELLUM_LENGTH_DESCRIPTION"
-msgstr ""
+msgstr "Geissellängi. Längeri Geissle erzüüget meh Aatrieb aber verbruuchet au meh ATP."
 
 msgid "FLAGELLUM_PROCESSES_DESCRIPTION"
-msgstr ""
+msgstr "Nimmt [thrive:compound type=\"atp\"][/thrive:compound] um d'Bewegigsgschwindigkeit vode Zelle z'erhöhe."
 
 msgid "FLEET_NAME_FROM_PLACE"
-msgstr ""
+msgstr "{0} Flotte"
 
 msgid "FLEET_UNITS"
-msgstr ""
+msgstr "Flotteeinheite"
 
 msgid "FLOATING_CHUNKS_COLON"
-msgstr ""
+msgstr "Schwebendi Chlumpe:"
 
 msgid "FLOATING_HAZARD"
-msgstr ""
+msgstr "Schwimmendi Gfahr"
 
 msgid "FLUID"
-msgstr ""
+msgstr "flüssig"
 
 msgid "FLUIDITY_RIGIDITY"
-msgstr ""
+msgstr "Flüssigkeit / Härti"
 
 msgid "FOCUSED"
-msgstr ""
+msgstr "Fokussiert"
 
 msgid "FOCUS_EXPLANATION"
 msgstr ""
+"Fokussierti Mikrobe werdet über e grösseri Entfernig nach Chlumpe oder Beuti luege\n"
+"und sind möglicherwiis sehr viel ehrgiziger, wenn's um Chlumpe gaht.\n"
+"Inkonsequenti Mikrobe wechslet schneller zu neue Ziel."
 
 msgid "FOG_OF_WAR_DISABLED"
-msgstr ""
+msgstr "Chriegsnebel deaktiviert"
 
 msgid "FOG_OF_WAR_DISABLED_DESCRIPTION"
-msgstr ""
+msgstr "(alli Bereich werdet uufdeckt)"
 
 msgid "FOG_OF_WAR_INTENSE"
-msgstr ""
+msgstr "Dichte Chriegsnebel"
 
 msgid "FOG_OF_WAR_INTENSE_DESCRIPTION"
-msgstr ""
+msgstr "(nur bekannti Bereich werdet uufdeckt)"
 
 msgid "FOG_OF_WAR_MODE"
-msgstr ""
+msgstr "Chriegsnebel Modus"
 
 msgid "FOG_OF_WAR_REGULAR"
-msgstr ""
+msgstr "Normale Chriegsnebel"
 
 msgid "FOG_OF_WAR_REGULAR_DESCRIPTION"
-msgstr ""
+msgstr "(bereich wommer gsi isch, sowie Nachbarbereich, werdet uufdeckt)"
 
 msgid "FOOD_CHAIN"
-msgstr ""
+msgstr "Nahrigschette"
 
 msgid "FOOD_SOURCE_ENERGY_INFO"
-msgstr ""
+msgstr "{0}Energie:{1}(Fitness:{2})insgesamt verfüegbare Energie:{3} (gsamti Fitness:{4})"
 
 msgid "FORGET_MOD_DETAILS"
-msgstr ""
+msgstr "Lokali Date entferne"
 
 msgid "FORGET_MOD_DETAILS_TOOLTIP"
-msgstr ""
+msgstr "Lokali Date zu dem Gegestand entferne. Das isch hilfriich, wenn du d'falschi ID aageh hesch oder e Version als neue Gegestand ufeladde wettsch."
 
 msgid "FORM_ERROR_MESSAGE"
-msgstr ""
+msgstr "Fehler: {0}"
 
 msgid "FOSSILISATION"
-msgstr ""
+msgstr "Versteinerig"
 
 msgid "FOSSILISATION_EXPLANATION"
-msgstr ""
+msgstr "Mach die Art zu emene Fossil um s' im Museum z'spiichere. Du chasch vode Thriveopedia uf's Museum zuegriife oder Fossilie im Sandboxeditor ladde."
 
 msgid "FOSSILISATION_FAILED"
-msgstr ""
+msgstr "Verteinerig fehlgschlagge"
 
 msgid "FOSSILISATION_FAILED_DESCRIPTION"
-msgstr ""
+msgstr "D'Fossildatei hett mer nöd schriibe chönne"
 
 msgid "FOSSILISATION_HINT"
-msgstr ""
+msgstr "Die Art versteinere"
 
 msgid "FOSSILISATION_HINT_ALREADY_FOSSILISED"
-msgstr ""
+msgstr "Die Art versteinere (isch scho versteinert)"
 
 msgid "FOSSILISE"
-msgstr ""
+msgstr "Versteinere"
 
 msgid "FOSSIL_DELETION_FAILED"
-msgstr ""
+msgstr "Löschig vom Fossil fehl g'schlagge"
 
 msgid "FOSSIL_DELETION_FAILED_DESCRIPTION"
-msgstr ""
+msgstr "Fossildatei hett mer nöd chönne lösche"
 
 msgid "FOUR_TIMES"
-msgstr ""
+msgstr "4x"
 
 msgid "FPS"
-msgstr ""
+msgstr "FPS: {0}"
 
 msgid "FPS_DISPLAY"
-msgstr ""
+msgstr "FPS Darstellig"
 
 msgid "FRAME_DURATION"
-msgstr ""
+msgstr "Delta: {0}"
 
 msgid "FREEBUILDING"
-msgstr ""
+msgstr "Sandboxmodus"
 
 msgid "FREE_GLUCOSE_CLOUD"
-msgstr ""
+msgstr "Verfüegbari Glukosewulche bim verlah vom Editor"
 
 msgid "FREE_GLUCOSE_CLOUD_EXPLANATION"
-msgstr ""
+msgstr "(Fang jedi Generation mit enere Glukosewulche ide Nöchi aa)"
 
 msgid "FULLSCREEN"
-msgstr ""
+msgstr "Vollbild"
 
 msgid "FULL_MOD_INFO"
-msgstr ""
+msgstr "Vollständigi Modinformationen"
 
 msgid "GALLERY_VIEWER"
-msgstr ""
+msgstr "Kunstgalerie"
 
 msgid "GAMEPLAY_BASICS_TITLE"
-msgstr ""
+msgstr "Grundlage vom Spiel"
 
 msgid "GAME_DESIGN_TEAM"
-msgstr ""
+msgstr "Spieldesigner Team"
 
 msgid "GAME_SYSTEMS_TITLE"
-msgstr ""
+msgstr "Spielsystem"
 
 msgid "GATHERED_ENERGY_TOOLTIP"
 msgstr ""
+"Zeigt d'gsammti vo dinere Art g'sammelti Energie i allne Bereich und d'dadurch resultierendi Population (I Chlammere).\n"
+"Energie zuvor: {0}"
 
 msgid "GENERAL"
-msgstr ""
+msgstr "Allgemein"
 
 msgid "GENERAL_LOADING_TIP_1"
-msgstr ""
+msgstr "Druck d'Rückgängigtaste im Editor um en Fehler z'korrigiere"
 
 msgid "GENERAL_LOADING_TIP_2"
-msgstr ""
+msgstr "Pass uf grösseri Organisme uuf. Sie werdet dich fresse und verdaut z'werde isch kes Zuckerspiel!"
 
 msgid "GENERAL_LOADING_TIP_3"
-msgstr ""
+msgstr "Bis vorsichtig, wenn du d'gliichi Spezies d'ganzi Ziit über jagsch. Sie chönnd dadur uussterbe."
 
 msgid "GENERAL_LOADING_TIP_4"
-msgstr ""
+msgstr "Mängisch isches am beste efach ab z'haue."
 
 msgid "GENERAL_LOADING_TIP_5"
-msgstr ""
+msgstr "Wenn Auto-Evo en Bevölkerigsabfall vo dinere Art voruus seit chasch du d'Bevölkerig trotzdem no immer stiigere, wenn du in Spiel guet abschniidisch."
 
 msgid "GENERAL_LOADING_TIP_6"
-msgstr ""
+msgstr "Nöd vergesse: D'Aazeig rechts obbe zeigt dir, was unter em Cursor isch."
 
 msgid "GENERAL_LOADING_TIP_7"
-msgstr ""
+msgstr "Wenn dini Bevölkerig auf Null keit, stirbsch du uus."
 
 msgid "GENERATIONS"
-msgstr ""
+msgstr "Generatione"
 
 msgid "GENERATION_COLON"
-msgstr ""
+msgstr "Generation:"
 
 msgid "GITHUB_TOOLTIP"
-msgstr ""
+msgstr "Bsuech oises GitHub Archiv"
 
 msgid "GLES3"
-msgstr ""
+msgstr "GLES3"
 
 msgid "GLOBAL_GLACIATION_END_EVENT_LOG"
-msgstr ""
+msgstr "Globales Veriisigsevent isch uf allne Oberflächene fertig"
 
 msgid "GLOBAL_GLACIATION_EVENT"
-msgstr ""
+msgstr "Globales Veriisigsevent"
 
 msgid "GLOBAL_GLACIATION_EVENT_TOOLTIP"
 msgstr ""
@@ -2342,313 +2388,332 @@ msgstr ""
 "Iispartikel werdet ebbefalls i dene Gebiet vorcho."
 
 msgid "GLOBAL_GLACIATION_EVENT_WARNING_LOG_PLURAL"
-msgstr ""
+msgstr "Globales Veriisigsevent wird i {0} Generatione uusglöst"
 
 msgid "GLOBAL_GLACIATION_EVENT_WARNING_LOG_SINGULAR"
-msgstr ""
+msgstr "Globales Veriisigsevent wird i {0} uusglöst"
 
 msgid "GLOBAL_GLACIATION_START_EVENT_LOG"
-msgstr ""
+msgstr "Globales Veriisigsevent isch uf allne Oberflächene gstartet"
 
 msgid "GLOBAL_INITIAL_LETTER"
-msgstr ""
+msgstr "G"
 
 msgid "GLOBAL_POPULATION_COLON"
-msgstr ""
+msgstr "Globalbevölkerig:"
 
 msgid "GLOBAL_TIMELINE_SPECIES_MIGRATED_TO"
-msgstr ""
+msgstr "En Teil vode [b][u]{0}[/u][/b]-Bevölkerig isch vo {1} nach {2} migriert"
 
 msgid "GLUCOSE"
-msgstr ""
+msgstr "Glukose"
 
 msgid "GLUCOSE_CONCENTRATIONS_DRASTICALLY_DROPPED"
-msgstr ""
+msgstr "D'Glukosekonzentration isch drastisch gsunke!"
 
 msgid "GLYCOLYSIS"
-msgstr ""
+msgstr "Glykolyse"
 
 msgid "GODMODE"
-msgstr ""
+msgstr "Gottmodus"
 
 msgid "GOD_TOOLS_TITLE"
-msgstr ""
+msgstr "Gott-Werchzüüg"
 
 msgid "GOOGLY_EYE_CELL"
-msgstr ""
+msgstr "Kulleraugezelle"
 
 msgid "GOT_IT"
-msgstr ""
+msgstr "Verstande"
 
 msgid "GPL_LICENSE_HEADING"
-msgstr ""
+msgstr "GPL-Lizenztext folgt:"
 
 msgid "GPU_NAME"
-msgstr ""
+msgstr "Graphikkarte:"
 
 msgid "GRAPHICS"
-msgstr ""
+msgstr "Graphik"
 
 msgid "GRAPHICS_TEAM"
-msgstr ""
+msgstr "Graphikteam"
 
 msgid "GROWTH_ORDER"
-msgstr ""
+msgstr "Wachstumsordnig"
 
 msgid "GUI"
-msgstr ""
+msgstr "Benutzeroberflächi"
 
 msgid "GUI_LIGHT_EFFECTS_OPTION_DESCRIPTION"
 msgstr ""
+"Aktiviert d'Blinkeffekt uf GUIs (z.B. blinke vo Editorschaltfläche).\n"
+"\n"
+"Wenn du en Fehler gsehsch, bi dem Teile vo Editorschaltfläche verschwindet,\n"
+"chasch du versueche, das z'deaktiviere um z'gseh, ob's Problem weg isch."
 
 msgid "GUI_TAB_NAVIGATION"
-msgstr ""
+msgstr "UI-Tab Navigation"
 
 msgid "GUI_VOLUME"
-msgstr ""
+msgstr "Menüluutstärchi"
 
 msgid "HEALTH"
-msgstr ""
+msgstr "Gsundheit"
 
 msgid "HEALTH_MODIFIER"
-msgstr ""
+msgstr "Gsundheitsmodifikator"
 
 msgid "HEAT_ACCUMULATION_BAR_TOOLTIP"
 msgstr ""
+"Die Aazeig hett d'momentani Temperatur vo dinere Zelle. D'gäli Aazeig isch d'effektivi Energiegeneration.\n"
+"De wiisi Balke zeigt d'Umwelttemperature aa.\n"
+"D'Aazeig unter em Balke änderet d'Farb wenn Energie generiert wird."
 
 msgid "HELP"
-msgstr ""
+msgstr "Hilf"
 
 msgid "HELP_BUTTON_TOOLTIP"
-msgstr ""
+msgstr "Wie mer's Spiel spielt"
 
 msgid "HIGHER_VALUES_INCREASE_PERFORMANCE"
-msgstr ""
+msgstr "(höheri Wert verbesseret d'Leistig)"
 
 msgid "HIGHER_VALUES_WORSEN_PERFORMANCE"
-msgstr ""
+msgstr "(höheri Wert verschlechteret d'Leistig)"
 
 msgid "HOLD_FOR_PAN_OR_ROTATE_MODE"
-msgstr ""
+msgstr "Halte um zwüsche Verschiebe- und Drehmodus ummeschalte"
 
 msgid "HOLD_FOR_PAN_WITH_MOUSE"
-msgstr ""
+msgstr "Halte um mit de Muus z'schiebe"
 
 msgid "HOLD_PACK_COMMANDS_MENU"
-msgstr ""
+msgstr "Halte um Rudelbefehlmenü z'zeige"
 
 msgid "HOLD_TO_SHOW_CURSOR"
-msgstr ""
+msgstr "Halte um Muus z'zeige"
 
 msgid "HOLD_TO_SHOW_CURSOR_ADVICE_TEXT"
-msgstr ""
+msgstr "Halt [thrive:input]g_free_cursor[/thrive:input] für Muuszeiger"
 
 msgid "HOLD_TO_SKIP_CREDITS"
-msgstr ""
+msgstr "Halte um z'überspringe"
 
 msgid "HOME"
-msgstr ""
+msgstr "Home"
 
 msgid "HORIZONTAL_COLON"
-msgstr ""
+msgstr "Horizontal:"
 
 msgid "HORIZONTAL_WITH_AXIS_NAME_COLON"
-msgstr ""
+msgstr "horizontal (Achse: {0})"
 
 msgid "HP_COLON"
-msgstr ""
+msgstr "HP:"
 
 msgid "HSV"
-msgstr ""
+msgstr "HSV"
 
 msgid "HUD_MESSAGE_MULTIPLE"
-msgstr ""
+msgstr "{0} (x{1})"
 
 msgid "HYDROGENASE"
-msgstr ""
+msgstr "Hydrogenase"
 
 msgid "HYDROGENASE_DESCRIPTION"
-msgstr ""
+msgstr "Benutzt Wasserstoff um Energie vo [thrive:compound type=\\\"glucose\\\"][/thrive:compound] z'erhalte. Meh effektiv bi niedrige [thrive:compound type=\\\"oxygen\\\"][/thrive:compound] Werte als metabolosome. Vieli Organisme in anoxische Umweltsituatione benutzed das als primäri Energiequelle."
 
 msgid "HYDROGENASE_PROCESSES_DESCRIPTION"
-msgstr ""
+msgstr "Wandlet [thrive:compound type=\\\"glucose\\\"][/thrive:compound] zu [thrive:compound type=\\\"atp\\\"][/thrive:compound] um."
+
+#, fuzzy
+msgid "HYDROGENOSOME"
+msgstr "Hydrogenase"
+
+#, fuzzy
+msgid "HYDROGENOSOME_DESCRIPTION"
+msgstr "Benutzt Wasserstoff um Energie vo [thrive:compound type=\\\"glucose\\\"][/thrive:compound] z'erhalte. Meh effektiv bi niedrige [thrive:compound type=\\\"oxygen\\\"][/thrive:compound] Werte als metabolosome. Vieli Organisme in anoxische Umweltsituatione benutzed das als primäri Energiequelle."
+
+#, fuzzy
+msgid "HYDROGENOSOME_PROCESSES_DESCRIPTION"
+msgstr "Wandlet [thrive:compound type=\\\"glucose\\\"][/thrive:compound] zu [thrive:compound type=\\\"atp\\\"][/thrive:compound] um."
 
 msgid "HYDROGEN_SULFIDE"
-msgstr ""
+msgstr "Schwefelwasserstoff"
 
 msgid "ICESHARD"
-msgstr ""
+msgstr "Iissplitter"
 
 msgid "ICESHELF"
-msgstr ""
+msgstr "Schelfeis"
 
 msgid "ICE_CHUNK_BIG"
-msgstr ""
+msgstr "Grosse Iisbrocke"
 
 msgid "ICE_CHUNK_SMALL"
-msgstr ""
+msgstr "Chliine Iisbrocke"
 
 msgid "ID_IS_NOT_A_NUMBER"
-msgstr ""
+msgstr "ID isch kei gültigi Zahl"
 
 msgid "ID_NUMBER"
-msgstr ""
+msgstr "ID Nummer"
 
 msgid "IF_FALLBACK_RENDERER_USED_ALL_NOT_AVAILABLE"
-msgstr ""
+msgstr "(je nach rendermodus und upscaling sind nöd alli Methode verfüegbar)"
 
 msgid "IMAGE_FILE_TYPES"
-msgstr ""
+msgstr "Unterstützti Bilddateie"
 
 msgid "INCLUDE_MULTICELLULAR_PROTOTYPE"
-msgstr ""
+msgstr "Prototype vo spöötere Stadie iibezieh"
 
 msgid "INCLUDE_MULTICELLULAR_PROTOTYPE_EXPLANATION"
-msgstr ""
+msgstr "(einigi Funktione chönnd nümme verfüegbar siim, wenn du id nöchschti Stufe chunnsch)"
 
 msgid "INCREASE_ITEM_SIZE"
-msgstr ""
+msgstr "Objektgrössi erhöhe"
 
 msgid "INDICATOR_SPECIES_IS_NEW"
-msgstr ""
+msgstr "Zeigt, dass die Spezies neu isch i dem Bereich oder dere Welt"
 
 msgid "INDICATOR_SPECIES_MUTATED"
-msgstr ""
+msgstr "Zeigt, dass die Spezies idem auto-evo Zyklus mutiert isch"
 
 msgid "INDUSTRIAL_STAGE"
-msgstr ""
+msgstr "Industrielli Stufe"
 
 msgid "INFINITE_COMPOUNDS"
-msgstr ""
+msgstr "Unendlichi Stoff"
 
 msgid "INFINITE_MP"
-msgstr ""
+msgstr "Unendlich MP"
 
 msgid "INFO_BOX_COST"
-msgstr ""
+msgstr "Grundchöste (MP)"
 
 msgid "INFO_BOX_EDITORS"
-msgstr ""
+msgstr "Editors"
 
 msgid "INFO_BOX_ENZYMES"
-msgstr ""
+msgstr "Enzyme"
 
 msgid "INFO_BOX_GAMEPLAY_TYPE"
-msgstr ""
+msgstr "Gameplay-Art"
 
 msgid "INFO_BOX_INTERNAL_NAME"
-msgstr ""
+msgstr "Interne Name"
 
 msgid "INFO_BOX_MASS"
-msgstr ""
+msgstr "Masse"
 
 msgid "INFO_BOX_NEXT_STAGE"
-msgstr ""
+msgstr "Nöchschti Stufe"
 
 msgid "INFO_BOX_OSMOREGULATION_COST"
-msgstr ""
+msgstr "Osmoseregolierigschöste"
 
 msgid "INFO_BOX_PREVIOUS_STAGE"
-msgstr ""
+msgstr "Vorherigi Stufe"
 
 msgid "INFO_BOX_PROCESSES"
-msgstr ""
+msgstr "Prozess"
 
 msgid "INFO_BOX_REQUIRES_NUCLEUS"
-msgstr ""
+msgstr "Bruucht Zellkern"
 
 msgid "INFO_BOX_SIZE"
-msgstr ""
+msgstr "Grössi (in Hexagone)"
 
 msgid "INFO_BOX_STORAGE"
-msgstr ""
+msgstr "Spiicher"
 
 msgid "INFO_BOX_UNIQUE"
-msgstr ""
+msgstr "Einzigartig"
 
 msgid "INFO_BOX_UPGRADES"
-msgstr ""
+msgstr "Erwiiterige"
 
 msgid "INGESTED_MATTER"
-msgstr ""
+msgstr "Verschlucktes Material"
 
 msgid "INIT_NEW_WORLD_TOOLTIP"
-msgstr ""
+msgstr "Neui Welt erschaffe"
 
 msgid "INPUTS"
-msgstr ""
+msgstr "Iigab"
 
 msgid "INPUT_NAME_BUILD_STRUCTURE"
-msgstr ""
+msgstr "Bou e Struktur"
 
 msgid "INPUT_NAME_INTERACTION"
-msgstr ""
+msgstr "Interagier mit emene Objekt"
 
 msgid "INPUT_NAME_OPEN_INVENTORY"
-msgstr ""
+msgstr "Inventar Umschalte"
 
 msgid "INSPECT"
-msgstr ""
+msgstr "Untersueche"
 
 msgid "INSPECTOR"
-msgstr ""
+msgstr "Inspekteur"
 
 msgid "INSTAGRAM_TOOLTIP"
-msgstr ""
+msgstr "Bsuech oisi Instagram Siite"
 
 msgid "INTERACTION_ACTIVATE_ASCENSION"
-msgstr ""
+msgstr "Aktivier Uufstiigsportal"
 
 msgid "INTERACTION_ACTIVATE_ASCENSION_MISSING_ENERGY"
-msgstr ""
+msgstr "Aktivier Uufstiigsportal (NÖD GNUEG ENERGIE)"
 
 msgid "INTERACTION_CONSTRUCT"
-msgstr ""
+msgstr "Bou Abschlüüse"
 
 msgid "INTERACTION_CONSTRUCT_MISSING_DEPOSITED_MATERIALS"
-msgstr ""
+msgstr "Bou Abschlüüse (nöd gnueg Material)"
 
 msgid "INTERACTION_CRAFT"
-msgstr ""
+msgstr "Herstelle..."
 
 msgid "INTERACTION_DEPOSIT_RESOURCES"
-msgstr ""
+msgstr "Material Deponiere"
 
 msgid "INTERACTION_DEPOSIT_RESOURCES_NO_SUITABLE_RESOURCES"
-msgstr ""
+msgstr "Material Deponiere (kei passendi Gegeständ)"
 
 msgid "INTERACTION_DESTROY"
-msgstr ""
+msgstr "Zerstöre"
 
 msgid "INTERACTION_FOUND_SETTLEMENT"
-msgstr ""
+msgstr "Siedle"
 
 msgid "INTERACTION_HARVEST"
-msgstr ""
+msgstr "Ernte"
 
 msgid "INTERACTION_HARVEST_CANNOT_MISSING_TOOL"
-msgstr ""
+msgstr "Ernte (FEHLENDI UUSRÜSTIG: {0})"
 
 msgid "INTERACTION_PICK_UP"
-msgstr ""
+msgstr "Uufhebbe"
 
 msgid "INTERACTION_PICK_UP_CANNOT_FULL"
-msgstr ""
+msgstr "Uufhebbe (VOLL)"
 
 msgid "INTERNALS"
-msgstr ""
+msgstr "Innereie"
 
 msgid "INTERNAL_NAME_IN_USE"
-msgstr ""
+msgstr "Es hett scho en Mod mit dem interne Namme"
 
 msgid "INTERNAL_NAME_REQUIRED"
-msgstr ""
+msgstr "Interne Name isch erforderlich"
 
 msgid "INTERNAL_NAME_REQUIRES_CAPITAL"
-msgstr ""
+msgstr "Interne Namme sötti mit emene Grossbuechstabe aafange"
 
 msgid "INVALID_DATA_TO_PLOT"
-msgstr ""
+msgstr "Ungültigi Date zum Darstelle"
 
 msgid "INVALID_ICON_PATH"
 msgstr ""
@@ -3181,9 +3246,8 @@ msgstr ""
 msgid "LUCIFERASE"
 msgstr ""
 
-#, fuzzy
 msgid "LUCIFERASE_SYNTHESIS"
-msgstr "Chemosynthese"
+msgstr "Luciferase Synthese"
 
 msgid "LYSOSOME"
 msgstr ""
@@ -3302,6 +3366,15 @@ msgstr ""
 msgid "META_THREADS_TOOLTIP"
 msgstr ""
 
+msgid "METEOR_IMPACT_EVENT"
+msgstr ""
+
+msgid "METEOR_STRIKE_START_EVENT_LOG_PLURAL"
+msgstr ""
+
+msgid "METEOR_STRIKE_START_EVENT_LOG_SINGULAR"
+msgstr ""
+
 msgid "METRICS"
 msgstr ""
 
@@ -3366,6 +3439,9 @@ msgid "MICROBES_COUNT"
 msgstr ""
 
 msgid "MICROBE_BENCHMARK"
+msgstr ""
+
+msgid "MICROBE_CAMERA_TILT_EFFECT"
 msgstr ""
 
 msgid "MICROBE_EDITOR"
@@ -4266,9 +4342,6 @@ msgid "PAN_CAMERA_RIGHT"
 msgstr ""
 
 msgid "PAN_CAMERA_UP"
-msgstr ""
-
-msgid "PASSIVE_REPRODUCTION_PROGRESS_EXPLANATION"
 msgstr ""
 
 msgid "PAST_DEVELOPERS"
@@ -6532,6 +6605,9 @@ msgstr ""
 msgid "WIKI_COMPOUND_SYSTEM_DEVELOPMENT_OVERVIEW"
 msgstr ""
 
+msgid "WIKI_CREATURE_EDITOR_COMMA_TECH_EDITOR"
+msgstr ""
+
 msgid "WIKI_CYTOPLASM_EFFECTS"
 msgstr ""
 
@@ -6791,6 +6867,32 @@ msgid "WIKI_HYDROGENASE_STRATEGY"
 msgstr ""
 
 msgid "WIKI_HYDROGENASE_UPGRADES"
+msgstr ""
+
+msgid "WIKI_HYDROGENOSOME_EFFECTS"
+msgstr ""
+
+msgid "WIKI_HYDROGENOSOME_INTRO"
+msgstr ""
+
+#, fuzzy
+msgid "WIKI_HYDROGENOSOME_MODIFICATIONS"
+msgstr "Benutzt Wasserstoff um Energie vo [thrive:compound type=\\\"glucose\\\"][/thrive:compound] z'erhalte. Meh effektiv bi niedrige [thrive:compound type=\\\"oxygen\\\"][/thrive:compound] Werte als metabolosome. Vieli Organisme in anoxische Umweltsituatione benutzed das als primäri Energiequelle."
+
+#, fuzzy
+msgid "WIKI_HYDROGENOSOME_PROCESSES"
+msgstr "Wandlet [thrive:compound type=\\\"glucose\\\"][/thrive:compound] zu [thrive:compound type=\\\"atp\\\"][/thrive:compound] um."
+
+msgid "WIKI_HYDROGENOSOME_REQUIREMENTS"
+msgstr ""
+
+msgid "WIKI_HYDROGENOSOME_SCIENTIFIC_BACKGROUND"
+msgstr ""
+
+msgid "WIKI_HYDROGENOSOME_STRATEGY"
+msgstr ""
+
+msgid "WIKI_HYDROGENOSOME_UPGRADES"
 msgstr ""
 
 msgid "WIKI_INDUSTRIAL_STAGE_CURRENT_DEVELOPMENT"
@@ -7174,6 +7276,9 @@ msgstr ""
 msgid "WIKI_PAGE_HYDROGENASE"
 msgstr ""
 
+msgid "WIKI_PAGE_HYDROGENOSOME"
+msgstr ""
+
 msgid "WIKI_PAGE_INDUSTRIAL_STAGE"
 msgstr ""
 
@@ -7445,6 +7550,9 @@ msgid "WIKI_STAGES_ROOT_INTRO"
 msgstr ""
 
 msgid "WIKI_TBA"
+msgstr ""
+
+msgid "WIKI_TECH_EDITOR_COMMA_NATION_EDITOR_COMMA_SQUAD_EDITOR"
 msgstr ""
 
 msgid "WIKI_THERMOPLAST_EFFECTS"
