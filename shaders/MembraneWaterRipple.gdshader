@@ -43,10 +43,10 @@ const int SecondaryStart = 2;
 const int SecondaryEnd = 10;
 
 // Function to get position at arbitrary position in the path with interpolation
-vec2 GetPathPosition(float index) 
+vec2 GetPathPosition(float index)
 {
     // Handle edge cases
-    if (PastPositionsCount == 0) 
+    if (PastPositionsCount == 0)
       return vec2(0.0, 0.0);
 
     if (PastPositionsCount == 1)
@@ -70,7 +70,7 @@ vec2 GetPathPosition(float index)
 }
 
 // Calculate wave height at given position relative to a center point
-float WaveHeight(vec2 position, vec2 center, float time, float elapsed) 
+float WaveHeight(vec2 position, vec2 center, float time, float elapsed)
 {
     // Distance from wave origin
     float dist = length(position - center);
@@ -124,27 +124,27 @@ float CalculateWakeTrail(vec2 position, vec2 pos1, vec2 pos2, float timeAgo, flo
     float intensity = exp(-perpDist * perpDist / wakeWidth);
     float oscillation = sin(projDist * 2.5 - time * 3.0) * 0.2;
     float fade = exp(-timeAgo * 0.4);
-    
+
     // Apply stillness fade factor
     float stillnessInfluence = pow(1.0 - StillnessFactor, 1.5);
     return intensity * oscillation * fade * 0.25 * stillnessInfluence;
 }
 
 // Simulate ripple effects with adaptive sampling
-float SimulateRipples(vec2 position, vec2 direction, float speed, float time) 
+float SimulateRipples(vec2 position, vec2 direction, float speed, float time)
 {
     // Skip early if no positions are recorded or water is completely still
-    if (PastPositionsCount <= 0 || StillnessFactor >= 0.99) 
+    if (PastPositionsCount <= 0 || StillnessFactor >= 0.99)
        return 0.0;
 
     // Current position is always the most recent one
     vec2 currentPos = PastPositions[0];
 
     float centerDist = length(position - currentPos);
-    
+
     // Scale effect with membrane size
     float scaleFactor = max(1.0, MembraneRadius / 5.0);
-    
+
     // For very large membranes, use size-adaptive ripple calculation
     float rippleDist = centerDist / scaleFactor;
 
@@ -161,7 +161,7 @@ float SimulateRipples(vec2 position, vec2 direction, float speed, float time)
 
         // Sample the path
         for (int i = 0; i < maxSamples; i += sampleStep) {
-            if (i >= PastPositionsCount) 
+            if (i >= PastPositionsCount)
               break;
 
             // Calculate path time and position
@@ -188,13 +188,13 @@ float SimulateRipples(vec2 position, vec2 direction, float speed, float time)
             // Only calculate wake trails if there's meaningful movement
             // Use a smaller threshold for large membranes
             float moveThreshold = 0.05 / max(1.0, scaleFactor * 0.2);
-            if (length(nextPathPos - pathPos) > moveThreshold) 
+            if (length(nextPathPos - pathPos) > moveThreshold)
             {
             	wave += CalculateWakeTrail(position, pathPos, nextPathPos, timeAgo, time);
             }
 
             // Add secondary ripples with reduced frequency
-            if (i > SecondaryStart && i < SecondaryEnd && i % (sampleStep * 2) == 0) 
+            if (i > SecondaryStart && i < SecondaryEnd && i % (sampleStep * 2) == 0)
             {
                 float secondaryDist = length(position - pathPos) / scaleFactor;
                 float secondaryPhase = secondaryDist * 2.8 - time * 3.0 + float(i);
@@ -223,16 +223,16 @@ float SimulateRipples(vec2 position, vec2 direction, float speed, float time)
         edgeFade = edgeFade * edgeFade * edgeFade;
     }
 
-    // Apply smooth stillness fade 
+    // Apply smooth stillness fade
     float stillnessInfluence = pow(1.0 - StillnessFactor, 1.5);
-    
+
     // Apply speed-based scaling with smooth transition during fade
     float speedFactor = mix(0.15, speed, stillnessInfluence);
-    
+
     return totalRipple * max(speedFactor, 0.15) * edgeFade * stillnessInfluence;
 }
 
-void vertex() 
+void vertex()
 {
     // Get vertex position in model space
     vec2 pos = VERTEX.xz;
@@ -244,14 +244,14 @@ void vertex()
     // Scale the maximum radius with membrane size
     float scaleFactor = max(1.0, MembraneRadius / 5.0);
     float maxRadius = min(10.0 * scaleFactor, 40.0);
-    
+
     // Apply effect to vertices within the active radius
-    if (distFromCenter <= maxRadius) 
+    if (distFromCenter <= maxRadius)
     {
         // Apply ripple simulation with movement parameters
         float displacement = SimulateRipples(pos, MovementDirection, MovementSpeed, TimeOffset);
 
-        // Apply height displacement 
+        // Apply height displacement
         VERTEX.y += displacement * RippleStrength;
 
         // Only calculate normals when there's visible displacement
@@ -273,7 +273,7 @@ void vertex()
     // For distant vertices, we don't modify VERTEX or NORMAL
 }
 
-void fragment() 
+void fragment()
 {
     // Calculate lighting parameters
     float nDotL = dot(NORMAL, normalize(vec3(0.4, 0.8, 0.3)));
