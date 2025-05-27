@@ -7,16 +7,16 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2025-05-23 10:31+0300\n"
-"PO-Revision-Date: 2025-05-15 11:31+0000\n"
-"Last-Translator: Kajetan Kolański <dededemenene@gmail.com>\n"
+"POT-Creation-Date: 2025-05-26 12:24+0300\n"
+"PO-Revision-Date: 2025-05-25 15:00+0000\n"
+"Last-Translator: Anonymous <noreply@weblate.org>\n"
 "Language-Team: Polish <https://translate.revolutionarygamesstudio.com/projects/thrive/thrive-game/pl/>\n"
 "Language: pl\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=3; plural=n==1 ? 0 : n%10>=2 && n%10<=4 && (n%100<10 || n%100>=20) ? 1 : 2;\n"
-"X-Generator: Weblate 5.7.2\n"
+"X-Generator: Weblate 5.11.4\n"
 "Generated-By: Babel 2.8.0\n"
 
 msgid "2D_MOVEMENT_TYPE_SELECTION"
@@ -1078,6 +1078,7 @@ msgstr "Wybierz gatunek"
 msgid "CONTINUE_THRIVING"
 msgstr "Kontynuuj Rozkwitanie"
 
+#, fuzzy
 msgid "CONTINUE_TO_PROTOTYPES"
 msgstr ""
 "Dotarłeś do końca \"ukończonej\" części Thrive.\n"
@@ -2592,6 +2593,18 @@ msgid "HYDROGENASE_DESCRIPTION"
 msgstr "Wykorzystuje wodór do uzyskiwania energii z [thrive:compound type=\\\"glucose\\\"]Glukozy[/thrive:compound]. Bardziej skuteczna przy niższych stężeniach [thrive:compound type=\\\"oxygen\\\"]Tlenu[/thrive:compound] niż metabolosomy. Jest głównym źródłem energii dla wielu organizmów w środowiskach beztlenowych."
 
 msgid "HYDROGENASE_PROCESSES_DESCRIPTION"
+msgstr "Przekształca [thrive:compound type=\\\"glucose\\\"]Glukozę[/thrive:compound] w [thrive:compound type=\\\"atp\\\"][/thrive:compound]."
+
+#, fuzzy
+msgid "HYDROGENOSOME"
+msgstr "Siarkowodór (H₂S)"
+
+#, fuzzy
+msgid "HYDROGENOSOME_DESCRIPTION"
+msgstr "Wykorzystuje wodór do uzyskiwania energii z [thrive:compound type=\\\"glucose\\\"]Glukozy[/thrive:compound]. Bardziej skuteczna przy niższych stężeniach [thrive:compound type=\\\"oxygen\\\"]Tlenu[/thrive:compound] niż metabolosomy. Jest głównym źródłem energii dla wielu organizmów w środowiskach beztlenowych."
+
+#, fuzzy
+msgid "HYDROGENOSOME_PROCESSES_DESCRIPTION"
 msgstr "Przekształca [thrive:compound type=\\\"glucose\\\"]Glukozę[/thrive:compound] w [thrive:compound type=\\\"atp\\\"][/thrive:compound]."
 
 msgid "HYDROGEN_SULFIDE"
@@ -6348,6 +6361,7 @@ msgstr ""
 "\n"
 "Jeśli twoja produkcja [thrive:compound type=\"atp\"][/thrive:compound] jest negatywna, postaraj się ją zwiększyć albo dodać [b]przechowywanie[/b] [thrive:icon]StorageIcon[/thrive:icon] by móc się poruszać w małych impulsach."
 
+#, fuzzy
 msgid "TUTORIAL_MICROBE_EDITOR_AUTO-EVO_PREDICTION"
 msgstr ""
 "Ten panel pokazuje przewidywania względem przyszłej populacji. Te liczby są populacją z symulacji [b]auto-ewolucji[/b].\n"
@@ -7726,6 +7740,47 @@ msgstr "Termosyntaza jest białkiem które używa konwekcji termicznej by zmieni
 msgid "WIKI_HYDROGENASE_UPGRADES"
 msgstr "Nitrogenaza to białko mogące użyć gazowego [thrive:compound type=\"nitrogen\"][/thrive:compound] i energii komórkowej w formie [thrive:compound type=\"atp\"][/thrive:compound] do produkcji [thrive:compound type=\"ammonia\"][/thrive:compound], kluczowego składnika dla wzrostu komórek. Ten proces nazywany jest [b]anaerobic nitrogen fixation[/b]. Jako iż nitrogenaza jest zawieszona bezpośrednio w cytozolu, otaczający płyn przeprowadza [b]glycolysis[/b]."
 
+#, fuzzy
+msgid "WIKI_HYDROGENOSOME_EFFECTS"
+msgstr "Nitrogenaza to białko mogące użyć gazowego [thrive:compound type=\"nitrogen\"][/thrive:compound] i energii komórkowej w formie [thrive:compound type=\"atp\"][/thrive:compound] do produkcji [thrive:compound type=\"ammonia\"][/thrive:compound], kluczowego składnika dla wzrostu komórek. Ten proces nazywany jest [b]anaerobic nitrogen fixation[/b]. Jako iż nitrogenaza jest zawieszona bezpośrednio w cytozolu, otaczający płyn przeprowadza [b]glycolysis[/b]."
+
+#, fuzzy
+msgid "WIKI_HYDROGENOSOME_INTRO"
+msgstr ""
+"Zawiera enzymy trawienne. Może być zmodyfikowany by zmienić typ enzymu który zawiera. Każdy [b]Lizosom[/b] może korzystać z tylko jednego typu enzym. Enzymy przyspieszają trawienie i polepszają efektywność trawienia.\n"
+"\n"
+"[b]Lizosom[/b] jest organellą otoczoną błoną która zawiera enzymy hydrolityczne które potrafią rozkładać wiele związków biologicznych. [b]Lizosom[/b] daje komórce umiejętność trawienia materiałów pochłoniętych w procesie endocytozy, a także oczyszczają odpady komórki w procesie zwanym autofagią."
+
+#, fuzzy
+msgid "WIKI_HYDROGENOSOME_MODIFICATIONS"
+msgstr "Nitrogenaza to białko mogące użyć gazowego [thrive:compound type=\"nitrogen\"][/thrive:compound] i energii komórkowej w formie [thrive:compound type=\"atp\"][/thrive:compound] do produkcji [thrive:compound type=\"ammonia\"][/thrive:compound], kluczowego składnika dla wzrostu komórek. Ten proces nazywany jest [b]anaerobic nitrogen fixation[/b]. Jako iż nitrogenaza jest zawieszona bezpośrednio w cytozolu, otaczający płyn przeprowadza [b]glycolysis[/b]."
+
+#, fuzzy
+msgid "WIKI_HYDROGENOSOME_PROCESSES"
+msgstr "Produkuje [thrive:compound type=\"atp\"][/thrive:compound] używając gradientów temperatury. Tempo skaluje się ze stężeniem [thrive:compound type=\"temperature\"][/thrive:compound]."
+
+#, fuzzy
+msgid "WIKI_HYDROGENOSOME_REQUIREMENTS"
+msgstr ""
+"Komórka musi mieć [b][color=#3796e1][url=thriveopedia:nucleus]Jądro Komórkowe[/url][/color][/b] by wyewoluować [b]Czynniki Wiążące[/b].\n"
+"\n"
+"Jeżeli warunki odblokowania organelli są włączone w ustawieniach, [i]wszystkie[/i] poniższe warunki muszą być spełnione [i] dla komórki gracza[/i]:\n"
+"\n"
+"[indent]—   Zawiera [b][color=#3796e1][url=thriveopedia:nucleus]Jądro Komórkowe[/url][/color][/b] przez [b]5[/b] generacji.[/indent]\n"
+"[indent]—   Ma bilans [thrive:compound type=\"atp\"][/thrive:compound] równy [b]+15[/b] lub większy.[/indent]"
+
+#, fuzzy
+msgid "WIKI_HYDROGENOSOME_SCIENTIFIC_BACKGROUND"
+msgstr "Nitrogenaza to białko mogące użyć gazowego [thrive:compound type=\"nitrogen\"][/thrive:compound] i energii komórkowej w formie [thrive:compound type=\"atp\"][/thrive:compound] do produkcji [thrive:compound type=\"ammonia\"][/thrive:compound], kluczowego składnika dla wzrostu komórek. Ten proces nazywany jest [b]anaerobic nitrogen fixation[/b]. Jako iż nitrogenaza jest zawieszona bezpośrednio w cytozolu, otaczający płyn przeprowadza [b]glycolysis[/b]."
+
+#, fuzzy
+msgid "WIKI_HYDROGENOSOME_STRATEGY"
+msgstr "Termosyntaza jest białkiem które używa konwekcji termicznej by zmieniać swój kształt, pozwalając mu się zwinąć i związać z ADP pod wpływem ciepła, następnie rozwinąć i przetworzyć ADP na [thrive:compound type=\"atp\"][/thrive:compound] w kontakcie z niższą temperaturą w procesie zwanym [b]thermosynthesis[/b]. Szybkość produkcji [thrive:compound type=\"atp\"][/thrive:compound] wzrasta z [thrive:compound type=\"temperature\"][/thrive:compound]."
+
+#, fuzzy
+msgid "WIKI_HYDROGENOSOME_UPGRADES"
+msgstr "Nitrogenaza to białko mogące użyć gazowego [thrive:compound type=\"nitrogen\"][/thrive:compound] i energii komórkowej w formie [thrive:compound type=\"atp\"][/thrive:compound] do produkcji [thrive:compound type=\"ammonia\"][/thrive:compound], kluczowego składnika dla wzrostu komórek. Ten proces nazywany jest [b]anaerobic nitrogen fixation[/b]. Jako iż nitrogenaza jest zawieszona bezpośrednio w cytozolu, otaczający płyn przeprowadza [b]glycolysis[/b]."
+
 msgid "WIKI_INDUSTRIAL_STAGE_CURRENT_DEVELOPMENT"
 msgstr "Prace nad tym etapem jeszcze się nie zaczęły. Design rozgrywki i teorii dla tego etapu zacznie mnie większe znaczenie kiedy rozpoczną się prace nad [color=#3796e1][url=thriveopedia:society_stage]Etapem Społeczeństwa[/url][/color]."
 
@@ -8221,6 +8276,10 @@ msgstr "Mitochondrium"
 
 #, fuzzy
 msgid "WIKI_PAGE_HYDROGENASE"
+msgstr "Azotaza"
+
+#, fuzzy
+msgid "WIKI_PAGE_HYDROGENOSOME"
 msgstr "Azotaza"
 
 #, fuzzy
