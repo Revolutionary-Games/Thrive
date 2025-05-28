@@ -835,12 +835,6 @@ public partial class CellEditorComponent
             return;
         }
 
-        if (camera == null)
-        {
-            GD.PrintErr("Camera must be set for growth order numbers");
-            return;
-        }
-
         growthOrderNumberContainer.Visible = true;
 
         // Setup tracking for what gets used
