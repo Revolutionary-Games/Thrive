@@ -59,8 +59,13 @@ public partial class DraggableScrollContainer : ScrollContainer
     {
         base._Ready();
 
-        // As this now in Godot 4 ignores internal nodes, child index 0 is the first actual child (and not the
-        // scrollbars)
+        if (content == null!)
+        {
+            // As this now in Godot 4 ignores internal nodes, child index 0 is the first actual child (and not the
+            // scrollbars)
+            content = (Control)GetChild(0);
+        }
+
         // Workaround a bug in Godot (https://github.com/godotengine/godot/issues/22936).
         GetVScrollBar().Connect(Range.SignalName.ValueChanged, new Callable(this, nameof(OnScrollStarted)));
         GetHScrollBar().Connect(Range.SignalName.ValueChanged, new Callable(this, nameof(OnScrollStarted)));
