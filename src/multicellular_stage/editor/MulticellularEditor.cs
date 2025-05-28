@@ -8,7 +8,7 @@ using Newtonsoft.Json;
 ///   The multicellular stage editor main class
 /// </summary>
 [JsonObject(IsReference = true)]
-[SceneLoadedClass("res://src/multicellular_stage/editor/MulticellularEditor.tscn")]
+[SceneLoadedClass("res://src/multicellular_stage/editor/MulticellularEditor.tscn", UsesEarlyResolve = false)]
 [DeserializedCallbackTarget]
 public partial class MulticellularEditor : EditorBase<EditorAction, MicrobeStage>, IEditorReportData,
     ICellEditorData

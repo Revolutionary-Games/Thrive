@@ -7,7 +7,7 @@ using Newtonsoft.Json;
 /// <summary>
 ///   Body plan editor component for making body plans from metaballs
 /// </summary>
-[SceneLoadedClass("res://src/macroscopic_stage/editor/MetaballBodyEditorComponent.tscn")]
+[SceneLoadedClass("res://src/macroscopic_stage/editor/MetaballBodyEditorComponent.tscn", UsesEarlyResolve = false)]
 public partial class MetaballBodyEditorComponent :
     MetaballEditorComponentBase<MacroscopicEditor, CombinedEditorAction, EditorAction, MacroscopicMetaball>
 {

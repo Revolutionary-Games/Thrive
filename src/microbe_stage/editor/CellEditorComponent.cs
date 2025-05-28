@@ -11,7 +11,7 @@ using Systems;
 /// <summary>
 ///   The cell editor component combining the organelle and other editing logic with the GUI for it
 /// </summary>
-[SceneLoadedClass("res://src/microbe_stage/editor/CellEditorComponent.tscn")]
+[SceneLoadedClass("res://src/microbe_stage/editor/CellEditorComponent.tscn", UsesEarlyResolve = false)]
 public partial class CellEditorComponent :
     HexEditorComponentBase<ICellEditorData, CombinedEditorAction, EditorAction, OrganelleTemplate, CellType>,
     ICellEditorComponent

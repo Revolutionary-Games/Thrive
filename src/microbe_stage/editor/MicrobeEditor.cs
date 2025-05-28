@@ -8,7 +8,7 @@ using Newtonsoft.Json;
 ///   Main class of the microbe editor
 /// </summary>
 [JsonObject(IsReference = true)]
-[SceneLoadedClass("res://src/microbe_stage/editor/MicrobeEditor.tscn")]
+[SceneLoadedClass("res://src/microbe_stage/editor/MicrobeEditor.tscn", UsesEarlyResolve = false)]
 public partial class MicrobeEditor : EditorBase<EditorAction, MicrobeStage>, IEditorReportData, ICellEditorData
 {
     private const string ADVANCED_TABS_SHOWN_BEFORE = "editor_advanced_tabs";

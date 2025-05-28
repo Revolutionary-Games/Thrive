@@ -8,7 +8,7 @@ using Systems;
 /// <summary>
 ///   Body plan editor component for making body plans from hexes (that represent cells)
 /// </summary>
-[SceneLoadedClass("res://src/multicellular_stage/editor/CellBodyPlanEditorComponent.tscn")]
+[SceneLoadedClass("res://src/multicellular_stage/editor/CellBodyPlanEditorComponent.tscn", UsesEarlyResolve = false)]
 public partial class CellBodyPlanEditorComponent :
     HexEditorComponentBase<MulticellularEditor, CombinedEditorAction, EditorAction, HexWithData<CellTemplate>,
         MulticellularSpecies>
