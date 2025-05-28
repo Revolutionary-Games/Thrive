@@ -26,7 +26,7 @@ corner_radius_bottom_right = 5
 corner_radius_bottom_left = 5
 
 [node name="PatchMapNode" type="MarginContainer" node_paths=PackedStringArray("iconRect", "highlightPanel", "markPanel", "adjacentHighlightPanel", "unknownLabel", "eventIconsContainer")]
-custom_minimum_size = Vector2(64, 64)
+custom_minimum_size = Vector2(80, 80)
 offset_right = 64.0
 offset_bottom = 64.0
 mouse_default_cursor_shape = 2
