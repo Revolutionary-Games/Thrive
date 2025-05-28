@@ -58,15 +58,6 @@ public partial class RadialPopup : CustomWindow
         Radial.Visible = false;
     }
 
-    protected override void Dispose(bool disposing)
-    {
-        if (disposing)
-        {
-        }
-
-        base.Dispose(disposing);
-    }
-
     private void ForwardSelected(int itemId)
     {
         EmitSignal(SignalName.OnItemSelected, itemId);

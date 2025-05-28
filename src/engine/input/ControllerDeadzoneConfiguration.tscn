@@ -1,11 +1,11 @@
 [gd_scene load_steps=5 format=3 uid="uid://00dm1uexdc6n"]
 
-[ext_resource type="PackedScene" path="res://src/gui_common/dialogs/CustomWindow.tscn" id="1"]
+[ext_resource type="PackedScene" uid="uid://du8sc8kjirguk" path="res://src/gui_common/dialogs/CustomWindow.tscn" id="1"]
 [ext_resource type="Script" uid="uid://bbyi3x67p8227" path="res://src/engine/input/ControllerDeadzoneConfiguration.cs" id="2"]
-[ext_resource type="PackedScene" path="res://src/engine/input/ControllerInputAxisVisualizationContainer.tscn" id="3"]
+[ext_resource type="PackedScene" uid="uid://ufx07qp4e0t8" path="res://src/engine/input/ControllerInputAxisVisualizationContainer.tscn" id="3"]
 [ext_resource type="LabelSettings" uid="uid://bx7mw3uvqpo42" path="res://src/gui_common/fonts/Body-Regular-Smaller.tres" id="3_3jtjp"]
 
-[node name="ControllerDeadzoneConfiguration" instance=ExtResource("1") node_paths=PackedStringArray("statusLabel", "applyButton", "startButton", "visualizationContainer")]
+[node name="ControllerDeadzoneConfiguration" node_paths=PackedStringArray("visualizationContainer", "startButton", "applyButton", "statusLabel", "explanationLabel") instance=ExtResource("1")]
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
@@ -18,7 +18,7 @@ visualizationContainer = NodePath("VBoxContainer/ScrollContainer/VBoxContainer/C
 startButton = NodePath("VBoxContainer/ScrollContainer/VBoxContainer/HBoxContainer/Start")
 applyButton = NodePath("VBoxContainer/Apply")
 statusLabel = NodePath("VBoxContainer/ScrollContainer/VBoxContainer/Result")
-ExplanationLabelPath = NodePath("VBoxContainer/ScrollContainer/VBoxContainer/Explanation")
+explanationLabel = NodePath("VBoxContainer/ScrollContainer/VBoxContainer/Explanation")
 WindowTitle = "DEADZONE_CONFIGURATION"
 Exclusive = true
 

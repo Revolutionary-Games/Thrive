@@ -7,9 +7,6 @@ using Godot;
 /// </summary>
 public partial class ControllerDeadzoneConfiguration : CustomWindow
 {
-    [Export]
-    public NodePath ExplanationLabelPath = null!;
-
     private const double SettleDownTimeStart = 4.5f;
     private const double SettleDownTimeIncreaseMultiplier = 5;
 
@@ -26,6 +23,9 @@ public partial class ControllerDeadzoneConfiguration : CustomWindow
     [Export]
     private Label statusLabel = null!;
 
+    [Export]
+    private Label explanationLabel = null!;
+
 #pragma warning restore CA2213
 
     private bool calibrating;
@@ -41,7 +41,7 @@ public partial class ControllerDeadzoneConfiguration : CustomWindow
 
     public override void _Ready()
     {
-        GetNode<Label>(ExplanationLabelPath).RegisterCustomFocusDrawer();
+        explanationLabel.RegisterCustomFocusDrawer();
 
         // TODO: add separate sliders in this GUI to manually tweak all deadzones
     }
@@ -112,18 +112,6 @@ public partial class ControllerDeadzoneConfiguration : CustomWindow
     {
         base.OnHidden();
         OnCancel();
-    }
-
-    protected override void Dispose(bool disposing)
-    {
-        if (disposing)
-        {
-            {
-                ExplanationLabelPath.Dispose();
-            }
-        }
-
-        base.Dispose(disposing);
     }
 
     private void OnCancel()

@@ -15,7 +15,6 @@ using Newtonsoft.Json;
 public partial class CreatureStageHUDBase<TStage> : HUDWithPausing, ICreatureStageHUD
     where TStage : GodotObject, ICreatureStage
 {
-    // TODO: rename to SignalingAgentsHotkeyPath
 #pragma warning disable CA2213
     [Export]
     public PackedScene FossilisationButtonScene = null!;

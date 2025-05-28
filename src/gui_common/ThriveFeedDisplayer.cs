@@ -26,7 +26,7 @@ public partial class ThriveFeedDisplayer : VBoxContainer
     private PackedScene customRichTextScene = null!;
 #pragma warning restore CA2213
 
-    private StyleBoxFlat feedItemBackground = null!;
+    private StyleBoxFlat? feedItemBackground;
 
     private Task<IReadOnlyCollection<ThriveNewsFeed.FeedItem>>? newsTask;
 
@@ -139,7 +139,7 @@ public partial class ThriveFeedDisplayer : VBoxContainer
     {
         if (disposing)
         {
-            feedItemBackground.Dispose();
+            feedItemBackground?.Dispose();
             newsEnumerator?.Dispose();
         }
 
