@@ -10,9 +10,6 @@ public partial class PatchMapNode : MarginContainer
     [Export]
     public string UnknownTextureFilePath = null!;
 
-    // TODO: Move this to Constants.cs
-    private const float HalfBlinkInterval = 0.5f;
-
 #pragma warning disable CA2213
     [Export]
     private TextureRect iconRect = null!;
