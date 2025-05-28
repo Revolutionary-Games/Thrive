@@ -9,7 +9,7 @@ public partial class SpeciesDetailsPanelWithFossilisation : VBoxContainer
 {
 #pragma warning disable CA2213
     [Export]
-    private SpeciesDetailsPanel speciesDetailsPanel = null!;
+    private SpeciesDetailsPanel? speciesDetailsPanel;
 
     [Export]
     private Button fossilisationButton = null!;
@@ -30,7 +30,9 @@ public partial class SpeciesDetailsPanelWithFossilisation : VBoxContainer
 
             previewSpecies = value;
 
-            speciesDetailsPanel.PreviewSpecies = value;
+            if (speciesDetailsPanel != null)
+                speciesDetailsPanel.PreviewSpecies = value;
+
             UpdateFossilisationButtonState();
         }
     }
@@ -39,7 +41,7 @@ public partial class SpeciesDetailsPanelWithFossilisation : VBoxContainer
     {
         base._Ready();
 
-        speciesDetailsPanel.PreviewSpecies = previewSpecies;
+        speciesDetailsPanel!.PreviewSpecies = previewSpecies;
 
         UpdateFossilisationButtonState();
     }
