@@ -408,6 +408,9 @@ public partial class OptionsMenu : ControlWithInput
     private Button lowQualityBackgroundBlurToggle = null!;
 
     [Export]
+    private Button microbeRippleEffect = null!;
+
+    [Export]
     private Button microbeCameraTilt = null!;
 
     [Export]
@@ -884,6 +887,7 @@ public partial class OptionsMenu : ControlWithInput
         displayBackgroundParticlesToggle.ButtonPressed = settings.DisplayBackgroundParticles;
         displayMicrobeBackgroundDistortionToggle.ButtonPressed = settings.MicrobeDistortionStrength.Value > 0;
         lowQualityBackgroundBlurToggle.ButtonPressed = settings.MicrobeBackgroundBlurLowQuality;
+        microbeRippleEffect.ButtonPressed = settings.MicrobeRippleEffect;
         microbeCameraTilt.ButtonPressed = settings.MicrobeCameraTilt;
         guiLightEffectsToggle.ButtonPressed = settings.GUILightEffectsEnabled;
         displayPartNamesToggle.ButtonPressed = settings.DisplayPartNames;
@@ -2307,6 +2311,13 @@ public partial class OptionsMenu : ControlWithInput
     private void OnLowQualityBackgroundBlurToggled(bool toggle)
     {
         Settings.Instance.MicrobeBackgroundBlurLowQuality.Value = toggle;
+
+        UpdateResetSaveButtonState();
+    }
+
+    private void OnMicrobeRippleToggled(bool toggle)
+    {
+        Settings.Instance.MicrobeRippleEffect.Value = toggle;
 
         UpdateResetSaveButtonState();
     }
