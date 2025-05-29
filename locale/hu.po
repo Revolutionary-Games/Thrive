@@ -7,8 +7,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2025-04-30 10:54+0300\n"
-"PO-Revision-Date: 2025-04-23 06:35+0000\n"
+"POT-Creation-Date: 2025-05-26 12:24+0300\n"
+"PO-Revision-Date: 2025-05-25 15:00+0000\n"
 "Last-Translator: Anonymous <noreply@weblate.org>\n"
 "Language-Team: Hungarian <https://translate.revolutionarygamesstudio.com/projects/thrive/thrive-game/hu/>\n"
 "Language: hu\n"
@@ -16,7 +16,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=n != 1;\n"
-"X-Generator: Weblate 5.7.2\n"
+"X-Generator: Weblate 5.11.4\n"
 "Generated-By: Babel 2.9.1\n"
 
 msgid "2D_MOVEMENT_TYPE_SELECTION"
@@ -683,6 +683,7 @@ msgstr "Az eukarióta sejtek legmeghatározóbb jellemzője. A sejtmaghoz még h
 msgid "CELLULOSE"
 msgstr "Cellulóz"
 
+#, fuzzy
 msgid "CELLULOSE_MEMBRANE_DESCRIPTION"
 msgstr "Ez a membrán egy fallal rendelkezik, ami jobb védelmet jelent a sérülések ellen, főleg a fizikai sérülések ellen. Kevesebb energia szükséges neki formája megtartásához, viszont lassú a bekebelezése és lassítja magát a sejtet is."
 
@@ -765,6 +766,7 @@ msgstr "Kemoszintézis"
 msgid "CHEMOSYNTHESIZING_PROTEINS"
 msgstr "Kemoszintetizáló fehérjék"
 
+#, fuzzy
 msgid "CHEMOSYNTHESIZING_PROTEINS_DESCRIPTION"
 msgstr "A kemoszintetizáló fehérjék kicsi fehérjecsoportosulások a citoplazmában, melyek képesek glükózt előállítani hidrogén-szulfidból, vízből, és szén-dioxidból. Ezt a folyamatot hívjuk hidrogén-szulfid kemoszintézisnek. A glükóz előállításának intenzitása a szén-dioxid koncentrációjától függ. Mivel a kemoszintetizáló fehérjék a citoplazmában helyezkednek el, ezért a körülötte elhelyezkedő folyadék végez némi glikolízist."
 
@@ -784,6 +786,7 @@ msgstr "Kitináz"
 msgid "CHITINASE_DESCRIPTION"
 msgstr "A ragacsos belseje a sejtnek. A citoplazma (sejtplazma) ionok, proteinek, víz és még más anyagok egyszerű keveréke, ami kitölti egy sejt belsejét. Az egyik funkciója a glikolízis, ami a glükóz ATP-vé alakítását takarja. Azoknak az organizmusoknak, melyeknek nincsenek különböző sejtszervecskéi, hogy fejlettebb anyagcserét tudjanak végezni, nekik ez az egyetlen támaszuk az energia előállítására. A sejtek még használják molekulák raktáraként, és hogy ezzel növelni tudják méretüket."
 
+#, fuzzy
 msgid "CHITIN_MEMBRANE_DESCRIPTION"
 msgstr "Ez a membrán egy fallal rendelkezik, ami jobb védelmet jelent a sérülések ellen, főleg a méreg általi sérülések ellen. Kevesebb energia szükséges neki formája megtartásához, viszont lassú a bekebelezése és lassítja magát a sejtet is."
 
@@ -1106,6 +1109,7 @@ msgstr "Válassz ki egy patch-et a további részletek megtekintéséhez"
 msgid "CONTINUE_THRIVING"
 msgstr "A túlélés kezdése"
 
+#, fuzzy
 msgid "CONTINUE_TO_PROTOTYPES"
 msgstr ""
 "Elérkeztél a Thrive \"teljes\" részének a végéhez.\n"
@@ -1473,6 +1477,7 @@ msgstr "Saját felhasználónév:"
 msgid "CYTOPLASM"
 msgstr "Citoplazma"
 
+#, fuzzy
 msgid "CYTOPLASM_DESCRIPTION"
 msgstr "A ragacsos belseje a sejtnek. A citoplazma (sejtplazma) ionok, proteinek, víz és még más anyagok egyszerű keveréke, ami kitölti egy sejt belsejét. Az egyik funkciója a glikolízis, ami a glükóz ATP-vé alakítását takarja. Azoknak az organizmusoknak, melyeknek nincsenek különböző sejtszervecskéi, hogy fejlettebb anyagcserét tudjanak végezni, nekik ez az egyetlen támaszuk az energia előállítására. A sejtek még használják molekulák raktáraként, és hogy ezzel növelni tudják méretüket."
 
@@ -2590,6 +2595,7 @@ msgstr "G"
 msgid "GLOBAL_POPULATION_COLON"
 msgstr "Teljes populáció:"
 
+#, fuzzy
 msgid "GLOBAL_TIMELINE_SPECIES_MIGRATED_TO"
 msgstr "[u]{0}[/u] populációjának egy része ide innen: {2}, ide: {1} vándorolt"
 
@@ -2716,6 +2722,18 @@ msgstr "A nitrogenáz egy enzim, mely nitrogéngázból a sejt energiaraktároz�
 
 #, fuzzy
 msgid "HYDROGENASE_PROCESSES_DESCRIPTION"
+msgstr "[thrive:compound type=\"atp\"][/thrive:compound]-t alakít át [thrive:compound type=\"ammonia\"][/thrive:compound]-vá. Hatékonysága függ az [thrive:compound type=\"nitrogen\"][/thrive:compound] koncentrációjától."
+
+#, fuzzy
+msgid "HYDROGENOSOME"
+msgstr "Hidrogén-szulfid"
+
+#, fuzzy
+msgid "HYDROGENOSOME_DESCRIPTION"
+msgstr "A nitrogenáz egy enzim, mely nitrogéngázból a sejt energiaraktározó ATP molekulájának segítségével képes ammóniát előállítani, ami a sejtnek egy elég fontos tápanyaga. Ez a folyamat anaerob nitrogén-rögzítés néven ismert. Mivel a nitrogenáz a citoplazmában helyezkedik el, ezért a környékén elhelyezkedő folyadék glikolízist végez."
+
+#, fuzzy
+msgid "HYDROGENOSOME_PROCESSES_DESCRIPTION"
 msgstr "[thrive:compound type=\"atp\"][/thrive:compound]-t alakít át [thrive:compound type=\"ammonia\"][/thrive:compound]-vá. Hatékonysága függ az [thrive:compound type=\"nitrogen\"][/thrive:compound] koncentrációjától."
 
 msgid "HYDROGEN_SULFIDE"
@@ -3630,6 +3648,7 @@ msgstr "Mezopelágikus"
 msgid "METABOLOSOMES"
 msgstr "Metaboloszómák"
 
+#, fuzzy
 msgid "METABOLOSOMES_DESCRIPTION"
 msgstr "A metaboloszómák fehérjecsoportosulások fehérjeburokba csomagolva. A glükózt a citoplazmánál sokkal gyorsabban át tudják alakítani ATP-vé az aerob légzés segítségével. Viszont, mivel egyfajta \"légzés\", ezért oxigén kell a működéséhez, így a környezetben kisebb az oxigénszint, akkor ennek hatására az ATP előállítása lelassul. Mivel a metaboloszómák a citoplazmában helyezkednek el, ezért a körülötte elhelyezkedő folyadék végez némi glikolízist."
 
@@ -3753,6 +3772,10 @@ msgstr "Sejtfázis"
 #, fuzzy
 msgid "MICROBE_BENCHMARK"
 msgstr "Sejtszerkesztő"
+
+#, fuzzy
+msgid "MICROBE_CAMERA_TILT_EFFECT"
+msgstr "  {0}: Megtalálható a {1} fajokban, átlagosan {2} darabja"
 
 msgid "MICROBE_EDITOR"
 msgstr "Sejtszerkesztő"
@@ -4464,6 +4487,7 @@ msgstr "Nitrogén"
 msgid "NITROGENASE"
 msgstr "Nitrogenáz"
 
+#, fuzzy
 msgid "NITROGENASE_DESCRIPTION"
 msgstr "A nitrogenáz egy enzim, mely nitrogéngázból a sejt energiaraktározó ATP molekulájának segítségével képes ammóniát előállítani, ami a sejtnek egy elég fontos tápanyaga. Ez a folyamat anaerob nitrogén-rögzítés néven ismert. Mivel a nitrogenáz a citoplazmában helyezkedik el, ezért a környékén elhelyezkedő folyadék glikolízist végez."
 
@@ -4884,10 +4908,6 @@ msgstr "Pásztázás jobbra"
 
 msgid "PAN_CAMERA_UP"
 msgstr "Pásztázás felfelé"
-
-#, fuzzy
-msgid "PASSIVE_REPRODUCTION_PROGRESS_EXPLANATION"
-msgstr "(a sebesség, mely alatt az MI fajok mutálódnak)"
 
 msgid "PAST_DEVELOPERS"
 msgstr "Korábbi Fejlesztők"
@@ -5508,6 +5528,7 @@ msgstr "Mérete:"
 msgid "SAVE_UPGRADE_FAILED"
 msgstr "A mentés frissítése sikertelen"
 
+#, fuzzy
 msgid "SAVE_UPGRADE_FAILED_DESCRIPTION"
 msgstr ""
 "Ezen mentés frissítése nem sikerült a következő hiba miatt:\n"
@@ -6291,6 +6312,7 @@ msgstr "Thrive licenszek"
 msgid "THYLAKOIDS"
 msgstr "Thilakoidok"
 
+#, fuzzy
 msgid "THYLAKOIDS_DESCRIPTION"
 msgstr "A thilakoidok fehérjék és fényérzékeny pigmentek csoportosulásai. Ezek a pigmentek képesek a fény energiáját felhasználni glükóz előállítására vízből, és szén-dioxid gázból. Ezt a folyamatot hívjuk fotoszintézisnek. E pigmentek adják ráadásul saját maguk jellegzetes színét. A glükóz előállításának intenzitása a fény intenzitásától, és a szén-dioxid koncentrációjától függ. Mivel a thilakoidok a citoplazmában helyezkednek el, ezért a körülötte elhelyezkedő folyadék végez némi glikolízist."
 
@@ -6306,6 +6328,7 @@ msgstr ""
 msgid "TIMELINE_LOCAL_FILTER_TOOLTIP"
 msgstr ""
 
+#, fuzzy
 msgid "TIMELINE_NICHE_FILL"
 msgstr "[u]{0}[/u] egy új fajként vált le [u]{1}[/u]-tól/től, hogy betöltsön egy ökológiai niche-t"
 
@@ -6317,6 +6340,7 @@ msgstr "[u]{0}[/u] populációjának egy része ide vándorolt: {1}"
 msgid "TIMELINE_PLAYER_MIGRATED_TO"
 msgstr "[u]{0}[/u] populációjának egy része ide vándorolt: {1}"
 
+#, fuzzy
 msgid "TIMELINE_SELECTION_PRESSURE_SPLIT"
 msgstr "kölönböző kiválasztódási nyomások miatt, [u]{0}[/u] egy új fajként vált le [u]{1}[/u]-tól/től"
 
@@ -6327,9 +6351,11 @@ msgstr ""
 "A sejtednek szüksége van glükózra, hogy energiát tudjon előállítani és túl tudjon így élni.\n"
 "Kövesd a vonalat, hogy találj egy kis glükózt."
 
+#, fuzzy
 msgid "TIMELINE_SPECIES_EXTINCT"
 msgstr "[u]{0}[/u] kihalt!"
 
+#, fuzzy
 msgid "TIMELINE_SPECIES_EXTINCT_LOCAL"
 msgstr "[u]{0}[/u] eltűnt ebből a patch-ből"
 
@@ -6337,15 +6363,19 @@ msgstr "[u]{0}[/u] eltűnt ebből a patch-ből"
 msgid "TIMELINE_SPECIES_FOLLOWED"
 msgstr "[u]{0}[/u] kihalt!"
 
+#, fuzzy
 msgid "TIMELINE_SPECIES_MIGRATED_FROM"
 msgstr "[u]{0}[/u] populációjának egy része ebbe a patch-be vándorolt ebből a patch-ből: {1}"
 
+#, fuzzy
 msgid "TIMELINE_SPECIES_MIGRATED_TO"
 msgstr "[u]{0}[/u] populációjának egy része ide vándorolt: {1}"
 
+#, fuzzy
 msgid "TIMELINE_SPECIES_POPULATION_DECREASE"
 msgstr "[u]{0}[/u] egyedszáma csökkent: {1}"
 
+#, fuzzy
 msgid "TIMELINE_SPECIES_POPULATION_INCREASE"
 msgstr "[u]{0}[/u] egyedszáma növekedett: {1}"
 
@@ -7949,6 +7979,38 @@ msgid "WIKI_HYDROGENASE_UPGRADES"
 msgstr "A nitrogenáz egy enzim, mely nitrogéngázból a sejt energiaraktározó ATP molekulájának segítségével képes ammóniát előállítani, ami a sejtnek egy elég fontos tápanyaga. Ez a folyamat anaerob nitrogén-rögzítés néven ismert. Mivel a nitrogenáz a citoplazmában helyezkedik el, ezért a környékén elhelyezkedő folyadék glikolízist végez."
 
 #, fuzzy
+msgid "WIKI_HYDROGENOSOME_EFFECTS"
+msgstr "A nitrogenáz egy enzim, mely nitrogéngázból a sejt energiaraktározó ATP molekulájának segítségével képes ammóniát előállítani, ami a sejtnek egy elég fontos tápanyaga. Ez a folyamat anaerob nitrogén-rögzítés néven ismert. Mivel a nitrogenáz a citoplazmában helyezkedik el, ezért a környékén elhelyezkedő folyadék glikolízist végez."
+
+#, fuzzy
+msgid "WIKI_HYDROGENOSOME_INTRO"
+msgstr "A nitrogenáz egy enzim, mely nitrogéngázból a sejt energiaraktározó ATP molekulájának segítségével képes ammóniát előállítani, ami a sejtnek egy elég fontos tápanyaga. Ez a folyamat anaerob nitrogén-rögzítés néven ismert. Mivel a nitrogenáz a citoplazmában helyezkedik el, ezért a környékén elhelyezkedő folyadék glikolízist végez."
+
+#, fuzzy
+msgid "WIKI_HYDROGENOSOME_MODIFICATIONS"
+msgstr "A nitrogenáz egy enzim, mely nitrogéngázból a sejt energiaraktározó ATP molekulájának segítségével képes ammóniát előállítani, ami a sejtnek egy elég fontos tápanyaga. Ez a folyamat anaerob nitrogén-rögzítés néven ismert. Mivel a nitrogenáz a citoplazmában helyezkedik el, ezért a környékén elhelyezkedő folyadék glikolízist végez."
+
+#, fuzzy
+msgid "WIKI_HYDROGENOSOME_PROCESSES"
+msgstr "[thrive:compound type=\"atp\"][/thrive:compound]-t alakít át [thrive:compound type=\"ammonia\"][/thrive:compound]-vá. Hatékonysága függ az [thrive:compound type=\"nitrogen\"][/thrive:compound] koncentrációjától."
+
+#, fuzzy
+msgid "WIKI_HYDROGENOSOME_REQUIREMENTS"
+msgstr "A nitrogenáz egy enzim, mely nitrogéngázból a sejt energiaraktározó ATP molekulájának segítségével képes ammóniát előállítani, ami a sejtnek egy elég fontos tápanyaga. Ez a folyamat anaerob nitrogén-rögzítés néven ismert. Mivel a nitrogenáz a citoplazmában helyezkedik el, ezért a környékén elhelyezkedő folyadék glikolízist végez."
+
+#, fuzzy
+msgid "WIKI_HYDROGENOSOME_SCIENTIFIC_BACKGROUND"
+msgstr "A nitrogenáz egy enzim, mely nitrogéngázból a sejt energiaraktározó ATP molekulájának segítségével képes ammóniát előállítani, ami a sejtnek egy elég fontos tápanyaga. Ez a folyamat anaerob nitrogén-rögzítés néven ismert. Mivel a nitrogenáz a citoplazmában helyezkedik el, ezért a környékén elhelyezkedő folyadék glikolízist végez."
+
+#, fuzzy
+msgid "WIKI_HYDROGENOSOME_STRATEGY"
+msgstr "A nitrogenáz egy enzim, mely nitrogéngázból a sejt energiaraktározó ATP molekulájának segítségével képes ammóniát előállítani, ami a sejtnek egy elég fontos tápanyaga. Ez a folyamat anaerob nitrogén-rögzítés néven ismert. Mivel a nitrogenáz a citoplazmában helyezkedik el, ezért a környékén elhelyezkedő folyadék glikolízist végez."
+
+#, fuzzy
+msgid "WIKI_HYDROGENOSOME_UPGRADES"
+msgstr "A nitrogenáz egy enzim, mely nitrogéngázból a sejt energiaraktározó ATP molekulájának segítségével képes ammóniát előállítani, ami a sejtnek egy elég fontos tápanyaga. Ez a folyamat anaerob nitrogén-rögzítés néven ismert. Mivel a nitrogenáz a citoplazmában helyezkedik el, ezért a környékén elhelyezkedő folyadék glikolízist végez."
+
+#, fuzzy
 msgid "WIKI_INDUSTRIAL_STAGE_CURRENT_DEVELOPMENT"
 msgstr "Több sejthez való kapcsolódást teszi lehetővé. Ez a legelső lépés a többsejtűség felé. Amikor a sejted egy kolónia tagja, akkor a vegyületek eloszlanak a sejtek között. Ameddig egy kolónia tagja vagy, addig nem léphetsz be a sejtszerkesztőbe, emiatt el kell válnod a kolóniától miután elegendő vegyületet gyűjtöttél."
 
@@ -8458,6 +8520,10 @@ msgstr "Mitokondrium"
 
 #, fuzzy
 msgid "WIKI_PAGE_HYDROGENASE"
+msgstr "Nitrogenáz"
+
+#, fuzzy
+msgid "WIKI_PAGE_HYDROGENOSOME"
 msgstr "Nitrogenáz"
 
 #, fuzzy
@@ -9105,6 +9171,10 @@ msgstr "Közelítés"
 
 msgid "ZOOM_OUT"
 msgstr "Távolodás"
+
+#, fuzzy
+#~ msgid "PASSIVE_REPRODUCTION_PROGRESS_EXPLANATION"
+#~ msgstr "(a sebesség, mely alatt az MI fajok mutálódnak)"
 
 #~ msgid "TO_BE_IMPLEMENTED"
 #~ msgstr "Fejlesztés alatt."

@@ -41,7 +41,6 @@ material = SubResource("StandardMaterial3D_kycdo")
 [node name="WaterCurrentDisplay" type="GPUParticles3D"]
 amount = 1000
 lifetime = 8.0
-interpolate = false
 process_material = SubResource("ShaderMaterial_23vs3")
 draw_pass_1 = SubResource("QuadMesh_iqoan")
 script = ExtResource("7_21wlg")

@@ -20,33 +20,101 @@ public static class SteamBuild
 
     private const string STEAM_ENABLED_COMMENT = "<!-- Steam build enabled -->";
 
-    private const string STEAMWORKS_REFERENCE_START = @"<Reference Include=""Steamworks.NET"">";
+    private const string STEAMWORKS_REFERENCE_START = @"<Reference Include=""Steamworks.NET";
+
+    private const string CONDITION_MAC_ARM64 =
+        @"Condition=""'$(RuntimeIdentifier)' == 'osx-arm64' Or ('$(RuntimeIdentifier)' == '' And " +
+        "$([MSBuild]::IsOSPlatform('OSX')) And " +
+        @"'$([System.Runtime.InteropServices.RuntimeInformation]::ProcessArchitecture)' == 'Arm64')""";
+
+    private const string CONDITION_MAC_X64 =
+        @"Condition=""'$(RuntimeIdentifier)' == 'osx-x64' Or ('$(RuntimeIdentifier)' == '' And " +
+        "$([MSBuild]::IsOSPlatform('OSX')) And " +
+        @"'$([System.Runtime.InteropServices.RuntimeInformation]::ProcessArchitecture)' == 'X64')""";
 
     public enum SteamPlatform
     {
         Linux,
         Windows,
+        Mac,
     }
 
-    public static string PathToSteamAssemblyForPlatform(SteamPlatform platform)
+    public enum LibraryArchitecture
+    {
+        X86,
+        X64,
+        Arm,
+        Arm64,
+    }
+
+    public static string PathToSteamAssemblyForPlatform(SteamPlatform platform, LibraryArchitecture architecture)
     {
         switch (platform)
         {
-            // TODO: M1 mac compiled support?
-            // case SteamPlatform.Linux.Mac:
             case SteamPlatform.Linux:
-                return @"third_party\linux\Steamworks.NET.dll";
+                return $@"third_party\linux\{SteamAssemblyNameForPlatform(platform, architecture)}";
             case SteamPlatform.Windows:
-                return @"third_party\windows\Steamworks.NET.dll";
+                return $@"third_party\windows\{SteamAssemblyNameForPlatform(platform, architecture)}";
+
+            case SteamPlatform.Mac:
+                // Can't use LIPO on a DLL, so this needs to be split like this
+                switch (architecture)
+                {
+                    case LibraryArchitecture.X86:
+                    case LibraryArchitecture.Arm:
+                        throw new NotSupportedException("Non-supported architecture for Mac");
+
+                    case LibraryArchitecture.X64:
+                        return $@"third_party\mac\{SteamAssemblyNameForPlatform(platform, architecture)}";
+                    case LibraryArchitecture.Arm64:
+                        return $@"third_party\mac\{SteamAssemblyNameForPlatform(platform, architecture)}";
+
+                    default:
+                        throw new ArgumentOutOfRangeException(nameof(architecture), architecture, null);
+                }
             default:
                 throw new ArgumentOutOfRangeException(nameof(platform), platform, null);
         }
     }
 
+    public static string SteamAssemblyNameForPlatform(SteamPlatform platform, LibraryArchitecture architecture)
+    {
+        if (platform == SteamPlatform.Mac)
+        {
+            switch (architecture)
+            {
+                case LibraryArchitecture.X86:
+                case LibraryArchitecture.Arm:
+                    throw new NotSupportedException("Non-supported architecture for Mac");
+                case LibraryArchitecture.X64:
+                    return "Steamworks.NET.x64.dll";
+                case LibraryArchitecture.Arm64:
+                    return "Steamworks.NET.arm64.dll";
+                default:
+                    throw new ArgumentOutOfRangeException(nameof(architecture), architecture, null);
+            }
+        }
+
+        return "Steamworks.NET.dll";
+    }
+
     public static string SteamAssemblyReference(SteamPlatform platform)
     {
+        if (platform == SteamPlatform.Mac)
+        {
+            // Mac requires architecture specific references
+
+            return
+                $"{STEAMWORKS_REFERENCE_START}.arm64\" {CONDITION_MAC_ARM64}><HintPath>" +
+                $"{PathToSteamAssemblyForPlatform(platform, LibraryArchitecture.Arm64)}</HintPath></Reference>\n" +
+                $"    {STEAMWORKS_REFERENCE_START}.x64\" {CONDITION_MAC_X64}><HintPath>" +
+                $"{PathToSteamAssemblyForPlatform(platform, LibraryArchitecture.X64)}</HintPath></Reference>";
+        }
+
+        // Other platforms don't use architecture-specific references
         return
-            $"{STEAMWORKS_REFERENCE_START}<HintPath>{PathToSteamAssemblyForPlatform(platform)}</HintPath></Reference>";
+            $"{STEAMWORKS_REFERENCE_START}\"><HintPath>" +
+            $"{PathToSteamAssemblyForPlatform(platform, LibraryArchitecture.X64)}</HintPath></Reference>";
     }
 
     public static async Task<bool> IsSteamBuildEnabled(CancellationToken cancellationToken)
@@ -76,6 +144,10 @@ public static class SteamBuild
             {
                 platform = SteamPlatform.Linux;
             }
+            else if (OperatingSystem.IsMacOS())
+            {
+                platform = SteamPlatform.Mac;
+            }
             else
             {
                 throw new Exception("Unknown platform for auto picking Steam platform");
@@ -90,7 +162,7 @@ public static class SteamBuild
             {
                 if (!await IsSteamworksReferenced(platform.Value, cancellationToken))
                 {
-                    // We have a partially enabled build so we need to disable and re-enable
+                    // We have a partially enabled build, so we need to disable and re-enable
                     if (!await SetBuildMode(false, verbose, cancellationToken, platform))
                         throw new Exception("Failed to disable Steam build in order to put it back on");
 
@@ -132,7 +204,7 @@ public static class SteamBuild
             case PackagePlatform.Windows:
                 return SteamPlatform.Windows;
             case PackagePlatform.Mac:
-                throw new Exception("Steam not implemented for mac yet");
+                return SteamPlatform.Mac;
             case PackagePlatform.Web:
                 throw new Exception("Web platform can't have Steam");
             default:
@@ -165,7 +237,7 @@ public static class SteamBuild
                 if (verbose)
                     ColourConsole.WriteInfoLine($"Removed Steam client suppress reference on line {lineNumber}");
 
-                // Replace with the assembly reference
+                // Replace it with the assembly reference
                 yield return $"    {STEAM_ENABLED_COMMENT}";
 
                 if (verbose)

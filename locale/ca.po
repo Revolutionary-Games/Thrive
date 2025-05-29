@@ -7,8 +7,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2025-04-30 10:54+0300\n"
-"PO-Revision-Date: 2025-04-04 10:42+0000\n"
+"POT-Creation-Date: 2025-05-26 12:24+0300\n"
+"PO-Revision-Date: 2025-05-25 15:00+0000\n"
 "Last-Translator: Anonymous <noreply@weblate.org>\n"
 "Language-Team: Catalan <https://translate.revolutionarygamesstudio.com/projects/thrive/thrive-game/ca/>\n"
 "Language: ca\n"
@@ -16,7 +16,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=n != 1;\n"
-"X-Generator: Weblate 5.7.2\n"
+"X-Generator: Weblate 5.11.4\n"
 "Generated-By: Babel 2.8.0\n"
 
 msgid "2D_MOVEMENT_TYPE_SELECTION"
@@ -732,6 +732,7 @@ msgstr "Mostrar / amagar els procesos del microbi"
 msgid "CHEMOPLAST"
 msgstr "Quimioplast"
 
+#, fuzzy
 msgid "CHEMOPLAST_DESCRIPTION"
 msgstr "El Quimioplast és una estructura de doble membrana que conté proteïnes que transformen Àcid Sulfhídric, Aigua i Diòxid de Carboni en Glucosa, mitjançant un procés anomenat Quimiosíntesi de l'Àcid Sulfhídric. La velocitat de producció de Glucosa augmenta proporcionalment a la concentració de Diòxid de Carboni."
 
@@ -762,6 +763,7 @@ msgstr "Quimiosíntesi"
 msgid "CHEMOSYNTHESIZING_PROTEINS"
 msgstr "Proteïnes Quimiosintetitzadores"
 
+#, fuzzy
 msgid "CHEMOSYNTHESIZING_PROTEINS_DESCRIPTION"
 msgstr "Les Proteïnes Quimiosintetitzadores són cúmuls de proteïnes suspeses en el Citoplasma, capaçes de transformar l'Àcid Sulfhídric, l'Aigua i el Diòxid de Carboni en Glucosa, mitjançant un procés anomenat Quimiosíntesi de l'Àcid Sulfhídric. La velocitat de la producció de Glucosa és proporcional a la concentració de Diòxid de Carboni. Transformen la Glucosa en ATP mitjançant la Respiració Aeròbica, de manera més ràpida que el Citoplasma. Com que les Proteïnes Quimiosintetitzadores estan suspeses en el Citoplasma, aquest fluid duu a terme una certa Glicòlisi."
 
@@ -786,6 +788,7 @@ msgstr "Aquesta membrana té una paret, de manera que està més ben protegida, 
 msgid "CHLOROPLAST"
 msgstr "Cloroplast"
 
+#, fuzzy
 msgid "CHLOROPLAST_DESCRIPTION"
 msgstr "El cloroplast és una estructura de doble membrana que conté pigments sensibles a la Llum, agrupats en petites membranes. En realitat, és un petit organisme procariota que ha estat engolit i assimilat per una cèl·lula eucariota, que actua com a hoste. Els seus pigments, són capaços de fer servir la Llum per produïr Glucosa, mitjançant Aigua i Diòxid de Carboni, en un procés anomenat Fotosíntesi. Aquests pigments també li donen un color distintiu. La velocitat de producció de Glucosa augmenta proporcionalment amb la concentració de Diòxid de Carboni i la intensitat de la Llum."
 
@@ -1101,6 +1104,7 @@ msgstr "Selecciona un Indret per a veure'n els detalls"
 msgid "CONTINUE_THRIVING"
 msgstr "Començar a prosperar"
 
+#, fuzzy
 msgid "CONTINUE_TO_PROTOTYPES"
 msgstr ""
 "Has assolit el final de la part \"completa\" de Thrive.\n"
@@ -1418,6 +1422,7 @@ msgstr "Nom d'usuari propi:"
 msgid "CYTOPLASM"
 msgstr "Citoplasma"
 
+#, fuzzy
 msgid "CYTOPLASM_DESCRIPTION"
 msgstr "És la substància que forma l'interior de la cèl·lula. El Citoplasma és una barreja d'ions, proteïnes i altres substàncies dissoltes a l'aigua. Una de les seves funcions principals és dur a terme el procés de Fermentació, en el qual la Glucosa és transformada en ATP. Moltes cèl·lules simples, que no tenen orgànuls especialitzats, depenen totalment del seu citoplasma per tal de viure - és a dir, per tal de nutrir-se, relacionar-se i reproduïr-se."
 
@@ -2659,6 +2664,18 @@ msgstr "La Nitrogenasa és una proteïna capaç de produïr Amoníac, nutrient b
 msgid "HYDROGENASE_PROCESSES_DESCRIPTION"
 msgstr "Transforma [thrive:compound type=\"atp\"][/thrive:compound] en [thrive:compound type=\"ammonia\"][/thrive:compound]. La velocitat és proporcional a la concentració de [thrive:compound type=\"nitrogen\"][/thrive:compound]."
 
+#, fuzzy
+msgid "HYDROGENOSOME"
+msgstr "Àcid Sulfhídric"
+
+#, fuzzy
+msgid "HYDROGENOSOME_DESCRIPTION"
+msgstr "La Nitrogenasa és una proteïna capaç de produïr Amoníac, nutrient bàsic per al desenvolupament i reproducció de les cèl·lules, mitjançant Nitrogen i mol·lècules d'ATP. Aquest procés s'anomena Fixació de Nitrogen Anaeròbica. Com que la Nitrogenasa està suspesa en el Citoplasma, aquest fluid duu a terme una certa Glicòlisi."
+
+#, fuzzy
+msgid "HYDROGENOSOME_PROCESSES_DESCRIPTION"
+msgstr "Transforma [thrive:compound type=\"atp\"][/thrive:compound] en [thrive:compound type=\"ammonia\"][/thrive:compound]. La velocitat és proporcional a la concentració de [thrive:compound type=\"nitrogen\"][/thrive:compound]."
+
 msgid "HYDROGEN_SULFIDE"
 msgstr "Àcid Sulfhídric"
 
@@ -3448,6 +3465,7 @@ msgstr "Síntesi de mucílag"
 msgid "LYSOSOME"
 msgstr "Lisosoma"
 
+#, fuzzy
 msgid "LYSOSOME_DESCRIPTION"
 msgstr "El lisosoma és un orgànul adherit a la membrana que conté enzims hidrolítics que poden trencar diverses biomolècules. Els lisosomes permeten a la cèl·lula digerir materials ingerits mitjançant endocitosi i netejar els productes de rebuig de la cèl·lula en un procés anomenat autofàgia."
 
@@ -3564,6 +3582,7 @@ msgstr "Zona mesopelàgica"
 msgid "METABOLOSOMES"
 msgstr "Metabolosomes"
 
+#, fuzzy
 msgid "METABOLOSOMES_DESCRIPTION"
 msgstr "Els Metabolosomes són cúmuls de proteïnes embolcallades per una membrana de proteïnes. Transformen la Glucosa en ATP mitjançant la Respiració Aeròbica, de manera més ràpida i eficient que el Citoplasma. No obstant, necessita grans quantitats d'Oxigen atmosfèric per funcionar amb eficàcia, i nivells d'Oxigen més baixos en reduïran la velocitat de producció d'ATP. Com que els Metabolosomes estan suspesos en el Citoplasma, el fluid que els envolta duu a terme una certa glicòlisi."
 
@@ -3687,6 +3706,10 @@ msgstr "Estadi de Microbi"
 #, fuzzy
 msgid "MICROBE_BENCHMARK"
 msgstr "Editor de Microbi"
+
+#, fuzzy
+msgid "MICROBE_CAMERA_TILT_EFFECT"
+msgstr "Estadístiques de la Cèl·lula"
 
 msgid "MICROBE_EDITOR"
 msgstr "Editor de Microbi"
@@ -3989,6 +4012,7 @@ msgstr "Falta un nom"
 msgid "MITOCHONDRION"
 msgstr "Mitocondri"
 
+#, fuzzy
 msgid "MITOCHONDRION_DESCRIPTION"
 msgstr "És el pal de paller de la generació d'energia per la cèl·lula. Els Mitocondris són una estructura de membrana doble curulla de proteïnes i enzims. En realitat, és un petit organisme procariota que ha estat engolit i assimilat per la cèl·lula eucariota, que actua com un hoste. Produeix grans quantitats d'ATP, a partir de Glucosa i Oxigen, amb una gran eficiència, per mitjà d'un procés anomenat Respiració Aeròbica."
 
@@ -4395,6 +4419,7 @@ msgstr "Nitrogen"
 msgid "NITROGENASE"
 msgstr "Nitrogenasa"
 
+#, fuzzy
 msgid "NITROGENASE_DESCRIPTION"
 msgstr "La Nitrogenasa és una proteïna capaç de produïr Amoníac, nutrient bàsic per al desenvolupament i reproducció de les cèl·lules, mitjançant Nitrogen i mol·lècules d'ATP. Aquest procés s'anomena Fixació de Nitrogen Anaeròbica. Com que la Nitrogenasa està suspesa en el Citoplasma, aquest fluid duu a terme una certa Glicòlisi."
 
@@ -4404,6 +4429,7 @@ msgstr "Transforma [thrive:compound type=\"atp\"][/thrive:compound] en [thrive:c
 msgid "NITROPLAST"
 msgstr "Plastidi Fixador de Nitrogen"
 
+#, fuzzy
 msgid "NITROPLAST_DESCRIPTION"
 msgstr "El Plast de Fixació de Nitrogen és una proteïna que produeix Amoníac, un component important en el creixement i reproducció de les cèl·lules, mitjançant Nitrogen, Oxigen i mol·lècules d'ATP. Aquest procés s'anomena Fixació de Nitrogen Aeròbica."
 
@@ -4817,10 +4843,6 @@ msgstr "Desplaçar cap a la dreta"
 
 msgid "PAN_CAMERA_UP"
 msgstr "Desplaçar cap amunt"
-
-#, fuzzy
-msgid "PASSIVE_REPRODUCTION_PROGRESS_EXPLANATION"
-msgstr "(velocitat a la qual les espècies de la IA muten)"
 
 msgid "PAST_DEVELOPERS"
 msgstr "Desenvolupadors passats"
@@ -6225,6 +6247,7 @@ msgstr "Llicències de Thrive"
 msgid "THYLAKOIDS"
 msgstr "Tilacoide"
 
+#, fuzzy
 msgid "THYLAKOIDS_DESCRIPTION"
 msgstr "Els Tilacoides són cúmuls de proteïnes i pigments fotosensibles. Aquests pigments són capaços de fer servir l'energia provinent d'una font de Llum (com ara una estrella) i, combinant-la amb una certa quantitat d'Aigua i Diòxid de Carboni, produïr Glucosa, en un procés anomenat Fotosíntesi. Aquests pigments també donen un color característic als Tilacoides. La velocitat de producció de Glucosa és proporcional a la concentració de Diòxid de Carboni i a la intensitat de la Llum. Com que els Tilacoides estan suspesos en el Citoplasma, aquest fluid duu a terme una certa Fermentació."
 
@@ -6533,6 +6556,7 @@ msgstr ""
 "\n"
 "Selecciona una zona per continuar."
 
+#, fuzzy
 msgid "TUTORIAL_MICROBE_EDITOR_AUTO-EVO_PREDICTION"
 msgstr ""
 "Aquest tauler mostra una predicció de la teva futura població. Aquests nombres provenen de la simulació del sistema auto-evo.\n"
@@ -6676,6 +6700,7 @@ msgstr ""
 "\n"
 "Selecciona una zona per continuar."
 
+#, fuzzy
 msgid "TUTORIAL_MICROBE_EDITOR_REMOVE_ORGANELLE_TEXT"
 msgstr ""
 "Eliminar orgànuls també costa Punts de Mutació, a menys que els hagis col·locat en la sessió actual de l'editor.\n"
@@ -7914,6 +7939,38 @@ msgid "WIKI_HYDROGENASE_UPGRADES"
 msgstr "La Nitrogenasa és una proteïna capaç de produïr Amoníac, nutrient bàsic per al desenvolupament i reproducció de les cèl·lules, mitjançant Nitrogen i mol·lècules d'ATP. Aquest procés s'anomena Fixació de Nitrogen Anaeròbica. Com que la Nitrogenasa està suspesa en el Citoplasma, aquest fluid duu a terme una certa Glicòlisi."
 
 #, fuzzy
+msgid "WIKI_HYDROGENOSOME_EFFECTS"
+msgstr "La Nitrogenasa és una proteïna capaç de produïr Amoníac, nutrient bàsic per al desenvolupament i reproducció de les cèl·lules, mitjançant Nitrogen i mol·lècules d'ATP. Aquest procés s'anomena Fixació de Nitrogen Anaeròbica. Com que la Nitrogenasa està suspesa en el Citoplasma, aquest fluid duu a terme una certa Glicòlisi."
+
+#, fuzzy
+msgid "WIKI_HYDROGENOSOME_INTRO"
+msgstr "La Nitrogenasa és una proteïna capaç de produïr Amoníac, nutrient bàsic per al desenvolupament i reproducció de les cèl·lules, mitjançant Nitrogen i mol·lècules d'ATP. Aquest procés s'anomena Fixació de Nitrogen Anaeròbica. Com que la Nitrogenasa està suspesa en el Citoplasma, aquest fluid duu a terme una certa Glicòlisi."
+
+#, fuzzy
+msgid "WIKI_HYDROGENOSOME_MODIFICATIONS"
+msgstr "La Nitrogenasa és una proteïna capaç de produïr Amoníac, nutrient bàsic per al desenvolupament i reproducció de les cèl·lules, mitjançant Nitrogen i mol·lècules d'ATP. Aquest procés s'anomena Fixació de Nitrogen Anaeròbica. Com que la Nitrogenasa està suspesa en el Citoplasma, aquest fluid duu a terme una certa Glicòlisi."
+
+#, fuzzy
+msgid "WIKI_HYDROGENOSOME_PROCESSES"
+msgstr "Transforma [thrive:compound type=\"atp\"][/thrive:compound] en [thrive:compound type=\"ammonia\"][/thrive:compound]. La velocitat és proporcional a la concentració de [thrive:compound type=\"nitrogen\"][/thrive:compound]."
+
+#, fuzzy
+msgid "WIKI_HYDROGENOSOME_REQUIREMENTS"
+msgstr "La termosintasa és una proteïna que fa servir la convecció tèrmica per canviar la seva forma, permetent-li plegar-se i adherir-se a l'ADP quan és exposada a la temperature, tot seguit desplegar-se i reciclar-la en ATP quan s'exposa a temperatures més baixes en un procés anomenat termosíntesi. La velocitat de la producció d'ATP és proporcional a la temperatura."
+
+#, fuzzy
+msgid "WIKI_HYDROGENOSOME_SCIENTIFIC_BACKGROUND"
+msgstr "La Nitrogenasa és una proteïna capaç de produïr Amoníac, nutrient bàsic per al desenvolupament i reproducció de les cèl·lules, mitjançant Nitrogen i mol·lècules d'ATP. Aquest procés s'anomena Fixació de Nitrogen Anaeròbica. Com que la Nitrogenasa està suspesa en el Citoplasma, aquest fluid duu a terme una certa Glicòlisi."
+
+#, fuzzy
+msgid "WIKI_HYDROGENOSOME_STRATEGY"
+msgstr "La Nitrogenasa és una proteïna capaç de produïr Amoníac, nutrient bàsic per al desenvolupament i reproducció de les cèl·lules, mitjançant Nitrogen i mol·lècules d'ATP. Aquest procés s'anomena Fixació de Nitrogen Anaeròbica. Com que la Nitrogenasa està suspesa en el Citoplasma, aquest fluid duu a terme una certa Glicòlisi."
+
+#, fuzzy
+msgid "WIKI_HYDROGENOSOME_UPGRADES"
+msgstr "La Nitrogenasa és una proteïna capaç de produïr Amoníac, nutrient bàsic per al desenvolupament i reproducció de les cèl·lules, mitjançant Nitrogen i mol·lècules d'ATP. Aquest procés s'anomena Fixació de Nitrogen Anaeròbica. Com que la Nitrogenasa està suspesa en el Citoplasma, aquest fluid duu a terme una certa Glicòlisi."
+
+#, fuzzy
 msgid "WIKI_INDUSTRIAL_STAGE_CURRENT_DEVELOPMENT"
 msgstr "Permet unir-te amb altres cèl·lules. Aquest és el primer pas cap a esdevenir un ésser multicel·lular. Quan la teva espècie forma part d'una colònia, les cèl·lules comparteixen els seus compostos. Mentre formis part d'una colònia, no pots entrar a l'editor, de manera que t'has de desunir un cop hagis recol·lectat prou compostos per dividir la teva cèl·lula."
 
@@ -8438,6 +8495,10 @@ msgstr "Quimioplast"
 
 #, fuzzy
 msgid "WIKI_PAGE_HYDROGENASE"
+msgstr "Nitrogenasa"
+
+#, fuzzy
+msgid "WIKI_PAGE_HYDROGENOSOME"
 msgstr "Nitrogenasa"
 
 #, fuzzy
@@ -9083,6 +9144,10 @@ msgstr "Enfocar la visió de la càmera"
 
 msgid "ZOOM_OUT"
 msgstr "Zoom enfora"
+
+#, fuzzy
+#~ msgid "PASSIVE_REPRODUCTION_PROGRESS_EXPLANATION"
+#~ msgstr "(velocitat a la qual les espècies de la IA muten)"
 
 #~ msgid "TO_BE_IMPLEMENTED"
 #~ msgstr "Encara no s'ha implementat."

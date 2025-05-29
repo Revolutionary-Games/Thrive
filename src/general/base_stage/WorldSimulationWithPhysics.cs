@@ -16,6 +16,12 @@ public abstract class WorldSimulationWithPhysics : WorldSimulation, IWorldSimula
     /// </summary>
     protected readonly List<NativePhysicsBody> createdBodies = new();
 
+    /// <summary>
+    ///   Set to true to force physics on the main thread (well, at least to wait the main thread while physics runs).
+    ///   Note that causes the game to slow down a bit.
+    /// </summary>
+    protected bool usePhysicsOnMainThread;
+
     public WorldSimulationWithPhysics()
     {
     }
@@ -76,7 +82,7 @@ public abstract class WorldSimulationWithPhysics : WorldSimulation, IWorldSimula
 
         physics.DestroyBody(body);
 
-        // Other code is not allowed to hold on to physics bodies on entities that are destroyed so we dispose this
+        // Other code is not allowed to hold on to physics bodies on entities that are destroyed, so we dispose this
         // here to get the native side wrapper released as well
         body.Dispose();
     }
@@ -90,7 +96,14 @@ public abstract class WorldSimulationWithPhysics : WorldSimulation, IWorldSimula
 
     protected override void OnStartPhysicsRunIfTime(float delta)
     {
-        physics.ProcessPhysicsOnBackgroundThread(delta);
+        if (usePhysicsOnMainThread)
+        {
+            physics.ProcessPhysics(delta);
+        }
+        else
+        {
+            physics.ProcessPhysicsOnBackgroundThread(delta);
+        }
     }
 
     protected override void Dispose(bool disposing)
@@ -113,9 +126,9 @@ public abstract class WorldSimulationWithPhysics : WorldSimulation, IWorldSimula
     {
         while (createdBodies.Count > 0)
         {
-            var body = createdBodies[createdBodies.Count - 1];
+            var body = createdBodies[^1];
 
-            // This should never happen but this is here in case this does happen to give a better error message
+            // This should never happen, but this is here in case this does happen to give a better error message
             if (body.IsDisposed)
                 throw new Exception("World physics body was disposed by someone else");
 

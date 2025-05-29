@@ -210,6 +210,16 @@
     },
     "IsMetabolismProcess": true
   },
+  "hydrogenosome_fermentation": {
+    "Name": "CLOSTRIDIAL_FERMENTATION",
+    "Inputs": {
+      "glucose": 0.02
+    },
+    "Outputs": {
+      "atp": 13
+    },
+    "IsMetabolismProcess": true
+  },
   "chromatophore_photosynthesis": {
     "Name": "PHOTOSYNTHESIS",
     "Inputs": {

@@ -608,6 +608,8 @@ public partial class CreatureStageHUDBase<TStage> : HUDWithPausing, ICreatureSta
             patchExtinctionBox.PlayerSpecies = stage!.GameWorld.PlayerSpecies;
             patchExtinctionBox.Map = stage.GameWorld.Map;
 
+            patchExtinctionBox.ForgetSelectedPatch();
+
             patchExtinctionBox.Show();
         }
     }
@@ -1089,6 +1091,14 @@ public partial class CreatureStageHUDBase<TStage> : HUDWithPausing, ICreatureSta
             return;
 
         processPanel.ShownData = stage is { HasAlivePlayer: true } ? GetPlayerProcessStatistics() : null;
+    }
+
+    protected void UpdateProcessPanelExternalSpeedModifier(float newValue)
+    {
+        if (!processPanel.Visible)
+            return;
+
+        processPanel.ExternalSpeedModifier = newValue;
     }
 
     protected virtual ProcessStatistics? GetPlayerProcessStatistics()

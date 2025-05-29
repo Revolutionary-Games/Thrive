@@ -383,7 +383,15 @@ public partial class ToolTipManager : CanvasLayer
             if (tooltip == null)
                 continue;
 
-            UpdateModifierInfoWithTranslations(organelle, tooltip);
+            if (tooltip is not SelectionMenuToolTip selectionMenuToolTip)
+            {
+                GD.PrintErr("Organelle selection menu tooltip has a wrong type");
+                continue;
+            }
+
+            UpdateModifierInfoWithTranslations(organelle, selectionMenuToolTip);
+
+            tooltip.DisplayName = organelle.Name;
         }
     }
 
@@ -603,11 +611,9 @@ public partial class ToolTipManager : CanvasLayer
         UpdateModifierInfoWithTranslations(organelle, tooltip);
     }
 
-    private void UpdateModifierInfoWithTranslations(OrganelleDefinition organelle, ICustomToolTip tooltip)
+    private void UpdateModifierInfoWithTranslations(OrganelleDefinition organelle,
+        SelectionMenuToolTip selectionMenuTooltip)
     {
-        if (tooltip is not SelectionMenuToolTip selectionMenuTooltip)
-            return;
-
         var modifierInfo = selectionMenuTooltip.GetModifierInfo("storage");
 
         if (modifierInfo != null)

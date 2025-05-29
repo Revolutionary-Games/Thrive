@@ -53,8 +53,10 @@ set_target_properties(thrive_extension PROPERTIES
   CXX_EXTENSIONS OFF)
 
 if(THRIVE_LTO)
-  message(STATUS "Enabling LTO for thrive_extension")
-  set_target_properties(thrive_extension PROPERTIES INTERPROCEDURAL_OPTIMIZATION ON)
+  if(NOT CMAKE_BUILD_TYPE STREQUAL "Debug")
+    message(STATUS "Enabling LTO for thrive_extension")
+    set_target_properties(thrive_extension PROPERTIES INTERPROCEDURAL_OPTIMIZATION ON)
+  endif()
 endif()
 
 install(TARGETS thrive_extension)

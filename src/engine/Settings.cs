@@ -178,6 +178,12 @@ public class Settings
     public SettingValue<bool> MicrobeBackgroundBlurLowQuality { get; private set; } = new(false);
 
     /// <summary>
+    ///   Sets whether the camera will slightly tilt toward cursor
+    /// </summary>
+    [JsonProperty]
+    public SettingValue<bool> MicrobeCameraTilt { get; private set; } = new(false);
+
+    /// <summary>
     ///   Type of controller button prompts to show
     /// </summary>
     [JsonProperty]

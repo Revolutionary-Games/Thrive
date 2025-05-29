@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2025-04-30 10:54+0300\n"
+"POT-Creation-Date: 2025-05-26 12:24+0300\n"
 "PO-Revision-Date: 2025-04-26 09:18+0000\n"
 "Last-Translator: Anonymous <noreply@weblate.org>\n"
 "Language-Team: Portuguese (Brazil) <https://translate.revolutionarygamesstudio.com/projects/thrive/thrive-game/pt_BR/>\n"
@@ -2544,6 +2544,18 @@ msgstr "Usa hidrogênio para gerar energia a partir de [thrive:compound type=\\\
 msgid "HYDROGENASE_PROCESSES_DESCRIPTION"
 msgstr "Transforma [thrive:compound type=\"glucose\"][/thrive:compound] em [thrive:compound type=\"atp\"][/thrive:compound]."
 
+#, fuzzy
+msgid "HYDROGENOSOME"
+msgstr "Hidrogenase"
+
+#, fuzzy
+msgid "HYDROGENOSOME_DESCRIPTION"
+msgstr "Usa hidrogênio para gerar energia a partir de [thrive:compound type=\\\"glucose\\\"][/thrive:compound]. Mais efetiva que metabolossomos a níveis baixos de [thrive:compound type=\\\"oxygen\\\"][/thrive:compound]. Muitos organismos em ambientes anóxicos usam isso como uma fonte primária de energia."
+
+#, fuzzy
+msgid "HYDROGENOSOME_PROCESSES_DESCRIPTION"
+msgstr "Transforma [thrive:compound type=\"glucose\"][/thrive:compound] em [thrive:compound type=\"atp\"][/thrive:compound]."
+
 msgid "HYDROGEN_SULFIDE"
 msgstr "Sulfeto de Hidrogênio"
 
@@ -3503,6 +3515,10 @@ msgstr "Quantidade de micróbios:"
 
 msgid "MICROBE_BENCHMARK"
 msgstr "Teste de Desempenho de Micróbios"
+
+#, fuzzy
+msgid "MICROBE_CAMERA_TILT_EFFECT"
+msgstr "[b]Dados das Membranas:[/b]"
 
 msgid "MICROBE_EDITOR"
 msgstr "Editor de Micróbios"
@@ -4518,9 +4534,6 @@ msgstr "Mover a câmera para a direita"
 
 msgid "PAN_CAMERA_UP"
 msgstr "Mover a câmera para cima"
-
-msgid "PASSIVE_REPRODUCTION_PROGRESS_EXPLANATION"
-msgstr "(ganhar os compostos necessários para a reprodução do ambiente sem ter que fazer nada)"
 
 msgid "PAST_DEVELOPERS"
 msgstr "Desenvolvedores Anteriores"
@@ -7411,6 +7424,38 @@ msgid "WIKI_HYDROGENASE_UPGRADES"
 msgstr "Sem melhoras."
 
 #, fuzzy
+msgid "WIKI_HYDROGENOSOME_EFFECTS"
+msgstr "Sem efeitos."
+
+#, fuzzy
+msgid "WIKI_HYDROGENOSOME_INTRO"
+msgstr "Nitrogenase é uma enzima que consegue usar nitrogênio gasoso e energia celular na forma de ATP para sintetizar amônia, um nutriente essencial para o crescimento das células. Esse processo é chamado de Fixação de Nitrogênio. Como a nitrogenase é suspensa diretamente no citoplasma, os fluidos em volta realizam a Fermentação."
+
+#, fuzzy
+msgid "WIKI_HYDROGENOSOME_MODIFICATIONS"
+msgstr "Sem modificações."
+
+#, fuzzy
+msgid "WIKI_HYDROGENOSOME_PROCESSES"
+msgstr "Transforma [thrive:compound type=\"atp\"][/thrive:compound] em [thrive:compound type=\"ammonia\"][/thrive:compound]. Quantidade aumenta com a concentração de [thrive:compound type=\"nitrogen\"][/thrive:compound]."
+
+#, fuzzy
+msgid "WIKI_HYDROGENOSOME_REQUIREMENTS"
+msgstr "Parte inicial, sem requisitos."
+
+#, fuzzy
+msgid "WIKI_HYDROGENOSOME_SCIENTIFIC_BACKGROUND"
+msgstr "Nitrogenase é uma enzima que consegue usar nitrogênio gasoso e energia celular na forma de ATP para sintetizar amônia, um nutriente essencial para o crescimento das células. Esse processo é chamado de Fixação de Nitrogênio. Como a nitrogenase é suspensa diretamente no citoplasma, os fluidos em volta realizam a Fermentação."
+
+#, fuzzy
+msgid "WIKI_HYDROGENOSOME_STRATEGY"
+msgstr "Nitrogenase é uma enzima que consegue usar nitrogênio gasoso e energia celular na forma de ATP para sintetizar amônia, um nutriente essencial para o crescimento das células. Esse processo é chamado de Fixação de Nitrogênio. Como a nitrogenase é suspensa diretamente no citoplasma, os fluidos em volta realizam a Fermentação."
+
+#, fuzzy
+msgid "WIKI_HYDROGENOSOME_UPGRADES"
+msgstr "Sem melhoras."
+
+#, fuzzy
 msgid "WIKI_INDUSTRIAL_STAGE_CURRENT_DEVELOPMENT"
 msgstr "Permite a ligação com outras células. Este é o primeiro passo até a multicelularidade. Quando sua célula é parte de uma colônia, os compostos são compartilhados entre as células. Você não pode entrar no editor enquanto faz parte de uma colônia, por isso precisa se desconectar após coletar compostos suficientes para dividir sua célula."
 
@@ -7944,6 +7989,10 @@ msgstr "Mitocôndria"
 
 #, fuzzy
 msgid "WIKI_PAGE_HYDROGENASE"
+msgstr "Nitrogenase"
+
+#, fuzzy
+msgid "WIKI_PAGE_HYDROGENOSOME"
 msgstr "Nitrogenase"
 
 #, fuzzy
@@ -8595,6 +8644,9 @@ msgstr "Aumentar o zoom"
 
 msgid "ZOOM_OUT"
 msgstr "Diminuir o zoom"
+
+#~ msgid "PASSIVE_REPRODUCTION_PROGRESS_EXPLANATION"
+#~ msgstr "(ganhar os compostos necessários para a reprodução do ambiente sem ter que fazer nada)"
 
 #~ msgid "TO_BE_IMPLEMENTED"
 #~ msgstr "A ser implementado."

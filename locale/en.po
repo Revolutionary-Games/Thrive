@@ -7,8 +7,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2025-04-30 10:54+0300\n"
-"PO-Revision-Date: 2025-04-27 12:02+0000\n"
+"POT-Creation-Date: 2025-05-26 12:24+0300\n"
+"PO-Revision-Date: 2025-05-26 15:28+0300\n"
 "Last-Translator: Henri Hyyryläinen <hhyyrylainen@revolutionarygamesstudio.com>\n"
 "Language-Team: English <https://translate.revolutionarygamesstudio.com/projects/thrive/thrive-game/en/>\n"
 "Language: en\n"
@@ -16,7 +16,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=n != 1;\n"
-"X-Generator: Weblate 5.7.2\n"
+"X-Generator: Poedit 3.6\n"
 "Generated-By: Babel 2.8.0\n"
 
 msgid "2D_MOVEMENT_TYPE_SELECTION"
@@ -2526,6 +2526,15 @@ msgstr "Uses hydrogen to gain energy from [thrive:compound type=\\\"glucose\\\"]
 msgid "HYDROGENASE_PROCESSES_DESCRIPTION"
 msgstr "Turns [thrive:compound type=\\\"glucose\\\"][/thrive:compound] into [thrive:compound type=\\\"atp\\\"][/thrive:compound]."
 
+msgid "HYDROGENOSOME"
+msgstr "Hydrogenosome"
+
+msgid "HYDROGENOSOME_DESCRIPTION"
+msgstr "Uses hydrogen to gain energy from [thrive:compound type=\\\"glucose\\\"][/thrive:compound]. The hydrogenosome is a membrane-bound organelle filled with proteins and enzymes. It is a prokaryote that has been assimilated for use by its eukaryotic host. More effective than hydrogenase, and more effective at low [thrive:compound type=\\\"oxygen\\\"][/thrive:compound] levels than the mitochondrion. Many organisms in anoxic environments use stacks of hydrogenosomes as a primary energy source."
+
+msgid "HYDROGENOSOME_PROCESSES_DESCRIPTION"
+msgstr "Turns [thrive:compound type=\\\"glucose\\\"][/thrive:compound] into [thrive:compound type=\\\"atp\\\"][/thrive:compound]."
+
 msgid "HYDROGEN_SULFIDE"
 msgstr "Hydrogen Sulfide"
 
@@ -3467,6 +3476,9 @@ msgstr "Microbe count:"
 
 msgid "MICROBE_BENCHMARK"
 msgstr "Microbe Benchmark"
+
+msgid "MICROBE_CAMERA_TILT_EFFECT"
+msgstr "Microbe camera tilt"
 
 msgid "MICROBE_EDITOR"
 msgstr "Microbe Editor"
@@ -4463,9 +4475,6 @@ msgstr "Pan to the right"
 
 msgid "PAN_CAMERA_UP"
 msgstr "Pan upwards"
-
-msgid "PASSIVE_REPRODUCTION_PROGRESS_EXPLANATION"
-msgstr "(passively gain reproduction compounds from the environment without having to do anything)"
 
 msgid "PAST_DEVELOPERS"
 msgstr "Past Developers"
@@ -7746,6 +7755,42 @@ msgstr ""
 msgid "WIKI_HYDROGENASE_UPGRADES"
 msgstr "No upgrades."
 
+msgid "WIKI_HYDROGENOSOME_EFFECTS"
+msgstr "No effects."
+
+msgid "WIKI_HYDROGENOSOME_INTRO"
+msgstr "A [i]work horse of the cell[/i] found in many species. [b]Hydrogenosomes[/b] perform [b]Clostridial Fermentation[/b], a form of [b]Anaerobic Respiration[/b]. It is the conversion of [thrive:compound type=\"glucose\"][/thrive:compound] into [thrive:compound type=\"atp\"][/thrive:compound]. It is a membrane-bound equivalent of [b]Hydrogenase[/b], and currently serves as the only anaerobic glucose-burning [i]eukaryotic[/i] part."
+
+msgid "WIKI_HYDROGENOSOME_MODIFICATIONS"
+msgstr "No modifications."
+
+msgid "WIKI_HYDROGENOSOME_PROCESSES"
+msgstr ""
+"[b]Clostridial Fermentation[/b]: [thrive:compound type=\"glucose\"][/thrive:compound] → [thrive:compound type=\"atp\"][/thrive:compound]\n"
+"\n"
+"A method of energy production, without requiring [thrive:compound type=\"oxygen\"][/thrive:compound]. It is more efficient at this process than [b][color=#3796e1][url=thriveopedia:hydrogenase]Hydrogenase[/url][/color][/b], but when a reasonable amount of [thrive:compound type=\"oxygen\"][/thrive:compound] is present, it is inferior to  a [b][color=#3796e1][url=thriveopedia:mitochondrion]Mitochondrion[/url][/color][/b]. Requires a steady influx of [thrive:compound type=\"glucose\"][/thrive:compound]."
+
+msgid "WIKI_HYDROGENOSOME_REQUIREMENTS"
+msgstr ""
+"A cell must have a [b][color=#3796e1][url=thriveopedia:nucleus]Nucleus[/url][/color][/b] to evolve [b]Hydrogenosomes[/b].\n"
+"\n"
+"If [i]organelle unlocks[/i] are enabled in game settings, the organelle can be unlocked without [i]endosymbiosis[/i] once the following condition is met [i]for the player cell[/i]: \n"
+"\n"
+"[indent]—   Contains at least [b]4[/b]  [b][color=#3796e1][url=thriveopedia:hydrogenase]Hydrogenase[/url][/color][/b] for at least [b]5[/b] generations in a row.[/indent]\n"
+"[indent]—   Produces at least [b]+10[/b] [thrive:compound type=\"atp\"][/thrive:compound].[/indent]"
+
+msgid "WIKI_HYDROGENOSOME_SCIENTIFIC_BACKGROUND"
+msgstr "Hydrogenosomes are believed to have evolved from mitochondria, adapting to cope with low oxygen levels. Like mitochondria, they can have various shapes, appearing in spheroid or dumbell shapes."
+
+msgid "WIKI_HYDROGENOSOME_STRATEGY"
+msgstr ""
+"In environments with plentiful [thrive:compound type=\"glucose\"][/thrive:compound], [b]Hydrogenosomes[/b] provide a steady stream of energy. Be aware though that [thrive:compound type=\"glucose\"][/thrive:compound] concentrations decrease as the game progresses, so we recommend adding additional energy sources if possible.\n"
+"\n"
+"We also recommend replacing [b]Hydrogenases[/b] with [b]Hydrogenosomes[/b] after evolving a [b][color=#3796e1][url=thriveopedia:nucleus]Nucleus[/url][/color][/b] for far greater efficiency."
+
+msgid "WIKI_HYDROGENOSOME_UPGRADES"
+msgstr "No upgrades."
+
 msgid "WIKI_INDUSTRIAL_STAGE_CURRENT_DEVELOPMENT"
 msgstr "Development has not started on this stage. Gameplay and theory design for this stage will become relevant once the [color=#3796e1][url=thriveopedia:society_stage]Society Stage[/url][/color] is being worked on."
 
@@ -8390,6 +8435,9 @@ msgstr "Help And Tips"
 
 msgid "WIKI_PAGE_HYDROGENASE"
 msgstr "Hydrogenase"
+
+msgid "WIKI_PAGE_HYDROGENOSOME"
+msgstr "Hydrogenosome"
 
 msgid "WIKI_PAGE_INDUSTRIAL_STAGE"
 msgstr "Industrial Stage"
@@ -9111,6 +9159,9 @@ msgstr "Zoom in"
 
 msgid "ZOOM_OUT"
 msgstr "Zoom out"
+
+#~ msgid "PASSIVE_REPRODUCTION_PROGRESS_EXPLANATION"
+#~ msgstr "(passively gain reproduction compounds from the environment without having to do anything)"
 
 #~ msgid "GLOBAL_GLACIATION_EVENT_LOG"
 #~ msgstr "Global glaciation event has ended across all surface patches"

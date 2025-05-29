@@ -7,8 +7,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2025-04-30 10:54+0300\n"
-"PO-Revision-Date: 2025-04-29 20:33+0000\n"
+"POT-Creation-Date: 2025-05-26 12:24+0300\n"
+"PO-Revision-Date: 2025-05-22 04:28+0000\n"
 "Last-Translator: NorwayFun <temuri.doghonadze@gmail.com>\n"
 "Language-Team: Georgian <https://translate.revolutionarygamesstudio.com/projects/thrive/thrive-game/ka/>\n"
 "Language: ka\n"
@@ -2401,6 +2401,18 @@ msgstr "იყენებს წყალბადს [thrive:compound type=\\\
 msgid "HYDROGENASE_PROCESSES_DESCRIPTION"
 msgstr "გადაჰყავს [thrive:compound type=\\\"glucose\\\"][/thrive:compound] [thrive:compound type=\\\"atp\\\"][/thrive:compound]-ში."
 
+#, fuzzy
+msgid "HYDROGENOSOME"
+msgstr "ჰიდროგენაზა"
+
+#, fuzzy
+msgid "HYDROGENOSOME_DESCRIPTION"
+msgstr "იყენებს წყალბადს [thrive:compound type=\\\"glucose\\\"][/thrive:compound]-დან ენერგიის მისაღებად. უფრო ეფექტურია დაბალი [thrive:compound type=\\\"oxygen\\\"][/thrive:compound]-ის დონეებზე, ვიდრე მეტაბოლოსომები. უჟანგბადო გარემოში ბევრი ორგანიზმი იყენებს მას, როგორც ენერგიის მისაღებ ძირითად წყაროს."
+
+#, fuzzy
+msgid "HYDROGENOSOME_PROCESSES_DESCRIPTION"
+msgstr "გადაჰყავს [thrive:compound type=\\\"glucose\\\"][/thrive:compound] [thrive:compound type=\\\"atp\\\"][/thrive:compound]-ში."
+
 msgid "HYDROGEN_SULFIDE"
 msgstr "გოგირდწყალბადი"
 
@@ -3311,6 +3323,9 @@ msgstr "მიკრობების რაოდენობა:"
 
 msgid "MICROBE_BENCHMARK"
 msgstr "მიკრობების წარმადობის შემოწმება"
+
+msgid "MICROBE_CAMERA_TILT_EFFECT"
+msgstr "მიკრობის კამერის დახრა"
 
 msgid "MICROBE_EDITOR"
 msgstr "მიკრობის რედაქტორი"
@@ -4245,9 +4260,6 @@ msgstr "მარჯვნივ მიწევა"
 
 msgid "PAN_CAMERA_UP"
 msgstr "აბრუნება"
-
-msgid "PASSIVE_REPRODUCTION_PROGRESS_EXPLANATION"
-msgstr "(რეპროდუქციის ნაერთების პასიური ათვისება გარემოდან რამის კეთების გარეშე)"
 
 msgid "PAST_DEVELOPERS"
 msgstr "ყოფილი პროგრამისტები"
@@ -6825,6 +6837,41 @@ msgstr ""
 msgid "WIKI_HYDROGENASE_UPGRADES"
 msgstr "გაუმჯობესებების გარეშე."
 
+#, fuzzy
+msgid "WIKI_HYDROGENOSOME_EFFECTS"
+msgstr "ეფექტების გარეშე."
+
+#, fuzzy
+msgid "WIKI_HYDROGENOSOME_INTRO"
+msgstr "[b]მელანოსომა[/b] [b]რადიოსინთეზს[/b] ატარებს, რომელიც ჩაიჭერს რადიაციის ენერგიას მისი მელანინში შთანთქმით."
+
+#, fuzzy
+msgid "WIKI_HYDROGENOSOME_MODIFICATIONS"
+msgstr "ცვლილებების გარეშე."
+
+#, fuzzy
+msgid "WIKI_HYDROGENOSOME_PROCESSES"
+msgstr ""
+"[b]რადიოსინთეზი[/b]: [b]რადიაცია[/b] File:RadiationIcon.png → [thrive:compound type=\"atp\"][/thrive:compound]\n"
+"\n"
+"ენერგიის მიღება რადიაქტიური მასალების გამოყენებით."
+
+#, fuzzy
+msgid "WIKI_HYDROGENOSOME_REQUIREMENTS"
+msgstr "გაშვების ნაწილი. მოთხოვნების გარეშე."
+
+#, fuzzy
+msgid "WIKI_HYDROGENOSOME_SCIENTIFIC_BACKGROUND"
+msgstr "ჯერ უცნობია"
+
+#, fuzzy
+msgid "WIKI_HYDROGENOSOME_STRATEGY"
+msgstr "რადიაქტიური ქვები ისვიათია, მაგრამ მათ ბევრი ენერგია აქვთ, თუ იპოვით. რეკომენდებული თამაშის სტილი რადიოსინთეზთან ერთად ასეთია: იქონიეთ ბევრი საცავი ან სხვა გზა, გადარჩეთ, სანამ შემდეგ რადიაქტიურ ქვას ეძებთ. როცა იპოვით, ენერგიის პრობლემა კარგა ხნით აღარ გექნებათ."
+
+#, fuzzy
+msgid "WIKI_HYDROGENOSOME_UPGRADES"
+msgstr "გაუმჯობესებების გარეშე."
+
 msgid "WIKI_INDUSTRIAL_STAGE_CURRENT_DEVELOPMENT"
 msgstr ""
 
@@ -7216,6 +7263,10 @@ msgid "WIKI_PAGE_HELP_AND_TIPS"
 msgstr "დახმარება და მინიშნებები"
 
 msgid "WIKI_PAGE_HYDROGENASE"
+msgstr "ჰიდროგენაზა"
+
+#, fuzzy
+msgid "WIKI_PAGE_HYDROGENOSOME"
 msgstr "ჰიდროგენაზა"
 
 msgid "WIKI_PAGE_INDUSTRIAL_STAGE"
@@ -7755,6 +7806,9 @@ msgstr "გადიდება"
 
 msgid "ZOOM_OUT"
 msgstr "დაპატარავება"
+
+#~ msgid "PASSIVE_REPRODUCTION_PROGRESS_EXPLANATION"
+#~ msgstr "(რეპროდუქციის ნაერთების პასიური ათვისება გარემოდან რამის კეთების გარეშე)"
 
 #, fuzzy
 #~ msgid "GLOBAL_GLACIATION_EVENT_LOG"

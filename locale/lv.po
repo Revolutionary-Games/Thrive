@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2025-04-30 10:54+0300\n"
+"POT-Creation-Date: 2025-05-26 12:24+0300\n"
 "PO-Revision-Date: 2024-10-17 07:24+0000\n"
 "Last-Translator: Anonymous <noreply@weblate.org>\n"
 "Language-Team: Latvian <https://translate.revolutionarygamesstudio.com/projects/thrive/thrive-game/lv/>\n"
@@ -2664,6 +2664,18 @@ msgstr "Apraksts:"
 msgid "HYDROGENASE_PROCESSES_DESCRIPTION"
 msgstr "Pārveido [thrive:compound type=\"hydrogensulfide\"][/thrive:compound] par [thrive:compound type=\"hydrogensulfide\"][/thrive:compound]. Ātrums ir atkarīgs no [thrive:compound type=\"carbondioxide\"][/thrive:compound] koncentrācijas. Arī pārveido [thrive:compound type=\"glucose\"][/thrive:compound] par [thrive:compound type=\"atp\"][/thrive:compound]."
 
+#, fuzzy
+msgid "HYDROGENOSOME"
+msgstr "Sērūdeņradis"
+
+#, fuzzy
+msgid "HYDROGENOSOME_DESCRIPTION"
+msgstr "Apraksts:"
+
+#, fuzzy
+msgid "HYDROGENOSOME_PROCESSES_DESCRIPTION"
+msgstr "Pārveido [thrive:compound type=\"hydrogensulfide\"][/thrive:compound] par [thrive:compound type=\"hydrogensulfide\"][/thrive:compound]. Ātrums ir atkarīgs no [thrive:compound type=\"carbondioxide\"][/thrive:compound] koncentrācijas. Arī pārveido [thrive:compound type=\"glucose\"][/thrive:compound] par [thrive:compound type=\"atp\"][/thrive:compound]."
+
 msgid "HYDROGEN_SULFIDE"
 msgstr "Sērūdeņradis"
 
@@ -3675,6 +3687,10 @@ msgstr "[thrive:input]g_move_forward[/thrive:input],[thrive:input]g_move_left[/t
 #, fuzzy
 msgid "MICROBE_BENCHMARK"
 msgstr "Ieslēgt redaktoru"
+
+#, fuzzy
+msgid "MICROBE_CAMERA_TILT_EFFECT"
+msgstr "Organisma statistika"
 
 #, fuzzy
 msgid "MICROBE_EDITOR"
@@ -4772,12 +4788,6 @@ msgstr "Panoramējiet pa labi"
 
 msgid "PAN_CAMERA_UP"
 msgstr "Panoramējiet uz augšu"
-
-#, fuzzy
-msgid "PASSIVE_REPRODUCTION_PROGRESS_EXPLANATION"
-msgstr ""
-"Aktīvi mikrobi skraidīs apkārt un gāzīsies, kad nekas interesants nenotiek.\n"
-"Sēdošie mikrobi būs nekustīgi un gaidīs, kad vide mainīsies, pirms tie kaut ko dara."
 
 msgid "PAST_DEVELOPERS"
 msgstr ""
@@ -7846,6 +7856,38 @@ msgid "WIKI_HYDROGENASE_UPGRADES"
 msgstr "Nitrāzes"
 
 #, fuzzy
+msgid "WIKI_HYDROGENOSOME_EFFECTS"
+msgstr "Nitrāzes"
+
+#, fuzzy
+msgid "WIKI_HYDROGENOSOME_INTRO"
+msgstr "Nitrāzes"
+
+#, fuzzy
+msgid "WIKI_HYDROGENOSOME_MODIFICATIONS"
+msgstr "Anaerobiskā slāpekļa fiksācija"
+
+#, fuzzy
+msgid "WIKI_HYDROGENOSOME_PROCESSES"
+msgstr "Nav procesu"
+
+#, fuzzy
+msgid "WIKI_HYDROGENOSOME_REQUIREMENTS"
+msgstr "Apraksts:"
+
+#, fuzzy
+msgid "WIKI_HYDROGENOSOME_SCIENTIFIC_BACKGROUND"
+msgstr "Apraksts:"
+
+#, fuzzy
+msgid "WIKI_HYDROGENOSOME_STRATEGY"
+msgstr "Nitrāzes"
+
+#, fuzzy
+msgid "WIKI_HYDROGENOSOME_UPGRADES"
+msgstr "Nitrāzes"
+
+#, fuzzy
 msgid "WIKI_INDUSTRIAL_STAGE_CURRENT_DEVELOPMENT"
 msgstr "Ļauj saistīties ar citām šūnām. Šis ir pirmais solis uz daudzšūnu veidošanos. Kad tava šūna ir daļā no kolonijas, savienojumi tiek dalīti starp šūnām. Jūs nevarat ieiet redaktorā, kāmēram esat daļa no kolonijas, jums nepieciešams atdalīties, kad savākts nepieciešamais savienojumu daudzums, lai sadalītu jūsu šūnu."
 
@@ -8331,6 +8373,10 @@ msgstr "Hemoplasts"
 
 #, fuzzy
 msgid "WIKI_PAGE_HYDROGENASE"
+msgstr "Nitrāzes"
+
+#, fuzzy
+msgid "WIKI_PAGE_HYDROGENOSOME"
 msgstr "Nitrāzes"
 
 #, fuzzy
@@ -8963,6 +9009,12 @@ msgstr "Pietuvināt"
 
 msgid "ZOOM_OUT"
 msgstr "Attālināt"
+
+#, fuzzy
+#~ msgid "PASSIVE_REPRODUCTION_PROGRESS_EXPLANATION"
+#~ msgstr ""
+#~ "Aktīvi mikrobi skraidīs apkārt un gāzīsies, kad nekas interesants nenotiek.\n"
+#~ "Sēdošie mikrobi būs nekustīgi un gaidīs, kad vide mainīsies, pirms tie kaut ko dara."
 
 #, fuzzy
 #~ msgid "MICROBE_STAGE_DAY_NIGHT_TEXT"

@@ -408,6 +408,9 @@ public partial class OptionsMenu : ControlWithInput
     private Button lowQualityBackgroundBlurToggle = null!;
 
     [Export]
+    private Button microbeCameraTilt = null!;
+
+    [Export]
     private Button bloomEffectToggle = null!;
 
     [Export]
@@ -881,6 +884,7 @@ public partial class OptionsMenu : ControlWithInput
         displayBackgroundParticlesToggle.ButtonPressed = settings.DisplayBackgroundParticles;
         displayMicrobeBackgroundDistortionToggle.ButtonPressed = settings.MicrobeDistortionStrength.Value > 0;
         lowQualityBackgroundBlurToggle.ButtonPressed = settings.MicrobeBackgroundBlurLowQuality;
+        microbeCameraTilt.ButtonPressed = settings.MicrobeCameraTilt;
         guiLightEffectsToggle.ButtonPressed = settings.GUILightEffectsEnabled;
         displayPartNamesToggle.ButtonPressed = settings.DisplayPartNames;
         displayMenu3DBackgroundsToggle.ButtonPressed = settings.Menu3DBackgroundEnabled;
@@ -2303,6 +2307,13 @@ public partial class OptionsMenu : ControlWithInput
     private void OnLowQualityBackgroundBlurToggled(bool toggle)
     {
         Settings.Instance.MicrobeBackgroundBlurLowQuality.Value = toggle;
+
+        UpdateResetSaveButtonState();
+    }
+
+    private void OnMicrobeCameraTiltToggled(bool toggle)
+    {
+        Settings.Instance.MicrobeCameraTilt.Value = toggle;
 
         UpdateResetSaveButtonState();
     }
