@@ -273,9 +273,6 @@ public static class NativeInterop
     {
         var result = CPUCheckResult.CPUCheckSuccess;
 
-        if (!Sse42.IsSupported)
-            result |= CPUCheckResult.CPUCheckMissingSse42;
-
         if (!Sse41.IsSupported)
             result |= CPUCheckResult.CPUCheckMissingSse41;
 

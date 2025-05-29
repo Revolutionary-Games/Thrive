@@ -9,6 +9,7 @@
 set(DOUBLE_PRECISION ON)
 
 if(THRIVE_AVX)
+  set(USE_SSE4_2 ON)
   set(USE_AVX ON)
   set(USE_AVX2 ON)
 
@@ -20,6 +21,7 @@ if(THRIVE_AVX)
   # this is off anyway as this causes indeterminism in the simulation
   set(USE_FMADD OFF)
 else()
+  set(USE_SSE4_2 OFF)
   set(USE_AVX OFF)
   set(USE_AVX2 OFF)
   set(USE_F16C OFF)
@@ -30,7 +32,6 @@ endif()
 
 # Should be fine to require on CPUs, as these are OLD
 set(USE_SSE4_1 ON)
-set(USE_SSE4_2 ON)
 
 # This is way too unsupported to enable in a general build
 set(USE_AVX512 OFF)

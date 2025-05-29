@@ -1088,8 +1088,8 @@ public class NativeLibs
                 shCommandBuilder.Append("-DTHRIVE_AVX=OFF ");
 
                 // Also older target CPU to not use as advanced instructions elsewhere which would cause an issue
-                // Nehalem is absolutely the oldest CPU architecture to have SSE 4.2
-                shCommandBuilder.Append("-DCMAKE_CXX_FLAGS=-march=nehalem ");
+                // Core2 is the oldest CPU architecture to have SSE 4.1
+                shCommandBuilder.Append("-DCMAKE_CXX_FLAGS=-march=core2 ");
             }
 
             shCommandBuilder.Append("&& cmake ");
@@ -1298,7 +1298,7 @@ public class NativeLibs
         // ReSharper disable StringLiteralTypo
         startInfo.ArgumentList.Add($"-DCMAKE_INSTALL_PREFIX={intelInstallFolder}");
         startInfo.ArgumentList.Add("-DCMAKE_OSX_ARCHITECTURES=x86_64");
-        startInfo.ArgumentList.Add("-DCMAKE_CXX_FLAGS=-march=sandybridge");
+        startInfo.ArgumentList.Add("-DCMAKE_CXX_FLAGS=-march=core2");
 
         // ReSharper restore StringLiteralTypo
 
