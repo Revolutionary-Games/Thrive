@@ -9,6 +9,8 @@ script = ExtResource("1")
 layer = 126
 
 [node name="ActiveModalContainer" type="Control" parent="CanvasLayer"]
+layout_mode = 3
+anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
 

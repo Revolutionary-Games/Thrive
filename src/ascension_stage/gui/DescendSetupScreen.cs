@@ -6,10 +6,8 @@
 /// </summary>
 public partial class DescendSetupScreen : Node
 {
-    [Export]
-    public NodePath? NewGameSettingsPath;
-
 #pragma warning disable CA2213
+    [Export]
     private NewGameSettings newGameSettings = null!;
 #pragma warning restore CA2213
 
@@ -23,21 +21,9 @@ public partial class DescendSetupScreen : Node
             CurrentGame = GameProperties.StartAscensionStageGame(new WorldGenerationSettings());
         }
 
-        newGameSettings = GetNode<NewGameSettings>(NewGameSettingsPath);
-
         newGameSettings.OpenFromDescendScreen(CurrentGame);
 
         // Show a bit of a fade in for this screen
         TransitionManager.Instance.AddSequence(ScreenFade.FadeType.FadeIn, 0.5f, null, true);
-    }
-
-    protected override void Dispose(bool disposing)
-    {
-        if (disposing)
-        {
-            NewGameSettingsPath?.Dispose();
-        }
-
-        base.Dispose(disposing);
     }
 }

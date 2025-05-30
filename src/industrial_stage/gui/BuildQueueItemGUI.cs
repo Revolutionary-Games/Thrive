@@ -5,26 +5,16 @@
 /// </summary>
 public partial class BuildQueueItemGUI : VBoxContainer
 {
-    [Export]
-    public NodePath? ProgressBarPath;
-
-    [Export]
-    public NodePath NameLabelPath = null!;
-
+    // TODO: a cancel button?
 #pragma warning disable CA2213
+    [Export]
     private ProgressBar progressBar = null!;
+
+    [Export]
     private Label nameLabel = null!;
 #pragma warning restore CA2213
 
     private IBuildQueueProgressItem? progressItem;
-
-    public override void _Ready()
-    {
-        progressBar = GetNode<ProgressBar>(ProgressBarPath);
-        nameLabel = GetNode<Label>(NameLabelPath);
-
-        // TODO: a cancel button?
-    }
 
     public override void _Process(double delta)
     {
@@ -39,19 +29,5 @@ public partial class BuildQueueItemGUI : VBoxContainer
         progressItem = buildQueueItemData;
 
         nameLabel.Text = progressItem.ItemName;
-    }
-
-    protected override void Dispose(bool disposing)
-    {
-        if (disposing)
-        {
-            if (ProgressBarPath != null)
-            {
-                ProgressBarPath.Dispose();
-                NameLabelPath.Dispose();
-            }
-        }
-
-        base.Dispose(disposing);
     }
 }

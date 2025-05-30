@@ -104,16 +104,16 @@ corner_radius_top_right = 3
 corner_radius_bottom_right = 3
 corner_radius_bottom_left = 3
 
-[node name="OrganellePopupMenu" instance=ExtResource("3")]
+[node name="OrganellePopupMenu" instance=ExtResource("3") node_paths=PackedStringArray("modifyButton", "moveButton", "deleteButton", "titleLabel")]
 custom_minimum_size = Vector2(220, 139)
 layout_mode = 3
 anchors_preset = 0
 offset_bottom = 139.0
 script = ExtResource("8")
-TitleLabelPath = NodePath("PanelContainer/VBoxContainer/MarginContainer/SelectedOrganelleName")
-DeleteButtonPath = NodePath("PanelContainer/VBoxContainer/Delete")
-MoveButtonPath = NodePath("PanelContainer/VBoxContainer/Move")
-ModifyButtonPath = NodePath("PanelContainer/VBoxContainer/Modify")
+titleLabel = NodePath("PanelContainer/VBoxContainer/MarginContainer/SelectedOrganelleName")
+deleteButton = NodePath("PanelContainer/VBoxContainer/Delete")
+moveButton = NodePath("PanelContainer/VBoxContainer/Move")
+modifyButton = NodePath("PanelContainer/VBoxContainer/Modify")
 
 [node name="PanelContainer" parent="." index="0"]
 layout_mode = 0

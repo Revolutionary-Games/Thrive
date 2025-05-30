@@ -10,73 +10,8 @@ using Tutorial;
 /// </summary>
 public partial class MicrobeTutorialGUI : Control, ITutorialGUI
 {
-    [Export]
-    public NodePath? MicrobeWelcomeMessagePath;
-
-    [Export]
-    public NodePath MicrobeMovementKeyPromptsPath = null!;
-
-    [Export]
-    public NodePath MicrobeMovementPopupPath = null!;
-
-    [Export]
-    public NodePath MicrobeMovementKeyForwardPath = null!;
-
-    [Export]
-    public NodePath MicrobeMovementKeyLeftPath = null!;
-
-    [Export]
-    public NodePath MicrobeMovementKeyRightPath = null!;
-
-    [Export]
-    public NodePath MicrobeMovementKeyBackwardsPath = null!;
-
-    [Export]
-    public NodePath GlucoseTutorialPath = null!;
-
-    [Export]
-    public NodePath StayingAlivePath = null!;
-
-    [Export]
-    public NodePath ReproductionTutorialPath = null!;
-
-    [Export]
-    public NodePath EditorButtonTutorialPath = null!;
-
-    [Export]
-    public NodePath UnbindTutorialPath = null!;
-
-    [Export]
-    public NodePath LeaveColonyTutorialPath = null!;
-
-    [Export]
-    public NodePath EarlyMulticellularWelcomePath = null!;
-
-    [Export]
-    public NodePath DayNightTutorialPath = null!;
-
-    [Export]
-    public NodePath OrganelleDivisionTutorialPath = null!;
-
-    [Export]
-    public NodePath BecomeMulticellularTutorialPath = null!;
-
-    [Export]
-    public NodePath CheckTheHelpMenuPath = null!;
-
-    [Export]
-    public NodePath EngulfmentExplanationPath = null!;
-
-    [Export]
-    public NodePath EngulfedExplanationPath = null!;
-
-    [Export]
-    public NodePath EngulfmentFullCapacityPath = null!;
-
-    [Export]
-    public NodePath EditorButtonHighlightPath = null!;
-
 #pragma warning disable CA2213
+    [Export]
     private TutorialDialog microbeWelcomeMessage = null!;
 
     [Export]
@@ -85,25 +20,64 @@ public partial class MicrobeTutorialGUI : Control, ITutorialGUI
     [Export]
     private ScrollContainer welcomeTutorialScrollContainer = null!;
 
+    [Export]
     private Control microbeMovementKeyPrompts = null!;
+
+    [Export]
     private Control microbeMovementKeyForward = null!;
+
+    [Export]
     private Control microbeMovementKeyLeft = null!;
+
+    [Export]
     private Control microbeMovementKeyRight = null!;
+
+    [Export]
     private Control microbeMovementKeyBackwards = null!;
+
+    [Export]
     private CustomWindow microbeMovementPopup = null!;
+
+    [Export]
     private CustomWindow glucoseTutorial = null!;
+
+    [Export]
     private CustomWindow stayingAlive = null!;
+
+    [Export]
     private CustomWindow reproductionTutorial = null!;
+
+    [Export]
     private CustomWindow editorButtonTutorial = null!;
+
+    [Export]
     private CustomWindow unbindTutorial = null!;
+
+    [Export]
     private CustomWindow checkTheHelpMenu = null!;
+
+    [Export]
     private CustomWindow engulfmentExplanation = null!;
+
+    [Export]
     private CustomWindow engulfedExplanation = null!;
+
+    [Export]
     private CustomWindow engulfmentFullCapacity = null!;
+
+    [Export]
     private CustomWindow leaveColonyTutorial = null!;
+
+    [Export]
     private CustomWindow multicellularWelcome = null!;
+
+    [Export]
     private CustomWindow dayNightTutorial = null!;
+
+    [Export]
     private CustomWindow becomeMulticellularTutorial = null!;
+
+    [Export]
     private CustomWindow organelleDivisionTutorial = null!;
 
     [Export]
@@ -134,6 +108,7 @@ public partial class MicrobeTutorialGUI : Control, ITutorialGUI
 
     public Node GUINode => this;
 
+    [Export]
     public ControlHighlight? PressEditorButtonHighlight { get; private set; }
 
     [Export]
@@ -554,30 +529,6 @@ public partial class MicrobeTutorialGUI : Control, ITutorialGUI
 
     public override void _Ready()
     {
-        microbeWelcomeMessage = GetNode<TutorialDialog>(MicrobeWelcomeMessagePath);
-        microbeMovementKeyPrompts = GetNode<Control>(MicrobeMovementKeyPromptsPath);
-        microbeMovementPopup = GetNode<CustomWindow>(MicrobeMovementPopupPath);
-        microbeMovementKeyForward = GetNode<Control>(MicrobeMovementKeyForwardPath);
-        microbeMovementKeyLeft = GetNode<Control>(MicrobeMovementKeyLeftPath);
-        microbeMovementKeyRight = GetNode<Control>(MicrobeMovementKeyRightPath);
-        microbeMovementKeyBackwards = GetNode<Control>(MicrobeMovementKeyBackwardsPath);
-        glucoseTutorial = GetNode<CustomWindow>(GlucoseTutorialPath);
-        stayingAlive = GetNode<CustomWindow>(StayingAlivePath);
-        reproductionTutorial = GetNode<CustomWindow>(ReproductionTutorialPath);
-        editorButtonTutorial = GetNode<CustomWindow>(EditorButtonTutorialPath);
-        unbindTutorial = GetNode<CustomWindow>(UnbindTutorialPath);
-        checkTheHelpMenu = GetNode<CustomWindow>(CheckTheHelpMenuPath);
-        engulfmentExplanation = GetNode<CustomWindow>(EngulfmentExplanationPath);
-        engulfedExplanation = GetNode<CustomWindow>(EngulfedExplanationPath);
-        engulfmentFullCapacity = GetNode<CustomWindow>(EngulfmentFullCapacityPath);
-        leaveColonyTutorial = GetNode<CustomWindow>(LeaveColonyTutorialPath);
-        multicellularWelcome = GetNode<CustomWindow>(EarlyMulticellularWelcomePath);
-        dayNightTutorial = GetNode<CustomWindow>(DayNightTutorialPath);
-        becomeMulticellularTutorial = GetNode<CustomWindow>(BecomeMulticellularTutorialPath);
-        organelleDivisionTutorial = GetNode<CustomWindow>(OrganelleDivisionTutorialPath);
-
-        PressEditorButtonHighlight = GetNode<ControlHighlight>(EditorButtonHighlightPath);
-
         ProcessMode = ProcessModeEnum.Always;
     }
 
@@ -624,40 +575,6 @@ public partial class MicrobeTutorialGUI : Control, ITutorialGUI
             _ => throw new ArgumentOutOfRangeException(nameof(gameLifeOrigin), gameLifeOrigin,
                 "Unhandled life origin for tutorial message"),
         };
-    }
-
-    protected override void Dispose(bool disposing)
-    {
-        if (disposing)
-        {
-            if (MicrobeWelcomeMessagePath != null)
-            {
-                MicrobeWelcomeMessagePath.Dispose();
-                MicrobeMovementKeyPromptsPath.Dispose();
-                MicrobeMovementPopupPath.Dispose();
-                MicrobeMovementKeyForwardPath.Dispose();
-                MicrobeMovementKeyLeftPath.Dispose();
-                MicrobeMovementKeyRightPath.Dispose();
-                MicrobeMovementKeyBackwardsPath.Dispose();
-                GlucoseTutorialPath.Dispose();
-                StayingAlivePath.Dispose();
-                ReproductionTutorialPath.Dispose();
-                EditorButtonTutorialPath.Dispose();
-                UnbindTutorialPath.Dispose();
-                LeaveColonyTutorialPath.Dispose();
-                EarlyMulticellularWelcomePath.Dispose();
-                DayNightTutorialPath.Dispose();
-                OrganelleDivisionTutorialPath.Dispose();
-                BecomeMulticellularTutorialPath.Dispose();
-                CheckTheHelpMenuPath.Dispose();
-                EngulfmentExplanationPath.Dispose();
-                EngulfedExplanationPath.Dispose();
-                EngulfmentFullCapacityPath.Dispose();
-                EditorButtonHighlightPath.Dispose();
-            }
-        }
-
-        base.Dispose(disposing);
     }
 
     private void CheckHelpMenuPressed()

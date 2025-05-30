@@ -11,24 +11,17 @@ public partial class EditorComponentWithActionsBase<TEditor, TAction> : EditorCo
     where TEditor : IEditorWithActions
     where TAction : EditorAction
 {
-    [Export]
-    public NodePath? MutationPointsBarPath;
-
-    [Export]
-    public NodePath ComponentBottomLeftButtonsPath = null!;
-
-    [Export]
-    public NodePath CancelButtonPath = null!;
-
-    [Export]
-    public NodePath FinishWarningBadgePath = null!;
-
 #pragma warning disable CA2213
+    [Export]
     protected EditorComponentBottomLeftButtons componentBottomLeftButtons = null!;
 
+    [Export]
     private MutationPointsBar mutationPointsBar = null!;
 
+    [Export]
     private Button cancelButton = null!;
+
+    [Export]
     private TextureRect finishButtonWarningBadge = null!;
 #pragma warning restore CA2213
 
@@ -48,17 +41,6 @@ public partial class EditorComponentWithActionsBase<TEditor, TAction> : EditorCo
     /// </summary>
     [JsonIgnore]
     public virtual bool ShowFinishButtonWarning => CanCancelAction;
-
-    public override void _Ready()
-    {
-        base._Ready();
-
-        mutationPointsBar = GetNode<MutationPointsBar>(MutationPointsBarPath);
-        componentBottomLeftButtons = GetNode<EditorComponentBottomLeftButtons>(ComponentBottomLeftButtonsPath);
-
-        cancelButton = GetNode<Button>(CancelButtonPath);
-        finishButtonWarningBadge = GetNode<TextureRect>(FinishWarningBadgePath);
-    }
 
     public override void OnActionBlockedWhileAnotherIsInProgress()
     {
@@ -213,21 +195,5 @@ public partial class EditorComponentWithActionsBase<TEditor, TAction> : EditorCo
         componentBottomLeftButtons.RegisterTooltips();
 
         cancelButton.RegisterToolTipForControl("cancelButton", "editor");
-    }
-
-    protected override void Dispose(bool disposing)
-    {
-        if (disposing)
-        {
-            if (MutationPointsBarPath != null)
-            {
-                MutationPointsBarPath.Dispose();
-                ComponentBottomLeftButtonsPath.Dispose();
-                CancelButtonPath.Dispose();
-                FinishWarningBadgePath.Dispose();
-            }
-        }
-
-        base.Dispose(disposing);
     }
 }

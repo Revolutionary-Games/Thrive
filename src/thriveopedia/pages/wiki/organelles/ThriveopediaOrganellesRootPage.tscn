@@ -3,9 +3,9 @@
 [ext_resource type="PackedScene" uid="uid://cckki1kx0cnol" path="res://src/thriveopedia/ThriveopediaPage.tscn" id="1"]
 [ext_resource type="Script" uid="uid://b5uuhlkxkg22p" path="res://src/thriveopedia/pages/wiki/organelles/ThriveopediaOrganellesRootPage.cs" id="2"]
 
-[node name="ThriveopediaPage" node_paths=PackedStringArray("mainArticle", "noticeContainer") instance=ExtResource("1")]
+[node name="ThriveopediaPage" node_paths=PackedStringArray("organelleListContainer", "mainArticle", "noticeContainer") instance=ExtResource("1")]
 script = ExtResource("2")
-OrganelleListContainerPath = NodePath("MarginContainer/ScrollContainer/MarginContainer/VBoxContainer/HFlowContainer")
+organelleListContainer = NodePath("MarginContainer/ScrollContainer/MarginContainer/VBoxContainer/HFlowContainer")
 mainArticle = NodePath("MarginContainer/ScrollContainer/MarginContainer/VBoxContainer/VBoxContainer")
 noticeContainer = NodePath("MarginContainer/ScrollContainer/MarginContainer/VBoxContainer/Notices")
 

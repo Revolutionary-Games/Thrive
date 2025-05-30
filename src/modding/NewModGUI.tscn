@@ -5,7 +5,7 @@
 [ext_resource type="LabelSettings" uid="uid://bx7mw3uvqpo42" path="res://src/gui_common/fonts/Body-Regular-Smaller.tres" id="3_paixo"]
 [ext_resource type="FontVariation" uid="uid://cqork3l186w1c" path="res://assets/fonts/variants/Jura-Bold.tres" id="4_bos37"]
 
-[node name="NewModGUI" type="Control"]
+[node name="NewModGUI" type="Control" node_paths=PackedStringArray("dialog", "internalName", "name", "author", "version", "description", "longDescription", "iconFile", "infoUrl", "license", "recommendedThrive", "minimumThrive", "maximumThrive", "pckName", "modAssembly", "assemblyModClass", "assemblyModAutoHarmony", "errorDisplay")]
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
@@ -14,28 +14,27 @@ grow_horizontal = 2
 grow_vertical = 2
 mouse_filter = 2
 script = ExtResource("2")
-DialogPath = NodePath("CustomWindow")
-InternalNamePath = NodePath("CustomWindow/ScrollContainer/MarginContainer/VBoxContainer/Form/InternalName")
-NamePath = NodePath("CustomWindow/ScrollContainer/MarginContainer/VBoxContainer/Form/Name")
-AuthorPath = NodePath("CustomWindow/ScrollContainer/MarginContainer/VBoxContainer/Form/Author")
-VersionPath = NodePath("CustomWindow/ScrollContainer/MarginContainer/VBoxContainer/Form/Version")
-DescriptionPath = NodePath("CustomWindow/ScrollContainer/MarginContainer/VBoxContainer/Form/Description")
-LongDescriptionPath = NodePath("CustomWindow/ScrollContainer/MarginContainer/VBoxContainer/Form/LongDescription")
-IconFilePath = NodePath("CustomWindow/ScrollContainer/MarginContainer/VBoxContainer/Form/IconFile")
-InfoUrlPath = NodePath("CustomWindow/ScrollContainer/MarginContainer/VBoxContainer/Form/InfoURL")
-LicensePath = NodePath("CustomWindow/ScrollContainer/MarginContainer/VBoxContainer/Form/License")
-RecommendedThrivePath = NodePath("CustomWindow/ScrollContainer/MarginContainer/VBoxContainer/Form/RecommendedThrive")
-MinimumThrivePath = NodePath("CustomWindow/ScrollContainer/MarginContainer/VBoxContainer/Form/MinimumThrive")
-MaximumThrivePath = NodePath("CustomWindow/ScrollContainer/MarginContainer/VBoxContainer/Form/MaximumThrive")
-PckNamePath = NodePath("CustomWindow/ScrollContainer/MarginContainer/VBoxContainer/Form/PckName")
-ModAssemblyPath = NodePath("CustomWindow/ScrollContainer/MarginContainer/VBoxContainer/Form/ModAssembly")
-AssemblyModClassPath = NodePath("CustomWindow/ScrollContainer/MarginContainer/VBoxContainer/Form/AssemblyModClass")
-AssemblyModAutoHarmonyPath = NodePath("CustomWindow/ScrollContainer/MarginContainer/VBoxContainer/Form/AutoHarmony")
-ErrorDisplayPath = NodePath("CustomWindow/ScrollContainer/MarginContainer/VBoxContainer/Error")
+dialog = NodePath("CustomWindow")
+internalName = NodePath("CustomWindow/ScrollContainer/MarginContainer/VBoxContainer/Form/InternalName")
+name = NodePath("CustomWindow/ScrollContainer/MarginContainer/VBoxContainer/Form/Name")
+author = NodePath("CustomWindow/ScrollContainer/MarginContainer/VBoxContainer/Form/Author")
+version = NodePath("CustomWindow/ScrollContainer/MarginContainer/VBoxContainer/Form/Version")
+description = NodePath("CustomWindow/ScrollContainer/MarginContainer/VBoxContainer/Form/Description")
+longDescription = NodePath("CustomWindow/ScrollContainer/MarginContainer/VBoxContainer/Form/LongDescription")
+iconFile = NodePath("CustomWindow/ScrollContainer/MarginContainer/VBoxContainer/Form/IconFile")
+infoUrl = NodePath("CustomWindow/ScrollContainer/MarginContainer/VBoxContainer/Form/InfoURL")
+license = NodePath("CustomWindow/ScrollContainer/MarginContainer/VBoxContainer/Form/License")
+recommendedThrive = NodePath("CustomWindow/ScrollContainer/MarginContainer/VBoxContainer/Form/RecommendedThrive")
+minimumThrive = NodePath("CustomWindow/ScrollContainer/MarginContainer/VBoxContainer/Form/MinimumThrive")
+maximumThrive = NodePath("CustomWindow/ScrollContainer/MarginContainer/VBoxContainer/Form/MaximumThrive")
+pckName = NodePath("CustomWindow/ScrollContainer/MarginContainer/VBoxContainer/Form/PckName")
+modAssembly = NodePath("CustomWindow/ScrollContainer/MarginContainer/VBoxContainer/Form/ModAssembly")
+assemblyModClass = NodePath("CustomWindow/ScrollContainer/MarginContainer/VBoxContainer/Form/AssemblyModClass")
+assemblyModAutoHarmony = NodePath("CustomWindow/ScrollContainer/MarginContainer/VBoxContainer/Form/AutoHarmony")
+errorDisplay = NodePath("CustomWindow/ScrollContainer/MarginContainer/VBoxContainer/Error")
 
 [node name="CustomWindow" parent="." instance=ExtResource("1")]
 visible = true
-anchors_preset = 0
 WindowTitle = "CREATE_NEW_MOD"
 Resizable = true
 ExclusiveAllowCloseOnEscape = false

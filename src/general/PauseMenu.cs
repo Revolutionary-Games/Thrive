@@ -6,34 +6,25 @@ using Godot;
 /// </summary>
 public partial class PauseMenu : TopLevelContainer
 {
-    [Export]
-    public NodePath? PrimaryMenuPath;
-
-    [Export]
-    public NodePath ThriveopediaPath = null!;
-
-    [Export]
-    public NodePath LoadMenuPath = null!;
-
-    [Export]
-    public NodePath OptionsMenuPath = null!;
-
-    [Export]
-    public NodePath SaveMenuPath = null!;
-
-    [Export]
-    public NodePath LoadSaveListPath = null!;
-
-    [Export]
-    public NodePath UnsavedProgressWarningPath = null!;
-
 #pragma warning disable CA2213
+    [Export]
     private Control primaryMenu = null!;
-    private Thriveopedia? thriveopedia;
+
+    [Export]
+    private Thriveopedia thriveopedia = null!;
+
+    [Export]
     private Control loadMenu = null!;
+
+    [Export]
     private OptionsMenu optionsMenu = null!;
+
+    [Export]
     private NewSaveMenu saveMenu = null!;
+
+    [Export]
     private CustomConfirmationDialog unsavedProgressWarning = null!;
+
     private AnimationPlayer animationPlayer = null!;
 #pragma warning restore CA2213
 
@@ -99,7 +90,7 @@ public partial class PauseMenu : TopLevelContainer
 
             // Forward the game properties to the Thriveopedia, even before it is opened for it to respond to
             // data requests
-            if (gameProperties != null && thriveopedia != null)
+            if (gameProperties != null)
                 thriveopedia.CurrentGame = value;
         }
     }
@@ -159,7 +150,7 @@ public partial class PauseMenu : TopLevelContainer
                             $"{nameof(GameProperties)} is required before opening options"));
                     break;
                 case ActiveMenuType.Thriveopedia:
-                    thriveopedia!.OpenInGame(GameProperties ??
+                    thriveopedia.OpenInGame(GameProperties ??
                         throw new InvalidOperationException(
                             $"{nameof(GameProperties)} is required before opening Thriveopedia in-game"));
                     break;
@@ -205,12 +196,6 @@ public partial class PauseMenu : TopLevelContainer
         // We have our custom logic for this
         PreventsMouseCaptureWhileOpen = false;
 
-        primaryMenu = GetNode<Control>(PrimaryMenuPath);
-        thriveopedia = GetNode<Thriveopedia>(ThriveopediaPath);
-        loadMenu = GetNode<Control>(LoadMenuPath);
-        optionsMenu = GetNode<OptionsMenu>(OptionsMenuPath);
-        saveMenu = GetNode<NewSaveMenu>(SaveMenuPath);
-        unsavedProgressWarning = GetNode<CustomConfirmationDialog>(UnsavedProgressWarningPath);
         animationPlayer = GetNode<AnimationPlayer>("AnimationPlayer");
 
         unsavedProgressWarning.Connect(CustomWindow.SignalName.Canceled, new Callable(this, nameof(CancelExit)));
@@ -330,25 +315,6 @@ public partial class PauseMenu : TopLevelContainer
         // Uncapture the mouse while we are playing the close animation, this doesn't seem to actually uncapture the
         // mouse any faster, though, likely an engine problem
         MouseUnCaptureActive = false;
-    }
-
-    protected override void Dispose(bool disposing)
-    {
-        if (disposing)
-        {
-            if (PrimaryMenuPath != null)
-            {
-                PrimaryMenuPath.Dispose();
-                ThriveopediaPath.Dispose();
-                LoadMenuPath.Dispose();
-                OptionsMenuPath.Dispose();
-                SaveMenuPath.Dispose();
-                LoadSaveListPath.Dispose();
-                UnsavedProgressWarningPath.Dispose();
-            }
-        }
-
-        base.Dispose(disposing);
     }
 
     private Control? GetControlFromMenuEnum(ActiveMenuType value)

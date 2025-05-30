@@ -17,7 +17,7 @@ corner_radius_top_right = 5
 corner_radius_bottom_right = 5
 corner_radius_bottom_left = 5
 
-[node name="GalleryDetailsTooltip" type="PanelContainer"]
+[node name="GalleryDetailsTooltip" type="PanelContainer" node_paths=PackedStringArray("titleLabel", "descriptionLabel", "artistLabel")]
 custom_minimum_size = Vector2(300, 0)
 offset_right = 362.0
 offset_bottom = 81.0
@@ -26,9 +26,9 @@ size_flags_vertical = 8
 theme = ExtResource("3")
 theme_override_styles/panel = SubResource("1")
 script = ExtResource("4")
-TitleLabelPath = NodePath("MarginContainer/VBoxContainer/HBoxContainer/Label2")
-DescriptionLabelPath = NodePath("MarginContainer/VBoxContainer/HBoxContainer2/Label2")
-ArtistLabelPath = NodePath("MarginContainer/VBoxContainer/HBoxContainer3/Label2")
+titleLabel = NodePath("MarginContainer/VBoxContainer/HBoxContainer/Label2")
+descriptionLabel = NodePath("MarginContainer/VBoxContainer/HBoxContainer2/Label2")
+artistLabel = NodePath("MarginContainer/VBoxContainer/HBoxContainer3/Label2")
 
 [node name="MarginContainer" type="MarginContainer" parent="."]
 layout_mode = 2

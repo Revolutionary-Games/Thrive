@@ -9,13 +9,11 @@ using Nito.Collections;
 /// </summary>
 public partial class SpaceFleet : Node3D, IEntityWithNameLabel, IStrategicUnit
 {
-    [Export]
-    public NodePath? VisualsParentPath;
-
     private static readonly Lazy<PackedScene> LabelScene =
         new(() => GD.Load<PackedScene>("res://src/space_stage/gui/FleetNameLabel.tscn"));
 
 #pragma warning disable CA2213
+    [Export]
     private Node3D visualsParent = null!;
 #pragma warning restore CA2213
 
@@ -116,8 +114,6 @@ public partial class SpaceFleet : Node3D, IEntityWithNameLabel, IStrategicUnit
         if (nodeReferencesResolved)
             return;
 
-        visualsParent = GetNode<Node3D>(VisualsParentPath);
-
         nodeReferencesResolved = true;
     }
 
@@ -156,16 +152,6 @@ public partial class SpaceFleet : Node3D, IEntityWithNameLabel, IStrategicUnit
     public void OnDestroyed()
     {
         AliveMarker.Alive = false;
-    }
-
-    protected override void Dispose(bool disposing)
-    {
-        if (disposing)
-        {
-            VisualsParentPath?.Dispose();
-        }
-
-        base.Dispose(disposing);
     }
 
     /// <summary>

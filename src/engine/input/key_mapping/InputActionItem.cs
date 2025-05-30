@@ -22,18 +22,14 @@ using Godot;
 /// </remarks>
 public partial class InputActionItem : VBoxContainer
 {
-    [Export]
-    public NodePath? AddInputEventPath;
-
-    [Export]
-    public NodePath InputActionHeaderPath = null!;
-
-    [Export]
-    public NodePath InputEventsContainerPath = null!;
-
 #pragma warning disable CA2213
+    [Export]
     private Label inputActionHeader = null!;
+
+    [Export]
     private HBoxContainer inputEventsContainer = null!;
+
+    [Export]
     private Button addInputEvent = null!;
 #pragma warning restore CA2213
 
@@ -131,10 +127,6 @@ public partial class InputActionItem : VBoxContainer
             return;
 
         nodeReferencesResolved = true;
-
-        inputActionHeader = GetNode<Label>(InputActionHeaderPath);
-        inputEventsContainer = GetNode<HBoxContainer>(InputEventsContainerPath);
-        addInputEvent = GetNode<Button>(AddInputEventPath);
     }
 
     public override void _EnterTree()
@@ -208,21 +200,6 @@ public partial class InputActionItem : VBoxContainer
             new ObservableCollection<InputEventItem>(inputs.Select(d => InputEventItem.BuildGUI(inputActionItem, d)));
 
         return inputActionItem;
-    }
-
-    protected override void Dispose(bool disposing)
-    {
-        if (disposing)
-        {
-            if (AddInputEventPath != null)
-            {
-                AddInputEventPath.Dispose();
-                InputActionHeaderPath.Dispose();
-                InputEventsContainerPath.Dispose();
-            }
-        }
-
-        base.Dispose(disposing);
     }
 
     /// <summary>

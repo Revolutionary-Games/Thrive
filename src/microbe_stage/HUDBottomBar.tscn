@@ -36,7 +36,7 @@
 
 [sub_resource type="StyleBoxEmpty" id="27"]
 
-[node name="HUDBottomBar" type="HBoxContainer" node_paths=PackedStringArray("heatButton", "speedButton", "ProcessPanelButtonControl")]
+[node name="HUDBottomBar" type="HBoxContainer" node_paths=PackedStringArray("pauseButton", "heatButton", "speedButton", "compoundsButton", "environmentButton", "processPanelButton", "suicideButton", "ProcessPanelButtonControl")]
 custom_minimum_size = Vector2(0, 35)
 anchors_preset = 2
 anchor_top = 1.0
@@ -47,13 +47,13 @@ offset_right = 434.0
 offset_bottom = -2.0
 grow_vertical = 0
 script = ExtResource("26")
-PauseButtonPath = NodePath("PauseButtonMargin/PlayButton")
-CompoundsButtonPath = NodePath("CompoundsButton")
-EnvironmentButtonPath = NodePath("EnvironmentButton")
-ProcessPanelButtonPath = NodePath("ChemicalButton")
-SuicideButtonPath = NodePath("SuicideButton")
+pauseButton = NodePath("PauseButtonMargin/PlayButton")
 heatButton = NodePath("HeatViewButton")
 speedButton = NodePath("SpeedButton")
+compoundsButton = NodePath("CompoundsButton")
+environmentButton = NodePath("EnvironmentButton")
+processPanelButton = NodePath("ChemicalButton")
+suicideButton = NodePath("SuicideButton")
 ProcessPanelButtonControl = NodePath("ChemicalButton")
 
 [node name="OpenMenu" type="TextureButton" parent="."]

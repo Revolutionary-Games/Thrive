@@ -4,19 +4,19 @@
 [ext_resource type="PackedScene" uid="uid://cl64wvnxs6ivs" path="res://src/gui_common/dialogs/CustomConfirmationDialog.tscn" id="2"]
 
 [node name="DescendConfirmationDialog" instance=ExtResource("2")]
+custom_minimum_size = Vector2(400, 350)
 offset_right = 400.0
 offset_bottom = 350.0
-custom_minimum_size = Vector2(400, 350)
 script = ExtResource("1")
-WindowTitle = "DESCEND_CONFIRMATION"
-DialogText = "DESCEND_CONFIRMATION_EXPLANATION"
 HideOnOk = false
+DialogText = "DESCEND_CONFIRMATION_EXPLANATION"
+WindowTitle = "DESCEND_CONFIRMATION"
 
 [node name="DescendSetup" type="ScrollContainer" parent="VBoxContainer" index="4"]
-offset_right = 40.0
-offset_bottom = 40.0
+layout_mode = 2
 follow_focus = true
 
 [node name="VBoxContainer" type="VBoxContainer" parent="VBoxContainer/DescendSetup" index="0"]
+layout_mode = 2
 
 [connection signal="Confirmed" from="." to="." method="OnConfirmed"]

@@ -10,13 +10,11 @@ using Godot;
 /// </summary>
 public partial class MicheDetailsPanel : MarginContainer
 {
-    [Export]
-    public NodePath? MicheDetailsLabelPath;
-
     public WorldGenerationSettings? WorldSettings = null;
     public Patch? CurrentPatch;
 
 #pragma warning disable CA2213
+    [Export]
     private CustomRichTextLabel? micheDetailsLabel;
 #pragma warning restore CA2213
 
@@ -25,8 +23,6 @@ public partial class MicheDetailsPanel : MarginContainer
     public override void _Ready()
     {
         base._Ready();
-
-        micheDetailsLabel = GetNode<CustomRichTextLabel>(MicheDetailsLabelPath);
 
         if (previewMiche != null)
             UpdateMichePreview();
@@ -63,19 +59,6 @@ public partial class MicheDetailsPanel : MarginContainer
 
         if (micheDetailsLabel != null)
             micheDetailsLabel.ExtendedBbcode = null;
-    }
-
-    protected override void Dispose(bool disposing)
-    {
-        if (disposing)
-        {
-            if (MicheDetailsLabelPath != null)
-            {
-                MicheDetailsLabelPath.Dispose();
-            }
-        }
-
-        base.Dispose(disposing);
     }
 
     /// <summary>

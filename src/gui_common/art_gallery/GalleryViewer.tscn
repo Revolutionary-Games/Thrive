@@ -1,7 +1,7 @@
 [gd_scene load_steps=11 format=3 uid="uid://dt2b7uvqkvrng"]
 
 [ext_resource type="PackedScene" uid="uid://c4i1ie8aqbswd" path="res://src/gui_common/art_gallery/GalleryCard.tscn" id="1"]
-[ext_resource type="PackedScene" path="res://src/gui_common/dialogs/CustomWindow.tscn" id="2"]
+[ext_resource type="PackedScene" uid="uid://du8sc8kjirguk" path="res://src/gui_common/dialogs/CustomWindow.tscn" id="2"]
 [ext_resource type="PackedScene" uid="uid://oslha78a5bb" path="res://src/gui_common/art_gallery/SlideScreen.tscn" id="3"]
 [ext_resource type="PackedScene" uid="uid://b0qu4wsytbrdo" path="res://src/gui_common/art_gallery/GalleryCardModel.tscn" id="4"]
 [ext_resource type="PackedScene" uid="uid://cyky307bhys7i" path="res://src/gui_common/art_gallery/GalleryCardAudio.tscn" id="6"]
@@ -11,7 +11,7 @@
 [ext_resource type="PackedScene" uid="uid://bgeijgq7runaw" path="res://src/gui_common/FocusGrabber.tscn" id="9"]
 [ext_resource type="PackedScene" uid="uid://dw3ubsraoopin" path="res://src/gui_common/TabButtons.tscn" id="11"]
 
-[node name="GalleryViewer" instance=ExtResource("2")]
+[node name="GalleryViewer" node_paths=PackedStringArray("cardTile", "tabButtons", "assetsCategoryDropdown", "slideshowButton") instance=ExtResource("2")]
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
@@ -20,14 +20,14 @@ offset_bottom = 0.0
 grow_horizontal = 2
 grow_vertical = 2
 script = ExtResource("7")
-GalleryGridPath = NodePath("MarginContainer/VBoxContainer/HBoxContainer2/ScrollContainer/GridContainer")
-TabButtonsPath = NodePath("MarginContainer/VBoxContainer/TabButtons")
-AssetsCategoryDropdownPath = NodePath("MarginContainer/VBoxContainer/HBoxContainer3/OptionButton")
-SlideshowButtonPath = NodePath("MarginContainer/VBoxContainer/HBoxContainer/SlideshowButton")
 GalleryCardScene = ExtResource("1")
 GalleryCardModelScene = ExtResource("4")
 GalleryCardAudioScene = ExtResource("6")
 GalleryDetailsToolTipScene = ExtResource("8")
+cardTile = NodePath("MarginContainer/VBoxContainer/HBoxContainer2/ScrollContainer/GridContainer")
+tabButtons = NodePath("MarginContainer/VBoxContainer/TabButtons")
+assetsCategoryDropdown = NodePath("MarginContainer/VBoxContainer/HBoxContainer3/OptionButton")
+slideshowButton = NodePath("MarginContainer/VBoxContainer/HBoxContainer/SlideshowButton")
 WindowTitle = "GALLERY_VIEWER"
 Movable = false
 Exclusive = true

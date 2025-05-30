@@ -22,54 +22,41 @@ public partial class SaveList : ScrollContainer
     [Export]
     public bool LoadableItems = true;
 
-    [Export]
-    public NodePath? LoadingItemPath;
-
-    [Export]
-    public NodePath NoSavesItemPath = null!;
-
-    [Export]
-    public NodePath SavesListPath = null!;
-
-    [Export]
-    public NodePath DeleteConfirmDialogPath = null!;
-
-    [Export]
-    public NodePath LoadNewerSaveDialogPath = null!;
-
-    [Export]
-    public NodePath LoadOlderSaveDialogPath = null!;
-
-    [Export]
-    public NodePath LoadInvalidSaveDialogPath = null!;
-
-    [Export]
-    public NodePath LoadIncompatibleDialogPath = null!;
-
-    [Export]
-    public NodePath UpgradeSaveDialogPath = null!;
-
-    [Export]
-    public NodePath UpgradeFailedDialogPath = null!;
-
-    [Export]
-    public NodePath LoadIncompatiblePrototypeDialogPath = null!;
-
-    [Export]
-    public NodePath SaveDeletionFailedErrorPath = null!;
-
 #pragma warning disable CA2213
+    [Export]
     private Control loadingItem = null!;
+
+    [Export]
     private Control noSavesItem = null!;
+
+    [Export]
     private BoxContainer savesList = null!;
+
+    [Export]
     private CustomConfirmationDialog deleteConfirmDialog = null!;
+
+    [Export]
     private CustomConfirmationDialog loadNewerConfirmDialog = null!;
+
+    [Export]
     private CustomConfirmationDialog loadOlderConfirmDialog = null!;
+
+    [Export]
     private CustomConfirmationDialog loadInvalidConfirmDialog = null!;
+
+    [Export]
     private CustomConfirmationDialog loadIncompatibleDialog = null!;
+
+    [Export]
     private CustomConfirmationDialog upgradeSaveDialog = null!;
+
+    [Export]
     private CustomConfirmationDialog loadIncompatiblePrototypeDialog = null!;
+
+    [Export]
     private ErrorDialog upgradeFailedDialog = null!;
+
+    [Export]
     private CustomConfirmationDialog errorSaveDeletionFailed = null!;
 
     private PackedScene listItemScene = null!;
@@ -103,19 +90,6 @@ public partial class SaveList : ScrollContainer
 
     public override void _Ready()
     {
-        loadingItem = GetNode<Control>(LoadingItemPath);
-        noSavesItem = GetNode<Control>(NoSavesItemPath);
-        savesList = GetNode<BoxContainer>(SavesListPath);
-        deleteConfirmDialog = GetNode<CustomConfirmationDialog>(DeleteConfirmDialogPath);
-        loadOlderConfirmDialog = GetNode<CustomConfirmationDialog>(LoadOlderSaveDialogPath);
-        loadNewerConfirmDialog = GetNode<CustomConfirmationDialog>(LoadNewerSaveDialogPath);
-        loadInvalidConfirmDialog = GetNode<CustomConfirmationDialog>(LoadInvalidSaveDialogPath);
-        loadIncompatibleDialog = GetNode<CustomConfirmationDialog>(LoadIncompatibleDialogPath);
-        upgradeSaveDialog = GetNode<CustomConfirmationDialog>(UpgradeSaveDialogPath);
-        upgradeFailedDialog = GetNode<ErrorDialog>(UpgradeFailedDialogPath);
-        loadIncompatiblePrototypeDialog = GetNode<CustomConfirmationDialog>(LoadIncompatiblePrototypeDialogPath);
-        errorSaveDeletionFailed = GetNode<CustomConfirmationDialog>(SaveDeletionFailedErrorPath);
-
         listItemScene = GD.Load<PackedScene>("res://src/saving/SaveListItem.tscn");
     }
 
@@ -214,30 +188,6 @@ public partial class SaveList : ScrollContainer
         readSavesList = new Task<List<string>>(() => SaveHelper.CreateListOfSaves());
         TaskExecutor.Instance.AddTask(readSavesList);
         EmitSignal(SignalName.OnItemsChanged);
-    }
-
-    protected override void Dispose(bool disposing)
-    {
-        if (disposing)
-        {
-            if (LoadingItemPath != null)
-            {
-                LoadingItemPath.Dispose();
-                NoSavesItemPath.Dispose();
-                SavesListPath.Dispose();
-                DeleteConfirmDialogPath.Dispose();
-                LoadNewerSaveDialogPath.Dispose();
-                LoadOlderSaveDialogPath.Dispose();
-                LoadInvalidSaveDialogPath.Dispose();
-                LoadIncompatibleDialogPath.Dispose();
-                UpgradeSaveDialogPath.Dispose();
-                UpgradeFailedDialogPath.Dispose();
-                LoadIncompatiblePrototypeDialogPath.Dispose();
-                SaveDeletionFailedErrorPath.Dispose();
-            }
-        }
-
-        base.Dispose(disposing);
     }
 
     private void OnSubItemSelectedChanged()

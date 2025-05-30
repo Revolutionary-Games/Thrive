@@ -3,9 +3,8 @@
 [ext_resource type="PackedScene" uid="uid://cl64wvnxs6ivs" path="res://src/gui_common/dialogs/CustomConfirmationDialog.tscn" id="1"]
 
 [node name="StagePrototypeConfirm" instance=ExtResource("1")]
-WindowTitle = "CONTINUE_TO_PROTOTYPES_PROMPT"
 DialogText = "CONTINUE_TO_PROTOTYPES"
+WindowTitle = "CONTINUE_TO_PROTOTYPES_PROMPT"
 
 [node name="ConfirmButton" parent="VBoxContainer/HBoxContainer" index="3"]
-focus_mode = 0
 focus_mode = 0
