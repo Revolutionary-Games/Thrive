@@ -13,7 +13,7 @@
 [ext_resource type="PackedScene" uid="uid://du8sc8kjirguk" path="res://src/gui_common/dialogs/CustomWindow.tscn" id="13"]
 [ext_resource type="PackedScene" uid="uid://tna206f2gtkv" path="res://src/gui_common/AddWindowReorderingSupportToSiblings.tscn" id="14"]
 
-[node name="MicrobeTutorialGUI" type="Control" node_paths=PackedStringArray("microbeWelcomeMessage", "tutorialDisabledExplanation", "welcomeTutorialScrollContainer", "microbeMovementKeyPrompts", "microbeMovementKeyForward", "microbeMovementKeyLeft", "microbeMovementKeyRight", "microbeMovementKeyBackwards", "microbeMovementPopup", "glucoseTutorial", "stayingAlive", "reproductionTutorial", "editorButtonTutorial", "unbindTutorial", "checkTheHelpMenu", "engulfmentExplanation", "engulfedExplanation", "engulfmentFullCapacity", "leaveColonyTutorial", "multicellularWelcome", "dayNightTutorial", "becomeMulticellularTutorial", "organelleDivisionTutorial", "openProcessPanelTutorial", "processPanelTutorial", "resourceSplitTutorial", "pausingTutorial", "speciesMemberDied", "PressEditorButtonHighlight", "ProcessPanelButtonHighlight")]
+[node name="MicrobeTutorialGUI" type="Control" node_paths=PackedStringArray("microbeWelcomeMessage", "tutorialDisabledExplanation", "welcomeTutorialScrollContainer", "microbeMovementKeyPrompts", "microbeMovementKeyForward", "microbeMovementKeyLeft", "microbeMovementKeyRight", "microbeMovementKeyBackwards", "microbeMovementPopup", "glucoseTutorial", "stayingAlive", "reproductionTutorial", "editorButtonTutorial", "unbindTutorial", "checkTheHelpMenu", "engulfmentExplanation", "engulfedExplanation", "engulfmentFullCapacity", "leaveColonyTutorial", "multicellularWelcome", "dayNightTutorial", "becomeMulticellularTutorial", "organelleDivisionTutorial", "openProcessPanelTutorial", "sprintExplanation", "processPanelTutorial", "resourceSplitTutorial", "pausingTutorial", "speciesMemberDied", "PressEditorButtonHighlight", "ProcessPanelButtonHighlight")]
 process_mode = 3
 layout_mode = 3
 anchors_preset = 15
@@ -48,6 +48,7 @@ dayNightTutorial = NodePath("EnvironmentPanelTutorial")
 becomeMulticellularTutorial = NodePath("BecomeMulticellularTutorial")
 organelleDivisionTutorial = NodePath("OrganelleDivisionTutorial")
 openProcessPanelTutorial = NodePath("OpenProcessPanelTutorial")
+sprintExplanation = NodePath("SprintTutorial")
 processPanelTutorial = NodePath("ProcessPanelTutorial")
 resourceSplitTutorial = NodePath("ResourceSplitTutorial")
 pausingTutorial = NodePath("PausingTutorial")
