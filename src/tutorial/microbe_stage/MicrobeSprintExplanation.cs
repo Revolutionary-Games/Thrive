@@ -7,7 +7,7 @@ public class MicrobeSprintExplanation : TutorialPhase
     /// <summary>
     ///   Tracks if the player has started sprinting. The tutorial is only completed when the player stops sprinting.
     /// </summary>
-    private bool startedSprinting = false;
+    private bool startedSprinting;
 
     public override string ClosedByName => "MicrobeSprintExplanation";
 
@@ -23,42 +23,36 @@ public class MicrobeSprintExplanation : TutorialPhase
         {
             // Something is near by that you might want to catch
             case TutorialEventType.MicrobeChunksNearPlayer:
+                var data = (EntityPositionEventArgs)args;
+
+                if (!HasBeenShown && data.EntityPosition.HasValue && CanTrigger && !overallState.TutorialActive())
                 {
-                    var data = (EntityPositionEventArgs)args;
-
-                    if (!HasBeenShown && data.EntityPosition.HasValue && CanTrigger && !overallState.TutorialActive())
-                    {
-                        Show();
-                    }
-
-                    if (ShownCurrently)
-                    {
-                        return true;
-                    }
-
-                    break;
+                    Show();
                 }
+
+                if (ShownCurrently)
+                {
+                    return true;
+                }
+
+                break;
 
             case TutorialEventType.MicrobePlayerStartSprint:
-                {
-                    if (!ShownCurrently)
-                        break;
+                if (!ShownCurrently)
+                    break;
 
-                    // Set a flag, but only end the tutorial when the player has stopped sprinting
-                    startedSprinting = true;
-                    return true;
-                }
+                // Set a flag, but only end the tutorial when the player has stopped sprinting
+                startedSprinting = true;
+                return true;
 
             case TutorialEventType.MicrobePlayerEndSprint:
-                {
-                    // The player must see the tutorial for 1 second.
-                    if (!ShownCurrently || !startedSprinting || Time < 1)
-                        break;
+                // The player must see the tutorial for 1 second.
+                if (!ShownCurrently || !startedSprinting || Time < 1)
+                    break;
 
-                    // Tutorial is now complete
-                    Hide();
-                    return true;
-                }
+                // Tutorial is now complete
+                Hide();
+                return true;
         }
 
         return false;
