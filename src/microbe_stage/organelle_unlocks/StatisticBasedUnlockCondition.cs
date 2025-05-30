@@ -33,9 +33,15 @@ public class EngulfedMicrobesAbove : StatisticBasedUnlockCondition
     [JsonProperty]
     public int Required { get; set; }
 
-    public override bool Satisfied(IUnlockStateDataSource data) => Engulfed(data) >= Required;
+    public override bool Satisfied(IUnlockStateDataSource data)
+    {
+        return Engulfed(data) >= Required;
+    }
+
     public override float Progress(IUnlockStateDataSource data)
-        => Math.Clamp((float)(Engulfed(data) ?? 0) / Required, 0, 1);
+    {
+        return Math.Clamp((float)(Engulfed(data) ?? 0) / Required, 0, 1);
+    }
 
     public override void GenerateTooltip(LocalizedStringBuilder builder, IUnlockStateDataSource data)
     {
@@ -61,9 +67,15 @@ public class DigestedMicrobesAbove : StatisticBasedUnlockCondition
     [JsonProperty]
     public int Required { get; set; }
 
-    public override bool Satisfied(IUnlockStateDataSource data) => Digested(data) >= Required;
+    public override bool Satisfied(IUnlockStateDataSource data)
+    {
+        return Digested(data) >= Required;
+    }
+
     public override float Progress(IUnlockStateDataSource data)
-        => Math.Clamp((float)(Digested(data) ?? 0) / Required, 0, 1);
+    {
+        return Math.Clamp((float)(Digested(data) ?? 0) / Required, 0, 1);
+    }
 
     public override void GenerateTooltip(LocalizedStringBuilder builder, IUnlockStateDataSource data)
     {
@@ -92,9 +104,15 @@ public class PlayerDeathsAbove : StatisticBasedUnlockCondition
     [JsonProperty]
     public int Required { get; set; }
 
-    public override bool Satisfied(IUnlockStateDataSource data) => PlayerDeaths(data) >= Required;
+    public override bool Satisfied(IUnlockStateDataSource data)
+    {
+        return PlayerDeaths(data) >= Required;
+    }
+
     public override float Progress(IUnlockStateDataSource data)
-        => Math.Clamp((float)(PlayerDeaths(data) ?? 0) / Required, 0, 1);
+    {
+        return Math.Clamp((float)(PlayerDeaths(data) ?? 0) / Required, 0, 1);
+    }
 
     public override void GenerateTooltip(LocalizedStringBuilder builder, IUnlockStateDataSource data)
     {
@@ -141,7 +159,10 @@ public class ReproduceInBiome : StatisticBasedUnlockCondition
         return count >= 1;
     }
 
-    public override float Progress(IUnlockStateDataSource data) => Satisfied(data) ? 1 : 0;
+    public override float Progress(IUnlockStateDataSource data)
+    {
+        return Satisfied(data) ? 1 : 0;
+    }
 
     public override void Check(string name)
     {
@@ -199,10 +220,15 @@ public class ReproduceWithOrganelle : StatisticBasedUnlockCondition
         }
     }
 
-    public override bool Satisfied(IUnlockStateDataSource data1) => CalculateCount(data1) >= Generations;
+    public override bool Satisfied(IUnlockStateDataSource data1)
+    {
+        return CalculateCount(data1) >= Generations;
+    }
 
     public override float Progress(IUnlockStateDataSource data1)
-        => Math.Clamp((float)(CalculateCount(data1) ?? 0) / Generations, 0, 1);
+    {
+        return Math.Clamp((float)(CalculateCount(data1) ?? 0) / Generations, 0, 1);
+    }
 
     public override void Check(string name)
     {
@@ -269,9 +295,15 @@ public class DamageFromSource : StatisticBasedUnlockCondition
     [JsonProperty("Amount")]
     public float RequiredAmount { get; set; }
 
-    public override bool Satisfied(IUnlockStateDataSource data) => Damage(data) >= RequiredAmount;
+    public override bool Satisfied(IUnlockStateDataSource data)
+    {
+        return Damage(data) >= RequiredAmount;
+    }
+
     public override float Progress(IUnlockStateDataSource data)
-        => Math.Clamp((Damage(data) ?? 0) / RequiredAmount, 0, 1);
+    {
+        return Math.Clamp((Damage(data) ?? 0) / RequiredAmount, 0, 1);
+    }
 
     public override void GenerateTooltip(LocalizedStringBuilder builder, IUnlockStateDataSource data)
     {

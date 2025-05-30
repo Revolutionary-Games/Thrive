@@ -33,9 +33,15 @@ public class AtpProductionAbove : WorldBasedUnlockCondition
     [JsonProperty]
     public float Atp;
 
-    public override bool Satisfied(IUnlockStateDataSource data) => AtpProduction(data) >= Atp;
+    public override bool Satisfied(IUnlockStateDataSource data)
+    {
+        return AtpProduction(data) >= Atp;
+    }
 
-    public override float Progress(IUnlockStateDataSource data) => Math.Clamp(AtpProduction(data) ?? 0 / Atp, 0, 1);
+    public override float Progress(IUnlockStateDataSource data)
+    {
+        return Math.Clamp(AtpProduction(data) ?? 0 / Atp, 0, 1);
+    }
 
     public override void GenerateTooltip(LocalizedStringBuilder builder, IUnlockStateDataSource data)
     {
@@ -59,9 +65,15 @@ public class ExcessAtpAbove : WorldBasedUnlockCondition
     [JsonProperty]
     public float Atp;
 
-    public override bool Satisfied(IUnlockStateDataSource data) => FinalBalance(data) >= Atp;
+    public override bool Satisfied(IUnlockStateDataSource data)
+    {
+        return FinalBalance(data) >= Atp;
+    }
 
-    public override float Progress(IUnlockStateDataSource data) => Math.Clamp(FinalBalance(data) ?? 0 / Atp, 0, 1);
+    public override float Progress(IUnlockStateDataSource data)
+    {
+        return Math.Clamp(FinalBalance(data) ?? 0 / Atp, 0, 1);
+    }
 
     public override void GenerateTooltip(LocalizedStringBuilder builder, IUnlockStateDataSource data)
     {
@@ -85,7 +97,10 @@ public class SpeedBelow : WorldBasedUnlockCondition
     [JsonProperty]
     public float Threshold;
 
-    public override bool Satisfied(IUnlockStateDataSource data) => GetPlayerSpeed(data) < Threshold;
+    public override bool Satisfied(IUnlockStateDataSource data)
+    {
+        return GetPlayerSpeed(data) < Threshold;
+    }
 
     public override float Progress(IUnlockStateDataSource data)
     {
@@ -145,7 +160,10 @@ public class PatchCompound : WorldBasedUnlockCondition
         return minSatisfied && maxSatisfied;
     }
 
-    public override float Progress(IUnlockStateDataSource data) => Satisfied(data) ? 1 : 0;
+    public override float Progress(IUnlockStateDataSource data)
+    {
+        return Satisfied(data) ? 1 : 0;
+    }
 
     public override void GenerateTooltip(LocalizedStringBuilder builder, IUnlockStateDataSource data)
     {

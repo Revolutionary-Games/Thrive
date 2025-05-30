@@ -795,6 +795,7 @@ public class OrganelleDefinition : IRegistryType
     {
         if (UnlockConditions == null)
             return 0;
+
         return UnlockConditions.Select(entry => entry.Progress(worldAndPlayerData)).Max();
     }
 
