@@ -42,7 +42,7 @@ corner_radius_top_right = 1
 corner_radius_bottom_right = 1
 corner_radius_bottom_left = 1
 
-[node name="SocietyHUD" type="Control" node_paths=PackedStringArray("pausePrompt", "pauseInfo", "hudMessages")]
+[node name="SocietyHUD" type="Control" node_paths=PackedStringArray("populationLabel", "hintText", "bottomLeftBar", "researchScreen", "hotBar", "resourceDisplay", "pausePrompt", "pauseInfo", "hudMessages")]
 process_mode = 3
 layout_mode = 3
 anchors_preset = 15
@@ -53,12 +53,12 @@ grow_vertical = 2
 mouse_filter = 2
 theme = ExtResource("2")
 script = ExtResource("12")
-PopulationLabelPath = NodePath("TopBar/HBoxContainer/PopulationContainer/Population")
-HintTextPath = NodePath("HintText")
-HotBarPath = NodePath("ScrollContainer/HotBar")
-BottomLeftBarPath = NodePath("HUDBottomBar")
-ResourceDisplayPath = NodePath("TopBar/HBoxContainer/ResourceDisplayBar")
-ResearchScreenPath = NodePath("ResearchScreen")
+populationLabel = NodePath("TopBar/HBoxContainer/PopulationContainer/Population")
+hintText = NodePath("HintText")
+bottomLeftBar = NodePath("HUDBottomBar")
+researchScreen = NodePath("ResearchScreen")
+hotBar = NodePath("ScrollContainer/HotBar")
+resourceDisplay = NodePath("TopBar/HBoxContainer/ResourceDisplayBar")
 pausePrompt = NodePath("PausePrompt")
 pauseInfo = NodePath("PausePrompt/PauseInfo")
 hudMessages = NodePath("HUDMessages")

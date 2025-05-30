@@ -32,16 +32,16 @@ _data = {
 &"invalidSpeciesNameFlash": SubResource("1")
 }
 
-[node name="FossilisationDialog" instance=ExtResource("4")]
+[node name="FossilisationDialog" node_paths=PackedStringArray("speciesNameEdit", "speciesDetailsPanel", "fossiliseButton", "overwriteNameConfirmationDialog", "fossilisationFailedDialog") instance=ExtResource("4")]
 custom_minimum_size = Vector2(364, 420)
 offset_right = 364.0
 offset_bottom = 420.0
 script = ExtResource("1")
-NameEditPath = NodePath("VBoxContainer2/HBoxContainer2/SpeciesName")
-SpeciesDetailsPanelPath = NodePath("VBoxContainer2/SpeciesDetails")
-FossiliseButtonPath = NodePath("VBoxContainer2/HBoxContainer/FossiliseButton")
-OverwriteNameConfirmationDialogPath = NodePath("OverwriteNameConfirmation")
-FossilisationFailedDialogPath = NodePath("FossilisationFailedDialog")
+speciesNameEdit = NodePath("VBoxContainer2/HBoxContainer2/SpeciesName")
+speciesDetailsPanel = NodePath("VBoxContainer2/SpeciesDetails")
+fossiliseButton = NodePath("VBoxContainer2/HBoxContainer/FossiliseButton")
+overwriteNameConfirmationDialog = NodePath("OverwriteNameConfirmation")
+fossilisationFailedDialog = NodePath("FossilisationFailedDialog")
 WindowTitle = "FOSSILISATION"
 ExclusiveAllowCloseOnEscape = false
 
@@ -84,7 +84,7 @@ caret_blink = true
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="VBoxContainer2/HBoxContainer2/SpeciesName" index="0"]
 libraries = {
-"": SubResource("AnimationLibrary_igpw6")
+&"": SubResource("AnimationLibrary_igpw6")
 }
 
 [node name="RandomizeButton" type="TextureButton" parent="VBoxContainer2/HBoxContainer2" index="1"]

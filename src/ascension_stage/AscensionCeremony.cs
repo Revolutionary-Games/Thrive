@@ -15,55 +15,39 @@ public partial class AscensionCeremony : Node
     public float ScreenFadeDuration = 5;
 
     [Export]
-    public NodePath? GateWalkerSpawnPointPath;
-
-    [Export]
     public Array<NodePath> ObserverSpawnPointPaths = new();
-
-    [Export]
-    public NodePath RootOfDynamicallySpawnedPath = null!;
-
-    [Export]
-    public NodePath RampStartPointPath = null!;
-
-    [Export]
-    public NodePath RampEndPointPath = null!;
-
-    [Export]
-    public NodePath AscensionPointPath = null!;
-
-    [Export]
-    public NodePath CreditsDisplayPath = null!;
-
-    [Export]
-    public NodePath CreditsSkipInfoContainerPath = null!;
-
-    [Export]
-    public NodePath CreditsSkipPromptPath = null!;
-
-    [Export]
-    public NodePath CustomScreenBlankerPath = null!;
-
-    [Export]
-    public NodePath WorldCameraToDisablePath = null!;
 
     private readonly List<Node3D> observerSpawnPoints = new();
 
 #pragma warning disable CA2213
+    [Export]
     private Node3D gateWalkerSpawn = null!;
 
+    [Export]
     private Node rootOfDynamicallySpawned = null!;
 
+    [Export]
     private Node3D rampStartPoint = null!;
+
+    [Export]
     private Node3D rampEndPoint = null!;
+
+    [Export]
     private Node3D ascensionPoint = null!;
 
+    [Export]
     private CreditsScroll creditsDisplay = null!;
+
+    [Export]
     private Control creditsSkipInfoContainer = null!;
+
+    [Export]
     private HoldKeyPrompt creditsSkipPrompt = null!;
 
+    [Export]
     private ColorRect customScreenBlanker = null!;
 
+    [Export]
     private Camera3D worldCameraToDisable = null!;
 
     private MacroscopicCreature? gateWalker;
@@ -91,25 +75,10 @@ public partial class AscensionCeremony : Node
 
     public override void _Ready()
     {
-        gateWalkerSpawn = GetNode<Node3D>(GateWalkerSpawnPointPath);
         foreach (var spawnPointPath in ObserverSpawnPointPaths)
         {
             observerSpawnPoints.Add(GetNode<Node3D>(spawnPointPath));
         }
-
-        rootOfDynamicallySpawned = GetNode<Node>(RootOfDynamicallySpawnedPath);
-
-        rampStartPoint = GetNode<Node3D>(RampStartPointPath);
-        rampEndPoint = GetNode<Node3D>(RampEndPointPath);
-        ascensionPoint = GetNode<Node3D>(AscensionPointPath);
-
-        creditsDisplay = GetNode<CreditsScroll>(CreditsDisplayPath);
-        creditsSkipInfoContainer = GetNode<Control>(CreditsSkipInfoContainerPath);
-        creditsSkipPrompt = GetNode<HoldKeyPrompt>(CreditsSkipPromptPath);
-
-        customScreenBlanker = GetNode<ColorRect>(CustomScreenBlankerPath);
-
-        worldCameraToDisable = GetNode<Camera3D>(WorldCameraToDisablePath);
 
         // Setup a new game if not already started
         if (CurrentGame == null)
@@ -249,21 +218,6 @@ public partial class AscensionCeremony : Node
     {
         if (disposing)
         {
-            if (GateWalkerSpawnPointPath != null)
-            {
-                GateWalkerSpawnPointPath.Dispose();
-
-                RootOfDynamicallySpawnedPath.Dispose();
-                RampStartPointPath.Dispose();
-                RampEndPointPath.Dispose();
-                AscensionPointPath.Dispose();
-                CreditsDisplayPath.Dispose();
-                CreditsSkipInfoContainerPath.Dispose();
-                CreditsSkipPromptPath.Dispose();
-                CustomScreenBlankerPath.Dispose();
-                WorldCameraToDisablePath.Dispose();
-            }
-
             foreach (var spawnPointPath in ObserverSpawnPointPaths)
                 spawnPointPath.Dispose();
         }

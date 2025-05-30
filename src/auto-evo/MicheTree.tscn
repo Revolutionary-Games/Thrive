@@ -2,7 +2,7 @@
 
 [ext_resource type="Script" uid="uid://dn21wykwcft8b" path="res://src/auto-evo/MicheTree.cs" id="1_2futc"]
 
-[node name="MicheTree" type="VBoxContainer"]
+[node name="MicheTree" type="VBoxContainer" node_paths=PackedStringArray("tree")]
 clip_contents = true
 anchors_preset = 15
 anchor_right = 1.0
@@ -10,7 +10,7 @@ anchor_bottom = 1.0
 mouse_filter = 0
 mouse_force_pass_scroll_events = false
 script = ExtResource("1_2futc")
-TreePath = NodePath("Tree")
+tree = NodePath("Tree")
 
 [node name="Tree" type="Control" parent="."]
 clip_contents = true

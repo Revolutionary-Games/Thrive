@@ -5,14 +5,11 @@
 /// </summary>
 public partial class SpeciesPreviewTooltip : PanelContainer, ICustomToolTip
 {
-    [Export]
-    public NodePath? SpeciesPreviewPath;
-
-    [Export]
-    public NodePath HexPreviewPath = null!;
-
 #pragma warning disable CA2213
+    [Export]
     private SpeciesPreview? speciesPreview;
+
+    [Export]
     private CellHexesPreview? hexesPreview;
 #pragma warning restore CA2213
 
@@ -45,25 +42,8 @@ public partial class SpeciesPreviewTooltip : PanelContainer, ICustomToolTip
     {
         base._Ready();
 
-        speciesPreview = GetNode<SpeciesPreview>(SpeciesPreviewPath);
-        hexesPreview = GetNode<CellHexesPreview>(HexPreviewPath);
-
         if (previewSpecies != null)
             UpdateSpeciesPreview();
-    }
-
-    protected override void Dispose(bool disposing)
-    {
-        if (disposing)
-        {
-            if (SpeciesPreviewPath != null)
-            {
-                SpeciesPreviewPath.Dispose();
-                HexPreviewPath.Dispose();
-            }
-        }
-
-        base.Dispose(disposing);
     }
 
     /// <summary>

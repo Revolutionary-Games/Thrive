@@ -9,28 +9,20 @@ using Newtonsoft.Json;
 /// </summary>
 public partial class SpaceStage : StrategyStageBase, ISocietyStructureDataAccess
 {
-    [Export]
-    public NodePath? NameLabelSystemPath;
-
-    [Export]
-    public NodePath AscensionMoveConfirmationPopupPath = null!;
-
-    [Export]
-    public NodePath AscensionCongratulationsPopupPath = null!;
-
-    [Export]
-    public NodePath DescendSetupPopupPath = null!;
-
-    [Export]
-    public NodePath GodToolsPath = null!;
-
 #pragma warning disable CA2213
+    [Export]
     private StrategicEntityNameLabelSystem nameLabelSystem = null!;
 
+    [Export]
     private CustomConfirmationDialog ascensionMoveConfirmationPopup = null!;
+
+    [Export]
     private AscensionCongratulationsPopup ascensionCongratulationsPopup = null!;
+
+    [Export]
     private DescendConfirmationDialog descendConfirmationPopup = null!;
 
+    [Export]
     private GodToolsPopup godTools = null!;
 
     private PackedScene planetScene = null!;
@@ -121,13 +113,7 @@ public partial class SpaceStage : StrategyStageBase, ISocietyStructureDataAccess
 
         HUD = GetNode<SpaceHUD>("SpaceHUD");
 
-        ascensionMoveConfirmationPopup = GetNode<CustomConfirmationDialog>(AscensionMoveConfirmationPopupPath);
-        ascensionCongratulationsPopup = GetNode<AscensionCongratulationsPopup>(AscensionCongratulationsPopupPath);
-        descendConfirmationPopup = GetNode<DescendConfirmationDialog>(DescendSetupPopupPath);
-        godTools = GetNode<GodToolsPopup>(GodToolsPath);
-
         // Systems
-        nameLabelSystem = GetNode<StrategicEntityNameLabelSystem>(NameLabelSystemPath);
         planetSystem = new PlanetSystem(rootOfDynamicallySpawned);
         structureSystem = new SpaceStructureSystem(rootOfDynamicallySpawned);
     }
@@ -513,23 +499,6 @@ public partial class SpaceStage : StrategyStageBase, ISocietyStructureDataAccess
     protected override void OnOpenGodTools(IEntity entity)
     {
         godTools.OpenForEntity(entity);
-    }
-
-    protected override void Dispose(bool disposing)
-    {
-        if (disposing)
-        {
-            if (NameLabelSystemPath != null)
-            {
-                NameLabelSystemPath.Dispose();
-                AscensionMoveConfirmationPopupPath.Dispose();
-                AscensionCongratulationsPopupPath.Dispose();
-                DescendSetupPopupPath.Dispose();
-                GodToolsPath.Dispose();
-            }
-        }
-
-        base.Dispose(disposing);
     }
 
     private bool PlaceCurrentStructureIfPossible()

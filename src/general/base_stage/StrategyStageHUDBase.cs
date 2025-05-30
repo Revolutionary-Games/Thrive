@@ -11,26 +11,14 @@ using Newtonsoft.Json;
 public partial class StrategyStageHUDBase<TStage> : HUDWithPausing, IStrategyStageHUD
     where TStage : GodotObject, IStrategyStage
 {
-    [Export]
-    public NodePath? HintTextPath;
-
-    [Export]
-    public NodePath HotBarPath = null!;
-
-    [Export]
-    public NodePath BottomLeftBarPath = null!;
-
-    [Export]
-    public NodePath ResourceDisplayPath = null!;
-
-    [Export]
-    public NodePath ResearchScreenPath = null!;
-
 #pragma warning disable CA2213
+    [Export]
     protected Label hintText = null!;
 
+    [Export]
     protected HUDBottomBar bottomLeftBar = null!;
 
+    [Export]
     protected ResearchScreen researchScreen = null!;
 #pragma warning restore CA2213
 
@@ -41,8 +29,10 @@ public partial class StrategyStageHUDBase<TStage> : HUDWithPausing, IStrategySta
 
     // These are private so this is a separate block
 #pragma warning disable CA2213
+    [Export]
     private HBoxContainer hotBar = null!;
 
+    [Export]
     private ResourceDisplayBar resourceDisplay = null!;
 #pragma warning restore CA2213
 
@@ -67,20 +57,6 @@ public partial class StrategyStageHUDBase<TStage> : HUDWithPausing, IStrategySta
     {
         get => hintText.Text;
         set => hintText.Text = value;
-    }
-
-    public override void _Ready()
-    {
-        base._Ready();
-
-        hintText = GetNode<Label>(HintTextPath);
-        hotBar = GetNode<HBoxContainer>(HotBarPath);
-
-        bottomLeftBar = GetNode<HUDBottomBar>(BottomLeftBarPath);
-
-        resourceDisplay = GetNode<ResourceDisplayBar>(ResourceDisplayPath);
-
-        researchScreen = GetNode<ResearchScreen>(ResearchScreenPath);
     }
 
     public virtual void Init(TStage containedInStage)
@@ -149,23 +125,6 @@ public partial class StrategyStageHUDBase<TStage> : HUDWithPausing, IStrategySta
     protected void OpenHelp()
     {
         EmitSignal(SignalName.OnOpenMenuToHelp);
-    }
-
-    protected override void Dispose(bool disposing)
-    {
-        if (disposing)
-        {
-            if (HintTextPath != null)
-            {
-                HintTextPath.Dispose();
-                HotBarPath.Dispose();
-                BottomLeftBarPath.Dispose();
-                ResourceDisplayPath.Dispose();
-                ResearchScreenPath.Dispose();
-            }
-        }
-
-        base.Dispose(disposing);
     }
 
     private void StatisticsButtonPressed()

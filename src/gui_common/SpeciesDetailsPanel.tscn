@@ -6,7 +6,7 @@
 [ext_resource type="Script" uid="uid://b0ycij328egrn" path="res://src/gui_common/SpeciesPreview.cs" id="6"]
 [ext_resource type="Script" uid="uid://qy26p3ugf4wu" path="res://src/microbe_stage/CellHexesPreview.cs" id="7"]
 
-[node name="SpeciesDetailsPanel" type="MarginContainer"]
+[node name="SpeciesDetailsPanel" type="MarginContainer" node_paths=PackedStringArray("SpeciesPreview", "speciesDetailsLabel", "hexesPreview")]
 custom_minimum_size = Vector2(352, 300)
 offset_right = 352.0
 offset_bottom = 562.0
@@ -17,9 +17,9 @@ theme_override_constants/margin_top = 10
 theme_override_constants/margin_right = 10
 theme_override_constants/margin_bottom = 10
 script = ExtResource("2")
-SpeciesDetailsLabelPath = NodePath("ScrollContainer/VBoxContainer/SpeciesInfoLabel")
-SpeciesPreviewPath = NodePath("ScrollContainer/VBoxContainer/HBoxContainer/SpeciesPreview")
-HexPreviewPath = NodePath("ScrollContainer/VBoxContainer/HBoxContainer/CellHexPreview")
+SpeciesPreview = NodePath("ScrollContainer/VBoxContainer/HBoxContainer/SpeciesPreview")
+speciesDetailsLabel = NodePath("ScrollContainer/VBoxContainer/SpeciesInfoLabel")
+hexesPreview = NodePath("ScrollContainer/VBoxContainer/HBoxContainer/CellHexPreview")
 
 [node name="ScrollContainer" type="ScrollContainer" parent="."]
 layout_mode = 2

@@ -5,14 +5,11 @@
 /// </summary>
 public partial class ExtinctionBox : CustomWindow
 {
-    [Export]
-    public NodePath? ExtinctionMenuPath;
-
-    [Export]
-    public NodePath LoadMenuPath = null!;
-
 #pragma warning disable CA2213
+    [Export]
     private Control extinctionMenu = null!;
+
+    [Export]
     private Control loadMenu = null!;
 
     [Export]
@@ -42,9 +39,6 @@ public partial class ExtinctionBox : CustomWindow
 
     public override void _Ready()
     {
-        extinctionMenu = GetNode<Control>(ExtinctionMenuPath);
-        loadMenu = GetNode<Control>(LoadMenuPath);
-
         UpdateContinueOption();
     }
 
@@ -71,20 +65,6 @@ public partial class ExtinctionBox : CustomWindow
         loadMenu.Hide();
         extinctionMenu.Show();
         return true;
-    }
-
-    protected override void Dispose(bool disposing)
-    {
-        if (disposing)
-        {
-            if (ExtinctionMenuPath != null)
-            {
-                ExtinctionMenuPath.Dispose();
-                LoadMenuPath.Dispose();
-            }
-        }
-
-        base.Dispose(disposing);
     }
 
     private void OpenLoadGamePressed()

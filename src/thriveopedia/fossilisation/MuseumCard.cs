@@ -5,20 +5,16 @@
 /// </summary>
 public partial class MuseumCard : Button
 {
-    [Export]
-    public NodePath? SpeciesNameLabelPath;
-
-    [Export]
-    public NodePath SpeciesPreviewPath = null!;
-
-    [Export]
-    public NodePath DeleteButtonPath = null!;
-
     private readonly NodePath modulateReference = new("modulate");
 
 #pragma warning disable CA2213
+    [Export]
     private Label? speciesNameLabel;
+
+    [Export]
     private TextureRect? speciesPreview;
+
+    [Export]
     private TextureButton deleteButton = null!;
 
     // TODO: check if this should be disposed
@@ -71,10 +67,6 @@ public partial class MuseumCard : Button
     {
         base._Ready();
 
-        speciesPreview = GetNode<TextureRect>(SpeciesPreviewPath);
-        speciesNameLabel = GetNode<Label>(SpeciesNameLabelPath);
-        deleteButton = GetNode<TextureButton>(DeleteButtonPath);
-
         defaultDeleteModulate = deleteButton.SelfModulate;
 
         UpdateSpeciesName();
@@ -85,13 +77,6 @@ public partial class MuseumCard : Button
     {
         if (disposing)
         {
-            if (SpeciesNameLabelPath != null)
-            {
-                SpeciesNameLabelPath.Dispose();
-                SpeciesPreviewPath.Dispose();
-                DeleteButtonPath.Dispose();
-            }
-
             modulateReference.Dispose();
         }
 

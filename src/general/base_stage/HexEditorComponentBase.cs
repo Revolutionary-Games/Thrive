@@ -21,21 +21,6 @@ public partial class HexEditorComponentBase<TEditor, TCombinedAction, TAction, T
     where TAction : EditorAction
     where THexMove : class, IActionHex
 {
-    [Export]
-    public NodePath? CameraPath;
-
-    [Export]
-    public NodePath EditorArrowPath = null!;
-
-    [Export]
-    public NodePath EditorGridPath = null!;
-
-    [Export]
-    public NodePath CameraFollowPath = null!;
-
-    [Export]
-    public NodePath IslandErrorPath = null!;
-
     /// <summary>
     ///   The hexes that are positioned under the cursor to show where the player is about to place something.
     /// </summary>
@@ -66,13 +51,20 @@ public partial class HexEditorComponentBase<TEditor, TCombinedAction, TAction, T
     /// <summary>
     ///   Object camera is over. Used to move the camera around
     /// </summary>
+    [Export]
     protected Node3D cameraFollow = null!;
 
+    /// <summary>
+    ///   Should only be null immediately after a save load.
+    /// </summary>
+    [Export]
     protected MicrobeCamera? camera;
 
     [JsonIgnore]
+    [Export]
     protected MeshInstance3D editorArrow = null!;
 
+    [Export]
     protected MeshInstance3D editorGrid = null!;
 
     protected Material invalidMaterial = null!;
@@ -109,6 +101,7 @@ public partial class HexEditorComponentBase<TEditor, TCombinedAction, TAction, T
 
     // This is separate from the other Godot resources as this is private and they are protected
 #pragma warning disable CA2213
+    [Export]
     private CustomConfirmationDialog islandPopup = null!;
 #pragma warning restore CA2213
 
@@ -205,32 +198,13 @@ public partial class HexEditorComponentBase<TEditor, TCombinedAction, TAction, T
     {
         base._Ready();
 
-        ResolveNodeReferences();
+        camera!.Connect(MicrobeCamera.SignalName.OnZoomChanged, new Callable(this, nameof(OnZoomChanged)));
 
         LoadHexMaterials();
         LoadScenes();
         LoadAudioStreams();
 
         UpdateCamera();
-    }
-
-    public virtual void ResolveNodeReferences()
-    {
-        islandPopup = GetNode<CustomConfirmationDialog>(IslandErrorPath);
-
-        if (IsLoadedFromSave)
-        {
-            // When directly loaded from the base scene (which is done when loading from a save), some of our
-            // node paths are not set so we need to skip them
-            return;
-        }
-
-        camera = GetNode<MicrobeCamera>(CameraPath);
-        editorArrow = GetNode<MeshInstance3D>(EditorArrowPath);
-        editorGrid = GetNode<MeshInstance3D>(EditorGridPath);
-        cameraFollow = GetNode<Node3D>(CameraFollowPath);
-
-        camera.Connect(MicrobeCamera.SignalName.OnZoomChanged, new Callable(this, nameof(OnZoomChanged)));
     }
 
     public override void Init(TEditor owningEditor, bool fresh)
@@ -453,16 +427,10 @@ public partial class HexEditorComponentBase<TEditor, TCombinedAction, TAction, T
         if (!Visible)
             return false;
 
-        if (camera == null)
-        {
-            GD.PrintErr("Editor camera isn't set");
-            return false;
-        }
-
         CameraPosition = new Vector3(0, 0, 0);
         UpdateCamera();
 
-        camera.ResetHeight();
+        camera!.ResetHeight();
         return true;
     }
 
@@ -1135,15 +1103,6 @@ public partial class HexEditorComponentBase<TEditor, TCombinedAction, TAction, T
     {
         if (disposing)
         {
-            if (CameraPath != null)
-            {
-                CameraPath.Dispose();
-                EditorArrowPath.Dispose();
-                EditorGridPath.Dispose();
-                CameraFollowPath.Dispose();
-                IslandErrorPath.Dispose();
-            }
-
             positionZReference.Dispose();
         }
 

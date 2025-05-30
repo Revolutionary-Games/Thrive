@@ -6,74 +6,47 @@ using Godot;
 /// </summary>
 public partial class MicrobeEditorTutorialGUI : Control, ITutorialGUI
 {
-    [Export]
-    public NodePath? EditorEntryReportPath;
-
-    [Export]
-    public NodePath PatchMapPath = null!;
-
-    [Export]
-    public NodePath CellEditorIntroductionPath = null!;
-
-    [Export]
-    public NodePath CellEditorUndoPath = null!;
-
-    [Export]
-    public NodePath CellEditorUndoHighlightPath = null!;
-
-    [Export]
-    public NodePath CellEditorRedoPath = null!;
-
-    [Export]
-    public NodePath CellEditorRedoHighlightPath = null!;
-
-    [Export]
-    public NodePath CellEditorClosingWordsPath = null!;
-
-    [Export]
-    public NodePath AutoEvoPredictionPath = null!;
-
-    [Export]
-    public NodePath AutoEvoPredictionHighlightPath = null!;
-
-    [Export]
-    public NodePath StaySmallTutorialPath = null!;
-
-    [Export]
-    public NodePath ChemoreceptorPlacementTutorialPath = null!;
-
-    [Export]
-    public NodePath NegativeAtpBalanceTutorialPath = null!;
-
-    [Export]
-    public NodePath MadeNoChangesTutorialPath = null!;
-
-    [Export]
-    public NodePath FlagellumPlacementTutorialPath = null!;
-
-    [Export]
-    public NodePath ModifyOrganelleTutorialPath = null!;
-
-    [Export]
-    public NodePath AtpBalanceIntroductionPath = null!;
-
-    [Export]
-    public NodePath AtpBalanceBarHighlightPath = null!;
-
 #pragma warning disable CA2213
+    [Export]
     private CustomWindow editorEntryReport = null!;
+
+    [Export]
     private CustomWindow patchMap = null!;
+
+    [Export]
     private CustomWindow cellEditorIntroduction = null!;
+
+    [Export]
     private CustomWindow cellEditorUndo = null!;
+
+    [Export]
     private CustomWindow cellEditorRedo = null!;
+
+    [Export]
     private CustomWindow cellEditorClosingWords = null!;
+
+    [Export]
     private CustomWindow autoEvoPrediction = null!;
+
+    [Export]
     private CustomWindow staySmallTutorial = null!;
+
+    [Export]
     private CustomWindow negativeAtpBalanceTutorial = null!;
+
+    [Export]
     private CustomWindow chemoreceptorPlacementTutorial = null!;
+
+    [Export]
     private CustomWindow madeNoChangesTutorial = null!;
+
+    [Export]
     private CustomWindow flagellumPlacementTutorial = null!;
+
+    [Export]
     private CustomWindow modifyOrganelleTutorial = null!;
+
+    [Export]
     private CustomWindow atpBalanceIntroduction = null!;
 
     [Export]
@@ -107,12 +80,16 @@ public partial class MicrobeEditorTutorialGUI : Control, ITutorialGUI
     public bool AllTutorialsDesiredState { get; private set; } = true;
     public Node GUINode => this;
 
+    [Export]
     public ControlHighlight? CellEditorUndoHighlight { get; private set; }
 
+    [Export]
     public ControlHighlight? CellEditorRedoHighlight { get; private set; }
 
+    [Export]
     public ControlHighlight? AutoEvoPredictionHighlight { get; private set; }
 
+    [Export]
     public ControlHighlight? AtpBalanceBarHighlight { get; private set; }
 
     [Export]
@@ -547,26 +524,6 @@ public partial class MicrobeEditorTutorialGUI : Control, ITutorialGUI
 
     public override void _Ready()
     {
-        editorEntryReport = GetNode<CustomWindow>(EditorEntryReportPath);
-        patchMap = GetNode<CustomWindow>(PatchMapPath);
-        cellEditorIntroduction = GetNode<CustomWindow>(CellEditorIntroductionPath);
-        cellEditorUndo = GetNode<CustomWindow>(CellEditorUndoPath);
-        cellEditorRedo = GetNode<CustomWindow>(CellEditorRedoPath);
-        cellEditorClosingWords = GetNode<CustomWindow>(CellEditorClosingWordsPath);
-        autoEvoPrediction = GetNode<CustomWindow>(AutoEvoPredictionPath);
-        staySmallTutorial = GetNode<CustomWindow>(StaySmallTutorialPath);
-        chemoreceptorPlacementTutorial = GetNode<CustomWindow>(ChemoreceptorPlacementTutorialPath);
-        negativeAtpBalanceTutorial = GetNode<CustomWindow>(NegativeAtpBalanceTutorialPath);
-        madeNoChangesTutorial = GetNode<CustomWindow>(MadeNoChangesTutorialPath);
-        flagellumPlacementTutorial = GetNode<CustomWindow>(FlagellumPlacementTutorialPath);
-        modifyOrganelleTutorial = GetNode<CustomWindow>(ModifyOrganelleTutorialPath);
-        atpBalanceIntroduction = GetNode<CustomWindow>(AtpBalanceIntroductionPath);
-
-        CellEditorUndoHighlight = GetNode<ControlHighlight>(CellEditorUndoHighlightPath);
-        CellEditorRedoHighlight = GetNode<ControlHighlight>(CellEditorRedoHighlightPath);
-        AutoEvoPredictionHighlight = GetNode<ControlHighlight>(AutoEvoPredictionHighlightPath);
-        AtpBalanceBarHighlight = GetNode<ControlHighlight>(AtpBalanceBarHighlightPath);
-
         ProcessMode = ProcessModeEnum.Always;
     }
 
@@ -602,35 +559,5 @@ public partial class MicrobeEditorTutorialGUI : Control, ITutorialGUI
         // bar
         if (eitherVisible)
             RightPanelScrollContainer.ScrollVertical = 0;
-    }
-
-    protected override void Dispose(bool disposing)
-    {
-        if (disposing)
-        {
-            if (EditorEntryReportPath != null)
-            {
-                EditorEntryReportPath.Dispose();
-                PatchMapPath.Dispose();
-                CellEditorIntroductionPath.Dispose();
-                CellEditorUndoPath.Dispose();
-                CellEditorUndoHighlightPath.Dispose();
-                CellEditorRedoPath.Dispose();
-                CellEditorRedoHighlightPath.Dispose();
-                CellEditorClosingWordsPath.Dispose();
-                AutoEvoPredictionPath.Dispose();
-                AutoEvoPredictionHighlightPath.Dispose();
-                StaySmallTutorialPath.Dispose();
-                ChemoreceptorPlacementTutorialPath.Dispose();
-                NegativeAtpBalanceTutorialPath.Dispose();
-                MadeNoChangesTutorialPath.Dispose();
-                FlagellumPlacementTutorialPath.Dispose();
-                ModifyOrganelleTutorialPath.Dispose();
-                AtpBalanceIntroductionPath.Dispose();
-                AtpBalanceBarHighlightPath.Dispose();
-            }
-        }
-
-        base.Dispose(disposing);
     }
 }

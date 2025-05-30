@@ -7,64 +7,49 @@ using Godot;
 /// </summary>
 public partial class OrganelleInfoBox : PanelContainer
 {
-    [Export]
-    public NodePath? NamePath;
-
-    [Export]
-    public NodePath IconPath = null!;
-
-    [Export]
-    public NodePath ModelPath = null!;
-
-    [Export]
-    public NodePath CostLabelPath = null!;
-
-    [Export]
-    public NodePath RequiresNucleusIconPath = null!;
-
-    [Export]
-    public NodePath ProcessesLabelPath = null!;
-
-    [Export]
-    public NodePath EnzymesLabelPath = null!;
-
-    [Export]
-    public NodePath MassLabelPath = null!;
-
-    [Export]
-    public NodePath SizeLabelPath = null!;
-
-    [Export]
-    public NodePath OsmoregulationCostLabelPath = null!;
-
-    [Export]
-    public NodePath StorageLabelPath = null!;
-
-    [Export]
-    public NodePath UniqueIconPath = null!;
-
-    [Export]
-    public NodePath UpgradesLabelPath = null!;
-
-    [Export]
-    public NodePath InternalNameLabelPath = null!;
-
     private OrganelleDefinition? organelle;
 
 #pragma warning disable CA2213
+    [Export]
     private Label nameLabel = null!;
+
+    [Export]
     private TextureRect icon = null!;
+
+    [Export]
     private TextureRect? model;
+
+    [Export]
     private Label costLabel = null!;
+
+    [Export]
     private TextureRect requiresNucleusIcon = null!;
+
+    [Export]
     private Label processesLabel = null!;
+
+    [Export]
     private Label enzymesLabel = null!;
+
+    [Export]
     private Label massLabel = null!;
+
+    [Export]
     private Label sizeLabel = null!;
+
+    [Export]
     private Label osmoregulationCostLabel = null!;
+
+    [Export]
     private Label storageLabel = null!;
+
+    [Export]
     private TextureRect uniqueIcon = null!;
+
+    [Export]
     private Label upgradesLabel = null!;
+
+    [Export]
     private Label internalNameLabel = null!;
 
     private Texture2D? modelTexture;
@@ -102,21 +87,6 @@ public partial class OrganelleInfoBox : PanelContainer
     {
         base._Ready();
 
-        nameLabel = GetNode<Label>(NamePath);
-        icon = GetNode<TextureRect>(IconPath);
-        model = GetNode<TextureRect>(ModelPath);
-        costLabel = GetNode<Label>(CostLabelPath);
-        requiresNucleusIcon = GetNode<TextureRect>(RequiresNucleusIconPath);
-        processesLabel = GetNode<Label>(ProcessesLabelPath);
-        enzymesLabel = GetNode<Label>(EnzymesLabelPath);
-        massLabel = GetNode<Label>(MassLabelPath);
-        sizeLabel = GetNode<Label>(SizeLabelPath);
-        osmoregulationCostLabel = GetNode<Label>(OsmoregulationCostLabelPath);
-        storageLabel = GetNode<Label>(StorageLabelPath);
-        uniqueIcon = GetNode<TextureRect>(UniqueIconPath);
-        upgradesLabel = GetNode<Label>(UpgradesLabelPath);
-        internalNameLabel = GetNode<Label>(InternalNameLabelPath);
-
         modelLoadingTexture = GD.Load<Texture2D>("res://assets/textures/gui/bevel/IconGenerating.png");
 
         UpdateModelImage();
@@ -151,32 +121,6 @@ public partial class OrganelleInfoBox : PanelContainer
                 sceneWithModelInfo.ModelPath));
 
         ModelTexture = modelLoadingTexture;
-    }
-
-    protected override void Dispose(bool disposing)
-    {
-        if (disposing)
-        {
-            if (NamePath != null)
-            {
-                NamePath.Dispose();
-                IconPath.Dispose();
-                ModelPath.Dispose();
-                CostLabelPath.Dispose();
-                RequiresNucleusIconPath.Dispose();
-                ProcessesLabelPath.Dispose();
-                EnzymesLabelPath.Dispose();
-                MassLabelPath.Dispose();
-                SizeLabelPath.Dispose();
-                OsmoregulationCostLabelPath.Dispose();
-                StorageLabelPath.Dispose();
-                UniqueIconPath.Dispose();
-                UpgradesLabelPath.Dispose();
-                InternalNameLabelPath.Dispose();
-            }
-        }
-
-        base.Dispose(disposing);
     }
 
     /// <summary>

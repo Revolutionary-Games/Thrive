@@ -7,18 +7,14 @@ using Godot;
 /// </summary>
 public partial class SpeciesDetailsPanelWithFossilisation : VBoxContainer
 {
-    [Export]
-    public NodePath? SpeciesDetailsPanelPath;
-
-    [Export]
-    public NodePath FossilisationButtonPath = null!;
-
-    [Export]
-    public NodePath FossilisationDialogPath = null!;
-
 #pragma warning disable CA2213
+    [Export]
     private SpeciesDetailsPanel? speciesDetailsPanel;
+
+    [Export]
     private Button fossilisationButton = null!;
+
+    [Export]
     private FossilisationDialog fossilisationDialog = null!;
 #pragma warning restore CA2213
 
@@ -35,10 +31,9 @@ public partial class SpeciesDetailsPanelWithFossilisation : VBoxContainer
             previewSpecies = value;
 
             if (speciesDetailsPanel != null)
-            {
                 speciesDetailsPanel.PreviewSpecies = value;
-                UpdateFossilisationButtonState();
-            }
+
+            UpdateFossilisationButtonState();
         }
     }
 
@@ -46,28 +41,9 @@ public partial class SpeciesDetailsPanelWithFossilisation : VBoxContainer
     {
         base._Ready();
 
-        speciesDetailsPanel = GetNode<SpeciesDetailsPanel>(SpeciesDetailsPanelPath);
-        fossilisationButton = GetNode<Button>(FossilisationButtonPath);
-        fossilisationDialog = GetNode<FossilisationDialog>(FossilisationDialogPath);
-
-        speciesDetailsPanel.PreviewSpecies = previewSpecies;
+        speciesDetailsPanel!.PreviewSpecies = previewSpecies;
 
         UpdateFossilisationButtonState();
-    }
-
-    protected override void Dispose(bool disposing)
-    {
-        if (disposing)
-        {
-            if (SpeciesDetailsPanelPath != null)
-            {
-                FossilisationButtonPath.Dispose();
-                FossilisationDialogPath.Dispose();
-                SpeciesDetailsPanelPath.Dispose();
-            }
-        }
-
-        base.Dispose(disposing);
     }
 
     private void OnFossilisePressed()

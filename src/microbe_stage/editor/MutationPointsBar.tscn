@@ -59,20 +59,20 @@ _data = {
 &"FlashBar": SubResource("7")
 }
 
-[node name="MutationPointsBar" type="HBoxContainer"]
+[node name="MutationPointsBar" type="HBoxContainer" node_paths=PackedStringArray("currentMutationPointsLabel", "mutationPointsArrow", "resultingMutationPointsLabel", "baseMutationPointsLabel", "mutationPointsBar", "mutationPointsSubtractBar", "animationPlayer")]
 offset_left = 10.0
 offset_top = 10.0
 offset_right = 328.0
 offset_bottom = 30.0
 theme_override_constants/separation = -10
 script = ExtResource("5")
-CurrentMutationPointsLabelPath = NodePath("MarginContainer/MPBarMain/HBoxContainer/MarginContainer2/HBoxContainer/CurrentMp")
-MutationPointsArrowPath = NodePath("MarginContainer/MPBarMain/HBoxContainer/MarginContainer2/HBoxContainer/MpArrow")
-ResultingMutationPointsLabelPath = NodePath("MarginContainer/MPBarMain/HBoxContainer/MarginContainer2/HBoxContainer/ResultingMp")
-BaseMutationPointsLabelPath = NodePath("MarginContainer/MPBarMain/HBoxContainer/MarginContainer2/HBoxContainer/BaseMp")
-MutationPointsBarPath = NodePath("MarginContainer/MPBarMain")
-MutationPointsSubtractBarPath = NodePath("MarginContainer/MPBarSubtract")
-AnimationPlayerPath = NodePath("MarginContainer/MPBarMain/FlashAnimation")
+currentMutationPointsLabel = NodePath("MarginContainer/MPBarMain/HBoxContainer/MarginContainer2/HBoxContainer/CurrentMp")
+mutationPointsArrow = NodePath("MarginContainer/MPBarMain/HBoxContainer/MarginContainer2/HBoxContainer/MpArrow")
+resultingMutationPointsLabel = NodePath("MarginContainer/MPBarMain/HBoxContainer/MarginContainer2/HBoxContainer/ResultingMp")
+baseMutationPointsLabel = NodePath("MarginContainer/MPBarMain/HBoxContainer/MarginContainer2/HBoxContainer/BaseMp")
+mutationPointsBar = NodePath("MarginContainer/MPBarMain")
+mutationPointsSubtractBar = NodePath("MarginContainer/MPBarSubtract")
+animationPlayer = NodePath("MarginContainer/MPBarMain/FlashAnimation")
 
 [node name="MPIcon" type="TextureRect" parent="."]
 custom_minimum_size = Vector2(20, 20)
@@ -184,5 +184,5 @@ vertical_alignment = 1
 
 [node name="FlashAnimation" type="AnimationPlayer" parent="MarginContainer/MPBarMain"]
 libraries = {
-"": SubResource("AnimationLibrary_g5nvi")
+&"": SubResource("AnimationLibrary_g5nvi")
 }

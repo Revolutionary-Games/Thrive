@@ -6,18 +6,6 @@ using Godot;
 /// </summary>
 public partial class ResourceDisplayBar : HBoxContainer
 {
-    [Export]
-    public NodePath? EarlyResourcesContainerPath;
-
-    [Export]
-    public NodePath ScienceIndicatorContainerPath = null!;
-
-    [Export]
-    public NodePath ScienceAmountLabelPath = null!;
-
-    [Export]
-    public NodePath LateResourcesContainerPath = null!;
-
 #pragma warning disable CA2213
     [Export]
     public LabelSettings AmountLabelFont = null!;
@@ -28,10 +16,16 @@ public partial class ResourceDisplayBar : HBoxContainer
     [Export]
     public LabelSettings AmountLabelFontCritical = null!;
 
+    [Export]
     private Container earlyResourcesContainer = null!;
+
+    [Export]
     private Container lateResourcesContainer = null!;
 
+    [Export]
     private Control scienceIndicatorContainer = null!;
+
+    [Export]
     private Label scienceAmountLabel = null!;
 #pragma warning restore CA2213
 
@@ -39,12 +33,6 @@ public partial class ResourceDisplayBar : HBoxContainer
 
     public override void _Ready()
     {
-        earlyResourcesContainer = GetNode<Container>(EarlyResourcesContainerPath);
-        lateResourcesContainer = GetNode<Container>(LateResourcesContainerPath);
-
-        scienceIndicatorContainer = GetNode<Control>(ScienceIndicatorContainerPath);
-        scienceAmountLabel = GetNode<Label>(ScienceAmountLabelPath);
-
         scienceIndicatorContainer.Visible = false;
         scienceAmountLabel.LabelSettings = AmountLabelFont;
 
@@ -89,22 +77,6 @@ public partial class ResourceDisplayBar : HBoxContainer
         scienceAmountLabel.LabelSettings = AmountLabelFont;
         scienceAmountLabel.Text =
             StringUtils.FormatPositiveWithLeadingPlus(StringUtils.ThreeDigitFormat(amount), amount);
-    }
-
-    protected override void Dispose(bool disposing)
-    {
-        if (disposing)
-        {
-            if (EarlyResourcesContainerPath != null)
-            {
-                EarlyResourcesContainerPath.Dispose();
-                ScienceIndicatorContainerPath.Dispose();
-                ScienceAmountLabelPath.Dispose();
-                LateResourcesContainerPath.Dispose();
-            }
-        }
-
-        base.Dispose(disposing);
     }
 
     private DisplayAmount CreateDisplayAmount(WorldResource resource)

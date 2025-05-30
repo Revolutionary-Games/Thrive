@@ -2,14 +2,14 @@
 
 [ext_resource type="Script" uid="uid://btl24nbg2dyml" path="res://src/auto-evo/AutoEvoExploringTool.cs" id="1"]
 [ext_resource type="Theme" uid="uid://b4cx0o110g4b6" path="res://src/gui_common/thrive_theme.tres" id="2"]
-[ext_resource type="PackedScene" path="res://src/gui_common/CustomRichTextLabel.tscn" id="5"]
+[ext_resource type="PackedScene" uid="uid://bhpjtbtaeunat" path="res://src/gui_common/CustomRichTextLabel.tscn" id="5"]
 [ext_resource type="LabelSettings" uid="uid://b6c60ljn172wp" path="res://src/gui_common/fonts/Body-Bold-Smaller.tres" id="5_6c001"]
 [ext_resource type="Texture2D" uid="uid://djklaunps1oyd" path="res://assets/concept_art/even-more-cells.jpg" id="8"]
 [ext_resource type="PackedScene" uid="uid://rfg25u72afai" path="res://src/gui_common/SpeciesDetailsPanelWithFossilisation.tscn" id="9"]
 [ext_resource type="PackedScene" uid="uid://cl64wvnxs6ivs" path="res://src/gui_common/dialogs/CustomConfirmationDialog.tscn" id="11"]
 [ext_resource type="LabelSettings" uid="uid://bx7mw3uvqpo42" path="res://src/gui_common/fonts/Body-Regular-Smaller.tres" id="11_crtm0"]
 [ext_resource type="Script" uid="uid://cnjatsx4a4qpl" path="res://src/gui_common/CustomDropDown.cs" id="12"]
-[ext_resource type="PackedScene" path="res://src/microbe_stage/editor/PatchMapDrawer.tscn" id="13"]
+[ext_resource type="PackedScene" uid="uid://cmhetwsk3qbb7" path="res://src/microbe_stage/editor/PatchMapDrawer.tscn" id="13"]
 [ext_resource type="PackedScene" uid="uid://cjbhth6wlc08l" path="res://src/auto-evo/EvolutionaryTree.tscn" id="14"]
 [ext_resource type="PackedScene" uid="uid://din62wkc2pcnk" path="res://src/gui_common/DraggableScrollContainer.tscn" id="16"]
 [ext_resource type="PackedScene" uid="uid://clhnq4g06pd62" path="res://src/auto-evo/MicheTree.tscn" id="16_hpnq1"]
@@ -23,46 +23,46 @@
 
 [sub_resource type="ButtonGroup" id="ButtonGroup_cxjso"]
 
-[node name="AutoEvoExploringTool" type="Node"]
+[node name="AutoEvoExploringTool" type="Node" node_paths=PackedStringArray("worldTab", "configTab", "historyReportSplit", "speciesSelectPanel", "mapTab", "reportTab", "viewerTab", "micheTab", "allWorldsStatisticsLabel", "worldsListMenu", "newWorldButton", "currentWorldStatisticsLabel", "worldExportButton", "moveAttemptsPerSpeciesSpinBox", "mutationsPerSpeciesSpinBox", "strictNicheCompetitionCheckBox", "runStatusLabel", "finishXGenerationsSpinBox", "finishXGenerationsButton", "runXWorldsSpinBox", "runXWorldsButton", "finishOneGenerationButton", "runOneStepButton", "abortButton", "playWithCurrentSettingButton", "autoEvoResultsLabel", "historyListMenu", "patchMapDrawer", "patchDetailsPanel", "speciesListMenu", "evolutionaryTree", "speciesDetailsPanelWithFossilisation", "patchListMenu", "micheTree", "micheDetailsPanel", "micheSpeciesDetailsPanel", "exitConfirmationDialog", "exportSuccessNotificationDialog")]
 script = ExtResource("1")
-WorldEditorPath = NodePath("GUI/VBoxContainer/WorldEditor")
-ConfigEditorPath = NodePath("GUI/VBoxContainer/ConfigEditor")
-HistoryReportSplitPath = NodePath("GUI/VBoxContainer/HistoryReportSplit")
-SpeciesSelectPanelPath = NodePath("GUI/VBoxContainer/HistoryReportSplit/UpperSplit/SpeciesSelectPanel")
-MapPath = NodePath("GUI/VBoxContainer/HistoryReportSplit/PatchMap")
-ReportPath = NodePath("GUI/VBoxContainer/HistoryReportSplit/Report")
-ViewerPath = NodePath("GUI/VBoxContainer/HistoryReportSplit/Viewer")
-MichePath = NodePath("GUI/VBoxContainer/HistoryReportSplit/Miche")
-AllWorldsStatisticsLabelPath = NodePath("GUI/VBoxContainer/WorldEditor/AllWorldsStatPanel/MarginContainer/VBoxContainer/AllWorldsStatLabel")
-WorldsListMenuPath = NodePath("GUI/VBoxContainer/WorldEditor/VBoxContainer/PanelContainer2/MarginContainer/HBoxContainer/WorldsListMenu")
-NewWorldButtonPath = NodePath("GUI/VBoxContainer/WorldEditor/VBoxContainer/PanelContainer2/MarginContainer/HBoxContainer/NewWorldButton")
-CurrentWorldStatisticsLabelPath = NodePath("GUI/VBoxContainer/WorldEditor/PanelContainer2/MarginContainer/HBoxContainer/VBoxContainer/CurrentWorldStatLabel")
-WorldExportButtonPath = NodePath("GUI/VBoxContainer/WorldEditor/VBoxContainer/PanelContainer/MarginContainer/VBoxContainer/WorldExportButton")
-MoveAttemptsPerSpeciesPath = NodePath("GUI/VBoxContainer/ConfigEditor/PanelContainer/MarginContainer/ScrollContainer/ConfigEditorContainer/MoveAttemptsPerSpecies/MoveAttemptsPerSpecies")
-MutationsPerSpeciesPath = NodePath("GUI/VBoxContainer/ConfigEditor/PanelContainer/MarginContainer/ScrollContainer/ConfigEditorContainer/MutationsPerSpecies/MutationsPerSpecies")
-StrictNicheCompetitionPath = NodePath("GUI/VBoxContainer/ConfigEditor/PanelContainer/MarginContainer/ScrollContainer/ConfigEditorContainer/StrictNicheCompetition")
-RunStatusLabelPath = NodePath("GUI/VBoxContainer/WorldEditor/VBoxContainer/PanelContainer/MarginContainer/VBoxContainer/RunStatusLabel")
-FinishXGenerationsSpinBoxPath = NodePath("GUI/VBoxContainer/WorldEditor/VBoxContainer/PanelContainer/MarginContainer/VBoxContainer/HBoxContainer3/FinishXGenerationsSpin")
-FinishXGenerationsButtonPath = NodePath("GUI/VBoxContainer/WorldEditor/VBoxContainer/PanelContainer/MarginContainer/VBoxContainer/HBoxContainer3/FinishXGenerations")
-RunXWorldsSpinBoxPath = NodePath("GUI/VBoxContainer/WorldEditor/VBoxContainer/PanelContainer/MarginContainer/VBoxContainer/HBoxContainer4/RunXWorldsSpin")
-RunXWorldsButtonPath = NodePath("GUI/VBoxContainer/WorldEditor/VBoxContainer/PanelContainer/MarginContainer/VBoxContainer/HBoxContainer4/RunXWorlds")
-RunGenerationButtonPath = NodePath("GUI/VBoxContainer/WorldEditor/VBoxContainer/PanelContainer/MarginContainer/VBoxContainer/RunGeneration")
-RunStepButtonPath = NodePath("GUI/VBoxContainer/WorldEditor/VBoxContainer/PanelContainer/MarginContainer/VBoxContainer/RunStep")
-AbortButtonPath = NodePath("GUI/VBoxContainer/WorldEditor/VBoxContainer/PanelContainer/MarginContainer/VBoxContainer/Abort")
-PlayWithCurrentSettingPath = NodePath("GUI/VBoxContainer/WorldEditor/VBoxContainer/PanelContainer/MarginContainer/VBoxContainer/PlayWithThis")
-PatchMapDrawerPath = NodePath("GUI/VBoxContainer/HistoryReportSplit/PatchMap/HBoxContainer/PatchMap/MarginContainer/DraggableScrollContainer/PatchMapDrawer")
-PatchDetailsPanelPath = NodePath("GUI/VBoxContainer/HistoryReportSplit/PatchMap/HBoxContainer/PatchDetailsPanel")
-HistoryListMenuPath = NodePath("GUI/VBoxContainer/HistoryReportSplit/UpperSplit/GenerationPanel/MarginContainer/HBoxContainer/HistoryListMenu")
-ResultsLabelPath = NodePath("GUI/VBoxContainer/HistoryReportSplit/Report/ResultsPanel/MarginContainer/ScrollContainer/VBoxContainer/ResultsLabel")
-SpeciesListMenuPath = NodePath("GUI/VBoxContainer/HistoryReportSplit/UpperSplit/SpeciesSelectPanel/MarginContainer/HBoxContainer/SpeciesListMenu")
-EvolutionaryTreePath = NodePath("GUI/VBoxContainer/HistoryReportSplit/Viewer/HBoxContainer/PanelContainer/MarginContainer/VBoxContainer/EvolutionaryTree")
-SpeciesDetailsPanelPath = NodePath("GUI/VBoxContainer/HistoryReportSplit/Viewer/HBoxContainer/PanelContainer2/MarginContainer/SpeciesDetailsPanel")
-PatchListMenuPath = NodePath("GUI/VBoxContainer/HistoryReportSplit/Miche/HBoxContainer/VBoxContainer/PatchSelectPanel/MarginContainer/HBoxContainer/PatchListMenu")
-MicheTreePath = NodePath("GUI/VBoxContainer/HistoryReportSplit/Miche/HBoxContainer/PanelContainer/MarginContainer/VBoxContainer/MicheTree")
-MicheDetailsPanelPath = NodePath("GUI/VBoxContainer/HistoryReportSplit/Miche/HBoxContainer/VBoxContainer/PanelContainer2/MarginContainer/MicheDetailsPanel")
-MicheSpeciesDetailsPanelPath = NodePath("GUI/VBoxContainer/HistoryReportSplit/Miche/HBoxContainer/VBoxContainer/PanelContainer2/MarginContainer/SpeciesDetailsPanel")
-ExitConfirmationDialogPath = NodePath("ExitConfirmationDialog")
-ExportSuccessNotificationDialogPath = NodePath("ExportSuccessNotificationDialog")
+worldTab = NodePath("GUI/VBoxContainer/WorldEditor")
+configTab = NodePath("GUI/VBoxContainer/ConfigEditor")
+historyReportSplit = NodePath("GUI/VBoxContainer/HistoryReportSplit")
+speciesSelectPanel = NodePath("GUI/VBoxContainer/HistoryReportSplit/UpperSplit/SpeciesSelectPanel")
+mapTab = NodePath("GUI/VBoxContainer/HistoryReportSplit/PatchMap")
+reportTab = NodePath("GUI/VBoxContainer/HistoryReportSplit/Report")
+viewerTab = NodePath("GUI/VBoxContainer/HistoryReportSplit/Viewer")
+micheTab = NodePath("GUI/VBoxContainer/HistoryReportSplit/Miche")
+allWorldsStatisticsLabel = NodePath("GUI/VBoxContainer/WorldEditor/AllWorldsStatPanel/MarginContainer/VBoxContainer/AllWorldsStatLabel")
+worldsListMenu = NodePath("GUI/VBoxContainer/WorldEditor/VBoxContainer/PanelContainer2/MarginContainer/HBoxContainer/WorldsListMenu")
+newWorldButton = NodePath("GUI/VBoxContainer/WorldEditor/VBoxContainer/PanelContainer2/MarginContainer/HBoxContainer/NewWorldButton")
+currentWorldStatisticsLabel = NodePath("GUI/VBoxContainer/WorldEditor/PanelContainer2/MarginContainer/HBoxContainer/VBoxContainer/CurrentWorldStatLabel")
+worldExportButton = NodePath("GUI/VBoxContainer/WorldEditor/VBoxContainer/PanelContainer/MarginContainer/VBoxContainer/WorldExportButton")
+moveAttemptsPerSpeciesSpinBox = NodePath("GUI/VBoxContainer/ConfigEditor/PanelContainer/MarginContainer/ScrollContainer/ConfigEditorContainer/MoveAttemptsPerSpecies/MoveAttemptsPerSpecies")
+mutationsPerSpeciesSpinBox = NodePath("GUI/VBoxContainer/ConfigEditor/PanelContainer/MarginContainer/ScrollContainer/ConfigEditorContainer/MutationsPerSpecies/MutationsPerSpecies")
+strictNicheCompetitionCheckBox = NodePath("GUI/VBoxContainer/ConfigEditor/PanelContainer/MarginContainer/ScrollContainer/ConfigEditorContainer/StrictNicheCompetition")
+runStatusLabel = NodePath("GUI/VBoxContainer/WorldEditor/VBoxContainer/PanelContainer/MarginContainer/VBoxContainer/RunStatusLabel")
+finishXGenerationsSpinBox = NodePath("GUI/VBoxContainer/WorldEditor/VBoxContainer/PanelContainer/MarginContainer/VBoxContainer/HBoxContainer3/FinishXGenerationsSpin")
+finishXGenerationsButton = NodePath("GUI/VBoxContainer/WorldEditor/VBoxContainer/PanelContainer/MarginContainer/VBoxContainer/HBoxContainer3/FinishXGenerations")
+runXWorldsSpinBox = NodePath("GUI/VBoxContainer/WorldEditor/VBoxContainer/PanelContainer/MarginContainer/VBoxContainer/HBoxContainer4/RunXWorldsSpin")
+runXWorldsButton = NodePath("GUI/VBoxContainer/WorldEditor/VBoxContainer/PanelContainer/MarginContainer/VBoxContainer/HBoxContainer4/RunXWorlds")
+finishOneGenerationButton = NodePath("GUI/VBoxContainer/WorldEditor/VBoxContainer/PanelContainer/MarginContainer/VBoxContainer/RunGeneration")
+runOneStepButton = NodePath("GUI/VBoxContainer/WorldEditor/VBoxContainer/PanelContainer/MarginContainer/VBoxContainer/RunStep")
+abortButton = NodePath("GUI/VBoxContainer/WorldEditor/VBoxContainer/PanelContainer/MarginContainer/VBoxContainer/Abort")
+playWithCurrentSettingButton = NodePath("GUI/VBoxContainer/WorldEditor/VBoxContainer/PanelContainer/MarginContainer/VBoxContainer/PlayWithThis")
+autoEvoResultsLabel = NodePath("GUI/VBoxContainer/HistoryReportSplit/Report/ResultsPanel/MarginContainer/ScrollContainer/VBoxContainer/ResultsLabel")
+historyListMenu = NodePath("GUI/VBoxContainer/HistoryReportSplit/UpperSplit/GenerationPanel/MarginContainer/HBoxContainer/HistoryListMenu")
+patchMapDrawer = NodePath("GUI/VBoxContainer/HistoryReportSplit/PatchMap/HBoxContainer/PatchMap/MarginContainer/DraggableScrollContainer/PatchMapDrawer")
+patchDetailsPanel = NodePath("GUI/VBoxContainer/HistoryReportSplit/PatchMap/HBoxContainer/PatchDetailsPanel")
+speciesListMenu = NodePath("GUI/VBoxContainer/HistoryReportSplit/UpperSplit/SpeciesSelectPanel/MarginContainer/HBoxContainer/SpeciesListMenu")
+evolutionaryTree = NodePath("GUI/VBoxContainer/HistoryReportSplit/Viewer/HBoxContainer/PanelContainer/MarginContainer/VBoxContainer/EvolutionaryTree")
+speciesDetailsPanelWithFossilisation = NodePath("GUI/VBoxContainer/HistoryReportSplit/Viewer/HBoxContainer/PanelContainer2/MarginContainer/SpeciesDetailsPanel")
+patchListMenu = NodePath("GUI/VBoxContainer/HistoryReportSplit/Miche/HBoxContainer/VBoxContainer/PatchSelectPanel/MarginContainer/HBoxContainer/PatchListMenu")
+micheTree = NodePath("GUI/VBoxContainer/HistoryReportSplit/Miche/HBoxContainer/PanelContainer/MarginContainer/VBoxContainer/MicheTree")
+micheDetailsPanel = NodePath("GUI/VBoxContainer/HistoryReportSplit/Miche/HBoxContainer/VBoxContainer/PanelContainer2/MarginContainer/MicheDetailsPanel")
+micheSpeciesDetailsPanel = NodePath("GUI/VBoxContainer/HistoryReportSplit/Miche/HBoxContainer/VBoxContainer/PanelContainer2/MarginContainer/SpeciesDetailsPanel")
+exitConfirmationDialog = NodePath("ExitConfirmationDialog")
+exportSuccessNotificationDialog = NodePath("ExportSuccessNotificationDialog")
 
 [node name="BackGround" type="TextureRect" parent="."]
 anchors_preset = 15
@@ -483,9 +483,9 @@ theme_override_constants/margin_top = 10
 theme_override_constants/margin_right = 10
 theme_override_constants/margin_bottom = 10
 
-[node name="DraggableScrollContainer" parent="GUI/VBoxContainer/HistoryReportSplit/PatchMap/HBoxContainer/PatchMap/MarginContainer" instance=ExtResource("16")]
+[node name="DraggableScrollContainer" parent="GUI/VBoxContainer/HistoryReportSplit/PatchMap/HBoxContainer/PatchMap/MarginContainer" node_paths=PackedStringArray("content") instance=ExtResource("16")]
 layout_mode = 2
-ContentPath = NodePath("PatchMapDrawer")
+content = NodePath("PatchMapDrawer")
 
 [node name="PatchMapDrawer" parent="GUI/VBoxContainer/HistoryReportSplit/PatchMap/HBoxContainer/PatchMap/MarginContainer/DraggableScrollContainer" instance=ExtResource("13")]
 layout_mode = 2
