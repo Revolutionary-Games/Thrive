@@ -12,6 +12,8 @@ public abstract class StatisticBasedUnlockCondition : IUnlockCondition
 {
     public abstract bool Satisfied(IUnlockStateDataSource data);
 
+    public abstract float Progress(IUnlockStateDataSource data);
+
     public abstract void GenerateTooltip(LocalizedStringBuilder builder, IUnlockStateDataSource data);
 
     public virtual void Check(string name)
@@ -31,25 +33,26 @@ public class EngulfedMicrobesAbove : StatisticBasedUnlockCondition
     [JsonProperty]
     public int Required { get; set; }
 
-    public override bool Satisfied(IUnlockStateDataSource data)
-    {
-        if (data is not WorldStatsTracker tracker)
-            return false;
-
-        var engulfed = tracker.TotalEngulfedByPlayer;
-
-        return engulfed.Value >= Required;
-    }
+    public override bool Satisfied(IUnlockStateDataSource data) => Engulfed(data) >= Required;
+    public override float Progress(IUnlockStateDataSource data)
+        => Math.Clamp((float)(Engulfed(data) ?? 0) / Required, 0, 1);
 
     public override void GenerateTooltip(LocalizedStringBuilder builder, IUnlockStateDataSource data)
     {
-        if (data is not WorldStatsTracker tracker)
+        var engulfed = Engulfed(data);
+        if (engulfed == null)
             return;
 
-        var engulfed = tracker.TotalEngulfedByPlayer;
-
         builder.Append(new LocalizedString("UNLOCK_CONDITION_ENGULFED_MICROBES_ABOVE", Required,
-            engulfed.Value));
+            engulfed));
+    }
+
+    private int? Engulfed(IUnlockStateDataSource data)
+    {
+        if (data is not WorldStatsTracker tracker)
+            return null;
+
+        return tracker.TotalEngulfedByPlayer.Value;
     }
 }
 
@@ -58,25 +61,26 @@ public class DigestedMicrobesAbove : StatisticBasedUnlockCondition
     [JsonProperty]
     public int Required { get; set; }
 
-    public override bool Satisfied(IUnlockStateDataSource data)
-    {
-        if (data is not WorldStatsTracker tracker)
-            return false;
-
-        var digested = tracker.TotalDigestedByPlayer;
-
-        return digested.Value >= Required;
-    }
+    public override bool Satisfied(IUnlockStateDataSource data) => Digested(data) >= Required;
+    public override float Progress(IUnlockStateDataSource data)
+        => Math.Clamp((float)(Digested(data) ?? 0) / Required, 0, 1);
 
     public override void GenerateTooltip(LocalizedStringBuilder builder, IUnlockStateDataSource data)
     {
-        if (data is not WorldStatsTracker tracker)
+        var digested = Digested(data);
+        if (digested == null)
             return;
 
-        var digested = tracker.TotalDigestedByPlayer;
-
         builder.Append(new LocalizedString("UNLOCK_CONDITION_DIGESTED_MICROBES_ABOVE", Required,
-            digested.Value));
+            digested));
+    }
+
+    private int? Digested(IUnlockStateDataSource data)
+    {
+        if (data is not WorldStatsTracker tracker)
+            return null;
+
+        return tracker.TotalDigestedByPlayer.Value;
     }
 }
 
@@ -88,25 +92,26 @@ public class PlayerDeathsAbove : StatisticBasedUnlockCondition
     [JsonProperty]
     public int Required { get; set; }
 
-    public override bool Satisfied(IUnlockStateDataSource data)
-    {
-        if (data is not WorldStatsTracker tracker)
-            return false;
-
-        var deaths = tracker.TotalPlayerDeaths;
-
-        return deaths.Value >= Required;
-    }
+    public override bool Satisfied(IUnlockStateDataSource data) => PlayerDeaths(data) >= Required;
+    public override float Progress(IUnlockStateDataSource data)
+        => Math.Clamp((float)(PlayerDeaths(data) ?? 0) / Required, 0, 1);
 
     public override void GenerateTooltip(LocalizedStringBuilder builder, IUnlockStateDataSource data)
     {
-        if (data is not WorldStatsTracker tracker)
+        var deaths = PlayerDeaths(data);
+        if (deaths == null)
             return;
 
-        var deaths = tracker.TotalPlayerDeaths;
-
         builder.Append(new LocalizedString("UNLOCK_CONDITION_PLAYER_DEATH_COUNT_ABOVE", Required,
-            deaths.Value));
+            deaths));
+    }
+
+    private int? PlayerDeaths(IUnlockStateDataSource data)
+    {
+        if (data is not WorldStatsTracker tracker)
+            return null;
+
+        return tracker.TotalPlayerDeaths.Value;
     }
 }
 
@@ -135,6 +140,8 @@ public class ReproduceInBiome : StatisticBasedUnlockCondition
 
         return count >= 1;
     }
+
+    public override float Progress(IUnlockStateDataSource data) => Satisfied(data) ? 1 : 0;
 
     public override void Check(string name)
     {
@@ -172,14 +179,9 @@ public class ReproduceWithOrganelle : StatisticBasedUnlockCondition
 
     public override void GenerateTooltip(LocalizedStringBuilder builder, IUnlockStateDataSource data1)
     {
-        if (data1 is not WorldStatsTracker tracker)
+        var count = CalculateCount(data1);
+        if (count == null)
             return;
-
-        var reproductionStat = tracker.PlayerReproductionStatistic;
-
-        var count = 0;
-        if (reproductionStat.ReproducedWithOrganelle.TryGetValue(organelle, out var data))
-            count = CalculateCount(data);
 
         var formattedOrganelleName = MinimumCount <= 1 ?
             new LocalizedString("ORGANELLE_SINGULAR", organelle.Name) :
@@ -197,18 +199,10 @@ public class ReproduceWithOrganelle : StatisticBasedUnlockCondition
         }
     }
 
-    public override bool Satisfied(IUnlockStateDataSource data1)
-    {
-        if (data1 is not WorldStatsTracker tracker)
-            return false;
+    public override bool Satisfied(IUnlockStateDataSource data1) => CalculateCount(data1) >= Generations;
 
-        var reproductionStat = tracker.PlayerReproductionStatistic;
-
-        if (!reproductionStat.ReproducedWithOrganelle.TryGetValue(organelle, out var data))
-            return false;
-
-        return CalculateCount(data) >= Generations;
-    }
+    public override float Progress(IUnlockStateDataSource data1)
+        => Math.Clamp((float)(CalculateCount(data1) ?? 0) / Generations, 0, 1);
 
     public override void Check(string name)
     {
@@ -236,8 +230,16 @@ public class ReproduceWithOrganelle : StatisticBasedUnlockCondition
         organelle = parameters.GetOrganelleType(RawOrganelle);
     }
 
-    private int CalculateCount(ReproductionStatistic.ReproductionOrganelleData data)
+    private int? CalculateCount(IUnlockStateDataSource data1)
     {
+        if (data1 is not WorldStatsTracker tracker)
+            return null;
+
+        var reproductionStat = tracker.PlayerReproductionStatistic;
+
+        if (!reproductionStat.ReproducedWithOrganelle.TryGetValue(organelle, out var data))
+            return null;
+
         if (MinimumCount > 1)
         {
             if (InARow)
@@ -267,15 +269,9 @@ public class DamageFromSource : StatisticBasedUnlockCondition
     [JsonProperty("Amount")]
     public float RequiredAmount { get; set; }
 
-    public override bool Satisfied(IUnlockStateDataSource data)
-    {
-        if (data is not WorldStatsTracker tracker)
-            return false;
-
-        var damage = tracker.PlayerReceivedDamage.GetDamageBySource(SourceName);
-
-        return damage >= RequiredAmount;
-    }
+    public override bool Satisfied(IUnlockStateDataSource data) => Damage(data) >= RequiredAmount;
+    public override float Progress(IUnlockStateDataSource data)
+        => Math.Clamp((Damage(data) ?? 0) / RequiredAmount, 0, 1);
 
     public override void GenerateTooltip(LocalizedStringBuilder builder, IUnlockStateDataSource data)
     {
@@ -297,5 +293,13 @@ public class DamageFromSource : StatisticBasedUnlockCondition
                     damage));
                 break;
         }
+    }
+
+    private float? Damage(IUnlockStateDataSource data)
+    {
+        if (data is not WorldStatsTracker tracker)
+            return null;
+
+        return tracker.PlayerReceivedDamage.GetDamageBySource(SourceName);
     }
 }

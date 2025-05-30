@@ -791,6 +791,13 @@ public class OrganelleDefinition : IRegistryType
         }
     }
 
+    public float Progress(WorldAndPlayerDataSource worldAndPlayerData)
+    {
+        if (UnlockConditions == null)
+            return 0;
+        return UnlockConditions.Select(entry => entry.Progress(worldAndPlayerData)).Max();
+    }
+
     public void ApplyTranslations()
     {
         TranslationHelper.ApplyTranslations(this);

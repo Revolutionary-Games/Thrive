@@ -15,6 +15,16 @@ public interface IUnlockCondition
     public bool Satisfied(IUnlockStateDataSource data);
 
     /// <summary>
+    ///   Gets the current progress on the unlock condition
+    /// </summary>
+    /// <param name="data">
+    ///   The data about the world, if this condition doesn't handle the data of the given type this always
+    ///   returns false
+    /// </param>
+    /// <returns>A value between 0 (no progress) and 1 (complete)</returns>
+    public float Progress(IUnlockStateDataSource data);
+
+    /// <summary>
     ///   Generates a tooltip describing how close this unlock condition is to be unlocked
     /// </summary>
     /// <param name="builder">Where to put the result text</param>

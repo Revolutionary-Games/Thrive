@@ -386,7 +386,7 @@ public partial class CellEditorComponent
 
         // Find groups with undiscovered organelles
         var groupsWithUndiscoveredOrganelles =
-            new Dictionary<OrganelleDefinition.OrganelleGroup, (LocalizedStringBuilder UnlockText, int Count)>();
+            new Dictionary<OrganelleDefinition.OrganelleGroup, List<OrganelleDefinition>>();
 
         var worldAndPlayerArgs = GetUnlockPlayerDataSource();
 
@@ -418,36 +418,10 @@ public partial class CellEditorComponent
                 continue;
             }
 
+            // Add a new organelle to the group
             var buttonGroup = organelle.EditorButtonGroup;
-
-            // This needs to be done as some organelles like the Toxin Vacuole have newlines in the translations
-            var formattedName = organelle.Name.Replace("\n", " ");
-            var unlockTextString = new LocalizedString("UNLOCK_WITH_ANY_OF_FOLLOWING", formattedName);
-
-            // Create unlock text
-            if (groupsWithUndiscoveredOrganelles.TryGetValue(buttonGroup, out var group))
-            {
-                // Add a new organelle to the group
-                group.Count += 1;
-                group.UnlockText.Append("\n\n");
-                group.UnlockText.Append(unlockTextString);
-                group.UnlockText.Append(" ");
-                organelle.GenerateUnlockRequirementsText(group.UnlockText, worldAndPlayerArgs);
-                groupsWithUndiscoveredOrganelles[buttonGroup] = group;
-            }
-            else
-            {
-                // Add the first organelle to the group
-                var unlockText = new LocalizedStringBuilder();
-
-                unlockText.Append(new LocalizedString("ORGANELLES_WILL_BE_UNLOCKED_NEXT_GENERATION"));
-                unlockText.Append("\n\n");
-
-                unlockText.Append(unlockTextString);
-                unlockText.Append(" ");
-                organelle.GenerateUnlockRequirementsText(unlockText, worldAndPlayerArgs);
-                groupsWithUndiscoveredOrganelles.Add(buttonGroup, (unlockText, 1));
-            }
+            groupsWithUndiscoveredOrganelles.TryAdd(buttonGroup, []);
+            groupsWithUndiscoveredOrganelles[buttonGroup].Add(organelle);
         }
 
         // Remove any buttons that might've been created before
@@ -458,10 +432,30 @@ public partial class CellEditorComponent
         foreach (var groupWithUndiscovered in groupsWithUndiscoveredOrganelles)
         {
             var group = partsSelectionContainer.GetNode<CollapsibleList>(groupWithUndiscovered.Key.ToString());
-            var (unlockText, count) = groupWithUndiscovered.Value;
+            var organelles = groupWithUndiscovered.Value;
+
+            var unlockText = new LocalizedStringBuilder();
+            unlockText.Append(new LocalizedString("ORGANELLES_WILL_BE_UNLOCKED_NEXT_GENERATION"));
+
+            // Show the top 4 in order of progress
+            var orderedOrganelles = organelles.OrderByDescending(organelle => organelle.Progress(worldAndPlayerArgs));
+            var topFourOrganeeles = orderedOrganelles.Take(4);
+
+            foreach (var organelle in topFourOrganeeles)
+            {
+                // This needs to be done as some organelles like the Toxin Vacuole have newlines in the translations
+                var formattedName = organelle.Name.Replace("\n", " ");
+                var unlockTextString = new LocalizedString("UNLOCK_WITH_ANY_OF_FOLLOWING", formattedName);
+
+                // Create unlock text
+                unlockText.Append("\n\n");
+                unlockText.Append(unlockTextString);
+                unlockText.Append(" ");
+                organelle.GenerateUnlockRequirementsText(unlockText, worldAndPlayerArgs);
+            }
 
             var button = undiscoveredOrganellesScene.Instantiate<UndiscoveredOrganellesButton>();
-            button.Count = count;
+            button.Count = organelles.Count;
             group.AddItem(button);
 
             // Register tooltip
