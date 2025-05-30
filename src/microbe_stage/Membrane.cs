@@ -181,6 +181,22 @@ public partial class Membrane : MeshInstance3D
         SetMesh();
     }
 
+    public override void _EnterTree()
+    {
+        base._EnterTree();
+
+        var settings = Settings.Instance;
+        settings.MicrobeRippleEffect.OnChanged += OnRippleEffectValueChanges;
+        OnRippleEffectValueChanges(settings.MicrobeRippleEffect);
+    }
+
+    public override void _ExitTree()
+    {
+        base._ExitTree();
+
+        Settings.Instance.MicrobeRippleEffect.OnChanged -= OnRippleEffectValueChanges;
+    }
+
     public override void _Process(double delta)
     {
         if (!Dirty)
@@ -322,6 +338,11 @@ public partial class Membrane : MeshInstance3D
 
         mucocystAnimationMeshInstance.Mesh = membraneData.GeneratedEngulfMesh;
         mucocystAnimationMeshInstance.MaterialOverride = MucocystShaderMaterial;
+    }
+
+    private void OnRippleEffectValueChanges(bool enabled)
+    {
+        waterRipple.EnableEffect = enabled;
     }
 
     private void ApplyAllMaterialParameters()
