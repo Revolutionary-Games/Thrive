@@ -84,6 +84,9 @@ public partial class MicrobeTutorialGUI : Control, ITutorialGUI
     private CustomWindow openProcessPanelTutorial = null!;
 
     [Export]
+    private CustomWindow sprintExplanation = null!;
+
+    [Export]
     private CustomWindow processPanelTutorial = null!;
 
     [Export]
@@ -357,6 +360,18 @@ public partial class MicrobeTutorialGUI : Control, ITutorialGUI
             {
                 checkTheHelpMenu.Hide();
             }
+        }
+    }
+
+    public bool SprintExplanationVisible
+    {
+        get => sprintExplanation.Visible;
+        set
+        {
+            if (value == sprintExplanation.Visible)
+                return;
+
+            sprintExplanation.Visible = value;
         }
     }
 
