@@ -821,6 +821,12 @@ public sealed class ProcessSystem : AEntitySetSystem<float>
             }
         }
 
+        // 30% bioprocess speed bonus if have nucleus
+        if (!cellProperties.IsBacteria)
+        {
+            overallSpeedModifier *= 1.3f;
+        }
+        
 #if DEBUG
         if (overallSpeedModifier <= 0)
         {
@@ -1092,13 +1098,6 @@ public sealed class ProcessSystem : AEntitySetSystem<float>
         else if (process.SpeedMultiplier > 1)
         {
             process.SpeedMultiplier = 1;
-        }
-
-
-        // 30% bioprocess speed bonus if have nucleus
-        if (!cellProperties.IsBacteria)
-        {
-            process.SpeedMultiplier *= 1.3f;
         }
 
         // Compute spaceConstraintModifier before updating the final use and input amounts
