@@ -27,6 +27,7 @@ using World = DefaultEcs.World;
 /// </remarks>
 [With(typeof(CompoundStorage))]
 [With(typeof(BioProcesses))]
+[ReadsComponent(typeof(CellProperties))]
 [RunsAfter(typeof(CompoundAbsorptionSystem))]
 [RunsBefore(typeof(OsmoregulationAndHealingSystem))]
 [RunsBefore(typeof(MicrobeMovementSystem))]
