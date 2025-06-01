@@ -27,7 +27,6 @@ using World = DefaultEcs.World;
 /// </remarks>
 [With(typeof(CompoundStorage))]
 [With(typeof(BioProcesses))]
-[ReadsComponent(typeof(CellProperties))]
 [RunsAfter(typeof(CompoundAbsorptionSystem))]
 [RunsBefore(typeof(OsmoregulationAndHealingSystem))]
 [RunsBefore(typeof(MicrobeMovementSystem))]
@@ -820,12 +819,6 @@ public sealed class ProcessSystem : AEntitySetSystem<float>
                 // Reset the data to not keep printing the error
                 microbeEnvironmentalEffects.ProcessSpeedModifier = 1.0f;
             }
-        }
-
-        // 30% bioprocess speed bonus if have nucleus
-        if (!cellProperties.IsBacteria)
-        {
-            overallSpeedModifier *= 1.3f;
         }
         
 #if DEBUG
