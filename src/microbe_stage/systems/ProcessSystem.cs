@@ -1091,7 +1091,7 @@ public sealed class ProcessSystem : AEntitySetSystem<float>
         }
         else if (process.SpeedMultiplier > 1)
         {
-            process.SpeedMultiplier = 1;
+            MicrobeEnvironmentalEffects.ProcessSpeedModifier = 1.25f;
         }
 
 
