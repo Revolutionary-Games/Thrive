@@ -536,6 +536,15 @@ public class SimulationCache
 
         var result = MicrobeEnvironmentalToleranceCalculations.ResolveToleranceValues(tolerances);
 
+        if (!species.IsBacteria)
+        {
+            // 30% bioprocess speed bonus if have nucleus
+            result.ProcessSpeedModifier *= 1.3f;
+
+            // 10% osmoregulation bonus if have nucleus
+            result.OsmoregulationModifier *= 0.9f;
+        }
+        
         cachedResolvedTolerances.Add(key, result);
         return result;
     }
