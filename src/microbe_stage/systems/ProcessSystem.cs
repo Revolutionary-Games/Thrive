@@ -820,7 +820,7 @@ public sealed class ProcessSystem : AEntitySetSystem<float>
                 microbeEnvironmentalEffects.ProcessSpeedModifier = 1.0f;
             }
         }
-        
+
 #if DEBUG
         if (overallSpeedModifier <= 0)
         {
