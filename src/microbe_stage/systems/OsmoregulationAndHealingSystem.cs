@@ -133,12 +133,6 @@ public sealed class OsmoregulationAndHealingSystem : AEntitySetSystem<float>
             osmoregulationCost *= 0.9f;
         }
 
-        // 30% bioprocess speed bonus if have nucleus
-        if (!cellProperties.IsBacteria)
-        {
-            ProcessSpeedModifier *= 1.3f;
-        }
-
         // TODO: remove this check on next save breakage point
         if (entity.Has<MicrobeEnvironmentalEffects>())
         {
