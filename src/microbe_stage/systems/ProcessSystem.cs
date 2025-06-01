@@ -1091,14 +1091,14 @@ public sealed class ProcessSystem : AEntitySetSystem<float>
         }
         else if (process.SpeedMultiplier > 1)
         {
-            MicrobeEnvironmentalEffects.ProcessSpeedModifier = 1.25f;
+            process.SpeedMultiplier = 1;
         }
 
 
         // 30% bioprocess speed bonus if have nucleus
         if (!cellProperties.IsBacteria)
         {
-            MicrobeEnvironmentalEffects.ProcessSpeedModifier *= 1.3f;
+            process.SpeedMultiplier *= 1.3f;
         }
 
         // Compute spaceConstraintModifier before updating the final use and input amounts
