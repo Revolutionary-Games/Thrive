@@ -213,7 +213,7 @@ public static class MicrobeEnvironmentalToleranceCalculations
         if (data.HasNucleus)
         {
             // 30% bioprocess speed bonus if have nucleus
-            result.ProcessSpeedModifier *= 6f;
+            result.ProcessSpeedModifier *= 6.0f;
 
             // 10% osmoregulation bonus if have nucleus
             result.OsmoregulationModifier *= 0.1f;
