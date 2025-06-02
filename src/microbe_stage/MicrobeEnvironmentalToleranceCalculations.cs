@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Diagnostics;
+using System.Linq;
 
 /// <summary>
 ///   Helper class that contains all the math for environmental tolerances in one place (though the microbe editor and
@@ -9,6 +10,8 @@ using System.Diagnostics;
 /// </summary>
 public static class MicrobeEnvironmentalToleranceCalculations
 {
+    public static OrganelleDefinition Nucleus = SimulationParameters.Instance.GetOrganelleType("nucleus");
+
     /// <summary>
     ///   Calculates the total overall score of environmental tolerance without giving the sub-scores
     /// </summary>
@@ -60,6 +63,7 @@ public static class MicrobeEnvironmentalToleranceCalculations
             resolvedTolerances.UVResistance = 0;
 
         CalculateTolerancesInternal(resolvedTolerances, noExtraEffects, environment, result);
+        result.HasNucleus = organelles.Any(orgnaelle => orgnaelle.Definition == Nucleus);
 
         return result;
     }
@@ -204,6 +208,15 @@ public static class MicrobeEnvironmentalToleranceCalculations
         {
             result.HealthModifier *= Math.Max(Constants.TOLERANCE_UV_HEALTH_MIN, data.UVScore);
             result.OsmoregulationModifier *= Math.Min(Constants.TOLERANCE_UV_OSMOREGULATION_MAX, 2 - data.UVScore);
+        }
+
+        if (data.HasNucleus)
+        {
+            // 30% bioprocess speed bonus if have nucleus
+            result.ProcessSpeedModifier *= 6f;
+
+            // 10% osmoregulation bonus if have nucleus
+            result.OsmoregulationModifier *= 0.1f;
         }
 
 #if DEBUG
@@ -435,4 +448,5 @@ public class ToleranceResult
 
     public float UVScore;
     public float PerfectUVAdjustment;
+    public bool HasNucleus;
 }
