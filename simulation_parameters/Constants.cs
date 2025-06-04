@@ -500,11 +500,11 @@ public static class Constants
     /// <summary>
     ///   Controls with how much speed agents are fired
     /// </summary>
-    public const float AGENT_EMISSION_VELOCITY = 18.5f;
+    public const float AGENT_EMISSION_VELOCITY = 25.0f;
 
-    public const float OXYTOXY_DAMAGE = 15.0f;
+    public const float OXYTOXY_DAMAGE = 25.0f;
 
-    public const float CYTOTOXIN_DAMAGE = 12.0f;
+    public const float CYTOTOXIN_DAMAGE = 20.0f;
 
     public const float OXYGEN_INHIBITOR_DAMAGE = 14.0f;
 
@@ -537,7 +537,7 @@ public static class Constants
     /// <summary>
     ///   How much a cell's speed is slowed when travelling through slime
     /// </summary>
-    public const float MUCILAGE_IMPEDE_FACTOR = 4.0f;
+    public const float MUCILAGE_IMPEDE_FACTOR = 5.0f;
 
     /// <summary>
     ///   How much a cell's speed is increased when secreting slime (scaling with secreted compound amount)
