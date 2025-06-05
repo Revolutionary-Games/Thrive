@@ -559,12 +559,12 @@ public static class Constants
     /// </summary>
     public const float MUCOCYST_SPEED_MULTIPLIER = 0.01f;
 
-    public const float MUCOCYST_MINIMUM_MUCILAGE = 0.2f;
+    public const float MUCOCYST_MINIMUM_MUCILAGE = 1.0f;
 
     /// <summary>
     ///   How much mucocyst (slime jet upgrade) drains mucilage per second
     /// </summary>
-    public const float MUCOCYST_MUCILAGE_DRAIN = 0.5f;
+    public const float MUCOCYST_MUCILAGE_DRAIN = 0.7f;
 
     public const float TOXIN_PROJECTILE_PHYSICS_SIZE = 1;
 
