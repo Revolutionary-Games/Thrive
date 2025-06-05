@@ -355,7 +355,8 @@ public static class MicrobeControlHelpers
         if (state)
         {
             // Apply the activation cost before activating the mucocyst shield
-            var mucilageRequired = Constants.MUCOCYST_ACTIVATION_MUCILAGE;
+            var mucilageCapactiy = availableCompounds.Compounds.GetCapacityForCompound(mucilageCompound);
+            var mucilageRequired = mucilageCapactiy * Constants.MUCOCYST_ACTIVATION_MUCILAGE_FRACTION;
             if (availableCompounds.Compounds.GetCompoundAmount(mucilageCompound) < mucilageRequired)
             {
                 entity.SendNoticeIfPossible(() =>

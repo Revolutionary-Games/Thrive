@@ -560,9 +560,9 @@ public static class Constants
     public const float MUCOCYST_SPEED_MULTIPLIER = 0.01f;
 
     /// <summary>
-    ///   How much mucilage is required to activate mucocyst (slime jet upgrade)
+    ///   What fraction of the mucilage capacity is required to activate mucocyst (slime jet upgrade)
     /// </summary>
-    public const float MUCOCYST_ACTIVATION_MUCILAGE = 1.0f;
+    public const float MUCOCYST_ACTIVATION_MUCILAGE_FRACTION = 0.5f;
 
     /// <summary>
     ///   How much mucocyst (slime jet upgrade) drains mucilage per second

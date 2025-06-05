@@ -953,13 +953,17 @@ public sealed class MicrobeAISystem : AEntitySetSystem<float>, ISpeciesMemberLoc
 
             var predatorState = predatorEntity.Get<MicrobeControl>().State;
 
+            // Calculate mucilage required to activate the mucocyst
+            var mucilageCapactiy = ourCompounds.GetCapacityForCompound(Compound.Mucilage);
+            var mucilageRequired = mucilageCapactiy * Constants.MUCOCYST_ACTIVATION_MUCILAGE_FRACTION;
+
             if ((organelles.SlimeJets?.Count ?? 0) > 0 &&
                 RollCheck(speciesFear, Constants.MAX_SPECIES_FEAR, random))
             {
                 // There's a chance to jet away if we can
                 control.SecreteSlimeForSomeTime(ref organelles, random);
             }
-            else if (ourCompounds.GetCompoundAmount(Compound.Mucilage) > Constants.MUCOCYST_ACTIVATION_MUCILAGE &&
+            else if (ourCompounds.GetCompoundAmount(Compound.Mucilage) > mucilageRequired &&
                      organelles.MucocystCount > 0 && (strain >= Constants.MAX_STRAIN_PER_ENTITY * 0.70 ||
                          RollCheck(speciesFear, Constants.MAX_SPECIES_FEAR, random) ||
                          predatorState == MicrobeState.Engulf))
