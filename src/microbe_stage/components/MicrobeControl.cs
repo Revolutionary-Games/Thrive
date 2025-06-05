@@ -354,10 +354,16 @@ public static class MicrobeControlHelpers
 
         if (state)
         {
-            // Don't allow spamming if not enough mucocyst. This is inside this if to allow exiting mucocyst shield
-            // mode even without enough mucilage remaining.
-            if (availableCompounds.Compounds.GetCompoundAmount(mucilageCompound) < Constants.MUCOCYST_MINIMUM_MUCILAGE)
+            // Apply the activation cost before activating the mucocyst shield
+            var mucilageRequired = Constants.MUCOCYST_ACTIVATION_MUCILAGE;
+            if (availableCompounds.Compounds.GetCompoundAmount(mucilageCompound) < mucilageRequired)
+            {
+                entity.SendNoticeIfPossible(() =>
+                    new SimpleHUDMessage(Localization.Translate("NOTICE_NOT_ENOUGH_MUCILAGE")));
                 return;
+            }
+
+            availableCompounds.Compounds.TakeCompound(mucilageCompound, mucilageRequired);
 
             control.State = MicrobeState.MucocystShield;
 
