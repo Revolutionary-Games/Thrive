@@ -883,7 +883,7 @@ public static class Constants
     /// <summary>
     ///   The minimum size ratio between a cell and a possible engulfing victim.
     /// </summary>
-    public const float ENGULF_SIZE_RATIO_REQ = 1.5f;
+    public const float ENGULF_SIZE_RATIO_REQ = 2.5f;
 
     public const float EUKARYOTIC_ENGULF_SIZE_MULTIPLIER = 2.0f;
 
@@ -915,12 +915,12 @@ public static class Constants
     /// <summary>
     ///   The speed of which a cell can absorb compounds from digestible engulfed objects.
     /// </summary>
-    public const float ENGULF_COMPOUND_ABSORBING_PER_SECOND = 0.3f;
+    public const float ENGULF_COMPOUND_ABSORBING_PER_SECOND = 0.5f;
 
     /// <summary>
     ///   How much compounds in relation to real compound amount can be absorbed from digestible engulfed objects.
     /// </summary>
-    public const float ENGULF_BASE_COMPOUND_ABSORPTION_YIELD = 0.5f;
+    public const float ENGULF_BASE_COMPOUND_ABSORPTION_YIELD = 0.3f;
 
     /// <summary>
     ///   How long can cell be in engulf mode after activating without ATP
@@ -958,7 +958,7 @@ public static class Constants
     /// <summary>
     ///   Each enzyme addition grants a fraction, set by this variable, increase in digestion speed.
     /// </summary>
-    public const float ENZYME_DIGESTION_SPEED_UP_FRACTION = 0.1f;
+    public const float ENZYME_DIGESTION_SPEED_UP_FRACTION = 0.05f;
 
     /// <summary>
     ///   Each enzyme addition grants this fraction increase in compounds yield.
