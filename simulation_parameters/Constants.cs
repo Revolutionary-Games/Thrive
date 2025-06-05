@@ -885,7 +885,7 @@ public static class Constants
     /// </summary>
     public const float ENGULF_SIZE_RATIO_REQ = 2.5f;
 
-    public const float EUKARYOTIC_ENGULF_SIZE_MULTIPLIER = 2.0f;
+    public const float EUKARYOTIC_ENGULF_SIZE_MULTIPLIER = 2.5f;
 
     /// <summary>
     ///   The duration for which an engulfable object can't be engulfed after being expelled.
