@@ -920,7 +920,7 @@ public static class Constants
     /// <summary>
     ///   How much compounds in relation to real compound amount can be absorbed from digestible engulfed objects.
     /// </summary>
-    public const float ENGULF_BASE_COMPOUND_ABSORPTION_YIELD = 0.3f;
+    public const float ENGULF_BASE_COMPOUND_ABSORPTION_YIELD = 0.4f;
 
     /// <summary>
     ///   How long can cell be in engulf mode after activating without ATP
