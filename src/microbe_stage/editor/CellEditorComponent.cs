@@ -489,6 +489,8 @@ public partial class CellEditorComponent :
         }
     }
 
+    public Func<string, bool>? ValidateNewCellTypeName { get; set; } = null!;
+
     /// <summary>
     ///   True when there are pending endosymbiosis actions. Only works after editor is fully initialized.
     /// </summary>
@@ -577,6 +579,11 @@ public partial class CellEditorComponent :
     public override void Init(ICellEditorData owningEditor, bool fresh)
     {
         base.Init(owningEditor, fresh);
+
+        if (IsMulticellularEditor && ValidateNewCellTypeName == null)
+        {
+            throw new InvalidOperationException("The new cell type name validation callback needs to be set");
+        }
 
         if (!IsMulticellularEditor)
         {
@@ -2630,14 +2637,31 @@ public partial class CellEditorComponent :
             .Visible = IsMacroscopicEditor;
     }
 
+    private bool HasNewName()
+    {
+        if (Editor.EditedCellProperties == null)
+        {
+            return false;
+        }
+
+        return Editor.EditedCellProperties.FormattedName != newName;
+    }
+
     private void OnSpeciesNameChanged(string newText)
     {
         newName = newText;
 
         if (IsMulticellularEditor)
         {
-            // TODO: somehow update the architecture so that we can know here if the name conflicts with another type
-            componentBottomLeftButtons.ReportValidityOfName(!string.IsNullOrWhiteSpace(newText));
+            if (HasNewName())
+            {
+                componentBottomLeftButtons.ReportValidityOfName(ValidateNewCellTypeName!(newText));
+            }
+            else
+            {
+                // The name hasn't changed and should remain valid
+                componentBottomLeftButtons.ReportValidityOfName(true);
+            }
         }
     }
 
