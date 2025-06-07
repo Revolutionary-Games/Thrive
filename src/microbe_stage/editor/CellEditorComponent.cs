@@ -324,7 +324,7 @@ public partial class CellEditorComponent :
     ///   Selected membrane type for the species
     /// </summary>
     [JsonProperty]
-    public MembraneType Membrane { get; private set; };
+    public MembraneType Membrane { get; private set; } = null!;
 
     /// <summary>
     ///   Current selected colour for the species.
@@ -489,7 +489,7 @@ public partial class CellEditorComponent :
         }
     }
 
-    public Func<string, bool>? ValidateNewCellTypeName { get; set; } = null!;
+    public Func<string, bool>? ValidateNewCellTypeName { get; set; }
 
     /// <summary>
     ///   True when there are pending endosymbiosis actions. Only works after editor is fully initialized.
