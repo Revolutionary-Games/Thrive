@@ -1085,7 +1085,8 @@ public partial class AutoEvoExploringTool : NodeWithInput, ISpeciesDataProvider
         /// </summary>
         public TimeSpan TotalTimeUsed = TimeSpan.Zero;
 
-        public AutoEvoExploringToolWorld(IAutoEvoConfiguration configuration, WorldGenerationSettings? planetCustomizerWorldGenerationSettings)
+        public AutoEvoExploringToolWorld(IAutoEvoConfiguration configuration,
+            WorldGenerationSettings? planetCustomizerWorldGenerationSettings)
         {
             AutoEvoConfiguration = configuration.Clone();
             if (planetCustomizerWorldGenerationSettings == null)
