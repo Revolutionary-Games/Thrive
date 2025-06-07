@@ -147,7 +147,6 @@ text = "PLAY_WITH_CURRENT_SETTING"
 
 [node name="AutoEvoToolButton" type="Button" parent="GUI/VBoxContainer/HBoxContainer/HBoxContainer2/MapButtons"]
 layout_mode = 2
-disabled = true
 text = "AUTO_EVO_TOOL_BUTTON"
 
 [node name="RegenerateButton" type="Button" parent="GUI/VBoxContainer/HBoxContainer/HBoxContainer2/MapButtons"]
@@ -171,5 +170,6 @@ Movable = false
 
 [connection signal="OnCurrentPatchCentered" from="GUI/VBoxContainer/PatchMap/HBoxContainer/PatchMap/MarginContainer/DraggableScrollContainer/PatchMapDrawer" to="GUI/VBoxContainer/PatchMap/HBoxContainer/PatchMap/MarginContainer/DraggableScrollContainer" method="CenterTo"]
 [connection signal="pressed" from="GUI/VBoxContainer/HBoxContainer/HBoxContainer/BackButton" to="." method="OnBackButtonPressed"]
+[connection signal="pressed" from="GUI/VBoxContainer/HBoxContainer/HBoxContainer2/MapButtons/AutoEvoToolButton" to="." method="OnAutoEvoToolPressed"]
 [connection signal="pressed" from="GUI/VBoxContainer/HBoxContainer/HBoxContainer2/MapButtons/RegenerateButton" to="." method="OnRegeneratePressed"]
 [connection signal="pressed" from="GUI/VBoxContainer/HBoxContainer/HBoxContainer2/GenerateButton" to="." method="OnGeneratePressed"]

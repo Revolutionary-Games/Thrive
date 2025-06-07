@@ -23,9 +23,6 @@ public partial class MainMenu : NodeWithInput
     [Export]
     public int NonMenuItemsFirst = 1;
 
-    [Export]
-    public NodePath? ThriveLogoPath;
-
     /// <summary>
     ///   Needs to be a collection of <see cref="Texture2D"/>
     /// </summary>
@@ -38,144 +35,106 @@ public partial class MainMenu : NodeWithInput
     [Export]
     public Array<string> Menu3DBackgroundScenes = null!;
 
-    [Export]
-    public NodePath FreebuildButtonPath = null!;
-
-    [Export]
-    public NodePath MulticellularFreebuildButtonPath = null!;
-
-    [Export]
-    public NodePath AutoEvoExploringButtonPath = null!;
-
-    [Export]
-    public NodePath PlanetCustomizationButtonPath = null!;
-
-    [Export]
-    public NodePath MicrobeBenchmarkButtonPath = null!;
-
-    [Export]
-    public NodePath ExitToLauncherButtonPath = null!;
-
-    [Export]
-    public NodePath CreditsContainerPath = null!;
-
-    [Export]
-    public NodePath CreditsScrollPath = null!;
-
-    [Export]
-    public NodePath LicensesDisplayPath = null!;
-
-    [Export]
-    public NodePath SteamFailedPopupPath = null!;
-
-    [Export]
-    public NodePath ModLoadFailuresPath = null!;
-
-    [Export]
-    public NodePath SafeModeWarningPath = null!;
-
-    [Export]
-    public NodePath ModsInstalledButNotEnabledWarningPath = null!;
-
-    [Export]
-    public NodePath LowPerformanceWarningPath = null!;
-
-    [Export]
-    public NodePath SocialMediaContainerPath = null!;
-
-    [Export]
-    public NodePath ItchButtonPath = null!;
-
-    [Export]
-    public NodePath PatreonButtonPath = null!;
-
-    [Export]
-    public NodePath StoreLoggedInDisplayPath = null!;
-
-    [Export]
-    public NodePath ModManagerPath = null!;
-
-    [Export]
-    public NodePath GalleryViewerPath = null!;
-
-    [Export]
-    public NodePath NewsFeedPath = null!;
-
-    [Export]
-    public NodePath NewsFeedDisablerPath = null!;
-
-    [Export]
-    public NodePath PatchNotesPath = null!;
-
-    [Export]
-    public NodePath PatchNotesDisablerPath = null!;
-
-    [Export]
-    public NodePath FeedPositionerPath = null!;
-
-    [Export]
-    public NodePath ThanksDialogPath = null!;
-
-    [Export]
-    public NodePath MenusPath = null!;
-
     private const string MainWebsiteLink = "https://revolutionarygamesstudio.com";
 
 #pragma warning disable CA2213
     private TextureRect background = null!;
     private Node3D? created3DBackground;
 
+    [Export]
     private TextureRect thriveLogo = null!;
+
     private OptionsMenu options = null!;
     private NewGameSettings newGameSettings = null!;
     private AnimationPlayer guiAnimations = null!;
     private SaveManagerGUI saves = null!;
     private Thriveopedia thriveopedia = null!;
+
+    [Export]
     private ModManager modManager = null!;
+
+    [Export]
     private GalleryViewer galleryViewer = null!;
 
+    [Export]
     private ThriveFeedDisplayer newsFeed = null!;
+
+    [Export]
     private Control newsFeedDisabler = null!;
 
+    [Export]
     private PatchNotesDisplayer patchNotes = null!;
+
+    [Export]
     private Control patchNotesDisabler = null!;
 
+    [Export]
     private Control feedPositioner = null!;
 
+    [Export]
     private Control creditsContainer = null!;
+
+    [Export]
     private CreditsScroll credits = null!;
+
+    [Export]
     private LicensesDisplay licensesDisplay = null!;
+
+    [Export]
     private Button freebuildButton = null!;
+
+    [Export]
     private Button multicellularFreebuildButton = null!;
+
+    [Export]
     private Button autoEvoExploringButton = null!;
+    
+    [Export]
     private Button planetCustomizationButton = null!;
+
+    [Export]
     private Button microbeBenchmarkButton = null!;
 
+    [Export]
     private Button exitToLauncherButton = null!;
 
+    [Export]
     private Label storeLoggedInDisplay = null!;
 
+    [Export]
     private Control socialMediaContainer = null!;
 
     [Export]
     private CustomWindow websiteButtonsContainer = null!;
 
+    [Export]
     private TextureButton itchButton = null!;
+
+    [Export]
     private TextureButton patreonButton = null!;
 
     [Export]
     private CustomConfirmationDialog openGlPopup = null!;
 
+    [Export]
     private ErrorDialog modLoadFailures = null!;
 
+    [Export]
     private CustomConfirmationDialog steamFailedPopup = null!;
 
+    [Export]
     private CustomWindow safeModeWarning = null!;
 
+    [Export]
     private PermanentlyDismissibleDialog modsInstalledButNotEnabledWarning = null!;
+
+    [Export]
     private PermanentlyDismissibleDialog lowPerformanceWarning = null!;
+
+    [Export]
     private PermanentlyDismissibleDialog thanksDialog = null!;
 
+    [Export]
     private CenterContainer menus = null!;
 #pragma warning restore CA2213
 
@@ -425,46 +384,6 @@ public partial class MainMenu : NodeWithInput
         return false;
     }
 
-    protected override void Dispose(bool disposing)
-    {
-        if (disposing)
-        {
-            if (ThriveLogoPath != null)
-            {
-                ThriveLogoPath.Dispose();
-                FreebuildButtonPath.Dispose();
-                MulticellularFreebuildButtonPath.Dispose();
-                AutoEvoExploringButtonPath.Dispose();
-                PlanetCustomizationButtonPath.Dispose();
-                MicrobeBenchmarkButtonPath.Dispose();
-                ExitToLauncherButtonPath.Dispose();
-                CreditsContainerPath.Dispose();
-                CreditsScrollPath.Dispose();
-                LicensesDisplayPath.Dispose();
-                SteamFailedPopupPath.Dispose();
-                ModLoadFailuresPath.Dispose();
-                SafeModeWarningPath.Dispose();
-                ModsInstalledButNotEnabledWarningPath.Dispose();
-                LowPerformanceWarningPath.Dispose();
-                SocialMediaContainerPath.Dispose();
-                ItchButtonPath.Dispose();
-                PatreonButtonPath.Dispose();
-                StoreLoggedInDisplayPath.Dispose();
-                ModManagerPath.Dispose();
-                GalleryViewerPath.Dispose();
-                NewsFeedPath.Dispose();
-                NewsFeedDisablerPath.Dispose();
-                PatchNotesPath.Dispose();
-                PatchNotesDisablerPath.Dispose();
-                FeedPositionerPath.Dispose();
-                ThanksDialogPath.Dispose();
-                MenusPath.Dispose();
-            }
-        }
-
-        base.Dispose(disposing);
-    }
-
     /// <summary>
     ///   Setup the main menu.
     /// </summary>
@@ -472,29 +391,6 @@ public partial class MainMenu : NodeWithInput
     {
         background = GetNode<TextureRect>("Background");
         guiAnimations = GetNode<AnimationPlayer>("GUIAnimations");
-        thriveLogo = GetNode<TextureRect>(ThriveLogoPath);
-        freebuildButton = GetNode<Button>(FreebuildButtonPath);
-        multicellularFreebuildButton = GetNode<Button>(MulticellularFreebuildButtonPath);
-        autoEvoExploringButton = GetNode<Button>(AutoEvoExploringButtonPath);
-        planetCustomizationButton = GetNode<Button>(PlanetCustomizationButtonPath);
-        microbeBenchmarkButton = GetNode<Button>(MicrobeBenchmarkButtonPath);
-        exitToLauncherButton = GetNode<Button>(ExitToLauncherButtonPath);
-        creditsContainer = GetNode<Control>(CreditsContainerPath);
-        credits = GetNode<CreditsScroll>(CreditsScrollPath);
-        licensesDisplay = GetNode<LicensesDisplay>(LicensesDisplayPath);
-        storeLoggedInDisplay = GetNode<Label>(StoreLoggedInDisplayPath);
-        modManager = GetNode<ModManager>(ModManagerPath);
-        galleryViewer = GetNode<GalleryViewer>(GalleryViewerPath);
-        newsFeed = GetNode<ThriveFeedDisplayer>(NewsFeedPath);
-        newsFeedDisabler = GetNode<Control>(NewsFeedDisablerPath);
-        patchNotes = GetNode<PatchNotesDisplayer>(PatchNotesPath);
-        patchNotesDisabler = GetNode<Control>(PatchNotesDisablerPath);
-        feedPositioner = GetNode<Control>(FeedPositionerPath);
-        socialMediaContainer = GetNode<Control>(SocialMediaContainerPath);
-
-        itchButton = GetNode<TextureButton>(ItchButtonPath);
-        patreonButton = GetNode<TextureButton>(PatreonButtonPath);
-
         menuArray?.Clear();
 
         // Get all the menu items
@@ -510,15 +406,6 @@ public partial class MainMenu : NodeWithInput
         newGameSettings = GetNode<NewGameSettings>("NewGameSettings");
         saves = GetNode<SaveManagerGUI>("SaveManagerGUI");
         thriveopedia = GetNode<Thriveopedia>("Thriveopedia");
-        modLoadFailures = GetNode<ErrorDialog>(ModLoadFailuresPath);
-        safeModeWarning = GetNode<CustomWindow>(SafeModeWarningPath);
-        steamFailedPopup = GetNode<CustomConfirmationDialog>(SteamFailedPopupPath);
-
-        modsInstalledButNotEnabledWarning =
-            GetNode<PermanentlyDismissibleDialog>(ModsInstalledButNotEnabledWarningPath);
-        lowPerformanceWarning = GetNode<PermanentlyDismissibleDialog>(LowPerformanceWarningPath);
-        thanksDialog = GetNode<PermanentlyDismissibleDialog>(ThanksDialogPath);
-        menus = GetNode<CenterContainer>(MenusPath);
 
         // Set initial menu
         SwitchMenu();

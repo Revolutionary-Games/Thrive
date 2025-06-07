@@ -117,7 +117,7 @@ _data = {
 &"RESET": SubResource("Animation_qunue")
 }
 
-[node name="MainMenu" type="Control" node_paths=PackedStringArray("websiteButtonsContainer", "openGlPopup")]
+[node name="MainMenu" type="Control" node_paths=PackedStringArray("thriveLogo", "modManager", "galleryViewer", "newsFeed", "newsFeedDisabler", "patchNotes", "patchNotesDisabler", "feedPositioner", "creditsContainer", "credits", "licensesDisplay", "freebuildButton", "multicellularFreebuildButton", "autoEvoExploringButton", "planetCustomizationButton", "microbeBenchmarkButton", "exitToLauncherButton", "storeLoggedInDisplay", "socialMediaContainer", "websiteButtonsContainer", "itchButton", "patreonButton", "openGlPopup", "modLoadFailures", "steamFailedPopup", "safeModeWarning", "modsInstalledButNotEnabledWarning", "lowPerformanceWarning", "thanksDialog", "menus")]
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
@@ -126,38 +126,38 @@ grow_horizontal = 2
 grow_vertical = 2
 theme = ExtResource("1")
 script = ExtResource("6")
-ThriveLogoPath = NodePath("MenuContainers/LogoCenterContainer/Logo")
 MenuBackgrounds = [ExtResource("8"), ExtResource("7"), ExtResource("9")]
 Menu3DBackgroundScenes = ["res://assets/models/menu_backgrounds/MainMenuScene1.tscn", "res://assets/models/menu_backgrounds/MainMenuScene2.tscn", "res://assets/models/menu_backgrounds/MainMenuScene3.tscn"]
-FreebuildButtonPath = NodePath("MenuContainers/Menus/VBoxContainer/Tools/FreebuildMicrobeEditor")
-MulticellularFreebuildButtonPath = NodePath("MenuContainers/Menus/VBoxContainer/Tools/FreebuildMulticellularEditor")
-AutoEvoExploringButtonPath = NodePath("MenuContainers/Menus/VBoxContainer/Tools/AutoEvoExploring")
-PlanetCustomizationButtonPath = NodePath("MenuContainers/Menus/VBoxContainer/Tools/PlanetCustomizer")
-MicrobeBenchmarkButtonPath = NodePath("MenuContainers/Menus/VBoxContainer/Benchmarks/MicrobeBenchmark")
-ExitToLauncherButtonPath = NodePath("MenuContainers/Menus/VBoxContainer/MainMenu/Launcher")
-CreditsContainerPath = NodePath("CreditsView")
-CreditsScrollPath = NodePath("CreditsView/CreditsScroll")
-LicensesDisplayPath = NodePath("LicensesDisplay")
-SteamFailedPopupPath = NodePath("SteamFailedDialog")
-ModLoadFailuresPath = NodePath("ModFailureDialog")
-SafeModeWarningPath = NodePath("SafeModeWarningDialog")
-ModsInstalledButNotEnabledWarningPath = NodePath("ModsInstalledButNothingEnabledWarning")
-LowPerformanceWarningPath = NodePath("LowPerformanceDialog")
-SocialMediaContainerPath = NodePath("MenuContainers/SocialMedia")
-ItchButtonPath = NodePath("MenuContainers/SocialMedia/ItchButton")
-PatreonButtonPath = NodePath("MenuContainers/SocialMedia/PatreonButton")
-StoreLoggedInDisplayPath = NodePath("StoreUser")
-ModManagerPath = NodePath("ModManager")
-GalleryViewerPath = NodePath("GalleryViewer")
-NewsFeedPath = NodePath("MenuContainers/FeedPositioner/VBoxContainer/NewsDisabler/ThriveFeedDisplayer")
-NewsFeedDisablerPath = NodePath("MenuContainers/FeedPositioner/VBoxContainer/NewsDisabler")
-PatchNotesPath = NodePath("MenuContainers/FeedPositioner/VBoxContainer/PatchNotesDisabler/PatchNotesDisplayer")
-PatchNotesDisablerPath = NodePath("MenuContainers/FeedPositioner/VBoxContainer/PatchNotesDisabler")
-FeedPositionerPath = NodePath("MenuContainers/FeedPositioner")
-ThanksDialogPath = NodePath("ThanksForBuyingDialog")
-MenusPath = NodePath("MenuContainers/Menus")
+thriveLogo = NodePath("MenuContainers/LogoCenterContainer/Logo")
+modManager = NodePath("ModManager")
+galleryViewer = NodePath("GalleryViewer")
+newsFeed = NodePath("MenuContainers/FeedPositioner/VBoxContainer/NewsDisabler/ThriveFeedDisplayer")
+newsFeedDisabler = NodePath("MenuContainers/FeedPositioner/VBoxContainer/NewsDisabler")
+patchNotes = NodePath("MenuContainers/FeedPositioner/VBoxContainer/PatchNotesDisabler/PatchNotesDisplayer")
+patchNotesDisabler = NodePath("MenuContainers/FeedPositioner/VBoxContainer/PatchNotesDisabler")
+feedPositioner = NodePath("MenuContainers/FeedPositioner")
+creditsContainer = NodePath("CreditsView")
+credits = NodePath("CreditsView/CreditsScroll")
+licensesDisplay = NodePath("LicensesDisplay")
+freebuildButton = NodePath("MenuContainers/Menus/VBoxContainer/Tools/FreebuildMicrobeEditor")
+multicellularFreebuildButton = NodePath("MenuContainers/Menus/VBoxContainer/Tools/FreebuildMulticellularEditor")
+autoEvoExploringButton = NodePath("MenuContainers/Menus/VBoxContainer/Tools/AutoEvoExploring")
+planetCustomizationButton = NodePath("MenuContainers/Menus/VBoxContainer/Tools/PlanetCustomizer")
+microbeBenchmarkButton = NodePath("MenuContainers/Menus/VBoxContainer/Benchmarks/MicrobeBenchmark")
+exitToLauncherButton = NodePath("MenuContainers/Menus/VBoxContainer/MainMenu/Launcher")
+storeLoggedInDisplay = NodePath("StoreUser")
+socialMediaContainer = NodePath("MenuContainers/SocialMedia")
 websiteButtonsContainer = NodePath("MenuContainers/WebsiteButtons")
+itchButton = NodePath("MenuContainers/SocialMedia/ItchButton")
+patreonButton = NodePath("MenuContainers/SocialMedia/PatreonButton")
 openGlPopup = NodePath("OpenGLWarningPopup")
+modLoadFailures = NodePath("ModFailureDialog")
+steamFailedPopup = NodePath("SteamFailedDialog")
+safeModeWarning = NodePath("SafeModeWarningDialog")
+modsInstalledButNotEnabledWarning = NodePath("ModsInstalledButNothingEnabledWarning")
+lowPerformanceWarning = NodePath("LowPerformanceDialog")
+thanksDialog = NodePath("ThanksForBuyingDialog")
+menus = NodePath("MenuContainers/Menus")
 
 [node name="Background" type="TextureRect" parent="."]
 layout_mode = 1
@@ -840,7 +840,6 @@ layout_mode = 1
 [node name="SaveManagerGUI" parent="." instance=ExtResource("2")]
 visible = false
 layout_mode = 1
-anchors_preset = 15
 grow_horizontal = 2
 grow_vertical = 2
 

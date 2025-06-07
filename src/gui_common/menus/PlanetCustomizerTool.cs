@@ -5,6 +5,7 @@
 /// </summary>
 public partial class PlanetCustomizerTool : Node
 {
+#pragma warning disable CA2213
     [Export]
     private PatchMapDrawer patchMapDrawer = null!;
 
@@ -25,6 +26,7 @@ public partial class PlanetCustomizerTool : Node
 
     [Export]
     private PlanetSettings planetSettings = null!;
+#pragma warning restore CA2213
 
     private WorldGenerationSettings worldSettings = null!;
 
@@ -35,22 +37,6 @@ public partial class PlanetCustomizerTool : Node
         base._Ready();
         InitNewWorld(SimulationParameters.Instance.AutoEvoConfiguration);
         patchMapDrawer.OnSelectedPatchChanged += UpdatePatchDetailPanel;
-    }
-
-    protected override void Dispose(bool disposing)
-    {
-        if (disposing)
-        {
-            patchMapDrawer.Dispose();
-            patchDetailsPanel.Dispose();
-            settingsPanel.Dispose();
-            patchMapPanel.Dispose();
-            patchMapButtons.Dispose();
-            generateButton.Dispose();
-            planetSettings.Dispose();
-        }
-
-        base.Dispose(disposing);
     }
 
     private void InitNewWorld(IAutoEvoConfiguration configuration)
@@ -114,5 +100,18 @@ public partial class PlanetCustomizerTool : Node
     private void OnRegeneratePressed()
     {
         InitNewWorld(SimulationParameters.Instance.AutoEvoConfiguration);
+    }
+
+    private void OnAutoEvoToolPressed()
+    {
+        var scene = SceneManager.Instance.LoadScene("res://src/auto-evo/AutoEvoExploringTool.tscn").Instantiate();
+
+        if (scene is AutoEvoExploringTool tool)
+        {
+            tool.PlanetCustomizerWorldGenerationSettings = worldSettings;
+        }
+
+        TransitionManager.Instance.AddSequence(ScreenFade.FadeType.FadeOut, 0.1f,
+            () => { SceneManager.Instance.SwitchToScene(scene); }, false);
     }
 }

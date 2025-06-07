@@ -18,196 +18,132 @@ using Godot;
 /// </remarks>
 public partial class AutoEvoExploringTool : NodeWithInput, ISpeciesDataProvider
 {
-    // Tab paths
-
-    [Export]
-    public NodePath? WorldEditorPath;
-
-    [Export]
-    public NodePath ConfigEditorPath = null!;
-
-    [Export]
-    public NodePath HistoryReportSplitPath = null!;
-
-    [Export]
-    public NodePath SpeciesSelectPanelPath = null!;
-
-    [Export]
-    public NodePath MapPath = null!;
-
-    [Export]
-    public NodePath ReportPath = null!;
-
-    [Export]
-    public NodePath ViewerPath = null!;
-
-    [Export]
-    public NodePath MichePath = null!;
-
-    // World controls paths
-
-    [Export]
-    public NodePath AllWorldsStatisticsLabelPath = null!;
-
-    [Export]
-    public NodePath WorldsListMenuPath = null!;
-
-    [Export]
-    public NodePath NewWorldButtonPath = null!;
-
-    [Export]
-    public NodePath CurrentWorldStatisticsLabelPath = null!;
-
-    [Export]
-    public NodePath WorldExportButtonPath = null!;
-
-    // Auto-evo parameters paths
-
-    [Export]
-    public NodePath MoveAttemptsPerSpeciesPath = null!;
-
-    [Export]
-    public NodePath MutationsPerSpeciesPath = null!;
-
-    [Export]
-    public NodePath StrictNicheCompetitionPath = null!;
-
-    // Status and control paths
-
-    [Export]
-    public NodePath RunStatusLabelPath = null!;
-
-    [Export]
-    public NodePath FinishXGenerationsSpinBoxPath = null!;
-
-    [Export]
-    public NodePath FinishXGenerationsButtonPath = null!;
-
-    [Export]
-    public NodePath RunXWorldsSpinBoxPath = null!;
-
-    [Export]
-    public NodePath RunXWorldsButtonPath = null!;
-
-    [Export]
-    public NodePath RunGenerationButtonPath = null!;
-
-    [Export]
-    public NodePath RunStepButtonPath = null!;
-
-    [Export]
-    public NodePath AbortButtonPath = null!;
-
-    [Export]
-    public NodePath PlayWithCurrentSettingPath = null!;
-
-    // Map paths
-
-    [Export]
-    public NodePath PatchMapDrawerPath = null!;
-
-    [Export]
-    public NodePath PatchDetailsPanelPath = null!;
-
-    // Report paths
-
-    [Export]
-    public NodePath HistoryListMenuPath = null!;
-
-    [Export]
-    public NodePath ResultsLabelPath = null!;
-
-    // Viewer paths
-
-    [Export]
-    public NodePath SpeciesListMenuPath = null!;
-
-    [Export]
-    public NodePath EvolutionaryTreePath = null!;
-
-    [Export]
-    public NodePath SpeciesDetailsPanelPath = null!;
-
-    // Miche paths
-
-    [Export]
-    public NodePath PatchListMenuPath = null!;
-
-    [Export]
-    public NodePath MicheTreePath = null!;
-
-    [Export]
-    public NodePath MicheDetailsPanelPath = null!;
-
-    [Export]
-    public NodePath MicheSpeciesDetailsPanelPath = null!;
-
-    // Dialog paths
-
-    [Export]
-    public NodePath ExitConfirmationDialogPath = null!;
-
-    [Export]
-    public NodePath ExportSuccessNotificationDialogPath = null!;
+    public WorldGenerationSettings? PlanetCustomizerWorldGenerationSettings;
 
     private readonly List<AutoEvoExploringToolWorld> worldsList = new();
 
 #pragma warning disable CA2213
 
     // Tabs
+    [Export]
     private Control worldTab = null!;
+
+    [Export]
     private Control configTab = null!;
+
+    [Export]
     private Control historyReportSplit = null!;
+
+    [Export]
     private Control speciesSelectPanel = null!;
+
+    [Export]
     private Control mapTab = null!;
+
+    [Export]
     private Control reportTab = null!;
+
+    [Export]
     private Control viewerTab = null!;
+
+    [Export]
     private Control micheTab = null!;
 
     // World controls
-
+    [Export]
     private CustomRichTextLabel allWorldsStatisticsLabel = null!;
+
+    [Export]
     private CustomDropDown worldsListMenu = null!;
+
+    [Export]
     private TextureButton newWorldButton = null!;
+
+    [Export]
     private CustomRichTextLabel currentWorldStatisticsLabel = null!;
+
+    [Export]
     private Button worldExportButton = null!;
 
     // Auto-evo parameters controls.
+    [Export]
     private SpinBox moveAttemptsPerSpeciesSpinBox = null!;
+
+    [Export]
     private SpinBox mutationsPerSpeciesSpinBox = null!;
+
+    [Export]
     private CheckBox strictNicheCompetitionCheckBox = null!;
 
     // Status controls
+    [Export]
     private Label runStatusLabel = null!;
+
+    [Export]
     private SpinBox finishXGenerationsSpinBox = null!;
+
+    [Export]
     private Button finishXGenerationsButton = null!;
+
+    [Export]
     private SpinBox runXWorldsSpinBox = null!;
+
+    [Export]
     private Button runXWorldsButton = null!;
+
+    [Export]
     private Button finishOneGenerationButton = null!;
+
+    [Export]
     private Button runOneStepButton = null!;
+
+    [Export]
     private Button abortButton = null!;
+
+    [Export]
     private Button playWithCurrentSettingButton = null!;
 
     // Report controls
+    [Export]
     private CustomRichTextLabel autoEvoResultsLabel = null!;
+
+    [Export]
     private CustomDropDown historyListMenu = null!;
 
     // Map controls
+    [Export]
     private PatchMapDrawer patchMapDrawer = null!;
+
+    [Export]
     private PatchDetailsPanel patchDetailsPanel = null!;
 
     // Viewer controls
+    [Export]
     private CustomDropDown speciesListMenu = null!;
+
+    [Export]
     private EvolutionaryTree evolutionaryTree = null!;
+
+    [Export]
     private SpeciesDetailsPanelWithFossilisation speciesDetailsPanelWithFossilisation = null!;
 
     // Miche controls
+    [Export]
     private CustomDropDown patchListMenu = null!;
+
+    [Export]
     private MicheTree micheTree = null!;
+
+    [Export]
     private MicheDetailsPanel micheDetailsPanel = null!;
+
+    [Export]
     private SpeciesDetailsPanel micheSpeciesDetailsPanel = null!;
 
+    [Export]
     private CustomConfirmationDialog exitConfirmationDialog = null!;
+
+    [Export]
     private CustomConfirmationDialog exportSuccessNotificationDialog = null!;
 #pragma warning restore CA2213
 
@@ -257,56 +193,6 @@ public partial class AutoEvoExploringTool : NodeWithInput, ISpeciesDataProvider
         base._Ready();
 
         TransitionManager.Instance.AddSequence(ScreenFade.FadeType.FadeIn, 0.1f, null, false);
-
-        // Retrieve all node paths
-
-        worldTab = GetNode<Control>(WorldEditorPath);
-        configTab = GetNode<Control>(ConfigEditorPath);
-        historyReportSplit = GetNode<Control>(HistoryReportSplitPath);
-        speciesSelectPanel = GetNode<Control>(SpeciesSelectPanelPath);
-        mapTab = GetNode<Control>(MapPath);
-        reportTab = GetNode<Control>(ReportPath);
-        viewerTab = GetNode<Control>(ViewerPath);
-        micheTab = GetNode<Control>(MichePath);
-
-        allWorldsStatisticsLabel = GetNode<CustomRichTextLabel>(AllWorldsStatisticsLabelPath);
-        worldsListMenu = GetNode<CustomDropDown>(WorldsListMenuPath);
-        newWorldButton = GetNode<TextureButton>(NewWorldButtonPath);
-        currentWorldStatisticsLabel = GetNode<CustomRichTextLabel>(CurrentWorldStatisticsLabelPath);
-        worldExportButton = GetNode<Button>(WorldExportButtonPath);
-
-        moveAttemptsPerSpeciesSpinBox = GetNode<SpinBox>(MoveAttemptsPerSpeciesPath);
-        mutationsPerSpeciesSpinBox = GetNode<SpinBox>(MutationsPerSpeciesPath);
-        strictNicheCompetitionCheckBox = GetNode<CheckBox>(StrictNicheCompetitionPath);
-
-        runStatusLabel = GetNode<Label>(RunStatusLabelPath);
-        finishXGenerationsSpinBox = GetNode<SpinBox>(FinishXGenerationsSpinBoxPath);
-        finishXGenerationsButton = GetNode<Button>(FinishXGenerationsButtonPath);
-        runXWorldsSpinBox = GetNode<SpinBox>(RunXWorldsSpinBoxPath);
-        runXWorldsButton = GetNode<Button>(RunXWorldsButtonPath);
-        finishOneGenerationButton = GetNode<Button>(RunGenerationButtonPath);
-        runOneStepButton = GetNode<Button>(RunStepButtonPath);
-        abortButton = GetNode<Button>(AbortButtonPath);
-        playWithCurrentSettingButton = GetNode<Button>(PlayWithCurrentSettingPath);
-
-        patchMapDrawer = GetNode<PatchMapDrawer>(PatchMapDrawerPath);
-        patchDetailsPanel = GetNode<PatchDetailsPanel>(PatchDetailsPanelPath);
-
-        autoEvoResultsLabel = GetNode<CustomRichTextLabel>(ResultsLabelPath);
-        historyListMenu = GetNode<CustomDropDown>(HistoryListMenuPath);
-
-        speciesListMenu = GetNode<CustomDropDown>(SpeciesListMenuPath);
-        evolutionaryTree = GetNode<EvolutionaryTree>(EvolutionaryTreePath);
-        speciesDetailsPanelWithFossilisation = GetNode<SpeciesDetailsPanelWithFossilisation>(SpeciesDetailsPanelPath);
-
-        patchListMenu = GetNode<CustomDropDown>(PatchListMenuPath);
-        micheTree = GetNode<MicheTree>(MicheTreePath);
-
-        micheDetailsPanel = GetNode<MicheDetailsPanel>(MicheDetailsPanelPath);
-        micheSpeciesDetailsPanel = GetNode<SpeciesDetailsPanel>(MicheSpeciesDetailsPanelPath);
-
-        exitConfirmationDialog = GetNode<CustomConfirmationDialog>(ExitConfirmationDialogPath);
-        exportSuccessNotificationDialog = GetNode<CustomConfirmationDialog>(ExportSuccessNotificationDialogPath);
 
         patchMapDrawer.OnSelectedPatchChanged += UpdatePatchDetailPanel;
 
@@ -413,56 +299,6 @@ public partial class AutoEvoExploringTool : NodeWithInput, ISpeciesDataProvider
         return null;
     }
 
-    protected override void Dispose(bool disposing)
-    {
-        if (disposing)
-        {
-            if (WorldEditorPath != null)
-            {
-                WorldEditorPath.Dispose();
-                ConfigEditorPath.Dispose();
-                HistoryReportSplitPath.Dispose();
-                SpeciesSelectPanelPath.Dispose();
-                MapPath.Dispose();
-                ReportPath.Dispose();
-                ViewerPath.Dispose();
-                MichePath.Dispose();
-                AllWorldsStatisticsLabelPath.Dispose();
-                WorldsListMenuPath.Dispose();
-                NewWorldButtonPath.Dispose();
-                CurrentWorldStatisticsLabelPath.Dispose();
-                WorldExportButtonPath.Dispose();
-                MutationsPerSpeciesPath.Dispose();
-                StrictNicheCompetitionPath.Dispose();
-                MoveAttemptsPerSpeciesPath.Dispose();
-                RunStatusLabelPath.Dispose();
-                FinishXGenerationsSpinBoxPath.Dispose();
-                FinishXGenerationsButtonPath.Dispose();
-                RunXWorldsSpinBoxPath.Dispose();
-                RunXWorldsButtonPath.Dispose();
-                RunGenerationButtonPath.Dispose();
-                RunStepButtonPath.Dispose();
-                AbortButtonPath.Dispose();
-                PlayWithCurrentSettingPath.Dispose();
-                PatchMapDrawerPath.Dispose();
-                PatchDetailsPanelPath.Dispose();
-                HistoryListMenuPath.Dispose();
-                ResultsLabelPath.Dispose();
-                SpeciesListMenuPath.Dispose();
-                EvolutionaryTreePath.Dispose();
-                SpeciesDetailsPanelPath.Dispose();
-                ExitConfirmationDialogPath.Dispose();
-                ExportSuccessNotificationDialogPath.Dispose();
-                PatchListMenuPath.Dispose();
-                MicheTreePath.Dispose();
-                MicheSpeciesDetailsPanelPath.Dispose();
-                MicheDetailsPanelPath.Dispose();
-            }
-        }
-
-        base.Dispose(disposing);
-    }
-
     private void InitNewWorld()
     {
         InitNewWorld(SimulationParameters.Instance.AutoEvoConfiguration);
@@ -470,7 +306,7 @@ public partial class AutoEvoExploringTool : NodeWithInput, ISpeciesDataProvider
 
     private void InitNewWorld(IAutoEvoConfiguration configuration)
     {
-        var newWorld = new AutoEvoExploringToolWorld(configuration);
+        var newWorld = new AutoEvoExploringToolWorld(configuration, PlanetCustomizerWorldGenerationSettings);
         newWorld.GameProperties.GameWorld.Map.RevealAllPatches();
         worldsList.Add(newWorld);
         WorldsListMenuIndexChanged(worldsList.Count - 1);
@@ -1249,10 +1085,18 @@ public partial class AutoEvoExploringTool : NodeWithInput, ISpeciesDataProvider
         /// </summary>
         public TimeSpan TotalTimeUsed = TimeSpan.Zero;
 
-        public AutoEvoExploringToolWorld(IAutoEvoConfiguration configuration)
+        public AutoEvoExploringToolWorld(IAutoEvoConfiguration configuration, WorldGenerationSettings? planetCustomizerWorldGenerationSettings)
         {
             AutoEvoConfiguration = configuration.Clone();
-            WorldSettings = new WorldGenerationSettings { AutoEvoConfiguration = AutoEvoConfiguration };
+            if (planetCustomizerWorldGenerationSettings == null)
+            {
+                WorldSettings = new WorldGenerationSettings { AutoEvoConfiguration = AutoEvoConfiguration };
+            }
+            else
+            {
+                WorldSettings = planetCustomizerWorldGenerationSettings;
+            }
+
             GameProperties = GameProperties.StartNewMicrobeGame(WorldSettings);
 
             RunResultsList.Add(new LocalizedStringBuilder());

@@ -12,15 +12,15 @@
 [ext_resource type="Theme" uid="uid://b4cx0o110g4b6" path="res://src/gui_common/thrive_theme.tres" id="53"]
 [ext_resource type="PackedScene" uid="uid://cahegn58i768h" path="res://src/tutorial/microbe_editor/MicrobeEditorTutorialGUI.tscn" id="85"]
 
-[node name="MicrobeEditor" type="Node"]
+[node name="MicrobeEditor" type="Node" node_paths=PackedStringArray("reportTab", "patchMapTab", "cellEditorTab", "pauseMenu", "editorTabSelector", "editorGUIBaseNode")]
 process_priority = -1
 script = ExtResource("2")
-ReportTabPath = NodePath("MicrobeEditorGUI/Report")
-PatchMapTabPath = NodePath("MicrobeEditorGUI/PatchMap")
-CellEditorTabPath = NodePath("MicrobeEditorGUI/CellEditor")
-PauseMenuPath = NodePath("PauseMenu")
-EditorGUIBaseNodePath = NodePath("MicrobeEditorGUI")
-EditorTabSelectorPath = NodePath("MicrobeEditorGUI/MicrobeEditorTabButtons")
+reportTab = NodePath("MicrobeEditorGUI/Report")
+patchMapTab = NodePath("MicrobeEditorGUI/PatchMap")
+cellEditorTab = NodePath("MicrobeEditorGUI/CellEditor")
+pauseMenu = NodePath("PauseMenu")
+editorTabSelector = NodePath("MicrobeEditorGUI/MicrobeEditorTabButtons")
+editorGUIBaseNode = NodePath("MicrobeEditorGUI")
 
 [node name="EditorWorld" parent="." instance=ExtResource("1")]
 
@@ -37,15 +37,15 @@ size_flags_vertical = 3
 mouse_filter = 2
 theme = ExtResource("53")
 
-[node name="CellEditor" parent="MicrobeEditorGUI" instance=ExtResource("3")]
+[node name="CellEditor" parent="MicrobeEditorGUI" node_paths=PackedStringArray("cameraFollow", "camera", "editorArrow", "editorGrid") instance=ExtResource("3")]
 visible = false
 layout_mode = 1
 offset_top = 0.0
 offset_bottom = 0.0
-CameraPath = NodePath("../../EditorWorld/PrimaryCamera")
-EditorArrowPath = NodePath("../../EditorWorld/EditorArrow")
-EditorGridPath = NodePath("../../EditorWorld/Grid")
-CameraFollowPath = NodePath("../../EditorWorld/CameraLookAt")
+cameraFollow = NodePath("../../EditorWorld/CameraLookAt")
+camera = NodePath("../../EditorWorld/PrimaryCamera")
+editorArrow = NodePath("../../EditorWorld/EditorArrow")
+editorGrid = NodePath("../../EditorWorld/Grid")
 
 [node name="Report" parent="MicrobeEditorGUI" instance=ExtResource("6")]
 layout_mode = 1
@@ -72,13 +72,6 @@ offset_top = 30.0
 
 [node name="TutorialGUI" parent="." instance=ExtResource("85")]
 visible = false
-EditorEntryReportPath = NodePath("../TutorialGUI/EditorEntryReport")
-PatchMapPath = NodePath("../TutorialGUI/PatchMapTutorial")
-CellEditorIntroductionPath = NodePath("../TutorialGUI/CellEditorIntro")
-CellEditorUndoPath = NodePath("../TutorialGUI/UndoTutorial")
-CellEditorUndoHighlightPath = NodePath("../TutorialGUI/UndoButtonHighlight")
-CellEditorRedoPath = NodePath("../TutorialGUI/RedoTutorial")
-CellEditorClosingWordsPath = NodePath("../TutorialGUI/CellEditorClosingWords")
 
 [node name="PauseMenu" parent="." instance=ExtResource("52")]
 

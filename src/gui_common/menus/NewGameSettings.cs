@@ -18,147 +18,77 @@ public partial class NewGameSettings : ControlWithInput
     [Export]
     public bool Descending;
 
-    [Export]
-    public NodePath? BasicOptionsPath;
-
-    [Export]
-    public NodePath AdvancedOptionsPath = null!;
-
-    [Export]
-    public NodePath BasicButtonPath = null!;
-
-    [Export]
-    public NodePath BackButtonPath = null!;
-
-    [Export]
-    public NodePath AdvancedButtonPath = null!;
-
-    [Export]
-    public NodePath TabButtonsPath = null!;
-
-    [Export]
-    public NodePath DifficultyTabPath = null!;
-
-    [Export]
-    public NodePath PlanetTabPath = null!;
-
-    [Export]
-    public NodePath MiscTabPath = null!;
-
-    [Export]
-    public NodePath DifficultyTabButtonPath = null!;
-
-    [Export]
-    public NodePath PlanetTabButtonPath = null!;
-
-    [Export]
-    public NodePath MiscTabButtonPath = null!;
-
-    [Export]
-    public NodePath DifficultyPresetButtonPath = null!;
-
-    [Export]
-    public NodePath DifficultyPresetAdvancedButtonPath = null!;
-
-    [Export]
-    public NodePath MPMultiplierPath = null!;
-
-    [Export]
-    public NodePath MPMultiplierReadoutPath = null!;
-
-    [Export]
-    public NodePath MutationRatePath = null!;
-
-    [Export]
-    public NodePath MutationRateReadoutPath = null!;
-
-    [Export]
-    public NodePath CompoundDensityPath = null!;
-
-    [Export]
-    public NodePath CompoundDensityReadoutPath = null!;
-
-    [Export]
-    public NodePath PlayerDeathPopulationPenaltyPath = null!;
-
-    [Export]
-    public NodePath PlayerDeathPopulationPenaltyReadoutPath = null!;
-
-    [Export]
-    public NodePath GlucoseDecayRatePath = null!;
-
-    [Export]
-    public NodePath GlucoseDecayRateReadoutPath = null!;
-
-    [Export]
-    public NodePath OsmoregulationMultiplierPath = null!;
-
-    [Export]
-    public NodePath OsmoregulationMultiplierReadoutPath = null!;
-
-    [Export]
-    public NodePath FogOfWarModeDropdownPath = null!;
-
-    [Export]
-    public NodePath FogOfWarModeDescriptionPath = null!;
-
-    [Export]
-    public NodePath FreeGlucoseCloudButtonPath = null!;
-
-    [Export]
-    public NodePath LimitGrowthRateButtonPath = null!;
-
-    [Export]
-    public NodePath OrganelleUnlocksEnabledPath = null!;
-
-    [Export]
-    public NodePath LifeOriginButtonPath = null!;
-
-    [Export]
-    public NodePath LAWKButtonPath = null!;
-
-    [Export]
-    public NodePath GameSeedPath = null!;
-
-    [Export]
-    public NodePath IncludeMulticellularButtonPath = null!;
-
-    [Export]
-    public NodePath EasterEggsButtonPath = null!;
-
-    [Export]
-    public NodePath StartButtonPath = null!;
-
-    [Export]
-    public NodePath CheckOptionsMenuAdviceContainerPath = null!;
-
 #pragma warning disable CA2213
 
     // Main controls
+    [Export]
     private PanelContainer basicOptions = null!;
+
+    [Export]
     private PanelContainer advancedOptions = null!;
+
+    [Export]
     private TabButtons tabButtons = null!;
+
+    [Export]
     private Control difficultyTab = null!;
+
+    [Export]
     private Control planetTab = null!;
+
+    [Export]
     private Control miscTab = null!;
+
+    [Export]
     private Button difficultyTabButton = null!;
+
+    [Export]
     private Button planetTabButton = null!;
+
+    [Export]
     private Button miscTabButton = null!;
+
+    [Export]
     private Button basicButton = null!;
+
+    [Export]
     private Button advancedButton = null!;
+
+    [Export]
     private Button backButton = null!;
+
+    [Export]
     private Button startButton = null!;
 
     // Difficulty controls
+    [Export]
     private OptionButton difficultyPresetButton = null!;
+
+    [Export]
     private OptionButton difficultyPresetAdvancedButton = null!;
+
+    [Export]
     private HSlider mpMultiplier = null!;
+
+    [Export]
     private LineEdit mpMultiplierReadout = null!;
+
+    [Export]
     private HSlider aiMutationRate = null!;
+
+    [Export]
     private LineEdit aiMutationRateReadout = null!;
+
+    [Export]
     private HSlider compoundDensity = null!;
+
+    [Export]
     private LineEdit compoundDensityReadout = null!;
+
+    [Export]
     private HSlider playerDeathPopulationPenalty = null!;
+
+    [Export]
     private LineEdit playerDeathPopulationPenaltyReadout = null!;
 
     [Export]
@@ -167,9 +97,16 @@ public partial class NewGameSettings : ControlWithInput
     [Export]
     private LineEdit playerSpeciesAIPopulationStrengthReadout = null!;
 
+    [Export]
     private HSlider glucoseDecayRate = null!;
+
+    [Export]
     private LineEdit glucoseDecayRateReadout = null!;
+
+    [Export]
     private HSlider osmoregulationMultiplier = null!;
+
+    [Export]
     private LineEdit osmoregulationMultiplierReadout = null!;
 
     [Export]
@@ -178,33 +115,49 @@ public partial class NewGameSettings : ControlWithInput
     [Export]
     private LineEdit autoEvoStrengthReadout = null!;
 
+    [Export]
     private OptionButton fogOfWarModeDropdown = null!;
+
+    [Export]
     private Label fogOfWarModeDescription = null!;
 
     [Export]
     private OptionButton reproductionCompoundsDropdown = null!;
 
-    private Button freeGlucoseCloudButton = null!;
+    [Export]
+    private CheckButton freeGlucoseCloudButton = null!;
 
     [Export]
-    private Button switchSpeciesOnExtinctionButton = null!;
+    private CheckButton switchSpeciesOnExtinctionButton = null!;
 
-    private Button limitGrowthRateButton = null!;
-    private Button organelleUnlocksEnabled = null!;
+    [Export]
+    private CheckButton limitGrowthRateButton = null!;
+
+    [Export]
+    private CheckButton organelleUnlocksEnabled = null!;
 
     // Planet controls
+    [Export]
     private OptionButton lifeOriginButton = null!;
-    private Button lawkButton = null!;
+
+    [Export]
+    private CheckButton lawkButton = null!;
+
+    [Export]
     private LineEdit gameSeed = null!;
 
     [Export]
     private PlanetSettings planetSettings = null!;
 
     // Misc controls
-    private Button includeMulticellularButton = null!;
-    private Button easterEggsButton = null!;
+    [Export]
+    private CheckButton includeMulticellularButton = null!;
+
+    [Export]
+    private CheckButton easterEggsButton = null!;
 
     // Other
+    [Export]
     private Container checkOptionsMenuAdviceContainer = null!;
 
     [Export]
@@ -251,48 +204,6 @@ public partial class NewGameSettings : ControlWithInput
 
     public override void _Ready()
     {
-        basicOptions = GetNode<PanelContainer>(BasicOptionsPath);
-        advancedOptions = GetNode<PanelContainer>(AdvancedOptionsPath);
-        basicButton = GetNode<Button>(BasicButtonPath);
-        advancedButton = GetNode<Button>(AdvancedButtonPath);
-        tabButtons = GetNode<TabButtons>(TabButtonsPath);
-        difficultyTab = GetNode<Control>(DifficultyTabPath);
-        planetTab = GetNode<Control>(PlanetTabPath);
-        miscTab = GetNode<Control>(MiscTabPath);
-        difficultyTabButton =
-            GetNode<Button>(tabButtons.GetAdjustedButtonPath(TabButtonsPath, DifficultyTabButtonPath));
-        planetTabButton = GetNode<Button>(tabButtons.GetAdjustedButtonPath(TabButtonsPath, PlanetTabButtonPath));
-        miscTabButton = GetNode<Button>(tabButtons.GetAdjustedButtonPath(TabButtonsPath, MiscTabButtonPath));
-
-        difficultyPresetButton = GetNode<OptionButton>(DifficultyPresetButtonPath);
-        difficultyPresetAdvancedButton = GetNode<OptionButton>(DifficultyPresetAdvancedButtonPath);
-        mpMultiplier = GetNode<HSlider>(MPMultiplierPath);
-        mpMultiplierReadout = GetNode<LineEdit>(MPMultiplierReadoutPath);
-        aiMutationRate = GetNode<HSlider>(MutationRatePath);
-        aiMutationRateReadout = GetNode<LineEdit>(MutationRateReadoutPath);
-        compoundDensity = GetNode<HSlider>(CompoundDensityPath);
-        compoundDensityReadout = GetNode<LineEdit>(CompoundDensityReadoutPath);
-        playerDeathPopulationPenalty = GetNode<HSlider>(PlayerDeathPopulationPenaltyPath);
-        playerDeathPopulationPenaltyReadout = GetNode<LineEdit>(PlayerDeathPopulationPenaltyReadoutPath);
-        glucoseDecayRate = GetNode<HSlider>(GlucoseDecayRatePath);
-        glucoseDecayRateReadout = GetNode<LineEdit>(GlucoseDecayRateReadoutPath);
-        osmoregulationMultiplier = GetNode<HSlider>(OsmoregulationMultiplierPath);
-        osmoregulationMultiplierReadout = GetNode<LineEdit>(OsmoregulationMultiplierReadoutPath);
-        fogOfWarModeDropdown = GetNode<OptionButton>(FogOfWarModeDropdownPath);
-        fogOfWarModeDescription = GetNode<Label>(FogOfWarModeDescriptionPath);
-        freeGlucoseCloudButton = GetNode<Button>(FreeGlucoseCloudButtonPath);
-        limitGrowthRateButton = GetNode<Button>(LimitGrowthRateButtonPath);
-        organelleUnlocksEnabled = GetNode<Button>(OrganelleUnlocksEnabledPath);
-        lifeOriginButton = GetNode<OptionButton>(LifeOriginButtonPath);
-
-        lawkButton = GetNode<Button>(LAWKButtonPath);
-        gameSeed = GetNode<LineEdit>(GameSeedPath);
-
-        includeMulticellularButton = GetNode<Button>(IncludeMulticellularButtonPath);
-        easterEggsButton = GetNode<Button>(EasterEggsButtonPath);
-        backButton = GetNode<Button>(BackButtonPath);
-        startButton = GetNode<Button>(StartButtonPath);
-
         // Difficulty presets need to be set here as the value sets below will trigger difficulty change callbacks
         var simulationParameters = SimulationParameters.Instance;
 
@@ -321,8 +232,6 @@ public partial class NewGameSettings : ControlWithInput
         osmoregulationMultiplier.MaxValue = Constants.MAX_OSMOREGULATION_MULTIPLIER;
         autoEvoStrengthMultiplier.MinValue = Constants.MIN_AUTO_EVO_STRENGTH_MULTIPLIER;
         autoEvoStrengthMultiplier.MaxValue = Constants.MAX_AUTO_EVO_STRENGTH_MULTIPLIER;
-
-        checkOptionsMenuAdviceContainer = GetNode<Container>(CheckOptionsMenuAdviceContainerPath);
 
         // Add items to the fog of war dropdown
         foreach (var mode in new[] { FogOfWarMode.Ignored, FogOfWarMode.Regular, FogOfWarMode.Intense })
@@ -475,58 +384,6 @@ public partial class NewGameSettings : ControlWithInput
             startButton.Disabled = true;
             startButton.TooltipText = Localization.Translate("CONFIRM_NEW_GAME_BUTTON_TOOLTIP_DISABLED");
         }
-    }
-
-    protected override void Dispose(bool disposing)
-    {
-        if (disposing)
-        {
-            if (BasicOptionsPath != null)
-            {
-                BasicOptionsPath.Dispose();
-                AdvancedOptionsPath.Dispose();
-                BasicButtonPath.Dispose();
-                AdvancedButtonPath.Dispose();
-                TabButtonsPath.Dispose();
-                DifficultyTabPath.Dispose();
-                PlanetTabPath.Dispose();
-                MiscTabPath.Dispose();
-                DifficultyTabButtonPath.Dispose();
-                PlanetTabButtonPath.Dispose();
-                MiscTabButtonPath.Dispose();
-                DifficultyPresetButtonPath.Dispose();
-                DifficultyPresetAdvancedButtonPath.Dispose();
-                MPMultiplierPath.Dispose();
-                MPMultiplierReadoutPath.Dispose();
-                MutationRatePath.Dispose();
-                MutationRateReadoutPath.Dispose();
-                CompoundDensityPath.Dispose();
-                CompoundDensityReadoutPath.Dispose();
-                PlayerDeathPopulationPenaltyPath.Dispose();
-                PlayerDeathPopulationPenaltyReadoutPath.Dispose();
-                GlucoseDecayRatePath.Dispose();
-                GlucoseDecayRateReadoutPath.Dispose();
-                OsmoregulationMultiplierPath.Dispose();
-                OsmoregulationMultiplierReadoutPath.Dispose();
-                FogOfWarModeDropdownPath.Dispose();
-                FogOfWarModeDescriptionPath.Dispose();
-                FreeGlucoseCloudButtonPath.Dispose();
-                LimitGrowthRateButtonPath.Dispose();
-                OrganelleUnlocksEnabledPath.Dispose();
-                LifeOriginButtonPath.Dispose();
-
-                LAWKButtonPath.Dispose();
-                GameSeedPath.Dispose();
-
-                IncludeMulticellularButtonPath.Dispose();
-                EasterEggsButtonPath.Dispose();
-                BackButtonPath.Dispose();
-                StartButtonPath.Dispose();
-                CheckOptionsMenuAdviceContainerPath.Dispose();
-            }
-        }
-
-        base.Dispose(disposing);
     }
 
     private void InitialiseToPreset(DifficultyPreset preset)
