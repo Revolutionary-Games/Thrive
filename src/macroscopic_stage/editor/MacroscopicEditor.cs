@@ -9,67 +9,50 @@ using Environment = Godot.Environment;
 ///   Macroscopic main editor class
 /// </summary>
 [JsonObject(IsReference = true)]
-[SceneLoadedClass("res://src/macroscopic_stage/editor/MacroscopicEditor.tscn")]
+[SceneLoadedClass("res://src/macroscopic_stage/editor/MacroscopicEditor.tscn", UsesEarlyResolve = false)]
 [DeserializedCallbackTarget]
 public partial class MacroscopicEditor : EditorBase<EditorAction, MacroscopicStage>, IEditorReportData,
     ICellEditorData
 {
-    [Export]
-    public NodePath? ReportTabPath;
-
-    [Export]
-    public NodePath PatchMapTabPath = null!;
-
-    [Export]
-    public NodePath BodyPlanEditorTabPath = null!;
-
-    [Export]
-    public NodePath CellEditorTabPath = null!;
-
-    [Export]
-    public NodePath NoCellTypeSelectedPath = null!;
-
-    [Export]
-    public NodePath CellEditorCameraPath = null!;
-
-    [Export]
-    public NodePath CellEditorLightPath = null!;
-
-    [Export]
-    public NodePath Body3DEditorCameraPath = null!;
-
-    [Export]
-    public NodePath BodyEditorLightPath = null!;
-
-    [Export]
-    public NodePath WorldEnvironmentNodePath = null!;
-
 #pragma warning disable CA2213
     [JsonProperty]
     [AssignOnlyChildItemsOnDeserialize]
+    [Export]
     private MicrobeEditorReportComponent reportTab = null!;
 
     [JsonProperty]
     [AssignOnlyChildItemsOnDeserialize]
+    [Export]
     private MicrobeEditorPatchMap patchMapTab = null!;
 
     [JsonProperty]
     [AssignOnlyChildItemsOnDeserialize]
+    [Export]
     private MetaballBodyEditorComponent bodyPlanEditorTab = null!;
 
     [JsonProperty]
     [AssignOnlyChildItemsOnDeserialize]
+    [Export]
     private CellEditorComponent cellEditorTab = null!;
 
+    [Export]
     private MicrobeCamera cellEditorCamera = null!;
+
+    [Export]
     private Light3D cellEditorLight = null!;
 
+    [Export]
     private Camera3D body3DEditorCamera = null!;
+
+    [Export]
     private Light3D bodyEditorLight = null!;
 
+    [Export]
     private WorldEnvironment worldEnvironmentNode = null!;
+
     private Environment? environment;
 
+    [Export]
     private Control noCellTypeSelected = null!;
 #pragma warning restore CA2213
 
@@ -212,19 +195,6 @@ public partial class MacroscopicEditor : EditorBase<EditorAction, MacroscopicSta
 
     protected override void ResolveDerivedTypeNodeReferences()
     {
-        reportTab = GetNode<MicrobeEditorReportComponent>(ReportTabPath);
-        patchMapTab = GetNode<MicrobeEditorPatchMap>(PatchMapTabPath);
-        bodyPlanEditorTab = GetNode<MetaballBodyEditorComponent>(BodyPlanEditorTabPath);
-        cellEditorTab = GetNode<CellEditorComponent>(CellEditorTabPath);
-        noCellTypeSelected = GetNode<Control>(NoCellTypeSelectedPath);
-
-        cellEditorCamera = GetNode<MicrobeCamera>(CellEditorCameraPath);
-        cellEditorLight = GetNode<Light3D>(CellEditorLightPath);
-
-        worldEnvironmentNode = GetNode<WorldEnvironment>(WorldEnvironmentNodePath);
-
-        body3DEditorCamera = GetNode<Camera3D>(Body3DEditorCameraPath);
-        bodyEditorLight = GetNode<Light3D>(BodyEditorLightPath);
     }
 
     protected override void InitEditor(bool fresh)
@@ -452,20 +422,6 @@ public partial class MacroscopicEditor : EditorBase<EditorAction, MacroscopicSta
     {
         if (disposing)
         {
-            if (ReportTabPath != null)
-            {
-                ReportTabPath.Dispose();
-                PatchMapTabPath.Dispose();
-                BodyPlanEditorTabPath.Dispose();
-                CellEditorTabPath.Dispose();
-                NoCellTypeSelectedPath.Dispose();
-                CellEditorCameraPath.Dispose();
-                CellEditorLightPath.Dispose();
-                WorldEnvironmentNodePath.Dispose();
-                Body3DEditorCameraPath.Dispose();
-                BodyEditorLightPath.Dispose();
-            }
-
             environment?.Dispose();
         }
 

@@ -7,16 +7,16 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2025-05-11 23:56+0200\n"
-"PO-Revision-Date: 2025-05-04 18:18+0000\n"
-"Last-Translator: Xyber Nova <xyber-nova@outlook.com>\n"
+"POT-Creation-Date: 2025-05-28 14:54+0300\n"
+"PO-Revision-Date: 2025-05-25 15:00+0000\n"
+"Last-Translator: Anonymous <noreply@weblate.org>\n"
 "Language-Team: Chinese (Simplified Han script) <https://translate.revolutionarygamesstudio.com/projects/thrive/thrive-game/zh_Hans/>\n"
 "Language: zh_CN\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=1; plural=0;\n"
-"X-Generator: Weblate 5.7.2\n"
+"X-Generator: Weblate 5.11.4\n"
 "Generated-By: Babel 2.8.0\n"
 
 msgid "2D_MOVEMENT_TYPE_SELECTION"
@@ -396,10 +396,6 @@ msgstr "运行状态："
 msgid "AUTO_EVO_STATUS_COLON"
 msgstr "自动进化运行状态："
 
-#, fuzzy
-msgid "AUTO_EVO_TOOL_BUTTON"
-msgstr "自动（{0}x{1}）"
-
 msgid "AUTO_MOVE_FORWARDS"
 msgstr "自动前移"
 
@@ -429,9 +425,6 @@ msgstr "反斜杠"
 
 msgid "BACKSPACE"
 msgstr "退格键"
-
-msgid "BACK_TO_SETTINGS"
-msgstr ""
 
 msgid "BACTERIAL_THERMOSYNTHESIS"
 msgstr "细菌热合成"
@@ -826,15 +819,6 @@ msgstr "清除缓存"
 msgid "CLICK_TO_SELECT"
 msgstr "删除选中的"
 
-msgid "CLIMATE_INSTABILITY"
-msgstr ""
-
-#, fuzzy
-msgid "CLIMATE_INSTABILITY_EXPLANATION"
-msgstr ""
-"活泼型细胞在周围没啥事的时候会四处乱跑。\n"
-"沉着型微生物将静止不动，等待环境变化后才行动。"
-
 msgid "CLOSE"
 msgstr "关闭"
 
@@ -1098,6 +1082,7 @@ msgstr "[center]游戏还未结束， 您可以通过转变到物种 {0}，种�
 msgid "CONTINUE_THRIVING"
 msgstr "继续游戏"
 
+#, fuzzy
 msgid "CONTINUE_TO_PROTOTYPES"
 msgstr ""
 "你已经达到了Thrive的 \"完整 \"部分的终点。\n"
@@ -2409,33 +2394,11 @@ msgstr "在编辑器中按下撤消键以纠正错误"
 msgid "GENERAL_LOADING_TIP_7"
 msgstr "在编辑器中按下撤消键以纠正错误"
 
-#, fuzzy
-msgid "GENERATE_BUTTON"
-msgstr "世代"
-
 msgid "GENERATIONS"
 msgstr "世代"
 
 msgid "GENERATION_COLON"
 msgstr "世代："
-
-msgid "GEOLOGICAL_ACTIVITY"
-msgstr ""
-
-msgid "GEOLOGICAL_ACTIVITY_ACTIVE"
-msgstr ""
-
-msgid "GEOLOGICAL_ACTIVITY_AVERAGE"
-msgstr ""
-
-msgid "GEOLOGICAL_ACTIVITY_DORMANT"
-msgstr ""
-
-#, fuzzy
-msgid "GEOLOGICAL_ACTIVITY_EXPLANATION"
-msgstr ""
-"活泼型细胞在周围没啥事的时候会四处乱跑。\n"
-"沉着型微生物将静止不动，等待环境变化后才行动。"
 
 msgid "GITHUB_TOOLTIP"
 msgstr "访问我们在GitHub上的代码仓库"
@@ -2591,6 +2554,18 @@ msgid "HYDROGENASE_DESCRIPTION"
 msgstr "氢化酶使用氢气来分解[thrive:compound type=\\\"glucose\\\"][/thrive:compound]获取能量。相比代谢体，它们在[thrive:compound type=\\\"oxygen\\\"][/thrive:compound]浓度较低时更加高效。许多生活在缺少氧气的环境中的生物都以此为主要的能量来源。"
 
 msgid "HYDROGENASE_PROCESSES_DESCRIPTION"
+msgstr "将[thrive:compound type=\\\"glucose\\\"][/thrive:compound]转换成[thrive:compound type=\\\"atp\\\"][/thrive:compound]。"
+
+#, fuzzy
+msgid "HYDROGENOSOME"
+msgstr "氢化酶"
+
+#, fuzzy
+msgid "HYDROGENOSOME_DESCRIPTION"
+msgstr "氢化酶使用氢气来分解[thrive:compound type=\\\"glucose\\\"][/thrive:compound]获取能量。相比代谢体，它们在[thrive:compound type=\\\"oxygen\\\"][/thrive:compound]浓度较低时更加高效。许多生活在缺少氧气的环境中的生物都以此为主要的能量来源。"
+
+#, fuzzy
+msgid "HYDROGENOSOME_PROCESSES_DESCRIPTION"
 msgstr "将[thrive:compound type=\\\"glucose\\\"][/thrive:compound]转换成[thrive:compound type=\\\"atp\\\"][/thrive:compound]。"
 
 msgid "HYDROGEN_SULFIDE"
@@ -3569,6 +3544,10 @@ msgstr "微生物计数："
 msgid "MICROBE_BENCHMARK"
 msgstr "微生物编辑器"
 
+#, fuzzy
+msgid "MICROBE_CAMERA_TILT_EFFECT"
+msgstr "  {0}：{1}的物种具有该细胞器，平均数量为{2}"
+
 msgid "MICROBE_EDITOR"
 msgstr "微生物编辑器"
 
@@ -3682,6 +3661,10 @@ msgstr "  {0}：{1}的物种具有该细胞器，平均数量为{2}"
 msgid "MICROBE_ORGANELLE_UPGRADES_STATISTICS"
 msgstr "  {0}：{1}的物种具有该细胞器，平均数量为{2}"
 
+#, fuzzy
+msgid "MICROBE_RIPPLE_EFFECT"
+msgstr "  {0}：{1}的物种具有该细胞器，平均数量为{2}"
+
 msgid "MICROBE_SPECIES_DETAIL_TEXT"
 msgstr ""
 "[b]阶段[/b]\n"
@@ -3700,6 +3683,7 @@ msgstr ""
 msgid "MICROBE_STAGE"
 msgstr "微生物阶段"
 
+#, fuzzy
 msgid "MICROBE_STAGE_BECOME_MULTICELLULAR_TEXT"
 msgstr ""
 "你现在已经有能力向[b]多细胞生物[/b]进化，这会是进化之旅的下一步。\n"
@@ -4738,10 +4722,6 @@ msgstr "放置细胞器"
 msgid "PLANET"
 msgstr "星球"
 
-#, fuzzy
-msgid "PLANET_CUSTOMIZER"
-msgstr "鼠标指针处："
-
 msgid "PLANET_DETAILS_STRING"
 msgstr ""
 "仅限已知生命形式：{0}\n"
@@ -4749,6 +4729,9 @@ msgstr ""
 "日/夜循环：{2}\n"
 "一天的长度：{3}秒\n"
 "行星随机种子：{4}"
+
+msgid "PLANET_GENERATION_TEASER"
+msgstr "行星生成即将发布！"
 
 msgid "PLANET_RANDOM_SEED"
 msgstr "世界生成种子"
@@ -4945,10 +4928,6 @@ msgstr "重做上一个动作"
 
 msgid "REFRESH"
 msgstr "刷新"
-
-#, fuzzy
-msgid "REGENERATE_BUTTON"
-msgstr "细胞器"
 
 #, fuzzy
 msgid "RENDER_SCALE"
@@ -6257,6 +6236,7 @@ msgstr ""
 "\n"
 "如果你的[thrive:compound type=\"atp\"][/thrive:compound]生产为负，务必增加[thrive:compound type=\"atp\"][/thrive:compound]生产或添加[b]储存[/b][thrive:icon]StorageIcon[/thrive:icon]来允许爆发式移动。"
 
+#, fuzzy
 msgid "TUTORIAL_MICROBE_EDITOR_AUTO-EVO_PREDICTION"
 msgstr ""
 "这个面板显示对你未来种群数量的预测。[b]auto-evo[/b]的种群数量模拟提供了这些数字。\n"
@@ -6314,6 +6294,7 @@ msgstr ""
 "\n"
 "祝你好运！"
 
+#, fuzzy
 msgid "TUTORIAL_MICROBE_EDITOR_FLAGELLUM"
 msgstr ""
 "[b]鞭毛[/b]把你的微生物推向它被放置的相反方向。\n"
@@ -7693,6 +7674,54 @@ msgid "WIKI_HYDROGENASE_UPGRADES"
 msgstr "无升级。"
 
 #, fuzzy
+msgid "WIKI_HYDROGENOSOME_EFFECTS"
+msgstr "无效果。"
+
+#, fuzzy
+msgid "WIKI_HYDROGENOSOME_INTRO"
+msgstr ""
+"进行[b]厌氧固氮[/b]，消耗气态[thrive:compound type=\"nitrogen\"][/thrive:compound] 和[thrive:compound type=\"atp\"][/thrive:compound] 生产[thrive :compound type=\"ammonia\"][/thrive:compound]，产生细胞繁殖生长所需的成分之一。 效率低于真核版本的[b][color=#3796e1][url=thriveopedia:nitrogenfixingplastid]固氮质体[/url][/color][/b]。\n"
+"\n"
+"也会进行一些[b]糖酵解[/b]，消耗[thrive:compound type=\"glucose\"][/thrive:compound] 生产[thrive:compound type=\"atp\"][/thrive:compound]。"
+
+#, fuzzy
+msgid "WIKI_HYDROGENOSOME_MODIFICATIONS"
+msgstr "无修改。"
+
+#, fuzzy
+msgid "WIKI_HYDROGENOSOME_PROCESSES"
+msgstr ""
+"[b]厌氧固氮[/b]：[thrive:compound type=\"atp\"][/thrive:compound] + [thrive:compound type=\"nitrogen\"][/thrive:compound] → [thrive:compound type =\"ammonia\"][/thrive:compound]\n"
+"\n"
+"透过消耗能量将大气中的[thrive:compound type=\"nitrogen\"][/thrive:compound] 转化为[thrive:compound type=\"ammonia\"][/thrive:compound]。 速率与环境中[thrive:compound type=\"nitrogen\"][/thrive:compound] 的量成正比。 效率低于[b][color=#3796e1][url=thriveopedia:nitrogenfixingplastid]固氮质体[/url][/color][/b]中的同种代谢。\n"
+"\n"
+"[b]糖酵解[/b]\n"
+"\n"
+"与许多原核细胞器一样，[b]固氮酶[/b]周围的[b][color=#3796e1][url=thriveopedia:cytoplasm]细胞质[/url][/color][/b]会进行效率较低的[b]糖酵解[/b]，将[thrive:compound type=\"glucose\"][/thrive:compound] 转化为[thrive:compound type=\"atp\"][/thrive:compound]。"
+
+#, fuzzy
+msgid "WIKI_HYDROGENOSOME_REQUIREMENTS"
+msgstr ""
+"如果在游戏设定中启用了细胞器升级，则[i]玩家细胞[/i]必须满足以下条件：\n"
+"\n"
+"[indent]—   位于少于 [b]13[/b] [thrive:compound type=\"ammonia\"][/thrive:compound] 的区域中。 [/indent]"
+
+#, fuzzy
+msgid "WIKI_HYDROGENOSOME_SCIENTIFIC_BACKGROUND"
+msgstr "待定"
+
+#, fuzzy
+msgid "WIKI_HYDROGENOSOME_STRATEGY"
+msgstr ""
+"[b]固氮酶[/b]生产的[thrive:compound type=\"ammonia\"][/thrive:compound] 有助于储存用于繁殖的资源。 因此，具有[b]固氮酶[/b]的细胞只需要从环境中找到[thrive:compound type=\"phosphates\"][/thrive:compound]，就能以比基本速率更快的速率繁殖（如果在当前游戏选项中停用了被动繁殖进度，则基本速率为零）。\n"
+"\n"
+"由于[b]厌氧固氮[/b]消耗[thrive:compound type=\"atp\"][/thrive:compound]，您应该在将此细胞器添加到您的细胞之前检查是否有多余的[thrive: compound type=\"atp\"][/thrive:compound] 可用。 [b]固氮酶[/b]进行的少量[b]糖酵解[/b]不足以抵销其自身的渗透调节成本。"
+
+#, fuzzy
+msgid "WIKI_HYDROGENOSOME_UPGRADES"
+msgstr "无升级。"
+
+#, fuzzy
 msgid "WIKI_INDUSTRIAL_STAGE_CURRENT_DEVELOPMENT"
 msgstr ""
 "一个细胞必须拥有一个[b][color=#3796e1][url=thriveopedia:nucleus]细胞核[/url][/color][/b]才能进化出[b]连接器[/b]。\n"
@@ -8323,6 +8352,10 @@ msgid "WIKI_PAGE_HELP_AND_TIPS"
 msgstr "线粒体"
 
 msgid "WIKI_PAGE_HYDROGENASE"
+msgstr "氢化酶"
+
+#, fuzzy
+msgid "WIKI_PAGE_HYDROGENOSOME"
 msgstr "氢化酶"
 
 #, fuzzy
@@ -8990,29 +9023,6 @@ msgid "WORLD_RELATIVE_MOVEMENT"
 msgstr "相对世界移动"
 
 #, fuzzy
-msgid "WORLD_SEA_LEVEL"
-msgstr "在海平面下方{0}-{1}米处"
-
-#, fuzzy
-msgid "WORLD_SEA_LEVEL_DEEP"
-msgstr "在海平面下方{0}-{1}米处"
-
-#, fuzzy
-msgid "WORLD_SEA_LEVEL_EXPLANATION"
-msgstr ""
-"专注型微生物会在更远的距离里追击猎物或物质块\n"
-"并且对物质块更有渴求。\n"
-"应变型微生物将更快的转向新的目标。"
-
-#, fuzzy
-msgid "WORLD_SEA_LEVEL_MODERATE"
-msgstr "相对世界移动"
-
-#, fuzzy
-msgid "WORLD_SEA_LEVEL_SHALLOW"
-msgstr "小"
-
-#, fuzzy
 msgid "WORLD_SIZE"
 msgstr "世界"
 
@@ -9036,29 +9046,6 @@ msgstr "小"
 #, fuzzy
 msgid "WORLD_SIZE_TOOLTIP"
 msgstr "运行一定数量的世界，每个世界运行的代数由左上方的数字显示框决定。"
-
-#, fuzzy
-msgid "WORLD_TEMPERATURE"
-msgstr "温度"
-
-#, fuzzy
-msgid "WORLD_TEMPERATURE_COLD"
-msgstr "温度"
-
-#, fuzzy
-msgid "WORLD_TEMPERATURE_EXPLANATION"
-msgstr ""
-"专注型微生物会在更远的距离里追击猎物或物质块\n"
-"并且对物质块更有渴求。\n"
-"应变型微生物将更快的转向新的目标。"
-
-#, fuzzy
-msgid "WORLD_TEMPERATURE_TEMPERATE"
-msgstr "温度"
-
-#, fuzzy
-msgid "WORLD_TEMPERATURE_WARM"
-msgstr "温度"
 
 msgid "WORST_PATCH_COLON"
 msgstr "表现最糟的地区："
@@ -9101,13 +9088,6 @@ msgstr "缩小"
 
 #~ msgid "PASSIVE_REPRODUCTION_PROGRESS_EXPLANATION"
 #~ msgstr "（从周围的环境中被动获得的用于繁殖的化合物）"
-
-#~ msgid "PLANET_GENERATION_TEASER"
-#~ msgstr "行星生成即将发布！"
-
-#, fuzzy
-#~ msgid "PLAY_WTH_CURRENT_SETTINGS"
-#~ msgstr "使用当前设置"
 
 #~ msgid "TO_BE_IMPLEMENTED"
 #~ msgstr "仍在开发中。"

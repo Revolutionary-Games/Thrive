@@ -7,17 +7,13 @@ using Godot;
 public partial class ProcessPanel : CustomWindow
 {
     [Export]
-    public NodePath? ProcessListPath;
-
-    [Export]
     public bool ShowCustomCloseButton;
 
-    [Export]
-    public NodePath CloseButtonContainerPath = null!;
-
 #pragma warning disable CA2213
+    [Export]
     private ProcessList processList = null!;
 
+    [Export]
     private Container closeButtonContainer = null!;
 #pragma warning restore CA2213
 
@@ -35,9 +31,6 @@ public partial class ProcessPanel : CustomWindow
 
     public override void _Ready()
     {
-        processList = GetNode<ProcessList>(ProcessListPath);
-        closeButtonContainer = GetNode<Container>(CloseButtonContainerPath);
-
         closeButtonContainer.Visible = ShowCustomCloseButton;
     }
 
@@ -55,20 +48,6 @@ public partial class ProcessPanel : CustomWindow
         {
             processList.ProcessesToShow = null;
         }
-    }
-
-    protected override void Dispose(bool disposing)
-    {
-        if (disposing)
-        {
-            if (ProcessListPath != null)
-            {
-                ProcessListPath.Dispose();
-                CloseButtonContainerPath.Dispose();
-            }
-        }
-
-        base.Dispose(disposing);
     }
 
     private void ToggleProcessToggled(ChemicalEquation equation, bool enabled)

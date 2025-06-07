@@ -1,7 +1,7 @@
 [gd_scene load_steps=14 format=3 uid="uid://bqbt1jtgup58k"]
 
 [ext_resource type="Script" uid="uid://bjbt2nkr8o8sl" path="res://src/awakening_stage/gui/InventoryScreen.cs" id="1"]
-[ext_resource type="PackedScene" path="res://src/gui_common/dialogs/CustomWindow.tscn" id="2"]
+[ext_resource type="PackedScene" uid="uid://du8sc8kjirguk" path="res://src/gui_common/dialogs/CustomWindow.tscn" id="2"]
 [ext_resource type="Texture2D" uid="uid://bjd7m7yy3slb0" path="res://assets/textures/gui/CreaturePlaceholder.png" id="3"]
 [ext_resource type="Texture2D" uid="uid://bembxnxct020" path="res://assets/textures/gui/bevel/WhiteArrow.png" id="4"]
 [ext_resource type="LabelSettings" uid="uid://dvqx73nhtr0y2" path="res://src/gui_common/fonts/Body-Regular-Small.tres" id="5_aa5gb"]
@@ -9,7 +9,7 @@
 [ext_resource type="Texture2D" uid="uid://b5wnch57nfdkl" path="res://assets/textures/gui/bevel/undoButtonActive.svg" id="7_jce37"]
 [ext_resource type="Texture2D" uid="uid://bqw1s2p3cp5m7" path="res://assets/textures/gui/bevel/undoButtonHover.svg" id="8_1f4ig"]
 [ext_resource type="Texture2D" uid="uid://dkiesgcdqnups" path="res://assets/textures/gui/bevel/undoButtonDisabled.svg" id="9_jlso7"]
-[ext_resource type="PackedScene" path="res://src/gui_common/AddWindowReorderingSupportToSiblings.tscn" id="10"]
+[ext_resource type="PackedScene" uid="uid://tna206f2gtkv" path="res://src/gui_common/AddWindowReorderingSupportToSiblings.tscn" id="10"]
 
 [sub_resource type="Animation" id="1"]
 resource_name = "Flash"
@@ -47,7 +47,7 @@ _data = {
 &"RESET": SubResource("2")
 }
 
-[node name="InventoryScreen" type="Control"]
+[node name="InventoryScreen" type="Control" node_paths=PackedStringArray("inventoryPopup", "inventorySlotContainer", "equipmentSlotParent", "equipmentBackgroundImage", "craftingPanelButton", "groundPanelButton", "craftingPanelPopup", "craftingRecipesContainer", "craftingSlotsContainer", "craftingResultSlotsContainer", "craftingErrorStatusLabel", "craftingAnimationPlayer", "takeAllCraftingResults", "clearCraftingInputs", "groundPanelPopup", "groundSlotContainer")]
 visible = false
 layout_mode = 3
 anchors_preset = 15
@@ -58,22 +58,22 @@ grow_vertical = 2
 size_flags_horizontal = 3
 mouse_filter = 2
 script = ExtResource("1")
-InventoryPopupPath = NodePath("MainInventory")
-InventorySlotContainerPath = NodePath("MainInventory/BaseInventoryContainer/Inventory")
-EquipmentSlotParentPath = NodePath("MainInventory/BaseInventoryContainer/VBoxContainer/EquipmentSlots")
-EquipmentBackgroundImagePath = NodePath("MainInventory/BaseInventoryContainer/VBoxContainer/EquipmentSlots/CreatureImage")
-CraftingPanelButtonPath = NodePath("MainInventory/BaseInventoryContainer/VBoxContainer/HBoxContainer/Crafting")
-GroundPanelButtonPath = NodePath("MainInventory/BaseInventoryContainer/VBoxContainer/HBoxContainer/Ground")
-CraftingPanelPopupPath = NodePath("CraftingPanel")
-CraftingRecipesContainerPath = NodePath("CraftingPanel/VBoxContainer/ScrollContainer/RecipesList")
-CraftingSlotsContainerPath = NodePath("CraftingPanel/VBoxContainer/CraftingItemsSection/LeftSide/CraftingInputs")
-CraftingResultSlotsContainerPath = NodePath("CraftingPanel/VBoxContainer/CraftingItemsSection/RightSide/CraftingResults")
-CraftingErrorStatusLabelPath = NodePath("CraftingPanel/VBoxContainer/CraftingProblemLabel")
-CraftingAnimationPlayerPath = NodePath("CraftingPanel/AnimationPlayer")
-TakeAllCraftingResultsPath = NodePath("CraftingPanel/VBoxContainer/CraftingItemsSection/RightSide/Take")
-ClearCraftingInputsPath = NodePath("CraftingPanel/VBoxContainer/CraftingItemsSection/LeftSide/ClearInputs")
-GroundPanelPopupPath = NodePath("GroundPanel")
-GroundSlotContainerPath = NodePath("GroundPanel/ScrollContainer/HBoxContainer")
+inventoryPopup = NodePath("MainInventory")
+inventorySlotContainer = NodePath("MainInventory/BaseInventoryContainer/Inventory")
+equipmentSlotParent = NodePath("MainInventory/BaseInventoryContainer/VBoxContainer/EquipmentSlots")
+equipmentBackgroundImage = NodePath("MainInventory/BaseInventoryContainer/VBoxContainer/EquipmentSlots/CreatureImage")
+craftingPanelButton = NodePath("MainInventory/BaseInventoryContainer/VBoxContainer/HBoxContainer/Crafting")
+groundPanelButton = NodePath("MainInventory/BaseInventoryContainer/VBoxContainer/HBoxContainer/Ground")
+craftingPanelPopup = NodePath("CraftingPanel")
+craftingRecipesContainer = NodePath("CraftingPanel/VBoxContainer/ScrollContainer/RecipesList")
+craftingSlotsContainer = NodePath("CraftingPanel/VBoxContainer/CraftingItemsSection/LeftSide/CraftingInputs")
+craftingResultSlotsContainer = NodePath("CraftingPanel/VBoxContainer/CraftingItemsSection/RightSide/CraftingResults")
+craftingErrorStatusLabel = NodePath("CraftingPanel/VBoxContainer/CraftingProblemLabel")
+craftingAnimationPlayer = NodePath("CraftingPanel/AnimationPlayer")
+takeAllCraftingResults = NodePath("CraftingPanel/VBoxContainer/CraftingItemsSection/RightSide/Take")
+clearCraftingInputs = NodePath("CraftingPanel/VBoxContainer/CraftingItemsSection/LeftSide/ClearInputs")
+groundPanelPopup = NodePath("GroundPanel")
+groundSlotContainer = NodePath("GroundPanel/ScrollContainer/HBoxContainer")
 
 [node name="AddWindowReorderingSupportToSiblings" parent="." instance=ExtResource("10")]
 anchors_preset = 0
@@ -278,7 +278,7 @@ text = "CRAFTING_TAKE_ALL"
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="CraftingPanel"]
 libraries = {
-"": SubResource("AnimationLibrary_ed7nr")
+&"": SubResource("AnimationLibrary_ed7nr")
 }
 
 [connection signal="Canceled" from="GroundPanel" to="." method="OnGroundPanelCanceled"]

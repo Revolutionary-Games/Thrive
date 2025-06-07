@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Thrive VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2025-05-11 23:56+0200\n"
+"POT-Creation-Date: 2025-05-28 14:54+0300\n"
 "PO-Revision-Date: 2025-02-23 16:13+0000\n"
 "Last-Translator: grassgrass <r.u.tohohogisu@gmail.com>\n"
 "Language-Team: Japanese <https://translate.revolutionarygamesstudio.com/projects/thrive/thrive-game/ja/>\n"
@@ -349,9 +349,6 @@ msgstr ""
 msgid "AUTO_EVO_STATUS_COLON"
 msgstr ""
 
-msgid "AUTO_EVO_TOOL_BUTTON"
-msgstr ""
-
 msgid "AUTO_MOVE_FORWARDS"
 msgstr ""
 
@@ -380,9 +377,6 @@ msgid "BACKSLASH"
 msgstr ""
 
 msgid "BACKSPACE"
-msgstr ""
-
-msgid "BACK_TO_SETTINGS"
 msgstr ""
 
 msgid "BACTERIAL_THERMOSYNTHESIS"
@@ -762,13 +756,6 @@ msgstr ""
 
 msgid "CLICK_TO_SELECT"
 msgstr ""
-
-msgid "CLIMATE_INSTABILITY"
-msgstr ""
-
-#, fuzzy
-msgid "CLIMATE_INSTABILITY_EXPLANATION"
-msgstr "（AI生物が突然変異する速度）"
 
 msgid "CLOSE"
 msgstr ""
@@ -2180,30 +2167,11 @@ msgstr ""
 msgid "GENERAL_LOADING_TIP_7"
 msgstr ""
 
-msgid "GENERATE_BUTTON"
-msgstr ""
-
 msgid "GENERATIONS"
 msgstr ""
 
 msgid "GENERATION_COLON"
 msgstr ""
-
-msgid "GEOLOGICAL_ACTIVITY"
-msgstr ""
-
-msgid "GEOLOGICAL_ACTIVITY_ACTIVE"
-msgstr ""
-
-msgid "GEOLOGICAL_ACTIVITY_AVERAGE"
-msgstr ""
-
-msgid "GEOLOGICAL_ACTIVITY_DORMANT"
-msgstr ""
-
-#, fuzzy
-msgid "GEOLOGICAL_ACTIVITY_EXPLANATION"
-msgstr "（AI生物が突然変異する速度）"
 
 msgid "GITHUB_TOOLTIP"
 msgstr ""
@@ -2350,6 +2318,16 @@ msgid "HYDROGENASE_DESCRIPTION"
 msgstr ""
 
 msgid "HYDROGENASE_PROCESSES_DESCRIPTION"
+msgstr ""
+
+#, fuzzy
+msgid "HYDROGENOSOME"
+msgstr "硫化水素"
+
+msgid "HYDROGENOSOME_DESCRIPTION"
+msgstr ""
+
+msgid "HYDROGENOSOME_PROCESSES_DESCRIPTION"
 msgstr ""
 
 msgid "HYDROGEN_SULFIDE"
@@ -3257,6 +3235,9 @@ msgstr ""
 msgid "MICROBE_BENCHMARK"
 msgstr ""
 
+msgid "MICROBE_CAMERA_TILT_EFFECT"
+msgstr ""
+
 msgid "MICROBE_EDITOR"
 msgstr "微生物エディター"
 
@@ -3342,6 +3323,9 @@ msgid "MICROBE_ORGANELLE_STATISTICS"
 msgstr ""
 
 msgid "MICROBE_ORGANELLE_UPGRADES_STATISTICS"
+msgstr ""
+
+msgid "MICROBE_RIPPLE_EFFECT"
 msgstr ""
 
 msgid "MICROBE_SPECIES_DETAIL_TEXT"
@@ -4268,10 +4252,10 @@ msgstr ""
 msgid "PLANET"
 msgstr ""
 
-msgid "PLANET_CUSTOMIZER"
+msgid "PLANET_DETAILS_STRING"
 msgstr ""
 
-msgid "PLANET_DETAILS_STRING"
+msgid "PLANET_GENERATION_TEASER"
 msgstr ""
 
 msgid "PLANET_RANDOM_SEED"
@@ -4456,9 +4440,6 @@ msgid "REDO_THE_LAST_ACTION"
 msgstr ""
 
 msgid "REFRESH"
-msgstr ""
-
-msgid "REGENERATE_BUTTON"
 msgstr ""
 
 msgid "RENDER_SCALE"
@@ -6677,6 +6658,30 @@ msgstr ""
 msgid "WIKI_HYDROGENASE_UPGRADES"
 msgstr ""
 
+msgid "WIKI_HYDROGENOSOME_EFFECTS"
+msgstr ""
+
+msgid "WIKI_HYDROGENOSOME_INTRO"
+msgstr ""
+
+msgid "WIKI_HYDROGENOSOME_MODIFICATIONS"
+msgstr ""
+
+msgid "WIKI_HYDROGENOSOME_PROCESSES"
+msgstr ""
+
+msgid "WIKI_HYDROGENOSOME_REQUIREMENTS"
+msgstr ""
+
+msgid "WIKI_HYDROGENOSOME_SCIENTIFIC_BACKGROUND"
+msgstr ""
+
+msgid "WIKI_HYDROGENOSOME_STRATEGY"
+msgstr ""
+
+msgid "WIKI_HYDROGENOSOME_UPGRADES"
+msgstr ""
+
 msgid "WIKI_INDUSTRIAL_STAGE_CURRENT_DEVELOPMENT"
 msgstr ""
 
@@ -7056,6 +7061,9 @@ msgid "WIKI_PAGE_HELP_AND_TIPS"
 msgstr ""
 
 msgid "WIKI_PAGE_HYDROGENASE"
+msgstr ""
+
+msgid "WIKI_PAGE_HYDROGENOSOME"
 msgstr ""
 
 msgid "WIKI_PAGE_INDUSTRIAL_STAGE"
@@ -7526,26 +7534,6 @@ msgstr ""
 msgid "WORLD_RELATIVE_MOVEMENT"
 msgstr ""
 
-msgid "WORLD_SEA_LEVEL"
-msgstr ""
-
-msgid "WORLD_SEA_LEVEL_DEEP"
-msgstr ""
-
-#, fuzzy
-msgid "WORLD_SEA_LEVEL_EXPLANATION"
-msgstr ""
-"攻撃的な微生物はより遠くまで獲物を追い、\n"
-"捕食者に対して反撃する可能性が高い。\n"
-"平和的な微生物は他の生物を深追いせず、\n"
-"捕食者に対して毒素を使いにくい。"
-
-msgid "WORLD_SEA_LEVEL_MODERATE"
-msgstr ""
-
-msgid "WORLD_SEA_LEVEL_SHALLOW"
-msgstr ""
-
 msgid "WORLD_SIZE"
 msgstr ""
 
@@ -7567,26 +7555,6 @@ msgid "WORLD_SIZE_SMALL"
 msgstr ""
 
 msgid "WORLD_SIZE_TOOLTIP"
-msgstr ""
-
-msgid "WORLD_TEMPERATURE"
-msgstr ""
-
-msgid "WORLD_TEMPERATURE_COLD"
-msgstr ""
-
-#, fuzzy
-msgid "WORLD_TEMPERATURE_EXPLANATION"
-msgstr ""
-"攻撃的な微生物はより遠くまで獲物を追い、\n"
-"捕食者に対して反撃する可能性が高い。\n"
-"平和的な微生物は他の生物を深追いせず、\n"
-"捕食者に対して毒素を使いにくい。"
-
-msgid "WORLD_TEMPERATURE_TEMPERATE"
-msgstr ""
-
-msgid "WORLD_TEMPERATURE_WARM"
 msgstr ""
 
 msgid "WORST_PATCH_COLON"

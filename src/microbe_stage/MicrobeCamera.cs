@@ -5,7 +5,7 @@ using Newtonsoft.Json;
 /// <summary>
 ///   Camera script for the microbe stage and the cell editor
 /// </summary>
-public partial class MicrobeCamera : Camera3D, IGodotEarlyNodeResolve, ISaveLoadedTracked, IGameCamera
+public partial class MicrobeCamera : Camera3D, ISaveLoadedTracked, IGameCamera
 {
     /// <summary>
     ///   Automatically process the camera position while game is paused (used to still process zooming easily while
@@ -50,6 +50,17 @@ public partial class MicrobeCamera : Camera3D, IGodotEarlyNodeResolve, ISaveLoad
     [JsonProperty]
     public float InterpolateZoomSpeed = 0.3f;
 
+    [Export]
+    [JsonProperty]
+    public float CursorTiltSpeed = 0.15f;
+
+    /// <summary>
+    ///   Size of fragment of camera-cursor vector to use to tilt the camera
+    /// </summary>
+    [Export]
+    [JsonProperty]
+    public float CursorTiltAmplitude = 0.04f;
+
     /// <summary>
     ///   Now required with native physics to ensure that there's no occasional hitching with the camera
     /// </summary>
@@ -79,6 +90,8 @@ public partial class MicrobeCamera : Camera3D, IGodotEarlyNodeResolve, ISaveLoad
 
     private Vector3 cursorVisualWorldPos = new(0, 0, 0);
     private bool cursorVisualDirty = true;
+
+    private Vector3 lastCursorTilt = new(0, 0, 0);
 
     [JsonProperty]
     private float lightLevel = 1.0f;
@@ -147,28 +160,16 @@ public partial class MicrobeCamera : Camera3D, IGodotEarlyNodeResolve, ISaveLoad
         private set => cursorVisualWorldPos = value;
     }
 
-    public bool NodeReferencesResolved { get; private set; }
-
     public bool IsLoadedFromSave { get; set; }
 
     public override void _Ready()
     {
-        ResolveNodeReferences();
-
         if (!IsLoadedFromSave)
             ResetHeight();
 
         UpdateBackgroundVisibility();
 
         ProcessMode = ProcessModeEnum.Always;
-    }
-
-    public void ResolveNodeReferences()
-    {
-        if (NodeReferencesResolved)
-            return;
-
-        NodeReferencesResolved = true;
     }
 
     public override void _EnterTree()
@@ -223,6 +224,17 @@ public partial class MicrobeCamera : Camera3D, IGodotEarlyNodeResolve, ISaveLoad
             {
                 target = currentFloorPosition.Lerp(newFloorPosition, InterpolateSpeed)
                     + currentCameraHeight.Lerp(newCameraHeight, InterpolateZoomSpeed);
+            }
+
+            // Apply cursor-induced tilt
+            if (Settings.Instance.MicrobeCameraTilt)
+            {
+                var tilt = new Vector3(cursorVisualWorldPos.X - Position.X, 0, cursorVisualWorldPos.Z - Position.Z) *
+                    CursorTiltAmplitude;
+
+                lastCursorTilt = lastCursorTilt.Lerp(tilt, CursorTiltSpeed);
+
+                target += lastCursorTilt;
             }
 
             Position = target;

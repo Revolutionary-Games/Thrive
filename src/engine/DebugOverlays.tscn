@@ -1,6 +1,6 @@
 [gd_scene load_steps=10 format=3 uid="uid://c4dyrcb6l1u3o"]
 
-[ext_resource type="PackedScene" path="res://src/gui_common/dialogs/CustomWindow.tscn" id="1"]
+[ext_resource type="PackedScene" uid="uid://du8sc8kjirguk" path="res://src/gui_common/dialogs/CustomWindow.tscn" id="1"]
 [ext_resource type="LabelSettings" uid="uid://c07qrffjvqfw" path="res://src/gui_common/fonts/Body-Regular-Tiny.tres" id="2_gkxar"]
 [ext_resource type="Script" uid="uid://bkps626albmma" path="res://src/engine/DebugOverlays.cs" id="3"]
 [ext_resource type="LabelSettings" uid="uid://dvqx73nhtr0y2" path="res://src/gui_common/fonts/Body-Regular-Small.tres" id="3_fussq"]
@@ -10,29 +10,29 @@
 [ext_resource type="LabelSettings" uid="uid://c7r7hod24qer8" path="res://src/gui_common/fonts/Body-Regular-Small-Blue.tres" id="6_05a1v"]
 [ext_resource type="LabelSettings" uid="uid://dj8uej1eg2iuh" path="res://src/gui_common/fonts/Body-Regular-Small-Orange.tres" id="7_8xdu2"]
 
-[node name="DebugOverlay" type="Control"]
+[node name="DebugOverlay" type="Control" node_paths=PackedStringArray("debugCoordinates", "inspectorDialog", "debugPanelDialog", "fpsCheckBox", "performanceMetricsCheckBox", "inspectorCheckbox", "fpsCounter", "performanceMetrics", "labelsLayer", "fpsDisplayLabel", "fpsLabel", "deltaLabel", "metricsText")]
 layout_mode = 3
 anchors_preset = 0
 script = ExtResource("3")
-DebugCoordinatesPath = NodePath("Inspector/ScrollContainer/DebugCoordinates")
-FPSCheckBoxPath = NodePath("DebugPanel/VBoxContainer/Checkboxes/FPSCheckBox")
-PerformanceMetricsCheckBoxPath = NodePath("DebugPanel/VBoxContainer/Checkboxes/PerformanceMetricsCheckBox")
-InspectorCheckboxPath = NodePath("DebugPanel/VBoxContainer/Checkboxes/InspectorCheckBox")
-DebugPanelDialogPath = NodePath("DebugPanel")
-FPSCounterPath = NodePath("FPSCounter")
-PerformanceMetricsPath = NodePath("PerformanceMetrics")
-EntityLabelsPath = NodePath("EntityLabels")
-InspectorDialogPath = NodePath("Inspector")
+debugCoordinates = NodePath("Inspector/ScrollContainer/DebugCoordinates")
+inspectorDialog = NodePath("Inspector")
+debugPanelDialog = NodePath("DebugPanel")
+fpsCheckBox = NodePath("DebugPanel/VBoxContainer/Checkboxes/FPSCheckBox")
+performanceMetricsCheckBox = NodePath("DebugPanel/VBoxContainer/Checkboxes/PerformanceMetricsCheckBox")
+inspectorCheckbox = NodePath("DebugPanel/VBoxContainer/Checkboxes/InspectorCheckBox")
+fpsCounter = NodePath("FPSCounter")
+performanceMetrics = NodePath("PerformanceMetrics")
+labelsLayer = NodePath("EntityLabels")
 entityLabelSmallFont = ExtResource("2_gkxar")
 entityLabelDefaultFont = ExtResource("3_fussq")
 entityDeadFont = ExtResource("4_rmq2c")
 entityBindingFont = ExtResource("5_jl51v")
 entityEngulfingFont = ExtResource("6_05a1v")
 entityUnbindingFont = ExtResource("7_8xdu2")
-FPSDisplayLabelPath = NodePath("FPSCounter/FPSDisplayLabel")
-FPSLabelPath = NodePath("PerformanceMetrics/ScrollContainer/VBoxContainer/HBoxContainer/FPS")
-DeltaLabelPath = NodePath("PerformanceMetrics/ScrollContainer/VBoxContainer/HBoxContainer/Delta")
-MetricsTextPath = NodePath("PerformanceMetrics/ScrollContainer/VBoxContainer/MetricsText")
+fpsDisplayLabel = NodePath("FPSCounter/FPSDisplayLabel")
+fpsLabel = NodePath("PerformanceMetrics/ScrollContainer/VBoxContainer/HBoxContainer/FPS")
+deltaLabel = NodePath("PerformanceMetrics/ScrollContainer/VBoxContainer/HBoxContainer/Delta")
+metricsText = NodePath("PerformanceMetrics/ScrollContainer/VBoxContainer/MetricsText")
 
 [node name="EntityLabels" type="Control" parent="."]
 visible = false

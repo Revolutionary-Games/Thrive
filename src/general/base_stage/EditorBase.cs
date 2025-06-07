@@ -37,18 +37,13 @@ public partial class EditorBase<TAction, TStage> : NodeWithInput, IEditor, ILoad
     where TAction : EditorAction
     where TStage : Node, IReturnableGameState
 {
-    [Export]
-    public NodePath? PauseMenuPath;
-
-    [Export]
-    public NodePath EditorGUIBaseNodePath = null!;
-
-    [Export]
-    public NodePath? EditorTabSelectorPath;
-
 #pragma warning disable CA2213
     protected Node world = null!;
+
+    [Export]
     protected PauseMenu pauseMenu = null!;
+
+    [Export]
     protected MicrobeEditorTabButtons? editorTabSelector;
 #pragma warning restore CA2213
 
@@ -81,6 +76,7 @@ public partial class EditorBase<TAction, TStage> : NodeWithInput, IEditor, ILoad
     protected GameProperties? currentGame;
 
 #pragma warning disable CA2213
+    [Export]
     private Control editorGUIBaseNode = null!;
 #pragma warning restore CA2213
 
@@ -234,11 +230,6 @@ public partial class EditorBase<TAction, TStage> : NodeWithInput, IEditor, ILoad
 
         world = GetNode("EditorWorld");
         RootOfDynamicallySpawned = world.GetNode<Node3D>("DynamicallySpawned");
-        pauseMenu = GetNode<PauseMenu>(PauseMenuPath);
-        editorGUIBaseNode = GetNode<Control>(EditorGUIBaseNodePath);
-
-        if (EditorTabSelectorPath != null)
-            editorTabSelector = GetNode<MicrobeEditorTabButtons>(EditorTabSelectorPath);
 
         ResolveDerivedTypeNodeReferences();
     }
@@ -1006,22 +997,6 @@ public partial class EditorBase<TAction, TStage> : NodeWithInput, IEditor, ILoad
         SceneManager.Instance.SwitchToScene(stage);
 
         stage.OnReturnFromEditor();
-    }
-
-    protected override void Dispose(bool disposing)
-    {
-        if (disposing)
-        {
-            if (PauseMenuPath != null)
-            {
-                PauseMenuPath.Dispose();
-                EditorGUIBaseNodePath.Dispose();
-            }
-
-            EditorTabSelectorPath?.Dispose();
-        }
-
-        base.Dispose(disposing);
     }
 
     private void MakeSureEditorReturnIsGood()

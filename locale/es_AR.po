@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2025-05-11 23:56+0200\n"
+"POT-Creation-Date: 2025-05-28 14:54+0300\n"
 "PO-Revision-Date: 2025-04-04 10:42+0000\n"
 "Last-Translator: Anonymous <noreply@weblate.org>\n"
 "Language-Team: Spanish (Argentina) <https://translate.revolutionarygamesstudio.com/projects/thrive/thrive-game/es_AR/>\n"
@@ -396,10 +396,6 @@ msgstr "estado de ejecución:"
 msgid "AUTO_EVO_STATUS_COLON"
 msgstr "Estado del Auto-evo:"
 
-#, fuzzy
-msgid "AUTO_EVO_TOOL_BUTTON"
-msgstr "Auto ({0}x{1})"
-
 msgid "AUTO_MOVE_FORWARDS"
 msgstr "Moverse automáticamente"
 
@@ -429,9 +425,6 @@ msgstr "Barra inversa ( / )"
 
 msgid "BACKSPACE"
 msgstr "Retroceso"
-
-msgid "BACK_TO_SETTINGS"
-msgstr ""
 
 msgid "BACTERIAL_THERMOSYNTHESIS"
 msgstr "Termosíntesis bacteriana"
@@ -835,15 +828,6 @@ msgstr ""
 
 msgid "CLICK_TO_SELECT"
 msgstr ""
-
-msgid "CLIMATE_INSTABILITY"
-msgstr ""
-
-#, fuzzy
-msgid "CLIMATE_INSTABILITY_EXPLANATION"
-msgstr ""
-"Los microbios activos van deambular cuando no pase nada interesante.\n"
-"Los microbios tranquilos van a estar quietos y esperando a que algo cambie antes de actuar."
 
 msgid "CLOSE"
 msgstr "Cerrar"
@@ -2403,33 +2387,11 @@ msgstr "Presiona el botón de deshacer en el editor para corregir el error"
 msgid "GENERAL_LOADING_TIP_7"
 msgstr "Presiona el botón de deshacer en el editor para corregir el error"
 
-#, fuzzy
-msgid "GENERATE_BUTTON"
-msgstr "Pili de depredador"
-
 msgid "GENERATIONS"
 msgstr ""
 
 msgid "GENERATION_COLON"
 msgstr ""
-
-msgid "GEOLOGICAL_ACTIVITY"
-msgstr ""
-
-msgid "GEOLOGICAL_ACTIVITY_ACTIVE"
-msgstr ""
-
-msgid "GEOLOGICAL_ACTIVITY_AVERAGE"
-msgstr ""
-
-msgid "GEOLOGICAL_ACTIVITY_DORMANT"
-msgstr ""
-
-#, fuzzy
-msgid "GEOLOGICAL_ACTIVITY_EXPLANATION"
-msgstr ""
-"Los microbios activos van deambular cuando no pase nada interesante.\n"
-"Los microbios tranquilos van a estar quietos y esperando a que algo cambie antes de actuar."
 
 msgid "GITHUB_TOOLTIP"
 msgstr ""
@@ -2589,6 +2551,18 @@ msgstr "población:"
 
 #, fuzzy
 msgid "HYDROGENASE_PROCESSES_DESCRIPTION"
+msgstr "población:"
+
+#, fuzzy
+msgid "HYDROGENOSOME"
+msgstr "Sulfuro de hidrógeno"
+
+#, fuzzy
+msgid "HYDROGENOSOME_DESCRIPTION"
+msgstr "población:"
+
+#, fuzzy
+msgid "HYDROGENOSOME_PROCESSES_DESCRIPTION"
 msgstr "población:"
 
 msgid "HYDROGEN_SULFIDE"
@@ -3590,6 +3564,10 @@ msgid "MICROBE_BENCHMARK"
 msgstr "Habilitar el editor"
 
 #, fuzzy
+msgid "MICROBE_CAMERA_TILT_EFFECT"
+msgstr "Mover organela"
+
+#, fuzzy
 msgid "MICROBE_EDITOR"
 msgstr "Habilitar el editor"
 
@@ -3702,6 +3680,10 @@ msgstr "Mover organela"
 
 #, fuzzy
 msgid "MICROBE_ORGANELLE_UPGRADES_STATISTICS"
+msgstr "Mover organela"
+
+#, fuzzy
+msgid "MICROBE_RIPPLE_EFFECT"
 msgstr "Mover organela"
 
 #, fuzzy
@@ -4758,11 +4740,10 @@ msgstr "Poner organela"
 msgid "PLANET"
 msgstr ""
 
-#, fuzzy
-msgid "PLANET_CUSTOMIZER"
-msgstr "En el cursor:"
-
 msgid "PLANET_DETAILS_STRING"
+msgstr ""
+
+msgid "PLANET_GENERATION_TEASER"
 msgstr ""
 
 msgid "PLANET_RANDOM_SEED"
@@ -4969,10 +4950,6 @@ msgstr ""
 
 msgid "REFRESH"
 msgstr ""
-
-#, fuzzy
-msgid "REGENERATE_BUTTON"
-msgstr "Pili de depredador"
 
 msgid "RENDER_SCALE"
 msgstr ""
@@ -7681,6 +7658,38 @@ msgid "WIKI_HYDROGENASE_UPGRADES"
 msgstr "Nitrogenasa"
 
 #, fuzzy
+msgid "WIKI_HYDROGENOSOME_EFFECTS"
+msgstr "Nitrogenasa"
+
+#, fuzzy
+msgid "WIKI_HYDROGENOSOME_INTRO"
+msgstr "Nitrogenasa"
+
+#, fuzzy
+msgid "WIKI_HYDROGENOSOME_MODIFICATIONS"
+msgstr "población:"
+
+#, fuzzy
+msgid "WIKI_HYDROGENOSOME_PROCESSES"
+msgstr "Nitrogenasa"
+
+#, fuzzy
+msgid "WIKI_HYDROGENOSOME_REQUIREMENTS"
+msgstr "población:"
+
+#, fuzzy
+msgid "WIKI_HYDROGENOSOME_SCIENTIFIC_BACKGROUND"
+msgstr "población:"
+
+#, fuzzy
+msgid "WIKI_HYDROGENOSOME_STRATEGY"
+msgstr "Nitrogenasa"
+
+#, fuzzy
+msgid "WIKI_HYDROGENOSOME_UPGRADES"
+msgstr "Nitrogenasa"
+
+#, fuzzy
 msgid "WIKI_INDUSTRIAL_STAGE_CURRENT_DEVELOPMENT"
 msgstr "Poner organela"
 
@@ -8221,6 +8230,10 @@ msgstr "Mitocondria"
 
 #, fuzzy
 msgid "WIKI_PAGE_HYDROGENASE"
+msgstr "Nitrogenasa"
+
+#, fuzzy
+msgid "WIKI_PAGE_HYDROGENOSOME"
 msgstr "Nitrogenasa"
 
 #, fuzzy
@@ -8884,24 +8897,6 @@ msgid "WORLD_RELATIVE_MOVEMENT"
 msgstr ""
 
 #, fuzzy
-msgid "WORLD_SEA_LEVEL"
-msgstr "{0}-{1}Bajo el nivel del mar"
-
-#, fuzzy
-msgid "WORLD_SEA_LEVEL_DEEP"
-msgstr "{0}-{1}Bajo el nivel del mar"
-
-#, fuzzy
-msgid "WORLD_SEA_LEVEL_EXPLANATION"
-msgstr "Normal"
-
-msgid "WORLD_SEA_LEVEL_MODERATE"
-msgstr ""
-
-msgid "WORLD_SEA_LEVEL_SHALLOW"
-msgstr ""
-
-#, fuzzy
 msgid "WORLD_SIZE"
 msgstr "\" {0} \" - {1}"
 
@@ -8926,28 +8921,6 @@ msgstr ""
 "El menú desplegable de ahí abajo lo podés usar para chequear que pasaría si la célula no tuviese ningún recurso disponible para poder crear ATP.\n"
 "Por ejemplo, algunas células solo pueden mantener un balance de ATP positivo cuando tienen múltiples tipos de componentes de los que pueden crear ATP al mísmo tiempo.\n"
 "Ese tipo de células son más difíciles de jugar porque requieren que almacenes varios tipos de componentes al mísmo tiempo para poder sobrevivir."
-
-msgid "WORLD_TEMPERATURE"
-msgstr ""
-
-msgid "WORLD_TEMPERATURE_COLD"
-msgstr ""
-
-#, fuzzy
-msgid "WORLD_TEMPERATURE_EXPLANATION"
-msgstr "Normal"
-
-#, fuzzy
-msgid "WORLD_TEMPERATURE_TEMPERATE"
-msgstr ""
-"Esta sección muestra el balance total de ATP (energía) de la célula actual.\n"
-"Para poder sobrevivir, el balance tiene que ser positivo. Para las célular sésiles se puede considerar el balance positivo con el movimiento excluído.\n"
-"El menú desplegable de ahí abajo lo podés usar para chequear que pasaría si la célula no tuviese ningún recurso disponible para poder crear ATP.\n"
-"Por ejemplo, algunas células solo pueden mantener un balance de ATP positivo cuando tienen múltiples tipos de componentes de los que pueden crear ATP al mísmo tiempo.\n"
-"Ese tipo de células son más difíciles de jugar porque requieren que almacenes varios tipos de componentes al mísmo tiempo para poder sobrevivir."
-
-msgid "WORLD_TEMPERATURE_WARM"
-msgstr ""
 
 msgid "WORST_PATCH_COLON"
 msgstr ""

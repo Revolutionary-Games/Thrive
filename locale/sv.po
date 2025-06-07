@@ -7,16 +7,16 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2025-05-11 23:56+0200\n"
-"PO-Revision-Date: 2025-04-14 12:24+0000\n"
-"Last-Translator: Werka03 <weronica03@hotmail.com>\n"
+"POT-Creation-Date: 2025-05-28 14:54+0300\n"
+"PO-Revision-Date: 2025-05-25 15:00+0000\n"
+"Last-Translator: Anonymous <noreply@weblate.org>\n"
 "Language-Team: Swedish <https://translate.revolutionarygamesstudio.com/projects/thrive/thrive-game/sv/>\n"
 "Language: sv\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=n != 1;\n"
-"X-Generator: Weblate 5.7.2\n"
+"X-Generator: Weblate 5.11.4\n"
 "Generated-By: Babel 2.9.0\n"
 
 msgid "2D_MOVEMENT_TYPE_SELECTION"
@@ -391,10 +391,6 @@ msgstr "kör status:"
 msgid "AUTO_EVO_STATUS_COLON"
 msgstr "Auto-evo Status:"
 
-#, fuzzy
-msgid "AUTO_EVO_TOOL_BUTTON"
-msgstr "Automatisk({0}{1})"
-
 msgid "AUTO_MOVE_FORWARDS"
 msgstr "Auto framåt"
 
@@ -424,9 +420,6 @@ msgstr "Omvänt snedstreck"
 
 msgid "BACKSPACE"
 msgstr "Backa"
-
-msgid "BACK_TO_SETTINGS"
-msgstr ""
 
 #, fuzzy
 msgid "BACTERIAL_THERMOSYNTHESIS"
@@ -743,6 +736,7 @@ msgstr "Visa / göm cellprocesser"
 msgid "CHEMOPLAST"
 msgstr "Kemoplast"
 
+#, fuzzy
 msgid "CHEMOPLAST_DESCRIPTION"
 msgstr "Kemoplasten är en dubbelmembranstruktur som innehåller proteiner som kan omvandla vätesulfid, vatten och gasformig koldioxid till glukos i en process som kallas vätesulfidkemosyntes. Hastigheten för dess glukosproduktion skalas med koncentrationen av vatten och koldioxid."
 
@@ -776,6 +770,7 @@ msgstr "Kemosyntes"
 msgid "CHEMOSYNTHESIZING_PROTEINS"
 msgstr "Kemosyntesiserande proteiner"
 
+#, fuzzy
 msgid "CHEMOSYNTHESIZING_PROTEINS_DESCRIPTION"
 msgstr "Kemosyntesproteiner är små kluster av proteiner i cytoplasman som kan omvandla vätesulfid, vatten och gasformig koldioxid till glukos i en process som kallas vätesulfidkemosyntes. Hastigheten för dess glukosproduktion skalas med koncentrationen av koldioxid. Eftersom de kemosyntetiserande proteinerna är suspenderade direkt i cytoplasman utför den omgivande vätskan viss jäsning."
 
@@ -849,15 +844,6 @@ msgstr ""
 #, fuzzy
 msgid "CLICK_TO_SELECT"
 msgstr "Radera Valda"
-
-msgid "CLIMATE_INSTABILITY"
-msgstr ""
-
-#, fuzzy
-msgid "CLIMATE_INSTABILITY_EXPLANATION"
-msgstr ""
-"Aktiva mikrober springer och rullar omkring när ingenting händer.\n"
-"Sessila mikrober sitter still och väntar på att omgivningen ändrar sig innan de agerar."
 
 msgid "CLOSE"
 msgstr "Stäng"
@@ -1453,6 +1439,7 @@ msgstr "Anpassat Användarnamn:"
 msgid "CYTOPLASM"
 msgstr "Cytoplasma"
 
+#, fuzzy
 msgid "CYTOPLASM_DESCRIPTION"
 msgstr "Det slemiga inre av en cell. Cytoplasman är den grundläggande blandningen av joner, proteiner och andra ämnen lösta i vatten som fyller cellens inre. En av funktionerna den utför är jäsning, omvandlingen av glukos till ATP-energi. För celler som saknar organeller så den har mer avancerade ämnesomsättningar är det vad de använder för energi. Det används också för att lagra molekyler i cellen och för att öka cellens storlek."
 
@@ -2540,33 +2527,11 @@ msgid "GENERAL_LOADING_TIP_7"
 msgstr "Använd ångraknapped i cellredigeraren för att fixa ett mistag"
 
 #, fuzzy
-msgid "GENERATE_BUTTON"
-msgstr "generation:"
-
-#, fuzzy
 msgid "GENERATIONS"
 msgstr "generation:"
 
 msgid "GENERATION_COLON"
 msgstr "generation:"
-
-msgid "GEOLOGICAL_ACTIVITY"
-msgstr ""
-
-msgid "GEOLOGICAL_ACTIVITY_ACTIVE"
-msgstr ""
-
-msgid "GEOLOGICAL_ACTIVITY_AVERAGE"
-msgstr ""
-
-msgid "GEOLOGICAL_ACTIVITY_DORMANT"
-msgstr ""
-
-#, fuzzy
-msgid "GEOLOGICAL_ACTIVITY_EXPLANATION"
-msgstr ""
-"Aktiva mikrober springer och rullar omkring när ingenting händer.\n"
-"Sessila mikrober sitter still och väntar på att omgivningen ändrar sig innan de agerar."
 
 #, fuzzy
 msgid "GITHUB_TOOLTIP"
@@ -2602,6 +2567,7 @@ msgstr ""
 msgid "GLOBAL_POPULATION_COLON"
 msgstr "{0} befolkning förändrades av {1} på grund av: {2}"
 
+#, fuzzy
 msgid "GLOBAL_TIMELINE_SPECIES_MIGRATED_TO"
 msgstr "En del av [u]{0}[/u] befolkningen har migrerat till {1} från {2}"
 
@@ -2728,6 +2694,18 @@ msgstr "Nitrogenas är ett protein som kan använda gasformigt kväve och cellul
 
 #, fuzzy
 msgid "HYDROGENASE_PROCESSES_DESCRIPTION"
+msgstr "Nitrogenas är ett protein som kan använda gasformigt kväve och cellulär energi i form av ATP för att producera ammoniak, ett viktigt tillväxtnäringsämne för celler. Detta är en process som kallas anaerob kvävefixering. Eftersom kvävgaset är suspenderat direkt i cytoplasman, utför den omgivande vätskan viss jäsning."
+
+#, fuzzy
+msgid "HYDROGENOSOME"
+msgstr "Svavelväte"
+
+#, fuzzy
+msgid "HYDROGENOSOME_DESCRIPTION"
+msgstr "Nitrogenas är ett protein som kan använda gasformigt kväve och cellulär energi i form av ATP för att producera ammoniak, ett viktigt tillväxtnäringsämne för celler. Detta är en process som kallas anaerob kvävefixering. Eftersom kvävgaset är suspenderat direkt i cytoplasman, utför den omgivande vätskan viss jäsning."
+
+#, fuzzy
+msgid "HYDROGENOSOME_PROCESSES_DESCRIPTION"
 msgstr "Nitrogenas är ett protein som kan använda gasformigt kväve och cellulär energi i form av ATP för att producera ammoniak, ett viktigt tillväxtnäringsämne för celler. Detta är en process som kallas anaerob kvävefixering. Eftersom kvävgaset är suspenderat direkt i cytoplasman, utför den omgivande vätskan viss jäsning."
 
 msgid "HYDROGEN_SULFIDE"
@@ -3637,6 +3615,7 @@ msgstr "Mesopelagisk"
 msgid "METABOLOSOMES"
 msgstr "Metabolosomer"
 
+#, fuzzy
 msgid "METABOLOSOMES_DESCRIPTION"
 msgstr "Metabolosomer är kluster av proteiner förpackade i proteinskal. De kan omvandla glukos till ATP i mycket högre takt än vad som kan göras i cytoplasman i en process som kallas Aerobisk Andning. Det kräver dock syre för att fungera, och lägre nivåer av syre i miljön kommer att sakta ner hastigheten för dess ATP-produktion. Eftersom metabolosomerna är suspenderade direkt i cytoplasman utför den omgivande vätskan viss jäsning."
 
@@ -3744,6 +3723,10 @@ msgstr "Mikrob Stadiet"
 #, fuzzy
 msgid "MICROBE_BENCHMARK"
 msgstr "Mikrobredigerare"
+
+#, fuzzy
+msgid "MICROBE_CAMERA_TILT_EFFECT"
+msgstr "Organismstatistik"
 
 msgid "MICROBE_EDITOR"
 msgstr "Mikrobredigerare"
@@ -3857,6 +3840,10 @@ msgstr "Organismstatistik"
 
 #, fuzzy
 msgid "MICROBE_ORGANELLE_UPGRADES_STATISTICS"
+msgstr "Organismstatistik"
+
+#, fuzzy
+msgid "MICROBE_RIPPLE_EFFECT"
 msgstr "Organismstatistik"
 
 msgid "MICROBE_SPECIES_DETAIL_TEXT"
@@ -4405,6 +4392,7 @@ msgstr "Kväve"
 msgid "NITROGENASE"
 msgstr "Kvävegenas"
 
+#, fuzzy
 msgid "NITROGENASE_DESCRIPTION"
 msgstr "Nitrogenas är ett protein som kan använda gasformigt kväve och cellulär energi i form av ATP för att producera ammoniak, ett viktigt tillväxtnäringsämne för celler. Detta är en process som kallas anaerob kvävefixering. Eftersom kvävgaset är suspenderat direkt i cytoplasman, utför den omgivande vätskan viss jäsning."
 
@@ -4415,6 +4403,7 @@ msgstr "Nitrogenas är ett protein som kan använda gasformigt kväve och cellul
 msgid "NITROPLAST"
 msgstr "Kväve-Fixande Plastid"
 
+#, fuzzy
 msgid "NITROPLAST_DESCRIPTION"
 msgstr "Nitrogen Fixing Plastid är ett protein som kan använda gasformigt kväve och syre och cellulär energi i form av ATP för att producera ammoniak, ett viktigt tillväxtnäringsämne för celler. Detta är en process som kallas aerob kvävefixering."
 
@@ -4963,12 +4952,11 @@ msgid "PLANET"
 msgstr ""
 
 #, fuzzy
-msgid "PLANET_CUSTOMIZER"
-msgstr "Vid Muspekare:"
-
-#, fuzzy
 msgid "PLANET_DETAILS_STRING"
 msgstr "Öppna Logmapp"
+
+msgid "PLANET_GENERATION_TEASER"
+msgstr ""
 
 msgid "PLANET_RANDOM_SEED"
 msgstr ""
@@ -5172,10 +5160,6 @@ msgstr "Gör om den senaste handlingen"
 
 msgid "REFRESH"
 msgstr "Ladda om"
-
-#, fuzzy
-msgid "REGENERATE_BUTTON"
-msgstr "Organeller"
 
 msgid "RENDER_SCALE"
 msgstr ""
@@ -6266,6 +6250,7 @@ msgstr ""
 msgid "THYLAKOIDS"
 msgstr "Thylakoider"
 
+#, fuzzy
 msgid "THYLAKOIDS_DESCRIPTION"
 msgstr "Thylakoider är kluster av proteiner och ljuskänsliga pigment. Pigmenten kan använda ljusets energi för att producera glukos från vatten och gasformig koldioxid i en process som kallas fotosyntes. Dessa pigment är också det som ger dem en distinkt färg. Hastigheten för deras glukosproduktion skalas med koncentrationen av koldioxid och ljusintensiteten. Eftersom tylakoiderna är suspenderade direkt i cytoplasman utför den omgivande vätskan viss jäsning."
 
@@ -6281,6 +6266,7 @@ msgstr ""
 msgid "TIMELINE_LOCAL_FILTER_TOOLTIP"
 msgstr ""
 
+#, fuzzy
 msgid "TIMELINE_NICHE_FILL"
 msgstr "[u]{0}[/u] avvek från [u]{1}[/u] som en ny art för att fylla nisch"
 
@@ -6292,6 +6278,7 @@ msgstr "En del av [u]{0}[/u] befolkningen har migrerat till {1}"
 msgid "TIMELINE_PLAYER_MIGRATED_TO"
 msgstr "En del av [u]{0}[/u] befolkningen har migrerat till {1}"
 
+#, fuzzy
 msgid "TIMELINE_SELECTION_PRESSURE_SPLIT"
 msgstr "[u]{0}[/u] avvek från [u]{1}[/u] som en ny art på grund av olika urvalstryck"
 
@@ -6311,9 +6298,11 @@ msgstr ""
 "[b]Grundhexstorlek[/b]\n"
 "  {4}"
 
+#, fuzzy
 msgid "TIMELINE_SPECIES_EXTINCT"
 msgstr "[u]{0}[/u] har gått utdöd!"
 
+#, fuzzy
 msgid "TIMELINE_SPECIES_EXTINCT_LOCAL"
 msgstr "[u]{0}[/u] har lämnat denna platsen"
 
@@ -6321,15 +6310,19 @@ msgstr "[u]{0}[/u] har lämnat denna platsen"
 msgid "TIMELINE_SPECIES_FOLLOWED"
 msgstr "[u]{0}[/u] har gått utdöd!"
 
+#, fuzzy
 msgid "TIMELINE_SPECIES_MIGRATED_FROM"
 msgstr "En del av [u]{0}[/u] befolkningen har migrerat till denna plats från {1}"
 
+#, fuzzy
 msgid "TIMELINE_SPECIES_MIGRATED_TO"
 msgstr "En del av [u]{0}[/u] befolkningen har migrerat till {1}"
 
+#, fuzzy
 msgid "TIMELINE_SPECIES_POPULATION_DECREASE"
 msgstr "[u]{0}[/u] befolkning har minskat till {1}"
 
+#, fuzzy
 msgid "TIMELINE_SPECIES_POPULATION_INCREASE"
 msgstr "[u]{0}[/u] befolkning har ökat till {1}"
 
@@ -7892,6 +7885,38 @@ msgid "WIKI_HYDROGENASE_UPGRADES"
 msgstr "Nitrogenas är ett protein som kan använda gasformigt kväve och cellulär energi i form av ATP för att producera ammoniak, ett viktigt tillväxtnäringsämne för celler. Detta är en process som kallas anaerob kvävefixering. Eftersom kvävgaset är suspenderat direkt i cytoplasman, utför den omgivande vätskan viss jäsning."
 
 #, fuzzy
+msgid "WIKI_HYDROGENOSOME_EFFECTS"
+msgstr "Nitrogenas är ett protein som kan använda gasformigt kväve och cellulär energi i form av ATP för att producera ammoniak, ett viktigt tillväxtnäringsämne för celler. Detta är en process som kallas anaerob kvävefixering. Eftersom kvävgaset är suspenderat direkt i cytoplasman, utför den omgivande vätskan viss jäsning."
+
+#, fuzzy
+msgid "WIKI_HYDROGENOSOME_INTRO"
+msgstr "Nitrogenas är ett protein som kan använda gasformigt kväve och cellulär energi i form av ATP för att producera ammoniak, ett viktigt tillväxtnäringsämne för celler. Detta är en process som kallas anaerob kvävefixering. Eftersom kvävgaset är suspenderat direkt i cytoplasman, utför den omgivande vätskan viss jäsning."
+
+#, fuzzy
+msgid "WIKI_HYDROGENOSOME_MODIFICATIONS"
+msgstr "Nitrogenas är ett protein som kan använda gasformigt kväve och cellulär energi i form av ATP för att producera ammoniak, ett viktigt tillväxtnäringsämne för celler. Detta är en process som kallas anaerob kvävefixering. Eftersom kvävgaset är suspenderat direkt i cytoplasman, utför den omgivande vätskan viss jäsning."
+
+#, fuzzy
+msgid "WIKI_HYDROGENOSOME_PROCESSES"
+msgstr "Nitrogenas är ett protein som kan använda gasformigt kväve och cellulär energi i form av ATP för att producera ammoniak, ett viktigt tillväxtnäringsämne för celler. Detta är en process som kallas anaerob kvävefixering. Eftersom kvävgaset är suspenderat direkt i cytoplasman, utför den omgivande vätskan viss jäsning."
+
+#, fuzzy
+msgid "WIKI_HYDROGENOSOME_REQUIREMENTS"
+msgstr "Termoplasten är en dubbelmembranstruktur som innehåller värmekänsliga pigment staplade tillsammans i membransäckar. Det är en prokaryot som har assimilerats för användning av sin eukaryota värd. Pigmenten i termoplasten kan använda energin från värmeskillnader i omgivningen för att producera glukos från vatten och gasformig koldioxid i en process som kallas termosyntes. Hastigheten för dess glukosproduktion skalas med koncentrationen av koldioxid och temperatur."
+
+#, fuzzy
+msgid "WIKI_HYDROGENOSOME_SCIENTIFIC_BACKGROUND"
+msgstr "Nitrogenas är ett protein som kan använda gasformigt kväve och cellulär energi i form av ATP för att producera ammoniak, ett viktigt tillväxtnäringsämne för celler. Detta är en process som kallas anaerob kvävefixering. Eftersom kvävgaset är suspenderat direkt i cytoplasman, utför den omgivande vätskan viss jäsning."
+
+#, fuzzy
+msgid "WIKI_HYDROGENOSOME_STRATEGY"
+msgstr "Nitrogenas är ett protein som kan använda gasformigt kväve och cellulär energi i form av ATP för att producera ammoniak, ett viktigt tillväxtnäringsämne för celler. Detta är en process som kallas anaerob kvävefixering. Eftersom kvävgaset är suspenderat direkt i cytoplasman, utför den omgivande vätskan viss jäsning."
+
+#, fuzzy
+msgid "WIKI_HYDROGENOSOME_UPGRADES"
+msgstr "Nitrogenas är ett protein som kan använda gasformigt kväve och cellulär energi i form av ATP för att producera ammoniak, ett viktigt tillväxtnäringsämne för celler. Detta är en process som kallas anaerob kvävefixering. Eftersom kvävgaset är suspenderat direkt i cytoplasman, utför den omgivande vätskan viss jäsning."
+
+#, fuzzy
 msgid "WIKI_INDUSTRIAL_STAGE_CURRENT_DEVELOPMENT"
 msgstr "Nitrogenas är ett protein som kan använda gasformigt kväve och cellulär energi i form av ATP för att producera ammoniak, ett viktigt tillväxtnäringsämne för celler. Detta är en process som kallas anaerob kvävefixering. Eftersom kvävgaset är suspenderat direkt i cytoplasman, utför den omgivande vätskan viss jäsning."
 
@@ -8379,6 +8404,10 @@ msgstr "Mitochondria"
 
 #, fuzzy
 msgid "WIKI_PAGE_HYDROGENASE"
+msgstr "Kvävegenas"
+
+#, fuzzy
+msgid "WIKI_PAGE_HYDROGENOSOME"
 msgstr "Kvävegenas"
 
 #, fuzzy
@@ -8961,26 +8990,6 @@ msgstr ""
 msgid "WORLD_RELATIVE_MOVEMENT"
 msgstr "för att öka hastigheten"
 
-#, fuzzy
-msgid "WORLD_SEA_LEVEL"
-msgstr "{0}-{1}m under havsnivån"
-
-#, fuzzy
-msgid "WORLD_SEA_LEVEL_DEEP"
-msgstr "{0}-{1}m under havsnivån"
-
-#, fuzzy
-msgid "WORLD_SEA_LEVEL_EXPLANATION"
-msgstr "(Ändrar andelen patches i världen)"
-
-#, fuzzy
-msgid "WORLD_SEA_LEVEL_MODERATE"
-msgstr "för att öka hastigheten"
-
-#, fuzzy
-msgid "WORLD_SEA_LEVEL_SHALLOW"
-msgstr "Liten"
-
 msgid "WORLD_SIZE"
 msgstr "Värld storlek"
 
@@ -9000,26 +9009,6 @@ msgstr "Liten"
 
 msgid "WORLD_SIZE_TOOLTIP"
 msgstr "En stor värld kan göra simuleringen långsammare och rekommenderas inte för långsammare datorer."
-
-#, fuzzy
-msgid "WORLD_TEMPERATURE"
-msgstr "Temperatur"
-
-#, fuzzy
-msgid "WORLD_TEMPERATURE_COLD"
-msgstr "Temp."
-
-#, fuzzy
-msgid "WORLD_TEMPERATURE_EXPLANATION"
-msgstr "(Ändrar andelen patches i världen)"
-
-#, fuzzy
-msgid "WORLD_TEMPERATURE_TEMPERATE"
-msgstr "Temp."
-
-#, fuzzy
-msgid "WORLD_TEMPERATURE_WARM"
-msgstr "Temp."
 
 msgid "WORST_PATCH_COLON"
 msgstr ""

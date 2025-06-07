@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Thrive VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2025-05-11 23:56+0200\n"
+"POT-Creation-Date: 2025-05-28 14:54+0300\n"
 "PO-Revision-Date: 2023-09-15 06:55+0000\n"
 "Last-Translator: Kristijan Miracevski <mircevskihristijan30@gmail.com>\n"
 "Language-Team: Macedonian <https://translate.revolutionarygamesstudio.com/projects/thrive/thrive-game/mk/>\n"
@@ -376,9 +376,6 @@ msgstr ""
 msgid "AUTO_EVO_STATUS_COLON"
 msgstr ""
 
-msgid "AUTO_EVO_TOOL_BUTTON"
-msgstr ""
-
 msgid "AUTO_MOVE_FORWARDS"
 msgstr ""
 
@@ -407,9 +404,6 @@ msgid "BACKSLASH"
 msgstr ""
 
 msgid "BACKSPACE"
-msgstr ""
-
-msgid "BACK_TO_SETTINGS"
 msgstr ""
 
 #, fuzzy
@@ -795,15 +789,6 @@ msgstr ""
 
 msgid "CLICK_TO_SELECT"
 msgstr ""
-
-msgid "CLIMATE_INSTABILITY"
-msgstr ""
-
-#, fuzzy
-msgid "CLIMATE_INSTABILITY_EXPLANATION"
-msgstr ""
-"Активните микроби ќе трчаат и ќе паднат кога ништо интересно не се случи.\n"
-"Микробите кои седат ќе бидат неподвижни и ќе чекаат да се промени околината пред да дејствуваат."
 
 msgid "CLOSE"
 msgstr ""
@@ -2233,32 +2218,11 @@ msgstr ""
 msgid "GENERAL_LOADING_TIP_7"
 msgstr ""
 
-msgid "GENERATE_BUTTON"
-msgstr ""
-
 msgid "GENERATIONS"
 msgstr ""
 
 msgid "GENERATION_COLON"
 msgstr ""
-
-msgid "GEOLOGICAL_ACTIVITY"
-msgstr ""
-
-msgid "GEOLOGICAL_ACTIVITY_ACTIVE"
-msgstr ""
-
-msgid "GEOLOGICAL_ACTIVITY_AVERAGE"
-msgstr ""
-
-msgid "GEOLOGICAL_ACTIVITY_DORMANT"
-msgstr ""
-
-#, fuzzy
-msgid "GEOLOGICAL_ACTIVITY_EXPLANATION"
-msgstr ""
-"Активните микроби ќе трчаат и ќе паднат кога ништо интересно не се случи.\n"
-"Микробите кои седат ќе бидат неподвижни и ќе чекаат да се промени околината пред да дејствуваат."
 
 msgid "GITHUB_TOOLTIP"
 msgstr ""
@@ -2410,6 +2374,17 @@ msgstr ""
 
 msgid "HYDROGENASE_PROCESSES_DESCRIPTION"
 msgstr ""
+
+msgid "HYDROGENOSOME"
+msgstr ""
+
+#, fuzzy
+msgid "HYDROGENOSOME_DESCRIPTION"
+msgstr "Аеробна фиксација на азот"
+
+#, fuzzy
+msgid "HYDROGENOSOME_PROCESSES_DESCRIPTION"
+msgstr "3Д Едитор"
 
 msgid "HYDROGEN_SULFIDE"
 msgstr ""
@@ -3327,6 +3302,23 @@ msgstr ""
 msgid "MICROBE_BENCHMARK"
 msgstr ""
 
+#, fuzzy
+msgid "MICROBE_CAMERA_TILT_EFFECT"
+msgstr ""
+"[b]Генерации:[/b]\n"
+"  {0}\n"
+"[b]Вкупен вид:[/b]\n"
+"  Просечно {1}; Стандардна девијација {2}\n"
+"[b]Сè уште живи видови:[/b]\n"
+"  Просечно {3}; Стандардна девијација {4}\n"
+"[b]Број на видови по лепенка:[/b]\n"
+"  Просечно {5}; Стандардна девијација {6}\n"
+"[b]Вкупна популација по лепенка:[/b]\n"
+"  Просечно {7}; Стандардна девијација {8}\n"
+"[b]Просечна хексадетична големина на видови на микроби:[/b]\n"
+"  Просечно {9}; Стандардна девијација {10}\n"
+"[b]Генерички податоци за органели:[/b]"
+
 msgid "MICROBE_EDITOR"
 msgstr ""
 
@@ -3455,6 +3447,23 @@ msgstr ""
 
 #, fuzzy
 msgid "MICROBE_ORGANELLE_UPGRADES_STATISTICS"
+msgstr ""
+"[b]Генерации:[/b]\n"
+"  {0}\n"
+"[b]Вкупен вид:[/b]\n"
+"  Просечно {1}; Стандардна девијација {2}\n"
+"[b]Сè уште живи видови:[/b]\n"
+"  Просечно {3}; Стандардна девијација {4}\n"
+"[b]Број на видови по лепенка:[/b]\n"
+"  Просечно {5}; Стандардна девијација {6}\n"
+"[b]Вкупна популација по лепенка:[/b]\n"
+"  Просечно {7}; Стандардна девијација {8}\n"
+"[b]Просечна хексадетична големина на видови на микроби:[/b]\n"
+"  Просечно {9}; Стандардна девијација {10}\n"
+"[b]Генерички податоци за органели:[/b]"
+
+#, fuzzy
+msgid "MICROBE_RIPPLE_EFFECT"
 msgstr ""
 "[b]Генерации:[/b]\n"
 "  {0}\n"
@@ -4403,10 +4412,10 @@ msgstr ""
 msgid "PLANET"
 msgstr ""
 
-msgid "PLANET_CUSTOMIZER"
+msgid "PLANET_DETAILS_STRING"
 msgstr ""
 
-msgid "PLANET_DETAILS_STRING"
+msgid "PLANET_GENERATION_TEASER"
 msgstr ""
 
 msgid "PLANET_RANDOM_SEED"
@@ -4594,9 +4603,6 @@ msgid "REDO_THE_LAST_ACTION"
 msgstr ""
 
 msgid "REFRESH"
-msgstr ""
-
-msgid "REGENERATE_BUTTON"
 msgstr ""
 
 msgid "RENDER_SCALE"
@@ -6910,6 +6916,38 @@ msgstr "3Д Едитор"
 msgid "WIKI_HYDROGENASE_UPGRADES"
 msgstr "3Д Едитор"
 
+#, fuzzy
+msgid "WIKI_HYDROGENOSOME_EFFECTS"
+msgstr "3Д Едитор"
+
+#, fuzzy
+msgid "WIKI_HYDROGENOSOME_INTRO"
+msgstr "Аеробна фиксација на азот"
+
+#, fuzzy
+msgid "WIKI_HYDROGENOSOME_MODIFICATIONS"
+msgstr "Аеробна фиксација на азот"
+
+#, fuzzy
+msgid "WIKI_HYDROGENOSOME_PROCESSES"
+msgstr "3Д Едитор"
+
+#, fuzzy
+msgid "WIKI_HYDROGENOSOME_REQUIREMENTS"
+msgstr "3Д Едитор"
+
+#, fuzzy
+msgid "WIKI_HYDROGENOSOME_SCIENTIFIC_BACKGROUND"
+msgstr "3Д Едитор"
+
+#, fuzzy
+msgid "WIKI_HYDROGENOSOME_STRATEGY"
+msgstr "3Д Едитор"
+
+#, fuzzy
+msgid "WIKI_HYDROGENOSOME_UPGRADES"
+msgstr "3Д Едитор"
+
 msgid "WIKI_INDUSTRIAL_STAGE_CURRENT_DEVELOPMENT"
 msgstr ""
 
@@ -7324,6 +7362,10 @@ msgstr "Аеробна фиксација на азот"
 
 #, fuzzy
 msgid "WIKI_PAGE_HYDROGENASE"
+msgstr "Аеробна фиксација на азот"
+
+#, fuzzy
+msgid "WIKI_PAGE_HYDROGENOSOME"
 msgstr "Аеробна фиксација на азот"
 
 msgid "WIKI_PAGE_INDUSTRIAL_STAGE"
@@ -7810,27 +7852,6 @@ msgstr ""
 msgid "WORLD_RELATIVE_MOVEMENT"
 msgstr ""
 
-#, fuzzy
-msgid "WORLD_SEA_LEVEL"
-msgstr "Префрлете се на фазата на будење. Достапно откако ќе имате доволно мозочна моќ (тип на ткиво со аксони)."
-
-msgid "WORLD_SEA_LEVEL_DEEP"
-msgstr ""
-
-#, fuzzy
-msgid "WORLD_SEA_LEVEL_EXPLANATION"
-msgstr ""
-"Агресивните микроби ќе го бркаат пленот на поголеми растојанија\n"
-"и имаат поголема веројатност да се борат со предатори кога ќе бидат нападнати.\n"
-"Мирните микроби нема да ги ангажираат другите на поголеми растојанија\n"
-"и имаат помала веројатност да користат токсини против предатори."
-
-msgid "WORLD_SEA_LEVEL_MODERATE"
-msgstr ""
-
-msgid "WORLD_SEA_LEVEL_SHALLOW"
-msgstr ""
-
 msgid "WORLD_SIZE"
 msgstr ""
 
@@ -7854,27 +7875,6 @@ msgstr ""
 #, fuzzy
 msgid "WORLD_SIZE_TOOLTIP"
 msgstr "Префрлете се на фазата на будење. Достапно откако ќе имате доволно мозочна моќ (тип на ткиво со аксони)."
-
-msgid "WORLD_TEMPERATURE"
-msgstr ""
-
-msgid "WORLD_TEMPERATURE_COLD"
-msgstr ""
-
-#, fuzzy
-msgid "WORLD_TEMPERATURE_EXPLANATION"
-msgstr ""
-"Агресивните микроби ќе го бркаат пленот на поголеми растојанија\n"
-"и имаат поголема веројатност да се борат со предатори кога ќе бидат нападнати.\n"
-"Мирните микроби нема да ги ангажираат другите на поголеми растојанија\n"
-"и имаат помала веројатност да користат токсини против предатори."
-
-#, fuzzy
-msgid "WORLD_TEMPERATURE_TEMPERATE"
-msgstr "Префрлете се на фазата на будење. Достапно откако ќе имате доволно мозочна моќ (тип на ткиво со аксони)."
-
-msgid "WORLD_TEMPERATURE_WARM"
-msgstr ""
 
 msgid "WORST_PATCH_COLON"
 msgstr ""

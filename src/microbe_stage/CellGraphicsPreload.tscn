@@ -1,5 +1,6 @@
-[gd_scene load_steps=6 format=3 uid="uid://kme66mj8p305"]
+[gd_scene load_steps=8 format=3 uid="uid://kme66mj8p305"]
 
+[ext_resource type="Shader" uid="uid://bhy30q2qx7hue" path="res://shaders/MembraneWaterRipple.gdshader" id="2_rtkco"]
 [ext_resource type="Shader" uid="uid://buhqlk4dv4wy4" path="res://shaders/EngulfEffect.gdshader" id="7_qq4s8"]
 [ext_resource type="Shader" uid="uid://duvkpd0301bv0" path="res://shaders/MucocystEffect.gdshader" id="8_0n3nj"]
 
@@ -25,6 +26,22 @@ shader_parameter/movementWigglyNess = 1.0
 shader_parameter/fade = 0.25
 shader_parameter/tint = Color(0.4, 0.8, 0.6, 1)
 
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_4iv3r"]
+resource_local_to_scene = true
+render_priority = 0
+shader = ExtResource("2_rtkco")
+shader_parameter/WaterColor = Color(0, 0, 0, 0.02)
+shader_parameter/RippleStrength = 0.8
+shader_parameter/TimeOffset = 0.0
+shader_parameter/MovementSpeed = 1.0
+shader_parameter/MovementDirection = Vector2(1, 0)
+shader_parameter/PastPositions = PackedVector2Array(0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0)
+shader_parameter/PastPositionsCount = 0
+shader_parameter/Phase = 0.2
+shader_parameter/Attenuation = 0.998
+shader_parameter/StillnessFactor = 0.0
+shader_parameter/MembraneRadius = 5.0
+
 [node name="CellGraphicsPreload" type="Node3D"]
 editor_description = "Preloads cell membrane graphics effects"
 
@@ -35,3 +52,7 @@ surface_material_override/0 = SubResource("ShaderMaterial_7kw28")
 [node name="MeshInstance3D2" type="MeshInstance3D" parent="."]
 mesh = SubResource("BoxMesh_bp2ij")
 surface_material_override/0 = SubResource("ShaderMaterial_3rchp")
+
+[node name="MeshInstance3D3" type="MeshInstance3D" parent="."]
+mesh = SubResource("BoxMesh_bp2ij")
+surface_material_override/0 = SubResource("ShaderMaterial_4iv3r")

@@ -9,97 +9,68 @@ using Path = System.IO.Path;
 /// </summary>
 public partial class ModUploader : Control
 {
-    [Export]
-    public NodePath? UploadDialogPath;
-
-    [Export]
-    public NodePath ModSelectPath = null!;
-
-    [Export]
-    public NodePath UnknownItemActionsPath = null!;
-
-    [Export]
-    public NodePath CreateNewButtonPath = null!;
-
-    [Export]
-    public NodePath ShowManualEnterIdPath = null!;
-
-    [Export]
-    public NodePath ManualIdEntryPath = null!;
-
-    [Export]
-    public NodePath AcceptManualIdPath = null!;
-
-    [Export]
-    public NodePath ManualEnterIdSectionPath = null!;
-
-    [Export]
-    public NodePath DetailsEditorPath = null!;
-
-    [Export]
-    public NodePath EditedTitlePath = null!;
-
-    [Export]
-    public NodePath EditedDescriptionPath = null!;
-
-    [Export]
-    public NodePath EditedVisibilityPath = null!;
-
-    [Export]
-    public NodePath EditedTagsPath = null!;
-
-    [Export]
-    public NodePath PreviewImageRectPath = null!;
-
-    [Export]
-    public NodePath ToBeUploadedContentLocationPath = null!;
-
-    [Export]
-    public NodePath ErrorDisplayPath = null!;
-
-    [Export]
-    public NodePath FileSelectDialogPath = null!;
-
-    [Export]
-    public NodePath WorkshopNoticePath = null!;
-
-    [Export]
-    public NodePath ChangeNotesPath = null!;
-
-    [Export]
-    public NodePath UploadSucceededDialogPath = null!;
-
-    [Export]
-    public NodePath UploadSucceededTextPath = null!;
-
 #pragma warning disable CA2213
+    [Export]
     private CustomConfirmationDialog uploadDialog = null!;
 
+    [Export]
     private OptionButton modSelect = null!;
 
+    [Export]
     private Control unknownItemActions = null!;
+
+    [Export]
     private Button createNewButton = null!;
 
+    [Export]
     private Button showManualEnterId = null!;
+
+    [Export]
     private LineEdit manualIdEntry = null!;
+
+    [Export]
     private Button acceptManualId = null!;
+
+    [Export]
     private Control manualEnterIdSection = null!;
 
+    [Export]
     private Control detailsEditor = null!;
+
+    [Export]
     private LineEdit editedTitle = null!;
+
+    [Export]
     private TextEdit editedDescription = null!;
+
+    [Export]
     private CheckBox editedVisibility = null!;
+
+    [Export]
     private LineEdit editedTags = null!;
+
+    [Export]
     private TextureRect previewImageRect = null!;
+
+    [Export]
     private Label toBeUploadedContentLocation = null!;
+
+    [Export]
     private TextEdit changeNotes = null!;
 
+    [Export]
     private CustomWindow uploadSucceededDialog = null!;
+
+    [Export]
     private CustomRichTextLabel uploadSucceededText = null!;
 
+    [Export]
     private FileDialog fileSelectDialog = null!;
 
+    [Export]
     private CustomRichTextLabel workshopNotice = null!;
+
+    [Export]
     private Label errorDisplay = null!;
 #pragma warning restore CA2213
 
@@ -117,34 +88,6 @@ public partial class ModUploader : Control
 
     public override void _Ready()
     {
-        uploadDialog = GetNode<CustomConfirmationDialog>(UploadDialogPath);
-
-        modSelect = GetNode<OptionButton>(ModSelectPath);
-
-        unknownItemActions = GetNode<Control>(UnknownItemActionsPath);
-        createNewButton = GetNode<Button>(CreateNewButtonPath);
-        showManualEnterId = GetNode<Button>(ShowManualEnterIdPath);
-        manualIdEntry = GetNode<LineEdit>(ManualIdEntryPath);
-        acceptManualId = GetNode<Button>(AcceptManualIdPath);
-        manualEnterIdSection = GetNode<Control>(ManualEnterIdSectionPath);
-
-        detailsEditor = GetNode<Control>(DetailsEditorPath);
-        editedTitle = GetNode<LineEdit>(EditedTitlePath);
-        editedDescription = GetNode<TextEdit>(EditedDescriptionPath);
-        editedVisibility = GetNode<CheckBox>(EditedVisibilityPath);
-        editedTags = GetNode<LineEdit>(EditedTagsPath);
-        previewImageRect = GetNode<TextureRect>(PreviewImageRectPath);
-        toBeUploadedContentLocation = GetNode<Label>(ToBeUploadedContentLocationPath);
-        changeNotes = GetNode<TextEdit>(ChangeNotesPath);
-
-        workshopNotice = GetNode<CustomRichTextLabel>(WorkshopNoticePath);
-        errorDisplay = GetNode<Label>(ErrorDisplayPath);
-
-        uploadSucceededDialog = GetNode<CustomWindow>(UploadSucceededDialogPath);
-        uploadSucceededText = GetNode<CustomRichTextLabel>(UploadSucceededTextPath);
-
-        fileSelectDialog = GetNode<FileDialog>(FileSelectDialogPath);
-
         // Title is not automatically translated by Godot so we need to do it ourselves
         fileSelectDialog.Title = Localization.Translate("SELECT_PREVIEW_IMAGE");
 
@@ -181,39 +124,6 @@ public partial class ModUploader : Control
 
         uploadDialog.PopupCenteredShrink();
         UpdateUploadButtonStatus();
-    }
-
-    protected override void Dispose(bool disposing)
-    {
-        if (disposing)
-        {
-            if (UploadDialogPath != null)
-            {
-                UploadDialogPath.Dispose();
-                ModSelectPath.Dispose();
-                UnknownItemActionsPath.Dispose();
-                CreateNewButtonPath.Dispose();
-                ShowManualEnterIdPath.Dispose();
-                ManualIdEntryPath.Dispose();
-                AcceptManualIdPath.Dispose();
-                ManualEnterIdSectionPath.Dispose();
-                DetailsEditorPath.Dispose();
-                EditedTitlePath.Dispose();
-                EditedDescriptionPath.Dispose();
-                EditedVisibilityPath.Dispose();
-                EditedTagsPath.Dispose();
-                PreviewImageRectPath.Dispose();
-                ToBeUploadedContentLocationPath.Dispose();
-                ErrorDisplayPath.Dispose();
-                FileSelectDialogPath.Dispose();
-                WorkshopNoticePath.Dispose();
-                ChangeNotesPath.Dispose();
-                UploadSucceededDialogPath.Dispose();
-                UploadSucceededTextPath.Dispose();
-            }
-        }
-
-        base.Dispose(disposing);
     }
 
     private void UpdateAvailableModsList()

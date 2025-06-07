@@ -6,32 +6,8 @@
 [ext_resource type="Theme" uid="uid://b4cx0o110g4b6" path="res://src/gui_common/thrive_theme.tres" id="5"]
 [ext_resource type="LabelSettings" uid="uid://dr66v8g56c3vj" path="res://src/gui_common/fonts/Body-Bold-Tiny.tres" id="5_gh0u2"]
 
-[sub_resource type="StyleBoxFlat" id="4"]
-bg_color = Color(0.0666667, 0.168627, 0.211765, 1)
-border_width_left = 1
-border_width_top = 1
-border_width_right = 1
-border_width_bottom = 1
-border_color = Color(0.0666667, 1, 0.835294, 1)
-corner_radius_top_left = 10
-corner_radius_top_right = 10
-corner_radius_bottom_right = 10
-corner_radius_bottom_left = 10
-
 [sub_resource type="StyleBoxFlat" id="1"]
 bg_color = Color(0, 0.435294, 0.52549, 1)
-border_width_left = 1
-border_width_top = 1
-border_width_right = 1
-border_width_bottom = 1
-border_color = Color(0.0666667, 1, 0.835294, 1)
-corner_radius_top_left = 10
-corner_radius_top_right = 10
-corner_radius_bottom_right = 10
-corner_radius_bottom_left = 10
-
-[sub_resource type="StyleBoxFlat" id="2"]
-bg_color = Color(0.0666667, 1, 0.835294, 1)
 border_width_left = 1
 border_width_top = 1
 border_width_right = 1
@@ -49,6 +25,30 @@ border_width_top = 1
 border_width_right = 1
 border_width_bottom = 1
 border_color = Color(0.396078, 0.623529, 0.584314, 1)
+corner_radius_top_left = 10
+corner_radius_top_right = 10
+corner_radius_bottom_right = 10
+corner_radius_bottom_left = 10
+
+[sub_resource type="StyleBoxFlat" id="2"]
+bg_color = Color(0.0666667, 1, 0.835294, 1)
+border_width_left = 1
+border_width_top = 1
+border_width_right = 1
+border_width_bottom = 1
+border_color = Color(0.0666667, 1, 0.835294, 1)
+corner_radius_top_left = 10
+corner_radius_top_right = 10
+corner_radius_bottom_right = 10
+corner_radius_bottom_left = 10
+
+[sub_resource type="StyleBoxFlat" id="4"]
+bg_color = Color(0.0666667, 0.168627, 0.211765, 1)
+border_width_left = 1
+border_width_top = 1
+border_width_right = 1
+border_width_bottom = 1
+border_color = Color(0.0666667, 1, 0.835294, 1)
 corner_radius_top_left = 10
 corner_radius_top_right = 10
 corner_radius_bottom_right = 10
@@ -87,11 +87,11 @@ focus_mode = 0
 mouse_filter = 1
 theme_override_constants/outline_size = 0
 theme_override_constants/h_separation = 0
-theme_override_styles/normal = SubResource("4")
+theme_override_styles/focus = SubResource("1")
+theme_override_styles/disabled = SubResource("3")
 theme_override_styles/hover = SubResource("1")
 theme_override_styles/pressed = SubResource("2")
-theme_override_styles/disabled = SubResource("3")
-theme_override_styles/focus = SubResource("1")
+theme_override_styles/normal = SubResource("4")
 toggle_mode = true
 action_mode = 0
 expand_icon = true

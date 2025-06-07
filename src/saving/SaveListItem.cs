@@ -13,52 +13,40 @@ public partial class SaveListItem : PanelContainer
     [Export]
     public bool Loadable = true;
 
-    [Export]
-    public NodePath? SaveNamePath;
-
-    [Export]
-    public NodePath ScreenshotPath = null!;
-
-    [Export]
-    public NodePath VersionPath = null!;
-
-    [Export]
-    public NodePath VersionWarningPath = null!;
-
-    [Export]
-    public NodePath TypePath = null!;
-
-    [Export]
-    public NodePath CreatedAtPath = null!;
-
-    [Export]
-    public NodePath CreatedByPath = null!;
-
-    [Export]
-    public NodePath CreatedOnPlatformPath = null!;
-
-    [Export]
-    public NodePath DescriptionPath = null!;
-
-    [Export]
-    public NodePath LoadButtonPath = null!;
-
-    [Export]
-    public NodePath HighlightPath = null!;
-
     private static readonly object ResizeLock = new();
 
 #pragma warning disable CA2213
+    [Export]
     private Label? saveNameLabel;
+
+    [Export]
     private TextureRect screenshot = null!;
+
+    [Export]
     private Label version = null!;
+
+    [Export]
     private Label versionWarning = null!;
+
+    [Export]
     private Label type = null!;
+
+    [Export]
     private Label createdAt = null!;
+
+    [Export]
     private Label createdBy = null!;
+
+    [Export]
     private Label createdOnPlatform = null!;
+
+    [Export]
     private Label description = null!;
+
+    [Export]
     private Button loadButton = null!;
+
+    [Export]
     private Panel? highlightPanel;
 #pragma warning restore CA2213
 
@@ -157,18 +145,6 @@ public partial class SaveListItem : PanelContainer
     {
         if (string.IsNullOrEmpty(SaveName))
             throw new InvalidOperationException($"{nameof(SaveName)} is required");
-
-        saveNameLabel = GetNode<Label>(SaveNamePath);
-        screenshot = GetNode<TextureRect>(ScreenshotPath);
-        version = GetNode<Label>(VersionPath);
-        versionWarning = GetNode<Label>(VersionWarningPath);
-        type = GetNode<Label>(TypePath);
-        createdAt = GetNode<Label>(CreatedAtPath);
-        createdBy = GetNode<Label>(CreatedByPath);
-        createdOnPlatform = GetNode<Label>(CreatedOnPlatformPath);
-        description = GetNode<Label>(DescriptionPath);
-        loadButton = GetNode<Button>(LoadButtonPath);
-        highlightPanel = GetNode<Panel>(HighlightPath);
 
         loadButton.Visible = Loadable;
 
@@ -295,29 +271,6 @@ public partial class SaveListItem : PanelContainer
         }
 
         EmitSignal(SignalName.OnProblemFreeSaveLoaded);
-    }
-
-    protected override void Dispose(bool disposing)
-    {
-        if (disposing)
-        {
-            if (SaveNamePath != null)
-            {
-                SaveNamePath.Dispose();
-                ScreenshotPath.Dispose();
-                VersionPath.Dispose();
-                VersionWarningPath.Dispose();
-                TypePath.Dispose();
-                CreatedAtPath.Dispose();
-                CreatedByPath.Dispose();
-                CreatedOnPlatformPath.Dispose();
-                DescriptionPath.Dispose();
-                LoadButtonPath.Dispose();
-                HighlightPath.Dispose();
-            }
-        }
-
-        base.Dispose(disposing);
     }
 
     private void LoadSaveData()

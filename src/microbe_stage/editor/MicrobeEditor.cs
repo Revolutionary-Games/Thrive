@@ -8,31 +8,25 @@ using Newtonsoft.Json;
 ///   Main class of the microbe editor
 /// </summary>
 [JsonObject(IsReference = true)]
-[SceneLoadedClass("res://src/microbe_stage/editor/MicrobeEditor.tscn")]
+[SceneLoadedClass("res://src/microbe_stage/editor/MicrobeEditor.tscn", UsesEarlyResolve = false)]
 public partial class MicrobeEditor : EditorBase<EditorAction, MicrobeStage>, IEditorReportData, ICellEditorData
 {
-    [Export]
-    public NodePath? ReportTabPath;
-
-    [Export]
-    public NodePath PatchMapTabPath = null!;
-
-    [Export]
-    public NodePath CellEditorTabPath = null!;
-
     private const string ADVANCED_TABS_SHOWN_BEFORE = "editor_advanced_tabs";
 
 #pragma warning disable CA2213
     [JsonProperty]
     [AssignOnlyChildItemsOnDeserialize]
+    [Export]
     private MicrobeEditorReportComponent reportTab = null!;
 
     [JsonProperty]
     [AssignOnlyChildItemsOnDeserialize]
+    [Export]
     private MicrobeEditorPatchMap patchMapTab = null!;
 
     [JsonProperty]
     [AssignOnlyChildItemsOnDeserialize]
+    [Export]
     private CellEditorComponent cellEditorTab = null!;
 
     private MicrobeEditorTutorialGUI tutorialGUI = null!;
@@ -164,9 +158,6 @@ public partial class MicrobeEditor : EditorBase<EditorAction, MicrobeStage>, IEd
 
     protected override void ResolveDerivedTypeNodeReferences()
     {
-        reportTab = GetNode<MicrobeEditorReportComponent>(ReportTabPath);
-        patchMapTab = GetNode<MicrobeEditorPatchMap>(PatchMapTabPath);
-        cellEditorTab = GetNode<CellEditorComponent>(CellEditorTabPath);
         tutorialGUI = GetNode<MicrobeEditorTutorialGUI>("TutorialGUI");
     }
 
@@ -429,21 +420,6 @@ public partial class MicrobeEditor : EditorBase<EditorAction, MicrobeStage>, IEd
         editedSpecies = species ?? throw new NullReferenceException("didn't find edited species");
 
         base.SetupEditedSpecies();
-    }
-
-    protected override void Dispose(bool disposing)
-    {
-        if (disposing)
-        {
-            if (ReportTabPath != null)
-            {
-                ReportTabPath.Dispose();
-                PatchMapTabPath.Dispose();
-                CellEditorTabPath.Dispose();
-            }
-        }
-
-        base.Dispose(disposing);
     }
 
     private void UpdateAutoEvoToReportTab()

@@ -7,16 +7,16 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2025-05-11 23:56+0200\n"
-"PO-Revision-Date: 2025-04-29 20:33+0000\n"
-"Last-Translator: Kajetan Kolański <dededemenene@gmail.com>\n"
+"POT-Creation-Date: 2025-05-28 14:54+0300\n"
+"PO-Revision-Date: 2025-05-27 06:43+0000\n"
+"Last-Translator: Anonymous <noreply@weblate.org>\n"
 "Language-Team: Polish <https://translate.revolutionarygamesstudio.com/projects/thrive/thrive-game/pl/>\n"
 "Language: pl\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=3; plural=n==1 ? 0 : n%10>=2 && n%10<=4 && (n%100<10 || n%100>=20) ? 1 : 2;\n"
-"X-Generator: Weblate 5.7.2\n"
+"X-Generator: Weblate 5.11.4\n"
 "Generated-By: Babel 2.8.0\n"
 
 msgid "2D_MOVEMENT_TYPE_SELECTION"
@@ -384,10 +384,6 @@ msgstr "Status działania:"
 msgid "AUTO_EVO_STATUS_COLON"
 msgstr "Status Auto-Ewo:"
 
-#, fuzzy
-msgid "AUTO_EVO_TOOL_BUTTON"
-msgstr "Auto ({0}x{1})"
-
 msgid "AUTO_MOVE_FORWARDS"
 msgstr "Automatyczne poruszanie do przodu"
 
@@ -417,9 +413,6 @@ msgstr "Ukośnik wsteczny"
 
 msgid "BACKSPACE"
 msgstr "Backspace"
-
-msgid "BACK_TO_SETTINGS"
-msgstr ""
 
 msgid "BACTERIAL_THERMOSYNTHESIS"
 msgstr "Termosynteza Bakteryjna"
@@ -748,9 +741,8 @@ msgstr ""
 "Może to pomóc szybciej znaleźć rzeczy wskazując najkrótszą trasę do nich.\n"
 "Alternatywnie zbyt duży zasięg może pokazać zasoby które znikną zanim do nich dotrzesz."
 
-#, fuzzy
 msgid "CHEMOSYNTHESIS"
-msgstr "Chemosynteza siarkowa"
+msgstr "Chemosynteza"
 
 msgid "CHEMOSYNTHESIZING_PROTEINS"
 msgstr "Białka Chemosyntezujące"
@@ -821,15 +813,6 @@ msgstr "Wyczyść pamięć podręczną"
 #, fuzzy
 msgid "CLICK_TO_SELECT"
 msgstr "Usuń zaznaczone"
-
-msgid "CLIMATE_INSTABILITY"
-msgstr ""
-
-#, fuzzy
-msgid "CLIMATE_INSTABILITY_EXPLANATION"
-msgstr ""
-"Aktywne mikroby będą wędrować kiedy nic się nie dzieje.\n"
-"Osiadłe mikroby będą czekać w miejscu i oczekiwać zmian w otoczeniu zanim zaczną coś robić."
 
 msgid "CLOSE"
 msgstr "Zamknij"
@@ -1095,6 +1078,7 @@ msgstr "Wybierz gatunek"
 msgid "CONTINUE_THRIVING"
 msgstr "Kontynuuj Rozkwitanie"
 
+#, fuzzy
 msgid "CONTINUE_TO_PROTOTYPES"
 msgstr ""
 "Dotarłeś do końca \"ukończonej\" części Thrive.\n"
@@ -2444,33 +2428,11 @@ msgstr "Wciśnij przycisk \"cofnij\" w edytorze żeby poprawić błąd"
 msgid "GENERAL_LOADING_TIP_7"
 msgstr "Wciśnij przycisk \"cofnij\" w edytorze żeby poprawić błąd"
 
-#, fuzzy
-msgid "GENERATE_BUTTON"
-msgstr "Pokolenia"
-
 msgid "GENERATIONS"
 msgstr "Pokolenia"
 
 msgid "GENERATION_COLON"
 msgstr "Generacja:"
-
-msgid "GEOLOGICAL_ACTIVITY"
-msgstr ""
-
-msgid "GEOLOGICAL_ACTIVITY_ACTIVE"
-msgstr ""
-
-msgid "GEOLOGICAL_ACTIVITY_AVERAGE"
-msgstr ""
-
-msgid "GEOLOGICAL_ACTIVITY_DORMANT"
-msgstr ""
-
-#, fuzzy
-msgid "GEOLOGICAL_ACTIVITY_EXPLANATION"
-msgstr ""
-"Aktywne mikroby będą wędrować kiedy nic się nie dzieje.\n"
-"Osiadłe mikroby będą czekać w miejscu i oczekiwać zmian w otoczeniu zanim zaczną coś robić."
 
 msgid "GITHUB_TOOLTIP"
 msgstr "Odwiedź naszą stronę GitHub"
@@ -2594,6 +2556,7 @@ msgstr "Przytrzymaj by przełączyć między trybami panoramicznym i obrotu"
 msgid "HOLD_PACK_COMMANDS_MENU"
 msgstr "Przytrzymaj aby wyświetlić menu poleceń grupowych"
 
+#, fuzzy
 msgid "HOLD_TO_SHOW_CURSOR"
 msgstr "Przytrzymaj [thrive:input]g_free_cursor[/thrive:input] dla kursora"
 
@@ -2631,6 +2594,18 @@ msgid "HYDROGENASE_DESCRIPTION"
 msgstr "Wykorzystuje wodór do uzyskiwania energii z [thrive:compound type=\\\"glucose\\\"]Glukozy[/thrive:compound]. Bardziej skuteczna przy niższych stężeniach [thrive:compound type=\\\"oxygen\\\"]Tlenu[/thrive:compound] niż metabolosomy. Jest głównym źródłem energii dla wielu organizmów w środowiskach beztlenowych."
 
 msgid "HYDROGENASE_PROCESSES_DESCRIPTION"
+msgstr "Przekształca [thrive:compound type=\\\"glucose\\\"]Glukozę[/thrive:compound] w [thrive:compound type=\\\"atp\\\"][/thrive:compound]."
+
+#, fuzzy
+msgid "HYDROGENOSOME"
+msgstr "Siarkowodór (H₂S)"
+
+#, fuzzy
+msgid "HYDROGENOSOME_DESCRIPTION"
+msgstr "Wykorzystuje wodór do uzyskiwania energii z [thrive:compound type=\\\"glucose\\\"]Glukozy[/thrive:compound]. Bardziej skuteczna przy niższych stężeniach [thrive:compound type=\\\"oxygen\\\"]Tlenu[/thrive:compound] niż metabolosomy. Jest głównym źródłem energii dla wielu organizmów w środowiskach beztlenowych."
+
+#, fuzzy
+msgid "HYDROGENOSOME_PROCESSES_DESCRIPTION"
 msgstr "Przekształca [thrive:compound type=\\\"glucose\\\"]Glukozę[/thrive:compound] w [thrive:compound type=\\\"atp\\\"][/thrive:compound]."
 
 msgid "HYDROGEN_SULFIDE"
@@ -3641,6 +3616,10 @@ msgstr "Ilość mikrobów:"
 msgid "MICROBE_BENCHMARK"
 msgstr "Edytor Mikroba"
 
+#, fuzzy
+msgid "MICROBE_CAMERA_TILT_EFFECT"
+msgstr "  {0}: Znaleziono w {1} gatunkach, średnio {2} na każdy"
+
 msgid "MICROBE_EDITOR"
 msgstr "Edytor Mikroba"
 
@@ -3752,6 +3731,10 @@ msgstr "  {0}: Znaleziono w {1} gatunkach, średnio {2} na każdy"
 
 #, fuzzy
 msgid "MICROBE_ORGANELLE_UPGRADES_STATISTICS"
+msgstr "  {0}: Znaleziono w {1} gatunkach, średnio {2} na każdy"
+
+#, fuzzy
+msgid "MICROBE_RIPPLE_EFFECT"
 msgstr "  {0}: Znaleziono w {1} gatunkach, średnio {2} na każdy"
 
 msgid "MICROBE_SPECIES_DETAIL_TEXT"
@@ -4839,10 +4822,6 @@ msgstr "Dodaj organellę"
 msgid "PLANET"
 msgstr "Planeta"
 
-#, fuzzy
-msgid "PLANET_CUSTOMIZER"
-msgstr "Pod kursorem:"
-
 msgid "PLANET_DETAILS_STRING"
 msgstr ""
 "Tylko życie jakie znamy: {0}\n"
@@ -4850,6 +4829,9 @@ msgstr ""
 "Cykl dnia i nocy: {2}\n"
 "Długość dnia w sekundach: {3}\n"
 "Losowe ziarno planety: {4}"
+
+msgid "PLANET_GENERATION_TEASER"
+msgstr "Generacja planety już wkrótce!"
 
 msgid "PLANET_RANDOM_SEED"
 msgstr "Losowe ziarno planety"
@@ -5046,10 +5028,6 @@ msgstr "Powtórz ostatnią czynność"
 
 msgid "REFRESH"
 msgstr "Odśwież"
-
-#, fuzzy
-msgid "REGENERATE_BUTTON"
-msgstr "Akson"
 
 #, fuzzy
 msgid "RENDER_SCALE"
@@ -6388,6 +6366,7 @@ msgstr ""
 "\n"
 "Jeśli twoja produkcja [thrive:compound type=\"atp\"][/thrive:compound] jest negatywna, postaraj się ją zwiększyć albo dodać [b]przechowywanie[/b] [thrive:icon]StorageIcon[/thrive:icon] by móc się poruszać w małych impulsach."
 
+#, fuzzy
 msgid "TUTORIAL_MICROBE_EDITOR_AUTO-EVO_PREDICTION"
 msgstr ""
 "Ten panel pokazuje przewidywania względem przyszłej populacji. Te liczby są populacją z symulacji [b]auto-ewolucji[/b].\n"
@@ -7766,6 +7745,47 @@ msgstr "Termosyntaza jest białkiem które używa konwekcji termicznej by zmieni
 msgid "WIKI_HYDROGENASE_UPGRADES"
 msgstr "Nitrogenaza to białko mogące użyć gazowego [thrive:compound type=\"nitrogen\"][/thrive:compound] i energii komórkowej w formie [thrive:compound type=\"atp\"][/thrive:compound] do produkcji [thrive:compound type=\"ammonia\"][/thrive:compound], kluczowego składnika dla wzrostu komórek. Ten proces nazywany jest [b]anaerobic nitrogen fixation[/b]. Jako iż nitrogenaza jest zawieszona bezpośrednio w cytozolu, otaczający płyn przeprowadza [b]glycolysis[/b]."
 
+#, fuzzy
+msgid "WIKI_HYDROGENOSOME_EFFECTS"
+msgstr "Nitrogenaza to białko mogące użyć gazowego [thrive:compound type=\"nitrogen\"][/thrive:compound] i energii komórkowej w formie [thrive:compound type=\"atp\"][/thrive:compound] do produkcji [thrive:compound type=\"ammonia\"][/thrive:compound], kluczowego składnika dla wzrostu komórek. Ten proces nazywany jest [b]anaerobic nitrogen fixation[/b]. Jako iż nitrogenaza jest zawieszona bezpośrednio w cytozolu, otaczający płyn przeprowadza [b]glycolysis[/b]."
+
+#, fuzzy
+msgid "WIKI_HYDROGENOSOME_INTRO"
+msgstr ""
+"Zawiera enzymy trawienne. Może być zmodyfikowany by zmienić typ enzymu który zawiera. Każdy [b]Lizosom[/b] może korzystać z tylko jednego typu enzym. Enzymy przyspieszają trawienie i polepszają efektywność trawienia.\n"
+"\n"
+"[b]Lizosom[/b] jest organellą otoczoną błoną która zawiera enzymy hydrolityczne które potrafią rozkładać wiele związków biologicznych. [b]Lizosom[/b] daje komórce umiejętność trawienia materiałów pochłoniętych w procesie endocytozy, a także oczyszczają odpady komórki w procesie zwanym autofagią."
+
+#, fuzzy
+msgid "WIKI_HYDROGENOSOME_MODIFICATIONS"
+msgstr "Nitrogenaza to białko mogące użyć gazowego [thrive:compound type=\"nitrogen\"][/thrive:compound] i energii komórkowej w formie [thrive:compound type=\"atp\"][/thrive:compound] do produkcji [thrive:compound type=\"ammonia\"][/thrive:compound], kluczowego składnika dla wzrostu komórek. Ten proces nazywany jest [b]anaerobic nitrogen fixation[/b]. Jako iż nitrogenaza jest zawieszona bezpośrednio w cytozolu, otaczający płyn przeprowadza [b]glycolysis[/b]."
+
+#, fuzzy
+msgid "WIKI_HYDROGENOSOME_PROCESSES"
+msgstr "Produkuje [thrive:compound type=\"atp\"][/thrive:compound] używając gradientów temperatury. Tempo skaluje się ze stężeniem [thrive:compound type=\"temperature\"][/thrive:compound]."
+
+#, fuzzy
+msgid "WIKI_HYDROGENOSOME_REQUIREMENTS"
+msgstr ""
+"Komórka musi mieć [b][color=#3796e1][url=thriveopedia:nucleus]Jądro Komórkowe[/url][/color][/b] by wyewoluować [b]Czynniki Wiążące[/b].\n"
+"\n"
+"Jeżeli warunki odblokowania organelli są włączone w ustawieniach, [i]wszystkie[/i] poniższe warunki muszą być spełnione [i] dla komórki gracza[/i]:\n"
+"\n"
+"[indent]—   Zawiera [b][color=#3796e1][url=thriveopedia:nucleus]Jądro Komórkowe[/url][/color][/b] przez [b]5[/b] generacji.[/indent]\n"
+"[indent]—   Ma bilans [thrive:compound type=\"atp\"][/thrive:compound] równy [b]+15[/b] lub większy.[/indent]"
+
+#, fuzzy
+msgid "WIKI_HYDROGENOSOME_SCIENTIFIC_BACKGROUND"
+msgstr "Nitrogenaza to białko mogące użyć gazowego [thrive:compound type=\"nitrogen\"][/thrive:compound] i energii komórkowej w formie [thrive:compound type=\"atp\"][/thrive:compound] do produkcji [thrive:compound type=\"ammonia\"][/thrive:compound], kluczowego składnika dla wzrostu komórek. Ten proces nazywany jest [b]anaerobic nitrogen fixation[/b]. Jako iż nitrogenaza jest zawieszona bezpośrednio w cytozolu, otaczający płyn przeprowadza [b]glycolysis[/b]."
+
+#, fuzzy
+msgid "WIKI_HYDROGENOSOME_STRATEGY"
+msgstr "Termosyntaza jest białkiem które używa konwekcji termicznej by zmieniać swój kształt, pozwalając mu się zwinąć i związać z ADP pod wpływem ciepła, następnie rozwinąć i przetworzyć ADP na [thrive:compound type=\"atp\"][/thrive:compound] w kontakcie z niższą temperaturą w procesie zwanym [b]thermosynthesis[/b]. Szybkość produkcji [thrive:compound type=\"atp\"][/thrive:compound] wzrasta z [thrive:compound type=\"temperature\"][/thrive:compound]."
+
+#, fuzzy
+msgid "WIKI_HYDROGENOSOME_UPGRADES"
+msgstr "Nitrogenaza to białko mogące użyć gazowego [thrive:compound type=\"nitrogen\"][/thrive:compound] i energii komórkowej w formie [thrive:compound type=\"atp\"][/thrive:compound] do produkcji [thrive:compound type=\"ammonia\"][/thrive:compound], kluczowego składnika dla wzrostu komórek. Ten proces nazywany jest [b]anaerobic nitrogen fixation[/b]. Jako iż nitrogenaza jest zawieszona bezpośrednio w cytozolu, otaczający płyn przeprowadza [b]glycolysis[/b]."
+
 msgid "WIKI_INDUSTRIAL_STAGE_CURRENT_DEVELOPMENT"
 msgstr "Prace nad tym etapem jeszcze się nie zaczęły. Design rozgrywki i teorii dla tego etapu zacznie mnie większe znaczenie kiedy rozpoczną się prace nad [color=#3796e1][url=thriveopedia:society_stage]Etapem Społeczeństwa[/url][/color]."
 
@@ -8261,6 +8281,10 @@ msgstr "Mitochondrium"
 
 #, fuzzy
 msgid "WIKI_PAGE_HYDROGENASE"
+msgstr "Azotaza"
+
+#, fuzzy
+msgid "WIKI_PAGE_HYDROGENOSOME"
 msgstr "Azotaza"
 
 #, fuzzy
@@ -8827,28 +8851,6 @@ msgid "WORLD_RELATIVE_MOVEMENT"
 msgstr "żeby zwiększyć ruch"
 
 #, fuzzy
-msgid "WORLD_SEA_LEVEL"
-msgstr "{0}-{1}m poniżej poziomu morza"
-
-#, fuzzy
-msgid "WORLD_SEA_LEVEL_DEEP"
-msgstr "{0}-{1}m poniżej poziomu morza"
-
-#, fuzzy
-msgid "WORLD_SEA_LEVEL_EXPLANATION"
-msgstr ""
-"Skupione mikroby będą wyszukiwać pożywienia lub ofiar przez długie odległości\n"
-"oraz mogą być bardzo zachłanne względem nowych źródeł pożywienia.\n"
-"Responsywne mikroby będą chętniej zmieniać źródła pożywienia."
-
-#, fuzzy
-msgid "WORLD_SEA_LEVEL_MODERATE"
-msgstr "żeby zwiększyć ruch"
-
-msgid "WORLD_SEA_LEVEL_SHALLOW"
-msgstr ""
-
-#, fuzzy
 msgid "WORLD_SIZE"
 msgstr "Świat"
 
@@ -8872,29 +8874,6 @@ msgstr ""
 #, fuzzy
 msgid "WORLD_SIZE_TOOLTIP"
 msgstr "Wartość używana do generacji świata (musi być dodatnią liczbą całkowitą)"
-
-#, fuzzy
-msgid "WORLD_TEMPERATURE"
-msgstr "Temperatura"
-
-#, fuzzy
-msgid "WORLD_TEMPERATURE_COLD"
-msgstr "Temp."
-
-#, fuzzy
-msgid "WORLD_TEMPERATURE_EXPLANATION"
-msgstr ""
-"Skupione mikroby będą wyszukiwać pożywienia lub ofiar przez długie odległości\n"
-"oraz mogą być bardzo zachłanne względem nowych źródeł pożywienia.\n"
-"Responsywne mikroby będą chętniej zmieniać źródła pożywienia."
-
-#, fuzzy
-msgid "WORLD_TEMPERATURE_TEMPERATE"
-msgstr "Temp."
-
-#, fuzzy
-msgid "WORLD_TEMPERATURE_WARM"
-msgstr "Temp."
 
 msgid "WORST_PATCH_COLON"
 msgstr "Najgorzej radzi sobie w:"
@@ -8938,13 +8917,6 @@ msgstr "Oddal"
 
 #~ msgid "PASSIVE_REPRODUCTION_PROGRESS_EXPLANATION"
 #~ msgstr "(biernie uzyskuj związki reprodukcji ze środowiska bez potrzeby robienia czegokolwiek)"
-
-#~ msgid "PLANET_GENERATION_TEASER"
-#~ msgstr "Generacja planety już wkrótce!"
-
-#, fuzzy
-#~ msgid "PLAY_WTH_CURRENT_SETTINGS"
-#~ msgstr "Graj Z Obecnym Ustawieniem"
 
 #~ msgid "TO_BE_IMPLEMENTED"
 #~ msgstr "Do zaimplementowania."

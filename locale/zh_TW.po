@@ -7,8 +7,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2025-05-11 23:56+0200\n"
-"PO-Revision-Date: 2025-05-09 14:04+0000\n"
+"POT-Creation-Date: 2025-05-28 14:54+0300\n"
+"PO-Revision-Date: 2025-05-29 18:47+0000\n"
 "Last-Translator: xzihnago <xzihnago@gmail.com>\n"
 "Language-Team: Chinese (Traditional Han script) <https://translate.revolutionarygamesstudio.com/projects/thrive/thrive-game/zh_Hant/>\n"
 "Language: zh_TW\n"
@@ -16,7 +16,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=1; plural=0;\n"
-"X-Generator: Weblate 5.7.2\n"
+"X-Generator: Weblate 5.11.4\n"
 "Generated-By: Babel 2.8.0\n"
 
 msgid "2D_MOVEMENT_TYPE_SELECTION"
@@ -382,10 +382,6 @@ msgstr "運行狀態："
 msgid "AUTO_EVO_STATUS_COLON"
 msgstr "Auto-Evo 狀態："
 
-#, fuzzy
-msgid "AUTO_EVO_TOOL_BUTTON"
-msgstr "自動（{0}x{1}）"
-
 msgid "AUTO_MOVE_FORWARDS"
 msgstr "自動向前移動"
 
@@ -415,9 +411,6 @@ msgstr "\\"
 
 msgid "BACKSPACE"
 msgstr "Backspace"
-
-msgid "BACK_TO_SETTINGS"
-msgstr ""
 
 msgid "BACTERIAL_THERMOSYNTHESIS"
 msgstr "細菌熱合成"
@@ -811,15 +804,6 @@ msgstr "清除快取"
 
 msgid "CLICK_TO_SELECT"
 msgstr "選取"
-
-msgid "CLIMATE_INSTABILITY"
-msgstr ""
-
-#, fuzzy
-msgid "CLIMATE_INSTABILITY_EXPLANATION"
-msgstr ""
-"活躍型微生物在周圍無事發生時會四處移動。\n"
-"沉著型微生物將靜止不動，等待環境變化後才行動。"
 
 msgid "CLOSE"
 msgstr "關閉"
@@ -2378,33 +2362,11 @@ msgstr "別忘了，您可以使用螢幕右上角的面板查看遊標下的內
 msgid "GENERAL_LOADING_TIP_7"
 msgstr "如果您的物種量降至零，您就會滅絕。"
 
-#, fuzzy
-msgid "GENERATE_BUTTON"
-msgstr "世代"
-
 msgid "GENERATIONS"
 msgstr "世代"
 
 msgid "GENERATION_COLON"
 msgstr "世代："
-
-msgid "GEOLOGICAL_ACTIVITY"
-msgstr ""
-
-msgid "GEOLOGICAL_ACTIVITY_ACTIVE"
-msgstr ""
-
-msgid "GEOLOGICAL_ACTIVITY_AVERAGE"
-msgstr ""
-
-msgid "GEOLOGICAL_ACTIVITY_DORMANT"
-msgstr ""
-
-#, fuzzy
-msgid "GEOLOGICAL_ACTIVITY_EXPLANATION"
-msgstr ""
-"活躍型微生物在周圍無事發生時會四處移動。\n"
-"沉著型微生物將靜止不動，等待環境變化後才行動。"
 
 msgid "GITHUB_TOOLTIP"
 msgstr "造訪我們的 GitHub 儲存庫"
@@ -2562,6 +2524,16 @@ msgid "HYDROGENASE_DESCRIPTION"
 msgstr "使用氫從[thrive:compound type=\\\"glucose\\\"][/thrive:compound] 獲取能量。在低[thrive:compound type=\\\"oxygen\\\"][/thrive:compound] 含量下比代謝體更有效。缺氧環境中的許多生物將其作為主要能量來源。"
 
 msgid "HYDROGENASE_PROCESSES_DESCRIPTION"
+msgstr "將[thrive:compound type=\\\"glucose\\\"][/thrive:compound] 轉化為[thrive:compound type=\\\"atp\\\"][/thrive:compound]。"
+
+msgid "HYDROGENOSOME"
+msgstr "氫化體"
+
+#, fuzzy
+msgid "HYDROGENOSOME_DESCRIPTION"
+msgstr "使用氫從[thrive:compound type=\\\"glucose\\\"][/thrive:compound] 獲取能量。在低[thrive:compound type=\\\"oxygen\\\"][/thrive:compound] 含量下比代謝體更有效。缺氧環境中的許多生物將其作為主要能量來源。"
+
+msgid "HYDROGENOSOME_PROCESSES_DESCRIPTION"
 msgstr "將[thrive:compound type=\\\"glucose\\\"][/thrive:compound] 轉化為[thrive:compound type=\\\"atp\\\"][/thrive:compound]。"
 
 msgid "HYDROGEN_SULFIDE"
@@ -3506,6 +3478,9 @@ msgstr "微生物數量："
 msgid "MICROBE_BENCHMARK"
 msgstr "微生物性能基準測試"
 
+msgid "MICROBE_CAMERA_TILT_EFFECT"
+msgstr "微生物視角傾斜"
+
 msgid "MICROBE_EDITOR"
 msgstr "微生物編輯器"
 
@@ -3592,6 +3567,10 @@ msgstr "  {0}：存在於 {1} 個物種中，平均每個物種為 {2} 個"
 
 msgid "MICROBE_ORGANELLE_UPGRADES_STATISTICS"
 msgstr "[b]細胞器升級資料：[/b]"
+
+#, fuzzy
+msgid "MICROBE_RIPPLE_EFFECT"
+msgstr "微生物視角傾斜"
 
 msgid "MICROBE_SPECIES_DETAIL_TEXT"
 msgstr ""
@@ -4615,10 +4594,6 @@ msgstr "放置細胞器（或其他可放置的物件）"
 msgid "PLANET"
 msgstr "星球"
 
-#, fuzzy
-msgid "PLANET_CUSTOMIZER"
-msgstr "滑鼠指標處："
-
 msgid "PLANET_DETAILS_STRING"
 msgstr ""
 "僅限已知生命形式：{0}\n"
@@ -4626,6 +4601,9 @@ msgstr ""
 "晝夜循環：{2}\n"
 "一日時長：{3} 秒\n"
 "星球隨機種子：{4}"
+
+msgid "PLANET_GENERATION_TEASER"
+msgstr "敬請期待行星生成功能！"
 
 msgid "PLANET_RANDOM_SEED"
 msgstr "星球隨機種子"
@@ -4819,10 +4797,6 @@ msgstr "重做上一個動作"
 
 msgid "REFRESH"
 msgstr "重新整理"
-
-#, fuzzy
-msgid "REGENERATE_BUTTON"
-msgstr "細胞器"
 
 msgid "RENDER_SCALE"
 msgstr "解析度比例"
@@ -6172,61 +6146,59 @@ msgstr ""
 "\n"
 "這些資訊可以提供您物種演化方向的啟示，但作為新手玩家，如果您無法理解此面板也不必擔心。"
 
-#, fuzzy
 msgid "TUTORIAL_MICROBE_EDITOR_MIGRATION"
 msgstr ""
-"您可以為細胞添加[b]化學感受器[/b]細胞器。\n"
+"除了能夠在地圖上移動之外，您還可以控制物種族群的遷移，而無需親自移動。\n"
 "\n"
-"化學感受器表現為您的物種感知化合物的能力。\n"
+"這使您可以更快地將您的物種傳播到新的區域。當分佈範圍更廣時，您將擁有更多的總人口，也能更輕鬆地自行遷徙。\n"
 "\n"
-"放置化學感受器將允許您探測諸如[thrive:compound type=\"glucose\"][/thrive:compound] 之類的化合物，並引導您找到它們。它也可用於探測其他物種的細胞。"
+"但要小心，不要將您的族群送到您的物種無法適應的區域。\n"
+"\n"
+"嘗試一下遷移工具。點擊「遷移管理器」按鈕，然後選擇一個來源區域與一個目標區域以在它們之間移動物種。"
 
-#, fuzzy
 msgid "TUTORIAL_MICROBE_EDITOR_MODIFY_ORGANELLE"
 msgstr ""
 "您可以[b]修改[/b]這個細胞器。這將為細胞器解鎖[b]新功能[/b]或[b]升級[/b]。\n"
 "\n"
 "為此，請右鍵單擊細胞器以顯示[b]細胞器彈出式選單[/b]，然後按「修改」按鈕。\n"
 "\n"
+"透過尋找其他可以升級的細胞器，您可以找到新的遊戲玩法。\n"
+"\n"
 "修改細胞器以繼續。"
 
-#, fuzzy
 msgid "TUTORIAL_MICROBE_EDITOR_NEGATIVE_ATP_BALANCE"
 msgstr ""
 "您的[thrive:compound type=\"atp\"][/thrive:compound] 平衡為負。\n"
 "\n"
 "當進行所有代謝並移動時，您的細胞將耗盡[thrive:compound type=\"atp\"][/thrive:compound] 並死亡。\n"
 "\n"
-"調節[thrive:compound type=\"atp\"][/thrive:compound] 生產的方法有很多。您可以透過加入生產[thrive:compound type=\"atp\"][/thrive:compound] 的細胞器來增加，例如[b]代謝體[/b]。一些[b]細胞膜[/b]還會為您提供滲透調節 [thrive:icon]OsmoIcon[/thrive:icon] 增益。\n"
+"調節[thrive:compound type=\"atp\"][/thrive:compound] 生產的方法有很多。您可以透過加入[u]直接[/u]生產[thrive:compound type=\"atp\"][/thrive:compound] 的細胞器來增加，例如[b]氫化酶[/b]。一些[b]細胞膜[/b]還會為您提供滲透調節 [thrive:icon]OsmoIcon[/thrive:icon] 增益。\n"
 "\n"
-"或者，您也可以移除不需要或多餘的細胞器。"
+"或者，您也可以移除不需要或多餘的細胞器。或者，如果您剛剛做了更改，您可以撤銷它。"
 
-#, fuzzy
 msgid "TUTORIAL_MICROBE_EDITOR_NO_CHANGES_MADE"
 msgstr ""
 "您還沒有對您的物種做出任何改變。\n"
 "\n"
 "一旦您離開編輯器，[u]您將無法編輯您的物種直到下次繁殖[/u]。\n"
 "\n"
-"為了在遊戲中取得進展，您需要演化與適應，因此建議在每次編輯器循環中編輯您的物種。"
+"為了在遊戲中取得進展，您需要演化與適應，因此建議在[i]每次[/i]編輯器循環中編輯您的物種。"
 
-#, fuzzy
 msgid "TUTORIAL_MICROBE_EDITOR_OPEN_TOLERANCES"
 msgstr ""
 "您可以使您的細胞適應不同的[b]環境條件[/b]。\n"
 "\n"
-"環境條件會產生負面[b]與[/b]正面的影響。因此，在轉移到新區域時，確保設定適當的適應範圍非常重要。\n"
+"環境條件會產生負面[i]與[/i]正面的影響。因此，在轉移到新區域時，確保設定適當的適應範圍非常重要。\n"
 "\n"
 "選擇左側面板中的「適應」分頁以繼續。"
 
-#, fuzzy
 msgid "TUTORIAL_MICROBE_EDITOR_PATCH_TEXT"
 msgstr ""
-"這是[b]區域地圖[/b]。\n"
+"生命始於這個世界的一個小角落，但它已開始蔓延。\n"
 "\n"
-"每個圖示代表一個您可以居住的獨特環境，右側的面板描述目前所選區域的條件。\n"
+"每個圖示代表一個您可以居住的獨特環境，右側的面板描述了目前所選[u]區域[/u]的環境條件。\n"
 "\n"
-"如果您選擇一個與您佔用的區域相連的區域，該區域會以閃爍的綠色邊框突出顯示，您可以按右側的「移動至此區域」按鈕遷移到該區域。\n"
+"如果您選擇遷徙，請務必檢查環境條件的差異，因為不同區域對生存效率的需求可能大不相同。\n"
 "\n"
 "嘗試選擇一個區域以繼續。"
 
@@ -6240,14 +6212,13 @@ msgstr ""
 "\n"
 "點擊撤銷按鈕以繼續。"
 
-#, fuzzy
 msgid "TUTORIAL_MICROBE_EDITOR_SELECT_ORGANELLE_TEXT"
 msgstr ""
-"在選單中選擇細胞器時，[u]請務必注意彈出的提示[/u]以了解它們的用途。如果您不考慮細胞器的功能[u]可能會變得弊大於利[/u]。\n"
+"在選擇細胞器時，[u]請注意彈出的提示[/u]以了解它們的用途。[u]如果您不考慮細胞器的功能，它們可能會變得弊大於利[/u]。\n"
 "\n"
-"每個部件都需要維護（稱為[b]滲透調節[/b] [thrive:icon]OsmoIcon[/thrive:icon]），並且運行某些[b]代謝過程[/b]需要某些化合物才能發揮作用。\n"
+"每個部件都需要維護（稱為[b]滲透調節[/b] [thrive:icon]OsmoIcon[/thrive:icon]），並且運行某些[b]代謝過程[/b]需要某些化合物才能發揮作用。這些可以在[b]生物統計[/b]面板中看到\n"
 "\n"
-"此外，您添加的部件越多，您繁殖所需的化合物就越多。\n"
+"此外，您添加的部件越多，您繁殖所需的化合物就越多，花費的時間也越長。\n"
 "\n"
 "按下重做按鈕（位於撤銷按鈕旁）以繼續。"
 
@@ -6292,30 +6263,27 @@ msgstr ""
 "\n"
 "當細胞充滿時，就無法吞噬更多的東西。要繼續吞噬，請等待一個或多個攝入的物體被完全消化。"
 
-#, fuzzy
 msgid "TUTORIAL_MICROBE_STAGE_ENGULFMENT_TEXT"
 msgstr ""
-"在吞噬模式下透過在物體上移動來吞噬它們。按下[thrive:input]g_toggle_engulf[/thrive:input]切換吞噬模式。\n"
+"在吞噬模式下，移動到物體上即可吞噬它們。按下[thrive:input]g_toggle_engulf[/thrive:input]切換吞噬模式。\n"
 "\n"
-"一旦物體被拉進去即可停止吞噬。\n"
+"當物體被吸入後，吞噬會自動停止。\n"
 "\n"
-"沿著您細胞上出現的路線前往附近的可吞噬物體。"
+"這條線指向某個因為您[i]足夠大[/i]而能夠吞噬的物體，但您未必真的能[i]抓到[/i]它。"
 
-#, fuzzy
 msgid "TUTORIAL_MICROBE_STAGE_ENVIRONMENT_PANEL"
 msgstr ""
-"在吞噬模式下透過在物體上移動來吞噬它們。按下[thrive:input]g_toggle_engulf[/thrive:input]切換吞噬模式。\n"
+"當地環境條件顯示在螢幕左側的[b]環境面板[/b]中。\n"
 "\n"
-"一旦物體被拉進去即可停止吞噬。\n"
+"眼睛尚未演化，但某些物種可能已經依賴日光（或溫度）來生產能量。如果您是這樣的物種，請注意！\n"
 "\n"
-"沿著您細胞上出現的路線前往附近的可吞噬物體。"
+"在夜間，光合作用無法發揮作用。因此，任何依賴[b]光合作用[/b]的細胞都需要有足夠的化合物儲存 [thrive:icon]StorageIcon[/thrive:icon] 才能在夜晚生存。"
 
-#, fuzzy
 msgid "TUTORIAL_MICROBE_STAGE_HELP_MENU_AND_ZOOM"
 msgstr ""
-"遇到困難？請查看幫助選單。您可以使用左下角的問號按鈕開啟它。\n"
+"如果您需要更多指南，請查看幫助選單。您可以隨時使用左下角的問號按鈕開啟它。\n"
 "\n"
-"還有一點提示：您可以使用滾輪縮小畫面。"
+"還有一點提示：您可以使用[thrive:input]g_zoom_out[/thrive:input]縮小畫面。"
 
 msgid "TUTORIAL_MICROBE_STAGE_LEAVE_COLONY_TEXT"
 msgstr ""
@@ -6324,28 +6292,27 @@ msgstr ""
 "除非您成為多細胞生物，否則您需要離開群體才能進入編輯器。\n"
 "按下[thrive:input]g_unbind_all[/thrive:input]離開細胞群體以進行繁殖。"
 
-#, fuzzy
 msgid "TUTORIAL_MICROBE_STAGE_MEMBER_DIED"
 msgstr ""
-"在吞噬模式下透過在物體上移動來吞噬它們。按下[thrive:input]g_toggle_engulf[/thrive:input]切換吞噬模式。\n"
+"您的物種的一名成員剛剛不幸死亡！當您進入編輯器，這將作為外部效果影響您的物種量。\n"
 "\n"
-"一旦物體被拉進去即可停止吞噬。\n"
-"\n"
-"沿著您細胞上出現的路線前往附近的可吞噬物體。"
+"您可以在編輯器中編輯物種來調整 AI 行為。或進行一些有用的修改，例如添加化學感受器，讓遊玩變得更容易。"
 
-#, fuzzy
 msgid "TUTORIAL_MICROBE_STAGE_OPEN_PROCESS_PANEL"
 msgstr ""
-"為了繁殖，您必須複製您的細胞器。當細胞存活時，這種情況會逐漸發生，但您可以透過收集[thrive:compound type=\"ammonia\"][/thrive:compound] 與[thrive:compound type=\"phosphates\"][/thrive:compound] 來加速這個過程。\n"
+"在遊戲中與編輯器 ATP 顯示面板對應的是[b]代謝面板[/b]。\n"
 "\n"
-"右下角的欄位顯示您的進度。當細胞準備好繁殖時，它們會變成白色。"
+"它會即時顯示細胞內各種代謝過程的運行速度。\n"
+"\n"
+"您可以將您的細胞想像成[u]一座小型工廠[/u]，不斷地消耗與製造各種化合物。\n"
+"\n"
+"按下左下角的按鈕以開啟代謝面板。"
 
-#, fuzzy
 msgid "TUTORIAL_MICROBE_STAGE_PAUSING"
 msgstr ""
-"您已進入解散模式。在此模式下，您可以點擊群落成員來解除連接。\n"
+"您可以在任何時候暫停。例如，想專心看更長的教學時。暫停時，您還可以使用化石功能保存看到的有趣物種。\n"
 "\n"
-"要完全離開群落，您可以點擊自己的細胞或按[thrive:input]g_unbind_all[/thrive:input]鍵。"
+"按下左下角的暫停符號（左邊第二個按鈕）以查看暫停功能如何運作。然後繼續遊戲。"
 
 #, fuzzy
 msgid "TUTORIAL_MICROBE_STAGE_PROCESS_PANEL"
@@ -6354,12 +6321,11 @@ msgstr ""
 "\n"
 "右下角的欄位顯示您的進度。當細胞準備好繁殖時，它們會變成白色。"
 
-#, fuzzy
 msgid "TUTORIAL_MICROBE_STAGE_REPRODUCE_TEXT"
 msgstr ""
-"為了繁殖，您必須複製您的細胞器。當細胞存活時，這種情況會逐漸發生，但您可以透過收集[thrive:compound type=\"ammonia\"][/thrive:compound] 與[thrive:compound type=\"phosphates\"][/thrive:compound] 來加速這個過程。\n"
+"生命需要的分子不只有糖。看看您的微生物還能收集哪些種類的化合物！\n"
 "\n"
-"右下角的欄位顯示您的進度。當細胞準備好繁殖時，它們會變成白色。"
+"右下角的橘色（[thrive:compound type=\"ammonia\"][/thrive:compound]）與紫色（[thrive:compound type=\"phosphates\"][/thrive:compound]）條顯示繁殖[b]進度[/b]。當細胞準備好繁殖時，它們會變成白色。"
 
 #, fuzzy
 msgid "TUTORIAL_MICROBE_STAGE_RESOURCE_SPLIT"
@@ -7393,22 +7359,20 @@ msgstr ""
 msgid "WIKI_FERROPLAST_EFFECTS"
 msgstr "無效果。"
 
-#, fuzzy
 msgid "WIKI_FERROPLAST_INTRO"
 msgstr ""
-"一個金屬發電廠。[b]鐵能體[/b]使用[thrive:compound type=\"iron\"][/thrive:compound] 與[thrive:compound type=\"carbondioxide\"][/thrive:compound] 來生產[thrive:compound type=\"atp\"][/thrive:compound]，此過程被稱為[b]鐵化能自養[/b]。這涉及氧化[thrive:compound type=\"iron\"][/thrive:compound]，將其從一種化學狀態轉變為另一種化學狀態。此效應與[thrive:compound type=\"carbondioxide\"][/thrive:compound] 的濃度成正比，因此環境中較低的[thrive:compound type=\"carbondioxide\"][/thrive:compound] 濃度會降低其[thrive:compound type=\"atp\"][/thrive:compound] 生產速率。\n"
+"使用[thrive:compound type=\"iron\"][/thrive:compound] 生產[thrive:compound type=\"atp\"][/thrive:compound]，此過程被稱為[b]鐵氧化[/b]。\n"
 "\n"
 "[b]鐵能體[/b]是一種充滿蛋白質與酶的雙層膜結構。它是一種已被其真核宿主同化的原核生物。其效率比[b][color=#3796e1][url=thriveopedia:rusticyanin]鐵氧化藍蛋白[/url][/color][/b]更高。"
 
 msgid "WIKI_FERROPLAST_MODIFICATIONS"
 msgstr "無修改。"
 
-#, fuzzy
 msgid "WIKI_FERROPLAST_PROCESSES"
 msgstr ""
-"[b]鐵化能自養[/b]：[thrive:compound type=\"iron\"][/thrive:compound] + [thrive:compound type=\"carbondioxide\"][/thrive:compound] → [thrive:compound type=\"atp\"][/thrive:compound]\n"
+"[b]鐵氧化[/b]：[thrive:compound type=\"iron\"][/thrive:compound] → [thrive:compound type=\"atp\"][/thrive:compound]\n"
 "\n"
-"一種無需[thrive:compound type=\"glucose\"][/thrive:compound] 產生能量的方法。消耗[thrive:compound type=\"iron\"][/thrive:compound] 並與環境[thrive:compound type=\"carbondioxide\"][/thrive:compound] 的濃度成正比。"
+"一種無需[thrive:compound type=\"glucose\"][/thrive:compound] 即可產生能量的方法。消耗[thrive:compound type=\"iron\"][/thrive:compound]。"
 
 msgid "WIKI_FERROPLAST_REQUIREMENTS"
 msgstr ""
@@ -7418,9 +7382,8 @@ msgstr ""
 "\n"
 "[indent]—   至少連續 [b]6[/b] 代中包含[b][color=#3796e1][url=thriveopedia:rusticyanin]鐵氧化藍蛋白[/url][/color][/b]。[/indent]"
 
-#, fuzzy
 msgid "WIKI_FERROPLAST_SCIENTIFIC_BACKGROUND"
-msgstr "[b]鐵能體[/b]尚未在現實生活中被發現，但基於內共生演化與[b][color=#3796e1][url=thriveopedia:rusticyanin]鐵氧化藍蛋白[/url][/color][/b]的能量生產能力，理論上是完全可能的（例如[b][color=#3796e1][url=thriveopedia:mitochondrion]粒線體[/url][/color][/b]）。"
+msgstr "[b]鐵能體[/b]尚未在現實生活中被發現，但基於內共生演化與[b][color=#3796e1][url=thriveopedia:rusticyanin]鐵氧化藍蛋白[/url][/color][/b]的能量生產能力，理論上是完全可能的（例如[b][color=#3796e1][url=thriveopedia:mitochondrion]粒線體[/url][/color][/b]）。[b][color=#3796e1][url=thriveopedia:rusticyanin]鐵氧化藍蛋白[/url][/color][/b]在細胞膜上的作用改為在細胞器膜上進行。"
 
 #, fuzzy
 msgid "WIKI_FERROPLAST_STRATEGY"
@@ -7661,16 +7624,57 @@ msgstr ""
 msgid "WIKI_HYDROGENASE_UPGRADES"
 msgstr "無升級。"
 
+msgid "WIKI_HYDROGENOSOME_EFFECTS"
+msgstr "無效果。"
+
+#, fuzzy
+msgid "WIKI_HYDROGENOSOME_INTRO"
+msgstr "[b]氫化酶[/b]進行[b]梭菌發酵[/b]，這是[b]無氧呼吸[/b]的一種形式。它將[thrive:compound type=\"glucose\"][/thrive:compound] 轉化為[thrive:compound type=\"atp\"][/thrive:compound]。它是玩家擁有的第一個葡萄糖處理部件，也是目前唯一的無氧葡萄糖燃燒部件。"
+
+msgid "WIKI_HYDROGENOSOME_MODIFICATIONS"
+msgstr "無修改。"
+
+#, fuzzy
+msgid "WIKI_HYDROGENOSOME_PROCESSES"
+msgstr ""
+"[b]梭菌發酵[/b]：[thrive:compound type=\"glucose\"][/thrive:compound] → [thrive:compound type=\"atp\"][/thrive:compound]\n"
+"\n"
+"一種能量生產方法，不需要[thrive:compound type=\"oxygen\"][/thrive:compound]，但存在氧時，其效率不如[b][color=#3796e1][url=thriveopedia:metabolosome]代謝體[/url][/color][/b]。需要穩定[thrive:compound type=\"glucose\"][/thrive:compound] 流入。"
+
+#, fuzzy
+msgid "WIKI_HYDROGENOSOME_REQUIREMENTS"
+msgstr "起始部件，無要求。"
+
+#, fuzzy
+msgid "WIKI_HYDROGENOSOME_SCIENTIFIC_BACKGROUND"
+msgstr ""
+"梭菌發酵存在於梭菌中，這是依據其代謝過程進行劃分的一類多樣且定義鬆散的原核生物群。它常用於生化、食品與生質燃料製造，以及廢水處理與土壤復育工作。雖然在不同細菌群中，梭菌發酵的表現有所不同，但其一般公式為：\n"
+"\n"
+"C6​H12​O6​→2C2​H5​OH+2CO2​+2H2​\n"
+"\n"
+"即葡萄糖被轉化為兩個乙醇分子、兩個二氧化碳分子與兩個氫氣分子。葡萄糖透過受質階層磷酸化分解，並且與其他發酵方法一樣，即使在厭氧條件下也可以維持糖解作用的重要反應。發酵可能是地球上非常古老的代謝策略。儘管氫化酶在梭菌發酵中起到廢物管理與氫氣生產的作用，但技術上來說，它並不是該過程的關鍵酶。其他酶，如丙酮酸：鐵氧還蛋白氧化還原酶（POR），在厭氧發酵中發揮更獨特與核心的作用；然而，由於這些酶在遊戲中相對較難表現，因此選擇了更熟悉的酶與易於管理的名稱。"
+
+#, fuzzy
+msgid "WIKI_HYDROGENOSOME_STRATEGY"
+msgstr ""
+"作為起始部件，氫化酶將成為無氧環境中基本的葡萄糖處理部件，使玩家能夠利用最初豐富的葡萄糖雲。它們持續產生能量，不依賴於任何大氣化合物，使其成為低能量原核生物的用途廣泛且重要的組成部分。希望利用葡萄糖的玩家通常應該適應梭菌發酵的使用。\n"
+"\n"
+"最終，氫化酶可能會被代謝體取代。由於其有氧性質，代謝體比氫化酶更高效，並且利用氧氣是成為真核生物並最終成為多細胞生物的重要一步。\n"
+"\n"
+"需要注意的是，當您的世界變得富含氧氣時，可能需要替換氫化酶。如果過度使用氫化酶，當世界氧氣增加時，可能會導致幾代生物需要不斷刪除與更換部件。因此，將氫化酶與其他代謝方式（例如化能合成）搭配使用，或維持相對低能量的生物體可能是一種有益的策略。隨著世界氧氣增加，氫化酶可能更適合於較深的、含氧量較低的區域。"
+
+msgid "WIKI_HYDROGENOSOME_UPGRADES"
+msgstr "無升級。"
+
 msgid "WIKI_INDUSTRIAL_STAGE_CURRENT_DEVELOPMENT"
 msgstr "此階段尚未開始開發。當[color=#3796e1][url=thriveopedia:society_stage]社會階段[/url][/color]開始製作後，該階段的遊戲玩法與理論設計將變得相關。"
 
 msgid "WIKI_INDUSTRIAL_STAGE_FEATURES"
 msgstr "即將推出。"
 
-#, fuzzy
 msgid "WIKI_INDUSTRIAL_STAGE_INTRO"
 msgstr ""
-"工業階段是 Thrive 七個遊戲階段中的第六個，緊接在[color=#3796e1][url=thriveopedia:society_stage]社會階段[/url][/color]之後，從工業機械的發明開始。此時科技與文化已高度發展，文明高度依賴機械來維持運作。整個星球大部分地區已被探索並有人居住，使您幾乎可以在任何地方進行交流或發動戰爭。外交與領導能力比以往任何時候都更為重要。\n"
+"工業階段是 Thrive 九個遊戲階段中的第七個，緊接在[color=#3796e1][url=thriveopedia:society_stage]社會階段[/url][/color]之後，從工業機械的發明開始。此時科技與文化已高度發展，文明高度依賴機械來維持運作。整個星球大部分地區已被探索並有人居住，使您幾乎可以在任何地方進行交流或發動戰爭。外交與領導能力比以往任何時候都更為重要。\n"
 "\n"
 "技術進步的速度正在迅速加速，複雜的機械從原本需要數百年才能發明的情況，縮短到僅需數十年。新的動力載具、醫療方法、工業機械不斷湧現，甚至包括大規模毀滅性武器等新型武器也開始出現。\n"
 "\n"
@@ -8307,6 +8311,9 @@ msgstr "幫助與提示"
 
 msgid "WIKI_PAGE_HYDROGENASE"
 msgstr "氫化酶"
+
+msgid "WIKI_PAGE_HYDROGENOSOME"
+msgstr "氫化體"
 
 msgid "WIKI_PAGE_INDUSTRIAL_STAGE"
 msgstr "工業階段"
@@ -8975,26 +8982,6 @@ msgstr ""
 msgid "WORLD_RELATIVE_MOVEMENT"
 msgstr "相對於世界"
 
-#, fuzzy
-msgid "WORLD_SEA_LEVEL"
-msgstr "低於海平面 {0}-{1} 米"
-
-#, fuzzy
-msgid "WORLD_SEA_LEVEL_DEEP"
-msgstr "低於海平面 {0}-{1} 米"
-
-#, fuzzy
-msgid "WORLD_SEA_LEVEL_EXPLANATION"
-msgstr "（改變世界中的區域數量）"
-
-#, fuzzy
-msgid "WORLD_SEA_LEVEL_MODERATE"
-msgstr "相對於世界"
-
-#, fuzzy
-msgid "WORLD_SEA_LEVEL_SHALLOW"
-msgstr "小"
-
 msgid "WORLD_SIZE"
 msgstr "世界大小"
 
@@ -9012,26 +8999,6 @@ msgstr "小"
 
 msgid "WORLD_SIZE_TOOLTIP"
 msgstr "較大的世界可能會降低模擬速度，因此不建議在性能較差的電腦上使用。"
-
-#, fuzzy
-msgid "WORLD_TEMPERATURE"
-msgstr "溫度"
-
-#, fuzzy
-msgid "WORLD_TEMPERATURE_COLD"
-msgstr "溫度"
-
-#, fuzzy
-msgid "WORLD_TEMPERATURE_EXPLANATION"
-msgstr "（改變世界中的區域數量）"
-
-#, fuzzy
-msgid "WORLD_TEMPERATURE_TEMPERATE"
-msgstr "溫度"
-
-#, fuzzy
-msgid "WORLD_TEMPERATURE_WARM"
-msgstr "溫度"
 
 msgid "WORST_PATCH_COLON"
 msgstr "最差區域："
@@ -9073,13 +9040,6 @@ msgstr "縮小"
 
 #~ msgid "PASSIVE_REPRODUCTION_PROGRESS_EXPLANATION"
 #~ msgstr "（被動地從環境中獲得繁殖所需的化合物）"
-
-#~ msgid "PLANET_GENERATION_TEASER"
-#~ msgstr "敬請期待行星生成功能！"
-
-#, fuzzy
-#~ msgid "PLAY_WTH_CURRENT_SETTINGS"
-#~ msgstr "使用當前設定"
 
 #, fuzzy
 #~ msgid "GLOBAL_GLACIATION_EVENT_LOG"

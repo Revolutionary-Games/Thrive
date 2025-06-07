@@ -7,8 +7,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Thrive VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2025-05-11 23:56+0200\n"
-"PO-Revision-Date: 2025-05-08 02:48+0000\n"
+"POT-Creation-Date: 2025-05-28 14:54+0300\n"
+"PO-Revision-Date: 2025-05-12 22:52+0000\n"
 "Last-Translator: Argakyan <andrinmueller@hotmail.ch>\n"
 "Language-Team: Alemannic <https://translate.revolutionarygamesstudio.com/projects/thrive/thrive-game/gsw/>\n"
 "Language: gsw\n"
@@ -382,10 +382,6 @@ msgstr "Laufstatus:"
 msgid "AUTO_EVO_STATUS_COLON"
 msgstr "Auto-Evo-Status:"
 
-#, fuzzy
-msgid "AUTO_EVO_TOOL_BUTTON"
-msgstr "automatisch ({0}x{1})"
-
 msgid "AUTO_MOVE_FORWARDS"
 msgstr "Automatisch vorwärts bewege"
 
@@ -415,9 +411,6 @@ msgstr "Schrägstrich"
 
 msgid "BACKSPACE"
 msgstr "Backspace"
-
-msgid "BACK_TO_SETTINGS"
-msgstr ""
 
 msgid "BACTERIAL_THERMOSYNTHESIS"
 msgstr "Bakterielli Thermosynthese"
@@ -811,15 +804,6 @@ msgstr "Cache leere"
 
 msgid "CLICK_TO_SELECT"
 msgstr "Uuswähle"
-
-msgid "CLIMATE_INSTABILITY"
-msgstr ""
-
-#, fuzzy
-msgid "CLIMATE_INSTABILITY_EXPLANATION"
-msgstr ""
-"Aktivi Mikrobe tummlet umme, wenn nüüt interessantes passiert.\n"
-"Sessili Mikrobe sind stationär und wartet druff, dass sich ihri Umgebig änderet, bevor sie handlet."
 
 msgid "CLOSE"
 msgstr "Schlüüse"
@@ -2378,33 +2362,11 @@ msgstr "Nöd vergesse: D'Aazeig rechts obbe zeigt dir, was unter em Cursor isch.
 msgid "GENERAL_LOADING_TIP_7"
 msgstr "Wenn dini Bevölkerig auf Null keit, stirbsch du uus."
 
-#, fuzzy
-msgid "GENERATE_BUTTON"
-msgstr "Generatione"
-
 msgid "GENERATIONS"
 msgstr "Generatione"
 
 msgid "GENERATION_COLON"
 msgstr "Generation:"
-
-msgid "GEOLOGICAL_ACTIVITY"
-msgstr ""
-
-msgid "GEOLOGICAL_ACTIVITY_ACTIVE"
-msgstr ""
-
-msgid "GEOLOGICAL_ACTIVITY_AVERAGE"
-msgstr ""
-
-msgid "GEOLOGICAL_ACTIVITY_DORMANT"
-msgstr ""
-
-#, fuzzy
-msgid "GEOLOGICAL_ACTIVITY_EXPLANATION"
-msgstr ""
-"Aktivi Mikrobe tummlet umme, wenn nüüt interessantes passiert.\n"
-"Sessili Mikrobe sind stationär und wartet druff, dass sich ihri Umgebig änderet, bevor sie handlet."
 
 msgid "GITHUB_TOOLTIP"
 msgstr "Bsuech oises GitHub Archiv"
@@ -2562,6 +2524,18 @@ msgid "HYDROGENASE_DESCRIPTION"
 msgstr "Benutzt Wasserstoff um Energie vo [thrive:compound type=\\\"glucose\\\"][/thrive:compound] z'erhalte. Meh effektiv bi niedrige [thrive:compound type=\\\"oxygen\\\"][/thrive:compound] Werte als metabolosome. Vieli Organisme in anoxische Umweltsituatione benutzed das als primäri Energiequelle."
 
 msgid "HYDROGENASE_PROCESSES_DESCRIPTION"
+msgstr "Wandlet [thrive:compound type=\\\"glucose\\\"][/thrive:compound] zu [thrive:compound type=\\\"atp\\\"][/thrive:compound] um."
+
+#, fuzzy
+msgid "HYDROGENOSOME"
+msgstr "Hydrogenase"
+
+#, fuzzy
+msgid "HYDROGENOSOME_DESCRIPTION"
+msgstr "Benutzt Wasserstoff um Energie vo [thrive:compound type=\\\"glucose\\\"][/thrive:compound] z'erhalte. Meh effektiv bi niedrige [thrive:compound type=\\\"oxygen\\\"][/thrive:compound] Werte als metabolosome. Vieli Organisme in anoxische Umweltsituatione benutzed das als primäri Energiequelle."
+
+#, fuzzy
+msgid "HYDROGENOSOME_PROCESSES_DESCRIPTION"
 msgstr "Wandlet [thrive:compound type=\\\"glucose\\\"][/thrive:compound] zu [thrive:compound type=\\\"atp\\\"][/thrive:compound] um."
 
 msgid "HYDROGEN_SULFIDE"
@@ -2736,10 +2710,10 @@ msgid "INTERNAL_NAME_REQUIRED"
 msgstr "Interne Name isch erforderlich"
 
 msgid "INTERNAL_NAME_REQUIRES_CAPITAL"
-msgstr ""
+msgstr "Interne Namme sötti mit emene Grossbuechstabe aafange"
 
 msgid "INVALID_DATA_TO_PLOT"
-msgstr ""
+msgstr "Ungültigi Date zum Darstelle"
 
 msgid "INVALID_ICON_PATH"
 msgstr ""
@@ -3467,6 +3441,9 @@ msgstr ""
 msgid "MICROBE_BENCHMARK"
 msgstr ""
 
+msgid "MICROBE_CAMERA_TILT_EFFECT"
+msgstr ""
+
 msgid "MICROBE_EDITOR"
 msgstr ""
 
@@ -3552,6 +3529,9 @@ msgid "MICROBE_ORGANELLE_STATISTICS"
 msgstr ""
 
 msgid "MICROBE_ORGANELLE_UPGRADES_STATISTICS"
+msgstr ""
+
+msgid "MICROBE_RIPPLE_EFFECT"
 msgstr ""
 
 msgid "MICROBE_SPECIES_DETAIL_TEXT"
@@ -4478,11 +4458,10 @@ msgstr ""
 msgid "PLANET"
 msgstr ""
 
-#, fuzzy
-msgid "PLANET_CUSTOMIZER"
-msgstr "Am Zeiger:"
-
 msgid "PLANET_DETAILS_STRING"
+msgstr ""
+
+msgid "PLANET_GENERATION_TEASER"
 msgstr ""
 
 msgid "PLANET_RANDOM_SEED"
@@ -4673,10 +4652,6 @@ msgstr ""
 
 msgid "REFRESH"
 msgstr ""
-
-#, fuzzy
-msgid "REGENERATE_BUTTON"
-msgstr "Zruggentwickle"
 
 msgid "RENDER_SCALE"
 msgstr ""
@@ -6897,6 +6872,32 @@ msgstr ""
 msgid "WIKI_HYDROGENASE_UPGRADES"
 msgstr ""
 
+msgid "WIKI_HYDROGENOSOME_EFFECTS"
+msgstr ""
+
+msgid "WIKI_HYDROGENOSOME_INTRO"
+msgstr ""
+
+#, fuzzy
+msgid "WIKI_HYDROGENOSOME_MODIFICATIONS"
+msgstr "Benutzt Wasserstoff um Energie vo [thrive:compound type=\\\"glucose\\\"][/thrive:compound] z'erhalte. Meh effektiv bi niedrige [thrive:compound type=\\\"oxygen\\\"][/thrive:compound] Werte als metabolosome. Vieli Organisme in anoxische Umweltsituatione benutzed das als primäri Energiequelle."
+
+#, fuzzy
+msgid "WIKI_HYDROGENOSOME_PROCESSES"
+msgstr "Wandlet [thrive:compound type=\\\"glucose\\\"][/thrive:compound] zu [thrive:compound type=\\\"atp\\\"][/thrive:compound] um."
+
+msgid "WIKI_HYDROGENOSOME_REQUIREMENTS"
+msgstr ""
+
+msgid "WIKI_HYDROGENOSOME_SCIENTIFIC_BACKGROUND"
+msgstr ""
+
+msgid "WIKI_HYDROGENOSOME_STRATEGY"
+msgstr ""
+
+msgid "WIKI_HYDROGENOSOME_UPGRADES"
+msgstr ""
+
 msgid "WIKI_INDUSTRIAL_STAGE_CURRENT_DEVELOPMENT"
 msgstr ""
 
@@ -7276,6 +7277,9 @@ msgid "WIKI_PAGE_HELP_AND_TIPS"
 msgstr ""
 
 msgid "WIKI_PAGE_HYDROGENASE"
+msgstr ""
+
+msgid "WIKI_PAGE_HYDROGENOSOME"
 msgstr ""
 
 msgid "WIKI_PAGE_INDUSTRIAL_STAGE"
@@ -7746,24 +7750,6 @@ msgstr ""
 msgid "WORLD_RELATIVE_MOVEMENT"
 msgstr ""
 
-#, fuzzy
-msgid "WORLD_SEA_LEVEL"
-msgstr "{0}-{1}m unter em Meeresspiegel"
-
-#, fuzzy
-msgid "WORLD_SEA_LEVEL_DEEP"
-msgstr "{0}-{1}m unter em Meeresspiegel"
-
-#, fuzzy
-msgid "WORLD_SEA_LEVEL_EXPLANATION"
-msgstr "(veränderet d'Nummer vo Gebiet ide Welt)"
-
-msgid "WORLD_SEA_LEVEL_MODERATE"
-msgstr ""
-
-msgid "WORLD_SEA_LEVEL_SHALLOW"
-msgstr ""
-
 msgid "WORLD_SIZE"
 msgstr ""
 
@@ -7781,22 +7767,6 @@ msgstr ""
 
 msgid "WORLD_SIZE_TOOLTIP"
 msgstr "E grossi Welt z'ha chann d'Simulation verlangsame und isch nöd empfohle für langsameri PC."
-
-msgid "WORLD_TEMPERATURE"
-msgstr ""
-
-msgid "WORLD_TEMPERATURE_COLD"
-msgstr ""
-
-#, fuzzy
-msgid "WORLD_TEMPERATURE_EXPLANATION"
-msgstr "(veränderet d'Nummer vo Gebiet ide Welt)"
-
-msgid "WORLD_TEMPERATURE_TEMPERATE"
-msgstr ""
-
-msgid "WORLD_TEMPERATURE_WARM"
-msgstr ""
 
 msgid "WORST_PATCH_COLON"
 msgstr ""

@@ -7,8 +7,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2025-05-11 23:56+0200\n"
-"PO-Revision-Date: 2025-04-04 10:41+0000\n"
+"POT-Creation-Date: 2025-05-28 14:54+0300\n"
+"PO-Revision-Date: 2025-05-25 15:00+0000\n"
 "Last-Translator: Anonymous <noreply@weblate.org>\n"
 "Language-Team: Finnish <https://translate.revolutionarygamesstudio.com/projects/thrive/thrive-game/fi/>\n"
 "Language: fi\n"
@@ -16,7 +16,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=n != 1;\n"
-"X-Generator: Weblate 5.7.2\n"
+"X-Generator: Weblate 5.11.4\n"
 "Generated-By: Babel 2.8.0\n"
 
 msgid "2D_MOVEMENT_TYPE_SELECTION"
@@ -393,10 +393,6 @@ msgstr "suorituksen status:"
 msgid "AUTO_EVO_STATUS_COLON"
 msgstr "suorituksen status:"
 
-#, fuzzy
-msgid "AUTO_EVO_TOOL_BUTTON"
-msgstr "Automaattinen ({0}x{1})"
-
 msgid "AUTO_MOVE_FORWARDS"
 msgstr "Liiku automaattisesti eteenpäin"
 
@@ -434,9 +430,6 @@ msgstr "Kenoviiva"
 
 msgid "BACKSPACE"
 msgstr "Askelpalautin"
-
-msgid "BACK_TO_SETTINGS"
-msgstr ""
 
 #, fuzzy
 msgid "BACTERIAL_THERMOSYNTHESIS"
@@ -785,6 +778,7 @@ msgstr "Kemosynteesi"
 msgid "CHEMOSYNTHESIZING_PROTEINS"
 msgstr "Kemosyntetisoivat proteiinit"
 
+#, fuzzy
 msgid "CHEMOSYNTHESIZING_PROTEINS_DESCRIPTION"
 msgstr "Kemosyntetisoivat proteiinit ovat pieniä proteiiniryppäitä solulimassa, jotka pystyvät muuntamaan vetysulfideja, vettä ja hiilidioksidia glukoosiksi prosessissa nimeltä kemosynteesi. Kemosynteesissä, toisin kuin fotosynteesissä, ei tarvita energianlähteenä auringon valoa, vaan energia saadaan hapettamalla epäorgaanisia yhdisteitä. Vetysulfidikemosynteesissä glukoosin muunnosnopeus riippuu ympäristön hiilidioksidipitoisuudesta. Näiden proteiinien ympäröimä solulima toteuttaa myös glykolyysia."
 
@@ -857,15 +851,6 @@ msgstr ""
 #, fuzzy
 msgid "CLICK_TO_SELECT"
 msgstr "Poista valitut"
-
-msgid "CLIMATE_INSTABILITY"
-msgstr ""
-
-#, fuzzy
-msgid "CLIMATE_INSTABILITY_EXPLANATION"
-msgstr ""
-"Aktiiviset mikrobit vilistävät ja mukeltavat, kun mitään mielenkiintoista ei tapahdu.\n"
-"Lakoniset mikrobit pysyttelevät mieluummin paikoillaan odottaen ympäristön muutoksia reagoidakseen niihin."
 
 msgid "CLOSE"
 msgstr "Sulje"
@@ -1486,6 +1471,7 @@ msgstr "Valittu käyttäjänimi:"
 msgid "CYTOPLASM"
 msgstr "Solulima"
 
+#, fuzzy
 msgid "CYTOPLASM_DESCRIPTION"
 msgstr "Solun täyttävä limainen aines. Solulima on sekoite ioneita, proteiineja ja muita ainesosia veteen liuotettuna ja täyttää solun sisäpuolen. Yksi sen tarkoituksista on suorittaa glykolyysi, eli glukoosin muuntaminen ATP-energianlähteeksi. Alkeelliset soluilla, joilla ei ole kehittyneempiä aineenvaihduntaan keskittyneitä soluelimiä, solulima on keskeinen energian tuotannon lähde. Solulima myös varastoi molekyylejä, eli esimerkiksi kerättäviä yhdisteitä ja kasvattaa solun kokoa."
 
@@ -2605,33 +2591,11 @@ msgid "GENERAL_LOADING_TIP_7"
 msgstr "Paina kumoamispainiketta editorissa korjataksesi tehdyn virheen"
 
 #, fuzzy
-msgid "GENERATE_BUTTON"
-msgstr "Sukupolvi:"
-
-#, fuzzy
 msgid "GENERATIONS"
 msgstr "Sukupolvi:"
 
 msgid "GENERATION_COLON"
 msgstr "Sukupolvi:"
-
-msgid "GEOLOGICAL_ACTIVITY"
-msgstr ""
-
-msgid "GEOLOGICAL_ACTIVITY_ACTIVE"
-msgstr ""
-
-msgid "GEOLOGICAL_ACTIVITY_AVERAGE"
-msgstr ""
-
-msgid "GEOLOGICAL_ACTIVITY_DORMANT"
-msgstr ""
-
-#, fuzzy
-msgid "GEOLOGICAL_ACTIVITY_EXPLANATION"
-msgstr ""
-"Aktiiviset mikrobit vilistävät ja mukeltavat, kun mitään mielenkiintoista ei tapahdu.\n"
-"Lakoniset mikrobit pysyttelevät mieluummin paikoillaan odottaen ympäristön muutoksia reagoidakseen niihin."
 
 #, fuzzy
 msgid "GITHUB_TOOLTIP"
@@ -2667,6 +2631,7 @@ msgstr ""
 msgid "GLOBAL_POPULATION_COLON"
 msgstr "Kanta:"
 
+#, fuzzy
 msgid "GLOBAL_TIMELINE_SPECIES_MIGRATED_TO"
 msgstr "Osa lajin [u]{0}[/u] populaatiosta on muuttanut alueelta {1} alueelle {2}"
 
@@ -2792,6 +2757,18 @@ msgstr "Nitrogenaasi on entsyymikompleksi, joka katalysoi typpimolekyylien pelki
 
 #, fuzzy
 msgid "HYDROGENASE_PROCESSES_DESCRIPTION"
+msgstr "Muuntaa [thrive:compound type=\"atp\"][/thrive:compound]:n [thrive:compound type=\"ammonia\"]ammoniakiksi[/thrive:compound]. Muunnosnopeus riippuu ympäristön [thrive:compound type=\"nitrogen\"]typpipitoisuudesta[/thrive:compound]."
+
+#, fuzzy
+msgid "HYDROGENOSOME"
+msgstr "Rikkivety"
+
+#, fuzzy
+msgid "HYDROGENOSOME_DESCRIPTION"
+msgstr "Nitrogenaasi on entsyymikompleksi, joka katalysoi typpimolekyylien pelkistymistä ammoniakiksi käyttäen ATP:tä. Ammoniakki on tärkeä aine solun kasvulle. Tätä prosessia kutsutaan anaerobiseksi typpifiksaatioksi. Nitrogenaasi sijaitsee soluliman ympäröimänä, joka puolestaan toteuttaa osaltaan glykolyysia."
+
+#, fuzzy
+msgid "HYDROGENOSOME_PROCESSES_DESCRIPTION"
 msgstr "Muuntaa [thrive:compound type=\"atp\"][/thrive:compound]:n [thrive:compound type=\"ammonia\"]ammoniakiksi[/thrive:compound]. Muunnosnopeus riippuu ympäristön [thrive:compound type=\"nitrogen\"]typpipitoisuudesta[/thrive:compound]."
 
 msgid "HYDROGEN_SULFIDE"
@@ -3725,6 +3702,7 @@ msgstr "Mesopelaginen vyöhyke"
 msgid "METABOLOSOMES"
 msgstr "Metabolosomi"
 
+#, fuzzy
 msgid "METABOLOSOMES_DESCRIPTION"
 msgstr "Metabolosomit, eli aineenvaihduntaelimet ovat proteiinikuorien koteloimia proteiiniryppäitä, jotka muuntavat glukoosia ATP:ksi. Näiden energian tuotanto on solulimaa tehokkaampaa johtuen prosessista, jota kutsutaan aerobiseksi energiantuotoksi. Siinä glykolyysin lisäksi tapahtuu muita toimintoja, jotka tuottavat pelkkää glykolyysiä huomattavasti enemmän ATP:tä. Tämä prosessi tarvitsee kuitenkin happea toimiakseen, ja siten ympäristön happipitoisuus vaikuttaa muunnosnopeuteen."
 
@@ -3835,6 +3813,10 @@ msgstr ""
 #, fuzzy
 msgid "MICROBE_BENCHMARK"
 msgstr "Mikrobieditori"
+
+#, fuzzy
+msgid "MICROBE_CAMERA_TILT_EFFECT"
+msgstr "Statistiikkaa organismista"
 
 msgid "MICROBE_EDITOR"
 msgstr "Mikrobieditori"
@@ -3948,6 +3930,10 @@ msgstr "Statistiikkaa organismista"
 
 #, fuzzy
 msgid "MICROBE_ORGANELLE_UPGRADES_STATISTICS"
+msgstr "Statistiikkaa organismista"
+
+#, fuzzy
+msgid "MICROBE_RIPPLE_EFFECT"
 msgstr "Statistiikkaa organismista"
 
 #, fuzzy
@@ -4529,6 +4515,7 @@ msgstr "Typpi"
 msgid "NITROGENASE"
 msgstr "Nitrogenaasi"
 
+#, fuzzy
 msgid "NITROGENASE_DESCRIPTION"
 msgstr "Nitrogenaasi on entsyymikompleksi, joka katalysoi typpimolekyylien pelkistymistä ammoniakiksi käyttäen ATP:tä. Ammoniakki on tärkeä aine solun kasvulle. Tätä prosessia kutsutaan anaerobiseksi typpifiksaatioksi. Nitrogenaasi sijaitsee soluliman ympäröimänä, joka puolestaan toteuttaa osaltaan glykolyysia."
 
@@ -5093,12 +5080,11 @@ msgid "PLANET"
 msgstr "Planeetta"
 
 #, fuzzy
-msgid "PLANET_CUSTOMIZER"
-msgstr "Kursorin alla:"
-
-#, fuzzy
 msgid "PLANET_DETAILS_STRING"
 msgstr "Avaa lokien kansio"
+
+msgid "PLANET_GENERATION_TEASER"
+msgstr ""
 
 msgid "PLANET_RANDOM_SEED"
 msgstr "Planeetan satunnainen lähtöarvo"
@@ -5305,10 +5291,6 @@ msgstr "Tee uudelleen viimeisin toimenpide"
 
 msgid "REFRESH"
 msgstr "Virkistä"
-
-#, fuzzy
-msgid "REGENERATE_BUTTON"
-msgstr "Soluelin"
 
 #, fuzzy
 msgid "RENDER_SCALE"
@@ -6413,6 +6395,7 @@ msgstr "Thriven lisenssit"
 msgid "THYLAKOIDS"
 msgstr "Tylakoidit"
 
+#, fuzzy
 msgid "THYLAKOIDS_DESCRIPTION"
 msgstr "Yhteyttämiskalvostot eli tylakoidit ovat solukalvolla sijaitsevia, valosta energiaa kerääviä elimiä. Nämä kalvostot pystyvät hyödyntämään valon energian valmistaakseen glukoosia käyttäen vettä ja hiilidioksidia prosessissa nimeltä fotosynteesi. Tylakoidien pigmentit antavat viherhiukkasille niiden tunnusomaisen värinsä. Glukoosin muunnosnopeus riippuu ympäristön hiilidioksidipitoisuudesta ja saatavilla olevasta valosta. Tylakoidit sijaitsevat soluliman ympäröimänä, joka puolestaan toteuttaa glykolyysia."
 
@@ -6428,6 +6411,7 @@ msgstr "Näytä maailmanlaajuiset tapahtumat"
 msgid "TIMELINE_LOCAL_FILTER_TOOLTIP"
 msgstr "Näytä paikalliset tapahtumat"
 
+#, fuzzy
 msgid "TIMELINE_NICHE_FILL"
 msgstr "[u]{0}[/u] jakautui [u]{1}[/u]:sta erikoistuen omaksi lajikseen"
 
@@ -6439,6 +6423,7 @@ msgstr "Osa populaatiosta ([u]{0}[/u]) ovat muuttaneet {1}"
 msgid "TIMELINE_PLAYER_MIGRATED_TO"
 msgstr "Osa populaatiosta ([u]{0}[/u]) ovat muuttaneet {1}"
 
+#, fuzzy
 msgid "TIMELINE_SELECTION_PRESSURE_SPLIT"
 msgstr "[u]{0}[/u] jakautui [u]{1}[/u]:sta uudeksi lajiksi lajin valintapaineista johtuen"
 
@@ -6451,9 +6436,11 @@ msgstr ""
 "\n"
 "Seuraa viivaa, joka kulkee solustasi lähimpään glukoosipilveen."
 
+#, fuzzy
 msgid "TIMELINE_SPECIES_EXTINCT"
 msgstr "[u]{0}[/u] on kuollut sukupuuttoon!"
 
+#, fuzzy
 msgid "TIMELINE_SPECIES_EXTINCT_LOCAL"
 msgstr "[u]{0}[/u] on kadonnut tältä alueelta"
 
@@ -6461,12 +6448,15 @@ msgstr "[u]{0}[/u] on kadonnut tältä alueelta"
 msgid "TIMELINE_SPECIES_FOLLOWED"
 msgstr "[u]{0}[/u] on kuollut sukupuuttoon!"
 
+#, fuzzy
 msgid "TIMELINE_SPECIES_MIGRATED_FROM"
 msgstr "Osa lajin [u]{0}[/u] populaatiosta on muuttanut alueelta {1} tälle alueelle"
 
+#, fuzzy
 msgid "TIMELINE_SPECIES_MIGRATED_TO"
 msgstr "Osa populaatiosta ([u]{0}[/u]) ovat muuttaneet {1}"
 
+#, fuzzy
 msgid "TIMELINE_SPECIES_POPULATION_DECREASE"
 msgstr "[u]{0}[/u] populaatio on pienentynyt ja on nyt {1}"
 
@@ -6727,6 +6717,7 @@ msgstr ""
 "\n"
 "Kokeile valita uusi ympäristö jatkaaksesi."
 
+#, fuzzy
 msgid "TUTORIAL_MICROBE_EDITOR_AUTO-EVO_PREDICTION"
 msgstr ""
 "Tältä paneelilta näet tulevan populaatiosi ennusteen. Auto-evo simuloi nämä populaation tunnusluvut.\n"
@@ -6870,6 +6861,7 @@ msgstr ""
 "\n"
 "Kokeile valita uusi ympäristö jatkaaksesi."
 
+#, fuzzy
 msgid "TUTORIAL_MICROBE_EDITOR_REMOVE_ORGANELLE_TEXT"
 msgstr ""
 "Soluelimien poistaminen kuluttaa MP:tä sillä se mutaatioaskel lajillesi - paitsi silloin kun ne on tehty nykyisessä editorin sessiossa.\n"
@@ -6994,6 +6986,7 @@ msgstr ""
 "Lisääntyäksesi sinun on kerättävä tarpeeksi ammoniakkia ja fosfaatteja monistautumiseen.\n"
 "Seuraa alhaalla oikealla pyöreän painiketta reunustavia palkkeja tietääksesi, paljonko näitä on vielä kerättävä. Palkit muuttuvat valkoisiksi, kun ne ovat täynnä."
 
+#, fuzzy
 msgid "TUTORIAL_MICROBE_STAGE_UNBIND_TEXT"
 msgstr ""
 "Valitsit erkaantumismoodin. Tässä moodissa voit klikata solukkosi jäseniä erottautuaksesi niistä.\n"
@@ -8151,6 +8144,38 @@ msgid "WIKI_HYDROGENASE_UPGRADES"
 msgstr "Nitrogenaasi on entsyymikompleksi, joka katalysoi typpimolekyylien pelkistymistä ammoniakiksi käyttäen ATP:tä. Ammoniakki on tärkeä aine solun kasvulle. Tätä prosessia kutsutaan anaerobiseksi typpifiksaatioksi. Nitrogenaasi sijaitsee soluliman ympäröimänä, joka puolestaan toteuttaa osaltaan glykolyysia."
 
 #, fuzzy
+msgid "WIKI_HYDROGENOSOME_EFFECTS"
+msgstr "Nitrogenaasi on entsyymikompleksi, joka katalysoi typpimolekyylien pelkistymistä ammoniakiksi käyttäen ATP:tä. Ammoniakki on tärkeä aine solun kasvulle. Tätä prosessia kutsutaan anaerobiseksi typpifiksaatioksi. Nitrogenaasi sijaitsee soluliman ympäröimänä, joka puolestaan toteuttaa osaltaan glykolyysia."
+
+#, fuzzy
+msgid "WIKI_HYDROGENOSOME_INTRO"
+msgstr "Nitrogenaasi on entsyymikompleksi, joka katalysoi typpimolekyylien pelkistymistä ammoniakiksi käyttäen ATP:tä. Ammoniakki on tärkeä aine solun kasvulle. Tätä prosessia kutsutaan anaerobiseksi typpifiksaatioksi. Nitrogenaasi sijaitsee soluliman ympäröimänä, joka puolestaan toteuttaa osaltaan glykolyysia."
+
+#, fuzzy
+msgid "WIKI_HYDROGENOSOME_MODIFICATIONS"
+msgstr "Nitrogenaasi on entsyymikompleksi, joka katalysoi typpimolekyylien pelkistymistä ammoniakiksi käyttäen ATP:tä. Ammoniakki on tärkeä aine solun kasvulle. Tätä prosessia kutsutaan anaerobiseksi typpifiksaatioksi. Nitrogenaasi sijaitsee soluliman ympäröimänä, joka puolestaan toteuttaa osaltaan glykolyysia."
+
+#, fuzzy
+msgid "WIKI_HYDROGENOSOME_PROCESSES"
+msgstr "Muuntaa [thrive:compound type=\"atp\"][/thrive:compound]:n [thrive:compound type=\"ammonia\"]ammoniakiksi[/thrive:compound]. Muunnosnopeus riippuu ympäristön [thrive:compound type=\"nitrogen\"]typpipitoisuudesta[/thrive:compound]."
+
+#, fuzzy
+msgid "WIKI_HYDROGENOSOME_REQUIREMENTS"
+msgstr "Nitrogenaasi on entsyymikompleksi, joka katalysoi typpimolekyylien pelkistymistä ammoniakiksi käyttäen ATP:tä. Ammoniakki on tärkeä aine solun kasvulle. Tätä prosessia kutsutaan anaerobiseksi typpifiksaatioksi. Nitrogenaasi sijaitsee soluliman ympäröimänä, joka puolestaan toteuttaa osaltaan glykolyysia."
+
+#, fuzzy
+msgid "WIKI_HYDROGENOSOME_SCIENTIFIC_BACKGROUND"
+msgstr "Nitrogenaasi on entsyymikompleksi, joka katalysoi typpimolekyylien pelkistymistä ammoniakiksi käyttäen ATP:tä. Ammoniakki on tärkeä aine solun kasvulle. Tätä prosessia kutsutaan anaerobiseksi typpifiksaatioksi. Nitrogenaasi sijaitsee soluliman ympäröimänä, joka puolestaan toteuttaa osaltaan glykolyysia."
+
+#, fuzzy
+msgid "WIKI_HYDROGENOSOME_STRATEGY"
+msgstr "Nitrogenaasi on entsyymikompleksi, joka katalysoi typpimolekyylien pelkistymistä ammoniakiksi käyttäen ATP:tä. Ammoniakki on tärkeä aine solun kasvulle. Tätä prosessia kutsutaan anaerobiseksi typpifiksaatioksi. Nitrogenaasi sijaitsee soluliman ympäröimänä, joka puolestaan toteuttaa osaltaan glykolyysia."
+
+#, fuzzy
+msgid "WIKI_HYDROGENOSOME_UPGRADES"
+msgstr "Nitrogenaasi on entsyymikompleksi, joka katalysoi typpimolekyylien pelkistymistä ammoniakiksi käyttäen ATP:tä. Ammoniakki on tärkeä aine solun kasvulle. Tätä prosessia kutsutaan anaerobiseksi typpifiksaatioksi. Nitrogenaasi sijaitsee soluliman ympäröimänä, joka puolestaan toteuttaa osaltaan glykolyysia."
+
+#, fuzzy
 msgid "WIKI_INDUSTRIAL_STAGE_CURRENT_DEVELOPMENT"
 msgstr "Jäykempi solukalvo kestää enemmän vahinkoa, mutta vaikeuttaa solun liikkumista."
 
@@ -8688,6 +8713,10 @@ msgstr "Kemoplasti"
 
 #, fuzzy
 msgid "WIKI_PAGE_HYDROGENASE"
+msgstr "Nitrogenaasi"
+
+#, fuzzy
+msgid "WIKI_PAGE_HYDROGENOSOME"
 msgstr "Nitrogenaasi"
 
 #, fuzzy
@@ -9321,28 +9350,6 @@ msgid "WORLD_RELATIVE_MOVEMENT"
 msgstr "Suhteellinen maailmaan"
 
 #, fuzzy
-msgid "WORLD_SEA_LEVEL"
-msgstr "{0}-{1}m merenpinnan alapuolella"
-
-#, fuzzy
-msgid "WORLD_SEA_LEVEL_DEEP"
-msgstr "{0}-{1}m merenpinnan alapuolella"
-
-#, fuzzy
-msgid "WORLD_SEA_LEVEL_EXPLANATION"
-msgstr ""
-"Keskittyneet mikrobit etsivät yhdisteitä, kappaleita ja saaliita pidemmän matkan päästä\n"
-"ja voivat olla kunnianhimoisempia löytyvien palasten keruussa.\n"
-"Responssiiviset mikrobit vaihtavat kohdetta nopeammin, jos ei niitä heti saa kiinni."
-
-#, fuzzy
-msgid "WORLD_SEA_LEVEL_MODERATE"
-msgstr "Suhteellinen maailmaan"
-
-msgid "WORLD_SEA_LEVEL_SHALLOW"
-msgstr ""
-
-#, fuzzy
 msgid "WORLD_SIZE"
 msgstr "Maailma"
 
@@ -9366,29 +9373,6 @@ msgstr ""
 #, fuzzy
 msgid "WORLD_SIZE_TOOLTIP"
 msgstr "Lisää uusi syöte"
-
-#, fuzzy
-msgid "WORLD_TEMPERATURE"
-msgstr "Lämpötila"
-
-#, fuzzy
-msgid "WORLD_TEMPERATURE_COLD"
-msgstr "Lämpö."
-
-#, fuzzy
-msgid "WORLD_TEMPERATURE_EXPLANATION"
-msgstr ""
-"Keskittyneet mikrobit etsivät yhdisteitä, kappaleita ja saaliita pidemmän matkan päästä\n"
-"ja voivat olla kunnianhimoisempia löytyvien palasten keruussa.\n"
-"Responssiiviset mikrobit vaihtavat kohdetta nopeammin, jos ei niitä heti saa kiinni."
-
-#, fuzzy
-msgid "WORLD_TEMPERATURE_TEMPERATE"
-msgstr "Lämpö."
-
-#, fuzzy
-msgid "WORLD_TEMPERATURE_WARM"
-msgstr "Lämpö."
 
 #, fuzzy
 msgid "WORST_PATCH_COLON"

@@ -53,7 +53,7 @@ _data = {
 &"SavingStatusFadeOut": SubResource("1")
 }
 
-[node name="SaveStatusOverlay" type="Control"]
+[node name="SaveStatusOverlay" type="Control" node_paths=PackedStringArray("statusLabel", "animationPlayer", "errorDialog", "errorJsonDebugAdvice", "errorJsonDebugLabel")]
 process_mode = 3
 layout_mode = 3
 anchors_preset = 15
@@ -64,11 +64,11 @@ grow_vertical = 2
 mouse_filter = 2
 theme = ExtResource("1")
 script = ExtResource("2")
-StatusLabelPath = NodePath("CenterContainer/StatusLabel")
-AnimationPlayerPath = NodePath("CenterContainer/AnimationPlayer")
-ErrorDialogPath = NodePath("CenterContainer2/ErrorDialog")
-ErrorJsonDebugAdvicePath = NodePath("CenterContainer2/ErrorDialog/VBoxContainer/ExceptionBox/JsonDebugInfo")
-ErrorJsonDebugLabelPath = NodePath("CenterContainer2/ErrorDialog/VBoxContainer/ExceptionBox/JsonDebugInfo")
+statusLabel = NodePath("CenterContainer/StatusLabel")
+animationPlayer = NodePath("CenterContainer/AnimationPlayer")
+errorDialog = NodePath("CenterContainer2/ErrorDialog")
+errorJsonDebugAdvice = NodePath("CenterContainer2/ErrorDialog/VBoxContainer/ExceptionBox/JsonDebugInfo")
+errorJsonDebugLabel = NodePath("CenterContainer2/ErrorDialog/VBoxContainer/ExceptionBox/JsonDebugInfo")
 
 [node name="CenterContainer" type="CenterContainer" parent="."]
 layout_mode = 0
@@ -85,7 +85,7 @@ text = "Saving status goes here..."
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="CenterContainer"]
 libraries = {
-"": SubResource("AnimationLibrary_1toxe")
+&"": SubResource("AnimationLibrary_1toxe")
 }
 
 [node name="CenterContainer2" type="CenterContainer" parent="."]

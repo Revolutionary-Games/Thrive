@@ -11,30 +11,6 @@ using DataSetDictionary = System.Collections.Generic.Dictionary<string, ChartDat
 /// </summary>
 public partial class LineChart : VBoxContainer
 {
-    [Export]
-    public NodePath? HorizontalLabelPath;
-
-    [Export]
-    public NodePath VerticalLabelPath = null!;
-
-    [Export]
-    public NodePath VerticalTicksContainerPath = null!;
-
-    [Export]
-    public NodePath HorizontalTicksContainerPath = null!;
-
-    [Export]
-    public NodePath DrawAreaPath = null!;
-
-    [Export]
-    public NodePath LegendsContainerPath = null!;
-
-    [Export]
-    public NodePath ExtraLegendContainerPath = null!;
-
-    [Export]
-    public NodePath InspectButtonPath = null!;
-
     /// <summary>
     ///   The translatable name identifier for this chart. Each chart instance should have a unique name.
     /// </summary>
@@ -127,14 +103,30 @@ public partial class LineChart : VBoxContainer
     // ReSharper disable once NotAccessedField.Local
     private Texture2D vLineTexture = null!;
 
+    [Export]
     private Label? horizontalLabel;
+
+    [Export]
     private Label? verticalLabel;
+
+    [Export]
     private VBoxContainer verticalLabelsContainer = null!;
+
+    [Export]
     private HBoxContainer horizontalLabelsContainer = null!;
+
+    [Export]
     private Control drawArea = null!;
+
+    [Export]
     private HBoxContainer legendContainer = null!;
+
+    [Export]
     private GridContainer extraLegendContainer = null!;
+
+    [Export]
     private TextureButton inspectButton = null!;
+
     private CustomWindow chartPopup = null!;
     private LineChart? childChart;
 
@@ -252,14 +244,6 @@ public partial class LineChart : VBoxContainer
         if (string.IsNullOrEmpty(ChartName))
             throw new InvalidOperationException($"{nameof(ChartName)} must not be unset");
 
-        horizontalLabel = GetNode<Label>(HorizontalLabelPath);
-        verticalLabel = GetNode<Label>(VerticalLabelPath);
-        verticalLabelsContainer = GetNode<VBoxContainer>(VerticalTicksContainerPath);
-        horizontalLabelsContainer = GetNode<HBoxContainer>(HorizontalTicksContainerPath);
-        drawArea = GetNode<Control>(DrawAreaPath);
-        legendContainer = GetNode<HBoxContainer>(LegendsContainerPath);
-        extraLegendContainer = GetNode<GridContainer>(ExtraLegendContainerPath);
-        inspectButton = GetNode<TextureButton>(InspectButtonPath);
         chartPopup = GetNode<CustomWindow>("ChartPopup");
         defaultIconLegendTexture = GD.Load<Texture2D>("res://assets/textures/gui/bevel/blankCircle.png");
         hLineTexture = GD.Load<Texture2D>("res://assets/textures/gui/bevel/hSeparatorCentered.png");
@@ -663,18 +647,6 @@ public partial class LineChart : VBoxContainer
     {
         if (disposing)
         {
-            if (HorizontalLabelPath != null)
-            {
-                HorizontalLabelPath.Dispose();
-                VerticalLabelPath.Dispose();
-                VerticalTicksContainerPath.Dispose();
-                HorizontalTicksContainerPath.Dispose();
-                DrawAreaPath.Dispose();
-                LegendsContainerPath.Dispose();
-                ExtraLegendContainerPath.Dispose();
-                InspectButtonPath.Dispose();
-            }
-
             ProperlyRemovePointAndLineToolTips();
             ProperlyRemoveLegendToolTips();
         }

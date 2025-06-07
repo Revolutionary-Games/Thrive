@@ -7,8 +7,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2025-05-11 23:56+0200\n"
-"PO-Revision-Date: 2025-04-04 10:42+0000\n"
+"POT-Creation-Date: 2025-05-28 14:54+0300\n"
+"PO-Revision-Date: 2025-05-25 15:00+0000\n"
 "Last-Translator: Anonymous <noreply@weblate.org>\n"
 "Language-Team: Hebrew <https://translate.revolutionarygamesstudio.com/projects/thrive/thrive-game/he/>\n"
 "Language: he\n"
@@ -16,7 +16,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=4; plural=(n == 1) ? 0 : ((n == 2) ? 1 : ((n > 10 && n % 10 == 0) ? 2 : 3));\n"
-"X-Generator: Weblate 5.7.2\n"
+"X-Generator: Weblate 5.11.4\n"
 "Generated-By: Babel 2.8.0\n"
 
 msgid "2D_MOVEMENT_TYPE_SELECTION"
@@ -386,10 +386,6 @@ msgstr "מריץ סטטוס:"
 msgid "AUTO_EVO_STATUS_COLON"
 msgstr "מריץ סטטוס:"
 
-#, fuzzy
-msgid "AUTO_EVO_TOOL_BUTTON"
-msgstr "אוטומטי ({0}X{1})"
-
 msgid "AUTO_MOVE_FORWARDS"
 msgstr "התקדמות אוטומטית"
 
@@ -420,9 +416,6 @@ msgstr "לוכסן שמאלי"
 
 msgid "BACKSPACE"
 msgstr "חזור"
-
-msgid "BACK_TO_SETTINGS"
-msgstr ""
 
 #, fuzzy
 msgid "BACTERIAL_THERMOSYNTHESIS"
@@ -827,15 +820,6 @@ msgstr ""
 msgid "CLICK_TO_SELECT"
 msgstr "מחק נבחרים"
 
-msgid "CLIMATE_INSTABILITY"
-msgstr ""
-
-#, fuzzy
-msgid "CLIMATE_INSTABILITY_EXPLANATION"
-msgstr ""
-"מיקרבים פעילים יתרוצצו כששום דבר מעניין קורה.\n"
-"מיקרובים נייחים יחכו לסביבה להשתנות לפני שהם יפעלו."
-
 msgid "CLOSE"
 msgstr "סגור"
 
@@ -1101,6 +1085,7 @@ msgstr "בחר מין"
 msgid "CONTINUE_THRIVING"
 msgstr "המשך לשגשג"
 
+#, fuzzy
 msgid "CONTINUE_TO_PROTOTYPES"
 msgstr ""
 "אתה הגעת לסוף של החלק ה\"מוכן\" של Thrive.\n"
@@ -2515,33 +2500,11 @@ msgstr "לחץ על הכפתור \"בטל\" בעורך בשביל לתקן טע�
 msgid "GENERAL_LOADING_TIP_7"
 msgstr "לחץ על הכפתור \"בטל\" בעורך בשביל לתקן טעויות"
 
-#, fuzzy
-msgid "GENERATE_BUTTON"
-msgstr "דורות"
-
 msgid "GENERATIONS"
 msgstr "דורות"
 
 msgid "GENERATION_COLON"
 msgstr "דור:"
-
-msgid "GEOLOGICAL_ACTIVITY"
-msgstr ""
-
-msgid "GEOLOGICAL_ACTIVITY_ACTIVE"
-msgstr ""
-
-msgid "GEOLOGICAL_ACTIVITY_AVERAGE"
-msgstr ""
-
-msgid "GEOLOGICAL_ACTIVITY_DORMANT"
-msgstr ""
-
-#, fuzzy
-msgid "GEOLOGICAL_ACTIVITY_EXPLANATION"
-msgstr ""
-"מיקרבים פעילים יתרוצצו כששום דבר מעניין קורה.\n"
-"מיקרובים נייחים יחכו לסביבה להשתנות לפני שהם יפעלו."
 
 msgid "GITHUB_TOOLTIP"
 msgstr "צפו בספריית GitHub שלנו"
@@ -2705,6 +2668,18 @@ msgstr "ניטרוגנאז הוא חלבון המסוגל להשתמש ב[thrive
 
 #, fuzzy
 msgid "HYDROGENASE_PROCESSES_DESCRIPTION"
+msgstr "הופך [thrive:compound type=\"atp\"][/thrive:compound] ל[thrive:compound type=\"ammonia\"][/thrive:compound]. בהתאם לריכוזו של ה[thrive:compound type=\"nitrogen\"][/thrive:compound]."
+
+#, fuzzy
+msgid "HYDROGENOSOME"
+msgstr "מימן גופרתי"
+
+#, fuzzy
+msgid "HYDROGENOSOME_DESCRIPTION"
+msgstr "ניטרוגנאז הוא חלבון המסוגל להשתמש ב[thrive:compound type=\"nitrogen\"][/thrive:compound] גזי ובאנרגיה תאית בצורת [thrive:compound type=\"atp\"][/thrive:compound] בכדי לייצר [thrive:compound type=\"ammonia\"][/thrive:compound], מרכיב תזונתי מרכזי לתאים. זהו תהליך המכונה [b]קיבוע חנקן אנאירובי[/b]. מכיוון שהניטרוגנאז צף בציטופלזמה, הנוזל שמסביבו מבצע [b]גליקוליזה[/b] ברמה מסוימת."
+
+#, fuzzy
+msgid "HYDROGENOSOME_PROCESSES_DESCRIPTION"
 msgstr "הופך [thrive:compound type=\"atp\"][/thrive:compound] ל[thrive:compound type=\"ammonia\"][/thrive:compound]. בהתאם לריכוזו של ה[thrive:compound type=\"nitrogen\"][/thrive:compound]."
 
 msgid "HYDROGEN_SULFIDE"
@@ -3735,6 +3710,10 @@ msgstr "שלב המיקרובי"
 msgid "MICROBE_BENCHMARK"
 msgstr "עורך המיקרובי"
 
+#, fuzzy
+msgid "MICROBE_CAMERA_TILT_EFFECT"
+msgstr "סטטיסטיקת האורגניזם"
+
 msgid "MICROBE_EDITOR"
 msgstr "עורך המיקרובי"
 
@@ -3847,6 +3826,10 @@ msgstr "סטטיסטיקת האורגניזם"
 
 #, fuzzy
 msgid "MICROBE_ORGANELLE_UPGRADES_STATISTICS"
+msgstr "סטטיסטיקת האורגניזם"
+
+#, fuzzy
+msgid "MICROBE_RIPPLE_EFFECT"
 msgstr "סטטיסטיקת האורגניזם"
 
 msgid "MICROBE_SPECIES_DETAIL_TEXT"
@@ -4964,12 +4947,11 @@ msgid "PLANET"
 msgstr "כוכב לכת"
 
 #, fuzzy
-msgid "PLANET_CUSTOMIZER"
-msgstr "בסמן העכבר:"
-
-#, fuzzy
 msgid "PLANET_DETAILS_STRING"
 msgstr "פתח תקיית קבצי לוג"
+
+msgid "PLANET_GENERATION_TEASER"
+msgstr "מייצר כוכבי לכת בקרוב!"
 
 msgid "PLANET_RANDOM_SEED"
 msgstr "כוכב סייד אקראי"
@@ -5168,10 +5150,6 @@ msgstr "בצע מחדש פעולה אחרונה"
 
 msgid "REFRESH"
 msgstr "רענן"
-
-#, fuzzy
-msgid "REGENERATE_BUTTON"
-msgstr "אברונים"
 
 #, fuzzy
 msgid "RENDER_SCALE"
@@ -6535,6 +6513,7 @@ msgstr ""
 "\n"
 "נסה לבחור אזור בשביל להמשיך."
 
+#, fuzzy
 msgid "TUTORIAL_MICROBE_EDITOR_AUTO-EVO_PREDICTION"
 msgstr ""
 "לוח זה מציג את התחזית העתידית של האוכלוסייה שלך. מספרים ללו הם מהדמיות של האוכלוסייה מהמפתח האוטומטי.\n"
@@ -6678,6 +6657,7 @@ msgstr ""
 "\n"
 "נסה לבחור אזור בשביל להמשיך."
 
+#, fuzzy
 msgid "TUTORIAL_MICROBE_EDITOR_REMOVE_ORGANELLE_TEXT"
 msgstr ""
 "הסרה של אברונים גם עולה נקמ\"ו שכן זה מוטציה של המין שלך, אלו אם הם נוספו בעריכה הנוכחית. \n"
@@ -7922,6 +7902,38 @@ msgid "WIKI_HYDROGENASE_UPGRADES"
 msgstr "ניטרוגנאז הוא חלבון המסוגל להשתמש ב[thrive:compound type=\"nitrogen\"][/thrive:compound] גזי ובאנרגיה תאית בצורת [thrive:compound type=\"atp\"][/thrive:compound] בכדי לייצר [thrive:compound type=\"ammonia\"][/thrive:compound], מרכיב תזונתי מרכזי לתאים. זהו תהליך המכונה [b]קיבוע חנקן אנאירובי[/b]. מכיוון שהניטרוגנאז צף בציטופלזמה, הנוזל שמסביבו מבצע [b]גליקוליזה[/b] ברמה מסוימת."
 
 #, fuzzy
+msgid "WIKI_HYDROGENOSOME_EFFECTS"
+msgstr "ניטרוגנאז הוא חלבון המסוגל להשתמש ב[thrive:compound type=\"nitrogen\"][/thrive:compound] גזי ובאנרגיה תאית בצורת [thrive:compound type=\"atp\"][/thrive:compound] בכדי לייצר [thrive:compound type=\"ammonia\"][/thrive:compound], מרכיב תזונתי מרכזי לתאים. זהו תהליך המכונה [b]קיבוע חנקן אנאירובי[/b]. מכיוון שהניטרוגנאז צף בציטופלזמה, הנוזל שמסביבו מבצע [b]גליקוליזה[/b] ברמה מסוימת."
+
+#, fuzzy
+msgid "WIKI_HYDROGENOSOME_INTRO"
+msgstr "ניטרוגנאז הוא חלבון המסוגל להשתמש ב[thrive:compound type=\"nitrogen\"][/thrive:compound] גזי ובאנרגיה תאית בצורת [thrive:compound type=\"atp\"][/thrive:compound] בכדי לייצר [thrive:compound type=\"ammonia\"][/thrive:compound], מרכיב תזונתי מרכזי לתאים. זהו תהליך המכונה [b]קיבוע חנקן אנאירובי[/b]. מכיוון שהניטרוגנאז צף בציטופלזמה, הנוזל שמסביבו מבצע [b]גליקוליזה[/b] ברמה מסוימת."
+
+#, fuzzy
+msgid "WIKI_HYDROGENOSOME_MODIFICATIONS"
+msgstr "ניטרוגנאז הוא חלבון המסוגל להשתמש ב[thrive:compound type=\"nitrogen\"][/thrive:compound] גזי ובאנרגיה תאית בצורת [thrive:compound type=\"atp\"][/thrive:compound] בכדי לייצר [thrive:compound type=\"ammonia\"][/thrive:compound], מרכיב תזונתי מרכזי לתאים. זהו תהליך המכונה [b]קיבוע חנקן אנאירובי[/b]. מכיוון שהניטרוגנאז צף בציטופלזמה, הנוזל שמסביבו מבצע [b]גליקוליזה[/b] ברמה מסוימת."
+
+#, fuzzy
+msgid "WIKI_HYDROGENOSOME_PROCESSES"
+msgstr "הופך [thrive:compound type=\"atp\"][/thrive:compound] ל[thrive:compound type=\"ammonia\"][/thrive:compound]. בהתאם לריכוזו של ה[thrive:compound type=\"nitrogen\"][/thrive:compound]."
+
+#, fuzzy
+msgid "WIKI_HYDROGENOSOME_REQUIREMENTS"
+msgstr "תרמוסינטאז הוא חלבון שמשתמש בהסעה תרמית כדי לשנות את צורתו, מאפשר לו להתקפל ולקשר לADP מתי שחשוף לחום, ולאחר מכן ומתקפל חזר וממוחזר ל[thrive:compound type=\"atp\"][/thrive:compound] כשהוא נחשף טמפרטורה יותר נמוכה בתהליך הנקרא [b]תרמוסינתזה[/b]. קצב יצורם של ה[thrive:compound type=\"atp\"][/thrive:compound] משתנה בהתאם ל[thrive:compound type=\"temperature\"][/thrive:compound]."
+
+#, fuzzy
+msgid "WIKI_HYDROGENOSOME_SCIENTIFIC_BACKGROUND"
+msgstr "ניטרוגנאז הוא חלבון המסוגל להשתמש ב[thrive:compound type=\"nitrogen\"][/thrive:compound] גזי ובאנרגיה תאית בצורת [thrive:compound type=\"atp\"][/thrive:compound] בכדי לייצר [thrive:compound type=\"ammonia\"][/thrive:compound], מרכיב תזונתי מרכזי לתאים. זהו תהליך המכונה [b]קיבוע חנקן אנאירובי[/b]. מכיוון שהניטרוגנאז צף בציטופלזמה, הנוזל שמסביבו מבצע [b]גליקוליזה[/b] ברמה מסוימת."
+
+#, fuzzy
+msgid "WIKI_HYDROGENOSOME_STRATEGY"
+msgstr "ניטרוגנאז הוא חלבון המסוגל להשתמש ב[thrive:compound type=\"nitrogen\"][/thrive:compound] גזי ובאנרגיה תאית בצורת [thrive:compound type=\"atp\"][/thrive:compound] בכדי לייצר [thrive:compound type=\"ammonia\"][/thrive:compound], מרכיב תזונתי מרכזי לתאים. זהו תהליך המכונה [b]קיבוע חנקן אנאירובי[/b]. מכיוון שהניטרוגנאז צף בציטופלזמה, הנוזל שמסביבו מבצע [b]גליקוליזה[/b] ברמה מסוימת."
+
+#, fuzzy
+msgid "WIKI_HYDROGENOSOME_UPGRADES"
+msgstr "ניטרוגנאז הוא חלבון המסוגל להשתמש ב[thrive:compound type=\"nitrogen\"][/thrive:compound] גזי ובאנרגיה תאית בצורת [thrive:compound type=\"atp\"][/thrive:compound] בכדי לייצר [thrive:compound type=\"ammonia\"][/thrive:compound], מרכיב תזונתי מרכזי לתאים. זהו תהליך המכונה [b]קיבוע חנקן אנאירובי[/b]. מכיוון שהניטרוגנאז צף בציטופלזמה, הנוזל שמסביבו מבצע [b]גליקוליזה[/b] ברמה מסוימת."
+
+#, fuzzy
 msgid "WIKI_INDUSTRIAL_STAGE_CURRENT_DEVELOPMENT"
 msgstr "מאפשר להתחבר לתאים אחרים. זהו הצד הראשון לכיוון רב-תאים. בזמן שאתה חלק ממושבה, התרכובות משותפות בין התאים . אתה לא יכול להיכנס לעורך בזמן שאתה חלק ממושבה כך שאתה צריך לשחרר באת שיש לך מספיק תרכובות על מנת לחלק את התא שלך."
 
@@ -8445,6 +8457,10 @@ msgstr "כימופלסט"
 
 #, fuzzy
 msgid "WIKI_PAGE_HYDROGENASE"
+msgstr "ניטרוגנאז"
+
+#, fuzzy
+msgid "WIKI_PAGE_HYDROGENOSOME"
 msgstr "ניטרוגנאז"
 
 #, fuzzy
@@ -9027,28 +9043,6 @@ msgid "WORLD_RELATIVE_MOVEMENT"
 msgstr "להגדלת התנועה"
 
 #, fuzzy
-msgid "WORLD_SEA_LEVEL"
-msgstr "{0}-{1}מ' מתחת פני הים"
-
-#, fuzzy
-msgid "WORLD_SEA_LEVEL_DEEP"
-msgstr "{0}-{1}מ' מתחת פני הים"
-
-#, fuzzy
-msgid "WORLD_SEA_LEVEL_EXPLANATION"
-msgstr ""
-"מיקרובים ממוקדים יחפשו אחר גושים או טרף למרחקים\n"
-"ולרוב הוא ישאף לגושים.\n"
-"מיקורבים מגיבים ישנו למטרה חדשה באופן כפוף יותר."
-
-#, fuzzy
-msgid "WORLD_SEA_LEVEL_MODERATE"
-msgstr "להגדלת התנועה"
-
-msgid "WORLD_SEA_LEVEL_SHALLOW"
-msgstr ""
-
-#, fuzzy
 msgid "WORLD_SIZE"
 msgstr "מפתחים נוכחים"
 
@@ -9072,29 +9066,6 @@ msgstr ""
 #, fuzzy
 msgid "WORLD_SIZE_TOOLTIP"
 msgstr "היצטרפו לשרת הדיסטורט הקהילתי שלנו"
-
-#, fuzzy
-msgid "WORLD_TEMPERATURE"
-msgstr "טמפרטורה"
-
-#, fuzzy
-msgid "WORLD_TEMPERATURE_COLD"
-msgstr "טמפ'."
-
-#, fuzzy
-msgid "WORLD_TEMPERATURE_EXPLANATION"
-msgstr ""
-"מיקרובים ממוקדים יחפשו אחר גושים או טרף למרחקים\n"
-"ולרוב הוא ישאף לגושים.\n"
-"מיקורבים מגיבים ישנו למטרה חדשה באופן כפוף יותר."
-
-#, fuzzy
-msgid "WORLD_TEMPERATURE_TEMPERATE"
-msgstr "טמפ'."
-
-#, fuzzy
-msgid "WORLD_TEMPERATURE_WARM"
-msgstr "טמפ'."
 
 msgid "WORST_PATCH_COLON"
 msgstr "האזור הגרוע ביותר:"
@@ -9138,13 +9109,6 @@ msgstr "זום החוצה"
 
 #~ msgid "PASSIVE_REPRODUCTION_PROGRESS_EXPLANATION"
 #~ msgstr "(באופן פסיבי צובר תרכובות מהסביבה לתהליכי רבייה מבלי שצריך לעשות דבר)"
-
-#~ msgid "PLANET_GENERATION_TEASER"
-#~ msgstr "מייצר כוכבי לכת בקרוב!"
-
-#, fuzzy
-#~ msgid "PLAY_WTH_CURRENT_SETTINGS"
-#~ msgstr "שחק עם ההגדרות הנוכחות"
 
 #~ msgid "TO_BE_IMPLEMENTED"
 #~ msgstr "יושם בקרוב."

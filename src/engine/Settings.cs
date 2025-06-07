@@ -175,7 +175,20 @@ public class Settings
     /// <summary>
     ///   Sets whether the blur will use a lower resolution.
     /// </summary>
+    [JsonProperty]
     public SettingValue<bool> MicrobeBackgroundBlurLowQuality { get; private set; } = new(false);
+
+    /// <summary>
+    ///   Sets whether microbes make ripples as they move
+    /// </summary>
+    [JsonProperty]
+    public SettingValue<bool> MicrobeRippleEffect { get; private set; } = new(true);
+
+    /// <summary>
+    ///   Sets whether the camera will slightly tilt toward cursor
+    /// </summary>
+    [JsonProperty]
+    public SettingValue<bool> MicrobeCameraTilt { get; private set; } = new(false);
 
     /// <summary>
     ///   Type of controller button prompts to show

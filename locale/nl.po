@@ -7,8 +7,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2025-05-11 23:56+0200\n"
-"PO-Revision-Date: 2025-04-04 10:42+0000\n"
+"POT-Creation-Date: 2025-05-28 14:54+0300\n"
+"PO-Revision-Date: 2025-05-25 15:00+0000\n"
 "Last-Translator: Anonymous <noreply@weblate.org>\n"
 "Language-Team: Dutch <https://translate.revolutionarygamesstudio.com/projects/thrive/thrive-game/nl/>\n"
 "Language: nl\n"
@@ -16,7 +16,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=n != 1;\n"
-"X-Generator: Weblate 5.7.2\n"
+"X-Generator: Weblate 5.11.4\n"
 "Generated-By: Babel 2.9.0\n"
 
 msgid "2D_MOVEMENT_TYPE_SELECTION"
@@ -388,10 +388,6 @@ msgstr "uitvoeringsstatus:"
 msgid "AUTO_EVO_STATUS_COLON"
 msgstr "Auto-Evo Status:"
 
-#, fuzzy
-msgid "AUTO_EVO_TOOL_BUTTON"
-msgstr "Auto ({0}x{1})"
-
 msgid "AUTO_MOVE_FORWARDS"
 msgstr "Beweeg automatisch naar voren"
 
@@ -421,9 +417,6 @@ msgstr "Backslash"
 
 msgid "BACKSPACE"
 msgstr "Backspace"
-
-msgid "BACK_TO_SETTINGS"
-msgstr ""
 
 msgid "BACTERIAL_THERMOSYNTHESIS"
 msgstr "Bacteriële Thermosynthese"
@@ -815,15 +808,6 @@ msgstr "Cache Legen"
 msgid "CLICK_TO_SELECT"
 msgstr "Selecteer"
 
-msgid "CLIMATE_INSTABILITY"
-msgstr ""
-
-#, fuzzy
-msgid "CLIMATE_INSTABILITY_EXPLANATION"
-msgstr ""
-"Actieve microben zullen veel bewegen wanneer niets interessants gebeurt.\n"
-"Zittende microben zullen weinig bewegen en wachten tot er iets in hun omgeving veranderd voordat ze iets doen."
-
 msgid "CLOSE"
 msgstr "Sluiten"
 
@@ -1080,6 +1064,7 @@ msgstr "[center]De game is echter nog niet afgelopen. Je kunt [b]doorgaan[/b] do
 msgid "CONTINUE_THRIVING"
 msgstr "Ga door met Thrive"
 
+#, fuzzy
 msgid "CONTINUE_TO_PROTOTYPES"
 msgstr ""
 "Je hebt het eind van het onderdeel van Thrive dat 'af' is bereikt.\n"
@@ -2406,33 +2391,11 @@ msgstr "Klik de ongedaan maken knop in de bewerker om een fout te corrigeren"
 msgid "GENERAL_LOADING_TIP_7"
 msgstr "Klik de ongedaan maken knop in de bewerker om een fout te corrigeren"
 
-#, fuzzy
-msgid "GENERATE_BUTTON"
-msgstr "Generatie"
-
 msgid "GENERATIONS"
 msgstr "Generatie"
 
 msgid "GENERATION_COLON"
 msgstr "Generatie:"
-
-msgid "GEOLOGICAL_ACTIVITY"
-msgstr ""
-
-msgid "GEOLOGICAL_ACTIVITY_ACTIVE"
-msgstr ""
-
-msgid "GEOLOGICAL_ACTIVITY_AVERAGE"
-msgstr ""
-
-msgid "GEOLOGICAL_ACTIVITY_DORMANT"
-msgstr ""
-
-#, fuzzy
-msgid "GEOLOGICAL_ACTIVITY_EXPLANATION"
-msgstr ""
-"Actieve microben zullen veel bewegen wanneer niets interessants gebeurt.\n"
-"Zittende microben zullen weinig bewegen en wachten tot er iets in hun omgeving veranderd voordat ze iets doen."
 
 msgid "GITHUB_TOOLTIP"
 msgstr "Bezoek onze Github opslagplek"
@@ -2591,6 +2554,18 @@ msgstr "Nitrogenase is een eiwet dat gasvormig [thrive:compound type=\"nitrogen\
 
 #, fuzzy
 msgid "HYDROGENASE_PROCESSES_DESCRIPTION"
+msgstr "Zet [thrive:compound type=\"atp\"][/thrive:compound] om in [thrive:compound type=\"ammonia\"][/thrive:compound]. Snelheid schaalt met de concentratie van [thrive:compound type=\"nitrogen\"][/thrive:compound]."
+
+#, fuzzy
+msgid "HYDROGENOSOME"
+msgstr "Hydrogenase"
+
+#, fuzzy
+msgid "HYDROGENOSOME_DESCRIPTION"
+msgstr "Nitrogenase is een eiwet dat gasvormig [thrive:compound type=\"nitrogen\"][/thrive:compound] en celenergie in de vorm van [thrive:compound type=\"atp\"][/thrive:compound] om kan zetten om [thrive:compound type=\"ammonia\"][/thrive:compound] te vormen. Dit is een essentiele voedingsstof voor de groei van cellen. Dit proces wordt ook wel [b]stikstoffixatie[/b] genoemd. Aangezien nitrogenase zich in suspensie in het cytoplasma bevind, voert de vloeistof er omheen enige [b]glycolyse[/b] uit."
+
+#, fuzzy
+msgid "HYDROGENOSOME_PROCESSES_DESCRIPTION"
 msgstr "Zet [thrive:compound type=\"atp\"][/thrive:compound] om in [thrive:compound type=\"ammonia\"][/thrive:compound]. Snelheid schaalt met de concentratie van [thrive:compound type=\"nitrogen\"][/thrive:compound]."
 
 msgid "HYDROGEN_SULFIDE"
@@ -3591,6 +3566,10 @@ msgstr "Hoeveelheid microben:"
 msgid "MICROBE_BENCHMARK"
 msgstr "Microbe Prestatietest"
 
+#, fuzzy
+msgid "MICROBE_CAMERA_TILT_EFFECT"
+msgstr "[b]Membranendata:[/b]"
+
 msgid "MICROBE_EDITOR"
 msgstr "Microbe Bewerker"
 
@@ -3701,6 +3680,10 @@ msgstr "  {0}: Gevonden in {1} soorten, gemiddeld {2} per soort"
 msgid "MICROBE_ORGANELLE_UPGRADES_STATISTICS"
 msgstr "  {0}: Gevonden in {1} soorten, gemiddeld {2} per soort"
 
+#, fuzzy
+msgid "MICROBE_RIPPLE_EFFECT"
+msgstr "[b]Membranendata:[/b]"
+
 msgid "MICROBE_SPECIES_DETAIL_TEXT"
 msgstr ""
 "[b]Fase[/b]\n"
@@ -3719,6 +3702,7 @@ msgstr ""
 msgid "MICROBE_STAGE"
 msgstr "Microbieel Stage"
 
+#, fuzzy
 msgid "MICROBE_STAGE_BECOME_MULTICELLULAR_TEXT"
 msgstr ""
 "Je hebt de mogelijkheid om multicellulair te worden verkregen. Dit is de volgende stap in je tocht.\n"
@@ -4794,10 +4778,6 @@ msgstr "Plaats organellen"
 msgid "PLANET"
 msgstr "Planeet"
 
-#, fuzzy
-msgid "PLANET_CUSTOMIZER"
-msgstr "Bij Cursor:"
-
 msgid "PLANET_DETAILS_STRING"
 msgstr ""
 "Alleen LZWHK: {0}\n"
@@ -4805,6 +4785,9 @@ msgstr ""
 "Dag/nacht cyclus: {2}\n"
 "Daglengte: {3} seconden\n"
 "Willekeurige Kiem Planeet: {4}"
+
+msgid "PLANET_GENERATION_TEASER"
+msgstr "Generatie van planeet komt snel!"
 
 msgid "PLANET_RANDOM_SEED"
 msgstr "Willekeurige kiem voor de planeet"
@@ -5000,10 +4983,6 @@ msgstr "De laatste actie opnieuw doen"
 
 msgid "REFRESH"
 msgstr "Ververs"
-
-#, fuzzy
-msgid "REGENERATE_BUTTON"
-msgstr "Axon"
 
 #, fuzzy
 msgid "RENDER_SCALE"
@@ -6343,6 +6322,7 @@ msgstr ""
 "\n"
 "Selecteer een gebied om verder te gaan."
 
+#, fuzzy
 msgid "TUTORIAL_MICROBE_EDITOR_AUTO-EVO_PREDICTION"
 msgstr ""
 "Dit paneel toont een voorspelling van je toekomstige bevolking. Deze getallen komen uit de bevolkingssimulatie van auto-evo.\n"
@@ -6486,6 +6466,7 @@ msgstr ""
 "\n"
 "Selecteer een gebied om verder te gaan."
 
+#, fuzzy
 msgid "TUTORIAL_MICROBE_EDITOR_REMOVE_ORGANELLE_TEXT"
 msgstr ""
 "Organellen verwijderen kost ook MP aangezien het een mutatie van je soort is. Dit is niet het geval als ze in de huidige bewerksessie zijn geplaatst.\n"
@@ -7725,6 +7706,38 @@ msgid "WIKI_HYDROGENASE_UPGRADES"
 msgstr "Nitrogenase is een eiwet dat gasvormig [thrive:compound type=\"nitrogen\"][/thrive:compound] en celenergie in de vorm van [thrive:compound type=\"atp\"][/thrive:compound] om kan zetten om [thrive:compound type=\"ammonia\"][/thrive:compound] te vormen. Dit is een essentiele voedingsstof voor de groei van cellen. Dit proces wordt ook wel [b]stikstoffixatie[/b] genoemd. Aangezien nitrogenase zich in suspensie in het cytoplasma bevind, voert de vloeistof er omheen enige [b]glycolyse[/b] uit."
 
 #, fuzzy
+msgid "WIKI_HYDROGENOSOME_EFFECTS"
+msgstr "Nitrogenase is een eiwet dat gasvormig [thrive:compound type=\"nitrogen\"][/thrive:compound] en celenergie in de vorm van [thrive:compound type=\"atp\"][/thrive:compound] om kan zetten om [thrive:compound type=\"ammonia\"][/thrive:compound] te vormen. Dit is een essentiele voedingsstof voor de groei van cellen. Dit proces wordt ook wel [b]stikstoffixatie[/b] genoemd. Aangezien nitrogenase zich in suspensie in het cytoplasma bevind, voert de vloeistof er omheen enige [b]glycolyse[/b] uit."
+
+#, fuzzy
+msgid "WIKI_HYDROGENOSOME_INTRO"
+msgstr "Nitrogenase is een eiwet dat gasvormig [thrive:compound type=\"nitrogen\"][/thrive:compound] en celenergie in de vorm van [thrive:compound type=\"atp\"][/thrive:compound] om kan zetten om [thrive:compound type=\"ammonia\"][/thrive:compound] te vormen. Dit is een essentiele voedingsstof voor de groei van cellen. Dit proces wordt ook wel [b]stikstoffixatie[/b] genoemd. Aangezien nitrogenase zich in suspensie in het cytoplasma bevind, voert de vloeistof er omheen enige [b]glycolyse[/b] uit."
+
+#, fuzzy
+msgid "WIKI_HYDROGENOSOME_MODIFICATIONS"
+msgstr "Nitrogenase is een eiwet dat gasvormig [thrive:compound type=\"nitrogen\"][/thrive:compound] en celenergie in de vorm van [thrive:compound type=\"atp\"][/thrive:compound] om kan zetten om [thrive:compound type=\"ammonia\"][/thrive:compound] te vormen. Dit is een essentiele voedingsstof voor de groei van cellen. Dit proces wordt ook wel [b]stikstoffixatie[/b] genoemd. Aangezien nitrogenase zich in suspensie in het cytoplasma bevind, voert de vloeistof er omheen enige [b]glycolyse[/b] uit."
+
+#, fuzzy
+msgid "WIKI_HYDROGENOSOME_PROCESSES"
+msgstr "Zet [thrive:compound type=\"atp\"][/thrive:compound] om in [thrive:compound type=\"ammonia\"][/thrive:compound]. Snelheid schaalt met de concentratie van [thrive:compound type=\"nitrogen\"][/thrive:compound]."
+
+#, fuzzy
+msgid "WIKI_HYDROGENOSOME_REQUIREMENTS"
+msgstr "Thermosynthase is een eiwit dat thermische convectie gebruikt om zijn vorm aan te passen. Wanneer het aan hitte wordt blootgesteld vouwt het zichzelf op en bindt het aan ADP. Wanneer het weer afkoelt ontvouwt het zichzelf en vormt het [thrive:compound type=\"atp\"][/thrive:compound]. Dit proces heet [b]thermosynthese[/b]. De snelheid van de productie van [thrive:compound type=\"atp\"][/thrive:compound] schaalt met de [thrive:compound type=\"temperature\"][/thrive:compound]."
+
+#, fuzzy
+msgid "WIKI_HYDROGENOSOME_SCIENTIFIC_BACKGROUND"
+msgstr "Nitrogenase is een eiwet dat gasvormig [thrive:compound type=\"nitrogen\"][/thrive:compound] en celenergie in de vorm van [thrive:compound type=\"atp\"][/thrive:compound] om kan zetten om [thrive:compound type=\"ammonia\"][/thrive:compound] te vormen. Dit is een essentiele voedingsstof voor de groei van cellen. Dit proces wordt ook wel [b]stikstoffixatie[/b] genoemd. Aangezien nitrogenase zich in suspensie in het cytoplasma bevind, voert de vloeistof er omheen enige [b]glycolyse[/b] uit."
+
+#, fuzzy
+msgid "WIKI_HYDROGENOSOME_STRATEGY"
+msgstr "Nitrogenase is een eiwet dat gasvormig [thrive:compound type=\"nitrogen\"][/thrive:compound] en celenergie in de vorm van [thrive:compound type=\"atp\"][/thrive:compound] om kan zetten om [thrive:compound type=\"ammonia\"][/thrive:compound] te vormen. Dit is een essentiele voedingsstof voor de groei van cellen. Dit proces wordt ook wel [b]stikstoffixatie[/b] genoemd. Aangezien nitrogenase zich in suspensie in het cytoplasma bevind, voert de vloeistof er omheen enige [b]glycolyse[/b] uit."
+
+#, fuzzy
+msgid "WIKI_HYDROGENOSOME_UPGRADES"
+msgstr "Nitrogenase is een eiwet dat gasvormig [thrive:compound type=\"nitrogen\"][/thrive:compound] en celenergie in de vorm van [thrive:compound type=\"atp\"][/thrive:compound] om kan zetten om [thrive:compound type=\"ammonia\"][/thrive:compound] te vormen. Dit is een essentiele voedingsstof voor de groei van cellen. Dit proces wordt ook wel [b]stikstoffixatie[/b] genoemd. Aangezien nitrogenase zich in suspensie in het cytoplasma bevind, voert de vloeistof er omheen enige [b]glycolyse[/b] uit."
+
+#, fuzzy
 msgid "WIKI_INDUSTRIAL_STAGE_CURRENT_DEVELOPMENT"
 msgstr "Sta het binden met andere cellen toe. Dit is de eerste stap op weg naar multicellulariteit. Wanneer je cel onderdeel is van een kolonie worden stoffen tussen cellen gedeeld. Je kunt de bewerker niet openen terwijl je cel onderdeel is van een kolonie. Als je je cel wil aanpassen moet je dus de verbinding met andere cellen verbreken zodra je genoeg stoffen hebt om je cel te delen."
 
@@ -8243,6 +8256,10 @@ msgid "WIKI_PAGE_HELP_AND_TIPS"
 msgstr "Mitochondrion"
 
 msgid "WIKI_PAGE_HYDROGENASE"
+msgstr "Hydrogenase"
+
+#, fuzzy
+msgid "WIKI_PAGE_HYDROGENOSOME"
 msgstr "Hydrogenase"
 
 #, fuzzy
@@ -8824,28 +8841,6 @@ msgid "WORLD_RELATIVE_MOVEMENT"
 msgstr "Relatief aan de wereld"
 
 #, fuzzy
-msgid "WORLD_SEA_LEVEL"
-msgstr "{0}-{1}m onder zeeniveau"
-
-#, fuzzy
-msgid "WORLD_SEA_LEVEL_DEEP"
-msgstr "{0}-{1}m onder zeeniveau"
-
-#, fuzzy
-msgid "WORLD_SEA_LEVEL_EXPLANATION"
-msgstr ""
-"Gefocuste microben zullen over grotere afstanden brokstukken en prooi zoeken\n"
-"en zijn mogelijk veel ambitieuzer over brokstukken.\n"
-"Reagerende microben zullen sneller van doelwit wisselen."
-
-#, fuzzy
-msgid "WORLD_SEA_LEVEL_MODERATE"
-msgstr "Relatief aan de wereld"
-
-msgid "WORLD_SEA_LEVEL_SHALLOW"
-msgstr ""
-
-#, fuzzy
 msgid "WORLD_SIZE"
 msgstr "Wereld"
 
@@ -8869,29 +8864,6 @@ msgstr ""
 #, fuzzy
 msgid "WORLD_SIZE_TOOLTIP"
 msgstr "Voer een zekere hoeveelheid werelden uit. De hoeveelheid generaties voor iedere wereld is bepaald door de ronddraaiende kist boven."
-
-#, fuzzy
-msgid "WORLD_TEMPERATURE"
-msgstr "Temperatuur"
-
-#, fuzzy
-msgid "WORLD_TEMPERATURE_COLD"
-msgstr "Temp."
-
-#, fuzzy
-msgid "WORLD_TEMPERATURE_EXPLANATION"
-msgstr ""
-"Gefocuste microben zullen over grotere afstanden brokstukken en prooi zoeken\n"
-"en zijn mogelijk veel ambitieuzer over brokstukken.\n"
-"Reagerende microben zullen sneller van doelwit wisselen."
-
-#, fuzzy
-msgid "WORLD_TEMPERATURE_TEMPERATE"
-msgstr "Temp."
-
-#, fuzzy
-msgid "WORLD_TEMPERATURE_WARM"
-msgstr "Temp."
 
 msgid "WORST_PATCH_COLON"
 msgstr "Slechtse Gebied:"
@@ -8935,13 +8907,6 @@ msgstr "Uitzoomen"
 
 #~ msgid "PASSIVE_REPRODUCTION_PROGRESS_EXPLANATION"
 #~ msgstr "(krijg passief reproductieve stoffen van de omgeving zonder iets te hoeven doen)"
-
-#~ msgid "PLANET_GENERATION_TEASER"
-#~ msgstr "Generatie van planeet komt snel!"
-
-#, fuzzy
-#~ msgid "PLAY_WTH_CURRENT_SETTINGS"
-#~ msgstr "Speel Met Huidige Instellingen"
 
 #~ msgid "TO_BE_IMPLEMENTED"
 #~ msgstr "Wordt Nog Geimplementeerd."

@@ -3,15 +3,15 @@
 [ext_resource type="PackedScene" uid="uid://du8sc8kjirguk" path="res://src/gui_common/dialogs/CustomWindow.tscn" id="1"]
 [ext_resource type="Script" uid="uid://c4yn2x448rmi8" path="res://src/space_stage/gui/PlanetScreen.cs" id="2"]
 
-[node name="PlanetScreen" instance=ExtResource("1")]
+[node name="PlanetScreen" node_paths=PackedStringArray("shortStatsLabel", "godToolsButton") instance=ExtResource("1")]
 custom_minimum_size = Vector2(350, 300)
 offset_left = 5.0
 offset_top = 70.0
 offset_right = 505.0
 offset_bottom = 420.0
 script = ExtResource("2")
-ShortStatsLabelPath = NodePath("VBoxContainer/PlanetStats")
-GodToolsButtonPath = NodePath("VBoxContainer/HBoxContainer/BuildQueueSide/GodTools")
+shortStatsLabel = NodePath("VBoxContainer/PlanetStats")
+godToolsButton = NodePath("VBoxContainer/HBoxContainer/BuildQueueSide/GodTools")
 
 [node name="VBoxContainer" type="VBoxContainer" parent="." index="0"]
 layout_mode = 0

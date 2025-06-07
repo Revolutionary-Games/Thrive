@@ -15,64 +15,6 @@ using Newtonsoft.Json;
 public partial class CreatureStageHUDBase<TStage> : HUDWithPausing, ICreatureStageHUD
     where TStage : GodotObject, ICreatureStage
 {
-    [Export]
-    public NodePath? MouseHoverPanelPath;
-
-    [Export]
-    public NodePath AtpLabelPath = null!;
-
-    [Export]
-    public NodePath HpLabelPath = null!;
-
-    [Export]
-    public NodePath PopulationLabelPath = null!;
-
-    [Export]
-    public NodePath PatchOverlayPath = null!;
-
-    [Export]
-    public NodePath AtpBarPath = null!;
-
-    [Export]
-    public NodePath HealthBarPath = null!;
-
-    [Export]
-    public NodePath ProcessPanelPath = null!;
-
-    [Export]
-    public NodePath HintTextPath = null!;
-
-    [Export]
-    public NodePath HotBarPath = null!;
-
-    [Export]
-    public NodePath EngulfHotkeyPath = null!;
-
-    [Export]
-    public NodePath SecreteSlimeHotkeyPath = null!;
-
-    // TODO: rename to SignalingAgentsHotkeyPath
-    [Export]
-    public NodePath SignallingAgentsHotkeyPath = null!;
-
-    [Export]
-    public NodePath MicrobeControlRadialPath = null!;
-
-    [Export]
-    public NodePath FireToxinHotkeyPath = null!;
-
-    [Export]
-    public NodePath EjectEngulfedHotkeyPath = null!;
-
-    [Export]
-    public NodePath BottomLeftBarPath = null!;
-
-    [Export]
-    public NodePath FossilisationButtonLayerPath = null!;
-
-    [Export]
-    public NodePath FossilisationDialogPath = null!;
-
 #pragma warning disable CA2213
     [Export]
     public PackedScene FossilisationButtonScene = null!;
@@ -94,6 +36,7 @@ public partial class CreatureStageHUDBase<TStage> : HUDWithPausing, ICreatureSta
     protected readonly List<Compound> allAgents = new();
 
 #pragma warning disable CA2213
+    [Export]
     protected MouseHoverPanel mouseHoverPanel = null!;
 
     [Export]
@@ -108,9 +51,16 @@ public partial class CreatureStageHUDBase<TStage> : HUDWithPausing, ICreatureSta
     [Export]
     protected ActionButton mucocystHotkey = null!;
 
+    [Export]
     protected ActionButton engulfHotkey = null!;
+
+    [Export]
     protected ActionButton secreteSlimeHotkey = null!;
+
+    [Export]
     protected ActionButton ejectEngulfedHotkey = null!;
+
+    [Export]
     protected ActionButton signalingAgentsHotkey = null!;
 
     protected CompoundProgressBar oxygenBar = null!;
@@ -131,20 +81,39 @@ public partial class CreatureStageHUDBase<TStage> : HUDWithPausing, ICreatureSta
     protected CompoundProgressBar oxytoxyBar = null!;
     protected CompoundProgressBar mucilageBar = null!;
 
+    [Export]
     protected TextureProgressBar atpBar = null!;
+
+    [Export]
     protected TextureProgressBar healthBar = null!;
+
+    [Export]
     protected Label atpLabel = null!;
+
+    [Export]
     protected Label hpLabel = null!;
+
+    [Export]
     protected Label populationLabel = null!;
-    protected PatchNameOverlay patchNameOverlay = null!;
+
+    [Export]
+    protected PatchNameOverlay patchName = null!;
+
+    [Export]
     protected Label hintText = null!;
+
+    [Export]
     protected RadialPopup packControlRadial = null!;
 
+    [Export]
     protected HUDBottomBar bottomLeftBar = null!;
 
     protected Control winExtinctBoxHolder = null!;
 
+    [Export]
     protected Control fossilisationButtonLayer = null!;
+
+    [Export]
     protected FossilisationDialog fossilisationDialog = null!;
 #pragma warning restore CA2213
 
@@ -175,11 +144,16 @@ public partial class CreatureStageHUDBase<TStage> : HUDWithPausing, ICreatureSta
     [Export]
     private Control damageScreenEffect = null!;
 
+    [Export]
     private HBoxContainer hotBar = null!;
+
+    [Export]
     private ActionButton fireToxinHotkey = null!;
 
     private CustomWindow? extinctionBox;
     private PatchExtinctionBox? patchExtinctionBox;
+
+    [Export]
     private ProcessPanel processPanel = null!;
 
     private ShaderMaterial damageShaderMaterial = null!;
@@ -281,30 +255,6 @@ public partial class CreatureStageHUDBase<TStage> : HUDWithPausing, ICreatureSta
         base._Ready();
 
         winExtinctBoxHolder = GetNode<Control>("../WinExtinctBoxHolder");
-
-        mouseHoverPanel = GetNode<MouseHoverPanel>(MouseHoverPanelPath);
-
-        atpBar = GetNode<TextureProgressBar>(AtpBarPath);
-        healthBar = GetNode<TextureProgressBar>(HealthBarPath);
-
-        atpLabel = GetNode<Label>(AtpLabelPath);
-        hpLabel = GetNode<Label>(HpLabelPath);
-        populationLabel = GetNode<Label>(PopulationLabelPath);
-        patchNameOverlay = GetNode<PatchNameOverlay>(PatchOverlayPath);
-        hintText = GetNode<Label>(HintTextPath);
-        hotBar = GetNode<HBoxContainer>(HotBarPath);
-
-        packControlRadial = GetNode<RadialPopup>(MicrobeControlRadialPath);
-
-        bottomLeftBar = GetNode<HUDBottomBar>(BottomLeftBarPath);
-
-        engulfHotkey = GetNode<ActionButton>(EngulfHotkeyPath);
-        secreteSlimeHotkey = GetNode<ActionButton>(SecreteSlimeHotkeyPath);
-        fireToxinHotkey = GetNode<ActionButton>(FireToxinHotkeyPath);
-        ejectEngulfedHotkey = GetNode<ActionButton>(EjectEngulfedHotkeyPath);
-        signalingAgentsHotkey = GetNode<ActionButton>(SignallingAgentsHotkeyPath);
-
-        processPanel = GetNode<ProcessPanel>(ProcessPanelPath);
 
         OnAbilitiesHotBarDisplayChanged(Settings.Instance.DisplayAbilitiesHotBar);
         Settings.Instance.DisplayAbilitiesHotBar.OnChanged += OnAbilitiesHotBarDisplayChanged;
@@ -410,9 +360,6 @@ public partial class CreatureStageHUDBase<TStage> : HUDWithPausing, ICreatureSta
         compoundBars.Add((Compound.Mucilage, mucilageBar));
 
         // Fossilization setup
-        fossilisationButtonLayer = GetNode<Control>(FossilisationButtonLayerPath);
-        fossilisationDialog = GetNode<FossilisationDialog>(FossilisationDialogPath);
-
         // Make sure fossilization layer update won't run if it isn't open
         fossilisationButtonLayer.Visible = false;
 
@@ -561,7 +508,7 @@ public partial class CreatureStageHUDBase<TStage> : HUDWithPausing, ICreatureSta
 
     public void ShowPatchName(string localizedPatchName)
     {
-        patchNameOverlay.ShowName(localizedPatchName);
+        patchName.ShowName(localizedPatchName);
     }
 
     public void ShowExtinctionBox()
@@ -607,6 +554,8 @@ public partial class CreatureStageHUDBase<TStage> : HUDWithPausing, ICreatureSta
 
             patchExtinctionBox.PlayerSpecies = stage!.GameWorld.PlayerSpecies;
             patchExtinctionBox.Map = stage.GameWorld.Map;
+
+            patchExtinctionBox.ForgetSelectedPatch();
 
             patchExtinctionBox.Show();
         }
@@ -1225,29 +1174,6 @@ public partial class CreatureStageHUDBase<TStage> : HUDWithPausing, ICreatureSta
     {
         if (disposing)
         {
-            if (MouseHoverPanelPath != null)
-            {
-                MouseHoverPanelPath.Dispose();
-                AtpLabelPath.Dispose();
-                HpLabelPath.Dispose();
-                PopulationLabelPath.Dispose();
-                PatchOverlayPath.Dispose();
-                AtpBarPath.Dispose();
-                HealthBarPath.Dispose();
-                ProcessPanelPath.Dispose();
-                HintTextPath.Dispose();
-                HotBarPath.Dispose();
-                EngulfHotkeyPath.Dispose();
-                EjectEngulfedHotkeyPath.Dispose();
-                SecreteSlimeHotkeyPath.Dispose();
-                SignallingAgentsHotkeyPath.Dispose();
-                MicrobeControlRadialPath.Dispose();
-                FireToxinHotkeyPath.Dispose();
-                BottomLeftBarPath.Dispose();
-                FossilisationButtonLayerPath.Dispose();
-                FossilisationDialogPath.Dispose();
-            }
-
             fadeParameterName.Dispose();
 
             strainBarRedFill?.Dispose();

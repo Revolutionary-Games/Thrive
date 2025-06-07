@@ -7,16 +7,16 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2025-05-11 23:56+0200\n"
-"PO-Revision-Date: 2025-05-02 11:10+0000\n"
-"Last-Translator: Jorge Maldonado Ventura <jorgesumle@freakspot.net>\n"
+"POT-Creation-Date: 2025-05-28 14:54+0300\n"
+"PO-Revision-Date: 2025-05-25 15:00+0000\n"
+"Last-Translator: Anonymous <noreply@weblate.org>\n"
 "Language-Team: Spanish <https://translate.revolutionarygamesstudio.com/projects/thrive/thrive-game/es/>\n"
 "Language: es\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=n != 1;\n"
-"X-Generator: Weblate 5.7.2\n"
+"X-Generator: Weblate 5.11.4\n"
 "Generated-By: Babel 2.8.0\n"
 
 msgid "2D_MOVEMENT_TYPE_SELECTION"
@@ -391,10 +391,6 @@ msgstr "Estado:"
 msgid "AUTO_EVO_STATUS_COLON"
 msgstr "Estado del Auto-evo:"
 
-#, fuzzy
-msgid "AUTO_EVO_TOOL_BUTTON"
-msgstr "Auto ({0}x{1})"
-
 msgid "AUTO_MOVE_FORWARDS"
 msgstr "Moverse automáticamente hacia adelanteAuto"
 
@@ -424,9 +420,6 @@ msgstr "Barra diagonal inversa"
 
 msgid "BACKSPACE"
 msgstr "Retroceso"
-
-msgid "BACK_TO_SETTINGS"
-msgstr ""
 
 msgid "BACTERIAL_THERMOSYNTHESIS"
 msgstr "Termosíntesis Bacteriana"
@@ -726,6 +719,7 @@ msgstr "Mostrar / Ocultar procesos celulares"
 msgid "CHEMOPLAST"
 msgstr "Quimioplasto"
 
+#, fuzzy
 msgid "CHEMOPLAST_DESCRIPTION"
 msgstr "Los Quimioplastos son estructuras de membrana doble que contienen proteínas capaces de convertir Ácido Sulfhídrico, agua y dióxido de carbono gaseoso en glucosa en un proceso llamado Quimiosíntesis de Ácido Sulfhídrico. Su eficiencia escala con la concentración de dióxido de carbono atmosférico."
 
@@ -759,6 +753,7 @@ msgstr "Quimiosíntesis"
 msgid "CHEMOSYNTHESIZING_PROTEINS"
 msgstr "Proteinas quimiosintetizadoras"
 
+#, fuzzy
 msgid "CHEMOSYNTHESIZING_PROTEINS_DESCRIPTION"
 msgstr "Las proteínas quimiosintetizadoras son aglomeraciones de proteínas en el citoplasma que pueden convertir sulfuro de hidrógeno, agua y dióxido de carbono gaseoso en glucosa en un proceso llamado Quimiosíntesis de Ácido Sulfhídrico. Su eficiencia escala con la concentración de dióxido de carbono. Como están directamente suspendidos en el citoplasma, éste realiza la glicólisis."
 
@@ -777,12 +772,14 @@ msgstr "Quitinasa"
 msgid "CHITINASE_DESCRIPTION"
 msgstr "Quitinasa permite que células destruyan membranas de quitina. Agregar mas aumenta su efectividad."
 
+#, fuzzy
 msgid "CHITIN_MEMBRANE_DESCRIPTION"
 msgstr "Esta membrana tiene una pared celular, por lo que provee una mayor protección, especialmente contra toxinas. También consume menos energía. Pero se mueve y absorbe recursos muy lentamente."
 
 msgid "CHLOROPLAST"
 msgstr "Cloroplasto"
 
+#, fuzzy
 msgid "CHLOROPLAST_DESCRIPTION"
 msgstr "Los cloroplastos son una estructura de doble membrana que contiene pigmentos fotosensibles apilados en sacos membranosos. Es una procariota asimilada para uso de su anfitrión eucariota. Los pigmentos en el cloroplasto usan la energía de la luz solar para convertir agua y dióxido de carbono en glucosa en un proceso llamado Fotosíntesis. Los pigmentos son lo que le dan su color. Su eficiencia escala con la concentración de dióxido de carbono atmosférico y la intensidad de la luz solar."
 
@@ -825,15 +822,6 @@ msgstr "Limpiar Caché"
 #, fuzzy
 msgid "CLICK_TO_SELECT"
 msgstr "Eliminar selección"
-
-msgid "CLIMATE_INSTABILITY"
-msgstr ""
-
-#, fuzzy
-msgid "CLIMATE_INSTABILITY_EXPLANATION"
-msgstr ""
-"Los microbios activos correrán y darán vueltas cuando no suceda nada interesante.\n"
-"Los microbios sésiles permanecerán en reposo y esperarán a que cambie el entorno antes de actuar."
 
 msgid "CLOSE"
 msgstr "Cerrar"
@@ -1090,6 +1078,7 @@ msgstr "[center]Sin embargo, el juego aún no ha terminado. Puedes [b]continuar[
 msgid "CONTINUE_THRIVING"
 msgstr "Continuar prosperando"
 
+#, fuzzy
 msgid "CONTINUE_TO_PROTOTYPES"
 msgstr ""
 "Has llegado al final del contenido completado actualmente en Thrive.\n"
@@ -2396,33 +2385,11 @@ msgstr "Presiona el botón de deshacer en el editor para corregir un error"
 msgid "GENERAL_LOADING_TIP_7"
 msgstr "Presiona el botón de deshacer en el editor para corregir un error"
 
-#, fuzzy
-msgid "GENERATE_BUTTON"
-msgstr "Generaciones"
-
 msgid "GENERATIONS"
 msgstr "Generaciones"
 
 msgid "GENERATION_COLON"
 msgstr "Generación:"
-
-msgid "GEOLOGICAL_ACTIVITY"
-msgstr ""
-
-msgid "GEOLOGICAL_ACTIVITY_ACTIVE"
-msgstr ""
-
-msgid "GEOLOGICAL_ACTIVITY_AVERAGE"
-msgstr ""
-
-msgid "GEOLOGICAL_ACTIVITY_DORMANT"
-msgstr ""
-
-#, fuzzy
-msgid "GEOLOGICAL_ACTIVITY_EXPLANATION"
-msgstr ""
-"Los microbios activos correrán y darán vueltas cuando no suceda nada interesante.\n"
-"Los microbios sésiles permanecerán en reposo y esperarán a que cambie el entorno antes de actuar."
 
 msgid "GITHUB_TOOLTIP"
 msgstr "Visita nuestro repositorio de GitHub"
@@ -2576,6 +2543,18 @@ msgid "HYDROGENASE_DESCRIPTION"
 msgstr "Utiliza hidrógeno para obtener energía de [thrive:compound type=«glucosa\\»][/thrive:compound]. Más eficaz en niveles bajos de [thrive:compound type=«oxígeno»][/thrive:compound] que los metabolosomas. Muchos organismos en ambientes anóxicos lo utilizan como fuente primaria de energía."
 
 msgid "HYDROGENASE_PROCESSES_DESCRIPTION"
+msgstr "Convierte el [thrive:compound type=\"atp\"][/thrive:compound] en [thrive:compound type=\"ammonia\"][/thrive:compound]."
+
+#, fuzzy
+msgid "HYDROGENOSOME"
+msgstr "Hidrogenasa"
+
+#, fuzzy
+msgid "HYDROGENOSOME_DESCRIPTION"
+msgstr "Utiliza hidrógeno para obtener energía de [thrive:compound type=«glucosa\\»][/thrive:compound]. Más eficaz en niveles bajos de [thrive:compound type=«oxígeno»][/thrive:compound] que los metabolosomas. Muchos organismos en ambientes anóxicos lo utilizan como fuente primaria de energía."
+
+#, fuzzy
+msgid "HYDROGENOSOME_PROCESSES_DESCRIPTION"
 msgstr "Convierte el [thrive:compound type=\"atp\"][/thrive:compound] en [thrive:compound type=\"ammonia\"][/thrive:compound]."
 
 msgid "HYDROGEN_SULFIDE"
@@ -3554,6 +3533,10 @@ msgstr "Microbio"
 msgid "MICROBE_BENCHMARK"
 msgstr "Editor de microbio"
 
+#, fuzzy
+msgid "MICROBE_CAMERA_TILT_EFFECT"
+msgstr "  Estadísticas del Organismo"
+
 msgid "MICROBE_EDITOR"
 msgstr "Editor de microbio"
 
@@ -3666,6 +3649,10 @@ msgstr "  Estadísticas del Organismo"
 
 #, fuzzy
 msgid "MICROBE_ORGANELLE_UPGRADES_STATISTICS"
+msgstr "  Estadísticas del Organismo"
+
+#, fuzzy
+msgid "MICROBE_RIPPLE_EFFECT"
 msgstr "  Estadísticas del Organismo"
 
 msgid "MICROBE_SPECIES_DETAIL_TEXT"
@@ -4225,6 +4212,7 @@ msgstr "Nitrógeno"
 msgid "NITROGENASE"
 msgstr "Nitrogenasa"
 
+#, fuzzy
 msgid "NITROGENASE_DESCRIPTION"
 msgstr "La Nitrogenasa es una proteína capaz de usar nitrógeno y la energía celular en forma de ATP para producir amoniaco, un nutriente clave para el crecimiento celular. Éste es un proceso llamado Fijación de Nitrógeno Anaeróbica. Cómo la nitrogenasa está directamente suspendida en el citoplasma, éste realiza la glicólisis."
 
@@ -4234,6 +4222,7 @@ msgstr "Convierte el [thrive:compound type=\"atp\"][/thrive:compound] en [thrive
 msgid "NITROPLAST"
 msgstr "Nitroplasto"
 
+#, fuzzy
 msgid "NITROPLAST_DESCRIPTION"
 msgstr "El Nitroplasto es una proteína capaz de usar nitrógeno, oxígeno y ATP para producir amoníaco, un nutriente clave para el crecimiento celular. A este proceso se lo denomina Fijación de Nitrógeno Aeróbica."
 
@@ -4789,15 +4778,15 @@ msgid "PLANET"
 msgstr "Planeta"
 
 #, fuzzy
-msgid "PLANET_CUSTOMIZER"
-msgstr "En el puntero:"
-
 msgid "PLANET_DETAILS_STRING"
 msgstr ""
 "Tipo de zona: {0}\n"
 "Solo usar VCLC: {1}\n"
 "Origen de la vida: {2}\n"
 "Semilla aleatoria del planeta: {3}"
+
+msgid "PLANET_GENERATION_TEASER"
+msgstr "Generación de Planeta próximamente!"
 
 msgid "PLANET_RANDOM_SEED"
 msgstr "Semilla de generación del Planeta"
@@ -4999,10 +4988,6 @@ msgstr "Rehacer la última acción"
 
 msgid "REFRESH"
 msgstr "Actualizar"
-
-#, fuzzy
-msgid "REGENERATE_BUTTON"
-msgstr "Orgánulos"
 
 #, fuzzy
 msgid "RENDER_SCALE"
@@ -6400,6 +6385,7 @@ msgstr ""
 "\n"
 "Intenta seleccionar un bioma para continuar."
 
+#, fuzzy
 msgid "TUTORIAL_MICROBE_EDITOR_AUTO-EVO_PREDICTION"
 msgstr ""
 "Este panel muestra una predicción de la futura población. Estos números provienen de la simulación de población de auto-evo.\n"
@@ -6543,6 +6529,7 @@ msgstr ""
 "\n"
 "Intenta seleccionar un bioma para continuar."
 
+#, fuzzy
 msgid "TUTORIAL_MICROBE_EDITOR_REMOVE_ORGANELLE_TEXT"
 msgstr ""
 "Quitar orgánulos también cuesta PM ya que es una mutación, salvo que hayan sido ubicados en la actual sesión de edición.\n"
@@ -7804,6 +7791,38 @@ msgid "WIKI_HYDROGENASE_UPGRADES"
 msgstr "La Nitrogenasa es una proteína capaz de usar nitrógeno y la energía celular en forma de ATP para producir amoniaco, un nutriente clave para el crecimiento celular. Éste es un proceso llamado Fijación de Nitrógeno Anaeróbica. Cómo la nitrogenasa está directamente suspendida en el citoplasma, éste realiza la glicólisis."
 
 #, fuzzy
+msgid "WIKI_HYDROGENOSOME_EFFECTS"
+msgstr "La Nitrogenasa es una proteína capaz de usar nitrógeno y la energía celular en forma de ATP para producir amoniaco, un nutriente clave para el crecimiento celular. Éste es un proceso llamado Fijación de Nitrógeno Anaeróbica. Cómo la nitrogenasa está directamente suspendida en el citoplasma, éste realiza la glicólisis."
+
+#, fuzzy
+msgid "WIKI_HYDROGENOSOME_INTRO"
+msgstr "La Nitrogenasa es una proteína capaz de usar nitrógeno y la energía celular en forma de ATP para producir amoniaco, un nutriente clave para el crecimiento celular. Éste es un proceso llamado Fijación de Nitrógeno Anaeróbica. Cómo la nitrogenasa está directamente suspendida en el citoplasma, éste realiza la glicólisis."
+
+#, fuzzy
+msgid "WIKI_HYDROGENOSOME_MODIFICATIONS"
+msgstr "La Nitrogenasa es una proteína capaz de usar nitrógeno y la energía celular en forma de ATP para producir amoniaco, un nutriente clave para el crecimiento celular. Éste es un proceso llamado Fijación de Nitrógeno Anaeróbica. Cómo la nitrogenasa está directamente suspendida en el citoplasma, éste realiza la glicólisis."
+
+#, fuzzy
+msgid "WIKI_HYDROGENOSOME_PROCESSES"
+msgstr "Convierte el [thrive:compound type=\"atp\"][/thrive:compound] en [thrive:compound type=\"ammonia\"][/thrive:compound]. La tasa de conversión aumenta con la concentración de [thrive:compound type=\"nitrogen\"][/thrive:compound]."
+
+#, fuzzy
+msgid "WIKI_HYDROGENOSOME_REQUIREMENTS"
+msgstr "El Termoplasto es una estructura de doble membrana que contiene pigmentos termosensibles apilados en sacos membranosos. Es una procariota asimilada para uso de su anfitrión eucariota. Los pigmentos en el Termoplasto usan las diferencias de energía térmica en el ambiente para producir [thrive:compound type=\"atp\"]ATP[/thrive:compound] en un proceso llamado [b]Termosíntesis[/b]. La producción de glucosa dependerá de la concentración de dióxido de carbono y [thrive:compound type=\"temperature\"]temperatura[/thrive:compound]."
+
+#, fuzzy
+msgid "WIKI_HYDROGENOSOME_SCIENTIFIC_BACKGROUND"
+msgstr "La Nitrogenasa es una proteína capaz de usar nitrógeno y la energía celular en forma de ATP para producir amoniaco, un nutriente clave para el crecimiento celular. Éste es un proceso llamado Fijación de Nitrógeno Anaeróbica. Cómo la nitrogenasa está directamente suspendida en el citoplasma, éste realiza la glicólisis."
+
+#, fuzzy
+msgid "WIKI_HYDROGENOSOME_STRATEGY"
+msgstr "La Nitrogenasa es una proteína capaz de usar nitrógeno y la energía celular en forma de ATP para producir amoniaco, un nutriente clave para el crecimiento celular. Éste es un proceso llamado Fijación de Nitrógeno Anaeróbica. Cómo la nitrogenasa está directamente suspendida en el citoplasma, éste realiza la glicólisis."
+
+#, fuzzy
+msgid "WIKI_HYDROGENOSOME_UPGRADES"
+msgstr "La Nitrogenasa es una proteína capaz de usar nitrógeno y la energía celular en forma de ATP para producir amoniaco, un nutriente clave para el crecimiento celular. Éste es un proceso llamado Fijación de Nitrógeno Anaeróbica. Cómo la nitrogenasa está directamente suspendida en el citoplasma, éste realiza la glicólisis."
+
+#, fuzzy
 msgid "WIKI_INDUSTRIAL_STAGE_CURRENT_DEVELOPMENT"
 msgstr "Permite la unión con otras células. Este es el primer paso hacia un ser multicelular. Cuando tu especie forma parte de una colonia, las células comparten sus compuestos. Mientras formes parte de una colonia no puedes entrar al editor, por lo que deberás romper la unión una vez recolectados los compuestos suficientes para dividir tu célula."
 
@@ -8328,6 +8347,10 @@ msgstr "Mitocondria"
 
 #, fuzzy
 msgid "WIKI_PAGE_HYDROGENASE"
+msgstr "Nitrogenasa"
+
+#, fuzzy
+msgid "WIKI_PAGE_HYDROGENOSOME"
 msgstr "Nitrogenasa"
 
 #, fuzzy
@@ -8915,28 +8938,6 @@ msgid "WORLD_RELATIVE_MOVEMENT"
 msgstr "para incrementar la velocidad de movimiento"
 
 #, fuzzy
-msgid "WORLD_SEA_LEVEL"
-msgstr "{0}-{1}m bajo el nivel del mar"
-
-#, fuzzy
-msgid "WORLD_SEA_LEVEL_DEEP"
-msgstr "{0}-{1}m bajo el nivel del mar"
-
-#, fuzzy
-msgid "WORLD_SEA_LEVEL_EXPLANATION"
-msgstr ""
-"Los microbios centrados buscarán recursos o presas más lejanas\n"
-"y es posible codicien más los fragmentos de recursos.\n"
-"Los microbios reactivos cambiarán de objetivo después de un tiempo."
-
-#, fuzzy
-msgid "WORLD_SEA_LEVEL_MODERATE"
-msgstr "para incrementar la velocidad de movimiento"
-
-msgid "WORLD_SEA_LEVEL_SHALLOW"
-msgstr ""
-
-#, fuzzy
 msgid "WORLD_SIZE"
 msgstr "Mundo"
 
@@ -8960,29 +8961,6 @@ msgstr ""
 #, fuzzy
 msgid "WORLD_SIZE_TOOLTIP"
 msgstr "Únete a nuestro servidor de Discord"
-
-#, fuzzy
-msgid "WORLD_TEMPERATURE"
-msgstr "Temperatura"
-
-#, fuzzy
-msgid "WORLD_TEMPERATURE_COLD"
-msgstr "Temp."
-
-#, fuzzy
-msgid "WORLD_TEMPERATURE_EXPLANATION"
-msgstr ""
-"Los microbios centrados buscarán recursos o presas más lejanas\n"
-"y es posible codicien más los fragmentos de recursos.\n"
-"Los microbios reactivos cambiarán de objetivo después de un tiempo."
-
-#, fuzzy
-msgid "WORLD_TEMPERATURE_TEMPERATE"
-msgstr "Temp."
-
-#, fuzzy
-msgid "WORLD_TEMPERATURE_WARM"
-msgstr "Temp."
 
 msgid "WORST_PATCH_COLON"
 msgstr "Peor bioma:"
@@ -9029,13 +9007,6 @@ msgstr "Alejar el zoom"
 
 #~ msgid "PASSIVE_REPRODUCTION_PROGRESS_EXPLANATION"
 #~ msgstr "(recibe compuestos del ambiente de forma pasiva sin tener que realizar acciones)"
-
-#~ msgid "PLANET_GENERATION_TEASER"
-#~ msgstr "Generación de Planeta próximamente!"
-
-#, fuzzy
-#~ msgid "PLAY_WTH_CURRENT_SETTINGS"
-#~ msgstr "Jugar con la configuración actual"
 
 #~ msgid "TO_BE_IMPLEMENTED"
 #~ msgstr "A implementar."

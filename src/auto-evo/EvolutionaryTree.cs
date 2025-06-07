@@ -19,12 +19,6 @@ using Godot;
 /// </remarks>
 public partial class EvolutionaryTree : Control
 {
-    [Export]
-    public NodePath? TimelinePath;
-
-    [Export]
-    public NodePath TreePath = null!;
-
     private const float TIMELINE_HEIGHT = 50.0f;
     private const float TIMELINE_LINE_THICKNESS = 2.0f;
     private const float TIMELINE_AXIS_Y = 5.0f;
@@ -104,11 +98,13 @@ public partial class EvolutionaryTree : Control
     /// <summary>
     ///   Timeline part of <see cref="EvolutionaryTree"/>. Consists of an axis and multiple time marks.
     /// </summary>
+    [Export]
     private Control timeline = null!;
 
     /// <summary>
     ///   Tree part of <see cref="EvolutionaryTree"/>. Consists of many buttons and connection lines.
     /// </summary>
+    [Export]
     private Control tree = null!;
 
     // Local copy of fonts
@@ -165,9 +161,6 @@ public partial class EvolutionaryTree : Control
     public override void _Ready()
     {
         base._Ready();
-
-        timeline = GetNode<Control>(TimelinePath);
-        tree = GetNode<Control>(TreePath);
 
         treeNodeScene = GD.Load<PackedScene>("res://src/auto-evo/EvolutionaryTreeNode.tscn");
 
@@ -284,12 +277,7 @@ public partial class EvolutionaryTree : Control
     {
         if (disposing)
         {
-            if (TimelinePath != null)
-            {
-                TimelinePath.Dispose();
-                TreePath.Dispose();
-                nodesGroup.Dispose();
-            }
+            nodesGroup.Dispose();
         }
 
         base.Dispose(disposing);

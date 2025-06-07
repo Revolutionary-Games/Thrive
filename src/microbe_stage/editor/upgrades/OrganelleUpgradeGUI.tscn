@@ -4,7 +4,7 @@
 [ext_resource type="Theme" uid="uid://b4cx0o110g4b6" path="res://src/gui_common/thrive_theme.tres" id="2"]
 [ext_resource type="Script" uid="uid://s73paciqalj0" path="res://src/microbe_stage/editor/upgrades/OrganelleUpgradeGUI.cs" id="3"]
 
-[node name="OrganelleUpgradeGUI" type="Control"]
+[node name="OrganelleUpgradeGUI" type="Control" node_paths=PackedStringArray("popup", "organelleSpecificContent", "scrollContainer", "generalUpgradesContainer", "upgradeSelectorButtonsContainer")]
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
@@ -15,11 +15,11 @@ mouse_filter = 2
 mouse_force_pass_scroll_events = false
 theme = ExtResource("2")
 script = ExtResource("3")
-PopupPath = NodePath("ModifyPopup")
-OrganelleSpecificContentPath = NodePath("ModifyPopup/VBoxContainer2/ScrollContainer/MarginContainer/VBoxContainer/OrganelleSpecificContent")
-ScrollContainerPath = NodePath("ModifyPopup/VBoxContainer2/ScrollContainer")
-GeneralUpgradesContainerPath = NodePath("ModifyPopup/VBoxContainer2/ScrollContainer/MarginContainer/VBoxContainer/DefaultUpgradeSelector")
-UpgradeSelectorButtonsContainerPath = NodePath("ModifyPopup/VBoxContainer2/ScrollContainer/MarginContainer/VBoxContainer/DefaultUpgradeSelector/UpgradeButtonsContainer")
+popup = NodePath("ModifyPopup")
+organelleSpecificContent = NodePath("ModifyPopup/VBoxContainer2/ScrollContainer/MarginContainer/VBoxContainer/OrganelleSpecificContent")
+scrollContainer = NodePath("ModifyPopup/VBoxContainer2/ScrollContainer")
+generalUpgradesContainer = NodePath("ModifyPopup/VBoxContainer2/ScrollContainer/MarginContainer/VBoxContainer/DefaultUpgradeSelector")
+upgradeSelectorButtonsContainer = NodePath("ModifyPopup/VBoxContainer2/ScrollContainer/MarginContainer/VBoxContainer/DefaultUpgradeSelector/UpgradeButtonsContainer")
 
 [node name="ModifyPopup" parent="." instance=ExtResource("1")]
 WindowTitle = "MODIFY_ORGANELLE"
