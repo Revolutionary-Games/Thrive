@@ -8,7 +8,7 @@ msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2025-05-28 14:54+0300\n"
-"PO-Revision-Date: 2025-05-29 18:47+0000\n"
+"PO-Revision-Date: 2025-06-07 19:08+0000\n"
 "Last-Translator: xzihnago <xzihnago@gmail.com>\n"
 "Language-Team: Chinese (Traditional Han script) <https://translate.revolutionarygamesstudio.com/projects/thrive/thrive-game/zh_Hant/>\n"
 "Language: zh_TW\n"
@@ -764,7 +764,7 @@ msgid "CHLOROPLAST"
 msgstr "葉綠體"
 
 msgid "CHLOROPLAST_DESCRIPTION"
-msgstr "葉綠體是一種雙層膜結構，包含在膜囊中堆疊起來的光敏色素。它是一種被其真核宿主同化的原核生物。葉綠體中的色素能夠透過[b]光合作用[/b]從氣態二氧化碳與水中生產[thrive:compound type=\"glucose\"][/thrive:compound]。這些色素也是賦予其獨特顏色的原因。其[thrive:compound type=\"glucose\"][/thrive:compound] 生產速率與[thrive:compound type=\"carbondioxide\"][/thrive:compound] 的濃度和[thrive:compound type=\"sunlight\"][/thrive:compound] 的強度成正比。"
+msgstr "葉綠體是一種雙層膜結構，包含在膜囊中堆疊起來的光敏色素。它是一種已被其真核宿主同化的原核生物。葉綠體中的色素能夠透過[b]光合作用[/b]從氣態二氧化碳與水中生產[thrive:compound type=\"glucose\"][/thrive:compound]。這些色素也是賦予其獨特顏色的原因。其[thrive:compound type=\"glucose\"][/thrive:compound] 生產速率與[thrive:compound type=\"carbondioxide\"][/thrive:compound] 的濃度和[thrive:compound type=\"sunlight\"][/thrive:compound] 的強度成正比。"
 
 msgid "CHLOROPLAST_PROCESSES_DESCRIPTION"
 msgstr "生產[thrive:compound type=\"glucose\"][/thrive:compound]。速率與[thrive:compound type=\"carbondioxide\"][/thrive:compound] 的濃度和[thrive:compound type=\"sunlight\"][/thrive:compound] 的強度成正比。"
@@ -2529,9 +2529,8 @@ msgstr "將[thrive:compound type=\\\"glucose\\\"][/thrive:compound] 轉化為[th
 msgid "HYDROGENOSOME"
 msgstr "氫化體"
 
-#, fuzzy
 msgid "HYDROGENOSOME_DESCRIPTION"
-msgstr "使用氫從[thrive:compound type=\\\"glucose\\\"][/thrive:compound] 獲取能量。在低[thrive:compound type=\\\"oxygen\\\"][/thrive:compound] 含量下比代謝體更有效。缺氧環境中的許多生物將其作為主要能量來源。"
+msgstr "使用氫從[thrive:compound type=\\\"glucose\\\"][/thrive:compound] 獲取能量。氫化體是一種包含蛋白質與酶的有膜細胞器。它是一種已被其真核宿主同化的原核生物。比氫化酶更高效，在低[thrive:compound type=\\\"oxygen\\\"][/thrive:compound] 含量下比粒線體更高效。缺氧環境中的許多生物將其作為主要能量來源。"
 
 msgid "HYDROGENOSOME_PROCESSES_DESCRIPTION"
 msgstr "將[thrive:compound type=\\\"glucose\\\"][/thrive:compound] 轉化為[thrive:compound type=\\\"atp\\\"][/thrive:compound]。"
@@ -3568,9 +3567,8 @@ msgstr "  {0}：存在於 {1} 個物種中，平均每個物種為 {2} 個"
 msgid "MICROBE_ORGANELLE_UPGRADES_STATISTICS"
 msgstr "[b]細胞器升級資料：[/b]"
 
-#, fuzzy
 msgid "MICROBE_RIPPLE_EFFECT"
-msgstr "微生物視角傾斜"
+msgstr "微生物運動漣漪"
 
 msgid "MICROBE_SPECIES_DETAIL_TEXT"
 msgstr ""
@@ -3726,7 +3724,7 @@ msgid "MITOCHONDRION"
 msgstr "粒線體"
 
 msgid "MITOCHONDRION_DESCRIPTION"
-msgstr "細胞的發電廠。粒線體是一種充滿蛋白質與酶的雙層膜結構。它是一種被其真核宿主同化的原核生物。它能夠將[thrive:compound type=\"glucose\"][/thrive:compound] 轉化為[thrive:compound type=\"atp\"][/thrive:compound]，此過程被稱為[b]有氧呼吸[/b]，效率比在細胞質中高得多。然而，它需要[thrive:compound type=\"oxygen\"][/thrive:compound] 才能發揮作用，環境中低含量的[thrive:compound type=\"oxygen\"][/thrive:compound] 會降低其[thrive:compound type=\"atp\"][/thrive:compound] 生產速率。"
+msgstr "細胞的發電廠。粒線體是一種充滿蛋白質與酶的雙層膜結構。它是一種已被其真核宿主同化的原核生物。它能夠將[thrive:compound type=\"glucose\"][/thrive:compound] 轉化為[thrive:compound type=\"atp\"][/thrive:compound]，此過程被稱為[b]有氧呼吸[/b]，效率比在細胞質中高得多。然而，它需要[thrive:compound type=\"oxygen\"][/thrive:compound] 才能發揮作用，環境中低含量的[thrive:compound type=\"oxygen\"][/thrive:compound] 會降低其[thrive:compound type=\"atp\"][/thrive:compound] 生產速率。"
 
 msgid "MITOCHONDRION_PROCESSES_DESCRIPTION"
 msgstr "將[thrive:compound type=\"glucose\"][/thrive:compound] 轉化為[thrive:compound type=\"atp\"][/thrive:compound]。速率與[thrive:compound type=\"oxygen\"][/thrive:compound] 的濃度成正比。"
@@ -5733,7 +5731,7 @@ msgid "THERMOPLAST"
 msgstr "熱能體"
 
 msgid "THERMOPLAST_DESCRIPTION"
-msgstr "熱能體是一種雙層膜結構，包含在膜囊中堆疊在一起的熱敏色素。它是一種被其真核宿主同化的原核生物。熱能體中的色素能夠利用周圍環境的[thrive:compound type=\"temperature\"][/thrive:compound] 上升梯度生產能量，從水中生產[thrive:compound type=\"atp\"][/thrive:compound]，此過程被稱為[b]熱合成[/b]。其[thrive:compound type=\"atp\"][/thrive:compound] 生產速率與[thrive:compound type=\"temperature\"][/thrive:compound] 的變化量成正比。"
+msgstr "熱能體是一種雙層膜結構，包含在膜囊中堆疊在一起的熱敏色素。它是一種已被其真核宿主同化的原核生物。熱能體中的色素能夠利用周圍環境的[thrive:compound type=\"temperature\"][/thrive:compound] 上升梯度生產能量，從水中生產[thrive:compound type=\"atp\"][/thrive:compound]，此過程被稱為[b]熱合成[/b]。其[thrive:compound type=\"atp\"][/thrive:compound] 生產速率與[thrive:compound type=\"temperature\"][/thrive:compound] 的變化量成正比。"
 
 msgid "THERMOPLAST_PROCESSES_DESCRIPTION"
 msgstr "利用溫度梯度生產[thrive:compound type=\"atp\"][/thrive:compound]。速率與[thrive:compound type=\"temperature\"][/thrive:compound] 的上升梯度成正比。使用[b]熱視覺[/b]來找出熱區域與冷區域。"
@@ -7645,14 +7643,8 @@ msgstr ""
 msgid "WIKI_HYDROGENOSOME_REQUIREMENTS"
 msgstr "起始部件，無要求。"
 
-#, fuzzy
 msgid "WIKI_HYDROGENOSOME_SCIENTIFIC_BACKGROUND"
-msgstr ""
-"梭菌發酵存在於梭菌中，這是依據其代謝過程進行劃分的一類多樣且定義鬆散的原核生物群。它常用於生化、食品與生質燃料製造，以及廢水處理與土壤復育工作。雖然在不同細菌群中，梭菌發酵的表現有所不同，但其一般公式為：\n"
-"\n"
-"C6​H12​O6​→2C2​H5​OH+2CO2​+2H2​\n"
-"\n"
-"即葡萄糖被轉化為兩個乙醇分子、兩個二氧化碳分子與兩個氫氣分子。葡萄糖透過受質階層磷酸化分解，並且與其他發酵方法一樣，即使在厭氧條件下也可以維持糖解作用的重要反應。發酵可能是地球上非常古老的代謝策略。儘管氫化酶在梭菌發酵中起到廢物管理與氫氣生產的作用，但技術上來說，它並不是該過程的關鍵酶。其他酶，如丙酮酸：鐵氧還蛋白氧化還原酶（POR），在厭氧發酵中發揮更獨特與核心的作用；然而，由於這些酶在遊戲中相對較難表現，因此選擇了更熟悉的酶與易於管理的名稱。"
+msgstr "氫化體被認為從粒線體演化而來，可以適應低氧含量。與粒線體類似，它們可以具有各種形狀，呈現球體或啞鈴狀。"
 
 #, fuzzy
 msgid "WIKI_HYDROGENOSOME_STRATEGY"
@@ -7761,7 +7753,6 @@ msgstr ""
 "\n"
 "關於宏觀階段的遊戲設計方案有一個單獨的頁面，詳細描述了該階段的機制。"
 
-#, fuzzy
 msgid "WIKI_MACROSCOPIC_STAGE_INTRO"
 msgstr "在宏觀生物階段，您的細胞群體將轉變為存在於三維環境中的多種組織類型的集合。當您的生物首次發展出一定程度的感知能力時，本階段結束。"
 
@@ -8629,14 +8620,8 @@ msgstr "此階段尚未開始開發。近年來，這一階段的理論與遊戲
 msgid "WIKI_SOCIETY_STAGE_FEATURES"
 msgstr "即將推出。"
 
-#, fuzzy
 msgid "WIKI_SOCIETY_STAGE_INTRO"
-msgstr ""
-"簡介：在這個階段中，您將發展與擴展您的第一個聚落，並建立更多的聚落。這個階段讓人聯想到中世紀。當您的科技發展到足夠先進的程度時，本階段結束。\n"
-"\n"
-"社會階段是 Thrive 的七個遊戲階段之一。在經歷了[color=#3796e1][url=thriveopedia:awakening_stage]覺醒階段[/url][/color]並發展後，您的智慧物種開始形成更大的群體或社會。此時，策略模式成為遊戲的主要焦點，而非生物模式（儘管玩家仍然可以隨時使用生物模式，這是較低優先實現的功能）。同時，國家編輯器也會解鎖供玩家使用。最後，玩家的物種可以開始建立社會中心來形成聚落。\n"
-"\n"
-"在整個社會階段中，主要目標之一是發展越來越先進的科技。因此，當您的物種發展出足夠先進的科技進入[color=#3796e1][url=thriveopedia:industrial_stage]工業階段[/url][/color]時，社會階段結束。"
+msgstr "簡介：在這個階段中，您將發展與擴展您的第一個聚落，並建立更多的聚落。這個階段讓人聯想到中世紀。當您的科技發展到足夠先進的程度時，本階段結束。"
 
 #, fuzzy
 msgid "WIKI_SOCIETY_STAGE_OVERVIEW"
