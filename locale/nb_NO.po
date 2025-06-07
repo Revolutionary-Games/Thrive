@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2025-05-28 14:54+0300\n"
+"POT-Creation-Date: 2025-06-07 17:50+0200\n"
 "PO-Revision-Date: 2025-04-04 10:42+0000\n"
 "Last-Translator: Anonymous <noreply@weblate.org>\n"
 "Language-Team: Norwegian Bokmål <https://translate.revolutionarygamesstudio.com/projects/thrive/thrive-game/nb_NO/>\n"
@@ -399,6 +399,10 @@ msgstr ""
 msgid "AUTO_EVO_STATUS_COLON"
 msgstr "Auto-evo Status:"
 
+#, fuzzy
+msgid "AUTO_EVO_TOOL_BUTTON"
+msgstr "Auto ({0}x{1})"
+
 msgid "AUTO_MOVE_FORWARDS"
 msgstr "Auto bevege framover"
 
@@ -431,6 +435,9 @@ msgstr "Bakstrek"
 #, fuzzy
 msgid "BACKSPACE"
 msgstr "Tilbaketast"
+
+msgid "BACK_TO_SETTINGS"
+msgstr ""
 
 msgid "BACTERIAL_THERMOSYNTHESIS"
 msgstr "Bakteriell Termosyntese"
@@ -835,6 +842,15 @@ msgstr ""
 
 msgid "CLICK_TO_SELECT"
 msgstr ""
+
+msgid "CLIMATE_INSTABILITY"
+msgstr ""
+
+#, fuzzy
+msgid "CLIMATE_INSTABILITY_EXPLANATION"
+msgstr ""
+"Aktive mikrober vil løpe og snu når ingenting interessant skjer.\n"
+"Sessile mikrober vil være stasjonære og vente på at miljøet endrer seg før de handler."
 
 msgid "CLOSE"
 msgstr ""
@@ -2296,11 +2312,33 @@ msgid "GENERAL_LOADING_TIP_7"
 msgstr ""
 
 #, fuzzy
+msgid "GENERATE_BUTTON"
+msgstr "Generelt"
+
+#, fuzzy
 msgid "GENERATIONS"
 msgstr "Generelt"
 
 msgid "GENERATION_COLON"
 msgstr ""
+
+msgid "GEOLOGICAL_ACTIVITY"
+msgstr ""
+
+msgid "GEOLOGICAL_ACTIVITY_ACTIVE"
+msgstr ""
+
+msgid "GEOLOGICAL_ACTIVITY_AVERAGE"
+msgstr ""
+
+msgid "GEOLOGICAL_ACTIVITY_DORMANT"
+msgstr ""
+
+#, fuzzy
+msgid "GEOLOGICAL_ACTIVITY_EXPLANATION"
+msgstr ""
+"Aktive mikrober vil løpe og snu når ingenting interessant skjer.\n"
+"Sessile mikrober vil være stasjonære og vente på at miljøet endrer seg før de handler."
 
 msgid "GITHUB_TOOLTIP"
 msgstr ""
@@ -4482,10 +4520,11 @@ msgstr ""
 msgid "PLANET"
 msgstr ""
 
-msgid "PLANET_DETAILS_STRING"
-msgstr ""
+#, fuzzy
+msgid "PLANET_CUSTOMIZER"
+msgstr "Ved markør:"
 
-msgid "PLANET_GENERATION_TEASER"
+msgid "PLANET_DETAILS_STRING"
 msgstr ""
 
 msgid "PLANET_RANDOM_SEED"
@@ -4675,6 +4714,10 @@ msgstr ""
 
 msgid "REFRESH"
 msgstr ""
+
+#, fuzzy
+msgid "REGENERATE_BUTTON"
+msgstr "Flercellestadiet"
 
 msgid "RENDER_SCALE"
 msgstr ""
@@ -8118,6 +8161,28 @@ msgid "WORLD_RELATIVE_MOVEMENT"
 msgstr ""
 
 #, fuzzy
+msgid "WORLD_SEA_LEVEL"
+msgstr "{0}-{1}m under havnivå"
+
+#, fuzzy
+msgid "WORLD_SEA_LEVEL_DEEP"
+msgstr "{0}-{1}m under havnivå"
+
+#, fuzzy
+msgid "WORLD_SEA_LEVEL_EXPLANATION"
+msgstr ""
+"Aggressive mikrober vil jage ned bytte over større avstander\n"
+"og er mer sannsynlig å kjempe mot angripere når de blir angrepet.\n"
+"Fredelige mikrober vil ikke engasjere andre over større avstander\n"
+"og har mindre sannsynlighet for å bruke giftstoffer mot angripere."
+
+msgid "WORLD_SEA_LEVEL_MODERATE"
+msgstr ""
+
+msgid "WORLD_SEA_LEVEL_SHALLOW"
+msgstr ""
+
+#, fuzzy
 msgid "WORLD_SIZE"
 msgstr "\"{0}\" - {1}"
 
@@ -8141,6 +8206,27 @@ msgstr ""
 #, fuzzy
 msgid "WORLD_SIZE_TOOLTIP"
 msgstr "Dra til Oppvåknings Fasen. Tilgjengelig når du har nok hjernekraft (vevstype med aksoner)."
+
+msgid "WORLD_TEMPERATURE"
+msgstr ""
+
+msgid "WORLD_TEMPERATURE_COLD"
+msgstr ""
+
+#, fuzzy
+msgid "WORLD_TEMPERATURE_EXPLANATION"
+msgstr ""
+"Aggressive mikrober vil jage ned bytte over større avstander\n"
+"og er mer sannsynlig å kjempe mot angripere når de blir angrepet.\n"
+"Fredelige mikrober vil ikke engasjere andre over større avstander\n"
+"og har mindre sannsynlighet for å bruke giftstoffer mot angripere."
+
+#, fuzzy
+msgid "WORLD_TEMPERATURE_TEMPERATE"
+msgstr "Dra til Oppvåknings Fasen. Tilgjengelig når du har nok hjernekraft (vevstype med aksoner)."
+
+msgid "WORLD_TEMPERATURE_WARM"
+msgstr ""
 
 msgid "WORST_PATCH_COLON"
 msgstr ""

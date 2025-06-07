@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2025-05-28 14:54+0300\n"
+"POT-Creation-Date: 2025-06-07 17:50+0200\n"
 "PO-Revision-Date: 2025-05-29 18:47+0000\n"
 "Last-Translator: xzihnago <xzihnago@gmail.com>\n"
 "Language-Team: Chinese (Traditional Han script) <https://translate.revolutionarygamesstudio.com/projects/thrive/thrive-game/zh_Hant/>\n"
@@ -382,6 +382,10 @@ msgstr "運行狀態："
 msgid "AUTO_EVO_STATUS_COLON"
 msgstr "Auto-Evo 狀態："
 
+#, fuzzy
+msgid "AUTO_EVO_TOOL_BUTTON"
+msgstr "自動（{0}x{1}）"
+
 msgid "AUTO_MOVE_FORWARDS"
 msgstr "自動向前移動"
 
@@ -411,6 +415,9 @@ msgstr "\\"
 
 msgid "BACKSPACE"
 msgstr "Backspace"
+
+msgid "BACK_TO_SETTINGS"
+msgstr ""
 
 msgid "BACTERIAL_THERMOSYNTHESIS"
 msgstr "細菌熱合成"
@@ -804,6 +811,15 @@ msgstr "清除快取"
 
 msgid "CLICK_TO_SELECT"
 msgstr "選取"
+
+msgid "CLIMATE_INSTABILITY"
+msgstr ""
+
+#, fuzzy
+msgid "CLIMATE_INSTABILITY_EXPLANATION"
+msgstr ""
+"活躍型微生物在周圍無事發生時會四處移動。\n"
+"沉著型微生物將靜止不動，等待環境變化後才行動。"
 
 msgid "CLOSE"
 msgstr "關閉"
@@ -2362,11 +2378,33 @@ msgstr "別忘了，您可以使用螢幕右上角的面板查看遊標下的內
 msgid "GENERAL_LOADING_TIP_7"
 msgstr "如果您的物種量降至零，您就會滅絕。"
 
+#, fuzzy
+msgid "GENERATE_BUTTON"
+msgstr "世代"
+
 msgid "GENERATIONS"
 msgstr "世代"
 
 msgid "GENERATION_COLON"
 msgstr "世代："
+
+msgid "GEOLOGICAL_ACTIVITY"
+msgstr ""
+
+msgid "GEOLOGICAL_ACTIVITY_ACTIVE"
+msgstr ""
+
+msgid "GEOLOGICAL_ACTIVITY_AVERAGE"
+msgstr ""
+
+msgid "GEOLOGICAL_ACTIVITY_DORMANT"
+msgstr ""
+
+#, fuzzy
+msgid "GEOLOGICAL_ACTIVITY_EXPLANATION"
+msgstr ""
+"活躍型微生物在周圍無事發生時會四處移動。\n"
+"沉著型微生物將靜止不動，等待環境變化後才行動。"
 
 msgid "GITHUB_TOOLTIP"
 msgstr "造訪我們的 GitHub 儲存庫"
@@ -4594,6 +4632,10 @@ msgstr "放置細胞器（或其他可放置的物件）"
 msgid "PLANET"
 msgstr "星球"
 
+#, fuzzy
+msgid "PLANET_CUSTOMIZER"
+msgstr "滑鼠指標處："
+
 msgid "PLANET_DETAILS_STRING"
 msgstr ""
 "僅限已知生命形式：{0}\n"
@@ -4601,9 +4643,6 @@ msgstr ""
 "晝夜循環：{2}\n"
 "一日時長：{3} 秒\n"
 "星球隨機種子：{4}"
-
-msgid "PLANET_GENERATION_TEASER"
-msgstr "敬請期待行星生成功能！"
 
 msgid "PLANET_RANDOM_SEED"
 msgstr "星球隨機種子"
@@ -4797,6 +4836,10 @@ msgstr "重做上一個動作"
 
 msgid "REFRESH"
 msgstr "重新整理"
+
+#, fuzzy
+msgid "REGENERATE_BUTTON"
+msgstr "細胞器"
 
 msgid "RENDER_SCALE"
 msgstr "解析度比例"
@@ -8982,6 +9025,26 @@ msgstr ""
 msgid "WORLD_RELATIVE_MOVEMENT"
 msgstr "相對於世界"
 
+#, fuzzy
+msgid "WORLD_SEA_LEVEL"
+msgstr "低於海平面 {0}-{1} 米"
+
+#, fuzzy
+msgid "WORLD_SEA_LEVEL_DEEP"
+msgstr "低於海平面 {0}-{1} 米"
+
+#, fuzzy
+msgid "WORLD_SEA_LEVEL_EXPLANATION"
+msgstr "（改變世界中的區域數量）"
+
+#, fuzzy
+msgid "WORLD_SEA_LEVEL_MODERATE"
+msgstr "相對於世界"
+
+#, fuzzy
+msgid "WORLD_SEA_LEVEL_SHALLOW"
+msgstr "小"
+
 msgid "WORLD_SIZE"
 msgstr "世界大小"
 
@@ -8999,6 +9062,26 @@ msgstr "小"
 
 msgid "WORLD_SIZE_TOOLTIP"
 msgstr "較大的世界可能會降低模擬速度，因此不建議在性能較差的電腦上使用。"
+
+#, fuzzy
+msgid "WORLD_TEMPERATURE"
+msgstr "溫度"
+
+#, fuzzy
+msgid "WORLD_TEMPERATURE_COLD"
+msgstr "溫度"
+
+#, fuzzy
+msgid "WORLD_TEMPERATURE_EXPLANATION"
+msgstr "（改變世界中的區域數量）"
+
+#, fuzzy
+msgid "WORLD_TEMPERATURE_TEMPERATE"
+msgstr "溫度"
+
+#, fuzzy
+msgid "WORLD_TEMPERATURE_WARM"
+msgstr "溫度"
 
 msgid "WORST_PATCH_COLON"
 msgstr "最差區域："
@@ -9037,6 +9120,9 @@ msgstr "放大"
 
 msgid "ZOOM_OUT"
 msgstr "縮小"
+
+#~ msgid "PLANET_GENERATION_TEASER"
+#~ msgstr "敬請期待行星生成功能！"
 
 #~ msgid "PASSIVE_REPRODUCTION_PROGRESS_EXPLANATION"
 #~ msgstr "（被動地從環境中獲得繁殖所需的化合物）"

@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2025-05-28 14:54+0300\n"
+"POT-Creation-Date: 2025-06-07 17:50+0200\n"
 "PO-Revision-Date: 2025-05-25 15:00+0000\n"
 "Last-Translator: Anonymous <noreply@weblate.org>\n"
 "Language-Team: Swedish <https://translate.revolutionarygamesstudio.com/projects/thrive/thrive-game/sv/>\n"
@@ -391,6 +391,10 @@ msgstr "kör status:"
 msgid "AUTO_EVO_STATUS_COLON"
 msgstr "Auto-evo Status:"
 
+#, fuzzy
+msgid "AUTO_EVO_TOOL_BUTTON"
+msgstr "Automatisk({0}{1})"
+
 msgid "AUTO_MOVE_FORWARDS"
 msgstr "Auto framåt"
 
@@ -420,6 +424,9 @@ msgstr "Omvänt snedstreck"
 
 msgid "BACKSPACE"
 msgstr "Backa"
+
+msgid "BACK_TO_SETTINGS"
+msgstr ""
 
 #, fuzzy
 msgid "BACTERIAL_THERMOSYNTHESIS"
@@ -844,6 +851,15 @@ msgstr ""
 #, fuzzy
 msgid "CLICK_TO_SELECT"
 msgstr "Radera Valda"
+
+msgid "CLIMATE_INSTABILITY"
+msgstr ""
+
+#, fuzzy
+msgid "CLIMATE_INSTABILITY_EXPLANATION"
+msgstr ""
+"Aktiva mikrober springer och rullar omkring när ingenting händer.\n"
+"Sessila mikrober sitter still och väntar på att omgivningen ändrar sig innan de agerar."
 
 msgid "CLOSE"
 msgstr "Stäng"
@@ -2527,11 +2543,33 @@ msgid "GENERAL_LOADING_TIP_7"
 msgstr "Använd ångraknapped i cellredigeraren för att fixa ett mistag"
 
 #, fuzzy
+msgid "GENERATE_BUTTON"
+msgstr "generation:"
+
+#, fuzzy
 msgid "GENERATIONS"
 msgstr "generation:"
 
 msgid "GENERATION_COLON"
 msgstr "generation:"
+
+msgid "GEOLOGICAL_ACTIVITY"
+msgstr ""
+
+msgid "GEOLOGICAL_ACTIVITY_ACTIVE"
+msgstr ""
+
+msgid "GEOLOGICAL_ACTIVITY_AVERAGE"
+msgstr ""
+
+msgid "GEOLOGICAL_ACTIVITY_DORMANT"
+msgstr ""
+
+#, fuzzy
+msgid "GEOLOGICAL_ACTIVITY_EXPLANATION"
+msgstr ""
+"Aktiva mikrober springer och rullar omkring när ingenting händer.\n"
+"Sessila mikrober sitter still och väntar på att omgivningen ändrar sig innan de agerar."
 
 #, fuzzy
 msgid "GITHUB_TOOLTIP"
@@ -4952,11 +4990,12 @@ msgid "PLANET"
 msgstr ""
 
 #, fuzzy
+msgid "PLANET_CUSTOMIZER"
+msgstr "Vid Muspekare:"
+
+#, fuzzy
 msgid "PLANET_DETAILS_STRING"
 msgstr "Öppna Logmapp"
-
-msgid "PLANET_GENERATION_TEASER"
-msgstr ""
 
 msgid "PLANET_RANDOM_SEED"
 msgstr ""
@@ -5160,6 +5199,10 @@ msgstr "Gör om den senaste handlingen"
 
 msgid "REFRESH"
 msgstr "Ladda om"
+
+#, fuzzy
+msgid "REGENERATE_BUTTON"
+msgstr "Organeller"
 
 msgid "RENDER_SCALE"
 msgstr ""
@@ -8990,6 +9033,26 @@ msgstr ""
 msgid "WORLD_RELATIVE_MOVEMENT"
 msgstr "för att öka hastigheten"
 
+#, fuzzy
+msgid "WORLD_SEA_LEVEL"
+msgstr "{0}-{1}m under havsnivån"
+
+#, fuzzy
+msgid "WORLD_SEA_LEVEL_DEEP"
+msgstr "{0}-{1}m under havsnivån"
+
+#, fuzzy
+msgid "WORLD_SEA_LEVEL_EXPLANATION"
+msgstr "(Ändrar andelen patches i världen)"
+
+#, fuzzy
+msgid "WORLD_SEA_LEVEL_MODERATE"
+msgstr "för att öka hastigheten"
+
+#, fuzzy
+msgid "WORLD_SEA_LEVEL_SHALLOW"
+msgstr "Liten"
+
 msgid "WORLD_SIZE"
 msgstr "Värld storlek"
 
@@ -9009,6 +9072,26 @@ msgstr "Liten"
 
 msgid "WORLD_SIZE_TOOLTIP"
 msgstr "En stor värld kan göra simuleringen långsammare och rekommenderas inte för långsammare datorer."
+
+#, fuzzy
+msgid "WORLD_TEMPERATURE"
+msgstr "Temperatur"
+
+#, fuzzy
+msgid "WORLD_TEMPERATURE_COLD"
+msgstr "Temp."
+
+#, fuzzy
+msgid "WORLD_TEMPERATURE_EXPLANATION"
+msgstr "(Ändrar andelen patches i världen)"
+
+#, fuzzy
+msgid "WORLD_TEMPERATURE_TEMPERATE"
+msgstr "Temp."
+
+#, fuzzy
+msgid "WORLD_TEMPERATURE_WARM"
+msgstr "Temp."
 
 msgid "WORST_PATCH_COLON"
 msgstr ""
