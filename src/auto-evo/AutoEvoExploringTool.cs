@@ -1089,14 +1089,7 @@ public partial class AutoEvoExploringTool : NodeWithInput, ISpeciesDataProvider
             WorldGenerationSettings? planetCustomizerWorldGenerationSettings)
         {
             AutoEvoConfiguration = configuration.Clone();
-            if (planetCustomizerWorldGenerationSettings == null)
-            {
-                WorldSettings = new WorldGenerationSettings { AutoEvoConfiguration = AutoEvoConfiguration };
-            }
-            else
-            {
-                WorldSettings = planetCustomizerWorldGenerationSettings;
-            }
+            WorldSettings = planetCustomizerWorldGenerationSettings ?? new WorldGenerationSettings { AutoEvoConfiguration = AutoEvoConfiguration };
 
             GameProperties = GameProperties.StartNewMicrobeGame(WorldSettings);
 
