@@ -6,7 +6,7 @@
 [sub_resource type="ShaderMaterial" id="1"]
 shader = ExtResource("2")
 
-[node name="PatchMapDrawer" type="Control"]
+[node name="PatchMapDrawer" type="Control" node_paths=PackedStringArray("patchNodeContainer", "lineContainer")]
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
@@ -18,9 +18,9 @@ size_flags_vertical = 3
 mouse_filter = 1
 script = ExtResource("1")
 DrawDefaultMapIfEmpty = true
-PatchNodeContainerPath = NodePath("PatchNodeContainer")
-LineContainerPath = NodePath("LineContainer")
 MonochromeMaterial = SubResource("1")
+patchNodeContainer = NodePath("PatchNodeContainer")
+lineContainer = NodePath("LineContainer")
 
 [node name="LineContainer" type="Control" parent="."]
 anchors_preset = 0
