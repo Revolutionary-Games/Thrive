@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2025-05-28 14:54+0300\n"
+"POT-Creation-Date: 2025-06-07 17:50+0200\n"
 "PO-Revision-Date: 2025-05-25 15:00+0000\n"
 "Last-Translator: Anonymous <noreply@weblate.org>\n"
 "Language-Team: Hebrew <https://translate.revolutionarygamesstudio.com/projects/thrive/thrive-game/he/>\n"
@@ -386,6 +386,10 @@ msgstr "מריץ סטטוס:"
 msgid "AUTO_EVO_STATUS_COLON"
 msgstr "מריץ סטטוס:"
 
+#, fuzzy
+msgid "AUTO_EVO_TOOL_BUTTON"
+msgstr "אוטומטי ({0}X{1})"
+
 msgid "AUTO_MOVE_FORWARDS"
 msgstr "התקדמות אוטומטית"
 
@@ -416,6 +420,9 @@ msgstr "לוכסן שמאלי"
 
 msgid "BACKSPACE"
 msgstr "חזור"
+
+msgid "BACK_TO_SETTINGS"
+msgstr ""
 
 #, fuzzy
 msgid "BACTERIAL_THERMOSYNTHESIS"
@@ -819,6 +826,15 @@ msgstr ""
 #, fuzzy
 msgid "CLICK_TO_SELECT"
 msgstr "מחק נבחרים"
+
+msgid "CLIMATE_INSTABILITY"
+msgstr ""
+
+#, fuzzy
+msgid "CLIMATE_INSTABILITY_EXPLANATION"
+msgstr ""
+"מיקרבים פעילים יתרוצצו כששום דבר מעניין קורה.\n"
+"מיקרובים נייחים יחכו לסביבה להשתנות לפני שהם יפעלו."
 
 msgid "CLOSE"
 msgstr "סגור"
@@ -2500,11 +2516,33 @@ msgstr "לחץ על הכפתור \"בטל\" בעורך בשביל לתקן טע�
 msgid "GENERAL_LOADING_TIP_7"
 msgstr "לחץ על הכפתור \"בטל\" בעורך בשביל לתקן טעויות"
 
+#, fuzzy
+msgid "GENERATE_BUTTON"
+msgstr "דורות"
+
 msgid "GENERATIONS"
 msgstr "דורות"
 
 msgid "GENERATION_COLON"
 msgstr "דור:"
+
+msgid "GEOLOGICAL_ACTIVITY"
+msgstr ""
+
+msgid "GEOLOGICAL_ACTIVITY_ACTIVE"
+msgstr ""
+
+msgid "GEOLOGICAL_ACTIVITY_AVERAGE"
+msgstr ""
+
+msgid "GEOLOGICAL_ACTIVITY_DORMANT"
+msgstr ""
+
+#, fuzzy
+msgid "GEOLOGICAL_ACTIVITY_EXPLANATION"
+msgstr ""
+"מיקרבים פעילים יתרוצצו כששום דבר מעניין קורה.\n"
+"מיקרובים נייחים יחכו לסביבה להשתנות לפני שהם יפעלו."
 
 msgid "GITHUB_TOOLTIP"
 msgstr "צפו בספריית GitHub שלנו"
@@ -4947,11 +4985,12 @@ msgid "PLANET"
 msgstr "כוכב לכת"
 
 #, fuzzy
+msgid "PLANET_CUSTOMIZER"
+msgstr "בסמן העכבר:"
+
+#, fuzzy
 msgid "PLANET_DETAILS_STRING"
 msgstr "פתח תקיית קבצי לוג"
-
-msgid "PLANET_GENERATION_TEASER"
-msgstr "מייצר כוכבי לכת בקרוב!"
 
 msgid "PLANET_RANDOM_SEED"
 msgstr "כוכב סייד אקראי"
@@ -5150,6 +5189,10 @@ msgstr "בצע מחדש פעולה אחרונה"
 
 msgid "REFRESH"
 msgstr "רענן"
+
+#, fuzzy
+msgid "REGENERATE_BUTTON"
+msgstr "אברונים"
 
 #, fuzzy
 msgid "RENDER_SCALE"
@@ -9043,6 +9086,28 @@ msgid "WORLD_RELATIVE_MOVEMENT"
 msgstr "להגדלת התנועה"
 
 #, fuzzy
+msgid "WORLD_SEA_LEVEL"
+msgstr "{0}-{1}מ' מתחת פני הים"
+
+#, fuzzy
+msgid "WORLD_SEA_LEVEL_DEEP"
+msgstr "{0}-{1}מ' מתחת פני הים"
+
+#, fuzzy
+msgid "WORLD_SEA_LEVEL_EXPLANATION"
+msgstr ""
+"מיקרובים ממוקדים יחפשו אחר גושים או טרף למרחקים\n"
+"ולרוב הוא ישאף לגושים.\n"
+"מיקורבים מגיבים ישנו למטרה חדשה באופן כפוף יותר."
+
+#, fuzzy
+msgid "WORLD_SEA_LEVEL_MODERATE"
+msgstr "להגדלת התנועה"
+
+msgid "WORLD_SEA_LEVEL_SHALLOW"
+msgstr ""
+
+#, fuzzy
 msgid "WORLD_SIZE"
 msgstr "מפתחים נוכחים"
 
@@ -9066,6 +9131,29 @@ msgstr ""
 #, fuzzy
 msgid "WORLD_SIZE_TOOLTIP"
 msgstr "היצטרפו לשרת הדיסטורט הקהילתי שלנו"
+
+#, fuzzy
+msgid "WORLD_TEMPERATURE"
+msgstr "טמפרטורה"
+
+#, fuzzy
+msgid "WORLD_TEMPERATURE_COLD"
+msgstr "טמפ'."
+
+#, fuzzy
+msgid "WORLD_TEMPERATURE_EXPLANATION"
+msgstr ""
+"מיקרובים ממוקדים יחפשו אחר גושים או טרף למרחקים\n"
+"ולרוב הוא ישאף לגושים.\n"
+"מיקורבים מגיבים ישנו למטרה חדשה באופן כפוף יותר."
+
+#, fuzzy
+msgid "WORLD_TEMPERATURE_TEMPERATE"
+msgstr "טמפ'."
+
+#, fuzzy
+msgid "WORLD_TEMPERATURE_WARM"
+msgstr "טמפ'."
 
 msgid "WORST_PATCH_COLON"
 msgstr "האזור הגרוע ביותר:"
@@ -9106,6 +9194,9 @@ msgstr "להתמקד"
 
 msgid "ZOOM_OUT"
 msgstr "זום החוצה"
+
+#~ msgid "PLANET_GENERATION_TEASER"
+#~ msgstr "מייצר כוכבי לכת בקרוב!"
 
 #~ msgid "PASSIVE_REPRODUCTION_PROGRESS_EXPLANATION"
 #~ msgstr "(באופן פסיבי צובר תרכובות מהסביבה לתהליכי רבייה מבלי שצריך לעשות דבר)"

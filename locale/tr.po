@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2025-05-28 14:54+0300\n"
+"POT-Creation-Date: 2025-06-07 17:50+0200\n"
 "PO-Revision-Date: 2025-05-26 15:44+0000\n"
 "Last-Translator: punctdan <yunusemredilek@hotmail.com>\n"
 "Language-Team: Turkish <https://translate.revolutionarygamesstudio.com/projects/thrive/thrive-game/tr/>\n"
@@ -382,6 +382,10 @@ msgstr "çalışma durumu:"
 msgid "AUTO_EVO_STATUS_COLON"
 msgstr "Oto-evrim Durumu:"
 
+#, fuzzy
+msgid "AUTO_EVO_TOOL_BUTTON"
+msgstr "Otomatik ({0}x{1})"
+
 msgid "AUTO_MOVE_FORWARDS"
 msgstr "Otomatik olarak ileri git"
 
@@ -411,6 +415,9 @@ msgstr "Ters Eğik Çizgi"
 
 msgid "BACKSPACE"
 msgstr "Backspace"
+
+msgid "BACK_TO_SETTINGS"
+msgstr ""
 
 msgid "BACTERIAL_THERMOSYNTHESIS"
 msgstr "Bakteri Termosentezi"
@@ -803,6 +810,15 @@ msgstr "Önbelleği Temizle"
 
 msgid "CLICK_TO_SELECT"
 msgstr "Seç"
+
+msgid "CLIMATE_INSTABILITY"
+msgstr ""
+
+#, fuzzy
+msgid "CLIMATE_INSTABILITY_EXPLANATION"
+msgstr ""
+"Hareketli mikroplar, ilginç bir şey olmadığında ilerler ve yuvarlanırlar.\n"
+"Durağan mikroplar, hareketsizdirler ve hareket etmeden önce ortamın değişmesini beklerler."
 
 msgid "CLOSE"
 msgstr "Kapat"
@@ -2361,11 +2377,33 @@ msgstr "Unutmayın, imlecin altındaki öğeyi görmek için ekranın sağ üst�
 msgid "GENERAL_LOADING_TIP_7"
 msgstr "Eğer popülasyonunuz sıfıra düşerse, soyunuz tükenir."
 
+#, fuzzy
+msgid "GENERATE_BUTTON"
+msgstr "Kuşaklar"
+
 msgid "GENERATIONS"
 msgstr "Kuşaklar"
 
 msgid "GENERATION_COLON"
 msgstr "Kuşak:"
+
+msgid "GEOLOGICAL_ACTIVITY"
+msgstr ""
+
+msgid "GEOLOGICAL_ACTIVITY_ACTIVE"
+msgstr ""
+
+msgid "GEOLOGICAL_ACTIVITY_AVERAGE"
+msgstr ""
+
+msgid "GEOLOGICAL_ACTIVITY_DORMANT"
+msgstr ""
+
+#, fuzzy
+msgid "GEOLOGICAL_ACTIVITY_EXPLANATION"
+msgstr ""
+"Hareketli mikroplar, ilginç bir şey olmadığında ilerler ve yuvarlanırlar.\n"
+"Durağan mikroplar, hareketsizdirler ve hareket etmeden önce ortamın değişmesini beklerler."
 
 msgid "GITHUB_TOOLTIP"
 msgstr "GitHub depomuzu ziyaret edin"
@@ -4592,6 +4630,10 @@ msgstr "Organel yerleştir (veya başka yerleştirilen şey)"
 msgid "PLANET"
 msgstr "Gezegen"
 
+#, fuzzy
+msgid "PLANET_CUSTOMIZER"
+msgstr "İmleç Üzerinde:"
+
 msgid "PLANET_DETAILS_STRING"
 msgstr ""
 "Sadece BH: {0}\n"
@@ -4599,9 +4641,6 @@ msgstr ""
 "Gece gündüz döngüsü: {2}\n"
 "Gün uzunluğu: {3} saniye\n"
 "Rastgele gezegen tohumu: {4}"
-
-msgid "PLANET_GENERATION_TEASER"
-msgstr "Gezegen oluşumu çok yakında!"
 
 msgid "PLANET_RANDOM_SEED"
 msgstr "Rastgele gezegen tohumu"
@@ -4795,6 +4834,10 @@ msgstr "Son eylemi tekrarla"
 
 msgid "REFRESH"
 msgstr "Yenile"
+
+#, fuzzy
+msgid "REGENERATE_BUTTON"
+msgstr "Organeller"
 
 msgid "RENDER_SCALE"
 msgstr "Çözünürlük ölçeği"
@@ -9106,6 +9149,26 @@ msgstr ""
 msgid "WORLD_RELATIVE_MOVEMENT"
 msgstr "Dünyaya bağlı"
 
+#, fuzzy
+msgid "WORLD_SEA_LEVEL"
+msgstr "Deniz seviyesinin {0}-{1}m altı"
+
+#, fuzzy
+msgid "WORLD_SEA_LEVEL_DEEP"
+msgstr "Deniz seviyesinin {0}-{1}m altı"
+
+#, fuzzy
+msgid "WORLD_SEA_LEVEL_EXPLANATION"
+msgstr "(dünyadaki arazi sayısını değiştirir)"
+
+#, fuzzy
+msgid "WORLD_SEA_LEVEL_MODERATE"
+msgstr "Dünyaya bağlı"
+
+#, fuzzy
+msgid "WORLD_SEA_LEVEL_SHALLOW"
+msgstr "Küçük"
+
 msgid "WORLD_SIZE"
 msgstr "Dünya Büyüklüğü"
 
@@ -9123,6 +9186,26 @@ msgstr "Küçük"
 
 msgid "WORLD_SIZE_TOOLTIP"
 msgstr "Daha büyük bir dünyaya sahip olmak, simülasyonu yavaşlatır ve daha yavaş bilgisayarlar için önerilmemektedir."
+
+#, fuzzy
+msgid "WORLD_TEMPERATURE"
+msgstr "Sıcaklık"
+
+#, fuzzy
+msgid "WORLD_TEMPERATURE_COLD"
+msgstr "Sıc."
+
+#, fuzzy
+msgid "WORLD_TEMPERATURE_EXPLANATION"
+msgstr "(dünyadaki arazi sayısını değiştirir)"
+
+#, fuzzy
+msgid "WORLD_TEMPERATURE_TEMPERATE"
+msgstr "Sıc."
+
+#, fuzzy
+msgid "WORLD_TEMPERATURE_WARM"
+msgstr "Sıc."
 
 msgid "WORST_PATCH_COLON"
 msgstr "En Kötü Arazi:"
@@ -9161,6 +9244,9 @@ msgstr "Yakınlaştır"
 
 msgid "ZOOM_OUT"
 msgstr "Uzaklaştır"
+
+#~ msgid "PLANET_GENERATION_TEASER"
+#~ msgstr "Gezegen oluşumu çok yakında!"
 
 #~ msgid "PASSIVE_REPRODUCTION_PROGRESS_EXPLANATION"
 #~ msgstr "(hiçbir şey yapmadan çevreden pasif olarak üreme bileşenleri elde et)"
