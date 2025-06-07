@@ -324,7 +324,7 @@ public partial class CellEditorComponent :
     ///   Selected membrane type for the species
     /// </summary>
     [JsonProperty]
-    public MembraneType Membrane { get; private set; } = null!;
+    public MembraneType Membrane { get; private set; };
 
     /// <summary>
     ///   Current selected colour for the species.
