@@ -150,13 +150,14 @@ public class CellType : ICellDefinition, ICloneable
 
     public ulong GetVisualHashCode()
     {
-        var hash = Colour.GetVisualHashCode();
-
         // This code is copied from MicrobeSpecies
         var count = Organelles.Count;
 
-        hash ^= PersistentStringHash.GetHash(MembraneType.InternalName) * 5743 ^
-            (ulong)MembraneRigidity.GetHashCode() * 5749 ^ (IsBacteria ? 1UL : 0UL) * 5779UL ^ (ulong)count * 131;
+        var hash = Colour.GetVisualHashCode();
+        hash ^= PersistentStringHash.GetHash(MembraneType.InternalName) * 5743;
+        hash ^= (ulong)MembraneRigidity.GetHashCode() * 5749;
+        hash ^= (IsBacteria ? 1UL : 0UL) * 5779UL;
+        hash ^= (ulong)count * 131;
 
         var list = Organelles.Organelles;
 
