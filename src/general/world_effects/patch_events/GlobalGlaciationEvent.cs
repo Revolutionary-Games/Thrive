@@ -244,9 +244,9 @@ public class GlobalGlaciationEvent : IWorldEffect
     private void FinishEvent()
     {
         hasEventAlreadyHappened = true;
-        foreach (var patch in targetWorld.Map.Patches.Values)
+        foreach (var patchId in modifiedPatchesIds)
         {
-            if (!modifiedPatchesIds.Contains(patch.ID))
+            if (!targetWorld.Map.Patches.TryGetValue(patchId, out var patch))
             {
                 GD.PrintErr("Patch exited the world in global glaciation event");
                 continue;
