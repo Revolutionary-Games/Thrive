@@ -12,7 +12,7 @@ public class AddOrganelleAnywhere : IMutationStrategy<MicrobeSpecies>
     public AddOrganelleAnywhere(Func<OrganelleDefinition, bool> criteria, CommonMutationFunctions.Direction direction
         = CommonMutationFunctions.Direction.Neutral)
     {
-        allOrganelles = SimulationParameters.Instance.GetAllOrganelles().Where(criteria).Where(x => x.AutoEvoCanPlace)
+        allOrganelles = SimulationParameters.Instance.GetAllOrganelles().Where(criteria).Where(IsOrangelleValid)
             .ToArray();
 
         this.direction = direction;
@@ -124,5 +124,16 @@ public class AddOrganelleAnywhere : IMutationStrategy<MicrobeSpecies>
         }
 
         return mutated;
+    }
+
+    /// <summary>
+    ///   Macroscopic, multicellular, and non-placable organelles are invalid and so won't be considered.
+    /// </summary>
+    private static bool IsOrangelleValid(OrganelleDefinition organelle)
+    {
+        // TODO: allow placement of multicellular organelles in the appropriate stages.
+        return organelle.AutoEvoCanPlace &&
+            organelle.EditorButtonGroup != OrganelleDefinition.OrganelleGroup.Multicellular &&
+            organelle.EditorButtonGroup != OrganelleDefinition.OrganelleGroup.Macroscopic;
     }
 }
