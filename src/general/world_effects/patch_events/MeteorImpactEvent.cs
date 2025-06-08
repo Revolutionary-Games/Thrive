@@ -192,14 +192,10 @@ public class MeteorImpactEvent : IWorldEffect
 
         foreach (var (compoundName, levelChange) in selectedMeteor.Compounds)
         {
-            bool hasCompound =
-                patch.Biome.ChangeableCompounds.TryGetValue(compoundName, out var currentCompoundLevel);
+            // Add 0 value for compound if it doesn't exist (e.g. for iron)
+            patch.Biome.ChangeableCompounds.TryAdd(compoundName, default);
 
-            if (!hasCompound)
-            {
-                GD.PrintErr($"Meteor impact event encountered patch with unexpectedly no {compoundName.ToString()}");
-                return;
-            }
+            var currentCompoundLevel = patch.Biome.ChangeableCompounds[compoundName];
 
             var definition = SimulationParameters.Instance.GetCompoundDefinition(compoundName);
 
@@ -269,14 +265,10 @@ public class MeteorImpactEvent : IWorldEffect
 
         foreach (var (compoundName, levelChange) in selectedMeteor.Compounds)
         {
-            bool hasCompound =
-                patch.Biome.ChangeableCompounds.TryGetValue(compoundName, out var currentCompoundLevel);
+            // Add 0 value for compound if it doesn't exist (e.g. for iron)
+            patch.Biome.ChangeableCompounds.TryAdd(compoundName, default);
 
-            if (!hasCompound)
-            {
-                GD.PrintErr($"Meteor impact event encountered patch with unexpectedly no {compoundName.ToString()}");
-                return;
-            }
+            var currentCompoundLevel = patch.Biome.ChangeableCompounds[compoundName];
 
             var definition = SimulationParameters.Instance.GetCompoundDefinition(compoundName);
 
