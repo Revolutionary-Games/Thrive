@@ -6,20 +6,20 @@
 [ext_resource type="LabelSettings" uid="uid://o0tip7etc0x2" path="res://src/gui_common/fonts/Body-Bold-Small-Red.tres" id="4_5o70k"]
 [ext_resource type="Texture2D" uid="uid://r3tppwbfq4mw" path="res://assets/textures/gui/bevel/chemicalButton.svg" id="5_n8k4j"]
 
-[node name="ResourceDisplayBar" type="HBoxContainer"]
+[node name="ResourceDisplayBar" type="HBoxContainer" node_paths=PackedStringArray("earlyResourcesContainer", "lateResourcesContainer", "scienceIndicatorContainer", "scienceAmountLabel")]
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
 size_flags_horizontal = 3
 theme_override_constants/separation = 12
 script = ExtResource("1")
-EarlyResourcesContainerPath = NodePath("EarlyResources")
-ScienceIndicatorContainerPath = NodePath("ScienceContainer")
-ScienceAmountLabelPath = NodePath("ScienceContainer/ScienceAmount")
-LateResourcesContainerPath = NodePath("LateResources")
 AmountLabelFont = ExtResource("2_pp1g3")
 AmountLabelFontFull = ExtResource("3_n4tlh")
 AmountLabelFontCritical = ExtResource("4_5o70k")
+earlyResourcesContainer = NodePath("EarlyResources")
+lateResourcesContainer = NodePath("LateResources")
+scienceIndicatorContainer = NodePath("ScienceContainer")
+scienceAmountLabel = NodePath("ScienceContainer/ScienceAmount")
 
 [node name="EarlyResources" type="HBoxContainer" parent="."]
 layout_mode = 2

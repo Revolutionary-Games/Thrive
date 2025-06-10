@@ -7,17 +7,13 @@ using Newtonsoft.Json;
 /// </summary>
 public partial class IndustrialStage : StrategyStageBase, ISocietyStructureDataAccess
 {
-    [Export]
-    public NodePath? NameLabelSystemPath;
-
-    [Export]
-    public NodePath SpaceMoveConfirmationPopupPath = null!;
-
     private const string PauseReasonForNextStage = "confirmMoveToSpace";
 
 #pragma warning disable CA2213
+    [Export]
     private StrategicEntityNameLabelSystem nameLabelSystem = null!;
 
+    [Export]
     private CustomConfirmationDialog spaceMoveConfirmationPopup = null!;
 
     private PackedScene cityScene = null!;
@@ -93,10 +89,8 @@ public partial class IndustrialStage : StrategyStageBase, ISocietyStructureDataA
         base.ResolveNodeReferences();
 
         HUD = GetNode<IndustrialHUD>("IndustrialHUD");
-        spaceMoveConfirmationPopup = GetNode<CustomConfirmationDialog>(SpaceMoveConfirmationPopupPath);
 
         // Systems
-        nameLabelSystem = GetNode<StrategicEntityNameLabelSystem>(NameLabelSystemPath);
         citySystem = new CitySystem(rootOfDynamicallySpawned);
     }
 
@@ -198,20 +192,6 @@ public partial class IndustrialStage : StrategyStageBase, ISocietyStructureDataA
     protected override void PerformQuickSave()
     {
         SaveHelper.ShowErrorAboutPrototypeSaving(this);
-    }
-
-    protected override void Dispose(bool disposing)
-    {
-        if (disposing)
-        {
-            if (NameLabelSystemPath != null)
-            {
-                NameLabelSystemPath.Dispose();
-                SpaceMoveConfirmationPopupPath.Dispose();
-            }
-        }
-
-        base.Dispose(disposing);
     }
 
     private void OpenCityInfo(PlacedCity city)

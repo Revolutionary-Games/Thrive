@@ -9,80 +9,59 @@ using Path = System.IO.Path;
 /// </summary>
 public partial class NewModGUI : Control
 {
-    [Export]
-    public NodePath? DialogPath;
-
-    [Export]
-    public NodePath InternalNamePath = null!;
-
-    [Export]
-    public NodePath NamePath = null!;
-
-    [Export]
-    public NodePath AuthorPath = null!;
-
-    [Export]
-    public NodePath VersionPath = null!;
-
-    [Export]
-    public NodePath DescriptionPath = null!;
-
-    [Export]
-    public NodePath LongDescriptionPath = null!;
-
-    [Export]
-    public NodePath IconFilePath = null!;
-
-    [Export]
-    public NodePath InfoUrlPath = null!;
-
-    [Export]
-    public NodePath LicensePath = null!;
-
-    [Export]
-    public NodePath RecommendedThrivePath = null!;
-
-    [Export]
-    public NodePath MinimumThrivePath = null!;
-
-    [Export]
-    public NodePath MaximumThrivePath = null!;
-
-    [Export]
-    public NodePath PckNamePath = null!;
-
-    [Export]
-    public NodePath ModAssemblyPath = null!;
-
-    [Export]
-    public NodePath AssemblyModClassPath = null!;
-
-    [Export]
-    public NodePath AssemblyModAutoHarmonyPath = null!;
-
-    [Export]
-    public NodePath ErrorDisplayPath = null!;
-
 #pragma warning disable CA2213
+    [Export]
     private CustomWindow dialog = null!;
 
+    [Export]
     private LineEdit internalName = null!;
+
+    [Export]
     private LineEdit name = null!;
+
+    [Export]
     private LineEdit author = null!;
+
+    [Export]
     private LineEdit version = null!;
+
+    [Export]
     private LineEdit description = null!;
+
+    [Export]
     private TextEdit longDescription = null!;
+
+    [Export]
     private LineEdit iconFile = null!;
+
+    [Export]
     private LineEdit infoUrl = null!;
+
+    [Export]
     private LineEdit license = null!;
+
+    [Export]
     private LineEdit recommendedThrive = null!;
+
+    [Export]
     private LineEdit minimumThrive = null!;
+
+    [Export]
     private LineEdit maximumThrive = null!;
+
+    [Export]
     private LineEdit pckName = null!;
+
+    [Export]
     private LineEdit modAssembly = null!;
+
+    [Export]
     private LineEdit assemblyModClass = null!;
+
+    [Export]
     private CheckBox assemblyModAutoHarmony = null!;
 
+    [Export]
     private Label errorDisplay = null!;
 #pragma warning restore CA2213
 
@@ -97,65 +76,11 @@ public partial class NewModGUI : Control
     [Signal]
     public delegate void OnAcceptedEventHandler(string newModInfo);
 
-    public override void _Ready()
-    {
-        dialog = GetNode<CustomWindow>(DialogPath);
-
-        internalName = GetNode<LineEdit>(InternalNamePath);
-        name = GetNode<LineEdit>(NamePath);
-        author = GetNode<LineEdit>(AuthorPath);
-        version = GetNode<LineEdit>(VersionPath);
-        description = GetNode<LineEdit>(DescriptionPath);
-        longDescription = GetNode<TextEdit>(LongDescriptionPath);
-        iconFile = GetNode<LineEdit>(IconFilePath);
-        infoUrl = GetNode<LineEdit>(InfoUrlPath);
-        license = GetNode<LineEdit>(LicensePath);
-        recommendedThrive = GetNode<LineEdit>(RecommendedThrivePath);
-        minimumThrive = GetNode<LineEdit>(MinimumThrivePath);
-        maximumThrive = GetNode<LineEdit>(MaximumThrivePath);
-        pckName = GetNode<LineEdit>(PckNamePath);
-        modAssembly = GetNode<LineEdit>(ModAssemblyPath);
-        assemblyModClass = GetNode<LineEdit>(AssemblyModClassPath);
-        assemblyModAutoHarmony = GetNode<CheckBox>(AssemblyModAutoHarmonyPath);
-
-        errorDisplay = GetNode<Label>(ErrorDisplayPath);
-    }
-
     public void Open()
     {
         ResetForm();
 
         dialog.PopupCenteredShrink();
-    }
-
-    protected override void Dispose(bool disposing)
-    {
-        if (disposing)
-        {
-            if (DialogPath != null)
-            {
-                DialogPath.Dispose();
-                InternalNamePath.Dispose();
-                NamePath.Dispose();
-                AuthorPath.Dispose();
-                VersionPath.Dispose();
-                DescriptionPath.Dispose();
-                LongDescriptionPath.Dispose();
-                IconFilePath.Dispose();
-                InfoUrlPath.Dispose();
-                LicensePath.Dispose();
-                RecommendedThrivePath.Dispose();
-                MinimumThrivePath.Dispose();
-                MaximumThrivePath.Dispose();
-                PckNamePath.Dispose();
-                ModAssemblyPath.Dispose();
-                AssemblyModClassPath.Dispose();
-                AssemblyModAutoHarmonyPath.Dispose();
-                ErrorDisplayPath.Dispose();
-            }
-        }
-
-        base.Dispose(disposing);
     }
 
     private void Closed()

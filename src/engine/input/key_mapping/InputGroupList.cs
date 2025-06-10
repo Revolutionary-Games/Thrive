@@ -9,16 +9,13 @@ using Godot;
 /// </summary>
 public partial class InputGroupList : VBoxContainer
 {
-    [Export]
-    public NodePath? ConflictDialogPath;
-
-    [Export]
-    public NodePath ResetInputsDialog = null!;
-
     private IEnumerable<InputGroupItem>? activeInputGroupList;
 
 #pragma warning disable CA2213
+    [Export]
     private CustomConfirmationDialog conflictDialog = null!;
+
+    [Export]
     private CustomConfirmationDialog resetInputsDialog = null!;
 
     private InputEventItem? latestDialogCaller;
@@ -53,9 +50,6 @@ public partial class InputGroupList : VBoxContainer
         InputEventItemScene = GD.Load<PackedScene>("res://src/engine/input/key_mapping/InputEventItem.tscn");
         InputGroupItemScene = GD.Load<PackedScene>("res://src/engine/input/key_mapping/InputGroupItem.tscn");
         InputActionItemScene = GD.Load<PackedScene>("res://src/engine/input/key_mapping/InputActionItem.tscn");
-
-        conflictDialog = GetNode<CustomConfirmationDialog>(ConflictDialogPath);
-        resetInputsDialog = GetNode<CustomConfirmationDialog>(ResetInputsDialog);
 
         this.RegisterCustomFocusDrawer();
 
@@ -191,20 +185,6 @@ public partial class InputGroupList : VBoxContainer
         OnControlsChanged?.Invoke(GetCurrentlyPendingControls());
 
         Invoke.Instance.Queue(EnsureNavigationFlowIsCorrect);
-    }
-
-    protected override void Dispose(bool disposing)
-    {
-        if (disposing)
-        {
-            if (ConflictDialogPath != null)
-            {
-                ConflictDialogPath.Dispose();
-                ResetInputsDialog.Dispose();
-            }
-        }
-
-        base.Dispose(disposing);
     }
 
     /// <summary>

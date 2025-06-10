@@ -27,17 +27,17 @@ background_mode = 2
 sky = SubResource("1")
 ambient_light_color = Color(0.0313726, 0.443137, 0.482353, 1)
 
-[node name="MacroscopicStage" type="Node"]
+[node name="MacroscopicStage" type="Node" node_paths=PackedStringArray("interactableSystem", "interactionPopup", "progressBarSystem", "selectBuildingPopup", "worldEnvironmentNode", "worldLightNode", "pauseMenu", "hudRoot")]
 process_priority = -1
 script = ExtResource("1")
-InteractableSystemPath = NodePath("InteractableSystem")
-InteractionPopupPath = NodePath("InteractablePopup")
-ProgressBarSystemPath = NodePath("ProgressBarSystem")
-SelectBuildingPopupPath = NodePath("SelectBuildingPopup")
-WorldEnvironmentNodePath = NodePath("World/WorldEnvironment")
-WorldLightNodePath = NodePath("World/WorldLight")
-PauseMenuPath = NodePath("PauseMenu")
-HUDRootPath = NodePath("MacroscopicHUD")
+interactableSystem = NodePath("InteractableSystem")
+interactionPopup = NodePath("InteractablePopup")
+progressBarSystem = NodePath("ProgressBarSystem")
+selectBuildingPopup = NodePath("SelectBuildingPopup")
+worldEnvironmentNode = NodePath("World/WorldEnvironment")
+worldLightNode = NodePath("World/WorldLight")
+pauseMenu = NodePath("PauseMenu")
+hudRoot = NodePath("MacroscopicHUD")
 
 [node name="World" type="Node" parent="."]
 
@@ -67,12 +67,10 @@ grow_horizontal = 2
 grow_vertical = 2
 
 [node name="ProgressBarSystem" parent="." instance=ExtResource("12")]
-grow_horizontal = 2
-grow_vertical = 2
 
-[node name="MacroscopicHUD" parent="." node_paths=PackedStringArray("menu") instance=ExtResource("3")]
-FossilisationButtonLayerPath = NodePath("FossilisationButtonLayer")
-FossilisationDialogPath = NodePath("FossilisationDialog")
+[node name="MacroscopicHUD" parent="." node_paths=PackedStringArray("fossilisationButtonLayer", "fossilisationDialog", "menu") instance=ExtResource("3")]
+fossilisationButtonLayer = NodePath("FossilisationButtonLayer")
+fossilisationDialog = NodePath("FossilisationDialog")
 menu = NodePath("../PauseMenu")
 
 [node name="FossilisationButtonLayer" type="Control" parent="MacroscopicHUD"]
@@ -92,8 +90,6 @@ offset_bottom = 540.0
 [node name="InteractablePopup" parent="." instance=ExtResource("8")]
 
 [node name="SelectBuildingPopup" parent="." instance=ExtResource("10")]
-grow_horizontal = 2
-grow_vertical = 2
 
 [node name="WinExtinctBoxHolder" type="Control" parent="."]
 visible = false

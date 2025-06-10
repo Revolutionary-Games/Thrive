@@ -310,7 +310,7 @@ _data = {
 &"show": SubResource("44")
 }
 
-[node name="CellBodyPlanEditorComponent" type="Control" node_paths=PackedStringArray("organismStatisticsPanel", "negativeAtpPopup")]
+[node name="CellBodyPlanEditorComponent" type="Control" node_paths=PackedStringArray("structureTabButton", "reproductionTabButton", "behaviourTabButton", "structureTab", "reproductionTab", "behaviourEditor", "cellTypeSelectionList", "modifyTypeButton", "deleteTypeButton", "duplicateTypeButton", "cannotDeleteInUseTypeDialog", "duplicateCellTypeDialog", "duplicateCellTypeName", "cellPopupMenu", "organismStatisticsPanel", "negativeAtpPopup", "islandPopup", "componentBottomLeftButtons", "mutationPointsBar", "cancelButton", "finishButtonWarningBadge", "finishOrNextButton")]
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
@@ -319,29 +319,28 @@ grow_horizontal = 2
 grow_vertical = 2
 theme = ExtResource("5")
 script = ExtResource("1")
-TabButtonsPath = NodePath("LeftPanel/MainPanel/VBoxContainer/MarginContainer/EditingPanel/TabButtons")
-StructureTabButtonPath = NodePath("LeftPanel/MainPanel/VBoxContainer/MarginContainer/EditingPanel/TabButtons/Structure")
-ReproductionTabButtonPath = NodePath("LeftPanel/MainPanel/VBoxContainer/MarginContainer/EditingPanel/TabButtons/Reproduction")
-BehaviourTabButtonPath = NodePath("LeftPanel/MainPanel/VBoxContainer/MarginContainer/EditingPanel/TabButtons/Behaviour")
-StructureTabPath = NodePath("LeftPanel/MainPanel/VBoxContainer/MarginContainer/EditingPanel/Structure")
-ReproductionTabPath = NodePath("LeftPanel/MainPanel/VBoxContainer/MarginContainer/EditingPanel/Reproduction")
-BehaviourTabPath = NodePath("LeftPanel/MainPanel/VBoxContainer/MarginContainer/EditingPanel/Behaviour")
-CellTypeSelectionListPath = NodePath("LeftPanel/MainPanel/VBoxContainer/MarginContainer/EditingPanel/Structure/ScrollContainer/MarginContainer/PartsSelection/Cells")
-ModifyTypeButtonPath = NodePath("LeftPanel/MainPanel/VBoxContainer/MarginContainer/EditingPanel/Structure/ScrollContainer/MarginContainer/PartsSelection/VBoxContainer/HBoxContainer/Modify")
-DeleteTypeButtonPath = NodePath("LeftPanel/MainPanel/VBoxContainer/MarginContainer/EditingPanel/Structure/ScrollContainer/MarginContainer/PartsSelection/VBoxContainer/HBoxContainer/Delete")
-DuplicateTypeButtonPath = NodePath("LeftPanel/MainPanel/VBoxContainer/MarginContainer/EditingPanel/Structure/ScrollContainer/MarginContainer/PartsSelection/VBoxContainer/Duplicate")
-CannotDeleteInUseTypeDialogPath = NodePath("CannotDeleteInUseType")
-DuplicateCellTypeDialogPath = NodePath("NewCellTypeSetup")
-DuplicateCellTypeNamePath = NodePath("NewCellTypeSetup/VBoxContainer2/NewName")
-CellPopupMenuPath = NodePath("CellPopupMenu")
+structureTabButton = NodePath("LeftPanel/MainPanel/VBoxContainer/MarginContainer/EditingPanel/TabButtons/Structure")
+reproductionTabButton = NodePath("LeftPanel/MainPanel/VBoxContainer/MarginContainer/EditingPanel/TabButtons/Reproduction")
+behaviourTabButton = NodePath("LeftPanel/MainPanel/VBoxContainer/MarginContainer/EditingPanel/TabButtons/Behaviour")
+structureTab = NodePath("LeftPanel/MainPanel/VBoxContainer/MarginContainer/EditingPanel/Structure")
+reproductionTab = NodePath("LeftPanel/MainPanel/VBoxContainer/MarginContainer/EditingPanel/Reproduction")
+behaviourEditor = NodePath("LeftPanel/MainPanel/VBoxContainer/MarginContainer/EditingPanel/Behaviour")
+cellTypeSelectionList = NodePath("LeftPanel/MainPanel/VBoxContainer/MarginContainer/EditingPanel/Structure/ScrollContainer/MarginContainer/PartsSelection/Cells")
+modifyTypeButton = NodePath("LeftPanel/MainPanel/VBoxContainer/MarginContainer/EditingPanel/Structure/ScrollContainer/MarginContainer/PartsSelection/VBoxContainer/HBoxContainer/Modify")
+deleteTypeButton = NodePath("LeftPanel/MainPanel/VBoxContainer/MarginContainer/EditingPanel/Structure/ScrollContainer/MarginContainer/PartsSelection/VBoxContainer/HBoxContainer/Delete")
+duplicateTypeButton = NodePath("LeftPanel/MainPanel/VBoxContainer/MarginContainer/EditingPanel/Structure/ScrollContainer/MarginContainer/PartsSelection/VBoxContainer/Duplicate")
+cannotDeleteInUseTypeDialog = NodePath("CannotDeleteInUseType")
+duplicateCellTypeDialog = NodePath("NewCellTypeSetup")
+duplicateCellTypeName = NodePath("NewCellTypeSetup/VBoxContainer2/NewName")
+cellPopupMenu = NodePath("CellPopupMenu")
 organismStatisticsPanel = NodePath("RightPanel/VBoxContainer/OrganismStatisticsPanel")
 negativeAtpPopup = NodePath("NegativeAtpWarning")
-IslandErrorPath = NodePath("IslandError")
-MutationPointsBarPath = NodePath("LeftPanel/MainPanel/VBoxContainer/MarginContainer2/MutationPointsBar")
-ComponentBottomLeftButtonsPath = NodePath("EditorComponentBottomLeftButtons")
-CancelButtonPath = NodePath("BottomRight/HBoxContainer/CancelButton")
-FinishWarningBadgePath = NodePath("BottomRight/HBoxContainer/ConfirmButton/MarginContainer/WarningBadge")
-FinishOrNextButtonPath = NodePath("BottomRight/HBoxContainer/ConfirmButton")
+islandPopup = NodePath("IslandError")
+componentBottomLeftButtons = NodePath("EditorComponentBottomLeftButtons")
+mutationPointsBar = NodePath("LeftPanel/MainPanel/VBoxContainer/MarginContainer2/MutationPointsBar")
+cancelButton = NodePath("BottomRight/HBoxContainer/CancelButton")
+finishButtonWarningBadge = NodePath("BottomRight/HBoxContainer/ConfirmButton/MarginContainer/WarningBadge")
+finishOrNextButton = NodePath("BottomRight/HBoxContainer/ConfirmButton")
 
 [node name="TopPanel" type="MarginContainer" parent="."]
 layout_mode = 0
@@ -549,11 +548,11 @@ disabled = true
 selected = 0
 item_count = 1
 popup/item_0/text = "REPRODUCTION_BUDDING"
+popup/item_0/id = 0
 
 [node name="Behaviour" parent="LeftPanel/MainPanel/VBoxContainer/MarginContainer/EditingPanel" instance=ExtResource("9")]
 visible = false
 layout_mode = 2
-FinishOrNextButtonPath = NodePath("")
 
 [node name="RightPanel" type="MarginContainer" parent="."]
 custom_minimum_size = Vector2(285, 657)
@@ -656,7 +655,7 @@ expand_mode = 1
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="BottomRight/HBoxContainer/ConfirmButton/MarginContainer/WarningBadge"]
 libraries = {
-"": SubResource("AnimationLibrary_1nh8x")
+&"": SubResource("AnimationLibrary_1nh8x")
 }
 
 [node name="IslandError" parent="." instance=ExtResource("7")]

@@ -7,27 +7,22 @@ using Godot;
 /// </summary>
 public partial class FossilisationDialog : CustomWindow
 {
-    [Export]
-    public NodePath? NameEditPath;
-
-    [Export]
-    public NodePath SpeciesDetailsPanelPath = null!;
-
-    [Export]
-    public NodePath FossiliseButtonPath = null!;
-
-    [Export]
-    public NodePath OverwriteNameConfirmationDialogPath = null!;
-
-    [Export]
-    public NodePath FossilisationFailedDialogPath = null!;
-
 #pragma warning disable CA2213
+    [Export]
     private LineEdit speciesNameEdit = null!;
+
+    [Export]
     private SpeciesDetailsPanel speciesDetailsPanel = null!;
+
+    [Export]
     private Button fossiliseButton = null!;
+
+    [Export]
     private CustomConfirmationDialog overwriteNameConfirmationDialog = null!;
+
+    [Export]
     private CustomConfirmationDialog fossilisationFailedDialog = null!;
+
     private SpeciesPreview speciesPreview = null!;
 #pragma warning restore CA2213
 
@@ -65,12 +60,7 @@ public partial class FossilisationDialog : CustomWindow
     {
         base._Ready();
 
-        speciesNameEdit = GetNode<LineEdit>(NameEditPath);
-        speciesDetailsPanel = GetNode<SpeciesDetailsPanel>(SpeciesDetailsPanelPath);
-        fossiliseButton = GetNode<Button>(FossiliseButtonPath);
-        overwriteNameConfirmationDialog = GetNode<CustomConfirmationDialog>(OverwriteNameConfirmationDialogPath);
-        fossilisationFailedDialog = GetNode<CustomConfirmationDialog>(FossilisationFailedDialogPath);
-        speciesPreview = speciesDetailsPanel.GetNode<SpeciesPreview>(speciesDetailsPanel.SpeciesPreviewPath);
+        speciesPreview = speciesDetailsPanel.SpeciesPreview;
     }
 
     public override void _Process(double delta)
@@ -111,23 +101,6 @@ public partial class FossilisationDialog : CustomWindow
             GUICommon.MarkInputAsInvalid(speciesNameEdit);
             fossiliseButton.Disabled = true;
         }
-    }
-
-    protected override void Dispose(bool disposing)
-    {
-        if (disposing)
-        {
-            if (NameEditPath != null)
-            {
-                NameEditPath.Dispose();
-                SpeciesDetailsPanelPath.Dispose();
-                FossiliseButtonPath.Dispose();
-                OverwriteNameConfirmationDialogPath.Dispose();
-                FossilisationFailedDialogPath.Dispose();
-            }
-        }
-
-        base.Dispose(disposing);
     }
 
     private void OnNameTextChanged(string newText)

@@ -8,42 +8,32 @@ using Godot;
 /// </summary>
 public partial class ChemoreceptorUpgradeGUI : VBoxContainer, IOrganelleUpgrader
 {
-    [Export]
-    public NodePath? TargetTypeSelectorPath;
-
-    [Export]
-    public NodePath CompoundsSelectorPath = null!;
-
-    [Export]
-    public NodePath CompoundsLabelPath = null!;
-
-    [Export]
-    public NodePath SpeciesSelectorPath = null!;
-
-    [Export]
-    public NodePath SpeciesLabelPath = null!;
-
-    [Export]
-    public NodePath MaximumDistanceSliderPath = null!;
-
-    [Export]
-    public NodePath MinimumAmountSliderPath = null!;
-
-    [Export]
-    public NodePath MinimumAmountLabelPath = null!;
-
-    [Export]
-    public NodePath ColourSelectorPath = null!;
-
 #pragma warning disable CA2213
+    [Export]
     private OptionButton targetTypeSelector = null!;
+
+    [Export]
     private OptionButton compoundsSelector = null!;
+
+    [Export]
     private Label compoundLabel = null!;
+
+    [Export]
     private OptionButton speciesSelector = null!;
+
+    [Export]
     private Label speciesLabel = null!;
+
+    [Export]
     private Slider maximumDistanceSlider = null!;
+
+    [Export]
     private Slider minimumAmountSlider = null!;
+
+    [Export]
     private Label minimumAmountLabel = null!;
+
+    [Export]
     private TweakedColourPicker colourSelector = null!;
 #pragma warning restore CA2213
 
@@ -59,16 +49,6 @@ public partial class ChemoreceptorUpgradeGUI : VBoxContainer, IOrganelleUpgrader
 
     public override void _Ready()
     {
-        targetTypeSelector = GetNode<OptionButton>(TargetTypeSelectorPath);
-        compoundsSelector = GetNode<OptionButton>(CompoundsSelectorPath);
-        compoundLabel = GetNode<Label>(CompoundsLabelPath);
-        speciesSelector = GetNode<OptionButton>(SpeciesSelectorPath);
-        speciesLabel = GetNode<Label>(SpeciesLabelPath);
-        maximumDistanceSlider = GetNode<Slider>(MaximumDistanceSliderPath);
-        minimumAmountSlider = GetNode<Slider>(MinimumAmountSliderPath);
-        minimumAmountLabel = GetNode<Label>(MinimumAmountLabelPath);
-        colourSelector = GetNode<TweakedColourPicker>(ColourSelectorPath);
-
         compoundsSelector.Clear();
         speciesSelector.Clear();
 
@@ -185,27 +165,6 @@ public partial class ChemoreceptorUpgradeGUI : VBoxContainer, IOrganelleUpgrader
     public Vector2 GetMinDialogSize()
     {
         return new Vector2(400, 320);
-    }
-
-    protected override void Dispose(bool disposing)
-    {
-        if (disposing)
-        {
-            if (TargetTypeSelectorPath != null)
-            {
-                TargetTypeSelectorPath.Dispose();
-                CompoundsSelectorPath.Dispose();
-                CompoundsLabelPath.Dispose();
-                SpeciesSelectorPath.Dispose();
-                SpeciesLabelPath.Dispose();
-                MaximumDistanceSliderPath.Dispose();
-                MinimumAmountSliderPath.Dispose();
-                MinimumAmountLabelPath.Dispose();
-                ColourSelectorPath.Dispose();
-            }
-        }
-
-        base.Dispose(disposing);
     }
 
     /// <summary>

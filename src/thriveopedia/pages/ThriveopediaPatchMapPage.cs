@@ -11,18 +11,14 @@ using Godot;
 /// </remarks>
 public partial class ThriveopediaPatchMapPage : ThriveopediaPage, IThriveopediaPage
 {
-    [Export]
-    public NodePath? MapDrawerPath;
-
-    [Export]
-    public NodePath PatchDetailsPanelPath = null!;
-
-    [Export]
-    public NodePath SeedLabelPath = null!;
-
 #pragma warning disable CA2213
+    [Export]
     private PatchMapDrawer mapDrawer = null!;
+
+    [Export]
     private PatchDetailsPanel detailsPanel = null!;
+
+    [Export]
     private Label seedLabel = null!;
 #pragma warning restore CA2213
 
@@ -38,10 +34,6 @@ public partial class ThriveopediaPatchMapPage : ThriveopediaPage, IThriveopediaP
     public override void _Ready()
     {
         base._Ready();
-
-        mapDrawer = GetNode<PatchMapDrawer>(MapDrawerPath);
-        detailsPanel = GetNode<PatchDetailsPanel>(PatchDetailsPanelPath);
-        seedLabel = GetNode<Label>(SeedLabelPath);
 
         mapDrawer.OnSelectedPatchChanged = _ =>
         {
@@ -84,21 +76,6 @@ public partial class ThriveopediaPatchMapPage : ThriveopediaPage, IThriveopediaP
     {
         detailsPanel.SelectedPatch = mapDrawer.SelectedPatch;
         detailsPanel.UpdateShownPatchDetails();
-    }
-
-    protected override void Dispose(bool disposing)
-    {
-        if (disposing)
-        {
-            if (MapDrawerPath != null)
-            {
-                MapDrawerPath.Dispose();
-                PatchDetailsPanelPath.Dispose();
-                SeedLabelPath.Dispose();
-            }
-        }
-
-        base.Dispose(disposing);
     }
 
     private void UpdatePlayerPatch(Patch? patch)

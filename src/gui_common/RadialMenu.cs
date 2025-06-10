@@ -8,15 +8,6 @@ using Godot;
 /// </summary>
 public partial class RadialMenu : CenterContainer
 {
-    [Export]
-    public NodePath? CenterLabelPath;
-
-    [Export]
-    public NodePath DynamicLabelsContainerPath = null!;
-
-    [Export]
-    public NodePath IndicatorPath = null!;
-
 #pragma warning disable CA2213
     [Export]
     public Texture2D HoveredItemHighlightBackground = null!;
@@ -63,8 +54,13 @@ public partial class RadialMenu : CenterContainer
     private readonly List<LabelWithId> createdLabels = new();
 
 #pragma warning disable CA2213
+    [Export]
     private Label? centerLabel;
+
+    [Export]
     private Node dynamicLabelsContainer = null!;
+
+    [Export]
     private TextureRect indicator = null!;
 #pragma warning restore CA2213
 
@@ -95,11 +91,6 @@ public partial class RadialMenu : CenterContainer
 
     public override void _Ready()
     {
-        centerLabel = GetNode<Label>(CenterLabelPath);
-
-        dynamicLabelsContainer = GetNode<Node>(DynamicLabelsContainerPath);
-        indicator = GetNode<TextureRect>(IndicatorPath);
-
         UpdateCenterText();
 
         if (AutoShowTestData)
@@ -270,21 +261,6 @@ public partial class RadialMenu : CenterContainer
         EmitSignal(SignalName.OnItemSelected, HoveredItem.Value);
         Visible = false;
         return true;
-    }
-
-    protected override void Dispose(bool disposing)
-    {
-        if (disposing)
-        {
-            if (CenterLabelPath != null)
-            {
-                CenterLabelPath.Dispose();
-                DynamicLabelsContainerPath.Dispose();
-                IndicatorPath.Dispose();
-            }
-        }
-
-        base.Dispose(disposing);
     }
 
     private void UpdateCenterText()

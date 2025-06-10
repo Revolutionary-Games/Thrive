@@ -25,313 +25,6 @@ public partial class OptionsMenu : ControlWithInput
     [Export]
     public bool DisableInactiveSliders;
 
-    // GUI Control Paths
-
-    // Options control buttons.
-
-    [Export]
-    public NodePath? BackButtonPath;
-
-    [Export]
-    public NodePath ResetButtonPath = null!;
-
-    [Export]
-    public NodePath SaveButtonPath = null!;
-
-    // Tab selector buttons.
-    [Export]
-    public NodePath TabButtonsPath = null!;
-
-    [Export]
-    public NodePath GraphicsButtonPath = null!;
-
-    [Export]
-    public NodePath SoundButtonPath = null!;
-
-    [Export]
-    public NodePath PerformanceButtonPath = null!;
-
-    [Export]
-    public NodePath InputsButtonPath = null!;
-
-    [Export]
-    public NodePath MiscButtonPath = null!;
-
-    // Graphics tab.
-    [Export]
-    public NodePath GraphicsTabPath = null!;
-
-    [Export]
-    public NodePath VSyncPath = null!;
-
-    [Export]
-    public NodePath DisplayModePath = null!;
-
-    [Export]
-    public NodePath ResolutionPath = null!;
-
-    [Export]
-    public NodePath MaxFramesPerSecondPath = null!;
-
-    [Export]
-    public NodePath ColourblindSettingPath = null!;
-
-    [Export]
-    public NodePath ChromaticAberrationSliderPath = null!;
-
-    [Export]
-    public NodePath ChromaticAberrationTogglePath = null!;
-
-    [Export]
-    public NodePath ControllerPromptTypePath = null!;
-
-    [Export]
-    public NodePath DisplayAbilitiesBarTogglePath = null!;
-
-    [Export]
-    public NodePath DisplayBackgroundParticlesTogglePath = null!;
-
-    [Export]
-    public NodePath GUILightEffectsTogglePath = null!;
-
-    [Export]
-    public NodePath DisplayPartNamesTogglePath = null!;
-
-    [Export]
-    public NodePath DisplayMenu3DBackgroundsTogglePath = null!;
-
-    [Export]
-    public NodePath GpuNamePath = null!;
-
-    [Export]
-    public NodePath UsedRendererNamePath = null!;
-
-    [Export]
-    public NodePath VideoMemoryPath = null!;
-
-    // Sound tab.
-    [Export]
-    public NodePath SoundTabPath = null!;
-
-    [Export]
-    public NodePath MasterVolumePath = null!;
-
-    [Export]
-    public NodePath MasterMutedPath = null!;
-
-    [Export]
-    public NodePath MusicVolumePath = null!;
-
-    [Export]
-    public NodePath MusicMutedPath = null!;
-
-    [Export]
-    public NodePath AmbianceVolumePath = null!;
-
-    [Export]
-    public NodePath AmbianceMutedPath = null!;
-
-    [Export]
-    public NodePath SFXVolumePath = null!;
-
-    [Export]
-    public NodePath SFXMutedPath = null!;
-
-    [Export]
-    public NodePath GUIVolumePath = null!;
-
-    [Export]
-    public NodePath GUIMutedPath = null!;
-
-    [Export]
-    public NodePath AudioOutputDeviceSelectionPath = null!;
-
-    [Export]
-    public NodePath LanguageSelectionPath = null!;
-
-    [Export]
-    public NodePath ResetLanguageButtonPath = null!;
-
-    [Export]
-    public NodePath LanguageProgressLabelPath = null!;
-
-    // Performance tab.
-    [Export]
-    public NodePath PerformanceTabPath = null!;
-
-    [Export]
-    public NodePath CloudIntervalPath = null!;
-
-    [Export]
-    public NodePath CloudResolutionTitlePath = null!;
-
-    [Export]
-    public NodePath CloudResolutionPath = null!;
-
-    [Export]
-    public NodePath RunAutoEvoDuringGameplayPath = null!;
-
-    [Export]
-    public NodePath RunGameSimulationMultithreadedPath = null!;
-
-    [Export]
-    public NodePath DetectedCPUCountPath = null!;
-
-    [Export]
-    public NodePath ActiveThreadCountPath = null!;
-
-    [Export]
-    public NodePath AssumeHyperthreadingPath = null!;
-
-    [Export]
-    public NodePath UseManualThreadCountPath = null!;
-
-    [Export]
-    public NodePath ThreadCountSliderPath = null!;
-
-    [Export]
-    public NodePath UseManualNativeThreadCountPath = null!;
-
-    [Export]
-    public NodePath NativeThreadCountSliderPath = null!;
-
-    [Export]
-    public NodePath MaxSpawnedEntitiesPath = null!;
-
-    // Inputs tab.
-    [Export]
-    public NodePath InputsTabPath = null!;
-
-    [Export]
-    public NodePath MouseAxisSensitivitiesBoundPath = null!;
-
-    [Export]
-    public NodePath MouseHorizontalSensitivityPath = null!;
-
-    [Export]
-    public NodePath MouseHorizontalInvertedPath = null!;
-
-    [Export]
-    public NodePath MouseVerticalSensitivityPath = null!;
-
-    [Export]
-    public NodePath MouseVerticalInvertedPath = null!;
-
-    [Export]
-    public NodePath MouseWindowSizeScalingPath = null!;
-
-    [Export]
-    public NodePath MouseWindowSizeScalingWithLogicalSizePath = null!;
-
-    [Export]
-    public NodePath ControllerAxisSensitivitiesBoundPath = null!;
-
-    [Export]
-    public NodePath ControllerHorizontalSensitivityPath = null!;
-
-    [Export]
-    public NodePath ControllerHorizontalInvertedPath = null!;
-
-    [Export]
-    public NodePath ControllerVerticalSensitivityPath = null!;
-
-    [Export]
-    public NodePath ControllerVerticalInvertedPath = null!;
-
-    [Export]
-    public NodePath TwoDimensionalMovementPath = null!;
-
-    [Export]
-    public NodePath ThreeDimensionalMovementPath = null!;
-
-    [Export]
-    public NodePath MouseEdgePanEnabledPath = null!;
-
-    [Export]
-    public NodePath MouseEdgePanSensitivityPath = null!;
-
-    [Export]
-    public NodePath InputGroupListPath = null!;
-
-    [Export]
-    public NodePath DeadzoneConfigurationPopupPath = null!;
-
-    // Misc tab.
-    [Export]
-    public NodePath MiscTabPath = null!;
-
-    [Export]
-    public NodePath PlayIntroPath = null!;
-
-    [Export]
-    public NodePath PlayMicrobeIntroPath = null!;
-
-    [Export]
-    public NodePath TutorialsEnabledOnNewGamePath = null!;
-
-    [Export]
-    public NodePath CheatsPath = null!;
-
-    [Export]
-    public NodePath AutoSavePath = null!;
-
-    [Export]
-    public NodePath MaxAutoSavesPath = null!;
-
-    [Export]
-    public NodePath MaxQuickSavesPath = null!;
-
-    [Export]
-    public NodePath BackConfirmationBoxPath = null!;
-
-    [Export]
-    public NodePath TutorialsEnabledPath = null!;
-
-    [Export]
-    public NodePath ScreenshotDirectoryWarningBoxPath = null!;
-
-    [Export]
-    public NodePath DefaultsConfirmationBoxPath = null!;
-
-    [Export]
-    public NodePath ErrorAcceptBoxPath = null!;
-
-    [Export]
-    public NodePath CustomUsernameEnabledPath = null!;
-
-    [Export]
-    public NodePath CustomUsernamePath = null!;
-
-    [Export]
-    public NodePath WebFeedsEnabledPath = null!;
-
-    [Export]
-    public NodePath ShowNewPatchNotesPath = null!;
-
-    [Export]
-    public NodePath DismissedNoticeCountPath = null!;
-
-    [Export]
-    public NodePath JSONDebugModePath = null!;
-
-    [Export]
-    public NodePath ScreenEffectSelectPath = null!;
-
-    [Export]
-    public NodePath CommitLabelPath = null!;
-
-    [Export]
-    public NodePath BuiltAtLabelPath = null!;
-
-    [Export]
-    public NodePath UnsavedProgressWarningPath = null!;
-
-    [Export]
-    public NodePath PatchNotesBoxPath = null!;
-
-    [Export]
-    public NodePath PatchNotesDisplayerPath = null!;
-
     private static readonly Lazy<List<string>> LanguagesCache = new(() =>
         TranslationServer.GetLoadedLocales().OrderBy(i => i, StringComparer.InvariantCulture).ToList());
 
@@ -341,22 +34,45 @@ public partial class OptionsMenu : ControlWithInput
         .Prepend(Constants.DEFAULT_AUDIO_OUTPUT_DEVICE_NAME).ToList();
 
 #pragma warning disable CA2213
+    [Export]
     private Button backButton = null!;
+
+    [Export]
     private Button resetButton = null!;
+
+    [Export]
     private Button saveButton = null!;
 
     // Tab selector buttons
+    [Export]
     private TabButtons tabButtons = null!;
+
+    [Export]
     private Button graphicsButton = null!;
+
+    [Export]
     private Button soundButton = null!;
+
+    [Export]
     private Button performanceButton = null!;
+
+    [Export]
     private Button inputsButton = null!;
+
+    [Export]
     private Button miscButton = null!;
 
     // Graphics tab
+    [Export]
     private Control graphicsTab = null!;
+
+    [Export]
     private CheckBox vsync = null!;
+
+    [Export]
     private Label? resolution;
+
+    [Export]
     private OptionButton displayMode = null!;
 
     [Export]
@@ -380,11 +96,22 @@ public partial class OptionsMenu : ControlWithInput
     [Export]
     private Slider upscalingSharpening = null!;
 
+    [Export]
     private OptionButton maxFramesPerSecond = null!;
+
+    [Export]
     private OptionButton colourblindSetting = null!;
+
+    [Export]
     private CheckBox chromaticAberrationToggle = null!;
+
+    [Export]
     private Slider chromaticAberrationSlider = null!;
+
+    [Export]
     private OptionButton controllerPromptType = null!;
+
+    [Export]
     private CheckBox displayAbilitiesHotBarToggle = null!;
 
     [Export]
@@ -396,9 +123,16 @@ public partial class OptionsMenu : ControlWithInput
     [Export]
     private OptionButton strainVisibility = null!;
 
+    [Export]
     private CheckBox displayBackgroundParticlesToggle = null!;
+
+    [Export]
     private CheckBox guiLightEffectsToggle = null!;
+
+    [Export]
     private CheckBox displayPartNamesToggle = null!;
+
+    [Export]
     private CheckBox displayMenu3DBackgroundsToggle = null!;
 
     [Export]
@@ -406,9 +140,6 @@ public partial class OptionsMenu : ControlWithInput
 
     [Export]
     private Button lowQualityBackgroundBlurToggle = null!;
-
-    [Export]
-    private Button microbeCameraTilt = null!;
 
     [Export]
     private Button bloomEffectToggle = null!;
@@ -419,41 +150,102 @@ public partial class OptionsMenu : ControlWithInput
     [Export]
     private Slider blurSlider = null!;
 
+    [Export]
     private Label gpuName = null!;
+
+    [Export]
     private Label usedRendererName = null!;
+
+    [Export]
     private Label videoMemory = null!;
 
     // Sound tab
+    [Export]
     private Control soundTab = null!;
+
+    [Export]
     private Slider masterVolume = null!;
+
+    [Export]
     private CheckBox masterMuted = null!;
+
+    [Export]
     private Slider musicVolume = null!;
+
+    [Export]
     private CheckBox musicMuted = null!;
+
+    [Export]
     private Slider ambianceVolume = null!;
+
+    [Export]
     private CheckBox ambianceMuted = null!;
+
+    [Export]
     private Slider sfxVolume = null!;
+
+    [Export]
     private CheckBox sfxMuted = null!;
+
+    [Export]
     private Slider guiVolume = null!;
+
+    [Export]
     private CheckBox guiMuted = null!;
+
+    [Export]
     private OptionButton audioOutputDeviceSelection = null!;
+
+    [Export]
     private OptionButton languageSelection = null!;
+
+    [Export]
     private Button resetLanguageButton = null!;
+
+    [Export]
     private Label languageProgressLabel = null!;
 
     // Performance tab
+    [Export]
     private Control performanceTab = null!;
+
+    [Export]
     private OptionButton cloudInterval = null!;
+
+    [Export]
     private VBoxContainer cloudResolutionTitle = null!;
+
+    [Export]
     private OptionButton cloudResolution = null!;
+
+    [Export]
     private CheckBox runAutoEvoDuringGameplay = null!;
+
+    [Export]
     private CheckBox runGameSimulationMultithreaded = null!;
+
+    [Export]
     private Label detectedCPUCount = null!;
+
+    [Export]
     private Label activeThreadCount = null!;
+
+    [Export]
     private CheckBox assumeHyperthreading = null!;
+
+    [Export]
     private CheckBox useManualThreadCount = null!;
+
+    [Export]
     private Slider threadCountSlider = null!;
+
+    [Export]
     private CheckBox useManualNativeThreadCount = null!;
+
+    [Export]
     private Slider nativeThreadCountSlider = null!;
+
+    [Export]
     private OptionButton maxSpawnedEntities = null!;
 
     [Export]
@@ -494,61 +286,144 @@ public partial class OptionsMenu : ControlWithInput
     private Label maxMemoryOnlyCacheTimeLabel = null!;
 
     // Inputs tab
+    [Export]
     private Control inputsTab = null!;
 
+    [Export]
     private Button mouseAxisSensitivitiesBound = null!;
+
+    [Export]
     private Slider mouseHorizontalSensitivity = null!;
+
+    [Export]
     private Button mouseHorizontalInverted = null!;
+
+    [Export]
     private Slider mouseVerticalSensitivity = null!;
+
+    [Export]
     private Button mouseVerticalInverted = null!;
+
+    [Export]
     private OptionButton mouseWindowSizeScaling = null!;
+
+    [Export]
     private Button mouseWindowSizeScalingWithLogicalSize = null!;
 
+    [Export]
     private Button controllerAxisSensitivitiesBound = null!;
+
+    [Export]
     private Slider controllerHorizontalSensitivity = null!;
+
+    [Export]
     private Button controllerHorizontalInverted = null!;
+
+    [Export]
     private Slider controllerVerticalSensitivity = null!;
+
+    [Export]
     private Button controllerVerticalInverted = null!;
 
+    [Export]
     private OptionButton twoDimensionalMovement = null!;
+
+    [Export]
     private OptionButton threeDimensionalMovement = null!;
 
+    [Export]
     private Button mouseEdgePanEnabled = null!;
+
+    [Export]
     private Slider mouseEdgePanSensitivity = null!;
 
+    [Export]
     private InputGroupList inputGroupList = null!;
 
+    [Export]
     private ControllerDeadzoneConfiguration deadzoneConfigurationPopup = null!;
 
     // Misc tab
+    [Export]
     private Control miscTab = null!;
+
+    [Export]
     private CheckBox playIntro = null!;
+
+    [Export]
     private CheckBox playMicrobeIntro = null!;
+
+    [Export]
     private CheckBox cheats = null!;
+
+    [Export]
     private CheckBox tutorialsEnabledOnNewGame = null!;
+
+    [Export]
     private CheckBox autoSave = null!;
+
+    [Export]
     private SpinBox maxAutoSaves = null!;
+
+    [Export]
     private SpinBox maxQuickSaves = null!;
+
+    [Export]
     private CheckBox customUsernameEnabled = null!;
+
+    [Export]
     private LineEdit customUsername = null!;
+
+    [Export]
     private CheckBox webFeedsEnabled = null!;
+
+    [Export]
+    private Button microbeRippleEffect = null!;
+
+    [Export]
+    private Button microbeCameraTilt = null!;
+
+    [Export]
     private CheckBox showNewPatchNotes = null!;
+
+    [Export]
     private Label dismissedNoticeCount = null!;
+
+    [Export]
     private OptionButton jsonDebugMode = null!;
+
+    [Export]
     private OptionButton screenEffectSelect = null!;
+
+    [Export]
     private Label commitLabel = null!;
+
+    [Export]
     private Label builtAtLabel = null!;
 
+    [Export]
     private CheckBox tutorialsEnabled = null!;
+
+    [Export]
     private CheckBox unsavedProgressWarningEnabled = null!;
 
     // Confirmation Boxes
+    [Export]
     private CustomConfirmationDialog screenshotDirectoryWarningBox = null!;
+
+    [Export]
     private CustomWindow backConfirmationBox = null!;
+
+    [Export]
     private CustomConfirmationDialog defaultsConfirmationBox = null!;
+
+    [Export]
     private ErrorDialog errorAcceptBox = null!;
 
+    [Export]
     private CustomWindow patchNotesBox = null!;
+
+    [Export]
     private PatchNotesDisplayer patchNotesDisplayer = null!;
 #pragma warning restore CA2213
 
@@ -620,141 +495,7 @@ public partial class OptionsMenu : ControlWithInput
         if (nodeReferencesResolved)
             return;
 
-        // Options control buttons
-        backButton = GetNode<Button>(BackButtonPath);
-        resetButton = GetNode<Button>(ResetButtonPath);
-        saveButton = GetNode<Button>(SaveButtonPath);
-
-        // Tab selector buttons
-        tabButtons = GetNode<TabButtons>(TabButtonsPath);
-
-        // When _Ready is called the tab buttons will have been adjusted, so how we find the buttons needs different
-        // approaches based on how early this is called
-        if (calledFromReady)
-        {
-            graphicsButton = GetNode<Button>(tabButtons.GetAdjustedButtonPath(TabButtonsPath, GraphicsButtonPath));
-            soundButton = GetNode<Button>(tabButtons.GetAdjustedButtonPath(TabButtonsPath, SoundButtonPath));
-            performanceButton =
-                GetNode<Button>(tabButtons.GetAdjustedButtonPath(TabButtonsPath, PerformanceButtonPath));
-            inputsButton = GetNode<Button>(tabButtons.GetAdjustedButtonPath(TabButtonsPath, InputsButtonPath));
-            miscButton = GetNode<Button>(tabButtons.GetAdjustedButtonPath(TabButtonsPath, MiscButtonPath));
-        }
-        else
-        {
-            graphicsButton = GetNode<Button>(GraphicsButtonPath);
-            soundButton = GetNode<Button>(SoundButtonPath);
-            performanceButton = GetNode<Button>(PerformanceButtonPath);
-            inputsButton = GetNode<Button>(InputsButtonPath);
-            miscButton = GetNode<Button>(MiscButtonPath);
-        }
-
-        // Graphics
-        graphicsTab = GetNode<Control>(GraphicsTabPath);
-        vsync = GetNode<CheckBox>(VSyncPath);
-        displayMode = GetNode<OptionButton>(DisplayModePath);
-        resolution = GetNode<Label>(ResolutionPath);
-        maxFramesPerSecond = GetNode<OptionButton>(MaxFramesPerSecondPath);
-        colourblindSetting = GetNode<OptionButton>(ColourblindSettingPath);
-        chromaticAberrationToggle = GetNode<CheckBox>(ChromaticAberrationTogglePath);
-        chromaticAberrationSlider = GetNode<Slider>(ChromaticAberrationSliderPath);
-        controllerPromptType = GetNode<OptionButton>(ControllerPromptTypePath);
-        displayAbilitiesHotBarToggle = GetNode<CheckBox>(DisplayAbilitiesBarTogglePath);
-        displayBackgroundParticlesToggle = GetNode<CheckBox>(DisplayBackgroundParticlesTogglePath);
-        guiLightEffectsToggle = GetNode<CheckBox>(GUILightEffectsTogglePath);
-        displayPartNamesToggle = GetNode<CheckBox>(DisplayPartNamesTogglePath);
-        displayMenu3DBackgroundsToggle = GetNode<CheckBox>(DisplayMenu3DBackgroundsTogglePath);
-        gpuName = GetNode<Label>(GpuNamePath);
-        usedRendererName = GetNode<Label>(UsedRendererNamePath);
-        videoMemory = GetNode<Label>(VideoMemoryPath);
-
-        // Sound
-        soundTab = GetNode<Control>(SoundTabPath);
-        masterVolume = GetNode<Slider>(MasterVolumePath);
-        masterMuted = GetNode<CheckBox>(MasterMutedPath);
-        musicVolume = GetNode<Slider>(MusicVolumePath);
-        musicMuted = GetNode<CheckBox>(MusicMutedPath);
-        ambianceVolume = GetNode<Slider>(AmbianceVolumePath);
-        ambianceMuted = GetNode<CheckBox>(AmbianceMutedPath);
-        sfxVolume = GetNode<Slider>(SFXVolumePath);
-        sfxMuted = GetNode<CheckBox>(SFXMutedPath);
-        guiVolume = GetNode<Slider>(GUIVolumePath);
-        guiMuted = GetNode<CheckBox>(GUIMutedPath);
-        audioOutputDeviceSelection = GetNode<OptionButton>(AudioOutputDeviceSelectionPath);
-        languageSelection = GetNode<OptionButton>(LanguageSelectionPath);
-        resetLanguageButton = GetNode<Button>(ResetLanguageButtonPath);
-        languageProgressLabel = GetNode<Label>(LanguageProgressLabelPath);
-
-        // Performance
-        performanceTab = GetNode<Control>(PerformanceTabPath);
-        cloudInterval = GetNode<OptionButton>(CloudIntervalPath);
-        cloudResolutionTitle = GetNode<VBoxContainer>(CloudResolutionTitlePath);
-        cloudResolution = GetNode<OptionButton>(CloudResolutionPath);
-        runAutoEvoDuringGameplay = GetNode<CheckBox>(RunAutoEvoDuringGameplayPath);
-        runGameSimulationMultithreaded = GetNode<CheckBox>(RunGameSimulationMultithreadedPath);
-        detectedCPUCount = GetNode<Label>(DetectedCPUCountPath);
-        activeThreadCount = GetNode<Label>(ActiveThreadCountPath);
-        assumeHyperthreading = GetNode<CheckBox>(AssumeHyperthreadingPath);
-        useManualThreadCount = GetNode<CheckBox>(UseManualThreadCountPath);
-        threadCountSlider = GetNode<Slider>(ThreadCountSliderPath);
-        useManualNativeThreadCount = GetNode<CheckBox>(UseManualNativeThreadCountPath);
-        nativeThreadCountSlider = GetNode<Slider>(NativeThreadCountSliderPath);
-        maxSpawnedEntities = GetNode<OptionButton>(MaxSpawnedEntitiesPath);
-
-        // Inputs
-        inputsTab = GetNode<Control>(InputsTabPath);
-        mouseAxisSensitivitiesBound = GetNode<Button>(MouseAxisSensitivitiesBoundPath);
-        mouseHorizontalSensitivity = GetNode<Slider>(MouseHorizontalSensitivityPath);
-        mouseHorizontalInverted = GetNode<Button>(MouseHorizontalInvertedPath);
-        mouseVerticalSensitivity = GetNode<Slider>(MouseVerticalSensitivityPath);
-        mouseVerticalInverted = GetNode<Button>(MouseVerticalInvertedPath);
-        mouseWindowSizeScaling = GetNode<OptionButton>(MouseWindowSizeScalingPath);
-        mouseWindowSizeScalingWithLogicalSize = GetNode<Button>(MouseWindowSizeScalingWithLogicalSizePath);
-
-        controllerAxisSensitivitiesBound = GetNode<Button>(ControllerAxisSensitivitiesBoundPath);
-        controllerHorizontalSensitivity = GetNode<Slider>(ControllerHorizontalSensitivityPath);
-        controllerHorizontalInverted = GetNode<Button>(ControllerHorizontalInvertedPath);
-        controllerVerticalSensitivity = GetNode<Slider>(ControllerVerticalSensitivityPath);
-        controllerVerticalInverted = GetNode<Button>(ControllerVerticalInvertedPath);
-
-        twoDimensionalMovement = GetNode<OptionButton>(TwoDimensionalMovementPath);
-        threeDimensionalMovement = GetNode<OptionButton>(ThreeDimensionalMovementPath);
-
-        mouseEdgePanEnabled = GetNode<Button>(MouseEdgePanEnabledPath);
-        mouseEdgePanSensitivity = GetNode<Slider>(MouseEdgePanSensitivityPath);
-
-        inputGroupList = GetNode<InputGroupList>(InputGroupListPath);
-
-        deadzoneConfigurationPopup = GetNode<ControllerDeadzoneConfiguration>(DeadzoneConfigurationPopupPath);
-
-        // Misc
-        miscTab = GetNode<Control>(MiscTabPath);
-        playIntro = GetNode<CheckBox>(PlayIntroPath);
-        playMicrobeIntro = GetNode<CheckBox>(PlayMicrobeIntroPath);
-        tutorialsEnabledOnNewGame = GetNode<CheckBox>(TutorialsEnabledOnNewGamePath);
-        cheats = GetNode<CheckBox>(CheatsPath);
-        autoSave = GetNode<CheckBox>(AutoSavePath);
-        maxAutoSaves = GetNode<SpinBox>(MaxAutoSavesPath);
-        maxQuickSaves = GetNode<SpinBox>(MaxQuickSavesPath);
-        tutorialsEnabled = GetNode<CheckBox>(TutorialsEnabledPath);
-        customUsernameEnabled = GetNode<CheckBox>(CustomUsernameEnabledPath);
-        customUsername = GetNode<LineEdit>(CustomUsernamePath);
-        webFeedsEnabled = GetNode<CheckBox>(WebFeedsEnabledPath);
-        showNewPatchNotes = GetNode<CheckBox>(ShowNewPatchNotesPath);
-        dismissedNoticeCount = GetNode<Label>(DismissedNoticeCountPath);
-        jsonDebugMode = GetNode<OptionButton>(JSONDebugModePath);
-        screenEffectSelect = GetNode<OptionButton>(ScreenEffectSelectPath);
-        commitLabel = GetNode<Label>(CommitLabelPath);
-        builtAtLabel = GetNode<Label>(BuiltAtLabelPath);
         builtAtLabel.RegisterCustomFocusDrawer();
-        unsavedProgressWarningEnabled = GetNode<CheckBox>(UnsavedProgressWarningPath);
-
-        screenshotDirectoryWarningBox = GetNode<CustomConfirmationDialog>(ScreenshotDirectoryWarningBoxPath);
-        backConfirmationBox = GetNode<CustomWindow>(BackConfirmationBoxPath);
-        defaultsConfirmationBox = GetNode<CustomConfirmationDialog>(DefaultsConfirmationBoxPath);
-        errorAcceptBox = GetNode<ErrorDialog>(ErrorAcceptBoxPath);
-        patchNotesBox = GetNode<CustomWindow>(PatchNotesBoxPath);
-        patchNotesDisplayer = GetNode<PatchNotesDisplayer>(PatchNotesDisplayerPath);
-
         nodeReferencesResolved = true;
     }
 
@@ -884,6 +625,7 @@ public partial class OptionsMenu : ControlWithInput
         displayBackgroundParticlesToggle.ButtonPressed = settings.DisplayBackgroundParticles;
         displayMicrobeBackgroundDistortionToggle.ButtonPressed = settings.MicrobeDistortionStrength.Value > 0;
         lowQualityBackgroundBlurToggle.ButtonPressed = settings.MicrobeBackgroundBlurLowQuality;
+        microbeRippleEffect.ButtonPressed = settings.MicrobeRippleEffect;
         microbeCameraTilt.ButtonPressed = settings.MicrobeCameraTilt;
         guiLightEffectsToggle.ButtonPressed = settings.GUILightEffectsEnabled;
         displayPartNamesToggle.ButtonPressed = settings.DisplayPartNames;
@@ -1041,117 +783,6 @@ public partial class OptionsMenu : ControlWithInput
     public void SelectOptionsTab(OptionsTab tab)
     {
         ChangeSettingsTab(tab.ToString());
-    }
-
-    protected override void Dispose(bool disposing)
-    {
-        if (disposing)
-        {
-            if (BackButtonPath != null)
-            {
-                BackButtonPath.Dispose();
-                ResetButtonPath.Dispose();
-                SaveButtonPath.Dispose();
-                TabButtonsPath.Dispose();
-                GraphicsButtonPath.Dispose();
-                SoundButtonPath.Dispose();
-                PerformanceButtonPath.Dispose();
-                InputsButtonPath.Dispose();
-                MiscButtonPath.Dispose();
-                GraphicsTabPath.Dispose();
-                VSyncPath.Dispose();
-                DisplayModePath.Dispose();
-                ResolutionPath.Dispose();
-                MaxFramesPerSecondPath.Dispose();
-                ColourblindSettingPath.Dispose();
-                ChromaticAberrationSliderPath.Dispose();
-                ChromaticAberrationTogglePath.Dispose();
-                ControllerPromptTypePath.Dispose();
-                DisplayAbilitiesBarTogglePath.Dispose();
-                DisplayBackgroundParticlesTogglePath.Dispose();
-                GUILightEffectsTogglePath.Dispose();
-                DisplayPartNamesTogglePath.Dispose();
-                DisplayMenu3DBackgroundsTogglePath.Dispose();
-                GpuNamePath.Dispose();
-                UsedRendererNamePath.Dispose();
-                VideoMemoryPath.Dispose();
-                SoundTabPath.Dispose();
-                MasterVolumePath.Dispose();
-                MasterMutedPath.Dispose();
-                MusicVolumePath.Dispose();
-                MusicMutedPath.Dispose();
-                AmbianceVolumePath.Dispose();
-                AmbianceMutedPath.Dispose();
-                SFXVolumePath.Dispose();
-                SFXMutedPath.Dispose();
-                GUIVolumePath.Dispose();
-                GUIMutedPath.Dispose();
-                AudioOutputDeviceSelectionPath.Dispose();
-                LanguageSelectionPath.Dispose();
-                ResetLanguageButtonPath.Dispose();
-                LanguageProgressLabelPath.Dispose();
-                PerformanceTabPath.Dispose();
-                CloudIntervalPath.Dispose();
-                CloudResolutionTitlePath.Dispose();
-                CloudResolutionPath.Dispose();
-                RunAutoEvoDuringGameplayPath.Dispose();
-                RunGameSimulationMultithreadedPath.Dispose();
-                DetectedCPUCountPath.Dispose();
-                ActiveThreadCountPath.Dispose();
-                AssumeHyperthreadingPath.Dispose();
-                UseManualThreadCountPath.Dispose();
-                ThreadCountSliderPath.Dispose();
-                UseManualNativeThreadCountPath.Dispose();
-                NativeThreadCountSliderPath.Dispose();
-                MaxSpawnedEntitiesPath.Dispose();
-                InputsTabPath.Dispose();
-                MouseAxisSensitivitiesBoundPath.Dispose();
-                MouseHorizontalSensitivityPath.Dispose();
-                MouseHorizontalInvertedPath.Dispose();
-                MouseVerticalSensitivityPath.Dispose();
-                MouseVerticalInvertedPath.Dispose();
-                MouseWindowSizeScalingPath.Dispose();
-                MouseWindowSizeScalingWithLogicalSizePath.Dispose();
-                ControllerAxisSensitivitiesBoundPath.Dispose();
-                ControllerHorizontalSensitivityPath.Dispose();
-                ControllerHorizontalInvertedPath.Dispose();
-                ControllerVerticalSensitivityPath.Dispose();
-                ControllerVerticalInvertedPath.Dispose();
-                TwoDimensionalMovementPath.Dispose();
-                ThreeDimensionalMovementPath.Dispose();
-                MouseEdgePanEnabledPath.Dispose();
-                MouseEdgePanSensitivityPath.Dispose();
-                InputGroupListPath.Dispose();
-                DeadzoneConfigurationPopupPath.Dispose();
-                MiscTabPath.Dispose();
-                PlayIntroPath.Dispose();
-                PlayMicrobeIntroPath.Dispose();
-                TutorialsEnabledOnNewGamePath.Dispose();
-                CheatsPath.Dispose();
-                AutoSavePath.Dispose();
-                MaxAutoSavesPath.Dispose();
-                MaxQuickSavesPath.Dispose();
-                BackConfirmationBoxPath.Dispose();
-                TutorialsEnabledPath.Dispose();
-                ScreenshotDirectoryWarningBoxPath.Dispose();
-                DefaultsConfirmationBoxPath.Dispose();
-                ErrorAcceptBoxPath.Dispose();
-                PatchNotesBoxPath.Dispose();
-                PatchNotesDisplayerPath.Dispose();
-                CustomUsernameEnabledPath.Dispose();
-                CustomUsernamePath.Dispose();
-                WebFeedsEnabledPath.Dispose();
-                ShowNewPatchNotesPath.Dispose();
-                DismissedNoticeCountPath.Dispose();
-                JSONDebugModePath.Dispose();
-                ScreenEffectSelectPath.Dispose();
-                CommitLabelPath.Dispose();
-                BuiltAtLabelPath.Dispose();
-                UnsavedProgressWarningPath.Dispose();
-            }
-        }
-
-        base.Dispose(disposing);
     }
 
     private void InitializeOptionsSelections()
@@ -2307,6 +1938,13 @@ public partial class OptionsMenu : ControlWithInput
     private void OnLowQualityBackgroundBlurToggled(bool toggle)
     {
         Settings.Instance.MicrobeBackgroundBlurLowQuality.Value = toggle;
+
+        UpdateResetSaveButtonState();
+    }
+
+    private void OnMicrobeRippleToggled(bool toggle)
+    {
+        Settings.Instance.MicrobeRippleEffect.Value = toggle;
 
         UpdateResetSaveButtonState();
     }

@@ -12,33 +12,6 @@ using Godot;
 /// </summary>
 public partial class Thriveopedia : ControlWithInput, ISpeciesDataProvider
 {
-    [Export]
-    public NodePath? BackButtonPath;
-
-    [Export]
-    public NodePath ForwardButtonPath = null!;
-
-    [Export]
-    public NodePath PageContainerPath = null!;
-
-    [Export]
-    public NodePath PageTreeContainerPath = null!;
-
-    [Export]
-    public NodePath PageTreeContainerAnimPath = null!;
-
-    [Export]
-    public NodePath PageTitlePath = null!;
-
-    [Export]
-    public NodePath ViewOnlineButtonPath = null!;
-
-    [Export]
-    public NodePath PageTreePath = null!;
-
-    [Export]
-    public NodePath HomePagePath = null!;
-
     /// <summary>
     ///   All Thriveopedia pages and their associated items in the page tree.
     /// </summary>
@@ -55,18 +28,34 @@ public partial class Thriveopedia : ControlWithInput, ISpeciesDataProvider
     private readonly Stack<IThriveopediaPage> pageFuture = new();
 
 #pragma warning disable CA2213
+    [Export]
     private TextureButton backButton = null!;
+
+    [Export]
     private TextureButton forwardButton = null!;
+
+    [Export]
     private MarginContainer pageContainer = null!;
+
+    [Export]
     private PanelContainer pageTreeContainer = null!;
+
+    [Export]
     private AnimationPlayer pageTreeContainerAnim = null!;
+
+    [Export]
     private Label pageTitle = null!;
+
+    [Export]
     private Button viewOnlineButton = null!;
+
+    [Export]
     private Tree pageTree = null!;
 
     /// <summary>
     ///   The home page for the Thriveopedia. Keep a special reference so we can return to it easily.
     /// </summary>
+    [Export]
     private ThriveopediaHomePage homePage = null!;
 
     /// <summary>
@@ -153,21 +142,10 @@ public partial class Thriveopedia : ControlWithInput, ISpeciesDataProvider
 
     public override void _Ready()
     {
-        backButton = GetNode<TextureButton>(BackButtonPath);
-        forwardButton = GetNode<TextureButton>(ForwardButtonPath);
-        pageContainer = GetNode<MarginContainer>(PageContainerPath);
-        pageTreeContainer = GetNode<PanelContainer>(PageTreeContainerPath);
-        pageTreeContainerAnim = GetNode<AnimationPlayer>(PageTreeContainerAnimPath);
-        pageTitle = GetNode<Label>(PageTitlePath);
-        viewOnlineButton = GetNode<Button>(ViewOnlineButtonPath);
-        pageTree = GetNode<Tree>(PageTreePath);
-
         // Create and hide a blank root to avoid home being used as the root
         pageTree.CreateItem();
         pageTree.HideRoot = true;
 
-        // Keep a special reference to the home page
-        homePage = GetNode<ThriveopediaHomePage>(HomePagePath);
         allPages.Add(homePage, CreateTreeItem(homePage, null));
 
         // Add all pages not associated with a game in progress
@@ -302,27 +280,6 @@ public partial class Thriveopedia : ControlWithInput, ISpeciesDataProvider
 #endif
 
         throw new KeyNotFoundException($"No page with name {name} found");
-    }
-
-    protected override void Dispose(bool disposing)
-    {
-        if (disposing)
-        {
-            if (BackButtonPath != null)
-            {
-                BackButtonPath.Dispose();
-                ForwardButtonPath.Dispose();
-                PageContainerPath.Dispose();
-                PageTreeContainerPath.Dispose();
-                PageTreeContainerAnimPath.Dispose();
-                PageTitlePath.Dispose();
-                PageTreePath.Dispose();
-                HomePagePath.Dispose();
-                ViewOnlineButtonPath.Dispose();
-            }
-        }
-
-        base.Dispose(disposing);
     }
 
     /// <summary>

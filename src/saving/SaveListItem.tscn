@@ -26,23 +26,23 @@ corner_radius_bottom_left = 10
 [sub_resource type="StyleBoxFlat" id="2"]
 bg_color = Color(0, 0.435294, 0.52549, 0.27451)
 
-[node name="SaveListItem" type="PanelContainer"]
+[node name="SaveListItem" type="PanelContainer" node_paths=PackedStringArray("saveNameLabel", "screenshot", "version", "versionWarning", "type", "createdAt", "createdBy", "createdOnPlatform", "description", "loadButton", "highlightPanel")]
 offset_right = 838.0
 offset_bottom = 142.0
 theme = ExtResource("2")
 theme_override_styles/panel = SubResource("1")
 script = ExtResource("5")
-SaveNamePath = NodePath("MarginContainer/HBoxContainer/VBoxContainer/SaveName")
-ScreenshotPath = NodePath("MarginContainer/HBoxContainer/Screenshot")
-VersionPath = NodePath("MarginContainer/HBoxContainer/VBoxContainer/HBoxContainer2/VBoxContainer2/HBoxContainer/Version")
-VersionWarningPath = NodePath("MarginContainer/HBoxContainer/VBoxContainer/HBoxContainer2/VBoxContainer2/HBoxContainer/VersionWarning")
-TypePath = NodePath("MarginContainer/HBoxContainer/VBoxContainer/HBoxContainer2/VBoxContainer/HBoxContainer4/Type")
-CreatedAtPath = NodePath("MarginContainer/HBoxContainer/VBoxContainer/HBoxContainer2/VBoxContainer/HBoxContainer2/CreatedAt")
-CreatedByPath = NodePath("MarginContainer/HBoxContainer/VBoxContainer/HBoxContainer2/VBoxContainer2/HBoxContainer2/Creator")
-CreatedOnPlatformPath = NodePath("MarginContainer/HBoxContainer/VBoxContainer/HBoxContainer2/VBoxContainer2/HBoxContainer3/Platform")
-DescriptionPath = NodePath("MarginContainer/HBoxContainer/VBoxContainer/HBoxContainer2/VBoxContainer/HBoxContainer3/Description")
-LoadButtonPath = NodePath("MarginContainer/HBoxContainer/HBoxContainer/Load")
-HighlightPath = NodePath("Highlight")
+saveNameLabel = NodePath("MarginContainer/HBoxContainer/VBoxContainer/SaveName")
+screenshot = NodePath("MarginContainer/HBoxContainer/Screenshot")
+version = NodePath("MarginContainer/HBoxContainer/VBoxContainer/HBoxContainer2/VBoxContainer2/HBoxContainer/Version")
+versionWarning = NodePath("MarginContainer/HBoxContainer/VBoxContainer/HBoxContainer2/VBoxContainer2/HBoxContainer/VersionWarning")
+type = NodePath("MarginContainer/HBoxContainer/VBoxContainer/HBoxContainer2/VBoxContainer/HBoxContainer4/Type")
+createdAt = NodePath("MarginContainer/HBoxContainer/VBoxContainer/HBoxContainer2/VBoxContainer/HBoxContainer2/CreatedAt")
+createdBy = NodePath("MarginContainer/HBoxContainer/VBoxContainer/HBoxContainer2/VBoxContainer2/HBoxContainer2/Creator")
+createdOnPlatform = NodePath("MarginContainer/HBoxContainer/VBoxContainer/HBoxContainer2/VBoxContainer2/HBoxContainer3/Platform")
+description = NodePath("MarginContainer/HBoxContainer/VBoxContainer/HBoxContainer2/VBoxContainer/HBoxContainer3/Description")
+loadButton = NodePath("MarginContainer/HBoxContainer/HBoxContainer/Load")
+highlightPanel = NodePath("Highlight")
 
 [node name="Highlight" type="Panel" parent="."]
 visible = false

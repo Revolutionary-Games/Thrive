@@ -2,12 +2,12 @@
 
 [ext_resource type="Script" uid="uid://b1pk748rmfr6s" path="res://src/industrial_stage/gui/AvailableConstructionProjectItem.cs" id="1"]
 
-[node name="AvailableConstructionProjectItem" type="HBoxContainer"]
+[node name="AvailableConstructionProjectItem" type="HBoxContainer" node_paths=PackedStringArray("button")]
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
 script = ExtResource("1")
-ButtonPath = NodePath("Button")
+button = NodePath("Button")
 
 [node name="Button" type="Button" parent="."]
 editor_description = "PLACEHOLDER"

@@ -6,14 +6,11 @@ using Godot;
 /// </summary>
 public partial class LysosomeUpgradeGUI : VBoxContainer, IOrganelleUpgrader
 {
-    [Export]
-    public NodePath? EnzymesPath;
-
-    [Export]
-    public NodePath EnzymeDescriptionPath = null!;
-
 #pragma warning disable CA2213
+    [Export]
     private OptionButton enzymes = null!;
+
+    [Export]
     private Label description = null!;
 #pragma warning restore CA2213
 
@@ -21,9 +18,6 @@ public partial class LysosomeUpgradeGUI : VBoxContainer, IOrganelleUpgrader
 
     public override void _Ready()
     {
-        enzymes = GetNode<OptionButton>(EnzymesPath);
-        description = GetNode<Label>(EnzymeDescriptionPath);
-
         enzymes.Clear();
     }
 
@@ -75,20 +69,6 @@ public partial class LysosomeUpgradeGUI : VBoxContainer, IOrganelleUpgrader
     public Vector2 GetMinDialogSize()
     {
         return new Vector2(420, 160);
-    }
-
-    protected override void Dispose(bool disposing)
-    {
-        if (disposing)
-        {
-            if (EnzymesPath != null)
-            {
-                EnzymesPath.Dispose();
-                EnzymeDescriptionPath.Dispose();
-            }
-        }
-
-        base.Dispose(disposing);
     }
 
     private void OnEnzymeSelected(int index)

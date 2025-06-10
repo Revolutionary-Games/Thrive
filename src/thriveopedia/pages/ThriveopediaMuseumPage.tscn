@@ -6,17 +6,17 @@
 [ext_resource type="LabelSettings" uid="uid://dvqx73nhtr0y2" path="res://src/gui_common/fonts/Body-Regular-Small.tres" id="4_8ikvd"]
 [ext_resource type="PackedScene" uid="uid://cl64wvnxs6ivs" path="res://src/gui_common/dialogs/CustomConfirmationDialog.tscn" id="8"]
 
-[node name="ThriveopediaMuseumPage" instance=ExtResource("1")]
+[node name="ThriveopediaMuseumPage" instance=ExtResource("1") node_paths=PackedStringArray("deletionFailedDialog", "deleteConfirmationDialog", "fossilDirectoryWarningBox", "leaveGameConfirmationDialog", "speciesPreviewPanel", "speciesPreviewContainer", "welcomeLabel", "cardContainer")]
 anchors_preset = 15
 script = ExtResource("2")
-CardContainerPath = NodePath("HBoxContainer/SpeciesListPanel/MarginContainer/VBoxContainer/MarginContainer/ScrollContainer/HFlowContainer")
-WelcomeLabelPath = NodePath("HBoxContainer/SpeciesDetailsPanel/MarginContainer/WelcomeLabelContainer")
-SpeciesPreviewContainerPath = NodePath("HBoxContainer/SpeciesDetailsPanel/MarginContainer/VBoxContainer")
-SpeciesPreviewPanelPath = NodePath("HBoxContainer/SpeciesDetailsPanel/MarginContainer/VBoxContainer/SpeciesDetailsPanel")
-LeaveGameConfirmationDialogPath = NodePath("UnsavedProgressWarning")
-FossilDirectoryWarningBoxPath = NodePath("NoDirectoryDialog")
-DeleteConfirmationDialogPath = NodePath("DeleteWarning")
-DeletionFailedDialogPath = NodePath("FossilDeletionFailedDialog")
+cardContainer = NodePath("HBoxContainer/SpeciesListPanel/MarginContainer/VBoxContainer/MarginContainer/ScrollContainer/HFlowContainer")
+welcomeLabel = NodePath("HBoxContainer/SpeciesDetailsPanel/MarginContainer/WelcomeLabelContainer")
+speciesPreviewContainer = NodePath("HBoxContainer/SpeciesDetailsPanel/MarginContainer/VBoxContainer")
+speciesPreviewPanel = NodePath("HBoxContainer/SpeciesDetailsPanel/MarginContainer/VBoxContainer/SpeciesDetailsPanel")
+leaveGameConfirmationDialog = NodePath("UnsavedProgressWarning")
+fossilDirectoryWarningBox = NodePath("NoDirectoryDialog")
+deleteConfirmationDialog = NodePath("DeleteWarning")
+deletionFailedDialog = NodePath("FossilDeletionFailedDialog")
 DisplayBackground = false
 
 [node name="MarginContainer" parent="." index="0"]
