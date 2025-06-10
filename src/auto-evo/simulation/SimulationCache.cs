@@ -542,7 +542,7 @@ public class SimulationCache
             result.ProcessSpeedModifier *= 1.3f;
 
             // 10% osmoregulation bonus if have nucleus
-            result.OsmoregulationModifier *= 0.9f;
+            result.OsmoregulationModifier *= 0.8f;
         }
 
         cachedResolvedTolerances.Add(key, result);
