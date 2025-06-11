@@ -106,12 +106,21 @@ public class SingleItemSpawnQueue : SpawnQueue
 {
     private readonly Factory factory;
 
-    public SingleItemSpawnQueue(Factory factory, Spawner fromSpawnType) : base(fromSpawnType)
+    private readonly CheckTooCloseToPlayer cancelCheck;
+
+    private Vector3 spawnLocation;
+
+    public SingleItemSpawnQueue(Factory factory, Vector3 spawnLocation, CheckTooCloseToPlayer cancelCheck,
+        Spawner fromSpawnType) : base(fromSpawnType)
     {
         this.factory = factory;
+        this.spawnLocation = spawnLocation;
+        this.cancelCheck = cancelCheck;
     }
 
     public delegate (EntityCommandRecorder CommandRecorder, float SpawnedWeight) Factory(out EntityRecord entity);
+
+    public delegate bool CheckTooCloseToPlayer(Vector3 spawnLocation, Vector3 playerPosition);
 
     public override bool Ended { get; protected set; }
 
@@ -119,6 +128,14 @@ public class SingleItemSpawnQueue : SpawnQueue
     {
         Ended = true;
         return factory(out entity);
+    }
+
+    public override void CheckIsSpawningStillPossible(Vector3 playerPosition)
+    {
+        if (cancelCheck(spawnLocation, playerPosition))
+        {
+            Ended = true;
+        }
     }
 }
 
