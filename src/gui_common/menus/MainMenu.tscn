@@ -395,8 +395,8 @@ text = "MULTICELLULAR_FREEBUILD_EDITOR"
 custom_minimum_size = Vector2(250, 40)
 layout_mode = 2
 size_flags_vertical = 0
-focus_neighbor_bottom = NodePath("../Benchmarks")
-focus_next = NodePath("../Benchmarks")
+focus_neighbor_bottom = NodePath("../PlanetCustomizer")
+focus_next = NodePath("../PlanetCustomizer")
 mouse_filter = 1
 text = "AUTO_EVO_EXPLORING_TOOL"
 
@@ -404,8 +404,8 @@ text = "AUTO_EVO_EXPLORING_TOOL"
 custom_minimum_size = Vector2(250, 40)
 layout_mode = 2
 size_flags_vertical = 0
-focus_neighbor_bottom = NodePath("../Back")
-focus_next = NodePath("../Back")
+focus_neighbor_bottom = NodePath("../Benchmarks")
+focus_next = NodePath("../Benchmarks")
 mouse_filter = 1
 text = "PLANET_CUSTOMIZER"
 
@@ -991,9 +991,32 @@ ShowCloseButton = false
 [connection signal="pressed" from="MenuContainers/Menus/VBoxContainer/Benchmarks/MicrobeBenchmark" to="." method="MicrobeBenchmarkPressed"]
 [connection signal="pressed" from="MenuContainers/Menus/VBoxContainer/Benchmarks/CloudBenchmark" to="." method="CloudBenchmarkPressed"]
 [connection signal="pressed" from="MenuContainers/Menus/VBoxContainer/Benchmarks/Back" to="." method="OnReturnFromBenchmarks"]
+[connection signal="pressed" from="MenuContainers/WebsiteButtons/HBoxContainer/MarginContainer/VBoxContainer/OfficialWebsiteButton" to="." method="OnSocialMediaButtonPressed" binds= ["https://revolutionarygamesstudio.com/"]]
+[connection signal="pressed" from="MenuContainers/WebsiteButtons/HBoxContainer/MarginContainer/VBoxContainer/CommunityForumButton" to="." method="OnSocialMediaButtonPressed" binds= ["https://community.revolutionarygamesstudio.com/"]]
+[connection signal="pressed" from="MenuContainers/WebsiteButtons/HBoxContainer/MarginContainer/VBoxContainer/DevelopmentForumButton" to="." method="OnSocialMediaButtonPressed" binds= ["https://forum.revolutionarygamesstudio.com/"]]
+[connection signal="pressed" from="MenuContainers/WebsiteButtons/HBoxContainer/MarginContainer/VBoxContainer/DevelopmentWikiButton" to="." method="OnSocialMediaButtonPressed" binds= ["https://wiki.revolutionarygamesstudio.com/"]]
+[connection signal="pressed" from="MenuContainers/WebsiteButtons/HBoxContainer/MarginContainer/VBoxContainer/CommunityWikiButton" to="." method="OnSocialMediaButtonPressed" binds= ["https://thrive.fandom.com/wiki/Thrive_Wiki"]]
+[connection signal="pressed" from="MenuContainers/WebsiteButtons/HBoxContainer/MarginContainer/VBoxContainer/ReportBugButton" to="." method="OnSocialMediaButtonPressed" binds= ["https://community.revolutionarygamesstudio.com/c/bug-reports/13"]]
 [connection signal="pressed" from="MenuContainers/WebsiteButtons/HBoxContainer/MarginContainer/VBoxContainer/VisitSuggestionsSite" to="." method="VisitSuggestionsSitePressed"]
 [connection signal="pressed" from="MenuContainers/SocialMedia/RevolutionaryGamesButton" to="." method="OnWebsitesButtonPressed"]
+[connection signal="pressed" from="MenuContainers/SocialMedia/SteamButton" to="." method="OnSocialMediaButtonPressed" binds= ["https://store.steampowered.com/app/1779200/Thrive/"]]
+[connection signal="pressed" from="MenuContainers/SocialMedia/ItchButton" to="." method="OnSocialMediaButtonPressed" binds= ["https://revolutionarygames.itch.io/thrive"]]
+[connection signal="pressed" from="MenuContainers/SocialMedia/PatreonButton" to="." method="OnSocialMediaButtonPressed" binds= ["https://www.patreon.com/thrivegame"]]
+[connection signal="pressed" from="MenuContainers/SocialMedia/GitHubButton" to="." method="OnSocialMediaButtonPressed" binds= ["https://github.com/Revolutionary-Games/Thrive"]]
+[connection signal="pressed" from="MenuContainers/SocialMedia/YouTubeButton" to="." method="OnSocialMediaButtonPressed" binds= ["https://www.youtube.com/c/RevolutionaryGames"]]
+[connection signal="pressed" from="MenuContainers/SocialMedia/ThreadsButton" to="." method="OnSocialMediaButtonPressed" binds= ["https://www.threads.net/@thrive_game"]]
+[connection signal="pressed" from="MenuContainers/SocialMedia/RedditButton" to="." method="OnSocialMediaButtonPressed" binds= ["https://www.reddit.com/r/thrive/"]]
+[connection signal="pressed" from="MenuContainers/SocialMedia/DiscordButton" to="." method="OnSocialMediaButtonPressed" binds= ["https://discordapp.com/invite/ECR9E8x"]]
+[connection signal="pressed" from="MenuContainers/SocialMedia/FacebookButton" to="." method="OnSocialMediaButtonPressed" binds= ["https://www.facebook.com/Thrive-182887991751358/"]]
+[connection signal="pressed" from="MenuContainers/SocialMedia/TwitterButton" to="." method="OnSocialMediaButtonPressed" binds= ["https://x.com/Thrive_Game"]]
+[connection signal="pressed" from="MenuContainers/SocialMedia/InstagramButton" to="." method="OnSocialMediaButtonPressed" binds= ["https://www.instagram.com/thrive_game/"]]
+[connection signal="pressed" from="MenuContainers/SocialMedia/MastodonButton" to="." method="OnSocialMediaButtonPressed" binds= ["https://mastodon.social/@Thrive_Game"]]
+[connection signal="pressed" from="MenuContainers/SocialMedia/BlueskyButton" to="." method="OnSocialMediaButtonPressed" binds= ["https://bsky.app/profile/revolutionarygamesstudio.com"]]
+[connection signal="OnOptionsClosed" from="OptionsMenu" to="." method="OnReturnFromOptions"]
 [connection signal="OnBackPressed" from="SaveManagerGUI" to="." method="OnReturnFromLoadGame"]
+[connection signal="OnNewGameSettingsClosed" from="NewGameSettings" to="." method="OnReturnFromNewGameSettings"]
+[connection signal="OnNewGameVideoStarted" from="NewGameSettings" to="." method="OnNewGameIntroVideoStarted"]
+[connection signal="OnWantToSwitchToOptionsMenu" from="NewGameSettings" to="." method="OnRedirectedToOptionsMenuFromNewGameSettings"]
 [connection signal="OnThriveopediaClosed" from="Thriveopedia" to="." method="OnReturnFromThriveopedia"]
 [connection signal="hidden" from="LicensesDisplay" to="." method="OnReturnFromLicenses"]
 [connection signal="hidden" from="GalleryViewer" to="." method="OnReturnFromArtGallery"]
