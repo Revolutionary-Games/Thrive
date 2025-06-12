@@ -67,7 +67,7 @@ public partial class OptionsMenu : ControlWithInput
     private Control graphicsTab = null!;
 
     [Export]
-    private CheckBox vsync = null!;
+    private CheckButton vsync = null!;
 
     [Export]
     private Label? resolution;
@@ -103,7 +103,7 @@ public partial class OptionsMenu : ControlWithInput
     private OptionButton colourblindSetting = null!;
 
     [Export]
-    private CheckBox chromaticAberrationToggle = null!;
+    private CheckButton chromaticAberrationToggle = null!;
 
     [Export]
     private Slider chromaticAberrationSlider = null!;
@@ -112,37 +112,37 @@ public partial class OptionsMenu : ControlWithInput
     private OptionButton controllerPromptType = null!;
 
     [Export]
-    private CheckBox displayAbilitiesHotBarToggle = null!;
+    private CheckButton displayAbilitiesHotBarToggle = null!;
 
     [Export]
     private OptionButton anisotropicFilterLevel = null!;
 
     [Export]
-    private CheckBox damageEffect = null!;
+    private CheckButton damageEffect = null!;
 
     [Export]
     private OptionButton strainVisibility = null!;
 
     [Export]
-    private CheckBox displayBackgroundParticlesToggle = null!;
+    private CheckButton displayBackgroundParticlesToggle = null!;
 
     [Export]
-    private CheckBox guiLightEffectsToggle = null!;
+    private CheckButton guiLightEffectsToggle = null!;
 
     [Export]
-    private CheckBox displayPartNamesToggle = null!;
+    private CheckButton displayPartNamesToggle = null!;
 
     [Export]
-    private CheckBox displayMenu3DBackgroundsToggle = null!;
+    private CheckButton displayMenu3DBackgroundsToggle = null!;
 
     [Export]
-    private Button displayMicrobeBackgroundDistortionToggle = null!;
+    private CheckButton displayMicrobeBackgroundDistortionToggle = null!;
 
     [Export]
-    private Button lowQualityBackgroundBlurToggle = null!;
+    private CheckButton lowQualityBackgroundBlurToggle = null!;
 
     [Export]
-    private Button bloomEffectToggle = null!;
+    private CheckButton bloomEffectToggle = null!;
 
     [Export]
     private Slider bloomSlider = null!;
@@ -378,10 +378,10 @@ public partial class OptionsMenu : ControlWithInput
     private CheckBox webFeedsEnabled = null!;
 
     [Export]
-    private Button microbeRippleEffect = null!;
+    private CheckButton microbeRippleEffect = null!;
 
     [Export]
-    private Button microbeCameraTilt = null!;
+    private CheckButton microbeCameraTilt = null!;
 
     [Export]
     private CheckBox showNewPatchNotes = null!;
