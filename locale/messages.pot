@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Thrive VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2025-06-07 17:50+0200\n"
+"POT-Creation-Date: 2025-06-12 20:55+0200\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -1114,6 +1114,21 @@ msgstr ""
 
 #: ../src/gui_common/menus/PlanetSettings.tscn:257
 msgid "CLIMATE_INSTABILITY_EXPLANATION"
+msgstr ""
+
+#: ../src/general/WorldGenerationSettings.cs:126
+#: ../src/gui_common/menus/PlanetSettings.tscn:248
+msgid "CLIMATE_STABILITY_AVERAGE"
+msgstr ""
+
+#: ../src/general/WorldGenerationSettings.cs:123
+#: ../src/gui_common/menus/PlanetSettings.tscn:246
+msgid "CLIMATE_STABILITY_STABLE"
+msgstr ""
+
+#: ../src/general/WorldGenerationSettings.cs:129
+#: ../src/gui_common/menus/PlanetSettings.tscn:250
+msgid "CLIMATE_STABILITY_UNSTABLE"
 msgstr ""
 
 #: ../src/benchmark/microbe/CloudBenchmark.tscn:141
@@ -11456,23 +11471,17 @@ msgid "WORLD_SIZE_EXPLANATION"
 msgstr ""
 
 #: ../src/general/WorldGenerationSettings.cs:69
-#: ../src/general/WorldGenerationSettings.cs:129
 #: ../src/gui_common/menus/PlanetSettings.tscn:98
-#: ../src/gui_common/menus/PlanetSettings.tscn:250
 msgid "WORLD_SIZE_LARGE"
 msgstr ""
 
 #: ../src/general/WorldGenerationSettings.cs:66
-#: ../src/general/WorldGenerationSettings.cs:126
 #: ../src/gui_common/menus/PlanetSettings.tscn:96
-#: ../src/gui_common/menus/PlanetSettings.tscn:248
 msgid "WORLD_SIZE_MEDIUM"
 msgstr ""
 
 #: ../src/general/WorldGenerationSettings.cs:63
-#: ../src/general/WorldGenerationSettings.cs:123
 #: ../src/gui_common/menus/PlanetSettings.tscn:94
-#: ../src/gui_common/menus/PlanetSettings.tscn:246
 msgid "WORLD_SIZE_SMALL"
 msgstr ""
 

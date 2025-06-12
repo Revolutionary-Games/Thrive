@@ -120,13 +120,13 @@ public class WorldGenerationSettings
     /// </summary>
     public enum ClimateInstabilityEnum
     {
-        [Description("WORLD_SIZE_SMALL")]
+        [Description("CLIMATE_STABILITY_STABLE")]
         Low = 0,
 
-        [Description("WORLD_SIZE_MEDIUM")]
+        [Description("CLIMATE_STABILITY_AVERAGE")]
         Medium = 1,
 
-        [Description("WORLD_SIZE_LARGE")]
+        [Description("CLIMATE_STABILITY_UNSTABLE")]
         High = 2,
     }
 

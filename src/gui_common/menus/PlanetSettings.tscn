@@ -243,11 +243,11 @@ size_flags_stretch_ratio = 2.0
 tooltip_text = "WORLD_SIZE_TOOLTIP"
 selected = 1
 item_count = 3
-popup/item_0/text = "WORLD_SIZE_SMALL"
+popup/item_0/text = "CLIMATE_STABILITY_STABLE"
 popup/item_0/id = 0
-popup/item_1/text = "WORLD_SIZE_MEDIUM"
+popup/item_1/text = "CLIMATE_STABILITY_AVERAGE"
 popup/item_1/id = 1
-popup/item_2/text = "WORLD_SIZE_LARGE"
+popup/item_2/text = "CLIMATE_STABILITY_UNSTABLE"
 popup/item_2/id = 2
 
 [node name="Label3" type="Label" parent="VBoxContainer8"]
