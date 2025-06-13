@@ -33,16 +33,16 @@ public class TemperatureSessilityPressure : SelectionPressure
         float temperature = temperatureAmount.Ambient;
         float speed = cache.GetSpeedForSpecies(microbeSpecies);
 
-        // If temperature is not high enough, no penalty
+        // If temperature is not high enough, no bonus
         if (temperature <= 60.0f)
             return 1.0f;
 
-        // Calculate penalty based on speed
-        // The slower the species, the higher the penalty
+        // Calculate score based on speed
+        // The faster the species, the higher the score
         float speedFactor = speed / Constants.MAX_SPECIES_SPEED;
-        float penalty = 1.0f - (speedFactor * 0.7f);
+        float score = 0.3f + (speedFactor * 0.7f);
 
-        return Math.Max(penalty, 0.3f);
+        return Math.Min(score, 1.0f);
     }
 
     public override float GetEnergy(Patch patch)
