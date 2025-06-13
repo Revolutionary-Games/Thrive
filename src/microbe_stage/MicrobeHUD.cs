@@ -487,6 +487,7 @@ public partial class MicrobeHUD : CreatureStageHUDBase<MicrobeStage>
         bool showSlime;
         bool showMucocyst;
         bool showSiderophore;
+        bool showSignaling;
 
         bool engulfing;
         bool usingMucocyst;
@@ -496,12 +497,8 @@ public partial class MicrobeHUD : CreatureStageHUDBase<MicrobeStage>
         {
             ref var colony = ref player.Get<MicrobeColony>();
 
-            // TODO: does this need a variant that just returns a bool and has an early exit?
-            colony.CalculateColonySpecialOrganelles(out var vacuoles, out var slimeJets, out var mucocysts);
+            colony.GetColonySpecialOrganelles(out showToxin, out showSlime, out showMucocyst, out showSignaling);
 
-            showToxin = vacuoles > 0;
-            showSlime = slimeJets > 0;
-            showMucocyst = mucocysts > 0;
             showSiderophore = false;
 
             engulfing = colony.ColonyState == MicrobeState.Engulf;
@@ -513,6 +510,7 @@ public partial class MicrobeHUD : CreatureStageHUDBase<MicrobeStage>
             showSlime = organelles.SlimeJets is { Count: > 0 };
             showMucocyst = organelles.MucocystCount > 0;
             showSiderophore = organelles.IronBreakdownEfficiency > 0 && stage.WorldSettings.ExperimentalFeatures;
+            showSignaling = organelles.HasSignalingAgent;
 
             engulfing = control.State == MicrobeState.Engulf;
             usingMucocyst = control.State == MicrobeState.MucocystShield;
@@ -528,7 +526,7 @@ public partial class MicrobeHUD : CreatureStageHUDBase<MicrobeStage>
         // Read the engulf state from the colony as the player cell might be unable to engulf but some
         // member might be able to
         UpdateBaseAbilitiesBar(cellProperties.CanEngulfInColony(player), showToxin, showSlime,
-            organelles.HasSignalingAgent, showMucocyst, true, engulfing, isDigesting, usingMucocyst, control.Sprinting);
+            showSignaling, showMucocyst, true, engulfing, isDigesting, usingMucocyst, control.Sprinting);
 
         siderophoreHotkey.Visible = showSiderophore;
 
