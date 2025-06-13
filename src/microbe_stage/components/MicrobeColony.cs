@@ -232,23 +232,23 @@ public static class MicrobeColonyHelpers
     /// <summary>
     ///   Returns the information about the presence of special organelles in a colony
     /// </summary>
-    public static void GetColonySpecialOrganelles(this ref MicrobeColony colony, out bool agentVacuoles,
-        out bool slimeJets, out bool mucocysts, out bool signalingAgents)
+    public static void GetColonySpecialOrganelles(this ref MicrobeColony colony, out bool hasAgentVacuoles,
+        out bool hasSlimeJets, out bool hasMucocysts, out bool hasSignalingAgents)
     {
-        agentVacuoles = false;
-        slimeJets = false;
-        mucocysts = false;
-        signalingAgents = false;
+        hasAgentVacuoles = false;
+        hasSlimeJets = false;
+        hasMucocysts = false;
+        hasSignalingAgents = false;
 
         // Check the presence of special organelles across colony members
         foreach (var colonyMember in colony.ColonyMembers)
         {
             ref var organelles = ref colonyMember.Get<OrganelleContainer>();
 
-            agentVacuoles |= organelles.AgentVacuoleCount > 0;
-            mucocysts |= organelles.MucocystCount > 0;
-            slimeJets |= organelles.SlimeJets != null && organelles.SlimeJets.Count > 0;
-            signalingAgents |= organelles.HasSignalingAgent;
+            hasAgentVacuoles |= organelles.AgentVacuoleCount > 0;
+            hasMucocysts |= organelles.MucocystCount > 0;
+            hasSlimeJets |= organelles.SlimeJets != null && organelles.SlimeJets.Count > 0;
+            hasSignalingAgents |= organelles.HasSignalingAgent;
         }
     }
 
