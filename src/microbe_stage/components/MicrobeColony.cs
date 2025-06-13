@@ -230,22 +230,26 @@ public static class MicrobeColonyHelpers
     }
 
     /// <summary>
-    ///   Calculates the total counts of special organelles in a colony
+    ///   Returns the information about the presence of special organelles in a colony
     /// </summary>
-    public static void CalculateColonySpecialOrganelles(this ref MicrobeColony colony, out int agentVacuoles,
-        out int slimeJets, out int mucocysts)
+    public static void GetColonySpecialOrganelles(this ref MicrobeColony colony, out bool agentVacuoles,
+        out bool slimeJets, out bool mucocysts, out bool signalingAgents)
     {
-        agentVacuoles = 0;
-        slimeJets = 0;
-        mucocysts = 0;
+        agentVacuoles = false;
+        slimeJets = false;
+        mucocysts = false;
+        signalingAgents = false;
 
         foreach (var colonyMember in colony.ColonyMembers)
         {
             ref var organelles = ref colonyMember.Get<OrganelleContainer>();
 
-            agentVacuoles += organelles.AgentVacuoleCount;
-            slimeJets += organelles.SlimeJets?.Count ?? 0;
-            mucocysts += organelles.MucocystCount;
+            // If the cell has a special organelle, set the according variable to true,
+            // otherwise don't change the value
+            agentVacuoles |= organelles.AgentVacuoleCount > 0;
+            mucocysts |= organelles.MucocystCount > 0;
+            slimeJets |= organelles.SlimeJets != null && organelles.SlimeJets.Count > 0;
+            signalingAgents |= organelles.HasSignalingAgent;
         }
     }
 
