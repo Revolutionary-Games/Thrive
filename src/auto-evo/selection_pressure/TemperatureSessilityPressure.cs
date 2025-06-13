@@ -28,21 +28,19 @@ public class TemperatureSessilityPressure : SelectionPressure
 
         // Get temperature from the patch
         if (!patch.Biome.TryGetCompound(Compound.Temperature, CompoundAmountType.Biome, out var temperatureAmount))
-            return 1.0f;
+                return 0.0f;
 
         float temperature = temperatureAmount.Ambient;
         float speed = cache.GetSpeedForSpecies(microbeSpecies);
 
         // If temperature is not high enough, no bonus
         if (temperature <= 60.0f)
-            return 1.0f;
+            return 0.0f;
 
         // Calculate score based on speed
         // The faster the species, the higher the score
         float speedFactor = speed / Constants.MAX_SPECIES_SPEED;
-        float score = 0.3f + (speedFactor * 0.7f);
-
-        return Math.Min(score, 1.0f);
+        return speedFactor;
     }
 
     public override float GetEnergy(Patch patch)
