@@ -240,7 +240,7 @@ public static class MicrobeColonyHelpers
         mucocysts = false;
         signalingAgents = false;
 
-        // Check the presence of specieal organelles across colony members
+        // Check the presence of special organelles across colony members
         foreach (var colonyMember in colony.ColonyMembers)
         {
             ref var organelles = ref colonyMember.Get<OrganelleContainer>();
