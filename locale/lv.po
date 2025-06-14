@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2025-05-28 14:54+0300\n"
+"POT-Creation-Date: 2025-06-14 23:30+0200\n"
 "PO-Revision-Date: 2024-10-17 07:24+0000\n"
 "Last-Translator: Anonymous <noreply@weblate.org>\n"
 "Language-Team: Latvian <https://translate.revolutionarygamesstudio.com/projects/thrive/thrive-game/lv/>\n"
@@ -393,6 +393,10 @@ msgstr ""
 msgid "AUTO_EVO_STATUS_COLON"
 msgstr "Suga:"
 
+#, fuzzy
+msgid "AUTO_EVO_TOOL_BUTTON"
+msgstr "Izšķirtspēja:"
+
 msgid "AUTO_MOVE_FORWARDS"
 msgstr "Automātiski pārvietoties uz priekšu"
 
@@ -424,6 +428,9 @@ msgstr "Atpakaļ"
 
 msgid "BACKSPACE"
 msgstr "Atpakaļ"
+
+msgid "BACK_TO_SETTINGS"
+msgstr ""
 
 #, fuzzy
 msgid "BACTERIAL_THERMOSYNTHESIS"
@@ -848,6 +855,33 @@ msgstr ""
 #, fuzzy
 msgid "CLICK_TO_SELECT"
 msgstr "Dzēst atlasītos failus"
+
+msgid "CLIMATE_INSTABILITY"
+msgstr ""
+
+#, fuzzy
+msgid "CLIMATE_INSTABILITY_EXPLANATION"
+msgstr ""
+"Aktīvi mikrobi skraidīs apkārt un gāzīsies, kad nekas interesants nenotiek.\n"
+"Sēdošie mikrobi būs nekustīgi un gaidīs, kad vide mainīsies, pirms tie kaut ko dara."
+
+#, fuzzy
+msgid "CLIMATE_STABILITY_AVERAGE"
+msgstr ""
+"Aktīvi mikrobi skraidīs apkārt un gāzīsies, kad nekas interesants nenotiek.\n"
+"Sēdošie mikrobi būs nekustīgi un gaidīs, kad vide mainīsies, pirms tie kaut ko dara."
+
+#, fuzzy
+msgid "CLIMATE_STABILITY_STABLE"
+msgstr ""
+"Aktīvi mikrobi skraidīs apkārt un gāzīsies, kad nekas interesants nenotiek.\n"
+"Sēdošie mikrobi būs nekustīgi un gaidīs, kad vide mainīsies, pirms tie kaut ko dara."
+
+#, fuzzy
+msgid "CLIMATE_STABILITY_UNSTABLE"
+msgstr ""
+"Aktīvi mikrobi skraidīs apkārt un gāzīsies, kad nekas interesants nenotiek.\n"
+"Sēdošie mikrobi būs nekustīgi un gaidīs, kad vide mainīsies, pirms tie kaut ko dara."
 
 msgid "CLOSE"
 msgstr "Aizvērt"
@@ -1685,10 +1719,6 @@ msgid "DISCORD_TOOLTIP"
 msgstr "Apskatiet detalizētu informāciju aiz pareģošanas"
 
 #, fuzzy
-msgid "DISK_CACHE_TOOLTIP"
-msgstr "Atsākt spēli"
-
-#, fuzzy
 msgid "DISMISSED_POPUPS_COLON"
 msgstr "Ātrums:"
 
@@ -2497,11 +2527,33 @@ msgid "GENERAL_LOADING_TIP_7"
 msgstr "Lai labotu kļūdu redaktorā, nospied \"atsaukt\""
 
 #, fuzzy
+msgid "GENERATE_BUTTON"
+msgstr "Ģenerācija:"
+
+#, fuzzy
 msgid "GENERATIONS"
 msgstr "Ģenerācija:"
 
 msgid "GENERATION_COLON"
 msgstr "Ģenerācija:"
+
+msgid "GEOLOGICAL_ACTIVITY"
+msgstr ""
+
+msgid "GEOLOGICAL_ACTIVITY_ACTIVE"
+msgstr ""
+
+msgid "GEOLOGICAL_ACTIVITY_AVERAGE"
+msgstr ""
+
+msgid "GEOLOGICAL_ACTIVITY_DORMANT"
+msgstr ""
+
+#, fuzzy
+msgid "GEOLOGICAL_ACTIVITY_EXPLANATION"
+msgstr ""
+"Aktīvi mikrobi skraidīs apkārt un gāzīsies, kad nekas interesants nenotiek.\n"
+"Sēdošie mikrobi būs nekustīgi un gaidīs, kad vide mainīsies, pirms tie kaut ko dara."
 
 #, fuzzy
 msgid "GITHUB_TOOLTIP"
@@ -3460,9 +3512,6 @@ msgstr "Pārveido [thrive:compound type=\"glucose\"][/thrive:compound] par [thri
 msgid "LOW_QUALITY_BACKGROUND_BLUR"
 msgstr ""
 
-msgid "LOW_QUALITY_BACKGROUND_BLUR_TOOLTIP"
-msgstr ""
-
 msgid "LUCIFERASE"
 msgstr ""
 
@@ -4307,10 +4356,6 @@ msgstr ""
 msgid "NAME_LABEL_STRUCTURE_UNFINISHED"
 msgstr ""
 
-#, fuzzy
-msgid "NATIVE_THREAD_ADVICE_TOOLTIP"
-msgstr "Esošie pavedieni:"
-
 msgid "NEGATIVE_ATP_BALANCE"
 msgstr ""
 
@@ -4920,12 +4965,12 @@ msgstr "Novietot organoīdu"
 msgid "PLANET"
 msgstr ""
 
+msgid "PLANET_CUSTOMIZER"
+msgstr ""
+
 #, fuzzy
 msgid "PLANET_DETAILS_STRING"
 msgstr "Atvērt logu mapi"
-
-msgid "PLANET_GENERATION_TEASER"
-msgstr ""
 
 msgid "PLANET_RANDOM_SEED"
 msgstr ""
@@ -5126,6 +5171,10 @@ msgstr "Atcelt pēdējo atsaukšanu"
 
 msgid "REFRESH"
 msgstr "Atsvaidzināt"
+
+#, fuzzy
+msgid "REGENERATE_BUTTON"
+msgstr "Organoīdi"
 
 msgid "RENDER_SCALE"
 msgstr ""
@@ -5595,20 +5644,12 @@ msgid "SHOW_NEW_PATCH_NOTES"
 msgstr "Ala"
 
 #, fuzzy
-msgid "SHOW_NEW_PATCH_NOTES_TOOLTIP"
-msgstr "Ala"
-
-#, fuzzy
 msgid "SHOW_TUTORIALS_IN_NEW_CURRENT_OPTION"
 msgstr "Rādīt tutoriālus (pašreizējā spēlē)"
 
 #, fuzzy
 msgid "SHOW_TUTORIALS_IN_NEW_GAMES_OPTION"
 msgstr "Rādīt tutoriālus (jaunās spēlēs)"
-
-#, fuzzy
-msgid "SHOW_TUTORIALS_OPTION_TOOLTIP"
-msgstr "Apskatiet detalizētu informāciju aiz pareģošanas"
 
 msgid "SHOW_UNSAVED_PROGRESS_WARNING"
 msgstr ""
@@ -5664,6 +5705,10 @@ msgstr "Silīcija dioksīds"
 
 msgid "SILICA_MEMBRANE_DESCRIPTION"
 msgstr ""
+
+#, fuzzy
+msgid "SIMULATION"
+msgstr "Osmoregulācija"
 
 #, fuzzy
 msgid "SIXTEEN_TIMES"
@@ -6986,6 +7031,9 @@ msgid "UPSCALE_FSR_1"
 msgstr ""
 
 msgid "UPSCALE_FSR_22"
+msgstr ""
+
+msgid "UPSCALE_METHOD"
 msgstr ""
 
 msgid "UPSCALE_SHARPENING_FSR"
@@ -8953,6 +9001,26 @@ msgid "WORLD_RELATIVE_MOVEMENT"
 msgstr ""
 
 #, fuzzy
+msgid "WORLD_SEA_LEVEL"
+msgstr "Šūnas procesi"
+
+msgid "WORLD_SEA_LEVEL_DEEP"
+msgstr ""
+
+#, fuzzy
+msgid "WORLD_SEA_LEVEL_EXPLANATION"
+msgstr ""
+"Koncentrēti mikrobi meklēs gabalus vai upurus tālas distances\n"
+"un visticamāk būs ambiciozāki par gabaliem.\n"
+"Atsaucīgi mikrobi ātrāk pāries uz jauniem mērķiem."
+
+msgid "WORLD_SEA_LEVEL_MODERATE"
+msgstr ""
+
+msgid "WORLD_SEA_LEVEL_SHALLOW"
+msgstr ""
+
+#, fuzzy
 msgid "WORLD_SIZE"
 msgstr "Šūnas procesi"
 
@@ -8975,6 +9043,29 @@ msgstr ""
 #, fuzzy
 msgid "WORLD_SIZE_TOOLTIP"
 msgstr "Apskatiet detalizētu informāciju aiz pareģošanas"
+
+#, fuzzy
+msgid "WORLD_TEMPERATURE"
+msgstr "Temperatūra"
+
+#, fuzzy
+msgid "WORLD_TEMPERATURE_COLD"
+msgstr "Temperatūra."
+
+#, fuzzy
+msgid "WORLD_TEMPERATURE_EXPLANATION"
+msgstr ""
+"Koncentrēti mikrobi meklēs gabalus vai upurus tālas distances\n"
+"un visticamāk būs ambiciozāki par gabaliem.\n"
+"Atsaucīgi mikrobi ātrāk pāries uz jauniem mērķiem."
+
+#, fuzzy
+msgid "WORLD_TEMPERATURE_TEMPERATE"
+msgstr "Temperatūra."
+
+#, fuzzy
+msgid "WORLD_TEMPERATURE_WARM"
+msgstr "Temperatūra."
 
 msgid "WORST_PATCH_COLON"
 msgstr "Sliktākais Plankums:"
@@ -9013,6 +9104,22 @@ msgstr "Pietuvināt"
 
 msgid "ZOOM_OUT"
 msgstr "Attālināt"
+
+#, fuzzy
+#~ msgid "DISK_CACHE_TOOLTIP"
+#~ msgstr "Atsākt spēli"
+
+#, fuzzy
+#~ msgid "NATIVE_THREAD_ADVICE_TOOLTIP"
+#~ msgstr "Esošie pavedieni:"
+
+#, fuzzy
+#~ msgid "SHOW_NEW_PATCH_NOTES_TOOLTIP"
+#~ msgstr "Ala"
+
+#, fuzzy
+#~ msgid "SHOW_TUTORIALS_OPTION_TOOLTIP"
+#~ msgstr "Apskatiet detalizētu informāciju aiz pareģošanas"
 
 #, fuzzy
 #~ msgid "PASSIVE_REPRODUCTION_PROGRESS_EXPLANATION"

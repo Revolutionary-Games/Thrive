@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2025-05-28 14:54+0300\n"
+"POT-Creation-Date: 2025-06-14 23:30+0200\n"
 "PO-Revision-Date: 2025-05-29 18:47+0000\n"
 "Last-Translator: Teashrock <kajitsu22@gmail.com>\n"
 "Language-Team: Ukrainian <https://translate.revolutionarygamesstudio.com/projects/thrive/thrive-game/uk/>\n"
@@ -382,6 +382,10 @@ msgstr "статус виконання:"
 msgid "AUTO_EVO_STATUS_COLON"
 msgstr "Статус Авто-ево:"
 
+#, fuzzy
+msgid "AUTO_EVO_TOOL_BUTTON"
+msgstr "Автоматично ({0}x{1})"
+
 msgid "AUTO_MOVE_FORWARDS"
 msgstr "автоматичн рухайтесь вперед"
 
@@ -411,6 +415,9 @@ msgstr "Слеш назад"
 
 msgid "BACKSPACE"
 msgstr "Backspace"
+
+msgid "BACK_TO_SETTINGS"
+msgstr ""
 
 msgid "BACTERIAL_THERMOSYNTHESIS"
 msgstr "Бактеріальний термосинтез"
@@ -799,6 +806,33 @@ msgstr "Почистити кеш"
 #, fuzzy
 msgid "CLICK_TO_SELECT"
 msgstr "Видалити обране"
+
+msgid "CLIMATE_INSTABILITY"
+msgstr ""
+
+#, fuzzy
+msgid "CLIMATE_INSTABILITY_EXPLANATION"
+msgstr ""
+"Рухливі мікроби будуть більше плавати та безлаодно тинятися.\n"
+"Пасивні будуть залишатися нерухомими до змін в оточені, й лиш тоді діють."
+
+#, fuzzy
+msgid "CLIMATE_STABILITY_AVERAGE"
+msgstr ""
+"Рухливі мікроби будуть більше плавати та безлаодно тинятися.\n"
+"Пасивні будуть залишатися нерухомими до змін в оточені, й лиш тоді діють."
+
+#, fuzzy
+msgid "CLIMATE_STABILITY_STABLE"
+msgstr ""
+"Рухливі мікроби будуть більше плавати та безлаодно тинятися.\n"
+"Пасивні будуть залишатися нерухомими до змін в оточені, й лиш тоді діють."
+
+#, fuzzy
+msgid "CLIMATE_STABILITY_UNSTABLE"
+msgstr ""
+"Рухливі мікроби будуть більше плавати та безлаодно тинятися.\n"
+"Пасивні будуть залишатися нерухомими до змін в оточені, й лиш тоді діють."
 
 msgid "CLOSE"
 msgstr "Закрити"
@@ -1638,10 +1672,6 @@ msgstr ""
 msgid "DISCORD_TOOLTIP"
 msgstr "Приєднуйтесь до спільноти Discord серверу"
 
-#, fuzzy
-msgid "DISK_CACHE_TOOLTIP"
-msgstr "Відвідайте"
-
 msgid "DISMISSED_POPUPS_COLON"
 msgstr "Закриті спливаючі вікна:"
 
@@ -2383,11 +2413,33 @@ msgstr "Натисніть на кнопку скасувати, аби випр
 msgid "GENERAL_LOADING_TIP_7"
 msgstr "Натисніть на кнопку скасувати, аби виправити помилку"
 
+#, fuzzy
+msgid "GENERATE_BUTTON"
+msgstr "Генерації"
+
 msgid "GENERATIONS"
 msgstr "Генерації"
 
 msgid "GENERATION_COLON"
 msgstr "Генерація:"
+
+msgid "GEOLOGICAL_ACTIVITY"
+msgstr ""
+
+msgid "GEOLOGICAL_ACTIVITY_ACTIVE"
+msgstr ""
+
+msgid "GEOLOGICAL_ACTIVITY_AVERAGE"
+msgstr ""
+
+msgid "GEOLOGICAL_ACTIVITY_DORMANT"
+msgstr ""
+
+#, fuzzy
+msgid "GEOLOGICAL_ACTIVITY_EXPLANATION"
+msgstr ""
+"Рухливі мікроби будуть більше плавати та безлаодно тинятися.\n"
+"Пасивні будуть залишатися нерухомими до змін в оточені, й лиш тоді діють."
 
 msgid "GITHUB_TOOLTIP"
 msgstr "Відвідайте наше сховище у GitHub"
@@ -3305,10 +3357,6 @@ msgstr ""
 msgid "LOW_QUALITY_BACKGROUND_BLUR"
 msgstr "Розмиття фону:"
 
-#, fuzzy
-msgid "LOW_QUALITY_BACKGROUND_BLUR_TOOLTIP"
-msgstr "Розмиття фону:"
-
 msgid "LUCIFERASE"
 msgstr "Люцифераза"
 
@@ -4163,12 +4211,6 @@ msgstr "{0} (СИЛА: {1})"
 msgid "NAME_LABEL_STRUCTURE_UNFINISHED"
 msgstr "{0} (Незав.)"
 
-msgid "NATIVE_THREAD_ADVICE_TOOLTIP"
-msgstr ""
-"Нативні потоки використовуються не для тих же завдань, що керовані потоки.\n"
-"Більше потоків на процесорах з великою кількістю ядер може загально збільшити продуктивність до певного обмеження\n"
-"занадто велика кількість потоків почне зменшувати продуктивність."
-
 msgid "NEGATIVE_ATP_BALANCE"
 msgstr "Від'ємний АТФ баланс"
 
@@ -4731,6 +4773,10 @@ msgstr "Місце для органели"
 msgid "PLANET"
 msgstr "Планета"
 
+#, fuzzy
+msgid "PLANET_CUSTOMIZER"
+msgstr "Під курсором:"
+
 msgid "PLANET_DETAILS_STRING"
 msgstr ""
 "Тільки ЗАКОН: {0}\n"
@@ -4738,9 +4784,6 @@ msgstr ""
 "Цикл дня/ночі: {2}\n"
 "Тривалість дня: {3} секунди\n"
 "Випадковий сід планети: {4}"
-
-msgid "PLANET_GENERATION_TEASER"
-msgstr "Генерація планети пройшла успішно!"
 
 msgid "PLANET_RANDOM_SEED"
 msgstr "Рандомний сід планети"
@@ -4936,6 +4979,10 @@ msgstr "Повернути попередню дію"
 
 msgid "REFRESH"
 msgstr "Оновити"
+
+#, fuzzy
+msgid "REGENERATE_BUTTON"
+msgstr "Аксон"
 
 #, fuzzy
 msgid "RENDER_SCALE"
@@ -5385,18 +5432,11 @@ msgstr "Показати координати"
 msgid "SHOW_NEW_PATCH_NOTES"
 msgstr "Показувати нову інформацію про патчі автоматично"
 
-msgid "SHOW_NEW_PATCH_NOTES_TOOLTIP"
-msgstr "Показувати нову інформацію про зміни у нових версіях Thrive автоматично в головному меню"
-
 msgid "SHOW_TUTORIALS_IN_NEW_CURRENT_OPTION"
 msgstr "Показати туторіал (в поточній грі)"
 
 msgid "SHOW_TUTORIALS_IN_NEW_GAMES_OPTION"
 msgstr "Показувати туторіали (в новій грі)"
-
-#, fuzzy
-msgid "SHOW_TUTORIALS_OPTION_TOOLTIP"
-msgstr "Експортувати дані усіх світів у CSV-формат"
 
 msgid "SHOW_UNSAVED_PROGRESS_WARNING"
 msgstr "Програвати попередження про незбережену гру"
@@ -5446,6 +5486,10 @@ msgstr "Кремнезій"
 
 msgid "SILICA_MEMBRANE_DESCRIPTION"
 msgstr "Ця мембрана має міцну стінку з кремнезію. Вона може опиратися загальним пошкодженням, і також особливо стійка до фізичної шкоди. Вона також вимагає менше енергії для утримання форми. Однак це сильно сповільнює клітину, і вона не так швидко поглинає ресурси."
+
+#, fuzzy
+msgid "SIMULATION"
+msgstr "Осморегуляція"
 
 msgid "SIXTEEN_TIMES"
 msgstr "16х"
@@ -6730,6 +6774,9 @@ msgid "UPSCALE_FSR_1"
 msgstr ""
 
 msgid "UPSCALE_FSR_22"
+msgstr ""
+
+msgid "UPSCALE_METHOD"
 msgstr ""
 
 msgid "UPSCALE_SHARPENING_FSR"
@@ -8772,6 +8819,28 @@ msgid "WORLD_RELATIVE_MOVEMENT"
 msgstr "Відносно світу"
 
 #, fuzzy
+msgid "WORLD_SEA_LEVEL"
+msgstr "{0}-{1}м. нижче рівня моря"
+
+#, fuzzy
+msgid "WORLD_SEA_LEVEL_DEEP"
+msgstr "{0}-{1}м. нижче рівня моря"
+
+#, fuzzy
+msgid "WORLD_SEA_LEVEL_EXPLANATION"
+msgstr ""
+"Зосереджені мікроби шукатимуть брили або здобич на більшій відстані\n"
+"та можуть завзятіше змагатися за брили.\n"
+"Чуйні мікроби швидше відвертатимуться на нові цілі."
+
+#, fuzzy
+msgid "WORLD_SEA_LEVEL_MODERATE"
+msgstr "Відносно світу"
+
+msgid "WORLD_SEA_LEVEL_SHALLOW"
+msgstr ""
+
+#, fuzzy
 msgid "WORLD_SIZE"
 msgstr "Світ"
 
@@ -8795,6 +8864,29 @@ msgstr ""
 #, fuzzy
 msgid "WORLD_SIZE_TOOLTIP"
 msgstr "Запустити декілька світів, кількість генерацій для кожного з них визначається через кнопку вибору зверху."
+
+#, fuzzy
+msgid "WORLD_TEMPERATURE"
+msgstr "Температура"
+
+#, fuzzy
+msgid "WORLD_TEMPERATURE_COLD"
+msgstr "Темп."
+
+#, fuzzy
+msgid "WORLD_TEMPERATURE_EXPLANATION"
+msgstr ""
+"Зосереджені мікроби шукатимуть брили або здобич на більшій відстані\n"
+"та можуть завзятіше змагатися за брили.\n"
+"Чуйні мікроби швидше відвертатимуться на нові цілі."
+
+#, fuzzy
+msgid "WORLD_TEMPERATURE_TEMPERATE"
+msgstr "Темп."
+
+#, fuzzy
+msgid "WORLD_TEMPERATURE_WARM"
+msgstr "Темп."
 
 msgid "WORST_PATCH_COLON"
 msgstr "Найгірша ділянка:"
@@ -8835,6 +8927,30 @@ msgstr "Приблизитись"
 
 msgid "ZOOM_OUT"
 msgstr "Віддалитись"
+
+#, fuzzy
+#~ msgid "DISK_CACHE_TOOLTIP"
+#~ msgstr "Відвідайте"
+
+#, fuzzy
+#~ msgid "LOW_QUALITY_BACKGROUND_BLUR_TOOLTIP"
+#~ msgstr "Розмиття фону:"
+
+#~ msgid "NATIVE_THREAD_ADVICE_TOOLTIP"
+#~ msgstr ""
+#~ "Нативні потоки використовуються не для тих же завдань, що керовані потоки.\n"
+#~ "Більше потоків на процесорах з великою кількістю ядер може загально збільшити продуктивність до певного обмеження\n"
+#~ "занадто велика кількість потоків почне зменшувати продуктивність."
+
+#~ msgid "SHOW_NEW_PATCH_NOTES_TOOLTIP"
+#~ msgstr "Показувати нову інформацію про зміни у нових версіях Thrive автоматично в головному меню"
+
+#, fuzzy
+#~ msgid "SHOW_TUTORIALS_OPTION_TOOLTIP"
+#~ msgstr "Експортувати дані усіх світів у CSV-формат"
+
+#~ msgid "PLANET_GENERATION_TEASER"
+#~ msgstr "Генерація планети пройшла успішно!"
 
 #~ msgid "PASSIVE_REPRODUCTION_PROGRESS_EXPLANATION"
 #~ msgstr "(пасивно збільшувати сполуки для розмноження з середовища без дій )"

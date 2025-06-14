@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2025-05-28 14:54+0300\n"
+"POT-Creation-Date: 2025-06-14 23:30+0200\n"
 "PO-Revision-Date: 2025-05-25 15:00+0000\n"
 "Last-Translator: Anonymous <noreply@weblate.org>\n"
 "Language-Team: Chinese (Simplified Han script) <https://translate.revolutionarygamesstudio.com/projects/thrive/thrive-game/zh_Hans/>\n"
@@ -396,6 +396,10 @@ msgstr "运行状态："
 msgid "AUTO_EVO_STATUS_COLON"
 msgstr "自动进化运行状态："
 
+#, fuzzy
+msgid "AUTO_EVO_TOOL_BUTTON"
+msgstr "自动（{0}x{1}）"
+
 msgid "AUTO_MOVE_FORWARDS"
 msgstr "自动前移"
 
@@ -425,6 +429,9 @@ msgstr "反斜杠"
 
 msgid "BACKSPACE"
 msgstr "退格键"
+
+msgid "BACK_TO_SETTINGS"
+msgstr ""
 
 msgid "BACTERIAL_THERMOSYNTHESIS"
 msgstr "细菌热合成"
@@ -818,6 +825,33 @@ msgstr "清除缓存"
 #, fuzzy
 msgid "CLICK_TO_SELECT"
 msgstr "删除选中的"
+
+msgid "CLIMATE_INSTABILITY"
+msgstr ""
+
+#, fuzzy
+msgid "CLIMATE_INSTABILITY_EXPLANATION"
+msgstr ""
+"活泼型细胞在周围没啥事的时候会四处乱跑。\n"
+"沉着型微生物将静止不动，等待环境变化后才行动。"
+
+#, fuzzy
+msgid "CLIMATE_STABILITY_AVERAGE"
+msgstr ""
+"活泼型细胞在周围没啥事的时候会四处乱跑。\n"
+"沉着型微生物将静止不动，等待环境变化后才行动。"
+
+#, fuzzy
+msgid "CLIMATE_STABILITY_STABLE"
+msgstr ""
+"活泼型细胞在周围没啥事的时候会四处乱跑。\n"
+"沉着型微生物将静止不动，等待环境变化后才行动。"
+
+#, fuzzy
+msgid "CLIMATE_STABILITY_UNSTABLE"
+msgstr ""
+"活泼型细胞在周围没啥事的时候会四处乱跑。\n"
+"沉着型微生物将静止不动，等待环境变化后才行动。"
 
 msgid "CLOSE"
 msgstr "关闭"
@@ -1659,10 +1693,6 @@ msgstr ""
 msgid "DISCORD_TOOLTIP"
 msgstr "加入我们社区的Discord服务器"
 
-#, fuzzy
-msgid "DISK_CACHE_TOOLTIP"
-msgstr "访问我们在Itch.io上的页面"
-
 msgid "DISMISSED_POPUPS_COLON"
 msgstr "被禁用的弹出窗口："
 
@@ -2394,11 +2424,33 @@ msgstr "在编辑器中按下撤消键以纠正错误"
 msgid "GENERAL_LOADING_TIP_7"
 msgstr "在编辑器中按下撤消键以纠正错误"
 
+#, fuzzy
+msgid "GENERATE_BUTTON"
+msgstr "世代"
+
 msgid "GENERATIONS"
 msgstr "世代"
 
 msgid "GENERATION_COLON"
 msgstr "世代："
+
+msgid "GEOLOGICAL_ACTIVITY"
+msgstr ""
+
+msgid "GEOLOGICAL_ACTIVITY_ACTIVE"
+msgstr ""
+
+msgid "GEOLOGICAL_ACTIVITY_AVERAGE"
+msgstr ""
+
+msgid "GEOLOGICAL_ACTIVITY_DORMANT"
+msgstr ""
+
+#, fuzzy
+msgid "GEOLOGICAL_ACTIVITY_EXPLANATION"
+msgstr ""
+"活泼型细胞在周围没啥事的时候会四处乱跑。\n"
+"沉着型微生物将静止不动，等待环境变化后才行动。"
 
 msgid "GITHUB_TOOLTIP"
 msgstr "访问我们在GitHub上的代码仓库"
@@ -3305,9 +3357,6 @@ msgstr ""
 msgid "LOW_QUALITY_BACKGROUND_BLUR"
 msgstr "低分辨率背景模糊"
 
-msgid "LOW_QUALITY_BACKGROUND_BLUR_TOOLTIP"
-msgstr ""
-
 msgid "LUCIFERASE"
 msgstr ""
 
@@ -4149,12 +4198,6 @@ msgstr "{0}（能量：{1}）"
 msgid "NAME_LABEL_STRUCTURE_UNFINISHED"
 msgstr "{0}（未完成）"
 
-msgid "NATIVE_THREAD_ADVICE_TOOLTIP"
-msgstr ""
-"本地线程用于与托管线程不同的任务。\n"
-"有更多核心的多线程CPU通常会将性能提升到极限。\n"
-"太多的总线程将开始降低性能。"
-
 msgid "NEGATIVE_ATP_BALANCE"
 msgstr "ATP开支为负"
 
@@ -4722,6 +4765,10 @@ msgstr "放置细胞器"
 msgid "PLANET"
 msgstr "星球"
 
+#, fuzzy
+msgid "PLANET_CUSTOMIZER"
+msgstr "鼠标指针处："
+
 msgid "PLANET_DETAILS_STRING"
 msgstr ""
 "仅限已知生命形式：{0}\n"
@@ -4729,9 +4776,6 @@ msgstr ""
 "日/夜循环：{2}\n"
 "一天的长度：{3}秒\n"
 "行星随机种子：{4}"
-
-msgid "PLANET_GENERATION_TEASER"
-msgstr "行星生成即将发布！"
 
 msgid "PLANET_RANDOM_SEED"
 msgstr "世界生成种子"
@@ -4928,6 +4972,10 @@ msgstr "重做上一个动作"
 
 msgid "REFRESH"
 msgstr "刷新"
+
+#, fuzzy
+msgid "REGENERATE_BUTTON"
+msgstr "细胞器"
 
 #, fuzzy
 msgid "RENDER_SCALE"
@@ -5376,18 +5424,11 @@ msgstr ""
 msgid "SHOW_NEW_PATCH_NOTES"
 msgstr "自动显示新的补丁说明"
 
-msgid "SHOW_NEW_PATCH_NOTES_TOOLTIP"
-msgstr "在主菜单中自动显示新版Thrive的补丁说明"
-
 msgid "SHOW_TUTORIALS_IN_NEW_CURRENT_OPTION"
 msgstr "现有游戏中显示教程"
 
 msgid "SHOW_TUTORIALS_IN_NEW_GAMES_OPTION"
 msgstr "开始新游戏时显示教程"
-
-#, fuzzy
-msgid "SHOW_TUTORIALS_OPTION_TOOLTIP"
-msgstr "以逗号分隔符（csv）格式导出所有世界数据"
 
 msgid "SHOW_UNSAVED_PROGRESS_WARNING"
 msgstr "显示未保存的进度警告"
@@ -5436,6 +5477,10 @@ msgstr "二氧化硅"
 
 msgid "SILICA_MEMBRANE_DESCRIPTION"
 msgstr "这个细胞膜额外配置了一层二氧化硅外壳。各方面都有更好的防御力，尤其是物防高的惊人。同时也不需要多少能量来维持形状，但吸收营养和移动的速度都很慢。"
+
+#, fuzzy
+msgid "SIMULATION"
+msgstr "渗透调节"
 
 msgid "SIXTEEN_TIMES"
 msgstr "16x"
@@ -6718,6 +6763,9 @@ msgid "UPSCALE_FSR_1"
 msgstr ""
 
 msgid "UPSCALE_FSR_22"
+msgstr ""
+
+msgid "UPSCALE_METHOD"
 msgstr ""
 
 msgid "UPSCALE_SHARPENING_FSR"
@@ -9023,6 +9071,29 @@ msgid "WORLD_RELATIVE_MOVEMENT"
 msgstr "相对世界移动"
 
 #, fuzzy
+msgid "WORLD_SEA_LEVEL"
+msgstr "在海平面下方{0}-{1}米处"
+
+#, fuzzy
+msgid "WORLD_SEA_LEVEL_DEEP"
+msgstr "在海平面下方{0}-{1}米处"
+
+#, fuzzy
+msgid "WORLD_SEA_LEVEL_EXPLANATION"
+msgstr ""
+"专注型微生物会在更远的距离里追击猎物或物质块\n"
+"并且对物质块更有渴求。\n"
+"应变型微生物将更快的转向新的目标。"
+
+#, fuzzy
+msgid "WORLD_SEA_LEVEL_MODERATE"
+msgstr "相对世界移动"
+
+#, fuzzy
+msgid "WORLD_SEA_LEVEL_SHALLOW"
+msgstr "小"
+
+#, fuzzy
 msgid "WORLD_SIZE"
 msgstr "世界"
 
@@ -9046,6 +9117,29 @@ msgstr "小"
 #, fuzzy
 msgid "WORLD_SIZE_TOOLTIP"
 msgstr "运行一定数量的世界，每个世界运行的代数由左上方的数字显示框决定。"
+
+#, fuzzy
+msgid "WORLD_TEMPERATURE"
+msgstr "温度"
+
+#, fuzzy
+msgid "WORLD_TEMPERATURE_COLD"
+msgstr "温度"
+
+#, fuzzy
+msgid "WORLD_TEMPERATURE_EXPLANATION"
+msgstr ""
+"专注型微生物会在更远的距离里追击猎物或物质块\n"
+"并且对物质块更有渴求。\n"
+"应变型微生物将更快的转向新的目标。"
+
+#, fuzzy
+msgid "WORLD_TEMPERATURE_TEMPERATE"
+msgstr "温度"
+
+#, fuzzy
+msgid "WORLD_TEMPERATURE_WARM"
+msgstr "温度"
 
 msgid "WORST_PATCH_COLON"
 msgstr "表现最糟的地区："
@@ -9085,6 +9179,26 @@ msgstr "放大"
 
 msgid "ZOOM_OUT"
 msgstr "缩小"
+
+#, fuzzy
+#~ msgid "DISK_CACHE_TOOLTIP"
+#~ msgstr "访问我们在Itch.io上的页面"
+
+#~ msgid "NATIVE_THREAD_ADVICE_TOOLTIP"
+#~ msgstr ""
+#~ "本地线程用于与托管线程不同的任务。\n"
+#~ "有更多核心的多线程CPU通常会将性能提升到极限。\n"
+#~ "太多的总线程将开始降低性能。"
+
+#~ msgid "SHOW_NEW_PATCH_NOTES_TOOLTIP"
+#~ msgstr "在主菜单中自动显示新版Thrive的补丁说明"
+
+#, fuzzy
+#~ msgid "SHOW_TUTORIALS_OPTION_TOOLTIP"
+#~ msgstr "以逗号分隔符（csv）格式导出所有世界数据"
+
+#~ msgid "PLANET_GENERATION_TEASER"
+#~ msgstr "行星生成即将发布！"
 
 #~ msgid "PASSIVE_REPRODUCTION_PROGRESS_EXPLANATION"
 #~ msgstr "（从周围的环境中被动获得的用于繁殖的化合物）"

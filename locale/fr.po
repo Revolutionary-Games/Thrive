@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2025-05-28 14:54+0300\n"
+"POT-Creation-Date: 2025-06-14 23:30+0200\n"
 "PO-Revision-Date: 2025-05-25 15:00+0000\n"
 "Last-Translator: Anonymous <noreply@weblate.org>\n"
 "Language-Team: French <https://translate.revolutionarygamesstudio.com/projects/thrive/thrive-game/fr/>\n"
@@ -390,6 +390,10 @@ msgstr "état de lancement :"
 msgid "AUTO_EVO_STATUS_COLON"
 msgstr "État de l'auto-évo :"
 
+#, fuzzy
+msgid "AUTO_EVO_TOOL_BUTTON"
+msgstr "Automatique ({0}x{1})"
+
 msgid "AUTO_MOVE_FORWARDS"
 msgstr "Avance auto"
 
@@ -419,6 +423,9 @@ msgstr "Barre oblique inversée"
 
 msgid "BACKSPACE"
 msgstr "Retour arrière"
+
+msgid "BACK_TO_SETTINGS"
+msgstr ""
 
 msgid "BACTERIAL_THERMOSYNTHESIS"
 msgstr "Thermosynthèse bactérienne"
@@ -813,6 +820,33 @@ msgstr "Vider la mémoire cache"
 #, fuzzy
 msgid "CLICK_TO_SELECT"
 msgstr "Supprimer la sélection"
+
+msgid "CLIMATE_INSTABILITY"
+msgstr ""
+
+#, fuzzy
+msgid "CLIMATE_INSTABILITY_EXPLANATION"
+msgstr ""
+"Les microbes actifs déambuleront en l'absence de cible.\n"
+"Les microbes sessiles seront immobiles en l'attente d'un changement dans leur environnement."
+
+#, fuzzy
+msgid "CLIMATE_STABILITY_AVERAGE"
+msgstr ""
+"Les microbes actifs déambuleront en l'absence de cible.\n"
+"Les microbes sessiles seront immobiles en l'attente d'un changement dans leur environnement."
+
+#, fuzzy
+msgid "CLIMATE_STABILITY_STABLE"
+msgstr ""
+"Les microbes actifs déambuleront en l'absence de cible.\n"
+"Les microbes sessiles seront immobiles en l'attente d'un changement dans leur environnement."
+
+#, fuzzy
+msgid "CLIMATE_STABILITY_UNSTABLE"
+msgstr ""
+"Les microbes actifs déambuleront en l'absence de cible.\n"
+"Les microbes sessiles seront immobiles en l'attente d'un changement dans leur environnement."
 
 msgid "CLOSE"
 msgstr "Fermer"
@@ -1667,10 +1701,6 @@ msgstr ""
 msgid "DISCORD_TOOLTIP"
 msgstr "Rejoignez notre serveur Discord de la communauté"
 
-#, fuzzy
-msgid "DISK_CACHE_TOOLTIP"
-msgstr "Visitez notre page Itch.io"
-
 msgid "DISMISSED_POPUPS_COLON"
 msgstr "Popups désactivées :"
 
@@ -2420,11 +2450,33 @@ msgstr "Appuyez sur le bouton Annuler la dernière action dans l'éditeur pour c
 msgid "GENERAL_LOADING_TIP_7"
 msgstr "Appuyez sur le bouton Annuler la dernière action dans l'éditeur pour corriger une erreur"
 
+#, fuzzy
+msgid "GENERATE_BUTTON"
+msgstr "Générations"
+
 msgid "GENERATIONS"
 msgstr "Générations"
 
 msgid "GENERATION_COLON"
 msgstr "Génération :"
+
+msgid "GEOLOGICAL_ACTIVITY"
+msgstr ""
+
+msgid "GEOLOGICAL_ACTIVITY_ACTIVE"
+msgstr ""
+
+msgid "GEOLOGICAL_ACTIVITY_AVERAGE"
+msgstr ""
+
+msgid "GEOLOGICAL_ACTIVITY_DORMANT"
+msgstr ""
+
+#, fuzzy
+msgid "GEOLOGICAL_ACTIVITY_EXPLANATION"
+msgstr ""
+"Les microbes actifs déambuleront en l'absence de cible.\n"
+"Les microbes sessiles seront immobiles en l'attente d'un changement dans leur environnement."
 
 msgid "GITHUB_TOOLTIP"
 msgstr "Visitez notre dépôt Github"
@@ -3337,9 +3389,6 @@ msgstr ""
 msgid "LOW_QUALITY_BACKGROUND_BLUR"
 msgstr "Faible résolution du flou d'arrière plan"
 
-msgid "LOW_QUALITY_BACKGROUND_BLUR_TOOLTIP"
-msgstr "Faire que le flou d'arrière plan soit de faible résolution ce qui améliore les performances."
-
 msgid "LUCIFERASE"
 msgstr "Luciférase"
 
@@ -4218,10 +4267,6 @@ msgstr "{0} (Puissance : {1})"
 msgid "NAME_LABEL_STRUCTURE_UNFINISHED"
 msgstr ""
 
-#, fuzzy
-msgid "NATIVE_THREAD_ADVICE_TOOLTIP"
-msgstr "Threads actuels :"
-
 msgid "NEGATIVE_ATP_BALANCE"
 msgstr "Quantité d'ATP négative"
 
@@ -4801,6 +4846,10 @@ msgstr "Placer organite"
 msgid "PLANET"
 msgstr "Planète"
 
+#, fuzzy
+msgid "PLANET_CUSTOMIZER"
+msgstr "Au pointeur :"
+
 msgid "PLANET_DETAILS_STRING"
 msgstr ""
 "LAWK uniquement : {0}\n"
@@ -4808,9 +4857,6 @@ msgstr ""
 "Cycle jour/nuit : {2}\n"
 "Durée du jour : {3} secondes\n"
 "Graine aléatoire de la planète : {4}"
-
-msgid "PLANET_GENERATION_TEASER"
-msgstr "La génération de planète arrive bientôt !"
 
 msgid "PLANET_RANDOM_SEED"
 msgstr "Graine planétaire aléatoire"
@@ -5005,6 +5051,10 @@ msgstr "Répéter la dernière action"
 
 msgid "REFRESH"
 msgstr "Rafraîchir"
+
+#, fuzzy
+msgid "REGENERATE_BUTTON"
+msgstr "Axone"
 
 #, fuzzy
 msgid "RENDER_SCALE"
@@ -5459,18 +5509,11 @@ msgstr ""
 msgid "SHOW_NEW_PATCH_NOTES"
 msgstr "Afficher automatiquement les nouvelles notes de correctif"
 
-msgid "SHOW_NEW_PATCH_NOTES_TOOLTIP"
-msgstr "Afficher automatiquement les notes de correctif des nouvelles versions de Thrive dans le menu principal"
-
 msgid "SHOW_TUTORIALS_IN_NEW_CURRENT_OPTION"
 msgstr "Afficher les tutoriels (dans la partie en cours)"
 
 msgid "SHOW_TUTORIALS_IN_NEW_GAMES_OPTION"
 msgstr "Afficher les tutoriels (dans les nouvelles parties)"
-
-#, fuzzy
-msgid "SHOW_TUTORIALS_OPTION_TOOLTIP"
-msgstr "Exporter toutes les donnée des mondes en format Comma-Separated Values (csv)"
 
 msgid "SHOW_UNSAVED_PROGRESS_WARNING"
 msgstr "Avertissement lorsque la progression n'a pas été sauvegardée"
@@ -5521,6 +5564,10 @@ msgstr "Silice"
 
 msgid "SILICA_MEMBRANE_DESCRIPTION"
 msgstr "Cette membrane possède une paroi solide de silice. Elle résiste bien aux dégâts globaux et très bien aux dégâts physiques. Elle requiert aussi moins d'énergie pour maintenir sa forme. Cependant, elle ralentit sensiblement la cellule et celle-ci absorbe les ressources à un taux réduit."
+
+#, fuzzy
+msgid "SIMULATION"
+msgstr "Osmorégulation"
 
 msgid "SIXTEEN_TIMES"
 msgstr "16x"
@@ -6843,6 +6890,10 @@ msgstr "Mise à l’échelle FSR 1"
 
 msgid "UPSCALE_FSR_22"
 msgstr "Mise à l'échelle FSR 2.2"
+
+#, fuzzy
+msgid "UPSCALE_METHOD"
+msgstr "Mise à l’échelle bilinéaire"
 
 msgid "UPSCALE_SHARPENING_FSR"
 msgstr "Aiguisage FSR"
@@ -9183,6 +9234,29 @@ msgid "WORLD_RELATIVE_MOVEMENT"
 msgstr "Dépend du monde"
 
 #, fuzzy
+msgid "WORLD_SEA_LEVEL"
+msgstr "{0}-{1}m sous la mer"
+
+#, fuzzy
+msgid "WORLD_SEA_LEVEL_DEEP"
+msgstr "{0}-{1}m sous la mer"
+
+#, fuzzy
+msgid "WORLD_SEA_LEVEL_EXPLANATION"
+msgstr ""
+"Les microbes persévérants rechercheront des fragments ou des proies sur de plus grandes distances\n"
+"et pourront se montrer bien plus ambitieux face à des fragments disputés.\n"
+"Les microbes réactifs basculeront plus vite vers de nouvelles cibles."
+
+#, fuzzy
+msgid "WORLD_SEA_LEVEL_MODERATE"
+msgstr "Dépend du monde"
+
+#, fuzzy
+msgid "WORLD_SEA_LEVEL_SHALLOW"
+msgstr "Petit"
+
+#, fuzzy
 msgid "WORLD_SIZE"
 msgstr "Monde"
 
@@ -9205,6 +9279,29 @@ msgstr "Petit"
 #, fuzzy
 msgid "WORLD_SIZE_TOOLTIP"
 msgstr "Lance un certain nombre de mondes, le nombre de générations pour chaque monde est déterminé par liste déroulante ci-dessus."
+
+#, fuzzy
+msgid "WORLD_TEMPERATURE"
+msgstr "Température"
+
+#, fuzzy
+msgid "WORLD_TEMPERATURE_COLD"
+msgstr "Temp."
+
+#, fuzzy
+msgid "WORLD_TEMPERATURE_EXPLANATION"
+msgstr ""
+"Les microbes persévérants rechercheront des fragments ou des proies sur de plus grandes distances\n"
+"et pourront se montrer bien plus ambitieux face à des fragments disputés.\n"
+"Les microbes réactifs basculeront plus vite vers de nouvelles cibles."
+
+#, fuzzy
+msgid "WORLD_TEMPERATURE_TEMPERATE"
+msgstr "Temp."
+
+#, fuzzy
+msgid "WORLD_TEMPERATURE_WARM"
+msgstr "Temp."
 
 msgid "WORST_PATCH_COLON"
 msgstr "Pire secteur :"
@@ -9243,6 +9340,27 @@ msgstr "Zoomer"
 
 msgid "ZOOM_OUT"
 msgstr "Dézoomer"
+
+#, fuzzy
+#~ msgid "DISK_CACHE_TOOLTIP"
+#~ msgstr "Visitez notre page Itch.io"
+
+#~ msgid "LOW_QUALITY_BACKGROUND_BLUR_TOOLTIP"
+#~ msgstr "Faire que le flou d'arrière plan soit de faible résolution ce qui améliore les performances."
+
+#, fuzzy
+#~ msgid "NATIVE_THREAD_ADVICE_TOOLTIP"
+#~ msgstr "Threads actuels :"
+
+#~ msgid "SHOW_NEW_PATCH_NOTES_TOOLTIP"
+#~ msgstr "Afficher automatiquement les notes de correctif des nouvelles versions de Thrive dans le menu principal"
+
+#, fuzzy
+#~ msgid "SHOW_TUTORIALS_OPTION_TOOLTIP"
+#~ msgstr "Exporter toutes les donnée des mondes en format Comma-Separated Values (csv)"
+
+#~ msgid "PLANET_GENERATION_TEASER"
+#~ msgstr "La génération de planète arrive bientôt !"
 
 #~ msgid "PASSIVE_REPRODUCTION_PROGRESS_EXPLANATION"
 #~ msgstr "(obtenir passivement des composés de reproduction de l'environnement sans avoir à faire quoi que ce soit)"

@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2025-05-28 14:54+0300\n"
+"POT-Creation-Date: 2025-06-14 23:30+0200\n"
 "PO-Revision-Date: 2025-05-25 15:00+0000\n"
 "Last-Translator: Anonymous <noreply@weblate.org>\n"
 "Language-Team: Serbian (Cyrillic script) <https://translate.revolutionarygamesstudio.com/projects/thrive/thrive-game/sr_Cyrl/>\n"
@@ -400,6 +400,10 @@ msgstr "статус покретања:"
 msgid "AUTO_EVO_STATUS_COLON"
 msgstr "статус покретања:"
 
+#, fuzzy
+msgid "AUTO_EVO_TOOL_BUTTON"
+msgstr "Резолуција:"
+
 msgid "AUTO_MOVE_FORWARDS"
 msgstr "Аутоматско кретање напред"
 
@@ -440,6 +444,9 @@ msgstr "Назад"
 #, fuzzy
 msgid "BACKSPACE"
 msgstr "Назад"
+
+msgid "BACK_TO_SETTINGS"
+msgstr ""
 
 #, fuzzy
 msgid "BACTERIAL_THERMOSYNTHESIS"
@@ -879,6 +886,25 @@ msgstr ""
 #, fuzzy
 msgid "CLICK_TO_SELECT"
 msgstr "Избриши Изабрано"
+
+msgid "CLIMATE_INSTABILITY"
+msgstr ""
+
+#, fuzzy
+msgid "CLIMATE_INSTABILITY_EXPLANATION"
+msgstr "Број популације од {0} променио се за {1} због: {2}"
+
+#, fuzzy
+msgid "CLIMATE_STABILITY_AVERAGE"
+msgstr "Број популације од {0} променио се за {1} због: {2}"
+
+#, fuzzy
+msgid "CLIMATE_STABILITY_STABLE"
+msgstr "Број популације од {0} променио се за {1} због: {2}"
+
+#, fuzzy
+msgid "CLIMATE_STABILITY_UNSTABLE"
+msgstr "Број популације од {0} променио се за {1} због: {2}"
 
 msgid "CLOSE"
 msgstr "Затвори"
@@ -1733,10 +1759,6 @@ msgid "DISCORD_TOOLTIP"
 msgstr "Додајте ново везивање тастера"
 
 #, fuzzy
-msgid "DISK_CACHE_TOOLTIP"
-msgstr "Додајте ново везивање тастера"
-
-#, fuzzy
 msgid "DISMISSED_POPUPS_COLON"
 msgstr "Брзина:"
 
@@ -2536,11 +2558,31 @@ msgid "GENERAL_LOADING_TIP_7"
 msgstr "Притисните дугме поништи у уређивачу да бисте исправили грешку"
 
 #, fuzzy
+msgid "GENERATE_BUTTON"
+msgstr "Генерација:"
+
+#, fuzzy
 msgid "GENERATIONS"
 msgstr "Генерација:"
 
 msgid "GENERATION_COLON"
 msgstr "Генерација:"
+
+msgid "GEOLOGICAL_ACTIVITY"
+msgstr ""
+
+msgid "GEOLOGICAL_ACTIVITY_ACTIVE"
+msgstr ""
+
+msgid "GEOLOGICAL_ACTIVITY_AVERAGE"
+msgstr ""
+
+msgid "GEOLOGICAL_ACTIVITY_DORMANT"
+msgstr ""
+
+#, fuzzy
+msgid "GEOLOGICAL_ACTIVITY_EXPLANATION"
+msgstr "Број популације од {0} променио се за {1} због: {2}"
 
 #, fuzzy
 msgid "GITHUB_TOOLTIP"
@@ -3518,9 +3560,6 @@ msgstr "Метаболосоми су грозди протеина умотан
 msgid "LOW_QUALITY_BACKGROUND_BLUR"
 msgstr ""
 
-msgid "LOW_QUALITY_BACKGROUND_BLUR_TOOLTIP"
-msgstr ""
-
 msgid "LUCIFERASE"
 msgstr ""
 
@@ -4406,10 +4445,6 @@ msgstr "Биом: {0}"
 msgid "NAME_LABEL_STRUCTURE_UNFINISHED"
 msgstr ""
 
-#, fuzzy
-msgid "NATIVE_THREAD_ADVICE_TOOLTIP"
-msgstr "Сачувај и настави"
-
 msgid "NEGATIVE_ATP_BALANCE"
 msgstr "Негативан ATP Биланс"
 
@@ -5027,10 +5062,11 @@ msgstr "Поставите органелу"
 msgid "PLANET"
 msgstr ""
 
-msgid "PLANET_DETAILS_STRING"
-msgstr ""
+#, fuzzy
+msgid "PLANET_CUSTOMIZER"
+msgstr "На Курсору:"
 
-msgid "PLANET_GENERATION_TEASER"
+msgid "PLANET_DETAILS_STRING"
 msgstr ""
 
 msgid "PLANET_RANDOM_SEED"
@@ -5238,6 +5274,10 @@ msgstr "Понови последњу акцију"
 
 msgid "REFRESH"
 msgstr "Освјежи"
+
+#, fuzzy
+msgid "REGENERATE_BUTTON"
+msgstr "Органеле"
 
 msgid "RENDER_SCALE"
 msgstr ""
@@ -5726,19 +5766,11 @@ msgstr "Прикажи туторијале"
 msgid "SHOW_NEW_PATCH_NOTES"
 msgstr "Пећина"
 
-#, fuzzy
-msgid "SHOW_NEW_PATCH_NOTES_TOOLTIP"
-msgstr "Пећина"
-
 msgid "SHOW_TUTORIALS_IN_NEW_CURRENT_OPTION"
 msgstr "Прикажи водиче (у тренутној игри)"
 
 msgid "SHOW_TUTORIALS_IN_NEW_GAMES_OPTION"
 msgstr "Прикажи водиче (у новим играма)"
-
-#, fuzzy
-msgid "SHOW_TUTORIALS_OPTION_TOOLTIP"
-msgstr "Додајте ново везивање тастера"
 
 #, fuzzy
 msgid "SHOW_UNSAVED_PROGRESS_WARNING"
@@ -5806,6 +5838,10 @@ msgstr "Силицијум-Диоксид"
 
 msgid "SILICA_MEMBRANE_DESCRIPTION"
 msgstr "Ова мембрана има јак зид од силицијум диоксида. Може се добро одупрети укупној штети и врло је отпоран на физичка оштећења. Такође захтева мање енергије за одржавање форме. Међутим, успорава ћелију великим фактором и ћелија апсорбује ресурсе смањеном брзином."
+
+#, fuzzy
+msgid "SIMULATION"
+msgstr "Осморегулација"
 
 #, fuzzy
 msgid "SIXTEEN_TIMES"
@@ -7166,6 +7202,9 @@ msgid "UPSCALE_FSR_1"
 msgstr ""
 
 msgid "UPSCALE_FSR_22"
+msgstr ""
+
+msgid "UPSCALE_METHOD"
 msgstr ""
 
 msgid "UPSCALE_SHARPENING_FSR"
@@ -9343,6 +9382,25 @@ msgid "WORLD_RELATIVE_MOVEMENT"
 msgstr "за повећање кретања"
 
 #, fuzzy
+msgid "WORLD_SEA_LEVEL"
+msgstr "{0}-{1}м испод нивоа мора"
+
+#, fuzzy
+msgid "WORLD_SEA_LEVEL_DEEP"
+msgstr "{0}-{1}м испод нивоа мора"
+
+#, fuzzy
+msgid "WORLD_SEA_LEVEL_EXPLANATION"
+msgstr "Број популације од {0} променио се за {1} због: {2}"
+
+#, fuzzy
+msgid "WORLD_SEA_LEVEL_MODERATE"
+msgstr "за повећање кретања"
+
+msgid "WORLD_SEA_LEVEL_SHALLOW"
+msgstr ""
+
+#, fuzzy
 msgid "WORLD_SIZE"
 msgstr "ВИ СТЕ ПРОСПЕРИРАЛИ!"
 
@@ -9363,6 +9421,26 @@ msgstr ""
 #, fuzzy
 msgid "WORLD_SIZE_TOOLTIP"
 msgstr "Додајте ново везивање тастера"
+
+#, fuzzy
+msgid "WORLD_TEMPERATURE"
+msgstr "Температура"
+
+#, fuzzy
+msgid "WORLD_TEMPERATURE_COLD"
+msgstr "Темп."
+
+#, fuzzy
+msgid "WORLD_TEMPERATURE_EXPLANATION"
+msgstr "Број популације од {0} променио се за {1} због: {2}"
+
+#, fuzzy
+msgid "WORLD_TEMPERATURE_TEMPERATE"
+msgstr "Темп."
+
+#, fuzzy
+msgid "WORLD_TEMPERATURE_WARM"
+msgstr "Темп."
 
 #, fuzzy
 msgid "WORST_PATCH_COLON"
@@ -9403,6 +9481,22 @@ msgstr "Зумирати"
 
 msgid "ZOOM_OUT"
 msgstr "Одзумирати"
+
+#, fuzzy
+#~ msgid "DISK_CACHE_TOOLTIP"
+#~ msgstr "Додајте ново везивање тастера"
+
+#, fuzzy
+#~ msgid "NATIVE_THREAD_ADVICE_TOOLTIP"
+#~ msgstr "Сачувај и настави"
+
+#, fuzzy
+#~ msgid "SHOW_NEW_PATCH_NOTES_TOOLTIP"
+#~ msgstr "Пећина"
+
+#, fuzzy
+#~ msgid "SHOW_TUTORIALS_OPTION_TOOLTIP"
+#~ msgstr "Додајте ново везивање тастера"
 
 #, fuzzy
 #~ msgid "PASSIVE_REPRODUCTION_PROGRESS_EXPLANATION"

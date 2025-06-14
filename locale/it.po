@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2025-05-28 14:54+0300\n"
+"POT-Creation-Date: 2025-06-14 23:30+0200\n"
 "PO-Revision-Date: 2025-05-25 15:00+0000\n"
 "Last-Translator: Anonymous <noreply@weblate.org>\n"
 "Language-Team: Italian <https://translate.revolutionarygamesstudio.com/projects/thrive/thrive-game/it/>\n"
@@ -388,6 +388,10 @@ msgstr "stato d'esecuzione:"
 msgid "AUTO_EVO_STATUS_COLON"
 msgstr "Stato Auto-Evo:"
 
+#, fuzzy
+msgid "AUTO_EVO_TOOL_BUTTON"
+msgstr "Automatica ({0}x{1})"
+
 msgid "AUTO_MOVE_FORWARDS"
 msgstr "Muoviti automaticamente avanti"
 
@@ -417,6 +421,9 @@ msgstr "\\ Barra rovesciata [Backslash]"
 
 msgid "BACKSPACE"
 msgstr "Cancella [Backspace]"
+
+msgid "BACK_TO_SETTINGS"
+msgstr ""
 
 msgid "BACTERIAL_THERMOSYNTHESIS"
 msgstr "Termosintesi batterica"
@@ -812,6 +819,33 @@ msgstr "Pulisci Cache"
 
 msgid "CLICK_TO_SELECT"
 msgstr "Seleziona"
+
+msgid "CLIMATE_INSTABILITY"
+msgstr ""
+
+#, fuzzy
+msgid "CLIMATE_INSTABILITY_EXPLANATION"
+msgstr ""
+"I microbi attivi corrono e saltano anche quando non accade nulla di interessante.\n"
+"I microbi sessili sono stazionari e aspettano cambiamenti nell'ambiente prima di agire."
+
+#, fuzzy
+msgid "CLIMATE_STABILITY_AVERAGE"
+msgstr ""
+"I microbi attivi corrono e saltano anche quando non accade nulla di interessante.\n"
+"I microbi sessili sono stazionari e aspettano cambiamenti nell'ambiente prima di agire."
+
+#, fuzzy
+msgid "CLIMATE_STABILITY_STABLE"
+msgstr ""
+"I microbi attivi corrono e saltano anche quando non accade nulla di interessante.\n"
+"I microbi sessili sono stazionari e aspettano cambiamenti nell'ambiente prima di agire."
+
+#, fuzzy
+msgid "CLIMATE_STABILITY_UNSTABLE"
+msgstr ""
+"I microbi attivi corrono e saltano anche quando non accade nulla di interessante.\n"
+"I microbi sessili sono stazionari e aspettano cambiamenti nell'ambiente prima di agire."
 
 msgid "CLOSE"
 msgstr "Chiudi"
@@ -1647,10 +1681,6 @@ msgid "DISCORD_TOOLTIP"
 msgstr "Tempo trascorso: {0:#,#} anni"
 
 #, fuzzy
-msgid "DISK_CACHE_TOOLTIP"
-msgstr "Esci dal gioco"
-
-#, fuzzy
 msgid "DISMISSED_POPUPS_COLON"
 msgstr "Velocità di digestione:"
 
@@ -2459,11 +2489,33 @@ msgstr "Nell'editor, premi il tasto \"Annulla l'ultima azione\" per correggere e
 msgid "GENERAL_LOADING_TIP_7"
 msgstr "Nell'editor, premi il tasto \"Annulla l'ultima azione\" per correggere eventuali errori"
 
+#, fuzzy
+msgid "GENERATE_BUTTON"
+msgstr "Generazioni"
+
 msgid "GENERATIONS"
 msgstr "Generazioni"
 
 msgid "GENERATION_COLON"
 msgstr "Generazione:"
+
+msgid "GEOLOGICAL_ACTIVITY"
+msgstr ""
+
+msgid "GEOLOGICAL_ACTIVITY_ACTIVE"
+msgstr ""
+
+msgid "GEOLOGICAL_ACTIVITY_AVERAGE"
+msgstr ""
+
+msgid "GEOLOGICAL_ACTIVITY_DORMANT"
+msgstr ""
+
+#, fuzzy
+msgid "GEOLOGICAL_ACTIVITY_EXPLANATION"
+msgstr ""
+"I microbi attivi corrono e saltano anche quando non accade nulla di interessante.\n"
+"I microbi sessili sono stazionari e aspettano cambiamenti nell'ambiente prima di agire."
 
 #, fuzzy
 msgid "GITHUB_TOOLTIP"
@@ -3420,10 +3472,6 @@ msgstr "Contiene uno di tre enzimi digestivi. Fai clic su \"Modifica\" per scegl
 msgid "LOW_QUALITY_BACKGROUND_BLUR"
 msgstr "Sfocatura dello sfondo:"
 
-#, fuzzy
-msgid "LOW_QUALITY_BACKGROUND_BLUR_TOOLTIP"
-msgstr "Sfocatura dello sfondo:"
-
 msgid "LUCIFERASE"
 msgstr ""
 
@@ -4322,10 +4370,6 @@ msgstr "Bioma: {0}"
 msgid "NAME_LABEL_STRUCTURE_UNFINISHED"
 msgstr ""
 
-#, fuzzy
-msgid "NATIVE_THREAD_ADVICE_TOOLTIP"
-msgstr "Thread attuali:"
-
 msgid "NEGATIVE_ATP_BALANCE"
 msgstr "Bilancio di ATP negativo"
 
@@ -4930,11 +4974,12 @@ msgid "PLANET"
 msgstr "Pianeta"
 
 #, fuzzy
+msgid "PLANET_CUSTOMIZER"
+msgstr "Sotto il cursore:"
+
+#, fuzzy
 msgid "PLANET_DETAILS_STRING"
 msgstr "Dettagli"
-
-msgid "PLANET_GENERATION_TEASER"
-msgstr "Generazione planetaria in arrivo!"
 
 msgid "PLANET_RANDOM_SEED"
 msgstr "Seme casuale del pianeta"
@@ -5135,6 +5180,10 @@ msgstr "Ripristina l'ultima azione"
 
 msgid "REFRESH"
 msgstr "Aggiorna"
+
+#, fuzzy
+msgid "REGENERATE_BUTTON"
+msgstr "Organuli"
 
 #, fuzzy
 msgid "RENDER_SCALE"
@@ -5605,19 +5654,11 @@ msgstr "{0} a ({1},{2})"
 msgid "SHOW_NEW_PATCH_NOTES"
 msgstr "{1} {0}o/a"
 
-#, fuzzy
-msgid "SHOW_NEW_PATCH_NOTES_TOOLTIP"
-msgstr "{1} {0}o/a"
-
 msgid "SHOW_TUTORIALS_IN_NEW_CURRENT_OPTION"
 msgstr "Mostra i tutorial (nella partita attuale)"
 
 msgid "SHOW_TUTORIALS_IN_NEW_GAMES_OPTION"
 msgstr "Mostra i tutorial (in nuove partite)"
-
-#, fuzzy
-msgid "SHOW_TUTORIALS_OPTION_TOOLTIP"
-msgstr "Tempo trascorso: {0:#,#} anni"
 
 msgid "SHOW_UNSAVED_PROGRESS_WARNING"
 msgstr "Mostra avvertimeto relativo ai progressi non salvati"
@@ -5668,6 +5709,10 @@ msgstr "Silice"
 
 msgid "SILICA_MEMBRANE_DESCRIPTION"
 msgstr "Questa membrana ha una forte parete di silice. Resiste al danno molto bene, in particolare a quello fisico. Inoltre, consuma meno energia per mantenere la forma. Tuttavia, rallenta di molto la cellula e il tasso con cui assorbe le risorse."
+
+#, fuzzy
+msgid "SIMULATION"
+msgstr "Osmoregolazione"
 
 msgid "SIXTEEN_TIMES"
 msgstr "16x"
@@ -7013,6 +7058,9 @@ msgid "UPSCALE_FSR_1"
 msgstr ""
 
 msgid "UPSCALE_FSR_22"
+msgstr ""
+
+msgid "UPSCALE_METHOD"
 msgstr ""
 
 msgid "UPSCALE_SHARPENING_FSR"
@@ -9027,6 +9075,28 @@ msgid "WORLD_RELATIVE_MOVEMENT"
 msgstr "per aumentare la"
 
 #, fuzzy
+msgid "WORLD_SEA_LEVEL"
+msgstr "{0}-{1}m sotto il livello del mare"
+
+#, fuzzy
+msgid "WORLD_SEA_LEVEL_DEEP"
+msgstr "{0}-{1}m sotto il livello del mare"
+
+#, fuzzy
+msgid "WORLD_SEA_LEVEL_EXPLANATION"
+msgstr ""
+"I microbi focalizzati inseguono le prede e i frammenti di cibo per lunghe distanze\n"
+"e potrebbero essere più ambiziosi per questi ultimi.\n"
+"I microbi reattivi cambiano più facilmente bersaglio."
+
+#, fuzzy
+msgid "WORLD_SEA_LEVEL_MODERATE"
+msgstr "per aumentare la"
+
+msgid "WORLD_SEA_LEVEL_SHALLOW"
+msgstr ""
+
+#, fuzzy
 msgid "WORLD_SIZE"
 msgstr "Mondo"
 
@@ -9050,6 +9120,29 @@ msgstr ""
 #, fuzzy
 msgid "WORLD_SIZE_TOOLTIP"
 msgstr "Tempo trascorso: {0:#,#} anni"
+
+#, fuzzy
+msgid "WORLD_TEMPERATURE"
+msgstr "Temperatura"
+
+#, fuzzy
+msgid "WORLD_TEMPERATURE_COLD"
+msgstr "Temp."
+
+#, fuzzy
+msgid "WORLD_TEMPERATURE_EXPLANATION"
+msgstr ""
+"I microbi focalizzati inseguono le prede e i frammenti di cibo per lunghe distanze\n"
+"e potrebbero essere più ambiziosi per questi ultimi.\n"
+"I microbi reattivi cambiano più facilmente bersaglio."
+
+#, fuzzy
+msgid "WORLD_TEMPERATURE_TEMPERATE"
+msgstr "Temp."
+
+#, fuzzy
+msgid "WORLD_TEMPERATURE_WARM"
+msgstr "Temp."
 
 msgid "WORST_PATCH_COLON"
 msgstr "Peggior zona:"
@@ -9090,6 +9183,29 @@ msgstr "Zoom avanti"
 
 msgid "ZOOM_OUT"
 msgstr "Zoom indietro"
+
+#, fuzzy
+#~ msgid "DISK_CACHE_TOOLTIP"
+#~ msgstr "Esci dal gioco"
+
+#, fuzzy
+#~ msgid "LOW_QUALITY_BACKGROUND_BLUR_TOOLTIP"
+#~ msgstr "Sfocatura dello sfondo:"
+
+#, fuzzy
+#~ msgid "NATIVE_THREAD_ADVICE_TOOLTIP"
+#~ msgstr "Thread attuali:"
+
+#, fuzzy
+#~ msgid "SHOW_NEW_PATCH_NOTES_TOOLTIP"
+#~ msgstr "{1} {0}o/a"
+
+#, fuzzy
+#~ msgid "SHOW_TUTORIALS_OPTION_TOOLTIP"
+#~ msgstr "Tempo trascorso: {0:#,#} anni"
+
+#~ msgid "PLANET_GENERATION_TEASER"
+#~ msgstr "Generazione planetaria in arrivo!"
 
 #~ msgid "PASSIVE_REPRODUCTION_PROGRESS_EXPLANATION"
 #~ msgstr "(ottieni composti riproduttivi in modo passivo dall'ambiente, senza dover far nulla)"

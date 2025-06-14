@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2025-05-28 14:54+0300\n"
+"POT-Creation-Date: 2025-06-14 23:30+0200\n"
 "PO-Revision-Date: 2025-05-27 06:43+0000\n"
 "Last-Translator: Anonymous <noreply@weblate.org>\n"
 "Language-Team: Thai <https://translate.revolutionarygamesstudio.com/projects/thrive/thrive-game/th/>\n"
@@ -386,6 +386,10 @@ msgstr ""
 msgid "AUTO_EVO_STATUS_COLON"
 msgstr "ก่อนหน้า:"
 
+#, fuzzy
+msgid "AUTO_EVO_TOOL_BUTTON"
+msgstr "ความละเอียด:"
+
 msgid "AUTO_MOVE_FORWARDS"
 msgstr "เคลื่อนที่ไปข้างหน้าอัตโนมัติ"
 
@@ -417,6 +421,9 @@ msgstr "แบ็กสแลช"
 
 msgid "BACKSPACE"
 msgstr "พื้นที่ด้านหลัง"
+
+msgid "BACK_TO_SETTINGS"
+msgstr ""
 
 #, fuzzy
 msgid "BACTERIAL_THERMOSYNTHESIS"
@@ -840,6 +847,25 @@ msgstr ""
 
 msgid "CLICK_TO_SELECT"
 msgstr ""
+
+msgid "CLIMATE_INSTABILITY"
+msgstr ""
+
+#, fuzzy
+msgid "CLIMATE_INSTABILITY_EXPLANATION"
+msgstr "{0} ประชากรเปลี่ยนแปลงโดย {1} เนื่องจาก: {2}"
+
+#, fuzzy
+msgid "CLIMATE_STABILITY_AVERAGE"
+msgstr "{0} ประชากรเปลี่ยนแปลงโดย {1} เนื่องจาก: {2}"
+
+#, fuzzy
+msgid "CLIMATE_STABILITY_STABLE"
+msgstr "{0} ประชากรเปลี่ยนแปลงโดย {1} เนื่องจาก: {2}"
+
+#, fuzzy
+msgid "CLIMATE_STABILITY_UNSTABLE"
+msgstr "{0} ประชากรเปลี่ยนแปลงโดย {1} เนื่องจาก: {2}"
 
 msgid "CLOSE"
 msgstr "ปิด"
@@ -1656,10 +1682,6 @@ msgid "DISCORD_TOOLTIP"
 msgstr "ดำเนินการต่อ"
 
 #, fuzzy
-msgid "DISK_CACHE_TOOLTIP"
-msgstr "ดำเนินการต่อ"
-
-#, fuzzy
 msgid "DISMISSED_POPUPS_COLON"
 msgstr "{0} ประชากรเปลี่ยนแปลงโดย {1} เนื่องจาก: {2}"
 
@@ -2432,11 +2454,31 @@ msgid "GENERAL_LOADING_TIP_7"
 msgstr "กดปุ่มเลิกทำในตัวแก้ไขเพื่อแก้ไขข้อผิดพลาด"
 
 #, fuzzy
+msgid "GENERATE_BUTTON"
+msgstr "ตั้งค่า"
+
+#, fuzzy
 msgid "GENERATIONS"
 msgstr "ตั้งค่า"
 
 msgid "GENERATION_COLON"
 msgstr ""
+
+msgid "GEOLOGICAL_ACTIVITY"
+msgstr ""
+
+msgid "GEOLOGICAL_ACTIVITY_ACTIVE"
+msgstr ""
+
+msgid "GEOLOGICAL_ACTIVITY_AVERAGE"
+msgstr ""
+
+msgid "GEOLOGICAL_ACTIVITY_DORMANT"
+msgstr ""
+
+#, fuzzy
+msgid "GEOLOGICAL_ACTIVITY_EXPLANATION"
+msgstr "{0} ประชากรเปลี่ยนแปลงโดย {1} เนื่องจาก: {2}"
 
 #, fuzzy
 msgid "GITHUB_TOOLTIP"
@@ -3379,9 +3421,6 @@ msgstr "เมตาโบโลโซมเป็นกลุ่มของโ
 msgid "LOW_QUALITY_BACKGROUND_BLUR"
 msgstr ""
 
-msgid "LOW_QUALITY_BACKGROUND_BLUR_TOOLTIP"
-msgstr ""
-
 msgid "LUCIFERASE"
 msgstr ""
 
@@ -4221,10 +4260,6 @@ msgstr ""
 msgid "NAME_LABEL_STRUCTURE_UNFINISHED"
 msgstr ""
 
-#, fuzzy
-msgid "NATIVE_THREAD_ADVICE_TOOLTIP"
-msgstr "บันทึกและดำเนินการต่อ"
-
 msgid "NEGATIVE_ATP_BALANCE"
 msgstr ""
 
@@ -4823,10 +4858,10 @@ msgstr "วางออร์แกเนลล์"
 msgid "PLANET"
 msgstr ""
 
-msgid "PLANET_DETAILS_STRING"
+msgid "PLANET_CUSTOMIZER"
 msgstr ""
 
-msgid "PLANET_GENERATION_TEASER"
+msgid "PLANET_DETAILS_STRING"
 msgstr ""
 
 msgid "PLANET_RANDOM_SEED"
@@ -5030,6 +5065,10 @@ msgstr "ทำซ้ำการกระทำล่าสุด"
 
 msgid "REFRESH"
 msgstr ""
+
+#, fuzzy
+msgid "REGENERATE_BUTTON"
+msgstr "สัตว์นักล่า"
 
 msgid "RENDER_SCALE"
 msgstr ""
@@ -5510,20 +5549,12 @@ msgid "SHOW_NEW_PATCH_NOTES"
 msgstr "\"{0}\" - {1}"
 
 #, fuzzy
-msgid "SHOW_NEW_PATCH_NOTES_TOOLTIP"
-msgstr "\"{0}\" - {1}"
-
-#, fuzzy
 msgid "SHOW_TUTORIALS_IN_NEW_CURRENT_OPTION"
 msgstr "แสดงบทช่วยสอน (ในเกมปัจจุบัน)"
 
 #, fuzzy
 msgid "SHOW_TUTORIALS_IN_NEW_GAMES_OPTION"
 msgstr "แสดงบทช่วยสอน (ในเกมใหม่)"
-
-#, fuzzy
-msgid "SHOW_TUTORIALS_OPTION_TOOLTIP"
-msgstr "ดำเนินการต่อ"
 
 #, fuzzy
 msgid "SHOW_UNSAVED_PROGRESS_WARNING"
@@ -5591,6 +5622,10 @@ msgstr "ซิลิกา"
 
 msgid "SILICA_MEMBRANE_DESCRIPTION"
 msgstr ""
+
+#, fuzzy
+msgid "SIMULATION"
+msgstr "ประชากร:"
 
 #, fuzzy
 msgid "SIXTEEN_TIMES"
@@ -6842,6 +6877,9 @@ msgid "UPSCALE_FSR_1"
 msgstr ""
 
 msgid "UPSCALE_FSR_22"
+msgstr ""
+
+msgid "UPSCALE_METHOD"
 msgstr ""
 
 msgid "UPSCALE_SHARPENING_FSR"
@@ -8837,6 +8875,25 @@ msgid "WORLD_RELATIVE_MOVEMENT"
 msgstr "เพื่อเพิ่มการเคลื่อนไหว"
 
 #, fuzzy
+msgid "WORLD_SEA_LEVEL"
+msgstr "\"{0}\" - {1}"
+
+#, fuzzy
+msgid "WORLD_SEA_LEVEL_DEEP"
+msgstr "เพื่อเพิ่มการเคลื่อนไหว"
+
+#, fuzzy
+msgid "WORLD_SEA_LEVEL_EXPLANATION"
+msgstr "{0} ประชากรเปลี่ยนแปลงโดย {1} เนื่องจาก: {2}"
+
+#, fuzzy
+msgid "WORLD_SEA_LEVEL_MODERATE"
+msgstr "เพื่อเพิ่มการเคลื่อนไหว"
+
+msgid "WORLD_SEA_LEVEL_SHALLOW"
+msgstr ""
+
+#, fuzzy
 msgid "WORLD_SIZE"
 msgstr "\"{0}\" - {1}"
 
@@ -8857,6 +8914,26 @@ msgstr ""
 #, fuzzy
 msgid "WORLD_SIZE_TOOLTIP"
 msgstr "ดำเนินการต่อ"
+
+#, fuzzy
+msgid "WORLD_TEMPERATURE"
+msgstr "อุณหภูมิ"
+
+#, fuzzy
+msgid "WORLD_TEMPERATURE_COLD"
+msgstr "อุณหภูมิ"
+
+#, fuzzy
+msgid "WORLD_TEMPERATURE_EXPLANATION"
+msgstr "{0} ประชากรเปลี่ยนแปลงโดย {1} เนื่องจาก: {2}"
+
+#, fuzzy
+msgid "WORLD_TEMPERATURE_TEMPERATE"
+msgstr "ดำเนินการต่อ"
+
+#, fuzzy
+msgid "WORLD_TEMPERATURE_WARM"
+msgstr "อุณหภูมิ"
 
 msgid "WORST_PATCH_COLON"
 msgstr ""
@@ -8896,6 +8973,22 @@ msgstr "ซูมเข้า"
 
 msgid "ZOOM_OUT"
 msgstr "ซูมออก"
+
+#, fuzzy
+#~ msgid "DISK_CACHE_TOOLTIP"
+#~ msgstr "ดำเนินการต่อ"
+
+#, fuzzy
+#~ msgid "NATIVE_THREAD_ADVICE_TOOLTIP"
+#~ msgstr "บันทึกและดำเนินการต่อ"
+
+#, fuzzy
+#~ msgid "SHOW_NEW_PATCH_NOTES_TOOLTIP"
+#~ msgstr "\"{0}\" - {1}"
+
+#, fuzzy
+#~ msgid "SHOW_TUTORIALS_OPTION_TOOLTIP"
+#~ msgstr "ดำเนินการต่อ"
 
 #, fuzzy
 #~ msgid "PASSIVE_REPRODUCTION_PROGRESS_EXPLANATION"

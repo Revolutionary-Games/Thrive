@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2025-05-28 14:54+0300\n"
+"POT-Creation-Date: 2025-06-14 23:30+0200\n"
 "PO-Revision-Date: 2025-05-25 15:00+0000\n"
 "Last-Translator: Anonymous <noreply@weblate.org>\n"
 "Language-Team: Korean <https://translate.revolutionarygamesstudio.com/projects/thrive/thrive-game/ko/>\n"
@@ -406,6 +406,10 @@ msgstr "실행 상태:"
 msgid "AUTO_EVO_STATUS_COLON"
 msgstr "실행 상태:"
 
+#, fuzzy
+msgid "AUTO_EVO_TOOL_BUTTON"
+msgstr "해상도:"
+
 msgid "AUTO_MOVE_FORWARDS"
 msgstr "자동 앞으로 이동"
 
@@ -439,6 +443,9 @@ msgstr "뒤로가기"
 #, fuzzy
 msgid "BACKSPACE"
 msgstr "뒤로가기"
+
+msgid "BACK_TO_SETTINGS"
+msgstr ""
 
 #, fuzzy
 msgid "BACTERIAL_THERMOSYNTHESIS"
@@ -873,6 +880,33 @@ msgstr "캐시 초기화하기"
 #, fuzzy
 msgid "CLICK_TO_SELECT"
 msgstr "선택된 파일 삭제"
+
+msgid "CLIMATE_INSTABILITY"
+msgstr ""
+
+#, fuzzy
+msgid "CLIMATE_INSTABILITY_EXPLANATION"
+msgstr ""
+"활발한 미생물들은 아무 일이 일어나지 않아도 계속해서 움직일 것 입니다.\n"
+"소극적인 미생물들은 환경에 변화가 생길 때까지 기다릴 것 입니다."
+
+#, fuzzy
+msgid "CLIMATE_STABILITY_AVERAGE"
+msgstr ""
+"활발한 미생물들은 아무 일이 일어나지 않아도 계속해서 움직일 것 입니다.\n"
+"소극적인 미생물들은 환경에 변화가 생길 때까지 기다릴 것 입니다."
+
+#, fuzzy
+msgid "CLIMATE_STABILITY_STABLE"
+msgstr ""
+"활발한 미생물들은 아무 일이 일어나지 않아도 계속해서 움직일 것 입니다.\n"
+"소극적인 미생물들은 환경에 변화가 생길 때까지 기다릴 것 입니다."
+
+#, fuzzy
+msgid "CLIMATE_STABILITY_UNSTABLE"
+msgstr ""
+"활발한 미생물들은 아무 일이 일어나지 않아도 계속해서 움직일 것 입니다.\n"
+"소극적인 미생물들은 환경에 변화가 생길 때까지 기다릴 것 입니다."
 
 msgid "CLOSE"
 msgstr "닫기"
@@ -1737,10 +1771,6 @@ msgid "DISCORD_TOOLTIP"
 msgstr "새로운 키 배치 추가"
 
 #, fuzzy
-msgid "DISK_CACHE_TOOLTIP"
-msgstr "새로운 키 배치 추가"
-
-#, fuzzy
 msgid "DISMISSED_POPUPS_COLON"
 msgstr "속도:"
 
@@ -2530,11 +2560,33 @@ msgstr "편집기에서 취소 버튼을 눌러 실수를 정정 할 수 있습�
 msgid "GENERAL_LOADING_TIP_7"
 msgstr "편집기에서 취소 버튼을 눌러 실수를 정정 할 수 있습니다"
 
+#, fuzzy
+msgid "GENERATE_BUTTON"
+msgstr "세대"
+
 msgid "GENERATIONS"
 msgstr "세대"
 
 msgid "GENERATION_COLON"
 msgstr "세대:"
+
+msgid "GEOLOGICAL_ACTIVITY"
+msgstr ""
+
+msgid "GEOLOGICAL_ACTIVITY_ACTIVE"
+msgstr ""
+
+msgid "GEOLOGICAL_ACTIVITY_AVERAGE"
+msgstr ""
+
+msgid "GEOLOGICAL_ACTIVITY_DORMANT"
+msgstr ""
+
+#, fuzzy
+msgid "GEOLOGICAL_ACTIVITY_EXPLANATION"
+msgstr ""
+"활발한 미생물들은 아무 일이 일어나지 않아도 계속해서 움직일 것 입니다.\n"
+"소극적인 미생물들은 환경에 변화가 생길 때까지 기다릴 것 입니다."
 
 #, fuzzy
 msgid "GITHUB_TOOLTIP"
@@ -3507,10 +3559,6 @@ msgstr "대사체는 단백질 껍질에 싸인 단백질 집합입니다. 그�
 msgid "LOW_QUALITY_BACKGROUND_BLUR"
 msgstr "배경 흐림 처리:"
 
-#, fuzzy
-msgid "LOW_QUALITY_BACKGROUND_BLUR_TOOLTIP"
-msgstr "배경 흐림 처리:"
-
 msgid "LUCIFERASE"
 msgstr ""
 
@@ -4371,10 +4419,6 @@ msgstr "생태계: {0}"
 msgid "NAME_LABEL_STRUCTURE_UNFINISHED"
 msgstr ""
 
-#, fuzzy
-msgid "NATIVE_THREAD_ADVICE_TOOLTIP"
-msgstr "저장 및 계속"
-
 msgid "NEGATIVE_ATP_BALANCE"
 msgstr "부정적 ATP 균형"
 
@@ -4992,11 +5036,12 @@ msgid "PLANET"
 msgstr ""
 
 #, fuzzy
+msgid "PLANET_CUSTOMIZER"
+msgstr "커서 위치에서:"
+
+#, fuzzy
 msgid "PLANET_DETAILS_STRING"
 msgstr "로그 폴더 열기"
-
-msgid "PLANET_GENERATION_TEASER"
-msgstr ""
 
 msgid "PLANET_RANDOM_SEED"
 msgstr ""
@@ -5201,6 +5246,10 @@ msgstr "마지막 활동 되돌리기"
 
 msgid "REFRESH"
 msgstr "새로 고침"
+
+#, fuzzy
+msgid "REGENERATE_BUTTON"
+msgstr "세포 기관"
 
 msgid "RENDER_SCALE"
 msgstr ""
@@ -5694,20 +5743,12 @@ msgid "SHOW_NEW_PATCH_NOTES"
 msgstr "동굴"
 
 #, fuzzy
-msgid "SHOW_NEW_PATCH_NOTES_TOOLTIP"
-msgstr "동굴"
-
-#, fuzzy
 msgid "SHOW_TUTORIALS_IN_NEW_CURRENT_OPTION"
 msgstr "튜토리얼 보기(현재 진행중인 게임)"
 
 #, fuzzy
 msgid "SHOW_TUTORIALS_IN_NEW_GAMES_OPTION"
 msgstr "튜토리얼 보기(새 게임 시작 시)"
-
-#, fuzzy
-msgid "SHOW_TUTORIALS_OPTION_TOOLTIP"
-msgstr "새로운 키 배치 추가"
 
 #, fuzzy
 msgid "SHOW_UNSAVED_PROGRESS_WARNING"
@@ -5772,6 +5813,10 @@ msgstr "이산화규소"
 
 msgid "SILICA_MEMBRANE_DESCRIPTION"
 msgstr "이 세포막은 이산화규소로 이루어진 강력한 벽 입니다. 전반적인 손상에 잘 견딜 수 있으며 물리적 손상에 매우 강합니다. 또한 형태를 유지하는 데 더 적은 에너지가 필요합니다. 그러나 이는 세포 속도를 크게 낮추고 자원을 느리게 흡수합니다."
+
+#, fuzzy
+msgid "SIMULATION"
+msgstr "삼투압 조절"
 
 #, fuzzy
 msgid "SIXTEEN_TIMES"
@@ -7107,6 +7152,9 @@ msgid "UPSCALE_FSR_1"
 msgstr ""
 
 msgid "UPSCALE_FSR_22"
+msgstr ""
+
+msgid "UPSCALE_METHOD"
 msgstr ""
 
 msgid "UPSCALE_SHARPENING_FSR"
@@ -9118,6 +9166,33 @@ msgid "WORLD_RELATIVE_MOVEMENT"
 msgstr "이동 속도 향상"
 
 #, fuzzy
+msgid "WORLD_SEA_LEVEL"
+msgstr "해수면으로부터 {0}-{1}m"
+
+#, fuzzy
+msgid "WORLD_SEA_LEVEL_DEEP"
+msgstr "해수면으로부터 {0}-{1}m"
+
+#, fuzzy
+msgid "WORLD_SEA_LEVEL_EXPLANATION"
+msgstr ""
+"이전의 실행 실패로 인해 Thrive가 안전 모드로 시작되었습니다.\n"
+"\n"
+"모드나 동영상 재생기로 인해 발생했을 가능성이 높습니다. 예방적 조치로 활성화된 모드의 불러오기가 생략되거나 동영상 재생이 비활성화되었을 수 있습니다. 이는 Thrive를 재시작할 때까지 유효합니다.\n"
+"\n"
+"재시작하기 전에 문제를 일으키거나 현재 버전의 Thrive와 호환되지 않을 수 있는 모드를 모두 비활성화해 주세요(문제를 일으킨 주범이 모드였는지 확인하기 위해 지난 실행 시의 로그를 읽어볼 수 있습니다).\n"
+"동영상 재생기와 관련된 문제에 대해서는 동영상을 강제로 비활성화하는 실행기 설정을 사용하세요.\n"
+"\n"
+"시작 문제를 일으키는 원인을 해결하지 않으면 다시 안전 모드에 들어오기 위해 Thrive를 여러 번 재시작하고 오류를 겪어야 할 수도 있습니다."
+
+#, fuzzy
+msgid "WORLD_SEA_LEVEL_MODERATE"
+msgstr "이동 속도 향상"
+
+msgid "WORLD_SEA_LEVEL_SHALLOW"
+msgstr ""
+
+#, fuzzy
 msgid "WORLD_SIZE"
 msgstr "번영했습니다!"
 
@@ -9146,6 +9221,34 @@ msgstr ""
 #, fuzzy
 msgid "WORLD_SIZE_TOOLTIP"
 msgstr "새로운 키 배치 추가"
+
+#, fuzzy
+msgid "WORLD_TEMPERATURE"
+msgstr "온도"
+
+#, fuzzy
+msgid "WORLD_TEMPERATURE_COLD"
+msgstr "온도."
+
+#, fuzzy
+msgid "WORLD_TEMPERATURE_EXPLANATION"
+msgstr ""
+"이전의 실행 실패로 인해 Thrive가 안전 모드로 시작되었습니다.\n"
+"\n"
+"모드나 동영상 재생기로 인해 발생했을 가능성이 높습니다. 예방적 조치로 활성화된 모드의 불러오기가 생략되거나 동영상 재생이 비활성화되었을 수 있습니다. 이는 Thrive를 재시작할 때까지 유효합니다.\n"
+"\n"
+"재시작하기 전에 문제를 일으키거나 현재 버전의 Thrive와 호환되지 않을 수 있는 모드를 모두 비활성화해 주세요(문제를 일으킨 주범이 모드였는지 확인하기 위해 지난 실행 시의 로그를 읽어볼 수 있습니다).\n"
+"동영상 재생기와 관련된 문제에 대해서는 동영상을 강제로 비활성화하는 실행기 설정을 사용하세요.\n"
+"\n"
+"시작 문제를 일으키는 원인을 해결하지 않으면 다시 안전 모드에 들어오기 위해 Thrive를 여러 번 재시작하고 오류를 겪어야 할 수도 있습니다."
+
+#, fuzzy
+msgid "WORLD_TEMPERATURE_TEMPERATE"
+msgstr "온도."
+
+#, fuzzy
+msgid "WORLD_TEMPERATURE_WARM"
+msgstr "온도."
 
 #, fuzzy
 msgid "WORST_PATCH_COLON"
@@ -9186,6 +9289,26 @@ msgstr "확대"
 
 msgid "ZOOM_OUT"
 msgstr "축소"
+
+#, fuzzy
+#~ msgid "DISK_CACHE_TOOLTIP"
+#~ msgstr "새로운 키 배치 추가"
+
+#, fuzzy
+#~ msgid "LOW_QUALITY_BACKGROUND_BLUR_TOOLTIP"
+#~ msgstr "배경 흐림 처리:"
+
+#, fuzzy
+#~ msgid "NATIVE_THREAD_ADVICE_TOOLTIP"
+#~ msgstr "저장 및 계속"
+
+#, fuzzy
+#~ msgid "SHOW_NEW_PATCH_NOTES_TOOLTIP"
+#~ msgstr "동굴"
+
+#, fuzzy
+#~ msgid "SHOW_TUTORIALS_OPTION_TOOLTIP"
+#~ msgstr "새로운 키 배치 추가"
 
 #~ msgid "PASSIVE_REPRODUCTION_PROGRESS_EXPLANATION"
 #~ msgstr "(번식에 필요한 화합물을 아무 것도 하지 않아도 환경에서 자동으로 수집)"
