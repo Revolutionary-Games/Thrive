@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2025-06-14 23:30+0200\n"
+"POT-Creation-Date: 2025-06-14 23:34+0200\n"
 "PO-Revision-Date: 2025-03-20 20:10+0000\n"
 "Last-Translator: Anonymous <noreply@weblate.org>\n"
 "Language-Team: Croatian <https://translate.revolutionarygamesstudio.com/projects/thrive/thrive-game/hr/>\n"
@@ -380,9 +380,6 @@ msgstr ""
 msgid "AUTO_EVO_STATUS_COLON"
 msgstr ""
 
-msgid "AUTO_EVO_TOOL_BUTTON"
-msgstr ""
-
 msgid "AUTO_MOVE_FORWARDS"
 msgstr ""
 
@@ -412,9 +409,6 @@ msgid "BACKSLASH"
 msgstr ""
 
 msgid "BACKSPACE"
-msgstr ""
-
-msgid "BACK_TO_SETTINGS"
 msgstr ""
 
 #, fuzzy
@@ -800,33 +794,6 @@ msgstr ""
 
 msgid "CLICK_TO_SELECT"
 msgstr ""
-
-msgid "CLIMATE_INSTABILITY"
-msgstr ""
-
-#, fuzzy
-msgid "CLIMATE_INSTABILITY_EXPLANATION"
-msgstr ""
-"Aktivni mikrobi će se kretati kada se ništa zanimljivo ne događa.\n"
-"Sesilni mikrobi će mirovati i čekati da se okoliš promijeni prije nego što nešto naprave."
-
-#, fuzzy
-msgid "CLIMATE_STABILITY_AVERAGE"
-msgstr ""
-"Aktivni mikrobi će se kretati kada se ništa zanimljivo ne događa.\n"
-"Sesilni mikrobi će mirovati i čekati da se okoliš promijeni prije nego što nešto naprave."
-
-#, fuzzy
-msgid "CLIMATE_STABILITY_STABLE"
-msgstr ""
-"Aktivni mikrobi će se kretati kada se ništa zanimljivo ne događa.\n"
-"Sesilni mikrobi će mirovati i čekati da se okoliš promijeni prije nego što nešto naprave."
-
-#, fuzzy
-msgid "CLIMATE_STABILITY_UNSTABLE"
-msgstr ""
-"Aktivni mikrobi će se kretati kada se ništa zanimljivo ne događa.\n"
-"Sesilni mikrobi će mirovati i čekati da se okoliš promijeni prije nego što nešto naprave."
 
 msgid "CLOSE"
 msgstr ""
@@ -2290,33 +2257,11 @@ msgstr "Pritisnite gumb za poništavanje u uređivaču kako biste ispravili pogr
 msgid "GENERAL_LOADING_TIP_7"
 msgstr "Pritisnite gumb za poništavanje u uređivaču kako biste ispravili pogrešku"
 
-#, fuzzy
-msgid "GENERATE_BUTTON"
-msgstr "Višestanični stadij"
-
 msgid "GENERATIONS"
 msgstr ""
 
 msgid "GENERATION_COLON"
 msgstr ""
-
-msgid "GEOLOGICAL_ACTIVITY"
-msgstr ""
-
-msgid "GEOLOGICAL_ACTIVITY_ACTIVE"
-msgstr ""
-
-msgid "GEOLOGICAL_ACTIVITY_AVERAGE"
-msgstr ""
-
-msgid "GEOLOGICAL_ACTIVITY_DORMANT"
-msgstr ""
-
-#, fuzzy
-msgid "GEOLOGICAL_ACTIVITY_EXPLANATION"
-msgstr ""
-"Aktivni mikrobi će se kretati kada se ništa zanimljivo ne događa.\n"
-"Sesilni mikrobi će mirovati i čekati da se okoliš promijeni prije nego što nešto naprave."
 
 msgid "GITHUB_TOOLTIP"
 msgstr ""
@@ -4551,10 +4496,10 @@ msgstr ""
 msgid "PLANET"
 msgstr ""
 
-msgid "PLANET_CUSTOMIZER"
+msgid "PLANET_DETAILS_STRING"
 msgstr ""
 
-msgid "PLANET_DETAILS_STRING"
+msgid "PLANET_GENERATION_TEASER"
 msgstr ""
 
 msgid "PLANET_RANDOM_SEED"
@@ -4743,10 +4688,6 @@ msgstr ""
 
 msgid "REFRESH"
 msgstr ""
-
-#, fuzzy
-msgid "REGENERATE_BUTTON"
-msgstr "Višestanični stadij"
 
 msgid "RENDER_SCALE"
 msgstr ""
@@ -8264,27 +8205,6 @@ msgid "WORLD_RELATIVE_MOVEMENT"
 msgstr ""
 
 #, fuzzy
-msgid "WORLD_SEA_LEVEL"
-msgstr "\"{0}\" - {1}"
-
-msgid "WORLD_SEA_LEVEL_DEEP"
-msgstr ""
-
-#, fuzzy
-msgid "WORLD_SEA_LEVEL_EXPLANATION"
-msgstr ""
-"Agresivni mikrobi će loviti plijen na većim udaljenostima\n"
-"i veća je šansa da će se braniti kada su napadnuti.\n"
-"Mirni mikrobi neće se baviti s drugima na većim udaljenostima\n"
-"i manja je šansa da će koristiti toksine protiv predatora."
-
-msgid "WORLD_SEA_LEVEL_MODERATE"
-msgstr ""
-
-msgid "WORLD_SEA_LEVEL_SHALLOW"
-msgstr ""
-
-#, fuzzy
 msgid "WORLD_SIZE"
 msgstr "\"{0}\" - {1}"
 
@@ -8308,27 +8228,6 @@ msgstr ""
 #, fuzzy
 msgid "WORLD_SIZE_TOOLTIP"
 msgstr "Kreni u fazu buđenja. Moguće kada imaš dovoljno moždane snage (vrsta tkiva s aksionima)"
-
-msgid "WORLD_TEMPERATURE"
-msgstr ""
-
-msgid "WORLD_TEMPERATURE_COLD"
-msgstr ""
-
-#, fuzzy
-msgid "WORLD_TEMPERATURE_EXPLANATION"
-msgstr ""
-"Agresivni mikrobi će loviti plijen na većim udaljenostima\n"
-"i veća je šansa da će se braniti kada su napadnuti.\n"
-"Mirni mikrobi neće se baviti s drugima na većim udaljenostima\n"
-"i manja je šansa da će koristiti toksine protiv predatora."
-
-#, fuzzy
-msgid "WORLD_TEMPERATURE_TEMPERATE"
-msgstr "Kreni u fazu buđenja. Moguće kada imaš dovoljno moždane snage (vrsta tkiva s aksionima)"
-
-msgid "WORLD_TEMPERATURE_WARM"
-msgstr ""
 
 msgid "WORST_PATCH_COLON"
 msgstr ""
@@ -8366,6 +8265,68 @@ msgstr ""
 
 msgid "ZOOM_OUT"
 msgstr "Povećaj"
+
+#, fuzzy
+#~ msgid "CLIMATE_INSTABILITY_EXPLANATION"
+#~ msgstr ""
+#~ "Aktivni mikrobi će se kretati kada se ništa zanimljivo ne događa.\n"
+#~ "Sesilni mikrobi će mirovati i čekati da se okoliš promijeni prije nego što nešto naprave."
+
+#, fuzzy
+#~ msgid "CLIMATE_STABILITY_AVERAGE"
+#~ msgstr ""
+#~ "Aktivni mikrobi će se kretati kada se ništa zanimljivo ne događa.\n"
+#~ "Sesilni mikrobi će mirovati i čekati da se okoliš promijeni prije nego što nešto naprave."
+
+#, fuzzy
+#~ msgid "CLIMATE_STABILITY_STABLE"
+#~ msgstr ""
+#~ "Aktivni mikrobi će se kretati kada se ništa zanimljivo ne događa.\n"
+#~ "Sesilni mikrobi će mirovati i čekati da se okoliš promijeni prije nego što nešto naprave."
+
+#, fuzzy
+#~ msgid "CLIMATE_STABILITY_UNSTABLE"
+#~ msgstr ""
+#~ "Aktivni mikrobi će se kretati kada se ništa zanimljivo ne događa.\n"
+#~ "Sesilni mikrobi će mirovati i čekati da se okoliš promijeni prije nego što nešto naprave."
+
+#, fuzzy
+#~ msgid "GENERATE_BUTTON"
+#~ msgstr "Višestanični stadij"
+
+#, fuzzy
+#~ msgid "GEOLOGICAL_ACTIVITY_EXPLANATION"
+#~ msgstr ""
+#~ "Aktivni mikrobi će se kretati kada se ništa zanimljivo ne događa.\n"
+#~ "Sesilni mikrobi će mirovati i čekati da se okoliš promijeni prije nego što nešto naprave."
+
+#, fuzzy
+#~ msgid "REGENERATE_BUTTON"
+#~ msgstr "Višestanični stadij"
+
+#, fuzzy
+#~ msgid "WORLD_SEA_LEVEL"
+#~ msgstr "\"{0}\" - {1}"
+
+#, fuzzy
+#~ msgid "WORLD_SEA_LEVEL_EXPLANATION"
+#~ msgstr ""
+#~ "Agresivni mikrobi će loviti plijen na većim udaljenostima\n"
+#~ "i veća je šansa da će se braniti kada su napadnuti.\n"
+#~ "Mirni mikrobi neće se baviti s drugima na većim udaljenostima\n"
+#~ "i manja je šansa da će koristiti toksine protiv predatora."
+
+#, fuzzy
+#~ msgid "WORLD_TEMPERATURE_EXPLANATION"
+#~ msgstr ""
+#~ "Agresivni mikrobi će loviti plijen na većim udaljenostima\n"
+#~ "i veća je šansa da će se braniti kada su napadnuti.\n"
+#~ "Mirni mikrobi neće se baviti s drugima na većim udaljenostima\n"
+#~ "i manja je šansa da će koristiti toksine protiv predatora."
+
+#, fuzzy
+#~ msgid "WORLD_TEMPERATURE_TEMPERATE"
+#~ msgstr "Kreni u fazu buđenja. Moguće kada imaš dovoljno moždane snage (vrsta tkiva s aksionima)"
 
 #, fuzzy
 #~ msgid "DISK_CACHE_TOOLTIP"

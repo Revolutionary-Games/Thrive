@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2025-06-14 23:30+0200\n"
+"POT-Creation-Date: 2025-06-14 23:34+0200\n"
 "PO-Revision-Date: 2025-05-25 15:00+0000\n"
 "Last-Translator: Anonymous <noreply@weblate.org>\n"
 "Language-Team: Bulgarian <https://translate.revolutionarygamesstudio.com/projects/thrive/thrive-game/bg/>\n"
@@ -395,10 +395,6 @@ msgstr "Състояние:"
 msgid "AUTO_EVO_STATUS_COLON"
 msgstr "Автоматична еволюция:"
 
-#, fuzzy
-msgid "AUTO_EVO_TOOL_BUTTON"
-msgstr "Автоматична ({0}x{1})"
-
 msgid "AUTO_MOVE_FORWARDS"
 msgstr "Автономно напред"
 
@@ -428,9 +424,6 @@ msgstr "Обратна наклонена черта"
 
 msgid "BACKSPACE"
 msgstr "Клавиш „Backspace“"
-
-msgid "BACK_TO_SETTINGS"
-msgstr ""
 
 #, fuzzy
 msgid "BACTERIAL_THERMOSYNTHESIS"
@@ -853,33 +846,6 @@ msgstr ""
 #, fuzzy
 msgid "CLICK_TO_SELECT"
 msgstr "Изтриване на избраните"
-
-msgid "CLIMATE_INSTABILITY"
-msgstr ""
-
-#, fuzzy
-msgid "CLIMATE_INSTABILITY_EXPLANATION"
-msgstr ""
-"Енергичните микроби са в движение, дори да няма промени в околната среда.\n"
-"Мудните микроби не са в движение, докато няма промени в околната среда."
-
-#, fuzzy
-msgid "CLIMATE_STABILITY_AVERAGE"
-msgstr ""
-"Енергичните микроби са в движение, дори да няма промени в околната среда.\n"
-"Мудните микроби не са в движение, докато няма промени в околната среда."
-
-#, fuzzy
-msgid "CLIMATE_STABILITY_STABLE"
-msgstr ""
-"Енергичните микроби са в движение, дори да няма промени в околната среда.\n"
-"Мудните микроби не са в движение, докато няма промени в околната среда."
-
-#, fuzzy
-msgid "CLIMATE_STABILITY_UNSTABLE"
-msgstr ""
-"Енергичните микроби са в движение, дори да няма промени в околната среда.\n"
-"Мудните микроби не са в движение, докато няма промени в околната среда."
 
 msgid "CLOSE"
 msgstr "Затваряне"
@@ -2549,33 +2515,11 @@ msgstr "Натиснете бутона „Отмяна“ в редактора
 msgid "GENERAL_LOADING_TIP_7"
 msgstr "Натиснете бутона „Отмяна“ в редактора, ако допуснете грешка"
 
-#, fuzzy
-msgid "GENERATE_BUTTON"
-msgstr "Поколение"
-
 msgid "GENERATIONS"
 msgstr "Поколение"
 
 msgid "GENERATION_COLON"
 msgstr "Поколение:"
-
-msgid "GEOLOGICAL_ACTIVITY"
-msgstr ""
-
-msgid "GEOLOGICAL_ACTIVITY_ACTIVE"
-msgstr ""
-
-msgid "GEOLOGICAL_ACTIVITY_AVERAGE"
-msgstr ""
-
-msgid "GEOLOGICAL_ACTIVITY_DORMANT"
-msgstr ""
-
-#, fuzzy
-msgid "GEOLOGICAL_ACTIVITY_EXPLANATION"
-msgstr ""
-"Енергичните микроби са в движение, дори да няма промени в околната среда.\n"
-"Мудните микроби не са в движение, докато няма промени в околната среда."
 
 msgid "GITHUB_TOOLTIP"
 msgstr "Отваряне на хранилището ни в „GitHub“"
@@ -4988,10 +4932,6 @@ msgstr "Добавяне на органел или друг обект"
 msgid "PLANET"
 msgstr "Планета"
 
-#, fuzzy
-msgid "PLANET_CUSTOMIZER"
-msgstr "Под курсора:"
-
 msgid "PLANET_DETAILS_STRING"
 msgstr ""
 "Земеподобен живот: {0}\n"
@@ -4999,6 +4939,9 @@ msgstr ""
 "Денонощен цикъл: {2}\n"
 "Продължителност на деня: {3} секунди\n"
 "Произволен идентификатор на планетата: {4}"
+
+msgid "PLANET_GENERATION_TEASER"
+msgstr "Създаването на планетата е в процес на разработка!"
 
 msgid "PLANET_RANDOM_SEED"
 msgstr "Произволен идентификатор на планетата"
@@ -5197,10 +5140,6 @@ msgstr "Възстановяване на последното действие"
 
 msgid "REFRESH"
 msgstr "Опресняване"
-
-#, fuzzy
-msgid "REGENERATE_BUTTON"
-msgstr "Аксон"
 
 #, fuzzy
 msgid "RENDER_SCALE"
@@ -9114,28 +9053,6 @@ msgid "WORLD_RELATIVE_MOVEMENT"
 msgstr "за да увеличи скоростта"
 
 #, fuzzy
-msgid "WORLD_SEA_LEVEL"
-msgstr "{0}-{1} м. под морското равнище"
-
-#, fuzzy
-msgid "WORLD_SEA_LEVEL_DEEP"
-msgstr "{0}-{1} м. под морското равнище"
-
-#, fuzzy
-msgid "WORLD_SEA_LEVEL_EXPLANATION"
-msgstr ""
-"Вглъбените микроби не променят намеренията си\n"
-"и са склонни да постигнат целта си.\n"
-"Бдителните микроби бързо променят намеренията си."
-
-#, fuzzy
-msgid "WORLD_SEA_LEVEL_MODERATE"
-msgstr "за да увеличи скоростта"
-
-msgid "WORLD_SEA_LEVEL_SHALLOW"
-msgstr ""
-
-#, fuzzy
 msgid "WORLD_SIZE"
 msgstr "Свят"
 
@@ -9159,29 +9076,6 @@ msgstr ""
 #, fuzzy
 msgid "WORLD_SIZE_TOOLTIP"
 msgstr "Симулиране на определен брой светове с предварително определеното количество на поколенията."
-
-#, fuzzy
-msgid "WORLD_TEMPERATURE"
-msgstr "Температура"
-
-#, fuzzy
-msgid "WORLD_TEMPERATURE_COLD"
-msgstr "Темп."
-
-#, fuzzy
-msgid "WORLD_TEMPERATURE_EXPLANATION"
-msgstr ""
-"Вглъбените микроби не променят намеренията си\n"
-"и са склонни да постигнат целта си.\n"
-"Бдителните микроби бързо променят намеренията си."
-
-#, fuzzy
-msgid "WORLD_TEMPERATURE_TEMPERATE"
-msgstr "Темп."
-
-#, fuzzy
-msgid "WORLD_TEMPERATURE_WARM"
-msgstr "Темп."
 
 msgid "WORST_PATCH_COLON"
 msgstr "Изчезва:"
@@ -9224,6 +9118,94 @@ msgid "ZOOM_OUT"
 msgstr "Отдалечаване"
 
 #, fuzzy
+#~ msgid "AUTO_EVO_TOOL_BUTTON"
+#~ msgstr "Автоматична ({0}x{1})"
+
+#, fuzzy
+#~ msgid "CLIMATE_INSTABILITY_EXPLANATION"
+#~ msgstr ""
+#~ "Енергичните микроби са в движение, дори да няма промени в околната среда.\n"
+#~ "Мудните микроби не са в движение, докато няма промени в околната среда."
+
+#, fuzzy
+#~ msgid "CLIMATE_STABILITY_AVERAGE"
+#~ msgstr ""
+#~ "Енергичните микроби са в движение, дори да няма промени в околната среда.\n"
+#~ "Мудните микроби не са в движение, докато няма промени в околната среда."
+
+#, fuzzy
+#~ msgid "CLIMATE_STABILITY_STABLE"
+#~ msgstr ""
+#~ "Енергичните микроби са в движение, дори да няма промени в околната среда.\n"
+#~ "Мудните микроби не са в движение, докато няма промени в околната среда."
+
+#, fuzzy
+#~ msgid "CLIMATE_STABILITY_UNSTABLE"
+#~ msgstr ""
+#~ "Енергичните микроби са в движение, дори да няма промени в околната среда.\n"
+#~ "Мудните микроби не са в движение, докато няма промени в околната среда."
+
+#, fuzzy
+#~ msgid "GENERATE_BUTTON"
+#~ msgstr "Поколение"
+
+#, fuzzy
+#~ msgid "GEOLOGICAL_ACTIVITY_EXPLANATION"
+#~ msgstr ""
+#~ "Енергичните микроби са в движение, дори да няма промени в околната среда.\n"
+#~ "Мудните микроби не са в движение, докато няма промени в околната среда."
+
+#, fuzzy
+#~ msgid "PLANET_CUSTOMIZER"
+#~ msgstr "Под курсора:"
+
+#, fuzzy
+#~ msgid "REGENERATE_BUTTON"
+#~ msgstr "Аксон"
+
+#, fuzzy
+#~ msgid "WORLD_SEA_LEVEL"
+#~ msgstr "{0}-{1} м. под морското равнище"
+
+#, fuzzy
+#~ msgid "WORLD_SEA_LEVEL_DEEP"
+#~ msgstr "{0}-{1} м. под морското равнище"
+
+#, fuzzy
+#~ msgid "WORLD_SEA_LEVEL_EXPLANATION"
+#~ msgstr ""
+#~ "Вглъбените микроби не променят намеренията си\n"
+#~ "и са склонни да постигнат целта си.\n"
+#~ "Бдителните микроби бързо променят намеренията си."
+
+#, fuzzy
+#~ msgid "WORLD_SEA_LEVEL_MODERATE"
+#~ msgstr "за да увеличи скоростта"
+
+#, fuzzy
+#~ msgid "WORLD_TEMPERATURE"
+#~ msgstr "Температура"
+
+#, fuzzy
+#~ msgid "WORLD_TEMPERATURE_COLD"
+#~ msgstr "Темп."
+
+#, fuzzy
+#~ msgid "WORLD_TEMPERATURE_EXPLANATION"
+#~ msgstr ""
+#~ "Вглъбените микроби не променят намеренията си\n"
+#~ "и са склонни да постигнат целта си.\n"
+#~ "Бдителните микроби бързо променят намеренията си."
+
+#, fuzzy
+#~ msgid "WORLD_TEMPERATURE_TEMPERATE"
+#~ msgstr "Темп."
+
+#, fuzzy
+#~ msgid "WORLD_TEMPERATURE_WARM"
+#~ msgstr "Темп."
+
+#, fuzzy
 #~ msgid "DISK_CACHE_TOOLTIP"
 #~ msgstr "Отваряне на страницата ни в „Itch.io“"
 
@@ -9238,9 +9220,6 @@ msgstr "Отдалечаване"
 #, fuzzy
 #~ msgid "SHOW_TUTORIALS_OPTION_TOOLTIP"
 #~ msgstr "Експортиране на данните за всички светове като стойности, разделени с запетая в .csv формат"
-
-#~ msgid "PLANET_GENERATION_TEASER"
-#~ msgstr "Създаването на планетата е в процес на разработка!"
 
 #~ msgid "PASSIVE_REPRODUCTION_PROGRESS_EXPLANATION"
 #~ msgstr "(създанията усвояват хранителните вещества от околната среда)"

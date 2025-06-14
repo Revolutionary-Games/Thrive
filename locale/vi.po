@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2025-06-14 23:30+0200\n"
+"POT-Creation-Date: 2025-06-14 23:34+0200\n"
 "PO-Revision-Date: 2025-05-22 17:42+0000\n"
 "Last-Translator: nam123depchai <amnickw@gmail.com>\n"
 "Language-Team: Vietnamese <https://translate.revolutionarygamesstudio.com/projects/thrive/thrive-game/vi/>\n"
@@ -349,9 +349,6 @@ msgstr ""
 msgid "AUTO_EVO_STATUS_COLON"
 msgstr ""
 
-msgid "AUTO_EVO_TOOL_BUTTON"
-msgstr ""
-
 msgid "AUTO_MOVE_FORWARDS"
 msgstr ""
 
@@ -380,9 +377,6 @@ msgid "BACKSLASH"
 msgstr ""
 
 msgid "BACKSPACE"
-msgstr ""
-
-msgid "BACK_TO_SETTINGS"
 msgstr ""
 
 msgid "BACTERIAL_THERMOSYNTHESIS"
@@ -762,33 +756,6 @@ msgstr ""
 
 msgid "CLICK_TO_SELECT"
 msgstr ""
-
-msgid "CLIMATE_INSTABILITY"
-msgstr ""
-
-#, fuzzy
-msgid "CLIMATE_INSTABILITY_EXPLANATION"
-msgstr ""
-"Các vi sinh vật hoạt động sẽ di chuyển và quay vòng khi không có gì thú vị xảy ra.\n"
-"Các vi sinh vật bám chặt (sessile) sẽ đứng yên và chờ môi trường thay đổi trước khi hành động."
-
-#, fuzzy
-msgid "CLIMATE_STABILITY_AVERAGE"
-msgstr ""
-"Các vi sinh vật hoạt động sẽ di chuyển và quay vòng khi không có gì thú vị xảy ra.\n"
-"Các vi sinh vật bám chặt (sessile) sẽ đứng yên và chờ môi trường thay đổi trước khi hành động."
-
-#, fuzzy
-msgid "CLIMATE_STABILITY_STABLE"
-msgstr ""
-"Các vi sinh vật hoạt động sẽ di chuyển và quay vòng khi không có gì thú vị xảy ra.\n"
-"Các vi sinh vật bám chặt (sessile) sẽ đứng yên và chờ môi trường thay đổi trước khi hành động."
-
-#, fuzzy
-msgid "CLIMATE_STABILITY_UNSTABLE"
-msgstr ""
-"Các vi sinh vật hoạt động sẽ di chuyển và quay vòng khi không có gì thú vị xảy ra.\n"
-"Các vi sinh vật bám chặt (sessile) sẽ đứng yên và chờ môi trường thay đổi trước khi hành động."
 
 msgid "CLOSE"
 msgstr ""
@@ -2197,32 +2164,11 @@ msgstr ""
 msgid "GENERAL_LOADING_TIP_7"
 msgstr ""
 
-msgid "GENERATE_BUTTON"
-msgstr ""
-
 msgid "GENERATIONS"
 msgstr ""
 
 msgid "GENERATION_COLON"
 msgstr ""
-
-msgid "GEOLOGICAL_ACTIVITY"
-msgstr ""
-
-msgid "GEOLOGICAL_ACTIVITY_ACTIVE"
-msgstr ""
-
-msgid "GEOLOGICAL_ACTIVITY_AVERAGE"
-msgstr ""
-
-msgid "GEOLOGICAL_ACTIVITY_DORMANT"
-msgstr ""
-
-#, fuzzy
-msgid "GEOLOGICAL_ACTIVITY_EXPLANATION"
-msgstr ""
-"Các vi sinh vật hoạt động sẽ di chuyển và quay vòng khi không có gì thú vị xảy ra.\n"
-"Các vi sinh vật bám chặt (sessile) sẽ đứng yên và chờ môi trường thay đổi trước khi hành động."
 
 msgid "GITHUB_TOOLTIP"
 msgstr ""
@@ -4294,10 +4240,10 @@ msgstr ""
 msgid "PLANET"
 msgstr ""
 
-msgid "PLANET_CUSTOMIZER"
+msgid "PLANET_DETAILS_STRING"
 msgstr ""
 
-msgid "PLANET_DETAILS_STRING"
+msgid "PLANET_GENERATION_TEASER"
 msgstr ""
 
 msgid "PLANET_RANDOM_SEED"
@@ -4481,9 +4427,6 @@ msgid "REDO_THE_LAST_ACTION"
 msgstr ""
 
 msgid "REFRESH"
-msgstr ""
-
-msgid "REGENERATE_BUTTON"
 msgstr ""
 
 msgid "RENDER_SCALE"
@@ -7577,21 +7520,6 @@ msgstr ""
 msgid "WORLD_RELATIVE_MOVEMENT"
 msgstr ""
 
-msgid "WORLD_SEA_LEVEL"
-msgstr ""
-
-msgid "WORLD_SEA_LEVEL_DEEP"
-msgstr ""
-
-msgid "WORLD_SEA_LEVEL_EXPLANATION"
-msgstr ""
-
-msgid "WORLD_SEA_LEVEL_MODERATE"
-msgstr ""
-
-msgid "WORLD_SEA_LEVEL_SHALLOW"
-msgstr ""
-
 msgid "WORLD_SIZE"
 msgstr ""
 
@@ -7608,22 +7536,6 @@ msgid "WORLD_SIZE_SMALL"
 msgstr ""
 
 msgid "WORLD_SIZE_TOOLTIP"
-msgstr ""
-
-msgid "WORLD_TEMPERATURE"
-msgstr ""
-
-msgid "WORLD_TEMPERATURE_COLD"
-msgstr ""
-
-#, fuzzy
-msgid "WORLD_TEMPERATURE_EXPLANATION"
-msgstr "(tốc độ mà loài AI đột biến)"
-
-msgid "WORLD_TEMPERATURE_TEMPERATE"
-msgstr ""
-
-msgid "WORLD_TEMPERATURE_WARM"
 msgstr ""
 
 msgid "WORST_PATCH_COLON"
@@ -7661,3 +7573,37 @@ msgstr ""
 
 msgid "ZOOM_OUT"
 msgstr "Thu nhỏ"
+
+#, fuzzy
+#~ msgid "CLIMATE_INSTABILITY_EXPLANATION"
+#~ msgstr ""
+#~ "Các vi sinh vật hoạt động sẽ di chuyển và quay vòng khi không có gì thú vị xảy ra.\n"
+#~ "Các vi sinh vật bám chặt (sessile) sẽ đứng yên và chờ môi trường thay đổi trước khi hành động."
+
+#, fuzzy
+#~ msgid "CLIMATE_STABILITY_AVERAGE"
+#~ msgstr ""
+#~ "Các vi sinh vật hoạt động sẽ di chuyển và quay vòng khi không có gì thú vị xảy ra.\n"
+#~ "Các vi sinh vật bám chặt (sessile) sẽ đứng yên và chờ môi trường thay đổi trước khi hành động."
+
+#, fuzzy
+#~ msgid "CLIMATE_STABILITY_STABLE"
+#~ msgstr ""
+#~ "Các vi sinh vật hoạt động sẽ di chuyển và quay vòng khi không có gì thú vị xảy ra.\n"
+#~ "Các vi sinh vật bám chặt (sessile) sẽ đứng yên và chờ môi trường thay đổi trước khi hành động."
+
+#, fuzzy
+#~ msgid "CLIMATE_STABILITY_UNSTABLE"
+#~ msgstr ""
+#~ "Các vi sinh vật hoạt động sẽ di chuyển và quay vòng khi không có gì thú vị xảy ra.\n"
+#~ "Các vi sinh vật bám chặt (sessile) sẽ đứng yên và chờ môi trường thay đổi trước khi hành động."
+
+#, fuzzy
+#~ msgid "GEOLOGICAL_ACTIVITY_EXPLANATION"
+#~ msgstr ""
+#~ "Các vi sinh vật hoạt động sẽ di chuyển và quay vòng khi không có gì thú vị xảy ra.\n"
+#~ "Các vi sinh vật bám chặt (sessile) sẽ đứng yên và chờ môi trường thay đổi trước khi hành động."
+
+#, fuzzy
+#~ msgid "WORLD_TEMPERATURE_EXPLANATION"
+#~ msgstr "(tốc độ mà loài AI đột biến)"

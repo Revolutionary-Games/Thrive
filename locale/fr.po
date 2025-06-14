@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2025-06-14 23:30+0200\n"
+"POT-Creation-Date: 2025-06-14 23:34+0200\n"
 "PO-Revision-Date: 2025-05-25 15:00+0000\n"
 "Last-Translator: Anonymous <noreply@weblate.org>\n"
 "Language-Team: French <https://translate.revolutionarygamesstudio.com/projects/thrive/thrive-game/fr/>\n"
@@ -390,10 +390,6 @@ msgstr "état de lancement :"
 msgid "AUTO_EVO_STATUS_COLON"
 msgstr "État de l'auto-évo :"
 
-#, fuzzy
-msgid "AUTO_EVO_TOOL_BUTTON"
-msgstr "Automatique ({0}x{1})"
-
 msgid "AUTO_MOVE_FORWARDS"
 msgstr "Avance auto"
 
@@ -423,9 +419,6 @@ msgstr "Barre oblique inversée"
 
 msgid "BACKSPACE"
 msgstr "Retour arrière"
-
-msgid "BACK_TO_SETTINGS"
-msgstr ""
 
 msgid "BACTERIAL_THERMOSYNTHESIS"
 msgstr "Thermosynthèse bactérienne"
@@ -820,33 +813,6 @@ msgstr "Vider la mémoire cache"
 #, fuzzy
 msgid "CLICK_TO_SELECT"
 msgstr "Supprimer la sélection"
-
-msgid "CLIMATE_INSTABILITY"
-msgstr ""
-
-#, fuzzy
-msgid "CLIMATE_INSTABILITY_EXPLANATION"
-msgstr ""
-"Les microbes actifs déambuleront en l'absence de cible.\n"
-"Les microbes sessiles seront immobiles en l'attente d'un changement dans leur environnement."
-
-#, fuzzy
-msgid "CLIMATE_STABILITY_AVERAGE"
-msgstr ""
-"Les microbes actifs déambuleront en l'absence de cible.\n"
-"Les microbes sessiles seront immobiles en l'attente d'un changement dans leur environnement."
-
-#, fuzzy
-msgid "CLIMATE_STABILITY_STABLE"
-msgstr ""
-"Les microbes actifs déambuleront en l'absence de cible.\n"
-"Les microbes sessiles seront immobiles en l'attente d'un changement dans leur environnement."
-
-#, fuzzy
-msgid "CLIMATE_STABILITY_UNSTABLE"
-msgstr ""
-"Les microbes actifs déambuleront en l'absence de cible.\n"
-"Les microbes sessiles seront immobiles en l'attente d'un changement dans leur environnement."
 
 msgid "CLOSE"
 msgstr "Fermer"
@@ -2450,33 +2416,11 @@ msgstr "Appuyez sur le bouton Annuler la dernière action dans l'éditeur pour c
 msgid "GENERAL_LOADING_TIP_7"
 msgstr "Appuyez sur le bouton Annuler la dernière action dans l'éditeur pour corriger une erreur"
 
-#, fuzzy
-msgid "GENERATE_BUTTON"
-msgstr "Générations"
-
 msgid "GENERATIONS"
 msgstr "Générations"
 
 msgid "GENERATION_COLON"
 msgstr "Génération :"
-
-msgid "GEOLOGICAL_ACTIVITY"
-msgstr ""
-
-msgid "GEOLOGICAL_ACTIVITY_ACTIVE"
-msgstr ""
-
-msgid "GEOLOGICAL_ACTIVITY_AVERAGE"
-msgstr ""
-
-msgid "GEOLOGICAL_ACTIVITY_DORMANT"
-msgstr ""
-
-#, fuzzy
-msgid "GEOLOGICAL_ACTIVITY_EXPLANATION"
-msgstr ""
-"Les microbes actifs déambuleront en l'absence de cible.\n"
-"Les microbes sessiles seront immobiles en l'attente d'un changement dans leur environnement."
 
 msgid "GITHUB_TOOLTIP"
 msgstr "Visitez notre dépôt Github"
@@ -4846,10 +4790,6 @@ msgstr "Placer organite"
 msgid "PLANET"
 msgstr "Planète"
 
-#, fuzzy
-msgid "PLANET_CUSTOMIZER"
-msgstr "Au pointeur :"
-
 msgid "PLANET_DETAILS_STRING"
 msgstr ""
 "LAWK uniquement : {0}\n"
@@ -4857,6 +4797,9 @@ msgstr ""
 "Cycle jour/nuit : {2}\n"
 "Durée du jour : {3} secondes\n"
 "Graine aléatoire de la planète : {4}"
+
+msgid "PLANET_GENERATION_TEASER"
+msgstr "La génération de planète arrive bientôt !"
 
 msgid "PLANET_RANDOM_SEED"
 msgstr "Graine planétaire aléatoire"
@@ -5051,10 +4994,6 @@ msgstr "Répéter la dernière action"
 
 msgid "REFRESH"
 msgstr "Rafraîchir"
-
-#, fuzzy
-msgid "REGENERATE_BUTTON"
-msgstr "Axone"
 
 #, fuzzy
 msgid "RENDER_SCALE"
@@ -9234,29 +9173,6 @@ msgid "WORLD_RELATIVE_MOVEMENT"
 msgstr "Dépend du monde"
 
 #, fuzzy
-msgid "WORLD_SEA_LEVEL"
-msgstr "{0}-{1}m sous la mer"
-
-#, fuzzy
-msgid "WORLD_SEA_LEVEL_DEEP"
-msgstr "{0}-{1}m sous la mer"
-
-#, fuzzy
-msgid "WORLD_SEA_LEVEL_EXPLANATION"
-msgstr ""
-"Les microbes persévérants rechercheront des fragments ou des proies sur de plus grandes distances\n"
-"et pourront se montrer bien plus ambitieux face à des fragments disputés.\n"
-"Les microbes réactifs basculeront plus vite vers de nouvelles cibles."
-
-#, fuzzy
-msgid "WORLD_SEA_LEVEL_MODERATE"
-msgstr "Dépend du monde"
-
-#, fuzzy
-msgid "WORLD_SEA_LEVEL_SHALLOW"
-msgstr "Petit"
-
-#, fuzzy
 msgid "WORLD_SIZE"
 msgstr "Monde"
 
@@ -9279,29 +9195,6 @@ msgstr "Petit"
 #, fuzzy
 msgid "WORLD_SIZE_TOOLTIP"
 msgstr "Lance un certain nombre de mondes, le nombre de générations pour chaque monde est déterminé par liste déroulante ci-dessus."
-
-#, fuzzy
-msgid "WORLD_TEMPERATURE"
-msgstr "Température"
-
-#, fuzzy
-msgid "WORLD_TEMPERATURE_COLD"
-msgstr "Temp."
-
-#, fuzzy
-msgid "WORLD_TEMPERATURE_EXPLANATION"
-msgstr ""
-"Les microbes persévérants rechercheront des fragments ou des proies sur de plus grandes distances\n"
-"et pourront se montrer bien plus ambitieux face à des fragments disputés.\n"
-"Les microbes réactifs basculeront plus vite vers de nouvelles cibles."
-
-#, fuzzy
-msgid "WORLD_TEMPERATURE_TEMPERATE"
-msgstr "Temp."
-
-#, fuzzy
-msgid "WORLD_TEMPERATURE_WARM"
-msgstr "Temp."
 
 msgid "WORST_PATCH_COLON"
 msgstr "Pire secteur :"
@@ -9342,6 +9235,98 @@ msgid "ZOOM_OUT"
 msgstr "Dézoomer"
 
 #, fuzzy
+#~ msgid "AUTO_EVO_TOOL_BUTTON"
+#~ msgstr "Automatique ({0}x{1})"
+
+#, fuzzy
+#~ msgid "CLIMATE_INSTABILITY_EXPLANATION"
+#~ msgstr ""
+#~ "Les microbes actifs déambuleront en l'absence de cible.\n"
+#~ "Les microbes sessiles seront immobiles en l'attente d'un changement dans leur environnement."
+
+#, fuzzy
+#~ msgid "CLIMATE_STABILITY_AVERAGE"
+#~ msgstr ""
+#~ "Les microbes actifs déambuleront en l'absence de cible.\n"
+#~ "Les microbes sessiles seront immobiles en l'attente d'un changement dans leur environnement."
+
+#, fuzzy
+#~ msgid "CLIMATE_STABILITY_STABLE"
+#~ msgstr ""
+#~ "Les microbes actifs déambuleront en l'absence de cible.\n"
+#~ "Les microbes sessiles seront immobiles en l'attente d'un changement dans leur environnement."
+
+#, fuzzy
+#~ msgid "CLIMATE_STABILITY_UNSTABLE"
+#~ msgstr ""
+#~ "Les microbes actifs déambuleront en l'absence de cible.\n"
+#~ "Les microbes sessiles seront immobiles en l'attente d'un changement dans leur environnement."
+
+#, fuzzy
+#~ msgid "GENERATE_BUTTON"
+#~ msgstr "Générations"
+
+#, fuzzy
+#~ msgid "GEOLOGICAL_ACTIVITY_EXPLANATION"
+#~ msgstr ""
+#~ "Les microbes actifs déambuleront en l'absence de cible.\n"
+#~ "Les microbes sessiles seront immobiles en l'attente d'un changement dans leur environnement."
+
+#, fuzzy
+#~ msgid "PLANET_CUSTOMIZER"
+#~ msgstr "Au pointeur :"
+
+#, fuzzy
+#~ msgid "REGENERATE_BUTTON"
+#~ msgstr "Axone"
+
+#, fuzzy
+#~ msgid "WORLD_SEA_LEVEL"
+#~ msgstr "{0}-{1}m sous la mer"
+
+#, fuzzy
+#~ msgid "WORLD_SEA_LEVEL_DEEP"
+#~ msgstr "{0}-{1}m sous la mer"
+
+#, fuzzy
+#~ msgid "WORLD_SEA_LEVEL_EXPLANATION"
+#~ msgstr ""
+#~ "Les microbes persévérants rechercheront des fragments ou des proies sur de plus grandes distances\n"
+#~ "et pourront se montrer bien plus ambitieux face à des fragments disputés.\n"
+#~ "Les microbes réactifs basculeront plus vite vers de nouvelles cibles."
+
+#, fuzzy
+#~ msgid "WORLD_SEA_LEVEL_MODERATE"
+#~ msgstr "Dépend du monde"
+
+#, fuzzy
+#~ msgid "WORLD_SEA_LEVEL_SHALLOW"
+#~ msgstr "Petit"
+
+#, fuzzy
+#~ msgid "WORLD_TEMPERATURE"
+#~ msgstr "Température"
+
+#, fuzzy
+#~ msgid "WORLD_TEMPERATURE_COLD"
+#~ msgstr "Temp."
+
+#, fuzzy
+#~ msgid "WORLD_TEMPERATURE_EXPLANATION"
+#~ msgstr ""
+#~ "Les microbes persévérants rechercheront des fragments ou des proies sur de plus grandes distances\n"
+#~ "et pourront se montrer bien plus ambitieux face à des fragments disputés.\n"
+#~ "Les microbes réactifs basculeront plus vite vers de nouvelles cibles."
+
+#, fuzzy
+#~ msgid "WORLD_TEMPERATURE_TEMPERATE"
+#~ msgstr "Temp."
+
+#, fuzzy
+#~ msgid "WORLD_TEMPERATURE_WARM"
+#~ msgstr "Temp."
+
+#, fuzzy
 #~ msgid "DISK_CACHE_TOOLTIP"
 #~ msgstr "Visitez notre page Itch.io"
 
@@ -9358,9 +9343,6 @@ msgstr "Dézoomer"
 #, fuzzy
 #~ msgid "SHOW_TUTORIALS_OPTION_TOOLTIP"
 #~ msgstr "Exporter toutes les donnée des mondes en format Comma-Separated Values (csv)"
-
-#~ msgid "PLANET_GENERATION_TEASER"
-#~ msgstr "La génération de planète arrive bientôt !"
 
 #~ msgid "PASSIVE_REPRODUCTION_PROGRESS_EXPLANATION"
 #~ msgstr "(obtenir passivement des composés de reproduction de l'environnement sans avoir à faire quoi que ce soit)"

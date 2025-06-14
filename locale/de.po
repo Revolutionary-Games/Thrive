@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2025-06-14 23:30+0200\n"
+"POT-Creation-Date: 2025-06-14 23:34+0200\n"
 "PO-Revision-Date: 2025-05-25 15:00+0000\n"
 "Last-Translator: Anonymous <noreply@weblate.org>\n"
 "Language-Team: German <https://translate.revolutionarygamesstudio.com/projects/thrive/thrive-game/de/>\n"
@@ -383,10 +383,6 @@ msgstr "Laufstatus:"
 msgid "AUTO_EVO_STATUS_COLON"
 msgstr "Auto-Evo-Status:"
 
-#, fuzzy
-msgid "AUTO_EVO_TOOL_BUTTON"
-msgstr "automatisch ({0}x{1})"
-
 msgid "AUTO_MOVE_FORWARDS"
 msgstr "Automatisch vorwärts bewegen"
 
@@ -416,9 +412,6 @@ msgstr "Backslash"
 
 msgid "BACKSPACE"
 msgstr "Rücktaste"
-
-msgid "BACK_TO_SETTINGS"
-msgstr ""
 
 msgid "BACTERIAL_THERMOSYNTHESIS"
 msgstr "Bakterielle Thermosynthese"
@@ -812,33 +805,6 @@ msgstr "Cache leeren"
 
 msgid "CLICK_TO_SELECT"
 msgstr "Auswählen"
-
-msgid "CLIMATE_INSTABILITY"
-msgstr ""
-
-#, fuzzy
-msgid "CLIMATE_INSTABILITY_EXPLANATION"
-msgstr ""
-"Aktive Mikroben taumeln umher, wenn nichts Interessantes passiert.\n"
-"Sessile Mikroben sind stationär und warten darauf, dass sich die Umgebung verändert, bevor sie handeln."
-
-#, fuzzy
-msgid "CLIMATE_STABILITY_AVERAGE"
-msgstr ""
-"Aktive Mikroben taumeln umher, wenn nichts Interessantes passiert.\n"
-"Sessile Mikroben sind stationär und warten darauf, dass sich die Umgebung verändert, bevor sie handeln."
-
-#, fuzzy
-msgid "CLIMATE_STABILITY_STABLE"
-msgstr ""
-"Aktive Mikroben taumeln umher, wenn nichts Interessantes passiert.\n"
-"Sessile Mikroben sind stationär und warten darauf, dass sich die Umgebung verändert, bevor sie handeln."
-
-#, fuzzy
-msgid "CLIMATE_STABILITY_UNSTABLE"
-msgstr ""
-"Aktive Mikroben taumeln umher, wenn nichts Interessantes passiert.\n"
-"Sessile Mikroben sind stationär und warten darauf, dass sich die Umgebung verändert, bevor sie handeln."
 
 msgid "CLOSE"
 msgstr "Schließen"
@@ -2392,33 +2358,11 @@ msgstr "Nicht vergessen: Die Anzeige rechts oben zeigt dir, was unter dem Cursor
 msgid "GENERAL_LOADING_TIP_7"
 msgstr "Wenn deine Population auf Null fällt, stirbst du aus."
 
-#, fuzzy
-msgid "GENERATE_BUTTON"
-msgstr "Generationen"
-
 msgid "GENERATIONS"
 msgstr "Generationen"
 
 msgid "GENERATION_COLON"
 msgstr "Generation:"
-
-msgid "GEOLOGICAL_ACTIVITY"
-msgstr ""
-
-msgid "GEOLOGICAL_ACTIVITY_ACTIVE"
-msgstr ""
-
-msgid "GEOLOGICAL_ACTIVITY_AVERAGE"
-msgstr ""
-
-msgid "GEOLOGICAL_ACTIVITY_DORMANT"
-msgstr ""
-
-#, fuzzy
-msgid "GEOLOGICAL_ACTIVITY_EXPLANATION"
-msgstr ""
-"Aktive Mikroben taumeln umher, wenn nichts Interessantes passiert.\n"
-"Sessile Mikroben sind stationär und warten darauf, dass sich die Umgebung verändert, bevor sie handeln."
 
 msgid "GITHUB_TOOLTIP"
 msgstr "Besuche unser GitHub Repositorium"
@@ -4657,10 +4601,6 @@ msgstr "Organelle platzieren"
 msgid "PLANET"
 msgstr "Planet"
 
-#, fuzzy
-msgid "PLANET_CUSTOMIZER"
-msgstr "Am Zeiger:"
-
 msgid "PLANET_DETAILS_STRING"
 msgstr ""
 "Nur kohlenstoffbasiertes Leben: {0}\n"
@@ -4668,6 +4608,9 @@ msgstr ""
 "Tag-/Nacht-Zyklus: {2}\n"
 "Tageslänge: {3} Sekunden\n"
 "Planetensamen Nummer: {4}"
+
+msgid "PLANET_GENERATION_TEASER"
+msgstr "Planetenerstellung kommt bald!"
 
 msgid "PLANET_RANDOM_SEED"
 msgstr "Planetensamen Nummer (Zufallswert):"
@@ -4858,10 +4801,6 @@ msgstr "Letzte Aktion wiederholen"
 
 msgid "REFRESH"
 msgstr "Aktualisieren"
-
-#, fuzzy
-msgid "REGENERATE_BUTTON"
-msgstr "Organellen"
 
 #, fuzzy
 msgid "RENDER_SCALE"
@@ -8862,29 +8801,6 @@ msgid "WORLD_RELATIVE_MOVEMENT"
 msgstr "um die Mobilität zu erhöhen"
 
 #, fuzzy
-msgid "WORLD_SEA_LEVEL"
-msgstr "{0}-{1}m unter dem Meeresspiegel"
-
-#, fuzzy
-msgid "WORLD_SEA_LEVEL_DEEP"
-msgstr "{0}-{1}m unter dem Meeresspiegel"
-
-#, fuzzy
-msgid "WORLD_SEA_LEVEL_EXPLANATION"
-msgstr ""
-"Fokussierte Mikroben werden über größere Entfernungen nach Brocken oder Beute suchen\n"
-"und sind möglicherweise sehr viel ehrgeiziger, wenn es um Brocken geht.\n"
-"Responsive Mikroben wechseln schneller zu neuen Zielen."
-
-#, fuzzy
-msgid "WORLD_SEA_LEVEL_MODERATE"
-msgstr "um die Mobilität zu erhöhen"
-
-#, fuzzy
-msgid "WORLD_SEA_LEVEL_SHALLOW"
-msgstr "Klein"
-
-#, fuzzy
 msgid "WORLD_SIZE"
 msgstr "Welt"
 
@@ -8908,29 +8824,6 @@ msgstr "Klein"
 #, fuzzy
 msgid "WORLD_SIZE_TOOLTIP"
 msgstr "Tritt unserem Discord Server bei"
-
-#, fuzzy
-msgid "WORLD_TEMPERATURE"
-msgstr "Temperatur"
-
-#, fuzzy
-msgid "WORLD_TEMPERATURE_COLD"
-msgstr "Temp."
-
-#, fuzzy
-msgid "WORLD_TEMPERATURE_EXPLANATION"
-msgstr ""
-"Fokussierte Mikroben werden über größere Entfernungen nach Brocken oder Beute suchen\n"
-"und sind möglicherweise sehr viel ehrgeiziger, wenn es um Brocken geht.\n"
-"Responsive Mikroben wechseln schneller zu neuen Zielen."
-
-#, fuzzy
-msgid "WORLD_TEMPERATURE_TEMPERATE"
-msgstr "Temp."
-
-#, fuzzy
-msgid "WORLD_TEMPERATURE_WARM"
-msgstr "Temp."
 
 msgid "WORST_PATCH_COLON"
 msgstr "Schlechtestes Gebiet:"
@@ -8971,6 +8864,98 @@ msgstr "Hereinzoomen"
 msgid "ZOOM_OUT"
 msgstr "Herauszoomen"
 
+#, fuzzy
+#~ msgid "AUTO_EVO_TOOL_BUTTON"
+#~ msgstr "automatisch ({0}x{1})"
+
+#, fuzzy
+#~ msgid "CLIMATE_INSTABILITY_EXPLANATION"
+#~ msgstr ""
+#~ "Aktive Mikroben taumeln umher, wenn nichts Interessantes passiert.\n"
+#~ "Sessile Mikroben sind stationär und warten darauf, dass sich die Umgebung verändert, bevor sie handeln."
+
+#, fuzzy
+#~ msgid "CLIMATE_STABILITY_AVERAGE"
+#~ msgstr ""
+#~ "Aktive Mikroben taumeln umher, wenn nichts Interessantes passiert.\n"
+#~ "Sessile Mikroben sind stationär und warten darauf, dass sich die Umgebung verändert, bevor sie handeln."
+
+#, fuzzy
+#~ msgid "CLIMATE_STABILITY_STABLE"
+#~ msgstr ""
+#~ "Aktive Mikroben taumeln umher, wenn nichts Interessantes passiert.\n"
+#~ "Sessile Mikroben sind stationär und warten darauf, dass sich die Umgebung verändert, bevor sie handeln."
+
+#, fuzzy
+#~ msgid "CLIMATE_STABILITY_UNSTABLE"
+#~ msgstr ""
+#~ "Aktive Mikroben taumeln umher, wenn nichts Interessantes passiert.\n"
+#~ "Sessile Mikroben sind stationär und warten darauf, dass sich die Umgebung verändert, bevor sie handeln."
+
+#, fuzzy
+#~ msgid "GENERATE_BUTTON"
+#~ msgstr "Generationen"
+
+#, fuzzy
+#~ msgid "GEOLOGICAL_ACTIVITY_EXPLANATION"
+#~ msgstr ""
+#~ "Aktive Mikroben taumeln umher, wenn nichts Interessantes passiert.\n"
+#~ "Sessile Mikroben sind stationär und warten darauf, dass sich die Umgebung verändert, bevor sie handeln."
+
+#, fuzzy
+#~ msgid "PLANET_CUSTOMIZER"
+#~ msgstr "Am Zeiger:"
+
+#, fuzzy
+#~ msgid "REGENERATE_BUTTON"
+#~ msgstr "Organellen"
+
+#, fuzzy
+#~ msgid "WORLD_SEA_LEVEL"
+#~ msgstr "{0}-{1}m unter dem Meeresspiegel"
+
+#, fuzzy
+#~ msgid "WORLD_SEA_LEVEL_DEEP"
+#~ msgstr "{0}-{1}m unter dem Meeresspiegel"
+
+#, fuzzy
+#~ msgid "WORLD_SEA_LEVEL_EXPLANATION"
+#~ msgstr ""
+#~ "Fokussierte Mikroben werden über größere Entfernungen nach Brocken oder Beute suchen\n"
+#~ "und sind möglicherweise sehr viel ehrgeiziger, wenn es um Brocken geht.\n"
+#~ "Responsive Mikroben wechseln schneller zu neuen Zielen."
+
+#, fuzzy
+#~ msgid "WORLD_SEA_LEVEL_MODERATE"
+#~ msgstr "um die Mobilität zu erhöhen"
+
+#, fuzzy
+#~ msgid "WORLD_SEA_LEVEL_SHALLOW"
+#~ msgstr "Klein"
+
+#, fuzzy
+#~ msgid "WORLD_TEMPERATURE"
+#~ msgstr "Temperatur"
+
+#, fuzzy
+#~ msgid "WORLD_TEMPERATURE_COLD"
+#~ msgstr "Temp."
+
+#, fuzzy
+#~ msgid "WORLD_TEMPERATURE_EXPLANATION"
+#~ msgstr ""
+#~ "Fokussierte Mikroben werden über größere Entfernungen nach Brocken oder Beute suchen\n"
+#~ "und sind möglicherweise sehr viel ehrgeiziger, wenn es um Brocken geht.\n"
+#~ "Responsive Mikroben wechseln schneller zu neuen Zielen."
+
+#, fuzzy
+#~ msgid "WORLD_TEMPERATURE_TEMPERATE"
+#~ msgstr "Temp."
+
+#, fuzzy
+#~ msgid "WORLD_TEMPERATURE_WARM"
+#~ msgstr "Temp."
+
 #~ msgid "DISK_CACHE_TOOLTIP"
 #~ msgstr ""
 #~ "Wenn aktiviert, werden einige teuer zu generierende Daten auf der Festplatte gespeichert, damit sie beim nächsten Laden schneller verfügbar sind.\n"
@@ -8991,9 +8976,6 @@ msgstr "Herauszoomen"
 #, fuzzy
 #~ msgid "SHOW_TUTORIALS_OPTION_TOOLTIP"
 #~ msgstr "Exportiere die Daten aller Welten im CSV-Format (durch Kommas getrennte Werte)"
-
-#~ msgid "PLANET_GENERATION_TEASER"
-#~ msgstr "Planetenerstellung kommt bald!"
 
 #~ msgid "PASSIVE_REPRODUCTION_PROGRESS_EXPLANATION"
 #~ msgstr "(Erhalte passiv Reproduktionsfortschritt, auch wenn Du keine Ressourcen aktiv einsammelst)"

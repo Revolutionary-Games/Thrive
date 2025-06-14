@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2025-06-14 23:30+0200\n"
+"POT-Creation-Date: 2025-06-14 23:34+0200\n"
 "PO-Revision-Date: 2025-05-25 15:00+0000\n"
 "Last-Translator: Anonymous <noreply@weblate.org>\n"
 "Language-Team: Indonesian <https://translate.revolutionarygamesstudio.com/projects/thrive/thrive-game/id/>\n"
@@ -409,10 +409,6 @@ msgstr "status auto-evo:"
 msgid "AUTO_EVO_STATUS_COLON"
 msgstr "status auto-evo:"
 
-#, fuzzy
-msgid "AUTO_EVO_TOOL_BUTTON"
-msgstr "Resolusi:"
-
 msgid "AUTO_MOVE_FORWARDS"
 msgstr "Gerak otomatis depan"
 
@@ -444,9 +440,6 @@ msgstr "Backslash"
 
 msgid "BACKSPACE"
 msgstr "Backspace"
-
-msgid "BACK_TO_SETTINGS"
-msgstr ""
 
 #, fuzzy
 msgid "BACTERIAL_THERMOSYNTHESIS"
@@ -872,33 +865,6 @@ msgstr ""
 #, fuzzy
 msgid "CLICK_TO_SELECT"
 msgstr "Hapus terpilih"
-
-msgid "CLIMATE_INSTABILITY"
-msgstr ""
-
-#, fuzzy
-msgid "CLIMATE_INSTABILITY_EXPLANATION"
-msgstr ""
-"Mikroba aktif akan mengembara ketika tidak ada hal menarik yang terjadi.\n"
-"Mikroba sesil akan menjadi stasioner dan menunggu perubahan lingkungan sebelum bertindak."
-
-#, fuzzy
-msgid "CLIMATE_STABILITY_AVERAGE"
-msgstr ""
-"Mikroba aktif akan mengembara ketika tidak ada hal menarik yang terjadi.\n"
-"Mikroba sesil akan menjadi stasioner dan menunggu perubahan lingkungan sebelum bertindak."
-
-#, fuzzy
-msgid "CLIMATE_STABILITY_STABLE"
-msgstr ""
-"Mikroba aktif akan mengembara ketika tidak ada hal menarik yang terjadi.\n"
-"Mikroba sesil akan menjadi stasioner dan menunggu perubahan lingkungan sebelum bertindak."
-
-#, fuzzy
-msgid "CLIMATE_STABILITY_UNSTABLE"
-msgstr ""
-"Mikroba aktif akan mengembara ketika tidak ada hal menarik yang terjadi.\n"
-"Mikroba sesil akan menjadi stasioner dan menunggu perubahan lingkungan sebelum bertindak."
 
 msgid "CLOSE"
 msgstr "Tutup"
@@ -2566,33 +2532,11 @@ msgstr "Tekan tombol undo di editor untuk membatalkan kesalahan"
 msgid "GENERAL_LOADING_TIP_7"
 msgstr "Tekan tombol undo di editor untuk membatalkan kesalahan"
 
-#, fuzzy
-msgid "GENERATE_BUTTON"
-msgstr "Generasi"
-
 msgid "GENERATIONS"
 msgstr "Generasi"
 
 msgid "GENERATION_COLON"
 msgstr "Generasi:"
-
-msgid "GEOLOGICAL_ACTIVITY"
-msgstr ""
-
-msgid "GEOLOGICAL_ACTIVITY_ACTIVE"
-msgstr ""
-
-msgid "GEOLOGICAL_ACTIVITY_AVERAGE"
-msgstr ""
-
-msgid "GEOLOGICAL_ACTIVITY_DORMANT"
-msgstr ""
-
-#, fuzzy
-msgid "GEOLOGICAL_ACTIVITY_EXPLANATION"
-msgstr ""
-"Mikroba aktif akan mengembara ketika tidak ada hal menarik yang terjadi.\n"
-"Mikroba sesil akan menjadi stasioner dan menunggu perubahan lingkungan sebelum bertindak."
 
 #, fuzzy
 msgid "GITHUB_TOOLTIP"
@@ -5058,12 +5002,12 @@ msgid "PLANET"
 msgstr ""
 
 #, fuzzy
-msgid "PLANET_CUSTOMIZER"
-msgstr "Pada Kursor:"
-
-#, fuzzy
 msgid "PLANET_DETAILS_STRING"
 msgstr "Buka Folder Catatan"
+
+#, fuzzy
+msgid "PLANET_GENERATION_TEASER"
+msgstr "Pilih generasi"
 
 msgid "PLANET_RANDOM_SEED"
 msgstr ""
@@ -5268,10 +5212,6 @@ msgstr "Ulang tindakan terakhir"
 
 msgid "REFRESH"
 msgstr "Segarkan"
-
-#, fuzzy
-msgid "REGENERATE_BUTTON"
-msgstr "Organel"
 
 msgid "RENDER_SCALE"
 msgstr ""
@@ -9187,25 +9127,6 @@ msgid "WORLD_RELATIVE_MOVEMENT"
 msgstr "Pergerakan Dasar"
 
 #, fuzzy
-msgid "WORLD_SEA_LEVEL"
-msgstr "{0}-{1}m di bawah permukaan laut"
-
-#, fuzzy
-msgid "WORLD_SEA_LEVEL_DEEP"
-msgstr "{0}-{1}m di bawah permukaan laut"
-
-#, fuzzy
-msgid "WORLD_SEA_LEVEL_EXPLANATION"
-msgstr "{0} populasi berubah {1} karena: {2}"
-
-#, fuzzy
-msgid "WORLD_SEA_LEVEL_MODERATE"
-msgstr "Pergerakan Dasar"
-
-msgid "WORLD_SEA_LEVEL_SHALLOW"
-msgstr ""
-
-#, fuzzy
 msgid "WORLD_SIZE"
 msgstr "Pengembang Masa Ini"
 
@@ -9226,26 +9147,6 @@ msgstr ""
 #, fuzzy
 msgid "WORLD_SIZE_TOOLTIP"
 msgstr "Tambah keybind baru"
-
-#, fuzzy
-msgid "WORLD_TEMPERATURE"
-msgstr "Suhu"
-
-#, fuzzy
-msgid "WORLD_TEMPERATURE_COLD"
-msgstr "Suhu"
-
-#, fuzzy
-msgid "WORLD_TEMPERATURE_EXPLANATION"
-msgstr "{0} populasi berubah {1} karena: {2}"
-
-#, fuzzy
-msgid "WORLD_TEMPERATURE_TEMPERATE"
-msgstr "Suhu"
-
-#, fuzzy
-msgid "WORLD_TEMPERATURE_WARM"
-msgstr "Suhu"
 
 #, fuzzy
 msgid "WORST_PATCH_COLON"
@@ -9288,6 +9189,88 @@ msgstr "Perbesar"
 
 msgid "ZOOM_OUT"
 msgstr "Perkecil"
+
+#, fuzzy
+#~ msgid "AUTO_EVO_TOOL_BUTTON"
+#~ msgstr "Resolusi:"
+
+#, fuzzy
+#~ msgid "CLIMATE_INSTABILITY_EXPLANATION"
+#~ msgstr ""
+#~ "Mikroba aktif akan mengembara ketika tidak ada hal menarik yang terjadi.\n"
+#~ "Mikroba sesil akan menjadi stasioner dan menunggu perubahan lingkungan sebelum bertindak."
+
+#, fuzzy
+#~ msgid "CLIMATE_STABILITY_AVERAGE"
+#~ msgstr ""
+#~ "Mikroba aktif akan mengembara ketika tidak ada hal menarik yang terjadi.\n"
+#~ "Mikroba sesil akan menjadi stasioner dan menunggu perubahan lingkungan sebelum bertindak."
+
+#, fuzzy
+#~ msgid "CLIMATE_STABILITY_STABLE"
+#~ msgstr ""
+#~ "Mikroba aktif akan mengembara ketika tidak ada hal menarik yang terjadi.\n"
+#~ "Mikroba sesil akan menjadi stasioner dan menunggu perubahan lingkungan sebelum bertindak."
+
+#, fuzzy
+#~ msgid "CLIMATE_STABILITY_UNSTABLE"
+#~ msgstr ""
+#~ "Mikroba aktif akan mengembara ketika tidak ada hal menarik yang terjadi.\n"
+#~ "Mikroba sesil akan menjadi stasioner dan menunggu perubahan lingkungan sebelum bertindak."
+
+#, fuzzy
+#~ msgid "GENERATE_BUTTON"
+#~ msgstr "Generasi"
+
+#, fuzzy
+#~ msgid "GEOLOGICAL_ACTIVITY_EXPLANATION"
+#~ msgstr ""
+#~ "Mikroba aktif akan mengembara ketika tidak ada hal menarik yang terjadi.\n"
+#~ "Mikroba sesil akan menjadi stasioner dan menunggu perubahan lingkungan sebelum bertindak."
+
+#, fuzzy
+#~ msgid "PLANET_CUSTOMIZER"
+#~ msgstr "Pada Kursor:"
+
+#, fuzzy
+#~ msgid "REGENERATE_BUTTON"
+#~ msgstr "Organel"
+
+#, fuzzy
+#~ msgid "WORLD_SEA_LEVEL"
+#~ msgstr "{0}-{1}m di bawah permukaan laut"
+
+#, fuzzy
+#~ msgid "WORLD_SEA_LEVEL_DEEP"
+#~ msgstr "{0}-{1}m di bawah permukaan laut"
+
+#, fuzzy
+#~ msgid "WORLD_SEA_LEVEL_EXPLANATION"
+#~ msgstr "{0} populasi berubah {1} karena: {2}"
+
+#, fuzzy
+#~ msgid "WORLD_SEA_LEVEL_MODERATE"
+#~ msgstr "Pergerakan Dasar"
+
+#, fuzzy
+#~ msgid "WORLD_TEMPERATURE"
+#~ msgstr "Suhu"
+
+#, fuzzy
+#~ msgid "WORLD_TEMPERATURE_COLD"
+#~ msgstr "Suhu"
+
+#, fuzzy
+#~ msgid "WORLD_TEMPERATURE_EXPLANATION"
+#~ msgstr "{0} populasi berubah {1} karena: {2}"
+
+#, fuzzy
+#~ msgid "WORLD_TEMPERATURE_TEMPERATE"
+#~ msgstr "Suhu"
+
+#, fuzzy
+#~ msgid "WORLD_TEMPERATURE_WARM"
+#~ msgstr "Suhu"
 
 #, fuzzy
 #~ msgid "DISK_CACHE_TOOLTIP"

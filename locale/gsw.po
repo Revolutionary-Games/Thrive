@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Thrive VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2025-06-14 23:30+0200\n"
+"POT-Creation-Date: 2025-06-14 23:34+0200\n"
 "PO-Revision-Date: 2025-05-12 22:52+0000\n"
 "Last-Translator: Argakyan <andrinmueller@hotmail.ch>\n"
 "Language-Team: Alemannic <https://translate.revolutionarygamesstudio.com/projects/thrive/thrive-game/gsw/>\n"
@@ -382,10 +382,6 @@ msgstr "Laufstatus:"
 msgid "AUTO_EVO_STATUS_COLON"
 msgstr "Auto-Evo-Status:"
 
-#, fuzzy
-msgid "AUTO_EVO_TOOL_BUTTON"
-msgstr "automatisch ({0}x{1})"
-
 msgid "AUTO_MOVE_FORWARDS"
 msgstr "Automatisch vorwärts bewege"
 
@@ -415,9 +411,6 @@ msgstr "Schrägstrich"
 
 msgid "BACKSPACE"
 msgstr "Backspace"
-
-msgid "BACK_TO_SETTINGS"
-msgstr ""
 
 msgid "BACTERIAL_THERMOSYNTHESIS"
 msgstr "Bakterielli Thermosynthese"
@@ -811,33 +804,6 @@ msgstr "Cache leere"
 
 msgid "CLICK_TO_SELECT"
 msgstr "Uuswähle"
-
-msgid "CLIMATE_INSTABILITY"
-msgstr ""
-
-#, fuzzy
-msgid "CLIMATE_INSTABILITY_EXPLANATION"
-msgstr ""
-"Aktivi Mikrobe tummlet umme, wenn nüüt interessantes passiert.\n"
-"Sessili Mikrobe sind stationär und wartet druff, dass sich ihri Umgebig änderet, bevor sie handlet."
-
-#, fuzzy
-msgid "CLIMATE_STABILITY_AVERAGE"
-msgstr ""
-"Aktivi Mikrobe tummlet umme, wenn nüüt interessantes passiert.\n"
-"Sessili Mikrobe sind stationär und wartet druff, dass sich ihri Umgebig änderet, bevor sie handlet."
-
-#, fuzzy
-msgid "CLIMATE_STABILITY_STABLE"
-msgstr ""
-"Aktivi Mikrobe tummlet umme, wenn nüüt interessantes passiert.\n"
-"Sessili Mikrobe sind stationär und wartet druff, dass sich ihri Umgebig änderet, bevor sie handlet."
-
-#, fuzzy
-msgid "CLIMATE_STABILITY_UNSTABLE"
-msgstr ""
-"Aktivi Mikrobe tummlet umme, wenn nüüt interessantes passiert.\n"
-"Sessili Mikrobe sind stationär und wartet druff, dass sich ihri Umgebig änderet, bevor sie handlet."
 
 msgid "CLOSE"
 msgstr "Schlüüse"
@@ -2391,33 +2357,11 @@ msgstr "Nöd vergesse: D'Aazeig rechts obbe zeigt dir, was unter em Cursor isch.
 msgid "GENERAL_LOADING_TIP_7"
 msgstr "Wenn dini Bevölkerig auf Null keit, stirbsch du uus."
 
-#, fuzzy
-msgid "GENERATE_BUTTON"
-msgstr "Generatione"
-
 msgid "GENERATIONS"
 msgstr "Generatione"
 
 msgid "GENERATION_COLON"
 msgstr "Generation:"
-
-msgid "GEOLOGICAL_ACTIVITY"
-msgstr ""
-
-msgid "GEOLOGICAL_ACTIVITY_ACTIVE"
-msgstr ""
-
-msgid "GEOLOGICAL_ACTIVITY_AVERAGE"
-msgstr ""
-
-msgid "GEOLOGICAL_ACTIVITY_DORMANT"
-msgstr ""
-
-#, fuzzy
-msgid "GEOLOGICAL_ACTIVITY_EXPLANATION"
-msgstr ""
-"Aktivi Mikrobe tummlet umme, wenn nüüt interessantes passiert.\n"
-"Sessili Mikrobe sind stationär und wartet druff, dass sich ihri Umgebig änderet, bevor sie handlet."
 
 msgid "GITHUB_TOOLTIP"
 msgstr "Bsuech oises GitHub Archiv"
@@ -4503,12 +4447,12 @@ msgstr ""
 msgid "PLANET"
 msgstr ""
 
-#, fuzzy
-msgid "PLANET_CUSTOMIZER"
-msgstr "Am Zeiger:"
-
 msgid "PLANET_DETAILS_STRING"
 msgstr ""
+
+#, fuzzy
+msgid "PLANET_GENERATION_TEASER"
+msgstr "Generatione"
 
 msgid "PLANET_RANDOM_SEED"
 msgstr ""
@@ -4698,10 +4642,6 @@ msgstr ""
 
 msgid "REFRESH"
 msgstr ""
-
-#, fuzzy
-msgid "REGENERATE_BUTTON"
-msgstr "Zruggentwickle"
 
 msgid "RENDER_SCALE"
 msgstr ""
@@ -7798,24 +7738,6 @@ msgstr ""
 msgid "WORLD_RELATIVE_MOVEMENT"
 msgstr ""
 
-#, fuzzy
-msgid "WORLD_SEA_LEVEL"
-msgstr "{0}-{1}m unter em Meeresspiegel"
-
-#, fuzzy
-msgid "WORLD_SEA_LEVEL_DEEP"
-msgstr "{0}-{1}m unter em Meeresspiegel"
-
-#, fuzzy
-msgid "WORLD_SEA_LEVEL_EXPLANATION"
-msgstr "(veränderet d'Nummer vo Gebiet ide Welt)"
-
-msgid "WORLD_SEA_LEVEL_MODERATE"
-msgstr ""
-
-msgid "WORLD_SEA_LEVEL_SHALLOW"
-msgstr ""
-
 msgid "WORLD_SIZE"
 msgstr ""
 
@@ -7833,22 +7755,6 @@ msgstr ""
 
 msgid "WORLD_SIZE_TOOLTIP"
 msgstr "E grossi Welt z'ha chann d'Simulation verlangsame und isch nöd empfohle für langsameri PC."
-
-msgid "WORLD_TEMPERATURE"
-msgstr ""
-
-msgid "WORLD_TEMPERATURE_COLD"
-msgstr ""
-
-#, fuzzy
-msgid "WORLD_TEMPERATURE_EXPLANATION"
-msgstr "(veränderet d'Nummer vo Gebiet ide Welt)"
-
-msgid "WORLD_TEMPERATURE_TEMPERATE"
-msgstr ""
-
-msgid "WORLD_TEMPERATURE_WARM"
-msgstr ""
 
 msgid "WORST_PATCH_COLON"
 msgstr ""
@@ -7885,6 +7791,68 @@ msgstr ""
 
 msgid "ZOOM_OUT"
 msgstr ""
+
+#, fuzzy
+#~ msgid "AUTO_EVO_TOOL_BUTTON"
+#~ msgstr "automatisch ({0}x{1})"
+
+#, fuzzy
+#~ msgid "CLIMATE_INSTABILITY_EXPLANATION"
+#~ msgstr ""
+#~ "Aktivi Mikrobe tummlet umme, wenn nüüt interessantes passiert.\n"
+#~ "Sessili Mikrobe sind stationär und wartet druff, dass sich ihri Umgebig änderet, bevor sie handlet."
+
+#, fuzzy
+#~ msgid "CLIMATE_STABILITY_AVERAGE"
+#~ msgstr ""
+#~ "Aktivi Mikrobe tummlet umme, wenn nüüt interessantes passiert.\n"
+#~ "Sessili Mikrobe sind stationär und wartet druff, dass sich ihri Umgebig änderet, bevor sie handlet."
+
+#, fuzzy
+#~ msgid "CLIMATE_STABILITY_STABLE"
+#~ msgstr ""
+#~ "Aktivi Mikrobe tummlet umme, wenn nüüt interessantes passiert.\n"
+#~ "Sessili Mikrobe sind stationär und wartet druff, dass sich ihri Umgebig änderet, bevor sie handlet."
+
+#, fuzzy
+#~ msgid "CLIMATE_STABILITY_UNSTABLE"
+#~ msgstr ""
+#~ "Aktivi Mikrobe tummlet umme, wenn nüüt interessantes passiert.\n"
+#~ "Sessili Mikrobe sind stationär und wartet druff, dass sich ihri Umgebig änderet, bevor sie handlet."
+
+#, fuzzy
+#~ msgid "GENERATE_BUTTON"
+#~ msgstr "Generatione"
+
+#, fuzzy
+#~ msgid "GEOLOGICAL_ACTIVITY_EXPLANATION"
+#~ msgstr ""
+#~ "Aktivi Mikrobe tummlet umme, wenn nüüt interessantes passiert.\n"
+#~ "Sessili Mikrobe sind stationär und wartet druff, dass sich ihri Umgebig änderet, bevor sie handlet."
+
+#, fuzzy
+#~ msgid "PLANET_CUSTOMIZER"
+#~ msgstr "Am Zeiger:"
+
+#, fuzzy
+#~ msgid "REGENERATE_BUTTON"
+#~ msgstr "Zruggentwickle"
+
+#, fuzzy
+#~ msgid "WORLD_SEA_LEVEL"
+#~ msgstr "{0}-{1}m unter em Meeresspiegel"
+
+#, fuzzy
+#~ msgid "WORLD_SEA_LEVEL_DEEP"
+#~ msgstr "{0}-{1}m unter em Meeresspiegel"
+
+#, fuzzy
+#~ msgid "WORLD_SEA_LEVEL_EXPLANATION"
+#~ msgstr "(veränderet d'Nummer vo Gebiet ide Welt)"
+
+#, fuzzy
+#~ msgid "WORLD_TEMPERATURE_EXPLANATION"
+#~ msgstr "(veränderet d'Nummer vo Gebiet ide Welt)"
 
 #~ msgid "DISK_CACHE_TOOLTIP"
 #~ msgstr ""
