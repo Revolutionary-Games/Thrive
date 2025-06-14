@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using Components;
@@ -763,6 +763,9 @@ public partial class MicrobeStage : CreatureStageBase<Entity, MicrobeWorldSimula
 
     public override void OnReturnFromEditor()
     {
+        // Delete the old player before the editor to reset the scene.
+        Player.Dispose();
+
         UpdatePatchSettings();
 
         base.OnReturnFromEditor();
