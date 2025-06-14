@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2025-05-28 14:54+0300\n"
+"POT-Creation-Date: 2025-06-14 23:34+0200\n"
 "PO-Revision-Date: 2025-03-20 20:10+0000\n"
 "Last-Translator: Anonymous <noreply@weblate.org>\n"
 "Language-Team: Croatian <https://translate.revolutionarygamesstudio.com/projects/thrive/thrive-game/hr/>\n"
@@ -1552,10 +1552,6 @@ msgstr ""
 
 msgid "DISCORD_TOOLTIP"
 msgstr ""
-
-#, fuzzy
-msgid "DISK_CACHE_TOOLTIP"
-msgstr "Kreni u fazu buđenja. Moguće kada imaš dovoljno moždane snage (vrsta tkiva s aksionima)"
 
 msgid "DISMISSED_POPUPS_COLON"
 msgstr ""
@@ -3136,9 +3132,6 @@ msgstr ""
 msgid "LOW_QUALITY_BACKGROUND_BLUR"
 msgstr ""
 
-msgid "LOW_QUALITY_BACKGROUND_BLUR_TOOLTIP"
-msgstr ""
-
 msgid "LUCIFERASE"
 msgstr ""
 
@@ -3949,9 +3942,6 @@ msgid "NAME_LABEL_FLEET"
 msgstr ""
 
 msgid "NAME_LABEL_STRUCTURE_UNFINISHED"
-msgstr ""
-
-msgid "NATIVE_THREAD_ADVICE_TOOLTIP"
 msgstr ""
 
 msgid "NEGATIVE_ATP_BALANCE"
@@ -5126,18 +5116,11 @@ msgstr ""
 msgid "SHOW_NEW_PATCH_NOTES"
 msgstr ""
 
-msgid "SHOW_NEW_PATCH_NOTES_TOOLTIP"
-msgstr ""
-
 msgid "SHOW_TUTORIALS_IN_NEW_CURRENT_OPTION"
 msgstr ""
 
 msgid "SHOW_TUTORIALS_IN_NEW_GAMES_OPTION"
 msgstr ""
-
-#, fuzzy
-msgid "SHOW_TUTORIALS_OPTION_TOOLTIP"
-msgstr "Kreni u fazu buđenja. Moguće kada imaš dovoljno moždane snage (vrsta tkiva s aksionima)"
 
 msgid "SHOW_UNSAVED_PROGRESS_WARNING"
 msgstr ""
@@ -5187,6 +5170,10 @@ msgstr ""
 
 msgid "SILICA_MEMBRANE_DESCRIPTION"
 msgstr ""
+
+#, fuzzy
+msgid "SIMULATION"
+msgstr "brzina mutacije UI"
 
 msgid "SIXTEEN_TIMES"
 msgstr ""
@@ -6369,6 +6356,9 @@ msgid "UPSCALE_FSR_1"
 msgstr ""
 
 msgid "UPSCALE_FSR_22"
+msgstr ""
+
+msgid "UPSCALE_METHOD"
 msgstr ""
 
 msgid "UPSCALE_SHARPENING_FSR"
@@ -8275,6 +8265,76 @@ msgstr ""
 
 msgid "ZOOM_OUT"
 msgstr "Povećaj"
+
+#, fuzzy
+#~ msgid "CLIMATE_INSTABILITY_EXPLANATION"
+#~ msgstr ""
+#~ "Aktivni mikrobi će se kretati kada se ništa zanimljivo ne događa.\n"
+#~ "Sesilni mikrobi će mirovati i čekati da se okoliš promijeni prije nego što nešto naprave."
+
+#, fuzzy
+#~ msgid "CLIMATE_STABILITY_AVERAGE"
+#~ msgstr ""
+#~ "Aktivni mikrobi će se kretati kada se ništa zanimljivo ne događa.\n"
+#~ "Sesilni mikrobi će mirovati i čekati da se okoliš promijeni prije nego što nešto naprave."
+
+#, fuzzy
+#~ msgid "CLIMATE_STABILITY_STABLE"
+#~ msgstr ""
+#~ "Aktivni mikrobi će se kretati kada se ništa zanimljivo ne događa.\n"
+#~ "Sesilni mikrobi će mirovati i čekati da se okoliš promijeni prije nego što nešto naprave."
+
+#, fuzzy
+#~ msgid "CLIMATE_STABILITY_UNSTABLE"
+#~ msgstr ""
+#~ "Aktivni mikrobi će se kretati kada se ništa zanimljivo ne događa.\n"
+#~ "Sesilni mikrobi će mirovati i čekati da se okoliš promijeni prije nego što nešto naprave."
+
+#, fuzzy
+#~ msgid "GENERATE_BUTTON"
+#~ msgstr "Višestanični stadij"
+
+#, fuzzy
+#~ msgid "GEOLOGICAL_ACTIVITY_EXPLANATION"
+#~ msgstr ""
+#~ "Aktivni mikrobi će se kretati kada se ništa zanimljivo ne događa.\n"
+#~ "Sesilni mikrobi će mirovati i čekati da se okoliš promijeni prije nego što nešto naprave."
+
+#, fuzzy
+#~ msgid "REGENERATE_BUTTON"
+#~ msgstr "Višestanični stadij"
+
+#, fuzzy
+#~ msgid "WORLD_SEA_LEVEL"
+#~ msgstr "\"{0}\" - {1}"
+
+#, fuzzy
+#~ msgid "WORLD_SEA_LEVEL_EXPLANATION"
+#~ msgstr ""
+#~ "Agresivni mikrobi će loviti plijen na većim udaljenostima\n"
+#~ "i veća je šansa da će se braniti kada su napadnuti.\n"
+#~ "Mirni mikrobi neće se baviti s drugima na većim udaljenostima\n"
+#~ "i manja je šansa da će koristiti toksine protiv predatora."
+
+#, fuzzy
+#~ msgid "WORLD_TEMPERATURE_EXPLANATION"
+#~ msgstr ""
+#~ "Agresivni mikrobi će loviti plijen na većim udaljenostima\n"
+#~ "i veća je šansa da će se braniti kada su napadnuti.\n"
+#~ "Mirni mikrobi neće se baviti s drugima na većim udaljenostima\n"
+#~ "i manja je šansa da će koristiti toksine protiv predatora."
+
+#, fuzzy
+#~ msgid "WORLD_TEMPERATURE_TEMPERATE"
+#~ msgstr "Kreni u fazu buđenja. Moguće kada imaš dovoljno moždane snage (vrsta tkiva s aksionima)"
+
+#, fuzzy
+#~ msgid "DISK_CACHE_TOOLTIP"
+#~ msgstr "Kreni u fazu buđenja. Moguće kada imaš dovoljno moždane snage (vrsta tkiva s aksionima)"
+
+#, fuzzy
+#~ msgid "SHOW_TUTORIALS_OPTION_TOOLTIP"
+#~ msgstr "Kreni u fazu buđenja. Moguće kada imaš dovoljno moždane snage (vrsta tkiva s aksionima)"
 
 #, fuzzy
 #~ msgid "MICROBE_STAGE_DAY_NIGHT_TEXT"

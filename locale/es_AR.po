@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2025-05-28 14:54+0300\n"
+"POT-Creation-Date: 2025-06-14 23:34+0200\n"
 "PO-Revision-Date: 2025-04-04 10:42+0000\n"
 "Last-Translator: Anonymous <noreply@weblate.org>\n"
 "Language-Team: Spanish (Argentina) <https://translate.revolutionarygamesstudio.com/projects/thrive/thrive-game/es_AR/>\n"
@@ -1608,10 +1608,6 @@ msgstr ""
 
 msgid "DISCORD_TOOLTIP"
 msgstr ""
-
-#, fuzzy
-msgid "DISK_CACHE_TOOLTIP"
-msgstr "Desvincular a todos"
 
 #, fuzzy
 msgid "DISMISSED_POPUPS_COLON"
@@ -3317,10 +3313,6 @@ msgstr "población:"
 msgid "LOW_QUALITY_BACKGROUND_BLUR"
 msgstr "Borrosidad del fondo:"
 
-#, fuzzy
-msgid "LOW_QUALITY_BACKGROUND_BLUR_TOOLTIP"
-msgstr "Borrosidad del fondo:"
-
 msgid "LUCIFERASE"
 msgstr ""
 
@@ -4163,10 +4155,6 @@ msgstr ""
 msgid "NAME_LABEL_STRUCTURE_UNFINISHED"
 msgstr ""
 
-#, fuzzy
-msgid "NATIVE_THREAD_ADVICE_TOOLTIP"
-msgstr "Hilos actuales:"
-
 msgid "NEGATIVE_ATP_BALANCE"
 msgstr ""
 
@@ -4743,8 +4731,9 @@ msgstr ""
 msgid "PLANET_DETAILS_STRING"
 msgstr ""
 
+#, fuzzy
 msgid "PLANET_GENERATION_TEASER"
-msgstr ""
+msgstr "población:"
 
 msgid "PLANET_RANDOM_SEED"
 msgstr ""
@@ -5396,19 +5385,11 @@ msgstr ""
 msgid "SHOW_NEW_PATCH_NOTES"
 msgstr ""
 
-#, fuzzy
-msgid "SHOW_NEW_PATCH_NOTES_TOOLTIP"
-msgstr "\" {0} \" - {1}"
-
 msgid "SHOW_TUTORIALS_IN_NEW_CURRENT_OPTION"
 msgstr ""
 
 msgid "SHOW_TUTORIALS_IN_NEW_GAMES_OPTION"
 msgstr ""
-
-#, fuzzy
-msgid "SHOW_TUTORIALS_OPTION_TOOLTIP"
-msgstr "\" {0} \" - {1}"
 
 msgid "SHOW_UNSAVED_PROGRESS_WARNING"
 msgstr ""
@@ -5471,6 +5452,10 @@ msgstr "Silicio"
 
 msgid "SILICA_MEMBRANE_DESCRIPTION"
 msgstr ""
+
+#, fuzzy
+msgid "SIMULATION"
+msgstr "Resolución:"
 
 msgid "SIXTEEN_TIMES"
 msgstr "x16"
@@ -6683,6 +6668,9 @@ msgid "UPSCALE_FSR_1"
 msgstr ""
 
 msgid "UPSCALE_FSR_22"
+msgstr ""
+
+msgid "UPSCALE_METHOD"
 msgstr ""
 
 msgid "UPSCALE_SHARPENING_FSR"
@@ -8958,6 +8946,97 @@ msgstr "Acercar la pantalla"
 
 msgid "ZOOM_OUT"
 msgstr "Alejar la pantalla"
+
+#, fuzzy
+#~ msgid "AUTO_EVO_TOOL_BUTTON"
+#~ msgstr "Auto ({0}x{1})"
+
+#, fuzzy
+#~ msgid "CLIMATE_INSTABILITY_EXPLANATION"
+#~ msgstr ""
+#~ "Los microbios activos van deambular cuando no pase nada interesante.\n"
+#~ "Los microbios tranquilos van a estar quietos y esperando a que algo cambie antes de actuar."
+
+#, fuzzy
+#~ msgid "CLIMATE_STABILITY_AVERAGE"
+#~ msgstr ""
+#~ "Los microbios activos van deambular cuando no pase nada interesante.\n"
+#~ "Los microbios tranquilos van a estar quietos y esperando a que algo cambie antes de actuar."
+
+#, fuzzy
+#~ msgid "CLIMATE_STABILITY_STABLE"
+#~ msgstr ""
+#~ "Los microbios activos van deambular cuando no pase nada interesante.\n"
+#~ "Los microbios tranquilos van a estar quietos y esperando a que algo cambie antes de actuar."
+
+#, fuzzy
+#~ msgid "CLIMATE_STABILITY_UNSTABLE"
+#~ msgstr ""
+#~ "Los microbios activos van deambular cuando no pase nada interesante.\n"
+#~ "Los microbios tranquilos van a estar quietos y esperando a que algo cambie antes de actuar."
+
+#, fuzzy
+#~ msgid "GENERATE_BUTTON"
+#~ msgstr "Pili de depredador"
+
+#, fuzzy
+#~ msgid "GEOLOGICAL_ACTIVITY_EXPLANATION"
+#~ msgstr ""
+#~ "Los microbios activos van deambular cuando no pase nada interesante.\n"
+#~ "Los microbios tranquilos van a estar quietos y esperando a que algo cambie antes de actuar."
+
+#, fuzzy
+#~ msgid "PLANET_CUSTOMIZER"
+#~ msgstr "En el cursor:"
+
+#, fuzzy
+#~ msgid "REGENERATE_BUTTON"
+#~ msgstr "Pili de depredador"
+
+#, fuzzy
+#~ msgid "WORLD_SEA_LEVEL"
+#~ msgstr "{0}-{1}Bajo el nivel del mar"
+
+#, fuzzy
+#~ msgid "WORLD_SEA_LEVEL_DEEP"
+#~ msgstr "{0}-{1}Bajo el nivel del mar"
+
+#, fuzzy
+#~ msgid "WORLD_SEA_LEVEL_EXPLANATION"
+#~ msgstr "Normal"
+
+#, fuzzy
+#~ msgid "WORLD_TEMPERATURE_EXPLANATION"
+#~ msgstr "Normal"
+
+#, fuzzy
+#~ msgid "WORLD_TEMPERATURE_TEMPERATE"
+#~ msgstr ""
+#~ "Esta sección muestra el balance total de ATP (energía) de la célula actual.\n"
+#~ "Para poder sobrevivir, el balance tiene que ser positivo. Para las célular sésiles se puede considerar el balance positivo con el movimiento excluído.\n"
+#~ "El menú desplegable de ahí abajo lo podés usar para chequear que pasaría si la célula no tuviese ningún recurso disponible para poder crear ATP.\n"
+#~ "Por ejemplo, algunas células solo pueden mantener un balance de ATP positivo cuando tienen múltiples tipos de componentes de los que pueden crear ATP al mísmo tiempo.\n"
+#~ "Ese tipo de células son más difíciles de jugar porque requieren que almacenes varios tipos de componentes al mísmo tiempo para poder sobrevivir."
+
+#, fuzzy
+#~ msgid "DISK_CACHE_TOOLTIP"
+#~ msgstr "Desvincular a todos"
+
+#, fuzzy
+#~ msgid "LOW_QUALITY_BACKGROUND_BLUR_TOOLTIP"
+#~ msgstr "Borrosidad del fondo:"
+
+#, fuzzy
+#~ msgid "NATIVE_THREAD_ADVICE_TOOLTIP"
+#~ msgstr "Hilos actuales:"
+
+#, fuzzy
+#~ msgid "SHOW_NEW_PATCH_NOTES_TOOLTIP"
+#~ msgstr "\" {0} \" - {1}"
+
+#, fuzzy
+#~ msgid "SHOW_TUTORIALS_OPTION_TOOLTIP"
+#~ msgstr "\" {0} \" - {1}"
 
 #, fuzzy
 #~ msgid "MICROBE_STAGE_DAY_NIGHT_TEXT"

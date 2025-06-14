@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2025-05-28 14:54+0300\n"
+"POT-Creation-Date: 2025-06-14 23:34+0200\n"
 "PO-Revision-Date: 2025-05-27 06:43+0000\n"
 "Last-Translator: Anonymous <noreply@weblate.org>\n"
 "Language-Team: Russian <https://translate.revolutionarygamesstudio.com/projects/thrive/thrive-game/ru/>\n"
@@ -1636,11 +1636,6 @@ msgstr ""
 
 msgid "DISCORD_TOOLTIP"
 msgstr "Присоединяйтесь к нашему Discord серверу"
-
-msgid "DISK_CACHE_TOOLTIP"
-msgstr ""
-"Включает возможность записывать на диск сложную для генерации информацию, увеличивая производительность\n"
-"Если выключено, то используется лишь Кэш ОЗУ (RAM)"
 
 msgid "DISMISSED_POPUPS_COLON"
 msgstr "Отклоненные всплывающие окна:"
@@ -3271,9 +3266,6 @@ msgstr ""
 msgid "LOW_QUALITY_BACKGROUND_BLUR"
 msgstr "Пониженное разрешение размытия фона"
 
-msgid "LOW_QUALITY_BACKGROUND_BLUR_TOOLTIP"
-msgstr "Понижает разрешение, используемое размытием фона, улучшая производительность."
-
 msgid "LUCIFERASE"
 msgstr "Люцифераза"
 
@@ -4080,12 +4072,6 @@ msgstr "{0} (ЭНРГ:{1})"
 
 msgid "NAME_LABEL_STRUCTURE_UNFINISHED"
 msgstr "{0}(Н)"
-
-msgid "NATIVE_THREAD_ADVICE_TOOLTIP"
-msgstr ""
-"Собственные потоки используются для задач, отличных от управляемых потоков.\n"
-"Большее количество потоков на процессорах с большим количеством ядер обычно увеличивает производительность до предела. \n"
-"Слишком большое количество потоков начнет снижать производительность."
 
 msgid "NEGATIVE_ATP_BALANCE"
 msgstr "Отрицательный баланс АТФ"
@@ -5297,18 +5283,11 @@ msgstr "Показать координаты"
 msgid "SHOW_NEW_PATCH_NOTES"
 msgstr "Показывать новые заметки релизов автоматически"
 
-msgid "SHOW_NEW_PATCH_NOTES_TOOLTIP"
-msgstr "Показывать заметки обновлений новых релизов Thrive автоматически в главном меню"
-
 msgid "SHOW_TUTORIALS_IN_NEW_CURRENT_OPTION"
 msgstr "Показывать руководства (в текущей игре)"
 
 msgid "SHOW_TUTORIALS_IN_NEW_GAMES_OPTION"
 msgstr "Показывать руководства (в новых играх)"
-
-#, fuzzy
-msgid "SHOW_TUTORIALS_OPTION_TOOLTIP"
-msgstr "Экспортировать всю информацию мира в csv формат"
 
 msgid "SHOW_UNSAVED_PROGRESS_WARNING"
 msgstr "Показать предупреждение о несохраненном прогрессе"
@@ -5357,6 +5336,10 @@ msgstr "Кремнезём"
 
 msgid "SILICA_MEMBRANE_DESCRIPTION"
 msgstr "Эта мембрана имеет прочную стенку из кремнезема. Она может хорошо противостоять общим повреждениям и очень устойчива к физическим повреждениям. Она также требует меньше энергии для поддержания своей формы. Но клетка не может быстро поглощать ресурсы и двигается медленнее."
+
+#, fuzzy
+msgid "SIMULATION"
+msgstr "Осморегуляция"
 
 msgid "SIXTEEN_TIMES"
 msgstr "16x"
@@ -6633,6 +6616,10 @@ msgstr "FSR 1 масштабирование"
 
 msgid "UPSCALE_FSR_22"
 msgstr "FSR 2.2 масштабирование"
+
+#, fuzzy
+msgid "UPSCALE_METHOD"
+msgstr "Билинейное масштабирование"
 
 msgid "UPSCALE_SHARPENING_FSR"
 msgstr "FSR резкость"
@@ -8989,6 +8976,119 @@ msgstr "Увеличить масштаб"
 
 msgid "ZOOM_OUT"
 msgstr "Уменьшить масштаб"
+
+#, fuzzy
+#~ msgid "AUTO_EVO_TOOL_BUTTON"
+#~ msgstr "Авто ({0}x{1})"
+
+#, fuzzy
+#~ msgid "CLIMATE_INSTABILITY_EXPLANATION"
+#~ msgstr ""
+#~ "Активные микробы будут в движении, пока поблизости ничего не происходит.\n"
+#~ "Оседлые микробы будут стоять и ждать изменения окружения, прежде чем действовать."
+
+#, fuzzy
+#~ msgid "CLIMATE_STABILITY_AVERAGE"
+#~ msgstr ""
+#~ "Активные микробы будут в движении, пока поблизости ничего не происходит.\n"
+#~ "Оседлые микробы будут стоять и ждать изменения окружения, прежде чем действовать."
+
+#, fuzzy
+#~ msgid "CLIMATE_STABILITY_STABLE"
+#~ msgstr ""
+#~ "Активные микробы будут в движении, пока поблизости ничего не происходит.\n"
+#~ "Оседлые микробы будут стоять и ждать изменения окружения, прежде чем действовать."
+
+#, fuzzy
+#~ msgid "CLIMATE_STABILITY_UNSTABLE"
+#~ msgstr ""
+#~ "Активные микробы будут в движении, пока поблизости ничего не происходит.\n"
+#~ "Оседлые микробы будут стоять и ждать изменения окружения, прежде чем действовать."
+
+#, fuzzy
+#~ msgid "GENERATE_BUTTON"
+#~ msgstr "Поколения"
+
+#, fuzzy
+#~ msgid "GEOLOGICAL_ACTIVITY_EXPLANATION"
+#~ msgstr ""
+#~ "Активные микробы будут в движении, пока поблизости ничего не происходит.\n"
+#~ "Оседлые микробы будут стоять и ждать изменения окружения, прежде чем действовать."
+
+#, fuzzy
+#~ msgid "PLANET_CUSTOMIZER"
+#~ msgstr "Вы смотрите на:"
+
+#, fuzzy
+#~ msgid "REGENERATE_BUTTON"
+#~ msgstr "Органеллы"
+
+#, fuzzy
+#~ msgid "WORLD_SEA_LEVEL"
+#~ msgstr "{0}-{1}м ниже уровня моря"
+
+#, fuzzy
+#~ msgid "WORLD_SEA_LEVEL_DEEP"
+#~ msgstr "{0}-{1}м ниже уровня моря"
+
+#, fuzzy
+#~ msgid "WORLD_SEA_LEVEL_EXPLANATION"
+#~ msgstr ""
+#~ "Целенаправленные микробы будут искать добычу на большем растоянии\n"
+#~ "и будут соперничать за куски с большим рвением.\n"
+#~ "Бдительные микробы будут быстрее переключаться на новые цели."
+
+#, fuzzy
+#~ msgid "WORLD_SEA_LEVEL_MODERATE"
+#~ msgstr "Относительно мира"
+
+#, fuzzy
+#~ msgid "WORLD_SEA_LEVEL_SHALLOW"
+#~ msgstr "Маленький"
+
+#, fuzzy
+#~ msgid "WORLD_TEMPERATURE"
+#~ msgstr "Температура"
+
+#, fuzzy
+#~ msgid "WORLD_TEMPERATURE_COLD"
+#~ msgstr "Темп."
+
+#, fuzzy
+#~ msgid "WORLD_TEMPERATURE_EXPLANATION"
+#~ msgstr ""
+#~ "Целенаправленные микробы будут искать добычу на большем растоянии\n"
+#~ "и будут соперничать за куски с большим рвением.\n"
+#~ "Бдительные микробы будут быстрее переключаться на новые цели."
+
+#, fuzzy
+#~ msgid "WORLD_TEMPERATURE_TEMPERATE"
+#~ msgstr "Темп."
+
+#, fuzzy
+#~ msgid "WORLD_TEMPERATURE_WARM"
+#~ msgstr "Темп."
+
+#~ msgid "DISK_CACHE_TOOLTIP"
+#~ msgstr ""
+#~ "Включает возможность записывать на диск сложную для генерации информацию, увеличивая производительность\n"
+#~ "Если выключено, то используется лишь Кэш ОЗУ (RAM)"
+
+#~ msgid "LOW_QUALITY_BACKGROUND_BLUR_TOOLTIP"
+#~ msgstr "Понижает разрешение, используемое размытием фона, улучшая производительность."
+
+#~ msgid "NATIVE_THREAD_ADVICE_TOOLTIP"
+#~ msgstr ""
+#~ "Собственные потоки используются для задач, отличных от управляемых потоков.\n"
+#~ "Большее количество потоков на процессорах с большим количеством ядер обычно увеличивает производительность до предела. \n"
+#~ "Слишком большое количество потоков начнет снижать производительность."
+
+#~ msgid "SHOW_NEW_PATCH_NOTES_TOOLTIP"
+#~ msgstr "Показывать заметки обновлений новых релизов Thrive автоматически в главном меню"
+
+#, fuzzy
+#~ msgid "SHOW_TUTORIALS_OPTION_TOOLTIP"
+#~ msgstr "Экспортировать всю информацию мира в csv формат"
 
 #~ msgid "PASSIVE_REPRODUCTION_PROGRESS_EXPLANATION"
 #~ msgstr "(пассивно получать необходимые для репродукции вещества из окружающей среды)"

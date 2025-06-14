@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2025-05-28 14:54+0300\n"
+"POT-Creation-Date: 2025-06-14 23:34+0200\n"
 "PO-Revision-Date: 2025-04-04 10:42+0000\n"
 "Last-Translator: Anonymous <noreply@weblate.org>\n"
 "Language-Team: Luxembourgish <https://translate.revolutionarygamesstudio.com/projects/thrive/thrive-game/lb/>\n"
@@ -1596,12 +1596,6 @@ msgstr ""
 msgid "DISCORD_TOOLTIP"
 msgstr ""
 
-#, fuzzy
-msgid "DISK_CACHE_TOOLTIP"
-msgstr ""
-"Di hei Sektioun weist di total Balance (Produktioun - Verbrauch) fier all Stoff.\n"
-"Vier zum Beispill eng Planzenzell ze maachen muss d'Glucose Balance wäit positiv sinn."
-
 msgid "DISMISSED_POPUPS_COLON"
 msgstr ""
 
@@ -3181,9 +3175,6 @@ msgstr ""
 msgid "LOW_QUALITY_BACKGROUND_BLUR"
 msgstr ""
 
-msgid "LOW_QUALITY_BACKGROUND_BLUR_TOOLTIP"
-msgstr ""
-
 msgid "LUCIFERASE"
 msgstr ""
 
@@ -4001,9 +3992,6 @@ msgid "NAME_LABEL_FLEET"
 msgstr ""
 
 msgid "NAME_LABEL_STRUCTURE_UNFINISHED"
-msgstr ""
-
-msgid "NATIVE_THREAD_ADVICE_TOOLTIP"
 msgstr ""
 
 msgid "NEGATIVE_ATP_BALANCE"
@@ -5174,18 +5162,11 @@ msgstr ""
 msgid "SHOW_NEW_PATCH_NOTES"
 msgstr ""
 
-msgid "SHOW_NEW_PATCH_NOTES_TOOLTIP"
-msgstr ""
-
 msgid "SHOW_TUTORIALS_IN_NEW_CURRENT_OPTION"
 msgstr "Weis d'Tutorialen (an dësem Spill)"
 
 msgid "SHOW_TUTORIALS_IN_NEW_GAMES_OPTION"
 msgstr "Weis d'Tutorialen (an all neiem Spill)"
-
-#, fuzzy
-msgid "SHOW_TUTORIALS_OPTION_TOOLTIP"
-msgstr "Weis d'Tutorialen (an dësem Spill)"
 
 msgid "SHOW_UNSAVED_PROGRESS_WARNING"
 msgstr ""
@@ -5234,6 +5215,10 @@ msgstr ""
 
 msgid "SILICA_MEMBRANE_DESCRIPTION"
 msgstr "Di hei Membran huet eng staark Mauer aus Silicondioxid, di bessere Schutz géint all Schued, mee speziell géint physesche Schued, bitt. Et kascht et och manner Energie fir d'Form ze behalen, me kann Ressourcen net séier absorbéieren an d'Zell ass méi vill lues."
+
+#, fuzzy
+msgid "SIMULATION"
+msgstr "Aerobeg Ootmung"
 
 msgid "SIXTEEN_TIMES"
 msgstr ""
@@ -6292,6 +6277,9 @@ msgid "UPSCALE_FSR_1"
 msgstr ""
 
 msgid "UPSCALE_FSR_22"
+msgstr ""
+
+msgid "UPSCALE_METHOD"
 msgstr ""
 
 msgid "UPSCALE_SHARPENING_FSR"
@@ -8196,6 +8184,87 @@ msgstr "Eran Zoomen"
 
 msgid "ZOOM_OUT"
 msgstr "Eraus Zoomen"
+
+#, fuzzy
+#~ msgid "AUTO_EVO_TOOL_BUTTON"
+#~ msgstr "Auto ({0}x{1})"
+
+#, fuzzy
+#~ msgid "CLIMATE_INSTABILITY_EXPLANATION"
+#~ msgstr ""
+#~ "Actif Mikrobe wäerten duerch d'Géigend lafe wann näischt Interessantes geschitt.\n"
+#~ "Sesshaft Mikrobe wäerte stationär sinn a waarde bis d'Ëmwelt sech ännert éier se agéieren."
+
+#, fuzzy
+#~ msgid "CLIMATE_STABILITY_AVERAGE"
+#~ msgstr ""
+#~ "Actif Mikrobe wäerten duerch d'Géigend lafe wann näischt Interessantes geschitt.\n"
+#~ "Sesshaft Mikrobe wäerte stationär sinn a waarde bis d'Ëmwelt sech ännert éier se agéieren."
+
+#, fuzzy
+#~ msgid "CLIMATE_STABILITY_STABLE"
+#~ msgstr ""
+#~ "Actif Mikrobe wäerten duerch d'Géigend lafe wann näischt Interessantes geschitt.\n"
+#~ "Sesshaft Mikrobe wäerte stationär sinn a waarde bis d'Ëmwelt sech ännert éier se agéieren."
+
+#, fuzzy
+#~ msgid "CLIMATE_STABILITY_UNSTABLE"
+#~ msgstr ""
+#~ "Actif Mikrobe wäerten duerch d'Géigend lafe wann näischt Interessantes geschitt.\n"
+#~ "Sesshaft Mikrobe wäerte stationär sinn a waarde bis d'Ëmwelt sech ännert éier se agéieren."
+
+#, fuzzy
+#~ msgid "GEOLOGICAL_ACTIVITY_EXPLANATION"
+#~ msgstr ""
+#~ "Actif Mikrobe wäerten duerch d'Géigend lafe wann näischt Interessantes geschitt.\n"
+#~ "Sesshaft Mikrobe wäerte stationär sinn a waarde bis d'Ëmwelt sech ännert éier se agéieren."
+
+#, fuzzy
+#~ msgid "PLANET_CUSTOMIZER"
+#~ msgstr "Beim Feil:"
+
+#, fuzzy
+#~ msgid "WORLD_SEA_LEVEL"
+#~ msgstr "{0}-{1}m ennert dem Mieresspiegel"
+
+#, fuzzy
+#~ msgid "WORLD_SEA_LEVEL_DEEP"
+#~ msgstr "{0}-{1}m ennert dem Mieresspiegel"
+
+#, fuzzy
+#~ msgid "WORLD_SEA_LEVEL_EXPLANATION"
+#~ msgstr ""
+#~ "Aggressiv Mikrobe wäerte Beuten iwwer gréisser Distanze joen\n"
+#~ "an se si méi warscheinlech Ugräifer ze bekämpfen, wann se ugegraff ginn.\n"
+#~ "Friddlech Mikrobe wäerten net iwwert gréisser Distanzen engagéieren \n"
+#~ "se si manner warscheinlech Gëftstoffer géint Ugräifer ze notzen."
+
+#, fuzzy
+#~ msgid "WORLD_TEMPERATURE_EXPLANATION"
+#~ msgstr ""
+#~ "Aggressiv Mikrobe wäerte Beuten iwwer gréisser Distanze joen\n"
+#~ "an se si méi warscheinlech Ugräifer ze bekämpfen, wann se ugegraff ginn.\n"
+#~ "Friddlech Mikrobe wäerten net iwwert gréisser Distanzen engagéieren \n"
+#~ "se si manner warscheinlech Gëftstoffer géint Ugräifer ze notzen."
+
+#, fuzzy
+#~ msgid "WORLD_TEMPERATURE_TEMPERATE"
+#~ msgstr ""
+#~ "Dei hei Sektioun weist di total Balance (Produktioun - Verbrauch) fier all Stoff.\n"
+#~ "Fir ze iwwerliewen muss d'Balance positif sinn.\n"
+#~ "Den Menü hei drenner kann benotzt ginn fir ze gesinn wat passéiert wann d'Zell verschidde Stoffer net huet.\n"
+#~ "Verschidden Zellen kennen nemmen eng positif ATB Balance areechen wann se multipel Substanzen hun fir ATP ze generéieren.\n"
+#~ "Des sort Zell ass méi schwéier ze spillen."
+
+#, fuzzy
+#~ msgid "DISK_CACHE_TOOLTIP"
+#~ msgstr ""
+#~ "Di hei Sektioun weist di total Balance (Produktioun - Verbrauch) fier all Stoff.\n"
+#~ "Vier zum Beispill eng Planzenzell ze maachen muss d'Glucose Balance wäit positiv sinn."
+
+#, fuzzy
+#~ msgid "SHOW_TUTORIALS_OPTION_TOOLTIP"
+#~ msgstr "Weis d'Tutorialen (an dësem Spill)"
 
 #~ msgid "TO_BE_IMPLEMENTED"
 #~ msgstr "Ze Implementéieren."
