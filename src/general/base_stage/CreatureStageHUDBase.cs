@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Globalization;
 using System.Linq;
+using System.Threading;
 using Components;
 using Godot;
 using Newtonsoft.Json;
@@ -377,6 +378,13 @@ public partial class CreatureStageHUDBase<TStage> : HUDWithPausing, ICreatureSta
     {
         if (stage == null)
             return;
+
+        // Introduce occasional random lag spike
+        if (new Random().NextDouble() < 0.01)
+        {
+            Thread.Sleep((int)1000.0);
+            GD.Print(" ======================================================================== Stall");
+        }
 
         var convertedDelta = (float)delta;
 
@@ -1005,19 +1013,11 @@ public partial class CreatureStageHUDBase<TStage> : HUDWithPausing, ICreatureSta
         // Update to the player's current ATP, unless the player does not exist
         if (stage!.HasPlayer)
         {
-            var compounds = GetPlayerStorage();
-
-            atpAmount = compounds.GetCompoundAmount(Compound.ATP);
-            maxATP = compounds.GetCapacityForCompound(Compound.ATP);
+            atpAmount = Systems.PlayerATPRecorderSystem.ATP;
+            maxATP = Systems.PlayerATPRecorderSystem.ATPCapacity;
         }
 
         atpBar.MaxValue = maxATP * 10.0f;
-
-        // If the current ATP is close to full, just pretend that it is to keep the bar from flickering
-        if (maxATP - atpAmount < Math.Max(maxATP / 20.0f, 0.1f))
-        {
-            atpAmount = maxATP;
-        }
 
         GUICommon.SmoothlyUpdateBar(atpBar, atpAmount * 10.0f, delta);
 

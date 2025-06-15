@@ -44,6 +44,11 @@ public sealed class ProcessSystem : AEntitySetSystem<float>
     /// </summary>
     private float inverseDelta;
 
+    /// <summary>
+    ///   Records the delta for the previous frame to prevent synchronisation issues
+    /// </summary>
+    private float oldDelta = 0;
+
     public ProcessSystem(World world, IParallelRunner runner) : base(world, runner,
         Constants.SYSTEM_LOW_ENTITIES_PER_THREAD)
     {
@@ -785,7 +790,7 @@ public sealed class ProcessSystem : AEntitySetSystem<float>
             GD.PrintErr("ProcessSystem has no biome set");
         }
 
-        inverseDelta = 1.0f / delta;
+        inverseDelta = 1.0f / oldDelta;
 
 #if CHECK_USED_STATISTICS
         lock (usedStatistics)
@@ -797,6 +802,9 @@ public sealed class ProcessSystem : AEntitySetSystem<float>
 
     protected override void Update(float delta, in Entity entity)
     {
+        // Use the delta for the previous frame to prevent synchronisation issues
+        delta = oldDelta;
+
         ref var storage = ref entity.Get<CompoundStorage>();
         ref var processes = ref entity.Get<BioProcesses>();
 
@@ -835,6 +843,12 @@ public sealed class ProcessSystem : AEntitySetSystem<float>
 #endif
 
         ProcessNode(ref processes, ref storage, overallSpeedModifier, delta);
+    }
+
+    protected override void PostUpdate(float delta)
+    {
+        // Store the delta from the old frame
+        oldDelta = delta;
     }
 
     private static void CalculateSimplePartOfEnergyBalance(IReadOnlyList<OrganelleTemplate> organelles,

@@ -79,6 +79,7 @@ public partial class MicrobeWorldSimulation : WorldSimulationWithPhysics
     private OrganelleComponentFetchSystem organelleComponentFetchSystem = null!;
     private OrganelleTickSystem organelleTickSystem = null!;
     private OsmoregulationAndHealingSystem osmoregulationAndHealingSystem = null!;
+    private PlayerATPRecorderSystem playerATPRecorderSystem = null!;
     private PilusDamageSystem pilusDamageSystem = null!;
     private RadiationDamageSystem radiationDamageSystem = null!;
     private SlimeSlowdownSystem slimeSlowdownSystem = null!;
@@ -226,6 +227,7 @@ public partial class MicrobeWorldSimulation : WorldSimulationWithPhysics
         organelleComponentFetchSystem = new OrganelleComponentFetchSystem(EntitySystem, couldParallelize);
         organelleTickSystem = new OrganelleTickSystem(this, EntitySystem, parallelRunner);
         osmoregulationAndHealingSystem = new OsmoregulationAndHealingSystem(EntitySystem, couldParallelize);
+        playerATPRecorderSystem = new PlayerATPRecorderSystem(EntitySystem);
         pilusDamageSystem = new PilusDamageSystem(EntitySystem, couldParallelize);
         radiationDamageSystem = new RadiationDamageSystem(EntitySystem, parallelRunner);
         slimeSlowdownSystem = new SlimeSlowdownSystem(cloudSystem, EntitySystem, couldParallelize);
@@ -479,6 +481,7 @@ public partial class MicrobeWorldSimulation : WorldSimulationWithPhysics
                 organelleComponentFetchSystem.Dispose();
                 organelleTickSystem.Dispose();
                 osmoregulationAndHealingSystem.Dispose();
+                playerATPRecorderSystem.Dispose();
                 pilusDamageSystem.Dispose();
                 radiationDamageSystem.Dispose();
                 slimeSlowdownSystem.Dispose();
