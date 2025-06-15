@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Thrive VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2025-05-28 14:54+0300\n"
+"POT-Creation-Date: 2025-06-14 23:34+0200\n"
 "PO-Revision-Date: 2025-05-12 22:52+0000\n"
 "Last-Translator: Argakyan <andrinmueller@hotmail.ch>\n"
 "Language-Team: Alemannic <https://translate.revolutionarygamesstudio.com/projects/thrive/thrive-game/gsw/>\n"
@@ -1635,11 +1635,6 @@ msgstr ""
 msgid "DISCORD_TOOLTIP"
 msgstr "Tritt oisem Discord Server bi"
 
-msgid "DISK_CACHE_TOOLTIP"
-msgstr ""
-"Wenn aktiviert, werdet einigi tüür z'generierende Date uf de Festplatte gspiicheret, demit sie bim nächschte Ladde schneller verfüegbar sind.\n"
-"Wenn deaktiviert, wird nur de Cache im Arbeitsspiicher verwendet."
-
 msgid "DISMISSED_POPUPS_COLON"
 msgstr "Deaktivierti Pop-ups:"
 
@@ -3240,9 +3235,6 @@ msgstr ""
 msgid "LOW_QUALITY_BACKGROUND_BLUR"
 msgstr ""
 
-msgid "LOW_QUALITY_BACKGROUND_BLUR_TOOLTIP"
-msgstr ""
-
 msgid "LUCIFERASE"
 msgstr ""
 
@@ -3930,9 +3922,6 @@ msgstr ""
 msgid "NAME_LABEL_STRUCTURE_UNFINISHED"
 msgstr ""
 
-msgid "NATIVE_THREAD_ADVICE_TOOLTIP"
-msgstr ""
-
 msgid "NEGATIVE_ATP_BALANCE"
 msgstr ""
 
@@ -4461,8 +4450,9 @@ msgstr ""
 msgid "PLANET_DETAILS_STRING"
 msgstr ""
 
+#, fuzzy
 msgid "PLANET_GENERATION_TEASER"
-msgstr ""
+msgstr "Generatione"
 
 msgid "PLANET_RANDOM_SEED"
 msgstr ""
@@ -5067,20 +5057,11 @@ msgstr ""
 msgid "SHOW_NEW_PATCH_NOTES"
 msgstr ""
 
-msgid "SHOW_NEW_PATCH_NOTES_TOOLTIP"
-msgstr ""
-
 msgid "SHOW_TUTORIALS_IN_NEW_CURRENT_OPTION"
 msgstr ""
 
 msgid "SHOW_TUTORIALS_IN_NEW_GAMES_OPTION"
 msgstr ""
-
-msgid "SHOW_TUTORIALS_OPTION_TOOLTIP"
-msgstr ""
-"Zeig oder entferne Tutorials. Es isch nöd g'rate das ab z'stelle.\n"
-"Wemmer es neu's Spiel startet chammer alli Tutorials abstelle, was numme die Tutorials uufschaltet wommer no nöd gseh hett.\n"
-"Das isch durchuus empfohle da neui Tutorials immer wieder dezue chömmed, was ansüschte vo Spieler überseh werde chann wo früener mal Thrive g'spielt hend."
 
 msgid "SHOW_UNSAVED_PROGRESS_WARNING"
 msgstr ""
@@ -5129,6 +5110,10 @@ msgstr ""
 
 msgid "SILICA_MEMBRANE_DESCRIPTION"
 msgstr ""
+
+#, fuzzy
+msgid "SIMULATION"
+msgstr "Versteinerig"
 
 msgid "SIXTEEN_TIMES"
 msgstr ""
@@ -6144,6 +6129,9 @@ msgid "UPSCALE_FSR_1"
 msgstr ""
 
 msgid "UPSCALE_FSR_22"
+msgstr ""
+
+msgid "UPSCALE_METHOD"
 msgstr ""
 
 msgid "UPSCALE_SHARPENING_FSR"
@@ -7803,3 +7791,76 @@ msgstr ""
 
 msgid "ZOOM_OUT"
 msgstr ""
+
+#, fuzzy
+#~ msgid "AUTO_EVO_TOOL_BUTTON"
+#~ msgstr "automatisch ({0}x{1})"
+
+#, fuzzy
+#~ msgid "CLIMATE_INSTABILITY_EXPLANATION"
+#~ msgstr ""
+#~ "Aktivi Mikrobe tummlet umme, wenn nüüt interessantes passiert.\n"
+#~ "Sessili Mikrobe sind stationär und wartet druff, dass sich ihri Umgebig änderet, bevor sie handlet."
+
+#, fuzzy
+#~ msgid "CLIMATE_STABILITY_AVERAGE"
+#~ msgstr ""
+#~ "Aktivi Mikrobe tummlet umme, wenn nüüt interessantes passiert.\n"
+#~ "Sessili Mikrobe sind stationär und wartet druff, dass sich ihri Umgebig änderet, bevor sie handlet."
+
+#, fuzzy
+#~ msgid "CLIMATE_STABILITY_STABLE"
+#~ msgstr ""
+#~ "Aktivi Mikrobe tummlet umme, wenn nüüt interessantes passiert.\n"
+#~ "Sessili Mikrobe sind stationär und wartet druff, dass sich ihri Umgebig änderet, bevor sie handlet."
+
+#, fuzzy
+#~ msgid "CLIMATE_STABILITY_UNSTABLE"
+#~ msgstr ""
+#~ "Aktivi Mikrobe tummlet umme, wenn nüüt interessantes passiert.\n"
+#~ "Sessili Mikrobe sind stationär und wartet druff, dass sich ihri Umgebig änderet, bevor sie handlet."
+
+#, fuzzy
+#~ msgid "GENERATE_BUTTON"
+#~ msgstr "Generatione"
+
+#, fuzzy
+#~ msgid "GEOLOGICAL_ACTIVITY_EXPLANATION"
+#~ msgstr ""
+#~ "Aktivi Mikrobe tummlet umme, wenn nüüt interessantes passiert.\n"
+#~ "Sessili Mikrobe sind stationär und wartet druff, dass sich ihri Umgebig änderet, bevor sie handlet."
+
+#, fuzzy
+#~ msgid "PLANET_CUSTOMIZER"
+#~ msgstr "Am Zeiger:"
+
+#, fuzzy
+#~ msgid "REGENERATE_BUTTON"
+#~ msgstr "Zruggentwickle"
+
+#, fuzzy
+#~ msgid "WORLD_SEA_LEVEL"
+#~ msgstr "{0}-{1}m unter em Meeresspiegel"
+
+#, fuzzy
+#~ msgid "WORLD_SEA_LEVEL_DEEP"
+#~ msgstr "{0}-{1}m unter em Meeresspiegel"
+
+#, fuzzy
+#~ msgid "WORLD_SEA_LEVEL_EXPLANATION"
+#~ msgstr "(veränderet d'Nummer vo Gebiet ide Welt)"
+
+#, fuzzy
+#~ msgid "WORLD_TEMPERATURE_EXPLANATION"
+#~ msgstr "(veränderet d'Nummer vo Gebiet ide Welt)"
+
+#~ msgid "DISK_CACHE_TOOLTIP"
+#~ msgstr ""
+#~ "Wenn aktiviert, werdet einigi tüür z'generierende Date uf de Festplatte gspiicheret, demit sie bim nächschte Ladde schneller verfüegbar sind.\n"
+#~ "Wenn deaktiviert, wird nur de Cache im Arbeitsspiicher verwendet."
+
+#~ msgid "SHOW_TUTORIALS_OPTION_TOOLTIP"
+#~ msgstr ""
+#~ "Zeig oder entferne Tutorials. Es isch nöd g'rate das ab z'stelle.\n"
+#~ "Wemmer es neu's Spiel startet chammer alli Tutorials abstelle, was numme die Tutorials uufschaltet wommer no nöd gseh hett.\n"
+#~ "Das isch durchuus empfohle da neui Tutorials immer wieder dezue chömmed, was ansüschte vo Spieler überseh werde chann wo früener mal Thrive g'spielt hend."
