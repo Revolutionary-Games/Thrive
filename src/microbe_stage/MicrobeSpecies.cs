@@ -140,12 +140,19 @@ public class MicrobeSpecies : Species, ICellDefinition
         return true;
     }
 
+    public void UpdateIsBacteria()
+    {
+        var nucleus = SimulationParameters.Instance.GetOrganelleType("nucleus");
+        IsBacteria = Organelles.Organelles.All(o => o.Definition != nucleus);
+    }
+
     public override void OnEdited()
     {
         base.OnEdited();
 
         RepositionToOrigin();
         UpdateInitialCompounds();
+        UpdateIsBacteria();
 
         cachedFillTimes.Clear();
     }
