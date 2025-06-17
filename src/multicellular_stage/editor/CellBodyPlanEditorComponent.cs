@@ -327,6 +327,9 @@ public partial class CellBodyPlanEditorComponent :
     {
         var editedSpecies = Editor.EditedSpecies;
 
+        editedSpecies.EditorCellLayout ??= new IndividualHexLayout<CellTemplate>();
+        editedSpecies.EditorCellLayout.Clear();
+
         // Note that for the below calculations to work all cell types need to be positioned correctly. So we need
         // to force that to happen here first. This also ensures that the skipped positioning to origin of the cell
         // editor component (that is used as a special mode in multicellular) is performed.

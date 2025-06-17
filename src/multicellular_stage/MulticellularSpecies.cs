@@ -29,6 +29,12 @@ public class MulticellularSpecies : Species, ISimulationPhotographable
     [JsonProperty]
     public CellLayout<CellTemplate> Cells { get; private set; } = new();
 
+    /// <summary>
+    ///   The cell layout that this species has in the editor. Is null unless this colony created in the editor.
+    /// </summary>
+    [JsonProperty]
+    public IndividualHexLayout<CellTemplate>? EditorCellLayout { get; set; }
+
     [JsonProperty]
     public List<CellType> CellTypes { get; private set; } = new();
 
