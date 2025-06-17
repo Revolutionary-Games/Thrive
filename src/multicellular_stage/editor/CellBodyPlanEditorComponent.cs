@@ -284,35 +284,15 @@ public partial class CellBodyPlanEditorComponent :
 
         behaviourEditor.OnEditorSpeciesSetup(species);
 
-        // Undo the transformation that happens in OnFinishEditing to make the final layout, to go back to single hexes
-        // representing each cell in the layout
-        foreach (var cell in Editor.EditedSpecies.Cells)
+        if (Editor.EditedSpecies.EditorCellLayout == null)
         {
-            // This doesn't copy the position to the hex yet but TryAddHexToEditedLayout does it so we are good
-            var hex = new HexWithData<CellTemplate>((CellTemplate)cell.Clone());
-
-            var originalPos = cell.Position;
-
-            var direction = new Vector2(0, -1);
-
-            if (originalPos != new Hex(0, 0))
+            GenerateCellLayoutFromSpeciesCells(Editor.EditedSpecies);
+        }
+        else
+        {
+            foreach (var cell in Editor.EditedSpecies.EditorCellLayout)
             {
-                direction = new Vector2(originalPos.Q, originalPos.R).Normalized();
-            }
-
-            float distance = 0;
-
-            // Start at 0,0 and move towards the real position until an empty spot is found
-            // TODO: need to make sure that this can't cause holes that the player would need to fix
-            // distance is a float here to try to make the above TODO problem less likely
-            while (true)
-            {
-                var positionVector = direction * distance;
-
-                if (TryAddHexToEditedLayout(hex, (int)positionVector.X, (int)positionVector.Y))
-                    break;
-
-                distance += 0.8f;
+                editedMicrobeCells.AddFast(cell, hexTemporaryMemory, hexTemporaryMemory2);
             }
         }
 
@@ -327,8 +307,8 @@ public partial class CellBodyPlanEditorComponent :
     {
         var editedSpecies = Editor.EditedSpecies;
 
+        editedSpecies.EditorCellLayout?.Clear();
         editedSpecies.EditorCellLayout ??= new IndividualHexLayout<CellTemplate>();
-        editedSpecies.EditorCellLayout.Clear();
 
         // Note that for the below calculations to work all cell types need to be positioned correctly. So we need
         // to force that to happen here first. This also ensures that the skipped positioning to origin of the cell
@@ -346,6 +326,9 @@ public partial class CellBodyPlanEditorComponent :
 
         foreach (var hexWithData in editedMicrobeCells)
         {
+            // Add the hex to the remembered editor layout before changing anything
+            editedSpecies.EditorCellLayout.AddFast(hexWithData, hexTemporaryMemory, hexTemporaryMemory2);
+
             var direction = new Vector2(0, -1);
 
             if (hexWithData.Position != new Hex(0, 0))
@@ -1393,6 +1376,43 @@ public partial class CellBodyPlanEditorComponent :
             if (entry.Value.CellType == type)
             {
                 entry.Value.ReportTypeChanged();
+            }
+        }
+    }
+
+    /// <summary>
+    ///   Generates a cell layout from <see cref="MulticellularSpecies.Cells"/>. To be used if the species doesn't have
+    ///   an editor layout remembered.
+    /// </summary>
+    private void GenerateCellLayoutFromSpeciesCells(MulticellularSpecies multicellularSpecies)
+    {
+        foreach (var cell in multicellularSpecies.Cells)
+        {
+            // This doesn't copy the position to the hex yet but TryAddHexToEditedLayout does it so we are good
+            var hex = new HexWithData<CellTemplate>((CellTemplate)cell.Clone());
+
+            var originalPos = cell.Position;
+
+            var direction = new Vector2(0, -1);
+
+            if (originalPos != new Hex(0, 0))
+            {
+                direction = new Vector2(originalPos.Q, originalPos.R).Normalized();
+            }
+
+            float distance = 0;
+
+            // Start at 0,0 and move towards the real position until an empty spot is found
+            // TODO: need to make sure that this can't cause holes that the player would need to fix
+            // distance is a float here to try to make the above TODO problem less likely
+            while (true)
+            {
+                var positionVector = direction * distance;
+
+                if (TryAddHexToEditedLayout(hex, (int)positionVector.X, (int)positionVector.Y))
+                    break;
+
+                distance += 0.8f;
             }
         }
     }

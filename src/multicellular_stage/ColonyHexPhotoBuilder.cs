@@ -71,9 +71,15 @@ public partial class ColonyHexPhotoBuilder : Node3D, IScenePhotographable
         if (Species == null)
             throw new InvalidOperationException("Species is not initialized");
 
-        foreach (var cell in Species.Cells)
+        if (Species.EditorCellLayout == null)
         {
-            var pos = Hex.AxialToCartesian(cell.Position) * 0.3f;
+            GD.PrintErr("No cell layout is remembered, the hex preview can't be generated");
+            return;
+        }
+
+        foreach (var cell in Species.EditorCellLayout)
+        {
+            var pos = Hex.AxialToCartesian(cell.Position);
 
             var hexNode = hexScene.Instantiate<MeshInstance3D>();
             AddChild(hexNode);
