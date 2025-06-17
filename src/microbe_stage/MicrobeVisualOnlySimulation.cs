@@ -13,8 +13,6 @@ public sealed class MicrobeVisualOnlySimulation : WorldSimulation
 {
     private readonly IMicrobeSpawnEnvironment dummyEnvironment = new DummyMicrobeSpawnEnvironment();
 
-    private readonly ISpawnSystem dummySpawnSystem = new DummySpawnSystem();
-
     private readonly List<Hex> hexWorkData1 = new();
     private readonly List<Hex> hexWorkData2 = new();
 
@@ -139,6 +137,8 @@ public sealed class MicrobeVisualOnlySimulation : WorldSimulation
             throw new Exception("Could not find microbe entity that should have been created");
 
         var recorder = StartRecordingEntityCommands();
+
+        var dummySpawnSystem = new DummySpawnSystem();
 
         int count = species.Cells.Count;
         for (int i = 1; i < count; i++)
