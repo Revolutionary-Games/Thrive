@@ -141,7 +141,7 @@ public sealed class MicrobeVisualOnlySimulation : WorldSimulation
         var dummySpawnSystem = new DummySpawnSystem();
 
         int count = species.Cells.Count;
-        for (int i = 1; i < count; i++)
+        for (int i = 1; i < count; ++i)
         {
             var cell = species.Cells[i];
 

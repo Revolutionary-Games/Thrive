@@ -61,7 +61,8 @@ public partial class CellHexesPreview : PhotographablePreview
                 return null;
             }
 
-            return PhotoStudio.Instance.GenerateImage(new ColonyHexPhotoBuilder { Species = multicellularSpecies }, Priority);
+            return PhotoStudio.Instance.GenerateImage(new ColonyHexPhotoBuilder { Species = multicellularSpecies },
+                Priority);
         }
 
         GD.PrintErr("Unknown species type to preview: ", species, " (", species.GetType().Name, ")");
