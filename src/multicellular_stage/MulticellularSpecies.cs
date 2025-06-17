@@ -193,28 +193,6 @@ public class MulticellularSpecies : Species, ISimulationPhotographable
         return totalOrganelles;
     }
 
-    public override object Clone()
-    {
-        var result = new MulticellularSpecies(ID, Genus, Epithet);
-
-        ClonePropertiesTo(result);
-
-        var workMemory1 = new List<Hex>();
-        var workMemory2 = new List<Hex>();
-
-        foreach (var cellTemplate in Cells)
-        {
-            result.Cells.AddFast((CellTemplate)cellTemplate.Clone(), workMemory1, workMemory2);
-        }
-
-        foreach (var cellType in CellTypes)
-        {
-            result.CellTypes.Add((CellType)cellType.Clone());
-        }
-
-        return result;
-    }
-
     public void SetupWorldEntities(IWorldSimulation worldSimulation)
     {
         ((MicrobeVisualOnlySimulation)worldSimulation).CreateVisualisationColony(this);
@@ -261,6 +239,28 @@ public class MulticellularSpecies : Species, ISimulationPhotographable
         }
 
         return new Vector3(center.X, PhotoStudio.CameraDistanceFromRadiusOfObject(radius), center.Z);
+    }
+
+    public override object Clone()
+    {
+        var result = new MulticellularSpecies(ID, Genus, Epithet);
+
+        ClonePropertiesTo(result);
+
+        var workMemory1 = new List<Hex>();
+        var workMemory2 = new List<Hex>();
+
+        foreach (var cellTemplate in Cells)
+        {
+            result.Cells.AddFast((CellTemplate)cellTemplate.Clone(), workMemory1, workMemory2);
+        }
+
+        foreach (var cellType in CellTypes)
+        {
+            result.CellTypes.Add((CellType)cellType.Clone());
+        }
+
+        return result;
     }
 
     public override ulong GetVisualHashCode()
