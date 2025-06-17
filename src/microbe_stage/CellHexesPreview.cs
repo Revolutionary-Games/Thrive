@@ -55,6 +55,12 @@ public partial class CellHexesPreview : PhotographablePreview
             if (task != null)
                 return task;
 
+            if (multicellularSpecies.EditorCellLayout == null)
+            {
+                GD.PrintErr("No cell layout is remembered, the hex preview can't be generated");
+                return null;
+            }
+
             return PhotoStudio.Instance.GenerateImage(new ColonyHexPhotoBuilder { Species = multicellularSpecies }, Priority);
         }
 

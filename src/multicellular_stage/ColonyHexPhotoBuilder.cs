@@ -98,7 +98,13 @@ public partial class ColonyHexPhotoBuilder : Node3D, IScenePhotographable
 
         float farthest = 0;
 
-        foreach (var cell in species.Cells)
+        if (species.EditorCellLayout == null)
+        {
+            GD.PrintErr("No cell layout is remembered, the radius can't be calculated for the hex preview");
+            return;
+        }
+
+        foreach (var cell in species.EditorCellLayout)
         {
             farthest = MathF.Max(farthest, Hex.AxialToCartesian(cell.Position).DistanceTo(Vector3.Zero));
         }
