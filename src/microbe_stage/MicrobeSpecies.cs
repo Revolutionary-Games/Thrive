@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.ComponentModel;
+using System.Linq;
 using Newtonsoft.Json;
 using Saving.Serializers;
 using Systems;
@@ -89,7 +90,7 @@ public class MicrobeSpecies : Species, ICellDefinition
     {
         get
         {
-            var raw = 0.0f;
+            var raw = 0.1f;
 
             // Need to do the calculation this way to avoid extra memory allocations
             var organelles = Organelles.Organelles;
