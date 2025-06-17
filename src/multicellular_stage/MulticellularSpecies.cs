@@ -229,7 +229,16 @@ public class MulticellularSpecies : Species, ISimulationPhotographable
     {
         float radius = 0.0f;
 
+        Vector3 center = Vector3.Zero;
+
         int count = Cells.Count;
+        for (int i = 0; i < count; ++i)
+        {
+            center += Hex.AxialToCartesian(Cells[i].Position);
+        }
+
+        center /= count;
+
         foreach (var entity in worldSimulation.EntitySystem)
         {
             if (!entity.Has<CellProperties>())
@@ -243,7 +252,7 @@ public class MulticellularSpecies : Species, ISimulationPhotographable
 
             var cellRadius = cellProperties.CreatedMembrane!.EncompassingCircleRadius;
 
-            var farthestPoint = entity.Get<WorldPosition>().Position.Length() + cellRadius;
+            var farthestPoint = entity.Get<WorldPosition>().Position.DistanceTo(center) + cellRadius;
 
             if (farthestPoint > radius)
             {
@@ -251,7 +260,7 @@ public class MulticellularSpecies : Species, ISimulationPhotographable
             }
         }
 
-        return new Vector3(0.0f, PhotoStudio.CameraDistanceFromRadiusOfObject(radius), 0.0f);
+        return new Vector3(center.X, PhotoStudio.CameraDistanceFromRadiusOfObject(radius), center.Z);
     }
 
     public override ulong GetVisualHashCode()
