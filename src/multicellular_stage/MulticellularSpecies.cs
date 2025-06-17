@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Linq;
+using Components;
 using Godot;
 using Newtonsoft.Json;
 using Saving.Serializers;
@@ -15,7 +16,7 @@ using Systems;
 [JSONDynamicTypeAllowed]
 [UseThriveConverter]
 [UseThriveSerializer]
-public class MulticellularSpecies : Species
+public class MulticellularSpecies : Species, ISimulationPhotographable
 {
     public MulticellularSpecies(uint id, string genus, string epithet) : base(id, genus, epithet)
     {
@@ -39,6 +40,10 @@ public class MulticellularSpecies : Species
 
     [JsonIgnore]
     public override string StringCode => ThriveJsonConverter.Instance.SerializeObject(this);
+
+    [JsonIgnore]
+    public ISimulationPhotographable.SimulationType SimulationToPhotograph =>
+        ISimulationPhotographable.SimulationType.MicrobeGraphics;
 
     public override void OnEdited()
     {
@@ -208,6 +213,59 @@ public class MulticellularSpecies : Species
         }
 
         return result;
+    }
+
+    public void SetupWorldEntities(IWorldSimulation worldSimulation)
+    {
+        ((MicrobeVisualOnlySimulation)worldSimulation).CreateVisualisationColony(this);
+    }
+
+    public bool StateHasStabilized(IWorldSimulation worldSimulation)
+    {
+        return true;
+    }
+
+    public Vector3 CalculatePhotographDistance(IWorldSimulation worldSimulation)
+    {
+        float radius = 0.0f;
+
+        int count = Cells.Count;
+        foreach (var entity in worldSimulation.EntitySystem)
+        {
+            if (!entity.Has<CellProperties>())
+                continue;
+
+            ref var cellProperties = ref entity.Get<CellProperties>();
+
+            // This uses the membrane as radius is not set as the physics system doesn't run
+            if (!cellProperties.IsMembraneReady())
+                throw new InvalidOperationException("Microbe doesn't have a ready membrane");
+
+            var cellRadius = cellProperties.CreatedMembrane!.EncompassingCircleRadius;
+
+            var farthestPoint = entity.Get<WorldPosition>().Position.Length() + cellRadius;
+
+            if (farthestPoint > radius)
+            {
+                radius = farthestPoint;
+            }
+        }
+
+        return new Vector3(0.0f, PhotoStudio.CameraDistanceFromRadiusOfObject(radius), 0.0f);
+    }
+
+    public override ulong GetVisualHashCode()
+    {
+        ulong hash = 1099511628211;
+
+        foreach (var cell in Cells)
+        {
+            hash ^= cell.GetVisualHashCode() ^ (ulong)cell.Position.GetHashCode();
+
+            hash = (hash << 7) | (hash >> 57);
+        }
+
+        return hash;
     }
 
     protected override Dictionary<Compound, float> CalculateBaseReproductionCost()

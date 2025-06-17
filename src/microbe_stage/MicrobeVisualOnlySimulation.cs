@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using Components;
 using DefaultEcs;
+using DefaultEcs.Command;
 using DefaultEcs.Threading;
 using Godot;
 using Systems;
@@ -12,6 +13,8 @@ using Systems;
 public sealed class MicrobeVisualOnlySimulation : WorldSimulation
 {
     private readonly IMicrobeSpawnEnvironment dummyEnvironment = new DummyMicrobeSpawnEnvironment();
+
+    private readonly ISpawnSystem dummySpawnSystem = new DummySpawnSystem();
 
     private readonly List<Hex> hexWorkData1 = new();
     private readonly List<Hex> hexWorkData2 = new();
@@ -113,6 +116,42 @@ public sealed class MicrobeVisualOnlySimulation : WorldSimulation
 
         if (foundEntity == default)
             throw new Exception("Could not find microbe entity that should have been created");
+
+        return foundEntity;
+    }
+
+    /// <summary>
+    ///   Creates a simple visualization colony in this world at origin that can then be manipulated with the
+    ///   visualization methods below
+    /// </summary>
+    /// <returns>The created entity</returns>
+    public Entity CreateVisualisationColony(MulticellularSpecies species)
+    {
+        // We pass AI controlled true here to avoid creating player specific data but as we don't have the AI system
+        // it is fine to create the AI properties as it won't actually do anything
+        SpawnHelpers.SpawnMicrobe(this, dummyEnvironment, species, Vector3.Zero, true);
+
+        ProcessDelaySpawnedEntitiesImmediately();
+
+        // Grab the created entity
+        var foundEntity = GetLastMicrobeEntity();
+
+        if (foundEntity == default)
+            throw new Exception("Could not find microbe entity that should have been created");
+
+        var recorder = StartRecordingEntityCommands();
+
+        int count = species.Cells.Count;
+        for (int i = 1; i < count; i++)
+        {
+            var cell = species.Cells[i];
+
+            DelayedColonyOperationSystem.CreateDelayAttachedMicrobe(ref foundEntity.Get<WorldPosition>(),
+                in foundEntity, i, cell, species, this, dummyEnvironment, recorder, dummySpawnSystem, false);
+        }
+
+        recorder.Execute();
+        FinishRecordingEntityCommands(recorder);
 
         return foundEntity;
     }
