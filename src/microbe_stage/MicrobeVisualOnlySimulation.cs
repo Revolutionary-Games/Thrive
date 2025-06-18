@@ -118,10 +118,9 @@ public sealed class MicrobeVisualOnlySimulation : WorldSimulation
     }
 
     /// <summary>
-    ///   Creates a simple visualization colony in this world at origin that can then be manipulated with the
-    ///   visualization methods below
+    ///   Creates a simple visualization colony in this world at origin.
     /// </summary>
-    /// <returns>The created entity</returns>
+    /// <returns>The colony's root cell entity</returns>
     public Entity CreateVisualisationColony(MulticellularSpecies species)
     {
         // We pass AI controlled true here to avoid creating player specific data but as we don't have the AI system
