@@ -1,7 +1,6 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
-using System.Linq;
 using Newtonsoft.Json;
 using Saving.Serializers;
 using Systems;
@@ -144,7 +143,13 @@ public class MicrobeSpecies : Species, ICellDefinition
     public void UpdateIsBacteria()
     {
         var nucleus = SimulationParameters.Instance.GetOrganelleType("nucleus");
-        IsBacteria = Organelles.Organelles.All(o => o.Definition != nucleus);
+        foreach (var organelle in Organelles)
+        {
+            if (organelle.Definition == nucleus)
+            {
+                IsBacteria = true;
+            }
+        }
     }
 
     public override void OnEdited()
