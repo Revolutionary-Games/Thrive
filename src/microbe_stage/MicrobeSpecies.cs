@@ -5,7 +5,6 @@ using Newtonsoft.Json;
 using Saving.Serializers;
 using Systems;
 using Vector3 = Godot.Vector3;
-using Godot; 
 
 /// <summary>
 ///   Represents a microbial species with microbe stage specific species things.
@@ -90,7 +89,7 @@ public class MicrobeSpecies : Species, ICellDefinition
     {
         get
         {
-            var raw = 0.1f;
+            var raw = 0.0f;
 
             // Need to do the calculation this way to avoid extra memory allocations
             var organelles = Organelles.Organelles;
@@ -154,8 +153,6 @@ public class MicrobeSpecies : Species, ICellDefinition
                 break;
             }
         }
-        
-        GD.Print("IsBacteria: ", IsBacteria);
     }
 
     public override void OnEdited()
