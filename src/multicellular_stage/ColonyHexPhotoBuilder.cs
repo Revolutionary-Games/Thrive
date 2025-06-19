@@ -64,7 +64,6 @@ public partial class ColonyHexPhotoBuilder : Node3D, IScenePhotographable
     {
         var hexScene = GD.Load<PackedScene>("res://src/microbe_stage/editor/EditorHex.tscn");
         var hexMaterial = GD.Load<Material>("res://src/microbe_stage/editor/ValidHex.material");
-        var modelScene = GD.Load<PackedScene>("res://src/general/SceneDisplayer.tscn");
 
         this.QueueFreeChildren();
 
