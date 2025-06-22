@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2025-06-14 23:34+0200\n"
+"POT-Creation-Date: 2025-06-22 20:19+0200\n"
 "PO-Revision-Date: 2025-05-27 06:43+0000\n"
 "Last-Translator: Anonymous <noreply@weblate.org>\n"
 "Language-Team: Russian <https://translate.revolutionarygamesstudio.com/projects/thrive/thrive-game/ru/>\n"
@@ -1636,6 +1636,11 @@ msgstr ""
 
 msgid "DISCORD_TOOLTIP"
 msgstr "Присоединяйтесь к нашему Discord серверу"
+
+msgid "DISK_CACHE_TOOLTIP"
+msgstr ""
+"Включает возможность записывать на диск сложную для генерации информацию, увеличивая производительность\n"
+"Если выключено, то используется лишь Кэш ОЗУ (RAM)"
 
 msgid "DISMISSED_POPUPS_COLON"
 msgstr "Отклоненные всплывающие окна:"
@@ -3266,6 +3271,9 @@ msgstr ""
 msgid "LOW_QUALITY_BACKGROUND_BLUR"
 msgstr "Пониженное разрешение размытия фона"
 
+msgid "LOW_QUALITY_BACKGROUND_BLUR_TOOLTIP"
+msgstr "Понижает разрешение, используемое размытием фона, улучшая производительность."
+
 msgid "LUCIFERASE"
 msgstr "Люцифераза"
 
@@ -4072,6 +4080,12 @@ msgstr "{0} (ЭНРГ:{1})"
 
 msgid "NAME_LABEL_STRUCTURE_UNFINISHED"
 msgstr "{0}(Н)"
+
+msgid "NATIVE_THREAD_ADVICE_TOOLTIP"
+msgstr ""
+"Собственные потоки используются для задач, отличных от управляемых потоков.\n"
+"Большее количество потоков на процессорах с большим количеством ядер обычно увеличивает производительность до предела. \n"
+"Слишком большое количество потоков начнет снижать производительность."
 
 msgid "NEGATIVE_ATP_BALANCE"
 msgstr "Отрицательный баланс АТФ"
@@ -5283,11 +5297,18 @@ msgstr "Показать координаты"
 msgid "SHOW_NEW_PATCH_NOTES"
 msgstr "Показывать новые заметки релизов автоматически"
 
+msgid "SHOW_NEW_PATCH_NOTES_TOOLTIP"
+msgstr "Показывать заметки обновлений новых релизов Thrive автоматически в главном меню"
+
 msgid "SHOW_TUTORIALS_IN_NEW_CURRENT_OPTION"
 msgstr "Показывать руководства (в текущей игре)"
 
 msgid "SHOW_TUTORIALS_IN_NEW_GAMES_OPTION"
 msgstr "Показывать руководства (в новых играх)"
+
+#, fuzzy
+msgid "SHOW_TUTORIALS_OPTION_TOOLTIP"
+msgstr "Экспортировать всю информацию мира в csv формат"
 
 msgid "SHOW_UNSAVED_PROGRESS_WARNING"
 msgstr "Показать предупреждение о несохраненном прогрессе"
@@ -9068,27 +9089,6 @@ msgstr "Уменьшить масштаб"
 #, fuzzy
 #~ msgid "WORLD_TEMPERATURE_WARM"
 #~ msgstr "Темп."
-
-#~ msgid "DISK_CACHE_TOOLTIP"
-#~ msgstr ""
-#~ "Включает возможность записывать на диск сложную для генерации информацию, увеличивая производительность\n"
-#~ "Если выключено, то используется лишь Кэш ОЗУ (RAM)"
-
-#~ msgid "LOW_QUALITY_BACKGROUND_BLUR_TOOLTIP"
-#~ msgstr "Понижает разрешение, используемое размытием фона, улучшая производительность."
-
-#~ msgid "NATIVE_THREAD_ADVICE_TOOLTIP"
-#~ msgstr ""
-#~ "Собственные потоки используются для задач, отличных от управляемых потоков.\n"
-#~ "Большее количество потоков на процессорах с большим количеством ядер обычно увеличивает производительность до предела. \n"
-#~ "Слишком большое количество потоков начнет снижать производительность."
-
-#~ msgid "SHOW_NEW_PATCH_NOTES_TOOLTIP"
-#~ msgstr "Показывать заметки обновлений новых релизов Thrive автоматически в главном меню"
-
-#, fuzzy
-#~ msgid "SHOW_TUTORIALS_OPTION_TOOLTIP"
-#~ msgstr "Экспортировать всю информацию мира в csv формат"
 
 #~ msgid "PASSIVE_REPRODUCTION_PROGRESS_EXPLANATION"
 #~ msgstr "(пассивно получать необходимые для репродукции вещества из окружающей среды)"

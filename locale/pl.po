@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2025-06-14 23:34+0200\n"
+"POT-Creation-Date: 2025-06-22 20:19+0200\n"
 "PO-Revision-Date: 2025-05-27 06:43+0000\n"
 "Last-Translator: Anonymous <noreply@weblate.org>\n"
 "Language-Team: Polish <https://translate.revolutionarygamesstudio.com/projects/thrive/thrive-game/pl/>\n"
@@ -1676,6 +1676,11 @@ msgstr ""
 
 msgid "DISCORD_TOOLTIP"
 msgstr "Dołącz do naszego serwera Discord"
+
+msgid "DISK_CACHE_TOOLTIP"
+msgstr ""
+"Sprawia, że część kosztownych do wygenerowania danych jest zapisywana na dysk, przez co można je szybciej załadować gdy znów będą potrzebne.\n"
+"Jeśli to wyłączysz, cache będzie przechowywany wyłącznie w pamięci operacyjnej."
 
 msgid "DISMISSED_POPUPS_COLON"
 msgstr "Ukryte popupy:"
@@ -3360,6 +3365,10 @@ msgstr ""
 msgid "LOW_QUALITY_BACKGROUND_BLUR"
 msgstr "Rozmycie tła:"
 
+#, fuzzy
+msgid "LOW_QUALITY_BACKGROUND_BLUR_TOOLTIP"
+msgstr "Rozmycie tła:"
+
 msgid "LUCIFERASE"
 msgstr ""
 
@@ -4227,6 +4236,10 @@ msgstr ""
 
 msgid "NAME_LABEL_STRUCTURE_UNFINISHED"
 msgstr ""
+
+#, fuzzy
+msgid "NATIVE_THREAD_ADVICE_TOOLTIP"
+msgstr "Przełącz tryb łączenia. Dotykaj innych komórek by stworzyć kolonię."
 
 msgid "NEGATIVE_ATP_BALANCE"
 msgstr "Negatywny bilans ATP"
@@ -5468,11 +5481,19 @@ msgstr ""
 msgid "SHOW_NEW_PATCH_NOTES"
 msgstr ""
 
+#, fuzzy
+msgid "SHOW_NEW_PATCH_NOTES_TOOLTIP"
+msgstr "Opis zmian wyświetlany w Steam Workshop dla tej wersji przedmiotu (opcjonalne)"
+
 msgid "SHOW_TUTORIALS_IN_NEW_CURRENT_OPTION"
 msgstr "Pokazuj samouczki (w aktualnej rozgrywce)"
 
 msgid "SHOW_TUTORIALS_IN_NEW_GAMES_OPTION"
 msgstr "Pokazuj samouczki (w nowych rozgrywkach)"
+
+#, fuzzy
+msgid "SHOW_TUTORIALS_OPTION_TOOLTIP"
+msgstr "Pokazuj samouczki"
 
 msgid "SHOW_UNSAVED_PROGRESS_WARNING"
 msgstr "Pokaż ostrzeżenie o niezapisanym postępie"
@@ -8990,19 +9011,6 @@ msgstr "Oddal"
 #, fuzzy
 #~ msgid "WORLD_TEMPERATURE_WARM"
 #~ msgstr "Temp."
-
-#~ msgid "DISK_CACHE_TOOLTIP"
-#~ msgstr ""
-#~ "Sprawia, że część kosztownych do wygenerowania danych jest zapisywana na dysk, przez co można je szybciej załadować gdy znów będą potrzebne.\n"
-#~ "Jeśli to wyłączysz, cache będzie przechowywany wyłącznie w pamięci operacyjnej."
-
-#, fuzzy
-#~ msgid "LOW_QUALITY_BACKGROUND_BLUR_TOOLTIP"
-#~ msgstr "Rozmycie tła:"
-
-#, fuzzy
-#~ msgid "SHOW_TUTORIALS_OPTION_TOOLTIP"
-#~ msgstr "Pokazuj samouczki"
 
 #~ msgid "PASSIVE_REPRODUCTION_PROGRESS_EXPLANATION"
 #~ msgstr "(biernie uzyskuj związki reprodukcji ze środowiska bez potrzeby robienia czegokolwiek)"

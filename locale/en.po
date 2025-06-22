@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2025-06-14 23:34+0200\n"
+"POT-Creation-Date: 2025-06-22 20:19+0200\n"
 "PO-Revision-Date: 2025-05-26 15:28+0300\n"
 "Last-Translator: Henri Hyyryläinen <hhyyrylainen@revolutionarygamesstudio.com>\n"
 "Language-Team: English <https://translate.revolutionarygamesstudio.com/projects/thrive/thrive-game/en/>\n"
@@ -1635,6 +1635,11 @@ msgstr ""
 msgid "DISCORD_TOOLTIP"
 msgstr "Join our community Discord server"
 
+msgid "DISK_CACHE_TOOLTIP"
+msgstr ""
+"When enabled some expensive to generate data is written to disk so that it is faster to load when needed again.\n"
+"If disabled only in-memory caching is used."
+
 msgid "DISMISSED_POPUPS_COLON"
 msgstr "Dismissed popups:"
 
@@ -3250,6 +3255,9 @@ msgstr ""
 msgid "LOW_QUALITY_BACKGROUND_BLUR"
 msgstr "Low resolution background blur"
 
+msgid "LOW_QUALITY_BACKGROUND_BLUR_TOOLTIP"
+msgstr "Makes background blur use a lower resolution, improving performance."
+
 msgid "LUCIFERASE"
 msgstr "Luciferase"
 
@@ -4029,6 +4037,12 @@ msgstr "{0} (PWR: {1})"
 
 msgid "NAME_LABEL_STRUCTURE_UNFINISHED"
 msgstr "{0} (U)"
+
+msgid "NATIVE_THREAD_ADVICE_TOOLTIP"
+msgstr ""
+"Native threads are used for different tasks than managed threads.\n"
+"More threads on CPUs with many cores generally increase performance up to a limit\n"
+"too many total threads will start to decrease performance."
 
 msgid "NEGATIVE_ATP_BALANCE"
 msgstr "Negative ATP Balance"
@@ -5220,11 +5234,20 @@ msgstr "Show coordinates"
 msgid "SHOW_NEW_PATCH_NOTES"
 msgstr "Show new patch notes automatically"
 
+msgid "SHOW_NEW_PATCH_NOTES_TOOLTIP"
+msgstr "Show patch notes of new Thrive releases automatically in the main menu"
+
 msgid "SHOW_TUTORIALS_IN_NEW_CURRENT_OPTION"
 msgstr "Show tutorials (in current game)"
 
 msgid "SHOW_TUTORIALS_IN_NEW_GAMES_OPTION"
 msgstr "Show tutorials (in new games)"
+
+msgid "SHOW_TUTORIALS_OPTION_TOOLTIP"
+msgstr ""
+"Show or disable tutorials entirely. It is not recommended to turn this off.\n"
+"Instead disabling all tutorials when starting a new game makes only tutorials you have not seen yet show up.\n"
+"That is very much recommended as new tutorials are regularly added, which would otherwise be missed by players who had played Thrive in the past."
 
 msgid "SHOW_UNSAVED_PROGRESS_WARNING"
 msgstr "Show unsaved progress warning"
@@ -9145,29 +9168,6 @@ msgstr "Zoom in"
 
 msgid "ZOOM_OUT"
 msgstr "Zoom out"
-
-#~ msgid "DISK_CACHE_TOOLTIP"
-#~ msgstr ""
-#~ "When enabled some expensive to generate data is written to disk so that it is faster to load when needed again.\n"
-#~ "If disabled only in-memory caching is used."
-
-#~ msgid "LOW_QUALITY_BACKGROUND_BLUR_TOOLTIP"
-#~ msgstr "Makes background blur use a lower resolution, improving performance."
-
-#~ msgid "NATIVE_THREAD_ADVICE_TOOLTIP"
-#~ msgstr ""
-#~ "Native threads are used for different tasks than managed threads.\n"
-#~ "More threads on CPUs with many cores generally increase performance up to a limit\n"
-#~ "too many total threads will start to decrease performance."
-
-#~ msgid "SHOW_NEW_PATCH_NOTES_TOOLTIP"
-#~ msgstr "Show patch notes of new Thrive releases automatically in the main menu"
-
-#~ msgid "SHOW_TUTORIALS_OPTION_TOOLTIP"
-#~ msgstr ""
-#~ "Show or disable tutorials entirely. It is not recommended to turn this off.\n"
-#~ "Instead disabling all tutorials when starting a new game makes only tutorials you have not seen yet show up.\n"
-#~ "That is very much recommended as new tutorials are regularly added, which would otherwise be missed by players who had played Thrive in the past."
 
 #~ msgid "PASSIVE_REPRODUCTION_PROGRESS_EXPLANATION"
 #~ msgstr "(passively gain reproduction compounds from the environment without having to do anything)"

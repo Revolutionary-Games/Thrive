@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2025-06-14 23:34+0200\n"
+"POT-Creation-Date: 2025-06-22 20:19+0200\n"
 "PO-Revision-Date: 2025-05-25 15:00+0000\n"
 "Last-Translator: Anonymous <noreply@weblate.org>\n"
 "Language-Team: German <https://translate.revolutionarygamesstudio.com/projects/thrive/thrive-game/de/>\n"
@@ -1636,6 +1636,11 @@ msgstr ""
 msgid "DISCORD_TOOLTIP"
 msgstr "Tritt unserem Discord Server bei"
 
+msgid "DISK_CACHE_TOOLTIP"
+msgstr ""
+"Wenn aktiviert, werden einige teuer zu generierende Daten auf der Festplatte gespeichert, damit sie beim nächsten Laden schneller verfügbar sind.\n"
+"Wenn deaktiviert, wird nur der Cache im Arbeitsspeicher verwendet."
+
 msgid "DISMISSED_POPUPS_COLON"
 msgstr "Versteckte Pop-ups:"
 
@@ -3247,6 +3252,9 @@ msgstr "Enthält Verdauungsenzyme, welche die Geschwidigkeit und die Effizienz d
 msgid "LOW_QUALITY_BACKGROUND_BLUR"
 msgstr "Hintergrundunschärfe in niedriger Auflösung"
 
+msgid "LOW_QUALITY_BACKGROUND_BLUR_TOOLTIP"
+msgstr "Zeigt die Hintergrundunschärfe in niedriger Auflösung an, was die Leistung verbessert."
+
 msgid "LUCIFERASE"
 msgstr "Luciferase"
 
@@ -4031,6 +4039,12 @@ msgstr "{0} (PWR: {1})"
 
 msgid "NAME_LABEL_STRUCTURE_UNFINISHED"
 msgstr ""
+
+msgid "NATIVE_THREAD_ADVICE_TOOLTIP"
+msgstr ""
+"Native Threads werden für andere Aufgaben verwendet als Managed Threads.\n"
+"Mehrere Threads auf CPUs mit mehreren Kernen erhöhen die Leistung normalerweise bis zu einem gewissen Limit\n"
+"bei zu vielen Threads wird die Leistung aber irgendwann beginnen abzunehmen."
 
 msgid "NEGATIVE_ATP_BALANCE"
 msgstr "Negativer ATP-Saldo"
@@ -5267,11 +5281,18 @@ msgstr "Koordinaten anzeigen"
 msgid "SHOW_NEW_PATCH_NOTES"
 msgstr "Neue Patchnotizen automatisch anzeigen"
 
+msgid "SHOW_NEW_PATCH_NOTES_TOOLTIP"
+msgstr "Patchnotizen neuer Thrive-Versionen automatisch im Hauptmenü anzeigen"
+
 msgid "SHOW_TUTORIALS_IN_NEW_CURRENT_OPTION"
 msgstr "Tutorials anzeigen (im aktuellen Spiel)"
 
 msgid "SHOW_TUTORIALS_IN_NEW_GAMES_OPTION"
 msgstr "Tutorials anzeigen (in neuen Spielen)"
+
+#, fuzzy
+msgid "SHOW_TUTORIALS_OPTION_TOOLTIP"
+msgstr "Exportiere die Daten aller Welten im CSV-Format (durch Kommas getrennte Werte)"
 
 msgid "SHOW_UNSAVED_PROGRESS_WARNING"
 msgstr "Warnung vor ungesichertem Fortschritt anzeigen"
@@ -8955,27 +8976,6 @@ msgstr "Herauszoomen"
 #, fuzzy
 #~ msgid "WORLD_TEMPERATURE_WARM"
 #~ msgstr "Temp."
-
-#~ msgid "DISK_CACHE_TOOLTIP"
-#~ msgstr ""
-#~ "Wenn aktiviert, werden einige teuer zu generierende Daten auf der Festplatte gespeichert, damit sie beim nächsten Laden schneller verfügbar sind.\n"
-#~ "Wenn deaktiviert, wird nur der Cache im Arbeitsspeicher verwendet."
-
-#~ msgid "LOW_QUALITY_BACKGROUND_BLUR_TOOLTIP"
-#~ msgstr "Zeigt die Hintergrundunschärfe in niedriger Auflösung an, was die Leistung verbessert."
-
-#~ msgid "NATIVE_THREAD_ADVICE_TOOLTIP"
-#~ msgstr ""
-#~ "Native Threads werden für andere Aufgaben verwendet als Managed Threads.\n"
-#~ "Mehrere Threads auf CPUs mit mehreren Kernen erhöhen die Leistung normalerweise bis zu einem gewissen Limit\n"
-#~ "bei zu vielen Threads wird die Leistung aber irgendwann beginnen abzunehmen."
-
-#~ msgid "SHOW_NEW_PATCH_NOTES_TOOLTIP"
-#~ msgstr "Patchnotizen neuer Thrive-Versionen automatisch im Hauptmenü anzeigen"
-
-#, fuzzy
-#~ msgid "SHOW_TUTORIALS_OPTION_TOOLTIP"
-#~ msgstr "Exportiere die Daten aller Welten im CSV-Format (durch Kommas getrennte Werte)"
 
 #~ msgid "PASSIVE_REPRODUCTION_PROGRESS_EXPLANATION"
 #~ msgstr "(Erhalte passiv Reproduktionsfortschritt, auch wenn Du keine Ressourcen aktiv einsammelst)"

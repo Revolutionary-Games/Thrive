@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2025-06-14 23:34+0200\n"
+"POT-Creation-Date: 2025-06-22 20:19+0200\n"
 "PO-Revision-Date: 2025-05-25 15:00+0000\n"
 "Last-Translator: Anonymous <noreply@weblate.org>\n"
 "Language-Team: Chinese (Simplified Han script) <https://translate.revolutionarygamesstudio.com/projects/thrive/thrive-game/zh_Hans/>\n"
@@ -1659,6 +1659,10 @@ msgstr ""
 msgid "DISCORD_TOOLTIP"
 msgstr "加入我们社区的Discord服务器"
 
+#, fuzzy
+msgid "DISK_CACHE_TOOLTIP"
+msgstr "访问我们在Itch.io上的页面"
+
 msgid "DISMISSED_POPUPS_COLON"
 msgstr "被禁用的弹出窗口："
 
@@ -3301,6 +3305,10 @@ msgstr ""
 msgid "LOW_QUALITY_BACKGROUND_BLUR"
 msgstr "低分辨率背景模糊"
 
+#, fuzzy
+msgid "LOW_QUALITY_BACKGROUND_BLUR_TOOLTIP"
+msgstr "低分辨率背景模糊"
+
 msgid "LUCIFERASE"
 msgstr ""
 
@@ -4141,6 +4149,12 @@ msgstr "{0}（能量：{1}）"
 
 msgid "NAME_LABEL_STRUCTURE_UNFINISHED"
 msgstr "{0}（未完成）"
+
+msgid "NATIVE_THREAD_ADVICE_TOOLTIP"
+msgstr ""
+"本地线程用于与托管线程不同的任务。\n"
+"有更多核心的多线程CPU通常会将性能提升到极限。\n"
+"太多的总线程将开始降低性能。"
 
 msgid "NEGATIVE_ATP_BALANCE"
 msgstr "ATP开支为负"
@@ -5363,11 +5377,18 @@ msgstr ""
 msgid "SHOW_NEW_PATCH_NOTES"
 msgstr "自动显示新的补丁说明"
 
+msgid "SHOW_NEW_PATCH_NOTES_TOOLTIP"
+msgstr "在主菜单中自动显示新版Thrive的补丁说明"
+
 msgid "SHOW_TUTORIALS_IN_NEW_CURRENT_OPTION"
 msgstr "现有游戏中显示教程"
 
 msgid "SHOW_TUTORIALS_IN_NEW_GAMES_OPTION"
 msgstr "开始新游戏时显示教程"
+
+#, fuzzy
+msgid "SHOW_TUTORIALS_OPTION_TOOLTIP"
+msgstr "以逗号分隔符（csv）格式导出所有世界数据"
 
 msgid "SHOW_UNSAVED_PROGRESS_WARNING"
 msgstr "显示未保存的进度警告"
@@ -9164,23 +9185,6 @@ msgstr "缩小"
 #, fuzzy
 #~ msgid "WORLD_TEMPERATURE_WARM"
 #~ msgstr "温度"
-
-#, fuzzy
-#~ msgid "DISK_CACHE_TOOLTIP"
-#~ msgstr "访问我们在Itch.io上的页面"
-
-#~ msgid "NATIVE_THREAD_ADVICE_TOOLTIP"
-#~ msgstr ""
-#~ "本地线程用于与托管线程不同的任务。\n"
-#~ "有更多核心的多线程CPU通常会将性能提升到极限。\n"
-#~ "太多的总线程将开始降低性能。"
-
-#~ msgid "SHOW_NEW_PATCH_NOTES_TOOLTIP"
-#~ msgstr "在主菜单中自动显示新版Thrive的补丁说明"
-
-#, fuzzy
-#~ msgid "SHOW_TUTORIALS_OPTION_TOOLTIP"
-#~ msgstr "以逗号分隔符（csv）格式导出所有世界数据"
 
 #~ msgid "PASSIVE_REPRODUCTION_PROGRESS_EXPLANATION"
 #~ msgstr "（从周围的环境中被动获得的用于繁殖的化合物）"

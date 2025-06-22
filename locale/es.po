@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2025-06-14 23:34+0200\n"
+"POT-Creation-Date: 2025-06-22 20:19+0200\n"
 "PO-Revision-Date: 2025-05-25 15:00+0000\n"
 "Last-Translator: Anonymous <noreply@weblate.org>\n"
 "Language-Team: Spanish <https://translate.revolutionarygamesstudio.com/projects/thrive/thrive-game/es/>\n"
@@ -1655,6 +1655,11 @@ msgstr ""
 msgid "DISCORD_TOOLTIP"
 msgstr "Únete a nuestro servidor de Discord"
 
+msgid "DISK_CACHE_TOOLTIP"
+msgstr ""
+"Cuando se activa, algunos datos costosos de generar se escriben en el disco para que sea más rápido cargarlos cuando se necesiten de nuevo.\n"
+"Si se desactiva, sólo se utiliza la caché en memoria."
+
 msgid "DISMISSED_POPUPS_COLON"
 msgstr "Popups deshabilitadps:"
 
@@ -3286,6 +3291,10 @@ msgstr ""
 msgid "LOW_QUALITY_BACKGROUND_BLUR"
 msgstr "Desenfoque del fondo:"
 
+#, fuzzy
+msgid "LOW_QUALITY_BACKGROUND_BLUR_TOOLTIP"
+msgstr "Desenfoque del fondo:"
+
 msgid "LUCIFERASE"
 msgstr ""
 
@@ -4149,6 +4158,10 @@ msgstr "Bioma: {0}"
 
 msgid "NAME_LABEL_STRUCTURE_UNFINISHED"
 msgstr ""
+
+#, fuzzy
+msgid "NATIVE_THREAD_ADVICE_TOOLTIP"
+msgstr "Hilos actuales:"
 
 msgid "NEGATIVE_ATP_BALANCE"
 msgstr "Balance de ATP Negativo"
@@ -5446,11 +5459,19 @@ msgstr ""
 msgid "SHOW_NEW_PATCH_NOTES"
 msgstr "{0} {1}"
 
+#, fuzzy
+msgid "SHOW_NEW_PATCH_NOTES_TOOLTIP"
+msgstr "{0} {1}"
+
 msgid "SHOW_TUTORIALS_IN_NEW_CURRENT_OPTION"
 msgstr "Mostrar tutoriales (en la partida actual)"
 
 msgid "SHOW_TUTORIALS_IN_NEW_GAMES_OPTION"
 msgstr "Mostrar tutoriales (en nuevas partidas)"
+
+#, fuzzy
+msgid "SHOW_TUTORIALS_OPTION_TOOLTIP"
+msgstr "Exportar los datos de todos los mundos en formato de valores separados por comas (csv)"
 
 msgid "SHOW_UNSAVED_PROGRESS_WARNING"
 msgstr "Mostrar aviso de progreso sin guardar"
@@ -9078,27 +9099,6 @@ msgstr "Alejar el zoom"
 #, fuzzy
 #~ msgid "WORLD_TEMPERATURE_WARM"
 #~ msgstr "Temp."
-
-#~ msgid "DISK_CACHE_TOOLTIP"
-#~ msgstr ""
-#~ "Cuando se activa, algunos datos costosos de generar se escriben en el disco para que sea más rápido cargarlos cuando se necesiten de nuevo.\n"
-#~ "Si se desactiva, sólo se utiliza la caché en memoria."
-
-#, fuzzy
-#~ msgid "LOW_QUALITY_BACKGROUND_BLUR_TOOLTIP"
-#~ msgstr "Desenfoque del fondo:"
-
-#, fuzzy
-#~ msgid "NATIVE_THREAD_ADVICE_TOOLTIP"
-#~ msgstr "Hilos actuales:"
-
-#, fuzzy
-#~ msgid "SHOW_NEW_PATCH_NOTES_TOOLTIP"
-#~ msgstr "{0} {1}"
-
-#, fuzzy
-#~ msgid "SHOW_TUTORIALS_OPTION_TOOLTIP"
-#~ msgstr "Exportar los datos de todos los mundos en formato de valores separados por comas (csv)"
 
 #~ msgid "PASSIVE_REPRODUCTION_PROGRESS_EXPLANATION"
 #~ msgstr "(recibe compuestos del ambiente de forma pasiva sin tener que realizar acciones)"

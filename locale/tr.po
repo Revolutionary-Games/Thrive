@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2025-06-14 23:34+0200\n"
+"POT-Creation-Date: 2025-06-22 20:19+0200\n"
 "PO-Revision-Date: 2025-05-26 15:44+0000\n"
 "Last-Translator: punctdan <yunusemredilek@hotmail.com>\n"
 "Language-Team: Turkish <https://translate.revolutionarygamesstudio.com/projects/thrive/thrive-game/tr/>\n"
@@ -1634,6 +1634,11 @@ msgstr ""
 msgid "DISCORD_TOOLTIP"
 msgstr "Discord topluluk sunucumuza katılın"
 
+msgid "DISK_CACHE_TOOLTIP"
+msgstr ""
+"Etkinleştirildiğinde, oluşturulması zahmetli bazı veriler diske yazılır. Böylece, bu verilere yeniden ihtiyaç duyulduğunda yüklenmeleri daha hızlı olur.\n"
+"Eğer devre dışı bırakılırsa, yalnızca bellek içi önbellekleme kullanılır."
+
 msgid "DISMISSED_POPUPS_COLON"
 msgstr "Atlanan pencereler:"
 
@@ -3249,6 +3254,9 @@ msgstr ""
 msgid "LOW_QUALITY_BACKGROUND_BLUR"
 msgstr "Düşük çözünürlük arkaplan bulanıklığı"
 
+msgid "LOW_QUALITY_BACKGROUND_BLUR_TOOLTIP"
+msgstr "Performansı arttırmak için arkaplan bulanıklığının daha düşük bir çözünürlük kullanmasını sağlar."
+
 msgid "LUCIFERASE"
 msgstr "Lusiferaz"
 
@@ -4029,6 +4037,12 @@ msgstr "{0} (GÜÇ: {1})"
 
 msgid "NAME_LABEL_STRUCTURE_UNFINISHED"
 msgstr "{0} (Y)"
+
+msgid "NATIVE_THREAD_ADVICE_TOOLTIP"
+msgstr ""
+"Yerel iş parçacıkları, yönetilen iş parçacıklarından farklı görevler için kullanılır.\n"
+"Çok çekirdekli işlemcilerde daha fazla iş parçacığı genellikle performansı belli bir sınıra kadar arttırır.\n"
+"Toplam iş parçacığı aşırı fazla ise performans azalmaya başlar."
 
 msgid "NEGATIVE_ATP_BALANCE"
 msgstr "Negatif ATP Tutarı"
@@ -5220,11 +5234,20 @@ msgstr "Koordinatları göster"
 msgid "SHOW_NEW_PATCH_NOTES"
 msgstr "Yeni yama notlarını otomatik olarak göster"
 
+msgid "SHOW_NEW_PATCH_NOTES_TOOLTIP"
+msgstr "Yeni Thrive sürümlerinin yama notlarını ana menüde otomatik olarak göster"
+
 msgid "SHOW_TUTORIALS_IN_NEW_CURRENT_OPTION"
 msgstr "Rehberi göster (mevcut oyunda)"
 
 msgid "SHOW_TUTORIALS_IN_NEW_GAMES_OPTION"
 msgstr "Rehberi göster (yeni oyunlarda)"
+
+msgid "SHOW_TUTORIALS_OPTION_TOOLTIP"
+msgstr ""
+"Oyun rehberlerini göster ya da tamamen devre dışı bırak.\n"
+"Bu seçeneğin devre dışı bırakılması önerilmez. Buna karşılık, yeni bir oyuna başlarken tüm oyun rehberlerini devre dışı bırakmak, yalnızca daha önce görmediğiniz oyun rehberlerinin gösterilmesini sağlar.\n"
+"Bu seçenek, özellikle daha önce Thrive oynamış oyuncuların kaçırabileceği yeni oyun rehberleri düzenli olarak eklendiği için, şiddetle önerilmektedir."
 
 msgid "SHOW_UNSAVED_PROGRESS_WARNING"
 msgstr "Kaydedilmemiş ilerlemeler uyarısını göster"
@@ -9232,29 +9255,6 @@ msgstr "Uzaklaştır"
 #, fuzzy
 #~ msgid "WORLD_TEMPERATURE_WARM"
 #~ msgstr "Sıc."
-
-#~ msgid "DISK_CACHE_TOOLTIP"
-#~ msgstr ""
-#~ "Etkinleştirildiğinde, oluşturulması zahmetli bazı veriler diske yazılır. Böylece, bu verilere yeniden ihtiyaç duyulduğunda yüklenmeleri daha hızlı olur.\n"
-#~ "Eğer devre dışı bırakılırsa, yalnızca bellek içi önbellekleme kullanılır."
-
-#~ msgid "LOW_QUALITY_BACKGROUND_BLUR_TOOLTIP"
-#~ msgstr "Performansı arttırmak için arkaplan bulanıklığının daha düşük bir çözünürlük kullanmasını sağlar."
-
-#~ msgid "NATIVE_THREAD_ADVICE_TOOLTIP"
-#~ msgstr ""
-#~ "Yerel iş parçacıkları, yönetilen iş parçacıklarından farklı görevler için kullanılır.\n"
-#~ "Çok çekirdekli işlemcilerde daha fazla iş parçacığı genellikle performansı belli bir sınıra kadar arttırır.\n"
-#~ "Toplam iş parçacığı aşırı fazla ise performans azalmaya başlar."
-
-#~ msgid "SHOW_NEW_PATCH_NOTES_TOOLTIP"
-#~ msgstr "Yeni Thrive sürümlerinin yama notlarını ana menüde otomatik olarak göster"
-
-#~ msgid "SHOW_TUTORIALS_OPTION_TOOLTIP"
-#~ msgstr ""
-#~ "Oyun rehberlerini göster ya da tamamen devre dışı bırak.\n"
-#~ "Bu seçeneğin devre dışı bırakılması önerilmez. Buna karşılık, yeni bir oyuna başlarken tüm oyun rehberlerini devre dışı bırakmak, yalnızca daha önce görmediğiniz oyun rehberlerinin gösterilmesini sağlar.\n"
-#~ "Bu seçenek, özellikle daha önce Thrive oynamış oyuncuların kaçırabileceği yeni oyun rehberleri düzenli olarak eklendiği için, şiddetle önerilmektedir."
 
 #~ msgid "PASSIVE_REPRODUCTION_PROGRESS_EXPLANATION"
 #~ msgstr "(hiçbir şey yapmadan çevreden pasif olarak üreme bileşenleri elde et)"
