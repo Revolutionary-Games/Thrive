@@ -143,7 +143,6 @@ public class MicrobeSpecies : Species, ICellDefinition
     public void UpdateIsBacteria()
     {
         var nucleus = SimulationParameters.Instance.GetOrganelleType("nucleus");
-        
         IsBacteria = true;
         foreach (var organelle in Organelles)
         {
