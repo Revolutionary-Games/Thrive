@@ -65,21 +65,6 @@ public class CompoundCloudPressure : SelectionPressure
                 score *= multiplier;
         }
 
-        var energyBalance = new EnergyBalanceInfoSimple();
-        Dictionary<Compound, CompoundBalance> dayCompoundBalances = new Dictionary<Compound, CompoundBalance>();
-
-        List<OrganelleDefinition> organelleDefinitions = new List<OrganelleDefinition>();
-
-        foreach (OrganelleTemplate template in microbeSpecies.Organelles)
-        {
-            organelleDefinitions.Add(template.Definition);
-        }
-
-        ProcessSystem.ComputeCompoundBalanceAtEquilibrium(organelleDefinitions,
-                patch.Biome, cache.GetEnvironmentalTolerances(microbeSpecies, patch.Biome), CompoundAmountType.Biome, energyBalance, dayCompoundBalances);
-
-        score /= dayCompoundBalances[compound].Balance;
-
         return score;
     }
 
