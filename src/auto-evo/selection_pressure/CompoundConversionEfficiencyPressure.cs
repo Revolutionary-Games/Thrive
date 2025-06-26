@@ -1,9 +1,6 @@
 ﻿namespace AutoEvo;
 
-using Godot;
 using Newtonsoft.Json;
-using System.Collections.Generic;
-using Systems;
 
 [JSONDynamicTypeAllowed]
 public class CompoundConversionEfficiencyPressure : SelectionPressure
@@ -30,7 +27,8 @@ public class CompoundConversionEfficiencyPressure : SelectionPressure
     [JsonProperty]
     private readonly bool usedForSurvival;
 
-    public CompoundConversionEfficiencyPressure(Compound compound, Compound outCompound, float weight, bool usedForSurvival) :
+    public CompoundConversionEfficiencyPressure(Compound compound, Compound outCompound, float weight,
+        bool usedForSurvival) :
         base(weight, [
             AddOrganelleAnywhere.ThatConvertBetweenCompounds(compound, outCompound),
             RemoveOrganelle.ThatCreateCompound(outCompound),

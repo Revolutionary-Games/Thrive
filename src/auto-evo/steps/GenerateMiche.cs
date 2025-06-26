@@ -44,7 +44,8 @@ public class GenerateMiche : IRunStep
             glucoseAmount.Amount > 0)
         {
             var glucoseMiche = new Miche(globalCache.GlucoseConversionEfficiencyPressure);
-            glucoseMiche.AddChild(new Miche(new CompoundCloudPressure(Compound.Glucose, glucoseAmount.Amount, cache.GetDayNightEnabled(), 1.0f)));
+            glucoseMiche.AddChild(new Miche(new CompoundCloudPressure(Compound.Glucose, glucoseAmount.Amount,
+                cache.GetDayNightEnabled(), 1.0f)));
 
             generatedMiche.AddChild(glucoseMiche);
         }
