@@ -1,9 +1,7 @@
 ﻿namespace AutoEvo;
 
 using System;
-using System.Collections.Generic;
 using Newtonsoft.Json;
-using Systems;
 
 [JSONDynamicTypeAllowed]
 public class CompoundCloudPressure : SelectionPressure
