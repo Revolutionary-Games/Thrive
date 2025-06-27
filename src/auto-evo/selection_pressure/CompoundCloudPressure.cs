@@ -18,12 +18,9 @@ public class CompoundCloudPressure : SelectionPressure
     private readonly CompoundDefinition compoundDefinition;
 
     [JsonProperty]
-    private readonly float amount;
-
-    [JsonProperty]
     private readonly bool isDayNightCycleEnabled;
 
-    public CompoundCloudPressure(Compound compound, float amount, bool isDayNightCycleEnabled, float weight) :
+    public CompoundCloudPressure(Compound compound, bool isDayNightCycleEnabled, float weight) :
         base(weight, [
             new ChangeMembraneRigidity(true),
             new ChangeMembraneType("single"),
@@ -35,7 +32,6 @@ public class CompoundCloudPressure : SelectionPressure
             throw new ArgumentException("Given compound to cloud pressure is not of cloud type");
 
         this.compound = compound;
-        this.amount = amount;
         this.isDayNightCycleEnabled = isDayNightCycleEnabled;
     }
 

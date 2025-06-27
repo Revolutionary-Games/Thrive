@@ -44,8 +44,7 @@ public class GenerateMiche : IRunStep
             glucoseAmount.Amount > 0)
         {
             var glucoseMiche = new Miche(globalCache.GlucoseConversionEfficiencyPressure);
-            glucoseMiche.AddChild(new Miche(new CompoundCloudPressure(Compound.Glucose, glucoseAmount.Amount,
-                cache.GetDayNightEnabled(), 1.0f)));
+            glucoseMiche.AddChild(new Miche(globalCache.GlucoseCloudPressure));
 
             generatedMiche.AddChild(glucoseMiche);
         }
@@ -92,10 +91,7 @@ public class GenerateMiche : IRunStep
             var maintainGlucose = new Miche(globalCache.MaintainGlucose);
 
             if (hydrogenSulfideAmount.Amount > 0)
-            {
-                maintainGlucose.AddChild(new Miche(new CompoundCloudPressure(Compound.Hydrogensulfide,
-                    hydrogenSulfideAmount.Amount, cache.GetDayNightEnabled(), 1.0f)));
-            }
+                maintainGlucose.AddChild(new Miche(globalCache.HydrogenSulfideCloudPressure));
 
             if (hasSmallSulfurChunk)
                 maintainGlucose.AddChild(new Miche(globalCache.SmallSulfurChunkPressure));

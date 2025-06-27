@@ -387,11 +387,6 @@ public class SimulationCache
         return cached;
     }
 
-    public bool GetDayNightEnabled()
-    {
-        return worldSettings.DayNightCycleEnabled;
-    }
-
     public bool MatchesSettings(WorldGenerationSettings checkAgainst)
     {
         return worldSettings.Equals(checkAgainst);

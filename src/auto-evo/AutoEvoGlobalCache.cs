@@ -13,12 +13,14 @@ public class AutoEvoGlobalCache
     public readonly MaintainCompoundPressure MaintainGlucose;
 
     public readonly CompoundConversionEfficiencyPressure GlucoseConversionEfficiencyPressure;
+    public readonly CompoundCloudPressure GlucoseCloudPressure;
 
     public readonly CompoundConversionEfficiencyPressure IronConversionEfficiencyPressure;
     public readonly ChunkCompoundPressure SmallIronChunkPressure;
     public readonly ChunkCompoundPressure BigIronChunkPressure;
 
     public readonly CompoundConversionEfficiencyPressure HydrogenSulfideConversionEfficiencyPressure;
+    public readonly CompoundCloudPressure HydrogenSulfideCloudPressure;
     public readonly ChunkCompoundPressure SmallSulfurChunkPressure;
     public readonly ChunkCompoundPressure MediumSulfurChunkPressure;
     public readonly ChunkCompoundPressure LargeSulfurChunkPressure;
@@ -48,6 +50,7 @@ public class AutoEvoGlobalCache
 
         GlucoseConversionEfficiencyPressure =
             new CompoundConversionEfficiencyPressure(Compound.Glucose, Compound.ATP, 1.5f, true);
+        GlucoseCloudPressure = new CompoundCloudPressure(Compound.Glucose, worldSettings.DayNightCycleEnabled, 1.0f);
 
         IronConversionEfficiencyPressure = new CompoundConversionEfficiencyPressure(Compound.Iron, Compound.ATP,
             1.5f, true);
@@ -58,6 +61,8 @@ public class AutoEvoGlobalCache
 
         HydrogenSulfideConversionEfficiencyPressure = new CompoundConversionEfficiencyPressure(Compound.Hydrogensulfide,
             Compound.Glucose, 1.0f, true);
+        HydrogenSulfideCloudPressure = new CompoundCloudPressure(Compound.Hydrogensulfide,
+            worldSettings.DayNightCycleEnabled, 1.0f);
         SmallSulfurChunkPressure = new ChunkCompoundPressure("sulfurSmallChunk",
             new LocalizedString("SMALL_SULFUR_CHUNK"), Compound.Hydrogensulfide, Compound.Glucose, 1.0f);
         MediumSulfurChunkPressure = new ChunkCompoundPressure("sulfurMediumChunk",
