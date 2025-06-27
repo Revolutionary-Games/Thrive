@@ -143,12 +143,12 @@ public class GenerateMiche : IRunStep
             temperatureAmount.Ambient > 60 && globalCache.HasTemperature)
         {
             var tempMiche = new Miche(globalCache.TemperatureConversionEfficiencyPressure);
-            tempMiche.AddChild(new Miche(globalCache.TemperatureCompoundPressure));
-            generatedMiche.AddChild(tempMiche);
-
-            // Add the new TemperatureSessilityPressure alongside the existing ones
             var tempSessilityMiche = new Miche(globalCache.TemperatureSessilityPressure);
-            generatedMiche.AddChild(tempSessilityMiche);
+            var tempCompPressure = new Miche(globalCache.TemperatureCompoundPressure);
+
+            tempSessilityMiche.AddChild(tempCompPressure);
+            tempMiche.AddChild(tempSessilityMiche);
+            generatedMiche.AddChild(tempMiche);
         }
 
         var predationRoot = new Miche(globalCache.PredatorRoot);
