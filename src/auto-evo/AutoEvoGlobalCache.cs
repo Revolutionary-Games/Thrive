@@ -43,7 +43,7 @@ public class AutoEvoGlobalCache
         EnvironmentalTolerancesPressure = new EnvironmentalTolerancePressure(4);
 
         MinorGlucoseConversionEfficiencyPressure =
-            new CompoundConversionEfficiencyPressure(Compound.Glucose, Compound.ATP, 0.75f, true);
+            new CompoundConversionEfficiencyPressure(Compound.Glucose, Compound.ATP, 0.45f, true);
         MaintainGlucose = new MaintainCompoundPressure(Compound.Glucose, 1.5f);
 
         GlucoseConversionEfficiencyPressure =
