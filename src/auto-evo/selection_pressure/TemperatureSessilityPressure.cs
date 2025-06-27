@@ -27,7 +27,7 @@ public class TemperatureSessilityPressure : SelectionPressure
             return 0;
 
         // Get temperature from the patch
-        if (!patch.Biome.TryGetCompound(Compound.Temperature, CompoundAmountType.Biome, out var temperatureAmount))
+        if (!patch.Biome.TryGetCompound(Compound.Temperature, CompoundAmountType.Biome, out BiomeCompoundProperties temperatureAmount))
                 return 0.0f;
 
         float temperature = temperatureAmount.Ambient;
