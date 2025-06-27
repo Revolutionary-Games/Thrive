@@ -7,27 +7,19 @@ using Godot;
 /// </summary>
 public partial class CityScreen : CustomWindow
 {
-    [Export]
-    public NodePath? ShortStatsLabelPath;
-
-    [Export]
-    public NodePath AvailableBuildingsContainerPath = null!;
-
-    [Export]
-    public NodePath ConstructedBuildingsContainerPath = null!;
-
-    [Export]
-    public NodePath BuildQueueContainerPath = null!;
-
     private readonly List<BuildQueueItemGUI> activeBuildQueueItems = new();
 
 #pragma warning disable CA2213
+    [Export]
     private Label shortStatsLabel = null!;
 
+    [Export]
     private Container availableBuildingsContainer = null!;
 
+    [Export]
     private Container constructedBuildingsContainer = null!;
 
+    [Export]
     private Container buildQueueContainer = null!;
 
     private PackedScene queueItemScene = null!;
@@ -44,14 +36,6 @@ public partial class CityScreen : CustomWindow
     public override void _Ready()
     {
         base._Ready();
-
-        shortStatsLabel = GetNode<Label>(ShortStatsLabelPath);
-
-        availableBuildingsContainer = GetNode<Container>(AvailableBuildingsContainerPath);
-
-        constructedBuildingsContainer = GetNode<Container>(ConstructedBuildingsContainerPath);
-
-        buildQueueContainer = GetNode<Container>(BuildQueueContainerPath);
 
         queueItemScene = GD.Load<PackedScene>("res://src/industrial_stage/gui/BuildQueueItemGUI.tscn");
         availableConstructionItemScene =
@@ -95,22 +79,6 @@ public partial class CityScreen : CustomWindow
 
         UpdateAllCityInfo();
         Show();
-    }
-
-    protected override void Dispose(bool disposing)
-    {
-        if (disposing)
-        {
-            if (ShortStatsLabelPath != null)
-            {
-                ShortStatsLabelPath.Dispose();
-                AvailableBuildingsContainerPath.Dispose();
-                ConstructedBuildingsContainerPath.Dispose();
-                BuildQueueContainerPath.Dispose();
-            }
-        }
-
-        base.Dispose(disposing);
     }
 
     private void UpdateAllCityInfo()

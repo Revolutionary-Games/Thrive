@@ -90,7 +90,7 @@ corner_radius_top_right = 3
 corner_radius_bottom_right = 3
 corner_radius_bottom_left = 3
 
-[node name="MicrobeEditorReport" type="Control" node_paths=PackedStringArray("autoEvoSubtabButton", "timelineSubtabButton", "foodChainSubtabButton", "autoEvoSubtab", "timelineSubtab", "foodChainSubtab", "foodChainData", "timeIndicator", "externalEffectsLabel", "reportTabPatchName", "reportTabPatchSelector", "speciesChartContainer", "physicalConditionsChartContainer", "atmosphereChartContainer", "compoundsChartContainer", "noAutoEvoResultData", "graphicalResultsContainer", "majorEventsList", "showTextReportButton", "textReportDialog", "textReportLabel")]
+[node name="MicrobeEditorReport" type="Control" node_paths=PackedStringArray("autoEvoSubtabButton", "timelineSubtabButton", "foodChainSubtabButton", "autoEvoSubtab", "timelineSubtab", "foodChainSubtab", "foodChainData", "timeIndicator", "externalEffectsLabel", "reportTabPatchName", "reportTabPatchSelector", "speciesChartContainer", "physicalConditionsChartContainer", "atmosphereChartContainer", "compoundsChartContainer", "noAutoEvoResultData", "graphicalResultsContainer", "majorEventsList", "showTextReportButton", "textReportDialog", "textReportLabel", "finishOrNextButton")]
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
@@ -123,7 +123,7 @@ majorEventsList = NodePath("MarginContainer/HSplitContainer/PanelContainer/Margi
 showTextReportButton = NodePath("MarginContainer/HSplitContainer/PanelContainer/MarginContainer/VBoxContainer/EvoResultsPanel/MarginContainer/ScrollContainer/VBoxContainer/ViewTextReport")
 textReportDialog = NodePath("TextReportWindow")
 textReportLabel = NodePath("TextReportWindow/VBoxContainer/ScrollContainer/TextualReport")
-FinishOrNextButtonPath = NodePath("NextTabButton/NextTabButton")
+finishOrNextButton = NodePath("NextTabButton/NextTabButton")
 
 [node name="MarginContainer" type="MarginContainer" parent="."]
 layout_mode = 0
@@ -311,21 +311,21 @@ mouse_filter = 2
 texture = ExtResource("7")
 expand_mode = 1
 
-[node name="TimelinePanel" type="PanelContainer" parent="MarginContainer/HSplitContainer/PanelContainer/MarginContainer/VBoxContainer"]
+[node name="TimelinePanel" type="PanelContainer" parent="MarginContainer/HSplitContainer/PanelContainer/MarginContainer/VBoxContainer" node_paths=PackedStringArray("globalEventsContainer", "localEventsContainer", "scrollContainer", "localFilterButton", "globalFilterButton")]
 visible = false
 layout_mode = 2
 size_flags_horizontal = 3
 size_flags_vertical = 3
 theme_override_styles/panel = SubResource("29")
 script = ExtResource("4")
-GlobalEventsContainerPath = NodePath("MarginContainer/ScrollContainer/MarginContainer/GlobalEventsContainer")
-LocalEventsContainerPath = NodePath("MarginContainer/ScrollContainer/MarginContainer/LocalEventsContainer")
-ScrollContainerPath = NodePath("MarginContainer/ScrollContainer")
-LocalFilterButtonPath = NodePath("MarginContainer/MarginContainer/HBoxContainer/LocalFilter")
-GlobalFilterButtonPath = NodePath("MarginContainer/MarginContainer/HBoxContainer/GlobalFilter")
 TimePeriodTitleFont = ExtResource("9_8hrmr")
 EventLabelNormalFont = ExtResource("10_16cw6")
 EventLabelBoldFont = ExtResource("11_xdyjp")
+globalEventsContainer = NodePath("MarginContainer/ScrollContainer/MarginContainer/GlobalEventsContainer")
+localEventsContainer = NodePath("MarginContainer/ScrollContainer/MarginContainer/LocalEventsContainer")
+scrollContainer = NodePath("MarginContainer/ScrollContainer")
+localFilterButton = NodePath("MarginContainer/MarginContainer/HBoxContainer/LocalFilter")
+globalFilterButton = NodePath("MarginContainer/MarginContainer/HBoxContainer/GlobalFilter")
 
 [node name="MarginContainer" type="MarginContainer" parent="MarginContainer/HSplitContainer/PanelContainer/MarginContainer/VBoxContainer/TimelinePanel"]
 layout_mode = 2
@@ -414,10 +414,11 @@ layout_mode = 2
 size_flags_vertical = 3
 theme_override_styles/panel = SubResource("29")
 
-[node name="DraggableScrollContainer" parent="MarginContainer/HSplitContainer/PanelContainer/MarginContainer/VBoxContainer/FoodTab" instance=ExtResource("14_ynonx")]
+[node name="DraggableScrollContainer" parent="MarginContainer/HSplitContainer/PanelContainer/MarginContainer/VBoxContainer/FoodTab" node_paths=PackedStringArray("content") instance=ExtResource("14_ynonx")]
 layout_mode = 2
 mouse_filter = 0
 mouse_force_pass_scroll_events = false
+content = NodePath("FoodChainDisplay")
 
 [node name="FoodChainDisplay" parent="MarginContainer/HSplitContainer/PanelContainer/MarginContainer/VBoxContainer/FoodTab/DraggableScrollContainer" instance=ExtResource("14_ghu38")]
 layout_mode = 2

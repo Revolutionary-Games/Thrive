@@ -10,18 +10,6 @@ public partial class GalleryViewer : CustomWindow
 {
     public const string ALL_CATEGORY = "All";
 
-    [Export]
-    public NodePath? GalleryGridPath;
-
-    [Export]
-    public NodePath TabButtonsPath = null!;
-
-    [Export]
-    public NodePath AssetsCategoryDropdownPath = null!;
-
-    [Export]
-    public NodePath SlideshowButtonPath = null!;
-
 #pragma warning disable CA2213
     [Export]
     public PackedScene GalleryCardScene = null!;
@@ -38,11 +26,18 @@ public partial class GalleryViewer : CustomWindow
     private readonly List<(Control Control, ICustomToolTip ToolTip)> registeredToolTips = new();
 
     // TODO: Replace GridContainer with FlowContainer https://github.com/godotengine/godot/pull/57960
+    [Export]
     private GridContainer cardTile = null!;
 
+    [Export]
     private TabButtons tabButtons = null!;
+
+    [Export]
     private OptionButton assetsCategoryDropdown = null!;
+
     private SlideScreen slideScreen = null!;
+
+    [Export]
     private Button slideshowButton = null!;
 
     private GalleryCard? lastSelected;
@@ -93,11 +88,6 @@ public partial class GalleryViewer : CustomWindow
     public override void _Ready()
     {
         slideScreen = GetNode<SlideScreen>("SlideScreen");
-        cardTile = GetNode<GridContainer>(GalleryGridPath);
-        tabButtons = GetNode<TabButtons>(TabButtonsPath);
-        assetsCategoryDropdown = GetNode<OptionButton>(AssetsCategoryDropdownPath);
-        slideshowButton = GetNode<Button>(SlideshowButtonPath);
-
         readyCalled = true;
     }
 
@@ -159,22 +149,6 @@ public partial class GalleryViewer : CustomWindow
     {
         base.OnHidden();
         StopAllPlayback();
-    }
-
-    protected override void Dispose(bool disposing)
-    {
-        if (disposing)
-        {
-            if (GalleryGridPath != null)
-            {
-                GalleryGridPath.Dispose();
-                TabButtonsPath.Dispose();
-                AssetsCategoryDropdownPath.Dispose();
-                SlideshowButtonPath.Dispose();
-            }
-        }
-
-        base.Dispose(disposing);
     }
 
     private void InitializeGallery()

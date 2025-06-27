@@ -15,6 +15,7 @@ public class MetabolicStabilityPressure : SelectionPressure
         AddOrganelleAnywhere.ThatCreateCompound(Compound.ATP),
         RemoveOrganelle.ThatUseCompound(Compound.ATP),
         new UpgradeOrganelle(organelle => organelle.HasMovementComponent, new FlagellumUpgrades(-1.0f)),
+        new ChangeBehaviorScore(ChangeBehaviorScore.BehaviorAttribute.Activity, -150.0f),
     ])
     {
     }
@@ -41,8 +42,8 @@ public class MetabolicStabilityPressure : SelectionPressure
 
         if (energyBalance.FinalBalanceStationary > 0)
         {
-            // Punish microbes that can't move continuously severely
-            return 0.25f;
+            // Only punish non-sessile species for not being able to move continuously
+            return 1.0f - microbeSpecies.Behaviour.Activity / Constants.MAX_SPECIES_ACTIVITY;
         }
 
         return 0.0f;

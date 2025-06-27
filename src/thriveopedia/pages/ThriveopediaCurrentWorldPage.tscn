@@ -4,12 +4,12 @@
 [ext_resource type="Script" uid="uid://cml3p0ajm4qju" path="res://src/thriveopedia/pages/ThriveopediaCurrentWorldPage.cs" id="2"]
 [ext_resource type="LabelSettings" uid="uid://bnhcbmq3brx0s" path="res://src/gui_common/fonts/Title-SemiBold-Normal.tres" id="3_4isgi"]
 
-[node name="ThriveopediaCurrentWorldPage" instance=ExtResource("1")]
+[node name="ThriveopediaCurrentWorldPage" instance=ExtResource("1") node_paths=PackedStringArray("miscDetails", "planetDetails", "difficultyDetails")]
 anchors_preset = 15
 script = ExtResource("2")
-DifficultyDetailsPath = NodePath("MarginContainer/ScrollContainer/MarginContainer/VBoxContainer/WorldContent/GridContainer/VBoxContainer/DifficultyDetails")
-PlanetDetailsPath = NodePath("MarginContainer/ScrollContainer/MarginContainer/VBoxContainer/WorldContent/GridContainer/VBoxContainer2/PlanetDetails")
-MiscDetailsPath = NodePath("MarginContainer/ScrollContainer/MarginContainer/VBoxContainer/WorldContent/GridContainer/VBoxContainer3/MiscDetails")
+difficultyDetails = NodePath("MarginContainer/ScrollContainer/MarginContainer/VBoxContainer/WorldContent/GridContainer/VBoxContainer/DifficultyDetails")
+planetDetails = NodePath("MarginContainer/ScrollContainer/MarginContainer/VBoxContainer/WorldContent/GridContainer/VBoxContainer2/PlanetDetails")
+miscDetails = NodePath("MarginContainer/ScrollContainer/MarginContainer/VBoxContainer/WorldContent/GridContainer/VBoxContainer3/MiscDetails")
 
 [node name="MarginContainer" parent="." index="0"]
 layout_mode = 2

@@ -5,14 +5,14 @@
 [ext_resource type="PackedScene" uid="uid://bhpjtbtaeunat" path="res://src/gui_common/CustomRichTextLabel.tscn" id="4"]
 [ext_resource type="Theme" uid="uid://b4cx0o110g4b6" path="res://src/gui_common/thrive_theme.tres" id="5"]
 
-[node name="WikiPageSection" type="VBoxContainer"]
+[node name="WikiPageSection" type="VBoxContainer" node_paths=PackedStringArray("heading", "separator", "body")]
 offset_right = 476.0
 offset_bottom = 73.0
 theme = ExtResource("5")
 script = ExtResource("2")
-HeadingPath = NodePath("Heading")
-SeparatorPath = NodePath("HSeparator")
-BodyPath = NodePath("Body")
+heading = NodePath("Heading")
+separator = NodePath("HSeparator")
+body = NodePath("Body")
 
 [node name="Heading" type="Label" parent="."]
 layout_mode = 2

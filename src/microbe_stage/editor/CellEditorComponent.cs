@@ -11,10 +11,10 @@ using Systems;
 /// <summary>
 ///   The cell editor component combining the organelle and other editing logic with the GUI for it
 /// </summary>
-[SceneLoadedClass("res://src/microbe_stage/editor/CellEditorComponent.tscn")]
+[SceneLoadedClass("res://src/microbe_stage/editor/CellEditorComponent.tscn", UsesEarlyResolve = false)]
 public partial class CellEditorComponent :
     HexEditorComponentBase<ICellEditorData, CombinedEditorAction, EditorAction, OrganelleTemplate, CellType>,
-    ICellEditorComponent, IGodotEarlyNodeResolve
+    ICellEditorComponent
 {
     [Export]
     public bool IsMulticellularEditor;
@@ -24,72 +24,6 @@ public partial class CellEditorComponent :
 
     [Export]
     public int MaxToleranceWarnings = 3;
-
-    [Export]
-    public NodePath? TopPanelPath;
-
-    [Export]
-    public NodePath TabButtonsPath = null!;
-
-    [Export]
-    public NodePath StructureTabButtonPath = null!;
-
-    [Export]
-    public NodePath AppearanceTabButtonPath = null!;
-
-    [Export]
-    public NodePath BehaviourTabButtonPath = null!;
-
-    [Export]
-    public NodePath StructureTabPath = null!;
-
-    [Export]
-    public NodePath AppearanceTabPath = null!;
-
-    [Export]
-    public NodePath BehaviourTabPath = null!;
-
-    [Export]
-    public NodePath PartsSelectionContainerPath = null!;
-
-    [Export]
-    public NodePath MembraneTypeSelectionPath = null!;
-
-    [Export]
-    public NodePath AutoEvoPredictionPanelPath = null!;
-
-    [Export]
-    public NodePath TotalEnergyLabelPath = null!;
-
-    [Export]
-    public NodePath AutoEvoPredictionFailedLabelPath = null!;
-
-    [Export]
-    public NodePath WorstPatchLabelPath = null!;
-
-    [Export]
-    public NodePath BestPatchLabelPath = null!;
-
-    [Export]
-    public NodePath MembraneColorPickerPath = null!;
-
-    [Export]
-    public NodePath RigiditySliderPath = null!;
-
-    [Export]
-    public NodePath NegativeAtpPopupPath = null!;
-
-    [Export]
-    public NodePath OrganelleMenuPath = null!;
-
-    [Export]
-    public NodePath AutoEvoPredictionExplanationPopupPath = null!;
-
-    [Export]
-    public NodePath AutoEvoPredictionExplanationLabelPath = null!;
-
-    [Export]
-    public NodePath OrganelleUpgradeGUIPath = null!;
 
     /// <summary>
     ///   Temporary hex memory for use by the main thread in this component
@@ -112,8 +46,13 @@ public partial class CellEditorComponent :
 #pragma warning disable CA2213
 
     // Selection menu tab selector buttons
+    [Export]
     private Button structureTabButton = null!;
+
+    [Export]
     private Button appearanceTabButton = null!;
+
+    [Export]
     private Button behaviourTabButton = null!;
 
     [Export]
@@ -122,11 +61,15 @@ public partial class CellEditorComponent :
     [Export]
     private Button toleranceTabButton = null!;
 
+    [Export]
     private PanelContainer structureTab = null!;
+
+    [Export]
     private PanelContainer appearanceTab = null!;
 
     [JsonProperty]
     [AssignOnlyChildItemsOnDeserialize]
+    [Export]
     private BehaviourEditorSubComponent behaviourEditor = null!;
 
     [Export]
@@ -148,12 +91,22 @@ public partial class CellEditorComponent :
     [Export]
     private Container toleranceWarningContainer = null!;
 
+    [Export]
     private VBoxContainer partsSelectionContainer = null!;
+
+    [Export]
     private CollapsibleList membraneTypeSelection = null!;
 
+    [Export]
     private CellStatsIndicator totalEnergyLabel = null!;
+
+    [Export]
     private Label autoEvoPredictionFailedLabel = null!;
+
+    [Export]
     private Label bestPatchLabel = null!;
+
+    [Export]
     private Label worstPatchLabel = null!;
 
     [Export]
@@ -162,11 +115,16 @@ public partial class CellEditorComponent :
     [Export]
     private Label organelleSuggestionLabel = null!;
 
+    [Export]
     private Control autoEvoPredictionPanel = null!;
 
+    [Export]
     private Slider rigiditySlider = null!;
+
+    [Export]
     private TweakedColourPicker membraneColorPicker = null!;
 
+    [Export]
     private CustomConfirmationDialog negativeAtpPopup = null!;
 
     [Export]
@@ -178,7 +136,10 @@ public partial class CellEditorComponent :
     [Export]
     private EndosymbiosisPopup endosymbiosisPopup = null!;
 
+    [Export]
     private OrganellePopupMenu organelleMenu = null!;
+
+    [Export]
     private OrganelleUpgradeGUI organelleUpgradeGUI = null!;
 
     [Export]
@@ -193,7 +154,10 @@ public partial class CellEditorComponent :
     [Export]
     private OrganismStatisticsPanel organismStatisticsPanel = null!;
 
+    [Export]
     private CustomWindow autoEvoPredictionExplanationPopup = null!;
+
+    [Export]
     private CustomRichTextLabel autoEvoPredictionExplanationLabel = null!;
 
     [Export]
@@ -532,9 +496,6 @@ public partial class CellEditorComponent :
     public bool HasFinishedPendingEndosymbiosis =>
         Editor.EditorReady && Editor.EditedBaseSpecies.Endosymbiosis.HasCompleteEndosymbiosis();
 
-    [JsonIgnore]
-    public bool NodeReferencesResolved { get; private set; }
-
     protected override bool ForceHideHover => MicrobePreviewMode;
 
     private float CostMultiplier =>
@@ -586,15 +547,7 @@ public partial class CellEditorComponent :
     {
         base._Ready();
 
-        ResolveNodeReferences();
-
         // This works only after this is attached to the scene tree
-        var tabButtons = GetNode<TabButtons>(TabButtonsPath);
-        structureTabButton = GetNode<Button>(tabButtons.GetAdjustedButtonPath(TabButtonsPath, StructureTabButtonPath));
-        appearanceTabButton =
-            GetNode<Button>(tabButtons.GetAdjustedButtonPath(TabButtonsPath, AppearanceTabButtonPath));
-        behaviourTabButton = GetNode<Button>(tabButtons.GetAdjustedButtonPath(TabButtonsPath, BehaviourTabButtonPath));
-
         // Hidden in the Godot editor to make selecting other things easier
         organelleUpgradeGUI.Visible = true;
 
@@ -619,42 +572,6 @@ public partial class CellEditorComponent :
 
         ApplySelectionMenuTab();
         RegisterTooltips();
-    }
-
-    public override void ResolveNodeReferences()
-    {
-        if (NodeReferencesResolved)
-            return;
-
-        base.ResolveNodeReferences();
-
-        NodeReferencesResolved = true;
-
-        structureTab = GetNode<PanelContainer>(StructureTabPath);
-
-        appearanceTab = GetNode<PanelContainer>(AppearanceTabPath);
-
-        behaviourEditor = GetNode<BehaviourEditorSubComponent>(BehaviourTabPath);
-
-        partsSelectionContainer = GetNode<VBoxContainer>(PartsSelectionContainerPath);
-        membraneTypeSelection = GetNode<CollapsibleList>(MembraneTypeSelectionPath);
-
-        totalEnergyLabel = GetNode<CellStatsIndicator>(TotalEnergyLabelPath);
-        autoEvoPredictionFailedLabel = GetNode<Label>(AutoEvoPredictionFailedLabelPath);
-        worstPatchLabel = GetNode<Label>(WorstPatchLabelPath);
-        bestPatchLabel = GetNode<Label>(BestPatchLabelPath);
-
-        autoEvoPredictionPanel = GetNode<Control>(AutoEvoPredictionPanelPath);
-
-        rigiditySlider = GetNode<Slider>(RigiditySliderPath);
-        membraneColorPicker = GetNode<TweakedColourPicker>(MembraneColorPickerPath);
-
-        negativeAtpPopup = GetNode<CustomConfirmationDialog>(NegativeAtpPopupPath);
-        organelleMenu = GetNode<OrganellePopupMenu>(OrganelleMenuPath);
-        organelleUpgradeGUI = GetNode<OrganelleUpgradeGUI>(OrganelleUpgradeGUIPath);
-
-        autoEvoPredictionExplanationPopup = GetNode<CustomWindow>(AutoEvoPredictionExplanationPopupPath);
-        autoEvoPredictionExplanationLabel = GetNode<CustomRichTextLabel>(AutoEvoPredictionExplanationLabelPath);
     }
 
     public override void Init(ICellEditorData owningEditor, bool fresh)
@@ -1675,32 +1592,6 @@ public partial class CellEditorComponent :
     {
         if (disposing)
         {
-            if (TopPanelPath != null)
-            {
-                TopPanelPath.Dispose();
-                TabButtonsPath.Dispose();
-                StructureTabButtonPath.Dispose();
-                AppearanceTabButtonPath.Dispose();
-                BehaviourTabButtonPath.Dispose();
-                StructureTabPath.Dispose();
-                AppearanceTabPath.Dispose();
-                BehaviourTabPath.Dispose();
-                PartsSelectionContainerPath.Dispose();
-                MembraneTypeSelectionPath.Dispose();
-                AutoEvoPredictionPanelPath.Dispose();
-                TotalEnergyLabelPath.Dispose();
-                AutoEvoPredictionFailedLabelPath.Dispose();
-                WorstPatchLabelPath.Dispose();
-                BestPatchLabelPath.Dispose();
-                MembraneColorPickerPath.Dispose();
-                RigiditySliderPath.Dispose();
-                NegativeAtpPopupPath.Dispose();
-                OrganelleMenuPath.Dispose();
-                AutoEvoPredictionExplanationPopupPath.Dispose();
-                AutoEvoPredictionExplanationLabelPath.Dispose();
-                OrganelleUpgradeGUIPath.Dispose();
-            }
-
             previewSimulation?.Dispose();
         }
 

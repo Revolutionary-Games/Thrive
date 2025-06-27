@@ -4,11 +4,11 @@
 [ext_resource type="Theme" uid="uid://b4cx0o110g4b6" path="res://src/gui_common/thrive_theme.tres" id="2"]
 [ext_resource type="LabelSettings" uid="uid://bgokf8pxiak4n" path="res://src/gui_common/fonts/Title-SemiBold-Tiny.tres" id="3_s47vc"]
 
-[node name="InputEventItem" type="MarginContainer"]
+[node name="InputEventItem" type="MarginContainer" node_paths=PackedStringArray("xButton", "button")]
 theme = ExtResource("2")
 script = ExtResource("1")
-ButtonPath = NodePath("HBoxContainer/RebindButton")
-XButtonPath = NodePath("HBoxContainer/XButton")
+button = NodePath("HBoxContainer/RebindButton")
+xButton = NodePath("HBoxContainer/XButton")
 graphicalLabelSettings = ExtResource("3_s47vc")
 
 [node name="HBoxContainer" type="HBoxContainer" parent="."]

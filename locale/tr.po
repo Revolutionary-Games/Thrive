@@ -7,8 +7,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2025-05-26 12:24+0300\n"
-"PO-Revision-Date: 2025-05-19 23:17+0000\n"
+"POT-Creation-Date: 2025-05-28 14:54+0300\n"
+"PO-Revision-Date: 2025-05-26 15:44+0000\n"
 "Last-Translator: punctdan <yunusemredilek@hotmail.com>\n"
 "Language-Team: Turkish <https://translate.revolutionarygamesstudio.com/projects/thrive/thrive-game/tr/>\n"
 "Language: tr\n"
@@ -16,7 +16,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=n != 1;\n"
-"X-Generator: Weblate 5.7.2\n"
+"X-Generator: Weblate 5.11.4\n"
 "Generated-By: Babel 2.8.0\n"
 
 msgid "2D_MOVEMENT_TYPE_SELECTION"
@@ -2525,17 +2525,14 @@ msgstr "[thrive:compound type=\"glucose\"]Glukozdan[/thrive:compound] enerji kaz
 msgid "HYDROGENASE_PROCESSES_DESCRIPTION"
 msgstr "[thrive:compound type=\"atp\"]ATP'yi[/thrive:compound], [thrive:compound type=\"glucose\"]glukoza[/thrive:compound] dönüştürür."
 
-#, fuzzy
 msgid "HYDROGENOSOME"
-msgstr "Hidrojenaz"
+msgstr "Hidrojenozom"
 
-#, fuzzy
 msgid "HYDROGENOSOME_DESCRIPTION"
-msgstr "[thrive:compound type=\"glucose\"]Glukozdan[/thrive:compound] enerji kazanmak için hidrojen kullanır. Düşük [thrive:compound type=\\\"oxygen\\\"]oksijen[/thrive:compound] seviyelerinde, metabolozomlardan daha etkilidir. Oksijensiz ortamlardaki birçok organizma bunu birincil enerji kaynağı olarak kullanır."
+msgstr "[thrive:compound type=\\\"glucose\\\"]Glukozdan[/thrive:compound] enerji kazanmak için hidrojen kullanır. Hidrojenozom, protein ve enzimlerle dolu zarlı bir yapıdır. Bu yapı, kendi ökaryotik konağı tarafından kullanılmak üzere özümsenmiş bir prokaryottur. Bu organel, hidrojenazdan daha etkili, mitokondriden ise düşük [thrive:compound type=\\\"oxygen\\\"]oksijen[/thrive:compound] seviyelerinde daha etkilidir. Oksijensiz ortamlardaki birçok organizma bunu birincil enerji kaynağı olarak kullanır."
 
-#, fuzzy
 msgid "HYDROGENOSOME_PROCESSES_DESCRIPTION"
-msgstr "[thrive:compound type=\"atp\"]ATP'yi[/thrive:compound], [thrive:compound type=\"glucose\"]glukoza[/thrive:compound] dönüştürür."
+msgstr "[thrive:compound type=\\\"atp\\\"]ATP'yi[/thrive:compound], [thrive:compound type=\\\"glucose\\\"]glukoza[/thrive:compound] dönüştürür."
 
 msgid "HYDROGEN_SULFIDE"
 msgstr "Hidrojen Sülfür"
@@ -3568,6 +3565,10 @@ msgstr "  {0}: {1} türde bulundu, her birinde ortalama {2} değerinde"
 
 msgid "MICROBE_ORGANELLE_UPGRADES_STATISTICS"
 msgstr "[b]Organel Geliştirme Verileri:[/b]"
+
+#, fuzzy
+msgid "MICROBE_RIPPLE_EFFECT"
+msgstr "Mikrop kamera hareketi"
 
 msgid "MICROBE_SPECIES_DETAIL_TEXT"
 msgstr ""
@@ -7036,7 +7037,7 @@ msgstr ""
 
 msgid "WIKI_CHLOROPLAST_REQUIREMENTS"
 msgstr ""
-"Bir hücre, [b]Kolroplastları[/b] evrimleştirmek için [b][color=#3796e1][url=thriveopedia:nucleus]Çekirdeğe[/url][/color][/b] sahip olmalıdır.\n"
+"Bir hücre, [b]Kloroplastları[/b] evrimleştirmek için [b][color=#3796e1][url=thriveopedia:nucleus]Çekirdeğe[/url][/color][/b] sahip olmalıdır.\n"
 "\n"
 "Eğer organel geliştirmeleri oyun ayarlarından etkinleştirildiyse, aşağıdaki koşul [i]oyuncu hücresi[/i] için doğru olmalıdır:\n"
 "\n"
@@ -7634,7 +7635,7 @@ msgstr ""
 "\n"
 "[color=#3796e1][url=thriveopedia:nucleus]Çekirdek[/url][/color], hücrenizin büyüklüğünü iki katına çıkarır, alınan tüm hasarı %50 azaltır ve diğer zarlı organellerin kilidini açar.\n"
 "\n"
-"[color=#3796e1][url=thriveopedia:mitochondrion]Mitokonriler[/url][/color] ve [color=#3796e1][url=thriveopedia:ferroplast]Ferroplastlar[/url][/color], [thrive:compound type=\"atp\"]ATP[/thrive:compound] üretir.\n"
+"[color=#3796e1][url=thriveopedia:mitochondrion]Mitokondriler[/url][/color] ve [color=#3796e1][url=thriveopedia:ferroplast]Ferroplastlar[/url][/color], [thrive:compound type=\"atp\"]ATP[/thrive:compound] üretir.\n"
 "\n"
 "[color=#3796e1][url=thriveopedia:chemoplast]Kemoplastlar[/url][/color], [thrive:compound type=\"glucose\"]glukoz[/thrive:compound] üretir.\n"
 "\n"
@@ -7756,48 +7757,39 @@ msgstr ""
 msgid "WIKI_HYDROGENASE_UPGRADES"
 msgstr "Geliştirme yok."
 
-#, fuzzy
 msgid "WIKI_HYDROGENOSOME_EFFECTS"
 msgstr "Etki yok."
 
-#, fuzzy
 msgid "WIKI_HYDROGENOSOME_INTRO"
-msgstr "[b]Hidrojenaz[/b], [b]Oksijensiz Solunumun[/b] bir biçimi olan [b]Gazlı Fermentasyonu[/b] yapar. Bu işlem [thrive:compound type=\"glucose\"]glukozun[/thrive:compound], [thrive:compound type=\"atp\"]ATP'ye[/thrive:compound] dönüştürülmesi işlemidir. Bu parça, oyuncunun sahip olduğu glukoz işleyen ilk parçadır ve şu an için oksijen olmadan glukoz yakan tek parça olarak işlev görmektedir."
+msgstr "Birçok türde bulunan bu organel, [i]hücrenin çalışma gücüdür[/i]. [b]Hidrojenozomlar[/b], [b]Oksijensiz Solunumun[/b] bir biçimi olan [b]Gazlı Fermentasyonu[/b] yapar. Bu işlem [thrive:compound type=\"glucose\"]glukozun[/thrive:compound], [thrive:compound type=\"atp\"]ATP'ye[/thrive:compound] dönüştürülmesi işlemidir. Bu parça, [b]Hidrojenazın[/b] zarlı bir karşılığıdır ve şu an için oksijen olmadan glukoz yakan tek [i]ökaryotik[/i] parça olarak işlev görmektedir."
 
-#, fuzzy
 msgid "WIKI_HYDROGENOSOME_MODIFICATIONS"
 msgstr "Değişiklikler yok."
 
-#, fuzzy
 msgid "WIKI_HYDROGENOSOME_PROCESSES"
 msgstr ""
 "[b]Gazlı Fermentasyon[/b]: [thrive:compound type=\"glucose\"]Glukoz[/thrive:compound] → [thrive:compound type=\"atp\"]ATP[/thrive:compound]\n"
 "\n"
-"Bu işlem, [thrive:compound type=\"oxygen\"]oksijen[/thrive:compound] gerektirmeyen bir enerji üretim yöntemidir. Ancak oksijenin varlığında, [b][color=#3796e1][url=thriveopedia:metabolosome]Metabolozomlardan[/url][/color][/b] daha aşağıdadır. Düzenli bir [thrive:compound type=\"glucose\"]glukoz[/thrive:compound] girişi gerektirir."
+"Bu işlem, [thrive:compound type=\"oxygen\"]oksijen[/thrive:compound] gerektirmeyen bir enerji üretim yöntemidir. Bu işlemde, [b][color=#3796e1][url=thriveopedia:hydrogenase]Hidrojenazdan[/url][/color][/b] daha etkilidir. Ancak ortamda yeterli miktarda [thrive:compound type=\"oxygen\"]oksijen[/thrive:compound] olduğunda, bir [b][color=#3796e1][url=thriveopedia:mitochondrion]Mitokondriden[/url][/color][/b] daha aşağıdadır. Düzenli bir [thrive:compound type=\"glucose\"]glukoz[/thrive:compound] girişi gerektirir."
 
-#, fuzzy
 msgid "WIKI_HYDROGENOSOME_REQUIREMENTS"
-msgstr "Başlangıç parçasıdır, gereksinim yok."
-
-#, fuzzy
-msgid "WIKI_HYDROGENOSOME_SCIENTIFIC_BACKGROUND"
 msgstr ""
-"Gazlı fermentasyon, metabolik süreçle tanımlanan ve prokaryotların çeşitli ve genel hatlarıyla tanımlanmış bir grubu olan Klostridlerde mevcuttur. Bu işlem, biyokimyasal, gıda ve biyoyakıt üretiminde sıkça kullanılır ve atık su arıtımı ile toprak yenileme çalışmalarında önemli bir rol oynar. Gazlı fermentasyon, farklı bakteri grupları arasında farklı görünse de, genel formülü şu şekildedir:\n"
+"Bir hücre, [b]Hidrojenozomları[/b] evrimleştirmek için [b][color=#3796e1][url=thriveopedia:nucleus]Çekirdeğe[/url][/color][/b] sahip olmalıdır.\n"
 "\n"
-"C6​H12​O6​→2C2​H5​OH+2CO2​+2H2​\n"
+"Eğer [i]organellerin kilidini açma[/i] seçeneği oyun ayarlarından etkinleştirildiyse, bu organelin kilidi aşağıdaki şart [i]oyuncu hücresi[/i] için karşılandığında, [i]endosimbiyoz[/i] olmadan, açılabilir:\n"
 "\n"
-"Yani glukoz; iki etanol, iki karbondioksit ve iki hidrojen molekülüne dönüştürülür. Glukoz, substrat düzeyinde fosforilasyon yoluyla parçalanır ve, diğer fermentasyon yöntemlerinde olduğu gibi, glikolizin önemli unsurları oksijensiz koşullarda bile korunabilir. Fermentasyon, Dünya'daki en eski metabolik stratejilerden biri olabilir. Hidrojen üretimi ve atık yönetiminden sorumlu olan gazlı fermentasyonda hidrojenaz enzimi rol oynasa da, aslında bu süreçte temel bir enzim değildir. Piruvat-ferrodoksin oksidoredüktaz (POR) gibi enzimler, oksijensiz fermentasyonda daha özgün ve merkezi bir rol oynayan enzimlerdir. Ancak, oyun içinde bu enzimleri temsil etmek zor olduğundan, daha bilinir ve yönetilebilir bir enzim olan hidrojenaz seçilmiştir."
+"[indent]—   Üst üste en az [b]5[/b] kuşak boyunca, en az [b]4[/b] [b][color=#3796e1][url=thriveopedia:hydrogenase]Hidrojenaz[/url][/color][/b] içermek.[/indent]\n"
+"[indent]—   En az [b]+10[/b] [thrive:compound type=\"atp\"]ATP[/thrive:compound] üretmek.[/indent]"
 
-#, fuzzy
+msgid "WIKI_HYDROGENOSOME_SCIENTIFIC_BACKGROUND"
+msgstr "Hidrojenozomların, düşük oksijen seviyeleriyle başa çıkmak için uyum sağlayarak, mitokondrilerden evrimleştiğine inanılmaktadır. Tıpkı mitokondriler gibi, hidrojenozomlar da küresel veya kum saati olarak yer alan çeşitli şekillere sahip olabilir."
+
 msgid "WIKI_HYDROGENOSOME_STRATEGY"
 msgstr ""
-"Bir başlangıç parçası olan hidrojenaz, oksijensiz bir atmosferde glukoz işlemek için temel bir parçadır ve oyuncuların başlangıçta bol bulunan glukoz bulutlarından faydalanmalarını sağlar. Hidrojenazın atmosferik bileşiklerle sınırlı olmayan devamlı enerji üretimi, onu düşük enerjili prokaryotlar için çok yönlü ve önemli bir parça yapar. Glukoz kullanmak isteyen oyuncuların genellikle gazlı fermentasyona uyum sağlamaları gerekir.\n"
+"[thrive:compound type=\"iron\"]Glukozun[/thrive:compound] bol seviyelerde olduğu ortamlarda, [b]Hidrojenozomlar[/b] düzenli bir enerji akışı sağlar. Yine de oyun ilerledikçe, [thrive:compound type=\"glucose\"]glukoz[/thrive:compound] konsantrasyonunun düşeceğini bilin. Bu yüzden, mümkün olduğunca ek enerji kaynakları eklemenizi öneriyoruz.\n"
 "\n"
-"Zamanla, hidrojenazın yerini metabolozomların alması muhtemelen daha iyidir. Oksijenli doğaları nedeniyle, metabolozomlar hidrojenazdan çok daha verimlidir ve oksijenden yararlanmak, ökaryot olmanın ve nihayetinde çok hücreli bir organizmaya doğru ilerlemenin önemli bir parçasıdır.\n"
-"\n"
-"Dünyanız oksijenli hale geldiğinde, hidrojenazları değiştireceğinizi unutmamanız muhtemelen önemli olacaktır. Hidrojenazları fazla kullanmak, dünya oksijenle dolduğu zaman, bu parçaları birkaç kuşak boyunca silip değiştirmek zorunda kalmanıza yol açabilir. Bu nedenle, bazı hidrojenazları başka bir metabolik işlemle, örneğin kemosentez ile, birleştirmek ya da nispeten düşük enerjili bir organizma yapısını korumak faydalı bir strateji olabilir. Dünya daha oksijenli hale geldikçe, hidrojenaz muhtemelen daha derin ve oksijen açısından zengin olmayan arazilerde daha iyi çalışacaktır."
+"Ayrıca, bir [b][color=#3796e1][url=thriveopedia:nucleus]Çekirdek[/url][/color][/b] evrimleştirdikten sonra, [b]Hidrojenazları[/b], [b]Hidrojenozom[/b] ile değiştirmenizi öneriyoruz. Çünkü ikincisi çok daha fazla verim sağlar."
 
-#, fuzzy
 msgid "WIKI_HYDROGENOSOME_UPGRADES"
 msgstr "Geliştirme yok."
 
@@ -7954,7 +7946,7 @@ msgid "WIKI_METABOLOSOMES_EFFECTS"
 msgstr "Etki yok."
 
 msgid "WIKI_METABOLOSOMES_INTRO"
-msgstr "[b]Metabolozomlar[/b], [b]Oksijenli Solunumun[/b] bir biçimi olan ve [b][color=#3796e1][url=thriveopedia:mitochondrion]Mitokondridekinden[/url][/color][/b] aşağı olan [b]Protein Solunumunu[/b] gerçekleştirir. Bu işlem, [thrive:compound type=\"glucose\"]glukozun[/thrive:compound], [thrive:compound type=\"oxygen\"]oksijen[/thrive:compound] kullanılarak [thrive:compound type=\"atp\"]ATP'ye[/thrive:compound] dönüştürülmesidir."
+msgstr "[b]Metabolozomlar[/b], [b]Oksijenli Solunumun[/b] bir biçimi olan ve [b][color=#3796e1][url=thriveopedia:mitochondrion]Mitokondrilerdekinden[/url][/color][/b] aşağı olan [b]Protein Solunumunu[/b] gerçekleştirir. Bu işlem, [thrive:compound type=\"glucose\"]glukozun[/thrive:compound], [thrive:compound type=\"oxygen\"]oksijen[/thrive:compound] kullanılarak [thrive:compound type=\"atp\"]ATP'ye[/thrive:compound] dönüştürülmesidir."
 
 msgid "WIKI_METABOLOSOMES_MODIFICATIONS"
 msgstr "Değişiklikler yok."
@@ -7963,7 +7955,7 @@ msgid "WIKI_METABOLOSOMES_PROCESSES"
 msgstr ""
 "[b]Protein Solunumu:[/b] [thrive:compound type=\"glucose\"]Glukoz[/thrive:compound] + [thrive:compound type=\"oxygen\"]Oksijen[/thrive:compound] → [thrive:compound type=\"atp\"]ATP[/thrive:compound] + [thrive:compound type=\"carbondioxide\"]Karbondioksit[/thrive:compound]\n"
 "\n"
-"[b][color=#3796e1][url=thriveopedia:cytoplasm]Sitoplazmadan[/url][/color][/b] üstün ama [b][color=#3796e1][url=thriveopedia:mitochondrion]Mitokondriden[/url][/color][/b] aşağı bir enerji üretim yöntemidir. Düzenli bir [thrive:compound type=\"glucose\"]glukoz[/thrive:compound] girişi gerektirir. Bu oran, ortamdaki [thrive:compound type=\"oxygen\"]oksijen[/thrive:compound] konsantrasyonu ile doğru orantılıdır."
+"[b][color=#3796e1][url=thriveopedia:cytoplasm]Sitoplazmadan[/url][/color][/b] üstün ama [b][color=#3796e1][url=thriveopedia:mitochondrion]Mitokondrilerden[/url][/color][/b] aşağı bir enerji üretim yöntemidir. Düzenli bir [thrive:compound type=\"glucose\"]glukoz[/thrive:compound] girişi gerektirir. Bu oran, ortamdaki [thrive:compound type=\"oxygen\"]oksijen[/thrive:compound] konsantrasyonu ile doğru orantılıdır."
 
 msgid "WIKI_METABOLOSOMES_REQUIREMENTS"
 msgstr "Gereksinimler yok"
@@ -7982,7 +7974,7 @@ msgstr ""
 "\n"
 "Ancak, ortamdaki doğal [thrive:compound type=\"glucose\"]glukoz[/thrive:compound] konsantrasyonu oyun boyunca azalır. O yüzden, yeni besin kaynaklarına geçiş yapmanız tavsiye edilir.\n"
 "\n"
-"Bir hücre [b][color=#3796e1][url=thriveopedia:nucleus]Çekirdeği[/url][/color][/b] evrimleştirdiğinde, [b]Metabolozomları[/b], ökaryotik karşılığı olan [b][color=#3796e1][url=thriveopedia:mitochondrion]Mitokondri[/url][/color][/b] ile değiştirmeniz tavsiye edilir. Çünkü, ikincisi daha verimlidir."
+"Bir hücre [b][color=#3796e1][url=thriveopedia:nucleus]Çekirdeği[/url][/color][/b] evrimleştirdiğinde, [b]Metabolozomları[/b], ökaryotik karşılığı olan [b][color=#3796e1][url=thriveopedia:mitochondrion]Mitokondriler[/url][/color][/b] ile değiştirmeniz tavsiye edilir. Çünkü, ikincisi daha verimlidir."
 
 msgid "WIKI_METABOLOSOMES_UPGRADES"
 msgstr "Geliştirme yok."
@@ -8108,7 +8100,7 @@ msgid "WIKI_MITOCHONDRION_EFFECTS"
 msgstr "Etki yok."
 
 msgid "WIKI_MITOCHONDRION_INTRO"
-msgstr "Hücrenin güç merkezidir. [b]Mitokondri[/b], [thrive:compound type=\"oxygen\"]oksijeni[/thrive:compound] kullanarak [thrive:compound type=\"glucose\"]glukozun[/thrive:compound], [thrive:compound type=\"atp\"]ATP'ye[/thrive:compound] dönüştürülmesini sağlayan [b]Oksijenli Solunumu[/b] gerçekleştirir. [b]Mitokondri[/b] bu işlevi [b][color=#3796e1][url=thriveopedia:metabolosome]Metabolozomlar[/url][/color][/b] gibi organellerden daha verimli bir şekilde gerçekleştirir."
+msgstr "Hücrenin güç merkezidir. [b]Mitokondriler[/b], [thrive:compound type=\"oxygen\"]oksijeni[/thrive:compound] kullanarak [thrive:compound type=\"glucose\"]glukozun[/thrive:compound], [thrive:compound type=\"atp\"]ATP'ye[/thrive:compound] dönüştürülmesini sağlayan [b]Oksijenli Solunumu[/b] gerçekleştirir. [b]Mitokondriler[/b] bu işlevi [b][color=#3796e1][url=thriveopedia:metabolosome]Metabolozomlar[/url][/color][/b] gibi organellerden daha verimli bir şekilde gerçekleştirir."
 
 msgid "WIKI_MITOCHONDRION_MODIFICATIONS"
 msgstr "Değişiklikler yok."
@@ -8121,7 +8113,7 @@ msgstr ""
 
 msgid "WIKI_MITOCHONDRION_REQUIREMENTS"
 msgstr ""
-"Bir hücre, [b]Mitokondriyi[/b] evrimleştirmek için [b][color=#3796e1][url=thriveopedia:nucleus]Çekirdeğe[/url][/color][/b] sahip olmalıdır.\n"
+"Bir hücre, [b]Mitokondrileri[/b] evrimleştirmek için [b][color=#3796e1][url=thriveopedia:nucleus]Çekirdeğe[/url][/color][/b] sahip olmalıdır.\n"
 "\n"
 "Eğer organel geliştirmeleri oyun ayarlarından etkinleştirildiyse, aşağıdaki koşulların [i]her ikisi de[/i] [i]oyuncu hücresi[/i] için doğru olmalıdır:\n"
 "\n"
@@ -8140,9 +8132,9 @@ msgstr ""
 
 msgid "WIKI_MITOCHONDRION_STRATEGY"
 msgstr ""
-"[thrive:compound type=\"glucose\"]Glukozun[/thrive:compound] bol olduğu ortamlarda, [b]Mitokondri[/b] gerçekten de hücrenin güç merkezidir. Yine de oyun ilerledikçe, [thrive:compound type=\"glucose\"]glukoz[/thrive:compound] konsantrasyonunun düştüğünü bilin. Bu yüzden, mümkün olduğunca alternatif enerji kaynaklarına geçiş yapmanızı öneriyoruz.\n"
+"[thrive:compound type=\"glucose\"]Glukozun[/thrive:compound] bol olduğu ortamlarda, [b]Mitokondriler[/b] gerçekten de hücrenin güç merkezidir. Yine de oyun ilerledikçe, [thrive:compound type=\"glucose\"]glukoz[/thrive:compound] konsantrasyonunun düştüğünü bilin. Bu yüzden, mümkün olduğunca alternatif enerji kaynaklarına geçiş yapmanızı öneriyoruz.\n"
 "\n"
-"Ayrıca, bir [b][color=#3796e1][url=thriveopedia:nucleus]Çekirdek[/url][/color][/b] evrimleştirdikten sonra, [b][color=#3796e1][url=thriveopedia:metabolosome]Metabolozomları[/url][/color][/b], [b]Mitokondri[/b] ile değiştirmenizi öneriyoruz. Çünkü ikincisi çok daha fazla verimlidir."
+"Ayrıca, bir [b][color=#3796e1][url=thriveopedia:nucleus]Çekirdek[/url][/color][/b] evrimleştirdikten sonra, [b][color=#3796e1][url=thriveopedia:metabolosome]Metabolozomları[/url][/color][/b], [b]Mitokondriler[/b] ile değiştirmenizi öneriyoruz. Çünkü ikincisi çok daha fazla verimlidir."
 
 msgid "WIKI_MITOCHONDRION_UPGRADES"
 msgstr "Geliştirme yok."
@@ -8301,7 +8293,7 @@ msgstr ""
 
 msgid "WIKI_NUCLEUS_INTRO"
 msgstr ""
-"En büyük organel ve ökaryotik hücrelerin tanımlayıcı özelliğidir. Hücrelerin; [b][color=#3796e1][url=thriveopedia:mitochondrion]Mitokondri[/url][/color][/b] ve [b][color=#3796e1][url=thriveopedia:lysosome]Lizozomlar[/url][/color][/b] gibi gelişmiş, daha güçlü etkilere sahip zarlı organelleri evrimleştirmesini sağlar.\n"
+"En büyük organel ve ökaryotik hücrelerin tanımlayıcı özelliğidir. Hücrelerin; [b][color=#3796e1][url=thriveopedia:mitochondrion]Mitokondriler[/url][/color][/b] ve [b][color=#3796e1][url=thriveopedia:lysosome]Lizozomlar[/url][/color][/b] gibi gelişmiş, daha güçlü etkilere sahip zarlı organelleri evrimleştirmesini sağlar.\n"
 "\n"
 "Muazzam büyüklüğü ve ozmoregülasyon maliyetinden dolayı, sürdürmesi bir sürü [thrive:compound type=\"atp\"]ATP'ye[/thrive:compound] mal olur. Bir hücre bir çekirdek edindiğinde, bu organel sonraki nesillerde kaldırılamaz.\n"
 "\n"
@@ -8325,7 +8317,7 @@ msgstr ""
 "\n"
 "Ama, bu organelin faydaları bellidir. Ökaryotlar ([b]Çekirdekli[/b] hücreler), prokaryotlara (çekirdeksiz hücreler) göre, ileride daha çok yönlü geliştirmelere erişim kazanır.\n"
 "\n"
-"[b]Çekirdek[/b] tarafından kilidi açılan organeller, [b][color=#3796e1][url=thriveopedia:signalingAgent]Sinyal Veren Ajan[/url][/color][/b] ve [b][color=#3796e1][url=thriveopedia:bindingAgent]Bağlayıcı Ajan[/url][/color][/b] gibi kuvvetli yeni beceriler ve [b][color=#3796e1][url=thriveopedia:mitochondrion]Mitokondri[/url][/color][/b] ve [b][color=#3796e1][url=thriveopedia:thermoplast]Termoplast[/url][/color][/b] gibi varolan yeteneklere önemli geliştirmeler sunar. [b]Çekirdeği[/b] ekledikten sonra, [thrive:compound type=\"atp\"]ATP[/thrive:compound] üretimini geliştirmek ve hücrenizi daha iyi sürdürmek için, prokaryotik organelleri daha verimli olan ökaryotik karşılıkları ile değiştirmenizi öneriyoruz."
+"[b]Çekirdek[/b] tarafından kilidi açılan organeller, [b][color=#3796e1][url=thriveopedia:signalingAgent]Sinyal Veren Ajan[/url][/color][/b] ve [b][color=#3796e1][url=thriveopedia:bindingAgent]Bağlayıcı Ajan[/url][/color][/b] gibi kuvvetli yeni beceriler ve [b][color=#3796e1][url=thriveopedia:mitochondrion]Mitokondriler[/url][/color][/b] ve [b][color=#3796e1][url=thriveopedia:thermoplast]Termoplastlar[/url][/color][/b] gibi varolan yeteneklere önemli geliştirmeler sunar. [b]Çekirdeği[/b] ekledikten sonra, [thrive:compound type=\"atp\"]ATP[/thrive:compound] üretimini geliştirmek ve hücrenizi daha iyi sürdürmek için, prokaryotik organelleri daha verimli olan ökaryotik karşılıkları ile değiştirmenizi öneriyoruz."
 
 msgid "WIKI_NUCLEUS_UPGRADES"
 msgstr "Geliştirme yok."
@@ -8446,9 +8438,8 @@ msgstr "Yardım ve Tavsiyeler"
 msgid "WIKI_PAGE_HYDROGENASE"
 msgstr "Hidrojenaz"
 
-#, fuzzy
 msgid "WIKI_PAGE_HYDROGENOSOME"
-msgstr "Hidrojenaz"
+msgstr "Hidrojenozom"
 
 msgid "WIKI_PAGE_INDUSTRIAL_STAGE"
 msgstr "Sanayi Evresi"

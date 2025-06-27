@@ -12,12 +12,10 @@ using Newtonsoft.Json;
 public partial class EditorComponentBase<TEditor> : ControlWithInput, IEditorComponent
     where TEditor : IEditor
 {
-    [Export]
-    public NodePath? FinishOrNextButtonPath;
-
 #pragma warning disable CA2213
     protected AudioStream unableToPerformActionSound = null!;
 
+    [Export]
     protected Button finishOrNextButton = null!;
 #pragma warning restore CA2213
 
@@ -45,21 +43,6 @@ public partial class EditorComponentBase<TEditor> : ControlWithInput, IEditorCom
     public virtual bool IsSubComponent => false;
 
     protected TEditor Editor => editor ?? throw new InvalidOperationException("Editor component not initialized");
-
-    public override void _Ready()
-    {
-        base._Ready();
-
-        // TODO: redesign this check. This currently fails as the child nodes get _Ready called first and this also
-        // makes it harder to directly run the individual editor component scenes from Godot editor to debug them
-        // if (editor == null)
-        //     throw new InvalidOperationException("Editor component not initialized before _Ready was called");
-
-        if (IsSubComponent)
-            return;
-
-        finishOrNextButton = GetNode<Button>(FinishOrNextButtonPath);
-    }
 
     public override void _EnterTree()
     {
@@ -241,15 +224,5 @@ public partial class EditorComponentBase<TEditor> : ControlWithInput, IEditorCom
         {
             OnNextTab!.Invoke();
         }
-    }
-
-    protected override void Dispose(bool disposing)
-    {
-        if (disposing)
-        {
-            FinishOrNextButtonPath?.Dispose();
-        }
-
-        base.Dispose(disposing);
     }
 }

@@ -17,9 +17,6 @@ public partial class MicheTree : Control
     // TODO: See if this class and EvolutionaryTree can be combined into a parent class
     // https://github.com/Revolutionary-Games/Thrive/issues/5373
 
-    [Export]
-    public NodePath TreePath = null!;
-
     /// <summary>
     ///   Stores the created nodes for miches by the miche hashes
     /// </summary>
@@ -75,6 +72,7 @@ public partial class MicheTree : Control
     /// <summary>
     ///   Tree part of <see cref="EvolutionaryTree"/>. Consists of many buttons and connection lines.
     /// </summary>
+    [Export]
     private Control tree = null!;
 
     private PackedScene treeNodeScene = null!;
@@ -113,8 +111,6 @@ public partial class MicheTree : Control
     public override void _Ready()
     {
         base._Ready();
-
-        tree = GetNode<Control>(TreePath);
 
         treeNodeScene = GD.Load<PackedScene>("res://src/auto-evo/MicheTreeNode.tscn");
     }
@@ -177,7 +173,6 @@ public partial class MicheTree : Control
     {
         if (disposing)
         {
-            TreePath.Dispose();
             nodesGroup.Dispose();
         }
 

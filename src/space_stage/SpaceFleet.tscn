@@ -2,11 +2,9 @@
 
 [ext_resource type="Script" uid="uid://c0thl3he3ivga" path="res://src/space_stage/SpaceFleet.cs" id="1"]
 
-[node name="SpaceFleet" type="Node3D"]
+[node name="SpaceFleet" type="Node3D" node_paths=PackedStringArray("visualsParent")]
 script = ExtResource("1")
-VisualsParentPath = NodePath("Visuals")
+visualsParent = NodePath("Visuals")
 
 [node name="Visuals" type="Node3D" parent="."]
-__meta__ = {
-"_editor_description_": "A scale through the code is applied to this when readied"
-}
+editor_description = "A scale through the code is applied to this when readied"

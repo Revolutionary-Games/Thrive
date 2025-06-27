@@ -12,24 +12,6 @@ using Newtonsoft.Json;
 [UseThriveSerializer]
 public partial class MacroscopicStage : CreatureStageBase<MacroscopicCreature, DummyWorldSimulation>
 {
-    [Export]
-    public NodePath? InteractableSystemPath;
-
-    [Export]
-    public NodePath InteractionPopupPath = null!;
-
-    [Export]
-    public NodePath ProgressBarSystemPath = null!;
-
-    [Export]
-    public NodePath SelectBuildingPopupPath = null!;
-
-    [Export]
-    public NodePath WorldEnvironmentNodePath = null!;
-
-    [Export]
-    public NodePath WorldLightNodePath = null!;
-
     private const string STAGE_TRANSITION_MOUSE_LOCK = "toSocietyStage";
 
     [JsonProperty]
@@ -37,15 +19,22 @@ public partial class MacroscopicStage : CreatureStageBase<MacroscopicCreature, D
     private ISpawnSystem dummySpawner = null!;
 
 #pragma warning disable CA2213
+    [Export]
     private InteractableSystem interactableSystem = null!;
+
+    [Export]
     private InteractablePopup interactionPopup = null!;
 
+    [Export]
     private ProgressBarSystem progressBarSystem = null!;
 
+    [Export]
     private SelectBuildingPopup selectBuildingPopup = null!;
 
+    [Export]
     private WorldEnvironment worldEnvironmentNode = null!;
 
+    [Export]
     private DirectionalLight3D worldLightNode = null!;
 
     private Camera3D? animationCamera;
@@ -130,13 +119,6 @@ public partial class MacroscopicStage : CreatureStageBase<MacroscopicCreature, D
 
         HUD = GetNode<MacroscopicHUD>("MacroscopicHUD");
         HoverInfo = GetNode<PlayerInspectInfo>("PlayerLookingAtInfo");
-
-        interactableSystem = GetNode<InteractableSystem>(InteractableSystemPath);
-        interactionPopup = GetNode<InteractablePopup>(InteractionPopupPath);
-        progressBarSystem = GetNode<ProgressBarSystem>(ProgressBarSystemPath);
-        selectBuildingPopup = GetNode<SelectBuildingPopup>(SelectBuildingPopupPath);
-        worldEnvironmentNode = GetNode<WorldEnvironment>(WorldEnvironmentNodePath);
-        worldLightNode = GetNode<DirectionalLight3D>(WorldLightNodePath);
 
         // TODO: implement macroscopic specific look at info, for now it's disabled by removing it
         HoverInfo.Free();
@@ -843,17 +825,7 @@ public partial class MacroscopicStage : CreatureStageBase<MacroscopicCreature, D
     {
         if (disposing)
         {
-            if (InteractableSystemPath != null)
-            {
-                InteractableSystemPath.Dispose();
-                InteractionPopupPath.Dispose();
-                ProgressBarSystemPath.Dispose();
-                SelectBuildingPopupPath.Dispose();
-                WorldEnvironmentNodePath.Dispose();
-                WorldLightNodePath.Dispose();
-
-                interactionPopup.OnInteractionSelectedHandler -= ForwardInteractionSelectionToPlayer;
-            }
+            interactionPopup.OnInteractionSelectedHandler -= ForwardInteractionSelectionToPlayer;
 
             if (CurrentGame != null)
                 CurrentGame.TechWeb.OnTechnologyUnlockedHandler -= ShowTechnologyUnlockMessage;

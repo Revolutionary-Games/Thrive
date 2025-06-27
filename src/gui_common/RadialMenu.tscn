@@ -5,17 +5,17 @@
 [ext_resource type="Texture2D" uid="uid://cxmly28y6m2ry" path="res://assets/textures/gui/bevel/radialIndicator.png" id="3"]
 [ext_resource type="Texture2D" uid="uid://cq08hpsflrx3k" path="res://assets/textures/gui/radialMenuHighlightBackground.png" id="4"]
 
-[node name="RadialMenu" type="CenterContainer"]
+[node name="RadialMenu" type="CenterContainer" node_paths=PackedStringArray("centerLabel", "dynamicLabelsContainer", "indicator")]
 process_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
 theme = ExtResource("2")
 script = ExtResource("1")
-CenterLabelPath = NodePath("CenterLabel")
-DynamicLabelsContainerPath = NodePath("DynamicLabels")
-IndicatorPath = NodePath("Indicator")
 HoveredItemHighlightBackground = ExtResource("4")
+centerLabel = NodePath("CenterLabel")
+dynamicLabelsContainer = NodePath("DynamicLabels")
+indicator = NodePath("Indicator")
 
 [node name="CenterLabel" type="Label" parent="."]
 editor_description = "PLACEHOLDER"
