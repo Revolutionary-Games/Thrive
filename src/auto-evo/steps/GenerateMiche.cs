@@ -139,7 +139,10 @@ public class GenerateMiche : IRunStep
         // Heat
         // TODO: the 60 here should be a constant or explained some other way what the threshold is
         // As only non-LAWK organelles can use heat, we don't add the temperature miches when LAWK is on
-        if (patch.Biome.TryGetCompound(Compound.Temperature, CompoundAmountType.Biome, out BiomeCompoundProperties temperatureAmount) &&
+        if (patch.Biome.TryGetCompound(
+                Compound.Temperature,
+                CompoundAmountType.Biome,
+                out BiomeCompoundProperties temperatureAmount) &&
             temperatureAmount.Ambient > 60 && globalCache.HasTemperature)
         {
             var tempMiche = new Miche(globalCache.TemperatureConversionEfficiencyPressure);
