@@ -230,8 +230,8 @@ public sealed class MicrobeReproductionSystem : AEntitySetSystem<float>
 
         if (isInColony)
         {
-            var (_, freeCompounds) = CalculateFreeCompoundsAndLimits(gameWorld!.WorldSettings, organelles.HexCount, false,
-                reproductionDelta);
+            var (_, freeCompounds) = CalculateFreeCompoundsAndLimits(gameWorld!.WorldSettings, organelles.HexCount,
+                false, reproductionDelta);
 
             AddFreeCompoundsToStorage(entity, freeCompounds);
 
