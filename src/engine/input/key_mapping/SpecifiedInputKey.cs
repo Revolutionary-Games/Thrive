@@ -483,7 +483,7 @@ public class SpecifiedInputKey : ICloneable
         return toStringBuilder.ToString();
     }
 
-    private void ConstructFrom(InputEventWithModifiers @event, bool preferKeyLabel)
+    private void ConstructFrom(InputEventWithModifiers @event, bool preferKeycodes)
     {
         Control = @event.CtrlPressed || @event.MetaPressed;
         Alt = @event.AltPressed;
@@ -494,13 +494,13 @@ public class SpecifiedInputKey : ICloneable
             case InputEventKey inputKey:
             {
                 // TODO: unicode key value support?
-                if (inputKey.PhysicalKeycode != Key.None && !preferKeyLabel)
+                if (inputKey.PhysicalKeycode != Key.None && !preferKeycodes)
                 {
                     // Physical key
                     Type = InputType.PhysicalKey;
                     Code = (ulong)inputKey.PhysicalKeycode;
                 }
-                else if (inputKey.KeyLabel != Key.None)
+                else if (inputKey.KeyLabel != Key.None && !preferKeycodes)
                 {
                     // Key label
                     Type = InputType.KeyLabel;
