@@ -401,6 +401,13 @@ public partial class InputEventItem : MarginContainer
         OnKeybindingSuccessfullyChanged();
     }
 
+    public void FinishRebind(InputEvent inputEvent)
+    {
+        AssociatedEvent = new SpecifiedInputKey(inputEvent, true);
+
+        OnKeybindingSuccessfullyChanged();
+    }
+
     /// <summary>
     ///   Delete this event from the associated action and update the godot InputMap
     /// </summary>
