@@ -140,12 +140,31 @@ public class MicrobeSpecies : Species, ICellDefinition
         return true;
     }
 
+    public void UpdateIsBacteria()
+    {
+        var nucleus = SimulationParameters.Instance.GetOrganelleType("nucleus");
+        IsBacteria = true;
+        var organelles = Organelles.Organelles;
+        var count = organelles.Count;
+
+        for (int i = 0; i < count; ++i)
+        {
+            var organelle = organelles[i];
+            if (organelle.Definition == nucleus)
+            {
+                IsBacteria = false;
+                break;
+            }
+        }
+    }
+
     public override void OnEdited()
     {
         base.OnEdited();
 
         RepositionToOrigin();
         UpdateInitialCompounds();
+        UpdateIsBacteria();
 
         cachedFillTimes.Clear();
     }
