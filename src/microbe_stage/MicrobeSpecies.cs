@@ -144,8 +144,12 @@ public class MicrobeSpecies : Species, ICellDefinition
     {
         var nucleus = SimulationParameters.Instance.GetOrganelleType("nucleus");
         IsBacteria = true;
-        foreach (var organelle in Organelles)
+        var organelles = Organelles.Organelles;
+        var count = organelles.Count;
+
+        for (int i = 0; i < count; ++i)
         {
+            var organelle = organelles[i];
             if (organelle.Definition == nucleus)
             {
                 IsBacteria = false;
