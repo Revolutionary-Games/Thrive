@@ -172,7 +172,7 @@ public partial class InputGroupList : VBoxContainer
         latestDialogConflict.Delete();
 
         // Pass the input event again to have the key be set where it was previously skipped
-        latestDialogCaller.FinishRebind(latestDialogNewEvent);
+        latestDialogCaller.Rebind(latestDialogNewEvent);
     }
 
     public bool IsConflictDialogOpen()
