@@ -208,7 +208,7 @@ public partial class InputEventItem : MarginContainer
         try
         {
             var old = AssociatedEvent;
-            AssociatedEvent = new SpecifiedInputKey(newInput, true);
+            AssociatedEvent = new SpecifiedInputKey(newInput);
 
             // Check conflicts, and don't proceed if there is a conflict
             if (CheckNewKeyConflicts(newInput, groupList, old))
@@ -384,7 +384,7 @@ public partial class InputEventItem : MarginContainer
         try
         {
             // TODO: allow controlling if physical keys or key labels should be used when rebinding by the user
-            AssociatedEvent = new SpecifiedInputKey(@event, true);
+            AssociatedEvent = new SpecifiedInputKey(@event);
         }
         catch (Exception e)
         {
@@ -403,7 +403,7 @@ public partial class InputEventItem : MarginContainer
 
     public void FinishRebind(InputEvent inputEvent)
     {
-        AssociatedEvent = new SpecifiedInputKey(inputEvent, true);
+        AssociatedEvent = new SpecifiedInputKey(inputEvent);
 
         OnKeybindingSuccessfullyChanged();
     }

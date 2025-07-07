@@ -22,17 +22,16 @@ public class SpecifiedInputKey : ICloneable
     ///   Constructs an input key from an event
     /// </summary>
     /// <param name="event">Event to use</param>
-    /// <param name="fromUserInput">Set to true when the user is rebinding inputs and this is from the user</param>
     /// <exception cref="ArgumentException">If something is wrong with the event</exception>
-    public SpecifiedInputKey(InputEvent @event, bool fromUserInput)
+    public SpecifiedInputKey(InputEvent @event)
     {
         switch (@event)
         {
             case InputEventKey inputKey:
-                ConstructFrom(inputKey, fromUserInput);
+                ConstructFrom(inputKey);
                 return;
             case InputEventMouseButton inputMouse:
-                ConstructFrom(inputMouse, fromUserInput);
+                ConstructFrom(inputMouse);
                 return;
             case InputEventJoypadButton inputControllerButton:
                 if (inputControllerButton.ButtonIndex < 0)
@@ -483,7 +482,7 @@ public class SpecifiedInputKey : ICloneable
         return toStringBuilder.ToString();
     }
 
-    private void ConstructFrom(InputEventWithModifiers @event, bool preferKeycodes)
+    private void ConstructFrom(InputEventWithModifiers @event)
     {
         Control = @event.CtrlPressed || @event.MetaPressed;
         Alt = @event.AltPressed;
@@ -494,13 +493,13 @@ public class SpecifiedInputKey : ICloneable
             case InputEventKey inputKey:
             {
                 // TODO: unicode key value support?
-                if (inputKey.PhysicalKeycode != Key.None && !preferKeycodes)
+                if (inputKey.PhysicalKeycode != Key.None)
                 {
                     // Physical key
                     Type = InputType.PhysicalKey;
                     Code = (ulong)inputKey.PhysicalKeycode;
                 }
-                else if (inputKey.KeyLabel != Key.None && !preferKeycodes)
+                else if (inputKey.KeyLabel != Key.None)
                 {
                     // Key label
                     Type = InputType.KeyLabel;
