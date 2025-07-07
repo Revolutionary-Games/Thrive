@@ -805,7 +805,7 @@ dotnet run --project Scripts -- package
 Or if you want more control you can select which platforms to export to
 and skip zipping up the folder if you just want to test locally:
 ```sh
-dotnet run --project Scripts -- package --zip false "Windows Desktop"
+dotnet run --project Scripts -- package -z false Windows
 ```
 
 For more options run the script with the `-h` parameter to see all of them:
