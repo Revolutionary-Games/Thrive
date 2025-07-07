@@ -388,6 +388,9 @@ public partial class InputEventItem : MarginContainer
     /// </summary>
     public void Rebind(InputEvent inputEvent)
     {
+        // The old key input event. Null if this event is assigned a value the first time.
+        var old = AssociatedEvent;
+
         try
         {
             // TODO: allow controlling if physical keys or key labels should be used when rebinding by the user
@@ -398,9 +401,6 @@ public partial class InputEventItem : MarginContainer
             GD.PrintErr("Unbindable input got too far, error: ", e);
             return;
         }
-
-        // The old key input event. Null if this event is assigned a value the first time.
-        var old = AssociatedEvent;
 
         if (GroupList != null)
         {
