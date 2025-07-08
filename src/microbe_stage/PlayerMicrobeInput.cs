@@ -332,8 +332,21 @@ public partial class PlayerMicrobeInput : NodeWithInput
 
         ref var organelles = ref stage.Player.Get<OrganelleContainer>();
 
-        if (!organelles.HasSignalingAgent)
+        if (stage.Player.Has<MicrobeColony>())
+        {
+            ref var colony = ref stage.Player.Get<MicrobeColony>();
+
+            colony.GetColonySpecialOrganelles(out _, out _, out _, out var hasSignallingAgent);
+
+            if (!hasSignallingAgent)
+            {
+                return false;
+            }
+        }
+        else if (!organelles.HasSignalingAgent)
+        {
             return false;
+        }
 
         stage.HUD.ShowSignalingCommandsMenu(stage.Player);
 
