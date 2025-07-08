@@ -230,25 +230,48 @@ public static class MicrobeColonyHelpers
     }
 
     /// <summary>
-    ///   Returns the information about the presence of special organelles in a colony
+    ///   Calculates the total counts of special organelles in a colony
     /// </summary>
-    public static void GetColonySpecialOrganelles(this ref MicrobeColony colony, out bool hasAgentVacuoles,
-        out bool hasSlimeJets, out bool hasMucocysts, out bool hasSignalingAgents)
+    public static void CalculateColonySpecialOrganelles(this ref MicrobeColony colony, out int agentVacuoles,
+        out int slimeJets, out int mucocysts)
     {
-        hasAgentVacuoles = false;
-        hasSlimeJets = false;
-        hasMucocysts = false;
-        hasSignalingAgents = false;
+        agentVacuoles = 0;
+        slimeJets = 0;
+        mucocysts = 0;
 
         // Check the presence of special organelles across colony members
         foreach (var colonyMember in colony.ColonyMembers)
         {
             ref var organelles = ref colonyMember.Get<OrganelleContainer>();
 
-            hasAgentVacuoles |= organelles.AgentVacuoleCount > 0;
-            hasMucocysts |= organelles.MucocystCount > 0;
-            hasSlimeJets |= organelles.SlimeJets != null && organelles.SlimeJets.Count > 0;
-            hasSignalingAgents |= organelles.HasSignalingAgent;
+            agentVacuoles += organelles.AgentVacuoleCount;
+            mucocysts += organelles.MucocystCount;
+            slimeJets += organelles.SlimeJets?.Count ?? 0;
+        }
+    }
+
+    /// <summary>
+    ///   Returns the information about the presence of special organelles in a colony
+    /// </summary>
+    public static void GetColonySpecialOrganelles(this ref MicrobeColony colony, out bool hasAgentVacuoles,
+        out bool hasSlimeJets, out bool hasMucocysts, out bool hasSignalingAgents)
+    {
+        CalculateColonySpecialOrganelles(ref colony, out var agentVacuoles, out var slimeJets, out var mucocysts);
+
+        hasAgentVacuoles = agentVacuoles > 0;
+        hasSlimeJets = slimeJets > 0;
+        hasMucocysts = mucocysts > 0;
+        hasSignalingAgents = false;
+
+        foreach (var colonyMember in colony.ColonyMembers)
+        {
+            ref var organelles = ref colonyMember.Get<OrganelleContainer>();
+
+            if (organelles.HasSignalingAgent)
+            {
+                hasSignalingAgents = true;
+                return;
+            }
         }
     }
 
