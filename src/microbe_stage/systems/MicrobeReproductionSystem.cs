@@ -233,7 +233,7 @@ public sealed class MicrobeReproductionSystem : AEntitySetSystem<float>
             var (_, freeCompounds) = CalculateFreeCompoundsAndLimits(gameWorld!.WorldSettings, organelles.HexCount,
                 false, reproductionDelta);
 
-            AddFreeCompoundsToStorage(entity, freeCompounds);
+            AddFreeCompoundsToStorage(entity, ref organelles, freeCompounds);
 
             return;
         }
@@ -346,25 +346,50 @@ public sealed class MicrobeReproductionSystem : AEntitySetSystem<float>
         requiredCompoundsForBaseReproduction[compound] = left;
     }
 
-    private void AddFreeCompoundsToStorage(in Entity entity, float freeCompounds)
+    private void AddFreeCompoundsToStorage(in Entity entity, ref OrganelleContainer organelles, float freeCompounds)
     {
         ref var baseReproduction = ref entity.Get<ReproductionStatus>();
 
         ref var storage = ref entity.Get<CompoundStorage>();
 
+        var species = entity.Get<SpeciesMember>().Species;
+
         float requiredCompoundSum = 0.0f;
 
-        if (baseReproduction.MissingCompoundsForBaseReproduction == null)
-            return;
-
-        foreach (var pair in baseReproduction.MissingCompoundsForBaseReproduction)
+        // Calculate the sum of compounds required
+        foreach (var pair in species.BaseReproductionCost)
         {
             requiredCompoundSum += pair.Value;
         }
 
-        foreach (var pair in baseReproduction.MissingCompoundsForBaseReproduction)
+        var organelleCount = organelles.Organelles!.Count;
+        for (int i = 0; i < organelleCount; i++)
+        {
+            var organelle = organelles.Organelles[i];
+
+            if (organelle.IsDuplicate)
+                continue;
+
+            requiredCompoundSum += organelle.Definition.OrganelleCost;
+        }
+
+        // Add the free compounds, distributing them evenly across the required types
+        foreach (var pair in species.BaseReproductionCost)
         {
             storage.Compounds.AddCompound(pair.Key, freeCompounds * (pair.Value / requiredCompoundSum));
+        }
+
+        for (int i = 0; i < organelleCount; i++)
+        {
+            var organelle = organelles.Organelles[i];
+
+            if (organelle.IsDuplicate)
+                continue;
+
+            foreach (var compound in organelle.Definition.InitialComposition)
+            {
+                storage.Compounds.AddCompound(compound.Key, freeCompounds * (compound.Value / requiredCompoundSum));
+            }
         }
     }
 
