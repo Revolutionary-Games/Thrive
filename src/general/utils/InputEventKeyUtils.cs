@@ -16,7 +16,7 @@ public static class InputEventKeyUtils
 
         if (key.PhysicalKeycode != Key.None)
         {
-            return DisplayServer.KeyboardGetKeycodeFromPhysical(key.PhysicalKeycode);
+            return DisplayServer.KeyboardGetLabelFromPhysical(key.PhysicalKeycode);
         }
 
         return key.Keycode;
