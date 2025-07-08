@@ -489,6 +489,7 @@ public partial class CellEditorComponent :
         }
     }
 
+    [JsonIgnore]
     public Func<string, bool>? ValidateNewCellTypeName { get; set; }
 
     /// <summary>
