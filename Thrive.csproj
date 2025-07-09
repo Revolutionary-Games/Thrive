@@ -42,7 +42,8 @@
   <ItemGroup Condition="'$(Configuration)' != 'ExportRelease'">
     <PackageReference Include="gdUnit4.api" Version="5.0.0" />
     <PackageReference Include="gdUnit4.test.adapter" Version="3.0.0" />
-    <PackageReference Include="gdUnit4.analyzers" Version="1.0.0">
+    <!-- Update this once newer compiler versions are deployed everywhere -->
+    <PackageReference Include="gdUnit4.analyzers" Version="1.0.0-rc7">
       <PrivateAssets>none</PrivateAssets>
       <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
     </PackageReference>
