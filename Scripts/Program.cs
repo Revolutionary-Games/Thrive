@@ -135,8 +135,8 @@ public class Program
         }
 
         // Edit the gdUnit wrapper to suppress warnings in it
-        if (File.Exists("gdunit4_testadapter/GdUnit4TestRunnerScene.cs"))
-            TestRunningHelpers.EnsureStartsWithPragmaSuppression("gdunit4_testadapter/GdUnit4TestRunnerScene.cs");
+        if (File.Exists("gdunit4_testadapter_v5/GdUnit4TestRunnerScene.cs"))
+            TestRunningHelpers.EnsureStartsWithPragmaSuppression("gdunit4_testadapter_v5/GdUnit4TestRunnerScene.cs");
 
         return result;
     }
