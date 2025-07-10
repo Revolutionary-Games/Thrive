@@ -67,8 +67,8 @@ shader_parameter/MembraneRadius = 5.0
 [sub_resource type="PlaneMesh" id="PlaneMesh_ripple"]
 resource_local_to_scene = true
 size = Vector2(18, 18)
-subdivide_width = 120
-subdivide_depth = 120
+subdivide_width = 80
+subdivide_depth = 80
 
 [node name="Membrane" type="MeshInstance3D" node_paths=PackedStringArray("engulfAnimationMeshInstance", "mucocystAnimationMeshInstance", "waterRipple")]
 process_priority = 2
