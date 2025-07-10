@@ -31,7 +31,7 @@ public static class TestRunningHelpers
                                                              <!-- Seems to cause duplicate output -->
                                                              <Logger friendlyName="console" enabled="False">
                                                                  <Configuration>
-                                                                     <Verbosity>normal</Verbosity>
+                                                                     <Verbosity>detailed</Verbosity>
                                                                  </Configuration>
                                                              </Logger>
                                                              <Logger friendlyName="html" enabled="{4}">
@@ -49,7 +49,7 @@ public static class TestRunningHelpers
                                                      <GdUnit4>
                                                          <Parameters>"--headless"</Parameters>
                                                          <DisplayName>FullyQualifiedName</DisplayName>
-                                                         <CaptureStdOut>true</CaptureStdOut>
+                                                         <CaptureStdOut>false</CaptureStdOut>
                                                          <CompileProcessTimeout>120000</CompileProcessTimeout>
                                                      </GdUnit4>
                                                  </RunSettings>
