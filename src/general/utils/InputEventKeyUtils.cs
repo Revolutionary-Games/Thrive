@@ -21,30 +21,35 @@ public static class InputEventKeyUtils
 
         if (key.PhysicalKeycode != Key.None)
         {
-            if (CanGetKeyLabelFromPhysical())
-            {
-                return DisplayServer.KeyboardGetLabelFromPhysical(key.PhysicalKeycode);
-            }
-
-            if (!CanUseKeyCodeConversion())
-            {
-                if (!printedWarning)
-                {
-                    GD.Print("WARNING: Cannot get key code from physical key code. This is likely due to running " +
-                        "in headless mode. If not there's a problem with the current platform.");
-                    printedWarning = true;
-                }
-
-                return key.PhysicalKeycode;
-            }
-
-            return DisplayServer.KeyboardGetKeycodeFromPhysical(key.PhysicalKeycode);
+            return ConvertPhysicalKeycode(key.PhysicalKeycode);
         }
 
         return key.Keycode;
     }
 
-    public static bool CanGetKeyLabelFromPhysical()
+    public static Key ConvertPhysicalKeycode(Key physicalKeycode)
+    {
+        if (CanGetKeyLabelFromPhysical())
+        {
+            return DisplayServer.KeyboardGetLabelFromPhysical(physicalKeycode);
+        }
+
+        if (!CanUseKeyCodeConversion())
+        {
+            if (!printedWarning)
+            {
+                GD.Print("WARNING: Cannot get key code from physical key code. This is likely due to running " +
+                    "in headless mode. If not there's a problem with the current platform.");
+                printedWarning = true;
+            }
+
+            return physicalKeycode;
+        }
+
+        return DisplayServer.KeyboardGetKeycodeFromPhysical(physicalKeycode);
+    }
+
+    private static bool CanGetKeyLabelFromPhysical()
     {
         // TODO: this could additionally be a user-definable setting if we need to support users who some reason have
         // problems with the key label approach
@@ -52,7 +57,7 @@ public static class InputEventKeyUtils
         return CanUseKeyCodeConversion();
     }
 
-    public static bool CanUseKeyCodeConversion()
+    private static bool CanUseKeyCodeConversion()
     {
         if (!checkedKeyboardTranslationAccess)
         {
