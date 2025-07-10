@@ -351,6 +351,20 @@ public class MicrobeSpecies : Species, ICellDefinition
                 BaseHexSize);
     }
 
+    protected override Dictionary<Compound, float> CalculateTotalReproductionCost()
+    {
+        var result = new Dictionary<Compound, float>(BaseReproductionCost);
+
+        int organelleCount = Organelles.Organelles.Count;
+
+        for (int i = 0; i < organelleCount; i++)
+        {
+            result.Merge(Organelles.Organelles[i].Definition.InitialComposition);
+        }
+
+        return result;
+    }
+
     private void CalculateRotationSpeed()
     {
         BaseRotationSpeed = MicrobeInternalCalculations.CalculateRotationSpeed(Organelles.Organelles);

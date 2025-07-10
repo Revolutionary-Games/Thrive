@@ -224,4 +224,17 @@ public class MulticellularSpecies : Species
 
         return result;
     }
+
+    protected override Dictionary<Compound, float> CalculateTotalReproductionCost()
+    {
+        var result = new Dictionary<Compound, float>(BaseReproductionCost);
+
+        int count = Cells.Count;
+        for (int i = 0; i < count; ++i)
+        {
+            result.Merge(Cells[i].CalculateTotalComposition());
+        }
+
+        return result;
+    }
 }

@@ -233,7 +233,21 @@ public sealed class MicrobeReproductionSystem : AEntitySetSystem<float>
             var (_, freeCompounds) = CalculateFreeCompoundsAndLimits(gameWorld!.WorldSettings, organelles.HexCount,
                 false, reproductionDelta);
 
-            AddFreeCompoundsToStorage(entity, ref organelles, freeCompounds);
+            var species = entity.Get<SpeciesMember>().Species;
+
+            ref var storage = ref entity.Get<CompoundStorage>();
+
+            float sum = 0.0f;
+
+            foreach (var compound in species.TotalReproductionCost)
+            {
+                sum += compound.Value;
+            }
+
+            foreach (var compound in species.TotalReproductionCost)
+            {
+                storage.Compounds.AddCompound(compound.Key, freeCompounds * (compound.Value / sum));
+            }
 
             return;
         }
@@ -344,69 +358,6 @@ public sealed class MicrobeReproductionSystem : AEntitySetSystem<float>
         }
 
         requiredCompoundsForBaseReproduction[compound] = left;
-    }
-
-    private static void AddFreeCompoundsToStorage(in Entity entity, ref OrganelleContainer organelles,
-        float freeCompounds)
-    {
-        ref var baseReproduction = ref entity.Get<ReproductionStatus>();
-
-        bool finishedBaseReproduction = true;
-
-        if (baseReproduction.MissingCompoundsForBaseReproduction != null)
-        {
-            foreach (var pair in baseReproduction.MissingCompoundsForBaseReproduction)
-            {
-                if (pair.Value > 0.0f)
-                {
-                    finishedBaseReproduction = false;
-                    break;
-                }
-            }
-        }
-
-        ref var compounds = ref entity.Get<CompoundStorage>();
-
-        if (finishedBaseReproduction)
-        {
-            if (organelles.Organelles == null)
-                return;
-
-            var organelleCount = organelles.Organelles.Count;
-
-            for (int i = 0; i < organelleCount; ++i)
-            {
-                var organelle = organelles.Organelles[i];
-
-                if (organelle.WasSplit || organelle.Definition.Unique)
-                    continue;
-
-                float sum = organelle.Definition.OrganelleCost;
-
-                foreach (var compound in organelle.Definition.InitialComposition)
-                {
-                    compounds.Compounds.AddCompound(compound.Key, freeCompounds * (compound.Value / sum));
-                }
-
-                break;
-            }
-        }
-        else
-        {
-            var species = entity.Get<SpeciesMember>().Species;
-
-            float sum = 0.0f;
-
-            foreach (var compound in species.BaseReproductionCost)
-            {
-                sum += compound.Value;
-            }
-
-            foreach (var compound in species.BaseReproductionCost)
-            {
-                compounds.Compounds.AddCompound(compound.Key, freeCompounds * (compound.Value / sum));
-            }
-        }
     }
 
     /// <summary>

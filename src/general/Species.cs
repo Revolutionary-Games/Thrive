@@ -24,6 +24,9 @@ public abstract class Species : ICloneable
     [JsonProperty]
     private Dictionary<Compound, float>? cachedBaseReproductionCost;
 
+    [JsonProperty]
+    private Dictionary<Compound, float>? cachedTotalReproductionCost;
+
     protected Species(uint id, string genus, string epithet)
     {
         ID = id;
@@ -43,6 +46,14 @@ public abstract class Species : ICloneable
     [JsonIgnore]
     public IReadOnlyDictionary<Compound, float> BaseReproductionCost =>
         cachedBaseReproductionCost ??= CalculateBaseReproductionCost();
+
+    /// <summary>
+    ///   The total compounds (including organelles, etc. when applicable) needed to reproduce an individual
+    ///   of this species.
+    /// </summary>
+    [JsonIgnore]
+    public IReadOnlyDictionary<Compound, float> TotalReproductionCost =>
+        cachedTotalReproductionCost ??= CalculateTotalReproductionCost();
 
     /// <summary>
     ///   Unique id of this species, used to identify this
@@ -152,6 +163,7 @@ public abstract class Species : ICloneable
     public virtual void OnEdited()
     {
         cachedBaseReproductionCost = null;
+        cachedTotalReproductionCost = null;
     }
 
     /// <summary>
@@ -401,6 +413,12 @@ public abstract class Species : ICloneable
         }
 
         return result;
+    }
+
+    protected virtual Dictionary<Compound, float> CalculateTotalReproductionCost()
+    {
+        // Everything over the base reproduction cost is determined individually by each species type
+        return CalculateBaseReproductionCost();
     }
 
     private void ThrowPopulationChangeErrorIfNotPlayer()
