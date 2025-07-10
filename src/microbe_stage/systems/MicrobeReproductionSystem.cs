@@ -346,47 +346,64 @@ public sealed class MicrobeReproductionSystem : AEntitySetSystem<float>
         requiredCompoundsForBaseReproduction[compound] = left;
     }
 
-    private void AddFreeCompoundsToStorage(in Entity entity, ref OrganelleContainer organelles, float freeCompounds)
+    private static void AddFreeCompoundsToStorage(in Entity entity, ref OrganelleContainer organelles, float freeCompounds)
     {
-        ref var storage = ref entity.Get<CompoundStorage>();
+        ref var baseReproduction = ref entity.Get<ReproductionStatus>();
 
-        var species = entity.Get<SpeciesMember>().Species;
+        bool finishedBaseReproduction = true;
 
-        float requiredCompoundSum = 0.0f;
-
-        // Calculate the sum of compounds required
-        foreach (var pair in species.BaseReproductionCost)
+        if (baseReproduction.MissingCompoundsForBaseReproduction != null)
         {
-            requiredCompoundSum += pair.Value;
-        }
-
-        var organelleCount = organelles.Organelles!.Count;
-        for (int i = 0; i < organelleCount; ++i)
-        {
-            var organelle = organelles.Organelles[i];
-
-            if (organelle.IsDuplicate)
-                continue;
-
-            requiredCompoundSum += organelle.Definition.OrganelleCost;
-        }
-
-        // Add the free compounds, distributing them evenly across the required types
-        foreach (var pair in species.BaseReproductionCost)
-        {
-            storage.Compounds.AddCompound(pair.Key, freeCompounds * (pair.Value / requiredCompoundSum));
-        }
-
-        for (int i = 0; i < organelleCount; ++i)
-        {
-            var organelle = organelles.Organelles[i];
-
-            if (organelle.IsDuplicate)
-                continue;
-
-            foreach (var compound in organelle.Definition.InitialComposition)
+            foreach (var pair in baseReproduction.MissingCompoundsForBaseReproduction)
             {
-                storage.Compounds.AddCompound(compound.Key, freeCompounds * (compound.Value / requiredCompoundSum));
+                if (pair.Value > 0.0f)
+                {
+                    finishedBaseReproduction = false;
+                    break;
+                }
+            }
+        }
+
+        ref var compounds = ref entity.Get<CompoundStorage>();
+
+        if (finishedBaseReproduction)
+        {
+            if (organelles.Organelles == null)
+                return;
+
+            var organelleCount = organelles.Organelles.Count;
+
+            for (int i = 0; i < organelleCount; i++)
+            {
+                var organelle = organelles.Organelles[i];
+
+                if (organelle.WasSplit || organelle.Definition.Unique)
+                    continue;
+
+                float sum = organelle.Definition.OrganelleCost;
+
+                foreach (var compound in organelle.Definition.InitialComposition)
+                {
+                    compounds.Compounds.AddCompound(compound.Key, freeCompounds * (compound.Value / sum));
+                }
+
+                break;
+            }
+        }
+        else
+        {
+            var species = entity.Get<SpeciesMember>().Species;
+
+            float sum = 0.0f;
+
+            foreach (var compound in species.BaseReproductionCost)
+            {
+                sum += compound.Value;
+            }
+
+            foreach (var compound in species.BaseReproductionCost)
+            {
+                compounds.Compounds.AddCompound(compound.Key, freeCompounds * (compound.Value / sum));
             }
         }
     }
