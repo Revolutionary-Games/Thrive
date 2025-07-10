@@ -346,7 +346,8 @@ public sealed class MicrobeReproductionSystem : AEntitySetSystem<float>
         requiredCompoundsForBaseReproduction[compound] = left;
     }
 
-    private static void AddFreeCompoundsToStorage(in Entity entity, ref OrganelleContainer organelles, float freeCompounds)
+    private static void AddFreeCompoundsToStorage(in Entity entity, ref OrganelleContainer organelles,
+        float freeCompounds)
     {
         ref var baseReproduction = ref entity.Get<ReproductionStatus>();
 
@@ -373,7 +374,7 @@ public sealed class MicrobeReproductionSystem : AEntitySetSystem<float>
 
             var organelleCount = organelles.Organelles.Count;
 
-            for (int i = 0; i < organelleCount; i++)
+            for (int i = 0; i < organelleCount; ++i)
             {
                 var organelle = organelles.Organelles[i];
 
