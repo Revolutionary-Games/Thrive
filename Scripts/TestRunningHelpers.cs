@@ -47,9 +47,9 @@ public static class TestRunningHelpers
                                                          </Loggers>
                                                      </LoggerRunSettings>
                                                      <GdUnit4>
-                                                         <Parameters>"--headless"</Parameters>
+                                                         <Parameters>"--headless --verbose"</Parameters>
                                                          <DisplayName>FullyQualifiedName</DisplayName>
-                                                         <CaptureStdOut>false</CaptureStdOut>
+                                                         <CaptureStdOut>true</CaptureStdOut>
                                                          <CompileProcessTimeout>120000</CompileProcessTimeout>
                                                      </GdUnit4>
                                                  </RunSettings>
