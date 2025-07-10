@@ -357,7 +357,7 @@ public class MicrobeSpecies : Species, ICellDefinition
 
         int organelleCount = Organelles.Organelles.Count;
 
-        for (int i = 0; i < organelleCount; i++)
+        for (int i = 0; i < organelleCount; ++i)
         {
             result.Merge(Organelles.Organelles[i].Definition.InitialComposition);
         }
