@@ -233,7 +233,7 @@ public sealed class MicrobeReproductionSystem : AEntitySetSystem<float>
             var (_, freeCompounds) = CalculateFreeCompoundsAndLimits(gameWorld!.WorldSettings, organelles.HexCount,
                 false, reproductionDelta);
 
-            var species = entity.Get<SpeciesMember>().Species;
+            var species = entity.Get<MicrobeSpeciesMember>().Species;
 
             ref var storage = ref entity.Get<CompoundStorage>();
 
