@@ -1009,6 +1009,17 @@ public partial class MetaballBodyEditorComponent :
 
         GUICommon.Instance.PlayButtonPressSound();
 
+        // Don't change the tab if there's an in-progress action
+        if (CanCancelAction)
+        {
+            ToolTipManager.Instance.ShowPopup(Localization.Translate("ACTION_BLOCKED_WHILE_ANOTHER_IN_PROGRESS"),
+                1.5f);
+
+            ApplySelectionMenuTab();
+
+            return;
+        }
+
         selectedSelectionMenuTab = selection;
         ApplySelectionMenuTab();
     }
