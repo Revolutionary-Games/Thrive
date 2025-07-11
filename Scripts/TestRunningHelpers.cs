@@ -12,6 +12,8 @@ public static class TestRunningHelpers
 {
     public const string RUN_SETTINGS_FILE = ".runsettings";
 
+    public const string TEST_RUN_VERBOSITY = "normal";
+
     private const string RUN_SETTINGS_TEMPLATE = """
                                                  <?xml version="1.0" encoding="utf-8"?>
                                                  <RunSettings>
@@ -31,7 +33,7 @@ public static class TestRunningHelpers
                                                              <!-- Seems to cause duplicate output -->
                                                              <Logger friendlyName="console" enabled="False">
                                                                  <Configuration>
-                                                                     <Verbosity>detailed</Verbosity>
+                                                                     <Verbosity>{5}</Verbosity>
                                                                  </Configuration>
                                                              </Logger>
                                                              <Logger friendlyName="html" enabled="{4}">
@@ -76,7 +78,8 @@ public static class TestRunningHelpers
     {
         var timeout = (int)TimeSpan.FromMinutes(10).TotalMilliseconds;
 
-        var text = string.Format(RUN_SETTINGS_TEMPLATE, 1, dotnetVersion, timeout, godot, fileResults);
+        var text = string.Format(RUN_SETTINGS_TEMPLATE, 1, dotnetVersion, timeout, godot, fileResults,
+            TEST_RUN_VERBOSITY);
 
         File.WriteAllText(RUN_SETTINGS_FILE, text, Encoding.UTF8);
     }
