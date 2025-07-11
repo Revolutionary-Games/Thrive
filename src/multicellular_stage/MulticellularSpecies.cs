@@ -211,8 +211,6 @@ public class MulticellularSpecies : Species, ISimulationPhotographable
 
     public Vector3 CalculatePhotographDistance(IWorldSimulation worldSimulation)
     {
-        float radius = 0.0f;
-
         Vector3 center = Vector3.Zero;
 
         int count = Cells.Count;
@@ -223,28 +221,32 @@ public class MulticellularSpecies : Species, ISimulationPhotographable
 
         center /= count;
 
+        float maxCellDistanceSquared = 0.0f;
+        float farthestCellRadius = 0.0f;
+
         foreach (var entity in worldSimulation.EntitySystem)
         {
             if (!entity.Has<CellProperties>())
                 continue;
 
-            ref var cellProperties = ref entity.Get<CellProperties>();
+            var distanceSquared = entity.Get<WorldPosition>().Position.DistanceSquaredTo(center);
 
-            // This uses the membrane as radius is not set as the physics system doesn't run
-            if (!cellProperties.IsMembraneReady())
-                throw new InvalidOperationException("Microbe doesn't have a ready membrane");
-
-            var cellRadius = cellProperties.CreatedMembrane!.EncompassingCircleRadius;
-
-            var farthestPoint = entity.Get<WorldPosition>().Position.DistanceTo(center) + cellRadius;
-
-            if (farthestPoint > radius)
+            if (distanceSquared > maxCellDistanceSquared)
             {
-                radius = farthestPoint;
+                maxCellDistanceSquared = distanceSquared;
+
+                ref var cellProperties = ref entity.Get<CellProperties>();
+
+                // This uses the membrane as radius is not set as the physics system doesn't run
+                if (!cellProperties.IsMembraneReady())
+                    throw new InvalidOperationException("Microbe doesn't have a ready membrane");
+
+                farthestCellRadius = cellProperties.CreatedMembrane!.EncompassingCircleRadius;
             }
         }
 
-        return new Vector3(center.X, PhotoStudio.CameraDistanceFromRadiusOfObject(radius), center.Z);
+        return new Vector3(center.X, PhotoStudio.CameraDistanceFromRadiusOfObject(
+            MathF.Sqrt(maxCellDistanceSquared) + farthestCellRadius), center.Z);
     }
 
     public override object Clone()

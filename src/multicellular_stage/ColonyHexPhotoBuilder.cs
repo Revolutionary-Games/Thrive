@@ -95,7 +95,7 @@ public partial class ColonyHexPhotoBuilder : Node3D, IScenePhotographable
             return;
         }
 
-        float farthest = 0;
+        float maxDistanceSquared = 0.0f;
 
         if (species.EditorCellLayout == null)
         {
@@ -105,10 +105,11 @@ public partial class ColonyHexPhotoBuilder : Node3D, IScenePhotographable
 
         foreach (var cell in species.EditorCellLayout)
         {
-            farthest = MathF.Max(farthest, Hex.AxialToCartesian(cell.Position).DistanceTo(Vector3.Zero));
+            maxDistanceSquared = MathF.Max(maxDistanceSquared, Hex.AxialToCartesian(cell.Position)
+                .DistanceSquaredTo(Vector3.Zero));
         }
 
-        radius = farthest + Constants.DEFAULT_HEX_SIZE;
+        radius = MathF.Sqrt(maxDistanceSquared) + Constants.DEFAULT_HEX_SIZE;
 
         radiusDirty = false;
     }
