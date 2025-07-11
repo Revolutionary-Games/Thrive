@@ -38,6 +38,8 @@ public class AutoEvoGlobalCache
 
     public readonly bool HasTemperature;
 
+    public readonly TemperatureSessilityPressure TemperatureSessilityPressure;
+
     public AutoEvoGlobalCache(WorldGenerationSettings worldSettings)
     {
         RootPressure = new RootPressure();
@@ -85,5 +87,7 @@ public class AutoEvoGlobalCache
         HasTemperature = !worldSettings.LAWK;
 
         PredatorRoot = new PredatorRoot(1.0f);
+
+        TemperatureSessilityPressure = new TemperatureSessilityPressure(1.0f);
     }
 }
