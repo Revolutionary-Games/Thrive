@@ -353,7 +353,7 @@ public class MicrobeSpecies : Species, ICellDefinition
 
     protected override Dictionary<Compound, float> CalculateTotalReproductionCost()
     {
-        var result = new Dictionary<Compound, float>(BaseReproductionCost);
+        var result = base.CalculateTotalReproductionCost();
 
         int organelleCount = Organelles.Organelles.Count;
 

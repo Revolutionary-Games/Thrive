@@ -227,7 +227,7 @@ public class MulticellularSpecies : Species
 
     protected override Dictionary<Compound, float> CalculateTotalReproductionCost()
     {
-        var result = new Dictionary<Compound, float>(BaseReproductionCost);
+        var result = base.CalculateTotalReproductionCost();
 
         int count = Cells.Count;
         for (int i = 0; i < count; ++i)
