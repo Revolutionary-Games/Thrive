@@ -153,11 +153,14 @@ public class CellType : ICellDefinition, ICloneable
         // This code is copied from MicrobeSpecies
         var count = Organelles.Count;
 
-        var hash = Colour.GetVisualHashCode();
-        hash ^= PersistentStringHash.GetHash(MembraneType.InternalName) * 5743;
+        var hash = PersistentStringHash.GetHash(MembraneType.InternalName) * 5743;
         hash ^= (ulong)MembraneRigidity.GetHashCode() * 5749;
         hash ^= (IsBacteria ? 1UL : 0UL) * 5779UL;
         hash ^= (ulong)count * 131;
+
+        // Additionally apply colour hash; this line doesn't appear in MicrobeSpecies, because colour hash
+        // is applied by MicrobeSpecies' base class.
+        hash ^= Colour.GetVisualHashCode();
 
         var list = Organelles.Organelles;
 
