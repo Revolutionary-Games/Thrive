@@ -1,0 +1,341 @@
+[gd_scene load_steps=14 format=3 uid="uid://devtugnggmuol"]
+
+[ext_resource type="Script" uid="uid://exlgkif2qbrm" path="res://src/general/PauseMenu.cs" id="1"]
+[ext_resource type="Theme" uid="uid://b4cx0o110g4b6" path="res://src/gui_common/thrive_theme.tres" id="2"]
+[ext_resource type="PackedScene" uid="uid://ddi31qylscfyh" path="res://src/saving/SaveList.tscn" id="3"]
+[ext_resource type="PackedScene" uid="uid://u27aqj8gq4ep" path="res://src/saving/NewSaveMenu.tscn" id="5"]
+[ext_resource type="PackedScene" uid="uid://khgb1ctp1e5o" path="res://src/gui_common/menus/OptionsMenu.tscn" id="6"]
+[ext_resource type="PackedScene" uid="uid://cl64wvnxs6ivs" path="res://src/gui_common/dialogs/CustomConfirmationDialog.tscn" id="7"]
+[ext_resource type="PackedScene" uid="uid://bt4wq0ddch84i" path="res://src/thriveopedia/Thriveopedia.tscn" id="8"]
+[ext_resource type="PackedScene" uid="uid://bgeijgq7runaw" path="res://src/gui_common/FocusGrabber.tscn" id="9"]
+[ext_resource type="PackedScene" uid="uid://cba187yaeukt3" path="res://src/gui_common/TopLevelContainer.tscn" id="10"]
+
+[sub_resource type="Animation" id="Animation_rnkue"]
+resource_name = "Close"
+length = 0.3
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:visible")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.3),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [true, false]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("CenterContainer:visible")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.1),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [true, false]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("Overlay:self_modulate")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0, 0.3),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Color(1, 1, 1, 1), Color(1, 1, 1, 0)]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("CenterContainer:position")
+tracks/3/interp = 2
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0, 0.1),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector2(0, 0), Vector2(0, 500)]
+}
+
+[sub_resource type="Animation" id="Animation_fsnwg"]
+resource_name = "Open"
+length = 0.3
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:visible")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("CenterContainer:visible")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("Overlay:self_modulate")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0, 0.3),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Color(1, 1, 1, 0), Color(1, 1, 1, 1)]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("CenterContainer:position")
+tracks/3/interp = 2
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0, 0.2),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector2(0, -500), Vector2(0, 0)]
+}
+
+[sub_resource type="Animation" id="Animation_ih5uy"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:visible")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("CenterContainer:visible")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("Overlay:self_modulate")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(1, 1, 1, 1)]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("CenterContainer:position")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(0, 0)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_y4xuc"]
+_data = {
+&"Close": SubResource("Animation_rnkue"),
+&"Open": SubResource("Animation_fsnwg"),
+&"RESET": SubResource("Animation_ih5uy")
+}
+
+[node name="PauseMenu" node_paths=PackedStringArray("primaryMenu", "thriveopedia", "loadMenu", "optionsMenu", "saveMenu", "unsavedProgressWarning") instance=ExtResource("10")]
+process_mode = 3
+visible = true
+offset_right = 1280.0
+offset_bottom = 720.0
+size_flags_horizontal = 3
+size_flags_vertical = 3
+theme = ExtResource("2")
+script = ExtResource("1")
+LoadSaveListPath = NodePath("CenterContainer/LoadMenu/SaveList")
+primaryMenu = NodePath("CenterContainer/PrimaryMenu")
+thriveopedia = NodePath("Thriveopedia")
+loadMenu = NodePath("CenterContainer/LoadMenu")
+optionsMenu = NodePath("OptionsMenu")
+saveMenu = NodePath("CenterContainer/NewSaveMenu")
+unsavedProgressWarning = NodePath("UnsavedProgressWarning")
+ExclusiveAllowCloseOnEscape = false
+FullRect = true
+
+[node name="Overlay" type="ColorRect" parent="." index="0"]
+layout_mode = 0
+anchor_right = 1.0
+anchor_bottom = 1.0
+mouse_force_pass_scroll_events = false
+color = Color(0, 0, 0, 0.588235)
+
+[node name="CenterContainer" type="CenterContainer" parent="." index="1"]
+layout_mode = 0
+anchor_right = 1.0
+anchor_bottom = 1.0
+mouse_filter = 0
+mouse_force_pass_scroll_events = false
+
+[node name="PrimaryMenu" type="VBoxContainer" parent="CenterContainer" index="0"]
+layout_mode = 2
+theme = ExtResource("2")
+theme_override_constants/separation = 10
+
+[node name="Control" type="Control" parent="CenterContainer/PrimaryMenu" index="0"]
+layout_mode = 2
+
+[node name="Resume" type="Button" parent="CenterContainer/PrimaryMenu" index="1"]
+custom_minimum_size = Vector2(250, 40)
+layout_mode = 2
+tooltip_text = "PAUSE_MENU_RESUME_TOOLTIP"
+text = "RESUME"
+
+[node name="SaveGame" type="Button" parent="CenterContainer/PrimaryMenu" index="2"]
+custom_minimum_size = Vector2(250, 40)
+layout_mode = 2
+tooltip_text = "SAVE_GAME_BUTTON_TOOLTIP"
+text = "SAVE_GAME"
+
+[node name="LoadGame" type="Button" parent="CenterContainer/PrimaryMenu" index="3"]
+custom_minimum_size = Vector2(250, 40)
+layout_mode = 2
+tooltip_text = "LOAD_GAME_BUTTON_TOOLTIP"
+text = "LOAD_GAME"
+
+[node name="Thriveopedia" type="Button" parent="CenterContainer/PrimaryMenu" index="4"]
+custom_minimum_size = Vector2(250, 40)
+layout_mode = 2
+tooltip_text = "THRIVEOPEDIA_HINT_IN_GAME"
+text = "THRIVEOPEDIA"
+
+[node name="Help" type="Button" parent="CenterContainer/PrimaryMenu" index="5"]
+custom_minimum_size = Vector2(250, 40)
+layout_mode = 2
+tooltip_text = "HELP_BUTTON_TOOLTIP"
+text = "HELP"
+
+[node name="ReportBug" type="Button" parent="CenterContainer/PrimaryMenu" index="6"]
+custom_minimum_size = Vector2(250, 40)
+layout_mode = 2
+text = "REPORT_BUG"
+
+[node name="Options" type="Button" parent="CenterContainer/PrimaryMenu" index="7"]
+custom_minimum_size = Vector2(250, 40)
+layout_mode = 2
+tooltip_text = "OPTIONS_BUTTON_TOOLTIP"
+text = "OPTIONS"
+
+[node name="ReturnToMenu" type="Button" parent="CenterContainer/PrimaryMenu" index="8"]
+custom_minimum_size = Vector2(250, 40)
+layout_mode = 2
+tooltip_text = "RETURN_TO_MENU_TOOLTIP"
+text = "RETURN_TO_MENU"
+
+[node name="Exit" type="Button" parent="CenterContainer/PrimaryMenu" index="9"]
+custom_minimum_size = Vector2(250, 40)
+layout_mode = 2
+tooltip_text = "QUIT_BUTTON_TOOLTIP"
+text = "EXIT"
+
+[node name="FocusGrabber" parent="CenterContainer/PrimaryMenu" index="10" instance=ExtResource("9")]
+layout_mode = 2
+Priority = 1
+NodeToGiveFocusTo = NodePath("../Resume")
+AlwaysOverrideFocus = true
+SkipOverridingFocusForElements = [NodePath("../../..")]
+
+[node name="LoadMenu" type="VBoxContainer" parent="CenterContainer" index="1"]
+visible = false
+custom_minimum_size = Vector2(1000, 600)
+layout_mode = 2
+
+[node name="SaveList" parent="CenterContainer/LoadMenu" index="0" instance=ExtResource("3")]
+layout_mode = 2
+size_flags_vertical = 3
+AutoRefreshOnFirstVisible = false
+
+[node name="Back" type="Button" parent="CenterContainer/LoadMenu" index="1"]
+custom_minimum_size = Vector2(100, 37)
+layout_mode = 2
+size_flags_horizontal = 4
+theme = ExtResource("2")
+text = "BACK"
+
+[node name="FocusGrabber" parent="CenterContainer/LoadMenu" index="2" instance=ExtResource("9")]
+layout_mode = 2
+Priority = 2
+NodeToGiveFocusTo = NodePath("../Back")
+AlwaysOverrideFocus = true
+SkipOverridingFocusForElements = [NodePath("..")]
+
+[node name="NewSaveMenu" parent="CenterContainer" index="2" instance=ExtResource("5")]
+visible = false
+custom_minimum_size = Vector2(1000, 600)
+layout_mode = 2
+
+[node name="OptionsMenu" parent="." index="2" instance=ExtResource("6")]
+visible = false
+layout_mode = 1
+
+[node name="Thriveopedia" parent="." index="3" instance=ExtResource("8")]
+visible = false
+layout_mode = 1
+
+[node name="UnsavedProgressWarning" parent="." index="4" instance=ExtResource("7")]
+custom_minimum_size = Vector2(391, 0)
+layout_mode = 1
+offset_right = 391.0
+WindowTitle = "CONFIRM_EXIT"
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="." index="5"]
+libraries = {
+&"": SubResource("AnimationLibrary_y4xuc")
+}
+
+[connection signal="pressed" from="CenterContainer/PrimaryMenu/Resume" to="." method="ClosePressed"]
+[connection signal="pressed" from="CenterContainer/PrimaryMenu/SaveGame" to="." method="OpenSavePressed"]
+[connection signal="pressed" from="CenterContainer/PrimaryMenu/LoadGame" to="." method="OpenLoadPressed"]
+[connection signal="pressed" from="CenterContainer/PrimaryMenu/Thriveopedia" to="." method="OpenThriveopediaPressed"]
+[connection signal="pressed" from="CenterContainer/PrimaryMenu/Help" to="." method="OpenToHelp"]
+[connection signal="pressed" from="CenterContainer/PrimaryMenu/ReportBug" to="." method="OpenReportBugPressed"]
+[connection signal="pressed" from="CenterContainer/PrimaryMenu/Options" to="." method="OpenOptionsPressed"]
+[connection signal="pressed" from="CenterContainer/PrimaryMenu/ReturnToMenu" to="." method="ReturnToMenuPressed"]
+[connection signal="pressed" from="CenterContainer/PrimaryMenu/Exit" to="." method="ExitPressed"]
+[connection signal="OnConfirmed" from="CenterContainer/LoadMenu/SaveList" to="." method="OnLoadSaveConfirmed"]
+[connection signal="OnSaveLoaded" from="CenterContainer/LoadMenu/SaveList" to="." method="OnSaveLoaded"]
+[connection signal="pressed" from="CenterContainer/LoadMenu/Back" to="." method="CloseLoadPressed"]
+[connection signal="OnClosed" from="CenterContainer/NewSaveMenu" to="." method="CloseSavePressed"]
+[connection signal="OnSaveNameChosen" from="CenterContainer/NewSaveMenu" to="." method="ForwardSaveAction"]
+[connection signal="OnOptionsClosed" from="OptionsMenu" to="." method="OnOptionsClosed"]
+[connection signal="OnSceneChanged" from="Thriveopedia" to="." method="OnSceneChangedFromThriveopedia"]
+[connection signal="OnThriveopediaClosed" from="Thriveopedia" to="." method="OnThriveopediaClosed"]
+[connection signal="Confirmed" from="UnsavedProgressWarning" to="." method="ConfirmExit"]
