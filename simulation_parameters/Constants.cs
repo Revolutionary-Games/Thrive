@@ -1345,8 +1345,9 @@ public static class Constants
     public const float VOLCANISM_FLOOR_CO2_STRENGTH = 0.010f;
     public const float VOLCANISM_FLOOR_CO2_THRESHOLD = 0.1f;
 
-    public const float MIN_HYDROGEN_SULFIDE_FRACTION = 0.496f;
-    public const double HYDROGEN_SULFIDE_ENVIRONMENT_EATING_MULTIPLIER = 0.00000002;
+    public const float MIN_HYDROGEN_SULFIDE_FRACTION = 0.517f;
+    public const double HYDROGEN_SULFIDE_ENVIRONMENT_EATING_MULTIPLIER = 0.00000001;
+    public const float HYDROGEN_SULFIDE_NATURAL_DECAY_FACTOR = 0.3f;
 
     /// <summary>
     ///   Below this value oxygen doesn't cause iron chunks to become less common
@@ -1368,7 +1369,7 @@ public static class Constants
 
     // Patch event variables
     public const int VENT_ERUPTION_CHANCE = 15;
-    public const float VENT_ERUPTION_HYDROGEN_SULFIDE_INCREASE = 0.00004f;
+    public const float VENT_ERUPTION_HYDROGEN_SULFIDE_INCREASE = 0.001f;
     public const float VENT_ERUPTION_CARBON_DIOXIDE_INCREASE = 0.3f;
 
     public const float GLOBAL_GLACIATION_OXYGEN_THRESHOLD = 0.07f;
