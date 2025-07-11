@@ -1062,7 +1062,7 @@ public sealed class EngulfingSystem : AEntitySetSystem<float>
                 continue;
 
             // Pili don't block engulfing, check starting engulfing
-            var realEngulfer = entity;
+            var actualEntity = entity;
 
             if (resolveColony)
             {
@@ -1070,7 +1070,7 @@ public sealed class EngulfingSystem : AEntitySetSystem<float>
                 ref var colony = ref entity.Get<MicrobeColony>();
                 if (colony.GetMicrobeFromSubShape(ref ourExtraData, collision.FirstSubShapeData, out var adjusted))
                 {
-                    realEngulfer = adjusted;
+                    actualEntity = adjusted;
                 }
             }
 #if DEBUG
@@ -1081,13 +1081,14 @@ public sealed class EngulfingSystem : AEntitySetSystem<float>
             }
 #endif
 
-            ref var actualEngulfer = ref engulfer;
+            ref var actualEngulfer =
+                ref actualEntity == entity ? ref engulfer : ref actualEntity.Get<Engulfer>();
 
             ref var actualCellProperties =
-                ref realEngulfer == entity ? ref cellProperties : ref realEngulfer.Get<CellProperties>();
+                ref actualEntity == entity ? ref cellProperties : ref actualEntity.Get<CellProperties>();
 
             if (CheckStartEngulfingOnCandidate(ref actualCellProperties, ref actualEngulfer, ref species,
-                    realEngulfer, realTarget))
+                    actualEntity, realTarget))
             {
                 // Engulf at most one thing per update, if further collisions still exist next update we'll pull
                 // it in then

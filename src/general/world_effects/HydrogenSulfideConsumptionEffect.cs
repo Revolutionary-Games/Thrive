@@ -32,13 +32,13 @@ public class HydrogenSulfideConsumptionEffect : IWorldEffect
 
             // Skip patches that don't need handling
             if (!patch.Biome.ChangeableCompounds.TryGetValue(Compound.Hydrogensulfide,
-                    out BiomeCompoundProperties hydrogenSulfide) || hydrogenSulfide.Density <= 0 ||
-                patch.SpeciesInPatch.Count < 1)
+                    out BiomeCompoundProperties hydrogenSulfide) || hydrogenSulfide.Density <= 0)
             {
                 continue;
             }
 
             // Reduce the amount if there are species consuming it
+            bool speciesEatIt = false;
             foreach (var species in patch.SpeciesInPatch)
             {
                 var resolvedTolerances = new ResolvedMicrobeTolerances
@@ -81,18 +81,29 @@ public class HydrogenSulfideConsumptionEffect : IWorldEffect
                             hydrogenSulfide.Density -= (float)(input.Value *
                                 Constants.HYDROGEN_SULFIDE_ENVIRONMENT_EATING_MULTIPLIER * effectiveSpeed *
                                 species.Value);
+                            speciesEatIt = true;
                         }
                     }
 
-                    // For now there are no processes that produce hydrogen sulfide but if some are added in the future
-                    // then some kind of max is probably needed to be configured
+                    // For now there are no processes that produce hydrogen sulfide, but if some are added in the
+                    // future, then some kind of max is probably needed to be configured
                 }
             }
 
-            // If fell below the minimum, cannot change
             var minimum =
                 patch.BiomeTemplate.Conditions.GetCompound(Compound.Hydrogensulfide, CompoundAmountType.Biome);
 
+            if (!speciesEatIt && minimum.Density <= MathUtils.EPSILON)
+            {
+                // In patches where there is no hydrogen sulfide naturally (it must have diffused there from elsewhere)
+                // have some natural decay to make sure the whole world isn't full of it
+                hydrogenSulfide.Density -= hydrogenSulfide.Density * Constants.HYDROGEN_SULFIDE_NATURAL_DECAY_FACTOR;
+
+                if (hydrogenSulfide.Density < MathUtils.EPSILON * 50)
+                    hydrogenSulfide.Density = 0;
+            }
+
+            // If fell below the minimum, cannot change
             if (hydrogenSulfide.Density < minimum.Density * Constants.MIN_HYDROGEN_SULFIDE_FRACTION)
                 hydrogenSulfide.Density = minimum.Density * Constants.MIN_HYDROGEN_SULFIDE_FRACTION;
 

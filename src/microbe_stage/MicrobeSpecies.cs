@@ -140,12 +140,31 @@ public class MicrobeSpecies : Species, ICellDefinition
         return true;
     }
 
+    public void UpdateIsBacteria()
+    {
+        var nucleus = SimulationParameters.Instance.GetOrganelleType("nucleus");
+        IsBacteria = true;
+        var organelles = Organelles.Organelles;
+        var count = organelles.Count;
+
+        for (int i = 0; i < count; ++i)
+        {
+            var organelle = organelles[i];
+            if (organelle.Definition == nucleus)
+            {
+                IsBacteria = false;
+                break;
+            }
+        }
+    }
+
     public override void OnEdited()
     {
         base.OnEdited();
 
         RepositionToOrigin();
         UpdateInitialCompounds();
+        UpdateIsBacteria();
 
         cachedFillTimes.Clear();
     }
@@ -322,9 +341,10 @@ public class MicrobeSpecies : Species, ICellDefinition
         // This code also exists in CellType visual calculation
         var count = Organelles.Count;
 
-        hash ^= PersistentStringHash.GetHash(MembraneType.InternalName) * 5743 ^
-            (ulong)MembraneRigidity.GetHashCode() * 5749 ^
-            (IsBacteria ? 1UL : 0UL) * 5779UL ^ (ulong)count * 131;
+        hash ^= PersistentStringHash.GetHash(MembraneType.InternalName) * 5743;
+        hash ^= (ulong)MembraneRigidity.GetHashCode() * 5749;
+        hash ^= (IsBacteria ? 1UL : 0UL) * 5779UL;
+        hash ^= (ulong)count * 131;
 
         var list = Organelles.Organelles;
 

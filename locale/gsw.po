@@ -8,7 +8,7 @@ msgstr ""
 "Project-Id-Version: Thrive VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2025-06-05 21:10+0100\n"
-"PO-Revision-Date: 2025-05-12 22:52+0000\n"
+"PO-Revision-Date: 2025-06-12 12:46+0000\n"
 "Last-Translator: Argakyan <andrinmueller@hotmail.ch>\n"
 "Language-Team: Alemannic <https://translate.revolutionarygamesstudio.com/projects/thrive/thrive-game/gsw/>\n"
 "Language: gsw\n"
@@ -16,7 +16,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=n != 1;\n"
-"X-Generator: Weblate 5.7.2\n"
+"X-Generator: Weblate 5.11.4\n"
 "Generated-By: Thrive.Scripts 1.2.0.0\n"
 
 msgid "2D_MOVEMENT_TYPE_SELECTION"
@@ -2526,15 +2526,12 @@ msgstr "Benutzt Wasserstoff um Energie vo [thrive:compound type=\\\"glucose\\\"]
 msgid "HYDROGENASE_PROCESSES_DESCRIPTION"
 msgstr "Wandlet [thrive:compound type=\\\"glucose\\\"][/thrive:compound] zu [thrive:compound type=\\\"atp\\\"][/thrive:compound] um."
 
-#, fuzzy
 msgid "HYDROGENOSOME"
-msgstr "Hydrogenase"
+msgstr "Hydrogenosom"
 
-#, fuzzy
 msgid "HYDROGENOSOME_DESCRIPTION"
-msgstr "Benutzt Wasserstoff um Energie vo [thrive:compound type=\\\"glucose\\\"][/thrive:compound] z'erhalte. Meh effektiv bi niedrige [thrive:compound type=\\\"oxygen\\\"][/thrive:compound] Werte als metabolosome. Vieli Organisme in anoxische Umweltsituatione benutzed das als primäri Energiequelle."
+msgstr "Benutzt Wasserstoff um Energie vo [thrive:compound type=\\\"glucose\\\"][/thrive:compound] z'erhalte. S'Hydrogenosom isch e Membran-bundeni Organelle g'füllt mit Proteine und Enzyme. Es isch en Prokaryot wo vo emene Eukaryotische Wirt assimiliert worde isch. Effektiver als Hydrogenase und meh effektiv bi niedrige [thrive:compound type=\\\"oxygen\\\"][/thrive:compound] Werte als es Mitochondrium. Vieli Organisme i anoxische Bedingige nemmet Bündel a Hydrogenosome als primäri Energiequelle."
 
-#, fuzzy
 msgid "HYDROGENOSOME_PROCESSES_DESCRIPTION"
 msgstr "Wandlet [thrive:compound type=\\\"glucose\\\"][/thrive:compound] zu [thrive:compound type=\\\"atp\\\"][/thrive:compound] um."
 
@@ -2716,475 +2713,481 @@ msgid "INVALID_DATA_TO_PLOT"
 msgstr "Ungültigi Date zum Darstelle"
 
 msgid "INVALID_ICON_PATH"
-msgstr ""
+msgstr "Ungültige Mod-Icon Pfad"
 
 msgid "INVALID_SAVE_NAME_POPUP"
-msgstr ""
+msgstr "Spiicherstand Name chann kei Sunderzeiche ha (<>:\"/\\|?*)"
 
 msgid "INVALID_SPECIES_NAME_POPUP"
-msgstr ""
+msgstr "Spezies benennig muen binomial si (Genus und Epitheton)!"
 
 msgid "INVALID_TAG"
-msgstr ""
+msgstr "Ungültige Tag \"{0}\" gäh"
 
 msgid "INVALID_URL_FORMAT"
-msgstr ""
+msgstr "Ungültiges URL-Format"
 
 msgid "INVALID_URL_SCHEME"
-msgstr ""
+msgstr "Ungültiges URL-Schema"
 
 msgid "INVENTORY_ITEMS_ON_GROUND"
-msgstr ""
+msgstr "Gegeständ ufm Bode"
 
 msgid "INVENTORY_TITLE"
-msgstr ""
+msgstr "Inventar"
 
 msgid "INVENTORY_TOGGLE_CRAFTING"
-msgstr ""
+msgstr "Herstellig"
 
 msgid "INVENTORY_TOGGLE_GROUND"
-msgstr ""
+msgstr "Bode"
 
 msgid "INVERTED"
-msgstr ""
+msgstr "Invertiert"
 
 msgid "IN_PROTOTYPE"
 msgstr ""
+"Du spielsch d'Prototype vo spötere Stufene wo em Spiel enthalte sind.\n"
+"Diesi chönnd sehr unvollständig sii, Platzhaltergraphike verwende, und generell grob sii.\n"
+"Sie sind daher nöd immer spielbar im eigentliche Sinn. Darum isch spiichere nöd möglich.\n"
+"Einige Teil vode Prototype chönnd limitiertes spiichere erlaube."
 
 msgid "IRON"
-msgstr ""
+msgstr "Ise"
 
 msgid "IRON_OXIDATION"
-msgstr ""
+msgstr "Ise Oxidation"
 
 msgid "ITCH_TOOLTIP"
-msgstr ""
+msgstr "Bsuech oisi Itch.io Siite"
 
 msgid "ITEM_AT_2D_COORDINATES"
-msgstr ""
+msgstr "{0} bi ({1}, {2})"
 
 msgid "ITEM_NAME_SEPARATOR"
-msgstr ""
+msgstr ":"
 
 msgid "JANUARY"
-msgstr ""
+msgstr "Januar"
 
 msgid "JSON_DEBUG_MODE"
-msgstr ""
+msgstr "JSON Debuggingmodus:"
 
 msgid "JSON_DEBUG_MODE_ALWAYS"
-msgstr ""
+msgstr "Immer"
 
 msgid "JSON_DEBUG_MODE_AUTO"
-msgstr ""
+msgstr "Automatisch"
 
 msgid "JSON_DEBUG_MODE_NEVER"
-msgstr ""
+msgstr "Nie"
 
 msgid "JULY"
-msgstr ""
+msgstr "Juli"
 
 msgid "JUNE"
-msgstr ""
+msgstr "Juni"
 
 msgid "KEEP_CURRENT_SHORT"
-msgstr ""
+msgstr "Jetziges B'halte"
 
 msgid "KEEP_CURRENT_TOLERANCE_FLEXIBILITY_TOOLTIP"
-msgstr ""
+msgstr "B'halt d'jetzigi Drucktoleranz während dem d'Min- und Maximalpünkt bewegt werdet"
 
 msgid "KEEP_MIGRATION"
-msgstr ""
+msgstr "Migration B'halte"
 
 msgid "KEY_BACK"
-msgstr ""
+msgstr "Zrugg"
 
 msgid "KEY_BACKTAB"
-msgstr ""
+msgstr "Zrugg"
 
 msgid "KEY_BINDING_CHANGE_CONFLICT"
 msgstr ""
+"S'hett en Konflikt mit {0}.\n"
+"Wettsch du d'Iigab vo {1} entferne?"
 
 msgid "KEY_BRING_UP_KEYBOARD"
-msgstr ""
+msgstr "Tastatur öffne"
 
 msgid "KEY_CLEAR"
-msgstr ""
+msgstr "Leere"
 
 msgid "KEY_DELETE"
-msgstr ""
+msgstr "Lösche"
 
 msgid "KEY_DOWN"
-msgstr ""
+msgstr "Abbe"
 
 msgid "KEY_END"
-msgstr ""
+msgstr "Endi"
 
 msgid "KEY_ENTER"
-msgstr ""
+msgstr "Iigabtaste"
 
 msgid "KEY_FAVORITES"
-msgstr ""
+msgstr "Favorisiere"
 
 msgid "KEY_FORWARD"
-msgstr ""
+msgstr "Fürschi"
 
 msgid "KEY_GLOBE"
-msgstr ""
+msgstr "Pos1"
 
 msgid "KEY_HELP"
-msgstr ""
+msgstr "Hilf"
 
 msgid "KEY_HOME"
-msgstr ""
+msgstr "Heim"
 
 msgid "KEY_HOMEPAGE"
-msgstr ""
+msgstr "Startsiite"
 
 msgid "KEY_HYPER"
-msgstr ""
+msgstr "Hyper"
 
 msgid "KEY_INSERT"
-msgstr ""
+msgstr "Iifüegtaste"
 
 msgid "KEY_JIS_EISU"
-msgstr ""
+msgstr "JIS Eisu"
 
 msgid "KEY_JIS_KANA"
-msgstr ""
+msgstr "Standby"
 
 msgid "KEY_LEFT"
-msgstr ""
+msgstr "Links"
 
 msgid "KEY_MENU"
-msgstr ""
+msgstr "Menü"
 
 msgid "KEY_META"
-msgstr ""
+msgstr "Tabulator"
 
 msgid "KEY_OPENURL"
-msgstr ""
+msgstr "URL öffne"
 
 msgid "KEY_PAUSE"
-msgstr ""
+msgstr "Pause"
 
 msgid "KEY_PRINT"
-msgstr ""
+msgstr "Drucktaste"
 
 msgid "KEY_REFRESH"
-msgstr ""
+msgstr "Aktualisiertaste"
 
 msgid "KEY_RIGHT"
-msgstr ""
+msgstr "Rechts"
 
 msgid "KEY_SEARCH"
-msgstr ""
+msgstr "Suechfunktion"
 
 msgid "KEY_STANDBY"
-msgstr ""
+msgstr "Standby-Taste"
 
 msgid "KEY_STOP"
-msgstr ""
+msgstr "Stop"
 
 msgid "KEY_TAB"
-msgstr ""
+msgstr "Tabulator"
 
 msgid "KEY_UP"
-msgstr ""
+msgstr "Ufe"
 
 msgid "KILO_ABBREVIATION"
-msgstr ""
+msgstr "{0} Tsd"
 
 msgid "KP0"
-msgstr ""
+msgstr "Num 0"
 
 msgid "KP1"
-msgstr ""
+msgstr "Num 1"
 
 msgid "KP2"
-msgstr ""
+msgstr "Num 2"
 
 msgid "KP3"
-msgstr ""
+msgstr "Num 3"
 
 msgid "KP4"
-msgstr ""
+msgstr "Num 4"
 
 msgid "KP5"
-msgstr ""
+msgstr "Num 5"
 
 msgid "KP6"
-msgstr ""
+msgstr "Num 6"
 
 msgid "KP7"
-msgstr ""
+msgstr "Num 7"
 
 msgid "KP8"
-msgstr ""
+msgstr "Num 8"
 
 msgid "KP9"
-msgstr ""
+msgstr "Num 9"
 
 msgid "KPADD"
-msgstr ""
+msgstr "Num +"
 
 msgid "KPDIVIDE"
-msgstr ""
+msgstr "Num /"
 
 msgid "KPENTER"
-msgstr ""
+msgstr "Num Enter"
 
 msgid "KPMULTIPLY"
-msgstr ""
+msgstr "Num *"
 
 msgid "KPPERIOD"
-msgstr ""
+msgstr "Num ."
 
 msgid "KPSUBTRACT"
-msgstr ""
+msgstr "Num -"
 
 msgid "LANGUAGE"
-msgstr ""
+msgstr "Sprach:"
 
 msgid "LANGUAGE_TRANSLATION_PROGRESS"
-msgstr ""
+msgstr "Die Sprach isch zu {0}% vorhande"
 
 msgid "LANGUAGE_TRANSLATION_PROGRESS_LOW"
-msgstr ""
+msgstr "Die Übersetzig isch no ide Arbeit ({0}% vollständig)"
 
 msgid "LANGUAGE_TRANSLATION_PROGRESS_REALLY_LOW"
-msgstr ""
+msgstr "Die Übersetzig isch no sehr unvollständig ({0}% fertig). Hilf ois bitte bide Komplettierig!"
 
 msgid "LARGE_SULFUR_CHUNK"
-msgstr ""
+msgstr "Grosse Schwefelchlumpe"
 
 msgid "LAST_ORGANELLE_DELETE_OPTION_DISABLED_TOOLTIP"
-msgstr ""
+msgstr "Letschti Organelle chammer nöd lösche"
 
 msgid "LAUNCH0"
-msgstr ""
+msgstr "0 Starte"
 
 msgid "LAUNCH1"
-msgstr ""
+msgstr "1 Starte"
 
 msgid "LAUNCH2"
-msgstr ""
+msgstr "2 Starte"
 
 msgid "LAUNCH3"
-msgstr ""
+msgstr "3 Starte"
 
 msgid "LAUNCH4"
-msgstr ""
+msgstr "4 Starte"
 
 msgid "LAUNCH5"
-msgstr ""
+msgstr "5 Starte"
 
 msgid "LAUNCH6"
-msgstr ""
+msgstr "6 Starte"
 
 msgid "LAUNCH7"
-msgstr ""
+msgstr "7 Starte"
 
 msgid "LAUNCH8"
-msgstr ""
+msgstr "8 Starte"
 
 msgid "LAUNCH9"
-msgstr ""
+msgstr "9 Starte"
 
 msgid "LAUNCHA"
-msgstr ""
+msgstr "A Starte"
 
 msgid "LAUNCHB"
-msgstr ""
+msgstr "B Starte"
 
 msgid "LAUNCHC"
-msgstr ""
+msgstr "C Starte"
 
 msgid "LAUNCHD"
-msgstr ""
+msgstr "D Starte"
 
 msgid "LAUNCHE"
-msgstr ""
+msgstr "E Starte"
 
 msgid "LAUNCHF"
-msgstr ""
+msgstr "F Starte"
 
 msgid "LAUNCHMAIL"
-msgstr ""
+msgstr "Mail"
 
 msgid "LAUNCHMEDIA"
-msgstr ""
+msgstr "Medie"
 
 msgid "LAWK_ONLY"
-msgstr ""
+msgstr "Nur Kohlenstoffbasiertes Lebbe"
 
 msgid "LAWK_ONLY_EXPLANATION"
-msgstr ""
+msgstr "(Organelle und Fähigkeite beschränke uf Lebbe wiemmers kennet)"
 
 msgid "LEAD_ARTIST"
-msgstr ""
+msgstr "Leitende(i) Künstler(in)"
 
 msgid "LEAD_ARTISTS"
-msgstr ""
+msgstr "Leitendi Künstler(inne)"
 
 msgid "LEAD_DEVELOPERS"
-msgstr ""
+msgstr "Leitendi Entwickler"
 
 msgid "LEAD_GAME_DESIGNER"
-msgstr ""
+msgstr "Leitende(i) Spieledesigner(in)"
 
 msgid "LEAD_GAME_DESIGNERS"
-msgstr ""
+msgstr "Leitendi Spieledesigner"
 
 msgid "LEAD_OUTREACH_PEOPLE"
-msgstr ""
+msgstr "Leitendi PR Persone"
 
 msgid "LEAD_OUTREACH_PERSON"
-msgstr ""
+msgstr "Leitendi PR Person"
 
 msgid "LEAD_PROGRAMMER"
-msgstr ""
+msgstr "Leitende Programmierer"
 
 msgid "LEAD_PROGRAMMERS"
-msgstr ""
+msgstr "Leitendi Programmierer"
 
 msgid "LEAD_PROJECT_MANAGER"
-msgstr ""
+msgstr "Leidente(i) Projektmanager(in)"
 
 msgid "LEAD_PROJECT_MANAGERS"
-msgstr ""
+msgstr "Leitendi Projektmanager(inne)"
 
 msgid "LEAD_TESTER"
-msgstr ""
+msgstr "Leitende(i) Tester(in)"
 
 msgid "LEAD_TESTERS"
-msgstr ""
+msgstr "Leitendi Tester(inne)"
 
 msgid "LEAD_THEORIST"
-msgstr ""
+msgstr "Leitende(i) Theoretiker(in)"
 
 msgid "LEAD_THEORISTS"
-msgstr ""
+msgstr "Leitendi Theoretiker(inne)"
 
 msgid "LEFT_ARROW"
-msgstr ""
+msgstr "←"
 
 msgid "LEFT_MOUSE"
-msgstr ""
+msgstr "Lingi Muus"
 
 msgid "LICENSES"
-msgstr ""
+msgstr "Lizenze"
 
 msgid "LICENSES_COVERING_THRIVE"
-msgstr ""
+msgstr "D'Lizenze für Teile vo Thrive werdet da aazeiget"
 
 msgid "LIFE_ORIGIN"
-msgstr ""
+msgstr "Ursprung vom Lebbe"
 
 msgid "LIFE_ORIGIN_EXPLANATION"
-msgstr ""
+msgstr "(Aafangsgebiet)"
 
 msgid "LIFE_ORIGIN_PANSPERMIA"
-msgstr ""
+msgstr "Allsaat (zuefällig)"
 
 msgid "LIFE_ORIGIN_POND"
-msgstr ""
+msgstr "Warme Chliine Teich"
 
 msgid "LIFE_ORIGIN_TOOLTIP"
-msgstr ""
+msgstr "Einigi Optione sind möglicherwiis nöd verfüegbar, wenn numme Kohlestoffbasiertes Lebbe erlaubt isch"
 
 msgid "LIFE_ORIGIN_VENTS"
-msgstr ""
+msgstr "Hydrothermalquelle"
 
 msgid "LIGHT"
-msgstr ""
+msgstr "Liecht"
 
 msgid "LIGHT_LEVEL_AVERAGE"
-msgstr ""
+msgstr "Durchschnitt"
 
 msgid "LIGHT_LEVEL_CURRENT"
-msgstr ""
+msgstr "Jetzig"
 
 msgid "LIGHT_LEVEL_DAY"
-msgstr ""
+msgstr "Tag"
 
 msgid "LIGHT_LEVEL_LABEL_AT_NOON"
-msgstr ""
+msgstr "{0} am Mittag"
 
 msgid "LIGHT_LEVEL_NIGHT"
-msgstr ""
+msgstr "Nacht"
 
 msgid "LIGHT_MAX"
-msgstr ""
+msgstr "Liechtmaximum"
 
 msgid "LIMIT_EXTREME"
-msgstr ""
+msgstr "Extrema"
 
 msgid "LIMIT_GROWTH_RATE"
-msgstr ""
+msgstr "Schränkt d'Benutzig vo Wachstumsstoffe i"
 
 msgid "LIMIT_GROWTH_RATE_EXPLANATION"
-msgstr ""
+msgstr "(Aktivierig beschränkt d'Wachstumsrate; Deaktivierig laht numme d'verfüegbare Stoffe s'Wachstum beiiflusse)"
 
 msgid "LIMIT_HUGE"
-msgstr ""
+msgstr "Riisig"
 
 msgid "LIMIT_LARGE"
-msgstr ""
+msgstr "Gross"
 
 msgid "LIMIT_NORMAL"
-msgstr ""
+msgstr "Normal"
 
 msgid "LIMIT_SMALL"
-msgstr ""
+msgstr "Chlii"
 
 msgid "LIMIT_TINY"
-msgstr ""
+msgstr "Winzig"
 
 msgid "LIMIT_VERY_LARGE"
-msgstr ""
+msgstr "Sehr gross"
 
 msgid "LIMIT_VERY_SMALL"
-msgstr ""
+msgstr "Sehr chlii"
 
 msgid "LINE_COLOUR"
-msgstr ""
+msgstr "Liniefarbe:"
 
 msgid "LINKS_TITLE"
-msgstr ""
+msgstr "Links"
 
 msgid "LIPASE"
-msgstr ""
+msgstr "Lipase"
 
 msgid "LIPASE_DESCRIPTION"
-msgstr ""
+msgstr "Lipase erlaubt es de Zelle die meiste Membrane z'verdaue. Dini Zelle produziert scho jetzt echli vo dem Enzym ohni Lysosome, aber wenn du dä Typ wählsch tuesch du d'Effizienz erhöhe."
 
 msgid "LOAD"
-msgstr ""
+msgstr "Ladde"
 
 msgid "LOADING"
-msgstr ""
+msgstr "Laddet"
 
 msgid "LOADING_DOT_DOT_DOT"
-msgstr ""
+msgstr "Laddet..."
 
 msgid "LOADING_GAME"
-msgstr ""
+msgstr "Spiel Laddet"
 
 msgid "LOADING_GRAPHICS_SHADERS"
-msgstr ""
+msgstr "Shaders Laddet"
 
 msgid "LOADING_MACROSCOPIC_EDITOR"
-msgstr ""
+msgstr "Makroskopische Editor wird g'ladde"
 
 msgid "LOADING_MICROBE_EDITOR"
-msgstr ""
+msgstr "Laddet Mikrobeneditor"
 
 msgid "LOADING_MICROBE_STAGE"
-msgstr ""
+msgstr "Laddet Mikrobestadium"
 
 msgid "LOADING_MULTICELLULAR_EDITOR"
-msgstr ""
+msgstr "Laddet Mehrzellereditor"
 
 msgid "LOADING_MULTICELLULAR_STAGE"
 msgstr "Multizelluläres Stadium laded"
@@ -3193,16 +3196,16 @@ msgid "LOADING_STAGE"
 msgstr "Stadium Ladde"
 
 msgid "LOADING_STAGE_ASSETS"
-msgstr ""
+msgstr "Laddet Stadium-Assets {0} / {1}"
 
 msgid "LOAD_FINISHED"
-msgstr ""
+msgstr "Ladde beendet"
 
 msgid "LOAD_GAME"
-msgstr ""
+msgstr "Spiel ladde"
 
 msgid "LOAD_GAME_BUTTON_TOOLTIP"
-msgstr ""
+msgstr "Es älteres Spiel ladde"
 
 msgid "LOAD_INCOMPATIBLE_PROTOTYPE_WARNING"
 msgstr ""
@@ -6882,13 +6885,14 @@ msgstr ""
 msgid "WIKI_HYDROGENOSOME_INTRO"
 msgstr ""
 
-#, fuzzy
 msgid "WIKI_HYDROGENOSOME_MODIFICATIONS"
-msgstr "Benutzt Wasserstoff um Energie vo [thrive:compound type=\\\"glucose\\\"][/thrive:compound] z'erhalte. Meh effektiv bi niedrige [thrive:compound type=\\\"oxygen\\\"][/thrive:compound] Werte als metabolosome. Vieli Organisme in anoxische Umweltsituatione benutzed das als primäri Energiequelle."
+msgstr "Kei Änderige."
 
-#, fuzzy
 msgid "WIKI_HYDROGENOSOME_PROCESSES"
-msgstr "Wandlet [thrive:compound type=\\\"glucose\\\"][/thrive:compound] zu [thrive:compound type=\\\"atp\\\"][/thrive:compound] um."
+msgstr ""
+"[b]Clostridiali Gährig[/b]: [thrive:compound type=\"glucose\"][/thrive:compound] → [thrive:compound type=\"atp\"][/thrive:compound]\n"
+"\n"
+"E Methode zur Energieproduktion wo kei [thrive:compound type=\"oxygen\"][/thrive:compound] bruucht. Es isch idem Prozess effizienter als [b][color=#3796e1][url=thriveopedia:hydrogenase]Hydrogenase[/url][/color][/b], aber wenn's gnueg [thrive:compound type=\"oxygen\"][/thrive:compound] hett isches schlechter als [b][color=#3796e1][url=thriveopedia:mitochondrion]Mitochondrion[/url][/color][/b]. Bruucht ständigi Uufnahm vo [thrive:compound type=\"glucose\"][/thrive:compound]."
 
 msgid "WIKI_HYDROGENOSOME_REQUIREMENTS"
 msgstr ""

@@ -500,11 +500,11 @@ public static class Constants
     /// <summary>
     ///   Controls with how much speed agents are fired
     /// </summary>
-    public const float AGENT_EMISSION_VELOCITY = 18.5f;
+    public const float AGENT_EMISSION_VELOCITY = 25.0f;
 
-    public const float OXYTOXY_DAMAGE = 15.0f;
+    public const float OXYTOXY_DAMAGE = 25.0f;
 
-    public const float CYTOTOXIN_DAMAGE = 12.0f;
+    public const float CYTOTOXIN_DAMAGE = 20.0f;
 
     public const float OXYGEN_INHIBITOR_DAMAGE = 14.0f;
 
@@ -537,7 +537,7 @@ public static class Constants
     /// <summary>
     ///   How much a cell's speed is slowed when travelling through slime
     /// </summary>
-    public const float MUCILAGE_IMPEDE_FACTOR = 4.0f;
+    public const float MUCILAGE_IMPEDE_FACTOR = 5.0f;
 
     /// <summary>
     ///   How much a cell's speed is increased when secreting slime (scaling with secreted compound amount)
@@ -567,7 +567,7 @@ public static class Constants
     /// <summary>
     ///   How much mucocyst (slime jet upgrade) drains mucilage per second
     /// </summary>
-    public const float MUCOCYST_MUCILAGE_DRAIN = 0.5f;
+    public const float MUCOCYST_MUCILAGE_DRAIN = 0.7f;
 
     public const float TOXIN_PROJECTILE_PHYSICS_SIZE = 1;
 
@@ -1348,8 +1348,9 @@ public static class Constants
     public const float VOLCANISM_FLOOR_CO2_STRENGTH = 0.010f;
     public const float VOLCANISM_FLOOR_CO2_THRESHOLD = 0.1f;
 
-    public const float MIN_HYDROGEN_SULFIDE_FRACTION = 0.496f;
-    public const double HYDROGEN_SULFIDE_ENVIRONMENT_EATING_MULTIPLIER = 0.00000002;
+    public const float MIN_HYDROGEN_SULFIDE_FRACTION = 0.517f;
+    public const double HYDROGEN_SULFIDE_ENVIRONMENT_EATING_MULTIPLIER = 0.00000001;
+    public const float HYDROGEN_SULFIDE_NATURAL_DECAY_FACTOR = 0.3f;
 
     /// <summary>
     ///   Below this value oxygen doesn't cause iron chunks to become less common
@@ -1371,7 +1372,7 @@ public static class Constants
 
     // Patch event variables
     public const int VENT_ERUPTION_CHANCE = 15;
-    public const float VENT_ERUPTION_HYDROGEN_SULFIDE_INCREASE = 0.00004f;
+    public const float VENT_ERUPTION_HYDROGEN_SULFIDE_INCREASE = 0.001f;
     public const float VENT_ERUPTION_CARBON_DIOXIDE_INCREASE = 0.3f;
 
     public const float GLOBAL_GLACIATION_OXYGEN_THRESHOLD = 0.07f;
