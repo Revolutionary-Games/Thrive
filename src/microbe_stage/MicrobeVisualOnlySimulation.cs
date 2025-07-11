@@ -345,6 +345,48 @@ public sealed class MicrobeVisualOnlySimulation : WorldSimulation
             center.Z);
     }
 
+    public Vector3 CalculateColonyPhotographDistance()
+    {
+        var species = GetLastMicrobeEntity().Get<MulticellularSpeciesMember>().Species;
+
+        Vector3 center = Vector3.Zero;
+
+        int count = species.Cells.Count;
+        for (int i = 0; i < count; ++i)
+        {
+            center += Hex.AxialToCartesian(species.Cells[i].Position);
+        }
+
+        center /= count;
+
+        float maxCellDistanceSquared = 0.0f;
+        float farthestCellRadius = 0.0f;
+
+        foreach (var entity in EntitySystem)
+        {
+            if (!entity.Has<CellProperties>())
+                continue;
+
+            var distanceSquared = entity.Get<WorldPosition>().Position.DistanceSquaredTo(center);
+
+            if (distanceSquared > maxCellDistanceSquared)
+            {
+                maxCellDistanceSquared = distanceSquared;
+
+                ref var cellProperties = ref entity.Get<CellProperties>();
+
+                // This uses the membrane as radius is not set as the physics system doesn't run
+                if (!cellProperties.IsMembraneReady())
+                    throw new InvalidOperationException("Microbe doesn't have a ready membrane");
+
+                farthestCellRadius = cellProperties.CreatedMembrane!.EncompassingCircleRadius;
+            }
+        }
+
+        return new Vector3(center.X, PhotoStudio.CameraDistanceFromRadiusOfObject(
+            MathF.Sqrt(maxCellDistanceSquared) + farthestCellRadius), center.Z);
+    }
+
     public override bool HasSystemsWithPendingOperations()
     {
         return microbeVisualsSystem.HasPendingOperations();
