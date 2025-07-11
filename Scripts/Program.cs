@@ -106,6 +106,13 @@ public class Program
 
         TestRunningHelpers.GenerateRunSettings(godot, AssemblyInfoReader.ReadRunTimeFromCsproj("Thrive.csproj"), false);
 
+        // Delete the old gdUnit runner if one is present as it will make tests fail
+        if (Directory.Exists("gdunit4_testadapter"))
+        {
+            ColourConsole.WriteWarningLine("Detected old gdUnit runner folder, deleting it");
+            Directory.Delete("gdunit4_testadapter", true);
+        }
+
         var tokenSource = ConsoleHelpers.CreateSimpleConsoleCancellationSource();
 
         int result = -1;
