@@ -42,7 +42,7 @@ public class UnderwaterVentEruptionEffect : IWorldEffect
             if (patch.BiomeType != BiomeType.Vents)
                 continue;
 
-            if (random.Next(100) > GetVentEruptionChance())
+            if (random.NextFloat() > GetVentEruptionChance())
                 continue;
 
             var hasHydrogenSulfide = patch.Biome.ChangeableCompounds.TryGetValue(Compound.Hydrogensulfide,
