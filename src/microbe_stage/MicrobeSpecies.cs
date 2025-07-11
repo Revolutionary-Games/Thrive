@@ -341,9 +341,10 @@ public class MicrobeSpecies : Species, ICellDefinition
         // This code also exists in CellType visual calculation
         var count = Organelles.Count;
 
-        hash ^= PersistentStringHash.GetHash(MembraneType.InternalName) * 5743 ^
-            (ulong)MembraneRigidity.GetHashCode() * 5749 ^
-            (IsBacteria ? 1UL : 0UL) * 5779UL ^ (ulong)count * 131;
+        hash ^= PersistentStringHash.GetHash(MembraneType.InternalName) * 5743;
+        hash ^= (ulong)MembraneRigidity.GetHashCode() * 5749;
+        hash ^= (IsBacteria ? 1UL : 0UL) * 5779UL;
+        hash ^= (ulong)count * 131;
 
         var list = Organelles.Organelles;
 
@@ -368,6 +369,20 @@ public class MicrobeSpecies : Species, ICellDefinition
                 BaseSpeed,
                 BaseRotationSpeed,
                 BaseHexSize);
+    }
+
+    protected override Dictionary<Compound, float> CalculateTotalReproductionCost()
+    {
+        var result = base.CalculateTotalReproductionCost();
+
+        int organelleCount = Organelles.Organelles.Count;
+
+        for (int i = 0; i < organelleCount; ++i)
+        {
+            result.Merge(Organelles.Organelles[i].Definition.InitialComposition);
+        }
+
+        return result;
     }
 
     private void CalculateRotationSpeed()
