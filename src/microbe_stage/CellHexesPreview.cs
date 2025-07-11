@@ -65,7 +65,7 @@ public partial class CellHexesPreview : PhotographablePreview
                 Priority);
         }
 
-        GD.PrintErr("Unknown species type to preview: ", species, " (", species.GetType().Name, ")");
+        GD.PrintErr("Unknown species type to generate hexes view of: ", species, " (", species.GetType().Name, ")");
         return null;
     }
 }
