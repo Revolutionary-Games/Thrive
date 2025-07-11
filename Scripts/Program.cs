@@ -120,7 +120,7 @@ public class Program
             startInfo.ArgumentList.Add("--settings");
             startInfo.ArgumentList.Add(TestRunningHelpers.RUN_SETTINGS_FILE);
             startInfo.ArgumentList.Add("--verbosity");
-            startInfo.ArgumentList.Add("normal");
+            startInfo.ArgumentList.Add("detailed");
 
             result = ProcessRunHelpers.RunProcessAsync(startInfo, tokenSource.Token, false)
                 .Result.ExitCode;
