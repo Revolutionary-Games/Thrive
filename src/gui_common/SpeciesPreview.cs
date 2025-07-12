@@ -41,6 +41,11 @@ public partial class SpeciesPreview : PhotographablePreview
             return PhotoStudio.Instance.GenerateImage(microbeSpecies, Priority);
         }
 
+        if (previewSpecies is MulticellularSpecies multicellularSpecies)
+        {
+            return PhotoStudio.Instance.GenerateImage(multicellularSpecies, Priority);
+        }
+
         GD.PrintErr("Unknown species type to preview: ", previewSpecies, " (", previewSpecies.GetType().Name, ")");
         return null;
     }

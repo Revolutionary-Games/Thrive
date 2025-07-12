@@ -1,0 +1,6 @@
+[gd_scene load_steps=2 format=3 uid="uid://178s22bf6rsn"]
+
+[ext_resource type="Script" uid="uid://ur0nd33x8rpt" path="res://src/multicellular_stage/ColonyHexPhotoBuilder.cs" id="1_7gtif"]
+
+[node name="ColonyHexPhotoBuilder" type="Node3D"]
+script = ExtResource("1_7gtif")

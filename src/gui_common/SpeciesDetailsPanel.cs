@@ -60,18 +60,7 @@ public partial class SpeciesDetailsPanel : MarginContainer
     {
         SpeciesPreview.PreviewSpecies = PreviewSpecies;
 
-        if (PreviewSpecies == null)
-        {
-            hexesPreview.PreviewSpecies = null;
-        }
-        else if (PreviewSpecies is MicrobeSpecies microbeSpecies)
-        {
-            hexesPreview.PreviewSpecies = microbeSpecies;
-        }
-        else
-        {
-            GD.PrintErr("Unknown species type to preview: ", PreviewSpecies, " (", PreviewSpecies.GetType().Name, ")");
-        }
+        hexesPreview.PreviewSpecies = PreviewSpecies;
 
         speciesDetailsLabel!.ExtendedBbcode = PreviewSpecies?.GetDetailString();
     }
