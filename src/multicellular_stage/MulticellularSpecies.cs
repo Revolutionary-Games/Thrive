@@ -242,9 +242,7 @@ public class MulticellularSpecies : Species, ISimulationPhotographable
 
         foreach (var cell in Cells)
         {
-            hash ^= cell.GetVisualHashCode() ^ (ulong)cell.Position.GetHashCode();
-
-            hash = (hash << 7) | (hash >> 57);
+            hash += cell.GetVisualHashCode() ^ (ulong)cell.Position.GetHashCode();
         }
 
         return hash;
