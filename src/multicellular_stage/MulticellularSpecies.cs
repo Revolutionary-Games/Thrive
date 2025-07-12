@@ -30,7 +30,7 @@ public class MulticellularSpecies : Species, ISimulationPhotographable
     public CellLayout<CellTemplate> Cells { get; private set; } = new();
 
     /// <summary>
-    ///   The cell layout that this species has in the editor. Is null unless this colony created in the editor.
+    ///   The 'original' colony layout, from which the simulated one (<see cref="Cells"/>) is generated.
     /// </summary>
     [JsonProperty]
     public IndividualHexLayout<CellTemplate>? EditorCellLayout { get; set; }
