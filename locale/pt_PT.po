@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2025-07-11 17:40+0200\n"
+"POT-Creation-Date: 2025-06-05 21:10+0100\n"
 "PO-Revision-Date: 2025-05-25 15:00+0000\n"
 "Last-Translator: Anonymous <noreply@weblate.org>\n"
 "Language-Team: Portuguese (Portugal) <https://translate.revolutionarygamesstudio.com/projects/thrive/thrive-game/pt_PT/>\n"
@@ -396,10 +396,6 @@ msgstr "Estados de execução:"
 msgid "AUTO_EVO_STATUS_COLON"
 msgstr "Estado da Auto-Evo:"
 
-#, fuzzy
-msgid "AUTO_EVO_TOOL_BUTTON"
-msgstr "Auto ({0}x{1})"
-
 msgid "AUTO_MOVE_FORWARDS"
 msgstr "Mover para a frente automaticamente"
 
@@ -430,9 +426,6 @@ msgstr "Barra invertida"
 
 msgid "BACKSPACE"
 msgstr "Backspace"
-
-msgid "BACK_TO_SETTINGS"
-msgstr ""
 
 #, fuzzy
 msgid "BACTERIAL_THERMOSYNTHESIS"
@@ -829,33 +822,6 @@ msgstr ""
 #, fuzzy
 msgid "CLICK_TO_SELECT"
 msgstr "Apagar Selecionado"
-
-msgid "CLIMATE_INSTABILITY"
-msgstr ""
-
-#, fuzzy
-msgid "CLIMATE_INSTABILITY_EXPLANATION"
-msgstr ""
-"Micróbios ativos irão correr e cair quando nada de interessante acontecer.\n"
-"Micróbios sésseis ficarão parados e esperarão que o ambiente mude antes de agir."
-
-#, fuzzy
-msgid "CLIMATE_STABILITY_AVERAGE"
-msgstr ""
-"Micróbios ativos irão correr e cair quando nada de interessante acontecer.\n"
-"Micróbios sésseis ficarão parados e esperarão que o ambiente mude antes de agir."
-
-#, fuzzy
-msgid "CLIMATE_STABILITY_STABLE"
-msgstr ""
-"Micróbios ativos irão correr e cair quando nada de interessante acontecer.\n"
-"Micróbios sésseis ficarão parados e esperarão que o ambiente mude antes de agir."
-
-#, fuzzy
-msgid "CLIMATE_STABILITY_UNSTABLE"
-msgstr ""
-"Micróbios ativos irão correr e cair quando nada de interessante acontecer.\n"
-"Micróbios sésseis ficarão parados e esperarão que o ambiente mude antes de agir."
 
 msgid "CLOSE"
 msgstr "Fechar"
@@ -2458,33 +2424,11 @@ msgstr "Pressione o botão \"reverter\" no editor para corrigir um erro"
 msgid "GENERAL_LOADING_TIP_7"
 msgstr "Pressione o botão \"reverter\" no editor para corrigir um erro"
 
-#, fuzzy
-msgid "GENERATE_BUTTON"
-msgstr "Gerações"
-
 msgid "GENERATIONS"
 msgstr "Gerações"
 
 msgid "GENERATION_COLON"
 msgstr "Geração:"
-
-msgid "GEOLOGICAL_ACTIVITY"
-msgstr ""
-
-msgid "GEOLOGICAL_ACTIVITY_ACTIVE"
-msgstr ""
-
-msgid "GEOLOGICAL_ACTIVITY_AVERAGE"
-msgstr ""
-
-msgid "GEOLOGICAL_ACTIVITY_DORMANT"
-msgstr ""
-
-#, fuzzy
-msgid "GEOLOGICAL_ACTIVITY_EXPLANATION"
-msgstr ""
-"Micróbios ativos irão correr e cair quando nada de interessante acontecer.\n"
-"Micróbios sésseis ficarão parados e esperarão que o ambiente mude antes de agir."
 
 msgid "GITHUB_TOOLTIP"
 msgstr "Visite o nosso repositório GitHub"
@@ -4388,6 +4332,10 @@ msgid "NOTICE_HIT_BY_BASE_MOVEMENT_TOXIN"
 msgstr "Movimento Base"
 
 #, fuzzy
+msgid "NOTICE_NOT_ENOUGH_MUCILAGE"
+msgstr "Não há {0} suficiente para criar a receita"
+
+#, fuzzy
 msgid "NOTICE_RADIATION_DAMAGE"
 msgstr "O editor está pronto para ser utilizado"
 
@@ -4862,10 +4810,6 @@ msgstr "Colocar organelo"
 msgid "PLANET"
 msgstr "Planeta"
 
-#, fuzzy
-msgid "PLANET_CUSTOMIZER"
-msgstr "No Cursor:"
-
 msgid "PLANET_DETAILS_STRING"
 msgstr ""
 "Só LAWK: {0}\n"
@@ -4873,6 +4817,9 @@ msgstr ""
 "Ciclo Dia/Noite: {2}\n"
 "Duração do dia: {3} segundos\n"
 "Semente aleatória do planeta: {4}"
+
+msgid "PLANET_GENERATION_TEASER"
+msgstr "Geração de planetas em breve!"
 
 msgid "PLANET_RANDOM_SEED"
 msgstr "Semente aleatória do planeta"
@@ -5069,10 +5016,6 @@ msgstr "Refazer a última ação"
 
 msgid "REFRESH"
 msgstr "Atualizar"
-
-#, fuzzy
-msgid "REGENERATE_BUTTON"
-msgstr "Axónio"
 
 #, fuzzy
 msgid "RENDER_SCALE"
@@ -8893,28 +8836,6 @@ msgid "WORLD_RELATIVE_MOVEMENT"
 msgstr "Movimento Base"
 
 #, fuzzy
-msgid "WORLD_SEA_LEVEL"
-msgstr "{0}-{1}m abaixo do nível do mar"
-
-#, fuzzy
-msgid "WORLD_SEA_LEVEL_DEEP"
-msgstr "{0}-{1}m abaixo do nível do mar"
-
-#, fuzzy
-msgid "WORLD_SEA_LEVEL_EXPLANATION"
-msgstr ""
-"Os micróbios focados irão procurar por pedaços ou presas em distâncias maiores\n"
-"e podem ser mais ambicioso em relação aos pedaços.\n"
-"Micróbios reativos mudarão para novos alvos depois de algum tempo."
-
-#, fuzzy
-msgid "WORLD_SEA_LEVEL_MODERATE"
-msgstr "Movimento Base"
-
-msgid "WORLD_SEA_LEVEL_SHALLOW"
-msgstr ""
-
-#, fuzzy
 msgid "WORLD_SIZE"
 msgstr "Mundo"
 
@@ -8938,29 +8859,6 @@ msgstr ""
 #, fuzzy
 msgid "WORLD_SIZE_TOOLTIP"
 msgstr "Tempo Passado: {0:#,#} anos"
-
-#, fuzzy
-msgid "WORLD_TEMPERATURE"
-msgstr "Temperatura"
-
-#, fuzzy
-msgid "WORLD_TEMPERATURE_COLD"
-msgstr "Temp."
-
-#, fuzzy
-msgid "WORLD_TEMPERATURE_EXPLANATION"
-msgstr ""
-"Os micróbios focados irão procurar por pedaços ou presas em distâncias maiores\n"
-"e podem ser mais ambicioso em relação aos pedaços.\n"
-"Micróbios reativos mudarão para novos alvos depois de algum tempo."
-
-#, fuzzy
-msgid "WORLD_TEMPERATURE_TEMPERATE"
-msgstr "Temp."
-
-#, fuzzy
-msgid "WORLD_TEMPERATURE_WARM"
-msgstr "Temp."
 
 msgid "WORST_PATCH_COLON"
 msgstr "Pior Região:"
@@ -9001,9 +8899,6 @@ msgstr "Ampliar"
 
 msgid "ZOOM_OUT"
 msgstr "Reduzir"
-
-#~ msgid "PLANET_GENERATION_TEASER"
-#~ msgstr "Geração de planetas em breve!"
 
 #~ msgid "PASSIVE_REPRODUCTION_PROGRESS_EXPLANATION"
 #~ msgstr "(obter passivamente compostos de reprodução do ambiente sem ter de fazer nada)"

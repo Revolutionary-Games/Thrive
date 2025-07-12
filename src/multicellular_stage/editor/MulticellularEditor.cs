@@ -164,6 +164,15 @@ public partial class MulticellularEditor : EditorBase<EditorAction, MicrobeStage
         base.Redo();
     }
 
+    public bool IsNewCellTypeNameValid(string newName)
+    {
+        // Name is invalid if it is empty or a duplicate
+        // TODO: should this ensure the name doesn't have trailing whitespace?
+        // If so, CellTemplate.UpdateNameIfValid should be updated as well
+        return !string.IsNullOrWhiteSpace(newName) && !EditedSpecies.CellTypes.Any(c =>
+            c.TypeName.Equals(newName, StringComparison.InvariantCultureIgnoreCase));
+    }
+
     public override void Undo()
     {
         var cellType = history.GetUndoContext<CellType>();
@@ -217,6 +226,7 @@ public partial class MulticellularEditor : EditorBase<EditorAction, MicrobeStage
         patchMapTab.OnNextTab = () => SetEditorTab(EditorTab.CellEditor);
         bodyPlanEditorTab.OnFinish = ForwardEditorComponentFinishRequest;
         cellEditorTab.OnNextTab = () => SetEditorTab(EditorTab.CellEditor);
+        cellEditorTab.ValidateNewCellTypeName = IsNewCellTypeNameValid;
 
         foreach (var editorComponent in GetAllEditorComponents())
         {
@@ -517,10 +527,6 @@ public partial class MulticellularEditor : EditorBase<EditorAction, MicrobeStage
         if (selectedCellTypeToEdit == null)
             return;
 
-        // We need to handle the renaming here as the cell editor doesn't really know what other cell types exist
-        // so it can't check if the name is unique or not
-        // TODO: would be nice to re-architecture this so that the cell editor could show if the new name is valid
-        // or not
         var oldName = selectedCellTypeToEdit.TypeName;
 
         cellEditorTab.OnFinishEditing(false);

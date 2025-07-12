@@ -1,4 +1,4 @@
-[gd_scene load_steps=60 format=3 uid="uid://cwot2e52r7lx0"]
+[gd_scene load_steps=61 format=3 uid="uid://cwot2e52r7lx0"]
 
 [ext_resource type="PackedScene" uid="uid://bwegwjlcioasf" path="res://src/microbe_stage/editor/EditorComponentBottomLeftButtons.tscn" id="3"]
 [ext_resource type="PackedScene" uid="uid://0hb8nq18ljr8" path="res://src/microbe_stage/editor/LightConfigurationPanel.tscn" id="3_yy73o"]
@@ -113,6 +113,22 @@ region_rect = Rect2(0, 0, 258, 1)
 [sub_resource type="StyleBoxEmpty" id="37"]
 
 [sub_resource type="StyleBoxEmpty" id="36"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_tk5n4"]
+content_margin_left = 5.0
+content_margin_top = 5.0
+content_margin_right = 5.0
+content_margin_bottom = 5.0
+draw_center = false
+border_width_left = 2
+border_width_top = 2
+border_width_right = 2
+border_width_bottom = 2
+border_color = Color(0.666667, 1, 0.941176, 1)
+corner_radius_top_left = 3
+corner_radius_top_right = 3
+corner_radius_bottom_right = 3
+corner_radius_bottom_left = 3
 
 [sub_resource type="StyleBoxFlat" id="23"]
 content_margin_left = 5.0
@@ -1189,6 +1205,7 @@ focus_next = NodePath("../ConfirmButton")
 mouse_force_pass_scroll_events = false
 theme_override_colors/font_disabled_color = Color(0.498039, 0.529412, 0.541176, 1)
 theme_override_colors/font_pressed_color = Color(1, 1, 1, 1)
+theme_override_styles/focus = SubResource("StyleBoxFlat_tk5n4")
 theme_override_styles/hover = SubResource("23")
 theme_override_styles/pressed = SubResource("24")
 theme_override_styles/normal = SubResource("25")

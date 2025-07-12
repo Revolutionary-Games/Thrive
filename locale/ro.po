@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2025-07-11 17:40+0200\n"
+"POT-Creation-Date: 2025-06-05 21:10+0100\n"
 "PO-Revision-Date: 2025-01-21 12:01+0000\n"
 "Last-Translator: Anonymous <noreply@weblate.org>\n"
 "Language-Team: Romanian <https://translate.revolutionarygamesstudio.com/projects/thrive/thrive-game/ro/>\n"
@@ -392,10 +392,6 @@ msgstr "Starea rulării:"
 msgid "AUTO_EVO_STATUS_COLON"
 msgstr "Stare Auto-Evo:"
 
-#, fuzzy
-msgid "AUTO_EVO_TOOL_BUTTON"
-msgstr "Auto ({0}x{1})"
-
 msgid "AUTO_MOVE_FORWARDS"
 msgstr "Deplasare automată înainte"
 
@@ -428,9 +424,6 @@ msgstr "Backslash"
 #, fuzzy
 msgid "BACKSPACE"
 msgstr "Backspace"
-
-msgid "BACK_TO_SETTINGS"
-msgstr ""
 
 #, fuzzy
 msgid "BACTERIAL_THERMOSYNTHESIS"
@@ -825,33 +818,6 @@ msgstr ""
 
 msgid "CLICK_TO_SELECT"
 msgstr ""
-
-msgid "CLIMATE_INSTABILITY"
-msgstr ""
-
-#, fuzzy
-msgid "CLIMATE_INSTABILITY_EXPLANATION"
-msgstr ""
-"Microbii activi se vor mișca cand nu se întămplă nimic interesant.\n"
-"Microbii sesili vor fi staționari și vor aștepta ca mediul să se schimbe înainte de a acționa."
-
-#, fuzzy
-msgid "CLIMATE_STABILITY_AVERAGE"
-msgstr ""
-"Microbii activi se vor mișca cand nu se întămplă nimic interesant.\n"
-"Microbii sesili vor fi staționari și vor aștepta ca mediul să se schimbe înainte de a acționa."
-
-#, fuzzy
-msgid "CLIMATE_STABILITY_STABLE"
-msgstr ""
-"Microbii activi se vor mișca cand nu se întămplă nimic interesant.\n"
-"Microbii sesili vor fi staționari și vor aștepta ca mediul să se schimbe înainte de a acționa."
-
-#, fuzzy
-msgid "CLIMATE_STABILITY_UNSTABLE"
-msgstr ""
-"Microbii activi se vor mișca cand nu se întămplă nimic interesant.\n"
-"Microbii sesili vor fi staționari și vor aștepta ca mediul să se schimbe înainte de a acționa."
 
 msgid "CLOSE"
 msgstr ""
@@ -2319,33 +2285,11 @@ msgstr ""
 msgid "GENERAL_LOADING_TIP_7"
 msgstr ""
 
-#, fuzzy
-msgid "GENERATE_BUTTON"
-msgstr "Etapa Multicelulară"
-
 msgid "GENERATIONS"
 msgstr ""
 
 msgid "GENERATION_COLON"
 msgstr ""
-
-msgid "GEOLOGICAL_ACTIVITY"
-msgstr ""
-
-msgid "GEOLOGICAL_ACTIVITY_ACTIVE"
-msgstr ""
-
-msgid "GEOLOGICAL_ACTIVITY_AVERAGE"
-msgstr ""
-
-msgid "GEOLOGICAL_ACTIVITY_DORMANT"
-msgstr ""
-
-#, fuzzy
-msgid "GEOLOGICAL_ACTIVITY_EXPLANATION"
-msgstr ""
-"Microbii activi se vor mișca cand nu se întămplă nimic interesant.\n"
-"Microbii sesili vor fi staționari și vor aștepta ca mediul să se schimbe înainte de a acționa."
 
 msgid "GITHUB_TOOLTIP"
 msgstr ""
@@ -4076,6 +4020,9 @@ msgstr ""
 msgid "NOTICE_HIT_BY_BASE_MOVEMENT_TOXIN"
 msgstr "Mișcare de bază"
 
+msgid "NOTICE_NOT_ENOUGH_MUCILAGE"
+msgstr ""
+
 msgid "NOTICE_RADIATION_DAMAGE"
 msgstr ""
 
@@ -4525,11 +4472,10 @@ msgstr ""
 msgid "PLANET"
 msgstr ""
 
-#, fuzzy
-msgid "PLANET_CUSTOMIZER"
-msgstr "La cursor:"
-
 msgid "PLANET_DETAILS_STRING"
+msgstr ""
+
+msgid "PLANET_GENERATION_TEASER"
 msgstr ""
 
 msgid "PLANET_RANDOM_SEED"
@@ -4720,10 +4666,6 @@ msgstr ""
 
 msgid "REFRESH"
 msgstr ""
-
-#, fuzzy
-msgid "REGENERATE_BUTTON"
-msgstr "Etapa Multicelulară"
 
 msgid "RENDER_SCALE"
 msgstr ""
@@ -8407,28 +8349,6 @@ msgid "WORLD_RELATIVE_MOVEMENT"
 msgstr ""
 
 #, fuzzy
-msgid "WORLD_SEA_LEVEL"
-msgstr "{0}-{1}m sub nivelul mării"
-
-#, fuzzy
-msgid "WORLD_SEA_LEVEL_DEEP"
-msgstr "{0}-{1}m sub nivelul mării"
-
-#, fuzzy
-msgid "WORLD_SEA_LEVEL_EXPLANATION"
-msgstr ""
-"Microbii agresivi vor urmări prada pe distanțe mai mari\n"
-"și sunt mai predispuși să lupte împotriva prădătorilor atunci când sunt atacați.\n"
-"Microbii pașnici nu vor urmări pe alții pe distanțe mai mari\n"
-"și sunt mai puțin susceptibile de a folosi toxine împotriva prădătorilor."
-
-msgid "WORLD_SEA_LEVEL_MODERATE"
-msgstr ""
-
-msgid "WORLD_SEA_LEVEL_SHALLOW"
-msgstr ""
-
-#, fuzzy
 msgid "WORLD_SIZE"
 msgstr "\"{0}\" - {1}"
 
@@ -8452,27 +8372,6 @@ msgstr ""
 #, fuzzy
 msgid "WORLD_SIZE_TOOLTIP"
 msgstr "Treceți la etapa de trezire. Disponibil odată ce aveți creierul suficient de dezvoltat (tip de țesut cu axoni)."
-
-msgid "WORLD_TEMPERATURE"
-msgstr ""
-
-msgid "WORLD_TEMPERATURE_COLD"
-msgstr ""
-
-#, fuzzy
-msgid "WORLD_TEMPERATURE_EXPLANATION"
-msgstr ""
-"Microbii agresivi vor urmări prada pe distanțe mai mari\n"
-"și sunt mai predispuși să lupte împotriva prădătorilor atunci când sunt atacați.\n"
-"Microbii pașnici nu vor urmări pe alții pe distanțe mai mari\n"
-"și sunt mai puțin susceptibile de a folosi toxine împotriva prădătorilor."
-
-#, fuzzy
-msgid "WORLD_TEMPERATURE_TEMPERATE"
-msgstr "Treceți la etapa de trezire. Disponibil odată ce aveți creierul suficient de dezvoltat (tip de țesut cu axoni)."
-
-msgid "WORLD_TEMPERATURE_WARM"
-msgstr ""
 
 msgid "WORST_PATCH_COLON"
 msgstr ""
