@@ -40,10 +40,10 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
-scale = Vector2(0.976858, 1.00331)
 mouse_force_pass_scroll_events = false
 theme = ExtResource("1")
 script = ExtResource("2")
+DisableInactiveSliders = true
 backButton = NodePath("CenterContainer/VBoxContainer/VBoxContainer/HBoxContainer/Back")
 resetButton = NodePath("CenterContainer/VBoxContainer/VBoxContainer/HBoxContainer/Reset")
 saveButton = NodePath("CenterContainer/VBoxContainer/VBoxContainer/HBoxContainer/Save")
@@ -287,10 +287,12 @@ size_flags_horizontal = 3
 layout_mode = 2
 
 [node name="Label" type="Label" parent="CenterContainer/VBoxContainer/VBoxContainer/VBoxContainer/PanelContainer/Graphics/ScrollContainer/MarginContainer/VBoxContainer/VBoxContainer2/HBoxContainer"]
+custom_minimum_size = Vector2(250, 0)
 layout_mode = 2
 size_flags_horizontal = 3
 mouse_filter = 0
 text = "VSYNC"
+autowrap_mode = 2
 
 [node name="Vsync" type="CheckButton" parent="CenterContainer/VBoxContainer/VBoxContainer/VBoxContainer/PanelContainer/Graphics/ScrollContainer/MarginContainer/VBoxContainer/VBoxContainer2/HBoxContainer"]
 layout_mode = 2
@@ -303,17 +305,20 @@ size_flags_horizontal = 3
 layout_mode = 2
 
 [node name="Label" type="Label" parent="CenterContainer/VBoxContainer/VBoxContainer/VBoxContainer/PanelContainer/Graphics/ScrollContainer/MarginContainer/VBoxContainer/VBoxContainer3/HBoxContainer"]
+custom_minimum_size = Vector2(250, 0)
 layout_mode = 2
 size_flags_horizontal = 3
 size_flags_stretch_ratio = 3.0
 mouse_filter = 0
 text = "DISPLAY_MODE"
+autowrap_mode = 2
 
 [node name="DisplayMode" type="OptionButton" parent="CenterContainer/VBoxContainer/VBoxContainer/VBoxContainer/PanelContainer/Graphics/ScrollContainer/MarginContainer/VBoxContainer/VBoxContainer3/HBoxContainer"]
 custom_minimum_size = Vector2(200, 25)
 layout_mode = 2
 size_flags_horizontal = 3
 size_flags_stretch_ratio = 2.0
+autowrap_mode = 2
 selected = 0
 item_count = 3
 popup/item_0/text = "WINDOWED"
@@ -331,17 +336,20 @@ size_flags_horizontal = 3
 layout_mode = 2
 
 [node name="Label2" type="Label" parent="CenterContainer/VBoxContainer/VBoxContainer/VBoxContainer/PanelContainer/Graphics/ScrollContainer/MarginContainer/VBoxContainer/VBoxContainer4/HBoxContainer"]
+custom_minimum_size = Vector2(250, 0)
 layout_mode = 2
 size_flags_horizontal = 3
 size_flags_stretch_ratio = 3.0
 mouse_filter = 0
 text = "ANTI_ALIASING_MODE"
+autowrap_mode = 2
 
 [node name="AntiAliasingMode" type="OptionButton" parent="CenterContainer/VBoxContainer/VBoxContainer/VBoxContainer/PanelContainer/Graphics/ScrollContainer/MarginContainer/VBoxContainer/VBoxContainer4/HBoxContainer"]
 custom_minimum_size = Vector2(200, 25)
 layout_mode = 2
 size_flags_horizontal = 3
 size_flags_stretch_ratio = 2.0
+autowrap_mode = 2
 selected = 0
 item_count = 5
 popup/item_0/text = "ANTI_ALIASING_MSAA"
@@ -356,9 +364,11 @@ popup/item_4/text = "DISABLED"
 popup/item_4/id = 4
 
 [node name="Label4" type="Label" parent="CenterContainer/VBoxContainer/VBoxContainer/VBoxContainer/PanelContainer/Graphics/ScrollContainer/MarginContainer/VBoxContainer/VBoxContainer4"]
+custom_minimum_size = Vector2(250, 0)
 layout_mode = 2
 text = "IF_FALLBACK_RENDERER_USED_ALL_NOT_AVAILABLE"
 label_settings = ExtResource("7_etww0")
+autowrap_mode = 2
 
 [node name="VBoxContainer5" type="VBoxContainer" parent="CenterContainer/VBoxContainer/VBoxContainer/VBoxContainer/PanelContainer/Graphics/ScrollContainer/MarginContainer/VBoxContainer"]
 layout_mode = 2
@@ -368,11 +378,13 @@ size_flags_horizontal = 3
 layout_mode = 2
 
 [node name="Label" type="Label" parent="CenterContainer/VBoxContainer/VBoxContainer/VBoxContainer/PanelContainer/Graphics/ScrollContainer/MarginContainer/VBoxContainer/VBoxContainer5/HBoxContainer"]
+custom_minimum_size = Vector2(250, 0)
 layout_mode = 2
 size_flags_horizontal = 3
 size_flags_stretch_ratio = 3.0
 mouse_filter = 0
 text = "MULTISAMPLE_ANTI_ALIASING"
+autowrap_mode = 2
 
 [node name="MSAAResolution" type="OptionButton" parent="CenterContainer/VBoxContainer/VBoxContainer/VBoxContainer/PanelContainer/Graphics/ScrollContainer/MarginContainer/VBoxContainer/VBoxContainer5/HBoxContainer"]
 custom_minimum_size = Vector2(200, 25)
@@ -380,6 +392,7 @@ layout_mode = 2
 size_flags_horizontal = 3
 size_flags_vertical = 5
 size_flags_stretch_ratio = 2.0
+autowrap_mode = 2
 selected = 1
 item_count = 4
 popup/item_0/text = "DISABLED"
@@ -392,9 +405,11 @@ popup/item_3/text = "EIGHT_TIMES"
 popup/item_3/id = 3
 
 [node name="Label2" type="Label" parent="CenterContainer/VBoxContainer/VBoxContainer/VBoxContainer/PanelContainer/Graphics/ScrollContainer/MarginContainer/VBoxContainer/VBoxContainer5"]
+custom_minimum_size = Vector2(250, 0)
 layout_mode = 2
 text = "HIGHER_VALUES_WORSEN_PERFORMANCE"
 label_settings = ExtResource("7_etww0")
+autowrap_mode = 2
 
 [node name="VBoxContainer6" type="VBoxContainer" parent="CenterContainer/VBoxContainer/VBoxContainer/VBoxContainer/PanelContainer/Graphics/ScrollContainer/MarginContainer/VBoxContainer"]
 layout_mode = 2
@@ -404,11 +419,13 @@ size_flags_horizontal = 3
 layout_mode = 2
 
 [node name="Label2" type="Label" parent="CenterContainer/VBoxContainer/VBoxContainer/VBoxContainer/PanelContainer/Graphics/ScrollContainer/MarginContainer/VBoxContainer/VBoxContainer6/HBoxContainer"]
+custom_minimum_size = Vector2(250, 0)
 layout_mode = 2
 size_flags_horizontal = 3
 size_flags_stretch_ratio = 3.0
 mouse_filter = 0
 text = "ANISOTROPIC_FILTERING"
+autowrap_mode = 2
 
 [node name="AnisotropicFilterLevel" type="OptionButton" parent="CenterContainer/VBoxContainer/VBoxContainer/VBoxContainer/PanelContainer/Graphics/ScrollContainer/MarginContainer/VBoxContainer/VBoxContainer6/HBoxContainer"]
 custom_minimum_size = Vector2(200, 25)
@@ -416,6 +433,7 @@ layout_mode = 2
 size_flags_horizontal = 3
 size_flags_vertical = 5
 size_flags_stretch_ratio = 2.0
+autowrap_mode = 2
 selected = 1
 item_count = 5
 popup/item_0/text = "DISABLED"
@@ -430,9 +448,15 @@ popup/item_4/text = "SIXTEEN_TIMES"
 popup/item_4/id = 4
 
 [node name="Label2" type="Label" parent="CenterContainer/VBoxContainer/VBoxContainer/VBoxContainer/PanelContainer/Graphics/ScrollContainer/MarginContainer/VBoxContainer/VBoxContainer6"]
+custom_minimum_size = Vector2(250, 0)
 layout_mode = 2
 text = "HIGHER_VALUES_WORSEN_PERFORMANCE"
 label_settings = ExtResource("7_etww0")
+autowrap_mode = 2
+
+[node name="Spacer" type="Control" parent="CenterContainer/VBoxContainer/VBoxContainer/VBoxContainer/PanelContainer/Graphics/ScrollContainer/MarginContainer/VBoxContainer"]
+custom_minimum_size = Vector2(10, 0)
+layout_mode = 2
 
 [node name="HSeparator" type="HSeparator" parent="CenterContainer/VBoxContainer/VBoxContainer/VBoxContainer/PanelContainer/Graphics/ScrollContainer/MarginContainer/VBoxContainer"]
 custom_minimum_size = Vector2(0, 5)
@@ -446,17 +470,21 @@ size_flags_horizontal = 3
 layout_mode = 2
 
 [node name="Label" type="Label" parent="CenterContainer/VBoxContainer/VBoxContainer/VBoxContainer/PanelContainer/Graphics/ScrollContainer/MarginContainer/VBoxContainer/VBoxContainer7/HBoxContainer"]
+custom_minimum_size = Vector2(250, 0)
 layout_mode = 2
 size_flags_horizontal = 3
 size_flags_stretch_ratio = 3.0
 text = "RESOLUTION"
+autowrap_mode = 2
 
 [node name="Resolution" type="Label" parent="CenterContainer/VBoxContainer/VBoxContainer/VBoxContainer/PanelContainer/Graphics/ScrollContainer/MarginContainer/VBoxContainer/VBoxContainer7/HBoxContainer"]
+custom_minimum_size = Vector2(250, 0)
 layout_mode = 2
 size_flags_horizontal = 3
 size_flags_vertical = 5
 size_flags_stretch_ratio = 2.0
 text = "AUTO_RESOLUTION"
+autowrap_mode = 2
 
 [node name="VBoxContainer8" type="VBoxContainer" parent="CenterContainer/VBoxContainer/VBoxContainer/VBoxContainer/PanelContainer/Graphics/ScrollContainer/MarginContainer/VBoxContainer"]
 layout_mode = 2
@@ -471,10 +499,12 @@ size_flags_horizontal = 3
 size_flags_stretch_ratio = 3.0
 
 [node name="Label2" type="Label" parent="CenterContainer/VBoxContainer/VBoxContainer/VBoxContainer/PanelContainer/Graphics/ScrollContainer/MarginContainer/VBoxContainer/VBoxContainer8/HBoxContainer/HBoxContainer"]
+custom_minimum_size = Vector2(250, 0)
 layout_mode = 2
 size_flags_horizontal = 3
 mouse_filter = 0
 text = "RENDER_SCALE"
+autowrap_mode = 2
 
 [node name="ScaleValue" type="Label" parent="CenterContainer/VBoxContainer/VBoxContainer/VBoxContainer/PanelContainer/Graphics/ScrollContainer/MarginContainer/VBoxContainer/VBoxContainer8/HBoxContainer/HBoxContainer"]
 editor_description = "PLACEHOLDER"
@@ -500,9 +530,11 @@ value = 1.0
 scrollable = false
 
 [node name="Label2" type="Label" parent="CenterContainer/VBoxContainer/VBoxContainer/VBoxContainer/PanelContainer/Graphics/ScrollContainer/MarginContainer/VBoxContainer/VBoxContainer8"]
+custom_minimum_size = Vector2(250, 0)
 layout_mode = 2
 text = "LOWER_SCALE_INCREASES_PERFORMANCE"
 label_settings = ExtResource("7_etww0")
+autowrap_mode = 2
 
 [node name="VBoxContainer9" type="VBoxContainer" parent="CenterContainer/VBoxContainer/VBoxContainer/VBoxContainer/PanelContainer/Graphics/ScrollContainer/MarginContainer/VBoxContainer"]
 layout_mode = 2
@@ -512,18 +544,21 @@ size_flags_horizontal = 3
 layout_mode = 2
 
 [node name="Label2" type="Label" parent="CenterContainer/VBoxContainer/VBoxContainer/VBoxContainer/PanelContainer/Graphics/ScrollContainer/MarginContainer/VBoxContainer/VBoxContainer9/HBoxContainer"]
+custom_minimum_size = Vector2(250, 0)
 layout_mode = 2
 size_flags_horizontal = 3
 size_flags_vertical = 1
 size_flags_stretch_ratio = 3.0
 mouse_filter = 0
 text = "UPSCALE_METHOD"
+autowrap_mode = 2
 
 [node name="UpscaleMethod" type="OptionButton" parent="CenterContainer/VBoxContainer/VBoxContainer/VBoxContainer/PanelContainer/Graphics/ScrollContainer/MarginContainer/VBoxContainer/VBoxContainer9/HBoxContainer"]
 custom_minimum_size = Vector2(200, 25)
 layout_mode = 2
 size_flags_horizontal = 3
 size_flags_stretch_ratio = 2.0
+autowrap_mode = 2
 selected = 2
 item_count = 3
 popup/item_0/text = "UPSCALE_BILINEAR"
@@ -541,12 +576,14 @@ size_flags_horizontal = 3
 layout_mode = 2
 
 [node name="Label" type="Label" parent="CenterContainer/VBoxContainer/VBoxContainer/VBoxContainer/PanelContainer/Graphics/ScrollContainer/MarginContainer/VBoxContainer/VBoxContainer10/HBoxContainer"]
+custom_minimum_size = Vector2(250, 0)
 layout_mode = 2
 size_flags_horizontal = 3
 size_flags_vertical = 5
 size_flags_stretch_ratio = 3.0
 mouse_filter = 0
 text = "UPSCALE_SHARPENING_FSR"
+autowrap_mode = 2
 
 [node name="Sharpening" type="HSlider" parent="CenterContainer/VBoxContainer/VBoxContainer/VBoxContainer/PanelContainer/Graphics/ScrollContainer/MarginContainer/VBoxContainer/VBoxContainer10/HBoxContainer"]
 custom_minimum_size = Vector2(200, 0)
@@ -560,9 +597,11 @@ value = 0.2
 scrollable = false
 
 [node name="Label3" type="Label" parent="CenterContainer/VBoxContainer/VBoxContainer/VBoxContainer/PanelContainer/Graphics/ScrollContainer/MarginContainer/VBoxContainer/VBoxContainer10"]
+custom_minimum_size = Vector2(250, 0)
 layout_mode = 2
 text = "LOWER_VALUE_MAKES_SHARPER_IMAGE"
 label_settings = ExtResource("7_etww0")
+autowrap_mode = 2
 
 [node name="VBoxContainer11" type="VBoxContainer" parent="CenterContainer/VBoxContainer/VBoxContainer/VBoxContainer/PanelContainer/Graphics/ScrollContainer/MarginContainer/VBoxContainer"]
 layout_mode = 2
@@ -578,12 +617,14 @@ size_flags_horizontal = 3
 size_flags_vertical = 5
 size_flags_stretch_ratio = 3.0
 text = "MAX_FPS"
+autowrap_mode = 2
 
 [node name="MaxFramesPerSecond" type="OptionButton" parent="CenterContainer/VBoxContainer/VBoxContainer/VBoxContainer/PanelContainer/Graphics/ScrollContainer/MarginContainer/VBoxContainer/VBoxContainer11/HBoxContainer"]
 custom_minimum_size = Vector2(200, 25)
 layout_mode = 2
 size_flags_horizontal = 3
 size_flags_stretch_ratio = 2.0
+autowrap_mode = 2
 selected = 6
 item_count = 9
 popup/item_0/text = "30"
@@ -613,18 +654,22 @@ size_flags_horizontal = 3
 layout_mode = 2
 
 [node name="Label" type="Label" parent="CenterContainer/VBoxContainer/VBoxContainer/VBoxContainer/PanelContainer/Graphics/ScrollContainer/MarginContainer/VBoxContainer/VBoxContainer12/HBoxContainer"]
+custom_minimum_size = Vector2(250, 0)
 layout_mode = 2
 size_flags_horizontal = 3
 size_flags_vertical = 5
 size_flags_stretch_ratio = 3.0
 mouse_filter = 0
 text = "COLOURBLIND_CORRECTION"
+autowrap_mode = 2
 
 [node name="ColourblindSetting" type="OptionButton" parent="CenterContainer/VBoxContainer/VBoxContainer/VBoxContainer/PanelContainer/Graphics/ScrollContainer/MarginContainer/VBoxContainer/VBoxContainer12/HBoxContainer"]
 custom_minimum_size = Vector2(200, 25)
 layout_mode = 2
 size_flags_horizontal = 3
 size_flags_stretch_ratio = 2.0
+focus_neighbor_bottom = NodePath("../../../HBocContainer23/HBoxContainer/HBoxContainer/ChromaticToggle")
+autowrap_mode = 2
 selected = 0
 item_count = 3
 popup/item_0/text = "NONE"
@@ -633,6 +678,10 @@ popup/item_1/text = "CORRECTION_PROTANOPE"
 popup/item_1/id = 1
 popup/item_2/text = "CORRECTION_TRITANOPE"
 popup/item_2/id = 2
+
+[node name="Spacer2" type="Control" parent="CenterContainer/VBoxContainer/VBoxContainer/VBoxContainer/PanelContainer/Graphics/ScrollContainer/MarginContainer/VBoxContainer"]
+custom_minimum_size = Vector2(10, 0)
+layout_mode = 2
 
 [node name="HSeparator2" type="HSeparator" parent="CenterContainer/VBoxContainer/VBoxContainer/VBoxContainer/PanelContainer/Graphics/ScrollContainer/MarginContainer/VBoxContainer"]
 custom_minimum_size = Vector2(0, 5)
@@ -651,6 +700,7 @@ layout_mode = 2
 size_flags_horizontal = 3
 size_flags_stretch_ratio = 3.0
 text = "CHROMATIC_ABERRATION"
+autowrap_mode = 2
 
 [node name="HBoxContainer" type="HBoxContainer" parent="CenterContainer/VBoxContainer/VBoxContainer/VBoxContainer/PanelContainer/Graphics/ScrollContainer/MarginContainer/VBoxContainer/HBocContainer23/HBoxContainer"]
 layout_mode = 2
@@ -689,6 +739,7 @@ layout_mode = 2
 size_flags_horizontal = 3
 size_flags_stretch_ratio = 3.0
 text = "BLOOM_RENDER_EFFECT"
+autowrap_mode = 2
 
 [node name="HBoxContainer" type="HBoxContainer" parent="CenterContainer/VBoxContainer/VBoxContainer/VBoxContainer/PanelContainer/Graphics/ScrollContainer/MarginContainer/VBoxContainer/HBocContainer24/HBoxContainer"]
 layout_mode = 2
@@ -722,10 +773,12 @@ size_flags_horizontal = 3
 layout_mode = 2
 
 [node name="Label" type="Label" parent="CenterContainer/VBoxContainer/VBoxContainer/VBoxContainer/PanelContainer/Graphics/ScrollContainer/MarginContainer/VBoxContainer/VBoxContainer13/HBoxContainer"]
+custom_minimum_size = Vector2(250, 0)
 layout_mode = 2
 size_flags_horizontal = 3
 mouse_filter = 0
 text = "DISPLAY_BACKGROUND_PARTICLES"
+autowrap_mode = 2
 
 [node name="DisplayBackgroundParticles" type="CheckButton" parent="CenterContainer/VBoxContainer/VBoxContainer/VBoxContainer/PanelContainer/Graphics/ScrollContainer/MarginContainer/VBoxContainer/VBoxContainer13/HBoxContainer"]
 layout_mode = 2
@@ -738,10 +791,12 @@ size_flags_horizontal = 3
 layout_mode = 2
 
 [node name="Label" type="Label" parent="CenterContainer/VBoxContainer/VBoxContainer/VBoxContainer/PanelContainer/Graphics/ScrollContainer/MarginContainer/VBoxContainer/VBoxContainer14/HBoxContainer"]
+custom_minimum_size = Vector2(250, 0)
 layout_mode = 2
 size_flags_horizontal = 3
 mouse_filter = 0
 text = "DISPLAY_BACKGROUND_DISTORTION_EFFECT"
+autowrap_mode = 2
 
 [node name="BackgroundDistortion" type="CheckButton" parent="CenterContainer/VBoxContainer/VBoxContainer/VBoxContainer/PanelContainer/Graphics/ScrollContainer/MarginContainer/VBoxContainer/VBoxContainer14/HBoxContainer"]
 layout_mode = 2
@@ -754,11 +809,13 @@ size_flags_horizontal = 3
 layout_mode = 2
 
 [node name="Label" type="Label" parent="CenterContainer/VBoxContainer/VBoxContainer/VBoxContainer/PanelContainer/Graphics/ScrollContainer/MarginContainer/VBoxContainer/LowQualityBackgroundContainer/HBoxContainer"]
+custom_minimum_size = Vector2(250, 0)
 layout_mode = 2
 size_flags_horizontal = 3
 tooltip_text = "LOW_QUALITY_BACKGROUND_BLUR_TOOLTIP"
 mouse_filter = 0
 text = "LOW_QUALITY_BACKGROUND_BLUR"
+autowrap_mode = 2
 
 [node name="LowQualityBlur" type="CheckButton" parent="CenterContainer/VBoxContainer/VBoxContainer/VBoxContainer/PanelContainer/Graphics/ScrollContainer/MarginContainer/VBoxContainer/LowQualityBackgroundContainer/HBoxContainer"]
 layout_mode = 2
@@ -772,10 +829,12 @@ size_flags_horizontal = 3
 layout_mode = 2
 
 [node name="Label" type="Label" parent="CenterContainer/VBoxContainer/VBoxContainer/VBoxContainer/PanelContainer/Graphics/ScrollContainer/MarginContainer/VBoxContainer/VBoxContainer16/HBoxContainer"]
+custom_minimum_size = Vector2(250, 0)
 layout_mode = 2
 size_flags_horizontal = 3
 mouse_filter = 0
 text = "MICROBE_RIPPLE_EFFECT"
+autowrap_mode = 2
 
 [node name="MicrobeRipples" type="CheckButton" parent="CenterContainer/VBoxContainer/VBoxContainer/VBoxContainer/PanelContainer/Graphics/ScrollContainer/MarginContainer/VBoxContainer/VBoxContainer16/HBoxContainer"]
 layout_mode = 2
@@ -788,10 +847,12 @@ size_flags_horizontal = 3
 layout_mode = 2
 
 [node name="Label" type="Label" parent="CenterContainer/VBoxContainer/VBoxContainer/VBoxContainer/PanelContainer/Graphics/ScrollContainer/MarginContainer/VBoxContainer/VBoxContainer17/HBoxContainer"]
+custom_minimum_size = Vector2(250, 0)
 layout_mode = 2
 size_flags_horizontal = 3
 mouse_filter = 0
 text = "MICROBE_CAMERA_TILT_EFFECT"
+autowrap_mode = 2
 
 [node name="MicrobeCameraTilt" type="CheckButton" parent="CenterContainer/VBoxContainer/VBoxContainer/VBoxContainer/PanelContainer/Graphics/ScrollContainer/MarginContainer/VBoxContainer/VBoxContainer17/HBoxContainer"]
 layout_mode = 2
@@ -804,10 +865,12 @@ size_flags_horizontal = 3
 layout_mode = 2
 
 [node name="Label" type="Label" parent="CenterContainer/VBoxContainer/VBoxContainer/VBoxContainer/PanelContainer/Graphics/ScrollContainer/MarginContainer/VBoxContainer/VBoxContainer18/HBoxContainer"]
+custom_minimum_size = Vector2(250, 0)
 layout_mode = 2
 size_flags_horizontal = 3
 mouse_filter = 0
 text = "DISPLAY_3D_MENU_BACKGROUNDS"
+autowrap_mode = 2
 
 [node name="Menu3DBackgroundsToggle" type="CheckButton" parent="CenterContainer/VBoxContainer/VBoxContainer/VBoxContainer/PanelContainer/Graphics/ScrollContainer/MarginContainer/VBoxContainer/VBoxContainer18/HBoxContainer"]
 layout_mode = 2
@@ -820,10 +883,12 @@ size_flags_horizontal = 3
 layout_mode = 2
 
 [node name="Label2" type="Label" parent="CenterContainer/VBoxContainer/VBoxContainer/VBoxContainer/PanelContainer/Graphics/ScrollContainer/MarginContainer/VBoxContainer/VBoxContainer19/HBoxContainer"]
+custom_minimum_size = Vector2(250, 0)
 layout_mode = 2
 size_flags_horizontal = 3
 size_flags_stretch_ratio = 3.0
 text = "BACKGROUND_BLUR"
+autowrap_mode = 2
 
 [node name="BlurAmount" type="HSlider" parent="CenterContainer/VBoxContainer/VBoxContainer/VBoxContainer/PanelContainer/Graphics/ScrollContainer/MarginContainer/VBoxContainer/VBoxContainer19/HBoxContainer"]
 custom_minimum_size = Vector2(200, 0)
@@ -831,11 +896,14 @@ layout_mode = 2
 size_flags_horizontal = 3
 size_flags_vertical = 1
 size_flags_stretch_ratio = 2.0
-focus_neighbor_top = NodePath("../../../HBocContainer23/HBoxContainer/HBoxContainer/ChromaticAmount")
 max_value = 2.0
 step = 0.05
 value = 2.0
 scrollable = false
+
+[node name="Spacer3" type="Control" parent="CenterContainer/VBoxContainer/VBoxContainer/VBoxContainer/PanelContainer/Graphics/ScrollContainer/MarginContainer/VBoxContainer"]
+custom_minimum_size = Vector2(10, 0)
+layout_mode = 2
 
 [node name="HSeparator3" type="HSeparator" parent="CenterContainer/VBoxContainer/VBoxContainer/VBoxContainer/PanelContainer/Graphics/ScrollContainer/MarginContainer/VBoxContainer"]
 custom_minimum_size = Vector2(0, 5)
@@ -849,21 +917,23 @@ size_flags_horizontal = 3
 layout_mode = 2
 
 [node name="Label" type="Label" parent="CenterContainer/VBoxContainer/VBoxContainer/VBoxContainer/PanelContainer/Graphics/ScrollContainer/MarginContainer/VBoxContainer/VBoxContainer20/HBoxContainer"]
+custom_minimum_size = Vector2(250, 0)
 layout_mode = 2
 size_flags_horizontal = 3
 size_flags_vertical = 5
 size_flags_stretch_ratio = 3.0
 text = "GPU_NAME"
+autowrap_mode = 2
 
 [node name="GpuName" type="Label" parent="CenterContainer/VBoxContainer/VBoxContainer/VBoxContainer/PanelContainer/Graphics/ScrollContainer/MarginContainer/VBoxContainer/VBoxContainer20/HBoxContainer"]
 editor_description = "PLACEHOLDER"
-custom_minimum_size = Vector2(50, 0)
+custom_minimum_size = Vector2(250, 0)
 layout_mode = 2
 size_flags_horizontal = 3
 size_flags_vertical = 5
 size_flags_stretch_ratio = 2.0
 text = "GTX 1080"
-autowrap_mode = 3
+autowrap_mode = 2
 
 [node name="VBoxContainer21" type="VBoxContainer" parent="CenterContainer/VBoxContainer/VBoxContainer/VBoxContainer/PanelContainer/Graphics/ScrollContainer/MarginContainer/VBoxContainer"]
 layout_mode = 2
@@ -873,18 +943,22 @@ size_flags_horizontal = 3
 layout_mode = 2
 
 [node name="Label2" type="Label" parent="CenterContainer/VBoxContainer/VBoxContainer/VBoxContainer/PanelContainer/Graphics/ScrollContainer/MarginContainer/VBoxContainer/VBoxContainer21/HBoxContainer"]
+custom_minimum_size = Vector2(250, 0)
 layout_mode = 2
 size_flags_horizontal = 3
 size_flags_vertical = 5
 size_flags_stretch_ratio = 3.0
 text = "USED_RENDERER_NAME"
+autowrap_mode = 2
 
 [node name="UsedRendererName" type="Label" parent="CenterContainer/VBoxContainer/VBoxContainer/VBoxContainer/PanelContainer/Graphics/ScrollContainer/MarginContainer/VBoxContainer/VBoxContainer21/HBoxContainer"]
+custom_minimum_size = Vector2(250, 0)
 layout_mode = 2
 size_flags_horizontal = 3
 size_flags_vertical = 5
 size_flags_stretch_ratio = 2.0
 text = "GLES3"
+autowrap_mode = 2
 
 [node name="VBoxContainer22" type="VBoxContainer" parent="CenterContainer/VBoxContainer/VBoxContainer/VBoxContainer/PanelContainer/Graphics/ScrollContainer/MarginContainer/VBoxContainer"]
 layout_mode = 2
@@ -894,18 +968,22 @@ size_flags_horizontal = 3
 layout_mode = 2
 
 [node name="Label" type="Label" parent="CenterContainer/VBoxContainer/VBoxContainer/VBoxContainer/PanelContainer/Graphics/ScrollContainer/MarginContainer/VBoxContainer/VBoxContainer22/HBoxContainer"]
+custom_minimum_size = Vector2(250, 0)
 layout_mode = 2
 size_flags_horizontal = 3
 size_flags_vertical = 5
 size_flags_stretch_ratio = 3.0
 text = "VIDEO_MEMORY"
+autowrap_mode = 2
 
 [node name="VideoMemory" type="Label" parent="CenterContainer/VBoxContainer/VBoxContainer/VBoxContainer/PanelContainer/Graphics/ScrollContainer/MarginContainer/VBoxContainer/VBoxContainer22/HBoxContainer"]
+custom_minimum_size = Vector2(250, 0)
 layout_mode = 2
 size_flags_horizontal = 3
 size_flags_vertical = 5
 size_flags_stretch_ratio = 2.0
 text = "VIDEO_MEMORY_MIB"
+autowrap_mode = 2
 
 [node name="HBoxContainer6" type="HBoxContainer" parent="CenterContainer/VBoxContainer/VBoxContainer/VBoxContainer/PanelContainer/Graphics/ScrollContainer/MarginContainer/VBoxContainer"]
 layout_mode = 2
@@ -928,17 +1006,20 @@ size_flags_horizontal = 3
 layout_mode = 2
 
 [node name="Label2" type="Label" parent="CenterContainer/VBoxContainer/VBoxContainer/VBoxContainer/PanelContainer/Graphics/ScrollContainer/MarginContainer/VBoxContainer/VBoxContainer23/HBoxContainer"]
+custom_minimum_size = Vector2(250, 0)
 layout_mode = 2
 size_flags_horizontal = 3
 size_flags_vertical = 1
 size_flags_stretch_ratio = 3.0
 text = "CONTROLLER_PROMPT_TYPE_SETTING"
+autowrap_mode = 2
 
 [node name="ControllerPromptType" type="OptionButton" parent="CenterContainer/VBoxContainer/VBoxContainer/VBoxContainer/PanelContainer/Graphics/ScrollContainer/MarginContainer/VBoxContainer/VBoxContainer23/HBoxContainer"]
 custom_minimum_size = Vector2(200, 25)
 layout_mode = 2
 size_flags_horizontal = 3
 size_flags_stretch_ratio = 2.0
+autowrap_mode = 2
 selected = 0
 item_count = 7
 popup/item_0/text = "AUTO"
@@ -964,18 +1045,21 @@ size_flags_horizontal = 3
 layout_mode = 2
 
 [node name="Label" type="Label" parent="CenterContainer/VBoxContainer/VBoxContainer/VBoxContainer/PanelContainer/Graphics/ScrollContainer/MarginContainer/VBoxContainer/VBoxContainer25/HBoxContainer"]
+custom_minimum_size = Vector2(250, 0)
 layout_mode = 2
 size_flags_horizontal = 3
 size_flags_vertical = 1
 size_flags_stretch_ratio = 3.0
 mouse_filter = 0
 text = "STRAIN_BAR_VISIBILITY"
+autowrap_mode = 2
 
 [node name="StrainBarMode" type="OptionButton" parent="CenterContainer/VBoxContainer/VBoxContainer/VBoxContainer/PanelContainer/Graphics/ScrollContainer/MarginContainer/VBoxContainer/VBoxContainer25/HBoxContainer"]
 custom_minimum_size = Vector2(200, 25)
 layout_mode = 2
 size_flags_horizontal = 3
 size_flags_stretch_ratio = 2.0
+autowrap_mode = 2
 selected = 0
 item_count = 4
 popup/item_0/text = "OFF"
@@ -995,10 +1079,12 @@ size_flags_horizontal = 3
 layout_mode = 2
 
 [node name="Label" type="Label" parent="CenterContainer/VBoxContainer/VBoxContainer/VBoxContainer/PanelContainer/Graphics/ScrollContainer/MarginContainer/VBoxContainer/VBoxContainer24/HBoxContainer"]
+custom_minimum_size = Vector2(250, 0)
 layout_mode = 2
 size_flags_horizontal = 3
 mouse_filter = 0
 text = "DISPLAY_ABILITIES_BAR"
+autowrap_mode = 2
 
 [node name="DisplayAbilitiesBar" type="CheckButton" parent="CenterContainer/VBoxContainer/VBoxContainer/VBoxContainer/PanelContainer/Graphics/ScrollContainer/MarginContainer/VBoxContainer/VBoxContainer24/HBoxContainer"]
 layout_mode = 2
@@ -1011,10 +1097,12 @@ size_flags_horizontal = 3
 layout_mode = 2
 
 [node name="Label" type="Label" parent="CenterContainer/VBoxContainer/VBoxContainer/VBoxContainer/PanelContainer/Graphics/ScrollContainer/MarginContainer/VBoxContainer/VBoxContainer26/HBoxContainer"]
+custom_minimum_size = Vector2(250, 0)
 layout_mode = 2
 size_flags_horizontal = 3
 mouse_filter = 0
 text = "SHOW_DAMAGE_EFFECT"
+autowrap_mode = 2
 
 [node name="DamageEffect" type="CheckButton" parent="CenterContainer/VBoxContainer/VBoxContainer/VBoxContainer/PanelContainer/Graphics/ScrollContainer/MarginContainer/VBoxContainer/VBoxContainer26/HBoxContainer"]
 layout_mode = 2
@@ -1027,13 +1115,17 @@ size_flags_horizontal = 3
 layout_mode = 2
 
 [node name="Label" type="Label" parent="CenterContainer/VBoxContainer/VBoxContainer/VBoxContainer/PanelContainer/Graphics/ScrollContainer/MarginContainer/VBoxContainer/VBoxContainer28/HBoxContainer"]
+custom_minimum_size = Vector2(250, 0)
 layout_mode = 2
 size_flags_horizontal = 3
+tooltip_text = "GUI_LIGHT_EFFECTS_OPTION_DESCRIPTION"
 mouse_filter = 0
 text = "ENABLE_GUI_LIGHT_EFFECTS"
+autowrap_mode = 2
 
 [node name="GUILightsEffectToggle" type="CheckButton" parent="CenterContainer/VBoxContainer/VBoxContainer/VBoxContainer/PanelContainer/Graphics/ScrollContainer/MarginContainer/VBoxContainer/VBoxContainer28/HBoxContainer"]
 layout_mode = 2
+tooltip_text = "GUI_LIGHT_EFFECTS_OPTION_DESCRIPTION"
 
 [node name="VBoxContainer27" type="VBoxContainer" parent="CenterContainer/VBoxContainer/VBoxContainer/VBoxContainer/PanelContainer/Graphics/ScrollContainer/MarginContainer/VBoxContainer"]
 layout_mode = 2
@@ -1043,10 +1135,12 @@ size_flags_horizontal = 3
 layout_mode = 2
 
 [node name="Label" type="Label" parent="CenterContainer/VBoxContainer/VBoxContainer/VBoxContainer/PanelContainer/Graphics/ScrollContainer/MarginContainer/VBoxContainer/VBoxContainer27/HBoxContainer"]
+custom_minimum_size = Vector2(250, 0)
 layout_mode = 2
 size_flags_horizontal = 3
 mouse_filter = 0
 text = "DISPLAY_PART_NAMES"
+autowrap_mode = 2
 
 [node name="DisplayPartNamesToggle" type="CheckButton" parent="CenterContainer/VBoxContainer/VBoxContainer/VBoxContainer/PanelContainer/Graphics/ScrollContainer/MarginContainer/VBoxContainer/VBoxContainer27/HBoxContainer"]
 layout_mode = 2
@@ -1092,7 +1186,7 @@ size_flags_horizontal = 3
 size_flags_vertical = 1
 size_flags_stretch_ratio = 2.0
 text = "MASTER_VOLUME"
-autowrap_mode = 3
+autowrap_mode = 2
 
 [node name="MasterVolume" type="HSlider" parent="CenterContainer/VBoxContainer/VBoxContainer/VBoxContainer/PanelContainer/Sound/ScrollContainer/MarginContainer/VBoxContainer/HBoxContainer"]
 layout_mode = 2
@@ -1135,7 +1229,7 @@ size_flags_horizontal = 3
 size_flags_vertical = 1
 size_flags_stretch_ratio = 2.0
 text = "MUSIC_VOLUME"
-autowrap_mode = 3
+autowrap_mode = 2
 
 [node name="MusicVolume" type="HSlider" parent="CenterContainer/VBoxContainer/VBoxContainer/VBoxContainer/PanelContainer/Sound/ScrollContainer/MarginContainer/VBoxContainer/HBoxContainer6"]
 layout_mode = 2
@@ -1168,7 +1262,7 @@ size_flags_horizontal = 3
 size_flags_vertical = 1
 size_flags_stretch_ratio = 2.0
 text = "AMBIANCE_VOLUME"
-autowrap_mode = 3
+autowrap_mode = 2
 
 [node name="AmbianceVolume" type="HSlider" parent="CenterContainer/VBoxContainer/VBoxContainer/VBoxContainer/PanelContainer/Sound/ScrollContainer/MarginContainer/VBoxContainer/HBoxContainer7"]
 layout_mode = 2
@@ -1201,7 +1295,7 @@ size_flags_horizontal = 3
 size_flags_vertical = 1
 size_flags_stretch_ratio = 2.0
 text = "SFX_VOLUME"
-autowrap_mode = 3
+autowrap_mode = 2
 
 [node name="SFXVolume" type="HSlider" parent="CenterContainer/VBoxContainer/VBoxContainer/VBoxContainer/PanelContainer/Sound/ScrollContainer/MarginContainer/VBoxContainer/HBoxContainer8"]
 layout_mode = 2
@@ -1234,7 +1328,7 @@ size_flags_horizontal = 3
 size_flags_vertical = 1
 size_flags_stretch_ratio = 2.0
 text = "GUI_VOLUME"
-autowrap_mode = 3
+autowrap_mode = 2
 
 [node name="GUIVolume" type="HSlider" parent="CenterContainer/VBoxContainer/VBoxContainer/VBoxContainer/PanelContainer/Sound/ScrollContainer/MarginContainer/VBoxContainer/HBoxContainer9"]
 layout_mode = 2
@@ -1255,20 +1349,29 @@ layout_mode = 2
 size_flags_horizontal = 0
 text = "MUTE"
 
+[node name="Spacer" type="Control" parent="CenterContainer/VBoxContainer/VBoxContainer/VBoxContainer/PanelContainer/Sound/ScrollContainer/MarginContainer/VBoxContainer"]
+custom_minimum_size = Vector2(10, 0)
+layout_mode = 2
+
 [node name="HSeparator2" type="HSeparator" parent="CenterContainer/VBoxContainer/VBoxContainer/VBoxContainer/PanelContainer/Sound/ScrollContainer/MarginContainer/VBoxContainer"]
 custom_minimum_size = Vector2(0, 5)
 layout_mode = 2
 
 [node name="Label6" type="Label" parent="CenterContainer/VBoxContainer/VBoxContainer/VBoxContainer/PanelContainer/Sound/ScrollContainer/MarginContainer/VBoxContainer"]
+custom_minimum_size = Vector2(250, 0)
 layout_mode = 2
 text = "AUDIO_OUTPUT_DEVICE"
+autowrap_mode = 2
 
 [node name="AudioOutputDevicesButton" type="OptionButton" parent="CenterContainer/VBoxContainer/VBoxContainer/VBoxContainer/PanelContainer/Sound/ScrollContainer/MarginContainer/VBoxContainer"]
 custom_minimum_size = Vector2(0, 30)
 layout_mode = 2
 size_flags_horizontal = 3
+focus_neighbor_bottom = NodePath("../VBoxContainer8/HBoxContainer/LanguagesButton")
+autowrap_mode = 2
 
 [node name="HSeparator3" type="HSeparator" parent="CenterContainer/VBoxContainer/VBoxContainer/VBoxContainer/PanelContainer/Sound/ScrollContainer/MarginContainer/VBoxContainer"]
+custom_minimum_size = Vector2(0, 30)
 layout_mode = 2
 
 [node name="VBoxContainer8" type="VBoxContainer" parent="CenterContainer/VBoxContainer/VBoxContainer/VBoxContainer/PanelContainer/Sound/ScrollContainer/MarginContainer/VBoxContainer"]
@@ -1284,15 +1387,18 @@ size_flags_horizontal = 3
 size_flags_stretch_ratio = 3.0
 
 [node name="Label3" type="Label" parent="CenterContainer/VBoxContainer/VBoxContainer/VBoxContainer/PanelContainer/Sound/ScrollContainer/MarginContainer/VBoxContainer/VBoxContainer8/HBoxContainer/HBoxContainer"]
+custom_minimum_size = Vector2(250, 0)
 layout_mode = 2
 size_flags_horizontal = 3
 text = "LANGUAGE"
+autowrap_mode = 2
 
 [node name="ResetLanguageButton" type="Button" parent="CenterContainer/VBoxContainer/VBoxContainer/VBoxContainer/PanelContainer/Sound/ScrollContainer/MarginContainer/VBoxContainer/VBoxContainer8/HBoxContainer/HBoxContainer"]
 custom_minimum_size = Vector2(100, 35)
 layout_mode = 2
 theme_override_font_sizes/font_size = 17
 text = "RESET"
+autowrap_mode = 2
 
 [node name="HSeparator" type="HSeparator" parent="CenterContainer/VBoxContainer/VBoxContainer/VBoxContainer/PanelContainer/Sound/ScrollContainer/MarginContainer/VBoxContainer/VBoxContainer8/HBoxContainer/HBoxContainer"]
 layout_mode = 2
@@ -1306,13 +1412,14 @@ size_flags_stretch_ratio = 2.0
 focus_neighbor_right = NodePath("../HBoxContainer/ResetLanguageButton")
 focus_neighbor_bottom = NodePath("../../../TranslationSiteButton")
 focus_next = NodePath("../../../TranslationSiteButton")
+autowrap_mode = 2
 
 [node name="LanguageProgress" type="Label" parent="CenterContainer/VBoxContainer/VBoxContainer/VBoxContainer/PanelContainer/Sound/ScrollContainer/MarginContainer/VBoxContainer"]
 editor_description = "PLACEHOLDER"
-custom_minimum_size = Vector2(100, 0)
+custom_minimum_size = Vector2(250, 0)
 layout_mode = 2
 text = "Language progress % goes here"
-autowrap_mode = 3
+autowrap_mode = 2
 
 [node name="TranslationSiteButton" type="Button" parent="CenterContainer/VBoxContainer/VBoxContainer/VBoxContainer/PanelContainer/Sound/ScrollContainer/MarginContainer/VBoxContainer"]
 layout_mode = 2
@@ -1320,6 +1427,7 @@ focus_neighbor_top = NodePath("../VBoxContainer8/HBoxContainer/LanguagesButton")
 focus_neighbor_bottom = NodePath("../../../../../../../HBoxContainer/Back")
 focus_previous = NodePath("../VBoxContainer8/HBoxContainer/LanguagesButton")
 text = "OPEN_TRANSLATION_SITE"
+autowrap_mode = 2
 
 [node name="Spacer6" type="Control" parent="CenterContainer/VBoxContainer/VBoxContainer/VBoxContainer/PanelContainer/Sound/ScrollContainer/MarginContainer/VBoxContainer"]
 custom_minimum_size = Vector2(0, 10)
@@ -1376,11 +1484,13 @@ size_flags_horizontal = 3
 layout_mode = 2
 
 [node name="Label2" type="Label" parent="CenterContainer/VBoxContainer/VBoxContainer/VBoxContainer/PanelContainer/Performance/ScrollContainer/MarginContainer/VBoxContainer/VBoxContainer3/HBoxContainer"]
+custom_minimum_size = Vector2(200, 0)
 layout_mode = 2
 size_flags_horizontal = 7
 size_flags_vertical = 5
 size_flags_stretch_ratio = 3.0
 text = "CLOUD_SIMULATION_MINIMUM_INTERVAL"
+autowrap_mode = 2
 
 [node name="CloudInterval" type="OptionButton" parent="CenterContainer/VBoxContainer/VBoxContainer/VBoxContainer/PanelContainer/Performance/ScrollContainer/MarginContainer/VBoxContainer/VBoxContainer3/HBoxContainer"]
 editor_description = "PLACEHOLDER"
@@ -1388,6 +1498,7 @@ custom_minimum_size = Vector2(200, 25)
 layout_mode = 2
 size_flags_horizontal = 3
 size_flags_stretch_ratio = 2.0
+autowrap_mode = 2
 selected = 2
 item_count = 5
 popup/item_0/text = "0ms"
@@ -1402,9 +1513,11 @@ popup/item_4/text = "250ms"
 popup/item_4/id = 4
 
 [node name="Label2" type="Label" parent="CenterContainer/VBoxContainer/VBoxContainer/VBoxContainer/PanelContainer/Performance/ScrollContainer/MarginContainer/VBoxContainer/VBoxContainer3"]
+custom_minimum_size = Vector2(200, 0)
 layout_mode = 2
 text = "HIGHER_VALUES_INCREASE_PERFORMANCE"
 label_settings = ExtResource("7_etww0")
+autowrap_mode = 2
 
 [node name="CloudResolution" type="VBoxContainer" parent="CenterContainer/VBoxContainer/VBoxContainer/VBoxContainer/PanelContainer/Performance/ScrollContainer/MarginContainer/VBoxContainer"]
 layout_mode = 2
@@ -1414,11 +1527,13 @@ size_flags_horizontal = 3
 layout_mode = 2
 
 [node name="Label" type="Label" parent="CenterContainer/VBoxContainer/VBoxContainer/VBoxContainer/PanelContainer/Performance/ScrollContainer/MarginContainer/VBoxContainer/CloudResolution/HBoxContainer"]
+custom_minimum_size = Vector2(200, 0)
 layout_mode = 2
 size_flags_horizontal = 7
 size_flags_vertical = 5
 size_flags_stretch_ratio = 3.0
 text = "CLOUD_RESOLUTION_DIVISOR"
+autowrap_mode = 2
 
 [node name="CloudResolution" type="OptionButton" parent="CenterContainer/VBoxContainer/VBoxContainer/VBoxContainer/PanelContainer/Performance/ScrollContainer/MarginContainer/VBoxContainer/CloudResolution/HBoxContainer"]
 custom_minimum_size = Vector2(200, 25)
@@ -1426,6 +1541,7 @@ layout_mode = 2
 size_flags_horizontal = 3
 size_flags_stretch_ratio = 2.0
 disabled = true
+autowrap_mode = 2
 selected = 1
 item_count = 3
 popup/item_0/text = "1"
@@ -1436,16 +1552,18 @@ popup/item_2/text = "4"
 popup/item_2/id = 2
 
 [node name="Label3" type="Label" parent="CenterContainer/VBoxContainer/VBoxContainer/VBoxContainer/PanelContainer/Performance/ScrollContainer/MarginContainer/VBoxContainer/CloudResolution"]
+custom_minimum_size = Vector2(200, 0)
 layout_mode = 2
 text = "HIGHER_VALUES_INCREASE_PERFORMANCE"
 label_settings = ExtResource("7_etww0")
+autowrap_mode = 2
 
 [node name="HBoxContainer8" type="HBoxContainer" parent="CenterContainer/VBoxContainer/VBoxContainer/VBoxContainer/PanelContainer/Performance/ScrollContainer/MarginContainer/VBoxContainer"]
 layout_mode = 2
 
 [node name="Label" type="Label" parent="CenterContainer/VBoxContainer/VBoxContainer/VBoxContainer/PanelContainer/Performance/ScrollContainer/MarginContainer/VBoxContainer/HBoxContainer8"]
 layout_mode = 2
-text = "SIMULATION"
+text = "SIMULATION_CONFIG"
 label_settings = ExtResource("8_jegpj")
 
 [node name="HSeparator" type="HSeparator" parent="CenterContainer/VBoxContainer/VBoxContainer/VBoxContainer/PanelContainer/Performance/ScrollContainer/MarginContainer/VBoxContainer/HBoxContainer8"]
@@ -1461,13 +1579,17 @@ size_flags_horizontal = 3
 layout_mode = 2
 
 [node name="Label" type="Label" parent="CenterContainer/VBoxContainer/VBoxContainer/VBoxContainer/PanelContainer/Performance/ScrollContainer/MarginContainer/VBoxContainer/VBoxContainer2/HBoxContainer"]
+custom_minimum_size = Vector2(200, 0)
 layout_mode = 2
 size_flags_horizontal = 3
 mouse_filter = 0
 text = "RUN_AUTO_EVO_DURING_GAMEPLAY"
+autowrap_mode = 2
 
 [node name="RunAutoEvoDuringGameplay" type="CheckButton" parent="CenterContainer/VBoxContainer/VBoxContainer/VBoxContainer/PanelContainer/Performance/ScrollContainer/MarginContainer/VBoxContainer/VBoxContainer2/HBoxContainer"]
 layout_mode = 2
+size_flags_horizontal = 0
+size_flags_vertical = 5
 
 [node name="VBoxContainer5" type="VBoxContainer" parent="CenterContainer/VBoxContainer/VBoxContainer/VBoxContainer/PanelContainer/Performance/ScrollContainer/MarginContainer/VBoxContainer"]
 layout_mode = 2
@@ -1477,20 +1599,24 @@ size_flags_horizontal = 3
 layout_mode = 2
 
 [node name="Label" type="Label" parent="CenterContainer/VBoxContainer/VBoxContainer/VBoxContainer/PanelContainer/Performance/ScrollContainer/MarginContainer/VBoxContainer/VBoxContainer5/HBoxContainer"]
+custom_minimum_size = Vector2(200, 0)
 layout_mode = 2
 size_flags_horizontal = 3
 mouse_filter = 0
 text = "MULTITHREADED_SIMULATION_ENABLED"
+autowrap_mode = 2
 
 [node name="RunMultithreadedSimulation" type="CheckButton" parent="CenterContainer/VBoxContainer/VBoxContainer/VBoxContainer/PanelContainer/Performance/ScrollContainer/MarginContainer/VBoxContainer/VBoxContainer5/HBoxContainer"]
 layout_mode = 2
+size_flags_horizontal = 0
+size_flags_vertical = 5
 
 [node name="ThreadedExplanationLabel" type="Label" parent="CenterContainer/VBoxContainer/VBoxContainer/VBoxContainer/PanelContainer/Performance/ScrollContainer/MarginContainer/VBoxContainer/VBoxContainer5"]
-custom_minimum_size = Vector2(100, 0)
+custom_minimum_size = Vector2(200, 0)
 layout_mode = 2
 text = "MULTITHREADED_SIMULATION_EXPLANATION"
 label_settings = ExtResource("7_etww0")
-autowrap_mode = 3
+autowrap_mode = 2
 max_lines_visible = 2
 
 [node name="VBoxContainer6" type="VBoxContainer" parent="CenterContainer/VBoxContainer/VBoxContainer/VBoxContainer/PanelContainer/Performance/ScrollContainer/MarginContainer/VBoxContainer"]
@@ -1501,17 +1627,20 @@ size_flags_horizontal = 3
 layout_mode = 2
 
 [node name="Label2" type="Label" parent="CenterContainer/VBoxContainer/VBoxContainer/VBoxContainer/PanelContainer/Performance/ScrollContainer/MarginContainer/VBoxContainer/VBoxContainer6/HBoxContainer"]
+custom_minimum_size = Vector2(200, 0)
 layout_mode = 2
 size_flags_horizontal = 3
 size_flags_vertical = 5
 size_flags_stretch_ratio = 3.0
 text = "MAX_SPAWNED_ENTITIES"
+autowrap_mode = 2
 
 [node name="MaxSpawnedEntities" type="OptionButton" parent="CenterContainer/VBoxContainer/VBoxContainer/VBoxContainer/PanelContainer/Performance/ScrollContainer/MarginContainer/VBoxContainer/VBoxContainer6/HBoxContainer"]
 custom_minimum_size = Vector2(200, 25)
 layout_mode = 2
 size_flags_horizontal = 3
 size_flags_stretch_ratio = 2.0
+autowrap_mode = 2
 selected = 3
 item_count = 8
 popup/item_0/text = "LIMIT_TINY"
@@ -1532,9 +1661,11 @@ popup/item_7/text = "LIMIT_EXTREME"
 popup/item_7/id = 7
 
 [node name="Label2" type="Label" parent="CenterContainer/VBoxContainer/VBoxContainer/VBoxContainer/PanelContainer/Performance/ScrollContainer/MarginContainer/VBoxContainer/VBoxContainer6"]
+custom_minimum_size = Vector2(200, 0)
 layout_mode = 2
 text = "HIGHER_VALUES_WORSEN_PERFORMANCE"
 label_settings = ExtResource("7_etww0")
+autowrap_mode = 2
 
 [node name="HBoxContainer9" type="HBoxContainer" parent="CenterContainer/VBoxContainer/VBoxContainer/VBoxContainer/PanelContainer/Performance/ScrollContainer/MarginContainer/VBoxContainer"]
 layout_mode = 2
@@ -1558,10 +1689,15 @@ layout_mode = 2
 
 [node name="Label" type="Label" parent="CenterContainer/VBoxContainer/VBoxContainer/VBoxContainer/PanelContainer/Performance/ScrollContainer/MarginContainer/VBoxContainer/VBoxContainer7/HBoxContainer"]
 layout_mode = 2
-size_flags_horizontal = 3
 size_flags_vertical = 5
 size_flags_stretch_ratio = 3.0
 text = "DETECTED_CPU_COUNT"
+
+[node name="HSeparator" type="HSeparator" parent="CenterContainer/VBoxContainer/VBoxContainer/VBoxContainer/PanelContainer/Performance/ScrollContainer/MarginContainer/VBoxContainer/VBoxContainer7/HBoxContainer"]
+custom_minimum_size = Vector2(10, 0)
+layout_mode = 2
+size_flags_horizontal = 4
+theme_override_styles/separator = SubResource("StyleBoxEmpty_paabc")
 
 [node name="CPUCount" type="Label" parent="CenterContainer/VBoxContainer/VBoxContainer/VBoxContainer/PanelContainer/Performance/ScrollContainer/MarginContainer/VBoxContainer/VBoxContainer7/HBoxContainer"]
 layout_mode = 2
@@ -1579,10 +1715,15 @@ layout_mode = 2
 
 [node name="Label2" type="Label" parent="CenterContainer/VBoxContainer/VBoxContainer/VBoxContainer/PanelContainer/Performance/ScrollContainer/MarginContainer/VBoxContainer/VBoxContainer8/HBoxContainer"]
 layout_mode = 2
-size_flags_horizontal = 3
 size_flags_vertical = 5
 size_flags_stretch_ratio = 3.0
 text = "ACTIVE_THREAD_COUNT"
+
+[node name="HSeparator" type="HSeparator" parent="CenterContainer/VBoxContainer/VBoxContainer/VBoxContainer/PanelContainer/Performance/ScrollContainer/MarginContainer/VBoxContainer/VBoxContainer8/HBoxContainer"]
+custom_minimum_size = Vector2(10, 0)
+layout_mode = 2
+size_flags_horizontal = 4
+theme_override_styles/separator = SubResource("StyleBoxEmpty_paabc")
 
 [node name="ConfiguredThreads" type="Label" parent="CenterContainer/VBoxContainer/VBoxContainer/VBoxContainer/PanelContainer/Performance/ScrollContainer/MarginContainer/VBoxContainer/VBoxContainer8/HBoxContainer"]
 layout_mode = 2
@@ -1599,13 +1740,19 @@ size_flags_horizontal = 3
 layout_mode = 2
 
 [node name="Label" type="Label" parent="CenterContainer/VBoxContainer/VBoxContainer/VBoxContainer/PanelContainer/Performance/ScrollContainer/MarginContainer/VBoxContainer/VBoxContainer9/HBoxContainer"]
+custom_minimum_size = Vector2(200, 0)
 layout_mode = 2
 size_flags_horizontal = 3
+tooltip_text = "ASSUME_HYPERTHREADING_TOOLTIP"
 mouse_filter = 0
 text = "ASSUME_HYPERTHREADING"
+autowrap_mode = 2
 
 [node name="AssumeHyperthreading" type="CheckButton" parent="CenterContainer/VBoxContainer/VBoxContainer/VBoxContainer/PanelContainer/Performance/ScrollContainer/MarginContainer/VBoxContainer/VBoxContainer9/HBoxContainer"]
 layout_mode = 2
+size_flags_horizontal = 0
+size_flags_vertical = 5
+tooltip_text = "ASSUME_HYPERTHREADING_TOOLTIP"
 
 [node name="VBoxContainer10" type="VBoxContainer" parent="CenterContainer/VBoxContainer/VBoxContainer/VBoxContainer/PanelContainer/Performance/ScrollContainer/MarginContainer/VBoxContainer"]
 layout_mode = 2
@@ -1615,13 +1762,17 @@ size_flags_horizontal = 3
 layout_mode = 2
 
 [node name="Label" type="Label" parent="CenterContainer/VBoxContainer/VBoxContainer/VBoxContainer/PanelContainer/Performance/ScrollContainer/MarginContainer/VBoxContainer/VBoxContainer10/HBoxContainer"]
+custom_minimum_size = Vector2(200, 0)
 layout_mode = 2
 size_flags_horizontal = 3
 mouse_filter = 0
 text = "USE_MANUAL_THREAD_COUNT"
+autowrap_mode = 2
 
 [node name="UseManualThreadCount" type="CheckButton" parent="CenterContainer/VBoxContainer/VBoxContainer/VBoxContainer/PanelContainer/Performance/ScrollContainer/MarginContainer/VBoxContainer/VBoxContainer10/HBoxContainer"]
 layout_mode = 2
+size_flags_horizontal = 0
+size_flags_vertical = 5
 
 [node name="VBoxContainer11" type="VBoxContainer" parent="CenterContainer/VBoxContainer/VBoxContainer/VBoxContainer/PanelContainer/Performance/ScrollContainer/MarginContainer/VBoxContainer"]
 layout_mode = 2
@@ -1631,11 +1782,13 @@ size_flags_horizontal = 3
 layout_mode = 2
 
 [node name="Label2" type="Label" parent="CenterContainer/VBoxContainer/VBoxContainer/VBoxContainer/PanelContainer/Performance/ScrollContainer/MarginContainer/VBoxContainer/VBoxContainer11/HBoxContainer"]
+custom_minimum_size = Vector2(200, 0)
 layout_mode = 2
 size_flags_horizontal = 3
 size_flags_vertical = 5
 size_flags_stretch_ratio = 3.0
 text = "THREADS"
+autowrap_mode = 2
 
 [node name="ThreadCountSlider" type="HSlider" parent="CenterContainer/VBoxContainer/VBoxContainer/VBoxContainer/PanelContainer/Performance/ScrollContainer/MarginContainer/VBoxContainer/VBoxContainer11/HBoxContainer"]
 layout_mode = 2
@@ -1656,14 +1809,18 @@ size_flags_horizontal = 3
 layout_mode = 2
 
 [node name="Label" type="Label" parent="CenterContainer/VBoxContainer/VBoxContainer/VBoxContainer/PanelContainer/Performance/ScrollContainer/MarginContainer/VBoxContainer/VBoxContainer12/HBoxContainer"]
+custom_minimum_size = Vector2(200, 0)
 layout_mode = 2
 size_flags_horizontal = 3
 tooltip_text = "NATIVE_THREAD_ADVICE_TOOLTIP"
 mouse_filter = 0
 text = "USE_MANUAL_THREAD_COUNT_NATIVE"
+autowrap_mode = 2
 
 [node name="UseNativeManualThreadCount" type="CheckButton" parent="CenterContainer/VBoxContainer/VBoxContainer/VBoxContainer/PanelContainer/Performance/ScrollContainer/MarginContainer/VBoxContainer/VBoxContainer12/HBoxContainer"]
 layout_mode = 2
+size_flags_horizontal = 0
+size_flags_vertical = 5
 tooltip_text = "NATIVE_THREAD_ADVICE_TOOLTIP"
 
 [node name="VBoxContainer13" type="VBoxContainer" parent="CenterContainer/VBoxContainer/VBoxContainer/VBoxContainer/PanelContainer/Performance/ScrollContainer/MarginContainer/VBoxContainer"]
@@ -1674,11 +1831,13 @@ size_flags_horizontal = 3
 layout_mode = 2
 
 [node name="Label3" type="Label" parent="CenterContainer/VBoxContainer/VBoxContainer/VBoxContainer/PanelContainer/Performance/ScrollContainer/MarginContainer/VBoxContainer/VBoxContainer13/HBoxContainer"]
+custom_minimum_size = Vector2(200, 0)
 layout_mode = 2
 size_flags_horizontal = 3
 size_flags_vertical = 5
 size_flags_stretch_ratio = 3.0
 text = "THREADS"
+autowrap_mode = 2
 
 [node name="NativeThreadCountSlider" type="HSlider" parent="CenterContainer/VBoxContainer/VBoxContainer/VBoxContainer/PanelContainer/Performance/ScrollContainer/MarginContainer/VBoxContainer/VBoxContainer13/HBoxContainer"]
 layout_mode = 2
@@ -1713,14 +1872,19 @@ tooltip_text = "DISK_CACHE_TOOLTIP"
 layout_mode = 2
 
 [node name="Label" type="Label" parent="CenterContainer/VBoxContainer/VBoxContainer/VBoxContainer/PanelContainer/Performance/ScrollContainer/MarginContainer/VBoxContainer/DiskCacheContainer/HBoxContainer"]
+custom_minimum_size = Vector2(200, 0)
 layout_mode = 2
 size_flags_horizontal = 3
 tooltip_text = "DISK_CACHE_TOOLTIP"
 mouse_filter = 0
 text = "USE_DISK_CACHE"
+autowrap_mode = 2
 
 [node name="DiskCache" type="CheckButton" parent="CenterContainer/VBoxContainer/VBoxContainer/VBoxContainer/PanelContainer/Performance/ScrollContainer/MarginContainer/VBoxContainer/DiskCacheContainer/HBoxContainer"]
 layout_mode = 2
+size_flags_horizontal = 0
+size_flags_vertical = 5
+tooltip_text = "DISK_CACHE_TOOLTIP"
 
 [node name="VBoxContainer16" type="VBoxContainer" parent="CenterContainer/VBoxContainer/VBoxContainer/VBoxContainer/PanelContainer/Performance/ScrollContainer/MarginContainer/VBoxContainer"]
 layout_mode = 2
@@ -1735,11 +1899,13 @@ size_flags_horizontal = 3
 size_flags_stretch_ratio = 3.0
 
 [node name="Label3" type="Label" parent="CenterContainer/VBoxContainer/VBoxContainer/VBoxContainer/PanelContainer/Performance/ScrollContainer/MarginContainer/VBoxContainer/VBoxContainer16/HBoxContainer/HBoxContainer"]
+custom_minimum_size = Vector2(200, 0)
 layout_mode = 2
 size_flags_horizontal = 3
 tooltip_text = "CURRENT_CACHE_SIZE_TOOLTIP"
 mouse_filter = 1
 text = "CURRENT_CACHE_SIZE"
+autowrap_mode = 2
 
 [node name="CacheSize" type="Label" parent="CenterContainer/VBoxContainer/VBoxContainer/VBoxContainer/PanelContainer/Performance/ScrollContainer/MarginContainer/VBoxContainer/VBoxContainer16/HBoxContainer/HBoxContainer"]
 layout_mode = 2
@@ -1758,6 +1924,7 @@ layout_mode = 2
 size_flags_horizontal = 3
 size_flags_stretch_ratio = 2.0
 text = "CLEAR_CACHE"
+autowrap_mode = 2
 
 [node name="VBoxContainer17" type="VBoxContainer" parent="CenterContainer/VBoxContainer/VBoxContainer/VBoxContainer/PanelContainer/Performance/ScrollContainer/MarginContainer/VBoxContainer"]
 layout_mode = 2
@@ -1772,11 +1939,13 @@ size_flags_horizontal = 3
 size_flags_stretch_ratio = 3.0
 
 [node name="Label" type="Label" parent="CenterContainer/VBoxContainer/VBoxContainer/VBoxContainer/PanelContainer/Performance/ScrollContainer/MarginContainer/VBoxContainer/VBoxContainer17/HBoxContainer/HBoxContainer"]
+custom_minimum_size = Vector2(200, 0)
 layout_mode = 2
 size_flags_horizontal = 3
 tooltip_text = "MAX_CACHE_SIZE_TOOLTIP"
 mouse_filter = 1
 text = "MAX_SIZE_COLON"
+autowrap_mode = 2
 
 [node name="DesiredCacheSize" type="Label" parent="CenterContainer/VBoxContainer/VBoxContainer/VBoxContainer/PanelContainer/Performance/ScrollContainer/MarginContainer/VBoxContainer/VBoxContainer17/HBoxContainer/HBoxContainer"]
 layout_mode = 2
@@ -1814,15 +1983,17 @@ size_flags_horizontal = 3
 size_flags_stretch_ratio = 3.0
 
 [node name="Label2" type="Label" parent="CenterContainer/VBoxContainer/VBoxContainer/VBoxContainer/PanelContainer/Performance/ScrollContainer/MarginContainer/VBoxContainer/MemoryCacheDuration/HBoxContainer/HBoxContainer"]
-custom_minimum_size = Vector2(250, 0)
+custom_minimum_size = Vector2(200, 0)
 layout_mode = 2
 size_flags_horizontal = 3
 text = "CACHE_TIME_MEMORY"
-autowrap_mode = 3
+autowrap_mode = 2
 
 [node name="Value" type="Label" parent="CenterContainer/VBoxContainer/VBoxContainer/VBoxContainer/PanelContainer/Performance/ScrollContainer/MarginContainer/VBoxContainer/MemoryCacheDuration/HBoxContainer/HBoxContainer"]
+custom_minimum_size = Vector2(75, 0)
 layout_mode = 2
 text = "0"
+horizontal_alignment = 2
 
 [node name="HSeparator" type="HSeparator" parent="CenterContainer/VBoxContainer/VBoxContainer/VBoxContainer/PanelContainer/Performance/ScrollContainer/MarginContainer/VBoxContainer/MemoryCacheDuration/HBoxContainer/HBoxContainer"]
 custom_minimum_size = Vector2(10, 0)
@@ -1854,15 +2025,17 @@ size_flags_horizontal = 3
 size_flags_stretch_ratio = 3.0
 
 [node name="Label" type="Label" parent="CenterContainer/VBoxContainer/VBoxContainer/VBoxContainer/PanelContainer/Performance/ScrollContainer/MarginContainer/VBoxContainer/DiskCacheMaxTime/HBoxContainer/HBoxContainer"]
-custom_minimum_size = Vector2(250, 0)
+custom_minimum_size = Vector2(200, 0)
 layout_mode = 2
 size_flags_horizontal = 3
 text = "CACHE_DISK_MAX_TIME"
-autowrap_mode = 3
+autowrap_mode = 2
 
 [node name="Value2" type="Label" parent="CenterContainer/VBoxContainer/VBoxContainer/VBoxContainer/PanelContainer/Performance/ScrollContainer/MarginContainer/VBoxContainer/DiskCacheMaxTime/HBoxContainer/HBoxContainer"]
+custom_minimum_size = Vector2(75, 0)
 layout_mode = 2
 text = "0"
+horizontal_alignment = 2
 
 [node name="HSeparator" type="HSeparator" parent="CenterContainer/VBoxContainer/VBoxContainer/VBoxContainer/PanelContainer/Performance/ScrollContainer/MarginContainer/VBoxContainer/DiskCacheMaxTime/HBoxContainer/HBoxContainer"]
 custom_minimum_size = Vector2(10, 0)
@@ -1894,15 +2067,17 @@ size_flags_horizontal = 3
 size_flags_stretch_ratio = 3.0
 
 [node name="Label2" type="Label" parent="CenterContainer/VBoxContainer/VBoxContainer/VBoxContainer/PanelContainer/Performance/ScrollContainer/MarginContainer/VBoxContainer/MaxMemoryItems/HBoxContainer/HBoxContainer"]
-custom_minimum_size = Vector2(250, 0)
+custom_minimum_size = Vector2(200, 0)
 layout_mode = 2
 size_flags_horizontal = 3
 text = "CACHE_MEMORY_MAX_ITEMS"
-autowrap_mode = 3
+autowrap_mode = 2
 
 [node name="Value" type="Label" parent="CenterContainer/VBoxContainer/VBoxContainer/VBoxContainer/PanelContainer/Performance/ScrollContainer/MarginContainer/VBoxContainer/MaxMemoryItems/HBoxContainer/HBoxContainer"]
+custom_minimum_size = Vector2(75, 0)
 layout_mode = 2
 text = "0"
+horizontal_alignment = 2
 
 [node name="HSeparator" type="HSeparator" parent="CenterContainer/VBoxContainer/VBoxContainer/VBoxContainer/PanelContainer/Performance/ScrollContainer/MarginContainer/VBoxContainer/MaxMemoryItems/HBoxContainer/HBoxContainer"]
 custom_minimum_size = Vector2(10, 0)
@@ -1933,15 +2108,17 @@ size_flags_horizontal = 3
 size_flags_stretch_ratio = 3.0
 
 [node name="Label" type="Label" parent="CenterContainer/VBoxContainer/VBoxContainer/VBoxContainer/PanelContainer/Performance/ScrollContainer/MarginContainer/VBoxContainer/MemoryOnlyCacheTime/HBoxContainer/HBoxContainer"]
-custom_minimum_size = Vector2(250, 0)
+custom_minimum_size = Vector2(200, 0)
 layout_mode = 2
 size_flags_horizontal = 3
 text = "CACHE_TIME_MEMORY_ONLY"
-autowrap_mode = 3
+autowrap_mode = 2
 
 [node name="Value2" type="Label" parent="CenterContainer/VBoxContainer/VBoxContainer/VBoxContainer/PanelContainer/Performance/ScrollContainer/MarginContainer/VBoxContainer/MemoryOnlyCacheTime/HBoxContainer/HBoxContainer"]
+custom_minimum_size = Vector2(75, 0)
 layout_mode = 2
 text = "0"
+horizontal_alignment = 2
 
 [node name="HSeparator" type="HSeparator" parent="CenterContainer/VBoxContainer/VBoxContainer/VBoxContainer/PanelContainer/Performance/ScrollContainer/MarginContainer/VBoxContainer/MemoryOnlyCacheTime/HBoxContainer/HBoxContainer"]
 custom_minimum_size = Vector2(10, 0)
@@ -2016,27 +2193,6 @@ layout_mode = 2
 size_flags_horizontal = 3
 theme_override_styles/separator = SubResource("8")
 
-[node name="Spacer3" type="Control" parent="CenterContainer/VBoxContainer/VBoxContainer/VBoxContainer/PanelContainer/Inputs/MarginContainer/VBoxContainer/VBoxContainer/ScrollContainer/MarginContainer/VBoxContainer"]
-custom_minimum_size = Vector2(0, 10)
-layout_mode = 2
-size_flags_horizontal = 3
-
-[node name="VBoxContainer2" type="VBoxContainer" parent="CenterContainer/VBoxContainer/VBoxContainer/VBoxContainer/PanelContainer/Inputs/MarginContainer/VBoxContainer/VBoxContainer/ScrollContainer/MarginContainer/VBoxContainer"]
-layout_mode = 2
-size_flags_horizontal = 3
-
-[node name="HBoxContainer" type="HBoxContainer" parent="CenterContainer/VBoxContainer/VBoxContainer/VBoxContainer/PanelContainer/Inputs/MarginContainer/VBoxContainer/VBoxContainer/ScrollContainer/MarginContainer/VBoxContainer/VBoxContainer2"]
-layout_mode = 2
-
-[node name="Label" type="Label" parent="CenterContainer/VBoxContainer/VBoxContainer/VBoxContainer/PanelContainer/Inputs/MarginContainer/VBoxContainer/VBoxContainer/ScrollContainer/MarginContainer/VBoxContainer/VBoxContainer2/HBoxContainer"]
-layout_mode = 2
-size_flags_horizontal = 3
-mouse_filter = 0
-text = "BIND_AXES_SENSITIVITY"
-
-[node name="SameBothAxesSensitivity" type="CheckButton" parent="CenterContainer/VBoxContainer/VBoxContainer/VBoxContainer/PanelContainer/Inputs/MarginContainer/VBoxContainer/VBoxContainer/ScrollContainer/MarginContainer/VBoxContainer/VBoxContainer2/HBoxContainer"]
-layout_mode = 2
-
 [node name="Spacer9" type="Control" parent="CenterContainer/VBoxContainer/VBoxContainer/VBoxContainer/PanelContainer/Inputs/MarginContainer/VBoxContainer/VBoxContainer/ScrollContainer/MarginContainer/VBoxContainer"]
 custom_minimum_size = Vector2(0, 5)
 layout_mode = 2
@@ -2048,11 +2204,13 @@ size_flags_vertical = 3
 size_flags_stretch_ratio = 3.0
 
 [node name="HorizontalLabel" type="Label" parent="CenterContainer/VBoxContainer/VBoxContainer/VBoxContainer/PanelContainer/Inputs/MarginContainer/VBoxContainer/VBoxContainer/ScrollContainer/MarginContainer/VBoxContainer/HBoxContainer5"]
+custom_minimum_size = Vector2(200, 0)
 layout_mode = 2
 size_flags_horizontal = 3
 size_flags_vertical = 5
 size_flags_stretch_ratio = 2.0
 text = "HORIZONTAL_COLON"
+autowrap_mode = 2
 
 [node name="Horizontal" type="HSlider" parent="CenterContainer/VBoxContainer/VBoxContainer/VBoxContainer/PanelContainer/Inputs/MarginContainer/VBoxContainer/VBoxContainer/ScrollContainer/MarginContainer/VBoxContainer/HBoxContainer5"]
 layout_mode = 2
@@ -2078,11 +2236,13 @@ size_flags_vertical = 3
 size_flags_stretch_ratio = 3.0
 
 [node name="VerticalLabel" type="Label" parent="CenterContainer/VBoxContainer/VBoxContainer/VBoxContainer/PanelContainer/Inputs/MarginContainer/VBoxContainer/VBoxContainer/ScrollContainer/MarginContainer/VBoxContainer/HBoxContainer6"]
+custom_minimum_size = Vector2(200, 0)
 layout_mode = 2
 size_flags_horizontal = 3
 size_flags_vertical = 5
 size_flags_stretch_ratio = 2.0
 text = "VERTICAL_COLON"
+autowrap_mode = 2
 
 [node name="Vertical" type="HSlider" parent="CenterContainer/VBoxContainer/VBoxContainer/VBoxContainer/PanelContainer/Inputs/MarginContainer/VBoxContainer/VBoxContainer/ScrollContainer/MarginContainer/VBoxContainer/HBoxContainer6"]
 layout_mode = 2
@@ -2103,6 +2263,24 @@ layout_mode = 2
 size_flags_horizontal = 0
 text = "INVERTED"
 
+[node name="VBoxContainer2" type="VBoxContainer" parent="CenterContainer/VBoxContainer/VBoxContainer/VBoxContainer/PanelContainer/Inputs/MarginContainer/VBoxContainer/VBoxContainer/ScrollContainer/MarginContainer/VBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="HBoxContainer" type="HBoxContainer" parent="CenterContainer/VBoxContainer/VBoxContainer/VBoxContainer/PanelContainer/Inputs/MarginContainer/VBoxContainer/VBoxContainer/ScrollContainer/MarginContainer/VBoxContainer/VBoxContainer2"]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="CenterContainer/VBoxContainer/VBoxContainer/VBoxContainer/PanelContainer/Inputs/MarginContainer/VBoxContainer/VBoxContainer/ScrollContainer/MarginContainer/VBoxContainer/VBoxContainer2/HBoxContainer"]
+custom_minimum_size = Vector2(200, 0)
+layout_mode = 2
+size_flags_horizontal = 3
+mouse_filter = 0
+text = "BIND_AXES_SENSITIVITY"
+autowrap_mode = 2
+
+[node name="SameBothAxesSensitivity" type="CheckButton" parent="CenterContainer/VBoxContainer/VBoxContainer/VBoxContainer/PanelContainer/Inputs/MarginContainer/VBoxContainer/VBoxContainer/ScrollContainer/MarginContainer/VBoxContainer/VBoxContainer2/HBoxContainer"]
+layout_mode = 2
+
 [node name="Spacer8" type="Control" parent="CenterContainer/VBoxContainer/VBoxContainer/VBoxContainer/PanelContainer/Inputs/MarginContainer/VBoxContainer/VBoxContainer/ScrollContainer/MarginContainer/VBoxContainer"]
 custom_minimum_size = Vector2(0, 5)
 layout_mode = 2
@@ -2116,17 +2294,20 @@ size_flags_horizontal = 3
 layout_mode = 2
 
 [node name="Label2" type="Label" parent="CenterContainer/VBoxContainer/VBoxContainer/VBoxContainer/PanelContainer/Inputs/MarginContainer/VBoxContainer/VBoxContainer/ScrollContainer/MarginContainer/VBoxContainer/VBoxContainer3/HBoxContainer"]
+custom_minimum_size = Vector2(200, 0)
 layout_mode = 2
 size_flags_horizontal = 3
 size_flags_vertical = 1
 size_flags_stretch_ratio = 3.0
 text = "MOUSE_SENSITIVITY_WINDOW_SIZE_ADJUSTMENT"
+autowrap_mode = 2
 
 [node name="SensitivityScaleMode" type="OptionButton" parent="CenterContainer/VBoxContainer/VBoxContainer/VBoxContainer/PanelContainer/Inputs/MarginContainer/VBoxContainer/VBoxContainer/ScrollContainer/MarginContainer/VBoxContainer/VBoxContainer3/HBoxContainer"]
 custom_minimum_size = Vector2(200, 0)
 layout_mode = 2
 size_flags_horizontal = 3
 size_flags_stretch_ratio = 2.0
+autowrap_mode = 2
 selected = 0
 item_count = 3
 popup/item_0/text = "SCALING_NONE"
@@ -2149,10 +2330,12 @@ size_flags_horizontal = 3
 layout_mode = 2
 
 [node name="Label" type="Label" parent="CenterContainer/VBoxContainer/VBoxContainer/VBoxContainer/PanelContainer/Inputs/MarginContainer/VBoxContainer/VBoxContainer/ScrollContainer/MarginContainer/VBoxContainer/VBoxContainer4/HBoxContainer"]
+custom_minimum_size = Vector2(200, 0)
 layout_mode = 2
 size_flags_horizontal = 3
 mouse_filter = 0
 text = "USE_VIRTUAL_WINDOW_SIZE"
+autowrap_mode = 2
 
 [node name="VirtualWindowSize" type="CheckButton" parent="CenterContainer/VBoxContainer/VBoxContainer/VBoxContainer/PanelContainer/Inputs/MarginContainer/VBoxContainer/VBoxContainer/ScrollContainer/MarginContainer/VBoxContainer/VBoxContainer4/HBoxContainer"]
 layout_mode = 2
@@ -2170,26 +2353,6 @@ layout_mode = 2
 size_flags_horizontal = 3
 theme_override_styles/separator = SubResource("8")
 
-[node name="Spacer" type="Control" parent="CenterContainer/VBoxContainer/VBoxContainer/VBoxContainer/PanelContainer/Inputs/MarginContainer/VBoxContainer/VBoxContainer/ScrollContainer/MarginContainer/VBoxContainer"]
-custom_minimum_size = Vector2(0, 10)
-layout_mode = 2
-
-[node name="VBoxContainer5" type="VBoxContainer" parent="CenterContainer/VBoxContainer/VBoxContainer/VBoxContainer/PanelContainer/Inputs/MarginContainer/VBoxContainer/VBoxContainer/ScrollContainer/MarginContainer/VBoxContainer"]
-layout_mode = 2
-size_flags_horizontal = 3
-
-[node name="HBoxContainer" type="HBoxContainer" parent="CenterContainer/VBoxContainer/VBoxContainer/VBoxContainer/PanelContainer/Inputs/MarginContainer/VBoxContainer/VBoxContainer/ScrollContainer/MarginContainer/VBoxContainer/VBoxContainer5"]
-layout_mode = 2
-
-[node name="Label" type="Label" parent="CenterContainer/VBoxContainer/VBoxContainer/VBoxContainer/PanelContainer/Inputs/MarginContainer/VBoxContainer/VBoxContainer/ScrollContainer/MarginContainer/VBoxContainer/VBoxContainer5/HBoxContainer"]
-layout_mode = 2
-size_flags_horizontal = 3
-mouse_filter = 0
-text = "BIND_AXES_SENSITIVITY"
-
-[node name="SameBothAxesSensitivity" type="CheckButton" parent="CenterContainer/VBoxContainer/VBoxContainer/VBoxContainer/PanelContainer/Inputs/MarginContainer/VBoxContainer/VBoxContainer/ScrollContainer/MarginContainer/VBoxContainer/VBoxContainer5/HBoxContainer"]
-layout_mode = 2
-
 [node name="Spacer10" type="Control" parent="CenterContainer/VBoxContainer/VBoxContainer/VBoxContainer/PanelContainer/Inputs/MarginContainer/VBoxContainer/VBoxContainer/ScrollContainer/MarginContainer/VBoxContainer"]
 custom_minimum_size = Vector2(0, 5)
 layout_mode = 2
@@ -2201,10 +2364,12 @@ size_flags_vertical = 3
 size_flags_stretch_ratio = 3.0
 
 [node name="HorizontalLabel" type="Label" parent="CenterContainer/VBoxContainer/VBoxContainer/VBoxContainer/PanelContainer/Inputs/MarginContainer/VBoxContainer/VBoxContainer/ScrollContainer/MarginContainer/VBoxContainer/HBoxContainer9"]
+custom_minimum_size = Vector2(200, 0)
 layout_mode = 2
 size_flags_horizontal = 3
 size_flags_stretch_ratio = 2.0
 text = "HORIZONTAL_COLON"
+autowrap_mode = 2
 
 [node name="Horizontal" type="HSlider" parent="CenterContainer/VBoxContainer/VBoxContainer/VBoxContainer/PanelContainer/Inputs/MarginContainer/VBoxContainer/VBoxContainer/ScrollContainer/MarginContainer/VBoxContainer/HBoxContainer9"]
 layout_mode = 2
@@ -2230,10 +2395,12 @@ size_flags_vertical = 3
 size_flags_stretch_ratio = 3.0
 
 [node name="VerticalLabel" type="Label" parent="CenterContainer/VBoxContainer/VBoxContainer/VBoxContainer/PanelContainer/Inputs/MarginContainer/VBoxContainer/VBoxContainer/ScrollContainer/MarginContainer/VBoxContainer/HBoxContainer10"]
+custom_minimum_size = Vector2(200, 0)
 layout_mode = 2
 size_flags_horizontal = 3
 size_flags_stretch_ratio = 2.0
 text = "VERTICAL_COLON"
+autowrap_mode = 2
 
 [node name="Vertical" type="HSlider" parent="CenterContainer/VBoxContainer/VBoxContainer/VBoxContainer/PanelContainer/Inputs/MarginContainer/VBoxContainer/VBoxContainer/ScrollContainer/MarginContainer/VBoxContainer/HBoxContainer10"]
 layout_mode = 2
@@ -2252,8 +2419,25 @@ theme_override_styles/separator = SubResource("StyleBoxEmpty_paabc")
 [node name="VerticalInverted" type="CheckBox" parent="CenterContainer/VBoxContainer/VBoxContainer/VBoxContainer/PanelContainer/Inputs/MarginContainer/VBoxContainer/VBoxContainer/ScrollContainer/MarginContainer/VBoxContainer/HBoxContainer10"]
 layout_mode = 2
 size_flags_horizontal = 3
-focus_neighbor_bottom = NodePath("../../VBoxContainer6/HBoxContainer/DeadzonesButton")
 text = "INVERTED"
+
+[node name="VBoxContainer5" type="VBoxContainer" parent="CenterContainer/VBoxContainer/VBoxContainer/VBoxContainer/PanelContainer/Inputs/MarginContainer/VBoxContainer/VBoxContainer/ScrollContainer/MarginContainer/VBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="HBoxContainer" type="HBoxContainer" parent="CenterContainer/VBoxContainer/VBoxContainer/VBoxContainer/PanelContainer/Inputs/MarginContainer/VBoxContainer/VBoxContainer/ScrollContainer/MarginContainer/VBoxContainer/VBoxContainer5"]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="CenterContainer/VBoxContainer/VBoxContainer/VBoxContainer/PanelContainer/Inputs/MarginContainer/VBoxContainer/VBoxContainer/ScrollContainer/MarginContainer/VBoxContainer/VBoxContainer5/HBoxContainer"]
+custom_minimum_size = Vector2(200, 0)
+layout_mode = 2
+size_flags_horizontal = 3
+mouse_filter = 0
+text = "BIND_AXES_SENSITIVITY"
+autowrap_mode = 2
+
+[node name="SameBothAxesSensitivity" type="CheckButton" parent="CenterContainer/VBoxContainer/VBoxContainer/VBoxContainer/PanelContainer/Inputs/MarginContainer/VBoxContainer/VBoxContainer/ScrollContainer/MarginContainer/VBoxContainer/VBoxContainer5/HBoxContainer"]
+layout_mode = 2
 
 [node name="Spacer11" type="Control" parent="CenterContainer/VBoxContainer/VBoxContainer/VBoxContainer/PanelContainer/Inputs/MarginContainer/VBoxContainer/VBoxContainer/ScrollContainer/MarginContainer/VBoxContainer"]
 custom_minimum_size = Vector2(0, 5)
@@ -2274,6 +2458,7 @@ size_flags_stretch_ratio = 3.0
 mouse_filter = 0
 
 [node name="DeadzonesButton" type="Button" parent="CenterContainer/VBoxContainer/VBoxContainer/VBoxContainer/PanelContainer/Inputs/MarginContainer/VBoxContainer/VBoxContainer/ScrollContainer/MarginContainer/VBoxContainer/VBoxContainer6/HBoxContainer"]
+custom_minimum_size = Vector2(200, 0)
 layout_mode = 2
 size_flags_horizontal = 3
 size_flags_stretch_ratio = 2.0
@@ -2281,6 +2466,7 @@ focus_neighbor_right = NodePath("../../../VBoxContainer7/HBoxContainer/Movement2
 focus_neighbor_bottom = NodePath("../../../VBoxContainer7/HBoxContainer/Movement2DType")
 focus_next = NodePath("../../../VBoxContainer7/HBoxContainer/Movement2DType")
 text = "CONTROLLER_DEADZONES"
+autowrap_mode = 2
 
 [node name="HSeparator2" type="HSeparator" parent="CenterContainer/VBoxContainer/VBoxContainer/VBoxContainer/PanelContainer/Inputs/MarginContainer/VBoxContainer/VBoxContainer/ScrollContainer/MarginContainer/VBoxContainer"]
 custom_minimum_size = Vector2(0, 30)
@@ -2294,11 +2480,13 @@ size_flags_horizontal = 3
 layout_mode = 2
 
 [node name="Label" type="Label" parent="CenterContainer/VBoxContainer/VBoxContainer/VBoxContainer/PanelContainer/Inputs/MarginContainer/VBoxContainer/VBoxContainer/ScrollContainer/MarginContainer/VBoxContainer/VBoxContainer7/HBoxContainer"]
+custom_minimum_size = Vector2(200, 0)
 layout_mode = 2
 size_flags_horizontal = 3
 size_flags_vertical = 5
 size_flags_stretch_ratio = 3.0
 text = "2D_MOVEMENT_TYPE_SELECTION"
+autowrap_mode = 2
 
 [node name="Movement2DType" type="OptionButton" parent="CenterContainer/VBoxContainer/VBoxContainer/VBoxContainer/PanelContainer/Inputs/MarginContainer/VBoxContainer/VBoxContainer/ScrollContainer/MarginContainer/VBoxContainer/VBoxContainer7/HBoxContainer"]
 custom_minimum_size = Vector2(200, 25)
@@ -2309,6 +2497,7 @@ size_flags_stretch_ratio = 2.0
 focus_neighbor_left = NodePath("../../../VBoxContainer6/HBoxContainer/DeadzonesButton")
 focus_neighbor_top = NodePath("../../../VBoxContainer6/HBoxContainer/DeadzonesButton")
 focus_neighbor_bottom = NodePath("../../../VBoxContainer8/HBoxContainer/Movement3DType")
+autowrap_mode = 2
 selected = 0
 item_count = 3
 popup/item_0/text = "AUTO"
@@ -2331,11 +2520,13 @@ size_flags_horizontal = 3
 layout_mode = 2
 
 [node name="Label2" type="Label" parent="CenterContainer/VBoxContainer/VBoxContainer/VBoxContainer/PanelContainer/Inputs/MarginContainer/VBoxContainer/VBoxContainer/ScrollContainer/MarginContainer/VBoxContainer/VBoxContainer8/HBoxContainer"]
+custom_minimum_size = Vector2(200, 0)
 layout_mode = 2
 size_flags_horizontal = 3
 size_flags_vertical = 5
 size_flags_stretch_ratio = 3.0
 text = "3D_MOVEMENT_TYPE_SELECTION"
+autowrap_mode = 2
 
 [node name="Movement3DType" type="OptionButton" parent="CenterContainer/VBoxContainer/VBoxContainer/VBoxContainer/PanelContainer/Inputs/MarginContainer/VBoxContainer/VBoxContainer/ScrollContainer/MarginContainer/VBoxContainer/VBoxContainer8/HBoxContainer"]
 custom_minimum_size = Vector2(200, 25)
@@ -2346,6 +2537,7 @@ size_flags_stretch_ratio = 2.0
 focus_neighbor_left = NodePath("../../../VBoxContainer6/HBoxContainer/DeadzonesButton")
 focus_neighbor_top = NodePath("../../../VBoxContainer7/HBoxContainer/Movement2DType")
 focus_neighbor_right = NodePath("../../../../../../../HBoxContainer/ResetInputsButton")
+autowrap_mode = 2
 selected = 0
 item_count = 2
 popup/item_0/text = "SCREEN_RELATIVE_MOVEMENT"
@@ -2366,10 +2558,12 @@ size_flags_horizontal = 3
 layout_mode = 2
 
 [node name="Label" type="Label" parent="CenterContainer/VBoxContainer/VBoxContainer/VBoxContainer/PanelContainer/Inputs/MarginContainer/VBoxContainer/VBoxContainer/ScrollContainer/MarginContainer/VBoxContainer/VBoxContainer9/HBoxContainer"]
+custom_minimum_size = Vector2(200, 0)
 layout_mode = 2
 size_flags_horizontal = 3
 mouse_filter = 0
 text = "MOUSE_EDGE_PANNING_OPTION"
+autowrap_mode = 2
 
 [node name="EdgePan" type="CheckButton" parent="CenterContainer/VBoxContainer/VBoxContainer/VBoxContainer/PanelContainer/Inputs/MarginContainer/VBoxContainer/VBoxContainer/ScrollContainer/MarginContainer/VBoxContainer/VBoxContainer9/HBoxContainer"]
 layout_mode = 2
@@ -2390,7 +2584,6 @@ layout_mode = 2
 size_flags_horizontal = 3
 size_flags_vertical = 5
 size_flags_stretch_ratio = 3.0
-focus_neighbor_bottom = NodePath("../../InputGroupList")
 min_value = 5.0
 max_value = 140.0
 value = 5.0
@@ -2491,10 +2684,12 @@ size_flags_horizontal = 3
 layout_mode = 2
 
 [node name="Label" type="Label" parent="CenterContainer/VBoxContainer/VBoxContainer/VBoxContainer/PanelContainer/Misc/ScrollContainer/MarginContainer/VBoxContainer/VBoxContainer2/HBoxContainer"]
+custom_minimum_size = Vector2(200, 0)
 layout_mode = 2
 size_flags_horizontal = 3
 mouse_filter = 0
 text = "PLAY_INTRO_VIDEO"
+autowrap_mode = 2
 
 [node name="Intro" type="CheckButton" parent="CenterContainer/VBoxContainer/VBoxContainer/VBoxContainer/PanelContainer/Misc/ScrollContainer/MarginContainer/VBoxContainer/VBoxContainer2/HBoxContainer"]
 layout_mode = 2
@@ -2507,10 +2702,12 @@ size_flags_horizontal = 3
 layout_mode = 2
 
 [node name="Label" type="Label" parent="CenterContainer/VBoxContainer/VBoxContainer/VBoxContainer/PanelContainer/Misc/ScrollContainer/MarginContainer/VBoxContainer/VBoxContainer3/HBoxContainer"]
+custom_minimum_size = Vector2(200, 0)
 layout_mode = 2
 size_flags_horizontal = 3
 mouse_filter = 0
 text = "PLAY_MICROBE_INTRO_ON_NEW_GAME"
+autowrap_mode = 2
 
 [node name="MicrobeIntro" type="CheckButton" parent="CenterContainer/VBoxContainer/VBoxContainer/VBoxContainer/PanelContainer/Misc/ScrollContainer/MarginContainer/VBoxContainer/VBoxContainer3/HBoxContainer"]
 layout_mode = 2
@@ -2523,10 +2720,12 @@ size_flags_horizontal = 3
 layout_mode = 2
 
 [node name="Label" type="Label" parent="CenterContainer/VBoxContainer/VBoxContainer/VBoxContainer/PanelContainer/Misc/ScrollContainer/MarginContainer/VBoxContainer/VBoxContainer4/HBoxContainer"]
+custom_minimum_size = Vector2(200, 0)
 layout_mode = 2
 size_flags_horizontal = 3
 mouse_filter = 0
 text = "AUTOSAVE_DURING_THE_GAME"
+autowrap_mode = 2
 
 [node name="AutoSave" type="CheckButton" parent="CenterContainer/VBoxContainer/VBoxContainer/VBoxContainer/PanelContainer/Misc/ScrollContainer/MarginContainer/VBoxContainer/VBoxContainer4/HBoxContainer"]
 layout_mode = 2
@@ -2539,11 +2738,13 @@ size_flags_horizontal = 3
 layout_mode = 2
 
 [node name="Label2" type="Label" parent="CenterContainer/VBoxContainer/VBoxContainer/VBoxContainer/PanelContainer/Misc/ScrollContainer/MarginContainer/VBoxContainer/VBoxContainer9/HBoxContainer"]
+custom_minimum_size = Vector2(200, 0)
 layout_mode = 2
 size_flags_horizontal = 3
 size_flags_vertical = 5
 size_flags_stretch_ratio = 3.0
 text = "AMOUNT_OF_AUTOSAVE_TO_KEEP"
+autowrap_mode = 2
 
 [node name="MaxAutoSaves" type="SpinBox" parent="CenterContainer/VBoxContainer/VBoxContainer/VBoxContainer/PanelContainer/Misc/ScrollContainer/MarginContainer/VBoxContainer/VBoxContainer9/HBoxContainer"]
 custom_minimum_size = Vector2(200, 25)
@@ -2563,11 +2764,13 @@ size_flags_horizontal = 3
 layout_mode = 2
 
 [node name="Label" type="Label" parent="CenterContainer/VBoxContainer/VBoxContainer/VBoxContainer/PanelContainer/Misc/ScrollContainer/MarginContainer/VBoxContainer/VBoxContainer10/HBoxContainer"]
+custom_minimum_size = Vector2(200, 0)
 layout_mode = 2
 size_flags_horizontal = 3
 size_flags_vertical = 5
 size_flags_stretch_ratio = 3.0
 text = "AMOUNT_OF_QUICKSAVE_TO_KEEP"
+autowrap_mode = 2
 
 [node name="MaxQuickSaves" type="SpinBox" parent="CenterContainer/VBoxContainer/VBoxContainer/VBoxContainer/PanelContainer/Misc/ScrollContainer/MarginContainer/VBoxContainer/VBoxContainer10/HBoxContainer"]
 custom_minimum_size = Vector2(200, 25)
@@ -2587,10 +2790,12 @@ size_flags_horizontal = 3
 layout_mode = 2
 
 [node name="Label" type="Label" parent="CenterContainer/VBoxContainer/VBoxContainer/VBoxContainer/PanelContainer/Misc/ScrollContainer/MarginContainer/VBoxContainer/VBoxContainer6/HBoxContainer"]
+custom_minimum_size = Vector2(200, 0)
 layout_mode = 2
 size_flags_horizontal = 3
 mouse_filter = 0
 text = "SHOW_UNSAVED_PROGRESS_WARNING"
+autowrap_mode = 2
 
 [node name="UnsavedProgressWarning" type="CheckButton" parent="CenterContainer/VBoxContainer/VBoxContainer/VBoxContainer/PanelContainer/Misc/ScrollContainer/MarginContainer/VBoxContainer/VBoxContainer6/HBoxContainer"]
 layout_mode = 2
@@ -2603,11 +2808,13 @@ size_flags_horizontal = 3
 layout_mode = 2
 
 [node name="Label" type="Label" parent="CenterContainer/VBoxContainer/VBoxContainer/VBoxContainer/PanelContainer/Misc/ScrollContainer/MarginContainer/VBoxContainer/VBoxContainer5/HBoxContainer"]
+custom_minimum_size = Vector2(200, 0)
 layout_mode = 2
 size_flags_horizontal = 3
 tooltip_text = "SHOW_TUTORIALS_OPTION_TOOLTIP"
 mouse_filter = 0
 text = "SHOW_TUTORIALS_IN_NEW_GAMES_OPTION"
+autowrap_mode = 2
 
 [node name="TutorialsEnabledOnNewGame" type="CheckButton" parent="CenterContainer/VBoxContainer/VBoxContainer/VBoxContainer/PanelContainer/Misc/ScrollContainer/MarginContainer/VBoxContainer/VBoxContainer5/HBoxContainer"]
 layout_mode = 2
@@ -2621,10 +2828,12 @@ size_flags_horizontal = 3
 layout_mode = 2
 
 [node name="Label" type="Label" parent="CenterContainer/VBoxContainer/VBoxContainer/VBoxContainer/PanelContainer/Misc/ScrollContainer/MarginContainer/VBoxContainer/CurrentGameTutorialsContainer/HBoxContainer"]
+custom_minimum_size = Vector2(200, 0)
 layout_mode = 2
 size_flags_horizontal = 3
 mouse_filter = 0
 text = "SHOW_TUTORIALS_IN_NEW_CURRENT_OPTION"
+autowrap_mode = 2
 
 [node name="TutorialsEnabled" type="CheckButton" parent="CenterContainer/VBoxContainer/VBoxContainer/VBoxContainer/PanelContainer/Misc/ScrollContainer/MarginContainer/VBoxContainer/CurrentGameTutorialsContainer/HBoxContainer"]
 layout_mode = 2
@@ -2653,9 +2862,10 @@ size_flags_horizontal = 3
 size_flags_stretch_ratio = 3.0
 tooltip_text = "RESET_SHOWN_TUTORIALS_TOOLTIP"
 text = "RESET_SHOWN_TUTORIALS"
+autowrap_mode = 2
 
 [node name="HSeparator" type="HSeparator" parent="CenterContainer/VBoxContainer/VBoxContainer/VBoxContainer/PanelContainer/Misc/ScrollContainer/MarginContainer/VBoxContainer"]
-custom_minimum_size = Vector2(0, 5)
+custom_minimum_size = Vector2(0, 25)
 layout_mode = 2
 
 [node name="HBoxContainer4" type="HBoxContainer" parent="CenterContainer/VBoxContainer/VBoxContainer/VBoxContainer/PanelContainer/Misc/ScrollContainer/MarginContainer/VBoxContainer"]
@@ -2667,6 +2877,7 @@ layout_mode = 2
 size_flags_horizontal = 3
 action_mode = 0
 text = "OPEN_SCREENSHOT_FOLDER"
+autowrap_mode = 2
 
 [node name="Spacer" type="Control" parent="CenterContainer/VBoxContainer/VBoxContainer/VBoxContainer/PanelContainer/Misc/ScrollContainer/MarginContainer/VBoxContainer/HBoxContainer4"]
 custom_minimum_size = Vector2(10, 0)
@@ -2677,40 +2888,7 @@ layout_mode = 2
 size_flags_horizontal = 3
 action_mode = 0
 text = "OPEN_LOGS_FOLDER"
-
-[node name="HBoxContainer8" type="HBoxContainer" parent="CenterContainer/VBoxContainer/VBoxContainer/VBoxContainer/PanelContainer/Misc/ScrollContainer/MarginContainer/VBoxContainer"]
-layout_mode = 2
-size_flags_horizontal = 3
-
-[node name="VBoxContainer3" type="VBoxContainer" parent="CenterContainer/VBoxContainer/VBoxContainer/VBoxContainer/PanelContainer/Misc/ScrollContainer/MarginContainer/VBoxContainer/HBoxContainer8"]
-layout_mode = 2
-size_flags_horizontal = 3
-
-[node name="HBoxContainer" type="HBoxContainer" parent="CenterContainer/VBoxContainer/VBoxContainer/VBoxContainer/PanelContainer/Misc/ScrollContainer/MarginContainer/VBoxContainer/HBoxContainer8/VBoxContainer3"]
-layout_mode = 2
-
-[node name="Label" type="Label" parent="CenterContainer/VBoxContainer/VBoxContainer/VBoxContainer/PanelContainer/Misc/ScrollContainer/MarginContainer/VBoxContainer/HBoxContainer8/VBoxContainer3/HBoxContainer"]
-layout_mode = 2
-size_flags_horizontal = 3
-size_flags_vertical = 5
-size_flags_stretch_ratio = 3.0
-text = "JSON_DEBUG_MODE"
-
-[node name="JSONDebug" type="OptionButton" parent="CenterContainer/VBoxContainer/VBoxContainer/VBoxContainer/PanelContainer/Misc/ScrollContainer/MarginContainer/VBoxContainer/HBoxContainer8/VBoxContainer3/HBoxContainer"]
-custom_minimum_size = Vector2(200, 0)
-layout_mode = 2
-size_flags_horizontal = 3
-size_flags_vertical = 5
-size_flags_stretch_ratio = 2.0
-focus_neighbor_bottom = NodePath("../../../../HBoxContainer10/VBoxContainer3/HBoxContainer/ScreenEffect")
-selected = 0
-item_count = 3
-popup/item_0/text = "JSON_DEBUG_MODE_AUTO"
-popup/item_0/id = 0
-popup/item_1/text = "JSON_DEBUG_MODE_ALWAYS"
-popup/item_1/id = 1
-popup/item_2/text = "JSON_DEBUG_MODE_NEVER"
-popup/item_2/id = 2
+autowrap_mode = 2
 
 [node name="VBoxContainer11" type="VBoxContainer" parent="CenterContainer/VBoxContainer/VBoxContainer/VBoxContainer/PanelContainer/Misc/ScrollContainer/MarginContainer/VBoxContainer"]
 layout_mode = 2
@@ -2720,10 +2898,12 @@ size_flags_horizontal = 3
 layout_mode = 2
 
 [node name="Label" type="Label" parent="CenterContainer/VBoxContainer/VBoxContainer/VBoxContainer/PanelContainer/Misc/ScrollContainer/MarginContainer/VBoxContainer/VBoxContainer11/HBoxContainer"]
+custom_minimum_size = Vector2(200, 0)
 layout_mode = 2
 size_flags_horizontal = 3
 mouse_filter = 0
 text = "CHEAT_KEYS_ENABLED"
+autowrap_mode = 2
 
 [node name="Cheats" type="CheckButton" parent="CenterContainer/VBoxContainer/VBoxContainer/VBoxContainer/PanelContainer/Misc/ScrollContainer/MarginContainer/VBoxContainer/VBoxContainer11/HBoxContainer"]
 layout_mode = 2
@@ -2736,10 +2916,12 @@ size_flags_horizontal = 3
 layout_mode = 2
 
 [node name="Label" type="Label" parent="CenterContainer/VBoxContainer/VBoxContainer/VBoxContainer/PanelContainer/Misc/ScrollContainer/MarginContainer/VBoxContainer/VBoxContainer12/HBoxContainer"]
+custom_minimum_size = Vector2(200, 0)
 layout_mode = 2
 size_flags_horizontal = 3
 mouse_filter = 0
 text = "USE_A_CUSTOM_USERNAME"
+autowrap_mode = 2
 
 [node name="CustomUsernameEnabled" type="CheckButton" parent="CenterContainer/VBoxContainer/VBoxContainer/VBoxContainer/PanelContainer/Misc/ScrollContainer/MarginContainer/VBoxContainer/VBoxContainer12/HBoxContainer"]
 layout_mode = 2
@@ -2752,11 +2934,13 @@ size_flags_horizontal = 3
 layout_mode = 2
 
 [node name="Label2" type="Label" parent="CenterContainer/VBoxContainer/VBoxContainer/VBoxContainer/PanelContainer/Misc/ScrollContainer/MarginContainer/VBoxContainer/VBoxContainer13/HBoxContainer"]
+custom_minimum_size = Vector2(200, 0)
 layout_mode = 2
 size_flags_horizontal = 3
 size_flags_vertical = 1
 size_flags_stretch_ratio = 3.0
 text = "CUSTOM_USERNAME"
+autowrap_mode = 2
 
 [node name="CustomUsername" type="LineEdit" parent="CenterContainer/VBoxContainer/VBoxContainer/VBoxContainer/PanelContainer/Misc/ScrollContainer/MarginContainer/VBoxContainer/VBoxContainer13/HBoxContainer"]
 custom_minimum_size = Vector2(300, 0)
@@ -2772,10 +2956,12 @@ size_flags_horizontal = 3
 layout_mode = 2
 
 [node name="Label" type="Label" parent="CenterContainer/VBoxContainer/VBoxContainer/VBoxContainer/PanelContainer/Misc/ScrollContainer/MarginContainer/VBoxContainer/VBoxContainer14/HBoxContainer"]
+custom_minimum_size = Vector2(200, 0)
 layout_mode = 2
 size_flags_horizontal = 3
 mouse_filter = 0
 text = "SHOW_WEB_NEWS_FEED"
+autowrap_mode = 2
 
 [node name="WebFeeds" type="CheckButton" parent="CenterContainer/VBoxContainer/VBoxContainer/VBoxContainer/PanelContainer/Misc/ScrollContainer/MarginContainer/VBoxContainer/VBoxContainer14/HBoxContainer"]
 layout_mode = 2
@@ -2788,15 +2974,53 @@ size_flags_horizontal = 3
 layout_mode = 2
 
 [node name="Label" type="Label" parent="CenterContainer/VBoxContainer/VBoxContainer/VBoxContainer/PanelContainer/Misc/ScrollContainer/MarginContainer/VBoxContainer/VBoxContainer15/HBoxContainer"]
+custom_minimum_size = Vector2(200, 0)
 layout_mode = 2
 size_flags_horizontal = 3
 tooltip_text = "SHOW_NEW_PATCH_NOTES_TOOLTIP"
 mouse_filter = 0
 text = "SHOW_NEW_PATCH_NOTES"
+autowrap_mode = 2
 
 [node name="ShowNewPatchNotes" type="CheckButton" parent="CenterContainer/VBoxContainer/VBoxContainer/VBoxContainer/PanelContainer/Misc/ScrollContainer/MarginContainer/VBoxContainer/VBoxContainer15/HBoxContainer"]
 layout_mode = 2
 tooltip_text = "SHOW_NEW_PATCH_NOTES_TOOLTIP"
+
+[node name="HBoxContainer8" type="HBoxContainer" parent="CenterContainer/VBoxContainer/VBoxContainer/VBoxContainer/PanelContainer/Misc/ScrollContainer/MarginContainer/VBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="VBoxContainer3" type="VBoxContainer" parent="CenterContainer/VBoxContainer/VBoxContainer/VBoxContainer/PanelContainer/Misc/ScrollContainer/MarginContainer/VBoxContainer/HBoxContainer8"]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="HBoxContainer" type="HBoxContainer" parent="CenterContainer/VBoxContainer/VBoxContainer/VBoxContainer/PanelContainer/Misc/ScrollContainer/MarginContainer/VBoxContainer/HBoxContainer8/VBoxContainer3"]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="CenterContainer/VBoxContainer/VBoxContainer/VBoxContainer/PanelContainer/Misc/ScrollContainer/MarginContainer/VBoxContainer/HBoxContainer8/VBoxContainer3/HBoxContainer"]
+custom_minimum_size = Vector2(200, 0)
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 5
+size_flags_stretch_ratio = 3.0
+text = "JSON_DEBUG_MODE"
+autowrap_mode = 2
+
+[node name="JSONDebug" type="OptionButton" parent="CenterContainer/VBoxContainer/VBoxContainer/VBoxContainer/PanelContainer/Misc/ScrollContainer/MarginContainer/VBoxContainer/HBoxContainer8/VBoxContainer3/HBoxContainer"]
+custom_minimum_size = Vector2(200, 0)
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 5
+size_flags_stretch_ratio = 2.0
+autowrap_mode = 2
+selected = 0
+item_count = 3
+popup/item_0/text = "JSON_DEBUG_MODE_AUTO"
+popup/item_0/id = 0
+popup/item_1/text = "JSON_DEBUG_MODE_ALWAYS"
+popup/item_1/id = 1
+popup/item_2/text = "JSON_DEBUG_MODE_NEVER"
+popup/item_2/id = 2
 
 [node name="VBoxContainer16" type="VBoxContainer" parent="CenterContainer/VBoxContainer/VBoxContainer/VBoxContainer/PanelContainer/Misc/ScrollContainer/MarginContainer/VBoxContainer"]
 layout_mode = 2
@@ -2806,13 +3030,16 @@ size_flags_horizontal = 3
 layout_mode = 2
 
 [node name="Label" type="Label" parent="CenterContainer/VBoxContainer/VBoxContainer/VBoxContainer/PanelContainer/Misc/ScrollContainer/MarginContainer/VBoxContainer/VBoxContainer16/HBoxContainer"]
+custom_minimum_size = Vector2(200, 0)
 layout_mode = 2
 size_flags_horizontal = 3
 size_flags_vertical = 1
 size_flags_stretch_ratio = 3.0
 mouse_filter = 0
+autowrap_mode = 2
 
 [node name="Spacer" type="Control" parent="CenterContainer/VBoxContainer/VBoxContainer/VBoxContainer/PanelContainer/Misc/ScrollContainer/MarginContainer/VBoxContainer/VBoxContainer16/HBoxContainer"]
+visible = false
 custom_minimum_size = Vector2(10, 0)
 layout_mode = 2
 
@@ -2825,6 +3052,7 @@ tooltip_text = "VIEW_PATCH_NOTES_TOOLTIP"
 focus_neighbor_right = NodePath("../../../VBoxContainer17/HBoxContainer/ResetDismissed")
 focus_neighbor_bottom = NodePath("../../../VBoxContainer17/HBoxContainer/ResetDismissed")
 text = "VIEW_PATCH_NOTES"
+autowrap_mode = 2
 
 [node name="VBoxContainer17" type="VBoxContainer" parent="CenterContainer/VBoxContainer/VBoxContainer/VBoxContainer/PanelContainer/Misc/ScrollContainer/MarginContainer/VBoxContainer"]
 layout_mode = 2
@@ -2839,31 +3067,32 @@ size_flags_horizontal = 3
 size_flags_stretch_ratio = 3.0
 
 [node name="Label2" type="Label" parent="CenterContainer/VBoxContainer/VBoxContainer/VBoxContainer/PanelContainer/Misc/ScrollContainer/MarginContainer/VBoxContainer/VBoxContainer17/HBoxContainer/HBoxContainer"]
+custom_minimum_size = Vector2(200, 0)
 layout_mode = 2
-size_flags_horizontal = 3
 size_flags_stretch_ratio = 3.0
 tooltip_text = "DISMISSED_POPUPS_EXPLANATION"
 mouse_filter = 0
 text = "DISMISSED_POPUPS_COLON"
+autowrap_mode = 2
+
+[node name="Spacer" type="Control" parent="CenterContainer/VBoxContainer/VBoxContainer/VBoxContainer/PanelContainer/Misc/ScrollContainer/MarginContainer/VBoxContainer/VBoxContainer17/HBoxContainer/HBoxContainer"]
+custom_minimum_size = Vector2(10, 0)
+layout_mode = 2
 
 [node name="DismissedCount" type="Label" parent="CenterContainer/VBoxContainer/VBoxContainer/VBoxContainer/PanelContainer/Misc/ScrollContainer/MarginContainer/VBoxContainer/VBoxContainer17/HBoxContainer/HBoxContainer"]
 layout_mode = 2
+size_flags_horizontal = 3
 tooltip_text = "DISMISSED_POPUPS_EXPLANATION"
 mouse_filter = 0
-
-[node name="Spacer" type="Control" parent="CenterContainer/VBoxContainer/VBoxContainer/VBoxContainer/PanelContainer/Misc/ScrollContainer/MarginContainer/VBoxContainer/VBoxContainer17/HBoxContainer"]
-custom_minimum_size = Vector2(10, 0)
-layout_mode = 2
 
 [node name="ResetDismissed" type="Button" parent="CenterContainer/VBoxContainer/VBoxContainer/VBoxContainer/PanelContainer/Misc/ScrollContainer/MarginContainer/VBoxContainer/VBoxContainer17/HBoxContainer"]
 layout_mode = 2
 size_flags_horizontal = 3
 size_flags_vertical = 5
 size_flags_stretch_ratio = 2.0
-focus_neighbor_left = NodePath("../../../VBoxContainer16/HBoxContainer/ViewPatchNotes")
-focus_neighbor_top = NodePath("../../../VBoxContainer16/HBoxContainer/ViewPatchNotes")
 action_mode = 0
 text = "RESET_DISMISSED_POPUPS"
+autowrap_mode = 2
 
 [node name="HBoxContainer9" type="HBoxContainer" parent="CenterContainer/VBoxContainer/VBoxContainer/VBoxContainer/PanelContainer/Misc/ScrollContainer/MarginContainer/VBoxContainer"]
 layout_mode = 2
@@ -2890,12 +3119,13 @@ size_flags_horizontal = 3
 layout_mode = 2
 
 [node name="Label2" type="Label" parent="CenterContainer/VBoxContainer/VBoxContainer/VBoxContainer/PanelContainer/Misc/ScrollContainer/MarginContainer/VBoxContainer/HBoxContainer10/VBoxContainer3/HBoxContainer"]
-custom_minimum_size = Vector2(250, 0)
+custom_minimum_size = Vector2(200, 0)
 layout_mode = 2
 size_flags_horizontal = 3
 size_flags_vertical = 5
 size_flags_stretch_ratio = 3.0
 text = "SCREEN_EFFECT"
+autowrap_mode = 2
 
 [node name="ScreenEffect" type="OptionButton" parent="CenterContainer/VBoxContainer/VBoxContainer/VBoxContainer/PanelContainer/Misc/ScrollContainer/MarginContainer/VBoxContainer/HBoxContainer10/VBoxContainer3/HBoxContainer"]
 custom_minimum_size = Vector2(200, 25)
@@ -2903,10 +3133,10 @@ layout_mode = 2
 size_flags_horizontal = 3
 size_flags_vertical = 5
 size_flags_stretch_ratio = 2.0
-focus_neighbor_bottom = NodePath("../../../../VBoxContainer19/HBoxContainer/BuiltAt")
-focus_next = NodePath("../../../../VBoxContainer19/HBoxContainer/BuiltAt")
+autowrap_mode = 2
 
 [node name="HSeparator4" type="HSeparator" parent="CenterContainer/VBoxContainer/VBoxContainer/VBoxContainer/PanelContainer/Misc/ScrollContainer/MarginContainer/VBoxContainer"]
+custom_minimum_size = Vector2(0, 25)
 layout_mode = 2
 
 [node name="VBoxContainer18" type="VBoxContainer" parent="CenterContainer/VBoxContainer/VBoxContainer/VBoxContainer/PanelContainer/Misc/ScrollContainer/MarginContainer/VBoxContainer"]
@@ -2917,6 +3147,7 @@ size_flags_horizontal = 3
 layout_mode = 2
 
 [node name="CommitInfo" type="Label" parent="CenterContainer/VBoxContainer/VBoxContainer/VBoxContainer/PanelContainer/Misc/ScrollContainer/MarginContainer/VBoxContainer/VBoxContainer18/HBoxContainer"]
+custom_minimum_size = Vector2(200, 0)
 layout_mode = 2
 size_flags_horizontal = 3
 size_flags_vertical = 5
@@ -2924,6 +3155,7 @@ size_flags_stretch_ratio = 3.0
 tooltip_text = "EXACT_VERSION_TOOLTIP"
 mouse_filter = 1
 text = "EXACT_VERSION_COLON"
+autowrap_mode = 2
 
 [node name="Commit" type="Label" parent="CenterContainer/VBoxContainer/VBoxContainer/VBoxContainer/PanelContainer/Misc/ScrollContainer/MarginContainer/VBoxContainer/VBoxContainer18/HBoxContainer"]
 editor_description = "PLACEHOLDER"
@@ -2941,24 +3173,24 @@ size_flags_horizontal = 3
 layout_mode = 2
 
 [node name="BuiltTimeInfo" type="Label" parent="CenterContainer/VBoxContainer/VBoxContainer/VBoxContainer/PanelContainer/Misc/ScrollContainer/MarginContainer/VBoxContainer/VBoxContainer19/HBoxContainer"]
+custom_minimum_size = Vector2(200, 0)
 layout_mode = 2
 size_flags_horizontal = 3
 size_flags_vertical = 5
 size_flags_stretch_ratio = 3.0
 mouse_filter = 1
 text = "COMPILED_AT_COLON"
+autowrap_mode = 2
 
 [node name="BuiltAt" type="Label" parent="CenterContainer/VBoxContainer/VBoxContainer/VBoxContainer/PanelContainer/Misc/ScrollContainer/MarginContainer/VBoxContainer/VBoxContainer19/HBoxContainer"]
 editor_description = "PLACEHOLDER"
 layout_mode = 2
 size_flags_horizontal = 3
-focus_neighbor_bottom = NodePath("../../../../../../../../../HBoxContainer/Back")
-focus_next = NodePath("../../../../../../../../../HBoxContainer/Back")
-focus_mode = 2
 mouse_filter = 1
 text = "Date and time goes here"
 
 [node name="HBoxContainer" type="HBoxContainer" parent="CenterContainer/VBoxContainer/VBoxContainer"]
+visible = false
 layout_mode = 2
 
 [node name="Back" type="Button" parent="CenterContainer/VBoxContainer/VBoxContainer/HBoxContainer"]
@@ -3201,18 +3433,18 @@ grow_vertical = 1
 [connection signal="value_changed" from="CenterContainer/VBoxContainer/VBoxContainer/VBoxContainer/PanelContainer/Performance/ScrollContainer/MarginContainer/VBoxContainer/DiskCacheMaxTime/HBoxContainer/CacheValue2" to="." method="OnDiskCacheDurationChanged"]
 [connection signal="value_changed" from="CenterContainer/VBoxContainer/VBoxContainer/VBoxContainer/PanelContainer/Performance/ScrollContainer/MarginContainer/VBoxContainer/MaxMemoryItems/HBoxContainer/CacheValue" to="." method="OnMemoryMaxItemsChanged"]
 [connection signal="value_changed" from="CenterContainer/VBoxContainer/VBoxContainer/VBoxContainer/PanelContainer/Performance/ScrollContainer/MarginContainer/VBoxContainer/MemoryOnlyCacheTime/HBoxContainer/CacheValue2" to="." method="OnMemoryOnlyCacheTimeChanged"]
-[connection signal="toggled" from="CenterContainer/VBoxContainer/VBoxContainer/VBoxContainer/PanelContainer/Inputs/MarginContainer/VBoxContainer/VBoxContainer/ScrollContainer/MarginContainer/VBoxContainer/VBoxContainer2/HBoxContainer/SameBothAxesSensitivity" to="." method="OnMouseAxesBoundToggled"]
 [connection signal="value_changed" from="CenterContainer/VBoxContainer/VBoxContainer/VBoxContainer/PanelContainer/Inputs/MarginContainer/VBoxContainer/VBoxContainer/ScrollContainer/MarginContainer/VBoxContainer/HBoxContainer5/Horizontal" to="." method="OnMouseHorizontalSensitivityChanged"]
 [connection signal="toggled" from="CenterContainer/VBoxContainer/VBoxContainer/VBoxContainer/PanelContainer/Inputs/MarginContainer/VBoxContainer/VBoxContainer/ScrollContainer/MarginContainer/VBoxContainer/HBoxContainer5/HorizontalInverted" to="." method="OnInvertedMouseHorizontalToggled"]
 [connection signal="value_changed" from="CenterContainer/VBoxContainer/VBoxContainer/VBoxContainer/PanelContainer/Inputs/MarginContainer/VBoxContainer/VBoxContainer/ScrollContainer/MarginContainer/VBoxContainer/HBoxContainer6/Vertical" to="." method="OnMouseVerticalSensitivityChanged"]
 [connection signal="toggled" from="CenterContainer/VBoxContainer/VBoxContainer/VBoxContainer/PanelContainer/Inputs/MarginContainer/VBoxContainer/VBoxContainer/ScrollContainer/MarginContainer/VBoxContainer/HBoxContainer6/VerticalInverted" to="." method="OnInvertedMouseVerticalToggled"]
+[connection signal="toggled" from="CenterContainer/VBoxContainer/VBoxContainer/VBoxContainer/PanelContainer/Inputs/MarginContainer/VBoxContainer/VBoxContainer/ScrollContainer/MarginContainer/VBoxContainer/VBoxContainer2/HBoxContainer/SameBothAxesSensitivity" to="." method="OnMouseAxesBoundToggled"]
 [connection signal="item_selected" from="CenterContainer/VBoxContainer/VBoxContainer/VBoxContainer/PanelContainer/Inputs/MarginContainer/VBoxContainer/VBoxContainer/ScrollContainer/MarginContainer/VBoxContainer/VBoxContainer3/HBoxContainer/SensitivityScaleMode" to="." method="OnMouseSensitivityScaleModeSelected"]
 [connection signal="toggled" from="CenterContainer/VBoxContainer/VBoxContainer/VBoxContainer/PanelContainer/Inputs/MarginContainer/VBoxContainer/VBoxContainer/ScrollContainer/MarginContainer/VBoxContainer/VBoxContainer4/HBoxContainer/VirtualWindowSize" to="." method="OnMouseScaleLogicalWindowSizeToggled"]
-[connection signal="toggled" from="CenterContainer/VBoxContainer/VBoxContainer/VBoxContainer/PanelContainer/Inputs/MarginContainer/VBoxContainer/VBoxContainer/ScrollContainer/MarginContainer/VBoxContainer/VBoxContainer5/HBoxContainer/SameBothAxesSensitivity" to="." method="OnControllerAxesBoundToggled"]
 [connection signal="value_changed" from="CenterContainer/VBoxContainer/VBoxContainer/VBoxContainer/PanelContainer/Inputs/MarginContainer/VBoxContainer/VBoxContainer/ScrollContainer/MarginContainer/VBoxContainer/HBoxContainer9/Horizontal" to="." method="OnControllerHorizontalSensitivityChanged"]
 [connection signal="toggled" from="CenterContainer/VBoxContainer/VBoxContainer/VBoxContainer/PanelContainer/Inputs/MarginContainer/VBoxContainer/VBoxContainer/ScrollContainer/MarginContainer/VBoxContainer/HBoxContainer9/HorizontalInverted" to="." method="OnInvertedControllerHorizontalToggled"]
 [connection signal="value_changed" from="CenterContainer/VBoxContainer/VBoxContainer/VBoxContainer/PanelContainer/Inputs/MarginContainer/VBoxContainer/VBoxContainer/ScrollContainer/MarginContainer/VBoxContainer/HBoxContainer10/Vertical" to="." method="OnControllerVerticalSensitivityChanged"]
 [connection signal="toggled" from="CenterContainer/VBoxContainer/VBoxContainer/VBoxContainer/PanelContainer/Inputs/MarginContainer/VBoxContainer/VBoxContainer/ScrollContainer/MarginContainer/VBoxContainer/HBoxContainer10/VerticalInverted" to="." method="OnInvertedControllerVerticalToggled"]
+[connection signal="toggled" from="CenterContainer/VBoxContainer/VBoxContainer/VBoxContainer/PanelContainer/Inputs/MarginContainer/VBoxContainer/VBoxContainer/ScrollContainer/MarginContainer/VBoxContainer/VBoxContainer5/HBoxContainer/SameBothAxesSensitivity" to="." method="OnControllerAxesBoundToggled"]
 [connection signal="pressed" from="CenterContainer/VBoxContainer/VBoxContainer/VBoxContainer/PanelContainer/Inputs/MarginContainer/VBoxContainer/VBoxContainer/ScrollContainer/MarginContainer/VBoxContainer/VBoxContainer6/HBoxContainer/DeadzonesButton" to="." method="OnOpenDeadzoneConfigurationPressed"]
 [connection signal="item_selected" from="CenterContainer/VBoxContainer/VBoxContainer/VBoxContainer/PanelContainer/Inputs/MarginContainer/VBoxContainer/VBoxContainer/ScrollContainer/MarginContainer/VBoxContainer/VBoxContainer7/HBoxContainer/Movement2DType" to="." method="OnMovement2DTypeSelected"]
 [connection signal="item_selected" from="CenterContainer/VBoxContainer/VBoxContainer/VBoxContainer/PanelContainer/Inputs/MarginContainer/VBoxContainer/VBoxContainer/ScrollContainer/MarginContainer/VBoxContainer/VBoxContainer8/HBoxContainer/Movement3DType" to="." method="OnMovement3DTypeSelected"]
@@ -3230,12 +3462,12 @@ grow_vertical = 1
 [connection signal="pressed" from="CenterContainer/VBoxContainer/VBoxContainer/VBoxContainer/PanelContainer/Misc/ScrollContainer/MarginContainer/VBoxContainer/VBoxContainer8/HBoxContainer/ResetTutorials" to="." method="OnResetShownTutorials"]
 [connection signal="pressed" from="CenterContainer/VBoxContainer/VBoxContainer/VBoxContainer/PanelContainer/Misc/ScrollContainer/MarginContainer/VBoxContainer/HBoxContainer4/ScreenshotFolder" to="." method="OnOpenScreenshotFolder"]
 [connection signal="pressed" from="CenterContainer/VBoxContainer/VBoxContainer/VBoxContainer/PanelContainer/Misc/ScrollContainer/MarginContainer/VBoxContainer/HBoxContainer4/LogButton" to="." method="OnLogButtonPressed"]
-[connection signal="item_selected" from="CenterContainer/VBoxContainer/VBoxContainer/VBoxContainer/PanelContainer/Misc/ScrollContainer/MarginContainer/VBoxContainer/HBoxContainer8/VBoxContainer3/HBoxContainer/JSONDebug" to="." method="OnJSONDebugModeSelected"]
 [connection signal="toggled" from="CenterContainer/VBoxContainer/VBoxContainer/VBoxContainer/PanelContainer/Misc/ScrollContainer/MarginContainer/VBoxContainer/VBoxContainer11/HBoxContainer/Cheats" to="." method="OnCheatsToggled"]
 [connection signal="toggled" from="CenterContainer/VBoxContainer/VBoxContainer/VBoxContainer/PanelContainer/Misc/ScrollContainer/MarginContainer/VBoxContainer/VBoxContainer12/HBoxContainer/CustomUsernameEnabled" to="." method="OnCustomUsernameEnabledToggled"]
 [connection signal="text_changed" from="CenterContainer/VBoxContainer/VBoxContainer/VBoxContainer/PanelContainer/Misc/ScrollContainer/MarginContainer/VBoxContainer/VBoxContainer13/HBoxContainer/CustomUsername" to="." method="OnCustomUsernameTextChanged"]
 [connection signal="toggled" from="CenterContainer/VBoxContainer/VBoxContainer/VBoxContainer/PanelContainer/Misc/ScrollContainer/MarginContainer/VBoxContainer/VBoxContainer14/HBoxContainer/WebFeeds" to="." method="OnWebFeedsEnabledToggled"]
 [connection signal="toggled" from="CenterContainer/VBoxContainer/VBoxContainer/VBoxContainer/PanelContainer/Misc/ScrollContainer/MarginContainer/VBoxContainer/VBoxContainer15/HBoxContainer/ShowNewPatchNotes" to="." method="OnPatchNotesEnabledToggled"]
+[connection signal="item_selected" from="CenterContainer/VBoxContainer/VBoxContainer/VBoxContainer/PanelContainer/Misc/ScrollContainer/MarginContainer/VBoxContainer/HBoxContainer8/VBoxContainer3/HBoxContainer/JSONDebug" to="." method="OnJSONDebugModeSelected"]
 [connection signal="pressed" from="CenterContainer/VBoxContainer/VBoxContainer/VBoxContainer/PanelContainer/Misc/ScrollContainer/MarginContainer/VBoxContainer/VBoxContainer16/HBoxContainer/ViewPatchNotes" to="." method="OnOpenPatchNotesPressed"]
 [connection signal="pressed" from="CenterContainer/VBoxContainer/VBoxContainer/VBoxContainer/PanelContainer/Misc/ScrollContainer/MarginContainer/VBoxContainer/VBoxContainer17/HBoxContainer/ResetDismissed" to="." method="OnResetDismissedPopups"]
 [connection signal="item_selected" from="CenterContainer/VBoxContainer/VBoxContainer/VBoxContainer/PanelContainer/Misc/ScrollContainer/MarginContainer/VBoxContainer/HBoxContainer10/VBoxContainer3/HBoxContainer/ScreenEffect" to="." method="OnScreenEffectSelected"]
