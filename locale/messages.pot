@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Thrive VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2025-07-12 13:27+0200\n"
+"POT-Creation-Date: 2025-07-12 13:32+0200\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -435,6 +435,10 @@ msgstr ""
 msgid "AUTO_EVO"
 msgstr ""
 
+#: ../src/gui_common/menus/PlanetCustomizerTool.tscn:149
+msgid "AUTO_EVO_EXPLORER_TOOL_BUTTON"
+msgstr ""
+
 #: ../src/general/MainMenu.tscn:401
 msgid "AUTO_EVO_EXPLORING_TOOL"
 msgstr ""
@@ -466,10 +470,6 @@ msgstr ""
 
 #: ../src/auto-evo/AutoEvoExploringTool.tscn:258
 msgid "AUTO_EVO_STATUS_COLON"
-msgstr ""
-
-#: ../src/gui_common/menus/PlanetCustomizerTool.tscn:150
-msgid "AUTO_EVO_TOOL_BUTTON"
 msgstr ""
 
 #: ../simulation_parameters/common/input_options.json:28
@@ -509,7 +509,7 @@ msgstr ""
 #: ../src/general/MainMenu.tscn:546 ../src/general/MainMenu.tscn:894
 #: ../src/general/NewGameSettings.tscn:1023 ../src/general/PauseMenu.tscn:291
 #: ../src/gui_common/menus/OptionsMenu.tscn:2133
-#: ../src/gui_common/menus/PlanetCustomizerTool.tscn:127
+#: ../src/gui_common/menus/PlanetCustomizerTool.tscn:126
 #: ../src/microbe_stage/gui/ExtinctionBox.tscn:72
 #: ../src/modding/ModManager.tscn:83 ../src/saving/NewSaveMenu.tscn:122
 #: ../src/saving/SaveManagerGUI.tscn:88
@@ -1105,26 +1105,26 @@ msgstr ""
 msgid "CLICK_TO_SELECT"
 msgstr ""
 
-#: ../src/gui_common/menus/PlanetSettings.tscn:235
+#: ../src/gui_common/menus/PlanetSettings.tscn:232
 msgid "CLIMATE_INSTABILITY"
 msgstr ""
 
-#: ../src/gui_common/menus/PlanetSettings.tscn:257
+#: ../src/gui_common/menus/PlanetSettings.tscn:253
 msgid "CLIMATE_INSTABILITY_EXPLANATION"
 msgstr ""
 
 #: ../src/general/WorldGenerationSettings.cs:126
-#: ../src/gui_common/menus/PlanetSettings.tscn:248
+#: ../src/gui_common/menus/PlanetSettings.tscn:244
 msgid "CLIMATE_STABILITY_AVERAGE"
 msgstr ""
 
 #: ../src/general/WorldGenerationSettings.cs:123
-#: ../src/gui_common/menus/PlanetSettings.tscn:246
+#: ../src/gui_common/menus/PlanetSettings.tscn:242
 msgid "CLIMATE_STABILITY_STABLE"
 msgstr ""
 
 #: ../src/general/WorldGenerationSettings.cs:129
-#: ../src/gui_common/menus/PlanetSettings.tscn:250
+#: ../src/gui_common/menus/PlanetSettings.tscn:246
 msgid "CLIMATE_STABILITY_UNSTABLE"
 msgstr ""
 
@@ -1399,7 +1399,7 @@ msgstr ""
 
 #: ../src/auto-evo/AutoEvoExploringTool.tscn:695
 #: ../src/general/PauseMenu.tscn:317
-#: ../src/gui_common/menus/PlanetCustomizerTool.tscn:163
+#: ../src/gui_common/menus/PlanetCustomizerTool.tscn:162
 #: ../src/thriveopedia/pages/ThriveopediaMuseumPage.tscn:118
 msgid "CONFIRM_EXIT"
 msgstr ""
@@ -1891,19 +1891,19 @@ msgstr ""
 msgid "DAMAGE_SOURCE_RADIATION"
 msgstr ""
 
-#: ../src/gui_common/menus/PlanetSettings.tscn:327
+#: ../src/gui_common/menus/PlanetSettings.tscn:323
 msgid "DAY_LENGTH"
 msgstr ""
 
-#: ../src/gui_common/menus/PlanetSettings.tscn:361
+#: ../src/gui_common/menus/PlanetSettings.tscn:357
 msgid "DAY_LENGTH_EXPLANATION"
 msgstr ""
 
-#: ../src/gui_common/menus/PlanetSettings.tscn:301
+#: ../src/gui_common/menus/PlanetSettings.tscn:297
 msgid "DAY_NIGHT_CYCLE_ENABLED"
 msgstr ""
 
-#: ../src/gui_common/menus/PlanetSettings.tscn:311
+#: ../src/gui_common/menus/PlanetSettings.tscn:307
 msgid "DAY_NIGHT_CYCLE_ENABLED_EXPLANATION_2"
 msgstr ""
 
@@ -2710,7 +2710,7 @@ msgid "EXPORT_ALL_WORLDS_TOOLTIP"
 msgstr ""
 
 #: ../src/auto-evo/AutoEvoExploringTool.tscn:700
-#: ../src/gui_common/menus/PlanetCustomizerTool.tscn:168
+#: ../src/gui_common/menus/PlanetCustomizerTool.tscn:167
 msgid "EXPORT_SUCCESS"
 msgstr ""
 
@@ -3133,7 +3133,7 @@ msgid "GENERAL_LOADING_TIP_7"
 msgstr ""
 
 #: ../src/gui_common/menus/PlanetCustomizerTool.cs:92
-#: ../src/gui_common/menus/PlanetCustomizerTool.tscn:158
+#: ../src/gui_common/menus/PlanetCustomizerTool.tscn:157
 msgid "GENERATE_BUTTON"
 msgstr ""
 
@@ -3145,26 +3145,26 @@ msgstr ""
 msgid "GENERATION_COLON"
 msgstr ""
 
-#: ../src/gui_common/menus/PlanetSettings.tscn:197
+#: ../src/gui_common/menus/PlanetSettings.tscn:195
 msgid "GEOLOGICAL_ACTIVITY"
 msgstr ""
 
 #: ../src/general/WorldGenerationSettings.cs:114
-#: ../src/gui_common/menus/PlanetSettings.tscn:212
+#: ../src/gui_common/menus/PlanetSettings.tscn:209
 msgid "GEOLOGICAL_ACTIVITY_ACTIVE"
 msgstr ""
 
 #: ../src/general/WorldGenerationSettings.cs:111
-#: ../src/gui_common/menus/PlanetSettings.tscn:210
+#: ../src/gui_common/menus/PlanetSettings.tscn:207
 msgid "GEOLOGICAL_ACTIVITY_AVERAGE"
 msgstr ""
 
 #: ../src/general/WorldGenerationSettings.cs:108
-#: ../src/gui_common/menus/PlanetSettings.tscn:208
+#: ../src/gui_common/menus/PlanetSettings.tscn:205
 msgid "GEOLOGICAL_ACTIVITY_DORMANT"
 msgstr ""
 
-#: ../src/gui_common/menus/PlanetSettings.tscn:219
+#: ../src/gui_common/menus/PlanetSettings.tscn:216
 msgid "GEOLOGICAL_ACTIVITY_EXPLANATION"
 msgstr ""
 
@@ -4382,12 +4382,12 @@ msgid "LAUNCHMEDIA"
 msgstr ""
 
 #: ../src/general/NewGameSettings.tscn:146
-#: ../src/gui_common/menus/PlanetSettings.tscn:276
+#: ../src/gui_common/menus/PlanetSettings.tscn:272
 msgid "LAWK_ONLY"
 msgstr ""
 
 #: ../src/general/NewGameSettings.tscn:156
-#: ../src/gui_common/menus/PlanetSettings.tscn:286
+#: ../src/gui_common/menus/PlanetSettings.tscn:282
 msgid "LAWK_ONLY_EXPLANATION"
 msgstr ""
 
@@ -6621,7 +6621,7 @@ msgid "PLAY_MICROBE_INTRO_ON_NEW_GAME"
 msgstr ""
 
 #: ../src/auto-evo/AutoEvoExploringTool.tscn:326
-#: ../src/gui_common/menus/PlanetCustomizerTool.tscn:146
+#: ../src/gui_common/menus/PlanetCustomizerTool.tscn:145
 msgid "PLAY_WITH_CURRENT_SETTING"
 msgstr ""
 
@@ -6816,7 +6816,7 @@ msgstr ""
 msgid "REFRESH"
 msgstr ""
 
-#: ../src/gui_common/menus/PlanetCustomizerTool.tscn:154
+#: ../src/gui_common/menus/PlanetCustomizerTool.tscn:153
 msgid "REGENERATE_BUTTON"
 msgstr ""
 
@@ -6996,7 +6996,7 @@ msgid "RETURN_TO_MENU_TOOLTIP"
 msgstr ""
 
 #: ../src/auto-evo/AutoEvoExploringTool.tscn:694 ../src/general/PauseMenu.cs:353
-#: ../src/gui_common/menus/PlanetCustomizerTool.tscn:162
+#: ../src/gui_common/menus/PlanetCustomizerTool.tscn:161
 msgid "RETURN_TO_MENU_WARNING"
 msgstr ""
 
@@ -11428,26 +11428,26 @@ msgstr ""
 msgid "WORLD_RELATIVE_MOVEMENT"
 msgstr ""
 
-#: ../src/gui_common/menus/PlanetSettings.tscn:159
+#: ../src/gui_common/menus/PlanetSettings.tscn:158
 msgid "WORLD_SEA_LEVEL"
 msgstr ""
 
 #: ../src/general/WorldGenerationSettings.cs:99
-#: ../src/gui_common/menus/PlanetSettings.tscn:174
+#: ../src/gui_common/menus/PlanetSettings.tscn:172
 msgid "WORLD_SEA_LEVEL_DEEP"
 msgstr ""
 
-#: ../src/gui_common/menus/PlanetSettings.tscn:181
+#: ../src/gui_common/menus/PlanetSettings.tscn:179
 msgid "WORLD_SEA_LEVEL_EXPLANATION"
 msgstr ""
 
 #: ../src/general/WorldGenerationSettings.cs:96
-#: ../src/gui_common/menus/PlanetSettings.tscn:172
+#: ../src/gui_common/menus/PlanetSettings.tscn:170
 msgid "WORLD_SEA_LEVEL_MODERATE"
 msgstr ""
 
 #: ../src/general/WorldGenerationSettings.cs:93
-#: ../src/gui_common/menus/PlanetSettings.tscn:170
+#: ../src/gui_common/menus/PlanetSettings.tscn:168
 msgid "WORLD_SEA_LEVEL_SHALLOW"
 msgstr ""
 
@@ -11475,10 +11475,6 @@ msgid "WORLD_SIZE_SMALL"
 msgstr ""
 
 #: ../src/gui_common/menus/PlanetSettings.tscn:91
-#: ../src/gui_common/menus/PlanetSettings.tscn:129
-#: ../src/gui_common/menus/PlanetSettings.tscn:167
-#: ../src/gui_common/menus/PlanetSettings.tscn:205
-#: ../src/gui_common/menus/PlanetSettings.tscn:243
 msgid "WORLD_SIZE_TOOLTIP"
 msgstr ""
 
@@ -11487,21 +11483,21 @@ msgid "WORLD_TEMPERATURE"
 msgstr ""
 
 #: ../src/general/WorldGenerationSettings.cs:78
-#: ../src/gui_common/menus/PlanetSettings.tscn:132
+#: ../src/gui_common/menus/PlanetSettings.tscn:131
 msgid "WORLD_TEMPERATURE_COLD"
 msgstr ""
 
-#: ../src/gui_common/menus/PlanetSettings.tscn:143
+#: ../src/gui_common/menus/PlanetSettings.tscn:142
 msgid "WORLD_TEMPERATURE_EXPLANATION"
 msgstr ""
 
 #: ../src/general/WorldGenerationSettings.cs:81
-#: ../src/gui_common/menus/PlanetSettings.tscn:134
+#: ../src/gui_common/menus/PlanetSettings.tscn:133
 msgid "WORLD_TEMPERATURE_TEMPERATE"
 msgstr ""
 
 #: ../src/general/WorldGenerationSettings.cs:84
-#: ../src/gui_common/menus/PlanetSettings.tscn:136
+#: ../src/gui_common/menus/PlanetSettings.tscn:135
 msgid "WORLD_TEMPERATURE_WARM"
 msgstr ""
 
