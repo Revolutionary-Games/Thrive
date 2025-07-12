@@ -94,8 +94,6 @@ public class Program
     {
         CommandLineHelpers.HandleDefaultOptions(options);
 
-        ColourConsole.WriteInfoLine("Running 'dotnet test'");
-
         var godot = ExecutableFinder.Which("godot");
 
         if (string.IsNullOrEmpty(godot))
@@ -115,6 +113,8 @@ public class Program
 
         int result;
 
+        ColourConsole.WriteInfoLine("Running 'dotnet test'");
+
         // Run plain C# tests first
         {
             var startInfo = new ProcessStartInfo("dotnet");
@@ -132,6 +132,8 @@ public class Program
                 return result;
             }
         }
+
+        ColourConsole.WriteInfoLine("Running tests with gdUnit");
 
         const int maxTries = 2;
 
