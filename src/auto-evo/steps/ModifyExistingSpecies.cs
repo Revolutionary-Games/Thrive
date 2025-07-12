@@ -2,8 +2,6 @@
 
 using System;
 using System.Collections.Generic;
-using System.Formats.Tar;
-using System.Linq;
 using Godot;
 using Xoshiro.PRNG64;
 
@@ -35,19 +33,13 @@ public class ModifyExistingSpecies : IRunStep
     private readonly List<Miche> predatorCalculationMemory2 = new();
     private readonly List<Species> predatorPressuresTemporary = new();
 
-    private readonly List<IMutationStrategy<MicrobeSpecies>> tempMutationStrategies = new();
-
     // TODO: switch to named tuple elements
     private readonly List<Tuple<MicrobeSpecies, double>> temporaryMutations1 = new();
     private readonly List<Tuple<MicrobeSpecies, double>> temporaryMutations2 = new();
 
     private readonly List<MicrobeSpecies> lastGeneratedMutations = new();
 
-    private readonly List<Miche> currentTraversal = new();
-
     private readonly Stack<SelectionPressure> pressureStack = new();
-
-    private readonly List<Tuple<MicrobeSpecies, double>> temporaryResultForTopMutations = new();
 
     private readonly MutationSorter mutationSorter;
     private readonly GenerateMutationsWorkingMemory generateMutationsWorkingMemory = new();
