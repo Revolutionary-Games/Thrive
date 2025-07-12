@@ -104,8 +104,6 @@ public class Program
             return 2;
         }
 
-        TestRunningHelpers.GenerateRunSettings(godot, AssemblyInfoReader.ReadRunTimeFromCsproj("Thrive.csproj"), false);
-
         // Delete the old gdUnit runner if one is present as it will make tests fail
         if (Directory.Exists("gdunit4_testadapter"))
         {
@@ -115,8 +113,30 @@ public class Program
 
         var tokenSource = ConsoleHelpers.CreateSimpleConsoleCancellationSource();
 
-        int result = -1;
+        int result;
+
+        // Run plain C# tests first
+        {
+            var startInfo = new ProcessStartInfo("dotnet");
+            startInfo.ArgumentList.Add("test");
+            startInfo.ArgumentList.Add("--verbosity");
+            startInfo.ArgumentList.Add(TestRunningHelpers.TEST_RUN_VERBOSITY);
+            startInfo.ArgumentList.Add("test/code_tests/ThriveTest.csproj");
+
+            result = ProcessRunHelpers.RunProcessAsync(startInfo, tokenSource.Token, false)
+                .Result.ExitCode;
+
+            if (result != 0)
+            {
+                ColourConsole.WriteErrorLine("Pure C# code tests failed");
+                return result;
+            }
+        }
+
         const int maxTries = 2;
+
+        // Then gdUnit
+        TestRunningHelpers.GenerateRunSettings(godot, AssemblyInfoReader.ReadRunTimeFromCsproj("Thrive.csproj"), false);
 
         // gdUnit can randomly fail once to detect available tests, that's why the tests run multiple times on fail
         // (which is not ideal, but it should hopefully be relatively rare for the tests to actually fail for real)
@@ -128,6 +148,7 @@ public class Program
             startInfo.ArgumentList.Add(TestRunningHelpers.RUN_SETTINGS_FILE);
             startInfo.ArgumentList.Add("--verbosity");
             startInfo.ArgumentList.Add(TestRunningHelpers.TEST_RUN_VERBOSITY);
+            startInfo.ArgumentList.Add("Thrive.csproj");
 
             result = ProcessRunHelpers.RunProcessAsync(startInfo, tokenSource.Token, false)
                 .Result.ExitCode;
