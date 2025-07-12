@@ -7,9 +7,9 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2025-07-11 18:06+0200\n"
-"PO-Revision-Date: 2025-05-25 15:00+0000\n"
-"Last-Translator: Anonymous <noreply@weblate.org>\n"
+"POT-Creation-Date: 2025-06-05 21:10+0100\n"
+"PO-Revision-Date: 2025-07-11 03:02+0000\n"
+"Last-Translator: 猫猫鹰 <w84627302@gmail.com>\n"
 "Language-Team: Chinese (Simplified Han script) <https://translate.revolutionarygamesstudio.com/projects/thrive/thrive-game/zh_Hans/>\n"
 "Language: zh_CN\n"
 "MIME-Version: 1.0\n"
@@ -40,9 +40,8 @@ msgstr "中止"
 msgid "ABORTED_DOT"
 msgstr "已中止。"
 
-#, fuzzy
 msgid "ABSORBERS_COUNT"
-msgstr "微生物计数："
+msgstr "吸收器："
 
 msgid "ABYSSOPELAGIC"
 msgstr "深海带"
@@ -143,7 +142,6 @@ msgstr "(使您能够在本物种灭绝后以另一个不同的物种继续游�
 msgid "ALL_WORLDS_GENERAL_STATISTICS"
 msgstr "所有世界的生物数据"
 
-#, fuzzy
 msgid "ALL_WORLDS_STATISTICS"
 msgstr ""
 "[b]当前代：[/b]\n"
@@ -158,6 +156,7 @@ msgstr ""
 "  平均值 {7}，方差 {8}\n"
 "[b]单细胞生物大小：[/b]\n"
 "  平均值 {9}，方差 {10}\n"
+"\n"
 "[b]基本细胞器信息：[/b]"
 
 msgid "ALREADY_ASCENDED"
@@ -175,9 +174,8 @@ msgstr "环境声效"
 msgid "AMMONIA"
 msgstr "氨"
 
-#, fuzzy
 msgid "AMMONIA_COST"
-msgstr "氨"
+msgstr "氨成本："
 
 msgid "AMOUNT_OF_AUTOSAVE_TO_KEEP"
 msgstr "要保留的自动保存存档数："
@@ -197,21 +195,17 @@ msgstr "各向异性过滤:"
 msgid "ANTIALIASING_MSAA_TAA"
 msgstr "MSAA + TAA"
 
-#, fuzzy
 msgid "ANTI_ALIASING_FXAA"
-msgstr "多重采样抗锯齿："
+msgstr "FXAA"
 
-#, fuzzy
 msgid "ANTI_ALIASING_MODE"
-msgstr "多重采样抗锯齿："
+msgstr "抗锯齿模式："
 
-#, fuzzy
 msgid "ANTI_ALIASING_MSAA"
-msgstr "多重采样抗锯齿："
+msgstr "MSAA"
 
-#, fuzzy
 msgid "ANTI_ALIASING_TAA"
-msgstr "多重采样抗锯齿："
+msgstr "TAA"
 
 msgid "APPEARANCE"
 msgstr "外观"
@@ -256,9 +250,8 @@ msgstr ""
 "\n"
 "您一共在本存档中飞升了{0}次"
 
-#, fuzzy
 msgid "ASCENSION_STAGE"
-msgstr "版本："
+msgstr "飞升阶段"
 
 msgid "ASSEMBLY_CLASS_REQUIRED"
 msgstr "当指定了Mod的assembly后你还需要Mod assembly class"
@@ -291,14 +284,11 @@ msgstr ""
 "比如，有些细胞只有在同时拥有好几种类型的化合物时才可以使ATP收支平衡。\n"
 "这些细胞将更难存活，因为它们需要收集更多的化合物。"
 
-#, fuzzy
 msgid "ATP_BALANCE_TOOLTIP_MULTICELLULAR"
 msgstr ""
-"这个区域显示了目前细胞ATP（能量）的总平衡情况\n"
-"如果想要生存，这个数值应该是正的。对于没有运动需求的细胞，可以不考虑移动所消耗的ATP。\n"
-"下面的下拉菜单可以用来检查各种资源短缺时会发生的情况。\n"
-"比如，有些细胞只有在同时拥有好几种类型的化合物时才可以使ATP收支平衡。\n"
-"这些细胞将更难存活，因为它们需要收集更多的化合物。"
+"本节显示了计算细胞 ATP（能量）平衡的选项\n"
+"计算结果显示在细胞类型选择菜单中。\n"
+"下面的下拉菜单可以用来检查各种资源短缺时会发生的情况。"
 
 msgid "ATP_BALANCE_WITHOUT_EXTERNAL_RESOURCES"
 msgstr "缺少外界资源"
@@ -351,20 +341,17 @@ msgstr ""
 "这个面板显示了来自auto-evo对已编辑物种的预期种群数量。\n"
 "Auto-evo运行的种群模拟是影响种群数量的另一部分要素（还有玩家自己的表现）。"
 
-#, fuzzy
 msgid "AUTO-EVO_RESULTS_TITLE"
-msgstr "Auto-evo结果："
+msgstr "自动进化结果"
 
 msgid "AUTO-EVO_STEPS_DONE"
 msgstr "已完成{0:F1}%。{1:n0}/{2:n0}步剩余。"
 
-#, fuzzy
 msgid "AUTO-EVO_STRENGHT_MULTIPLIER"
-msgstr "突变成本系数"
+msgstr "玩家自动进化强度"
 
-#, fuzzy
 msgid "AUTO-EVO_STRENGHT_MULTIPLIER_EXPLANATION"
-msgstr "（细胞器，膜和编辑器中其它选项的耗费）"
+msgstr "（适用于玩家物种的自动进化种群数量百分比）"
 
 msgid "AUTOSAVE_DURING_THE_GAME"
 msgstr "游戏中启用自动保存"
@@ -529,20 +516,17 @@ msgstr "生物发光液泡"
 msgid "BIOLUMINESCENT_VACUOLE_DESCRIPTION"
 msgstr "生物发光液泡"
 
-#, fuzzy
 msgid "BIOLUMINESCENT_VACUOLE_PROCESSES_DESCRIPTION"
-msgstr "将[thrive:compound type=\"atp\"][/thrive:compound]转换成[thrive:compound type=\"oxytoxy\"][/thrive:compound]。速率跟[thrive:compound type=\"oxygen\"][/thrive:compound]的浓度成正比。按[thrive:input]g_fire_toxin[/thrive:input]以释放毒素。当[thrive:compound type=\"oxytoxy\"][/thrive:compound]储量不足时也能释放，但伤害会降低。"
+msgstr "使用[thrive:compound type=\"atp\"][/thrive:compound]将[thrive:compound type=\"oxytoxy\"][/thrive:compound]转化为光。除了增加氧化抗性外，暂时对玩法没有影响。"
 
 msgid "BIOME_LABEL"
 msgstr "生物群系：{0}"
 
-#, fuzzy
 msgid "BLOOM_RENDER_EFFECT"
-msgstr "画面效果"
+msgstr "泛光效果："
 
-#, fuzzy
 msgid "BLUESKY_TOOLTIP"
-msgstr "暂停游戏"
+msgstr "访问我们的 Bluesky"
 
 msgid "BRAIN_CELL_NAME_DEFAULT"
 msgstr "神经元"
@@ -577,17 +561,14 @@ msgstr "自动存档删除的最大时间"
 msgid "CACHE_MEMORY_MAX_ITEMS"
 msgstr "在内存中保留的最大缓存项目"
 
-#, fuzzy
 msgid "CACHE_TIME_MEMORY"
-msgstr "当前使用的视频内存："
+msgstr "在内存中保留缓存的时长"
 
-#, fuzzy
 msgid "CACHE_TIME_MEMORY_ONLY"
-msgstr "当前使用的视频内存："
+msgstr "只使用内存缓存时的缓存时间"
 
-#, fuzzy
 msgid "CACHING_TITLE"
-msgstr "合成"
+msgstr "缓存"
 
 msgid "CALCIUM_CARBONATE"
 msgstr "碳酸钙"
@@ -676,9 +657,10 @@ msgstr "纤维素"
 msgid "CELLULOSE_MEMBRANE_DESCRIPTION"
 msgstr "这个细胞膜额外配置了一层细胞壁，各方面都有更好的防御力，尤其是物防。同时也不需要多少能量来维持形状，但吸收营养和移动的速度都很慢。[b]纤维素酶可以消化这层墙[/b]，使其容易被捕食者吞噬。"
 
-#, fuzzy
 msgid "CELL_STAT_ROTATION_TOOLTIP"
-msgstr "用于生成世界的随机数种子，必须为正整数"
+msgstr ""
+"细胞旋转速率。更大的细胞旋转更慢，但增加纤毛可以补偿。\n"
+"细胞器放置距离中心越远，影响越大。"
 
 #, fuzzy
 msgid "CELL_STAT_SPEED_TOOLTIP"
@@ -688,13 +670,11 @@ msgstr "用于生成世界的随机数种子，必须为正整数"
 msgid "CELL_STAT_STORAGE_TOOLTIP"
 msgstr "用于生成世界的随机数种子，必须为正整数"
 
-#, fuzzy
 msgid "CELL_TYPE_BUTTON_ATP_CONSUMPTION"
-msgstr "选项卡"
+msgstr "此细胞类型的 ATP 消耗为 {0}。"
 
-#, fuzzy
 msgid "CELL_TYPE_BUTTON_ATP_PRODUCTION"
-msgstr "选项卡"
+msgstr "此细胞类型的 ATP 产出为 {0}。"
 
 msgid "CELL_TYPE_NAME"
 msgstr "细胞类型名称"
@@ -815,9 +795,8 @@ msgstr "清除旧存档"
 msgid "CLEAR_CACHE"
 msgstr "清除缓存"
 
-#, fuzzy
 msgid "CLICK_TO_SELECT"
-msgstr "删除选中的"
+msgstr "选择"
 
 msgid "CLOSE"
 msgstr "关闭"
@@ -828,9 +807,8 @@ msgstr "关闭选项菜单？"
 msgid "CLOSTRIDIAL_FERMENTATION"
 msgstr "梭菌发酵"
 
-#, fuzzy
 msgid "CLOUD_BENCHMARK"
-msgstr "微生物编辑器"
+msgstr "云团性能基准测试"
 
 msgid "CLOUD_RESOLUTION_DIVISOR"
 msgstr "云分辨率除数："
@@ -959,9 +937,8 @@ msgstr ""
 msgid "COMPOUND_CLOUDS"
 msgstr "化合物云"
 
-#, fuzzy
 msgid "COMPOUND_CLOUD_BENCHMARK"
-msgstr "化合物云密度"
+msgstr "化合物云性能基准测试"
 
 msgid "COMPOUND_CLOUD_DENSITY"
 msgstr "化合物云密度"
@@ -975,23 +952,17 @@ msgstr "{0}的浓度已减少了{1}"
 msgid "COMPOUND_FOOD_SOURCE"
 msgstr "{0}消耗"
 
-#, fuzzy
 msgid "COMPOUND_HANDLE_KEEP"
-msgstr "化合物收支"
+msgstr "保留全部"
 
-#, fuzzy
 msgid "COMPOUND_HANDLE_SPLIT_SISTER"
-msgstr "化合物收支"
+msgstr "与姐妹细胞均分"
 
-#, fuzzy
 msgid "COMPOUND_HANDLE_TOP_UP"
-msgstr ""
-"这个区域显示了各化合物的总平衡情况（生产 - 消耗）\n"
-"比如说对植物细胞而言葡萄糖的平衡情况需要是一个不小的正数。"
+msgstr "始终充满至初始值"
 
-#, fuzzy
 msgid "COMPOUND_HANDLE_TOP_UP_ON_CHANGE"
-msgstr "化合物云密度"
+msgstr "地区改变时补充"
 
 msgid "COMPOUND_STORAGE_AMOUNT_DOES_NOT_LAST_NIGHT"
 msgstr "（无法熬过{0}秒长的夜晚）"
@@ -1082,13 +1053,13 @@ msgstr "[center]游戏还未结束， 您可以通过转变到物种 {0}，种�
 msgid "CONTINUE_THRIVING"
 msgstr "继续游戏"
 
-#, fuzzy
 msgid "CONTINUE_TO_PROTOTYPES"
 msgstr ""
-"你已经达到了Thrive的 \"完整 \"部分的终点。\n"
-"如果你愿意，你可以继续游戏的后期阶段原型。这些可能是非常不完整的，使用占位符的图形，而且总体上非常粗糙。这些是游戏的一部分，以显示游戏未来的潜在方向和我们对各阶段如何连接的总体设想。\n"
+"[b]你已经达到了Thrive的 \"完整 \"部分的终点。[/b]\n"
 "\n"
-"如果你继续下去，你将无法保存或返回。如果你想返回这个阶段，请在继续之前现在进行保存。\n"
+"如果你愿意，你可以继续游戏的[b]后期阶段原型[/b]。这些可能是非常不完整的，使用占位符的图形，而且总体上非常粗糙。这些是游戏的一部分，以显示游戏未来的潜在方向和我们对各阶段如何连接的总体设想。\n"
+"\n"
+"如果你继续下去，你将[b]无法保存[/b]或返回。如果你想返回[i]这个[/i]阶段，请在继续之前[b]现在进行保存[/b]。\n"
 "\n"
 "阶段原型中对控制器的支持也远不及先前阶段完整。如果你选择继续，请理解后面的阶段是原型，请不要抱怨它们是多么不完整。"
 
@@ -1358,9 +1329,8 @@ msgstr "制作人名单"
 msgid "CTRL"
 msgstr "CTRL"
 
-#, fuzzy
 msgid "CURRENT_CACHE_SIZE"
-msgstr "没有搜索到任何内容"
+msgstr "当前大小："
 
 #, fuzzy
 msgid "CURRENT_CACHE_SIZE_TOOLTIP"
@@ -1381,7 +1351,6 @@ msgstr "当前正在研究：{0}（{1}）"
 msgid "CURRENT_WORLD"
 msgstr "当前世界"
 
-#, fuzzy
 msgid "CURRENT_WORLD_STATISTICS"
 msgstr ""
 "[b]当前代：[/b]\n"
@@ -1402,6 +1371,7 @@ msgstr ""
 "  {8}\n"
 "[b]单细胞生物基本信息：[/b]\n"
 "  平均大小：{9}\n"
+"\n"
 "[b]基本细胞器信息：[/b]"
 
 msgid "CUSTOM_USERNAME"
@@ -1422,9 +1392,8 @@ msgstr "将[thrive:compound type=\"glucose\"][/thrive:compound]转换成[thrive:
 msgid "CYTOTOXIN_SYNTHESIS"
 msgstr "细胞毒素合成"
 
-#, fuzzy
 msgid "DAMAGE_SOURCE_RADIATION"
-msgstr "选择目前包含您的物种的区域作为迁移来源"
+msgstr "辐射"
 
 msgid "DAY_LENGTH"
 msgstr "日长"
@@ -1461,9 +1430,8 @@ msgstr ""
 msgid "DEBUG_DRAW_NOT_AVAILABLE"
 msgstr "物理调试绘图在此构建类型中不可用"
 
-#, fuzzy
 msgid "DEBUG_HEAT_AT_CURSOR"
-msgstr "鼠标指针处："
+msgstr "热值：{0}"
 
 msgid "DEBUG_PANEL"
 msgstr "调试菜单"
@@ -1573,7 +1541,6 @@ msgstr "Devbuilds 支持者"
 msgid "DIFFICULTY"
 msgstr "难度"
 
-#, fuzzy
 msgid "DIFFICULTY_DETAILS_STRING"
 msgstr ""
 "难度预设: {0}\n"
@@ -1584,8 +1551,7 @@ msgstr ""
 "环境葡萄糖保留: {5}\n"
 "渗透调节消耗系数: {6}\n"
 "在离开编辑器时额外的葡萄糖云: {7}\n"
-"被动获得的繁殖进度: {8}\n"
-"限制繁殖化合物使用: {9}"
+"限制繁殖化合物使用: {8}"
 
 msgid "DIFFICULTY_PRESET"
 msgstr "难度预设"
@@ -1683,9 +1649,8 @@ msgstr "显示3D菜单背景"
 msgid "DISPLAY_ABILITIES_BAR"
 msgstr "显示能力栏"
 
-#, fuzzy
 msgid "DISPLAY_BACKGROUND_DISTORTION_EFFECT"
-msgstr "显示背景粒子"
+msgstr "微生物背景扭曲"
 
 msgid "DISPLAY_BACKGROUND_PARTICLES"
 msgstr "显示背景粒子"
@@ -1696,9 +1661,8 @@ msgstr "OpenGL"
 msgid "DISPLAY_DRIVER_VULKAN"
 msgstr "Vulkan"
 
-#, fuzzy
 msgid "DISPLAY_MODE"
-msgstr "显示细胞器名称"
+msgstr "显示模式："
 
 msgid "DISPLAY_PART_NAMES"
 msgstr "显示细胞器名称"
@@ -1797,9 +1761,8 @@ msgstr "包含彩蛋"
 msgid "EASTER_EGGS_EXPLANATION"
 msgstr "（游戏中会随机生成彩蛋）"
 
-#, fuzzy
 msgid "EASTER_EGG_BANANA_BIOME"
-msgstr "（游戏中会随机生成彩蛋）"
+msgstr "香蕉群系"
 
 msgid "EDGE_PAN_SPEED"
 msgstr "旋转速度："
@@ -1845,9 +1808,8 @@ msgstr ""
 "\n"
 "要继续，从左边的面板上选择一个细胞器。然后左键点击屏幕中间显示的六角形旁边，你可以用[thrive:input]e_rotate_left[/thrive:input] 和 [thrive:input]e_rotate_right[/thrive:input]旋转部件。"
 
-#, fuzzy
 msgid "EFFECTIVE_VALUE"
-msgstr "{0}%"
+msgstr "有效值"
 
 msgid "EIGHT_TIMES"
 msgstr "8x"
@@ -1928,9 +1890,11 @@ msgstr "{0}：-{1} ATP"
 msgid "ENERGY_BALANCE_TOOLTIP_PRODUCTION"
 msgstr "{0}： +{1} ATP"
 
-#, fuzzy
 msgid "ENERGY_BALANCE_TOOLTIP_PRODUCTION_WITH_REQUIREMENT"
-msgstr "{0}： +{1} ATP"
+msgstr ""
+"{0}： +{1} ATP\n"
+"含消耗：\n"
+"{2}"
 
 msgid "ENERGY_IN_PATCH_FOR"
 msgstr "{1}在{0}的能量"
@@ -2005,9 +1969,8 @@ msgstr "载入时出错"
 msgid "ERROR_SAVING"
 msgstr "存档时出错"
 
-#, fuzzy
 msgid "ERROR_UPLOADING_EXCEPTION"
-msgstr "载入时出错"
+msgstr "发生错误：{0}"
 
 msgid "ESCAPE"
 msgstr "Esc"
@@ -2026,26 +1989,35 @@ msgstr ""
 
 msgid "EVENT_METEOR_GLUCOSE"
 msgstr ""
+"地区事件：葡萄糖流星\n"
+"二氧化碳和葡萄糖水平升高"
 
-#, fuzzy
 msgid "EVENT_METEOR_IRON"
-msgstr "{0}： +{1} ATP"
+msgstr ""
+"区域事件：铁流星冲击\n"
+"二氧化碳和铁水平上升\n"
+"生成铁碎块"
 
 #, fuzzy
 msgid "EVENT_METEOR_PHOSPHATES"
 msgstr "生成磷酸盐"
 
-#, fuzzy
 msgid "EVENT_METEOR_PLAIN"
 msgstr ""
-"地区事件：喷发\n"
-"产生额外的硫化氢与二氧化碳"
+"地区事件：流星\n"
+"二氧化碳水平升高"
 
 msgid "EVENT_METEOR_RADIOACTIVE"
 msgstr ""
+"地区事件：放射性流星\n"
+"二氧化碳水平升高\n"
+"生成放射性碎块"
 
 msgid "EVENT_METEOR_SULFUR"
 msgstr ""
+"地区事件：硫流星\n"
+"二氧化碳和硫水平升高\n"
+"生成硫碎块"
 
 msgid "EVOLUTIONARY_TREE"
 msgstr "进化树"
@@ -2590,7 +2562,7 @@ msgid "ID_NUMBER"
 msgstr "编号"
 
 msgid "IF_FALLBACK_RENDERER_USED_ALL_NOT_AVAILABLE"
-msgstr ""
+msgstr "（取决于渲染模式和缩放，并非所有方法都适用）"
 
 msgid "IMAGE_FILE_TYPES"
 msgstr "支持的图片文件"
@@ -2797,15 +2769,11 @@ msgstr "捐助"
 msgid "ITCH_TOOLTIP"
 msgstr "访问我们在Itch.io上的页面"
 
-#, fuzzy
 msgid "ITEM_AT_2D_COORDINATES"
-msgstr ""
-"位置坐标：{0}\n"
-"朝向坐标：{1}"
+msgstr "{0} 于 ({1}, {2})"
 
-#, fuzzy
 msgid "ITEM_NAME_SEPARATOR"
-msgstr "与物体交互"
+msgstr "："
 
 msgid "JANUARY"
 msgstr "一月"
@@ -3000,9 +2968,8 @@ msgstr "此翻译仍在开发中（已完成 {0}%）"
 msgid "LANGUAGE_TRANSLATION_PROGRESS_REALLY_LOW"
 msgstr "此翻译非常不完整（已完成 {0}%）请帮助我们！"
 
-#, fuzzy
 msgid "LARGE_SULFUR_CHUNK"
-msgstr "小铁块"
+msgstr "大硫块"
 
 msgid "LAST_ORGANELLE_DELETE_OPTION_DISABLED_TOOLTIP"
 msgstr "无法删除最后的细胞器"
@@ -3243,9 +3210,8 @@ msgstr "载入多细胞编辑器中"
 msgid "LOADING_STAGE"
 msgstr "载入游戏"
 
-#, fuzzy
 msgid "LOADING_STAGE_ASSETS"
-msgstr "载入游戏"
+msgstr "载入资产 {0} / {1}"
 
 msgid "LOAD_FINISHED"
 msgstr "载入完成"
@@ -3291,7 +3257,7 @@ msgid "LOWER_SCALE_INCREASES_PERFORMANCE"
 msgstr "（更高的数值有助于提升性能）"
 
 msgid "LOWER_VALUE_MAKES_SHARPER_IMAGE"
-msgstr ""
+msgstr "（更低的数值使图像更锐利）"
 
 msgid "LOW_MENU_PERFORMANCE"
 msgstr "性能过低"
@@ -3305,12 +3271,11 @@ msgstr ""
 msgid "LOW_QUALITY_BACKGROUND_BLUR"
 msgstr "低分辨率背景模糊"
 
-#, fuzzy
 msgid "LOW_QUALITY_BACKGROUND_BLUR_TOOLTIP"
-msgstr "低分辨率背景模糊"
+msgstr "背景模糊使用更低的分辨率，提高性能。"
 
 msgid "LUCIFERASE"
-msgstr ""
+msgstr "荧光素酶"
 
 #, fuzzy
 msgid "LUCIFERASE_SYNTHESIS"
@@ -3328,9 +3293,8 @@ msgstr "含有消化酶。可以通过修改来改变它所含酶的类型。一
 msgid "MACROLIDE_SYNTHESIS"
 msgstr "大环内酯物合成"
 
-#, fuzzy
 msgid "MACROSCOPIC"
-msgstr "成为宏观生物（{0}/{1}）"
+msgstr "宏观生物"
 
 #, fuzzy
 msgid "MACROSCOPIC_STAGE"
@@ -3397,9 +3361,8 @@ msgstr "媒体录制"
 msgid "MEDIASTOP"
 msgstr "媒体停止"
 
-#, fuzzy
 msgid "MEDIUM_SULFUR_CHUNK"
-msgstr "小铁块"
+msgstr "中硫块"
 
 msgid "MEGA_YEARS"
 msgstr "*10⁶年"
@@ -3447,13 +3410,13 @@ msgstr ""
 "这个选项会影响默认线程数，因为超线程的速度不如真正的CPU内核快。"
 
 msgid "METEOR_IMPACT_EVENT"
-msgstr ""
+msgstr "地区事件：流星冲击"
 
 msgid "METEOR_STRIKE_START_EVENT_LOG_PLURAL"
-msgstr ""
+msgstr "流星冲击事件影响了{0}个地区"
 
 msgid "METEOR_STRIKE_START_EVENT_LOG_SINGULAR"
-msgstr ""
+msgstr "流星冲击事件影响了{0}个地区"
 
 msgid "METRICS"
 msgstr "性能参数"
@@ -3482,9 +3445,8 @@ msgstr "{0} MiB"
 msgid "MICHE"
 msgstr "生态导向源"
 
-#, fuzzy
 msgid "MICHES_FOR_PATCH"
-msgstr "在这个地区里灭绝了"
+msgstr "地区 {0} 的 Miches"
 
 msgid "MICHE_AVOID_PREDATION_SELECTION_PRESSURE"
 msgstr "避免自然捕食选择的压力"
@@ -3545,16 +3507,14 @@ msgstr "微生物计数："
 msgid "MICROBE_BENCHMARK"
 msgstr "微生物编辑器"
 
-#, fuzzy
 msgid "MICROBE_CAMERA_TILT_EFFECT"
-msgstr "  {0}：{1}的物种具有该细胞器，平均数量为{2}"
+msgstr "微生物镜头倾角"
 
 msgid "MICROBE_EDITOR"
 msgstr "微生物编辑器"
 
-#, fuzzy
 msgid "MICROBE_ENZYME_STATISTICS"
-msgstr "  {0}：{1}的物种具有该细胞器，平均数量为{2}"
+msgstr "[b]酶数据：[/b]"
 
 msgid "MICROBE_FREEBUILD_EDITOR"
 msgstr "微生物阶段自由编辑器"
@@ -3647,24 +3607,20 @@ msgstr "在编辑器中按下撤消键以纠正错误"
 msgid "MICROBE_LOADING_TIP_9"
 msgstr "在编辑器中按下撤消键以纠正错误"
 
-#, fuzzy
 msgid "MICROBE_MEMBRANE_PERCENTAGE_STATISTICS"
-msgstr "  {0}：{1}的物种具有该细胞器，平均数量为{2}"
+msgstr "{0}：发现于 {1} 个物种"
 
-#, fuzzy
 msgid "MICROBE_MEMBRANE_STATISTICS"
-msgstr "  {0}：{1}的物种具有该细胞器，平均数量为{2}"
+msgstr "[b]细胞膜数据：[/b]"
 
 msgid "MICROBE_ORGANELLE_STATISTICS"
 msgstr "  {0}：{1}的物种具有该细胞器，平均数量为{2}"
 
-#, fuzzy
 msgid "MICROBE_ORGANELLE_UPGRADES_STATISTICS"
-msgstr "  {0}：{1}的物种具有该细胞器，平均数量为{2}"
+msgstr "[b]细胞器升级数据：[/b]"
 
-#, fuzzy
 msgid "MICROBE_RIPPLE_EFFECT"
-msgstr "  {0}：{1}的物种具有该细胞器，平均数量为{2}"
+msgstr "微生物移动波纹效果"
 
 msgid "MICROBE_SPECIES_DETAIL_TEXT"
 msgstr ""
@@ -3684,12 +3640,11 @@ msgstr ""
 msgid "MICROBE_STAGE"
 msgstr "微生物阶段"
 
-#, fuzzy
 msgid "MICROBE_STAGE_BECOME_MULTICELLULAR_TEXT"
 msgstr ""
 "你现在已经有能力向[b]多细胞生物[/b]进化，这会是进化之旅的下一步。\n"
 "\n"
-"按下“成为多细胞”按钮以继续。"
+"按下[b]“成为多细胞”[/b]按钮以继续。"
 
 #, fuzzy
 msgid "MICROBE_STAGE_COLLECT_TEXT"
@@ -3771,9 +3726,8 @@ msgstr "鼠标中键"
 msgid "MIGRATION_FAILED_TO_ADD"
 msgstr "错误：迁移失败，请检查迁移参数"
 
-#, fuzzy
 msgid "MIGRATION_MANAGER"
-msgstr "将{2}单位的种群从{0}迁移到{1}"
+msgstr "迁移管理器"
 
 msgid "MIGRATION_STATUS_DESTINATION_NOT_SELECTED"
 msgstr "将种群从{0}迁移到..."
@@ -4265,6 +4219,10 @@ msgid "NOTICE_HIT_BY_BASE_MOVEMENT_TOXIN"
 msgstr "基础运动速度因毒素而降低"
 
 #, fuzzy
+msgid "NOTICE_NOT_ENOUGH_MUCILAGE"
+msgstr "没有足够的{0}用于合成该配方"
+
+#, fuzzy
 msgid "NOTICE_RADIATION_DAMAGE"
 msgstr "现在可以进入编辑器"
 
@@ -4489,9 +4447,8 @@ msgstr "{0}个细胞器"
 msgid "ORGANELLE_SINGULAR"
 msgstr "{0}个细胞器"
 
-#, fuzzy
 msgid "ORGANELLE_SUGGESTION_COLON"
-msgstr "细胞器"
+msgstr "细胞器建议："
 
 #, fuzzy
 msgid "ORGANELLE_SUGGESTION_TOOLTIP"
@@ -4704,9 +4661,8 @@ msgstr "每秒"
 msgid "PHOSPHATE"
 msgstr "磷酸盐"
 
-#, fuzzy
 msgid "PHOSPHATES_COST"
-msgstr "磷酸盐"
+msgstr "磷酸盐成本："
 
 msgid "PHOTOSYNTHESIS"
 msgstr "光合作用"
@@ -4800,9 +4756,8 @@ msgstr "地区中的种群数量："
 msgid "POPULATION_IN_PATCH_SHORT"
 msgstr "{0} （{1}）"
 
-#, fuzzy
 msgid "POSITION_NUMBER"
-msgstr "编号"
+msgstr "{0}."
 
 msgid "PREDATION_FOOD_SOURCE"
 msgstr "捕食{0}"
@@ -4885,17 +4840,15 @@ msgstr ""
 "你确定要退出游戏吗？\n"
 "你会失去任何未保存的进度。"
 
-#, fuzzy
 msgid "RADIATION"
-msgstr "有氧呼吸作用"
+msgstr "辐射"
 
 #, fuzzy
 msgid "RADIOACTIVE_CHUNK"
 msgstr "大磷酸盐块"
 
-#, fuzzy
 msgid "RADIOSYNTHESIS"
-msgstr "热合成"
+msgstr "放射性合成"
 
 msgid "RANDOMIZE_SPECIES_NAME"
 msgstr "随机化物种名称"
@@ -5368,11 +5321,8 @@ msgstr "在屏幕上显示伤害效果"
 msgid "SHOW_HELP"
 msgstr "显示帮助"
 
-#, fuzzy
 msgid "SHOW_ITEM_COORDINATES"
-msgstr ""
-"位置坐标：{0}\n"
-"朝向坐标：{1}"
+msgstr "显示坐标"
 
 msgid "SHOW_NEW_PATCH_NOTES"
 msgstr "自动显示新的补丁说明"
@@ -5438,10 +5388,6 @@ msgstr "二氧化硅"
 msgid "SILICA_MEMBRANE_DESCRIPTION"
 msgstr "这个细胞膜额外配置了一层二氧化硅外壳。各方面都有更好的防御力，尤其是物防高的惊人。同时也不需要多少能量来维持形状，但吸收营养和移动的速度都很慢。"
 
-#, fuzzy
-msgid "SIMULATION_CONFIG"
-msgstr "渗透调节"
-
 msgid "SIXTEEN_TIMES"
 msgstr "16x"
 
@@ -5466,9 +5412,8 @@ msgstr "小铁块"
 msgid "SMALL_PHOSPHATE_CHUNK"
 msgstr "小磷酸盐碎块"
 
-#, fuzzy
 msgid "SMALL_SULFUR_CHUNK"
-msgstr "小铁块"
+msgstr "小硫块"
 
 msgid "SNOWFLAKE"
 msgstr "雪花"
@@ -5855,12 +5800,11 @@ msgstr "访问我们在Patreon上的页面"
 msgid "TESTING_TEAM"
 msgstr "测试团队"
 
-#, fuzzy
 msgid "THANKS_FOR_BUYING_THRIVE_2"
 msgstr ""
-"感谢你的游玩！如果你喜欢这款游戏，请记得也向你的朋友们推荐一下。\n"
+"感谢您通过从 [color=#3796e1][url={0}]{1}[/url][/color] 购买 Thrive 来支持开发！\n"
 "\n"
-"点击链接[color=#3796e1][url={0}]from here[/url][/color]购买本游戏，或者来看看我们的官网：[color=#3796e1][url=https://revolutionarygamesstudio.com/releases/][/url][/color]。\n"
+"Thrive 的开发速度取决于我们收到的支持数量。您可以通过[color=#3796e1][url={2}]我们的网站[/url][/color]或屏幕下方链接的社交媒体找到更多信息。\n"
 "\n"
 "如果您想在Thrive启动之前看到Thrive Launcher，您可以使用主菜单中的按钮退出到启动器，然后在启动器选项菜单中禁用无缝模式。"
 
@@ -5976,9 +5920,8 @@ msgstr "显示本地事件"
 msgid "TIMELINE_NICHE_FILL"
 msgstr "[b][u]{0}[/u][/b]从[b][u]{1}[/u][/b]中分裂出来，成为了一个新的物种以填补一个生态位"
 
-#, fuzzy
 msgid "TIMELINE_PLAYER_MIGRATED"
-msgstr "一部分[b][u]{0}[/u][/b]种群已经移民到了{1}"
+msgstr "[b][u]{0}[/u][/b]已迁移到此地区"
 
 #, fuzzy
 msgid "TIMELINE_PLAYER_MIGRATED_TO"
@@ -5996,9 +5939,8 @@ msgstr "[b][u]{0}[/u][/b] 已经灭绝了！"
 msgid "TIMELINE_SPECIES_EXTINCT_LOCAL"
 msgstr "[b][u]{0}[/u][/b]已从本地区中消失"
 
-#, fuzzy
 msgid "TIMELINE_SPECIES_FOLLOWED"
-msgstr "[b][u]{0}[/u][/b] 已经灭绝了！"
+msgstr "[b][u]{0}[/u][/b] 与 [b][u]{1}[/u][/b] 一同迁移至此地区"
 
 msgid "TIMELINE_SPECIES_MIGRATED_FROM"
 msgstr "一部分[b][u]{0}[/u][/b]种群已经从{1}移民到了这个地区"
@@ -6076,27 +6018,25 @@ msgid "TOGGLE_UNBINDING"
 msgstr "切换解除连接模式"
 
 msgid "TOLERANCES_TOO_HIGH_PRESSURE"
-msgstr ""
+msgstr "偏好压力过高（高出 {0}）"
 
 msgid "TOLERANCES_TOO_HIGH_TEMPERATURE"
-msgstr ""
+msgstr "偏好温度过高（高出 {0}）"
 
 msgid "TOLERANCES_TOO_LOW_OXYGEN_PROTECTION"
-msgstr ""
+msgstr "氧防护过低，需要提高 {0}%"
 
-#, fuzzy
 msgid "TOLERANCES_TOO_LOW_PRESSURE"
-msgstr "无操作压力"
+msgstr "偏好压力过低（不足 {0}）"
 
 msgid "TOLERANCES_TOO_LOW_TEMPERATURE"
-msgstr ""
+msgstr "偏好温度过低（不足 {0}）"
 
-#, fuzzy
 msgid "TOLERANCES_TOO_LOW_UV_PROTECTION"
-msgstr "{0}： +{1} ATP"
+msgstr "紫外线(UV) 防护过低，需要提高 {0}%"
 
 msgid "TOLERANCES_UNSUITABLE_DEBUFFS"
-msgstr ""
+msgstr "不适用当前环境条件。渗透调节成本 {0}%，生物过程速度 {1}%，生命值 {2}%"
 
 #, fuzzy
 msgid "TOLERANCE_FROM_ORGANELLES_TOOLTIP"
@@ -6108,7 +6048,7 @@ msgstr ""
 "这些细胞将更难存活，因为它们需要收集更多的化合物。"
 
 msgid "TOLERANCE_RANGE_LABEL"
-msgstr ""
+msgstr "适应力："
 
 msgid "TOOLS"
 msgstr "工具"
@@ -6117,7 +6057,7 @@ msgid "TOOL_HAND_AXE"
 msgstr "手斧"
 
 msgid "TOO_LARGE_PRESSURE_RANGE"
-msgstr ""
+msgstr "压力范围过大"
 
 msgid "TOO_MANY_RECENT_VERSIONS_TO_SHOW"
 msgstr "因为最近版本太多而没有全部显示"
@@ -6241,7 +6181,6 @@ msgstr ""
 "\n"
 "如果你的[thrive:compound type=\"atp\"][/thrive:compound]生产为负，务必增加[thrive:compound type=\"atp\"][/thrive:compound]生产或添加[b]储存[/b][thrive:icon]StorageIcon[/thrive:icon]来允许爆发式移动。"
 
-#, fuzzy
 msgid "TUTORIAL_MICROBE_EDITOR_AUTO-EVO_PREDICTION"
 msgstr ""
 "这个面板显示对你未来种群数量的预测。[b]auto-evo[/b]的种群数量模拟提供了这些数字。\n"
@@ -6250,7 +6189,7 @@ msgstr ""
 "\n"
 "但即使你不直接参与你也应该努力保持你的种群数量。\n"
 "\n"
-"你可以通过按面板上的问号按钮查看预测背后的更多详细信息。按下它以继续。"
+"你可以通过[b]按面板上的问号按钮查看预测背后的更多详细信息。按下它以继续。[/b]"
 
 #, fuzzy
 msgid "TUTORIAL_MICROBE_EDITOR_CELL_TEXT"
@@ -6299,12 +6238,11 @@ msgstr ""
 "\n"
 "祝你好运！"
 
-#, fuzzy
 msgid "TUTORIAL_MICROBE_EDITOR_FLAGELLUM"
 msgstr ""
 "[b]鞭毛[/b]把你的微生物推向它被放置的相反方向。\n"
 "\n"
-"在前向箭头的相反方向放置一个鞭毛将把你的微生物推向前方。\n"
+"在前向箭头的相反方向放置一个鞭毛将把你的微生物推向前方。[b]粘液喷嘴[/b] 的放置方式相同。\n"
 "\n"
 "鞭毛是[thrive:compound type=\"atp\"][/thrive:compound]消耗量极大的细胞器，所以不是很适合小型细胞。\n"
 "\n"
@@ -6564,9 +6502,8 @@ msgstr "水下洞穴"
 msgid "UNDERWATER_VENT_ERUPTION"
 msgstr "深海热泉喷发"
 
-#, fuzzy
 msgid "UNDERWATER_VENT_ERUPTION_IN"
-msgstr "水下洞穴"
+msgstr "喷发于 {0}"
 
 msgid "UNDISCOVERED_ORGANELLES"
 msgstr "未发现"
@@ -6587,7 +6524,7 @@ msgid "UNIT_ACTION_MOVE"
 msgstr "移动"
 
 msgid "UNIT_ADVANCED_SPACESHIP"
-msgstr ""
+msgstr "先进航天器"
 
 msgid "UNIT_SIMPLE_ROCKET"
 msgstr "简单火箭"
@@ -6650,9 +6587,8 @@ msgstr "多余的[thrive:compound type=\"atp\"][/thrive:compound]到达{0}"
 msgid "UNLOCK_CONDITION_PLAYER_DAMAGE_RECEIVED"
 msgstr "死亡次数到达{0} （目前为 {1}）"
 
-#, fuzzy
 msgid "UNLOCK_CONDITION_PLAYER_DAMAGE_RECEIVED_SOURCE"
-msgstr "死亡次数到达{0} （目前为 {1}）"
+msgstr "来自{1}的伤害达到{0}（目前为{2}）"
 
 msgid "UNLOCK_CONDITION_PLAYER_DEATH_COUNT_ABOVE"
 msgstr "死亡次数到达{0} （目前为 {1}）"
@@ -6717,19 +6653,16 @@ msgid "UPLOAD_SUCCEEDED"
 msgstr "上传成功"
 
 msgid "UPSCALE_BILINEAR"
-msgstr ""
+msgstr "双线性上采样"
 
 msgid "UPSCALE_FSR_1"
-msgstr ""
+msgstr "FSR 1 上采样"
 
 msgid "UPSCALE_FSR_22"
-msgstr ""
-
-msgid "UPSCALE_METHOD"
-msgstr ""
+msgstr "FSR 2.2 上采样"
 
 msgid "UPSCALE_SHARPENING_FSR"
-msgstr ""
+msgstr "FSR 锐化"
 
 msgid "USED_LIBRARIES_LICENSES"
 msgstr "许可证和使用的库"
@@ -6750,7 +6683,7 @@ msgid "USE_A_CUSTOM_USERNAME"
 msgstr "使用自定义用户名"
 
 msgid "USE_DISK_CACHE"
-msgstr ""
+msgstr "使用磁盘缓存"
 
 msgid "USE_MANUAL_THREAD_COUNT"
 msgstr "手动设置后台线程数"
@@ -6839,7 +6772,7 @@ msgid "VIEW_SOURCE_CODE"
 msgstr "查看源代码"
 
 msgid "VIEW_TEXT_REPORT"
-msgstr ""
+msgstr "查看文字报告"
 
 msgid "VIP_PATRONS"
 msgstr "VIP 支持者"
@@ -6932,23 +6865,19 @@ msgstr "神经元之间的神经纤维，在多细胞阶段可用。 要求增�
 
 msgid "WIKI_ASCENSION_OVERVIEW"
 msgstr ""
+"飞升是 Thrive 中的关键概念，类似其他游戏中的“获胜”。这是一种通过飞升之门，感知生物体转变为能量体形式的状态，从而获得神一般的能力，使用宇宙本身的能量（本质上是免费创造奇迹）。\n"
+"\n"
+"飞升的作用是，当你完成上帝工具研究，会解锁一个新的“上帝工具”面板，可以在游戏中的任何地方使用，允许你改变任何东西。从创造整个太阳系到最小的细菌，从毁灭整个文明到控制其中一个成员，一切皆有可能。"
 
 msgid "WIKI_ASCENSION_TRANSITIONS"
-msgstr ""
+msgstr "一旦你的种族通过飞升之门，你便会进入飞升。我们期望在进入飞升阶段的动画结束后播放游戏鸣谢。鸣谢结束后玩家将回到游戏中的飞升之门，并收到祝贺消息。要完成游戏的最后一道难关，飞升之门要求大量研究（包括上面提到的上帝工具）以及相当于多个恒星的大量能量才能运作。在玩家获取能够轻易抹除竞争星际帝国的无限力量前，这是其他潜在敌对物种的进攻最后机会。"
 
 #, fuzzy
 msgid "WIKI_ASCENSION_UI"
 msgstr "神经元之间的神经纤维，在多细胞阶段可用。 要求增加生物体的脑力并进入到之后的阶段。"
 
-#, fuzzy
 msgid "WIKI_AWAKENING_STAGE_CURRENT_DEVELOPMENT"
-msgstr ""
-"一个细胞必须拥有一个[b][color=#3796e1][url=thriveopedia:nucleus]细胞核[/url][/color][/b]才能进化出[b]连接器[/b]。\n"
-"\n"
-"如果细胞器升级在游戏设置中被开启，[i]玩家细胞[/i]必须满足以下[i]全部[/i]条件：\n"
-"\n"
-"[indent]—   拥有一个[b][color=#3796e1][url=thriveopedia:nucleus]细胞核[/url][/color][/b]至少[b]5[/b]个世代。[/indent]\n"
-"[indent]—   [thrive:compound type=\"atp\"][/thrive:compound]平衡至少达到[b]+15[/b]。[/indent]"
+msgstr "苏醒阶段的开发尚未开始。"
 
 #, fuzzy
 msgid "WIKI_AWAKENING_STAGE_FEATURES"
@@ -7105,7 +7034,7 @@ msgid "WIKI_BIOLUMINESCENT_VACUOLE_UPGRADES"
 msgstr "无升级。等待实现。"
 
 msgid "WIKI_BODY_PLAN_EDITOR_COMMA_CELL_EDITOR"
-msgstr ""
+msgstr "躯体设计编辑器，细胞编辑器"
 
 msgid "WIKI_CHEMOPLAST_EFFECTS"
 msgstr "无效果"
@@ -7570,7 +7499,7 @@ msgid "WIKI_HEADING_PROCESSES"
 msgstr "代谢过程"
 
 msgid "WIKI_HEADING_REPRODUCTION_IN_THE_MICROBE_STAGE"
-msgstr ""
+msgstr "微生物阶段的繁衍"
 
 msgid "WIKI_HEADING_REQUIREMENTS"
 msgstr "解锁条件"
@@ -7660,12 +7589,8 @@ msgstr ""
 "\n"
 "与许多原核细胞器一样，[b]固氮酶[/b]周围的[b][color=#3796e1][url=thriveopedia:cytoplasm]细胞质[/url][/color][/b]会进行效率较低的[b]糖酵解[/b]，将[thrive:compound type=\"glucose\"][/thrive:compound] 转化为[thrive:compound type=\"atp\"][/thrive:compound]。"
 
-#, fuzzy
 msgid "WIKI_HYDROGENASE_REQUIREMENTS"
-msgstr ""
-"如果在游戏设定中启用了细胞器升级，则[i]玩家细胞[/i]必须满足以下条件：\n"
-"\n"
-"[indent]—   位于少于 [b]13[/b] [thrive:compound type=\"ammonia\"][/thrive:compound] 的区域中。 [/indent]"
+msgstr "起始部件，无要求。"
 
 #, fuzzy
 msgid "WIKI_HYDROGENASE_SCIENTIFIC_BACKGROUND"
@@ -7729,15 +7654,8 @@ msgstr ""
 msgid "WIKI_HYDROGENOSOME_UPGRADES"
 msgstr "无升级。"
 
-#, fuzzy
 msgid "WIKI_INDUSTRIAL_STAGE_CURRENT_DEVELOPMENT"
-msgstr ""
-"一个细胞必须拥有一个[b][color=#3796e1][url=thriveopedia:nucleus]细胞核[/url][/color][/b]才能进化出[b]连接器[/b]。\n"
-"\n"
-"如果细胞器升级在游戏设置中被开启，[i]玩家细胞[/i]必须满足以下[i]全部[/i]条件：\n"
-"\n"
-"[indent]—   拥有一个[b][color=#3796e1][url=thriveopedia:nucleus]细胞核[/url][/color][/b]至少[b]5[/b]个世代。[/indent]\n"
-"[indent]—   [thrive:compound type=\"atp\"][/thrive:compound]平衡至少达到[b]+15[/b]。[/indent]"
+msgstr "本阶段的开发尚未开始。游戏玩法和理论的设计将在[color=#3796e1][url=thriveopedia:society_stage]社会阶段[/url][/color]的开发开始后变得相关。"
 
 #, fuzzy
 msgid "WIKI_INDUSTRIAL_STAGE_FEATURES"
@@ -7817,15 +7735,8 @@ msgstr "无升级。"
 msgid "WIKI_MACROSCOPIC_STAGE_CONCEPT_ART"
 msgstr "多细胞阶段"
 
-#, fuzzy
 msgid "WIKI_MACROSCOPIC_STAGE_CURRENT_DEVELOPMENT"
-msgstr ""
-"一个细胞必须拥有一个[b][color=#3796e1][url=thriveopedia:nucleus]细胞核[/url][/color][/b]才能进化出[b]连接器[/b]。\n"
-"\n"
-"如果细胞器升级在游戏设置中被开启，[i]玩家细胞[/i]必须满足以下[i]全部[/i]条件：\n"
-"\n"
-"[indent]—   拥有一个[b][color=#3796e1][url=thriveopedia:nucleus]细胞核[/url][/color][/b]至少[b]5[/b]个世代。[/indent]\n"
-"[indent]—   [thrive:compound type=\"atp\"][/thrive:compound]平衡至少达到[b]+15[/b]。[/indent]"
+msgstr "宏观阶段的原型开发已经开始。"
 
 #, fuzzy
 msgid "WIKI_MACROSCOPIC_STAGE_FEATURES"
@@ -7869,15 +7780,8 @@ msgstr ""
 "\n"
 "在下方列表中选择一个细胞器以了解更多。"
 
-#, fuzzy
 msgid "WIKI_MELANOSOME_EFFECTS"
-msgstr ""
-"包含[b]几丁质酶[/b]或[b]纤维素酶[/b]的[b]溶酶体[/b]可以让细胞获得消化拥有[b]几丁质细胞壁[/b]或[b]纤维素细胞壁[/b]的细胞的能力。如果细胞没有含有对应水解酶的溶酶体，被吞噬的细胞会被立即吐出来\n"
-"\n"
-"除了它们的基本属性，每一个[b]溶酶体[/b]还可以：\n"
-"\n"
-"[indent]—   [b]+0.05[/b]消化速度。被吞噬的物质会被更快地消化。[/indent]\n"
-"[indent]—   [b]+4.5%[/b]对应物质的消化效率。吞噬拥有对应细胞壁的细胞可以获得更多的化合物。[/indent]"
+msgstr "无效果。"
 
 #, fuzzy
 msgid "WIKI_MELANOSOME_INTRO"
@@ -7886,29 +7790,15 @@ msgstr ""
 "\n"
 "[b]溶酶体[/b]是一种有膜细胞器，包含有可以分解多种有机分子的水解酶。[b]溶酶体[/b]帮助细胞消化通过胞吞获得的物质，并通过名为自噬的生理过程清理细胞内的废物。"
 
-#, fuzzy
 msgid "WIKI_MELANOSOME_MODIFICATIONS"
-msgstr ""
-"修改[b]溶酶体[/b]所包含的酶的类型。默认情况下，溶酶体含有[b]脂酶[/b]，帮助消化[b]单层[/b]或[b]双层[/b]的细胞膜。\n"
-"\n"
-"[b]溶酶体[/b]可以包含以下之一：\n"
-"\n"
-"[indent]—   [b]几丁质酶[/b]，目标为[b]几丁质膜[/b]。[/indent]\n"
-"[indent]—   [b]纤维素酶[/b]，目标为[b]纤维素膜[/b]。[/indent]"
+msgstr "无修改。"
 
 #, fuzzy
 msgid "WIKI_MELANOSOME_PROCESSES"
 msgstr "无代谢过程。"
 
-#, fuzzy
 msgid "WIKI_MELANOSOME_REQUIREMENTS"
-msgstr ""
-"一个细胞必须拥有一个[b][color=#3796e1][url=thriveopedia:nucleus]细胞核[/url][/color][/b]才能进化出[b]溶酶体[/b]\n"
-"\n"
-"如果细胞器升级在游戏设置中被启用，[i]玩家细胞[/i]必须满足以下[i]至少一种[/i]条件：\n"
-"\n"
-"[indent]—   已经吞噬了至少[b]20[/b] 个细胞。[/indent]\n"
-"[indent]—   已经消化了至少[b]10[/b] 个细胞。[/indent]"
+msgstr "需要靠近放射性碎块来收到辐射伤害"
 
 #, fuzzy
 msgid "WIKI_MELANOSOME_SCIENTIFIC_BACKGROUND"
@@ -8195,7 +8085,7 @@ msgid "WIKI_NO"
 msgstr "Wiki"
 
 msgid "WIKI_NONE_COMMA_THIS_IS_THE_LAST_STAGE"
-msgstr ""
+msgstr "无，这是最后阶段"
 
 msgid "WIKI_NUCLEUS_EFFECTS"
 msgstr ""
@@ -8331,7 +8221,7 @@ msgid "WIKI_PAGE_COMPOUNDS"
 msgstr "细胞质"
 
 msgid "WIKI_PAGE_COMPOUND_SYSTEM_DEVELOPMENT"
-msgstr ""
+msgstr "化合物系统开发"
 
 msgid "WIKI_PAGE_CYTOPLASM"
 msgstr "细胞质"
@@ -8688,7 +8578,7 @@ msgid "WIKI_SLIME_JET_UPGRADES"
 msgstr "无升级"
 
 msgid "WIKI_SOCIETY_STAGE_CURRENT_DEVELOPMENT"
-msgstr ""
+msgstr "本阶段尚未开始开发。今年来，对于此阶段的理论与游戏玩法的讨论不多。一旦社会阶段开始正式开发，讨论将需要恢复。"
 
 #, fuzzy
 msgid "WIKI_SOCIETY_STAGE_FEATURES"
@@ -8714,7 +8604,7 @@ msgid "WIKI_SOCIETY_STAGE_UI"
 msgstr "社会阶段"
 
 msgid "WIKI_SPACE_STAGE_CURRENT_DEVELOPMENT"
-msgstr ""
+msgstr "太空阶段尚未开始开发。"
 
 #, fuzzy
 msgid "WIKI_SPACE_STAGE_FEATURES"
@@ -8755,7 +8645,7 @@ msgid "WIKI_TBA"
 msgstr "Wiki"
 
 msgid "WIKI_TECH_EDITOR_COMMA_NATION_EDITOR_COMMA_SQUAD_EDITOR"
-msgstr ""
+msgstr "技术编辑器，国家编辑器，队伍编辑器"
 
 #, fuzzy
 msgid "WIKI_THERMOPLAST_EFFECTS"
@@ -8787,9 +8677,13 @@ msgstr ""
 "\n"
 "[indent]—   至少连续[b]5[/b] 代中包含[b]3[/b] 个[b][color=#3796e1][url=thriveopedia:thermosynthase]热合成酶[/url][ /color][/b]。 [/indent]"
 
-#, fuzzy
 msgid "WIKI_THERMOPLAST_SCIENTIFIC_BACKGROUND"
-msgstr "待定"
+msgstr ""
+"热合成最初由 Anthonie Muller 于1983年的一篇论文 (\"Thermoelectric Energy Conversion Could Be An Energy Source Of Living Organisms\", in Physics Letters A, vol. 96, Issue 6, pp. 319-321) 中提出。它能提供呼吸作用产生的总能量的一小部分 (A Search For Thermosynthesis: Starvation Survival In Thermally Cycled Bacteria)。\n"
+"\n"
+"Mulle还提出，热合成可能是最早的(硫基)光合作用(Photosystem 0, A Proposed Ancestral Photosystem Without Reducing Power That Synthesized ATP During Light-Dark cycling)的先导。 \n"
+"\n"
+"[color=#3796e1][url=https://en.wikipedia.org/wiki/Thermosynthesis]Wikipedia中的热合成[/url][/color]"
 
 #, fuzzy
 msgid "WIKI_THERMOPLAST_STRATEGY"
@@ -8831,9 +8725,13 @@ msgstr ""
 "\n"
 "[indent]—   位于至少 [b]+50 °C[/b] [thrive:compound type=\"temperature\"][/thrive:compound] 的区域。 [/indent]"
 
-#, fuzzy
 msgid "WIKI_THERMOSYNTHASE_SCIENTIFIC_BACKGROUND"
-msgstr "待定"
+msgstr ""
+"热合成最初由 Anthonie Muller 于1983年的一篇论文 ，\"Thermoelectric Energy Conversion Could Be An Energy Source Of Living Organisms\", in Physics Letters A, vol. 96, Issue 6, pp. 319-321 中提出。\n"
+"\n"
+"Mulle还提出，热合成可能是最早的(硫基)光合作用(Photosystem 0, A Proposed Ancestral Photosystem Without Reducing Power That Synthesized ATP During Light-Dark cycling)的先导。 \n"
+"\n"
+"[color=#3796e1][url=https://en.wikipedia.org/wiki/Thermosynthesis]Wikipedia中的热合成[/url][/color]"
 
 #, fuzzy
 msgid "WIKI_THERMOSYNTHASE_STRATEGY"
@@ -8847,6 +8745,11 @@ msgstr "无升级。"
 
 msgid "WIKI_THE_PATCH_MAP_FOG_OF_WAR"
 msgstr ""
+"战争迷雾是一项可开启的游戏设置，会限制玩家可见的地区。\n"
+"\n"
+"当设置为[b]常规[/b]，只有玩家到访过和相邻的地区可见。虽然[i]那些[/i]相邻地区可见，但他们的类型，[color=#3796e1][url=thriveopedia:Compounds]化合物信息[/url][/color] 和 [color=#3796e1][url=thriveopedia:EnvironmentalConditions]环境条件[/url][/color] 隐藏。\n"
+"\n"
+"当设置为[b]强[/b]，[b]只有[/b]玩家到访过的地区可见。相邻区域可知，但类型和化合物信息被隐藏。"
 
 #, fuzzy
 msgid "WIKI_THE_PATCH_MAP_INTRO"
@@ -8860,7 +8763,7 @@ msgid "WIKI_THE_PATCH_MAP_PATCHES"
 msgstr "无升级。"
 
 msgid "WIKI_THE_PATCH_MAP_THE_PATCH_MAP"
-msgstr ""
+msgstr "[b]地区图[/b]表示你的星球，由 [b]地区[/b] 和 [b]区域[/b] 组成（如下所述）。每个区域包括多个相连或相邻的地区，并与其他区域相连。"
 
 msgid "WIKI_THYLAKOIDS_EFFECTS"
 msgstr "无特殊效果。"
@@ -8975,7 +8878,7 @@ msgid "WILL_YOU_THRIVE"
 msgstr "你能Thrive（兴盛）吗？"
 
 msgid "WINDOWED"
-msgstr ""
+msgstr "窗口化"
 
 msgid "WIN_BOX_TITLE"
 msgstr "你已发展繁荣（Thrived）！"
@@ -9042,7 +8945,7 @@ msgstr ""
 "应变型微生物将更快的转向新的目标。"
 
 msgid "WORLD_SIZE_LARGE"
-msgstr ""
+msgstr "大"
 
 #, fuzzy
 msgid "WORLD_SIZE_MEDIUM"
@@ -9093,98 +8996,6 @@ msgstr "放大"
 
 msgid "ZOOM_OUT"
 msgstr "缩小"
-
-#, fuzzy
-#~ msgid "AUTO_EVO_TOOL_BUTTON"
-#~ msgstr "自动（{0}x{1}）"
-
-#, fuzzy
-#~ msgid "CLIMATE_INSTABILITY_EXPLANATION"
-#~ msgstr ""
-#~ "活泼型细胞在周围没啥事的时候会四处乱跑。\n"
-#~ "沉着型微生物将静止不动，等待环境变化后才行动。"
-
-#, fuzzy
-#~ msgid "CLIMATE_STABILITY_AVERAGE"
-#~ msgstr ""
-#~ "活泼型细胞在周围没啥事的时候会四处乱跑。\n"
-#~ "沉着型微生物将静止不动，等待环境变化后才行动。"
-
-#, fuzzy
-#~ msgid "CLIMATE_STABILITY_STABLE"
-#~ msgstr ""
-#~ "活泼型细胞在周围没啥事的时候会四处乱跑。\n"
-#~ "沉着型微生物将静止不动，等待环境变化后才行动。"
-
-#, fuzzy
-#~ msgid "CLIMATE_STABILITY_UNSTABLE"
-#~ msgstr ""
-#~ "活泼型细胞在周围没啥事的时候会四处乱跑。\n"
-#~ "沉着型微生物将静止不动，等待环境变化后才行动。"
-
-#, fuzzy
-#~ msgid "GENERATE_BUTTON"
-#~ msgstr "世代"
-
-#, fuzzy
-#~ msgid "GEOLOGICAL_ACTIVITY_EXPLANATION"
-#~ msgstr ""
-#~ "活泼型细胞在周围没啥事的时候会四处乱跑。\n"
-#~ "沉着型微生物将静止不动，等待环境变化后才行动。"
-
-#, fuzzy
-#~ msgid "PLANET_CUSTOMIZER"
-#~ msgstr "鼠标指针处："
-
-#, fuzzy
-#~ msgid "REGENERATE_BUTTON"
-#~ msgstr "细胞器"
-
-#, fuzzy
-#~ msgid "WORLD_SEA_LEVEL"
-#~ msgstr "在海平面下方{0}-{1}米处"
-
-#, fuzzy
-#~ msgid "WORLD_SEA_LEVEL_DEEP"
-#~ msgstr "在海平面下方{0}-{1}米处"
-
-#, fuzzy
-#~ msgid "WORLD_SEA_LEVEL_EXPLANATION"
-#~ msgstr ""
-#~ "专注型微生物会在更远的距离里追击猎物或物质块\n"
-#~ "并且对物质块更有渴求。\n"
-#~ "应变型微生物将更快的转向新的目标。"
-
-#, fuzzy
-#~ msgid "WORLD_SEA_LEVEL_MODERATE"
-#~ msgstr "相对世界移动"
-
-#, fuzzy
-#~ msgid "WORLD_SEA_LEVEL_SHALLOW"
-#~ msgstr "小"
-
-#, fuzzy
-#~ msgid "WORLD_TEMPERATURE"
-#~ msgstr "温度"
-
-#, fuzzy
-#~ msgid "WORLD_TEMPERATURE_COLD"
-#~ msgstr "温度"
-
-#, fuzzy
-#~ msgid "WORLD_TEMPERATURE_EXPLANATION"
-#~ msgstr ""
-#~ "专注型微生物会在更远的距离里追击猎物或物质块\n"
-#~ "并且对物质块更有渴求。\n"
-#~ "应变型微生物将更快的转向新的目标。"
-
-#, fuzzy
-#~ msgid "WORLD_TEMPERATURE_TEMPERATE"
-#~ msgstr "温度"
-
-#, fuzzy
-#~ msgid "WORLD_TEMPERATURE_WARM"
-#~ msgstr "温度"
 
 #~ msgid "PASSIVE_REPRODUCTION_PROGRESS_EXPLANATION"
 #~ msgstr "（从周围的环境中被动获得的用于繁殖的化合物）"

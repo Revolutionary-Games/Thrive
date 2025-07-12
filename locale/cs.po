@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2025-07-11 18:06+0200\n"
+"POT-Creation-Date: 2025-06-05 21:10+0100\n"
 "PO-Revision-Date: 2025-05-27 06:43+0000\n"
 "Last-Translator: Anonymous <noreply@weblate.org>\n"
 "Language-Team: Czech <https://translate.revolutionarygamesstudio.com/projects/thrive/thrive-game/cs/>\n"
@@ -4549,6 +4549,10 @@ msgid "NOTICE_HIT_BY_BASE_MOVEMENT_TOXIN"
 msgstr "Základní pohyb"
 
 #, fuzzy
+msgid "NOTICE_NOT_ENOUGH_MUCILAGE"
+msgstr "Nedostatek {0} pro výrobu"
+
+#, fuzzy
 msgid "NOTICE_RADIATION_DAMAGE"
 msgstr "Editor je připraven pro vstup"
 
@@ -5776,10 +5780,6 @@ msgstr "Oxid křemičitý"
 
 msgid "SILICA_MEMBRANE_DESCRIPTION"
 msgstr "Tato membrána má silnou křemičitou stěnu. Dokáže dobře odolat celkovému poškození a je velmi odolný proti fyzickému poškození. Pro udržení své formy vyžaduje také méně energie. Avšak velice zpomaluje buňku a buňka absorbuje zdroje sníženou rychlostí."
-
-#, fuzzy
-msgid "SIMULATION_CONFIG"
-msgstr "Osmoregulace"
 
 msgid "SIXTEEN_TIMES"
 msgstr "16x"
@@ -7128,9 +7128,6 @@ msgid "UPSCALE_FSR_1"
 msgstr ""
 
 msgid "UPSCALE_FSR_22"
-msgstr ""
-
-msgid "UPSCALE_METHOD"
 msgstr ""
 
 msgid "UPSCALE_SHARPENING_FSR"
@@ -9213,94 +9210,6 @@ msgstr "Přiblížit"
 
 msgid "ZOOM_OUT"
 msgstr "Oddálit"
-
-#, fuzzy
-#~ msgid "AUTO_EVO_TOOL_BUTTON"
-#~ msgstr "Automatické ({0}x{1})"
-
-#, fuzzy
-#~ msgid "CLIMATE_INSTABILITY_EXPLANATION"
-#~ msgstr ""
-#~ "Aktivní mikrobi se rozběhnou, když se nic zajímavého neděje.\n"
-#~ "Přisedlé mikroby jsou nehybné a čekají na změnu prostředí, než začnou jednat."
-
-#, fuzzy
-#~ msgid "CLIMATE_STABILITY_AVERAGE"
-#~ msgstr ""
-#~ "Aktivní mikrobi se rozběhnou, když se nic zajímavého neděje.\n"
-#~ "Přisedlé mikroby jsou nehybné a čekají na změnu prostředí, než začnou jednat."
-
-#, fuzzy
-#~ msgid "CLIMATE_STABILITY_STABLE"
-#~ msgstr ""
-#~ "Aktivní mikrobi se rozběhnou, když se nic zajímavého neděje.\n"
-#~ "Přisedlé mikroby jsou nehybné a čekají na změnu prostředí, než začnou jednat."
-
-#, fuzzy
-#~ msgid "CLIMATE_STABILITY_UNSTABLE"
-#~ msgstr ""
-#~ "Aktivní mikrobi se rozběhnou, když se nic zajímavého neděje.\n"
-#~ "Přisedlé mikroby jsou nehybné a čekají na změnu prostředí, než začnou jednat."
-
-#, fuzzy
-#~ msgid "GENERATE_BUTTON"
-#~ msgstr "Generace"
-
-#, fuzzy
-#~ msgid "GEOLOGICAL_ACTIVITY_EXPLANATION"
-#~ msgstr ""
-#~ "Aktivní mikrobi se rozběhnou, když se nic zajímavého neděje.\n"
-#~ "Přisedlé mikroby jsou nehybné a čekají na změnu prostředí, než začnou jednat."
-
-#, fuzzy
-#~ msgid "PLANET_CUSTOMIZER"
-#~ msgstr "Na kurzoru:"
-
-#, fuzzy
-#~ msgid "REGENERATE_BUTTON"
-#~ msgstr "Organely"
-
-#, fuzzy
-#~ msgid "WORLD_SEA_LEVEL"
-#~ msgstr "{0}-{1}m pod mořskou hladinou"
-
-#, fuzzy
-#~ msgid "WORLD_SEA_LEVEL_DEEP"
-#~ msgstr "{0}-{1}m pod mořskou hladinou"
-
-#, fuzzy
-#~ msgid "WORLD_SEA_LEVEL_EXPLANATION"
-#~ msgstr ""
-#~ "Soustředění mikrobi budou hledat kousky nebo kořist na větší vzdálenosti \n"
-#~ "a mohou být mnohem náročnější na kusy.\n"
-#~ "Reagující mikroby se dříve přepnou na nové cíle."
-
-#, fuzzy
-#~ msgid "WORLD_SEA_LEVEL_MODERATE"
-#~ msgstr "ke zvýšení pohyblivosti"
-
-#, fuzzy
-#~ msgid "WORLD_TEMPERATURE"
-#~ msgstr "Teplota"
-
-#, fuzzy
-#~ msgid "WORLD_TEMPERATURE_COLD"
-#~ msgstr "Teplota."
-
-#, fuzzy
-#~ msgid "WORLD_TEMPERATURE_EXPLANATION"
-#~ msgstr ""
-#~ "Soustředění mikrobi budou hledat kousky nebo kořist na větší vzdálenosti \n"
-#~ "a mohou být mnohem náročnější na kusy.\n"
-#~ "Reagující mikroby se dříve přepnou na nové cíle."
-
-#, fuzzy
-#~ msgid "WORLD_TEMPERATURE_TEMPERATE"
-#~ msgstr "Teplota."
-
-#, fuzzy
-#~ msgid "WORLD_TEMPERATURE_WARM"
-#~ msgstr "Teplota."
 
 #~ msgid "PASSIVE_REPRODUCTION_PROGRESS_EXPLANATION"
 #~ msgstr "(pasivní příjem reprodukčních sloučenin z prostředí bez toho aniž byste něco museli dělat)"

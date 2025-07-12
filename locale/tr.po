@@ -7,8 +7,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2025-07-11 18:06+0200\n"
-"PO-Revision-Date: 2025-05-26 15:44+0000\n"
+"POT-Creation-Date: 2025-06-05 21:10+0100\n"
+"PO-Revision-Date: 2025-06-01 02:55+0000\n"
 "Last-Translator: punctdan <yunusemredilek@hotmail.com>\n"
 "Language-Team: Turkish <https://translate.revolutionarygamesstudio.com/projects/thrive/thrive-game/tr/>\n"
 "Language: tr\n"
@@ -3566,9 +3566,8 @@ msgstr "  {0}: {1} türde bulundu, her birinde ortalama {2} değerinde"
 msgid "MICROBE_ORGANELLE_UPGRADES_STATISTICS"
 msgstr "[b]Organel Geliştirme Verileri:[/b]"
 
-#, fuzzy
 msgid "MICROBE_RIPPLE_EFFECT"
-msgstr "Mikrop kamera hareketi"
+msgstr "Mikrop hareketi dalga etkisi"
 
 msgid "MICROBE_SPECIES_DETAIL_TEXT"
 msgstr ""
@@ -4149,6 +4148,10 @@ msgstr "ATP üretimi, toksin tarafından engellendi"
 
 msgid "NOTICE_HIT_BY_BASE_MOVEMENT_TOXIN"
 msgstr "Temel hareket hızı toksin nedeniyle azaldı"
+
+#, fuzzy
+msgid "NOTICE_NOT_ENOUGH_MUCILAGE"
+msgstr "Formülü üretmek için yeterince {0} yok"
 
 msgid "NOTICE_RADIATION_DAMAGE"
 msgstr "Aşırı radyasyondan hasar alınıyor"
@@ -5296,10 +5299,6 @@ msgstr "Silika"
 
 msgid "SILICA_MEMBRANE_DESCRIPTION"
 msgstr "Bu hücre zarı, silikadan yapılmış güçlü bir duvara sahiptir. Toplam hasara karşı iyi direnir ve fiziksel hasara karşı çok dirençlidir. Ayrıca formunu korumak için daha az enerji gerektirir. Ancak hücreyi büyük oranda yavaşlatır ve hücre, kaynakları düşük oranlarda emer."
-
-#, fuzzy
-msgid "SIMULATION_CONFIG"
-msgstr "Ozmoregülasyon"
 
 msgid "SIXTEEN_TIMES"
 msgstr "16x"
@@ -6558,10 +6557,6 @@ msgstr "FSR 1 Yükseltme"
 
 msgid "UPSCALE_FSR_22"
 msgstr "FSR 2.2 Yükseltme"
-
-#, fuzzy
-msgid "UPSCALE_METHOD"
-msgstr "Bilineer Yükseltme"
 
 msgid "UPSCALE_SHARPENING_FSR"
 msgstr "FSR keskinleştirme"
@@ -9169,92 +9164,6 @@ msgstr "Yakınlaştır"
 
 msgid "ZOOM_OUT"
 msgstr "Uzaklaştır"
-
-#, fuzzy
-#~ msgid "AUTO_EVO_TOOL_BUTTON"
-#~ msgstr "Otomatik ({0}x{1})"
-
-#, fuzzy
-#~ msgid "CLIMATE_INSTABILITY_EXPLANATION"
-#~ msgstr ""
-#~ "Hareketli mikroplar, ilginç bir şey olmadığında ilerler ve yuvarlanırlar.\n"
-#~ "Durağan mikroplar, hareketsizdirler ve hareket etmeden önce ortamın değişmesini beklerler."
-
-#, fuzzy
-#~ msgid "CLIMATE_STABILITY_AVERAGE"
-#~ msgstr ""
-#~ "Hareketli mikroplar, ilginç bir şey olmadığında ilerler ve yuvarlanırlar.\n"
-#~ "Durağan mikroplar, hareketsizdirler ve hareket etmeden önce ortamın değişmesini beklerler."
-
-#, fuzzy
-#~ msgid "CLIMATE_STABILITY_STABLE"
-#~ msgstr ""
-#~ "Hareketli mikroplar, ilginç bir şey olmadığında ilerler ve yuvarlanırlar.\n"
-#~ "Durağan mikroplar, hareketsizdirler ve hareket etmeden önce ortamın değişmesini beklerler."
-
-#, fuzzy
-#~ msgid "CLIMATE_STABILITY_UNSTABLE"
-#~ msgstr ""
-#~ "Hareketli mikroplar, ilginç bir şey olmadığında ilerler ve yuvarlanırlar.\n"
-#~ "Durağan mikroplar, hareketsizdirler ve hareket etmeden önce ortamın değişmesini beklerler."
-
-#, fuzzy
-#~ msgid "GENERATE_BUTTON"
-#~ msgstr "Kuşaklar"
-
-#, fuzzy
-#~ msgid "GEOLOGICAL_ACTIVITY_EXPLANATION"
-#~ msgstr ""
-#~ "Hareketli mikroplar, ilginç bir şey olmadığında ilerler ve yuvarlanırlar.\n"
-#~ "Durağan mikroplar, hareketsizdirler ve hareket etmeden önce ortamın değişmesini beklerler."
-
-#, fuzzy
-#~ msgid "PLANET_CUSTOMIZER"
-#~ msgstr "İmleç Üzerinde:"
-
-#, fuzzy
-#~ msgid "REGENERATE_BUTTON"
-#~ msgstr "Organeller"
-
-#, fuzzy
-#~ msgid "WORLD_SEA_LEVEL"
-#~ msgstr "Deniz seviyesinin {0}-{1}m altı"
-
-#, fuzzy
-#~ msgid "WORLD_SEA_LEVEL_DEEP"
-#~ msgstr "Deniz seviyesinin {0}-{1}m altı"
-
-#, fuzzy
-#~ msgid "WORLD_SEA_LEVEL_EXPLANATION"
-#~ msgstr "(dünyadaki arazi sayısını değiştirir)"
-
-#, fuzzy
-#~ msgid "WORLD_SEA_LEVEL_MODERATE"
-#~ msgstr "Dünyaya bağlı"
-
-#, fuzzy
-#~ msgid "WORLD_SEA_LEVEL_SHALLOW"
-#~ msgstr "Küçük"
-
-#, fuzzy
-#~ msgid "WORLD_TEMPERATURE"
-#~ msgstr "Sıcaklık"
-
-#, fuzzy
-#~ msgid "WORLD_TEMPERATURE_COLD"
-#~ msgstr "Sıc."
-
-#, fuzzy
-#~ msgid "WORLD_TEMPERATURE_EXPLANATION"
-#~ msgstr "(dünyadaki arazi sayısını değiştirir)"
-
-#, fuzzy
-#~ msgid "WORLD_TEMPERATURE_TEMPERATE"
-#~ msgstr "Sıc."
-
-#, fuzzy
-#~ msgid "WORLD_TEMPERATURE_WARM"
-#~ msgstr "Sıc."
 
 #~ msgid "PASSIVE_REPRODUCTION_PROGRESS_EXPLANATION"
 #~ msgstr "(hiçbir şey yapmadan çevreden pasif olarak üreme bileşenleri elde et)"

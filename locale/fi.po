@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2025-07-11 18:06+0200\n"
+"POT-Creation-Date: 2025-06-05 21:10+0100\n"
 "PO-Revision-Date: 2025-05-25 15:00+0000\n"
 "Last-Translator: Anonymous <noreply@weblate.org>\n"
 "Language-Team: Finnish <https://translate.revolutionarygamesstudio.com/projects/thrive/thrive-game/fi/>\n"
@@ -4575,6 +4575,10 @@ msgstr ""
 msgid "NOTICE_HIT_BY_BASE_MOVEMENT_TOXIN"
 msgstr "Perus liikkuminen"
 
+#, fuzzy
+msgid "NOTICE_NOT_ENOUGH_MUCILAGE"
+msgstr "Käänteisesti skaalattu"
+
 msgid "NOTICE_RADIATION_DAMAGE"
 msgstr ""
 
@@ -5083,9 +5087,8 @@ msgstr "Planeetta"
 msgid "PLANET_DETAILS_STRING"
 msgstr "Avaa lokien kansio"
 
-#, fuzzy
 msgid "PLANET_GENERATION_TEASER"
-msgstr "Valitse vaihtoehto"
+msgstr ""
 
 msgid "PLANET_RANDOM_SEED"
 msgstr "Planeetan satunnainen lähtöarvo"
@@ -5843,10 +5846,6 @@ msgstr "Piidioksidi"
 
 msgid "SILICA_MEMBRANE_DESCRIPTION"
 msgstr ""
-
-#, fuzzy
-msgid "SIMULATION_CONFIG"
-msgstr "Osmoregulaatio"
 
 msgid "SIXTEEN_TIMES"
 msgstr "16x"
@@ -7223,9 +7222,6 @@ msgid "UPSCALE_FSR_1"
 msgstr ""
 
 msgid "UPSCALE_FSR_22"
-msgstr ""
-
-msgid "UPSCALE_METHOD"
 msgstr ""
 
 msgid "UPSCALE_SHARPENING_FSR"
@@ -9423,94 +9419,6 @@ msgstr "Zoomaa sisään"
 
 msgid "ZOOM_OUT"
 msgstr "Zoomaa ulospäin"
-
-#, fuzzy
-#~ msgid "AUTO_EVO_TOOL_BUTTON"
-#~ msgstr "Automaattinen ({0}x{1})"
-
-#, fuzzy
-#~ msgid "CLIMATE_INSTABILITY_EXPLANATION"
-#~ msgstr ""
-#~ "Aktiiviset mikrobit vilistävät ja mukeltavat, kun mitään mielenkiintoista ei tapahdu.\n"
-#~ "Lakoniset mikrobit pysyttelevät mieluummin paikoillaan odottaen ympäristön muutoksia reagoidakseen niihin."
-
-#, fuzzy
-#~ msgid "CLIMATE_STABILITY_AVERAGE"
-#~ msgstr ""
-#~ "Aktiiviset mikrobit vilistävät ja mukeltavat, kun mitään mielenkiintoista ei tapahdu.\n"
-#~ "Lakoniset mikrobit pysyttelevät mieluummin paikoillaan odottaen ympäristön muutoksia reagoidakseen niihin."
-
-#, fuzzy
-#~ msgid "CLIMATE_STABILITY_STABLE"
-#~ msgstr ""
-#~ "Aktiiviset mikrobit vilistävät ja mukeltavat, kun mitään mielenkiintoista ei tapahdu.\n"
-#~ "Lakoniset mikrobit pysyttelevät mieluummin paikoillaan odottaen ympäristön muutoksia reagoidakseen niihin."
-
-#, fuzzy
-#~ msgid "CLIMATE_STABILITY_UNSTABLE"
-#~ msgstr ""
-#~ "Aktiiviset mikrobit vilistävät ja mukeltavat, kun mitään mielenkiintoista ei tapahdu.\n"
-#~ "Lakoniset mikrobit pysyttelevät mieluummin paikoillaan odottaen ympäristön muutoksia reagoidakseen niihin."
-
-#, fuzzy
-#~ msgid "GENERATE_BUTTON"
-#~ msgstr "Sukupolvi:"
-
-#, fuzzy
-#~ msgid "GEOLOGICAL_ACTIVITY_EXPLANATION"
-#~ msgstr ""
-#~ "Aktiiviset mikrobit vilistävät ja mukeltavat, kun mitään mielenkiintoista ei tapahdu.\n"
-#~ "Lakoniset mikrobit pysyttelevät mieluummin paikoillaan odottaen ympäristön muutoksia reagoidakseen niihin."
-
-#, fuzzy
-#~ msgid "PLANET_CUSTOMIZER"
-#~ msgstr "Kursorin alla:"
-
-#, fuzzy
-#~ msgid "REGENERATE_BUTTON"
-#~ msgstr "Soluelin"
-
-#, fuzzy
-#~ msgid "WORLD_SEA_LEVEL"
-#~ msgstr "{0}-{1}m merenpinnan alapuolella"
-
-#, fuzzy
-#~ msgid "WORLD_SEA_LEVEL_DEEP"
-#~ msgstr "{0}-{1}m merenpinnan alapuolella"
-
-#, fuzzy
-#~ msgid "WORLD_SEA_LEVEL_EXPLANATION"
-#~ msgstr ""
-#~ "Keskittyneet mikrobit etsivät yhdisteitä, kappaleita ja saaliita pidemmän matkan päästä\n"
-#~ "ja voivat olla kunnianhimoisempia löytyvien palasten keruussa.\n"
-#~ "Responssiiviset mikrobit vaihtavat kohdetta nopeammin, jos ei niitä heti saa kiinni."
-
-#, fuzzy
-#~ msgid "WORLD_SEA_LEVEL_MODERATE"
-#~ msgstr "Suhteellinen maailmaan"
-
-#, fuzzy
-#~ msgid "WORLD_TEMPERATURE"
-#~ msgstr "Lämpötila"
-
-#, fuzzy
-#~ msgid "WORLD_TEMPERATURE_COLD"
-#~ msgstr "Lämpö."
-
-#, fuzzy
-#~ msgid "WORLD_TEMPERATURE_EXPLANATION"
-#~ msgstr ""
-#~ "Keskittyneet mikrobit etsivät yhdisteitä, kappaleita ja saaliita pidemmän matkan päästä\n"
-#~ "ja voivat olla kunnianhimoisempia löytyvien palasten keruussa.\n"
-#~ "Responssiiviset mikrobit vaihtavat kohdetta nopeammin, jos ei niitä heti saa kiinni."
-
-#, fuzzy
-#~ msgid "WORLD_TEMPERATURE_TEMPERATE"
-#~ msgstr "Lämpö."
-
-#, fuzzy
-#~ msgid "WORLD_TEMPERATURE_WARM"
-#~ msgstr "Lämpö."
 
 #, fuzzy
 #~ msgid "PASSIVE_REPRODUCTION_PROGRESS_EXPLANATION"
