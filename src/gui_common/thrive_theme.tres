@@ -1,4 +1,4 @@
-[gd_resource type="Theme" load_steps=86 format=3 uid="uid://b4cx0o110g4b6"]
+[gd_resource type="Theme" load_steps=87 format=3 uid="uid://b4cx0o110g4b6"]
 
 [ext_resource type="FontVariation" uid="uid://dgd4ajpji2jb1" path="res://assets/fonts/variants/Jura-SemiBold.tres" id="1_fiqxx"]
 [ext_resource type="Texture2D" uid="uid://buv1ildr71kdn" path="res://assets/textures/gui/bevel/CheckBClick.svg" id="2_vwq6n"]
@@ -144,6 +144,22 @@ expand_margin_right = 3.0
 [sub_resource type="StyleBoxEmpty" id="10"]
 
 [sub_resource type="StyleBoxEmpty" id="11"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_vknin"]
+content_margin_left = 10.0
+content_margin_top = 0.0
+content_margin_right = 10.0
+content_margin_bottom = 0.0
+draw_center = false
+border_width_left = 2
+border_width_top = 2
+border_width_right = 2
+border_width_bottom = 2
+border_color = Color(0.0666667, 1, 0.835294, 1)
+corner_radius_top_left = 5
+corner_radius_top_right = 5
+corner_radius_bottom_right = 5
+corner_radius_bottom_left = 5
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_xr1tc"]
 content_margin_left = 5.0
@@ -648,7 +664,7 @@ CheckButton/icons/off_disabled = null
 CheckButton/icons/on = null
 CheckButton/icons/on_disabled = null
 CheckButton/styles/disabled = null
-CheckButton/styles/focus = null
+CheckButton/styles/focus = SubResource("StyleBoxFlat_vknin")
 CheckButton/styles/hover = null
 CheckButton/styles/hover_pressed = SubResource("StyleBoxFlat_xr1tc")
 CheckButton/styles/normal = null
