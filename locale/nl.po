@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2025-06-05 21:10+0100\n"
+"POT-Creation-Date: 2025-07-12 13:27+0200\n"
 "PO-Revision-Date: 2025-05-25 15:00+0000\n"
 "Last-Translator: Anonymous <noreply@weblate.org>\n"
 "Language-Team: Dutch <https://translate.revolutionarygamesstudio.com/projects/thrive/thrive-game/nl/>\n"
@@ -388,6 +388,10 @@ msgstr "uitvoeringsstatus:"
 msgid "AUTO_EVO_STATUS_COLON"
 msgstr "Auto-Evo Status:"
 
+#, fuzzy
+msgid "AUTO_EVO_TOOL_BUTTON"
+msgstr "Auto ({0}x{1})"
+
 msgid "AUTO_MOVE_FORWARDS"
 msgstr "Beweeg automatisch naar voren"
 
@@ -417,6 +421,9 @@ msgstr "Backslash"
 
 msgid "BACKSPACE"
 msgstr "Backspace"
+
+msgid "BACK_TO_SETTINGS"
+msgstr ""
 
 msgid "BACTERIAL_THERMOSYNTHESIS"
 msgstr "Bacteriële Thermosynthese"
@@ -807,6 +814,24 @@ msgstr "Cache Legen"
 
 msgid "CLICK_TO_SELECT"
 msgstr "Selecteer"
+
+msgid "CLIMATE_INSTABILITY"
+msgstr ""
+
+#, fuzzy
+msgid "CLIMATE_INSTABILITY_EXPLANATION"
+msgstr ""
+"Actieve microben zullen veel bewegen wanneer niets interessants gebeurt.\n"
+"Zittende microben zullen weinig bewegen en wachten tot er iets in hun omgeving veranderd voordat ze iets doen."
+
+msgid "CLIMATE_STABILITY_AVERAGE"
+msgstr ""
+
+msgid "CLIMATE_STABILITY_STABLE"
+msgstr ""
+
+msgid "CLIMATE_STABILITY_UNSTABLE"
+msgstr ""
 
 msgid "CLOSE"
 msgstr "Sluiten"
@@ -2391,11 +2416,33 @@ msgstr "Klik de ongedaan maken knop in de bewerker om een fout te corrigeren"
 msgid "GENERAL_LOADING_TIP_7"
 msgstr "Klik de ongedaan maken knop in de bewerker om een fout te corrigeren"
 
+#, fuzzy
+msgid "GENERATE_BUTTON"
+msgstr "Generatie"
+
 msgid "GENERATIONS"
 msgstr "Generatie"
 
 msgid "GENERATION_COLON"
 msgstr "Generatie:"
+
+msgid "GEOLOGICAL_ACTIVITY"
+msgstr ""
+
+msgid "GEOLOGICAL_ACTIVITY_ACTIVE"
+msgstr ""
+
+msgid "GEOLOGICAL_ACTIVITY_AVERAGE"
+msgstr ""
+
+msgid "GEOLOGICAL_ACTIVITY_DORMANT"
+msgstr ""
+
+#, fuzzy
+msgid "GEOLOGICAL_ACTIVITY_EXPLANATION"
+msgstr ""
+"Actieve microben zullen veel bewegen wanneer niets interessants gebeurt.\n"
+"Zittende microben zullen weinig bewegen en wachten tot er iets in hun omgeving veranderd voordat ze iets doen."
 
 msgid "GITHUB_TOOLTIP"
 msgstr "Bezoek onze Github opslagplek"
@@ -4782,6 +4829,10 @@ msgstr "Plaats organellen"
 msgid "PLANET"
 msgstr "Planeet"
 
+#, fuzzy
+msgid "PLANET_CUSTOMIZER"
+msgstr "Bij Cursor:"
+
 msgid "PLANET_DETAILS_STRING"
 msgstr ""
 "Alleen LZWHK: {0}\n"
@@ -4789,9 +4840,6 @@ msgstr ""
 "Dag/nacht cyclus: {2}\n"
 "Daglengte: {3} seconden\n"
 "Willekeurige Kiem Planeet: {4}"
-
-msgid "PLANET_GENERATION_TEASER"
-msgstr "Generatie van planeet komt snel!"
 
 msgid "PLANET_RANDOM_SEED"
 msgstr "Willekeurige kiem voor de planeet"
@@ -4987,6 +5035,10 @@ msgstr "De laatste actie opnieuw doen"
 
 msgid "REFRESH"
 msgstr "Ververs"
+
+#, fuzzy
+msgid "REGENERATE_BUTTON"
+msgstr "Axon"
 
 #, fuzzy
 msgid "RENDER_SCALE"
@@ -8845,6 +8897,28 @@ msgid "WORLD_RELATIVE_MOVEMENT"
 msgstr "Relatief aan de wereld"
 
 #, fuzzy
+msgid "WORLD_SEA_LEVEL"
+msgstr "{0}-{1}m onder zeeniveau"
+
+#, fuzzy
+msgid "WORLD_SEA_LEVEL_DEEP"
+msgstr "{0}-{1}m onder zeeniveau"
+
+#, fuzzy
+msgid "WORLD_SEA_LEVEL_EXPLANATION"
+msgstr ""
+"Gefocuste microben zullen over grotere afstanden brokstukken en prooi zoeken\n"
+"en zijn mogelijk veel ambitieuzer over brokstukken.\n"
+"Reagerende microben zullen sneller van doelwit wisselen."
+
+#, fuzzy
+msgid "WORLD_SEA_LEVEL_MODERATE"
+msgstr "Relatief aan de wereld"
+
+msgid "WORLD_SEA_LEVEL_SHALLOW"
+msgstr ""
+
+#, fuzzy
 msgid "WORLD_SIZE"
 msgstr "Wereld"
 
@@ -8868,6 +8942,29 @@ msgstr ""
 #, fuzzy
 msgid "WORLD_SIZE_TOOLTIP"
 msgstr "Voer een zekere hoeveelheid werelden uit. De hoeveelheid generaties voor iedere wereld is bepaald door de ronddraaiende kist boven."
+
+#, fuzzy
+msgid "WORLD_TEMPERATURE"
+msgstr "Temperatuur"
+
+#, fuzzy
+msgid "WORLD_TEMPERATURE_COLD"
+msgstr "Temp."
+
+#, fuzzy
+msgid "WORLD_TEMPERATURE_EXPLANATION"
+msgstr ""
+"Gefocuste microben zullen over grotere afstanden brokstukken en prooi zoeken\n"
+"en zijn mogelijk veel ambitieuzer over brokstukken.\n"
+"Reagerende microben zullen sneller van doelwit wisselen."
+
+#, fuzzy
+msgid "WORLD_TEMPERATURE_TEMPERATE"
+msgstr "Temp."
+
+#, fuzzy
+msgid "WORLD_TEMPERATURE_WARM"
+msgstr "Temp."
 
 msgid "WORST_PATCH_COLON"
 msgstr "Slechtse Gebied:"
@@ -8908,6 +9005,9 @@ msgstr "Inzoomen"
 
 msgid "ZOOM_OUT"
 msgstr "Uitzoomen"
+
+#~ msgid "PLANET_GENERATION_TEASER"
+#~ msgstr "Generatie van planeet komt snel!"
 
 #~ msgid "PASSIVE_REPRODUCTION_PROGRESS_EXPLANATION"
 #~ msgstr "(krijg passief reproductieve stoffen van de omgeving zonder iets te hoeven doen)"

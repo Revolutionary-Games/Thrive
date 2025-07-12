@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2025-06-05 21:10+0100\n"
+"POT-Creation-Date: 2025-07-12 13:27+0200\n"
 "PO-Revision-Date: 2025-07-11 03:02+0000\n"
 "Last-Translator: 猫猫鹰 <w84627302@gmail.com>\n"
 "Language-Team: Chinese (Simplified Han script) <https://translate.revolutionarygamesstudio.com/projects/thrive/thrive-game/zh_Hans/>\n"
@@ -383,6 +383,10 @@ msgstr "运行状态："
 msgid "AUTO_EVO_STATUS_COLON"
 msgstr "自动进化运行状态："
 
+#, fuzzy
+msgid "AUTO_EVO_TOOL_BUTTON"
+msgstr "自动（{0}x{1}）"
+
 msgid "AUTO_MOVE_FORWARDS"
 msgstr "自动前移"
 
@@ -412,6 +416,9 @@ msgstr "反斜杠"
 
 msgid "BACKSPACE"
 msgstr "退格键"
+
+msgid "BACK_TO_SETTINGS"
+msgstr ""
 
 msgid "BACTERIAL_THERMOSYNTHESIS"
 msgstr "细菌热合成"
@@ -797,6 +804,24 @@ msgstr "清除缓存"
 
 msgid "CLICK_TO_SELECT"
 msgstr "选择"
+
+msgid "CLIMATE_INSTABILITY"
+msgstr ""
+
+#, fuzzy
+msgid "CLIMATE_INSTABILITY_EXPLANATION"
+msgstr ""
+"活泼型细胞在周围没啥事的时候会四处乱跑。\n"
+"沉着型微生物将静止不动，等待环境变化后才行动。"
+
+msgid "CLIMATE_STABILITY_AVERAGE"
+msgstr ""
+
+msgid "CLIMATE_STABILITY_STABLE"
+msgstr ""
+
+msgid "CLIMATE_STABILITY_UNSTABLE"
+msgstr ""
 
 msgid "CLOSE"
 msgstr "关闭"
@@ -2366,11 +2391,33 @@ msgstr "在编辑器中按下撤消键以纠正错误"
 msgid "GENERAL_LOADING_TIP_7"
 msgstr "在编辑器中按下撤消键以纠正错误"
 
+#, fuzzy
+msgid "GENERATE_BUTTON"
+msgstr "世代"
+
 msgid "GENERATIONS"
 msgstr "世代"
 
 msgid "GENERATION_COLON"
 msgstr "世代："
+
+msgid "GEOLOGICAL_ACTIVITY"
+msgstr ""
+
+msgid "GEOLOGICAL_ACTIVITY_ACTIVE"
+msgstr ""
+
+msgid "GEOLOGICAL_ACTIVITY_AVERAGE"
+msgstr ""
+
+msgid "GEOLOGICAL_ACTIVITY_DORMANT"
+msgstr ""
+
+#, fuzzy
+msgid "GEOLOGICAL_ACTIVITY_EXPLANATION"
+msgstr ""
+"活泼型细胞在周围没啥事的时候会四处乱跑。\n"
+"沉着型微生物将静止不动，等待环境变化后才行动。"
 
 msgid "GITHUB_TOOLTIP"
 msgstr "访问我们在GitHub上的代码仓库"
@@ -4679,6 +4726,10 @@ msgstr "放置细胞器"
 msgid "PLANET"
 msgstr "星球"
 
+#, fuzzy
+msgid "PLANET_CUSTOMIZER"
+msgstr "鼠标指针处："
+
 msgid "PLANET_DETAILS_STRING"
 msgstr ""
 "仅限已知生命形式：{0}\n"
@@ -4686,9 +4737,6 @@ msgstr ""
 "日/夜循环：{2}\n"
 "一天的长度：{3}秒\n"
 "行星随机种子：{4}"
-
-msgid "PLANET_GENERATION_TEASER"
-msgstr "行星生成即将发布！"
 
 msgid "PLANET_RANDOM_SEED"
 msgstr "世界生成种子"
@@ -4882,6 +4930,10 @@ msgstr "重做上一个动作"
 
 msgid "REFRESH"
 msgstr "刷新"
+
+#, fuzzy
+msgid "REGENERATE_BUTTON"
+msgstr "细胞器"
 
 #, fuzzy
 msgid "RENDER_SCALE"
@@ -8934,6 +8986,29 @@ msgid "WORLD_RELATIVE_MOVEMENT"
 msgstr "相对世界移动"
 
 #, fuzzy
+msgid "WORLD_SEA_LEVEL"
+msgstr "在海平面下方{0}-{1}米处"
+
+#, fuzzy
+msgid "WORLD_SEA_LEVEL_DEEP"
+msgstr "在海平面下方{0}-{1}米处"
+
+#, fuzzy
+msgid "WORLD_SEA_LEVEL_EXPLANATION"
+msgstr ""
+"专注型微生物会在更远的距离里追击猎物或物质块\n"
+"并且对物质块更有渴求。\n"
+"应变型微生物将更快的转向新的目标。"
+
+#, fuzzy
+msgid "WORLD_SEA_LEVEL_MODERATE"
+msgstr "相对世界移动"
+
+#, fuzzy
+msgid "WORLD_SEA_LEVEL_SHALLOW"
+msgstr "小"
+
+#, fuzzy
 msgid "WORLD_SIZE"
 msgstr "世界"
 
@@ -8957,6 +9032,29 @@ msgstr "小"
 #, fuzzy
 msgid "WORLD_SIZE_TOOLTIP"
 msgstr "运行一定数量的世界，每个世界运行的代数由左上方的数字显示框决定。"
+
+#, fuzzy
+msgid "WORLD_TEMPERATURE"
+msgstr "温度"
+
+#, fuzzy
+msgid "WORLD_TEMPERATURE_COLD"
+msgstr "温度"
+
+#, fuzzy
+msgid "WORLD_TEMPERATURE_EXPLANATION"
+msgstr ""
+"专注型微生物会在更远的距离里追击猎物或物质块\n"
+"并且对物质块更有渴求。\n"
+"应变型微生物将更快的转向新的目标。"
+
+#, fuzzy
+msgid "WORLD_TEMPERATURE_TEMPERATE"
+msgstr "温度"
+
+#, fuzzy
+msgid "WORLD_TEMPERATURE_WARM"
+msgstr "温度"
 
 msgid "WORST_PATCH_COLON"
 msgstr "表现最糟的地区："
@@ -8996,6 +9094,9 @@ msgstr "放大"
 
 msgid "ZOOM_OUT"
 msgstr "缩小"
+
+#~ msgid "PLANET_GENERATION_TEASER"
+#~ msgstr "行星生成即将发布！"
 
 #~ msgid "PASSIVE_REPRODUCTION_PROGRESS_EXPLANATION"
 #~ msgstr "（从周围的环境中被动获得的用于繁殖的化合物）"

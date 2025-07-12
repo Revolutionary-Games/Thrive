@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2025-06-05 21:10+0100\n"
+"POT-Creation-Date: 2025-07-12 13:27+0200\n"
 "PO-Revision-Date: 2025-04-26 09:18+0000\n"
 "Last-Translator: Anonymous <noreply@weblate.org>\n"
 "Language-Team: Portuguese (Brazil) <https://translate.revolutionarygamesstudio.com/projects/thrive/thrive-game/pt_BR/>\n"
@@ -389,6 +389,10 @@ msgstr "estado da execução:"
 msgid "AUTO_EVO_STATUS_COLON"
 msgstr "Estado da Auto-Evo:"
 
+#, fuzzy
+msgid "AUTO_EVO_TOOL_BUTTON"
+msgstr "Auto ({0}x{1})"
+
 msgid "AUTO_MOVE_FORWARDS"
 msgstr "Mover para a frente automaticamente"
 
@@ -418,6 +422,9 @@ msgstr "Barra Invertida"
 
 msgid "BACKSPACE"
 msgstr "Backspace"
+
+msgid "BACK_TO_SETTINGS"
+msgstr ""
 
 msgid "BACTERIAL_THERMOSYNTHESIS"
 msgstr "Termossíntese Bacteriana"
@@ -814,6 +821,24 @@ msgstr "Limpar Cache"
 #, fuzzy
 msgid "CLICK_TO_SELECT"
 msgstr "Apagar selecionado"
+
+msgid "CLIMATE_INSTABILITY"
+msgstr ""
+
+#, fuzzy
+msgid "CLIMATE_INSTABILITY_EXPLANATION"
+msgstr ""
+"Os micróbios ativos perambulam pelo mundo quando não há nada de interessante.\n"
+"Já os micróbios sésseis ficam parados e esperam o ambiente mudar antes de agir."
+
+msgid "CLIMATE_STABILITY_AVERAGE"
+msgstr ""
+
+msgid "CLIMATE_STABILITY_STABLE"
+msgstr ""
+
+msgid "CLIMATE_STABILITY_UNSTABLE"
+msgstr ""
 
 msgid "CLOSE"
 msgstr "Fechar"
@@ -2382,11 +2407,33 @@ msgstr "Não se esqueça, você pode usar o painel no canto superior direito par
 msgid "GENERAL_LOADING_TIP_7"
 msgstr "Se a sua população chegar a zero, você se torna uma espécie extinta."
 
+#, fuzzy
+msgid "GENERATE_BUTTON"
+msgstr "Gerações"
+
 msgid "GENERATIONS"
 msgstr "Gerações"
 
 msgid "GENERATION_COLON"
 msgstr "Geração:"
+
+msgid "GEOLOGICAL_ACTIVITY"
+msgstr ""
+
+msgid "GEOLOGICAL_ACTIVITY_ACTIVE"
+msgstr ""
+
+msgid "GEOLOGICAL_ACTIVITY_AVERAGE"
+msgstr ""
+
+msgid "GEOLOGICAL_ACTIVITY_DORMANT"
+msgstr ""
+
+#, fuzzy
+msgid "GEOLOGICAL_ACTIVITY_EXPLANATION"
+msgstr ""
+"Os micróbios ativos perambulam pelo mundo quando não há nada de interessante.\n"
+"Já os micróbios sésseis ficam parados e esperam o ambiente mudar antes de agir."
 
 msgid "GITHUB_TOOLTIP"
 msgstr "Visite o nosso repositório no GitHub"
@@ -4656,6 +4703,10 @@ msgstr "Colocar organela"
 msgid "PLANET"
 msgstr "Planeta"
 
+#, fuzzy
+msgid "PLANET_CUSTOMIZER"
+msgstr "No cursor:"
+
 msgid "PLANET_DETAILS_STRING"
 msgstr ""
 "Somente vida baseada na realidade: {0}\n"
@@ -4663,9 +4714,6 @@ msgstr ""
 "Ativar o ciclo dia/noite: {2}\n"
 "Duração do dia: {3} segundos\n"
 "Seed aleatória do planeta: {4}"
-
-msgid "PLANET_GENERATION_TEASER"
-msgstr "Geração de planetas em breve!"
 
 msgid "PLANET_RANDOM_SEED"
 msgstr "Seed aleatória do planeta"
@@ -4856,6 +4904,10 @@ msgstr "Refazer a ultima ação"
 
 msgid "REFRESH"
 msgstr "Atualizar"
+
+#, fuzzy
+msgid "REGENERATE_BUTTON"
+msgstr "Organelas"
 
 #, fuzzy
 msgid "RENDER_SCALE"
@@ -8590,6 +8642,29 @@ msgid "WORLD_RELATIVE_MOVEMENT"
 msgstr "Relativo ao mundo"
 
 #, fuzzy
+msgid "WORLD_SEA_LEVEL"
+msgstr "{0}-{1}m sob o nível do mar"
+
+#, fuzzy
+msgid "WORLD_SEA_LEVEL_DEEP"
+msgstr "{0}-{1}m sob o nível do mar"
+
+#, fuzzy
+msgid "WORLD_SEA_LEVEL_EXPLANATION"
+msgstr ""
+"Micróbios focados perseguirão presas ou pedaços por distâncias mais longas\n"
+"e podem ser mais cobiçosos em relação aos pedaços.\n"
+"Micróbios mais reativos perseguirão outras presas depois de um tempo."
+
+#, fuzzy
+msgid "WORLD_SEA_LEVEL_MODERATE"
+msgstr "Relativo ao mundo"
+
+#, fuzzy
+msgid "WORLD_SEA_LEVEL_SHALLOW"
+msgstr "Pequeno"
+
+#, fuzzy
 msgid "WORLD_SIZE"
 msgstr "Mundo"
 
@@ -8613,6 +8688,29 @@ msgstr "Pequeno"
 #, fuzzy
 msgid "WORLD_SIZE_TOOLTIP"
 msgstr "Executar a simulação em um certo número de mundos, a quantidade de gerações que cada mundo deve simular é determinada pela opção acima."
+
+#, fuzzy
+msgid "WORLD_TEMPERATURE"
+msgstr "Temperatura"
+
+#, fuzzy
+msgid "WORLD_TEMPERATURE_COLD"
+msgstr "Temp."
+
+#, fuzzy
+msgid "WORLD_TEMPERATURE_EXPLANATION"
+msgstr ""
+"Micróbios focados perseguirão presas ou pedaços por distâncias mais longas\n"
+"e podem ser mais cobiçosos em relação aos pedaços.\n"
+"Micróbios mais reativos perseguirão outras presas depois de um tempo."
+
+#, fuzzy
+msgid "WORLD_TEMPERATURE_TEMPERATE"
+msgstr "Temp."
+
+#, fuzzy
+msgid "WORLD_TEMPERATURE_WARM"
+msgstr "Temp."
 
 msgid "WORST_PATCH_COLON"
 msgstr "Pior Região:"
@@ -8652,6 +8750,9 @@ msgstr "Aumentar o zoom"
 
 msgid "ZOOM_OUT"
 msgstr "Diminuir o zoom"
+
+#~ msgid "PLANET_GENERATION_TEASER"
+#~ msgstr "Geração de planetas em breve!"
 
 #~ msgid "PASSIVE_REPRODUCTION_PROGRESS_EXPLANATION"
 #~ msgstr "(ganhar os compostos necessários para a reprodução do ambiente sem ter que fazer nada)"
