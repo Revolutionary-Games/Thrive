@@ -26,7 +26,7 @@ func _init(fd: GdFunctionDescriptor) -> void:
 
 func resolve_test_cases(script: GDScript) -> Array[GdUnitTestCase]:
 	if not is_parameterized():
-		return [GdUnitTestCase.from(_fd.source_path(), _fd.line_number(), _fd.name())]
+		return [GdUnitTestCase.from(script.resource_path, _fd.source_path(), _fd.line_number(), _fd.name())]
 	return extract_test_cases_by_reflection(script)
 
 
@@ -94,7 +94,7 @@ func extract_test_cases_by_reflection(script: GDScript) -> Array[GdUnitTestCase]
 	# if no parameter set detected we need to resolve it by using reflection
 	if parameter_sets.size() == 0:
 		_is_static = false
-		return _extract_test_cases_by_reflection(source)
+		return _extract_test_cases_by_reflection(source, script)
 	else:
 		var test_cases: Array[GdUnitTestCase] = []
 		var property_names := _extract_property_names(source)
@@ -102,7 +102,7 @@ func extract_test_cases_by_reflection(script: GDScript) -> Array[GdUnitTestCase]
 			var parameter_set := parameter_sets[parameter_set_index]
 			_static_sets_by_index[parameter_set_index] = _is_static_parameter_set(parameter_set, property_names)
 			@warning_ignore("return_value_discarded")
-			test_cases.append(GdUnitTestCase.from(_fd.source_path(), _fd.line_number(), _fd.name(), parameter_set_index, parameter_set))
+			test_cases.append(GdUnitTestCase.from(script.resource_path, _fd.source_path(), _fd.line_number(), _fd.name(), parameter_set_index, parameter_set))
 			parameter_set_index += 1
 		return test_cases
 
@@ -122,13 +122,13 @@ func _is_static_parameter_set(parameters :String, property_names :PackedStringAr
 	return true
 
 
-func _extract_test_cases_by_reflection(source: Node) -> Array[GdUnitTestCase]:
+func _extract_test_cases_by_reflection(source: Node, script: GDScript) -> Array[GdUnitTestCase]:
 	var parameter_sets := load_parameter_sets(source)
 	var test_cases: Array[GdUnitTestCase] = []
 	for index in parameter_sets.size():
 		var parameter_set := str(parameter_sets[index])
 		@warning_ignore("return_value_discarded")
-		test_cases.append(GdUnitTestCase.from(_fd.source_path(), _fd.line_number(), _fd.name(), index, parameter_set))
+		test_cases.append(GdUnitTestCase.from(script.resource_path, _fd.source_path(), _fd.line_number(), _fd.name(), index, parameter_set))
 	return test_cases
 
 

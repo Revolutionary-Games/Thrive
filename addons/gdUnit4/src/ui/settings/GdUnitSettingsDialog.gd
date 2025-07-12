@@ -10,15 +10,15 @@ const GdUnitUpdateClient = preload ("res://addons/gdUnit4/src/update/GdUnitUpdat
 @onready var _btn_install: Button = %btn_install_examples
 @onready var _progress_bar: ProgressBar = %ProgressBar
 @onready var _progress_text: Label = %progress_lbl
-@onready var _properties_template: Node = $property_template
-@onready var _properties_common: Node = % "common-content"
-@onready var _properties_ui: Node = % "ui-content"
-@onready var _properties_shortcuts: Node = % "shortcut-content"
-@onready var _properties_report: Node = % "report-content"
+@onready var _properties_template: Control = $property_template
+@onready var _properties_common: Control = % "common-content"
+@onready var _properties_ui: Control = % "ui-content"
+@onready var _properties_shortcuts: Control = % "shortcut-content"
+@onready var _properties_report: Control = % "report-content"
 @onready var _input_capture: GdUnitInputCapture = %GdUnitInputCapture
 @onready var _property_error: Window = % "propertyError"
 @onready var _tab_container: TabContainer = %Properties
-@onready var _update_tab: = %Update
+@onready var _update_tab: Control = %Update
 
 var _font_size: float
 
@@ -41,7 +41,7 @@ func _sort_by_key(left: GdUnitProperty, right: GdUnitProperty) -> bool:
 	return left.name() < right.name()
 
 
-func setup_properties(properties_parent: Node, property_category: String) -> void:
+func setup_properties(properties_parent: Control, property_category: String) -> void:
 	# Do remove first potential previous added properties (could be happened when the dlg is opened at twice)
 	for child in properties_parent.get_children():
 		properties_parent.remove_child(child)
@@ -66,8 +66,9 @@ func setup_properties(properties_parent: Node, property_category: String) -> voi
 			grid.columns = 4
 			grid.theme = theme_
 
-			var sub_category: Node = _properties_template.get_child(3).duplicate()
-			sub_category.get_child(0).text = current_category.capitalize()
+			var sub_category: Control = _properties_template.get_child(3).duplicate()
+			var category_label: Label = sub_category.get_child(0)
+			category_label.text = current_category.capitalize()
 			sub_category.custom_minimum_size.y = _font_size + 16
 			properties_parent.add_child(sub_category)
 			properties_parent.add_child(grid)
@@ -91,7 +92,7 @@ func setup_properties(properties_parent: Node, property_category: String) -> voi
 		@warning_ignore("return_value_discarded")
 		reset_btn.pressed.connect(_on_btn_property_reset_pressed.bind(property, input, reset_btn))
 		# property help text
-		var info: Node = _properties_template.get_child(2).duplicate()
+		var info: Label = _properties_template.get_child(2).duplicate()
 		info.text = property.help()
 		info_labels.append(info)
 		grid.add_child(info)
@@ -106,7 +107,6 @@ func setup_properties(properties_parent: Node, property_category: String) -> voi
 	properties_parent.custom_minimum_size.x = min_size_overall
 
 
-@warning_ignore("return_value_discarded")
 func _create_input_element(property: GdUnitProperty, reset_btn: Button) -> Node:
 	if property.is_selectable_value():
 		var options := OptionButton.new()
@@ -114,7 +114,7 @@ func _create_input_element(property: GdUnitProperty, reset_btn: Button) -> Node:
 		for value in property.value_set():
 			options.add_item(value)
 		options.item_selected.connect(_on_option_selected.bind(property, reset_btn))
-		options.select(property.value())
+		options.select(property.int_value())
 		return options
 	if property.type() == TYPE_BOOL:
 		var check_btn := CheckButton.new()
@@ -131,7 +131,8 @@ func _create_input_element(property: GdUnitProperty, reset_btn: Button) -> Node:
 		return input
 	if property.type() == TYPE_PACKED_INT32_ARRAY:
 		var key_input_button := Button.new()
-		key_input_button.text = to_shortcut(property.value())
+		var value:PackedInt32Array = property.value()
+		key_input_button.text = to_shortcut(value)
 		key_input_button.pressed.connect(_on_shortcut_change.bind(key_input_button, property, reset_btn))
 		return key_input_button
 	return Control.new()
@@ -150,7 +151,6 @@ func to_shortcut(keys: PackedInt32Array) -> String:
 	return input_event.as_text()
 
 
-@warning_ignore("return_value_discarded")
 func to_keys(input_event: InputEventKey) -> PackedInt32Array:
 	var keys := PackedInt32Array()
 	if input_event.ctrl_pressed:
@@ -184,8 +184,8 @@ func _install_examples() -> void:
 	var tmp_path := GdUnitFileAccess.create_temp_dir("download")
 	var zip_file := tmp_path + "/examples.zip"
 	var response: GdUnitUpdateClient.HttpResponse = await _update_client.request_zip_package(EAXAMPLE_URL, zip_file)
-	if response.code() != 200:
-		push_warning("Examples cannot be retrieved from GitHub! \n Error code: %d : %s" % [response.code(), response.response()])
+	if response.status() != 200:
+		push_warning("Examples cannot be retrieved from GitHub! \n Error code: %d : %s" % [response.status(), response.response()])
 		update_progress("Install examples failed! Try it later again.")
 		await get_tree().create_timer(3).timeout
 		stop_progress()
@@ -199,20 +199,28 @@ func _install_examples() -> void:
 		stop_progress()
 		return
 	update_progress("Refresh project")
-	await rescan(true)
+	await rescan()
+	await reimport("res://gdUnit4-examples/")
+
 	update_progress("Examples successfully installed")
 	await get_tree().create_timer(3).timeout
 	stop_progress()
 
 
-func rescan(update_scripts:=false) -> void:
-	await get_tree().idle_frame
+func rescan() -> void:
+	await get_tree().process_frame
 	var fs := EditorInterface.get_resource_filesystem()
 	fs.scan_sources()
 	while fs.is_scanning():
 		await get_tree().create_timer(1).timeout
-	if update_scripts:
-		EditorInterface.get_resource_filesystem().update_script_classes()
+
+
+func reimport(path: String) -> void:
+	await get_tree().process_frame
+	var files := DirAccess.get_files_at(path)
+	EditorInterface.get_resource_filesystem().reimport_files(files)
+	for directory in  DirAccess.get_directories_at(path):
+		reimport(directory)
 
 
 func check_for_update() -> void:
@@ -252,17 +260,19 @@ func _on_btn_close_pressed() -> void:
 
 func _on_btn_property_reset_pressed(property: GdUnitProperty, input: Node, reset_btn: Button) -> void:
 	if input is CheckButton:
-		input.button_pressed = property.default()
+		var is_default_pressed: bool = property.default()
+		(input as CheckButton).button_pressed = is_default_pressed
 	elif input is LineEdit:
-		input.text = str(property.default())
+		(input as LineEdit).text = str(property.default())
 		# we have to update manually for text input fields because of no change event is emited
 		_on_property_text_changed(property.default(), property, reset_btn)
 	elif input is OptionButton:
-		input.select(0)
+		(input as OptionButton).select(0)
 		_on_option_selected(0, property, reset_btn)
 	elif input is Button:
-		input.text = to_shortcut(property.default())
-		_on_property_text_changed(property.default(), property, reset_btn)
+		var value: PackedInt32Array = property.default()
+		(input as Button).text = to_shortcut(value)
+		_on_property_text_changed(value, property, reset_btn)
 
 
 func _on_property_text_changed(new_value: Variant, property: GdUnitProperty, reset_btn: Button) -> void:
@@ -271,7 +281,7 @@ func _on_property_text_changed(new_value: Variant, property: GdUnitProperty, res
 	var error: Variant = GdUnitSettings.update_property(property)
 	if error:
 		var label: Label = _property_error.get_child(0) as Label
-		label.set_text(error)
+		label.set_text(str(error))
 		var control := gui_get_focus_owner()
 		_property_error.show()
 		if control != null:

@@ -502,7 +502,7 @@ func invoke(
 	arg9: Variant = NO_ARG) -> Variant:
 	var args: Array = GdArrayTools.filter_value([arg0,arg1,arg2,arg3,arg4,arg5,arg6,arg7,arg8,arg9], NO_ARG)
 	if scene().has_method(name):
-		return scene().callv(name, args)
+		return await scene().callv(name, args)
 	return "The method '%s' not exist checked loaded scene." % name
 
 
@@ -569,7 +569,7 @@ func _handle_actions(event: InputEventAction) -> bool:
 		return false
 	__print("	process action %s (%s) <- %s" % [scene(), _scene_name(), event.as_text()])
 	if event.is_pressed():
-		Input.action_press(event.action, InputMap.action_get_deadzone(event.action))
+		Input.action_press(event.action, event.get_strength())
 	else:
 		Input.action_release(event.action)
 	return true

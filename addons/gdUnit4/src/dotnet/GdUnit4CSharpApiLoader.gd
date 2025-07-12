@@ -32,7 +32,7 @@ static var _test_event_listener := TestEventListener.new()
 ## Returns an instance of the GdUnit4CSharpApi wrapper.[br]
 ## @return Script: The loaded C# wrapper or null if .NET is not supported
 static func instance() -> Script:
-	if not GdUnit4CSharpApiLoader.is_dotnet_supported():
+	if not GdUnit4CSharpApiLoader.is_api_loaded():
 		return null
 
 	return _gdUnit4NetWrapper
@@ -41,7 +41,7 @@ static func instance() -> Script:
 ## Returns or creates a single instance of the API [br]
 ## This improves performance by reusing the same object
 static func api_instance() -> RefCounted:
-	if _api_instance == null and is_dotnet_supported():
+	if _api_instance == null and is_api_loaded():
 		@warning_ignore("unsafe_method_access")
 		_api_instance = instance().new()
 	return _api_instance
@@ -52,14 +52,8 @@ static func is_engine_version_supported(engine_version: int = Engine.get_version
 
 
 ## Checks if the .NET environment is properly configured and available.[br]
-## This performs multiple checks:[br]
-## 1. Verifies if the wrapper is already loaded[br]
-## 2. Confirms Godot has C# support[br]
-## 3. Validates the project's C# configuration[br]
-## 4. Attempts to load the wrapper and find the GdUnit4 assembly[br]
-##
 ## @return bool: True if .NET is fully supported and the assembly is found
-static func is_dotnet_supported() -> bool:
+static func is_api_loaded() -> bool:
 	# If the wrapper is already loaded we don't need to check again
 	if _gdUnit4NetWrapper != null:
 		return true
@@ -74,13 +68,14 @@ static func is_dotnet_supported() -> bool:
 
 	# Finally load the wrapper and check if the GdUnit4 assembly can be found
 	_gdUnit4NetWrapper = load("res://addons/gdUnit4/src/dotnet/GdUnit4CSharpApi.cs")
-	return _gdUnit4NetWrapper != null and _gdUnit4NetWrapper.call("FindGdUnit4NetAssembly")
+	@warning_ignore("unsafe_method_access")
+	return _gdUnit4NetWrapper.IsApiLoaded()
 
 
 ## Returns the version of the GdUnit4 .NET assembly.[br]
 ## @return String: The version string or "unknown" if .NET is not supported
 static func version() -> String:
-	if not GdUnit4CSharpApiLoader.is_dotnet_supported():
+	if not GdUnit4CSharpApiLoader.is_api_loaded():
 		return "unknown"
 	@warning_ignore("unsafe_method_access")
 	return instance().Version()
@@ -105,7 +100,7 @@ static func execute(tests: Array[GdUnitTestCase]) -> void:
 
 
 static func create_test_suite(source_path: String, line_number: int, test_suite_path: String) -> GdUnitResult:
-	if not GdUnit4CSharpApiLoader.is_dotnet_supported():
+	if not GdUnit4CSharpApiLoader.is_api_loaded():
 		return  GdUnitResult.error("Can't create test suite. No .NET support found.")
 	@warning_ignore("unsafe_method_access")
 	var result: Dictionary = instance().CreateTestSuite(source_path, line_number, test_suite_path)
@@ -114,11 +109,6 @@ static func create_test_suite(source_path: String, line_number: int, test_suite_
 	return  GdUnitResult.success(result)
 
 
-static func is_test_suite(script: Script) -> bool:
-	@warning_ignore("unsafe_method_access")
-	return instance().IsTestSuite(script)
-
-
 static func is_csharp_file(resource_path: String) -> bool:
 	var ext := resource_path.get_extension()
-	return ext == "cs" and GdUnit4CSharpApiLoader.is_dotnet_supported()
+	return ext == "cs" and GdUnit4CSharpApiLoader.is_api_loaded()

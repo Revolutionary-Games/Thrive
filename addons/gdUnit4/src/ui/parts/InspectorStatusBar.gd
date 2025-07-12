@@ -18,8 +18,8 @@ signal tree_view_mode_changed(flat :bool)
 @onready var _button_failure_up: Button = %btn_failure_up
 @onready var _button_failure_down: Button = %btn_failure_down
 @onready var _button_sync: Button = %btn_tree_sync
-@onready var _button_view_mode: Button = %btn_tree_mode
-@onready var _button_sort_mode: Button = %btn_tree_sort
+@onready var _button_view_mode: MenuButton = %btn_tree_mode
+@onready var _button_sort_mode: MenuButton = %btn_tree_sort
 
 @onready var _icon_errors: TextureRect = %icon_errors
 @onready var _icon_failures: TextureRect = %icon_failures

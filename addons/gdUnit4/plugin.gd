@@ -30,8 +30,10 @@ func _enter_tree() -> void:
 	var control := add_control_to_bottom_panel(_gd_console, "gdUnitConsole")
 	@warning_ignore("unsafe_method_access")
 	await _gd_console.setup_update_notification(control)
-	if GdUnit4CSharpApiLoader.is_dotnet_supported():
+	if GdUnit4CSharpApiLoader.is_api_loaded():
 		prints("GdUnit4Net version '%s' loaded." % GdUnit4CSharpApiLoader.version())
+	else:
+		prints("No GdUnit4Net found.")
 	# Connect to be notified for script changes to be able to discover new tests
 	GdUnitTestDiscoverGuard.instance()
 	@warning_ignore("return_value_discarded")

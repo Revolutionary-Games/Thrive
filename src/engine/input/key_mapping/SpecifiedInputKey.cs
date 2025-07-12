@@ -419,7 +419,7 @@ public class SpecifiedInputKey : ICloneable
 
             if (Type == InputType.PhysicalKey)
             {
-                key = DisplayServer.KeyboardGetLabelFromPhysical(key);
+                key = InputEventKeyUtils.ConvertPhysicalKeycode(key);
             }
 
             // Key labels are hopefully already in a format that makes sense when translated

@@ -224,7 +224,7 @@ static func is_test_suite(script: Script) -> bool:
 					return true
 				stack.push_back(base)
 	elif script != null and script.get_class() == "CSharpScript":
-		return GdUnit4CSharpApiLoader.is_test_suite(script)
+		return true
 	return false
 
 
