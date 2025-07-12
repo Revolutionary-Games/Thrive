@@ -3,6 +3,7 @@
 using System;
 using System.Collections.Generic;
 using Newtonsoft.Json;
+using static CommonMutationFunctions;
 
 public interface IMutationStrategy<T>
     where T : Species
@@ -27,6 +28,6 @@ public interface IMutationStrategy<T>
     ///   List of mutated species, null if no possible mutations are found (some strategies may return an empty list
     ///   instead in this case)
     /// </returns>
-    public List<Tuple<T, double>>? MutationsOf(T baseSpecies, double mp, bool lawk, Random random,
+    public List<Mutant>? MutationsOf(T baseSpecies, double mp, bool lawk, Random random,
         BiomeConditions biomeToConsider);
 }

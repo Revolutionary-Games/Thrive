@@ -4,6 +4,7 @@ using System;
 using System.Collections.Generic;
 using Godot;
 using Xoshiro.PRNG64;
+using static CommonMutationFunctions;
 
 /// <summary>
 ///   Uses miches to create a mutation for an existing species. Also creates new species from existing ones as
@@ -34,8 +35,8 @@ public class ModifyExistingSpecies : IRunStep
     private readonly List<Species> predatorPressuresTemporary = new();
 
     // TODO: switch to named tuple elements
-    private readonly List<Tuple<MicrobeSpecies, double>> temporaryMutations1 = new();
-    private readonly List<Tuple<MicrobeSpecies, double>> temporaryMutations2 = new();
+    private readonly List<Mutant> temporaryMutations1 = new();
+    private readonly List<Mutant> temporaryMutations2 = new();
 
     private readonly List<MicrobeSpecies> lastGeneratedMutations = new();
 
@@ -232,9 +233,9 @@ public class ModifyExistingSpecies : IRunStep
         return false;
     }
 
-    private static void PruneMutations(List<Tuple<MicrobeSpecies, double>> addResultsTo, MicrobeSpecies baseSpecies,
-        List<Tuple<MicrobeSpecies, double>> mutated, Patch patch, SimulationCache cache,
-        IEnumerable<SelectionPressure> selectionPressures)
+    private static void PruneMutations(List<Mutant> addResultsTo, MicrobeSpecies baseSpecies,
+        List<Mutant> mutated, Patch patch, SimulationCache cache,
+        Stack<SelectionPressure> selectionPressures)
     {
         foreach (var potentialVariant in mutated)
         {
@@ -242,7 +243,7 @@ public class ModifyExistingSpecies : IRunStep
             foreach (var pastPressure in selectionPressures)
             {
                 // Caching a score for a species very likely to be pruned wastes memory
-                var newScore = pastPressure.Score(potentialVariant.Item1, patch, cache);
+                var newScore = pastPressure.Score(potentialVariant.Species, patch, cache);
                 var oldScore = cache.GetPressureScore(pastPressure, patch, baseSpecies);
 
                 // Break if the mutation fails a new pressure check
@@ -255,19 +256,19 @@ public class ModifyExistingSpecies : IRunStep
                 combinedScores += pastPressure.WeightedComparedScores(newScore, oldScore);
             }
 
-            if (combinedScores >= 0)
+            if (combinedScores > 0)
             {
                 addResultsTo.Add(potentialVariant);
             }
         }
     }
 
-    private static void GetTopMutations(List<Tuple<MicrobeSpecies, double>> result,
-        List<Tuple<MicrobeSpecies, double>> mutated, int amount, MutationSorter sorter)
+    private static void GetTopMutations(List<Mutant> result,
+        List<Mutant> mutated, int amount, MutationSorter sorter)
     {
         result.Clear();
 
-        mutated.Sort(sorter);
+        mutated.Sort((a, b) => sorter.Compare(b, a));
 
         foreach (var tuple in mutated)
         {
@@ -287,7 +288,7 @@ public class ModifyExistingSpecies : IRunStep
         SpeciesDependentPressures(pressureStack, miche!, microbeSpecies);
 
         var inputSpecies = generateMutationsWorkingMemory.GetMutationsAtDepth(0);
-        inputSpecies.Add(Tuple.Create(microbeSpecies, totalMP));
+        inputSpecies.Add(new Mutant(microbeSpecies, totalMP));
 
         GenerateMutations(microbeSpecies, miche!, 1);
     }
@@ -336,7 +337,7 @@ public class ModifyExistingSpecies : IRunStep
 
     /// <summary>
     ///   Adds a new list of all possible species that might emerge in response to the provided pressures,
-    ///   as well as a copy of the original species to <see cref="mutationsToTry"\>.
+    ///   as well as a copy of the original species to <see cref="mutationsToTry"/>.
     /// </summary>
     private void GenerateMutations(MicrobeSpecies baseSpecies, Miche currentMiche, int depth)
     {
@@ -353,13 +354,10 @@ public class ModifyExistingSpecies : IRunStep
         var mutations = currentMiche.Pressure.Mutations;
         bool lawk = worldSettings.LAWK;
 
-        temporaryMutations1.Clear();
-        temporaryMutations1.AddRange(outputSpecies);
-
         foreach (var mutationStrategy in mutations)
         {
-            // temporaryMutations1.Clear();
-            // temporaryMutations1.AddRange(outputSpecies);
+            temporaryMutations1.Clear();
+            temporaryMutations1.AddRange(outputSpecies);
 
             for (int i = 0; i < Constants.AUTO_EVO_MAX_MUTATION_RECURSIONS; ++i)
             {
@@ -369,12 +367,12 @@ public class ModifyExistingSpecies : IRunStep
                 {
                     // TODO: this seems like the longest part, so splitting this into multiple steps (maybe bundling
                     // up mutation strategies) would be good to have the auto-evo steps flow more smoothly
-                    var mutated = mutationStrategy.MutationsOf(speciesTuple.Item1, speciesTuple.Item2, lawk, random,
+                    var mutated = mutationStrategy.MutationsOf(speciesTuple.Species, speciesTuple.MP, lawk, random,
                         patch.Biome);
 
                     if (mutated != null)
                     {
-                        PruneMutations(temporaryMutations2, speciesTuple.Item1, mutated, patch, cache,
+                        PruneMutations(temporaryMutations2, speciesTuple.Species, mutated, patch, cache,
                             pressureStack);
                     }
                 }
@@ -418,7 +416,7 @@ public class ModifyExistingSpecies : IRunStep
                 mutationSorter);
             foreach (var topMutation in temporaryMutations1)
             {
-                lastGeneratedMutations.Add(topMutation.Item1);
+                lastGeneratedMutations.Add(topMutation.Species);
             }
 
             // TODO: could maybe optimize things by only giving name and colour changes for mutations that are selected
@@ -441,7 +439,8 @@ public class ModifyExistingSpecies : IRunStep
                     Math.Clamp((float)(oldColour.B + blueShift), 0, 1));
             }
 
-            var resultType = (currentMiche.Occupant == baseSpecies) ? RunResults.NewSpeciesType.SplitDueToMutation :
+            var resultType = (currentMiche.Occupant == baseSpecies) ?
+                RunResults.NewSpeciesType.SplitDueToMutation :
                 RunResults.NewSpeciesType.FillNiche;
 
             foreach (var species in lastGeneratedMutations)
@@ -464,16 +463,16 @@ public class ModifyExistingSpecies : IRunStep
         RunResults.NewSpeciesType AddType);
 
     /// <summary>
-    ///   Working memory used to reduce memory allocations in <see cref="ModifyExistingSpecies.GenerateMutations"/>
+    ///   Working memory used to reduce memory allocations in <see cref="GenerateMutations"/>.
     /// </summary>
     private class GenerateMutationsWorkingMemory
     {
-        private readonly List<List<Tuple<MicrobeSpecies, double>>> currentSpecies = new();
+        private readonly List<List<Mutant>> currentSpecies = new();
 
-        public List<Tuple<MicrobeSpecies, double>> GetMutationsAtDepth(int depth)
+        public List<Mutant> GetMutationsAtDepth(int depth)
         {
             while (currentSpecies.Count <= depth)
-                currentSpecies.Add(new());
+                currentSpecies.Add(new List<Mutant>());
 
             var result = currentSpecies[depth];
 
@@ -489,7 +488,7 @@ public class ModifyExistingSpecies : IRunStep
         }
     }
 
-    private class MutationSorter(Patch patch, SimulationCache cache) : IComparer<Tuple<MicrobeSpecies, double>>
+    private class MutationSorter(Patch patch, SimulationCache cache) : IComparer<Mutant>
     {
         // This isn't the cleanest but this class is just optimized for performance so if someone forgets to set up
         // this then bad things will happen
@@ -502,7 +501,7 @@ public class ModifyExistingSpecies : IRunStep
             baseSpecies = species;
         }
 
-        public int Compare(Tuple<MicrobeSpecies, double>? x, Tuple<MicrobeSpecies, double>? y)
+        public int Compare(Mutant? x, Mutant? y)
         {
             if (ReferenceEquals(x, y))
                 return 0;
@@ -516,10 +515,10 @@ public class ModifyExistingSpecies : IRunStep
 
             foreach (var pressure in pressures)
             {
-                strengthX += pressure.Score(x.Item1, patch, cache) /
+                strengthX += cache.GetPressureScore(pressure, patch, x.Species) /
                     cache.GetPressureScore(pressure, patch, baseSpecies) * pressure.Weight;
 
-                strengthY += pressure.Score(y.Item1, patch, cache) /
+                strengthY += cache.GetPressureScore(pressure, patch, y.Species) /
                     cache.GetPressureScore(pressure, patch, baseSpecies) * pressure.Weight;
             }
 
@@ -529,13 +528,11 @@ public class ModifyExistingSpecies : IRunStep
             if (strengthY > strengthX)
                 return -1;
 
-            // Second float in tuple is apparently compared in ascending order
-            // TODO: switch to named tuples to figure out what is going on here
-            if (x.Item2 > y.Item2)
-                return -1;
-
-            if (x.Item2 < y.Item2)
+            if (x.MP > y.MP)
                 return 1;
+
+            if (x.MP < y.MP)
+                return -1;
 
             return 0;
         }

@@ -2,6 +2,7 @@
 
 using System;
 using System.Collections.Generic;
+using static CommonMutationFunctions;
 
 public class ChangeMembraneType : IMutationStrategy<MicrobeSpecies>
 {
@@ -14,7 +15,7 @@ public class ChangeMembraneType : IMutationStrategy<MicrobeSpecies>
 
     public bool Repeatable => false;
 
-    public List<Tuple<MicrobeSpecies, double>>? MutationsOf(MicrobeSpecies baseSpecies, double mp, bool lawk,
+    public List<Mutant>? MutationsOf(MicrobeSpecies baseSpecies, double mp, bool lawk,
         Random random, BiomeConditions biomeToConsider)
     {
         if (baseSpecies.MembraneType == membraneType)
@@ -27,6 +28,6 @@ public class ChangeMembraneType : IMutationStrategy<MicrobeSpecies>
 
         newSpecies.MembraneType = membraneType;
 
-        return [Tuple.Create(newSpecies, mp - membraneType.EditorCost)];
+        return [new Mutant(newSpecies, mp - membraneType.EditorCost)];
     }
 }
