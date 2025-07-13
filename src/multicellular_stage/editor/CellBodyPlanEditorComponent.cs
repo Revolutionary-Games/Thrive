@@ -1406,7 +1406,7 @@ public partial class CellBodyPlanEditorComponent :
         // Don't change the tab if there's an in-progress action
         if (CanCancelAction)
         {
-            ToolTipManager.Instance.ShowPopup(Localization.Translate("ACTION_BLOCKED_WHILE_ANOTHER_IN_PROGRESS"),
+            ToolTipManager.Instance.ShowPopup(Localization.Translate("TAB_CHANGE_BLOCKED_WHILE_ACTION_IN_PROGRESS"),
                 1.5f);
 
             ApplySelectionMenuTab();
