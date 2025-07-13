@@ -30,8 +30,8 @@ public class CompoundConversionEfficiencyPressure : SelectionPressure
     public CompoundConversionEfficiencyPressure(Compound compound, Compound outCompound, float weight,
         bool usedForSurvival) :
         base(weight, [
-            AddOrganelleAnywhere.ThatConvertBetweenCompounds(compound, outCompound),
             RemoveOrganelle.ThatCreateCompound(outCompound),
+            AddOrganelleAnywhere.ThatConvertBetweenCompounds(compound, outCompound),
         ])
     {
         this.compound = compound;
@@ -53,7 +53,7 @@ public class CompoundConversionEfficiencyPressure : SelectionPressure
         var score = cache.GetCompoundConversionScoreForSpecies(FromCompound, ToCompound, microbeSpecies, patch.Biome);
 
         // we need to factor in both conversion from source to output, and energy expenditure time
-        if (usedForSurvival)
+        if (usedForSurvival && false)
             score /= cache.GetEnergyBalanceForSpecies(microbeSpecies, patch.Biome).TotalConsumptionStationary;
 
         return score;

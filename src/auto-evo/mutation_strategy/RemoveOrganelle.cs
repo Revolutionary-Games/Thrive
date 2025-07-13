@@ -53,6 +53,9 @@ public class RemoveOrganelle : IMutationStrategy<MicrobeSpecies>
         if (mp < Constants.ORGANELLE_REMOVE_COST)
             return null;
 
+        if (baseSpecies.Organelles.Count <= 1)
+            return null;
+
         var organelles = baseSpecies.Organelles.Where(x => Criteria(x.Definition))
             .OrderBy(_ => random.Next()).Take(Constants.AUTO_EVO_ORGANELLE_REMOVE_ATTEMPTS);
 
