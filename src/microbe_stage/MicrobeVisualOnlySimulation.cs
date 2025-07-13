@@ -383,8 +383,9 @@ public sealed class MicrobeVisualOnlySimulation : WorldSimulation
             }
         }
 
-        return new Vector3(center.X, PhotoStudio.CameraDistanceFromRadiusOfObject(
-            MathF.Sqrt(maxCellDistanceSquared) + farthestCellRadius), center.Z);
+        return new Vector3(center.X,
+            PhotoStudio.CameraDistanceFromRadiusOfObject(MathF.Sqrt(maxCellDistanceSquared) + farthestCellRadius),
+            center.Z);
     }
 
     public override bool HasSystemsWithPendingOperations()
