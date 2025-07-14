@@ -21,11 +21,10 @@ public static class TestRunningHelpers
                                                          <MaxCpuCount>{0}</MaxCpuCount>
                                                          <TestAdaptersPaths>.</TestAdaptersPaths>
                                                          <ResultsDirectory>./TestResults</ResultsDirectory>
-                                                         <TargetFrameworks>{1}</TargetFrameworks>
-                                                         <TestSessionTimeout>{2}</TestSessionTimeout>
+                                                         <TestSessionTimeout>{1}</TestSessionTimeout>
                                                          <TreatNoTestsAsError>true</TreatNoTestsAsError>
                                                          <EnvironmentVariables>
-                                                             <GODOT_BIN>{3}</GODOT_BIN>
+                                                             <GODOT_BIN>{2}</GODOT_BIN>
                                                          </EnvironmentVariables>
                                                      </RunConfiguration>
                                                      <LoggerRunSettings>
@@ -33,15 +32,15 @@ public static class TestRunningHelpers
                                                              <!-- Seems to cause duplicate output -->
                                                              <Logger friendlyName="console" enabled="False">
                                                                  <Configuration>
-                                                                     <Verbosity>{5}</Verbosity>
+                                                                     <Verbosity>{4}</Verbosity>
                                                                  </Configuration>
                                                              </Logger>
-                                                             <Logger friendlyName="html" enabled="{4}">
+                                                             <Logger friendlyName="html" enabled="{3}">
                                                                  <Configuration>
                                                                      <LogFileName>test-result.html</LogFileName>
                                                                  </Configuration>
                                                              </Logger>
-                                                             <Logger friendlyName="trx" enabled="{4}">
+                                                             <Logger friendlyName="trx" enabled="{3}">
                                                                  <Configuration>
                                                                      <LogFileName>test-result.trx</LogFileName>
                                                                  </Configuration>
@@ -74,12 +73,11 @@ public static class TestRunningHelpers
         }
     }
 
-    public static void GenerateRunSettings(string godot, string dotnetVersion, bool fileResults)
+    public static void GenerateRunSettings(string godot, bool fileResults)
     {
         var timeout = (int)TimeSpan.FromMinutes(10).TotalMilliseconds;
 
-        var text = string.Format(RUN_SETTINGS_TEMPLATE, 1, dotnetVersion, timeout, godot, fileResults,
-            TEST_RUN_VERBOSITY);
+        var text = string.Format(RUN_SETTINGS_TEMPLATE, 1, timeout, godot, fileResults, TEST_RUN_VERBOSITY);
 
         File.WriteAllText(RUN_SETTINGS_FILE, text, Encoding.UTF8);
     }

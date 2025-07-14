@@ -138,7 +138,7 @@ public class Program
         const int maxTries = 2;
 
         // Then gdUnit
-        TestRunningHelpers.GenerateRunSettings(godot, AssemblyInfoReader.ReadRunTimeFromCsproj("Thrive.csproj"), false);
+        TestRunningHelpers.GenerateRunSettings(godot, false);
 
         // gdUnit can randomly fail once to detect available tests, that's why the tests run multiple times on fail
         // (which is not ideal, but it should hopefully be relatively rare for the tests to actually fail for real)
