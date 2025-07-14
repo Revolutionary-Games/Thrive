@@ -2781,21 +2781,13 @@ public partial class CellEditorComponent :
 
         GUICommon.Instance.PlayButtonPressSound();
 
-        // Don't change the tab if there's an in-progress action
-        if (CanCancelAction)
+        if (!BlockTabSwitchIfInProgressAction(CanCancelAction))
         {
-            ToolTipManager.Instance.ShowPopup(Localization.Translate("TAB_CHANGE_BLOCKED_WHILE_ACTION_IN_PROGRESS"),
-                1.5f);
-
-            ApplySelectionMenuTab();
-
-            return;
+            selectedSelectionMenuTab = selection;
+            tutorialState?.SendEvent(TutorialEventType.CellEditorTabChanged, new StringEventArgs(tab), this);
         }
 
-        selectedSelectionMenuTab = selection;
         ApplySelectionMenuTab();
-
-        tutorialState?.SendEvent(TutorialEventType.CellEditorTabChanged, new StringEventArgs(tab), this);
     }
 
     private void ApplySelectionMenuTab()
