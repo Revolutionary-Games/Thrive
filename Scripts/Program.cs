@@ -152,6 +152,10 @@ public class Program
             startInfo.ArgumentList.Add(TestRunningHelpers.TEST_RUN_VERBOSITY);
             startInfo.ArgumentList.Add("Thrive.csproj");
 
+            // TODO: test code
+            startInfo.ArgumentList.Add("--diag");
+            startInfo.ArgumentList.Add("diag.log");
+
             result = ProcessRunHelpers.RunProcessAsync(startInfo, tokenSource.Token, false)
                 .Result.ExitCode;
 
