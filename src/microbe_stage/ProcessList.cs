@@ -74,6 +74,9 @@ public partial class ProcessList : VBoxContainer
         // while this is visible? As the comparison operator is pretty expensive for the strict value equality.
         createdProcessControls =
             new ChildObjectCache<StrictProcessDisplayInfoEquality, ChemicalEquation>(this, CreateEquation);
+
+        // To make sure processes refresh when the game is paused
+        ProcessMode = ProcessModeEnum.Always;
     }
 
     public override void _Process(double delta)
@@ -112,6 +115,9 @@ public partial class ProcessList : VBoxContainer
         equation.MarkRedOnLimitingCompounds = MarkRedOnLimitingCompounds;
         equation.AutoRefreshProcess = UpdateEquationAutomatically;
         equation.ExternalSpeedModifier = ExternalSpeedModifier;
+
+        // As we run always, make the child pausable to make sure the spinner doesn't spin while paused
+        equation.ProcessMode = ProcessModeEnum.Pausable;
 
         equation.Connect(SignalName.ToggleProcessPressed, new Callable(this, nameof(HandleToggleProcess)));
 
