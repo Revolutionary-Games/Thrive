@@ -116,8 +116,9 @@ public partial class ProcessList : VBoxContainer
         equation.AutoRefreshProcess = UpdateEquationAutomatically;
         equation.ExternalSpeedModifier = ExternalSpeedModifier;
 
-        // As we run always, make the child pausable to make sure the spinner doesn't spin while paused
-        equation.ProcessMode = ProcessModeEnum.Pausable;
+        // The chemical equation will itself detect when it should pause the spinner, so we don't set this here, as
+        // that will break scrolling in the GUI
+        // equation.ProcessMode = ProcessModeEnum.Pausable;
 
         equation.Connect(SignalName.ToggleProcessPressed, new Callable(this, nameof(HandleToggleProcess)));
 
