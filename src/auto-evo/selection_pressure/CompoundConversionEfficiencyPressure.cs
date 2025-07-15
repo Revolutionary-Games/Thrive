@@ -52,9 +52,11 @@ public class CompoundConversionEfficiencyPressure : SelectionPressure
 
         var score = cache.GetCompoundConversionScoreForSpecies(FromCompound, ToCompound, microbeSpecies, patch.Biome);
 
+        // TODO: Find a way to re-enable this
+        // This was disabled due to incompatabilities with the modify species rework
         // we need to factor in both conversion from source to output, and energy expenditure time
-        if (usedForSurvival && false)
-            score /= cache.GetEnergyBalanceForSpecies(microbeSpecies, patch.Biome).TotalConsumptionStationary;
+        // if (usedForSurvival)
+        //     score /= cache.GetEnergyBalanceForSpecies(microbeSpecies, patch.Biome).TotalConsumptionStationary;
 
         return score;
     }
