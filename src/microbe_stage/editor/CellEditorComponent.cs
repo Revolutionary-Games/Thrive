@@ -2806,10 +2806,13 @@ public partial class CellEditorComponent :
 
         GUICommon.Instance.PlayButtonPressSound();
 
-        selectedSelectionMenuTab = selection;
-        ApplySelectionMenuTab();
+        if (!BlockTabSwitchIfInProgressAction(CanCancelAction))
+        {
+            selectedSelectionMenuTab = selection;
+            tutorialState?.SendEvent(TutorialEventType.CellEditorTabChanged, new StringEventArgs(tab), this);
+        }
 
-        tutorialState?.SendEvent(TutorialEventType.CellEditorTabChanged, new StringEventArgs(tab), this);
+        ApplySelectionMenuTab();
     }
 
     private void ApplySelectionMenuTab()

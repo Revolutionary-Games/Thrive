@@ -96,6 +96,7 @@ public class CodeChecks : CodeChecksBase<Program.CheckOptions>
         "addons/**",
         "*.generated.cs",
         "*GdUnit4TestRunnerScene.cs",
+        "*.uid",
     ];
 
     protected override IEnumerable<string> ExtraIgnoredJetbrainsCleanUpWildcards =>
