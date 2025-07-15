@@ -92,6 +92,7 @@ public class CodeChecks : CodeChecksBase<Program.CheckOptions>
         "Scripts/GodotAPIData/*",
         "addons/**",
         "*.generated.cs",
+        "*.uid",
     ];
 
     protected override IEnumerable<string> ExtraIgnoredJetbrainsCleanUpWildcards =>
