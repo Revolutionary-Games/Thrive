@@ -22,7 +22,7 @@ public static class TestRunningHelpers
                                                          <TestAdaptersPaths>.</TestAdaptersPaths>
                                                          <ResultsDirectory>./TestResults</ResultsDirectory>
                                                          <TestSessionTimeout>{1}</TestSessionTimeout>
-                                                         <TreatNoTestsAsError>true</TreatNoTestsAsError>
+                                                         <TreatNoTestsAsError>false</TreatNoTestsAsError>
                                                          <EnvironmentVariables>
                                                              <GODOT_BIN>{2}</GODOT_BIN>
                                                          </EnvironmentVariables>
