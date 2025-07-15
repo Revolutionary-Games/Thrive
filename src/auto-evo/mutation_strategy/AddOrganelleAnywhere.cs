@@ -4,6 +4,9 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 
+/// <summary>
+///   Adds a random, valid organelle to a valid position. Doesn't place multicellular or later organelles.
+/// </summary>
 public class AddOrganelleAnywhere : IMutationStrategy<MicrobeSpecies>
 {
     private readonly CommonMutationFunctions.Direction direction;
@@ -12,7 +15,7 @@ public class AddOrganelleAnywhere : IMutationStrategy<MicrobeSpecies>
     public AddOrganelleAnywhere(Func<OrganelleDefinition, bool> criteria, CommonMutationFunctions.Direction direction
         = CommonMutationFunctions.Direction.Neutral)
     {
-        allOrganelles = SimulationParameters.Instance.GetAllOrganelles().Where(criteria).Where(IsOrangelleValid)
+        allOrganelles = SimulationParameters.Instance.GetAllOrganelles().Where(criteria).Where(IsOrganelleValid)
             .ToArray();
 
         this.direction = direction;
@@ -127,9 +130,9 @@ public class AddOrganelleAnywhere : IMutationStrategy<MicrobeSpecies>
     }
 
     /// <summary>
-    ///   Macroscopic, multicellular, and non-placable organelles are invalid and so won't be considered.
+    ///   Macroscopic, multicellular, and non-placeable organelles are invalid and so won't be considered.
     /// </summary>
-    private static bool IsOrangelleValid(OrganelleDefinition organelle)
+    private static bool IsOrganelleValid(OrganelleDefinition organelle)
     {
         // TODO: allow placement of multicellular organelles in the appropriate stages.
         return organelle.AutoEvoCanPlace &&
