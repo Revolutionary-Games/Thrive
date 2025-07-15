@@ -1187,7 +1187,7 @@ public class MicrobeSpawner : Spawner
             ModLoader.ModInterface.TriggerOnMicrobeSpawned(entity);
 
             return (recorder, weight);
-        }, this);
+        }, location, SpawnQueue.IsTooCloseToPlayer, this);
 
         if (!bacteria)
         {
@@ -1287,7 +1287,7 @@ public class ChunkSpawner : Spawner
             ModLoader.ModInterface.TriggerOnChunkSpawned(entity, true);
 
             return (recorder, Constants.FLOATING_CHUNK_ENTITY_WEIGHT);
-        }, this);
+        }, location, SpawnQueue.IsTooCloseToPlayer, this);
     }
 
     public override string ToString()

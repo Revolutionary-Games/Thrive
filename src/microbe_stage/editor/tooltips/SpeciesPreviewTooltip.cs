@@ -65,14 +65,6 @@ public partial class SpeciesPreviewTooltip : PanelContainer, ICustomToolTip
         DisplayName = PreviewSpecies.FormattedName;
         Description = PreviewSpecies.FormattedName;
 
-        if (PreviewSpecies is MicrobeSpecies microbeSpecies)
-        {
-            hexesPreview.PreviewSpecies = microbeSpecies;
-        }
-        else
-        {
-            GD.PrintErr("Unknown species type to preview: ", PreviewSpecies, " (", PreviewSpecies.GetType().Name, ")");
-            hexesPreview.PreviewSpecies = null;
-        }
+        hexesPreview.PreviewSpecies = PreviewSpecies;
     }
 }

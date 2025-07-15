@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Thrive VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2025-07-13 15:06+0300\n"
+"POT-Creation-Date: 2025-06-05 21:10+0100\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -69,9 +69,7 @@ msgstr ""
 
 #: ../src/general/base_stage/EditorBase.cs:853
 #: ../src/macroscopic_stage/editor/MacroscopicEditor.cs:485
-#: ../src/macroscopic_stage/editor/MetaballBodyEditorComponent.cs:1015
 #: ../src/microbe_stage/editor/CellEditorComponent.GUI.cs:62
-#: ../src/multicellular_stage/editor/CellBodyPlanEditorComponent.cs:1409
 #: ../src/multicellular_stage/editor/MulticellularEditor.cs:421
 msgid "ACTION_BLOCKED_WHILE_ANOTHER_IN_PROGRESS"
 msgstr ""
@@ -502,7 +500,7 @@ msgstr ""
 
 #: ../src/auto-evo/AutoEvoExploringTool.tscn:685
 #: ../src/general/MainMenu.tscn:429 ../src/general/MainMenu.tscn:488
-#: ../src/general/MainMenu.tscn:536 ../src/general/MainMenu.tscn:885
+#: ../src/general/MainMenu.tscn:536 ../src/general/MainMenu.tscn:884
 #: ../src/general/NewGameSettings.tscn:1127 ../src/general/OptionsMenu.tscn:2133
 #: ../src/general/PauseMenu.tscn:291
 #: ../src/microbe_stage/gui/ExtinctionBox.tscn:72
@@ -2464,23 +2462,23 @@ msgstr ""
 msgid "ENERGY_BALANCE_TOOLTIP_PRODUCTION_WITH_REQUIREMENT"
 msgstr ""
 
-#: ../src/microbe_stage/editor/CellEditorComponent.cs:3042
+#: ../src/microbe_stage/editor/CellEditorComponent.cs:3031
 msgid "ENERGY_IN_PATCH_FOR"
 msgstr ""
 
-#: ../src/microbe_stage/editor/CellEditorComponent.cs:2877
+#: ../src/microbe_stage/editor/CellEditorComponent.cs:2866
 msgid "ENERGY_IN_PATCH_SHORT"
 msgstr ""
 
-#: ../src/microbe_stage/editor/CellEditorComponent.cs:3053
+#: ../src/microbe_stage/editor/CellEditorComponent.cs:3042
 msgid "ENERGY_SOURCES"
 msgstr ""
 
-#: ../src/microbe_stage/editor/CellEditorComponent.cs:3046
+#: ../src/microbe_stage/editor/CellEditorComponent.cs:3035
 msgid "ENERGY_SUMMARY_LINE"
 msgstr ""
 
-#: ../src/microbe_stage/components/MicrobeControl.cs:403
+#: ../src/microbe_stage/components/MicrobeControl.cs:409
 msgid "ENGULF_NO_ATP_DAMAGE_MESSAGE"
 msgstr ""
 
@@ -2909,7 +2907,7 @@ msgstr ""
 msgid "FOOD_CHAIN"
 msgstr ""
 
-#: ../src/microbe_stage/editor/CellEditorComponent.cs:3059
+#: ../src/microbe_stage/editor/CellEditorComponent.cs:3048
 msgid "FOOD_SOURCE_ENERGY_INFO"
 msgstr ""
 
@@ -3018,7 +3016,7 @@ msgstr ""
 msgid "GAME_SYSTEMS_TITLE"
 msgstr ""
 
-#: ../src/microbe_stage/editor/CellEditorComponent.cs:2977
+#: ../src/microbe_stage/editor/CellEditorComponent.cs:2966
 #: ../src/microbe_stage/editor/CellEditorComponent.tscn:1062
 msgid "GATHERED_ENERGY_TOOLTIP"
 msgstr ""
@@ -4610,11 +4608,11 @@ msgstr ""
 msgid "LOWER_VALUE_MAKES_SHARPER_IMAGE"
 msgstr ""
 
-#: ../src/general/MainMenu.tscn:958
+#: ../src/general/MainMenu.tscn:957
 msgid "LOW_MENU_PERFORMANCE"
 msgstr ""
 
-#: ../src/general/MainMenu.tscn:957
+#: ../src/general/MainMenu.tscn:956
 msgid "LOW_MENU_PERFORMANCE_DESCRIPTION"
 msgstr ""
 
@@ -5236,7 +5234,7 @@ msgstr ""
 msgid "MODS"
 msgstr ""
 
-#: ../src/general/MainMenu.tscn:915
+#: ../src/general/MainMenu.tscn:914
 msgid "MODS_INSTALLED_BUT_NOT_ENABLED"
 msgstr ""
 
@@ -5326,11 +5324,11 @@ msgstr ""
 msgid "MOD_LICENSE"
 msgstr ""
 
-#: ../src/general/MainMenu.tscn:931
+#: ../src/general/MainMenu.tscn:930
 msgid "MOD_LOAD_ERRORS"
 msgstr ""
 
-#: ../src/general/MainMenu.tscn:929
+#: ../src/general/MainMenu.tscn:928
 msgid "MOD_LOAD_ERRORS_OCCURRED"
 msgstr ""
 
@@ -5833,6 +5831,10 @@ msgstr ""
 msgid "NOTICE_HIT_BY_BASE_MOVEMENT_TOXIN"
 msgstr ""
 
+#: ../src/microbe_stage/components/MicrobeControl.cs:362
+msgid "NOTICE_NOT_ENOUGH_MUCILAGE"
+msgstr ""
+
 #: ../src/microbe_stage/systems/RadiationDamageSystem.cs:86
 msgid "NOTICE_RADIATION_DAMAGE"
 msgstr ""
@@ -5858,7 +5860,7 @@ msgid "NO_AI"
 msgstr ""
 
 #: ../src/gui_common/charts/line/LineChart.cs:665
-#: ../src/microbe_stage/editor/CellEditorComponent.cs:3074
+#: ../src/microbe_stage/editor/CellEditorComponent.cs:3063
 msgid "NO_DATA_TO_SHOW"
 msgstr ""
 
@@ -5870,7 +5872,7 @@ msgstr ""
 msgid "NO_FOSSIL_DIRECTORY"
 msgstr ""
 
-#: ../src/general/MainMenu.tscn:916
+#: ../src/general/MainMenu.tscn:915
 msgid "NO_MODS_ENABLED"
 msgstr ""
 
@@ -5926,8 +5928,8 @@ msgstr ""
 #: ../src/gui_common/art_gallery/GalleryDetailsTooltip.cs:25
 #: ../src/gui_common/art_gallery/GalleryDetailsTooltip.cs:35
 #: ../src/gui_common/art_gallery/GalleryDetailsTooltip.cs:45
-#: ../src/microbe_stage/editor/CellEditorComponent.cs:2888
-#: ../src/microbe_stage/editor/CellEditorComponent.cs:2900
+#: ../src/microbe_stage/editor/CellEditorComponent.cs:2877
+#: ../src/microbe_stage/editor/CellEditorComponent.cs:2889
 #: ../src/microbe_stage/editor/MicrobePartSelection.tscn:154
 #: ../src/microbe_stage/MicrobeHUD.cs:564
 msgid "N_A"
@@ -5970,11 +5972,11 @@ msgstr ""
 msgid "OLDER_VERSION_LOADING_WARNING"
 msgstr ""
 
-#: ../src/general/MainMenu.tscn:906
+#: ../src/general/MainMenu.tscn:905
 msgid "OPENGL_MODE_WARNING"
 msgstr ""
 
-#: ../src/general/MainMenu.tscn:905
+#: ../src/general/MainMenu.tscn:904
 msgid "OPENGL_MODE_WARNING_EXPLANATION"
 msgstr ""
 
@@ -6554,7 +6556,7 @@ msgstr ""
 msgid "POPULATION_IN_PATCHES"
 msgstr ""
 
-#: ../src/microbe_stage/editor/CellEditorComponent.cs:2907
+#: ../src/microbe_stage/editor/CellEditorComponent.cs:2896
 msgid "POPULATION_IN_PATCH_SHORT"
 msgstr ""
 
@@ -7001,11 +7003,11 @@ msgstr ""
 msgid "RUSTICYANIN_PROCESSES_DESCRIPTION"
 msgstr ""
 
-#: ../src/general/MainMenu.tscn:924
+#: ../src/general/MainMenu.tscn:923
 msgid "SAFE_MODE_EXPLANATION"
 msgstr ""
 
-#: ../src/general/MainMenu.tscn:925
+#: ../src/general/MainMenu.tscn:924
 msgid "SAFE_MODE_TITLE"
 msgstr ""
 
@@ -7722,11 +7724,11 @@ msgstr ""
 msgid "STEAM_ERROR_UNKNOWN"
 msgstr ""
 
-#: ../src/general/MainMenu.tscn:950
+#: ../src/general/MainMenu.tscn:949
 msgid "STEAM_INIT_FAILED"
 msgstr ""
 
-#: ../src/general/MainMenu.tscn:949
+#: ../src/general/MainMenu.tscn:948
 msgid "STEAM_INIT_FAILED_DESCRIPTION"
 msgstr ""
 
@@ -7989,7 +7991,7 @@ msgstr ""
 msgid "TESTING_TEAM"
 msgstr ""
 
-#: ../src/general/MainMenu.cs:254 ../src/general/MainMenu.tscn:941
+#: ../src/general/MainMenu.cs:254 ../src/general/MainMenu.tscn:940
 msgid "THANKS_FOR_BUYING_THRIVE_2"
 msgstr ""
 
@@ -7997,7 +7999,7 @@ msgstr ""
 msgid "THANKS_FOR_PLAYING"
 msgstr ""
 
-#: ../src/general/MainMenu.tscn:942
+#: ../src/general/MainMenu.tscn:941
 msgid "THANK_YOU_TITLE"
 msgstr ""
 
