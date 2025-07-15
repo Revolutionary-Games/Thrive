@@ -1,0 +1,24 @@
+name: publish-test-report
+description: 'Publishes the GdUnit test results'
+
+inputs:
+  report-name:
+    description: 'Name of the check run which will be created.'
+    required: true
+  report-path:
+    description: 'The path to the reports'
+    required: true
+
+runs:
+  using: composite
+  steps:
+    - name: 'Publish Test Results'
+      uses: dorny/test-reporter@v2.1.0
+      with:
+        name: ${{ inputs.report-name }}
+        path: ${{ inputs.report-path }}
+        reporter: dotnet-trx
+        fail-on-error: 'false'
+        fail-on-empty: 'false'
+        # we do not want to use the annotation
+        max-annotations: '0'

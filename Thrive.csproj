@@ -40,14 +40,17 @@
   </ItemGroup>
   <!-- Test resources -->
   <ItemGroup Condition="'$(Configuration)' != 'ExportRelease'">
+    <PackageReference Include="Microsoft.NET.Test.Sdk" Version="17.14.1" />
     <PackageReference Include="gdUnit4.api" Version="5.0.0" />
     <PackageReference Include="gdUnit4.test.adapter" Version="3.0.0" />
-    <!-- Re-enable this this once newer compiler versions are deployed everywhere
     <PackageReference Include="gdUnit4.analyzers" Version="1.0.0">
       <PrivateAssets>none</PrivateAssets>
       <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
-    </PackageReference> -->
-    <PackageReference Include="Microsoft.NET.Test.Sdk" Version="17.14.1" />
+    </PackageReference>
+    <!--
+    <ProjectReference Include="..\gdUnit4Net\Api\GdUnit4Api.csproj"/>
+    <ProjectReference Include="..\gdUnit4Net\TestAdapter\GdUnit4TestAdapter.csproj"/>
+    -->
   </ItemGroup>
   <ItemGroup>
     <PackageReference Include="AngleSharp" Version="1.3.0" />

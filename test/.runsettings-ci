@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RunSettings>
+    <RunConfiguration>
+        <MaxCpuCount>1</MaxCpuCount>
+        <ResultsDirectory>./TestResults</ResultsDirectory>
+        <TargetFrameworks>net9.0</TargetFrameworks>
+        <!-- set default session timeout to 10m (600000ms)-->
+        <TestSessionTimeout>1600000</TestSessionTimeout>
+        <TreatNoTestsAsError>false</TreatNoTestsAsError>
+        <EnvironmentVariables>
+            <GODOT_BIN>/home/runner/godot-linux/godot</GODOT_BIN>
+        </EnvironmentVariables>
+        <!--
+        <TestAdaptersPaths>.;/root/.nuget/packages/microsoft.codecoverage/17.14.1/build/netstandard2.0/</TestAdaptersPaths>
+        <TargetPlatform>X64</TargetPlatform>
+        <TargetFrameworkVersion>.NETCoreApp,Version=v9.0</TargetFrameworkVersion>
+        <InIsolation>true</InIsolation>
+        <DesignMode>False</DesignMode>
+        <CollectSourceInformation>False</CollectSourceInformation>
+        -->
+    </RunConfiguration>
+
+    <LoggerRunSettings>
+        <Loggers>
+            <Logger friendlyName="console" enabled="True">
+                <Configuration>
+                    <Verbosity>normal</Verbosity>
+                </Configuration>
+            </Logger>
+            <Logger friendlyName="html" enabled="True">
+                <Configuration>
+                    <LogFileName>test-result.html</LogFileName>
+                </Configuration>
+            </Logger>
+            <Logger friendlyName="trx" enabled="True">
+                <Configuration>
+                    <LogFileName>test-result.trx</LogFileName>
+                </Configuration>
+            </Logger>
+        </Loggers>
+    </LoggerRunSettings>
+
+    <GdUnit4>
+        <CompileProcessTimeout>60000</CompileProcessTimeout>
+        <Parameters>--headless</Parameters>
+        <DisplayName>FullyQualifiedName</DisplayName>
+        <CaptureStdOut>true</CaptureStdOut>
+    </GdUnit4>
+</RunSettings>

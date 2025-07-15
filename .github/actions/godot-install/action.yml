@@ -1,0 +1,81 @@
+name: install-godot-binary
+description: "Installs the Godot Runtime"
+
+inputs:
+  godot-version:
+    description: "The Godot engine version"
+    required: true
+  godot-status-version:
+    description: "The Godot engine status version"
+    required: true
+  godot-mono:
+    required: false
+    default: "false"
+  godot-bin-name:
+    required: true
+  godot-cache-path:
+    required: true
+
+runs:
+  using: composite
+  steps:
+    - name: "Set Cache Name"
+      shell: bash
+      run: |
+        if ${{inputs.godot-mono == 'true'}}; then
+            echo "CACHE_NAME=${{ runner.OS }}-Godot_v${{ inputs.godot-version }}-${{ inputs.godot-status-version }}_mono" >> "$GITHUB_ENV"
+        else
+            echo "CACHE_NAME=${{ runner.OS }}-Godot_v${{ inputs.godot-version }}-${{ inputs.godot-status-version }}" >> "$GITHUB_ENV"
+        fi
+
+    - name: "Build Cache"
+      uses: actions/cache@v4
+      id: godot-cache-binary
+      with:
+        path: ${{ inputs.godot-cache-path }}
+        key: ${{ env.CACHE_NAME }}
+        restore-keys: ${{ env.CACHE_NAME }}
+
+    - name: "Download and Install Godot ${{ inputs.godot-version }}"
+      if: steps.godot-cache-binary.outputs.cache-hit != 'true'
+      continue-on-error: false
+      shell: bash
+      run: |
+        mkdir -p ${{ inputs.godot-cache-path }}
+        chmod 770 ${{ inputs.godot-cache-path }}
+        DIR="$HOME/.config/godot"
+        if [ ! -d "$DIR" ]; then
+          mkdir -p "$DIR"
+          chmod 770 "$DIR"
+        fi
+
+        DOWNLOAD_URL=https://github.com/godotengine/godot-builds/releases/download/${{ inputs.godot-version }}-${{ inputs.godot-status-version }}
+        GODOT_BIN=Godot_v${{ inputs.godot-version }}-${{ inputs.godot-status-version }}_${{ inputs.godot-bin-name }}
+        if ${{inputs.godot-mono == 'true'}}; then
+          GODOT_BIN=Godot_v${{ inputs.godot-version }}-${{ inputs.godot-status-version }}_mono_${{ inputs.godot-bin-name }}
+        fi
+
+        GODOT_PACKAGE=$GODOT_BIN.zip
+        wget $DOWNLOAD_URL/$GODOT_PACKAGE -P ${{ inputs.godot-cache-path }}
+        unzip ${{ inputs.godot-cache-path }}/$GODOT_PACKAGE -d ${{ inputs.godot-cache-path }}
+        rm -rf ${{ inputs.godot-cache-path }}/$GODOT_PACKAGE
+
+        if ${{runner.OS == 'Linux'}}; then
+          echo "Run linux part"
+
+          if ${{inputs.godot-mono == 'true'}}; then
+            mv ${{ inputs.godot-cache-path }}/$GODOT_BIN/* ${{ inputs.godot-cache-path }}
+            rmdir ${{ inputs.godot-cache-path }}/$GODOT_BIN/
+          fi
+
+          mv ${{ inputs.godot-cache-path }}/Godot_v* ${{ inputs.godot-cache-path }}/godot
+          chmod u+x ${{ inputs.godot-cache-path }}/godot
+          echo "${{ inputs.godot-cache-path }}/godot"
+        else
+          echo "Run windows part"
+          pwd
+          mv ${{ inputs.godot-cache-path }}/$GODOT_BIN ${{ inputs.godot-cache-path }}/godot.exe
+          chmod u+x ${{ inputs.godot-cache-path }}/godot.exe
+          ${{ inputs.godot-cache-path }}/godot.exe --version
+          echo "${{ inputs.godot-cache-path }}/godot.exe"
+        fi

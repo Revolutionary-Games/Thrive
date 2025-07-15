@@ -1,0 +1,111 @@
+﻿name: ci-pr
+run-name: ${{ github.head_ref || github.ref_name }}-ci-pr
+
+on:
+  pull_request:
+    paths-ignore:
+      - '**.jpg'
+      - '**.png'
+      - '**.md'
+  #- '**.yml'
+  workflow_dispatch:
+
+
+concurrency:
+  group: ci-pr-${{ github.event.number }}
+  cancel-in-progress: true
+
+
+jobs:
+
+
+  compile:
+    name: "🔨 Compile Projects"
+    runs-on: 'ubuntu-24.04'
+    timeout-minutes: 3
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          submodules: 'true'
+
+      - name: Setup .NET SDK
+        uses: actions/setup-dotnet@v4
+        with:
+          global-json-file: 'global.json'
+
+      - name: "Build Projects"
+        run: |
+          dotnet restore
+          dotnet run --project Scripts -- native Fetch Install --debug true
+          dotnet build /p:EnforceCodeStyleInBuild=false /p:TreatWarningsAsErrors=false
+
+      - name: "Cache Build Output"
+        uses: actions/cache@v4
+        with:
+          path: |
+            **/obj
+            **/bin
+            **/nupkg
+          key: ${{ runner.os }}-build-${{ github.sha }}-${{ github.run_id }}
+          restore-keys: |
+            ${{ runner.os }}-build-${{ github.sha }}-${{ github.run_id }}
+
+
+  unit-test:
+    needs: compile
+    name: "Run Tests"
+    runs-on: 'ubuntu-24.04'
+    timeout-minutes: 5
+
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          submodules: 'true'
+
+      - uses: actions/setup-dotnet@v4
+        with:
+          global-json-file: 'global.json'
+
+      - name: "Restore Build Cache"
+        if: ${{ !cancelled() }}
+        uses: actions/cache@v4
+        with:
+          path: |
+            **/obj
+            **/bin
+            **/nupkg
+          key: ${{ runner.os }}-build-${{ github.sha }}-${{ github.run_id }}
+
+      - name: "Install Godot Net"
+        uses: ./.github/actions/godot-install
+        with:
+          godot-version: '4.4.1'
+          godot-mono: true
+          godot-status-version: 'stable'
+          godot-bin-name: 'linux_x86_64'
+          godot-cache-path: '~/godot-linux'
+
+      - name: "Install dependencies"
+        if: ${{ !cancelled() }}
+        timeout-minutes: 5
+        run: |
+          dotnet run --project Scripts -- native Fetch Install --debug true
+
+      - name: "Run Unit Tests"
+        if: ${{ !cancelled() }}
+        timeout-minutes: 5
+        env:
+          GODOT_BIN: "/home/runner/godot-linux/godot"
+        run: |
+          dotnet test --settings test/.runsettings-ci --verbosity normal
+
+      - name: "Upload Unit Test Reports"
+        if: ${{ !cancelled() }}
+        uses: actions/upload-artifact@v4
+        with:
+          retention-days: 10
+          name: reports
+          path: |
+            test/TestResults/test-result.trx
+            test/TestResults/test-result.html
+            test/TestResults/**.log

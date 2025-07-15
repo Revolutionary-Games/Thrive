@@ -11,7 +11,7 @@ config_version=5
 [application]
 
 config/name="Thrive"
-config/description="Thrive is an open source evolution simulation game. 
+config/description="Thrive is an open source evolution simulation game.
 Play as a microbe on an alien world trying to survive and adapt to your surroundings in order to thrive.
 
 https://revolutionarygamesstudio.com/"
@@ -85,7 +85,7 @@ search_in_file_extensions=PackedStringArray("gd", "shader", "cs")
 
 [editor_plugins]
 
-enabled=PackedStringArray("res://addons/gdUnit4/plugin.cfg")
+enabled=PackedStringArray("")
 
 [global]
 
