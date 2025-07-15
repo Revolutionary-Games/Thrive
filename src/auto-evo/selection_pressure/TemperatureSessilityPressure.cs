@@ -1,3 +1,4 @@
+ 
 namespace AutoEvo;
 
 using Newtonsoft.Json;
@@ -46,8 +47,7 @@ public class TemperatureSessilityPressure : SelectionPressure
 
         // Calculate score based on speed
         // The faster the species, the higher the score
-        float normalizedSpeed = speed / Constants.MAX_SPECIES_SPEED;
-        return normalizedSpeed;
+        return speed;
     }
 
     /// <summary>
