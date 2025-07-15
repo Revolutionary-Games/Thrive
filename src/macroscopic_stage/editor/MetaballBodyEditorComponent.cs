@@ -1009,7 +1009,11 @@ public partial class MetaballBodyEditorComponent :
 
         GUICommon.Instance.PlayButtonPressSound();
 
-        selectedSelectionMenuTab = selection;
+        if (!BlockTabSwitchIfInProgressAction(CanCancelAction))
+        {
+            selectedSelectionMenuTab = selection;
+        }
+
         ApplySelectionMenuTab();
     }
 

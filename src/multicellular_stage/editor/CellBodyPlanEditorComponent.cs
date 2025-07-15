@@ -1418,7 +1418,11 @@ public partial class CellBodyPlanEditorComponent :
 
         GUICommon.Instance.PlayButtonPressSound();
 
-        selectedSelectionMenuTab = selection;
+        if (!BlockTabSwitchIfInProgressAction(CanCancelAction))
+        {
+            selectedSelectionMenuTab = selection;
+        }
+
         ApplySelectionMenuTab();
     }
 
