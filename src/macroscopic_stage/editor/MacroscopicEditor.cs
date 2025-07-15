@@ -193,6 +193,15 @@ public partial class MacroscopicEditor : EditorBase<EditorAction, MacroscopicSta
         base.Undo();
     }
 
+    public bool IsNewCellTypeNameValid(string newName)
+    {
+        // Name is invalid if it is empty or a duplicate
+        // TODO: should this ensure the name doesn't have trailing whitespace?
+        // If so, CellTemplate.UpdateNameIfValid should be updated as well
+        return !string.IsNullOrWhiteSpace(newName) && !EditedSpecies.CellTypes.Any(c =>
+            c.TypeName.Equals(newName, StringComparison.InvariantCultureIgnoreCase));
+    }
+
     protected override void ResolveDerivedTypeNodeReferences()
     {
     }
@@ -232,6 +241,7 @@ public partial class MacroscopicEditor : EditorBase<EditorAction, MacroscopicSta
         patchMapTab.OnNextTab = () => SetEditorTab(EditorTab.CellEditor);
         bodyPlanEditorTab.OnFinish = ForwardEditorComponentFinishRequest;
         cellEditorTab.OnNextTab = () => SetEditorTab(EditorTab.CellEditor);
+        cellEditorTab.ValidateNewCellTypeName = IsNewCellTypeNameValid;
 
         foreach (var editorComponent in GetAllEditorComponents())
         {
