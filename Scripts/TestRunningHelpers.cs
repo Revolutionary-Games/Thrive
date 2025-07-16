@@ -12,6 +12,10 @@ public static class TestRunningHelpers
 {
     public const string RUN_SETTINGS_FILE = ".runsettings";
 
+    public const string TEST_RUN_VERBOSITY = "normal";
+
+    // It is critical that tests missing are not treated as an error as we have multiple projects in Thrive and not all
+    // have all test kinds
     private const string RUN_SETTINGS_TEMPLATE = """
                                                  <?xml version="1.0" encoding="utf-8"?>
                                                  <RunSettings>
@@ -19,11 +23,10 @@ public static class TestRunningHelpers
                                                          <MaxCpuCount>{0}</MaxCpuCount>
                                                          <TestAdaptersPaths>.</TestAdaptersPaths>
                                                          <ResultsDirectory>./TestResults</ResultsDirectory>
-                                                         <TargetFrameworks>{1}</TargetFrameworks>
-                                                         <TestSessionTimeout>{2}</TestSessionTimeout>
-                                                         <TreatNoTestsAsError>true</TreatNoTestsAsError>
+                                                         <TestSessionTimeout>{1}</TestSessionTimeout>
+                                                         <TreatNoTestsAsError>false</TreatNoTestsAsError>
                                                          <EnvironmentVariables>
-                                                             <GODOT_BIN>{3}</GODOT_BIN>
+                                                             <GODOT_BIN>{2}</GODOT_BIN>
                                                          </EnvironmentVariables>
                                                      </RunConfiguration>
                                                      <LoggerRunSettings>
@@ -31,15 +34,15 @@ public static class TestRunningHelpers
                                                              <!-- Seems to cause duplicate output -->
                                                              <Logger friendlyName="console" enabled="False">
                                                                  <Configuration>
-                                                                     <Verbosity>normal</Verbosity>
+                                                                     <Verbosity>{4}</Verbosity>
                                                                  </Configuration>
                                                              </Logger>
-                                                             <Logger friendlyName="html" enabled="{4}">
+                                                             <Logger friendlyName="html" enabled="{3}">
                                                                  <Configuration>
                                                                      <LogFileName>test-result.html</LogFileName>
                                                                  </Configuration>
                                                              </Logger>
-                                                             <Logger friendlyName="trx" enabled="{4}">
+                                                             <Logger friendlyName="trx" enabled="{3}">
                                                                  <Configuration>
                                                                      <LogFileName>test-result.trx</LogFileName>
                                                                  </Configuration>
@@ -47,7 +50,7 @@ public static class TestRunningHelpers
                                                          </Loggers>
                                                      </LoggerRunSettings>
                                                      <GdUnit4>
-                                                         <Parameters>"--headless"</Parameters>
+                                                         <Parameters>--headless</Parameters>
                                                          <DisplayName>FullyQualifiedName</DisplayName>
                                                          <CaptureStdOut>true</CaptureStdOut>
                                                          <CompileProcessTimeout>120000</CompileProcessTimeout>
@@ -72,11 +75,11 @@ public static class TestRunningHelpers
         }
     }
 
-    public static void GenerateRunSettings(string godot, string dotnetVersion, bool fileResults)
+    public static void GenerateRunSettings(string godot, bool fileResults)
     {
         var timeout = (int)TimeSpan.FromMinutes(10).TotalMilliseconds;
 
-        var text = string.Format(RUN_SETTINGS_TEMPLATE, 1, dotnetVersion, timeout, godot, fileResults);
+        var text = string.Format(RUN_SETTINGS_TEMPLATE, 1, timeout, godot, fileResults, TEST_RUN_VERBOSITY);
 
         File.WriteAllText(RUN_SETTINGS_FILE, text, Encoding.UTF8);
     }
