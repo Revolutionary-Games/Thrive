@@ -230,6 +230,15 @@ public class GlobalGlaciationEvent : IWorldEffect
         }
     }
 
+    /// <summary>
+    ///   Decides what amount the sunlight level should be multiplied or dived by
+    /// </summary>
+    /// <remarks>
+    ///   <para>
+    ///     The ClimateInstability should not be changed after the world is created otherwise it will break.
+    ///     If it is to be changed then this code needs a refactor
+    ///   </para>
+    /// </remarks>
     private float GetSunlightMultiplier()
     {
         switch (targetWorld.WorldSettings.ClimateInstability)

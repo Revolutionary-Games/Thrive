@@ -110,6 +110,10 @@ public partial class PlanetCustomizerTool : Node
         {
             tool.PlanetCustomizerWorldGenerationSettings = worldSettings;
         }
+        else
+        {
+            GD.PrintErr("Failed transferring settings from Planet Customizer to the Auto-Evo Explorer");
+        }
 
         TransitionManager.Instance.AddSequence(ScreenFade.FadeType.FadeOut, 0.1f,
             () => { SceneManager.Instance.SwitchToScene(scene); }, false);

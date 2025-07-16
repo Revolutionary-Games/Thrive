@@ -178,6 +178,13 @@ public class WorldGenerationSettings
     /// <summary>
     ///   Climate instability of World
     /// </summary>
+    /// <remarks>
+    ///   <para>
+    ///     This value should not be changed as it might break world restoring from global glaciation event
+    ///     <see cref="GlobalGlaciationEvent"/>. If it needs to be changed then the way the world is restored
+    ///     needs to be changed as well.
+    ///   </para>
+    /// </remarks>
     public ClimateInstabilityEnum ClimateInstability { get; set; } = ClimateInstabilityEnum.Medium;
 
     // The following are helper proxies to the values from the difficulty
