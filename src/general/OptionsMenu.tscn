@@ -250,6 +250,7 @@ custom_minimum_size = Vector2(750, 600)
 layout_mode = 2
 
 [node name="Graphics" type="MarginContainer" parent="CenterContainer/VBoxContainer/VBoxContainer/VBoxContainer/PanelContainer"]
+visible = false
 layout_mode = 2
 theme_override_constants/margin_left = 15
 theme_override_constants/margin_top = 15
@@ -1437,7 +1438,6 @@ layout_mode = 2
 size_flags_horizontal = 3
 
 [node name="Performance" type="MarginContainer" parent="CenterContainer/VBoxContainer/VBoxContainer/VBoxContainer/PanelContainer"]
-visible = false
 layout_mode = 2
 theme_override_constants/margin_left = 15
 theme_override_constants/margin_top = 15
@@ -1691,22 +1691,17 @@ layout_mode = 2
 
 [node name="Label" type="Label" parent="CenterContainer/VBoxContainer/VBoxContainer/VBoxContainer/PanelContainer/Performance/ScrollContainer/MarginContainer/VBoxContainer/VBoxContainer7/HBoxContainer"]
 layout_mode = 2
+size_flags_horizontal = 3
 size_flags_vertical = 5
 size_flags_stretch_ratio = 3.0
 text = "DETECTED_CPU_COUNT"
 
-[node name="HSeparator" type="HSeparator" parent="CenterContainer/VBoxContainer/VBoxContainer/VBoxContainer/PanelContainer/Performance/ScrollContainer/MarginContainer/VBoxContainer/VBoxContainer7/HBoxContainer"]
-custom_minimum_size = Vector2(10, 0)
-layout_mode = 2
-size_flags_horizontal = 4
-theme_override_styles/separator = SubResource("StyleBoxEmpty_paabc")
-
 [node name="CPUCount" type="Label" parent="CenterContainer/VBoxContainer/VBoxContainer/VBoxContainer/PanelContainer/Performance/ScrollContainer/MarginContainer/VBoxContainer/VBoxContainer7/HBoxContainer"]
 layout_mode = 2
-size_flags_horizontal = 3
 size_flags_vertical = 1
 size_flags_stretch_ratio = 2.0
 text = "0"
+horizontal_alignment = 2
 
 [node name="VBoxContainer8" type="VBoxContainer" parent="CenterContainer/VBoxContainer/VBoxContainer/VBoxContainer/PanelContainer/Performance/ScrollContainer/MarginContainer/VBoxContainer"]
 layout_mode = 2
@@ -1717,22 +1712,17 @@ layout_mode = 2
 
 [node name="Label2" type="Label" parent="CenterContainer/VBoxContainer/VBoxContainer/VBoxContainer/PanelContainer/Performance/ScrollContainer/MarginContainer/VBoxContainer/VBoxContainer8/HBoxContainer"]
 layout_mode = 2
+size_flags_horizontal = 3
 size_flags_vertical = 5
 size_flags_stretch_ratio = 3.0
 text = "ACTIVE_THREAD_COUNT"
 
-[node name="HSeparator" type="HSeparator" parent="CenterContainer/VBoxContainer/VBoxContainer/VBoxContainer/PanelContainer/Performance/ScrollContainer/MarginContainer/VBoxContainer/VBoxContainer8/HBoxContainer"]
-custom_minimum_size = Vector2(10, 0)
-layout_mode = 2
-size_flags_horizontal = 4
-theme_override_styles/separator = SubResource("StyleBoxEmpty_paabc")
-
 [node name="ConfiguredThreads" type="Label" parent="CenterContainer/VBoxContainer/VBoxContainer/VBoxContainer/PanelContainer/Performance/ScrollContainer/MarginContainer/VBoxContainer/VBoxContainer8/HBoxContainer"]
 layout_mode = 2
-size_flags_horizontal = 3
 size_flags_vertical = 1
 size_flags_stretch_ratio = 2.0
 text = "0"
+horizontal_alignment = 2
 
 [node name="VBoxContainer9" type="VBoxContainer" parent="CenterContainer/VBoxContainer/VBoxContainer/VBoxContainer/PanelContainer/Performance/ScrollContainer/MarginContainer/VBoxContainer"]
 layout_mode = 2
@@ -3190,6 +3180,9 @@ autowrap_mode = 2
 editor_description = "PLACEHOLDER"
 layout_mode = 2
 size_flags_horizontal = 3
+focus_neighbor_bottom = NodePath("../../../../../../../../../HBoxContainer/Back")
+focus_next = NodePath("../../../../../../../../../HBoxContainer/Back")
+focus_mode = 2
 mouse_filter = 1
 text = "Date and time goes here"
 
