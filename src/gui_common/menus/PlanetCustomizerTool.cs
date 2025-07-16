@@ -104,7 +104,7 @@ public partial class PlanetCustomizerTool : Node
 
     private void OnAutoEvoToolPressed()
     {
-        var scene = SceneManager.Instance.LoadScene("res://src/auto-evo/AutoEvoExploringTool.tscn").Instantiate();
+        var scene = GD.Load<PackedScene>("res://src/auto-evo/AutoEvoExploringTool.tscn").Instantiate();
 
         if (scene is AutoEvoExploringTool tool)
         {
