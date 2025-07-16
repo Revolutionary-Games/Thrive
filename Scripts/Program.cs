@@ -137,7 +137,7 @@ public class Program
 
         const int maxTries = 2;
 
-        // Then gdUnit
+        // Then gdUnit tests
         TestRunningHelpers.GenerateRunSettings(godot, false);
 
         // gdUnit can randomly fail once to detect available tests, that's why the tests run multiple times on fail
@@ -151,10 +151,6 @@ public class Program
             startInfo.ArgumentList.Add("--verbosity");
             startInfo.ArgumentList.Add(TestRunningHelpers.TEST_RUN_VERBOSITY);
             startInfo.ArgumentList.Add("Thrive.csproj");
-
-            // TODO: test code
-            startInfo.ArgumentList.Add("--diag");
-            startInfo.ArgumentList.Add("diag.log");
 
             result = ProcessRunHelpers.RunProcessAsync(startInfo, tokenSource.Token, false)
                 .Result.ExitCode;

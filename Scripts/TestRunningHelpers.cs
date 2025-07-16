@@ -14,6 +14,8 @@ public static class TestRunningHelpers
 
     public const string TEST_RUN_VERBOSITY = "normal";
 
+    // It is critical that tests missing are not treated as an error as we have multiple projects in Thrive and not all
+    // have all test kinds
     private const string RUN_SETTINGS_TEMPLATE = """
                                                  <?xml version="1.0" encoding="utf-8"?>
                                                  <RunSettings>
