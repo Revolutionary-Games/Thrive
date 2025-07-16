@@ -2179,7 +2179,7 @@ size_flags_horizontal = 3
 [node name="FocusGrabber" parent="CenterContainer/VBoxContainer/VBoxContainer/VBoxContainer/PanelContainer/Inputs/MarginContainer/VBoxContainer/VBoxContainer/ScrollContainer/MarginContainer/VBoxContainer" instance=ExtResource("13")]
 layout_mode = 2
 Priority = 3
-NodeToGiveFocusTo = NodePath("../VBoxContainer2/HBoxContainer/SameBothAxesSensitivity")
+NodeToGiveFocusTo = NodePath("../HBoxContainer5/Horizontal")
 GrabFocusWhenBecomingVisible = true
 
 [node name="HBoxContainer7" type="HBoxContainer" parent="CenterContainer/VBoxContainer/VBoxContainer/VBoxContainer/PanelContainer/Inputs/MarginContainer/VBoxContainer/VBoxContainer/ScrollContainer/MarginContainer/VBoxContainer"]
@@ -3135,6 +3135,8 @@ layout_mode = 2
 size_flags_horizontal = 3
 size_flags_vertical = 5
 size_flags_stretch_ratio = 2.0
+focus_neighbor_bottom = NodePath("../../../../VBoxContainer19/HBoxContainer/BuiltAt")
+focus_next = NodePath("../../../../VBoxContainer19/HBoxContainer/BuiltAt")
 autowrap_mode = 2
 
 [node name="HSeparator4" type="HSeparator" parent="CenterContainer/VBoxContainer/VBoxContainer/VBoxContainer/PanelContainer/Misc/ScrollContainer/MarginContainer/VBoxContainer"]
@@ -3192,7 +3194,6 @@ mouse_filter = 1
 text = "Date and time goes here"
 
 [node name="HBoxContainer" type="HBoxContainer" parent="CenterContainer/VBoxContainer/VBoxContainer"]
-visible = false
 layout_mode = 2
 
 [node name="Back" type="Button" parent="CenterContainer/VBoxContainer/VBoxContainer/HBoxContainer"]
