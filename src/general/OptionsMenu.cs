@@ -67,7 +67,7 @@ public partial class OptionsMenu : ControlWithInput
     private Control graphicsTab = null!;
 
     [Export]
-    private CheckBox vsync = null!;
+    private CheckButton vsync = null!;
 
     [Export]
     private Label? resolution;
@@ -103,7 +103,7 @@ public partial class OptionsMenu : ControlWithInput
     private OptionButton colourblindSetting = null!;
 
     [Export]
-    private CheckBox chromaticAberrationToggle = null!;
+    private CheckButton chromaticAberrationToggle = null!;
 
     [Export]
     private Slider chromaticAberrationSlider = null!;
@@ -112,37 +112,37 @@ public partial class OptionsMenu : ControlWithInput
     private OptionButton controllerPromptType = null!;
 
     [Export]
-    private CheckBox displayAbilitiesHotBarToggle = null!;
+    private CheckButton displayAbilitiesHotBarToggle = null!;
 
     [Export]
     private OptionButton anisotropicFilterLevel = null!;
 
     [Export]
-    private CheckBox damageEffect = null!;
+    private CheckButton damageEffect = null!;
 
     [Export]
     private OptionButton strainVisibility = null!;
 
     [Export]
-    private CheckBox displayBackgroundParticlesToggle = null!;
+    private CheckButton displayBackgroundParticlesToggle = null!;
 
     [Export]
-    private CheckBox guiLightEffectsToggle = null!;
+    private CheckButton guiLightEffectsToggle = null!;
 
     [Export]
-    private CheckBox displayPartNamesToggle = null!;
+    private CheckButton displayPartNamesToggle = null!;
 
     [Export]
-    private CheckBox displayMenu3DBackgroundsToggle = null!;
+    private CheckButton displayMenu3DBackgroundsToggle = null!;
 
     [Export]
-    private Button displayMicrobeBackgroundDistortionToggle = null!;
+    private CheckButton displayMicrobeBackgroundDistortionToggle = null!;
 
     [Export]
-    private Button lowQualityBackgroundBlurToggle = null!;
+    private CheckButton lowQualityBackgroundBlurToggle = null!;
 
     [Export]
-    private Button bloomEffectToggle = null!;
+    private CheckButton bloomEffectToggle = null!;
 
     [Export]
     private Slider bloomSlider = null!;
@@ -219,10 +219,10 @@ public partial class OptionsMenu : ControlWithInput
     private OptionButton cloudResolution = null!;
 
     [Export]
-    private CheckBox runAutoEvoDuringGameplay = null!;
+    private CheckButton runAutoEvoDuringGameplay = null!;
 
     [Export]
-    private CheckBox runGameSimulationMultithreaded = null!;
+    private CheckButton runGameSimulationMultithreaded = null!;
 
     [Export]
     private Label detectedCPUCount = null!;
@@ -231,16 +231,16 @@ public partial class OptionsMenu : ControlWithInput
     private Label activeThreadCount = null!;
 
     [Export]
-    private CheckBox assumeHyperthreading = null!;
+    private CheckButton assumeHyperthreading = null!;
 
     [Export]
-    private CheckBox useManualThreadCount = null!;
+    private CheckButton useManualThreadCount = null!;
 
     [Export]
     private Slider threadCountSlider = null!;
 
     [Export]
-    private CheckBox useManualNativeThreadCount = null!;
+    private CheckButton useManualNativeThreadCount = null!;
 
     [Export]
     private Slider nativeThreadCountSlider = null!;
@@ -249,7 +249,7 @@ public partial class OptionsMenu : ControlWithInput
     private OptionButton maxSpawnedEntities = null!;
 
     [Export]
-    private CheckBox useDiskCaching = null!;
+    private CheckButton useDiskCaching = null!;
 
     [Export]
     private Slider maxCacheSizeSlider = null!;
@@ -290,7 +290,7 @@ public partial class OptionsMenu : ControlWithInput
     private Control inputsTab = null!;
 
     [Export]
-    private Button mouseAxisSensitivitiesBound = null!;
+    private CheckButton mouseAxisSensitivitiesBound = null!;
 
     [Export]
     private Slider mouseHorizontalSensitivity = null!;
@@ -308,10 +308,10 @@ public partial class OptionsMenu : ControlWithInput
     private OptionButton mouseWindowSizeScaling = null!;
 
     [Export]
-    private Button mouseWindowSizeScalingWithLogicalSize = null!;
+    private CheckButton mouseWindowSizeScalingWithLogicalSize = null!;
 
     [Export]
-    private Button controllerAxisSensitivitiesBound = null!;
+    private CheckButton controllerAxisSensitivitiesBound = null!;
 
     [Export]
     private Slider controllerHorizontalSensitivity = null!;
@@ -332,7 +332,7 @@ public partial class OptionsMenu : ControlWithInput
     private OptionButton threeDimensionalMovement = null!;
 
     [Export]
-    private Button mouseEdgePanEnabled = null!;
+    private CheckButton mouseEdgePanEnabled = null!;
 
     [Export]
     private Slider mouseEdgePanSensitivity = null!;
@@ -348,19 +348,19 @@ public partial class OptionsMenu : ControlWithInput
     private Control miscTab = null!;
 
     [Export]
-    private CheckBox playIntro = null!;
+    private CheckButton playIntro = null!;
 
     [Export]
-    private CheckBox playMicrobeIntro = null!;
+    private CheckButton playMicrobeIntro = null!;
 
     [Export]
-    private CheckBox cheats = null!;
+    private CheckButton cheats = null!;
 
     [Export]
-    private CheckBox tutorialsEnabledOnNewGame = null!;
+    private CheckButton tutorialsEnabledOnNewGame = null!;
 
     [Export]
-    private CheckBox autoSave = null!;
+    private CheckButton autoSave = null!;
 
     [Export]
     private SpinBox maxAutoSaves = null!;
@@ -369,22 +369,22 @@ public partial class OptionsMenu : ControlWithInput
     private SpinBox maxQuickSaves = null!;
 
     [Export]
-    private CheckBox customUsernameEnabled = null!;
+    private CheckButton customUsernameEnabled = null!;
 
     [Export]
     private LineEdit customUsername = null!;
 
     [Export]
-    private CheckBox webFeedsEnabled = null!;
+    private CheckButton webFeedsEnabled = null!;
 
     [Export]
-    private Button microbeRippleEffect = null!;
+    private CheckButton microbeRippleEffect = null!;
 
     [Export]
-    private Button microbeCameraTilt = null!;
+    private CheckButton microbeCameraTilt = null!;
 
     [Export]
-    private CheckBox showNewPatchNotes = null!;
+    private CheckButton showNewPatchNotes = null!;
 
     [Export]
     private Label dismissedNoticeCount = null!;
@@ -402,10 +402,13 @@ public partial class OptionsMenu : ControlWithInput
     private Label builtAtLabel = null!;
 
     [Export]
-    private CheckBox tutorialsEnabled = null!;
+    private CheckButton tutorialsEnabled = null!;
 
     [Export]
-    private CheckBox unsavedProgressWarningEnabled = null!;
+    private VBoxContainer tutorialsEnabledContainer = null!;
+
+    [Export]
+    private CheckButton unsavedProgressWarningEnabled = null!;
 
     // Confirmation Boxes
     [Export]
@@ -803,7 +806,7 @@ public partial class OptionsMenu : ControlWithInput
         {
             case OptionsMode.MainMenu:
             {
-                tutorialsEnabled.Hide();
+                tutorialsEnabledContainer.Hide();
                 optionsMode = OptionsMode.MainMenu;
                 break;
             }
@@ -813,11 +816,11 @@ public partial class OptionsMenu : ControlWithInput
                 // Current game tutorial option shouldn't be visible in freebuild mode.
                 if (!gameProperties!.FreeBuild)
                 {
-                    tutorialsEnabled.Show();
+                    tutorialsEnabledContainer.Show();
                 }
                 else
                 {
-                    tutorialsEnabled.Hide();
+                    tutorialsEnabledContainer.Hide();
                 }
 
                 optionsMode = OptionsMode.InGame;
