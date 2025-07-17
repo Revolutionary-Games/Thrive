@@ -369,17 +369,19 @@ public sealed class MicrobeVisualOnlySimulation : WorldSimulation
 
             var distanceSquared = entity.Get<WorldPosition>().Position.DistanceSquaredTo(center);
 
-            if (distanceSquared > maxCellDistanceSquared)
+            ref var cellProperties = ref entity.Get<CellProperties>();
+
+            // This uses the membrane as radius is not set as the physics system doesn't run
+            if (!cellProperties.IsMembraneReady())
+                throw new InvalidOperationException("Microbe doesn't have a ready membrane");
+
+            float radius = cellProperties.CreatedMembrane!.EncompassingCircleRadius;
+
+            if (distanceSquared + radius * radius > maxCellDistanceSquared + farthestCellRadius * farthestCellRadius)
             {
                 maxCellDistanceSquared = distanceSquared;
 
-                ref var cellProperties = ref entity.Get<CellProperties>();
-
-                // This uses the membrane as radius is not set as the physics system doesn't run
-                if (!cellProperties.IsMembraneReady())
-                    throw new InvalidOperationException("Microbe doesn't have a ready membrane");
-
-                farthestCellRadius = cellProperties.CreatedMembrane!.EncompassingCircleRadius;
+                farthestCellRadius = radius;
             }
         }
 
