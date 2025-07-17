@@ -47,6 +47,14 @@ public class ConditionSet
         }
     }
 
+    public float Progress(WorldAndPlayerDataSource worldAndPlayerData)
+    {
+        var tracker = worldAndPlayerData.World.StatisticsTracker;
+        return Requirements
+            .Select(entry => entry.Progress(entry is WorldBasedUnlockCondition ? worldAndPlayerData : tracker))
+            .Sum() / Requirements.Length;
+    }
+
     public void Check(string name)
     {
         foreach (var requirement in Requirements)
