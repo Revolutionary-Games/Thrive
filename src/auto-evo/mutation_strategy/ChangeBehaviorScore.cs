@@ -2,6 +2,7 @@
 
 using System;
 using System.Collections.Generic;
+using static CommonMutationFunctions;
 
 public class ChangeBehaviorScore : IMutationStrategy<MicrobeSpecies>
 {
@@ -26,7 +27,7 @@ public class ChangeBehaviorScore : IMutationStrategy<MicrobeSpecies>
     // As it cost no MP the mutation code could just repeat this forever
     public bool Repeatable => false;
 
-    public List<Tuple<MicrobeSpecies, double>>? MutationsOf(MicrobeSpecies baseSpecies, double mp, bool lawk,
+    public List<Mutant>? MutationsOf(MicrobeSpecies baseSpecies, double mp, bool lawk,
         Random random, BiomeConditions biomeToConsider)
     {
         // TODO: Make random something passed in
@@ -61,6 +62,6 @@ public class ChangeBehaviorScore : IMutationStrategy<MicrobeSpecies>
                 break;
         }
 
-        return [Tuple.Create(newSpecies, mp)];
+        return [new Mutant(newSpecies, mp)];
     }
 }
