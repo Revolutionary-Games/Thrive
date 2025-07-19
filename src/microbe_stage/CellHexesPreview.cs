@@ -6,19 +6,24 @@ using Godot;
 /// </summary>
 public partial class CellHexesPreview : PhotographablePreview
 {
-    private Species? species;
+    private ulong speciesVisualHash;
+
+    private Species? previewSpecies;
 
     public Species? PreviewSpecies
     {
-        get => species;
+        get => previewSpecies;
         set
         {
-            if (PreviewSpecies == value)
+            var newHash = value?.GetVisualHashCode() ?? 0UL;
+
+            if (newHash == speciesVisualHash)
                 return;
 
-            species = value;
+            previewSpecies = value;
+            speciesVisualHash = newHash;
 
-            if (species != null)
+            if (previewSpecies != null)
             {
                 UpdatePreview();
             }
@@ -31,10 +36,10 @@ public partial class CellHexesPreview : PhotographablePreview
 
     protected override IImageTask? SetupImageTask()
     {
-        if (species == null)
+        if (previewSpecies == null)
             throw new InvalidOperationException("No species set to generate image of hexes for");
 
-        if (species is MicrobeSpecies microbeSpecies)
+        if (previewSpecies is MicrobeSpecies microbeSpecies)
         {
             var hash = CellHexesPhotoBuilder.GetVisualHash(microbeSpecies);
 
@@ -46,7 +51,7 @@ public partial class CellHexesPreview : PhotographablePreview
             return PhotoStudio.Instance.GenerateImage(new CellHexesPhotoBuilder { Species = microbeSpecies }, Priority);
         }
 
-        if (species is MulticellularSpecies multicellularSpecies)
+        if (previewSpecies is MulticellularSpecies multicellularSpecies)
         {
             var hash = ColonyHexPhotoBuilder.GetVisualHash(multicellularSpecies);
 
@@ -65,7 +70,7 @@ public partial class CellHexesPreview : PhotographablePreview
                 Priority);
         }
 
-        GD.PrintErr("Unknown species type to generate hexes view of: ", species, " (", species.GetType().Name, ")");
+        GD.PrintErr("Unknown species type to generate hexes view of: ", previewSpecies, " (", previewSpecies.GetType().Name, ")");
         return null;
     }
 }
