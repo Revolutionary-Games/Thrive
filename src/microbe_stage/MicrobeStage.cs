@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using Components;
@@ -982,6 +982,21 @@ public partial class MicrobeStage : CreatureStageBase<Entity, MicrobeWorldSimula
             {
                 playerCompounds.SetUseful(Compound.Iron);
                 playerCompounds.AddCompound(Compound.Iron, 1.5f);
+            }
+        }
+
+        // Delete any microbes that have gone extinct during auto-evo
+        var allMicrobes = WorldSimulation.EntitySystem.GetEntities().With<SpeciesMember>().AsEnumerable();
+        var speciesInPatch = GameWorld.Map.CurrentPatch!.SpeciesInPatch;
+        foreach (var entity in allMicrobes)
+        {
+            ref SpeciesMember member = ref entity.Get<SpeciesMember>();
+            if (!speciesInPatch.ContainsKey(member.Species) && entity != Player)
+            {
+                GD.Print($"Deleting a member of species {member.Species.FormattedName} as it is not in the patch");
+
+                // Just dispose the entity without the usual chunk spawning / death sounds etc.
+                entity.Dispose();
             }
         }
     }
