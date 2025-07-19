@@ -70,7 +70,8 @@ public partial class CellHexesPreview : PhotographablePreview
                 Priority);
         }
 
-        GD.PrintErr("Unknown species type to generate hexes view of: ", previewSpecies, " (", previewSpecies.GetType().Name, ")");
+        GD.PrintErr("Unknown species type to generate hexes view of: ", previewSpecies, " (",
+            previewSpecies.GetType().Name, ")");
         return null;
     }
 }
