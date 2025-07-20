@@ -5,6 +5,8 @@
 /// </summary>
 public partial class SpeciesPreview : PhotographablePreview
 {
+    private ulong speciesVisualHash;
+
     private Species? previewSpecies;
 
     public Species? PreviewSpecies
@@ -12,10 +14,13 @@ public partial class SpeciesPreview : PhotographablePreview
         get => previewSpecies;
         set
         {
-            if (PreviewSpecies == value)
+            var newHash = value?.GetVisualHashCode() ?? 0UL;
+
+            if (newHash == speciesVisualHash)
                 return;
 
             previewSpecies = value;
+            speciesVisualHash = newHash;
 
             if (previewSpecies != null)
             {
