@@ -779,6 +779,17 @@ public static class Constants
 
     public const float SCREEN_DAMAGE_FLASH_DECAY_SPEED = 1.0f;
 
+    public const float MICROBE_CAMERA_MIN_HEGIHT = 3.0f;
+
+    public const float MICROBE_CAMERA_MAX_HEGIHT = 80.0f;
+
+    public const float MULTICELLULAR_CAMERA_MIN_HEGIHT = 8.0f;
+
+    /// <summary>
+    ///   The highest that the dynamic multicellular camera max height can get.
+    /// </summary>
+    public const float MULTICELLULAR_CAMERA_MAX_HEGIHT = 180.0f;
+
     /// <summary>
     ///   Cells need at least this much ATP to regenerate health passively. This is now less than one to allow cells
     ///   with 1 storage to regenerate health. As reaching exactly full storage of ATP is not really possible due to

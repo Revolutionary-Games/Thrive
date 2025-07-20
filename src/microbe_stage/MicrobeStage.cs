@@ -845,6 +845,8 @@ public partial class MicrobeStage : CreatureStageBase<Entity, MicrobeWorldSimula
             }
         }
 
+        UpdateZoomLevels(playerIsMulticellular);
+
         Player.Set(environmentalEffects);
 
         var playerCompounds = Player.Get<CompoundStorage>().Compounds;
@@ -1339,6 +1341,41 @@ public partial class MicrobeStage : CreatureStageBase<Entity, MicrobeWorldSimula
         {
             // Don't change lighting for patches without day/night effects
             Camera.LightLevel = 1.0f;
+        }
+    }
+
+    private void UpdateZoomLevels(bool isMulticellular)
+    {
+        if (isMulticellular)
+        {
+            var species = Player.Get<MulticellularSpeciesMember>().Species;
+
+            float maxDistance = 0.0f;
+
+            foreach (var cell in species.Cells)
+            {
+                float distance = Hex.AxialToCartesian(cell.Position).LengthSquared();
+
+                if (distance > maxDistance)
+                {
+                    maxDistance = distance;
+                }
+            }
+
+            maxDistance = MathF.Sqrt(maxDistance);
+
+            // Extra padding, just in case
+            maxDistance += 20.0f;
+
+            Camera.MinCameraHeight = Constants.MULTICELLULAR_CAMERA_MIN_HEGIHT;
+            Camera.MaxCameraHeight = float.Clamp(
+                MathUtils.CameraDistanceFromRadiusOfObject(maxDistance, Camera.Fov),
+                Constants.MICROBE_CAMERA_MAX_HEGIHT, Constants.MULTICELLULAR_CAMERA_MAX_HEGIHT);
+        }
+        else
+        {
+            Camera.MinCameraHeight = Constants.MICROBE_CAMERA_MIN_HEGIHT;
+            Camera.MaxCameraHeight = Constants.MICROBE_CAMERA_MAX_HEGIHT;
         }
     }
 
