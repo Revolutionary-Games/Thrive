@@ -58,6 +58,7 @@ public partial class PlanetCustomizerTool : Node
 
         gameProperties = GameProperties.StartNewMicrobeGame(worldSettings);
         gameProperties.GameWorld.Map.RevealAllPatches();
+        patchMapDrawer.ClearMap();
         patchMapDrawer.PlayerPatch = null;
         patchMapDrawer.Map = gameProperties.GameWorld.Map;
         patchMapDrawer.SelectedPatch = patchMapDrawer.PlayerPatch;

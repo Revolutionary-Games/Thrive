@@ -7,6 +7,7 @@ using Godot;
 /// </summary>
 public partial class PlanetSettings : VBoxContainer
 {
+#pragma warning disable CA2213
     [Export]
     private OptionButton lifeOriginButton = null!;
 
@@ -40,8 +41,18 @@ public partial class PlanetSettings : VBoxContainer
     [Export]
     private VBoxContainer dayLengthContainer = null!;
 
+    [Export]
+    private LineEdit gameSeed = null!;
+#pragma warning restore CA2213
+
     [Signal]
     public delegate void LawkSettingsChangedEventHandler(bool lawkOnly);
+
+    [Signal]
+    public delegate void SeedSettingsChangedEventHandler(string seed);
+
+    [Signal]
+    public delegate void GenerateSeedPressedEventHandler();
 
     [Signal]
     public delegate void LifeOriginSettingsChangedEventHandler(int lifeOrigin);
@@ -97,6 +108,23 @@ public partial class PlanetSettings : VBoxContainer
         lawkOnlyButton.ButtonPressed = pressed;
     }
 
+    public void SetSeed(string seed)
+    {
+        gameSeed.Text = seed;
+    }
+
+    public void SetSeedValidity(bool valid)
+    {
+        if (valid)
+        {
+            GUICommon.MarkInputAsValid(gameSeed);
+        }
+        else
+        {
+            GUICommon.MarkInputAsInvalid(gameSeed);
+        }
+    }
+
     public void SetDayNightCycle(bool enabled)
     {
         dayNightCycleButton.ButtonPressed = enabled;
@@ -105,26 +133,6 @@ public partial class PlanetSettings : VBoxContainer
     public void SetDayLength(float value)
     {
         dayLength.Value = value;
-    }
-
-    protected override void Dispose(bool disposing)
-    {
-        if (disposing)
-        {
-            lifeOriginButton.Dispose();
-            worldSizeButton.Dispose();
-            worldTemperatureButton.Dispose();
-            worldSeaLevelButton.Dispose();
-            worldGeologicalActivityButton.Dispose();
-            worldClimateInstabilityButton.Dispose();
-            lawkOnlyButton.Dispose();
-            dayNightCycleButton.Dispose();
-            dayLength.Dispose();
-            dayLengthReadout.Dispose();
-            dayLengthContainer.Dispose();
-        }
-
-        base.Dispose(disposing);
     }
 
     private void OnDayNightCycleToggled(bool pressed)
@@ -155,6 +163,16 @@ public partial class PlanetSettings : VBoxContainer
     private void OnLifeOriginSelected(int index)
     {
         EmitSignal(SignalName.LifeOriginSettingsChanged, index);
+    }
+
+    private void OnSeedChanged(string seed)
+    {
+        EmitSignal(SignalName.SeedSettingsChanged, seed);
+    }
+
+    private void OnGenerateSeedPressed()
+    {
+        EmitSignal(SignalName.GenerateSeedPressed);
     }
 
     private void OnLAWKToggled(bool pressed)

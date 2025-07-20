@@ -264,11 +264,6 @@ public partial class NewGameSettings : ControlWithInput
             backButton.Visible = false;
             checkOptionsMenuAdviceContainer.Visible = false;
         }
-
-        planetSettings.Connect(PlanetSettings.SignalName.LawkSettingsChanged,
-            new Callable(this, nameof(OnLawkPlanetSettingChanged)));
-        planetSettings.Connect(PlanetSettings.SignalName.LifeOriginSettingsChanged,
-            new Callable(this, nameof(OnLifeOriginPlanetSettingChanged)));
     }
 
     [RunOnKeyDown("ui_cancel", Priority = Constants.SUBMENU_CANCEL_PRIORITY)]
@@ -409,8 +404,13 @@ public partial class NewGameSettings : ControlWithInput
 
     private void SetSeed(string text)
     {
+        planetSettings.SetSeed(text);
+
         var valid = long.TryParse(text, out var seed) && seed > 0;
+
         ReportValidityOfGameSeed(valid);
+        planetSettings.SetSeedValidity(valid);
+
         if (valid)
             latestValidSeed = seed;
     }
@@ -848,6 +848,11 @@ public partial class NewGameSettings : ControlWithInput
     {
         UpdateLifeOriginOptions(pressed);
         planetSettings.SetLawkOnly(pressed);
+    }
+
+    private void OnSeedChanged(string seed)
+    {
+        SetSeed(seed);
     }
 
     private void OnLawkPlanetSettingChanged(bool pressed)

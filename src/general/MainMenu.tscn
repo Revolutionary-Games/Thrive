@@ -117,7 +117,7 @@ _data = {
 &"RESET": SubResource("Animation_qunue")
 }
 
-[node name="MainMenu" type="Control" node_paths=PackedStringArray("thriveLogo", "modManager", "galleryViewer", "newsFeed", "newsFeedDisabler", "patchNotes", "patchNotesDisabler", "feedPositioner", "creditsContainer", "credits", "licensesDisplay", "freebuildButton", "multicellularFreebuildButton", "autoEvoExploringButton", "planetCustomizationButton", "microbeBenchmarkButton", "exitToLauncherButton", "storeLoggedInDisplay", "socialMediaContainer", "websiteButtonsContainer", "itchButton", "patreonButton", "openGlPopup", "modLoadFailures", "steamFailedPopup", "safeModeWarning", "modsInstalledButNotEnabledWarning", "lowPerformanceWarning", "thanksDialog", "menus")]
+[node name="MainMenu" type="Control" node_paths=PackedStringArray("thriveLogo", "modManager", "galleryViewer", "newsFeed", "newsFeedDisabler", "patchNotes", "patchNotesDisabler", "feedPositioner", "creditsContainer", "credits", "licensesDisplay", "freebuildButton", "multicellularFreebuildButton", "autoEvoExploringButton", "microbeBenchmarkButton", "exitToLauncherButton", "storeLoggedInDisplay", "socialMediaContainer", "websiteButtonsContainer", "itchButton", "patreonButton", "openGlPopup", "modLoadFailures", "steamFailedPopup", "safeModeWarning", "modsInstalledButNotEnabledWarning", "lowPerformanceWarning", "thanksDialog", "menus")]
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
@@ -142,7 +142,6 @@ licensesDisplay = NodePath("LicensesDisplay")
 freebuildButton = NodePath("MenuContainers/Menus/VBoxContainer/Tools/FreebuildMicrobeEditor")
 multicellularFreebuildButton = NodePath("MenuContainers/Menus/VBoxContainer/Tools/FreebuildMulticellularEditor")
 autoEvoExploringButton = NodePath("MenuContainers/Menus/VBoxContainer/Tools/AutoEvoExploring")
-planetCustomizationButton = NodePath("MenuContainers/Menus/VBoxContainer/Tools/PlanetCustomizer")
 microbeBenchmarkButton = NodePath("MenuContainers/Menus/VBoxContainer/Benchmarks/MicrobeBenchmark")
 exitToLauncherButton = NodePath("MenuContainers/Menus/VBoxContainer/MainMenu/Launcher")
 storeLoggedInDisplay = NodePath("StoreUser")
@@ -417,16 +416,6 @@ focus_neighbor_bottom = NodePath("../Back")
 focus_next = NodePath("../Back")
 mouse_filter = 1
 text = "BENCHMARKS"
-
-[node name="unknown3" type="Button" parent="MenuContainers/Menus/VBoxContainer/Tools"]
-editor_description = "PLACEHOLDER"
-custom_minimum_size = Vector2(250, 40)
-layout_mode = 2
-size_flags_vertical = 0
-focus_mode = 0
-mouse_filter = 1
-disabled = true
-text = "???"
 
 [node name="Back" type="Button" parent="MenuContainers/Menus/VBoxContainer/Tools"]
 custom_minimum_size = Vector2(250, 40)

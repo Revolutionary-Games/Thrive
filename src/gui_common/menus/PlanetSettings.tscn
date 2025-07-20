@@ -1,12 +1,17 @@
-[gd_scene load_steps=5 format=3 uid="uid://b3rrmtcvwufb"]
+[gd_scene load_steps=10 format=3 uid="uid://b3rrmtcvwufb"]
 
 [ext_resource type="Theme" uid="uid://b4cx0o110g4b6" path="res://src/gui_common/thrive_theme.tres" id="1_au4yw"]
 [ext_resource type="LabelSettings" uid="uid://uxdd8vb4xedn" path="res://src/gui_common/fonts/Body-Regular-AlmostTiny.tres" id="1_o0axg"]
 [ext_resource type="Script" uid="uid://yuk23m1mb4pn" path="res://src/gui_common/menus/PlanetSettings.cs" id="2_4astu"]
+[ext_resource type="PackedScene" uid="uid://bgeijgq7runaw" path="res://src/gui_common/FocusGrabber.tscn" id="3_68oky"]
+[ext_resource type="Texture2D" uid="uid://baqkntjn5ng0y" path="res://assets/textures/gui/bevel/randomizeButton.png" id="5_7f13j"]
+[ext_resource type="Texture2D" uid="uid://c8qyts61c8a0y" path="res://assets/textures/gui/bevel/randomizeButtonActive.png" id="6_ptvhc"]
+[ext_resource type="Texture2D" uid="uid://jm2munbr7078" path="res://assets/textures/gui/bevel/randomizeButtonHover.png" id="7_u4muj"]
+[ext_resource type="Texture2D" uid="uid://ch76ktrn1xy7r" path="res://assets/textures/gui/bevel/randomizeButtonDisabled.png" id="8_4kewu"]
 
 [sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_p046t"]
 
-[node name="SettingsPanel" type="VBoxContainer" node_paths=PackedStringArray("lifeOriginButton", "worldSizeButton", "worldTemperatureButton", "worldSeaLevelButton", "worldGeologicalActivityButton", "worldClimateInstabilityButton", "lawkOnlyButton", "dayNightCycleButton", "dayLength", "dayLengthReadout", "dayLengthContainer")]
+[node name="SettingsPanel" type="VBoxContainer" node_paths=PackedStringArray("lifeOriginButton", "worldSizeButton", "worldTemperatureButton", "worldSeaLevelButton", "worldGeologicalActivityButton", "worldClimateInstabilityButton", "lawkOnlyButton", "dayNightCycleButton", "dayLength", "dayLengthReadout", "dayLengthContainer", "gameSeed")]
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
@@ -28,6 +33,38 @@ dayNightCycleButton = NodePath("VBoxContainer2/HBoxContainer/DayNightCycleButton
 dayLength = NodePath("DayLengthContainer/HBoxContainer/HBoxContainer/DayLength")
 dayLengthReadout = NodePath("DayLengthContainer/HBoxContainer/HBoxContainer/DayLengthReadout")
 dayLengthContainer = NodePath("DayLengthContainer")
+gameSeed = NodePath("HBoxContainer3/HBoxContainer/GameSeed")
+
+[node name="VBoxContainer" type="VBoxContainer" parent="."]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="FocusGrabber" parent="VBoxContainer" instance=ExtResource("3_68oky")]
+layout_mode = 2
+Priority = 3
+NodeToGiveFocusTo = NodePath("../HBoxContainer/LAWKButton")
+GrabFocusWhenBecomingVisible = true
+
+[node name="HBoxContainer" type="HBoxContainer" parent="VBoxContainer"]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="VBoxContainer/HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+mouse_filter = 0
+text = "LAWK_ONLY"
+
+[node name="LAWKButton" type="CheckButton" parent="VBoxContainer/HBoxContainer"]
+layout_mode = 2
+button_pressed = true
+
+[node name="Label2" type="Label" parent="VBoxContainer"]
+custom_minimum_size = Vector2(200, 0)
+layout_mode = 2
+size_flags_horizontal = 3
+text = "LAWK_ONLY_EXPLANATION"
+label_settings = ExtResource("1_o0axg")
+autowrap_mode = 3
 
 [node name="VBoxContainer3" type="VBoxContainer" parent="."]
 layout_mode = 2
@@ -258,31 +295,6 @@ autowrap_mode = 3
 custom_minimum_size = Vector2(0, 14)
 layout_mode = 2
 
-[node name="VBoxContainer" type="VBoxContainer" parent="."]
-layout_mode = 2
-size_flags_horizontal = 3
-
-[node name="HBoxContainer" type="HBoxContainer" parent="VBoxContainer"]
-layout_mode = 2
-
-[node name="Label" type="Label" parent="VBoxContainer/HBoxContainer"]
-layout_mode = 2
-size_flags_horizontal = 3
-mouse_filter = 0
-text = "LAWK_ONLY"
-
-[node name="LAWKButton" type="CheckButton" parent="VBoxContainer/HBoxContainer"]
-layout_mode = 2
-button_pressed = true
-
-[node name="Label2" type="Label" parent="VBoxContainer"]
-custom_minimum_size = Vector2(200, 0)
-layout_mode = 2
-size_flags_horizontal = 3
-text = "LAWK_ONLY_EXPLANATION"
-label_settings = ExtResource("1_o0axg")
-autowrap_mode = 3
-
 [node name="VBoxContainer2" type="VBoxContainer" parent="."]
 layout_mode = 2
 size_flags_horizontal = 3
@@ -358,7 +370,45 @@ text = "DAY_LENGTH_EXPLANATION"
 label_settings = ExtResource("1_o0axg")
 autowrap_mode = 3
 
-[connection signal="item_selected" from="VBoxContainer3/HBoxContainer/LifeOrigin" to="." method="OnLifeOriginSelected"]
+[node name="HBoxContainer3" type="HBoxContainer" parent="."]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="HBoxContainer3"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_stretch_ratio = 3.0
+text = "PLANET_RANDOM_SEED"
+
+[node name="HBoxContainer" type="HBoxContainer" parent="HBoxContainer3"]
+custom_minimum_size = Vector2(200, 0)
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_stretch_ratio = 2.0
+
+[node name="GameSeed" type="LineEdit" parent="HBoxContainer3/HBoxContainer"]
+editor_description = "PLACEHOLDER"
+custom_minimum_size = Vector2(175, 0)
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_stretch_ratio = 2.0
+tooltip_text = "RANDOM_SEED_TOOLTIP"
+text = "123456789"
+
+[node name="RandomizeButton" type="TextureButton" parent="HBoxContainer3/HBoxContainer"]
+custom_minimum_size = Vector2(31, 31)
+layout_mode = 2
+size_flags_horizontal = 0
+size_flags_vertical = 4
+texture_normal = ExtResource("5_7f13j")
+texture_pressed = ExtResource("6_ptvhc")
+texture_hover = ExtResource("7_u4muj")
+texture_disabled = ExtResource("8_4kewu")
+ignore_texture_size = true
+stretch_mode = 5
+
 [connection signal="toggled" from="VBoxContainer/HBoxContainer/LAWKButton" to="." method="OnLAWKToggled"]
+[connection signal="item_selected" from="VBoxContainer3/HBoxContainer/LifeOrigin" to="." method="OnLifeOriginSelected"]
 [connection signal="toggled" from="VBoxContainer2/HBoxContainer/DayNightCycleButton" to="." method="OnDayNightCycleToggled"]
 [connection signal="value_changed" from="DayLengthContainer/HBoxContainer/HBoxContainer/DayLength" to="." method="OnDayLengthChanged"]
+[connection signal="text_changed" from="HBoxContainer3/HBoxContainer/GameSeed" to="." method="OnSeedChanged"]
+[connection signal="pressed" from="HBoxContainer3/HBoxContainer/RandomizeButton" to="." method="OnGenerateSeedPressed"]

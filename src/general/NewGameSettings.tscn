@@ -326,6 +326,12 @@ theme_override_constants/separation = 10
 [node name="VBoxContainer6" type="VBoxContainer" parent="CenterContainer/VBoxContainer/AdvancedOptions/Difficulty/ScrollContainer/HBoxContainer/VBoxContainer"]
 layout_mode = 2
 
+[node name="FocusGrabber" parent="CenterContainer/VBoxContainer/AdvancedOptions/Difficulty/ScrollContainer/HBoxContainer/VBoxContainer/VBoxContainer6" instance=ExtResource("12")]
+layout_mode = 2
+Priority = 3
+NodeToGiveFocusTo = NodePath("../HBoxContainer/DifficultyPreset")
+GrabFocusWhenBecomingVisible = true
+
 [node name="HBoxContainer" type="HBoxContainer" parent="CenterContainer/VBoxContainer/AdvancedOptions/Difficulty/ScrollContainer/HBoxContainer/VBoxContainer/VBoxContainer6"]
 layout_mode = 2
 
@@ -933,6 +939,12 @@ theme_override_constants/separation = 10
 layout_mode = 2
 size_flags_horizontal = 3
 
+[node name="FocusGrabber" parent="CenterContainer/VBoxContainer/AdvancedOptions/Misc/VBoxContainer/VBoxContainer5" instance=ExtResource("12")]
+layout_mode = 2
+Priority = 3
+NodeToGiveFocusTo = NodePath("../HBoxContainer/IncludeMulticellular")
+GrabFocusWhenBecomingVisible = true
+
 [node name="HBoxContainer" type="HBoxContainer" parent="CenterContainer/VBoxContainer/AdvancedOptions/Misc/VBoxContainer/VBoxContainer5"]
 layout_mode = 2
 
@@ -1067,6 +1079,10 @@ text = "START_GAME"
 [connection signal="pressed" from="CenterContainer/VBoxContainer/TabButtons/PlanetButton" to="." method="ChangeSettingsTab" binds= ["Planet"]]
 [connection signal="pressed" from="CenterContainer/VBoxContainer/TabButtons/DifficultyButton" to="." method="ChangeSettingsTab" binds= ["Difficulty"]]
 [connection signal="pressed" from="CenterContainer/VBoxContainer/TabButtons/MiscButton" to="." method="ChangeSettingsTab" binds= ["Miscellaneous"]]
+[connection signal="GenerateSeedPressed" from="CenterContainer/VBoxContainer/AdvancedOptions/Planet/ScrollContainer/HBoxContainer/SettingsPanel" to="." method="OnRandomisedGameSeedPressed"]
+[connection signal="LawkSettingsChanged" from="CenterContainer/VBoxContainer/AdvancedOptions/Planet/ScrollContainer/HBoxContainer/SettingsPanel" to="." method="OnLawkPlanetSettingChanged"]
+[connection signal="LifeOriginSettingsChanged" from="CenterContainer/VBoxContainer/AdvancedOptions/Planet/ScrollContainer/HBoxContainer/SettingsPanel" to="." method="OnLifeOriginPlanetSettingChanged"]
+[connection signal="SeedSettingsChanged" from="CenterContainer/VBoxContainer/AdvancedOptions/Planet/ScrollContainer/HBoxContainer/SettingsPanel" to="." method="OnSeedChanged"]
 [connection signal="item_selected" from="CenterContainer/VBoxContainer/AdvancedOptions/Difficulty/ScrollContainer/HBoxContainer/VBoxContainer/VBoxContainer6/HBoxContainer/DifficultyPreset" to="." method="OnDifficultyPresetSelected"]
 [connection signal="value_changed" from="CenterContainer/VBoxContainer/AdvancedOptions/Difficulty/ScrollContainer/HBoxContainer/VBoxContainer/VBoxContainer/HBoxContainer/HBoxContainer/MPMultiplier" to="." method="OnMPMultiplierValueChanged"]
 [connection signal="value_changed" from="CenterContainer/VBoxContainer/AdvancedOptions/Difficulty/ScrollContainer/HBoxContainer/VBoxContainer/VBoxContainer8/HBoxContainer/HBoxContainer/AIMutationRate" to="." method="OnAIMutationRateValueChanged"]
