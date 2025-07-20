@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2025-07-12 13:32+0200\n"
+"POT-Creation-Date: 2025-07-12 13:25+0200\n"
 "PO-Revision-Date: 2025-05-25 15:00+0000\n"
 "Last-Translator: Anonymous <noreply@weblate.org>\n"
 "Language-Team: Bulgarian <https://translate.revolutionarygamesstudio.com/projects/thrive/thrive-game/bg/>\n"
@@ -369,10 +369,6 @@ msgstr "Автоматичен запис по време на игра"
 msgid "AUTO_EVO"
 msgstr "Автоматична еволюция"
 
-#, fuzzy
-msgid "AUTO_EVO_EXPLORER_TOOL_BUTTON"
-msgstr "Автоматична ({0}x{1})"
-
 msgid "AUTO_EVO_EXPLORING_TOOL"
 msgstr "Еволюционен редактор"
 
@@ -428,9 +424,6 @@ msgstr "Обратна наклонена черта"
 
 msgid "BACKSPACE"
 msgstr "Клавиш „Backspace“"
-
-msgid "BACK_TO_SETTINGS"
-msgstr ""
 
 #, fuzzy
 msgid "BACTERIAL_THERMOSYNTHESIS"
@@ -853,24 +846,6 @@ msgstr ""
 #, fuzzy
 msgid "CLICK_TO_SELECT"
 msgstr "Изтриване на избраните"
-
-msgid "CLIMATE_INSTABILITY"
-msgstr ""
-
-#, fuzzy
-msgid "CLIMATE_INSTABILITY_EXPLANATION"
-msgstr ""
-"Енергичните микроби са в движение, дори да няма промени в околната среда.\n"
-"Мудните микроби не са в движение, докато няма промени в околната среда."
-
-msgid "CLIMATE_STABILITY_AVERAGE"
-msgstr ""
-
-msgid "CLIMATE_STABILITY_STABLE"
-msgstr ""
-
-msgid "CLIMATE_STABILITY_UNSTABLE"
-msgstr ""
 
 msgid "CLOSE"
 msgstr "Затваряне"
@@ -2544,33 +2519,11 @@ msgstr "Натиснете бутона „Отмяна“ в редактора
 msgid "GENERAL_LOADING_TIP_7"
 msgstr "Натиснете бутона „Отмяна“ в редактора, ако допуснете грешка"
 
-#, fuzzy
-msgid "GENERATE_BUTTON"
-msgstr "Поколение"
-
 msgid "GENERATIONS"
 msgstr "Поколение"
 
 msgid "GENERATION_COLON"
 msgstr "Поколение:"
-
-msgid "GEOLOGICAL_ACTIVITY"
-msgstr ""
-
-msgid "GEOLOGICAL_ACTIVITY_ACTIVE"
-msgstr ""
-
-msgid "GEOLOGICAL_ACTIVITY_AVERAGE"
-msgstr ""
-
-msgid "GEOLOGICAL_ACTIVITY_DORMANT"
-msgstr ""
-
-#, fuzzy
-msgid "GEOLOGICAL_ACTIVITY_EXPLANATION"
-msgstr ""
-"Енергичните микроби са в движение, дори да няма промени в околната среда.\n"
-"Мудните микроби не са в движение, докато няма промени в околната среда."
 
 msgid "GITHUB_TOOLTIP"
 msgstr "Отваряне на хранилището ни в „GitHub“"
@@ -4994,10 +4947,6 @@ msgstr "Добавяне на органел или друг обект"
 msgid "PLANET"
 msgstr "Планета"
 
-#, fuzzy
-msgid "PLANET_CUSTOMIZER"
-msgstr "Под курсора:"
-
 msgid "PLANET_DETAILS_STRING"
 msgstr ""
 "Земеподобен живот: {0}\n"
@@ -5005,6 +4954,9 @@ msgstr ""
 "Денонощен цикъл: {2}\n"
 "Продължителност на деня: {3} секунди\n"
 "Произволен идентификатор на планетата: {4}"
+
+msgid "PLANET_GENERATION_TEASER"
+msgstr "Създаването на планетата е в процес на разработка!"
 
 msgid "PLANET_RANDOM_SEED"
 msgstr "Произволен идентификатор на планетата"
@@ -5203,10 +5155,6 @@ msgstr "Възстановяване на последното действие"
 
 msgid "REFRESH"
 msgstr "Опресняване"
-
-#, fuzzy
-msgid "REGENERATE_BUTTON"
-msgstr "Аксон"
 
 #, fuzzy
 msgid "RENDER_SCALE"
@@ -5732,6 +5680,10 @@ msgstr "Силициева"
 msgid "SILICA_MEMBRANE_DESCRIPTION"
 msgstr "Това е мембрана с здрава стена от силициев диоксид, която осигурява най-добрата защита и се нуждае от по-малко енергия за да не се деформира. Недостатъците ѝ са, че клетката става прекалено бавна, както и усвояването на хранителните вещества."
 
+#, fuzzy
+msgid "SIMULATION_CONFIG"
+msgstr "Осморегулационен разход"
+
 msgid "SIXTEEN_TIMES"
 msgstr "16 пъти"
 
@@ -6080,6 +6032,10 @@ msgstr "Превключване на горната камера"
 
 msgid "SYSREQ"
 msgstr "Клавиш „SysRq“"
+
+#, fuzzy
+msgid "TAB_CHANGE_BLOCKED_WHILE_ACTION_IN_PROGRESS"
+msgstr "Последното действие не е завършено"
 
 msgid "TAB_SECONDARY_SWITCH_LEFT"
 msgstr "Вторичен ляв раздел"
@@ -7073,6 +7029,9 @@ msgid "UPSCALE_FSR_1"
 msgstr ""
 
 msgid "UPSCALE_FSR_22"
+msgstr ""
+
+msgid "UPSCALE_METHOD"
 msgstr ""
 
 msgid "UPSCALE_SHARPENING_FSR"
@@ -9121,28 +9080,6 @@ msgid "WORLD_RELATIVE_MOVEMENT"
 msgstr "за да увеличи скоростта"
 
 #, fuzzy
-msgid "WORLD_SEA_LEVEL"
-msgstr "{0}-{1} м. под морското равнище"
-
-#, fuzzy
-msgid "WORLD_SEA_LEVEL_DEEP"
-msgstr "{0}-{1} м. под морското равнище"
-
-#, fuzzy
-msgid "WORLD_SEA_LEVEL_EXPLANATION"
-msgstr ""
-"Вглъбените микроби не променят намеренията си\n"
-"и са склонни да постигнат целта си.\n"
-"Бдителните микроби бързо променят намеренията си."
-
-#, fuzzy
-msgid "WORLD_SEA_LEVEL_MODERATE"
-msgstr "за да увеличи скоростта"
-
-msgid "WORLD_SEA_LEVEL_SHALLOW"
-msgstr ""
-
-#, fuzzy
 msgid "WORLD_SIZE"
 msgstr "Свят"
 
@@ -9166,29 +9103,6 @@ msgstr ""
 #, fuzzy
 msgid "WORLD_SIZE_TOOLTIP"
 msgstr "Симулиране на определен брой светове с предварително определеното количество на поколенията."
-
-#, fuzzy
-msgid "WORLD_TEMPERATURE"
-msgstr "Температура"
-
-#, fuzzy
-msgid "WORLD_TEMPERATURE_COLD"
-msgstr "Темп."
-
-#, fuzzy
-msgid "WORLD_TEMPERATURE_EXPLANATION"
-msgstr ""
-"Вглъбените микроби не променят намеренията си\n"
-"и са склонни да постигнат целта си.\n"
-"Бдителните микроби бързо променят намеренията си."
-
-#, fuzzy
-msgid "WORLD_TEMPERATURE_TEMPERATE"
-msgstr "Темп."
-
-#, fuzzy
-msgid "WORLD_TEMPERATURE_WARM"
-msgstr "Темп."
 
 msgid "WORST_PATCH_COLON"
 msgstr "Изчезва:"
@@ -9229,9 +9143,6 @@ msgstr "Приближаване"
 
 msgid "ZOOM_OUT"
 msgstr "Отдалечаване"
-
-#~ msgid "PLANET_GENERATION_TEASER"
-#~ msgstr "Създаването на планетата е в процес на разработка!"
 
 #~ msgid "PASSIVE_REPRODUCTION_PROGRESS_EXPLANATION"
 #~ msgstr "(създанията усвояват хранителните вещества от околната среда)"

@@ -7,9 +7,9 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2025-07-12 13:32+0200\n"
-"PO-Revision-Date: 2025-07-02 19:22+0000\n"
-"Last-Translator: Maël Turon <maeltur70@gmail.com>\n"
+"POT-Creation-Date: 2025-07-12 13:25+0200\n"
+"PO-Revision-Date: 2025-07-14 12:12+0000\n"
+"Last-Translator: luke <aidow@netcourrier.com>\n"
 "Language-Team: French <https://translate.revolutionarygamesstudio.com/projects/thrive/thrive-game/fr/>\n"
 "Language: fr\n"
 "MIME-Version: 1.0\n"
@@ -364,10 +364,6 @@ msgstr "Sauvegarde automatique en jeu"
 msgid "AUTO_EVO"
 msgstr "Auto-Évo"
 
-#, fuzzy
-msgid "AUTO_EVO_EXPLORER_TOOL_BUTTON"
-msgstr "Automatique ({0}x{1})"
-
 msgid "AUTO_EVO_EXPLORING_TOOL"
 msgstr "Outil d'exploration Auto-Évo"
 
@@ -423,9 +419,6 @@ msgstr "Barre oblique inversée"
 
 msgid "BACKSPACE"
 msgstr "Retour arrière"
-
-msgid "BACK_TO_SETTINGS"
-msgstr ""
 
 msgid "BACTERIAL_THERMOSYNTHESIS"
 msgstr "Thermosynthèse bactérienne"
@@ -820,24 +813,6 @@ msgstr "Vider la mémoire cache"
 #, fuzzy
 msgid "CLICK_TO_SELECT"
 msgstr "Supprimer la sélection"
-
-msgid "CLIMATE_INSTABILITY"
-msgstr ""
-
-#, fuzzy
-msgid "CLIMATE_INSTABILITY_EXPLANATION"
-msgstr ""
-"Les microbes actifs déambuleront en l'absence de cible.\n"
-"Les microbes sessiles seront immobiles en l'attente d'un changement dans leur environnement."
-
-msgid "CLIMATE_STABILITY_AVERAGE"
-msgstr ""
-
-msgid "CLIMATE_STABILITY_STABLE"
-msgstr ""
-
-msgid "CLIMATE_STABILITY_UNSTABLE"
-msgstr ""
 
 msgid "CLOSE"
 msgstr "Fermer"
@@ -2453,33 +2428,11 @@ msgstr "Appuyez sur le bouton Annuler la dernière action dans l'éditeur pour c
 msgid "GENERAL_LOADING_TIP_7"
 msgstr "Appuyez sur le bouton Annuler la dernière action dans l'éditeur pour corriger une erreur"
 
-#, fuzzy
-msgid "GENERATE_BUTTON"
-msgstr "Générations"
-
 msgid "GENERATIONS"
 msgstr "Générations"
 
 msgid "GENERATION_COLON"
 msgstr "Génération :"
-
-msgid "GEOLOGICAL_ACTIVITY"
-msgstr ""
-
-msgid "GEOLOGICAL_ACTIVITY_ACTIVE"
-msgstr ""
-
-msgid "GEOLOGICAL_ACTIVITY_AVERAGE"
-msgstr ""
-
-msgid "GEOLOGICAL_ACTIVITY_DORMANT"
-msgstr ""
-
-#, fuzzy
-msgid "GEOLOGICAL_ACTIVITY_EXPLANATION"
-msgstr ""
-"Les microbes actifs déambuleront en l'absence de cible.\n"
-"Les microbes sessiles seront immobiles en l'attente d'un changement dans leur environnement."
 
 msgid "GITHUB_TOOLTIP"
 msgstr "Visitez notre dépôt Github"
@@ -4392,9 +4345,8 @@ msgstr "Production d'ATP inhibée par une toxine"
 msgid "NOTICE_HIT_BY_BASE_MOVEMENT_TOXIN"
 msgstr "Vitesse de déplacement réduite en raison d'une toxine"
 
-#, fuzzy
 msgid "NOTICE_NOT_ENOUGH_MUCILAGE"
-msgstr "{0} insuffisant pour fabriquer la recette"
+msgstr "Mucilage insuffisant pour activer le bouclier mucocyste"
 
 #, fuzzy
 msgid "NOTICE_RADIATION_DAMAGE"
@@ -4861,10 +4813,6 @@ msgstr "Placer organite"
 msgid "PLANET"
 msgstr "Planète"
 
-#, fuzzy
-msgid "PLANET_CUSTOMIZER"
-msgstr "Au pointeur :"
-
 msgid "PLANET_DETAILS_STRING"
 msgstr ""
 "LAWK uniquement : {0}\n"
@@ -4872,6 +4820,9 @@ msgstr ""
 "Cycle jour/nuit : {2}\n"
 "Durée du jour : {3} secondes\n"
 "Graine aléatoire de la planète : {4}"
+
+msgid "PLANET_GENERATION_TEASER"
+msgstr "La génération de planète arrive bientôt !"
 
 msgid "PLANET_RANDOM_SEED"
 msgstr "Graine planétaire aléatoire"
@@ -5066,10 +5017,6 @@ msgstr "Répéter la dernière action"
 
 msgid "REFRESH"
 msgstr "Rafraîchir"
-
-#, fuzzy
-msgid "REGENERATE_BUTTON"
-msgstr "Axone"
 
 #, fuzzy
 msgid "RENDER_SCALE"
@@ -5587,6 +5534,10 @@ msgstr "Silice"
 msgid "SILICA_MEMBRANE_DESCRIPTION"
 msgstr "Cette membrane possède une paroi solide de silice. Elle résiste bien aux dégâts globaux et très bien aux dégâts physiques. Elle requiert aussi moins d'énergie pour maintenir sa forme. Cependant, elle ralentit sensiblement la cellule et celle-ci absorbe les ressources à un taux réduit."
 
+#, fuzzy
+msgid "SIMULATION_CONFIG"
+msgstr "Coût en osmorégulation"
+
 msgid "SIXTEEN_TIMES"
 msgstr "16x"
 
@@ -5930,6 +5881,10 @@ msgstr "Passer en camera plongée"
 
 msgid "SYSREQ"
 msgstr "ConRq"
+
+#, fuzzy
+msgid "TAB_CHANGE_BLOCKED_WHILE_ACTION_IN_PROGRESS"
+msgstr "Action bloquée pendant qu'une autre est en cours"
 
 msgid "TAB_SECONDARY_SWITCH_LEFT"
 msgstr "Passer à l'onglet secondaire à gauche"
@@ -6908,6 +6863,10 @@ msgstr "Mise à l’échelle FSR 1"
 
 msgid "UPSCALE_FSR_22"
 msgstr "Mise à l'échelle FSR 2.2"
+
+#, fuzzy
+msgid "UPSCALE_METHOD"
+msgstr "Mise à l’échelle bilinéaire"
 
 msgid "UPSCALE_SHARPENING_FSR"
 msgstr "Aiguisage FSR"
@@ -9248,29 +9207,6 @@ msgid "WORLD_RELATIVE_MOVEMENT"
 msgstr "Dépend du monde"
 
 #, fuzzy
-msgid "WORLD_SEA_LEVEL"
-msgstr "{0}-{1}m sous la mer"
-
-#, fuzzy
-msgid "WORLD_SEA_LEVEL_DEEP"
-msgstr "{0}-{1}m sous la mer"
-
-#, fuzzy
-msgid "WORLD_SEA_LEVEL_EXPLANATION"
-msgstr ""
-"Les microbes persévérants rechercheront des fragments ou des proies sur de plus grandes distances\n"
-"et pourront se montrer bien plus ambitieux face à des fragments disputés.\n"
-"Les microbes réactifs basculeront plus vite vers de nouvelles cibles."
-
-#, fuzzy
-msgid "WORLD_SEA_LEVEL_MODERATE"
-msgstr "Dépend du monde"
-
-#, fuzzy
-msgid "WORLD_SEA_LEVEL_SHALLOW"
-msgstr "Petit"
-
-#, fuzzy
 msgid "WORLD_SIZE"
 msgstr "Monde"
 
@@ -9293,29 +9229,6 @@ msgstr "Petit"
 #, fuzzy
 msgid "WORLD_SIZE_TOOLTIP"
 msgstr "Lance un certain nombre de mondes, le nombre de générations pour chaque monde est déterminé par liste déroulante ci-dessus."
-
-#, fuzzy
-msgid "WORLD_TEMPERATURE"
-msgstr "Température"
-
-#, fuzzy
-msgid "WORLD_TEMPERATURE_COLD"
-msgstr "Temp."
-
-#, fuzzy
-msgid "WORLD_TEMPERATURE_EXPLANATION"
-msgstr ""
-"Les microbes persévérants rechercheront des fragments ou des proies sur de plus grandes distances\n"
-"et pourront se montrer bien plus ambitieux face à des fragments disputés.\n"
-"Les microbes réactifs basculeront plus vite vers de nouvelles cibles."
-
-#, fuzzy
-msgid "WORLD_TEMPERATURE_TEMPERATE"
-msgstr "Temp."
-
-#, fuzzy
-msgid "WORLD_TEMPERATURE_WARM"
-msgstr "Temp."
 
 msgid "WORST_PATCH_COLON"
 msgstr "Pire secteur :"
@@ -9354,9 +9267,6 @@ msgstr "Zoomer"
 
 msgid "ZOOM_OUT"
 msgstr "Dézoomer"
-
-#~ msgid "PLANET_GENERATION_TEASER"
-#~ msgstr "La génération de planète arrive bientôt !"
 
 #~ msgid "PASSIVE_REPRODUCTION_PROGRESS_EXPLANATION"
 #~ msgstr "(obtenir passivement des composés de reproduction de l'environnement sans avoir à faire quoi que ce soit)"

@@ -1768,7 +1768,7 @@ public static class Constants
     public const int ENDOSYMBIOSIS_COST_MIN = 2;
 
     /// <summary>
-    ///   If membrane scene is updated this should be updated as well
+    ///   If the membrane scene is updated this should be updated as well
     /// </summary>
     public const int MICROBE_DEFAULT_RENDER_PRIORITY = 18;
 
@@ -1783,7 +1783,7 @@ public static class Constants
     public const float MAX_AI_MUTATION_RATE = 3;
     public const float MIN_COMPOUND_DENSITY = 0.2f;
     public const float MAX_COMPOUND_DENSITY = 2;
-    public const float MIN_PLAYER_DEATH_POPULATION_PENALTY = 1;
+    public const float MIN_PLAYER_DEATH_POPULATION_PENALTY = 0.6f;
     public const float MAX_PLAYER_DEATH_POPULATION_PENALTY = 5;
     public const float MIN_GLUCOSE_DECAY = 0.3f;
     public const float MAX_GLUCOSE_DECAY = 0.95f;

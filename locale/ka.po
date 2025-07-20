@@ -7,8 +7,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2025-07-12 13:32+0200\n"
-"PO-Revision-Date: 2025-06-03 07:24+0000\n"
+"POT-Creation-Date: 2025-07-12 13:25+0200\n"
+"PO-Revision-Date: 2025-07-15 02:18+0000\n"
 "Last-Translator: NorwayFun <temuri.doghonadze@gmail.com>\n"
 "Language-Team: Georgian <https://translate.revolutionarygamesstudio.com/projects/thrive/thrive-game/ka/>\n"
 "Language: ka\n"
@@ -356,10 +356,6 @@ msgstr "ავტოშენახვა თამაშისას"
 msgid "AUTO_EVO"
 msgstr "ავტო-ევო"
 
-#, fuzzy
-msgid "AUTO_EVO_EXPLORER_TOOL_BUTTON"
-msgstr "ავტო ({0}x{1})"
-
 msgid "AUTO_EVO_EXPLORING_TOOL"
 msgstr "ავტოევოს შესწავლის ხელსაწყო"
 
@@ -413,9 +409,6 @@ msgstr "უკუღმა დახრილი ხაზი"
 
 msgid "BACKSPACE"
 msgstr "Backspace"
-
-msgid "BACK_TO_SETTINGS"
-msgstr ""
 
 msgid "BACTERIAL_THERMOSYNTHESIS"
 msgstr "ბაქტერიული თერმოსინთეზი"
@@ -794,24 +787,6 @@ msgstr "კეშის გასუფთავება"
 
 msgid "CLICK_TO_SELECT"
 msgstr "აირჩიეთ"
-
-msgid "CLIMATE_INSTABILITY"
-msgstr ""
-
-#, fuzzy
-msgid "CLIMATE_INSTABILITY_EXPLANATION"
-msgstr ""
-"აქტიური მიკრობები იმოძრავებენ, როცა არაფერი ხდება.\n"
-"მჯდომარე ბაქტერიები უმოძრაოდ იქნებიან და დაელოდებიან გარემოს ცვლილებას, სანამ რამეს იზამენ."
-
-msgid "CLIMATE_STABILITY_AVERAGE"
-msgstr ""
-
-msgid "CLIMATE_STABILITY_STABLE"
-msgstr ""
-
-msgid "CLIMATE_STABILITY_UNSTABLE"
-msgstr ""
 
 msgid "CLOSE"
 msgstr "დახურვა"
@@ -2269,33 +2244,11 @@ msgstr "არ დაგავიწყდეთ, შეგიძლიათ �
 msgid "GENERAL_LOADING_TIP_7"
 msgstr "თუ თქვენი პოპულაცია ნულამდე დაეცა, გადაშენდებით."
 
-#, fuzzy
-msgid "GENERATE_BUTTON"
-msgstr "თაობები"
-
 msgid "GENERATIONS"
 msgstr "თაობები"
 
 msgid "GENERATION_COLON"
 msgstr "თაობა:"
-
-msgid "GEOLOGICAL_ACTIVITY"
-msgstr ""
-
-msgid "GEOLOGICAL_ACTIVITY_ACTIVE"
-msgstr ""
-
-msgid "GEOLOGICAL_ACTIVITY_AVERAGE"
-msgstr ""
-
-msgid "GEOLOGICAL_ACTIVITY_DORMANT"
-msgstr ""
-
-#, fuzzy
-msgid "GEOLOGICAL_ACTIVITY_EXPLANATION"
-msgstr ""
-"აქტიური მიკრობები იმოძრავებენ, როცა არაფერი ხდება.\n"
-"მჯდომარე ბაქტერიები უმოძრაოდ იქნებიან და დაელოდებიან გარემოს ცვლილებას, სანამ რამეს იზამენ."
 
 msgid "GITHUB_TOOLTIP"
 msgstr "ეწვიეთ ჩვენს GitHub-ის რეპოზიტორიას"
@@ -3990,9 +3943,8 @@ msgstr "ატფ-ის წარმოება ჩახშობილია
 msgid "NOTICE_HIT_BY_BASE_MOVEMENT_TOXIN"
 msgstr "ძირითადი გადაადგილების სიჩქარე შემცირდა ტოქსინის გამო"
 
-#, fuzzy
 msgid "NOTICE_NOT_ENOUGH_MUCILAGE"
-msgstr "არასაკმარისი {0} რეცეპტის შექმნისთვის"
+msgstr "არასაკმარისი ლორწო მუკოცისტის ფარის გასააქტიურებლად"
 
 msgid "NOTICE_RADIATION_DAMAGE"
 msgstr "დაზიანებულია მეტისმეტი რადიაციით"
@@ -4425,10 +4377,6 @@ msgstr "ორგანელას (ან სხვა მოთავსე�
 msgid "PLANET"
 msgstr "პლანეტა"
 
-#, fuzzy
-msgid "PLANET_CUSTOMIZER"
-msgstr "კურსორთან:"
-
 msgid "PLANET_DETAILS_STRING"
 msgstr ""
 "მხოლოდ სრჩვ: {0}\n"
@@ -4436,6 +4384,9 @@ msgstr ""
 "დღეღამის ციკლი: {2}\n"
 "დღის სიგრძე: {3} წამი\n"
 "პლანეტის შემთხვევითობის თესლი: {4}"
+
+msgid "PLANET_GENERATION_TEASER"
+msgstr "პლანეტის გენერაციას მალე იხილავთ!"
 
 msgid "PLANET_RANDOM_SEED"
 msgstr "პლანეტის შემთხვევითობის თესლი"
@@ -4623,10 +4574,6 @@ msgstr "ბოლო ქმედების გამეორება"
 
 msgid "REFRESH"
 msgstr "განახლება"
-
-#, fuzzy
-msgid "REGENERATE_BUTTON"
-msgstr "ორგანელები"
 
 msgid "RENDER_SCALE"
 msgstr "რევოლუციის მასშტაბი"
@@ -5106,6 +5053,10 @@ msgstr "კაჟი"
 msgid "SILICA_MEMBRANE_DESCRIPTION"
 msgstr ""
 
+#, fuzzy
+msgid "SIMULATION_CONFIG"
+msgstr "ოსმორეგულაციის ფასი"
+
 msgid "SIXTEEN_TIMES"
 msgstr "16x"
 
@@ -5436,6 +5387,10 @@ msgstr "გადართვამ ზედა კამერის ხედ
 
 msgid "SYSREQ"
 msgstr "SysRq"
+
+#, fuzzy
+msgid "TAB_CHANGE_BLOCKED_WHILE_ACTION_IN_PROGRESS"
+msgstr "ქმედება დაბლოკილია, სანამ სხვა გაშვებულია"
 
 msgid "TAB_SECONDARY_SWITCH_LEFT"
 msgstr "მეორადი დონის ჩანართის მარცხნივ გადართვა"
@@ -6163,6 +6118,10 @@ msgstr "FSR 1 Upscaling"
 
 msgid "UPSCALE_FSR_22"
 msgstr "FSR 2.2 Upscaling"
+
+#, fuzzy
+msgid "UPSCALE_METHOD"
+msgstr "ბილინეარული დამასშტაბება"
 
 msgid "UPSCALE_SHARPENING_FSR"
 msgstr "FSR გამოკვეთა"
@@ -7795,26 +7754,6 @@ msgstr ""
 msgid "WORLD_RELATIVE_MOVEMENT"
 msgstr "სამყაროსთან შეფარდებით"
 
-#, fuzzy
-msgid "WORLD_SEA_LEVEL"
-msgstr "{0}-{1}მ ზღვის დონის ქვემოთ"
-
-#, fuzzy
-msgid "WORLD_SEA_LEVEL_DEEP"
-msgstr "{0}-{1}მ ზღვის დონის ქვემოთ"
-
-#, fuzzy
-msgid "WORLD_SEA_LEVEL_EXPLANATION"
-msgstr "(ცვლის სამყაროში ბიომების რაოდენობას)"
-
-#, fuzzy
-msgid "WORLD_SEA_LEVEL_MODERATE"
-msgstr "სამყაროსთან შეფარდებით"
-
-#, fuzzy
-msgid "WORLD_SEA_LEVEL_SHALLOW"
-msgstr "პატარა"
-
 msgid "WORLD_SIZE"
 msgstr "სამყაროს ზომა"
 
@@ -7832,26 +7771,6 @@ msgstr "პატარა"
 
 msgid "WORLD_SIZE_TOOLTIP"
 msgstr "დიდი სამყაროს ქონამ, შეიძლება, სიმულაცია შეანელოს და არაა რეკომენდებული ნელი კომპიუტერებისთვის."
-
-#, fuzzy
-msgid "WORLD_TEMPERATURE"
-msgstr "ტემპერატურა"
-
-#, fuzzy
-msgid "WORLD_TEMPERATURE_COLD"
-msgstr "ტემპ."
-
-#, fuzzy
-msgid "WORLD_TEMPERATURE_EXPLANATION"
-msgstr "(ცვლის სამყაროში ბიომების რაოდენობას)"
-
-#, fuzzy
-msgid "WORLD_TEMPERATURE_TEMPERATE"
-msgstr "ტემპ."
-
-#, fuzzy
-msgid "WORLD_TEMPERATURE_WARM"
-msgstr "ტემპ."
 
 msgid "WORST_PATCH_COLON"
 msgstr "ყველაზე ცუდი ბიომა:"
@@ -7890,9 +7809,6 @@ msgstr "გადიდება"
 
 msgid "ZOOM_OUT"
 msgstr "დაპატარავება"
-
-#~ msgid "PLANET_GENERATION_TEASER"
-#~ msgstr "პლანეტის გენერაციას მალე იხილავთ!"
 
 #~ msgid "PASSIVE_REPRODUCTION_PROGRESS_EXPLANATION"
 #~ msgstr "(რეპროდუქციის ნაერთების პასიური ათვისება გარემოდან რამის კეთების გარეშე)"

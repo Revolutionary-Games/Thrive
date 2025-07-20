@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2025-07-12 13:32+0200\n"
+"POT-Creation-Date: 2025-07-12 13:25+0200\n"
 "PO-Revision-Date: 2025-05-25 15:00+0000\n"
 "Last-Translator: Anonymous <noreply@weblate.org>\n"
 "Language-Team: Spanish <https://translate.revolutionarygamesstudio.com/projects/thrive/thrive-game/es/>\n"
@@ -367,10 +367,6 @@ msgstr "Autoguardado durante el juego"
 msgid "AUTO_EVO"
 msgstr "Auto-Evo"
 
-#, fuzzy
-msgid "AUTO_EVO_EXPLORER_TOOL_BUTTON"
-msgstr "Auto ({0}x{1})"
-
 msgid "AUTO_EVO_EXPLORING_TOOL"
 msgstr "Herramienta de Exploración Auto-Evo"
 
@@ -424,9 +420,6 @@ msgstr "Barra diagonal inversa"
 
 msgid "BACKSPACE"
 msgstr "Retroceso"
-
-msgid "BACK_TO_SETTINGS"
-msgstr ""
 
 msgid "BACTERIAL_THERMOSYNTHESIS"
 msgstr "Termosíntesis Bacteriana"
@@ -829,24 +822,6 @@ msgstr "Limpiar Caché"
 #, fuzzy
 msgid "CLICK_TO_SELECT"
 msgstr "Eliminar selección"
-
-msgid "CLIMATE_INSTABILITY"
-msgstr ""
-
-#, fuzzy
-msgid "CLIMATE_INSTABILITY_EXPLANATION"
-msgstr ""
-"Los microbios activos correrán y darán vueltas cuando no suceda nada interesante.\n"
-"Los microbios sésiles permanecerán en reposo y esperarán a que cambie el entorno antes de actuar."
-
-msgid "CLIMATE_STABILITY_AVERAGE"
-msgstr ""
-
-msgid "CLIMATE_STABILITY_STABLE"
-msgstr ""
-
-msgid "CLIMATE_STABILITY_UNSTABLE"
-msgstr ""
 
 msgid "CLOSE"
 msgstr "Cerrar"
@@ -2410,33 +2385,11 @@ msgstr "Presiona el botón de deshacer en el editor para corregir un error"
 msgid "GENERAL_LOADING_TIP_7"
 msgstr "Presiona el botón de deshacer en el editor para corregir un error"
 
-#, fuzzy
-msgid "GENERATE_BUTTON"
-msgstr "Generaciones"
-
 msgid "GENERATIONS"
 msgstr "Generaciones"
 
 msgid "GENERATION_COLON"
 msgstr "Generación:"
-
-msgid "GEOLOGICAL_ACTIVITY"
-msgstr ""
-
-msgid "GEOLOGICAL_ACTIVITY_ACTIVE"
-msgstr ""
-
-msgid "GEOLOGICAL_ACTIVITY_AVERAGE"
-msgstr ""
-
-msgid "GEOLOGICAL_ACTIVITY_DORMANT"
-msgstr ""
-
-#, fuzzy
-msgid "GEOLOGICAL_ACTIVITY_EXPLANATION"
-msgstr ""
-"Los microbios activos correrán y darán vueltas cuando no suceda nada interesante.\n"
-"Los microbios sésiles permanecerán en reposo y esperarán a que cambie el entorno antes de actuar."
 
 msgid "GITHUB_TOOLTIP"
 msgstr "Visita nuestro repositorio de GitHub"
@@ -4829,16 +4782,15 @@ msgid "PLANET"
 msgstr "Planeta"
 
 #, fuzzy
-msgid "PLANET_CUSTOMIZER"
-msgstr "En el puntero:"
-
-#, fuzzy
 msgid "PLANET_DETAILS_STRING"
 msgstr ""
 "Tipo de zona: {0}\n"
 "Solo usar VCLC: {1}\n"
 "Origen de la vida: {2}\n"
 "Semilla aleatoria del planeta: {3}"
+
+msgid "PLANET_GENERATION_TEASER"
+msgstr "Generación de Planeta próximamente!"
 
 msgid "PLANET_RANDOM_SEED"
 msgstr "Semilla de generación del Planeta"
@@ -5040,10 +4992,6 @@ msgstr "Rehacer la última acción"
 
 msgid "REFRESH"
 msgstr "Actualizar"
-
-#, fuzzy
-msgid "REGENERATE_BUTTON"
-msgstr "Orgánulos"
 
 #, fuzzy
 msgid "RENDER_SCALE"
@@ -5580,6 +5528,10 @@ msgstr "Sílice"
 msgid "SILICA_MEMBRANE_DESCRIPTION"
 msgstr "Esta membrana tiene una dura pared de sílice. Puede resistir el daño muy bien, especialmente el daño físico. También requiere menos energía. No obstante, ralentiza a la célula drásticamente y absorbe recursos a una velocidad menor."
 
+#, fuzzy
+msgid "SIMULATION_CONFIG"
+msgstr "Costo de Osmorregulación"
+
 msgid "SIXTEEN_TIMES"
 msgstr "16x"
 
@@ -5940,6 +5892,10 @@ msgstr "Cambia a camera desde arriba"
 
 msgid "SYSREQ"
 msgstr "SysRq"
+
+#, fuzzy
+msgid "TAB_CHANGE_BLOCKED_WHILE_ACTION_IN_PROGRESS"
+msgstr "Acción bloqueada mientras otra está en progreso"
 
 msgid "TAB_SECONDARY_SWITCH_LEFT"
 msgstr ""
@@ -6954,6 +6910,9 @@ msgid "UPSCALE_FSR_1"
 msgstr ""
 
 msgid "UPSCALE_FSR_22"
+msgstr ""
+
+msgid "UPSCALE_METHOD"
 msgstr ""
 
 msgid "UPSCALE_SHARPENING_FSR"
@@ -8994,28 +8953,6 @@ msgid "WORLD_RELATIVE_MOVEMENT"
 msgstr "para incrementar la velocidad de movimiento"
 
 #, fuzzy
-msgid "WORLD_SEA_LEVEL"
-msgstr "{0}-{1}m bajo el nivel del mar"
-
-#, fuzzy
-msgid "WORLD_SEA_LEVEL_DEEP"
-msgstr "{0}-{1}m bajo el nivel del mar"
-
-#, fuzzy
-msgid "WORLD_SEA_LEVEL_EXPLANATION"
-msgstr ""
-"Los microbios centrados buscarán recursos o presas más lejanas\n"
-"y es posible codicien más los fragmentos de recursos.\n"
-"Los microbios reactivos cambiarán de objetivo después de un tiempo."
-
-#, fuzzy
-msgid "WORLD_SEA_LEVEL_MODERATE"
-msgstr "para incrementar la velocidad de movimiento"
-
-msgid "WORLD_SEA_LEVEL_SHALLOW"
-msgstr ""
-
-#, fuzzy
 msgid "WORLD_SIZE"
 msgstr "Mundo"
 
@@ -9039,29 +8976,6 @@ msgstr ""
 #, fuzzy
 msgid "WORLD_SIZE_TOOLTIP"
 msgstr "Únete a nuestro servidor de Discord"
-
-#, fuzzy
-msgid "WORLD_TEMPERATURE"
-msgstr "Temperatura"
-
-#, fuzzy
-msgid "WORLD_TEMPERATURE_COLD"
-msgstr "Temp."
-
-#, fuzzy
-msgid "WORLD_TEMPERATURE_EXPLANATION"
-msgstr ""
-"Los microbios centrados buscarán recursos o presas más lejanas\n"
-"y es posible codicien más los fragmentos de recursos.\n"
-"Los microbios reactivos cambiarán de objetivo después de un tiempo."
-
-#, fuzzy
-msgid "WORLD_TEMPERATURE_TEMPERATE"
-msgstr "Temp."
-
-#, fuzzy
-msgid "WORLD_TEMPERATURE_WARM"
-msgstr "Temp."
 
 msgid "WORST_PATCH_COLON"
 msgstr "Peor bioma:"
@@ -9105,9 +9019,6 @@ msgstr "Hacer zoom"
 
 msgid "ZOOM_OUT"
 msgstr "Alejar el zoom"
-
-#~ msgid "PLANET_GENERATION_TEASER"
-#~ msgstr "Generación de Planeta próximamente!"
 
 #~ msgid "PASSIVE_REPRODUCTION_PROGRESS_EXPLANATION"
 #~ msgstr "(recibe compuestos del ambiente de forma pasiva sin tener que realizar acciones)"
