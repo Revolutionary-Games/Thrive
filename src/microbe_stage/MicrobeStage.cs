@@ -1368,8 +1368,7 @@ public partial class MicrobeStage : CreatureStageBase<Entity, MicrobeWorldSimula
             maxDistance += 20.0f;
 
             Camera.MinCameraHeight = Constants.MULTICELLULAR_CAMERA_MIN_HEIGHT;
-            Camera.MaxCameraHeight = float.Clamp(
-                MathUtils.CameraDistanceFromRadiusOfObject(maxDistance, Camera.Fov),
+            Camera.MaxCameraHeight = float.Clamp(MathUtils.CameraDistanceFromRadiusOfObject(maxDistance, Camera.Fov),
                 Constants.MICROBE_CAMERA_MAX_HEIGHT, Constants.MULTICELLULAR_CAMERA_MAX_HEIGHT);
         }
         else
