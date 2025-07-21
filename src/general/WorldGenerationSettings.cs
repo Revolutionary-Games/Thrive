@@ -94,7 +94,7 @@ public class WorldGenerationSettings
         Small = 0,
 
         [Description("WORLD_OCEANIC_COVERAGE_MEDIUM")]
-        Moderate = 1,
+        Medium = 1,
 
         [Description("WORLD_OCEANIC_COVERAGE_LARGE")]
         Large = 2,
@@ -168,7 +168,7 @@ public class WorldGenerationSettings
     /// <summary>
     ///   Sea level of World
     /// </summary>
-    public WorldOceanicCoverageEnum WorldOceanicCoverage { get; set; } = WorldOceanicCoverageEnum.Moderate;
+    public WorldOceanicCoverageEnum WorldOceanicCoverage { get; set; } = WorldOceanicCoverageEnum.Medium;
 
     /// <summary>
     ///   Geological activity of World
