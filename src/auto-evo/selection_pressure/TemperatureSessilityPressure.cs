@@ -1,4 +1,4 @@
-namespace AutoEvo;
+﻿namespace AutoEvo;
 
 using Newtonsoft.Json;
 
