@@ -192,7 +192,7 @@ layout_mode = 2
 size_flags_horizontal = 3
 size_flags_stretch_ratio = 3.0
 mouse_filter = 0
-text = "WORLD_SEA_LEVEL"
+text = "WORLD_OCEANIC_COVERAGE"
 
 [node name="WorldSeaLevel" type="OptionButton" parent="VBoxContainer6/HBoxContainer"]
 custom_minimum_size = Vector2(200, 25)
@@ -202,18 +202,18 @@ size_flags_vertical = 0
 size_flags_stretch_ratio = 2.0
 selected = 1
 item_count = 3
-popup/item_0/text = "WORLD_SEA_LEVEL_SHALLOW"
+popup/item_0/text = "WORLD_OCEANIC_COVERAGE_SMALL"
 popup/item_0/id = 0
-popup/item_1/text = "WORLD_SEA_LEVEL_MODERATE"
+popup/item_1/text = "WORLD_OCEANIC_COVERAGE_MEDIUM"
 popup/item_1/id = 1
-popup/item_2/text = "WORLD_SEA_LEVEL_DEEP"
+popup/item_2/text = "WORLD_OCEANIC_COVERAGE_LARGE"
 popup/item_2/id = 2
 
 [node name="Label2" type="Label" parent="VBoxContainer6"]
 custom_minimum_size = Vector2(200, 0)
 layout_mode = 2
 size_flags_horizontal = 3
-text = "WORLD_SEA_LEVEL_EXPLANATION"
+text = "WORLD_OCEANIC_COVERAGE_EXPLANATION"
 label_settings = ExtResource("1_o0axg")
 autowrap_mode = 3
 

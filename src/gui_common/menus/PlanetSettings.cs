@@ -55,7 +55,7 @@ public partial class PlanetSettings : VBoxContainer
     public delegate void GenerateSeedPressedEventHandler();
 
     [Signal]
-    public delegate void LifeOriginSettingsChangedEventHandler(int lifeOrigin);
+    public delegate void LifeOriginSettingsChangedEventHandler(WorldGenerationSettings.LifeOrigin lifeOrigin);
 
     public WorldGenerationSettings GetPlanetSettings()
     {
@@ -63,7 +63,7 @@ public partial class PlanetSettings : VBoxContainer
         {
             WorldSize = (WorldGenerationSettings.WorldSizeEnum)worldSizeButton.Selected,
             WorldTemperature = (WorldGenerationSettings.WorldTemperatureEnum)worldTemperatureButton.Selected,
-            WorldSeaLevel = (WorldGenerationSettings.WorldSeaLevelEnum)worldSeaLevelButton.Selected,
+            WorldOceanicCoverage = (WorldGenerationSettings.WorldOceanicCoverageEnum)worldSeaLevelButton.Selected,
             GeologicalActivity = (WorldGenerationSettings.GeologicalActivityEnum)worldGeologicalActivityButton.Selected,
             ClimateInstability = (WorldGenerationSettings.ClimateInstabilityEnum)worldClimateInstabilityButton.Selected,
             Origin = (WorldGenerationSettings.LifeOrigin)lifeOriginButton.Selected,
@@ -160,9 +160,10 @@ public partial class PlanetSettings : VBoxContainer
         }
     }
 
-    private void OnLifeOriginSelected(int index)
+    private void OnLifeOriginSelected(WorldGenerationSettings.LifeOrigin lifeOrigin)
     {
-        EmitSignal(SignalName.LifeOriginSettingsChanged, index);
+        GD.Print(lifeOrigin);
+        EmitSignal(SignalName.LifeOriginSettingsChanged, Variant.From(lifeOrigin));
     }
 
     private void OnSeedChanged(string seed)

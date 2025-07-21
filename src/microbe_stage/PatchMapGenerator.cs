@@ -224,9 +224,9 @@ public static class PatchMapGenerator
     {
         int roll = random.Next(0, 100);
 
-        switch (settings.WorldSeaLevel)
+        switch (settings.WorldOceanicCoverage)
         {
-            case WorldGenerationSettings.WorldSeaLevelEnum.Shallow:
+            case WorldGenerationSettings.WorldOceanicCoverageEnum.Small:
                 if (roll < 60)
                     return PatchRegion.RegionType.Continent;
                 if (roll < 90)
@@ -234,7 +234,7 @@ public static class PatchMapGenerator
 
                 return PatchRegion.RegionType.Ocean;
 
-            case WorldGenerationSettings.WorldSeaLevelEnum.Deep:
+            case WorldGenerationSettings.WorldOceanicCoverageEnum.Large:
                 if (roll < 60)
                     return PatchRegion.RegionType.Ocean;
                 if (roll < 90)

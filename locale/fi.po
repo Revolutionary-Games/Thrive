@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2025-07-12 13:25+0200\n"
+"POT-Creation-Date: 2025-07-21 23:42+0200\n"
 "PO-Revision-Date: 2025-05-25 15:00+0000\n"
 "Last-Translator: Anonymous <noreply@weblate.org>\n"
 "Language-Team: Finnish <https://translate.revolutionarygamesstudio.com/projects/thrive/thrive-game/fi/>\n"
@@ -366,6 +366,10 @@ msgid "AUTO_EVO"
 msgstr "Auto-evo"
 
 #, fuzzy
+msgid "AUTO_EVO_EXPLORER_TOOL_BUTTON"
+msgstr "suorituksen status:"
+
+#, fuzzy
 msgid "AUTO_EVO_EXPLORING_TOOL"
 msgstr "suorituksen status:"
 
@@ -430,6 +434,9 @@ msgstr "Kenoviiva"
 
 msgid "BACKSPACE"
 msgstr "Askelpalautin"
+
+msgid "BACK_TO_SETTINGS"
+msgstr ""
 
 #, fuzzy
 msgid "BACTERIAL_THERMOSYNTHESIS"
@@ -851,6 +858,24 @@ msgstr ""
 #, fuzzy
 msgid "CLICK_TO_SELECT"
 msgstr "Poista valitut"
+
+msgid "CLIMATE_INSTABILITY"
+msgstr ""
+
+#, fuzzy
+msgid "CLIMATE_INSTABILITY_EXPLANATION"
+msgstr ""
+"Aktiiviset mikrobit vilistävät ja mukeltavat, kun mitään mielenkiintoista ei tapahdu.\n"
+"Lakoniset mikrobit pysyttelevät mieluummin paikoillaan odottaen ympäristön muutoksia reagoidakseen niihin."
+
+msgid "CLIMATE_STABILITY_AVERAGE"
+msgstr ""
+
+msgid "CLIMATE_STABILITY_STABLE"
+msgstr ""
+
+msgid "CLIMATE_STABILITY_UNSTABLE"
+msgstr ""
 
 msgid "CLOSE"
 msgstr "Sulje"
@@ -2591,11 +2616,33 @@ msgid "GENERAL_LOADING_TIP_7"
 msgstr "Paina kumoamispainiketta editorissa korjataksesi tehdyn virheen"
 
 #, fuzzy
+msgid "GENERATE_BUTTON"
+msgstr "Sukupolvi:"
+
+#, fuzzy
 msgid "GENERATIONS"
 msgstr "Sukupolvi:"
 
 msgid "GENERATION_COLON"
 msgstr "Sukupolvi:"
+
+msgid "GEOLOGICAL_ACTIVITY"
+msgstr ""
+
+msgid "GEOLOGICAL_ACTIVITY_ACTIVE"
+msgstr ""
+
+msgid "GEOLOGICAL_ACTIVITY_AVERAGE"
+msgstr ""
+
+msgid "GEOLOGICAL_ACTIVITY_DORMANT"
+msgstr ""
+
+#, fuzzy
+msgid "GEOLOGICAL_ACTIVITY_EXPLANATION"
+msgstr ""
+"Aktiiviset mikrobit vilistävät ja mukeltavat, kun mitään mielenkiintoista ei tapahdu.\n"
+"Lakoniset mikrobit pysyttelevät mieluummin paikoillaan odottaen ympäristön muutoksia reagoidakseen niihin."
 
 #, fuzzy
 msgid "GITHUB_TOOLTIP"
@@ -5084,11 +5131,12 @@ msgid "PLANET"
 msgstr "Planeetta"
 
 #, fuzzy
+msgid "PLANET_CUSTOMIZER"
+msgstr "Kursorin alla:"
+
+#, fuzzy
 msgid "PLANET_DETAILS_STRING"
 msgstr "Avaa lokien kansio"
-
-msgid "PLANET_GENERATION_TEASER"
-msgstr ""
 
 msgid "PLANET_RANDOM_SEED"
 msgstr "Planeetan satunnainen lähtöarvo"
@@ -5295,6 +5343,10 @@ msgstr "Tee uudelleen viimeisin toimenpide"
 
 msgid "REFRESH"
 msgstr "Virkistä"
+
+#, fuzzy
+msgid "REGENERATE_BUTTON"
+msgstr "Soluelin"
 
 #, fuzzy
 msgid "RENDER_SCALE"
@@ -9361,6 +9413,27 @@ msgstr "Statistiikkaa organismista"
 msgid "WORLD_MISC_DETAILS_STRING"
 msgstr ""
 
+#, fuzzy
+msgid "WORLD_OCEANIC_COVERAGE"
+msgstr "Suhteellinen maailmaan"
+
+#, fuzzy
+msgid "WORLD_OCEANIC_COVERAGE_EXPLANATION"
+msgstr ""
+"Keskittyneet mikrobit etsivät yhdisteitä, kappaleita ja saaliita pidemmän matkan päästä\n"
+"ja voivat olla kunnianhimoisempia löytyvien palasten keruussa.\n"
+"Responssiiviset mikrobit vaihtavat kohdetta nopeammin, jos ei niitä heti saa kiinni."
+
+msgid "WORLD_OCEANIC_COVERAGE_LARGE"
+msgstr ""
+
+#, fuzzy
+msgid "WORLD_OCEANIC_COVERAGE_MEDIUM"
+msgstr "Suhteellinen maailmaan"
+
+msgid "WORLD_OCEANIC_COVERAGE_SMALL"
+msgstr ""
+
 msgid "WORLD_RELATIVE_MOVEMENT"
 msgstr "Suhteellinen maailmaan"
 
@@ -9388,6 +9461,29 @@ msgstr ""
 #, fuzzy
 msgid "WORLD_SIZE_TOOLTIP"
 msgstr "Lisää uusi syöte"
+
+#, fuzzy
+msgid "WORLD_TEMPERATURE"
+msgstr "Lämpötila"
+
+#, fuzzy
+msgid "WORLD_TEMPERATURE_COLD"
+msgstr "Lämpö."
+
+#, fuzzy
+msgid "WORLD_TEMPERATURE_EXPLANATION"
+msgstr ""
+"Keskittyneet mikrobit etsivät yhdisteitä, kappaleita ja saaliita pidemmän matkan päästä\n"
+"ja voivat olla kunnianhimoisempia löytyvien palasten keruussa.\n"
+"Responssiiviset mikrobit vaihtavat kohdetta nopeammin, jos ei niitä heti saa kiinni."
+
+#, fuzzy
+msgid "WORLD_TEMPERATURE_TEMPERATE"
+msgstr "Lämpö."
+
+#, fuzzy
+msgid "WORLD_TEMPERATURE_WARM"
+msgstr "Lämpö."
 
 #, fuzzy
 msgid "WORST_PATCH_COLON"
@@ -9430,6 +9526,18 @@ msgstr "Zoomaa sisään"
 
 msgid "ZOOM_OUT"
 msgstr "Zoomaa ulospäin"
+
+#, fuzzy
+#~ msgid "WORLD_SEA_LEVEL"
+#~ msgstr "{0}-{1}m merenpinnan alapuolella"
+
+#, fuzzy
+#~ msgid "WORLD_SEA_LEVEL_DEEP"
+#~ msgstr "{0}-{1}m merenpinnan alapuolella"
+
+#, fuzzy
+#~ msgid "WORLD_SEA_LEVEL_MODERATE"
+#~ msgstr "Suhteellinen maailmaan"
 
 #, fuzzy
 #~ msgid "PASSIVE_REPRODUCTION_PROGRESS_EXPLANATION"

@@ -340,7 +340,7 @@ public partial class NewGameSettings : ControlWithInput
 
         planetSettings.SetWorldSize((int)settings.WorldSize);
         planetSettings.SetWorldTemperature((int)settings.WorldTemperature);
-        planetSettings.SetWorldSeaLevel((int)settings.WorldSeaLevel);
+        planetSettings.SetWorldSeaLevel((int)settings.WorldOceanicCoverage);
         planetSettings.SetWorldGeologicalActivity((int)settings.GeologicalActivity);
         planetSettings.SetWorldClimateInstability((int)settings.ClimateInstability);
         planetSettings.SetLifeOrigin((int)settings.Origin);
@@ -497,7 +497,7 @@ public partial class NewGameSettings : ControlWithInput
 
         settings.WorldSize = planetGenerationSettings.WorldSize;
         settings.WorldTemperature = planetGenerationSettings.WorldTemperature;
-        settings.WorldSeaLevel = planetGenerationSettings.WorldSeaLevel;
+        settings.WorldOceanicCoverage = planetGenerationSettings.WorldOceanicCoverage;
         settings.GeologicalActivity = planetGenerationSettings.GeologicalActivity;
         settings.ClimateInstability = planetGenerationSettings.ClimateInstability;
         settings.Origin = planetGenerationSettings.Origin;

@@ -88,16 +88,16 @@ public class WorldGenerationSettings
     /// <summary>
     ///   The possible sea level options for the planet
     /// </summary>
-    public enum WorldSeaLevelEnum
+    public enum WorldOceanicCoverageEnum
     {
-        [Description("WORLD_SEA_LEVEL_SHALLOW")]
-        Shallow = 0,
+        [Description("WORLD_OCEANIC_COVERAGE_SMALL")]
+        Small = 0,
 
-        [Description("WORLD_SEA_LEVEL_MODERATE")]
+        [Description("WORLD_OCEANIC_COVERAGE_MEDIUM")]
         Moderate = 1,
 
-        [Description("WORLD_SEA_LEVEL_DEEP")]
-        Deep = 2,
+        [Description("WORLD_OCEANIC_COVERAGE_LARGE")]
+        Large = 2,
     }
 
     /// <summary>
@@ -168,7 +168,7 @@ public class WorldGenerationSettings
     /// <summary>
     ///   Sea level of World
     /// </summary>
-    public WorldSeaLevelEnum WorldSeaLevel { get; set; } = WorldSeaLevelEnum.Moderate;
+    public WorldOceanicCoverageEnum WorldOceanicCoverage { get; set; } = WorldOceanicCoverageEnum.Moderate;
 
     /// <summary>
     ///   Geological activity of World

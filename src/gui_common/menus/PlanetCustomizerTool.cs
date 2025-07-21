@@ -47,7 +47,7 @@ public partial class PlanetCustomizerTool : Node
             AutoEvoConfiguration = configuration,
             WorldSize = planetGenerationSettings.WorldSize,
             WorldTemperature = planetGenerationSettings.WorldTemperature,
-            WorldSeaLevel = planetGenerationSettings.WorldSeaLevel,
+            WorldOceanicCoverage = planetGenerationSettings.WorldOceanicCoverage,
             GeologicalActivity = planetGenerationSettings.GeologicalActivity,
             ClimateInstability = planetGenerationSettings.ClimateInstability,
             Origin = planetGenerationSettings.Origin,
@@ -83,19 +83,19 @@ public partial class PlanetCustomizerTool : Node
 
     private void OnGeneratePressed()
     {
-        if (settingsPanel.Visible)
-        {
-            InitNewWorld(SimulationParameters.Instance.AutoEvoConfiguration);
-            generateButton.Text = Localization.Translate("BACK_TO_SETTINGS");
-        }
-        else
-        {
-            generateButton.Text = Localization.Translate("GENERATE_BUTTON");
-        }
-
         settingsPanel.Visible = !settingsPanel.Visible;
         patchMapPanel.Visible = !patchMapPanel.Visible;
         patchMapButtons.Visible = !patchMapButtons.Visible;
+
+        if (settingsPanel.Visible)
+        {
+            generateButton.Text = Localization.Translate("GENERATE_BUTTON");
+        }
+        else
+        {
+            generateButton.Text = Localization.Translate("BACK_TO_SETTINGS");
+            InitNewWorld(SimulationParameters.Instance.AutoEvoConfiguration);
+        }
     }
 
     private void OnRegeneratePressed()

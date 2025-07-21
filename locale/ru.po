@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2025-07-12 13:25+0200\n"
+"POT-Creation-Date: 2025-07-21 23:42+0200\n"
 "PO-Revision-Date: 2025-07-18 11:09+0000\n"
 "Last-Translator: Danila <danila.kouz@gmail.com>\n"
 "Language-Team: Russian <https://translate.revolutionarygamesstudio.com/projects/thrive/thrive-game/ru/>\n"
@@ -358,6 +358,10 @@ msgstr "Автосохранение во время игры"
 msgid "AUTO_EVO"
 msgstr "Авто-Эво"
 
+#, fuzzy
+msgid "AUTO_EVO_EXPLORER_TOOL_BUTTON"
+msgstr "Инструмент изучения Авто-Эво"
+
 msgid "AUTO_EVO_EXPLORING_TOOL"
 msgstr "Инструмент изучения Авто-Эво"
 
@@ -411,6 +415,9 @@ msgstr "Обратный Слэш"
 
 msgid "BACKSPACE"
 msgstr "Backspace"
+
+msgid "BACK_TO_SETTINGS"
+msgstr ""
 
 msgid "BACTERIAL_THERMOSYNTHESIS"
 msgstr "Бактериальный Термосинтез"
@@ -804,6 +811,24 @@ msgstr "Очистить Кэш"
 
 msgid "CLICK_TO_SELECT"
 msgstr "Выбрать"
+
+msgid "CLIMATE_INSTABILITY"
+msgstr ""
+
+#, fuzzy
+msgid "CLIMATE_INSTABILITY_EXPLANATION"
+msgstr ""
+"Активные микробы будут в движении, пока поблизости ничего не происходит.\n"
+"Оседлые микробы будут стоять и ждать изменения окружения, прежде чем действовать."
+
+msgid "CLIMATE_STABILITY_AVERAGE"
+msgstr ""
+
+msgid "CLIMATE_STABILITY_STABLE"
+msgstr ""
+
+msgid "CLIMATE_STABILITY_UNSTABLE"
+msgstr ""
 
 msgid "CLOSE"
 msgstr "Закрыть"
@@ -2362,11 +2387,33 @@ msgstr "Вы можете узнать на что направлен ваш к�
 msgid "GENERAL_LOADING_TIP_7"
 msgstr "Если популяция вашего вида достигнет нуля, он вымрет."
 
+#, fuzzy
+msgid "GENERATE_BUTTON"
+msgstr "Поколения"
+
 msgid "GENERATIONS"
 msgstr "Поколения"
 
 msgid "GENERATION_COLON"
 msgstr "Поколение:"
+
+msgid "GEOLOGICAL_ACTIVITY"
+msgstr ""
+
+msgid "GEOLOGICAL_ACTIVITY_ACTIVE"
+msgstr ""
+
+msgid "GEOLOGICAL_ACTIVITY_AVERAGE"
+msgstr ""
+
+msgid "GEOLOGICAL_ACTIVITY_DORMANT"
+msgstr ""
+
+#, fuzzy
+msgid "GEOLOGICAL_ACTIVITY_EXPLANATION"
+msgstr ""
+"Активные микробы будут в движении, пока поблизости ничего не происходит.\n"
+"Оседлые микробы будут стоять и ждать изменения окружения, прежде чем действовать."
 
 msgid "GITHUB_TOOLTIP"
 msgstr "Посетить наш Github-репозиторий"
@@ -4595,6 +4642,10 @@ msgstr "Разместить органеллу (или другую вещь)"
 msgid "PLANET"
 msgstr "Планета"
 
+#, fuzzy
+msgid "PLANET_CUSTOMIZER"
+msgstr "Вы смотрите на:"
+
 msgid "PLANET_DETAILS_STRING"
 msgstr ""
 "Только LAWK: {0}\n"
@@ -4602,9 +4653,6 @@ msgstr ""
 "Цикл дня и ночи: {2}\n"
 "Продолжительность дня(в секундах): {3}\n"
 "Случайное начальное число планеты: {4}"
-
-msgid "PLANET_GENERATION_TEASER"
-msgstr "Генерация планеты в разработке!"
 
 msgid "PLANET_RANDOM_SEED"
 msgstr "Сид планеты"
@@ -4798,6 +4846,10 @@ msgstr "Вернуть последнее действие"
 
 msgid "REFRESH"
 msgstr "Обновить"
+
+#, fuzzy
+msgid "REGENERATE_BUTTON"
+msgstr "Органеллы"
 
 msgid "RENDER_SCALE"
 msgstr "Масштаб отрисовки"
@@ -8897,6 +8949,26 @@ msgstr ""
 "Включить прототипы поздних стадий: {0}\n"
 "Включить пасхальные яйца: {1}"
 
+#, fuzzy
+msgid "WORLD_OCEANIC_COVERAGE"
+msgstr "Большой"
+
+#, fuzzy
+msgid "WORLD_OCEANIC_COVERAGE_EXPLANATION"
+msgstr "Большой"
+
+#, fuzzy
+msgid "WORLD_OCEANIC_COVERAGE_LARGE"
+msgstr "Большой"
+
+#, fuzzy
+msgid "WORLD_OCEANIC_COVERAGE_MEDIUM"
+msgstr "Большой"
+
+#, fuzzy
+msgid "WORLD_OCEANIC_COVERAGE_SMALL"
+msgstr "Маленький"
+
 msgid "WORLD_RELATIVE_MOVEMENT"
 msgstr "Относительно мира"
 
@@ -8917,6 +8989,26 @@ msgstr "Маленький"
 
 msgid "WORLD_SIZE_TOOLTIP"
 msgstr "Большой мир может замедлить симуляцию и не рекомендован для слабых компьютеров."
+
+#, fuzzy
+msgid "WORLD_TEMPERATURE"
+msgstr "Температура"
+
+#, fuzzy
+msgid "WORLD_TEMPERATURE_COLD"
+msgstr "Темп."
+
+#, fuzzy
+msgid "WORLD_TEMPERATURE_EXPLANATION"
+msgstr "(изменяет число биомов в мире)"
+
+#, fuzzy
+msgid "WORLD_TEMPERATURE_TEMPERATE"
+msgstr "Темп."
+
+#, fuzzy
+msgid "WORLD_TEMPERATURE_WARM"
+msgstr "Темп."
 
 msgid "WORST_PATCH_COLON"
 msgstr "Худший биом:"
@@ -8955,6 +9047,29 @@ msgstr "Увеличить масштаб"
 
 msgid "ZOOM_OUT"
 msgstr "Уменьшить масштаб"
+
+#, fuzzy
+#~ msgid "WORLD_SEA_LEVEL"
+#~ msgstr "{0}-{1}м ниже уровня моря"
+
+#, fuzzy
+#~ msgid "WORLD_SEA_LEVEL_DEEP"
+#~ msgstr "{0}-{1}м ниже уровня моря"
+
+#, fuzzy
+#~ msgid "WORLD_SEA_LEVEL_EXPLANATION"
+#~ msgstr "(изменяет число биомов в мире)"
+
+#, fuzzy
+#~ msgid "WORLD_SEA_LEVEL_MODERATE"
+#~ msgstr "Относительно мира"
+
+#, fuzzy
+#~ msgid "WORLD_SEA_LEVEL_SHALLOW"
+#~ msgstr "Маленький"
+
+#~ msgid "PLANET_GENERATION_TEASER"
+#~ msgstr "Генерация планеты в разработке!"
 
 #~ msgid "PASSIVE_REPRODUCTION_PROGRESS_EXPLANATION"
 #~ msgstr "(пассивно получать необходимые для репродукции вещества из окружающей среды)"
