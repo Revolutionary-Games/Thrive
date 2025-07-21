@@ -59,13 +59,4 @@ public class TemperatureSessilityPressure : SelectionPressure
     {
         return 0;
     }
-
-    /// <summary>
-    ///   Gets the description of this selection pressure for display purposes.
-    /// </summary>
-    /// <returns>Localized description string</returns>
-    public override LocalizedString GetDescription()
-    {
-        return new LocalizedString("TEMPERATURE_SESSILITY_PRESSURE_DESCRIPTION");
-    }
 }
