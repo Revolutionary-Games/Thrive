@@ -33,14 +33,14 @@ public partial class MicrobeCamera : Camera3D, ISaveLoadedTracked, IGameCamera
     /// </summary>
     [Export]
     [JsonProperty]
-    public float MinCameraHeight = Constants.MICROBE_CAMERA_MIN_HEGIHT;
+    public float MinCameraHeight = Constants.MICROBE_CAMERA_MIN_HEIGHT;
 
     /// <summary>
     ///   Maximum height the camera can be scrolled to
     /// </summary>
     [Export]
     [JsonProperty]
-    public float MaxCameraHeight = Constants.MICROBE_CAMERA_MAX_HEGIHT;
+    public float MaxCameraHeight = Constants.MICROBE_CAMERA_MAX_HEIGHT;
 
     [Export]
     [JsonProperty]

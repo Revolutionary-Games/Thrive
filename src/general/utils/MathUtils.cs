@@ -188,6 +188,7 @@ public static class MathUtils
     ///   Calculates a good camera distance from the radius of an object that is photographed
     /// </summary>
     /// <param name="radius">The radius of the object</param>
+    /// <param name="fieldOfView">The camera's field of view</param>
     /// <returns>The distance to use</returns>
     public static float CameraDistanceFromRadiusOfObject(float radius, float fieldOfView)
     {
