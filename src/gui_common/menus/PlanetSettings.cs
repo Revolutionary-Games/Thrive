@@ -162,7 +162,6 @@ public partial class PlanetSettings : VBoxContainer
 
     private void OnLifeOriginSelected(WorldGenerationSettings.LifeOrigin lifeOrigin)
     {
-        GD.Print(lifeOrigin);
         EmitSignal(SignalName.LifeOriginSettingsChanged, Variant.From(lifeOrigin));
     }
 
