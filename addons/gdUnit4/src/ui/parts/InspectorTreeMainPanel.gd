@@ -3,6 +3,8 @@ extends VSplitContainer
 
 ## Will be emitted when the test index counter is changed
 signal test_counters_changed(index: int, total: int, state: GdUnitInspectorTreeConstants.STATE)
+signal tree_item_selected(item: TreeItem)
+
 
 const CONTEXT_MENU_RUN_ID = 0
 const CONTEXT_MENU_DEBUG_ID = 1
@@ -61,8 +63,10 @@ const STATE = GdUnitInspectorTreeConstants.STATE
 
 
 var _tree_root: TreeItem
+var _current_selected_item: TreeItem = null
 var _item_hash := Dictionary()
 var _current_tree_view_mode := GdUnitSettings.get_inspector_tree_view_mode()
+var _run_test_recovery := true
 
 
 func _build_cache_key(resource_path: String, test_name: String) -> Array:
@@ -195,6 +199,11 @@ func is_test_id(item: TreeItem, id: GdUnitGUID) -> bool:
 	var test_case: GdUnitTestCase = item.get_meta(META_TEST_CASE)
 	return test_case.guid.equals(id)
 
+
+func disable_test_recovery() -> void:
+	_run_test_recovery = false
+
+
 @warning_ignore("return_value_discarded")
 func _ready() -> void:
 	_context_menu.set_item_icon(CONTEXT_MENU_RUN_ID, GdUnitUiTools.get_icon("Play"))
@@ -215,6 +224,8 @@ func _ready() -> void:
 	var command_handler := GdUnitCommandHandler.instance()
 	command_handler.gdunit_runner_start.connect(_on_gdunit_runner_start)
 	command_handler.gdunit_runner_stop.connect(_on_gdunit_runner_stop)
+	if _run_test_recovery:
+		GdUnitTestDiscoverer.restore_last_session()
 
 
 # we need current to manually redraw bacause of the animation bug
@@ -226,6 +237,7 @@ func _process(_delta: float) -> void:
 
 func init_tree() -> void:
 	cleanup_tree()
+	_tree.deselect_all()
 	_tree.set_hide_root(true)
 	_tree.ensure_cursor_is_visible()
 	_tree.set_allow_reselect(true)
@@ -255,6 +267,7 @@ func cleanup_tree() -> void:
 		return
 	_free_recursive()
 	_tree.clear()
+	_current_selected_item = null
 
 
 func _free_recursive(items:=_tree_root.get_children()) -> void:
@@ -263,12 +276,20 @@ func _free_recursive(items:=_tree_root.get_children()) -> void:
 		item.call_deferred("free")
 
 
-func sort_tree_items(parent :TreeItem) -> void:
+func sort_tree_items(parent: TreeItem) -> void:
+	_sort_tree_items(parent, GdUnitSettings.get_inspector_tree_sort_mode())
+	_tree.queue_redraw()
+
+
+static func _sort_tree_items(parent: TreeItem, sort_mode: GdUnitInspectorTreeConstants.SORT_MODE) -> void:
 	parent.visible = false
 	var items := parent.get_children()
+	# first remove all childs before sorting
+	for item in items:
+		parent.remove_child(item)
 
 	# do sort by selected sort mode
-	match GdUnitSettings.get_inspector_tree_sort_mode():
+	match sort_mode:
 		GdUnitInspectorTreeConstants.SORT_MODE.UNSORTED:
 			items.sort_custom(sort_items_by_original_index)
 
@@ -281,32 +302,42 @@ func sort_tree_items(parent :TreeItem) -> void:
 		GdUnitInspectorTreeConstants.SORT_MODE.EXECUTION_TIME:
 			items.sort_custom(sort_items_by_execution_time)
 
+	# readding sorted childs
 	for item in items:
-		parent.remove_child(item)
 		parent.add_child(item)
 		if item.get_child_count() > 0:
-			sort_tree_items(item)
+			_sort_tree_items(item, sort_mode)
 	parent.visible = true
-	_tree.queue_redraw()
 
 
-func sort_items_by_name(a: TreeItem, b: TreeItem, ascending: bool) -> bool:
+static func sort_items_by_name(a: TreeItem, b: TreeItem, ascending: bool) -> bool:
 	var type_a: GdUnitType = a.get_meta(META_GDUNIT_TYPE)
 	var type_b: GdUnitType = b.get_meta(META_GDUNIT_TYPE)
-	 # Compare types first
-	if type_a != type_b:
-		return type_a == GdUnitType.FOLDER
-	var name_a :String = a.get_meta(META_GDUNIT_NAME)
-	var name_b :String = b.get_meta(META_GDUNIT_NAME)
-	return name_a.naturalnocasecmp_to(name_b) < 0 if ascending else name_a.naturalnocasecmp_to(name_b) > 0
+
+	# Sort folders to the top
+	if type_a == GdUnitType.FOLDER and type_b != GdUnitType.FOLDER:
+		return true
+	if type_b == GdUnitType.FOLDER and type_a != GdUnitType.FOLDER:
+		return false
+
+	# sort by name
+	var name_a: String = a.get_meta(META_GDUNIT_NAME)
+	var name_b: String = b.get_meta(META_GDUNIT_NAME)
+	var comparison := name_a.naturalnocasecmp_to(name_b)
+
+	return comparison < 0 if ascending else comparison > 0
 
 
-func sort_items_by_execution_time(a: TreeItem, b: TreeItem) -> bool:
+static func sort_items_by_execution_time(a: TreeItem, b: TreeItem) -> bool:
 	var type_a: GdUnitType = a.get_meta(META_GDUNIT_TYPE)
 	var type_b: GdUnitType = b.get_meta(META_GDUNIT_TYPE)
-	 # Compare types first
-	if type_a != type_b:
-		return type_a == GdUnitType.FOLDER
+
+	# Sort folders to the top
+	if type_a == GdUnitType.FOLDER and type_b != GdUnitType.FOLDER:
+		return true
+	if type_b == GdUnitType.FOLDER and type_a != GdUnitType.FOLDER:
+		return false
+
 	var execution_time_a :int = a.get_meta(META_GDUNIT_EXECUTION_TIME)
 	var execution_time_b :int = b.get_meta(META_GDUNIT_EXECUTION_TIME)
 	# if has same execution time sort by name
@@ -317,13 +348,20 @@ func sort_items_by_execution_time(a: TreeItem, b: TreeItem) -> bool:
 	return execution_time_a > execution_time_b
 
 
-func sort_items_by_original_index(a: TreeItem, b: TreeItem) -> bool:
+static func sort_items_by_original_index(a: TreeItem, b: TreeItem) -> bool:
 	var type_a: GdUnitType = a.get_meta(META_GDUNIT_TYPE)
 	var type_b: GdUnitType = b.get_meta(META_GDUNIT_TYPE)
-	if type_a != type_b:
-		return type_a == GdUnitType.FOLDER
+
+	# Sort folders to the top
+	if type_a == GdUnitType.FOLDER and type_b != GdUnitType.FOLDER:
+		return true
+	if type_b == GdUnitType.FOLDER and type_a != GdUnitType.FOLDER:
+		return false
+
 	var index_a :int = a.get_meta(META_GDUNIT_ORIGINAL_INDEX)
 	var index_b :int = b.get_meta(META_GDUNIT_ORIGINAL_INDEX)
+
+	# Sorting by index
 	return index_a < index_b
 
 
@@ -530,11 +568,12 @@ func set_state_running(item: TreeItem) -> void:
 	if parent != _tree_root:
 		set_state_running(parent)
 	# force scrolling to current test case
-	@warning_ignore("return_value_discarded")
-	select_item(item)
+	_tree.scroll_to_item(item, true)
 
 
 func set_state_succeded(item: TreeItem) -> void:
+	if item == _tree_root:
+		return
 	item.set_custom_color(0, Color.GREEN)
 	item.set_custom_color(1, Color.GREEN)
 	item.set_meta(META_GDUNIT_STATE, STATE.SUCCESS)
@@ -728,7 +767,7 @@ func show_failed_report(selected_item: TreeItem) -> void:
 func update_test_suite(event: GdUnitEvent) -> void:
 	var item := _find_tree_item_by_path(extract_resource_path(event), event.suite_name())
 	if not item:
-		push_error("[GdUnitInspector:731] Internal Error: Can't find tree item for\n %s" % event)
+		push_error("[InspectorTreeMainPanel.gd:753] Internal Error: Can't find tree item for\n %s" % event)
 		return
 	if event.type() == GdUnitEvent.TESTSUITE_BEFORE:
 		set_state_running(item)
@@ -742,7 +781,7 @@ func update_test_suite(event: GdUnitEvent) -> void:
 func update_test_case(event: GdUnitEvent) -> void:
 	var item := _find_tree_item_by_id(_tree_root, event.guid())
 	if not item:
-		push_error("Internal Error: Can't find test id %s" % [event.guid()])
+		#push_error("Internal Error: Can't find test id %s" % [event.guid()])
 		return
 	if event.type() == GdUnitEvent.TESTCASE_BEFORE:
 		set_state_running(item)
@@ -766,10 +805,10 @@ func create_item(parent: TreeItem, test: GdUnitTestCase, item_name: String, type
 			item.set_meta(META_TEST_CASE, test)
 		GdUnitType.TEST_GROUP:
 			# We need to create a copy of the test record meta with a new uniqe guid
-			item.set_meta(META_TEST_CASE, GdUnitTestCase.from(test.source_file, test.line_number, test.test_name))
+			item.set_meta(META_TEST_CASE, GdUnitTestCase.from(test.suite_resource_path, test.source_file, test.line_number, test.test_name))
 		GdUnitType.TEST_SUITE:
 			# We need to create a copy of the test record meta with a new uniqe guid
-			item.set_meta(META_TEST_CASE, GdUnitTestCase.from(test.source_file, test.line_number, test.suite_name))
+			item.set_meta(META_TEST_CASE, GdUnitTestCase.from(test.suite_resource_path, test.source_file, test.line_number, test.suite_name))
 			# We need to add the suite item to the item cache by path because the guid is not provided
 			add_tree_item_to_cache(test.source_file, item_name, item)
 
@@ -1077,7 +1116,7 @@ func _dump_tree_as_json(dump_name: String) -> void:
 
 func _to_json(parent :TreeItem) -> Dictionary:
 	var item_as_dict := GdObjects.obj2dict(parent)
-	item_as_dict["TreeItem"]["childs"] = parent.get_children().map(func(item: TreeItem) -> Dictionary:
+	item_as_dict["TreeItem"]["childrens"] = parent.get_children().map(func(item: TreeItem) -> Dictionary:
 			return _to_json(item))
 	return item_as_dict
 
@@ -1124,6 +1163,8 @@ func _on_Tree_item_selected() -> void:
 	if not _context_menu.is_item_disabled(CONTEXT_MENU_RUN_ID):
 		var selected_item: TreeItem = _tree.get_selected()
 		show_failed_report(selected_item)
+	_current_selected_item = _tree.get_selected()
+	tree_item_selected.emit(_current_selected_item)
 
 
 # Opens the test suite
@@ -1153,7 +1194,7 @@ func _on_Tree_item_activated() -> void:
 # external signal receiver
 ################################################################################
 func _on_gdunit_runner_start() -> void:
-	reset_tree_state(_tree_root)
+	reset_tree_state(_current_selected_item)
 	_context_menu.set_item_disabled(CONTEXT_MENU_RUN_ID, true)
 	_context_menu.set_item_disabled(CONTEXT_MENU_DEBUG_ID, true)
 	clear_reports()
@@ -1179,6 +1220,7 @@ func _on_gdunit_event(event: GdUnitEvent) -> void:
 
 		GdUnitEvent.DISCOVER_END:
 			sort_tree_items(_tree_root)
+			select_item(_tree_root.get_first_child())
 			_discover_hint.visible = false
 			_tree_root.visible = true
 			#_dump_tree_as_json("tree_example_discovered")
@@ -1188,6 +1230,7 @@ func _on_gdunit_event(event: GdUnitEvent) -> void:
 
 		GdUnitEvent.STOP:
 			sort_tree_items(_tree_root)
+			select_item(_current_selected_item)
 			#_dump_tree_as_json("tree_example")
 
 		GdUnitEvent.TESTCASE_BEFORE:
@@ -1219,7 +1262,7 @@ func _on_settings_changed(property :GdUnitProperty) -> void:
 	match property.name():
 		GdUnitSettings.INSPECTOR_TREE_SORT_MODE:
 			sort_tree_items(_tree_root)
-			# _dump_tree_as_json("tree_sorted_by_%s" % GdUnitInspectorTreeConstants.SORT_MODE.keys()[property.value()])
+			#_dump_tree_as_json("tree_sorted_by_%s" % GdUnitInspectorTreeConstants.SORT_MODE.keys()[property.value()])
 
 		GdUnitSettings.INSPECTOR_TREE_VIEW_MODE:
 			restructure_tree(_tree_root, GdUnitSettings.get_inspector_tree_view_mode())

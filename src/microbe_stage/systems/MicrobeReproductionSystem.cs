@@ -230,8 +230,25 @@ public sealed class MicrobeReproductionSystem : AEntitySetSystem<float>
 
         if (isInColony)
         {
-            // TODO: should the colony just passively get the reproduction compounds in its storage?
-            // Otherwise multicellular colonies lose the passive reproduction feature
+            var (_, freeCompounds) = CalculateFreeCompoundsAndLimits(gameWorld!.WorldSettings, organelles.HexCount,
+                false, reproductionDelta);
+
+            var species = entity.Get<MicrobeSpeciesMember>().Species;
+
+            ref var storage = ref entity.Get<CompoundStorage>();
+
+            float sum = 0.0f;
+
+            foreach (var compound in species.TotalReproductionCost)
+            {
+                sum += compound.Value;
+            }
+
+            foreach (var compound in species.TotalReproductionCost)
+            {
+                storage.Compounds.AddCompound(compound.Key, freeCompounds * (compound.Value / sum));
+            }
+
             return;
         }
 

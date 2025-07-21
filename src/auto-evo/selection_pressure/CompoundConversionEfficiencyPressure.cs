@@ -24,7 +24,11 @@ public class CompoundConversionEfficiencyPressure : SelectionPressure
     [JsonProperty]
     private readonly Compound outCompound;
 
-    public CompoundConversionEfficiencyPressure(Compound compound, Compound outCompound, float weight) :
+    [JsonProperty]
+    private readonly bool usedForSurvival;
+
+    public CompoundConversionEfficiencyPressure(Compound compound, Compound outCompound, float weight,
+        bool usedForSurvival) :
         base(weight, [
             AddOrganelleAnywhere.ThatConvertBetweenCompounds(compound, outCompound),
             RemoveOrganelle.ThatCreateCompound(outCompound),
@@ -35,6 +39,7 @@ public class CompoundConversionEfficiencyPressure : SelectionPressure
 
         FromCompound = SimulationParameters.GetCompound(compound);
         ToCompound = SimulationParameters.GetCompound(outCompound);
+        this.usedForSurvival = usedForSurvival;
     }
 
     [JsonIgnore]
@@ -45,7 +50,13 @@ public class CompoundConversionEfficiencyPressure : SelectionPressure
         if (species is not MicrobeSpecies microbeSpecies)
             return 0;
 
-        return cache.GetCompoundConversionScoreForSpecies(FromCompound, ToCompound, microbeSpecies, patch.Biome);
+        var score = cache.GetCompoundConversionScoreForSpecies(FromCompound, ToCompound, microbeSpecies, patch.Biome);
+
+        // we need to factor in both conversion from source to output, and energy expenditure time
+        if (usedForSurvival)
+            score /= cache.GetEnergyBalanceForSpecies(microbeSpecies, patch.Biome).TotalConsumptionStationary;
+
+        return score;
     }
 
     public override float GetEnergy(Patch patch)

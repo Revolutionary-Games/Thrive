@@ -117,6 +117,43 @@ public sealed class MicrobeVisualOnlySimulation : WorldSimulation
         return foundEntity;
     }
 
+    /// <summary>
+    ///   Creates a simple visualization colony in this world at origin.
+    /// </summary>
+    /// <returns>The colony's root cell entity</returns>
+    public Entity CreateVisualisationColony(MulticellularSpecies species)
+    {
+        // We pass AI controlled true here to avoid creating player specific data but as we don't have the AI system
+        // it is fine to create the AI properties as it won't actually do anything
+        SpawnHelpers.SpawnMicrobe(this, dummyEnvironment, species, Vector3.Zero, true);
+
+        ProcessDelaySpawnedEntitiesImmediately();
+
+        // Grab the created entity
+        var foundEntity = GetLastMicrobeEntity();
+
+        if (foundEntity == default)
+            throw new Exception("Could not find microbe entity that should have been created");
+
+        var recorder = StartRecordingEntityCommands();
+
+        var dummySpawnSystem = new DummySpawnSystem();
+
+        int count = species.Cells.Count;
+        for (int i = 1; i < count; ++i)
+        {
+            var cell = species.Cells[i];
+
+            DelayedColonyOperationSystem.CreateDelayAttachedMicrobe(ref foundEntity.Get<WorldPosition>(),
+                in foundEntity, i, cell, species, this, dummyEnvironment, recorder, dummySpawnSystem, false);
+        }
+
+        recorder.Execute();
+        FinishRecordingEntityCommands(recorder);
+
+        return foundEntity;
+    }
+
     public Entity GetLastMicrobeEntity()
     {
         Entity foundEntity = default;
@@ -305,6 +342,51 @@ public sealed class MicrobeVisualOnlySimulation : WorldSimulation
 
         return new Vector3(center.X,
             PhotoStudio.CameraDistanceFromRadiusOfObject(radius * Constants.PHOTO_STUDIO_CELL_RADIUS_MULTIPLIER),
+            center.Z);
+    }
+
+    public Vector3 CalculateColonyPhotographDistance()
+    {
+        var species = GetLastMicrobeEntity().Get<MulticellularSpeciesMember>().Species;
+
+        Vector3 center = Vector3.Zero;
+
+        int count = species.Cells.Count;
+        for (int i = 0; i < count; ++i)
+        {
+            center += Hex.AxialToCartesian(species.Cells[i].Position);
+        }
+
+        center /= count;
+
+        float maxCellDistanceSquared = 0.0f;
+        float farthestCellRadius = 0.0f;
+
+        foreach (var entity in EntitySystem)
+        {
+            if (!entity.Has<CellProperties>())
+                continue;
+
+            var distanceSquared = entity.Get<WorldPosition>().Position.DistanceSquaredTo(center);
+
+            ref var cellProperties = ref entity.Get<CellProperties>();
+
+            // This uses the membrane as radius is not set as the physics system doesn't run
+            if (!cellProperties.IsMembraneReady())
+                throw new InvalidOperationException("Microbe doesn't have a ready membrane");
+
+            float radius = cellProperties.CreatedMembrane!.EncompassingCircleRadius;
+
+            if (distanceSquared + radius * radius > maxCellDistanceSquared + farthestCellRadius * farthestCellRadius)
+            {
+                maxCellDistanceSquared = distanceSquared;
+
+                farthestCellRadius = radius;
+            }
+        }
+
+        return new Vector3(center.X,
+            PhotoStudio.CameraDistanceFromRadiusOfObject(MathF.Sqrt(maxCellDistanceSquared) + farthestCellRadius),
             center.Z);
     }
 
