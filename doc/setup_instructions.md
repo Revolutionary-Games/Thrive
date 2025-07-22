@@ -352,7 +352,7 @@ dotnet run --project Scripts -- native Fetch Install
 ```
 
 The debug variants are needed when running through Godot Editor for
-Thrive GDExtension to work.
+Thrive GDExtension to work. The above command installs both variants.
 
 You can compile these libraries locally after installing C++
 development tools: cmake, and a compiler. On Linux clang is
@@ -805,7 +805,7 @@ dotnet run --project Scripts -- package
 Or if you want more control you can select which platforms to export to
 and skip zipping up the folder if you just want to test locally:
 ```sh
-dotnet run --project Scripts -- package --zip false "Windows Desktop"
+dotnet run --project Scripts -- package -z false Windows
 ```
 
 For more options run the script with the `-h` parameter to see all of them:

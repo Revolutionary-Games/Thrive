@@ -200,8 +200,12 @@ static func typeless_args(descriptor: GdFunctionDescriptor) -> String:
 	var collect := PackedStringArray()
 	for arg in descriptor.args():
 		if arg.has_default():
-			@warning_ignore("return_value_discarded")
-			collect.push_back(arg.name() + "_" + "=" + arg.value_as_string())
+			# For Variant types we need to enforce the type in the signature
+			if arg.type() == GdObjects.TYPE_VARIANT:
+				collect.push_back("%s_:%s=%s" % [arg.name(), GdObjects.type_as_string(arg.type()), arg.value_as_string()])
+			else:
+				@warning_ignore("return_value_discarded")
+				collect.push_back("%s_=%s" % [arg.name(), arg.value_as_string()])
 		else:
 			@warning_ignore("return_value_discarded")
 			collect.push_back(arg.name() + "_")

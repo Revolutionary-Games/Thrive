@@ -183,4 +183,20 @@ public static class MathUtils
 
         return forward * distance;
     }
+
+    /// <summary>
+    ///   Calculates a good camera distance from the radius of an object that is photographed
+    /// </summary>
+    /// <param name="radius">The radius of the object</param>
+    /// <param name="fieldOfView">The camera's field of view in degrees</param>
+    /// <returns>The distance to use</returns>
+    public static float CameraDistanceFromRadiusOfObject(float radius, float fieldOfView)
+    {
+        if (radius <= 0)
+            throw new ArgumentException("radius needs to be over 0");
+
+        float angle = fieldOfView * 0.5f;
+
+        return MathF.Tan(MathF.PI * 0.5f - DEGREES_TO_RADIANS * angle) * radius;
+    }
 }

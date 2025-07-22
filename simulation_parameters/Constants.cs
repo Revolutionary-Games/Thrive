@@ -500,11 +500,11 @@ public static class Constants
     /// <summary>
     ///   Controls with how much speed agents are fired
     /// </summary>
-    public const float AGENT_EMISSION_VELOCITY = 18.5f;
+    public const float AGENT_EMISSION_VELOCITY = 25.0f;
 
-    public const float OXYTOXY_DAMAGE = 15.0f;
+    public const float OXYTOXY_DAMAGE = 25.0f;
 
-    public const float CYTOTOXIN_DAMAGE = 12.0f;
+    public const float CYTOTOXIN_DAMAGE = 20.0f;
 
     public const float OXYGEN_INHIBITOR_DAMAGE = 14.0f;
 
@@ -537,7 +537,7 @@ public static class Constants
     /// <summary>
     ///   How much a cell's speed is slowed when travelling through slime
     /// </summary>
-    public const float MUCILAGE_IMPEDE_FACTOR = 4.0f;
+    public const float MUCILAGE_IMPEDE_FACTOR = 5.0f;
 
     /// <summary>
     ///   How much a cell's speed is increased when secreting slime (scaling with secreted compound amount)
@@ -559,12 +559,15 @@ public static class Constants
     /// </summary>
     public const float MUCOCYST_SPEED_MULTIPLIER = 0.01f;
 
-    public const float MUCOCYST_MINIMUM_MUCILAGE = 0.2f;
+    /// <summary>
+    ///   What fraction of the mucilage capacity is required to activate mucocyst (slime jet upgrade)
+    /// </summary>
+    public const float MUCOCYST_ACTIVATION_MUCILAGE_FRACTION = 0.5f;
 
     /// <summary>
     ///   How much mucocyst (slime jet upgrade) drains mucilage per second
     /// </summary>
-    public const float MUCOCYST_MUCILAGE_DRAIN = 0.5f;
+    public const float MUCOCYST_MUCILAGE_DRAIN = 0.7f;
 
     public const float TOXIN_PROJECTILE_PHYSICS_SIZE = 1;
 
@@ -775,6 +778,17 @@ public static class Constants
     public const float SCREEN_DAMAGE_FLASH_THRESHOLD = 0.2f;
 
     public const float SCREEN_DAMAGE_FLASH_DECAY_SPEED = 1.0f;
+
+    public const float MICROBE_CAMERA_MIN_HEIGHT = 3.0f;
+
+    public const float MICROBE_CAMERA_MAX_HEIGHT = 80.0f;
+
+    public const float MULTICELLULAR_CAMERA_MIN_HEIGHT = 8.0f;
+
+    /// <summary>
+    ///   The highest that the dynamic multicellular camera max height can get.
+    /// </summary>
+    public const float MULTICELLULAR_CAMERA_MAX_HEIGHT = 180.0f;
 
     /// <summary>
     ///   Cells need at least this much ATP to regenerate health passively. This is now less than one to allow cells
@@ -1345,8 +1359,9 @@ public static class Constants
     public const float VOLCANISM_FLOOR_CO2_STRENGTH = 0.010f;
     public const float VOLCANISM_FLOOR_CO2_THRESHOLD = 0.1f;
 
-    public const float MIN_HYDROGEN_SULFIDE_FRACTION = 0.496f;
-    public const double HYDROGEN_SULFIDE_ENVIRONMENT_EATING_MULTIPLIER = 0.00000002;
+    public const float MIN_HYDROGEN_SULFIDE_FRACTION = 0.517f;
+    public const double HYDROGEN_SULFIDE_ENVIRONMENT_EATING_MULTIPLIER = 0.00000001;
+    public const float HYDROGEN_SULFIDE_NATURAL_DECAY_FACTOR = 0.3f;
 
     /// <summary>
     ///   Below this value oxygen doesn't cause iron chunks to become less common
@@ -1368,7 +1383,7 @@ public static class Constants
 
     // Patch event variables
     public const int VENT_ERUPTION_CHANCE = 15;
-    public const float VENT_ERUPTION_HYDROGEN_SULFIDE_INCREASE = 0.00004f;
+    public const float VENT_ERUPTION_HYDROGEN_SULFIDE_INCREASE = 0.001f;
     public const float VENT_ERUPTION_CARBON_DIOXIDE_INCREASE = 0.3f;
 
     public const float GLOBAL_GLACIATION_OXYGEN_THRESHOLD = 0.07f;
@@ -1764,7 +1779,7 @@ public static class Constants
     public const int ENDOSYMBIOSIS_COST_MIN = 2;
 
     /// <summary>
-    ///   If membrane scene is updated this should be updated as well
+    ///   If the membrane scene is updated this should be updated as well
     /// </summary>
     public const int MICROBE_DEFAULT_RENDER_PRIORITY = 18;
 
@@ -1779,7 +1794,7 @@ public static class Constants
     public const float MAX_AI_MUTATION_RATE = 3;
     public const float MIN_COMPOUND_DENSITY = 0.2f;
     public const float MAX_COMPOUND_DENSITY = 2;
-    public const float MIN_PLAYER_DEATH_POPULATION_PENALTY = 1;
+    public const float MIN_PLAYER_DEATH_POPULATION_PENALTY = 0.6f;
     public const float MAX_PLAYER_DEATH_POPULATION_PENALTY = 5;
     public const float MIN_GLUCOSE_DECAY = 0.3f;
     public const float MAX_GLUCOSE_DECAY = 0.95f;

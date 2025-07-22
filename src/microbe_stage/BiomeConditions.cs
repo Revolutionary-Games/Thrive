@@ -209,7 +209,23 @@ public class BiomeConditions : IBiomeConditions, ICloneable
             var definition = simulationParameters.GetCompoundDefinition(entry.Key);
             if (!definition.IsEnvironmental)
             {
+                bool updateCloudSize = false;
+
                 if (!TryGetCompound(entry.Key, CompoundAmountType.Biome, out var existing))
+                {
+                    updateCloudSize = true;
+                }
+                else
+                {
+                    // Make sure the cloud size is set (as the above fetch can succeed but return a value with no
+                    // amount set)
+                    if (existing.Amount <= 0)
+                    {
+                        updateCloudSize = true;
+                    }
+                }
+
+                if (updateCloudSize)
                 {
                     if (!newCloudSizes.TryGetValue(entry.Key, out var cloudSize))
                     {

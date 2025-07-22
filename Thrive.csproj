@@ -6,7 +6,7 @@
     <TargetFramework Condition=" '$(GodotTargetPlatform)' == 'android' ">net8.0</TargetFramework>
     <TargetFramework Condition=" '$(GodotTargetPlatform)' == 'ios' ">net8.0</TargetFramework>
     <EnableDynamicLoading>true</EnableDynamicLoading>
-    <LangVersion>12.0</LangVersion>
+    <LangVersion>13.0</LangVersion>
     <Nullable>enable</Nullable>
     <Company>Revolutionary Games Studio</Company>
     <Version>0.8.2.1</Version>
@@ -40,13 +40,14 @@
   </ItemGroup>
   <!-- Test resources -->
   <ItemGroup Condition="'$(Configuration)' != 'ExportRelease'">
-    <PackageReference Include="gdUnit4.api" Version="4.4.0-rc13" />
-    <PackageReference Include="gdUnit4.test.adapter" Version="2.1.0-rc5" />
-    <PackageReference Include="gdUnit4.analyzers" Version="1.0.0-rc5">
+    <PackageReference Include="gdUnit4.api" Version="5.0.0" />
+    <PackageReference Include="gdUnit4.test.adapter" Version="3.0.0" />
+    <!-- Re-enable this this once newer compiler versions are deployed everywhere
+    <PackageReference Include="gdUnit4.analyzers" Version="1.0.0">
       <PrivateAssets>none</PrivateAssets>
       <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
-    </PackageReference>
-    <PackageReference Include="Microsoft.NET.Test.Sdk" Version="17.14.0" />
+    </PackageReference> -->
+    <PackageReference Include="Microsoft.NET.Test.Sdk" Version="17.14.1" />
   </ItemGroup>
   <ItemGroup>
     <PackageReference Include="AngleSharp" Version="1.3.0" />
@@ -54,12 +55,12 @@
     <PackageReference Include="GraphShape" Version="1.2.1" />
     <PackageReference Include="JetBrains.Annotations" Version="2024.3.0" />
     <PackageReference Include="Newtonsoft.Json" Version="13.0.3" />
-    <PackageReference Include="System.IO.Hashing" Version="9.0.5" />
+    <PackageReference Include="System.IO.Hashing" Version="9.0.7" />
     <PackageReference Include="System.Net.Http" Version="4.3.4" />
     <PackageReference Include="System.Numerics.Vectors" Version="4.6.1" />
     <PackageReference Include="Nito.Collections.Deque" Version="1.2.1" />
     <PackageReference Include="Lib.Harmony" Version="2.3.6" />
-    <PackageReference Include="System.Text.Json" Version="9.0.5" />
+    <PackageReference Include="System.Text.Json" Version="9.0.7" />
     <PackageReference Include="XoshiroPRNG.Net" Version="1.6.0" />
     <PackageReference Include="YamlDotNet" Version="16.3.0" />
     <PackageReference Include="StyleCop.Analyzers" Version="1.2.0-beta.556" PrivateAssets="all" />
