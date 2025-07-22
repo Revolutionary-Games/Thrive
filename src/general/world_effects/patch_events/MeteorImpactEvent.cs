@@ -197,8 +197,9 @@ public class MeteorImpactEvent : IWorldEffect
 
             if (!hasCompound)
             {
-                GD.PrintErr($"Meteor impact event encountered patch with unexpectedly no {compoundName.ToString()}");
-                return;
+                // This is adding a new compound
+                GD.Print($"Impact event is adding a new compound {compoundName} that was not present before " +
+                    $"in {patch.Name}");
             }
 
             var definition = SimulationParameters.Instance.GetCompoundDefinition(compoundName);
@@ -209,7 +210,7 @@ public class MeteorImpactEvent : IWorldEffect
                 currentCompoundLevel.Density = levelChange;
 
                 // TODO: instead of hardcoding the fallback value, maybe this could look in the event template biome?
-                currentCompoundLevel.Amount = currentCompoundLevel.Amount == 0 ? 10000 : currentCompoundLevel.Amount;
+                currentCompoundLevel.Amount = currentCompoundLevel.Amount == 0 ? 125000 : currentCompoundLevel.Amount;
                 tempCompoundChanges[compoundName] = currentCompoundLevel.Density;
                 tempCloudSizes[compoundName] = currentCompoundLevel.Amount;
             }
@@ -274,8 +275,8 @@ public class MeteorImpactEvent : IWorldEffect
 
             if (!hasCompound)
             {
-                GD.PrintErr($"Meteor impact event encountered patch with unexpectedly no {compoundName.ToString()}");
-                return;
+                GD.PrintErr("Did not find compound to reduce after impact event ended");
+                continue;
             }
 
             var definition = SimulationParameters.Instance.GetCompoundDefinition(compoundName);
@@ -288,7 +289,7 @@ public class MeteorImpactEvent : IWorldEffect
                 tempCloudSizes[compoundName] = currentCompoundLevel.Amount;
             }
 
-            // CO2 is not reduced back to normal values
+            // CO2 (and other gases) are not reduced back to normal values
         }
 
         patch.Biome.ApplyLongTermCompoundChanges(patch.BiomeTemplate, tempCompoundChanges, tempCloudSizes);
