@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2025-07-12 13:25+0200\n"
+"POT-Creation-Date: 2025-07-21 23:42+0200\n"
 "PO-Revision-Date: 2025-05-25 15:00+0000\n"
 "Last-Translator: Anonymous <noreply@weblate.org>\n"
 "Language-Team: Dutch (Belgium) <https://translate.revolutionarygamesstudio.com/projects/thrive/thrive-game/nl_BE/>\n"
@@ -376,6 +376,10 @@ msgstr "Automatisch opslaan tijdens het spelen"
 msgid "AUTO_EVO"
 msgstr "Auto-Evo"
 
+#, fuzzy
+msgid "AUTO_EVO_EXPLORER_TOOL_BUTTON"
+msgstr "Auto-Evo Verkenningshulpmiddel"
+
 msgid "AUTO_EVO_EXPLORING_TOOL"
 msgstr "Auto-Evo Verkenningshulpmiddel"
 
@@ -432,6 +436,9 @@ msgstr "Terug"
 
 msgid "BACKSPACE"
 msgstr "Terug"
+
+msgid "BACK_TO_SETTINGS"
+msgstr ""
 
 #, fuzzy
 msgid "BACTERIAL_THERMOSYNTHESIS"
@@ -840,6 +847,24 @@ msgstr ""
 #, fuzzy
 msgid "CLICK_TO_SELECT"
 msgstr "Verwijder het geselecteerde"
+
+msgid "CLIMATE_INSTABILITY"
+msgstr ""
+
+#, fuzzy
+msgid "CLIMATE_INSTABILITY_EXPLANATION"
+msgstr ""
+"Actieve microben rennen en tuimelen als er niets interessants gebeurt.\n"
+"Sessiele microben zullen stationair zijn en wachten tot de omgeving verandert voordat ze handelen."
+
+msgid "CLIMATE_STABILITY_AVERAGE"
+msgstr ""
+
+msgid "CLIMATE_STABILITY_STABLE"
+msgstr ""
+
+msgid "CLIMATE_STABILITY_UNSTABLE"
+msgstr ""
 
 msgid "CLOSE"
 msgstr "Sluit"
@@ -2538,11 +2563,33 @@ msgid "GENERAL_LOADING_TIP_7"
 msgstr "Druk op de \"ongedaan maken\" knop in de \"editor\" om een fout te corrigeren"
 
 #, fuzzy
+msgid "GENERATE_BUTTON"
+msgstr "Generatie:"
+
+#, fuzzy
 msgid "GENERATIONS"
 msgstr "Generatie:"
 
 msgid "GENERATION_COLON"
 msgstr "Generatie:"
+
+msgid "GEOLOGICAL_ACTIVITY"
+msgstr ""
+
+msgid "GEOLOGICAL_ACTIVITY_ACTIVE"
+msgstr ""
+
+msgid "GEOLOGICAL_ACTIVITY_AVERAGE"
+msgstr ""
+
+msgid "GEOLOGICAL_ACTIVITY_DORMANT"
+msgstr ""
+
+#, fuzzy
+msgid "GEOLOGICAL_ACTIVITY_EXPLANATION"
+msgstr ""
+"Actieve microben rennen en tuimelen als er niets interessants gebeurt.\n"
+"Sessiele microben zullen stationair zijn en wachten tot de omgeving verandert voordat ze handelen."
 
 #, fuzzy
 msgid "GITHUB_TOOLTIP"
@@ -4993,11 +5040,12 @@ msgid "PLANET"
 msgstr ""
 
 #, fuzzy
+msgid "PLANET_CUSTOMIZER"
+msgstr "Bij cursor:"
+
+#, fuzzy
 msgid "PLANET_DETAILS_STRING"
 msgstr "Open Logs Folder"
-
-msgid "PLANET_GENERATION_TEASER"
-msgstr ""
 
 msgid "PLANET_RANDOM_SEED"
 msgstr ""
@@ -5206,6 +5254,10 @@ msgstr "Voer de laatste actie opnieuw uit"
 
 msgid "REFRESH"
 msgstr "Vernieuwen"
+
+#, fuzzy
+msgid "REGENERATE_BUTTON"
+msgstr "Organellen"
 
 msgid "RENDER_SCALE"
 msgstr ""
@@ -9154,6 +9206,27 @@ msgstr ""
 "Doe latere faseprototypen erbij: {0}\n"
 "Doe Paaseieren erbij: {1}"
 
+#, fuzzy
+msgid "WORLD_OCEANIC_COVERAGE"
+msgstr "Relatief aan de wereld"
+
+#, fuzzy
+msgid "WORLD_OCEANIC_COVERAGE_EXPLANATION"
+msgstr ""
+"Gefocuste microben zullen over grotere afstanden naar brokken of prooien zoeken\n"
+"en misschien veel ambitieuzer over brokken zijn.\n"
+"Responsieve microben zullen sneller overschakelen naar nieuwe doelen."
+
+msgid "WORLD_OCEANIC_COVERAGE_LARGE"
+msgstr ""
+
+#, fuzzy
+msgid "WORLD_OCEANIC_COVERAGE_MEDIUM"
+msgstr "Relatief aan de wereld"
+
+msgid "WORLD_OCEANIC_COVERAGE_SMALL"
+msgstr ""
+
 msgid "WORLD_RELATIVE_MOVEMENT"
 msgstr "Relatief aan de wereld"
 
@@ -9181,6 +9254,29 @@ msgstr ""
 #, fuzzy
 msgid "WORLD_SIZE_TOOLTIP"
 msgstr "Voeg een nieuwe sneltoets toe"
+
+#, fuzzy
+msgid "WORLD_TEMPERATURE"
+msgstr "Temperatuur"
+
+#, fuzzy
+msgid "WORLD_TEMPERATURE_COLD"
+msgstr "Temp."
+
+#, fuzzy
+msgid "WORLD_TEMPERATURE_EXPLANATION"
+msgstr ""
+"Gefocuste microben zullen over grotere afstanden naar brokken of prooien zoeken\n"
+"en misschien veel ambitieuzer over brokken zijn.\n"
+"Responsieve microben zullen sneller overschakelen naar nieuwe doelen."
+
+#, fuzzy
+msgid "WORLD_TEMPERATURE_TEMPERATE"
+msgstr "Temp."
+
+#, fuzzy
+msgid "WORLD_TEMPERATURE_WARM"
+msgstr "Temp."
 
 msgid "WORST_PATCH_COLON"
 msgstr "Slechtste Zone:"
@@ -9221,6 +9317,18 @@ msgstr "Inzoomen"
 
 msgid "ZOOM_OUT"
 msgstr "Uitzoomen"
+
+#, fuzzy
+#~ msgid "WORLD_SEA_LEVEL"
+#~ msgstr "{0}-{1}m onder zeeniveau"
+
+#, fuzzy
+#~ msgid "WORLD_SEA_LEVEL_DEEP"
+#~ msgstr "{0}-{1}m onder zeeniveau"
+
+#, fuzzy
+#~ msgid "WORLD_SEA_LEVEL_MODERATE"
+#~ msgstr "Relatief aan de wereld"
 
 #, fuzzy
 #~ msgid "PASSIVE_REPRODUCTION_PROGRESS_EXPLANATION"

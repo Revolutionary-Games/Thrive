@@ -486,6 +486,7 @@ theme_override_constants/margin_bottom = 10
 [node name="DraggableScrollContainer" parent="GUI/VBoxContainer/HistoryReportSplit/PatchMap/HBoxContainer/PatchMap/MarginContainer" node_paths=PackedStringArray("content") instance=ExtResource("16")]
 layout_mode = 2
 content = NodePath("PatchMapDrawer")
+MinZoom = 0.2
 
 [node name="PatchMapDrawer" parent="GUI/VBoxContainer/HistoryReportSplit/PatchMap/HBoxContainer/PatchMap/MarginContainer/DraggableScrollContainer" instance=ExtResource("13")]
 layout_mode = 2

@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2025-07-12 13:25+0200\n"
+"POT-Creation-Date: 2025-07-21 23:42+0200\n"
 "PO-Revision-Date: 2025-04-04 10:42+0000\n"
 "Last-Translator: Anonymous <noreply@weblate.org>\n"
 "Language-Team: Spanish (Argentina) <https://translate.revolutionarygamesstudio.com/projects/thrive/thrive-game/es_AR/>\n"
@@ -371,6 +371,10 @@ msgstr "Autoguardar durante el juego"
 msgid "AUTO_EVO"
 msgstr "Auto-Evo"
 
+#, fuzzy
+msgid "AUTO_EVO_EXPLORER_TOOL_BUTTON"
+msgstr "Herramienta de exploración del Auto-Evo"
+
 msgid "AUTO_EVO_EXPLORING_TOOL"
 msgstr "Herramienta de exploración del Auto-Evo"
 
@@ -425,6 +429,9 @@ msgstr "Barra inversa ( / )"
 
 msgid "BACKSPACE"
 msgstr "Retroceso"
+
+msgid "BACK_TO_SETTINGS"
+msgstr ""
 
 msgid "BACTERIAL_THERMOSYNTHESIS"
 msgstr "Termosíntesis bacteriana"
@@ -827,6 +834,24 @@ msgid "CLEAR_CACHE"
 msgstr ""
 
 msgid "CLICK_TO_SELECT"
+msgstr ""
+
+msgid "CLIMATE_INSTABILITY"
+msgstr ""
+
+#, fuzzy
+msgid "CLIMATE_INSTABILITY_EXPLANATION"
+msgstr ""
+"Los microbios activos van deambular cuando no pase nada interesante.\n"
+"Los microbios tranquilos van a estar quietos y esperando a que algo cambie antes de actuar."
+
+msgid "CLIMATE_STABILITY_AVERAGE"
+msgstr ""
+
+msgid "CLIMATE_STABILITY_STABLE"
+msgstr ""
+
+msgid "CLIMATE_STABILITY_UNSTABLE"
 msgstr ""
 
 msgid "CLOSE"
@@ -2387,11 +2412,33 @@ msgstr "Presiona el botón de deshacer en el editor para corregir el error"
 msgid "GENERAL_LOADING_TIP_7"
 msgstr "Presiona el botón de deshacer en el editor para corregir el error"
 
+#, fuzzy
+msgid "GENERATE_BUTTON"
+msgstr "Pili de depredador"
+
 msgid "GENERATIONS"
 msgstr ""
 
 msgid "GENERATION_COLON"
 msgstr ""
+
+msgid "GEOLOGICAL_ACTIVITY"
+msgstr ""
+
+msgid "GEOLOGICAL_ACTIVITY_ACTIVE"
+msgstr ""
+
+msgid "GEOLOGICAL_ACTIVITY_AVERAGE"
+msgstr ""
+
+msgid "GEOLOGICAL_ACTIVITY_DORMANT"
+msgstr ""
+
+#, fuzzy
+msgid "GEOLOGICAL_ACTIVITY_EXPLANATION"
+msgstr ""
+"Los microbios activos van deambular cuando no pase nada interesante.\n"
+"Los microbios tranquilos van a estar quietos y esperando a que algo cambie antes de actuar."
 
 msgid "GITHUB_TOOLTIP"
 msgstr ""
@@ -4743,10 +4790,11 @@ msgstr "Poner organela"
 msgid "PLANET"
 msgstr ""
 
-msgid "PLANET_DETAILS_STRING"
-msgstr ""
+#, fuzzy
+msgid "PLANET_CUSTOMIZER"
+msgstr "En el cursor:"
 
-msgid "PLANET_GENERATION_TEASER"
+msgid "PLANET_DETAILS_STRING"
 msgstr ""
 
 msgid "PLANET_RANDOM_SEED"
@@ -4953,6 +5001,10 @@ msgstr ""
 
 msgid "REFRESH"
 msgstr ""
+
+#, fuzzy
+msgid "REGENERATE_BUTTON"
+msgstr "Pili de depredador"
 
 msgid "RENDER_SCALE"
 msgstr ""
@@ -8907,6 +8959,23 @@ msgstr ""
 msgid "WORLD_MISC_DETAILS_STRING"
 msgstr ""
 
+msgid "WORLD_OCEANIC_COVERAGE"
+msgstr ""
+
+#, fuzzy
+msgid "WORLD_OCEANIC_COVERAGE_EXPLANATION"
+msgstr "Normal"
+
+msgid "WORLD_OCEANIC_COVERAGE_LARGE"
+msgstr ""
+
+#, fuzzy
+msgid "WORLD_OCEANIC_COVERAGE_MEDIUM"
+msgstr "Normal"
+
+msgid "WORLD_OCEANIC_COVERAGE_SMALL"
+msgstr ""
+
 msgid "WORLD_RELATIVE_MOVEMENT"
 msgstr ""
 
@@ -8935,6 +9004,28 @@ msgstr ""
 "El menú desplegable de ahí abajo lo podés usar para chequear que pasaría si la célula no tuviese ningún recurso disponible para poder crear ATP.\n"
 "Por ejemplo, algunas células solo pueden mantener un balance de ATP positivo cuando tienen múltiples tipos de componentes de los que pueden crear ATP al mísmo tiempo.\n"
 "Ese tipo de células son más difíciles de jugar porque requieren que almacenes varios tipos de componentes al mísmo tiempo para poder sobrevivir."
+
+msgid "WORLD_TEMPERATURE"
+msgstr ""
+
+msgid "WORLD_TEMPERATURE_COLD"
+msgstr ""
+
+#, fuzzy
+msgid "WORLD_TEMPERATURE_EXPLANATION"
+msgstr "Normal"
+
+#, fuzzy
+msgid "WORLD_TEMPERATURE_TEMPERATE"
+msgstr ""
+"Esta sección muestra el balance total de ATP (energía) de la célula actual.\n"
+"Para poder sobrevivir, el balance tiene que ser positivo. Para las célular sésiles se puede considerar el balance positivo con el movimiento excluído.\n"
+"El menú desplegable de ahí abajo lo podés usar para chequear que pasaría si la célula no tuviese ningún recurso disponible para poder crear ATP.\n"
+"Por ejemplo, algunas células solo pueden mantener un balance de ATP positivo cuando tienen múltiples tipos de componentes de los que pueden crear ATP al mísmo tiempo.\n"
+"Ese tipo de células son más difíciles de jugar porque requieren que almacenes varios tipos de componentes al mísmo tiempo para poder sobrevivir."
+
+msgid "WORLD_TEMPERATURE_WARM"
+msgstr ""
 
 msgid "WORST_PATCH_COLON"
 msgstr ""
@@ -8972,6 +9063,14 @@ msgstr "Acercar la pantalla"
 
 msgid "ZOOM_OUT"
 msgstr "Alejar la pantalla"
+
+#, fuzzy
+#~ msgid "WORLD_SEA_LEVEL"
+#~ msgstr "{0}-{1}Bajo el nivel del mar"
+
+#, fuzzy
+#~ msgid "WORLD_SEA_LEVEL_DEEP"
+#~ msgstr "{0}-{1}Bajo el nivel del mar"
 
 #, fuzzy
 #~ msgid "MICROBE_STAGE_DAY_NIGHT_TEXT"

@@ -282,6 +282,14 @@ public partial class PatchMapDrawer : Control
         }
     }
 
+    public void ClearMap()
+    {
+        lineContainer.QueueFreeChildren(false);
+        patchNodeContainer.FreeChildren();
+        nodes.Clear();
+        connections.Clear();
+    }
+
     private static Vector2 ClosestPoint(Vector2 comparisonPoint, Vector2 point1, Vector2 point2)
     {
         return point1.DistanceSquaredTo(comparisonPoint) > point2.DistanceSquaredTo(comparisonPoint) ? point2 : point1;
@@ -1031,10 +1039,7 @@ public partial class PatchMapDrawer : Control
     /// </summary>
     private void RebuildMap()
     {
-        lineContainer.QueueFreeChildren(false);
-        patchNodeContainer.FreeChildren();
-        nodes.Clear();
-        connections.Clear();
+        ClearMap();
 
         if (Map == null)
         {

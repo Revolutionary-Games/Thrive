@@ -127,7 +127,21 @@ public class MeteorImpactEvent : IWorldEffect
 
     private bool AreConditionsMet()
     {
-        return random.NextFloat() <= Constants.METEOR_IMPACT_CHANCE;
+        return random.NextFloat() <= GetImpactChance();
+    }
+
+    private float GetImpactChance()
+    {
+        switch (targetWorld.WorldSettings.GeologicalActivity)
+        {
+            case WorldGenerationSettings.GeologicalActivityEnum.Dormant:
+                return Constants.METEOR_IMPACT_CHANCE * 0.5f;
+            case WorldGenerationSettings.GeologicalActivityEnum.Active:
+                return Constants.METEOR_IMPACT_CHANCE * 2;
+            case WorldGenerationSettings.GeologicalActivityEnum.Average:
+            default:
+                return Constants.METEOR_IMPACT_CHANCE;
+        }
     }
 
     private void ChangePatchProperties(Patch patch, double totalTimePassed)
