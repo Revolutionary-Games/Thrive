@@ -164,11 +164,12 @@ public partial class MainMenu : NodeWithInput
 
     public bool IsReturningToMenu { get; set; }
 
-    public static void OnEnteringGame()
+    public static void OnEnteringGame(bool cheatsUsed)
     {
         CheatManager.OnCheatsDisabled();
         SaveHelper.ClearLastSaveTime();
         LastPlayedVersion.MarkCurrentVersionAsPlayed();
+        AchievementsManager.ReportNewGameStarted(cheatsUsed);
     }
 
     public override void _Ready()
@@ -786,13 +787,14 @@ public partial class MainMenu : NodeWithInput
 
         TransitionManager.Instance.AddSequence(ScreenFade.FadeType.FadeOut, 0.1f, () =>
         {
-            OnEnteringGame();
+            OnEnteringGame(false);
 
             // Instantiate a new editor scene
             var editor = (MicrobeEditor)SceneManager.Instance.LoadScene(MainGameState.MicrobeEditor).Instantiate();
 
             // Start freebuild game
             editor.CurrentGame = GameProperties.StartNewMicrobeGame(new WorldGenerationSettings(), true);
+            AchievementsManager.ReportEnteredFreebuild();
 
             // Switch to the editor scene
             SceneManager.Instance.SwitchToScene(editor);
@@ -808,7 +810,7 @@ public partial class MainMenu : NodeWithInput
 
         TransitionManager.Instance.AddSequence(ScreenFade.FadeType.FadeOut, 0.1f, () =>
         {
-            OnEnteringGame();
+            OnEnteringGame(false);
 
             // Instantiate a new editor scene
             var editor = (MulticellularEditor)SceneManager.Instance
@@ -816,6 +818,7 @@ public partial class MainMenu : NodeWithInput
 
             // Start freebuild game
             editor.CurrentGame = GameProperties.StartNewMulticellularGame(new WorldGenerationSettings(), true);
+            AchievementsManager.ReportEnteredFreebuild();
 
             // Switch to the editor scene
             SceneManager.Instance.SwitchToScene(editor);

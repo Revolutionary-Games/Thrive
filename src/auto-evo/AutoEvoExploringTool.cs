@@ -866,13 +866,15 @@ public partial class AutoEvoExploringTool : NodeWithInput, ISpeciesDataProvider
 
         TransitionManager.Instance.AddSequence(ScreenFade.FadeType.FadeOut, 0.1f, () =>
         {
-            MainMenu.OnEnteringGame();
+            MainMenu.OnEnteringGame(false);
 
             // Instantiate a new editor scene
             var editor = (MicrobeEditor)SceneManager.Instance.LoadScene(MainGameState.MicrobeEditor).Instantiate();
 
             world.GameProperties.EnterFreeBuild();
             world.GameProperties.TutorialState.Enabled = false;
+
+            AchievementsManager.ReportEnteredFreebuild();
 
             // Copy our currently setup game to the editor
             editor.CurrentGame = world.GameProperties;

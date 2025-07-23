@@ -60,7 +60,7 @@ public static class SaveHelper
     public enum QuickLoadError
     {
         /// <summary>
-        ///   No error, quick load is successful (or error is not handled).
+        ///   No error, a quick load is successful (or error is not handled).
         /// </summary>
         None,
 
@@ -80,7 +80,7 @@ public static class SaveHelper
     /// </summary>
     /// <remarks>
     ///   <para>
-    ///     Used for knowing whether to show confirmation dialog on the pause menu when exiting the game.
+    ///     Used for knowing whether to show a confirmation dialog on the pause menu when exiting the game.
     ///   </para>
     /// </remarks>
     /// <returns>True if the last save is still recent, false if otherwise.</returns>
@@ -545,9 +545,12 @@ public static class SaveHelper
 
     private static void PerformSave(InProgressSave inProgress, Save save)
     {
-        // Ensure prototype state flag is also in the info data for use by the save list
+        // Ensure the prototype state flag is also in the info data for use by the save list
         save.Info.IsPrototype = save.SavedProperties?.InPrototypes ??
             throw new InvalidOperationException("Saved properties of a save to write to disk is unset");
+
+        // Ensure the cheat state flag is copied
+        save.Info.CheatsUsed = save.SavedProperties.CheatsUsed;
 
         try
         {

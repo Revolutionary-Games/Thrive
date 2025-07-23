@@ -215,6 +215,11 @@ public partial class StartupActions : Node
                 SceneManager.NotifyEarlyQuit();
             }
         }
+
+        if (!preventStartup)
+        {
+            AchievementsManager.Instance.StartLoadAchievementsData();
+        }
     }
 
     public override void _Ready()

@@ -112,6 +112,35 @@ public partial class StageBase : NodeWithInput, IStageBase, IGodotEarlyNodeResol
     [JsonIgnore]
     protected LoadState StageLoadingState { get; private set; }
 
+    public override void _EnterTree()
+    {
+        base._EnterTree();
+
+        if (AchievementsManager.HasUsedCheats)
+        {
+            Invoke.Instance.QueueForObject(() =>
+            {
+                if (CurrentGame != null)
+                {
+                    if (CurrentGame.CheatsUsed != true)
+                    {
+                        GD.Print("Copying cheats used state to current game on scene enter tree");
+                        CurrentGame.ReportCheatsUsed();
+                    }
+                }
+            }, this);
+        }
+
+        AchievementsManager.OnPlayerHasCheatedEvent += OnCheatsUsed;
+    }
+
+    public override void _ExitTree()
+    {
+        base._ExitTree();
+
+        AchievementsManager.OnPlayerHasCheatedEvent -= OnCheatsUsed;
+    }
+
     public virtual void ResolveNodeReferences()
     {
         if (NodeReferencesResolved)
@@ -480,5 +509,28 @@ public partial class StageBase : NodeWithInput, IStageBase, IGodotEarlyNodeResol
     protected virtual void OnOpenGodTools(IEntity entity)
     {
         GD.PrintErr("Non-implemented God tools opening for entity in stage type: ", GetType().Name);
+    }
+
+    protected virtual void OnCheatsUsed()
+    {
+        if (CurrentGame == null)
+        {
+            Invoke.Instance.QueueForObject(ApplyCheatsUsedFlag, this);
+            return;
+        }
+
+        ApplyCheatsUsedFlag();
+    }
+
+    private void ApplyCheatsUsedFlag()
+    {
+        if (CurrentGame == null)
+            throw new InvalidOperationException("Current game has not been set even though it should be initialized");
+
+        if (CurrentGame.CheatsUsed)
+            return;
+
+        GD.Print("Detected player used cheats for the first time in this game");
+        CurrentGame.ReportCheatsUsed();
     }
 }
