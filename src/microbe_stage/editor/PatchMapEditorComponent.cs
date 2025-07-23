@@ -252,7 +252,6 @@ public partial class PatchMapEditorComponent<TEditor> : EditorComponentBase<TEdi
     {
         detailsPanel.SelectedPatch = mapDrawer.SelectedPatch;
         detailsPanel.IsPatchMoveValid = IsPatchMoveValid(mapDrawer.SelectedPatch);
-        detailsPanel.UpdateShownPatchDetails();
 
         detailsPanel.OnMicheDetailsRequested = GetMicheSelectionCallback();
     }
