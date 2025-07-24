@@ -18,8 +18,16 @@ public partial class AchievementsManager : Node
 
     private readonly object achievementsDataLock = new();
 
+#pragma warning disable CA2213
+    private Control achievementsGUIContainer = null!;
+#pragma warning restore CA2213
+
+    private double timeSinceSave;
+
     private bool loaded;
     private bool loading;
+
+    private bool dirty;
 
     private bool saving;
 
@@ -79,8 +87,41 @@ public partial class AchievementsManager : Node
         UpdateAchievementsPrevention();
     }
 
+    public override void _Ready()
+    {
+        base._Ready();
+
+        // Create a container for achievement popups to be in
+        achievementsGUIContainer = new Control
+        {
+            AnchorLeft = 0,
+            AnchorRight = 1,
+            AnchorTop = 0,
+            AnchorBottom = 0,
+            Visible = false,
+            MouseFilter = Control.MouseFilterEnum.Ignore,
+            MouseForcePassScrollEvents = false,
+        };
+
+        AddChild(achievementsGUIContainer);
+    }
+
     public override void _ExitTree()
     {
+        SaveData();
+
+        while (true)
+        {
+            lock (achievementsDataLock)
+            {
+                if (!saving)
+                {
+                    GD.Print("Final achievements data save complete");
+                    break;
+                }
+            }
+        }
+
         base._ExitTree();
 
         if (instance == this)
@@ -95,7 +136,14 @@ public partial class AchievementsManager : Node
 
     public override void _Process(double delta)
     {
-        // TODO: saving periodically if data is dirty
+        timeSinceSave += delta;
+
+        // Saving periodically if data is dirty
+        if (timeSinceSave > 5 && dirty)
+        {
+            dirty = false;
+            SaveData();
+        }
     }
 
     public void StartLoadAchievementsData()
@@ -162,6 +210,9 @@ public partial class AchievementsManager : Node
         {
             if (saving)
             {
+                // Just in case, queue a new save to happen again
+                dirty = true;
+                GD.Print("Queueing another achievements save as one was in-progress already");
                 return;
             }
 
