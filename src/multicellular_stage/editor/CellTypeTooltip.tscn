@@ -1,0 +1,91 @@
+[gd_scene load_steps=8 format=3 uid="uid://c7coh3cv8sd1f"]
+
+[ext_resource type="Theme" uid="uid://b4cx0o110g4b6" path="res://src/gui_common/thrive_theme.tres" id="1_vl8jg"]
+[ext_resource type="Script" uid="uid://jksc2g7702o4" path="res://src/multicellular_stage/editor/CellTypeTooltip.cs" id="2_0abd5"]
+[ext_resource type="Texture2D" uid="uid://drdwtf2f6qqch" path="res://assets/textures/gui/bevel/MP.png" id="3_esy5e"]
+[ext_resource type="LabelSettings" uid="uid://brgbuduvjby6a" path="res://src/gui_common/fonts/Title-SemiBold-Smaller.tres" id="4_oloco"]
+[ext_resource type="LabelSettings" uid="uid://bv3bnu0g1wdw3" path="res://src/gui_common/fonts/Title-SemiBold-Big.tres" id="5_smds5"]
+[ext_resource type="PackedScene" uid="uid://dt4v2vma5p2s4" path="res://src/microbe_stage/ProcessList.tscn" id="8_q5nwp"]
+
+[sub_resource type="StyleBoxFlat" id="1"]
+bg_color = Color(0, 0.129412, 0.141176, 0.980392)
+border_width_left = 1
+border_width_top = 1
+border_width_right = 1
+border_width_bottom = 1
+border_color = Color(0.0666667, 1, 0.835294, 1)
+corner_radius_top_left = 5
+corner_radius_top_right = 5
+corner_radius_bottom_right = 5
+corner_radius_bottom_left = 5
+
+[node name="SelectionMenuTooltip" type="PanelContainer" node_paths=PackedStringArray("nameLabel", "mpLabel")]
+custom_minimum_size = Vector2(400, 0)
+offset_right = 350.0
+offset_bottom = 155.0
+mouse_filter = 2
+theme = ExtResource("1_vl8jg")
+theme_override_styles/panel = SubResource("1")
+script = ExtResource("2_0abd5")
+nameLabel = NodePath("MarginContainer/VBoxContainer/Header/Title")
+mpLabel = NodePath("MarginContainer/VBoxContainer/Header/MP/Value")
+
+[node name="MarginContainer" type="MarginContainer" parent="."]
+layout_mode = 2
+mouse_filter = 2
+theme_override_constants/margin_left = 15
+theme_override_constants/margin_top = 15
+theme_override_constants/margin_right = 15
+theme_override_constants/margin_bottom = 15
+
+[node name="VBoxContainer" type="VBoxContainer" parent="MarginContainer"]
+layout_mode = 2
+mouse_filter = 2
+theme_override_constants/separation = 15
+
+[node name="Header" type="HBoxContainer" parent="MarginContainer/VBoxContainer"]
+layout_mode = 2
+mouse_filter = 2
+theme_override_constants/separation = 10
+
+[node name="MP" type="HBoxContainer" parent="MarginContainer/VBoxContainer/Header"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 0
+mouse_filter = 2
+
+[node name="Icon" type="TextureRect" parent="MarginContainer/VBoxContainer/Header/MP"]
+custom_minimum_size = Vector2(20, 20)
+layout_mode = 2
+size_flags_vertical = 4
+mouse_filter = 2
+texture = ExtResource("3_esy5e")
+expand_mode = 1
+
+[node name="Value" type="Label" parent="MarginContainer/VBoxContainer/Header/MP"]
+layout_mode = 2
+text = "N_A_MP"
+label_settings = ExtResource("4_oloco")
+
+[node name="Title" type="Label" parent="MarginContainer/VBoxContainer/Header"]
+editor_description = "PLACEHOLDER"
+custom_minimum_size = Vector2(230, 0)
+layout_mode = 2
+size_flags_horizontal = 3
+text = "Cell Type Name"
+label_settings = ExtResource("5_smds5")
+horizontal_alignment = 1
+autowrap_mode = 2
+
+[node name="Spacer" type="Control" parent="MarginContainer/VBoxContainer/Header"]
+layout_mode = 2
+size_flags_horizontal = 3
+mouse_filter = 2
+
+[node name="ProcessList" parent="MarginContainer/VBoxContainer" instance=ExtResource("8_q5nwp")]
+layout_mode = 2
+mouse_filter = 2
+
+[node name="HSeparator" type="HSeparator" parent="MarginContainer/VBoxContainer"]
+layout_mode = 2
+mouse_filter = 2

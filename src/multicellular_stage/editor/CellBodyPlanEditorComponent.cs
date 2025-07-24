@@ -76,6 +76,8 @@ public partial class CellBodyPlanEditorComponent :
 
     private PackedScene cellTypeSelectionButtonScene = null!;
 
+    private PackedScene cellTypeTooltipButtonScene = null!;
+
     private ButtonGroup cellTypeButtonGroup = new();
 
     [Export]
@@ -150,6 +152,8 @@ public partial class CellBodyPlanEditorComponent :
 
         cellTypeSelectionButtonScene =
             GD.Load<PackedScene>("res://src/multicellular_stage/editor/CellTypeSelection.tscn");
+
+        cellTypeTooltipButtonScene = GD.Load<PackedScene>("res://src/multicellular_stage/editor/CellTypeTooltip.tscn");
 
         billboardScene = GD.Load<PackedScene>("res://src/multicellular_stage/CellBillboard.tscn");
 
@@ -872,12 +876,14 @@ public partial class CellBodyPlanEditorComponent :
     /// </summary>
     private void UpdateCellTypeSelections()
     {
+        ToolTipManager.Instance.ClearToolTips("lockedOrganelles", false);
+
         // Re-use / create more buttons to hold all the cell types
         foreach (var cellType in Editor.EditedSpecies.CellTypes.OrderBy(t => t.TypeName, StringComparer.Ordinal))
         {
             if (!cellTypeSelectionButtons.TryGetValue(cellType.TypeName, out var control))
             {
-                // Need new button
+                // Need a new button
                 control = (CellTypeSelection)cellTypeSelectionButtonScene.Instantiate();
                 control.SelectionGroup = cellTypeButtonGroup;
 
@@ -894,7 +900,11 @@ public partial class CellBodyPlanEditorComponent :
 
             control.MPCost = cellType.MPCost;
 
-            // TODO: tooltips for these
+            var tooltip = cellTypeTooltipButtonScene.Instantiate<CellTypeTooltip>();
+            tooltip.DisplayName = cellType.TypeName;
+            tooltip.MutationPointCost = cellType.MPCost;
+            ToolTipManager.Instance.AddToolTip(tooltip, "cellTypes");
+            control.RegisterToolTipForControl(tooltip, true);
         }
 
         bool clearSelection = false;
