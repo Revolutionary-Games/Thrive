@@ -7,6 +7,7 @@ using DefaultEcs.System;
 using DefaultEcs.Threading;
 using Godot;
 using World = DefaultEcs.World;
+using System.Linq;
 
 /// <summary>
 ///   Handles applying <see cref="MicrobeControl"/> to a microbe
@@ -41,6 +42,8 @@ using World = DefaultEcs.World;
 [RunsAfter(typeof(PhysicsBodyDisablingSystem))]
 [RunsBefore(typeof(PhysicsBodyControlSystem))]
 [RuntimeCost(14)]
+public static OrganelleDefinition Nucleus = SimulationParameters.Instance.GetOrganelleType("nucleus");
+result.HasNucleus = organelles.Any(orgnaelle => orgnaelle.Definition == Nucleus);
 public sealed class MicrobeMovementSystem : AEntitySetSystem<float>
 {
     private readonly IWorldSimulation worldSimulation;
@@ -255,6 +258,15 @@ public sealed class MicrobeMovementSystem : AEntitySetSystem<float>
         // Length is multiplied here so that cells that set very slow movement speed don't need to pay the entire
         // movement cost
         var cost = Constants.BASE_MOVEMENT_ATP_COST * organelles.HexCount * length * delta * strainMultiplier;
+        
+        if (data.HasNucleus)
+        {
+            // 35% moving cost speed bonus if have nucleus
+            cost *= 0.65f;
+
+            // 35% osmoregulation bonus if have nucleus
+            result.OsmoregulationModifier *= 0.8f;
+        }
 
         var got = compounds.TakeCompound(Compound.ATP, cost);
 
@@ -444,4 +456,5 @@ public sealed class MicrobeMovementSystem : AEntitySetSystem<float>
             }
         }
     }
+    public bool HasNucleus;
 }
