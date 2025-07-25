@@ -255,8 +255,9 @@ public sealed class MicrobeMovementSystem : AEntitySetSystem<float>
         // Length is multiplied here so that cells that set very slow movement speed don't need to pay the entire
         // movement cost
         var cost = Constants.BASE_MOVEMENT_ATP_COST * organelles.HexCount * length * delta * strainMultiplier;
+        
         var got = compounds.TakeCompound(Compound.ATP, cost);
-
+        
         // Halve base movement speed if out of ATP
         if (got < cost)
         {
