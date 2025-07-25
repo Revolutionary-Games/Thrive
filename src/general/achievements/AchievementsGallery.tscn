@@ -2,11 +2,18 @@
 
 [ext_resource type="Script" uid="uid://duj3a2cc61a7i" path="res://src/general/achievements/AchievementsGallery.cs" id="1_xkqjr"]
 
-[node name="AchievementsGallery" type="Control"]
-layout_mode = 3
+[node name="AchievementsGallery" type="ScrollContainer"]
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
+follow_focus = true
+draw_focus_border = true
+horizontal_scroll_mode = 0
 script = ExtResource("1_xkqjr")
+
+[node name="FlowContainer" type="FlowContainer" parent="."]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
