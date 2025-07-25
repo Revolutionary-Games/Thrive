@@ -17,14 +17,14 @@ public static class StringUtils
 
         if (cost < 0)
         {
-			// Negative MP cost means it actually gives MP
-			// To convey that to the player, we need to explicitly prefix the cost with a positive sign
-			result = "+" + Math.Round(Math.Abs(cost), Constants.MUTATION_POINTS_DECIMALS)
+            // Negative MP cost means it actually gives MP
+            // To convey that to the player, we need to explicitly prefix the cost with a positive sign
+            result = "+" + Math.Round(Math.Abs(cost), Constants.MUTATION_POINTS_DECIMALS)
                 .ToString(CultureInfo.CurrentCulture);
         }
         else
         {
-			result = Math.Round(cost, Constants.MUTATION_POINTS_DECIMALS).ToString(CultureInfo.CurrentCulture);
+            result = Math.Round(cost, Constants.MUTATION_POINTS_DECIMALS).ToString(CultureInfo.CurrentCulture);
         }
 
         return result;

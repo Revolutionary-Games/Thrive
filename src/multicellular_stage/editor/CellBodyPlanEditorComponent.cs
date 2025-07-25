@@ -900,9 +900,23 @@ public partial class CellBodyPlanEditorComponent :
 
             control.MPCost = cellType.MPCost;
 
+            // TODO: get actual tolerances once they are added to multicellular
+            var environmentalTolerances = new ResolvedMicrobeTolerances
+            {
+                HealthModifier = 1,
+                OsmoregulationModifier = 1,
+                ProcessSpeedModifier = 1,
+            };
+
+            var balances = new Dictionary<Compound, CompoundBalance>();
+
+            ProcessSystem.ComputeCompoundBalance(cellType.Organelles, Editor.CurrentPatch.Biome, environmentalTolerances,
+                organismStatisticsPanel.CompoundAmountType, true, balances);
+
             var tooltip = cellTypeTooltipButtonScene.Instantiate<CellTypeTooltip>();
             tooltip.DisplayName = cellType.TypeName;
             tooltip.MutationPointCost = cellType.MPCost;
+            tooltip.DisplayCellTypeBalances(balances);
             ToolTipManager.Instance.AddToolTip(tooltip, "cellTypes");
             control.RegisterToolTipForControl(tooltip, true);
         }

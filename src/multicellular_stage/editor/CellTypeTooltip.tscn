@@ -5,7 +5,7 @@
 [ext_resource type="Texture2D" uid="uid://drdwtf2f6qqch" path="res://assets/textures/gui/bevel/MP.png" id="3_esy5e"]
 [ext_resource type="LabelSettings" uid="uid://brgbuduvjby6a" path="res://src/gui_common/fonts/Title-SemiBold-Smaller.tres" id="4_oloco"]
 [ext_resource type="LabelSettings" uid="uid://bv3bnu0g1wdw3" path="res://src/gui_common/fonts/Title-SemiBold-Big.tres" id="5_smds5"]
-[ext_resource type="PackedScene" uid="uid://dt4v2vma5p2s4" path="res://src/microbe_stage/ProcessList.tscn" id="8_q5nwp"]
+[ext_resource type="PackedScene" uid="uid://sxqf3o1pkl0n" path="res://src/microbe_stage/editor/CompoundBalanceDisplay.tscn" id="6_0abd5"]
 
 [sub_resource type="StyleBoxFlat" id="1"]
 bg_color = Color(0, 0.129412, 0.141176, 0.980392)
@@ -19,7 +19,7 @@ corner_radius_top_right = 5
 corner_radius_bottom_right = 5
 corner_radius_bottom_left = 5
 
-[node name="SelectionMenuTooltip" type="PanelContainer" node_paths=PackedStringArray("nameLabel", "mpLabel")]
+[node name="SelectionMenuTooltip" type="PanelContainer" node_paths=PackedStringArray("nameLabel", "mpLabel", "compoundBalanceDisplay")]
 custom_minimum_size = Vector2(400, 0)
 offset_right = 350.0
 offset_bottom = 155.0
@@ -29,6 +29,7 @@ theme_override_styles/panel = SubResource("1")
 script = ExtResource("2_0abd5")
 nameLabel = NodePath("MarginContainer/VBoxContainer/Header/Title")
 mpLabel = NodePath("MarginContainer/VBoxContainer/Header/MP/Value")
+compoundBalanceDisplay = NodePath("MarginContainer/VBoxContainer/CompoundBalanceDisplay")
 
 [node name="MarginContainer" type="MarginContainer" parent="."]
 layout_mode = 2
@@ -82,9 +83,9 @@ layout_mode = 2
 size_flags_horizontal = 3
 mouse_filter = 2
 
-[node name="ProcessList" parent="MarginContainer/VBoxContainer" instance=ExtResource("8_q5nwp")]
+[node name="CompoundBalanceDisplay" parent="MarginContainer/VBoxContainer" instance=ExtResource("6_0abd5")]
 layout_mode = 2
-mouse_filter = 2
+showDisplayTypeSelector = false
 
 [node name="HSeparator" type="HSeparator" parent="MarginContainer/VBoxContainer"]
 layout_mode = 2

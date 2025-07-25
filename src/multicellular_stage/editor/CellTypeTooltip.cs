@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using Godot;
 
 /// <summary>
@@ -12,6 +13,9 @@ public partial class CellTypeTooltip : ControlWithInput, ICustomToolTip
 
     [Export]
     private Label mpLabel = null!;
+
+    [Export]
+    private CompoundBalanceDisplay compoundBalanceDisplay = null!;
 #pragma warning restore CA2213
 
     private string? displayName;
@@ -75,5 +79,10 @@ public partial class CellTypeTooltip : ControlWithInput, ICustomToolTip
     public void UpdateMPCost()
     {
         mpLabel.Text = StringUtils.FormatMutationPointCost(mpCost);
+    }
+
+    public void DisplayCellTypeBalances(Dictionary<Compound, CompoundBalance> balance)
+    {
+        compoundBalanceDisplay.UpdateBalances(balance, float.MaxValue);
     }
 }
