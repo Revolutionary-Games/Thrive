@@ -1594,6 +1594,9 @@ public static class Constants
     public const string FOSSILISED_SPECIES_FOLDER = "user://fossils";
     public const string AUTO_EVO_EXPORT_FOLDER = "user://auto-evo_exports";
 
+    public const string ACHIEVEMENTS_CONFIGURATION = "res://simulation_parameters/common/achievements.json";
+    public const string ACHIEVEMENTS_PROGRESS_SAVE = "user://achievements.bin";
+
     public const string TUTORIAL_DATA_FILE = "user://tutorials.json.gz";
 
     public const string CACHE_FOLDER = "user://cache";
