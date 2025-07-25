@@ -908,10 +908,25 @@ public partial class CellBodyPlanEditorComponent :
                 ProcessSpeedModifier = 1,
             };
 
+            // Energy and compound balance calculations
             var balances = new Dictionary<Compound, CompoundBalance>();
 
-            ProcessSystem.ComputeCompoundBalance(cellType.Organelles, Editor.CurrentPatch.Biome, environmentalTolerances,
-                organismStatisticsPanel.CompoundAmountType, true, balances);
+            var energyBalance = new EnergyBalanceInfoFull();
+            energyBalance.SetupTrackingForRequiredCompounds();
+
+            bool moving = organismStatisticsPanel.CalculateBalancesWhenMoving;
+
+            var maximumMovementDirection =
+                MicrobeInternalCalculations.MaximumSpeedDirection(cellType.Organelles);
+
+            ProcessSystem.ComputeEnergyBalanceFull(cellType.Organelles, Editor.CurrentPatch.Biome, environmentalTolerances,
+                cellType.MembraneType,
+                maximumMovementDirection, moving, true, Editor.CurrentGame.GameWorld.WorldSettings,
+                organismStatisticsPanel.CompoundAmountType, null, energyBalance);
+
+            AddCellTypeCompoundBalance(balances, cellType.Organelles, organismStatisticsPanel.BalanceDisplayType,
+                organismStatisticsPanel.CompoundAmountType, Editor.CurrentPatch.Biome, energyBalance,
+                environmentalTolerances);
 
             var tooltip = cellTypeTooltipButtonScene.Instantiate<CellTypeTooltip>();
             tooltip.DisplayName = cellType.TypeName;
@@ -1171,26 +1186,34 @@ public partial class CellBodyPlanEditorComponent :
         Dictionary<Compound, CompoundBalance> compoundBalanceData = new();
         foreach (var cell in cells)
         {
-            switch (calculationType)
-            {
-                case BalanceDisplayType.MaxSpeed:
-                    ProcessSystem.ComputeCompoundBalance(cell.Data!.Organelles, biome, environmentalTolerances,
-                        amountType, true, compoundBalanceData);
-                    break;
-                case BalanceDisplayType.EnergyEquilibrium:
-                    ProcessSystem.ComputeCompoundBalanceAtEquilibrium(cell.Data!.Organelles, biome,
-                        environmentalTolerances, amountType, energyBalance, compoundBalanceData);
-                    break;
-                default:
-                    GD.PrintErr("Unknown compound balance type: ", organismStatisticsPanel.BalanceDisplayType);
-                    goto case BalanceDisplayType.EnergyEquilibrium;
-            }
+            AddCellTypeCompoundBalance(compoundBalanceData, cell.Data!.Organelles, calculationType, amountType, biome,
+                energyBalance, environmentalTolerances);
         }
 
         specificStorages ??= CellBodyPlanInternalCalculations.GetTotalSpecificCapacity(cells.Select(o => o.Data!),
             out nominalStorage);
 
         return ProcessSystem.ComputeCompoundFillTimes(compoundBalanceData, nominalStorage, specificStorages);
+    }
+
+    private void AddCellTypeCompoundBalance(Dictionary<Compound, CompoundBalance> compoundBalanceData,
+        IEnumerable<OrganelleTemplate> organelles, BalanceDisplayType calculationType, CompoundAmountType amountType,
+        IBiomeConditions biome, EnergyBalanceInfoFull energyBalance, ResolvedMicrobeTolerances tolerances)
+    {
+        switch (calculationType)
+        {
+            case BalanceDisplayType.MaxSpeed:
+                ProcessSystem.ComputeCompoundBalance(organelles, biome, tolerances,
+                    amountType, true, compoundBalanceData);
+                break;
+            case BalanceDisplayType.EnergyEquilibrium:
+                ProcessSystem.ComputeCompoundBalanceAtEquilibrium(organelles, biome,
+                    tolerances, amountType, energyBalance, compoundBalanceData);
+                break;
+            default:
+                GD.PrintErr("Unknown compound balance type: ", organismStatisticsPanel.BalanceDisplayType);
+                goto case BalanceDisplayType.EnergyEquilibrium;
+        }
     }
 
     private void UpdateCellTypesCounts()
