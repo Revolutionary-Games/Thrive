@@ -450,6 +450,8 @@ public partial class CellBodyPlanEditorComponent :
 
         organismStatisticsPanel.UpdateLightSelectionPanelVisibility(
             Editor.CurrentGame.GameWorld.WorldSettings.DayNightCycleEnabled && Editor.CurrentPatch.HasDayAndNight);
+
+        UpdateCellTypeSelections();
     }
 
     public override void OnLightLevelChanged(float dayLightFraction)
@@ -459,6 +461,8 @@ public partial class CellBodyPlanEditorComponent :
         CalculateEnergyAndCompoundBalance(editedMicrobeCells);
 
         UpdateCellTypeBalances();
+
+        UpdateCellTypeSelections();
     }
 
     protected override void RegisterTooltips()
@@ -1065,6 +1069,8 @@ public partial class CellBodyPlanEditorComponent :
         UpdateCellTypeBalances();
 
         UpdateFinishButtonWarningVisibility();
+
+        UpdateCellTypeSelections();
     }
 
     private void OnResourceLimitingModeChanged()
@@ -1074,6 +1080,8 @@ public partial class CellBodyPlanEditorComponent :
         UpdateCellTypeBalances();
 
         UpdateFinishButtonWarningVisibility();
+
+        UpdateCellTypeSelections();
     }
 
     private void OnCellsChanged()
