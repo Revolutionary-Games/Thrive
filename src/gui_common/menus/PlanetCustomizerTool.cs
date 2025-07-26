@@ -37,6 +37,7 @@ public partial class PlanetCustomizerTool : Node
         base._Ready();
         InitNewWorld(SimulationParameters.Instance.AutoEvoConfiguration);
         patchMapDrawer.OnSelectedPatchChanged += UpdatePatchDetailPanel;
+        planetSettings.GenerateAndSetRandomSeed();
     }
 
     private void InitNewWorld(IAutoEvoConfiguration configuration)
@@ -54,6 +55,7 @@ public partial class PlanetCustomizerTool : Node
             DayNightCycleEnabled = planetGenerationSettings.DayNightCycleEnabled,
             DayLength = planetGenerationSettings.DayLength,
             LAWK = planetGenerationSettings.LAWK,
+            Seed = planetGenerationSettings.Seed,
         };
 
         gameProperties = GameProperties.StartNewMicrobeGame(worldSettings);
@@ -100,6 +102,7 @@ public partial class PlanetCustomizerTool : Node
 
     private void OnRegeneratePressed()
     {
+        planetSettings.GenerateAndSetRandomSeed();
         InitNewWorld(SimulationParameters.Instance.AutoEvoConfiguration);
     }
 

@@ -69,7 +69,7 @@ organelleUnlocksEnabled = NodePath("CenterContainer/VBoxContainer/AdvancedOption
 lifeOriginButton = NodePath("CenterContainer/VBoxContainer/BasicOptions/Main/VBoxContainer/VBoxContainer5/HBoxContainer/LifeOrigin")
 lawkButton = NodePath("CenterContainer/VBoxContainer/BasicOptions/Main/VBoxContainer/VBoxContainer4/HBoxContainer/LAWKButton")
 gameSeed = NodePath("CenterContainer/VBoxContainer/BasicOptions/Main/VBoxContainer/HBoxContainer3/HBoxContainer/GameSeed")
-planetSettings = NodePath("CenterContainer/VBoxContainer/AdvancedOptions/Planet/ScrollContainer/HBoxContainer/SettingsPanel")
+planetSettings = NodePath("CenterContainer/VBoxContainer/AdvancedOptions/Planet/ScrollContainer/HBoxContainer/PlanetSettingsPanel")
 includeMulticellularButton = NodePath("CenterContainer/VBoxContainer/AdvancedOptions/Misc/VBoxContainer/VBoxContainer5/HBoxContainer/IncludeMulticellular")
 easterEggsButton = NodePath("CenterContainer/VBoxContainer/AdvancedOptions/Misc/VBoxContainer/VBoxContainer6/HBoxContainer/EasterEggs")
 checkOptionsMenuAdviceContainer = NodePath("CenterContainer/VBoxContainer/BasicOptions/Main/VBoxContainer/CheckPerformanceSettingsContainer")
@@ -293,7 +293,7 @@ layout_mode = 2
 layout_mode = 2
 size_flags_horizontal = 3
 
-[node name="SettingsPanel" parent="CenterContainer/VBoxContainer/AdvancedOptions/Planet/ScrollContainer/HBoxContainer" instance=ExtResource("11_ra08r")]
+[node name="PlanetSettingsPanel" parent="CenterContainer/VBoxContainer/AdvancedOptions/Planet/ScrollContainer/HBoxContainer" instance=ExtResource("11_ra08r")]
 layout_mode = 2
 size_flags_horizontal = 3
 
@@ -1079,10 +1079,9 @@ text = "START_GAME"
 [connection signal="pressed" from="CenterContainer/VBoxContainer/TabButtons/PlanetButton" to="." method="ChangeSettingsTab" binds= ["Planet"]]
 [connection signal="pressed" from="CenterContainer/VBoxContainer/TabButtons/DifficultyButton" to="." method="ChangeSettingsTab" binds= ["Difficulty"]]
 [connection signal="pressed" from="CenterContainer/VBoxContainer/TabButtons/MiscButton" to="." method="ChangeSettingsTab" binds= ["Miscellaneous"]]
-[connection signal="GenerateSeedPressed" from="CenterContainer/VBoxContainer/AdvancedOptions/Planet/ScrollContainer/HBoxContainer/SettingsPanel" to="." method="OnRandomisedGameSeedPressed"]
-[connection signal="LawkSettingsChanged" from="CenterContainer/VBoxContainer/AdvancedOptions/Planet/ScrollContainer/HBoxContainer/SettingsPanel" to="." method="OnLawkPlanetSettingChanged"]
-[connection signal="LifeOriginSettingsChanged" from="CenterContainer/VBoxContainer/AdvancedOptions/Planet/ScrollContainer/HBoxContainer/SettingsPanel" to="." method="OnLifeOriginPlanetSettingChanged"]
-[connection signal="SeedSettingsChanged" from="CenterContainer/VBoxContainer/AdvancedOptions/Planet/ScrollContainer/HBoxContainer/SettingsPanel" to="." method="OnSeedChanged"]
+[connection signal="LawkSettingsChanged" from="CenterContainer/VBoxContainer/AdvancedOptions/Planet/ScrollContainer/HBoxContainer/PlanetSettingsPanel" to="." method="OnLawkPlanetSettingChanged"]
+[connection signal="LifeOriginSettingsChanged" from="CenterContainer/VBoxContainer/AdvancedOptions/Planet/ScrollContainer/HBoxContainer/PlanetSettingsPanel" to="." method="OnLifeOriginPlanetSettingChanged"]
+[connection signal="SeedSettingsChanged" from="CenterContainer/VBoxContainer/AdvancedOptions/Planet/ScrollContainer/HBoxContainer/PlanetSettingsPanel" to="." method="OnPlanetGeneratorSeedChanged"]
 [connection signal="item_selected" from="CenterContainer/VBoxContainer/AdvancedOptions/Difficulty/ScrollContainer/HBoxContainer/VBoxContainer/VBoxContainer6/HBoxContainer/DifficultyPreset" to="." method="OnDifficultyPresetSelected"]
 [connection signal="value_changed" from="CenterContainer/VBoxContainer/AdvancedOptions/Difficulty/ScrollContainer/HBoxContainer/VBoxContainer/VBoxContainer/HBoxContainer/HBoxContainer/MPMultiplier" to="." method="OnMPMultiplierValueChanged"]
 [connection signal="value_changed" from="CenterContainer/VBoxContainer/AdvancedOptions/Difficulty/ScrollContainer/HBoxContainer/VBoxContainer/VBoxContainer8/HBoxContainer/HBoxContainer/AIMutationRate" to="." method="OnAIMutationRateValueChanged"]

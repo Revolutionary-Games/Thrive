@@ -172,12 +172,12 @@ public partial class NewGameSettings : ControlWithInput
 
     private SelectedOptionsTab selectedOptionsTab;
 
+    private bool isUpdatingCurrentTabsSeed;
+
     /// <summary>
     ///   If not null, this is used as the base to start a new descended game
     /// </summary>
     private GameProperties? descendedGame;
-
-    private long latestValidSeed;
 
     private IEnumerable<DifficultyPreset> difficultyPresets = null!;
     private DifficultyPreset normal = null!;
@@ -246,11 +246,7 @@ public partial class NewGameSettings : ControlWithInput
         // Do this in case default values in NewGameSettings.tscn don't match the normal preset
         InitialiseToPreset(normal);
 
-        var seed = GenerateNewRandomSeed();
-        gameSeed.Text = seed;
-
-        // gameSeedAdvanced.Text = seed;
-        SetSeed(seed);
+        planetSettings.GenerateAndSetRandomSeed();
 
         // Make sure non-lawk options are disabled if lawk is set to true on start-up
         UpdateLifeOriginOptions(lawkButton.ButtonPressed);
@@ -351,8 +347,7 @@ public partial class NewGameSettings : ControlWithInput
         // Copy the seed from the settings, as there isn't one method to set this, this is done a bit clumsily like
         // this
         var seedText = settings.Seed.ToString();
-        gameSeed.Text = seedText;
-        SetSeed(seedText);
+        planetSettings.SetSeed(seedText);
 
         // Always set prototypes to true as the player must have been there to descend
         includeMulticellularButton.ButtonPressed = true;
@@ -386,33 +381,16 @@ public partial class NewGameSettings : ControlWithInput
         OnDifficultyPresetSelected(preset.Index);
     }
 
-    private string GenerateNewRandomSeed()
-    {
-        var random = new XoShiRo256starstar();
-
-        string result;
-
-        // Generate seeds until valid (0 is not considered valid)
-        do
-        {
-            result = random.Next64().ToString();
-        }
-        while (result == "0");
-
-        return result;
-    }
-
     private void SetSeed(string text)
     {
-        planetSettings.SetSeed(text);
-
         var valid = long.TryParse(text, out var seed) && seed > 0;
 
-        ReportValidityOfGameSeed(valid);
-        planetSettings.SetSeedValidity(valid);
+        // Don't update the text when editing, otherwise the caret with go to the beginning
+        if (!isUpdatingCurrentTabsSeed)
+            gameSeed.Text = text;
+        isUpdatingCurrentTabsSeed = false;
 
-        if (valid)
-            latestValidSeed = seed;
+        ReportValidityOfGameSeed(valid);
     }
 
     /// <summary>
@@ -491,7 +469,6 @@ public partial class NewGameSettings : ControlWithInput
         settings.ExperimentalFeatures = experimentalFeatures.ButtonPressed;
         OnExperimentalFeaturesChanged(settings.ExperimentalFeatures);
 
-        settings.Seed = latestValidSeed;
         settings.IncludeMulticellular = includeMulticellularButton.ButtonPressed;
         settings.EasterEggs = easterEggsButton.ButtonPressed;
 
@@ -504,6 +481,7 @@ public partial class NewGameSettings : ControlWithInput
         settings.DayNightCycleEnabled = planetGenerationSettings.DayNightCycleEnabled;
         settings.DayLength = planetGenerationSettings.DayLength;
         settings.LAWK = planetGenerationSettings.LAWK;
+        settings.Seed = planetGenerationSettings.Seed;
 
         // Stop music for the video (stop is used instead of pause to stop the menu music playing a bit after the video
         // before the stage music starts)
@@ -850,7 +828,7 @@ public partial class NewGameSettings : ControlWithInput
         planetSettings.SetLawkOnly(pressed);
     }
 
-    private void OnSeedChanged(string seed)
+    private void OnPlanetGeneratorSeedChanged(string seed)
     {
         SetSeed(seed);
     }
@@ -881,16 +859,14 @@ public partial class NewGameSettings : ControlWithInput
 
     private void OnGameSeedChangedFromBasic(string text)
     {
-        SetSeed(text);
+        isUpdatingCurrentTabsSeed = true;
+        planetSettings.SetSeed(text);
     }
 
     private void OnRandomisedGameSeedPressed()
     {
         GUICommon.Instance.PlayButtonPressSound();
-
-        var seed = GenerateNewRandomSeed();
-        gameSeed.Text = seed;
-        SetSeed(seed);
+        planetSettings.GenerateAndSetRandomSeed();
     }
 
     private void OnWorldSizeSelected(int index)

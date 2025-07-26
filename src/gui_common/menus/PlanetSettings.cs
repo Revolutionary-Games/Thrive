@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Globalization;
 using Godot;
+using Xoshiro.PRNG64;
 
 /// <summary>
 ///   Planet settings in the planet customizer.
@@ -45,14 +46,15 @@ public partial class PlanetSettings : VBoxContainer
     private LineEdit gameSeed = null!;
 #pragma warning restore CA2213
 
+    private long latestValidSeed;
+
+    private bool isUpdatingCurrentTabsSeed;
+
     [Signal]
     public delegate void LawkSettingsChangedEventHandler(bool lawkOnly);
 
     [Signal]
     public delegate void SeedSettingsChangedEventHandler(string seed);
-
-    [Signal]
-    public delegate void GenerateSeedPressedEventHandler();
 
     [Signal]
     public delegate void LifeOriginSettingsChangedEventHandler(WorldGenerationSettings.LifeOrigin lifeOrigin);
@@ -70,6 +72,7 @@ public partial class PlanetSettings : VBoxContainer
             DayNightCycleEnabled = dayNightCycleButton.ButtonPressed,
             DayLength = (int)dayLength.Value,
             LAWK = lawkOnlyButton.ButtonPressed,
+            Seed = latestValidSeed,
         };
     }
 
@@ -108,12 +111,17 @@ public partial class PlanetSettings : VBoxContainer
         lawkOnlyButton.ButtonPressed = pressed;
     }
 
-    public void SetSeed(string seed)
+    public void SetDayNightCycle(bool enabled)
     {
-        gameSeed.Text = seed;
+        dayNightCycleButton.ButtonPressed = enabled;
     }
 
-    public void SetSeedValidity(bool valid)
+    public void SetDayLength(float value)
+    {
+        dayLength.Value = value;
+    }
+
+    public void ReportValidityOfGameSeed(bool valid)
     {
         if (valid)
         {
@@ -125,14 +133,26 @@ public partial class PlanetSettings : VBoxContainer
         }
     }
 
-    public void SetDayNightCycle(bool enabled)
+    public void GenerateAndSetRandomSeed()
     {
-        dayNightCycleButton.ButtonPressed = enabled;
+        var seed = GenerateNewRandomSeed();
+        SetSeed(seed);
     }
 
-    public void SetDayLength(float value)
+    public void SetSeed(string text)
     {
-        dayLength.Value = value;
+        EmitSignal(SignalName.SeedSettingsChanged, text);
+
+        var valid = long.TryParse(text, out var seed) && seed > 0;
+
+        // Don't update the text when editing, otherwise the caret with go to the beginning
+        if (!isUpdatingCurrentTabsSeed)
+            gameSeed.Text = text;
+        isUpdatingCurrentTabsSeed = false;
+
+        ReportValidityOfGameSeed(valid);
+        if (valid)
+            latestValidSeed = seed;
     }
 
     private void OnDayNightCycleToggled(bool pressed)
@@ -167,17 +187,35 @@ public partial class PlanetSettings : VBoxContainer
 
     private void OnSeedChanged(string seed)
     {
-        EmitSignal(SignalName.SeedSettingsChanged, seed);
+        isUpdatingCurrentTabsSeed = true;
+        SetSeed(seed);
     }
 
     private void OnGenerateSeedPressed()
     {
-        EmitSignal(SignalName.GenerateSeedPressed);
+        GUICommon.Instance.PlayButtonPressSound();
+        GenerateAndSetRandomSeed();
     }
 
     private void OnLAWKToggled(bool pressed)
     {
         EmitSignal(SignalName.LawkSettingsChanged, pressed);
         UpdateLifeOriginOptions(pressed);
+    }
+
+    private string GenerateNewRandomSeed()
+    {
+        var random = new XoShiRo256starstar();
+
+        string result;
+
+        // Generate seeds until valid (0 is not considered valid)
+        do
+        {
+            result = random.Next64().ToString();
+        }
+        while (result == "0");
+
+        return result;
     }
 }
