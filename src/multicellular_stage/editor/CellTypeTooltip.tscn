@@ -26,8 +26,8 @@ corner_radius_top_right = 5
 corner_radius_bottom_right = 5
 corner_radius_bottom_left = 5
 
-[node name="SelectionMenuTooltip" type="PanelContainer" node_paths=PackedStringArray("nameLabel", "mpLabel", "compoundBalanceDisplay", "healthLabel", "storageLabel", "speedLabel", "rotationSpeedLabel", "sizeLabel", "digestionSpeedLabel")]
-custom_minimum_size = Vector2(400, 0)
+[node name="CellTypeTooltip" type="PanelContainer" node_paths=PackedStringArray("nameLabel", "mpLabel", "compoundBalanceDisplay", "healthLabel", "storageLabel", "speedLabel", "rotationSpeedLabel", "sizeLabel", "digestionSpeedLabel")]
+custom_minimum_size = Vector2(300, 0)
 offset_right = 350.0
 offset_bottom = 155.0
 mouse_filter = 2
