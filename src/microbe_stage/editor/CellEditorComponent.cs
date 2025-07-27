@@ -1387,12 +1387,7 @@ public partial class CellEditorComponent :
 
     public float CalculateHitpoints()
     {
-        var maxHitpoints = Membrane.Hitpoints + Rigidity * Constants.MEMBRANE_RIGIDITY_HITPOINTS_MODIFIER;
-
-        // Tolerances affect health
-        maxHitpoints *= CalculateLatestTolerances().HealthModifier;
-
-        return maxHitpoints;
+        return MicrobeInternalCalculations.CalculateHealth(CalculateLatestTolerances(), Membrane, Rigidity);
     }
 
     public Dictionary<Compound, float> GetAdditionalCapacities(out float nominalCapacity)

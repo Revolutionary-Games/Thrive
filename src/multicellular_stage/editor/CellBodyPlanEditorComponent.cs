@@ -912,32 +912,8 @@ public partial class CellBodyPlanEditorComponent :
                 ProcessSpeedModifier = 1,
             };
 
-            // Energy and compound balance calculations
-            var balances = new Dictionary<Compound, CompoundBalance>();
-
-            var energyBalance = new EnergyBalanceInfoFull();
-            energyBalance.SetupTrackingForRequiredCompounds();
-
-            bool moving = organismStatisticsPanel.CalculateBalancesWhenMoving;
-
-            var maximumMovementDirection =
-                MicrobeInternalCalculations.MaximumSpeedDirection(cellType.Organelles);
-
-            ProcessSystem.ComputeEnergyBalanceFull(cellType.Organelles, Editor.CurrentPatch.Biome, environmentalTolerances,
-                cellType.MembraneType,
-                maximumMovementDirection, moving, true, Editor.CurrentGame.GameWorld.WorldSettings,
-                organismStatisticsPanel.CompoundAmountType, null, energyBalance);
-
-            AddCellTypeCompoundBalance(balances, cellType.Organelles, organismStatisticsPanel.BalanceDisplayType,
-                organismStatisticsPanel.CompoundAmountType, Editor.CurrentPatch.Biome, energyBalance,
-                environmentalTolerances);
-
             var tooltip = cellTypeTooltipButtonScene.Instantiate<CellTypeTooltip>();
-            tooltip.DisplayName = cellType.TypeName;
-            tooltip.MutationPointCost = cellType.MPCost;
-            tooltip.DisplayCellTypeBalances(balances);
-            ToolTipManager.Instance.AddToolTip(tooltip, "cellTypes");
-            control.RegisterToolTipForControl(tooltip, true);
+            UpdateCellTypeTooltip(tooltip, control, cellType, environmentalTolerances);
         }
 
         bool clearSelection = false;
@@ -959,6 +935,52 @@ public partial class CellBodyPlanEditorComponent :
 
         if (clearSelection)
             ClearSelectedAction();
+    }
+
+    private void UpdateCellTypeTooltip(CellTypeTooltip tooltip, CellTypeSelection button, CellType cellType,
+        ResolvedMicrobeTolerances environmentalTolerances)
+    {
+        // Energy and compound balance calculations
+        var balances = new Dictionary<Compound, CompoundBalance>();
+
+        var energyBalance = new EnergyBalanceInfoFull();
+        energyBalance.SetupTrackingForRequiredCompounds();
+
+        bool moving = organismStatisticsPanel.CalculateBalancesWhenMoving;
+
+        var maximumMovementDirection =
+            MicrobeInternalCalculations.MaximumSpeedDirection(cellType.Organelles);
+
+        ProcessSystem.ComputeEnergyBalanceFull(cellType.Organelles, Editor.CurrentPatch.Biome, environmentalTolerances,
+            cellType.MembraneType,
+            maximumMovementDirection, moving, true, Editor.CurrentGame.GameWorld.WorldSettings,
+            organismStatisticsPanel.CompoundAmountType, null, energyBalance);
+
+        AddCellTypeCompoundBalance(balances, cellType.Organelles, organismStatisticsPanel.BalanceDisplayType,
+            organismStatisticsPanel.CompoundAmountType, Editor.CurrentPatch.Biome, energyBalance,
+            environmentalTolerances);
+
+        tooltip.DisplayName = cellType.TypeName;
+        tooltip.MutationPointCost = cellType.MPCost;
+        tooltip.DisplayCellTypeBalances(balances);
+
+        tooltip.UpdateHealthIndicator(MicrobeInternalCalculations.CalculateHealth(environmentalTolerances,
+            cellType.MembraneType, cellType.MembraneRigidity));
+
+        tooltip.UpdateStorageIndicator(MicrobeInternalCalculations.GetTotalNominalCapacity(cellType.Organelles));
+
+        tooltip.UpdateSpeedIndicator(MicrobeInternalCalculations.CalculateSpeed(cellType.Organelles,
+            cellType.MembraneType, cellType.MembraneRigidity, cellType.IsBacteria, false));
+
+        tooltip.UpdateRotationSpeedIndicator(MicrobeInternalCalculations.CalculateRotationSpeed(cellType.Organelles));
+
+        // Cell's size is equal to its hex count
+        tooltip.UpdateSizeIndicator(cellType.Organelles.Sum(o => o.Definition.HexCount));
+
+        tooltip.UpdateDigestionSpeedIndicator(MicrobeInternalCalculations.CalculateTotalDigestionSpeed(cellType.Organelles));
+
+        ToolTipManager.Instance.AddToolTip(tooltip, "cellTypes");
+        button.RegisterToolTipForControl(tooltip, true);
     }
 
     private void UpdateCellTypeBalances()

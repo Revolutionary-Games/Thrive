@@ -16,6 +16,24 @@ public partial class CellTypeTooltip : ControlWithInput, ICustomToolTip
 
     [Export]
     private CompoundBalanceDisplay compoundBalanceDisplay = null!;
+
+    [Export]
+    private CellTypeStatLabel healthLabel = null!;
+
+    [Export]
+    private CellTypeStatLabel storageLabel = null!;
+
+    [Export]
+    private CellTypeStatLabel speedLabel = null!;
+
+    [Export]
+    private CellTypeStatLabel rotationSpeedLabel = null!;
+
+    [Export]
+    private CellTypeStatLabel sizeLabel = null!;
+
+    [Export]
+    private CellTypeStatLabel digestionSpeedLabel = null!;
 #pragma warning restore CA2213
 
     private string? displayName;
@@ -84,5 +102,36 @@ public partial class CellTypeTooltip : ControlWithInput, ICustomToolTip
     public void DisplayCellTypeBalances(Dictionary<Compound, CompoundBalance> balance)
     {
         compoundBalanceDisplay.UpdateBalances(balance, float.MaxValue);
+    }
+
+    public void UpdateHealthIndicator(float value)
+    {
+        healthLabel.Value = MathF.Round(value, 1);
+    }
+
+    public void UpdateStorageIndicator(float value)
+    {
+        storageLabel.Value = MathF.Round(value, 1);
+    }
+
+    public void UpdateSpeedIndicator(float value)
+    {
+        speedLabel.Value = MathF.Round(MicrobeInternalCalculations.SpeedToUserReadableNumber(value), 2);
+    }
+
+    public void UpdateRotationSpeedIndicator(float value)
+    {
+        rotationSpeedLabel.Value = MathF.Round(MicrobeInternalCalculations.RotationSpeedToUserReadableNumber(value),
+            2);
+    }
+
+    public void UpdateSizeIndicator(float value)
+    {
+        sizeLabel.Value = MathF.Round(value, 1);
+    }
+
+    public void UpdateDigestionSpeedIndicator(float value)
+    {
+        digestionSpeedLabel.Value = MathF.Round(value, 1);
     }
 }
