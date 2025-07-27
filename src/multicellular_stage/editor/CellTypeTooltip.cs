@@ -111,27 +111,27 @@ public partial class CellTypeTooltip : ControlWithInput, ICustomToolTip
 
     public void UpdateStorageIndicator(float value)
     {
-        storageLabel.Value = MathF.Round(value, 1);
+        storageLabel.Value = MathF.Round(value, 2);
     }
 
     public void UpdateSpeedIndicator(float value)
     {
-        speedLabel.Value = MathF.Round(MicrobeInternalCalculations.SpeedToUserReadableNumber(value), 2);
+        speedLabel.Value = MathF.Round(MicrobeInternalCalculations.SpeedToUserReadableNumber(value), 1);
     }
 
     public void UpdateRotationSpeedIndicator(float value)
     {
         rotationSpeedLabel.Value = MathF.Round(MicrobeInternalCalculations.RotationSpeedToUserReadableNumber(value),
-            2);
+            1);
     }
 
-    public void UpdateSizeIndicator(float value)
+    public void UpdateSizeIndicator(int value)
     {
-        sizeLabel.Value = MathF.Round(value, 1);
+        sizeLabel.Value = value;
     }
 
     public void UpdateDigestionSpeedIndicator(float value)
     {
-        digestionSpeedLabel.Value = MathF.Round(value, 1);
+        digestionSpeedLabel.Value = MathF.Round(value, 2);
     }
 }

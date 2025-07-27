@@ -974,7 +974,6 @@ public partial class CellBodyPlanEditorComponent :
 
         tooltip.UpdateRotationSpeedIndicator(MicrobeInternalCalculations.CalculateRotationSpeed(cellType.Organelles));
 
-        // Cell's size is equal to its hex count
         tooltip.UpdateSizeIndicator(cellType.Organelles.Sum(o => o.Definition.HexCount));
 
         tooltip.UpdateDigestionSpeedIndicator(MicrobeInternalCalculations.CalculateTotalDigestionSpeed(cellType.Organelles));
