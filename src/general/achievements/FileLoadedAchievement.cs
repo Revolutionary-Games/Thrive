@@ -79,8 +79,8 @@ public class FileLoadedAchievement : IAchievement
         {
             if (LinkedStatisticThreshold < 1)
             {
-                throw new Exception(
-                    $"Linked statistic threshold for achievement {internalName} must be at least 1, but is {LinkedStatisticThreshold}");
+                throw new Exception($"Linked statistic threshold for achievement {internalName} must be at least 1, " +
+                    $"but is {LinkedStatisticThreshold}");
             }
 
             // Verify statistic is correct
