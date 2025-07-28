@@ -8,7 +8,7 @@ msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2025-07-21 23:42+0200\n"
-"PO-Revision-Date: 2025-07-25 12:33+0000\n"
+"PO-Revision-Date: 2025-07-28 09:22+0000\n"
 "Last-Translator: xzihnago <xzihnago@gmail.com>\n"
 "Language-Team: Chinese (Traditional Han script) <https://translate.revolutionarygamesstudio.com/projects/thrive/thrive-game/zh_Hant/>\n"
 "Language: zh_TW\n"
@@ -8816,10 +8816,11 @@ msgstr ""
 "\n"
 "[color=#3796e1][url=https://en.wikipedia.org/wiki/Thermosynthesis]Wikipedia 中的熱合成[/url][/color]"
 
-#, fuzzy
 msgid "WIKI_THERMOPLAST_STRATEGY"
 msgstr ""
-"由於[b]熱合成[/b]除了環境[thrive:compound type=\"temperature\"][/thrive:compound] 以外不需要任何輸入，因此它本質上是免費能量。此外，[b]熱能體[/b]比其前身[b][color=#3796e1][url=thriveopedia:thermosynthase]熱合成酶[/url][/color][/b]更高效，這使得它們可以說是遊戲中最簡單的能量產生方法，前提是您願意留在海底熱泉等炎熱地區。\n"
+"[b]熱合成[/b]可能是最具移動性的自營形式，它需要持續不斷的運動。您需要從較冷的區域移動到較熱的區域，然後再返回。當細胞溫度停止升高後，[thrive:compound type=\"atp\"][/thrive:compound] 的產量將降至零。最好啟動[i]熱視覺[/i]來觀察細胞周圍的冷熱區域，以便更有效地在這些區域之間穿梭。熱能體在溫度較高的區域效率更高，因此最適合在海底熱泉使用。\n"
+"\n"
+"由於[b]熱能體[/b]的[thrive:compound type=\"atp\"][/thrive:compound] 生產會經常停止，因此擁有第二能量來源非常重要，否則您將因缺乏[thrive:compound type=\"atp\"][/thrive:compound] 而受到持續傷害。\n"
 "\n"
 "啟用細胞器解鎖後，需要在細胞中使用[b][color=#3796e1][url=thriveopedia:thermosynthase]熱合成酶[/url][/color][/b]進行多次繁殖，意味著玩家演化[b]熱能體[/b]時，他們可能已經非常專注於[b]熱合成[/b]以獲得[b]熱能體[/b]。"
 
@@ -8852,9 +8853,13 @@ msgstr ""
 "\n"
 "[indent]—   位於至少 [b]50 °C[/b] [thrive:compound type=\"temperature\"][/thrive:compound] 的區域。[/indent]"
 
-#, fuzzy
 msgid "WIKI_THERMOSYNTHASE_SCIENTIFIC_BACKGROUND"
-msgstr "待定"
+msgstr ""
+"熱合成最初是由 Anthonie Muller 於 1983 年的一篇論文中提出的（\"Thermoelectric Energy Conversion Could Be An Energy Source Of Living Organisms\", in Physics Letters A, vol. 96, Issue 6, pp. 319-321）。\n"
+"\n"
+"Muller 還提出，熱合成可能是最早的（基於硫的）光合作用的先驅（A search for thermosynthesis: starvation survival in thermally cycled bacteria）。\n"
+"\n"
+"[color=#3796e1][url=https://en.wikipedia.org/wiki/Thermosynthesis]Wikipedia 中的熱合成[/url][/color]"
 
 #, fuzzy
 msgid "WIKI_THERMOSYNTHASE_STRATEGY"
