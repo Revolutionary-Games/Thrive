@@ -21,6 +21,10 @@ public partial class AchievementsManager : Node
     /// </summary>
     private const string ACHIEVEMENTS_INTEGRITY = "aadasd";
 
+    // NEVER CHANGE THESE
+    private const string ACHIEVEMENTS_ENC_KEY_PART = "Thirv11525700";
+    private static readonly byte[] EncryptionIv = "2947011395745013"u8.ToArray();
+
     private static AchievementsManager? instance;
 
     private static bool preventAchievements;
@@ -46,6 +50,8 @@ public partial class AchievementsManager : Node
     private bool dirty;
 
     private bool saving;
+
+    private AchievementsDiskProgress achievementsDiskProgress = new();
 
     protected AchievementsManager()
     {
@@ -214,6 +220,7 @@ public partial class AchievementsManager : Node
         {
             statsStore.IncrementIntStat(AchievementStatStore.STAT_MICROBE_KILLS);
 
+            // TODO: automatically generate the list of relevant achievements for each event?
             ReportStatUpdateToRelevantAchievements([AchievementIds.MICROBIAL_MASSACRE]);
         }
     }
@@ -222,12 +229,16 @@ public partial class AchievementsManager : Node
     {
         if (preventAchievements)
             return;
+
+        // TODO: add an achievement for this
     }
 
     internal void OnPlayerPhotosynthesisGlucoseBalance(float balance)
     {
         if (preventAchievements)
             return;
+
+        // TODO: add an achievement for this
     }
 
     // End of events
@@ -235,6 +246,29 @@ public partial class AchievementsManager : Node
     private static void UpdateAchievementsPrevention()
     {
         preventAchievements = playerInFreebuild || playerHasCheated;
+    }
+
+    private static string GetKeySecondPart()
+    {
+        ulong value = Constants.ACHIEVEMENT_DATA_VALUE;
+        value += 32454563;
+        value = ulong.RotateLeft(value, 12);
+        value ^= 45576465734523465;
+        value = ulong.RotateRight(value, 7);
+        value += 42;
+
+        return Convert.ToString(value);
+    }
+
+    private static Aes GetEncryption()
+    {
+        var key = Encoding.UTF8.GetBytes(ACHIEVEMENTS_ENC_KEY_PART + GetKeySecondPart());
+        var aes = Aes.Create();
+
+        aes.Key = key;
+        aes.IV = EncryptionIv;
+
+        return aes;
     }
 
     private void ReportStatUpdateToRelevantAchievements(ReadOnlySpan<int> ids)
@@ -268,6 +302,18 @@ public partial class AchievementsManager : Node
 
     private void PerformLoad()
     {
+        // Load achievements progress data
+        // TODO: in Steam mode need to load data from steam
+        var newProgress = LoadAchievementsProgress();
+
+        lock (achievementsDataLock)
+        {
+            if (newProgress != null)
+                achievementsDiskProgress = newProgress;
+
+            statsStore.Load(achievementsDiskProgress.IntStats);
+        }
+
         // Load the achievement configuration JSON
         try
         {
@@ -275,14 +321,18 @@ public partial class AchievementsManager : Node
 
             var serializer = JsonSerializer.Create();
             using var reader = new JsonTextReader(new StringReader(data));
-            var deserialized = serializer.Deserialize<List<FileLoadedAchievement>>(reader) ??
+            var deserialized = serializer.Deserialize<Dictionary<string, FileLoadedAchievement>>(reader) ??
                 throw new Exception("Failed to deserialize achievements");
 
-            foreach (var loadedAchievement in deserialized)
+            lock (achievementsDataLock)
             {
-                loadedAchievement.VerifyData();
+                foreach (var loadedAchievement in deserialized)
+                {
+                    loadedAchievement.Value.OnLoaded(loadedAchievement.Key,
+                        achievementsDiskProgress.UnlockedAchievements.Contains(loadedAchievement.Key));
 
-                achievements[loadedAchievement.Identifier] = loadedAchievement;
+                    achievements[loadedAchievement.Value.Identifier] = loadedAchievement.Value;
+                }
             }
         }
         catch (Exception e)
@@ -292,10 +342,6 @@ public partial class AchievementsManager : Node
             SceneManager.Instance.QuitDueToError();
             return;
         }
-
-        // TODO: load achievements data
-
-        // TODO: in Steam mode need to load data from steam
 
         Invoke.Instance.Perform(() =>
         {
@@ -328,7 +374,17 @@ public partial class AchievementsManager : Node
 
     private void PerformDataSave()
     {
-        // TODO: writing out the data
+        // Copy stats data for writing
+        lock (achievementsDataLock)
+        {
+            statsStore.Save(achievementsDiskProgress.IntStats);
+        }
+
+        // TODO: make sure that the stats and achievements can't get out of sync here in saving (as we don't hold a
+        // lock for the whole duration of the save)
+
+        // Writing out the data
+        SaveAchievementsProgress(achievementsDiskProgress);
 
         lock (achievementsDataLock)
         {
@@ -357,5 +413,84 @@ public partial class AchievementsManager : Node
         }
 
         return result;
+    }
+
+    private AchievementsDiskProgress? LoadAchievementsProgress()
+    {
+        var path = Constants.ACHIEVEMENTS_PROGRESS_SAVE;
+
+        using var file = FileAccess.Open(path, FileAccess.ModeFlags.Read);
+
+        if (file == null)
+        {
+            GD.Print("No existing achievements progress data");
+            return null;
+        }
+
+        // Skip magic
+        file.Get32();
+
+        var length = file.Get32();
+
+        var result = file.GetBuffer(length);
+
+        if (file.GetError() != Error.Ok)
+        {
+            GD.PrintErr("Failed to read achievements progress data");
+            return null;
+        }
+
+        using Aes aes = GetEncryption();
+
+        using var stream = new MemoryStream(result);
+        using var crypto = new CryptoStream(stream, aes.CreateDecryptor(), CryptoStreamMode.Read);
+        using var textReader = new StreamReader(crypto);
+        using var reader = new JsonTextReader(textReader);
+
+        var deserializer = JsonSerializer.Create();
+        var progress = deserializer.Deserialize<AchievementsDiskProgress>(reader) ??
+            throw new Exception("Failed to deserialize achievements progress");
+
+        return progress;
+    }
+
+    private void SaveAchievementsProgress(AchievementsDiskProgress data)
+    {
+        var path = Constants.ACHIEVEMENTS_PROGRESS_SAVE;
+
+        using var file = FileAccess.Open(path, FileAccess.ModeFlags.Write);
+
+        // Magic is "TAch"
+        file.Store32('T' << 24 | 'A' << 16 | 'c' << 8 | 'h');
+
+        // Create data buffer
+        using Aes aes = GetEncryption();
+        using var stream = new MemoryStream();
+        using var crypto = new CryptoStream(stream, aes.CreateEncryptor(), CryptoStreamMode.Write);
+        using var textWriter = new StreamWriter(crypto);
+        using var writer = new JsonTextWriter(textWriter);
+
+        var serializer = JsonSerializer.Create();
+
+        // Ensure data is not modified while saving it
+        lock (achievementsDataLock)
+        {
+            serializer.Serialize(writer, data);
+        }
+
+        writer.Flush();
+        textWriter.Flush();
+        crypto.Flush();
+
+        // Write data
+        file.Store32((uint)stream.Length);
+        file.StoreBuffer(stream.ToArray());
+    }
+
+    private class AchievementsDiskProgress
+    {
+        public HashSet<string> UnlockedAchievements = new HashSet<string>();
+
+        public Dictionary<int, int> IntStats = new Dictionary<int, int>();
     }
 }

@@ -1999,6 +1999,8 @@ public static class Constants
     public const string CONDITION_GREEN_COLOUR = "#70f423";
     public const string CONDITION_RED_COLOUR = "#ff4d4d";
 
+    public const ulong ACHIEVEMENT_DATA_VALUE = 7484237571489941;
+
     /// <summary>
     ///   Also see <see cref="AUTO_EVO_BASE_DIGESTION_SCORE"/>
     /// </summary>
