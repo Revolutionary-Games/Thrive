@@ -876,8 +876,6 @@ public partial class CellBodyPlanEditorComponent :
     /// </summary>
     private void UpdateCellTypeSelections()
     {
-        ToolTipManager.Instance.ClearToolTips("lockedOrganelles", false);
-
         // Re-use / create more buttons to hold all the cell types
         foreach (var cellType in Editor.EditedSpecies.CellTypes.OrderBy(t => t.TypeName, StringComparer.Ordinal))
         {
@@ -897,10 +895,17 @@ public partial class CellBodyPlanEditorComponent :
                 control.Connect(MicrobePartSelection.SignalName.OnPartSelected,
                     new Callable(this, nameof(OnCellToPlaceSelected)));
 
-                var tooltip = cellTypeTooltipButtonScene.Instantiate<CellTypeTooltip>();
+                // Reuse an existing tooltip when possible
+                var tooltip = ToolTipManager.Instance.GetToolTipIfExists<CellTypeTooltip>(cellType.TypeName, "cellTypes");
+
+                if (tooltip == null)
+                {
+                    tooltip = cellTypeTooltipButtonScene.Instantiate<CellTypeTooltip>();
+                    ToolTipManager.Instance.AddToolTip(tooltip, "cellTypes");
+                }
+
                 tooltip.Name = cellType.TypeName;
 
-                ToolTipManager.Instance.AddToolTip(tooltip, "cellTypes");
                 control.RegisterToolTipForControl(tooltip, true);
             }
 
@@ -917,8 +922,7 @@ public partial class CellBodyPlanEditorComponent :
                 var control = cellTypeSelectionButtons[key];
                 cellTypeSelectionButtons.Remove(key);
 
-                control.UnRegisterFirstToolTipForControl();
-
+                ToolTipManager.Instance.RemoveToolTip(control.CellType.TypeName, "cellTypes");
                 control.DetachAndQueueFree();
 
                 if (activeActionName == key)
