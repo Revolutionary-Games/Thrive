@@ -40,13 +40,14 @@ public partial class CompoundBalanceDisplay : VBoxContainer
 
     public override void _Ready()
     {
+        childCache = new ChildObjectCache<Compound, CompoundAmount>(compoundListContainer,
+            c => new CompoundAmount { Compound = c, PrefixPositiveWithPlus = true });
+
         modeSelector.Visible = showDisplayTypeSelector;
     }
 
     public void UpdateBalances(Dictionary<Compound, CompoundBalance> balances, float dayLengthWarningThreshold)
     {
-        childCache ??= new ChildObjectCache<Compound, CompoundAmount>(compoundListContainer,
-            c => new CompoundAmount { Compound = c, PrefixPositiveWithPlus = true });
         childCache.UnMarkAll();
 
         var simulationParameters = SimulationParameters.Instance;
