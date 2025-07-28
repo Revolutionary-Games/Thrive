@@ -90,6 +90,9 @@ public partial class MainMenu : NodeWithInput
     private Button autoEvoExploringButton = null!;
 
     [Export]
+    private Button planetCustomizationButton = null!;
+
+    [Export]
     private Button microbeBenchmarkButton = null!;
 
     [Export]
@@ -830,6 +833,17 @@ public partial class MainMenu : NodeWithInput
 
         TransitionManager.Instance.AddSequence(ScreenFade.FadeType.FadeOut, 0.1f,
             () => { SceneManager.Instance.SwitchToScene("res://src/auto-evo/AutoEvoExploringTool.tscn"); }, false);
+    }
+
+    private void PlanetCustomizerPressed()
+    {
+        GUICommon.Instance.PlayButtonPressSound();
+
+        planetCustomizationButton.Disabled = true;
+
+        TransitionManager.Instance.AddSequence(ScreenFade.FadeType.FadeOut, 0.1f,
+            () => { SceneManager.Instance.SwitchToScene("res://src/gui_common/menus/PlanetCustomizerTool.tscn"); },
+            false);
     }
 
     // TODO: this is now used by another sub menu as well so renaming this to be more generic would be good

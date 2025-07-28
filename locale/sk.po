@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2025-07-12 13:25+0200\n"
+"POT-Creation-Date: 2025-07-21 23:42+0200\n"
 "PO-Revision-Date: 2025-04-26 10:58+0000\n"
 "Last-Translator: Samuel Haššo <snurka1999@gmail.com>\n"
 "Language-Team: Slovak <https://translate.revolutionarygamesstudio.com/projects/thrive/thrive-game/sk/>\n"
@@ -344,6 +344,10 @@ msgstr "Automatické ukladanie počas hry"
 msgid "AUTO_EVO"
 msgstr "Automatická evolúcia"
 
+#, fuzzy
+msgid "AUTO_EVO_EXPLORER_TOOL_BUTTON"
+msgstr "Nástroj prieskumu Auto-Evo"
+
 msgid "AUTO_EVO_EXPLORING_TOOL"
 msgstr "Nástroj prieskumu Auto-Evo"
 
@@ -402,6 +406,9 @@ msgstr "Backslash"
 
 msgid "BACKSPACE"
 msgstr "Backspace"
+
+msgid "BACK_TO_SETTINGS"
+msgstr ""
 
 #, fuzzy
 msgid "BACTERIAL_THERMOSYNTHESIS"
@@ -810,6 +817,24 @@ msgid "CLEAR_CACHE"
 msgstr ""
 
 msgid "CLICK_TO_SELECT"
+msgstr ""
+
+msgid "CLIMATE_INSTABILITY"
+msgstr ""
+
+#, fuzzy
+msgid "CLIMATE_INSTABILITY_EXPLANATION"
+msgstr ""
+"Aktívne mikróby budú utekať a zmätkovať, keď sa nič zaujímavé nebude diať.\n"
+"Spiace mikróby budú nehybné čakať, kým sa zmení prostredie, než začnú konať."
+
+msgid "CLIMATE_STABILITY_AVERAGE"
+msgstr ""
+
+msgid "CLIMATE_STABILITY_STABLE"
+msgstr ""
+
+msgid "CLIMATE_STABILITY_UNSTABLE"
 msgstr ""
 
 msgid "CLOSE"
@@ -2401,11 +2426,33 @@ msgstr "Chybu opravíš stlačením tlačidla Zrušiť v editore"
 msgid "GENERAL_LOADING_TIP_7"
 msgstr "Chybu opravíš stlačením tlačidla Zrušiť v editore"
 
+#, fuzzy
+msgid "GENERATE_BUTTON"
+msgstr "Generácia"
+
 msgid "GENERATIONS"
 msgstr "Generácia"
 
 msgid "GENERATION_COLON"
 msgstr "Generácia:"
+
+msgid "GEOLOGICAL_ACTIVITY"
+msgstr ""
+
+msgid "GEOLOGICAL_ACTIVITY_ACTIVE"
+msgstr ""
+
+msgid "GEOLOGICAL_ACTIVITY_AVERAGE"
+msgstr ""
+
+msgid "GEOLOGICAL_ACTIVITY_DORMANT"
+msgstr ""
+
+#, fuzzy
+msgid "GEOLOGICAL_ACTIVITY_EXPLANATION"
+msgstr ""
+"Aktívne mikróby budú utekať a zmätkovať, keď sa nič zaujímavé nebude diať.\n"
+"Spiace mikróby budú nehybné čakať, kým sa zmení prostredie, než začnú konať."
 
 #, fuzzy
 msgid "GITHUB_TOOLTIP"
@@ -4731,11 +4778,12 @@ msgstr "Umiestniť organelu"
 msgid "PLANET"
 msgstr "Planéta"
 
+#, fuzzy
+msgid "PLANET_CUSTOMIZER"
+msgstr "Na kurzore:"
+
 msgid "PLANET_DETAILS_STRING"
 msgstr ""
-
-msgid "PLANET_GENERATION_TEASER"
-msgstr "Generovanie planéty už čoskoro!"
 
 msgid "PLANET_RANDOM_SEED"
 msgstr "Náhodné semeno planéty"
@@ -4940,6 +4988,10 @@ msgstr "Vrátiť poslednú zmenu"
 
 msgid "REFRESH"
 msgstr "Obnoviť"
+
+#, fuzzy
+msgid "REGENERATE_BUTTON"
+msgstr "Organely"
 
 msgid "RENDER_SCALE"
 msgstr ""
@@ -8553,6 +8605,24 @@ msgid "WORLD_MISC_DETAILS_STRING"
 msgstr ""
 
 #, fuzzy
+msgid "WORLD_OCEANIC_COVERAGE"
+msgstr "Základný pohyb"
+
+#, fuzzy
+msgid "WORLD_OCEANIC_COVERAGE_EXPLANATION"
+msgstr "(začiatočná poloha)"
+
+msgid "WORLD_OCEANIC_COVERAGE_LARGE"
+msgstr ""
+
+#, fuzzy
+msgid "WORLD_OCEANIC_COVERAGE_MEDIUM"
+msgstr "Základný pohyb"
+
+msgid "WORLD_OCEANIC_COVERAGE_SMALL"
+msgstr ""
+
+#, fuzzy
 msgid "WORLD_RELATIVE_MOVEMENT"
 msgstr "Základný pohyb"
 
@@ -8577,6 +8647,26 @@ msgstr ""
 #, fuzzy
 msgid "WORLD_SIZE_TOOLTIP"
 msgstr "Uplynulý čas: {0:#,#} rokov"
+
+#, fuzzy
+msgid "WORLD_TEMPERATURE"
+msgstr "Teplota"
+
+#, fuzzy
+msgid "WORLD_TEMPERATURE_COLD"
+msgstr "Teplota."
+
+#, fuzzy
+msgid "WORLD_TEMPERATURE_EXPLANATION"
+msgstr "(začiatočná poloha)"
+
+#, fuzzy
+msgid "WORLD_TEMPERATURE_TEMPERATE"
+msgstr "Teplota."
+
+#, fuzzy
+msgid "WORLD_TEMPERATURE_WARM"
+msgstr "Teplota."
 
 msgid "WORST_PATCH_COLON"
 msgstr "Najhoršia oblasť:"
@@ -8617,6 +8707,21 @@ msgstr "Priblížiť"
 
 msgid "ZOOM_OUT"
 msgstr "Oddialiť"
+
+#, fuzzy
+#~ msgid "WORLD_SEA_LEVEL"
+#~ msgstr "{0}-{1}m pod hladinou mora"
+
+#, fuzzy
+#~ msgid "WORLD_SEA_LEVEL_DEEP"
+#~ msgstr "{0}-{1}m pod hladinou mora"
+
+#, fuzzy
+#~ msgid "WORLD_SEA_LEVEL_MODERATE"
+#~ msgstr "Základný pohyb"
+
+#~ msgid "PLANET_GENERATION_TEASER"
+#~ msgstr "Generovanie planéty už čoskoro!"
 
 #, fuzzy
 #~ msgid "PASSIVE_REPRODUCTION_PROGRESS_EXPLANATION"

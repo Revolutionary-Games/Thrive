@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2025-07-12 13:25+0200\n"
+"POT-Creation-Date: 2025-07-21 23:42+0200\n"
 "PO-Revision-Date: 2025-05-25 15:00+0000\n"
 "Last-Translator: Anonymous <noreply@weblate.org>\n"
 "Language-Team: Lithuanian <https://translate.revolutionarygamesstudio.com/projects/thrive/thrive-game/lt/>\n"
@@ -370,6 +370,10 @@ msgstr "Automatinis išsaugojimas žaidimo metu"
 msgid "AUTO_EVO"
 msgstr "Automatinė Evoliucija"
 
+#, fuzzy
+msgid "AUTO_EVO_EXPLORER_TOOL_BUTTON"
+msgstr "Auto-Evo Tyrinėjimo Įrankis"
+
 msgid "AUTO_EVO_EXPLORING_TOOL"
 msgstr "Auto-Evo Tyrinėjimo Įrankis"
 
@@ -425,6 +429,9 @@ msgstr "Atgalinis brūkšnys"
 
 msgid "BACKSPACE"
 msgstr "Grąžinamasis klavišas"
+
+msgid "BACK_TO_SETTINGS"
+msgstr ""
 
 #, fuzzy
 msgid "BACTERIAL_THERMOSYNTHESIS"
@@ -819,6 +826,24 @@ msgid "CLEAR_CACHE"
 msgstr ""
 
 msgid "CLICK_TO_SELECT"
+msgstr ""
+
+msgid "CLIMATE_INSTABILITY"
+msgstr ""
+
+#, fuzzy
+msgid "CLIMATE_INSTABILITY_EXPLANATION"
+msgstr ""
+"Aktyvūs mikrobai bėgs ir kris kai nieko įdomaus nevyksta.\n"
+"Sėslūs mikrobai bus stacionarūs ir lauks, kol aplinka pasikeis, prieš veikdami."
+
+msgid "CLIMATE_STABILITY_AVERAGE"
+msgstr ""
+
+msgid "CLIMATE_STABILITY_STABLE"
+msgstr ""
+
+msgid "CLIMATE_STABILITY_UNSTABLE"
 msgstr ""
 
 msgid "CLOSE"
@@ -2408,11 +2433,33 @@ msgid "GENERAL_LOADING_TIP_7"
 msgstr ""
 
 #, fuzzy
+msgid "GENERATE_BUTTON"
+msgstr "Bendra"
+
+#, fuzzy
 msgid "GENERATIONS"
 msgstr "Bendra"
 
 msgid "GENERATION_COLON"
 msgstr ""
+
+msgid "GEOLOGICAL_ACTIVITY"
+msgstr ""
+
+msgid "GEOLOGICAL_ACTIVITY_ACTIVE"
+msgstr ""
+
+msgid "GEOLOGICAL_ACTIVITY_AVERAGE"
+msgstr ""
+
+msgid "GEOLOGICAL_ACTIVITY_DORMANT"
+msgstr ""
+
+#, fuzzy
+msgid "GEOLOGICAL_ACTIVITY_EXPLANATION"
+msgstr ""
+"Aktyvūs mikrobai bėgs ir kris kai nieko įdomaus nevyksta.\n"
+"Sėslūs mikrobai bus stacionarūs ir lauks, kol aplinka pasikeis, prieš veikdami."
 
 #, fuzzy
 msgid "GITHUB_TOOLTIP"
@@ -4649,10 +4696,11 @@ msgstr ""
 msgid "PLANET"
 msgstr "Planeta"
 
-msgid "PLANET_DETAILS_STRING"
-msgstr ""
+#, fuzzy
+msgid "PLANET_CUSTOMIZER"
+msgstr "Prie Žymeklio:"
 
-msgid "PLANET_GENERATION_TEASER"
+msgid "PLANET_DETAILS_STRING"
 msgstr ""
 
 msgid "PLANET_RANDOM_SEED"
@@ -4848,6 +4896,10 @@ msgstr ""
 
 msgid "REFRESH"
 msgstr ""
+
+#, fuzzy
+msgid "REGENERATE_BUTTON"
+msgstr "Daugialąstis"
 
 msgid "RENDER_SCALE"
 msgstr ""
@@ -8496,6 +8548,23 @@ msgstr ""
 msgid "WORLD_MISC_DETAILS_STRING"
 msgstr ""
 
+msgid "WORLD_OCEANIC_COVERAGE"
+msgstr ""
+
+#, fuzzy
+msgid "WORLD_OCEANIC_COVERAGE_EXPLANATION"
+msgstr "(pradžios vieta)"
+
+msgid "WORLD_OCEANIC_COVERAGE_LARGE"
+msgstr ""
+
+#, fuzzy
+msgid "WORLD_OCEANIC_COVERAGE_MEDIUM"
+msgstr "(pradžios vieta)"
+
+msgid "WORLD_OCEANIC_COVERAGE_SMALL"
+msgstr ""
+
 msgid "WORLD_RELATIVE_MOVEMENT"
 msgstr ""
 
@@ -8519,6 +8588,26 @@ msgstr ""
 #, fuzzy
 msgid "WORLD_SIZE_TOOLTIP"
 msgstr "Reikšmė, naudojama generuojant pasaulį, kuri turi būti teigiamas sveikas skaičius"
+
+#, fuzzy
+msgid "WORLD_TEMPERATURE"
+msgstr "Temperatūra"
+
+#, fuzzy
+msgid "WORLD_TEMPERATURE_COLD"
+msgstr "Temperatūra"
+
+#, fuzzy
+msgid "WORLD_TEMPERATURE_EXPLANATION"
+msgstr "(pradžios vieta)"
+
+#, fuzzy
+msgid "WORLD_TEMPERATURE_TEMPERATE"
+msgstr "Klaida: {0}"
+
+#, fuzzy
+msgid "WORLD_TEMPERATURE_WARM"
+msgstr "Temperatūra"
 
 msgid "WORST_PATCH_COLON"
 msgstr ""
@@ -8557,6 +8646,14 @@ msgstr ""
 
 msgid "ZOOM_OUT"
 msgstr ""
+
+#, fuzzy
+#~ msgid "WORLD_SEA_LEVEL"
+#~ msgstr "{0}-{1}m žemiau jūros lygio"
+
+#, fuzzy
+#~ msgid "WORLD_SEA_LEVEL_DEEP"
+#~ msgstr "{0}-{1}m žemiau jūros lygio"
 
 #, fuzzy
 #~ msgid "PASSIVE_REPRODUCTION_PROGRESS_EXPLANATION"

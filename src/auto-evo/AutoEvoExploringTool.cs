@@ -18,6 +18,8 @@ using Godot;
 /// </remarks>
 public partial class AutoEvoExploringTool : NodeWithInput, ISpeciesDataProvider
 {
+    public WorldGenerationSettings? PlanetCustomizerWorldGenerationSettings;
+
     private readonly List<AutoEvoExploringToolWorld> worldsList = new();
 
 #pragma warning disable CA2213
@@ -304,7 +306,7 @@ public partial class AutoEvoExploringTool : NodeWithInput, ISpeciesDataProvider
 
     private void InitNewWorld(IAutoEvoConfiguration configuration)
     {
-        var newWorld = new AutoEvoExploringToolWorld(configuration);
+        var newWorld = new AutoEvoExploringToolWorld(configuration, PlanetCustomizerWorldGenerationSettings);
         newWorld.GameProperties.GameWorld.Map.RevealAllPatches();
         worldsList.Add(newWorld);
         WorldsListMenuIndexChanged(worldsList.Count - 1);
@@ -1083,10 +1085,13 @@ public partial class AutoEvoExploringTool : NodeWithInput, ISpeciesDataProvider
         /// </summary>
         public TimeSpan TotalTimeUsed = TimeSpan.Zero;
 
-        public AutoEvoExploringToolWorld(IAutoEvoConfiguration configuration)
+        public AutoEvoExploringToolWorld(IAutoEvoConfiguration configuration,
+            WorldGenerationSettings? planetCustomizerWorldGenerationSettings)
         {
             AutoEvoConfiguration = configuration.Clone();
-            WorldSettings = new WorldGenerationSettings { AutoEvoConfiguration = AutoEvoConfiguration };
+            WorldSettings = planetCustomizerWorldGenerationSettings ?? new WorldGenerationSettings
+                { AutoEvoConfiguration = AutoEvoConfiguration };
+
             GameProperties = GameProperties.StartNewMicrobeGame(WorldSettings);
 
             RunResultsList.Add(new LocalizedStringBuilder());
