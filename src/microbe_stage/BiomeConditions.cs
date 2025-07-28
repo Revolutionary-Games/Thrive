@@ -297,7 +297,7 @@ public class BiomeConditions : IBiomeConditions, ICloneable
         if (previousOther > MathUtils.EPSILON)
             totalGases += previousOther;
 
-        // Finally scale each compound by its fraction of the total and apply it
+        // Finally, scale each compound by its fraction of the total and apply it
         foreach (var gas in gases)
         {
             TryGetCompound(gas.Key, CompoundAmountType.Biome, out var result);

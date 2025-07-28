@@ -8,7 +8,7 @@ msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2025-07-21 23:42+0200\n"
-"PO-Revision-Date: 2025-07-18 04:41+0000\n"
+"PO-Revision-Date: 2025-07-25 12:33+0000\n"
 "Last-Translator: xzihnago <xzihnago@gmail.com>\n"
 "Language-Team: Chinese (Traditional Han script) <https://translate.revolutionarygamesstudio.com/projects/thrive/thrive-game/zh_Hant/>\n"
 "Language: zh_TW\n"
@@ -6605,9 +6605,8 @@ msgstr "FSR 1 解析度提升"
 msgid "UPSCALE_FSR_22"
 msgstr "FSR 2.2 解析度提升"
 
-#, fuzzy
 msgid "UPSCALE_METHOD"
-msgstr "雙線性解析度提升"
+msgstr "解析度提升方法："
 
 msgid "UPSCALE_SHARPENING_FSR"
 msgstr "FSR 銳化"
@@ -8830,22 +8829,22 @@ msgstr "無升級。"
 msgid "WIKI_THERMOSYNTHASE_EFFECTS"
 msgstr "啟用[i]熱視覺[/i]，可切換開關。這會將水的相對溫度疊加顯示到螢幕上，溫度較高的區域會顯示得更紅。"
 
-#, fuzzy
 msgid "WIKI_THERMOSYNTHASE_INTRO"
 msgstr ""
-"利用環境中的[thrive:compound type=\"temperature\"][/thrive:compound] 梯度以[thrive:compound type=\"atp\"][/thrive:compound] 的形式提取能量。效率低於真核版本的[b][color=#3796e1][url=thriveopedia:thermoplast]熱能體[/url][/color][/b]。\n"
+"利用環境中的[thrive:compound type=\"temperature\"][/thrive:compound] 梯度以[thrive:compound type=\"atp\"][/thrive:compound] 的形式產生能量。效率低於真核版本的[b][color=#3796e1][url=thriveopedia:thermoplast]熱能體[/url][/color][/b]。\n"
 "\n"
-"現實中未發現的推測細胞器。在開啟僅限已知生命形式選項的遊戲中不可用。"
+"現實中未發現的假說細胞器。在開啟[i]僅限已知生命形式[/i]選項的遊戲中不可用。\n"
+"\n"
+"它是一組含有熱敏酶的膜狀隔間結構。這些酶能夠利用周圍環境中[thrive:compound type=\"temperature\"][/thrive:compound] 上升的能量生產[thrive:compound type=\"atp\"][/thrive:compound]，此過程被稱為[i]熱合成[/i]。"
 
 msgid "WIKI_THERMOSYNTHASE_MODIFICATIONS"
 msgstr "無修改。"
 
-#, fuzzy
 msgid "WIKI_THERMOSYNTHASE_PROCESSES"
 msgstr ""
-"[b]細菌熱合成[/b]：[thrive:compound type=\"temperature\"][/thrive:compound] → [thrive:compound type=\"atp\"][/thrive:compound]\n"
+"[b]細菌熱合成[/b]：[thrive:compound type=\"temperature\"][/thrive:compound] [i]增加[/i] → [thrive:compound type=\"atp\"][/thrive:compound]\n"
 "\n"
-"利用周圍環境[thrive:compound type=\"temperature\"][/thrive:compound] 被動生成能量。效率低於[b][color=#3796e1][url=thriveopedia:thermoplast]熱能體[/url][/color][/b]中的[b]熱合成[/b]。"
+"透過上升的[thrive:compound type=\"temperature\"][/thrive:compound] 來產生能量。隨著[thrive:compound type=\"temperature\"][/thrive:compound] 提升，熱敏酶會改變形狀，從而將 [i]ADP[/i] 循環轉化為[thrive:compound type=\"atp\"][/thrive:compound]。隨著細胞冷卻，酶會恢復到先前的形狀，使該過程能重複進行。效率低於[b][color=#3796e1][url=thriveopedia:thermoplast]熱能體[/url][/color][/b]中的[i]熱合成[/i]。其[thrive:compound type=\"atp\"][/thrive:compound] 的生產速率與[thrive:compound type=\"temperature\"][/thrive:compound] 的[i]增量[/i]成正比。"
 
 msgid "WIKI_THERMOSYNTHASE_REQUIREMENTS"
 msgstr ""
