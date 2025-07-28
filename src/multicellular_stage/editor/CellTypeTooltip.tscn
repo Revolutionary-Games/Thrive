@@ -180,7 +180,8 @@ custom_minimum_size = Vector2(0, 6)
 layout_mode = 2
 size_flags_horizontal = 3
 size_flags_vertical = 4
-max_value = 200.0
+max_value = 1.0
+step = 0.001
 show_percentage = false
 
 [node name="ProductionLabel" type="Label" parent="MarginContainer/VBoxContainer/AtpBalance/ProductionContainer"]
@@ -198,7 +199,8 @@ size_flags_horizontal = 3
 size_flags_vertical = 4
 theme_override_styles/background = SubResource("StyleBoxFlat_oloco")
 theme_override_styles/fill = SubResource("StyleBoxFlat_smds5")
-max_value = 200.0
+max_value = 1.0
+step = 0.001
 show_percentage = false
 
 [node name="ConsumptionLabel" type="Label" parent="MarginContainer/VBoxContainer/AtpBalance/ConsumptionContainer"]

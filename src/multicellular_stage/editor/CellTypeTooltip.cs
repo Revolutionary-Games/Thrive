@@ -149,10 +149,12 @@ public partial class CellTypeTooltip : ControlWithInput, ICustomToolTip
 
     public void UpdateATPBalance(float production, float consumption)
     {
-        atpProductionBar.Value = production;
+        float max = MathF.Max(production, consumption);
+
+        atpProductionBar.Value = production / max;
         atpProductionLabel.Text = production.ToString();
 
-        atpConsumptionBar.Value = consumption;
+        atpConsumptionBar.Value = consumption / max;
         atpConsumptionLabel.Text = consumption.ToString();
     }
 }
