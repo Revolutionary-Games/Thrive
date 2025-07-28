@@ -60,6 +60,7 @@ theme_override_constants/margin_bottom = 20
 
 [node name="ScrollContainer" type="ScrollContainer" parent="GUI/VBoxContainer/SettingsPanel/MarginContainer"]
 layout_mode = 2
+follow_focus = true
 
 [node name="HBoxContainer" type="HBoxContainer" parent="GUI/VBoxContainer/SettingsPanel/MarginContainer/ScrollContainer"]
 layout_mode = 2

@@ -288,6 +288,7 @@ theme_override_constants/margin_bottom = 15
 
 [node name="ScrollContainer" type="ScrollContainer" parent="CenterContainer/VBoxContainer/AdvancedOptions/Planet"]
 layout_mode = 2
+follow_focus = true
 
 [node name="HBoxContainer" type="HBoxContainer" parent="CenterContainer/VBoxContainer/AdvancedOptions/Planet/ScrollContainer"]
 layout_mode = 2
@@ -313,6 +314,7 @@ theme_override_constants/margin_bottom = 15
 
 [node name="ScrollContainer" type="ScrollContainer" parent="CenterContainer/VBoxContainer/AdvancedOptions/Difficulty"]
 layout_mode = 2
+follow_focus = true
 
 [node name="HBoxContainer" type="HBoxContainer" parent="CenterContainer/VBoxContainer/AdvancedOptions/Difficulty/ScrollContainer"]
 layout_mode = 2

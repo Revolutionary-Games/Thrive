@@ -344,6 +344,8 @@ custom_minimum_size = Vector2(140, 0)
 layout_mode = 2
 size_flags_horizontal = 3
 size_flags_vertical = 1
+focus_neighbor_bottom = NodePath("../../../../HBoxContainer3/HBoxContainer/GameSeed")
+focus_next = NodePath("../../../../HBoxContainer3/HBoxContainer/GameSeed")
 min_value = 60.0
 max_value = 300.0
 step = 30.0
@@ -392,6 +394,11 @@ layout_mode = 2
 size_flags_horizontal = 3
 size_flags_stretch_ratio = 2.0
 tooltip_text = "RANDOM_SEED_TOOLTIP"
+focus_neighbor_top = NodePath("../../../DayLengthContainer/HBoxContainer/HBoxContainer/DayLength")
+focus_neighbor_right = NodePath("../RandomizeButton")
+focus_neighbor_bottom = NodePath("../RandomizeButton")
+focus_next = NodePath("../RandomizeButton")
+focus_previous = NodePath("../../../DayLengthContainer/HBoxContainer/HBoxContainer/DayLength")
 text = "123456789"
 
 [node name="RandomizeButton" type="TextureButton" parent="HBoxContainer3/HBoxContainer"]
