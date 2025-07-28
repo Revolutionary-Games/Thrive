@@ -145,7 +145,7 @@ public partial class PlanetSettings : VBoxContainer
 
         var valid = long.TryParse(text, out var seed) && seed > 0;
 
-        // Don't update the text when editing, otherwise the caret with go to the beginning
+        // Don't update the text when editing, otherwise the caret will go to the beginning
         if (!isUpdatingCurrentTabsSeed)
             gameSeed.Text = text;
         isUpdatingCurrentTabsSeed = false;
