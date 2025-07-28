@@ -39,7 +39,13 @@ public partial class CellTypeTooltip : ControlWithInput, ICustomToolTip
     private ProgressBar atpProductionBar = null!;
 
     [Export]
+    private Label atpProductionLabel = null!;
+
+    [Export]
     private ProgressBar atpConsumptionBar = null!;
+
+    [Export]
+    private Label atpConsumptionLabel = null!;
 #pragma warning restore CA2213
 
     private string? displayName;
@@ -144,7 +150,9 @@ public partial class CellTypeTooltip : ControlWithInput, ICustomToolTip
     public void UpdateATPBalance(float production, float consumption)
     {
         atpProductionBar.Value = production;
+        atpProductionLabel.Text = production.ToString();
 
         atpConsumptionBar.Value = consumption;
+        atpConsumptionLabel.Text = consumption.ToString();
     }
 }
