@@ -786,9 +786,6 @@ public partial class MetaballBodyEditorComponent :
 
             control.MPCost = Constants.METABALL_ADD_COST;
 
-            // TODO: remove this line after ATP balance calculations are implemented for this editor
-            control.EnableATPBalanceBars = false;
-
             // TODO: tooltips for these
         }
 

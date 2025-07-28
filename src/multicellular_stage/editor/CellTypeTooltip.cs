@@ -34,6 +34,12 @@ public partial class CellTypeTooltip : ControlWithInput, ICustomToolTip
 
     [Export]
     private CellTypeStatLabel digestionSpeedLabel = null!;
+
+    [Export]
+    private ProgressBar atpProductionBar = null!;
+
+    [Export]
+    private ProgressBar atpConsumptionBar = null!;
 #pragma warning restore CA2213
 
     private string? displayName;
@@ -133,5 +139,12 @@ public partial class CellTypeTooltip : ControlWithInput, ICustomToolTip
     public void UpdateDigestionSpeedIndicator(float value)
     {
         digestionSpeedLabel.Value = MathF.Round(value, 2);
+    }
+
+    public void UpdateATPBalance(float production, float consumption)
+    {
+        atpProductionBar.Value = production;
+
+        atpConsumptionBar.Value = consumption;
     }
 }
