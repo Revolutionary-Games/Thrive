@@ -93,5 +93,25 @@ public class FileLoadedAchievement : IAchievement
                     $"Linked statistic {LinkedStatistic} for achievement {internalName} is not a valid statistic");
             }
         }
+
+        CheckIdentifierMatchesSteam();
+    }
+
+    private void CheckIdentifierMatchesSteam()
+    {
+        if (Identifier == 0)
+            throw new Exception("Identifier 0 is not valid for achievement");
+
+        switch (Identifier)
+        {
+            case 1:
+                if (InternalName == "MICROBIAL_MASSACRE" && LinkedStatistic == AchievementStatStore.STAT_MICROBE_KILLS)
+                    return;
+
+                break;
+        }
+
+        throw new Exception(
+            "Invalid configuration of achievement. The id doesn't match the internal name or statistic");
     }
 }
