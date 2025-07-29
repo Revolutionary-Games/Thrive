@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Diagnostics;
 using System.IO;
+using System.Linq;
 using System.Security.Cryptography;
 using System.Text;
 using System.Threading;
@@ -21,18 +22,21 @@ public partial class AchievementsManager : Node
     /// </summary>
     private const string ACHIEVEMENTS_INTEGRITY = "3spUMgz80EtNK4T0Hg0737yg+vkE057tROUj7C7jOrI=";
 
+    private const int MAX_ACHIEVEMENTS_LOAD_WAIT = 60;
+    private const int ACHIEVEMENTS_SAVE_INTERVAL = 10;
+
     // NEVER CHANGE THESE
     private const string ACHIEVEMENTS_ENC_KEY_PART = "Thirv1152570";
-    private static readonly byte[] EncryptionIv = "2947011395745013"u8.ToArray();
 
-    private static readonly byte[] EncryptionKeyFull =
+    private static readonly byte[] HashKeyFull =
         Encoding.UTF8.GetBytes(ACHIEVEMENTS_ENC_KEY_PART + GetKeySecondPart());
 
     private static AchievementsManager? instance;
 
     private static bool preventAchievements;
 
-    private static bool playerHasCheated;
+    // This defaults to on and gets reset when a valid new game is loaded with the right data
+    private static bool playerHasCheated = true;
     private static bool playerInFreebuild;
 
     private readonly object achievementsDataLock = new();
@@ -104,6 +108,19 @@ public partial class AchievementsManager : Node
 
     public static void ReportCheatsUsed()
     {
+        // ReSharper disable HeuristicUnreachableCode
+#if DEBUG
+#pragma warning disable CS0162 // Unreachable code detected
+        if (Constants.IGNORE_CHEATS_FOR_ACHIEVEMENTS_IN_DEBUG)
+        {
+            GD.Print("Allowing cheat in debug mode");
+            return;
+        }
+#pragma warning restore CS0162 // Unreachable code detected
+#endif
+
+        // ReSharper restore HeuristicUnreachableCode
+
         if (playerHasCheated)
             return;
 
@@ -165,8 +182,11 @@ public partial class AchievementsManager : Node
         timeSinceSave += delta;
 
         // Saving periodically if data is dirty
-        if (timeSinceSave > 5 && dirty)
+        // TODO: it is better to trigger a save like this immediately after doing something important?
+        // But still rate-limited at least.
+        if (timeSinceSave > ACHIEVEMENTS_SAVE_INTERVAL && dirty)
         {
+            timeSinceSave = 0;
             dirty = false;
             SaveData();
         }
@@ -205,9 +225,10 @@ public partial class AchievementsManager : Node
         {
             Thread.Sleep(1);
 
-            if (start.Elapsed > TimeSpan.FromSeconds(10))
+            // Allow really slow computers to play Thrive but don't fully lock things up if there's a problem
+            if (start.Elapsed > TimeSpan.FromSeconds(MAX_ACHIEVEMENTS_LOAD_WAIT))
             {
-                GD.PrintErr("Achievements data load timed out");
+                GD.PrintErr("Achievements data load timed out, quitting startup");
                 SceneManager.Instance.QuitDueToError();
                 return;
             }
@@ -271,22 +292,10 @@ public partial class AchievementsManager : Node
         return Convert.ToString(value);
     }
 
-    private static Aes GetEncryption()
+    private static uint GetMagic()
     {
-        var aes = Aes.Create();
-
-#if DEBUG
-        if (EncryptionKeyFull.Length != 32)
-            throw new Exception("Wrong generated key length");
-
-        if (EncryptionIv.Length != 16)
-            throw new Exception("Incorrect encryption IV config");
-#endif
-
-        aes.Key = EncryptionKeyFull;
-        aes.IV = EncryptionIv;
-
-        return aes;
+        // Magic is "TAch"
+        return 'T' << 24 | 'A' << 16 | 'c' << 8 | 'h';
     }
 
     private void ReportStatUpdateToRelevantAchievements(ReadOnlySpan<int> ids)
@@ -333,6 +342,10 @@ public partial class AchievementsManager : Node
         catch (Exception e)
         {
             GD.PrintErr("Error while loading achievements data: ", e);
+
+            // TODO: if players hit this too often we might just need to have a popup warning about this and asking if
+            // the player would like to reset their achievements data or quit the game
+            GD.PrintErr("QUITTING THE GAME AS ACHIEVEMENT DATA IS NOT GOOD!");
             Invoke.Instance.Perform(() => SceneManager.Instance.QuitDueToError());
 
             // Unblock the main thread if it is waiting for it
@@ -386,6 +399,7 @@ public partial class AchievementsManager : Node
             invalidData = false;
             loaded = true;
             loading = false;
+            timeSinceSave = 0;
         }
     }
 
@@ -403,7 +417,7 @@ public partial class AchievementsManager : Node
 
             saving = true;
 
-            // TODO: take a copy of the data?
+            // TODO: take a copy of the data (instead of locking while serializing)?
 
             // Save in the background
             TaskExecutor.Instance.AddTask(new Task(PerformDataSave));
@@ -427,6 +441,7 @@ public partial class AchievementsManager : Node
         lock (achievementsDataLock)
         {
             saving = false;
+            timeSinceSave = 0;
         }
     }
 
@@ -469,8 +484,21 @@ public partial class AchievementsManager : Node
             return null;
         }
 
-        // Skip magic
-        file.Get32();
+        // Verify the magic number
+        // Also prevents endianness issues
+        if (file.Get32() != GetMagic())
+        {
+            throw new Exception("Invalid achievements progress magic");
+        }
+
+        // Load verification hash
+        var hashLength = file.Get16();
+        if (hashLength < 8)
+        {
+            throw new Exception("Bad hash length");
+        }
+
+        var hash = file.GetBuffer(hashLength);
 
         var length = file.Get32();
 
@@ -478,15 +506,20 @@ public partial class AchievementsManager : Node
 
         if (file.GetError() != Error.Ok || result == null || result.Length != length)
         {
-            GD.PrintErr("Failed to read achievements progress data");
-            return null;
+            throw new Exception("Failed to read achievements progress data");
         }
 
-        using Aes aes = GetEncryption();
+        // Fail if hash is not right for the data
+        var freshHash = HMACSHA1.HashData(HashKeyFull, result);
+
+        if (!freshHash.SequenceEqual(hash) || freshHash.Length < 8)
+        {
+            GD.PrintErr("ACHIEVEMENTS FILE HAS BEEN CORRUPTED. HASH MISMATCH. NOT LOADING DATA.");
+            throw new Exception("Invalid hash for achievements progress data");
+        }
 
         using var stream = new MemoryStream(result);
-        using var crypto = new CryptoStream(stream, aes.CreateDecryptor(), CryptoStreamMode.Read);
-        using var textReader = new StreamReader(crypto);
+        using var textReader = new StreamReader(stream);
         using var reader = new JsonTextReader(textReader);
 
         var deserializer = JsonSerializer.Create();
@@ -508,17 +541,14 @@ public partial class AchievementsManager : Node
 
         using var file = FileAccess.Open(path, FileAccess.ModeFlags.Write);
 
-        // Magic is "TAch"
-        file.Store32('T' << 24 | 'A' << 16 | 'c' << 8 | 'h');
+        file.Store32(GetMagic());
 
         // Create a data buffer
         using var stream = new MemoryStream();
 
         // In a separate block to make sure everything is flushed
         {
-            using Aes aes = GetEncryption();
-            using var crypto = new CryptoStream(stream, aes.CreateEncryptor(), CryptoStreamMode.Write, true);
-            using var textWriter = new StreamWriter(crypto);
+            using var textWriter = new StreamWriter(stream, Encoding.UTF8, -1, true);
             using var writer = new JsonTextWriter(textWriter);
 
             var serializer = JsonSerializer.Create();
@@ -530,9 +560,20 @@ public partial class AchievementsManager : Node
             }
         }
 
+        // Write verification hash
+        var diskBytes = stream.ToArray();
+
+        var hash = HMACSHA1.HashData(HashKeyFull, diskBytes);
+
+        if (hash.Length is < 8 or > ushort.MaxValue)
+            throw new Exception("Failed to calculate hash");
+
+        file.Store16((ushort)hash.Length);
+        file.StoreBuffer(hash);
+
         // Write the data buffer
         file.Store32((uint)stream.Length);
-        file.StoreBuffer(stream.ToArray());
+        file.StoreBuffer(diskBytes);
     }
 
     private class AchievementsDiskProgress

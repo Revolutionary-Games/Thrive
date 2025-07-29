@@ -2000,6 +2000,7 @@ public static class Constants
     public const string CONDITION_RED_COLOUR = "#ff4d4d";
 
     public const ulong ACHIEVEMENT_DATA_VALUE = 7484237571489941;
+    public const bool IGNORE_CHEATS_FOR_ACHIEVEMENTS_IN_DEBUG = false;
 
     /// <summary>
     ///   Also see <see cref="AUTO_EVO_BASE_DIGESTION_SCORE"/>
