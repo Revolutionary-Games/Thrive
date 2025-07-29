@@ -1011,8 +1011,8 @@ public partial class CellBodyPlanEditorComponent :
 
         tooltip.UpdateSizeIndicator(cellType.Organelles.Sum(o => o.Definition.HexCount));
 
-        tooltip.UpdateDigestionSpeedIndicator(MicrobeInternalCalculations.CalculateTotalDigestionSpeed(
-            cellType.Organelles));
+        tooltip.UpdateDigestionSpeedIndicator(
+            MicrobeInternalCalculations.CalculateTotalDigestionSpeed(cellType.Organelles));
 
         button.ShowInsufficientATPWarning = energyBalance.TotalProduction < energyBalance.TotalConsumption;
 
