@@ -2,7 +2,7 @@
 
 [ext_resource type="Theme" uid="uid://b4cx0o110g4b6" path="res://src/gui_common/thrive_theme.tres" id="1"]
 [ext_resource type="PackedScene" uid="uid://8to431fk1dnp" path="res://src/saving/SaveManagerGUI.tscn" id="2"]
-[ext_resource type="PackedScene" uid="uid://khgb1ctp1e5o" path="res://src/general/OptionsMenu.tscn" id="3"]
+[ext_resource type="PackedScene" uid="uid://khgb1ctp1e5o" path="res://src/gui_common/menus/OptionsMenu.tscn" id="3"]
 [ext_resource type="PackedScene" uid="uid://cl64wvnxs6ivs" path="res://src/gui_common/dialogs/CustomConfirmationDialog.tscn" id="4"]
 [ext_resource type="Script" uid="uid://cmmb0y16fbk1e" path="res://src/gui_common/VersionNumber.cs" id="5"]
 [ext_resource type="Script" uid="uid://cilrltnys645h" path="res://src/general/MainMenu.cs" id="6"]
@@ -117,7 +117,7 @@ _data = {
 &"RESET": SubResource("Animation_qunue")
 }
 
-[node name="MainMenu" type="Control" node_paths=PackedStringArray("thriveLogo", "modManager", "galleryViewer", "newsFeed", "newsFeedDisabler", "patchNotes", "patchNotesDisabler", "feedPositioner", "creditsContainer", "credits", "licensesDisplay", "freebuildButton", "multicellularFreebuildButton", "autoEvoExploringButton", "microbeBenchmarkButton", "exitToLauncherButton", "storeLoggedInDisplay", "socialMediaContainer", "websiteButtonsContainer", "itchButton", "patreonButton", "openGlPopup", "modLoadFailures", "steamFailedPopup", "safeModeWarning", "modsInstalledButNotEnabledWarning", "lowPerformanceWarning", "thanksDialog", "menus")]
+[node name="MainMenu" type="Control" node_paths=PackedStringArray("thriveLogo", "modManager", "galleryViewer", "newsFeed", "newsFeedDisabler", "patchNotes", "patchNotesDisabler", "feedPositioner", "creditsContainer", "credits", "licensesDisplay", "freebuildButton", "multicellularFreebuildButton", "autoEvoExploringButton", "planetCustomizationButton", "microbeBenchmarkButton", "exitToLauncherButton", "storeLoggedInDisplay", "socialMediaContainer", "websiteButtonsContainer", "itchButton", "patreonButton", "openGlPopup", "modLoadFailures", "steamFailedPopup", "safeModeWarning", "modsInstalledButNotEnabledWarning", "lowPerformanceWarning", "thanksDialog", "menus")]
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
@@ -142,6 +142,7 @@ licensesDisplay = NodePath("LicensesDisplay")
 freebuildButton = NodePath("MenuContainers/Menus/VBoxContainer/Tools/FreebuildMicrobeEditor")
 multicellularFreebuildButton = NodePath("MenuContainers/Menus/VBoxContainer/Tools/FreebuildMulticellularEditor")
 autoEvoExploringButton = NodePath("MenuContainers/Menus/VBoxContainer/Tools/AutoEvoExploring")
+planetCustomizationButton = NodePath("MenuContainers/Menus/VBoxContainer/Tools/PlanetCustomizer")
 microbeBenchmarkButton = NodePath("MenuContainers/Menus/VBoxContainer/Benchmarks/MicrobeBenchmark")
 exitToLauncherButton = NodePath("MenuContainers/Menus/VBoxContainer/MainMenu/Launcher")
 storeLoggedInDisplay = NodePath("StoreUser")
@@ -394,10 +395,19 @@ text = "MULTICELLULAR_FREEBUILD_EDITOR"
 custom_minimum_size = Vector2(250, 40)
 layout_mode = 2
 size_flags_vertical = 0
+focus_neighbor_bottom = NodePath("../PlanetCustomizer")
+focus_next = NodePath("../PlanetCustomizer")
+mouse_filter = 1
+text = "AUTO_EVO_EXPLORING_TOOL"
+
+[node name="PlanetCustomizer" type="Button" parent="MenuContainers/Menus/VBoxContainer/Tools"]
+custom_minimum_size = Vector2(250, 40)
+layout_mode = 2
+size_flags_vertical = 0
 focus_neighbor_bottom = NodePath("../Benchmarks")
 focus_next = NodePath("../Benchmarks")
 mouse_filter = 1
-text = "AUTO_EVO_EXPLORING_TOOL"
+text = "PLANET_CUSTOMIZER"
 
 [node name="Benchmarks" type="Button" parent="MenuContainers/Menus/VBoxContainer/Tools"]
 custom_minimum_size = Vector2(250, 40)
@@ -407,16 +417,6 @@ focus_neighbor_bottom = NodePath("../Back")
 focus_next = NodePath("../Back")
 mouse_filter = 1
 text = "BENCHMARKS"
-
-[node name="unknown3" type="Button" parent="MenuContainers/Menus/VBoxContainer/Tools"]
-editor_description = "PLACEHOLDER"
-custom_minimum_size = Vector2(250, 40)
-layout_mode = 2
-size_flags_vertical = 0
-focus_mode = 0
-mouse_filter = 1
-disabled = true
-text = "???"
 
 [node name="Back" type="Button" parent="MenuContainers/Menus/VBoxContainer/Tools"]
 custom_minimum_size = Vector2(250, 40)
@@ -830,7 +830,6 @@ layout_mode = 1
 [node name="SaveManagerGUI" parent="." instance=ExtResource("2")]
 visible = false
 layout_mode = 1
-anchors_preset = 15
 grow_horizontal = 2
 grow_vertical = 2
 
@@ -970,6 +969,7 @@ ShowCloseButton = false
 [connection signal="pressed" from="MenuContainers/Menus/VBoxContainer/Tools/FreebuildMicrobeEditor" to="." method="FreebuildEditorPressed"]
 [connection signal="pressed" from="MenuContainers/Menus/VBoxContainer/Tools/FreebuildMulticellularEditor" to="." method="MulticellularFreebuildEditorPressed"]
 [connection signal="pressed" from="MenuContainers/Menus/VBoxContainer/Tools/AutoEvoExploring" to="." method="OnAutoEvoExploringPressed"]
+[connection signal="pressed" from="MenuContainers/Menus/VBoxContainer/Tools/PlanetCustomizer" to="." method="PlanetCustomizerPressed"]
 [connection signal="pressed" from="MenuContainers/Menus/VBoxContainer/Tools/Benchmarks" to="." method="BenchmarksPressed"]
 [connection signal="pressed" from="MenuContainers/Menus/VBoxContainer/Tools/Back" to="." method="BackFromToolsPressed"]
 [connection signal="pressed" from="MenuContainers/Menus/VBoxContainer/Extras/Thriveopedia" to="." method="ThriveopediaPressed"]

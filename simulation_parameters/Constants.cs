@@ -779,6 +779,17 @@ public static class Constants
 
     public const float SCREEN_DAMAGE_FLASH_DECAY_SPEED = 1.0f;
 
+    public const float MICROBE_CAMERA_MIN_HEIGHT = 3.0f;
+
+    public const float MICROBE_CAMERA_MAX_HEIGHT = 80.0f;
+
+    public const float MULTICELLULAR_CAMERA_MIN_HEIGHT = 8.0f;
+
+    /// <summary>
+    ///   The highest that the dynamic multicellular camera max height can get.
+    /// </summary>
+    public const float MULTICELLULAR_CAMERA_MAX_HEIGHT = 180.0f;
+
     /// <summary>
     ///   Cells need at least this much ATP to regenerate health passively. This is now less than one to allow cells
     ///   with 1 storage to regenerate health. As reaching exactly full storage of ATP is not really possible due to
@@ -1371,7 +1382,7 @@ public static class Constants
     public const float OTHER_GASES_DECAY_SPEED = 0.08f;
 
     // Patch event variables
-    public const int VENT_ERUPTION_CHANCE = 15;
+    public const float VENT_ERUPTION_CHANCE = 0.15f;
     public const float VENT_ERUPTION_HYDROGEN_SULFIDE_INCREASE = 0.001f;
     public const float VENT_ERUPTION_CARBON_DIOXIDE_INCREASE = 0.3f;
 
@@ -1768,7 +1779,7 @@ public static class Constants
     public const int ENDOSYMBIOSIS_COST_MIN = 2;
 
     /// <summary>
-    ///   If membrane scene is updated this should be updated as well
+    ///   If the membrane scene is updated this should be updated as well
     /// </summary>
     public const int MICROBE_DEFAULT_RENDER_PRIORITY = 18;
 
@@ -1783,7 +1794,7 @@ public static class Constants
     public const float MAX_AI_MUTATION_RATE = 3;
     public const float MIN_COMPOUND_DENSITY = 0.2f;
     public const float MAX_COMPOUND_DENSITY = 2;
-    public const float MIN_PLAYER_DEATH_POPULATION_PENALTY = 1;
+    public const float MIN_PLAYER_DEATH_POPULATION_PENALTY = 0.6f;
     public const float MAX_PLAYER_DEATH_POPULATION_PENALTY = 5;
     public const float MIN_GLUCOSE_DECAY = 0.3f;
     public const float MAX_GLUCOSE_DECAY = 0.95f;

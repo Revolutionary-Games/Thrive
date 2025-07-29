@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2025-06-05 21:10+0100\n"
+"POT-Creation-Date: 2025-07-21 23:42+0200\n"
 "PO-Revision-Date: 2025-05-25 15:00+0000\n"
 "Last-Translator: Anonymous <noreply@weblate.org>\n"
 "Language-Team: Catalan <https://translate.revolutionarygamesstudio.com/projects/thrive/thrive-game/ca/>\n"
@@ -367,6 +367,10 @@ msgid "AUTO_EVO"
 msgstr "Auto-Evo"
 
 #, fuzzy
+msgid "AUTO_EVO_EXPLORER_TOOL_BUTTON"
+msgstr "estat d'execució:"
+
+#, fuzzy
 msgid "AUTO_EVO_EXPLORING_TOOL"
 msgstr "estat d'execució:"
 
@@ -423,6 +427,9 @@ msgstr "Enrere"
 
 msgid "BACKSPACE"
 msgstr "Enrere"
+
+msgid "BACK_TO_SETTINGS"
+msgstr ""
 
 #, fuzzy
 msgid "BACTERIAL_THERMOSYNTHESIS"
@@ -832,6 +839,24 @@ msgstr ""
 #, fuzzy
 msgid "CLICK_TO_SELECT"
 msgstr "Eliminar tot el que ha estat seleccionat"
+
+msgid "CLIMATE_INSTABILITY"
+msgstr ""
+
+#, fuzzy
+msgid "CLIMATE_INSTABILITY_EXPLANATION"
+msgstr ""
+"Els microbis actius es mouran continuament per trobar recursos.\n"
+"Els microbis sèssils es mantindran relativament quiets, esperant a que l'entorn canviï abans d'actuar."
+
+msgid "CLIMATE_STABILITY_AVERAGE"
+msgstr ""
+
+msgid "CLIMATE_STABILITY_STABLE"
+msgstr ""
+
+msgid "CLIMATE_STABILITY_UNSTABLE"
+msgstr ""
 
 msgid "CLOSE"
 msgstr "Tancar"
@@ -2491,11 +2516,33 @@ msgid "GENERAL_LOADING_TIP_7"
 msgstr "Prem el botó de 'desfer' per tal de corregir qualsevol equivocació"
 
 #, fuzzy
+msgid "GENERATE_BUTTON"
+msgstr "Generació:"
+
+#, fuzzy
 msgid "GENERATIONS"
 msgstr "Generació:"
 
 msgid "GENERATION_COLON"
 msgstr "Generació:"
+
+msgid "GEOLOGICAL_ACTIVITY"
+msgstr ""
+
+msgid "GEOLOGICAL_ACTIVITY_ACTIVE"
+msgstr ""
+
+msgid "GEOLOGICAL_ACTIVITY_AVERAGE"
+msgstr ""
+
+msgid "GEOLOGICAL_ACTIVITY_DORMANT"
+msgstr ""
+
+#, fuzzy
+msgid "GEOLOGICAL_ACTIVITY_EXPLANATION"
+msgstr ""
+"Els microbis actius es mouran continuament per trobar recursos.\n"
+"Els microbis sèssils es mantindran relativament quiets, esperant a que l'entorn canviï abans d'actuar."
 
 #, fuzzy
 msgid "GITHUB_TOOLTIP"
@@ -4981,11 +5028,12 @@ msgid "PLANET"
 msgstr "Planeta"
 
 #, fuzzy
+msgid "PLANET_CUSTOMIZER"
+msgstr "A sota del Cursor:"
+
+#, fuzzy
 msgid "PLANET_DETAILS_STRING"
 msgstr "Obrir Carpeta"
-
-msgid "PLANET_GENERATION_TEASER"
-msgstr "Pròximament, generació planetària!"
 
 msgid "PLANET_RANDOM_SEED"
 msgstr "Llavor de planeta aleatòria"
@@ -5187,6 +5235,10 @@ msgstr "Refer la darrera acció"
 
 msgid "REFRESH"
 msgstr "Refrescar"
+
+#, fuzzy
+msgid "REGENERATE_BUTTON"
+msgstr "Orgànuls"
 
 msgid "RENDER_SCALE"
 msgstr ""
@@ -5723,6 +5775,10 @@ msgstr "Silici"
 msgid "SILICA_MEMBRANE_DESCRIPTION"
 msgstr "Aquesta membrana té una forta paret de silici. Pot resistir les agressions externes, sobretot les de naturalesa física. També consumeix poca energia. No obstant, fa que la cèl·lula esdevingui lenta, i que absorbeixi els nutrients a poc a poc."
 
+#, fuzzy
+msgid "SIMULATION_CONFIG"
+msgstr "Cost d'Osmoregulació"
+
 msgid "SIXTEEN_TIMES"
 msgstr "16x"
 
@@ -6079,6 +6135,10 @@ msgstr "Commutar a la vista de càmera superior"
 
 msgid "SYSREQ"
 msgstr "Requeriments"
+
+#, fuzzy
+msgid "TAB_CHANGE_BLOCKED_WHILE_ACTION_IN_PROGRESS"
+msgstr "Acció bloquejada mentre una altra s'està duent a terme"
 
 msgid "TAB_SECONDARY_SWITCH_LEFT"
 msgstr ""
@@ -7066,6 +7126,9 @@ msgid "UPSCALE_FSR_1"
 msgstr ""
 
 msgid "UPSCALE_FSR_22"
+msgstr ""
+
+msgid "UPSCALE_METHOD"
 msgstr ""
 
 msgid "UPSCALE_SHARPENING_FSR"
@@ -9083,6 +9146,27 @@ msgid "WORLD_MISC_DETAILS_STRING"
 msgstr ""
 
 #, fuzzy
+msgid "WORLD_OCEANIC_COVERAGE"
+msgstr "per augmentar la"
+
+#, fuzzy
+msgid "WORLD_OCEANIC_COVERAGE_EXPLANATION"
+msgstr ""
+"Els microbis centrats buscaran recursos o preses més llunyans\n"
+"i és possible que siguin molt més ambiciosos respecte a uns mateixos recursos.\n"
+"Els microbis sensibles canviaran d'objectius més aviat."
+
+msgid "WORLD_OCEANIC_COVERAGE_LARGE"
+msgstr ""
+
+#, fuzzy
+msgid "WORLD_OCEANIC_COVERAGE_MEDIUM"
+msgstr "per augmentar la"
+
+msgid "WORLD_OCEANIC_COVERAGE_SMALL"
+msgstr ""
+
+#, fuzzy
 msgid "WORLD_RELATIVE_MOVEMENT"
 msgstr "per augmentar la"
 
@@ -9110,6 +9194,29 @@ msgstr ""
 #, fuzzy
 msgid "WORLD_SIZE_TOOLTIP"
 msgstr "Han passat: {0:#,#} anys"
+
+#, fuzzy
+msgid "WORLD_TEMPERATURE"
+msgstr "Temperatura"
+
+#, fuzzy
+msgid "WORLD_TEMPERATURE_COLD"
+msgstr "Temperatura"
+
+#, fuzzy
+msgid "WORLD_TEMPERATURE_EXPLANATION"
+msgstr ""
+"Els microbis centrats buscaran recursos o preses més llunyans\n"
+"i és possible que siguin molt més ambiciosos respecte a uns mateixos recursos.\n"
+"Els microbis sensibles canviaran d'objectius més aviat."
+
+#, fuzzy
+msgid "WORLD_TEMPERATURE_TEMPERATE"
+msgstr "Temperatura"
+
+#, fuzzy
+msgid "WORLD_TEMPERATURE_WARM"
+msgstr "Temperatura"
 
 msgid "WORST_PATCH_COLON"
 msgstr "Pitjor Medi:"
@@ -9151,6 +9258,21 @@ msgstr "Enfocar la visió de la càmera"
 
 msgid "ZOOM_OUT"
 msgstr "Zoom enfora"
+
+#, fuzzy
+#~ msgid "WORLD_SEA_LEVEL"
+#~ msgstr "{0}-{1}m sota el nivell del mar"
+
+#, fuzzy
+#~ msgid "WORLD_SEA_LEVEL_DEEP"
+#~ msgstr "{0}-{1}m sota el nivell del mar"
+
+#, fuzzy
+#~ msgid "WORLD_SEA_LEVEL_MODERATE"
+#~ msgstr "per augmentar la"
+
+#~ msgid "PLANET_GENERATION_TEASER"
+#~ msgstr "Pròximament, generació planetària!"
 
 #, fuzzy
 #~ msgid "PASSIVE_REPRODUCTION_PROGRESS_EXPLANATION"

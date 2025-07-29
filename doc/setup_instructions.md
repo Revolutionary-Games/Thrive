@@ -352,7 +352,7 @@ dotnet run --project Scripts -- native Fetch Install
 ```
 
 The debug variants are needed when running through Godot Editor for
-Thrive GDExtension to work.
+Thrive GDExtension to work. The above command installs both variants.
 
 You can compile these libraries locally after installing C++
 development tools: cmake, and a compiler. On Linux clang is
