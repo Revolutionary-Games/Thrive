@@ -923,7 +923,7 @@ public partial class CellBodyPlanEditorComponent :
                 var control = cellTypeSelectionButtons[key];
                 cellTypeSelectionButtons.Remove(key);
 
-                ToolTipManager.Instance.RemoveToolTip(control.CellType.TypeName, "cellTypes");
+                ToolTipManager.Instance.RemoveToolTip(key, "cellTypes");
                 control.DetachAndQueueFree();
 
                 if (activeActionName == key)
