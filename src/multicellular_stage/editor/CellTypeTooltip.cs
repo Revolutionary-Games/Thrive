@@ -5,7 +5,7 @@ using Godot;
 /// <summary>
 ///   A tooltip displaying info about a cell type
 /// </summary>
-public partial class CellTypeTooltip : ControlWithInput, ICustomToolTip
+public partial class CellTypeTooltip : Control, ICustomToolTip
 {
 #pragma warning disable CA2213
     [Export]
