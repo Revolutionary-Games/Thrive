@@ -5,9 +5,11 @@ render_mode depth_prepass_alpha;
 // Set to 0 to disable wiggle
 uniform float wigglyNess = 1.0f;
 uniform float movementWigglyNess = 1.0f;
+uniform float centerTransparency = 1.0f;
 
 uniform sampler2D albedoTexture : source_color;
 uniform sampler2D damagedTexture : source_color;
+uniform sampler2D centerMembraneTexture : source_color;
 
 uniform sampler2D normalTexture;
 uniform sampler2D normal2Texture;
@@ -81,6 +83,7 @@ void fragment(){
         (damaged * (1.0f - healthFraction))) * tint;
 
     vec4 dissolveTex = texture(dissolveTexture, UV);
+    vec4 centerTransparencyTex = texture(centerMembraneTexture, UV);
 
     float cutoff = dot(dissolveTex.rgb, vec3(0.34f, 0.34f, 0.34f)) -
         float(-0.482f + clamp(dissolveValue, 0.0f, 1.0f));
@@ -101,6 +104,7 @@ void fragment(){
     adjustedNormals = normalize(mix(NORMAL, adjustedNormals, 0.2f));
 
     ALBEDO = final.rgb;
-    ALPHA = fresnel(3.0, adjustedNormals, adjustedView) * round(cutoff);
+    ALPHA = fresnel(3.0, adjustedNormals, adjustedView) * round(cutoff) * centerTransparencyTex.a;
+	EMISSION = vec3(0.2, 0.2, 0.2);
     ROUGHNESS = 0.7f;
 }

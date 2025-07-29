@@ -31,7 +31,19 @@ public partial class Membrane : MeshInstance3D
     private MeshInstance3D mucocystAnimationMeshInstance = null!;
 
     [Export]
+    private MeshInstance3D shadowMeshInstance = null!;
+
+    [Export]
+    private MeshInstance3D internalDecorationsMeshInstance = null!;
+
+    [Export]
     private MembraneWaterRipple waterRipple = null!;
+
+    [Export]
+    private ShaderMaterial? shadowShaderMaterial;
+
+    [Export]
+    private ShaderMaterial? internalDecorationsMaterial;
 
 #pragma warning disable CA2213
     private Texture2D? albedoTexture;
@@ -318,6 +330,7 @@ public partial class Membrane : MeshInstance3D
             healthParameterName.Dispose();
             wigglynessParameterName.Dispose();
             movementWigglynessParameterName.Dispose();
+            timeParameterName.Dispose();
             fadeParameterName.Dispose();
         }
 
@@ -338,6 +351,12 @@ public partial class Membrane : MeshInstance3D
 
         mucocystAnimationMeshInstance.Mesh = membraneData.GeneratedEngulfMesh;
         mucocystAnimationMeshInstance.MaterialOverride = MucocystShaderMaterial;
+
+        shadowMeshInstance.Mesh = membraneData.GeneratedEngulfMesh;
+        shadowMeshInstance.MaterialOverride = shadowShaderMaterial;
+
+        internalDecorationsMeshInstance.Mesh = membraneData.GeneratedFlatMesh;
+        internalDecorationsMeshInstance.MaterialOverride = internalDecorationsMaterial;
     }
 
     private void OnRippleEffectValueChanges(bool enabled)
@@ -355,7 +374,7 @@ public partial class Membrane : MeshInstance3D
 
     private void ApplyWiggly()
     {
-        if (MembraneShaderMaterial == null || EngulfShaderMaterial == null || MucocystShaderMaterial == null)
+        if (MembraneShaderMaterial == null || EngulfShaderMaterial == null || MucocystShaderMaterial == null || shadowShaderMaterial == null || internalDecorationsMaterial == null)
             return;
 
         float wigglyNessToApply =
@@ -366,11 +385,14 @@ public partial class Membrane : MeshInstance3D
         MembraneShaderMaterial.SetShaderParameter(wigglynessParameterName, finalWiggly);
         EngulfShaderMaterial.SetShaderParameter(wigglynessParameterName, finalWiggly);
         MucocystShaderMaterial.SetShaderParameter(wigglynessParameterName, finalWiggly);
+
+        shadowShaderMaterial.SetShaderParameter(wigglynessParameterName, finalWiggly);
+        internalDecorationsMaterial.SetShaderParameter(wigglynessParameterName, finalWiggly);
     }
 
     private void ApplyMovementWiggly()
     {
-        if (MembraneShaderMaterial == null || EngulfShaderMaterial == null || MucocystShaderMaterial == null)
+        if (MembraneShaderMaterial == null || EngulfShaderMaterial == null || MucocystShaderMaterial == null || shadowShaderMaterial == null || internalDecorationsMaterial == null)
             return;
 
         float wigglyNessToApply =
@@ -381,6 +403,9 @@ public partial class Membrane : MeshInstance3D
         MembraneShaderMaterial.SetShaderParameter(movementWigglynessParameterName, finalWiggly);
         EngulfShaderMaterial.SetShaderParameter(movementWigglynessParameterName, finalWiggly);
         MucocystShaderMaterial.SetShaderParameter(movementWigglynessParameterName, finalWiggly);
+
+        shadowShaderMaterial.SetShaderParameter(movementWigglynessParameterName, finalWiggly);
+        internalDecorationsMaterial.SetShaderParameter(movementWigglynessParameterName, finalWiggly);
     }
 
     private void ApplyHealth()
