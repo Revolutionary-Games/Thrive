@@ -578,8 +578,8 @@ public partial class AchievementsManager : Node
 
     private class AchievementsDiskProgress
     {
-        public HashSet<string> UnlockedAchievements = new HashSet<string>();
+        public HashSet<string> UnlockedAchievements = new();
 
-        public Dictionary<int, int> IntStats = new Dictionary<int, int>();
+        public Dictionary<int, int> IntStats = new();
     }
 }
