@@ -215,11 +215,6 @@ public partial class StartupActions : Node
                 SceneManager.NotifyEarlyQuit();
             }
         }
-
-        if (!preventStartup)
-        {
-            AchievementsManager.Instance.StartLoadAchievementsData();
-        }
     }
 
     public override void _Ready()
@@ -229,6 +224,10 @@ public partial class StartupActions : Node
         {
             GD.Print("Preventing startup due to StartupActions failing");
             SceneManager.QuitDueToProblem(this);
+        }
+        else
+        {
+            AchievementsManager.Instance.StartLoadAchievementsData();
         }
     }
 }

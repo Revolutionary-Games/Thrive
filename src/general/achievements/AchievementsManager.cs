@@ -19,11 +19,14 @@ public partial class AchievementsManager : Node
     ///   We really do not want someone to modify the achievement config file, so we verify its hash. This is safe to
     ///   update when intentionally modifying achievement properties.
     /// </summary>
-    private const string ACHIEVEMENTS_INTEGRITY = "aadasd";
+    private const string ACHIEVEMENTS_INTEGRITY = "3spUMgz80EtNK4T0Hg0737yg+vkE057tROUj7C7jOrI=";
 
     // NEVER CHANGE THESE
-    private const string ACHIEVEMENTS_ENC_KEY_PART = "Thirv11525700";
+    private const string ACHIEVEMENTS_ENC_KEY_PART = "Thirv1152570";
     private static readonly byte[] EncryptionIv = "2947011395745013"u8.ToArray();
+
+    private static readonly byte[] EncryptionKeyFull =
+        Encoding.UTF8.GetBytes(ACHIEVEMENTS_ENC_KEY_PART + GetKeySecondPart());
 
     private static AchievementsManager? instance;
 
@@ -50,6 +53,7 @@ public partial class AchievementsManager : Node
     private bool dirty;
 
     private bool saving;
+    private bool invalidData = true;
 
     private AchievementsDiskProgress achievementsDiskProgress = new();
 
@@ -200,6 +204,13 @@ public partial class AchievementsManager : Node
         while (!loaded)
         {
             Thread.Sleep(1);
+
+            if (start.Elapsed > TimeSpan.FromSeconds(10))
+            {
+                GD.PrintErr("Achievements data load timed out");
+                SceneManager.Instance.QuitDueToError();
+                return;
+            }
         }
 
         var elapsed = start.Elapsed;
@@ -262,10 +273,17 @@ public partial class AchievementsManager : Node
 
     private static Aes GetEncryption()
     {
-        var key = Encoding.UTF8.GetBytes(ACHIEVEMENTS_ENC_KEY_PART + GetKeySecondPart());
         var aes = Aes.Create();
 
-        aes.Key = key;
+#if DEBUG
+        if (EncryptionKeyFull.Length != 32)
+            throw new Exception("Wrong generated key length");
+
+        if (EncryptionIv.Length != 16)
+            throw new Exception("Incorrect encryption IV config");
+#endif
+
+        aes.Key = EncryptionKeyFull;
         aes.IV = EncryptionIv;
 
         return aes;
@@ -280,6 +298,7 @@ public partial class AchievementsManager : Node
                 if (achievements[id].ProcessPotentialUnlock(statsStore))
                 {
                     GD.Print("Unlocked new achievement: ", achievements[id].InternalName);
+                    achievementsDiskProgress.UnlockedAchievements.Add(achievements[id].InternalName);
                     DisplayAchievement(achievements[id]);
                 }
             }
@@ -298,13 +317,28 @@ public partial class AchievementsManager : Node
     private void DisplayAchievement(IAchievement achievement)
     {
         // TODO:
+        GD.PrintErr("TODO: display achievement");
     }
 
     private void PerformLoad()
     {
         // Load achievements progress data
         // TODO: in Steam mode need to load data from steam
-        var newProgress = LoadAchievementsProgress();
+        AchievementsDiskProgress? newProgress;
+
+        try
+        {
+            newProgress = LoadAchievementsProgress();
+        }
+        catch (Exception e)
+        {
+            GD.PrintErr("Error while loading achievements data: ", e);
+            Invoke.Instance.Perform(() => SceneManager.Instance.QuitDueToError());
+
+            // Unblock the main thread if it is waiting for it
+            loaded = true;
+            return;
+        }
 
         lock (achievementsDataLock)
         {
@@ -343,12 +377,16 @@ public partial class AchievementsManager : Node
             return;
         }
 
-        Invoke.Instance.Perform(() =>
+        // Cannot invoke here as the main thread may not be running
+        lock (achievementsDataLock)
         {
-            GD.Print("Achievements data loaded");
+            // But this print needs to be from the main thread
+            Invoke.Instance.Perform(() => GD.Print("Achievements data loaded"));
+
+            invalidData = false;
             loaded = true;
             loading = false;
-        });
+        }
     }
 
     private void SaveData()
@@ -409,6 +447,10 @@ public partial class AchievementsManager : Node
 
         if (hash != ACHIEVEMENTS_INTEGRITY)
         {
+#if DEBUG
+            GD.Print($"New achievements hash: {hash}");
+#endif
+
             throw new Exception("Achievements file integrity check failed");
         }
 
@@ -434,7 +476,7 @@ public partial class AchievementsManager : Node
 
         var result = file.GetBuffer(length);
 
-        if (file.GetError() != Error.Ok)
+        if (file.GetError() != Error.Ok || result == null || result.Length != length)
         {
             GD.PrintErr("Failed to read achievements progress data");
             return null;
@@ -456,6 +498,12 @@ public partial class AchievementsManager : Node
 
     private void SaveAchievementsProgress(AchievementsDiskProgress data)
     {
+        if (invalidData)
+        {
+            GD.PrintErr("Will not save achievements due to corrupt loaded data!");
+            return;
+        }
+
         var path = Constants.ACHIEVEMENTS_PROGRESS_SAVE;
 
         using var file = FileAccess.Open(path, FileAccess.ModeFlags.Write);
@@ -463,26 +511,26 @@ public partial class AchievementsManager : Node
         // Magic is "TAch"
         file.Store32('T' << 24 | 'A' << 16 | 'c' << 8 | 'h');
 
-        // Create data buffer
-        using Aes aes = GetEncryption();
+        // Create a data buffer
         using var stream = new MemoryStream();
-        using var crypto = new CryptoStream(stream, aes.CreateEncryptor(), CryptoStreamMode.Write);
-        using var textWriter = new StreamWriter(crypto);
-        using var writer = new JsonTextWriter(textWriter);
 
-        var serializer = JsonSerializer.Create();
-
-        // Ensure data is not modified while saving it
-        lock (achievementsDataLock)
+        // In a separate block to make sure everything is flushed
         {
-            serializer.Serialize(writer, data);
+            using Aes aes = GetEncryption();
+            using var crypto = new CryptoStream(stream, aes.CreateEncryptor(), CryptoStreamMode.Write, true);
+            using var textWriter = new StreamWriter(crypto);
+            using var writer = new JsonTextWriter(textWriter);
+
+            var serializer = JsonSerializer.Create();
+
+            // Ensure data is not modified while saving it
+            lock (achievementsDataLock)
+            {
+                serializer.Serialize(writer, data);
+            }
         }
 
-        writer.Flush();
-        textWriter.Flush();
-        crypto.Flush();
-
-        // Write data
+        // Write the data buffer
         file.Store32((uint)stream.Length);
         file.StoreBuffer(stream.ToArray());
     }

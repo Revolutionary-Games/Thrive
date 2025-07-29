@@ -6,11 +6,14 @@ using Newtonsoft.Json;
 /// </summary>
 public class FileLoadedAchievement : IAchievement
 {
+    // These are assigned through JSON
+#pragma warning disable 649
     [JsonProperty(nameof(Name))]
     private string? nameRaw;
 
     [JsonProperty(nameof(Description))]
     private string? descriptionRaw;
+#pragma warning restore 649
 
     [JsonProperty]
     public int Identifier { get; private set; }
