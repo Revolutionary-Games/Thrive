@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Globalization;
 using Godot;
 
 /// <summary>
@@ -152,9 +153,9 @@ public partial class CellTypeTooltip : Control, ICustomToolTip
         float max = MathF.Max(production, consumption);
 
         atpProductionBar.Value = production / max;
-        atpProductionLabel.Text = MathF.Round(production, 1).ToString();
+        atpProductionLabel.Text = MathF.Round(production, 1).ToString(CultureInfo.CurrentCulture);
 
         atpConsumptionBar.Value = consumption / max;
-        atpConsumptionLabel.Text = MathF.Round(consumption, 1).ToString();
+        atpConsumptionLabel.Text = MathF.Round(consumption, 1).ToString(CultureInfo.CurrentCulture);
     }
 }

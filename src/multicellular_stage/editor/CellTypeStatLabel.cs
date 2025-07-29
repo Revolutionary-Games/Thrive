@@ -2,7 +2,7 @@
 using Godot;
 
 /// <summary>
-///    Displays a stat of a cell type; also displays an icon and a description label.
+///   Displays a stat of a cell type; also displays an icon and a description label.
 /// </summary>
 public partial class CellTypeStatLabel : HBoxContainer
 {

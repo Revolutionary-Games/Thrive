@@ -896,7 +896,8 @@ public partial class CellBodyPlanEditorComponent :
                     new Callable(this, nameof(OnCellToPlaceSelected)));
 
                 // Reuse an existing tooltip when possible
-                var tooltip = ToolTipManager.Instance.GetToolTipIfExists<CellTypeTooltip>(cellType.TypeName, "cellTypes");
+                var tooltip = ToolTipManager.Instance.GetToolTipIfExists<CellTypeTooltip>(cellType.TypeName,
+                    "cellTypes");
 
                 if (tooltip == null)
                 {
@@ -963,7 +964,7 @@ public partial class CellBodyPlanEditorComponent :
 
             cellTypesCount.TryGetValue(cellType, out var count);
 
-            UpdateCellTypeTooltipAndWarning(tooltip, button, cellType,  environmentalTolerances, count);
+            UpdateCellTypeTooltipAndWarning(tooltip, button, cellType, environmentalTolerances, count);
         }
     }
 
@@ -1010,7 +1011,8 @@ public partial class CellBodyPlanEditorComponent :
 
         tooltip.UpdateSizeIndicator(cellType.Organelles.Sum(o => o.Definition.HexCount));
 
-        tooltip.UpdateDigestionSpeedIndicator(MicrobeInternalCalculations.CalculateTotalDigestionSpeed(cellType.Organelles));
+        tooltip.UpdateDigestionSpeedIndicator(MicrobeInternalCalculations.CalculateTotalDigestionSpeed(
+            cellType.Organelles));
 
         button.ShowInsufficientATPWarning = energyBalance.TotalProduction < energyBalance.TotalConsumption;
 
