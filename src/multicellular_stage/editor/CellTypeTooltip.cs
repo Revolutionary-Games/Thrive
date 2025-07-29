@@ -152,9 +152,9 @@ public partial class CellTypeTooltip : ControlWithInput, ICustomToolTip
         float max = MathF.Max(production, consumption);
 
         atpProductionBar.Value = production / max;
-        atpProductionLabel.Text = production.ToString();
+        atpProductionLabel.Text = MathF.Round(production, 1).ToString();
 
         atpConsumptionBar.Value = consumption / max;
-        atpConsumptionLabel.Text = consumption.ToString();
+        atpConsumptionLabel.Text = MathF.Round(consumption, 1).ToString();
     }
 }
