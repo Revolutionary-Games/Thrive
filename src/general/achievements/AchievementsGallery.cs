@@ -44,7 +44,7 @@ public partial class AchievementsGallery : Control
         {
             var instance = cardScene.Instantiate<AchievementCard>();
 
-            instance.UpdateDataFrom(achievement);
+            instance.UpdateDataFrom(achievement, AchievementsManager.Instance.GetStats());
 
             cardContainer.AddChild(instance);
             achievementCards.Add(instance);

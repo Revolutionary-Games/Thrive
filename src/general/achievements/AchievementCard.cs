@@ -37,7 +37,7 @@ public partial class AchievementCard : MarginContainer
         this.RegisterCustomFocusDrawer();
     }
 
-    public void UpdateDataFrom(IAchievement achievement)
+    public void UpdateDataFrom(IAchievement achievement, AchievementStatStore stats)
     {
         title.Text = achievement.Name.ToString();
 
@@ -56,8 +56,14 @@ public partial class AchievementCard : MarginContainer
         {
             title.Text = Localization.Translate("ACHIEVEMENT_LOCKED");
 
-            // TODO: when to show the progress text?
-            description.Text = achievement.Description.ToString();
+            if (achievement.HasAnyProgress(stats))
+            {
+                description.Text = achievement.GetProgress(stats);
+            }
+            else
+            {
+                description.Text = achievement.Description.ToString();
+            }
 
             backgroundToAdjustStyle.AddThemeStyleboxOverride(backgroundStyleName, lockedStyle);
 
