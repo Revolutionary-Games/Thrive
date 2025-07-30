@@ -192,6 +192,15 @@ public partial class AchievementsManager : Node
         }
     }
 
+    /// <summary>
+    ///   Returns achievement data of all valid achievements
+    /// </summary>
+    /// <returns>Enumerable of all achievements</returns>
+    public IEnumerable<IAchievement> GetAchievements()
+    {
+        return achievements.Values;
+    }
+
     public void StartLoadAchievementsData()
     {
         if (loaded)

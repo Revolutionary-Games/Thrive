@@ -81,6 +81,15 @@ public partial class MainMenu : NodeWithInput
     private LicensesDisplay licensesDisplay = null!;
 
     [Export]
+    private AchievementsGallery achievementsGallery = null!;
+
+    [Export]
+    private Control achievementsContainer = null!;
+
+    [Export]
+    private CustomWindow achievementsPopup = null!;
+
+    [Export]
     private Button freebuildButton = null!;
 
     [Export]
@@ -778,6 +787,34 @@ public partial class MainMenu : NodeWithInput
         SetCurrentMenu(2);
     }
 
+    private void AchievementsPressed()
+    {
+        GUICommon.Instance.PlayButtonPressSound();
+
+        // Hide all the other menus
+        SetCurrentMenu(uint.MaxValue, false);
+
+        achievementsContainer.Visible = true;
+
+        achievementsPopup.OpenCentered(false);
+
+        achievementsGallery.Refresh();
+
+        // For fun show how many achievements are unlocked
+        int total = 0;
+        int unlocked = 0;
+
+        foreach (var achievement in AchievementsManager.Instance.GetAchievements())
+        {
+            ++total;
+
+            if (achievement.Achieved)
+                ++unlocked;
+        }
+
+        achievementsPopup.WindowTitle = Localization.Translate("ACHIEVEMENTS_TOTAL").FormatSafe(unlocked, total);
+    }
+
     private void FreebuildEditorPressed()
     {
         GUICommon.Instance.PlayButtonPressSound();
@@ -909,6 +946,16 @@ public partial class MainMenu : NodeWithInput
     {
         thriveopedia.Visible = false;
         SetCurrentMenu(0, false);
+    }
+
+    private void OnReturnFromAchievements()
+    {
+        achievementsContainer.Visible = false;
+        achievementsPopup.Close();
+
+        SetCurrentMenu(0, false);
+
+        thriveLogo.Show();
     }
 
     private void LoadGamePressed()
