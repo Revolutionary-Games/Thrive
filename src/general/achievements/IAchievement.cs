@@ -25,6 +25,11 @@
     /// <param name="updatedStats">Achievement data store with the updates</param>
     /// <returns>True if this is now unlocked</returns>
     public bool ProcessPotentialUnlock(AchievementStatStore updatedStats);
+
+    /// <summary>
+    ///   Locks this achievement (resets progress)
+    /// </summary>
+    public void Reset();
 }
 
 public static class AchievementIds

@@ -410,6 +410,9 @@ public partial class OptionsMenu : ControlWithInput
     [Export]
     private CheckButton unsavedProgressWarningEnabled = null!;
 
+    [Export]
+    private Button resetAchievementsButton = null!;
+
     // Confirmation Boxes
     [Export]
     private CustomConfirmationDialog screenshotDirectoryWarningBox = null!;
@@ -419,6 +422,9 @@ public partial class OptionsMenu : ControlWithInput
 
     [Export]
     private CustomConfirmationDialog defaultsConfirmationBox = null!;
+
+    [Export]
+    private CustomConfirmationDialog confirmAchievementsReset = null!;
 
     [Export]
     private ErrorDialog errorAcceptBox = null!;
@@ -491,6 +497,11 @@ public partial class OptionsMenu : ControlWithInput
         GetViewport().Connect(Viewport.SignalName.SizeChanged, new Callable(this, nameof(DisplayResolution)));
 
         selectedOptionsTab = OptionsTab.Graphics;
+
+        // For now, only show this very crazy button in debug mode
+#if DEBUG
+        resetAchievementsButton.Visible = true;
+#endif
     }
 
     public void ResolveNodeReferences(bool calledFromReady)
@@ -2709,5 +2720,20 @@ public partial class OptionsMenu : ControlWithInput
 
         patchNotesDisplayer.ShowLatest();
         patchNotesBox.PopupCenteredShrink();
+    }
+
+    private void ResetAchievementsPressed()
+    {
+        GUICommon.Instance.PlayButtonPressSound();
+        confirmAchievementsReset.PopupCenteredShrink();
+    }
+
+    private void ConfirmResetAchievements()
+    {
+        GUICommon.Instance.PlayButtonPressSound();
+
+        GD.Print("PLAYER REQUESTED ACHIEVEMENT RESET!");
+
+        AchievementsManager.Instance.Reset();
     }
 }

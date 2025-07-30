@@ -58,6 +58,11 @@ public class FileLoadedAchievement : IAchievement
         return false;
     }
 
+    public void Reset()
+    {
+        Achieved = false;
+    }
+
     public void OnLoaded(string internalName, bool unlocked)
     {
         if (string.IsNullOrWhiteSpace(internalName))

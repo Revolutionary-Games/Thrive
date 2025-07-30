@@ -201,6 +201,36 @@ public partial class AchievementsManager : Node
         return achievements.Values;
     }
 
+    /// <summary>
+    ///   Resets all achievements and stats to locked status.
+    ///   Very bad to call if the player has not very explicitly wanted this to happen!
+    /// </summary>
+    public void Reset()
+    {
+        GD.Print("Resetting all achievement and stats states");
+
+        lock (achievementsDataLock)
+        {
+            if (loading)
+                GD.PrintErr("Resetting achievements while load is in progress will probably mess something up");
+
+            foreach (var achievement in achievements)
+            {
+                achievement.Value.Reset();
+            }
+
+            statsStore.Reset();
+
+            achievementsDiskProgress = new AchievementsDiskProgress();
+
+            dirty = true;
+            invalidData = false;
+            loaded = true;
+        }
+
+        GD.Print("Finished resetting achievements state");
+    }
+
     public void StartLoadAchievementsData()
     {
         if (loaded)

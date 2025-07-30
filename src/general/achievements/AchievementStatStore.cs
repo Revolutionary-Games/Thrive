@@ -46,6 +46,15 @@ public class AchievementStatStore
         return 0;
     }
 
+    /// <summary>
+    ///   Resets ALL stats to initial values, losing all progress towards achievements.
+    /// </summary>
+    public void Reset()
+    {
+        GD.Print("Resetting tracked stats");
+        statMicrobeKills = 0;
+    }
+
     public void Save(Dictionary<int, int> intValues)
     {
         intValues[STAT_MICROBE_KILLS] = statMicrobeKills;
