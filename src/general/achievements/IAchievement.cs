@@ -12,6 +12,10 @@
 
     public LocalizedString Name { get; }
 
+    /// <summary>
+    ///   Description of how to achieve this achievement. For including info about the current progress in this text,
+    ///   see <see cref="GetProgress"/>
+    /// </summary>
     public LocalizedString Description { get; }
 
     public bool Achieved { get; }
@@ -30,6 +34,21 @@
     ///   Locks this achievement (resets progress)
     /// </summary>
     public void Reset();
+
+    /// <summary>
+    ///   Checks if <see cref="GetProgress"/> would have anything meaningful to show
+    /// </summary>
+    /// <param name="stats">Stats to check in</param>
+    /// <returns>
+    ///   True if there is any progress towards this achievement. Note that many achievements are just on / off.
+    /// </returns>
+    public bool HasAnyProgress(AchievementStatStore stats);
+
+    /// <summary>
+    ///   Gets text describing the current progress.
+    /// </summary>
+    /// <returns>Similar text to <see cref="Description"/> but has progress info</returns>
+    public string GetProgress(AchievementStatStore stats);
 }
 
 public static class AchievementIds

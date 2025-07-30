@@ -1,11 +1,36 @@
-[gd_scene load_steps=5 format=3 uid="uid://vxpha1231qqg"]
+[gd_scene load_steps=8 format=3 uid="uid://vxpha1231qqg"]
 
 [ext_resource type="Theme" uid="uid://b4cx0o110g4b6" path="res://src/gui_common/thrive_theme.tres" id="1_075i1"]
 [ext_resource type="Script" uid="uid://bq1o3iij8w0l8" path="res://src/general/achievements/AchievementPopup.cs" id="2_b36ht"]
 [ext_resource type="LabelSettings" uid="uid://dvqx73nhtr0y2" path="res://src/gui_common/fonts/Body-Regular-Small.tres" id="2_hfuph"]
+[ext_resource type="Texture2D" uid="uid://w21wmrogs2g5" path="res://assets/misc/icon.png" id="3_65m1b"]
 [ext_resource type="LabelSettings" uid="uid://c07qrffjvqfw" path="res://src/gui_common/fonts/Body-Regular-Tiny.tres" id="3_b36ht"]
 
-[node name="AchievementPopup" type="PanelContainer"]
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_65m1b"]
+bg_color = Color(0, 0.128333, 0.14, 0.862745)
+border_width_left = 1
+border_width_top = 1
+border_width_right = 1
+border_width_bottom = 1
+border_color = Color(0.0666667, 1, 0.835294, 1)
+corner_radius_top_left = 5
+corner_radius_top_right = 5
+corner_radius_bottom_right = 5
+corner_radius_bottom_left = 5
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_76qsw"]
+bg_color = Color(0, 0.0275, 0.03, 0.862745)
+border_width_left = 1
+border_width_top = 1
+border_width_right = 1
+border_width_bottom = 1
+border_color = Color(0.021, 0.3, 0.24885, 1)
+corner_radius_top_left = 5
+corner_radius_top_right = 5
+corner_radius_bottom_right = 5
+corner_radius_bottom_left = 5
+
+[node name="AchievementPopup" type="PanelContainer" node_paths=PackedStringArray("title", "icon", "description", "backgroundToAdjustStyle")]
 custom_minimum_size = Vector2(280, 70)
 anchors_preset = 3
 anchor_left = 1.0
@@ -16,6 +41,13 @@ grow_horizontal = 0
 grow_vertical = 0
 theme = ExtResource("1_075i1")
 script = ExtResource("2_b36ht")
+title = NodePath("MarginContainer/HBoxContainer/VBoxContainer/Name")
+icon = NodePath("MarginContainer/HBoxContainer/Icon")
+description = NodePath("MarginContainer/HBoxContainer/VBoxContainer/ProgressOrDescription")
+backgroundToAdjustStyle = NodePath(".")
+unlockedStyle = SubResource("StyleBoxFlat_65m1b")
+lockedStyle = SubResource("StyleBoxFlat_76qsw")
+lockedIcon = ExtResource("3_65m1b")
 
 [node name="MarginContainer" type="MarginContainer" parent="."]
 layout_mode = 2

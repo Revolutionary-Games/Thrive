@@ -16,6 +16,9 @@ public class FileLoadedAchievement : IAchievement
 #pragma warning restore 649
 
     [JsonProperty]
+    private string? progressDescription;
+
+    [JsonProperty]
     public int Identifier { get; private set; }
 
     public string InternalName { get; private set; } = null!;
@@ -56,6 +59,32 @@ public class FileLoadedAchievement : IAchievement
 
         // This does not know what the stat to track should be
         return false;
+    }
+
+    public bool HasAnyProgress(AchievementStatStore stats)
+    {
+        if (LinkedStatistic != 0)
+        {
+            return stats.GetIntStat(LinkedStatistic) > 0;
+        }
+
+        // Unknown progress
+        return false;
+    }
+
+    public string GetProgress(AchievementStatStore stats)
+    {
+        if (string.IsNullOrEmpty(progressDescription))
+            return Description.ToString();
+
+        if (LinkedStatistic != 0)
+        {
+            return Localization.Translate(progressDescription)
+                .FormatSafe(stats.GetIntStat(LinkedStatistic), LinkedStatisticThreshold);
+        }
+
+        // No progress info available
+        return Description.ToString();
     }
 
     public void Reset()

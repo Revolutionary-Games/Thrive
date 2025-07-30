@@ -20,10 +20,12 @@ public partial class AchievementsManager : Node
     ///   We really do not want someone to modify the achievement config file, so we verify its hash. This is safe to
     ///   update when intentionally modifying achievement properties.
     /// </summary>
-    private const string ACHIEVEMENTS_INTEGRITY = "3spUMgz80EtNK4T0Hg0737yg+vkE057tROUj7C7jOrI=";
+    private const string ACHIEVEMENTS_INTEGRITY = "WjGHH+OGnYx6dP6E5tMDVoxhftqLuU8Uzpi2V2O72E0=";
 
     private const int MAX_ACHIEVEMENTS_LOAD_WAIT = 60;
     private const int ACHIEVEMENTS_SAVE_INTERVAL = 10;
+
+    private const double ACHIEVEMENT_DISPLAY_TIME = 10;
 
     // NEVER CHANGE THESE
     private const string ACHIEVEMENTS_ENC_KEY_PART = "Thirv1152570";
@@ -45,8 +47,14 @@ public partial class AchievementsManager : Node
 
     private readonly Dictionary<int, IAchievement> achievements = new();
 
+    private readonly Queue<IAchievement> achievementsToPopupQueue = new();
+
 #pragma warning disable CA2213
     private Control achievementsGUIContainer = null!;
+
+    private AchievementPopup? createdAchievementPopup;
+
+    private PackedScene achievementPopupScene = null!;
 #pragma warning restore CA2213
 
     private double timeSinceSave;
@@ -58,6 +66,8 @@ public partial class AchievementsManager : Node
 
     private bool saving;
     private bool invalidData = true;
+
+    private double shownPopupTime = 1000;
 
     private AchievementsDiskProgress achievementsDiskProgress = new();
 
@@ -135,18 +145,32 @@ public partial class AchievementsManager : Node
         base._Ready();
 
         // Create a container for achievement popups to be in
+        var layer = new CanvasLayer
+        {
+            Name = "AchievementsLayer",
+
+            // Really make sure the achievements show on top of anything like Steam achievement popups will
+            Layer = 1025,
+            Visible = true,
+        };
+
         achievementsGUIContainer = new Control
         {
             AnchorLeft = 0,
             AnchorRight = 1,
             AnchorTop = 0,
-            AnchorBottom = 0,
+            AnchorBottom = 1,
             Visible = false,
             MouseFilter = Control.MouseFilterEnum.Ignore,
             MouseForcePassScrollEvents = false,
         };
 
-        AddChild(achievementsGUIContainer);
+        layer.AddChild(achievementsGUIContainer);
+        AddChild(layer);
+
+        ProcessMode = ProcessModeEnum.Always;
+
+        achievementPopupScene = GD.Load<PackedScene>("res://src/general/achievements/AchievementPopup.tscn");
     }
 
     public override void _ExitTree()
@@ -180,6 +204,7 @@ public partial class AchievementsManager : Node
     public override void _Process(double delta)
     {
         timeSinceSave += delta;
+        shownPopupTime += delta;
 
         // Saving periodically if data is dirty
         // TODO: it is better to trigger a save like this immediately after doing something important?
@@ -189,6 +214,37 @@ public partial class AchievementsManager : Node
             timeSinceSave = 0;
             dirty = false;
             SaveData();
+            return;
+        }
+
+        if (achievementsToPopupQueue.Count > 0)
+        {
+            if (shownPopupTime > ACHIEVEMENT_DISPLAY_TIME)
+            {
+                // Show the next achievement popup
+                shownPopupTime = 0;
+                var popup = achievementsToPopupQueue.Dequeue();
+
+                if (createdAchievementPopup == null)
+                {
+                    createdAchievementPopup = achievementPopupScene.Instantiate<AchievementPopup>();
+                    achievementsGUIContainer.AddChild(createdAchievementPopup);
+                }
+
+                createdAchievementPopup.Visible = true;
+                createdAchievementPopup.UpdateDataFrom(popup, statsStore);
+
+                createdAchievementPopup.PlayAnimation(ACHIEVEMENT_DISPLAY_TIME - 0.001f);
+
+                achievementsGUIContainer.Visible = true;
+            }
+        }
+        else
+        {
+            if (shownPopupTime > ACHIEVEMENT_DISPLAY_TIME)
+            {
+                achievementsGUIContainer.Visible = false;
+            }
         }
     }
 
@@ -199,6 +255,15 @@ public partial class AchievementsManager : Node
     public IEnumerable<IAchievement> GetAchievements()
     {
         return achievements.Values;
+    }
+
+    /// <summary>
+    ///   Gets stat store for *reading* nothing should modify the stats retrieved from here
+    /// </summary>
+    /// <returns>Stats instance for reading data from</returns>
+    public AchievementStatStore GetStats()
+    {
+        return statsStore;
     }
 
     /// <summary>
@@ -262,6 +327,10 @@ public partial class AchievementsManager : Node
 
         while (!loaded)
         {
+            // Fail immediately if there's a problem
+            if (SceneManager.Instance.QuittingRequested())
+                return;
+
             Thread.Sleep(1);
 
             // Allow really slow computers to play Thrive but don't fully lock things up if there's a problem
@@ -364,8 +433,8 @@ public partial class AchievementsManager : Node
     /// </summary>
     private void DisplayAchievement(IAchievement achievement)
     {
-        // TODO:
-        GD.PrintErr("TODO: display achievement");
+        GD.Print("Showing a popup about a new unlocked achievement: ", achievement.InternalName);
+        achievementsToPopupQueue.Enqueue(achievement);
     }
 
     private void PerformLoad()
@@ -426,6 +495,7 @@ public partial class AchievementsManager : Node
             GD.PrintErr("Cannot load achievement data: ", e);
             GD.PrintErr("Quitting as achievements will not work at all");
             SceneManager.Instance.QuitDueToError();
+            loaded = true;
             return;
         }
 
