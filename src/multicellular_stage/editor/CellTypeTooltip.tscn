@@ -129,34 +129,40 @@ layout_mode = 2
 layout_mode = 2
 Icon = ExtResource("7_esy5e")
 Description = "HP_COLON"
+UseChangeIndicator = false
 
 [node name="Storage" parent="MarginContainer/VBoxContainer/CellStats" instance=ExtResource("6_w1mf1")]
 layout_mode = 2
 tooltip_text = "CELL_STAT_STORAGE_TOOLTIP"
 Icon = ExtResource("8_oloco")
 Description = "STORAGE_COLON"
+UseChangeIndicator = false
 
 [node name="Speed" parent="MarginContainer/VBoxContainer/CellStats" instance=ExtResource("6_w1mf1")]
 layout_mode = 2
 tooltip_text = "CELL_STAT_SPEED_TOOLTIP"
 Icon = ExtResource("9_smds5")
 Description = "SPEED_COLON"
+UseChangeIndicator = false
 
 [node name="Rotation" parent="MarginContainer/VBoxContainer/CellStats" instance=ExtResource("6_w1mf1")]
 layout_mode = 2
 tooltip_text = "CELL_STAT_ROTATION_TOOLTIP"
 Icon = ExtResource("10_w1mf1")
 Description = "ROTATION_COLON"
+UseChangeIndicator = false
 
 [node name="Size" parent="MarginContainer/VBoxContainer/CellStats" instance=ExtResource("6_w1mf1")]
 layout_mode = 2
 Icon = ExtResource("11_smds5")
 Description = "SIZE_COLON"
+UseChangeIndicator = false
 
 [node name="DigestionSpeed" parent="MarginContainer/VBoxContainer/CellStats" instance=ExtResource("6_w1mf1")]
 layout_mode = 2
 Icon = ExtResource("12_w1mf1")
 Description = "DIGESTION_SPEED_COLON"
+UseChangeIndicator = false
 
 [node name="HSeparator" type="HSeparator" parent="MarginContainer/VBoxContainer"]
 layout_mode = 2
