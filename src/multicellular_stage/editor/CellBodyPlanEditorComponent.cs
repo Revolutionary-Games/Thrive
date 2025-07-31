@@ -950,7 +950,7 @@ public partial class CellBodyPlanEditorComponent :
 
             if (tooltip == null)
             {
-                GD.PrintErr($"Tooltip not found for species type: {cellType.TypeName}");
+                GD.PrintErr($"Tooltip not found for species' cell type: {cellType.TypeName}");
                 continue;
             }
 
@@ -1019,7 +1019,7 @@ public partial class CellBodyPlanEditorComponent :
         if (energyBalance.TotalConsumption > energyBalance.TotalProduction
             && cellCount > 0)
         {
-            // This cell is present in the microbe and has a negative energy balance
+            // This cell is present in the colony and has a negative energy balance
             hasNegativeATPCells = true;
         }
     }
