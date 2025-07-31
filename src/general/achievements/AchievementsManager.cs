@@ -435,6 +435,8 @@ public partial class AchievementsManager : Node
     {
         GD.Print("Showing a popup about a new unlocked achievement: ", achievement.InternalName);
         achievementsToPopupQueue.Enqueue(achievement);
+
+        // TODO: play an achievement unlocked sound
     }
 
     private void PerformLoad()
