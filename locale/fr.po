@@ -7,9 +7,9 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2025-07-12 13:25+0200\n"
-"PO-Revision-Date: 2025-07-14 12:12+0000\n"
-"Last-Translator: luke <aidow@netcourrier.com>\n"
+"POT-Creation-Date: 2025-07-21 23:42+0200\n"
+"PO-Revision-Date: 2025-07-28 09:22+0000\n"
+"Last-Translator: Maël Turon <maeltur70@gmail.com>\n"
 "Language-Team: French <https://translate.revolutionarygamesstudio.com/projects/thrive/thrive-game/fr/>\n"
 "Language: fr\n"
 "MIME-Version: 1.0\n"
@@ -138,18 +138,16 @@ msgstr "Tout"
 msgid "ALLOW_SPECIES_SWITCH_ON_EXTINCTION"
 msgstr "Permet aux espèces de ne pas muter (si aucune bonne mutation n'est trouvée)"
 
-#, fuzzy
 msgid "ALLOW_SPECIES_SWITCH_ON_EXTINCTION_EXPLANATION"
-msgstr "Les différents types de toxines ont des effets variés qui sont plus efficaces contre certains types de cellules. Si une cellule possède plusieurs types de toxines, celles-ci sont utilisées successivement plutôt que toutes à la fois."
+msgstr "(permet de continuer la partie avec une espèce différent à l'extinction plutôt que de finir la partie)"
 
 msgid "ALL_WORLDS_GENERAL_STATISTICS"
 msgstr "Statistiques génériques de tous les mondes"
 
-#, fuzzy
 msgid "ALL_WORLDS_STATISTICS"
 msgstr ""
 "[b]Générations :[/b]\n"
-"  {0}\n"
+" {0}\n"
 "[b]Espèces totales :[/b]\n"
 "  Moyenne{1} ; écart-type {2}\n"
 "[b]Espèces toujours en vie :[/b]\n"
@@ -160,6 +158,7 @@ msgstr ""
 "  Moyenne{7} ; écart-type {8}\n"
 "[b]Taille moyenne des hexagones des espèces microbiennes :[/b]\n"
 "  Moyenne{9} ; écart-type {10}\n"
+"\n"
 "[b]Données génériques des organites :[/b]"
 
 msgid "ALREADY_ASCENDED"
@@ -177,9 +176,8 @@ msgstr "Volume d'ambiance"
 msgid "AMMONIA"
 msgstr "Ammoniac"
 
-#, fuzzy
 msgid "AMMONIA_COST"
-msgstr "Ammoniac"
+msgstr "Ammoniac :"
 
 msgid "AMOUNT_OF_AUTOSAVE_TO_KEEP"
 msgstr "Nombre de sauvegardes à conserver :"
@@ -194,7 +192,7 @@ msgid "AND_UNLOCK_CONDITION"
 msgstr "et"
 
 msgid "ANISOTROPIC_FILTERING"
-msgstr "Filtrage anisotrope:"
+msgstr "Filtrage anisotrope :"
 
 msgid "ANTIALIASING_MSAA_TAA"
 msgstr "MSAA + TAA"
@@ -254,9 +252,8 @@ msgstr ""
 "\n"
 "Nombre d'évolutions dans cette sauvegarde : {0}"
 
-#, fuzzy
 msgid "ASCENSION_STAGE"
-msgstr "Version :"
+msgstr "Phase évoluée"
 
 msgid "ASSEMBLY_CLASS_REQUIRED"
 msgstr "La classe de l'assemblage des Mods est requise lorsque l'assemblage est précisé"
@@ -281,17 +278,19 @@ msgstr "ATP"
 msgid "ATP_BALANCE"
 msgstr "Niveau d'ATP"
 
-#, fuzzy
 msgid "ATP_BALANCE_TOOLTIP"
 msgstr ""
-"Cette section montre la balance totale (production - consommation) pour chaque composé.\n"
-"Par exemple, pour former une cellule végétale, le bilan du glucose doit être très positif."
+"Cette section montre la balance total d'ATP (énergie) de la cellule actuelle.\n"
+"Pour survivre la balance doit être positive. Pour les cellules sessiles la balance peut être considéré comme positive à l'exclusion du mouvement.\n"
+"Le menu ci-dessous peut être utilisé pour vérifier ce qui arriverait si la cellules n'avait pas suffisamment de ressource pour produire des ATP.\n"
+"Par exemple, certaines cellules ne peuvent maintenir une balance d'ATP positive que s'ils ont plusieurs types de composés produisant des ATP en même temps.\n"
+"Ces types de cellules sont plus dures à jouer car elles nécessitent plusieurs stockages de composés différents en même temps, pour survivre."
 
-#, fuzzy
 msgid "ATP_BALANCE_TOOLTIP_MULTICELLULAR"
 msgstr ""
-"Cette section montre la balance totale (production - consommation) pour chaque composé.\n"
-"Par exemple, pour former une cellule végétale, le bilan du glucose doit être très positif."
+"Cette section montre les options pour calculer la balance d'ATP (énergie) des cellules.\n"
+"La balance ainsi calculée est montrée dans le menu de sélection des types de cellules. \n"
+"Le menu déroulant ci-dessous peut être utilisé pour vérifier ce qui arriverait si la cellule n'avait pas assez de ressources disponibles pour produire des ATP."
 
 msgid "ATP_BALANCE_WITHOUT_EXTERNAL_RESOURCES"
 msgstr "Sans ressources externes"
@@ -343,9 +342,8 @@ msgstr ""
 "Ce panneau affiche l'énergie totale récoltée attendue et les nombres de population (entre parenthèses) par l'algorithme d'Auto-Évo pour l'espèce éditée.\n"
 "L'Auto-Évo régit la simulation d'évolution des populations qui est, avec votre propre performance, l'un des deux facteurs qui affectent votre population en jeu."
 
-#, fuzzy
 msgid "AUTO-EVO_RESULTS_TITLE"
-msgstr "Résultats de l'Auto-Évo :"
+msgstr "Résultats de l'Auto-Évo"
 
 msgid "AUTO-EVO_STEPS_DONE"
 msgstr "{0:F1}% terminé. {1:n0}/{2:n0} étapes."
@@ -364,6 +362,10 @@ msgstr "Sauvegarde automatique en jeu"
 msgid "AUTO_EVO"
 msgstr "Auto-Évo"
 
+#, fuzzy
+msgid "AUTO_EVO_EXPLORER_TOOL_BUTTON"
+msgstr "Outil d'exploration Auto-Évo"
+
 msgid "AUTO_EVO_EXPLORING_TOOL"
 msgstr "Outil d'exploration Auto-Évo"
 
@@ -376,13 +378,11 @@ msgstr "Les résultats Auto-evo sont manquants. Si vous avez chargé une sauvega
 msgid "AUTO_EVO_RESULTS"
 msgstr "Résultats de l'Auto-Évo :"
 
-#, fuzzy
 msgid "AUTO_EVO_RESULTS_GLOBAL_TITLE"
-msgstr "Résultats de l'Auto-Évo :"
+msgstr "Résultats globaux"
 
-#, fuzzy
 msgid "AUTO_EVO_RESULTS_PATCH_TITLE"
-msgstr "Résultats de l'Auto-Évo :"
+msgstr "Résultat du secteur sélectionné"
 
 msgid "AUTO_EVO_RUN_STATUS"
 msgstr "état de lancement :"
@@ -419,6 +419,9 @@ msgstr "Barre oblique inversée"
 
 msgid "BACKSPACE"
 msgstr "Retour arrière"
+
+msgid "BACK_TO_SETTINGS"
+msgstr ""
 
 msgid "BACTERIAL_THERMOSYNTHESIS"
 msgstr "Thermosynthèse bactérienne"
@@ -519,20 +522,17 @@ msgstr "Lier les axes ensemble"
 msgid "BIOLUMINESCENT_VACUOLE"
 msgstr "Vacuole bioluminescente"
 
-#, fuzzy
 msgid "BIOLUMINESCENT_VACUOLE_DESCRIPTION"
-msgstr "Vacuole bioluminescente"
+msgstr "Une vacuole qui contient des sites de réaction où la luciférase est consommée pour libérer de la lumière visible. On suppose que la bioluminescence a évolué à l'origine comme un mécanisme de protection contre [thrive:compound type=\"oxygen\"][/thrive:compound]. Lorsque la Grande Oxygénation s'est produite, les microbes habitués aux conditions anaérobies ont été confrontés à de nombreux nouveaux problèmes en raison de la très forte réactivité de l'oxygène, qui a causé beaucoup de dégâts. Ces vacuoles peuvent être ajoutées pour augmenter la résistance à l'oxygène et obtenir de jolies lumières. À l'avenir, la bioluminescence pourrait devenir un moyen de communication."
 
-#, fuzzy
 msgid "BIOLUMINESCENT_VACUOLE_PROCESSES_DESCRIPTION"
-msgstr "Transforme l'[thrive:compound type=\"atp\"][/thrive:compound] en [thrive:compound type=\"oxytoxy\"][/thrive:compound]. Taux proportionnel à la concentration d'[thrive:compound type=\"oxygen\"][/thrive:compound]. Peut libérer des toxines en appuyant sur [thrive:input]g_fire_toxin[/thrive:input]. Lorsque la quantité d'[thrive:compound type=\"oxytoxy\"][/thrive:compound] est faible, il est toujours possible de tirer mais les dégâts sont réduits."
+msgstr "Utiliser [thrive:compound type=\"atp\"][/thrive:compound] pour transformer [thrive:compound type=\"oxygen\"][/thrive:compound] en lumière. N'a pas d'autre impact sur le gameplay pour l'instant, à l'exception de l'augmentation de la résistance à l'oxygène."
 
 msgid "BIOME_LABEL"
 msgstr "Terrain : {0}"
 
-#, fuzzy
 msgid "BLOOM_RENDER_EFFECT"
-msgstr "Effets d'écran"
+msgstr "Flou Lumineux :"
 
 msgid "BLUESKY_TOOLTIP"
 msgstr "Visitez notre profil Bluesky"
@@ -570,13 +570,11 @@ msgstr "Temps maximum de rétention des objets sur disque avant suppression"
 msgid "CACHE_MEMORY_MAX_ITEMS"
 msgstr "Nombre maximal d'objets à garder en mémoire cache"
 
-#, fuzzy
 msgid "CACHE_TIME_MEMORY"
-msgstr "Mémoire vidéo actuellement utilisée :"
+msgstr "Temps de conservation du cache en mémoire"
 
-#, fuzzy
 msgid "CACHE_TIME_MEMORY_ONLY"
-msgstr "Mémoire vidéo actuellement utilisée :"
+msgstr "Temps de conservation du cache quand seule la mémoire cache est utilisée"
 
 #, fuzzy
 msgid "CACHING_TITLE"
@@ -669,25 +667,29 @@ msgstr "Cellulose"
 msgid "CELLULOSE_MEMBRANE_DESCRIPTION"
 msgstr "Cette membrane est dotée d'un mur, ce qui lui confère une meilleure protection contre les dégâts généraux et surtout contre les dégâts physiques. Elle coûte également moins d'énergie pour conserver sa forme, mais ne peut absorber les ressources rapidement et est plus lente. [b]La cellulase peut digérer cette paroi[/b], ce qui la rend vulnérable à l'engloutissement par les prédateurs."
 
-#, fuzzy
 msgid "CELL_STAT_ROTATION_TOOLTIP"
-msgstr "La valeur utilisée pour générer le monde doit être un entier positif"
+msgstr ""
+"Vitesse de rotation de la cellule. Les cellules plus grosse tournent plus lentement mais des cils peuvent être ajoutés pour compenser.\n"
+"Le placement des organites impacte la rotation, les organites les plus loin du centre réduisant moins la vitesse de rotation."
 
-#, fuzzy
 msgid "CELL_STAT_SPEED_TOOLTIP"
-msgstr "La valeur utilisée pour générer le monde doit être un entier positif"
+msgstr ""
+"Vitesse de la cellule. Veuillez noter qu'en raison des limites de l'algorithme qui calcule cette valeur, celle-ci est approximative.\n"
+"Par exemple, lorsque la longueur du flagelle est modifiée, les valeurs de vitesse n'ont pas beaucoup de sens et ne correspondent pas à ce qui se passera dans la phase.\n"
+"Il s'agit d'un problème connu, mais qui n'a pas encore été résolu car il est moins prioritaire que de nombreux autres problèmes et nouvelles fonctionnalités."
 
-#, fuzzy
 msgid "CELL_STAT_STORAGE_TOOLTIP"
-msgstr "La valeur utilisée pour générer le monde doit être un entier positif"
+msgstr ""
+"Capacité de stockage de la cellule. Une capacité de stockage plus élevée permet de stocker davantage de composés à la fois.\n"
+"Les cellules à haute capacité de stockage peuvent utiliser une stratégie dans laquelle elles ne peuvent pas se déplacer indéfiniment, mais doivent recharger leurs réserves d'ATP pendant un certain temps avant de pouvoir se déplacer.\n"
+"Notez qu'une faible capacité de stockage peut entraîner des pénuries d'ATP même si la balance ATP est positive. Ces problèmes peuvent être aggravés par des pics de latence\n"
+"ou par les performances globalement faibles du jeu. L'ajout d'une capacité de stockage supplémentaire permet de remédier à ces problèmes."
 
-#, fuzzy
 msgid "CELL_TYPE_BUTTON_ATP_CONSUMPTION"
-msgstr "Options"
+msgstr "La consommation d'ATP de ce type de cellule est {0}."
 
-#, fuzzy
 msgid "CELL_TYPE_BUTTON_ATP_PRODUCTION"
-msgstr "Options"
+msgstr "La production d'ATP de ce type de cellule est {0}."
 
 msgid "CELL_TYPE_NAME"
 msgstr "Nom du type de cellule"
@@ -698,9 +700,8 @@ msgstr "Les notes de changement sont trop longues"
 msgid "CHANGE_THE_SYMMETRY"
 msgstr "Modifier la symétrie"
 
-#, fuzzy
 msgid "CHANNEL_INHIBITOR_TOXIN_SYNTHESIS"
-msgstr "Inhibe la production d'ATP des cellules affectées, ce qui les empêche de se déplacer rapidement et peut entraîner la mort des cellules dont la production d'ATP n'a pas beaucoup d'excédent."
+msgstr "Synthèse des inhibiteurs de canaux"
 
 msgid "CHEATS"
 msgstr "Triches"
@@ -729,16 +730,20 @@ msgstr "Chimiorécepteur"
 msgid "CHEMORECEPTOR_DESCRIPTION"
 msgstr "Toutes les cellules ne \"voient\" que par le biais de la chimioréception. C'est ainsi que les cellules acquièrent des informations sur leur environnement. L'ajout de cet organite représente l'évolution d'une chimioréception plus fine. Comme le joueur obtient la vision même au stade de la cellule, cela est représenté par une ligne pointant en dehors de la zone visible de l'écran, montrant les composés proches que le joueur ne pouvait pas encore voir."
 
-#, fuzzy
 msgid "CHEMORECEPTOR_MINIMUM_AMOUNT_TOOLTIP"
-msgstr "Quantité minimale à détecter :"
+msgstr ""
+"Définir le seuil de détection des composés. Des valeurs basses peuvent pointer vers des traces infimes de composés qui peuvent ne pas avoir suffisamment de composés pour être utile.\n"
+"Un exemple de cette stratégie est d'augment le rayon de recherches, et la quantité minimal pour que le nuage le plus proche et suffisamment dense, soit toujours détecté.\n"
+"Les chimiorécepteurs sentent des points individuels dans un \"nuage\" de composés et pas le total de d'un nuage entier."
 
 msgid "CHEMORECEPTOR_PROCESSES_DESCRIPTION"
 msgstr "Le chimiorécepteur permet de détecter les composés de plus loin. Modifier une fois placé pour choisir le type de composé détecté et la couleur de la ligne de guidage."
 
-#, fuzzy
 msgid "CHEMORECEPTOR_SEARCH_RADIUS_TOOLTIP"
-msgstr "Toutes les cellules ne \"voient\" que par le biais de la chimioréception. C'est ainsi que les cellules acquièrent des informations sur leur environnement. L'ajout de cet organite représente l'évolution d'une chimioréception plus fine. Comme le joueur obtient la vision même au stade de la cellule, cela est représenté par une ligne pointant en dehors de la zone visible de l'écran, montrant les composés proches que le joueur ne pouvait pas encore voir."
+msgstr ""
+"Définit la distance maximale à laquelle ce chimiorécepteur recherche des éléments.\n"
+"Peut être utilisé, par exemple, pour que les cellules lentes ne pointent pas vers des ressources susceptibles d'avoir disparu avant que la cellule n'y arrive, en réduisant la distance.\n"
+"À l'inverse, augmenter la distance permet de pointer vers des éléments beaucoup plus éloignés, mais ceux-ci peuvent être difficiles à atteindre avant qu'ils ne disparaissent."
 
 #, fuzzy
 msgid "CHEMOSYNTHESIS"
@@ -814,6 +819,24 @@ msgstr "Vider la mémoire cache"
 msgid "CLICK_TO_SELECT"
 msgstr "Supprimer la sélection"
 
+msgid "CLIMATE_INSTABILITY"
+msgstr ""
+
+#, fuzzy
+msgid "CLIMATE_INSTABILITY_EXPLANATION"
+msgstr ""
+"Les microbes actifs déambuleront en l'absence de cible.\n"
+"Les microbes sessiles seront immobiles en l'attente d'un changement dans leur environnement."
+
+msgid "CLIMATE_STABILITY_AVERAGE"
+msgstr ""
+
+msgid "CLIMATE_STABILITY_STABLE"
+msgstr ""
+
+msgid "CLIMATE_STABILITY_UNSTABLE"
+msgstr ""
+
 msgid "CLOSE"
 msgstr "Fermer"
 
@@ -833,9 +856,8 @@ msgstr "Diviseur de résolution des nuages :"
 msgid "CLOUD_SIMULATION_MINIMUM_INTERVAL"
 msgstr "Intervalle minimal de simulation des nuages :"
 
-#, fuzzy
 msgid "CLOUD_SIMULATION_MULTIPLIER"
-msgstr "Multiplicateur du coût de l'osmorégulation"
+msgstr "Multiplicateur de la simulation :"
 
 msgid "COASTAL"
 msgstr "Littoral"
@@ -915,20 +937,17 @@ msgstr "Visitez le wiki de la communauté"
 msgid "COMPILED_AT_COLON"
 msgstr "Compilée le :"
 
-#, fuzzy
 msgid "COMPLETE_ACTION"
-msgstr "Compilée le :"
+msgstr "Terminer"
 
 msgid "COMPOUNDS"
 msgstr "Composés"
 
-#, fuzzy
 msgid "COMPOUNDS_AT_EQUILIBRIUM"
-msgstr "Composé à trouver :"
+msgstr "Balance à l'Équilibre"
 
-#, fuzzy
 msgid "COMPOUNDS_AT_MAX_SPEED"
-msgstr "Composé à trouver :"
+msgstr "Balance à la Vitesse Maximum"
 
 msgid "COMPOUNDS_BUTTON_MICROBE_TOOLTIP"
 msgstr "Afficher / cacher les composés"
@@ -944,9 +963,10 @@ msgstr "(stockage plein en {0} s)"
 msgid "COMPOUND_BALANCE_FILL_TIME_TOO_LONG"
 msgstr "(stockage plein en {0} s alors que la lumière du jour dure seulement {1} s)"
 
-#, fuzzy
 msgid "COMPOUND_BALANCE_MODE_TOOLTIP"
-msgstr "Afficher / cacher l'environnement et les composés"
+msgstr ""
+"Mode pour calculer la balance, par exemple vitesse maximum calcule en supposant que tous les processus fonctionnant à vitesse maximum\n"
+"alors que équilibre calcule avec les processus fonctionnant juste assez rapidement pour avoir un bilan ATP non négatif."
 
 msgid "COMPOUND_BALANCE_TITLE"
 msgstr "Équilibre des composés"
@@ -983,11 +1003,8 @@ msgstr "Équilibre des composés"
 msgid "COMPOUND_HANDLE_SPLIT_SISTER"
 msgstr "Équilibre des composés"
 
-#, fuzzy
 msgid "COMPOUND_HANDLE_TOP_UP"
-msgstr ""
-"Cette section montre la balance totale (production - consommation) pour chaque composé.\n"
-"Par exemple, pour former une cellule végétale, le bilan du glucose doit être très positif."
+msgstr "Toujours remplir au démarrage"
 
 #, fuzzy
 msgid "COMPOUND_HANDLE_TOP_UP_ON_CHANGE"
@@ -1080,22 +1097,23 @@ msgstr "Le contenu provenant du Workshop sera téléchargé depuis le dossier : 
 msgid "CONTINUE"
 msgstr "Continuer"
 
-#, fuzzy
 msgid "CONTINUE_AS_SPECIES"
-msgstr "Sélectionner une espèce"
+msgstr "[center]Le jeu n'est pas encore terminé. Vous pouvez [b]continuer[/b] en passant à l'espèce {0} dont la population est de {1}.[/center]"
 
 msgid "CONTINUE_THRIVING"
 msgstr "Continuez à prospérer"
 
-#, fuzzy
 msgid "CONTINUE_TO_PROTOTYPES"
 msgstr ""
-"Vous avez atteint la fin de la partie \"complète\" de Thrive\n"
-"Si vous voulez, vous pouvez continuer vers les prototype des phases plus avancées qui sont inclus dans le jeu. Ils peuvent être très incomplets, utiliser des graphismes de remplacement, et être très bruts en général. Ils sont inclus dans le jeu pour montrer la direction potentielle du jeu et notre vision globale de la façon dont les phases sont connectées.\n"
+"[b]Vous avez atteint la fin de la partie « complète » de Thrive.[/b]\n"
 "\n"
-"Dans la plupart des prototypes, vous ne pourrez pas sauvegarder si vous poursuivez ou revenir une fois que vous aurez continué. Si vous souhaitez revenir à cette phase, veuillez effectuer une sauvegarde maintenant avant de continuer.\n"
+"Si vous le souhaitez, vous pouvez passer aux [b]prototypes de phases ultérieures[/b] inclus dans le jeu.\n"
 "\n"
-"La prise en charge des contrôleurs est également beaucoup plus incomplète dans les prototypes. Si vous décidez de poursuivre, sachez que les phases ultérieures sont des prototypes et ne vous plaignez pas de leur caractère incomplet."
+"Ceux-ci peuvent être très incomplets, utiliser des graphismes provisoires et être très approximatifs en général. Ils sont inclus afin de montrer la direction future potentielle du jeu et notre vision globale de la manière dont les phases sont reliées entre elles.\n"
+"\n"
+"Si vous continuez, vous ne pourrez [b]ni sauvegarder[/b] ni revenir à la phase précédente pendant la plupart des prototypes. Si vous souhaitez revenir à [i]cette[/i] phase, veuillez [b]sauvegarder maintenant[/b] avant de continuer.\n"
+"\n"
+"La prise en charge des manettes est également incomplète dans les prototypes. Si vous choisissez de continuer, sachez que les phases suivantes sont des prototypes et veuillez ne pas vous plaindre de leur caractère incomplet."
 
 msgid "CONTINUE_TO_PROTOTYPES_PROMPT"
 msgstr "Continuer vers les phases en prototype ?"
@@ -2428,11 +2446,33 @@ msgstr "Appuyez sur le bouton Annuler la dernière action dans l'éditeur pour c
 msgid "GENERAL_LOADING_TIP_7"
 msgstr "Appuyez sur le bouton Annuler la dernière action dans l'éditeur pour corriger une erreur"
 
+#, fuzzy
+msgid "GENERATE_BUTTON"
+msgstr "Générations"
+
 msgid "GENERATIONS"
 msgstr "Générations"
 
 msgid "GENERATION_COLON"
 msgstr "Génération :"
+
+msgid "GEOLOGICAL_ACTIVITY"
+msgstr ""
+
+msgid "GEOLOGICAL_ACTIVITY_ACTIVE"
+msgstr ""
+
+msgid "GEOLOGICAL_ACTIVITY_AVERAGE"
+msgstr ""
+
+msgid "GEOLOGICAL_ACTIVITY_DORMANT"
+msgstr ""
+
+#, fuzzy
+msgid "GEOLOGICAL_ACTIVITY_EXPLANATION"
+msgstr ""
+"Les microbes actifs déambuleront en l'absence de cible.\n"
+"Les microbes sessiles seront immobiles en l'attente d'un changement dans leur environnement."
 
 msgid "GITHUB_TOOLTIP"
 msgstr "Visitez notre dépôt Github"
@@ -4813,6 +4853,10 @@ msgstr "Placer organite"
 msgid "PLANET"
 msgstr "Planète"
 
+#, fuzzy
+msgid "PLANET_CUSTOMIZER"
+msgstr "Au pointeur :"
+
 msgid "PLANET_DETAILS_STRING"
 msgstr ""
 "LAWK uniquement : {0}\n"
@@ -4820,9 +4864,6 @@ msgstr ""
 "Cycle jour/nuit : {2}\n"
 "Durée du jour : {3} secondes\n"
 "Graine aléatoire de la planète : {4}"
-
-msgid "PLANET_GENERATION_TEASER"
-msgstr "La génération de planète arrive bientôt !"
 
 msgid "PLANET_RANDOM_SEED"
 msgstr "Graine planétaire aléatoire"
@@ -5017,6 +5058,10 @@ msgstr "Répéter la dernière action"
 
 msgid "REFRESH"
 msgstr "Rafraîchir"
+
+#, fuzzy
+msgid "REGENERATE_BUTTON"
+msgstr "Axone"
 
 #, fuzzy
 msgid "RENDER_SCALE"
@@ -6316,9 +6361,8 @@ msgstr "La vacuole à toxines est une vacuole ayant évolué de manière à spé
 msgid "TOXIN_VACUOLE_PROCESSES_DESCRIPTION"
 msgstr "Transforme l'[thrive:compound type=\"atp\"][/thrive:compound] en [thrive:compound type=\"oxytoxy\"][/thrive:compound]. Peut libérer des toxines en appuyant sur [thrive:input]g_fire_toxin[/thrive:input]. Lorsque la quantité d'[thrive:compound type=\"oxytoxy\"][/thrive:compound] est faible, il est toujours possible de tirer mais les dégâts sont réduits."
 
-#, fuzzy
 msgid "TOXISOME"
-msgstr "Oxytoxisome"
+msgstr "Toxisome"
 
 #, fuzzy
 msgid "TOXISOME_DESCRIPTION"
@@ -6679,7 +6723,7 @@ msgid "UNBIND_ALL_TOOLTIP"
 msgstr "Dissocier tout"
 
 msgid "UNBIND_HELP_TEXT"
-msgstr "Mode de Délier"
+msgstr "Mode déliage"
 
 msgid "UNCERTAIN_VERSION_WARNING"
 msgstr "Il s'agit d'une version de debug où les informations ci-dessous ne sont probablement pas à jour"
@@ -9203,6 +9247,26 @@ msgstr ""
 "Inclure les prototypes des phases avancées : {0}\n"
 "Inclure les Easter eggs : {1}"
 
+#, fuzzy
+msgid "WORLD_OCEANIC_COVERAGE"
+msgstr "Grand"
+
+#, fuzzy
+msgid "WORLD_OCEANIC_COVERAGE_EXPLANATION"
+msgstr "Grand"
+
+#, fuzzy
+msgid "WORLD_OCEANIC_COVERAGE_LARGE"
+msgstr "Grand"
+
+#, fuzzy
+msgid "WORLD_OCEANIC_COVERAGE_MEDIUM"
+msgstr "Grand"
+
+#, fuzzy
+msgid "WORLD_OCEANIC_COVERAGE_SMALL"
+msgstr "Petit"
+
 msgid "WORLD_RELATIVE_MOVEMENT"
 msgstr "Dépend du monde"
 
@@ -9229,6 +9293,29 @@ msgstr "Petit"
 #, fuzzy
 msgid "WORLD_SIZE_TOOLTIP"
 msgstr "Lance un certain nombre de mondes, le nombre de générations pour chaque monde est déterminé par liste déroulante ci-dessus."
+
+#, fuzzy
+msgid "WORLD_TEMPERATURE"
+msgstr "Température"
+
+#, fuzzy
+msgid "WORLD_TEMPERATURE_COLD"
+msgstr "Temp."
+
+#, fuzzy
+msgid "WORLD_TEMPERATURE_EXPLANATION"
+msgstr ""
+"Les microbes persévérants rechercheront des fragments ou des proies sur de plus grandes distances\n"
+"et pourront se montrer bien plus ambitieux face à des fragments disputés.\n"
+"Les microbes réactifs basculeront plus vite vers de nouvelles cibles."
+
+#, fuzzy
+msgid "WORLD_TEMPERATURE_TEMPERATE"
+msgstr "Temp."
+
+#, fuzzy
+msgid "WORLD_TEMPERATURE_WARM"
+msgstr "Temp."
 
 msgid "WORST_PATCH_COLON"
 msgstr "Pire secteur :"
@@ -9267,6 +9354,32 @@ msgstr "Zoomer"
 
 msgid "ZOOM_OUT"
 msgstr "Dézoomer"
+
+#, fuzzy
+#~ msgid "WORLD_SEA_LEVEL"
+#~ msgstr "{0}-{1}m sous la mer"
+
+#, fuzzy
+#~ msgid "WORLD_SEA_LEVEL_DEEP"
+#~ msgstr "{0}-{1}m sous la mer"
+
+#, fuzzy
+#~ msgid "WORLD_SEA_LEVEL_EXPLANATION"
+#~ msgstr ""
+#~ "Les microbes persévérants rechercheront des fragments ou des proies sur de plus grandes distances\n"
+#~ "et pourront se montrer bien plus ambitieux face à des fragments disputés.\n"
+#~ "Les microbes réactifs basculeront plus vite vers de nouvelles cibles."
+
+#, fuzzy
+#~ msgid "WORLD_SEA_LEVEL_MODERATE"
+#~ msgstr "Dépend du monde"
+
+#, fuzzy
+#~ msgid "WORLD_SEA_LEVEL_SHALLOW"
+#~ msgstr "Petit"
+
+#~ msgid "PLANET_GENERATION_TEASER"
+#~ msgstr "La génération de planète arrive bientôt !"
 
 #~ msgid "PASSIVE_REPRODUCTION_PROGRESS_EXPLANATION"
 #~ msgstr "(obtenir passivement des composés de reproduction de l'environnement sans avoir à faire quoi que ce soit)"

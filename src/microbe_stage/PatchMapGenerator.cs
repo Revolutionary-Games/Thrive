@@ -82,7 +82,7 @@ public static class PatchMapGenerator
             }
             else
             {
-                regionType = (PatchRegion.RegionType)random.Next(0, 3);
+                regionType = GetRandomRegionType(settings, random);
             }
 
             var region = new PatchRegion(i, continentName, regionType, coordinates);
@@ -127,8 +127,7 @@ public static class PatchMapGenerator
                 numberOfPatches = random.Next(0, 4);
 
                 // All oceans/seas must have at least one epipelagic/ice patch and a seafloor
-                NewPredefinedPatch(random.Next(0, 2) == 1 ? BiomeType.Epipelagic : BiomeType.IceShelf,
-                    ++currentPatchId, region, regionName);
+                NewPredefinedPatch(GetRandomSurfaceBiomeType(settings, random), ++currentPatchId, region, regionName);
 
                 // Add the patches between surface and sea floor
                 for (int patchIndex = 4; numberOfPatches > 0 && patchIndex <= (int)BiomeType.Abyssopelagic;
@@ -219,6 +218,66 @@ public static class PatchMapGenerator
         }
 
         return map;
+    }
+
+    private static PatchRegion.RegionType GetRandomRegionType(WorldGenerationSettings settings, Random random)
+    {
+        int roll = random.Next(0, 100);
+
+        switch (settings.WorldOceanicCoverage)
+        {
+            case WorldGenerationSettings.WorldOceanicCoverageEnum.Small:
+                if (roll < 60)
+                    return PatchRegion.RegionType.Continent;
+                if (roll < 90)
+                    return PatchRegion.RegionType.Sea;
+
+                return PatchRegion.RegionType.Ocean;
+
+            case WorldGenerationSettings.WorldOceanicCoverageEnum.Large:
+                if (roll < 60)
+                    return PatchRegion.RegionType.Ocean;
+                if (roll < 90)
+                    return PatchRegion.RegionType.Sea;
+
+                return PatchRegion.RegionType.Continent;
+
+            default:
+                if (roll < 33)
+                    return PatchRegion.RegionType.Continent;
+                if (roll < 66)
+                    return PatchRegion.RegionType.Sea;
+
+                return PatchRegion.RegionType.Ocean;
+        }
+    }
+
+    private static BiomeType GetRandomSurfaceBiomeType(WorldGenerationSettings settings, Random random)
+    {
+        int roll = random.Next(0, 100);
+
+        switch (settings.WorldTemperature)
+        {
+            case WorldGenerationSettings.WorldTemperatureEnum.Cold:
+                if (roll < 80)
+                    return BiomeType.IceShelf;
+
+                break;
+
+            case WorldGenerationSettings.WorldTemperatureEnum.Temperate:
+                if (roll < 50)
+                    return BiomeType.IceShelf;
+
+                break;
+
+            case WorldGenerationSettings.WorldTemperatureEnum.Warm:
+                if (roll < 20)
+                    return BiomeType.IceShelf;
+
+                break;
+        }
+
+        return BiomeType.Epipelagic;
     }
 
     private static Biome GetBiomeTemplate(string name)

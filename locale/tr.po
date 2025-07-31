@@ -7,8 +7,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2025-07-12 13:25+0200\n"
-"PO-Revision-Date: 2025-07-17 20:28+0000\n"
+"POT-Creation-Date: 2025-07-21 23:42+0200\n"
+"PO-Revision-Date: 2025-07-28 23:30+0000\n"
 "Last-Translator: punctdan <yunusemredilek@hotmail.com>\n"
 "Language-Team: Turkish <https://translate.revolutionarygamesstudio.com/projects/thrive/thrive-game/tr/>\n"
 "Language: tr\n"
@@ -358,6 +358,9 @@ msgstr "Oyun esnasında otomatik olarak kaydet"
 msgid "AUTO_EVO"
 msgstr "Oto-Evrim"
 
+msgid "AUTO_EVO_EXPLORER_TOOL_BUTTON"
+msgstr "Oto-Evrim Keşif Aracında Kullan"
+
 msgid "AUTO_EVO_EXPLORING_TOOL"
 msgstr "Oto-Evrim Keşif Aracı"
 
@@ -411,6 +414,9 @@ msgstr "Ters Eğik Çizgi"
 
 msgid "BACKSPACE"
 msgstr "Backspace"
+
+msgid "BACK_TO_SETTINGS"
+msgstr "Ayarlara Dön"
 
 msgid "BACTERIAL_THERMOSYNTHESIS"
 msgstr "Bakteri Termosentezi"
@@ -803,6 +809,21 @@ msgstr "Önbelleği Temizle"
 
 msgid "CLICK_TO_SELECT"
 msgstr "Seç"
+
+msgid "CLIMATE_INSTABILITY"
+msgstr "İklim değişkenliği"
+
+msgid "CLIMATE_INSTABILITY_EXPLANATION"
+msgstr "(küresel buzullaşma gibi arazi olaylarının sıklığını ve şiddetini etkiler)"
+
+msgid "CLIMATE_STABILITY_AVERAGE"
+msgstr "Orta"
+
+msgid "CLIMATE_STABILITY_STABLE"
+msgstr "Sabit"
+
+msgid "CLIMATE_STABILITY_UNSTABLE"
+msgstr "Değişken"
 
 msgid "CLOSE"
 msgstr "Kapat"
@@ -2361,11 +2382,29 @@ msgstr "Unutmayın, imlecin altındaki öğeyi görmek için ekranın sağ üst�
 msgid "GENERAL_LOADING_TIP_7"
 msgstr "Eğer popülasyonunuz sıfıra düşerse, soyunuz tükenir."
 
+msgid "GENERATE_BUTTON"
+msgstr "Dünya Oluştur"
+
 msgid "GENERATIONS"
 msgstr "Kuşaklar"
 
 msgid "GENERATION_COLON"
 msgstr "Kuşak:"
+
+msgid "GEOLOGICAL_ACTIVITY"
+msgstr "Jeolojik etkinlik"
+
+msgid "GEOLOGICAL_ACTIVITY_ACTIVE"
+msgstr "Etkin"
+
+msgid "GEOLOGICAL_ACTIVITY_AVERAGE"
+msgstr "Orta"
+
+msgid "GEOLOGICAL_ACTIVITY_DORMANT"
+msgstr "Pasif"
+
+msgid "GEOLOGICAL_ACTIVITY_EXPLANATION"
+msgstr "(göktaşı etkileri ve yanardağ patlamaları gibi olayların sıklığını ve şiddetini etkiler)"
 
 msgid "GITHUB_TOOLTIP"
 msgstr "GitHub depomuzu ziyaret edin"
@@ -4594,6 +4633,9 @@ msgstr "Organel yerleştir (veya başka yerleştirilen şey)"
 msgid "PLANET"
 msgstr "Gezegen"
 
+msgid "PLANET_CUSTOMIZER"
+msgstr "Gezegen Özelleştirme Aracı"
+
 msgid "PLANET_DETAILS_STRING"
 msgstr ""
 "Sadece BH: {0}\n"
@@ -4601,9 +4643,6 @@ msgstr ""
 "Gece gündüz döngüsü: {2}\n"
 "Gün uzunluğu: {3} saniye\n"
 "Rastgele gezegen tohumu: {4}"
-
-msgid "PLANET_GENERATION_TEASER"
-msgstr "Gezegen oluşumu çok yakında!"
 
 msgid "PLANET_RANDOM_SEED"
 msgstr "Rastgele gezegen tohumu"
@@ -4797,6 +4836,9 @@ msgstr "Son eylemi tekrarla"
 
 msgid "REFRESH"
 msgstr "Yenile"
+
+msgid "REGENERATE_BUTTON"
+msgstr "Yeniden Dünya Oluştur"
 
 msgid "RENDER_SCALE"
 msgstr "Çözünürlük ölçeği"
@@ -9114,11 +9156,26 @@ msgstr ""
 "Sonraki evre prototiplerini dahil et: {0}\n"
 "Sürpriz yumurtaları dahil et: {1}"
 
+msgid "WORLD_OCEANIC_COVERAGE"
+msgstr "Okyanus kapsamı"
+
+msgid "WORLD_OCEANIC_COVERAGE_EXPLANATION"
+msgstr "(kaç tane kıta ve okyanus bölgesi oluşturulacağını etkiler)"
+
+msgid "WORLD_OCEANIC_COVERAGE_LARGE"
+msgstr "Büyük"
+
+msgid "WORLD_OCEANIC_COVERAGE_MEDIUM"
+msgstr "Orta"
+
+msgid "WORLD_OCEANIC_COVERAGE_SMALL"
+msgstr "Küçük"
+
 msgid "WORLD_RELATIVE_MOVEMENT"
 msgstr "Dünyaya bağlı"
 
 msgid "WORLD_SIZE"
-msgstr "Dünya Büyüklüğü"
+msgstr "Dünya büyüklüğü"
 
 msgid "WORLD_SIZE_EXPLANATION"
 msgstr "(dünyadaki arazi sayısını değiştirir)"
@@ -9134,6 +9191,21 @@ msgstr "Küçük"
 
 msgid "WORLD_SIZE_TOOLTIP"
 msgstr "Daha büyük bir dünyaya sahip olmak, simülasyonu yavaşlatır ve daha yavaş bilgisayarlar için önerilmemektedir."
+
+msgid "WORLD_TEMPERATURE"
+msgstr "Dünya sıcaklığı"
+
+msgid "WORLD_TEMPERATURE_COLD"
+msgstr "Soğuk"
+
+msgid "WORLD_TEMPERATURE_EXPLANATION"
+msgstr "(kaç tane donmuş deniz arazisi oluşturulacağını etkiler)"
+
+msgid "WORLD_TEMPERATURE_TEMPERATE"
+msgstr "Ilık"
+
+msgid "WORLD_TEMPERATURE_WARM"
+msgstr "Sıcak"
 
 msgid "WORST_PATCH_COLON"
 msgstr "En Kötü Arazi:"
@@ -9172,6 +9244,29 @@ msgstr "Yakınlaştır"
 
 msgid "ZOOM_OUT"
 msgstr "Uzaklaştır"
+
+#, fuzzy
+#~ msgid "WORLD_SEA_LEVEL"
+#~ msgstr "Deniz seviyesinin {0}-{1}m altı"
+
+#, fuzzy
+#~ msgid "WORLD_SEA_LEVEL_DEEP"
+#~ msgstr "Deniz seviyesinin {0}-{1}m altı"
+
+#, fuzzy
+#~ msgid "WORLD_SEA_LEVEL_EXPLANATION"
+#~ msgstr "(dünyadaki arazi sayısını değiştirir)"
+
+#, fuzzy
+#~ msgid "WORLD_SEA_LEVEL_MODERATE"
+#~ msgstr "Dünyaya bağlı"
+
+#, fuzzy
+#~ msgid "WORLD_SEA_LEVEL_SHALLOW"
+#~ msgstr "Küçük"
+
+#~ msgid "PLANET_GENERATION_TEASER"
+#~ msgstr "Gezegen oluşumu çok yakında!"
 
 #~ msgid "PASSIVE_REPRODUCTION_PROGRESS_EXPLANATION"
 #~ msgstr "(hiçbir şey yapmadan çevreden pasif olarak üreme bileşenleri elde et)"
