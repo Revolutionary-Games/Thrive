@@ -13,10 +13,10 @@ public class FileLoadedAchievement : IAchievement
 
     [JsonProperty(nameof(Description))]
     private string? descriptionRaw;
-#pragma warning restore 649
 
     [JsonProperty]
     private string? progressDescription;
+#pragma warning restore 649
 
     [JsonProperty]
     public int Identifier { get; private set; }

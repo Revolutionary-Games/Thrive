@@ -371,6 +371,7 @@ public partial class AchievementsManager : Node
             return;
 
         // TODO: add an achievement for this
+        GD.Print("TODO: implement this achievement");
     }
 
     internal void OnPlayerPhotosynthesisGlucoseBalance(float balance)
@@ -379,6 +380,7 @@ public partial class AchievementsManager : Node
             return;
 
         // TODO: add an achievement for this
+        GD.Print("TODO: implement this achievement");
     }
 
     // End of events
