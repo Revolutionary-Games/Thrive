@@ -174,14 +174,14 @@ public partial class CellStatsIndicator : HBoxContainer
 
     private void UpdateChangeIndicator()
     {
+        if (changeIndicator == null)
+            return;
+
         if (!useChangeIndicator)
         {
             changeIndicator.Texture = blankIcon;
             return;
         }
-
-        if (changeIndicator == null)
-            return;
 
         if (initialValue.HasValue && !float.IsNaN(initialValue.Value) && !float.IsNaN(Value))
         {
