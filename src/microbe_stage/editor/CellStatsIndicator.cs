@@ -5,7 +5,7 @@ using Newtonsoft.Json;
 
 /// <summary>
 ///   Shows cell stats (e.g. Storage: 2.1, Hp: 50, etc) for the organism statistics display.
-///   Also functions as a comparison for old value with a new one, indicated with an up/down icon
+///   Also functions as a comparison for old value with a new one, indicated with an up/down icon.
 ///   (can be disabled with <see cref="UseChangeIndicator"/>)
 /// </summary>
 [JsonObject(MemberSerialization.OptIn)]
@@ -179,7 +179,7 @@ public partial class CellStatsIndicator : HBoxContainer
 
         if (!useChangeIndicator)
         {
-            changeIndicator.Texture = blankIcon;
+            changeIndicator.Visible = false;
             return;
         }
 
