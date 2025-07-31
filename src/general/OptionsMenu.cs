@@ -443,7 +443,7 @@ public partial class OptionsMenu : ControlWithInput
 
     /// <summary>
     ///   Copy of the settings object that should match what is saved to the configuration file,
-    ///   used for comparing and restoring to previous state.
+    ///   used for comparing and restoring to the previous state.
     /// </summary>
     private Settings savedSettings = null!;
 
@@ -785,7 +785,7 @@ public partial class OptionsMenu : ControlWithInput
             return true;
         }
 
-        // If it is opened from InGame then let pause menu hide too.
+        // If it is opened from InGame then let the pause menu hide too.
         if (optionsMode == OptionsMode.InGame)
         {
             return false;
