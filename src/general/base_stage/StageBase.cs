@@ -112,6 +112,16 @@ public partial class StageBase : NodeWithInput, IStageBase, IGodotEarlyNodeResol
     [JsonIgnore]
     protected LoadState StageLoadingState { get; private set; }
 
+    public virtual void ResolveNodeReferences()
+    {
+        if (NodeReferencesResolved)
+            return;
+
+        world = GetNode<Node>("World");
+        rootOfDynamicallySpawned = world.GetNode<Node>("DynamicallySpawned");
+        NodeReferencesResolved = true;
+    }
+
     public override void _EnterTree()
     {
         base._EnterTree();
@@ -139,16 +149,6 @@ public partial class StageBase : NodeWithInput, IStageBase, IGodotEarlyNodeResol
         base._ExitTree();
 
         AchievementsManager.OnPlayerHasCheatedEvent -= OnCheatsUsed;
-    }
-
-    public virtual void ResolveNodeReferences()
-    {
-        if (NodeReferencesResolved)
-            return;
-
-        world = GetNode<Node>("World");
-        rootOfDynamicallySpawned = world.GetNode<Node>("DynamicallySpawned");
-        NodeReferencesResolved = true;
     }
 
     public override void _Process(double delta)
