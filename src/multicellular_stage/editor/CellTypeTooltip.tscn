@@ -6,7 +6,7 @@
 [ext_resource type="LabelSettings" uid="uid://brgbuduvjby6a" path="res://src/gui_common/fonts/Title-SemiBold-Smaller.tres" id="4_oloco"]
 [ext_resource type="LabelSettings" uid="uid://bv3bnu0g1wdw3" path="res://src/gui_common/fonts/Title-SemiBold-Big.tres" id="5_smds5"]
 [ext_resource type="PackedScene" uid="uid://sxqf3o1pkl0n" path="res://src/microbe_stage/editor/CompoundBalanceDisplay.tscn" id="6_0abd5"]
-[ext_resource type="PackedScene" uid="uid://bde8elvx7man2" path="res://src/multicellular_stage/editor/CellTypeStatLabel.tscn" id="6_1moo6"]
+[ext_resource type="PackedScene" uid="uid://c027xyogk08vx" path="res://src/microbe_stage/editor/CellStatsIndicator.tscn" id="6_w1mf1"]
 [ext_resource type="Texture2D" uid="uid://cq25ojg73mpr" path="res://assets/textures/gui/bevel/HealthIcon.png" id="7_esy5e"]
 [ext_resource type="Texture2D" uid="uid://bmu3av0d807dw" path="res://assets/textures/gui/bevel/StorageIcon.png" id="8_oloco"]
 [ext_resource type="Texture2D" uid="uid://c4w7v5wtq2d1b" path="res://assets/textures/gui/bevel/SpeedIcon.png" id="9_smds5"]
@@ -59,10 +59,10 @@ script = ExtResource("2_0abd5")
 nameLabel = NodePath("MarginContainer/VBoxContainer/Header/Title")
 mpLabel = NodePath("MarginContainer/VBoxContainer/Header/MP/Value")
 compoundBalanceDisplay = NodePath("MarginContainer/VBoxContainer/CompoundBalanceDisplay")
-healthLabel = NodePath("MarginContainer/VBoxContainer/CellStats/Health")
+healthLabel = NodePath("MarginContainer/VBoxContainer/CellStats/Hp")
 storageLabel = NodePath("MarginContainer/VBoxContainer/CellStats/Storage")
 speedLabel = NodePath("MarginContainer/VBoxContainer/CellStats/Speed")
-rotationSpeedLabel = NodePath("MarginContainer/VBoxContainer/CellStats/RotationSpeed")
+rotationSpeedLabel = NodePath("MarginContainer/VBoxContainer/CellStats/Rotation")
 sizeLabel = NodePath("MarginContainer/VBoxContainer/CellStats/Size")
 digestionSpeedLabel = NodePath("MarginContainer/VBoxContainer/CellStats/DigestionSpeed")
 atpProductionBar = NodePath("MarginContainer/VBoxContainer/AtpBalance/ProductionContainer/ProductionBar")
@@ -125,34 +125,37 @@ mouse_filter = 2
 [node name="CellStats" type="VBoxContainer" parent="MarginContainer/VBoxContainer"]
 layout_mode = 2
 
-[node name="Health" parent="MarginContainer/VBoxContainer/CellStats" instance=ExtResource("6_1moo6")]
+[node name="Hp" parent="MarginContainer/VBoxContainer/CellStats" instance=ExtResource("6_w1mf1")]
 layout_mode = 2
-icon = ExtResource("7_esy5e")
+Icon = ExtResource("7_esy5e")
 Description = "HP_COLON"
 
-[node name="Storage" parent="MarginContainer/VBoxContainer/CellStats" instance=ExtResource("6_1moo6")]
+[node name="Storage" parent="MarginContainer/VBoxContainer/CellStats" instance=ExtResource("6_w1mf1")]
 layout_mode = 2
-icon = ExtResource("8_oloco")
+tooltip_text = "CELL_STAT_STORAGE_TOOLTIP"
+Icon = ExtResource("8_oloco")
 Description = "STORAGE_COLON"
 
-[node name="Speed" parent="MarginContainer/VBoxContainer/CellStats" instance=ExtResource("6_1moo6")]
+[node name="Speed" parent="MarginContainer/VBoxContainer/CellStats" instance=ExtResource("6_w1mf1")]
 layout_mode = 2
-icon = ExtResource("9_smds5")
+tooltip_text = "CELL_STAT_SPEED_TOOLTIP"
+Icon = ExtResource("9_smds5")
 Description = "SPEED_COLON"
 
-[node name="RotationSpeed" parent="MarginContainer/VBoxContainer/CellStats" instance=ExtResource("6_1moo6")]
+[node name="Rotation" parent="MarginContainer/VBoxContainer/CellStats" instance=ExtResource("6_w1mf1")]
 layout_mode = 2
-icon = ExtResource("10_w1mf1")
+tooltip_text = "CELL_STAT_ROTATION_TOOLTIP"
+Icon = ExtResource("10_w1mf1")
 Description = "ROTATION_COLON"
 
-[node name="Size" parent="MarginContainer/VBoxContainer/CellStats" instance=ExtResource("6_1moo6")]
+[node name="Size" parent="MarginContainer/VBoxContainer/CellStats" instance=ExtResource("6_w1mf1")]
 layout_mode = 2
-icon = ExtResource("11_smds5")
+Icon = ExtResource("11_smds5")
 Description = "SIZE_COLON"
 
-[node name="DigestionSpeed" parent="MarginContainer/VBoxContainer/CellStats" instance=ExtResource("6_1moo6")]
+[node name="DigestionSpeed" parent="MarginContainer/VBoxContainer/CellStats" instance=ExtResource("6_w1mf1")]
 layout_mode = 2
-icon = ExtResource("12_w1mf1")
+Icon = ExtResource("12_w1mf1")
 Description = "DIGESTION_SPEED_COLON"
 
 [node name="HSeparator" type="HSeparator" parent="MarginContainer/VBoxContainer"]

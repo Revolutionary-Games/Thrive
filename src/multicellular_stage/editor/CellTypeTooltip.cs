@@ -19,22 +19,22 @@ public partial class CellTypeTooltip : Control, ICustomToolTip
     private CompoundBalanceDisplay compoundBalanceDisplay = null!;
 
     [Export]
-    private CellTypeStatLabel healthLabel = null!;
+    private CellStatsIndicator healthLabel = null!;
 
     [Export]
-    private CellTypeStatLabel storageLabel = null!;
+    private CellStatsIndicator storageLabel = null!;
 
     [Export]
-    private CellTypeStatLabel speedLabel = null!;
+    private CellStatsIndicator speedLabel = null!;
 
     [Export]
-    private CellTypeStatLabel rotationSpeedLabel = null!;
+    private CellStatsIndicator rotationSpeedLabel = null!;
 
     [Export]
-    private CellTypeStatLabel sizeLabel = null!;
+    private CellStatsIndicator sizeLabel = null!;
 
     [Export]
-    private CellTypeStatLabel digestionSpeedLabel = null!;
+    private CellStatsIndicator digestionSpeedLabel = null!;
 
     [Export]
     private ProgressBar atpProductionBar = null!;
@@ -127,6 +127,7 @@ public partial class CellTypeTooltip : Control, ICustomToolTip
 
     public void UpdateDigestionSpeedIndicator(float value)
     {
+        digestionSpeedLabel.Format = Localization.Translate("DIGESTION_SPEED_VALUE");
         digestionSpeedLabel.Value = MathF.Round(value, 2);
     }
 
