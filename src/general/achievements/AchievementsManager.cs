@@ -571,6 +571,10 @@ public partial class AchievementsManager : Node
         if (string.IsNullOrEmpty(result))
             throw new IOException($"Failed to read achievements file: {path}");
 
+        // Harmonize to unix line endings
+        if (result.Contains("\r\n"))
+            result = result.Replace("\r\n", "\n");
+
         var hash = Convert.ToBase64String(SHA256.HashData(Encoding.UTF8.GetBytes(result)));
 
         if (hash != ACHIEVEMENTS_INTEGRITY)
