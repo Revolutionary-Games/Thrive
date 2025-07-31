@@ -8,7 +8,7 @@ msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2025-07-21 23:42+0200\n"
-"PO-Revision-Date: 2025-07-28 09:22+0000\n"
+"PO-Revision-Date: 2025-07-31 09:01+0000\n"
 "Last-Translator: xzihnago <xzihnago@gmail.com>\n"
 "Language-Team: Chinese (Traditional Han script) <https://translate.revolutionarygamesstudio.com/projects/thrive/thrive-game/zh_Hant/>\n"
 "Language: zh_TW\n"
@@ -358,9 +358,8 @@ msgstr "遊戲中自動存檔"
 msgid "AUTO_EVO"
 msgstr "Auto-Evo"
 
-#, fuzzy
 msgid "AUTO_EVO_EXPLORER_TOOL_BUTTON"
-msgstr "Auto-Evo 探索工具"
+msgstr "在 Auto-Evo 探索工具中使用"
 
 msgid "AUTO_EVO_EXPLORING_TOOL"
 msgstr "Auto-Evo 探索工具"
@@ -417,7 +416,7 @@ msgid "BACKSPACE"
 msgstr "Backspace"
 
 msgid "BACK_TO_SETTINGS"
-msgstr ""
+msgstr "返回設定"
 
 msgid "BACTERIAL_THERMOSYNTHESIS"
 msgstr "細菌熱合成"
@@ -813,22 +812,19 @@ msgid "CLICK_TO_SELECT"
 msgstr "選取"
 
 msgid "CLIMATE_INSTABILITY"
-msgstr ""
+msgstr "氣候不穩定性"
 
-#, fuzzy
 msgid "CLIMATE_INSTABILITY_EXPLANATION"
-msgstr ""
-"活躍型微生物在周圍無事發生時會四處移動。\n"
-"沉著型微生物將靜止不動，等待環境變化後才行動。"
+msgstr "（影響全球冰河期等區域事件的頻率與嚴重程度）"
 
 msgid "CLIMATE_STABILITY_AVERAGE"
-msgstr ""
+msgstr "平均"
 
 msgid "CLIMATE_STABILITY_STABLE"
-msgstr ""
+msgstr "穩定"
 
 msgid "CLIMATE_STABILITY_UNSTABLE"
-msgstr ""
+msgstr "不穩定"
 
 msgid "CLOSE"
 msgstr "關閉"
@@ -2387,9 +2383,8 @@ msgstr "別忘了，您可以使用螢幕右上角的面板查看遊標下的內
 msgid "GENERAL_LOADING_TIP_7"
 msgstr "如果您的物種量降至零，您就會滅絕。"
 
-#, fuzzy
 msgid "GENERATE_BUTTON"
-msgstr "世代"
+msgstr "生成世界"
 
 msgid "GENERATIONS"
 msgstr "世代"
@@ -2398,22 +2393,19 @@ msgid "GENERATION_COLON"
 msgstr "世代："
 
 msgid "GEOLOGICAL_ACTIVITY"
-msgstr ""
+msgstr "地質活動"
 
 msgid "GEOLOGICAL_ACTIVITY_ACTIVE"
-msgstr ""
+msgstr "活躍"
 
 msgid "GEOLOGICAL_ACTIVITY_AVERAGE"
-msgstr ""
+msgstr "平均"
 
 msgid "GEOLOGICAL_ACTIVITY_DORMANT"
-msgstr ""
+msgstr "休眠"
 
-#, fuzzy
 msgid "GEOLOGICAL_ACTIVITY_EXPLANATION"
-msgstr ""
-"活躍型微生物在周圍無事發生時會四處移動。\n"
-"沉著型微生物將靜止不動，等待環境變化後才行動。"
+msgstr "（影響流星撞擊與火山噴發等事件的頻率與嚴重程度）"
 
 msgid "GITHUB_TOOLTIP"
 msgstr "造訪我們的 GitHub 儲存庫"
@@ -4642,9 +4634,8 @@ msgstr "放置細胞器（或其他可放置的物件）"
 msgid "PLANET"
 msgstr "星球"
 
-#, fuzzy
 msgid "PLANET_CUSTOMIZER"
-msgstr "滑鼠指標處："
+msgstr "星球自訂工具"
 
 msgid "PLANET_DETAILS_STRING"
 msgstr ""
@@ -4847,9 +4838,8 @@ msgstr "重做上一個動作"
 msgid "REFRESH"
 msgstr "重新整理"
 
-#, fuzzy
 msgid "REGENERATE_BUTTON"
-msgstr "細胞器"
+msgstr "重新生成世界"
 
 msgid "RENDER_SCALE"
 msgstr "解析度比例"
@@ -8861,10 +8851,11 @@ msgstr ""
 "\n"
 "[color=#3796e1][url=https://en.wikipedia.org/wiki/Thermosynthesis]Wikipedia 中的熱合成[/url][/color]"
 
-#, fuzzy
 msgid "WIKI_THERMOSYNTHASE_STRATEGY"
 msgstr ""
-"在目前遊戲中，[b]熱合成酶[/b]本質上是免費能量。它沒有真正的缺點，只要您滿足於留在炎熱區域中即可。 [b]細菌熱合成[/b]在大約 [b]+23 °C[/b] [thrive:compound type=\"temperature\"][/thrive:compound] 的區域中保持平衡，並且在海底熱泉中更強大，其溫度為 [b]+98 °C[/b] [thrive:compound type=\"temperature\"][/thrive:compound]。\n"
+"[i]熱合成[/i]可能是最具移動性的自營形式，它需要持續不斷的運動。您需要從較冷的區域移動到較熱的區域，然後再返回。當細胞溫度停止升高後，[thrive:compound type=\"atp\"][/thrive:compound] 的產量將降至零。最好啟動[i]熱視覺[/i]來觀察細胞周圍的冷熱區域，以便更有效地在這些區域之間穿梭。熱合成酶在溫度較高的區域效率更高，因此最適合在海底熱泉使用。\n"
+"\n"
+"由於[b]熱合成酶[/b]的[thrive:compound type=\"atp\"][/thrive:compound] 生產會經常停止，因此擁有第二能量來源非常重要，否則您將因缺乏[thrive:compound type=\"atp\"][/thrive:compound] 而受到持續傷害。\n"
 "\n"
 "更高效的是[b][color=#3796e1][url=thriveopedia:thermoplast]熱能體[/url][/color][/b]，一旦細胞演化出[b][color=#3796e1][url=thriveopedia:nucleus]細胞核[/url][/color][/b]就可用。與所有原核細胞器與真核細胞器一樣，我們建議在盡可能的情況下將[b]熱合成酶[/b]替換為[b][color=#3796e1][url=thriveopedia:thermoplast]熱能體[/url][/color][/b]。"
 
@@ -9055,25 +9046,20 @@ msgstr ""
 "包含後期階段原型：{0}\n"
 "包含彩蛋：{1}"
 
-#, fuzzy
 msgid "WORLD_OCEANIC_COVERAGE"
-msgstr "大"
+msgstr "海洋覆蓋率"
 
-#, fuzzy
 msgid "WORLD_OCEANIC_COVERAGE_EXPLANATION"
-msgstr "大"
+msgstr "（影響生成的大陸與海洋區域的數量）"
 
-#, fuzzy
 msgid "WORLD_OCEANIC_COVERAGE_LARGE"
-msgstr "大"
+msgstr "高"
 
-#, fuzzy
 msgid "WORLD_OCEANIC_COVERAGE_MEDIUM"
-msgstr "大"
+msgstr "中"
 
-#, fuzzy
 msgid "WORLD_OCEANIC_COVERAGE_SMALL"
-msgstr "小"
+msgstr "低"
 
 msgid "WORLD_RELATIVE_MOVEMENT"
 msgstr "相對於世界"
@@ -9096,25 +9082,20 @@ msgstr "小"
 msgid "WORLD_SIZE_TOOLTIP"
 msgstr "較大的世界可能會降低模擬速度，因此不建議在性能較差的電腦上使用。"
 
-#, fuzzy
 msgid "WORLD_TEMPERATURE"
-msgstr "溫度"
+msgstr "世界溫度"
 
-#, fuzzy
 msgid "WORLD_TEMPERATURE_COLD"
-msgstr "溫度"
+msgstr "寒冷"
 
-#, fuzzy
 msgid "WORLD_TEMPERATURE_EXPLANATION"
-msgstr "（改變世界中的區域數量）"
+msgstr "（影響冰凍海洋區域的生成數量）"
 
-#, fuzzy
 msgid "WORLD_TEMPERATURE_TEMPERATE"
-msgstr "溫度"
+msgstr "適中"
 
-#, fuzzy
 msgid "WORLD_TEMPERATURE_WARM"
-msgstr "溫度"
+msgstr "溫暖"
 
 msgid "WORST_PATCH_COLON"
 msgstr "最差區域："
