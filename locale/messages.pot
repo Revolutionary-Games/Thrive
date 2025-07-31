@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Thrive VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2025-07-21 23:42+0200\n"
+"POT-Creation-Date: 2025-07-31 15:38+0300\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -17,7 +17,7 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Generated-By: Thrive.Scripts 1.2.0.0\n"
 
-#: ../src/gui_common/menus/OptionsMenu.tscn:2480
+#: ../src/gui_common/menus/OptionsMenu.tscn:2482
 msgid "2D_MOVEMENT_TYPE_SELECTION"
 msgstr ""
 
@@ -29,7 +29,7 @@ msgstr ""
 msgid "3D_MOVEMENT"
 msgstr ""
 
-#: ../src/gui_common/menus/OptionsMenu.tscn:2520
+#: ../src/gui_common/menus/OptionsMenu.tscn:2522
 msgid "3D_MOVEMENT_TYPE_SELECTION"
 msgstr ""
 
@@ -56,6 +56,22 @@ msgstr ""
 #: ../src/microbe_stage/gui/MovementModeSelectionPopup.tscn:151
 #: ../src/microbe_stage/gui/PatchDetailsPanel.tscn:622
 msgid "ACCEPT"
+msgstr ""
+
+#: ../src/general/MainMenu.tscn:461 ../src/general/MainMenu.tscn:918
+msgid "ACHIEVEMENTS"
+msgstr ""
+
+#: ../src/general/MainMenu.cs:818
+msgid "ACHIEVEMENTS_TOTAL"
+msgstr ""
+
+#: ../src/general/achievements/AchievementCard.cs:46
+msgid "ACHIEVEMENT_ACHIEVED"
+msgstr ""
+
+#: ../src/general/achievements/AchievementCard.cs:57
+msgid "ACHIEVEMENT_LOCKED"
 msgstr ""
 
 #: ../src/macroscopic_stage/MacroscopicHUD.cs:242
@@ -98,7 +114,7 @@ msgstr ""
 msgid "ACTIVE"
 msgstr ""
 
-#: ../src/gui_common/menus/OptionsMenu.tscn:1718
+#: ../src/gui_common/menus/OptionsMenu.tscn:1720
 msgid "ACTIVE_THREAD_COUNT"
 msgstr ""
 
@@ -114,11 +130,11 @@ msgstr ""
 msgid "ADD_INPUT_BUTTON_TOOLTIP"
 msgstr ""
 
-#: ../src/general/NewGameSettings.tscn:1060
+#: ../src/general/NewGameSettings.tscn:1062
 msgid "ADVANCED_VIEW"
 msgstr ""
 
-#: ../src/general/NewGameSettings.tscn:1055
+#: ../src/general/NewGameSettings.tscn:1057
 msgid "ADVANCED_VIEW_BUTTON_TOOLTIP"
 msgstr ""
 
@@ -154,11 +170,11 @@ msgstr ""
 msgid "AGGRESSIVE"
 msgstr ""
 
-#: ../src/general/NewGameSettings.tscn:417
+#: ../src/general/NewGameSettings.tscn:419
 msgid "AI_MUTATION_RATE"
 msgstr ""
 
-#: ../src/general/NewGameSettings.tscn:448
+#: ../src/general/NewGameSettings.tscn:450
 msgid "AI_MUTATION_RATE_EXPLANATION"
 msgstr ""
 
@@ -167,11 +183,11 @@ msgstr ""
 msgid "ALL"
 msgstr ""
 
-#: ../src/general/NewGameSettings.tscn:856
+#: ../src/general/NewGameSettings.tscn:858
 msgid "ALLOW_SPECIES_SWITCH_ON_EXTINCTION"
 msgstr ""
 
-#: ../src/general/NewGameSettings.tscn:866
+#: ../src/general/NewGameSettings.tscn:868
 msgid "ALLOW_SPECIES_SWITCH_ON_EXTINCTION_EXPLANATION"
 msgstr ""
 
@@ -179,7 +195,7 @@ msgstr ""
 msgid "ALL_WORLDS_GENERAL_STATISTICS"
 msgstr ""
 
-#: ../src/auto-evo/AutoEvoExploringTool.cs:959
+#: ../src/auto-evo/AutoEvoExploringTool.cs:961
 msgid "ALL_WORLDS_STATISTICS"
 msgstr ""
 
@@ -192,11 +208,11 @@ msgstr ""
 msgid "ALT"
 msgstr ""
 
-#: ../src/gui_common/menus/OptionsMenu.tscn:1073
+#: ../src/gui_common/menus/OptionsMenu.tscn:1075
 msgid "ALWAYS_VISIBLE"
 msgstr ""
 
-#: ../src/gui_common/menus/OptionsMenu.tscn:1266
+#: ../src/gui_common/menus/OptionsMenu.tscn:1268
 msgid "AMBIANCE_VOLUME"
 msgstr ""
 
@@ -209,11 +225,11 @@ msgstr ""
 msgid "AMMONIA_COST"
 msgstr ""
 
-#: ../src/gui_common/menus/OptionsMenu.tscn:2738
+#: ../src/gui_common/menus/OptionsMenu.tscn:2740
 msgid "AMOUNT_OF_AUTOSAVE_TO_KEEP"
 msgstr ""
 
-#: ../src/gui_common/menus/OptionsMenu.tscn:2764
+#: ../src/gui_common/menus/OptionsMenu.tscn:2766
 msgid "AMOUNT_OF_QUICKSAVE_TO_KEEP"
 msgstr ""
 
@@ -225,27 +241,27 @@ msgstr ""
 msgid "AND_UNLOCK_CONDITION"
 msgstr ""
 
-#: ../src/gui_common/menus/OptionsMenu.tscn:429
+#: ../src/gui_common/menus/OptionsMenu.tscn:431
 msgid "ANISOTROPIC_FILTERING"
 msgstr ""
 
-#: ../src/gui_common/menus/OptionsMenu.tscn:361
+#: ../src/gui_common/menus/OptionsMenu.tscn:363
 msgid "ANTIALIASING_MSAA_TAA"
 msgstr ""
 
-#: ../src/gui_common/menus/OptionsMenu.tscn:363
+#: ../src/gui_common/menus/OptionsMenu.tscn:365
 msgid "ANTI_ALIASING_FXAA"
 msgstr ""
 
-#: ../src/gui_common/menus/OptionsMenu.tscn:346
+#: ../src/gui_common/menus/OptionsMenu.tscn:348
 msgid "ANTI_ALIASING_MODE"
 msgstr ""
 
-#: ../src/gui_common/menus/OptionsMenu.tscn:357
+#: ../src/gui_common/menus/OptionsMenu.tscn:359
 msgid "ANTI_ALIASING_MSAA"
 msgstr ""
 
-#: ../src/gui_common/menus/OptionsMenu.tscn:359
+#: ../src/gui_common/menus/OptionsMenu.tscn:361
 msgid "ANTI_ALIASING_TAA"
 msgstr ""
 
@@ -266,11 +282,11 @@ msgstr ""
 msgid "APRIL"
 msgstr ""
 
-#: ../src/gui_common/menus/OptionsMenu.tscn:3234
+#: ../src/gui_common/menus/OptionsMenu.tscn:3245
 msgid "ARE_YOU_SURE_TO_RESET_ALL_SETTINGS"
 msgstr ""
 
-#: ../src/gui_common/menus/OptionsMenu.tscn:3240
+#: ../src/gui_common/menus/OptionsMenu.tscn:3251
 msgid "ARE_YOU_SURE_TO_RESET_INPUT_SETTINGS"
 msgstr ""
 
@@ -286,7 +302,7 @@ msgstr ""
 msgid "ART_BY"
 msgstr ""
 
-#: ../src/general/MainMenu.tscn:463
+#: ../src/general/MainMenu.tscn:475
 msgid "ART_GALLERY"
 msgstr ""
 
@@ -311,12 +327,12 @@ msgstr ""
 msgid "ASSEMBLY_REQUIRED_WITH_HARMONY"
 msgstr ""
 
-#: ../src/gui_common/menus/OptionsMenu.tscn:1740
+#: ../src/gui_common/menus/OptionsMenu.tscn:1742
 msgid "ASSUME_HYPERTHREADING"
 msgstr ""
 
-#: ../src/gui_common/menus/OptionsMenu.tscn:1738
-#: ../src/gui_common/menus/OptionsMenu.tscn:1747
+#: ../src/gui_common/menus/OptionsMenu.tscn:1740
+#: ../src/gui_common/menus/OptionsMenu.tscn:1749
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:837
 msgid "ASSUME_HYPERTHREADING_TOOLTIP"
 msgstr ""
@@ -383,7 +399,7 @@ msgstr ""
 msgid "AT_CURSOR"
 msgstr ""
 
-#: ../src/gui_common/menus/OptionsMenu.tscn:1365
+#: ../src/gui_common/menus/OptionsMenu.tscn:1367
 msgid "AUDIO_OUTPUT_DEVICE"
 msgstr ""
 
@@ -391,8 +407,8 @@ msgstr ""
 msgid "AUGUST"
 msgstr ""
 
-#: ../src/gui_common/menus/OptionsMenu.tscn:1027
-#: ../src/gui_common/menus/OptionsMenu.tscn:2495
+#: ../src/gui_common/menus/OptionsMenu.tscn:1029
+#: ../src/gui_common/menus/OptionsMenu.tscn:2497
 msgid "AUTO"
 msgstr ""
 
@@ -421,15 +437,15 @@ msgstr ""
 msgid "AUTO-EVO_STEPS_DONE"
 msgstr ""
 
-#: ../src/general/NewGameSettings.tscn:651
+#: ../src/general/NewGameSettings.tscn:653
 msgid "AUTO-EVO_STRENGHT_MULTIPLIER"
 msgstr ""
 
-#: ../src/general/NewGameSettings.tscn:681
+#: ../src/general/NewGameSettings.tscn:683
 msgid "AUTO-EVO_STRENGHT_MULTIPLIER_EXPLANATION"
 msgstr ""
 
-#: ../src/gui_common/menus/OptionsMenu.tscn:2719
+#: ../src/gui_common/menus/OptionsMenu.tscn:2721
 msgid "AUTOSAVE_DURING_THE_GAME"
 msgstr ""
 
@@ -437,11 +453,11 @@ msgstr ""
 msgid "AUTO_EVO"
 msgstr ""
 
-#: ../src/gui_common/menus/PlanetCustomizerTool.tscn:149
+#: ../src/gui_common/menus/PlanetCustomizerTool.tscn:150
 msgid "AUTO_EVO_EXPLORER_TOOL_BUTTON"
 msgstr ""
 
-#: ../src/general/MainMenu.tscn:400
+#: ../src/general/MainMenu.tscn:405
 msgid "AUTO_EVO_EXPLORING_TOOL"
 msgstr ""
 
@@ -478,8 +494,8 @@ msgstr ""
 msgid "AUTO_MOVE_FORWARDS"
 msgstr ""
 
-#: ../src/gui_common/menus/OptionsMenu.cs:850
-#: ../src/gui_common/menus/OptionsMenu.tscn:488
+#: ../src/gui_common/menus/OptionsMenu.cs:861
+#: ../src/gui_common/menus/OptionsMenu.tscn:490
 msgid "AUTO_RESOLUTION"
 msgstr ""
 
@@ -507,18 +523,19 @@ msgid "AWARE_STAGE"
 msgstr ""
 
 #: ../src/auto-evo/AutoEvoExploringTool.tscn:686
-#: ../src/general/MainMenu.tscn:428 ../src/general/MainMenu.tscn:487
-#: ../src/general/MainMenu.tscn:535 ../src/general/MainMenu.tscn:883
-#: ../src/general/NewGameSettings.tscn:1035 ../src/general/PauseMenu.tscn:291
-#: ../src/gui_common/menus/OptionsMenu.tscn:3196
-#: ../src/gui_common/menus/PlanetCustomizerTool.tscn:126
+#: ../src/general/MainMenu.tscn:433 ../src/general/MainMenu.tscn:499
+#: ../src/general/MainMenu.tscn:547 ../src/general/MainMenu.tscn:895
+#: ../src/general/MainMenu.tscn:942 ../src/general/NewGameSettings.tscn:1037
+#: ../src/general/PauseMenu.tscn:291
+#: ../src/gui_common/menus/OptionsMenu.tscn:3207
+#: ../src/gui_common/menus/PlanetCustomizerTool.tscn:127
 #: ../src/microbe_stage/gui/ExtinctionBox.tscn:72
 #: ../src/modding/ModManager.tscn:83 ../src/saving/NewSaveMenu.tscn:122
 #: ../src/saving/SaveManagerGUI.tscn:88
 msgid "BACK"
 msgstr ""
 
-#: ../src/gui_common/menus/OptionsMenu.tscn:892
+#: ../src/gui_common/menus/OptionsMenu.tscn:894
 msgid "BACKGROUND_BLUR"
 msgstr ""
 
@@ -530,7 +547,7 @@ msgstr ""
 msgid "BACKSPACE"
 msgstr ""
 
-#: ../src/gui_common/menus/PlanetCustomizerTool.cs:96
+#: ../src/gui_common/menus/PlanetCustomizerTool.cs:98
 msgid "BACK_TO_SETTINGS"
 msgstr ""
 
@@ -568,11 +585,11 @@ msgstr ""
 msgid "BASE_MOVEMENT"
 msgstr ""
 
-#: ../src/general/NewGameSettings.tscn:1050
+#: ../src/general/NewGameSettings.tscn:1052
 msgid "BASIC_VIEW"
 msgstr ""
 
-#: ../src/general/NewGameSettings.tscn:1045
+#: ../src/general/NewGameSettings.tscn:1047
 msgid "BASIC_VIEW_BUTTON_TOOLTIP"
 msgstr ""
 
@@ -624,7 +641,7 @@ msgstr ""
 msgid "BELOW_SEA_LEVEL"
 msgstr ""
 
-#: ../src/general/MainMenu.tscn:418
+#: ../src/general/MainMenu.tscn:423
 msgid "BENCHMARKS"
 msgstr ""
 
@@ -692,8 +709,8 @@ msgstr ""
 msgid "BINDING_AGENT_PROCESSES_DESCRIPTION"
 msgstr ""
 
-#: ../src/gui_common/menus/OptionsMenu.tscn:2270
-#: ../src/gui_common/menus/OptionsMenu.tscn:2428
+#: ../src/gui_common/menus/OptionsMenu.tscn:2272
+#: ../src/gui_common/menus/OptionsMenu.tscn:2430
 msgid "BIND_AXES_SENSITIVITY"
 msgstr ""
 
@@ -713,15 +730,15 @@ msgstr ""
 msgid "BIOME_LABEL"
 msgstr ""
 
-#: ../src/gui_common/menus/OptionsMenu.tscn:743
+#: ../src/gui_common/menus/OptionsMenu.tscn:745
 msgid "BLOOM_RENDER_EFFECT"
 msgstr ""
 
-#: ../src/general/MainMenu.tscn:815
+#: ../src/general/MainMenu.tscn:827
 msgid "BLUESKY_TOOLTIP"
 msgstr ""
 
-#: ../src/general/GameProperties.cs:158
+#: ../src/general/GameProperties.cs:167
 msgid "BRAIN_CELL_NAME_DEFAULT"
 msgstr ""
 
@@ -759,23 +776,23 @@ msgstr ""
 msgid "BY_REVOLUTIONARY_GAMES"
 msgstr ""
 
-#: ../src/gui_common/menus/OptionsMenu.tscn:2023
+#: ../src/gui_common/menus/OptionsMenu.tscn:2025
 msgid "CACHE_DISK_MAX_TIME"
 msgstr ""
 
-#: ../src/gui_common/menus/OptionsMenu.tscn:2065
+#: ../src/gui_common/menus/OptionsMenu.tscn:2067
 msgid "CACHE_MEMORY_MAX_ITEMS"
 msgstr ""
 
-#: ../src/gui_common/menus/OptionsMenu.tscn:1981
+#: ../src/gui_common/menus/OptionsMenu.tscn:1983
 msgid "CACHE_TIME_MEMORY"
 msgstr ""
 
-#: ../src/gui_common/menus/OptionsMenu.tscn:2106
+#: ../src/gui_common/menus/OptionsMenu.tscn:2108
 msgid "CACHE_TIME_MEMORY_ONLY"
 msgstr ""
 
-#: ../src/gui_common/menus/OptionsMenu.tscn:1850
+#: ../src/gui_common/menus/OptionsMenu.tscn:1852
 msgid "CACHING_TITLE"
 msgstr ""
 
@@ -796,7 +813,7 @@ msgstr ""
 #: ../src/awakening_stage/gui/SelectBuildingPopup.tscn:48
 #: ../src/gui_common/dialogs/CustomConfirmationDialog.tscn:19
 #: ../src/gui_common/dialogs/CustomConfirmationDialog.tscn:71
-#: ../src/gui_common/menus/OptionsMenu.tscn:3298
+#: ../src/gui_common/menus/OptionsMenu.tscn:3309
 #: ../src/microbe_stage/editor/EndosymbiosisProgressDisplay.tscn:67
 #: ../src/microbe_stage/gui/PatchDetailsPanel.tscn:636
 #: ../src/modding/NewModGUI.tscn:333
@@ -959,7 +976,7 @@ msgstr ""
 msgid "CHEATS"
 msgstr ""
 
-#: ../src/gui_common/menus/OptionsMenu.tscn:2897
+#: ../src/gui_common/menus/OptionsMenu.tscn:2899
 msgid "CHEAT_KEYS_ENABLED"
 msgstr ""
 
@@ -1059,7 +1076,7 @@ msgstr ""
 msgid "CHOSEN_FILENAME_ALREADY_EXISTS"
 msgstr ""
 
-#: ../src/gui_common/menus/OptionsMenu.tscn:704
+#: ../src/gui_common/menus/OptionsMenu.tscn:706
 msgid "CHROMATIC_ABERRATION"
 msgstr ""
 
@@ -1099,7 +1116,7 @@ msgstr ""
 msgid "CLEAN_UP_OLD_SAVES"
 msgstr ""
 
-#: ../src/gui_common/menus/OptionsMenu.tscn:1918
+#: ../src/gui_common/menus/OptionsMenu.tscn:1920
 msgid "CLEAR_CACHE"
 msgstr ""
 
@@ -1135,7 +1152,7 @@ msgstr ""
 #: ../src/gui_common/art_gallery/GalleryViewer.tscn:95
 #: ../src/gui_common/charts/line/LineChart.tscn:215
 #: ../src/gui_common/dialogs/LicensesDisplay.tscn:91
-#: ../src/gui_common/menus/OptionsMenu.tscn:3354
+#: ../src/gui_common/menus/OptionsMenu.tscn:3371
 #: ../src/microbe_stage/editor/CellEditorComponent.tscn:1375
 #: ../src/microbe_stage/editor/EndosymbiosisPopup.tscn:82
 #: ../src/microbe_stage/editor/MicrobeEditorReportComponent.tscn:605
@@ -1148,7 +1165,7 @@ msgstr ""
 msgid "CLOSE"
 msgstr ""
 
-#: ../src/gui_common/menus/OptionsMenu.tscn:3246
+#: ../src/gui_common/menus/OptionsMenu.tscn:3257
 msgid "CLOSE_OPTIONS"
 msgstr ""
 
@@ -1163,11 +1180,11 @@ msgstr ""
 msgid "CLOUD_BENCHMARK"
 msgstr ""
 
-#: ../src/gui_common/menus/OptionsMenu.tscn:1537
+#: ../src/gui_common/menus/OptionsMenu.tscn:1539
 msgid "CLOUD_RESOLUTION_DIVISOR"
 msgstr ""
 
-#: ../src/gui_common/menus/OptionsMenu.tscn:1494
+#: ../src/gui_common/menus/OptionsMenu.tscn:1496
 msgid "CLOUD_SIMULATION_MINIMUM_INTERVAL"
 msgstr ""
 
@@ -1188,7 +1205,7 @@ msgstr ""
 msgid "COLOUR"
 msgstr ""
 
-#: ../src/gui_common/menus/OptionsMenu.tscn:665
+#: ../src/gui_common/menus/OptionsMenu.tscn:667
 msgid "COLOURBLIND_CORRECTION"
 msgstr ""
 
@@ -1249,23 +1266,23 @@ msgstr ""
 msgid "COMMON_EDITING_AND_STRATEGY"
 msgstr ""
 
-#: ../src/general/MainMenu.tscn:596
+#: ../src/general/MainMenu.tscn:608
 msgid "COMMUNITY_FORUM"
 msgstr ""
 
-#: ../src/general/MainMenu.tscn:591
+#: ../src/general/MainMenu.tscn:603
 msgid "COMMUNITY_FORUM_BUTTON_TOOLTIP"
 msgstr ""
 
-#: ../src/general/MainMenu.tscn:623
+#: ../src/general/MainMenu.tscn:635
 msgid "COMMUNITY_WIKI"
 msgstr ""
 
-#: ../src/general/MainMenu.tscn:618
+#: ../src/general/MainMenu.tscn:630
 msgid "COMMUNITY_WIKI_BUTTON_TOOLTIP"
 msgstr ""
 
-#: ../src/gui_common/menus/OptionsMenu.tscn:3176
+#: ../src/gui_common/menus/OptionsMenu.tscn:3187
 msgid "COMPILED_AT_COLON"
 msgstr ""
 
@@ -1318,19 +1335,19 @@ msgstr ""
 msgid "COMPOUND_BALANCE_TOOLTIP"
 msgstr ""
 
-#: ../src/gui_common/menus/OptionsMenu.tscn:1473
+#: ../src/gui_common/menus/OptionsMenu.tscn:1475
 msgid "COMPOUND_CLOUDS"
 msgstr ""
 
-#: ../src/general/MainMenu.tscn:517
+#: ../src/general/MainMenu.tscn:529
 msgid "COMPOUND_CLOUD_BENCHMARK"
 msgstr ""
 
-#: ../src/general/NewGameSettings.tscn:464
+#: ../src/general/NewGameSettings.tscn:466
 msgid "COMPOUND_CLOUD_DENSITY"
 msgstr ""
 
-#: ../src/general/NewGameSettings.tscn:495
+#: ../src/general/NewGameSettings.tscn:497
 msgid "COMPOUND_CLOUD_DENSITY_EXPLANATION"
 msgstr ""
 
@@ -1343,19 +1360,19 @@ msgstr ""
 msgid "COMPOUND_FOOD_SOURCE"
 msgstr ""
 
-#: ../src/general/NewGameSettings.tscn:765
+#: ../src/general/NewGameSettings.tscn:767
 msgid "COMPOUND_HANDLE_KEEP"
 msgstr ""
 
-#: ../src/general/NewGameSettings.tscn:763
+#: ../src/general/NewGameSettings.tscn:765
 msgid "COMPOUND_HANDLE_SPLIT_SISTER"
 msgstr ""
 
-#: ../src/general/NewGameSettings.tscn:767
+#: ../src/general/NewGameSettings.tscn:769
 msgid "COMPOUND_HANDLE_TOP_UP"
 msgstr ""
 
-#: ../src/general/NewGameSettings.tscn:769
+#: ../src/general/NewGameSettings.tscn:771
 msgid "COMPOUND_HANDLE_TOP_UP_ON_CHANGE"
 msgstr ""
 
@@ -1401,7 +1418,7 @@ msgstr ""
 
 #: ../src/auto-evo/AutoEvoExploringTool.tscn:695
 #: ../src/general/PauseMenu.tscn:317
-#: ../src/gui_common/menus/PlanetCustomizerTool.tscn:162
+#: ../src/gui_common/menus/PlanetCustomizerTool.tscn:163
 #: ../src/thriveopedia/pages/ThriveopediaMuseumPage.tscn:118
 msgid "CONFIRM_EXIT"
 msgstr ""
@@ -1434,13 +1451,21 @@ msgstr ""
 msgid "CONFIRM_MOVE_TO_SPACE_STAGE_EXPLANATION"
 msgstr ""
 
-#: ../src/general/NewGameSettings.cs:374
-#: ../src/general/NewGameSettings.tscn:1068
+#: ../src/general/NewGameSettings.cs:368
+#: ../src/general/NewGameSettings.tscn:1070
 msgid "CONFIRM_NEW_GAME_BUTTON_TOOLTIP"
 msgstr ""
 
-#: ../src/general/NewGameSettings.cs:380
+#: ../src/general/NewGameSettings.cs:374
 msgid "CONFIRM_NEW_GAME_BUTTON_TOOLTIP_DISABLED"
+msgstr ""
+
+#: ../src/gui_common/menus/OptionsMenu.tscn:3335
+msgid "CONFIRM_RESET_ACHIEVEMENTS"
+msgstr ""
+
+#: ../src/gui_common/menus/OptionsMenu.tscn:3334
+msgid "CONFIRM_RESET_ACHIEVEMENTS_DESCRIPTION"
 msgstr ""
 
 #: ../src/industrial_stage/UnitType.cs:87
@@ -1662,7 +1687,7 @@ msgstr ""
 msgid "CONTROLLER_BUTTON_XBOX_Y"
 msgstr ""
 
-#: ../src/gui_common/menus/OptionsMenu.tscn:2460
+#: ../src/gui_common/menus/OptionsMenu.tscn:2462
 msgid "CONTROLLER_DEADZONES"
 msgstr ""
 
@@ -1675,11 +1700,11 @@ msgstr ""
 msgid "CONTROLLER_DEADZONE_COLON"
 msgstr ""
 
-#: ../src/gui_common/menus/OptionsMenu.tscn:1016
+#: ../src/gui_common/menus/OptionsMenu.tscn:1018
 msgid "CONTROLLER_PROMPT_TYPE_SETTING"
 msgstr ""
 
-#: ../src/gui_common/menus/OptionsMenu.tscn:2340
+#: ../src/gui_common/menus/OptionsMenu.tscn:2342
 msgid "CONTROLLER_SENSITIVITY"
 msgstr ""
 
@@ -1696,15 +1721,15 @@ msgstr ""
 msgid "COPY_RESULTS"
 msgstr ""
 
-#: ../src/gui_common/menus/OptionsMenu.tscn:679
+#: ../src/gui_common/menus/OptionsMenu.tscn:681
 msgid "CORRECTION_PROTANOPE"
 msgstr ""
 
-#: ../src/gui_common/menus/OptionsMenu.tscn:681
+#: ../src/gui_common/menus/OptionsMenu.tscn:683
 msgid "CORRECTION_TRITANOPE"
 msgstr ""
 
-#: ../src/gui_common/menus/OptionsMenu.tscn:1677
+#: ../src/gui_common/menus/OptionsMenu.tscn:1679
 msgid "CPU_THREADS"
 msgstr ""
 
@@ -1818,7 +1843,7 @@ msgstr ""
 msgid "CREATING_OBJECTS_FROM_SAVE"
 msgstr ""
 
-#: ../src/general/MainMenu.tscn:346
+#: ../src/general/MainMenu.tscn:351
 msgid "CREDITS"
 msgstr ""
 
@@ -1827,12 +1852,12 @@ msgstr ""
 msgid "CTRL"
 msgstr ""
 
-#: ../src/gui_common/menus/OptionsMenu.tscn:1899
+#: ../src/gui_common/menus/OptionsMenu.tscn:1901
 msgid "CURRENT_CACHE_SIZE"
 msgstr ""
 
-#: ../src/gui_common/menus/OptionsMenu.tscn:1897
-#: ../src/gui_common/menus/OptionsMenu.tscn:1904
+#: ../src/gui_common/menus/OptionsMenu.tscn:1899
+#: ../src/gui_common/menus/OptionsMenu.tscn:1906
 msgid "CURRENT_CACHE_SIZE_TOOLTIP"
 msgstr ""
 
@@ -1857,11 +1882,11 @@ msgstr ""
 msgid "CURRENT_WORLD"
 msgstr ""
 
-#: ../src/auto-evo/AutoEvoExploringTool.cs:891
+#: ../src/auto-evo/AutoEvoExploringTool.cs:893
 msgid "CURRENT_WORLD_STATISTICS"
 msgstr ""
 
-#: ../src/gui_common/menus/OptionsMenu.tscn:2934
+#: ../src/gui_common/menus/OptionsMenu.tscn:2936
 msgid "CUSTOM_USERNAME"
 msgstr ""
 
@@ -1897,7 +1922,7 @@ msgstr ""
 msgid "DAY_LENGTH"
 msgstr ""
 
-#: ../src/gui_common/menus/PlanetSettings.tscn:369
+#: ../src/gui_common/menus/PlanetSettings.tscn:371
 msgid "DAY_LENGTH_EXPLANATION"
 msgstr ""
 
@@ -1955,7 +1980,7 @@ msgstr ""
 msgid "DECREASE_ITEM_SIZE"
 msgstr ""
 
-#: ../src/gui_common/menus/OptionsMenu.cs:1469
+#: ../src/gui_common/menus/OptionsMenu.cs:1480
 msgid "DEFAULT_AUDIO_OUTPUT_DEVICE"
 msgstr ""
 
@@ -2029,7 +2054,7 @@ msgstr ""
 msgid "DESPAWN_ENTITIES"
 msgstr ""
 
-#: ../src/gui_common/menus/OptionsMenu.tscn:1697
+#: ../src/gui_common/menus/OptionsMenu.tscn:1699
 msgid "DETECTED_CPU_COUNT"
 msgstr ""
 
@@ -2041,11 +2066,11 @@ msgstr ""
 msgid "DEVELOPERS"
 msgstr ""
 
-#: ../src/general/MainMenu.tscn:605
+#: ../src/general/MainMenu.tscn:617
 msgid "DEVELOPMENT_FORUM"
 msgstr ""
 
-#: ../src/general/MainMenu.tscn:600
+#: ../src/general/MainMenu.tscn:612
 msgid "DEVELOPMENT_FORUM_BUTTON_TOOLTIP"
 msgstr ""
 
@@ -2053,11 +2078,11 @@ msgstr ""
 msgid "DEVELOPMENT_SUPPORTED_BY"
 msgstr ""
 
-#: ../src/general/MainMenu.tscn:614
+#: ../src/general/MainMenu.tscn:626
 msgid "DEVELOPMENT_WIKI"
 msgstr ""
 
-#: ../src/general/MainMenu.tscn:609
+#: ../src/general/MainMenu.tscn:621
 msgid "DEVELOPMENT_WIKI_BUTTON_TOOLTIP"
 msgstr ""
 
@@ -2080,7 +2105,7 @@ msgid "DIFFICULTY_DETAILS_STRING"
 msgstr ""
 
 #: ../src/general/NewGameSettings.tscn:119
-#: ../src/general/NewGameSettings.tscn:343
+#: ../src/general/NewGameSettings.tscn:345
 msgid "DIFFICULTY_PRESET"
 msgstr ""
 
@@ -2121,9 +2146,9 @@ msgstr ""
 msgid "DIGESTION_SPEED_VALUE"
 msgstr ""
 
-#: ../src/gui_common/menus/OptionsMenu.tscn:365
-#: ../src/gui_common/menus/OptionsMenu.tscn:400
-#: ../src/gui_common/menus/OptionsMenu.tscn:441
+#: ../src/gui_common/menus/OptionsMenu.tscn:367
+#: ../src/gui_common/menus/OptionsMenu.tscn:402
+#: ../src/gui_common/menus/OptionsMenu.tscn:443
 msgid "DISABLED"
 msgstr ""
 
@@ -2131,7 +2156,7 @@ msgstr ""
 msgid "DISABLE_ALL"
 msgstr ""
 
-#: ../src/gui_common/menus/OptionsMenu.tscn:3287
+#: ../src/gui_common/menus/OptionsMenu.tscn:3298
 msgid "DISCARD_AND_CONTINUE"
 msgstr ""
 
@@ -2167,22 +2192,22 @@ msgstr ""
 msgid "DISCONNECTED_ORGANELLES_TEXT"
 msgstr ""
 
-#: ../src/general/MainMenu.tscn:758
+#: ../src/general/MainMenu.tscn:770
 msgid "DISCORD_TOOLTIP"
 msgstr ""
 
-#: ../src/gui_common/menus/OptionsMenu.tscn:1861
-#: ../src/gui_common/menus/OptionsMenu.tscn:1870
-#: ../src/gui_common/menus/OptionsMenu.tscn:1879
+#: ../src/gui_common/menus/OptionsMenu.tscn:1863
+#: ../src/gui_common/menus/OptionsMenu.tscn:1872
+#: ../src/gui_common/menus/OptionsMenu.tscn:1881
 msgid "DISK_CACHE_TOOLTIP"
 msgstr ""
 
-#: ../src/gui_common/menus/OptionsMenu.tscn:3067
+#: ../src/gui_common/menus/OptionsMenu.tscn:3069
 msgid "DISMISSED_POPUPS_COLON"
 msgstr ""
 
-#: ../src/gui_common/menus/OptionsMenu.tscn:3065
-#: ../src/gui_common/menus/OptionsMenu.tscn:3077
+#: ../src/gui_common/menus/OptionsMenu.tscn:3067
+#: ../src/gui_common/menus/OptionsMenu.tscn:3079
 msgid "DISMISSED_POPUPS_EXPLANATION"
 msgstr ""
 
@@ -2195,35 +2220,35 @@ msgstr ""
 msgid "DISMISS_WARNING_PERMANENTLY"
 msgstr ""
 
-#: ../src/gui_common/menus/OptionsMenu.tscn:874
+#: ../src/gui_common/menus/OptionsMenu.tscn:876
 msgid "DISPLAY_3D_MENU_BACKGROUNDS"
 msgstr ""
 
-#: ../src/gui_common/menus/OptionsMenu.tscn:1088
+#: ../src/gui_common/menus/OptionsMenu.tscn:1090
 msgid "DISPLAY_ABILITIES_BAR"
 msgstr ""
 
-#: ../src/gui_common/menus/OptionsMenu.tscn:800
+#: ../src/gui_common/menus/OptionsMenu.tscn:802
 msgid "DISPLAY_BACKGROUND_DISTORTION_EFFECT"
 msgstr ""
 
-#: ../src/gui_common/menus/OptionsMenu.tscn:782
+#: ../src/gui_common/menus/OptionsMenu.tscn:784
 msgid "DISPLAY_BACKGROUND_PARTICLES"
 msgstr ""
 
-#: ../src/gui_common/menus/OptionsMenu.cs:867
+#: ../src/gui_common/menus/OptionsMenu.cs:878
 msgid "DISPLAY_DRIVER_OPENGL"
 msgstr ""
 
-#: ../src/gui_common/menus/OptionsMenu.cs:864
+#: ../src/gui_common/menus/OptionsMenu.cs:875
 msgid "DISPLAY_DRIVER_VULKAN"
 msgstr ""
 
-#: ../src/gui_common/menus/OptionsMenu.tscn:315
+#: ../src/gui_common/menus/OptionsMenu.tscn:317
 msgid "DISPLAY_MODE"
 msgstr ""
 
-#: ../src/gui_common/menus/OptionsMenu.tscn:1144
+#: ../src/gui_common/menus/OptionsMenu.tscn:1146
 msgid "DISPLAY_PART_NAMES"
 msgstr ""
 
@@ -2347,11 +2372,11 @@ msgstr ""
 msgid "EASTEREGG_MESSAGE_9"
 msgstr ""
 
-#: ../src/general/NewGameSettings.tscn:980
+#: ../src/general/NewGameSettings.tscn:982
 msgid "EASTER_EGGS"
 msgstr ""
 
-#: ../src/general/NewGameSettings.tscn:990
+#: ../src/general/NewGameSettings.tscn:992
 msgid "EASTER_EGGS_EXPLANATION"
 msgstr ""
 
@@ -2359,7 +2384,7 @@ msgstr ""
 msgid "EASTER_EGG_BANANA_BIOME"
 msgstr ""
 
-#: ../src/gui_common/menus/OptionsMenu.tscn:2572
+#: ../src/gui_common/menus/OptionsMenu.tscn:2574
 msgid "EDGE_PAN_SPEED"
 msgstr ""
 
@@ -2396,8 +2421,8 @@ msgstr ""
 msgid "EFFECTIVE_VALUE"
 msgstr ""
 
-#: ../src/gui_common/menus/OptionsMenu.tscn:406
-#: ../src/gui_common/menus/OptionsMenu.tscn:447
+#: ../src/gui_common/menus/OptionsMenu.tscn:408
+#: ../src/gui_common/menus/OptionsMenu.tscn:449
 msgid "EIGHT_TIMES"
 msgstr ""
 
@@ -2426,7 +2451,7 @@ msgstr ""
 msgid "ENABLE_EDITOR"
 msgstr ""
 
-#: ../src/gui_common/menus/OptionsMenu.tscn:1125
+#: ../src/gui_common/menus/OptionsMenu.tscn:1127
 msgid "ENABLE_GUI_LIGHT_EFFECTS"
 msgstr ""
 
@@ -2546,11 +2571,11 @@ msgstr ""
 msgid "ENVIRONMENTAL_CONDITIONS_BUTTON"
 msgstr ""
 
-#: ../src/general/NewGameSettings.tscn:558
+#: ../src/general/NewGameSettings.tscn:560
 msgid "ENVIRONMENTAL_GLUCOSE_RETENTION"
 msgstr ""
 
-#: ../src/general/NewGameSettings.tscn:588
+#: ../src/general/NewGameSettings.tscn:590
 msgid "ENVIRONMENTAL_GLUCOSE_RETENTION_EXPLANATION"
 msgstr ""
 
@@ -2570,8 +2595,8 @@ msgstr ""
 msgid "EQUIPMENT_TYPE_AXE"
 msgstr ""
 
-#: ../src/gui_common/menus/OptionsMenu.tscn:3303
-#: ../src/gui_common/menus/OptionsMenu.tscn:3310
+#: ../src/gui_common/menus/OptionsMenu.tscn:3314
+#: ../src/gui_common/menus/OptionsMenu.tscn:3321
 msgid "ERROR"
 msgstr ""
 
@@ -2583,7 +2608,7 @@ msgstr ""
 msgid "ERROR_CREATING_INFO_FILE"
 msgstr ""
 
-#: ../src/gui_common/menus/OptionsMenu.tscn:3308
+#: ../src/gui_common/menus/OptionsMenu.tscn:3319
 msgid "ERROR_FAILED_TO_SAVE_NEW_SETTINGS"
 msgstr ""
 
@@ -2595,7 +2620,7 @@ msgstr ""
 msgid "ERROR_FETCHING_NEWS"
 msgstr ""
 
-#: ../src/saving/InProgressLoad.cs:209
+#: ../src/saving/InProgressLoad.cs:211
 msgid "ERROR_LOADING"
 msgstr ""
 
@@ -2611,7 +2636,7 @@ msgstr ""
 msgid "ESCAPE"
 msgstr ""
 
-#: ../src/microbe_stage/MicrobeStage.cs:1778
+#: ../src/microbe_stage/MicrobeStage.cs:1814
 msgid "ESCAPE_ENGULFING"
 msgstr ""
 
@@ -2655,12 +2680,12 @@ msgstr ""
 msgid "EVOLUTIONARY_TREE_BUILD_FAILED"
 msgstr ""
 
-#: ../src/gui_common/menus/OptionsMenu.tscn:3151
+#: ../src/gui_common/menus/OptionsMenu.tscn:3162
 msgid "EXACT_VERSION_COLON"
 msgstr ""
 
-#: ../src/gui_common/menus/OptionsMenu.tscn:3149
-#: ../src/gui_common/menus/OptionsMenu.tscn:3158
+#: ../src/gui_common/menus/OptionsMenu.tscn:3160
+#: ../src/gui_common/menus/OptionsMenu.tscn:3169
 msgid "EXACT_VERSION_TOOLTIP"
 msgstr ""
 
@@ -2672,7 +2697,7 @@ msgstr ""
 msgid "EXCEPTION_HAPPENED_WHILE_LOADING"
 msgstr ""
 
-#: ../src/gui_common/menus/OptionsMenu.tscn:330
+#: ../src/gui_common/menus/OptionsMenu.tscn:332
 msgid "EXCLUSIVE_FULLSCREEN"
 msgstr ""
 
@@ -2689,19 +2714,19 @@ msgstr ""
 msgid "EXIT_EDITOR"
 msgstr ""
 
-#: ../src/general/MainMenu.tscn:353
+#: ../src/general/MainMenu.tscn:358
 msgid "EXIT_TO_LAUNCHER"
 msgstr ""
 
-#: ../src/general/NewGameSettings.tscn:1005
+#: ../src/general/NewGameSettings.tscn:1007
 msgid "EXPERIMENTAL_FEATURES"
 msgstr ""
 
-#: ../src/general/NewGameSettings.tscn:1022
+#: ../src/general/NewGameSettings.tscn:1024
 msgid "EXPERIMENTAL_FEATURES_EXPLANATION"
 msgstr ""
 
-#: ../src/general/NewGameSettings.tscn:1014
+#: ../src/general/NewGameSettings.tscn:1016
 msgid "EXPERIMENTAL_FEATURES_WARNING"
 msgstr ""
 
@@ -2714,7 +2739,7 @@ msgid "EXPORT_ALL_WORLDS_TOOLTIP"
 msgstr ""
 
 #: ../src/auto-evo/AutoEvoExploringTool.tscn:700
-#: ../src/gui_common/menus/PlanetCustomizerTool.tscn:167
+#: ../src/gui_common/menus/PlanetCustomizerTool.tscn:168
 msgid "EXPORT_SUCCESS"
 msgstr ""
 
@@ -2752,7 +2777,7 @@ msgstr ""
 msgid "EXTINCT_SPECIES"
 msgstr ""
 
-#: ../src/general/MainMenu.tscn:340
+#: ../src/general/MainMenu.tscn:345
 msgid "EXTRAS"
 msgstr ""
 
@@ -2760,7 +2785,7 @@ msgstr ""
 msgid "EXTRA_OPTIONS"
 msgstr ""
 
-#: ../src/general/MainMenu.tscn:771
+#: ../src/general/MainMenu.tscn:783
 msgid "FACEBOOK_TOOLTIP"
 msgstr ""
 
@@ -2926,7 +2951,7 @@ msgstr ""
 msgid "FOG_OF_WAR_DISABLED"
 msgstr ""
 
-#: ../src/general/NewGameSettings.cs:792
+#: ../src/general/NewGameSettings.cs:768
 msgid "FOG_OF_WAR_DISABLED_DESCRIPTION"
 msgstr ""
 
@@ -2934,11 +2959,11 @@ msgstr ""
 msgid "FOG_OF_WAR_INTENSE"
 msgstr ""
 
-#: ../src/general/NewGameSettings.cs:798
+#: ../src/general/NewGameSettings.cs:774
 msgid "FOG_OF_WAR_INTENSE_DESCRIPTION"
 msgstr ""
 
-#: ../src/general/NewGameSettings.tscn:794
+#: ../src/general/NewGameSettings.tscn:796
 msgid "FOG_OF_WAR_MODE"
 msgstr ""
 
@@ -2946,7 +2971,7 @@ msgstr ""
 msgid "FOG_OF_WAR_REGULAR"
 msgstr ""
 
-#: ../src/general/NewGameSettings.cs:795
+#: ../src/general/NewGameSettings.cs:771
 msgid "FOG_OF_WAR_REGULAR_DESCRIPTION"
 msgstr ""
 
@@ -3008,8 +3033,8 @@ msgstr ""
 msgid "FOSSIL_DELETION_FAILED_DESCRIPTION"
 msgstr ""
 
-#: ../src/gui_common/menus/OptionsMenu.tscn:404
-#: ../src/gui_common/menus/OptionsMenu.tscn:445
+#: ../src/gui_common/menus/OptionsMenu.tscn:406
+#: ../src/gui_common/menus/OptionsMenu.tscn:447
 msgid "FOUR_TIMES"
 msgstr ""
 
@@ -3032,15 +3057,15 @@ msgstr ""
 msgid "FREEBUILDING"
 msgstr ""
 
-#: ../src/general/NewGameSettings.tscn:831
+#: ../src/general/NewGameSettings.tscn:833
 msgid "FREE_GLUCOSE_CLOUD"
 msgstr ""
 
-#: ../src/general/NewGameSettings.tscn:841
+#: ../src/general/NewGameSettings.tscn:843
 msgid "FREE_GLUCOSE_CLOUD_EXPLANATION"
 msgstr ""
 
-#: ../src/gui_common/menus/OptionsMenu.tscn:328
+#: ../src/gui_common/menus/OptionsMenu.tscn:330
 msgid "FULLSCREEN"
 msgstr ""
 
@@ -3136,8 +3161,8 @@ msgstr ""
 msgid "GENERAL_LOADING_TIP_7"
 msgstr ""
 
-#: ../src/gui_common/menus/PlanetCustomizerTool.cs:92
-#: ../src/gui_common/menus/PlanetCustomizerTool.tscn:157
+#: ../src/gui_common/menus/PlanetCustomizerTool.cs:94
+#: ../src/gui_common/menus/PlanetCustomizerTool.tscn:158
 msgid "GENERATE_BUTTON"
 msgstr ""
 
@@ -3172,11 +3197,11 @@ msgstr ""
 msgid "GEOLOGICAL_ACTIVITY_EXPLANATION"
 msgstr ""
 
-#: ../src/general/MainMenu.tscn:714
+#: ../src/general/MainMenu.tscn:726
 msgid "GITHUB_TOOLTIP"
 msgstr ""
 
-#: ../src/gui_common/menus/OptionsMenu.tscn:962
+#: ../src/gui_common/menus/OptionsMenu.tscn:964
 msgid "GLES3"
 msgstr ""
 
@@ -3263,11 +3288,11 @@ msgstr ""
 msgid "GPL_LICENSE_HEADING"
 msgstr ""
 
-#: ../src/gui_common/menus/OptionsMenu.tscn:927
+#: ../src/gui_common/menus/OptionsMenu.tscn:929
 msgid "GPU_NAME"
 msgstr ""
 
-#: ../src/gui_common/menus/OptionsMenu.tscn:201
+#: ../src/gui_common/menus/OptionsMenu.tscn:203
 msgid "GRAPHICS"
 msgstr ""
 
@@ -3279,12 +3304,12 @@ msgstr ""
 msgid "GROWTH_ORDER"
 msgstr ""
 
-#: ../src/gui_common/menus/OptionsMenu.tscn:995
+#: ../src/gui_common/menus/OptionsMenu.tscn:997
 msgid "GUI"
 msgstr ""
 
-#: ../src/gui_common/menus/OptionsMenu.tscn:1123
-#: ../src/gui_common/menus/OptionsMenu.tscn:1130
+#: ../src/gui_common/menus/OptionsMenu.tscn:1125
+#: ../src/gui_common/menus/OptionsMenu.tscn:1132
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:831
 msgid "GUI_LIGHT_EFFECTS_OPTION_DESCRIPTION"
 msgstr ""
@@ -3293,7 +3318,7 @@ msgstr ""
 msgid "GUI_TAB_NAVIGATION"
 msgstr ""
 
-#: ../src/gui_common/menus/OptionsMenu.tscn:1332
+#: ../src/gui_common/menus/OptionsMenu.tscn:1334
 msgid "GUI_VOLUME"
 msgstr ""
 
@@ -3323,14 +3348,14 @@ msgstr ""
 msgid "HELP_BUTTON_TOOLTIP"
 msgstr ""
 
-#: ../src/gui_common/menus/OptionsMenu.tscn:1520
-#: ../src/gui_common/menus/OptionsMenu.tscn:1559
+#: ../src/gui_common/menus/OptionsMenu.tscn:1522
+#: ../src/gui_common/menus/OptionsMenu.tscn:1561
 msgid "HIGHER_VALUES_INCREASE_PERFORMANCE"
 msgstr ""
 
-#: ../src/gui_common/menus/OptionsMenu.tscn:412
-#: ../src/gui_common/menus/OptionsMenu.tscn:455
-#: ../src/gui_common/menus/OptionsMenu.tscn:1668
+#: ../src/gui_common/menus/OptionsMenu.tscn:414
+#: ../src/gui_common/menus/OptionsMenu.tscn:457
+#: ../src/gui_common/menus/OptionsMenu.tscn:1670
 msgid "HIGHER_VALUES_WORSEN_PERFORMANCE"
 msgstr ""
 
@@ -3362,8 +3387,8 @@ msgstr ""
 msgid "HOME"
 msgstr ""
 
-#: ../src/gui_common/menus/OptionsMenu.tscn:2204
-#: ../src/gui_common/menus/OptionsMenu.tscn:2363
+#: ../src/gui_common/menus/OptionsMenu.tscn:2206
+#: ../src/gui_common/menus/OptionsMenu.tscn:2365
 msgid "HORIZONTAL_COLON"
 msgstr ""
 
@@ -3440,7 +3465,7 @@ msgstr ""
 msgid "ID_NUMBER"
 msgstr ""
 
-#: ../src/gui_common/menus/OptionsMenu.tscn:371
+#: ../src/gui_common/menus/OptionsMenu.tscn:373
 msgid "IF_FALLBACK_RENDERER_USED_ALL_NOT_AVAILABLE"
 msgstr ""
 
@@ -3448,11 +3473,11 @@ msgstr ""
 msgid "IMAGE_FILE_TYPES"
 msgstr ""
 
-#: ../src/general/NewGameSettings.tscn:955
+#: ../src/general/NewGameSettings.tscn:957
 msgid "INCLUDE_MULTICELLULAR_PROTOTYPE"
 msgstr ""
 
-#: ../src/general/NewGameSettings.tscn:965
+#: ../src/general/NewGameSettings.tscn:967
 msgid "INCLUDE_MULTICELLULAR_PROTOTYPE_EXPLANATION"
 msgstr ""
 
@@ -3876,7 +3901,7 @@ msgstr ""
 msgid "INIT_NEW_WORLD_TOOLTIP"
 msgstr ""
 
-#: ../src/gui_common/menus/OptionsMenu.tscn:228
+#: ../src/gui_common/menus/OptionsMenu.tscn:230
 msgid "INPUTS"
 msgstr ""
 
@@ -3900,7 +3925,7 @@ msgstr ""
 msgid "INSPECTOR"
 msgstr ""
 
-#: ../src/general/MainMenu.tscn:793
+#: ../src/general/MainMenu.tscn:805
 msgid "INSTAGRAM_TOOLTIP"
 msgstr ""
 
@@ -4017,10 +4042,10 @@ msgstr ""
 msgid "INVENTORY_TOGGLE_GROUND"
 msgstr ""
 
-#: ../src/gui_common/menus/OptionsMenu.tscn:2223
-#: ../src/gui_common/menus/OptionsMenu.tscn:2256
-#: ../src/gui_common/menus/OptionsMenu.tscn:2382
-#: ../src/gui_common/menus/OptionsMenu.tscn:2414
+#: ../src/gui_common/menus/OptionsMenu.tscn:2225
+#: ../src/gui_common/menus/OptionsMenu.tscn:2258
+#: ../src/gui_common/menus/OptionsMenu.tscn:2384
+#: ../src/gui_common/menus/OptionsMenu.tscn:2416
 msgid "INVERTED"
 msgstr ""
 
@@ -4040,7 +4065,7 @@ msgstr ""
 msgid "IRON_OXIDATION"
 msgstr ""
 
-#: ../src/general/MainMenu.tscn:692
+#: ../src/general/MainMenu.tscn:704
 msgid "ITCH_TOOLTIP"
 msgstr ""
 
@@ -4056,19 +4081,19 @@ msgstr ""
 msgid "JANUARY"
 msgstr ""
 
-#: ../src/gui_common/menus/OptionsMenu.tscn:2998
+#: ../src/gui_common/menus/OptionsMenu.tscn:3000
 msgid "JSON_DEBUG_MODE"
 msgstr ""
 
-#: ../src/gui_common/menus/OptionsMenu.tscn:3012
+#: ../src/gui_common/menus/OptionsMenu.tscn:3014
 msgid "JSON_DEBUG_MODE_ALWAYS"
 msgstr ""
 
-#: ../src/gui_common/menus/OptionsMenu.tscn:3010
+#: ../src/gui_common/menus/OptionsMenu.tscn:3012
 msgid "JSON_DEBUG_MODE_AUTO"
 msgstr ""
 
-#: ../src/gui_common/menus/OptionsMenu.tscn:3014
+#: ../src/gui_common/menus/OptionsMenu.tscn:3016
 msgid "JSON_DEBUG_MODE_NEVER"
 msgstr ""
 
@@ -4220,6 +4245,14 @@ msgstr ""
 msgid "KEY_UP"
 msgstr ""
 
+#: ../simulation_parameters/common/achievements.json:5
+msgid "KILL_50_MICROBES"
+msgstr ""
+
+#: ../simulation_parameters/common/achievements.json:6
+msgid "KILL_MICROBES_PROGRESS"
+msgstr ""
+
 #: ../src/general/utils/StringUtils.cs:61
 msgid "KILO_ABBREVIATION"
 msgstr ""
@@ -4288,19 +4321,19 @@ msgstr ""
 msgid "KPSUBTRACT"
 msgstr ""
 
-#: ../src/gui_common/menus/OptionsMenu.tscn:1395
+#: ../src/gui_common/menus/OptionsMenu.tscn:1397
 msgid "LANGUAGE"
 msgstr ""
 
-#: ../src/gui_common/menus/OptionsMenu.cs:1521
+#: ../src/gui_common/menus/OptionsMenu.cs:1532
 msgid "LANGUAGE_TRANSLATION_PROGRESS"
 msgstr ""
 
-#: ../src/gui_common/menus/OptionsMenu.cs:1517
+#: ../src/gui_common/menus/OptionsMenu.cs:1528
 msgid "LANGUAGE_TRANSLATION_PROGRESS_LOW"
 msgstr ""
 
-#: ../src/gui_common/menus/OptionsMenu.cs:1513
+#: ../src/gui_common/menus/OptionsMenu.cs:1524
 msgid "LANGUAGE_TRANSLATION_PROGRESS_REALLY_LOW"
 msgstr ""
 
@@ -4466,7 +4499,7 @@ msgstr ""
 msgid "LEFT_MOUSE"
 msgstr ""
 
-#: ../src/general/MainMenu.tscn:470
+#: ../src/general/MainMenu.tscn:482
 msgid "LICENSES"
 msgstr ""
 
@@ -4535,43 +4568,43 @@ msgstr ""
 msgid "LIGHT_MAX"
 msgstr ""
 
-#: ../src/gui_common/menus/OptionsMenu.tscn:1662
+#: ../src/gui_common/menus/OptionsMenu.tscn:1664
 msgid "LIMIT_EXTREME"
 msgstr ""
 
-#: ../src/general/NewGameSettings.tscn:881
+#: ../src/general/NewGameSettings.tscn:883
 msgid "LIMIT_GROWTH_RATE"
 msgstr ""
 
-#: ../src/general/NewGameSettings.tscn:891
+#: ../src/general/NewGameSettings.tscn:893
 msgid "LIMIT_GROWTH_RATE_EXPLANATION"
 msgstr ""
 
-#: ../src/gui_common/menus/OptionsMenu.tscn:1660
+#: ../src/gui_common/menus/OptionsMenu.tscn:1662
 msgid "LIMIT_HUGE"
 msgstr ""
 
-#: ../src/gui_common/menus/OptionsMenu.tscn:1656
+#: ../src/gui_common/menus/OptionsMenu.tscn:1658
 msgid "LIMIT_LARGE"
 msgstr ""
 
-#: ../src/gui_common/menus/OptionsMenu.tscn:1654
+#: ../src/gui_common/menus/OptionsMenu.tscn:1656
 msgid "LIMIT_NORMAL"
 msgstr ""
 
-#: ../src/gui_common/menus/OptionsMenu.tscn:1652
+#: ../src/gui_common/menus/OptionsMenu.tscn:1654
 msgid "LIMIT_SMALL"
 msgstr ""
 
-#: ../src/gui_common/menus/OptionsMenu.tscn:1648
+#: ../src/gui_common/menus/OptionsMenu.tscn:1650
 msgid "LIMIT_TINY"
 msgstr ""
 
-#: ../src/gui_common/menus/OptionsMenu.tscn:1658
+#: ../src/gui_common/menus/OptionsMenu.tscn:1660
 msgid "LIMIT_VERY_LARGE"
 msgstr ""
 
-#: ../src/gui_common/menus/OptionsMenu.tscn:1650
+#: ../src/gui_common/menus/OptionsMenu.tscn:1652
 msgid "LIMIT_VERY_SMALL"
 msgstr ""
 
@@ -4579,7 +4612,7 @@ msgstr ""
 msgid "LINE_COLOUR"
 msgstr ""
 
-#: ../src/general/MainMenu.tscn:547
+#: ../src/general/MainMenu.tscn:559
 msgid "LINKS_TITLE"
 msgstr ""
 
@@ -4610,7 +4643,7 @@ msgstr ""
 msgid "LOADING_GAME"
 msgstr ""
 
-#: ../src/general/base_stage/StageBase.cs:432
+#: ../src/general/base_stage/StageBase.cs:461
 msgid "LOADING_GRAPHICS_SHADERS"
 msgstr ""
 
@@ -4622,7 +4655,7 @@ msgstr ""
 msgid "LOADING_MICROBE_EDITOR"
 msgstr ""
 
-#: ../src/microbe_stage/MicrobeStage.cs:1185
+#: ../src/microbe_stage/MicrobeStage.cs:1187
 msgid "LOADING_MICROBE_STAGE"
 msgstr ""
 
@@ -4630,16 +4663,16 @@ msgstr ""
 msgid "LOADING_MULTICELLULAR_EDITOR"
 msgstr ""
 
-#: ../src/microbe_stage/MicrobeStage.cs:1181
+#: ../src/microbe_stage/MicrobeStage.cs:1183
 msgid "LOADING_MULTICELLULAR_STAGE"
 msgstr ""
 
 #: ../src/general/base_stage/HUDBase.cs:61
-#: ../src/general/base_stage/StageBase.cs:418
+#: ../src/general/base_stage/StageBase.cs:447
 msgid "LOADING_STAGE"
 msgstr ""
 
-#: ../src/general/base_stage/StageBase.cs:428
+#: ../src/general/base_stage/StageBase.cs:457
 msgid "LOADING_STAGE_ASSETS"
 msgstr ""
 
@@ -4647,12 +4680,12 @@ msgstr ""
 msgid "LOAD_FINISHED"
 msgstr ""
 
-#: ../src/general/MainMenu.tscn:315 ../src/general/PauseMenu.tscn:232
+#: ../src/general/MainMenu.tscn:320 ../src/general/PauseMenu.tscn:232
 #: ../src/microbe_stage/gui/ExtinctionBox.tscn:139
 msgid "LOAD_GAME"
 msgstr ""
 
-#: ../src/general/MainMenu.tscn:313 ../src/general/PauseMenu.tscn:231
+#: ../src/general/MainMenu.tscn:318 ../src/general/PauseMenu.tscn:231
 msgid "LOAD_GAME_BUTTON_TOOLTIP"
 msgstr ""
 
@@ -4684,28 +4717,28 @@ msgstr ""
 msgid "LOCK_DAY_NIGHT_CYCLE"
 msgstr ""
 
-#: ../src/gui_common/menus/OptionsMenu.tscn:537
+#: ../src/gui_common/menus/OptionsMenu.tscn:539
 msgid "LOWER_SCALE_INCREASES_PERFORMANCE"
 msgstr ""
 
-#: ../src/gui_common/menus/OptionsMenu.tscn:604
+#: ../src/gui_common/menus/OptionsMenu.tscn:606
 msgid "LOWER_VALUE_MAKES_SHARPER_IMAGE"
 msgstr ""
 
-#: ../src/general/MainMenu.tscn:956
+#: ../src/general/MainMenu.tscn:1012
 msgid "LOW_MENU_PERFORMANCE"
 msgstr ""
 
-#: ../src/general/MainMenu.tscn:955
+#: ../src/general/MainMenu.tscn:1011
 msgid "LOW_MENU_PERFORMANCE_DESCRIPTION"
 msgstr ""
 
-#: ../src/gui_common/menus/OptionsMenu.tscn:819
+#: ../src/gui_common/menus/OptionsMenu.tscn:821
 msgid "LOW_QUALITY_BACKGROUND_BLUR"
 msgstr ""
 
-#: ../src/gui_common/menus/OptionsMenu.tscn:817
-#: ../src/gui_common/menus/OptionsMenu.tscn:824
+#: ../src/gui_common/menus/OptionsMenu.tscn:819
+#: ../src/gui_common/menus/OptionsMenu.tscn:826
 msgid "LOW_QUALITY_BACKGROUND_BLUR_TOOLTIP"
 msgstr ""
 
@@ -4764,33 +4797,33 @@ msgstr ""
 msgid "MARINE_SNOW"
 msgstr ""
 
-#: ../src/gui_common/menus/OptionsMenu.tscn:1190
+#: ../src/gui_common/menus/OptionsMenu.tscn:1192
 msgid "MASTER_VOLUME"
 msgstr ""
 
-#: ../src/general/MainMenu.tscn:804
+#: ../src/general/MainMenu.tscn:816
 msgid "MASTODON_TOOLTIP"
 msgstr ""
 
-#: ../src/gui_common/menus/OptionsMenu.tscn:1937
-#: ../src/gui_common/menus/OptionsMenu.tscn:1944
-#: ../src/gui_common/menus/OptionsMenu.tscn:1958
+#: ../src/gui_common/menus/OptionsMenu.tscn:1939
+#: ../src/gui_common/menus/OptionsMenu.tscn:1946
+#: ../src/gui_common/menus/OptionsMenu.tscn:1960
 msgid "MAX_CACHE_SIZE_TOOLTIP"
 msgstr ""
 
-#: ../src/gui_common/menus/OptionsMenu.tscn:621
+#: ../src/gui_common/menus/OptionsMenu.tscn:623
 msgid "MAX_FPS"
 msgstr ""
 
-#: ../src/gui_common/menus/OptionsMenu.tscn:648
+#: ../src/gui_common/menus/OptionsMenu.tscn:650
 msgid "MAX_FPS_NO_LIMIT"
 msgstr ""
 
-#: ../src/gui_common/menus/OptionsMenu.tscn:1939
+#: ../src/gui_common/menus/OptionsMenu.tscn:1941
 msgid "MAX_SIZE_COLON"
 msgstr ""
 
-#: ../src/gui_common/menus/OptionsMenu.tscn:1637
+#: ../src/gui_common/menus/OptionsMenu.tscn:1639
 msgid "MAX_SPAWNED_ENTITIES"
 msgstr ""
 
@@ -4886,19 +4919,19 @@ msgstr ""
 msgid "METABOLOSOMES_PROCESSES_DESCRIPTION"
 msgstr ""
 
-#: ../src/general/MainMenu.tscn:736
+#: ../src/general/MainMenu.tscn:748
 msgid "META_THREADS_TOOLTIP"
 msgstr ""
 
-#: ../src/general/world_effects/patch_events/MeteorImpactEvent.cs:243
+#: ../src/general/world_effects/patch_events/MeteorImpactEvent.cs:244
 msgid "METEOR_IMPACT_EVENT"
 msgstr ""
 
-#: ../src/general/world_effects/patch_events/MeteorImpactEvent.cs:343
+#: ../src/general/world_effects/patch_events/MeteorImpactEvent.cs:344
 msgid "METEOR_STRIKE_START_EVENT_LOG_PLURAL"
 msgstr ""
 
-#: ../src/general/world_effects/patch_events/MeteorImpactEvent.cs:342
+#: ../src/general/world_effects/patch_events/MeteorImpactEvent.cs:343
 msgid "METEOR_STRIKE_START_EVENT_LOG_SINGULAR"
 msgstr ""
 
@@ -4912,8 +4945,8 @@ msgid "METRICS_CONTENT"
 msgstr ""
 
 #: ../src/engine/DebugOverlays.PerformanceMetrics.cs:168
-#: ../src/gui_common/menus/OptionsMenu.cs:1597
-#: ../src/gui_common/menus/OptionsMenu.cs:2224
+#: ../src/gui_common/menus/OptionsMenu.cs:1608
+#: ../src/gui_common/menus/OptionsMenu.cs:2235
 #: ../src/saving/SaveManagerGUI.cs:115
 msgid "MIB_VALUE"
 msgstr ""
@@ -4992,11 +5025,11 @@ msgid "MICROBES_COUNT"
 msgstr ""
 
 #: ../src/benchmark/microbe/MicrobeBenchmark.tscn:41
-#: ../src/general/MainMenu.tscn:508
+#: ../src/general/MainMenu.tscn:520
 msgid "MICROBE_BENCHMARK"
 msgstr ""
 
-#: ../src/gui_common/menus/OptionsMenu.tscn:856
+#: ../src/gui_common/menus/OptionsMenu.tscn:858
 msgid "MICROBE_CAMERA_TILT_EFFECT"
 msgstr ""
 
@@ -5005,12 +5038,12 @@ msgstr ""
 msgid "MICROBE_EDITOR"
 msgstr ""
 
-#: ../src/auto-evo/AutoEvoExploringTool.cs:927
-#: ../src/auto-evo/AutoEvoExploringTool.cs:1009
+#: ../src/auto-evo/AutoEvoExploringTool.cs:929
+#: ../src/auto-evo/AutoEvoExploringTool.cs:1011
 msgid "MICROBE_ENZYME_STATISTICS"
 msgstr ""
 
-#: ../src/general/MainMenu.tscn:384
+#: ../src/general/MainMenu.tscn:389
 msgid "MICROBE_FREEBUILD_EDITOR"
 msgstr ""
 
@@ -5113,31 +5146,31 @@ msgstr ""
 msgid "MICROBE_LOADING_TIP_9"
 msgstr ""
 
-#: ../src/auto-evo/AutoEvoExploringTool.cs:923
-#: ../src/auto-evo/AutoEvoExploringTool.cs:1004
+#: ../src/auto-evo/AutoEvoExploringTool.cs:925
+#: ../src/auto-evo/AutoEvoExploringTool.cs:1006
 msgid "MICROBE_MEMBRANE_PERCENTAGE_STATISTICS"
 msgstr ""
 
-#: ../src/auto-evo/AutoEvoExploringTool.cs:919
-#: ../src/auto-evo/AutoEvoExploringTool.cs:997
+#: ../src/auto-evo/AutoEvoExploringTool.cs:921
+#: ../src/auto-evo/AutoEvoExploringTool.cs:999
 msgid "MICROBE_MEMBRANE_STATISTICS"
 msgstr ""
 
-#: ../src/auto-evo/AutoEvoExploringTool.cs:904
-#: ../src/auto-evo/AutoEvoExploringTool.cs:914
-#: ../src/auto-evo/AutoEvoExploringTool.cs:931
-#: ../src/auto-evo/AutoEvoExploringTool.cs:976
-#: ../src/auto-evo/AutoEvoExploringTool.cs:990
-#: ../src/auto-evo/AutoEvoExploringTool.cs:1016
+#: ../src/auto-evo/AutoEvoExploringTool.cs:906
+#: ../src/auto-evo/AutoEvoExploringTool.cs:916
+#: ../src/auto-evo/AutoEvoExploringTool.cs:933
+#: ../src/auto-evo/AutoEvoExploringTool.cs:978
+#: ../src/auto-evo/AutoEvoExploringTool.cs:992
+#: ../src/auto-evo/AutoEvoExploringTool.cs:1018
 msgid "MICROBE_ORGANELLE_STATISTICS"
 msgstr ""
 
-#: ../src/auto-evo/AutoEvoExploringTool.cs:910
-#: ../src/auto-evo/AutoEvoExploringTool.cs:983
+#: ../src/auto-evo/AutoEvoExploringTool.cs:912
+#: ../src/auto-evo/AutoEvoExploringTool.cs:985
 msgid "MICROBE_ORGANELLE_UPGRADES_STATISTICS"
 msgstr ""
 
-#: ../src/gui_common/menus/OptionsMenu.tscn:838
+#: ../src/gui_common/menus/OptionsMenu.tscn:840
 msgid "MICROBE_RIPPLE_EFFECT"
 msgstr ""
 
@@ -5187,6 +5220,10 @@ msgstr ""
 
 #: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:265
 msgid "MICROBE_STAGE_ORGANELLE_DIVISION"
+msgstr ""
+
+#: ../simulation_parameters/common/achievements.json:3
+msgid "MICROBIAL_MASSACRE"
 msgstr ""
 
 #: ../src/engine/input/key_mapping/SpecifiedInputKey.cs:435
@@ -5248,7 +5285,7 @@ msgid "MIN_VISIBLE_DATASET_WARNING"
 msgstr ""
 
 #: ../src/general/NewGameSettings.tscn:275
-#: ../src/gui_common/menus/OptionsMenu.tscn:237
+#: ../src/gui_common/menus/OptionsMenu.tscn:239
 msgid "MISC"
 msgstr ""
 
@@ -5261,7 +5298,7 @@ msgstr ""
 msgid "MISCELLANEOUS_3D_STAGE"
 msgstr ""
 
-#: ../src/gui_common/menus/OptionsMenu.tscn:3094
+#: ../src/gui_common/menus/OptionsMenu.tscn:3105
 msgid "MISC_FUN"
 msgstr ""
 
@@ -5318,11 +5355,11 @@ msgstr ""
 msgid "MODIFY_TYPE"
 msgstr ""
 
-#: ../src/general/MainMenu.tscn:456
+#: ../src/general/MainMenu.tscn:468
 msgid "MODS"
 msgstr ""
 
-#: ../src/general/MainMenu.tscn:913
+#: ../src/general/MainMenu.tscn:969
 msgid "MODS_INSTALLED_BUT_NOT_ENABLED"
 msgstr ""
 
@@ -5412,11 +5449,11 @@ msgstr ""
 msgid "MOD_LICENSE"
 msgstr ""
 
-#: ../src/general/MainMenu.tscn:929
+#: ../src/general/MainMenu.tscn:985
 msgid "MOD_LOAD_ERRORS"
 msgstr ""
 
-#: ../src/general/MainMenu.tscn:927
+#: ../src/general/MainMenu.tscn:983
 msgid "MOD_LOAD_ERRORS_OCCURRED"
 msgstr ""
 
@@ -5473,15 +5510,15 @@ msgstr ""
 msgid "MORE_INFO_PROMPT"
 msgstr ""
 
-#: ../src/gui_common/menus/OptionsMenu.tscn:2557
+#: ../src/gui_common/menus/OptionsMenu.tscn:2559
 msgid "MOUSE_EDGE_PANNING_OPTION"
 msgstr ""
 
-#: ../src/gui_common/menus/OptionsMenu.tscn:2180
+#: ../src/gui_common/menus/OptionsMenu.tscn:2182
 msgid "MOUSE_LOOK_SENSITIVITY"
 msgstr ""
 
-#: ../src/gui_common/menus/OptionsMenu.tscn:2294
+#: ../src/gui_common/menus/OptionsMenu.tscn:2296
 msgid "MOUSE_SENSITIVITY_WINDOW_SIZE_ADJUSTMENT"
 msgstr ""
 
@@ -5605,7 +5642,7 @@ msgstr ""
 msgid "MULTICELLULAR_EDITOR"
 msgstr ""
 
-#: ../src/general/MainMenu.tscn:391
+#: ../src/general/MainMenu.tscn:396
 msgid "MULTICELLULAR_FREEBUILD_EDITOR"
 msgstr ""
 
@@ -5633,15 +5670,15 @@ msgstr ""
 msgid "MULTIPLE_ORGANELLES"
 msgstr ""
 
-#: ../src/gui_common/menus/OptionsMenu.tscn:388
+#: ../src/gui_common/menus/OptionsMenu.tscn:390
 msgid "MULTISAMPLE_ANTI_ALIASING"
 msgstr ""
 
-#: ../src/gui_common/menus/OptionsMenu.tscn:1608
+#: ../src/gui_common/menus/OptionsMenu.tscn:1610
 msgid "MULTITHREADED_SIMULATION_ENABLED"
 msgstr ""
 
-#: ../src/gui_common/menus/OptionsMenu.tscn:1619
+#: ../src/gui_common/menus/OptionsMenu.tscn:1621
 msgid "MULTITHREADED_SIMULATION_EXPLANATION"
 msgstr ""
 
@@ -5653,7 +5690,7 @@ msgstr ""
 msgid "MUSIC"
 msgstr ""
 
-#: ../src/gui_common/menus/OptionsMenu.tscn:1233
+#: ../src/gui_common/menus/OptionsMenu.tscn:1235
 msgid "MUSIC_VOLUME"
 msgstr ""
 
@@ -5661,11 +5698,11 @@ msgstr ""
 msgid "MUTATIONS_PER_SPECIES"
 msgstr ""
 
-#: ../src/general/NewGameSettings.tscn:370
+#: ../src/general/NewGameSettings.tscn:372
 msgid "MUTATION_COST_MULTIPLIER"
 msgstr ""
 
-#: ../src/general/NewGameSettings.tscn:401
+#: ../src/general/NewGameSettings.tscn:403
 msgid "MUTATION_COST_MULTIPLIER_EXPLANATION"
 msgstr ""
 
@@ -5673,11 +5710,11 @@ msgstr ""
 msgid "MUTATION_POINTS"
 msgstr ""
 
-#: ../src/gui_common/menus/OptionsMenu.tscn:1216
-#: ../src/gui_common/menus/OptionsMenu.tscn:1253
-#: ../src/gui_common/menus/OptionsMenu.tscn:1286
-#: ../src/gui_common/menus/OptionsMenu.tscn:1319
-#: ../src/gui_common/menus/OptionsMenu.tscn:1352
+#: ../src/gui_common/menus/OptionsMenu.tscn:1218
+#: ../src/gui_common/menus/OptionsMenu.tscn:1255
+#: ../src/gui_common/menus/OptionsMenu.tscn:1288
+#: ../src/gui_common/menus/OptionsMenu.tscn:1321
+#: ../src/gui_common/menus/OptionsMenu.tscn:1354
 msgid "MUTE"
 msgstr ""
 
@@ -5698,8 +5735,8 @@ msgstr ""
 msgid "NAME_LABEL_STRUCTURE_UNFINISHED"
 msgstr ""
 
-#: ../src/gui_common/menus/OptionsMenu.tscn:1807
-#: ../src/gui_common/menus/OptionsMenu.tscn:1816
+#: ../src/gui_common/menus/OptionsMenu.tscn:1809
+#: ../src/gui_common/menus/OptionsMenu.tscn:1818
 msgid "NATIVE_THREAD_ADVICE_TOOLTIP"
 msgstr ""
 
@@ -5725,11 +5762,11 @@ msgstr ""
 msgid "NEWS"
 msgstr ""
 
-#: ../src/general/MainMenu.tscn:308
+#: ../src/general/MainMenu.tscn:313
 msgid "NEW_GAME"
 msgstr ""
 
-#: ../src/general/MainMenu.tscn:303
+#: ../src/general/MainMenu.tscn:308
 msgid "NEW_GAME_BUTTON_TOOLTIP"
 msgstr ""
 
@@ -5861,7 +5898,7 @@ msgstr ""
 #: ../simulation_parameters/common/wiki.json:2525
 #: ../simulation_parameters/common/wiki.json:2545
 #: ../simulation_parameters/common/wiki.json:2600
-#: ../src/gui_common/menus/OptionsMenu.tscn:677
+#: ../src/gui_common/menus/OptionsMenu.tscn:679
 #: ../src/thriveopedia/pages/wiki/organelles/OrganelleInfoBox.cs:145
 #: ../src/thriveopedia/pages/wiki/organelles/OrganelleInfoBox.cs:154
 #: ../src/thriveopedia/pages/wiki/organelles/OrganelleInfoBox.cs:163
@@ -5914,11 +5951,11 @@ msgstr ""
 msgid "NOTICE_ENGULF_STORAGE_FULL"
 msgstr ""
 
-#: ../src/microbe_stage/systems/ToxinCollisionSystem.cs:241
+#: ../src/microbe_stage/systems/ToxinCollisionSystem.cs:251
 msgid "NOTICE_HIT_BY_ATP_TOXIN"
 msgstr ""
 
-#: ../src/microbe_stage/systems/ToxinCollisionSystem.cs:219
+#: ../src/microbe_stage/systems/ToxinCollisionSystem.cs:229
 msgid "NOTICE_HIT_BY_BASE_MOVEMENT_TOXIN"
 msgstr ""
 
@@ -5963,7 +6000,7 @@ msgstr ""
 msgid "NO_FOSSIL_DIRECTORY"
 msgstr ""
 
-#: ../src/general/MainMenu.tscn:914
+#: ../src/general/MainMenu.tscn:970
 msgid "NO_MODS_ENABLED"
 msgstr ""
 
@@ -5979,7 +6016,7 @@ msgstr ""
 msgid "NO_SAVE_DIRECTORY"
 msgstr ""
 
-#: ../src/gui_common/menus/OptionsMenu.tscn:3318
+#: ../src/gui_common/menus/OptionsMenu.tscn:3329
 msgid "NO_SCREENSHOT_DIRECTORY"
 msgstr ""
 
@@ -6040,15 +6077,15 @@ msgstr ""
 msgid "OCTOBER"
 msgstr ""
 
-#: ../src/gui_common/menus/OptionsMenu.tscn:1067
+#: ../src/gui_common/menus/OptionsMenu.tscn:1069
 msgid "OFF"
 msgstr ""
 
-#: ../src/general/MainMenu.tscn:587
+#: ../src/general/MainMenu.tscn:599
 msgid "OFFICIAL_WEBSITE"
 msgstr ""
 
-#: ../src/general/MainMenu.tscn:578
+#: ../src/general/MainMenu.tscn:590
 msgid "OFFICIAL_WEBSITE_BUTTON_TOOLTIP"
 msgstr ""
 
@@ -6063,11 +6100,11 @@ msgstr ""
 msgid "OLDER_VERSION_LOADING_WARNING"
 msgstr ""
 
-#: ../src/general/MainMenu.tscn:904
+#: ../src/general/MainMenu.tscn:960
 msgid "OPENGL_MODE_WARNING"
 msgstr ""
 
-#: ../src/general/MainMenu.tscn:903
+#: ../src/general/MainMenu.tscn:959
 msgid "OPENGL_MODE_WARNING_EXPLANATION"
 msgstr ""
 
@@ -6096,7 +6133,7 @@ msgstr ""
 msgid "OPEN_IN_FREEBUILD"
 msgstr ""
 
-#: ../src/gui_common/menus/OptionsMenu.tscn:2882
+#: ../src/gui_common/menus/OptionsMenu.tscn:2884
 msgid "OPEN_LOGS_FOLDER"
 msgstr ""
 
@@ -6124,7 +6161,7 @@ msgstr ""
 msgid "OPEN_SCIENCE_MENU"
 msgstr ""
 
-#: ../src/gui_common/menus/OptionsMenu.tscn:2871
+#: ../src/gui_common/menus/OptionsMenu.tscn:2873
 msgid "OPEN_SCREENSHOT_FOLDER"
 msgstr ""
 
@@ -6132,7 +6169,7 @@ msgstr ""
 msgid "OPEN_THE_MENU"
 msgstr ""
 
-#: ../src/gui_common/menus/OptionsMenu.tscn:1431
+#: ../src/gui_common/menus/OptionsMenu.tscn:1433
 msgid "OPEN_TRANSLATION_SITE"
 msgstr ""
 
@@ -6148,11 +6185,11 @@ msgstr ""
 msgid "OPPORTUNISTIC"
 msgstr ""
 
-#: ../src/general/MainMenu.tscn:322 ../src/general/PauseMenu.tscn:255
+#: ../src/general/MainMenu.tscn:327 ../src/general/PauseMenu.tscn:255
 msgid "OPTIONS"
 msgstr ""
 
-#: ../src/general/MainMenu.tscn:320 ../src/general/PauseMenu.tscn:254
+#: ../src/general/MainMenu.tscn:325 ../src/general/PauseMenu.tscn:254
 msgid "OPTIONS_BUTTON_TOOLTIP"
 msgstr ""
 
@@ -6228,11 +6265,11 @@ msgstr ""
 msgid "ORGANELLE_SUGGESTION_TOOLTIP"
 msgstr ""
 
-#: ../src/general/NewGameSettings.tscn:906
+#: ../src/general/NewGameSettings.tscn:908
 msgid "ORGANELLE_UNLOCKS_ENABLED"
 msgstr ""
 
-#: ../src/general/NewGameSettings.tscn:916
+#: ../src/general/NewGameSettings.tscn:918
 msgid "ORGANELLE_UNLOCKS_ENABLED_EXPLANATION"
 msgstr ""
 
@@ -6253,11 +6290,11 @@ msgstr ""
 msgid "OSMOREGULATION_COST"
 msgstr ""
 
-#: ../src/general/NewGameSettings.tscn:604
+#: ../src/general/NewGameSettings.tscn:606
 msgid "OSMOREGULATION_COST_MULTIPLIER"
 msgstr ""
 
-#: ../src/general/NewGameSettings.tscn:635
+#: ../src/general/NewGameSettings.tscn:637
 msgid "OSMOREGULATION_COST_MULTIPLIER_EXPLANATION"
 msgstr ""
 
@@ -6407,7 +6444,7 @@ msgstr ""
 msgid "PATCH_NOTES_LAST_PLAYED_INFO_PLURAL"
 msgstr ""
 
-#: ../src/gui_common/menus/OptionsMenu.tscn:3322
+#: ../src/gui_common/menus/OptionsMenu.tscn:3339
 #: ../src/gui_common/PatchNotesDisplayer.tscn:25
 msgid "PATCH_NOTES_TITLE"
 msgstr ""
@@ -6424,7 +6461,7 @@ msgstr ""
 msgid "PATCH_NOTE_LINK_VISIT_TEXT"
 msgstr ""
 
-#: ../src/general/MainMenu.tscn:703
+#: ../src/general/MainMenu.tscn:715
 msgid "PATREON_TOOLTIP"
 msgstr ""
 
@@ -6468,13 +6505,13 @@ msgstr ""
 msgid "PENDING_ENDOSYMBIOSIS_TITLE"
 msgstr ""
 
-#: ../src/general/NewGameSettings.cs:744 ../src/general/NewGameSettings.cs:751
-#: ../src/general/NewGameSettings.cs:767
+#: ../src/general/NewGameSettings.cs:720 ../src/general/NewGameSettings.cs:727
+#: ../src/general/NewGameSettings.cs:743
 #: ../src/general/world_effects/GlucoseReductionEffect.cs:77
 #: ../src/general/world_effects/GlucoseReductionEffect.cs:103
 #: ../src/general/WorldGenerationSettings.cs:270
 #: ../src/gui_common/CompoundAmount.cs:316
-#: ../src/gui_common/menus/OptionsMenu.cs:1817
+#: ../src/gui_common/menus/OptionsMenu.cs:1828
 #: ../src/microbe_stage/editor/MicrobeEditorReportComponent.cs:531
 #: ../src/microbe_stage/editor/TolerancesEditorSubComponent.cs:739
 #: ../src/microbe_stage/editor/tooltips/EnvironmentalToleranceToolTip.cs:98
@@ -6499,7 +6536,7 @@ msgstr ""
 msgid "PERFECT_ADAPTATION_DESCRIPTION"
 msgstr ""
 
-#: ../src/gui_common/menus/OptionsMenu.tscn:219
+#: ../src/gui_common/menus/OptionsMenu.tscn:221
 msgid "PERFORMANCE"
 msgstr ""
 
@@ -6555,7 +6592,7 @@ msgstr ""
 msgid "PLANET"
 msgstr ""
 
-#: ../src/general/MainMenu.tscn:409
+#: ../src/general/MainMenu.tscn:414
 msgid "PLANET_CUSTOMIZER"
 msgstr ""
 
@@ -6565,7 +6602,7 @@ msgid "PLANET_DETAILS_STRING"
 msgstr ""
 
 #: ../src/general/NewGameSettings.tscn:205
-#: ../src/gui_common/menus/PlanetSettings.tscn:380
+#: ../src/gui_common/menus/PlanetSettings.tscn:382
 msgid "PLANET_RANDOM_SEED"
 msgstr ""
 
@@ -6573,11 +6610,11 @@ msgstr ""
 msgid "PLAYER"
 msgstr ""
 
-#: ../src/general/NewGameSettings.tscn:511
+#: ../src/general/NewGameSettings.tscn:513
 msgid "PLAYER_DEATH_POPULATION_PENALTY"
 msgstr ""
 
-#: ../src/general/NewGameSettings.tscn:542
+#: ../src/general/NewGameSettings.tscn:544
 msgid "PLAYER_DEATH_POPULATION_PENALTY_EXPLANATION"
 msgstr ""
 
@@ -6593,7 +6630,7 @@ msgstr ""
 msgid "PLAYER_EXTINCT"
 msgstr ""
 
-#: ../src/gui_common/menus/OptionsMenu.tscn:2497
+#: ../src/gui_common/menus/OptionsMenu.tscn:2499
 #: ../src/microbe_stage/gui/MovementModeSelectionPopup.tscn:49
 msgid "PLAYER_RELATIVE_MOVEMENT"
 msgstr ""
@@ -6610,28 +6647,28 @@ msgstr ""
 msgid "PLAYER_SPEED"
 msgstr ""
 
-#: ../src/gui_common/menus/OptionsMenu.tscn:1035
+#: ../src/gui_common/menus/OptionsMenu.tscn:1037
 msgid "PLAYSTATION_3"
 msgstr ""
 
-#: ../src/gui_common/menus/OptionsMenu.tscn:1037
+#: ../src/gui_common/menus/OptionsMenu.tscn:1039
 msgid "PLAYSTATION_4"
 msgstr ""
 
-#: ../src/gui_common/menus/OptionsMenu.tscn:1039
+#: ../src/gui_common/menus/OptionsMenu.tscn:1041
 msgid "PLAYSTATION_5"
 msgstr ""
 
-#: ../src/gui_common/menus/OptionsMenu.tscn:2683
+#: ../src/gui_common/menus/OptionsMenu.tscn:2685
 msgid "PLAY_INTRO_VIDEO"
 msgstr ""
 
-#: ../src/gui_common/menus/OptionsMenu.tscn:2701
+#: ../src/gui_common/menus/OptionsMenu.tscn:2703
 msgid "PLAY_MICROBE_INTRO_ON_NEW_GAME"
 msgstr ""
 
 #: ../src/auto-evo/AutoEvoExploringTool.tscn:326
-#: ../src/gui_common/menus/PlanetCustomizerTool.tscn:145
+#: ../src/gui_common/menus/PlanetCustomizerTool.tscn:146
 msgid "PLAY_WITH_CURRENT_SETTING"
 msgstr ""
 
@@ -6750,11 +6787,11 @@ msgstr ""
 msgid "QUICK_SAVE"
 msgstr ""
 
-#: ../src/general/MainMenu.tscn:363
+#: ../src/general/MainMenu.tscn:368
 msgid "QUIT"
 msgstr ""
 
-#: ../src/general/MainMenu.tscn:351 ../src/general/MainMenu.tscn:358
+#: ../src/general/MainMenu.tscn:356 ../src/general/MainMenu.tscn:363
 #: ../src/general/PauseMenu.tscn:266
 msgid "QUIT_BUTTON_TOOLTIP"
 msgstr ""
@@ -6785,7 +6822,7 @@ msgid "RANDOMIZE_SPECIES_NAME"
 msgstr ""
 
 #: ../src/general/NewGameSettings.tscn:218
-#: ../src/gui_common/menus/PlanetSettings.tscn:394
+#: ../src/gui_common/menus/PlanetSettings.tscn:396
 msgid "RANDOM_SEED_TOOLTIP"
 msgstr ""
 
@@ -6811,7 +6848,7 @@ msgstr ""
 msgid "RECOMMENDED_THRIVE_VERSION"
 msgstr ""
 
-#: ../src/general/MainMenu.tscn:747
+#: ../src/general/MainMenu.tscn:759
 msgid "REDDIT_TOOLTIP"
 msgstr ""
 
@@ -6827,11 +6864,11 @@ msgstr ""
 msgid "REFRESH"
 msgstr ""
 
-#: ../src/gui_common/menus/PlanetCustomizerTool.tscn:153
+#: ../src/gui_common/menus/PlanetCustomizerTool.tscn:154
 msgid "REGENERATE_BUTTON"
 msgstr ""
 
-#: ../src/gui_common/menus/OptionsMenu.tscn:508
+#: ../src/gui_common/menus/OptionsMenu.tscn:510
 msgid "RENDER_SCALE"
 msgstr ""
 
@@ -6840,7 +6877,7 @@ msgstr ""
 msgid "REPORT"
 msgstr ""
 
-#: ../src/general/MainMenu.tscn:631 ../src/general/PauseMenu.tscn:249
+#: ../src/general/MainMenu.tscn:643 ../src/general/PauseMenu.tscn:249
 msgid "REPORT_BUG"
 msgstr ""
 
@@ -6863,18 +6900,18 @@ msgstr ""
 msgid "REPRODUCTION_BUDDING"
 msgstr ""
 
-#: ../src/general/NewGameSettings.tscn:747
+#: ../src/general/NewGameSettings.tscn:749
 msgid "REPRODUCTION_COMPOUNDS_MODE"
 msgstr ""
 
-#: ../src/general/NewGameSettings.tscn:778
+#: ../src/general/NewGameSettings.tscn:780
 msgid "REPRODUCTION_COMPOUNDS_MODE_EXPLANATION"
 msgstr ""
 
-#: ../src/general/NewGameSettings.tscn:745
-#: ../src/general/NewGameSettings.tscn:760
-#: ../src/general/NewGameSettings.tscn:776
-#: ../src/general/NewGameSettings.tscn:811
+#: ../src/general/NewGameSettings.tscn:747
+#: ../src/general/NewGameSettings.tscn:762
+#: ../src/general/NewGameSettings.tscn:778
+#: ../src/general/NewGameSettings.tscn:813
 msgid "REPRODUCTION_COMPOUND_HANDLING_TOOLTIP"
 msgstr ""
 
@@ -6891,21 +6928,25 @@ msgstr ""
 msgid "RESEARCH"
 msgstr ""
 
-#: ../src/gui_common/menus/OptionsMenu.tscn:1402
-#: ../src/gui_common/menus/OptionsMenu.tscn:3203
+#: ../src/gui_common/menus/OptionsMenu.tscn:1404
+#: ../src/gui_common/menus/OptionsMenu.tscn:3214
 #: ../src/microbe_stage/editor/GrowthOrderPicker.tscn:22
 msgid "RESET"
+msgstr ""
+
+#: ../src/gui_common/menus/OptionsMenu.tscn:3098
+msgid "RESET_ACHIEVEMENTS"
 msgstr ""
 
 #: ../src/engine/input/ControllerDeadzoneConfiguration.tscn:75
 msgid "RESET_DEADZONES"
 msgstr ""
 
-#: ../src/gui_common/menus/OptionsMenu.tscn:3086
+#: ../src/gui_common/menus/OptionsMenu.tscn:3088
 msgid "RESET_DISMISSED_POPUPS"
 msgstr ""
 
-#: ../src/gui_common/menus/OptionsMenu.tscn:3241
+#: ../src/gui_common/menus/OptionsMenu.tscn:3252
 msgid "RESET_INPUTS_TO_DEFAULTS"
 msgstr ""
 
@@ -6913,23 +6954,23 @@ msgstr ""
 msgid "RESET_ITEM_ORDER_TO_DEFAULT"
 msgstr ""
 
-#: ../src/gui_common/menus/OptionsMenu.tscn:2639
+#: ../src/gui_common/menus/OptionsMenu.tscn:2641
 msgid "RESET_KEYBINDINGS"
 msgstr ""
 
-#: ../src/gui_common/menus/OptionsMenu.tscn:3229
+#: ../src/gui_common/menus/OptionsMenu.tscn:3240
 msgid "RESET_SETTINGS_TO_DEFAULTS"
 msgstr ""
 
-#: ../src/gui_common/menus/OptionsMenu.tscn:2856
+#: ../src/gui_common/menus/OptionsMenu.tscn:2858
 msgid "RESET_SHOWN_TUTORIALS"
 msgstr ""
 
-#: ../src/gui_common/menus/OptionsMenu.tscn:2855
+#: ../src/gui_common/menus/OptionsMenu.tscn:2857
 msgid "RESET_SHOWN_TUTORIALS_TOOLTIP"
 msgstr ""
 
-#: ../src/gui_common/menus/OptionsMenu.tscn:3235
+#: ../src/gui_common/menus/OptionsMenu.tscn:3246
 msgid "RESET_TO_DEFAULTS"
 msgstr ""
 
@@ -6942,7 +6983,7 @@ msgstr ""
 msgid "RESIZE_METABALL_TOOLTIP"
 msgstr ""
 
-#: ../src/gui_common/menus/OptionsMenu.tscn:479
+#: ../src/gui_common/menus/OptionsMenu.tscn:481
 msgid "RESOLUTION"
 msgstr ""
 
@@ -7007,7 +7048,7 @@ msgid "RETURN_TO_MENU_TOOLTIP"
 msgstr ""
 
 #: ../src/auto-evo/AutoEvoExploringTool.tscn:694 ../src/general/PauseMenu.cs:353
-#: ../src/gui_common/menus/PlanetCustomizerTool.tscn:161
+#: ../src/gui_common/menus/PlanetCustomizerTool.tscn:162
 msgid "RETURN_TO_MENU_WARNING"
 msgstr ""
 
@@ -7015,7 +7056,7 @@ msgstr ""
 msgid "REVEAL_ALL_PATCHES"
 msgstr ""
 
-#: ../src/general/MainMenu.tscn:669
+#: ../src/general/MainMenu.tscn:681
 msgid "REVOLUTIONARY_GAMES_SOCIAL_TOOLTIP"
 msgstr ""
 
@@ -7047,7 +7088,7 @@ msgstr ""
 msgid "ROTATION_COLON"
 msgstr ""
 
-#: ../src/gui_common/menus/OptionsMenu.tscn:1588
+#: ../src/gui_common/menus/OptionsMenu.tscn:1590
 msgid "RUN_AUTO_EVO_DURING_GAMEPLAY"
 msgstr ""
 
@@ -7103,20 +7144,20 @@ msgstr ""
 msgid "RUSTICYANIN_PROCESSES_DESCRIPTION"
 msgstr ""
 
-#: ../src/general/MainMenu.tscn:922
+#: ../src/general/MainMenu.tscn:978
 msgid "SAFE_MODE_EXPLANATION"
 msgstr ""
 
-#: ../src/general/MainMenu.tscn:923
+#: ../src/general/MainMenu.tscn:979
 msgid "SAFE_MODE_TITLE"
 msgstr ""
 
-#: ../src/gui_common/menus/OptionsMenu.tscn:3212
+#: ../src/gui_common/menus/OptionsMenu.tscn:3223
 #: ../src/saving/NewSaveMenu.tscn:80
 msgid "SAVE"
 msgstr ""
 
-#: ../src/gui_common/menus/OptionsMenu.tscn:3281
+#: ../src/gui_common/menus/OptionsMenu.tscn:3292
 msgid "SAVE_AND_CONTINUE"
 msgstr ""
 
@@ -7173,7 +7214,7 @@ msgstr ""
 msgid "SAVE_IS_UPGRADEABLE_DESCRIPTION"
 msgstr ""
 
-#: ../src/saving/InProgressLoad.cs:247
+#: ../src/saving/InProgressLoad.cs:249
 msgid "SAVE_LOAD_ALREADY_LOADED_FREE_FAILURE"
 msgstr ""
 
@@ -7205,7 +7246,7 @@ msgstr ""
 msgid "SAVING_DOT_DOT_DOT"
 msgstr ""
 
-#: ../src/saving/SaveHelper.cs:514 ../src/saving/SaveHelper.cs:570
+#: ../src/saving/SaveHelper.cs:514 ../src/saving/SaveHelper.cs:573
 msgid "SAVING_FAILED_WITH_EXCEPTION"
 msgstr ""
 
@@ -7213,23 +7254,23 @@ msgstr ""
 msgid "SAVING_NOT_POSSIBLE"
 msgstr ""
 
-#: ../src/saving/SaveHelper.cs:555
+#: ../src/saving/SaveHelper.cs:558
 msgid "SAVING_SUCCEEDED"
 msgstr ""
 
-#: ../src/gui_common/menus/OptionsMenu.tscn:2305
+#: ../src/gui_common/menus/OptionsMenu.tscn:2307
 msgid "SCALING_NONE"
 msgstr ""
 
-#: ../src/gui_common/menus/OptionsMenu.tscn:2307
+#: ../src/gui_common/menus/OptionsMenu.tscn:2309
 msgid "SCALING_ON"
 msgstr ""
 
-#: ../src/gui_common/menus/OptionsMenu.tscn:2309
+#: ../src/gui_common/menus/OptionsMenu.tscn:2311
 msgid "SCALING_ON_INVERSE"
 msgstr ""
 
-#: ../src/gui_common/menus/OptionsMenu.tscn:3119
+#: ../src/gui_common/menus/OptionsMenu.tscn:3130
 msgid "SCREEN_EFFECT"
 msgstr ""
 
@@ -7249,8 +7290,8 @@ msgstr ""
 msgid "SCREEN_EFFECT_NONE"
 msgstr ""
 
-#: ../src/gui_common/menus/OptionsMenu.tscn:2499
-#: ../src/gui_common/menus/OptionsMenu.tscn:2535
+#: ../src/gui_common/menus/OptionsMenu.tscn:2501
+#: ../src/gui_common/menus/OptionsMenu.tscn:2537
 #: ../src/microbe_stage/gui/MovementModeSelectionPopup.tscn:87
 msgid "SCREEN_RELATIVE_MOVEMENT"
 msgstr ""
@@ -7289,7 +7330,7 @@ msgid "SECRETE_SLIME_TOOLTIP"
 msgstr ""
 
 #: ../src/microbe_stage/editor/MicrobeEditorPatchMap.tscn:139
-#: ../src/microbe_stage/editor/PatchMapEditorComponent.cs:347
+#: ../src/microbe_stage/editor/PatchMapEditorComponent.cs:346
 #: ../src/thriveopedia/pages/ThriveopediaPatchMapPage.cs:123
 #: ../src/thriveopedia/pages/ThriveopediaPatchMapPage.tscn:82
 msgid "SEED_LABEL"
@@ -7386,7 +7427,7 @@ msgstr ""
 msgid "SETTING_ONLY_APPLIES_TO_NEW_GAMES"
 msgstr ""
 
-#: ../src/gui_common/menus/OptionsMenu.tscn:1299
+#: ../src/gui_common/menus/OptionsMenu.tscn:1301
 msgid "SFX_VOLUME"
 msgstr ""
 
@@ -7403,7 +7444,7 @@ msgstr ""
 msgid "SHOW_ALL_TUTORIALS_TOOLTIP"
 msgstr ""
 
-#: ../src/gui_common/menus/OptionsMenu.tscn:1106
+#: ../src/gui_common/menus/OptionsMenu.tscn:1108
 msgid "SHOW_DAMAGE_EFFECT"
 msgstr ""
 
@@ -7415,29 +7456,29 @@ msgstr ""
 msgid "SHOW_ITEM_COORDINATES"
 msgstr ""
 
-#: ../src/gui_common/menus/OptionsMenu.tscn:2974
+#: ../src/gui_common/menus/OptionsMenu.tscn:2976
 msgid "SHOW_NEW_PATCH_NOTES"
 msgstr ""
 
-#: ../src/gui_common/menus/OptionsMenu.tscn:2972
-#: ../src/gui_common/menus/OptionsMenu.tscn:2979
+#: ../src/gui_common/menus/OptionsMenu.tscn:2974
+#: ../src/gui_common/menus/OptionsMenu.tscn:2981
 msgid "SHOW_NEW_PATCH_NOTES_TOOLTIP"
 msgstr ""
 
-#: ../src/gui_common/menus/OptionsMenu.tscn:2827
+#: ../src/gui_common/menus/OptionsMenu.tscn:2829
 msgid "SHOW_TUTORIALS_IN_NEW_CURRENT_OPTION"
 msgstr ""
 
-#: ../src/gui_common/menus/OptionsMenu.tscn:2808
+#: ../src/gui_common/menus/OptionsMenu.tscn:2810
 msgid "SHOW_TUTORIALS_IN_NEW_GAMES_OPTION"
 msgstr ""
 
-#: ../src/gui_common/menus/OptionsMenu.tscn:2806
-#: ../src/gui_common/menus/OptionsMenu.tscn:2813
+#: ../src/gui_common/menus/OptionsMenu.tscn:2808
+#: ../src/gui_common/menus/OptionsMenu.tscn:2815
 msgid "SHOW_TUTORIALS_OPTION_TOOLTIP"
 msgstr ""
 
-#: ../src/gui_common/menus/OptionsMenu.tscn:2789
+#: ../src/gui_common/menus/OptionsMenu.tscn:2791
 msgid "SHOW_UNSAVED_PROGRESS_WARNING"
 msgstr ""
 
@@ -7445,7 +7486,7 @@ msgstr ""
 msgid "SHOW_UNSAVED_PROGRESS_WARNING_TOOLTIP"
 msgstr ""
 
-#: ../src/gui_common/menus/OptionsMenu.tscn:2955
+#: ../src/gui_common/menus/OptionsMenu.tscn:2957
 msgid "SHOW_WEB_NEWS_FEED"
 msgstr ""
 
@@ -7502,11 +7543,11 @@ msgstr ""
 msgid "SILICA_MEMBRANE_DESCRIPTION"
 msgstr ""
 
-#: ../src/gui_common/menus/OptionsMenu.tscn:1568
+#: ../src/gui_common/menus/OptionsMenu.tscn:1570
 msgid "SIMULATION_CONFIG"
 msgstr ""
 
-#: ../src/gui_common/menus/OptionsMenu.tscn:449
+#: ../src/gui_common/menus/OptionsMenu.tscn:451
 msgid "SIXTEEN_TIMES"
 msgstr ""
 
@@ -7582,7 +7623,7 @@ msgstr ""
 msgid "SOCIETY_STAGE"
 msgstr ""
 
-#: ../src/gui_common/menus/OptionsMenu.tscn:210
+#: ../src/gui_common/menus/OptionsMenu.tscn:212
 msgid "SOUND"
 msgstr ""
 
@@ -7629,7 +7670,7 @@ msgstr ""
 msgid "SPAWN_ENEMY"
 msgstr ""
 
-#: ../src/microbe_stage/MicrobeStage.cs:1442
+#: ../src/microbe_stage/MicrobeStage.cs:1478
 msgid "SPAWN_ENEMY_CHEAT_FAIL"
 msgstr ""
 
@@ -7670,11 +7711,11 @@ msgstr ""
 msgid "SPECIES_LIST"
 msgstr ""
 
-#: ../src/general/NewGameSettings.tscn:697
+#: ../src/general/NewGameSettings.tscn:699
 msgid "SPECIES_MEMBER_IMPACT_ON_POP"
 msgstr ""
 
-#: ../src/general/NewGameSettings.tscn:726
+#: ../src/general/NewGameSettings.tscn:728
 msgid "SPECIES_MEMBER_IMPACT_ON_POPULATION_EXPLANATION"
 msgstr ""
 
@@ -7741,7 +7782,7 @@ msgstr ""
 msgid "START_CALIBRATION"
 msgstr ""
 
-#: ../src/general/NewGameSettings.tscn:1071
+#: ../src/general/NewGameSettings.tscn:1073
 msgid "START_GAME"
 msgstr ""
 
@@ -7832,15 +7873,15 @@ msgstr ""
 msgid "STEAM_ERROR_UNKNOWN"
 msgstr ""
 
-#: ../src/general/MainMenu.tscn:948
+#: ../src/general/MainMenu.tscn:1004
 msgid "STEAM_INIT_FAILED"
 msgstr ""
 
-#: ../src/general/MainMenu.tscn:947
+#: ../src/general/MainMenu.tscn:1003
 msgid "STEAM_INIT_FAILED_DESCRIPTION"
 msgstr ""
 
-#: ../src/general/MainMenu.tscn:681
+#: ../src/general/MainMenu.tscn:693
 msgid "STEAM_TOOLTIP"
 msgstr ""
 
@@ -7865,7 +7906,7 @@ msgstr ""
 msgid "STORAGE_STATISTICS_SECONDS_OF_COMPOUND"
 msgstr ""
 
-#: ../src/general/MainMenu.cs:577
+#: ../src/general/MainMenu.cs:587
 msgid "STORE_LOGGED_IN_AS"
 msgstr ""
 
@@ -7874,7 +7915,7 @@ msgstr ""
 msgid "STRAIN_BAR_TOOLTIP"
 msgstr ""
 
-#: ../src/gui_common/menus/OptionsMenu.tscn:1056
+#: ../src/gui_common/menus/OptionsMenu.tscn:1058
 msgid "STRAIN_BAR_VISIBILITY"
 msgstr ""
 
@@ -7939,11 +7980,11 @@ msgstr ""
 msgid "STRUCTURE_STEAM_POWERED_FACTORY"
 msgstr ""
 
-#: ../src/microbe_stage/MicrobeStage.cs:1776
+#: ../src/microbe_stage/MicrobeStage.cs:1812
 msgid "SUCCESSFUL_KILL"
 msgstr ""
 
-#: ../src/microbe_stage/MicrobeStage.cs:1777
+#: ../src/microbe_stage/MicrobeStage.cs:1813
 msgid "SUCCESSFUL_SCAVENGE"
 msgstr ""
 
@@ -8099,7 +8140,7 @@ msgstr ""
 msgid "TESTING_TEAM"
 msgstr ""
 
-#: ../src/general/MainMenu.cs:257 ../src/general/MainMenu.tscn:939
+#: ../src/general/MainMenu.cs:267 ../src/general/MainMenu.tscn:995
 msgid "THANKS_FOR_BUYING_THRIVE_2"
 msgstr ""
 
@@ -8107,7 +8148,7 @@ msgstr ""
 msgid "THANKS_FOR_PLAYING"
 msgstr ""
 
-#: ../src/general/MainMenu.tscn:940
+#: ../src/general/MainMenu.tscn:996
 msgid "THANK_YOU_TITLE"
 msgstr ""
 
@@ -8165,12 +8206,12 @@ msgstr ""
 msgid "THIS_IS_WORKSHOP_MOD"
 msgstr ""
 
-#: ../src/gui_common/menus/OptionsMenu.tscn:1782
-#: ../src/gui_common/menus/OptionsMenu.tscn:1831
+#: ../src/gui_common/menus/OptionsMenu.tscn:1784
+#: ../src/gui_common/menus/OptionsMenu.tscn:1833
 msgid "THREADS"
 msgstr ""
 
-#: ../src/general/MainMenu.tscn:449 ../src/general/PauseMenu.tscn:238
+#: ../src/general/MainMenu.tscn:454 ../src/general/PauseMenu.tscn:238
 msgid "THRIVEOPEDIA"
 msgstr ""
 
@@ -8259,7 +8300,7 @@ msgstr ""
 msgid "TIMELINE_SPECIES_EXTINCT_LOCAL"
 msgstr ""
 
-#: ../src/microbe_stage/editor/PatchMapEditorComponent.cs:438
+#: ../src/microbe_stage/editor/PatchMapEditorComponent.cs:437
 msgid "TIMELINE_SPECIES_FOLLOWED"
 msgstr ""
 
@@ -8397,7 +8438,7 @@ msgstr ""
 msgid "TOLERANCE_RANGE_LABEL"
 msgstr ""
 
-#: ../src/general/MainMenu.tscn:328
+#: ../src/general/MainMenu.tscn:333
 msgid "TOOLS"
 msgstr ""
 
@@ -8555,7 +8596,7 @@ msgstr ""
 msgid "TRY_MAKING_A_SAVE"
 msgstr ""
 
-#: ../src/gui_common/menus/OptionsMenu.tscn:3317
+#: ../src/gui_common/menus/OptionsMenu.tscn:3328
 msgid "TRY_TAKING_SOME_SCREENSHOTS"
 msgstr ""
 
@@ -8717,8 +8758,8 @@ msgstr ""
 msgid "TUTORIAL_VIEW_NOW"
 msgstr ""
 
-#: ../src/gui_common/menus/OptionsMenu.tscn:402
-#: ../src/gui_common/menus/OptionsMenu.tscn:443
+#: ../src/gui_common/menus/OptionsMenu.tscn:404
+#: ../src/gui_common/menus/OptionsMenu.tscn:445
 msgid "TWO_TIMES"
 msgstr ""
 
@@ -8746,7 +8787,7 @@ msgstr ""
 msgid "UNBIND_HELP_TEXT"
 msgstr ""
 
-#: ../src/gui_common/menus/OptionsMenu.cs:1611
+#: ../src/gui_common/menus/OptionsMenu.cs:1622
 msgid "UNCERTAIN_VERSION_WARNING"
 msgstr ""
 
@@ -8800,7 +8841,7 @@ msgstr ""
 msgid "UNKNOWN"
 msgstr ""
 
-#: ../src/gui_common/menus/OptionsMenu.cs:871
+#: ../src/gui_common/menus/OptionsMenu.cs:882
 msgid "UNKNOWN_DISPLAY_DRIVER"
 msgstr ""
 
@@ -8821,7 +8862,7 @@ msgstr ""
 msgid "UNKNOWN_SHORT"
 msgstr ""
 
-#: ../src/gui_common/menus/OptionsMenu.cs:1626
+#: ../src/gui_common/menus/OptionsMenu.cs:1637
 msgid "UNKNOWN_VERSION"
 msgstr ""
 
@@ -8901,7 +8942,7 @@ msgstr ""
 msgid "UNLOCK_WITH_ANY_OF_FOLLOWING"
 msgstr ""
 
-#: ../src/gui_common/menus/OptionsMenu.tscn:3263
+#: ../src/gui_common/menus/OptionsMenu.tscn:3274
 msgid "UNSAVED_CHANGE_WARNING"
 msgstr ""
 
@@ -8961,23 +9002,23 @@ msgstr ""
 msgid "UPLOAD_SUCCEEDED"
 msgstr ""
 
-#: ../src/gui_common/menus/OptionsMenu.tscn:566
+#: ../src/gui_common/menus/OptionsMenu.tscn:568
 msgid "UPSCALE_BILINEAR"
 msgstr ""
 
-#: ../src/gui_common/menus/OptionsMenu.tscn:568
+#: ../src/gui_common/menus/OptionsMenu.tscn:570
 msgid "UPSCALE_FSR_1"
 msgstr ""
 
-#: ../src/gui_common/menus/OptionsMenu.tscn:570
+#: ../src/gui_common/menus/OptionsMenu.tscn:572
 msgid "UPSCALE_FSR_22"
 msgstr ""
 
-#: ../src/gui_common/menus/OptionsMenu.tscn:555
+#: ../src/gui_common/menus/OptionsMenu.tscn:557
 msgid "UPSCALE_METHOD"
 msgstr ""
 
-#: ../src/gui_common/menus/OptionsMenu.tscn:587
+#: ../src/gui_common/menus/OptionsMenu.tscn:589
 msgid "UPSCALE_SHARPENING_FSR"
 msgstr ""
 
@@ -8985,7 +9026,7 @@ msgstr ""
 msgid "USED_LIBRARIES_LICENSES"
 msgstr ""
 
-#: ../src/gui_common/menus/OptionsMenu.tscn:953
+#: ../src/gui_common/menus/OptionsMenu.tscn:955
 msgid "USED_RENDERER_NAME"
 msgstr ""
 
@@ -9001,23 +9042,23 @@ msgstr ""
 msgid "USE_AUTO_HARMONY_TOOLTIP"
 msgstr ""
 
-#: ../src/gui_common/menus/OptionsMenu.tscn:2915
+#: ../src/gui_common/menus/OptionsMenu.tscn:2917
 msgid "USE_A_CUSTOM_USERNAME"
 msgstr ""
 
-#: ../src/gui_common/menus/OptionsMenu.tscn:1872
+#: ../src/gui_common/menus/OptionsMenu.tscn:1874
 msgid "USE_DISK_CACHE"
 msgstr ""
 
-#: ../src/gui_common/menus/OptionsMenu.tscn:1761
+#: ../src/gui_common/menus/OptionsMenu.tscn:1763
 msgid "USE_MANUAL_THREAD_COUNT"
 msgstr ""
 
-#: ../src/gui_common/menus/OptionsMenu.tscn:1809
+#: ../src/gui_common/menus/OptionsMenu.tscn:1811
 msgid "USE_MANUAL_THREAD_COUNT_NATIVE"
 msgstr ""
 
-#: ../src/gui_common/menus/OptionsMenu.tscn:2329
+#: ../src/gui_common/menus/OptionsMenu.tscn:2331
 msgid "USE_VIRTUAL_WINDOW_SIZE"
 msgstr ""
 
@@ -9071,8 +9112,8 @@ msgstr ""
 msgid "VERSION_COLON"
 msgstr ""
 
-#: ../src/gui_common/menus/OptionsMenu.tscn:2236
-#: ../src/gui_common/menus/OptionsMenu.tscn:2394
+#: ../src/gui_common/menus/OptionsMenu.tscn:2238
+#: ../src/gui_common/menus/OptionsMenu.tscn:2396
 msgid "VERTICAL_COLON"
 msgstr ""
 
@@ -9081,12 +9122,12 @@ msgstr ""
 msgid "VERTICAL_WITH_AXIS_NAME_COLON"
 msgstr ""
 
-#: ../src/gui_common/menus/OptionsMenu.tscn:978
+#: ../src/gui_common/menus/OptionsMenu.tscn:980
 msgid "VIDEO_MEMORY"
 msgstr ""
 
-#: ../src/gui_common/menus/OptionsMenu.cs:881
-#: ../src/gui_common/menus/OptionsMenu.tscn:987
+#: ../src/gui_common/menus/OptionsMenu.cs:892
+#: ../src/gui_common/menus/OptionsMenu.tscn:989
 msgid "VIDEO_MEMORY_MIB"
 msgstr ""
 
@@ -9112,11 +9153,11 @@ msgstr ""
 msgid "VIEW_PATCH_MICHES"
 msgstr ""
 
-#: ../src/gui_common/menus/OptionsMenu.tscn:3046
+#: ../src/gui_common/menus/OptionsMenu.tscn:3048
 msgid "VIEW_PATCH_NOTES"
 msgstr ""
 
-#: ../src/gui_common/menus/OptionsMenu.tscn:3043
+#: ../src/gui_common/menus/OptionsMenu.tscn:3045
 msgid "VIEW_PATCH_NOTES_TOOLTIP"
 msgstr ""
 
@@ -9124,7 +9165,7 @@ msgstr ""
 msgid "VIEW_PENDING_ACTIONS"
 msgstr ""
 
-#: ../src/general/MainMenu.tscn:334
+#: ../src/general/MainMenu.tscn:339
 msgid "VIEW_SOURCE_CODE"
 msgstr ""
 
@@ -9140,15 +9181,15 @@ msgstr ""
 msgid "VISIBLE"
 msgstr ""
 
-#: ../src/gui_common/menus/OptionsMenu.tscn:1069
+#: ../src/gui_common/menus/OptionsMenu.tscn:1071
 msgid "VISIBLE_WHEN_CLOSE_TO_FULL"
 msgstr ""
 
-#: ../src/gui_common/menus/OptionsMenu.tscn:1071
+#: ../src/gui_common/menus/OptionsMenu.tscn:1073
 msgid "VISIBLE_WHEN_OVER_ZERO"
 msgstr ""
 
-#: ../src/general/MainMenu.tscn:477 ../src/general/MainMenu.tscn:644
+#: ../src/general/MainMenu.tscn:489 ../src/general/MainMenu.tscn:656
 msgid "VISIT_SUGGESTIONS_SITE"
 msgstr ""
 
@@ -9170,7 +9211,7 @@ msgstr ""
 msgid "VOLUMEUP"
 msgstr ""
 
-#: ../src/gui_common/menus/OptionsMenu.tscn:296
+#: ../src/gui_common/menus/OptionsMenu.tscn:298
 msgid "VSYNC"
 msgstr ""
 
@@ -11380,7 +11421,7 @@ msgstr ""
 msgid "WILL_YOU_THRIVE"
 msgstr ""
 
-#: ../src/gui_common/menus/OptionsMenu.tscn:326
+#: ../src/gui_common/menus/OptionsMenu.tscn:328
 msgid "WINDOWED"
 msgstr ""
 
@@ -11472,7 +11513,7 @@ msgstr ""
 msgid "WORLD_OCEANIC_COVERAGE_SMALL"
 msgstr ""
 
-#: ../src/gui_common/menus/OptionsMenu.tscn:2537
+#: ../src/gui_common/menus/OptionsMenu.tscn:2539
 msgid "WORLD_RELATIVE_MOVEMENT"
 msgstr ""
 
@@ -11530,19 +11571,19 @@ msgstr ""
 msgid "WORST_PATCH_COLON"
 msgstr ""
 
-#: ../src/gui_common/menus/OptionsMenu.tscn:1029
+#: ../src/gui_common/menus/OptionsMenu.tscn:1031
 msgid "XBOX360"
 msgstr ""
 
-#: ../src/gui_common/menus/OptionsMenu.tscn:1031
+#: ../src/gui_common/menus/OptionsMenu.tscn:1033
 msgid "XBOX_ONE"
 msgstr ""
 
-#: ../src/gui_common/menus/OptionsMenu.tscn:1033
+#: ../src/gui_common/menus/OptionsMenu.tscn:1035
 msgid "XBOX_SERIES"
 msgstr ""
 
-#: ../src/general/MainMenu.tscn:782
+#: ../src/general/MainMenu.tscn:794
 msgid "X_TWITTER_TOOLTIP"
 msgstr ""
 
@@ -11558,7 +11599,7 @@ msgstr ""
 msgid "YET_TO_BE_IMPLEMENTED_NOTICE"
 msgstr ""
 
-#: ../src/general/MainMenu.tscn:725
+#: ../src/general/MainMenu.tscn:737
 msgid "YOUTUBE_TOOLTIP"
 msgstr ""
 
