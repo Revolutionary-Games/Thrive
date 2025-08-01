@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2025-07-31 15:38+0300\n"
+"POT-Creation-Date: 2025-08-01 11:41+0300\n"
 "PO-Revision-Date: 2025-07-31 15:44+0300\n"
 "Last-Translator: Henri Hyyryläinen <hhyyrylainen@revolutionarygamesstudio.com>\n"
 "Language-Team: English <https://translate.revolutionarygamesstudio.com/projects/thrive/thrive-game/en/>\n"
@@ -690,12 +690,6 @@ msgstr ""
 "High-storage cells can use a strategy where they cannot move indefinitely but need to recharge their ATP stores for a while to then move.\n"
 "Note that a low amount of storage can cause ATP shortages even if the ATP balance is positive. These problems can become worse due to lag spikes\n"
 "or general low performance of the game. Adding more storage helps with these issues."
-
-msgid "CELL_TYPE_BUTTON_ATP_CONSUMPTION"
-msgstr "The ATP consumption of this cell type is {0}."
-
-msgid "CELL_TYPE_BUTTON_ATP_PRODUCTION"
-msgstr "The ATP production of this cell type is {0}."
 
 msgid "CELL_TYPE_NAME"
 msgstr "Cell Type Name"
@@ -9276,6 +9270,12 @@ msgstr "Zoom in"
 
 msgid "ZOOM_OUT"
 msgstr "Zoom out"
+
+#~ msgid "CELL_TYPE_BUTTON_ATP_CONSUMPTION"
+#~ msgstr "The ATP consumption of this cell type is {0}."
+
+#~ msgid "CELL_TYPE_BUTTON_ATP_PRODUCTION"
+#~ msgstr "The ATP production of this cell type is {0}."
 
 #~ msgid "PASSIVE_REPRODUCTION_PROGRESS_EXPLANATION"
 #~ msgstr "(passively gain reproduction compounds from the environment without having to do anything)"

@@ -76,6 +76,8 @@ public partial class CellBodyPlanEditorComponent :
 
     private PackedScene cellTypeSelectionButtonScene = null!;
 
+    private PackedScene cellTypeTooltipButtonScene = null!;
+
     private ButtonGroup cellTypeButtonGroup = new();
 
     [Export]
@@ -150,6 +152,8 @@ public partial class CellBodyPlanEditorComponent :
 
         cellTypeSelectionButtonScene =
             GD.Load<PackedScene>("res://src/multicellular_stage/editor/CellTypeSelection.tscn");
+
+        cellTypeTooltipButtonScene = GD.Load<PackedScene>("res://src/multicellular_stage/editor/CellTypeTooltip.tscn");
 
         billboardScene = GD.Load<PackedScene>("res://src/multicellular_stage/CellBillboard.tscn");
 
@@ -442,7 +446,7 @@ public partial class CellBodyPlanEditorComponent :
     {
         CalculateEnergyAndCompoundBalance(editedMicrobeCells);
 
-        UpdateCellTypeBalances();
+        UpdateCellTypesSecondaryInfo();
 
         organismStatisticsPanel.UpdateLightSelectionPanelVisibility(
             Editor.CurrentGame.GameWorld.WorldSettings.DayNightCycleEnabled && Editor.CurrentPatch.HasDayAndNight);
@@ -454,7 +458,7 @@ public partial class CellBodyPlanEditorComponent :
 
         CalculateEnergyAndCompoundBalance(editedMicrobeCells);
 
-        UpdateCellTypeBalances();
+        UpdateCellTypesSecondaryInfo();
     }
 
     protected override void RegisterTooltips()
@@ -877,7 +881,7 @@ public partial class CellBodyPlanEditorComponent :
         {
             if (!cellTypeSelectionButtons.TryGetValue(cellType.TypeName, out var control))
             {
-                // Need new button
+                // Need a new button
                 control = (CellTypeSelection)cellTypeSelectionButtonScene.Instantiate();
                 control.SelectionGroup = cellTypeButtonGroup;
 
@@ -890,11 +894,23 @@ public partial class CellBodyPlanEditorComponent :
 
                 control.Connect(MicrobePartSelection.SignalName.OnPartSelected,
                     new Callable(this, nameof(OnCellToPlaceSelected)));
+
+                // Reuse an existing tooltip when possible
+                var tooltip = ToolTipManager.Instance.GetToolTipIfExists<CellTypeTooltip>(cellType.TypeName,
+                    "cellTypes");
+
+                if (tooltip == null)
+                {
+                    tooltip = cellTypeTooltipButtonScene.Instantiate<CellTypeTooltip>();
+                    ToolTipManager.Instance.AddToolTip(tooltip, "cellTypes");
+                }
+
+                tooltip.Name = cellType.TypeName;
+
+                control.RegisterToolTipForControl(tooltip, true);
             }
 
             control.MPCost = cellType.MPCost;
-
-            // TODO: tooltips for these
         }
 
         bool clearSelection = false;
@@ -907,6 +923,7 @@ public partial class CellBodyPlanEditorComponent :
                 var control = cellTypeSelectionButtons[key];
                 cellTypeSelectionButtons.Remove(key);
 
+                ToolTipManager.Instance.RemoveToolTip(key, "cellTypes");
                 control.DetachAndQueueFree();
 
                 if (activeActionName == key)
@@ -918,57 +935,91 @@ public partial class CellBodyPlanEditorComponent :
             ClearSelectedAction();
     }
 
-    private void UpdateCellTypeBalances()
+    /// <summary>
+    ///   Updates cell type buttons and tooltips various secondary info, such as cell stats, ATP balances, etc.
+    /// </summary>
+    private void UpdateCellTypesSecondaryInfo()
     {
-        float maxValue = 0.0f;
+        UpdateCellTypesCounts();
+
+        foreach (var button in cellTypeSelectionButtons.Values)
+        {
+            var cellType = button.CellType;
+
+            var tooltip = ToolTipManager.Instance.GetToolTip<CellTypeTooltip>(cellType.TypeName, "cellTypes");
+
+            if (tooltip == null)
+            {
+                GD.PrintErr($"Tooltip not found for species' cell type: {cellType.TypeName}");
+                continue;
+            }
+
+            // TODO: get actual tolerances once they are added to the multicellular stage
+            var environmentalTolerances = new ResolvedMicrobeTolerances
+            {
+                HealthModifier = 1,
+                OsmoregulationModifier = 1,
+                ProcessSpeedModifier = 1,
+            };
+
+            cellTypesCount.TryGetValue(cellType, out var count);
+
+            UpdateCellTypeTooltipAndWarning(tooltip, button, cellType, environmentalTolerances, count);
+        }
+    }
+
+    /// <summary>
+    ///   Updates the info that the cell type tooltip contains and its button's ATP warning badge.
+    /// </summary>
+    private void UpdateCellTypeTooltipAndWarning(CellTypeTooltip tooltip, CellTypeSelection button, CellType cellType,
+        ResolvedMicrobeTolerances environmentalTolerances, int cellCount)
+    {
+        // Energy and compound balance calculations
+        var balances = new Dictionary<Compound, CompoundBalance>();
+
+        var energyBalance = new EnergyBalanceInfoFull();
+        energyBalance.SetupTrackingForRequiredCompounds();
+
+        bool moving = organismStatisticsPanel.CalculateBalancesWhenMoving;
 
         var maximumMovementDirection =
-            MicrobeInternalCalculations.MaximumSpeedDirection(editedMicrobeCells[0].Data!.Organelles);
+            MicrobeInternalCalculations.MaximumSpeedDirection(cellType.Organelles);
 
-        var conditionsData = new BiomeResourceLimiterAdapter(organismStatisticsPanel.ResourceLimitingMode,
-            Editor.CurrentPatch.Biome);
+        ProcessSystem.ComputeEnergyBalanceFull(cellType.Organelles, Editor.CurrentPatch.Biome, environmentalTolerances,
+            cellType.MembraneType,
+            maximumMovementDirection, moving, true, Editor.CurrentGame.GameWorld.WorldSettings,
+            organismStatisticsPanel.CompoundAmountType, null, energyBalance);
 
-        UpdateCellTypesCounts();
-        hasNegativeATPCells = false;
+        AddCellTypeCompoundBalance(balances, cellType.Organelles, organismStatisticsPanel.BalanceDisplayType,
+            organismStatisticsPanel.CompoundAmountType, Editor.CurrentPatch.Biome, energyBalance,
+            environmentalTolerances);
 
-        // TODO: environmental tolerances for multicellular
-        var environmentalTolerances = new ResolvedMicrobeTolerances
+        tooltip.DisplayName = cellType.TypeName;
+        tooltip.MutationPointCost = cellType.MPCost;
+        tooltip.DisplayCellTypeBalances(balances);
+        tooltip.UpdateATPBalance(energyBalance.TotalProduction, energyBalance.TotalConsumption);
+
+        tooltip.UpdateHealthIndicator(MicrobeInternalCalculations.CalculateHealth(environmentalTolerances,
+            cellType.MembraneType, cellType.MembraneRigidity));
+
+        tooltip.UpdateStorageIndicator(MicrobeInternalCalculations.GetTotalNominalCapacity(cellType.Organelles));
+
+        tooltip.UpdateSpeedIndicator(MicrobeInternalCalculations.CalculateSpeed(cellType.Organelles,
+            cellType.MembraneType, cellType.MembraneRigidity, cellType.IsBacteria, false));
+
+        tooltip.UpdateRotationSpeedIndicator(MicrobeInternalCalculations.CalculateRotationSpeed(cellType.Organelles));
+
+        tooltip.UpdateSizeIndicator(cellType.Organelles.Sum(o => o.Definition.HexCount));
+        tooltip.UpdateDigestionSpeedIndicator(
+            MicrobeInternalCalculations.CalculateTotalDigestionSpeed(cellType.Organelles));
+
+        button.ShowInsufficientATPWarning = energyBalance.TotalProduction < energyBalance.TotalConsumption;
+
+        if (energyBalance.TotalConsumption > energyBalance.TotalProduction
+            && cellCount > 0)
         {
-            HealthModifier = 1,
-            OsmoregulationModifier = 1,
-            ProcessSpeedModifier = 1,
-        };
-
-        foreach (var button in cellTypeSelectionButtons)
-        {
-            var energyBalance = new EnergyBalanceInfoSimple();
-
-            ProcessSystem.ComputeEnergyBalanceSimple(button.Value.CellType.Organelles, conditionsData,
-                environmentalTolerances, button.Value.CellType.MembraneType, maximumMovementDirection,
-                organismStatisticsPanel.CalculateBalancesWhenMoving, true, Editor.CurrentGame.GameWorld.WorldSettings,
-                organismStatisticsPanel.CompoundAmountType, null, energyBalance);
-
-            button.Value.SetEnergyBalanceValues(energyBalance.TotalProduction, energyBalance.TotalConsumption);
-
-            if (energyBalance.TotalProduction > maxValue)
-                maxValue = energyBalance.TotalProduction;
-
-            if (energyBalance.TotalConsumption > maxValue)
-                maxValue = energyBalance.TotalConsumption;
-
-            cellTypesCount.TryGetValue(button.Value.CellType, out var count);
-
-            if (energyBalance.TotalConsumption > energyBalance.TotalProduction
-                && count > 0)
-            {
-                // This cell is present in the microbe and has a negative energy balance
-                hasNegativeATPCells = true;
-            }
-        }
-
-        foreach (var button in cellTypeSelectionButtons)
-        {
-            button.Value.MaxEnergyValue = maxValue;
+            // This cell is present in the colony and has a negative energy balance
+            hasNegativeATPCells = true;
         }
     }
 
@@ -1023,7 +1074,7 @@ public partial class CellBodyPlanEditorComponent :
     {
         CalculateEnergyAndCompoundBalance(editedMicrobeCells);
 
-        UpdateCellTypeBalances();
+        UpdateCellTypesSecondaryInfo();
 
         UpdateFinishButtonWarningVisibility();
     }
@@ -1032,7 +1083,7 @@ public partial class CellBodyPlanEditorComponent :
     {
         CalculateEnergyAndCompoundBalance(editedMicrobeCells);
 
-        UpdateCellTypeBalances();
+        UpdateCellTypesSecondaryInfo();
 
         UpdateFinishButtonWarningVisibility();
     }
@@ -1060,7 +1111,7 @@ public partial class CellBodyPlanEditorComponent :
 
         CalculateEnergyAndCompoundBalance(editedMicrobeCells);
 
-        UpdateCellTypeBalances();
+        UpdateCellTypesSecondaryInfo();
     }
 
     /// <summary>
@@ -1147,26 +1198,34 @@ public partial class CellBodyPlanEditorComponent :
         Dictionary<Compound, CompoundBalance> compoundBalanceData = new();
         foreach (var cell in cells)
         {
-            switch (calculationType)
-            {
-                case BalanceDisplayType.MaxSpeed:
-                    ProcessSystem.ComputeCompoundBalance(cell.Data!.Organelles, biome, environmentalTolerances,
-                        amountType, true, compoundBalanceData);
-                    break;
-                case BalanceDisplayType.EnergyEquilibrium:
-                    ProcessSystem.ComputeCompoundBalanceAtEquilibrium(cell.Data!.Organelles, biome,
-                        environmentalTolerances, amountType, energyBalance, compoundBalanceData);
-                    break;
-                default:
-                    GD.PrintErr("Unknown compound balance type: ", organismStatisticsPanel.BalanceDisplayType);
-                    goto case BalanceDisplayType.EnergyEquilibrium;
-            }
+            AddCellTypeCompoundBalance(compoundBalanceData, cell.Data!.Organelles, calculationType, amountType, biome,
+                energyBalance, environmentalTolerances);
         }
 
         specificStorages ??= CellBodyPlanInternalCalculations.GetTotalSpecificCapacity(cells.Select(o => o.Data!),
             out nominalStorage);
 
         return ProcessSystem.ComputeCompoundFillTimes(compoundBalanceData, nominalStorage, specificStorages);
+    }
+
+    private void AddCellTypeCompoundBalance(Dictionary<Compound, CompoundBalance> compoundBalanceData,
+        IEnumerable<OrganelleTemplate> organelles, BalanceDisplayType calculationType, CompoundAmountType amountType,
+        IBiomeConditions biome, EnergyBalanceInfoFull energyBalance, ResolvedMicrobeTolerances tolerances)
+    {
+        switch (calculationType)
+        {
+            case BalanceDisplayType.MaxSpeed:
+                ProcessSystem.ComputeCompoundBalance(organelles, biome, tolerances,
+                    amountType, true, compoundBalanceData);
+                break;
+            case BalanceDisplayType.EnergyEquilibrium:
+                ProcessSystem.ComputeCompoundBalanceAtEquilibrium(organelles, biome,
+                    tolerances, amountType, energyBalance, compoundBalanceData);
+                break;
+            default:
+                GD.PrintErr("Unknown compound balance type: ", organismStatisticsPanel.BalanceDisplayType);
+                goto case BalanceDisplayType.EnergyEquilibrium;
+        }
     }
 
     private void UpdateCellTypesCounts()
