@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Thrive VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2025-08-01 11:41+0300\n"
+"POT-Creation-Date: 2025-08-01 16:03+0300\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -769,7 +769,7 @@ msgstr ""
 msgid "BUILD_STRUCTURE"
 msgstr ""
 
-#: ../src/saving/SaveListItem.tscn:169
+#: ../src/saving/SaveListItem.tscn:186
 msgid "BY"
 msgstr ""
 
@@ -970,6 +970,10 @@ msgstr ""
 #: ../src/microbe_stage/editor/MicrobeEditorCheatMenu.tscn:11
 #: ../src/microbe_stage/MicrobeCheatMenu.tscn:22
 msgid "CHEATS"
+msgstr ""
+
+#: ../src/ascension_stage/gui/AscensionCongratulationsPopup.cs:13
+msgid "CHEATS_USED_NOTICE"
 msgstr ""
 
 #: ../src/gui_common/menus/OptionsMenu.tscn:2899
@@ -1792,11 +1796,11 @@ msgstr ""
 msgid "CREATE"
 msgstr ""
 
-#: ../src/saving/SaveListItem.tscn:99
+#: ../src/saving/SaveListItem.tscn:100
 msgid "CREATED_AT"
 msgstr ""
 
-#: ../src/saving/SaveListItem.tscn:185
+#: ../src/saving/SaveListItem.tscn:202
 msgid "CREATED_ON_PLATFORM"
 msgstr ""
 
@@ -2003,7 +2007,7 @@ msgstr ""
 msgid "DELETE_ORGANELLE"
 msgstr ""
 
-#: ../src/saving/SaveListItem.tscn:220
+#: ../src/saving/SaveListItem.tscn:237
 msgid "DELETE_SAVE_CONFIRMATION"
 msgstr ""
 
@@ -2019,7 +2023,7 @@ msgstr ""
 msgid "DELETE_SELECTED_SAVE_WARNING"
 msgstr ""
 
-#: ../src/saving/SaveList.tscn:62 ../src/saving/SaveListItem.tscn:221
+#: ../src/saving/SaveList.tscn:62 ../src/saving/SaveListItem.tscn:238
 msgid "DELETE_THIS_SAVE_PROMPT"
 msgstr ""
 
@@ -2035,7 +2039,7 @@ msgstr ""
 msgid "DESCEND_CONFIRMATION_EXPLANATION"
 msgstr ""
 
-#: ../src/saving/SaveListItem.tscn:127
+#: ../src/saving/SaveListItem.tscn:144
 msgid "DESCRIPTION"
 msgstr ""
 
@@ -2263,9 +2267,9 @@ msgstr ""
 msgid "DONATIONS"
 msgstr ""
 
-#: ../src/saving/SaveListItem.tscn:104 ../src/saving/SaveListItem.tscn:118
-#: ../src/saving/SaveListItem.tscn:134 ../src/saving/SaveListItem.tscn:154
-#: ../src/saving/SaveListItem.tscn:175 ../src/saving/SaveListItem.tscn:191
+#: ../src/saving/SaveListItem.tscn:105 ../src/saving/SaveListItem.tscn:122
+#: ../src/saving/SaveListItem.tscn:151 ../src/saving/SaveListItem.tscn:171
+#: ../src/saving/SaveListItem.tscn:192 ../src/saving/SaveListItem.tscn:208
 msgid "DOT_DOT_DOT"
 msgstr ""
 
@@ -4625,7 +4629,7 @@ msgstr ""
 msgid "LIPASE_DESCRIPTION"
 msgstr ""
 
-#: ../src/saving/SaveListItem.tscn:215 ../src/saving/SaveManagerGUI.tscn:48
+#: ../src/saving/SaveListItem.tscn:232 ../src/saving/SaveManagerGUI.tscn:48
 msgid "LOAD"
 msgstr ""
 
@@ -4634,7 +4638,7 @@ msgid "LOADING"
 msgstr ""
 
 #: ../src/gui_common/ThriveFeedDisplayer.tscn:40 ../src/saving/SaveList.tscn:53
-#: ../src/saving/SaveListItem.tscn:81
+#: ../src/saving/SaveListItem.tscn:82
 msgid "LOADING_DOT_DOT_DOT"
 msgstr ""
 
@@ -7167,6 +7171,10 @@ msgstr ""
 msgid "SAVE_AUTOSAVE"
 msgstr ""
 
+#: ../src/saving/SaveListItem.cs:221
+msgid "SAVE_CHEATS_USED"
+msgstr ""
+
 #: ../src/saving/SaveList.cs:205
 msgid "SAVE_DELETE_WARNING"
 msgstr ""
@@ -8768,7 +8776,7 @@ msgstr ""
 msgid "TWO_TIMES"
 msgstr ""
 
-#: ../src/saving/SaveListItem.tscn:113
+#: ../src/saving/SaveListItem.tscn:117
 msgid "TYPE_COLON"
 msgstr ""
 
@@ -9113,7 +9121,7 @@ msgstr ""
 msgid "VALUE_WITH_UNIT"
 msgstr ""
 
-#: ../src/saving/SaveListItem.tscn:149
+#: ../src/saving/SaveListItem.tscn:166
 msgid "VERSION_COLON"
 msgstr ""
 
