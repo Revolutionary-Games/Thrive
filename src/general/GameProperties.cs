@@ -17,6 +17,9 @@ public class GameProperties
     [JsonProperty]
     private bool freeBuild;
 
+    [JsonProperty]
+    private bool cheatsUsed;
+
     private GameProperties(WorldGenerationSettings? settings = null, Species? startingSpecies = null)
     {
         settings ??= new WorldGenerationSettings();
@@ -43,6 +46,12 @@ public class GameProperties
     /// </summary>
     [JsonIgnore]
     public bool FreeBuild => freeBuild;
+
+    /// <summary>
+    ///   True if the player has cheated in this game
+    /// </summary>
+    [JsonIgnore]
+    public bool CheatsUsed => cheatsUsed;
 
     /// <summary>
     ///   True when the player is currently ascended and should be allowed to do anything
@@ -308,6 +317,11 @@ public class GameProperties
         ++AscensionCounter;
 
         // TODO: stop game time tracking to have a stable final time for this save
+    }
+
+    public void ReportCheatsUsed()
+    {
+        cheatsUsed = true;
     }
 
     public void BecomeDescendedVersionOf(GameProperties descendedGame)

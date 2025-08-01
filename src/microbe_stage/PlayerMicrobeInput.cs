@@ -404,6 +404,7 @@ public partial class PlayerMicrobeInput : NodeWithInput
         if (Settings.Instance.CheatsEnabled)
         {
             stage.HUD.ShowReproductionDialog();
+            AchievementsManager.ReportCheatsUsed();
         }
     }
 
@@ -452,5 +453,7 @@ public partial class PlayerMicrobeInput : NodeWithInput
 
         stage.Clouds.AddCloud(compound, (float)(Constants.CLOUD_CHEAT_DENSITY * delta * multiplier),
             stage.Camera.CursorWorldPos);
+
+        AchievementsManager.ReportCheatsUsed();
     }
 }
