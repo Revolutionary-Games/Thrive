@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2025-07-29 14:51+0300\n"
+"POT-Creation-Date: 2025-08-01 11:41+0300\n"
 "PO-Revision-Date: 2025-07-18 08:28+0000\n"
 "Last-Translator: Teashrock <kajitsu22@gmail.com>\n"
 "Language-Team: Ukrainian <https://translate.revolutionarygamesstudio.com/projects/thrive/thrive-game/uk/>\n"
@@ -48,6 +48,19 @@ msgstr "морська безодня"
 
 msgid "ACCEPT"
 msgstr "Прийняти"
+
+#, fuzzy
+msgid "ACHIEVEMENTS"
+msgstr "Базова швидкість"
+
+msgid "ACHIEVEMENTS_TOTAL"
+msgstr ""
+
+msgid "ACHIEVEMENT_ACHIEVED"
+msgstr ""
+
+msgid "ACHIEVEMENT_LOCKED"
+msgstr ""
 
 msgid "ACTION_AWAKEN"
 msgstr "Пробудити ({0:F1} / {1:F1})"
@@ -358,6 +371,10 @@ msgstr "Автозбереження під час гри"
 msgid "AUTO_EVO"
 msgstr "Авто-ево"
 
+#, fuzzy
+msgid "AUTO_EVO_EXPLORER_TOOL_BUTTON"
+msgstr "Інструменти дослідження Авто-ево"
+
 msgid "AUTO_EVO_EXPLORING_TOOL"
 msgstr "Інструменти дослідження Авто-ево"
 
@@ -411,6 +428,9 @@ msgstr "Слеш назад"
 
 msgid "BACKSPACE"
 msgstr "Backspace"
+
+msgid "BACK_TO_SETTINGS"
+msgstr ""
 
 msgid "BACTERIAL_THERMOSYNTHESIS"
 msgstr "Бактеріальний термосинтез"
@@ -791,6 +811,24 @@ msgstr "Почистити кеш"
 msgid "CLICK_TO_SELECT"
 msgstr "Видалити обране"
 
+msgid "CLIMATE_INSTABILITY"
+msgstr ""
+
+#, fuzzy
+msgid "CLIMATE_INSTABILITY_EXPLANATION"
+msgstr ""
+"Рухливі мікроби будуть більше плавати та безлаодно тинятися.\n"
+"Пасивні будуть залишатися нерухомими до змін в оточені, й лиш тоді діють."
+
+msgid "CLIMATE_STABILITY_AVERAGE"
+msgstr ""
+
+msgid "CLIMATE_STABILITY_STABLE"
+msgstr ""
+
+msgid "CLIMATE_STABILITY_UNSTABLE"
+msgstr ""
+
 msgid "CLOSE"
 msgstr "Закрити"
 
@@ -1031,6 +1069,14 @@ msgstr "Увійти в гру з цими налаштуваннями"
 
 msgid "CONFIRM_NEW_GAME_BUTTON_TOOLTIP_DISABLED"
 msgstr "Якісь налаштування невірні"
+
+#, fuzzy
+msgid "CONFIRM_RESET_ACHIEVEMENTS"
+msgstr "Підтвердити видалення"
+
+#, fuzzy
+msgid "CONFIRM_RESET_ACHIEVEMENTS_DESCRIPTION"
+msgstr "Перетворює [thrive:compound type=\"atp\"][/thrive:compound] на [thrive:compound type=\"ammonia\"][/thrive:compound]. Кількість залежить від [thrive:compound type=\"nitrogen\"][/thrive:compound]."
 
 msgid "CONSTRUCTION_UNIT_NAME"
 msgstr "Юніт: {0}"
@@ -2367,11 +2413,33 @@ msgstr "Не забувайте, що панель зверху справа п�
 msgid "GENERAL_LOADING_TIP_7"
 msgstr "Якщо ваша популяція впаде до нуля, ваш вид вимре."
 
+#, fuzzy
+msgid "GENERATE_BUTTON"
+msgstr "Генерації"
+
 msgid "GENERATIONS"
 msgstr "Генерації"
 
 msgid "GENERATION_COLON"
 msgstr "Генерація:"
+
+msgid "GEOLOGICAL_ACTIVITY"
+msgstr ""
+
+msgid "GEOLOGICAL_ACTIVITY_ACTIVE"
+msgstr ""
+
+msgid "GEOLOGICAL_ACTIVITY_AVERAGE"
+msgstr ""
+
+msgid "GEOLOGICAL_ACTIVITY_DORMANT"
+msgstr ""
+
+#, fuzzy
+msgid "GEOLOGICAL_ACTIVITY_EXPLANATION"
+msgstr ""
+"Рухливі мікроби будуть більше плавати та безлаодно тинятися.\n"
+"Пасивні будуть залишатися нерухомими до змін в оточені, й лиш тоді діють."
 
 msgid "GITHUB_TOOLTIP"
 msgstr "Відвідайте наше сховище у GitHub"
@@ -2915,6 +2983,14 @@ msgstr "Tab"
 
 msgid "KEY_UP"
 msgstr "Вгору"
+
+#, fuzzy
+msgid "KILL_50_MICROBES"
+msgstr "Нітрогеназа"
+
+#, fuzzy
+msgid "KILL_MICROBES_PROGRESS"
+msgstr "Мікробний редактор"
 
 msgid "KILO_ABBREVIATION"
 msgstr "{0} Тис"
@@ -3735,6 +3811,10 @@ msgstr ""
 "У процесі вашого зростання до розміру, достатнього для розмноження, кожна з ваших органел ділитиметься. Нові органели надають бонуси (і вартість осморегуляції), як і органели, з якими ваш мікроб народився.\n"
 "\n"
 "З достатньою кількістю сполук, органели почнуть подвоюватися. Збирання сполук прискорює це. Щойно всі органели розділяться, ваша клітина зможе розмножитися й увійти в редактор."
+
+#, fuzzy
+msgid "MICROBIAL_MASSACRE"
+msgstr "Мікробна стадія"
 
 msgid "MIDDLE_MOUSE"
 msgstr "Колесик миші (середина миші)"
@@ -4688,6 +4768,10 @@ msgstr "Місце для органели"
 msgid "PLANET"
 msgstr "Планета"
 
+#, fuzzy
+msgid "PLANET_CUSTOMIZER"
+msgstr "Під курсором:"
+
 msgid "PLANET_DETAILS_STRING"
 msgstr ""
 "Тільки ЗАКОН: {0}\n"
@@ -4695,9 +4779,6 @@ msgstr ""
 "Цикл дня/ночі: {2}\n"
 "Тривалість дня: {3} секунди\n"
 "Випадковий сід планети: {4}"
-
-msgid "PLANET_GENERATION_TEASER"
-msgstr "Генерація планети пройшла успішно!"
 
 msgid "PLANET_RANDOM_SEED"
 msgstr "Рандомний сід планети"
@@ -4896,6 +4977,10 @@ msgid "REFRESH"
 msgstr "Оновити"
 
 #, fuzzy
+msgid "REGENERATE_BUTTON"
+msgstr "Аксон"
+
+#, fuzzy
 msgid "RENDER_SCALE"
 msgstr "Використовуваний рендер:"
 
@@ -4942,6 +5027,10 @@ msgstr "Дослідження"
 
 msgid "RESET"
 msgstr "Скинути"
+
+#, fuzzy
+msgid "RESET_ACHIEVEMENTS"
+msgstr "Скинути зміни"
 
 msgid "RESET_DEADZONES"
 msgstr "Скинути Мертві зони"
@@ -8727,6 +8816,25 @@ msgstr ""
 "Включити прототип пізніших етапів: {0}\n"
 "Включити великодки: {1}"
 
+#, fuzzy
+msgid "WORLD_OCEANIC_COVERAGE"
+msgstr "Гнучкість:"
+
+#, fuzzy
+msgid "WORLD_OCEANIC_COVERAGE_EXPLANATION"
+msgstr "Гнучкість:"
+
+#, fuzzy
+msgid "WORLD_OCEANIC_COVERAGE_LARGE"
+msgstr "Гнучкість:"
+
+#, fuzzy
+msgid "WORLD_OCEANIC_COVERAGE_MEDIUM"
+msgstr "Гнучкість:"
+
+msgid "WORLD_OCEANIC_COVERAGE_SMALL"
+msgstr ""
+
 msgid "WORLD_RELATIVE_MOVEMENT"
 msgstr "Відносно світу"
 
@@ -8754,6 +8862,29 @@ msgstr ""
 #, fuzzy
 msgid "WORLD_SIZE_TOOLTIP"
 msgstr "Запустити декілька світів, кількість генерацій для кожного з них визначається через кнопку вибору зверху."
+
+#, fuzzy
+msgid "WORLD_TEMPERATURE"
+msgstr "Температура"
+
+#, fuzzy
+msgid "WORLD_TEMPERATURE_COLD"
+msgstr "Темп."
+
+#, fuzzy
+msgid "WORLD_TEMPERATURE_EXPLANATION"
+msgstr ""
+"Зосереджені мікроби шукатимуть брили або здобич на більшій відстані\n"
+"та можуть завзятіше змагатися за брили.\n"
+"Чуйні мікроби швидше відвертатимуться на нові цілі."
+
+#, fuzzy
+msgid "WORLD_TEMPERATURE_TEMPERATE"
+msgstr "Темп."
+
+#, fuzzy
+msgid "WORLD_TEMPERATURE_WARM"
+msgstr "Темп."
 
 msgid "WORST_PATCH_COLON"
 msgstr "Найгірша ділянка:"
@@ -8802,6 +8933,28 @@ msgstr "Віддалитись"
 #, fuzzy
 #~ msgid "CELL_TYPE_BUTTON_ATP_PRODUCTION"
 #~ msgstr "Опції"
+
+#, fuzzy
+#~ msgid "WORLD_SEA_LEVEL"
+#~ msgstr "{0}-{1}м. нижче рівня моря"
+
+#, fuzzy
+#~ msgid "WORLD_SEA_LEVEL_DEEP"
+#~ msgstr "{0}-{1}м. нижче рівня моря"
+
+#, fuzzy
+#~ msgid "WORLD_SEA_LEVEL_EXPLANATION"
+#~ msgstr ""
+#~ "Зосереджені мікроби шукатимуть брили або здобич на більшій відстані\n"
+#~ "та можуть завзятіше змагатися за брили.\n"
+#~ "Чуйні мікроби швидше відвертатимуться на нові цілі."
+
+#, fuzzy
+#~ msgid "WORLD_SEA_LEVEL_MODERATE"
+#~ msgstr "Відносно світу"
+
+#~ msgid "PLANET_GENERATION_TEASER"
+#~ msgstr "Генерація планети пройшла успішно!"
 
 #~ msgid "PASSIVE_REPRODUCTION_PROGRESS_EXPLANATION"
 #~ msgstr "(пасивно збільшувати сполуки для розмноження з середовища без дій )"
@@ -9060,10 +9213,6 @@ msgstr "Віддалитись"
 #~ msgstr "Ліпаза"
 
 #, fuzzy
-#~ msgid "WIKI_MICROBE_EDITOR"
-#~ msgstr "Мікробний редактор"
-
-#, fuzzy
 #~ msgid "WIKI_MUCILAGE_SYNTHESIS"
 #~ msgstr "Синтез слизу"
 
@@ -9263,9 +9412,6 @@ msgstr "Віддалитись"
 #~ "Вітаємо з досягненням прототипу макроскопічної секції багатоклітинного етапу.\n"
 #~ "\n"
 #~ "Через обмеження розробки нам не вдалося додати 3D макроскопічний геймплей в цьому релізі. Проте ви можете повернутися до редактору, щоб продовжити будувати свій організм."
-
-#~ msgid "RESET_INPUTS"
-#~ msgstr "Скинути зміни"
 
 #~ msgid "HOLD_FOR_CURSOR"
 #~ msgstr "Утримуйте TODO: введення для курсору"

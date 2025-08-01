@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2025-07-29 14:51+0300\n"
+"POT-Creation-Date: 2025-08-01 11:41+0300\n"
 "PO-Revision-Date: 2025-05-25 15:00+0000\n"
 "Last-Translator: Anonymous <noreply@weblate.org>\n"
 "Language-Team: Portuguese (Portugal) <https://translate.revolutionarygamesstudio.com/projects/thrive/thrive-game/pt_PT/>\n"
@@ -48,6 +48,19 @@ msgid "ABYSSOPELAGIC"
 msgstr "Zona Abissopelágica"
 
 msgid "ACCEPT"
+msgstr ""
+
+#, fuzzy
+msgid "ACHIEVEMENTS"
+msgstr "Movimento Base"
+
+msgid "ACHIEVEMENTS_TOTAL"
+msgstr ""
+
+msgid "ACHIEVEMENT_ACHIEVED"
+msgstr ""
+
+msgid "ACHIEVEMENT_LOCKED"
 msgstr ""
 
 msgid "ACTION_AWAKEN"
@@ -370,6 +383,10 @@ msgstr "Guardar automaticamente durante o jogo"
 msgid "AUTO_EVO"
 msgstr "Auto-Evo"
 
+#, fuzzy
+msgid "AUTO_EVO_EXPLORER_TOOL_BUTTON"
+msgstr "Ferramenta de exploração da Auto-Evo"
+
 msgid "AUTO_EVO_EXPLORING_TOOL"
 msgstr "Ferramenta de exploração da Auto-Evo"
 
@@ -426,6 +443,9 @@ msgstr "Barra invertida"
 
 msgid "BACKSPACE"
 msgstr "Backspace"
+
+msgid "BACK_TO_SETTINGS"
+msgstr ""
 
 #, fuzzy
 msgid "BACTERIAL_THERMOSYNTHESIS"
@@ -815,6 +835,24 @@ msgstr ""
 msgid "CLICK_TO_SELECT"
 msgstr "Apagar Selecionado"
 
+msgid "CLIMATE_INSTABILITY"
+msgstr ""
+
+#, fuzzy
+msgid "CLIMATE_INSTABILITY_EXPLANATION"
+msgstr ""
+"Micróbios ativos irão correr e cair quando nada de interessante acontecer.\n"
+"Micróbios sésseis ficarão parados e esperarão que o ambiente mude antes de agir."
+
+msgid "CLIMATE_STABILITY_AVERAGE"
+msgstr ""
+
+msgid "CLIMATE_STABILITY_STABLE"
+msgstr ""
+
+msgid "CLIMATE_STABILITY_UNSTABLE"
+msgstr ""
+
 msgid "CLOSE"
 msgstr "Fechar"
 
@@ -1057,6 +1095,14 @@ msgstr "Entrar no jogo com estas definições"
 
 msgid "CONFIRM_NEW_GAME_BUTTON_TOOLTIP_DISABLED"
 msgstr "Algumas definições não são válidas"
+
+#, fuzzy
+msgid "CONFIRM_RESET_ACHIEVEMENTS"
+msgstr "Confirmar Apagar"
+
+#, fuzzy
+msgid "CONFIRM_RESET_ACHIEVEMENTS_DESCRIPTION"
+msgstr "Transforma [thrive:compound type=\"atp\"][/thrive:compound] em [thrive:compound type=\"ammonia\"][/thrive:compound]. A taxa aumenta com a concentração de [thrive:compound type=\"nitrogen\"][/thrive:compound]."
 
 msgid "CONSTRUCTION_UNIT_NAME"
 msgstr "Unidade: {0}"
@@ -2416,11 +2462,33 @@ msgstr "Pressione o botão \"reverter\" no editor para corrigir um erro"
 msgid "GENERAL_LOADING_TIP_7"
 msgstr "Pressione o botão \"reverter\" no editor para corrigir um erro"
 
+#, fuzzy
+msgid "GENERATE_BUTTON"
+msgstr "Gerações"
+
 msgid "GENERATIONS"
 msgstr "Gerações"
 
 msgid "GENERATION_COLON"
 msgstr "Geração:"
+
+msgid "GEOLOGICAL_ACTIVITY"
+msgstr ""
+
+msgid "GEOLOGICAL_ACTIVITY_ACTIVE"
+msgstr ""
+
+msgid "GEOLOGICAL_ACTIVITY_AVERAGE"
+msgstr ""
+
+msgid "GEOLOGICAL_ACTIVITY_DORMANT"
+msgstr ""
+
+#, fuzzy
+msgid "GEOLOGICAL_ACTIVITY_EXPLANATION"
+msgstr ""
+"Micróbios ativos irão correr e cair quando nada de interessante acontecer.\n"
+"Micróbios sésseis ficarão parados e esperarão que o ambiente mude antes de agir."
 
 msgid "GITHUB_TOOLTIP"
 msgstr "Visite o nosso repositório GitHub"
@@ -2975,6 +3043,14 @@ msgstr "Tab"
 
 msgid "KEY_UP"
 msgstr "Seta Cima"
+
+#, fuzzy
+msgid "KILL_50_MICROBES"
+msgstr "Nitrogenase"
+
+#, fuzzy
+msgid "KILL_MICROBES_PROGRESS"
+msgstr "Editor de Microrganismos"
 
 msgid "KILO_ABBREVIATION"
 msgstr "{0} m"
@@ -3796,6 +3872,10 @@ msgstr ""
 #, fuzzy
 msgid "MICROBE_STAGE_ORGANELLE_DIVISION"
 msgstr "Estatísticas de Organismo"
+
+#, fuzzy
+msgid "MICROBIAL_MASSACRE"
+msgstr "Fase Microbial"
 
 msgid "MIDDLE_MOUSE"
 msgstr "Clique Roda Rato"
@@ -4802,6 +4882,10 @@ msgstr "Colocar organelo"
 msgid "PLANET"
 msgstr "Planeta"
 
+#, fuzzy
+msgid "PLANET_CUSTOMIZER"
+msgstr "No Cursor:"
+
 msgid "PLANET_DETAILS_STRING"
 msgstr ""
 "Só LAWK: {0}\n"
@@ -4809,9 +4893,6 @@ msgstr ""
 "Ciclo Dia/Noite: {2}\n"
 "Duração do dia: {3} segundos\n"
 "Semente aleatória do planeta: {4}"
-
-msgid "PLANET_GENERATION_TEASER"
-msgstr "Geração de planetas em breve!"
 
 msgid "PLANET_RANDOM_SEED"
 msgstr "Semente aleatória do planeta"
@@ -5010,6 +5091,10 @@ msgid "REFRESH"
 msgstr "Atualizar"
 
 #, fuzzy
+msgid "REGENERATE_BUTTON"
+msgstr "Axónio"
+
+#, fuzzy
 msgid "RENDER_SCALE"
 msgstr "Renderizador utilizado:"
 
@@ -5055,6 +5140,10 @@ msgstr "Pesquisa"
 
 msgid "RESET"
 msgstr "Repor"
+
+#, fuzzy
+msgid "RESET_ACHIEVEMENTS"
+msgstr "Relativo ao ecrã"
 
 msgid "RESET_DEADZONES"
 msgstr "Repor Áreas Mortas"
@@ -8835,6 +8924,27 @@ msgid "WORLD_MISC_DETAILS_STRING"
 msgstr ""
 
 #, fuzzy
+msgid "WORLD_OCEANIC_COVERAGE"
+msgstr "Movimento Base"
+
+#, fuzzy
+msgid "WORLD_OCEANIC_COVERAGE_EXPLANATION"
+msgstr ""
+"Os micróbios focados irão procurar por pedaços ou presas em distâncias maiores\n"
+"e podem ser mais ambicioso em relação aos pedaços.\n"
+"Micróbios reativos mudarão para novos alvos depois de algum tempo."
+
+msgid "WORLD_OCEANIC_COVERAGE_LARGE"
+msgstr ""
+
+#, fuzzy
+msgid "WORLD_OCEANIC_COVERAGE_MEDIUM"
+msgstr "Movimento Base"
+
+msgid "WORLD_OCEANIC_COVERAGE_SMALL"
+msgstr ""
+
+#, fuzzy
 msgid "WORLD_RELATIVE_MOVEMENT"
 msgstr "Movimento Base"
 
@@ -8862,6 +8972,29 @@ msgstr ""
 #, fuzzy
 msgid "WORLD_SIZE_TOOLTIP"
 msgstr "Tempo Passado: {0:#,#} anos"
+
+#, fuzzy
+msgid "WORLD_TEMPERATURE"
+msgstr "Temperatura"
+
+#, fuzzy
+msgid "WORLD_TEMPERATURE_COLD"
+msgstr "Temp."
+
+#, fuzzy
+msgid "WORLD_TEMPERATURE_EXPLANATION"
+msgstr ""
+"Os micróbios focados irão procurar por pedaços ou presas em distâncias maiores\n"
+"e podem ser mais ambicioso em relação aos pedaços.\n"
+"Micróbios reativos mudarão para novos alvos depois de algum tempo."
+
+#, fuzzy
+msgid "WORLD_TEMPERATURE_TEMPERATE"
+msgstr "Temp."
+
+#, fuzzy
+msgid "WORLD_TEMPERATURE_WARM"
+msgstr "Temp."
 
 msgid "WORST_PATCH_COLON"
 msgstr "Pior Região:"
@@ -8910,6 +9043,21 @@ msgstr "Reduzir"
 #, fuzzy
 #~ msgid "CELL_TYPE_BUTTON_ATP_PRODUCTION"
 #~ msgstr "Área morta:"
+
+#, fuzzy
+#~ msgid "WORLD_SEA_LEVEL"
+#~ msgstr "{0}-{1}m abaixo do nível do mar"
+
+#, fuzzy
+#~ msgid "WORLD_SEA_LEVEL_DEEP"
+#~ msgstr "{0}-{1}m abaixo do nível do mar"
+
+#, fuzzy
+#~ msgid "WORLD_SEA_LEVEL_MODERATE"
+#~ msgstr "Movimento Base"
+
+#~ msgid "PLANET_GENERATION_TEASER"
+#~ msgstr "Geração de planetas em breve!"
 
 #~ msgid "PASSIVE_REPRODUCTION_PROGRESS_EXPLANATION"
 #~ msgstr "(obter passivamente compostos de reprodução do ambiente sem ter de fazer nada)"
@@ -9145,10 +9293,6 @@ msgstr "Reduzir"
 #, fuzzy
 #~ msgid "WIKI_LIPASE"
 #~ msgstr "Lipase"
-
-#, fuzzy
-#~ msgid "WIKI_MICROBE_EDITOR"
-#~ msgstr "Editor de Microrganismos"
 
 #, fuzzy
 #~ msgid "WIKI_MUCILAGE_SYNTHESIS"

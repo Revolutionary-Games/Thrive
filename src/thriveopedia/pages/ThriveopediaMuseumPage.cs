@@ -132,14 +132,15 @@ public partial class ThriveopediaMuseumPage : ThriveopediaPage, IThriveopediaPag
 
         TransitionManager.Instance.AddSequence(ScreenFade.FadeType.FadeOut, 0.1f, () =>
         {
-            MainMenu.OnEnteringGame();
+            MainMenu.OnEnteringGame(false);
 
             // Instantiate a new editor scene
             var editor = SceneManager.Instance.LoadScene(MainGameState.MicrobeEditor).Instantiate<MicrobeEditor>();
 
-            // Start freebuild game with the selected species
+            // Start a freebuild game with the selected species
             editor.CurrentGame = GameProperties.StartNewMicrobeGame(new WorldGenerationSettings(), true,
                 (Species)startingSpecies.Clone());
+            AchievementsManager.ReportEnteredFreebuild();
 
             // Switch to the editor scene
             SceneManager.Instance.SwitchToScene(editor);

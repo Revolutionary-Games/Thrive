@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Thrive VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2025-07-29 14:51+0300\n"
+"POT-Creation-Date: 2025-08-01 11:41+0300\n"
 "PO-Revision-Date: 2025-06-12 12:46+0000\n"
 "Last-Translator: Argakyan <andrinmueller@hotmail.ch>\n"
 "Language-Team: Alemannic <https://translate.revolutionarygamesstudio.com/projects/thrive/thrive-game/gsw/>\n"
@@ -48,6 +48,19 @@ msgstr "Abyssopelagial"
 
 msgid "ACCEPT"
 msgstr "Akzeptiere"
+
+#, fuzzy
+msgid "ACHIEVEMENTS"
+msgstr "Grundmobilität"
+
+msgid "ACHIEVEMENTS_TOTAL"
+msgstr ""
+
+msgid "ACHIEVEMENT_ACHIEVED"
+msgstr ""
+
+msgid "ACHIEVEMENT_LOCKED"
+msgstr ""
 
 msgid "ACTION_AWAKEN"
 msgstr "Verwache ({0:F1}/{1:F1})"
@@ -358,6 +371,10 @@ msgstr "Automatisches spiichere während em Spiel"
 msgid "AUTO_EVO"
 msgstr "Auto-Evo"
 
+#, fuzzy
+msgid "AUTO_EVO_EXPLORER_TOOL_BUTTON"
+msgstr "Auto-Evo Erforschig"
+
 msgid "AUTO_EVO_EXPLORING_TOOL"
 msgstr "Auto-Evo Erforschig"
 
@@ -411,6 +428,9 @@ msgstr "Schrägstrich"
 
 msgid "BACKSPACE"
 msgstr "Backspace"
+
+msgid "BACK_TO_SETTINGS"
+msgstr ""
 
 msgid "BACTERIAL_THERMOSYNTHESIS"
 msgstr "Bakterielli Thermosynthese"
@@ -799,6 +819,24 @@ msgstr "Cache leere"
 msgid "CLICK_TO_SELECT"
 msgstr "Uuswähle"
 
+msgid "CLIMATE_INSTABILITY"
+msgstr ""
+
+#, fuzzy
+msgid "CLIMATE_INSTABILITY_EXPLANATION"
+msgstr ""
+"Aktivi Mikrobe tummlet umme, wenn nüüt interessantes passiert.\n"
+"Sessili Mikrobe sind stationär und wartet druff, dass sich ihri Umgebig änderet, bevor sie handlet."
+
+msgid "CLIMATE_STABILITY_AVERAGE"
+msgstr ""
+
+msgid "CLIMATE_STABILITY_STABLE"
+msgstr ""
+
+msgid "CLIMATE_STABILITY_UNSTABLE"
+msgstr ""
+
 msgid "CLOSE"
 msgstr "Schlüüse"
 
@@ -1038,6 +1076,14 @@ msgstr "Mit dene Iistellige spiele"
 
 msgid "CONFIRM_NEW_GAME_BUTTON_TOOLTIP_DISABLED"
 msgstr "S'paar Iistellige sind ungültig"
+
+#, fuzzy
+msgid "CONFIRM_RESET_ACHIEVEMENTS"
+msgstr "Lösche bestätige"
+
+#, fuzzy
+msgid "CONFIRM_RESET_ACHIEVEMENTS_DESCRIPTION"
+msgstr "De Chemorezeptor ermöglicht d'Erkennig vo Substanze us grössere Entfernig. Nach de Platzierig chammer d'Art vode Substanz und d'Farb vode Führigslinie uuswähle."
 
 msgid "CONSTRUCTION_UNIT_NAME"
 msgstr "Einheit:{0}"
@@ -2356,11 +2402,33 @@ msgstr "Nöd vergesse: D'Aazeig rechts obbe zeigt dir, was unter em Cursor isch.
 msgid "GENERAL_LOADING_TIP_7"
 msgstr "Wenn dini Bevölkerig auf Null keit, stirbsch du uus."
 
+#, fuzzy
+msgid "GENERATE_BUTTON"
+msgstr "Generatione"
+
 msgid "GENERATIONS"
 msgstr "Generatione"
 
 msgid "GENERATION_COLON"
 msgstr "Generation:"
+
+msgid "GEOLOGICAL_ACTIVITY"
+msgstr ""
+
+msgid "GEOLOGICAL_ACTIVITY_ACTIVE"
+msgstr ""
+
+msgid "GEOLOGICAL_ACTIVITY_AVERAGE"
+msgstr ""
+
+msgid "GEOLOGICAL_ACTIVITY_DORMANT"
+msgstr ""
+
+#, fuzzy
+msgid "GEOLOGICAL_ACTIVITY_EXPLANATION"
+msgstr ""
+"Aktivi Mikrobe tummlet umme, wenn nüüt interessantes passiert.\n"
+"Sessili Mikrobe sind stationär und wartet druff, dass sich ihri Umgebig änderet, bevor sie handlet."
 
 msgid "GITHUB_TOOLTIP"
 msgstr "Bsuech oises GitHub Archiv"
@@ -2888,6 +2956,12 @@ msgstr "Tabulator"
 
 msgid "KEY_UP"
 msgstr "Ufe"
+
+msgid "KILL_50_MICROBES"
+msgstr ""
+
+msgid "KILL_MICROBES_PROGRESS"
+msgstr ""
 
 msgid "KILO_ABBREVIATION"
 msgstr "{0} Tsd"
@@ -3562,6 +3636,9 @@ msgid "MICROBE_STAGE_INITIAL_POND"
 msgstr ""
 
 msgid "MICROBE_STAGE_ORGANELLE_DIVISION"
+msgstr ""
+
+msgid "MICROBIAL_MASSACRE"
 msgstr ""
 
 msgid "MIDDLE_MOUSE"
@@ -4459,10 +4536,11 @@ msgstr ""
 msgid "PLANET"
 msgstr ""
 
-msgid "PLANET_DETAILS_STRING"
-msgstr ""
+#, fuzzy
+msgid "PLANET_CUSTOMIZER"
+msgstr "Am Zeiger:"
 
-msgid "PLANET_GENERATION_TEASER"
+msgid "PLANET_DETAILS_STRING"
 msgstr ""
 
 msgid "PLANET_RANDOM_SEED"
@@ -4654,6 +4732,10 @@ msgstr ""
 msgid "REFRESH"
 msgstr ""
 
+#, fuzzy
+msgid "REGENERATE_BUTTON"
+msgstr "Zruggentwickle"
+
 msgid "RENDER_SCALE"
 msgstr ""
 
@@ -4694,6 +4776,9 @@ msgid "RESEARCH"
 msgstr ""
 
 msgid "RESET"
+msgstr ""
+
+msgid "RESET_ACHIEVEMENTS"
 msgstr ""
 
 msgid "RESET_DEADZONES"
@@ -7759,6 +7844,23 @@ msgstr ""
 msgid "WORLD_MISC_DETAILS_STRING"
 msgstr ""
 
+msgid "WORLD_OCEANIC_COVERAGE"
+msgstr ""
+
+#, fuzzy
+msgid "WORLD_OCEANIC_COVERAGE_EXPLANATION"
+msgstr "(veränderet d'Nummer vo Gebiet ide Welt)"
+
+msgid "WORLD_OCEANIC_COVERAGE_LARGE"
+msgstr ""
+
+#, fuzzy
+msgid "WORLD_OCEANIC_COVERAGE_MEDIUM"
+msgstr "(veränderet d'Nummer vo Gebiet ide Welt)"
+
+msgid "WORLD_OCEANIC_COVERAGE_SMALL"
+msgstr ""
+
 msgid "WORLD_RELATIVE_MOVEMENT"
 msgstr ""
 
@@ -7779,6 +7881,22 @@ msgstr ""
 
 msgid "WORLD_SIZE_TOOLTIP"
 msgstr "E grossi Welt z'ha chann d'Simulation verlangsame und isch nöd empfohle für langsameri PC."
+
+msgid "WORLD_TEMPERATURE"
+msgstr ""
+
+msgid "WORLD_TEMPERATURE_COLD"
+msgstr ""
+
+#, fuzzy
+msgid "WORLD_TEMPERATURE_EXPLANATION"
+msgstr "(veränderet d'Nummer vo Gebiet ide Welt)"
+
+msgid "WORLD_TEMPERATURE_TEMPERATE"
+msgstr ""
+
+msgid "WORLD_TEMPERATURE_WARM"
+msgstr ""
 
 msgid "WORST_PATCH_COLON"
 msgstr ""
@@ -7821,3 +7939,11 @@ msgstr ""
 
 #~ msgid "CELL_TYPE_BUTTON_ATP_PRODUCTION"
 #~ msgstr "D'ATP-Produktion vo dem Zelltyp isch {0}."
+
+#, fuzzy
+#~ msgid "WORLD_SEA_LEVEL"
+#~ msgstr "{0}-{1}m unter em Meeresspiegel"
+
+#, fuzzy
+#~ msgid "WORLD_SEA_LEVEL_DEEP"
+#~ msgstr "{0}-{1}m unter em Meeresspiegel"

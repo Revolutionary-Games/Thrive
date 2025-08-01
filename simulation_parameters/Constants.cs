@@ -1382,7 +1382,7 @@ public static class Constants
     public const float OTHER_GASES_DECAY_SPEED = 0.08f;
 
     // Patch event variables
-    public const int VENT_ERUPTION_CHANCE = 15;
+    public const float VENT_ERUPTION_CHANCE = 0.15f;
     public const float VENT_ERUPTION_HYDROGEN_SULFIDE_INCREASE = 0.001f;
     public const float VENT_ERUPTION_CARBON_DIOXIDE_INCREASE = 0.3f;
 
@@ -1593,6 +1593,9 @@ public static class Constants
     public const string SAVE_FOLDER = "user://saves";
     public const string FOSSILISED_SPECIES_FOLDER = "user://fossils";
     public const string AUTO_EVO_EXPORT_FOLDER = "user://auto-evo_exports";
+
+    public const string ACHIEVEMENTS_CONFIGURATION = "res://simulation_parameters/common/achievements.json";
+    public const string ACHIEVEMENTS_PROGRESS_SAVE = "user://achievements.bin";
 
     public const string TUTORIAL_DATA_FILE = "user://tutorials.json.gz";
 
@@ -1995,6 +1998,9 @@ public static class Constants
 
     public const string CONDITION_GREEN_COLOUR = "#70f423";
     public const string CONDITION_RED_COLOUR = "#ff4d4d";
+
+    public const ulong ACHIEVEMENT_DATA_VALUE = 7484237571489941;
+    public const bool IGNORE_CHEATS_FOR_ACHIEVEMENTS_IN_DEBUG = false;
 
     /// <summary>
     ///   Also see <see cref="AUTO_EVO_BASE_DIGESTION_SCORE"/>

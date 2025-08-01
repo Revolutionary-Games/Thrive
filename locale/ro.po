@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2025-07-29 14:51+0300\n"
+"POT-Creation-Date: 2025-08-01 11:41+0300\n"
 "PO-Revision-Date: 2025-01-21 12:01+0000\n"
 "Last-Translator: Anonymous <noreply@weblate.org>\n"
 "Language-Team: Romanian <https://translate.revolutionarygamesstudio.com/projects/thrive/thrive-game/ro/>\n"
@@ -48,6 +48,19 @@ msgid "ABYSSOPELAGIC"
 msgstr "Abisopelagică"
 
 msgid "ACCEPT"
+msgstr ""
+
+#, fuzzy
+msgid "ACHIEVEMENTS"
+msgstr "Mișcare de bază"
+
+msgid "ACHIEVEMENTS_TOTAL"
+msgstr ""
+
+msgid "ACHIEVEMENT_ACHIEVED"
+msgstr ""
+
+msgid "ACHIEVEMENT_LOCKED"
 msgstr ""
 
 msgid "ACTION_AWAKEN"
@@ -366,6 +379,10 @@ msgstr "Salvare automată în timpul jocului"
 msgid "AUTO_EVO"
 msgstr "Auto-Evo"
 
+#, fuzzy
+msgid "AUTO_EVO_EXPLORER_TOOL_BUTTON"
+msgstr "Instrument de explorare Auto-Evo"
+
 msgid "AUTO_EVO_EXPLORING_TOOL"
 msgstr "Instrument de explorare Auto-Evo"
 
@@ -424,6 +441,9 @@ msgstr "Backslash"
 #, fuzzy
 msgid "BACKSPACE"
 msgstr "Backspace"
+
+msgid "BACK_TO_SETTINGS"
+msgstr ""
 
 #, fuzzy
 msgid "BACTERIAL_THERMOSYNTHESIS"
@@ -812,6 +832,24 @@ msgstr ""
 msgid "CLICK_TO_SELECT"
 msgstr ""
 
+msgid "CLIMATE_INSTABILITY"
+msgstr ""
+
+#, fuzzy
+msgid "CLIMATE_INSTABILITY_EXPLANATION"
+msgstr ""
+"Microbii activi se vor mișca cand nu se întămplă nimic interesant.\n"
+"Microbii sesili vor fi staționari și vor aștepta ca mediul să se schimbe înainte de a acționa."
+
+msgid "CLIMATE_STABILITY_AVERAGE"
+msgstr ""
+
+msgid "CLIMATE_STABILITY_STABLE"
+msgstr ""
+
+msgid "CLIMATE_STABILITY_UNSTABLE"
+msgstr ""
+
 msgid "CLOSE"
 msgstr ""
 
@@ -1034,6 +1072,13 @@ msgstr ""
 
 msgid "CONFIRM_NEW_GAME_BUTTON_TOOLTIP_DISABLED"
 msgstr ""
+
+msgid "CONFIRM_RESET_ACHIEVEMENTS"
+msgstr ""
+
+#, fuzzy
+msgid "CONFIRM_RESET_ACHIEVEMENTS_DESCRIPTION"
+msgstr "Apăsați [thrive:input]g_toggle_binding[/thrive:input] pentru a activa/dezactiva modul de unire. Când sunteți în modul de unire, puteți atașa alte celule ale speciei dvs. la colonie prin a vă muta în ele. Pentru a părăsi o colonie, apăsați [thrive:input]g_unbind_all[/thrive:input]. Nu puteți intra în editor în timp ce sunteți unit cu alte celule."
 
 msgid "CONSTRUCTION_UNIT_NAME"
 msgstr ""
@@ -2278,11 +2323,33 @@ msgstr ""
 msgid "GENERAL_LOADING_TIP_7"
 msgstr ""
 
+#, fuzzy
+msgid "GENERATE_BUTTON"
+msgstr "Etapa Multicelulară"
+
 msgid "GENERATIONS"
 msgstr ""
 
 msgid "GENERATION_COLON"
 msgstr ""
+
+msgid "GEOLOGICAL_ACTIVITY"
+msgstr ""
+
+msgid "GEOLOGICAL_ACTIVITY_ACTIVE"
+msgstr ""
+
+msgid "GEOLOGICAL_ACTIVITY_AVERAGE"
+msgstr ""
+
+msgid "GEOLOGICAL_ACTIVITY_DORMANT"
+msgstr ""
+
+#, fuzzy
+msgid "GEOLOGICAL_ACTIVITY_EXPLANATION"
+msgstr ""
+"Microbii activi se vor mișca cand nu se întămplă nimic interesant.\n"
+"Microbii sesili vor fi staționari și vor aștepta ca mediul să se schimbe înainte de a acționa."
 
 msgid "GITHUB_TOOLTIP"
 msgstr ""
@@ -2806,6 +2873,14 @@ msgstr ""
 
 msgid "KEY_UP"
 msgstr ""
+
+#, fuzzy
+msgid "KILL_50_MICROBES"
+msgstr "Etapa Microbilor"
+
+#, fuzzy
+msgid "KILL_MICROBES_PROGRESS"
+msgstr "Editorul De Microbi"
 
 msgid "KILO_ABBREVIATION"
 msgstr ""
@@ -3532,6 +3607,10 @@ msgstr "Etapa Microbilor"
 #, fuzzy
 msgid "MICROBE_STAGE_ORGANELLE_DIVISION"
 msgstr "[thrive:input]g_move_forward[/thrive:input],[thrive:input]g_move_left[/thrive:input],[thrive:input]g_move_backwards[/thrive:input],[thrive:input]g_move_right[/thrive:input] şi mouse-ul să vă deplasați. [thrive:input]g_fire_toxin[/thrive:input] pentru a trage [thrive:compound type=\"oxytoxy\"][/thrive:compound] dacă aveți o vacuolă de toxine. [thrive:input]g_toggle_engulf[/thrive:input] pentru a activa modul de înghițit. Puteți să zoomați mai aproape și mai departe cu rotița mouse-ului."
+
+#, fuzzy
+msgid "MICROBIAL_MASSACRE"
+msgstr "Etapa Microbilor"
 
 msgid "MIDDLE_MOUSE"
 msgstr ""
@@ -4465,10 +4544,11 @@ msgstr ""
 msgid "PLANET"
 msgstr ""
 
-msgid "PLANET_DETAILS_STRING"
-msgstr ""
+#, fuzzy
+msgid "PLANET_CUSTOMIZER"
+msgstr "La cursor:"
 
-msgid "PLANET_GENERATION_TEASER"
+msgid "PLANET_DETAILS_STRING"
 msgstr ""
 
 msgid "PLANET_RANDOM_SEED"
@@ -4660,6 +4740,10 @@ msgstr ""
 msgid "REFRESH"
 msgstr ""
 
+#, fuzzy
+msgid "REGENERATE_BUTTON"
+msgstr "Etapa Multicelulară"
+
 msgid "RENDER_SCALE"
 msgstr ""
 
@@ -4703,6 +4787,9 @@ msgid "RESEARCH"
 msgstr ""
 
 msgid "RESET"
+msgstr ""
+
+msgid "RESET_ACHIEVEMENTS"
 msgstr ""
 
 msgid "RESET_DEADZONES"
@@ -8348,6 +8435,31 @@ msgstr ""
 msgid "WORLD_MISC_DETAILS_STRING"
 msgstr ""
 
+msgid "WORLD_OCEANIC_COVERAGE"
+msgstr ""
+
+#, fuzzy
+msgid "WORLD_OCEANIC_COVERAGE_EXPLANATION"
+msgstr ""
+"Microbii agresivi vor urmări prada pe distanțe mai mari\n"
+"și sunt mai predispuși să lupte împotriva prădătorilor atunci când sunt atacați.\n"
+"Microbii pașnici nu vor urmări pe alții pe distanțe mai mari\n"
+"și sunt mai puțin susceptibile de a folosi toxine împotriva prădătorilor."
+
+msgid "WORLD_OCEANIC_COVERAGE_LARGE"
+msgstr ""
+
+#, fuzzy
+msgid "WORLD_OCEANIC_COVERAGE_MEDIUM"
+msgstr ""
+"Microbii agresivi vor urmări prada pe distanțe mai mari\n"
+"și sunt mai predispuși să lupte împotriva prădătorilor atunci când sunt atacați.\n"
+"Microbii pașnici nu vor urmări pe alții pe distanțe mai mari\n"
+"și sunt mai puțin susceptibile de a folosi toxine împotriva prădătorilor."
+
+msgid "WORLD_OCEANIC_COVERAGE_SMALL"
+msgstr ""
+
 msgid "WORLD_RELATIVE_MOVEMENT"
 msgstr ""
 
@@ -8375,6 +8487,27 @@ msgstr ""
 #, fuzzy
 msgid "WORLD_SIZE_TOOLTIP"
 msgstr "Treceți la etapa de trezire. Disponibil odată ce aveți creierul suficient de dezvoltat (tip de țesut cu axoni)."
+
+msgid "WORLD_TEMPERATURE"
+msgstr ""
+
+msgid "WORLD_TEMPERATURE_COLD"
+msgstr ""
+
+#, fuzzy
+msgid "WORLD_TEMPERATURE_EXPLANATION"
+msgstr ""
+"Microbii agresivi vor urmări prada pe distanțe mai mari\n"
+"și sunt mai predispuși să lupte împotriva prădătorilor atunci când sunt atacați.\n"
+"Microbii pașnici nu vor urmări pe alții pe distanțe mai mari\n"
+"și sunt mai puțin susceptibile de a folosi toxine împotriva prădătorilor."
+
+#, fuzzy
+msgid "WORLD_TEMPERATURE_TEMPERATE"
+msgstr "Treceți la etapa de trezire. Disponibil odată ce aveți creierul suficient de dezvoltat (tip de țesut cu axoni)."
+
+msgid "WORLD_TEMPERATURE_WARM"
+msgstr ""
 
 msgid "WORST_PATCH_COLON"
 msgstr ""
@@ -8416,6 +8549,14 @@ msgstr ""
 #, fuzzy
 #~ msgid "CELL_TYPE_BUTTON_ATP_PRODUCTION"
 #~ msgstr "Producția ATP"
+
+#, fuzzy
+#~ msgid "WORLD_SEA_LEVEL"
+#~ msgstr "{0}-{1}m sub nivelul mării"
+
+#, fuzzy
+#~ msgid "WORLD_SEA_LEVEL_DEEP"
+#~ msgstr "{0}-{1}m sub nivelul mării"
 
 #, fuzzy
 #~ msgid "MICROBE_STAGE_DAY_NIGHT_TEXT"
@@ -8535,10 +8676,6 @@ msgstr ""
 #, fuzzy
 #~ msgid "WIKI_AWAKENING_STAGE"
 #~ msgstr "Stagiul de trezire"
-
-#, fuzzy
-#~ msgid "WIKI_MICROBE_EDITOR"
-#~ msgstr "Editorul De Microbi"
 
 #~ msgid "ALLOW_SPECIES_TO_NOT_MIGRATE"
 #~ msgstr "Permiteți speciilor să nu migreze (dacă nu se găsește o migrație bună)"

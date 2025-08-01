@@ -7,9 +7,9 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2025-07-29 14:51+0300\n"
-"PO-Revision-Date: 2025-05-27 06:43+0000\n"
-"Last-Translator: Anonymous <noreply@weblate.org>\n"
+"POT-Creation-Date: 2025-08-01 11:41+0300\n"
+"PO-Revision-Date: 2025-07-22 21:20+0000\n"
+"Last-Translator: Daniel Horák <danspyhor@gmail.com>\n"
 "Language-Team: Czech <https://translate.revolutionarygamesstudio.com/projects/thrive/thrive-game/cs/>\n"
 "Language: cs\n"
 "MIME-Version: 1.0\n"
@@ -50,6 +50,19 @@ msgstr "Abysopelagiál (hloubka oceánu do 6000m)"
 msgid "ACCEPT"
 msgstr "Přijmout"
 
+#, fuzzy
+msgid "ACHIEVEMENTS"
+msgstr "Základní pohyb"
+
+msgid "ACHIEVEMENTS_TOTAL"
+msgstr ""
+
+msgid "ACHIEVEMENT_ACHIEVED"
+msgstr ""
+
+msgid "ACHIEVEMENT_LOCKED"
+msgstr ""
+
 msgid "ACTION_AWAKEN"
 msgstr "Probudit se ({0:F1}/{1:F1})"
 
@@ -65,11 +78,12 @@ msgstr "Odstranit"
 msgid "ACTION_DOUBLE_POPULATION"
 msgstr "Dvojnásobná populace"
 
+#, fuzzy
 msgid "ACTION_DUPLICATE_UNITS"
-msgstr "Duplicitní jednotky"
+msgstr "Z duplikovat jednotky"
 
 msgid "ACTION_HALF_POPULATION"
-msgstr "Snížení počtu obyvatel na polovinu"
+msgstr "Snížení populace na polovinu"
 
 msgid "ACTION_TELEPORT"
 msgstr "Teleportovat"
@@ -109,7 +123,7 @@ msgid "AEROBIC_RESPIRATION"
 msgstr "Aerobní dýchání"
 
 msgid "AGENTS"
-msgstr "Činidlo"
+msgstr "Činidla"
 
 #, fuzzy
 msgid "AGENTS_COLON"
@@ -215,7 +229,7 @@ msgid "APPEARANCE"
 msgstr "Vzhled"
 
 msgid "APPLY"
-msgstr "Použití"
+msgstr "Použít"
 
 msgid "APPLY_CHANGES"
 msgstr "Použít změny"
@@ -263,7 +277,7 @@ msgid "ASSEMBLY_CLASS_REQUIRED"
 msgstr "Třída sestavy modu je potřebná když je soustava specifikovaná"
 
 msgid "ASSEMBLY_REQUIRED_WITH_HARMONY"
-msgstr "Sestava modu je potřebná když je povoleno auto Harmonie"
+msgstr "Sestava modů je potřebná když je povolená auto Harmonie"
 
 msgid "ASSUME_HYPERTHREADING"
 msgstr "Předpokládat, že CPU má povolený hyperthreading"
@@ -314,7 +328,7 @@ msgid "ATP_PRODUCTION_TOO_LOW"
 msgstr "VÝROBA ATP JE PŘÍLIŠ NÍZKÁ!"
 
 msgid "ATTEMPT_TO_WRITE_SAVE_FAILED"
-msgstr "Pokus o zapsání úložného souboru selhalo. Jméno uložené hry může byt příliš dlouhé, nebo nemáte zapisovací povolení do dané složky."
+msgstr "Pokus o uložení hry selhalo. Jméno uložené hry může byt příliš dlouhé, nebo nemáte zapisovací povolení do dané složky."
 
 msgid "AT_CURSOR"
 msgstr "Na kurzoru:"
@@ -363,6 +377,10 @@ msgstr "Automatické ukládání během hry"
 
 msgid "AUTO_EVO"
 msgstr "Automatická Evoluce"
+
+#, fuzzy
+msgid "AUTO_EVO_EXPLORER_TOOL_BUTTON"
+msgstr "Nástroj Průzkumu Auto-Evo"
 
 msgid "AUTO_EVO_EXPLORING_TOOL"
 msgstr "Nástroj Průzkumu Auto-Evo"
@@ -422,6 +440,9 @@ msgstr "Lomítko"
 
 msgid "BACKSPACE"
 msgstr "Backspace"
+
+msgid "BACK_TO_SETTINGS"
+msgstr ""
 
 #, fuzzy
 msgid "BACTERIAL_THERMOSYNTHESIS"
@@ -818,6 +839,24 @@ msgstr "vymazat cache"
 msgid "CLICK_TO_SELECT"
 msgstr "Smazat vybrané"
 
+msgid "CLIMATE_INSTABILITY"
+msgstr ""
+
+#, fuzzy
+msgid "CLIMATE_INSTABILITY_EXPLANATION"
+msgstr ""
+"Aktivní mikrobi se rozběhnou, když se nic zajímavého neděje.\n"
+"Přisedlé mikroby jsou nehybné a čekají na změnu prostředí, než začnou jednat."
+
+msgid "CLIMATE_STABILITY_AVERAGE"
+msgstr ""
+
+msgid "CLIMATE_STABILITY_STABLE"
+msgstr ""
+
+msgid "CLIMATE_STABILITY_UNSTABLE"
+msgstr ""
+
 msgid "CLOSE"
 msgstr "Zavřít"
 
@@ -1068,6 +1107,14 @@ msgstr "Začít hru s těmito nastaveními"
 
 msgid "CONFIRM_NEW_GAME_BUTTON_TOOLTIP_DISABLED"
 msgstr "Některá nastavení jsou neplatná"
+
+#, fuzzy
+msgid "CONFIRM_RESET_ACHIEVEMENTS"
+msgstr "Potvrdit Odstranění"
+
+#, fuzzy
+msgid "CONFIRM_RESET_ACHIEVEMENTS_DESCRIPTION"
+msgstr "Přeměňuje [thrive:compound type=\"atp\"][/thrive:compound] na [thrive:compound type=\"ammonia\"][/thrive:compound]. Rychlost je úměrná koncentraci [thrive:compound type=\"nitrogen\"][/thrive:compound]."
 
 msgid "CONSTRUCTION_UNIT_NAME"
 msgstr "Jednotka: {0}"
@@ -2548,11 +2595,33 @@ msgstr "Chybu opravíš stisknutím tlačítka Zpět v editoru"
 msgid "GENERAL_LOADING_TIP_7"
 msgstr "Chybu opravíš stisknutím tlačítka Zpět v editoru"
 
+#, fuzzy
+msgid "GENERATE_BUTTON"
+msgstr "Generace"
+
 msgid "GENERATIONS"
 msgstr "Generace"
 
 msgid "GENERATION_COLON"
 msgstr "Generace:"
+
+msgid "GEOLOGICAL_ACTIVITY"
+msgstr ""
+
+msgid "GEOLOGICAL_ACTIVITY_ACTIVE"
+msgstr ""
+
+msgid "GEOLOGICAL_ACTIVITY_AVERAGE"
+msgstr ""
+
+msgid "GEOLOGICAL_ACTIVITY_DORMANT"
+msgstr ""
+
+#, fuzzy
+msgid "GEOLOGICAL_ACTIVITY_EXPLANATION"
+msgstr ""
+"Aktivní mikrobi se rozběhnou, když se nic zajímavého neděje.\n"
+"Přisedlé mikroby jsou nehybné a čekají na změnu prostředí, než začnou jednat."
 
 msgid "GITHUB_TOOLTIP"
 msgstr "Navštiv náš GitHub repozitář"
@@ -3140,6 +3209,14 @@ msgstr "Tabulátor"
 
 msgid "KEY_UP"
 msgstr "Nahoru"
+
+#, fuzzy
+msgid "KILL_50_MICROBES"
+msgstr "Nitrogenáza"
+
+#, fuzzy
+msgid "KILL_MICROBES_PROGRESS"
+msgstr "Mikrobiální Editor"
 
 msgid "KILO_ABBREVIATION"
 msgstr "{0} k"
@@ -3982,6 +4059,10 @@ msgstr ""
 #, fuzzy
 msgid "MICROBE_STAGE_ORGANELLE_DIVISION"
 msgstr "Statistika organizmu"
+
+#, fuzzy
+msgid "MICROBIAL_MASSACRE"
+msgstr "Mikrobiální Období"
 
 msgid "MIDDLE_MOUSE"
 msgstr "Tlačítko kolečka myši"
@@ -5035,11 +5116,12 @@ msgid "PLANET"
 msgstr "Planeta"
 
 #, fuzzy
+msgid "PLANET_CUSTOMIZER"
+msgstr "Na kurzoru:"
+
+#, fuzzy
 msgid "PLANET_DETAILS_STRING"
 msgstr "Otevřít složku záznamů"
-
-msgid "PLANET_GENERATION_TEASER"
-msgstr "Generováni planet již brzy!"
 
 msgid "PLANET_RANDOM_SEED"
 msgstr "Náhodný seed planety"
@@ -5240,6 +5322,10 @@ msgid "REFRESH"
 msgstr "Obnovit"
 
 #, fuzzy
+msgid "REGENERATE_BUTTON"
+msgstr "Organely"
+
+#, fuzzy
 msgid "RENDER_SCALE"
 msgstr "Použitý renderer:"
 
@@ -5286,6 +5372,10 @@ msgstr "Hledat"
 
 msgid "RESET"
 msgstr "Resetovat"
+
+#, fuzzy
+msgid "RESET_ACHIEVEMENTS"
+msgstr "ke zvýšení pohyblivosti"
 
 msgid "RESET_DEADZONES"
 msgstr "Resetovat Mrtvý Úhel"
@@ -9146,6 +9236,27 @@ msgid "WORLD_MISC_DETAILS_STRING"
 msgstr ""
 
 #, fuzzy
+msgid "WORLD_OCEANIC_COVERAGE"
+msgstr "ke zvýšení pohyblivosti"
+
+#, fuzzy
+msgid "WORLD_OCEANIC_COVERAGE_EXPLANATION"
+msgstr ""
+"Soustředění mikrobi budou hledat kousky nebo kořist na větší vzdálenosti \n"
+"a mohou být mnohem náročnější na kusy.\n"
+"Reagující mikroby se dříve přepnou na nové cíle."
+
+msgid "WORLD_OCEANIC_COVERAGE_LARGE"
+msgstr ""
+
+#, fuzzy
+msgid "WORLD_OCEANIC_COVERAGE_MEDIUM"
+msgstr "ke zvýšení pohyblivosti"
+
+msgid "WORLD_OCEANIC_COVERAGE_SMALL"
+msgstr ""
+
+#, fuzzy
 msgid "WORLD_RELATIVE_MOVEMENT"
 msgstr "ke zvýšení pohyblivosti"
 
@@ -9173,6 +9284,29 @@ msgstr ""
 #, fuzzy
 msgid "WORLD_SIZE_TOOLTIP"
 msgstr "Připoj se na náš komunitní Discord server"
+
+#, fuzzy
+msgid "WORLD_TEMPERATURE"
+msgstr "Teplota"
+
+#, fuzzy
+msgid "WORLD_TEMPERATURE_COLD"
+msgstr "Teplota."
+
+#, fuzzy
+msgid "WORLD_TEMPERATURE_EXPLANATION"
+msgstr ""
+"Soustředění mikrobi budou hledat kousky nebo kořist na větší vzdálenosti \n"
+"a mohou být mnohem náročnější na kusy.\n"
+"Reagující mikroby se dříve přepnou na nové cíle."
+
+#, fuzzy
+msgid "WORLD_TEMPERATURE_TEMPERATE"
+msgstr "Teplota."
+
+#, fuzzy
+msgid "WORLD_TEMPERATURE_WARM"
+msgstr "Teplota."
 
 msgid "WORST_PATCH_COLON"
 msgstr "Nejhorší oblast:"
@@ -9221,6 +9355,21 @@ msgstr "Oddálit"
 #, fuzzy
 #~ msgid "CELL_TYPE_BUTTON_ATP_PRODUCTION"
 #~ msgstr "Mrtvá zóna:"
+
+#, fuzzy
+#~ msgid "WORLD_SEA_LEVEL"
+#~ msgstr "{0}-{1}m pod mořskou hladinou"
+
+#, fuzzy
+#~ msgid "WORLD_SEA_LEVEL_DEEP"
+#~ msgstr "{0}-{1}m pod mořskou hladinou"
+
+#, fuzzy
+#~ msgid "WORLD_SEA_LEVEL_MODERATE"
+#~ msgstr "ke zvýšení pohyblivosti"
+
+#~ msgid "PLANET_GENERATION_TEASER"
+#~ msgstr "Generováni planet již brzy!"
 
 #~ msgid "PASSIVE_REPRODUCTION_PROGRESS_EXPLANATION"
 #~ msgstr "(pasivní příjem reprodukčních sloučenin z prostředí bez toho aniž byste něco museli dělat)"
@@ -9457,10 +9606,6 @@ msgstr "Oddálit"
 #, fuzzy
 #~ msgid "WIKI_LIPASE"
 #~ msgstr "Lipáza"
-
-#, fuzzy
-#~ msgid "WIKI_MICROBE_EDITOR"
-#~ msgstr "Mikrobiální Editor"
 
 #, fuzzy
 #~ msgid "WIKI_MUCILAGE_SYNTHESIS"
