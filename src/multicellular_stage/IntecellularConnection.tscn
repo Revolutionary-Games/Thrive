@@ -1,0 +1,20 @@
+[gd_scene load_steps=5 format=3 uid="uid://j05t6cjr6xl3"]
+
+[ext_resource type="Texture2D" uid="uid://cwogwp0ip1n3p" path="res://assets/textures/IntercellularMatrix.png" id="1_ff78f"]
+[ext_resource type="Texture2D" uid="uid://dy8uqfppw8wxk" path="res://assets/textures/IntercellularMatrixNormal.png" id="2_n3v50"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_bvbmx"]
+transparency = 1
+no_depth_test = true
+albedo_texture = ExtResource("1_ff78f")
+normal_enabled = true
+normal_scale = 2.0
+normal_texture = ExtResource("2_n3v50")
+
+[sub_resource type="QuadMesh" id="QuadMesh_r4mwa"]
+material = SubResource("StandardMaterial3D_bvbmx")
+orientation = 1
+
+[node name="IntecellularConnection" type="MeshInstance3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0)
+mesh = SubResource("QuadMesh_r4mwa")
