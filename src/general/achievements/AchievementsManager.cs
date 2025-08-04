@@ -20,7 +20,7 @@ public partial class AchievementsManager : Node
     ///   We really do not want someone to modify the achievement config file, so we verify its hash. This is safe to
     ///   update when intentionally modifying achievement properties.
     /// </summary>
-    private const string ACHIEVEMENTS_INTEGRITY = "WjGHH+OGnYx6dP6E5tMDVoxhftqLuU8Uzpi2V2O72E0=";
+    private const string ACHIEVEMENTS_INTEGRITY = "Dj5AGiooq+l1SmzvNHvNLQk2xpFj+TA6J9b9qnMsW8o=";
 
     private const int MAX_ACHIEVEMENTS_LOAD_WAIT = 60;
     private const int ACHIEVEMENTS_SAVE_INTERVAL = 10;
@@ -420,6 +420,12 @@ public partial class AchievementsManager : Node
                     achievementsDiskProgress.UnlockedAchievements.Add(achievements[id].InternalName);
                     DisplayAchievement(achievements[id]);
                 }
+                else if (achievements[id].IsAtUnlockMilestone(statsStore))
+                {
+                    // Show progress towards an achievement
+                    GD.Print("We are at a milestone towards an achievement, showing that info");
+                    DisplayAchievement(achievements[id]);
+                }
             }
         }
         catch (Exception e)
@@ -438,7 +444,7 @@ public partial class AchievementsManager : Node
         GD.Print("Showing a popup about a new unlocked achievement: ", achievement.InternalName);
         achievementsToPopupQueue.Enqueue(achievement);
 
-        // TODO: play an achievement unlocked sound
+        // TODO: play an achievement unlocked sound alalal
     }
 
     private void PerformLoad()

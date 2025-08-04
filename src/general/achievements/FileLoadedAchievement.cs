@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using Newtonsoft.Json;
 
 /// <summary>
@@ -40,6 +41,9 @@ public class FileLoadedAchievement : IAchievement
 
     [JsonProperty]
     public int LinkedStatisticThreshold { get; private set; }
+
+    [JsonProperty]
+    public IReadOnlyList<int>? LinkedStatisticVisibleProgressThresholds { get; private set; }
 
     public bool ProcessPotentialUnlock(AchievementStatStore updatedStats)
     {
@@ -85,6 +89,25 @@ public class FileLoadedAchievement : IAchievement
 
         // No progress info available
         return Description.ToString();
+    }
+
+    public bool IsAtUnlockMilestone(AchievementStatStore stats)
+    {
+        if (LinkedStatistic != 0)
+        {
+            if (LinkedStatisticVisibleProgressThresholds != null)
+            {
+                var count = LinkedStatisticVisibleProgressThresholds.Count;
+                for (var i = 0; i < count; ++i)
+                {
+                    var threshold = LinkedStatisticVisibleProgressThresholds[i];
+                    if (stats.GetIntStat(LinkedStatistic) == threshold)
+                        return true;
+                }
+            }
+        }
+
+        return false;
     }
 
     public void Reset()
