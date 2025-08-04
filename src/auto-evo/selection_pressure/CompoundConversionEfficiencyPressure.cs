@@ -1,7 +1,7 @@
 ﻿namespace AutoEvo;
 
-using Godot;
 using Newtonsoft.Json;
+using System;
 
 [JSONDynamicTypeAllowed]
 public class CompoundConversionEfficiencyPressure : SelectionPressure
@@ -57,7 +57,7 @@ public class CompoundConversionEfficiencyPressure : SelectionPressure
         if (usedForSurvival)
         {
             score /=
-                Mathf.Sqrt(cache.GetEnergyBalanceForSpecies(microbeSpecies, patch.Biome).TotalConsumptionStationary);
+                MathF.Sqrt(cache.GetEnergyBalanceForSpecies(microbeSpecies, patch.Biome).TotalConsumptionStationary);
         }
 
         return score;
