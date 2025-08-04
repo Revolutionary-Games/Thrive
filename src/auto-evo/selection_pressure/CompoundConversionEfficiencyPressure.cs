@@ -55,7 +55,10 @@ public class CompoundConversionEfficiencyPressure : SelectionPressure
 
         // we need to factor in both conversion from source to output, and energy expenditure time
         if (usedForSurvival)
-            score /= Mathf.Sqrt(cache.GetEnergyBalanceForSpecies(microbeSpecies, patch.Biome).TotalConsumptionStationary);
+        {
+            score /=
+                Mathf.Sqrt(cache.GetEnergyBalanceForSpecies(microbeSpecies, patch.Biome).TotalConsumptionStationary);
+        }
 
         return score;
     }
