@@ -71,7 +71,7 @@ public sealed class IntercellularMatrixSystem : AEntitySetSystem<float>
 
         connection.Scale = Vector3.One * relativePosition.Length();
 
-        var angle = relativePosition.Normalized().AngleTo(Vector3.Forward);
+        var angle = relativePosition.AngleTo(Vector3.Forward);
 
         if (relativePosition.X > 0.0f)
             angle *= -1.0f;
