@@ -62,14 +62,16 @@ public sealed class IntercellularMatrixSystem : AEntitySetSystem<float>
 
         instance.AddChild(connection);
 
-        // Get cells' positions relative to the colony leader using transform math
-        var colonyTransform = colony.Leader.Get<WorldPosition>().ToTransform().Inverse();
-        var ourPos = colonyTransform * entity.Get<WorldPosition>().Position;
-        var targetPos = colonyTransform * parentEntity.Get<WorldPosition>().Position;
+        // Multiply global space vectors by the inverse colony transform to get cells' positions in colony local space
+        var inverseColonyTransform = colony.Leader.Get<WorldPosition>().ToTransform().Inverse();
+        var ourPos = inverseColonyTransform * entity.Get<WorldPosition>().Position;
+        var targetPos = inverseColonyTransform * parentEntity.Get<WorldPosition>().Position;
 
         var relativePosition = targetPos - ourPos;
 
-        connection.Scale = Vector3.One * relativePosition.Length();
+        float relativePosLength = relativePosition.Length();
+
+        connection.Scale = Vector3.One * (relativePosLength - 3.0f);
 
         var angle = relativePosition.AngleTo(Vector3.Forward);
 
