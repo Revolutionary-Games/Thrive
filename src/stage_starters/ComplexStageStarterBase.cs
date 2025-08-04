@@ -43,6 +43,7 @@ public partial class ComplexStageStarterBase : Node
         CustomizeLoadedScene(scene);
 
         GD.Print("Switching to target scene");
+        AchievementsManager.ReportNewGameStarted(false);
         SceneManager.Instance.SwitchToScene(scene);
 
         CustomizeAttachedScene(scene);

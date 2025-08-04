@@ -1,0 +1,421 @@
+[gd_scene load_steps=10 format=3 uid="uid://b3rrmtcvwufb"]
+
+[ext_resource type="Theme" uid="uid://b4cx0o110g4b6" path="res://src/gui_common/thrive_theme.tres" id="1_au4yw"]
+[ext_resource type="LabelSettings" uid="uid://uxdd8vb4xedn" path="res://src/gui_common/fonts/Body-Regular-AlmostTiny.tres" id="1_o0axg"]
+[ext_resource type="Script" uid="uid://yuk23m1mb4pn" path="res://src/gui_common/menus/PlanetSettings.cs" id="2_4astu"]
+[ext_resource type="PackedScene" uid="uid://bgeijgq7runaw" path="res://src/gui_common/FocusGrabber.tscn" id="3_68oky"]
+[ext_resource type="Texture2D" uid="uid://baqkntjn5ng0y" path="res://assets/textures/gui/bevel/randomizeButton.png" id="5_7f13j"]
+[ext_resource type="Texture2D" uid="uid://c8qyts61c8a0y" path="res://assets/textures/gui/bevel/randomizeButtonActive.png" id="6_ptvhc"]
+[ext_resource type="Texture2D" uid="uid://jm2munbr7078" path="res://assets/textures/gui/bevel/randomizeButtonHover.png" id="7_u4muj"]
+[ext_resource type="Texture2D" uid="uid://ch76ktrn1xy7r" path="res://assets/textures/gui/bevel/randomizeButtonDisabled.png" id="8_4kewu"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_p046t"]
+
+[node name="SettingsPanel" type="VBoxContainer" node_paths=PackedStringArray("lifeOriginButton", "worldSizeButton", "worldTemperatureButton", "worldSeaLevelButton", "worldGeologicalActivityButton", "worldClimateInstabilityButton", "lawkOnlyButton", "dayNightCycleButton", "dayLength", "dayLengthReadout", "dayLengthContainer", "gameSeed")]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+size_flags_vertical = 0
+theme = ExtResource("1_au4yw")
+theme_override_constants/separation = 10
+alignment = 1
+script = ExtResource("2_4astu")
+lifeOriginButton = NodePath("VBoxContainer3/HBoxContainer/LifeOrigin")
+worldSizeButton = NodePath("VBoxContainer4/HBoxContainer/WorldSize")
+worldTemperatureButton = NodePath("VBoxContainer5/HBoxContainer/WorldTemperature")
+worldSeaLevelButton = NodePath("VBoxContainer6/HBoxContainer/WorldSeaLevel")
+worldGeologicalActivityButton = NodePath("VBoxContainer7/HBoxContainer/WorldGeologicalActivity")
+worldClimateInstabilityButton = NodePath("VBoxContainer8/HBoxContainer/WorldClimateInstability")
+lawkOnlyButton = NodePath("VBoxContainer/HBoxContainer/LAWKButton")
+dayNightCycleButton = NodePath("VBoxContainer2/HBoxContainer/DayNightCycleButton")
+dayLength = NodePath("DayLengthContainer/HBoxContainer/HBoxContainer/DayLength")
+dayLengthReadout = NodePath("DayLengthContainer/HBoxContainer/HBoxContainer/DayLengthReadout")
+dayLengthContainer = NodePath("DayLengthContainer")
+gameSeed = NodePath("HBoxContainer3/HBoxContainer/GameSeed")
+
+[node name="VBoxContainer" type="VBoxContainer" parent="."]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="FocusGrabber" parent="VBoxContainer" instance=ExtResource("3_68oky")]
+layout_mode = 2
+Priority = 3
+NodeToGiveFocusTo = NodePath("../HBoxContainer/LAWKButton")
+GrabFocusWhenBecomingVisible = true
+
+[node name="HBoxContainer" type="HBoxContainer" parent="VBoxContainer"]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="VBoxContainer/HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+mouse_filter = 0
+text = "LAWK_ONLY"
+
+[node name="LAWKButton" type="CheckButton" parent="VBoxContainer/HBoxContainer"]
+layout_mode = 2
+button_pressed = true
+
+[node name="Label2" type="Label" parent="VBoxContainer"]
+custom_minimum_size = Vector2(200, 0)
+layout_mode = 2
+size_flags_horizontal = 3
+text = "LAWK_ONLY_EXPLANATION"
+label_settings = ExtResource("1_o0axg")
+autowrap_mode = 3
+
+[node name="VBoxContainer3" type="VBoxContainer" parent="."]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="HBoxContainer" type="HBoxContainer" parent="VBoxContainer3"]
+layout_mode = 2
+
+[node name="Label2" type="Label" parent="VBoxContainer3/HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_stretch_ratio = 3.0
+mouse_filter = 0
+text = "LIFE_ORIGIN"
+
+[node name="LifeOrigin" type="OptionButton" parent="VBoxContainer3/HBoxContainer"]
+custom_minimum_size = Vector2(200, 25)
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 0
+size_flags_stretch_ratio = 2.0
+tooltip_text = "LIFE_ORIGIN_TOOLTIP"
+selected = 0
+item_count = 3
+popup/item_0/text = "LIFE_ORIGIN_VENTS"
+popup/item_0/id = 0
+popup/item_1/text = "LIFE_ORIGIN_POND"
+popup/item_1/id = 1
+popup/item_2/text = "LIFE_ORIGIN_PANSPERMIA"
+popup/item_2/id = 2
+popup/item_2/disabled = true
+
+[node name="Label3" type="Label" parent="VBoxContainer3"]
+custom_minimum_size = Vector2(200, 0)
+layout_mode = 2
+size_flags_horizontal = 3
+text = "LIFE_ORIGIN_EXPLANATION"
+label_settings = ExtResource("1_o0axg")
+autowrap_mode = 3
+
+[node name="VBoxContainer4" type="VBoxContainer" parent="."]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="HBoxContainer" type="HBoxContainer" parent="VBoxContainer4"]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="VBoxContainer4/HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_stretch_ratio = 3.0
+mouse_filter = 0
+text = "WORLD_SIZE"
+
+[node name="WorldSize" type="OptionButton" parent="VBoxContainer4/HBoxContainer"]
+custom_minimum_size = Vector2(200, 25)
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 0
+size_flags_stretch_ratio = 2.0
+tooltip_text = "WORLD_SIZE_TOOLTIP"
+selected = 1
+item_count = 3
+popup/item_0/text = "WORLD_SIZE_SMALL"
+popup/item_0/id = 0
+popup/item_1/text = "WORLD_SIZE_MEDIUM"
+popup/item_1/id = 1
+popup/item_2/text = "WORLD_SIZE_LARGE"
+popup/item_2/id = 2
+
+[node name="Label2" type="Label" parent="VBoxContainer4"]
+custom_minimum_size = Vector2(200, 0)
+layout_mode = 2
+size_flags_horizontal = 3
+text = "WORLD_SIZE_EXPLANATION"
+label_settings = ExtResource("1_o0axg")
+autowrap_mode = 3
+
+[node name="VBoxContainer5" type="VBoxContainer" parent="."]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="HBoxContainer" type="HBoxContainer" parent="VBoxContainer5"]
+layout_mode = 2
+
+[node name="Label2" type="Label" parent="VBoxContainer5/HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_stretch_ratio = 3.0
+mouse_filter = 0
+text = "WORLD_TEMPERATURE"
+
+[node name="WorldTemperature" type="OptionButton" parent="VBoxContainer5/HBoxContainer"]
+custom_minimum_size = Vector2(200, 25)
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 0
+size_flags_stretch_ratio = 2.0
+selected = 1
+item_count = 3
+popup/item_0/text = "WORLD_TEMPERATURE_COLD"
+popup/item_0/id = 0
+popup/item_1/text = "WORLD_TEMPERATURE_TEMPERATE"
+popup/item_1/id = 1
+popup/item_2/text = "WORLD_TEMPERATURE_WARM"
+popup/item_2/id = 2
+
+[node name="Label3" type="Label" parent="VBoxContainer5"]
+custom_minimum_size = Vector2(200, 0)
+layout_mode = 2
+size_flags_horizontal = 3
+text = "WORLD_TEMPERATURE_EXPLANATION"
+label_settings = ExtResource("1_o0axg")
+autowrap_mode = 3
+
+[node name="VBoxContainer6" type="VBoxContainer" parent="."]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="HBoxContainer" type="HBoxContainer" parent="VBoxContainer6"]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="VBoxContainer6/HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_stretch_ratio = 3.0
+mouse_filter = 0
+text = "WORLD_OCEANIC_COVERAGE"
+
+[node name="WorldSeaLevel" type="OptionButton" parent="VBoxContainer6/HBoxContainer"]
+custom_minimum_size = Vector2(200, 25)
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 0
+size_flags_stretch_ratio = 2.0
+selected = 1
+item_count = 3
+popup/item_0/text = "WORLD_OCEANIC_COVERAGE_SMALL"
+popup/item_0/id = 0
+popup/item_1/text = "WORLD_OCEANIC_COVERAGE_MEDIUM"
+popup/item_1/id = 1
+popup/item_2/text = "WORLD_OCEANIC_COVERAGE_LARGE"
+popup/item_2/id = 2
+
+[node name="Label2" type="Label" parent="VBoxContainer6"]
+custom_minimum_size = Vector2(200, 0)
+layout_mode = 2
+size_flags_horizontal = 3
+text = "WORLD_OCEANIC_COVERAGE_EXPLANATION"
+label_settings = ExtResource("1_o0axg")
+autowrap_mode = 3
+
+[node name="VBoxContainer7" type="VBoxContainer" parent="."]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="HBoxContainer" type="HBoxContainer" parent="VBoxContainer7"]
+layout_mode = 2
+
+[node name="Label2" type="Label" parent="VBoxContainer7/HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_stretch_ratio = 3.0
+mouse_filter = 0
+text = "GEOLOGICAL_ACTIVITY"
+
+[node name="WorldGeologicalActivity" type="OptionButton" parent="VBoxContainer7/HBoxContainer"]
+custom_minimum_size = Vector2(200, 25)
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 0
+size_flags_stretch_ratio = 2.0
+selected = 1
+item_count = 3
+popup/item_0/text = "GEOLOGICAL_ACTIVITY_DORMANT"
+popup/item_0/id = 0
+popup/item_1/text = "GEOLOGICAL_ACTIVITY_AVERAGE"
+popup/item_1/id = 1
+popup/item_2/text = "GEOLOGICAL_ACTIVITY_ACTIVE"
+popup/item_2/id = 2
+
+[node name="Label3" type="Label" parent="VBoxContainer7"]
+custom_minimum_size = Vector2(200, 0)
+layout_mode = 2
+size_flags_horizontal = 3
+text = "GEOLOGICAL_ACTIVITY_EXPLANATION"
+label_settings = ExtResource("1_o0axg")
+autowrap_mode = 3
+
+[node name="VBoxContainer8" type="VBoxContainer" parent="."]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="HBoxContainer" type="HBoxContainer" parent="VBoxContainer8"]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="VBoxContainer8/HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_stretch_ratio = 3.0
+mouse_filter = 0
+text = "CLIMATE_INSTABILITY"
+
+[node name="WorldClimateInstability" type="OptionButton" parent="VBoxContainer8/HBoxContainer"]
+custom_minimum_size = Vector2(200, 25)
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 0
+size_flags_stretch_ratio = 2.0
+selected = 1
+item_count = 3
+popup/item_0/text = "CLIMATE_STABILITY_STABLE"
+popup/item_0/id = 0
+popup/item_1/text = "CLIMATE_STABILITY_AVERAGE"
+popup/item_1/id = 1
+popup/item_2/text = "CLIMATE_STABILITY_UNSTABLE"
+popup/item_2/id = 2
+
+[node name="Label3" type="Label" parent="VBoxContainer8"]
+custom_minimum_size = Vector2(200, 0)
+layout_mode = 2
+size_flags_horizontal = 3
+text = "CLIMATE_INSTABILITY_EXPLANATION"
+label_settings = ExtResource("1_o0axg")
+autowrap_mode = 3
+
+[node name="HSeparator" type="HSeparator" parent="."]
+custom_minimum_size = Vector2(0, 14)
+layout_mode = 2
+
+[node name="VBoxContainer2" type="VBoxContainer" parent="."]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="HBoxContainer" type="HBoxContainer" parent="VBoxContainer2"]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="VBoxContainer2/HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+mouse_filter = 0
+text = "DAY_NIGHT_CYCLE_ENABLED"
+
+[node name="DayNightCycleButton" type="CheckButton" parent="VBoxContainer2/HBoxContainer"]
+layout_mode = 2
+button_pressed = true
+
+[node name="Label2" type="Label" parent="VBoxContainer2"]
+custom_minimum_size = Vector2(200, 0)
+layout_mode = 2
+size_flags_horizontal = 3
+text = "DAY_NIGHT_CYCLE_ENABLED_EXPLANATION_2"
+label_settings = ExtResource("1_o0axg")
+autowrap_mode = 3
+
+[node name="DayLengthContainer" type="VBoxContainer" parent="."]
+layout_mode = 2
+
+[node name="HBoxContainer" type="HBoxContainer" parent="DayLengthContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="Label" type="Label" parent="DayLengthContainer/HBoxContainer"]
+custom_minimum_size = Vector2(250, 0)
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_stretch_ratio = 3.0
+text = "DAY_LENGTH"
+
+[node name="HBoxContainer" type="HBoxContainer" parent="DayLengthContainer/HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_stretch_ratio = 2.0
+
+[node name="DayLength" type="HSlider" parent="DayLengthContainer/HBoxContainer/HBoxContainer"]
+custom_minimum_size = Vector2(140, 0)
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 1
+focus_neighbor_bottom = NodePath("../../../../HBoxContainer3/HBoxContainer/GameSeed")
+focus_next = NodePath("../../../../HBoxContainer3/HBoxContainer/GameSeed")
+min_value = 60.0
+max_value = 300.0
+step = 30.0
+value = 180.0
+rounded = true
+scrollable = false
+
+[node name="HSeparator" type="HSeparator" parent="DayLengthContainer/HBoxContainer/HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 4
+theme_override_styles/separator = SubResource("StyleBoxEmpty_p046t")
+
+[node name="DayLengthReadout" type="LineEdit" parent="DayLengthContainer/HBoxContainer/HBoxContainer"]
+custom_minimum_size = Vector2(20, 0)
+layout_mode = 2
+text = "180"
+editable = false
+
+[node name="Label" type="Label" parent="DayLengthContainer"]
+custom_minimum_size = Vector2(200, 0)
+layout_mode = 2
+size_flags_horizontal = 3
+text = "DAY_LENGTH_EXPLANATION"
+label_settings = ExtResource("1_o0axg")
+autowrap_mode = 3
+
+[node name="HBoxContainer3" type="HBoxContainer" parent="."]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="HBoxContainer3"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_stretch_ratio = 3.0
+text = "PLANET_RANDOM_SEED"
+
+[node name="HBoxContainer" type="HBoxContainer" parent="HBoxContainer3"]
+custom_minimum_size = Vector2(200, 0)
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_stretch_ratio = 2.0
+
+[node name="GameSeed" type="LineEdit" parent="HBoxContainer3/HBoxContainer"]
+editor_description = "PLACEHOLDER"
+custom_minimum_size = Vector2(175, 0)
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_stretch_ratio = 2.0
+tooltip_text = "RANDOM_SEED_TOOLTIP"
+focus_neighbor_top = NodePath("../../../DayLengthContainer/HBoxContainer/HBoxContainer/DayLength")
+focus_neighbor_right = NodePath("../RandomizeButton")
+focus_neighbor_bottom = NodePath("../RandomizeButton")
+focus_next = NodePath("../RandomizeButton")
+focus_previous = NodePath("../../../DayLengthContainer/HBoxContainer/HBoxContainer/DayLength")
+text = "123456789"
+
+[node name="RandomizeButton" type="TextureButton" parent="HBoxContainer3/HBoxContainer"]
+custom_minimum_size = Vector2(31, 31)
+layout_mode = 2
+size_flags_horizontal = 0
+size_flags_vertical = 4
+texture_normal = ExtResource("5_7f13j")
+texture_pressed = ExtResource("6_ptvhc")
+texture_hover = ExtResource("7_u4muj")
+texture_disabled = ExtResource("8_4kewu")
+ignore_texture_size = true
+stretch_mode = 5
+
+[connection signal="toggled" from="VBoxContainer/HBoxContainer/LAWKButton" to="." method="OnLAWKToggled"]
+[connection signal="item_selected" from="VBoxContainer3/HBoxContainer/LifeOrigin" to="." method="OnLifeOriginSelected"]
+[connection signal="toggled" from="VBoxContainer2/HBoxContainer/DayNightCycleButton" to="." method="OnDayNightCycleToggled"]
+[connection signal="value_changed" from="DayLengthContainer/HBoxContainer/HBoxContainer/DayLength" to="." method="OnDayLengthChanged"]
+[connection signal="text_changed" from="HBoxContainer3/HBoxContainer/GameSeed" to="." method="OnSeedChanged"]
+[connection signal="pressed" from="HBoxContainer3/HBoxContainer/RandomizeButton" to="." method="OnGenerateSeedPressed"]

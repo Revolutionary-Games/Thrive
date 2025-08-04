@@ -116,6 +116,7 @@ public class LocalizationUpdate : LocalizationUpdateBase<LocalizationOptionsBase
     {
         "Description",
         "ProcessesDescription",
+        "ProgressDescription",
         "DisplayName",
         "GroupName",
         "Message",

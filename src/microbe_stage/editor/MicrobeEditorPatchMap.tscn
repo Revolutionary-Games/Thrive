@@ -104,6 +104,7 @@ theme_override_constants/margin_bottom = 10
 [node name="DraggableScrollContainer" parent="MarginContainer/HSplitContainer/MapPanel/MarginContainer" node_paths=PackedStringArray("content") instance=ExtResource("30")]
 layout_mode = 2
 content = NodePath("PatchMapDrawer")
+MinZoom = 0.2
 
 [node name="PatchMapDrawer" parent="MarginContainer/HSplitContainer/MapPanel/MarginContainer/DraggableScrollContainer" instance=ExtResource("18")]
 custom_minimum_size = Vector2(1500, 1500)

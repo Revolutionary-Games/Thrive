@@ -11,6 +11,10 @@ static func run() -> Array[GdUnitTestCase]:
 	var t:= Thread.new()
 	@warning_ignore("return_value_discarded")
 	t.start(func () -> Array[GdUnitTestCase]:
+		# Loading previous test session
+		var runner_config := GdUnitRunnerConfig.new()
+		runner_config.load_config()
+		var recovered_tests := runner_config.test_cases()
 		var test_suite_directories :PackedStringArray = GdUnitCommandHandler.scan_all_test_directories(GdUnitSettings.test_root_folder())
 		var scanner := GdUnitTestSuiteScanner.new()
 
@@ -24,11 +28,15 @@ static func run() -> Array[GdUnitTestCase]:
 		await (Engine.get_main_loop() as SceneTree).process_frame
 		for test_suites_script in collected_test_suites:
 			discover_tests(test_suites_script, func(test_case: GdUnitTestCase) -> void:
+				# Sync test uid from last test session
+				recover_test_guid(test_case, recovered_tests)
 				collected_tests.append(test_case)
 				GdUnitTestDiscoverSink.discover(test_case)
 			)
 
 		console_log_discover_results(collected_tests)
+		if !recovered_tests.is_empty():
+			console_log("Recovery last test session successfully, %d tests restored." % recovered_tests.size(), true)
 		return collected_tests
 	)
 	# wait unblocked to the tread is finished
@@ -38,6 +46,46 @@ static func run() -> Array[GdUnitTestCase]:
 	var test_to_execute: Array[GdUnitTestCase] = await t.wait_to_finish()
 	GdUnitSignals.instance().gdunit_event.emit(GdUnitEventTestDiscoverEnd.new(0, 0))
 	return test_to_execute
+
+
+## Restores the last test run session by loading the test run config file and rediscover the tests
+static func restore_last_session() -> void:
+	if GdUnitSettings.is_test_discover_enabled():
+		return
+
+	var runner_config := GdUnitRunnerConfig.new()
+	var result := runner_config.load_config()
+	# Report possible config loading errors
+	if result.is_error():
+		console_log("Recovery of the last test session failed: %s" % result.error_message(), true)
+	# If no config file found, skip test recovery
+	if result.is_warn():
+		return
+
+	# If no tests recorded, skip test recovery
+	var test_cases := runner_config.test_cases()
+	if test_cases.size() == 0:
+		return
+
+	# We run the test session restoring in an extra thread so that the main thread is not blocked
+	var t:= Thread.new()
+	t.start(func () -> void:
+		# Do sync the main thread before emit the discovered test suites to the inspector
+		await (Engine.get_main_loop() as SceneTree).process_frame
+		console_log("Recovery last test session ..", true)
+		GdUnitSignals.instance().gdunit_event.emit(GdUnitEventTestDiscoverStart.new())
+		for test_case in test_cases:
+			GdUnitTestDiscoverSink.discover(test_case)
+		GdUnitSignals.instance().gdunit_event.emit(GdUnitEventTestDiscoverEnd.new(0, 0))
+		console_log("Recovery last test session successfully, %d tests restored." % test_cases.size(), true)
+	)
+	t.wait_to_finish()
+
+
+static func recover_test_guid(current: GdUnitTestCase, recovered_tests: Array[GdUnitTestCase]) -> void:
+	for recovered_test in recovered_tests:
+		if recovered_test.fully_qualified_name == current.fully_qualified_name:
+			current.guid = recovered_test.guid
 
 
 static func console_log_discover_results(tests: Array[GdUnitTestCase]) -> void:
@@ -51,9 +99,10 @@ static func console_log_discover_results(tests: Array[GdUnitTestCase]) -> void:
 	console_log("")
 
 
-static func console_log(message: String) -> void:
+static func console_log(message: String, on_console := false) -> void:
 	prints(message)
-	#GdUnitSignals.instance().gdunit_message.emit(message)
+	if on_console:
+		GdUnitSignals.instance().gdunit_message.emit(message)
 
 
 static func filter_tests(method: Dictionary) -> bool:
@@ -81,7 +130,7 @@ static func discover_tests(source_script: Script, discover_sink := default_disco
 			for test_case in resolver.resolve_test_cases(source_script as GDScript):
 				discover_sink.call(test_case)
 	elif source_script.get_class() == "CSharpScript":
-		if not GdUnit4CSharpApiLoader.is_dotnet_supported():
+		if not GdUnit4CSharpApiLoader.is_api_loaded():
 			return
 		for test_case in GdUnit4CSharpApiLoader.discover_tests(source_script):
 			discover_sink.call(test_case)

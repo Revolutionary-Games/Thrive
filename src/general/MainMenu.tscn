@@ -1,8 +1,8 @@
-[gd_scene load_steps=69 format=3 uid="uid://c1fc2aip6oiqt"]
+[gd_scene load_steps=70 format=3 uid="uid://c1fc2aip6oiqt"]
 
 [ext_resource type="Theme" uid="uid://b4cx0o110g4b6" path="res://src/gui_common/thrive_theme.tres" id="1"]
 [ext_resource type="PackedScene" uid="uid://8to431fk1dnp" path="res://src/saving/SaveManagerGUI.tscn" id="2"]
-[ext_resource type="PackedScene" uid="uid://khgb1ctp1e5o" path="res://src/general/OptionsMenu.tscn" id="3"]
+[ext_resource type="PackedScene" uid="uid://khgb1ctp1e5o" path="res://src/gui_common/menus/OptionsMenu.tscn" id="3"]
 [ext_resource type="PackedScene" uid="uid://cl64wvnxs6ivs" path="res://src/gui_common/dialogs/CustomConfirmationDialog.tscn" id="4"]
 [ext_resource type="Script" uid="uid://cmmb0y16fbk1e" path="res://src/gui_common/VersionNumber.cs" id="5"]
 [ext_resource type="Script" uid="uid://cilrltnys645h" path="res://src/general/MainMenu.cs" id="6"]
@@ -65,6 +65,7 @@
 [ext_resource type="PackedScene" uid="uid://cpp1dl8aiumt7" path="res://src/gui_common/ThriveFeedDisplayer.tscn" id="57"]
 [ext_resource type="PackedScene" uid="uid://d0tfe6i1offy" path="res://src/gui_common/PatchNotesDisplayer.tscn" id="58"]
 [ext_resource type="PackedScene" uid="uid://3vnrqlyumqtd" path="res://src/gui_common/dialogs/PermanentlyDismissibleDialog.tscn" id="59"]
+[ext_resource type="PackedScene" uid="uid://bk3leiofn128o" path="res://src/general/achievements/AchievementsGallery.tscn" id="62_np7pl"]
 
 [sub_resource type="Animation" id="1"]
 resource_name = "MenuSlide"
@@ -117,7 +118,7 @@ _data = {
 &"RESET": SubResource("Animation_qunue")
 }
 
-[node name="MainMenu" type="Control" node_paths=PackedStringArray("thriveLogo", "modManager", "galleryViewer", "newsFeed", "newsFeedDisabler", "patchNotes", "patchNotesDisabler", "feedPositioner", "creditsContainer", "credits", "licensesDisplay", "freebuildButton", "multicellularFreebuildButton", "autoEvoExploringButton", "microbeBenchmarkButton", "exitToLauncherButton", "storeLoggedInDisplay", "socialMediaContainer", "websiteButtonsContainer", "itchButton", "patreonButton", "openGlPopup", "modLoadFailures", "steamFailedPopup", "safeModeWarning", "modsInstalledButNotEnabledWarning", "lowPerformanceWarning", "thanksDialog", "menus")]
+[node name="MainMenu" type="Control" node_paths=PackedStringArray("thriveLogo", "modManager", "galleryViewer", "newsFeed", "newsFeedDisabler", "patchNotes", "patchNotesDisabler", "feedPositioner", "creditsContainer", "credits", "licensesDisplay", "achievementsGallery", "achievementsContainer", "achievementsPopup", "freebuildButton", "multicellularFreebuildButton", "autoEvoExploringButton", "planetCustomizationButton", "microbeBenchmarkButton", "exitToLauncherButton", "storeLoggedInDisplay", "socialMediaContainer", "websiteButtonsContainer", "itchButton", "patreonButton", "openGlPopup", "modLoadFailures", "steamFailedPopup", "safeModeWarning", "modsInstalledButNotEnabledWarning", "lowPerformanceWarning", "thanksDialog", "menus")]
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
@@ -139,9 +140,13 @@ feedPositioner = NodePath("MenuContainers/FeedPositioner")
 creditsContainer = NodePath("CreditsView")
 credits = NodePath("CreditsView/CreditsScroll")
 licensesDisplay = NodePath("LicensesDisplay")
+achievementsGallery = NodePath("AchievementsView/AchievementsContainer/AchievementsGallery")
+achievementsContainer = NodePath("AchievementsView")
+achievementsPopup = NodePath("AchievementsView/AchievementsContainer")
 freebuildButton = NodePath("MenuContainers/Menus/VBoxContainer/Tools/FreebuildMicrobeEditor")
 multicellularFreebuildButton = NodePath("MenuContainers/Menus/VBoxContainer/Tools/FreebuildMulticellularEditor")
 autoEvoExploringButton = NodePath("MenuContainers/Menus/VBoxContainer/Tools/AutoEvoExploring")
+planetCustomizationButton = NodePath("MenuContainers/Menus/VBoxContainer/Tools/PlanetCustomizer")
 microbeBenchmarkButton = NodePath("MenuContainers/Menus/VBoxContainer/Benchmarks/MicrobeBenchmark")
 exitToLauncherButton = NodePath("MenuContainers/Menus/VBoxContainer/MainMenu/Launcher")
 storeLoggedInDisplay = NodePath("StoreUser")
@@ -394,10 +399,19 @@ text = "MULTICELLULAR_FREEBUILD_EDITOR"
 custom_minimum_size = Vector2(250, 40)
 layout_mode = 2
 size_flags_vertical = 0
+focus_neighbor_bottom = NodePath("../PlanetCustomizer")
+focus_next = NodePath("../PlanetCustomizer")
+mouse_filter = 1
+text = "AUTO_EVO_EXPLORING_TOOL"
+
+[node name="PlanetCustomizer" type="Button" parent="MenuContainers/Menus/VBoxContainer/Tools"]
+custom_minimum_size = Vector2(250, 40)
+layout_mode = 2
+size_flags_vertical = 0
 focus_neighbor_bottom = NodePath("../Benchmarks")
 focus_next = NodePath("../Benchmarks")
 mouse_filter = 1
-text = "AUTO_EVO_EXPLORING_TOOL"
+text = "PLANET_CUSTOMIZER"
 
 [node name="Benchmarks" type="Button" parent="MenuContainers/Menus/VBoxContainer/Tools"]
 custom_minimum_size = Vector2(250, 40)
@@ -407,16 +421,6 @@ focus_neighbor_bottom = NodePath("../Back")
 focus_next = NodePath("../Back")
 mouse_filter = 1
 text = "BENCHMARKS"
-
-[node name="unknown3" type="Button" parent="MenuContainers/Menus/VBoxContainer/Tools"]
-editor_description = "PLACEHOLDER"
-custom_minimum_size = Vector2(250, 40)
-layout_mode = 2
-size_flags_vertical = 0
-focus_mode = 0
-mouse_filter = 1
-disabled = true
-text = "???"
 
 [node name="Back" type="Button" parent="MenuContainers/Menus/VBoxContainer/Tools"]
 custom_minimum_size = Vector2(250, 40)
@@ -448,6 +452,13 @@ focus_neighbor_top = NodePath(".")
 focus_previous = NodePath(".")
 mouse_filter = 1
 text = "THRIVEOPEDIA"
+
+[node name="Achievements" type="Button" parent="MenuContainers/Menus/VBoxContainer/Extras"]
+custom_minimum_size = Vector2(250, 40)
+layout_mode = 2
+size_flags_vertical = 0
+mouse_filter = 1
+text = "ACHIEVEMENTS"
 
 [node name="Mods" type="Button" parent="MenuContainers/Menus/VBoxContainer/Extras"]
 custom_minimum_size = Vector2(250, 40)
@@ -830,7 +841,6 @@ layout_mode = 1
 [node name="SaveManagerGUI" parent="." instance=ExtResource("2")]
 visible = false
 layout_mode = 1
-anchors_preset = 15
 grow_horizontal = 2
 grow_vertical = 2
 
@@ -886,6 +896,50 @@ text = "BACK"
 
 [node name="FocusGrabber" parent="CreditsView" instance=ExtResource("56")]
 NodeToGiveFocusTo = NodePath("../Back")
+
+[node name="AchievementsView" type="Control" parent="."]
+visible = false
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+mouse_filter = 2
+theme = ExtResource("1")
+
+[node name="AchievementsContainer" parent="AchievementsView" instance=ExtResource("12_a6o4c")]
+custom_minimum_size = Vector2(850, 600)
+layout_mode = 0
+offset_right = 600.0
+offset_bottom = 400.0
+WindowTitle = "ACHIEVEMENTS"
+Resizable = true
+
+[node name="AchievementsGallery" parent="AchievementsView/AchievementsContainer" instance=ExtResource("62_np7pl")]
+layout_mode = 0
+anchors_preset = 0
+anchor_right = 0.0
+anchor_bottom = 0.0
+grow_horizontal = 1
+grow_vertical = 1
+
+[node name="Back" type="Button" parent="AchievementsView"]
+custom_minimum_size = Vector2(150, 40)
+layout_mode = 0
+anchor_top = 0.931
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 5.0
+offset_top = 4.67993
+offset_right = -1125.0
+offset_bottom = -5.00006
+size_flags_horizontal = 4
+size_flags_vertical = 0
+mouse_filter = 1
+text = "BACK"
 
 [node name="ModManager" parent="." instance=ExtResource("14")]
 visible = false
@@ -970,9 +1024,11 @@ ShowCloseButton = false
 [connection signal="pressed" from="MenuContainers/Menus/VBoxContainer/Tools/FreebuildMicrobeEditor" to="." method="FreebuildEditorPressed"]
 [connection signal="pressed" from="MenuContainers/Menus/VBoxContainer/Tools/FreebuildMulticellularEditor" to="." method="MulticellularFreebuildEditorPressed"]
 [connection signal="pressed" from="MenuContainers/Menus/VBoxContainer/Tools/AutoEvoExploring" to="." method="OnAutoEvoExploringPressed"]
+[connection signal="pressed" from="MenuContainers/Menus/VBoxContainer/Tools/PlanetCustomizer" to="." method="PlanetCustomizerPressed"]
 [connection signal="pressed" from="MenuContainers/Menus/VBoxContainer/Tools/Benchmarks" to="." method="BenchmarksPressed"]
 [connection signal="pressed" from="MenuContainers/Menus/VBoxContainer/Tools/Back" to="." method="BackFromToolsPressed"]
 [connection signal="pressed" from="MenuContainers/Menus/VBoxContainer/Extras/Thriveopedia" to="." method="ThriveopediaPressed"]
+[connection signal="pressed" from="MenuContainers/Menus/VBoxContainer/Extras/Achievements" to="." method="AchievementsPressed"]
 [connection signal="pressed" from="MenuContainers/Menus/VBoxContainer/Extras/Mods" to="." method="ModsPressed"]
 [connection signal="pressed" from="MenuContainers/Menus/VBoxContainer/Extras/ArtGallery" to="." method="ArtGalleryPressed"]
 [connection signal="pressed" from="MenuContainers/Menus/VBoxContainer/Extras/Licenses" to="." method="LicensesPressed"]
@@ -1012,5 +1068,8 @@ ShowCloseButton = false
 [connection signal="hidden" from="GalleryViewer" to="." method="OnReturnFromArtGallery"]
 [connection signal="OnFinishedSignal" from="CreditsView/CreditsScroll" to="." method="OnReturnFromCredits"]
 [connection signal="pressed" from="CreditsView/Back" to="." method="OnReturnFromCredits"]
+[connection signal="Canceled" from="AchievementsView/AchievementsContainer" to="." method="OnReturnFromAchievements"]
+[connection signal="Closed" from="AchievementsView/AchievementsContainer" to="." method="OnReturnFromAchievements"]
+[connection signal="pressed" from="AchievementsView/Back" to="." method="OnReturnFromAchievements"]
 [connection signal="OnClosed" from="ModManager" to="." method="OnReturnFromMods"]
 [connection signal="Confirmed" from="LowPerformanceDialog" to="." method="OnLowPerformanceDialogConfirmed"]

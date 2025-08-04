@@ -41,6 +41,9 @@ public partial class SaveListItem : PanelContainer
     private Label createdOnPlatform = null!;
 
     [Export]
+    private Label tags = null!;
+
+    [Export]
     private Label description = null!;
 
     [Export]
@@ -92,7 +95,7 @@ public partial class SaveListItem : PanelContainer
     public delegate void OnDifferentVersionPrototypeLoadedEventHandler();
 
     /// <summary>
-    ///   Triggered when this is loaded without a problem. This is triggered when the load is already in progress
+    ///   Triggered when this is loaded without a problem. This is triggered when the load is already in progress,
     ///   so this is more of an informative callback for components that need to know when a save load was done.
     /// </summary>
     [Signal]
@@ -174,7 +177,7 @@ public partial class SaveListItem : PanelContainer
 
         // General info
 
-        // If save is valid compare version numbers
+        // If save is valid, compare version numbers
         if (!isBroken)
         {
             versionDifference = VersionUtils.Compare(save.Info.ThriveVersion, Constants.Version);
@@ -211,6 +214,16 @@ public partial class SaveListItem : PanelContainer
         createdBy.Text = save.Info.Creator;
         createdOnPlatform.Text = save.Info.Platform;
         description.Text = save.Info.Description;
+
+        if (save.Info.CheatsUsed)
+        {
+            tags.Visible = true;
+            tags.Text = Localization.Translate("SAVE_CHEATS_USED");
+        }
+        else
+        {
+            tags.Visible = false;
+        }
 
         loadingData = false;
     }

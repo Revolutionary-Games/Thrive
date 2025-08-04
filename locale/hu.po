@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2025-06-05 21:10+0100\n"
+"POT-Creation-Date: 2025-08-01 16:03+0300\n"
 "PO-Revision-Date: 2025-05-25 15:00+0000\n"
 "Last-Translator: Anonymous <noreply@weblate.org>\n"
 "Language-Team: Hungarian <https://translate.revolutionarygamesstudio.com/projects/thrive/thrive-game/hu/>\n"
@@ -48,6 +48,19 @@ msgstr "Abisszopelágikus"
 
 msgid "ACCEPT"
 msgstr "Elfogad"
+
+#, fuzzy
+msgid "ACHIEVEMENTS"
+msgstr "Alap mozgás"
+
+msgid "ACHIEVEMENTS_TOTAL"
+msgstr ""
+
+msgid "ACHIEVEMENT_ACHIEVED"
+msgstr ""
+
+msgid "ACHIEVEMENT_LOCKED"
+msgstr ""
 
 msgid "ACTION_AWAKEN"
 msgstr "Felébred ({0:F1} / {1:F1})"
@@ -375,6 +388,10 @@ msgstr "Automata mentés a játék során"
 msgid "AUTO_EVO"
 msgstr "Auto-Evo"
 
+#, fuzzy
+msgid "AUTO_EVO_EXPLORER_TOOL_BUTTON"
+msgstr "Auto-Evo felfedező eszköz"
+
 msgid "AUTO_EVO_EXPLORING_TOOL"
 msgstr "Auto-Evo felfedező eszköz"
 
@@ -429,6 +446,9 @@ msgstr "fordított perjel"
 
 msgid "BACKSPACE"
 msgstr "Törlés"
+
+msgid "BACK_TO_SETTINGS"
+msgstr ""
 
 #, fuzzy
 msgid "BACTERIAL_THERMOSYNTHESIS"
@@ -699,14 +719,6 @@ msgstr "Az az érték, ami a világok generálásáért felelős. Ennek az ért�
 msgid "CELL_STAT_STORAGE_TOOLTIP"
 msgstr "Az az érték, ami a világok generálásáért felelős. Ennek az értéknek pozitívnak kell lennie."
 
-#, fuzzy
-msgid "CELL_TYPE_BUTTON_ATP_CONSUMPTION"
-msgstr "Options"
-
-#, fuzzy
-msgid "CELL_TYPE_BUTTON_ATP_PRODUCTION"
-msgstr "Options"
-
 msgid "CELL_TYPE_NAME"
 msgstr "Sejttípus neve"
 
@@ -723,6 +735,10 @@ msgstr "A rusticyanin egy fehérje, ami szén-dioxid, és oxigén segítségéve
 
 msgid "CHEATS"
 msgstr "Csalások"
+
+#, fuzzy
+msgid "CHEATS_USED_NOTICE"
+msgstr "Megszakítva."
 
 msgid "CHEAT_KEYS_ENABLED"
 msgstr "Csalások engedélyezve"
@@ -837,6 +853,24 @@ msgstr "Gyorsítótár törlése"
 #, fuzzy
 msgid "CLICK_TO_SELECT"
 msgstr "Mentés/-ek törlése"
+
+msgid "CLIMATE_INSTABILITY"
+msgstr ""
+
+#, fuzzy
+msgid "CLIMATE_INSTABILITY_EXPLANATION"
+msgstr ""
+"Az aktív sejtek össze-vissza bolyonganak a vizekben, ha semmi érdekes nem történik.\n"
+"A rögzült sejtek inkább egy helyben maradva várnak a környezet változásaira, mielőtt cselekednek."
+
+msgid "CLIMATE_STABILITY_AVERAGE"
+msgstr ""
+
+msgid "CLIMATE_STABILITY_STABLE"
+msgstr ""
+
+msgid "CLIMATE_STABILITY_UNSTABLE"
+msgstr ""
 
 msgid "CLOSE"
 msgstr "Bezár"
@@ -1090,6 +1124,14 @@ msgstr "Belépés a játékba ezekkel a beállításokkal"
 
 msgid "CONFIRM_NEW_GAME_BUTTON_TOOLTIP_DISABLED"
 msgstr "Egyes beállítások érvénytelenek"
+
+#, fuzzy
+msgid "CONFIRM_RESET_ACHIEVEMENTS"
+msgstr "Törlés megerősítése"
+
+#, fuzzy
+msgid "CONFIRM_RESET_ACHIEVEMENTS_DESCRIPTION"
+msgstr "[thrive:compound type=\"atp\"][/thrive:compound]-t alakít át [thrive:compound type=\"ammonia\"][/thrive:compound]-vá. Hatékonysága függ az [thrive:compound type=\"nitrogen\"][/thrive:compound] koncentrációjától."
 
 #, fuzzy
 msgid "CONSTRUCTION_UNIT_NAME"
@@ -2555,11 +2597,33 @@ msgstr "A szerkesztőben a visszavonás gomb lenyomásával kíjavíthatsz egy v
 msgid "GENERAL_LOADING_TIP_7"
 msgstr "A szerkesztőben a visszavonás gomb lenyomásával kíjavíthatsz egy véletlen elkövetett hibát"
 
+#, fuzzy
+msgid "GENERATE_BUTTON"
+msgstr "Generációk"
+
 msgid "GENERATIONS"
 msgstr "Generációk"
 
 msgid "GENERATION_COLON"
 msgstr "Generáció:"
+
+msgid "GEOLOGICAL_ACTIVITY"
+msgstr ""
+
+msgid "GEOLOGICAL_ACTIVITY_ACTIVE"
+msgstr ""
+
+msgid "GEOLOGICAL_ACTIVITY_AVERAGE"
+msgstr ""
+
+msgid "GEOLOGICAL_ACTIVITY_DORMANT"
+msgstr ""
+
+#, fuzzy
+msgid "GEOLOGICAL_ACTIVITY_EXPLANATION"
+msgstr ""
+"Az aktív sejtek össze-vissza bolyonganak a vizekben, ha semmi érdekes nem történik.\n"
+"A rögzült sejtek inkább egy helyben maradva várnak a környezet változásaira, mielőtt cselekednek."
 
 #, fuzzy
 msgid "GITHUB_TOOLTIP"
@@ -3139,6 +3203,14 @@ msgstr "Tab"
 
 msgid "KEY_UP"
 msgstr "Fel"
+
+#, fuzzy
+msgid "KILL_50_MICROBES"
+msgstr "Nitrogenáz"
+
+#, fuzzy
+msgid "KILL_MICROBES_PROGRESS"
+msgstr "Sejtszerkesztő"
 
 msgid "KILO_ABBREVIATION"
 msgstr "{0} K"
@@ -3984,6 +4056,10 @@ msgstr ""
 #, fuzzy
 msgid "MICROBE_STAGE_ORGANELLE_DIVISION"
 msgstr "  {0}: Megtalálható a {1} fajokban, átlagosan {2} darabja"
+
+#, fuzzy
+msgid "MICROBIAL_MASSACRE"
+msgstr "Sejtfázis"
 
 msgid "MIDDLE_MOUSE"
 msgstr "Görgő"
@@ -5040,11 +5116,12 @@ msgid "PLANET"
 msgstr "Bolygó"
 
 #, fuzzy
+msgid "PLANET_CUSTOMIZER"
+msgstr "A kurzornál:"
+
+#, fuzzy
 msgid "PLANET_DETAILS_STRING"
 msgstr "Mappa megnyitása"
-
-msgid "PLANET_GENERATION_TEASER"
-msgstr "Bolygó generálás hamarosan!"
 
 msgid "PLANET_RANDOM_SEED"
 msgstr "Véletlen bolygó seed"
@@ -5247,6 +5324,10 @@ msgstr "Vond vissza az előző műveletet"
 msgid "REFRESH"
 msgstr "Frissítés"
 
+#, fuzzy
+msgid "REGENERATE_BUTTON"
+msgstr "Sejtszervecskék"
+
 msgid "RENDER_SCALE"
 msgstr ""
 
@@ -5295,6 +5376,9 @@ msgstr "Search"
 
 msgid "RESET"
 msgstr "Visszaállít"
+
+msgid "RESET_ACHIEVEMENTS"
+msgstr ""
 
 #, fuzzy
 msgid "RESET_DEADZONES"
@@ -5477,6 +5561,10 @@ msgstr "Mentés és folytatás"
 
 msgid "SAVE_AUTOSAVE"
 msgstr "Automentés"
+
+#, fuzzy
+msgid "SAVE_CHEATS_USED"
+msgstr "Mérete:"
 
 msgid "SAVE_DELETE_WARNING"
 msgstr "Biztos véglegesen akarod törölni a következő mentést: {0}?"
@@ -5786,6 +5874,10 @@ msgstr "Kovasav"
 
 msgid "SILICA_MEMBRANE_DESCRIPTION"
 msgstr ""
+
+#, fuzzy
+msgid "SIMULATION_CONFIG"
+msgstr "Ozmoreguláció ára"
 
 msgid "SIXTEEN_TIMES"
 msgstr "16x"
@@ -6148,6 +6240,10 @@ msgstr "Váltás felső kameranézetre"
 
 msgid "SYSREQ"
 msgstr "SysRq"
+
+#, fuzzy
+msgid "TAB_CHANGE_BLOCKED_WHILE_ACTION_IN_PROGRESS"
+msgstr "Akció blokkolva, miközben egy másik folyamatban van"
 
 msgid "TAB_SECONDARY_SWITCH_LEFT"
 msgstr ""
@@ -7109,6 +7205,9 @@ msgid "UPSCALE_FSR_1"
 msgstr ""
 
 msgid "UPSCALE_FSR_22"
+msgstr ""
+
+msgid "UPSCALE_METHOD"
 msgstr ""
 
 msgid "UPSCALE_SHARPENING_FSR"
@@ -9113,6 +9212,26 @@ msgid "WORLD_MISC_DETAILS_STRING"
 msgstr ""
 
 #, fuzzy
+msgid "WORLD_OCEANIC_COVERAGE"
+msgstr "Alap mozgás"
+
+#, fuzzy
+msgid "WORLD_OCEANIC_COVERAGE_EXPLANATION"
+msgstr ""
+"A fókuszált sejtek nagyobb távolságokat tesznek meg táplálék reményében.\n"
+"A reszponzív sejtek hamar új célpontokat keresnek."
+
+msgid "WORLD_OCEANIC_COVERAGE_LARGE"
+msgstr ""
+
+#, fuzzy
+msgid "WORLD_OCEANIC_COVERAGE_MEDIUM"
+msgstr "Alap mozgás"
+
+msgid "WORLD_OCEANIC_COVERAGE_SMALL"
+msgstr ""
+
+#, fuzzy
 msgid "WORLD_RELATIVE_MOVEMENT"
 msgstr "Alap mozgás"
 
@@ -9139,6 +9258,28 @@ msgstr ""
 #, fuzzy
 msgid "WORLD_SIZE_TOOLTIP"
 msgstr "Segítség"
+
+#, fuzzy
+msgid "WORLD_TEMPERATURE"
+msgstr "Hőmérséklet"
+
+#, fuzzy
+msgid "WORLD_TEMPERATURE_COLD"
+msgstr "Hőm."
+
+#, fuzzy
+msgid "WORLD_TEMPERATURE_EXPLANATION"
+msgstr ""
+"A fókuszált sejtek nagyobb távolságokat tesznek meg táplálék reményében.\n"
+"A reszponzív sejtek hamar új célpontokat keresnek."
+
+#, fuzzy
+msgid "WORLD_TEMPERATURE_TEMPERATE"
+msgstr "Hőm."
+
+#, fuzzy
+msgid "WORLD_TEMPERATURE_WARM"
+msgstr "Hőm."
 
 msgid "WORST_PATCH_COLON"
 msgstr "Legrosszabb patch:"
@@ -9179,6 +9320,29 @@ msgstr "Közelítés"
 
 msgid "ZOOM_OUT"
 msgstr "Távolodás"
+
+#, fuzzy
+#~ msgid "CELL_TYPE_BUTTON_ATP_CONSUMPTION"
+#~ msgstr "Options"
+
+#, fuzzy
+#~ msgid "CELL_TYPE_BUTTON_ATP_PRODUCTION"
+#~ msgstr "Options"
+
+#, fuzzy
+#~ msgid "WORLD_SEA_LEVEL"
+#~ msgstr "{0}-{1}m-el a tengerszint alatt"
+
+#, fuzzy
+#~ msgid "WORLD_SEA_LEVEL_DEEP"
+#~ msgstr "{0}-{1}m-el a tengerszint alatt"
+
+#, fuzzy
+#~ msgid "WORLD_SEA_LEVEL_MODERATE"
+#~ msgstr "Alap mozgás"
+
+#~ msgid "PLANET_GENERATION_TEASER"
+#~ msgstr "Bolygó generálás hamarosan!"
 
 #, fuzzy
 #~ msgid "PASSIVE_REPRODUCTION_PROGRESS_EXPLANATION"
@@ -9412,10 +9576,6 @@ msgstr "Távolodás"
 #, fuzzy
 #~ msgid "WIKI_LIPASE"
 #~ msgstr "Lipáz"
-
-#, fuzzy
-#~ msgid "WIKI_MICROBE_EDITOR"
-#~ msgstr "Sejtszerkesztő"
 
 #, fuzzy
 #~ msgid "WIKI_MUCILAGE_SYNTHESIS"

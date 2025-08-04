@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2025-06-05 21:10+0100\n"
+"POT-Creation-Date: 2025-08-01 16:03+0300\n"
 "PO-Revision-Date: 2025-05-25 15:00+0000\n"
 "Last-Translator: Anonymous <noreply@weblate.org>\n"
 "Language-Team: Finnish <https://translate.revolutionarygamesstudio.com/projects/thrive/thrive-game/fi/>\n"
@@ -56,6 +56,19 @@ msgstr "Abyssaalivyöhyke"
 
 msgid "ACCEPT"
 msgstr "Hyväksy"
+
+#, fuzzy
+msgid "ACHIEVEMENTS"
+msgstr "Perus liikkuminen"
+
+msgid "ACHIEVEMENTS_TOTAL"
+msgstr ""
+
+msgid "ACHIEVEMENT_ACHIEVED"
+msgstr ""
+
+msgid "ACHIEVEMENT_LOCKED"
+msgstr ""
 
 msgid "ACTION_AWAKEN"
 msgstr "Herää ({0:F1} / {1:F1})"
@@ -366,6 +379,10 @@ msgid "AUTO_EVO"
 msgstr "Auto-evo"
 
 #, fuzzy
+msgid "AUTO_EVO_EXPLORER_TOOL_BUTTON"
+msgstr "suorituksen status:"
+
+#, fuzzy
 msgid "AUTO_EVO_EXPLORING_TOOL"
 msgstr "suorituksen status:"
 
@@ -430,6 +447,9 @@ msgstr "Kenoviiva"
 
 msgid "BACKSPACE"
 msgstr "Askelpalautin"
+
+msgid "BACK_TO_SETTINGS"
+msgstr ""
 
 #, fuzzy
 msgid "BACTERIAL_THERMOSYNTHESIS"
@@ -709,14 +729,6 @@ msgstr "Laita peli tauolle"
 msgid "CELL_STAT_STORAGE_TOOLTIP"
 msgstr "Laita peli tauolle"
 
-#, fuzzy
-msgid "CELL_TYPE_BUTTON_ATP_CONSUMPTION"
-msgstr "Ohjaimen herkkyys"
-
-#, fuzzy
-msgid "CELL_TYPE_BUTTON_ATP_PRODUCTION"
-msgstr "Ohjaimen herkkyys"
-
 msgid "CELL_TYPE_NAME"
 msgstr "Solutyypin Nimi"
 
@@ -733,6 +745,10 @@ msgstr "Rustisyaniini on proteiini, joka käyttää hiilidioksiidia ja happea mu
 
 msgid "CHEATS"
 msgstr "Huijauskoodit"
+
+#, fuzzy
+msgid "CHEATS_USED_NOTICE"
+msgstr "Peruutettu."
 
 msgid "CHEAT_KEYS_ENABLED"
 msgstr "Huijauskoodit aktiivisia"
@@ -851,6 +867,24 @@ msgstr ""
 #, fuzzy
 msgid "CLICK_TO_SELECT"
 msgstr "Poista valitut"
+
+msgid "CLIMATE_INSTABILITY"
+msgstr ""
+
+#, fuzzy
+msgid "CLIMATE_INSTABILITY_EXPLANATION"
+msgstr ""
+"Aktiiviset mikrobit vilistävät ja mukeltavat, kun mitään mielenkiintoista ei tapahdu.\n"
+"Lakoniset mikrobit pysyttelevät mieluummin paikoillaan odottaen ympäristön muutoksia reagoidakseen niihin."
+
+msgid "CLIMATE_STABILITY_AVERAGE"
+msgstr ""
+
+msgid "CLIMATE_STABILITY_STABLE"
+msgstr ""
+
+msgid "CLIMATE_STABILITY_UNSTABLE"
+msgstr ""
 
 msgid "CLOSE"
 msgstr "Sulje"
@@ -1113,6 +1147,14 @@ msgstr "Pysäytysmenu"
 #, fuzzy
 msgid "CONFIRM_NEW_GAME_BUTTON_TOOLTIP_DISABLED"
 msgstr "Pysäytysmenu"
+
+#, fuzzy
+msgid "CONFIRM_RESET_ACHIEVEMENTS"
+msgstr "Vahvista poistuminen"
+
+#, fuzzy
+msgid "CONFIRM_RESET_ACHIEVEMENTS_DESCRIPTION"
+msgstr "Muuntaa [thrive:compound type=\"atp\"][/thrive:compound]:n [thrive:compound type=\"ammonia\"]ammoniakiksi[/thrive:compound]. Muunnosnopeus riippuu ympäristön [thrive:compound type=\"nitrogen\"]typpipitoisuudesta[/thrive:compound]."
 
 #, fuzzy
 msgid "CONSTRUCTION_UNIT_NAME"
@@ -2591,11 +2633,33 @@ msgid "GENERAL_LOADING_TIP_7"
 msgstr "Paina kumoamispainiketta editorissa korjataksesi tehdyn virheen"
 
 #, fuzzy
+msgid "GENERATE_BUTTON"
+msgstr "Sukupolvi:"
+
+#, fuzzy
 msgid "GENERATIONS"
 msgstr "Sukupolvi:"
 
 msgid "GENERATION_COLON"
 msgstr "Sukupolvi:"
+
+msgid "GEOLOGICAL_ACTIVITY"
+msgstr ""
+
+msgid "GEOLOGICAL_ACTIVITY_ACTIVE"
+msgstr ""
+
+msgid "GEOLOGICAL_ACTIVITY_AVERAGE"
+msgstr ""
+
+msgid "GEOLOGICAL_ACTIVITY_DORMANT"
+msgstr ""
+
+#, fuzzy
+msgid "GEOLOGICAL_ACTIVITY_EXPLANATION"
+msgstr ""
+"Aktiiviset mikrobit vilistävät ja mukeltavat, kun mitään mielenkiintoista ei tapahdu.\n"
+"Lakoniset mikrobit pysyttelevät mieluummin paikoillaan odottaen ympäristön muutoksia reagoidakseen niihin."
 
 #, fuzzy
 msgid "GITHUB_TOOLTIP"
@@ -3170,6 +3234,14 @@ msgstr "Tabulaattori"
 
 msgid "KEY_UP"
 msgstr "Ylös"
+
+#, fuzzy
+msgid "KILL_50_MICROBES"
+msgstr "Nitrogenaasi"
+
+#, fuzzy
+msgid "KILL_MICROBES_PROGRESS"
+msgstr "Mikrobieditori"
 
 msgid "KILO_ABBREVIATION"
 msgstr "{0} K"
@@ -4031,6 +4103,17 @@ msgstr ""
 #, fuzzy
 msgid "MICROBE_STAGE_ORGANELLE_DIVISION"
 msgstr "Statistiikkaa organismista"
+
+#, fuzzy
+msgid "MICROBIAL_MASSACRE"
+msgstr ""
+"Kaukaisella planeetalla maailmankausien vulkaaninen aktiivisuus ja meteoriittien iskeymät ovat johtaneet uuden ilmiön kehittymisen maailmankaikkeudessa.\n"
+"\n"
+"Elämä.\n"
+"\n"
+"Yksinkertaiset mikrobit lymyilevät syvällä meren uumenissa. Olet viimeinen universaali esivanhempi (LUCA) tällä planeetalla.\n"
+"\n"
+"Selviytyäkseksi tässä armottomassa ympäristössä, sinun täytyy etsiä ja kerätä yhdisteitä. Niiden avulla voit kehittyä sukupolvien saatossa ja kilpailla muiden lajien kanssa."
 
 msgid "MIDDLE_MOUSE"
 msgstr "Hiiren keskimmäinen painike"
@@ -5084,11 +5167,12 @@ msgid "PLANET"
 msgstr "Planeetta"
 
 #, fuzzy
+msgid "PLANET_CUSTOMIZER"
+msgstr "Kursorin alla:"
+
+#, fuzzy
 msgid "PLANET_DETAILS_STRING"
 msgstr "Avaa lokien kansio"
-
-msgid "PLANET_GENERATION_TEASER"
-msgstr ""
 
 msgid "PLANET_RANDOM_SEED"
 msgstr "Planeetan satunnainen lähtöarvo"
@@ -5297,6 +5381,10 @@ msgid "REFRESH"
 msgstr "Virkistä"
 
 #, fuzzy
+msgid "REGENERATE_BUTTON"
+msgstr "Soluelin"
+
+#, fuzzy
 msgid "RENDER_SCALE"
 msgstr "Käytetty renderöijä:"
 
@@ -5345,6 +5433,10 @@ msgstr "Hae"
 
 msgid "RESET"
 msgstr "Kumoa muutokset"
+
+#, fuzzy
+msgid "RESET_ACHIEVEMENTS"
+msgstr "Suhteellinen peli-ikkunaan"
 
 #, fuzzy
 msgid "RESET_DEADZONES"
@@ -5530,6 +5622,10 @@ msgstr "Tallenna ja jatka"
 
 msgid "SAVE_AUTOSAVE"
 msgstr "Tallenna Peli"
+
+#, fuzzy
+msgid "SAVE_CHEATS_USED"
+msgstr "Tilaa käytössä:"
 
 msgid "SAVE_DELETE_WARNING"
 msgstr "Tämän tallennuksen poistamista ei voi kumota, haluatko varmasti lopullisesti poistaa {0}?"
@@ -5846,6 +5942,10 @@ msgstr "Piidioksidi"
 
 msgid "SILICA_MEMBRANE_DESCRIPTION"
 msgstr ""
+
+#, fuzzy
+msgid "SIMULATION_CONFIG"
+msgstr "Osmoregulaation energiantarve"
 
 msgid "SIXTEEN_TIMES"
 msgstr "16x"
@@ -6222,6 +6322,10 @@ msgstr ""
 
 msgid "SYSREQ"
 msgstr "SysRq"
+
+#, fuzzy
+msgid "TAB_CHANGE_BLOCKED_WHILE_ACTION_IN_PROGRESS"
+msgstr "Toiminto estetty sillä toinen toiminto on kesken"
 
 msgid "TAB_SECONDARY_SWITCH_LEFT"
 msgstr ""
@@ -7222,6 +7326,9 @@ msgid "UPSCALE_FSR_1"
 msgstr ""
 
 msgid "UPSCALE_FSR_22"
+msgstr ""
+
+msgid "UPSCALE_METHOD"
 msgstr ""
 
 msgid "UPSCALE_SHARPENING_FSR"
@@ -9350,6 +9457,27 @@ msgstr "Statistiikkaa organismista"
 msgid "WORLD_MISC_DETAILS_STRING"
 msgstr ""
 
+#, fuzzy
+msgid "WORLD_OCEANIC_COVERAGE"
+msgstr "Suhteellinen maailmaan"
+
+#, fuzzy
+msgid "WORLD_OCEANIC_COVERAGE_EXPLANATION"
+msgstr ""
+"Keskittyneet mikrobit etsivät yhdisteitä, kappaleita ja saaliita pidemmän matkan päästä\n"
+"ja voivat olla kunnianhimoisempia löytyvien palasten keruussa.\n"
+"Responssiiviset mikrobit vaihtavat kohdetta nopeammin, jos ei niitä heti saa kiinni."
+
+msgid "WORLD_OCEANIC_COVERAGE_LARGE"
+msgstr ""
+
+#, fuzzy
+msgid "WORLD_OCEANIC_COVERAGE_MEDIUM"
+msgstr "Suhteellinen maailmaan"
+
+msgid "WORLD_OCEANIC_COVERAGE_SMALL"
+msgstr ""
+
 msgid "WORLD_RELATIVE_MOVEMENT"
 msgstr "Suhteellinen maailmaan"
 
@@ -9377,6 +9505,29 @@ msgstr ""
 #, fuzzy
 msgid "WORLD_SIZE_TOOLTIP"
 msgstr "Lisää uusi syöte"
+
+#, fuzzy
+msgid "WORLD_TEMPERATURE"
+msgstr "Lämpötila"
+
+#, fuzzy
+msgid "WORLD_TEMPERATURE_COLD"
+msgstr "Lämpö."
+
+#, fuzzy
+msgid "WORLD_TEMPERATURE_EXPLANATION"
+msgstr ""
+"Keskittyneet mikrobit etsivät yhdisteitä, kappaleita ja saaliita pidemmän matkan päästä\n"
+"ja voivat olla kunnianhimoisempia löytyvien palasten keruussa.\n"
+"Responssiiviset mikrobit vaihtavat kohdetta nopeammin, jos ei niitä heti saa kiinni."
+
+#, fuzzy
+msgid "WORLD_TEMPERATURE_TEMPERATE"
+msgstr "Lämpö."
+
+#, fuzzy
+msgid "WORLD_TEMPERATURE_WARM"
+msgstr "Lämpö."
 
 #, fuzzy
 msgid "WORST_PATCH_COLON"
@@ -9419,6 +9570,26 @@ msgstr "Zoomaa sisään"
 
 msgid "ZOOM_OUT"
 msgstr "Zoomaa ulospäin"
+
+#, fuzzy
+#~ msgid "CELL_TYPE_BUTTON_ATP_CONSUMPTION"
+#~ msgstr "Ohjaimen herkkyys"
+
+#, fuzzy
+#~ msgid "CELL_TYPE_BUTTON_ATP_PRODUCTION"
+#~ msgstr "Ohjaimen herkkyys"
+
+#, fuzzy
+#~ msgid "WORLD_SEA_LEVEL"
+#~ msgstr "{0}-{1}m merenpinnan alapuolella"
+
+#, fuzzy
+#~ msgid "WORLD_SEA_LEVEL_DEEP"
+#~ msgstr "{0}-{1}m merenpinnan alapuolella"
+
+#, fuzzy
+#~ msgid "WORLD_SEA_LEVEL_MODERATE"
+#~ msgstr "Suhteellinen maailmaan"
 
 #, fuzzy
 #~ msgid "PASSIVE_REPRODUCTION_PROGRESS_EXPLANATION"
@@ -9690,10 +9861,6 @@ msgstr "Zoomaa ulospäin"
 #, fuzzy
 #~ msgid "WIKI_LIPASE"
 #~ msgstr "Lipaasi"
-
-#, fuzzy
-#~ msgid "WIKI_MICROBE_EDITOR"
-#~ msgstr "Mikrobieditori"
 
 #, fuzzy
 #~ msgid "WIKI_MUCILAGE_SYNTHESIS"
