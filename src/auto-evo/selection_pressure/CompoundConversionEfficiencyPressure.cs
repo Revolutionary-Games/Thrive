@@ -1,7 +1,7 @@
 ﻿namespace AutoEvo;
 
-using Newtonsoft.Json;
 using System;
+using Newtonsoft.Json;
 
 [JSONDynamicTypeAllowed]
 public class CompoundConversionEfficiencyPressure : SelectionPressure
