@@ -1,12 +1,14 @@
 shader_type spatial;
 render_mode unshaded;
 
+
 // Any changes to these two must be matched in Membrane.gdshader
 // Set to 0 to disable wiggle
 uniform float wigglyNess = 1.f;
 uniform float movementWigglyNess = 1.f;
+uniform sampler2D centerMembraneTexture : source_color;
 
-uniform sampler2D albedoTexture : source_color;
+uniform sampler2D albedoTexture : source_color, filter_linear;
 
 void vertex(){
     vec3 worldVertex = (MODEL_MATRIX * vec4(VERTEX, 1.0)).xyz;
@@ -21,8 +23,9 @@ void vertex(){
 
 void fragment() {
     vec4 color = texture(albedoTexture, UV);
+    vec4 centerTransparencyTex = texture(centerMembraneTexture, UV);
 
 	ALBEDO = color.rgb;
-	ALPHA = color.a * 0.15f;
-	EMISSION = color.rgb * 2.0;
+	ALPHA = color.a * 0.7f * (1.0f - centerTransparencyTex.a * 0.25f);
+	EMISSION = color.rgb * 4.0;
 }

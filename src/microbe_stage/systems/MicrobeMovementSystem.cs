@@ -80,12 +80,15 @@ public sealed class MicrobeMovementSystem : AEntitySetSystem<float>
 
         // Position is used to calculate the look direction
         ref var position = ref entity.Get<WorldPosition>();
+        ref var cellProperties = ref entity.Get<CellProperties>();
 
         var lookVector = control.LookAtPoint - position.Position;
         lookVector.Y = 0;
         var lookVectorLength = lookVector.Length();
 
         var turnAngle = (position.Rotation * Vector3.Forward).SignedAngleTo(lookVector, Vector3.Up);
+        cellProperties.TurnDistance = Mathf.Round(turnAngle * 100f) * 0.01f;
+
         var unsignedTurnAngle = Math.Abs(turnAngle);
 
         // Linear function reaching 1 at CELL_TURN_INFLECTION_RADIANS
@@ -139,7 +142,6 @@ public sealed class MicrobeMovementSystem : AEntitySetSystem<float>
 #endif
 
         var compounds = entity.Get<CompoundStorage>().Compounds;
-        ref var cellProperties = ref entity.Get<CellProperties>();
 
         var rotationSpeed = CalculateRotationSpeed(entity, ref organelles);
 

@@ -86,8 +86,8 @@ public sealed class MicrobeVisualsSystem : AEntitySetSystem<float>
     {
         ref var organelleContainer = ref entity.Get<OrganelleContainer>();
 
-        if (organelleContainer.OrganelleVisualsCreated)
-            return;
+        //if (organelleContainer.OrganelleVisualsCreated)
+        //    return;
 
         // Skip if no organelle data
         if (organelleContainer.Organelles == null)
@@ -170,6 +170,7 @@ public sealed class MicrobeVisualsSystem : AEntitySetSystem<float>
             // Existing membrane should have its properties updated to make sure they are up to date
             // For example an engulfed cell has its membrane wigglyness removed
             SetMembraneDisplayData(cellProperties.CreatedMembrane, data, ref cellProperties);
+            SetMembraneTurn(cellProperties.CreatedMembrane!, ref cellProperties);
         }
 
         // Material is initialized in _Ready so this is after AddChild of membrane
@@ -284,6 +285,11 @@ public sealed class MicrobeVisualsSystem : AEntitySetSystem<float>
         // TODO: this shouldn't override membrane wigglyness if it was set to 0 due to being engulfed (thankfully
         // it's probably the case that visuals aren't currently updated while something is engulfed)
         cellProperties.ApplyMembraneWigglyness(membrane);
+    }
+
+    private void SetMembraneTurn(Membrane membrane, ref CellProperties cellProperties)
+    {
+        cellProperties.ApplyMembraneTurn(membrane);
     }
 
     /// <summary>

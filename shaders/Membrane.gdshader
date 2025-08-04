@@ -6,6 +6,7 @@ render_mode depth_prepass_alpha;
 uniform float wigglyNess = 1.0f;
 uniform float movementWigglyNess = 1.0f;
 uniform float centerTransparency = 1.0f;
+uniform float turn = 1.f;
 
 uniform sampler2D albedoTexture : source_color;
 uniform sampler2D damagedTexture : source_color;
@@ -27,11 +28,18 @@ void vertex(){
     // Copy non-distorted vertex for normal map
     UV2 = VERTEX.xz * -0.07f;
 
+    float originalVertexX = VERTEX.x;
+    float originalVertexZ = VERTEX.z;
+
     // Any changes to this must be matched in EngulfEffect.gdshader
     VERTEX.x += sin(worldVertex.z * movementWigglyNess + TIME / 4.0f) / 10.f
         * wigglyNess * size;
     VERTEX.z += sin(worldVertex.x * movementWigglyNess - TIME / 4.0f) / 10.f
         * wigglyNess * size;
+
+    // Bend when turning
+    VERTEX.z += originalVertexX * turn * 0.5f;
+    VERTEX.x += originalVertexZ * turn * 0.25f;
 
     float verticalAngle = NODE_POSITION_WORLD.z * movementWigglyNess * 0.25f
         + wigglyNess * worldVertex.z * 1.5f + TIME / 4.0f;
@@ -104,7 +112,7 @@ void fragment(){
     adjustedNormals = normalize(mix(NORMAL, adjustedNormals, 0.2f));
 
     ALBEDO = final.rgb;
-    ALPHA = fresnel(3.0, adjustedNormals, adjustedView) * round(cutoff) * centerTransparencyTex.a;
+    ALPHA = fresnel(3.0, adjustedNormals, adjustedView) * round(cutoff) * centerTransparencyTex.a * centerTransparency;
 	EMISSION = vec3(0.2, 0.2, 0.2);
     ROUGHNESS = 0.7f;
 }

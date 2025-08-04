@@ -490,12 +490,18 @@ public class MembraneShapeGenerator
 
         // Write mesh data
         var indices = new int[vertexCount * 3];
-        var vertices = new Vector3[vertexCount];
-        var uvs = new Vector2[vertexCount];
+        var vertices = new Vector3[vertexCount + 1];
+        var uvs = new Vector2[vertexCount + 1];
 
         var radiansPerIndex = 2 * Mathf.Pi / vertexCount;
 
-        for (int i = 0; i < vertexCount; ++i)
+        float scale = 0.5f;
+
+        vertices[0] = new Vector3(center.X, height * 0.5f, center.Y);
+        //uvs[0] = new Vector2(scale * 0.5f, scale * 0.5f);
+        uvs[0] = center;
+
+        for (int i = 1; i < vertexCount + 1; ++i)
         {
             // This weird indexing is required to make the mesh respect winding order
             // Otherwise it will get culled
@@ -504,12 +510,13 @@ public class MembraneShapeGenerator
 
             // vertices[i] = new Vector3(sourceVertex.X, height / 2, sourceVertex.Y);
 
-            var vertex = vertices2D[i];
+            var vertex = vertices2D[i- 1];
 
             vertices[i] = new Vector3(vertex.X, height * 0.5f, vertex.Y);
 
-            var radians = radiansPerIndex * i;
-            uvs[i] = new Vector2(Mathf.Sin(radians), Mathf.Cos(radians)) * 0.5f - new Vector2(0.5f, 0.5f);
+            var radians = radiansPerIndex * (i - 1);
+            // * scale + new Vector2(scale, scale)
+            uvs[i] = new Vector2(Mathf.Sin(radians), Mathf.Cos(radians)) * 0.5f + new Vector2(0.5f, 0.5f);
         }
 
         int vertexIndex = 1;
@@ -524,7 +531,7 @@ public class MembraneShapeGenerator
         }
 
         // Connect back to the start
-        indices[indices.Length - 1] = 0;
+        indices[indices.Length - 1] = 1;
 
         // Godot might do this automatically
         // // Set the bounds to get frustum culling and LOD to work correctly.
