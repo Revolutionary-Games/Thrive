@@ -37,7 +37,7 @@ public partial class AchievementCard : MarginContainer
         this.RegisterCustomFocusDrawer();
     }
 
-    public void UpdateDataFrom(IAchievement achievement, AchievementStatStore stats)
+    public void UpdateDataFrom(IAchievement achievement, IAchievementStatStore stats)
     {
         title.Text = achievement.Name.ToString();
 

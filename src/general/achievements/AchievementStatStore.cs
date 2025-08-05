@@ -4,29 +4,17 @@ using Godot;
 /// <summary>
 ///   Stores stats needed to track all achievement states
 /// </summary>
-public class AchievementStatStore
+public class AchievementStatStore : IAchievementStatStore
 {
-    public const int STAT_MICROBE_KILLS = 1;
-    public const string STAT_MICROBE_KILLS_NAME = "microbe_kills";
-
     private int statMicrobeKills;
 
-    public static bool IsValidStatistic(int statId)
-    {
-        switch (statId)
-        {
-            case STAT_MICROBE_KILLS:
-                return true;
-        }
 
-        return false;
-    }
 
     public int GetIntStat(int statId)
     {
         switch (statId)
         {
-            case STAT_MICROBE_KILLS:
+            case IAchievementStatStore.STAT_MICROBE_KILLS:
                 return statMicrobeKills;
         }
 
@@ -38,7 +26,7 @@ public class AchievementStatStore
     {
         switch (statId)
         {
-            case STAT_MICROBE_KILLS:
+            case IAchievementStatStore.STAT_MICROBE_KILLS:
                 ++statMicrobeKills;
                 return statMicrobeKills;
         }
@@ -58,12 +46,12 @@ public class AchievementStatStore
 
     public void Save(Dictionary<int, int> intValues)
     {
-        intValues[STAT_MICROBE_KILLS] = statMicrobeKills;
+        intValues[IAchievementStatStore.STAT_MICROBE_KILLS] = statMicrobeKills;
     }
 
     public void Load(Dictionary<int, int> intValues)
     {
-        if (intValues.TryGetValue(STAT_MICROBE_KILLS, out var value))
+        if (intValues.TryGetValue(IAchievementStatStore.STAT_MICROBE_KILLS, out var value))
             statMicrobeKills = value;
     }
 }
