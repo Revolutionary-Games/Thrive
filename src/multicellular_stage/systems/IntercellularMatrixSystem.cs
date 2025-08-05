@@ -9,9 +9,9 @@ using Godot;
 
 [With(typeof(IntercellularMatrix))]
 [With(typeof(SpatialInstance))]
-[With(typeof(AttachedToEntity))]
 [Without(typeof(MicrobeColony))]
 [ReadsComponent(typeof(MicrobeColonyMember))]
+[ReadsComponent(typeof(SpatialInstance))]
 [ReadsComponent(typeof(CellProperties))]
 [RuntimeCost(1.0f)]
 [RunsOnMainThread]
@@ -52,7 +52,6 @@ public sealed class IntercellularMatrixSystem : AEntitySetSystem<float>
         Entity parentEntity = colony.ColonyStructure[entity];
 
         var instance = entity.Get<SpatialInstance>().GraphicalInstance;
-
         if (instance == null)
         {
             GD.PrintErr("Tried to add an intercellular connection while a cell's graphical instance is null");
@@ -61,12 +60,10 @@ public sealed class IntercellularMatrixSystem : AEntitySetSystem<float>
 
         var ourMembrane = entity.Get<CellProperties>().CreatedMembrane;
         var targetMembrane = parentEntity.Get<CellProperties>().CreatedMembrane;
-
         if (ourMembrane == null || targetMembrane == null)
             return;
 
         var connection = ConnectionScene.Value.Instantiate<Node3D>();
-
         instance.AddChild(connection);
 
         // Get target's relative position (taking rotation into account) using inverse transform multiplication
@@ -74,23 +71,18 @@ public sealed class IntercellularMatrixSystem : AEntitySetSystem<float>
         var targetRelativePos = inverseColonyTransform * parentEntity.Get<WorldPosition>().Position;
 
         Vector3 pointA, pointB;
-
         (pointA, pointB) = FindGoodConnectionPoints(ourMembrane.MembraneData,
-        targetMembrane.MembraneData, targetRelativePos);
+            targetMembrane.MembraneData, targetRelativePos);
 
         var relativePosition = pointB - pointA;
-
         float relativePosLength = relativePosition.Length();
 
-        connection.Scale = new Vector3(5.0f, 1.0f, relativePosLength + 3.0f);
-
         var angle = relativePosition.AngleTo(Vector3.Forward);
-
         if (relativePosition.X > 0.0f)
             angle *= -1.0f;
 
+        connection.Scale = new Vector3(5.0f, 1.0f, relativePosLength + 3.0f);
         connection.RotateY(angle);
-
         connection.Position += (pointA + pointB) * 0.5f;
 
         intercellularMatrix.GeneratedConnection = connection;
@@ -131,5 +123,6 @@ public sealed class IntercellularMatrixSystem : AEntitySetSystem<float>
     private static void RemoveConnection(in Entity entity, ref IntercellularMatrix intercellularMatrix)
     {
         intercellularMatrix.GeneratedConnection?.QueueFree();
+        intercellularMatrix.GeneratedConnection = null;
     }
 }
