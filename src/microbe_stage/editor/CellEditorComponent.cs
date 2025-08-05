@@ -853,7 +853,14 @@ public partial class CellEditorComponent :
             return true;
         }
 
-        return base.CancelCurrentAction();
+        if (base.CancelCurrentAction())
+            return true;
+
+        if (string.IsNullOrWhiteSpace(activeActionName))
+            return false;
+
+        DeselectOrganelleToPlace();
+        return true;
     }
 
     public override void OnEditorSpeciesSetup(Species species)
