@@ -445,5 +445,5 @@ public static class CommonMutationFunctions
         return TraversalOrder8;
     }
 
-    public record struct Mutant(MicrobeSpecies Species, double MP);
+    public record Mutant(MicrobeSpecies Species, double MP);
 }
