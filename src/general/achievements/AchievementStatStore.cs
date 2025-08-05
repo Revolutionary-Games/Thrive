@@ -7,6 +7,7 @@ using Godot;
 public class AchievementStatStore
 {
     public const int STAT_MICROBE_KILLS = 1;
+    public const string STAT_MICROBE_KILLS_NAME = "microbe_kills";
 
     private int statMicrobeKills;
 
