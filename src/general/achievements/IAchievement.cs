@@ -49,6 +49,15 @@
     /// </summary>
     /// <returns>Similar text to <see cref="Description"/> but has progress info</returns>
     public string GetProgress(AchievementStatStore stats);
+
+    /// <summary>
+    ///   Whenever this achievement is exactly at a major milestone, this should return true, which is then used to
+    ///   show progress towards unlocking this achievement.
+    ///   This may return true when the achievement is unlocked.
+    /// </summary>
+    /// <param name="stats">Current stats values</param>
+    /// <returns>True when this achievement is currently at a major milestone</returns>
+    public bool IsAtUnlockMilestone(AchievementStatStore stats);
 }
 
 public static class AchievementIds
