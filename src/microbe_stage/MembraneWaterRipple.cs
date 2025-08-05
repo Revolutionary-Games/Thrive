@@ -391,8 +391,6 @@ public partial class MembraneWaterRipple : Node
         {
             planeMesh.Size = new Vector2(desiredSize, desiredSize);
         }
-
-        UpdateDetailLevelSubdivisions();
     }
 
     private float CalculateTimeScale()
@@ -498,35 +496,6 @@ public partial class MembraneWaterRipple : Node
             lastCameraPosition = cameraPos;
             lastCameraDistance = FollowTargetNode.GlobalPosition.DistanceTo(cameraPos);
             isCameraPositionValid = true;
-
-            // Update detail level based on distance
-            UpdateDetailLevelSubdivisions();
-        }
-    }
-
-    /// <summary>
-    ///   Updates the mesh subdivisions based on camera distance
-    /// </summary>
-    private void UpdateDetailLevelSubdivisions()
-    {
-        if (!isCameraPositionValid)
-            return;
-
-        float sizeScale = Math.Clamp(EffectRadius / 5.0f, 1.0f, 2.0f);
-        float scaledDistance = lastCameraDistance / sizeScale;
-
-        // Map distance (0-120) to subdivision (120-40) with a non-linear curve
-        float t = Math.Clamp(scaledDistance / 120.0f, 0.0f, 1.0f);
-        t = MathF.Pow(t, 1.5f);
-
-        // Calculate subdivision from min (40) to max (120)
-        // TODO: optimize how often subdivisions are updated
-        int subdivision = (int)Mathf.Lerp(120, 40, t);
-
-        if (planeMesh.SubdivideWidth != subdivision || planeMesh.SubdivideDepth != subdivision)
-        {
-            planeMesh.SubdivideWidth = subdivision;
-            planeMesh.SubdivideDepth = subdivision;
         }
     }
 

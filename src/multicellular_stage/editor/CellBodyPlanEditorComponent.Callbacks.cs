@@ -63,7 +63,7 @@ public partial class CellBodyPlanEditorComponent
 
         UpdateCellTypeSelections();
 
-        UpdateCellTypeBalances();
+        UpdateCellTypesSecondaryInfo();
 
         OnCellToPlaceSelected(data.CellType.TypeName);
     }

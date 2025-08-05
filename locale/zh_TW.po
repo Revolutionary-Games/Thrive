@@ -7,8 +7,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2025-06-05 21:10+0100\n"
-"PO-Revision-Date: 2025-07-11 02:05+0000\n"
+"POT-Creation-Date: 2025-08-01 16:03+0300\n"
+"PO-Revision-Date: 2025-07-31 09:01+0000\n"
 "Last-Translator: xzihnago <xzihnago@gmail.com>\n"
 "Language-Team: Chinese (Traditional Han script) <https://translate.revolutionarygamesstudio.com/projects/thrive/thrive-game/zh_Hant/>\n"
 "Language: zh_TW\n"
@@ -48,6 +48,19 @@ msgstr "深海帶"
 
 msgid "ACCEPT"
 msgstr "接受"
+
+#, fuzzy
+msgid "ACHIEVEMENTS"
+msgstr "基礎移動"
+
+msgid "ACHIEVEMENTS_TOTAL"
+msgstr ""
+
+msgid "ACHIEVEMENT_ACHIEVED"
+msgstr ""
+
+msgid "ACHIEVEMENT_LOCKED"
+msgstr ""
 
 msgid "ACTION_AWAKEN"
 msgstr "覺醒（{0:F1}／{1:F1}）"
@@ -358,6 +371,9 @@ msgstr "遊戲中自動存檔"
 msgid "AUTO_EVO"
 msgstr "Auto-Evo"
 
+msgid "AUTO_EVO_EXPLORER_TOOL_BUTTON"
+msgstr "在 Auto-Evo 探索工具中使用"
+
 msgid "AUTO_EVO_EXPLORING_TOOL"
 msgstr "Auto-Evo 探索工具"
 
@@ -411,6 +427,9 @@ msgstr "\\"
 
 msgid "BACKSPACE"
 msgstr "Backspace"
+
+msgid "BACK_TO_SETTINGS"
+msgstr "返回設定"
 
 msgid "BACTERIAL_THERMOSYNTHESIS"
 msgstr "細菌熱合成"
@@ -673,12 +692,6 @@ msgstr ""
 "請注意，即使 ATP 平衡為正，儲存量過低仍可能導致 ATP 短缺。\n"
 "這些問題可能會由於嚴重卡頓或遊戲整體效能較低而變得更糟。增加儲存容量有助於緩解這些問題。"
 
-msgid "CELL_TYPE_BUTTON_ATP_CONSUMPTION"
-msgstr "此細胞類型的 ATP 消耗量為 {0}。"
-
-msgid "CELL_TYPE_BUTTON_ATP_PRODUCTION"
-msgstr "此細胞類型的 ATP 生產量為 {0}。"
-
 msgid "CELL_TYPE_NAME"
 msgstr "細胞類型名稱"
 
@@ -693,6 +706,10 @@ msgstr "通道抑制劑合成"
 
 msgid "CHEATS"
 msgstr "作弊"
+
+#, fuzzy
+msgid "CHEATS_USED_NOTICE"
+msgstr "此頁面或章節包含過時的資訊。當計劃在編寫完成後發生更改時通常會發生這種情況。"
 
 msgid "CHEAT_KEYS_ENABLED"
 msgstr "啟用作弊鍵"
@@ -804,6 +821,21 @@ msgstr "清除快取"
 
 msgid "CLICK_TO_SELECT"
 msgstr "選取"
+
+msgid "CLIMATE_INSTABILITY"
+msgstr "氣候不穩定性"
+
+msgid "CLIMATE_INSTABILITY_EXPLANATION"
+msgstr "（影響全球冰河期等區域事件的頻率與嚴重程度）"
+
+msgid "CLIMATE_STABILITY_AVERAGE"
+msgstr "平均"
+
+msgid "CLIMATE_STABILITY_STABLE"
+msgstr "穩定"
+
+msgid "CLIMATE_STABILITY_UNSTABLE"
+msgstr "不穩定"
 
 msgid "CLOSE"
 msgstr "關閉"
@@ -1044,6 +1076,14 @@ msgstr "以當前設定進入遊戲"
 
 msgid "CONFIRM_NEW_GAME_BUTTON_TOOLTIP_DISABLED"
 msgstr "部分設定無效"
+
+#, fuzzy
+msgid "CONFIRM_RESET_ACHIEVEMENTS"
+msgstr "確認刪除"
+
+#, fuzzy
+msgid "CONFIRM_RESET_ACHIEVEMENTS_DESCRIPTION"
+msgstr "將[thrive:compound type=\"atp\"][/thrive:compound] 轉化為[thrive:compound type=\"ammonia\"][/thrive:compound]。速率與[thrive:compound type=\"nitrogen\"][/thrive:compound] 的濃度成正比。"
 
 msgid "CONSTRUCTION_UNIT_NAME"
 msgstr "單位：{0}"
@@ -2362,11 +2402,29 @@ msgstr "別忘了，您可以使用螢幕右上角的面板查看遊標下的內
 msgid "GENERAL_LOADING_TIP_7"
 msgstr "如果您的物種量降至零，您就會滅絕。"
 
+msgid "GENERATE_BUTTON"
+msgstr "生成世界"
+
 msgid "GENERATIONS"
 msgstr "世代"
 
 msgid "GENERATION_COLON"
 msgstr "世代："
+
+msgid "GEOLOGICAL_ACTIVITY"
+msgstr "地質活動"
+
+msgid "GEOLOGICAL_ACTIVITY_ACTIVE"
+msgstr "活躍"
+
+msgid "GEOLOGICAL_ACTIVITY_AVERAGE"
+msgstr "平均"
+
+msgid "GEOLOGICAL_ACTIVITY_DORMANT"
+msgstr "休眠"
+
+msgid "GEOLOGICAL_ACTIVITY_EXPLANATION"
+msgstr "（影響流星撞擊與火山噴發等事件的頻率與嚴重程度）"
 
 msgid "GITHUB_TOOLTIP"
 msgstr "造訪我們的 GitHub 儲存庫"
@@ -2894,6 +2952,14 @@ msgstr "Tab"
 
 msgid "KEY_UP"
 msgstr "↑"
+
+#, fuzzy
+msgid "KILL_50_MICROBES"
+msgstr "微生物階段"
+
+#, fuzzy
+msgid "KILL_MICROBES_PROGRESS"
+msgstr "微生物編輯器"
 
 msgid "KILO_ABBREVIATION"
 msgstr "{0}E+3"
@@ -3657,6 +3723,10 @@ msgstr ""
 "\n"
 "隨著時間的推移，細胞器將開始複製。收集化合物可以加速這一過程。一旦所有細胞器分裂完成，您的細胞就可以繁殖並進入編輯器。"
 
+#, fuzzy
+msgid "MICROBIAL_MASSACRE"
+msgstr "微生物階段"
+
 msgid "MIDDLE_MOUSE"
 msgstr "滑鼠中鍵"
 
@@ -4150,9 +4220,8 @@ msgstr "ATP 生產受毒素抑制"
 msgid "NOTICE_HIT_BY_BASE_MOVEMENT_TOXIN"
 msgstr "基礎移動速度因毒素而降低"
 
-#, fuzzy
 msgid "NOTICE_NOT_ENOUGH_MUCILAGE"
-msgstr "沒有足夠的 {0} 以製作配方"
+msgstr "黏液不足以形成黏液囊護盾"
 
 msgid "NOTICE_RADIATION_DAMAGE"
 msgstr "過量輻射損傷"
@@ -4596,6 +4665,9 @@ msgstr "放置細胞器（或其他可放置的物件）"
 msgid "PLANET"
 msgstr "星球"
 
+msgid "PLANET_CUSTOMIZER"
+msgstr "星球自訂工具"
+
 msgid "PLANET_DETAILS_STRING"
 msgstr ""
 "僅限已知生命形式：{0}\n"
@@ -4603,9 +4675,6 @@ msgstr ""
 "晝夜循環：{2}\n"
 "一日時長：{3} 秒\n"
 "星球隨機種子：{4}"
-
-msgid "PLANET_GENERATION_TEASER"
-msgstr "敬請期待行星生成功能！"
 
 msgid "PLANET_RANDOM_SEED"
 msgstr "星球隨機種子"
@@ -4800,6 +4869,9 @@ msgstr "重做上一個動作"
 msgid "REFRESH"
 msgstr "重新整理"
 
+msgid "REGENERATE_BUTTON"
+msgstr "重新生成世界"
+
 msgid "RENDER_SCALE"
 msgstr "解析度比例"
 
@@ -4846,6 +4918,10 @@ msgstr "研究"
 
 msgid "RESET"
 msgstr "重置"
+
+#, fuzzy
+msgid "RESET_ACHIEVEMENTS"
+msgstr "相對於螢幕"
 
 msgid "RESET_DEADZONES"
 msgstr "重置死區"
@@ -5015,6 +5091,10 @@ msgstr "保存並繼續"
 
 msgid "SAVE_AUTOSAVE"
 msgstr "自動存檔"
+
+#, fuzzy
+msgid "SAVE_CHEATS_USED"
+msgstr "已使用空間："
 
 msgid "SAVE_DELETE_WARNING"
 msgstr "刪除的存檔無法復原，您確定要永久刪除 {0} 嗎？"
@@ -5300,6 +5380,9 @@ msgstr "二氧化矽"
 
 msgid "SILICA_MEMBRANE_DESCRIPTION"
 msgstr "這種細胞膜具有堅固的二氧化矽壁。它可以很好地抵抗整體傷害，且對物理傷害的抵抗力非常強。並花費較少的能量維持外形。然而，它會大大減慢細胞的速度，細胞吸收資源的速度也會降低。"
+
+msgid "SIMULATION_CONFIG"
+msgstr "模擬"
 
 msgid "SIXTEEN_TIMES"
 msgstr "16x"
@@ -5635,6 +5718,9 @@ msgstr "切換至俯視圖"
 
 msgid "SYSREQ"
 msgstr "SysRq"
+
+msgid "TAB_CHANGE_BLOCKED_WHILE_ACTION_IN_PROGRESS"
+msgstr "當操作正在進行時阻止分頁變更"
 
 msgid "TAB_SECONDARY_SWITCH_LEFT"
 msgstr "向左切換二級分頁"
@@ -6547,6 +6633,9 @@ msgstr "FSR 1 解析度提升"
 
 msgid "UPSCALE_FSR_22"
 msgstr "FSR 2.2 解析度提升"
+
+msgid "UPSCALE_METHOD"
+msgstr "解析度提升方法："
 
 msgid "UPSCALE_SHARPENING_FSR"
 msgstr "FSR 銳化"
@@ -8748,14 +8837,19 @@ msgstr ""
 "\n"
 "[indent]—   至少連續 [b]5[/b] 代中包含 [b]3[/b] 個[b][color=#3796e1][url=thriveopedia:thermosynthase]熱合成酶[/url][/color][/b]。[/indent]"
 
-#, fuzzy
 msgid "WIKI_THERMOPLAST_SCIENTIFIC_BACKGROUND"
-msgstr "待定"
+msgstr ""
+"熱合成最初是由 Anthonie Muller 於 1983 年的一篇論文中提出的（\"Thermoelectric Energy Conversion Could Be An Energy Source Of Living Organisms\", in Physics Letters A, vol. 96, Issue 6, pp. 319-321）。它能提供的能量僅為呼吸作用總能量的一小部分（A Search For Thermosynthesis: Starvation Survival In Thermally Cycled Bacteria）。\n"
+"\n"
+"Muller 還提出，熱合成可能是最早的（基於硫的）光合作用的先驅（Photosystem 0, A Proposed Ancestral Photosystem Without Reducing Power That Synthesized ATP During Light-Dark cycling）。\n"
+"\n"
+"[color=#3796e1][url=https://en.wikipedia.org/wiki/Thermosynthesis]Wikipedia 中的熱合成[/url][/color]"
 
-#, fuzzy
 msgid "WIKI_THERMOPLAST_STRATEGY"
 msgstr ""
-"由於[b]熱合成[/b]除了環境[thrive:compound type=\"temperature\"][/thrive:compound] 以外不需要任何輸入，因此它本質上是免費能量。此外，[b]熱能體[/b]比其前身[b][color=#3796e1][url=thriveopedia:thermosynthase]熱合成酶[/url][/color][/b]更高效，這使得它們可以說是遊戲中最簡單的能量產生方法，前提是您願意留在海底熱泉等炎熱地區。\n"
+"[b]熱合成[/b]可能是最具移動性的自營形式，它需要持續不斷的運動。您需要從較冷的區域移動到較熱的區域，然後再返回。當細胞溫度停止升高後，[thrive:compound type=\"atp\"][/thrive:compound] 的產量將降至零。最好啟動[i]熱視覺[/i]來觀察細胞周圍的冷熱區域，以便更有效地在這些區域之間穿梭。熱能體在溫度較高的區域效率更高，因此最適合在海底熱泉使用。\n"
+"\n"
+"由於[b]熱能體[/b]的[thrive:compound type=\"atp\"][/thrive:compound] 生產會經常停止，因此擁有第二能量來源非常重要，否則您將因缺乏[thrive:compound type=\"atp\"][/thrive:compound] 而受到持續傷害。\n"
 "\n"
 "啟用細胞器解鎖後，需要在細胞中使用[b][color=#3796e1][url=thriveopedia:thermosynthase]熱合成酶[/url][/color][/b]進行多次繁殖，意味著玩家演化[b]熱能體[/b]時，他們可能已經非常專注於[b]熱合成[/b]以獲得[b]熱能體[/b]。"
 
@@ -8765,22 +8859,22 @@ msgstr "無升級。"
 msgid "WIKI_THERMOSYNTHASE_EFFECTS"
 msgstr "啟用[i]熱視覺[/i]，可切換開關。這會將水的相對溫度疊加顯示到螢幕上，溫度較高的區域會顯示得更紅。"
 
-#, fuzzy
 msgid "WIKI_THERMOSYNTHASE_INTRO"
 msgstr ""
-"利用環境中的[thrive:compound type=\"temperature\"][/thrive:compound] 梯度以[thrive:compound type=\"atp\"][/thrive:compound] 的形式提取能量。效率低於真核版本的[b][color=#3796e1][url=thriveopedia:thermoplast]熱能體[/url][/color][/b]。\n"
+"利用環境中的[thrive:compound type=\"temperature\"][/thrive:compound] 梯度以[thrive:compound type=\"atp\"][/thrive:compound] 的形式產生能量。效率低於真核版本的[b][color=#3796e1][url=thriveopedia:thermoplast]熱能體[/url][/color][/b]。\n"
 "\n"
-"現實中未發現的推測細胞器。在開啟僅限已知生命形式選項的遊戲中不可用。"
+"現實中未發現的假說細胞器。在開啟[i]僅限已知生命形式[/i]選項的遊戲中不可用。\n"
+"\n"
+"它是一組含有熱敏酶的膜狀隔間結構。這些酶能夠利用周圍環境中[thrive:compound type=\"temperature\"][/thrive:compound] 上升的能量生產[thrive:compound type=\"atp\"][/thrive:compound]，此過程被稱為[i]熱合成[/i]。"
 
 msgid "WIKI_THERMOSYNTHASE_MODIFICATIONS"
 msgstr "無修改。"
 
-#, fuzzy
 msgid "WIKI_THERMOSYNTHASE_PROCESSES"
 msgstr ""
-"[b]細菌熱合成[/b]：[thrive:compound type=\"temperature\"][/thrive:compound] → [thrive:compound type=\"atp\"][/thrive:compound]\n"
+"[b]細菌熱合成[/b]：[thrive:compound type=\"temperature\"][/thrive:compound] [i]增加[/i] → [thrive:compound type=\"atp\"][/thrive:compound]\n"
 "\n"
-"利用周圍環境[thrive:compound type=\"temperature\"][/thrive:compound] 被動生成能量。效率低於[b][color=#3796e1][url=thriveopedia:thermoplast]熱能體[/url][/color][/b]中的[b]熱合成[/b]。"
+"透過上升的[thrive:compound type=\"temperature\"][/thrive:compound] 來產生能量。隨著[thrive:compound type=\"temperature\"][/thrive:compound] 提升，熱敏酶會改變形狀，從而將 [i]ADP[/i] 循環轉化為[thrive:compound type=\"atp\"][/thrive:compound]。隨著細胞冷卻，酶會恢復到先前的形狀，使該過程能重複進行。效率低於[b][color=#3796e1][url=thriveopedia:thermoplast]熱能體[/url][/color][/b]中的[i]熱合成[/i]。其[thrive:compound type=\"atp\"][/thrive:compound] 的生產速率與[thrive:compound type=\"temperature\"][/thrive:compound] 的[i]增量[/i]成正比。"
 
 msgid "WIKI_THERMOSYNTHASE_REQUIREMENTS"
 msgstr ""
@@ -8788,14 +8882,19 @@ msgstr ""
 "\n"
 "[indent]—   位於至少 [b]50 °C[/b] [thrive:compound type=\"temperature\"][/thrive:compound] 的區域。[/indent]"
 
-#, fuzzy
 msgid "WIKI_THERMOSYNTHASE_SCIENTIFIC_BACKGROUND"
-msgstr "待定"
+msgstr ""
+"熱合成最初是由 Anthonie Muller 於 1983 年的一篇論文中提出的（\"Thermoelectric Energy Conversion Could Be An Energy Source Of Living Organisms\", in Physics Letters A, vol. 96, Issue 6, pp. 319-321）。\n"
+"\n"
+"Muller 還提出，熱合成可能是最早的（基於硫的）光合作用的先驅（A search for thermosynthesis: starvation survival in thermally cycled bacteria）。\n"
+"\n"
+"[color=#3796e1][url=https://en.wikipedia.org/wiki/Thermosynthesis]Wikipedia 中的熱合成[/url][/color]"
 
-#, fuzzy
 msgid "WIKI_THERMOSYNTHASE_STRATEGY"
 msgstr ""
-"在目前遊戲中，[b]熱合成酶[/b]本質上是免費能量。它沒有真正的缺點，只要您滿足於留在炎熱區域中即可。 [b]細菌熱合成[/b]在大約 [b]+23 °C[/b] [thrive:compound type=\"temperature\"][/thrive:compound] 的區域中保持平衡，並且在海底熱泉中更強大，其溫度為 [b]+98 °C[/b] [thrive:compound type=\"temperature\"][/thrive:compound]。\n"
+"[i]熱合成[/i]可能是最具移動性的自營形式，它需要持續不斷的運動。您需要從較冷的區域移動到較熱的區域，然後再返回。當細胞溫度停止升高後，[thrive:compound type=\"atp\"][/thrive:compound] 的產量將降至零。最好啟動[i]熱視覺[/i]來觀察細胞周圍的冷熱區域，以便更有效地在這些區域之間穿梭。熱合成酶在溫度較高的區域效率更高，因此最適合在海底熱泉使用。\n"
+"\n"
+"由於[b]熱合成酶[/b]的[thrive:compound type=\"atp\"][/thrive:compound] 生產會經常停止，因此擁有第二能量來源非常重要，否則您將因缺乏[thrive:compound type=\"atp\"][/thrive:compound] 而受到持續傷害。\n"
 "\n"
 "更高效的是[b][color=#3796e1][url=thriveopedia:thermoplast]熱能體[/url][/color][/b]，一旦細胞演化出[b][color=#3796e1][url=thriveopedia:nucleus]細胞核[/url][/color][/b]就可用。與所有原核細胞器與真核細胞器一樣，我們建議在盡可能的情況下將[b]熱合成酶[/b]替換為[b][color=#3796e1][url=thriveopedia:thermoplast]熱能體[/url][/color][/b]。"
 
@@ -8986,6 +9085,21 @@ msgstr ""
 "包含後期階段原型：{0}\n"
 "包含彩蛋：{1}"
 
+msgid "WORLD_OCEANIC_COVERAGE"
+msgstr "海洋覆蓋率"
+
+msgid "WORLD_OCEANIC_COVERAGE_EXPLANATION"
+msgstr "（影響生成的大陸與海洋區域的數量）"
+
+msgid "WORLD_OCEANIC_COVERAGE_LARGE"
+msgstr "高"
+
+msgid "WORLD_OCEANIC_COVERAGE_MEDIUM"
+msgstr "中"
+
+msgid "WORLD_OCEANIC_COVERAGE_SMALL"
+msgstr "低"
+
 msgid "WORLD_RELATIVE_MOVEMENT"
 msgstr "相對於世界"
 
@@ -9006,6 +9120,21 @@ msgstr "小"
 
 msgid "WORLD_SIZE_TOOLTIP"
 msgstr "較大的世界可能會降低模擬速度，因此不建議在性能較差的電腦上使用。"
+
+msgid "WORLD_TEMPERATURE"
+msgstr "世界溫度"
+
+msgid "WORLD_TEMPERATURE_COLD"
+msgstr "寒冷"
+
+msgid "WORLD_TEMPERATURE_EXPLANATION"
+msgstr "（影響冰凍海洋區域的生成數量）"
+
+msgid "WORLD_TEMPERATURE_TEMPERATE"
+msgstr "適中"
+
+msgid "WORLD_TEMPERATURE_WARM"
+msgstr "溫暖"
 
 msgid "WORST_PATCH_COLON"
 msgstr "最差區域："
@@ -9044,6 +9173,35 @@ msgstr "放大"
 
 msgid "ZOOM_OUT"
 msgstr "縮小"
+
+#~ msgid "CELL_TYPE_BUTTON_ATP_CONSUMPTION"
+#~ msgstr "此細胞類型的 ATP 消耗量為 {0}。"
+
+#~ msgid "CELL_TYPE_BUTTON_ATP_PRODUCTION"
+#~ msgstr "此細胞類型的 ATP 生產量為 {0}。"
+
+#, fuzzy
+#~ msgid "WORLD_SEA_LEVEL"
+#~ msgstr "低於海平面 {0}-{1} 米"
+
+#, fuzzy
+#~ msgid "WORLD_SEA_LEVEL_DEEP"
+#~ msgstr "低於海平面 {0}-{1} 米"
+
+#, fuzzy
+#~ msgid "WORLD_SEA_LEVEL_EXPLANATION"
+#~ msgstr "（改變世界中的區域數量）"
+
+#, fuzzy
+#~ msgid "WORLD_SEA_LEVEL_MODERATE"
+#~ msgstr "相對於世界"
+
+#, fuzzy
+#~ msgid "WORLD_SEA_LEVEL_SHALLOW"
+#~ msgstr "小"
+
+#~ msgid "PLANET_GENERATION_TEASER"
+#~ msgstr "敬請期待行星生成功能！"
 
 #~ msgid "PASSIVE_REPRODUCTION_PROGRESS_EXPLANATION"
 #~ msgstr "（被動地從環境中獲得繁殖所需的化合物）"
@@ -9280,10 +9438,6 @@ msgstr "縮小"
 #, fuzzy
 #~ msgid "WIKI_LIPASE"
 #~ msgstr "脂肪酶"
-
-#, fuzzy
-#~ msgid "WIKI_MICROBE_EDITOR"
-#~ msgstr "微生物編輯器"
 
 #, fuzzy
 #~ msgid "WIKI_MUCILAGE_SYNTHESIS"

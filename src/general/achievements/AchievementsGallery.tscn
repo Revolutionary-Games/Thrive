@@ -1,0 +1,33 @@
+[gd_scene load_steps=4 format=3 uid="uid://bk3leiofn128o"]
+
+[ext_resource type="Script" uid="uid://duj3a2cc61a7i" path="res://src/general/achievements/AchievementsGallery.cs" id="1_xkqjr"]
+[ext_resource type="PackedScene" uid="uid://bgeijgq7runaw" path="res://src/gui_common/FocusGrabber.tscn" id="2_i3qce"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_i3qce"]
+
+[node name="AchievementsGallery" type="ScrollContainer" node_paths=PackedStringArray("cardContainer", "grabberToUpdate")]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_styles/focus = SubResource("StyleBoxEmpty_i3qce")
+follow_focus = true
+draw_focus_border = true
+horizontal_scroll_mode = 0
+script = ExtResource("1_xkqjr")
+cardContainer = NodePath("VBoxContainer/FlowContainer")
+grabberToUpdate = NodePath("VBoxContainer/FocusGrabber")
+
+[node name="VBoxContainer" type="VBoxContainer" parent="."]
+layout_mode = 2
+
+[node name="FlowContainer" type="FlowContainer" parent="VBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+
+[node name="FocusGrabber" parent="VBoxContainer" instance=ExtResource("2_i3qce")]
+layout_mode = 2
+Priority = 1
+NodeToGiveFocusTo = NodePath("../FlowContainer")

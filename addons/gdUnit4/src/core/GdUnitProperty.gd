@@ -31,6 +31,9 @@ func value() -> Variant:
 	return _value
 
 
+func int_value() -> int:
+	return _value
+
 func value_as_string() -> String:
 	return _value
 

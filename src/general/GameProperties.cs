@@ -17,6 +17,9 @@ public class GameProperties
     [JsonProperty]
     private bool freeBuild;
 
+    [JsonProperty]
+    private bool cheatsUsed;
+
     private GameProperties(WorldGenerationSettings? settings = null, Species? startingSpecies = null)
     {
         settings ??= new WorldGenerationSettings();
@@ -43,6 +46,12 @@ public class GameProperties
     /// </summary>
     [JsonIgnore]
     public bool FreeBuild => freeBuild;
+
+    /// <summary>
+    ///   True if the player has cheated in this game
+    /// </summary>
+    [JsonIgnore]
+    public bool CheatsUsed => cheatsUsed;
 
     /// <summary>
     ///   True when the player is currently ascended and should be allowed to do anything
@@ -310,6 +319,11 @@ public class GameProperties
         // TODO: stop game time tracking to have a stable final time for this save
     }
 
+    public void ReportCheatsUsed()
+    {
+        cheatsUsed = true;
+    }
+
     public void BecomeDescendedVersionOf(GameProperties descendedGame)
     {
         AscensionCounter = descendedGame.AscensionCounter;
@@ -337,37 +351,30 @@ public class GameProperties
             new Hex(0, -3), 0), workMemory1, workMemory2);
         playerSpecies.IsBacteria = false;
 
-        var hydrogenase = simulationParameters.GetOrganelleType("hydrogenase");
+        var hydrogenosome = simulationParameters.GetOrganelleType("hydrogenosome");
 
-        playerSpecies.Organelles.AddFast(new OrganelleTemplate(hydrogenase,
-            new Hex(-1, 2), 0), workMemory1, workMemory2);
-
-        playerSpecies.Organelles.AddFast(new OrganelleTemplate(hydrogenase,
-            new Hex(-1, 1), 0), workMemory1, workMemory2);
-
-        playerSpecies.Organelles.AddFast(new OrganelleTemplate(hydrogenase,
-            new Hex(-1, 0), 0), workMemory1, workMemory2);
-
-        playerSpecies.Organelles.AddFast(new OrganelleTemplate(hydrogenase,
-            new Hex(1, 1), 0), workMemory1, workMemory2);
-
-        playerSpecies.Organelles.AddFast(new OrganelleTemplate(hydrogenase,
-            new Hex(1, 0), 0), workMemory1, workMemory2);
-
-        playerSpecies.Organelles.AddFast(new OrganelleTemplate(hydrogenase,
-            new Hex(1, -1), 0), workMemory1, workMemory2);
-
-        // Remove the original cytoplasm in the species and replace with hydrogenase for a more efficient layout
+        // Remove the original cytoplasm in the species and replace with hydrogenosome for a more efficient layout
         playerSpecies.Organelles.RemoveHexAt(new Hex(0, 0), workMemory1);
-
-        playerSpecies.Organelles.AddFast(new OrganelleTemplate(hydrogenase,
-            new Hex(0, 0), 0), workMemory1, workMemory2);
-
-        playerSpecies.Organelles.AddFast(new OrganelleTemplate(hydrogenase,
-            new Hex(0, 1), 0), workMemory1, workMemory2);
 
         playerSpecies.Organelles.AddFast(new OrganelleTemplate(simulationParameters.GetOrganelleType("bindingAgent"),
             new Hex(0, 2), 0), workMemory1, workMemory2);
+
+        playerSpecies.Organelles.AddFast(new OrganelleTemplate(hydrogenosome,
+            new Hex(-1, 2), 0), workMemory1, workMemory2);
+
+        playerSpecies.Organelles.AddFast(new OrganelleTemplate(hydrogenosome,
+            new Hex(1, 1), 0), workMemory1, workMemory2);
+
+        playerSpecies.Organelles.AddFast(new OrganelleTemplate(hydrogenosome,
+            new Hex(0, 1), 0), workMemory1, workMemory2);
+
+        var cytoplasm = simulationParameters.GetOrganelleType("cytoplasm");
+
+        playerSpecies.Organelles.AddFast(new OrganelleTemplate(cytoplasm,
+            new Hex(1, -1), 0), workMemory1, workMemory2);
+
+        playerSpecies.Organelles.AddFast(new OrganelleTemplate(cytoplasm,
+            new Hex(-1, 0), 0), workMemory1, workMemory2);
 
         playerSpecies.OnEdited();
         return playerSpecies;

@@ -22,6 +22,7 @@ func _scan(scan_path :String, current :GdUnit4Version) -> void:
 func patch_count() -> int:
 	var count := 0
 	for key :String in _patches.keys():
+		@warning_ignore("unsafe_method_access")
 		count += _patches[key].size()
 	return count
 
@@ -29,7 +30,7 @@ func patch_count() -> int:
 func execute() -> void:
 	for key :String in _patches.keys():
 		for path :String in _patches[key]:
-			var patch :GdUnitPatch = load(key + "/" + path).new()
+			var patch :GdUnitPatch = (load(key + "/" + path) as GDScript).new()
 			if patch:
 				prints("execute patch", patch.version(), patch.get_script().resource_path)
 				if not patch.execute():

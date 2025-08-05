@@ -33,6 +33,8 @@ public sealed class PilusDamageSystem : AEntitySetSystem<float>
         if (count < 1)
             return;
 
+        bool isPlayer = entity.Has<PlayerMarker>();
+
         ref var ourExtraData = ref entity.Get<MicrobePhysicsExtraData>();
         ref var ourSpecies = ref entity.Get<SpeciesMember>();
 
@@ -74,17 +76,17 @@ public sealed class PilusDamageSystem : AEntitySetSystem<float>
                 if (collision.SecondEntity.Get<MicrobeColony>().GetMicrobeFromSubShape(ref otherExtraData,
                         collision.SecondSubShapeData, out var hitEntity))
                 {
-                    DealPilusDamage(ref ourExtraData, ref collision, hitEntity);
+                    DealPilusDamage(ref ourExtraData, ref collision, hitEntity, isPlayer);
                     continue;
                 }
             }
 
-            DealPilusDamage(ref ourExtraData, ref collision, collision.SecondEntity);
+            DealPilusDamage(ref ourExtraData, ref collision, collision.SecondEntity, isPlayer);
         }
     }
 
     private void DealPilusDamage(ref MicrobePhysicsExtraData ourExtraData, ref PhysicsCollision collision,
-        in Entity targetEntity)
+        in Entity targetEntity, bool playerDealsDamage)
     {
         // Skip applying damage while the previous damage cooldown is still active
         ref var cooldown = ref collision.SecondEntity.Get<DamageCooldown>();
@@ -114,8 +116,16 @@ public sealed class PilusDamageSystem : AEntitySetSystem<float>
         if (damage > Constants.PILUS_MAX_DAMAGE)
             damage = Constants.PILUS_MAX_DAMAGE;
 
+        var previousHealth = targetHealth.CurrentHealth;
+
         targetHealth.DealMicrobeDamage(ref collision.SecondEntity.Get<CellProperties>(), damage, "pilus",
             HealthHelpers.GetInstantKillProtectionThreshold(targetEntity));
+
+        if (playerDealsDamage && previousHealth > 0 && targetHealth.CurrentHealth <= 0 && !targetHealth.Invulnerable)
+        {
+            // Player dealt lethal damage
+            AchievementEvents.ReportPlayerMicrobeKill();
+        }
 
         cooldown.StartDamageScaledCooldown(damage, Constants.PILUS_MIN_DAMAGE_TRIGGER_COOLDOWN,
             Constants.PILUS_MAX_DAMAGE, Constants.PILUS_MIN_COOLDOWN, Constants.PILUS_MAX_COOLDOWN);
