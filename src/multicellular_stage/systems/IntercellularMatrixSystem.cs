@@ -12,6 +12,7 @@ using Godot;
 [With(typeof(AttachedToEntity))]
 [Without(typeof(MicrobeColony))]
 [ReadsComponent(typeof(MicrobeColonyMember))]
+[ReadsComponent(typeof(CellProperties))]
 [RuntimeCost(1.0f)]
 [RunsOnMainThread]
 public sealed class IntercellularMatrixSystem : AEntitySetSystem<float>
@@ -58,6 +59,12 @@ public sealed class IntercellularMatrixSystem : AEntitySetSystem<float>
             return;
         }
 
+        var ourMembrane = entity.Get<CellProperties>().CreatedMembrane;
+        var targetMembrane = parentEntity.Get<CellProperties>().CreatedMembrane;
+
+        if (ourMembrane == null || targetMembrane == null)
+            return;
+
         var connection = ConnectionScene.Value.Instantiate<Node3D>();
 
         instance.AddChild(connection);
@@ -66,22 +73,10 @@ public sealed class IntercellularMatrixSystem : AEntitySetSystem<float>
         var inverseColonyTransform = entity.Get<WorldPosition>().ToTransform().Inverse();
         var targetRelativePos = inverseColonyTransform * parentEntity.Get<WorldPosition>().Position;
 
-        var ourMembrane = entity.Get<CellProperties>().CreatedMembrane;
-        var targetMembrane = parentEntity.Get<CellProperties>().CreatedMembrane;
-
         Vector3 pointA, pointB;
 
-        if (ourMembrane == null || targetMembrane == null)
-        {
-            // Fallback to using center positions
-            pointA = Vector3.Zero;
-            pointB = targetRelativePos;
-        }
-        else
-        {
-            (pointA, pointB) = FindGoodConnectionPoints(ourMembrane.MembraneData,
-            targetMembrane.MembraneData, targetRelativePos);
-        }
+        (pointA, pointB) = FindGoodConnectionPoints(ourMembrane.MembraneData,
+        targetMembrane.MembraneData, targetRelativePos);
 
         var relativePosition = pointB - pointA;
 
