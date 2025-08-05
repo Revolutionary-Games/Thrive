@@ -62,16 +62,32 @@ public sealed class IntercellularMatrixSystem : AEntitySetSystem<float>
 
         instance.AddChild(connection);
 
-        // Multiply global space vectors by the inverse colony transform to get cells' positions in colony local space
-        var inverseColonyTransform = colony.Leader.Get<WorldPosition>().ToTransform().Inverse();
-        var ourPos = inverseColonyTransform * entity.Get<WorldPosition>().Position;
-        var targetPos = inverseColonyTransform * parentEntity.Get<WorldPosition>().Position;
+        // Get target's relative position (taking rotation into account) using inverse transform multiplication
+        var inverseColonyTransform = entity.Get<WorldPosition>().ToTransform().Inverse();
+        var targetRelativePos = inverseColonyTransform * parentEntity.Get<WorldPosition>().Position;
 
-        var relativePosition = targetPos - ourPos;
+        var ourMembrane = entity.Get<CellProperties>().CreatedMembrane;
+        var targetMembrane = parentEntity.Get<CellProperties>().CreatedMembrane;
+
+        Vector3 pointA, pointB;
+
+        if (ourMembrane == null || targetMembrane == null)
+        {
+            // Fallback to using center positions
+            pointA = Vector3.Zero;
+            pointB = targetRelativePos;
+        }
+        else
+        {
+            (pointA, pointB) = FindGoodConnectionPoints(ourMembrane.MembraneData,
+            targetMembrane.MembraneData, targetRelativePos);
+        }
+
+        var relativePosition = pointB - pointA;
 
         float relativePosLength = relativePosition.Length();
 
-        connection.Scale = Vector3.One * (relativePosLength - 3.0f);
+        connection.Scale = new Vector3(5.0f, 1.0f, relativePosLength + 3.0f);
 
         var angle = relativePosition.AngleTo(Vector3.Forward);
 
@@ -80,9 +96,41 @@ public sealed class IntercellularMatrixSystem : AEntitySetSystem<float>
 
         connection.RotateY(angle);
 
-        connection.Position += relativePosition * 0.5f;
+        connection.Position += (pointA + pointB) * 0.5f;
 
         intercellularMatrix.GeneratedConnection = connection;
+    }
+
+    private static (Vector3 PointA, Vector3 PointB) FindGoodConnectionPoints(MembranePointData membraneA,
+        MembranePointData membraneB, Vector3 membraneBOffset)
+    {
+        Vector2 closestVertexB = FindClosestVertex(Vector2.Zero, membraneB.Vertices2D,
+            new Vector2(membraneBOffset.X, membraneBOffset.Z));
+
+        Vector2 closestVertexA = FindClosestVertex(closestVertexB, membraneA.Vertices2D, Vector2.Zero);
+
+        return (new Vector3(closestVertexA.X, 0.0f, closestVertexA.Y),
+            new Vector3(closestVertexB.X, 0.0f, closestVertexB.Y));
+    }
+
+    private static Vector2 FindClosestVertex(Vector2 target, Vector2[] vertices, Vector2 offset)
+    {
+        Vector2 closestVertex = Vector2.Zero;
+        float minDistance = float.MaxValue;
+        foreach (var vertex in vertices)
+        {
+            var relativeVertex = vertex + offset;
+
+            float squareDistance = relativeVertex.DistanceSquaredTo(target);
+
+            if (squareDistance < minDistance)
+            {
+                closestVertex = relativeVertex;
+                minDistance = squareDistance;
+            }
+        }
+
+        return closestVertex;
     }
 
     private static void RemoveConnection(in Entity entity, ref IntercellularMatrix intercellularMatrix)
