@@ -49,8 +49,7 @@ public partial class AchievementCard : MarginContainer
 
             backgroundToAdjustStyle.AddThemeStyleboxOverride(backgroundStyleName, unlockedStyle);
 
-            // TODO: icon
-            // icon.Texture = achievement.
+            icon.Texture = achievement.GetUnlockedIcon();
         }
         else
         {

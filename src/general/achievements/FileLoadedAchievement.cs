@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using Godot;
 using Newtonsoft.Json;
 
 /// <summary>
@@ -17,6 +18,8 @@ public class FileLoadedAchievement : IAchievement
 
     [JsonProperty]
     private string? progressDescription;
+
+    private Texture2D? loadedIcon;
 #pragma warning restore 649
 
     [JsonProperty]
@@ -35,6 +38,9 @@ public class FileLoadedAchievement : IAchievement
 
     [JsonProperty]
     public bool HideIfNotAchieved { get; private set; }
+
+    [JsonProperty]
+    public string UnlockedIcon { get; private set; } = null!;
 
     [JsonProperty]
     public int LinkedStatistic { get; private set; }
@@ -115,6 +121,11 @@ public class FileLoadedAchievement : IAchievement
         Achieved = false;
     }
 
+    public Texture2D GetUnlockedIcon()
+    {
+        return loadedIcon ??= GD.Load<Texture2D>(UnlockedIcon);
+    }
+
     public void OnLoaded(string internalName, bool unlocked)
     {
         if (string.IsNullOrWhiteSpace(internalName))
@@ -131,6 +142,9 @@ public class FileLoadedAchievement : IAchievement
             throw new Exception("Missing description for achievement " + internalName);
 
         Description = new LocalizedString(descriptionRaw);
+
+        if (string.IsNullOrEmpty(UnlockedIcon))
+            throw new Exception("Missing unlocked icon for achievement " + internalName);
 
         if (unlocked)
             Achieved = true;
