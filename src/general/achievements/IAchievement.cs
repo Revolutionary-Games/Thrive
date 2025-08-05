@@ -1,4 +1,6 @@
-﻿public interface IAchievement
+﻿using Godot;
+
+public interface IAchievement
 {
     /// <summary>
     ///   A unique identifier that each achievement is identified by
@@ -29,6 +31,12 @@
     /// <param name="updatedStats">Achievement data store with the updates</param>
     /// <returns>True if this is now unlocked</returns>
     public bool ProcessPotentialUnlock(AchievementStatStore updatedStats);
+
+    /// <summary>
+    ///   Gets an icon for this achievement when it is achieved
+    /// </summary>
+    /// <returns>Loaded icon for this achievement (loads on the first call)</returns>
+    public Texture2D GetUnlockedIcon();
 
     /// <summary>
     ///   Locks this achievement (resets progress)

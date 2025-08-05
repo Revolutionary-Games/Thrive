@@ -38,7 +38,7 @@ public partial class AchievementPopup : PanelContainer
 
         if (achievement.Achieved)
         {
-            // TODO: achievement icon
+            icon.Texture = achievement.GetUnlockedIcon();
 
             description.Text = achievement.Description.ToString();
 
