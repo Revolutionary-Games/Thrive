@@ -43,11 +43,11 @@ public partial class AchievementsManager : Node
 
     private readonly object achievementsDataLock = new();
 
-    private readonly AchievementStatStore statsStore = new();
-
     private readonly Dictionary<int, IAchievement> achievements = new();
 
     private readonly Queue<IAchievement> achievementsToPopupQueue = new();
+
+    private IAchievementStatStore statsStore = new AchievementStatStore();
 
 #pragma warning disable CA2213
     private Control achievementsGUIContainer = null!;
@@ -145,6 +145,22 @@ public partial class AchievementsManager : Node
     public override void _Ready()
     {
         base._Ready();
+
+        // Determine backend to use
+        if (SteamHandler.Instance.IsLoaded || SteamHandler.Instance.WasLoadAttempted)
+        {
+            GD.Print("Using Steam as achievements storage");
+            statsStore = new SteamStatStore(SteamHandler.Instance.GetSteamClientForAchievements());
+        }
+
+        if (!SceneManager.Instance.QuittingRequested())
+        {
+            StartLoadAchievementsData();
+        }
+        else
+        {
+            GD.Print("Skipping achievements load as game startup is failing");
+        }
 
         // Create a container for achievement popups to be in
         var layer = new CanvasLayer
@@ -265,7 +281,7 @@ public partial class AchievementsManager : Node
     ///   Gets stat store for *reading* nothing should modify the stats retrieved from here
     /// </summary>
     /// <returns>Stats instance for reading data from</returns>
-    public AchievementStatStore GetStats()
+    public IAchievementStatStore GetStats()
     {
         return statsStore;
     }
@@ -362,7 +378,7 @@ public partial class AchievementsManager : Node
 
         lock (achievementsDataLock)
         {
-            statsStore.IncrementIntStat(AchievementStatStore.STAT_MICROBE_KILLS);
+            statsStore.IncrementIntStat(IAchievementStatStore.STAT_MICROBE_KILLS);
 
             // TODO: automatically generate the list of relevant achievements for each event?
             ReportStatUpdateToRelevantAchievements([AchievementIds.MICROBIAL_MASSACRE]);
@@ -421,17 +437,7 @@ public partial class AchievementsManager : Node
                 if (achievements[id].ProcessPotentialUnlock(statsStore))
                 {
                     // As this may not be called on the main thread, invoke here
-                    Invoke.Instance.Perform(() =>
-                    {
-                        lock (achievementsDataLock)
-                        {
-                            GD.Print("Unlocked new achievement: ", achievements[id].InternalName);
-                            achievementsDiskProgress.UnlockedAchievements.Add(achievements[id].InternalName);
-                            DisplayAchievement(achievements[id]);
-                        }
-
-                        GUICommon.Instance.PlayCustomSound(achievementSound);
-                    });
+                    Invoke.Instance.Perform(() => { OnAchievementUnlocked(achievements[id]); });
                 }
                 else if (achievements[id].IsAtUnlockMilestone(statsStore))
                 {
@@ -449,45 +455,116 @@ public partial class AchievementsManager : Node
         dirty = true;
     }
 
+    private void OnAchievementUnlocked(IAchievement achievement)
+    {
+        GD.Print("Unlocked new achievement: ", achievement.InternalName);
+
+        lock (achievementsDataLock)
+        {
+            if (statsStore is AchievementStatStore)
+            {
+                achievementsDiskProgress.UnlockedAchievements.Add(achievement.InternalName);
+                DisplayAchievement(achievement);
+            }
+            else
+            {
+                GD.Print("Reporting to Steam about new achievement");
+                if (!SteamHandler.Instance.GetSteamClientForAchievements()
+                        .SetSteamAchievement(achievement.InternalName))
+                {
+                    GD.PrintErr("Failed to report to Steam about a new achievement");
+                }
+
+                // Need to save stats immediately on unlocking an achievement
+                timeSinceSave = 1000;
+                dirty = true;
+            }
+        }
+
+        GUICommon.Instance.PlayCustomSound(achievementSound);
+    }
+
     /// <summary>
     ///   Shows a GUI popup about an unlocked achievement or one with significant progress
     /// </summary>
     private void DisplayAchievement(IAchievement achievement)
     {
-        GD.Print("Showing a popup about an achievement: ", achievement.InternalName);
-        achievementsToPopupQueue.Enqueue(achievement);
+        if (statsStore is AchievementStatStore)
+        {
+            GD.Print("Showing a popup about an achievement: ", achievement.InternalName);
+            achievementsToPopupQueue.Enqueue(achievement);
+        }
+        else
+        {
+            if (!achievement.GetSteamProgress(statsStore, out var current, out var max))
+            {
+                GD.PrintErr(
+                    "Achievement that wants to show progress, couldn't retrieve current Steam progress for display");
+                return;
+            }
+
+            if (SteamHandler.Instance.GetSteamClientForAchievements()
+                .IndicateAchievementProgress(achievement.InternalName, current, max))
+            {
+                GD.Print("Requesting Steam show progress towards an achievement");
+            }
+            else
+            {
+                GD.PrintErr("Failed to show achievement progress with Steam popup");
+            }
+        }
     }
 
     private void PerformLoad()
     {
-        // Load achievements progress data
-        // TODO: in Steam mode need to load data from steam
-        AchievementsDiskProgress? newProgress;
+        var alreadyUnlockedCallback = (string achievement) =>
+            achievementsDiskProgress.UnlockedAchievements.Contains(achievement);
 
-        try
+        // Load achievements progress data (only in non-Steam mode)
+        if (statsStore is AchievementStatStore basicStore)
         {
-            newProgress = LoadAchievementsProgress();
+            AchievementsDiskProgress? newProgress;
+
+            try
+            {
+                newProgress = LoadAchievementsProgress();
+            }
+            catch (Exception e)
+            {
+                GD.PrintErr("Error while loading achievements data: ", e);
+
+                // TODO: if players hit this too often we might just need to have a popup warning about this and
+                // asking if the player would like to reset their achievements data or quit the game
+                GD.PrintErr("QUITTING THE GAME AS ACHIEVEMENT DATA IS NOT GOOD!");
+                Invoke.Instance.Perform(() => SceneManager.Instance.QuitDueToError());
+
+                // Unblock the main thread if it is waiting for it
+                loaded = true;
+                return;
+            }
+
+            lock (achievementsDataLock)
+            {
+                if (newProgress != null)
+                    achievementsDiskProgress = newProgress;
+
+                basicStore.Load(achievementsDiskProgress.IntStats);
+            }
         }
-        catch (Exception e)
+        else
         {
-            GD.PrintErr("Error while loading achievements data: ", e);
+            GD.Print("Reading current achievement status from Steam");
+            alreadyUnlockedCallback = achievement =>
+            {
+                if (!SteamHandler.Instance.GetSteamClientForAchievements()
+                        .GetSteamAchievement(achievement, out var achieved))
+                {
+                    GD.PrintErr("Failed to read current achievement state for: ", achievement);
+                    return false;
+                }
 
-            // TODO: if players hit this too often we might just need to have a popup warning about this and asking if
-            // the player would like to reset their achievements data or quit the game
-            GD.PrintErr("QUITTING THE GAME AS ACHIEVEMENT DATA IS NOT GOOD!");
-            Invoke.Instance.Perform(() => SceneManager.Instance.QuitDueToError());
-
-            // Unblock the main thread if it is waiting for it
-            loaded = true;
-            return;
-        }
-
-        lock (achievementsDataLock)
-        {
-            if (newProgress != null)
-                achievementsDiskProgress = newProgress;
-
-            statsStore.Load(achievementsDiskProgress.IntStats);
+                return achieved;
+            };
         }
 
         // Load the achievement configuration JSON
@@ -505,7 +582,7 @@ public partial class AchievementsManager : Node
                 foreach (var loadedAchievement in deserialized)
                 {
                     loadedAchievement.Value.OnLoaded(loadedAchievement.Key,
-                        achievementsDiskProgress.UnlockedAchievements.Contains(loadedAchievement.Key));
+                        alreadyUnlockedCallback(loadedAchievement.Key));
 
                     achievements[loadedAchievement.Value.Identifier] = loadedAchievement.Value;
                 }
@@ -547,19 +624,36 @@ public partial class AchievementsManager : Node
 
             saving = true;
 
-            // TODO: take a copy of the data (instead of locking while serializing)?
+            if (statsStore is AchievementStatStore basicStore)
+            {
+                // TODO: take a copy of the data (instead of locking while serializing)?
 
-            // Save in the background
-            TaskExecutor.Instance.AddTask(new Task(PerformDataSave));
+                // Save in the background
+                TaskExecutor.Instance.AddTask(new Task(() => PerformDataSave(basicStore)));
+            }
+            else
+            {
+                if (SteamHandler.Instance.GetSteamClientForAchievements().SaveSteamStats())
+                {
+                    GD.Print("Saving achievements to Steam");
+                }
+                else
+                {
+                    GD.PrintErr("Failed to save achievements to Steam");
+                }
+
+                saving = false;
+                timeSinceSave = 0;
+            }
         }
     }
 
-    private void PerformDataSave()
+    private void PerformDataSave(AchievementStatStore stats)
     {
         // Copy stats data for writing
         lock (achievementsDataLock)
         {
-            statsStore.Save(achievementsDiskProgress.IntStats);
+            stats.Save(achievementsDiskProgress.IntStats);
         }
 
         // TODO: make sure that the stats and achievements can't get out of sync here in saving (as we don't hold a
