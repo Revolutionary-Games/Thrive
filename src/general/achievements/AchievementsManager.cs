@@ -55,6 +55,8 @@ public partial class AchievementsManager : Node
     private AchievementPopup? createdAchievementPopup;
 
     private PackedScene achievementPopupScene = null!;
+
+    private AudioStream achievementSound = null!;
 #pragma warning restore CA2213
 
     private double timeSinceSave;
@@ -171,6 +173,8 @@ public partial class AchievementsManager : Node
         ProcessMode = ProcessModeEnum.Always;
 
         achievementPopupScene = GD.Load<PackedScene>("res://src/general/achievements/AchievementPopup.tscn");
+
+        achievementSound = GD.Load<AudioStream>("res://assets/sounds/soundeffects/gui/achievementSound.ogg");
     }
 
     public override void _ExitTree()
@@ -416,9 +420,18 @@ public partial class AchievementsManager : Node
             {
                 if (achievements[id].ProcessPotentialUnlock(statsStore))
                 {
-                    GD.Print("Unlocked new achievement: ", achievements[id].InternalName);
-                    achievementsDiskProgress.UnlockedAchievements.Add(achievements[id].InternalName);
-                    DisplayAchievement(achievements[id]);
+                    // As this may not be called on the main thread, invoke here
+                    Invoke.Instance.Perform(() =>
+                    {
+                        lock (achievementsDataLock)
+                        {
+                            GD.Print("Unlocked new achievement: ", achievements[id].InternalName);
+                            achievementsDiskProgress.UnlockedAchievements.Add(achievements[id].InternalName);
+                            DisplayAchievement(achievements[id]);
+                        }
+
+                        GUICommon.Instance.PlayCustomSound(achievementSound);
+                    });
                 }
                 else if (achievements[id].IsAtUnlockMilestone(statsStore))
                 {
@@ -437,14 +450,12 @@ public partial class AchievementsManager : Node
     }
 
     /// <summary>
-    ///   Shows a GUI popup about an unlocked achievement
+    ///   Shows a GUI popup about an unlocked achievement or one with significant progress
     /// </summary>
     private void DisplayAchievement(IAchievement achievement)
     {
-        GD.Print("Showing a popup about a new unlocked achievement: ", achievement.InternalName);
+        GD.Print("Showing a popup about an achievement: ", achievement.InternalName);
         achievementsToPopupQueue.Enqueue(achievement);
-
-        // TODO: play an achievement unlocked sound alalal
     }
 
     private void PerformLoad()
