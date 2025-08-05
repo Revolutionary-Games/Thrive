@@ -46,5 +46,8 @@ public partial class PostStartupActions : Node
         }
 
         AlreadySeenTutorials.OnGameInit();
+
+        // Make sure achievement data is ready
+        AchievementsManager.Instance.WaitForAchievementsData();
     }
 }

@@ -330,6 +330,9 @@ public partial class MicrobeBenchmark : BenchmarkBase
         GenerateWorldAndSpecies();
         SetupSimulation();
 
+        // Just to make sure achievements don't trigger
+        AchievementsManager.ReportEnteredFreebuild();
+
         if (microbeSimulation == null)
             throw new InvalidOperationException("Microbe sim not setup");
 

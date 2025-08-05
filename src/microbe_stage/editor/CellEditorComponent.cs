@@ -1387,12 +1387,7 @@ public partial class CellEditorComponent :
 
     public float CalculateHitpoints()
     {
-        var maxHitpoints = Membrane.Hitpoints + Rigidity * Constants.MEMBRANE_RIGIDITY_HITPOINTS_MODIFIER;
-
-        // Tolerances affect health
-        maxHitpoints *= CalculateLatestTolerances().HealthModifier;
-
-        return maxHitpoints;
+        return MicrobeInternalCalculations.CalculateHealth(CalculateLatestTolerances(), Membrane, Rigidity);
     }
 
     public Dictionary<Compound, float> GetAdditionalCapacities(out float nominalCapacity)
@@ -2806,10 +2801,13 @@ public partial class CellEditorComponent :
 
         GUICommon.Instance.PlayButtonPressSound();
 
-        selectedSelectionMenuTab = selection;
-        ApplySelectionMenuTab();
+        if (!BlockTabSwitchIfInProgressAction(CanCancelAction))
+        {
+            selectedSelectionMenuTab = selection;
+            tutorialState?.SendEvent(TutorialEventType.CellEditorTabChanged, new StringEventArgs(tab), this);
+        }
 
-        tutorialState?.SendEvent(TutorialEventType.CellEditorTabChanged, new StringEventArgs(tab), this);
+        ApplySelectionMenuTab();
     }
 
     private void ApplySelectionMenuTab()

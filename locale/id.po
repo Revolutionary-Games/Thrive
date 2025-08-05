@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2025-06-05 21:10+0100\n"
+"POT-Creation-Date: 2025-08-01 16:03+0300\n"
 "PO-Revision-Date: 2025-05-25 15:00+0000\n"
 "Last-Translator: Anonymous <noreply@weblate.org>\n"
 "Language-Team: Indonesian <https://translate.revolutionarygamesstudio.com/projects/thrive/thrive-game/id/>\n"
@@ -48,6 +48,19 @@ msgid "ABYSSOPELAGIC"
 msgstr "Abisopelagik"
 
 msgid "ACCEPT"
+msgstr ""
+
+#, fuzzy
+msgid "ACHIEVEMENTS"
+msgstr "Pergerakan Dasar"
+
+msgid "ACHIEVEMENTS_TOTAL"
+msgstr ""
+
+msgid "ACHIEVEMENT_ACHIEVED"
+msgstr ""
+
+msgid "ACHIEVEMENT_LOCKED"
 msgstr ""
 
 msgid "ACTION_AWAKEN"
@@ -382,6 +395,10 @@ msgstr "Save otomatis ketika bermain"
 msgid "AUTO_EVO"
 msgstr "Auto-Evo"
 
+#, fuzzy
+msgid "AUTO_EVO_EXPLORER_TOOL_BUTTON"
+msgstr "Alat Penjelajah Auto-Evo"
+
 msgid "AUTO_EVO_EXPLORING_TOOL"
 msgstr "Alat Penjelajah Auto-Evo"
 
@@ -440,6 +457,9 @@ msgstr "Backslash"
 
 msgid "BACKSPACE"
 msgstr "Backspace"
+
+msgid "BACK_TO_SETTINGS"
+msgstr ""
 
 #, fuzzy
 msgid "BACTERIAL_THERMOSYNTHESIS"
@@ -720,14 +740,6 @@ msgstr "Lanjutkan"
 msgid "CELL_STAT_STORAGE_TOOLTIP"
 msgstr "Lanjutkan"
 
-#, fuzzy
-msgid "CELL_TYPE_BUTTON_ATP_CONSUMPTION"
-msgstr "{0}: -{1} ATP"
-
-#, fuzzy
-msgid "CELL_TYPE_BUTTON_ATP_PRODUCTION"
-msgstr "Produksi ATP"
-
 msgid "CELL_TYPE_NAME"
 msgstr ""
 
@@ -744,6 +756,10 @@ msgstr "Vakuola racun adalah vakuola yang telah dimodifikasi untuk pembuatan khu
 
 msgid "CHEATS"
 msgstr "Cheat"
+
+#, fuzzy
+msgid "CHEATS_USED_NOTICE"
+msgstr "Tidak dimulai."
 
 msgid "CHEAT_KEYS_ENABLED"
 msgstr "Aktifkan tombol cheat"
@@ -865,6 +881,24 @@ msgstr ""
 #, fuzzy
 msgid "CLICK_TO_SELECT"
 msgstr "Hapus terpilih"
+
+msgid "CLIMATE_INSTABILITY"
+msgstr ""
+
+#, fuzzy
+msgid "CLIMATE_INSTABILITY_EXPLANATION"
+msgstr ""
+"Mikroba aktif akan mengembara ketika tidak ada hal menarik yang terjadi.\n"
+"Mikroba sesil akan menjadi stasioner dan menunggu perubahan lingkungan sebelum bertindak."
+
+msgid "CLIMATE_STABILITY_AVERAGE"
+msgstr ""
+
+msgid "CLIMATE_STABILITY_STABLE"
+msgstr ""
+
+msgid "CLIMATE_STABILITY_UNSTABLE"
+msgstr ""
 
 msgid "CLOSE"
 msgstr "Tutup"
@@ -1119,6 +1153,14 @@ msgstr "Tambah keybind baru"
 #, fuzzy
 msgid "CONFIRM_NEW_GAME_BUTTON_TOOLTIP_DISABLED"
 msgstr "Tambah keybind baru"
+
+#, fuzzy
+msgid "CONFIRM_RESET_ACHIEVEMENTS"
+msgstr "Konfirmasi Keluar"
+
+#, fuzzy
+msgid "CONFIRM_RESET_ACHIEVEMENTS_DESCRIPTION"
+msgstr "Mengubah [thrive:compound type=\"atp\"][/thrive:compound] menjadi [thrive:compound type=\"ammonia\"][/thrive:compound]. Laju berbanding lurus dengan konsentrasi [thrive:compound type=\"nitrogen\"][/thrive:compound]"
 
 msgid "CONSTRUCTION_UNIT_NAME"
 msgstr ""
@@ -2536,11 +2578,33 @@ msgstr "Tekan tombol undo di editor untuk membatalkan kesalahan"
 msgid "GENERAL_LOADING_TIP_7"
 msgstr "Tekan tombol undo di editor untuk membatalkan kesalahan"
 
+#, fuzzy
+msgid "GENERATE_BUTTON"
+msgstr "Generasi"
+
 msgid "GENERATIONS"
 msgstr "Generasi"
 
 msgid "GENERATION_COLON"
 msgstr "Generasi:"
+
+msgid "GEOLOGICAL_ACTIVITY"
+msgstr ""
+
+msgid "GEOLOGICAL_ACTIVITY_ACTIVE"
+msgstr ""
+
+msgid "GEOLOGICAL_ACTIVITY_AVERAGE"
+msgstr ""
+
+msgid "GEOLOGICAL_ACTIVITY_DORMANT"
+msgstr ""
+
+#, fuzzy
+msgid "GEOLOGICAL_ACTIVITY_EXPLANATION"
+msgstr ""
+"Mikroba aktif akan mengembara ketika tidak ada hal menarik yang terjadi.\n"
+"Mikroba sesil akan menjadi stasioner dan menunggu perubahan lingkungan sebelum bertindak."
 
 #, fuzzy
 msgid "GITHUB_TOOLTIP"
@@ -3125,6 +3189,14 @@ msgstr "Tab"
 
 msgid "KEY_UP"
 msgstr "Up"
+
+#, fuzzy
+msgid "KILL_50_MICROBES"
+msgstr "Nitrogenase"
+
+#, fuzzy
+msgid "KILL_MICROBES_PROGRESS"
+msgstr "Editor Mikrob"
 
 msgid "KILO_ABBREVIATION"
 msgstr "{0} rb"
@@ -3978,6 +4050,10 @@ msgstr ""
 #, fuzzy
 msgid "MICROBE_STAGE_ORGANELLE_DIVISION"
 msgstr "Statistika Organisme"
+
+#, fuzzy
+msgid "MICROBIAL_MASSACRE"
+msgstr "Tahapan Mikrob"
 
 msgid "MIDDLE_MOUSE"
 msgstr ""
@@ -5016,11 +5092,12 @@ msgid "PLANET"
 msgstr ""
 
 #, fuzzy
+msgid "PLANET_CUSTOMIZER"
+msgstr "Pada Kursor:"
+
+#, fuzzy
 msgid "PLANET_DETAILS_STRING"
 msgstr "Buka Folder Catatan"
-
-msgid "PLANET_GENERATION_TEASER"
-msgstr ""
 
 msgid "PLANET_RANDOM_SEED"
 msgstr ""
@@ -5226,6 +5303,10 @@ msgstr "Ulang tindakan terakhir"
 msgid "REFRESH"
 msgstr "Segarkan"
 
+#, fuzzy
+msgid "REGENERATE_BUTTON"
+msgstr "Organel"
+
 msgid "RENDER_SCALE"
 msgstr ""
 
@@ -5274,6 +5355,9 @@ msgstr "Search"
 
 msgid "RESET"
 msgstr "Setel ulang"
+
+msgid "RESET_ACHIEVEMENTS"
+msgstr ""
 
 #, fuzzy
 msgid "RESET_DEADZONES"
@@ -5455,6 +5539,10 @@ msgstr "Simpan dan lanjut"
 
 msgid "SAVE_AUTOSAVE"
 msgstr "Save otomatis"
+
+#, fuzzy
+msgid "SAVE_CHEATS_USED"
+msgstr "Ruang terpakai:"
 
 msgid "SAVE_DELETE_WARNING"
 msgstr "Save yang terhapus tidak akan bisa dikembalikan, apakah kamu yakin ingin menghapus {0} secara permanen?"
@@ -5783,6 +5871,10 @@ msgstr "Silika"
 
 msgid "SILICA_MEMBRANE_DESCRIPTION"
 msgstr "Membran ini memiliki dinding kuat terbuat dari silika. Dapat menahan kerusakan secara keseluruhan dengan baik dan sangat kebal terhadap kerusakan fisik. Juga memerlukan lebih sedikit energi untuk mempertahankan bentuk. Namun, sangat memperlambat sel dan juga memperlambat laju kemampuan sel menyerap sumber daya."
+
+#, fuzzy
+msgid "SIMULATION_CONFIG"
+msgstr "Harga Osmoregulasi"
 
 #, fuzzy
 msgid "SIXTEEN_TIMES"
@@ -6150,6 +6242,10 @@ msgstr "Beralih ke tampilan kamera atas"
 
 msgid "SYSREQ"
 msgstr "SysRq"
+
+#, fuzzy
+msgid "TAB_CHANGE_BLOCKED_WHILE_ACTION_IN_PROGRESS"
+msgstr "Tindakan diblokir saat yang lain sedang berlangsung"
 
 msgid "TAB_SECONDARY_SWITCH_LEFT"
 msgstr ""
@@ -7135,6 +7231,9 @@ msgid "UPSCALE_FSR_1"
 msgstr ""
 
 msgid "UPSCALE_FSR_22"
+msgstr ""
+
+msgid "UPSCALE_METHOD"
 msgstr ""
 
 msgid "UPSCALE_SHARPENING_FSR"
@@ -9137,6 +9236,24 @@ msgid "WORLD_MISC_DETAILS_STRING"
 msgstr ""
 
 #, fuzzy
+msgid "WORLD_OCEANIC_COVERAGE"
+msgstr "Pergerakan Dasar"
+
+#, fuzzy
+msgid "WORLD_OCEANIC_COVERAGE_EXPLANATION"
+msgstr "{0} populasi berubah {1} karena: {2}"
+
+msgid "WORLD_OCEANIC_COVERAGE_LARGE"
+msgstr ""
+
+#, fuzzy
+msgid "WORLD_OCEANIC_COVERAGE_MEDIUM"
+msgstr "Pergerakan Dasar"
+
+msgid "WORLD_OCEANIC_COVERAGE_SMALL"
+msgstr ""
+
+#, fuzzy
 msgid "WORLD_RELATIVE_MOVEMENT"
 msgstr "Pergerakan Dasar"
 
@@ -9161,6 +9278,26 @@ msgstr ""
 #, fuzzy
 msgid "WORLD_SIZE_TOOLTIP"
 msgstr "Tambah keybind baru"
+
+#, fuzzy
+msgid "WORLD_TEMPERATURE"
+msgstr "Suhu"
+
+#, fuzzy
+msgid "WORLD_TEMPERATURE_COLD"
+msgstr "Suhu"
+
+#, fuzzy
+msgid "WORLD_TEMPERATURE_EXPLANATION"
+msgstr "{0} populasi berubah {1} karena: {2}"
+
+#, fuzzy
+msgid "WORLD_TEMPERATURE_TEMPERATE"
+msgstr "Suhu"
+
+#, fuzzy
+msgid "WORLD_TEMPERATURE_WARM"
+msgstr "Suhu"
 
 #, fuzzy
 msgid "WORST_PATCH_COLON"
@@ -9203,6 +9340,26 @@ msgstr "Perbesar"
 
 msgid "ZOOM_OUT"
 msgstr "Perkecil"
+
+#, fuzzy
+#~ msgid "CELL_TYPE_BUTTON_ATP_CONSUMPTION"
+#~ msgstr "{0}: -{1} ATP"
+
+#, fuzzy
+#~ msgid "CELL_TYPE_BUTTON_ATP_PRODUCTION"
+#~ msgstr "Produksi ATP"
+
+#, fuzzy
+#~ msgid "WORLD_SEA_LEVEL"
+#~ msgstr "{0}-{1}m di bawah permukaan laut"
+
+#, fuzzy
+#~ msgid "WORLD_SEA_LEVEL_DEEP"
+#~ msgstr "{0}-{1}m di bawah permukaan laut"
+
+#, fuzzy
+#~ msgid "WORLD_SEA_LEVEL_MODERATE"
+#~ msgstr "Pergerakan Dasar"
 
 #, fuzzy
 #~ msgid "PASSIVE_REPRODUCTION_PROGRESS_EXPLANATION"
@@ -9433,10 +9590,6 @@ msgstr "Perkecil"
 #, fuzzy
 #~ msgid "WIKI_LIPASE"
 #~ msgstr "Lipase"
-
-#, fuzzy
-#~ msgid "WIKI_MICROBE_EDITOR"
-#~ msgstr "Editor Mikrob"
 
 #, fuzzy
 #~ msgid "WIKI_MUCILAGE_SYNTHESIS"

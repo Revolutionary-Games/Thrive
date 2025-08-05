@@ -1,6 +1,7 @@
 ﻿namespace Systems;
 
 using System;
+using System.Collections.Generic;
 using Components;
 using DefaultEcs;
 using DefaultEcs.System;
@@ -66,11 +67,18 @@ public sealed class ToxinCollisionSystem : AEntitySetSystem<float>
 
         // Check for active collisions that count as a hit and use up this projectile
         var count = collisions.GetActiveCollisions(out var activeCollisions);
+
+        if (count < 1)
+            return;
+
+        var ignoredCollisions = collisions.IgnoredCollisionsWith;
+        bool firedByPlayer = IsPlayerEntityInList(ignoredCollisions);
+
         for (int i = 0; i < count; ++i)
         {
             ref var collision = ref activeCollisions![i];
 
-            if (!HandlePotentiallyDamagingCollision(ref collision))
+            if (!HandlePotentiallyDamagingCollision(ref collision, firedByPlayer))
                 continue;
 
             // Applied a damaging hit, destroy this toxin
@@ -132,8 +140,8 @@ public sealed class ToxinCollisionSystem : AEntitySetSystem<float>
         }
         catch (Exception e)
         {
-            // Catch any exceptions to not let them escape up to the native code calling side which would blow up
-            // everything
+            // Catch any exceptions to not let them escape up to the native code calling side which would blow
+            // everything up
             GD.PrintErr("Unexpected error in collision filter: ", e);
         }
 
@@ -141,7 +149,7 @@ public sealed class ToxinCollisionSystem : AEntitySetSystem<float>
         return true;
     }
 
-    private static bool HandlePotentiallyDamagingCollision(ref PhysicsCollision collision)
+    private static bool HandlePotentiallyDamagingCollision(ref PhysicsCollision collision, bool firedByPlayer)
     {
         // TODO: switch this to also take ref once we use .NET 5 or newer:
         // https://learn.microsoft.com/en-us/dotnet/api/system.runtime.interopservices.collectionsmarshal.asspan
@@ -194,6 +202,8 @@ public sealed class ToxinCollisionSystem : AEntitySetSystem<float>
                 return true;
             }
 
+            var oldHealth = health.CurrentHealth;
+
             if (damageTarget.Has<CellProperties>())
             {
                 var toxinType = damageSource.ToxinProperties.ToxinSubType;
@@ -242,6 +252,8 @@ public sealed class ToxinCollisionSystem : AEntitySetSystem<float>
                                 DisplayDuration.Long));
                     }
 
+                    // TODO: is it possible somehow to track this as a kill for player achievements?
+
                     temporaryEffects.ATPDebuffDuration =
                         Constants.CHANNEL_INHIBITOR_DEBUFF_DURATION * damageSource.ToxinAmount;
                     temporaryEffects.StateApplied = false;
@@ -261,12 +273,18 @@ public sealed class ToxinCollisionSystem : AEntitySetSystem<float>
                 }
 
                 damageSource.ToxinProperties.DealDamage(ref health, ref damageTarget.Get<CellProperties>(),
-                    damageTarget,
-                    damageSource.ToxinAmount * modifier);
+                    damageTarget, damageSource.ToxinAmount * modifier);
             }
             else
             {
                 damageSource.ToxinProperties.DealDamage(ref health, damageTarget, damageSource.ToxinAmount);
+            }
+
+            if (health.CurrentHealth <= 0 && oldHealth > 0 && !health.Invulnerable &&
+                Math.Abs(health.CurrentHealth - oldHealth) > 0.001f && firedByPlayer)
+            {
+                // Player has killed something with a toxin shot
+                AchievementEvents.ReportPlayerMicrobeKill();
             }
 
             return true;
@@ -278,6 +296,32 @@ public sealed class ToxinCollisionSystem : AEntitySetSystem<float>
             // Destroy this toxin to avoid recurring error printing spamming
             return true;
         }
+    }
+
+    private static bool IsPlayerEntityInList(List<Entity>? entities)
+    {
+        if (entities != null)
+        {
+            foreach (var firingEntity in entities)
+            {
+                if (firingEntity.Has<PlayerMarker>())
+                {
+                    return true;
+                }
+
+                if (firingEntity.Has<MicrobeColonyMember>())
+                {
+                    ref var memberData = ref firingEntity.Get<MicrobeColonyMember>();
+
+                    if (memberData.ColonyLeader.Has<PlayerMarker>())
+                    {
+                        return true;
+                    }
+                }
+            }
+        }
+
+        return false;
     }
 
     private static float CalculateToxinOrganelleDamageMultiplier(ref OrganelleContainer organelleContainer,

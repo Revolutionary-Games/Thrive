@@ -84,7 +84,10 @@ public class IronOxidationEffect : IWorldEffect
                 }
                 else
                 {
+                    // TODO: this warning is likely not as serious as before, as events can add new chunk types
+                    // So those reducing to 0 spawn is not a problem
                     GD.PrintErr("Couldn't find original spawn density of chunk for oxidation: " + chunk);
+                    GD.Print("This chunk will not have a minimum spawn density");
                 }
 
                 chunkConfiguration.Density = Math.Max(newValue, minimum);

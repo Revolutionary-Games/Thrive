@@ -64,6 +64,11 @@ public class SaveInformation
     /// </summary>
     public bool IsPrototype { get; set; }
 
+    /// <summary>
+    ///   Set to true if the player has cheated in this game
+    /// </summary>
+    public bool CheatsUsed { get; set; }
+
     [JsonIgnore]
     public string TranslatedSaveTypeString =>
         Localization.Translate(Type.GetAttribute<DescriptionAttribute>().Description);
