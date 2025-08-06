@@ -51,7 +51,7 @@ public class FileLoadedAchievement : IAchievement
     [JsonProperty]
     public IReadOnlyList<int>? LinkedStatisticVisibleProgressThresholds { get; private set; }
 
-    public bool ProcessPotentialUnlock(AchievementStatStore updatedStats)
+    public bool ProcessPotentialUnlock(IAchievementStatStore updatedStats)
     {
         if (LinkedStatistic != 0)
         {
@@ -71,7 +71,7 @@ public class FileLoadedAchievement : IAchievement
         return false;
     }
 
-    public bool HasAnyProgress(AchievementStatStore stats)
+    public bool HasAnyProgress(IAchievementStatStore stats)
     {
         if (LinkedStatistic != 0)
         {
@@ -82,7 +82,7 @@ public class FileLoadedAchievement : IAchievement
         return false;
     }
 
-    public string GetProgress(AchievementStatStore stats)
+    public string GetProgress(IAchievementStatStore stats)
     {
         if (string.IsNullOrEmpty(progressDescription))
             return Description.ToString();
@@ -97,7 +97,24 @@ public class FileLoadedAchievement : IAchievement
         return Description.ToString();
     }
 
-    public bool IsAtUnlockMilestone(AchievementStatStore stats)
+    public bool GetSteamProgress(IAchievementStatStore stats, out uint current, out uint max)
+    {
+        if (LinkedStatistic != 0)
+        {
+            // TODO: should this use bit cast?
+            current = (uint)stats.GetIntStat(LinkedStatistic);
+            max = (uint)LinkedStatisticThreshold;
+
+            return true;
+        }
+
+        GD.PrintErr("No Steam progress info available for achievement (missing linked statistic): ", InternalName);
+        current = 0;
+        max = 0;
+        return false;
+    }
+
+    public bool IsAtUnlockMilestone(IAchievementStatStore stats)
     {
         if (LinkedStatistic != 0)
         {
@@ -158,7 +175,7 @@ public class FileLoadedAchievement : IAchievement
             }
 
             // Verify statistic is correct
-            if (!AchievementStatStore.IsValidStatistic(LinkedStatistic))
+            if (!IAchievementStatStore.IsValidStatistic(LinkedStatistic))
             {
                 throw new Exception(
                     $"Linked statistic {LinkedStatistic} for achievement {internalName} is not a valid statistic");
@@ -176,8 +193,11 @@ public class FileLoadedAchievement : IAchievement
         switch (Identifier)
         {
             case 1:
-                if (InternalName == "MICROBIAL_MASSACRE" && LinkedStatistic == AchievementStatStore.STAT_MICROBE_KILLS)
+                if (InternalName == IAchievementStatStore.MICROBIAL_MASSACRE_ID &&
+                    LinkedStatistic == IAchievementStatStore.STAT_MICROBE_KILLS)
+                {
                     return;
+                }
 
                 break;
         }

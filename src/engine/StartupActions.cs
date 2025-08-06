@@ -225,9 +225,5 @@ public partial class StartupActions : Node
             GD.Print("Preventing startup due to StartupActions failing");
             SceneManager.QuitDueToProblem(this);
         }
-        else
-        {
-            AchievementsManager.Instance.StartLoadAchievementsData();
-        }
     }
 }
