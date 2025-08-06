@@ -123,6 +123,12 @@ public class Settings
     public SettingValue<float> RenderScale { get; private set; } = new(1.0f);
 
     /// <summary>
+    /// Selected window index for the game window.
+    /// </summary>
+    [JsonProperty]
+    public SettingValue<int> SelectedDisplayIndex { get; set; } = new(DisplayServer.WindowGetCurrentScreen());
+
+    /// <summary>
     ///   Upscaling method to use when the render scale is less than 1
     /// </summary>
     [JsonProperty]
@@ -1026,6 +1032,12 @@ public class Settings
     /// </summary>
     public void ApplyWindowSettings()
     {
+        var screenId = SelectedDisplayIndex.Value;
+        var currentScreenId = DisplayServer.WindowGetCurrentScreen();
+        var screenChanged = screenId != currentScreenId;
+        if (screenChanged)
+            DisplayServer.WindowSetCurrentScreen(screenId);
+
         var mode = DisplayServer.WindowGetMode();
 
         // Treat maximized and windowed as the same thing to not reset maximized status after the user has set it
@@ -1059,10 +1071,21 @@ public class Settings
                 break;
         }
 
-        if (mode != wantedMode)
+        var windowModeChanged = mode != wantedMode;
+        if (windowModeChanged)
         {
             GD.Print($"Switching window mode from {mode} to {wantedMode}");
             DisplayServer.WindowSetMode(wantedMode);
+        }
+
+        // Center the window if it is in Windowed mode and the screen or window mode has changed
+        if ((screenChanged || windowModeChanged) && wantedMode == DisplayServer.WindowMode.Windowed)
+        {
+            var size = DisplayServer.ScreenGetSize(screenId);
+            var position = DisplayServer.ScreenGetPosition(screenId);
+            var windowSize = DisplayServer.WindowGetSize();
+            var centeredPos = position + (size - windowSize) / 2;
+            DisplayServer.WindowSetPosition(centeredPos, 0);
         }
 
         // TODO: switch the setting to allow specifying all of the 4 possible values

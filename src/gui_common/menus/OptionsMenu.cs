@@ -33,6 +33,10 @@ public partial class OptionsMenu : ControlWithInput
         .GetOutputDeviceList().Where(d => d != Constants.DEFAULT_AUDIO_OUTPUT_DEVICE_NAME)
         .Prepend(Constants.DEFAULT_AUDIO_OUTPUT_DEVICE_NAME).ToList();
 
+    private static readonly Lazy<List<DisplayInfo>> DisplaysCache = new(() =>
+        Enumerable.Range(0, DisplayServer.GetScreenCount())
+            .Select(i => new DisplayInfo(i, $"Monitor {i + 1}")).ToList());
+
 #pragma warning disable CA2213
     [Export]
     private Button backButton = null!;
@@ -68,6 +72,9 @@ public partial class OptionsMenu : ControlWithInput
 
     [Export]
     private CheckButton vsync = null!;
+
+    [Export]
+    private OptionButton display = null!;
 
     [Export]
     private Label? resolution;
@@ -479,6 +486,7 @@ public partial class OptionsMenu : ControlWithInput
 
     private static List<string> Languages => LanguagesCache.Value;
     private static List<string> AudioOutputDevices => AudioOutputDevicesCache;
+    private static List<DisplayInfo> Displays => DisplaysCache.Value;
 
     public override void _Ready()
     {
@@ -618,6 +626,7 @@ public partial class OptionsMenu : ControlWithInput
         var simulationParameters = SimulationParameters.Instance;
 
         // Graphics
+        display.Selected = settings.SelectedDisplayIndex;
         vsync.ButtonPressed = settings.VSync;
         displayMode.Selected = DisplayModeToIndex(settings.DisplayMode);
         antiAliasingMode.Selected = AntiAliasingModeToIndex(settings.AntiAliasing);
@@ -806,6 +815,7 @@ public partial class OptionsMenu : ControlWithInput
 
         elementItemSelectionsInitialized = true;
 
+        DisplayDisplayList();
         LoadLanguages();
         LoadAudioOutputDevices();
         LoadScreenEffects();
@@ -840,6 +850,18 @@ public partial class OptionsMenu : ControlWithInput
 
             default:
                 throw new ArgumentException("Options menu SwitchMode called with an invalid mode argument");
+        }
+    }
+
+    /// <summary>
+    ///   Displays the list of monitors available on the system.
+    /// </summary>
+    private void DisplayDisplayList()
+    {
+        display.Clear();
+        foreach (var displayInfo in Displays)
+        {
+            display.AddItem(displayInfo.Name, displayInfo.Id);
         }
     }
 
@@ -1828,6 +1850,22 @@ public partial class OptionsMenu : ControlWithInput
             Localization.Translate("PERCENTAGE_VALUE").FormatSafe(Math.Round(renderScale.Value * 100));
     }
 
+    private void OnMonitorSelected(int index)
+    {
+        if (index < 0 || index >= Displays.Count)
+        {
+            GD.PrintErr("Invalid monitor index selected");
+            return;
+        }
+
+        if (Settings.Instance.SelectedDisplayIndex.Value == Displays[index].Id)
+            return;
+
+        Settings.Instance.SelectedDisplayIndex.Value = Displays[index].Id;
+        Settings.Instance.ApplyWindowSettings();
+        UpdateResetSaveButtonState();
+    }
+
     private void OnUpscalingMethodSelected(int index)
     {
         Settings.Instance.UpscalingMethod.Value = UpscalingMethodIndexToValue(index);
@@ -2736,4 +2774,6 @@ public partial class OptionsMenu : ControlWithInput
 
         AchievementsManager.Instance.Reset();
     }
+
+    private record DisplayInfo(int Id, string Name);
 }
