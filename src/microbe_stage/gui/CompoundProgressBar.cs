@@ -15,6 +15,8 @@ public partial class CompoundProgressBar : Control
 
     private readonly NodePath minSizeXReference = new("custom_minimum_size:x");
 
+    private readonly StringName normalStyleBoxName = new("normal");
+
 #pragma warning disable CA2213
     [Export]
     private TextureRect? icon;
@@ -49,18 +51,6 @@ public partial class CompoundProgressBar : Control
     private double flashAnimationTimer;
 
     private Color fillColour = new(0.6f, 0.6f, 0.6f, 1);
-
-    private StyleBoxFlat amountCompactTheme = new()
-    {
-        BgColor = new Color(0.2f, 0.2f, 0.2f, 0.45f),
-        BorderColor = Colors.Transparent,
-        CornerRadiusBottomLeft = 6,
-        CornerRadiusBottomRight = 6,
-        CornerRadiusTopLeft = 6,
-        CornerRadiusTopRight = 6,
-        ContentMarginLeft = 6,
-        ContentMarginRight = 3,
-    };
 
     public enum BarMode
     {
@@ -240,6 +230,19 @@ public partial class CompoundProgressBar : Control
     /// </summary>
     [Export]
     public bool Narrow { get; set; }
+
+    [Export]
+    public StyleBoxFlat AmountCompactTheme { get; set; } = new()
+    {
+        BgColor = new Color(0.2f, 0.2f, 0.2f, 0.45f),
+        BorderColor = Colors.Transparent,
+        CornerRadiusBottomLeft = 6,
+        CornerRadiusBottomRight = 6,
+        CornerRadiusTopLeft = 6,
+        CornerRadiusTopRight = 6,
+        ContentMarginLeft = 6,
+        ContentMarginRight = 3,
+    };
 
     private double FlashAnimationSlerpFactor => flashAnimationTimer <= Constants.HUD_BAR_FLASH_DURATION * 0.5f ?
         flashAnimationTimer * 2 :
@@ -481,7 +484,7 @@ public partial class CompoundProgressBar : Control
             minSizeXReference.Dispose();
         }
 
-        amountCompactTheme.Dispose();
+        normalStyleBoxName.Dispose();
         base.Dispose(disposing);
     }
 
@@ -630,7 +633,7 @@ public partial class CompoundProgressBar : Control
                 tween.TweenProperty(this, minSizeXReference,
                     Narrow ? Constants.COMPOUND_BAR_NARROW_COMPACT_WIDTH : Constants.COMPOUND_BAR_COMPACT_WIDTH, 0.3);
 
-                amountLabel.AddThemeStyleboxOverride("normal", amountCompactTheme);
+                amountLabel.AddThemeStyleboxOverride(normalStyleBoxName, AmountCompactTheme);
                 nameLabel.Hide();
             }
             else
@@ -638,7 +641,7 @@ public partial class CompoundProgressBar : Control
                 tween.TweenProperty(this, minSizeXReference,
                     Narrow ? Constants.COMPOUND_BAR_NARROW_NORMAL_WIDTH : Constants.COMPOUND_BAR_NORMAL_WIDTH, 0.3);
 
-                amountLabel.RemoveThemeStyleboxOverride("normal");
+                amountLabel.RemoveThemeStyleboxOverride(normalStyleBoxName);
                 nameLabel.Show();
             }
         }
@@ -651,7 +654,7 @@ public partial class CompoundProgressBar : Control
                         Narrow ? Constants.COMPOUND_BAR_NARROW_COMPACT_WIDTH : Constants.COMPOUND_BAR_COMPACT_WIDTH,
                         CustomMinimumSize.Y);
 
-                amountLabel.AddThemeStyleboxOverride("normal", amountCompactTheme);
+                amountLabel.AddThemeStyleboxOverride(normalStyleBoxName, AmountCompactTheme);
                 nameLabel.Hide();
             }
             else
@@ -661,7 +664,7 @@ public partial class CompoundProgressBar : Control
                         Narrow ? Constants.COMPOUND_BAR_NARROW_NORMAL_WIDTH : Constants.COMPOUND_BAR_NORMAL_WIDTH,
                         CustomMinimumSize.Y);
 
-                amountLabel.RemoveThemeStyleboxOverride("normal");
+                amountLabel.RemoveThemeStyleboxOverride(normalStyleBoxName);
                 nameLabel.Show();
             }
         }
