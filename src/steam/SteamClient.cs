@@ -416,7 +416,9 @@ public sealed class SteamClient : ISteamClient
     {
         if (result == (int)EResult.k_EResultOK)
         {
+#if DEBUG
             GD.Print("Steam achievement save complete");
+#endif
         }
         else
         {

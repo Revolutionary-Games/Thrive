@@ -8,8 +8,6 @@ public class AchievementStatStore : IAchievementStatStore
 {
     private int statMicrobeKills;
 
-
-
     public int GetIntStat(int statId)
     {
         switch (statId)

@@ -22,7 +22,6 @@
         return null;
     }
 
-
     public int GetIntStat(int statId);
     public int IncrementIntStat(int statId);
 
