@@ -1,6 +1,7 @@
 namespace Systems;
 
 using System;
+using System.Collections.Generic;
 using Components;
 using DefaultEcs;
 using DefaultEcs.System;
@@ -18,7 +19,9 @@ using Godot;
 public sealed class IntercellularMatrixSystem : AEntitySetSystem<float>
 {
     private static readonly Lazy<PackedScene> ConnectionScene =
-        new(() => GD.Load<PackedScene>("res://src/multicellular_stage/IntecellularConnection.tscn"));
+        new(() => GD.Load<PackedScene>("res://src/multicellular_stage/IntercellularConnection.tscn"));
+
+    private static readonly List<ShaderMaterial> TempMaterialList = new();
 
     public IntercellularMatrixSystem(World world) : base(world, null)
     {
@@ -86,6 +89,8 @@ public sealed class IntercellularMatrixSystem : AEntitySetSystem<float>
         connection.Position += (pointA + pointB) * 0.5f;
 
         intercellularMatrix.GeneratedConnection = connection;
+
+        ApplyConnectionMaterialParameters(entity, ref intercellularMatrix);
     }
 
     private static (Vector3 PointA, Vector3 PointB) FindGoodConnectionPoints(MembranePointData membraneA,
@@ -124,5 +129,23 @@ public sealed class IntercellularMatrixSystem : AEntitySetSystem<float>
     {
         intercellularMatrix.GeneratedConnection?.QueueFree();
         intercellularMatrix.GeneratedConnection = null;
+    }
+
+    private static void ApplyConnectionMaterialParameters(in Entity entity,
+        ref IntercellularMatrix intercellularMatrix)
+    {
+        if (intercellularMatrix.GeneratedConnection == null)
+        {
+            GD.PrintErr("Intercellular connection is null, can't apply material parameters");
+            return;
+        }
+
+        TempMaterialList.Clear();
+        intercellularMatrix.GeneratedConnection.GetMaterial(TempMaterialList);
+
+        foreach (var material in TempMaterialList)
+        {
+            material.SetShaderParameter("tint", entity.Get<CellProperties>().Colour);
+        }
     }
 }
