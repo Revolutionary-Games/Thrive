@@ -20,7 +20,7 @@ public sealed class IntercellularMatrixSystem : AEntitySetSystem<float>
     private static readonly Lazy<PackedScene> ConnectionScene =
         new(() => GD.Load<PackedScene>("res://src/multicellular_stage/IntercellularConnection.tscn"));
 
-    private static readonly List<ShaderMaterial> TempMaterialList = new();
+    private static readonly StringName TintParameter = new("tint");
 
     public IntercellularMatrixSystem(World world) : base(world, null)
     {
@@ -139,12 +139,7 @@ public sealed class IntercellularMatrixSystem : AEntitySetSystem<float>
             return;
         }
 
-        TempMaterialList.Clear();
-        intercellularMatrix.GeneratedConnection.GetMaterial(TempMaterialList);
-
-        foreach (var material in TempMaterialList)
-        {
-            material.SetShaderParameter("tint", entity.Get<CellProperties>().Colour);
-        }
+        var material = ((GeometryInstance3D)intercellularMatrix.GeneratedConnection).MaterialOverride;
+        ((ShaderMaterial)material).SetShaderParameter(TintParameter, entity.Get<CellProperties>().Colour);
     }
 }
