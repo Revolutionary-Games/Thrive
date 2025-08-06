@@ -38,6 +38,8 @@ public sealed class MicrobeVisualOnlySimulation : WorldSimulation
     private MicrobeVisualsSystem microbeVisualsSystem = null!;
     private TintColourApplyingSystem tintColourApplyingSystem = null!;
 
+    private IntercellularMatrixSystem intercellularMatrixSystem = null!;
+
 #pragma warning disable CA2213
     private Node visualsParent = null!;
 #pragma warning restore CA2213
@@ -88,6 +90,8 @@ public sealed class MicrobeVisualOnlySimulation : WorldSimulation
         // organelleTickSystem = new OrganelleTickSystem(EntitySystem, runner);
 
         tintColourApplyingSystem = new TintColourApplyingSystem(EntitySystem);
+
+        intercellularMatrixSystem = new IntercellularMatrixSystem(EntitySystem);
 
         OnInitialized();
     }
@@ -440,6 +444,7 @@ public sealed class MicrobeVisualOnlySimulation : WorldSimulation
         colourAnimationSystem.Update(delta);
         microbeShaderSystem.Update(delta);
         tintColourApplyingSystem.Update(delta);
+        intercellularMatrixSystem.Update(delta);
     }
 
     protected override void ApplyECSThreadCount(int ecsThreadsToUse)
@@ -466,6 +471,7 @@ public sealed class MicrobeVisualOnlySimulation : WorldSimulation
             microbeShaderSystem.Dispose();
             microbeVisualsSystem.Dispose();
             tintColourApplyingSystem.Dispose();
+            intercellularMatrixSystem.Dispose();
         }
 
         base.Dispose(disposing);
