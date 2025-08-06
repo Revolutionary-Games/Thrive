@@ -1,11 +1,10 @@
-namespace Systems;
+﻿namespace Systems;
 
 using System;
 using System.Collections.Generic;
 using Components;
 using DefaultEcs;
 using DefaultEcs.System;
-using DefaultEcs.Threading;
 using Godot;
 
 [With(typeof(IntercellularMatrix))]
@@ -37,20 +36,20 @@ public sealed class IntercellularMatrixSystem : AEntitySetSystem<float>
             {
                 ref var colony = ref entity.Get<MicrobeColonyMember>().ColonyLeader.Get<MicrobeColony>();
 
-                AddIntercellularConnection(entity, ref matrix, ref colony, ref entity.Get<AttachedToEntity>());
+                AddIntercellularConnection(entity, ref matrix, ref colony);
             }
         }
         else
         {
             if (matrix.GeneratedConnection != null)
             {
-                RemoveConnection(entity, ref matrix);
+                RemoveConnection(ref matrix);
             }
         }
     }
 
     private static void AddIntercellularConnection(in Entity entity, ref IntercellularMatrix intercellularMatrix,
-        ref MicrobeColony colony, ref AttachedToEntity attachPosition)
+        ref MicrobeColony colony)
     {
         Entity parentEntity = colony.ColonyStructure[entity];
 
@@ -125,7 +124,7 @@ public sealed class IntercellularMatrixSystem : AEntitySetSystem<float>
         return closestVertex;
     }
 
-    private static void RemoveConnection(in Entity entity, ref IntercellularMatrix intercellularMatrix)
+    private static void RemoveConnection(ref IntercellularMatrix intercellularMatrix)
     {
         intercellularMatrix.GeneratedConnection?.QueueFree();
         intercellularMatrix.GeneratedConnection = null;
