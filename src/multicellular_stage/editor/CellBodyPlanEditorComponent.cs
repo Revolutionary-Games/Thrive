@@ -942,6 +942,8 @@ public partial class CellBodyPlanEditorComponent :
     {
         UpdateCellTypesCounts();
 
+        hasNegativeATPCells = false;
+
         foreach (var button in cellTypeSelectionButtons.Values)
         {
             var cellType = button.CellType;

@@ -32,13 +32,13 @@ public partial class AchievementPopup : PanelContainer
     private Texture2D lockedIcon = null!;
 #pragma warning restore CA2213
 
-    public void UpdateDataFrom(IAchievement achievement, AchievementStatStore statStore)
+    public void UpdateDataFrom(IAchievement achievement, IAchievementStatStore statStore)
     {
         title.Text = achievement.Name.ToString();
 
         if (achievement.Achieved)
         {
-            // TODO: achievement icon
+            icon.Texture = achievement.GetUnlockedIcon();
 
             description.Text = achievement.Description.ToString();
 

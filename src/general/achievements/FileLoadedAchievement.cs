@@ -1,4 +1,6 @@
 ﻿using System;
+using System.Collections.Generic;
+using Godot;
 using Newtonsoft.Json;
 
 /// <summary>
@@ -16,6 +18,8 @@ public class FileLoadedAchievement : IAchievement
 
     [JsonProperty]
     private string? progressDescription;
+
+    private Texture2D? loadedIcon;
 #pragma warning restore 649
 
     [JsonProperty]
@@ -36,12 +40,18 @@ public class FileLoadedAchievement : IAchievement
     public bool HideIfNotAchieved { get; private set; }
 
     [JsonProperty]
+    public string UnlockedIcon { get; private set; } = null!;
+
+    [JsonProperty]
     public int LinkedStatistic { get; private set; }
 
     [JsonProperty]
     public int LinkedStatisticThreshold { get; private set; }
 
-    public bool ProcessPotentialUnlock(AchievementStatStore updatedStats)
+    [JsonProperty]
+    public IReadOnlyList<int>? LinkedStatisticVisibleProgressThresholds { get; private set; }
+
+    public bool ProcessPotentialUnlock(IAchievementStatStore updatedStats)
     {
         if (LinkedStatistic != 0)
         {
@@ -61,7 +71,7 @@ public class FileLoadedAchievement : IAchievement
         return false;
     }
 
-    public bool HasAnyProgress(AchievementStatStore stats)
+    public bool HasAnyProgress(IAchievementStatStore stats)
     {
         if (LinkedStatistic != 0)
         {
@@ -72,7 +82,7 @@ public class FileLoadedAchievement : IAchievement
         return false;
     }
 
-    public string GetProgress(AchievementStatStore stats)
+    public string GetProgress(IAchievementStatStore stats)
     {
         if (string.IsNullOrEmpty(progressDescription))
             return Description.ToString();
@@ -87,9 +97,50 @@ public class FileLoadedAchievement : IAchievement
         return Description.ToString();
     }
 
+    public bool GetSteamProgress(IAchievementStatStore stats, out uint current, out uint max)
+    {
+        if (LinkedStatistic != 0)
+        {
+            // TODO: should this use bit cast?
+            current = (uint)stats.GetIntStat(LinkedStatistic);
+            max = (uint)LinkedStatisticThreshold;
+
+            return true;
+        }
+
+        GD.PrintErr("No Steam progress info available for achievement (missing linked statistic): ", InternalName);
+        current = 0;
+        max = 0;
+        return false;
+    }
+
+    public bool IsAtUnlockMilestone(IAchievementStatStore stats)
+    {
+        if (LinkedStatistic != 0)
+        {
+            if (LinkedStatisticVisibleProgressThresholds != null)
+            {
+                var count = LinkedStatisticVisibleProgressThresholds.Count;
+                for (var i = 0; i < count; ++i)
+                {
+                    var threshold = LinkedStatisticVisibleProgressThresholds[i];
+                    if (stats.GetIntStat(LinkedStatistic) == threshold)
+                        return true;
+                }
+            }
+        }
+
+        return false;
+    }
+
     public void Reset()
     {
         Achieved = false;
+    }
+
+    public Texture2D GetUnlockedIcon()
+    {
+        return loadedIcon ??= GD.Load<Texture2D>(UnlockedIcon);
     }
 
     public void OnLoaded(string internalName, bool unlocked)
@@ -109,6 +160,9 @@ public class FileLoadedAchievement : IAchievement
 
         Description = new LocalizedString(descriptionRaw);
 
+        if (string.IsNullOrEmpty(UnlockedIcon))
+            throw new Exception("Missing unlocked icon for achievement " + internalName);
+
         if (unlocked)
             Achieved = true;
 
@@ -121,7 +175,7 @@ public class FileLoadedAchievement : IAchievement
             }
 
             // Verify statistic is correct
-            if (!AchievementStatStore.IsValidStatistic(LinkedStatistic))
+            if (!IAchievementStatStore.IsValidStatistic(LinkedStatistic))
             {
                 throw new Exception(
                     $"Linked statistic {LinkedStatistic} for achievement {internalName} is not a valid statistic");
@@ -139,8 +193,11 @@ public class FileLoadedAchievement : IAchievement
         switch (Identifier)
         {
             case 1:
-                if (InternalName == "MICROBIAL_MASSACRE" && LinkedStatistic == AchievementStatStore.STAT_MICROBE_KILLS)
+                if (InternalName == IAchievementStatStore.MICROBIAL_MASSACRE_ID &&
+                    LinkedStatistic == IAchievementStatStore.STAT_MICROBE_KILLS)
+                {
                     return;
+                }
 
                 break;
         }
