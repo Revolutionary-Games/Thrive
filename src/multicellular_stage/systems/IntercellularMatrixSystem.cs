@@ -64,9 +64,17 @@ public sealed class IntercellularMatrixSystem : AEntitySetSystem<float>
         if (ourMembrane == null || targetMembrane == null)
             return;
 
-        // Get target's relative position (taking rotation into account) using inverse transform multiplication
-        var inverseColonyTransform = entity.Get<WorldPosition>().ToTransform().Inverse();
-        var targetRelativePos = inverseColonyTransform * parentEntity.Get<WorldPosition>().Position;
+        Vector3 targetRelativePos = Vector3.Zero;
+
+        if (parentEntity == colony.Leader)
+        {
+            targetRelativePos = -entity.Get<AttachedToEntity>().RelativePosition;
+        }
+        else
+        {
+            targetRelativePos = parentEntity.Get<AttachedToEntity>().RelativePosition
+                - entity.Get<AttachedToEntity>().RelativePosition;
+        }
 
         Vector3 pointA, pointB;
         (pointA, pointB) = FindGoodConnectionPoints(ourMembrane.MembraneData,
