@@ -30,6 +30,9 @@ public partial class CompoundProgressBar : Control
     [Export]
     private Label amountLabel = null!;
 
+    [Export]
+    private StyleBoxFlat amountCompactTheme = null!;
+
     private StyleBoxFlat? fillStyleBox;
 
     private Texture2D? queuedIcon;
@@ -230,19 +233,6 @@ public partial class CompoundProgressBar : Control
     /// </summary>
     [Export]
     public bool Narrow { get; set; }
-
-    [Export]
-    public StyleBoxFlat AmountCompactTheme { get; set; } = new()
-    {
-        BgColor = new Color(0.2f, 0.2f, 0.2f, 0.45f),
-        BorderColor = Colors.Transparent,
-        CornerRadiusBottomLeft = 6,
-        CornerRadiusBottomRight = 6,
-        CornerRadiusTopLeft = 6,
-        CornerRadiusTopRight = 6,
-        ContentMarginLeft = 6,
-        ContentMarginRight = 3,
-    };
 
     private double FlashAnimationSlerpFactor => flashAnimationTimer <= Constants.HUD_BAR_FLASH_DURATION * 0.5f ?
         flashAnimationTimer * 2 :
@@ -633,7 +623,7 @@ public partial class CompoundProgressBar : Control
                 tween.TweenProperty(this, minSizeXReference,
                     Narrow ? Constants.COMPOUND_BAR_NARROW_COMPACT_WIDTH : Constants.COMPOUND_BAR_COMPACT_WIDTH, 0.3);
 
-                amountLabel.AddThemeStyleboxOverride(normalStyleBoxName, AmountCompactTheme);
+                amountLabel.AddThemeStyleboxOverride(normalStyleBoxName, amountCompactTheme);
                 nameLabel.Hide();
             }
             else
@@ -654,7 +644,7 @@ public partial class CompoundProgressBar : Control
                         Narrow ? Constants.COMPOUND_BAR_NARROW_COMPACT_WIDTH : Constants.COMPOUND_BAR_COMPACT_WIDTH,
                         CustomMinimumSize.Y);
 
-                amountLabel.AddThemeStyleboxOverride(normalStyleBoxName, AmountCompactTheme);
+                amountLabel.AddThemeStyleboxOverride(normalStyleBoxName, amountCompactTheme);
                 nameLabel.Hide();
             }
             else
