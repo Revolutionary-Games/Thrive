@@ -1,7 +1,6 @@
 ﻿namespace Systems;
 
 using System;
-using System.Collections.Generic;
 using Components;
 using DefaultEcs;
 using DefaultEcs.System;
@@ -32,7 +31,7 @@ public sealed class IntercellularMatrixSystem : AEntitySetSystem<float>
 
         if (entity.Has<MicrobeColonyMember>())
         {
-            if (matrix.GeneratedConnection == null)
+            if (!matrix.IsConnectionRedundant && matrix.GeneratedConnection == null)
             {
                 ref var colony = ref entity.Get<MicrobeColonyMember>().ColonyLeader.Get<MicrobeColony>();
 
@@ -65,9 +64,6 @@ public sealed class IntercellularMatrixSystem : AEntitySetSystem<float>
         if (ourMembrane == null || targetMembrane == null)
             return;
 
-        var connection = ConnectionScene.Value.Instantiate<Node3D>();
-        instance.AddChild(connection);
-
         // Get target's relative position (taking rotation into account) using inverse transform multiplication
         var inverseColonyTransform = entity.Get<WorldPosition>().ToTransform().Inverse();
         var targetRelativePos = inverseColonyTransform * parentEntity.Get<WorldPosition>().Position;
@@ -79,9 +75,18 @@ public sealed class IntercellularMatrixSystem : AEntitySetSystem<float>
         var relativePosition = pointB - pointA;
         float relativePosLength = relativePosition.Length();
 
+        if (relativePosLength < 0.5f)
+        {
+            intercellularMatrix.IsConnectionRedundant = true;
+            return;
+        }
+
         var angle = relativePosition.AngleTo(Vector3.Forward);
         if (relativePosition.X > 0.0f)
             angle *= -1.0f;
+
+        var connection = ConnectionScene.Value.Instantiate<Node3D>();
+        instance.AddChild(connection);
 
         connection.Scale = new Vector3(5.0f, 1.0f, relativePosLength + 3.0f);
         connection.RotateY(angle);
@@ -95,39 +100,35 @@ public sealed class IntercellularMatrixSystem : AEntitySetSystem<float>
     private static (Vector3 PointA, Vector3 PointB) FindGoodConnectionPoints(MembranePointData membraneA,
         MembranePointData membraneB, Vector3 membraneBOffset)
     {
-        Vector2 closestVertexB = FindClosestVertex(Vector2.Zero, membraneB.Vertices2D,
-            new Vector2(membraneBOffset.X, membraneBOffset.Z));
+        Vector2 offset2D = new Vector2(membraneBOffset.X, membraneBOffset.Z);
 
-        Vector2 closestVertexA = FindClosestVertex(closestVertexB, membraneA.Vertices2D, Vector2.Zero);
-
-        return (new Vector3(closestVertexA.X, 0.0f, closestVertexA.Y),
-            new Vector3(closestVertexB.X, 0.0f, closestVertexB.Y));
-    }
-
-    private static Vector2 FindClosestVertex(Vector2 target, Vector2[] vertices, Vector2 offset)
-    {
-        Vector2 closestVertex = Vector2.Zero;
-        float minDistance = float.MaxValue;
-        foreach (var vertex in vertices)
+        float min = float.MaxValue;
+        Vector2 pointA = Vector2.Zero;
+        Vector2 pointB = Vector2.Zero;
+        foreach (var a in membraneA.Vertices2D)
         {
-            var relativeVertex = vertex + offset;
-
-            float squareDistance = relativeVertex.DistanceSquaredTo(target);
-
-            if (squareDistance < minDistance)
+            foreach (var b in membraneB.Vertices2D)
             {
-                closestVertex = relativeVertex;
-                minDistance = squareDistance;
+                float distance = a.DistanceSquaredTo(b + offset2D);
+
+                if (distance < min)
+                {
+                    min = distance;
+                    pointA = a;
+                    pointB = b;
+                }
             }
         }
 
-        return closestVertex;
+        return (new Vector3(pointA.X, 0.0f, pointA.Y),
+            new Vector3(pointB.X, 0.0f, pointB.Y) + membraneBOffset);
     }
 
     private static void RemoveConnection(ref IntercellularMatrix intercellularMatrix)
     {
         intercellularMatrix.GeneratedConnection?.QueueFree();
         intercellularMatrix.GeneratedConnection = null;
+        intercellularMatrix.IsConnectionRedundant = false;
     }
 
     private static void ApplyConnectionMaterialParameters(in Entity entity,
