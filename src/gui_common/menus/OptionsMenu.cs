@@ -637,7 +637,6 @@ public partial class OptionsMenu : ControlWithInput
         var simulationParameters = SimulationParameters.Instance;
 
         // Graphics
-        display.Selected = settings.SelectedDisplayIndex;
         vsync.ButtonPressed = settings.VSync;
         displayMode.Selected = DisplayModeToIndex(settings.DisplayMode);
         antiAliasingMode.Selected = AntiAliasingModeToIndex(settings.AntiAliasing);
@@ -672,6 +671,7 @@ public partial class OptionsMenu : ControlWithInput
         DisplayGpuInfo();
         UpdateRenderScale();
         UpdateMSAAVisibility();
+        UpdateDisplay();
 
         // Sound
         masterVolume.Value = ConvertDbToSoundBar(settings.VolumeMaster);
@@ -1819,6 +1819,16 @@ public partial class OptionsMenu : ControlWithInput
         msaaSection.Visible =
             Settings.Instance.AntiAliasing.Value is Settings.AntiAliasingMode.MSAA
                 or Settings.AntiAliasingMode.MSAAAndTemporal;
+    }
+
+    private void UpdateDisplay()
+    {
+        if (!OperatingSystem.IsWindows())
+            return;
+
+        var currentDisplay = DisplayServer.WindowGetCurrentScreen();
+        display.Selected = currentDisplay;
+        Settings.Instance.SelectedDisplayIndex.Value = currentDisplay;
     }
 
     private void OnMSAAResolutionSelected(int index)
