@@ -1032,11 +1032,16 @@ public class Settings
     /// </summary>
     public void ApplyWindowSettings()
     {
-        var screenId = SelectedDisplayIndex.Value;
-        var currentScreenId = DisplayServer.WindowGetCurrentScreen();
-        var screenChanged = screenId != currentScreenId;
-        if (screenChanged)
-            DisplayServer.WindowSetCurrentScreen(screenId);
+        var screenChanged = false;
+        var screenId = -1;
+        if (OperatingSystem.IsWindows())
+        {
+            var currentScreenId = DisplayServer.WindowGetCurrentScreen();
+            screenId = SelectedDisplayIndex.Value;
+            screenChanged = screenId != currentScreenId;
+            if (screenChanged)
+                DisplayServer.WindowSetCurrentScreen(screenId);
+        }
 
         var mode = DisplayServer.WindowGetMode();
 
@@ -1079,7 +1084,7 @@ public class Settings
         }
 
         // Center the window if it is in Windowed mode and the screen or window mode has changed
-        if ((screenChanged || windowModeChanged) && wantedMode == DisplayServer.WindowMode.Windowed)
+        if (screenId > -1 && (screenChanged || windowModeChanged) && wantedMode == DisplayServer.WindowMode.Windowed)
         {
             var size = DisplayServer.ScreenGetSize(screenId);
             var position = DisplayServer.ScreenGetPosition(screenId);

@@ -34,8 +34,15 @@ public partial class OptionsMenu : ControlWithInput
         .Prepend(Constants.DEFAULT_AUDIO_OUTPUT_DEVICE_NAME).ToList();
 
     private static readonly Lazy<List<DisplayInfo>> DisplaysCache = new(() =>
-        Enumerable.Range(0, DisplayServer.GetScreenCount())
-            .Select(i => new DisplayInfo(i, $"Monitor {i + 1}")).ToList());
+    {
+        if (OperatingSystem.IsWindows())
+        {
+            return Enumerable.Range(0, DisplayServer.GetScreenCount())
+                .Select(i => new DisplayInfo(i, $"Monitor {i + 1}")).ToList();
+        }
+
+        return [];
+    });
 
 #pragma warning disable CA2213
     [Export]
@@ -72,6 +79,9 @@ public partial class OptionsMenu : ControlWithInput
 
     [Export]
     private CheckButton vsync = null!;
+
+    [Export]
+    private VBoxContainer displayOptionContainer = null!;
 
     [Export]
     private OptionButton display = null!;
@@ -531,6 +541,7 @@ public partial class OptionsMenu : ControlWithInput
         guiLightEffectsToggle.RegisterToolTipForControl("guiLightEffects", "options", false);
         assumeHyperthreading.RegisterToolTipForControl("assumeHyperthreading", "options", false);
         unsavedProgressWarningEnabled.RegisterToolTipForControl("unsavedProgressWarning", "options", false);
+        displayOptionContainer.Visible = OperatingSystem.IsWindows();
 
         Localization.Instance.OnTranslationsChanged += OnTranslationsChanged;
     }
