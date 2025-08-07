@@ -79,4 +79,15 @@ public interface IAchievement
 public static class AchievementIds
 {
     public const int MICROBIAL_MASSACRE = 1;
+    public const int THE_EDITOR = 2;
+    public const int BETTER_TOGETHER = 3;
+    public const int GOING_NUCLEAR = 4;
+    public const int TASTE_THE_SUN = 5;
+    public const int CANNOT_IMPROVE_PERFECTION = 6;
+    public const int YUM = 7;
+    public const int TASTY_RADIATION = 8;
+    public const int VENTS_ARE_HOME = 9;
+    public const int THRIVING = 10;
+    public const int MICRO_BORG = 11;
+    public const int BEYOND_THE_CELL = 12;
 }
