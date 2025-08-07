@@ -64,7 +64,7 @@ public sealed class IntercellularMatrixSystem : AEntitySetSystem<float>
         if (ourMembrane == null || targetMembrane == null)
             return;
 
-        Vector3 targetRelativePos = Vector3.Zero;
+        Vector3 targetRelativePos;
 
         if (parentEntity == colony.Leader)
         {
