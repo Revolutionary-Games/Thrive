@@ -3172,7 +3172,8 @@ public partial class CellEditorComponent :
             }
         }
 
-        if (chemosynthesis > 2)
+        // The threshold is pretty low as the chemo-synthesising proteins don't produce much
+        if (chemosynthesis > 0.03)
         {
             AchievementEvents.ReportPlayerUsesChemosynthesis();
         }

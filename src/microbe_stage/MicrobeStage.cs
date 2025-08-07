@@ -1862,11 +1862,14 @@ public partial class MicrobeStage : CreatureStageBase<Entity, MicrobeWorldSimula
                 if (input.Key == Compound.Glucose)
                     glucoseUsage += input.Value;
 
-                if (input.Key == Compound.Sunlight && input.Value > 0)
-                    sunlight = true;
-
                 if (input.Key == Compound.Radiation && input.Value > 0)
                     radiation = true;
+            }
+
+            foreach (var input in statistics.EnvironmentalInputs)
+            {
+                if (input.Key == Compound.Sunlight && input.Value > 0)
+                    sunlight = true;
             }
 
             if (sunlight)
@@ -1898,7 +1901,8 @@ public partial class MicrobeStage : CreatureStageBase<Entity, MicrobeWorldSimula
                 AchievementEvents.ReportPlayerUsesRadiation();
             }
 
-            if (photosynthesisProduction > 1 && storage.Compounds.GetCompoundAmount(Compound.Glucose) >
+            // Photosynthesis is pretty low for even plants
+            if (photosynthesisProduction > 0.15 && storage.Compounds.GetCompoundAmount(Compound.Glucose) >
                 0.5f * storage.Compounds.GetCapacityForCompound(Compound.Glucose))
             {
                 AchievementEvents.ReportPlayerPhotosynthesisGlucoseBalance(photosynthesisProduction -
