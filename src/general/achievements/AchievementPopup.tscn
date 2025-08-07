@@ -31,12 +31,15 @@ corner_radius_bottom_right = 5
 corner_radius_bottom_left = 5
 
 [node name="AchievementPopup" type="PanelContainer" node_paths=PackedStringArray("title", "icon", "description", "backgroundToAdjustStyle")]
-custom_minimum_size = Vector2(280, 70)
+custom_minimum_size = Vector2(280, 60)
 anchors_preset = 3
 anchor_left = 1.0
 anchor_top = 1.0
 anchor_right = 1.0
 anchor_bottom = 1.0
+offset_left = -280.0
+offset_top = -61.0
+offset_bottom = -1.0
 grow_horizontal = 0
 grow_vertical = 0
 theme = ExtResource("1_075i1")
@@ -60,7 +63,7 @@ theme_override_constants/margin_bottom = 2
 layout_mode = 2
 
 [node name="Icon" type="TextureRect" parent="MarginContainer/HBoxContainer"]
-custom_minimum_size = Vector2(64, 64)
+custom_minimum_size = Vector2(52, 48)
 layout_mode = 2
 expand_mode = 1
 stretch_mode = 5
@@ -72,6 +75,9 @@ layout_mode = 2
 layout_mode = 2
 size_flags_horizontal = 3
 
+[node name="Spacer" type="Control" parent="MarginContainer/HBoxContainer/VBoxContainer"]
+layout_mode = 2
+
 [node name="Name" type="Label" parent="MarginContainer/HBoxContainer/VBoxContainer"]
 custom_minimum_size = Vector2(100, 12)
 layout_mode = 2
@@ -79,13 +85,10 @@ label_settings = ExtResource("2_hfuph")
 autowrap_mode = 3
 max_lines_visible = 3
 
-[node name="Spacer" type="Control" parent="MarginContainer/HBoxContainer/VBoxContainer"]
-layout_mode = 2
-size_flags_vertical = 3
-
 [node name="ProgressOrDescription" type="Label" parent="MarginContainer/HBoxContainer/VBoxContainer"]
 custom_minimum_size = Vector2(100, 12)
 layout_mode = 2
+size_flags_vertical = 10
 label_settings = ExtResource("3_b36ht")
 horizontal_alignment = 2
 vertical_alignment = 2
