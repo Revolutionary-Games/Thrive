@@ -407,10 +407,45 @@ public partial class AchievementsManager : Node
         {
             lock (achievementsDataLock)
             {
-                statsStore.SetIntStat(IAchievementStatStore.STAT_POSITIVE_GLUCOSE_PHOTOSYNTHESIS, 1);
+                if (statsStore.GetIntStat(IAchievementStatStore.STAT_POSITIVE_GLUCOSE_PHOTOSYNTHESIS) < 1)
+                {
+                    statsStore.SetIntStat(IAchievementStatStore.STAT_POSITIVE_GLUCOSE_PHOTOSYNTHESIS, 1);
+                }
 
                 ReportStatUpdateToRelevantAchievements([AchievementIds.TASTE_THE_SUN]);
             }
+        }
+    }
+
+    internal void OnPlayerUsesRadiation()
+    {
+        if (preventAchievements)
+            return;
+
+        lock (achievementsDataLock)
+        {
+            if (statsStore.GetIntStat(IAchievementStatStore.STAT_CELL_EATS_RADIATION) < 1)
+            {
+                statsStore.SetIntStat(IAchievementStatStore.STAT_CELL_EATS_RADIATION, 1);
+            }
+
+            ReportStatUpdateToRelevantAchievements([AchievementIds.TASTY_RADIATION]);
+        }
+    }
+
+    internal void OnPlayerUsesChemosynthesis()
+    {
+        if (preventAchievements)
+            return;
+
+        lock (achievementsDataLock)
+        {
+            if (statsStore.GetIntStat(IAchievementStatStore.STAT_CELL_USES_CHEMOSYNTHESIS) < 1)
+            {
+                statsStore.SetIntStat(IAchievementStatStore.STAT_CELL_USES_CHEMOSYNTHESIS, 1);
+            }
+
+            ReportStatUpdateToRelevantAchievements([AchievementIds.VENTS_ARE_HOME]);
         }
     }
 

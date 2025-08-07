@@ -57,4 +57,14 @@ public static class AchievementEvents
     {
         AchievementsManager.Instance.OnPlayerDigestedObject();
     }
+
+    public static void ReportPlayerUsesRadiation()
+    {
+        AchievementsManager.Instance.OnPlayerUsesRadiation();
+    }
+
+    public static void ReportPlayerUsesChemosynthesis()
+    {
+        AchievementsManager.Instance.OnPlayerUsesChemosynthesis();
+    }
 }

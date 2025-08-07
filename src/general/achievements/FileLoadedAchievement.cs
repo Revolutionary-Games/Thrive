@@ -53,15 +53,16 @@ public class FileLoadedAchievement : IAchievement
 
     public bool ProcessPotentialUnlock(IAchievementStatStore updatedStats)
     {
+        // If already achieved, doesn't need to process
+        if (Achieved)
+            return false;
+
         if (LinkedStatistic != 0)
         {
             if (updatedStats.GetIntStat(LinkedStatistic) >= LinkedStatisticThreshold)
             {
-                if (!Achieved)
-                {
-                    Achieved = true;
-                    return true;
-                }
+                Achieved = true;
+                return true;
             }
 
             return false;
