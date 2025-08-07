@@ -97,7 +97,7 @@ public sealed class IntercellularMatrixSystem : AEntitySetSystem<float>
         instance.AddChild(connection);
 
         connection.Scale = new Vector3(5.0f, 1.0f, relativePosLength + 3.0f);
-        connection.RotateY(angle);
+        connection.Quaternion = Quaternion.FromEuler(new Vector3(0.0f, angle, 0.0f));
         connection.Position += (pointA + pointB) * 0.5f;
 
         intercellularMatrix.GeneratedConnection = connection;
