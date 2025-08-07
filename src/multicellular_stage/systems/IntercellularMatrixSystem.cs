@@ -104,7 +104,7 @@ public sealed class IntercellularMatrixSystem : AEntitySetSystem<float>
 
         float min = float.MaxValue;
         Vector2 pointA = Vector2.Zero;
-        Vector2 pointB = Vector2.Zero;
+        Vector2 pointB = offset2D;
         foreach (var a in membraneA.Vertices2D)
         {
             foreach (var b in membraneB.Vertices2D)
