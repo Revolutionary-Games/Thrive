@@ -4,37 +4,37 @@
     public const int STAT_MICROBE_KILLS = 1;
     public const string STAT_MICROBE_KILLS_NAME = "microbe_kills";
 
-    public const int STAT_EDITOR_USAGE = 2;
+    public const int STAT_EDITOR_USAGE = 3;
     public const string STAT_EDITOR_USAGE_NAME = "editor_usages";
 
-    public const int STAT_CELL_COLONY_FORMED = 3;
+    public const int STAT_CELL_COLONY_FORMED = 4;
     public const string STAT_CELL_COLONY_FORMED_NAME = "cell_colonies_formed";
 
-    public const int STAT_SURVIVED_WITH_NUCLEUS = 4;
+    public const int STAT_SURVIVED_WITH_NUCLEUS = 5;
     public const string STAT_SURVIVED_WITH_NUCLEUS_NAME = "survived_with_nucleus";
 
-    public const int STAT_POSITIVE_GLUCOSE_PHOTOSYNTHESIS = 5;
+    public const int STAT_POSITIVE_GLUCOSE_PHOTOSYNTHESIS = 6;
     public const string STAT_POSITIVE_GLUCOSE_PHOTOSYNTHESIS_NAME = "positive_glucose_photosynthesis";
 
-    public const int STAT_NO_CHANGES_IN_EDITOR = 6;
+    public const int STAT_NO_CHANGES_IN_EDITOR = 7;
     public const string STAT_NO_CHANGES_IN_EDITOR_NAME = "no_changes_in_editor";
 
-    public const int STAT_ENGULFMENT_COUNT = 7;
+    public const int STAT_ENGULFMENT_COUNT = 8;
     public const string STAT_ENGULFMENT_COUNT_NAME = "engulf_count";
 
-    public const int STAT_CELL_EATS_RADIATION = 8;
+    public const int STAT_CELL_EATS_RADIATION = 9;
     public const string STAT_CELL_EATS_RADIATION_NAME = "cell_eats_radiation";
 
-    public const int STAT_CELL_USES_CHEMOSYNTHESIS = 9;
+    public const int STAT_CELL_USES_CHEMOSYNTHESIS = 10;
     public const string STAT_CELL_USES_CHEMOSYNTHESIS_NAME = "cell_uses_chemosynthesis";
 
-    public const int STAT_MAX_SPECIES_GENERATION = 10;
+    public const int STAT_MAX_SPECIES_GENERATION = 11;
     public const string STAT_MAX_SPECIES_GENERATION_NAME = "max_species_generation";
 
-    public const int STAT_ENDOSYMBIOSIS_COMPLETED = 11;
+    public const int STAT_ENDOSYMBIOSIS_COMPLETED = 12;
     public const string STAT_ENDOSYMBIOSIS_COMPLETED_NAME = "endosymbiosis_completed";
 
-    public const int STAT_REACHED_MULTICELLULAR = 12;
+    public const int STAT_REACHED_MULTICELLULAR = 13;
     public const string STAT_REACHED_MULTICELLULAR_NAME = "reached_multicellular";
 
     public const string MICROBIAL_MASSACRE_ID = "MICROBIAL_MASSACRE";
