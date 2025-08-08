@@ -34,8 +34,6 @@ public partial class AchievementPopup : PanelContainer
 
     public void UpdateDataFrom(IAchievement achievement, IAchievementStatStore statStore)
     {
-
-
         // Then set the new text
         title.Text = achievement.Name.ToString();
 
