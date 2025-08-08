@@ -5,6 +5,7 @@
 [ext_resource type="Texture2D" uid="uid://dy8uqfppw8wxk" path="res://assets/textures/IntercellularMatrixNormal.png" id="2_ohjgk"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_62jel"]
+resource_local_to_scene = true
 render_priority = 0
 shader = ExtResource("1_ohjgk")
 shader_parameter/mainTexture = ExtResource("1_2enjh")
