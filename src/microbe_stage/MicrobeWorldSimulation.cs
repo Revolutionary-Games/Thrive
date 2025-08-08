@@ -95,6 +95,7 @@ public partial class MicrobeWorldSimulation : WorldSimulationWithPhysics
     // Multicellular systems
     private DelayedColonyOperationSystem delayedColonyOperationSystem = null!;
     private MulticellularGrowthSystem multicellularGrowthSystem = null!;
+    private IntercellularMatrixSystem intercellularMatrixSystem = null!;
 
     private EntitySet cellCountingEntitySet = null!;
 
@@ -255,6 +256,7 @@ public partial class MicrobeWorldSimulation : WorldSimulationWithPhysics
             new DelayedColonyOperationSystem(this, spawnEnvironment, SpawnSystem, EntitySystem, couldParallelize);
         multicellularGrowthSystem =
             new MulticellularGrowthSystem(this, spawnEnvironment, SpawnSystem, EntitySystem, parallelRunner);
+        intercellularMatrixSystem = new IntercellularMatrixSystem(EntitySystem);
 
         CloudSystem = cloudSystem;
 
@@ -492,6 +494,7 @@ public partial class MicrobeWorldSimulation : WorldSimulationWithPhysics
                 unneededCompoundVentingSystem.Dispose();
                 delayedColonyOperationSystem.Dispose();
                 multicellularGrowthSystem.Dispose();
+                intercellularMatrixSystem.Dispose();
 
                 CameraFollowSystem.Dispose();
                 ProcessSystem.Dispose();
