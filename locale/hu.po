@@ -8,7 +8,7 @@ msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2025-08-01 16:03+0300\n"
-"PO-Revision-Date: 2025-08-07 12:53+0000\n"
+"PO-Revision-Date: 2025-08-08 07:58+0000\n"
 "Last-Translator: Tuscokchips <kortejanos180@gmail.com>\n"
 "Language-Team: Hungarian <https://translate.revolutionarygamesstudio.com/projects/thrive/thrive-game/hu/>\n"
 "Language: hu\n"
@@ -67,9 +67,8 @@ msgstr "Ébredés ({0:F1} / {1:F1})"
 msgid "ACTION_AWAKEN_TOOLTIP"
 msgstr "Lépj át az Ébredés szakaszába. Elérhető, ha rendelkezel elegendő agykapacitással (axonokkal rendelkező szövettípus)."
 
-#, fuzzy
 msgid "ACTION_BLOCKED_WHILE_ANOTHER_IN_PROGRESS"
-msgstr "Akció blokkolva, miközben egy másik folyamatban van"
+msgstr "Akció blokkolva, mert egy másik folyamatban van"
 
 msgid "ACTION_DELETE"
 msgstr "Törlés"
@@ -160,18 +159,22 @@ msgstr "Általános statisztika az összes világról"
 msgid "ALL_WORLDS_STATISTICS"
 msgstr ""
 "[b]Generációk:[/b]\n"
-"  {0}\n"
+"{0}\n"
+"\n"
 "[b]Összes faj:[/b]\n"
-"  Átlag {1}; Szórás {2}\n"
-"[b]Életben lévő fajok:[/b]\n"
-"  Átlag {3}; Szórás{4}\n"
-"[b]Fajok száma/patch:[/b]\n"
-"  Átlag {5}; Szórás {6}\n"
-"[b]Összpopuláció/patch:[/b]\n"
-"  Átlag {7}; Szórás {8}\n"
-"[b]Mikroba fajok átlagos hex mérete:[/b]\n"
-"  Átlag {9}; Szórás {10}\n"
-"[b]Általános sejtszervecske-adatok:[/b]"
+"Átlag {1}; Szórás {2}\n"
+"\n"
+"[b]Még élő fajok száma:[/b]\n"
+"Átlag {3}; Szórás {4}\n"
+"\n"
+"[b]Foltok szerinti fajszám:[/b]\n"
+"Átlag {5}; Szórás {6}\n"
+"\n"
+"[b]Foltok szerinti össznépesség:[/b]\n"
+"Átlag {7}; Szórás {8}\n"
+"\n"
+"[b]Mikroba fajok átlagos hatszög mérete:[/b]\n"
+"Átlag {9}; Szórás {10}"
 
 #, fuzzy
 msgid "ALREADY_ASCENDED"
@@ -209,10 +212,10 @@ msgid "ANISOTROPIC_FILTERING"
 msgstr "Anizotróp szűrés:"
 
 msgid "ANTIALIASING_MSAA_TAA"
-msgstr ""
+msgstr "MSAA + TAA"
 
 msgid "ANTI_ALIASING_FXAA"
-msgstr ""
+msgstr "FXAA"
 
 msgid "ANTI_ALIASING_MODE"
 msgstr "Élsimítás módja:"
@@ -293,13 +296,19 @@ msgstr "ATP"
 msgid "ATP_BALANCE"
 msgstr "ATP egyensúly"
 
-#, fuzzy
 msgid "ATP_BALANCE_TOOLTIP"
-msgstr "Az összetevők mutatása / elrejtése"
+msgstr ""
+"Ez a szakasz megmutatja a jelenlegi sejt összes ATP (energia) egyenlegét.\n"
+"A túléléshez az egyenlegnek pozitívnak kell lennie. A helyhez kötött sejtek esetében az egyenleg mozgás nélkül is pozitívnak tekinthető.\n"
+"Az alábbi legördülő menü segítségével ellenőrizheted, mi történne, ha a sejt nem jutna bizonyos ATP-termeléshez szükséges forráshoz.\n"
+"Például egyes sejtek csak akkor tudják fenntartani a pozitív ATP-egyenleget, ha egyszerre több különböző vegyületből tudnak ATP-t előállítani.\n"
+"Az ilyen sejtek irányítása nehezebb, mivel egyszerre többféle vegyületet kell tárolniuk a túléléshez."
 
-#, fuzzy
 msgid "ATP_BALANCE_TOOLTIP_MULTICELLULAR"
-msgstr "Az összetevők mutatása / elrejtése"
+msgstr ""
+"Ez a szakasz az ATP (energia) egyenlegek kiszámítására szolgáló beállításokat jeleníti meg a sejtek számára.\n"
+"A kiszámított egyenlegek a sejt típusának kiválasztási menüjében láthatók.\n"
+"Az alábbi legördülő menüvel ellenőrizheted, mi történne, ha a sejt nem jutna hozzá bizonyos ATP-termeléshez szükséges forráshoz."
 
 msgid "ATP_BALANCE_WITHOUT_EXTERNAL_RESOURCES"
 msgstr "Külső erőforrások nélkül"
@@ -358,13 +367,11 @@ msgstr "Auto-Evo eredmények"
 msgid "AUTO-EVO_STEPS_DONE"
 msgstr "{0:F1}% kész. {1:n0}/{2:n0} lépés."
 
-#, fuzzy
 msgid "AUTO-EVO_STRENGHT_MULTIPLIER"
-msgstr "Mutációs költség szorzó"
+msgstr "Auto-evo erőssége a játékoson"
 
-#, fuzzy
 msgid "AUTO-EVO_STRENGHT_MULTIPLIER_EXPLANATION"
-msgstr "(a szervek, membránok, és egyéb dolgok költsége a szerkesztőben)"
+msgstr "(az auto-evo által a játékos faján alkalmazott populációváltozás százalékos aránya)"
 
 msgid "AUTOSAVE_DURING_THE_GAME"
 msgstr "Automatikus mentés játék közben"
@@ -412,9 +419,8 @@ msgstr "Elérhető építési projektek"
 msgid "AVAILABLE_MODS"
 msgstr "Elérhető modok"
 
-#, fuzzy
 msgid "AWAKENING_STAGE"
-msgstr "Felkelési fázis"
+msgstr "Ébredési szakasz"
 
 msgid "AWARE_STAGE"
 msgstr "Tudatos fázis"
@@ -447,9 +453,8 @@ msgstr "Ha be van jelölve, a panelen számított számok úgy kerülnek kiszám
 msgid "BALANCE_DISPLAY_WHILE_MOVING"
 msgstr "Mozgás beszámítása"
 
-#, fuzzy
 msgid "BALANCE_DISPLAY_WHILE_MOVING_TOOLTIP"
-msgstr "Speciális beállítási nézet megnyitása"
+msgstr "Ha be van jelölve, akkor a panelben a sejt folyamatos mozgását feltételezve számolja ki a mérleget és a többi értéket"
 
 msgid "BASE_MOBILITY"
 msgstr "Alap mozgékonyság"
@@ -478,9 +483,8 @@ msgstr "A túlélés kezdése"
 msgid "BEHAVIOUR"
 msgstr "Viselkedés"
 
-#, fuzzy
 msgid "BEHAVIOUR_ACTIVITY"
-msgstr "Viselkedés"
+msgstr "Aktivitás"
 
 msgid "BEHAVIOUR_AGGRESSION"
 msgstr "Aggresszió"
@@ -521,7 +525,6 @@ msgstr "Nagy foszfátdarab"
 msgid "BILLION_ABBREVIATION"
 msgstr "{0} B"
 
-#, fuzzy
 msgid "BINDING_AGENT"
 msgstr "Kötőszövet"
 
@@ -537,24 +540,20 @@ msgstr "Tengelyek összekötése"
 msgid "BIOLUMINESCENT_VACUOLE"
 msgstr "Foszforeszkáló vakuólum"
 
-#, fuzzy
 msgid "BIOLUMINESCENT_VACUOLE_DESCRIPTION"
-msgstr "Foszforeszkáló vakuólum"
+msgstr "Egy vakuólum, amely reakcióhelyeket tartalmaz, ahol a luciferázt felhasználva látható fényt bocsátanak ki. Feltételezik, hogy a biolumineszcencia eredetileg az [thrive:compound type=\"oxygen\"][/thrive:compound] elleni védekezésként alakult ki. Amikor bekövetkezett a Nagy Oxigenizációs Esemény, az anaerob környezethez szokott mikroorganizmusok számos új problémával szembesültek az oxigén rendkívül magas reakciókészsége miatt, amely jelentős károkat okozott. Ezek a vakuólumok hozzáadhatók az oxigén-ellenállás növelésére, és emellett látványos fényjelenségeket produkálnak. A jövőben a biolumineszcencia akár kommunikációs eszközként is szolgálhat."
 
-#, fuzzy
 msgid "BIOLUMINESCENT_VACUOLE_PROCESSES_DESCRIPTION"
-msgstr "[thrive:compound type=\"atp\"][/thrive:compound]-t alakít át [thrive:compound type=\"oxytoxy\"][/thrive:compound]-vá. Hatékonysága függ az [thrive:compound type=\"oxygen\"][/thrive:compound] koncentrációjától. Mérget képes kilőni a [thrive:input]g_fire_toxin[/thrive:input] megnyomásával. Ha az [thrive:compound type=\"oxytoxy\"][/thrive:compound] mennyisége alacsony, akkor azt a kis mennyiséget ki tudod lőni, viszont kevesebb sebzést okoz."
+msgstr "[thrive:compound type=\"atp\"][/thrive:compound]-t használ, hogy az [thrive:compound type=\"oxygen\"][/thrive:compound]-t fénnyé alakítsa. Egyelőre nincs más játékmeneti hatása, kivéve az oxigén-ellenállás növelését."
 
 msgid "BIOME_LABEL"
 msgstr "Biom: {0}"
 
-#, fuzzy
 msgid "BLOOM_RENDER_EFFECT"
-msgstr "Külső effektek:"
+msgstr "Bloom effekt:"
 
-#, fuzzy
 msgid "BLUESKY_TOOLTIP"
-msgstr "Játék szüneteltetése"
+msgstr "Látogasd meg Bluesky profilunkat"
 
 msgid "BRAIN_CELL_NAME_DEFAULT"
 msgstr "Neuron"
@@ -571,9 +570,8 @@ msgstr "A műhely böngészése"
 msgid "BUILD_CITY"
 msgstr "Város építése"
 
-#, fuzzy
 msgid "BUILD_QUEUE"
-msgstr "Struktúra"
+msgstr "Építési sor"
 
 msgid "BUILD_STRUCTURE"
 msgstr "Struktúra építése"
@@ -596,9 +594,8 @@ msgstr "Gyorsítótárelemek megőrzési ideje a memóriában"
 msgid "CACHE_TIME_MEMORY_ONLY"
 msgstr "Gyorsítótár időtartama kizárólag memóriás gyorsításhoz"
 
-#, fuzzy
 msgid "CACHING_TITLE"
-msgstr "Nincs cím"
+msgstr "Gyorsítótárazás"
 
 msgid "CALCIUM_CARBONATE"
 msgstr "Kálcium-karbonát"
@@ -636,9 +633,8 @@ msgstr "Az agykapacitás túl alacsony a jelenlegi fázisban maradáshoz. Koráb
 msgid "CANNOT_REDUCE_BRAIN_POWER_STAGE_TITLE"
 msgstr "Az agykapacitást nem lehet csökkenteni, hogy visszatérj korábbi fázishoz"
 
-#, fuzzy
 msgid "CANNOT_WRITE_SAVE"
-msgstr "Új mentés létrehozása"
+msgstr "Mentés nem lehetséges"
 
 msgid "CANT_LOAD_MOD_INFO"
 msgstr "Nem sikerült betölteni a(z) {0} mod adatait"
@@ -679,16 +675,15 @@ msgstr "Sejtek"
 msgid "CELLULASE"
 msgstr "Celluláz"
 
-#, fuzzy
 msgid "CELLULASE_DESCRIPTION"
-msgstr "Az eukarióta sejtek legmeghatározóbb jellemzője. A sejtmaghoz még hozzá tartozik az endoplazmatikus membránrendszer és a golgi-készülék is."
+msgstr "A celluláz lehetővé teszi a sejt számára a cellulóz membrán lebontását. Minden hozzáadás növeli a hatékonyságot."
 
 msgid "CELLULOSE"
 msgstr "Cellulóz"
 
 #, fuzzy
 msgid "CELLULOSE_MEMBRANE_DESCRIPTION"
-msgstr "Ez a membrán egy fallal rendelkezik, ami jobb védelmet jelent a sérülések ellen, főleg a fizikai sérülések ellen. Kevesebb energia szükséges neki formája megtartásához, viszont lassú a bekebelezése és lassítja magát a sejtet is."
+msgstr "Ez a membrán egy fallal rendelkezik, ami jobb védelmet jelent a sérülések ellen, főleg a fizikai sérülések ellen. Kevesebb energia szükséges neki formája megtartásához, viszont nem képes bekebelezése és lassítja magát a sejtet isképes megemészteni ezt a falat, így a sejt sebezhetővé válik a ragadozók általi bekebelezésre."
 
 #, fuzzy
 msgid "CELL_STAT_ROTATION_TOOLTIP"
@@ -5032,9 +5027,8 @@ msgstr "pck fájl ({0}) betöltése sikertelen"
 msgid "PEACEFUL"
 msgstr "Békés"
 
-#, fuzzy
 msgid "PENDING_ENDOSYMBIOSIS_EXPLANATION"
-msgstr "A Thrive-ot GLES2 módban futtatod. Ennek a módnak a használata nincs letesztelve, és nagy eséllyel hibákat okozhat. Próbáld meg frissíteni a videókártyád driverét vagy/és kényszerítsd az AMD vagy Nvidia grafikai szoftverét a Thrive futtatására."
+msgstr "Befejezett endoszimbiózis folyamat van, amelyet egy organellumként való elhelyezéssel lehet véglegesíteni. Ajánlott ezt a lehető leghamarabb megtenni, mert további endoszimbiózis fejlődés nem lehetséges, amíg ez nem történik meg. Megnézed most az endoszimbiózis állását?"
 
 msgid "PENDING_ENDOSYMBIOSIS_TITLE"
 msgstr ""
@@ -5346,9 +5340,8 @@ msgstr "Visszaállít"
 msgid "RESET_ACHIEVEMENTS"
 msgstr ""
 
-#, fuzzy
 msgid "RESET_DEADZONES"
-msgstr "Visszaállítja-e az alap dolgokat?"
+msgstr "Deadzone-ok visszaállítása"
 
 msgid "RESET_DISMISSED_POPUPS"
 msgstr ""
@@ -5356,9 +5349,8 @@ msgstr ""
 msgid "RESET_INPUTS_TO_DEFAULTS"
 msgstr "Vissza akarod állítani a bemeneteket az alapokra?"
 
-#, fuzzy
 msgid "RESET_ITEM_ORDER_TO_DEFAULT"
-msgstr "Vissza akarod állítani a bemeneteket az alapokra?"
+msgstr "Elem sorrend visszaállítása alapértelmezettre"
 
 #, fuzzy
 msgid "RESET_KEYBINDINGS"
@@ -6981,11 +6973,8 @@ msgstr "Összes szétválasztása"
 msgid "UNBIND_HELP_TEXT"
 msgstr "Szétkapcsolás mód"
 
-#, fuzzy
 msgid "UNCERTAIN_VERSION_WARNING"
-msgstr ""
-"Ez a mentés a Thrive egyik frissebb verziójából származik, és nagy eséllyel nem kompatibilis.\n"
-"Így is be akarod tölteni a mentést?"
+msgstr "Ez egy hibakereső verzió, ahol az alábbi információk valószínűleg nem naprakészek"
 
 msgid "UNDERWATERCAVE"
 msgstr "Víz alatti barlang"
@@ -7035,16 +7024,14 @@ msgstr "Képesség sáv megjelenítése"
 msgid "UNKNOWN_MOUSE"
 msgstr "Ismeretlen egér"
 
-#, fuzzy
 msgid "UNKNOWN_ORGANELLE_SYMBOL"
-msgstr "Sejtszervecske elhelyezése"
+msgstr ""
 
 msgid "UNKNOWN_PATCH"
 msgstr "Ismeretlen patch"
 
-#, fuzzy
 msgid "UNKNOWN_SHORT"
-msgstr "Ismeretlen"
+msgstr "?"
 
 #, fuzzy
 msgid "UNKNOWN_VERSION"
@@ -8267,7 +8254,57 @@ msgstr ""
 
 #, fuzzy
 msgid "WIKI_MICROBE_STAGE_EDITOR"
-msgstr "Sejtszerkesztő"
+msgstr ""
+"A szerkesztőről\n"
+"\n"
+"A szerkesztő a mikrobai szakasz stratégiai oldala, amelyhez a játékos minden szaporodáskor hozzáfér. Ebben a szerkesztőben fejlesztheti a játékos a faját úgy, hogy a rendelkezésre álló fehérjék vagy sejtszervecskék listájáról elemeket helyez el a sejtjén. Minden generációban 100 mutációs pontot (MP) kap a játékos, amit ezekre az alkatrészekre költhet. A szerkesztő jelenleg három különálló ablakra van osztva: a jelentésoldalra, a folt térképre és magára a szerkesztőre.\n"
+"\n"
+"[u]Jelentés[/u]\n"
+"\n"
+"A jelentésmenü az első oldal, amit a játékos lát, amikor belép a szerkesztőbe. Ez az oldal bemutatja az összes környezeti változást, ami a szerkesztőbe lépés előtt történt – például fajpopulációk változását, vegyület-koncentrációt, stb. Az itt található információk hasznosak lehetnek, de nem szükségesek a sikeres játékhoz, így a játékosoknak nem kell feltétlenül elemezniük azokat.\n"
+"\n"
+"[u]Folt térkép[/u]\n"
+"\n"
+"A második oldal, amit a játékos meglátogat, a folt térkép. Ez a menü lényegében a világ térképét mutatja, amelyen a foltok a bejárható élőhelyeket (biomokat) képviselik, a köztük lévő vonalak pedig az átléphető útvonalakat. A játékos kiválaszthat minden látható foltot, hogy megnézze az adott biom környezeti statisztikáit, mint például a vegyület-koncentrációt, jelenlévő fajokat, stb. Ha a kiválasztott folt össze van kötve a játékos aktuális foltjával, akkor lehetőség lesz a szerkesztő elhagyása után abban a foltban játszani. Azoknak, akik új környezetbe kívánnak költözni, érdemes először megvizsgálni az adott foltot, hogy felkészülhessenek az ottani viszonyokra.\n"
+"\n"
+"A játékban jelenleg megtalálható folttípusok teljes listája:\n"
+"Abüsszopelágikus\n"
+"Batipelágikus\n"
+"Mezopelágikus\n"
+"Epipelágikus\n"
+"Tengerfenék\n"
+"Árapálymedence\n"
+"Torkolat\n"
+"Hőforrások\n"
+"Partvidék\n"
+"Jégtakaró\n"
+"Barlangok\n"
+"\n"
+"[u]Biomok[/u]\n"
+"\n"
+"Fő cikk: Mikrobiális biomok\n"
+"\n"
+"Minden folt egy adott biomot képvisel. A biom határozza meg az adott folt fizikai tulajdonságait, például a hőmérsékletet, nyomást és fényviszonyokat.\n"
+"\n"
+"[u]Sejtszerkesztő[/u]\n"
+"\n"
+"A szerkesztőoldalon testreszabhatja a játékos a sejtjét elemről elemre. Az oldal legnagyobb részét egy hatszögrács foglalja el, ahol a sejtrészek elhelyezhetők, középen a játékos aktuális sejtjével. A bal oldalon található az alkatrészlista, ahol kiválaszthatók a sejtrészek, illetve módosítható a sejt színe vagy membránja. Jobb felül az organizmus statisztikái láthatók, beleértve az ATP-egyensúly sávot, amely azt mutatja, mennyi ATP-t termel és fogyaszt a sejt. A játékosnak ügyelnie kell arra, hogy a piros sáv mindig rövidebb legyen a zöldnél, különben a saját alkotása okozza a vesztét. Jobb alul található az autoevolúció előrejelző ablak, amely megmutatja, milyen jól teljesítene a faj a végrehajtott változtatásokkal az algoritmus szerint. Bal felül a navigációs fülek és az MP sáv találhatók.\n"
+"Új részeket a játékos csak meglévő elfoglalt hatszögek mellé, vagy citoplazma hexek helyére tehet. Régi részek törlése jobb kattintással történik, ez 10 MP-be kerül. A képernyő alján található nyilakkal visszavonhatók vagy újra végrehajthatók a módosítások, de csak az aktuális szerkesztő szekcióban. Középen található a szimmetria gomb, amely módosítja a szimmetria módot. Minden rész törölhető, kivéve három kivételt: a sejtmag, kötőanyagok és a sejt utolsó hexje – ezek csak áthelyezhetők.\n"
+"\n"
+"A sejtszerkesztő három különálló fülre oszlik, amelyek mindegyike egyedi funkcióval bír.\n"
+"\n"
+"Szerkezet fül:\n"
+"Tartalmazza az összes választható részt, például fehérjéket, sejtszervecskéket és külső struktúrákat (pl. pilus). A játékos rákattint a kívánt ikonra, majd elhelyezi a rácson. A fül három részre van osztva: prokarióta struktúrák, külső organellumok és belső organellumok. A belső szervecskéket csak a sejtmag evolúciója után lehet használni. Az elhelyezett részek szabadon mozgathatók, módosíthatók, törölhetők.\n"
+"Membrán fül:\n"
+"A sejt membránjának testreszabása. Itt különböző membrán- és sejtfal típusok választhatók, mindegyik egyedi statokkal és képességekkel. A kiválasztáshoz elegendő MP-re és egy kattintásra van szükség. Egy csúszka segítségével állítható a membrán folyékonysága vagy merevsége, változtatásonként 2 MP áron. A folyékony sejtek gyorsabbak, de sérülékenyebbek; a merev sejtek lassabbak, de ellenállóbbak. Alul egy színkerék is található, amellyel a sejt színe módosítható – ez teljesen kozmetikai, nem kerül MP-be.\n"
+"Viselkedés fül:\n"
+"A játékos itt állíthatja be a faj mesterséges intelligenciájának viselkedési skáláit. A játékosra ez jelenleg nem hat, csak az AI-t irányítja. Minden csúszka egy személyiség-skála két véglete között mozog, és meghatározza, milyen irányba hajlik a faj.\n"
+"A jelenlegi személyiség skálák:\n"
+"Békés / Agresszív: mennyire ellenséges vagy közömbös más fajokkal szemben\n"
+"Óvatos / Lehetőségkereső: milyen mértékben vállalnak kockázatot előnyökért\n"
+"Bátor / Félős: milyen hamar menekülnek és mitől félnek\n"
+"Helyhez kötött / Aktív: mozognak-e inger nélkül\n"
+"Reszponzív / Fókuszált: milyen gyorsan váltanak célt,"
 
 #, fuzzy
 msgid "WIKI_MICROBE_STAGE_GAMEPLAY"
