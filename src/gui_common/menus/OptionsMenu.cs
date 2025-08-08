@@ -33,6 +33,17 @@ public partial class OptionsMenu : ControlWithInput
         .GetOutputDeviceList().Where(d => d != Constants.DEFAULT_AUDIO_OUTPUT_DEVICE_NAME)
         .Prepend(Constants.DEFAULT_AUDIO_OUTPUT_DEVICE_NAME).ToList();
 
+    private static readonly Lazy<List<DisplayInfo>> DisplaysCache = new(() =>
+    {
+        if (OperatingSystem.IsWindows())
+        {
+            return Enumerable.Range(0, DisplayServer.GetScreenCount())
+                .Select(i => new DisplayInfo(i, $"Monitor {i + 1}")).ToList();
+        }
+
+        return [];
+    });
+
 #pragma warning disable CA2213
     [Export]
     private Button backButton = null!;
@@ -68,6 +79,12 @@ public partial class OptionsMenu : ControlWithInput
 
     [Export]
     private CheckButton vsync = null!;
+
+    [Export]
+    private VBoxContainer displayOptionContainer = null!;
+
+    [Export]
+    private OptionButton display = null!;
 
     [Export]
     private Label? resolution;
@@ -479,6 +496,7 @@ public partial class OptionsMenu : ControlWithInput
 
     private static List<string> Languages => LanguagesCache.Value;
     private static List<string> AudioOutputDevices => AudioOutputDevicesCache;
+    private static List<DisplayInfo> Displays => DisplaysCache.Value;
 
     public override void _Ready()
     {
@@ -523,6 +541,7 @@ public partial class OptionsMenu : ControlWithInput
         guiLightEffectsToggle.RegisterToolTipForControl("guiLightEffects", "options", false);
         assumeHyperthreading.RegisterToolTipForControl("assumeHyperthreading", "options", false);
         unsavedProgressWarningEnabled.RegisterToolTipForControl("unsavedProgressWarning", "options", false);
+        displayOptionContainer.Visible = OperatingSystem.IsWindows();
 
         Localization.Instance.OnTranslationsChanged += OnTranslationsChanged;
     }
@@ -652,6 +671,7 @@ public partial class OptionsMenu : ControlWithInput
         DisplayGpuInfo();
         UpdateRenderScale();
         UpdateMSAAVisibility();
+        UpdateDisplay();
 
         // Sound
         masterVolume.Value = ConvertDbToSoundBar(settings.VolumeMaster);
@@ -806,6 +826,7 @@ public partial class OptionsMenu : ControlWithInput
 
         elementItemSelectionsInitialized = true;
 
+        DisplayDisplayList();
         LoadLanguages();
         LoadAudioOutputDevices();
         LoadScreenEffects();
@@ -840,6 +861,18 @@ public partial class OptionsMenu : ControlWithInput
 
             default:
                 throw new ArgumentException("Options menu SwitchMode called with an invalid mode argument");
+        }
+    }
+
+    /// <summary>
+    ///   Displays the list of monitors available on the system.
+    /// </summary>
+    private void DisplayDisplayList()
+    {
+        display.Clear();
+        foreach (var displayInfo in Displays)
+        {
+            display.AddItem(displayInfo.Name, displayInfo.Id);
         }
     }
 
@@ -1788,6 +1821,16 @@ public partial class OptionsMenu : ControlWithInput
                 or Settings.AntiAliasingMode.MSAAAndTemporal;
     }
 
+    private void UpdateDisplay()
+    {
+        if (!OperatingSystem.IsWindows())
+            return;
+
+        var currentDisplay = DisplayServer.WindowGetCurrentScreen();
+        display.Selected = currentDisplay;
+        Settings.Instance.SelectedDisplayIndex.Value = currentDisplay;
+    }
+
     private void OnMSAAResolutionSelected(int index)
     {
         Settings.Instance.MSAAResolution.Value = MSAAIndexToResolution(index);
@@ -1826,6 +1869,22 @@ public partial class OptionsMenu : ControlWithInput
     {
         renderScaleLabel.Text =
             Localization.Translate("PERCENTAGE_VALUE").FormatSafe(Math.Round(renderScale.Value * 100));
+    }
+
+    private void OnMonitorSelected(int index)
+    {
+        if (index < 0 || index >= Displays.Count)
+        {
+            GD.PrintErr("Invalid monitor index selected");
+            return;
+        }
+
+        if (Settings.Instance.SelectedDisplayIndex.Value == Displays[index].Id)
+            return;
+
+        Settings.Instance.SelectedDisplayIndex.Value = Displays[index].Id;
+        Settings.Instance.ApplyWindowSettings();
+        UpdateResetSaveButtonState();
     }
 
     private void OnUpscalingMethodSelected(int index)
@@ -2736,4 +2795,6 @@ public partial class OptionsMenu : ControlWithInput
 
         AchievementsManager.Instance.Reset();
     }
+
+    private record DisplayInfo(int Id, string Name);
 }
