@@ -3,7 +3,7 @@
 [ext_resource type="Shader" uid="uid://erlcc6rxb1cy" path="res://shaders/CurrentsParticles.gdshader" id="1_ykhyg"]
 [ext_resource type="Texture2D" uid="uid://nf7opycrmbhf" path="res://assets/textures/CurrentsNoise1.png" id="2_y0umn"]
 [ext_resource type="Texture2D" uid="uid://cf25131bt7raj" path="res://assets/textures/CurrentsNoise2.png" id="3_78fhh"]
-[ext_resource type="Texture2D" uid="uid://bwks4coimg7al" path="res://assets/textures/blurry_circle.png" id="6_vctkt"]
+[ext_resource type="Texture2D" uid="uid://dufk485jxbiin" path="res://assets/textures/TrailParticle.png" id="4_78fhh"]
 [ext_resource type="Script" uid="uid://dbjhycamqqslq" path="res://src/microbe_stage/FluidCurrentDisplay.cs" id="7_21wlg"]
 
 [sub_resource type="Gradient" id="Gradient_4eerh"]
@@ -21,22 +21,28 @@ shader_parameter/alphaCurve = SubResource("GradientTexture1D_4ly1p")
 shader_parameter/gameTime = 0.0
 shader_parameter/noiseCurrents1 = ExtResource("2_y0umn")
 shader_parameter/noiseCurrents2 = ExtResource("3_78fhh")
-shader_parameter/speed = 0.0
+shader_parameter/speed = 1.0
 shader_parameter/chaoticness = 0.0
-shader_parameter/scale = 0.0
+shader_parameter/scale = 1.0
 shader_parameter/brightness = 1.0
 
-[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_kycdo"]
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_78fhh"]
 transparency = 1
-vertex_color_use_as_albedo = true
-albedo_texture = ExtResource("6_vctkt")
+albedo_texture = ExtResource("4_78fhh")
+use_particle_trails = true
 
-[sub_resource type="QuadMesh" id="QuadMesh_iqoan"]
-material = SubResource("StandardMaterial3D_kycdo")
+[sub_resource type="RibbonTrailMesh" id="RibbonTrailMesh_y0umn"]
+material = SubResource("StandardMaterial3D_78fhh")
+flip_faces = true
+shape = 0
+size = 0.5
+section_length = 0.01
 
 [node name="WaterCurrentDisplay" type="GPUParticles3D"]
 amount = 1000
 lifetime = 8.0
+trail_enabled = true
+trail_lifetime = 2.0
 process_material = SubResource("ShaderMaterial_23vs3")
-draw_pass_1 = SubResource("QuadMesh_iqoan")
+draw_pass_1 = SubResource("RibbonTrailMesh_y0umn")
 script = ExtResource("7_21wlg")

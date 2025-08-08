@@ -95,16 +95,16 @@ public sealed class FluidCurrentsSystem : AEntitySetSystem<float>
 
         if (currents2.X < 0.65f)
         {
-            currentsVelocity.X *= -1.0f;
+            //currentsVelocity.X *= -1.0f;
         }
 
         if (currents2.Y < 0.65f)
         {
-            currentsVelocity.Y *= -1.0f;
+            //currentsVelocity.Y *= -1.0f;
         }
 
-        if (currentsVelocity.LengthSquared() < MIN_CURRENT_INTENSITY)
-            currentsVelocity = Vector2.Zero;
+        //if (currentsVelocity.LengthSquared() < MIN_CURRENT_INTENSITY)
+        //    currentsVelocity = Vector2.Zero;
 
         return currentsVelocity * speed;
     }

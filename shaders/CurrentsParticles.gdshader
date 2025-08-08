@@ -78,18 +78,18 @@ void process() {
         vec2 position = TRANSFORM[3].xz * positionScaling * scale;
         
         vec2 current1 = texture(noiseCurrents1,
-            vec2(position.x / 1024.0f + gameTime * currentsTimescale,
-                position.y / 1024.0f + gameTime * currentsTimescale)).rg;
+            vec2((position.x + gameTime * currentsTimescale) / 1024.0f,
+                (position.y + gameTime * currentsTimescale) / 1024.0f)).rg;
         vec2 current2 = texture(noiseCurrents2,
-            vec2(position.x / 1024.0f - gameTime * currentsTimescale,
-                position.y / 1024.0f - gameTime * currentsTimescale)).rg;
+            vec2((position.x - gameTime * currentsTimescale) / 1024.0f,
+                (position.y - gameTime * currentsTimescale) / 1024.0f)).rg;
         
         current = current1 * 2.0f - 1.0f;
         if (current2.x < 0.65f){
-            current.x *= -1.0f;
+            //current.x *= -1.0f;
         }
         if (current2.y < 0.65f){
-            current.y *= -1.0f;
+            //current.y *= -1.0f;
         }
         
         current *= 10.0f * speed;
