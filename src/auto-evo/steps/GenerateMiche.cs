@@ -148,19 +148,20 @@ public class GenerateMiche : IRunStep
             generatedMiche.AddChild(tempMiche);
         }
 
-        var predationRoot = new Miche(globalCache.PredatorRoot);
-        var predationGlucose = new Miche(globalCache.MinorGlucoseConversionEfficiencyPressure);
-
-        // Heterotrophic Miches
-        foreach (var possiblePrey in patch.SpeciesInPatch)
-        {
-            predationGlucose.AddChild(new Miche(new PredationEffectivenessPressure(possiblePrey.Key, 1.0f)));
-        }
-
         if (patch.SpeciesInPatch.Count > 1)
-            predationRoot.AddChild(predationGlucose);
+        {
+            var predationRoot = new Miche(globalCache.PredatorRoot);
+            var predationGlucose = new Miche(globalCache.MinorGlucoseConversionEfficiencyPressure);
 
-        generatedMiche.AddChild(predationRoot);
+            // Heterotrophic Miches
+            foreach (var possiblePrey in patch.SpeciesInPatch)
+            {
+                predationGlucose.AddChild(new Miche(new PredationEffectivenessPressure(possiblePrey.Key, 1.0f)));
+            }
+
+            predationRoot.AddChild(predationGlucose);
+            generatedMiche.AddChild(predationRoot);
+        }
 
         return rootMiche;
     }
