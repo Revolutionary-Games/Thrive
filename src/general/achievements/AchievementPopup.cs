@@ -34,6 +34,7 @@ public partial class AchievementPopup : PanelContainer
 
     public void UpdateDataFrom(IAchievement achievement, IAchievementStatStore statStore)
     {
+        // Then set the new text
         title.Text = achievement.Name.ToString();
 
         if (achievement.Achieved)
@@ -52,6 +53,12 @@ public partial class AchievementPopup : PanelContainer
 
             backgroundToAdjustStyle.AddThemeStyleboxOverride(backgroundStyleName, lockedStyle);
         }
+
+        // Update size to be minimal
+
+        // TODO: for some reason this doesn't work initially so now the minimum size is set for 3 lines which seems to
+        // guarantee the size always
+        Size = new Vector2(0, 0);
     }
 
     public void PlayAnimation(double duration)

@@ -328,7 +328,10 @@ public sealed class EngulfedDigestionSystem : AEntitySetSystem<float>
                 if (engulfedObject.Has<CellProperties>())
                 {
                     if (engulferIsPlayer)
+                    {
                         gameWorld!.StatisticsTracker.TotalDigestedByPlayer.Increment(1);
+                        AchievementEvents.ReportPlayerDigestedObject();
+                    }
 
                     // TODO: maybe allow non-player and other species to to also perform endosymbiosis
                     if (engulferIsPlayer && entity.Has<SpeciesMember>() && engulfedObject.Has<SpeciesMember>())

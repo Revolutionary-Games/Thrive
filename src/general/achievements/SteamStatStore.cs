@@ -55,6 +55,25 @@ public class SteamStatStore : IAchievementStatStore
         return value;
     }
 
+    public bool SetIntStat(int statId, int value)
+    {
+        var stat = IAchievementStatStore.GetStatName(statId);
+
+        if (stat == null)
+        {
+            GD.PrintErr("Updating invalid statistic to Steam: ", statId);
+            return false;
+        }
+
+        if (!steamClient.SetSteamStatistic(stat, value))
+        {
+            GD.PrintErr("Failed to write updated statistic to Steam: ", statId);
+            return false;
+        }
+
+        return true;
+    }
+
     public void Reset()
     {
         GD.Print("Resetting Steam stats and achievements");

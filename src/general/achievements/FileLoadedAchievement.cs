@@ -53,15 +53,16 @@ public class FileLoadedAchievement : IAchievement
 
     public bool ProcessPotentialUnlock(IAchievementStatStore updatedStats)
     {
+        // If already achieved, doesn't need to process
+        if (Achieved)
+            return false;
+
         if (LinkedStatistic != 0)
         {
             if (updatedStats.GetIntStat(LinkedStatistic) >= LinkedStatisticThreshold)
             {
-                if (!Achieved)
-                {
-                    Achieved = true;
-                    return true;
-                }
+                Achieved = true;
+                return true;
             }
 
             return false;
@@ -195,6 +196,105 @@ public class FileLoadedAchievement : IAchievement
             case 1:
                 if (InternalName == IAchievementStatStore.MICROBIAL_MASSACRE_ID &&
                     LinkedStatistic == IAchievementStatStore.STAT_MICROBE_KILLS)
+                {
+                    return;
+                }
+
+                break;
+
+            case 2:
+                if (InternalName == IAchievementStatStore.THE_EDITOR_ID &&
+                    LinkedStatistic == IAchievementStatStore.STAT_EDITOR_USAGE)
+                {
+                    return;
+                }
+
+                break;
+
+            case 3:
+                if (InternalName == IAchievementStatStore.BETTER_TOGETHER_ID &&
+                    LinkedStatistic == IAchievementStatStore.STAT_CELL_COLONY_FORMED)
+                {
+                    return;
+                }
+
+                break;
+
+            case 4:
+                if (InternalName == IAchievementStatStore.GOING_NUCLEAR_ID &&
+                    LinkedStatistic == IAchievementStatStore.STAT_SURVIVED_WITH_NUCLEUS)
+                {
+                    return;
+                }
+
+                break;
+
+            case 5:
+                if (InternalName == IAchievementStatStore.TASTE_THE_SUN_ID &&
+                    LinkedStatistic == IAchievementStatStore.STAT_POSITIVE_GLUCOSE_PHOTOSYNTHESIS)
+                {
+                    return;
+                }
+
+                break;
+
+            case 6:
+                if (InternalName == IAchievementStatStore.CANNOT_IMPROVE_PERFECTION_ID &&
+                    LinkedStatistic == IAchievementStatStore.STAT_NO_CHANGES_IN_EDITOR)
+                {
+                    return;
+                }
+
+                break;
+
+            case 7:
+                if (InternalName == IAchievementStatStore.YUM_ID &&
+                    LinkedStatistic == IAchievementStatStore.STAT_ENGULFMENT_COUNT)
+                {
+                    return;
+                }
+
+                break;
+
+            case 8:
+                if (InternalName == IAchievementStatStore.TASTY_RADIATION_ID &&
+                    LinkedStatistic == IAchievementStatStore.STAT_CELL_EATS_RADIATION)
+                {
+                    return;
+                }
+
+                break;
+
+            case 9:
+                if (InternalName == IAchievementStatStore.VENTS_ARE_HOME_ID &&
+                    LinkedStatistic == IAchievementStatStore.STAT_CELL_USES_CHEMOSYNTHESIS)
+                {
+                    return;
+                }
+
+                break;
+
+            case 10:
+                if (InternalName == IAchievementStatStore.THRIVING_ID &&
+                    LinkedStatistic == IAchievementStatStore.STAT_MAX_SPECIES_GENERATION)
+                {
+                    return;
+                }
+
+                break;
+
+            case 11:
+                if (InternalName == IAchievementStatStore.MICRO_BORG_ID &&
+                    LinkedStatistic == IAchievementStatStore.STAT_ENDOSYMBIOSIS_COMPLETED)
+                {
+                    return;
+                }
+
+                break;
+
+            case 12:
+                if (InternalName == IAchievementStatStore.BEYOND_THE_CELL_ID &&
+                    LinkedStatistic == IAchievementStatStore.STAT_REACHED_MULTICELLULAR)
                 {
                     return;
                 }

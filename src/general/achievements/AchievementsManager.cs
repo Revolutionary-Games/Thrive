@@ -20,7 +20,7 @@ public partial class AchievementsManager : Node
     ///   We really do not want someone to modify the achievement config file, so we verify its hash. This is safe to
     ///   update when intentionally modifying achievement properties.
     /// </summary>
-    private const string ACHIEVEMENTS_INTEGRITY = "JdJDS+vY9es7n7PilJiUb3hH34qR4GqMkeeVxaSIfk8=";
+    private const string ACHIEVEMENTS_INTEGRITY = "BiFbOHf4F4zJ91WEKBJDfFj40WJ6RcuIWELLu/gBJnE=";
 
     private const int MAX_ACHIEVEMENTS_LOAD_WAIT = 60;
     private const int ACHIEVEMENTS_SAVE_INTERVAL = 10;
@@ -390,8 +390,12 @@ public partial class AchievementsManager : Node
         if (preventAchievements)
             return;
 
-        // TODO: add an achievement for this
-        GD.Print("TODO: implement this achievement");
+        lock (achievementsDataLock)
+        {
+            statsStore.IncrementIntStat(IAchievementStatStore.STAT_NO_CHANGES_IN_EDITOR);
+
+            ReportStatUpdateToRelevantAchievements([AchievementIds.CANNOT_IMPROVE_PERFECTION]);
+        }
     }
 
     internal void OnPlayerPhotosynthesisGlucoseBalance(float balance)
@@ -399,8 +403,160 @@ public partial class AchievementsManager : Node
         if (preventAchievements)
             return;
 
-        // TODO: add an achievement for this
-        GD.Print("TODO: implement this achievement");
+        if (balance > 0.01f)
+        {
+            lock (achievementsDataLock)
+            {
+                if (statsStore.GetIntStat(IAchievementStatStore.STAT_POSITIVE_GLUCOSE_PHOTOSYNTHESIS) < 1)
+                {
+                    statsStore.SetIntStat(IAchievementStatStore.STAT_POSITIVE_GLUCOSE_PHOTOSYNTHESIS, 1);
+                }
+
+                ReportStatUpdateToRelevantAchievements([AchievementIds.TASTE_THE_SUN]);
+            }
+        }
+    }
+
+    internal void OnPlayerUsesRadiation()
+    {
+        if (preventAchievements)
+            return;
+
+        lock (achievementsDataLock)
+        {
+            if (statsStore.GetIntStat(IAchievementStatStore.STAT_CELL_EATS_RADIATION) < 1)
+            {
+                statsStore.SetIntStat(IAchievementStatStore.STAT_CELL_EATS_RADIATION, 1);
+            }
+
+            ReportStatUpdateToRelevantAchievements([AchievementIds.TASTY_RADIATION]);
+        }
+    }
+
+    internal void OnPlayerUsesChemosynthesis()
+    {
+        if (preventAchievements)
+            return;
+
+        lock (achievementsDataLock)
+        {
+            if (statsStore.GetIntStat(IAchievementStatStore.STAT_CELL_USES_CHEMOSYNTHESIS) < 1)
+            {
+                statsStore.SetIntStat(IAchievementStatStore.STAT_CELL_USES_CHEMOSYNTHESIS, 1);
+            }
+
+            ReportStatUpdateToRelevantAchievements([AchievementIds.VENTS_ARE_HOME]);
+        }
+    }
+
+    internal void OnPlayerSurvivedWithNucleus()
+    {
+        if (preventAchievements)
+            return;
+
+        lock (achievementsDataLock)
+        {
+            statsStore.IncrementIntStat(IAchievementStatStore.STAT_SURVIVED_WITH_NUCLEUS);
+
+            ReportStatUpdateToRelevantAchievements([AchievementIds.GOING_NUCLEAR]);
+        }
+    }
+
+    internal void OnEndosymbiosisCompleted()
+    {
+        if (preventAchievements)
+            return;
+
+        lock (achievementsDataLock)
+        {
+            statsStore.IncrementIntStat(IAchievementStatStore.STAT_ENDOSYMBIOSIS_COMPLETED);
+
+            ReportStatUpdateToRelevantAchievements([AchievementIds.MICRO_BORG]);
+        }
+    }
+
+    internal void OnPlayerDidNotEditSpecies()
+    {
+        if (preventAchievements)
+            return;
+
+        lock (achievementsDataLock)
+        {
+            statsStore.IncrementIntStat(IAchievementStatStore.STAT_NO_CHANGES_IN_EDITOR);
+
+            ReportStatUpdateToRelevantAchievements([AchievementIds.CANNOT_IMPROVE_PERFECTION]);
+        }
+    }
+
+    internal void OnPlayerInCellColony()
+    {
+        if (preventAchievements)
+            return;
+
+        lock (achievementsDataLock)
+        {
+            statsStore.IncrementIntStat(IAchievementStatStore.STAT_CELL_COLONY_FORMED);
+
+            ReportStatUpdateToRelevantAchievements([AchievementIds.BETTER_TOGETHER]);
+        }
+    }
+
+    internal void OnReturnToMulticellularStageFromEditor()
+    {
+        if (preventAchievements)
+            return;
+
+        lock (achievementsDataLock)
+        {
+            if (statsStore.GetIntStat(IAchievementStatStore.STAT_REACHED_MULTICELLULAR) < 1)
+            {
+                statsStore.SetIntStat(IAchievementStatStore.STAT_REACHED_MULTICELLULAR, 1);
+            }
+
+            ReportStatUpdateToRelevantAchievements([AchievementIds.BEYOND_THE_CELL]);
+        }
+    }
+
+    internal void OnReturnToMicrobeStageFromEditor()
+    {
+        if (preventAchievements)
+            return;
+
+        lock (achievementsDataLock)
+        {
+            statsStore.IncrementIntStat(IAchievementStatStore.STAT_EDITOR_USAGE);
+
+            ReportStatUpdateToRelevantAchievements([AchievementIds.THE_EDITOR]);
+        }
+    }
+
+    internal void OnHighestPlayerGeneration(int playerSpeciesGeneration)
+    {
+        if (preventAchievements)
+            return;
+
+        lock (achievementsDataLock)
+        {
+            if (statsStore.GetIntStat(IAchievementStatStore.STAT_MAX_SPECIES_GENERATION) < playerSpeciesGeneration)
+            {
+                statsStore.SetIntStat(IAchievementStatStore.STAT_MAX_SPECIES_GENERATION, playerSpeciesGeneration);
+            }
+
+            ReportStatUpdateToRelevantAchievements([AchievementIds.THRIVING]);
+        }
+    }
+
+    internal void OnPlayerDigestedObject()
+    {
+        if (preventAchievements)
+            return;
+
+        lock (achievementsDataLock)
+        {
+            statsStore.IncrementIntStat(IAchievementStatStore.STAT_ENGULFMENT_COUNT);
+
+            ReportStatUpdateToRelevantAchievements([AchievementIds.YUM]);
+        }
     }
 
     // End of events
