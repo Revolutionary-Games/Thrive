@@ -7,11 +7,8 @@ uniform sampler2D alphaCurve : repeat_disable;
 
 uniform float gameTime;
 
-uniform sampler3D noiseDisturbancesX;
-uniform sampler3D noiseDisturbancesY;
-
-uniform sampler3D noiseCurrentsX;
-uniform sampler3D noiseCurrentsY;
+uniform sampler2D noiseCurrents1;
+uniform sampler2D noiseCurrents2;
 
 uniform float speed;
 uniform float chaoticness;
@@ -25,7 +22,7 @@ const float currentsTimescale = 1.0f / 500.0f;
 const float currentsStretchingMultiplier = 1.0f / 10.0f;
 const float disturbanceToCurrentsRatio = 0.15f;
 const float minCurrentIntensity = 0.25f;
-const float positionScaling = 0.9f;
+const float positionScaling = 3.6f;
 
 // Generates a random float and modifies the seed
 float RandFromSeed(inout uint seed) {
@@ -80,27 +77,21 @@ void process() {
         // The following should strictly conform to the formula in FluidCurrentSystem.cs
         vec2 position = TRANSFORM[3].xz * positionScaling * scale;
         
-        float disturbanceX = texture(noiseDisturbancesX,
-            vec3(position / 128.0f, gameTime * chaoticness * disturbanceTimescale / 64.0f)).r;
-        float disturbanceY = texture(noiseDisturbancesY,
-            vec3(position / 128.0f, gameTime * chaoticness * disturbanceTimescale / 64.0f)).r;
+        vec2 current1 = texture(noiseCurrents1,
+            vec2(position.x / 1024.0f + gameTime * currentsTimescale,
+                position.y / 1024.0f + gameTime * currentsTimescale)).rg;
+        vec2 current2 = texture(noiseCurrents2,
+            vec2(position.x / 1024.0f - gameTime * currentsTimescale,
+                position.y / 1024.0f - gameTime * currentsTimescale)).rg;
         
-        float currentX = texture(noiseCurrentsX,
-            vec3(position.x * currentsStretchingMultiplier / 128.0f, position.y / 128.0f,
-                gameTime * currentsTimescale * chaoticness / 64.0f)).r; 
-        float currentY = texture(noiseCurrentsY,
-            vec3(position.x / 128.0f, position.y * currentsStretchingMultiplier / 128.0f,
-                gameTime * currentsTimescale * chaoticness / 64.0f)).r;
-        
-        vec2 disturbances = vec2(disturbanceX, disturbanceY) * 2.0f - 1.0f;
-        vec2 currents = vec2(currentX, currentY) * 2.0f - 1.0f;
-        
-        if (pow(currents.x, 2) + pow(currents.y, 2) < minCurrentIntensity)
-        {
-            currents = vec2(0.0f);
+        current = current1 * 2.0f - 1.0f;
+        if (current2.x < 0.65f){
+            current.x *= -1.0f;
+        }
+        if (current2.y < 0.65f){
+            current.y *= -1.0f;
         }
         
-        current = mix(currents, disturbances, disturbanceToCurrentsRatio);
         current *= 10.0f * speed;
     }
     

@@ -1,10 +1,8 @@
-[gd_scene load_steps=13 format=3 uid="uid://d3hkouff6asri"]
+[gd_scene load_steps=11 format=3 uid="uid://d3hkouff6asri"]
 
 [ext_resource type="Shader" uid="uid://erlcc6rxb1cy" path="res://shaders/CurrentsParticles.gdshader" id="1_ykhyg"]
-[ext_resource type="NoiseTexture3D" uid="uid://dprbq7c2fwyfq" path="res://src/microbe_stage/NoiseFluidCurrentX.tres" id="2_faxer"]
-[ext_resource type="NoiseTexture3D" uid="uid://cb62fq3n5m2or" path="res://src/microbe_stage/NoiseFluidCurrentY.tres" id="3_lx34w"]
-[ext_resource type="NoiseTexture3D" uid="uid://dt8diyy702esp" path="res://src/microbe_stage/NoiseFluidDisturbanceX.tres" id="4_bbuou"]
-[ext_resource type="NoiseTexture3D" uid="uid://be2uvgyvlycdd" path="res://src/microbe_stage/NoiseFluidDisturbanceY.tres" id="5_kgkhw"]
+[ext_resource type="Texture2D" uid="uid://nf7opycrmbhf" path="res://assets/textures/CurrentsNoise1.png" id="2_y0umn"]
+[ext_resource type="Texture2D" uid="uid://cf25131bt7raj" path="res://assets/textures/CurrentsNoise2.png" id="3_78fhh"]
 [ext_resource type="Texture2D" uid="uid://bwks4coimg7al" path="res://assets/textures/blurry_circle.png" id="6_vctkt"]
 [ext_resource type="Script" uid="uid://dbjhycamqqslq" path="res://src/microbe_stage/FluidCurrentDisplay.cs" id="7_21wlg"]
 
@@ -21,10 +19,8 @@ shader_parameter/emissionBoxExtents = Vector3(160, 80, 1)
 shader_parameter/colorValue = Color(1, 1, 1, 1)
 shader_parameter/alphaCurve = SubResource("GradientTexture1D_4ly1p")
 shader_parameter/gameTime = 0.0
-shader_parameter/noiseDisturbancesX = ExtResource("4_bbuou")
-shader_parameter/noiseDisturbancesY = ExtResource("5_kgkhw")
-shader_parameter/noiseCurrentsX = ExtResource("2_faxer")
-shader_parameter/noiseCurrentsY = ExtResource("3_lx34w")
+shader_parameter/noiseCurrents1 = ExtResource("2_y0umn")
+shader_parameter/noiseCurrents2 = ExtResource("3_78fhh")
 shader_parameter/speed = 0.0
 shader_parameter/chaoticness = 0.0
 shader_parameter/scale = 0.0
