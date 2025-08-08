@@ -506,7 +506,7 @@ public static class Constants
 
     public const float CYTOTOXIN_DAMAGE = 20.0f;
 
-    public const float OXYGEN_INHIBITOR_DAMAGE = 14.0f;
+    public const float OXYGEN_INHIBITOR_DAMAGE = 23.0f;
 
     public const float CHANNEL_INHIBITOR_ATP_DEBUFF = 0.5f;
     public const float CHANNEL_INHIBITOR_DEBUFF_DURATION = 15;
