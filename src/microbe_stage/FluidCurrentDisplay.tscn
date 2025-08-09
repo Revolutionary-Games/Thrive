@@ -30,6 +30,7 @@ shader_parameter/brightness = 1.0
 transparency = 1
 shading_mode = 0
 specular_mode = 2
+vertex_color_use_as_albedo = true
 albedo_texture = ExtResource("4_78fhh")
 use_particle_trails = true
 
@@ -39,7 +40,7 @@ shape = 0
 
 [node name="WaterCurrentDisplay" type="GPUParticles3D"]
 amount = 1000
-lifetime = 8.0
+lifetime = 10.0
 transform_align = 2
 trail_enabled = true
 trail_lifetime = 2.0
