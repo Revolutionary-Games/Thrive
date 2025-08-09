@@ -15,6 +15,8 @@ public partial class CompoundProgressBar : Control
 
     private readonly NodePath minSizeXReference = new("custom_minimum_size:x");
 
+    private readonly StringName normalStyleBoxName = new("normal");
+
 #pragma warning disable CA2213
     [Export]
     private TextureRect? icon;
@@ -27,6 +29,9 @@ public partial class CompoundProgressBar : Control
 
     [Export]
     private Label amountLabel = null!;
+
+    [Export]
+    private StyleBoxFlat amountCompactTheme = null!;
 
     private StyleBoxFlat? fillStyleBox;
 
@@ -469,6 +474,7 @@ public partial class CompoundProgressBar : Control
             minSizeXReference.Dispose();
         }
 
+        normalStyleBoxName.Dispose();
         base.Dispose(disposing);
     }
 
@@ -617,6 +623,7 @@ public partial class CompoundProgressBar : Control
                 tween.TweenProperty(this, minSizeXReference,
                     Narrow ? Constants.COMPOUND_BAR_NARROW_COMPACT_WIDTH : Constants.COMPOUND_BAR_COMPACT_WIDTH, 0.3);
 
+                amountLabel.AddThemeStyleboxOverride(normalStyleBoxName, amountCompactTheme);
                 nameLabel.Hide();
             }
             else
@@ -624,6 +631,7 @@ public partial class CompoundProgressBar : Control
                 tween.TweenProperty(this, minSizeXReference,
                     Narrow ? Constants.COMPOUND_BAR_NARROW_NORMAL_WIDTH : Constants.COMPOUND_BAR_NORMAL_WIDTH, 0.3);
 
+                amountLabel.RemoveThemeStyleboxOverride(normalStyleBoxName);
                 nameLabel.Show();
             }
         }
@@ -636,6 +644,7 @@ public partial class CompoundProgressBar : Control
                         Narrow ? Constants.COMPOUND_BAR_NARROW_COMPACT_WIDTH : Constants.COMPOUND_BAR_COMPACT_WIDTH,
                         CustomMinimumSize.Y);
 
+                amountLabel.AddThemeStyleboxOverride(normalStyleBoxName, amountCompactTheme);
                 nameLabel.Hide();
             }
             else
@@ -645,6 +654,7 @@ public partial class CompoundProgressBar : Control
                         Narrow ? Constants.COMPOUND_BAR_NARROW_NORMAL_WIDTH : Constants.COMPOUND_BAR_NORMAL_WIDTH,
                         CustomMinimumSize.Y);
 
+                amountLabel.RemoveThemeStyleboxOverride(normalStyleBoxName);
                 nameLabel.Show();
             }
         }
