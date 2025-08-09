@@ -28,19 +28,19 @@ shader_parameter/brightness = 1.0
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_78fhh"]
 transparency = 1
+shading_mode = 0
+specular_mode = 2
 albedo_texture = ExtResource("4_78fhh")
 use_particle_trails = true
 
 [sub_resource type="RibbonTrailMesh" id="RibbonTrailMesh_y0umn"]
 material = SubResource("StandardMaterial3D_78fhh")
-flip_faces = true
 shape = 0
-size = 0.5
-section_length = 0.01
 
 [node name="WaterCurrentDisplay" type="GPUParticles3D"]
 amount = 1000
 lifetime = 8.0
+transform_align = 2
 trail_enabled = true
 trail_lifetime = 2.0
 process_material = SubResource("ShaderMaterial_23vs3")

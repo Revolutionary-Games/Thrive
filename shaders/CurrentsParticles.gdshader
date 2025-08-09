@@ -21,8 +21,8 @@ const float disturbanceTimescale = 1.0f;
 const float currentsTimescale = 1.0f / 500.0f;
 const float currentsStretchingMultiplier = 1.0f / 10.0f;
 const float disturbanceToCurrentsRatio = 0.15f;
-const float minCurrentIntensity = 0.25f;
-const float positionScaling = 3.6f;
+const float minCurrentIntensity = 0.1f;
+const float positionScaling = 1.8f;
 
 // Generates a random float and modifies the seed
 float RandFromSeed(inout uint seed) {
@@ -85,12 +85,7 @@ void process() {
                 (position.y - gameTime * currentsTimescale) / 1024.0f)).rg;
         
         current = current1 * 2.0f - 1.0f;
-        if (current2.x < 0.65f){
-            //current.x *= -1.0f;
-        }
-        if (current2.y < 0.65f){
-            //current.y *= -1.0f;
-        }
+        current += (current2 * 2.0f - 1.0f) * 0.2f;
         
         current *= 10.0f * speed;
     }

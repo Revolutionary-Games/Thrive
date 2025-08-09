@@ -29,8 +29,8 @@ public sealed class FluidCurrentsSystem : AEntitySetSystem<float>
     // The following constants should be the same as in CurrentsParticles.gdshader
     private const float CURRENTS_TIMESCALE = 1.000f / 500.0f;
     private const float CURRENTS_STRETCHING_MULTIPLIER = 1.0f / 10.0f;
-    private const float MIN_CURRENT_INTENSITY = 0.25f;
-    private const float POSITION_SCALING = 3.6f;
+    private const float MIN_CURRENT_INTENSITY = 0.1f;
+    private const float POSITION_SCALING = 1.8f;
 
 #pragma warning disable CA2213
     private Texture2D currentsNoise1Texture = null!;
@@ -93,15 +93,7 @@ public sealed class FluidCurrentsSystem : AEntitySetSystem<float>
 
         var currentsVelocity = currents1 * 2.0f - Vector2.One;
 
-        if (currents2.X < 0.65f)
-        {
-            //currentsVelocity.X *= -1.0f;
-        }
-
-        if (currents2.Y < 0.65f)
-        {
-            //currentsVelocity.Y *= -1.0f;
-        }
+        currentsVelocity += (currents2 * 2.0f - Vector2.One) * 0.2f;
 
         //if (currentsVelocity.LengthSquared() < MIN_CURRENT_INTENSITY)
         //    currentsVelocity = Vector2.Zero;
