@@ -33,6 +33,8 @@ using World = DefaultEcs.World;
 [RuntimeCost(55)]
 public sealed class ProcessSystem : AEntitySetSystem<float>
 {
+    public static OrganelleDefinition Nucleus = SimulationParameters.Instance.GetOrganelleType("nucleus");
+
 #if CHECK_USED_STATISTICS
     private readonly List<ProcessStatistics> usedStatistics = new();
 #endif
@@ -246,8 +248,10 @@ public sealed class ProcessSystem : AEntitySetSystem<float>
         }
 #endif
 
+        bool hasNucleus = organelles.Any(orgnaelle => orgnaelle.Definition == Nucleus);
+
         CalculateSimplePartOfEnergyBalance(organelles, biome, environmentTolerances, membrane, onlyMovementInDirection,
-            includeMovementCost, isPlayerSpecies, worldSettings, amountType, cache, result);
+            includeMovementCost, isPlayerSpecies, worldSettings, amountType, cache, hasNucleus, result);
     }
 
     /// <summary>
@@ -278,8 +282,10 @@ public sealed class ProcessSystem : AEntitySetSystem<float>
         bool includeMovementCost, bool isPlayerSpecies, WorldGenerationSettings worldSettings,
         CompoundAmountType amountType, SimulationCache? cache, EnergyBalanceInfoFull result)
     {
+        bool hasNucleus = organelles.Any(orgnaelle => orgnaelle.Definition == Nucleus);
+
         CalculateSimplePartOfEnergyBalance(organelles, biome, environmentTolerances, membrane, onlyMovementInDirection,
-            includeMovementCost, isPlayerSpecies, worldSettings, amountType, cache, result);
+            includeMovementCost, isPlayerSpecies, worldSettings, amountType, cache, hasNucleus, result);
 
         // Once simple balance is calculated we add the extra info on top, this approach loops the organelles twice
         // but reduces code duplication
@@ -293,8 +299,14 @@ public sealed class ProcessSystem : AEntitySetSystem<float>
 
             // Take special cell components that take energy into account
             if (TryGetMovementCostForOrganelle(includeMovementCost, organelle, onlyMovementInDirection, out var cost))
-                result.AddConsumption(organelle.Definition.InternalName, cost);
+            {
+                if (hasNucleus)
+                {
+                    cost *= Constants.NUCLEUS_MOVEMENT_COST_MODIFIER;
+                }
 
+                result.AddConsumption(organelle.Definition.InternalName, cost);
+            }
             if (includeMovementCost && organelle.Definition.HasCiliaComponent)
             {
                 var amount = Constants.CILIA_ENERGY_COST;
@@ -841,7 +853,7 @@ public sealed class ProcessSystem : AEntitySetSystem<float>
         IBiomeConditions biome, in ResolvedMicrobeTolerances environmentTolerances, MembraneType membrane,
         Vector3 onlyMovementInDirection, bool includeMovementCost, bool isPlayerSpecies,
         WorldGenerationSettings worldSettings, CompoundAmountType amountType,
-        SimulationCache? cache, EnergyBalanceInfoSimple result)
+        SimulationCache? cache, bool hasNucleus, EnergyBalanceInfoSimple result)
     {
         var processATPProduction = 0.0f;
         var processATPConsumption = 0.0f;
@@ -880,6 +892,15 @@ public sealed class ProcessSystem : AEntitySetSystem<float>
         }
 
         var baseMovement = Constants.BASE_MOVEMENT_ATP_COST * hexCount;
+
+        if (hasNucleus)
+        {
+            baseMovement *= Constants.NUCLEUS_MOVEMENT_COST_MODIFIER;
+
+            movementATPConsumption -= result.Flagella * (1.0f - Constants.NUCLEUS_MOVEMENT_COST_MODIFIER);
+            result.Flagella *= Constants.NUCLEUS_MOVEMENT_COST_MODIFIER;
+        }
+
         result.BaseMovement += baseMovement;
 
         if (includeMovementCost)
