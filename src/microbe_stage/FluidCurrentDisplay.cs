@@ -12,6 +12,7 @@ public partial class FluidCurrentDisplay : GpuParticles3D
     private readonly StringName chaoticnessParameterName = new("chaoticness");
     private readonly StringName scaleParameterName = new("scale");
     private readonly StringName brightnessParameterName = new("brightness");
+    private readonly StringName colorParameterName = new("colorValue");
 
 #pragma warning disable CA2213
     private ShaderMaterial material = null!;
@@ -73,13 +74,14 @@ public partial class FluidCurrentDisplay : GpuParticles3D
 
     public void ApplyBiome(Biome biome)
     {
-        material.SetShaderParameter(speedParameterName, biome.WaterCurrentSpeed);
-        material.SetShaderParameter(chaoticnessParameterName, biome.WaterCurrentChaoticness);
-        material.SetShaderParameter(scaleParameterName, biome.WaterCurrentScale);
+        material.SetShaderParameter(speedParameterName, biome.WaterCurrents.Speed);
+        material.SetShaderParameter(chaoticnessParameterName, biome.WaterCurrents.Chaoticness);
+        material.SetShaderParameter(scaleParameterName, biome.WaterCurrents.ReverseScale);
 
         material.SetShaderParameter(brightnessParameterName, biome.CompoundCloudBrightness);
+        material.SetShaderParameter(colorParameterName, biome.WaterCurrents.Colour);
 
-        Amount = biome.WaterCurrentParticleCount;
+        Amount = biome.WaterCurrents.ParticleCount;
     }
 
     protected override void Dispose(bool disposing)
@@ -91,6 +93,7 @@ public partial class FluidCurrentDisplay : GpuParticles3D
             chaoticnessParameterName.Dispose();
             scaleParameterName.Dispose();
             brightnessParameterName.Dispose();
+            colorParameterName.Dispose();
         }
 
         base.Dispose(disposing);

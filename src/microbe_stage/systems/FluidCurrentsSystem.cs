@@ -127,9 +127,9 @@ public sealed class FluidCurrentsSystem : AEntitySetSystem<float>
 
         var biome = gameWorld.Map.CurrentPatch.BiomeTemplate;
 
-        speed = biome.WaterCurrentSpeed;
-        chaoticness = biome.WaterCurrentChaoticness;
-        scale = biome.WaterCurrentScale;
+        speed = biome.WaterCurrents.Speed;
+        chaoticness = biome.WaterCurrents.Chaoticness;
+        scale = biome.WaterCurrents.ReverseScale;
     }
 
     protected override void Update(float delta, in Entity entity)

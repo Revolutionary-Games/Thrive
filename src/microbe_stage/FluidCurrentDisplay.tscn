@@ -16,7 +16,7 @@ gradient = SubResource("Gradient_4eerh")
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_23vs3"]
 shader = ExtResource("1_ykhyg")
 shader_parameter/emissionBoxExtents = Vector3(160, 80, 1)
-shader_parameter/colorValue = Color(1, 1, 1, 1)
+shader_parameter/colorValue = Color(0, 0, 0, 1)
 shader_parameter/alphaCurve = SubResource("GradientTexture1D_4ly1p")
 shader_parameter/gameTime = 0.0
 shader_parameter/noiseCurrents1 = ExtResource("2_y0umn")
