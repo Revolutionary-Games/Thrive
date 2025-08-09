@@ -2,7 +2,7 @@ shader_type spatial;
 render_mode blend_mix, depth_prepass_alpha, cull_back, diffuse_lambert;
 
 // Almost completely transparent background
-uniform vec4 WaterColor : source_color = vec4(0.0, 0.0, 0.0, 0.02);
+uniform vec4 WaterColor : source_color = vec4(0.0, 0.0, 0.0, 0.06);
 
 // Intensity of ripple displacement
 uniform float RippleStrength = 0.8;
@@ -287,5 +287,8 @@ void fragment()
     SPECULAR = 0.5;
     ROUGHNESS = 0.2;
     float fadeMultiplier = pow(1.0 - StillnessFactor, 1.5);
+    
+    // Simplified alpha calculation the cs side now handles the threshold cutoff
+    // This prevents the ghost square visibility issue by completely hiding the plane when alpha is too low
     ALPHA = WaterColor.a * fadeMultiplier;
 }

@@ -173,6 +173,10 @@ public partial class MembraneWaterRipple : Node
     private float minAlpha = 0.00002f;
     private float fullAlpha = 0.02f;
 
+    // Non-linear alpha curve parameters
+    private float alphaCurvePower = 3.0f;
+    private float alphaFloor = 0.000001f;
+
     // Camera state caching variables
     private float lastCameraDistance;
 
@@ -211,7 +215,7 @@ public partial class MembraneWaterRipple : Node
     }
 
     /// <summary>
-    ///   The size of the membrane this effect is attached to, controls how large the effect is
+    ///   The size of the membrane this effect is attached to and controls how large the effect is
     /// </summary>
     [Export]
     public float EffectRadius
@@ -424,6 +428,23 @@ public partial class MembraneWaterRipple : Node
         return Mathf.Lerp(timeScale, 0.5f, stillnessFactor);
     }
 
+    // Non-linear alpha scaling function
+    private float ApplyNonLinearAlphaScaling(float linearAlpha)
+    {
+        // Normalize the input alpha to 0-1 range based on min and full alpha
+        float normalized = (linearAlpha - minAlpha) / (fullAlpha - minAlpha);
+        normalized = Math.Clamp(normalized, 0.0f, 1.0f);
+
+        // Apply power curve to make low values much lower
+        float curved = MathF.Pow(normalized, alphaCurvePower);
+
+        // Remap back to the original range but with non-linear distribution
+        float remapped = curved * (fullAlpha - alphaFloor) + alphaFloor;
+
+        // Ensure we never go completely to zero to avoid rendering issues
+        return Math.Max(remapped, alphaFloor);
+    }
+
     /// <summary>
     ///   Updates the ripple effect's alpha and stillness
     /// </summary>
@@ -457,7 +478,10 @@ public partial class MembraneWaterRipple : Node
         currentAlpha = Mathf.Lerp(currentAlpha, targetAlpha,
             delta * (currentAlpha < targetAlpha ? fadeInSpeed : fadeOutSpeed));
         stillnessValue = Mathf.Lerp(stillnessValue, targetStillness, delta * 3.0f);
-        waterMaterial.SetShaderParameter(waterColorParam, new Color(0, 0, 0, currentAlpha));
+
+        // Apply non-linear alpha scaling to fix square visibility
+        float scaledAlpha = ApplyNonLinearAlphaScaling(currentAlpha);
+        waterMaterial.SetShaderParameter(waterColorParam, new Color(0, 0, 0, scaledAlpha));
         waterMaterial.SetShaderParameter(stillnessFactorParam, stillnessValue);
     }
 
