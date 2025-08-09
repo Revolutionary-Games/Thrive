@@ -215,6 +215,8 @@ public static class Constants
     /// </remarks>
     public const float BASE_MOVEMENT_ATP_COST = 1.0f;
 
+    public const float NUCLEUS_MOVEMENT_COST_MODIFIER = 0.6f;
+
     public const float BASE_MOVEMENT_FORCE = 900.0f;
 
     public const float MAX_STRAIN_PER_ENTITY = 400.0f;
