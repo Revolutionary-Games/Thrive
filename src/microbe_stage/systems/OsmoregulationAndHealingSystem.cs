@@ -129,7 +129,7 @@ public sealed class OsmoregulationAndHealingSystem : AEntitySetSystem<float>
 
         if (!species.IsBacteria)
         {
-            result.OsmoregulationModifier *= 0.6f;
+            osmoregulationCost *= 0.6f;
         }
 
         // TODO: remove this check on next save breakage point
