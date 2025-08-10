@@ -127,6 +127,11 @@ public sealed class OsmoregulationAndHealingSystem : AEntitySetSystem<float>
             osmoregulationCost *= 20.0f / (20.0f + colonySize);
         }
 
+        if (!species.IsBacteria)
+        {
+            result.OsmoregulationModifier *= 0.6f;
+        }
+
         // TODO: remove this check on next save breakage point
         if (entity.Has<MicrobeEnvironmentalEffects>())
         {
