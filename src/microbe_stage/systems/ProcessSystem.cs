@@ -248,7 +248,7 @@ public sealed class ProcessSystem : AEntitySetSystem<float>
         }
 #endif
 
-        bool hasNucleus = organelles.Any(organelle => orgnaelle.Definition == Nucleus);
+        bool hasNucleus = organelles.Any(organelle => organelle.Definition == Nucleus);
 
         CalculateSimplePartOfEnergyBalance(organelles, biome, environmentTolerances, membrane, onlyMovementInDirection,
             includeMovementCost, isPlayerSpecies, worldSettings, amountType, cache, hasNucleus, result);
@@ -282,7 +282,7 @@ public sealed class ProcessSystem : AEntitySetSystem<float>
         bool includeMovementCost, bool isPlayerSpecies, WorldGenerationSettings worldSettings,
         CompoundAmountType amountType, SimulationCache? cache, EnergyBalanceInfoFull result)
     {
-        bool hasNucleus = organelles.Any(organelle => orgnaelle.Definition == Nucleus);
+        bool hasNucleus = organelles.Any(organelle => organelle.Definition == Nucleus);
 
         CalculateSimplePartOfEnergyBalance(organelles, biome, environmentTolerances, membrane, onlyMovementInDirection,
             includeMovementCost, isPlayerSpecies, worldSettings, amountType, cache, hasNucleus, result);
@@ -307,6 +307,7 @@ public sealed class ProcessSystem : AEntitySetSystem<float>
 
                 result.AddConsumption(organelle.Definition.InternalName, cost);
             }
+
             if (includeMovementCost && organelle.Definition.HasCiliaComponent)
             {
                 var amount = Constants.CILIA_ENERGY_COST;
