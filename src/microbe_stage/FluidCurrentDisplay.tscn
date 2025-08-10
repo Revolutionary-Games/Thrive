@@ -1,8 +1,9 @@
-[gd_scene load_steps=11 format=3 uid="uid://d3hkouff6asri"]
+[gd_scene load_steps=14 format=3 uid="uid://d3hkouff6asri"]
 
 [ext_resource type="Shader" uid="uid://erlcc6rxb1cy" path="res://shaders/CurrentsParticles.gdshader" id="1_ykhyg"]
 [ext_resource type="Texture2D" uid="uid://nf7opycrmbhf" path="res://assets/textures/CurrentsNoise1.png" id="2_y0umn"]
 [ext_resource type="Texture2D" uid="uid://cf25131bt7raj" path="res://assets/textures/CurrentsNoise2.png" id="3_78fhh"]
+[ext_resource type="Texture2D" uid="uid://bh2oogng6fs2u" path="res://assets/textures/menu_backgrounds/RoundParticle.png" id="4_00tqm"]
 [ext_resource type="Texture2D" uid="uid://dufk485jxbiin" path="res://assets/textures/TrailParticle.png" id="4_78fhh"]
 [ext_resource type="Script" uid="uid://dbjhycamqqslq" path="res://src/microbe_stage/FluidCurrentDisplay.cs" id="7_21wlg"]
 
@@ -16,7 +17,7 @@ gradient = SubResource("Gradient_4eerh")
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_23vs3"]
 shader = ExtResource("1_ykhyg")
 shader_parameter/emissionBoxExtents = Vector3(160, 80, 1)
-shader_parameter/colorValue = Color(0, 0, 0, 1)
+shader_parameter/colorValue = Color(1, 1, 1, 1)
 shader_parameter/alphaCurve = SubResource("GradientTexture1D_4ly1p")
 shader_parameter/gameTime = 0.0
 shader_parameter/noiseCurrents1 = ExtResource("2_y0umn")
@@ -26,9 +27,21 @@ shader_parameter/chaoticness = 0.0
 shader_parameter/scale = 1.0
 shader_parameter/brightness = 1.0
 
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_mse0a"]
+transparency = 1
+shading_mode = 0
+diffuse_mode = 1
+specular_mode = 2
+vertex_color_use_as_albedo = true
+albedo_texture = ExtResource("4_00tqm")
+
+[sub_resource type="QuadMesh" id="QuadMesh_1112y"]
+material = SubResource("StandardMaterial3D_mse0a")
+
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_78fhh"]
 transparency = 1
 shading_mode = 0
+diffuse_mode = 1
 specular_mode = 2
 vertex_color_use_as_albedo = true
 albedo_texture = ExtResource("4_78fhh")
@@ -45,5 +58,7 @@ transform_align = 2
 trail_enabled = true
 trail_lifetime = 2.0
 process_material = SubResource("ShaderMaterial_23vs3")
-draw_pass_1 = SubResource("RibbonTrailMesh_y0umn")
+draw_pass_1 = SubResource("QuadMesh_1112y")
 script = ExtResource("7_21wlg")
+normalParticleMesh = SubResource("QuadMesh_1112y")
+trailedParticleMesh = SubResource("RibbonTrailMesh_y0umn")

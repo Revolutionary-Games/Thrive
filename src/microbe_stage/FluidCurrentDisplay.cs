@@ -15,6 +15,12 @@ public partial class FluidCurrentDisplay : GpuParticles3D
     private readonly StringName colorParameterName = new("colorValue");
 
 #pragma warning disable CA2213
+    [Export]
+    private Mesh normalParticleMesh = null!;
+
+    [Export]
+    private Mesh trailedParticleMesh = null!;
+
     private ShaderMaterial material = null!;
 
     private Node3D parent = null!;
@@ -80,6 +86,15 @@ public partial class FluidCurrentDisplay : GpuParticles3D
 
         material.SetShaderParameter(brightnessParameterName, biome.CompoundCloudBrightness);
         material.SetShaderParameter(colorParameterName, biome.WaterCurrents.Colour);
+
+        if (biome.WaterCurrents.UseTrails)
+        {
+            DrawPass1 = trailedParticleMesh;
+        }
+        else
+        {
+            DrawPass1 = normalParticleMesh;
+        }
 
         Amount = biome.WaterCurrents.ParticleCount;
     }

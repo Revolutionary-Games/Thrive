@@ -171,6 +171,11 @@ public class Biome : IRegistryType
         /// </summary>
         public float ReverseScale = 1.0f;
 
+        /// <summary>
+        ///   Whether the particle system should use trails.
+        /// </summary>
+        public bool UseTrails;
+
         public Color Colour = new(1.0f, 1.0f, 1.0f, 1.0f);
 
         public int ParticleCount = 300;
