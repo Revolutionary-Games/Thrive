@@ -66,19 +66,31 @@ public sealed class IntercellularMatrixSystem : AEntitySetSystem<float>
 
         Vector3 targetRelativePos;
 
+        Quaternion ourRotation = Quaternion.Identity;
+        Quaternion targetRotation = Quaternion.Identity;
+
         if (parentEntity == colony.Leader)
         {
-            targetRelativePos = -entity.Get<AttachedToEntity>().RelativePosition;
+            var ourAttachedPosition = entity.Get<AttachedToEntity>();
+
+            targetRelativePos = -ourAttachedPosition.RelativePosition;
+            ourRotation = ourAttachedPosition.RelativeRotation;
         }
         else
         {
-            targetRelativePos = parentEntity.Get<AttachedToEntity>().RelativePosition
-                - entity.Get<AttachedToEntity>().RelativePosition;
+            var ourAttachedPosition = entity.Get<AttachedToEntity>();
+            var targetAttachedPosition = parentEntity.Get<AttachedToEntity>();
+
+            targetRelativePos = targetAttachedPosition.RelativePosition
+                - ourAttachedPosition.RelativePosition;
+
+            ourRotation = ourAttachedPosition.RelativeRotation;
+            targetRotation = targetAttachedPosition.RelativeRotation;
         }
 
         Vector3 pointA, pointB;
         (pointA, pointB) = FindGoodConnectionPoints(ourMembrane.MembraneData,
-            targetMembrane.MembraneData, targetRelativePos);
+            targetMembrane.MembraneData, targetRelativePos, ourRotation, targetRotation);
 
         var relativePosition = pointB - pointA;
         float relativePosLength = relativePosition.Length();
@@ -106,30 +118,33 @@ public sealed class IntercellularMatrixSystem : AEntitySetSystem<float>
     }
 
     private static (Vector3 PointA, Vector3 PointB) FindGoodConnectionPoints(MembranePointData membraneA,
-        MembranePointData membraneB, Vector3 membraneBOffset)
+    MembranePointData membraneB, Vector3 membraneBOffset, Quaternion rotationA, Quaternion rotationB)
     {
-        Vector2 offset2D = new Vector2(membraneBOffset.X, membraneBOffset.Z);
-
         float min = float.MaxValue;
-        Vector2 pointA = Vector2.Zero;
-        Vector2 pointB = offset2D;
+        Vector3 pointA = Vector3.Zero;
+        Vector3 pointB = membraneBOffset;
         foreach (var a in membraneA.Vertices2D)
         {
+            var rotatedA = new Vector3(a.X, 0.0f, a.Y);
+
             foreach (var b in membraneB.Vertices2D)
             {
-                float distance = a.DistanceSquaredTo(b + offset2D);
+                // First rotate the vertex by membrane B rotation
+                // Then inversely rotate it by A's rotation to get the true relative coordinates
+                var rotatedB = (rotationB * new Vector3(b.X, 0.0f, b.Y) + membraneBOffset) * rotationA;
+
+                float distance = rotatedA.DistanceSquaredTo(rotatedB);
 
                 if (distance < min)
                 {
                     min = distance;
-                    pointA = a;
-                    pointB = b;
+                    pointA = rotatedA;
+                    pointB = rotatedB;
                 }
             }
         }
 
-        return (new Vector3(pointA.X, 0.0f, pointA.Y),
-            new Vector3(pointB.X, 0.0f, pointB.Y) + membraneBOffset);
+        return (pointA, pointB);
     }
 
     private static void RemoveConnection(ref IntercellularMatrix intercellularMatrix)
