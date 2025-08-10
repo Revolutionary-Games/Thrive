@@ -428,7 +428,9 @@ public partial class MembraneWaterRipple : Node
         return Mathf.Lerp(timeScale, 0.5f, stillnessFactor);
     }
 
-    // Non-linear alpha scaling function
+    /// <summary>
+    ///   Non-linear alpha scaling function
+    /// </summary>
     private float ApplyNonLinearAlphaScaling(float linearAlpha)
     {
         // Normalize the input alpha to 0-1 range based on min and full alpha
