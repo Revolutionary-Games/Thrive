@@ -66,7 +66,7 @@ public sealed class IntercellularMatrixSystem : AEntitySetSystem<float>
 
         Vector3 targetRelativePos;
 
-        Quaternion ourRotation = Quaternion.Identity;
+        Quaternion ourRotation;
         Quaternion targetRotation = Quaternion.Identity;
 
         if (parentEntity == colony.Leader)
@@ -118,7 +118,7 @@ public sealed class IntercellularMatrixSystem : AEntitySetSystem<float>
     }
 
     private static (Vector3 PointA, Vector3 PointB) FindGoodConnectionPoints(MembranePointData membraneA,
-    MembranePointData membraneB, Vector3 membraneBOffset, Quaternion rotationA, Quaternion rotationB)
+        MembranePointData membraneB, Vector3 membraneBOffset, Quaternion rotationA, Quaternion rotationB)
     {
         float min = float.MaxValue;
         Vector3 pointA = Vector3.Zero;
