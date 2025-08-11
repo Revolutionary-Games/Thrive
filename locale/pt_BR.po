@@ -7,8 +7,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2025-08-08 12:25+0300\n"
-"PO-Revision-Date: 2025-07-28 15:04+0000\n"
+"POT-Creation-Date: 2025-08-11 11:43+0300\n"
+"PO-Revision-Date: 2025-08-08 14:30+0000\n"
 "Last-Translator: Anonymous <noreply@weblate.org>\n"
 "Language-Team: Portuguese (Brazil) <https://translate.revolutionarygamesstudio.com/projects/thrive/thrive-game/pt_BR/>\n"
 "Language: pt_BR\n"
@@ -4335,6 +4335,10 @@ msgstr "Nenhum evento registrado"
 msgid "NO_FOSSIL_DIRECTORY"
 msgstr "O diretório de fósseis não foi encontrado"
 
+#, fuzzy
+msgid "NO_LONGER_ELIGIBLE_FOR_ACHIEVEMENTS"
+msgstr "Confirmar Remoção"
+
 msgid "NO_MODS_ENABLED"
 msgstr "Nenhum mod ativado"
 
@@ -7056,6 +7060,7 @@ msgstr ""
 "[indent]—   Contém um [b][color=#3796e1][url=thriveopedia:nucleus]Núcleo[/url][/color][/b] em pelo menos [b]5[/b] gerações.[/indent]\n"
 "[indent]—   Tem um equilíbrio de [thrive:compound type=\"atp\"][/thrive:compound] de pelo menos [b]+15[/b].[/indent]"
 
+#, fuzzy
 msgid "WIKI_BINDING_AGENT_SCIENTIFIC_BACKGROUND"
 msgstr "A ser adicionado"
 
@@ -7111,6 +7116,7 @@ msgstr "Transforma [thrive:compound type=\"hydrogensulfide\"][/thrive:compound] 
 msgid "WIKI_CHEMOPLAST_REQUIREMENTS"
 msgstr "Uma célula deve ter um [b][color=#3796e1][url=thriveopedia:nucleus]Núcleo[/url][/color][/b] para evoluir [b]Quimioplastos[/b]."
 
+#, fuzzy
 msgid "WIKI_CHEMOPLAST_SCIENTIFIC_BACKGROUND"
 msgstr "A ser adicionado"
 
@@ -7125,6 +7131,7 @@ msgstr "Sem melhoras."
 msgid "WIKI_CHEMORECEPTOR_EFFECTS"
 msgstr "A “visão” das células é, na verdade, a quimiorrecepção. É assim que elas obtêm informações do ambiente. Adicionar essa organela representa evoluir uma quimiorrecepção melhor. Como o jogador já consegue ver o que está ao redor da célula, a quimiorrecepção é representada por uma linha apontando para compostos fora da tela."
 
+#, fuzzy
 msgid "WIKI_CHEMORECEPTOR_INTRO"
 msgstr "Organela externa que representa a habilidade da célula de detectar compostos no ambiente. [b]Quimiorreceptores[/b] podem ser customizados para detectar um composto específico, ou mesmo células de uma espécie específica."
 
@@ -7138,6 +7145,7 @@ msgstr "Sem processos."
 msgid "WIKI_CHEMORECEPTOR_REQUIREMENTS"
 msgstr "Sem requisitos"
 
+#, fuzzy
 msgid "WIKI_CHEMORECEPTOR_SCIENTIFIC_BACKGROUND"
 msgstr "A ser adicionado"
 
@@ -7165,6 +7173,7 @@ msgstr "Transforma [thrive:compound type=\"hydrogensulfide\"][/thrive:compound] 
 msgid "WIKI_CHEMOSYNTHESIZING_PROTEINS_REQUIREMENTS"
 msgstr "Sem requisitos."
 
+#, fuzzy
 msgid "WIKI_CHEMOSYNTHESIZING_PROTEINS_SCIENTIFIC_BACKGROUND"
 msgstr "A ser adicionado"
 
@@ -7197,6 +7206,7 @@ msgstr ""
 "\n"
 "[indent]—   Contém no mínimo [b]5[/b] [b][color=#3796e1][url=thriveopedia:chromatophore]Tilacoides[/url][/color][/b] há no mínimo [b]7[/b] gerações seguidas.[/indent]"
 
+#, fuzzy
 msgid "WIKI_CHLOROPLAST_SCIENTIFIC_BACKGROUND"
 msgstr "A ser adicionado"
 
@@ -7361,6 +7371,7 @@ msgstr "Sem melhoras."
 msgid "WIKI_FLAGELLUM_EFFECTS"
 msgstr "O flagelo é um apêndice de fibras proteicas semelhante a um chicote, estendendo-se da membrana da célula que pode usar ATP para ondular e impulsionar a célula em uma direção. A posição do flagelo determina a direção na qual ele impulsiona a célula. A direção do impulso é oposta à direção que o flagelo aponta, por exemplo, um flagelo que está no lado esquerdo da célula só dá impulso quando ela se move para a direita."
 
+#, fuzzy
 msgid "WIKI_FLAGELLUM_INTRO"
 msgstr "Filamentos similares a fios de cabelo no exterior de uma célula que usam [thrive:compound type=\"atp\"][/thrive:compound] para aumentar a velocidade de movimento da célula em uma direção. Impulso é aplicado na direção oposta à direção que o [b]Flagelo[/b] aponta."
 
@@ -7377,6 +7388,7 @@ msgstr ""
 "[indent]—   Tem velocidade abaixo de [b]15[/b].[/indent]\n"
 "[indent]—   Produz pelo menos [b]+15[/b] [thrive:compound type=\"atp\"][/thrive:compound].[/indent]"
 
+#, fuzzy
 msgid "WIKI_FLAGELLUM_SCIENTIFIC_BACKGROUND"
 msgstr "A ser adicionado"
 
@@ -7651,6 +7663,7 @@ msgstr ""
 "[indent]—   Fagocitou no mínimo [b]20[/b] células ao longo do jogo até agora.[/indent]\n"
 "[indent]—   Digeriu no mínimo [b]10[/b] células ao longo do jogo até agora.[/indent]"
 
+#, fuzzy
 msgid "WIKI_LYSOSOME_SCIENTIFIC_BACKGROUND"
 msgstr "A ser adicionado"
 
@@ -7704,6 +7717,7 @@ msgstr "Axônio"
 msgid "WIKI_MELANOSOME_EFFECTS"
 msgstr "Sem efeitos."
 
+#, fuzzy
 msgid "WIKI_MELANOSOME_INTRO"
 msgstr "[b]Melanossomas[/b] fazem [b]Radiossíntese[/b], que captura energia de radiação, a capturando em melanina."
 
@@ -7714,9 +7728,11 @@ msgstr "Sem modificações."
 msgid "WIKI_MELANOSOME_PROCESSES"
 msgstr "Contém enzimas digestivas. Pode ser modificado para mudar o tipo de enzima que contém. Só uma enzima pode ser utilizada ao mesmo tempo."
 
+#, fuzzy
 msgid "WIKI_MELANOSOME_REQUIREMENTS"
 msgstr "Precisa receber dano por radiação estando próxima a um pedaço radioativo"
 
+#, fuzzy
 msgid "WIKI_MELANOSOME_SCIENTIFIC_BACKGROUND"
 msgstr "A ser adicionado"
 
@@ -7958,6 +7974,7 @@ msgstr ""
 "\n"
 "[indent]—   Está em uma região com no máximo [b]13[/b] [thrive:compound type=\"ammonia\"][/thrive:compound].[/indent]"
 
+#, fuzzy
 msgid "WIKI_NITROGENASE_SCIENTIFIC_BACKGROUND"
 msgstr "A ser adicionado"
 
@@ -8017,6 +8034,7 @@ msgstr "Sem processos."
 msgid "WIKI_NUCLEUS_REQUIREMENTS"
 msgstr "Sem requisitos, exceto por bastante espaço em que ele caiba."
 
+#, fuzzy
 msgid "WIKI_NUCLEUS_SCIENTIFIC_BACKGROUND"
 msgstr "A ser adicionado"
 
@@ -8387,6 +8405,7 @@ msgstr "Sem processos."
 msgid "WIKI_SIGNALING_AGENT_REQUIREMENTS"
 msgstr "Uma célula precisa ter um [b][color=#3796e1][url=thriveopedia:nucleus]Núcleo[/url][/color][/b] para evoluir [b]Agentes de Sinalização[/b]."
 
+#, fuzzy
 msgid "WIKI_SIGNALING_AGENT_SCIENTIFIC_BACKGROUND"
 msgstr "A ser adicionado"
 
@@ -8419,6 +8438,7 @@ msgstr "Transforma [thrive:compound type=\"glucose\"][/thrive:compound] em [thri
 msgid "WIKI_SLIME_JET_REQUIREMENTS"
 msgstr "Sem requisitos."
 
+#, fuzzy
 msgid "WIKI_SLIME_JET_SCIENTIFIC_BACKGROUND"
 msgstr "A ser adicionado"
 
@@ -8589,6 +8609,7 @@ msgstr ""
 "\n"
 "[indent]—   Está em uma região com no mínimo [b]%20[/b] [thrive:compound type=\"sunlight\"][/thrive:compound].[/indent]"
 
+#, fuzzy
 msgid "WIKI_THYLAKOIDS_SCIENTIFIC_BACKGROUND"
 msgstr "A ser adicionado"
 

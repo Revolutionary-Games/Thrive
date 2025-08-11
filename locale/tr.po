@@ -7,9 +7,9 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2025-08-08 12:25+0300\n"
-"PO-Revision-Date: 2025-08-08 11:18+0000\n"
-"Last-Translator: punctdan <yunusemredilek@hotmail.com>\n"
+"POT-Creation-Date: 2025-08-11 11:43+0300\n"
+"PO-Revision-Date: 2025-08-11 09:45+0000\n"
+"Last-Translator: Anonymous <noreply@weblate.org>\n"
 "Language-Team: Turkish <https://translate.revolutionarygamesstudio.com/projects/thrive/thrive-game/tr/>\n"
 "Language: tr\n"
 "MIME-Version: 1.0\n"
@@ -4278,6 +4278,10 @@ msgstr "Hiçbir olay meydana gelmedi"
 msgid "NO_FOSSIL_DIRECTORY"
 msgstr "Fosiller dizini bulunamadı"
 
+#, fuzzy
+msgid "NO_LONGER_ELIGIBLE_FOR_ACHIEVEMENTS"
+msgstr "Başarımların Sıfırlanması Onaylansın mı?"
+
 msgid "NO_MODS_ENABLED"
 msgstr "Hiçbir Mod Etkinleştirilmedi"
 
@@ -4876,9 +4880,11 @@ msgstr "Raw"
 msgid "RAW_VALUE_COLON"
 msgstr "Ham:"
 
+#, fuzzy
 msgid "REACH_GENERATION_15_WITH_A_SPECIES"
 msgstr "En az orta zorlukta, tek bir türle 15. kuşağa ulaş"
 
+#, fuzzy
 msgid "REACH_GENERATION_15_WITH_A_SPECIES_PROGRESS"
 msgstr "En az orta zorlukta, tek bir türle {0}/{1}. nesle ulaş"
 
@@ -7014,7 +7020,7 @@ msgstr ""
 "[indent]—   En az [b]+15[/b] [thrive:compound type=\"atp\"]ATP[/thrive:compound] tutarına sahip olmak.[/indent]"
 
 msgid "WIKI_BINDING_AGENT_SCIENTIFIC_BACKGROUND"
-msgstr "TBA"
+msgstr "Çok hücreli ökaryotik organizmalarda bireysel hücreler, hücre zarlarının dış yüzeylerinde bulunan çeşitli hücre adezyon molekülleri (HAM'ler) ile birbirlerine bağlanırlar. HAM'lerin önemli bir bölümü, zariçi proteinleridir (hücre zarına gömülü ve hem hücre içi hem de hücre dışına uzanan proteinler). Buna örnek olarak, hücre dışı uzantıları, diğer hücrelere ait kaderinlerin uzantılarıyla bağlanarak, ilgili hücreleri birbirine bağlayabilen kaderinler verilebilir."
 
 msgid "WIKI_BINDING_AGENT_STRATEGY"
 msgstr ""
@@ -7082,7 +7088,7 @@ msgid "WIKI_CHEMOPLAST_REQUIREMENTS"
 msgstr "Bir hücre, [b]Kemoplastları[/b] evrimleştirmek için [b][color=#3796e1][url=thriveopedia:nucleus]Çekirdeğe[/url][/color][/b] sahip olmalıdır."
 
 msgid "WIKI_CHEMOPLAST_SCIENTIFIC_BACKGROUND"
-msgstr "TBA"
+msgstr "Gerçek dünyada \"kemoplastlar\" adlı organellere sahip mikroplar bulunmasa da, [color=#3796e1][url=https://en.wikipedia.org/wiki/Chemosynthesis]kemosentez[/url][/color] birçok mikrobiyal taksonda görülen bir metabolik işlemdir. Mitokondri ve kloroplast gibi, her ikisi de endosimbiyoz yoluyla ortaya çıkan hücre zarlı organellerin varlığı göz önüne alındığında, kemosentetik bir mikrobun daha büyük bir hücre tarafından yutulmasıyla, kemoplast benzeri bir organelin aynı şekilde evrimleşmesi oldukça makul görünmektedir."
 
 msgid "WIKI_CHEMOPLAST_STRATEGY"
 msgstr ""
@@ -7103,7 +7109,7 @@ msgstr ""
 "Bu sırada, oyuncu olmayan hücrelerin kendi [b]Kemoreseptörlerinde[/b] belirtilen bileşiklere ve/veya türlere doğru hareket etmesi daha muhtemeldir."
 
 msgid "WIKI_CHEMORECEPTOR_INTRO"
-msgstr "Hücrenin ortamdaki bileşikleri algılama yeteneğini temsil eden bir dış organeldir. [b]Kemoreseptörler[/b], belirli bir bileşiği ya da belirli bir türün hücrelerini algılamak için özelleştirilebilir."
+msgstr "Hücrenin ortamdaki bileşikleri algılama yeteneğini temsil eden bir dış [color=#3796e1][url=thriveopedia:OrganellesRoot]organeldir[/url][/color]. [b]Kemoreseptörler[/b], belirli bir bileşiği ya da belirli bir türün hücrelerini algılamak için özelleştirilebilir."
 
 msgid "WIKI_CHEMORECEPTOR_MODIFICATIONS"
 msgstr "Aranacak bileşiği ya da, alternatif olarak, algılanacak türü seçmek için [b]Kemoreseptörde[/b] değişiklik yapın. Arama yarıçapını, çizgi rengini ve, eğer bileşikler arıyorsanız, algılanacak minimum bileşik yoğunluğunu ayarlayın."
@@ -7115,7 +7121,7 @@ msgid "WIKI_CHEMORECEPTOR_REQUIREMENTS"
 msgstr "Gereksinimler yok"
 
 msgid "WIKI_CHEMORECEPTOR_SCIENTIFIC_BACKGROUND"
-msgstr "TBA"
+msgstr "[color=#3796e1][url=https://en.wikipedia.org/wiki/Chemoreceptor]Kemoreseptörler[/url][/color], hücre yüzeyinde bulunan ve genellikle prokaryotlarda uzun sarmallı proteinlerden, ökaryotlarda ise daha karmaşık silli yapılardan oluşan bir duyu yapısı sınıfıdır. Kemoreseptörler, kabaca bulundukları ortamda kimyasal bileşiklerin varlığını hücreye bildirirler ve hücrenin, ihtiyaç duyulduğunda, bu bileşiklere doğru ya da onlardan uzaklaşacak şekilde gitmesine olanak verir."
 
 msgid "WIKI_CHEMORECEPTOR_STRATEGY"
 msgstr ""
@@ -7150,6 +7156,7 @@ msgstr ""
 msgid "WIKI_CHEMOSYNTHESIZING_PROTEINS_REQUIREMENTS"
 msgstr "Gereksinimler yok."
 
+#, fuzzy
 msgid "WIKI_CHEMOSYNTHESIZING_PROTEINS_SCIENTIFIC_BACKGROUND"
 msgstr "TBA"
 
@@ -7192,6 +7199,7 @@ msgstr ""
 "\n"
 "[indent]—   Üst üste en az [b]7[/b] kuşak boyunca en az [b]5[/b] [b][color=#3796e1][url=thriveopedia:chromatophore]Tilakoid[/url][/color][/b] içermek.[/indent]"
 
+#, fuzzy
 msgid "WIKI_CHLOROPLAST_SCIENTIFIC_BACKGROUND"
 msgstr "TBA"
 
@@ -7287,7 +7295,7 @@ msgstr ""
 "\n"
 "[b][u]ATP[/u][/b]\n"
 "\n"
-"[thrive:compound type=\"atp\"]ATP[/thrive:compound], temel olarak [thrive:compound type=\"glucose\"]glukoz[/thrive:compound] yoluyla üretilir ve organizmanızı hayatta tutmak için gereklidir."
+"[indent]—   [thrive:compound type=\"atp\"]ATP[/thrive:compound], temel olarak [thrive:compound type=\"glucose\"]glukoz[/thrive:compound] yoluyla üretilir ve organizmanızı hayatta tutmak için gereklidir.[/indent]"
 
 msgid "WIKI_COMPOUND_SYSTEM_DEVELOPMENT_COMPOUNDS_LIST"
 msgstr "Mikrop Evresi'ndeki bileşiklerin tam listesi için Mikrop Evresi'nin Ekler sayfasındaki Bileşikler tablosuna göz atın."
@@ -7544,7 +7552,7 @@ msgstr ""
 "[indent]—   Üst üste en az [b]6[/b] kuşak boyunca, [b][color=#3796e1][url=thriveopedia:rusticyanin]Rustisiyanin[/url][/color][/b] içermek.[/indent]"
 
 msgid "WIKI_FERROPLAST_SCIENTIFIC_BACKGROUND"
-msgstr "[b]Ferroplastlar[/b], gerçek hayatta keşfedilmemiştir. Ancak, endosimbiyotların ([b][color=#3796e1][url=thriveopedia:mitochondrion]Mitokondri[/url][/color][/b]) ve enerji sağlama yeteneği olan [b][color=#3796e1][url=thriveopedia:rusticyanin]Rustisiyanin[/url][/color][/b] gibi) evrimine bağlı olarak, teorik olarak tamamen mümkündürler. [b][color=#3796e1][url=thriveopedia:rusticyanin]Rustisiyaninin[/url][/color][/b] hücre zarındaki faaliyetleri, burada organel zarında gerçekleşir."
+msgstr "[b]Ferroplastlar[/b], gerçek hayattaki organizmalarda keşfedilmemiştir. Ancak, endosimbiyotların ([b][color=#3796e1][url=thriveopedia:mitochondrion]Mitokondri[/url][/color][/b] gibi) evrimine ve [i]<a rel=\"nofollow\" class=\"external text\" href=\"https://en.wikipedia.org/wiki/Acidithiobacillus_ferrooxidans\">Acidithiobacillus ferrooxidans</a>[/i] bakterisi ile [i]<a rel=\"nofollow\" class=\"external text\" href=\"https://en.wikipedia.org/wiki/Ferroplasma\">Ferroplasma</a>[/i] arke türü gibi demir oksitleyen mikropların varlığına bağlı olarak, teorik olarak tamamen mümkündürler. Bu mikroplar, [b][color=#3796e1][url=thriveopedia:rusticyanin]Rustisiyaninler[/url][/color][/b] olarak bilinen ve, elektron taşıma zincirinin bir parçası olarak, ferro demiri (Fe<sup>2+</sup>) ferrik demire (Fe<sup>3+</sup>) oksitleyip proton üretimini sağlayan proteinler üretirler."
 
 msgid "WIKI_FERROPLAST_STRATEGY"
 msgstr ""
@@ -7559,7 +7567,7 @@ msgid "WIKI_FLAGELLUM_EFFECTS"
 msgstr "Her [b]Kamçı[/b], bulunduğu yönün tersine doğru yönlü itiş sağlar. Bu organel ayrıca yönün tam tersine yakın doğrultulara doğru kısmi olarak itiş sağlar (daha kesin olmak gerekirse, vektörün tam tersi bileşeni pozitif olan doğrultular). Bir [b]Kamçı[/b] etkin olduğunda, [thrive:compound type=\"atp\"]ATP[/thrive:compound] tüketir."
 
 msgid "WIKI_FLAGELLUM_INTRO"
-msgstr "Hücrenin hareket hızını bir yöne doğru arttırmak için [thrive:compound type=\"atp\"]ATP[/thrive:compound] kullanan, hücrenin dışındaki kıl gibi tellerdir. İtme, [b]Kamçının[/b] dışa bakan yönünün tam tersine doğru uygulanır."
+msgstr "[b]Kamçılar[/b], hücrenin hareket hızını bir yöne doğru arttırmak için [thrive:compound type=\"atp\"]ATP[/thrive:compound] kullanan, hücrenin dışındaki kıl gibi tellerdir. İtme, kamçının dışa bakan yönünün tam tersine doğru uygulanır."
 
 msgid "WIKI_FLAGELLUM_MODIFICATIONS"
 msgstr "Değişiklikler yok."
@@ -7574,6 +7582,7 @@ msgstr ""
 "[indent]—   [b]5[/b] değerinin altında hıza sahip olmak.[/indent]\n"
 "[indent]—   En az [b]+15[/b] [thrive:compound type=\"atp\"]ATP[/thrive:compound] üretmek.[/indent]"
 
+#, fuzzy
 msgid "WIKI_FLAGELLUM_SCIENTIFIC_BACKGROUND"
 msgstr "TBA"
 
@@ -7889,6 +7898,8 @@ msgstr "Başlangıç parçasıdır, gereksinim yok."
 
 msgid "WIKI_HYDROGENASE_SCIENTIFIC_BACKGROUND"
 msgstr ""
+"[color=#3796e1][url=https://en.wikipedia.org/wiki/Hydrogenase]Hidrojenazlar[/url][/color], moleküler hidrojenin (H<sub>2</sub>) geri dönüşümlü oksidasyonunu kolaylaştıran bir enzim sınıfıdır. Bu işlem, ATP üreten bir oksijensiz işlem (oksijen gerektiren ve dolayısıyla [i]oksijenli[/i] olan hücresel solunumdan farklıdır) olan piruvat fermentasyonunda rol alır.\n"
+"\n"
 "Gazlı fermentasyon, metabolik süreçle tanımlanan ve prokaryotların çeşitli ve genel hatlarıyla tanımlanmış bir grubu olan Klostridlerde mevcuttur. Bu işlem, biyokimyasal, gıda ve biyoyakıt üretiminde sıkça kullanılır ve atık su arıtımı ile toprak yenileme çalışmalarında önemli bir rol oynar. Gazlı fermentasyon, farklı bakteri grupları arasında farklı görünse de, genel formülü şu şekildedir:\n"
 "\n"
 "C6​H12​O6​→2C2​H5​OH+2CO2​+2H2​\n"
@@ -7937,7 +7948,7 @@ msgid "WIKI_HYDROGENOSOME_STRATEGY"
 msgstr ""
 "[thrive:compound type=\"iron\"]Glukozun[/thrive:compound] bol seviyelerde olduğu ortamlarda, [b]Hidrojenozomlar[/b] düzenli bir enerji akışı sağlar. Yine de oyun ilerledikçe, [thrive:compound type=\"glucose\"]glukoz[/thrive:compound] konsantrasyonunun düşeceğini bilin. Bu yüzden, mümkün olduğunca ek enerji kaynakları eklemenizi öneriyoruz.\n"
 "\n"
-"Ayrıca, bir [b][color=#3796e1][url=thriveopedia:nucleus]Çekirdek[/url][/color][/b] evrimleştirdikten sonra, [b]Hidrojenazları[/b], [b]Hidrojenozom[/b] ile değiştirmenizi öneriyoruz. Çünkü ikincisi çok daha fazla verim sağlar."
+"Ayrıca, bir [b][color=#3796e1][url=thriveopedia:nucleus]Çekirdek[/url][/color][/b] evrimleştirdikten sonra, [b][color=#3796e1][url=thriveopedia:hydrogenase]Hidrojenazları[/url][/color][/b], [b]Hidrojenozom[/b] ile değiştirmenizi öneriyoruz. Çünkü ikincisi çok daha fazla verim sağlar."
 
 msgid "WIKI_HYDROGENOSOME_UPGRADES"
 msgstr "Geliştirme yok."
@@ -8010,7 +8021,7 @@ msgstr ""
 "[indent]—   Oyun sırasında, şu ana kadar en az [b]10[/b] hücre sindirmiş olmak.[/indent]"
 
 msgid "WIKI_LYSOSOME_SCIENTIFIC_BACKGROUND"
-msgstr "TBA"
+msgstr "[color=#3796e1][url=https://en.wikipedia.org/wiki/Lysosome]Lizozomlar[/url][/color], gerçek hayattaki hayvan hücrelerinin neredeyse tamamında bulunur ve bu hücrelerdeki esas işlevleri proteinleri, lipitleri ve polisakkaritleri yapı taşlarına ayırmaktır. Bu hücreler, dışarıdaki maddeleri endositoz adı verilen bir işlemle, hücre içindeki maddeleri ise otofaji adı verilen bir işlemle alabilirler."
 
 msgid "WIKI_LYSOSOME_STRATEGY"
 msgstr ""
@@ -8068,7 +8079,7 @@ msgid "WIKI_MELANOSOME_EFFECTS"
 msgstr "Etki yok."
 
 msgid "WIKI_MELANOSOME_INTRO"
-msgstr "[b]Melanozomlar[/b], [b]Radyosentez[/b] yapar. Bu işlem, radyasyondaki enerjiyi melaninler ile emerek alır."
+msgstr "[b]Melanozomlar[/b], [b]Radyosentez[/b] yapan [color=#3796e1][url=thriveopedia:OrganellesRoot]organellerdir[/url][/color]. Bu işlem, radyasyondaki enerjiyi melaninleri kullanıp emerek alır."
 
 msgid "WIKI_MELANOSOME_MODIFICATIONS"
 msgstr "Değişiklikler yok."
@@ -8080,10 +8091,13 @@ msgstr ""
 "Radyoaktif maddelerden yararlanarak enerji üreten bir yöntemdir."
 
 msgid "WIKI_MELANOSOME_REQUIREMENTS"
-msgstr "Radyasyon hasarı almak için bir radyoaktif parçaya yakın olmak gerekir"
+msgstr "Radyasyon hasarı almak için bir radyoaktif parçaya yakın olmak gerekir."
 
 msgid "WIKI_MELANOSOME_SCIENTIFIC_BACKGROUND"
-msgstr "TBA"
+msgstr ""
+"[color=#3796e1][url=https://en.wikipedia.org/wiki/Melanosome]Melanozomlar[/url][/color], esas olarak melanin pigmentini kullanarak ışığı emme görevini üstlenen, gerçek dünyadaki bazı hayvan hücrelerinde bulunan organellerdir.\n"
+"\n"
+"Melanin, aynı zamanda, kullanım dışı olan Çernobil Nükleer Santrali'nde keşfedilen radyotrofik mantarlar ile yüksek irtifada yaşayan ve daha çok morötesi ışına maruz kalan mantarlarda bulunmuştur. Sonraki araştırmalar melanin pigmentinin, bu organizmaların iyonlaştırıcı radyasyondaki enerjiyi yakalayarak, radyosentez yapmalarına izin verebileceğini öne sürmüştür."
 
 msgid "WIKI_MELANOSOME_STRATEGY"
 msgstr "Radyoaktif taşlar nadirdir, ancak bulunduklarında bol miktarda enerji sağlar. Radyosentez ile önerilen oyun tarzı, bir sonraki radyoaktif taşı ararken yeterli depoya sahip olmak ya da hayatta kalmayı sağlayan diğer yolları bulmaktır. Bir taş bulunduğunda, üreme vb. için geçici olarak bol miktarda enerji sağlanır."
@@ -8380,7 +8394,7 @@ msgstr ""
 "[indent]—   En fazla [b]13[/b] değerinde [thrive:compound type=\"ammonia\"]amonyağa[/thrive:compound] sahip bir arazide olmak.[/indent]"
 
 msgid "WIKI_NITROGENASE_SCIENTIFIC_BACKGROUND"
-msgstr "TBA"
+msgstr "[color=#3796e1][url=https://en.wikipedia.org/wiki/Nitrogenase]Nitrojenazlar[/url][/color], gerçek dünyadaki bakterilerin bazılarında bulunan, azot gazını (N<sub>2</sub>) amonyağa (NH<sub>3</sub>) dönüştüren enzimlerdir. Bu azot bağlayıcı mikroplar, azotun DNA ve proteinlerin önemli bir bileşeni olması ve gaz halinde çoğu organizma tarafından kolayca kullanılamaması nedeniyle, Dünya üzerindeki diğer bütün yaşamları desteklemede önemli bir rol oynar."
 
 msgid "WIKI_NITROGENASE_STRATEGY"
 msgstr ""
@@ -8434,19 +8448,19 @@ msgstr "Yok, bu son evre"
 
 msgid "WIKI_NUCLEUS_EFFECTS"
 msgstr ""
-"Bir hücre [b]Çekirdeği[/b] evrimleştirdiğinde, daha önce kilitli olan birçok başka organeli evrimleştirme yeteneği kazanır.\n"
+"Bir hücre [b]Çekirdeği[/b] evrimleştirdiğinde, daha önce kilitli olan birçok başka [b]organeli[/b] evrimleştirme yeteneği kazanır.\n"
 "\n"
-"[b]Çekirdekli[/b] hücreler, [thrive:compound type=\"atp\"]ATP'nin[/thrive:compound] olmamasından kaynaklanan açlık haricinde, başka herhangi bir kaynaktan [b]%50[/b] daha az hasar alır.\n"
+"[b]Çekirdekli[/b] hücreler, [i]açlık[/i] haricinde (herhangi bir [thrive:compound type=\"atp\"]ATP'nin[/thrive:compound] olmamasından dolayı oluşan hasar), başka herhangi bir kaynaktan [b]%50[/b] daha az hasar alır.\n"
 "\n"
 "Bir hücre, en fazla sadece bir[b]Çekirdeğe[/b] sahip olabilir ve bu organel evrimleştirildikten sonra kaldırılamaz."
 
 msgid "WIKI_NUCLEUS_INTRO"
 msgstr ""
-"En büyük organel ve ökaryotik hücrelerin tanımlayıcı özelliğidir. Hücrelerin; [b][color=#3796e1][url=thriveopedia:mitochondrion]Mitokondriler[/url][/color][/b] ve [b][color=#3796e1][url=thriveopedia:lysosome]Lizozomlar[/url][/color][/b] gibi gelişmiş, daha güçlü etkilere sahip zarlı organelleri evrimleştirmesini sağlar.\n"
+"En büyük [b]organel[/b] ve [i]ökaryotik[/i] hücrelerin tanımlayıcı özelliğidir. Hücrelerin; [b][color=#3796e1][url=thriveopedia:mitochondrion]Mitokondriler[/url][/color][/b] ve [b][color=#3796e1][url=thriveopedia:lysosome]Lizozomlar[/url][/color][/b] gibi gelişmiş, daha güçlü etkilere sahip zarlı [b]organelleri[/b] evrimleştirmesini sağlar.\n"
 "\n"
 "Muazzam büyüklüğü ve ozmoregülasyon maliyetinden dolayı, sürdürmesi bir sürü [thrive:compound type=\"atp\"]ATP'ye[/thrive:compound] mal olur. Bir hücre bir çekirdek edindiğinde, bu organel sonraki nesillerde kaldırılamaz.\n"
 "\n"
-"Ayrıca, açlık dışındaki herhangi bir kaynaktan alınan hasarı [b]%50[/b] azaltır."
+"Ayrıca, [i]açlık[/i] dışındaki herhangi bir kaynaktan alınan hasarı [b]%50[/b] azaltır."
 
 msgid "WIKI_NUCLEUS_MODIFICATIONS"
 msgstr "Değişiklikler yok."
@@ -8457,6 +8471,7 @@ msgstr "İşlem yok."
 msgid "WIKI_NUCLEUS_REQUIREMENTS"
 msgstr "Yerleştirmek için fazladan alan haricinde başka bir gereksinim yok."
 
+#, fuzzy
 msgid "WIKI_NUCLEUS_SCIENTIFIC_BACKGROUND"
 msgstr "TBA"
 
@@ -8464,9 +8479,9 @@ msgid "WIKI_NUCLEUS_STRATEGY"
 msgstr ""
 "Hücrenize bir [b]Çekirdek[/b] eklemeden önce çok iyi düşünün. Bu organeli sürdürmek pahalıdır ve bu organel, hücrenizi önemli ölçüde yavaşlatır. Bu yüzden, önemli bir pozitif [thrive:compound type=\"atp\"]ATP[/thrive:compound] tutarına sahip olduğunuzdan ve, bir ya da iki nesil boyunca, daha sakin bir yaşam tarzını sağlayabileceğinizden emin olun. Daha sonraki nesillerde, biraz çeviklik kazanmak için [b][color=#3796e1][url=thriveopedia:cilia]Siller[/url][/color][/b] ve [b][color=#3796e1][url=thriveopedia:flagellum]Kamçıyı[/url][/color][/b] eklemenizi tavsiye ediyoruz.\n"
 "\n"
-"Ama, bu organelin faydaları bellidir. Ökaryotlar ([b]Çekirdekli[/b] hücreler), prokaryotlara (çekirdeksiz hücreler) göre, ileride daha çok yönlü geliştirmelere erişim kazanır.\n"
+"Ama, bu organelin faydaları bellidir. [i]Ökaryotlar[/i] ([b]Çekirdekli[/b] hücreler), prokaryotlara (çekirdeksiz hücreler) göre, ileride daha çok yönlü geliştirmelere erişim kazanır.\n"
 "\n"
-"[b]Çekirdek[/b] tarafından kilidi açılan organeller, [b][color=#3796e1][url=thriveopedia:signalingAgent]Sinyal Veren Ajan[/url][/color][/b] ve [b][color=#3796e1][url=thriveopedia:bindingAgent]Bağlayıcı Ajan[/url][/color][/b] gibi kuvvetli yeni beceriler ve [b][color=#3796e1][url=thriveopedia:mitochondrion]Mitokondriler[/url][/color][/b] ve [b][color=#3796e1][url=thriveopedia:thermoplast]Termoplastlar[/url][/color][/b] gibi varolan yeteneklere önemli geliştirmeler sunar. [b]Çekirdeği[/b] ekledikten sonra, [thrive:compound type=\"atp\"]ATP[/thrive:compound] üretimini geliştirmek ve hücrenizi daha iyi sürdürmek için, prokaryotik organelleri daha verimli olan ökaryotik karşılıkları ile değiştirmenizi öneriyoruz."
+"[b]Çekirdek[/b] tarafından kilidi açılan [b]organeller[/b], [b][color=#3796e1][url=thriveopedia:signalingAgent]Sinyal Veren Ajan[/url][/color][/b] ve [b][color=#3796e1][url=thriveopedia:bindingAgent]Bağlayıcı Ajan[/url][/color][/b] gibi kuvvetli yeni beceriler ve [b][color=#3796e1][url=thriveopedia:mitochondrion]Mitokondriler[/url][/color][/b] ve [b][color=#3796e1][url=thriveopedia:thermoplast]Termoplastlar[/url][/color][/b] gibi varolan yeteneklere önemli geliştirmeler sunar. [b]Çekirdeği[/b] ekledikten sonra, [thrive:compound type=\"atp\"]ATP[/thrive:compound] üretimini geliştirmek ve hücrenizi daha iyi sürdürmek için, [i]prokaryotik[/i] [b]organelleri[/b] daha verimli olan [i]ökaryotik[/i] karşılıkları ile değiştirmenizi öneriyoruz."
 
 msgid "WIKI_NUCLEUS_UPGRADES"
 msgstr "Geliştirme yok."
@@ -8705,6 +8720,7 @@ msgstr ""
 "[indent]—   Bütün kuşaklar boyunca en az [b]5[/b] hücre yutmak.[/indent]\n"
 "[indent]—   Bütün kuşaklar boyunca en az [b]5[/b] kez ölmek.[/indent]"
 
+#, fuzzy
 msgid "WIKI_PERFORATOR_PILUS_SCIENTIFIC_BACKGROUND"
 msgstr ""
 "Piluslar (tekil: pilus), birçok mikroorganizmanın yüzeyinde bulunur ve ince kıllara benzer. Onlarca veya yüzlerce pilus, bir mikroorganizmanın yüzeyinde bulunabilir ve avcılıkta rol oynamak dahil çeşitli amaçlarda işe kullanılabilir. Patojenik mikroorganizmalar, hastalığa neden olmak suretiyle, ya konak dokuya bağlanmak ya da sitoplazmaya erişmek amacıyla dış hücre zarını basıp geçmek için pilusları kullanır. Birbirine benzer birçok pilus mevcuttur ancak evrimsel olarak birbirleriyle bağlantılı değildirler ve yakınsak evrimden meydana gelmişlerdir. Tek bir organizma, farklı türde pilus üretme yeteneğine sahip olabilir ve yüzeyinde mevcut olanları sürekli değiştirebilir.\n"
@@ -8810,7 +8826,7 @@ msgstr "Gereksinimler yok."
 
 msgid "WIKI_RUSTICYANIN_SCIENTIFIC_BACKGROUND"
 msgstr ""
-"[b]Rustisiyanin[/b], bazı bakteri ve arkelerin hücre zarında bulunabilir. Bu organel, hücre zarına temas eden [b]Demiri[/b] oksitleyerek elektronları serbest bırakır. Hücre zarı yüzeyinde oluşan elektrik yükü, pozitif [b]Hidrojen[/b] iyonlarını hücre içine sokmak için kullanılır. Fazladan elektron ve iyon, kullanılmış [b]ADP[/b] moleküllerinin yeni [b]ATP[/b] moleküllerine dönüştürülmesine yardımcı olur ve işlemin tekrar başlaması için çeşitli ilgili proteini sıfırlayarak döngüyü yeniden başlatır.\n"
+"[b]Rustisiyaninler[/b], bazı bakteri ve arkelerin hücre zarında bulunabilen proteinlerdir. Bu organeller, hücre zarına temas eden [b]Demiri[/b] oksitleyerek elektronları, elektron taşıma zincirinin bir parçası olarak, serbest bırakırlar. Hücre zarı yüzeyinde oluşan elektrik yükü, pozitif [b]Hidrojen[/b] iyonlarını hücre içine sokmak için kullanılır. Fazladan elektron ve iyon, kullanılmış [b]ADP[/b] moleküllerinin yeni [b]ATP[/b] moleküllerine dönüştürülmesine yardımcı olur ve işlemin tekrar başlaması için çeşitli ilgili proteini sıfırlayarak döngüyü yeniden başlatır.\n"
 "\n"
 "[color=#3796e1][url=https://en.wikipedia.org/wiki/Rusticyanin]https://en.wikipedia.org/wiki/Rusticyanin[/url][/color]"
 
@@ -8847,6 +8863,7 @@ msgstr "İşlem yok."
 msgid "WIKI_SIGNALING_AGENT_REQUIREMENTS"
 msgstr "Bir hücre, [b]Sinyal Veren Ajanları[/b] evrimleştirmek için [b][color=#3796e1][url=thriveopedia:nucleus]Çekirdeğe[/url][/color][/b] sahip olmalıdır."
 
+#, fuzzy
 msgid "WIKI_SIGNALING_AGENT_SCIENTIFIC_BACKGROUND"
 msgstr "TBA"
 
@@ -8884,7 +8901,7 @@ msgid "WIKI_SLIME_JET_REQUIREMENTS"
 msgstr "Gereksinimler yok."
 
 msgid "WIKI_SLIME_JET_SCIENTIFIC_BACKGROUND"
-msgstr "TBA"
+msgstr "Bakteriler ve diğer mikroplar, [url=https://en.wikipedia.org/wiki/Gliding_motility]süzülme hareketinin[/url][/color] birkaç formundan biri olarak polisakkarit \"balçık\" fışkırtıcılar üretebilir. Bu hareket, hücreyi fışkırtıcıdan ters bir yöne doğru iter ve arkasında bir [b]Müsilaj[/b] izi bırakır."
 
 msgid "WIKI_SLIME_JET_STRATEGY"
 msgstr ""
@@ -9051,11 +9068,9 @@ msgstr ""
 
 msgid "WIKI_THERMOSYNTHASE_SCIENTIFIC_BACKGROUND"
 msgstr ""
-"Termosentez, ilk olarak Anthonie Muller tarafından 1983 yılında yayımlanan \"Thermoelectric Energy Conversion Could Be An Energy Source Of Living Organisms\" (Physics Letters A, cilt 96, Sayı 6, s. 319-321) makalesinde ileri sürülmüştür.\n"
+"[b]Termosentaz[/b], hayali bir enzimdir. [color=#3796e1][url=https://en.wikipedia.org/wiki/Thermosynthesis]Termosentez[/url][/color] işlemi, teorik olsa da, genelde biyolojik olarak makul görülmektedir.\n"
 "\n"
-"Muller termosentezin, en eski (kükürt temelli) fotosentezin öncüsü olabileceğini dahi ileri sürmüştür (In A Search For Thermosynthesis: Starvation Survival In Thermally Cycled Bacteria).\n"
-"\n"
-"[color=#3796e1][url=https://en.wikipedia.org/wiki/Thermosynthesis]Vikipedi'de Termosentez[/url][/color]"
+"Termosentez, ilk olarak Anthonie Muller tarafından 1983 yılında yayımlanan \"Thermoelectric Energy Conversion Could Be An Energy Source Of Living Organisms\" (Physics Letters A, cilt 96, Sayı 6, s. 319-321) makalesinde ileri sürülmüştür. Muller termosentezin, en eski (kükürt temelli) fotosentezin öncüsü olabileceğini dahi ileri sürmüştür (bu bağlantıyı incele: A Search For Thermosynthesis: Starvation Survival In Thermally Cycled Bacteria)."
 
 msgid "WIKI_THERMOSYNTHASE_STRATEGY"
 msgstr ""
@@ -9093,7 +9108,7 @@ msgstr "Özel etki yok."
 
 msgid "WIKI_THYLAKOIDS_INTRO"
 msgstr ""
-"Işığa hassas yeşil pigmentlerin bulunduğu proteinler kümesidir. Pigmentler, [b]Kromatofor Fotosentezi[/b] adı verilen bir işlemde, su ve [thrive:compound type=\"carbondioxide\"]karbondioksit[/thrive:compound] gazından [thrive:compound type=\"glucose\"]glukoz[/thrive:compound] üretmek için [thrive:compound type=\"sunlight\"]ışık[/thrive:compound] enerjisini kullanır. Üretilen [thrive:compound type=\"glucose\"]glukoz[/thrive:compound] oranı, [thrive:compound type=\"sunlight\"]ışığın[/thrive:compound] şiddeti ile doğru orantılı olduğundan, [b]Tilakoidler[/b] yalnızca yüzeye yakın arazilerde etkilidir.\n"
+"[b]Tilakoidler[/b], [b]Kromatofor Fotosentezi[/b] adı verilen bir işlemde, su ve [thrive:compound type=\"carbondioxide\"]karbondioksit[/thrive:compound] gazından [thrive:compound type=\"glucose\"]glukoz[/thrive:compound] üretmek için [thrive:compound type=\"sunlight\"]ışık[/thrive:compound] enerjisini kullanan protein ve yeşil pigmentler içeren [color=#3796e1][url=thriveopedia:OrganellesRoot]organellerdir[/url][/color]. Üretilen [thrive:compound type=\"glucose\"]glukoz[/thrive:compound] oranı, [thrive:compound type=\"sunlight\"]ışığın[/thrive:compound] şiddeti ile doğru orantılı olduğundan, [b]Tilakoidler[/b] yalnızca yüzeye yakın arazilerde etkilidir.\n"
 "\n"
 "[b]Fotosentezin[/b] en üst düzeyini yerine getiren [b][color=#3796e1][url=thriveopedia:chloroplast]Kloroplastın[/url][/color][/b] prokaryotik bir formudur."
 
@@ -9116,6 +9131,7 @@ msgstr ""
 "\n"
 "[indent]—   En az [b]%20[/b] [thrive:compound type=\"sunlight\"]Güneş Işığına[/thrive:compound] sahip bir arazide olmak.[/indent]"
 
+#, fuzzy
 msgid "WIKI_THYLAKOIDS_SCIENTIFIC_BACKGROUND"
 msgstr "TBA"
 
