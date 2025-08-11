@@ -1,0 +1,18 @@
+[gd_scene load_steps=2 format=3 uid="uid://bdam1naos3j1q"]
+
+[ext_resource type="LabelSettings" uid="uid://ddl68802hf35" path="res://src/gui_common/fonts/Body-Bold-Normal-Shadow.tres" id="1_2lkya"]
+
+[node name="AchievementsNotEligibleNotice" type="Label"]
+anchors_preset = 3
+anchor_left = 1.0
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -336.0
+offset_top = -23.0
+grow_horizontal = 0
+grow_vertical = 0
+text = "NO_LONGER_ELIGIBLE_FOR_ACHIEVEMENTS"
+label_settings = ExtResource("1_2lkya")
+horizontal_alignment = 2
+vertical_alignment = 2
