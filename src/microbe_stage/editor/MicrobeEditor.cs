@@ -150,7 +150,7 @@ public partial class MicrobeEditor : EditorBase<EditorAction, MicrobeStage>, IEd
             if (!history.CanUndo())
             {
                 // Nothing done in the whole editor cycle
-                AchievementEvents.ReportPlayerDidNotEditSpecies();
+                AchievementEvents.ReportExitEditorWithoutChanges();
             }
         }
 

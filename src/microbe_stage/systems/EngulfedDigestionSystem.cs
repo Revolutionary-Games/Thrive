@@ -320,7 +320,9 @@ public sealed class EngulfedDigestionSystem : AEntitySetSystem<float>
             }
 
             // If out of stuff to digest, or as a safety check, the engulf size has gone to zero, consider digested
-            if (totalAmountLeft <= 0 || engulfable.DigestedAmount >= Constants.FULLY_DIGESTED_LIMIT ||
+            // Note that the digestion threshold has to be slightly above zero
+            // to avoid https://github.com/Revolutionary-Games/Thrive/issues/4794
+            if (totalAmountLeft <= 0.001f || engulfable.DigestedAmount >= Constants.FULLY_DIGESTED_LIMIT ||
                 engulfable.AdjustedEngulfSize <= 0)
             {
                 engulfable.PhagocytosisStep = PhagocytosisPhase.Digested;

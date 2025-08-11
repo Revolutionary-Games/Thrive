@@ -41,6 +41,10 @@ public partial class AchievementsManager : Node
     private static bool playerHasCheated = true;
     private static bool playerInFreebuild;
 
+    private static bool showCheatsUsedInfo;
+
+    private readonly NodePath positionName = new("position");
+
     private readonly object achievementsDataLock = new();
 
     private readonly Dictionary<int, IAchievement> achievements = new();
@@ -54,7 +58,11 @@ public partial class AchievementsManager : Node
 
     private AchievementPopup? createdAchievementPopup;
 
+    private Control? createdAchievementsNotEligibleNotice;
+
     private PackedScene achievementPopupScene = null!;
+
+    private PackedScene notEligibleScene = null!;
 
     private AudioStream achievementSound = null!;
 #pragma warning restore CA2213
@@ -140,6 +148,8 @@ public partial class AchievementsManager : Node
         GD.Print("Player has cheated for the first time in the current save");
         OnPlayerHasCheatedEvent?.Invoke();
         UpdateAchievementsPrevention();
+
+        showCheatsUsedInfo = true;
     }
 
     public override void _Ready()
@@ -189,6 +199,7 @@ public partial class AchievementsManager : Node
         ProcessMode = ProcessModeEnum.Always;
 
         achievementPopupScene = GD.Load<PackedScene>("res://src/general/achievements/AchievementPopup.tscn");
+        notEligibleScene = GD.Load<PackedScene>("res://src/general/achievements/AchievementsNotEligibleNotice.tscn");
 
         achievementSound = GD.Load<AudioStream>("res://assets/sounds/soundeffects/gui/achievementSound.ogg");
     }
@@ -265,6 +276,23 @@ public partial class AchievementsManager : Node
             {
                 achievementsGUIContainer.Visible = false;
             }
+        }
+
+        if (showCheatsUsedInfo)
+        {
+            showCheatsUsedInfo = false;
+
+            if (createdAchievementsNotEligibleNotice == null)
+            {
+                createdAchievementsNotEligibleNotice = notEligibleScene.Instantiate<Control>();
+                achievementsGUIContainer.AddChild(createdAchievementsNotEligibleNotice);
+            }
+
+            AnimateEligibilityNotice();
+
+            // Make the GUI visible
+            shownPopupTime = 0;
+            achievementsGUIContainer.Visible = true;
         }
     }
 
@@ -475,19 +503,6 @@ public partial class AchievementsManager : Node
         }
     }
 
-    internal void OnPlayerDidNotEditSpecies()
-    {
-        if (preventAchievements)
-            return;
-
-        lock (achievementsDataLock)
-        {
-            statsStore.IncrementIntStat(IAchievementStatStore.STAT_NO_CHANGES_IN_EDITOR);
-
-            ReportStatUpdateToRelevantAchievements([AchievementIds.CANNOT_IMPROVE_PERFECTION]);
-        }
-    }
-
     internal void OnPlayerInCellColony()
     {
         if (preventAchievements)
@@ -560,6 +575,16 @@ public partial class AchievementsManager : Node
     }
 
     // End of events
+
+    protected override void Dispose(bool disposing)
+    {
+        if (disposing)
+        {
+            positionName.Dispose();
+        }
+
+        base.Dispose(disposing);
+    }
 
     private static void UpdateAchievementsPrevention()
     {
@@ -958,6 +983,31 @@ public partial class AchievementsManager : Node
         // Write the data buffer
         file.Store32((uint)stream.Length);
         file.StoreBuffer(diskBytes);
+    }
+
+    private void AnimateEligibilityNotice()
+    {
+        createdAchievementsNotEligibleNotice!.Visible = true;
+
+        var screenSize = achievementsGUIContainer.GetViewportRect().Size;
+
+        var size = createdAchievementsNotEligibleNotice.Size;
+
+        var offscreenPosition = new Vector2(screenSize.X - 5 - size.X, screenSize.Y + 5);
+        var targetPosition = new Vector2(screenSize.X - 5 - size.X, screenSize.Y - size.Y - 3);
+
+        createdAchievementsNotEligibleNotice.Position = offscreenPosition;
+
+        var tween = createdAchievementsNotEligibleNotice.CreateTween();
+
+        tween.SetTrans(Tween.TransitionType.Expo);
+        tween.SetEase(Tween.EaseType.InOut);
+        tween.SetPauseMode(Tween.TweenPauseMode.Process);
+
+        tween.TweenProperty(createdAchievementsNotEligibleNotice, positionName, targetPosition, 0.8f);
+        tween.TweenInterval(8);
+
+        tween.TweenProperty(createdAchievementsNotEligibleNotice, positionName, offscreenPosition, 0.8f);
     }
 
     private class AchievementsDiskProgress
