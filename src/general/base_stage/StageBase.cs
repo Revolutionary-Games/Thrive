@@ -138,6 +138,10 @@ public partial class StageBase : NodeWithInput, IStageBase, IGodotEarlyNodeResol
                         CurrentGame.ReportCheatsUsed();
                     }
                 }
+                else
+                {
+                    GD.PrintErr("Stage base expected current game data to be initialized already");
+                }
             }, this);
         }
 
