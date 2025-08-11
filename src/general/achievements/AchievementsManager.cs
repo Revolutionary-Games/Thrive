@@ -475,19 +475,6 @@ public partial class AchievementsManager : Node
         }
     }
 
-    internal void OnPlayerDidNotEditSpecies()
-    {
-        if (preventAchievements)
-            return;
-
-        lock (achievementsDataLock)
-        {
-            statsStore.IncrementIntStat(IAchievementStatStore.STAT_NO_CHANGES_IN_EDITOR);
-
-            ReportStatUpdateToRelevantAchievements([AchievementIds.CANNOT_IMPROVE_PERFECTION]);
-        }
-    }
-
     internal void OnPlayerInCellColony()
     {
         if (preventAchievements)
