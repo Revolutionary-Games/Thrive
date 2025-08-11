@@ -28,11 +28,6 @@ public static class AchievementEvents
         AchievementsManager.Instance.OnEndosymbiosisCompleted();
     }
 
-    public static void ReportPlayerDidNotEditSpecies()
-    {
-        AchievementsManager.Instance.OnPlayerDidNotEditSpecies();
-    }
-
     public static void ReportPlayerInCellColony()
     {
         AchievementsManager.Instance.OnPlayerInCellColony();

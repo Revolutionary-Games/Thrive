@@ -234,18 +234,27 @@ public partial class EditorBase<TAction, TStage> : NodeWithInput, IEditor, ILoad
         ResolveDerivedTypeNodeReferences();
     }
 
+    public override void _EnterTree()
+    {
+        base._EnterTree();
+
+        AchievementsManager.OnPlayerHasCheatedEvent += OnCheatsUsed;
+    }
+
     public override void _ExitTree()
     {
         base._ExitTree();
 
-        // As we will no longer return to the stage we need to free it, if we have it
-        // This might be disposed if this was loaded from a save and we loaded another save
+        AchievementsManager.OnPlayerHasCheatedEvent -= OnCheatsUsed;
+
+        // As we will no longer return to the stage, we need to free it if we have it
+        // This might be disposed if this was loaded from a save, and we loaded another save
         try
         {
             if (IsLoadedFromSave)
             {
                 // When loaded from save, the stage needs to be attached as a scene for the callbacks that reattach
-                // children to run, otherwise some objects won't be correctly deleted
+                // children to run; otherwise some objects won't be correctly deleted
                 if (ReturnToStage != null)
                     SceneManager.Instance.AttachAndDetachScene(ReturnToStage);
             }
@@ -999,6 +1008,17 @@ public partial class EditorBase<TAction, TStage> : NodeWithInput, IEditor, ILoad
         stage.OnReturnFromEditor();
     }
 
+    protected virtual void OnCheatsUsed()
+    {
+        if (!EditorReady)
+        {
+            Invoke.Instance.QueueForObject(ApplyCheatsUsedFlag, this);
+            return;
+        }
+
+        ApplyCheatsUsedFlag();
+    }
+
     private void MakeSureEditorReturnIsGood()
     {
         if (currentGame == null)
@@ -1075,5 +1095,17 @@ public partial class EditorBase<TAction, TStage> : NodeWithInput, IEditor, ILoad
     private void StartMusic()
     {
         Jukebox.Instance.PlayCategory(MusicCategory);
+    }
+
+    private void ApplyCheatsUsedFlag()
+    {
+        if (CurrentGame == null)
+            throw new InvalidOperationException("Current game has not been set even though it should be initialized");
+
+        if (CurrentGame.CheatsUsed)
+            return;
+
+        GD.Print("Detected player used cheats for the first time in this game (in the editor)");
+        CurrentGame.ReportCheatsUsed();
     }
 }
