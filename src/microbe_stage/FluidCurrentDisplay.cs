@@ -84,9 +84,9 @@ public partial class FluidCurrentDisplay : GpuParticles3D
         material.SetShaderParameter(chaoticnessParameterName, biome.WaterCurrents.Chaoticness);
         material.SetShaderParameter(scaleParameterName, biome.WaterCurrents.ReverseScale);
 
-        material.SetShaderParameter(brightnessParameterName, biome.CompoundCloudBrightness);
         material.SetShaderParameter(colorParameterName, biome.WaterCurrents.Colour);
 
+        TrailEnabled = biome.WaterCurrents.UseTrails;
         if (biome.WaterCurrents.UseTrails)
         {
             DrawPass1 = trailedParticleMesh;
@@ -97,6 +97,14 @@ public partial class FluidCurrentDisplay : GpuParticles3D
         }
 
         Amount = biome.WaterCurrents.ParticleCount;
+    }
+
+    public void UpdateLightLevel(Patch patch)
+    {
+        float lightLevel = patch.Biome.GetCompound(Compound.Sunlight, CompoundAmountType.Current).Ambient;
+
+        material.SetShaderParameter(brightnessParameterName,
+            (patch.BiomeTemplate.CompoundCloudBrightness - 1.0f) * lightLevel + 1.0f);
     }
 
     protected override void Dispose(bool disposing)

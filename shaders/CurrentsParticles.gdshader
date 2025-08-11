@@ -63,6 +63,7 @@ void start() {
     TRANSFORM[0].xyz *= visibleScale;
     TRANSFORM[1].xyz *= visibleScale;
     TRANSFORM[2].xyz *= visibleScale;
+    CUSTOM.w = RandFromSeed(altSeed) * 0.2f + 0.8f;
 }
 
 void process() {
@@ -95,6 +96,7 @@ void process() {
     TRANSFORM[3].xyz += VELOCITY * DELTA;
     
     vec4 finalColor = colorValue;
+    finalColor.rgb *= CUSTOM.w;
     finalColor.a *= texture(alphaCurve, vec2(lifetimePercent)).r;
     if (speed != 0.0)
     {
