@@ -125,7 +125,7 @@ public sealed class IntercellularMatrixSystem : AEntitySetSystem<float>
         Vector3 pointB = membraneBOffset;
         foreach (var a in membraneA.Vertices2D)
         {
-            var rotatedA = new Vector3(a.X, 0.0f, a.Y);
+            var convertedA = new Vector3(a.X, 0.0f, a.Y);
 
             foreach (var b in membraneB.Vertices2D)
             {
@@ -133,12 +133,12 @@ public sealed class IntercellularMatrixSystem : AEntitySetSystem<float>
                 // Then inversely rotate it by A's rotation to get the true relative coordinates
                 var rotatedB = (rotationB * new Vector3(b.X, 0.0f, b.Y) + membraneBOffset) * rotationA;
 
-                float distance = rotatedA.DistanceSquaredTo(rotatedB);
+                float distance = convertedA.DistanceSquaredTo(rotatedB);
 
                 if (distance < min)
                 {
                     min = distance;
-                    pointA = rotatedA;
+                    pointA = convertedA;
                     pointB = rotatedB;
                 }
             }
