@@ -71,15 +71,15 @@ public sealed class IntercellularMatrixSystem : AEntitySetSystem<float>
 
         if (parentEntity == colony.Leader)
         {
-            var ourAttachedPosition = entity.Get<AttachedToEntity>();
+            ref var ourAttachedPosition = ref entity.Get<AttachedToEntity>();
 
             targetRelativePos = -ourAttachedPosition.RelativePosition;
             ourRotation = ourAttachedPosition.RelativeRotation;
         }
         else
         {
-            var ourAttachedPosition = entity.Get<AttachedToEntity>();
-            var targetAttachedPosition = parentEntity.Get<AttachedToEntity>();
+            ref var ourAttachedPosition = ref entity.Get<AttachedToEntity>();
+            ref var targetAttachedPosition = ref parentEntity.Get<AttachedToEntity>();
 
             targetRelativePos = targetAttachedPosition.RelativePosition
                 - ourAttachedPosition.RelativePosition;
