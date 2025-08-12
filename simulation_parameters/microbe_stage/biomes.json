@@ -27,9 +27,9 @@
         "ParticleCount": 500,
         "UseTrails": true,
         "Colour": {
-            "r": 0.32,
-            "g": 0.4,
-            "b": 0.39,
+            "r": 0.434,
+            "g": 0.505,
+            "b": 0.498,
             "a": 0.5
         },
     },
@@ -1297,6 +1297,13 @@
         "Chaoticness": 0.8,
         "ReverseScale": 0.8,
         "ParticleCount": 450,
+        "UseTrails": true,
+        "Colour": {
+            "r": 0.32,
+            "g": 0.4,
+            "b": 0.39,
+            "a": 0.5
+        },
     },
     "GasVolume": 1,
     "Conditions": {
@@ -2192,7 +2199,6 @@
         "Chaoticness": 0.75,
         "ReverseScale": 1.0,
         "ParticleCount": 450,
-        "UseTrails": true,
     },
     "ActiveMusicContexts": [
       "PatchIceShelf"

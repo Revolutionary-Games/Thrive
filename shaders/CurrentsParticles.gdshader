@@ -67,7 +67,7 @@ void start() {
 
 void process() {
     CUSTOM.y += DELTA;
-    float lifetimePercent = CUSTOM.y / (LIFETIME - 4.0f);
+    float lifetimePercent = CUSTOM.y / (LIFETIME - 7.0f);
     if (CUSTOM.y > LIFETIME) {
         ACTIVE = false;
     }
