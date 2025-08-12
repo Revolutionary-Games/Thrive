@@ -18,10 +18,9 @@ uniform float brightness;
 
 // The following constants should be the same as in FluidCurrentsSystem.cs
 const float disturbanceTimescale = 1.0f;
-const float currentsTimescale = 1.0f / 500.0f;
+const float currentsTimescale = 0.75f;
 const float currentsStretchingMultiplier = 1.0f / 10.0f;
 const float disturbanceToCurrentsRatio = 0.15f;
-const float minCurrentIntensity = 0.1f;
 const float positionScaling = 0.9f;
 
 // Generates a random float and modifies the seed
@@ -68,7 +67,7 @@ void start() {
 
 void process() {
     CUSTOM.y += DELTA;
-    float lifetimePercent = CUSTOM.y / (LIFETIME - 2.0f);
+    float lifetimePercent = CUSTOM.y / (LIFETIME - 4.0f);
     if (CUSTOM.y > LIFETIME) {
         ACTIVE = false;
     }
@@ -86,7 +85,7 @@ void process() {
                 (position.y - gameTime * currentsTimescale) / 1024.0f)).rg;
         
         current = current1 * 2.0f - 1.0f;
-        current += (current2 * 2.0f - 1.0f) * 0.4f;
+        current *= current2;
         
         current *= 10.0f * speed;
     }

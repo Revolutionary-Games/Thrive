@@ -27,9 +27,8 @@ using World = DefaultEcs.World;
 public sealed class FluidCurrentsSystem : AEntitySetSystem<float>
 {
     // The following constants should be the same as in CurrentsParticles.gdshader
-    private const float CURRENTS_TIMESCALE = 1.000f / 500.0f;
+    private const float CURRENTS_TIMESCALE = 0.75f;
     private const float CURRENTS_STRETCHING_MULTIPLIER = 1.0f / 10.0f;
-    private const float MIN_CURRENT_INTENSITY = 0.1f;
     private const float POSITION_SCALING = 0.9f;
 
 #pragma warning disable CA2213
@@ -93,10 +92,7 @@ public sealed class FluidCurrentsSystem : AEntitySetSystem<float>
 
         var currentsVelocity = currents1 * 2.0f - Vector2.One;
 
-        currentsVelocity += (currents2 * 2.0f - Vector2.One) * 0.4f;
-
-        //if (currentsVelocity.LengthSquared() < MIN_CURRENT_INTENSITY)
-        //    currentsVelocity = Vector2.Zero;
+        currentsVelocity *= currents2;
 
         return currentsVelocity * speed;
     }
