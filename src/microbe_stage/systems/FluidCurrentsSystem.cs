@@ -1,7 +1,6 @@
 ﻿namespace Systems;
 
 using System;
-using System.Runtime.CompilerServices;
 using Components;
 using DefaultEcs;
 using DefaultEcs.System;
@@ -28,7 +27,6 @@ public sealed class FluidCurrentsSystem : AEntitySetSystem<float>
 {
     // The following constants should be the same as in CurrentsParticles.gdshader
     private const float CURRENTS_TIMESCALE = 0.75f;
-    private const float CURRENTS_STRETCHING_MULTIPLIER = 1.0f / 10.0f;
     private const float POSITION_SCALING = 0.9f;
 
 #pragma warning disable CA2213
