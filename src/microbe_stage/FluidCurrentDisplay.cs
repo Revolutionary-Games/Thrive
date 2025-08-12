@@ -72,10 +72,6 @@ public partial class FluidCurrentDisplay : GpuParticles3D
 
             material.SetShaderParameter(gameTimeParameterName, time);
         }
-        else
-        {
-            SpeedScale = 0.0f;
-        }
     }
 
     public void ApplyBiome(Biome biome)
