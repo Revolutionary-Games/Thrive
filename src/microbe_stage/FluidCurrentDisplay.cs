@@ -10,7 +10,7 @@ public partial class FluidCurrentDisplay : GpuParticles3D
     private readonly StringName gameTimeParameterName = new("gameTime");
     private readonly StringName speedParameterName = new("speed");
     private readonly StringName chaoticnessParameterName = new("chaoticness");
-    private readonly StringName scaleParameterName = new("scale");
+    private readonly StringName inverseScaleParameterName = new("inverseScale");
     private readonly StringName brightnessParameterName = new("brightness");
     private readonly StringName colorParameterName = new("colorValue");
 
@@ -78,7 +78,7 @@ public partial class FluidCurrentDisplay : GpuParticles3D
     {
         material.SetShaderParameter(speedParameterName, biome.WaterCurrents.Speed);
         material.SetShaderParameter(chaoticnessParameterName, biome.WaterCurrents.Chaoticness);
-        material.SetShaderParameter(scaleParameterName, biome.WaterCurrents.ReverseScale);
+        material.SetShaderParameter(inverseScaleParameterName, biome.WaterCurrents.InverseScale);
 
         material.SetShaderParameter(colorParameterName, biome.WaterCurrents.Colour);
 
@@ -110,7 +110,7 @@ public partial class FluidCurrentDisplay : GpuParticles3D
             gameTimeParameterName.Dispose();
             speedParameterName.Dispose();
             chaoticnessParameterName.Dispose();
-            scaleParameterName.Dispose();
+            inverseScaleParameterName.Dispose();
             brightnessParameterName.Dispose();
             colorParameterName.Dispose();
         }

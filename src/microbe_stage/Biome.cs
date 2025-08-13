@@ -169,7 +169,7 @@ public class Biome : IRegistryType
         /// <summary>
         ///   The reverse scale of the currents noise map. The higher this value, the more frequent the currents.
         /// </summary>
-        public float ReverseScale = 1.0f;
+        public float InverseScale = 1.0f;
 
         /// <summary>
         ///   Whether the particle system should use trails.

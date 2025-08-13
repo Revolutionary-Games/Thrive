@@ -43,7 +43,7 @@ public sealed class FluidCurrentsSystem : AEntitySetSystem<float>
 
     private float speed;
     private float chaoticness;
-    private float scale;
+    private float inverseScale;
 
     [JsonProperty]
     private float currentsTimePassed;
@@ -81,12 +81,11 @@ public sealed class FluidCurrentsSystem : AEntitySetSystem<float>
             return Vector2.Zero;
 
         // This function's formula should be the same as the one in CurrentsParticles.gdshader
-        var scaledPosition = position * POSITION_SCALING * scale;
+        var scaledPosition = position * POSITION_SCALING * inverseScale;
+        var scaledTime = currentsTimePassed * CURRENTS_TIMESCALE * chaoticness;
 
-        Vector2 currents1 = GetPixel(scaledPosition.X + currentsTimePassed * CURRENTS_TIMESCALE,
-            scaledPosition.Y + currentsTimePassed * CURRENTS_TIMESCALE, currentsNoise1);
-        Vector2 currents2 = GetPixel(scaledPosition.X - currentsTimePassed * CURRENTS_TIMESCALE,
-            scaledPosition.Y - currentsTimePassed * CURRENTS_TIMESCALE, currentsNoise2);
+        Vector2 currents1 = GetPixel(scaledPosition.X + scaledTime, scaledPosition.Y + scaledTime, currentsNoise1);
+        Vector2 currents2 = GetPixel(scaledPosition.X - scaledTime, scaledPosition.Y - scaledTime, currentsNoise2);
 
         var currentsVelocity = currents1 * 2.0f - Vector2.One;
 
@@ -123,7 +122,7 @@ public sealed class FluidCurrentsSystem : AEntitySetSystem<float>
 
         speed = biome.WaterCurrents.Speed;
         chaoticness = biome.WaterCurrents.Chaoticness;
-        scale = biome.WaterCurrents.ReverseScale;
+        inverseScale = biome.WaterCurrents.InverseScale;
     }
 
     protected override void Update(float delta, in Entity entity)

@@ -12,7 +12,7 @@ uniform sampler2D noiseCurrents2;
 
 uniform float speed;
 uniform float chaoticness;
-uniform float scale;
+uniform float inverseScale;
 
 uniform float brightness;
 
@@ -75,14 +75,15 @@ void process() {
     vec2 current;
     {
         // The following should strictly conform to the formula in FluidCurrentSystem.cs
-        vec2 position = TRANSFORM[3].xz * positionScaling * scale;
+        vec2 scaledPosition = TRANSFORM[3].xz * positionScaling * inverseScale;
+        float scaledTime = gameTime * currentsTimescale * chaoticness;
         
         vec2 current1 = texture(noiseCurrents1,
-            vec2((position.x + gameTime * currentsTimescale) / 1024.0f,
-                (position.y + gameTime * currentsTimescale) / 1024.0f)).rg;
+            vec2((scaledPosition.x + scaledTime) / 1024.0f,
+                (scaledPosition.y + scaledTime) / 1024.0f)).rg;
         vec2 current2 = texture(noiseCurrents2,
-            vec2((position.x - gameTime * currentsTimescale) / 1024.0f,
-                (position.y - gameTime * currentsTimescale) / 1024.0f)).rg;
+            vec2((scaledPosition.x - scaledTime) / 1024.0f,
+                (scaledPosition.y - scaledTime) / 1024.0f)).rg;
         
         current = current1 * 2.0f - 1.0f;
         current *= current2;
