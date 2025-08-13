@@ -640,6 +640,8 @@ public partial class AchievementsManager : Node
     {
         GD.Print("Unlocked new achievement: ", achievement.InternalName);
 
+        bool playSound = true;
+
         lock (achievementsDataLock)
         {
             if (statsStore is AchievementStatStore)
@@ -649,7 +651,11 @@ public partial class AchievementsManager : Node
             }
             else
             {
+                // Steam plays its own sound so we don't want to play our own as well
+                playSound = false;
+
                 GD.Print("Reporting to Steam about new achievement");
+
                 if (!SteamHandler.Instance.GetSteamClientForAchievements()
                         .SetSteamAchievement(achievement.InternalName))
                 {
@@ -662,7 +668,8 @@ public partial class AchievementsManager : Node
             }
         }
 
-        GUICommon.Instance.PlayCustomSound(achievementSound);
+        if (playSound)
+            GUICommon.Instance.PlayCustomSound(achievementSound);
     }
 
     /// <summary>
