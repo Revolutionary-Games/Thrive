@@ -17,10 +17,7 @@ uniform float inverseScale;
 uniform float brightness;
 
 // The following constants should be the same as in FluidCurrentsSystem.cs
-const float disturbanceTimescale = 1.0f;
 const float currentsTimescale = 0.75f;
-const float currentsStretchingMultiplier = 1.0f / 10.0f;
-const float disturbanceToCurrentsRatio = 0.15f;
 const float positionScaling = 0.9f;
 
 // Generates a random float and modifies the seed
