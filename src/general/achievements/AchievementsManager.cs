@@ -651,7 +651,7 @@ public partial class AchievementsManager : Node
             }
             else
             {
-                // Steam plays its own sound so we don't want to play our own as well
+                // Steam plays its own sound, so we don't want to play our own as well
                 playSound = false;
 
                 GD.Print("Reporting to Steam about new achievement");
