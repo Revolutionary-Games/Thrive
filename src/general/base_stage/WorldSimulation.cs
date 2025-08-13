@@ -117,7 +117,7 @@ public abstract class WorldSimulation : IWorldSimulation, IGodotEarlyNodeResolve
     /// </summary>
     /// <remarks>
     ///   <para>
-    ///     As physics step size is not currently adjusted values below 1 can make the game feel a bit jittery, so for
+    ///     As physics step size is not currently adjusted, values below 1 can make the game feel a bit jittery, so for
     ///     now values in the range 1-3 are the best working (though the upper range depends on performance).
     ///   </para>
     /// </remarks>
