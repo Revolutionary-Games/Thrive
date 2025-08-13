@@ -899,10 +899,12 @@ public partial class CompoundCloudPlane : MeshInstance3D, ISaveLoadedTracked
                 if (OldDensity[x, y].LengthSquared() > 1)
                 {
                     var velocity = fluidSystem!.VelocityAt(
-                        new Vector2(worldPos.X + x * resolution, worldPos.Z + y * resolution)) * VISCOSITY;
+                        new Vector2(worldPos.X + x * resolution, worldPos.Z + y * resolution));
 
-                    if (velocity.LengthSquared() < Constants.CURRENT_COMPOUND_CLOUD_ADVECT_THRESHOLD)
+                    if (MathF.Abs(velocity.X) + MathF.Abs(velocity.Y) < Constants.CURRENT_COMPOUND_CLOUD_ADVECT_THRESHOLD)
                         velocity = Vector2.Zero;
+
+                    velocity *= VISCOSITY;
 
                     // This is run in parallel, this may not touch the other compound clouds
                     float dx = x + (delta * velocity.X);
@@ -945,10 +947,12 @@ public partial class CompoundCloudPlane : MeshInstance3D, ISaveLoadedTracked
                 if (OldDensity[x, y].LengthSquared() > 1)
                 {
                     var velocity = fluidSystem!.VelocityAt(
-                        new Vector2(worldPos.X + x * resolution, worldPos.Z + y * resolution)) * VISCOSITY;
+                        new Vector2(worldPos.X + x * resolution, worldPos.Z + y * resolution));
 
-                    if (velocity.LengthSquared() < Constants.CURRENT_COMPOUND_CLOUD_ADVECT_THRESHOLD)
+                    if (MathF.Abs(velocity.X) + MathF.Abs(velocity.Y) < Constants.CURRENT_COMPOUND_CLOUD_ADVECT_THRESHOLD)
                         velocity = Vector2.Zero;
+
+                    velocity *= VISCOSITY;
 
                     // This is run in parallel, this may not touch the other compound clouds
                     float dx = x + (delta * velocity.X);
