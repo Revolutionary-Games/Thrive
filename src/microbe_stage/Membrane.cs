@@ -425,12 +425,11 @@ public partial class Membrane : MeshInstance3D
         if (MembraneShaderMaterial == null || EngulfShaderMaterial == null || MucocystShaderMaterial == null || internalDecorationsMaterial == null)
             return;
 
-        GD.Print(Turn);
         MembraneShaderMaterial.SetShaderParameter(turnParameterName, Turn);
-        //EngulfShaderMaterial.SetShaderParameter(wigglynessParameterName, finalWiggly);
-        //MucocystShaderMaterial.SetShaderParameter(wigglynessParameterName, finalWiggly);
+        EngulfShaderMaterial.SetShaderParameter(turnParameterName, Turn);
+        MucocystShaderMaterial.SetShaderParameter(turnParameterName, Turn);
 
-        //internalDecorationsMaterial.SetShaderParameter(wigglynessParameterName, finalWiggly);
+        internalDecorationsMaterial.SetShaderParameter(turnParameterName, Turn);
     }
 
     private void ApplyHealth()

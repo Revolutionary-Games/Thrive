@@ -20,6 +20,11 @@ public struct OrganelleContainer
     /// </summary>
     public OrganelleLayout<PlacedOrganelle>? Organelles;
 
+    /// <summary>
+    ///   Ratio of length to width
+    /// </summary>
+    public float LengthWidthRatio;
+
     public Dictionary<Enzyme, int>? AvailableEnzymes;
 
     /// <summary>
@@ -620,6 +625,38 @@ public static class OrganelleContainerHelpers
         }
 
         container.AverageToxinToxicity = rawToxicityValue / container.AgentVacuoleCount;
+
+        var verticalMin = 0.0f;
+        var verticalMax = 0.0f;
+        var horizontalMin = 0.0f;
+        var horizontalMax = 0.0f;
+
+        foreach (var organelle in organelles)
+        {
+            if (organelle.Position.Q > horizontalMax)
+            {
+                horizontalMax = organelle.Position.Q;
+            }
+            else if (organelle.Position.Q < horizontalMin)
+            {
+                horizontalMin = organelle.Position.Q;
+            }
+
+            if (organelle.Position.R > verticalMax)
+            {
+                verticalMax = organelle.Position.R;
+            }
+            else if (organelle.Position.R < verticalMin)
+            {
+                verticalMin = organelle.Position.R;
+            }
+        }
+
+        var length = verticalMax - verticalMin + 1;
+        var width = horizontalMax - horizontalMin + 1;
+
+        container.LengthWidthRatio = length / width;
+
     }
 
     public static void UpdateEngulfingSizeData(this ref OrganelleContainer container,

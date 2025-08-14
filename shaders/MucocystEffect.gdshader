@@ -1,10 +1,11 @@
 shader_type spatial;
 render_mode unshaded;
 
-// Any changes to these two must be matched in Membrane.gdshader
+// Any changes to these two must be matc  hed in Membrane.gdshader
 // Set to 0 to disable wiggle
 uniform float wigglyNess = 1.f;
 uniform float movementWigglyNess = 1.f;
+uniform float turn = 1.0f;
 
 uniform float fade = 0.25f;
 uniform vec3 tint : source_color = vec3(0.40, 0.80, 0.60);
@@ -18,6 +19,13 @@ void vertex(){
         * wigglyNess * size;
     VERTEX.z += sin(worldVertex.x * movementWigglyNess - TIME / 4.0f) / 10.f
         * wigglyNess * size;
+
+		// Bend when turning
+	if (VERTEX.z < 0.2f)
+	{
+		//VERTEX.z -= turn * 0.75f;
+    	VERTEX.x += VERTEX.z * turn * 0.5f;
+	}
 }
 
 void fragment() {

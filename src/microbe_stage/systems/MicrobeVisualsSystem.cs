@@ -11,6 +11,7 @@ using Components;
 using DefaultEcs;
 using DefaultEcs.System;
 using Godot;
+using SharedBase.ModelVerifiers;
 using World = DefaultEcs.World;
 
 /// <summary>
@@ -85,9 +86,13 @@ public sealed class MicrobeVisualsSystem : AEntitySetSystem<float>
     protected override void Update(float delta, in Entity entity)
     {
         ref var organelleContainer = ref entity.Get<OrganelleContainer>();
+        ref var cellProperties = ref entity.Get<CellProperties>();
 
-        //if (organelleContainer.OrganelleVisualsCreated)
-        //    return;
+        if (cellProperties.CreatedMembrane != null)
+            SetMembraneTurn(cellProperties.CreatedMembrane!, ref cellProperties, ref organelleContainer);
+
+        if (organelleContainer.OrganelleVisualsCreated)
+            return;
 
         // Skip if no organelle data
         if (organelleContainer.Organelles == null)
@@ -95,8 +100,6 @@ public sealed class MicrobeVisualsSystem : AEntitySetSystem<float>
             GD.PrintErr("Missing organelles list for MicrobeVisualsSystem");
             return;
         }
-
-        ref var cellProperties = ref entity.Get<CellProperties>();
 
         ref var spatialInstance = ref entity.Get<SpatialInstance>();
 
@@ -170,7 +173,6 @@ public sealed class MicrobeVisualsSystem : AEntitySetSystem<float>
             // Existing membrane should have its properties updated to make sure they are up to date
             // For example an engulfed cell has its membrane wigglyness removed
             SetMembraneDisplayData(cellProperties.CreatedMembrane, data, ref cellProperties);
-            SetMembraneTurn(cellProperties.CreatedMembrane!, ref cellProperties);
         }
 
         // Material is initialized in _Ready so this is after AddChild of membrane
@@ -287,9 +289,22 @@ public sealed class MicrobeVisualsSystem : AEntitySetSystem<float>
         cellProperties.ApplyMembraneWigglyness(membrane);
     }
 
-    private void SetMembraneTurn(Membrane membrane, ref CellProperties cellProperties)
+    private void SetMembraneTurn(Membrane membrane, ref CellProperties cellProperties, ref OrganelleContainer organelles)
     {
         cellProperties.ApplyMembraneTurn(membrane);
+
+        if (organelles.CreatedOrganelleVisuals == null)
+            return;
+
+        foreach (var visual in organelles.CreatedOrganelleVisuals)
+        {
+            var visualParent = (Node3D)visual.Value.GetParent();
+            var verticalPos = visualParent.Position.Z;
+            if (verticalPos < 0)
+            {
+                visualParent.Position = visual.Key.TargetVisualsTransform.Origin + new Vector3(verticalPos, 0, 0) * membrane.Turn * 0.7f;
+            }
+        }
     }
 
     /// <summary>
@@ -346,6 +361,8 @@ public sealed class MicrobeVisualsSystem : AEntitySetSystem<float>
                 {
                     Transform = transform,
                 };
+
+                placedOrganelle.TargetVisualsTransform = transform;
 
                 var visualsInstance = graphicsInfo.LoadedScene.Instantiate<Node3D>();
                 placedOrganelle.ReportCreatedGraphics(visualsInstance, graphicsInfo);

@@ -44,7 +44,12 @@ public struct CellProperties
     /// <summary>
     ///   Some value representing difference between current rotation and desired rotation
     /// </summary>
-    public float TurnDistance;
+    public float MeshTurnDistance;
+
+    /// <summary>
+    ///   How fast will mesh adapt to new turn distance
+    /// </summary>
+    public float MeshTurnRate;
 
     /// <summary>
     ///   The membrane created for this cell. This is here so that some other systems apart from the visuals system
@@ -609,7 +614,7 @@ public static class CellPropertiesHelpers
 
     public static void ApplyMembraneTurn(this ref CellProperties cellProperties, Membrane targetMembrane)
     {
-        targetMembrane.Turn = cellProperties.TurnDistance;
+        targetMembrane.Turn += (cellProperties.MeshTurnDistance - targetMembrane.Turn) * Mathf.Min(1 / cellProperties.Radius * 0.2f, 1.0f);
     }
 
     public static float CalculateSurfaceAreaToVolume(this ref CellProperties cellProperties, int hexCount)

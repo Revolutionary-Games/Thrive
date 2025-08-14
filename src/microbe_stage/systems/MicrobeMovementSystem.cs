@@ -87,7 +87,11 @@ public sealed class MicrobeMovementSystem : AEntitySetSystem<float>
         var lookVectorLength = lookVector.Length();
 
         var turnAngle = (position.Rotation * Vector3.Forward).SignedAngleTo(lookVector, Vector3.Up);
-        cellProperties.TurnDistance = Mathf.Round(turnAngle * 100f) * 0.01f;
+
+        var rotationSpeed = CalculateRotationSpeed(entity, ref organelles);
+
+        cellProperties.MeshTurnDistance = Mathf.Round(turnAngle * 10f) * 0.1f / (organelles.LengthWidthRatio * 0.5f);
+        //cellProperties.MeshTurnRate = cellProperties.;
 
         var unsignedTurnAngle = Math.Abs(turnAngle);
 
@@ -142,8 +146,6 @@ public sealed class MicrobeMovementSystem : AEntitySetSystem<float>
 #endif
 
         var compounds = entity.Get<CompoundStorage>().Compounds;
-
-        var rotationSpeed = CalculateRotationSpeed(entity, ref organelles);
 
         var movementImpulse =
             CalculateMovementForce(entity, ref control, ref cellProperties, ref position, ref organelles, compounds,
