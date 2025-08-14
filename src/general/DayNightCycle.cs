@@ -22,14 +22,14 @@ public class DayNightCycle : IDaylightInfo
     /// </summary>
     /// <remarks>
     ///   <para>
-    ///     This exists as it only needs to be calculated once and the calculation for it is confusing.
+    ///     This exists as it only needs to be calculated once, and the calculation for it is confusing.
     ///   </para>
     /// </remarks>
     [JsonIgnore]
     private float daytimeMultiplier;
 
     /// <summary>
-    ///   How big part of the day is considered to be the day. Defaults to 0.5f.
+    ///   How big a part of the day is considered to be the day. Defaults to 0.5f.
     /// </summary>
     [JsonIgnore]
     private float daytimeFraction;
@@ -139,7 +139,7 @@ public class DayNightCycle : IDaylightInfo
     ///   </para>
     /// </remarks>
     /// <param name="x">Fraction of the day completed, between 0-1</param>
-    /// <param name="daytimeMultiplier">Converted daylight fraction to usable form</param>
+    /// <param name="daytimeMultiplier">The converted daylight fraction to usable form</param>
     private static float CalculatePointwiseSunlight(float x, float daytimeMultiplier)
     {
         return Math.Max(1 - daytimeMultiplier * MathF.Pow(x - 0.5f, 2), 0);
@@ -151,7 +151,7 @@ public class DayNightCycle : IDaylightInfo
     /// </summary>
     private static float CalculateAverageSunlight(float daytimeMultiplier)
     {
-        // Average is the integral across the interval divided by length of the interval. Since the interval is
+        // Average is the integral across the interval divided by the length of the interval. Since the interval is
         // [0, 1] and hence has length 1, we just return the integral. The current function is only non-zero in the
         // interval [0.5 - 1 / squareRoot(daytimeMultiplier), 0.5 + 1 / squareRoot(daytimeMultiplier)], so we can
         // reduce to only integrating over this interval.
@@ -171,7 +171,7 @@ public class DayNightCycle : IDaylightInfo
     ///   </para>
     /// </remarks>
     /// <param name="x">Fraction of the day completed</param>
-    /// <param name="daytimeMultiplier">Converted daylight fraction to usable form</param>
+    /// <param name="daytimeMultiplier">The converted daylight fraction to usable form</param>
     private static float IntegratePointwiseSunlight(float x, float daytimeMultiplier)
     {
         return x - daytimeMultiplier * (MathF.Pow(x, 3) / 3 - MathF.Pow(x, 2) / 2 + 0.25f * x);

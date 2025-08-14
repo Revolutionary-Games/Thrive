@@ -66,8 +66,9 @@ public partial class CreatureStageBase<TPlayer, TSimulation> : StageBase, ICreat
     public TSimulation WorldSimulation { get; private set; } = null!;
 
     /// <summary>
-    ///   True when transitioning to the editor. Note this should only be unset *after* switching scenes to the editor
-    ///   otherwise some tree exit operations won't run correctly.
+    ///   True when transitioning to the editor.
+    ///   Note this should only be unset *after* switching scenes to the editor because otherwise some tree exit
+    ///   operations won't run correctly.
     /// </summary>
     [JsonIgnore]
     public bool MovingToEditor { get; set; }
@@ -122,7 +123,7 @@ public partial class CreatureStageBase<TPlayer, TSimulation> : StageBase, ICreat
             else
             {
                 // Respawn the player once the timer is up
-                playerRespawnTimer -= delta;
+                playerRespawnTimer -= delta * GetWorldTimeMultiplier();
 
                 if (playerRespawnTimer <= 0)
                 {
@@ -169,6 +170,11 @@ public partial class CreatureStageBase<TPlayer, TSimulation> : StageBase, ICreat
         SpawnPlayer();
 
         base.StartNewGame();
+    }
+
+    public override float GetWorldTimeMultiplier()
+    {
+        return WorldSimulation.WorldTimeScale;
     }
 
     /// <summary>
