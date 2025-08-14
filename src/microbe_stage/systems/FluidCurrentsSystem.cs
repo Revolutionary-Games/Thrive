@@ -27,7 +27,7 @@ using World = DefaultEcs.World;
 public sealed class FluidCurrentsSystem : AEntitySetSystem<float>
 {
     // The following constants should be the same as in CurrentsParticles.gdshader
-    private const float CURRENTS_TIMESCALE = 0.75f;
+    private const float CURRENTS_TIMESCALE = 0.25f;
     private const float POSITION_SCALING = 0.9f;
 
 #pragma warning disable CA2213
