@@ -184,7 +184,7 @@ public partial class StageBase : NodeWithInput, IStageBase, IGodotEarlyNodeResol
             wantsToSave = false;
         }
 
-        GameWorld.Process((float)delta);
+        GameWorld.Process((float)delta * GetWorldTimeMultiplier());
 
         elapsedSinceLightLevelUpdate += delta;
         if (elapsedSinceLightLevelUpdate > Constants.LIGHT_LEVEL_UPDATE_INTERVAL)
@@ -202,6 +202,11 @@ public partial class StageBase : NodeWithInput, IStageBase, IGodotEarlyNodeResol
     public virtual void StartNewGame()
     {
         OnGameStarted();
+    }
+
+    public virtual float GetWorldTimeMultiplier()
+    {
+        return 1;
     }
 
     public virtual void OnBlankScreenBeforeFadeIn()
