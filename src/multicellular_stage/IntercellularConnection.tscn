@@ -1,0 +1,20 @@
+[gd_scene load_steps=6 format=3 uid="uid://bglabqgpv7qgk"]
+
+[ext_resource type="Texture2D" uid="uid://cwogwp0ip1n3p" path="res://assets/textures/IntercellularMatrix.png" id="1_2enjh"]
+[ext_resource type="Shader" uid="uid://ds2t62ln8y85p" path="res://shaders/IntercellularConnection.gdshader" id="1_ohjgk"]
+[ext_resource type="Texture2D" uid="uid://dy8uqfppw8wxk" path="res://assets/textures/IntercellularMatrixNormal.png" id="2_ohjgk"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_62jel"]
+resource_local_to_scene = true
+render_priority = 0
+shader = ExtResource("1_ohjgk")
+shader_parameter/mainTexture = ExtResource("1_2enjh")
+shader_parameter/normalTexture = ExtResource("2_ohjgk")
+shader_parameter/tint = Vector3(1, 1, 1)
+
+[sub_resource type="QuadMesh" id="QuadMesh_r4mwa"]
+orientation = 1
+
+[node name="IntercellularConnection" type="MeshInstance3D"]
+material_override = SubResource("ShaderMaterial_62jel")
+mesh = SubResource("QuadMesh_r4mwa")

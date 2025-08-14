@@ -21,8 +21,10 @@ grabberToUpdate = NodePath("VBoxContainer/FocusGrabber")
 
 [node name="VBoxContainer" type="VBoxContainer" parent="."]
 layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
 
-[node name="FlowContainer" type="FlowContainer" parent="VBoxContainer"]
+[node name="FlowContainer" type="HFlowContainer" parent="VBoxContainer"]
 layout_mode = 2
 size_flags_horizontal = 3
 size_flags_vertical = 3

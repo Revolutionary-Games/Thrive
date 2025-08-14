@@ -25,7 +25,8 @@ public interface ISteamClient : ISteamSignalReceiver, IDisposable
     /// <typeparam name="T">Typeof the receiver object</typeparam>
     /// <remarks>
     ///   <para>
-    ///     Note that for many of the received signals they need to be forwarded to this object for further processing.
+    ///     Note that for many of the received signals, they need to be forwarded to this object for further
+    ///     processing.
     ///   </para>
     /// </remarks>
     public void ConnectSignals<T>(T receiver)
@@ -44,4 +45,26 @@ public interface ISteamClient : ISteamSignalReceiver, IDisposable
     public bool SetWorkshopItemTags(ulong updateHandle, List<string>? tags);
     public List<string> GetInstalledWorkshopItemFolders();
     public void OpenWorkshopItemInOverlayBrowser(ulong itemId);
+
+    public bool GetSteamStatistic(string name, out int data);
+    public bool GetSteamStatistic(string name, out float data);
+
+    /// <summary>
+    ///   Updates a statistic but doesn't fully persist it yet. For that <see cref="SaveSteamStats"/> is needed
+    /// </summary>
+    public bool SetSteamStatistic(string name, int data);
+
+    public bool SetSteamStatistic(string name, float data);
+
+    public bool GetSteamAchievement(string name, out bool achieved);
+    public bool SetSteamAchievement(string name);
+    public bool IndicateAchievementProgress(string name, uint currentProgress, uint maxProgress);
+
+    /// <summary>
+    ///   Sends current user stats to Steam for saving. Shouldn't be called too often.
+    /// </summary>
+    /// <returns>True if the operation was *started*</returns>
+    public bool SaveSteamStats();
+
+    public bool ResetAllSteamAchievements();
 }

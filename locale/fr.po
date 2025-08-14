@@ -7,9 +7,9 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2025-08-01 16:03+0300\n"
-"PO-Revision-Date: 2025-07-28 09:22+0000\n"
-"Last-Translator: Maël Turon <maeltur70@gmail.com>\n"
+"POT-Creation-Date: 2025-08-11 11:43+0300\n"
+"PO-Revision-Date: 2025-08-08 14:30+0000\n"
+"Last-Translator: Anonymous <noreply@weblate.org>\n"
 "Language-Team: French <https://translate.revolutionarygamesstudio.com/projects/thrive/thrive-game/fr/>\n"
 "Language: fr\n"
 "MIME-Version: 1.0\n"
@@ -55,13 +55,13 @@ msgid "ACHIEVEMENTS"
 msgstr "Mouvement de base"
 
 msgid "ACHIEVEMENTS_TOTAL"
-msgstr ""
+msgstr "Succès {0} / {1}"
 
 msgid "ACHIEVEMENT_ACHIEVED"
-msgstr ""
+msgstr "Complété"
 
 msgid "ACHIEVEMENT_LOCKED"
-msgstr ""
+msgstr "Verrouillé"
 
 msgid "ACTION_AWAKEN"
 msgstr "S'éveiller ({0:F1} / {1:F1})"
@@ -434,7 +434,7 @@ msgid "BACKSPACE"
 msgstr "Retour arrière"
 
 msgid "BACK_TO_SETTINGS"
-msgstr ""
+msgstr "Revenir aux paramètres"
 
 msgid "BACTERIAL_THERMOSYNTHESIS"
 msgstr "Thermosynthèse bactérienne"
@@ -510,6 +510,12 @@ msgstr "Résultats :"
 
 msgid "BEST_PATCH_COLON"
 msgstr "Meilleur secteur :"
+
+msgid "BETTER_TOGETHER"
+msgstr ""
+
+msgid "BEYOND_THE_CELL"
+msgstr ""
 
 msgid "BIG_IRON_CHUNK"
 msgstr "Gros fragment de fer"
@@ -619,6 +625,9 @@ msgstr "Impossible de supprimer le type de cellule utilisé"
 
 msgid "CANNOT_ENGULF"
 msgstr "Ne peut pas absorber"
+
+msgid "CANNOT_IMPROVE_PERFECTION"
+msgstr ""
 
 msgid "CANNOT_MOVE_METABALL_TO_DESCENDANT_TREE"
 msgstr "Impossible de bouger une méta balle dans l'arbre généalogique"
@@ -831,7 +840,7 @@ msgid "CLICK_TO_SELECT"
 msgstr "Supprimer la sélection"
 
 msgid "CLIMATE_INSTABILITY"
-msgstr ""
+msgstr "Instabilité du climat"
 
 #, fuzzy
 msgid "CLIMATE_INSTABILITY_EXPLANATION"
@@ -840,13 +849,13 @@ msgstr ""
 "Les microbes sessiles seront immobiles en l'attente d'un changement dans leur environnement."
 
 msgid "CLIMATE_STABILITY_AVERAGE"
-msgstr ""
+msgstr "Moyenne"
 
 msgid "CLIMATE_STABILITY_STABLE"
-msgstr ""
+msgstr "Stable"
 
 msgid "CLIMATE_STABILITY_UNSTABLE"
-msgstr ""
+msgstr "Instable"
 
 msgid "CLOSE"
 msgstr "Fermer"
@@ -1895,6 +1904,10 @@ msgstr ""
 "Pour continuer, sélectionnez une partie dans le panneau de gauche. Cliquez ensuite avec le bouton gauche de la souris à côté de l'hexagone pour le placer. Vous pouvez faire pivoter les pièces avec [thrive:input]e_rotate_left[/thrive:input] et [thrive:input]e_rotate_right[/thrive:input]."
 
 #, fuzzy
+msgid "EDIT_MICROBE_FIRST_TIME"
+msgstr "Chargement de la phase microbienne"
+
+#, fuzzy
 msgid "EFFECTIVE_VALUE"
 msgstr "{0}%"
 
@@ -2001,6 +2014,9 @@ msgstr "Sources d'énergie :"
 
 msgid "ENERGY_SUMMARY_LINE"
 msgstr "{0} unités d'énergie ont été récoltées au total, avec un coût de {1} par individu, résultant en une population non-ajustée de {2}"
+
+msgid "ENGULF_CELL_OR_CHUNK"
+msgstr ""
 
 msgid "ENGULF_NO_ATP_DAMAGE_MESSAGE"
 msgstr "Endommagé en entrant dans le mode engloutir sans ATP"
@@ -2357,6 +2373,10 @@ msgstr "Supprimer les données locales"
 msgid "FORGET_MOD_DETAILS_TOOLTIP"
 msgstr "Supprimez les données locales concernant cet élément. Utile si vous avez saisi un mauvais identifiant ou si vous souhaitez télécharger une nouvelle version d'un autre article."
 
+#, fuzzy
+msgid "FORM_CELL_COLONY"
+msgstr "Stockage :"
+
 msgid "FORM_ERROR_MESSAGE"
 msgstr "Erreur : {0}"
 
@@ -2469,6 +2489,9 @@ msgstr "Appuyez sur le bouton Annuler la dernière action dans l'éditeur pour c
 msgid "GENERATE_BUTTON"
 msgstr "Générations"
 
+msgid "GENERATE_POSITIVE_GLUCOSE_PHOTOSYNTHESIS"
+msgstr ""
+
 msgid "GENERATIONS"
 msgstr "Générations"
 
@@ -2476,16 +2499,16 @@ msgid "GENERATION_COLON"
 msgstr "Génération :"
 
 msgid "GEOLOGICAL_ACTIVITY"
-msgstr ""
+msgstr "Activité géologique"
 
 msgid "GEOLOGICAL_ACTIVITY_ACTIVE"
-msgstr ""
+msgstr "Active"
 
 msgid "GEOLOGICAL_ACTIVITY_AVERAGE"
-msgstr ""
+msgstr "Moyenne"
 
 msgid "GEOLOGICAL_ACTIVITY_DORMANT"
-msgstr ""
+msgstr "Inactif"
 
 #, fuzzy
 msgid "GEOLOGICAL_ACTIVITY_EXPLANATION"
@@ -2543,6 +2566,9 @@ msgstr "Mode Tout-Puissant"
 
 msgid "GOD_TOOLS_TITLE"
 msgstr "Outils divins"
+
+msgid "GOING_NUCLEAR"
+msgstr ""
 
 msgid "GOOGLY_EYE_CELL"
 msgstr "Cellule à œil écarquillé"
@@ -3442,6 +3468,18 @@ msgstr "Devenir macroscopique ({0}/{1})"
 msgid "MACROSCOPIC_STAGE"
 msgstr "Phase microbienne"
 
+#, fuzzy
+msgid "MAKE_CELL_THAT_EATS_RADIATION"
+msgstr "(coût des organites, membranes et autres éléments dans l'éditeur)"
+
+#, fuzzy
+msgid "MAKE_CELL_USE_CHEMOSYNTHESIS"
+msgstr "Chimiosynthèse"
+
+#, fuzzy
+msgid "MAKE_NO_CHANGES_IN_EDITOR"
+msgstr "Modifications :"
+
 msgid "MANUALLY_SET_TIME"
 msgstr "Renseigner manuellement l'heure"
 
@@ -3883,6 +3921,10 @@ msgstr ""
 #, fuzzy
 msgid "MICROBIAL_MASSACRE"
 msgstr "Phase microbienne"
+
+#, fuzzy
+msgid "MICRO_BORG"
+msgstr "Microbe"
 
 msgid "MIDDLE_MOUSE"
 msgstr "Clic molette"
@@ -4447,6 +4489,10 @@ msgstr "Aucun évènement enregistré"
 
 msgid "NO_FOSSIL_DIRECTORY"
 msgstr "Pas de dossier fossiles trouvé"
+
+#, fuzzy
+msgid "NO_LONGER_ELIGIBLE_FOR_ACHIEVEMENTS"
+msgstr "Confirmer la suppression"
 
 msgid "NO_MODS_ENABLED"
 msgstr "Pas de mods activés"
@@ -5068,6 +5114,16 @@ msgstr "Brut"
 
 msgid "RAW_VALUE_COLON"
 msgstr "Brut :"
+
+msgid "REACH_GENERATION_15_WITH_A_SPECIES"
+msgstr ""
+
+msgid "REACH_GENERATION_15_WITH_A_SPECIES_PROGRESS"
+msgstr ""
+
+#, fuzzy
+msgid "REACH_MULTICELLULAR_STAGE"
+msgstr "Phase multicellulaire"
 
 msgid "READING_SAVE_DATA"
 msgstr "Lecture des données de sauvegarde"
@@ -5932,6 +5988,9 @@ msgstr "Centre de la société"
 msgid "STRUCTURE_STEAM_POWERED_FACTORY"
 msgstr "Usine à vapeur"
 
+msgid "SUCCESSFULLY_PERFORM_ENDOSYMBIOSIS"
+msgstr ""
+
 msgid "SUCCESSFUL_KILL"
 msgstr "élimination réussie"
 
@@ -5953,6 +6012,10 @@ msgstr "Supporters"
 
 msgid "SURVIVAL_TITLE"
 msgstr "Survie"
+
+#, fuzzy
+msgid "SURVIVE_WITH_A_NUCLEUS"
+msgstr "Noyau"
 
 msgid "SWITCH_TO_FRONT_CAMERA"
 msgstr "Passer en camera frontale"
@@ -5993,6 +6056,14 @@ msgstr "Prendre une capture d'écran"
 
 msgid "TARGET_TYPE_COLON"
 msgstr "Type de cible :"
+
+#, fuzzy
+msgid "TASTE_THE_SUN"
+msgstr "Threads actuels :"
+
+#, fuzzy
+msgid "TASTY_RADIATION"
+msgstr "Respiration aérobie"
 
 #, fuzzy
 msgid "TECHNOLOGY_ASCENSION"
@@ -6102,6 +6173,10 @@ msgid "THE_DISTURBANCE"
 msgstr "La Perturbation"
 
 #, fuzzy
+msgid "THE_EDITOR"
+msgstr "Quitter l'éditeur"
+
+#, fuzzy
 msgid "THE_PATCH_MAP_BUTTON"
 msgstr "Carte des secteurs"
 
@@ -6153,6 +6228,10 @@ msgstr "Carte des secteurs"
 
 msgid "THRIVE_LICENSES"
 msgstr "Licences de Thrive"
+
+#, fuzzy
+msgid "THRIVIN_ACHIEVEMENT"
+msgstr "Mouvement de base"
 
 msgid "THYLAKOIDS"
 msgstr "Thylakoïdes"
@@ -7018,6 +7097,10 @@ msgstr "La vacuole stockera {0} unités du composé sélectionné"
 msgid "VALUE_WITH_UNIT"
 msgstr "{0} {1}"
 
+#, fuzzy
+msgid "VENTS_ARE_HOME"
+msgstr "Aucun évènement enregistré"
+
 msgid "VERSION_COLON"
 msgstr "Version :"
 
@@ -7276,6 +7359,7 @@ msgstr ""
 "[indent]—   Contient un [b][color=#3796e1][url=thriveopedia:nucleus]noyau[/url][/color][/b] depuis au moins [b]5[/b] générations.[/indent]\n"
 "[indent]—   A une balance de [thrive:compound type=\"atp\"][/thrive:compound] d'au moins [b]+15[/b].[/indent]"
 
+#, fuzzy
 msgid "WIKI_BINDING_AGENT_SCIENTIFIC_BACKGROUND"
 msgstr "À venir"
 
@@ -7344,6 +7428,7 @@ msgstr ""
 msgid "WIKI_CHEMOPLAST_REQUIREMENTS"
 msgstr "Une cellule doit posséder un [b][color=#3796e1][url=thriveopedia:nucleus]noyau[/url][/color][/b] pour pouvoir former des [b]chimioplastes[/b]."
 
+#, fuzzy
 msgid "WIKI_CHEMOPLAST_SCIENTIFIC_BACKGROUND"
 msgstr "À venir"
 
@@ -7366,6 +7451,7 @@ msgstr ""
 "\n"
 "De leur côté, les cellules non-joueurs auront tendance à se diriger vers les composés et/ou les espèces spécifiés par leurs [b]chimiorécepteurs[/b]."
 
+#, fuzzy
 msgid "WIKI_CHEMORECEPTOR_INTRO"
 msgstr "Organite externe permettant à une cellule de détecter les composés présents dans l'environnement. Les [b]chimiorécepteurs[/b] peuvent être personnalisés pour détecter un composé spécifique, ou même des cellules d'une espèce spécifique."
 
@@ -7378,6 +7464,7 @@ msgstr "Pas de processus."
 msgid "WIKI_CHEMORECEPTOR_REQUIREMENTS"
 msgstr "Pas de conditions"
 
+#, fuzzy
 msgid "WIKI_CHEMORECEPTOR_SCIENTIFIC_BACKGROUND"
 msgstr "À venir"
 
@@ -7416,6 +7503,7 @@ msgstr ""
 msgid "WIKI_CHEMOSYNTHESIZING_PROTEINS_REQUIREMENTS"
 msgstr "Pas de conditions."
 
+#, fuzzy
 msgid "WIKI_CHEMOSYNTHESIZING_PROTEINS_SCIENTIFIC_BACKGROUND"
 msgstr "À venir"
 
@@ -7457,6 +7545,7 @@ msgstr ""
 "\n"
 "[indent]—   Posséder au moins [b]5[/b] [b][color=#3796e1][url=thriveopedia:chromatophore]thylakoïdes[/url][/color][/b] depuis au moins [b]7[/b] générations d'affilée.[/indent]"
 
+#, fuzzy
 msgid "WIKI_CHLOROPLAST_SCIENTIFIC_BACKGROUND"
 msgstr "À venir"
 
@@ -7525,6 +7614,7 @@ msgstr ""
 "\n"
 "L'une de ses fonctions est la [b]glycolyse du cytoplasme[/b], la conversion du [thrive:compound type=\"glucose\"][/thrive:compound] en [thrive:compound type=\"atp\"][/thrive:compound]. Chez les cellules dépourvues d'organites et dont le métabolisme est moins avancé, il permet de fournir l'énergie dont elles ont besoin. Il est également utilisé pour stocker des molécules dans la cellule et pour augmenter la taille de la cellule."
 
+#, fuzzy
 msgid "WIKI_COMPOUNDS_TYPES_OF_COMPOUNDS"
 msgstr ""
 "Il existe plusieurs [b]Composés[/b] différents dans Thrive.\n"
@@ -7845,6 +7935,7 @@ msgstr ""
 "[indent]—   Vitesse inférieure à [b]15[/b].[/indent]\n"
 "[indent]—   Produit au moins [b]+15[/b] [thrive:compound type=\"atp\"][/thrive:compound].[/indent]"
 
+#, fuzzy
 msgid "WIKI_FLAGELLUM_SCIENTIFIC_BACKGROUND"
 msgstr "À venir"
 
@@ -8176,6 +8267,7 @@ msgstr ""
 "[indent]—   A englouti au moins [b]20[/b] cellules depuis le début du jeu.[/indent]\n"
 "[indent]—   A digéré au moins [b]10[/b] cellules depuis le début du jeu.[/indent]"
 
+#, fuzzy
 msgid "WIKI_LYSOSOME_SCIENTIFIC_BACKGROUND"
 msgstr "À venir"
 
@@ -8262,6 +8354,7 @@ msgstr ""
 "[indent]—   A englouti au moins [b]20[/b] cellules depuis le début du jeu.[/indent]\n"
 "[indent]—   A digéré au moins [b]10[/b] cellules depuis le début du jeu.[/indent]"
 
+#, fuzzy
 msgid "WIKI_MELANOSOME_SCIENTIFIC_BACKGROUND"
 msgstr "À venir"
 
@@ -8475,6 +8568,7 @@ msgstr ""
 "\n"
 "[indent]— Se trouve dans une zone avec au maximum [b]13[/b] [thrive:compound type=\"ammonia\"][/thrive:compound].[/indent]"
 
+#, fuzzy
 msgid "WIKI_NITROGENASE_SCIENTIFIC_BACKGROUND"
 msgstr "À venir"
 
@@ -8519,6 +8613,7 @@ msgstr "Non"
 msgid "WIKI_NONE_COMMA_THIS_IS_THE_LAST_STAGE"
 msgstr "Aucun, c'est la dernière étape de jeu"
 
+#, fuzzy
 msgid "WIKI_NUCLEUS_EFFECTS"
 msgstr ""
 "Une fois qu'une cellule évolue un [b]Noyau[/b], elle gagne la capacité d'évoluer de nombreuses autres organelles qui étaient auparavant verrouillées.\n"
@@ -8546,6 +8641,7 @@ msgstr "Pas de processus."
 msgid "WIKI_NUCLEUS_REQUIREMENTS"
 msgstr "Pas de conditions."
 
+#, fuzzy
 msgid "WIKI_NUCLEUS_SCIENTIFIC_BACKGROUND"
 msgstr "À venir"
 
@@ -8946,6 +9042,7 @@ msgstr "Pas de processus."
 msgid "WIKI_SIGNALING_AGENT_REQUIREMENTS"
 msgstr "Les agents de signalisation permettent aux cellules de créer des substances chimiques auxquelles d'autres cellules peuvent réagir. Les substances chimiques de signalisation peuvent être utilisées pour attirer d'autres cellules ou les avertir d'un danger pour les faire fuir."
 
+#, fuzzy
 msgid "WIKI_SIGNALING_AGENT_SCIENTIFIC_BACKGROUND"
 msgstr "À venir"
 
@@ -8974,6 +9071,7 @@ msgstr "Transforme le [thrive:compound type=\"glucose\"][/thrive:compound] en [t
 msgid "WIKI_SLIME_JET_REQUIREMENTS"
 msgstr "Pas de conditions."
 
+#, fuzzy
 msgid "WIKI_SLIME_JET_SCIENTIFIC_BACKGROUND"
 msgstr "À venir"
 
@@ -9156,6 +9254,7 @@ msgstr ""
 "\n"
 "[indent]— Se trouve dans une zone avec au moins [b]20%[/b] de [thrive:compound type=\"sunlight\"][/thrive:compound].[/indent]"
 
+#, fuzzy
 msgid "WIKI_THYLAKOIDS_SCIENTIFIC_BACKGROUND"
 msgstr "À venir"
 
@@ -9387,6 +9486,13 @@ msgstr ""
 
 msgid "YOU_CAN_SUPPORT_THRIVE_ON_PATREON"
 msgstr "Vous pouvez financer le développement de Thrive sur Patreon."
+
+#, fuzzy
+msgid "YUM_EXCLAMATION"
+msgstr ""
+"Les microbes persévérants rechercheront des fragments ou des proies sur de plus grandes distances\n"
+"et pourront se montrer bien plus ambitieux face à des fragments disputés.\n"
+"Les microbes réactifs basculeront plus vite vers de nouvelles cibles."
 
 msgid "ZOOM_IN"
 msgstr "Zoomer"
@@ -9652,10 +9758,6 @@ msgstr "Dézoomer"
 #, fuzzy
 #~ msgid "WIKI_AWARE_STAGE"
 #~ msgstr "Phase consciente"
-
-#, fuzzy
-#~ msgid "WIKI_CHEMOSYNTHESIS"
-#~ msgstr "Chimiosynthèse"
 
 #, fuzzy
 #~ msgid "WIKI_GLYCOLYSIS"
