@@ -171,7 +171,7 @@ public partial class MembraneWaterRipple : Node
     private float targetStillness = 1.0f;
     private bool isForming;
     private float formingTime;
-    private float minAlpha = 0.0f;
+    private float minAlpha;
     private float fullAlpha = 1.0f;
 
     // Non-linear alpha curve parameters
