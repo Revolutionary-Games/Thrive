@@ -63,6 +63,9 @@ public partial class MicrobeStage : CreatureStageBase<Entity, MicrobeWorldSimula
     [JsonProperty]
     private double movementModeShowTimer;
 
+    [JsonProperty]
+    private bool playerInColony;
+
     /// <summary>
     ///   Used to mark the first time the player turns off tutorials in the game
     /// </summary>
@@ -315,10 +318,17 @@ public partial class MicrobeStage : CreatureStageBase<Entity, MicrobeWorldSimula
                 {
                     MakeEditorForFreebuildAvailable();
                 }
+
+                if (!playerInColony)
+                {
+                    playerInColony = true;
+                    AchievementEvents.ReportPlayerInCellColony();
+                }
             }
             else if (playerAlive)
             {
                 MakeEditorForFreebuildAvailable();
+                playerInColony = false;
             }
 
             if (Player.Has<CompoundStorage>())
@@ -438,6 +448,17 @@ public partial class MicrobeStage : CreatureStageBase<Entity, MicrobeWorldSimula
                 appliedUnlimitGrowthSpeed = CheatManager.UnlimitedGrowthSpeed;
                 CurrentGame!.GameWorld.WorldSettings.Difficulty.SetGrowthRateLimitCheatOverride(!CheatManager
                     .UnlimitedGrowthSpeed);
+            }
+
+            ref var processor = ref Player.Get<BioProcesses>();
+            if (processor.ProcessStatistics != null && Player.Has<CompoundStorage>())
+            {
+                // Send photosynthesis and radiation stats to achievements
+                SendProductionTypesToAchievements(ref processor);
+            }
+            else
+            {
+                GD.PrintErr("Player process component is missing speed statistics");
             }
         }
         else
@@ -985,6 +1006,21 @@ public partial class MicrobeStage : CreatureStageBase<Entity, MicrobeWorldSimula
                 playerCompounds.SetUseful(Compound.Iron);
                 playerCompounds.AddCompound(Compound.Iron, 1.5f);
             }
+        }
+
+        if (playerIsMulticellular)
+        {
+            AchievementEvents.ReportReturnToMulticellularStageFromEditor();
+        }
+        else
+        {
+            AchievementEvents.ReportReturnToMicrobeStageFromEditor();
+        }
+
+        // This check stops the achievement on easy mode
+        if (!CurrentGame.GameWorld.WorldSettings.Difficulty.SwitchSpeciesOnExtinction)
+        {
+            AchievementEvents.ReportHighestPlayerGeneration(playerSpecies.Generation);
         }
     }
 
@@ -1804,6 +1840,75 @@ public partial class MicrobeStage : CreatureStageBase<Entity, MicrobeWorldSimula
 
         if (excess > 0)
             compounds.TakeCompound(Compound.Glucose, excess);
+    }
+
+    private void SendProductionTypesToAchievements(ref BioProcesses processor)
+    {
+        float photosynthesisProduction = 0;
+        float radiationProduction = 0;
+        float glucoseUsage = 0;
+
+        foreach (var process in processor.ProcessStatistics!.Processes)
+        {
+            var statistics = process.Value;
+            if (!statistics.Enabled || statistics.CurrentSpeed <= 0.001f)
+                continue;
+
+            bool sunlight = false;
+            bool radiation = false;
+
+            foreach (var input in statistics.Inputs)
+            {
+                if (input.Key == Compound.Glucose)
+                    glucoseUsage += input.Value;
+
+                if (input.Key == Compound.Radiation && input.Value > 0)
+                    radiation = true;
+            }
+
+            foreach (var input in statistics.EnvironmentalInputs)
+            {
+                if (input.Key == Compound.Sunlight && input.Value > 0)
+                    sunlight = true;
+            }
+
+            if (sunlight)
+            {
+                foreach (var output in statistics.Outputs)
+                {
+                    if (output.Key == Compound.Glucose)
+                        photosynthesisProduction += output.Value;
+                }
+            }
+
+            if (radiation)
+            {
+                foreach (var output in statistics.Outputs)
+                {
+                    if (output.Key == Compound.ATP)
+                        radiationProduction += output.Value;
+                }
+            }
+        }
+
+        ref var storage = ref Player.Get<CompoundStorage>();
+
+        // Only report a food source when the player is not totally struggling for ATP
+        if (storage.Compounds.GetCompoundAmount(Compound.ATP) > 2)
+        {
+            if (radiationProduction > 1)
+            {
+                AchievementEvents.ReportPlayerUsesRadiation();
+            }
+
+            // Photosynthesis is pretty low for even plants
+            if (photosynthesisProduction > 0.15 && storage.Compounds.GetCompoundAmount(Compound.Glucose) >
+                0.5f * storage.Compounds.GetCapacityForCompound(Compound.Glucose))
+            {
+                AchievementEvents.ReportPlayerPhotosynthesisGlucoseBalance(photosynthesisProduction -
+                    glucoseUsage);
+            }
+        }
     }
 
     private void TranslationsForFeaturesToReimplement()

@@ -1,4 +1,6 @@
 ﻿using System;
+using System.Collections.Generic;
+using Godot;
 using Newtonsoft.Json;
 
 /// <summary>
@@ -16,6 +18,8 @@ public class FileLoadedAchievement : IAchievement
 
     [JsonProperty]
     private string? progressDescription;
+
+    private Texture2D? loadedIcon;
 #pragma warning restore 649
 
     [JsonProperty]
@@ -36,22 +40,29 @@ public class FileLoadedAchievement : IAchievement
     public bool HideIfNotAchieved { get; private set; }
 
     [JsonProperty]
+    public string UnlockedIcon { get; private set; } = null!;
+
+    [JsonProperty]
     public int LinkedStatistic { get; private set; }
 
     [JsonProperty]
     public int LinkedStatisticThreshold { get; private set; }
 
-    public bool ProcessPotentialUnlock(AchievementStatStore updatedStats)
+    [JsonProperty]
+    public IReadOnlyList<int>? LinkedStatisticVisibleProgressThresholds { get; private set; }
+
+    public bool ProcessPotentialUnlock(IAchievementStatStore updatedStats)
     {
+        // If already achieved, doesn't need to process
+        if (Achieved)
+            return false;
+
         if (LinkedStatistic != 0)
         {
             if (updatedStats.GetIntStat(LinkedStatistic) >= LinkedStatisticThreshold)
             {
-                if (!Achieved)
-                {
-                    Achieved = true;
-                    return true;
-                }
+                Achieved = true;
+                return true;
             }
 
             return false;
@@ -61,7 +72,7 @@ public class FileLoadedAchievement : IAchievement
         return false;
     }
 
-    public bool HasAnyProgress(AchievementStatStore stats)
+    public bool HasAnyProgress(IAchievementStatStore stats)
     {
         if (LinkedStatistic != 0)
         {
@@ -72,7 +83,7 @@ public class FileLoadedAchievement : IAchievement
         return false;
     }
 
-    public string GetProgress(AchievementStatStore stats)
+    public string GetProgress(IAchievementStatStore stats)
     {
         if (string.IsNullOrEmpty(progressDescription))
             return Description.ToString();
@@ -87,9 +98,50 @@ public class FileLoadedAchievement : IAchievement
         return Description.ToString();
     }
 
+    public bool GetSteamProgress(IAchievementStatStore stats, out uint current, out uint max)
+    {
+        if (LinkedStatistic != 0)
+        {
+            // TODO: should this use bit cast?
+            current = (uint)stats.GetIntStat(LinkedStatistic);
+            max = (uint)LinkedStatisticThreshold;
+
+            return true;
+        }
+
+        GD.PrintErr("No Steam progress info available for achievement (missing linked statistic): ", InternalName);
+        current = 0;
+        max = 0;
+        return false;
+    }
+
+    public bool IsAtUnlockMilestone(IAchievementStatStore stats)
+    {
+        if (LinkedStatistic != 0)
+        {
+            if (LinkedStatisticVisibleProgressThresholds != null)
+            {
+                var count = LinkedStatisticVisibleProgressThresholds.Count;
+                for (var i = 0; i < count; ++i)
+                {
+                    var threshold = LinkedStatisticVisibleProgressThresholds[i];
+                    if (stats.GetIntStat(LinkedStatistic) == threshold)
+                        return true;
+                }
+            }
+        }
+
+        return false;
+    }
+
     public void Reset()
     {
         Achieved = false;
+    }
+
+    public Texture2D GetUnlockedIcon()
+    {
+        return loadedIcon ??= GD.Load<Texture2D>(UnlockedIcon);
     }
 
     public void OnLoaded(string internalName, bool unlocked)
@@ -109,6 +161,9 @@ public class FileLoadedAchievement : IAchievement
 
         Description = new LocalizedString(descriptionRaw);
 
+        if (string.IsNullOrEmpty(UnlockedIcon))
+            throw new Exception("Missing unlocked icon for achievement " + internalName);
+
         if (unlocked)
             Achieved = true;
 
@@ -121,7 +176,7 @@ public class FileLoadedAchievement : IAchievement
             }
 
             // Verify statistic is correct
-            if (!AchievementStatStore.IsValidStatistic(LinkedStatistic))
+            if (!IAchievementStatStore.IsValidStatistic(LinkedStatistic))
             {
                 throw new Exception(
                     $"Linked statistic {LinkedStatistic} for achievement {internalName} is not a valid statistic");
@@ -139,8 +194,110 @@ public class FileLoadedAchievement : IAchievement
         switch (Identifier)
         {
             case 1:
-                if (InternalName == "MICROBIAL_MASSACRE" && LinkedStatistic == AchievementStatStore.STAT_MICROBE_KILLS)
+                if (InternalName == IAchievementStatStore.MICROBIAL_MASSACRE_ID &&
+                    LinkedStatistic == IAchievementStatStore.STAT_MICROBE_KILLS)
+                {
                     return;
+                }
+
+                break;
+
+            case 2:
+                if (InternalName == IAchievementStatStore.THE_EDITOR_ID &&
+                    LinkedStatistic == IAchievementStatStore.STAT_EDITOR_USAGE)
+                {
+                    return;
+                }
+
+                break;
+
+            case 3:
+                if (InternalName == IAchievementStatStore.BETTER_TOGETHER_ID &&
+                    LinkedStatistic == IAchievementStatStore.STAT_CELL_COLONY_FORMED)
+                {
+                    return;
+                }
+
+                break;
+
+            case 4:
+                if (InternalName == IAchievementStatStore.GOING_NUCLEAR_ID &&
+                    LinkedStatistic == IAchievementStatStore.STAT_SURVIVED_WITH_NUCLEUS)
+                {
+                    return;
+                }
+
+                break;
+
+            case 5:
+                if (InternalName == IAchievementStatStore.TASTE_THE_SUN_ID &&
+                    LinkedStatistic == IAchievementStatStore.STAT_POSITIVE_GLUCOSE_PHOTOSYNTHESIS)
+                {
+                    return;
+                }
+
+                break;
+
+            case 6:
+                if (InternalName == IAchievementStatStore.CANNOT_IMPROVE_PERFECTION_ID &&
+                    LinkedStatistic == IAchievementStatStore.STAT_NO_CHANGES_IN_EDITOR)
+                {
+                    return;
+                }
+
+                break;
+
+            case 7:
+                if (InternalName == IAchievementStatStore.YUM_ID &&
+                    LinkedStatistic == IAchievementStatStore.STAT_ENGULFMENT_COUNT)
+                {
+                    return;
+                }
+
+                break;
+
+            case 8:
+                if (InternalName == IAchievementStatStore.TASTY_RADIATION_ID &&
+                    LinkedStatistic == IAchievementStatStore.STAT_CELL_EATS_RADIATION)
+                {
+                    return;
+                }
+
+                break;
+
+            case 9:
+                if (InternalName == IAchievementStatStore.VENTS_ARE_HOME_ID &&
+                    LinkedStatistic == IAchievementStatStore.STAT_CELL_USES_CHEMOSYNTHESIS)
+                {
+                    return;
+                }
+
+                break;
+
+            case 10:
+                if (InternalName == IAchievementStatStore.THRIVING_ID &&
+                    LinkedStatistic == IAchievementStatStore.STAT_MAX_SPECIES_GENERATION)
+                {
+                    return;
+                }
+
+                break;
+
+            case 11:
+                if (InternalName == IAchievementStatStore.MICRO_BORG_ID &&
+                    LinkedStatistic == IAchievementStatStore.STAT_ENDOSYMBIOSIS_COMPLETED)
+                {
+                    return;
+                }
+
+                break;
+
+            case 12:
+                if (InternalName == IAchievementStatStore.BEYOND_THE_CELL_ID &&
+                    LinkedStatistic == IAchievementStatStore.STAT_REACHED_MULTICELLULAR)
+                {
+                    return;
+                }
 
                 break;
         }

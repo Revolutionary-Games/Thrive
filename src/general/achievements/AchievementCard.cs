@@ -37,7 +37,7 @@ public partial class AchievementCard : MarginContainer
         this.RegisterCustomFocusDrawer();
     }
 
-    public void UpdateDataFrom(IAchievement achievement, AchievementStatStore stats)
+    public void UpdateDataFrom(IAchievement achievement, IAchievementStatStore stats)
     {
         title.Text = achievement.Name.ToString();
 
@@ -49,8 +49,7 @@ public partial class AchievementCard : MarginContainer
 
             backgroundToAdjustStyle.AddThemeStyleboxOverride(backgroundStyleName, unlockedStyle);
 
-            // TODO: icon
-            // icon.Texture = achievement.
+            icon.Texture = achievement.GetUnlockedIcon();
         }
         else
         {

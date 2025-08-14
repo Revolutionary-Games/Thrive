@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Thrive VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2025-08-01 16:03+0300\n"
+"POT-Creation-Date: 2025-08-11 11:43+0300\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -70,7 +70,7 @@ msgstr ""
 msgid "ACHIEVEMENT_ACHIEVED"
 msgstr ""
 
-#: ../src/general/achievements/AchievementCard.cs:57
+#: ../src/general/achievements/AchievementCard.cs:56
 msgid "ACHIEVEMENT_LOCKED"
 msgstr ""
 
@@ -310,7 +310,7 @@ msgstr ""
 msgid "ASCENSION_CONGRATULATIONS"
 msgstr ""
 
-#: ../src/ascension_stage/gui/AscensionCongratulationsPopup.cs:8
+#: ../src/ascension_stage/gui/AscensionCongratulationsPopup.cs:9
 #: ../src/ascension_stage/gui/AscensionCongratulationsPopup.tscn:10
 msgid "ASCENSION_CONGRATULATIONS_CONTENT"
 msgstr ""
@@ -664,6 +664,14 @@ msgstr ""
 msgid "BEST_PATCH_COLON"
 msgstr ""
 
+#: ../simulation_parameters/common/achievements.json:25
+msgid "BETTER_TOGETHER"
+msgstr ""
+
+#: ../simulation_parameters/common/achievements.json:110
+msgid "BEYOND_THE_CELL"
+msgstr ""
+
 #: ../simulation_parameters/microbe_stage/biomes.json:87
 #: ../simulation_parameters/microbe_stage/biomes.json:275
 #: ../simulation_parameters/microbe_stage/biomes.json:606
@@ -769,7 +777,7 @@ msgstr ""
 msgid "BUILD_STRUCTURE"
 msgstr ""
 
-#: ../src/saving/SaveListItem.tscn:186
+#: ../src/saving/SaveListItem.tscn:187
 msgid "BY"
 msgstr ""
 
@@ -849,6 +857,10 @@ msgstr ""
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:518
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:572
 msgid "CANNOT_ENGULF"
+msgstr ""
+
+#: ../simulation_parameters/common/achievements.json:52
+msgid "CANNOT_IMPROVE_PERFECTION"
 msgstr ""
 
 #: ../src/macroscopic_stage/editor/MetaballBodyEditorComponent.cs:699
@@ -949,11 +961,11 @@ msgstr ""
 msgid "CELL_STAT_STORAGE_TOOLTIP"
 msgstr ""
 
-#: ../src/microbe_stage/editor/CellEditorComponent.cs:660
+#: ../src/microbe_stage/editor/CellEditorComponent.cs:662
 msgid "CELL_TYPE_NAME"
 msgstr ""
 
-#: ../src/modding/ModUploader.cs:278 ../src/steam/SteamClient.cs:278
+#: ../src/modding/ModUploader.cs:278 ../src/steam/SteamClient.cs:282
 msgid "CHANGE_DESCRIPTION_IS_TOO_LONG"
 msgstr ""
 
@@ -972,7 +984,7 @@ msgstr ""
 msgid "CHEATS"
 msgstr ""
 
-#: ../src/ascension_stage/gui/AscensionCongratulationsPopup.cs:13
+#: ../src/ascension_stage/gui/AscensionCongratulationsPopup.cs:14
 msgid "CHEATS_USED_NOTICE"
 msgstr ""
 
@@ -1800,7 +1812,7 @@ msgstr ""
 msgid "CREATED_AT"
 msgstr ""
 
-#: ../src/saving/SaveListItem.tscn:202
+#: ../src/saving/SaveListItem.tscn:203
 msgid "CREATED_ON_PLATFORM"
 msgstr ""
 
@@ -2007,7 +2019,7 @@ msgstr ""
 msgid "DELETE_ORGANELLE"
 msgstr ""
 
-#: ../src/saving/SaveListItem.tscn:237
+#: ../src/saving/SaveListItem.tscn:238
 msgid "DELETE_SAVE_CONFIRMATION"
 msgstr ""
 
@@ -2023,7 +2035,7 @@ msgstr ""
 msgid "DELETE_SELECTED_SAVE_WARNING"
 msgstr ""
 
-#: ../src/saving/SaveList.tscn:62 ../src/saving/SaveListItem.tscn:238
+#: ../src/saving/SaveList.tscn:62 ../src/saving/SaveListItem.tscn:239
 msgid "DELETE_THIS_SAVE_PROMPT"
 msgstr ""
 
@@ -2039,7 +2051,7 @@ msgstr ""
 msgid "DESCEND_CONFIRMATION_EXPLANATION"
 msgstr ""
 
-#: ../src/saving/SaveListItem.tscn:144
+#: ../src/saving/SaveListItem.tscn:145
 msgid "DESCRIPTION"
 msgstr ""
 
@@ -2268,8 +2280,8 @@ msgid "DONATIONS"
 msgstr ""
 
 #: ../src/saving/SaveListItem.tscn:105 ../src/saving/SaveListItem.tscn:122
-#: ../src/saving/SaveListItem.tscn:151 ../src/saving/SaveListItem.tscn:171
-#: ../src/saving/SaveListItem.tscn:192 ../src/saving/SaveListItem.tscn:208
+#: ../src/saving/SaveListItem.tscn:152 ../src/saving/SaveListItem.tscn:172
+#: ../src/saving/SaveListItem.tscn:193 ../src/saving/SaveListItem.tscn:209
 msgid "DOT_DOT_DOT"
 msgstr ""
 
@@ -2420,6 +2432,10 @@ msgstr ""
 msgid "EDITOR_TUTORIAL_MICROBE_EDITOR_NUCLEUS"
 msgstr ""
 
+#: ../simulation_parameters/common/achievements.json:18
+msgid "EDIT_MICROBE_FIRST_TIME"
+msgstr ""
+
 #: ../src/microbe_stage/editor/tooltips/StatModifierToolTip.tscn:69
 msgid "EFFECTIVE_VALUE"
 msgstr ""
@@ -2534,20 +2550,24 @@ msgstr ""
 msgid "ENERGY_BALANCE_TOOLTIP_PRODUCTION_WITH_REQUIREMENT"
 msgstr ""
 
-#: ../src/microbe_stage/editor/CellEditorComponent.cs:3054
+#: ../src/microbe_stage/editor/CellEditorComponent.cs:3070
 msgid "ENERGY_IN_PATCH_FOR"
 msgstr ""
 
-#: ../src/microbe_stage/editor/CellEditorComponent.cs:2889
+#: ../src/microbe_stage/editor/CellEditorComponent.cs:2905
 msgid "ENERGY_IN_PATCH_SHORT"
 msgstr ""
 
-#: ../src/microbe_stage/editor/CellEditorComponent.cs:3065
+#: ../src/microbe_stage/editor/CellEditorComponent.cs:3081
 msgid "ENERGY_SOURCES"
 msgstr ""
 
-#: ../src/microbe_stage/editor/CellEditorComponent.cs:3058
+#: ../src/microbe_stage/editor/CellEditorComponent.cs:3074
 msgid "ENERGY_SUMMARY_LINE"
+msgstr ""
+
+#: ../simulation_parameters/common/achievements.json:63
+msgid "ENGULF_CELL_OR_CHUNK"
 msgstr ""
 
 #: ../src/microbe_stage/components/MicrobeControl.cs:410
@@ -2639,7 +2659,7 @@ msgstr ""
 msgid "ESCAPE"
 msgstr ""
 
-#: ../src/microbe_stage/MicrobeStage.cs:1814
+#: ../src/microbe_stage/MicrobeStage.cs:1919
 msgid "ESCAPE_ENGULFING"
 msgstr ""
 
@@ -2982,7 +3002,7 @@ msgstr ""
 msgid "FOOD_CHAIN"
 msgstr ""
 
-#: ../src/microbe_stage/editor/CellEditorComponent.cs:3071
+#: ../src/microbe_stage/editor/CellEditorComponent.cs:3087
 msgid "FOOD_SOURCE_ENERGY_INFO"
 msgstr ""
 
@@ -2992,6 +3012,10 @@ msgstr ""
 
 #: ../src/modding/ModUploader.tscn:216
 msgid "FORGET_MOD_DETAILS_TOOLTIP"
+msgstr ""
+
+#: ../simulation_parameters/common/achievements.json:27
+msgid "FORM_CELL_COLONY"
 msgstr ""
 
 #: ../src/modding/ModUploader.cs:616 ../src/modding/NewModGUI.cs:264
@@ -3092,7 +3116,7 @@ msgstr ""
 msgid "GAME_SYSTEMS_TITLE"
 msgstr ""
 
-#: ../src/microbe_stage/editor/CellEditorComponent.cs:2989
+#: ../src/microbe_stage/editor/CellEditorComponent.cs:3005
 #: ../src/microbe_stage/editor/CellEditorComponent.tscn:1078
 msgid "GATHERED_ENERGY_TOOLTIP"
 msgstr ""
@@ -3167,6 +3191,10 @@ msgstr ""
 #: ../src/gui_common/menus/PlanetCustomizerTool.cs:94
 #: ../src/gui_common/menus/PlanetCustomizerTool.tscn:158
 msgid "GENERATE_BUTTON"
+msgstr ""
+
+#: ../simulation_parameters/common/achievements.json:45
+msgid "GENERATE_POSITIVE_GLUCOSE_PHOTOSYNTHESIS"
 msgstr ""
 
 #: ../src/auto-evo/AutoEvoExploringTool.tscn:422
@@ -3264,6 +3292,10 @@ msgstr ""
 
 #: ../src/ascension_stage/gui/GodToolsPopup.tscn:20
 msgid "GOD_TOOLS_TITLE"
+msgstr ""
+
+#: ../simulation_parameters/common/achievements.json:34
+msgid "GOING_NUCLEAR"
 msgstr ""
 
 #: ../simulation_parameters/microbe_stage/biomes.json:115
@@ -4349,7 +4381,7 @@ msgstr ""
 msgid "LARGE_SULFUR_CHUNK"
 msgstr ""
 
-#: ../src/microbe_stage/editor/CellEditorComponent.cs:1725
+#: ../src/microbe_stage/editor/CellEditorComponent.cs:1741
 msgid "LAST_ORGANELLE_DELETE_OPTION_DISABLED_TOOLTIP"
 msgstr ""
 
@@ -4629,7 +4661,7 @@ msgstr ""
 msgid "LIPASE_DESCRIPTION"
 msgstr ""
 
-#: ../src/saving/SaveListItem.tscn:232 ../src/saving/SaveManagerGUI.tscn:48
+#: ../src/saving/SaveListItem.tscn:233 ../src/saving/SaveManagerGUI.tscn:48
 msgid "LOAD"
 msgstr ""
 
@@ -4659,7 +4691,7 @@ msgstr ""
 msgid "LOADING_MICROBE_EDITOR"
 msgstr ""
 
-#: ../src/microbe_stage/MicrobeStage.cs:1187
+#: ../src/microbe_stage/MicrobeStage.cs:1223
 msgid "LOADING_MICROBE_STAGE"
 msgstr ""
 
@@ -4667,7 +4699,7 @@ msgstr ""
 msgid "LOADING_MULTICELLULAR_EDITOR"
 msgstr ""
 
-#: ../src/microbe_stage/MicrobeStage.cs:1183
+#: ../src/microbe_stage/MicrobeStage.cs:1219
 msgid "LOADING_MULTICELLULAR_STAGE"
 msgstr ""
 
@@ -4779,6 +4811,18 @@ msgstr ""
 #: ../simulation_parameters/common/wiki.json:2761
 #: ../ThriveScriptsShared/Stage.cs:19
 msgid "MACROSCOPIC_STAGE"
+msgstr ""
+
+#: ../simulation_parameters/common/achievements.json:72
+msgid "MAKE_CELL_THAT_EATS_RADIATION"
+msgstr ""
+
+#: ../simulation_parameters/common/achievements.json:81
+msgid "MAKE_CELL_USE_CHEMOSYNTHESIS"
+msgstr ""
+
+#: ../simulation_parameters/common/achievements.json:54
+msgid "MAKE_NO_CHANGES_IN_EDITOR"
 msgstr ""
 
 #: ../src/microbe_stage/MicrobeCheatMenu.tscn:103
@@ -5228,6 +5272,10 @@ msgstr ""
 
 #: ../simulation_parameters/common/achievements.json:3
 msgid "MICROBIAL_MASSACRE"
+msgstr ""
+
+#: ../simulation_parameters/common/achievements.json:101
+msgid "MICRO_BORG"
 msgstr ""
 
 #: ../src/engine/input/key_mapping/SpecifiedInputKey.cs:435
@@ -5992,7 +6040,7 @@ msgid "NO_AI"
 msgstr ""
 
 #: ../src/gui_common/charts/line/LineChart.cs:665
-#: ../src/microbe_stage/editor/CellEditorComponent.cs:3086
+#: ../src/microbe_stage/editor/CellEditorComponent.cs:3102
 msgid "NO_DATA_TO_SHOW"
 msgstr ""
 
@@ -6002,6 +6050,10 @@ msgstr ""
 
 #: ../src/thriveopedia/pages/ThriveopediaMuseumPage.tscn:125
 msgid "NO_FOSSIL_DIRECTORY"
+msgstr ""
+
+#: ../src/general/achievements/AchievementsNotEligibleNotice.tscn:15
+msgid "NO_LONGER_ELIGIBLE_FOR_ACHIEVEMENTS"
 msgstr ""
 
 #: ../src/general/MainMenu.tscn:970
@@ -6036,7 +6088,7 @@ msgstr ""
 msgid "NUCLEUS"
 msgstr ""
 
-#: ../src/microbe_stage/editor/CellEditorComponent.cs:1724
+#: ../src/microbe_stage/editor/CellEditorComponent.cs:1740
 msgid "NUCLEUS_DELETE_OPTION_DISABLED_TOOLTIP"
 msgstr ""
 
@@ -6060,8 +6112,8 @@ msgstr ""
 #: ../src/gui_common/art_gallery/GalleryDetailsTooltip.cs:25
 #: ../src/gui_common/art_gallery/GalleryDetailsTooltip.cs:35
 #: ../src/gui_common/art_gallery/GalleryDetailsTooltip.cs:45
-#: ../src/microbe_stage/editor/CellEditorComponent.cs:2900
-#: ../src/microbe_stage/editor/CellEditorComponent.cs:2912
+#: ../src/microbe_stage/editor/CellEditorComponent.cs:2916
+#: ../src/microbe_stage/editor/CellEditorComponent.cs:2928
 #: ../src/microbe_stage/editor/MicrobePartSelection.tscn:154
 #: ../src/microbe_stage/MicrobeHUD.cs:562
 msgid "N_A"
@@ -6691,7 +6743,7 @@ msgstr ""
 msgid "POPULATION_IN_PATCHES"
 msgstr ""
 
-#: ../src/microbe_stage/editor/CellEditorComponent.cs:2919
+#: ../src/microbe_stage/editor/CellEditorComponent.cs:2935
 msgid "POPULATION_IN_PATCH_SHORT"
 msgstr ""
 
@@ -6838,6 +6890,18 @@ msgstr ""
 #: ../src/engine/input/ControllerAxisVisualizer.tscn:47
 #: ../src/engine/input/ControllerAxisVisualizer.tscn:86
 msgid "RAW_VALUE_COLON"
+msgstr ""
+
+#: ../simulation_parameters/common/achievements.json:90
+msgid "REACH_GENERATION_15_WITH_A_SPECIES"
+msgstr ""
+
+#: ../simulation_parameters/common/achievements.json:91
+msgid "REACH_GENERATION_15_WITH_A_SPECIES_PROGRESS"
+msgstr ""
+
+#: ../simulation_parameters/common/achievements.json:112
+msgid "REACH_MULTICELLULAR_STAGE"
 msgstr ""
 
 #: ../src/saving/InProgressLoad.cs:80
@@ -7681,7 +7745,7 @@ msgstr ""
 msgid "SPAWN_ENEMY"
 msgstr ""
 
-#: ../src/microbe_stage/MicrobeStage.cs:1478
+#: ../src/microbe_stage/MicrobeStage.cs:1514
 msgid "SPAWN_ENEMY_CHEAT_FAIL"
 msgstr ""
 
@@ -7824,64 +7888,64 @@ msgstr ""
 msgid "STAT_DAMAGE_PER_OXYGEN"
 msgstr ""
 
-#: ../src/steam/SteamClient.cs:74 ../src/steam/SteamClient.cs:82
-#: ../src/steam/SteamClient.cs:89
+#: ../src/steam/SteamClient.cs:75 ../src/steam/SteamClient.cs:83
+#: ../src/steam/SteamClient.cs:90
 msgid "STEAM_CLIENT_INIT_FAILED"
 msgstr ""
 
-#: ../src/steam/SteamClient.cs:566
+#: ../src/steam/SteamClient.cs:630
 msgid "STEAM_ERROR_ACCOUNT_DOES_NOT_OWN_PRODUCT"
 msgstr ""
 
-#: ../src/steam/SteamClient.cs:564
+#: ../src/steam/SteamClient.cs:628
 msgid "STEAM_ERROR_ACCOUNT_READ_ONLY"
 msgstr ""
 
-#: ../src/steam/SteamClient.cs:560
+#: ../src/steam/SteamClient.cs:624
 msgid "STEAM_ERROR_ALREADY_UPLOADED"
 msgstr ""
 
-#: ../src/steam/SteamClient.cs:546
+#: ../src/steam/SteamClient.cs:610
 msgid "STEAM_ERROR_BANNED"
 msgstr ""
 
-#: ../src/steam/SteamClient.cs:556
+#: ../src/steam/SteamClient.cs:620
 msgid "STEAM_ERROR_CLOUD_LIMIT_EXCEEDED"
 msgstr ""
 
-#: ../src/steam/SteamClient.cs:562
+#: ../src/steam/SteamClient.cs:626
 msgid "STEAM_ERROR_DUPLICATE_NAME"
 msgstr ""
 
-#: ../src/steam/SteamClient.cs:558
+#: ../src/steam/SteamClient.cs:622
 msgid "STEAM_ERROR_FILE_NOT_FOUND"
 msgstr ""
 
-#: ../src/steam/SteamClient.cs:544
+#: ../src/steam/SteamClient.cs:608
 msgid "STEAM_ERROR_INSUFFICIENT_PRIVILEGE"
 msgstr ""
 
-#: ../src/steam/SteamClient.cs:554
+#: ../src/steam/SteamClient.cs:618
 msgid "STEAM_ERROR_INVALID_PARAMETER"
 msgstr ""
 
-#: ../src/steam/SteamClient.cs:568
+#: ../src/steam/SteamClient.cs:632
 msgid "STEAM_ERROR_LOCKING_FAILED"
 msgstr ""
 
-#: ../src/steam/SteamClient.cs:550
+#: ../src/steam/SteamClient.cs:614
 msgid "STEAM_ERROR_NOT_LOGGED_IN"
 msgstr ""
 
-#: ../src/steam/SteamClient.cs:548
+#: ../src/steam/SteamClient.cs:612
 msgid "STEAM_ERROR_TIMEOUT"
 msgstr ""
 
-#: ../src/steam/SteamClient.cs:552
+#: ../src/steam/SteamClient.cs:616
 msgid "STEAM_ERROR_UNAVAILABLE"
 msgstr ""
 
-#: ../src/steam/SteamClient.cs:570
+#: ../src/steam/SteamClient.cs:634
 msgid "STEAM_ERROR_UNKNOWN"
 msgstr ""
 
@@ -7993,11 +8057,15 @@ msgstr ""
 msgid "STRUCTURE_STEAM_POWERED_FACTORY"
 msgstr ""
 
-#: ../src/microbe_stage/MicrobeStage.cs:1812
+#: ../simulation_parameters/common/achievements.json:103
+msgid "SUCCESSFULLY_PERFORM_ENDOSYMBIOSIS"
+msgstr ""
+
+#: ../src/microbe_stage/MicrobeStage.cs:1917
 msgid "SUCCESSFUL_KILL"
 msgstr ""
 
-#: ../src/microbe_stage/MicrobeStage.cs:1813
+#: ../src/microbe_stage/MicrobeStage.cs:1918
 msgid "SUCCESSFUL_SCAVENGE"
 msgstr ""
 
@@ -8023,6 +8091,10 @@ msgstr ""
 
 #: ../src/thriveopedia/pages/wiki/mechanics/ThriveopediaMechanicsRootPage.tscn:123
 msgid "SURVIVAL_TITLE"
+msgstr ""
+
+#: ../simulation_parameters/common/achievements.json:36
+msgid "SURVIVE_WITH_A_NUCLEUS"
 msgstr ""
 
 #: ../simulation_parameters/common/input_options.json:250
@@ -8071,6 +8143,14 @@ msgstr ""
 
 #: ../src/microbe_stage/editor/upgrades/ChemoreceptorUpgradeGUI.tscn:27
 msgid "TARGET_TYPE_COLON"
+msgstr ""
+
+#: ../simulation_parameters/common/achievements.json:43
+msgid "TASTE_THE_SUN"
+msgstr ""
+
+#: ../simulation_parameters/common/achievements.json:70
+msgid "TASTY_RADIATION"
 msgstr ""
 
 #: ../simulation_parameters/awakening_stage/technologies.json:52
@@ -8203,6 +8283,10 @@ msgstr ""
 msgid "THE_DISTURBANCE"
 msgstr ""
 
+#: ../simulation_parameters/common/achievements.json:16
+msgid "THE_EDITOR"
+msgstr ""
+
 #: ../src/thriveopedia/pages/wiki/mechanics/ThriveopediaMechanicsRootPage.tscn:107
 msgid "THE_PATCH_MAP_BUTTON"
 msgstr ""
@@ -8260,6 +8344,10 @@ msgstr ""
 msgid "THRIVE_LICENSES"
 msgstr ""
 
+#: ../simulation_parameters/common/achievements.json:88
+msgid "THRIVIN_ACHIEVEMENT"
+msgstr ""
+
 #: ../simulation_parameters/microbe_stage/organelles.json:346
 msgid "THYLAKOIDS"
 msgstr ""
@@ -8300,8 +8388,8 @@ msgstr ""
 msgid "TIMELINE_SELECTION_PRESSURE_SPLIT"
 msgstr ""
 
-#: ../src/microbe_stage/MicrobeStage.cs:638
-#: ../src/microbe_stage/MicrobeStage.cs:642
+#: ../src/microbe_stage/MicrobeStage.cs:659
+#: ../src/microbe_stage/MicrobeStage.cs:663
 msgid "TIMELINE_SPECIES_BECAME_MULTICELLULAR"
 msgstr ""
 
@@ -9121,7 +9209,11 @@ msgstr ""
 msgid "VALUE_WITH_UNIT"
 msgstr ""
 
-#: ../src/saving/SaveListItem.tscn:166
+#: ../simulation_parameters/common/achievements.json:79
+msgid "VENTS_ARE_HOME"
+msgstr ""
+
+#: ../src/saving/SaveListItem.tscn:167
 msgid "VERSION_COLON"
 msgstr ""
 
@@ -11622,6 +11714,10 @@ msgstr ""
 
 #: ../src/gui_common/CreditsScroll.cs:330
 msgid "YOU_CAN_SUPPORT_THRIVE_ON_PATREON"
+msgstr ""
+
+#: ../simulation_parameters/common/achievements.json:61
+msgid "YUM_EXCLAMATION"
 msgstr ""
 
 #: ../simulation_parameters/common/input_options.json:126

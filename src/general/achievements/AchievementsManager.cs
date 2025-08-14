@@ -20,7 +20,7 @@ public partial class AchievementsManager : Node
     ///   We really do not want someone to modify the achievement config file, so we verify its hash. This is safe to
     ///   update when intentionally modifying achievement properties.
     /// </summary>
-    private const string ACHIEVEMENTS_INTEGRITY = "WjGHH+OGnYx6dP6E5tMDVoxhftqLuU8Uzpi2V2O72E0=";
+    private const string ACHIEVEMENTS_INTEGRITY = "BiFbOHf4F4zJ91WEKBJDfFj40WJ6RcuIWELLu/gBJnE=";
 
     private const int MAX_ACHIEVEMENTS_LOAD_WAIT = 60;
     private const int ACHIEVEMENTS_SAVE_INTERVAL = 10;
@@ -41,20 +41,30 @@ public partial class AchievementsManager : Node
     private static bool playerHasCheated = true;
     private static bool playerInFreebuild;
 
-    private readonly object achievementsDataLock = new();
+    private static bool showCheatsUsedInfo;
 
-    private readonly AchievementStatStore statsStore = new();
+    private readonly NodePath positionName = new("position");
+
+    private readonly object achievementsDataLock = new();
 
     private readonly Dictionary<int, IAchievement> achievements = new();
 
     private readonly Queue<IAchievement> achievementsToPopupQueue = new();
+
+    private IAchievementStatStore statsStore = new AchievementStatStore();
 
 #pragma warning disable CA2213
     private Control achievementsGUIContainer = null!;
 
     private AchievementPopup? createdAchievementPopup;
 
+    private Control? createdAchievementsNotEligibleNotice;
+
     private PackedScene achievementPopupScene = null!;
+
+    private PackedScene notEligibleScene = null!;
+
+    private AudioStream achievementSound = null!;
 #pragma warning restore CA2213
 
     private double timeSinceSave;
@@ -138,11 +148,29 @@ public partial class AchievementsManager : Node
         GD.Print("Player has cheated for the first time in the current save");
         OnPlayerHasCheatedEvent?.Invoke();
         UpdateAchievementsPrevention();
+
+        showCheatsUsedInfo = true;
     }
 
     public override void _Ready()
     {
         base._Ready();
+
+        // Determine backend to use
+        if (SteamHandler.Instance.IsLoaded || SteamHandler.Instance.WasLoadAttempted)
+        {
+            GD.Print("Using Steam as achievements storage");
+            statsStore = new SteamStatStore(SteamHandler.Instance.GetSteamClientForAchievements());
+        }
+
+        if (!SceneManager.Instance.QuittingRequested())
+        {
+            StartLoadAchievementsData();
+        }
+        else
+        {
+            GD.Print("Skipping achievements load as game startup is failing");
+        }
 
         // Create a container for achievement popups to be in
         var layer = new CanvasLayer
@@ -171,6 +199,9 @@ public partial class AchievementsManager : Node
         ProcessMode = ProcessModeEnum.Always;
 
         achievementPopupScene = GD.Load<PackedScene>("res://src/general/achievements/AchievementPopup.tscn");
+        notEligibleScene = GD.Load<PackedScene>("res://src/general/achievements/AchievementsNotEligibleNotice.tscn");
+
+        achievementSound = GD.Load<AudioStream>("res://assets/sounds/soundeffects/gui/achievementSound.ogg");
     }
 
     public override void _ExitTree()
@@ -246,6 +277,23 @@ public partial class AchievementsManager : Node
                 achievementsGUIContainer.Visible = false;
             }
         }
+
+        if (showCheatsUsedInfo)
+        {
+            showCheatsUsedInfo = false;
+
+            if (createdAchievementsNotEligibleNotice == null)
+            {
+                createdAchievementsNotEligibleNotice = notEligibleScene.Instantiate<Control>();
+                achievementsGUIContainer.AddChild(createdAchievementsNotEligibleNotice);
+            }
+
+            AnimateEligibilityNotice();
+
+            // Make the GUI visible
+            shownPopupTime = 0;
+            achievementsGUIContainer.Visible = true;
+        }
     }
 
     /// <summary>
@@ -261,7 +309,7 @@ public partial class AchievementsManager : Node
     ///   Gets stat store for *reading* nothing should modify the stats retrieved from here
     /// </summary>
     /// <returns>Stats instance for reading data from</returns>
-    public AchievementStatStore GetStats()
+    public IAchievementStatStore GetStats()
     {
         return statsStore;
     }
@@ -358,7 +406,7 @@ public partial class AchievementsManager : Node
 
         lock (achievementsDataLock)
         {
-            statsStore.IncrementIntStat(AchievementStatStore.STAT_MICROBE_KILLS);
+            statsStore.IncrementIntStat(IAchievementStatStore.STAT_MICROBE_KILLS);
 
             // TODO: automatically generate the list of relevant achievements for each event?
             ReportStatUpdateToRelevantAchievements([AchievementIds.MICROBIAL_MASSACRE]);
@@ -370,8 +418,12 @@ public partial class AchievementsManager : Node
         if (preventAchievements)
             return;
 
-        // TODO: add an achievement for this
-        GD.Print("TODO: implement this achievement");
+        lock (achievementsDataLock)
+        {
+            statsStore.IncrementIntStat(IAchievementStatStore.STAT_NO_CHANGES_IN_EDITOR);
+
+            ReportStatUpdateToRelevantAchievements([AchievementIds.CANNOT_IMPROVE_PERFECTION]);
+        }
     }
 
     internal void OnPlayerPhotosynthesisGlucoseBalance(float balance)
@@ -379,11 +431,160 @@ public partial class AchievementsManager : Node
         if (preventAchievements)
             return;
 
-        // TODO: add an achievement for this
-        GD.Print("TODO: implement this achievement");
+        if (balance > 0.01f)
+        {
+            lock (achievementsDataLock)
+            {
+                if (statsStore.GetIntStat(IAchievementStatStore.STAT_POSITIVE_GLUCOSE_PHOTOSYNTHESIS) < 1)
+                {
+                    statsStore.SetIntStat(IAchievementStatStore.STAT_POSITIVE_GLUCOSE_PHOTOSYNTHESIS, 1);
+                }
+
+                ReportStatUpdateToRelevantAchievements([AchievementIds.TASTE_THE_SUN]);
+            }
+        }
+    }
+
+    internal void OnPlayerUsesRadiation()
+    {
+        if (preventAchievements)
+            return;
+
+        lock (achievementsDataLock)
+        {
+            if (statsStore.GetIntStat(IAchievementStatStore.STAT_CELL_EATS_RADIATION) < 1)
+            {
+                statsStore.SetIntStat(IAchievementStatStore.STAT_CELL_EATS_RADIATION, 1);
+            }
+
+            ReportStatUpdateToRelevantAchievements([AchievementIds.TASTY_RADIATION]);
+        }
+    }
+
+    internal void OnPlayerUsesChemosynthesis()
+    {
+        if (preventAchievements)
+            return;
+
+        lock (achievementsDataLock)
+        {
+            if (statsStore.GetIntStat(IAchievementStatStore.STAT_CELL_USES_CHEMOSYNTHESIS) < 1)
+            {
+                statsStore.SetIntStat(IAchievementStatStore.STAT_CELL_USES_CHEMOSYNTHESIS, 1);
+            }
+
+            ReportStatUpdateToRelevantAchievements([AchievementIds.VENTS_ARE_HOME]);
+        }
+    }
+
+    internal void OnPlayerSurvivedWithNucleus()
+    {
+        if (preventAchievements)
+            return;
+
+        lock (achievementsDataLock)
+        {
+            statsStore.IncrementIntStat(IAchievementStatStore.STAT_SURVIVED_WITH_NUCLEUS);
+
+            ReportStatUpdateToRelevantAchievements([AchievementIds.GOING_NUCLEAR]);
+        }
+    }
+
+    internal void OnEndosymbiosisCompleted()
+    {
+        if (preventAchievements)
+            return;
+
+        lock (achievementsDataLock)
+        {
+            statsStore.IncrementIntStat(IAchievementStatStore.STAT_ENDOSYMBIOSIS_COMPLETED);
+
+            ReportStatUpdateToRelevantAchievements([AchievementIds.MICRO_BORG]);
+        }
+    }
+
+    internal void OnPlayerInCellColony()
+    {
+        if (preventAchievements)
+            return;
+
+        lock (achievementsDataLock)
+        {
+            statsStore.IncrementIntStat(IAchievementStatStore.STAT_CELL_COLONY_FORMED);
+
+            ReportStatUpdateToRelevantAchievements([AchievementIds.BETTER_TOGETHER]);
+        }
+    }
+
+    internal void OnReturnToMulticellularStageFromEditor()
+    {
+        if (preventAchievements)
+            return;
+
+        lock (achievementsDataLock)
+        {
+            if (statsStore.GetIntStat(IAchievementStatStore.STAT_REACHED_MULTICELLULAR) < 1)
+            {
+                statsStore.SetIntStat(IAchievementStatStore.STAT_REACHED_MULTICELLULAR, 1);
+            }
+
+            ReportStatUpdateToRelevantAchievements([AchievementIds.BEYOND_THE_CELL]);
+        }
+    }
+
+    internal void OnReturnToMicrobeStageFromEditor()
+    {
+        if (preventAchievements)
+            return;
+
+        lock (achievementsDataLock)
+        {
+            statsStore.IncrementIntStat(IAchievementStatStore.STAT_EDITOR_USAGE);
+
+            ReportStatUpdateToRelevantAchievements([AchievementIds.THE_EDITOR]);
+        }
+    }
+
+    internal void OnHighestPlayerGeneration(int playerSpeciesGeneration)
+    {
+        if (preventAchievements)
+            return;
+
+        lock (achievementsDataLock)
+        {
+            if (statsStore.GetIntStat(IAchievementStatStore.STAT_MAX_SPECIES_GENERATION) < playerSpeciesGeneration)
+            {
+                statsStore.SetIntStat(IAchievementStatStore.STAT_MAX_SPECIES_GENERATION, playerSpeciesGeneration);
+            }
+
+            ReportStatUpdateToRelevantAchievements([AchievementIds.THRIVING]);
+        }
+    }
+
+    internal void OnPlayerDigestedObject()
+    {
+        if (preventAchievements)
+            return;
+
+        lock (achievementsDataLock)
+        {
+            statsStore.IncrementIntStat(IAchievementStatStore.STAT_ENGULFMENT_COUNT);
+
+            ReportStatUpdateToRelevantAchievements([AchievementIds.YUM]);
+        }
     }
 
     // End of events
+
+    protected override void Dispose(bool disposing)
+    {
+        if (disposing)
+        {
+            positionName.Dispose();
+        }
+
+        base.Dispose(disposing);
+    }
 
     private static void UpdateAchievementsPrevention()
     {
@@ -416,8 +617,13 @@ public partial class AchievementsManager : Node
             {
                 if (achievements[id].ProcessPotentialUnlock(statsStore))
                 {
-                    GD.Print("Unlocked new achievement: ", achievements[id].InternalName);
-                    achievementsDiskProgress.UnlockedAchievements.Add(achievements[id].InternalName);
+                    // As this may not be called on the main thread, invoke here
+                    Invoke.Instance.Perform(() => { OnAchievementUnlocked(achievements[id]); });
+                }
+                else if (achievements[id].IsAtUnlockMilestone(statsStore))
+                {
+                    // Show progress towards an achievement
+                    GD.Print("We are at a milestone towards an achievement, showing that info");
                     DisplayAchievement(achievements[id]);
                 }
             }
@@ -430,47 +636,123 @@ public partial class AchievementsManager : Node
         dirty = true;
     }
 
+    private void OnAchievementUnlocked(IAchievement achievement)
+    {
+        GD.Print("Unlocked new achievement: ", achievement.InternalName);
+
+        bool playSound = true;
+
+        lock (achievementsDataLock)
+        {
+            if (statsStore is AchievementStatStore)
+            {
+                achievementsDiskProgress.UnlockedAchievements.Add(achievement.InternalName);
+                DisplayAchievement(achievement);
+            }
+            else
+            {
+                // Steam plays its own sound, so we don't want to play our own as well
+                playSound = false;
+
+                GD.Print("Reporting to Steam about new achievement");
+
+                if (!SteamHandler.Instance.GetSteamClientForAchievements()
+                        .SetSteamAchievement(achievement.InternalName))
+                {
+                    GD.PrintErr("Failed to report to Steam about a new achievement");
+                }
+
+                // Need to save stats immediately on unlocking an achievement
+                timeSinceSave = 1000;
+                dirty = true;
+            }
+        }
+
+        if (playSound)
+            GUICommon.Instance.PlayCustomSound(achievementSound);
+    }
+
     /// <summary>
-    ///   Shows a GUI popup about an unlocked achievement
+    ///   Shows a GUI popup about an unlocked achievement or one with significant progress
     /// </summary>
     private void DisplayAchievement(IAchievement achievement)
     {
-        GD.Print("Showing a popup about a new unlocked achievement: ", achievement.InternalName);
-        achievementsToPopupQueue.Enqueue(achievement);
+        if (statsStore is AchievementStatStore)
+        {
+            GD.Print("Showing a popup about an achievement: ", achievement.InternalName);
+            achievementsToPopupQueue.Enqueue(achievement);
+        }
+        else
+        {
+            if (!achievement.GetSteamProgress(statsStore, out var current, out var max))
+            {
+                GD.PrintErr(
+                    "Achievement that wants to show progress, couldn't retrieve current Steam progress for display");
+                return;
+            }
 
-        // TODO: play an achievement unlocked sound
+            if (SteamHandler.Instance.GetSteamClientForAchievements()
+                .IndicateAchievementProgress(achievement.InternalName, current, max))
+            {
+                GD.Print("Requesting Steam show progress towards an achievement");
+            }
+            else
+            {
+                GD.PrintErr("Failed to show achievement progress with Steam popup");
+            }
+        }
     }
 
     private void PerformLoad()
     {
-        // Load achievements progress data
-        // TODO: in Steam mode need to load data from steam
-        AchievementsDiskProgress? newProgress;
+        var alreadyUnlockedCallback = (string achievement) =>
+            achievementsDiskProgress.UnlockedAchievements.Contains(achievement);
 
-        try
+        // Load achievements progress data (only in non-Steam mode)
+        if (statsStore is AchievementStatStore basicStore)
         {
-            newProgress = LoadAchievementsProgress();
+            AchievementsDiskProgress? newProgress;
+
+            try
+            {
+                newProgress = LoadAchievementsProgress();
+            }
+            catch (Exception e)
+            {
+                GD.PrintErr("Error while loading achievements data: ", e);
+
+                // TODO: if players hit this too often we might just need to have a popup warning about this and
+                // asking if the player would like to reset their achievements data or quit the game
+                GD.PrintErr("QUITTING THE GAME AS ACHIEVEMENT DATA IS NOT GOOD!");
+                Invoke.Instance.Perform(() => SceneManager.Instance.QuitDueToError());
+
+                // Unblock the main thread if it is waiting for it
+                loaded = true;
+                return;
+            }
+
+            lock (achievementsDataLock)
+            {
+                if (newProgress != null)
+                    achievementsDiskProgress = newProgress;
+
+                basicStore.Load(achievementsDiskProgress.IntStats);
+            }
         }
-        catch (Exception e)
+        else
         {
-            GD.PrintErr("Error while loading achievements data: ", e);
+            GD.Print("Reading current achievement status from Steam");
+            alreadyUnlockedCallback = achievement =>
+            {
+                if (!SteamHandler.Instance.GetSteamClientForAchievements()
+                        .GetSteamAchievement(achievement, out var achieved))
+                {
+                    GD.PrintErr("Failed to read current achievement state for: ", achievement);
+                    return false;
+                }
 
-            // TODO: if players hit this too often we might just need to have a popup warning about this and asking if
-            // the player would like to reset their achievements data or quit the game
-            GD.PrintErr("QUITTING THE GAME AS ACHIEVEMENT DATA IS NOT GOOD!");
-            Invoke.Instance.Perform(() => SceneManager.Instance.QuitDueToError());
-
-            // Unblock the main thread if it is waiting for it
-            loaded = true;
-            return;
-        }
-
-        lock (achievementsDataLock)
-        {
-            if (newProgress != null)
-                achievementsDiskProgress = newProgress;
-
-            statsStore.Load(achievementsDiskProgress.IntStats);
+                return achieved;
+            };
         }
 
         // Load the achievement configuration JSON
@@ -488,7 +770,7 @@ public partial class AchievementsManager : Node
                 foreach (var loadedAchievement in deserialized)
                 {
                     loadedAchievement.Value.OnLoaded(loadedAchievement.Key,
-                        achievementsDiskProgress.UnlockedAchievements.Contains(loadedAchievement.Key));
+                        alreadyUnlockedCallback(loadedAchievement.Key));
 
                     achievements[loadedAchievement.Value.Identifier] = loadedAchievement.Value;
                 }
@@ -530,19 +812,36 @@ public partial class AchievementsManager : Node
 
             saving = true;
 
-            // TODO: take a copy of the data (instead of locking while serializing)?
+            if (statsStore is AchievementStatStore basicStore)
+            {
+                // TODO: take a copy of the data (instead of locking while serializing)?
 
-            // Save in the background
-            TaskExecutor.Instance.AddTask(new Task(PerformDataSave));
+                // Save in the background
+                TaskExecutor.Instance.AddTask(new Task(() => PerformDataSave(basicStore)));
+            }
+            else
+            {
+                if (SteamHandler.Instance.GetSteamClientForAchievements().SaveSteamStats())
+                {
+                    GD.Print("Saving achievements to Steam");
+                }
+                else
+                {
+                    GD.PrintErr("Failed to save achievements to Steam");
+                }
+
+                saving = false;
+                timeSinceSave = 0;
+            }
         }
     }
 
-    private void PerformDataSave()
+    private void PerformDataSave(AchievementStatStore stats)
     {
         // Copy stats data for writing
         lock (achievementsDataLock)
         {
-            statsStore.Save(achievementsDiskProgress.IntStats);
+            stats.Save(achievementsDiskProgress.IntStats);
         }
 
         // TODO: make sure that the stats and achievements can't get out of sync here in saving (as we don't hold a
@@ -691,6 +990,31 @@ public partial class AchievementsManager : Node
         // Write the data buffer
         file.Store32((uint)stream.Length);
         file.StoreBuffer(diskBytes);
+    }
+
+    private void AnimateEligibilityNotice()
+    {
+        createdAchievementsNotEligibleNotice!.Visible = true;
+
+        var screenSize = achievementsGUIContainer.GetViewportRect().Size;
+
+        var size = createdAchievementsNotEligibleNotice.Size;
+
+        var offscreenPosition = new Vector2(screenSize.X - 5 - size.X, screenSize.Y + 5);
+        var targetPosition = new Vector2(screenSize.X - 5 - size.X, screenSize.Y - size.Y - 3);
+
+        createdAchievementsNotEligibleNotice.Position = offscreenPosition;
+
+        var tween = createdAchievementsNotEligibleNotice.CreateTween();
+
+        tween.SetTrans(Tween.TransitionType.Expo);
+        tween.SetEase(Tween.EaseType.InOut);
+        tween.SetPauseMode(Tween.TweenPauseMode.Process);
+
+        tween.TweenProperty(createdAchievementsNotEligibleNotice, positionName, targetPosition, 0.8f);
+        tween.TweenInterval(8);
+
+        tween.TweenProperty(createdAchievementsNotEligibleNotice, positionName, offscreenPosition, 0.8f);
     }
 
     private class AchievementsDiskProgress

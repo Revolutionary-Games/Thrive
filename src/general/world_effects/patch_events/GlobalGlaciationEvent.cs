@@ -194,10 +194,8 @@ public class GlobalGlaciationEvent : IWorldEffect
         }
 
         currentTemperature.Ambient = random.Next(0, 5);
-        currentSunlight.Ambient = 0.5f;
 
         patch.Biome.ModifyLongTermCondition(Compound.Temperature, currentTemperature);
-        patch.Biome.ModifyLongTermCondition(Compound.Sunlight, currentSunlight);
     }
 
     /// <summary>

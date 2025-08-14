@@ -42,6 +42,10 @@ public partial class AchievementsGallery : Control
 
         foreach (var achievement in AchievementsManager.Instance.GetAchievements())
         {
+            // TODO: should this show a card that just has the text "hidden" on it?
+            if (achievement.HideIfNotAchieved && !achievement.Achieved)
+                continue;
+
             var instance = cardScene.Instantiate<AchievementCard>();
 
             instance.UpdateDataFrom(achievement, AchievementsManager.Instance.GetStats());

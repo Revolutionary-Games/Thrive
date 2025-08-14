@@ -7,8 +7,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2025-08-01 16:03+0300\n"
-"PO-Revision-Date: 2025-08-01 16:04+0300\n"
+"POT-Creation-Date: 2025-08-11 11:43+0300\n"
+"PO-Revision-Date: 2025-08-13 16:35+0300\n"
 "Last-Translator: Henri Hyyryläinen <hhyyrylainen@revolutionarygamesstudio.com>\n"
 "Language-Team: English <https://translate.revolutionarygamesstudio.com/projects/thrive/thrive-game/en/>\n"
 "Language: en\n"
@@ -505,6 +505,12 @@ msgstr "Results:"
 msgid "BEST_PATCH_COLON"
 msgstr "Best Patch:"
 
+msgid "BETTER_TOGETHER"
+msgstr "Better Together"
+
+msgid "BEYOND_THE_CELL"
+msgstr "Beyond the Cell"
+
 msgid "BIG_IRON_CHUNK"
 msgstr "Big Iron Chunk"
 
@@ -612,6 +618,9 @@ msgstr "Cannot Delete Used Cell Type"
 
 msgid "CANNOT_ENGULF"
 msgstr "Cannot engulf"
+
+msgid "CANNOT_IMPROVE_PERFECTION"
+msgstr "Cannot Improve on Perfection"
 
 msgid "CANNOT_MOVE_METABALL_TO_DESCENDANT_TREE"
 msgstr "Cannot move a metaball into its tree of descendants"
@@ -1855,6 +1864,9 @@ msgstr ""
 "\n"
 "If your cell is not ready for the nucleus yet, you can use the [b]undo button[/b] to [u]revert[/u] the nucleus."
 
+msgid "EDIT_MICROBE_FIRST_TIME"
+msgstr "Edit your microbe for the first time"
+
 msgid "EFFECTIVE_VALUE"
 msgstr "Effective Value"
 
@@ -1953,6 +1965,9 @@ msgstr "Energy Sources:"
 
 msgid "ENERGY_SUMMARY_LINE"
 msgstr "Total energy gathered is {0} with individual cost of {1} resulting in unadjusted population of {2}"
+
+msgid "ENGULF_CELL_OR_CHUNK"
+msgstr "Engulf another cell or a chunk"
 
 msgid "ENGULF_NO_ATP_DAMAGE_MESSAGE"
 msgstr "Damaged by entering engulf mode with no ATP"
@@ -2300,6 +2315,9 @@ msgstr "Remove Local Data"
 msgid "FORGET_MOD_DETAILS_TOOLTIP"
 msgstr "Remove local data regarding this item. Useful if you entered the wrong ID or want to upload a new version to a different item."
 
+msgid "FORM_CELL_COLONY"
+msgstr "Form a cell colony"
+
 msgid "FORM_ERROR_MESSAGE"
 msgstr "Error: {0}"
 
@@ -2401,6 +2419,9 @@ msgstr "If your population drops to zero, you go extinct."
 msgid "GENERATE_BUTTON"
 msgstr "Generate World"
 
+msgid "GENERATE_POSITIVE_GLUCOSE_PHOTOSYNTHESIS"
+msgstr "Generate more glucose than you use through photosynthesis"
+
 msgid "GENERATIONS"
 msgstr "Generations"
 
@@ -2473,6 +2494,9 @@ msgstr "Godmode"
 
 msgid "GOD_TOOLS_TITLE"
 msgstr "God Tools"
+
+msgid "GOING_NUCLEAR"
+msgstr "Going Nuclear"
 
 msgid "GOOGLY_EYE_CELL"
 msgstr "Googly eye cell"
@@ -2575,7 +2599,7 @@ msgid "HYDROGENASE"
 msgstr "Hydrogenase"
 
 msgid "HYDROGENASE_DESCRIPTION"
-msgstr "Uses hydrogen to gain energy from [thrive:compound type=\\\"glucose\\\"][/thrive:compound]. More effective at low [thrive:compound type=\\\"oxygen\\\"][/thrive:compound] levels than metabolosomes. Many organisms in anoxic environments use this as a primary energy source."
+msgstr "Ferments [thrive:compound type=\\\"glucose\\\"][/thrive:compound] to gain energy and produces byproducts like hydrogen. More effective at low [thrive:compound type=\\\"oxygen\\\"][/thrive:compound] levels than metabolosomes. Many organisms in anoxic environments use this as a primary energy source."
 
 msgid "HYDROGENASE_PROCESSES_DESCRIPTION"
 msgstr "Turns [thrive:compound type=\\\"glucose\\\"][/thrive:compound] into [thrive:compound type=\\\"atp\\\"][/thrive:compound]."
@@ -2584,7 +2608,7 @@ msgid "HYDROGENOSOME"
 msgstr "Hydrogenosome"
 
 msgid "HYDROGENOSOME_DESCRIPTION"
-msgstr "Uses hydrogen to gain energy from [thrive:compound type=\\\"glucose\\\"][/thrive:compound]. The hydrogenosome is a membrane-bound organelle filled with proteins and enzymes. It is a prokaryote that has been assimilated for use by its eukaryotic host. More effective than hydrogenase, and more effective at low [thrive:compound type=\\\"oxygen\\\"][/thrive:compound] levels than the mitochondrion. Many organisms in anoxic environments use stacks of hydrogenosomes as a primary energy source."
+msgstr "Ferments [thrive:compound type=\\\"glucose\\\"][/thrive:compound] to gain energy and produces byproducts like hydrogen. The hydrogenosome is a membrane-bound organelle filled with proteins and enzymes. It is a prokaryote that has been assimilated for use by its eukaryotic host. More effective than hydrogenase, and more effective at low [thrive:compound type=\\\"oxygen\\\"][/thrive:compound] levels than the mitochondrion. Many organisms in anoxic environments use stacks of hydrogenosomes as a primary energy source."
 
 msgid "HYDROGENOSOME_PROCESSES_DESCRIPTION"
 msgstr "Turns [thrive:compound type=\\\"glucose\\\"][/thrive:compound] into [thrive:compound type=\\\"atp\\\"][/thrive:compound]."
@@ -3342,6 +3366,15 @@ msgstr "Macroscopic"
 msgid "MACROSCOPIC_STAGE"
 msgstr "Macroscopic Stage"
 
+msgid "MAKE_CELL_THAT_EATS_RADIATION"
+msgstr "Make a cell that gains energy from radioactivity and gain energy"
+
+msgid "MAKE_CELL_USE_CHEMOSYNTHESIS"
+msgstr " Make a cell that only uses chemosynthesis for energy"
+
+msgid "MAKE_NO_CHANGES_IN_EDITOR"
+msgstr "Make no changes to your microbe in the editor"
+
 msgid "MANUALLY_SET_TIME"
 msgstr "Manually Set Time of Day"
 
@@ -3719,6 +3752,9 @@ msgstr ""
 
 msgid "MICROBIAL_MASSACRE"
 msgstr "Microbial Massacre"
+
+msgid "MICRO_BORG"
+msgstr "Micro-Borg"
 
 msgid "MIDDLE_MOUSE"
 msgstr "Middle mouse"
@@ -4242,6 +4278,9 @@ msgstr "No events recorded"
 
 msgid "NO_FOSSIL_DIRECTORY"
 msgstr "No fossils directory found"
+
+msgid "NO_LONGER_ELIGIBLE_FOR_ACHIEVEMENTS"
+msgstr "Current game is no longer eligible for achievements"
 
 msgid "NO_MODS_ENABLED"
 msgstr "No Mods Enabled"
@@ -4840,6 +4879,15 @@ msgstr "Raw"
 
 msgid "RAW_VALUE_COLON"
 msgstr "Raw:"
+
+msgid "REACH_GENERATION_15_WITH_A_SPECIES"
+msgstr "Reach generation 15 with a single species with at least normal difficulty"
+
+msgid "REACH_GENERATION_15_WITH_A_SPECIES_PROGRESS"
+msgstr "Reach generation {0}/{1} with a single species with at least normal difficulty"
+
+msgid "REACH_MULTICELLULAR_STAGE"
+msgstr "Reach the multicellular stage"
 
 msgid "READING_SAVE_DATA"
 msgstr "Reading save data"
@@ -5677,6 +5725,9 @@ msgstr "Society Center"
 msgid "STRUCTURE_STEAM_POWERED_FACTORY"
 msgstr "Steam Powered Factory"
 
+msgid "SUCCESSFULLY_PERFORM_ENDOSYMBIOSIS"
+msgstr "Successfully perform endosymbiosis"
+
 msgid "SUCCESSFUL_KILL"
 msgstr "successful kill"
 
@@ -5697,6 +5748,9 @@ msgstr "Supporters"
 
 msgid "SURVIVAL_TITLE"
 msgstr "Survival"
+
+msgid "SURVIVE_WITH_A_NUCLEUS"
+msgstr "Place and survive with the nucleus for a generation"
 
 msgid "SWITCH_TO_FRONT_CAMERA"
 msgstr "Switch to front camera view"
@@ -5733,6 +5787,12 @@ msgstr "Take a screenshot"
 
 msgid "TARGET_TYPE_COLON"
 msgstr "Target Type:"
+
+msgid "TASTE_THE_SUN"
+msgstr "Taste the Sun"
+
+msgid "TASTY_RADIATION"
+msgstr "Tasty Radiation"
 
 msgid "TECHNOLOGY_ASCENSION"
 msgstr "Ascension"
@@ -5832,6 +5892,9 @@ msgstr "Thermosynthesis"
 msgid "THE_DISTURBANCE"
 msgstr "The Disturbance"
 
+msgid "THE_EDITOR"
+msgstr "The Editor"
+
 msgid "THE_PATCH_MAP_BUTTON"
 msgstr "The Patch Map"
 
@@ -5882,6 +5945,9 @@ msgstr "Patch Map"
 
 msgid "THRIVE_LICENSES"
 msgstr "Thrive Licenses"
+
+msgid "THRIVIN_ACHIEVEMENT"
+msgstr "Thrivin'"
 
 msgid "THYLAKOIDS"
 msgstr "Thylakoids"
@@ -6699,6 +6765,9 @@ msgstr "The vacuole will store {0} units of the selected compound"
 msgid "VALUE_WITH_UNIT"
 msgstr "{0} {1}"
 
+msgid "VENTS_ARE_HOME"
+msgstr "Vents are my Home"
+
 msgid "VERSION_COLON"
 msgstr "Version:"
 
@@ -6949,7 +7018,7 @@ msgstr ""
 "[indent]—   Has an [thrive:compound type=\"atp\"][/thrive:compound] balance of at least [b]+15[/b].[/indent]"
 
 msgid "WIKI_BINDING_AGENT_SCIENTIFIC_BACKGROUND"
-msgstr "TBA"
+msgstr "In multicellular eukaryotic organisms, individual cells are bound to one another by a variety of cell adhesion molecules (CAMs) located on the outer surfaces of their cell membranes. One major category of CAMs are transmembrane proteins (i.e. proteins that are embedded in the cell membrane and extend into both the interior and exterior of the cell) such as cadherins, which have extracellular extensions that can link up with those of cadherins belonging to other cells and thus bind their respective cells together."
 
 msgid "WIKI_BINDING_AGENT_STRATEGY"
 msgstr ""
@@ -7017,7 +7086,7 @@ msgid "WIKI_CHEMOPLAST_REQUIREMENTS"
 msgstr "A cell must have a [b][color=#3796e1][url=thriveopedia:nucleus]Nucleus[/url][/color][/b] to evolve [b]Chemoplasts[/b]."
 
 msgid "WIKI_CHEMOPLAST_SCIENTIFIC_BACKGROUND"
-msgstr "TBA"
+msgstr "While there are no real-world microbes with organelles called \"chemoplasts\", [color=#3796e1][url=https://en.wikipedia.org/wiki/Chemosynthesis]chemosynthesis[/url][/color] is a metabolic process found in many microbial taxa. Given the existence of mitochondria and chloroplasts, both of which are membrane-bound organelles which arose via endosymbiosis, it seems quite plausible that a chemoplast-like organelle could similarly evolve from a chemosynthetic microbe that became engulfed by a larger cell."
 
 msgid "WIKI_CHEMOPLAST_STRATEGY"
 msgstr ""
@@ -7038,7 +7107,7 @@ msgstr ""
 "Non-player cells meanwhile are more likely to move towards the compounds and/or species specified for their [b]Chemoreceptors[/b]."
 
 msgid "WIKI_CHEMORECEPTOR_INTRO"
-msgstr "External organelle representing a cell's ability to detect compounds in the environment. [b]Chemoreceptors[/b] can be customised to detect a specific compound, or even cells of a specific species."
+msgstr "External [color=#3796e1][url=thriveopedia:OrganellesRoot]organelle[/url][/color] representing a cell's ability to detect compounds in the environment. [b]Chemoreceptors[/b] can be customised to detect a specific compound, or even cells of a specific species."
 
 msgid "WIKI_CHEMORECEPTOR_MODIFICATIONS"
 msgstr "Modify the [b]Chemoreceptor[/b] to select the compound to search for, or alternatively the species to detect. Set the search radius, line color, and if searching for compounds, the minimum compound density to detect."
@@ -7050,7 +7119,7 @@ msgid "WIKI_CHEMORECEPTOR_REQUIREMENTS"
 msgstr "No requirements"
 
 msgid "WIKI_CHEMORECEPTOR_SCIENTIFIC_BACKGROUND"
-msgstr "TBA"
+msgstr "[color=#3796e1][url=https://en.wikipedia.org/wiki/Chemoreceptor]Chemoreceptors[/url][/color] are a class of sensory structures located on cell surfaces, usually consisting of either long helical proteins in the case of prokaryotes, or more complex cilia in the case of eukaryotes. Broadly speaking, they serve to alert the cell to the presence of chemical compounds in their environment and allow the cell to navigate toward or away from them as needed."
 
 msgid "WIKI_CHEMORECEPTOR_STRATEGY"
 msgstr ""
@@ -7086,7 +7155,14 @@ msgid "WIKI_CHEMOSYNTHESIZING_PROTEINS_REQUIREMENTS"
 msgstr "No requirements."
 
 msgid "WIKI_CHEMOSYNTHESIZING_PROTEINS_SCIENTIFIC_BACKGROUND"
-msgstr "TBA"
+msgstr ""
+"[color=#3796e1][url=https://en.wikipedia.org/wiki/Chemosynthesis]Chemosynthesis[/url][/color] is a metabolic process found in many real-world microbes, where it essentially serves as an alternative to photosynthesis. Whereas photosynthesis utilizes photons from sunlight to provide energy for chemical reactions, chemosynthesis instead uses the oxidation of inorganic compounds such as iron or hydrogen sulfide to provide energy. \n"
+"\n"
+"As an example, hydrogen sulfide chemosynthesis can be summarized by the following chemical equation:\n"
+"\n"
+"18H<sub>2</sub>S + 6CO<sub>2</sub> + 3O<sub>2</sub> → C<sub>6</sub>H<sub>12</sub>O<sub>6</sub> (carbohydrate) + 12H<sub>2</sub>O + 18S\n"
+"\n"
+"In the above reaction, hydrogen sulfide serves as a source of electrons as it reacts with carbon dioxide and oxygen, resulting in the formation of a carbohydrate molecule along with water and free sulfur atoms. Thus, while photosynthesis results in the release of oxygen gas, hydrogen sulfide chemosynthesis produces sulfur, which typically aggregates into solid globules."
 
 msgid "WIKI_CHEMOSYNTHESIZING_PROTEINS_STRATEGY"
 msgstr ""
@@ -7128,7 +7204,10 @@ msgstr ""
 "[indent]—   Contains at least [b]5[/b] [b][color=#3796e1][url=thriveopedia:chromatophore]Thylakoids[/url][/color][/b] for at least [b]7[/b] generations in a row.[/indent]"
 
 msgid "WIKI_CHLOROPLAST_SCIENTIFIC_BACKGROUND"
-msgstr "TBA"
+msgstr ""
+"[color=#3796e1][url=https://en.wikipedia.org/wiki/Chloroplast]Chloroplasts[/url][/color] are double-membrane-bound organelles found in real-world plant and algal cells. They are derived from an ancient endosymbiosis event in which a cyanobacterium was engulfed by an early eukaryotic cell; as a result of this history, they contain their own genome that is distinct from that of their host cell, much like [b]Mitochondria[/b].\n"
+"\n"
+"In addition to [b][color=#3796e1][url=thriveopedia:chromatophore]Thylakoids[/url][/color][/b], chloroplasts contain the enzyme ribulose-1,5-bisphosphate carboxylase/oxygenase (commonly abbreviated as RuBisCO), which plays a central role in photosynthesis by converting atmospheric carbon dioxide into [b]Glucose[/b] and other energy-rich molecules. RuBisCO is a very ancient enzyme, believed to have evolved around four billion years ago, and in the present day is thought to be the most abundant enzyme on Earth; despite this, however, it is a remarkably inefficient enzyme, being both relatively slow in fixing carbon dioxide and also prone to reacting with oxygen instead, a process known as photorespiration which actually reduces photosynthetic efficiency by wasting energy and depleting already-fixed carbon. RuBisCO has apparently been unable to evolve past this hurdle despite immense selective pressure to do so, and molecular biologists have encountered great difficulty in engineering RuBisCO to make it more efficient, suggesting that this limitation may be a fundamental aspect of RuBisCO's structure and activity."
 
 msgid "WIKI_CHLOROPLAST_STRATEGY"
 msgstr ""
@@ -7222,7 +7301,7 @@ msgstr ""
 "\n"
 "[b][u]ATP[/u][/b]\n"
 "\n"
-"[thrive:compound type=\"atp\"][/thrive:compound] is created primarily via [thrive:compound type=\"glucose\"][/thrive:compound] and is needed to keep your organism alive."
+"[indent]—   [thrive:compound type=\"atp\"][/thrive:compound] is created primarily via [thrive:compound type=\"glucose\"][/thrive:compound] and is needed to keep your organism alive.[/indent]"
 
 msgid "WIKI_COMPOUND_SYSTEM_DEVELOPMENT_COMPOUNDS_LIST"
 msgstr "For the full list of compounds in the Microbe Stage, look at the Compounds table on the Microbe Stage Appendices page."
@@ -7479,7 +7558,7 @@ msgstr ""
 "[indent]—   Contains [b][color=#3796e1][url=thriveopedia:rusticyanin]Rusticyanin[/url][/color][/b] for at least [b]6[/b] generations in a row.[/indent]"
 
 msgid "WIKI_FERROPLAST_SCIENTIFIC_BACKGROUND"
-msgstr "[b]Ferroplasts[/b] have not been discovered in real life, but are theorised to be entirely possible, based on the evolution of endosymbiotes (such as the [b][color=#3796e1][url=thriveopedia:mitochondrion]Mitochondrion[/url][/color][/b]) and the energy-yielding capabilities of [b][color=#3796e1][url=thriveopedia:rusticyanin]Rusticyanin[/url][/color][/b]. The actions of [b][color=#3796e1][url=thriveopedia:rusticyanin]Rusticyanin[/url][/color][/b] at the cell membrane taking place at the organelle's membrane instead."
+msgstr "[b]Ferroplasts[/b] have not been discovered in real-life organisms, but are theorised to be entirely possible, based on the evolution of endosymbiotes (such as the [b][color=#3796e1][url=thriveopedia:mitochondrion]Mitochondrion[/url][/color][/b]) and the existence of iron-oxidizing microbes such as the bacterium [i]<a rel=\"nofollow\" class=\"external text\" href=\"https://en.wikipedia.org/wiki/Acidithiobacillus_ferrooxidans\">Acidithiobacillus ferrooxidans</a>[/i] and the archaeal genus [i]<a rel=\"nofollow\" class=\"external text\" href=\"https://en.wikipedia.org/wiki/Ferroplasma\">Ferroplasma</a>[/i]. These microbes express proteins known as [b][color=#3796e1][url=thriveopedia:rusticyanin]Rusticyanins[/url][/color][/b], which oxidize ferrous iron (Fe<sup>2+</sup>) to ferric iron (Fe<sup>3+</sup>) in order to produce protons as part of an [color=#3796e1][url=https://en.wikipedia.org/wiki/Electron_transport_chain]electron transport chain[/url][/color]."
 
 msgid "WIKI_FERROPLAST_STRATEGY"
 msgstr ""
@@ -7494,7 +7573,7 @@ msgid "WIKI_FLAGELLUM_EFFECTS"
 msgstr "Each [b]Flagellum[/b] provides directional thrust in the direction opposite its orientation. They also provide partial thrust in directions near the exact opposite direction (to be precise, those for which the component of that exact opposite vector is positive). Whenever a [b]Flagellum[/b] is active, it consumes [thrive:compound type=\"atp\"][/thrive:compound]."
 
 msgid "WIKI_FLAGELLUM_INTRO"
-msgstr "Hair-like filaments on the outside of a cell which use [thrive:compound type=\"atp\"][/thrive:compound] to increase cell movement speed in one direction. Thrust is applied in the opposite direction to the outward-facing direction of the [b]Flagellum[/b]."
+msgstr "[b]Flagella[/b] are hair-like filaments on the outside of a cell which use [thrive:compound type=\"atp\"][/thrive:compound] to increase cell movement speed in one direction. Thrust is applied in the opposite direction to the outward-facing direction of the flagellum."
 
 msgid "WIKI_FLAGELLUM_MODIFICATIONS"
 msgstr "No modifications."
@@ -7510,7 +7589,12 @@ msgstr ""
 "[indent]—   Produces at least [b]+15[/b] [thrive:compound type=\"atp\"][/thrive:compound].[/indent]"
 
 msgid "WIKI_FLAGELLUM_SCIENTIFIC_BACKGROUND"
-msgstr "TBA"
+msgstr ""
+"[color=#3796e1][url=https://en.wikipedia.org/wiki/Flagellum]Flagella[/url][/color] are structures found in a wide variety of prokaryotic and eukaryotic cells, in which they are primarily used as a means of propulsion. \n"
+"\n"
+"There are significant differences between eukaryotic and prokaryotic flagella, although in both cases they are broadly whip-like filamentous structures that perform movements to propel the cell forward through a fluid environment. In the case of prokaryote flagella, this motion is rotational, with the flagellum being embedded in a bearing-like \"socket\" on the outer membrane that allows it to spin continuously in either direction, allowing the flagellum to effectively act like a helical propeller; in eukaryote cells (such as human sperm cells), flagella are much larger and more complex, and instead use an oscillatory motion, beating back and forth to generate a sinusoidal wave-like pattern that travels down the length of the structure.\n"
+"\n"
+"Bacterial flagella are notable for being one of the only known examples of full rotary motion in biological organisms, along with the enzyme complex [color=#3796e1][url=https://en.wikipedia.org/wiki/ATP_synthase]ATP synthase[/url][/color]."
 
 msgid "WIKI_FLAGELLUM_STRATEGY"
 msgstr ""
@@ -7825,6 +7909,8 @@ msgstr "Starting part, no requirements."
 
 msgid "WIKI_HYDROGENASE_SCIENTIFIC_BACKGROUND"
 msgstr ""
+"[color=#3796e1][url=https://en.wikipedia.org/wiki/Hydrogenase]Hydrogenases[/url][/color] are a class of enzyme that catalyze the reversible oxidation of molecular hydrogen (H<sub>2</sub>). This process is involved in pyruvate fermentation, an anaerobic process which produces ATP (contrast with cellular respiration, which requires oxygen and is thus [i]aerobic[/i]).\n"
+"\n"
 "Clostridial fermentation is present in Clostridia, a diverse and loosely defined group of prokaryotes defined by the metabolic process. It is often used in biochemical, food, and biofuel production, and is used in wastewater treatment and soil rejuvenation efforts. Though clostridial fermentation looks different across different groups of bacteria, the general formula looks like: \n"
 "\n"
 "C6​H12​O6​→2C2​H5​OH+2CO2​+2H2​\n"
@@ -7873,7 +7959,7 @@ msgid "WIKI_HYDROGENOSOME_STRATEGY"
 msgstr ""
 "In environments with plentiful [thrive:compound type=\"glucose\"][/thrive:compound], [b]Hydrogenosomes[/b] provide a steady stream of energy. Be aware though that [thrive:compound type=\"glucose\"][/thrive:compound] concentrations decrease as the game progresses, so we recommend adding additional energy sources if possible.\n"
 "\n"
-"We also recommend replacing [b]Hydrogenases[/b] with [b]Hydrogenosomes[/b] after evolving a [b][color=#3796e1][url=thriveopedia:nucleus]Nucleus[/url][/color][/b] for far greater efficiency."
+"We also recommend replacing [b][color=#3796e1][url=thriveopedia:hydrogenase]Hydrogenases[/url][/color][/b] with [b]Hydrogenosomes[/b] after evolving a [b][color=#3796e1][url=thriveopedia:nucleus]Nucleus[/url][/color][/b] for far greater efficiency."
 
 msgid "WIKI_HYDROGENOSOME_UPGRADES"
 msgstr "No upgrades."
@@ -7946,7 +8032,7 @@ msgstr ""
 "[indent]—   Has digested at least [b]10[/b] cells throughout the game so far.[/indent]"
 
 msgid "WIKI_LYSOSOME_SCIENTIFIC_BACKGROUND"
-msgstr "TBA"
+msgstr "[color=#3796e1][url=https://en.wikipedia.org/wiki/Lysosome]Lysosomes[/url][/color] are found in nearly all real-world animal cells, where their primary function is to break down proteins, lipids and polysaccharides into their constituent parts. They can receive material from outside of a cell via a process called endocytosis, as well as from inside the cell via a process called autophagy."
 
 msgid "WIKI_LYSOSOME_STRATEGY"
 msgstr ""
@@ -8004,7 +8090,7 @@ msgid "WIKI_MELANOSOME_EFFECTS"
 msgstr "No effects."
 
 msgid "WIKI_MELANOSOME_INTRO"
-msgstr "[b]Melanosomes[/b] perform [b]Radiosynthesis[/b], which captures energy from radiation by absorbing it in melanin."
+msgstr "[b]Melanosomes[/b] are [color=#3796e1][url=thriveopedia:OrganellesRoot]organelles[/url][/color] that perform [b]Radiosynthesis[/b], which captures energy from radiation by absorbing it using melanin."
 
 msgid "WIKI_MELANOSOME_MODIFICATIONS"
 msgstr "No modifications."
@@ -8013,13 +8099,16 @@ msgid "WIKI_MELANOSOME_PROCESSES"
 msgstr ""
 "[b]Radiosynthesis[/b]: [b]Radiation[/b] File:RadiationIcon.png → [thrive:compound type=\"atp\"][/thrive:compound]\n"
 "\n"
-"A method of energy production by utilising radioactive materials."
+"A method of energy production that utilizes radioactive materials."
 
 msgid "WIKI_MELANOSOME_REQUIREMENTS"
-msgstr "Need to receive radiation damage by being close to a radioactive chunk"
+msgstr "Need to receive radiation damage by being close to a radioactive chunk."
 
 msgid "WIKI_MELANOSOME_SCIENTIFIC_BACKGROUND"
-msgstr "TBA"
+msgstr ""
+"[color=#3796e1][url=https://en.wikipedia.org/wiki/Melanosome]Melanosomes[/url][/color] are organelles found in some real-world animal cells, where they primarily serve to absorb light using the pigment melanin. \n"
+"\n"
+"Melanin has also been found in apparently radiotrophic fungi discovered at the decommissioned Chernobyl Nuclear Power Plant facility, as well as fungi living at high altitudes where they experience increased exposure to ultraviolet light. Subsequent research has suggested that melanin may allow these organisms to perform radiosynthesis by capturing energy from ionizing radiation."
 
 msgid "WIKI_MELANOSOME_STRATEGY"
 msgstr "Radioactive rocks are rare but abundant in energy once found. The recommended playstyle with radiosynthesis is to have plenty of storage or other ways to survive while looking for the next radioactive rock. Once found there's temporarily an abundance of energy for reproduction etc."
@@ -8316,7 +8405,7 @@ msgstr ""
 "[indent]—   Is in a patch with at most [b]13[/b] [thrive:compound type=\"ammonia\"][/thrive:compound].[/indent]"
 
 msgid "WIKI_NITROGENASE_SCIENTIFIC_BACKGROUND"
-msgstr "TBA"
+msgstr "[color=#3796e1][url=https://en.wikipedia.org/wiki/Nitrogenase]Nitrogenases[/url][/color] are enzymes found in certain real-world bacteria which fix nitrogen gas (N<sub>2</sub>) into ammonia (NH<sub>3</sub>). These nitrogen-fixing microbes play an essential role in supporting all other life on Earth, as nitrogen is an essential component of DNA and proteins, but cannot be easily utilized by most organisms in its gaseous form."
 
 msgid "WIKI_NITROGENASE_STRATEGY"
 msgstr ""
@@ -8370,19 +8459,19 @@ msgstr "None, This is the last stage"
 
 msgid "WIKI_NUCLEUS_EFFECTS"
 msgstr ""
-"Once a cell evolves a [b]Nucleus[/b], it gains the ability to evolve many other organelles that were previously locked.\n"
+"Once a cell evolves a [b]Nucleus[/b], it gains the ability to evolve many other [b]organelles[/b] that were previously locked.\n"
 "\n"
-"Cells with a [b]Nucleus[/b] take [b]50%[/b] less damage from any source except starvation from having no [thrive:compound type=\"atp\"][/thrive:compound].\n"
+"Cells with a [b]Nucleus[/b] take [b]50%[/b] less damage from any source except [i]starvation[/i] (damage due to not having any [thrive:compound type=\"atp\"][/thrive:compound]).\n"
 "\n"
 "A cell can only have at most one [b]Nucleus[/b] and it cannot be removed after it evolves."
 
 msgid "WIKI_NUCLEUS_INTRO"
 msgstr ""
-"The largest organelle and the defining feature of eukaryotic cells. Allows cells to evolve advanced, membrane-bound organelles with more powerful effects, such as [b][color=#3796e1][url=thriveopedia:mitochondrion]Mitochondria[/url][/color][/b] and [b][color=#3796e1][url=thriveopedia:lysosome]Lysosomes[/url][/color][/b].\n"
+"The largest [b]organelle[/b] and the defining feature of [i]eukaryotic[/i] cells. Allows cells to evolve advanced, membrane-bound [b]organelles[/b] with more powerful effects, such as [b][color=#3796e1][url=thriveopedia:mitochondrion]Mitochondria[/url][/color][/b] and [b][color=#3796e1][url=thriveopedia:lysosome]Lysosomes[/url][/color][/b].\n"
 "\n"
 "Costs a lot of [thrive:compound type=\"atp\"][/thrive:compound] to maintain due to its enormous size and osmoregulation cost. Once a cell obtains a nucleus, it cannot be removed in future generations.\n"
 "\n"
-"Also reduces damage taken from any source other than starvation by [b]50%[/b]."
+"Also reduces damage taken from any source other than [i]starvation[/i] by [b]50%[/b]."
 
 msgid "WIKI_NUCLEUS_MODIFICATIONS"
 msgstr "No modifications."
@@ -8394,15 +8483,18 @@ msgid "WIKI_NUCLEUS_REQUIREMENTS"
 msgstr "No requirements, except for a lot of extra space to fit it in."
 
 msgid "WIKI_NUCLEUS_SCIENTIFIC_BACKGROUND"
-msgstr "TBA"
+msgstr ""
+"[color=#3796e1][url=https://en.wikipedia.org/wiki/Cell_nucleus]Nuclei[/url][/color] are found in virtualy all real-world eukaryotic cells, where they perform a critical role in protecting the host organism's genetic material and regulating gene expression. \n"
+"\n"
+"It is currently unclear how nuclei first evolved; some researchers have suggested that they might have been the product of endosymbiosis, perhaps having originated as an archaeal cell that invaded a bacterial cell. Others have proposed that they might have evolved from viruses, or perhaps simply as a result of a single cell forming a second membrane around itself, with the original cell becoming the nucleus."
 
 msgid "WIKI_NUCLEUS_STRATEGY"
 msgstr ""
 "Think very hard before adding a [b]Nucleus[/b] to your cell. They are expensive to maintain and slow your cell down considerably, so ensure you have a significant positive [thrive:compound type=\"atp\"][/thrive:compound] balance and can afford a more sedate lifestyle for a generation or two. We recommend adding [b][color=#3796e1][url=thriveopedia:cilia]Cilia[/url][/color][/b] and [b][color=#3796e1][url=thriveopedia:flagellum]Flagella[/url][/color][/b] in subsequent generations to recover some agility.\n"
 "\n"
-"The benefits though are obvious. Eukaryotes (cells with a [b]Nucleus[/b]) gain access to more versatile future upgrades than prokaryotes (cells without one).\n"
+"The benefits though are obvious. [i]Eukaryotes[/i] (cells with a [b]Nucleus[/b]) gain access to more versatile future upgrades than prokaryotes (cells without one).\n"
 "\n"
-"Organelles unlocked by the [b]Nucleus[/b] offer powerful new abilities, such as the [b][color=#3796e1][url=thriveopedia:signalingAgent]Signaling Agent[/url][/color][/b] and [b][color=#3796e1][url=thriveopedia:bindingAgent]Binding Agent[/url][/color][/b], or significant upgrades to existing abilities, such as [b][color=#3796e1][url=thriveopedia:mitochondrion]Mitochondria[/url][/color][/b] and [b][color=#3796e1][url=thriveopedia:thermoplast]Thermoplasts[/url][/color][/b]. We recommend replacing prokaryotic organelles with their more efficient eukaryotic counterparts after adding a [b]Nucleus[/b] to improve [thrive:compound type=\"atp\"][/thrive:compound] production and better sustain your cell."
+"[b]Organelles[/b] unlocked by the [b]Nucleus[/b] offer powerful new abilities, such as the [b][color=#3796e1][url=thriveopedia:signalingAgent]Signaling Agent[/url][/color][/b] and [b][color=#3796e1][url=thriveopedia:bindingAgent]Binding Agent[/url][/color][/b], or significant upgrades to existing abilities, such as [b][color=#3796e1][url=thriveopedia:mitochondrion]Mitochondria[/url][/color][/b] and [b][color=#3796e1][url=thriveopedia:thermoplast]Thermoplasts[/url][/color][/b]. We recommend replacing [i]prokaryotic[/i] [b]organelles[/b] with their more efficient [i]eukaryotic[/i] counterparts after adding a [b]Nucleus[/b] to improve [thrive:compound type=\"atp\"][/thrive:compound] production and better sustain your cell."
 
 msgid "WIKI_NUCLEUS_UPGRADES"
 msgstr "No upgrades."
@@ -8643,9 +8735,13 @@ msgstr ""
 
 msgid "WIKI_PERFORATOR_PILUS_SCIENTIFIC_BACKGROUND"
 msgstr ""
-"Pili (singular: pilus) are found on the surface of many microorganisms and resemble fine hairs. Tens to hundreds of pili may be present on the surface of a microorganism and serve one of several purposes, including roles in predation. Pathogenic microorganisms use pili for virulence either to attach and bind to host tissues, or to invade past the outer membrane to gain access to the cytoplasm. Many similar pili exist but are not evolutionarily related and have resulted from convergent evolution. A single organism may have the ability to express several types of pili and those that are present on the surface are constantly being changed and replaced.\n"
+"[color=#3796e1][url=https://en.wikipedia.org/wiki/Pilus]Pili[/url][/color] (singular [i]pilus[/i]; also known as [i]fimbriae[/i]) are rigid, hollow hair-like structures found on the surface of many real-world microbes. \n"
 "\n"
-"Read more on this organelle's [color=#3796e1][url=https://en.wikipedia.org/wiki/Pilus]Wikipedia page[/url][/color]."
+"Tens to hundreds of pili may be present on the surface of a microbial cell, where they serve various purposes including roles in predation. Pathogenic microbes use pili for virulence, either to attach and bind to host tissues, or to penetrate the outer membrane of a host cell to gain access to the cytoplasm. \n"
+"\n"
+"Pili also can play a role in facilitating [color=#3796e1][url=https://en.wikipedia.org/wiki/Horizontal_gene_transfer]horizontal gene transfer[/url][/color], in which two microbes link together via their pili and use them to exchange small circular pieces of DNA known as plasmids in a process termed [b]Conjugation[/b]. This is an extremely common phenomenon in prokaryotes of all kinds, and it can frequently play a major role in microbial evolution; one of the more commonly-encountered (and problematic) manifestations of this is the spread of [color=#3796e1][url=https://en.wikipedia.org/wiki/Antimicrobial_resistance]antibiotic resistance[/url][/color] among different strains of pathogenic bacteria, wherein a bacterium which has evolved a resistance to an antibiotic will pass along genes conferring that resistance to another bacterium, thus rendering the second bacterium immune to that particular antibiotic as well.\n"
+"\n"
+"Many types of pili exist, but they are not all evolutionarily related and in many cases have resulted from convergent evolution. A single organism may have the ability to express several types of pili and those that are present on the surface are constantly being changed and replaced."
 
 msgid "WIKI_PERFORATOR_PILUS_STRATEGY"
 msgstr ""
@@ -8746,7 +8842,7 @@ msgstr "No requirements."
 
 msgid "WIKI_RUSTICYANIN_SCIENTIFIC_BACKGROUND"
 msgstr ""
-"[b]Rusticyanin[/b] can be found in the membranes of some bacteria and archaea. It oxidises [b]Iron[/b] in contatct with the membrane, transferring electrons from it. The charge created on the membrane surface is then used to draw positive [b]Hydrogen[/b] ions into the cell. The extra electrons and ions help to convert spent [b]ADP[/b] molecules into new [b]ATP[/b] molecules and then reset the various proteins involved, so the process can start again.\n"
+"[b]Rusticyanins[/b] are proteins that can be found in the membranes of some bacteria and archaea. They oxidize [b]Iron[/b] in contact with the membrane, transferring electrons from it as part of an electron transport chain. The charge created on the membrane surface is then used to draw positive [b]Hydrogen[/b] ions into the cell. The extra electrons and ions help to convert spent [b]ADP[/b] molecules into new [b]ATP[/b] molecules and then reset the various proteins involved, so the process can start again.\n"
 "\n"
 "[color=#3796e1][url=https://en.wikipedia.org/wiki/Rusticyanin]https://en.wikipedia.org/wiki/Rusticyanin[/url][/color]"
 
@@ -8784,7 +8880,10 @@ msgid "WIKI_SIGNALING_AGENT_REQUIREMENTS"
 msgstr "A cell must have a [b][color=#3796e1][url=thriveopedia:nucleus]Nucleus[/url][/color][/b] to evolve [b]Signaling Agents[/b]."
 
 msgid "WIKI_SIGNALING_AGENT_SCIENTIFIC_BACKGROUND"
-msgstr "TBA"
+msgstr ""
+"Virtually all cells, both prokaryotic and eukaryotic, whether they are free-living unicellular organisms or make up part of a greater multicellular organism, possess mechanisms which allow them to communicate with other cells via chemical signals. Signaling molecules may be secreted by cells into the surrounding environment, where they will travel via passive diffusion until they reach a compatible receptor protein on another cell's surface, which will in turn relay information to other parts of the cell.\n"
+"\n"
+"One prominent example of cell-to-cell signaling in bacteria and other prokaryotes is [color=#3796e1][url=https://en.wikipedia.org/wiki/Quorum_sensing]quorum sensing[/url][/color], in which bacteria emit chemical signals that signal other bacteria to express certain genes that are most beneficial when the overall density of bacterial cells in a given area is high; as the bacterial population increases, the concentration of signaling molecules increases, triggering the bacteria to express the relevant genes."
 
 msgid "WIKI_SIGNALING_AGENT_STRATEGY"
 msgstr ""
@@ -8820,7 +8919,7 @@ msgid "WIKI_SLIME_JET_REQUIREMENTS"
 msgstr "No requirements."
 
 msgid "WIKI_SLIME_JET_SCIENTIFIC_BACKGROUND"
-msgstr "TBA"
+msgstr "Bacteria and other microbes may produce jets of polysaccharide \"slime\" as one of several forms of [color=#3796e1][url=https://en.wikipedia.org/wiki/Gliding_motility]gliding motility[/url][/color], pushing the cell in the opposite direction of the jet and leaving a trail of [b]Mucilage[/b] behind."
 
 msgid "WIKI_SLIME_JET_STRATEGY"
 msgstr ""
@@ -8987,11 +9086,9 @@ msgstr ""
 
 msgid "WIKI_THERMOSYNTHASE_SCIENTIFIC_BACKGROUND"
 msgstr ""
-"Thermosynthesis was first proposed by Anthonie Muller in a 1983 paper \"Thermoelectric energy conversion could be an energy source of living organisms\", in Physics Letters A, vol. 96, Issue 6, p. 319-321\n"
+"[b]Thermosynthase[/b] is a fictional enzyme, but the process of [color=#3796e1][url=https://en.wikipedia.org/wiki/Thermosynthesis]thermosynthesis[/url][/color], while theoretical, is generally regarded as biologically plausible.\n"
 "\n"
-"Muller even suggested thermosynthesis could have been a precursor to the earliest (sulfur-based) photosynthesis. In A Search For Thermosynthesis: Starvation Survival In Thermally Cycled Bacteria. \n"
-"\n"
-"[color=#3796e1][url=https://en.wikipedia.org/wiki/Thermosynthesis]Thermosynthesis on Wikipedia[/url][/color]"
+"Thermosynthesis was first proposed by Anthonie Muller in a 1983 paper \"Thermoelectric energy conversion could be an energy source of living organisms\" (Physics Letters A, vol. 96, Issue 6, p. 319-321). Muller even suggested that thermosynthesis could have been a precursor to the earliest (sulfur-based) photosynthesis (see link: A Search For Thermosynthesis: Starvation Survival In Thermally Cycled Bacteria)."
 
 msgid "WIKI_THERMOSYNTHASE_STRATEGY"
 msgstr ""
@@ -9029,7 +9126,7 @@ msgstr "No special effects."
 
 msgid "WIKI_THYLAKOIDS_INTRO"
 msgstr ""
-"Clusters of proteins and photosensitive green pigments. The pigments use energy from [thrive:compound type=\"sunlight\"][/thrive:compound] to produce [thrive:compound type=\"glucose\"][/thrive:compound] from water and gaseous [thrive:compound type=\"carbondioxide\"][/thrive:compound] in a process called [b]Chromatophore Photosynthesis[/b]. Since the rate of [thrive:compound type=\"glucose\"][/thrive:compound] production scales with intensity of [thrive:compound type=\"sunlight\"][/thrive:compound], [b]Thylakoids[/b] are only effective in patches near the surface.\n"
+"[b]Thylakoids[/b] are [color=#3796e1][url=thriveopedia:OrganellesRoot]organelles[/url][/color] containing proteins and green pigments which use energy from [thrive:compound type=\"sunlight\"][/thrive:compound] to produce [thrive:compound type=\"glucose\"][/thrive:compound] from water and gaseous [thrive:compound type=\"carbondioxide\"][/thrive:compound] in a process called [b]Chromatophore Photosynthesis[/b]. Since the rate of [thrive:compound type=\"glucose\"][/thrive:compound] production scales with intensity of [thrive:compound type=\"sunlight\"][/thrive:compound], [b]Thylakoids[/b] are only effective in patches near the surface.\n"
 "\n"
 "Prokaryotic form of the [b][color=#3796e1][url=thriveopedia:chloroplast]Chloroplast[/url][/color][/b], which performs the full-strength version of [b]Photosynthesis[/b]."
 
@@ -9053,7 +9150,10 @@ msgstr ""
 "[indent]—   Is in a patch with at least [b]20%[/b] [thrive:compound type=\"sunlight\"][/thrive:compound].[/indent]"
 
 msgid "WIKI_THYLAKOIDS_SCIENTIFIC_BACKGROUND"
-msgstr "TBA"
+msgstr ""
+"[color=#3796e1][url=https://en.wikipedia.org/wiki/Thylakoid]Thylakoids[/url][/color] are membrane-bound organelles found in real-world cyanobacteria and chloroplasts. They are typically disk-shaped and occur in \"stacks\" known as [i]grana[/i] (singular [i]granum[/i]). \n"
+"\n"
+"Thylakoids contain at least 335 different types of protein, with around 42% of these being involved in photosynthesis. Three key protein complexes within thylakoids are photosystems I and II (absorbs light and uses the energy to catalyze chemical reactions as part of the thylakoid electron transport chain), the cytochrome b6f complex (catalyzes the transfer of electrons from plastoquinol to plastocyanin as part of the thylakoid electron transport chain), and ATP synthase (generates ATP using a proton gradient across a membrane)."
 
 msgid "WIKI_THYLAKOIDS_STRATEGY"
 msgstr ""
@@ -9270,6 +9370,9 @@ msgstr ""
 
 msgid "YOU_CAN_SUPPORT_THRIVE_ON_PATREON"
 msgstr "You can support the future development of Thrive on Patreon."
+
+msgid "YUM_EXCLAMATION"
+msgstr "Yum!"
 
 msgid "ZOOM_IN"
 msgstr "Zoom in"
