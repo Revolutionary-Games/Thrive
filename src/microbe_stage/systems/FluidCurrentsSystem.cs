@@ -1,6 +1,7 @@
 ﻿namespace Systems;
 
 using System;
+using System.Runtime.CompilerServices;
 using Components;
 using DefaultEcs;
 using DefaultEcs.System;
@@ -156,6 +157,7 @@ public sealed class FluidCurrentsSystem : AEntitySetSystem<float>
     /// <summary>
     ///   Return image pixel's red and green values
     /// </summary>
+    [MethodImpl(MethodImplOptions.AggressiveInlining)]
     private Vector2 GetPixel(float x, float y, Image image)
     {
         var color = image.GetPixel(((int)x).PositiveModulo(noiseWidth),
