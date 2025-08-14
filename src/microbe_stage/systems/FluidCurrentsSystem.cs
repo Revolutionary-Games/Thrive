@@ -103,9 +103,13 @@ public sealed class FluidCurrentsSystem : AEntitySetSystem<float>
         {
             currentsNoise1 = currentsNoise1Texture.GetImage();
             currentsNoise2 = currentsNoise2Texture.GetImage();
-            noiseWidth = currentsNoise1.GetWidth();
-            noiseHeight = currentsNoise1.GetHeight();
-            imagesInitialized = true;
+
+            if (currentsNoise1 != null && currentsNoise2 != null)
+            {
+                noiseWidth = currentsNoise1.GetWidth();
+                noiseHeight = currentsNoise1.GetHeight();
+                imagesInitialized = true;
+            }
         }
 
         currentsTimePassed += delta;
