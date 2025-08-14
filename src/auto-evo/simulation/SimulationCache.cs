@@ -536,6 +536,11 @@ public class SimulationCache
 
         var result = MicrobeEnvironmentalToleranceCalculations.ResolveToleranceValues(tolerances);
 
+        if (!species.IsBacteria)
+        {
+            result.OsmoregulationModifier *= 0.2f;
+        }
+
         cachedResolvedTolerances.Add(key, result);
         return result;
     }
