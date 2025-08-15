@@ -25,6 +25,8 @@ public class Settings
     /// </summary>
     private static readonly Settings SingletonInstance = InitializeGlobalSettings();
 
+    private static int oldDisplaySelectionIndex = -1;
+
     static Settings()
     {
     }
@@ -121,6 +123,12 @@ public class Settings
     /// </summary>
     [JsonProperty]
     public SettingValue<float> RenderScale { get; private set; } = new(1.0f);
+
+    /// <summary>
+    /// Selected window index for the game window.
+    /// </summary>
+    [JsonProperty]
+    public SettingValue<int> SelectedDisplayIndex { get; set; } = new(DisplayServer.WindowGetCurrentScreen());
 
     /// <summary>
     ///   Upscaling method to use when the render scale is less than 1
@@ -1026,6 +1034,32 @@ public class Settings
     /// </summary>
     public void ApplyWindowSettings()
     {
+        var screenId = -1;
+        bool isOldSelectionDifferent = false;
+        if (OperatingSystem.IsWindows())
+        {
+            var currentScreenId = DisplayServer.WindowGetCurrentScreen();
+            if (oldDisplaySelectionIndex == -1)
+            {
+                // If the old selection index is -1, then we have never set it before, so we set it to the current screen
+                oldDisplaySelectionIndex = currentScreenId;
+            }
+
+            screenId = SelectedDisplayIndex.Value;
+            isOldSelectionDifferent = screenId != currentScreenId && screenId != oldDisplaySelectionIndex;
+            if (isOldSelectionDifferent)
+            {
+                DisplayServer.WindowSetCurrentScreen(screenId);
+            }
+            else
+            {
+                // Game might have opened in another screen and moved to the current screen,
+                // so we need to update the old selection index to the current screen id
+                oldDisplaySelectionIndex = currentScreenId;
+                isOldSelectionDifferent = screenId == oldDisplaySelectionIndex;
+            }
+        }
+
         var mode = DisplayServer.WindowGetMode();
 
         // Treat maximized and windowed as the same thing to not reset maximized status after the user has set it
@@ -1059,10 +1093,22 @@ public class Settings
                 break;
         }
 
-        if (mode != wantedMode)
+        var windowModeChanged = mode != wantedMode;
+        if (windowModeChanged)
         {
             GD.Print($"Switching window mode from {mode} to {wantedMode}");
             DisplayServer.WindowSetMode(wantedMode);
+        }
+
+        // Center the window if it is in Windowed mode and the screen or window mode has changed
+        if (screenId > -1 && (isOldSelectionDifferent || windowModeChanged) && wantedMode == DisplayServer.WindowMode.Windowed)
+        {
+            var size = DisplayServer.ScreenGetSize(screenId);
+            var position = DisplayServer.ScreenGetPosition(screenId);
+            var windowSize = DisplayServer.WindowGetSize();
+            var centeredPos = position + (size - windowSize) / 2;
+            DisplayServer.WindowSetPosition(centeredPos, 0);
+            oldDisplaySelectionIndex = screenId;
         }
 
         // TODO: switch the setting to allow specifying all of the 4 possible values
