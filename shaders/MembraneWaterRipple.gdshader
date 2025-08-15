@@ -245,13 +245,13 @@ float CalculateIntensity(vec2 position, float displacement)
     // No movement data = no visibility
     if (PastPositionsCount <= 0 || StillnessFactor >= 0.98)
         return 0.0;
-    
+
     vec2 currentPos = PastPositions[0];
     float distFromCenter = length(position - currentPos);
-    
+
     // Get displacement intensity value
     float displacementIntensity = abs(displacement);
-    
+
     // Calculate distance from the movement path
     float minDistToPath = 999999.0;
     for (int i = 0; i < PastPositionsCount - 1; i++) {
@@ -259,7 +259,7 @@ float CalculateIntensity(vec2 position, float displacement)
         vec2 pathEnd = PastPositions[i + 1];
         vec2 pathVec = pathEnd - pathStart;
         float pathLength = length(pathVec);
-        
+
         if (pathLength > 0.001) {
             vec2 pathDir = pathVec / pathLength;
             vec2 toPoint = position - pathStart;
@@ -269,15 +269,15 @@ float CalculateIntensity(vec2 position, float displacement)
             minDistToPath = min(minDistToPath, distToPath);
         }
     }
-    
+
     // Create a visibility mask based on proximity
     float pathProximity = exp(-minDistToPath * 0.5);
-    
+
     // Combine factors with intensity and proximity and stillness
     float intensity = displacementIntensity * 10.0;
     intensity *= pathProximity;
     intensity *= (1.0 - StillnessFactor);
-    
+
     // Apply distance falloff
     float scaleFactor = max(1.0, MembraneRadius / 5.0);
     float maxDist = 8.0 * scaleFactor;
@@ -285,10 +285,10 @@ float CalculateIntensity(vec2 position, float displacement)
         float fade = 1.0 - (distFromCenter - maxDist * 0.7) / (maxDist * 0.3);
         intensity *= clamp(fade, 0.0, 1.0);
     }
-    
+
     // Apply global alpha
     intensity *= GlobalAlpha;
-    
+
     return intensity;
 }
 
@@ -313,7 +313,7 @@ void vertex()
 
         // Store displacement for fragment shader
         vertexDisplacement = displacement;
-        
+
         // Calculate and store intensity
         rippleIntensity = CalculateIntensity(pos, displacement);
 
@@ -336,7 +336,8 @@ void vertex()
             NORMAL = gradientNormal;
         }
     }
-    else {
+    else
+    {
         rippleIntensity = 0.0;
         vertexDisplacement = 0.0;
     }
@@ -346,17 +347,17 @@ void fragment()
 {
     // Threshold scales with global alpha to maintain smooth transitions
     float rippleThreshold = 0.01 * max(0.1, GlobalAlpha);
-    
+
     if (rippleIntensity < rippleThreshold) {
         // Completely discard pixels with no ripple activity
         discard;
     }
-    
+
     // Early discard if global alpha is too low
     if (GlobalAlpha < 0.001) {
         discard;
     }
-    
+
     // Calculate lighting parameters
     float nDotL = dot(NORMAL, normalize(vec3(0.4, 0.8, 0.3)));
     float viewDotNormal = max(0.0, dot(normalize(VIEW), NORMAL));
@@ -368,19 +369,19 @@ void fragment()
     ALBEDO = vec3(0.0, 0.0, 0.0) + vec3(enhancedHighlight) + vec3(0.8, 0.9, 1.0) * enhancedFresnel;
     SPECULAR = 0.5;
     ROUGHNESS = 0.2;
-    
+
     // Calculate alpha based on ripple intensity
     float fadeMultiplier = pow(1.0 - StillnessFactor, 1.5);
-    
+
     // Use ripple intensity to modulate alpha
     float baseAlpha = WaterColor.a * fadeMultiplier;
-    
+
     // Apply non-linear curve to intensity
     float intensityCurve = pow(clamp(rippleIntensity, 0.0, 1.0), 0.5);
-    
+
     // Final alpha is modulated by both local activity and fade-in/out
     ALPHA = baseAlpha * intensityCurve;
-    
+
     // Additional alpha clipping for very low values
     if (ALPHA < 0.002) {
         discard;
