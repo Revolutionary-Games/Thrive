@@ -101,22 +101,11 @@ public sealed class FluidCurrentsSystem : AEntitySetSystem<float>
 
         if (!imagesInitialized)
         {
-            var newCurrentsNoise1 = currentsNoise1Texture.GetImage();
-            var newCurrentsNoise2 = currentsNoise2Texture.GetImage();
-
-            noiseWidth = newCurrentsNoise1.GetWidth();
-            noiseHeight = newCurrentsNoise2.GetHeight();
+            currentsNoise1 = currentsNoise1Texture.GetImage();
+            currentsNoise2 = currentsNoise2Texture.GetImage();
+            noiseWidth = currentsNoise1.GetWidth();
+            noiseHeight = currentsNoise2.GetHeight();
             imagesInitialized = true;
-
-            if (newCurrentsNoise1 == null || newCurrentsNoise2 == null)
-            {
-                GD.PrintErr("Current noise image created from texture is null");
-            }
-            else
-            {
-                currentsNoise1 = newCurrentsNoise1;
-                currentsNoise2 = newCurrentsNoise2;
-            }
         }
 
         currentsTimePassed += delta;
