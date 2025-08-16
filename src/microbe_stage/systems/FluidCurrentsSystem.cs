@@ -104,11 +104,13 @@ public sealed class FluidCurrentsSystem : AEntitySetSystem<float>
             currentsNoise1 = currentsNoise1Texture.GetImage();
             currentsNoise2 = currentsNoise2Texture.GetImage();
 
-            if (currentsNoise1 != null && currentsNoise2 != null)
+            noiseWidth = currentsNoise1.GetWidth();
+            noiseHeight = currentsNoise1.GetHeight();
+            imagesInitialized = true;
+
+            if (currentsNoise1 == null || currentsNoise2 == null)
             {
-                noiseWidth = currentsNoise1.GetWidth();
-                noiseHeight = currentsNoise1.GetHeight();
-                imagesInitialized = true;
+                GD.Print("Current noise image created from texture is null");
             }
         }
 
