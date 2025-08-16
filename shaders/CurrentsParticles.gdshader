@@ -7,24 +7,17 @@ uniform sampler2D alphaCurve : repeat_disable;
 
 uniform float gameTime;
 
-uniform sampler3D noiseDisturbancesX;
-uniform sampler3D noiseDisturbancesY;
-
-uniform sampler3D noiseCurrentsX;
-uniform sampler3D noiseCurrentsY;
+uniform sampler2D noiseCurrents1;
+uniform sampler2D noiseCurrents2;
 
 uniform float speed;
 uniform float chaoticness;
-uniform float scale;
+uniform float inverseScale;
 
 uniform float brightness;
 
 // The following constants should be the same as in FluidCurrentsSystem.cs
-const float disturbanceTimescale = 1.0f;
-const float currentsTimescale = 1.0f / 500.0f;
-const float currentsStretchingMultiplier = 1.0f / 10.0f;
-const float disturbanceToCurrentsRatio = 0.15f;
-const float minCurrentIntensity = 0.25f;
+const float currentsTimescale = 0.25f;
 const float positionScaling = 0.9f;
 
 // Generates a random float and modifies the seed
@@ -66,11 +59,12 @@ void start() {
     TRANSFORM[0].xyz *= visibleScale;
     TRANSFORM[1].xyz *= visibleScale;
     TRANSFORM[2].xyz *= visibleScale;
+    CUSTOM.w = RandFromSeed(altSeed) * 0.2f + 0.8f;
 }
 
 void process() {
     CUSTOM.y += DELTA;
-    float lifetimePercent = CUSTOM.y / LIFETIME;
+    float lifetimePercent = CUSTOM.y / (LIFETIME - 7.0f);
     if (CUSTOM.y > LIFETIME) {
         ACTIVE = false;
     }
@@ -78,29 +72,19 @@ void process() {
     vec2 current;
     {
         // The following should strictly conform to the formula in FluidCurrentSystem.cs
-        vec2 position = TRANSFORM[3].xz * positionScaling * scale;
+        vec2 scaledPosition = TRANSFORM[3].xz * positionScaling * inverseScale;
+        float scaledTime = gameTime * currentsTimescale * chaoticness;
         
-        float disturbanceX = texture(noiseDisturbancesX,
-            vec3(position / 128.0f, gameTime * chaoticness * disturbanceTimescale / 64.0f)).r;
-        float disturbanceY = texture(noiseDisturbancesY,
-            vec3(position / 128.0f, gameTime * chaoticness * disturbanceTimescale / 64.0f)).r;
+        vec2 current1 = texture(noiseCurrents1,
+            vec2((scaledPosition.x + scaledTime) / 1024.0f,
+                (scaledPosition.y + scaledTime) / 1024.0f)).rg;
+        vec2 current2 = texture(noiseCurrents2,
+            vec2((scaledPosition.x - scaledTime) / 1024.0f,
+                (scaledPosition.y - scaledTime) / 1024.0f)).rg;
         
-        float currentX = texture(noiseCurrentsX,
-            vec3(position.x * currentsStretchingMultiplier / 128.0f, position.y / 128.0f,
-                gameTime * currentsTimescale * chaoticness / 64.0f)).r; 
-        float currentY = texture(noiseCurrentsY,
-            vec3(position.x / 128.0f, position.y * currentsStretchingMultiplier / 128.0f,
-                gameTime * currentsTimescale * chaoticness / 64.0f)).r;
+        current = current1 * 2.0f - 1.0f;
+        current *= current2;
         
-        vec2 disturbances = vec2(disturbanceX, disturbanceY) * 2.0f - 1.0f;
-        vec2 currents = vec2(currentX, currentY) * 2.0f - 1.0f;
-        
-        if (pow(currents.x, 2) + pow(currents.y, 2) < minCurrentIntensity)
-        {
-            currents = vec2(0.0f);
-        }
-        
-        current = mix(currents, disturbances, disturbanceToCurrentsRatio);
         current *= 10.0f * speed;
     }
     
@@ -109,6 +93,7 @@ void process() {
     TRANSFORM[3].xyz += VELOCITY * DELTA;
     
     vec4 finalColor = colorValue;
+    finalColor.rgb *= CUSTOM.w;
     finalColor.a *= texture(alphaCurve, vec2(lifetimePercent)).r;
     if (speed != 0.0)
     {

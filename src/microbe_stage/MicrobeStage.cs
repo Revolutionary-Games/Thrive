@@ -1361,6 +1361,8 @@ public partial class MicrobeStage : CreatureStageBase<Entity, MicrobeWorldSimula
         patchManager.UpdatePatchBiome(currentPatch);
         patchManager.UpdateAllPatchLightLevels(currentPatch);
 
+        fluidCurrentDisplay.UpdateLightLevel(currentPatch);
+
         HUD.UpdateEnvironmentalBars(GameWorld.Map.CurrentPatch.Biome);
 
         // Updates the background lighting and does various post-effects
