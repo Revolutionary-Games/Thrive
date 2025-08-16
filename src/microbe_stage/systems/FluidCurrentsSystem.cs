@@ -110,7 +110,7 @@ public sealed class FluidCurrentsSystem : AEntitySetSystem<float>
 
             if (currentsNoise1 == null || currentsNoise2 == null)
             {
-                GD.Print("Current noise image created from texture is null");
+                GD.PrintErr("Current noise image created from texture is null");
             }
         }
 
