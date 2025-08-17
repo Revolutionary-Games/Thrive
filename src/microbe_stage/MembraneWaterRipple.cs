@@ -99,6 +99,7 @@ public partial class MembraneWaterRipple : Node
     private readonly StringName pastPositionsCountParam = new("PastPositionsCount");
     private readonly StringName stillnessFactorParam = new("StillnessFactor");
     private readonly StringName membraneRadiusParam = new("MembraneRadius");
+    private readonly StringName globalAlphaParam = new("GlobalAlpha");
 
     /// <summary>
     ///   Fade-in speed multiplier (higher = faster fade-in)
@@ -170,8 +171,11 @@ public partial class MembraneWaterRipple : Node
     private float targetStillness = 1.0f;
     private bool isForming;
     private float formingTime;
-    private float minAlpha = 0.00002f;
-    private float fullAlpha = 0.02f;
+    private float minAlpha;
+    private float fullAlpha = 1.0f;
+
+    // Non-linear alpha curve parameters
+    private float alphaCurvePower = 2.5f;
 
     // Camera state caching variables
     private float lastCameraDistance;
@@ -211,7 +215,7 @@ public partial class MembraneWaterRipple : Node
     }
 
     /// <summary>
-    ///   The size of the membrane this effect is attached to, controls how large the effect is
+    ///   The size of the membrane this effect is attached to and controls how large the effect is
     /// </summary>
     [Export]
     public float EffectRadius
@@ -253,6 +257,7 @@ public partial class MembraneWaterRipple : Node
         waterMaterial.SetShaderParameter(pastPositionsParam, godotPastPositions);
         waterMaterial.SetShaderParameter(pastPositionsCountParam, 0);
         waterMaterial.SetShaderParameter(membraneRadiusParam, 5.0f);
+        waterMaterial.SetShaderParameter(globalAlphaParam, 0.0f);
         waterPlane.Visible = false;
     }
 
@@ -281,7 +286,9 @@ public partial class MembraneWaterRipple : Node
             UpdateCameraPositionCache();
             isCurrentlyVisible = IsVisible();
 
-            waterPlane.Visible = isCurrentlyVisible && EnableEffect;
+            // Only show the plane if there's actual ripple activity
+            bool shouldShow = isCurrentlyVisible && EnableEffect && ShouldRipplesBeVisible();
+            waterPlane.Visible = shouldShow;
         }
 
         if (!isCurrentlyVisible || !EnableEffect)
@@ -320,6 +327,7 @@ public partial class MembraneWaterRipple : Node
             pastPositionsCountParam.Dispose();
             stillnessFactorParam.Dispose();
             membraneRadiusParam.Dispose();
+            globalAlphaParam.Dispose();
         }
 
         base.Dispose(disposing);
@@ -370,7 +378,7 @@ public partial class MembraneWaterRipple : Node
         currentPositionIndex = 0;
         isPositionHistoryFull = false;
 
-        // Start informing state
+        // Start forming state
         isForming = true;
         formingTime = 0.0f;
         currentAlpha = 0.0f;
@@ -425,6 +433,46 @@ public partial class MembraneWaterRipple : Node
     }
 
     /// <summary>
+    ///   Non-linear alpha scaling function
+    /// </summary>
+    private float ApplyNonLinearAlphaScaling(float linearAlpha)
+    {
+        // Allow true zero for complete transparency
+        if (linearAlpha <= 0.0001f)
+            return 0.0f;
+
+        // Apply power curve for smooth transitions
+        float curved = MathF.Pow(linearAlpha, alphaCurvePower);
+
+        // Ensure we use the full range from 0 to 1
+        return Math.Clamp(curved, 0.0f, 1.0f);
+    }
+
+    /// <summary>
+    ///   Check if ripples should be visible at all
+    /// </summary>
+    private bool ShouldRipplesBeVisible()
+    {
+        // Don't show during the formation phase if alpha is too low
+        if (isForming && currentAlpha < 0.01f)
+            return false;
+
+        // Check if we have any movement history
+        if (!isPositionHistoryFull && currentPositionIndex == 0)
+            return false;
+
+        // Check if we're in complete stillness
+        if (stillnessFactor >= 0.99f)
+            return false;
+
+        // Check if alpha is effectively zero
+        if (currentAlpha < 0.005f)
+            return false;
+
+        return true;
+    }
+
+    /// <summary>
     ///   Updates the ripple effect's alpha and stillness
     /// </summary>
     private void UpdateRippleEffect(float delta)
@@ -439,26 +487,56 @@ public partial class MembraneWaterRipple : Node
                 targetAlpha = fullAlpha;
                 targetStillness = 0.0f;
             }
+            else
+            {
+                // Gradually fade in during formation
+                float formProgress = formingTime / RippleFormationDelay;
+                targetAlpha = fullAlpha * formProgress * 0.5f;
+                currentAlpha = Mathf.Lerp(currentAlpha, targetAlpha, delta * fadeInSpeed);
+
+                // Update shader with forming alpha
+                float formingScaledAlpha = ApplyNonLinearAlphaScaling(currentAlpha);
+                waterMaterial.SetShaderParameter(globalAlphaParam, formingScaledAlpha);
+                waterMaterial.SetShaderParameter(waterColorParam, new Color(0, 0, 0, 0.02f));
+                waterMaterial.SetShaderParameter(stillnessFactorParam, 1.0f - formProgress);
+            }
 
             return;
         }
 
+        // Set target alpha based on movement
         targetAlpha = wasMovingLastFrame ? fullAlpha : minAlpha;
         targetStillness = wasMovingLastFrame ? 0.0f : 1.0f;
 
-        // When newly not moving, apply delay before fading out
+        // Apply fade delay when stopping
         if (!wasMovingLastFrame && stillnessTimer > StillnessFadeDelay)
         {
             targetAlpha = minAlpha;
             targetStillness = 1.0f;
         }
 
-        // Simple lerp with delta for transitions
-        currentAlpha = Mathf.Lerp(currentAlpha, targetAlpha,
-            delta * (currentAlpha < targetAlpha ? fadeInSpeed : fadeOutSpeed));
+        // Smooth interpolation for fade-in/out
+        float fadeSpeed = currentAlpha < targetAlpha ? fadeInSpeed : fadeOutSpeed;
+        currentAlpha = Mathf.Lerp(currentAlpha, targetAlpha, delta * fadeSpeed);
         stillnessValue = Mathf.Lerp(stillnessValue, targetStillness, delta * 3.0f);
-        waterMaterial.SetShaderParameter(waterColorParam, new Color(0, 0, 0, currentAlpha));
+
+        // Apply non-linear scaling
+        float scaledAlpha = ApplyNonLinearAlphaScaling(currentAlpha);
+
+        // Update shader parameters with the global alpha multiplier
+        waterMaterial.SetShaderParameter(globalAlphaParam, scaledAlpha);
+        waterMaterial.SetShaderParameter(waterColorParam, new Color(0, 0, 0, 0.02f));
         waterMaterial.SetShaderParameter(stillnessFactorParam, stillnessValue);
+
+        // Hide the plane entirely when alpha is effectively zero
+        if (scaledAlpha < 0.001f && isCurrentlyVisible)
+        {
+            waterPlane.Visible = false;
+        }
+        else if (scaledAlpha >= 0.001f && isCurrentlyVisible && EnableEffect)
+        {
+            waterPlane.Visible = true;
+        }
     }
 
     /// <summary>
