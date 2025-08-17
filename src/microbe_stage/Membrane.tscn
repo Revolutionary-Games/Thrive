@@ -108,21 +108,7 @@ visible = false
 
 [node name="WaterRipple" type="Node" parent="." node_paths=PackedStringArray("waterPlane")]
 script = ExtResource("9_water")
-EnableEffect = null
-RippleStrength = null
-VerticalOffset = null
-PositionHistorySize = null
-PositionRecordInterval = null
-VisibilityCheckInterval = null
-StillnessFadeDelay = null
-StillnessFadeRate = null
-RippleFormationDelay = null
-MovementThresholdSqr = null
-ResumeMovementThresholdSqr = null
-fadeInSpeed = null
-fadeOutSpeed = null
 waterPlane = NodePath("WaterPlane")
-EffectRadius = null
 
 [node name="WaterPlane" type="MeshInstance3D" parent="WaterRipple"]
 visible = false
