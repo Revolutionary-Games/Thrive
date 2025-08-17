@@ -381,6 +381,9 @@ public partial class OptionsMenu : ControlWithInput
     private CheckButton microbeRippleEffect = null!;
 
     [Export]
+    private CheckButton microbeMembraneTurn = null!;
+
+    [Export]
     private CheckButton microbeCameraTilt = null!;
 
     [Export]
@@ -640,6 +643,7 @@ public partial class OptionsMenu : ControlWithInput
         displayMicrobeBackgroundDistortionToggle.ButtonPressed = settings.MicrobeDistortionStrength.Value > 0;
         lowQualityBackgroundBlurToggle.ButtonPressed = settings.MicrobeBackgroundBlurLowQuality;
         microbeRippleEffect.ButtonPressed = settings.MicrobeRippleEffect;
+        microbeMembraneTurn.ButtonPressed = settings.MicrobeMembraneTurnBend;
         microbeCameraTilt.ButtonPressed = settings.MicrobeCameraTilt;
         guiLightEffectsToggle.ButtonPressed = settings.GUILightEffectsEnabled;
         displayPartNamesToggle.ButtonPressed = settings.DisplayPartNames;
@@ -1959,6 +1963,13 @@ public partial class OptionsMenu : ControlWithInput
     private void OnMicrobeRippleToggled(bool toggle)
     {
         Settings.Instance.MicrobeRippleEffect.Value = toggle;
+
+        UpdateResetSaveButtonState();
+    }
+
+    private void OnMicrobeMembraneTurnToggled(bool toggle)
+    {
+        Settings.Instance.MicrobeMembraneTurnBend.Value = toggle;
 
         UpdateResetSaveButtonState();
     }

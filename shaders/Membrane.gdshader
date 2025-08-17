@@ -113,7 +113,7 @@ void fragment(){
     adjustedNormals = normalize(mix(NORMAL, adjustedNormals, 0.2f));
 
     ALBEDO = final.rgb;
-    ALPHA = fresnel(3.0, adjustedNormals, adjustedView) * round(cutoff) * centerTransparencyTex.a * centerTransparency;
-	EMISSION = vec3(0.2, 0.2, 0.2);
+    ALPHA = fresnel(3.0, adjustedNormals, adjustedView) * round(cutoff) * min(centerTransparencyTex.a * centerTransparency, 2);
+	EMISSION = vec3(0.02, 0.02, 0.02);
     ROUGHNESS = 0.7f;
 }

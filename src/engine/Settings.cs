@@ -185,6 +185,12 @@ public class Settings
     public SettingValue<bool> MicrobeRippleEffect { get; private set; } = new(true);
 
     /// <summary>
+    ///   Sets whether microbe membranes bend when making a turn
+    /// </summary>
+    [JsonProperty]
+    public SettingValue<bool> MicrobeMembraneTurnBend { get; private set; } = new(true);
+
+    /// <summary>
     ///   Sets whether the camera will slightly tilt toward cursor
     /// </summary>
     [JsonProperty]

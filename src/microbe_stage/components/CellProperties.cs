@@ -612,9 +612,9 @@ public static class CellPropertiesHelpers
             cellProperties.MembraneRigidity / cellProperties.MembraneType.BaseWigglyness * 0.2f;
     }
 
-    public static void ApplyMembraneTurn(this ref CellProperties cellProperties, Membrane targetMembrane)
+    public static void ApplyMembraneTurn(this ref CellProperties cellProperties, Membrane targetMembrane, float delta)
     {
-        targetMembrane.Turn += (cellProperties.MeshTurnDistance - targetMembrane.Turn) * Mathf.Min(1 / cellProperties.Radius * 0.2f, 1.0f);
+        targetMembrane.Turn += (cellProperties.MeshTurnDistance - targetMembrane.Turn) * Mathf.Min(1 / (cellProperties.Radius * 0.1f) * delta, 1.0f);
     }
 
     public static float CalculateSurfaceAreaToVolume(this ref CellProperties cellProperties, int hexCount)

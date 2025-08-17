@@ -173,7 +173,7 @@ public partial class Membrane : MeshInstance3D
 
             Dirty = true;
 
-            ApplyTurn();
+            ApplyTurn(value);
         }
     }
 
@@ -215,6 +215,7 @@ public partial class Membrane : MeshInstance3D
 
         var settings = Settings.Instance;
         settings.MicrobeRippleEffect.OnChanged += OnRippleEffectValueChanges;
+        settings.MicrobeMembraneTurnBend.OnChanged += OnMembraneTurnValueChanges;
         OnRippleEffectValueChanges(settings.MicrobeRippleEffect);
     }
 
@@ -377,13 +378,19 @@ public partial class Membrane : MeshInstance3D
         waterRipple.EnableEffect = enabled;
     }
 
+    private void OnMembraneTurnValueChanges(bool enabled)
+    {
+        if (!enabled)
+            ApplyTurn(0);
+    }
+
     private void ApplyAllMaterialParameters()
     {
         ApplyWiggly();
         ApplyMovementWiggly();
         ApplyHealth();
         ApplyTextures();
-        ApplyTurn();
+        ApplyTurn(Turn);
     }
 
     private void ApplyWiggly()
@@ -420,16 +427,16 @@ public partial class Membrane : MeshInstance3D
         internalDecorationsMaterial.SetShaderParameter(movementWigglynessParameterName, finalWiggly);
     }
 
-    private void ApplyTurn()
+    private void ApplyTurn(float turn)
     {
         if (MembraneShaderMaterial == null || EngulfShaderMaterial == null || MucocystShaderMaterial == null || internalDecorationsMaterial == null)
             return;
 
-        MembraneShaderMaterial.SetShaderParameter(turnParameterName, Turn);
-        EngulfShaderMaterial.SetShaderParameter(turnParameterName, Turn);
-        MucocystShaderMaterial.SetShaderParameter(turnParameterName, Turn);
+        MembraneShaderMaterial.SetShaderParameter(turnParameterName, turn);
+        EngulfShaderMaterial.SetShaderParameter(turnParameterName, turn);
+        MucocystShaderMaterial.SetShaderParameter(turnParameterName, turn);
 
-        internalDecorationsMaterial.SetShaderParameter(turnParameterName, Turn);
+        internalDecorationsMaterial.SetShaderParameter(turnParameterName, turn);
     }
 
     private void ApplyHealth()

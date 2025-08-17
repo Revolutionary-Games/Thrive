@@ -474,7 +474,6 @@ public class MembraneShapeGenerator
         return generatedMesh;
     }
 
-
     /// <summary>
     ///   Creates the engulf mesh object.
     /// </summary>
@@ -495,10 +494,7 @@ public class MembraneShapeGenerator
 
         var radiansPerIndex = 2 * Mathf.Pi / vertexCount;
 
-        float scale = 0.5f;
-
         vertices[0] = new Vector3(center.X, height * 0.5f, center.Y);
-        //uvs[0] = new Vector2(scale * 0.5f, scale * 0.5f);
         uvs[0] = center;
 
         for (int i = 1; i < vertexCount + 1; ++i)
@@ -506,16 +502,11 @@ public class MembraneShapeGenerator
             // This weird indexing is required to make the mesh respect winding order
             // Otherwise it will get culled
 
-            //var sourceVertex = vertices2D[vertexCount - i - 1];
-
-            // vertices[i] = new Vector3(sourceVertex.X, height / 2, sourceVertex.Y);
-
             var vertex = vertices2D[i- 1];
 
             vertices[i] = new Vector3(vertex.X, height * 0.5f, vertex.Y);
 
             var radians = radiansPerIndex * (i - 1);
-            // * scale + new Vector2(scale, scale)
             uvs[i] = new Vector2(Mathf.Sin(radians), Mathf.Cos(radians)) * 0.5f + new Vector2(0.5f, 0.5f);
         }
 

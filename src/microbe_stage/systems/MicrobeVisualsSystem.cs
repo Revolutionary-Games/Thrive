@@ -57,6 +57,8 @@ public sealed class MicrobeVisualsSystem : AEntitySetSystem<float>
 
     private bool pendingMembraneGenerations;
 
+    private bool lastMembraneToolEnabled = false;
+
     private volatile int runningMembraneTaskCount;
 
     public MicrobeVisualsSystem(World world) : base(world, null)
@@ -88,8 +90,27 @@ public sealed class MicrobeVisualsSystem : AEntitySetSystem<float>
         ref var organelleContainer = ref entity.Get<OrganelleContainer>();
         ref var cellProperties = ref entity.Get<CellProperties>();
 
-        if (cellProperties.CreatedMembrane != null)
-            SetMembraneTurn(cellProperties.CreatedMembrane!, ref cellProperties, ref organelleContainer);
+        if (cellProperties.CreatedMembrane != null && Settings.Instance.MicrobeMembraneTurnBend)
+        {
+            organelleContainer.OrganelleVisualsShifted = true;
+            SetMembraneTurn(cellProperties.CreatedMembrane!, ref cellProperties, ref organelleContainer, delta);
+        }
+
+        if (!Settings.Instance.MicrobeMembraneTurnBend && organelleContainer.CreatedOrganelleVisuals != null
+            && organelleContainer.OrganelleVisualsShifted)
+        {
+            organelleContainer.OrganelleVisualsShifted = false;
+
+            foreach (var visual in organelleContainer.CreatedOrganelleVisuals)
+            {
+                var visualParent = (Node3D)visual.Value.GetParent();
+                var verticalPos = visualParent.Position.Z;
+                if (verticalPos < 0)
+                {
+                    visualParent.Position = visual.Key.TargetVisualsTransform.Origin;
+                }
+            }
+        }
 
         if (organelleContainer.OrganelleVisualsCreated)
             return;
@@ -289,9 +310,9 @@ public sealed class MicrobeVisualsSystem : AEntitySetSystem<float>
         cellProperties.ApplyMembraneWigglyness(membrane);
     }
 
-    private void SetMembraneTurn(Membrane membrane, ref CellProperties cellProperties, ref OrganelleContainer organelles)
+    private void SetMembraneTurn(Membrane membrane, ref CellProperties cellProperties, ref OrganelleContainer organelles, float delta)
     {
-        cellProperties.ApplyMembraneTurn(membrane);
+        cellProperties.ApplyMembraneTurn(membrane, delta);
 
         if (organelles.CreatedOrganelleVisuals == null)
             return;

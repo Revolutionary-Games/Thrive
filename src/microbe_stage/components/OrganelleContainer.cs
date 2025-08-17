@@ -160,6 +160,12 @@ public struct OrganelleContainer
     public bool OrganelleComponentsCached;
 
     /// <summary>
+    ///   If organelles have been shifted not by visuals generation code
+    /// </summary>
+    [JsonIgnore]
+    public bool OrganelleVisualsShifted;
+
+    /// <summary>
     ///   Internal variable used by the <see cref="MicrobeVisualsSystem"/> to only create visuals for missing /
     ///   removed organelles
     /// </summary>
@@ -656,7 +662,6 @@ public static class OrganelleContainerHelpers
         var width = horizontalMax - horizontalMin + 1;
 
         container.LengthWidthRatio = length / width;
-
     }
 
     public static void UpdateEngulfingSizeData(this ref OrganelleContainer container,
