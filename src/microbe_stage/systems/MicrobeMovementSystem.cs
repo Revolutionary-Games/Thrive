@@ -91,7 +91,7 @@ public sealed class MicrobeMovementSystem : AEntitySetSystem<float>
         var rotationSpeed = CalculateRotationSpeed(entity, ref organelles);
 
         if (Settings.Instance.MicrobeMembraneTurnBend)
-            cellProperties.MeshTurnDistance = Mathf.Round(turnAngle * 10f) * 0.1f / (organelles.LengthWidthRatio * 0.2f * cellProperties.Radius);
+            cellProperties.MeshTurnDistance = MathF.Round(turnAngle * 10.0f) * 0.1f / (organelles.LengthWidthRatio * 0.2f * cellProperties.Radius);
 
         var unsignedTurnAngle = Math.Abs(turnAngle);
 

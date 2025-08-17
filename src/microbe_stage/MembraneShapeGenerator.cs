@@ -492,7 +492,7 @@ public class MembraneShapeGenerator
         var vertices = new Vector3[vertexCount + 1];
         var uvs = new Vector2[vertexCount + 1];
 
-        var radiansPerIndex = 2 * Mathf.Pi / vertexCount;
+        var radiansPerIndex = 2 * MathF.PI / vertexCount;
 
         vertices[0] = new Vector3(center.X, height * 0.5f, center.Y);
         uvs[0] = center;
@@ -507,7 +507,7 @@ public class MembraneShapeGenerator
             vertices[i] = new Vector3(vertex.X, height * 0.5f, vertex.Y);
 
             var radians = radiansPerIndex * (i - 1);
-            uvs[i] = new Vector2(Mathf.Sin(radians), Mathf.Cos(radians)) * 0.5f + new Vector2(0.5f, 0.5f);
+            uvs[i] = new Vector2(MathF.Sin(radians), MathF.Cos(radians)) * 0.5f + new Vector2(0.5f, 0.5f);
         }
 
         int vertexIndex = 1;

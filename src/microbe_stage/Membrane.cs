@@ -395,8 +395,11 @@ public partial class Membrane : MeshInstance3D
 
     private void ApplyWiggly()
     {
-        if (MembraneShaderMaterial == null || EngulfShaderMaterial == null || MucocystShaderMaterial == null || internalDecorationsMaterial == null)
+        if (MembraneShaderMaterial == null || EngulfShaderMaterial == null || MucocystShaderMaterial == null
+            || internalDecorationsMaterial == null)
+        {
             return;
+        }
 
         float wigglyNessToApply =
             WigglyNess / (EncompassingCircleRadius * sizeWigglyNessDampeningFactor);
@@ -412,8 +415,11 @@ public partial class Membrane : MeshInstance3D
 
     private void ApplyMovementWiggly()
     {
-        if (MembraneShaderMaterial == null || EngulfShaderMaterial == null || MucocystShaderMaterial == null || internalDecorationsMaterial == null)
+        if (MembraneShaderMaterial == null || EngulfShaderMaterial == null || MucocystShaderMaterial == null
+            || internalDecorationsMaterial == null)
+        {
             return;
+        }
 
         float wigglyNessToApply =
             MovementWigglyNess / (EncompassingCircleRadius * sizeMovementWigglyNessDampeningFactor);
@@ -429,8 +435,11 @@ public partial class Membrane : MeshInstance3D
 
     private void ApplyTurn(float turn)
     {
-        if (MembraneShaderMaterial == null || EngulfShaderMaterial == null || MucocystShaderMaterial == null || internalDecorationsMaterial == null)
+        if (MembraneShaderMaterial == null || EngulfShaderMaterial == null || MucocystShaderMaterial == null
+            || internalDecorationsMaterial == null)
+        {
             return;
+        }
 
         MembraneShaderMaterial.SetShaderParameter(turnParameterName, turn);
         EngulfShaderMaterial.SetShaderParameter(turnParameterName, turn);

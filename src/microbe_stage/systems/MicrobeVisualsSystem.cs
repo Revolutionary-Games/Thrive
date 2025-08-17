@@ -57,8 +57,6 @@ public sealed class MicrobeVisualsSystem : AEntitySetSystem<float>
 
     private bool pendingMembraneGenerations;
 
-    private bool lastMembraneToolEnabled = false;
-
     private volatile int runningMembraneTaskCount;
 
     public MicrobeVisualsSystem(World world) : base(world, null)
