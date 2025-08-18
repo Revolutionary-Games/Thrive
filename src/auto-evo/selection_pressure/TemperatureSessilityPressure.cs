@@ -47,7 +47,6 @@ public class TemperatureSessilityPressure : SelectionPressure
         // Calculate score based on activity (higher activity = higher score for mobile behavior)
         // The more active the species, the higher the score
         float activityScore = microbeSpecies.Behaviour.Activity / Constants.MAX_SPECIES_ACTIVITY;
-        
         return activityScore;
     }
 
