@@ -10,7 +10,7 @@ const DEFAULT_TEMP_TS_GD ="""
 	@warning_ignore('return_value_discarded')
 
 	# TestSuite generated from
-	const __source = '${source_resource_path}'
+	const __source: String = '${source_resource_path}'
 """
 
 

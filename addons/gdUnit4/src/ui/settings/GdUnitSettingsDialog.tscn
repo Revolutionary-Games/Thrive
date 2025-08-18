@@ -1,10 +1,11 @@
-[gd_scene load_steps=8 format=3 uid="uid://dwgat6j2u77g4"]
+[gd_scene load_steps=9 format=3]
 
 [ext_resource type="Script" path="res://addons/gdUnit4/src/ui/settings/GdUnitSettingsDialog.gd" id="2"]
-[ext_resource type="Texture2D" uid="uid://bkh022wwqq7s3" path="res://addons/gdUnit4/src/ui/settings/logo.png" id="3_isfyl"]
-[ext_resource type="PackedScene" uid="uid://dte0m2endcgtu" path="res://addons/gdUnit4/src/ui/templates/TestSuiteTemplate.tscn" id="4"]
-[ext_resource type="PackedScene" uid="uid://0xyeci1tqebj" path="res://addons/gdUnit4/src/update/GdUnitUpdateNotify.tscn" id="5_n1jtv"]
-[ext_resource type="PackedScene" uid="uid://pmnkxrhglak5" path="res://addons/gdUnit4/src/ui/settings/GdUnitInputCapture.tscn" id="5_xu3j8"]
+[ext_resource type="Texture2D" path="res://addons/gdUnit4/src/ui/settings/logo.png" id="3_isfyl"]
+[ext_resource type="PackedScene" path="res://addons/gdUnit4/src/ui/templates/TestSuiteTemplate.tscn" id="4"]
+[ext_resource type="PackedScene" path="res://addons/gdUnit4/src/ui/settings/GdUnitSettingsTabHooks.tscn" id="4_nf72w"]
+[ext_resource type="PackedScene" path="res://addons/gdUnit4/src/update/GdUnitUpdateNotify.tscn" id="5_n1jtv"]
+[ext_resource type="PackedScene" path="res://addons/gdUnit4/src/ui/settings/GdUnitInputCapture.tscn" id="5_xu3j8"]
 [ext_resource type="Script" path="res://addons/gdUnit4/src/update/GdUnitUpdateClient.gd" id="8_2ggr0"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_hbbq5"]
@@ -226,10 +227,14 @@ layout_mode = 2
 size_flags_horizontal = 3
 size_flags_vertical = 3
 
+[node name="Hooks" parent="Panel/PanelContainer/v/MarginContainer/GridContainer/Properties" instance=ExtResource("4_nf72w")]
+visible = false
+layout_mode = 2
+
 [node name="UI" type="ScrollContainer" parent="Panel/PanelContainer/v/MarginContainer/GridContainer/Properties"]
 visible = false
 layout_mode = 2
-metadata/_tab_index = 1
+metadata/_tab_index = 2
 
 [node name="ui-content" type="VBoxContainer" parent="Panel/PanelContainer/v/MarginContainer/GridContainer/Properties/UI"]
 unique_name_in_owner = true
@@ -242,7 +247,7 @@ size_flags_vertical = 3
 [node name="Shortcuts" type="ScrollContainer" parent="Panel/PanelContainer/v/MarginContainer/GridContainer/Properties"]
 visible = false
 layout_mode = 2
-metadata/_tab_index = 2
+metadata/_tab_index = 3
 
 [node name="shortcut-content" type="VBoxContainer" parent="Panel/PanelContainer/v/MarginContainer/GridContainer/Properties/Shortcuts"]
 unique_name_in_owner = true
@@ -255,7 +260,7 @@ size_flags_vertical = 3
 [node name="Report" type="ScrollContainer" parent="Panel/PanelContainer/v/MarginContainer/GridContainer/Properties"]
 visible = false
 layout_mode = 2
-metadata/_tab_index = 3
+metadata/_tab_index = 4
 
 [node name="report-content" type="VBoxContainer" parent="Panel/PanelContainer/v/MarginContainer/GridContainer/Properties/Report"]
 unique_name_in_owner = true
@@ -268,13 +273,13 @@ size_flags_vertical = 3
 [node name="Templates" parent="Panel/PanelContainer/v/MarginContainer/GridContainer/Properties" instance=ExtResource("4")]
 visible = false
 layout_mode = 2
-metadata/_tab_index = 4
+metadata/_tab_index = 5
 
 [node name="Update" parent="Panel/PanelContainer/v/MarginContainer/GridContainer/Properties" instance=ExtResource("5_n1jtv")]
 unique_name_in_owner = true
 visible = false
 layout_mode = 2
-metadata/_tab_index = 5
+metadata/_tab_index = 6
 
 [node name="GdUnitInputCapture" parent="Panel/PanelContainer/v/MarginContainer/GridContainer/Properties" instance=ExtResource("5_xu3j8")]
 unique_name_in_owner = true

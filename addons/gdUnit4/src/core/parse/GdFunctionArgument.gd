@@ -42,7 +42,7 @@ func name() -> String:
 
 
 func default() -> Variant:
-	return GodotVersionFixures.convert(_default_value, _type)
+	return type_convert(_default_value, _type)
 
 
 func set_value(value: String) -> void:

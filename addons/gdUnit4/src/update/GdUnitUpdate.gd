@@ -96,6 +96,8 @@ func run_update() -> void:
 	await update_progress("Patch invalid UID's")
 	await patch_uids()
 
+	await rebuild_project()
+
 	await update_progress("New GdUnit version successfully installed, Restarting Godot please wait.")
 	await get_tree().create_timer(3).timeout
 	enable_gdUnit()
@@ -293,6 +295,26 @@ func download_release() -> void:
 		push_warning("Update information cannot be retrieved from GitHub! \n Error code: %d : %s" % [response.status(), response.response()])
 		message_h4("Download the update failed! Try it later again.", Color.INDIAN_RED)
 		await get_tree().create_timer(3).timeout
+
+
+func rebuild_project() -> void:
+	# Check if this is a Godot .NET runtime instance
+	if not ClassDB.class_exists("CSharpScript"):
+		return
+
+	update_progress("Rebuild the project ...")
+	await get_tree().process_frame
+
+	var output := []
+	var exit_code := OS.execute("dotnet", ["build"], output)
+	if exit_code == -1:
+		message_h4("Rebuild the project failed, check your project dependencies.", Color.INDIAN_RED)
+		await get_tree().create_timer(3).timeout
+		return
+
+	for out: String in output:
+		print_rich("[color=DEEP_SKY_BLUE] 		%s" % out.strip_edges())
+	await get_tree().process_frame
 
 
 func _on_confirmed() -> void:
