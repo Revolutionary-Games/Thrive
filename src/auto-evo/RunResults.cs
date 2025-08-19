@@ -385,7 +385,7 @@ public class RunResults
         {
             if (entry.Value.NewlyCreated != null)
             {
-                // Summary creation needs to already have species IDs so it might have already registered this
+                // Summary creation needs to already have species IDs, so it might have already registered this
                 world.RegisterAutoEvoCreatedSpeciesIfNotAlready(entry.Key);
             }
 
@@ -399,8 +399,14 @@ public class RunResults
                 var patch = world.Map.GetPatch(populationEntry.Key.ID);
 
                 // We ignore the return value as population results are added for all existing patches for all
-                // species (if the species is not in the patch the population is 0 in the results)
-                patch.UpdateSpeciesSimulationPopulation(entry.Key, populationEntry.Value);
+                // species (if the species is not in the patch, the population is 0 in the results)
+                if (!patch.UpdateSpeciesSimulationPopulation(entry.Key, populationEntry.Value) &&
+                    populationEntry.Value > 0)
+                {
+                    GD.PrintErr(
+                        $"Failed to apply species ({entry.Key}) population ({populationEntry.Value}) to patch " +
+                        $"({patch.Name}) it should be in");
+                }
             }
 
             if (entry.Value.NewlyCreated != null)
@@ -457,8 +463,8 @@ public class RunResults
             {
                 if (entry.Value.SplitOffPatches != null)
                 {
-                    // Set populations to 0 for the patches that split off and use the populations for the split
-                    // off species
+                    // Set populations to 0 for the patches that split off and use the populations for the split-off
+                    // species
                     foreach (var splitOffPatch in entry.Value.SplitOffPatches)
                     {
                         var patch = world.Map.GetPatch(splitOffPatch.ID);

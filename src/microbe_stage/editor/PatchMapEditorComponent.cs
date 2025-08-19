@@ -163,6 +163,29 @@ public partial class PatchMapEditorComponent<TEditor> : EditorComponentBase<TEdi
                     Editor.CurrentGame.GameWorld, Editor.EditedBaseSpecies);
             }
         }
+        else
+        {
+            var currentPatch = Editor.CurrentGame.GameWorld.Map.CurrentPatch;
+            if (currentPatch != null)
+            {
+                // Ensure the player is in the current patch when exiting, as otherwise that will not allow player
+                // population to be added to the current patch, and that can cause false extinction events
+                if (currentPatch.FindSpeciesByID(Editor.CurrentGame.GameWorld
+                        .PlayerSpecies.ID) == null)
+                {
+                    // Note: this is just fixing the most serious symptom of the issue, but this doesn't do anything to
+                    // the root cause of the problem
+                    GD.PrintErr("Something has removed the player species from the current patch. " +
+                        "Adding back the player to fix this.");
+                    if (!currentPatch.AddSpecies(Editor.CurrentGame.GameWorld.PlayerSpecies, 0))
+                        GD.PrintErr("Failed to add the player species back");
+                }
+            }
+            else
+            {
+                GD.PrintErr("Player current patch is not set on the map when exiting map editor component");
+            }
+        }
 
         // Migrations
         foreach (var migration in detailsPanel.Migrations)

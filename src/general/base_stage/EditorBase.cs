@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.Linq;
 using System.Reflection;
 using AutoEvo;
@@ -849,6 +850,20 @@ public partial class EditorBase<TAction, TStage> : NodeWithInput, IEditor, ILoad
         foreach (var editorComponent in GetAllEditorComponents())
         {
             editorComponent.OnEditorReady();
+        }
+
+        // Sanity-check the species status for easier problem reporting during development
+        if (CurrentGame.GameWorld.PlayerSpecies.IsExtinct ||
+            CurrentGame.GameWorld.Map.GetSpeciesGlobalSimulationPopulation(CurrentGame.GameWorld.PlayerSpecies) < 1)
+        {
+            GD.PrintErr("Player species is extinct when starting the editor. This should not happen!");
+            GD.PrintErr("Something has incorrectly killed off the player species" +
+                "even though the player survived to the editor");
+
+#if DEBUG
+            if (Debugger.IsAttached)
+                Debugger.Break();
+#endif
         }
     }
 

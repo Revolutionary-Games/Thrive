@@ -81,9 +81,9 @@ public sealed class PhysicsCollisionManagementSystem : AEntitySetSystem<float>
 
         collisionManagement.StateApplied = true;
 
-        // All collision disable is now in Physics directly and applied by PhysicsUpdateAndPositionSystem
+        // All-collision-disable-flag is now in Physics directly and applied by PhysicsUpdateAndPositionSystem
 
-        // Collision disable against specific bodies
+        // Apply collision disabling against specific bodies
         try
         {
             ref var ignoreCollisions = ref collisionManagement.IgnoredCollisionsWith;
@@ -101,7 +101,7 @@ public sealed class PhysicsCollisionManagementSystem : AEntitySetSystem<float>
 
                 if (ignoreCollisions.Count < 2)
                 {
-                    // When ignoring just one collision use the single body API as that doesn't need to allocate
+                    // When ignoring just one collision, use the single body API as that doesn't need to allocate
                     // any lists
                     var ignoreWith = GetPhysicsForEntity(ignoreCollisions[0], ref collisionManagement);
                     if (ignoreWith != null)
