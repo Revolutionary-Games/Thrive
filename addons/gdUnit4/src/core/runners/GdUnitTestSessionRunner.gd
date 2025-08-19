@@ -22,8 +22,6 @@ const RETURN_WARNING = 101
 
 ## Specifies the Node name under which the runner is registered
 const GDUNIT_RUNNER = "GdUnitRunner"
-## The maximum number of report history files to store
-const DEFAULT_REPORT_COUNT = 20
 
 ## The current runner configuration
 @warning_ignore("unused_private_class_variable")
@@ -31,12 +29,46 @@ var _runner_config := GdUnitRunnerConfig.new()
 
 ## The test suite executor instance
 var _executor: GdUnitTestSuiteExecutor
+var _hooks : GdUnitTestSessionHookService
 
 ## Current runner state
 var _state := READY
 
 ## Current tests to be processed
 var _test_cases: Array[GdUnitTestCase] =  []
+
+
+## Configured report base path (can be set on CI test runner)
+var report_base_path: String = GdUnitFileAccess.current_dir() + "reports":
+	get:
+		return report_base_path
+
+
+## Current session report path
+var report_path: String:
+	get:
+		return "%s/%s%d" % [report_base_path, GdUnitConstants.REPORT_DIR_PREFIX, current_report_history_index]
+
+
+## Current report history index, if max_report_history > 1 we scan for the next index over the existing reports
+var current_report_history_index: int:
+	get:
+		if max_report_history > 1:
+			return  GdUnitFileAccess.find_last_path_index(report_base_path, GdUnitConstants.REPORT_DIR_PREFIX) + 1
+		else:
+			return 1
+
+
+## Controls how many report historys will be hold
+var max_report_history: int = GdUnitConstants.DEFAULT_REPORT_HISTORY_COUNT:
+	get:
+		return max_report_history
+	set(value):
+		max_report_history = value
+
+
+# holds the current test session context
+var _test_session: GdUnitTestSession
 
 ## Runner state machine
 enum {
@@ -46,7 +78,6 @@ enum {
 	STOP,
 	EXIT
 }
-
 
 func _init() -> void:
 	# minimize scene window checked debug mode
@@ -80,24 +111,41 @@ func _notification(what: int) -> void:
 func _process(_delta: float) -> void:
 	match _state:
 		INIT:
-			init_runner()
+			await init_runner()
+			_hooks = GdUnitTestSessionHookService.instance()
 		RUN:
+			_test_session = GdUnitTestSession.new(_test_cases, report_path)
+			GdUnitSignals.instance().gdunit_event.emit(GdUnitSessionStart.new())
 			# process next test suite
 			set_process(false)
+			var result := await _hooks.execute_startup(_test_session)
+			if result.is_error():
+				push_error(result.error_message())
 			await _executor.run_and_wait(_test_cases)
+			result = await _hooks.execute_shutdown(_test_session)
+			if result.is_error():
+				push_error(result.error_message())
 			_state = STOP
 			set_process(true)
+			GdUnitSignals.instance().gdunit_event.emit(GdUnitSessionClose.new())
+			cleanup_report_history()
 		STOP:
 			_state = EXIT
 			# give the engine small amount time to finish the rpc
-			_on_gdunit_event(GdUnitStop.new())
 			await get_tree().create_timer(0.1).timeout
 			await quit(get_exit_code())
 
 
 ## Used by the inheriting runners to initialize test execution
 func init_runner() -> void:
-	pass
+	await get_tree().process_frame
+
+
+func cleanup_report_history() -> int:
+	return GdUnitFileAccess.delete_path_index_lower_equals_than(
+		report_path.get_base_dir(),
+		GdUnitConstants.REPORT_DIR_PREFIX,
+		current_report_history_index-1-max_report_history)
 
 
 ## Returns the exit code when the test run is finished.[br]

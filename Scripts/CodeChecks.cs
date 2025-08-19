@@ -2,6 +2,7 @@
 
 using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Text.RegularExpressions;
 using System.Threading;
 using System.Threading.Tasks;
@@ -25,6 +26,9 @@ public class CodeChecks : CodeChecksBase<Program.CheckOptions>
         {
             inspectCode.DisableFullPathPrinting();
         }
+
+        // Ignore reports folder
+        IgnoreGdUnitReportsFolder();
 
         var thriveVersion = AssemblyInfoReader.ReadVersionFromCsproj("Thrive.csproj");
 
@@ -81,6 +85,8 @@ public class CodeChecks : CodeChecksBase<Program.CheckOptions>
         FilePathsToAlwaysIgnore.Add(new Regex(@"Scripts\/GodotAPIData"));
 
         FilePathsToAlwaysIgnore.Add(new Regex(@"\.generated\.cs$"));
+
+        FilePathsToAlwaysIgnore.Add(new Regex(@"reports\/"));
     }
 
     protected override Dictionary<string, CodeCheck> ValidChecks { get; }
@@ -97,6 +103,7 @@ public class CodeChecks : CodeChecksBase<Program.CheckOptions>
         "*.generated.cs",
         "*GdUnit4TestRunnerScene.cs",
         "*.uid",
+        "reports/**",
     ];
 
     protected override IEnumerable<string> ExtraIgnoredJetbrainsCleanUpWildcards =>
@@ -108,7 +115,20 @@ public class CodeChecks : CodeChecksBase<Program.CheckOptions>
         "Scripts/GodotAPIData/*",
         "addons/**",
         "*.generated.cs",
+        "reports/**",
     ];
 
     protected override string MainSolutionFile => "Thrive.sln";
+
+    public static void IgnoreGdUnitReportsFolder()
+    {
+        if (Directory.Exists("reports"))
+        {
+            if (!File.Exists("reports/.gdignore"))
+            {
+                ColourConsole.WriteNormalLine("Added missing ignore file to reports folder");
+                File.WriteAllText("reports/.gdignore", string.Empty);
+            }
+        }
+    }
 }
