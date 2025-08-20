@@ -229,6 +229,24 @@ public partial class PlayerMicrobeInput : NodeWithInput
                 engulfer.EjectEngulfable(ref engulfedObject.Get<Engulfable>());
             }
         }
+
+        if (stage.Player.Has<MicrobeColony>())
+        {
+            ref var colony = ref stage.Player.Get<MicrobeColony>();
+
+            for (int i = 1; i < colony.ColonyMembers.Length; i++)
+            {
+                ref var memberEngulfer = ref colony.ColonyMembers[i].Get<Engulfer>();
+
+                if (memberEngulfer.EngulfedObjects is not { Count: > 0 })
+                    continue;
+
+                foreach (var engulfedObject in memberEngulfer.EngulfedObjects)
+                {
+                    memberEngulfer.EjectEngulfable(ref engulfedObject.Get<Engulfable>());
+                }
+            }
+        }
     }
 
     [RunOnKeyDown("g_toggle_binding")]
