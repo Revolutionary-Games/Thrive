@@ -502,7 +502,7 @@ public class MembraneShapeGenerator
             // This weird indexing is required to make the mesh respect winding order
             // Otherwise it will get culled
 
-            var vertex = vertices2D[i- 1];
+            var vertex = vertices2D[i - 1];
 
             vertices[i] = new Vector3(vertex.X, height * 0.5f, vertex.Y);
 

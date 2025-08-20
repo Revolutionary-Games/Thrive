@@ -11,7 +11,6 @@ using Components;
 using DefaultEcs;
 using DefaultEcs.System;
 using Godot;
-using SharedBase.ModelVerifiers;
 using World = DefaultEcs.World;
 
 /// <summary>
@@ -308,7 +307,8 @@ public sealed class MicrobeVisualsSystem : AEntitySetSystem<float>
         cellProperties.ApplyMembraneWigglyness(membrane);
     }
 
-    private void SetMembraneTurn(Membrane membrane, ref CellProperties cellProperties, ref OrganelleContainer organelles, float delta)
+    private void SetMembraneTurn(Membrane membrane, ref CellProperties cellProperties, ref OrganelleContainer organelles,
+        float delta)
     {
         cellProperties.ApplyMembraneTurn(membrane, delta);
 
@@ -321,7 +321,8 @@ public sealed class MicrobeVisualsSystem : AEntitySetSystem<float>
             var verticalPos = visualParent.Position.Z;
             if (verticalPos < 0)
             {
-                visualParent.Position = visual.Key.TargetVisualsTransform.Origin + new Vector3(verticalPos, 0, 0) * membrane.Turn * 0.7f;
+                visualParent.Position = visual.Key.TargetVisualsTransform.Origin + new Vector3(verticalPos, 0, 0) *
+                    membrane.Turn * 0.7f;
             }
         }
     }
