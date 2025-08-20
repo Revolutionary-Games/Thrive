@@ -1,9 +1,8 @@
-[gd_scene load_steps=20 format=3 uid="uid://jgcbwcrqbblv"]
+[gd_scene load_steps=21 format=3 uid="uid://jgcbwcrqbblv"]
 
 [ext_resource type="Script" uid="uid://bs82n6jeyxhg6" path="res://src/microbe_stage/Membrane.cs" id="1"]
 [ext_resource type="Shader" uid="uid://c10kaqsum34o" path="res://shaders/Membrane.gdshader" id="2"]
 [ext_resource type="Texture2D" uid="uid://c4abs1j47umma" path="res://assets/textures/SingleMembrane.png" id="3_mj630"]
-[ext_resource type="Texture2D" uid="uid://cjj6oxnc5ek8t" path="res://assets/textures/CenterMembraneTransparencyTexture.png" id="4_bdi0s"]
 [ext_resource type="Texture2D" uid="uid://dnxx08njuvfha" path="res://assets/textures/SingleMembraneDamaged.png" id="4_yioiy"]
 [ext_resource type="Texture2D" uid="uid://baxuoyeo83r2u" path="res://assets/textures/dissolve_noise.tres" id="5"]
 [ext_resource type="Shader" uid="uid://buhqlk4dv4wy4" path="res://shaders/EngulfEffect.gdshader" id="6_vljlr"]
@@ -12,7 +11,11 @@
 [ext_resource type="Script" uid="uid://dynk50vduged5" path="res://src/microbe_stage/MembraneWaterRipple.cs" id="9_water"]
 [ext_resource type="Shader" uid="uid://bhy30q2qx7hue" path="res://shaders/MembraneWaterRipple.gdshader" id="10_shader"]
 [ext_resource type="Shader" uid="uid://b8orsf1lwu17d" path="res://shaders/MicrobeInternalDecorationsEffect.gdshader" id="11_qqoe4"]
+[ext_resource type="Texture2D" uid="uid://cxlmq14g6m4ic" path="res://assets/textures/MicrobeMembraneCenterTransparency.png" id="11_yio3i"]
 [ext_resource type="Texture2D" uid="uid://dxc88uayio7fd" path="res://assets/textures/MicrobeInternalDecorations.png" id="12_yio3i"]
+
+[sub_resource type="CompressedTexture2D" id="CompressedTexture2D_qqoe4"]
+load_path = "res://.godot/imported/MicrobeMembraneTransparencyMap.png-31a6c97e35b8c5731c0e5d92ba5ba7ae.s3tc.ctex"
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_55k4t"]
 resource_local_to_scene = true
@@ -20,11 +23,11 @@ render_priority = 18
 shader = ExtResource("2")
 shader_parameter/wigglyNess = 1.0
 shader_parameter/movementWigglyNess = 1.0
-shader_parameter/centerTransparency = 3.0
+shader_parameter/transparencyTextureFactor = 1.2
 shader_parameter/turn = 0.0
 shader_parameter/albedoTexture = ExtResource("3_mj630")
 shader_parameter/damagedTexture = ExtResource("4_yioiy")
-shader_parameter/centerMembraneTexture = ExtResource("4_bdi0s")
+shader_parameter/transparencyTexture = SubResource("CompressedTexture2D_qqoe4")
 shader_parameter/normal2Texture = ExtResource("6_wjsrx")
 shader_parameter/dissolveTexture = ExtResource("5")
 shader_parameter/dissolveValue = 0.0
@@ -60,7 +63,7 @@ shader = ExtResource("11_qqoe4")
 shader_parameter/wigglyNess = 1.0
 shader_parameter/movementWigglyNess = 1.0
 shader_parameter/turn = 1.0
-shader_parameter/centerMembraneTexture = ExtResource("4_bdi0s")
+shader_parameter/centerMembraneTexture = ExtResource("11_yio3i")
 shader_parameter/albedoTexture = ExtResource("12_yio3i")
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_ripple"]
@@ -78,6 +81,7 @@ shader_parameter/Phase = 0.2
 shader_parameter/Attenuation = 0.998
 shader_parameter/StillnessFactor = 0.0
 shader_parameter/MembraneRadius = 5.0
+shader_parameter/GlobalAlpha = 1.0
 
 [sub_resource type="PlaneMesh" id="PlaneMesh_ripple"]
 resource_local_to_scene = true
