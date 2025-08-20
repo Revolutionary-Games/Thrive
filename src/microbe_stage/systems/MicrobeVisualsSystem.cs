@@ -307,8 +307,8 @@ public sealed class MicrobeVisualsSystem : AEntitySetSystem<float>
         cellProperties.ApplyMembraneWigglyness(membrane);
     }
 
-    private void SetMembraneTurn(Membrane membrane, ref CellProperties cellProperties, ref OrganelleContainer organelles,
-        float delta)
+    private void SetMembraneTurn(Membrane membrane, ref CellProperties cellProperties,
+        ref OrganelleContainer organelles, float delta)
     {
         cellProperties.ApplyMembraneTurn(membrane, delta);
 

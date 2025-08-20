@@ -57,7 +57,7 @@ public partial class Membrane : MeshInstance3D
     private float sizeWigglyNessDampeningFactor = 0.22f;
     private float movementWigglyNess = 1.0f;
     private float sizeMovementWigglyNessDampeningFactor = 0.32f;
-    private float turn = 0.0f;
+    private float turn;
     private double engulfFade;
 
     private bool mucocystEffectEnabled;
