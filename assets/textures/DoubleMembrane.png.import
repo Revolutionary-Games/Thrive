@@ -2,22 +2,20 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://cuaou6m07rri7"
-path.s3tc="res://.godot/imported/DoubleMembrane.png-f2a8a15af2da0aea17cabf17eaffed38.s3tc.ctex"
-path.etc2="res://.godot/imported/DoubleMembrane.png-f2a8a15af2da0aea17cabf17eaffed38.etc2.ctex"
+uid="uid://c1y224pma1v5t"
+path="res://.godot/imported/DoubleMembrane.png-f2a8a15af2da0aea17cabf17eaffed38.ctex"
 metadata={
-"imported_formats": ["s3tc_bptc", "etc2_astc"],
-"vram_texture": true
+"vram_texture": false
 }
 
 [deps]
 
 source_file="res://assets/textures/DoubleMembrane.png"
-dest_files=["res://.godot/imported/DoubleMembrane.png-f2a8a15af2da0aea17cabf17eaffed38.s3tc.ctex", "res://.godot/imported/DoubleMembrane.png-f2a8a15af2da0aea17cabf17eaffed38.etc2.ctex"]
+dest_files=["res://.godot/imported/DoubleMembrane.png-f2a8a15af2da0aea17cabf17eaffed38.ctex"]
 
 [params]
 
-compress/mode=2
+compress/mode=0
 compress/high_quality=false
 compress/lossy_quality=0.7
 compress/hdr_compression=1
@@ -33,4 +31,4 @@ process/normal_map_invert_y=false
 process/hdr_as_srgb=false
 process/hdr_clamp_exposure=false
 process/size_limit=0
-detect_3d/compress_to=0
+detect_3d/compress_to=1

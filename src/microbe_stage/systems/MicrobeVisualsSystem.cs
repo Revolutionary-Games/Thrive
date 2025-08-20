@@ -85,6 +85,29 @@ public sealed class MicrobeVisualsSystem : AEntitySetSystem<float>
     protected override void Update(float delta, in Entity entity)
     {
         ref var organelleContainer = ref entity.Get<OrganelleContainer>();
+        ref var cellProperties = ref entity.Get<CellProperties>();
+
+        if (cellProperties.CreatedMembrane != null && Settings.Instance.MicrobeMembraneTurnBend)
+        {
+            organelleContainer.OrganelleVisualsShifted = true;
+            SetMembraneTurn(cellProperties.CreatedMembrane!, ref cellProperties, ref organelleContainer, delta);
+        }
+
+        if (!Settings.Instance.MicrobeMembraneTurnBend && organelleContainer.CreatedOrganelleVisuals != null
+            && organelleContainer.OrganelleVisualsShifted)
+        {
+            organelleContainer.OrganelleVisualsShifted = false;
+
+            foreach (var visual in organelleContainer.CreatedOrganelleVisuals)
+            {
+                var visualParent = (Node3D)visual.Value.GetParent();
+                var verticalPos = visualParent.Position.Z;
+                if (verticalPos < 0)
+                {
+                    visualParent.Position = visual.Key.TargetVisualsTransform.Origin;
+                }
+            }
+        }
 
         if (organelleContainer.OrganelleVisualsCreated)
             return;
@@ -95,8 +118,6 @@ public sealed class MicrobeVisualsSystem : AEntitySetSystem<float>
             GD.PrintErr("Missing organelles list for MicrobeVisualsSystem");
             return;
         }
-
-        ref var cellProperties = ref entity.Get<CellProperties>();
 
         ref var spatialInstance = ref entity.Get<SpatialInstance>();
 
@@ -286,6 +307,26 @@ public sealed class MicrobeVisualsSystem : AEntitySetSystem<float>
         cellProperties.ApplyMembraneWigglyness(membrane);
     }
 
+    private void SetMembraneTurn(Membrane membrane, ref CellProperties cellProperties,
+        ref OrganelleContainer organelles, float delta)
+    {
+        cellProperties.ApplyMembraneTurn(membrane, delta);
+
+        if (organelles.CreatedOrganelleVisuals == null)
+            return;
+
+        foreach (var visual in organelles.CreatedOrganelleVisuals)
+        {
+            var visualParent = (Node3D)visual.Value.GetParent();
+            var verticalPos = visualParent.Position.Z;
+            if (verticalPos < 0)
+            {
+                visualParent.Position = visual.Key.TargetVisualsTransform.Origin + new Vector3(verticalPos, 0, 0) *
+                    membrane.Turn * 0.7f;
+            }
+        }
+    }
+
     /// <summary>
     ///   Creates visuals for organelles in a container
     /// </summary>
@@ -340,6 +381,8 @@ public sealed class MicrobeVisualsSystem : AEntitySetSystem<float>
                 {
                     Transform = transform,
                 };
+
+                placedOrganelle.TargetVisualsTransform = transform;
 
                 var visualsInstance = graphicsInfo.LoadedScene.Instantiate<Node3D>();
                 placedOrganelle.ReportCreatedGraphics(visualsInstance, graphicsInfo);

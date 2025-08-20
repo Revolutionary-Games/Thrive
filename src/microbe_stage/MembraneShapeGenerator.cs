@@ -150,6 +150,16 @@ public class MembraneShapeGenerator
     }
 
     /// <summary>
+    ///   Creates the flat mesh for internal decorations
+    /// </summary>
+    public (ArrayMesh Mesh, int SurfaceIndex) GenerateFlatMesh(MembranePointData shapeData)
+    {
+        var mesh = BuildFlatMesh(shapeData.Vertices2D, shapeData.VertexCount, out var surfaceIndex);
+
+        return (mesh, surfaceIndex);
+    }
+
+    /// <summary>
     ///   Takes a mesh with placed vertices and places UVs and normals on it
     /// </summary>
     private static void FinishMesh(int vertexCount, int layerCount, Vector3[] vertices, Vector2[] uvs,
@@ -443,6 +453,76 @@ public class MembraneShapeGenerator
 
         indices[trueVertexCount] = 0;
         indices[trueVertexCount + 1] = 1;
+
+        // Godot might do this automatically
+        // // Set the bounds to get frustum culling and LOD to work correctly.
+        // // TODO: make this more accurate by calculating the actual extents
+        // m_mesh->_setBounds(Ogre::Aabb(Float3::ZERO, Float3::UNIT_SCALE * 50)
+        //     /*, false*/);
+        // m_mesh->_setBoundingSphereRadius(50);
+
+        arrays[(int)Mesh.ArrayType.Vertex] = vertices;
+        arrays[(int)Mesh.ArrayType.Index] = indices;
+        arrays[(int)Mesh.ArrayType.TexUV] = uvs;
+
+        // Create the mesh
+        var generatedMesh = new ArrayMesh();
+
+        surfaceIndex = generatedMesh.GetSurfaceCount();
+        generatedMesh.AddSurfaceFromArrays(Mesh.PrimitiveType.TriangleStrip, arrays);
+
+        return generatedMesh;
+    }
+
+    /// <summary>
+    ///   Creates the engulf mesh object.
+    /// </summary>
+    private static ArrayMesh BuildFlatMesh(Vector2[] vertices2D, int vertexCount, out int surfaceIndex)
+    {
+        // common variables
+        const float height = 0.1f;
+
+        var center = new Vector2(0.5f, 0.5f);
+
+        var arrays = new Array();
+        arrays.Resize((int)Mesh.ArrayType.Max);
+
+        // Write mesh data
+        var indices = new int[vertexCount * 3];
+        var vertices = new Vector3[vertexCount + 1];
+        var uvs = new Vector2[vertexCount + 1];
+
+        var radiansPerIndex = 2 * MathF.PI / vertexCount;
+
+        vertices[0] = new Vector3(center.X, height * 0.5f, center.Y);
+        uvs[0] = center;
+
+        for (int i = 1; i < vertexCount + 1; ++i)
+        {
+            // This weird indexing is required to make the mesh respect winding order
+            // Otherwise it will get culled
+
+            var vertex = vertices2D[i - 1];
+
+            vertices[i] = new Vector3(vertex.X, height * 0.5f, vertex.Y);
+
+            var radians = radiansPerIndex * (i - 1);
+            uvs[i] = new Vector2(MathF.Sin(radians), MathF.Cos(radians)) * 0.5f + new Vector2(0.5f, 0.5f);
+        }
+
+        int vertexIndex = 1;
+
+        for (int i = 0; i < indices.Length; i += 3)
+        {
+            indices[i] = 0;
+            indices[i + 1] = vertexIndex;
+            indices[i + 2] = vertexIndex + 1;
+
+            ++vertexIndex;
+        }
+
+        // Connect back to the start
+        indices[indices.Length - 1] = 1;
 
         // Godot might do this automatically
         // // Set the bounds to get frustum culling and LOD to work correctly.

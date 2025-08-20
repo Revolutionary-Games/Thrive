@@ -7,6 +7,7 @@ shader_type spatial;
 // Set to 0 to disable wiggle
 uniform float wigglyNess = 1.f;
 uniform float movementWigglyNess = 1.f;
+uniform float turn = 1.0f;
 
 uniform float waviness = 20.f;
 uniform float waveSpeed = 15.f;
@@ -24,6 +25,13 @@ void vertex(){
         * wigglyNess * size;
     VERTEX.z += sin(worldVertex.x * movementWigglyNess - TIME / 4.0f) / 10.f
         * wigglyNess * size;
+
+		// Bend when turning
+	if (VERTEX.z < 0.2f)
+	{
+		//VERTEX.z -= turn * 0.75f;
+    	VERTEX.x += VERTEX.z * turn * 0.5f;
+	}
 }
 
 void fragment() {
