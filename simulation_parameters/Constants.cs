@@ -391,6 +391,8 @@ public static class Constants
     /// </summary>
     public const float CURRENT_FORCE_CELL_MULTIPLIER = 15;
 
+    public const float CURRENT_COMPOUND_CLOUD_ADVECT_THRESHOLD = 0.15f;
+
     public const int TRANSLATION_VERY_INCOMPLETE_THRESHOLD = 30;
     public const int TRANSLATION_INCOMPLETE_THRESHOLD = 70;
 
