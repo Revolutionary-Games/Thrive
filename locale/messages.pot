@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Thrive VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2025-08-11 11:43+0300\n"
+"POT-Creation-Date: 2025-08-20 17:02+0300\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -83,7 +83,7 @@ msgstr ""
 msgid "ACTION_AWAKEN_TOOLTIP"
 msgstr ""
 
-#: ../src/general/base_stage/EditorBase.cs:853
+#: ../src/general/base_stage/EditorBase.cs:877
 #: ../src/macroscopic_stage/editor/MacroscopicEditor.cs:495
 #: ../src/microbe_stage/editor/CellEditorComponent.GUI.cs:62
 #: ../src/multicellular_stage/editor/MulticellularEditor.cs:431
@@ -229,7 +229,7 @@ msgstr ""
 msgid "AMOUNT_OF_AUTOSAVE_TO_KEEP"
 msgstr ""
 
-#: ../src/gui_common/menus/OptionsMenu.tscn:2766
+#: ../src/gui_common/menus/OptionsMenu.tscn:2765
 msgid "AMOUNT_OF_QUICKSAVE_TO_KEEP"
 msgstr ""
 
@@ -282,11 +282,11 @@ msgstr ""
 msgid "APRIL"
 msgstr ""
 
-#: ../src/gui_common/menus/OptionsMenu.tscn:3245
+#: ../src/gui_common/menus/OptionsMenu.tscn:3243
 msgid "ARE_YOU_SURE_TO_RESET_ALL_SETTINGS"
 msgstr ""
 
-#: ../src/gui_common/menus/OptionsMenu.tscn:3251
+#: ../src/gui_common/menus/OptionsMenu.tscn:3249
 msgid "ARE_YOU_SURE_TO_RESET_INPUT_SETTINGS"
 msgstr ""
 
@@ -475,11 +475,11 @@ msgstr ""
 msgid "AUTO_EVO_RESULTS"
 msgstr ""
 
-#: ../src/auto-evo/RunResults.cs:1212
+#: ../src/auto-evo/RunResults.cs:1218
 msgid "AUTO_EVO_RESULTS_GLOBAL_TITLE"
 msgstr ""
 
-#: ../src/auto-evo/RunResults.cs:1153
+#: ../src/auto-evo/RunResults.cs:1159
 msgid "AUTO_EVO_RESULTS_PATCH_TITLE"
 msgstr ""
 
@@ -528,7 +528,7 @@ msgstr ""
 #: ../src/general/MainMenu.tscn:547 ../src/general/MainMenu.tscn:895
 #: ../src/general/MainMenu.tscn:942 ../src/general/NewGameSettings.tscn:1037
 #: ../src/general/PauseMenu.tscn:291
-#: ../src/gui_common/menus/OptionsMenu.tscn:3207
+#: ../src/gui_common/menus/OptionsMenu.tscn:3205
 #: ../src/gui_common/menus/PlanetCustomizerTool.tscn:127
 #: ../src/microbe_stage/gui/ExtinctionBox.tscn:72
 #: ../src/modding/ModManager.tscn:83 ../src/saving/NewSaveMenu.tscn:122
@@ -598,12 +598,12 @@ msgstr ""
 msgid "BATHYPELAGIC"
 msgstr ""
 
-#: ../src/microbe_stage/MicrobeHUD.cs:753
+#: ../src/microbe_stage/MicrobeHUD.cs:755
 #: ../src/microbe_stage/MicrobeHUD.tscn:432
 msgid "BECOME_MACROSCOPIC"
 msgstr ""
 
-#: ../src/microbe_stage/MicrobeHUD.cs:709
+#: ../src/microbe_stage/MicrobeHUD.cs:711
 #: ../src/microbe_stage/MicrobeHUD.tscn:425
 msgid "BECOME_MULTICELLULAR"
 msgstr ""
@@ -822,7 +822,7 @@ msgstr ""
 #: ../src/awakening_stage/gui/SelectBuildingPopup.tscn:48
 #: ../src/gui_common/dialogs/CustomConfirmationDialog.tscn:19
 #: ../src/gui_common/dialogs/CustomConfirmationDialog.tscn:71
-#: ../src/gui_common/menus/OptionsMenu.tscn:3309
+#: ../src/gui_common/menus/OptionsMenu.tscn:3307
 #: ../src/microbe_stage/editor/EndosymbiosisProgressDisplay.tscn:67
 #: ../src/microbe_stage/gui/PatchDetailsPanel.tscn:636
 #: ../src/modding/NewModGUI.tscn:333
@@ -988,7 +988,7 @@ msgstr ""
 msgid "CHEATS_USED_NOTICE"
 msgstr ""
 
-#: ../src/gui_common/menus/OptionsMenu.tscn:2899
+#: ../src/gui_common/menus/OptionsMenu.tscn:2897
 msgid "CHEAT_KEYS_ENABLED"
 msgstr ""
 
@@ -1164,7 +1164,7 @@ msgstr ""
 #: ../src/gui_common/art_gallery/GalleryViewer.tscn:95
 #: ../src/gui_common/charts/line/LineChart.tscn:215
 #: ../src/gui_common/dialogs/LicensesDisplay.tscn:91
-#: ../src/gui_common/menus/OptionsMenu.tscn:3371
+#: ../src/gui_common/menus/OptionsMenu.tscn:3369
 #: ../src/microbe_stage/editor/CellEditorComponent.tscn:1375
 #: ../src/microbe_stage/editor/EndosymbiosisPopup.tscn:82
 #: ../src/microbe_stage/editor/MicrobeEditorReportComponent.tscn:605
@@ -1177,7 +1177,7 @@ msgstr ""
 msgid "CLOSE"
 msgstr ""
 
-#: ../src/gui_common/menus/OptionsMenu.tscn:3257
+#: ../src/gui_common/menus/OptionsMenu.tscn:3255
 msgid "CLOSE_OPTIONS"
 msgstr ""
 
@@ -1294,7 +1294,7 @@ msgstr ""
 msgid "COMMUNITY_WIKI_BUTTON_TOOLTIP"
 msgstr ""
 
-#: ../src/gui_common/menus/OptionsMenu.tscn:3187
+#: ../src/gui_common/menus/OptionsMenu.tscn:3185
 msgid "COMPILED_AT_COLON"
 msgstr ""
 
@@ -1473,11 +1473,11 @@ msgstr ""
 msgid "CONFIRM_NEW_GAME_BUTTON_TOOLTIP_DISABLED"
 msgstr ""
 
-#: ../src/gui_common/menus/OptionsMenu.tscn:3335
+#: ../src/gui_common/menus/OptionsMenu.tscn:3333
 msgid "CONFIRM_RESET_ACHIEVEMENTS"
 msgstr ""
 
-#: ../src/gui_common/menus/OptionsMenu.tscn:3334
+#: ../src/gui_common/menus/OptionsMenu.tscn:3332
 msgid "CONFIRM_RESET_ACHIEVEMENTS_DESCRIPTION"
 msgstr ""
 
@@ -1742,6 +1742,10 @@ msgstr ""
 msgid "CORRECTION_TRITANOPE"
 msgstr ""
 
+#: ../src/general/base_stage/CreatureStageBase.cs:527
+msgid "CPU_POWER_NOT_ENOUGH_FOR_SPEED_MODE"
+msgstr ""
+
 #: ../src/gui_common/menus/OptionsMenu.tscn:1679
 msgid "CPU_THREADS"
 msgstr ""
@@ -1852,7 +1856,7 @@ msgstr ""
 msgid "CREATING_DOT_DOT_DOT"
 msgstr ""
 
-#: ../src/saving/InProgressLoad.cs:107
+#: ../src/saving/InProgressLoad.cs:111
 msgid "CREATING_OBJECTS_FROM_SAVE"
 msgstr ""
 
@@ -1899,7 +1903,7 @@ msgstr ""
 msgid "CURRENT_WORLD_STATISTICS"
 msgstr ""
 
-#: ../src/gui_common/menus/OptionsMenu.tscn:2936
+#: ../src/gui_common/menus/OptionsMenu.tscn:2934
 msgid "CUSTOM_USERNAME"
 msgstr ""
 
@@ -2099,7 +2103,7 @@ msgstr ""
 msgid "DEVELOPMENT_WIKI_BUTTON_TOOLTIP"
 msgstr ""
 
-#: ../src/microbe_stage/MicrobeHUD.cs:347
+#: ../src/microbe_stage/MicrobeHUD.cs:349
 msgid "DEVOURED"
 msgstr ""
 
@@ -2171,7 +2175,7 @@ msgstr ""
 msgid "DISABLE_ALL"
 msgstr ""
 
-#: ../src/gui_common/menus/OptionsMenu.tscn:3298
+#: ../src/gui_common/menus/OptionsMenu.tscn:3296
 msgid "DISCARD_AND_CONTINUE"
 msgstr ""
 
@@ -2217,12 +2221,12 @@ msgstr ""
 msgid "DISK_CACHE_TOOLTIP"
 msgstr ""
 
-#: ../src/gui_common/menus/OptionsMenu.tscn:3069
+#: ../src/gui_common/menus/OptionsMenu.tscn:3067
 msgid "DISMISSED_POPUPS_COLON"
 msgstr ""
 
-#: ../src/gui_common/menus/OptionsMenu.tscn:3067
-#: ../src/gui_common/menus/OptionsMenu.tscn:3079
+#: ../src/gui_common/menus/OptionsMenu.tscn:3065
+#: ../src/gui_common/menus/OptionsMenu.tscn:3077
 msgid "DISMISSED_POPUPS_EXPLANATION"
 msgstr ""
 
@@ -2618,8 +2622,8 @@ msgstr ""
 msgid "EQUIPMENT_TYPE_AXE"
 msgstr ""
 
-#: ../src/gui_common/menus/OptionsMenu.tscn:3314
-#: ../src/gui_common/menus/OptionsMenu.tscn:3321
+#: ../src/gui_common/menus/OptionsMenu.tscn:3312
+#: ../src/gui_common/menus/OptionsMenu.tscn:3319
 msgid "ERROR"
 msgstr ""
 
@@ -2631,7 +2635,7 @@ msgstr ""
 msgid "ERROR_CREATING_INFO_FILE"
 msgstr ""
 
-#: ../src/gui_common/menus/OptionsMenu.tscn:3319
+#: ../src/gui_common/menus/OptionsMenu.tscn:3317
 msgid "ERROR_FAILED_TO_SAVE_NEW_SETTINGS"
 msgstr ""
 
@@ -2643,7 +2647,7 @@ msgstr ""
 msgid "ERROR_FETCHING_NEWS"
 msgstr ""
 
-#: ../src/saving/InProgressLoad.cs:211
+#: ../src/saving/InProgressLoad.cs:215
 msgid "ERROR_LOADING"
 msgstr ""
 
@@ -2703,20 +2707,20 @@ msgstr ""
 msgid "EVOLUTIONARY_TREE_BUILD_FAILED"
 msgstr ""
 
-#: ../src/gui_common/menus/OptionsMenu.tscn:3162
+#: ../src/gui_common/menus/OptionsMenu.tscn:3160
 msgid "EXACT_VERSION_COLON"
 msgstr ""
 
-#: ../src/gui_common/menus/OptionsMenu.tscn:3160
-#: ../src/gui_common/menus/OptionsMenu.tscn:3169
+#: ../src/gui_common/menus/OptionsMenu.tscn:3158
+#: ../src/gui_common/menus/OptionsMenu.tscn:3167
 msgid "EXACT_VERSION_TOOLTIP"
 msgstr ""
 
-#: ../src/saving/InProgressLoad.cs:176
+#: ../src/saving/InProgressLoad.cs:180
 msgid "EXCEPTION_HAPPENED_PROCESSING_SAVE"
 msgstr ""
 
-#: ../src/saving/InProgressLoad.cs:121
+#: ../src/saving/InProgressLoad.cs:125
 msgid "EXCEPTION_HAPPENED_WHILE_LOADING"
 msgstr ""
 
@@ -2792,7 +2796,7 @@ msgstr ""
 msgid "EXTINCT_FROM_THE_PLANET"
 msgstr ""
 
-#: ../src/general/base_stage/CreatureStageBase.cs:465
+#: ../src/general/base_stage/CreatureStageBase.cs:485
 msgid "EXTINCT_IN_PATCH"
 msgstr ""
 
@@ -3038,12 +3042,12 @@ msgstr ""
 msgid "FOSSILISATION_FAILED_DESCRIPTION"
 msgstr ""
 
-#: ../src/microbe_stage/MicrobeHUD.cs:629
+#: ../src/microbe_stage/MicrobeHUD.cs:631
 #: ../src/thriveopedia/fossilisation/FossilisationButton.tscn:16
 msgid "FOSSILISATION_HINT"
 msgstr ""
 
-#: ../src/microbe_stage/MicrobeHUD.cs:628
+#: ../src/microbe_stage/MicrobeHUD.cs:630
 msgid "FOSSILISATION_HINT_ALREADY_FOSSILISED"
 msgstr ""
 
@@ -3236,11 +3240,11 @@ msgstr ""
 msgid "GLES3"
 msgstr ""
 
-#: ../src/general/world_effects/patch_events/GlobalGlaciationEvent.cs:280
+#: ../src/general/world_effects/patch_events/GlobalGlaciationEvent.cs:278
 msgid "GLOBAL_GLACIATION_END_EVENT_LOG"
 msgstr ""
 
-#: ../src/general/world_effects/patch_events/GlobalGlaciationEvent.cs:258
+#: ../src/general/world_effects/patch_events/GlobalGlaciationEvent.cs:256
 msgid "GLOBAL_GLACIATION_EVENT"
 msgstr ""
 
@@ -3248,15 +3252,15 @@ msgstr ""
 msgid "GLOBAL_GLACIATION_EVENT_TOOLTIP"
 msgstr ""
 
-#: ../src/general/world_effects/patch_events/GlobalGlaciationEvent.cs:268
+#: ../src/general/world_effects/patch_events/GlobalGlaciationEvent.cs:266
 msgid "GLOBAL_GLACIATION_EVENT_WARNING_LOG_PLURAL"
 msgstr ""
 
-#: ../src/general/world_effects/patch_events/GlobalGlaciationEvent.cs:267
+#: ../src/general/world_effects/patch_events/GlobalGlaciationEvent.cs:265
 msgid "GLOBAL_GLACIATION_EVENT_WARNING_LOG_SINGULAR"
 msgstr ""
 
-#: ../src/general/world_effects/patch_events/GlobalGlaciationEvent.cs:274
+#: ../src/general/world_effects/patch_events/GlobalGlaciationEvent.cs:272
 msgid "GLOBAL_GLACIATION_START_EVENT_LOG"
 msgstr ""
 
@@ -3268,7 +3272,7 @@ msgstr ""
 msgid "GLOBAL_POPULATION_COLON"
 msgstr ""
 
-#: ../src/auto-evo/RunResults.cs:1384
+#: ../src/auto-evo/RunResults.cs:1390
 msgid "GLOBAL_TIMELINE_SPECIES_MIGRATED_TO"
 msgstr ""
 
@@ -4117,19 +4121,19 @@ msgstr ""
 msgid "JANUARY"
 msgstr ""
 
-#: ../src/gui_common/menus/OptionsMenu.tscn:3000
+#: ../src/gui_common/menus/OptionsMenu.tscn:2998
 msgid "JSON_DEBUG_MODE"
 msgstr ""
 
-#: ../src/gui_common/menus/OptionsMenu.tscn:3014
+#: ../src/gui_common/menus/OptionsMenu.tscn:3012
 msgid "JSON_DEBUG_MODE_ALWAYS"
 msgstr ""
 
-#: ../src/gui_common/menus/OptionsMenu.tscn:3012
+#: ../src/gui_common/menus/OptionsMenu.tscn:3010
 msgid "JSON_DEBUG_MODE_AUTO"
 msgstr ""
 
-#: ../src/gui_common/menus/OptionsMenu.tscn:3016
+#: ../src/gui_common/menus/OptionsMenu.tscn:3014
 msgid "JSON_DEBUG_MODE_NEVER"
 msgstr ""
 
@@ -4674,12 +4678,12 @@ msgstr ""
 msgid "LOADING_DOT_DOT_DOT"
 msgstr ""
 
-#: ../src/saving/InProgressLoad.cs:78 ../src/saving/InProgressLoad.cs:105
-#: ../src/saving/InProgressLoad.cs:159
+#: ../src/saving/InProgressLoad.cs:82 ../src/saving/InProgressLoad.cs:109
+#: ../src/saving/InProgressLoad.cs:163
 msgid "LOADING_GAME"
 msgstr ""
 
-#: ../src/general/base_stage/StageBase.cs:461
+#: ../src/general/base_stage/StageBase.cs:470
 msgid "LOADING_GRAPHICS_SHADERS"
 msgstr ""
 
@@ -4704,15 +4708,15 @@ msgid "LOADING_MULTICELLULAR_STAGE"
 msgstr ""
 
 #: ../src/general/base_stage/HUDBase.cs:61
-#: ../src/general/base_stage/StageBase.cs:447
+#: ../src/general/base_stage/StageBase.cs:456
 msgid "LOADING_STAGE"
 msgstr ""
 
-#: ../src/general/base_stage/StageBase.cs:457
+#: ../src/general/base_stage/StageBase.cs:466
 msgid "LOADING_STAGE_ASSETS"
 msgstr ""
 
-#: ../src/saving/InProgressLoad.cs:182
+#: ../src/saving/InProgressLoad.cs:186
 msgid "LOAD_FINISHED"
 msgstr ""
 
@@ -5350,7 +5354,7 @@ msgstr ""
 msgid "MISCELLANEOUS_3D_STAGE"
 msgstr ""
 
-#: ../src/gui_common/menus/OptionsMenu.tscn:3105
+#: ../src/gui_common/menus/OptionsMenu.tscn:3103
 msgid "MISC_FUN"
 msgstr ""
 
@@ -6072,7 +6076,7 @@ msgstr ""
 msgid "NO_SAVE_DIRECTORY"
 msgstr ""
 
-#: ../src/gui_common/menus/OptionsMenu.tscn:3329
+#: ../src/gui_common/menus/OptionsMenu.tscn:3327
 msgid "NO_SCREENSHOT_DIRECTORY"
 msgstr ""
 
@@ -6115,7 +6119,7 @@ msgstr ""
 #: ../src/microbe_stage/editor/CellEditorComponent.cs:2916
 #: ../src/microbe_stage/editor/CellEditorComponent.cs:2928
 #: ../src/microbe_stage/editor/MicrobePartSelection.tscn:154
-#: ../src/microbe_stage/MicrobeHUD.cs:562
+#: ../src/microbe_stage/MicrobeHUD.cs:564
 msgid "N_A"
 msgstr ""
 
@@ -6125,7 +6129,7 @@ msgstr ""
 msgid "N_A_MP"
 msgstr ""
 
-#: ../src/microbe_stage/MicrobeHUD.cs:616
+#: ../src/microbe_stage/MicrobeHUD.cs:618
 #: ../src/microbe_stage/organelle_unlocks/UndiscoveredOrganellesButton.cs:45
 msgid "N_TIMES"
 msgstr ""
@@ -6190,7 +6194,7 @@ msgstr ""
 msgid "OPEN_IN_FREEBUILD"
 msgstr ""
 
-#: ../src/gui_common/menus/OptionsMenu.tscn:2884
+#: ../src/gui_common/menus/OptionsMenu.tscn:2882
 msgid "OPEN_LOGS_FOLDER"
 msgstr ""
 
@@ -6218,7 +6222,7 @@ msgstr ""
 msgid "OPEN_SCIENCE_MENU"
 msgstr ""
 
-#: ../src/gui_common/menus/OptionsMenu.tscn:2873
+#: ../src/gui_common/menus/OptionsMenu.tscn:2871
 msgid "OPEN_SCREENSHOT_FOLDER"
 msgstr ""
 
@@ -6501,7 +6505,7 @@ msgstr ""
 msgid "PATCH_NOTES_LAST_PLAYED_INFO_PLURAL"
 msgstr ""
 
-#: ../src/gui_common/menus/OptionsMenu.tscn:3339
+#: ../src/gui_common/menus/OptionsMenu.tscn:3337
 #: ../src/gui_common/PatchNotesDisplayer.tscn:25
 msgid "PATCH_NOTES_TITLE"
 msgstr ""
@@ -6575,10 +6579,10 @@ msgstr ""
 #: ../src/microbe_stage/editor/tooltips/StatModifierToolTip.cs:157
 #: ../src/microbe_stage/editor/tooltips/StatModifierToolTip.cs:237
 #: ../src/microbe_stage/editor/upgrades/ToxinUpgradeGUI.cs:54
-#: ../src/microbe_stage/gui/CompoundProgressBar.cs:505
-#: ../src/microbe_stage/gui/CompoundProgressBar.cs:581
+#: ../src/microbe_stage/gui/CompoundProgressBar.cs:512
+#: ../src/microbe_stage/gui/CompoundProgressBar.cs:588
 #: ../src/microbe_stage/gui/PatchDetailsPanel.cs:374
-#: ../src/microbe_stage/MicrobeHUD.cs:353
+#: ../src/microbe_stage/MicrobeHUD.cs:355
 #: ../src/microbe_stage/organelle_unlocks/WorldBasedUnlockCondition.cs:158
 #: ../src/microbe_stage/organelle_unlocks/WorldBasedUnlockCondition.cs:161
 #: ../src/microbe_stage/organelle_unlocks/WorldBasedUnlockCondition.cs:173
@@ -6663,7 +6667,7 @@ msgstr ""
 msgid "PLANET_RANDOM_SEED"
 msgstr ""
 
-#: ../src/microbe_stage/MicrobeHUD.cs:586
+#: ../src/microbe_stage/MicrobeHUD.cs:588
 msgid "PLAYER"
 msgstr ""
 
@@ -6675,7 +6679,7 @@ msgstr ""
 msgid "PLAYER_DEATH_POPULATION_PENALTY_EXPLANATION"
 msgstr ""
 
-#: ../src/general/base_stage/CreatureStageBase.cs:385
+#: ../src/general/base_stage/CreatureStageBase.cs:405
 msgid "PLAYER_DIED"
 msgstr ""
 
@@ -6696,7 +6700,7 @@ msgstr ""
 msgid "PLAYER_RELATIVE_MOVEMENT_TOOLTIP"
 msgstr ""
 
-#: ../src/general/base_stage/CreatureStageBase.cs:330
+#: ../src/general/base_stage/CreatureStageBase.cs:350
 msgid "PLAYER_REPRODUCED"
 msgstr ""
 
@@ -6735,11 +6739,11 @@ msgstr ""
 msgid "POPULATION_CAPITAL"
 msgstr ""
 
-#: ../src/auto-evo/RunResults.cs:876
+#: ../src/auto-evo/RunResults.cs:882
 msgid "POPULATION_COLON"
 msgstr ""
 
-#: ../src/auto-evo/RunResults.cs:1007
+#: ../src/auto-evo/RunResults.cs:1013
 msgid "POPULATION_IN_PATCHES"
 msgstr ""
 
@@ -6786,11 +6790,11 @@ msgstr ""
 msgid "PREVIEW_IMAGE_IS_TOO_LARGE"
 msgstr ""
 
-#: ../src/auto-evo/RunResults.cs:889
+#: ../src/auto-evo/RunResults.cs:895
 msgid "PREVIOUS_COLON"
 msgstr ""
 
-#: ../src/saving/InProgressLoad.cs:161
+#: ../src/saving/InProgressLoad.cs:165
 msgid "PROCESSING_LOADED_OBJECTS"
 msgstr ""
 
@@ -6904,7 +6908,7 @@ msgstr ""
 msgid "REACH_MULTICELLULAR_STAGE"
 msgstr ""
 
-#: ../src/saving/InProgressLoad.cs:80
+#: ../src/saving/InProgressLoad.cs:84
 msgid "READING_SAVE_DATA"
 msgstr ""
 
@@ -6998,12 +7002,12 @@ msgid "RESEARCH"
 msgstr ""
 
 #: ../src/gui_common/menus/OptionsMenu.tscn:1404
-#: ../src/gui_common/menus/OptionsMenu.tscn:3214
+#: ../src/gui_common/menus/OptionsMenu.tscn:3212
 #: ../src/microbe_stage/editor/GrowthOrderPicker.tscn:22
 msgid "RESET"
 msgstr ""
 
-#: ../src/gui_common/menus/OptionsMenu.tscn:3098
+#: ../src/gui_common/menus/OptionsMenu.tscn:3096
 msgid "RESET_ACHIEVEMENTS"
 msgstr ""
 
@@ -7011,11 +7015,11 @@ msgstr ""
 msgid "RESET_DEADZONES"
 msgstr ""
 
-#: ../src/gui_common/menus/OptionsMenu.tscn:3088
+#: ../src/gui_common/menus/OptionsMenu.tscn:3086
 msgid "RESET_DISMISSED_POPUPS"
 msgstr ""
 
-#: ../src/gui_common/menus/OptionsMenu.tscn:3252
+#: ../src/gui_common/menus/OptionsMenu.tscn:3250
 msgid "RESET_INPUTS_TO_DEFAULTS"
 msgstr ""
 
@@ -7027,19 +7031,19 @@ msgstr ""
 msgid "RESET_KEYBINDINGS"
 msgstr ""
 
-#: ../src/gui_common/menus/OptionsMenu.tscn:3240
+#: ../src/gui_common/menus/OptionsMenu.tscn:3238
 msgid "RESET_SETTINGS_TO_DEFAULTS"
 msgstr ""
 
-#: ../src/gui_common/menus/OptionsMenu.tscn:2858
+#: ../src/gui_common/menus/OptionsMenu.tscn:2856
 msgid "RESET_SHOWN_TUTORIALS"
 msgstr ""
 
-#: ../src/gui_common/menus/OptionsMenu.tscn:2857
+#: ../src/gui_common/menus/OptionsMenu.tscn:2855
 msgid "RESET_SHOWN_TUTORIALS_TOOLTIP"
 msgstr ""
 
-#: ../src/gui_common/menus/OptionsMenu.tscn:3246
+#: ../src/gui_common/menus/OptionsMenu.tscn:3244
 msgid "RESET_TO_DEFAULTS"
 msgstr ""
 
@@ -7166,27 +7170,27 @@ msgstr ""
 msgid "RUN_ONE_STEP"
 msgstr ""
 
-#: ../src/auto-evo/RunResults.cs:988
+#: ../src/auto-evo/RunResults.cs:994
 msgid "RUN_RESULT_BY_SENDING_POPULATION"
 msgstr ""
 
-#: ../src/auto-evo/RunResults.cs:969
+#: ../src/auto-evo/RunResults.cs:975
 msgid "RUN_RESULT_GENE_CODE"
 msgstr ""
 
-#: ../src/auto-evo/RunResults.cs:920
+#: ../src/auto-evo/RunResults.cs:926
 msgid "RUN_RESULT_NICHE_FILL"
 msgstr ""
 
-#: ../src/auto-evo/RunResults.cs:923
+#: ../src/auto-evo/RunResults.cs:929
 msgid "RUN_RESULT_SELECTION_PRESSURE_SPLIT"
 msgstr ""
 
-#: ../src/auto-evo/RunResults.cs:907
+#: ../src/auto-evo/RunResults.cs:913
 msgid "RUN_RESULT_SPLIT_FROM"
 msgstr ""
 
-#: ../src/auto-evo/RunResults.cs:940
+#: ../src/auto-evo/RunResults.cs:946
 msgid "RUN_RESULT_SPLIT_OFF_TO"
 msgstr ""
 
@@ -7222,12 +7226,12 @@ msgstr ""
 msgid "SAFE_MODE_TITLE"
 msgstr ""
 
-#: ../src/gui_common/menus/OptionsMenu.tscn:3223
+#: ../src/gui_common/menus/OptionsMenu.tscn:3221
 #: ../src/saving/NewSaveMenu.tscn:80
 msgid "SAVE"
 msgstr ""
 
-#: ../src/gui_common/menus/OptionsMenu.tscn:3292
+#: ../src/gui_common/menus/OptionsMenu.tscn:3290
 msgid "SAVE_AND_CONTINUE"
 msgstr ""
 
@@ -7272,7 +7276,7 @@ msgstr ""
 msgid "SAVE_HAS_DIFFERENT_VERSION_TEXT"
 msgstr ""
 
-#: ../src/saving/InProgressLoad.cs:148
+#: ../src/saving/InProgressLoad.cs:152
 msgid "SAVE_HAS_INVALID_GAME_STATE"
 msgstr ""
 
@@ -7280,7 +7284,7 @@ msgstr ""
 msgid "SAVE_INVALID"
 msgstr ""
 
-#: ../src/saving/InProgressLoad.cs:147
+#: ../src/saving/InProgressLoad.cs:151
 msgid "SAVE_IS_INVALID"
 msgstr ""
 
@@ -7288,7 +7292,7 @@ msgstr ""
 msgid "SAVE_IS_UPGRADEABLE_DESCRIPTION"
 msgstr ""
 
-#: ../src/saving/InProgressLoad.cs:249
+#: ../src/saving/InProgressLoad.cs:253
 msgid "SAVE_LOAD_ALREADY_LOADED_FREE_FAILURE"
 msgstr ""
 
@@ -7344,7 +7348,7 @@ msgstr ""
 msgid "SCALING_ON_INVERSE"
 msgstr ""
 
-#: ../src/gui_common/menus/OptionsMenu.tscn:3130
+#: ../src/gui_common/menus/OptionsMenu.tscn:3128
 msgid "SCREEN_EFFECT"
 msgstr ""
 
@@ -7404,7 +7408,7 @@ msgid "SECRETE_SLIME_TOOLTIP"
 msgstr ""
 
 #: ../src/microbe_stage/editor/MicrobeEditorPatchMap.tscn:139
-#: ../src/microbe_stage/editor/PatchMapEditorComponent.cs:346
+#: ../src/microbe_stage/editor/PatchMapEditorComponent.cs:369
 #: ../src/thriveopedia/pages/ThriveopediaPatchMapPage.cs:123
 #: ../src/thriveopedia/pages/ThriveopediaPatchMapPage.tscn:82
 msgid "SEED_LABEL"
@@ -7530,29 +7534,29 @@ msgstr ""
 msgid "SHOW_ITEM_COORDINATES"
 msgstr ""
 
-#: ../src/gui_common/menus/OptionsMenu.tscn:2976
+#: ../src/gui_common/menus/OptionsMenu.tscn:2974
 msgid "SHOW_NEW_PATCH_NOTES"
 msgstr ""
 
-#: ../src/gui_common/menus/OptionsMenu.tscn:2974
-#: ../src/gui_common/menus/OptionsMenu.tscn:2981
+#: ../src/gui_common/menus/OptionsMenu.tscn:2972
+#: ../src/gui_common/menus/OptionsMenu.tscn:2979
 msgid "SHOW_NEW_PATCH_NOTES_TOOLTIP"
 msgstr ""
 
-#: ../src/gui_common/menus/OptionsMenu.tscn:2829
+#: ../src/gui_common/menus/OptionsMenu.tscn:2827
 msgid "SHOW_TUTORIALS_IN_NEW_CURRENT_OPTION"
 msgstr ""
 
-#: ../src/gui_common/menus/OptionsMenu.tscn:2810
+#: ../src/gui_common/menus/OptionsMenu.tscn:2808
 msgid "SHOW_TUTORIALS_IN_NEW_GAMES_OPTION"
 msgstr ""
 
-#: ../src/gui_common/menus/OptionsMenu.tscn:2808
-#: ../src/gui_common/menus/OptionsMenu.tscn:2815
+#: ../src/gui_common/menus/OptionsMenu.tscn:2806
+#: ../src/gui_common/menus/OptionsMenu.tscn:2813
 msgid "SHOW_TUTORIALS_OPTION_TOOLTIP"
 msgstr ""
 
-#: ../src/gui_common/menus/OptionsMenu.tscn:2791
+#: ../src/gui_common/menus/OptionsMenu.tscn:2789
 msgid "SHOW_UNSAVED_PROGRESS_WARNING"
 msgstr ""
 
@@ -7560,7 +7564,7 @@ msgstr ""
 msgid "SHOW_UNSAVED_PROGRESS_WARNING_TOOLTIP"
 msgstr ""
 
-#: ../src/gui_common/menus/OptionsMenu.tscn:2957
+#: ../src/gui_common/menus/OptionsMenu.tscn:2955
 msgid "SHOW_WEB_NEWS_FEED"
 msgstr ""
 
@@ -7778,7 +7782,7 @@ msgstr ""
 msgid "SPECIES_DETAIL_TEXT"
 msgstr ""
 
-#: ../src/auto-evo/RunResults.cs:964
+#: ../src/auto-evo/RunResults.cs:970
 msgid "SPECIES_HAS_A_MUTATION"
 msgstr ""
 
@@ -7829,7 +7833,7 @@ msgstr ""
 msgid "SPEED_COLON"
 msgstr ""
 
-#: ../src/auto-evo/RunResults.cs:980
+#: ../src/auto-evo/RunResults.cs:986
 msgid "SPREAD_TO_PATCHES"
 msgstr ""
 
@@ -8372,7 +8376,7 @@ msgstr ""
 msgid "TIMELINE_LOCAL_FILTER_TOOLTIP"
 msgstr ""
 
-#: ../src/auto-evo/RunResults.cs:1409
+#: ../src/auto-evo/RunResults.cs:1415
 msgid "TIMELINE_NICHE_FILL"
 msgstr ""
 
@@ -8384,7 +8388,7 @@ msgstr ""
 msgid "TIMELINE_PLAYER_MIGRATED_TO"
 msgstr ""
 
-#: ../src/auto-evo/RunResults.cs:1415
+#: ../src/auto-evo/RunResults.cs:1421
 msgid "TIMELINE_SELECTION_PRESSURE_SPLIT"
 msgstr ""
 
@@ -8393,31 +8397,31 @@ msgstr ""
 msgid "TIMELINE_SPECIES_BECAME_MULTICELLULAR"
 msgstr ""
 
-#: ../src/auto-evo/RunResults.cs:1330
+#: ../src/auto-evo/RunResults.cs:1336
 msgid "TIMELINE_SPECIES_EXTINCT"
 msgstr ""
 
-#: ../src/auto-evo/RunResults.cs:1353
+#: ../src/auto-evo/RunResults.cs:1359
 msgid "TIMELINE_SPECIES_EXTINCT_LOCAL"
 msgstr ""
 
-#: ../src/microbe_stage/editor/PatchMapEditorComponent.cs:437
+#: ../src/microbe_stage/editor/PatchMapEditorComponent.cs:460
 msgid "TIMELINE_SPECIES_FOLLOWED"
 msgstr ""
 
-#: ../src/auto-evo/RunResults.cs:1379
+#: ../src/auto-evo/RunResults.cs:1385
 msgid "TIMELINE_SPECIES_MIGRATED_FROM"
 msgstr ""
 
-#: ../src/auto-evo/RunResults.cs:1390
+#: ../src/auto-evo/RunResults.cs:1396
 msgid "TIMELINE_SPECIES_MIGRATED_TO"
 msgstr ""
 
-#: ../src/auto-evo/RunResults.cs:1346 ../src/auto-evo/RunResults.cs:1367
+#: ../src/auto-evo/RunResults.cs:1352 ../src/auto-evo/RunResults.cs:1373
 msgid "TIMELINE_SPECIES_POPULATION_DECREASE"
 msgstr ""
 
-#: ../src/auto-evo/RunResults.cs:1340 ../src/auto-evo/RunResults.cs:1361
+#: ../src/auto-evo/RunResults.cs:1346 ../src/auto-evo/RunResults.cs:1367
 msgid "TIMELINE_SPECIES_POPULATION_INCREASE"
 msgstr ""
 
@@ -8697,7 +8701,7 @@ msgstr ""
 msgid "TRY_MAKING_A_SAVE"
 msgstr ""
 
-#: ../src/gui_common/menus/OptionsMenu.tscn:3328
+#: ../src/gui_common/menus/OptionsMenu.tscn:3326
 msgid "TRY_TAKING_SOME_SCREENSHOTS"
 msgstr ""
 
@@ -9043,7 +9047,7 @@ msgstr ""
 msgid "UNLOCK_WITH_ANY_OF_FOLLOWING"
 msgstr ""
 
-#: ../src/gui_common/menus/OptionsMenu.tscn:3274
+#: ../src/gui_common/menus/OptionsMenu.tscn:3272
 msgid "UNSAVED_CHANGE_WARNING"
 msgstr ""
 
@@ -9143,7 +9147,7 @@ msgstr ""
 msgid "USE_AUTO_HARMONY_TOOLTIP"
 msgstr ""
 
-#: ../src/gui_common/menus/OptionsMenu.tscn:2917
+#: ../src/gui_common/menus/OptionsMenu.tscn:2915
 msgid "USE_A_CUSTOM_USERNAME"
 msgstr ""
 
@@ -9199,8 +9203,8 @@ msgstr ""
 
 #: ../src/gui_common/CompoundAmount.cs:311
 #: ../src/microbe_stage/editor/TolerancesEditorSubComponent.cs:738
-#: ../src/microbe_stage/gui/CompoundProgressBar.cs:509
-#: ../src/microbe_stage/gui/CompoundProgressBar.cs:585
+#: ../src/microbe_stage/gui/CompoundProgressBar.cs:516
+#: ../src/microbe_stage/gui/CompoundProgressBar.cs:592
 #: ../src/microbe_stage/gui/PatchDetailsPanel.cs:375
 #: ../src/microbe_stage/organelle_unlocks/WorldBasedUnlockCondition.cs:158
 #: ../src/microbe_stage/organelle_unlocks/WorldBasedUnlockCondition.cs:161
@@ -9258,11 +9262,11 @@ msgstr ""
 msgid "VIEW_PATCH_MICHES"
 msgstr ""
 
-#: ../src/gui_common/menus/OptionsMenu.tscn:3048
+#: ../src/gui_common/menus/OptionsMenu.tscn:3046
 msgid "VIEW_PATCH_NOTES"
 msgstr ""
 
-#: ../src/gui_common/menus/OptionsMenu.tscn:3045
+#: ../src/gui_common/menus/OptionsMenu.tscn:3043
 msgid "VIEW_PATCH_NOTES_TOOLTIP"
 msgstr ""
 
@@ -9320,7 +9324,7 @@ msgstr ""
 msgid "VSYNC"
 msgstr ""
 
-#: ../src/general/base_stage/EditorBase.cs:271
+#: ../src/general/base_stage/EditorBase.cs:281
 msgid "WAITING_FOR_AUTO_EVO"
 msgstr ""
 
@@ -9328,11 +9332,11 @@ msgstr ""
 msgid "WELCOME_TO_THRIVEOPEDIA"
 msgstr ""
 
-#: ../src/auto-evo/RunResults.cs:1086
+#: ../src/auto-evo/RunResults.cs:1092
 msgid "WENT_EXTINCT_FROM_PLANET"
 msgstr ""
 
-#: ../src/auto-evo/RunResults.cs:885
+#: ../src/auto-evo/RunResults.cs:891
 msgid "WENT_EXTINCT_IN"
 msgstr ""
 

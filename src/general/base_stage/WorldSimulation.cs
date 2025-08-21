@@ -55,6 +55,9 @@ public abstract class WorldSimulation : IWorldSimulation, IGodotEarlyNodeResolve
     private float timeSinceLastEntityEstimate = 1;
     private int ecsThreadsToUse = 1;
 
+    private int missedUpdates;
+    private int successfullUpdates;
+
     /// <summary>
     ///   Used to trigger warnings about <see cref="WorldTimeScale"/> being so high we can't process the game fast
     ///   enough
@@ -206,13 +209,19 @@ public abstract class WorldSimulation : IWorldSimulation, IGodotEarlyNodeResolve
             {
                 ++timeScaleMissedUpdates;
 
-                if (timeScaleMissedUpdates > 2)
+                // Only show the warning once per instance of not enough performance
+                if (timeScaleMissedUpdates == 2)
                     GD.PrintErr("World time scale is higher than we have processing power for");
             }
+
+            ++missedUpdates;
         }
         else
         {
-            timeScaleMissedUpdates = 0;
+            if (timeScaleMissedUpdates > 0)
+                --timeScaleMissedUpdates;
+
+            ++successfullUpdates;
         }
 
         Processing = true;
@@ -513,13 +522,29 @@ public abstract class WorldSimulation : IWorldSimulation, IGodotEarlyNodeResolve
 
     public abstract bool HasSystemsWithPendingOperations();
 
+    public float GetAndResetTrackedSimulationSpeedRatio()
+    {
+        var total = successfullUpdates + missedUpdates;
+
+        // If called too often, we have no data, and at that point we'll assume we are running at full speed
+        if (total == 0)
+            return 1;
+
+        var result = successfullUpdates / (float)total;
+
+        successfullUpdates = 0;
+        missedUpdates = 0;
+
+        return result;
+    }
+
     public virtual void FreeNodeResources()
     {
     }
 
     /// <summary>
-    ///   Note that often when this is disposed, the Nodes are already disposed so this has to skip releasing them.
-    ///   If that is not the case it is required to call <see cref="FreeNodeResources"/> before calling Dispose.
+    ///   Note that often when this is disposed, the Nodes are already disposed, so this has to skip releasing them.
+    ///   If that is not the case, it is required to call <see cref="FreeNodeResources"/> before calling Dispose.
     /// </summary>
     public void Dispose()
     {
@@ -579,7 +604,7 @@ public abstract class WorldSimulation : IWorldSimulation, IGodotEarlyNodeResolve
     /// <returns>The number of simultaneous single entity system tasks there should be processed</returns>
     protected virtual int EstimateThreadsUtilizedBySystems()
     {
-        // By default no multithreading, just use main thread
+        // By default, no multithreading, just use the main thread
         return 1;
     }
 

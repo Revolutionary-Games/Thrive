@@ -252,6 +252,9 @@ public partial class MicrobeHUD : CreatureStageHUDBase<MicrobeStage>
         var resultingModifier = fastModeEnabled ? 2 : 1;
 
         stage.WorldSimulation.WorldTimeScale = resultingModifier;
+
+        // Make sure the GUI state is consistent with the current speed
+        bottomLeftBar.SpeedModePressed = fastModeEnabled;
     }
 
     public override bool GetCurrentSpeedMode()

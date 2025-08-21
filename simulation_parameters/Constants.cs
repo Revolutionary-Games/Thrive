@@ -25,13 +25,15 @@ public static class Constants
     public const float SIMULATION_OPTIMIZE_THREADS_INTERVAL = 0.3f;
 
     /// <summary>
-    ///   Controls the number of threads used by the entity systems. The number of cells is divided by this and that is
-    ///   the max number of threads.
+    ///   Controls the number of threads used by the entity systems. The number of cells is divided by this,
+    ///   and that is the max number of threads.
     /// </summary>
     public const int SIMULATION_CELLS_PER_THREAD_ESTIMATE = 25;
 
+    public const float SIMULATION_REQUIRED_FAST_MODE_SUCCESS_RATE = 0.45f;
+
     // The following variables define the number of entities each thread running a system of that category needs to be
-    // able to process for threading to be used at all. For example if there are 40 entities and 4 threads to be used
+    // able to process for threading to be used at all. For example, if there are 40 entities and 4 threads to be used
     // and a system specifies 10 entities per thread, that system will run multithreaded (4 * 10 {40} <= 40).
     // But if there was a system that wanted at least 15 entities per thread, that would run purely *single threaded*
     // (4 * 15 {60} <= 40)
