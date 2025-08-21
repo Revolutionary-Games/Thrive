@@ -8,8 +8,8 @@ msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2025-08-20 17:02+0300\n"
-"PO-Revision-Date: 2025-08-13 14:57+0000\n"
-"Last-Translator: Anonymous <noreply@weblate.org>\n"
+"PO-Revision-Date: 2025-08-19 06:12+0000\n"
+"Last-Translator: DiversoCortez <decaiotreis@proton.me>\n"
 "Language-Team: Portuguese (Brazil) <https://translate.revolutionarygamesstudio.com/projects/thrive/thrive-game/pt_BR/>\n"
 "Language: pt_BR\n"
 "MIME-Version: 1.0\n"
@@ -49,18 +49,17 @@ msgstr "Abissopelágico"
 msgid "ACCEPT"
 msgstr "Aceitar"
 
-#, fuzzy
 msgid "ACHIEVEMENTS"
-msgstr "Movimento Base"
+msgstr "Conquistas"
 
 msgid "ACHIEVEMENTS_TOTAL"
-msgstr ""
+msgstr "Conquistas {0} / {1}"
 
 msgid "ACHIEVEMENT_ACHIEVED"
-msgstr ""
+msgstr "Completada"
 
 msgid "ACHIEVEMENT_LOCKED"
-msgstr ""
+msgstr "Bloqueada"
 
 msgid "ACTION_AWAKEN"
 msgstr "Despertar ({0:F1} / {1:F1})"
@@ -344,9 +343,8 @@ msgstr "Agosto"
 msgid "AUTO"
 msgstr "Auto"
 
-#, fuzzy
 msgid "AUTO-EVO_EXPLANATION_EXPLANATION"
-msgstr "Esse painel mostra os números que a previsão da auto-evo usa. A energia total que uma espécie é capaz de possuir e o custo por indivíduo da espécie determina a população final. A auto-evo usa um modelo simplificado da realidade para calcular quão bem as espécies estão desempenhando baseado na energia que elas são capazes de obter. É mostrada quanta energia cada fonte de alimento fornece para a espécie. Além disso, é mostrada a energia total disponível dessa fonte. A fração da energia total fornecida à espécie é baseada em quão adaptada a espécie é comparada à adaptação total. A adaptação é a métrica de quão bem a espécie pode utilizar essa fonte de alimento."
+msgstr "Esse painel mostra os números que a previsão da auto-evo usa. A energia total que uma espécie é capaz de capturar e o custo por indivíduo da espécie determina a população final. A auto-evo usa um modelo simplificado de realidade para calcular quão bem as espécies estão desempenhando baseado na energia que elas são capazes de obter. É mostrada quanta energia cada fonte de alimento fornece para a espécie. Além disso, é mostrada a energia total disponível dessa fonte. A fração da energia total fornecida à espécie é baseada em quão adaptada a espécie é comparada à adaptação total. A adaptação é a métrica de quão bem a espécie pode utilizar essa fonte de alimento."
 
 msgid "AUTO-EVO_POPULATION_CHANGED_2"
 msgstr "A população de {0} mudou em {1} membros em {2} devido a: {3}"
@@ -359,9 +357,8 @@ msgstr ""
 "Esse painel mostra a população da espécie modificada prevista pela auto-evo.\n"
 "A auto-evo roda a simulação populacional que é um dos fatores que afetam a sua população (o outro é o seu desempenho)."
 
-#, fuzzy
 msgid "AUTO-EVO_RESULTS_TITLE"
-msgstr "Resultados da Auto-evo:"
+msgstr "Resultados da Auto-Evo"
 
 msgid "AUTO-EVO_STEPS_DONE"
 msgstr "{0:F1}% feito. {1:n0}/{2:n0} passos."
@@ -437,7 +434,7 @@ msgid "BACKSPACE"
 msgstr "Backspace"
 
 msgid "BACK_TO_SETTINGS"
-msgstr ""
+msgstr "Voltar às Configurações"
 
 msgid "BACTERIAL_THERMOSYNTHESIS"
 msgstr "Termossíntese Bacteriana"
@@ -515,10 +512,10 @@ msgid "BEST_PATCH_COLON"
 msgstr "Melhor Região:"
 
 msgid "BETTER_TOGETHER"
-msgstr ""
+msgstr "Melhor Juntos"
 
 msgid "BEYOND_THE_CELL"
-msgstr ""
+msgstr "Além da Célula"
 
 msgid "BIG_IRON_CHUNK"
 msgstr "Pedaço de Ferro Grande"
@@ -629,7 +626,7 @@ msgid "CANNOT_ENGULF"
 msgstr "Não é possível realizar a fagocitose"
 
 msgid "CANNOT_IMPROVE_PERFECTION"
-msgstr ""
+msgstr "Impossivel Melhorar a Perfeição"
 
 msgid "CANNOT_MOVE_METABALL_TO_DESCENDANT_TREE"
 msgstr "Não é possível mover uma metaball na sua árvore de descendentes"
@@ -840,22 +837,19 @@ msgid "CLICK_TO_SELECT"
 msgstr "Selecionar"
 
 msgid "CLIMATE_INSTABILITY"
-msgstr ""
+msgstr "Instabilidade climática"
 
-#, fuzzy
 msgid "CLIMATE_INSTABILITY_EXPLANATION"
-msgstr ""
-"Os micróbios ativos perambulam pelo mundo quando não há nada de interessante.\n"
-"Já os micróbios sésseis ficam parados e esperam o ambiente mudar antes de agir."
+msgstr "(influencia a frequência e severidade de eventos de região como a glaciação global)"
 
 msgid "CLIMATE_STABILITY_AVERAGE"
-msgstr ""
+msgstr "Média"
 
 msgid "CLIMATE_STABILITY_STABLE"
-msgstr ""
+msgstr "Estável"
 
 msgid "CLIMATE_STABILITY_UNSTABLE"
-msgstr ""
+msgstr "Instável"
 
 msgid "CLOSE"
 msgstr "Fechar"
@@ -1097,13 +1091,11 @@ msgstr "Entrar no jogo com essas configurações"
 msgid "CONFIRM_NEW_GAME_BUTTON_TOOLTIP_DISABLED"
 msgstr "Algumas configurações são inválidas"
 
-#, fuzzy
 msgid "CONFIRM_RESET_ACHIEVEMENTS"
-msgstr "Confirmar Remoção"
+msgstr "Confirmar Redefinição das Conquistas?"
 
-#, fuzzy
 msgid "CONFIRM_RESET_ACHIEVEMENTS_DESCRIPTION"
-msgstr "Transforma [thrive:compound type=\"atp\"][/thrive:compound] em [thrive:compound type=\"ammonia\"][/thrive:compound]. Quantidade aumenta com a concentração de [thrive:compound type=\"nitrogen\"][/thrive:compound]."
+msgstr "Tem certeza que você quer resetar TODAS as conquistas e estatísticas relacionadas? Esta operação não pode ser desfeita e você precisará conquistá-las novamente com todo o progresso apagado."
 
 msgid "CONSTRUCTION_UNIT_NAME"
 msgstr "Unidade: {0}"
@@ -1893,9 +1885,8 @@ msgstr ""
 "\n"
 "Se a sua célula não estiver pronta para o núcleo, você pode usar o  [b]botão de desfazer[/b] para [u]reverter[/u] o núcleo."
 
-#, fuzzy
 msgid "EDIT_MICROBE_FIRST_TIME"
-msgstr "Carregando Estágio Microbial"
+msgstr "Edite o seu micróbio pela primeira vez"
 
 msgid "EFFECTIVE_VALUE"
 msgstr "Valor Efetivo"
@@ -1997,7 +1988,7 @@ msgid "ENERGY_SUMMARY_LINE"
 msgstr "A energia total coletada é {0}, a um custo de {1} por indivíduo, resultando em uma população (não ajustada) de {2}"
 
 msgid "ENGULF_CELL_OR_CHUNK"
-msgstr ""
+msgstr "Fagocitar outra célula ou pedaço"
 
 msgid "ENGULF_NO_ATP_DAMAGE_MESSAGE"
 msgstr "Ferido por tentar fagocitar sem ATP"
@@ -2345,9 +2336,8 @@ msgstr "Excluir Dados Locais"
 msgid "FORGET_MOD_DETAILS_TOOLTIP"
 msgstr "Remover dados locais referentes a esse item. Útil se o ID inserido está errado ou se você quiser fazer o upload de uma nova versão de um item diferente."
 
-#, fuzzy
 msgid "FORM_CELL_COLONY"
-msgstr "Armazenamento:"
+msgstr "Forme uma colônia de células"
 
 msgid "FORM_ERROR_MESSAGE"
 msgstr "Erro: {0}"
@@ -2447,12 +2437,11 @@ msgstr "Não se esqueça, você pode usar o painel no canto superior direito par
 msgid "GENERAL_LOADING_TIP_7"
 msgstr "Se a sua população chegar a zero, você se torna uma espécie extinta."
 
-#, fuzzy
 msgid "GENERATE_BUTTON"
-msgstr "Gerações"
+msgstr "Gerar Mundo"
 
 msgid "GENERATE_POSITIVE_GLUCOSE_PHOTOSYNTHESIS"
-msgstr ""
+msgstr "Crie mais glicose que você usa através de fotossíntese"
 
 msgid "GENERATIONS"
 msgstr "Gerações"
@@ -2461,22 +2450,19 @@ msgid "GENERATION_COLON"
 msgstr "Geração:"
 
 msgid "GEOLOGICAL_ACTIVITY"
-msgstr ""
+msgstr "Atividade geológica"
 
 msgid "GEOLOGICAL_ACTIVITY_ACTIVE"
-msgstr ""
+msgstr "Ativa"
 
 msgid "GEOLOGICAL_ACTIVITY_AVERAGE"
-msgstr ""
+msgstr "Média"
 
 msgid "GEOLOGICAL_ACTIVITY_DORMANT"
-msgstr ""
+msgstr "Inativa"
 
-#, fuzzy
 msgid "GEOLOGICAL_ACTIVITY_EXPLANATION"
-msgstr ""
-"Os micróbios ativos perambulam pelo mundo quando não há nada de interessante.\n"
-"Já os micróbios sésseis ficam parados e esperam o ambiente mudar antes de agir."
+msgstr "(influencia a frequência e severidade de eventos como impactos de meteoros e erupções vulcânicas)"
 
 msgid "GITHUB_TOOLTIP"
 msgstr "Visite o nosso repositório no GitHub"
@@ -2531,7 +2517,7 @@ msgid "GOD_TOOLS_TITLE"
 msgstr "Ferramentas Divinas"
 
 msgid "GOING_NUCLEAR"
-msgstr ""
+msgstr "Descoberta Nuclear"
 
 msgid "GOOGLY_EYE_CELL"
 msgstr "Célula com os olhos sexys"
@@ -2633,9 +2619,8 @@ msgstr "{0} (x{1})"
 msgid "HYDROGENASE"
 msgstr "Hidrogenase"
 
-#, fuzzy
 msgid "HYDROGENASE_DESCRIPTION"
-msgstr "Usa hidrogênio para gerar energia a partir de [thrive:compound type=\\\"glucose\\\"][/thrive:compound]. Mais efetiva que metabolossomos a níveis baixos de [thrive:compound type=\\\"oxygen\\\"][/thrive:compound]. Muitos organismos em ambientes anóxicos usam isso como uma fonte primária de energia."
+msgstr "Fermenta [thrive:compound type=\\\"glucose\\\"][/thrive:compound] para ganhar energia e produz derivados como hidrogênio. Mais efetiva que metabolossomos a níveis baixos de [thrive:compound type=\\\"oxygen\\\"][/thrive:compound]. Muitos organismos em ambientes anóxicos usam isso como fonte primária de energia."
 
 msgid "HYDROGENASE_PROCESSES_DESCRIPTION"
 msgstr "Transforma [thrive:compound type=\"glucose\"][/thrive:compound] em [thrive:compound type=\"atp\"][/thrive:compound]."
@@ -2643,9 +2628,8 @@ msgstr "Transforma [thrive:compound type=\"glucose\"][/thrive:compound] em [thri
 msgid "HYDROGENOSOME"
 msgstr "Hidrogenossomo"
 
-#, fuzzy
 msgid "HYDROGENOSOME_DESCRIPTION"
-msgstr "Usa hidrogênio para gerar energia a partir de [thrive:compound type=\\\"glucose\\\"][/thrive:compound]. Mais efetiva que metabolossomos a níveis baixos de [thrive:compound type=\\\"oxygen\\\"][/thrive:compound]. Muitos organismos em ambientes anóxicos usam isso como uma fonte primária de energia."
+msgstr "Fermenta [thrive:compound type=\\\"glucose\\\"][/thrive:compound] para ganhar energia e produz derivados como hidrogênio. O hidrogenossomo é uma organela membranosa cheia de proteínas e enzimas. É uma procariota que foi assimilada para ser usada por seu hospedeiro eucariótico. Mais efetivo que hidrogenase, e mais efetivo que a mitocôndria a níveis baixos de [thrive:compound type=\\\"oxygen\\\"][/thrive:compound]. Muitos organismos em ambientes anóxicos usam pilhas de hidrogenossomos como fonte primária de energia."
 
 msgid "HYDROGENOSOME_PROCESSES_DESCRIPTION"
 msgstr "Transforma [thrive:compound type=\\\"glucose\\\"][/thrive:compound] em [thrive:compound type=\\\"atp\\\"][/thrive:compound]."
@@ -2710,9 +2694,8 @@ msgstr "Editores"
 msgid "INFO_BOX_ENZYMES"
 msgstr "Enzimas"
 
-#, fuzzy
 msgid "INFO_BOX_GAMEPLAY_TYPE"
-msgstr "Enzimas"
+msgstr "Tipo de Gameplay"
 
 msgid "INFO_BOX_INTERNAL_NAME"
 msgstr "Nome Interno"
@@ -2904,9 +2887,8 @@ msgstr "Julho"
 msgid "JUNE"
 msgstr "Junho"
 
-#, fuzzy
 msgid "KEEP_CURRENT_SHORT"
-msgstr "Manter flexibilidade atual"
+msgstr "Manter atual"
 
 msgid "KEEP_CURRENT_TOLERANCE_FLEXIBILITY_TOOLTIP"
 msgstr "Manter faixa de tolerância de pressão atual enquanto move sliders máximo e mínimo"
@@ -2917,7 +2899,6 @@ msgstr "Manter Migração"
 msgid "KEY_BACK"
 msgstr "Voltar"
 
-#, fuzzy
 msgid "KEY_BACKTAB"
 msgstr "Voltar"
 
@@ -3014,13 +2995,11 @@ msgstr "Tab"
 msgid "KEY_UP"
 msgstr "Seta para cima"
 
-#, fuzzy
 msgid "KILL_50_MICROBES"
-msgstr "Estágio Microbial"
+msgstr "Mate 50 micróbios"
 
-#, fuzzy
 msgid "KILL_MICROBES_PROGRESS"
-msgstr "Estágio Microbial"
+msgstr "Mate {0} / {1} micróbios"
 
 msgid "KILO_ABBREVIATION"
 msgstr "{0} K"
@@ -3301,9 +3280,8 @@ msgstr "Carregando…"
 msgid "LOADING_GAME"
 msgstr "Carregando Jogo"
 
-#, fuzzy
 msgid "LOADING_GRAPHICS_SHADERS"
-msgstr "Carregando Jogo"
+msgstr "Carregando Shaders"
 
 msgid "LOADING_MACROSCOPIC_EDITOR"
 msgstr "Carregando Editor Macroscópico"
@@ -3385,9 +3363,8 @@ msgstr ""
 msgid "LOW_QUALITY_BACKGROUND_BLUR"
 msgstr "Desfoque de plano de fundo de baixa resolução"
 
-#, fuzzy
 msgid "LOW_QUALITY_BACKGROUND_BLUR_TOOLTIP"
-msgstr "Desfoque de plano de fundo:"
+msgstr "Fazer com que o Desfoque de plano de fundo use uma resolução menor, melhorando a performance."
 
 msgid "LUCIFERASE"
 msgstr "Luciferase"
@@ -3413,17 +3390,14 @@ msgstr "Macroscópico"
 msgid "MACROSCOPIC_STAGE"
 msgstr "Estágio Macroscópico"
 
-#, fuzzy
 msgid "MAKE_CELL_THAT_EATS_RADIATION"
-msgstr "radiação"
+msgstr "Faça uma célula que ganha energia a partir de radioatividade, e ganhe energia"
 
-#, fuzzy
 msgid "MAKE_CELL_USE_CHEMOSYNTHESIS"
-msgstr "Quimiossíntese"
+msgstr " Faça uma célula que usa apenas quimiossíntese para ganhar energia"
 
-#, fuzzy
 msgid "MAKE_NO_CHANGES_IN_EDITOR"
-msgstr "Mudanças:"
+msgstr "Não faça nenhuma mudança ao seu micróbio no editor"
 
 msgid "MANUALLY_SET_TIME"
 msgstr "Definir Manualmente a Hora do Dia"
@@ -3804,9 +3778,8 @@ msgstr ""
 "\n"
 "Com o tempo, organelas começarão a se duplicar. Coletar compostos acelera este processo. Quando todas as organelas tiverem se dividido, sua célula poderá se reproduzir e entrar no editor."
 
-#, fuzzy
 msgid "MICROBIAL_MASSACRE"
-msgstr "Estágio Microbial"
+msgstr "Massacre Microbial"
 
 #, fuzzy
 msgid "MICRO_BORG"
@@ -4340,9 +4313,8 @@ msgstr "Nenhum evento registrado"
 msgid "NO_FOSSIL_DIRECTORY"
 msgstr "O diretório de fósseis não foi encontrado"
 
-#, fuzzy
 msgid "NO_LONGER_ELIGIBLE_FOR_ACHIEVEMENTS"
-msgstr "Confirmar Remoção"
+msgstr "Jogo atual não é mais válido para conquistas"
 
 msgid "NO_MODS_ENABLED"
 msgstr "Nenhum mod ativado"
@@ -4759,9 +4731,8 @@ msgstr "Colocar organela"
 msgid "PLANET"
 msgstr "Planeta"
 
-#, fuzzy
 msgid "PLANET_CUSTOMIZER"
-msgstr "No cursor:"
+msgstr "Ferramenta Customizadora de Planeta"
 
 msgid "PLANET_DETAILS_STRING"
 msgstr ""
@@ -4940,14 +4911,13 @@ msgid "RAW_VALUE_COLON"
 msgstr "Bruto:"
 
 msgid "REACH_GENERATION_15_WITH_A_SPECIES"
-msgstr ""
+msgstr "Alcance a geração 15 com uma única espécie na dificuldade no mínimo normal"
 
 msgid "REACH_GENERATION_15_WITH_A_SPECIES_PROGRESS"
-msgstr ""
+msgstr "Alcance a geração {0}/{1} com uma única espécie na dificuldade no mínimo normal"
 
-#, fuzzy
 msgid "REACH_MULTICELLULAR_STAGE"
-msgstr "Estágio Multicelular"
+msgstr "Alcance o Estágio Multicelular"
 
 msgid "READING_SAVE_DATA"
 msgstr "Lendo dados salvos"
@@ -4970,9 +4940,8 @@ msgstr "Refazer a ultima ação"
 msgid "REFRESH"
 msgstr "Atualizar"
 
-#, fuzzy
 msgid "REGENERATE_BUTTON"
-msgstr "Organelas"
+msgstr "Gerar Outro Mundo"
 
 #, fuzzy
 msgid "RENDER_SCALE"
@@ -5022,9 +4991,8 @@ msgstr "Pesquisa"
 msgid "RESET"
 msgstr "Redefinir"
 
-#, fuzzy
 msgid "RESET_ACHIEVEMENTS"
-msgstr "Relativo à tela"
+msgstr "Redefinir Conquistas"
 
 msgid "RESET_DEADZONES"
 msgstr "Redefinir as zonas mortas"
@@ -5044,13 +5012,11 @@ msgstr "Redefinir entradas"
 msgid "RESET_SETTINGS_TO_DEFAULTS"
 msgstr "Configurações padrão"
 
-#, fuzzy
 msgid "RESET_SHOWN_TUTORIALS"
-msgstr "Mostrar tutoriais"
+msgstr "Redefinir Tutoriais Mostrados"
 
-#, fuzzy
 msgid "RESET_SHOWN_TUTORIALS_TOOLTIP"
-msgstr "Exportar os dados de todos os mundos no formato CSV (comma-separated values)"
+msgstr "Marca todos os tutoriais como não vistos. Isso faz com que todos os tutoriais apareçam novamente."
 
 msgid "RESET_TO_DEFAULTS"
 msgstr "Redefinir para as configurações padrão?"
@@ -5788,7 +5754,7 @@ msgid "STRUCTURE_STEAM_POWERED_FACTORY"
 msgstr "Fábrica Movida a Vapor"
 
 msgid "SUCCESSFULLY_PERFORM_ENDOSYMBIOSIS"
-msgstr ""
+msgstr "Realize endossimbiose com sucesso"
 
 msgid "SUCCESSFUL_KILL"
 msgstr "caça bem-sucedida"
@@ -5811,9 +5777,8 @@ msgstr "Apoiadores"
 msgid "SURVIVAL_TITLE"
 msgstr "Sobrevivência"
 
-#, fuzzy
 msgid "SURVIVE_WITH_A_NUCLEUS"
-msgstr "Requer um núcleo"
+msgstr "Coloque e sobreviva com um núcleo por uma geração"
 
 msgid "SWITCH_TO_FRONT_CAMERA"
 msgstr "Alternar para a visão frontal"
@@ -5852,13 +5817,11 @@ msgstr "Capturar tela"
 msgid "TARGET_TYPE_COLON"
 msgstr "Tipo do Alvo:"
 
-#, fuzzy
 msgid "TASTE_THE_SUN"
-msgstr "Tarefas atuais:"
+msgstr "Saboreie o Sol"
 
-#, fuzzy
 msgid "TASTY_RADIATION"
-msgstr "Radiação"
+msgstr "Radiação Gostosa"
 
 msgid "TECHNOLOGY_ASCENSION"
 msgstr "Ascensão"
@@ -5958,9 +5921,8 @@ msgstr "Termossíntese"
 msgid "THE_DISTURBANCE"
 msgstr "O Disturbance"
 
-#, fuzzy
 msgid "THE_EDITOR"
-msgstr "Sair do Editor"
+msgstr "O Editor"
 
 msgid "THE_PATCH_MAP_BUTTON"
 msgstr "Mapa de Regiões"
@@ -6013,9 +5975,8 @@ msgstr "Mapa de regiões"
 msgid "THRIVE_LICENSES"
 msgstr "Licenças de Thrive"
 
-#, fuzzy
 msgid "THRIVIN_ACHIEVEMENT"
-msgstr "Movimento Base"
+msgstr "Prosperar"
 
 msgid "THYLAKOIDS"
 msgstr "Tilacoides"
@@ -6823,9 +6784,8 @@ msgstr "O vacúolo armazenará {0} unidades do composto selecionado"
 msgid "VALUE_WITH_UNIT"
 msgstr "{0} {1}"
 
-#, fuzzy
 msgid "VENTS_ARE_HOME"
-msgstr "Nenhum evento registrado"
+msgstr "Fissuras são meu Lar"
 
 msgid "VERSION_COLON"
 msgstr "Versão:"
@@ -8099,7 +8059,6 @@ msgstr "Estágio Consciente"
 msgid "WIKI_PAGE_AXON"
 msgstr "Axônio"
 
-#, fuzzy
 msgid "WIKI_PAGE_BINDING_AGENT"
 msgstr "Agente de Ligação"
 
@@ -8130,17 +8089,15 @@ msgstr ""
 msgid "WIKI_PAGE_CYTOPLASM"
 msgstr "Citoplasma"
 
-#, fuzzy
 msgid "WIKI_PAGE_DEVELOPMENT_ROOT"
-msgstr "Colocar organela"
+msgstr "Desenvolvimento"
 
 #, fuzzy
 msgid "WIKI_PAGE_EDITORS_AND_MUTATIONS"
 msgstr "Mitocôndria"
 
-#, fuzzy
 msgid "WIKI_PAGE_ENVIRONMENTAL_CONDITIONS"
-msgstr "Mitocôndria"
+msgstr "Condições Ambientais"
 
 msgid "WIKI_PAGE_FERROPLAST"
 msgstr "Ferroplasto"
@@ -8148,51 +8105,40 @@ msgstr "Ferroplasto"
 msgid "WIKI_PAGE_FLAGELLUM"
 msgstr "Flagelo"
 
-#, fuzzy
 msgid "WIKI_PAGE_HELP_AND_TIPS"
-msgstr "Mitocôndria"
+msgstr "Ajuda e Dicas"
 
-#, fuzzy
 msgid "WIKI_PAGE_HYDROGENASE"
-msgstr "Nitrogenase"
+msgstr "Hidrogenase"
 
-#, fuzzy
 msgid "WIKI_PAGE_HYDROGENOSOME"
-msgstr "Nitrogenase"
+msgstr "Hidrogenossomo"
 
-#, fuzzy
 msgid "WIKI_PAGE_INDUSTRIAL_STAGE"
 msgstr "Estágio Industrial"
 
-#, fuzzy
 msgid "WIKI_PAGE_LYSOSOME"
 msgstr "Lisossomo"
 
-#, fuzzy
 msgid "WIKI_PAGE_MACROSCOPIC_STAGE"
-msgstr "Nitrogenase"
+msgstr "Estágio Macroscópico"
 
 #, fuzzy
 msgid "WIKI_PAGE_MECHANICS_ROOT"
 msgstr "Colocar organela"
 
-#, fuzzy
 msgid "WIKI_PAGE_MELANOSOME"
-msgstr "Lisossomo"
+msgstr "Melanossomo"
 
-#, fuzzy
 msgid "WIKI_PAGE_METABOLOSOMES"
-msgstr "Metabolossomo"
+msgstr "Metabolossomos"
 
-#, fuzzy
 msgid "WIKI_PAGE_MICROBE_STAGE"
-msgstr "Nitrogenase"
+msgstr "Estágio Microbial"
 
-#, fuzzy
 msgid "WIKI_PAGE_MITOCHONDRION"
 msgstr "Mitocôndria"
 
-#, fuzzy
 msgid "WIKI_PAGE_MULTICELLULAR_STAGE"
 msgstr "Estágio Multicelular"
 
@@ -8206,38 +8152,30 @@ msgstr "Nitrogenase"
 msgid "WIKI_PAGE_NITROPLAST"
 msgstr "Nitroplasto"
 
-#, fuzzy
 msgid "WIKI_PAGE_NUCLEUS"
-msgstr "Requer um núcleo"
+msgstr "Núcleo"
 
-#, fuzzy
 msgid "WIKI_PAGE_ORGANELLES_ROOT"
-msgstr "Colocar organela"
+msgstr "Organelas"
 
-#, fuzzy
 msgid "WIKI_PAGE_OXYTOXISOME"
 msgstr "Oxitoxissoma"
 
 msgid "WIKI_PAGE_PERFORATOR_PILUS"
 msgstr "Pilus Perfurador"
 
-#, fuzzy
 msgid "WIKI_PAGE_PROTOPLASM"
 msgstr "Protoplasma"
 
-#, fuzzy
 msgid "WIKI_PAGE_REPRODUCTION"
-msgstr "Protoplasma"
+msgstr "Reprodução"
 
-#, fuzzy
 msgid "WIKI_PAGE_RUSTICYANIN"
 msgstr "Rusticianina"
 
-#, fuzzy
 msgid "WIKI_PAGE_SIGNALING_AGENT"
 msgstr "Agente de Sinalização"
 
-#, fuzzy
 msgid "WIKI_PAGE_SLIME_JET"
 msgstr "Jato de Slime"
 
@@ -8249,36 +8187,26 @@ msgstr "Estágio Social"
 msgid "WIKI_PAGE_SPACE_STAGE"
 msgstr "Jato de Slime"
 
-#, fuzzy
 msgid "WIKI_PAGE_STAGES_ROOT"
-msgstr "Colocar organela"
+msgstr "Estágios"
 
-#, fuzzy
 msgid "WIKI_PAGE_THERMOPLAST"
 msgstr "Termoplasto"
 
-#, fuzzy
 msgid "WIKI_PAGE_THERMOSYNTHASE"
 msgstr "Termossintase"
 
 msgid "WIKI_PAGE_THE_PATCH_MAP"
 msgstr "Mapa de Regiões"
 
-#, fuzzy
 msgid "WIKI_PAGE_THYLAKOIDS"
 msgstr "Tilacoides"
 
-#, fuzzy
 msgid "WIKI_PAGE_TOXIN_VACUOLE"
-msgstr ""
-"Vacúolo de\n"
-"Toxinas"
+msgstr "Vacúolo de Toxinas"
 
-#, fuzzy
 msgid "WIKI_PAGE_VACUOLE"
-msgstr ""
-"Vacúolo de\n"
-"Toxinas"
+msgstr "Vacúolo"
 
 msgid "WIKI_PERFORATOR_PILUS_EFFECTS"
 msgstr ""
@@ -8342,9 +8270,8 @@ msgstr "Sem melhoras."
 msgid "WIKI_PULLING_CILIA"
 msgstr "Cílios"
 
-#, fuzzy
 msgid "WIKI_REPRODUCTION_BUTTON"
-msgstr "Protoplasma"
+msgstr "Reprodução"
 
 #, fuzzy
 msgid "WIKI_REPRODUCTION_INTRO"
@@ -8746,32 +8673,26 @@ msgstr ""
 "Incluir os protótipos de estágios posteriores: {0}\n"
 "Incluir easter eggs: {1}"
 
-#, fuzzy
 msgid "WORLD_OCEANIC_COVERAGE"
-msgstr "Grande"
+msgstr "Cobertura oceânica"
 
-#, fuzzy
 msgid "WORLD_OCEANIC_COVERAGE_EXPLANATION"
-msgstr "Grande"
+msgstr "(afeta quantas regiões continentais e oceânicas são criadas)"
 
-#, fuzzy
 msgid "WORLD_OCEANIC_COVERAGE_LARGE"
 msgstr "Grande"
 
-#, fuzzy
 msgid "WORLD_OCEANIC_COVERAGE_MEDIUM"
-msgstr "Grande"
+msgstr "Média"
 
-#, fuzzy
 msgid "WORLD_OCEANIC_COVERAGE_SMALL"
-msgstr "Pequeno"
+msgstr "Pequena"
 
 msgid "WORLD_RELATIVE_MOVEMENT"
 msgstr "Relativo ao mundo"
 
-#, fuzzy
 msgid "WORLD_SIZE"
-msgstr "Tamanho do Mundo"
+msgstr "Tamanho do mundo"
 
 msgid "WORLD_SIZE_EXPLANATION"
 msgstr "(muda o número de regiões no mundo)"
@@ -8788,28 +8709,20 @@ msgstr "Pequeno"
 msgid "WORLD_SIZE_TOOLTIP"
 msgstr "Um mundo grande pode atrasar a simulação e não é recomendado para computadores mais lentos."
 
-#, fuzzy
 msgid "WORLD_TEMPERATURE"
-msgstr "Temperatura"
+msgstr "Temperatura do mundo"
 
-#, fuzzy
 msgid "WORLD_TEMPERATURE_COLD"
-msgstr "Temp."
+msgstr "Fria"
 
-#, fuzzy
 msgid "WORLD_TEMPERATURE_EXPLANATION"
-msgstr ""
-"Micróbios focados perseguirão presas ou pedaços por distâncias mais longas\n"
-"e podem ser mais cobiçosos em relação aos pedaços.\n"
-"Micróbios mais reativos perseguirão outras presas depois de um tempo."
+msgstr "(afeta quanta regiões de mar congelado são criadas)"
 
-#, fuzzy
 msgid "WORLD_TEMPERATURE_TEMPERATE"
-msgstr "Temp."
+msgstr "Temperada"
 
-#, fuzzy
 msgid "WORLD_TEMPERATURE_WARM"
-msgstr "Temp."
+msgstr "Quente"
 
 msgid "WORST_PATCH_COLON"
 msgstr "Pior Região:"
@@ -8843,12 +8756,8 @@ msgstr ""
 msgid "YOU_CAN_SUPPORT_THRIVE_ON_PATREON"
 msgstr "Você pode financiar o desenvolvimento do jogo usando o Patreon."
 
-#, fuzzy
 msgid "YUM_EXCLAMATION"
-msgstr ""
-"Micróbios focados perseguirão presas ou pedaços por distâncias mais longas\n"
-"e podem ser mais cobiçosos em relação aos pedaços.\n"
-"Micróbios mais reativos perseguirão outras presas depois de um tempo."
+msgstr "Hmmm!"
 
 msgid "ZOOM_IN"
 msgstr "Aumentar o zoom"
