@@ -64,13 +64,13 @@ public partial class MembraneWaterRipple : Node
     ///   Minimal movement threshold
     /// </summary>
     [Export]
-    public float MovementThresholdSqr = 0.0001f;
+    public float MovementThresholdSqr = 0.0025f;
 
     /// <summary>
     ///   Threshold for resuming movement
     /// </summary>
     [Export]
-    public float ResumeMovementThresholdSqr = 0.0003f;
+    public float ResumeMovementThresholdSqr = 0.005f;
 
     /// <summary>
     ///   Maximum delta time to prevent jitter
