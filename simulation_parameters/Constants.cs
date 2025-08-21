@@ -1363,6 +1363,10 @@ public static class Constants
     public const double HYDROGEN_SULFIDE_ENVIRONMENT_EATING_MULTIPLIER = 0.00000001;
     public const float HYDROGEN_SULFIDE_NATURAL_DECAY_FACTOR = 0.3f;
 
+    public const float HYDROGEN_SULFIDE_NATURAL_DECAY_INCREASE_PER_OXYGEN = 0.021f;
+    public const float HYDROGEN_SULFIDE_NATURAL_DECAY_FACTOR_OXYGEN = 0.1f;
+    public const float HYDROGEN_SULFIDE_OXYGEN_TOTAL_CUTOFF = 0.01f;
+
     /// <summary>
     ///   Below this value oxygen doesn't cause iron chunks to become less common
     /// </summary>
