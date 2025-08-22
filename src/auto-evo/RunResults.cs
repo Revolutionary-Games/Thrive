@@ -394,35 +394,23 @@ public class RunResults
                 entry.Key.ApplyMutation(entry.Value.MutatedProperties);
             }
 
-            foreach (var populationEntry in entry.Value.NewPopulationInPatches)
-            {
-                var patch = world.Map.GetPatch(populationEntry.Key.ID);
+            bool registeredAlready = false;
 
-                // We ignore the return value as population results are added for all existing patches for all
-                // species (if the species is not in the patch, the population is 0 in the results)
-                if (!patch.UpdateSpeciesSimulationPopulation(entry.Key, populationEntry.Value) &&
-                    populationEntry.Value > 0)
-                {
-                    GD.PrintErr(
-                        $"Failed to apply species ({entry.Key}) population ({populationEntry.Value}) to patch " +
-                        $"({patch.Name}) it should be in");
-                }
-            }
-
+            // Process newly created species first to not cause errors when trying to register populations
             if (entry.Value.NewlyCreated != null)
             {
                 // If we split off from a species that didn't take a population hit, we need to register ourselves
-                bool register = false;
+
                 if (entry.Value.SplitFrom == null)
                 {
-                    register = true;
+                    registeredAlready = true;
                 }
                 else if (results[entry.Value.SplitFrom].SplitOff != entry.Key)
                 {
-                    register = true;
+                    registeredAlready = true;
                 }
 
-                if (register)
+                if (registeredAlready)
                 {
                     foreach (var populationEntry in entry.Value.NewPopulationInPatches)
                     {
@@ -432,6 +420,24 @@ public class RunResults
                         {
                             GD.PrintErr("RunResults has new species that already exists in patch");
                         }
+                    }
+                }
+            }
+
+            if (!registeredAlready)
+            {
+                foreach (var populationEntry in entry.Value.NewPopulationInPatches)
+                {
+                    var patch = world.Map.GetPatch(populationEntry.Key.ID);
+
+                    // We ignore the return value as population results are added for all existing patches for all
+                    // species (if the species is not in the patch, the population is 0 in the results)
+                    if (!patch.UpdateSpeciesSimulationPopulation(entry.Key, populationEntry.Value) &&
+                        populationEntry.Value > 0)
+                    {
+                        GD.PrintErr(
+                            $"Failed to apply species ({entry.Key}) population ({populationEntry.Value}) to patch " +
+                            $"({patch.Name}) it should be in");
                     }
                 }
             }
