@@ -505,7 +505,7 @@ public partial class MicrobeHUD : CreatureStageHUDBase<MicrobeStage>
             engulfing = colony.ColonyState == MicrobeState.Engulf;
             usingMucocyst = colony.ColonyState == MicrobeState.MucocystShield;
 
-            for (int i = 0; i < colony.ColonyMembers.Length; i++)
+            for (int i = 0; i < colony.ColonyMembers.Length; ++i)
             {
                 if (colony.ColonyMembers[i].Get<Engulfer>().EngulfedObjects is { Count: > 0 })
                 {

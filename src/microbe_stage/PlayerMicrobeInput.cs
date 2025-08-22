@@ -230,21 +230,22 @@ public partial class PlayerMicrobeInput : NodeWithInput
             }
         }
 
-        if (stage.Player.Has<MicrobeColony>())
+        if (!stage.Player.Has<MicrobeColony>())
+            return;
+
+        ref var colony = ref stage.Player.Get<MicrobeColony>();
+
+        // Skip the first colony member (i.e. the root cell) which was already handled
+        for (int i = 1; i < colony.ColonyMembers.Length; ++i)
         {
-            ref var colony = ref stage.Player.Get<MicrobeColony>();
+            ref var memberEngulfer = ref colony.ColonyMembers[i].Get<Engulfer>();
 
-            for (int i = 1; i < colony.ColonyMembers.Length; i++)
+            if (memberEngulfer.EngulfedObjects is not { Count: > 0 })
+                continue;
+
+            foreach (var engulfedObject in memberEngulfer.EngulfedObjects)
             {
-                ref var memberEngulfer = ref colony.ColonyMembers[i].Get<Engulfer>();
-
-                if (memberEngulfer.EngulfedObjects is not { Count: > 0 })
-                    continue;
-
-                foreach (var engulfedObject in memberEngulfer.EngulfedObjects)
-                {
-                    memberEngulfer.EjectEngulfable(ref engulfedObject.Get<Engulfable>());
-                }
+                memberEngulfer.EjectEngulfable(ref engulfedObject.Get<Engulfable>());
             }
         }
     }
