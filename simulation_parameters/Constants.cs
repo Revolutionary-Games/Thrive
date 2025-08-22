@@ -493,7 +493,7 @@ public static class Constants
     public const int DISK_CACHE_MAX_DELETES_TO_QUEUE_AT_ONCE = 500;
 
     // Base randomness for visual hashes to make different types not conflict
-    public const ulong VISUAL_HASH_CELL = 2106240777368515371UL;
+    public const ulong VISUAL_HASH_CELL = 2106240777368515372UL;
     public const ulong VISUAL_HASH_HEX_LAYOUT = 6086113318220891786UL;
     public const ulong VISUAL_HASH_PATH = 16930532057563531237UL;
 
