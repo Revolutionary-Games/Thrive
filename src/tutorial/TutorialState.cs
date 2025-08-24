@@ -170,6 +170,9 @@ public class TutorialState : ITutorialInput, ISaveLoadable
     [JsonProperty]
     public NucleusTutorial NucleusTutorial { get; private set; } = new();
 
+    [JsonProperty]
+    public BindingAgentsTutorial BindingAgentsTutorial { get; private set; } = new();
+
     // End of tutorial state variables
 
     [JsonProperty]
@@ -521,6 +524,7 @@ public class TutorialState : ITutorialInput, ISaveLoadable
             MigrationTutorial,
             CellEditorIntroduction,
             NucleusTutorial,
+            BindingAgentsTutorial,
             EditorUndoTutorial,
             EditorRedoTutorial,
             EditorTutorialEnd,

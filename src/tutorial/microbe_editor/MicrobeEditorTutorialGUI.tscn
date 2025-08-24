@@ -10,7 +10,7 @@
 [ext_resource type="FontVariation" uid="uid://cqork3l186w1c" path="res://assets/fonts/variants/Jura-Bold.tres" id="9_jkhed"]
 [ext_resource type="PackedScene" uid="uid://tna206f2gtkv" path="res://src/gui_common/AddWindowReorderingSupportToSiblings.tscn" id="10"]
 
-[node name="MicrobeEditorTutorialGUI" type="Control" node_paths=PackedStringArray("editorEntryReport", "patchMap", "cellEditorIntroduction", "cellEditorUndo", "cellEditorRedo", "cellEditorClosingWords", "autoEvoPrediction", "staySmallTutorial", "negativeAtpBalanceTutorial", "chemoreceptorPlacementTutorial", "madeNoChangesTutorial", "flagellumPlacementTutorial", "modifyOrganelleTutorial", "atpBalanceIntroduction", "nucleusTutorial", "tolerancesTabTutorial", "openTolerancesTabTutorial", "earlyGameGoalTutorial", "compoundBalanceTutorial", "migrationTutorial", "foodChainTutorial", "digestionStatTutorial", "CellEditorUndoHighlight", "CellEditorRedoHighlight", "AutoEvoPredictionHighlight", "AtpBalanceBarHighlight", "CompoundBalanceHighlight")]
+[node name="MicrobeEditorTutorialGUI" type="Control" node_paths=PackedStringArray("editorEntryReport", "patchMap", "cellEditorIntroduction", "cellEditorUndo", "cellEditorRedo", "cellEditorClosingWords", "autoEvoPrediction", "staySmallTutorial", "negativeAtpBalanceTutorial", "chemoreceptorPlacementTutorial", "madeNoChangesTutorial", "flagellumPlacementTutorial", "modifyOrganelleTutorial", "atpBalanceIntroduction", "nucleusTutorial", "bindingAgentsTutorial", "tolerancesTabTutorial", "openTolerancesTabTutorial", "earlyGameGoalTutorial", "compoundBalanceTutorial", "migrationTutorial", "foodChainTutorial", "digestionStatTutorial", "CellEditorUndoHighlight", "CellEditorRedoHighlight", "AutoEvoPredictionHighlight", "AtpBalanceBarHighlight", "CompoundBalanceHighlight")]
 process_mode = 3
 layout_mode = 3
 anchors_preset = 15
@@ -36,6 +36,7 @@ flagellumPlacementTutorial = NodePath("FlagellumPlacementTutorial")
 modifyOrganelleTutorial = NodePath("ModifyOrganelleTutorial")
 atpBalanceIntroduction = NodePath("AtpBalanceIntroduction")
 nucleusTutorial = NodePath("NucleusTutorial")
+bindingAgentsTutorial = NodePath("BindingAgentsTutorial")
 tolerancesTabTutorial = NodePath("TolerancesTabTutorial")
 openTolerancesTabTutorial = NodePath("OpenTolerancesTabTutorial")
 earlyGameGoalTutorial = NodePath("EarlyGoalTutorial")
@@ -601,6 +602,24 @@ Description = "EDITOR_TUTORIAL_MICROBE_EDITOR_NUCLEUS"
 ShowDelay = 0.7
 PreventsMouseCaptureWhileOpen = true
 
+[node name="BindingAgentsTutorial" parent="." instance=ExtResource("8")]
+custom_minimum_size = Vector2(360, 300)
+layout_mode = 1
+anchors_preset = 6
+anchor_left = 1.0
+anchor_top = 0.5
+anchor_right = 1.0
+anchor_bottom = 0.5
+offset_left = -400.0
+offset_top = -179.0
+offset_right = -10.0
+offset_bottom = 181.0
+grow_horizontal = 0
+grow_vertical = 2
+Description = "EDITOR_TUTORIAL_MICROBE_EDITOR_BINDING_AGENTS"
+ShowDelay = 0.7
+PreventsMouseCaptureWhileOpen = true
+
 [node name="CompoundBalanceTutorial" type="Control" parent="." node_paths=PackedStringArray("label")]
 visible = false
 custom_minimum_size = Vector2(260, 510)
@@ -746,6 +765,7 @@ text = "GOT_IT"
 [connection signal="hidden" from="OpenTolerancesTabTutorial" to="." method="OnSpecificCloseClicked" binds= ["OpenTolerancesTabTutorial"]]
 [connection signal="hidden" from="EarlyGoalTutorial" to="." method="OnSpecificCloseClicked" binds= ["EarlyGameGoalTutorial"]]
 [connection signal="hidden" from="NucleusTutorial" to="." method="OnSpecificCloseClicked" binds= ["NucleusTutorial"]]
+[connection signal="hidden" from="BindingAgentsTutorial" to="." method="OnSpecificCloseClicked" binds= ["BindingAgentsTutorial"]]
 [connection signal="hidden" from="CompoundBalanceTutorial" to="." method="OnSpecificCloseClicked" binds= ["CompoundBalancesTutorial"]]
 [connection signal="pressed" from="CompoundBalanceTutorial/ScrollContainer/VBoxContainer/Button" to="." method="OnSpecificCloseClicked" binds= ["CompoundBalancesTutorial"]]
 [connection signal="hidden" from="FoodChainTutorial" to="." method="OnSpecificCloseClicked" binds= ["FoodChainTabTutorial"]]
