@@ -108,7 +108,7 @@ public partial class MicrobeWorldSimulation
             pathBasedSceneLoader.Update(delta);
             collisionShapeLoaderSystem.Update(delta);
             countLimitedDespawnSystem.Update(delta);
-            fluidCurrentsSystem.Update(delta);
+            FluidCurrentsSystem.Update(delta);
             simpleShapeCreatorSystem.Update(delta);
             strainSystem.Update(delta);
             animationControlSystem.Update(delta);
@@ -288,7 +288,7 @@ public partial class MicrobeWorldSimulation
             soundEffectSystem.Update(delta);
             soundListenerSystem.Update(delta);
             cellBurstEffectSystem.Update(delta);
-            fluidCurrentsSystem.Update(delta);
+            FluidCurrentsSystem.Update(delta);
             microbeRenderPrioritySystem.Update(delta);
             intercellularMatrixSystem.Update(delta);
             CameraFollowSystem.Update(delta);

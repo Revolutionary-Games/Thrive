@@ -1089,6 +1089,7 @@ public partial class MicrobeStage : CreatureStageBase<Entity, MicrobeWorldSimula
         // Hook up the simulation to some of the other systems
         WorldSimulation.CameraFollowSystem.Camera = Camera;
         HoverInfo.PhysicalWorld = WorldSimulation.PhysicalWorld;
+        WorldSimulation.FluidCurrentsSystem.FluidCurrentDisplay = fluidCurrentDisplay;
 
         // Init the simulation and finish setting up the systems (for example, cloud init happens here)
         WorldSimulation.InitForCurrentGame(CurrentGame!);

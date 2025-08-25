@@ -26,6 +26,8 @@ using World = DefaultEcs.World;
 [RunsOnMainThread]
 public sealed class FluidCurrentsSystem : AEntitySetSystem<float>
 {
+    public FluidCurrentDisplay? FluidCurrentDisplay;
+
     // The following constants should be the same as in CurrentsParticles.gdshader
     private const float CURRENTS_TIMESCALE = 0.25f;
     private const float POSITION_SCALING = 0.9f;
@@ -109,6 +111,7 @@ public sealed class FluidCurrentsSystem : AEntitySetSystem<float>
         }
 
         currentsTimePassed += delta;
+        FluidCurrentDisplay?.UpdateTime(currentsTimePassed);
 
         if (gameWorld == null)
             throw new InvalidOperationException("GameWorld not set");

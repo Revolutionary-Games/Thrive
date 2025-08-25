@@ -64,14 +64,7 @@ public partial class FluidCurrentDisplay : GpuParticles3D
             GlobalPosition = new Vector3(previousParentPosition.X, 1.0f, previousParentPosition.Z);
         }
 
-        if (!PauseManager.Instance.Paused)
-        {
-            SpeedScale = timeScaling.WorldTimeScale;
-
-            time += (float)(delta * SpeedScale);
-
-            material.SetShaderParameter(gameTimeParameterName, time);
-        }
+        SpeedScale = timeScaling.WorldTimeScale;
     }
 
     public void ApplyBiome(Biome biome)
@@ -101,6 +94,13 @@ public partial class FluidCurrentDisplay : GpuParticles3D
 
         material.SetShaderParameter(brightnessParameterName,
             (patch.BiomeTemplate.CompoundCloudBrightness - 1.0f) * lightLevel + 1.0f);
+    }
+
+    public void UpdateTime(float newTime)
+    {
+        time = newTime;
+
+        material.SetShaderParameter(gameTimeParameterName, time);
     }
 
     protected override void Dispose(bool disposing)
