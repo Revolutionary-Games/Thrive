@@ -53,6 +53,9 @@ public partial class MicrobeEditorTutorialGUI : Control, ITutorialGUI
     private CustomWindow nucleusTutorial = null!;
 
     [Export]
+    private CustomWindow bindingAgentsTutorial = null!;
+
+    [Export]
     private CustomWindow tolerancesTabTutorial = null!;
 
     [Export]
@@ -362,6 +365,25 @@ public partial class MicrobeEditorTutorialGUI : Control, ITutorialGUI
             else
             {
                 nucleusTutorial.Hide();
+            }
+        }
+    }
+
+    public bool BindingAgentsTutorialVisible
+    {
+        get => bindingAgentsTutorial.Visible;
+        set
+        {
+            if (value == bindingAgentsTutorial.Visible)
+                return;
+
+            if (value)
+            {
+                bindingAgentsTutorial.Show();
+            }
+            else
+            {
+                bindingAgentsTutorial.Hide();
             }
         }
     }
