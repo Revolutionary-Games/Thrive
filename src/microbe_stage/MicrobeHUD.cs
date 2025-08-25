@@ -494,6 +494,7 @@ public partial class MicrobeHUD : CreatureStageHUDBase<MicrobeStage>
 
         bool engulfing;
         bool usingMucocyst;
+        bool isDigesting = false;
 
         // Multicellularity is not checked here (only colony membership) as that is also not checked when firing toxins
         if (player.Has<MicrobeColony>())
@@ -506,6 +507,15 @@ public partial class MicrobeHUD : CreatureStageHUDBase<MicrobeStage>
 
             engulfing = colony.ColonyState == MicrobeState.Engulf;
             usingMucocyst = colony.ColonyState == MicrobeState.MucocystShield;
+
+            for (int i = 0; i < colony.ColonyMembers.Length; ++i)
+            {
+                if (colony.ColonyMembers[i].Get<Engulfer>().EngulfedObjects is { Count: > 0 })
+                {
+                    isDigesting = true;
+                    break;
+                }
+            }
         }
         else
         {
@@ -517,14 +527,12 @@ public partial class MicrobeHUD : CreatureStageHUDBase<MicrobeStage>
 
             engulfing = control.State == MicrobeState.Engulf;
             usingMucocyst = control.State == MicrobeState.MucocystShield;
+
+            ref var engulfer = ref stage.Player.Get<Engulfer>();
+
+            if (engulfer.EngulfedObjects is { Count: > 0 })
+                isDigesting = true;
         }
-
-        bool isDigesting = false;
-
-        ref var engulfer = ref stage.Player.Get<Engulfer>();
-
-        if (engulfer.EngulfedObjects is { Count: > 0 })
-            isDigesting = true;
 
         // Read the engulf state from the colony as the player cell might be unable to engulf but some
         // member might be able to
