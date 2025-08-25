@@ -603,6 +603,7 @@ ShowDelay = 0.7
 PreventsMouseCaptureWhileOpen = true
 
 [node name="BindingAgentsTutorial" type="Control" parent="." node_paths=PackedStringArray("label")]
+visible = false
 custom_minimum_size = Vector2(360, 300)
 layout_mode = 1
 anchors_preset = 6
