@@ -7,8 +7,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2025-07-21 15:54+0300\n"
-"PO-Revision-Date: 2025-05-25 15:00+0000\n"
+"POT-Creation-Date: 2025-08-25 19:09+0300\n"
+"PO-Revision-Date: 2025-08-08 14:30+0000\n"
 "Last-Translator: Anonymous <noreply@weblate.org>\n"
 "Language-Team: Bulgarian <https://translate.revolutionarygamesstudio.com/projects/thrive/thrive-game/bg/>\n"
 "Language: bg\n"
@@ -48,6 +48,19 @@ msgid "ABYSSOPELAGIC"
 msgstr "Абисал"
 
 msgid "ACCEPT"
+msgstr ""
+
+#, fuzzy
+msgid "ACHIEVEMENTS"
+msgstr "Базово движение"
+
+msgid "ACHIEVEMENTS_TOTAL"
+msgstr ""
+
+msgid "ACHIEVEMENT_ACHIEVED"
+msgstr ""
+
+msgid "ACHIEVEMENT_LOCKED"
 msgstr ""
 
 #, fuzzy
@@ -369,6 +382,10 @@ msgstr "Автоматичен запис по време на игра"
 msgid "AUTO_EVO"
 msgstr "Автоматична еволюция"
 
+#, fuzzy
+msgid "AUTO_EVO_EXPLORER_TOOL_BUTTON"
+msgstr "Еволюционен редактор"
+
 msgid "AUTO_EVO_EXPLORING_TOOL"
 msgstr "Еволюционен редактор"
 
@@ -424,6 +441,9 @@ msgstr "Обратна наклонена черта"
 
 msgid "BACKSPACE"
 msgstr "Клавиш „Backspace“"
+
+msgid "BACK_TO_SETTINGS"
+msgstr ""
 
 #, fuzzy
 msgid "BACTERIAL_THERMOSYNTHESIS"
@@ -502,6 +522,13 @@ msgstr "Резултати:"
 
 msgid "BEST_PATCH_COLON"
 msgstr "Процъфтява:"
+
+msgid "BETTER_TOGETHER"
+msgstr ""
+
+#, fuzzy
+msgid "BEYOND_THE_CELL"
+msgstr "на движение на клетката."
 
 msgid "BIG_IRON_CHUNK"
 msgstr "Голям железен фрагмент"
@@ -622,6 +649,9 @@ msgstr "Клетката не може да бъде премахната"
 msgid "CANNOT_ENGULF"
 msgstr "Не позволява поглъщане"
 
+msgid "CANNOT_IMPROVE_PERFECTION"
+msgstr ""
+
 msgid "CANNOT_MOVE_METABALL_TO_DESCENDANT_TREE"
 msgstr "Кълбото не може да бъде преместено в неговто потомствено дърво"
 
@@ -694,14 +724,6 @@ msgstr "Идентификаторът трябва да е положителн
 msgid "CELL_STAT_STORAGE_TOOLTIP"
 msgstr "Идентификаторът трябва да е положително цяло число"
 
-#, fuzzy
-msgid "CELL_TYPE_BUTTON_ATP_CONSUMPTION"
-msgstr "Мъртва зона:"
-
-#, fuzzy
-msgid "CELL_TYPE_BUTTON_ATP_PRODUCTION"
-msgstr "Мъртва зона:"
-
 msgid "CELL_TYPE_NAME"
 msgstr "Наименование на клетката"
 
@@ -717,6 +739,10 @@ msgstr "Токсичната вакуола е видоизменена ваку
 
 msgid "CHEATS"
 msgstr "Кодове"
+
+#, fuzzy
+msgid "CHEATS_USED_NOTICE"
+msgstr "Не е започната."
 
 msgid "CHEAT_KEYS_ENABLED"
 msgstr "Активиране на кодовете"
@@ -846,6 +872,24 @@ msgstr ""
 #, fuzzy
 msgid "CLICK_TO_SELECT"
 msgstr "Изтриване на избраните"
+
+msgid "CLIMATE_INSTABILITY"
+msgstr ""
+
+#, fuzzy
+msgid "CLIMATE_INSTABILITY_EXPLANATION"
+msgstr ""
+"Енергичните микроби са в движение, дори да няма промени в околната среда.\n"
+"Мудните микроби не са в движение, докато няма промени в околната среда."
+
+msgid "CLIMATE_STABILITY_AVERAGE"
+msgstr ""
+
+msgid "CLIMATE_STABILITY_STABLE"
+msgstr ""
+
+msgid "CLIMATE_STABILITY_UNSTABLE"
+msgstr ""
 
 msgid "CLOSE"
 msgstr "Затваряне"
@@ -1095,6 +1139,14 @@ msgid "CONFIRM_NEW_GAME_BUTTON_TOOLTIP_DISABLED"
 msgstr "Невалидни настройки"
 
 #, fuzzy
+msgid "CONFIRM_RESET_ACHIEVEMENTS"
+msgstr "Потвърждение за изтриване"
+
+#, fuzzy
+msgid "CONFIRM_RESET_ACHIEVEMENTS_DESCRIPTION"
+msgstr "Превръща [thrive:compound type=\"atp\"]АТФ[/thrive:compound] в [thrive:compound type=\"ammonia\"]амоняк[/thrive:compound]. Количеството зависи от концентрацията на [thrive:compound type=\"nitrogen\"]азот[/thrive:compound] в околната среда."
+
+#, fuzzy
 msgid "CONSTRUCTION_UNIT_NAME"
 msgstr "Тританопия (синьо и жълто)"
 
@@ -1340,6 +1392,10 @@ msgstr "Протанопия (червено и зелено)"
 
 msgid "CORRECTION_TRITANOPE"
 msgstr "Тританопия (синьо и жълто)"
+
+#, fuzzy
+msgid "CPU_POWER_NOT_ENOUGH_FOR_SPEED_MODE"
+msgstr "{0}"
 
 #, fuzzy
 msgid "CPU_THREADS"
@@ -1934,6 +1990,10 @@ msgstr ""
 "За да продължите, изберете органел от панела вляво. След това, натиснете с мишката до шестоъгълника за да го добавите към Вашето създание. Може да завъртите органелите чрез натискане на [thrive:input]e_rotate_left[/thrive:input] или [thrive:input]e_rotate_right[/thrive:input]."
 
 #, fuzzy
+msgid "EDIT_MICROBE_FIRST_TIME"
+msgstr "Пробуждане"
+
+#, fuzzy
 msgid "EFFECTIVE_VALUE"
 msgstr "{0} %"
 
@@ -2050,6 +2110,9 @@ msgstr "Източници на енергия:"
 
 msgid "ENERGY_SUMMARY_LINE"
 msgstr "Некоригираната популация на Вашите създания ({2}) се определя от общата усвоена енергийна стойност ({0}), разделена на индивидуалния разход ({1})"
+
+msgid "ENGULF_CELL_OR_CHUNK"
+msgstr ""
 
 msgid "ENGULF_NO_ATP_DAMAGE_MESSAGE"
 msgstr ""
@@ -2409,6 +2472,10 @@ msgstr "Премахване на локалните данни"
 msgid "FORGET_MOD_DETAILS_TOOLTIP"
 msgstr "Премахването на локалните данни може да се използва, ако идентификационният № е грешен или искате да качите нова версия на различна модификация."
 
+#, fuzzy
+msgid "FORM_CELL_COLONY"
+msgstr "Съхранение:"
+
 msgid "FORM_ERROR_MESSAGE"
 msgstr "Грешка: {0}"
 
@@ -2519,11 +2586,36 @@ msgstr "Натиснете бутона „Отмяна“ в редактора
 msgid "GENERAL_LOADING_TIP_7"
 msgstr "Натиснете бутона „Отмяна“ в редактора, ако допуснете грешка"
 
+#, fuzzy
+msgid "GENERATE_BUTTON"
+msgstr "Поколение"
+
+msgid "GENERATE_POSITIVE_GLUCOSE_PHOTOSYNTHESIS"
+msgstr ""
+
 msgid "GENERATIONS"
 msgstr "Поколение"
 
 msgid "GENERATION_COLON"
 msgstr "Поколение:"
+
+msgid "GEOLOGICAL_ACTIVITY"
+msgstr ""
+
+msgid "GEOLOGICAL_ACTIVITY_ACTIVE"
+msgstr ""
+
+msgid "GEOLOGICAL_ACTIVITY_AVERAGE"
+msgstr ""
+
+msgid "GEOLOGICAL_ACTIVITY_DORMANT"
+msgstr ""
+
+#, fuzzy
+msgid "GEOLOGICAL_ACTIVITY_EXPLANATION"
+msgstr ""
+"Енергичните микроби са в движение, дори да няма промени в околната среда.\n"
+"Мудните микроби не са в движение, докато няма промени в околната среда."
 
 msgid "GITHUB_TOOLTIP"
 msgstr "Отваряне на хранилището ни в „GitHub“"
@@ -2576,6 +2668,9 @@ msgstr "Безсмъртие"
 #, fuzzy
 msgid "GOD_TOOLS_TITLE"
 msgstr "Отваряне на сървъра ни в „Discord“"
+
+msgid "GOING_NUCLEAR"
+msgstr ""
 
 msgid "GOOGLY_EYE_CELL"
 msgstr "Клетка с изпъкнали очи"
@@ -3097,6 +3192,14 @@ msgstr "Клавиш „Tab“"
 msgid "KEY_UP"
 msgstr "Стрелка нагоре"
 
+#, fuzzy
+msgid "KILL_50_MICROBES"
+msgstr "Нитрогеназа"
+
+#, fuzzy
+msgid "KILL_MICROBES_PROGRESS"
+msgstr "Микробен редактор"
+
 msgid "KILO_ABBREVIATION"
 msgstr "{0} хил"
 
@@ -3497,6 +3600,18 @@ msgstr "Макроскопичен организъм ({0} от {1})"
 #, fuzzy
 msgid "MACROSCOPIC_STAGE"
 msgstr "Микробен етап"
+
+#, fuzzy
+msgid "MAKE_CELL_THAT_EATS_RADIATION"
+msgstr "(определя разхода на мутационни точки в редактора)"
+
+#, fuzzy
+msgid "MAKE_CELL_USE_CHEMOSYNTHESIS"
+msgstr "Хемосинтеза"
+
+#, fuzzy
+msgid "MAKE_NO_CHANGES_IN_EDITOR"
+msgstr "Промени:"
 
 msgid "MANUALLY_SET_TIME"
 msgstr ""
@@ -3941,6 +4056,14 @@ msgstr ""
 #, fuzzy
 msgid "MICROBE_STAGE_ORGANELLE_DIVISION"
 msgstr "  {0}: Среща се в {1} от създанията, средно по {2}"
+
+#, fuzzy
+msgid "MICROBIAL_MASSACRE"
+msgstr "Микробен етап"
+
+#, fuzzy
+msgid "MICRO_BORG"
+msgstr "Микроб"
 
 msgid "MIDDLE_MOUSE"
 msgstr "Среден бутон"
@@ -4496,6 +4619,10 @@ msgstr "Няма записани събития"
 msgid "NO_FOSSIL_DIRECTORY"
 msgstr "Папката с вкаменелости не съществува"
 
+#, fuzzy
+msgid "NO_LONGER_ELIGIBLE_FOR_ACHIEVEMENTS"
+msgstr "Потвърждение за изтриване"
+
 msgid "NO_MODS_ENABLED"
 msgstr "Няма включени модификации"
 
@@ -4951,6 +5078,10 @@ msgstr "Добавяне на органел или друг обект"
 msgid "PLANET"
 msgstr "Планета"
 
+#, fuzzy
+msgid "PLANET_CUSTOMIZER"
+msgstr "Под курсора:"
+
 msgid "PLANET_DETAILS_STRING"
 msgstr ""
 "Земеподобен живот: {0}\n"
@@ -4958,9 +5089,6 @@ msgstr ""
 "Денонощен цикъл: {2}\n"
 "Продължителност на деня: {3} секунди\n"
 "Произволен идентификатор на планетата: {4}"
-
-msgid "PLANET_GENERATION_TEASER"
-msgstr "Създаването на планетата е в процес на разработка!"
 
 msgid "PLANET_RANDOM_SEED"
 msgstr "Произволен идентификатор на планетата"
@@ -5139,6 +5267,16 @@ msgstr "НЦ"
 msgid "RAW_VALUE_COLON"
 msgstr "Стойност:"
 
+msgid "REACH_GENERATION_15_WITH_A_SPECIES"
+msgstr ""
+
+msgid "REACH_GENERATION_15_WITH_A_SPECIES_PROGRESS"
+msgstr ""
+
+#, fuzzy
+msgid "REACH_MULTICELLULAR_STAGE"
+msgstr "Многоклетъчен етап"
+
 msgid "READING_SAVE_DATA"
 msgstr "Четене на запазените данни"
 
@@ -5159,6 +5297,10 @@ msgstr "Възстановяване на последното действие"
 
 msgid "REFRESH"
 msgstr "Опресняване"
+
+#, fuzzy
+msgid "REGENERATE_BUTTON"
+msgstr "Аксон"
 
 #, fuzzy
 msgid "RENDER_SCALE"
@@ -5206,6 +5348,10 @@ msgstr "Клавиш „Search“"
 
 msgid "RESET"
 msgstr "Нулиране"
+
+#, fuzzy
+msgid "RESET_ACHIEVEMENTS"
+msgstr "Нулиране на контролите"
 
 msgid "RESET_DEADZONES"
 msgstr "Нулиране"
@@ -5383,6 +5529,10 @@ msgstr "Запазване на промените"
 
 msgid "SAVE_AUTOSAVE"
 msgstr "Автоматичен запис"
+
+#, fuzzy
+msgid "SAVE_CHEATS_USED"
+msgstr "Използвано място:"
 
 msgid "SAVE_DELETE_WARNING"
 msgstr "Изтриването на записа не може да бъде отменено, сигурни ли сте, че искате да изтриете „{0}“?"
@@ -6004,6 +6154,9 @@ msgstr ""
 msgid "STRUCTURE_STEAM_POWERED_FACTORY"
 msgstr ""
 
+msgid "SUCCESSFULLY_PERFORM_ENDOSYMBIOSIS"
+msgstr ""
+
 msgid "SUCCESSFUL_KILL"
 msgstr "успешно убийство"
 
@@ -6024,6 +6177,10 @@ msgstr "Поддръжници"
 
 msgid "SURVIVAL_TITLE"
 msgstr ""
+
+#, fuzzy
+msgid "SURVIVE_WITH_A_NUCLEUS"
+msgstr "Нуждае се от ядро"
 
 msgid "SWITCH_TO_FRONT_CAMERA"
 msgstr "Превключване на предната камера"
@@ -6062,6 +6219,14 @@ msgstr "Снимка на екрана"
 #, fuzzy
 msgid "TARGET_TYPE_COLON"
 msgstr "Вид:"
+
+#, fuzzy
+msgid "TASTE_THE_SUN"
+msgstr "Текущи нишки:"
+
+#, fuzzy
+msgid "TASTY_RADIATION"
+msgstr "Аеробно дишане"
 
 msgid "TECHNOLOGY_ASCENSION"
 msgstr ""
@@ -6169,6 +6334,10 @@ msgid "THE_DISTURBANCE"
 msgstr "Смущението"
 
 #, fuzzy
+msgid "THE_EDITOR"
+msgstr "Преминаване към следващия раздел"
+
+#, fuzzy
 msgid "THE_PATCH_MAP_BUTTON"
 msgstr "Карта"
 
@@ -6220,6 +6389,10 @@ msgstr "Карта на зоните"
 
 msgid "THRIVE_LICENSES"
 msgstr "Лицензи на „Thrive“"
+
+#, fuzzy
+msgid "THRIVIN_ACHIEVEMENT"
+msgstr "Базово движение"
 
 msgid "THYLAKOIDS"
 msgstr "Тилакоиди"
@@ -6507,10 +6680,6 @@ msgstr "Трябва да направите няколко снимки!"
 
 msgid "TUTORIAL"
 msgstr "Упътване"
-
-#, fuzzy
-msgid "TUTORIAL_ALL_NOT_ENABLED_EXPLANATION"
-msgstr "(ВНИМАНИЕ: понижава ефективността на фотосинтезата)"
 
 #, fuzzy
 msgid "TUTORIAL_MICROBE_EDITOR_ATP_BALANCE_INTRO"
@@ -6821,6 +6990,10 @@ msgstr ""
 "\n"
 "Ако Вашите създания се възпроизвеждат чрез пъпкуване (по подразбиране), техните клетки постепенно ще се увеличават, докато достигнат максималния си размер."
 
+#, fuzzy
+msgid "TUTORIAL_REPLAY_ALL_EXPLANATION"
+msgstr "(ВНИМАНИЕ: понижава ефективността на фотосинтезата)"
+
 msgid "TUTORIAL_VIEW_NOW"
 msgstr "Преглед"
 
@@ -7103,6 +7276,10 @@ msgstr "Увеличава мястото за съхранение на хра�
 msgid "VALUE_WITH_UNIT"
 msgstr "{0} {1}"
 
+#, fuzzy
+msgid "VENTS_ARE_HOME"
+msgstr "Няма записани събития"
+
 msgid "VERSION_COLON"
 msgstr "Версия:"
 
@@ -7362,6 +7539,7 @@ msgstr "Свързването е възможно само с индивиди 
 msgid "WIKI_BINDING_AGENT_REQUIREMENTS"
 msgstr "Това е първата стъпка към многоклетъчните организми. Свързващият агент позволява свързването с други клетки. Клетките в клетъчните колонии споделят химичните съединения помежду си, но не могат да се възпроизвеждат."
 
+#, fuzzy
 msgid "WIKI_BINDING_AGENT_SCIENTIFIC_BACKGROUND"
 msgstr "Подлежи на уточняване"
 
@@ -7421,6 +7599,7 @@ msgstr "Подлежи на уточняване"
 msgid "WIKI_CHEMOPLAST_REQUIREMENTS"
 msgstr "Подлежи на уточняване"
 
+#, fuzzy
 msgid "WIKI_CHEMOPLAST_SCIENTIFIC_BACKGROUND"
 msgstr "Подлежи на уточняване"
 
@@ -7450,6 +7629,7 @@ msgstr "Подлежи на уточняване"
 msgid "WIKI_CHEMORECEPTOR_REQUIREMENTS"
 msgstr "Подлежи на уточняване"
 
+#, fuzzy
 msgid "WIKI_CHEMORECEPTOR_SCIENTIFIC_BACKGROUND"
 msgstr "Подлежи на уточняване"
 
@@ -7482,6 +7662,7 @@ msgstr ""
 "Хемосинте-\n"
 "зиращи протеини"
 
+#, fuzzy
 msgid "WIKI_CHEMOSYNTHESIZING_PROTEINS_SCIENTIFIC_BACKGROUND"
 msgstr "Подлежи на уточняване"
 
@@ -7513,6 +7694,7 @@ msgstr "Подлежи на уточняване"
 msgid "WIKI_CHLOROPLAST_REQUIREMENTS"
 msgstr "Подлежи на уточняване"
 
+#, fuzzy
 msgid "WIKI_CHLOROPLAST_SCIENTIFIC_BACKGROUND"
 msgstr "Подлежи на уточняване"
 
@@ -7709,6 +7891,7 @@ msgstr "Подлежи на уточняване"
 msgid "WIKI_FLAGELLUM_REQUIREMENTS"
 msgstr "Подлежи на уточняване"
 
+#, fuzzy
 msgid "WIKI_FLAGELLUM_SCIENTIFIC_BACKGROUND"
 msgstr "Подлежи на уточняване"
 
@@ -7998,6 +8181,7 @@ msgstr "Съдържа храносмилателни ензими. Нейнит
 msgid "WIKI_LYSOSOME_REQUIREMENTS"
 msgstr ""
 
+#, fuzzy
 msgid "WIKI_LYSOSOME_SCIENTIFIC_BACKGROUND"
 msgstr "Подлежи на уточняване"
 
@@ -8290,6 +8474,7 @@ msgstr "Подлежи на уточняване"
 msgid "WIKI_NITROGENASE_REQUIREMENTS"
 msgstr "Подлежи на уточняване"
 
+#, fuzzy
 msgid "WIKI_NITROGENASE_SCIENTIFIC_BACKGROUND"
 msgstr "Подлежи на уточняване"
 
@@ -8359,6 +8544,7 @@ msgstr "Подлежи на уточняване"
 msgid "WIKI_NUCLEUS_REQUIREMENTS"
 msgstr "Подлежи на уточняване"
 
+#, fuzzy
 msgid "WIKI_NUCLEUS_SCIENTIFIC_BACKGROUND"
 msgstr "Подлежи на уточняване"
 
@@ -8753,6 +8939,7 @@ msgstr "Подлежи на уточняване"
 msgid "WIKI_SIGNALING_AGENT_REQUIREMENTS"
 msgstr "Подлежи на уточняване"
 
+#, fuzzy
 msgid "WIKI_SIGNALING_AGENT_SCIENTIFIC_BACKGROUND"
 msgstr "Подлежи на уточняване"
 
@@ -8784,6 +8971,7 @@ msgstr "Подлежи на уточняване"
 msgid "WIKI_SLIME_JET_REQUIREMENTS"
 msgstr "Подлежи на уточняване"
 
+#, fuzzy
 msgid "WIKI_SLIME_JET_SCIENTIFIC_BACKGROUND"
 msgstr "Подлежи на уточняване"
 
@@ -8948,6 +9136,7 @@ msgstr ""
 msgid "WIKI_THYLAKOIDS_REQUIREMENTS"
 msgstr ""
 
+#, fuzzy
 msgid "WIKI_THYLAKOIDS_SCIENTIFIC_BACKGROUND"
 msgstr "Подлежи на уточняване"
 
@@ -9080,6 +9269,27 @@ msgstr ""
 "Включване на тайните обекти на играта: {1}"
 
 #, fuzzy
+msgid "WORLD_OCEANIC_COVERAGE"
+msgstr "за да увеличи скоростта"
+
+#, fuzzy
+msgid "WORLD_OCEANIC_COVERAGE_EXPLANATION"
+msgstr ""
+"Вглъбените микроби не променят намеренията си\n"
+"и са склонни да постигнат целта си.\n"
+"Бдителните микроби бързо променят намеренията си."
+
+msgid "WORLD_OCEANIC_COVERAGE_LARGE"
+msgstr ""
+
+#, fuzzy
+msgid "WORLD_OCEANIC_COVERAGE_MEDIUM"
+msgstr "за да увеличи скоростта"
+
+msgid "WORLD_OCEANIC_COVERAGE_SMALL"
+msgstr ""
+
+#, fuzzy
 msgid "WORLD_RELATIVE_MOVEMENT"
 msgstr "за да увеличи скоростта"
 
@@ -9107,6 +9317,29 @@ msgstr ""
 #, fuzzy
 msgid "WORLD_SIZE_TOOLTIP"
 msgstr "Симулиране на определен брой светове с предварително определеното количество на поколенията."
+
+#, fuzzy
+msgid "WORLD_TEMPERATURE"
+msgstr "Температура"
+
+#, fuzzy
+msgid "WORLD_TEMPERATURE_COLD"
+msgstr "Темп."
+
+#, fuzzy
+msgid "WORLD_TEMPERATURE_EXPLANATION"
+msgstr ""
+"Вглъбените микроби не променят намеренията си\n"
+"и са склонни да постигнат целта си.\n"
+"Бдителните микроби бързо променят намеренията си."
+
+#, fuzzy
+msgid "WORLD_TEMPERATURE_TEMPERATE"
+msgstr "Темп."
+
+#, fuzzy
+msgid "WORLD_TEMPERATURE_WARM"
+msgstr "Темп."
 
 msgid "WORST_PATCH_COLON"
 msgstr "Изчезва:"
@@ -9142,6 +9375,13 @@ msgstr ""
 msgid "YOU_CAN_SUPPORT_THRIVE_ON_PATREON"
 msgstr "Може да подкрепите бъдещата разработка на „Thrive“ в „Patreon“."
 
+#, fuzzy
+msgid "YUM_EXCLAMATION"
+msgstr ""
+"Вглъбените микроби не променят намеренията си\n"
+"и са склонни да постигнат целта си.\n"
+"Бдителните микроби бързо променят намеренията си."
+
 msgid "ZOOM_IN"
 msgstr "Приближаване"
 
@@ -9149,8 +9389,27 @@ msgid "ZOOM_OUT"
 msgstr "Отдалечаване"
 
 #, fuzzy
-#~ msgid "TEMPERATURE_SESSILITY_PRESSURE_DESCRIPTION"
-#~ msgstr "Произвежда [thrive:compound type=\"atp\"]АТФ[/thrive:compound], чрез температурните градиенти. Количеството зависи от [thrive:compound type=\"temperature\"]температурата[/thrive:compound] в околната среда."
+#~ msgid "CELL_TYPE_BUTTON_ATP_CONSUMPTION"
+#~ msgstr "Мъртва зона:"
+
+#, fuzzy
+#~ msgid "CELL_TYPE_BUTTON_ATP_PRODUCTION"
+#~ msgstr "Мъртва зона:"
+
+#, fuzzy
+#~ msgid "WORLD_SEA_LEVEL"
+#~ msgstr "{0}-{1} м. под морското равнище"
+
+#, fuzzy
+#~ msgid "WORLD_SEA_LEVEL_DEEP"
+#~ msgstr "{0}-{1} м. под морското равнище"
+
+#, fuzzy
+#~ msgid "WORLD_SEA_LEVEL_MODERATE"
+#~ msgstr "за да увеличи скоростта"
+
+#~ msgid "PLANET_GENERATION_TEASER"
+#~ msgstr "Създаването на планетата е в процес на разработка!"
 
 #~ msgid "PASSIVE_REPRODUCTION_PROGRESS_EXPLANATION"
 #~ msgstr "(създанията усвояват хранителните вещества от околната среда)"
@@ -9383,10 +9642,6 @@ msgstr "Отдалечаване"
 #~ msgstr "Осъзнаване"
 
 #, fuzzy
-#~ msgid "WIKI_CHEMOSYNTHESIS"
-#~ msgstr "Хемосинтеза"
-
-#, fuzzy
 #~ msgid "WIKI_GLYCOLYSIS"
 #~ msgstr "Гликолиза"
 
@@ -9401,10 +9656,6 @@ msgstr "Отдалечаване"
 #, fuzzy
 #~ msgid "WIKI_LIPASE"
 #~ msgstr "Липаза"
-
-#, fuzzy
-#~ msgid "WIKI_MICROBE_EDITOR"
-#~ msgstr "Микробен редактор"
 
 #, fuzzy
 #~ msgid "WIKI_MUCILAGE_SYNTHESIS"
@@ -9596,9 +9847,6 @@ msgstr "Отдалечаване"
 #~ "Поздравления, достигнахте макроскопичния стадий на многоклетъчния етап!\n"
 #~ "\n"
 #~ "Триизмерното движение на Вашето създание не е възможно в тази версия на „Thrive“. В момента може да използвате само многоклетъчния редактор."
-
-#~ msgid "RESET_INPUTS"
-#~ msgstr "Нулиране на контролите"
 
 #~ msgid "INVULNERABLE_TO_ENGULFMENT"
 #~ msgstr "Предпазва от поглъщане"
@@ -9965,9 +10213,6 @@ msgstr "Отдалечаване"
 
 #~ msgid "PATCH_PANGONIAN_BATHYPELAGIC"
 #~ msgstr "Пангонски батиал"
-
-#~ msgid "SPEED_OF_THE_CELL"
-#~ msgstr "на движение на клетката."
 
 #~ msgid "NOT_RUNNING_DOT"
 #~ msgstr "Не се изпълнява."

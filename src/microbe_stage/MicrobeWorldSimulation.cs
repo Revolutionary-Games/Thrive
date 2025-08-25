@@ -58,10 +58,6 @@ public partial class MicrobeWorldSimulation : WorldSimulationWithPhysics
     [AssignOnlyChildItemsOnDeserialize]
     private EntitySignalingSystem entitySignalingSystem = null!;
 
-    [JsonProperty]
-    [AssignOnlyChildItemsOnDeserialize]
-    private FluidCurrentsSystem fluidCurrentsSystem = null!;
-
     private IrradiationSystem irradiationSystem = null!;
     private MicrobeAISystem microbeAI = null!;
     private MicrobeCollisionSoundSystem microbeCollisionSoundSystem = null!;
@@ -95,6 +91,7 @@ public partial class MicrobeWorldSimulation : WorldSimulationWithPhysics
     // Multicellular systems
     private DelayedColonyOperationSystem delayedColonyOperationSystem = null!;
     private MulticellularGrowthSystem multicellularGrowthSystem = null!;
+    private IntercellularMatrixSystem intercellularMatrixSystem = null!;
 
     private EntitySet cellCountingEntitySet = null!;
 
@@ -130,6 +127,10 @@ public partial class MicrobeWorldSimulation : WorldSimulationWithPhysics
     // TODO: could replace this reference in PatchManager by it just calling ClearPlayerLocationDependentCaches
     [JsonIgnore]
     public TimedLifeSystem TimedLifeSystem { get; private set; } = null!;
+
+    [JsonProperty]
+    [AssignOnlyChildItemsOnDeserialize]
+    public FluidCurrentsSystem FluidCurrentsSystem { get; private set; } = null!;
 
     /// <summary>
     ///   First initialization step which creates all the system objects. When loading from a save objects of this
@@ -255,6 +256,7 @@ public partial class MicrobeWorldSimulation : WorldSimulationWithPhysics
             new DelayedColonyOperationSystem(this, spawnEnvironment, SpawnSystem, EntitySystem, couldParallelize);
         multicellularGrowthSystem =
             new MulticellularGrowthSystem(this, spawnEnvironment, SpawnSystem, EntitySystem, parallelRunner);
+        intercellularMatrixSystem = new IntercellularMatrixSystem(EntitySystem);
 
         CloudSystem = cloudSystem;
 
@@ -284,9 +286,9 @@ public partial class MicrobeWorldSimulation : WorldSimulationWithPhysics
         engulfedDigestionSystem.SetWorld(currentGame.GameWorld);
         microbeAI.SetWorld(currentGame.GameWorld);
         damageSoundSystem.SetWorld(currentGame.GameWorld);
-        fluidCurrentsSystem.SetWorld(currentGame.GameWorld);
+        FluidCurrentsSystem.SetWorld(currentGame.GameWorld);
 
-        CloudSystem.Init(fluidCurrentsSystem);
+        CloudSystem.Init(FluidCurrentsSystem);
     }
 
     public void SetSimulationBiome(BiomeConditions biomeConditions)
@@ -337,7 +339,7 @@ public partial class MicrobeWorldSimulation : WorldSimulationWithPhysics
         }
 
         entitySignalingSystem = new EntitySignalingSystem(EntitySystem, parallelRunner);
-        fluidCurrentsSystem = new FluidCurrentsSystem(EntitySystem, parallelRunner);
+        FluidCurrentsSystem = new FluidCurrentsSystem(EntitySystem, parallelRunner);
 
         SpawnSystem = new SpawnSystem(this);
     }
@@ -461,7 +463,7 @@ public partial class MicrobeWorldSimulation : WorldSimulationWithPhysics
                 engulfedHandlingSystem.Dispose();
                 engulfingSystem.Dispose();
                 entitySignalingSystem.Dispose();
-                fluidCurrentsSystem.Dispose();
+                FluidCurrentsSystem.Dispose();
                 irradiationSystem.Dispose();
                 microbeAI.Dispose();
                 microbeCollisionSoundSystem.Dispose();
@@ -492,6 +494,7 @@ public partial class MicrobeWorldSimulation : WorldSimulationWithPhysics
                 unneededCompoundVentingSystem.Dispose();
                 delayedColonyOperationSystem.Dispose();
                 multicellularGrowthSystem.Dispose();
+                intercellularMatrixSystem.Dispose();
 
                 CameraFollowSystem.Dispose();
                 ProcessSystem.Dispose();

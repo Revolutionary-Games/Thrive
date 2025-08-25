@@ -7,20 +7,20 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2025-07-21 15:54+0300\n"
-"PO-Revision-Date: 2025-03-20 20:10+0000\n"
-"Last-Translator: Anonymous <noreply@weblate.org>\n"
+"POT-Creation-Date: 2025-08-25 19:09+0300\n"
+"PO-Revision-Date: 2025-08-20 07:39+0000\n"
+"Last-Translator: khalid <khalid50540@gmail.com>\n"
 "Language-Team: Arabic <https://translate.revolutionarygamesstudio.com/projects/thrive/thrive-game/ar/>\n"
 "Language: ar\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=6; plural=n==0 ? 0 : n==1 ? 1 : n==2 ? 2 : n%100>=3 && n%100<=10 ? 3 : n%100>=11 ? 4 : 5;\n"
-"X-Generator: Weblate 5.7.2\n"
+"X-Generator: Weblate 5.11.4\n"
 "Generated-By: Babel 2.9.1\n"
 
 msgid "2D_MOVEMENT_TYPE_SELECTION"
-msgstr ""
+msgstr "نمط الحركة ثنائي الابعاد:"
 
 msgid "3D_EDITOR"
 msgstr "المصمم ثلاثي الأبعاد"
@@ -29,7 +29,7 @@ msgid "3D_MOVEMENT"
 msgstr "حركة ثلاثية الابعاد"
 
 msgid "3D_MOVEMENT_TYPE_SELECTION"
-msgstr ""
+msgstr "نمط الحركة ثلاثي الابعاد:"
 
 msgid "ABILITIES"
 msgstr "القدرات"
@@ -40,84 +40,95 @@ msgstr "ألغى"
 msgid "ABORTED_DOT"
 msgstr "تم الإلغاء."
 
-#, fuzzy
 msgid "ABSORBERS_COUNT"
-msgstr "عدد الميكروبات:"
+msgstr "الممتصين:"
 
+#, fuzzy
 msgid "ABYSSOPELAGIC"
 msgstr "أعماق البحر"
 
 msgid "ACCEPT"
-msgstr ""
+msgstr "موافقة"
 
+msgid "ACHIEVEMENTS"
+msgstr "الانجازات"
+
+msgid "ACHIEVEMENTS_TOTAL"
+msgstr "الانجازات {0} / {1}"
+
+#, fuzzy
+msgid "ACHIEVEMENT_ACHIEVED"
+msgstr "مكتملة"
+
+#, fuzzy
+msgid "ACHIEVEMENT_LOCKED"
+msgstr "مغلق"
+
+#, fuzzy
 msgid "ACTION_AWAKEN"
-msgstr "استيقظ ({0:F1} / {1:F1})"
+msgstr "استيقاظ ({0:F1} / {1:F1})"
 
 msgid "ACTION_AWAKEN_TOOLTIP"
-msgstr "استمر إلا مرحلة الاستيقاظ. يصبح متاحًا بمجرد أن تكون قوة العقل كافية (أنسجة مع محاور)."
+msgstr "استمر إلى مرحلة الاستيقاظ. يصبح متاحًا بمجرد أن تكون قوة العقل كافية (أنسجة مع محاور)."
 
 msgid "ACTION_BLOCKED_WHILE_ANOTHER_IN_PROGRESS"
-msgstr ""
+msgstr "النشاط مغلق طالما يوجد نشاط اخر قيد التنفيذ"
 
-#, fuzzy
 msgid "ACTION_DELETE"
-msgstr "عام"
+msgstr "حذف"
 
 msgid "ACTION_DOUBLE_POPULATION"
-msgstr ""
+msgstr "مضاعفة عدد السكان"
 
-#, fuzzy
 msgid "ACTION_DUPLICATE_UNITS"
-msgstr "عام"
+msgstr "نسخ الوحدات"
 
-#, fuzzy
 msgid "ACTION_HALF_POPULATION"
-msgstr "استمر إلا مرحلة الاستيقاظ. يصبح متاحًا بمجرد أن تكون قوة العقل كافية (أنسجة مع محاور)."
+msgstr "تقليص عدد السكان الى النصف"
 
-#, fuzzy
 msgid "ACTION_TELEPORT"
-msgstr "عام"
+msgstr "التنقل عن بعد"
 
 msgid "ACTIVE"
 msgstr "نشط"
 
 msgid "ACTIVE_THREAD_COUNT"
-msgstr ""
+msgstr "عدد الخيوط البرمجية:"
 
 msgid "ACTIVITY_EXPLANATION"
 msgstr ""
+"الميكروبات النشطة سوف تهييم وتمرح اذا لم يحدث شي مثير للاهتمام.\n"
+"الميكروبات الراكدة ستكون ثابتة في مكانها وتنتظر حدوث تغير في محيطه قبل اتخاذ اي قرار."
 
 msgid "ADDITIONAL_VALIDATION_FAILED"
-msgstr ""
+msgstr "التحققات الإضافية اكتشفت خطأ: {0}"
 
 msgid "ADD_INPUT_BUTTON_TOOLTIP"
-msgstr ""
+msgstr "اضف رمز ربط جديد"
 
 msgid "ADVANCED_VIEW"
 msgstr "مفصل"
 
 msgid "ADVANCED_VIEW_BUTTON_TOOLTIP"
-msgstr ""
+msgstr "افتح منظور التثبيت المفصل"
 
-#, fuzzy
 msgid "AEROBIC_NITROGEN_FIXATION"
-msgstr "عام"
+msgstr "تثبيت النيتروجين الهوائي"
 
 msgid "AEROBIC_NITROGEN_FIXING"
-msgstr ""
+msgstr "تثبيت النيتروجين الهوائي"
 
-#, fuzzy
 msgid "AEROBIC_RESPIRATION"
-msgstr "عام"
+msgstr "التنفس الهوائي"
 
 msgid "AGENTS"
-msgstr ""
+msgstr "عملاء مستقلين"
 
 msgid "AGENTS_COLON"
-msgstr ""
+msgstr "عملاء مستقلين:"
 
 msgid "AGENT_NAME"
-msgstr ""
+msgstr "العميل المستقل {0}"
 
 msgid "AGGRESSION_EXPLANATION"
 msgstr ""
@@ -174,7 +185,7 @@ msgid "ANAEROBIC_NITROGEN_FIXATION"
 msgstr ""
 
 msgid "AND_UNLOCK_CONDITION"
-msgstr ""
+msgstr "و"
 
 msgid "ANISOTROPIC_FILTERING"
 msgstr ""
@@ -195,7 +206,7 @@ msgid "ANTI_ALIASING_TAA"
 msgstr ""
 
 msgid "APPEARANCE"
-msgstr ""
+msgstr "المظهر"
 
 msgid "APPLY"
 msgstr "تأكيد"
@@ -213,7 +224,7 @@ msgid "ARE_YOU_SURE_TO_RESET_INPUT_SETTINGS"
 msgstr "هل أنت متأكد من أنك تريد إعادة ضبط إعدادات الأزرار إلى الإعدادات الإفتراضية؟"
 
 msgid "ARTIST_COLON"
-msgstr ""
+msgstr "الفنان:"
 
 msgid "ARTWORK_TITLE"
 msgstr ""
@@ -329,6 +340,9 @@ msgstr ""
 msgid "AUTO_EVO"
 msgstr ""
 
+msgid "AUTO_EVO_EXPLORER_TOOL_BUTTON"
+msgstr ""
+
 msgid "AUTO_EVO_EXPLORING_TOOL"
 msgstr ""
 
@@ -376,13 +390,16 @@ msgid "BACK"
 msgstr ""
 
 msgid "BACKGROUND_BLUR"
-msgstr ""
+msgstr "تغبيش الخلفية:"
 
 msgid "BACKSLASH"
 msgstr ""
 
 msgid "BACKSPACE"
 msgstr ""
+
+msgid "BACK_TO_SETTINGS"
+msgstr "الرجوع الى الإعدادت"
 
 #, fuzzy
 msgid "BACTERIAL_THERMOSYNTHESIS"
@@ -458,6 +475,12 @@ msgid "BENCHMARK_RESULTS_COLON"
 msgstr ""
 
 msgid "BEST_PATCH_COLON"
+msgstr ""
+
+msgid "BETTER_TOGETHER"
+msgstr ""
+
+msgid "BEYOND_THE_CELL"
 msgstr ""
 
 msgid "BIG_IRON_CHUNK"
@@ -581,6 +604,9 @@ msgstr ""
 msgid "CANNOT_ENGULF"
 msgstr ""
 
+msgid "CANNOT_IMPROVE_PERFECTION"
+msgstr ""
+
 msgid "CANNOT_MOVE_METABALL_TO_DESCENDANT_TREE"
 msgstr ""
 
@@ -654,12 +680,6 @@ msgstr "استمر إلا مرحلة الاستيقاظ. يصبح متاحًا �
 msgid "CELL_STAT_STORAGE_TOOLTIP"
 msgstr "استمر إلا مرحلة الاستيقاظ. يصبح متاحًا بمجرد أن تكون قوة العقل كافية (أنسجة مع محاور)."
 
-msgid "CELL_TYPE_BUTTON_ATP_CONSUMPTION"
-msgstr ""
-
-msgid "CELL_TYPE_BUTTON_ATP_PRODUCTION"
-msgstr ""
-
 msgid "CELL_TYPE_NAME"
 msgstr ""
 
@@ -673,6 +693,9 @@ msgid "CHANNEL_INHIBITOR_TOXIN_SYNTHESIS"
 msgstr ""
 
 msgid "CHEATS"
+msgstr ""
+
+msgid "CHEATS_USED_NOTICE"
 msgstr ""
 
 msgid "CHEAT_KEYS_ENABLED"
@@ -785,6 +808,21 @@ msgid "CLEAR_CACHE"
 msgstr ""
 
 msgid "CLICK_TO_SELECT"
+msgstr ""
+
+msgid "CLIMATE_INSTABILITY"
+msgstr ""
+
+msgid "CLIMATE_INSTABILITY_EXPLANATION"
+msgstr ""
+
+msgid "CLIMATE_STABILITY_AVERAGE"
+msgstr ""
+
+msgid "CLIMATE_STABILITY_STABLE"
+msgstr ""
+
+msgid "CLIMATE_STABILITY_UNSTABLE"
 msgstr ""
 
 msgid "CLOSE"
@@ -1010,6 +1048,18 @@ msgstr ""
 msgid "CONFIRM_NEW_GAME_BUTTON_TOOLTIP_DISABLED"
 msgstr ""
 
+msgid "CONFIRM_RESET_ACHIEVEMENTS"
+msgstr ""
+
+#, fuzzy
+msgid "CONFIRM_RESET_ACHIEVEMENTS_DESCRIPTION"
+msgstr ""
+"ابحث عن قطرات في مقياس ضوء الشمس على لوحة البيئة.\n"
+"\n"
+"يحل الليل عندما تظلم البيئة.\n"
+"التركيب الضوئي غير فعال خلال الليل.\n"
+"لذا تأكد من أنك تملك مدخرات كافية من أجل النجاة في الليل."
+
 msgid "CONSTRUCTION_UNIT_NAME"
 msgstr ""
 
@@ -1200,6 +1250,9 @@ msgid "CORRECTION_PROTANOPE"
 msgstr ""
 
 msgid "CORRECTION_TRITANOPE"
+msgstr ""
+
+msgid "CPU_POWER_NOT_ENOUGH_FOR_SPEED_MODE"
 msgstr ""
 
 msgid "CPU_THREADS"
@@ -1703,6 +1756,10 @@ msgstr ""
 msgid "EDITOR_TUTORIAL_MICROBE_EDITOR_NUCLEUS"
 msgstr "بمجرد الانتهاء من الابتلاع ، أي أشياء يتم التقاطها ستبقى داخل الغشاء ليتم هضمها. سيتم دائمًا طرد الأشياء غير القابلة للهضم ، لذا تأكد من أن لديك الطفرات اللازمة التي تمكن من معالجتها أولاً. تساعد الإنزيمات في الهضم ويتم توفيرها بواسطة الليزوزوم ؛ قم بتطوير هذه العضية لجعل عملية الهضم أكثر كفاءة."
 
+#, fuzzy
+msgid "EDIT_MICROBE_FIRST_TIME"
+msgstr "فترة الميكروبات"
+
 msgid "EFFECTIVE_VALUE"
 msgstr ""
 
@@ -1800,6 +1857,9 @@ msgid "ENERGY_SOURCES"
 msgstr ""
 
 msgid "ENERGY_SUMMARY_LINE"
+msgstr ""
+
+msgid "ENGULF_CELL_OR_CHUNK"
 msgstr ""
 
 msgid "ENGULF_NO_ATP_DAMAGE_MESSAGE"
@@ -2124,6 +2184,9 @@ msgstr ""
 msgid "FORGET_MOD_DETAILS_TOOLTIP"
 msgstr ""
 
+msgid "FORM_CELL_COLONY"
+msgstr ""
+
 msgid "FORM_ERROR_MESSAGE"
 msgstr ""
 
@@ -2222,10 +2285,32 @@ msgid "GENERAL_LOADING_TIP_7"
 msgstr ""
 
 #, fuzzy
+msgid "GENERATE_BUTTON"
+msgstr "عام"
+
+msgid "GENERATE_POSITIVE_GLUCOSE_PHOTOSYNTHESIS"
+msgstr ""
+
+#, fuzzy
 msgid "GENERATIONS"
 msgstr "عام"
 
 msgid "GENERATION_COLON"
+msgstr ""
+
+msgid "GEOLOGICAL_ACTIVITY"
+msgstr ""
+
+msgid "GEOLOGICAL_ACTIVITY_ACTIVE"
+msgstr ""
+
+msgid "GEOLOGICAL_ACTIVITY_AVERAGE"
+msgstr ""
+
+msgid "GEOLOGICAL_ACTIVITY_DORMANT"
+msgstr ""
+
+msgid "GEOLOGICAL_ACTIVITY_EXPLANATION"
 msgstr ""
 
 msgid "GITHUB_TOOLTIP"
@@ -2277,6 +2362,9 @@ msgid "GODMODE"
 msgstr ""
 
 msgid "GOD_TOOLS_TITLE"
+msgstr ""
+
+msgid "GOING_NUCLEAR"
 msgstr ""
 
 msgid "GOOGLY_EYE_CELL"
@@ -2773,6 +2861,14 @@ msgstr ""
 msgid "KEY_UP"
 msgstr ""
 
+#, fuzzy
+msgid "KILL_50_MICROBES"
+msgstr "فترة الميكروبات"
+
+#, fuzzy
+msgid "KILL_MICROBES_PROGRESS"
+msgstr "فترة الميكروبات"
+
 msgid "KILO_ABBREVIATION"
 msgstr ""
 
@@ -3156,6 +3252,17 @@ msgstr ""
 #, fuzzy
 msgid "MACROSCOPIC_STAGE"
 msgstr "فترة الميكروبات"
+
+msgid "MAKE_CELL_THAT_EATS_RADIATION"
+msgstr ""
+
+#, fuzzy
+msgid "MAKE_CELL_USE_CHEMOSYNTHESIS"
+msgstr "فترة الميكروبات"
+
+#, fuzzy
+msgid "MAKE_NO_CHANGES_IN_EDITOR"
+msgstr "المصمم ثلاثي الأبعاد"
 
 msgid "MANUALLY_SET_TIME"
 msgstr ""
@@ -3544,6 +3651,14 @@ msgstr ""
 #, fuzzy
 msgid "MICROBE_STAGE_ORGANELLE_DIVISION"
 msgstr "تستخدم خليتك [thrive:compound type=\"atp\"][/thrive:compound] كمصدر للطاقة ، إذا نفد مصدر للطاقة تموت."
+
+#, fuzzy
+msgid "MICROBIAL_MASSACRE"
+msgstr "فترة الميكروبات"
+
+#, fuzzy
+msgid "MICRO_BORG"
+msgstr "فترة الميكروبات"
 
 msgid "MIDDLE_MOUSE"
 msgstr ""
@@ -4034,21 +4149,24 @@ msgid "NOT_ADAPTED_TO_CURRENT_PATCH"
 msgstr ""
 
 msgid "NOT_STARTED_DOT"
-msgstr ""
+msgstr "لم يبدا بعد."
 
 msgid "NOVEMBER"
-msgstr ""
+msgstr "نوفمبر"
 
 msgid "NO_AI"
-msgstr ""
+msgstr "بدون ذكاء اصطناعي"
 
 msgid "NO_DATA_TO_SHOW"
-msgstr ""
+msgstr "لا توجد بيانات لعرضها"
 
 msgid "NO_EVENTS_RECORDED"
 msgstr ""
 
 msgid "NO_FOSSIL_DIRECTORY"
+msgstr ""
+
+msgid "NO_LONGER_ELIGIBLE_FOR_ACHIEVEMENTS"
 msgstr ""
 
 msgid "NO_MODS_ENABLED"
@@ -4074,7 +4192,7 @@ msgid "NO_SUGGESTION"
 msgstr "فترة الكائنات متعددة الخلايا"
 
 msgid "NUCLEUS"
-msgstr ""
+msgstr "نواة"
 
 msgid "NUCLEUS_DELETE_OPTION_DISABLED_TOOLTIP"
 msgstr ""
@@ -4093,7 +4211,7 @@ msgid "NUTRIENT_COST_TOOLTIP"
 msgstr "استمر إلا مرحلة الاستيقاظ. يصبح متاحًا بمجرد أن تكون قوة العقل كافية (أنسجة مع محاور)."
 
 msgid "N_A"
-msgstr ""
+msgstr "لا ينطبق"
 
 msgid "N_A_MP"
 msgstr ""
@@ -4105,16 +4223,16 @@ msgid "OCTOBER"
 msgstr ""
 
 msgid "OFF"
-msgstr ""
+msgstr "مطفى"
 
 msgid "OFFICIAL_WEBSITE"
-msgstr ""
+msgstr "الموقع الرسمي"
 
 msgid "OFFICIAL_WEBSITE_BUTTON_TOOLTIP"
-msgstr ""
+msgstr "زيارة موقع ريفولشناري قيمز الرسمي"
 
 msgid "OK"
-msgstr ""
+msgstr "تأكيد"
 
 msgid "OLDER_VERSION_LOADING_WARNING"
 msgstr ""
@@ -4126,74 +4244,75 @@ msgid "OPENGL_MODE_WARNING_EXPLANATION"
 msgstr ""
 
 msgid "OPEN_FOLDER"
-msgstr ""
+msgstr "فتح المجلد"
 
 msgid "OPEN_FOSSIL_FOLDER"
-msgstr ""
+msgstr "فتح مجلد الأحافير"
 
 msgid "OPEN_FOSSIL_IN_FREEBUILD_WARNING"
 msgstr ""
+"هل انت متأكد من بدا تخزينة جديدة باستعمال المخلوق المحدد؟\n"
+"لن يتم حفظ اي تقدم بالتخزينة الحالية."
 
 msgid "OPEN_GOD_TOOLS"
-msgstr ""
+msgstr "أدوات المطور"
 
 msgid "OPEN_HELP_SCREEN"
-msgstr ""
+msgstr "فتح شاشة المساعدة"
 
 msgid "OPEN_IN_FREEBUILD"
-msgstr ""
+msgstr "افتح في منظور البناء الحر"
 
 msgid "OPEN_LOGS_FOLDER"
-msgstr ""
+msgstr "فتح مجلد السجلات"
 
 msgid "OPEN_MOD_URL"
-msgstr ""
+msgstr "فتح رابط المعلومات"
 
 msgid "OPEN_ORGANELLES_PAGE"
-msgstr ""
+msgstr "فتح صفحة العضيات"
 
 msgid "OPEN_ORGANELLE_MENU"
-msgstr ""
+msgstr "فتح قائمة العضيات"
 
 msgid "OPEN_RESEARCH_SCREEN"
-msgstr ""
+msgstr "فتح شاشة الابحاث"
 
 msgid "OPEN_SAVE_DIRECTORY"
-msgstr ""
+msgstr "فتح مجلد التخزينات"
 
 msgid "OPEN_SCIENCE_MENU"
-msgstr ""
+msgstr "فتح قائمة العلوم"
 
 msgid "OPEN_SCREENSHOT_FOLDER"
-msgstr ""
+msgstr "فتح مجلد تصويرات الشاشة"
 
 msgid "OPEN_THE_MENU"
-msgstr ""
+msgstr "افتح القائمة"
 
 msgid "OPEN_TRANSLATION_SITE"
-msgstr ""
+msgstr "ساعد بترجمة اللعبة"
 
 msgid "OPERATION_PAUSED_DOT"
-msgstr ""
+msgstr "توقف مؤقت."
 
 msgid "OPPORTUNISM_EXPLANATION"
 msgstr ""
 
 msgid "OPPORTUNISTIC"
-msgstr ""
+msgstr "انتهازي"
 
 msgid "OPTIONS"
-msgstr ""
+msgstr "الخيارات"
 
 msgid "OPTIONS_BUTTON_TOOLTIP"
-msgstr ""
+msgstr "تغيير الإعدادات"
 
 msgid "ORGANELLES"
-msgstr ""
+msgstr "العضيات الخلوية"
 
-#, fuzzy
 msgid "ORGANELLES_BUTTON"
-msgstr "فترة الكائنات متعددة الخلايا"
+msgstr "العضيات الخلوية"
 
 msgid "ORGANELLES_WILL_BE_UNLOCKED_NEXT_GENERATION"
 msgstr ""
@@ -4204,13 +4323,11 @@ msgstr ""
 msgid "ORGANELLE_AXON_DESCRIPTION"
 msgstr ""
 
-#, fuzzy
 msgid "ORGANELLE_CATEGORY_MACROSCOPIC"
-msgstr "فترة الكائنات متعددة الخلايا"
+msgstr "مجهري الحجم"
 
-#, fuzzy
 msgid "ORGANELLE_CATEGORY_MULTICELLULAR"
-msgstr "فترة الكائنات متعددة الخلايا"
+msgstr "متعدد الخلايا"
 
 msgid "ORGANELLE_GROWTH_ORDER_EXPLANATION"
 msgstr ""
@@ -4255,7 +4372,7 @@ msgid "ORGANISM_STATISTICS"
 msgstr ""
 
 msgid "OR_UNLOCK_CONDITION"
-msgstr ""
+msgstr "او"
 
 msgid "OSMOREGULATION"
 msgstr ""
@@ -4270,10 +4387,10 @@ msgid "OSMOREGULATION_COST_MULTIPLIER_EXPLANATION"
 msgstr ""
 
 msgid "OTHER_COMPOUNDS"
-msgstr ""
+msgstr "غير ذلك"
 
 msgid "OUR_WIKI"
-msgstr ""
+msgstr "موسوعتنا"
 
 msgid "OUTDATED_NOTICE"
 msgstr ""
@@ -4322,43 +4439,45 @@ msgid "PAGEUP"
 msgstr ""
 
 msgid "PAGE_BACK"
-msgstr ""
+msgstr "الى الخلف"
 
 msgid "PAGE_FORWARD"
-msgstr ""
+msgstr "الى الامام"
 
 msgid "PAGE_TITLE"
-msgstr ""
+msgstr "عنوان الصفحة"
 
 msgid "PAN_CAMERA_DOWN"
-msgstr ""
+msgstr "تحريك الكاميرا الى الاسفل"
 
 msgid "PAN_CAMERA_LEFT"
-msgstr ""
+msgstr "تحريك الكاميرا الى اليسار"
 
 msgid "PAN_CAMERA_RESET"
-msgstr ""
+msgstr "اعادة تمركز الكاميرا"
 
 msgid "PAN_CAMERA_RIGHT"
-msgstr ""
+msgstr "تحريك الكاميرا الى اليمين"
 
 msgid "PAN_CAMERA_UP"
-msgstr ""
+msgstr "تحريك الكاميرا الى الاعلى"
 
 msgid "PAST_DEVELOPERS"
-msgstr ""
+msgstr "المطورين الماضين"
 
 msgid "PATCH_COLON"
-msgstr ""
+msgstr "الدفعة:"
 
 msgid "PATCH_EXTINCTION_BOX_TEXT"
 msgstr ""
+"فصيلتك انقرضت في هذه الدفعة.\n"
+"لكن لم يقتضي الامر بعد، يمكنك اختيار دفعة جديدة للاستمرار!"
 
 msgid "PATCH_EXTINCTION_CAPITAL"
-msgstr ""
+msgstr "انقراض الدفعة"
 
 msgid "PATCH_MAP"
-msgstr ""
+msgstr "خريطة الدفعة"
 
 msgid "PATCH_MAP_NAVIGATION_TOOLTIP"
 msgstr ""
@@ -4456,10 +4575,10 @@ msgstr ""
 msgid "PLANET"
 msgstr ""
 
-msgid "PLANET_DETAILS_STRING"
+msgid "PLANET_CUSTOMIZER"
 msgstr ""
 
-msgid "PLANET_GENERATION_TEASER"
+msgid "PLANET_DETAILS_STRING"
 msgstr ""
 
 msgid "PLANET_RANDOM_SEED"
@@ -4629,6 +4748,16 @@ msgstr ""
 msgid "RAW_VALUE_COLON"
 msgstr ""
 
+msgid "REACH_GENERATION_15_WITH_A_SPECIES"
+msgstr ""
+
+msgid "REACH_GENERATION_15_WITH_A_SPECIES_PROGRESS"
+msgstr ""
+
+#, fuzzy
+msgid "REACH_MULTICELLULAR_STAGE"
+msgstr "فترة الكائنات متعددة الخلايا"
+
 msgid "READING_SAVE_DATA"
 msgstr ""
 
@@ -4649,6 +4778,10 @@ msgstr ""
 
 msgid "REFRESH"
 msgstr ""
+
+#, fuzzy
+msgid "REGENERATE_BUTTON"
+msgstr "فترة الكائنات متعددة الخلايا"
 
 msgid "RENDER_SCALE"
 msgstr ""
@@ -4692,6 +4825,9 @@ msgid "RESEARCH"
 msgstr ""
 
 msgid "RESET"
+msgstr ""
+
+msgid "RESET_ACHIEVEMENTS"
 msgstr ""
 
 msgid "RESET_DEADZONES"
@@ -4853,6 +4989,9 @@ msgid "SAVE_AND_CONTINUE"
 msgstr ""
 
 msgid "SAVE_AUTOSAVE"
+msgstr ""
+
+msgid "SAVE_CHEATS_USED"
 msgstr ""
 
 msgid "SAVE_DELETE_WARNING"
@@ -5428,6 +5567,9 @@ msgstr ""
 msgid "STRUCTURE_STEAM_POWERED_FACTORY"
 msgstr ""
 
+msgid "SUCCESSFULLY_PERFORM_ENDOSYMBIOSIS"
+msgstr ""
+
 msgid "SUCCESSFUL_KILL"
 msgstr ""
 
@@ -5448,6 +5590,10 @@ msgstr ""
 
 msgid "SURVIVAL_TITLE"
 msgstr ""
+
+#, fuzzy
+msgid "SURVIVE_WITH_A_NUCLEUS"
+msgstr "عام"
 
 msgid "SWITCH_TO_FRONT_CAMERA"
 msgstr ""
@@ -5484,6 +5630,13 @@ msgstr ""
 
 msgid "TARGET_TYPE_COLON"
 msgstr ""
+
+msgid "TASTE_THE_SUN"
+msgstr ""
+
+#, fuzzy
+msgid "TASTY_RADIATION"
+msgstr "عام"
 
 msgid "TECHNOLOGY_ASCENSION"
 msgstr ""
@@ -5576,6 +5729,10 @@ msgstr ""
 msgid "THE_DISTURBANCE"
 msgstr ""
 
+#, fuzzy
+msgid "THE_EDITOR"
+msgstr "المصمم ثلاثي الأبعاد"
+
 msgid "THE_PATCH_MAP_BUTTON"
 msgstr ""
 
@@ -5616,6 +5773,9 @@ msgid "THRIVEOPEDIA_PATCH_MAP_PAGE_TITLE"
 msgstr ""
 
 msgid "THRIVE_LICENSES"
+msgstr ""
+
+msgid "THRIVIN_ACHIEVEMENT"
 msgstr ""
 
 msgid "THYLAKOIDS"
@@ -5895,9 +6055,6 @@ msgstr ""
 msgid "TUTORIAL"
 msgstr ""
 
-msgid "TUTORIAL_ALL_NOT_ENABLED_EXPLANATION"
-msgstr ""
-
 msgid "TUTORIAL_MICROBE_EDITOR_ATP_BALANCE_INTRO"
 msgstr ""
 
@@ -6023,6 +6180,9 @@ msgstr ""
 "مع ذلك,يمكنك الآن تصميم مخطط الخلية المستعمرة في المصمم و يمكنك تخصيص خلاياك لعدة أدوار.لا تنسى أن أعضاء المستعمرة لا يستطيعون مشاركة [thrive:compound type=\"atp\"][/thrive:compound]. \n"
 "\n"
 "إذا كنت تستعمل التكاثر بالتبرعم (الطريقة التقليدية), ستبدأ بالتحكم في برعم صغير و ستحتاج لتنمية باقي مخطط الخلية."
+
+msgid "TUTORIAL_REPLAY_ALL_EXPLANATION"
+msgstr ""
 
 msgid "TUTORIAL_VIEW_NOW"
 msgstr ""
@@ -6278,6 +6438,9 @@ msgid "VACUOLE_SPECIALIZED_DESCRIPTION"
 msgstr ""
 
 msgid "VALUE_WITH_UNIT"
+msgstr ""
+
+msgid "VENTS_ARE_HOME"
 msgstr ""
 
 msgid "VERSION_COLON"
@@ -7002,9 +7165,8 @@ msgstr "فترة الميكروبات"
 msgid "WIKI_HEADING_REPRODUCTION_IN_THE_MICROBE_STAGE"
 msgstr "فترة الميكروبات"
 
-#, fuzzy
 msgid "WIKI_HEADING_REQUIREMENTS"
-msgstr "المصمم ثلاثي الأبعاد"
+msgstr "المتطلبات"
 
 #, fuzzy
 msgid "WIKI_HEADING_SCIENTIFIC_BACKGROUND"
@@ -8237,7 +8399,7 @@ msgid "WORKSHOP_VISIBILITY_TOOLTIP"
 msgstr ""
 
 msgid "WORLD"
-msgstr ""
+msgstr "عالم"
 
 msgid "WORLD_EXPORT_SUCCESS_MESSAGE"
 msgstr ""
@@ -8248,27 +8410,58 @@ msgstr ""
 msgid "WORLD_MISC_DETAILS_STRING"
 msgstr ""
 
+msgid "WORLD_OCEANIC_COVERAGE"
+msgstr ""
+
+msgid "WORLD_OCEANIC_COVERAGE_EXPLANATION"
+msgstr ""
+
+msgid "WORLD_OCEANIC_COVERAGE_LARGE"
+msgstr "كبير"
+
+msgid "WORLD_OCEANIC_COVERAGE_MEDIUM"
+msgstr "متوسط"
+
+msgid "WORLD_OCEANIC_COVERAGE_SMALL"
+msgstr "صغير"
+
 msgid "WORLD_RELATIVE_MOVEMENT"
 msgstr ""
 
 msgid "WORLD_SIZE"
-msgstr ""
+msgstr "حجم العالم"
 
 msgid "WORLD_SIZE_EXPLANATION"
 msgstr ""
 
 msgid "WORLD_SIZE_LARGE"
-msgstr ""
+msgstr "كبير"
 
 msgid "WORLD_SIZE_MEDIUM"
-msgstr ""
+msgstr "متوسط"
 
 msgid "WORLD_SIZE_SMALL"
-msgstr ""
+msgstr "صغير"
 
 #, fuzzy
 msgid "WORLD_SIZE_TOOLTIP"
 msgstr "استمر إلا مرحلة الاستيقاظ. يصبح متاحًا بمجرد أن تكون قوة العقل كافية (أنسجة مع محاور)."
+
+msgid "WORLD_TEMPERATURE"
+msgstr ""
+
+msgid "WORLD_TEMPERATURE_COLD"
+msgstr ""
+
+msgid "WORLD_TEMPERATURE_EXPLANATION"
+msgstr ""
+
+#, fuzzy
+msgid "WORLD_TEMPERATURE_TEMPERATE"
+msgstr "استمر إلا مرحلة الاستيقاظ. يصبح متاحًا بمجرد أن تكون قوة العقل كافية (أنسجة مع محاور)."
+
+msgid "WORLD_TEMPERATURE_WARM"
+msgstr ""
 
 msgid "WORST_PATCH_COLON"
 msgstr ""
@@ -8287,7 +8480,7 @@ msgid "X_TWITTER_TOOLTIP"
 msgstr "استمر إلا مرحلة الاستيقاظ. يصبح متاحًا بمجرد أن تكون قوة العقل كافية (أنسجة مع محاور)."
 
 msgid "YEARS"
-msgstr ""
+msgstr "سنوات"
 
 msgid "YET_TO_BE_IMPLEMENTED_NOTICE"
 msgstr ""
@@ -8301,11 +8494,18 @@ msgstr ""
 msgid "YOU_CAN_SUPPORT_THRIVE_ON_PATREON"
 msgstr ""
 
+msgid "YUM_EXCLAMATION"
+msgstr ""
+
 msgid "ZOOM_IN"
 msgstr ""
 
 msgid "ZOOM_OUT"
 msgstr ""
+
+#, fuzzy
+#~ msgid "WORLD_SEA_LEVEL"
+#~ msgstr "استمر إلا مرحلة الاستيقاظ. يصبح متاحًا بمجرد أن تكون قوة العقل كافية (أنسجة مع محاور)."
 
 #, fuzzy
 #~ msgid "MICROBE_STAGE_DAY_NIGHT_TEXT"
@@ -8343,7 +8543,3 @@ msgstr ""
 #, fuzzy
 #~ msgid "EARLY_MULTICELLULAR"
 #~ msgstr "فترة الكائنات متعددة الخلايا"
-
-#, fuzzy
-#~ msgid "WIKI_MICROBE_EDITOR"
-#~ msgstr "فترة الميكروبات"

@@ -590,6 +590,8 @@ public static class SpawnHelpers
 
             entity.Set(new MulticellularSpeciesMember(multicellularSpecies, resolvedCellType,
                 multicellularData.CellBodyPlanIndex));
+
+            entity.Set<IntercellularMatrix>();
         }
         else if (species is MicrobeSpecies microbeSpecies)
         {

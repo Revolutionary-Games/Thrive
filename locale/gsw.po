@@ -7,9 +7,9 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Thrive VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2025-07-21 15:54+0300\n"
-"PO-Revision-Date: 2025-06-12 12:46+0000\n"
-"Last-Translator: Argakyan <andrinmueller@hotmail.ch>\n"
+"POT-Creation-Date: 2025-08-25 19:09+0300\n"
+"PO-Revision-Date: 2025-08-13 14:57+0000\n"
+"Last-Translator: Anonymous <noreply@weblate.org>\n"
 "Language-Team: Alemannic <https://translate.revolutionarygamesstudio.com/projects/thrive/thrive-game/gsw/>\n"
 "Language: gsw\n"
 "MIME-Version: 1.0\n"
@@ -48,6 +48,19 @@ msgstr "Abyssopelagial"
 
 msgid "ACCEPT"
 msgstr "Akzeptiere"
+
+#, fuzzy
+msgid "ACHIEVEMENTS"
+msgstr "Grundmobilität"
+
+msgid "ACHIEVEMENTS_TOTAL"
+msgstr ""
+
+msgid "ACHIEVEMENT_ACHIEVED"
+msgstr ""
+
+msgid "ACHIEVEMENT_LOCKED"
+msgstr ""
 
 msgid "ACTION_AWAKEN"
 msgstr "Verwache ({0:F1}/{1:F1})"
@@ -358,6 +371,10 @@ msgstr "Automatisches spiichere während em Spiel"
 msgid "AUTO_EVO"
 msgstr "Auto-Evo"
 
+#, fuzzy
+msgid "AUTO_EVO_EXPLORER_TOOL_BUTTON"
+msgstr "Auto-Evo Erforschig"
+
 msgid "AUTO_EVO_EXPLORING_TOOL"
 msgstr "Auto-Evo Erforschig"
 
@@ -411,6 +428,9 @@ msgstr "Schrägstrich"
 
 msgid "BACKSPACE"
 msgstr "Backspace"
+
+msgid "BACK_TO_SETTINGS"
+msgstr ""
 
 msgid "BACTERIAL_THERMOSYNTHESIS"
 msgstr "Bakterielli Thermosynthese"
@@ -486,6 +506,12 @@ msgstr "Ergebnis:"
 
 msgid "BEST_PATCH_COLON"
 msgstr "Beschts Gebiet:"
+
+msgid "BETTER_TOGETHER"
+msgstr ""
+
+msgid "BEYOND_THE_CELL"
+msgstr ""
 
 msgid "BIG_IRON_CHUNK"
 msgstr "Grosse Isechlumpe"
@@ -595,6 +621,9 @@ msgstr "Verwendeti Zelle nöd löschbar"
 msgid "CANNOT_ENGULF"
 msgstr "Chann nöd verschlinge"
 
+msgid "CANNOT_IMPROVE_PERFECTION"
+msgstr ""
+
 msgid "CANNOT_MOVE_METABALL_TO_DESCENDANT_TREE"
 msgstr "Metaball chann nöd im Baum vo Nachkomme verschobe werde"
 
@@ -673,12 +702,6 @@ msgstr ""
 "Beachte, dass e niedriges Fassvermöge zu ATP-Knappheite führe chann au wenn d'ATP Balance positiv isch. Die Problem chönnd schlimmer werde wegge Lag\n"
 "oder generell niedrigere Performance vom Spiel. Meh Spiicherkapazität hilft mit dene Problem."
 
-msgid "CELL_TYPE_BUTTON_ATP_CONSUMPTION"
-msgstr "De ATP-Konsum vo dem Zelletyp isch {0}."
-
-msgid "CELL_TYPE_BUTTON_ATP_PRODUCTION"
-msgstr "D'ATP-Produktion vo dem Zelltyp isch {0}."
-
 msgid "CELL_TYPE_NAME"
 msgstr "Zelletypname"
 
@@ -693,6 +716,9 @@ msgstr "Kanal-Blocker Synthese"
 
 msgid "CHEATS"
 msgstr "Cheats"
+
+msgid "CHEATS_USED_NOTICE"
+msgstr ""
 
 msgid "CHEAT_KEYS_ENABLED"
 msgstr "Cheat-Taschte aktiviere"
@@ -804,6 +830,24 @@ msgstr "Cache leere"
 
 msgid "CLICK_TO_SELECT"
 msgstr "Uuswähle"
+
+msgid "CLIMATE_INSTABILITY"
+msgstr ""
+
+#, fuzzy
+msgid "CLIMATE_INSTABILITY_EXPLANATION"
+msgstr ""
+"Aktivi Mikrobe tummlet umme, wenn nüüt interessantes passiert.\n"
+"Sessili Mikrobe sind stationär und wartet druff, dass sich ihri Umgebig änderet, bevor sie handlet."
+
+msgid "CLIMATE_STABILITY_AVERAGE"
+msgstr ""
+
+msgid "CLIMATE_STABILITY_STABLE"
+msgstr ""
+
+msgid "CLIMATE_STABILITY_UNSTABLE"
+msgstr ""
 
 msgid "CLOSE"
 msgstr "Schlüüse"
@@ -1045,6 +1089,14 @@ msgstr "Mit dene Iistellige spiele"
 msgid "CONFIRM_NEW_GAME_BUTTON_TOOLTIP_DISABLED"
 msgstr "S'paar Iistellige sind ungültig"
 
+#, fuzzy
+msgid "CONFIRM_RESET_ACHIEVEMENTS"
+msgstr "Lösche bestätige"
+
+#, fuzzy
+msgid "CONFIRM_RESET_ACHIEVEMENTS_DESCRIPTION"
+msgstr "De Chemorezeptor ermöglicht d'Erkennig vo Substanze us grössere Entfernig. Nach de Platzierig chammer d'Art vode Substanz und d'Farb vode Führigslinie uuswähle."
+
 msgid "CONSTRUCTION_UNIT_NAME"
 msgstr "Einheit:{0}"
 
@@ -1247,6 +1299,10 @@ msgstr "Rotblindheit (Rot-Grüen)"
 
 msgid "CORRECTION_TRITANOPE"
 msgstr "Blaublindheit (Blau-Gäl)"
+
+#, fuzzy
+msgid "CPU_POWER_NOT_ENOUGH_FOR_SPEED_MODE"
+msgstr "Es isch nöd uusriichend Spiicher für [thrive:compound type=\"{0}\"][/thrive:compound] umme. D'Nacht duuret {2}s, aber de Spiicher langet numme für {1}s."
 
 msgid "CPU_THREADS"
 msgstr "Threads"
@@ -1819,6 +1875,10 @@ msgstr ""
 "\n"
 "Wenn dini Zelle nonig parat isch für en Zellkern, chasch de [b]rückgängig mache[/b] chnopf verwende um de Nukleus [u]rückgänig z'mache[/u]."
 
+#, fuzzy
+msgid "EDIT_MICROBE_FIRST_TIME"
+msgstr "Laddet Mikrobestadium"
+
 msgid "EFFECTIVE_VALUE"
 msgstr "Effektive Wert"
 
@@ -1917,6 +1977,9 @@ msgstr "Energiequelle:"
 
 msgid "ENERGY_SUMMARY_LINE"
 msgstr "D'gsammelti Gsammtenergie isch {0} mit individuelle Koste vo {1}, was zu enere unbereinigte Bevölkerig vo {2} führt"
+
+msgid "ENGULF_CELL_OR_CHUNK"
+msgstr ""
 
 msgid "ENGULF_NO_ATP_DAMAGE_MESSAGE"
 msgstr "Beschädigt dur Iitritt in Verschlingigsmodus ohni verfüegbares ATP"
@@ -2264,6 +2327,9 @@ msgstr "Lokali Date entferne"
 msgid "FORGET_MOD_DETAILS_TOOLTIP"
 msgstr "Lokali Date zu dem Gegestand entferne. Das isch hilfriich, wenn du d'falschi ID aageh hesch oder e Version als neue Gegestand ufeladde wettsch."
 
+msgid "FORM_CELL_COLONY"
+msgstr ""
+
 msgid "FORM_ERROR_MESSAGE"
 msgstr "Fehler: {0}"
 
@@ -2362,11 +2428,36 @@ msgstr "Nöd vergesse: D'Aazeig rechts obbe zeigt dir, was unter em Cursor isch.
 msgid "GENERAL_LOADING_TIP_7"
 msgstr "Wenn dini Bevölkerig auf Null keit, stirbsch du uus."
 
+#, fuzzy
+msgid "GENERATE_BUTTON"
+msgstr "Generatione"
+
+msgid "GENERATE_POSITIVE_GLUCOSE_PHOTOSYNTHESIS"
+msgstr ""
+
 msgid "GENERATIONS"
 msgstr "Generatione"
 
 msgid "GENERATION_COLON"
 msgstr "Generation:"
+
+msgid "GEOLOGICAL_ACTIVITY"
+msgstr ""
+
+msgid "GEOLOGICAL_ACTIVITY_ACTIVE"
+msgstr ""
+
+msgid "GEOLOGICAL_ACTIVITY_AVERAGE"
+msgstr ""
+
+msgid "GEOLOGICAL_ACTIVITY_DORMANT"
+msgstr ""
+
+#, fuzzy
+msgid "GEOLOGICAL_ACTIVITY_EXPLANATION"
+msgstr ""
+"Aktivi Mikrobe tummlet umme, wenn nüüt interessantes passiert.\n"
+"Sessili Mikrobe sind stationär und wartet druff, dass sich ihri Umgebig änderet, bevor sie handlet."
 
 msgid "GITHUB_TOOLTIP"
 msgstr "Bsuech oises GitHub Archiv"
@@ -2419,6 +2510,9 @@ msgstr "Gottmodus"
 
 msgid "GOD_TOOLS_TITLE"
 msgstr "Gott-Werchzüüg"
+
+msgid "GOING_NUCLEAR"
+msgstr ""
 
 msgid "GOOGLY_EYE_CELL"
 msgstr "Kulleraugezelle"
@@ -2520,6 +2614,7 @@ msgstr "{0} (x{1})"
 msgid "HYDROGENASE"
 msgstr "Hydrogenase"
 
+#, fuzzy
 msgid "HYDROGENASE_DESCRIPTION"
 msgstr "Benutzt Wasserstoff um Energie vo [thrive:compound type=\\\"glucose\\\"][/thrive:compound] z'erhalte. Meh effektiv bi niedrige [thrive:compound type=\\\"oxygen\\\"][/thrive:compound] Werte als metabolosome. Vieli Organisme in anoxische Umweltsituatione benutzed das als primäri Energiequelle."
 
@@ -2529,6 +2624,7 @@ msgstr "Wandlet [thrive:compound type=\\\"glucose\\\"][/thrive:compound] zu [thr
 msgid "HYDROGENOSOME"
 msgstr "Hydrogenosom"
 
+#, fuzzy
 msgid "HYDROGENOSOME_DESCRIPTION"
 msgstr "Benutzt Wasserstoff um Energie vo [thrive:compound type=\\\"glucose\\\"][/thrive:compound] z'erhalte. S'Hydrogenosom isch e Membran-bundeni Organelle g'füllt mit Proteine und Enzyme. Es isch en Prokaryot wo vo emene Eukaryotische Wirt assimiliert worde isch. Effektiver als Hydrogenase und meh effektiv bi niedrige [thrive:compound type=\\\"oxygen\\\"][/thrive:compound] Werte als es Mitochondrium. Vieli Organisme i anoxische Bedingige nemmet Bündel a Hydrogenosome als primäri Energiequelle."
 
@@ -2894,6 +2990,12 @@ msgstr "Tabulator"
 
 msgid "KEY_UP"
 msgstr "Ufe"
+
+msgid "KILL_50_MICROBES"
+msgstr ""
+
+msgid "KILL_MICROBES_PROGRESS"
+msgstr ""
 
 msgid "KILO_ABBREVIATION"
 msgstr "{0} Tsd"
@@ -3270,6 +3372,17 @@ msgstr ""
 msgid "MACROSCOPIC_STAGE"
 msgstr ""
 
+#, fuzzy
+msgid "MAKE_CELL_THAT_EATS_RADIATION"
+msgstr "Strahlig"
+
+#, fuzzy
+msgid "MAKE_CELL_USE_CHEMOSYNTHESIS"
+msgstr "Bakterielli Thermosynthese"
+
+msgid "MAKE_NO_CHANGES_IN_EDITOR"
+msgstr ""
+
 msgid "MANUALLY_SET_TIME"
 msgstr ""
 
@@ -3571,6 +3684,12 @@ msgid "MICROBE_STAGE_INITIAL_POND"
 msgstr ""
 
 msgid "MICROBE_STAGE_ORGANELLE_DIVISION"
+msgstr ""
+
+msgid "MICROBIAL_MASSACRE"
+msgstr ""
+
+msgid "MICRO_BORG"
 msgstr ""
 
 msgid "MIDDLE_MOUSE"
@@ -4072,6 +4191,10 @@ msgstr ""
 msgid "NO_FOSSIL_DIRECTORY"
 msgstr ""
 
+#, fuzzy
+msgid "NO_LONGER_ELIGIBLE_FOR_ACHIEVEMENTS"
+msgstr "Lösche bestätige"
+
 msgid "NO_MODS_ENABLED"
 msgstr ""
 
@@ -4468,10 +4591,11 @@ msgstr ""
 msgid "PLANET"
 msgstr ""
 
-msgid "PLANET_DETAILS_STRING"
-msgstr ""
+#, fuzzy
+msgid "PLANET_CUSTOMIZER"
+msgstr "Am Zeiger:"
 
-msgid "PLANET_GENERATION_TEASER"
+msgid "PLANET_DETAILS_STRING"
 msgstr ""
 
 msgid "PLANET_RANDOM_SEED"
@@ -4642,6 +4766,16 @@ msgstr ""
 msgid "RAW_VALUE_COLON"
 msgstr ""
 
+msgid "REACH_GENERATION_15_WITH_A_SPECIES"
+msgstr ""
+
+msgid "REACH_GENERATION_15_WITH_A_SPECIES_PROGRESS"
+msgstr ""
+
+#, fuzzy
+msgid "REACH_MULTICELLULAR_STAGE"
+msgstr "Multizelluläres Stadium laded"
+
 msgid "READING_SAVE_DATA"
 msgstr ""
 
@@ -4662,6 +4796,10 @@ msgstr ""
 
 msgid "REFRESH"
 msgstr ""
+
+#, fuzzy
+msgid "REGENERATE_BUTTON"
+msgstr "Zruggentwickle"
 
 msgid "RENDER_SCALE"
 msgstr ""
@@ -4703,6 +4841,9 @@ msgid "RESEARCH"
 msgstr ""
 
 msgid "RESET"
+msgstr ""
+
+msgid "RESET_ACHIEVEMENTS"
 msgstr ""
 
 msgid "RESET_DEADZONES"
@@ -4862,6 +5003,9 @@ msgid "SAVE_AND_CONTINUE"
 msgstr ""
 
 msgid "SAVE_AUTOSAVE"
+msgstr ""
+
+msgid "SAVE_CHEATS_USED"
 msgstr ""
 
 msgid "SAVE_DELETE_WARNING"
@@ -5433,6 +5577,9 @@ msgstr ""
 msgid "STRUCTURE_STEAM_POWERED_FACTORY"
 msgstr ""
 
+msgid "SUCCESSFULLY_PERFORM_ENDOSYMBIOSIS"
+msgstr ""
+
 msgid "SUCCESSFUL_KILL"
 msgstr ""
 
@@ -5452,6 +5599,9 @@ msgid "SUPPORTER_PATRONS"
 msgstr ""
 
 msgid "SURVIVAL_TITLE"
+msgstr ""
+
+msgid "SURVIVE_WITH_A_NUCLEUS"
 msgstr ""
 
 msgid "SWITCH_TO_FRONT_CAMERA"
@@ -5490,6 +5640,14 @@ msgstr ""
 
 msgid "TARGET_TYPE_COLON"
 msgstr ""
+
+#, fuzzy
+msgid "TASTE_THE_SUN"
+msgstr "Aktuelli Threads:"
+
+#, fuzzy
+msgid "TASTY_RADIATION"
+msgstr "Strahlig"
 
 msgid "TECHNOLOGY_ASCENSION"
 msgstr ""
@@ -5581,6 +5739,10 @@ msgstr ""
 msgid "THE_DISTURBANCE"
 msgstr ""
 
+#, fuzzy
+msgid "THE_EDITOR"
+msgstr "Editor verlah"
+
 msgid "THE_PATCH_MAP_BUTTON"
 msgstr ""
 
@@ -5622,6 +5784,10 @@ msgstr ""
 
 msgid "THRIVE_LICENSES"
 msgstr ""
+
+#, fuzzy
+msgid "THRIVIN_ACHIEVEMENT"
+msgstr "Grundmobilität"
 
 msgid "THYLAKOIDS"
 msgstr ""
@@ -5869,9 +6035,6 @@ msgstr ""
 msgid "TUTORIAL"
 msgstr ""
 
-msgid "TUTORIAL_ALL_NOT_ENABLED_EXPLANATION"
-msgstr ""
-
 msgid "TUTORIAL_MICROBE_EDITOR_ATP_BALANCE_INTRO"
 msgstr ""
 
@@ -5973,6 +6136,10 @@ msgstr ""
 
 msgid "TUTORIAL_MULTICELLULAR_STAGE_WELCOME"
 msgstr ""
+
+#, fuzzy
+msgid "TUTORIAL_REPLAY_ALL_EXPLANATION"
+msgstr "Die Tafle zeigt d'Wert aa, mit dene d'Auto-Evo-Vorhersag schafft. D'Gsammtenergie, wo e Spezies uufnäh chann, und d'Köschte pro Einzeltier vode Spezies bestimmet d'endgültigi Bevölkerig. Auto-Evo verwendet es vereifachtes Modell vode Realität um z'berechne, wie guet die Spezies uf Basis vo ihre erbrachte Energie abschniidet. Für jedi Nahrigsquelle wird aazeiget, wie viel Energie d'Art us dere gwünnt. Zuesätzlich wird d'Gsammtenergie, wo us dere Quelle zur Verfüegig staht, aazeiget. De Aateil wo die Art a dere Gsammtenergie gwünnt, basiert druff, wie gross ihri Fitness im Vergliich zur Gsammtfitness isch. Die Fitness isch es Maas defür, wie guet die Spezies die Nahrigsquelle verwende cha."
 
 msgid "TUTORIAL_VIEW_NOW"
 msgstr ""
@@ -6224,6 +6391,9 @@ msgid "VACUOLE_SPECIALIZED_DESCRIPTION"
 msgstr ""
 
 msgid "VALUE_WITH_UNIT"
+msgstr ""
+
+msgid "VENTS_ARE_HOME"
 msgstr ""
 
 msgid "VERSION_COLON"
@@ -7768,6 +7938,23 @@ msgstr ""
 msgid "WORLD_MISC_DETAILS_STRING"
 msgstr ""
 
+msgid "WORLD_OCEANIC_COVERAGE"
+msgstr ""
+
+#, fuzzy
+msgid "WORLD_OCEANIC_COVERAGE_EXPLANATION"
+msgstr "(veränderet d'Nummer vo Gebiet ide Welt)"
+
+msgid "WORLD_OCEANIC_COVERAGE_LARGE"
+msgstr ""
+
+#, fuzzy
+msgid "WORLD_OCEANIC_COVERAGE_MEDIUM"
+msgstr "(veränderet d'Nummer vo Gebiet ide Welt)"
+
+msgid "WORLD_OCEANIC_COVERAGE_SMALL"
+msgstr ""
+
 msgid "WORLD_RELATIVE_MOVEMENT"
 msgstr ""
 
@@ -7788,6 +7975,22 @@ msgstr ""
 
 msgid "WORLD_SIZE_TOOLTIP"
 msgstr "E grossi Welt z'ha chann d'Simulation verlangsame und isch nöd empfohle für langsameri PC."
+
+msgid "WORLD_TEMPERATURE"
+msgstr ""
+
+msgid "WORLD_TEMPERATURE_COLD"
+msgstr ""
+
+#, fuzzy
+msgid "WORLD_TEMPERATURE_EXPLANATION"
+msgstr "(veränderet d'Nummer vo Gebiet ide Welt)"
+
+msgid "WORLD_TEMPERATURE_TEMPERATE"
+msgstr ""
+
+msgid "WORLD_TEMPERATURE_WARM"
+msgstr ""
 
 msgid "WORST_PATCH_COLON"
 msgstr ""
@@ -7819,12 +8022,29 @@ msgstr ""
 msgid "YOU_CAN_SUPPORT_THRIVE_ON_PATREON"
 msgstr ""
 
+#, fuzzy
+msgid "YUM_EXCLAMATION"
+msgstr ""
+"Fokussierti Mikrobe werdet über e grösseri Entfernig nach Chlumpe oder Beuti luege\n"
+"und sind möglicherwiis sehr viel ehrgiziger, wenn's um Chlumpe gaht.\n"
+"Inkonsequenti Mikrobe wechslet schneller zu neue Ziel."
+
 msgid "ZOOM_IN"
 msgstr ""
 
 msgid "ZOOM_OUT"
 msgstr ""
 
+#~ msgid "CELL_TYPE_BUTTON_ATP_CONSUMPTION"
+#~ msgstr "De ATP-Konsum vo dem Zelletyp isch {0}."
+
+#~ msgid "CELL_TYPE_BUTTON_ATP_PRODUCTION"
+#~ msgstr "D'ATP-Produktion vo dem Zelltyp isch {0}."
+
 #, fuzzy
-#~ msgid "TEMPERATURE_SESSILITY_PRESSURE_DESCRIPTION"
-#~ msgstr "Wandlet [thrive:compound type=\"hydrogensulfide\"][/thrive:compound] i [thrive:compound type=\"glucose\"][/thrive:compound] um. D'Rate hängt vo de Konzentration vo [thrive:compound type=\"carbondioxide\"][/thrive:compound] ab."
+#~ msgid "WORLD_SEA_LEVEL"
+#~ msgstr "{0}-{1}m unter em Meeresspiegel"
+
+#, fuzzy
+#~ msgid "WORLD_SEA_LEVEL_DEEP"
+#~ msgstr "{0}-{1}m unter em Meeresspiegel"

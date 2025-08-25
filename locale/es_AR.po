@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2025-07-21 15:54+0300\n"
+"POT-Creation-Date: 2025-08-25 19:09+0300\n"
 "PO-Revision-Date: 2025-04-04 10:42+0000\n"
 "Last-Translator: Anonymous <noreply@weblate.org>\n"
 "Language-Team: Spanish (Argentina) <https://translate.revolutionarygamesstudio.com/projects/thrive/thrive-game/es_AR/>\n"
@@ -49,6 +49,19 @@ msgstr "Abisopelágico"
 
 msgid "ACCEPT"
 msgstr "Aceptar"
+
+#, fuzzy
+msgid "ACHIEVEMENTS"
+msgstr "Movimiento basal"
+
+msgid "ACHIEVEMENTS_TOTAL"
+msgstr ""
+
+msgid "ACHIEVEMENT_ACHIEVED"
+msgstr ""
+
+msgid "ACHIEVEMENT_LOCKED"
+msgstr ""
 
 msgid "ACTION_AWAKEN"
 msgstr "Despertar ({0:F1} / {1:F1})"
@@ -371,6 +384,10 @@ msgstr "Autoguardar durante el juego"
 msgid "AUTO_EVO"
 msgstr "Auto-Evo"
 
+#, fuzzy
+msgid "AUTO_EVO_EXPLORER_TOOL_BUTTON"
+msgstr "Herramienta de exploración del Auto-Evo"
+
 msgid "AUTO_EVO_EXPLORING_TOOL"
 msgstr "Herramienta de exploración del Auto-Evo"
 
@@ -425,6 +442,9 @@ msgstr "Barra inversa ( / )"
 
 msgid "BACKSPACE"
 msgstr "Retroceso"
+
+msgid "BACK_TO_SETTINGS"
+msgstr ""
 
 msgid "BACTERIAL_THERMOSYNTHESIS"
 msgstr "Termosíntesis bacteriana"
@@ -500,6 +520,12 @@ msgstr "Resultados:"
 
 msgid "BEST_PATCH_COLON"
 msgstr "Mejor Patch:"
+
+msgid "BETTER_TOGETHER"
+msgstr ""
+
+msgid "BEYOND_THE_CELL"
+msgstr ""
 
 msgid "BIG_IRON_CHUNK"
 msgstr "Pedazo grande de hierro"
@@ -625,6 +651,9 @@ msgstr ""
 msgid "CANNOT_ENGULF"
 msgstr ""
 
+msgid "CANNOT_IMPROVE_PERFECTION"
+msgstr ""
+
 msgid "CANNOT_MOVE_METABALL_TO_DESCENDANT_TREE"
 msgstr ""
 
@@ -698,13 +727,6 @@ msgstr "Activar/Desactivar engullir"
 msgid "CELL_STAT_STORAGE_TOOLTIP"
 msgstr "Activar/Desactivar engullir"
 
-msgid "CELL_TYPE_BUTTON_ATP_CONSUMPTION"
-msgstr ""
-
-#, fuzzy
-msgid "CELL_TYPE_BUTTON_ATP_PRODUCTION"
-msgstr "Producción de ATP"
-
 msgid "CELL_TYPE_NAME"
 msgstr ""
 
@@ -720,6 +742,10 @@ msgstr "población:"
 
 msgid "CHEATS"
 msgstr "Chetos (de cmds)"
+
+#, fuzzy
+msgid "CHEATS_USED_NOTICE"
+msgstr "Abortado."
 
 msgid "CHEAT_KEYS_ENABLED"
 msgstr ""
@@ -827,6 +853,24 @@ msgid "CLEAR_CACHE"
 msgstr ""
 
 msgid "CLICK_TO_SELECT"
+msgstr ""
+
+msgid "CLIMATE_INSTABILITY"
+msgstr ""
+
+#, fuzzy
+msgid "CLIMATE_INSTABILITY_EXPLANATION"
+msgstr ""
+"Los microbios activos van deambular cuando no pase nada interesante.\n"
+"Los microbios tranquilos van a estar quietos y esperando a que algo cambie antes de actuar."
+
+msgid "CLIMATE_STABILITY_AVERAGE"
+msgstr ""
+
+msgid "CLIMATE_STABILITY_STABLE"
+msgstr ""
+
+msgid "CLIMATE_STABILITY_UNSTABLE"
 msgstr ""
 
 msgid "CLOSE"
@@ -1062,6 +1106,14 @@ msgid "CONFIRM_NEW_GAME_BUTTON_TOOLTIP_DISABLED"
 msgstr ""
 
 #, fuzzy
+msgid "CONFIRM_RESET_ACHIEVEMENTS"
+msgstr "Confirmar Borrar"
+
+#, fuzzy
+msgid "CONFIRM_RESET_ACHIEVEMENTS_DESCRIPTION"
+msgstr "población:"
+
+#, fuzzy
 msgid "CONSTRUCTION_UNIT_NAME"
 msgstr "Tritanopia (Azul-Amarillo)"
 
@@ -1255,6 +1307,10 @@ msgstr "Protanopia (Rojo-verde)"
 
 msgid "CORRECTION_TRITANOPE"
 msgstr "Tritanopia (Azul-Amarillo)"
+
+#, fuzzy
+msgid "CPU_POWER_NOT_ENOUGH_FOR_SPEED_MODE"
+msgstr "{0} consume"
 
 msgid "CPU_THREADS"
 msgstr ""
@@ -1819,6 +1875,10 @@ msgstr ""
 "\n"
 "Nitrogenasa: Convierte el nitrógeno atmosférico en amoníaco y consume ATP."
 
+#, fuzzy
+msgid "EDIT_MICROBE_FIRST_TIME"
+msgstr "Recién levantado"
+
 msgid "EFFECTIVE_VALUE"
 msgstr ""
 
@@ -1924,6 +1984,9 @@ msgid "ENERGY_SOURCES"
 msgstr ""
 
 msgid "ENERGY_SUMMARY_LINE"
+msgstr ""
+
+msgid "ENGULF_CELL_OR_CHUNK"
 msgstr ""
 
 msgid "ENGULF_NO_ATP_DAMAGE_MESSAGE"
@@ -2275,6 +2338,10 @@ msgstr ""
 msgid "FORGET_MOD_DETAILS_TOOLTIP"
 msgstr ""
 
+#, fuzzy
+msgid "FORM_CELL_COLONY"
+msgstr "población:"
+
 msgid "FORM_ERROR_MESSAGE"
 msgstr ""
 
@@ -2387,11 +2454,36 @@ msgstr "Presiona el botón de deshacer en el editor para corregir el error"
 msgid "GENERAL_LOADING_TIP_7"
 msgstr "Presiona el botón de deshacer en el editor para corregir el error"
 
+#, fuzzy
+msgid "GENERATE_BUTTON"
+msgstr "Pili de depredador"
+
+msgid "GENERATE_POSITIVE_GLUCOSE_PHOTOSYNTHESIS"
+msgstr ""
+
 msgid "GENERATIONS"
 msgstr ""
 
 msgid "GENERATION_COLON"
 msgstr ""
+
+msgid "GEOLOGICAL_ACTIVITY"
+msgstr ""
+
+msgid "GEOLOGICAL_ACTIVITY_ACTIVE"
+msgstr ""
+
+msgid "GEOLOGICAL_ACTIVITY_AVERAGE"
+msgstr ""
+
+msgid "GEOLOGICAL_ACTIVITY_DORMANT"
+msgstr ""
+
+#, fuzzy
+msgid "GEOLOGICAL_ACTIVITY_EXPLANATION"
+msgstr ""
+"Los microbios activos van deambular cuando no pase nada interesante.\n"
+"Los microbios tranquilos van a estar quietos y esperando a que algo cambie antes de actuar."
 
 msgid "GITHUB_TOOLTIP"
 msgstr ""
@@ -2443,6 +2535,9 @@ msgid "GODMODE"
 msgstr ""
 
 msgid "GOD_TOOLS_TITLE"
+msgstr ""
+
+msgid "GOING_NUCLEAR"
 msgstr ""
 
 msgid "GOOGLY_EYE_CELL"
@@ -2950,6 +3045,14 @@ msgstr "Tabulador"
 msgid "KEY_UP"
 msgstr "Flechita hacia arriba"
 
+#, fuzzy
+msgid "KILL_50_MICROBES"
+msgstr "Nitrogenasa"
+
+#, fuzzy
+msgid "KILL_MICROBES_PROGRESS"
+msgstr "Habilitar el editor"
+
 msgid "KILO_ABBREVIATION"
 msgstr ""
 
@@ -3349,6 +3452,18 @@ msgstr "Volverte re chiquito ({0}/{1})"
 #, fuzzy
 msgid "MACROSCOPIC_STAGE"
 msgstr "Usá W, A, S y D y el mouse para moverte. E para disparar OxiToxi NT si tenés una vacuola de toxinas. G para activar o desactivar el modo engullir."
+
+#, fuzzy
+msgid "MAKE_CELL_THAT_EATS_RADIATION"
+msgstr "(Velocidad en la que las especies guiadas por IA mutan)"
+
+#, fuzzy
+msgid "MAKE_CELL_USE_CHEMOSYNTHESIS"
+msgstr "Fotosíntesis"
+
+#, fuzzy
+msgid "MAKE_NO_CHANGES_IN_EDITOR"
+msgstr "Habilitar el editor"
 
 msgid "MANUALLY_SET_TIME"
 msgstr ""
@@ -3772,6 +3887,14 @@ msgstr ""
 #, fuzzy
 msgid "MICROBE_STAGE_ORGANELLE_DIVISION"
 msgstr "Mover organela"
+
+#, fuzzy
+msgid "MICROBIAL_MASSACRE"
+msgstr "Usá W, A, S y D y el mouse para moverte. E para disparar OxiToxi NT si tenés una vacuola de toxinas. G para activar o desactivar el modo engullir."
+
+#, fuzzy
+msgid "MICRO_BORG"
+msgstr "Usá W, A, S y D y el mouse para moverte. E para disparar OxiToxi NT si tenés una vacuola de toxinas. G para activar o desactivar el modo engullir."
 
 msgid "MIDDLE_MOUSE"
 msgstr ""
@@ -4312,6 +4435,10 @@ msgid "NO_FOSSIL_DIRECTORY"
 msgstr ""
 
 #, fuzzy
+msgid "NO_LONGER_ELIGIBLE_FOR_ACHIEVEMENTS"
+msgstr "Confirmar Borrar"
+
+#, fuzzy
 msgid "NO_MODS_ENABLED"
 msgstr "Desactivado"
 
@@ -4747,10 +4874,11 @@ msgstr "Poner organela"
 msgid "PLANET"
 msgstr ""
 
-msgid "PLANET_DETAILS_STRING"
-msgstr ""
+#, fuzzy
+msgid "PLANET_CUSTOMIZER"
+msgstr "En el cursor:"
 
-msgid "PLANET_GENERATION_TEASER"
+msgid "PLANET_DETAILS_STRING"
 msgstr ""
 
 msgid "PLANET_RANDOM_SEED"
@@ -4937,6 +5065,16 @@ msgstr ""
 msgid "RAW_VALUE_COLON"
 msgstr "Nuevo Juego"
 
+msgid "REACH_GENERATION_15_WITH_A_SPECIES"
+msgstr ""
+
+msgid "REACH_GENERATION_15_WITH_A_SPECIES_PROGRESS"
+msgstr ""
+
+#, fuzzy
+msgid "REACH_MULTICELLULAR_STAGE"
+msgstr "Poner organela"
+
 msgid "READING_SAVE_DATA"
 msgstr ""
 
@@ -4957,6 +5095,10 @@ msgstr ""
 
 msgid "REFRESH"
 msgstr ""
+
+#, fuzzy
+msgid "REGENERATE_BUTTON"
+msgstr "Pili de depredador"
 
 msgid "RENDER_SCALE"
 msgstr ""
@@ -5006,6 +5148,9 @@ msgstr "tecla \"Search\""
 
 msgid "RESET"
 msgstr "NOW ENGLISH"
+
+msgid "RESET_ACHIEVEMENTS"
+msgstr ""
 
 msgid "RESET_DEADZONES"
 msgstr ""
@@ -5172,6 +5317,9 @@ msgid "SAVE_AND_CONTINUE"
 msgstr ""
 
 msgid "SAVE_AUTOSAVE"
+msgstr ""
+
+msgid "SAVE_CHEATS_USED"
 msgstr ""
 
 msgid "SAVE_DELETE_WARNING"
@@ -5792,6 +5940,9 @@ msgstr ""
 msgid "STRUCTURE_STEAM_POWERED_FACTORY"
 msgstr ""
 
+msgid "SUCCESSFULLY_PERFORM_ENDOSYMBIOSIS"
+msgstr ""
+
 msgid "SUCCESSFUL_KILL"
 msgstr ""
 
@@ -5812,6 +5963,10 @@ msgstr ""
 
 msgid "SURVIVAL_TITLE"
 msgstr ""
+
+#, fuzzy
+msgid "SURVIVE_WITH_A_NUCLEUS"
+msgstr "Núcleo"
 
 msgid "SWITCH_TO_FRONT_CAMERA"
 msgstr ""
@@ -5850,6 +6005,14 @@ msgstr "Hacer una screenshot (captura de pantalla)"
 #, fuzzy
 msgid "TARGET_TYPE_COLON"
 msgstr "anterior:"
+
+#, fuzzy
+msgid "TASTE_THE_SUN"
+msgstr "Hilos actuales:"
+
+#, fuzzy
+msgid "TASTY_RADIATION"
+msgstr "Resolución:"
 
 msgid "TECHNOLOGY_ASCENSION"
 msgstr ""
@@ -5950,6 +6113,10 @@ msgid "THE_DISTURBANCE"
 msgstr ""
 
 #, fuzzy
+msgid "THE_EDITOR"
+msgstr "Habilitar el editor"
+
+#, fuzzy
 msgid "THE_PATCH_MAP_BUTTON"
 msgstr "Quimioplastia"
 
@@ -5992,6 +6159,10 @@ msgstr ""
 
 msgid "THRIVE_LICENSES"
 msgstr ""
+
+#, fuzzy
+msgid "THRIVIN_ACHIEVEMENT"
+msgstr "Movimiento basal"
 
 msgid "THYLAKOIDS"
 msgstr "Tilacoides"
@@ -6291,10 +6462,6 @@ msgid "TUTORIAL"
 msgstr ""
 
 #, fuzzy
-msgid "TUTORIAL_ALL_NOT_ENABLED_EXPLANATION"
-msgstr "población:"
-
-#, fuzzy
 msgid "TUTORIAL_MICROBE_EDITOR_ATP_BALANCE_INTRO"
 msgstr "Usá W, A, S y D y el mouse para moverte. E para disparar OxiToxi NT si tenés una vacuola de toxinas. G para activar o desactivar el modo engullir."
 
@@ -6490,6 +6657,10 @@ msgstr "Usá W, A, S y D y el mouse para moverte. E para disparar OxiToxi NT si 
 #, fuzzy
 msgid "TUTORIAL_MULTICELLULAR_STAGE_WELCOME"
 msgstr "Poner organela"
+
+#, fuzzy
+msgid "TUTORIAL_REPLAY_ALL_EXPLANATION"
+msgstr "población:"
 
 msgid "TUTORIAL_VIEW_NOW"
 msgstr ""
@@ -6770,6 +6941,9 @@ msgid "VACUOLE_SPECIALIZED_DESCRIPTION"
 msgstr "población:"
 
 msgid "VALUE_WITH_UNIT"
+msgstr ""
+
+msgid "VENTS_ARE_HOME"
 msgstr ""
 
 msgid "VERSION_COLON"
@@ -8911,6 +9085,23 @@ msgstr ""
 msgid "WORLD_MISC_DETAILS_STRING"
 msgstr ""
 
+msgid "WORLD_OCEANIC_COVERAGE"
+msgstr ""
+
+#, fuzzy
+msgid "WORLD_OCEANIC_COVERAGE_EXPLANATION"
+msgstr "Normal"
+
+msgid "WORLD_OCEANIC_COVERAGE_LARGE"
+msgstr ""
+
+#, fuzzy
+msgid "WORLD_OCEANIC_COVERAGE_MEDIUM"
+msgstr "Normal"
+
+msgid "WORLD_OCEANIC_COVERAGE_SMALL"
+msgstr ""
+
 msgid "WORLD_RELATIVE_MOVEMENT"
 msgstr ""
 
@@ -8939,6 +9130,28 @@ msgstr ""
 "El menú desplegable de ahí abajo lo podés usar para chequear que pasaría si la célula no tuviese ningún recurso disponible para poder crear ATP.\n"
 "Por ejemplo, algunas células solo pueden mantener un balance de ATP positivo cuando tienen múltiples tipos de componentes de los que pueden crear ATP al mísmo tiempo.\n"
 "Ese tipo de células son más difíciles de jugar porque requieren que almacenes varios tipos de componentes al mísmo tiempo para poder sobrevivir."
+
+msgid "WORLD_TEMPERATURE"
+msgstr ""
+
+msgid "WORLD_TEMPERATURE_COLD"
+msgstr ""
+
+#, fuzzy
+msgid "WORLD_TEMPERATURE_EXPLANATION"
+msgstr "Normal"
+
+#, fuzzy
+msgid "WORLD_TEMPERATURE_TEMPERATE"
+msgstr ""
+"Esta sección muestra el balance total de ATP (energía) de la célula actual.\n"
+"Para poder sobrevivir, el balance tiene que ser positivo. Para las célular sésiles se puede considerar el balance positivo con el movimiento excluído.\n"
+"El menú desplegable de ahí abajo lo podés usar para chequear que pasaría si la célula no tuviese ningún recurso disponible para poder crear ATP.\n"
+"Por ejemplo, algunas células solo pueden mantener un balance de ATP positivo cuando tienen múltiples tipos de componentes de los que pueden crear ATP al mísmo tiempo.\n"
+"Ese tipo de células son más difíciles de jugar porque requieren que almacenes varios tipos de componentes al mísmo tiempo para poder sobrevivir."
+
+msgid "WORLD_TEMPERATURE_WARM"
+msgstr ""
 
 msgid "WORST_PATCH_COLON"
 msgstr ""
@@ -8971,6 +9184,12 @@ msgstr ""
 msgid "YOU_CAN_SUPPORT_THRIVE_ON_PATREON"
 msgstr ""
 
+#, fuzzy
+msgid "YUM_EXCLAMATION"
+msgstr ""
+"Los microbios activos van deambular cuando no pase nada interesante.\n"
+"Los microbios tranquilos van a estar quietos y esperando a que algo cambie antes de actuar."
+
 msgid "ZOOM_IN"
 msgstr "Acercar la pantalla"
 
@@ -8978,8 +9197,16 @@ msgid "ZOOM_OUT"
 msgstr "Alejar la pantalla"
 
 #, fuzzy
-#~ msgid "TEMPERATURE_SESSILITY_PRESSURE_DESCRIPTION"
-#~ msgstr "población:"
+#~ msgid "CELL_TYPE_BUTTON_ATP_PRODUCTION"
+#~ msgstr "Producción de ATP"
+
+#, fuzzy
+#~ msgid "WORLD_SEA_LEVEL"
+#~ msgstr "{0}-{1}Bajo el nivel del mar"
+
+#, fuzzy
+#~ msgid "WORLD_SEA_LEVEL_DEEP"
+#~ msgstr "{0}-{1}Bajo el nivel del mar"
 
 #, fuzzy
 #~ msgid "MICROBE_STAGE_DAY_NIGHT_TEXT"
@@ -9197,10 +9424,6 @@ msgstr "Alejar la pantalla"
 #~ msgstr "población:"
 
 #, fuzzy
-#~ msgid "WIKI_CHEMOSYNTHESIS"
-#~ msgstr "Fotosíntesis"
-
-#, fuzzy
 #~ msgid "WIKI_CYTOPLASM_GLYCOLYSIS"
 #~ msgstr "Citoplasma"
 
@@ -9229,10 +9452,6 @@ msgstr "Alejar la pantalla"
 #, fuzzy
 #~ msgid "WIKI_IRON_CHEMOLITHOAUTOTROPHY"
 #~ msgstr "Quimioplastia"
-
-#, fuzzy
-#~ msgid "WIKI_MICROBE_EDITOR"
-#~ msgstr "Habilitar el editor"
 
 #, fuzzy
 #~ msgid "WIKI_MUCILAGE_SYNTHESIS"

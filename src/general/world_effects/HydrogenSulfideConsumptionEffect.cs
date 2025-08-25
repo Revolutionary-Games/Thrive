@@ -93,13 +93,32 @@ public class HydrogenSulfideConsumptionEffect : IWorldEffect
             var minimum =
                 patch.BiomeTemplate.Conditions.GetCompound(Compound.Hydrogensulfide, CompoundAmountType.Biome);
 
-            if (!speciesEatIt && minimum.Density <= MathUtils.EPSILON)
+            if (minimum.Density <= MathUtils.EPSILON)
             {
-                // In patches where there is no hydrogen sulfide naturally (it must have diffused there from elsewhere)
-                // have some natural decay to make sure the whole world isn't full of it
-                hydrogenSulfide.Density -= hydrogenSulfide.Density * Constants.HYDROGEN_SULFIDE_NATURAL_DECAY_FACTOR;
+                if (!speciesEatIt)
+                {
+                    // In patches where there is no hydrogen sulfide naturally (it must have diffused there from
+                    // elsewhere) have some natural decay to make sure the whole world isn't full of it
+                    hydrogenSulfide.Density -=
+                        hydrogenSulfide.Density * Constants.HYDROGEN_SULFIDE_NATURAL_DECAY_FACTOR;
+                }
 
-                if (hydrogenSulfide.Density < MathUtils.EPSILON * 50)
+                // When oxygen is present, the natural decay is increased (and present even if species eat it)
+                // to make the world once oxygenated much less full of hydrogen sulfide
+                var oxygen = patch.Biome.GetCompound(Compound.Oxygen, CompoundAmountType.Biome);
+
+                var oxygenSteps = oxygen.Ambient / Constants.HYDROGEN_SULFIDE_NATURAL_DECAY_INCREASE_PER_OXYGEN;
+                if (oxygenSteps > 0)
+                {
+                    hydrogenSulfide.Density -= hydrogenSulfide.Density *
+                        Constants.HYDROGEN_SULFIDE_NATURAL_DECAY_FACTOR_OXYGEN * oxygenSteps;
+
+                    // Higher min cutoff when there is some oxygen present
+                    if (hydrogenSulfide.Density < Constants.HYDROGEN_SULFIDE_OXYGEN_TOTAL_CUTOFF)
+                        hydrogenSulfide.Density = 0;
+                }
+
+                if (hydrogenSulfide.Density < MathUtils.EPSILON * 100)
                     hydrogenSulfide.Density = 0;
             }
 

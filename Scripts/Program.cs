@@ -109,6 +109,8 @@ public class Program
             Directory.Delete("gdunit4_testadapter", true);
         }
 
+        CodeChecks.IgnoreGdUnitReportsFolder();
+
         var tokenSource = ConsoleHelpers.CreateSimpleConsoleCancellationSource();
 
         int result;
@@ -185,6 +187,8 @@ public class Program
         CommandLineHelpers.HandleDefaultOptions(options);
 
         ColourConsole.WriteDebugLine("Running packaging tool");
+
+        CodeChecks.IgnoreGdUnitReportsFolder();
 
         var tokenSource = ConsoleHelpers.CreateSimpleConsoleCancellationSource();
 

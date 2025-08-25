@@ -7,9 +7,9 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2025-07-21 15:54+0300\n"
-"PO-Revision-Date: 2025-07-18 04:41+0000\n"
-"Last-Translator: xzihnago <xzihnago@gmail.com>\n"
+"POT-Creation-Date: 2025-08-25 19:09+0300\n"
+"PO-Revision-Date: 2025-08-22 10:08+0000\n"
+"Last-Translator: Anonymous <noreply@weblate.org>\n"
 "Language-Team: Chinese (Traditional Han script) <https://translate.revolutionarygamesstudio.com/projects/thrive/thrive-game/zh_Hant/>\n"
 "Language: zh_TW\n"
 "MIME-Version: 1.0\n"
@@ -48,6 +48,18 @@ msgstr "深海帶"
 
 msgid "ACCEPT"
 msgstr "接受"
+
+msgid "ACHIEVEMENTS"
+msgstr "成就"
+
+msgid "ACHIEVEMENTS_TOTAL"
+msgstr "成就 {0} / {1}"
+
+msgid "ACHIEVEMENT_ACHIEVED"
+msgstr "完成"
+
+msgid "ACHIEVEMENT_LOCKED"
+msgstr "鎖定"
 
 msgid "ACTION_AWAKEN"
 msgstr "覺醒（{0:F1}／{1:F1}）"
@@ -358,6 +370,9 @@ msgstr "遊戲中自動存檔"
 msgid "AUTO_EVO"
 msgstr "Auto-Evo"
 
+msgid "AUTO_EVO_EXPLORER_TOOL_BUTTON"
+msgstr "在 Auto-Evo 探索工具中使用"
+
 msgid "AUTO_EVO_EXPLORING_TOOL"
 msgstr "Auto-Evo 探索工具"
 
@@ -411,6 +426,9 @@ msgstr "\\"
 
 msgid "BACKSPACE"
 msgstr "Backspace"
+
+msgid "BACK_TO_SETTINGS"
+msgstr "返回設定"
 
 msgid "BACTERIAL_THERMOSYNTHESIS"
 msgstr "細菌熱合成"
@@ -486,6 +504,12 @@ msgstr "結果："
 
 msgid "BEST_PATCH_COLON"
 msgstr "最佳區域："
+
+msgid "BETTER_TOGETHER"
+msgstr ""
+
+msgid "BEYOND_THE_CELL"
+msgstr "超越細胞"
 
 msgid "BIG_IRON_CHUNK"
 msgstr "大鐵塊"
@@ -595,6 +619,9 @@ msgstr "無法刪除已使用的細胞類型"
 msgid "CANNOT_ENGULF"
 msgstr "無法吞噬"
 
+msgid "CANNOT_IMPROVE_PERFECTION"
+msgstr ""
+
 msgid "CANNOT_MOVE_METABALL_TO_DESCENDANT_TREE"
 msgstr "無法將元球移到其子代樹中"
 
@@ -673,12 +700,6 @@ msgstr ""
 "請注意，即使 ATP 平衡為正，儲存量過低仍可能導致 ATP 短缺。\n"
 "這些問題可能會由於嚴重卡頓或遊戲整體效能較低而變得更糟。增加儲存容量有助於緩解這些問題。"
 
-msgid "CELL_TYPE_BUTTON_ATP_CONSUMPTION"
-msgstr "此細胞類型的 ATP 消耗量為 {0}。"
-
-msgid "CELL_TYPE_BUTTON_ATP_PRODUCTION"
-msgstr "此細胞類型的 ATP 生產量為 {0}。"
-
 msgid "CELL_TYPE_NAME"
 msgstr "細胞類型名稱"
 
@@ -693,6 +714,9 @@ msgstr "通道抑制劑合成"
 
 msgid "CHEATS"
 msgstr "作弊"
+
+msgid "CHEATS_USED_NOTICE"
+msgstr "本次遊戲使用了作弊功能。"
 
 msgid "CHEAT_KEYS_ENABLED"
 msgstr "啟用作弊鍵"
@@ -804,6 +828,21 @@ msgstr "清除快取"
 
 msgid "CLICK_TO_SELECT"
 msgstr "選取"
+
+msgid "CLIMATE_INSTABILITY"
+msgstr "氣候不穩定性"
+
+msgid "CLIMATE_INSTABILITY_EXPLANATION"
+msgstr "（影響全球冰河期等區域事件的頻率與嚴重程度）"
+
+msgid "CLIMATE_STABILITY_AVERAGE"
+msgstr "平均"
+
+msgid "CLIMATE_STABILITY_STABLE"
+msgstr "穩定"
+
+msgid "CLIMATE_STABILITY_UNSTABLE"
+msgstr "不穩定"
 
 msgid "CLOSE"
 msgstr "關閉"
@@ -1045,6 +1084,12 @@ msgstr "以當前設定進入遊戲"
 msgid "CONFIRM_NEW_GAME_BUTTON_TOOLTIP_DISABLED"
 msgstr "部分設定無效"
 
+msgid "CONFIRM_RESET_ACHIEVEMENTS"
+msgstr "確認重置所有成就？"
+
+msgid "CONFIRM_RESET_ACHIEVEMENTS_DESCRIPTION"
+msgstr "您確定要重置所有成就與相關統計資料嗎？此操作無法撤銷，您需要重新獲取所有成就，並且所有當前成就進度都將重置。"
+
 msgid "CONSTRUCTION_UNIT_NAME"
 msgstr "單位：{0}"
 
@@ -1247,6 +1292,10 @@ msgstr "紅綠色盲"
 
 msgid "CORRECTION_TRITANOPE"
 msgstr "藍黃色盲"
+
+#, fuzzy
+msgid "CPU_POWER_NOT_ENOUGH_FOR_SPEED_MODE"
+msgstr "夜晚持續 {2} 秒，但沒有足夠的[thrive:compound type=\"{0}\"][/thrive:compound] 儲存空間，其僅能容納 {1} 秒的化合物。"
 
 msgid "CPU_THREADS"
 msgstr "執行緒"
@@ -1819,6 +1868,9 @@ msgstr ""
 "\n"
 "如果您的細胞尚未準備好演化細胞核，您可以使用[b]撤銷按鈕[/b]以[u]還原[/u]細胞核。"
 
+msgid "EDIT_MICROBE_FIRST_TIME"
+msgstr "首次編輯您的微生物"
+
 msgid "EFFECTIVE_VALUE"
 msgstr "有效值"
 
@@ -1917,6 +1969,9 @@ msgstr "能量來源："
 
 msgid "ENERGY_SUMMARY_LINE"
 msgstr "收集的總能量為 {0}，個體成本為 {1}，未修正前的物種量為 {2}"
+
+msgid "ENGULF_CELL_OR_CHUNK"
+msgstr "吞噬一個細胞或碎塊"
 
 msgid "ENGULF_NO_ATP_DAMAGE_MESSAGE"
 msgstr "因無 ATP 進入吞噬模式而受損"
@@ -2264,6 +2319,9 @@ msgstr "刪除本機資料"
 msgid "FORGET_MOD_DETAILS_TOOLTIP"
 msgstr "刪除有關此項目的本機資料。在您輸入了錯誤的 ID 或想要將其他項目上傳到新版本時非常有用。"
 
+msgid "FORM_CELL_COLONY"
+msgstr "形成細胞群"
+
 msgid "FORM_ERROR_MESSAGE"
 msgstr "錯誤：{0}"
 
@@ -2362,11 +2420,32 @@ msgstr "別忘了，您可以使用螢幕右上角的面板查看遊標下的內
 msgid "GENERAL_LOADING_TIP_7"
 msgstr "如果您的物種量降至零，您就會滅絕。"
 
+msgid "GENERATE_BUTTON"
+msgstr "生成世界"
+
+msgid "GENERATE_POSITIVE_GLUCOSE_PHOTOSYNTHESIS"
+msgstr "透過光合作用產生比消耗量多的葡萄糖"
+
 msgid "GENERATIONS"
 msgstr "世代"
 
 msgid "GENERATION_COLON"
 msgstr "世代："
+
+msgid "GEOLOGICAL_ACTIVITY"
+msgstr "地質活動"
+
+msgid "GEOLOGICAL_ACTIVITY_ACTIVE"
+msgstr "活躍"
+
+msgid "GEOLOGICAL_ACTIVITY_AVERAGE"
+msgstr "平均"
+
+msgid "GEOLOGICAL_ACTIVITY_DORMANT"
+msgstr "休眠"
+
+msgid "GEOLOGICAL_ACTIVITY_EXPLANATION"
+msgstr "（影響流星撞擊與火山噴發等事件的頻率與嚴重程度）"
 
 msgid "GITHUB_TOOLTIP"
 msgstr "造訪我們的 GitHub 儲存庫"
@@ -2419,6 +2498,9 @@ msgstr "上帝模式"
 
 msgid "GOD_TOOLS_TITLE"
 msgstr "上帝工具"
+
+msgid "GOING_NUCLEAR"
+msgstr ""
 
 msgid "GOOGLY_EYE_CELL"
 msgstr "彎曲眼球細胞"
@@ -2521,7 +2603,7 @@ msgid "HYDROGENASE"
 msgstr "氫化酶"
 
 msgid "HYDROGENASE_DESCRIPTION"
-msgstr "使用氫從[thrive:compound type=\\\"glucose\\\"][/thrive:compound] 獲取能量。在低[thrive:compound type=\\\"oxygen\\\"][/thrive:compound] 含量下比代謝體更有效。缺氧環境中的許多生物將其作為主要能量來源。"
+msgstr "發酵[thrive:compound type=\\\"glucose\\\"][/thrive:compound] 以獲取能量並產生氫等副產物。在低[thrive:compound type=\\\"oxygen\\\"][/thrive:compound] 含量下比代謝體更有效。缺氧環境中的許多生物將其作為主要能量來源。"
 
 msgid "HYDROGENASE_PROCESSES_DESCRIPTION"
 msgstr "將[thrive:compound type=\\\"glucose\\\"][/thrive:compound] 轉化為[thrive:compound type=\\\"atp\\\"][/thrive:compound]。"
@@ -2530,7 +2612,7 @@ msgid "HYDROGENOSOME"
 msgstr "氫化體"
 
 msgid "HYDROGENOSOME_DESCRIPTION"
-msgstr "使用氫從[thrive:compound type=\\\"glucose\\\"][/thrive:compound] 獲取能量。氫化體是一種包含蛋白質與酶的有膜細胞器。它是一種已被其真核宿主同化的原核生物。比氫化酶更高效，在低[thrive:compound type=\\\"oxygen\\\"][/thrive:compound] 含量下比粒線體更高效。缺氧環境中的許多生物將其作為主要能量來源。"
+msgstr "發酵[thrive:compound type=\\\"glucose\\\"][/thrive:compound] 以獲取能量並產生氫等副產物。氫化體是一種包含蛋白質與酶的有膜細胞器。它是一種已被其真核宿主同化的原核生物。比氫化酶更高效，在低[thrive:compound type=\\\"oxygen\\\"][/thrive:compound] 含量下比粒線體更高效。缺氧環境中的許多生物將其作為主要能量來源。"
 
 msgid "HYDROGENOSOME_PROCESSES_DESCRIPTION"
 msgstr "將[thrive:compound type=\\\"glucose\\\"][/thrive:compound] 轉化為[thrive:compound type=\\\"atp\\\"][/thrive:compound]。"
@@ -2894,6 +2976,12 @@ msgstr "Tab"
 
 msgid "KEY_UP"
 msgstr "↑"
+
+msgid "KILL_50_MICROBES"
+msgstr "殺死 50 個微生物"
+
+msgid "KILL_MICROBES_PROGRESS"
+msgstr "殺死 {0} / {1} 個微生物"
 
 msgid "KILO_ABBREVIATION"
 msgstr "{0}E+3"
@@ -3282,6 +3370,18 @@ msgstr "宏觀生物"
 msgid "MACROSCOPIC_STAGE"
 msgstr "宏觀生物階段"
 
+#, fuzzy
+msgid "MAKE_CELL_THAT_EATS_RADIATION"
+msgstr "輻射"
+
+#, fuzzy
+msgid "MAKE_CELL_USE_CHEMOSYNTHESIS"
+msgstr "化能合成"
+
+#, fuzzy
+msgid "MAKE_NO_CHANGES_IN_EDITOR"
+msgstr "變更："
+
 msgid "MANUALLY_SET_TIME"
 msgstr "手動設定時間"
 
@@ -3660,6 +3760,14 @@ msgstr ""
 "在生長到足以繁殖的過程中，每個細胞器都會分裂。這些新的細胞器會像微生物開始時的細胞器一樣，提供獎勵（與滲透調節成本）。\n"
 "\n"
 "隨著時間的推移，細胞器將開始複製。收集化合物可以加速這一過程。一旦所有細胞器分裂完成，您的細胞就可以繁殖並進入編輯器。"
+
+#, fuzzy
+msgid "MICROBIAL_MASSACRE"
+msgstr "微生物階段"
+
+#, fuzzy
+msgid "MICRO_BORG"
+msgstr "微生物"
 
 msgid "MIDDLE_MOUSE"
 msgstr "滑鼠中鍵"
@@ -4184,6 +4292,10 @@ msgstr "無事件記錄"
 msgid "NO_FOSSIL_DIRECTORY"
 msgstr "找不到化石目錄"
 
+#, fuzzy
+msgid "NO_LONGER_ELIGIBLE_FOR_ACHIEVEMENTS"
+msgstr "確認刪除"
+
 msgid "NO_MODS_ENABLED"
 msgstr "未啟用任何模組"
 
@@ -4599,6 +4711,9 @@ msgstr "放置細胞器（或其他可放置的物件）"
 msgid "PLANET"
 msgstr "星球"
 
+msgid "PLANET_CUSTOMIZER"
+msgstr "星球自訂工具"
+
 msgid "PLANET_DETAILS_STRING"
 msgstr ""
 "僅限已知生命形式：{0}\n"
@@ -4606,9 +4721,6 @@ msgstr ""
 "晝夜循環：{2}\n"
 "一日時長：{3} 秒\n"
 "星球隨機種子：{4}"
-
-msgid "PLANET_GENERATION_TEASER"
-msgstr "敬請期待行星生成功能！"
 
 msgid "PLANET_RANDOM_SEED"
 msgstr "星球隨機種子"
@@ -4782,6 +4894,16 @@ msgstr "原始"
 msgid "RAW_VALUE_COLON"
 msgstr "原始值："
 
+msgid "REACH_GENERATION_15_WITH_A_SPECIES"
+msgstr ""
+
+msgid "REACH_GENERATION_15_WITH_A_SPECIES_PROGRESS"
+msgstr ""
+
+#, fuzzy
+msgid "REACH_MULTICELLULAR_STAGE"
+msgstr "多細胞階段"
+
 msgid "READING_SAVE_DATA"
 msgstr "讀取存檔資料中"
 
@@ -4802,6 +4924,9 @@ msgstr "重做上一個動作"
 
 msgid "REFRESH"
 msgstr "重新整理"
+
+msgid "REGENERATE_BUTTON"
+msgstr "重新生成世界"
 
 msgid "RENDER_SCALE"
 msgstr "解析度比例"
@@ -4849,6 +4974,10 @@ msgstr "研究"
 
 msgid "RESET"
 msgstr "重置"
+
+#, fuzzy
+msgid "RESET_ACHIEVEMENTS"
+msgstr "相對於螢幕"
 
 msgid "RESET_DEADZONES"
 msgstr "重置死區"
@@ -5018,6 +5147,10 @@ msgstr "保存並繼續"
 
 msgid "SAVE_AUTOSAVE"
 msgstr "自動存檔"
+
+#, fuzzy
+msgid "SAVE_CHEATS_USED"
+msgstr "已使用空間："
 
 msgid "SAVE_DELETE_WARNING"
 msgstr "刪除的存檔無法復原，您確定要永久刪除 {0} 嗎？"
@@ -5223,6 +5356,7 @@ msgstr "音效音量"
 msgid "SHIFT"
 msgstr "Shift"
 
+#, fuzzy
 msgid "SHOW_ALL_TUTORIALS"
 msgstr "顯示所有教學"
 
@@ -5609,6 +5743,9 @@ msgstr "社會中心"
 msgid "STRUCTURE_STEAM_POWERED_FACTORY"
 msgstr "蒸汽動力工廠"
 
+msgid "SUCCESSFULLY_PERFORM_ENDOSYMBIOSIS"
+msgstr ""
+
 msgid "SUCCESSFUL_KILL"
 msgstr "成功殺死"
 
@@ -5629,6 +5766,10 @@ msgstr "支持者"
 
 msgid "SURVIVAL_TITLE"
 msgstr "生存"
+
+#, fuzzy
+msgid "SURVIVE_WITH_A_NUCLEUS"
+msgstr "細胞核"
 
 msgid "SWITCH_TO_FRONT_CAMERA"
 msgstr "切換至前視圖"
@@ -5665,6 +5806,14 @@ msgstr "截圖"
 
 msgid "TARGET_TYPE_COLON"
 msgstr "目標類型："
+
+#, fuzzy
+msgid "TASTE_THE_SUN"
+msgstr "當前執行緒："
+
+#, fuzzy
+msgid "TASTY_RADIATION"
+msgstr "輻射"
 
 msgid "TECHNOLOGY_ASCENSION"
 msgstr "飛昇"
@@ -5764,6 +5913,10 @@ msgstr "熱合成"
 msgid "THE_DISTURBANCE"
 msgstr "干擾"
 
+#, fuzzy
+msgid "THE_EDITOR"
+msgstr "退出編輯器"
+
 msgid "THE_PATCH_MAP_BUTTON"
 msgstr "區域地圖"
 
@@ -5814,6 +5967,10 @@ msgstr "區域地圖"
 
 msgid "THRIVE_LICENSES"
 msgstr "Thrive 授權條款"
+
+#, fuzzy
+msgid "THRIVIN_ACHIEVEMENT"
+msgstr "基礎移動"
 
 msgid "THYLAKOIDS"
 msgstr "類囊體"
@@ -6068,9 +6225,6 @@ msgstr "嘗試截一些圖吧！"
 msgid "TUTORIAL"
 msgstr "教學"
 
-msgid "TUTORIAL_ALL_NOT_ENABLED_EXPLANATION"
-msgstr "僅顯示任何遊戲中尚未見過的教學。可以從選項選單中完全停用教學，但強烈建議保留此選項啟用新教學。"
-
 msgid "TUTORIAL_MICROBE_EDITOR_ATP_BALANCE_INTRO"
 msgstr ""
 "右側的 ATP 生產欄顯示您細胞生產的[thrive:compound type=\"atp\"][/thrive:compound] 與消耗的比例。如果頂欄比底欄短，則表示您沒有生產足夠的[thrive:compound type=\"atp\"][/thrive:compound]。\n"
@@ -6233,14 +6387,21 @@ msgstr ""
 "\n"
 "按下重做按鈕（位於撤銷按鈕旁）以繼續。"
 
-#, fuzzy
 msgid "TUTORIAL_MICROBE_EDITOR_STAY_SMALL"
 msgstr ""
-"您應該專注於[b]特化[/b]，依靠一種或兩種[thrive:compound type=\"atp\"][/thrive:compound] 來源，這樣您就不需要擁有所有資源以產生足夠的能量來生存。\n"
+"演化的階梯上有許多路徑，但在開始時需要考慮以下幾點：\n"
 "\n"
-"另外，請仔細考慮添加細胞器是否真正有益，您並不總是需要更改已經有效的部件，因為每個細胞器都需要[thrive:compound type=\"atp\"][/thrive:compound] 來維護 [thrive:icon]OsmoIcon[/thrive:icon]，並且需要更多資源來分裂。\n"
+"專注於[b]特化[/b]，依靠一種或兩種[thrive:compound type=\"atp\"][/thrive:compound] 來源，這樣您就不需要同時依賴許多不同的資源來維持生存。\n"
 "\n"
-"一種可能的策略是保持單一網格的細胞質，並在獲得[b]光合作用[/b]細胞器之前前往表層區域。"
+"多步驟代謝途徑的管理更加複雜，例如一些細胞器會製造[thrive:compound type=\"glucose\"][/thrive:compound] 而不是[thrive:compound type=\"atp\"][/thrive:compound]，因此需要第二個細胞器將[thrive:compound type=\"glucose\"][/thrive:compound] 轉化為可用能量。\n"
+"\n"
+"抑制快速成長的衝動。您並不總是需要改變已經運作良好的部分，因為每個部件都需要消耗[thrive:compound type=\"atp\"][/thrive:compound] 來維護 [thrive:icon]OsmoIcon[/thrive:icon]。\n"
+"\n"
+"作為光合作用生物（自營生物）生存要容易得多，但食用其他微生物更令人興奮。\n"
+"\n"
+"一種可能的策略是保持非常小的體型，並在獲得[b]光合作用[/b]細胞器之前先前往表層區域。\n"
+"\n"
+"[u]不要想太多[/u]。數以萬億的細胞在找到有用的適應性之前就已經死亡。如果您發現一條死胡同，您可以隨時載入之前的存檔。"
 
 msgid "TUTORIAL_MICROBE_EDITOR_TOLERANCES_TAB"
 msgstr ""
@@ -6365,6 +6526,10 @@ msgstr ""
 "然而，您現在可以在編輯器中設計細胞群落佈局，並且可以分化細胞使其專門用於各種職責。請記住，群落成員不能共享[thrive:compound type=\"atp\"][/thrive:compound]。\n"
 "\n"
 "如果您使用出芽生殖（預設繁殖方式），您首先會控制一個牙體，並生長細胞佈局的其餘部分。"
+
+#, fuzzy
+msgid "TUTORIAL_REPLAY_ALL_EXPLANATION"
+msgstr "僅顯示任何遊戲中尚未見過的教學。可以從選項選單中完全停用教學，但強烈建議保留此選項啟用新教學。"
 
 msgid "TUTORIAL_VIEW_NOW"
 msgstr "現在查看"
@@ -6557,9 +6722,8 @@ msgstr "FSR 1 解析度提升"
 msgid "UPSCALE_FSR_22"
 msgstr "FSR 2.2 解析度提升"
 
-#, fuzzy
 msgid "UPSCALE_METHOD"
-msgstr "雙線性解析度提升"
+msgstr "解析度提升方法："
 
 msgid "UPSCALE_SHARPENING_FSR"
 msgstr "FSR 銳化"
@@ -6620,6 +6784,10 @@ msgstr "液泡將儲存 {0} 單位的所選化合物"
 
 msgid "VALUE_WITH_UNIT"
 msgstr "{0} {1}"
+
+#, fuzzy
+msgid "VENTS_ARE_HOME"
+msgstr "無事件記錄"
 
 msgid "VERSION_COLON"
 msgstr "版本："
@@ -6870,6 +7038,7 @@ msgstr ""
 "[indent]—   包含[b][color=#3796e1][url=thriveopedia:nucleus]細胞核[/url][/color][/b]至少 [b]5[/b] 代。[/indent]\n"
 "[indent]—   [thrive:compound type=\"atp\"][/thrive:compound] 平衡至少為 [b]+15[/b]。[/indent]"
 
+#, fuzzy
 msgid "WIKI_BINDING_AGENT_SCIENTIFIC_BACKGROUND"
 msgstr "待定"
 
@@ -6938,6 +7107,7 @@ msgstr ""
 msgid "WIKI_CHEMOPLAST_REQUIREMENTS"
 msgstr "細胞必須有[b][color=#3796e1][url=thriveopedia:nucleus]細胞核[/url][/color][/b]才能演化出[b]化能體[/b]。"
 
+#, fuzzy
 msgid "WIKI_CHEMOPLAST_SCIENTIFIC_BACKGROUND"
 msgstr "待定"
 
@@ -6960,7 +7130,7 @@ msgstr ""
 "同時，非玩家細胞更有可能轉向為其[b]化學感受器[/b]指定探測化合物與／或物種。"
 
 msgid "WIKI_CHEMORECEPTOR_INTRO"
-msgstr "代表細胞探測環境中化合物的能力的外部細胞器。 [b]化學感受器[/b]可以自訂為探測特定化合物，甚至特定物種的細胞。"
+msgstr "代表細胞探測環境中化合物能力的外部[color=#3796e1][url=thriveopedia:OrganellesRoot]細胞器[/url][/color]。 [b]化學感受器[/b]可以自訂為探測特定化合物，甚至特定物種的細胞。"
 
 msgid "WIKI_CHEMORECEPTOR_MODIFICATIONS"
 msgstr "修改[b]化學感受器[/b]以選擇要搜尋的化合物，或要探測的物種。設定搜尋半徑、線條顏色，如果搜尋化合物，則要設定探測的最小化合物密度。"
@@ -6971,6 +7141,7 @@ msgstr "無代謝過程。"
 msgid "WIKI_CHEMORECEPTOR_REQUIREMENTS"
 msgstr "無要求"
 
+#, fuzzy
 msgid "WIKI_CHEMORECEPTOR_SCIENTIFIC_BACKGROUND"
 msgstr "待定"
 
@@ -7007,6 +7178,7 @@ msgstr ""
 msgid "WIKI_CHEMOSYNTHESIZING_PROTEINS_REQUIREMENTS"
 msgstr "無要求。"
 
+#, fuzzy
 msgid "WIKI_CHEMOSYNTHESIZING_PROTEINS_SCIENTIFIC_BACKGROUND"
 msgstr "待定"
 
@@ -7049,6 +7221,7 @@ msgstr ""
 "\n"
 "[indent]—   至少連續 [b]7[/b] 代中包含 [b]5[/b] 個[b][color=#3796e1][url=thriveopedia:chromatophore]類囊體[/url][/color][/b]。[/indent]"
 
+#, fuzzy
 msgid "WIKI_CHLOROPLAST_SCIENTIFIC_BACKGROUND"
 msgstr "待定"
 
@@ -7144,7 +7317,7 @@ msgstr ""
 "\n"
 "[b][u]ATP[/u][/b]\n"
 "\n"
-"[thrive:compound type=\"atp\"][/thrive:compound] 主要透過[thrive:compound type=\"glucose\"][/thrive:compound] 轉化，是維持生物存活所需的化合物。"
+"[indent]—   [thrive:compound type=\"atp\"][/thrive:compound] 主要透過[thrive:compound type=\"glucose\"][/thrive:compound] 轉化，是維持生物存活所需的化合物。[/indent]"
 
 msgid "WIKI_COMPOUND_SYSTEM_DEVELOPMENT_COMPOUNDS_LIST"
 msgstr "有關微生物階段中化合物的完整列表，請查看微生物階段附錄頁面上的化合物表。"
@@ -7400,6 +7573,7 @@ msgstr ""
 "\n"
 "[indent]—   至少連續 [b]6[/b] 代中包含[b][color=#3796e1][url=thriveopedia:rusticyanin]鐵氧化藍蛋白[/url][/color][/b]。[/indent]"
 
+#, fuzzy
 msgid "WIKI_FERROPLAST_SCIENTIFIC_BACKGROUND"
 msgstr "[b]鐵能體[/b]尚未在現實生活中被發現，但基於內共生演化與[b][color=#3796e1][url=thriveopedia:rusticyanin]鐵氧化藍蛋白[/url][/color][/b]的能量生產能力，理論上是完全可能的（例如[b][color=#3796e1][url=thriveopedia:mitochondrion]粒線體[/url][/color][/b]）。[b][color=#3796e1][url=thriveopedia:rusticyanin]鐵氧化藍蛋白[/url][/color][/b]在細胞膜上的作用改為在細胞器膜上進行。"
 
@@ -7416,7 +7590,7 @@ msgid "WIKI_FLAGELLUM_EFFECTS"
 msgstr "每個[b]鞭毛[/b]提供與其方向相反的方向的定向推力。它們也在接近完全相反的方向上提供部分推力（準確地說，是那些與完全相反的向量的分量（內積）為正的方向）。每當[b]鞭毛[/b]處於活動狀態時，它就會消耗[thrive:compound type=\"atp\"][/thrive:compound]。"
 
 msgid "WIKI_FLAGELLUM_INTRO"
-msgstr "細胞外部的毛髮狀細絲，使用[thrive:compound type=\"atp\"][/thrive:compound] 來增加細胞在單一方向上的移動速度。推力的施加方向與[b]鞭毛[/b]的方向相反。"
+msgstr "[b]鞭毛[/b]是細胞外部的毛髮狀細絲，使用[thrive:compound type=\"atp\"][/thrive:compound] 來增加細胞在單一方向上的移動速度。推力的施加方向與鞭毛的方向相反。"
 
 msgid "WIKI_FLAGELLUM_MODIFICATIONS"
 msgstr "無修改。"
@@ -7431,6 +7605,7 @@ msgstr ""
 "[indent]—   速度低於 [b]15[/b]。[/indent]\n"
 "[indent]—   生產至少 [b]+15[/b] [thrive:compound type=\"atp\"][/thrive:compound][/indent]"
 
+#, fuzzy
 msgid "WIKI_FLAGELLUM_SCIENTIFIC_BACKGROUND"
 msgstr "待定"
 
@@ -7649,6 +7824,8 @@ msgstr "起始部件，無要求。"
 
 msgid "WIKI_HYDROGENASE_SCIENTIFIC_BACKGROUND"
 msgstr ""
+"[color=#3796e1][url=https://en.wikipedia.org/wiki/Hydrogenase]氫化酶[/url][/color]是一類催化氫分子（H<sub>2</sub>）可還原的酶。此過程參與丙酮酸發酵，這是一種生產 ATP 的厭氧呼吸過程（與細胞呼吸不同，細胞呼吸需要氧氣，因此是[i]有氧呼吸[/i]）。\n"
+"\n"
 "梭菌發酵存在於梭菌中，這是依據其代謝過程進行劃分的一類多樣且定義鬆散的原核生物群。它常用於生化、食品與生質燃料製造，以及廢水處理與土壤復育工作。雖然在不同細菌群中，梭菌發酵的表現有所不同，但其一般公式為：\n"
 "\n"
 "C6​H12​O6​→2C2​H5​OH+2CO2​+2H2​\n"
@@ -7697,7 +7874,7 @@ msgid "WIKI_HYDROGENOSOME_STRATEGY"
 msgstr ""
 "在[thrive:compound type=\"glucose\"][/thrive:compound] 充足的環境中，[b]氫化體[/b]能夠提供穩定的能量。但請注意，[thrive:compound type=\"glucose\"][/thrive:compound] 的濃度會隨著遊戲進展而降低，因此我們建議盡可能增加額外的能量來源。\n"
 "\n"
-"我們也建議在演化出[b][color=#3796e1][url=thriveopedia:nucleus]細胞核[/url][/color][/b]後，將[b]氫化酶[/b]替換為[b]氫化體[/b]，以獲得更高的效率。"
+"我們也建議在演化出[b][color=#3796e1][url=thriveopedia:nucleus]細胞核[/url][/color][/b]後，將[b][color=#3796e1][url=thriveopedia:hydrogenase]氫化酶[/url][/color][/b]替換為[b]氫化體[/b]，以獲得更高的效率。"
 
 msgid "WIKI_HYDROGENOSOME_UPGRADES"
 msgstr "無升級。"
@@ -7769,6 +7946,7 @@ msgstr ""
 "[indent]—   到目前為止，在整個遊戲中至少吞噬了 [b]20[/b] 個細胞。[/indent]\n"
 "[indent]—   到目前為止，在整個遊戲中至少消化了 [b]10[/b] 個細胞。[/indent]"
 
+#, fuzzy
 msgid "WIKI_LYSOSOME_SCIENTIFIC_BACKGROUND"
 msgstr "待定"
 
@@ -7828,7 +8006,7 @@ msgid "WIKI_MELANOSOME_EFFECTS"
 msgstr "無效果。"
 
 msgid "WIKI_MELANOSOME_INTRO"
-msgstr "[b]黑色素體[/b]進行[b]放射合成[/b]，透過黑色素吸收輻射能量。"
+msgstr "[b]黑色素體[/b]是進行[b]放射合成[/b]的[color=#3796e1][url=thriveopedia:OrganellesRoot]細胞器[/url][/color]，透過黑色素吸收輻射能量。"
 
 msgid "WIKI_MELANOSOME_MODIFICATIONS"
 msgstr "無修改。"
@@ -7840,8 +8018,9 @@ msgstr ""
 "利用放射性物質生產能量的方法。"
 
 msgid "WIKI_MELANOSOME_REQUIREMENTS"
-msgstr "需要靠近放射性物質塊並受到輻射傷害"
+msgstr "需要靠近放射性物質塊並受到輻射傷害。"
 
+#, fuzzy
 msgid "WIKI_MELANOSOME_SCIENTIFIC_BACKGROUND"
 msgstr "待定"
 
@@ -8139,6 +8318,7 @@ msgstr ""
 "\n"
 "[indent]—   位於少於 [b]13[/b] [thrive:compound type=\"ammonia\"][/thrive:compound] 的區域中。[/indent]"
 
+#, fuzzy
 msgid "WIKI_NITROGENASE_SCIENTIFIC_BACKGROUND"
 msgstr "待定"
 
@@ -8194,19 +8374,19 @@ msgstr "無，這是最後一個階段"
 
 msgid "WIKI_NUCLEUS_EFFECTS"
 msgstr ""
-"一旦細胞演化出[b]細胞核[/b]，它就獲得了演化許多先前鎖定的其他細胞器的能力。\n"
+"一旦細胞演化出[b]細胞核[/b]，它就獲得了演化許多先前鎖定的其他[b]細胞器[/b]的能力。\n"
 "\n"
-"具有[b]細胞核[/b]的細胞受到的任何來源的傷害都會減少 [b]50%[/b]，除了因耗盡[thrive:compound type=\"atp\"][/thrive:compound] 而導致的飢餓。\n"
+"具有[b]細胞核[/b]的細胞受到的任何來源的傷害都會減少 [b]50%[/b]，除了[i]飢餓[/i]（因耗盡[thrive:compound type=\"atp\"][/thrive:compound] 造成的傷害）。\n"
 "\n"
 "一個細胞最多只能有一個[b]細胞核[/b]，且演化後無法移除。"
 
 msgid "WIKI_NUCLEUS_INTRO"
 msgstr ""
-"最大的細胞器與真核細胞的定義特徵。讓細胞能演化出具有更強大作用的高級有膜細胞器，例如[b][color=#3796e1][url=thriveopedia:mitochondrion]粒線體[/url][/color][/b]與[b][color=#3796e1][url=thriveopedia:lysosome]溶酶體[/url][/color][/b]。\n"
+"最大的[b]細胞器[/b]與[i]真核[/i]細胞的定義特徵。讓細胞能演化出具有更強大作用的高級有膜[b]細胞器[/b]，例如[b][color=#3796e1][url=thriveopedia:mitochondrion]粒線體[/url][/color][/b]與[b][color=#3796e1][url=thriveopedia:lysosome]溶酶體[/url][/color][/b]。\n"
 "\n"
 "由於其巨大的尺寸與滲透調節成本，需要大量的[thrive:compound type=\"atp\"][/thrive:compound] 來維護。一旦細胞獲得細胞核，它就不能在後代中被移除。\n"
 "\n"
-"也可以將除飢餓以外的任何來源造成的傷害減少 [b]50%[/b]。"
+"也可以將除[i]飢餓[/i]以外的任何來源造成的傷害減少 [b]50%[/b]。"
 
 msgid "WIKI_NUCLEUS_MODIFICATIONS"
 msgstr "無修改。"
@@ -8217,6 +8397,7 @@ msgstr "無代謝過程。"
 msgid "WIKI_NUCLEUS_REQUIREMENTS"
 msgstr "無要求，除了需要大量的額外空間來容納它。"
 
+#, fuzzy
 msgid "WIKI_NUCLEUS_SCIENTIFIC_BACKGROUND"
 msgstr "待定"
 
@@ -8224,9 +8405,9 @@ msgid "WIKI_NUCLEUS_STRATEGY"
 msgstr ""
 "在將[b]細胞核[/b]添加到細胞之前請仔細考慮。它們的維護成本很高，並且會大幅降低您的細胞速度，因此請確保您擁有充足的[thrive:compound type=\"atp\"][/thrive:compound] 正平衡，並且能夠負擔一兩世代更平靜的生活方式。我們建議加入[b][color=#3796e1][url=thriveopedia:cilia]纖毛[/url][/color][/b]與[b][color=#3796e1][url=thriveopedia:flagellum]鞭毛[/url][/color][/b]以在後代中恢復一些機動性。\n"
 "\n"
-"但好處是顯而易見的。真核生物（具有[b]細胞核[/b]的細胞）比原核生物（沒有細胞核的細胞）可以獲得更多功能的升級。\n"
+"但好處是顯而易見的。[i]真核生物[/i]（具有[b]細胞核[/b]的細胞）比原核生物（沒有細胞核的細胞）可以獲得更多功能的升級。\n"
 "\n"
-"[b]細胞核[/b]解鎖的細胞器提供強大的新能力，例如[b][color=#3796e1][url=thriveopedia:signalingAgent]信號劑[/url][/color][/b]與[b][color=#3796e1][url=thriveopedia:bindingAgent]連接器[/url][/color][/b]，或對現有功能的重大升級，例如[b][color=#3796e1][url=thriveopedia:mitochondrion]粒線體[/url][/color][/b]與[b][color=#3796e1][url=thriveopedia:thermoplast]熱能體[/url][/color][/b]。我們建議在添加[b]細胞核[/b]後用更有效率的真核細胞器替換原核細胞器，以提高[thrive:compound type=\"atp\"][/thrive:compound] 產量並更好地維持細胞。"
+"[b]細胞核[/b]解鎖的[b]細胞器[/b]提供強大的新能力，例如[b][color=#3796e1][url=thriveopedia:signalingAgent]信號劑[/url][/color][/b]與[b][color=#3796e1][url=thriveopedia:bindingAgent]連接器[/url][/color][/b]，或對現有功能的重大升級，例如[b][color=#3796e1][url=thriveopedia:mitochondrion]粒線體[/url][/color][/b]與[b][color=#3796e1][url=thriveopedia:thermoplast]熱能體[/url][/color][/b]。我們建議在添加[b]細胞核[/b]後用更有效率的[i]真核[/i]細胞器替換[i]原核[/i][b]細胞器[/b]，以提高[thrive:compound type=\"atp\"][/thrive:compound] 產量並更好地維持細胞。"
 
 msgid "WIKI_NUCLEUS_UPGRADES"
 msgstr "無升級。"
@@ -8465,6 +8646,7 @@ msgstr ""
 "[indent]—   在所有世代中至少吞噬了 [b]5[/b] 個細胞。[/indent]\n"
 "[indent]—   在所有世代中至少死亡了 [b]5[/b] 次。[/indent]"
 
+#, fuzzy
 msgid "WIKI_PERFORATOR_PILUS_SCIENTIFIC_BACKGROUND"
 msgstr ""
 "菌毛存在於許多微生物的表面，類似於細毛。一個微生物表面可能存在數十至數百個菌毛，並用於多種目的之一，包括在捕食中的作用。病原微生物利用菌毛提高毒性，或者附著並結合宿主組織，或者穿透外膜侵入細胞質。有許多相似的菌毛存在，但在演化上並不相關，而是趨同演化的結果。單一生物體可能具有表達多種類型菌毛的能力，並且表面上存在的菌毛通常會不斷被改變與替換。\n"
@@ -8570,7 +8752,7 @@ msgstr "無要求。"
 
 msgid "WIKI_RUSTICYANIN_SCIENTIFIC_BACKGROUND"
 msgstr ""
-"[b]鐵氧化藍蛋白[/b]存在於一些細菌與古菌的細胞膜中。它會氧化與細胞膜接觸的[b]鐵[/b]，並從其中轉移電子。細胞膜表面產生的電荷隨後被用以將帶正電的[b]氫[/b]離子泵入細胞。這些額外的電子與離子有助於將已使用的 [b]ADP[/b] 分子轉化為新的 [b]ATP[/b] 分子，並重置參與代謝的各種蛋白質，使該代謝能夠重新開始。\n"
+"[b]鐵氧化藍蛋白[/b]是在某些細菌與古菌的細胞膜中可發現的蛋白質。它會氧化與細胞膜接觸的[b]鐵[/b]，作為電子傳遞鏈的一部分從中轉移電子。細胞膜表面產生的電荷隨後被用以將帶正電的[b]氫[/b]離子泵入細胞。這些額外的電子與離子有助於將已使用的 [b]ADP[/b] 分子轉化為新的 [b]ATP[/b] 分子，並重置參與代謝的各種蛋白質，使該代謝能夠重新開始。\n"
 "\n"
 "[color=#3796e1][url=https://en.wikipedia.org/wiki/Rusticyanin]https://en.wikipedia.org/wiki/Rusticyanin[/url][/color]"
 
@@ -8607,6 +8789,7 @@ msgstr "無代謝過程。"
 msgid "WIKI_SIGNALING_AGENT_REQUIREMENTS"
 msgstr "細胞必須有[b][color=#3796e1][url=thriveopedia:nucleus]細胞核[/url][/color][/b]才能演化出[b]信號劑[/b]。"
 
+#, fuzzy
 msgid "WIKI_SIGNALING_AGENT_SCIENTIFIC_BACKGROUND"
 msgstr "待定"
 
@@ -8643,6 +8826,7 @@ msgstr ""
 msgid "WIKI_SLIME_JET_REQUIREMENTS"
 msgstr "無要求。"
 
+#, fuzzy
 msgid "WIKI_SLIME_JET_SCIENTIFIC_BACKGROUND"
 msgstr "待定"
 
@@ -8763,16 +8947,17 @@ msgstr ""
 
 msgid "WIKI_THERMOPLAST_SCIENTIFIC_BACKGROUND"
 msgstr ""
-"熱合成最初是由 Anthonie Muller 於 1983 年的一篇論文中提出的（\"Thermoelectric Energy Conversion Could Be An Energy Source Of Living Organisms\", in Physics Letters A, vol. 96, Issue 6, pp. 319-321）。它能提供的能量僅為呼吸作用總能量的一小部分（A Search For Thermosynthesis: Starvation Survival In Thermally Cycled Bacteria）。\n"
+"熱合成最早是由 Anthonie Muller 於 1983 年的一篇論文中提出的（\"Thermoelectric energy conversion could be an energy source of living organisms\", Physics Letters A, Volume 96, Issue 6, p. 319-321）。它能提供的能量僅為呼吸作用總能量的一小部分（A Search For Thermosynthesis: Starvation Survival In Thermally Cycled Bacteria）。\n"
 "\n"
 "Muller 還提出，熱合成可能是最早的（基於硫的）光合作用的先驅（Photosystem 0, A Proposed Ancestral Photosystem Without Reducing Power That Synthesized ATP During Light-Dark cycling）。\n"
 "\n"
 "[color=#3796e1][url=https://en.wikipedia.org/wiki/Thermosynthesis]Wikipedia 中的熱合成[/url][/color]"
 
-#, fuzzy
 msgid "WIKI_THERMOPLAST_STRATEGY"
 msgstr ""
-"由於[b]熱合成[/b]除了環境[thrive:compound type=\"temperature\"][/thrive:compound] 以外不需要任何輸入，因此它本質上是免費能量。此外，[b]熱能體[/b]比其前身[b][color=#3796e1][url=thriveopedia:thermosynthase]熱合成酶[/url][/color][/b]更高效，這使得它們可以說是遊戲中最簡單的能量產生方法，前提是您願意留在海底熱泉等炎熱地區。\n"
+"[b]熱合成[/b]可能是最具移動性的自營形式，它需要持續不斷的運動。您需要從較冷的區域移動到較熱的區域，然後再返回。當細胞溫度停止升高後，[thrive:compound type=\"atp\"][/thrive:compound] 的產量將降至零。最好啟動[i]熱視覺[/i]來觀察細胞周圍的冷熱區域，以便更有效地在這些區域之間穿梭。熱能體在溫度較高的區域效率更高，因此最適合在海底熱泉使用。\n"
+"\n"
+"由於[b]熱能體[/b]的[thrive:compound type=\"atp\"][/thrive:compound] 生產會經常停止，因此擁有第二能量來源非常重要，否則您將因缺乏[thrive:compound type=\"atp\"][/thrive:compound] 而受到持續傷害。\n"
 "\n"
 "啟用細胞器解鎖後，需要在細胞中使用[b][color=#3796e1][url=thriveopedia:thermosynthase]熱合成酶[/url][/color][/b]進行多次繁殖，意味著玩家演化[b]熱能體[/b]時，他們可能已經非常專注於[b]熱合成[/b]以獲得[b]熱能體[/b]。"
 
@@ -8782,22 +8967,22 @@ msgstr "無升級。"
 msgid "WIKI_THERMOSYNTHASE_EFFECTS"
 msgstr "啟用[i]熱視覺[/i]，可切換開關。這會將水的相對溫度疊加顯示到螢幕上，溫度較高的區域會顯示得更紅。"
 
-#, fuzzy
 msgid "WIKI_THERMOSYNTHASE_INTRO"
 msgstr ""
-"利用環境中的[thrive:compound type=\"temperature\"][/thrive:compound] 梯度以[thrive:compound type=\"atp\"][/thrive:compound] 的形式提取能量。效率低於真核版本的[b][color=#3796e1][url=thriveopedia:thermoplast]熱能體[/url][/color][/b]。\n"
+"利用環境中的[thrive:compound type=\"temperature\"][/thrive:compound] 梯度以[thrive:compound type=\"atp\"][/thrive:compound] 的形式產生能量。效率低於真核版本的[b][color=#3796e1][url=thriveopedia:thermoplast]熱能體[/url][/color][/b]。\n"
 "\n"
-"現實中未發現的推測細胞器。在開啟僅限已知生命形式選項的遊戲中不可用。"
+"現實中未發現的假說細胞器。在開啟[i]僅限已知生命形式[/i]選項的遊戲中不可用。\n"
+"\n"
+"它是一組含有熱敏酶的膜狀隔間結構。這些酶能夠利用周圍環境中[thrive:compound type=\"temperature\"][/thrive:compound] 上升的能量生產[thrive:compound type=\"atp\"][/thrive:compound]，此過程被稱為[i]熱合成[/i]。"
 
 msgid "WIKI_THERMOSYNTHASE_MODIFICATIONS"
 msgstr "無修改。"
 
-#, fuzzy
 msgid "WIKI_THERMOSYNTHASE_PROCESSES"
 msgstr ""
-"[b]細菌熱合成[/b]：[thrive:compound type=\"temperature\"][/thrive:compound] → [thrive:compound type=\"atp\"][/thrive:compound]\n"
+"[b]細菌熱合成[/b]：[thrive:compound type=\"temperature\"][/thrive:compound] [i]增加[/i] → [thrive:compound type=\"atp\"][/thrive:compound]\n"
 "\n"
-"利用周圍環境[thrive:compound type=\"temperature\"][/thrive:compound] 被動生成能量。效率低於[b][color=#3796e1][url=thriveopedia:thermoplast]熱能體[/url][/color][/b]中的[b]熱合成[/b]。"
+"透過上升的[thrive:compound type=\"temperature\"][/thrive:compound] 來產生能量。隨著[thrive:compound type=\"temperature\"][/thrive:compound] 提升，熱敏酶會改變形狀，從而將 [i]ADP[/i] 循環轉化為[thrive:compound type=\"atp\"][/thrive:compound]。隨著細胞冷卻，酶會恢復到先前的形狀，使該過程能重複進行。效率低於[b][color=#3796e1][url=thriveopedia:thermoplast]熱能體[/url][/color][/b]中的[i]熱合成[/i]。其[thrive:compound type=\"atp\"][/thrive:compound] 的生產速率與[thrive:compound type=\"temperature\"][/thrive:compound] 的[i]增量[/i]成正比。"
 
 msgid "WIKI_THERMOSYNTHASE_REQUIREMENTS"
 msgstr ""
@@ -8805,14 +8990,17 @@ msgstr ""
 "\n"
 "[indent]—   位於至少 [b]50 °C[/b] [thrive:compound type=\"temperature\"][/thrive:compound] 的區域。[/indent]"
 
-#, fuzzy
 msgid "WIKI_THERMOSYNTHASE_SCIENTIFIC_BACKGROUND"
-msgstr "待定"
+msgstr ""
+"[b]熱合成酶[/b]是一種虛構的酶，但[color=#3796e1][url=https://en.wikipedia.org/wiki/Thermosynthesis]熱合成[/url][/color]代謝的理論通常被認為在生物學上是合理的。\n"
+"\n"
+"熱合成最早是由 Anthonie Muller 於 1983 年的一篇論文中提出的（\"Thermoelectric energy conversion could be an energy source of living organisms\", Physics Letters A, Volume 96, Issue 6, p. 319-321）。Muller 還提出，熱合成可能是最早的（基於硫的）光合作用的先驅（參見：A search for thermosynthesis: starvation survival in thermally cycled bacteria）。"
 
-#, fuzzy
 msgid "WIKI_THERMOSYNTHASE_STRATEGY"
 msgstr ""
-"在目前遊戲中，[b]熱合成酶[/b]本質上是免費能量。它沒有真正的缺點，只要您滿足於留在炎熱區域中即可。 [b]細菌熱合成[/b]在大約 [b]+23 °C[/b] [thrive:compound type=\"temperature\"][/thrive:compound] 的區域中保持平衡，並且在海底熱泉中更強大，其溫度為 [b]+98 °C[/b] [thrive:compound type=\"temperature\"][/thrive:compound]。\n"
+"[i]熱合成[/i]可能是最具移動性的自營形式，它需要持續不斷的運動。您需要從較冷的區域移動到較熱的區域，然後再返回。當細胞溫度停止升高後，[thrive:compound type=\"atp\"][/thrive:compound] 的產量將降至零。最好啟動[i]熱視覺[/i]來觀察細胞周圍的冷熱區域，以便更有效地在這些區域之間穿梭。熱合成酶在溫度較高的區域效率更高，因此最適合在海底熱泉使用。\n"
+"\n"
+"由於[b]熱合成酶[/b]的[thrive:compound type=\"atp\"][/thrive:compound] 生產會經常停止，因此擁有第二能量來源非常重要，否則您將因缺乏[thrive:compound type=\"atp\"][/thrive:compound] 而受到持續傷害。\n"
 "\n"
 "更高效的是[b][color=#3796e1][url=thriveopedia:thermoplast]熱能體[/url][/color][/b]，一旦細胞演化出[b][color=#3796e1][url=thriveopedia:nucleus]細胞核[/url][/color][/b]就可用。與所有原核細胞器與真核細胞器一樣，我們建議在盡可能的情況下將[b]熱合成酶[/b]替換為[b][color=#3796e1][url=thriveopedia:thermoplast]熱能體[/url][/color][/b]。"
 
@@ -8844,7 +9032,7 @@ msgstr "無特殊效果。"
 
 msgid "WIKI_THYLAKOIDS_INTRO"
 msgstr ""
-"小叢蛋白質與光敏綠色色素。色素利用來自[thrive:compound type=\"sunlight\"][/thrive:compound] 的能量將水與氣態[thrive:compound type=\"carbondioxide\"][/thrive:compound] 轉化為[thrive:compound type=\"glucose\"][/thrive:compound]，此過程被稱為[b]色素細胞光合作用[/b]。由於[thrive:compound type=\"glucose\"][/thrive:compound] 的生產速率與[thrive:compound type=\"sunlight\"][/thrive:compound] 的強度成正比，[b]類囊體[/b]僅對靠近表層的區域有效。\n"
+"[b]類囊體[/b]是含有蛋白質與綠色色素的[color=#3796e1][url=thriveopedia:OrganellesRoot]細胞器[/url][/color]，利用來自[thrive:compound type=\"sunlight\"][/thrive:compound] 的能量將水與氣態[thrive:compound type=\"carbondioxide\"][/thrive:compound] 轉化為[thrive:compound type=\"glucose\"][/thrive:compound]，此過程被稱為[b]色素細胞光合作用[/b]。由於[thrive:compound type=\"glucose\"][/thrive:compound] 的生產速率與[thrive:compound type=\"sunlight\"][/thrive:compound] 的強度成正比，[b]類囊體[/b]僅對靠近表層的區域有效。\n"
 "\n"
 "[b][color=#3796e1][url=thriveopedia:chloroplast]葉綠體[/url][/color][/b]的原核形式，一種執行完全版[b]光合作用[/b]的細胞器。"
 
@@ -8867,6 +9055,7 @@ msgstr ""
 "\n"
 "[indent]—   位於至少 [b]20%[/b] [thrive:compound type=\"sunlight\"][/thrive:compound] 的區域中。[/indent]"
 
+#, fuzzy
 msgid "WIKI_THYLAKOIDS_SCIENTIFIC_BACKGROUND"
 msgstr "待定"
 
@@ -9003,6 +9192,21 @@ msgstr ""
 "包含後期階段原型：{0}\n"
 "包含彩蛋：{1}"
 
+msgid "WORLD_OCEANIC_COVERAGE"
+msgstr "海洋覆蓋率"
+
+msgid "WORLD_OCEANIC_COVERAGE_EXPLANATION"
+msgstr "（影響生成的大陸與海洋區域的數量）"
+
+msgid "WORLD_OCEANIC_COVERAGE_LARGE"
+msgstr "高"
+
+msgid "WORLD_OCEANIC_COVERAGE_MEDIUM"
+msgstr "中"
+
+msgid "WORLD_OCEANIC_COVERAGE_SMALL"
+msgstr "低"
+
 msgid "WORLD_RELATIVE_MOVEMENT"
 msgstr "相對於世界"
 
@@ -9023,6 +9227,21 @@ msgstr "小"
 
 msgid "WORLD_SIZE_TOOLTIP"
 msgstr "較大的世界可能會降低模擬速度，因此不建議在性能較差的電腦上使用。"
+
+msgid "WORLD_TEMPERATURE"
+msgstr "世界溫度"
+
+msgid "WORLD_TEMPERATURE_COLD"
+msgstr "寒冷"
+
+msgid "WORLD_TEMPERATURE_EXPLANATION"
+msgstr "（影響冰凍海洋區域的生成數量）"
+
+msgid "WORLD_TEMPERATURE_TEMPERATE"
+msgstr "適中"
+
+msgid "WORLD_TEMPERATURE_WARM"
+msgstr "溫暖"
 
 msgid "WORST_PATCH_COLON"
 msgstr "最差區域："
@@ -9056,15 +9275,47 @@ msgstr ""
 msgid "YOU_CAN_SUPPORT_THRIVE_ON_PATREON"
 msgstr "您可以在 Patreon 上支持 Thrive 的未來發展。"
 
+#, fuzzy
+msgid "YUM_EXCLAMATION"
+msgstr ""
+"專注型微生物會在更遠的距離追擊獵物或物質塊\n"
+"並且對物質塊更有渴求。\n"
+"應變型微生物將更快地轉向新目標。"
+
 msgid "ZOOM_IN"
 msgstr "放大"
 
 msgid "ZOOM_OUT"
 msgstr "縮小"
 
+#~ msgid "CELL_TYPE_BUTTON_ATP_CONSUMPTION"
+#~ msgstr "此細胞類型的 ATP 消耗量為 {0}。"
+
+#~ msgid "CELL_TYPE_BUTTON_ATP_PRODUCTION"
+#~ msgstr "此細胞類型的 ATP 生產量為 {0}。"
+
 #, fuzzy
-#~ msgid "TEMPERATURE_SESSILITY_PRESSURE_DESCRIPTION"
-#~ msgstr "利用溫度梯度生產[thrive:compound type=\"atp\"][/thrive:compound]。速率與[thrive:compound type=\"temperature\"][/thrive:compound] 的上升梯度成正比。使用[b]熱視覺[/b]來找出熱區域與冷區域。"
+#~ msgid "WORLD_SEA_LEVEL"
+#~ msgstr "低於海平面 {0}-{1} 米"
+
+#, fuzzy
+#~ msgid "WORLD_SEA_LEVEL_DEEP"
+#~ msgstr "低於海平面 {0}-{1} 米"
+
+#, fuzzy
+#~ msgid "WORLD_SEA_LEVEL_EXPLANATION"
+#~ msgstr "（改變世界中的區域數量）"
+
+#, fuzzy
+#~ msgid "WORLD_SEA_LEVEL_MODERATE"
+#~ msgstr "相對於世界"
+
+#, fuzzy
+#~ msgid "WORLD_SEA_LEVEL_SHALLOW"
+#~ msgstr "小"
+
+#~ msgid "PLANET_GENERATION_TEASER"
+#~ msgstr "敬請期待行星生成功能！"
 
 #~ msgid "PASSIVE_REPRODUCTION_PROGRESS_EXPLANATION"
 #~ msgstr "（被動地從環境中獲得繁殖所需的化合物）"
@@ -9283,10 +9534,6 @@ msgstr "縮小"
 #~ msgstr "意識階段"
 
 #, fuzzy
-#~ msgid "WIKI_CHEMOSYNTHESIS"
-#~ msgstr "化能合成"
-
-#, fuzzy
 #~ msgid "WIKI_GLYCOLYSIS"
 #~ msgstr "糖解"
 
@@ -9301,10 +9548,6 @@ msgstr "縮小"
 #, fuzzy
 #~ msgid "WIKI_LIPASE"
 #~ msgstr "脂肪酶"
-
-#, fuzzy
-#~ msgid "WIKI_MICROBE_EDITOR"
-#~ msgstr "微生物編輯器"
 
 #, fuzzy
 #~ msgid "WIKI_MUCILAGE_SYNTHESIS"

@@ -20,7 +20,7 @@ static func empty() -> GdUnitResult:
 	return result
 
 
-static func success(p_value :Variant) -> GdUnitResult:
+static func success(p_value: Variant = "") -> GdUnitResult:
 	assert(p_value != null, "The value must not be NULL")
 	var result := GdUnitResult.new()
 	result._value = p_value
@@ -28,7 +28,7 @@ static func success(p_value :Variant) -> GdUnitResult:
 	return result
 
 
-static func warn(p_warn_message :String, p_value :Variant = null) -> GdUnitResult:
+static func warn(p_warn_message: String, p_value: Variant = null) -> GdUnitResult:
 	assert(not p_warn_message.is_empty()) #,"The message must not be empty")
 	var result := GdUnitResult.new()
 	result._value = p_value
@@ -37,7 +37,7 @@ static func warn(p_warn_message :String, p_value :Variant = null) -> GdUnitResul
 	return result
 
 
-static func error(p_error_message :String) -> GdUnitResult:
+static func error(p_error_message: String) -> GdUnitResult:
 	assert(not p_error_message.is_empty(), "The message must not be empty")
 	var result := GdUnitResult.new()
 	result._value = null
@@ -70,7 +70,7 @@ func value_as_string() -> String:
 	return _value
 
 
-func or_else(p_value :Variant) -> Variant:
+func or_else(p_value: Variant) -> Variant:
 	if not is_success():
 		return p_value
 	return value()
@@ -88,7 +88,7 @@ func _to_string() -> String:
 	return str(GdUnitResult.serialize(self))
 
 
-static func serialize(result :GdUnitResult) -> Dictionary:
+static func serialize(result: GdUnitResult) -> Dictionary:
 	if result == null:
 		push_error("Can't serialize a Null object from type GdUnitResult")
 	return {
@@ -99,7 +99,7 @@ static func serialize(result :GdUnitResult) -> Dictionary:
 	}
 
 
-static func deserialize(config :Dictionary) -> GdUnitResult:
+static func deserialize(config: Dictionary) -> GdUnitResult:
 	var result := GdUnitResult.new()
 	var cfg_value: String = config.get("value", "")
 	result._value = str_to_var(cfg_value)

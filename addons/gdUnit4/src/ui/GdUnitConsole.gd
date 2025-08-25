@@ -71,7 +71,11 @@ func setup_update_notification(control: Button) -> void:
 
 
 func _on_gdunit_event(event: GdUnitEvent) -> void:
-	_test_reporter.on_gdunit_event(event)
+	match event.type():
+		GdUnitEvent.SESSION_START:
+			_test_reporter.test_session = GdUnitTestSession.new(GdUnitTestDiscoverGuard.instance().get_discovered_tests(), "")
+		GdUnitEvent.SESSION_CLOSE:
+			_test_reporter.test_session = null
 
 
 func _on_gdunit_client_connected(client_id: int) -> void:

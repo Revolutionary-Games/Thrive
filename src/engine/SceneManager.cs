@@ -245,6 +245,11 @@ public partial class SceneManager : Node
         alreadyQuit = true;
     }
 
+    public bool QuittingRequested()
+    {
+        return alreadyQuit;
+    }
+
     /// <summary>
     ///   Ensures the shutdown node is last in tree order, this is needed for it to actually execute last
     /// </summary>

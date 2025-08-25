@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2025-07-21 15:54+0300\n"
+"POT-Creation-Date: 2025-08-25 19:09+0300\n"
 "PO-Revision-Date: 2025-05-25 15:00+0000\n"
 "Last-Translator: Anonymous <noreply@weblate.org>\n"
 "Language-Team: Estonian <https://translate.revolutionarygamesstudio.com/projects/thrive/thrive-game/et/>\n"
@@ -58,6 +58,19 @@ msgid "ABYSSOPELAGIC"
 msgstr "Abyss"
 
 msgid "ACCEPT"
+msgstr ""
+
+#, fuzzy
+msgid "ACHIEVEMENTS"
+msgstr "Aluse liikumine"
+
+msgid "ACHIEVEMENTS_TOTAL"
+msgstr ""
+
+msgid "ACHIEVEMENT_ACHIEVED"
+msgstr ""
+
+msgid "ACHIEVEMENT_LOCKED"
 msgstr ""
 
 msgid "ACTION_AWAKEN"
@@ -385,6 +398,10 @@ msgid "AUTO_EVO"
 msgstr "auto-evo"
 
 #, fuzzy
+msgid "AUTO_EVO_EXPLORER_TOOL_BUTTON"
+msgstr "käitamise olek:"
+
+#, fuzzy
 msgid "AUTO_EVO_EXPLORING_TOOL"
 msgstr "käitamise olek:"
 
@@ -450,6 +467,9 @@ msgstr "Kaldkriips"
 
 msgid "BACKSPACE"
 msgstr "Tagasilükkeklahv"
+
+msgid "BACK_TO_SETTINGS"
+msgstr ""
 
 #, fuzzy
 msgid "BACTERIAL_THERMOSYNTHESIS"
@@ -535,6 +555,12 @@ msgstr ""
 
 msgid "BEST_PATCH_COLON"
 msgstr "Parim plaaster:"
+
+msgid "BETTER_TOGETHER"
+msgstr ""
+
+msgid "BEYOND_THE_CELL"
+msgstr ""
 
 msgid "BIG_IRON_CHUNK"
 msgstr "Suur raua tükk"
@@ -653,6 +679,9 @@ msgstr "Kasutatud lahtritüüpi ei saa kustutada"
 msgid "CANNOT_ENGULF"
 msgstr "Ei saa neelata"
 
+msgid "CANNOT_IMPROVE_PERFECTION"
+msgstr ""
+
 msgid "CANNOT_MOVE_METABALL_TO_DESCENDANT_TREE"
 msgstr ""
 
@@ -728,14 +757,6 @@ msgstr "Peata mäng"
 msgid "CELL_STAT_STORAGE_TOOLTIP"
 msgstr "Peata mäng"
 
-#, fuzzy
-msgid "CELL_TYPE_BUTTON_ATP_CONSUMPTION"
-msgstr "{0}: -{1} ATP"
-
-#, fuzzy
-msgid "CELL_TYPE_BUTTON_ATP_PRODUCTION"
-msgstr "ATP tootmine"
-
 msgid "CELL_TYPE_NAME"
 msgstr "Lahtri tüübi nimi"
 
@@ -751,6 +772,10 @@ msgstr "Toksiinivakuool on vakuool, mida on modifitseeritud oksütoksütoksiinid
 
 msgid "CHEATS"
 msgstr "Sohitegija"
+
+#, fuzzy
+msgid "CHEATS_USED_NOTICE"
+msgstr "Katkestatud."
 
 msgid "CHEAT_KEYS_ENABLED"
 msgstr "Petuklahvid on lubatud"
@@ -869,6 +894,24 @@ msgstr ""
 #, fuzzy
 msgid "CLICK_TO_SELECT"
 msgstr "Kustuta valitud"
+
+msgid "CLIMATE_INSTABILITY"
+msgstr ""
+
+#, fuzzy
+msgid "CLIMATE_INSTABILITY_EXPLANATION"
+msgstr ""
+"Aktiivsed mikroobid jooksevad ja kukuvad, kui midagi huvitavat ei juhtu.\n"
+"Sessiilsed mikroobid on paigal ja ootavad enne tegutsemist, kuni keskkond muutub."
+
+msgid "CLIMATE_STABILITY_AVERAGE"
+msgstr ""
+
+msgid "CLIMATE_STABILITY_STABLE"
+msgstr ""
+
+msgid "CLIMATE_STABILITY_UNSTABLE"
+msgstr ""
 
 msgid "CLOSE"
 msgstr "Sulge"
@@ -1130,6 +1173,14 @@ msgid "CONFIRM_NEW_GAME_BUTTON_TOOLTIP_DISABLED"
 msgstr "Pausi menüü"
 
 #, fuzzy
+msgid "CONFIRM_RESET_ACHIEVEMENTS"
+msgstr "Kinnitage väljumine"
+
+#, fuzzy
+msgid "CONFIRM_RESET_ACHIEVEMENTS_DESCRIPTION"
+msgstr "Muudab [thrive:compound type=\"atp\"][/thrive:compound] tüübiks [thrive:compound type=\"ammoniaak\"][/thrive:compound]. Hindamisskaalad kontsentratsiooniga [thrive:compound type=\"nitrogen\"][/thrive:compound]."
+
+#, fuzzy
 msgid "CONSTRUCTION_UNIT_NAME"
 msgstr "Tritanope (sinine-kollane)"
 
@@ -1335,6 +1386,10 @@ msgstr "Protanope (punane-roheline)"
 
 msgid "CORRECTION_TRITANOPE"
 msgstr "Tritanope (sinine-kollane)"
+
+#, fuzzy
+msgid "CPU_POWER_NOT_ENOUGH_FOR_SPEED_MODE"
+msgstr "{0} tarbimine"
 
 #, fuzzy
 msgid "CPU_THREADS"
@@ -1945,6 +2000,17 @@ msgstr ""
 "Jätkamiseks valige vasakpoolsest paneelist osa. Seejärel klõpsake selle asetamiseks vasakklahvi kuusiku kõrval. Osasid saate pöörata A ja D abil (vaikeklahvid)."
 
 #, fuzzy
+msgid "EDIT_MICROBE_FIRST_TIME"
+msgstr ""
+"Kaugel võõral planeedil on vulkaanitegevuse ja meteoriidide kokkupõrked viinud universumis uue nähtuse väljakujunemiseni.\n"
+"\n"
+"Elu.\n"
+"\n"
+"Lihtsad mikroobid elavad ookeani sügavates piirkondades. Olete viimane universaalne ühine esivanem (LUCA) sellel planeedil.\n"
+"\n"
+"Selles vaenulikus maailmas ellujäämiseks peate koguma kokku kõik ühendid, mida leiate ja põlvkondade kaupa edasi arenema, et võistelda teiste mikroobiliikidega."
+
+#, fuzzy
 msgid "EFFECTIVE_VALUE"
 msgstr "{0}%"
 
@@ -2069,6 +2135,9 @@ msgstr "Energiaallikad:"
 
 msgid "ENERGY_SUMMARY_LINE"
 msgstr "Kogutud energia on {0} individuaalse kuluga {1}, mille tulemuseks on korrigeerimata elanikkond {2}"
+
+msgid "ENGULF_CELL_OR_CHUNK"
+msgstr ""
 
 msgid "ENGULF_NO_ATP_DAMAGE_MESSAGE"
 msgstr ""
@@ -2449,6 +2518,10 @@ msgstr "Eemaldage kohalikud andmed"
 msgid "FORGET_MOD_DETAILS_TOOLTIP"
 msgstr "Eemaldage selle üksuse kohalikud andmed. Kasulik, kui sisestasite vale ID või soovite mõnele muule üksusele uue versiooni üles laadida."
 
+#, fuzzy
+msgid "FORM_CELL_COLONY"
+msgstr "Varud"
+
 msgid "FORM_ERROR_MESSAGE"
 msgstr "Viga: {0}"
 
@@ -2585,11 +2658,36 @@ msgid "GENERAL_LOADING_TIP_7"
 msgstr "Vea parandamiseks vajutage redaktoris tagasivõtmisnuppu"
 
 #, fuzzy
+msgid "GENERATE_BUTTON"
+msgstr "Põlvkond:"
+
+msgid "GENERATE_POSITIVE_GLUCOSE_PHOTOSYNTHESIS"
+msgstr ""
+
+#, fuzzy
 msgid "GENERATIONS"
 msgstr "Põlvkond:"
 
 msgid "GENERATION_COLON"
 msgstr "Põlvkond:"
+
+msgid "GEOLOGICAL_ACTIVITY"
+msgstr ""
+
+msgid "GEOLOGICAL_ACTIVITY_ACTIVE"
+msgstr ""
+
+msgid "GEOLOGICAL_ACTIVITY_AVERAGE"
+msgstr ""
+
+msgid "GEOLOGICAL_ACTIVITY_DORMANT"
+msgstr ""
+
+#, fuzzy
+msgid "GEOLOGICAL_ACTIVITY_EXPLANATION"
+msgstr ""
+"Aktiivsed mikroobid jooksevad ja kukuvad, kui midagi huvitavat ei juhtu.\n"
+"Sessiilsed mikroobid on paigal ja ootavad enne tegutsemist, kuni keskkond muutub."
 
 #, fuzzy
 msgid "GITHUB_TOOLTIP"
@@ -2644,6 +2742,9 @@ msgstr "Jumalarežiim"
 #, fuzzy
 msgid "GOD_TOOLS_TITLE"
 msgstr "Möödunud aeg: {0:#,#} aastat"
+
+msgid "GOING_NUCLEAR"
+msgstr ""
 
 #, fuzzy
 msgid "GOOGLY_EYE_CELL"
@@ -3176,6 +3277,14 @@ msgstr "Tab"
 msgid "KEY_UP"
 msgstr "Üles"
 
+#, fuzzy
+msgid "KILL_50_MICROBES"
+msgstr "Lämmastik"
+
+#, fuzzy
+msgid "KILL_MICROBES_PROGRESS"
+msgstr "Mikroobide redaktori laadimine"
+
 msgid "KILO_ABBREVIATION"
 msgstr "{0}K"
 
@@ -3614,6 +3723,20 @@ msgstr ""
 "\n"
 "Selles vaenulikus maailmas ellujäämiseks peate koguma kokku kõik ühendid, mida leiate ja põlvkondade kaupa edasi arenema, et võistelda teiste mikroobiliikidega."
 
+#, fuzzy
+msgid "MAKE_CELL_THAT_EATS_RADIATION"
+msgstr ""
+"Aktiivsed mikroobid jooksevad ja kukuvad, kui midagi huvitavat ei juhtu.\n"
+"Sessiilsed mikroobid on paigal ja ootavad enne tegutsemist, kuni keskkond muutub."
+
+#, fuzzy
+msgid "MAKE_CELL_USE_CHEMOSYNTHESIS"
+msgstr "Kemosüntees"
+
+#, fuzzy
+msgid "MAKE_NO_CHANGES_IN_EDITOR"
+msgstr "Luba redaktor"
+
 msgid "MANUALLY_SET_TIME"
 msgstr ""
 
@@ -4048,6 +4171,28 @@ msgstr ""
 #, fuzzy
 msgid "MICROBE_STAGE_ORGANELLE_DIVISION"
 msgstr "Organismi statistika"
+
+#, fuzzy
+msgid "MICROBIAL_MASSACRE"
+msgstr ""
+"Kaugel võõral planeedil on vulkaanitegevuse ja meteoriidide kokkupõrked viinud universumis uue nähtuse väljakujunemiseni.\n"
+"\n"
+"Elu.\n"
+"\n"
+"Lihtsad mikroobid elavad ookeani sügavates piirkondades. Olete viimane universaalne ühine esivanem (LUCA) sellel planeedil.\n"
+"\n"
+"Selles vaenulikus maailmas ellujäämiseks peate koguma kokku kõik ühendid, mida leiate ja põlvkondade kaupa edasi arenema, et võistelda teiste mikroobiliikidega."
+
+#, fuzzy
+msgid "MICRO_BORG"
+msgstr ""
+"Kaugel võõral planeedil on vulkaanitegevuse ja meteoriidide kokkupõrked viinud universumis uue nähtuse väljakujunemiseni.\n"
+"\n"
+"Elu.\n"
+"\n"
+"Lihtsad mikroobid elavad ookeani sügavates piirkondades. Olete viimane universaalne ühine esivanem (LUCA) sellel planeedil.\n"
+"\n"
+"Selles vaenulikus maailmas ellujäämiseks peate koguma kokku kõik ühendid, mida leiate ja põlvkondade kaupa edasi arenema, et võistelda teiste mikroobiliikidega."
 
 msgid "MIDDLE_MOUSE"
 msgstr "Keskmine hiir"
@@ -4655,6 +4800,10 @@ msgid "NO_FOSSIL_DIRECTORY"
 msgstr "Salvestatud kataloogi ei leitud"
 
 #, fuzzy
+msgid "NO_LONGER_ELIGIBLE_FOR_ACHIEVEMENTS"
+msgstr "Kinnitage väljumine"
+
+#, fuzzy
 msgid "NO_MODS_ENABLED"
 msgstr "töövõimetu"
 
@@ -5124,10 +5273,11 @@ msgstr "Asetage organell"
 msgid "PLANET"
 msgstr ""
 
-msgid "PLANET_DETAILS_STRING"
-msgstr ""
+#, fuzzy
+msgid "PLANET_CUSTOMIZER"
+msgstr "Kursori juures:"
 
-msgid "PLANET_GENERATION_TEASER"
+msgid "PLANET_DETAILS_STRING"
 msgstr ""
 
 msgid "PLANET_RANDOM_SEED"
@@ -5311,6 +5461,16 @@ msgstr "Toores"
 msgid "RAW_VALUE_COLON"
 msgstr "Uus nimi:"
 
+msgid "REACH_GENERATION_15_WITH_A_SPECIES"
+msgstr ""
+
+msgid "REACH_GENERATION_15_WITH_A_SPECIES_PROGRESS"
+msgstr ""
+
+#, fuzzy
+msgid "REACH_MULTICELLULAR_STAGE"
+msgstr "Liikuge mängu järgmisse etappi (mitmerakuline). Saadaval, kui teil on piisavalt suur rakukoloonia."
+
 msgid "READING_SAVE_DATA"
 msgstr "Salvestamisandmete lugemine"
 
@@ -5333,6 +5493,10 @@ msgstr "Tehke viimane toiming uuesti"
 
 msgid "REFRESH"
 msgstr "Värskenda"
+
+#, fuzzy
+msgid "REGENERATE_BUTTON"
+msgstr "Organellid"
 
 msgid "RENDER_SCALE"
 msgstr ""
@@ -5382,6 +5546,9 @@ msgstr "Otsing"
 
 msgid "RESET"
 msgstr "lähtestada"
+
+msgid "RESET_ACHIEVEMENTS"
+msgstr ""
 
 #, fuzzy
 msgid "RESET_DEADZONES"
@@ -5567,6 +5734,10 @@ msgstr "Salvestage ja jätkake"
 
 msgid "SAVE_AUTOSAVE"
 msgstr "Automaatne salvestamine"
+
+#, fuzzy
+msgid "SAVE_CHEATS_USED"
+msgstr "Kasutatud ruum:"
 
 msgid "SAVE_DELETE_WARNING"
 msgstr "Selle salvestamise kustutamist ei saa tagasi võtta. Kas olete kindel, et soovite faili {0} jäädavalt kustutada?"
@@ -6225,6 +6396,9 @@ msgstr ""
 msgid "STRUCTURE_STEAM_POWERED_FACTORY"
 msgstr ""
 
+msgid "SUCCESSFULLY_PERFORM_ENDOSYMBIOSIS"
+msgstr ""
+
 msgid "SUCCESSFUL_KILL"
 msgstr "edukas tapmine"
 
@@ -6245,6 +6419,10 @@ msgstr "Toetajad"
 
 msgid "SURVIVAL_TITLE"
 msgstr ""
+
+#, fuzzy
+msgid "SURVIVE_WITH_A_NUCLEUS"
+msgstr "Tuum"
 
 msgid "SWITCH_TO_FRONT_CAMERA"
 msgstr "Lülita esikaamera vaatele"
@@ -6284,6 +6462,14 @@ msgstr "Tehke ekraanipilt"
 #, fuzzy
 msgid "TARGET_TYPE_COLON"
 msgstr "Tüüp:"
+
+#, fuzzy
+msgid "TASTE_THE_SUN"
+msgstr "Praegused lõimed:"
+
+#, fuzzy
+msgid "TASTY_RADIATION"
+msgstr "Aeroobne hingamine"
 
 msgid "TECHNOLOGY_ASCENSION"
 msgstr ""
@@ -6391,6 +6577,10 @@ msgid "THE_DISTURBANCE"
 msgstr ""
 
 #, fuzzy
+msgid "THE_EDITOR"
+msgstr "Minge järgmisele redaktori vahekaardile"
+
+#, fuzzy
 msgid "THE_PATCH_MAP_BUTTON"
 msgstr "Plaastri kaart"
 
@@ -6433,6 +6623,10 @@ msgstr ""
 
 msgid "THRIVE_LICENSES"
 msgstr "Thrive litsentsid"
+
+#, fuzzy
+msgid "THRIVIN_ACHIEVEMENT"
+msgstr "Aluse liikumine"
 
 msgid "THYLAKOIDS"
 msgstr "Tülakoidid"
@@ -6745,13 +6939,6 @@ msgid "TUTORIAL"
 msgstr "Õpetus"
 
 #, fuzzy
-msgid "TUTORIAL_ALL_NOT_ENABLED_EXPLANATION"
-msgstr ""
-"Keskendunud mikroobid otsivad tükke või saaki suuremate vahemaade tagant\n"
-"ja võib olla tükkide osas palju ambitsioonikam.\n"
-"Reageerivad mikroobid lülituvad varem uutele sihtmärkidele."
-
-#, fuzzy
 msgid "TUTORIAL_MICROBE_EDITOR_ATP_BALANCE_INTRO"
 msgstr ""
 "See on plaastri kaart.\n"
@@ -7045,6 +7232,13 @@ msgstr ""
 msgid "TUTORIAL_MULTICELLULAR_STAGE_WELCOME"
 msgstr "Mikroobide redaktori laadimine"
 
+#, fuzzy
+msgid "TUTORIAL_REPLAY_ALL_EXPLANATION"
+msgstr ""
+"Keskendunud mikroobid otsivad tükke või saaki suuremate vahemaade tagant\n"
+"ja võib olla tükkide osas palju ambitsioonikam.\n"
+"Reageerivad mikroobid lülituvad varem uutele sihtmärkidele."
+
 msgid "TUTORIAL_VIEW_NOW"
 msgstr "Vaata nüüd"
 
@@ -7334,6 +7528,10 @@ msgstr "Suurendab raku salvestusruumi."
 
 msgid "VALUE_WITH_UNIT"
 msgstr ""
+
+#, fuzzy
+msgid "VENTS_ARE_HOME"
+msgstr "Sündmusi pole salvestatud"
 
 msgid "VERSION_COLON"
 msgstr "Versioon:"
@@ -9405,6 +9603,27 @@ msgid "WORLD_MISC_DETAILS_STRING"
 msgstr ""
 
 #, fuzzy
+msgid "WORLD_OCEANIC_COVERAGE"
+msgstr "Aluse liikumine"
+
+#, fuzzy
+msgid "WORLD_OCEANIC_COVERAGE_EXPLANATION"
+msgstr ""
+"Keskendunud mikroobid otsivad tükke või saaki suuremate vahemaade tagant\n"
+"ja võib olla tükkide osas palju ambitsioonikam.\n"
+"Reageerivad mikroobid lülituvad varem uutele sihtmärkidele."
+
+msgid "WORLD_OCEANIC_COVERAGE_LARGE"
+msgstr ""
+
+#, fuzzy
+msgid "WORLD_OCEANIC_COVERAGE_MEDIUM"
+msgstr "Aluse liikumine"
+
+msgid "WORLD_OCEANIC_COVERAGE_SMALL"
+msgstr ""
+
+#, fuzzy
 msgid "WORLD_RELATIVE_MOVEMENT"
 msgstr "Aluse liikumine"
 
@@ -9432,6 +9651,29 @@ msgstr ""
 #, fuzzy
 msgid "WORLD_SIZE_TOOLTIP"
 msgstr "Möödunud aeg: {0:#,#} aastat"
+
+#, fuzzy
+msgid "WORLD_TEMPERATURE"
+msgstr "Temperatuur"
+
+#, fuzzy
+msgid "WORLD_TEMPERATURE_COLD"
+msgstr "temperatuur."
+
+#, fuzzy
+msgid "WORLD_TEMPERATURE_EXPLANATION"
+msgstr ""
+"Keskendunud mikroobid otsivad tükke või saaki suuremate vahemaade tagant\n"
+"ja võib olla tükkide osas palju ambitsioonikam.\n"
+"Reageerivad mikroobid lülituvad varem uutele sihtmärkidele."
+
+#, fuzzy
+msgid "WORLD_TEMPERATURE_TEMPERATE"
+msgstr "temperatuur."
+
+#, fuzzy
+msgid "WORLD_TEMPERATURE_WARM"
+msgstr "temperatuur."
 
 msgid "WORST_PATCH_COLON"
 msgstr "Halvim plaaster:"
@@ -9468,6 +9710,13 @@ msgstr ""
 msgid "YOU_CAN_SUPPORT_THRIVE_ON_PATREON"
 msgstr "Saate toetada Thrive'i edasist arengut Patreonis."
 
+#, fuzzy
+msgid "YUM_EXCLAMATION"
+msgstr ""
+"Keskendunud mikroobid otsivad tükke või saaki suuremate vahemaade tagant\n"
+"ja võib olla tükkide osas palju ambitsioonikam.\n"
+"Reageerivad mikroobid lülituvad varem uutele sihtmärkidele."
+
 msgid "ZOOM_IN"
 msgstr "Suurenda"
 
@@ -9475,8 +9724,24 @@ msgid "ZOOM_OUT"
 msgstr "Suumi välja"
 
 #, fuzzy
-#~ msgid "TEMPERATURE_SESSILITY_PRESSURE_DESCRIPTION"
-#~ msgstr "Toodab [thrive:compound type=\"glucose\"][/thrive:compound]. Hindamisskaalad [thrive:compound type=\"süsinikdioksiid\"][/thrive:compound] kontsentratsiooni ja temperatuuriga."
+#~ msgid "CELL_TYPE_BUTTON_ATP_CONSUMPTION"
+#~ msgstr "{0}: -{1} ATP"
+
+#, fuzzy
+#~ msgid "CELL_TYPE_BUTTON_ATP_PRODUCTION"
+#~ msgstr "ATP tootmine"
+
+#, fuzzy
+#~ msgid "WORLD_SEA_LEVEL"
+#~ msgstr "{0}–{1} m allpool merepinda"
+
+#, fuzzy
+#~ msgid "WORLD_SEA_LEVEL_DEEP"
+#~ msgstr "{0}–{1} m allpool merepinda"
+
+#, fuzzy
+#~ msgid "WORLD_SEA_LEVEL_MODERATE"
+#~ msgstr "Aluse liikumine"
 
 #, fuzzy
 #~ msgid "PASSIVE_REPRODUCTION_PROGRESS_EXPLANATION"
@@ -9726,10 +9991,6 @@ msgstr "Suumi välja"
 #~ "Selles vaenulikus maailmas ellujäämiseks peate koguma kokku kõik ühendid, mida leiate ja põlvkondade kaupa edasi arenema, et võistelda teiste mikroobiliikidega."
 
 #, fuzzy
-#~ msgid "WIKI_CHEMOSYNTHESIS"
-#~ msgstr "Kemosüntees"
-
-#, fuzzy
 #~ msgid "WIKI_GLYCOLYSIS"
 #~ msgstr "Glükolüüs"
 
@@ -9744,10 +10005,6 @@ msgstr "Suumi välja"
 #, fuzzy
 #~ msgid "WIKI_LIPASE"
 #~ msgstr "Lipaas"
-
-#, fuzzy
-#~ msgid "WIKI_MICROBE_EDITOR"
-#~ msgstr "Mikroobide redaktori laadimine"
 
 #, fuzzy
 #~ msgid "WIKI_MUCILAGE_SYNTHESIS"

@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2025-07-21 15:54+0300\n"
+"POT-Creation-Date: 2025-08-25 19:09+0300\n"
 "PO-Revision-Date: 2025-01-21 12:01+0000\n"
 "Last-Translator: Anonymous <noreply@weblate.org>\n"
 "Language-Team: Romanian <https://translate.revolutionarygamesstudio.com/projects/thrive/thrive-game/ro/>\n"
@@ -48,6 +48,19 @@ msgid "ABYSSOPELAGIC"
 msgstr "Abisopelagică"
 
 msgid "ACCEPT"
+msgstr ""
+
+#, fuzzy
+msgid "ACHIEVEMENTS"
+msgstr "Mișcare de bază"
+
+msgid "ACHIEVEMENTS_TOTAL"
+msgstr ""
+
+msgid "ACHIEVEMENT_ACHIEVED"
+msgstr ""
+
+msgid "ACHIEVEMENT_LOCKED"
 msgstr ""
 
 msgid "ACTION_AWAKEN"
@@ -366,6 +379,10 @@ msgstr "Salvare automată în timpul jocului"
 msgid "AUTO_EVO"
 msgstr "Auto-Evo"
 
+#, fuzzy
+msgid "AUTO_EVO_EXPLORER_TOOL_BUTTON"
+msgstr "Instrument de explorare Auto-Evo"
+
 msgid "AUTO_EVO_EXPLORING_TOOL"
 msgstr "Instrument de explorare Auto-Evo"
 
@@ -424,6 +441,9 @@ msgstr "Backslash"
 #, fuzzy
 msgid "BACKSPACE"
 msgstr "Backspace"
+
+msgid "BACK_TO_SETTINGS"
+msgstr ""
 
 #, fuzzy
 msgid "BACTERIAL_THERMOSYNTHESIS"
@@ -503,6 +523,12 @@ msgstr "Rezultate:"
 
 msgid "BEST_PATCH_COLON"
 msgstr "Cel mai bun patch:"
+
+msgid "BETTER_TOGETHER"
+msgstr ""
+
+msgid "BEYOND_THE_CELL"
+msgstr ""
 
 msgid "BIG_IRON_CHUNK"
 msgstr "Bucată mare de fier"
@@ -617,6 +643,9 @@ msgstr ""
 msgid "CANNOT_ENGULF"
 msgstr ""
 
+msgid "CANNOT_IMPROVE_PERFECTION"
+msgstr ""
+
 msgid "CANNOT_MOVE_METABALL_TO_DESCENDANT_TREE"
 msgstr ""
 
@@ -689,13 +718,6 @@ msgstr "Treceți la etapa de trezire. Disponibil odată ce aveți creierul sufic
 msgid "CELL_STAT_STORAGE_TOOLTIP"
 msgstr "Treceți la etapa de trezire. Disponibil odată ce aveți creierul suficient de dezvoltat (tip de țesut cu axoni)."
 
-msgid "CELL_TYPE_BUTTON_ATP_CONSUMPTION"
-msgstr ""
-
-#, fuzzy
-msgid "CELL_TYPE_BUTTON_ATP_PRODUCTION"
-msgstr "Producția ATP"
-
 msgid "CELL_TYPE_NAME"
 msgstr ""
 
@@ -710,6 +732,9 @@ msgid "CHANNEL_INHIBITOR_TOXIN_SYNTHESIS"
 msgstr "Permite unirea cu alte celule. Acesta este primul pas către multicelularitate. Când celula face parte dintr-o colonie, compușii sunt împărțiți între celule. Nu puteți intra în editor în timp ce faceți parte dintr-o colonie, deci trebuie să vă despărțiți odată ce colectați suficienți compuși pentru a vă împărți celula."
 
 msgid "CHEATS"
+msgstr ""
+
+msgid "CHEATS_USED_NOTICE"
 msgstr ""
 
 msgid "CHEAT_KEYS_ENABLED"
@@ -817,6 +842,24 @@ msgid "CLEAR_CACHE"
 msgstr ""
 
 msgid "CLICK_TO_SELECT"
+msgstr ""
+
+msgid "CLIMATE_INSTABILITY"
+msgstr ""
+
+#, fuzzy
+msgid "CLIMATE_INSTABILITY_EXPLANATION"
+msgstr ""
+"Microbii activi se vor mișca cand nu se întămplă nimic interesant.\n"
+"Microbii sesili vor fi staționari și vor aștepta ca mediul să se schimbe înainte de a acționa."
+
+msgid "CLIMATE_STABILITY_AVERAGE"
+msgstr ""
+
+msgid "CLIMATE_STABILITY_STABLE"
+msgstr ""
+
+msgid "CLIMATE_STABILITY_UNSTABLE"
 msgstr ""
 
 msgid "CLOSE"
@@ -1042,6 +1085,13 @@ msgstr ""
 msgid "CONFIRM_NEW_GAME_BUTTON_TOOLTIP_DISABLED"
 msgstr ""
 
+msgid "CONFIRM_RESET_ACHIEVEMENTS"
+msgstr ""
+
+#, fuzzy
+msgid "CONFIRM_RESET_ACHIEVEMENTS_DESCRIPTION"
+msgstr "Apăsați [thrive:input]g_toggle_binding[/thrive:input] pentru a activa/dezactiva modul de unire. Când sunteți în modul de unire, puteți atașa alte celule ale speciei dvs. la colonie prin a vă muta în ele. Pentru a părăsi o colonie, apăsați [thrive:input]g_unbind_all[/thrive:input]. Nu puteți intra în editor în timp ce sunteți unit cu alte celule."
+
 msgid "CONSTRUCTION_UNIT_NAME"
 msgstr ""
 
@@ -1232,6 +1282,9 @@ msgid "CORRECTION_PROTANOPE"
 msgstr ""
 
 msgid "CORRECTION_TRITANOPE"
+msgstr ""
+
+msgid "CPU_POWER_NOT_ENOUGH_FOR_SPEED_MODE"
 msgstr ""
 
 msgid "CPU_THREADS"
@@ -1754,6 +1807,10 @@ msgstr ""
 "\n"
 "Termosintază: Produce [thrive:compound type=\"atp\"][/thrive:compound] folosind variații din temperatură"
 
+#, fuzzy
+msgid "EDIT_MICROBE_FIRST_TIME"
+msgstr "Etapa Microbilor"
+
 msgid "EFFECTIVE_VALUE"
 msgstr ""
 
@@ -1860,6 +1917,9 @@ msgid "ENERGY_SOURCES"
 msgstr ""
 
 msgid "ENERGY_SUMMARY_LINE"
+msgstr ""
+
+msgid "ENGULF_CELL_OR_CHUNK"
 msgstr ""
 
 msgid "ENGULF_NO_ATP_DAMAGE_MESSAGE"
@@ -2187,6 +2247,10 @@ msgstr ""
 msgid "FORGET_MOD_DETAILS_TOOLTIP"
 msgstr ""
 
+#, fuzzy
+msgid "FORM_CELL_COLONY"
+msgstr "Agenți:"
+
 msgid "FORM_ERROR_MESSAGE"
 msgstr ""
 
@@ -2285,11 +2349,36 @@ msgstr ""
 msgid "GENERAL_LOADING_TIP_7"
 msgstr ""
 
+#, fuzzy
+msgid "GENERATE_BUTTON"
+msgstr "Etapa Multicelulară"
+
+msgid "GENERATE_POSITIVE_GLUCOSE_PHOTOSYNTHESIS"
+msgstr ""
+
 msgid "GENERATIONS"
 msgstr ""
 
 msgid "GENERATION_COLON"
 msgstr ""
+
+msgid "GEOLOGICAL_ACTIVITY"
+msgstr ""
+
+msgid "GEOLOGICAL_ACTIVITY_ACTIVE"
+msgstr ""
+
+msgid "GEOLOGICAL_ACTIVITY_AVERAGE"
+msgstr ""
+
+msgid "GEOLOGICAL_ACTIVITY_DORMANT"
+msgstr ""
+
+#, fuzzy
+msgid "GEOLOGICAL_ACTIVITY_EXPLANATION"
+msgstr ""
+"Microbii activi se vor mișca cand nu se întămplă nimic interesant.\n"
+"Microbii sesili vor fi staționari și vor aștepta ca mediul să se schimbe înainte de a acționa."
 
 msgid "GITHUB_TOOLTIP"
 msgstr ""
@@ -2340,6 +2429,9 @@ msgid "GODMODE"
 msgstr ""
 
 msgid "GOD_TOOLS_TITLE"
+msgstr ""
+
+msgid "GOING_NUCLEAR"
 msgstr ""
 
 msgid "GOOGLY_EYE_CELL"
@@ -2814,6 +2906,14 @@ msgstr ""
 msgid "KEY_UP"
 msgstr ""
 
+#, fuzzy
+msgid "KILL_50_MICROBES"
+msgstr "Etapa Microbilor"
+
+#, fuzzy
+msgid "KILL_MICROBES_PROGRESS"
+msgstr "Editorul De Microbi"
+
 msgid "KILO_ABBREVIATION"
 msgstr ""
 
@@ -3196,6 +3296,18 @@ msgstr "Devino macroscopic ({0}/{1})"
 msgid "MACROSCOPIC_STAGE"
 msgstr "Etapa Microbilor"
 
+#, fuzzy
+msgid "MAKE_CELL_THAT_EATS_RADIATION"
+msgstr "(viteza cu care speciile IA suferă mutații)"
+
+#, fuzzy
+msgid "MAKE_CELL_USE_CHEMOSYNTHESIS"
+msgstr "Etapa Microbilor"
+
+#, fuzzy
+msgid "MAKE_NO_CHANGES_IN_EDITOR"
+msgstr "Editor 3D"
+
 msgid "MANUALLY_SET_TIME"
 msgstr ""
 
@@ -3542,6 +3654,14 @@ msgstr "Etapa Microbilor"
 #, fuzzy
 msgid "MICROBE_STAGE_ORGANELLE_DIVISION"
 msgstr "[thrive:input]g_move_forward[/thrive:input],[thrive:input]g_move_left[/thrive:input],[thrive:input]g_move_backwards[/thrive:input],[thrive:input]g_move_right[/thrive:input] şi mouse-ul să vă deplasați. [thrive:input]g_fire_toxin[/thrive:input] pentru a trage [thrive:compound type=\"oxytoxy\"][/thrive:compound] dacă aveți o vacuolă de toxine. [thrive:input]g_toggle_engulf[/thrive:input] pentru a activa modul de înghițit. Puteți să zoomați mai aproape și mai departe cu rotița mouse-ului."
+
+#, fuzzy
+msgid "MICROBIAL_MASSACRE"
+msgstr "Etapa Microbilor"
+
+#, fuzzy
+msgid "MICRO_BORG"
+msgstr "Etapa Microbilor"
 
 msgid "MIDDLE_MOUSE"
 msgstr ""
@@ -4053,6 +4173,9 @@ msgstr ""
 msgid "NO_FOSSIL_DIRECTORY"
 msgstr ""
 
+msgid "NO_LONGER_ELIGIBLE_FOR_ACHIEVEMENTS"
+msgstr ""
+
 msgid "NO_MODS_ENABLED"
 msgstr ""
 
@@ -4475,10 +4598,11 @@ msgstr ""
 msgid "PLANET"
 msgstr ""
 
-msgid "PLANET_DETAILS_STRING"
-msgstr ""
+#, fuzzy
+msgid "PLANET_CUSTOMIZER"
+msgstr "La cursor:"
 
-msgid "PLANET_GENERATION_TEASER"
+msgid "PLANET_DETAILS_STRING"
 msgstr ""
 
 msgid "PLANET_RANDOM_SEED"
@@ -4649,6 +4773,16 @@ msgstr ""
 msgid "RAW_VALUE_COLON"
 msgstr ""
 
+msgid "REACH_GENERATION_15_WITH_A_SPECIES"
+msgstr ""
+
+msgid "REACH_GENERATION_15_WITH_A_SPECIES_PROGRESS"
+msgstr ""
+
+#, fuzzy
+msgid "REACH_MULTICELLULAR_STAGE"
+msgstr "Etapa Multicelulară"
+
 msgid "READING_SAVE_DATA"
 msgstr ""
 
@@ -4669,6 +4803,10 @@ msgstr ""
 
 msgid "REFRESH"
 msgstr ""
+
+#, fuzzy
+msgid "REGENERATE_BUTTON"
+msgstr "Etapa Multicelulară"
 
 msgid "RENDER_SCALE"
 msgstr ""
@@ -4713,6 +4851,9 @@ msgid "RESEARCH"
 msgstr ""
 
 msgid "RESET"
+msgstr ""
+
+msgid "RESET_ACHIEVEMENTS"
 msgstr ""
 
 msgid "RESET_DEADZONES"
@@ -4875,6 +5016,9 @@ msgid "SAVE_AND_CONTINUE"
 msgstr ""
 
 msgid "SAVE_AUTOSAVE"
+msgstr ""
+
+msgid "SAVE_CHEATS_USED"
 msgstr ""
 
 msgid "SAVE_DELETE_WARNING"
@@ -5457,6 +5601,9 @@ msgstr ""
 msgid "STRUCTURE_STEAM_POWERED_FACTORY"
 msgstr ""
 
+msgid "SUCCESSFULLY_PERFORM_ENDOSYMBIOSIS"
+msgstr ""
+
 msgid "SUCCESSFUL_KILL"
 msgstr ""
 
@@ -5477,6 +5624,10 @@ msgstr ""
 
 msgid "SURVIVAL_TITLE"
 msgstr ""
+
+#, fuzzy
+msgid "SURVIVE_WITH_A_NUCLEUS"
+msgstr "Etapa Microbilor"
 
 msgid "SWITCH_TO_FRONT_CAMERA"
 msgstr ""
@@ -5514,6 +5665,14 @@ msgstr ""
 
 msgid "TARGET_TYPE_COLON"
 msgstr ""
+
+#, fuzzy
+msgid "TASTE_THE_SUN"
+msgstr "Thread-uri curente:"
+
+#, fuzzy
+msgid "TASTY_RADIATION"
+msgstr "(viteza cu care speciile IA suferă mutații)"
 
 msgid "TECHNOLOGY_ASCENSION"
 msgstr ""
@@ -5606,6 +5765,10 @@ msgstr ""
 msgid "THE_DISTURBANCE"
 msgstr ""
 
+#, fuzzy
+msgid "THE_EDITOR"
+msgstr "Editor 3D"
+
 msgid "THE_PATCH_MAP_BUTTON"
 msgstr ""
 
@@ -5648,6 +5811,10 @@ msgstr ""
 
 msgid "THRIVE_LICENSES"
 msgstr ""
+
+#, fuzzy
+msgid "THRIVIN_ACHIEVEMENT"
+msgstr "Mișcare de bază"
 
 msgid "THYLAKOIDS"
 msgstr ""
@@ -5910,10 +6077,6 @@ msgstr ""
 
 msgid "TUTORIAL"
 msgstr ""
-
-#, fuzzy
-msgid "TUTORIAL_ALL_NOT_ENABLED_EXPLANATION"
-msgstr "(viteza cu care speciile IA suferă mutații)"
 
 msgid "TUTORIAL_MICROBE_EDITOR_ATP_BALANCE_INTRO"
 msgstr ""
@@ -6288,6 +6451,10 @@ msgstr ""
 msgid "TUTORIAL_MULTICELLULAR_STAGE_WELCOME"
 msgstr "Etapa Multicelulară"
 
+#, fuzzy
+msgid "TUTORIAL_REPLAY_ALL_EXPLANATION"
+msgstr "(viteza cu care speciile IA suferă mutații)"
+
 msgid "TUTORIAL_VIEW_NOW"
 msgstr ""
 
@@ -6540,6 +6707,9 @@ msgid "VACUOLE_SPECIALIZED_DESCRIPTION"
 msgstr ""
 
 msgid "VALUE_WITH_UNIT"
+msgstr ""
+
+msgid "VENTS_ARE_HOME"
 msgstr ""
 
 msgid "VERSION_COLON"
@@ -8358,6 +8528,31 @@ msgstr ""
 msgid "WORLD_MISC_DETAILS_STRING"
 msgstr ""
 
+msgid "WORLD_OCEANIC_COVERAGE"
+msgstr ""
+
+#, fuzzy
+msgid "WORLD_OCEANIC_COVERAGE_EXPLANATION"
+msgstr ""
+"Microbii agresivi vor urmări prada pe distanțe mai mari\n"
+"și sunt mai predispuși să lupte împotriva prădătorilor atunci când sunt atacați.\n"
+"Microbii pașnici nu vor urmări pe alții pe distanțe mai mari\n"
+"și sunt mai puțin susceptibile de a folosi toxine împotriva prădătorilor."
+
+msgid "WORLD_OCEANIC_COVERAGE_LARGE"
+msgstr ""
+
+#, fuzzy
+msgid "WORLD_OCEANIC_COVERAGE_MEDIUM"
+msgstr ""
+"Microbii agresivi vor urmări prada pe distanțe mai mari\n"
+"și sunt mai predispuși să lupte împotriva prădătorilor atunci când sunt atacați.\n"
+"Microbii pașnici nu vor urmări pe alții pe distanțe mai mari\n"
+"și sunt mai puțin susceptibile de a folosi toxine împotriva prădătorilor."
+
+msgid "WORLD_OCEANIC_COVERAGE_SMALL"
+msgstr ""
+
 msgid "WORLD_RELATIVE_MOVEMENT"
 msgstr ""
 
@@ -8385,6 +8580,27 @@ msgstr ""
 #, fuzzy
 msgid "WORLD_SIZE_TOOLTIP"
 msgstr "Treceți la etapa de trezire. Disponibil odată ce aveți creierul suficient de dezvoltat (tip de țesut cu axoni)."
+
+msgid "WORLD_TEMPERATURE"
+msgstr ""
+
+msgid "WORLD_TEMPERATURE_COLD"
+msgstr ""
+
+#, fuzzy
+msgid "WORLD_TEMPERATURE_EXPLANATION"
+msgstr ""
+"Microbii agresivi vor urmări prada pe distanțe mai mari\n"
+"și sunt mai predispuși să lupte împotriva prădătorilor atunci când sunt atacați.\n"
+"Microbii pașnici nu vor urmări pe alții pe distanțe mai mari\n"
+"și sunt mai puțin susceptibile de a folosi toxine împotriva prădătorilor."
+
+#, fuzzy
+msgid "WORLD_TEMPERATURE_TEMPERATE"
+msgstr "Treceți la etapa de trezire. Disponibil odată ce aveți creierul suficient de dezvoltat (tip de țesut cu axoni)."
+
+msgid "WORLD_TEMPERATURE_WARM"
+msgstr ""
 
 msgid "WORST_PATCH_COLON"
 msgstr ""
@@ -8417,6 +8633,12 @@ msgstr ""
 msgid "YOU_CAN_SUPPORT_THRIVE_ON_PATREON"
 msgstr ""
 
+#, fuzzy
+msgid "YUM_EXCLAMATION"
+msgstr ""
+"Microbii activi se vor mișca cand nu se întămplă nimic interesant.\n"
+"Microbii sesili vor fi staționari și vor aștepta ca mediul să se schimbe înainte de a acționa."
+
 msgid "ZOOM_IN"
 msgstr ""
 
@@ -8424,8 +8646,16 @@ msgid "ZOOM_OUT"
 msgstr ""
 
 #, fuzzy
-#~ msgid "TEMPERATURE_SESSILITY_PRESSURE_DESCRIPTION"
-#~ msgstr "Apăsați [thrive:input]g_toggle_binding[/thrive:input] pentru a activa/dezactiva modul de unire. Când sunteți în modul de unire, puteți atașa alte celule ale speciei dvs. la colonie prin a vă muta în ele. Pentru a părăsi o colonie, apăsați [thrive:input]g_unbind_all[/thrive:input]. Nu puteți intra în editor în timp ce sunteți unit cu alte celule."
+#~ msgid "CELL_TYPE_BUTTON_ATP_PRODUCTION"
+#~ msgstr "Producția ATP"
+
+#, fuzzy
+#~ msgid "WORLD_SEA_LEVEL"
+#~ msgstr "{0}-{1}m sub nivelul mării"
+
+#, fuzzy
+#~ msgid "WORLD_SEA_LEVEL_DEEP"
+#~ msgstr "{0}-{1}m sub nivelul mării"
 
 #, fuzzy
 #~ msgid "MICROBE_STAGE_DAY_NIGHT_TEXT"
@@ -8545,10 +8775,6 @@ msgstr ""
 #, fuzzy
 #~ msgid "WIKI_AWAKENING_STAGE"
 #~ msgstr "Stagiul de trezire"
-
-#, fuzzy
-#~ msgid "WIKI_MICROBE_EDITOR"
-#~ msgstr "Editorul De Microbi"
 
 #~ msgid "ALLOW_SPECIES_TO_NOT_MIGRATE"
 #~ msgstr "Permiteți speciilor să nu migreze (dacă nu se găsește o migrație bună)"

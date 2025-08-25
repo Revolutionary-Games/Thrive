@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2025-07-21 15:54+0300\n"
+"POT-Creation-Date: 2025-08-25 19:09+0300\n"
 "PO-Revision-Date: 2025-05-25 15:00+0000\n"
 "Last-Translator: Anonymous <noreply@weblate.org>\n"
 "Language-Team: Italian <https://translate.revolutionarygamesstudio.com/projects/thrive/thrive-game/it/>\n"
@@ -48,6 +48,19 @@ msgstr "Abissopelagico"
 
 msgid "ACCEPT"
 msgstr "Accetta"
+
+#, fuzzy
+msgid "ACHIEVEMENTS"
+msgstr "Movimento di Base"
+
+msgid "ACHIEVEMENTS_TOTAL"
+msgstr ""
+
+msgid "ACHIEVEMENT_ACHIEVED"
+msgstr ""
+
+msgid "ACHIEVEMENT_LOCKED"
+msgstr ""
 
 msgid "ACTION_AWAKEN"
 msgstr "Risvegliato ({0:F1} / {1:F1})"
@@ -364,6 +377,10 @@ msgstr "Salvataggio automatico durante il gioco"
 msgid "AUTO_EVO"
 msgstr "Auto-Evo"
 
+#, fuzzy
+msgid "AUTO_EVO_EXPLORER_TOOL_BUTTON"
+msgstr "Strumento di esplorazione Auto-Evo"
+
 msgid "AUTO_EVO_EXPLORING_TOOL"
 msgstr "Strumento di esplorazione Auto-Evo"
 
@@ -417,6 +434,9 @@ msgstr "\\ Barra rovesciata [Backslash]"
 
 msgid "BACKSPACE"
 msgstr "Cancella [Backspace]"
+
+msgid "BACK_TO_SETTINGS"
+msgstr ""
 
 msgid "BACTERIAL_THERMOSYNTHESIS"
 msgstr "Termosintesi batterica"
@@ -492,6 +512,12 @@ msgstr "Risultati:"
 
 msgid "BEST_PATCH_COLON"
 msgstr "Miglior zona:"
+
+msgid "BETTER_TOGETHER"
+msgstr ""
+
+msgid "BEYOND_THE_CELL"
+msgstr ""
 
 msgid "BIG_IRON_CHUNK"
 msgstr "Frammento di ferro grande"
@@ -603,6 +629,9 @@ msgstr "Impossibile cancellare tipo di cellula in uso"
 msgid "CANNOT_ENGULF"
 msgstr "Impedisce la fagocitazione"
 
+msgid "CANNOT_IMPROVE_PERFECTION"
+msgstr ""
+
 msgid "CANNOT_MOVE_METABALL_TO_DESCENDANT_TREE"
 msgstr "Impossibile spostare una metasfera nell'albero delle sue discendenti"
 
@@ -681,12 +710,6 @@ msgstr ""
 "E, ad esempio, quando si modifica la lunghezza del flagello, i valori di velocità non corrispondono a ciò che accadrà nella fase.\n"
 "Questo è un problema noto ma non è stato ancora risolto poiché ha una priorità inferiore rispetto a molti altri problemi e nuove funzionalità."
 
-msgid "CELL_TYPE_BUTTON_ATP_CONSUMPTION"
-msgstr "Il consumo di ATP di questo tipo di cellula è {0}."
-
-msgid "CELL_TYPE_BUTTON_ATP_PRODUCTION"
-msgstr "La produzione di ATP di questo tipo di cellula è {0}."
-
 msgid "CELL_TYPE_NAME"
 msgstr "Nome del tipo di cellula"
 
@@ -701,6 +724,10 @@ msgstr "Sintesi Inibiote del canale"
 
 msgid "CHEATS"
 msgstr "Trucchi"
+
+#, fuzzy
+msgid "CHEATS_USED_NOTICE"
+msgstr "Processo non iniziato."
 
 msgid "CHEAT_KEYS_ENABLED"
 msgstr "Abilita i trucchi"
@@ -812,6 +839,24 @@ msgstr "Pulisci Cache"
 
 msgid "CLICK_TO_SELECT"
 msgstr "Seleziona"
+
+msgid "CLIMATE_INSTABILITY"
+msgstr ""
+
+#, fuzzy
+msgid "CLIMATE_INSTABILITY_EXPLANATION"
+msgstr ""
+"I microbi attivi corrono e saltano anche quando non accade nulla di interessante.\n"
+"I microbi sessili sono stazionari e aspettano cambiamenti nell'ambiente prima di agire."
+
+msgid "CLIMATE_STABILITY_AVERAGE"
+msgstr ""
+
+msgid "CLIMATE_STABILITY_STABLE"
+msgstr ""
+
+msgid "CLIMATE_STABILITY_UNSTABLE"
+msgstr ""
 
 msgid "CLOSE"
 msgstr "Chiudi"
@@ -1055,6 +1100,14 @@ msgstr "Avvia la partita con queste impostazioni"
 msgid "CONFIRM_NEW_GAME_BUTTON_TOOLTIP_DISABLED"
 msgstr "Alcune impostazioni non sono valide"
 
+#, fuzzy
+msgid "CONFIRM_RESET_ACHIEVEMENTS"
+msgstr "Conferma eliminazione"
+
+#, fuzzy
+msgid "CONFIRM_RESET_ACHIEVEMENTS_DESCRIPTION"
+msgstr "Trasforma l'[thrive:compound type=\"atp\"][/thrive:compound] in [thrive:compound type=\"ammonia\"][/thrive:compound]. Il tasso aumenta con la concentrazione di [thrive:compound type=\"nitrogen\"][/thrive:compound]."
+
 msgid "CONSTRUCTION_UNIT_NAME"
 msgstr "Unità: {0}"
 
@@ -1257,6 +1310,10 @@ msgstr "Protanopica (Rosso-Verde)"
 
 msgid "CORRECTION_TRITANOPE"
 msgstr "Tritanopica (Blu-Giallo)"
+
+#, fuzzy
+msgid "CPU_POWER_NOT_ENOUGH_FOR_SPEED_MODE"
+msgstr "Non c'è abbastanza spazio di stoccaggio per [thrive:compound type=\"{0}\"][/thrive:compound] poiché la notte dura {2} s ma è possibile immagazzinare solo {1} s di composti."
 
 msgid "CPU_THREADS"
 msgstr "Threads"
@@ -1842,6 +1899,10 @@ msgstr ""
 "Per continuare, seleziona una parte dal pannello a sinistra. Poi, fai clic sinistro vicino all'esagono per posizionarla. Puoi ruotare le parti con [thrive:input]e_rotate_left[/thrive:input] e [thrive:input]e_rotate_right[/thrive:input]."
 
 #, fuzzy
+msgid "EDIT_MICROBE_FIRST_TIME"
+msgstr "Fase Microbica"
+
+#, fuzzy
 msgid "EFFECTIVE_VALUE"
 msgstr "{0}%"
 
@@ -1959,6 +2020,9 @@ msgstr "Fonti di energia:"
 
 msgid "ENERGY_SUMMARY_LINE"
 msgstr "L'energia totale accumulata è {0}, con un costo individuale di {1}, risultante in una popolazione (non calibrata) di {2}"
+
+msgid "ENGULF_CELL_OR_CHUNK"
+msgstr ""
 
 msgid "ENGULF_NO_ATP_DAMAGE_MESSAGE"
 msgstr ""
@@ -2342,6 +2406,10 @@ msgstr "Rimuovi Dati Locali"
 msgid "FORGET_MOD_DETAILS_TOOLTIP"
 msgstr "Rimuovi i dati locali relativi a questo oggetto. Ciò è utile se hai inserito l'ID sbagliato, oppure se vuoi caricare una nuova versione su di un oggetto diverso."
 
+#, fuzzy
+msgid "FORM_CELL_COLONY"
+msgstr "Spazio di stoccaggio:"
+
 msgid "FORM_ERROR_MESSAGE"
 msgstr "Errore: {0}"
 
@@ -2459,11 +2527,36 @@ msgstr "Nell'editor, premi il tasto \"Annulla l'ultima azione\" per correggere e
 msgid "GENERAL_LOADING_TIP_7"
 msgstr "Nell'editor, premi il tasto \"Annulla l'ultima azione\" per correggere eventuali errori"
 
+#, fuzzy
+msgid "GENERATE_BUTTON"
+msgstr "Generazioni"
+
+msgid "GENERATE_POSITIVE_GLUCOSE_PHOTOSYNTHESIS"
+msgstr ""
+
 msgid "GENERATIONS"
 msgstr "Generazioni"
 
 msgid "GENERATION_COLON"
 msgstr "Generazione:"
+
+msgid "GEOLOGICAL_ACTIVITY"
+msgstr ""
+
+msgid "GEOLOGICAL_ACTIVITY_ACTIVE"
+msgstr ""
+
+msgid "GEOLOGICAL_ACTIVITY_AVERAGE"
+msgstr ""
+
+msgid "GEOLOGICAL_ACTIVITY_DORMANT"
+msgstr ""
+
+#, fuzzy
+msgid "GEOLOGICAL_ACTIVITY_EXPLANATION"
+msgstr ""
+"I microbi attivi corrono e saltano anche quando non accade nulla di interessante.\n"
+"I microbi sessili sono stazionari e aspettano cambiamenti nell'ambiente prima di agire."
 
 #, fuzzy
 msgid "GITHUB_TOOLTIP"
@@ -2517,6 +2610,9 @@ msgstr "Modalità Dio"
 #, fuzzy
 msgid "GOD_TOOLS_TITLE"
 msgstr "Tempo trascorso: {0:#,#} anni"
+
+msgid "GOING_NUCLEAR"
+msgstr ""
 
 msgid "GOOGLY_EYE_CELL"
 msgstr "Cellula Grandocchi"
@@ -3047,6 +3143,14 @@ msgstr "Tab"
 msgid "KEY_UP"
 msgstr "🡑 Freccia in alto"
 
+#, fuzzy
+msgid "KILL_50_MICROBES"
+msgstr "Nitrogenasi"
+
+#, fuzzy
+msgid "KILL_MICROBES_PROGRESS"
+msgstr "Editor Microbico"
+
 msgid "KILO_ABBREVIATION"
 msgstr "{0}mila"
 
@@ -3451,6 +3555,18 @@ msgstr "Diventa macroscopico ({0}/{1})"
 #, fuzzy
 msgid "MACROSCOPIC_STAGE"
 msgstr "Fase Microbica"
+
+#, fuzzy
+msgid "MAKE_CELL_THAT_EATS_RADIATION"
+msgstr "radiazioni"
+
+#, fuzzy
+msgid "MAKE_CELL_USE_CHEMOSYNTHESIS"
+msgstr "Chemiosintesi"
+
+#, fuzzy
+msgid "MAKE_NO_CHANGES_IN_EDITOR"
+msgstr "Cambiamenti:"
 
 msgid "MANUALLY_SET_TIME"
 msgstr ""
@@ -3884,6 +4000,14 @@ msgstr ""
 #, fuzzy
 msgid "MICROBE_STAGE_ORGANELLE_DIVISION"
 msgstr "Statistiche dell'organismo"
+
+#, fuzzy
+msgid "MICROBIAL_MASSACRE"
+msgstr "Fase Microbica"
+
+#, fuzzy
+msgid "MICRO_BORG"
+msgstr "Fase Microbica"
 
 msgid "MIDDLE_MOUSE"
 msgstr "Clic centrale"
@@ -4473,6 +4597,10 @@ msgid "NO_FOSSIL_DIRECTORY"
 msgstr "Nessuna cartella dei salvataggi trovata"
 
 #, fuzzy
+msgid "NO_LONGER_ELIGIBLE_FOR_ACHIEVEMENTS"
+msgstr "Conferma eliminazione"
+
+#, fuzzy
 msgid "NO_MODS_ENABLED"
 msgstr "Disattivato"
 
@@ -4938,11 +5066,12 @@ msgid "PLANET"
 msgstr "Pianeta"
 
 #, fuzzy
+msgid "PLANET_CUSTOMIZER"
+msgstr "Sotto il cursore:"
+
+#, fuzzy
 msgid "PLANET_DETAILS_STRING"
 msgstr "Dettagli"
-
-msgid "PLANET_GENERATION_TEASER"
-msgstr "Generazione planetaria in arrivo!"
 
 msgid "PLANET_RANDOM_SEED"
 msgstr "Seme casuale del pianeta"
@@ -5122,6 +5251,16 @@ msgstr "Raw"
 msgid "RAW_VALUE_COLON"
 msgstr "Nuovo nome:"
 
+msgid "REACH_GENERATION_15_WITH_A_SPECIES"
+msgstr ""
+
+msgid "REACH_GENERATION_15_WITH_A_SPECIES_PROGRESS"
+msgstr ""
+
+#, fuzzy
+msgid "REACH_MULTICELLULAR_STAGE"
+msgstr "Fase Multicellulare"
+
 msgid "READING_SAVE_DATA"
 msgstr "Lettura dati di salvataggio"
 
@@ -5143,6 +5282,10 @@ msgstr "Ripristina l'ultima azione"
 
 msgid "REFRESH"
 msgstr "Aggiorna"
+
+#, fuzzy
+msgid "REGENERATE_BUTTON"
+msgstr "Organuli"
 
 #, fuzzy
 msgid "RENDER_SCALE"
@@ -5191,6 +5334,10 @@ msgstr "Cerca"
 
 msgid "RESET"
 msgstr "Ripristina"
+
+#, fuzzy
+msgid "RESET_ACHIEVEMENTS"
+msgstr "per aumentare la"
 
 #, fuzzy
 msgid "RESET_DEADZONES"
@@ -5374,6 +5521,10 @@ msgstr "Salva e continua"
 
 msgid "SAVE_AUTOSAVE"
 msgstr "Salvataggio Automatico"
+
+#, fuzzy
+msgid "SAVE_CHEATS_USED"
+msgstr "Spazio occupato:"
 
 msgid "SAVE_DELETE_WARNING"
 msgstr "Cancellare questo salvataggio è un'azione irreversibile. Sei sicuro di voler eliminare definitivamente {0}?"
@@ -6003,6 +6154,9 @@ msgstr ""
 msgid "STRUCTURE_STEAM_POWERED_FACTORY"
 msgstr ""
 
+msgid "SUCCESSFULLY_PERFORM_ENDOSYMBIOSIS"
+msgstr ""
+
 msgid "SUCCESSFUL_KILL"
 msgstr "uccisione riuscita"
 
@@ -6023,6 +6177,10 @@ msgstr "Sostenitori"
 
 msgid "SURVIVAL_TITLE"
 msgstr ""
+
+#, fuzzy
+msgid "SURVIVE_WITH_A_NUCLEUS"
+msgstr "Richiede nucleo"
 
 msgid "SWITCH_TO_FRONT_CAMERA"
 msgstr "Passa alla visione frontale"
@@ -6063,6 +6221,14 @@ msgstr "Cattura la schermata [screenshot]"
 #, fuzzy
 msgid "TARGET_TYPE_COLON"
 msgstr "Tipo:"
+
+#, fuzzy
+msgid "TASTE_THE_SUN"
+msgstr "Thread attuali:"
+
+#, fuzzy
+msgid "TASTY_RADIATION"
+msgstr "Respirazione aerobica"
 
 msgid "TECHNOLOGY_ASCENSION"
 msgstr ""
@@ -6168,6 +6334,10 @@ msgid "THE_DISTURBANCE"
 msgstr ""
 
 #, fuzzy
+msgid "THE_EDITOR"
+msgstr "Vai al prossimo pannello dell'editor"
+
+#, fuzzy
 msgid "THE_PATCH_MAP_BUTTON"
 msgstr "Mappa delle zone"
 
@@ -6210,6 +6380,10 @@ msgstr ""
 
 msgid "THRIVE_LICENSES"
 msgstr "Licenze Thrive"
+
+#, fuzzy
+msgid "THRIVIN_ACHIEVEMENT"
+msgstr "Movimento di Base"
 
 msgid "THYLAKOIDS"
 msgstr "Tilacoidi"
@@ -6511,10 +6685,6 @@ msgid "TUTORIAL"
 msgstr "Tutorial"
 
 #, fuzzy
-msgid "TUTORIAL_ALL_NOT_ENABLED_EXPLANATION"
-msgstr "(comincia ogni generazione vicino a una nuvola di glucosio)"
-
-#, fuzzy
 msgid "TUTORIAL_MICROBE_EDITOR_ATP_BALANCE_INTRO"
 msgstr ""
 "Questa è la mappa delle zone.\n"
@@ -6813,6 +6983,10 @@ msgstr ""
 msgid "TUTORIAL_MULTICELLULAR_STAGE_WELCOME"
 msgstr "Caricamento dell'Editor Multicellulare Iniziale"
 
+#, fuzzy
+msgid "TUTORIAL_REPLAY_ALL_EXPLANATION"
+msgstr "(comincia ogni generazione vicino a una nuvola di glucosio)"
+
 msgid "TUTORIAL_VIEW_NOW"
 msgstr "Vedi ora"
 
@@ -7101,6 +7275,10 @@ msgstr "Aumenta lo spazio di stoccaggio della cellula."
 
 msgid "VALUE_WITH_UNIT"
 msgstr "{0} {1}"
+
+#, fuzzy
+msgid "VENTS_ARE_HOME"
+msgstr "Nessun evento registrato"
 
 msgid "VERSION_COLON"
 msgstr "Versione:"
@@ -9042,6 +9220,27 @@ msgstr ""
 "Includi gli Easter eggs: {1}"
 
 #, fuzzy
+msgid "WORLD_OCEANIC_COVERAGE"
+msgstr "per aumentare la"
+
+#, fuzzy
+msgid "WORLD_OCEANIC_COVERAGE_EXPLANATION"
+msgstr ""
+"I microbi focalizzati inseguono le prede e i frammenti di cibo per lunghe distanze\n"
+"e potrebbero essere più ambiziosi per questi ultimi.\n"
+"I microbi reattivi cambiano più facilmente bersaglio."
+
+msgid "WORLD_OCEANIC_COVERAGE_LARGE"
+msgstr ""
+
+#, fuzzy
+msgid "WORLD_OCEANIC_COVERAGE_MEDIUM"
+msgstr "per aumentare la"
+
+msgid "WORLD_OCEANIC_COVERAGE_SMALL"
+msgstr ""
+
+#, fuzzy
 msgid "WORLD_RELATIVE_MOVEMENT"
 msgstr "per aumentare la"
 
@@ -9069,6 +9268,29 @@ msgstr ""
 #, fuzzy
 msgid "WORLD_SIZE_TOOLTIP"
 msgstr "Tempo trascorso: {0:#,#} anni"
+
+#, fuzzy
+msgid "WORLD_TEMPERATURE"
+msgstr "Temperatura"
+
+#, fuzzy
+msgid "WORLD_TEMPERATURE_COLD"
+msgstr "Temp."
+
+#, fuzzy
+msgid "WORLD_TEMPERATURE_EXPLANATION"
+msgstr ""
+"I microbi focalizzati inseguono le prede e i frammenti di cibo per lunghe distanze\n"
+"e potrebbero essere più ambiziosi per questi ultimi.\n"
+"I microbi reattivi cambiano più facilmente bersaglio."
+
+#, fuzzy
+msgid "WORLD_TEMPERATURE_TEMPERATE"
+msgstr "Temp."
+
+#, fuzzy
+msgid "WORLD_TEMPERATURE_WARM"
+msgstr "Temp."
 
 msgid "WORST_PATCH_COLON"
 msgstr "Peggior zona:"
@@ -9104,15 +9326,39 @@ msgstr ""
 msgid "YOU_CAN_SUPPORT_THRIVE_ON_PATREON"
 msgstr "Puoi sostenere lo sviluppo futuro di Thrive su Patreon."
 
+#, fuzzy
+msgid "YUM_EXCLAMATION"
+msgstr ""
+"I microbi focalizzati inseguono le prede e i frammenti di cibo per lunghe distanze\n"
+"e potrebbero essere più ambiziosi per questi ultimi.\n"
+"I microbi reattivi cambiano più facilmente bersaglio."
+
 msgid "ZOOM_IN"
 msgstr "Zoom avanti"
 
 msgid "ZOOM_OUT"
 msgstr "Zoom indietro"
 
+#~ msgid "CELL_TYPE_BUTTON_ATP_CONSUMPTION"
+#~ msgstr "Il consumo di ATP di questo tipo di cellula è {0}."
+
+#~ msgid "CELL_TYPE_BUTTON_ATP_PRODUCTION"
+#~ msgstr "La produzione di ATP di questo tipo di cellula è {0}."
+
 #, fuzzy
-#~ msgid "TEMPERATURE_SESSILITY_PRESSURE_DESCRIPTION"
-#~ msgstr "Produce [thrive:compound type=\"atp\"][/thrive:compound]. Il tasso aumenta con la [thrive:compound type=\"temperature\"][/thrive:compound]."
+#~ msgid "WORLD_SEA_LEVEL"
+#~ msgstr "{0}-{1}m sotto il livello del mare"
+
+#, fuzzy
+#~ msgid "WORLD_SEA_LEVEL_DEEP"
+#~ msgstr "{0}-{1}m sotto il livello del mare"
+
+#, fuzzy
+#~ msgid "WORLD_SEA_LEVEL_MODERATE"
+#~ msgstr "per aumentare la"
+
+#~ msgid "PLANET_GENERATION_TEASER"
+#~ msgstr "Generazione planetaria in arrivo!"
 
 #~ msgid "PASSIVE_REPRODUCTION_PROGRESS_EXPLANATION"
 #~ msgstr "(ottieni composti riproduttivi in modo passivo dall'ambiente, senza dover far nulla)"
@@ -9336,10 +9582,6 @@ msgstr "Zoom indietro"
 #~ msgstr "Fase della consapevolezza"
 
 #, fuzzy
-#~ msgid "WIKI_CHEMOSYNTHESIS"
-#~ msgstr "Chemiosintesi"
-
-#, fuzzy
 #~ msgid "WIKI_GLYCOLYSIS"
 #~ msgstr "Glicolisi"
 
@@ -9354,10 +9596,6 @@ msgstr "Zoom indietro"
 #, fuzzy
 #~ msgid "WIKI_LIPASE"
 #~ msgstr "Lipasi"
-
-#, fuzzy
-#~ msgid "WIKI_MICROBE_EDITOR"
-#~ msgstr "Editor Microbico"
 
 #, fuzzy
 #~ msgid "WIKI_MUCILAGE_SYNTHESIS"

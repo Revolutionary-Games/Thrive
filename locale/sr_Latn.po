@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2025-07-21 15:54+0300\n"
+"POT-Creation-Date: 2025-08-25 19:09+0300\n"
 "PO-Revision-Date: 2025-05-25 15:00+0000\n"
 "Last-Translator: Anonymous <noreply@weblate.org>\n"
 "Language-Team: Serbian (Latin script) <https://translate.revolutionarygamesstudio.com/projects/thrive/thrive-game/sr_Latn/>\n"
@@ -52,6 +52,19 @@ msgid "ABYSSOPELAGIC"
 msgstr "Abisopelagik"
 
 msgid "ACCEPT"
+msgstr ""
+
+#, fuzzy
+msgid "ACHIEVEMENTS"
+msgstr "Pokret"
+
+msgid "ACHIEVEMENTS_TOTAL"
+msgstr ""
+
+msgid "ACHIEVEMENT_ACHIEVED"
+msgstr ""
+
+msgid "ACHIEVEMENT_LOCKED"
 msgstr ""
 
 msgid "ACTION_AWAKEN"
@@ -364,6 +377,10 @@ msgid "AUTO_EVO"
 msgstr "Automatska-Evolucija"
 
 #, fuzzy
+msgid "AUTO_EVO_EXPLORER_TOOL_BUTTON"
+msgstr "status pokretanja:"
+
+#, fuzzy
 msgid "AUTO_EVO_EXPLORING_TOOL"
 msgstr "status pokretanja:"
 
@@ -424,6 +441,9 @@ msgstr "Nazad"
 #, fuzzy
 msgid "BACKSPACE"
 msgstr "Nazad"
+
+msgid "BACK_TO_SETTINGS"
+msgstr ""
 
 #, fuzzy
 msgid "BACTERIAL_THERMOSYNTHESIS"
@@ -504,6 +524,12 @@ msgstr ""
 #, fuzzy
 msgid "BEST_PATCH_COLON"
 msgstr "Vrste:"
+
+msgid "BETTER_TOGETHER"
+msgstr ""
+
+msgid "BEYOND_THE_CELL"
+msgstr ""
 
 msgid "BIG_IRON_CHUNK"
 msgstr "Veliki komad gvožđa"
@@ -628,6 +654,9 @@ msgstr ""
 msgid "CANNOT_ENGULF"
 msgstr "Ne može da guta"
 
+msgid "CANNOT_IMPROVE_PERFECTION"
+msgstr ""
+
 msgid "CANNOT_MOVE_METABALL_TO_DESCENDANT_TREE"
 msgstr ""
 
@@ -706,13 +735,6 @@ msgstr "Nastaviti"
 msgid "CELL_STAT_STORAGE_TOOLTIP"
 msgstr "Nastaviti"
 
-msgid "CELL_TYPE_BUTTON_ATP_CONSUMPTION"
-msgstr ""
-
-#, fuzzy
-msgid "CELL_TYPE_BUTTON_ATP_PRODUCTION"
-msgstr "Dodajte novo vezivanje tastera"
-
 msgid "CELL_TYPE_NAME"
 msgstr ""
 
@@ -729,6 +751,10 @@ msgstr "Otrovna vakuola je vakuola koja je modifikovana za specifičnu proizvodn
 
 msgid "CHEATS"
 msgstr "Varanje"
+
+#, fuzzy
+msgid "CHEATS_USED_NOTICE"
+msgstr "Prekinuto."
 
 msgid "CHEAT_KEYS_ENABLED"
 msgstr "Uključi tasteri za varanja"
@@ -855,6 +881,22 @@ msgid "CLEAR_CACHE"
 msgstr ""
 
 msgid "CLICK_TO_SELECT"
+msgstr ""
+
+msgid "CLIMATE_INSTABILITY"
+msgstr ""
+
+#, fuzzy
+msgid "CLIMATE_INSTABILITY_EXPLANATION"
+msgstr "Broj populacije od {0} promenio se za {1} zbog: {2}"
+
+msgid "CLIMATE_STABILITY_AVERAGE"
+msgstr ""
+
+msgid "CLIMATE_STABILITY_STABLE"
+msgstr ""
+
+msgid "CLIMATE_STABILITY_UNSTABLE"
 msgstr ""
 
 msgid "CLOSE"
@@ -1115,6 +1157,14 @@ msgstr "Dodajte novo vezivanje tastera"
 msgid "CONFIRM_NEW_GAME_BUTTON_TOOLTIP_DISABLED"
 msgstr "Dodajte novo vezivanje tastera"
 
+#, fuzzy
+msgid "CONFIRM_RESET_ACHIEVEMENTS"
+msgstr "POTVRDI"
+
+#, fuzzy
+msgid "CONFIRM_RESET_ACHIEVEMENTS_DESCRIPTION"
+msgstr "Nitrogenaza je protein u stanju da koristi gasoviti azot i ćelijsku energiju u obliku ATP za proizvodnju amonijaka, ključnog hranljivog sastojka za rast ćelija. Ovo je proces koji se naziva anaerobna fiksacija azota. Pošto je nitrogenaza suspendovana direktno u citoplazmi, okolna tečnost vrši fermentaciju."
+
 msgid "CONSTRUCTION_UNIT_NAME"
 msgstr ""
 
@@ -1312,6 +1362,10 @@ msgstr ""
 
 msgid "CORRECTION_TRITANOPE"
 msgstr ""
+
+#, fuzzy
+msgid "CPU_POWER_NOT_ENOUGH_FOR_SPEED_MODE"
+msgstr "Oblak jedinjenja"
 
 msgid "CPU_THREADS"
 msgstr ""
@@ -1880,6 +1934,10 @@ msgstr ""
 msgid "EDITOR_TUTORIAL_MICROBE_EDITOR_NUCLEUS"
 msgstr "Učitavanje Uređivača Mikroba"
 
+#, fuzzy
+msgid "EDIT_MICROBE_FIRST_TIME"
+msgstr "Zona: {0}"
+
 msgid "EFFECTIVE_VALUE"
 msgstr ""
 
@@ -1989,6 +2047,9 @@ msgid "ENERGY_SOURCES"
 msgstr ""
 
 msgid "ENERGY_SUMMARY_LINE"
+msgstr ""
+
+msgid "ENGULF_CELL_OR_CHUNK"
 msgstr ""
 
 msgid "ENGULF_NO_ATP_DAMAGE_MESSAGE"
@@ -2349,6 +2410,10 @@ msgstr ""
 msgid "FORGET_MOD_DETAILS_TOOLTIP"
 msgstr "Nastaviti"
 
+#, fuzzy
+msgid "FORM_CELL_COLONY"
+msgstr "Skladište"
+
 msgid "FORM_ERROR_MESSAGE"
 msgstr ""
 
@@ -2465,11 +2530,34 @@ msgid "GENERAL_LOADING_TIP_7"
 msgstr "Pritisnite dugme poništi u uređivaču da biste ispravili grešku"
 
 #, fuzzy
+msgid "GENERATE_BUTTON"
+msgstr "Generacija:"
+
+msgid "GENERATE_POSITIVE_GLUCOSE_PHOTOSYNTHESIS"
+msgstr ""
+
+#, fuzzy
 msgid "GENERATIONS"
 msgstr "Generacija:"
 
 msgid "GENERATION_COLON"
 msgstr "Generacija:"
+
+msgid "GEOLOGICAL_ACTIVITY"
+msgstr ""
+
+msgid "GEOLOGICAL_ACTIVITY_ACTIVE"
+msgstr ""
+
+msgid "GEOLOGICAL_ACTIVITY_AVERAGE"
+msgstr ""
+
+msgid "GEOLOGICAL_ACTIVITY_DORMANT"
+msgstr ""
+
+#, fuzzy
+msgid "GEOLOGICAL_ACTIVITY_EXPLANATION"
+msgstr "Broj populacije od {0} promenio se za {1} zbog: {2}"
 
 #, fuzzy
 msgid "GITHUB_TOOLTIP"
@@ -2523,6 +2611,9 @@ msgstr ""
 #, fuzzy
 msgid "GOD_TOOLS_TITLE"
 msgstr "Dodajte novo vezivanje tastera"
+
+msgid "GOING_NUCLEAR"
+msgstr ""
 
 msgid "GOOGLY_EYE_CELL"
 msgstr ""
@@ -3045,6 +3136,14 @@ msgstr ""
 msgid "KEY_UP"
 msgstr ""
 
+#, fuzzy
+msgid "KILL_50_MICROBES"
+msgstr "Nitrogenaza"
+
+#, fuzzy
+msgid "KILL_MICROBES_PROGRESS"
+msgstr "Učitavanje Uređivača Mikroba"
+
 msgid "KILO_ABBREVIATION"
 msgstr ""
 
@@ -3451,6 +3550,18 @@ msgstr ""
 msgid "MACROSCOPIC_STAGE"
 msgstr "Zona: {0}"
 
+#, fuzzy
+msgid "MAKE_CELL_THAT_EATS_RADIATION"
+msgstr "Broj populacije od {0} promenio se za {1} zbog: {2}"
+
+#, fuzzy
+msgid "MAKE_CELL_USE_CHEMOSYNTHESIS"
+msgstr "Hemosinteza"
+
+#, fuzzy
+msgid "MAKE_NO_CHANGES_IN_EDITOR"
+msgstr "Omogućite uređivač"
+
 msgid "MANUALLY_SET_TIME"
 msgstr ""
 
@@ -3813,6 +3924,14 @@ msgstr "Učitavanje Uređivača Mikroba"
 #, fuzzy
 msgid "MICROBE_STAGE_ORGANELLE_DIVISION"
 msgstr "Statistika Organizma"
+
+#, fuzzy
+msgid "MICROBIAL_MASSACRE"
+msgstr "Zona: {0}"
+
+#, fuzzy
+msgid "MICRO_BORG"
+msgstr "Zona: {0}"
 
 msgid "MIDDLE_MOUSE"
 msgstr "Srednji miš"
@@ -4366,6 +4485,10 @@ msgid "NO_FOSSIL_DIRECTORY"
 msgstr ""
 
 #, fuzzy
+msgid "NO_LONGER_ELIGIBLE_FOR_ACHIEVEMENTS"
+msgstr "POTVRDI"
+
+#, fuzzy
 msgid "NO_MODS_ENABLED"
 msgstr "Uključi tasteri za varanja"
 
@@ -4819,10 +4942,11 @@ msgstr "Postavite organelu"
 msgid "PLANET"
 msgstr ""
 
-msgid "PLANET_DETAILS_STRING"
-msgstr ""
+#, fuzzy
+msgid "PLANET_CUSTOMIZER"
+msgstr "Na Kursoru:"
 
-msgid "PLANET_GENERATION_TEASER"
+msgid "PLANET_DETAILS_STRING"
 msgstr ""
 
 msgid "PLANET_RANDOM_SEED"
@@ -5009,6 +5133,16 @@ msgstr ""
 msgid "RAW_VALUE_COLON"
 msgstr "Brzina:"
 
+msgid "REACH_GENERATION_15_WITH_A_SPECIES"
+msgstr ""
+
+msgid "REACH_GENERATION_15_WITH_A_SPECIES_PROGRESS"
+msgstr ""
+
+#, fuzzy
+msgid "REACH_MULTICELLULAR_STAGE"
+msgstr "Postavite organelu"
+
 msgid "READING_SAVE_DATA"
 msgstr ""
 
@@ -5030,6 +5164,10 @@ msgstr "Ponovi poslednju akciju"
 
 msgid "REFRESH"
 msgstr ""
+
+#, fuzzy
+msgid "REGENERATE_BUTTON"
+msgstr "Organele"
 
 msgid "RENDER_SCALE"
 msgstr ""
@@ -5083,6 +5221,10 @@ msgstr "Resetovati"
 
 msgid "RESET"
 msgstr "Resetovati"
+
+#, fuzzy
+msgid "RESET_ACHIEVEMENTS"
+msgstr "za povećanje kretanja"
 
 #, fuzzy
 msgid "RESET_DEADZONES"
@@ -5266,6 +5408,9 @@ msgid "SAVE_AND_CONTINUE"
 msgstr "Sačuvaj i nastavi"
 
 msgid "SAVE_AUTOSAVE"
+msgstr ""
+
+msgid "SAVE_CHEATS_USED"
 msgstr ""
 
 msgid "SAVE_DELETE_WARNING"
@@ -5920,6 +6065,9 @@ msgstr ""
 msgid "STRUCTURE_STEAM_POWERED_FACTORY"
 msgstr ""
 
+msgid "SUCCESSFULLY_PERFORM_ENDOSYMBIOSIS"
+msgstr ""
+
 msgid "SUCCESSFUL_KILL"
 msgstr "uspešno ubistvo"
 
@@ -5941,6 +6089,10 @@ msgstr ""
 
 msgid "SURVIVAL_TITLE"
 msgstr ""
+
+#, fuzzy
+msgid "SURVIVE_WITH_A_NUCLEUS"
+msgstr "Ćelijsko Jezgro"
 
 msgid "SWITCH_TO_FRONT_CAMERA"
 msgstr ""
@@ -5980,6 +6132,14 @@ msgstr "Napravite snimak ekrana"
 #, fuzzy
 msgid "TARGET_TYPE_COLON"
 msgstr "Zdrav.:"
+
+#, fuzzy
+msgid "TASTE_THE_SUN"
+msgstr "Sačuvaj i nastavi"
+
+#, fuzzy
+msgid "TASTY_RADIATION"
+msgstr "Disanje"
 
 msgid "TECHNOLOGY_ASCENSION"
 msgstr ""
@@ -6079,6 +6239,10 @@ msgid "THE_DISTURBANCE"
 msgstr ""
 
 #, fuzzy
+msgid "THE_EDITOR"
+msgstr "Omogućite uređivač"
+
+#, fuzzy
 msgid "THE_PATCH_MAP_BUTTON"
 msgstr "Karta Zone"
 
@@ -6121,6 +6285,10 @@ msgstr ""
 
 msgid "THRIVE_LICENSES"
 msgstr ""
+
+#, fuzzy
+msgid "THRIVIN_ACHIEVEMENT"
+msgstr "Pokret"
 
 msgid "THYLAKOIDS"
 msgstr "Tilakoidi"
@@ -6411,10 +6579,6 @@ msgid "TUTORIAL"
 msgstr ""
 
 #, fuzzy
-msgid "TUTORIAL_ALL_NOT_ENABLED_EXPLANATION"
-msgstr "Izbodite druge ćelije sa ovo."
-
-#, fuzzy
 msgid "TUTORIAL_MICROBE_EDITOR_ATP_BALANCE_INTRO"
 msgstr "Učitavanje Uređivača Mikroba"
 
@@ -6547,6 +6711,10 @@ msgstr "Slobodna-Gradnja Uređivač Mikroba"
 #, fuzzy
 msgid "TUTORIAL_MULTICELLULAR_STAGE_WELCOME"
 msgstr "Učitavanje Uređivača Mikroba"
+
+#, fuzzy
+msgid "TUTORIAL_REPLAY_ALL_EXPLANATION"
+msgstr "Izbodite druge ćelije sa ovo."
 
 msgid "TUTORIAL_VIEW_NOW"
 msgstr ""
@@ -6835,6 +7003,9 @@ msgid "VACUOLE_SPECIALIZED_DESCRIPTION"
 msgstr "Vakuola je unutrašnja membranska organela koja se koristi za skladištenje u ćeliji. Sastoje se od nekoliko vezikula, manjih opnastih struktura koje se široko koriste u ćelijama za skladištenje, a koje su se stopile. Ispunjen je vodom koja se koristi da sadrži molekule, enzime, čvrste materije i druge supstance. Njihov oblik je tečan i može se razlikovati između ćelija."
 
 msgid "VALUE_WITH_UNIT"
+msgstr ""
+
+msgid "VENTS_ARE_HOME"
 msgstr ""
 
 #, fuzzy
@@ -8771,6 +8942,24 @@ msgid "WORLD_MISC_DETAILS_STRING"
 msgstr ""
 
 #, fuzzy
+msgid "WORLD_OCEANIC_COVERAGE"
+msgstr "za povećanje kretanja"
+
+#, fuzzy
+msgid "WORLD_OCEANIC_COVERAGE_EXPLANATION"
+msgstr "Broj populacije od {0} promenio se za {1} zbog: {2}"
+
+msgid "WORLD_OCEANIC_COVERAGE_LARGE"
+msgstr ""
+
+#, fuzzy
+msgid "WORLD_OCEANIC_COVERAGE_MEDIUM"
+msgstr "za povećanje kretanja"
+
+msgid "WORLD_OCEANIC_COVERAGE_SMALL"
+msgstr ""
+
+#, fuzzy
 msgid "WORLD_RELATIVE_MOVEMENT"
 msgstr "za povećanje kretanja"
 
@@ -8795,6 +8984,26 @@ msgstr ""
 #, fuzzy
 msgid "WORLD_SIZE_TOOLTIP"
 msgstr "Dodajte novo vezivanje tastera"
+
+#, fuzzy
+msgid "WORLD_TEMPERATURE"
+msgstr "Temperatura"
+
+#, fuzzy
+msgid "WORLD_TEMPERATURE_COLD"
+msgstr "Temp."
+
+#, fuzzy
+msgid "WORLD_TEMPERATURE_EXPLANATION"
+msgstr "Broj populacije od {0} promenio se za {1} zbog: {2}"
+
+#, fuzzy
+msgid "WORLD_TEMPERATURE_TEMPERATE"
+msgstr "Temp."
+
+#, fuzzy
+msgid "WORLD_TEMPERATURE_WARM"
+msgstr "Temp."
 
 #, fuzzy
 msgid "WORST_PATCH_COLON"
@@ -8830,6 +9039,10 @@ msgstr ""
 msgid "YOU_CAN_SUPPORT_THRIVE_ON_PATREON"
 msgstr ""
 
+#, fuzzy
+msgid "YUM_EXCLAMATION"
+msgstr "Pomerite nadole"
+
 msgid "ZOOM_IN"
 msgstr "Zumirati"
 
@@ -8837,8 +9050,20 @@ msgid "ZOOM_OUT"
 msgstr "Odzumirati"
 
 #, fuzzy
-#~ msgid "TEMPERATURE_SESSILITY_PRESSURE_DESCRIPTION"
-#~ msgstr "Termoplast je dvostruka membranska struktura koja sadrži termosenzibilne pigmente složene zajedno u membranske vrećice. To je prokariot koji je asimilirao za upotrebu od svog eukariotskog domaćina. Pigmenti u termoplastu mogu da koriste energiju toplotnih razlika u okolini za proizvodnju glukoze iz vode i gasovitog ugljen-dioksida u procesu koji se naziva termosinteza. Stopa njegove proizvodnje glukoze skalira se sa koncentracijom ugljen-dioksida i temperaturom."
+#~ msgid "CELL_TYPE_BUTTON_ATP_PRODUCTION"
+#~ msgstr "Dodajte novo vezivanje tastera"
+
+#, fuzzy
+#~ msgid "WORLD_SEA_LEVEL"
+#~ msgstr "Dodajte novo vezivanje tastera"
+
+#, fuzzy
+#~ msgid "WORLD_SEA_LEVEL_DEEP"
+#~ msgstr "za povećanje kretanja"
+
+#, fuzzy
+#~ msgid "WORLD_SEA_LEVEL_MODERATE"
+#~ msgstr "za povećanje kretanja"
 
 #, fuzzy
 #~ msgid "PASSIVE_REPRODUCTION_PROGRESS_EXPLANATION"
@@ -9061,10 +9286,6 @@ msgstr "Odzumirati"
 #~ msgstr "Zona: {0}"
 
 #, fuzzy
-#~ msgid "WIKI_CHEMOSYNTHESIS"
-#~ msgstr "Hemosinteza"
-
-#, fuzzy
 #~ msgid "WIKI_GLYCOLYSIS"
 #~ msgstr "Glikoliza"
 
@@ -9081,10 +9302,6 @@ msgstr "Odzumirati"
 #, fuzzy
 #~ msgid "WIKI_LIPASE"
 #~ msgstr "Lepljiva unutrašnjost ćelije. Citoplazma je osnovna smeša jona, proteina i drugih supstanci rastvorenih u vodi koja ispunjava unutrašnjost ćelije. Jedna od funkcija koju obavlja je fermentacija, pretvaranje glukoze u ATP energiju. Da bi ćelije kojima nedostaju organeli imali napredniji metabolizam, na to se oslanjaju u energiji. Takođe se koristi za skladištenje molekula u ćeliji i za povećanje veličine ćelije."
-
-#, fuzzy
-#~ msgid "WIKI_MICROBE_EDITOR"
-#~ msgstr "Učitavanje Uređivača Mikroba"
 
 #, fuzzy
 #~ msgid "WIKI_MUCILAGE_SYNTHESIS"
@@ -9375,10 +9592,6 @@ msgstr "Odzumirati"
 #, fuzzy
 #~ msgid "BRACERIGHT"
 #~ msgstr "Rotirajte desno"
-
-#, fuzzy
-#~ msgid "EXCLAMDOWN"
-#~ msgstr "Pomerite nadole"
 
 #, fuzzy
 #~ msgid "COPYRIGHT"

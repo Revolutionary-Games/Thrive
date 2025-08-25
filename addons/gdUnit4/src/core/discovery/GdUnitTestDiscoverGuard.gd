@@ -143,6 +143,13 @@ func find_test_by_id(id: GdUnitGUID) -> GdUnitTestCase:
 	return null
 
 
+func get_discovered_tests() -> Array[GdUnitTestCase]:
+	var discovered_tests: Array[GdUnitTestCase] = []
+	for test_sets: Array[GdUnitTestCase] in _discover_cache.values():
+		discovered_tests.append_array(test_sets)
+	return discovered_tests
+
+
 ## Discovers tests in a script and tracks changes.[br]
 ## [br]
 ## Handles both GDScript and C# test suites.[br]

@@ -1,0 +1,93 @@
+﻿using Godot;
+
+public interface IAchievement
+{
+    /// <summary>
+    ///   A unique identifier that each achievement is identified by
+    /// </summary>
+    public int Identifier { get; }
+
+    /// <summary>
+    ///   Internal name of the achievement. This must match what is configured in the Steam backend.
+    /// </summary>
+    public string InternalName { get; }
+
+    public LocalizedString Name { get; }
+
+    /// <summary>
+    ///   Description of how to achieve this achievement. For including info about the current progress in this text,
+    ///   see <see cref="GetProgress"/>
+    /// </summary>
+    public LocalizedString Description { get; }
+
+    public bool Achieved { get; }
+
+    public bool HideIfNotAchieved { get; }
+
+    /// <summary>
+    ///   Called when a relevant change happens in the underlying statistics. Should unlock this achievement if the
+    ///   conditions are fulfilled.
+    /// </summary>
+    /// <param name="updatedStats">Achievement data store with the updates</param>
+    /// <returns>True if this is now unlocked</returns>
+    public bool ProcessPotentialUnlock(IAchievementStatStore updatedStats);
+
+    /// <summary>
+    ///   Gets an icon for this achievement when it is achieved
+    /// </summary>
+    /// <returns>Loaded icon for this achievement (loads on the first call)</returns>
+    public Texture2D GetUnlockedIcon();
+
+    /// <summary>
+    ///   Locks this achievement (resets progress)
+    /// </summary>
+    public void Reset();
+
+    /// <summary>
+    ///   Checks if <see cref="GetProgress"/> would have anything meaningful to show
+    /// </summary>
+    /// <param name="stats">Stats to check in</param>
+    /// <returns>
+    ///   True if there is any progress towards this achievement. Note that many achievements are just on / off.
+    /// </returns>
+    public bool HasAnyProgress(IAchievementStatStore stats);
+
+    /// <summary>
+    ///   Gets text describing the current progress.
+    /// </summary>
+    /// <returns>Similar text to <see cref="Description"/> but has progress info</returns>
+    public string GetProgress(IAchievementStatStore stats);
+
+    /// <summary>
+    ///   Gets progress data to show in the Steam achievements popup
+    /// </summary>
+    /// <param name="stats">Stats to fetch current progress from</param>
+    /// <param name="current">Current progress</param>
+    /// <param name="max">Max progress</param>
+    public bool GetSteamProgress(IAchievementStatStore stats, out uint current, out uint max);
+
+    /// <summary>
+    ///   Whenever this achievement is exactly at a major milestone, this should return true, which is then used to
+    ///   show progress towards unlocking this achievement.
+    ///   This may return true when the achievement is unlocked.
+    /// </summary>
+    /// <param name="stats">Current stats values</param>
+    /// <returns>True when this achievement is currently at a major milestone</returns>
+    public bool IsAtUnlockMilestone(IAchievementStatStore stats);
+}
+
+public static class AchievementIds
+{
+    public const int MICROBIAL_MASSACRE = 1;
+    public const int THE_EDITOR = 2;
+    public const int BETTER_TOGETHER = 3;
+    public const int GOING_NUCLEAR = 4;
+    public const int TASTE_THE_SUN = 5;
+    public const int CANNOT_IMPROVE_PERFECTION = 6;
+    public const int YUM = 7;
+    public const int TASTY_RADIATION = 8;
+    public const int VENTS_ARE_HOME = 9;
+    public const int THRIVING = 10;
+    public const int MICRO_BORG = 11;
+    public const int BEYOND_THE_CELL = 12;
+}

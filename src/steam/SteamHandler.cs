@@ -170,10 +170,10 @@ public partial class SteamHandler : Node, ISteamSignalReceiver
     }
 
     /// <summary>
-    ///   Should only be called by the Steam handling library when its loaded
+    ///   Should only be called by the Steam handling library when it's loaded
     /// </summary>
     /// <param name="client">The Steam handler to register</param>
-    /// <exception cref="ArgumentException">If client is invalid</exception>
+    /// <exception cref="ArgumentException">If the client is invalid</exception>
     /// <exception cref="InvalidOperationException">If a client has already registered</exception>
     public void RegisterSteamClient(ISteamClient client)
     {
@@ -188,6 +188,11 @@ public partial class SteamHandler : Node, ISteamSignalReceiver
         // TODO: show a popup panel with the error
 
         steamClient?.GenericSteamworksError(failedSignal, message);
+    }
+
+    public ISteamClient GetSteamClientForAchievements()
+    {
+        return steamClient ?? throw new InvalidOperationException("Steam client not loaded");
     }
 
     /// <summary>
@@ -223,6 +228,11 @@ public partial class SteamHandler : Node, ISteamSignalReceiver
     public void UserStatsStored(ulong game, int result)
     {
         steamClient?.UserStatsStored(game, result);
+    }
+
+    public void UserAchievementStored(ulong game, uint currentProgress, uint maxProgress, bool groupAchievement)
+    {
+        steamClient?.UserAchievementStored(game, currentProgress, maxProgress, groupAchievement);
     }
 
     public void LowPower(int batteryLeftMinutes)

@@ -25,13 +25,15 @@ public static class Constants
     public const float SIMULATION_OPTIMIZE_THREADS_INTERVAL = 0.3f;
 
     /// <summary>
-    ///   Controls the number of threads used by the entity systems. The number of cells is divided by this and that is
-    ///   the max number of threads.
+    ///   Controls the number of threads used by the entity systems. The number of cells is divided by this,
+    ///   and that is the max number of threads.
     /// </summary>
     public const int SIMULATION_CELLS_PER_THREAD_ESTIMATE = 25;
 
+    public const float SIMULATION_REQUIRED_FAST_MODE_SUCCESS_RATE = 0.45f;
+
     // The following variables define the number of entities each thread running a system of that category needs to be
-    // able to process for threading to be used at all. For example if there are 40 entities and 4 threads to be used
+    // able to process for threading to be used at all. For example, if there are 40 entities and 4 threads to be used
     // and a system specifies 10 entities per thread, that system will run multithreaded (4 * 10 {40} <= 40).
     // But if there was a system that wanted at least 15 entities per thread, that would run purely *single threaded*
     // (4 * 15 {60} <= 40)
@@ -389,6 +391,8 @@ public static class Constants
     /// </summary>
     public const float CURRENT_FORCE_CELL_MULTIPLIER = 15;
 
+    public const float CURRENT_COMPOUND_CLOUD_ADVECT_THRESHOLD = 0.15f;
+
     public const int TRANSLATION_VERY_INCOMPLETE_THRESHOLD = 30;
     public const int TRANSLATION_INCOMPLETE_THRESHOLD = 70;
 
@@ -506,7 +510,7 @@ public static class Constants
 
     public const float CYTOTOXIN_DAMAGE = 20.0f;
 
-    public const float OXYGEN_INHIBITOR_DAMAGE = 14.0f;
+    public const float OXYGEN_INHIBITOR_DAMAGE = 23.0f;
 
     public const float CHANNEL_INHIBITOR_ATP_DEBUFF = 0.5f;
     public const float CHANNEL_INHIBITOR_DEBUFF_DURATION = 15;
@@ -778,6 +782,17 @@ public static class Constants
     public const float SCREEN_DAMAGE_FLASH_THRESHOLD = 0.2f;
 
     public const float SCREEN_DAMAGE_FLASH_DECAY_SPEED = 1.0f;
+
+    public const float MICROBE_CAMERA_MIN_HEIGHT = 3.0f;
+
+    public const float MICROBE_CAMERA_MAX_HEIGHT = 80.0f;
+
+    public const float MULTICELLULAR_CAMERA_MIN_HEIGHT = 8.0f;
+
+    /// <summary>
+    ///   The highest that the dynamic multicellular camera max height can get.
+    /// </summary>
+    public const float MULTICELLULAR_CAMERA_MAX_HEIGHT = 180.0f;
 
     /// <summary>
     ///   Cells need at least this much ATP to regenerate health passively. This is now less than one to allow cells
@@ -1352,6 +1367,10 @@ public static class Constants
     public const double HYDROGEN_SULFIDE_ENVIRONMENT_EATING_MULTIPLIER = 0.00000001;
     public const float HYDROGEN_SULFIDE_NATURAL_DECAY_FACTOR = 0.3f;
 
+    public const float HYDROGEN_SULFIDE_NATURAL_DECAY_INCREASE_PER_OXYGEN = 0.021f;
+    public const float HYDROGEN_SULFIDE_NATURAL_DECAY_FACTOR_OXYGEN = 0.1f;
+    public const float HYDROGEN_SULFIDE_OXYGEN_TOTAL_CUTOFF = 0.01f;
+
     /// <summary>
     ///   Below this value oxygen doesn't cause iron chunks to become less common
     /// </summary>
@@ -1371,7 +1390,7 @@ public static class Constants
     public const float OTHER_GASES_DECAY_SPEED = 0.08f;
 
     // Patch event variables
-    public const int VENT_ERUPTION_CHANCE = 15;
+    public const float VENT_ERUPTION_CHANCE = 0.15f;
     public const float VENT_ERUPTION_HYDROGEN_SULFIDE_INCREASE = 0.001f;
     public const float VENT_ERUPTION_CARBON_DIOXIDE_INCREASE = 0.3f;
 
@@ -1582,6 +1601,9 @@ public static class Constants
     public const string SAVE_FOLDER = "user://saves";
     public const string FOSSILISED_SPECIES_FOLDER = "user://fossils";
     public const string AUTO_EVO_EXPORT_FOLDER = "user://auto-evo_exports";
+
+    public const string ACHIEVEMENTS_CONFIGURATION = "res://simulation_parameters/common/achievements.json";
+    public const string ACHIEVEMENTS_PROGRESS_SAVE = "user://achievements.bin";
 
     public const string TUTORIAL_DATA_FILE = "user://tutorials.json.gz";
 
@@ -1984,6 +2006,9 @@ public static class Constants
 
     public const string CONDITION_GREEN_COLOUR = "#70f423";
     public const string CONDITION_RED_COLOUR = "#ff4d4d";
+
+    public const ulong ACHIEVEMENT_DATA_VALUE = 7484237571489941;
+    public const bool IGNORE_CHEATS_FOR_ACHIEVEMENTS_IN_DEBUG = false;
 
     /// <summary>
     ///   Also see <see cref="AUTO_EVO_BASE_DIGESTION_SCORE"/>

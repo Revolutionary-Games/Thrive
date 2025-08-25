@@ -146,6 +146,12 @@ public partial class MicrobeEditor : EditorBase<EditorAction, MicrobeStage>, IEd
             // Remember if advanced cell editor tabs have been seen for tutorial purposes
             if (cellEditorTab.AreAdvancedTabsVisible())
                 CurrentGame.SetBool(ADVANCED_TABS_SHOWN_BEFORE, true);
+
+            if (!history.CanUndo())
+            {
+                // Nothing done in the whole editor cycle
+                AchievementEvents.ReportExitEditorWithoutChanges();
+            }
         }
 
         return result;

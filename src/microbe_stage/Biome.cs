@@ -44,13 +44,7 @@ public class Biome : IRegistryType
 
     public float CompoundCloudBrightness = 1.0f;
 
-    public float WaterCurrentSpeed = 1.0f;
-
-    public float WaterCurrentChaoticness = 1.0f;
-
-    public float WaterCurrentScale = 1.0f;
-
-    public int WaterCurrentParticleCount = 300;
+    public WaterCurrentsDetails WaterCurrents = new();
 
     /// <summary>
     ///   Total gas volume of this biome when it is a single patch.
@@ -158,5 +152,32 @@ public class Biome : IRegistryType
         ///   position with these coordinates.
         /// </summary>
         public Vector3 Direction = new(0.25f, -0.3f, 0.75f);
+    }
+
+    public class WaterCurrentsDetails
+    {
+        /// <summary>
+        ///   How much the currents push objects and clouds
+        /// </summary>
+        public float Speed = 1.0f;
+
+        /// <summary>
+        ///   How quickly the currents shift
+        /// </summary>
+        public float Chaoticness = 1.0f;
+
+        /// <summary>
+        ///   The reverse scale of the currents noise map. The higher this value, the more frequent the currents.
+        /// </summary>
+        public float InverseScale = 1.0f;
+
+        /// <summary>
+        ///   Whether the particle system should use trails.
+        /// </summary>
+        public bool UseTrails;
+
+        public Color Colour = new(1.0f, 1.0f, 1.0f, 1.0f);
+
+        public int ParticleCount = 300;
     }
 }

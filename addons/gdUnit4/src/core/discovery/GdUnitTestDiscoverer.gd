@@ -94,7 +94,7 @@ static func console_log_discover_results(tests: Array[GdUnitTestCase]) -> void:
 	)
 	for suite_tests: Array in grouped_by_suites.values():
 		var test_case: GdUnitTestCase = suite_tests[0]
-		console_log("Discover: TestSuite %s with %d tests fount" % [test_case.source_file, suite_tests.size()])
+		console_log("Discover: TestSuite %s with %d tests found" % [test_case.source_file, suite_tests.size()])
 	console_log("Discover tests done, %d TestSuites and total %d Tests found. " % [grouped_by_suites.size(), tests.size()])
 	console_log("")
 

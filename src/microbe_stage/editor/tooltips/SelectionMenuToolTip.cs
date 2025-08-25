@@ -26,25 +26,23 @@ public partial class SelectionMenuToolTip : ControlWithInput, ICustomToolTip
     private LabelSettings noProcessesFont = null!;
     private LabelSettings processTitleFont = null!;
 
-    // TODO: these can probably be changed to be non-nullable with the Godot 4 upgrade now allowing directly setting
-    // these
     [Export]
-    private Label? nameLabel;
+    private Label nameLabel = null!;
 
     [Export]
-    private Label? mpLabel;
+    private Label mpLabel = null!;
 
     [Export]
-    private Label? requiresNucleusLabel;
+    private Label requiresNucleusLabel = null!;
 
     [Export]
-    private ModifierInfoLabel? osmoregulationModifier;
+    private ModifierInfoLabel osmoregulationModifier = null!;
 
     [Export]
-    private CustomRichTextLabel? descriptionLabel;
+    private CustomRichTextLabel descriptionLabel = null!;
 
     [Export]
-    private CustomRichTextLabel? processesDescriptionLabel;
+    private CustomRichTextLabel processesDescriptionLabel = null!;
 
     [Export]
     private Control processesDescriptionSeparator = null!;
@@ -53,7 +51,7 @@ public partial class SelectionMenuToolTip : ControlWithInput, ICustomToolTip
     private ProcessList processList = null!;
 
     [Export]
-    private VBoxContainer? moreInfo;
+    private VBoxContainer moreInfo = null!;
 #pragma warning restore CA2213
 
     private string? displayName;
@@ -400,9 +398,6 @@ public partial class SelectionMenuToolTip : ControlWithInput, ICustomToolTip
 
     private void UpdateName()
     {
-        if (nameLabel == null)
-            return;
-
         if (string.IsNullOrEmpty(displayName))
         {
             displayName = nameLabel.Text;
@@ -415,9 +410,6 @@ public partial class SelectionMenuToolTip : ControlWithInput, ICustomToolTip
 
     private void UpdateDescription()
     {
-        if (descriptionLabel == null)
-            return;
-
         if (Description == null)
         {
             descriptionLabel.ExtendedBbcode = null;
@@ -429,9 +421,6 @@ public partial class SelectionMenuToolTip : ControlWithInput, ICustomToolTip
 
     private void UpdateProcessesDescription()
     {
-        if (processesDescriptionLabel == null)
-            return;
-
         processesDescriptionLabel.ExtendedBbcode = Localization.Translate(ProcessesDescription);
         processesDescriptionLabel.Visible = !string.IsNullOrEmpty(ProcessesDescription);
 
@@ -447,31 +436,11 @@ public partial class SelectionMenuToolTip : ControlWithInput, ICustomToolTip
 
     private void UpdateMpCost()
     {
-        if (mpLabel == null)
-            return;
-
-        string cost;
-
-        if (mpCost < 0)
-        {
-            // Negative MP cost means it actually gives MP
-            // To convey that to the player, we need to explicitly prefix the cost with a positive sign
-            cost = "+" + Math.Round(Math.Abs(mpCost), Constants.MUTATION_POINTS_DECIMALS)
-                .ToString(CultureInfo.CurrentCulture);
-        }
-        else
-        {
-            cost = Math.Round(mpCost, Constants.MUTATION_POINTS_DECIMALS).ToString(CultureInfo.CurrentCulture);
-        }
-
-        mpLabel.Text = cost;
+        mpLabel.Text = StringUtils.FormatMutationPointCost(mpCost);
     }
 
     private void UpdateOsmoregulationCost()
     {
-        if (osmoregulationModifier == null)
-            return;
-
         if (ShowOsmoregulation)
         {
             osmoregulationModifier.Visible = true;
@@ -486,9 +455,6 @@ public partial class SelectionMenuToolTip : ControlWithInput, ICustomToolTip
 
     private void UpdateRequiresNucleus()
     {
-        if (requiresNucleusLabel == null)
-            return;
-
         requiresNucleusLabel.Visible = requiresNucleus;
     }
 
@@ -502,9 +468,6 @@ public partial class SelectionMenuToolTip : ControlWithInput, ICustomToolTip
 
     private void UpdateMoreInfo()
     {
-        if (moreInfo == null)
-            return;
-
         moreInfo.Visible = thriveopediaPageName != null;
     }
 
