@@ -1,5 +1,6 @@
 ﻿namespace AutoEvo;
 
+using System;
 using Newtonsoft.Json;
 
 [JSONDynamicTypeAllowed]
@@ -30,8 +31,8 @@ public class CompoundConversionEfficiencyPressure : SelectionPressure
     public CompoundConversionEfficiencyPressure(Compound compound, Compound outCompound, float weight,
         bool usedForSurvival) :
         base(weight, [
-            AddOrganelleAnywhere.ThatConvertBetweenCompounds(compound, outCompound),
             RemoveOrganelle.ThatCreateCompound(outCompound),
+            AddOrganelleAnywhere.ThatConvertBetweenCompounds(compound, outCompound),
         ])
     {
         this.compound = compound;
@@ -54,7 +55,10 @@ public class CompoundConversionEfficiencyPressure : SelectionPressure
 
         // we need to factor in both conversion from source to output, and energy expenditure time
         if (usedForSurvival)
-            score /= cache.GetEnergyBalanceForSpecies(microbeSpecies, patch.Biome).TotalConsumptionStationary;
+        {
+            score /=
+                MathF.Sqrt(cache.GetEnergyBalanceForSpecies(microbeSpecies, patch.Biome).TotalConsumptionStationary);
+        }
 
         return score;
     }

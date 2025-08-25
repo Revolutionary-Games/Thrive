@@ -3,6 +3,7 @@ using System.Collections.Frozen;
 using System.Collections.Generic;
 using System.Linq;
 using AutoEvo;
+using static CommonMutationFunctions;
 
 public class UpgradeOrganelle : IMutationStrategy<MicrobeSpecies>
 {
@@ -32,7 +33,7 @@ public class UpgradeOrganelle : IMutationStrategy<MicrobeSpecies>
 
     public bool Repeatable => false;
 
-    public List<Tuple<MicrobeSpecies, double>>? MutationsOf(MicrobeSpecies baseSpecies, double mp, bool lawk,
+    public List<Mutant>? MutationsOf(MicrobeSpecies baseSpecies, double mp, bool lawk,
         Random random, BiomeConditions biomeToConsider)
     {
         if (allOrganelles.Count == 0)
@@ -58,7 +59,7 @@ public class UpgradeOrganelle : IMutationStrategy<MicrobeSpecies>
 
         if (validMutations)
         {
-            var mutated = new List<Tuple<MicrobeSpecies, double>>();
+            var mutated = new List<Mutant>();
 
             var newSpecies = (MicrobeSpecies)baseSpecies.Clone();
 
@@ -84,7 +85,7 @@ public class UpgradeOrganelle : IMutationStrategy<MicrobeSpecies>
                 }
             }
 
-            mutated.Add(new Tuple<MicrobeSpecies, double>(newSpecies, mp));
+            mutated.Add(new Mutant(newSpecies, mp));
 
             return mutated;
         }
