@@ -8,9 +8,11 @@ using Newtonsoft.Json;
 ///   Prompts the player to place binding agents if they have a nucleus but not binding agents.
 /// </summary>
 /// <remarks>
-///   This inherits from EditorEntryCountingTutorial for the session counting
-///   functionality, but does not use the session count itself to trigger.
-///   Instead, it triggers a few sessions after the player places a nucleus but not binding agents.
+///   <para>
+///     This inherits from EditorEntryCountingTutorial for the session counting
+///     functionality, but does not use the session count itself to trigger.
+///     Instead, it triggers a few sessions after the player places a nucleus but not binding agents.
+///   </para>
 /// </remarks>
 public class BindingAgentsTutorial : EditorEntryCountingTutorial
 {
