@@ -5,7 +5,11 @@ using Godot;
 using Newtonsoft.Json;
 
 /// <summary>
-///   Prompts the player to place binding agents if they have a nucleus but not binding agents
+///   Prompts the player to place binding agents if they have a nucleus but not binding agents.
+///
+///   This inherits from EditorEntryCountingTutorial for the session counting
+///   functionality, but does not use the session count itself to trigger.
+///   Instead, it triggers a few sessions after the player places a nucleus but not binding agents.
 /// </summary>
 public class BindingAgentsTutorial : EditorEntryCountingTutorial
 {
@@ -20,6 +24,9 @@ public class BindingAgentsTutorial : EditorEntryCountingTutorial
     [JsonProperty]
     private bool hasBindingAgents;
 
+    [JsonProperty]
+    private int sessionNucleusPlaced;
+
     public BindingAgentsTutorial()
     {
         CanTrigger = false;
@@ -27,7 +34,10 @@ public class BindingAgentsTutorial : EditorEntryCountingTutorial
 
     public override string ClosedByName => "BindingAgentsTutorial";
 
-    protected override int TriggersOnNthEditorSession => 11;
+    /// <summary>
+    ///   This is purposefully set to 0, as this tutorial does not rely on session count to trigger.
+    /// </summary>
+    protected override int TriggersOnNthEditorSession => 0;
 
     public override void ApplyGUIState(MicrobeEditorTutorialGUI gui)
     {
@@ -55,6 +65,7 @@ public class BindingAgentsTutorial : EditorEntryCountingTutorial
                 if (organelleName == nucleus.InternalName)
                 {
                     hasNucleus = true;
+                    sessionNucleusPlaced = NumberOfEditorEntries;
                 }
 
                 if (organelleName == bindingAgents.InternalName)
@@ -63,7 +74,6 @@ public class BindingAgentsTutorial : EditorEntryCountingTutorial
 
                     if (ShownCurrently)
                     {
-                        GD.Print("Hiding tutorial");
                         Hide();
                     }
                 }
@@ -117,9 +127,11 @@ public class BindingAgentsTutorial : EditorEntryCountingTutorial
             {
                 var tab = ((StringEventArgs)args).Data;
 
-                if (tab == cellEditorTab && hasNucleus && !hasBindingAgents && CanTrigger)
+                var shouldTrigger = NumberOfEditorEntries - sessionNucleusPlaced >=
+                    Constants.TRIGGER_BINDING_AGENTS_TUTORIAL_AFTER_SESSIONS_WITH_NUCLEUS;
+
+                if (tab == cellEditorTab && !hasBindingAgents && hasNucleus && shouldTrigger)
                 {
-                    GD.Print("Showing tutorial");
                     Show();
                 }
 
