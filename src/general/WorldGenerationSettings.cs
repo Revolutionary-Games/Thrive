@@ -131,6 +131,27 @@ public class WorldGenerationSettings
     }
 
     /// <summary>
+    ///   The possible compound levels settings for the planet
+    /// </summary>
+    public enum CompoundLevelsEnum
+    {
+        [Description("COMPOUND_LEVEL_VERY_LOW")]
+        VeryLow = 0,
+
+        [Description("COMPOUND_LEVEL_LOW")]
+        Low = 1,
+
+        [Description("COMPOUND_LEVEL_AVERAGE")]
+        Average = 2,
+
+        [Description("COMPOUND_LEVEL_HIGH")]
+        High = 3,
+
+        [Description("COMPOUND_LEVEL_VERY_HIGH")]
+        VeryHigh = 4,
+    }
+
+    /// <summary>
     ///   Whether this game is restricted to only LAWK parts and abilities
     /// </summary>
     public bool LAWK { get; set; }
@@ -186,6 +207,18 @@ public class WorldGenerationSettings
     ///   </para>
     /// </remarks>
     public ClimateInstabilityEnum ClimateInstability { get; set; } = ClimateInstabilityEnum.Medium;
+
+    public CompoundLevelsEnum SulfideLevel { get; set; } = CompoundLevelsEnum.Average;
+
+    public CompoundLevelsEnum GlucoseLevel { get; set; } = CompoundLevelsEnum.Average;
+
+    public CompoundLevelsEnum IronLevel { get; set; } = CompoundLevelsEnum.Average;
+
+    public CompoundLevelsEnum AmmoniaLevel { get; set; } = CompoundLevelsEnum.Average;
+
+    public CompoundLevelsEnum PhosphatesLevel { get; set; } = CompoundLevelsEnum.Average;
+
+    public CompoundLevelsEnum RadiationLevel { get; set; } = CompoundLevelsEnum.Average;
 
     // The following are helper proxies to the values from the difficulty
     [JsonIgnore]

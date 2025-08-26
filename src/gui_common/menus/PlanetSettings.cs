@@ -28,6 +28,24 @@ public partial class PlanetSettings : VBoxContainer
     private OptionButton worldClimateInstabilityButton = null!;
 
     [Export]
+    private OptionButton sulfideLevelButton = null!;
+
+    [Export]
+    private OptionButton glucoseLevelButton = null!;
+
+    [Export]
+    private OptionButton ironLevelButton = null!;
+
+    [Export]
+    private OptionButton ammoniaLevelButton = null!;
+
+    [Export]
+    private OptionButton phosphatesLevelButton = null!;
+
+    [Export]
+    private OptionButton radiationLevelButton = null!;
+
+    [Export]
     private CheckButton lawkOnlyButton = null!;
 
     [Export]
@@ -59,6 +77,9 @@ public partial class PlanetSettings : VBoxContainer
     [Signal]
     public delegate void LifeOriginSettingsChangedEventHandler(WorldGenerationSettings.LifeOrigin lifeOrigin);
 
+    [Signal]
+    public delegate void PlanetSettingChangedEventHandler();
+
     public WorldGenerationSettings GetPlanetSettings()
     {
         return new WorldGenerationSettings
@@ -68,6 +89,12 @@ public partial class PlanetSettings : VBoxContainer
             WorldOceanicCoverage = (WorldGenerationSettings.WorldOceanicCoverageEnum)worldSeaLevelButton.Selected,
             GeologicalActivity = (WorldGenerationSettings.GeologicalActivityEnum)worldGeologicalActivityButton.Selected,
             ClimateInstability = (WorldGenerationSettings.ClimateInstabilityEnum)worldClimateInstabilityButton.Selected,
+            SulfideLevel = (WorldGenerationSettings.CompoundLevelsEnum)sulfideLevelButton.Selected,
+            GlucoseLevel = (WorldGenerationSettings.CompoundLevelsEnum)glucoseLevelButton.Selected,
+            IronLevel = (WorldGenerationSettings.CompoundLevelsEnum)ironLevelButton.Selected,
+            AmmoniaLevel = (WorldGenerationSettings.CompoundLevelsEnum)ammoniaLevelButton.Selected,
+            PhosphatesLevel = (WorldGenerationSettings.CompoundLevelsEnum)phosphatesLevelButton.Selected,
+            RadiationLevel = (WorldGenerationSettings.CompoundLevelsEnum)radiationLevelButton.Selected,
             Origin = (WorldGenerationSettings.LifeOrigin)lifeOriginButton.Selected,
             DayNightCycleEnabled = dayNightCycleButton.ButtonPressed,
             DayLength = (int)dayLength.Value,
@@ -104,6 +131,36 @@ public partial class PlanetSettings : VBoxContainer
     public void SetWorldClimateInstability(int index)
     {
         worldClimateInstabilityButton.Selected = index;
+    }
+
+    public void SetSulfideLevel(int index)
+    {
+        sulfideLevelButton.Selected = index;
+    }
+
+    public void SetGlucoseLevel(int index)
+    {
+        glucoseLevelButton.Selected = index;
+    }
+
+    public void SetIronLevel(int index)
+    {
+        ironLevelButton.Selected = index;
+    }
+
+    public void SetAmmoniaLevel(int index)
+    {
+        ammoniaLevelButton.Selected = index;
+    }
+
+    public void SetPhosphatesLevel(int index)
+    {
+        phosphatesLevelButton.Selected = index;
+    }
+
+    public void SetRadiationLevel(int index)
+    {
+        radiationLevelButton.Selected = index;
     }
 
     public void SetLawkOnly(bool pressed)
@@ -152,19 +209,24 @@ public partial class PlanetSettings : VBoxContainer
 
         ReportValidityOfGameSeed(valid);
         if (valid)
+        {
             latestValidSeed = seed;
+            EmitSignal(SignalName.PlanetSettingChanged);
+        }
     }
 
     private void OnDayNightCycleToggled(bool pressed)
     {
         dayLengthContainer.Modulate = pressed ? Colors.White : new Color(1.0f, 1.0f, 1.0f, 0.5f);
         dayLength.Editable = pressed;
+        EmitSignal(SignalName.PlanetSettingChanged);
     }
 
     private void OnDayLengthChanged(double length)
     {
         length = Math.Round(length, 1);
         dayLengthReadout.Text = length.ToString(CultureInfo.CurrentCulture);
+        EmitSignal(SignalName.PlanetSettingChanged);
     }
 
     private void UpdateLifeOriginOptions(bool lawk)
@@ -199,8 +261,13 @@ public partial class PlanetSettings : VBoxContainer
 
     private void OnLAWKToggled(bool pressed)
     {
-        EmitSignal(SignalName.LawkSettingsChanged, pressed);
         UpdateLifeOriginOptions(pressed);
+        EmitSignal(SignalName.LawkSettingsChanged, pressed);
+    }
+
+    private void OnPlanetSettingsChanged(int index)
+    {
+        EmitSignal(SignalName.PlanetSettingChanged);
     }
 
     private string GenerateNewRandomSeed()

@@ -26,6 +26,12 @@ public partial class PlanetCustomizerTool : Node
 
     [Export]
     private PlanetSettings planetSettings = null!;
+
+    [Export]
+    private PlanetStatistics planetStatistics = null!;
+
+    [Export]
+    private PanelContainer planetStatisticsContainer = null!;
 #pragma warning restore CA2213
 
     private WorldGenerationSettings worldSettings = null!;
@@ -35,9 +41,9 @@ public partial class PlanetCustomizerTool : Node
     public override void _Ready()
     {
         base._Ready();
+        planetSettings.GenerateAndSetRandomSeed();
         InitNewWorld(SimulationParameters.Instance.AutoEvoConfiguration);
         patchMapDrawer.OnSelectedPatchChanged += UpdatePatchDetailPanel;
-        planetSettings.GenerateAndSetRandomSeed();
     }
 
     private void InitNewWorld(IAutoEvoConfiguration configuration)
@@ -51,6 +57,12 @@ public partial class PlanetCustomizerTool : Node
             WorldOceanicCoverage = planetGenerationSettings.WorldOceanicCoverage,
             GeologicalActivity = planetGenerationSettings.GeologicalActivity,
             ClimateInstability = planetGenerationSettings.ClimateInstability,
+            SulfideLevel = planetGenerationSettings.SulfideLevel,
+            GlucoseLevel = planetGenerationSettings.GlucoseLevel,
+            IronLevel = planetGenerationSettings.IronLevel,
+            AmmoniaLevel = planetGenerationSettings.AmmoniaLevel,
+            PhosphatesLevel = planetGenerationSettings.PhosphatesLevel,
+            RadiationLevel = planetGenerationSettings.RadiationLevel,
             Origin = planetGenerationSettings.Origin,
             DayNightCycleEnabled = planetGenerationSettings.DayNightCycleEnabled,
             DayLength = planetGenerationSettings.DayLength,
@@ -65,6 +77,9 @@ public partial class PlanetCustomizerTool : Node
         patchMapDrawer.Map = gameProperties.GameWorld.Map;
         patchMapDrawer.SelectedPatch = patchMapDrawer.PlayerPatch;
         patchDetailsPanel.SelectedPatch = patchMapDrawer.PlayerPatch;
+
+        PatchMap map = gameProperties.GameWorld.Map;
+        planetStatistics.UpdateStatistics(map);
     }
 
     private void UpdatePatchDetailPanel(PatchMapDrawer drawer)
@@ -83,15 +98,16 @@ public partial class PlanetCustomizerTool : Node
             SceneManager.Instance.ReturnToMenu, false);
     }
 
-    private void OnGeneratePressed()
+    private void OnShowMapPressed()
     {
         settingsPanel.Visible = !settingsPanel.Visible;
+        planetStatisticsContainer.Visible = !planetStatisticsContainer.Visible;
+
         patchMapPanel.Visible = !patchMapPanel.Visible;
-        patchMapButtons.Visible = !patchMapButtons.Visible;
 
         if (settingsPanel.Visible)
         {
-            generateButton.Text = Localization.Translate("GENERATE_BUTTON");
+            generateButton.Text = Localization.Translate("SHOW_MAP");
         }
         else
         {
@@ -103,6 +119,11 @@ public partial class PlanetCustomizerTool : Node
     private void OnRegeneratePressed()
     {
         planetSettings.GenerateAndSetRandomSeed();
+        GeneratePlanet();
+    }
+
+    private void GeneratePlanet()
+    {
         InitNewWorld(SimulationParameters.Instance.AutoEvoConfiguration);
     }
 
