@@ -36,6 +36,9 @@ func _ready() -> void:
 	setup_properties(_properties_shortcuts, GdUnitSettings.SHORTCUT_SETTINGS)
 	check_for_update()
 
+	# Hide the hook settings behind a feature flag
+	_tab_container.set_tab_hidden(1, not GdUnitSettings.is_feature_enabled(GdUnitSettings.HOOK_SETTINGS_VISIBLE))
+
 
 func _sort_by_key(left: GdUnitProperty, right: GdUnitProperty) -> bool:
 	return left.name() < right.name()

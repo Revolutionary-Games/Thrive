@@ -34,6 +34,8 @@ public partial class CreatureStageBase<TPlayer, TSimulation> : StageBase, ICreat
     [JsonProperty]
     protected bool playerExtinctInCurrentPatch;
 
+    private double timeSinceSimulationPerformanceCheck;
+
     public CreatureStageBase()
     {
     }
@@ -132,8 +134,20 @@ public partial class CreatureStageBase<TPlayer, TSimulation> : StageBase, ICreat
             }
         }
 
+        // Track fast speed mode performance
+        if (HasPlayer)
+        {
+            timeSinceSimulationPerformanceCheck += delta;
+
+            if (timeSinceSimulationPerformanceCheck >= 1)
+            {
+                timeSinceSimulationPerformanceCheck = 0;
+                CheckPerformanceEnoughForSimulationSpeed();
+            }
+        }
+
         // Start auto-evo if stage entry finished, don't need to auto save,
-        // settings have auto-evo be started during gameplay and auto-evo is not already started
+        // settings have auto-evo be started during gameplay and auto-evo is not yet started
         if (TransitionFinished && !wantsToSave && Settings.Instance.RunAutoEvoDuringGamePlay)
         {
             GameWorld.IsAutoEvoFinished(true);
@@ -497,6 +511,23 @@ public partial class CreatureStageBase<TPlayer, TSimulation> : StageBase, ICreat
         }
 
         // TODO: to be fully accurate we probably should re-trigger auto-evo to start from scratch here
+    }
+
+    private void CheckPerformanceEnoughForSimulationSpeed()
+    {
+        if (WorldSimulation.WorldTimeScale <= 1)
+            return;
+
+        var simulationRatio = WorldSimulation.GetAndResetTrackedSimulationSpeedRatio();
+
+        if (simulationRatio < Constants.SIMULATION_REQUIRED_FAST_MODE_SUCCESS_RATE)
+        {
+            GD.Print($"Disabling fast mode as ratio of managing to simulate fast mode is only: {simulationRatio}");
+            BaseHUD.HUDMessages.ShowMessage(new SimpleHUDMessage(
+                Localization.Translate("CPU_POWER_NOT_ENOUGH_FOR_SPEED_MODE"),
+                DisplayDuration.Long));
+            BaseHUD.ApplySpeedMode(false);
+        }
     }
 
     private void AdjustTolerancesToWorkInPatch(MicrobeSpecies species, Patch currentPatch)

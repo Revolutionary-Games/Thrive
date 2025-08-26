@@ -7,9 +7,9 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2025-08-11 11:43+0300\n"
-"PO-Revision-Date: 2025-08-13 14:57+0000\n"
-"Last-Translator: Anonymous <noreply@weblate.org>\n"
+"POT-Creation-Date: 2025-08-25 19:09+0300\n"
+"PO-Revision-Date: 2025-08-20 23:16+0000\n"
+"Last-Translator: teenpythonlearner <tomcrum163@163.com>\n"
 "Language-Team: Chinese (Simplified Han script) <https://translate.revolutionarygamesstudio.com/projects/thrive/thrive-game/zh_Hans/>\n"
 "Language: zh_CN\n"
 "MIME-Version: 1.0\n"
@@ -509,7 +509,7 @@ msgid "BETTER_TOGETHER"
 msgstr "人多力量大"
 
 msgid "BEYOND_THE_CELL"
-msgstr ""
+msgstr "超越细胞"
 
 msgid "BIG_IRON_CHUNK"
 msgstr "大铁块"
@@ -621,7 +621,7 @@ msgid "CANNOT_ENGULF"
 msgstr "无法进入吞噬模式"
 
 msgid "CANNOT_IMPROVE_PERFECTION"
-msgstr ""
+msgstr "完美无缺，无以复加"
 
 msgid "CANNOT_MOVE_METABALL_TO_DESCENDANT_TREE"
 msgstr "无法移动金属球到其自己的树形子节点"
@@ -1088,9 +1088,8 @@ msgstr "部分设置无效"
 msgid "CONFIRM_RESET_ACHIEVEMENTS"
 msgstr "确定要重置全部成就吗？"
 
-#, fuzzy
 msgid "CONFIRM_RESET_ACHIEVEMENTS_DESCRIPTION"
-msgstr "将[thrive:compound type=\"atp\"][/thrive:compound]转换成[thrive:compound type=\"ammonia\"][/thrive:compound]。速率跟[thrive:compound type=\"nitrogen\"][/thrive:compound]浓度成正比。"
+msgstr "您确定要重置所有成就及相关统计数据吗？此操作无法撤销，您需要重新获取所有成就，当前所有相关进度将被清空。"
 
 msgid "CONSTRUCTION_UNIT_NAME"
 msgstr "单位：{0}"
@@ -1292,6 +1291,10 @@ msgstr "红绿色盲"
 
 msgid "CORRECTION_TRITANOPE"
 msgstr "蓝黄色盲"
+
+#, fuzzy
+msgid "CPU_POWER_NOT_ENOUGH_FOR_SPEED_MODE"
+msgstr "您的[thrive:compound type=\"{0}\"][/thrive:compound]储存空间不足：现有储存空间只够您用{1}秒，但夜晚有{2}秒长。"
 
 msgid "CPU_THREADS"
 msgstr "线程"
@@ -2412,17 +2415,14 @@ msgstr "有时候逃跑就是最好的选择"
 msgid "GENERAL_LOADING_TIP_5"
 msgstr "当 Auto-Evo 预测宁德物种量会下降时，您仍然可以通过良好的表现提高物种量"
 
-#, fuzzy
 msgid "GENERAL_LOADING_TIP_6"
-msgstr "在编辑器中按下撤消键以纠正错误"
+msgstr "请记住，您可以使用屏幕右上角的面板查看光标下的内容（例如铁、葡萄糖、硫化氢等）。"
 
-#, fuzzy
 msgid "GENERAL_LOADING_TIP_7"
-msgstr "在编辑器中按下撤消键以纠正错误"
+msgstr "若物种量降至零，就意味着灭绝。"
 
-#, fuzzy
 msgid "GENERATE_BUTTON"
-msgstr "世代"
+msgstr "生成世界"
 
 msgid "GENERATE_POSITIVE_GLUCOSE_PHOTOSYNTHESIS"
 msgstr "通过光合作用取得葡萄糖正收入"
@@ -2434,16 +2434,16 @@ msgid "GENERATION_COLON"
 msgstr "世代："
 
 msgid "GEOLOGICAL_ACTIVITY"
-msgstr ""
+msgstr "地质活动"
 
 msgid "GEOLOGICAL_ACTIVITY_ACTIVE"
-msgstr ""
+msgstr "活跃"
 
 msgid "GEOLOGICAL_ACTIVITY_AVERAGE"
-msgstr ""
+msgstr "平均"
 
 msgid "GEOLOGICAL_ACTIVITY_DORMANT"
-msgstr ""
+msgstr "休眠"
 
 #, fuzzy
 msgid "GEOLOGICAL_ACTIVITY_EXPLANATION"
@@ -3596,6 +3596,10 @@ msgstr "掠食者根部压力"
 
 msgid "MICHE_ROOT_PRESSURE"
 msgstr "根部压力"
+
+#, fuzzy
+msgid "MICHE_TEMPERATURE_SESSILITY_PRESSURE"
+msgstr "代谢稳定压力"
 
 msgid "MICHE_TREE"
 msgstr "生态导向源树状图"
@@ -6336,10 +6340,6 @@ msgid "TUTORIAL"
 msgstr "教程"
 
 #, fuzzy
-msgid "TUTORIAL_ALL_NOT_ENABLED_EXPLANATION"
-msgstr "（一些细胞器需要前置解锁条件来放置）"
-
-#, fuzzy
 msgid "TUTORIAL_MICROBE_EDITOR_ATP_BALANCE_INTRO"
 msgstr ""
 "右侧的ATP生产条显示你的细胞生产和消耗[thrive:compound type=\"atp\"][/thrive:compound]的比例。如果顶段条比底段条短，说明你没有产生足够的[thrive:compound type=\"atp\"][/thrive:compound]。\n"
@@ -6636,6 +6636,10 @@ msgstr ""
 "然而，你现在可以设计细胞群落中各细胞排布的位置并使它们分化以让它们分别承担不同的生命活动. 不过要记住群落中的各个细胞并不能共享 [thrive:compound type=\"atp\"][/thrive:compound].\n"
 "\n"
 "如果你使用出芽繁殖 (默认繁殖方式), 你开始时只会控制一个芽体并需要长出群落中剩下的细胞."
+
+#, fuzzy
+msgid "TUTORIAL_REPLAY_ALL_EXPLANATION"
+msgstr "（一些细胞器需要前置解锁条件来放置）"
 
 msgid "TUTORIAL_VIEW_NOW"
 msgstr "现在就查看"

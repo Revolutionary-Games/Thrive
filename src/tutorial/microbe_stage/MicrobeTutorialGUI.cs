@@ -104,7 +104,7 @@ public partial class MicrobeTutorialGUI : Control, ITutorialGUI
 
     public MainGameState AssociatedGameState => MainGameState.MicrobeStage;
 
-    public bool AllTutorialsDesiredState { get; private set; } = true;
+    public bool AllTutorialsDesiredState { get; private set; }
 
     public Node GUINode => this;
 
@@ -551,9 +551,9 @@ public partial class MicrobeTutorialGUI : Control, ITutorialGUI
     {
         AllTutorialsDesiredState = value;
 
-        if (tutorialDisabledExplanation.Visible != !value)
+        if (tutorialDisabledExplanation.Visible != value)
         {
-            tutorialDisabledExplanation.Visible = !value;
+            tutorialDisabledExplanation.Visible = value;
 
             if (tutorialDisabledExplanation.Visible)
             {

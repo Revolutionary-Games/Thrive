@@ -74,6 +74,10 @@ static func spy_on_script(instance :Variant, function_excludes :PackedStringArra
 	var lines := load_template(SPY_TEMPLATE.source_code, class_info, instance as Object)
 	@warning_ignore("unsafe_cast")
 	lines += double_functions(instance as Object, clazz_name, clazz_path, GdUnitSpyFunctionDoubler.new(), function_excludes)
+	# We disable warning/errors for inferred_declaration
+	if Engine.get_version_info().hex >= 0x40400:
+		lines.insert(0, '@warning_ignore_start("inferred_declaration")')
+		lines.append('@warning_ignore_restore("inferred_declaration")')
 
 	var spy := GDScript.new()
 	spy.source_code = "\n".join(lines)

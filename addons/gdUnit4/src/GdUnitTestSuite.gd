@@ -652,12 +652,36 @@ func assert_error(current :Callable) -> GdUnitGodotErrorAssert:
 	return __lazy_load("res://addons/gdUnit4/src/asserts/GdUnitGodotErrorAssertImpl.gd").new(current)
 
 
+## Explicitly fails the current test indicating that the feature is not yet implemented.[br]
+## This function is useful during development when you want to write test cases before implementing the actual functionality.[br]
+## It provides a clear indication that the test failure is expected because the feature is still under development.[br]
+## Usage:
+##     [codeblock]
+##		# Test for a feature that will be implemented later
+##		func test_advanced_ai_behavior():
+##		    assert_not_yet_implemented()
+##
+##     [/codeblock]
 func assert_not_yet_implemented() -> void:
 	@warning_ignore("unsafe_method_access")
 	__gdunit_assert().new(null).do_fail()
 
 
-func fail(message :String) -> void:
+## Explicitly fails the current test with a custom error message.[br]
+## This function reports an error but does not terminate test execution automatically.[br]
+## You must use 'return' after calling fail() to stop the test since GDScript has no exception support.[br]
+## Useful for complex conditional testing scenarios where standard assertions are insufficient.[br]
+## Usage:
+##     [codeblock]
+##		# Fail test when conditions are not met
+##		if !custom_check(player):
+##		    fail("Player should be alive but has %d health" % player.health)
+##		    return
+##
+##		# Continue with test if conditions pass
+##		assert_that(player.health).is_greater(0)
+##     [/codeblock]
+func fail(message: String) -> void:
 	@warning_ignore("unsafe_method_access")
 	__gdunit_assert().new(null).report_error(message)
 

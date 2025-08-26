@@ -79,6 +79,11 @@ public class DummyWorldSimulation : IWorldSimulation
         return false;
     }
 
+    public float GetAndResetTrackedSimulationSpeedRatio()
+    {
+        return 1;
+    }
+
     public void Dispose()
     {
         Dispose(true);

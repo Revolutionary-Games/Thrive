@@ -25,7 +25,7 @@ mouse_filter = 2
 theme = ExtResource("2")
 script = ExtResource("1")
 microbeWelcomeMessage = NodePath("MicrobeWelcome")
-tutorialDisabledExplanation = NodePath("MicrobeWelcome/VBoxContainer/ScrollContainer/VBoxContainer/AllNotEnabledExplanation")
+tutorialDisabledExplanation = NodePath("MicrobeWelcome/VBoxContainer/ScrollContainer/VBoxContainer/AllEnabledExplanation")
 welcomeTutorialScrollContainer = NodePath("MicrobeWelcome/VBoxContainer/ScrollContainer")
 microbeMovementKeyPrompts = NodePath("MicrobeMovementTutorial/KeyPrompts")
 microbeMovementKeyForward = NodePath("MicrobeMovementTutorial/KeyPrompts/Forward")
@@ -98,11 +98,11 @@ fit_content = true
 layout_mode = 2
 size_flags_vertical = 3
 
-[node name="AllNotEnabledExplanation" type="Label" parent="MicrobeWelcome/VBoxContainer/ScrollContainer/VBoxContainer"]
+[node name="AllEnabledExplanation" type="Label" parent="MicrobeWelcome/VBoxContainer/ScrollContainer/VBoxContainer"]
 visible = false
 custom_minimum_size = Vector2(150, 0)
 layout_mode = 2
-text = "TUTORIAL_ALL_NOT_ENABLED_EXPLANATION"
+text = "TUTORIAL_REPLAY_ALL_EXPLANATION"
 label_settings = ExtResource("8_01chk")
 autowrap_mode = 3
 
@@ -118,7 +118,6 @@ layout_mode = 2
 size_flags_horizontal = 0
 tooltip_text = "SHOW_ALL_TUTORIALS_TOOLTIP"
 theme_override_font_sizes/font_size = 14
-button_pressed = true
 text = "SHOW_ALL_TUTORIALS"
 
 [node name="FocusGrabber" parent="MicrobeWelcome/VBoxContainer/ScrollContainer/VBoxContainer/HBoxContainer" instance=ExtResource("12")]

@@ -327,12 +327,16 @@ public sealed class EngulfedDigestionSystem : AEntitySetSystem<float>
             {
                 engulfable.PhagocytosisStep = PhagocytosisPhase.Digested;
 
+                if (engulferIsPlayer)
+                {
+                    AchievementEvents.ReportPlayerDigestedObject();
+                }
+
                 if (engulfedObject.Has<CellProperties>())
                 {
                     if (engulferIsPlayer)
                     {
                         gameWorld!.StatisticsTracker.TotalDigestedByPlayer.Increment(1);
-                        AchievementEvents.ReportPlayerDigestedObject();
                     }
 
                     // TODO: maybe allow non-player and other species to to also perform endosymbiosis
