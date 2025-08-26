@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2025-08-11 11:43+0300\n"
+"POT-Creation-Date: 2025-08-26 22:50+0200\n"
 "PO-Revision-Date: 2024-10-17 07:24+0000\n"
 "Last-Translator: Anonymous <noreply@weblate.org>\n"
 "Language-Team: Latvian <https://translate.revolutionarygamesstudio.com/projects/thrive/thrive-game/lv/>\n"
@@ -198,6 +198,10 @@ msgstr "Amonjaks"
 
 #, fuzzy
 msgid "AMMONIA_COST"
+msgstr "Amonjaks"
+
+#, fuzzy
+msgid "AMMONIA_LEVELS"
 msgstr "Amonjaks"
 
 msgid "AMOUNT_OF_AUTOSAVE_TO_KEEP"
@@ -421,6 +425,21 @@ msgid "AVAILABLE_CONSTRUCTION_PROJECTS"
 msgstr ""
 
 msgid "AVAILABLE_MODS"
+msgstr ""
+
+msgid "AVERAGE_SURFACE_CARBON_DIOXIDE_LEVEL"
+msgstr ""
+
+msgid "AVERAGE_SURFACE_LIGHT_LEVEL"
+msgstr ""
+
+msgid "AVERAGE_SURFACE_NITROGEN_LEVEL"
+msgstr ""
+
+msgid "AVERAGE_SURFACE_OTHER_LEVEL"
+msgstr ""
+
+msgid "AVERAGE_SURFACE_OXYGEN_LEVEL"
 msgstr ""
 
 msgid "AWAKENING_STAGE"
@@ -1066,6 +1085,25 @@ msgstr "Apskatiet detalizētu informāciju aiz pareģošanas"
 #, fuzzy
 msgid "COMPOUND_HANDLE_TOP_UP_ON_CHANGE"
 msgstr "Savienojumu mākonis"
+
+#, fuzzy
+msgid "COMPOUND_LEVEL_AVERAGE"
+msgstr "Apskatiet detalizētu informāciju aiz pareģošanas"
+
+#, fuzzy
+msgid "COMPOUND_LEVEL_HIGH"
+msgstr "Savienojumu mākonis"
+
+#, fuzzy
+msgid "COMPOUND_LEVEL_LOW"
+msgstr "Savienojumu mākonis"
+
+msgid "COMPOUND_LEVEL_VERY_HIGH"
+msgstr ""
+
+#, fuzzy
+msgid "COMPOUND_LEVEL_VERY_LOW"
+msgstr "Apskatiet detalizētu informāciju aiz pareģošanas"
 
 #, fuzzy
 msgid "COMPOUND_STORAGE_AMOUNT_DOES_NOT_LAST_NIGHT"
@@ -2558,10 +2596,6 @@ msgstr "Lai labotu kļūdu redaktorā, nospied \"atsaukt\""
 msgid "GENERAL_LOADING_TIP_7"
 msgstr "Lai labotu kļūdu redaktorā, nospied \"atsaukt\""
 
-#, fuzzy
-msgid "GENERATE_BUTTON"
-msgstr "Ģenerācija:"
-
 msgid "GENERATE_POSITIVE_GLUCOSE_PHOTOSYNTHESIS"
 msgstr ""
 
@@ -2632,6 +2666,10 @@ msgstr "Glikoze"
 
 msgid "GLUCOSE_CONCENTRATIONS_DRASTICALLY_DROPPED"
 msgstr ""
+
+#, fuzzy
+msgid "GLUCOSE_LEVEL"
+msgstr "Glikoze"
 
 msgid "GLYCOLYSIS"
 msgstr "Glikolīze"
@@ -3008,6 +3046,9 @@ msgstr ""
 
 msgid "IRON"
 msgstr "Dzelzs"
+
+msgid "IRON_LEVELS"
+msgstr ""
 
 #, fuzzy
 msgid "IRON_OXIDATION"
@@ -4924,6 +4965,10 @@ msgid "PAST_DEVELOPERS"
 msgstr ""
 
 #, fuzzy
+msgid "PATCHES_NUMBER"
+msgstr "Ala"
+
+#, fuzzy
 msgid "PATCH_COLON"
 msgstr "Labākais Plankums:"
 
@@ -5032,6 +5077,10 @@ msgstr "Fosfāti"
 msgid "PHOSPHATES_COST"
 msgstr "Fosfāti"
 
+#, fuzzy
+msgid "PHOSPHATES_LEVELS"
+msgstr "Fosfāti"
+
 msgid "PHOTOSYNTHESIS"
 msgstr "Fotosintēze"
 
@@ -5056,6 +5105,10 @@ msgstr "Atvērt logu mapi"
 
 msgid "PLANET_RANDOM_SEED"
 msgstr ""
+
+#, fuzzy
+msgid "PLANET_STATISTICS"
+msgstr "Statistika"
 
 #, fuzzy
 msgid "PLAYER"
@@ -5211,6 +5264,10 @@ msgid "RADIATION"
 msgstr "Aerobiskā elpošana"
 
 #, fuzzy
+msgid "RADIATION_LEVELS"
+msgstr "Aerobiskā elpošana"
+
+#, fuzzy
 msgid "RADIOACTIVE_CHUNK"
 msgstr "Liels dzelzs gabals"
 
@@ -5267,6 +5324,9 @@ msgstr "Atsvaidzināt"
 #, fuzzy
 msgid "REGENERATE_BUTTON"
 msgstr "Organoīdi"
+
+msgid "REGIONS_NUMBER"
+msgstr ""
 
 msgid "RENDER_SCALE"
 msgstr ""
@@ -5739,6 +5799,10 @@ msgid "SHOW_ITEM_COORDINATES"
 msgstr "Rādīt tutoriālus"
 
 #, fuzzy
+msgid "SHOW_MAP"
+msgstr "Rādīt palīdzību"
+
+#, fuzzy
 msgid "SHOW_NEW_PATCH_NOTES"
 msgstr "Ala"
 
@@ -6153,6 +6217,10 @@ msgstr ""
 
 msgid "SUICIDE_BUTTON_TOOLTIP"
 msgstr ""
+
+#, fuzzy
+msgid "SULFIDE_LEVELS"
+msgstr "Šūnas procesi"
 
 msgid "SUNLIGHT"
 msgstr "Saules gaisma"
@@ -9252,16 +9320,16 @@ msgid "ZOOM_OUT"
 msgstr "Attālināt"
 
 #, fuzzy
+#~ msgid "GENERATE_BUTTON"
+#~ msgstr "Ģenerācija:"
+
+#, fuzzy
 #~ msgid "CELL_TYPE_BUTTON_ATP_CONSUMPTION"
 #~ msgstr "{0}: -{1} ATP"
 
 #, fuzzy
 #~ msgid "CELL_TYPE_BUTTON_ATP_PRODUCTION"
 #~ msgstr "ATP ražošana"
-
-#, fuzzy
-#~ msgid "WORLD_SEA_LEVEL"
-#~ msgstr "Šūnas procesi"
 
 #, fuzzy
 #~ msgid "PASSIVE_REPRODUCTION_PROGRESS_EXPLANATION"

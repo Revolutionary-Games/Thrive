@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2025-08-11 11:43+0300\n"
+"POT-Creation-Date: 2025-08-26 22:50+0200\n"
 "PO-Revision-Date: 2025-08-13 14:57+0000\n"
 "Last-Translator: Anonymous <noreply@weblate.org>\n"
 "Language-Team: Polish <https://translate.revolutionarygamesstudio.com/projects/thrive/thrive-game/pl/>\n"
@@ -188,6 +188,10 @@ msgid "AMMONIA"
 msgstr "Amoniak"
 
 msgid "AMMONIA_COST"
+msgstr "Koszt Amoniaku:"
+
+#, fuzzy
+msgid "AMMONIA_LEVELS"
 msgstr "Koszt Amoniaku:"
 
 msgid "AMOUNT_OF_AUTOSAVE_TO_KEEP"
@@ -412,6 +416,21 @@ msgstr "Dostępne projekty konstrukcji"
 
 msgid "AVAILABLE_MODS"
 msgstr "Dostępne Mody"
+
+msgid "AVERAGE_SURFACE_CARBON_DIOXIDE_LEVEL"
+msgstr ""
+
+msgid "AVERAGE_SURFACE_LIGHT_LEVEL"
+msgstr ""
+
+msgid "AVERAGE_SURFACE_NITROGEN_LEVEL"
+msgstr ""
+
+msgid "AVERAGE_SURFACE_OTHER_LEVEL"
+msgstr ""
+
+msgid "AVERAGE_SURFACE_OXYGEN_LEVEL"
+msgstr ""
 
 msgid "AWAKENING_STAGE"
 msgstr "Faza Przebudzenia"
@@ -1029,6 +1048,25 @@ msgstr ""
 #, fuzzy
 msgid "COMPOUND_HANDLE_TOP_UP_ON_CHANGE"
 msgstr "Benchmark Chmury Związków"
+
+#, fuzzy
+msgid "COMPOUND_LEVEL_AVERAGE"
+msgstr "Średnia"
+
+#, fuzzy
+msgid "COMPOUND_LEVEL_HIGH"
+msgstr "Bilanse Związków"
+
+#, fuzzy
+msgid "COMPOUND_LEVEL_LOW"
+msgstr "Chmury związków"
+
+msgid "COMPOUND_LEVEL_VERY_HIGH"
+msgstr ""
+
+#, fuzzy
+msgid "COMPOUND_LEVEL_VERY_LOW"
+msgstr "Bilanse Związków"
 
 msgid "COMPOUND_STORAGE_AMOUNT_DOES_NOT_LAST_NIGHT"
 msgstr "(nie wystarczy by przetrwać noc która trwa {0} s)"
@@ -2490,10 +2528,6 @@ msgstr "Wciśnij przycisk \"cofnij\" w edytorze żeby poprawić błąd"
 msgid "GENERAL_LOADING_TIP_7"
 msgstr "Wciśnij przycisk \"cofnij\" w edytorze żeby poprawić błąd"
 
-#, fuzzy
-msgid "GENERATE_BUTTON"
-msgstr "Pokolenia"
-
 msgid "GENERATE_POSITIVE_GLUCOSE_PHOTOSYNTHESIS"
 msgstr ""
 
@@ -2562,6 +2596,10 @@ msgstr "Glukoza (C₆H₁₂O₆)"
 
 msgid "GLUCOSE_CONCENTRATIONS_DRASTICALLY_DROPPED"
 msgstr "Stężenie glukozy drastycznie spadło!"
+
+#, fuzzy
+msgid "GLUCOSE_LEVEL"
+msgstr "{0}-{1}m poniżej poziomu morza"
 
 msgid "GLYCOLYSIS"
 msgstr "Glikoliza"
@@ -2929,6 +2967,9 @@ msgstr ""
 
 msgid "IRON"
 msgstr "Żelazo (Fe²⁺)"
+
+msgid "IRON_LEVELS"
+msgstr ""
 
 #, fuzzy
 msgid "IRON_OXIDATION"
@@ -4831,6 +4872,10 @@ msgid "PAST_DEVELOPERS"
 msgstr "Dawni Developerzy"
 
 #, fuzzy
+msgid "PATCHES_NUMBER"
+msgstr "{0}: {1}"
+
+#, fuzzy
 msgid "PATCH_COLON"
 msgstr "Najlepiej radzi sobie w:"
 
@@ -4934,6 +4979,10 @@ msgstr "Fosforany (PO₄³⁻)"
 msgid "PHOSPHATES_COST"
 msgstr "Fosforany (PO₄³⁻)"
 
+#, fuzzy
+msgid "PHOSPHATES_LEVELS"
+msgstr "Fosforany (PO₄³⁻)"
+
 msgid "PHOTOSYNTHESIS"
 msgstr "Fotosynteza"
 
@@ -4963,6 +5012,10 @@ msgstr ""
 
 msgid "PLANET_RANDOM_SEED"
 msgstr "Losowe ziarno planety"
+
+#, fuzzy
+msgid "PLANET_STATISTICS"
+msgstr "Statystyki"
 
 msgid "PLAYER"
 msgstr "Gracz"
@@ -5117,6 +5170,10 @@ msgid "RADIATION"
 msgstr "Oddychanie Tlenowe"
 
 #, fuzzy
+msgid "RADIATION_LEVELS"
+msgstr "Oddychanie Tlenowe"
+
+#, fuzzy
 msgid "RADIOACTIVE_CHUNK"
 msgstr "Duży Kawałek Żelaza"
 
@@ -5170,6 +5227,10 @@ msgstr "Odśwież"
 #, fuzzy
 msgid "REGENERATE_BUTTON"
 msgstr "Akson"
+
+#, fuzzy
+msgid "REGIONS_NUMBER"
+msgstr "Numer ID"
 
 #, fuzzy
 msgid "RENDER_SCALE"
@@ -5627,6 +5688,10 @@ msgstr ""
 "Koordynaty pozycji: {0} \n"
 "Obserwowanie koordynatów: {1}"
 
+#, fuzzy
+msgid "SHOW_MAP"
+msgstr "Pokaż pomoc"
+
 msgid "SHOW_NEW_PATCH_NOTES"
 msgstr ""
 
@@ -6030,6 +6095,10 @@ msgstr "Rezultat wskazał sukces lecz ID nie zostało zwrócone"
 
 msgid "SUICIDE_BUTTON_TOOLTIP"
 msgstr "Samobójstwo"
+
+#, fuzzy
+msgid "SULFIDE_LEVELS"
+msgstr "{0}-{1}m poniżej poziomu morza"
 
 msgid "SUNLIGHT"
 msgstr "Światło słoneczne"
@@ -9161,16 +9230,20 @@ msgid "ZOOM_OUT"
 msgstr "Oddal"
 
 #, fuzzy
+#~ msgid "TEST_TEST"
+#~ msgstr "Testerzy"
+
+#, fuzzy
+#~ msgid "GENERATE_BUTTON"
+#~ msgstr "Pokolenia"
+
+#, fuzzy
 #~ msgid "CELL_TYPE_BUTTON_ATP_CONSUMPTION"
 #~ msgstr "Opcje"
 
 #, fuzzy
 #~ msgid "CELL_TYPE_BUTTON_ATP_PRODUCTION"
 #~ msgstr "Opcje"
-
-#, fuzzy
-#~ msgid "WORLD_SEA_LEVEL"
-#~ msgstr "{0}-{1}m poniżej poziomu morza"
 
 #, fuzzy
 #~ msgid "WORLD_SEA_LEVEL_DEEP"

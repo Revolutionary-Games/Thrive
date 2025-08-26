@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2025-08-11 11:43+0300\n"
+"POT-Creation-Date: 2025-08-26 22:50+0200\n"
 "PO-Revision-Date: 2025-04-04 10:42+0000\n"
 "Last-Translator: Anonymous <noreply@weblate.org>\n"
 "Language-Team: Spanish (Argentina) <https://translate.revolutionarygamesstudio.com/projects/thrive/thrive-game/es_AR/>\n"
@@ -191,6 +191,10 @@ msgstr "Amoníaco"
 
 #, fuzzy
 msgid "AMMONIA_COST"
+msgstr "Amoníaco"
+
+#, fuzzy
+msgid "AMMONIA_LEVELS"
 msgstr "Amoníaco"
 
 msgid "AMOUNT_OF_AUTOSAVE_TO_KEEP"
@@ -424,6 +428,21 @@ msgstr "Los proyectos de construcción que podes hacer"
 
 msgid "AVAILABLE_MODS"
 msgstr "Mods disponibles"
+
+msgid "AVERAGE_SURFACE_CARBON_DIOXIDE_LEVEL"
+msgstr ""
+
+msgid "AVERAGE_SURFACE_LIGHT_LEVEL"
+msgstr ""
+
+msgid "AVERAGE_SURFACE_NITROGEN_LEVEL"
+msgstr ""
+
+msgid "AVERAGE_SURFACE_OTHER_LEVEL"
+msgstr ""
+
+msgid "AVERAGE_SURFACE_OXYGEN_LEVEL"
+msgstr ""
 
 msgid "AWAKENING_STAGE"
 msgstr "Etapa de despertar"
@@ -1034,6 +1053,25 @@ msgstr "Anda a la etapa del despertar. Solo cuando dejes de ser un boludo ( El t
 #, fuzzy
 msgid "COMPOUND_HANDLE_TOP_UP_ON_CHANGE"
 msgstr "Densidad de nubes de compuestos"
+
+#, fuzzy
+msgid "COMPOUND_LEVEL_AVERAGE"
+msgstr "Anda a la etapa del despertar. Solo cuando dejes de ser un boludo ( El tipo de tejido son axones)."
+
+#, fuzzy
+msgid "COMPOUND_LEVEL_HIGH"
+msgstr "Anda a la etapa del despertar. Solo cuando dejes de ser un boludo ( El tipo de tejido son axones)."
+
+#, fuzzy
+msgid "COMPOUND_LEVEL_LOW"
+msgstr "Nubes de componentes"
+
+msgid "COMPOUND_LEVEL_VERY_HIGH"
+msgstr ""
+
+#, fuzzy
+msgid "COMPOUND_LEVEL_VERY_LOW"
+msgstr "Anda a la etapa del despertar. Solo cuando dejes de ser un boludo ( El tipo de tejido son axones)."
 
 #, fuzzy
 msgid "COMPOUND_STORAGE_AMOUNT_DOES_NOT_LAST_NIGHT"
@@ -2450,10 +2488,6 @@ msgstr "Presiona el botón de deshacer en el editor para corregir el error"
 msgid "GENERAL_LOADING_TIP_7"
 msgstr "Presiona el botón de deshacer en el editor para corregir el error"
 
-#, fuzzy
-msgid "GENERATE_BUTTON"
-msgstr "Pili de depredador"
-
 msgid "GENERATE_POSITIVE_GLUCOSE_PHOTOSYNTHESIS"
 msgstr ""
 
@@ -2522,6 +2556,10 @@ msgstr "Glucosa"
 
 msgid "GLUCOSE_CONCENTRATIONS_DRASTICALLY_DROPPED"
 msgstr ""
+
+#, fuzzy
+msgid "GLUCOSE_LEVEL"
+msgstr "{0}-{1}Bajo el nivel del mar"
 
 #, fuzzy
 msgid "GLYCOLYSIS"
@@ -2886,6 +2924,9 @@ msgstr "Protanopia (Rojo-verde)"
 
 msgid "IRON"
 msgstr "Hierro"
+
+msgid "IRON_LEVELS"
+msgstr ""
 
 #, fuzzy
 msgid "IRON_OXIDATION"
@@ -4752,6 +4793,9 @@ msgstr ""
 msgid "PAST_DEVELOPERS"
 msgstr ""
 
+msgid "PATCHES_NUMBER"
+msgstr ""
+
 #, fuzzy
 msgid "PATCH_COLON"
 msgstr "La yuta:"
@@ -4851,6 +4895,10 @@ msgstr "Fosfato"
 msgid "PHOSPHATES_COST"
 msgstr "Fosfato"
 
+#, fuzzy
+msgid "PHOSPHATES_LEVELS"
+msgstr "Fosfato"
+
 msgid "PHOTOSYNTHESIS"
 msgstr "Fotosíntesis"
 
@@ -4875,6 +4923,10 @@ msgstr ""
 
 msgid "PLANET_RANDOM_SEED"
 msgstr ""
+
+#, fuzzy
+msgid "PLANET_STATISTICS"
+msgstr "Mover organela"
 
 msgid "PLAYER"
 msgstr ""
@@ -5037,6 +5089,10 @@ msgid "RADIATION"
 msgstr "Resolución:"
 
 #, fuzzy
+msgid "RADIATION_LEVELS"
+msgstr "Resolución:"
+
+#, fuzzy
 msgid "RADIOACTIVE_CHUNK"
 msgstr "Pedazo grande de fosfato"
 
@@ -5091,6 +5147,9 @@ msgstr ""
 #, fuzzy
 msgid "REGENERATE_BUTTON"
 msgstr "Pili de depredador"
+
+msgid "REGIONS_NUMBER"
+msgstr ""
 
 msgid "RENDER_SCALE"
 msgstr ""
@@ -5540,6 +5599,10 @@ msgstr "Mostrar mini-tutorial"
 msgid "SHOW_ITEM_COORDINATES"
 msgstr ""
 
+#, fuzzy
+msgid "SHOW_MAP"
+msgstr "Mostrar mini-tutorial"
+
 msgid "SHOW_NEW_PATCH_NOTES"
 msgstr ""
 
@@ -5946,6 +6009,10 @@ msgstr ""
 
 msgid "SUICIDE_BUTTON_TOOLTIP"
 msgstr ""
+
+#, fuzzy
+msgid "SULFIDE_LEVELS"
+msgstr "{0}-{1}Bajo el nivel del mar"
 
 msgid "SUNLIGHT"
 msgstr "Luz solar"
@@ -9189,12 +9256,12 @@ msgid "ZOOM_OUT"
 msgstr "Alejar la pantalla"
 
 #, fuzzy
-#~ msgid "CELL_TYPE_BUTTON_ATP_PRODUCTION"
-#~ msgstr "Producción de ATP"
+#~ msgid "GENERATE_BUTTON"
+#~ msgstr "Pili de depredador"
 
 #, fuzzy
-#~ msgid "WORLD_SEA_LEVEL"
-#~ msgstr "{0}-{1}Bajo el nivel del mar"
+#~ msgid "CELL_TYPE_BUTTON_ATP_PRODUCTION"
+#~ msgstr "Producción de ATP"
 
 #, fuzzy
 #~ msgid "WORLD_SEA_LEVEL_DEEP"

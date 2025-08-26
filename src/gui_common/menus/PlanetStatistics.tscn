@@ -1,6 +1,6 @@
 [gd_scene load_steps=18 format=3 uid="uid://5j2erthkb4yy"]
 
-[ext_resource type="Texture2D" uid="uid://bbjaq1whh1mpi" path="res://assets/textures/gui/planet.png" id="2_kxah7"]
+[ext_resource type="LabelSettings" uid="uid://bcafkdnj1p8bc" path="res://src/gui_common/fonts/Title-Bold-Normal.tres" id="2_856wo"]
 [ext_resource type="Script" uid="uid://bcvllo2a45yxh" path="res://src/gui_common/menus/PlanetStatistics.cs" id="2_owqas"]
 [ext_resource type="Texture2D" uid="uid://nckpuxkhcb0u" path="res://assets/textures/gui/bevel/Phosphates.svg" id="3_r2wvh"]
 [ext_resource type="LabelSettings" uid="uid://bnhcbmq3brx0s" path="res://src/gui_common/fonts/Title-SemiBold-Normal.tres" id="4_myaoc"]
@@ -42,35 +42,19 @@ radiationLevelLabel = NodePath("Compounds/Radiation/radiation")
 [node name="VBoxContainer" type="VBoxContainer" parent="."]
 layout_mode = 2
 
-[node name="TextureRect" type="TextureRect" parent="VBoxContainer"]
-visible = false
-custom_minimum_size = Vector2(164, 164)
-layout_mode = 2
-size_flags_horizontal = 4
-size_flags_vertical = 4
-texture = ExtResource("2_kxah7")
-expand_mode = 3
-
-[node name="Depth2" type="Label" parent="VBoxContainer"]
-editor_description = "PLACEHOLDER"
-custom_minimum_size = Vector2(100, 0)
+[node name="Label2" type="Label" parent="VBoxContainer"]
 layout_mode = 2
 text = "PLANET_STATISTICS"
-label_settings = ExtResource("4_myaoc")
+label_settings = ExtResource("2_856wo")
 horizontal_alignment = 1
-autowrap_mode = 3
 
 [node name="HBoxContainer2" type="HBoxContainer" parent="."]
 layout_mode = 2
 
-[node name="Depth2" type="Label" parent="HBoxContainer2"]
-editor_description = "PLACEHOLDER"
-custom_minimum_size = Vector2(50, 0)
+[node name="Label" type="Label" parent="HBoxContainer2"]
 layout_mode = 2
-size_flags_horizontal = 3
 text = "REGIONS_NUMBER"
-label_settings = ExtResource("4_myaoc")
-autowrap_mode = 3
+label_settings = ExtResource("2_856wo")
 
 [node name="RegionsNumber" type="Label" parent="HBoxContainer2"]
 editor_description = "PLACEHOLDER"
@@ -85,14 +69,10 @@ autowrap_mode = 3
 [node name="HBoxContainer" type="HBoxContainer" parent="."]
 layout_mode = 2
 
-[node name="Depth2" type="Label" parent="HBoxContainer"]
-editor_description = "PLACEHOLDER"
-custom_minimum_size = Vector2(50, 0)
+[node name="Label2" type="Label" parent="HBoxContainer"]
 layout_mode = 2
-size_flags_horizontal = 3
 text = "PATCHES_NUMBER"
-label_settings = ExtResource("4_myaoc")
-autowrap_mode = 3
+label_settings = ExtResource("2_856wo")
 
 [node name="PatchesNumber" type="Label" parent="HBoxContainer"]
 editor_description = "PLACEHOLDER"

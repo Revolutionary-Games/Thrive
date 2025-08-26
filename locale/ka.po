@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2025-08-11 11:43+0300\n"
+"POT-Creation-Date: 2025-08-26 22:50+0200\n"
 "PO-Revision-Date: 2025-08-13 14:57+0000\n"
 "Last-Translator: Anonymous <noreply@weblate.org>\n"
 "Language-Team: Georgian <https://translate.revolutionarygamesstudio.com/projects/thrive/thrive-game/ka/>\n"
@@ -187,6 +187,10 @@ msgid "AMMONIA"
 msgstr "ამიაკი"
 
 msgid "AMMONIA_COST"
+msgstr "ამიაკის ფასი:"
+
+#, fuzzy
+msgid "AMMONIA_LEVELS"
 msgstr "ამიაკის ფასი:"
 
 msgid "AMOUNT_OF_AUTOSAVE_TO_KEEP"
@@ -406,6 +410,21 @@ msgstr "ხელმისაწვდომი მშენებლობი�
 
 msgid "AVAILABLE_MODS"
 msgstr "ხელმისაწვდომი მოდები"
+
+msgid "AVERAGE_SURFACE_CARBON_DIOXIDE_LEVEL"
+msgstr ""
+
+msgid "AVERAGE_SURFACE_LIGHT_LEVEL"
+msgstr ""
+
+msgid "AVERAGE_SURFACE_NITROGEN_LEVEL"
+msgstr ""
+
+msgid "AVERAGE_SURFACE_OTHER_LEVEL"
+msgstr ""
+
+msgid "AVERAGE_SURFACE_OXYGEN_LEVEL"
+msgstr ""
 
 msgid "AWAKENING_STAGE"
 msgstr "გამოღვიძების ფაზა"
@@ -984,6 +1003,25 @@ msgstr "ყოველთვის თავში ასვლა"
 
 msgid "COMPOUND_HANDLE_TOP_UP_ON_CHANGE"
 msgstr "შევსება ბიომის ცვლილებისას"
+
+#, fuzzy
+msgid "COMPOUND_LEVEL_AVERAGE"
+msgstr "საშუალო"
+
+#, fuzzy
+msgid "COMPOUND_LEVEL_HIGH"
+msgstr "ნივთიერების ბალანსები"
+
+#, fuzzy
+msgid "COMPOUND_LEVEL_LOW"
+msgstr "ნივთიერების ღრუბლები"
+
+msgid "COMPOUND_LEVEL_VERY_HIGH"
+msgstr ""
+
+#, fuzzy
+msgid "COMPOUND_LEVEL_VERY_LOW"
+msgstr "ყველას შენარჩუნება"
 
 msgid "COMPOUND_STORAGE_AMOUNT_DOES_NOT_LAST_NIGHT"
 msgstr "(არასაკმარისია, რომ გაუძლოთ ღამეს, რომლის სიგრძეა {0})"
@@ -2298,9 +2336,6 @@ msgstr "არ დაგავიწყდეთ, შეგიძლიათ �
 msgid "GENERAL_LOADING_TIP_7"
 msgstr "თუ თქვენი პოპულაცია ნულამდე დაეცა, გადაშენდებით."
 
-msgid "GENERATE_BUTTON"
-msgstr "სამყაროს გენერაცია"
-
 msgid "GENERATE_POSITIVE_GLUCOSE_PHOTOSYNTHESIS"
 msgstr ""
 
@@ -2367,6 +2402,10 @@ msgstr "გლუკოზა"
 
 msgid "GLUCOSE_CONCENTRATIONS_DRASTICALLY_DROPPED"
 msgstr "გლუკოზის კონცენტრაციები მკვეთრად დაეცა!"
+
+#, fuzzy
+msgid "GLUCOSE_LEVEL"
+msgstr "{0}-{1}მ ზღვის დონის ქვემოთ"
 
 msgid "GLYCOLYSIS"
 msgstr "გლიკოლიზი"
@@ -2704,6 +2743,9 @@ msgstr ""
 
 msgid "IRON"
 msgstr "რკინა"
+
+msgid "IRON_LEVELS"
+msgstr ""
 
 msgid "IRON_OXIDATION"
 msgstr "რკინის დაჟანგვა"
@@ -4371,6 +4413,10 @@ msgstr "აბრუნება"
 msgid "PAST_DEVELOPERS"
 msgstr "ყოფილი პროგრამისტები"
 
+#, fuzzy
+msgid "PATCHES_NUMBER"
+msgstr "{0} {1}"
+
 msgid "PATCH_COLON"
 msgstr "ბიომა:"
 
@@ -4466,6 +4512,10 @@ msgstr "ფოსფატი"
 msgid "PHOSPHATES_COST"
 msgstr "ფოსფატის ფასი:"
 
+#, fuzzy
+msgid "PHOSPHATES_LEVELS"
+msgstr "ფოსფატის ფასი:"
+
 msgid "PHOTOSYNTHESIS"
 msgstr "ფოტოსინთეზი"
 
@@ -4494,6 +4544,10 @@ msgstr ""
 
 msgid "PLANET_RANDOM_SEED"
 msgstr "პლანეტის შემთხვევითობის თესლი"
+
+#, fuzzy
+msgid "PLANET_STATISTICS"
+msgstr "სტატისტიკა"
 
 msgid "PLAYER"
 msgstr "მოთამაშე"
@@ -4640,6 +4694,10 @@ msgstr ""
 msgid "RADIATION"
 msgstr "რადიაცია"
 
+#, fuzzy
+msgid "RADIATION_LEVELS"
+msgstr "რადიაცია"
+
 msgid "RADIOACTIVE_CHUNK"
 msgstr "რადიაქტიური ქვის ნატეხი"
 
@@ -4690,6 +4748,10 @@ msgstr "განახლება"
 
 msgid "REGENERATE_BUTTON"
 msgstr "სამყაროს თავიდან გენერაცია"
+
+#, fuzzy
+msgid "REGIONS_NUMBER"
+msgstr "ID ნომერი"
 
 msgid "RENDER_SCALE"
 msgstr "რევოლუციის მასშტაბი"
@@ -5112,6 +5174,10 @@ msgstr "დახმარების ჩვენება"
 msgid "SHOW_ITEM_COORDINATES"
 msgstr "კოორდინატების ჩვენება"
 
+#, fuzzy
+msgid "SHOW_MAP"
+msgstr "დახმარების ჩვენება"
+
 msgid "SHOW_NEW_PATCH_NOTES"
 msgstr "ახალი პაჩის შენიშვნების ავტომატური ჩვენება"
 
@@ -5490,6 +5556,10 @@ msgstr "შედეგი მიუთითებს წარმატებ�
 
 msgid "SUICIDE_BUTTON_TOOLTIP"
 msgstr "თვითმკვლელობა"
+
+#, fuzzy
+msgid "SULFIDE_LEVELS"
+msgstr "{0}-{1}მ ზღვის დონის ქვემოთ"
 
 msgid "SUNLIGHT"
 msgstr "მზის სინათლე"
@@ -7983,15 +8053,18 @@ msgstr "გადიდება"
 msgid "ZOOM_OUT"
 msgstr "დაპატარავება"
 
+#, fuzzy
+#~ msgid "TEST_TEST"
+#~ msgstr "ტესტირების გუნდი"
+
+#~ msgid "GENERATE_BUTTON"
+#~ msgstr "სამყაროს გენერაცია"
+
 #~ msgid "CELL_TYPE_BUTTON_ATP_CONSUMPTION"
 #~ msgstr "ამ უჯრედის ტიპის ატფ-ის ხარჯვაა {0}."
 
 #~ msgid "CELL_TYPE_BUTTON_ATP_PRODUCTION"
 #~ msgstr "ამ უჯრედის ტიპის ატფ-ის წარმოებაა {0}."
-
-#, fuzzy
-#~ msgid "WORLD_SEA_LEVEL"
-#~ msgstr "{0}-{1}მ ზღვის დონის ქვემოთ"
 
 #, fuzzy
 #~ msgid "WORLD_SEA_LEVEL_DEEP"

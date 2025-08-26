@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2025-08-11 11:43+0300\n"
+"POT-Creation-Date: 2025-08-26 22:50+0200\n"
 "PO-Revision-Date: 2025-04-04 10:42+0000\n"
 "Last-Translator: Anonymous <noreply@weblate.org>\n"
 "Language-Team: Luxembourgish <https://translate.revolutionarygamesstudio.com/projects/thrive/thrive-game/lb/>\n"
@@ -196,6 +196,10 @@ msgstr "Ammoniak"
 
 #, fuzzy
 msgid "AMMONIA_COST"
+msgstr "Ammoniak"
+
+#, fuzzy
+msgid "AMMONIA_LEVELS"
 msgstr "Ammoniak"
 
 msgid "AMOUNT_OF_AUTOSAVE_TO_KEEP"
@@ -432,6 +436,21 @@ msgstr "Verfügbar Bauprojeten"
 
 msgid "AVAILABLE_MODS"
 msgstr "Verfügbar Mods"
+
+msgid "AVERAGE_SURFACE_CARBON_DIOXIDE_LEVEL"
+msgstr ""
+
+msgid "AVERAGE_SURFACE_LIGHT_LEVEL"
+msgstr ""
+
+msgid "AVERAGE_SURFACE_NITROGEN_LEVEL"
+msgstr ""
+
+msgid "AVERAGE_SURFACE_OTHER_LEVEL"
+msgstr ""
+
+msgid "AVERAGE_SURFACE_OXYGEN_LEVEL"
+msgstr ""
 
 msgid "AWAKENING_STAGE"
 msgstr "Erwäche Stuf"
@@ -1046,6 +1065,25 @@ msgstr ""
 
 msgid "COMPOUND_HANDLE_TOP_UP_ON_CHANGE"
 msgstr ""
+
+#, fuzzy
+msgid "COMPOUND_LEVEL_AVERAGE"
+msgstr "Stoff-Niveauen"
+
+#, fuzzy
+msgid "COMPOUND_LEVEL_HIGH"
+msgstr "Stoff-Niveauen"
+
+#, fuzzy
+msgid "COMPOUND_LEVEL_LOW"
+msgstr "Stoff Wolleken"
+
+msgid "COMPOUND_LEVEL_VERY_HIGH"
+msgstr ""
+
+#, fuzzy
+msgid "COMPOUND_LEVEL_VERY_LOW"
+msgstr "Stoff-Niveauen"
 
 msgid "COMPOUND_STORAGE_AMOUNT_DOES_NOT_LAST_NIGHT"
 msgstr ""
@@ -2352,9 +2390,6 @@ msgstr "Dréck den zeréck Knäppchen am Beaarbechter fier ee Fehler ze corrigé
 msgid "GENERAL_LOADING_TIP_7"
 msgstr "Dréck den zeréck Knäppchen am Beaarbechter fier ee Fehler ze corrigéieren"
 
-msgid "GENERATE_BUTTON"
-msgstr ""
-
 msgid "GENERATE_POSITIVE_GLUCOSE_PHOTOSYNTHESIS"
 msgstr ""
 
@@ -2423,6 +2458,10 @@ msgstr "Glukose"
 
 msgid "GLUCOSE_CONCENTRATIONS_DRASTICALLY_DROPPED"
 msgstr ""
+
+#, fuzzy
+msgid "GLUCOSE_LEVEL"
+msgstr "{0}-{1}m ennert dem Mieresspiegel"
 
 msgid "GLYCOLYSIS"
 msgstr "Glycolyse"
@@ -2768,6 +2807,9 @@ msgstr ""
 
 msgid "IRON"
 msgstr "Eisen"
+
+msgid "IRON_LEVELS"
+msgstr ""
 
 #, fuzzy
 msgid "IRON_OXIDATION"
@@ -4554,6 +4596,9 @@ msgstr "Erop schwenken"
 msgid "PAST_DEVELOPERS"
 msgstr ""
 
+msgid "PATCHES_NUMBER"
+msgstr ""
+
 #, fuzzy
 msgid "PATCH_COLON"
 msgstr "Kënschtler:"
@@ -4650,6 +4695,10 @@ msgstr "Phosphat"
 msgid "PHOSPHATES_COST"
 msgstr "Phosphat"
 
+#, fuzzy
+msgid "PHOSPHATES_LEVELS"
+msgstr "Phosphat"
+
 msgid "PHOTOSYNTHESIS"
 msgstr "Photosyntheese"
 
@@ -4674,6 +4723,10 @@ msgstr ""
 
 msgid "PLANET_RANDOM_SEED"
 msgstr ""
+
+#, fuzzy
+msgid "PLANET_STATISTICS"
+msgstr "Statistiken"
 
 msgid "PLAYER"
 msgstr ""
@@ -4832,6 +4885,10 @@ msgid "RADIATION"
 msgstr "Aerobeg Ootmung"
 
 #, fuzzy
+msgid "RADIATION_LEVELS"
+msgstr "Aerobeg Ootmung"
+
+#, fuzzy
 msgid "RADIOACTIVE_CHUNK"
 msgstr "Grousst Eisensteck"
 
@@ -4883,6 +4940,9 @@ msgid "REFRESH"
 msgstr ""
 
 msgid "REGENERATE_BUTTON"
+msgstr ""
+
+msgid "REGIONS_NUMBER"
 msgstr ""
 
 msgid "RENDER_SCALE"
@@ -5312,6 +5372,10 @@ msgstr "Hëllef weisen"
 msgid "SHOW_ITEM_COORDINATES"
 msgstr ""
 
+#, fuzzy
+msgid "SHOW_MAP"
+msgstr "Hëllef weisen"
+
 msgid "SHOW_NEW_PATCH_NOTES"
 msgstr ""
 
@@ -5686,6 +5750,10 @@ msgstr ""
 
 msgid "SUICIDE_BUTTON_TOOLTIP"
 msgstr ""
+
+#, fuzzy
+msgid "SULFIDE_LEVELS"
+msgstr "{0}-{1}m ennert dem Mieresspiegel"
 
 msgid "SUNLIGHT"
 msgstr "Sonneliicht"
@@ -8435,10 +8503,6 @@ msgstr "Eraus Zoomen"
 #, fuzzy
 #~ msgid "CELL_TYPE_BUTTON_ATP_PRODUCTION"
 #~ msgstr "ATP Produktioun"
-
-#, fuzzy
-#~ msgid "WORLD_SEA_LEVEL"
-#~ msgstr "{0}-{1}m ennert dem Mieresspiegel"
 
 #, fuzzy
 #~ msgid "WORLD_SEA_LEVEL_DEEP"
