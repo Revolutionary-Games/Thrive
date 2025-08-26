@@ -1474,6 +1474,8 @@ public static class Constants
 
     public const float DAY_NIGHT_TUTORIAL_LIGHT_MIN = 0.01f;
 
+    public const int TRIGGER_BINDING_AGENTS_TUTORIAL_AFTER_SESSIONS_WITH_NUCLEUS = 7;
+
     /// <summary>
     ///   Used to limit how often the hover indicator panels are updated. The default value is every 0.1 seconds.
     /// </summary>
