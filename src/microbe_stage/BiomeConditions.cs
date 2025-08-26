@@ -338,10 +338,15 @@ public class BiomeConditions : IBiomeConditions, ICloneable
     ///   Modifies the long-term amount of a compound in this biome. This is preferable to directly modifying
     ///   <see cref="ChangeableCompounds"/>. This is only usable for compounds that don't vary along an in-game day.
     /// </summary>
-    /// <param name="compound">The compound to modify</param>
-    /// <param name="newValue">New value to set</param>
-    /// <param name="allowNegatives">If the developer knows that negative value should be applied then this
-    /// value needs to set set to true</param>
+    /// <param name="compound">
+    ///   The compound to modify
+    /// </param>
+    /// <param name="newValue">
+    ///   New value to set
+    /// </param>
+    /// <param name="allowNegatives">
+    ///   If the developer knows that negative value should be applied then this value needs to set set to true
+    /// </param>
     public void ModifyLongTermCondition(Compound compound, BiomeCompoundProperties newValue,
         bool allowNegatives = false)
     {

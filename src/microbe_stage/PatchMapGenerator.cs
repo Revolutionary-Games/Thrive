@@ -1070,8 +1070,8 @@ public static class PatchMapGenerator
                 maxValue = Constants.COMPOUND_LEVEL_VERY_HIGH_MAX;
                 break;
             default:
-                GD.PrintErr(
-                    $"Selected compoundLevel {compoundLevel} for {compound.ToString()} doesn't match a known compoundLevel type");
+                GD.PrintErr($"Selected compoundLevel {compoundLevel} for {compound.ToString()}" +
+                    $" doesn't match a known compoundLevel type");
                 minValue = Constants.COMPOUND_LEVEL_AVERAGE_MIN;
                 maxValue = Constants.COMPOUND_LEVEL_AVERAGE_MAX;
                 break;
