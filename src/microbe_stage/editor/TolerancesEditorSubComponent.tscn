@@ -335,12 +335,11 @@ mouse_filter = 1
 [node name="PressureSliderMin" type="HSlider" parent="Pressure"]
 layout_mode = 2
 mouse_filter = 1
-max_value = 7e+07
-step = 50000.0
-value = 100000.0
+max_value = 60.0
+value = 20.0
 rounded = true
 scrollable = false
-tick_count = 8
+tick_count = 4
 
 [node name="MinPressureMarker" parent="Pressure/PressureSliderMin" instance=ExtResource("7_sg3ru")]
 layout_mode = 1
@@ -351,12 +350,11 @@ rotation = 0.00114285
 [node name="PressureSliderMax" type="HSlider" parent="Pressure"]
 layout_mode = 2
 mouse_filter = 1
-max_value = 7e+07
-step = 50000.0
-value = 100000.0
+max_value = 60.0
+value = 20.0
 rounded = true
 scrollable = false
-tick_count = 8
+tick_count = 4
 
 [node name="MaxPressureMarker" parent="Pressure/PressureSliderMax" instance=ExtResource("7_sg3ru")]
 layout_mode = 1
