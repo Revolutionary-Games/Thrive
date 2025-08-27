@@ -755,9 +755,9 @@ public static class Constants
     /// </summary>
     public const float HEALTH_REGEN_STOP_DAMAGE_THRESHOLD = 0.15f;
 
-    public const float HYDROGEN_SULFIDE_DAMAGE_INTERVAL = 0.2f;
+    public const float HYDROGEN_SULFIDE_DAMAGE_INTERVAL = 0.5f;
 
-    public const float HYDROGEN_SULFIDE_DAMAGE = 2.0f;
+    public const float HYDROGEN_SULFIDE_DAMAGE = 4.0f;
 
     public const float RADIATION_STRENGTH_MULTIPLIER = 0.02f;
 
