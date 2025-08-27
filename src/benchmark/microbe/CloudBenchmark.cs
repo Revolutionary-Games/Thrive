@@ -470,6 +470,7 @@ public partial class CloudBenchmark : BenchmarkBase
 
     private void AbsorbCloud(Vector3 position, double delta)
     {
-        cloudSystem!.AbsorbCompounds(position, ABSORBER_RADIUS, absorbBag, absorbTracker, (float)delta, ABSORB_RATE);
+        cloudSystem!.AbsorbCompounds(position, ABSORBER_RADIUS, absorbBag, absorbTracker, (float)delta, ABSORB_RATE,
+            out _);
     }
 }

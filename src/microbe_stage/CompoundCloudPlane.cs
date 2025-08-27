@@ -720,7 +720,7 @@ public partial class CompoundCloudPlane : MeshInstance3D, ISaveLoadedTracked
     ///   Absorbs compounds from this cloud. Doesn't require locking thanks to using atomic updates.
     /// </summary>
     public void AbsorbCompounds(int localX, int localY, CompoundBag storage,
-        Dictionary<Compound, float>? totals, float delta, float rate)
+        Dictionary<Compound, float>? totals, float delta, float rate, ref bool hydrogenSulfideAbsorbed)
     {
         if (rate < 0)
             throw new ArgumentException("Rate can't be negative");
@@ -734,7 +734,7 @@ public partial class CompoundCloudPlane : MeshInstance3D, ISaveLoadedTracked
                 break;
 
             // Skip if compound is non-useful or disallowed to be absorbed
-            if (!compoundDefinitions[i]!.IsAbsorbable || !storage.IsUseful(compound))
+            if (!compoundDefinitions[i]!.IsAbsorbable || (!storage.IsUseful(compound) && compound != Compound.Hydrogensulfide))
                 continue;
 
             // Loop here to retry in case we read stale data
@@ -742,11 +742,21 @@ public partial class CompoundCloudPlane : MeshInstance3D, ISaveLoadedTracked
             {
                 // Overestimate of how much compounds we get
                 float cloudAmount = HackyAddress(ref Density[localX, localY], i);
+
                 float generousAmount = cloudAmount * Constants.SKIP_TRYING_TO_ABSORB_RATIO;
 
                 // Skip if there isn't enough to absorb
                 if (generousAmount < MathUtils.EPSILON)
+                {
                     break;
+                }
+                else if (compound == Compound.Hydrogensulfide && generousAmount > 0.075f)
+                {
+                    hydrogenSulfideAbsorbed = true;
+
+                    if (!storage.IsUseful(compound))
+                        break;
+                }
 
                 float freeSpace = storage.GetFreeSpaceForCompound(compound);
 
