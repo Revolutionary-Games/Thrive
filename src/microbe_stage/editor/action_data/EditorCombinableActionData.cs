@@ -1,26 +1,23 @@
 ﻿using System;
+using System.Collections.Generic;
 
 public abstract class EditorCombinableActionData : CombinableActionData
 {
     public float CostMultiplier { get; set; } = 1.0f;
 
-    public virtual double CalculateCost()
+    public virtual double CalculateCost(IReadOnlyList<EditorCombinableActionData> history, int insertPosition)
     {
-        return Math.Min(CalculateCostInternal() * CostMultiplier, 100);
+        return Math.Min(CalculateCostInternal(history, insertPosition) * CostMultiplier, 100);
     }
 
-    public override CombinableActionData Combine(CombinableActionData other)
+    public virtual double GetBaseCost()
     {
-        if (other is not EditorCombinableActionData)
-            throw new NotSupportedException("Can't combine editor combinable data with base combinable data object");
-
-        // We override the behaviour here so that we can pass on our cost multiplier
-        var combined = (EditorCombinableActionData)base.Combine(other);
-        combined.CostMultiplier = CostMultiplier;
-        return combined;
+        return Math.Min(CalculateBaseCostInternal() * CostMultiplier, 100);
     }
 
-    protected abstract double CalculateCostInternal();
+    protected abstract double CalculateCostInternal(IReadOnlyList<EditorCombinableActionData> history, int insertPosition);
+
+    protected abstract double CalculateBaseCostInternal();
 }
 
 public abstract class EditorCombinableActionData<TContext> : EditorCombinableActionData
@@ -31,7 +28,7 @@ public abstract class EditorCombinableActionData<TContext> : EditorCombinableAct
     /// </summary>
     public TContext? Context { get; set; }
 
-    public override ActionInterferenceMode GetInterferenceModeWith(CombinableActionData other)
+    public override bool WantsToMergeWith(CombinableActionData other)
     {
         // If the other action was performed in a different context, we can't combine with it
         if (other is EditorCombinableActionData<TContext> editorActionData)
@@ -40,26 +37,15 @@ public abstract class EditorCombinableActionData<TContext> : EditorCombinableAct
             if ((Context is not null && editorActionData.Context is null) ||
                 (Context is null && editorActionData.Context is not null))
             {
-                return ActionInterferenceMode.NoInterference;
+                return false;
             }
 
             if (Context is not null && !Context.Equals(editorActionData.Context))
             {
-                return ActionInterferenceMode.NoInterference;
+                return false;
             }
         }
 
-        return base.GetInterferenceModeWith(other);
-    }
-
-    public override CombinableActionData Combine(CombinableActionData other)
-    {
-        var combined = (EditorCombinableActionData<TContext>)base.Combine(other);
-
-        // We need to pass the context along to the combined data. This is fine to just copy our side of the context
-        // as it was checked before allowing combine that the context matches.
-        combined.Context = Context;
-
-        return combined;
+        return base.WantsToMergeWith(other);
     }
 }
