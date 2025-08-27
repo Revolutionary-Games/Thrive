@@ -428,6 +428,7 @@ public class ToleranceResult
 
     public float PressureScore;
     public float PerfectPressureAdjustment;
+    public float PerfectPressureAdjustmentLogScale;
     public float PressureRangeSizeAdjustment;
 
     public float OxygenScore;

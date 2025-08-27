@@ -30,8 +30,8 @@ public class ToleranceActionData : EditorCombinableActionData
 
         // Pressure change is slightly tricky to calculate as from a pair of numbers we need to create 2 linked but
         // separate costs
-        var minimumPressureChange = Math.Abs(OldTolerances.PressureMinimum - NewTolerances.PressureMinimum);
-        var maximumPressureChange = Math.Abs(OldTolerances.PressureMaximum - NewTolerances.PressureMaximum);
+        var minimumPressureChange = Math.Abs(OldTolerances.PressureMinLogScale - NewTolerances.PressureMinLogScale);
+        var maximumPressureChange = Math.Abs(OldTolerances.PressureMaxLogScale - NewTolerances.PressureMaxLogScale);
 
         // As moving one slider can end up changing the other value as well, we take the average of the change to take
         // that implicit doubled cost into account
@@ -45,8 +45,8 @@ public class ToleranceActionData : EditorCombinableActionData
         // Then add up the costs based on the changes
         return temperatureChange * Constants.TOLERANCE_CHANGE_MP_PER_TEMPERATURE +
             temperatureToleranceChange * Constants.TOLERANCE_CHANGE_MP_PER_TEMPERATURE_TOLERANCE +
-            totalPressureChangeAverage * Constants.TOLERANCE_CHANGE_MP_PER_PRESSURE +
-            pressureToleranceChange * Constants.TOLERANCE_CHANGE_MP_PER_PRESSURE_TOLERANCE +
+            totalPressureChangeAverage * Constants.TOLERANCE_CHANGE_MP_PER_PRESSURE_STEP +
+            //pressureToleranceChange * Constants.TOLERANCE_CHANGE_MP_PER_PRESSURE_TOLERANCE +
             oxygenChange * Constants.TOLERANCE_CHANGE_MP_PER_OXYGEN +
             uvChange * Constants.TOLERANCE_CHANGE_MP_PER_UV;
     }

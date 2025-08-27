@@ -30,6 +30,9 @@ public class EnvironmentalTolerances
 
     public float PressureMaximum = 301325;
 
+    public float PressureMinLogScale;
+    public float PressureMaxLogScale;
+
     public float UVResistance;
     public float OxygenResistance;
 
@@ -49,6 +52,8 @@ public class EnvironmentalTolerances
         TemperatureTolerance = tolerancesToCopy.TemperatureTolerance;
         PressureMinimum = tolerancesToCopy.PressureMinimum;
         PressureMaximum = tolerancesToCopy.PressureMaximum;
+        PressureMinLogScale = tolerancesToCopy.PressureMinLogScale;
+        PressureMaxLogScale = tolerancesToCopy.PressureMaxLogScale;
         UVResistance = tolerancesToCopy.UVResistance;
         OxygenResistance = tolerancesToCopy.OxygenResistance;
     }
