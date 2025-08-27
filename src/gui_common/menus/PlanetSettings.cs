@@ -89,12 +89,12 @@ public partial class PlanetSettings : VBoxContainer
             WorldOceanicCoverage = (WorldGenerationSettings.WorldOceanicCoverageEnum)worldSeaLevelButton.Selected,
             GeologicalActivity = (WorldGenerationSettings.GeologicalActivityEnum)worldGeologicalActivityButton.Selected,
             ClimateInstability = (WorldGenerationSettings.ClimateInstabilityEnum)worldClimateInstabilityButton.Selected,
-            SulfideLevel = (WorldGenerationSettings.CompoundLevelsEnum)sulfideLevelButton.Selected,
-            GlucoseLevel = (WorldGenerationSettings.CompoundLevelsEnum)glucoseLevelButton.Selected,
-            IronLevel = (WorldGenerationSettings.CompoundLevelsEnum)ironLevelButton.Selected,
-            AmmoniaLevel = (WorldGenerationSettings.CompoundLevelsEnum)ammoniaLevelButton.Selected,
-            PhosphatesLevel = (WorldGenerationSettings.CompoundLevelsEnum)phosphatesLevelButton.Selected,
-            RadiationLevel = (WorldGenerationSettings.CompoundLevelsEnum)radiationLevelButton.Selected,
+            HydrogenSulfideLevel = (WorldGenerationSettings.CompoundLevel)sulfideLevelButton.Selected,
+            GlucoseLevel = (WorldGenerationSettings.CompoundLevel)glucoseLevelButton.Selected,
+            IronLevel = (WorldGenerationSettings.CompoundLevel)ironLevelButton.Selected,
+            AmmoniaLevel = (WorldGenerationSettings.CompoundLevel)ammoniaLevelButton.Selected,
+            PhosphatesLevel = (WorldGenerationSettings.CompoundLevel)phosphatesLevelButton.Selected,
+            RadiationLevel = (WorldGenerationSettings.CompoundLevel)radiationLevelButton.Selected,
             Origin = (WorldGenerationSettings.LifeOrigin)lifeOriginButton.Selected,
             DayNightCycleEnabled = dayNightCycleButton.ButtonPressed,
             DayLength = (int)dayLength.Value,
@@ -103,64 +103,64 @@ public partial class PlanetSettings : VBoxContainer
         };
     }
 
-    public void SetLifeOrigin(int index)
+    public void SetLifeOrigin(WorldGenerationSettings.LifeOrigin value)
     {
-        lifeOriginButton.Selected = index;
+        lifeOriginButton.Selected = (int)value;
     }
 
-    public void SetWorldSize(int index)
+    public void SetWorldSize(WorldGenerationSettings.WorldSizeEnum value)
     {
-        worldSizeButton.Selected = index;
+        worldSizeButton.Selected = (int)value;
     }
 
-    public void SetWorldTemperature(int index)
+    public void SetWorldTemperature(WorldGenerationSettings.WorldTemperatureEnum value)
     {
-        worldTemperatureButton.Selected = index;
+        worldTemperatureButton.Selected = (int)value;
     }
 
-    public void SetWorldSeaLevel(int index)
+    public void SetOceanicCoverage(WorldGenerationSettings.WorldOceanicCoverageEnum value)
     {
-        worldSeaLevelButton.Selected = index;
+        worldSeaLevelButton.Selected = (int)value;
     }
 
-    public void SetWorldGeologicalActivity(int index)
+    public void SetWorldGeologicalActivity(WorldGenerationSettings.GeologicalActivityEnum value)
     {
-        worldGeologicalActivityButton.Selected = index;
+        worldGeologicalActivityButton.Selected = (int)value;
     }
 
-    public void SetWorldClimateInstability(int index)
+    public void SetWorldClimateInstability(WorldGenerationSettings.ClimateInstabilityEnum value)
     {
-        worldClimateInstabilityButton.Selected = index;
+        worldClimateInstabilityButton.Selected = (int)value;
     }
 
-    public void SetSulfideLevel(int index)
+    public void SetHydrogenSulfideLevel(WorldGenerationSettings.CompoundLevel value)
     {
-        sulfideLevelButton.Selected = index;
+        sulfideLevelButton.Selected = (int)value;
     }
 
-    public void SetGlucoseLevel(int index)
+    public void SetGlucoseLevel(WorldGenerationSettings.CompoundLevel value)
     {
-        glucoseLevelButton.Selected = index;
+        glucoseLevelButton.Selected = (int)value;
     }
 
-    public void SetIronLevel(int index)
+    public void SetIronLevel(WorldGenerationSettings.CompoundLevel value)
     {
-        ironLevelButton.Selected = index;
+        ironLevelButton.Selected = (int)value;
     }
 
-    public void SetAmmoniaLevel(int index)
+    public void SetAmmoniaLevel(WorldGenerationSettings.CompoundLevel value)
     {
-        ammoniaLevelButton.Selected = index;
+        ammoniaLevelButton.Selected = (int)value;
     }
 
-    public void SetPhosphatesLevel(int index)
+    public void SetPhosphatesLevel(WorldGenerationSettings.CompoundLevel value)
     {
-        phosphatesLevelButton.Selected = index;
+        phosphatesLevelButton.Selected = (int)value;
     }
 
-    public void SetRadiationLevel(int index)
+    public void SetRadiationLevel(WorldGenerationSettings.CompoundLevel value)
     {
-        radiationLevelButton.Selected = index;
+        radiationLevelButton.Selected = (int)value;
     }
 
     public void SetLawkOnly(bool pressed)

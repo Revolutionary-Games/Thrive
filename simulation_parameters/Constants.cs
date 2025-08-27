@@ -1729,8 +1729,8 @@ public static class Constants
     public const float COMPOUND_DENSITY_CATEGORY_AN_ABUNDANCE = 3000.0f;
 
     public const int ATMOSPHERIC_COMPOUND_DISPLAY_DECIMALS = 2;
-    public const int COMPOUND_DISPLAY_DECIMALS = 2;
-    public const int DETAILED_COMPOUND_DISPLAY_DECIMALS = 3;
+    public const int PATCH_CONDITIONS_COMPOUND_DISPLAY_DECIMALS = 2;
+    public const int DETAILED_PATCH_CONDITIONS_COMPOUND_DISPLAY_DECIMALS = 3;
 
     public const float COMPOUND_BAR_VALUE_ANIMATION_TIME = 0.10f;
 

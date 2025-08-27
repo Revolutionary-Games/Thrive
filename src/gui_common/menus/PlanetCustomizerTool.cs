@@ -57,7 +57,7 @@ public partial class PlanetCustomizerTool : Node
             WorldOceanicCoverage = planetGenerationSettings.WorldOceanicCoverage,
             GeologicalActivity = planetGenerationSettings.GeologicalActivity,
             ClimateInstability = planetGenerationSettings.ClimateInstability,
-            SulfideLevel = planetGenerationSettings.SulfideLevel,
+            HydrogenSulfideLevel = planetGenerationSettings.HydrogenSulfideLevel,
             GlucoseLevel = planetGenerationSettings.GlucoseLevel,
             IronLevel = planetGenerationSettings.IronLevel,
             AmmoniaLevel = planetGenerationSettings.AmmoniaLevel,

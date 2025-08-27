@@ -416,22 +416,22 @@ public partial class PatchDetailsPanel : PanelContainer
         // Compounds
         hydrogenSulfideLabel.Text =
             Math.Round(GetCompoundAmount(SelectedPatch, Compound.Hydrogensulfide),
-                Constants.COMPOUND_DISPLAY_DECIMALS).ToString(CultureInfo.CurrentCulture);
+                Constants.PATCH_CONDITIONS_COMPOUND_DISPLAY_DECIMALS).ToString(CultureInfo.CurrentCulture);
         ammoniaLabel.Text =
             Math.Round(GetCompoundAmount(SelectedPatch, Compound.Ammonia),
-                Constants.COMPOUND_DISPLAY_DECIMALS).ToString(CultureInfo.CurrentCulture);
+                Constants.PATCH_CONDITIONS_COMPOUND_DISPLAY_DECIMALS).ToString(CultureInfo.CurrentCulture);
         glucoseLabel.Text =
             Math.Round(GetCompoundAmount(SelectedPatch, Compound.Glucose),
-                Constants.COMPOUND_DISPLAY_DECIMALS).ToString(CultureInfo.CurrentCulture);
+                Constants.PATCH_CONDITIONS_COMPOUND_DISPLAY_DECIMALS).ToString(CultureInfo.CurrentCulture);
         phosphateLabel.Text =
             Math.Round(GetCompoundAmount(SelectedPatch, Compound.Phosphates),
-                Constants.COMPOUND_DISPLAY_DECIMALS).ToString(CultureInfo.CurrentCulture);
+                Constants.PATCH_CONDITIONS_COMPOUND_DISPLAY_DECIMALS).ToString(CultureInfo.CurrentCulture);
         ironLabel.Text =
             Math.Round(GetCompoundAmount(SelectedPatch, Compound.Iron),
-                Constants.COMPOUND_DISPLAY_DECIMALS).ToString(CultureInfo.CurrentCulture);
+                Constants.PATCH_CONDITIONS_COMPOUND_DISPLAY_DECIMALS).ToString(CultureInfo.CurrentCulture);
         radiationLabel.Text =
             Math.Round(GetCompoundAmount(SelectedPatch, Compound.Radiation),
-                Constants.COMPOUND_DISPLAY_DECIMALS).ToString(CultureInfo.CurrentCulture);
+                Constants.PATCH_CONDITIONS_COMPOUND_DISPLAY_DECIMALS).ToString(CultureInfo.CurrentCulture);
 
         var speciesList = new StringBuilder(100);
 

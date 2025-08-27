@@ -344,20 +344,20 @@ public partial class NewGameSettings : ControlWithInput
         experimentalFeatures.ButtonPressed = settings.ExperimentalFeatures;
         OnExperimentalFeaturesChanged(settings.ExperimentalFeatures);
 
-        planetSettings.SetWorldSize((int)settings.WorldSize);
-        planetSettings.SetWorldTemperature((int)settings.WorldTemperature);
-        planetSettings.SetWorldSeaLevel((int)settings.WorldOceanicCoverage);
-        planetSettings.SetWorldGeologicalActivity((int)settings.GeologicalActivity);
-        planetSettings.SetWorldClimateInstability((int)settings.ClimateInstability);
+        planetSettings.SetWorldSize(settings.WorldSize);
+        planetSettings.SetWorldTemperature(settings.WorldTemperature);
+        planetSettings.SetOceanicCoverage(settings.WorldOceanicCoverage);
+        planetSettings.SetWorldGeologicalActivity(settings.GeologicalActivity);
+        planetSettings.SetWorldClimateInstability(settings.ClimateInstability);
 
-        planetSettings.SetSulfideLevel((int)settings.SulfideLevel);
-        planetSettings.SetGlucoseLevel((int)settings.GlucoseLevel);
-        planetSettings.SetIronLevel((int)settings.IronLevel);
-        planetSettings.SetAmmoniaLevel((int)settings.AmmoniaLevel);
-        planetSettings.SetPhosphatesLevel((int)settings.PhosphatesLevel);
-        planetSettings.SetRadiationLevel((int)settings.RadiationLevel);
+        planetSettings.SetHydrogenSulfideLevel(settings.HydrogenSulfideLevel);
+        planetSettings.SetGlucoseLevel(settings.GlucoseLevel);
+        planetSettings.SetIronLevel(settings.IronLevel);
+        planetSettings.SetAmmoniaLevel(settings.AmmoniaLevel);
+        planetSettings.SetPhosphatesLevel(settings.PhosphatesLevel);
+        planetSettings.SetRadiationLevel(settings.RadiationLevel);
 
-        planetSettings.SetLifeOrigin((int)settings.Origin);
+        planetSettings.SetLifeOrigin(settings.Origin);
         planetSettings.SetDayNightCycle(settings.DayNightCycleEnabled);
         planetSettings.SetDayLength(settings.DayLength);
         planetSettings.SetLawkOnly(settings.LAWK);
@@ -500,7 +500,7 @@ public partial class NewGameSettings : ControlWithInput
         settings.WorldOceanicCoverage = planetGenerationSettings.WorldOceanicCoverage;
         settings.GeologicalActivity = planetGenerationSettings.GeologicalActivity;
         settings.ClimateInstability = planetGenerationSettings.ClimateInstability;
-        settings.SulfideLevel = planetGenerationSettings.SulfideLevel;
+        settings.HydrogenSulfideLevel = planetGenerationSettings.HydrogenSulfideLevel;
         settings.GlucoseLevel = planetGenerationSettings.GlucoseLevel;
         settings.IronLevel = planetGenerationSettings.IronLevel;
         settings.AmmoniaLevel = planetGenerationSettings.AmmoniaLevel;
@@ -845,9 +845,9 @@ public partial class NewGameSettings : ControlWithInput
         UpdateSelectedDifficultyPresetControl();
     }
 
-    private void OnLifeOriginSelected(int index)
+    private void OnLifeOriginSelected(WorldGenerationSettings.LifeOrigin value)
     {
-        planetSettings.SetLifeOrigin(index);
+        planetSettings.SetLifeOrigin(value);
     }
 
     // This and a few other callbacks are not currently needed to detect anything, but I left them in, in case we

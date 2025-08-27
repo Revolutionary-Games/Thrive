@@ -987,7 +987,7 @@ public static class PatchMapGenerator
     {
         foreach (var patch in map.Patches.Values)
         {
-            ApplyCompoundVariation(patch, Compound.Hydrogensulfide, settings.SulfideLevel, random);
+            ApplyCompoundVariation(patch, Compound.Hydrogensulfide, settings.HydrogenSulfideLevel, random);
             ApplyCompoundVariation(patch, Compound.Glucose, settings.GlucoseLevel, random);
             ApplyCompoundVariation(patch, Compound.Iron, settings.IronLevel, random);
             ApplyCompoundVariation(patch, Compound.Ammonia, settings.AmmoniaLevel, random);
@@ -1042,30 +1042,30 @@ public static class PatchMapGenerator
     }
 
     private static void ApplyCompoundVariation(Patch patch, Compound compound,
-        WorldGenerationSettings.CompoundLevelsEnum compoundLevel, Random random)
+        WorldGenerationSettings.CompoundLevel compoundLevel, Random random)
     {
         float minValue;
         float maxValue;
 
         switch (compoundLevel)
         {
-            case WorldGenerationSettings.CompoundLevelsEnum.VeryLow:
+            case WorldGenerationSettings.CompoundLevel.VeryLow:
                 minValue = Constants.COMPOUND_LEVEL_VERY_LOW_MIN;
                 maxValue = Constants.COMPOUND_LEVEL_VERY_LOW_MAX;
                 break;
-            case WorldGenerationSettings.CompoundLevelsEnum.Low:
+            case WorldGenerationSettings.CompoundLevel.Low:
                 minValue = Constants.COMPOUND_LEVEL_LOW_MIN;
                 maxValue = Constants.COMPOUND_LEVEL_LOW_MAX;
                 break;
-            case WorldGenerationSettings.CompoundLevelsEnum.Average:
+            case WorldGenerationSettings.CompoundLevel.Average:
                 minValue = Constants.COMPOUND_LEVEL_AVERAGE_MIN;
                 maxValue = Constants.COMPOUND_LEVEL_AVERAGE_MAX;
                 break;
-            case WorldGenerationSettings.CompoundLevelsEnum.High:
+            case WorldGenerationSettings.CompoundLevel.High:
                 minValue = Constants.COMPOUND_LEVEL_HIGH_MIN;
                 maxValue = Constants.COMPOUND_LEVEL_HIGH_MAX;
                 break;
-            case WorldGenerationSettings.CompoundLevelsEnum.VeryHigh:
+            case WorldGenerationSettings.CompoundLevel.VeryHigh:
                 minValue = Constants.COMPOUND_LEVEL_VERY_HIGH_MIN;
                 maxValue = Constants.COMPOUND_LEVEL_VERY_HIGH_MAX;
                 break;

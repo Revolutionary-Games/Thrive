@@ -114,22 +114,22 @@ public partial class PlanetStatistics : VBoxContainer
         var unitFormat = Localization.Translate("VALUE_WITH_UNIT");
 
         sulfideLevelLabel.Text =
-            Math.Round(sulfideLevel, Constants.COMPOUND_DISPLAY_DECIMALS)
+            Math.Round(sulfideLevel, Constants.PATCH_CONDITIONS_COMPOUND_DISPLAY_DECIMALS)
                 .ToString(CultureInfo.CurrentCulture);
         ammoniaLevelLabel.Text =
-            Math.Round(ammoniaLevel, Constants.COMPOUND_DISPLAY_DECIMALS)
+            Math.Round(ammoniaLevel, Constants.PATCH_CONDITIONS_COMPOUND_DISPLAY_DECIMALS)
                 .ToString(CultureInfo.CurrentCulture);
         glucoseLevelLabel.Text =
-            Math.Round(glucoseLevel, Constants.COMPOUND_DISPLAY_DECIMALS)
+            Math.Round(glucoseLevel, Constants.PATCH_CONDITIONS_COMPOUND_DISPLAY_DECIMALS)
                 .ToString(CultureInfo.CurrentCulture);
         phosphatesLevelLabel.Text =
-            Math.Round(phosphatesLevel, Constants.COMPOUND_DISPLAY_DECIMALS)
+            Math.Round(phosphatesLevel, Constants.PATCH_CONDITIONS_COMPOUND_DISPLAY_DECIMALS)
                 .ToString(CultureInfo.CurrentCulture);
         ironLevelLabel.Text =
-            Math.Round(ironLevel, Constants.COMPOUND_DISPLAY_DECIMALS)
+            Math.Round(ironLevel, Constants.PATCH_CONDITIONS_COMPOUND_DISPLAY_DECIMALS)
                 .ToString(CultureInfo.CurrentCulture);
         radiationLevelLabel.Text =
-            Math.Round(radiationLevel, Constants.DETAILED_COMPOUND_DISPLAY_DECIMALS)
+            Math.Round(radiationLevel, Constants.DETAILED_PATCH_CONDITIONS_COMPOUND_DISPLAY_DECIMALS)
                 .ToString(CultureInfo.CurrentCulture);
 
         var temperature = SimulationParameters.Instance.GetCompoundDefinition(Compound.Temperature);

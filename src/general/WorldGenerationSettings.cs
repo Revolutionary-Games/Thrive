@@ -133,7 +133,7 @@ public class WorldGenerationSettings
     /// <summary>
     ///   The possible compound levels settings for the planet
     /// </summary>
-    public enum CompoundLevelsEnum
+    public enum CompoundLevel
     {
         [Description("COMPOUND_LEVEL_VERY_LOW")]
         VeryLow = 0,
@@ -208,17 +208,17 @@ public class WorldGenerationSettings
     /// </remarks>
     public ClimateInstabilityEnum ClimateInstability { get; set; } = ClimateInstabilityEnum.Medium;
 
-    public CompoundLevelsEnum SulfideLevel { get; set; } = CompoundLevelsEnum.Average;
+    public CompoundLevel HydrogenSulfideLevel { get; set; } = CompoundLevel.Average;
 
-    public CompoundLevelsEnum GlucoseLevel { get; set; } = CompoundLevelsEnum.Average;
+    public CompoundLevel GlucoseLevel { get; set; } = CompoundLevel.Average;
 
-    public CompoundLevelsEnum IronLevel { get; set; } = CompoundLevelsEnum.Average;
+    public CompoundLevel IronLevel { get; set; } = CompoundLevel.Average;
 
-    public CompoundLevelsEnum AmmoniaLevel { get; set; } = CompoundLevelsEnum.Average;
+    public CompoundLevel AmmoniaLevel { get; set; } = CompoundLevel.Average;
 
-    public CompoundLevelsEnum PhosphatesLevel { get; set; } = CompoundLevelsEnum.Average;
+    public CompoundLevel PhosphatesLevel { get; set; } = CompoundLevel.Average;
 
-    public CompoundLevelsEnum RadiationLevel { get; set; } = CompoundLevelsEnum.Average;
+    public CompoundLevel RadiationLevel { get; set; } = CompoundLevel.Average;
 
     // The following are helper proxies to the values from the difficulty
     [JsonIgnore]
