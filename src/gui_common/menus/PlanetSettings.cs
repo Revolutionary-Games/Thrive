@@ -267,6 +267,7 @@ public partial class PlanetSettings : VBoxContainer
 
     private void OnPlanetSettingsChanged(int index)
     {
+        _ = index;
         EmitSignal(SignalName.PlanetSettingChanged);
     }
 
