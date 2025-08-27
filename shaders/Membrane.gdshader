@@ -5,9 +5,12 @@ render_mode depth_prepass_alpha;
 // Set to 0 to disable wiggle
 uniform float wigglyNess = 1.0f;
 uniform float movementWigglyNess = 1.0f;
+uniform float transparencyTextureFactor = 1.2f;
+uniform float turn = 1.0f;
 
 uniform sampler2D albedoTexture : source_color;
 uniform sampler2D damagedTexture : source_color;
+uniform sampler2D transparencyTexture : source_color;
 
 uniform sampler2D normalTexture;
 uniform sampler2D normal2Texture;
@@ -30,6 +33,14 @@ void vertex(){
         * wigglyNess * size;
     VERTEX.z += sin(worldVertex.x * movementWigglyNess - TIME / 4.0f) / 10.f
         * wigglyNess * size;
+
+    // Bend when turning
+	if (VERTEX.z < 0.2f)
+	{
+		//VERTEX.z -= turn * 0.75f;
+    	VERTEX.x += VERTEX.z * turn * 0.5f;
+	}
+
 
     float verticalAngle = NODE_POSITION_WORLD.z * movementWigglyNess * 0.25f
         + wigglyNess * worldVertex.z * 1.5f + TIME / 4.0f;
@@ -81,6 +92,7 @@ void fragment(){
         (damaged * (1.0f - healthFraction))) * tint;
 
     vec4 dissolveTex = texture(dissolveTexture, UV);
+    vec4 transparencyTex = texture(transparencyTexture, UV);
 
     float cutoff = dot(dissolveTex.rgb, vec3(0.34f, 0.34f, 0.34f)) -
         float(-0.482f + clamp(dissolveValue, 0.0f, 1.0f));
@@ -100,7 +112,10 @@ void fragment(){
     // Mix base normals with detail normals in some proportion (0.0 - 1.0)
     adjustedNormals = normalize(mix(NORMAL, adjustedNormals, 0.2f));
 
+	float textureAlphaModified = albedo.a * albedo.a * albedo.a * 8.0f;
+
     ALBEDO = final.rgb;
-    ALPHA = fresnel(3.0, adjustedNormals, adjustedView) * round(cutoff);
+    ALPHA = fresnel(3.0, adjustedNormals, adjustedView) * round(cutoff) * min(transparencyTex.a * (transparencyTextureFactor + textureAlphaModified), 2.0);
+	EMISSION = final.rgb * 0.3 * ALPHA;
     ROUGHNESS = 0.7f;
 }

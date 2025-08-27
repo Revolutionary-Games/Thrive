@@ -1,4 +1,4 @@
-[gd_scene load_steps=17 format=3 uid="uid://jgcbwcrqbblv"]
+[gd_scene load_steps=21 format=3 uid="uid://jgcbwcrqbblv"]
 
 [ext_resource type="Script" uid="uid://bs82n6jeyxhg6" path="res://src/microbe_stage/Membrane.cs" id="1"]
 [ext_resource type="Shader" uid="uid://c10kaqsum34o" path="res://shaders/Membrane.gdshader" id="2"]
@@ -10,9 +10,12 @@
 [ext_resource type="Shader" uid="uid://duvkpd0301bv0" path="res://shaders/MucocystEffect.gdshader" id="7_grw0d"]
 [ext_resource type="Script" uid="uid://dynk50vduged5" path="res://src/microbe_stage/MembraneWaterRipple.cs" id="9_water"]
 [ext_resource type="Shader" uid="uid://bhy30q2qx7hue" path="res://shaders/MembraneWaterRipple.gdshader" id="10_shader"]
+[ext_resource type="Shader" uid="uid://b8orsf1lwu17d" path="res://shaders/MicrobeInternalDecorationsEffect.gdshader" id="11_qqoe4"]
+[ext_resource type="Texture2D" uid="uid://cxlmq14g6m4ic" path="res://assets/textures/MicrobeMembraneCenterTransparency.png" id="11_yio3i"]
+[ext_resource type="Texture2D" uid="uid://dxc88uayio7fd" path="res://assets/textures/MicrobeInternalDecorations.png" id="12_yio3i"]
 
-[sub_resource type="BoxMesh" id="1"]
-size = Vector3(2, 0.539, 2)
+[sub_resource type="CompressedTexture2D" id="CompressedTexture2D_qqoe4"]
+load_path = "res://.godot/imported/MicrobeMembraneTransparencyMap.png-31a6c97e35b8c5731c0e5d92ba5ba7ae.s3tc.ctex"
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_55k4t"]
 resource_local_to_scene = true
@@ -20,8 +23,11 @@ render_priority = 18
 shader = ExtResource("2")
 shader_parameter/wigglyNess = 1.0
 shader_parameter/movementWigglyNess = 1.0
+shader_parameter/transparencyTextureFactor = 1.2
+shader_parameter/turn = 0.0
 shader_parameter/albedoTexture = ExtResource("3_mj630")
 shader_parameter/damagedTexture = ExtResource("4_yioiy")
+shader_parameter/transparencyTexture = SubResource("CompressedTexture2D_qqoe4")
 shader_parameter/normal2Texture = ExtResource("6_wjsrx")
 shader_parameter/dissolveTexture = ExtResource("5")
 shader_parameter/dissolveValue = 0.0
@@ -34,6 +40,7 @@ render_priority = 0
 shader = ExtResource("6_vljlr")
 shader_parameter/wigglyNess = 1.0
 shader_parameter/movementWigglyNess = 1.0
+shader_parameter/turn = 1.0
 shader_parameter/waviness = 40.0
 shader_parameter/waveSpeed = 10.0
 shader_parameter/fade = 0.2
@@ -45,8 +52,19 @@ render_priority = 0
 shader = ExtResource("7_grw0d")
 shader_parameter/wigglyNess = 1.0
 shader_parameter/movementWigglyNess = 1.0
+shader_parameter/turn = 1.0
 shader_parameter/fade = 0.25
 shader_parameter/tint = Color(0.4, 0.8, 0.6, 1)
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_qqoe4"]
+resource_local_to_scene = true
+render_priority = 0
+shader = ExtResource("11_qqoe4")
+shader_parameter/wigglyNess = 1.0
+shader_parameter/movementWigglyNess = 1.0
+shader_parameter/turn = 1.0
+shader_parameter/centerMembraneTexture = ExtResource("11_yio3i")
+shader_parameter/albedoTexture = ExtResource("12_yio3i")
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_ripple"]
 resource_local_to_scene = true
@@ -63,6 +81,7 @@ shader_parameter/Phase = 0.2
 shader_parameter/Attenuation = 0.998
 shader_parameter/StillnessFactor = 0.0
 shader_parameter/MembraneRadius = 5.0
+shader_parameter/GlobalAlpha = 1.0
 
 [sub_resource type="PlaneMesh" id="PlaneMesh_ripple"]
 resource_local_to_scene = true
@@ -70,23 +89,26 @@ size = Vector2(18, 18)
 subdivide_width = 80
 subdivide_depth = 80
 
-[node name="Membrane" type="MeshInstance3D" node_paths=PackedStringArray("engulfAnimationMeshInstance", "mucocystAnimationMeshInstance", "waterRipple")]
-process_priority = 2
+[node name="Membrane" type="MeshInstance3D" node_paths=PackedStringArray("engulfAnimationMeshInstance", "mucocystAnimationMeshInstance", "internalDecorationsMeshInstance", "waterRipple")]
+process_priority = 3
 cast_shadow = 0
-mesh = SubResource("1")
 script = ExtResource("1")
 MembraneShaderMaterial = SubResource("ShaderMaterial_55k4t")
 EngulfShaderMaterial = SubResource("ShaderMaterial_p8cmc")
 MucocystShaderMaterial = SubResource("ShaderMaterial_lboqi")
 engulfAnimationMeshInstance = NodePath("EngulfMesh")
 mucocystAnimationMeshInstance = NodePath("MucocystMesh")
+internalDecorationsMeshInstance = NodePath("InternalDecorationsMesh")
 waterRipple = NodePath("WaterRipple")
+internalDecorationsMaterial = SubResource("ShaderMaterial_qqoe4")
 
 [node name="EngulfMesh" type="MeshInstance3D" parent="."]
 visible = false
 
 [node name="MucocystMesh" type="MeshInstance3D" parent="."]
 visible = false
+
+[node name="InternalDecorationsMesh" type="MeshInstance3D" parent="."]
 
 [node name="WaterRipple" type="Node" parent="." node_paths=PackedStringArray("waterPlane")]
 script = ExtResource("9_water")
