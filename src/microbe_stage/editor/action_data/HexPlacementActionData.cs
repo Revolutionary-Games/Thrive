@@ -1,4 +1,7 @@
-﻿[JSONAlwaysDynamicType]
+﻿using System;
+using System.Collections.Generic;
+
+[JSONAlwaysDynamicType]
 public abstract class HexPlacementActionData<THex, TContext> : EditorCombinableActionData<TContext>
     where THex : class, IActionHex
 {
@@ -13,40 +16,38 @@ public abstract class HexPlacementActionData<THex, TContext> : EditorCombinableA
         Orientation = orientation;
     }
 
-    protected override ActionInterferenceMode GetInterferenceModeWithGuaranteed(CombinableActionData other)
+    protected override double CalculateCostInternal(IReadOnlyList<EditorCombinableActionData> history,
+        int insertPosition)
     {
-        // If this hex got removed in this session
-        if (other is HexRemoveActionData<THex, TContext> removeActionData &&
-            removeActionData.RemovedHex.MatchesDefinition(PlacedHex))
-        {
-            // If the placed hex has been placed on the same position where it got removed before
-            if (removeActionData.Location == Location)
-                return ActionInterferenceMode.CancelsOut;
+        var cost = CalculateBaseCostInternal();
 
-            // Removing and placing a hex is a move operation
-            return ActionInterferenceMode.Combinable;
+        var count = history.Count;
+        for (int i = 0; i < insertPosition && i < count; ++i)
+        {
+            var other = history[i];
+
+            // If this hex got removed in this session
+            if (other is HexRemoveActionData<THex, TContext> removeActionData &&
+                removeActionData.RemovedHex.MatchesDefinition(PlacedHex) && MatchesContext(removeActionData))
+            {
+                // If the placed hex has been placed in the same position where it got removed from before
+                if (removeActionData.Location == Location)
+                {
+                    cost = Math.Min(-other.GetCalculatedCost(), cost);
+                }
+                else
+                {
+                    // Removing and placing a hex is a move operation
+                    cost = Math.Min(-other.GetCalculatedCost() + Constants.ORGANELLE_MOVE_COST, cost);
+                }
+            }
         }
 
-        if (other is HexMoveActionData<THex, TContext> moveActionData &&
-            moveActionData.MovedHex.MatchesDefinition(PlacedHex))
-        {
-            if (moveActionData.OldLocation == Location)
-                return ActionInterferenceMode.Combinable;
-        }
-
-        return ActionInterferenceMode.NoInterference;
+        return cost;
     }
 
-    protected override CombinableActionData CombineGuaranteed(CombinableActionData other)
+    protected override bool CanMergeWithInternal(CombinableActionData other)
     {
-        if (other is HexRemoveActionData<THex, TContext> removeActionData)
-        {
-            return CreateDerivedMoveAction(removeActionData);
-        }
-
-        return CreateDerivedPlacementAction((HexMoveActionData<THex, TContext>)other);
+        return false;
     }
-
-    protected abstract CombinableActionData CreateDerivedMoveAction(HexRemoveActionData<THex, TContext> data);
-    protected abstract CombinableActionData CreateDerivedPlacementAction(HexMoveActionData<THex, TContext> data);
 }

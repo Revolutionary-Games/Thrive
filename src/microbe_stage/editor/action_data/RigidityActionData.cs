@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 
 [JSONAlwaysDynamicType]
 public class RigidityActionData : EditorCombinableActionData<CellType>
@@ -12,47 +13,59 @@ public class RigidityActionData : EditorCombinableActionData<CellType>
         PreviousRigidity = previousRigidity;
     }
 
-    public override bool WantsMergeWith(CombinableActionData other)
+    public static double CalculateRigidityCost(float newRigidity, float previousRigidity)
     {
-        return other is RigidityActionData;
-    }
-
-    protected override double CalculateCostInternal()
-    {
-        return Math.Abs(NewRigidity - PreviousRigidity) * Constants.MEMBRANE_RIGIDITY_SLIDER_TO_VALUE_RATIO *
+        return Math.Abs(newRigidity - previousRigidity) * Constants.MEMBRANE_RIGIDITY_SLIDER_TO_VALUE_RATIO *
             Constants.MEMBRANE_RIGIDITY_COST_PER_STEP;
     }
 
-    protected override ActionInterferenceMode GetInterferenceModeWithGuaranteed(CombinableActionData other)
+    protected override double CalculateBaseCostInternal()
     {
-        if (other is not RigidityActionData rigidityChangeActionData)
-            return ActionInterferenceMode.NoInterference;
-
-        // If the value has been changed back to a previous value
-        if (Math.Abs(NewRigidity - rigidityChangeActionData.PreviousRigidity) < MathUtils.EPSILON &&
-            Math.Abs(rigidityChangeActionData.NewRigidity - PreviousRigidity) < MathUtils.EPSILON)
-        {
-            return ActionInterferenceMode.CancelsOut;
-        }
-
-        // If the value has been changed twice
-        if (Math.Abs(NewRigidity - rigidityChangeActionData.PreviousRigidity) < MathUtils.EPSILON ||
-            Math.Abs(rigidityChangeActionData.NewRigidity - PreviousRigidity) < MathUtils.EPSILON)
-        {
-            return ActionInterferenceMode.Combinable;
-        }
-
-        return ActionInterferenceMode.NoInterference;
+        return CalculateRigidityCost(NewRigidity, PreviousRigidity);
     }
 
-    protected override CombinableActionData CombineGuaranteed(CombinableActionData other)
+    protected override double CalculateCostInternal(IReadOnlyList<EditorCombinableActionData> history,
+        int insertPosition)
     {
-        var rigidityChangeActionData = (RigidityActionData)other;
+        bool foundOther = false;
+        double cost = 0;
 
-        if (Math.Abs(PreviousRigidity - rigidityChangeActionData.NewRigidity) < MathUtils.EPSILON)
-            return new RigidityActionData(NewRigidity, rigidityChangeActionData.PreviousRigidity);
+        var count = history.Count;
+        for (int i = 0; i < insertPosition && i < count; ++i)
+        {
+            var other = history[i];
 
-        return new RigidityActionData(rigidityChangeActionData.NewRigidity, PreviousRigidity);
+            if (other is RigidityActionData rigidityChangeActionData && MatchesContext(rigidityChangeActionData))
+            {
+                // If the value has been changed back to a previous value
+                if (Math.Abs(NewRigidity - rigidityChangeActionData.PreviousRigidity) < MathUtils.EPSILON &&
+                    Math.Abs(rigidityChangeActionData.NewRigidity - PreviousRigidity) < MathUtils.EPSILON)
+                {
+                    cost -= -other.GetCalculatedCost();
+                    foundOther = true;
+                    continue;
+                }
+
+                // If the value has been changed twice
+                if (Math.Abs(NewRigidity - rigidityChangeActionData.PreviousRigidity) < MathUtils.EPSILON ||
+                    Math.Abs(rigidityChangeActionData.NewRigidity - PreviousRigidity) < MathUtils.EPSILON)
+                {
+                    cost += -other.GetCalculatedCost() +
+                        CalculateRigidityCost(NewRigidity, rigidityChangeActionData.PreviousRigidity);
+                    foundOther = true;
+                }
+            }
+        }
+
+        if (!foundOther)
+            cost += CalculateBaseCostInternal();
+
+        return cost;
+    }
+
+    protected override bool CanMergeWithInternal(CombinableActionData other)
+    {
+        return other is RigidityActionData;
     }
 
     protected override void MergeGuaranteed(CombinableActionData other)

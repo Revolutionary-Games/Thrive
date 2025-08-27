@@ -1,4 +1,7 @@
-﻿[JSONAlwaysDynamicType]
+﻿using System;
+using System.Collections.Generic;
+
+[JSONAlwaysDynamicType]
 public abstract class HexRemoveActionData<THex, TContext> : EditorCombinableActionData<TContext>
     where THex : class, IActionHex
 {
@@ -13,47 +16,60 @@ public abstract class HexRemoveActionData<THex, TContext> : EditorCombinableActi
         Orientation = orientation;
     }
 
-    protected override double CalculateCostInternal()
+    protected override double CalculateBaseCostInternal()
     {
         return Constants.ORGANELLE_REMOVE_COST;
     }
 
-    protected override ActionInterferenceMode GetInterferenceModeWithGuaranteed(CombinableActionData other)
+    protected override double CalculateCostInternal(IReadOnlyList<EditorCombinableActionData> history,
+        int insertPosition)
     {
-        // If this hex got placed in this session on the same position
-        if (other is HexPlacementActionData<THex, TContext> placementActionData &&
-            placementActionData.PlacedHex.MatchesDefinition(RemovedHex))
-        {
-            // If this hex got placed on the same position
-            if (placementActionData.Location == Location)
-                return ActionInterferenceMode.CancelsOut;
+        var cost = CalculateBaseCostInternal();
+        bool moved = false;
+        bool placed = false;
 
-            // Removing an hex and then placing it is a move operation
-            return ActionInterferenceMode.Combinable;
+        var count = history.Count;
+        for (int i = 0; i < insertPosition && i < count; ++i)
+        {
+            var other = history[i];
+
+            // If this hex got placed in this session on the same position
+            if (other is HexPlacementActionData<THex, TContext> placementActionData &&
+                placementActionData.PlacedHex.MatchesDefinition(RemovedHex) && MatchesContext(placementActionData))
+            {
+                // If this hex got placed in the same position
+                if (placementActionData.Location == Location)
+                {
+                    cost = Math.Min(-other.GetCalculatedCost(), cost);
+                }
+                else
+                {
+                    // Removing a hex and then placing it is a move operation
+                    cost = Math.Min(-other.GetCalculatedCost() + Constants.ORGANELLE_MOVE_COST, cost);
+                }
+
+                placed = true;
+                continue;
+            }
+
+            // If this hex got moved in this session
+            if (other is HexMoveActionData<THex, TContext> moveActionData &&
+                moveActionData.MovedHex.MatchesDefinition(RemovedHex) &&
+                moveActionData.NewLocation == Location && MatchesContext(moveActionData))
+            {
+                if (!moved && !placed)
+                {
+                    moved = true;
+                    cost -= other.GetCalculatedCost();
+                }
+            }
         }
 
-        // If this hex got moved in this session
-        if (other is HexMoveActionData<THex, TContext> moveActionData &&
-            moveActionData.MovedHex.MatchesDefinition(RemovedHex) &&
-            moveActionData.NewLocation == Location)
-        {
-            return ActionInterferenceMode.Combinable;
-        }
-
-        return ActionInterferenceMode.NoInterference;
+        return cost;
     }
 
-    protected override CombinableActionData CombineGuaranteed(CombinableActionData other)
+    protected override bool CanMergeWithInternal(CombinableActionData other)
     {
-        if (other is HexPlacementActionData<THex, TContext> placementActionData)
-        {
-            return CreateDerivedMoveAction(placementActionData);
-        }
-
-        return CreateDerivedRemoveAction((HexMoveActionData<THex, TContext>)other);
+        return false;
     }
-
-    protected abstract CombinableActionData CreateDerivedMoveAction(HexPlacementActionData<THex, TContext> data);
-
-    protected abstract CombinableActionData CreateDerivedRemoveAction(HexMoveActionData<THex, TContext> data);
 }

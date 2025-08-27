@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using Godot;
 
 [JSONAlwaysDynamicType]
@@ -40,23 +41,19 @@ public class NewMicrobeActionData : EditorCombinableActionData<CellType>
 
     public override bool ResetsHistory => true;
 
-    public override double CalculateCost()
+    protected override double CalculateBaseCostInternal()
     {
         return -Constants.BASE_MUTATION_POINTS;
     }
 
-    protected override double CalculateCostInternal()
+    protected override double CalculateCostInternal(IReadOnlyList<EditorCombinableActionData> history,
+        int insertPosition)
     {
-        throw new NotSupportedException();
+        return CalculateBaseCostInternal();
     }
 
-    protected override ActionInterferenceMode GetInterferenceModeWithGuaranteed(CombinableActionData other)
+    protected override bool CanMergeWithInternal(CombinableActionData other)
     {
-        return ActionInterferenceMode.NoInterference;
-    }
-
-    protected override CombinableActionData CombineGuaranteed(CombinableActionData other)
-    {
-        throw new NotSupportedException();
+        return false;
     }
 }

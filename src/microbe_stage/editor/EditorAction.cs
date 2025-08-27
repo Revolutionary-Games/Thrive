@@ -42,4 +42,10 @@ public abstract class EditorAction : ReversibleAction
     public abstract int ApplyPartialMergedData(List<EditorCombinableActionData> newData, int startIndex);
 
     public abstract double GetBaseCost();
+
+    /// <summary>
+    ///   Copies the <see cref="Data"/> to the target collection in the most efficient way possible.
+    /// </summary>
+    /// <param name="target">Where to copy the data from this</param>
+    public abstract void CopyData(ICollection<EditorCombinableActionData> target);
 }

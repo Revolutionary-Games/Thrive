@@ -1,4 +1,7 @@
-﻿[JSONAlwaysDynamicType]
+﻿using System;
+using System.Collections.Generic;
+
+[JSONAlwaysDynamicType]
 public class MembraneActionData : EditorCombinableActionData<CellType>
 {
     public MembraneType OldMembrane;
@@ -10,33 +13,36 @@ public class MembraneActionData : EditorCombinableActionData<CellType>
         NewMembrane = newMembrane;
     }
 
-    protected override double CalculateCostInternal()
+    protected override double CalculateBaseCostInternal()
     {
+        if (OldMembrane == NewMembrane)
+            return 0;
+
         return NewMembrane.EditorCost;
     }
 
-    protected override ActionInterferenceMode GetInterferenceModeWithGuaranteed(CombinableActionData other)
+    protected override double CalculateCostInternal(IReadOnlyList<EditorCombinableActionData> history,
+        int insertPosition)
     {
-        if (other is MembraneActionData membraneActionData)
-        {
-            // If changed back to the old membrane
-            if (membraneActionData.NewMembrane == OldMembrane && NewMembrane == membraneActionData.OldMembrane)
-                return ActionInterferenceMode.CancelsOut;
+        var cost = CalculateBaseCostInternal();
 
-            // If changed membrane twice
-            if (membraneActionData.NewMembrane == OldMembrane || NewMembrane == membraneActionData.OldMembrane)
-                return ActionInterferenceMode.Combinable;
+        var count = history.Count;
+        for (int i = 0; i < insertPosition && i < count; ++i)
+        {
+            var other = history[i];
+
+            // If the membrane got changed again
+            if (other is MembraneActionData membraneActionData && MatchesContext(membraneActionData))
+            {
+                cost = Math.Min(-other.GetCalculatedCost(), cost);
+            }
         }
 
-        return ActionInterferenceMode.NoInterference;
+        return cost;
     }
 
-    protected override CombinableActionData CombineGuaranteed(CombinableActionData other)
+    protected override bool CanMergeWithInternal(CombinableActionData other)
     {
-        var membraneActionData = (MembraneActionData)other;
-        if (OldMembrane == membraneActionData.NewMembrane)
-            return new MembraneActionData(membraneActionData.OldMembrane, NewMembrane);
-
-        return new MembraneActionData(membraneActionData.NewMembrane, OldMembrane);
+        return false;
     }
 }

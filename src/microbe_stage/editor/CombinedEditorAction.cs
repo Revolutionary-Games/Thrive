@@ -120,4 +120,12 @@ public class CombinedEditorAction : EditorAction
 
         return index;
     }
+
+    public override void CopyData(ICollection<EditorCombinableActionData> target)
+    {
+        foreach (var action in actions)
+        {
+            action.CopyData(target);
+        }
+    }
 }

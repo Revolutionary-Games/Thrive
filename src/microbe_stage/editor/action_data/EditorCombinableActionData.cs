@@ -1,13 +1,17 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Diagnostics;
+using Godot;
 
 public abstract class EditorCombinableActionData : CombinableActionData
 {
+    protected double lastCalculatedCost = double.NaN;
+
     public float CostMultiplier { get; set; } = 1.0f;
 
     public virtual double CalculateCost(IReadOnlyList<EditorCombinableActionData> history, int insertPosition)
     {
-        return Math.Min(CalculateCostInternal(history, insertPosition) * CostMultiplier, 100);
+        return Math.Min((lastCalculatedCost = CalculateCostInternal(history, insertPosition)) * CostMultiplier, 100);
     }
 
     public virtual double GetBaseCost()
@@ -15,7 +19,32 @@ public abstract class EditorCombinableActionData : CombinableActionData
         return Math.Min(CalculateBaseCostInternal() * CostMultiplier, 100);
     }
 
-    protected abstract double CalculateCostInternal(IReadOnlyList<EditorCombinableActionData> history, int insertPosition);
+    /// <summary>
+    ///   The last calculated cost of this action.
+    ///   Updated by <see cref="CalculateCost"/>. This means that actions can only have their costs processed in
+    ///   order, otherwise bad things will happen.
+    /// </summary>
+    /// <returns>The full realised cost of this action</returns>
+    public virtual double GetCalculatedCost()
+    {
+        // TODO: resetting this to NaN for a whole action tree before calculating costs again would provide some extra
+        // safety against bugs
+        if (double.IsNaN(lastCalculatedCost))
+        {
+            GD.PrintErr("Trying to get the cost of an action before it has been calculated. " +
+                "Things are being processed in the wrong order!");
+
+            if (Debugger.IsAttached)
+                Debugger.Break();
+
+            return 0;
+        }
+
+        return Math.Min(lastCalculatedCost * CostMultiplier, 100);
+    }
+
+    protected abstract double CalculateCostInternal(IReadOnlyList<EditorCombinableActionData> history,
+        int insertPosition);
 
     protected abstract double CalculateBaseCostInternal();
 }
@@ -47,5 +76,16 @@ public abstract class EditorCombinableActionData<TContext> : EditorCombinableAct
         }
 
         return base.WantsToMergeWith(other);
+    }
+
+    public bool MatchesContext(EditorCombinableActionData<TContext> other)
+    {
+        if (Context is null)
+            return other.Context is null;
+
+        if (other.Context is null)
+            return false;
+
+        return Context.Equals(other.Context);
     }
 }

@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 
 [JSONAlwaysDynamicType]
 public class BehaviourActionData : EditorCombinableActionData
@@ -14,42 +15,48 @@ public class BehaviourActionData : EditorCombinableActionData
         Type = type;
     }
 
-    public override bool WantsMergeWith(CombinableActionData other)
+    protected override double CalculateBaseCostInternal()
     {
-        return other is BehaviourActionData;
-    }
-
-    protected override double CalculateCostInternal()
-    {
-        // TODO: should this be free?
+        // TODO: add a cost for this. CalculateCostInternal needs tweaking to handle this
         return 0;
     }
 
-    protected override ActionInterferenceMode GetInterferenceModeWithGuaranteed(CombinableActionData other)
+    protected override double CalculateCostInternal(IReadOnlyList<EditorCombinableActionData> history,
+        int insertPosition)
     {
-        if (other is BehaviourActionData behaviourChangeActionData && behaviourChangeActionData.Type == Type)
-        {
-            // If the value has been changed back to a previous value
-            if (Math.Abs(NewValue - behaviourChangeActionData.OldValue) < MathUtils.EPSILON &&
-                Math.Abs(behaviourChangeActionData.NewValue - OldValue) < MathUtils.EPSILON)
-                return ActionInterferenceMode.CancelsOut;
+        var cost = CalculateBaseCostInternal();
 
-            // If the value has been changed twice
-            if (Math.Abs(NewValue - behaviourChangeActionData.OldValue) < MathUtils.EPSILON ||
-                Math.Abs(behaviourChangeActionData.NewValue - OldValue) < MathUtils.EPSILON)
-                return ActionInterferenceMode.Combinable;
+        var count = history.Count;
+        for (int i = 0; i < insertPosition && i < count; ++i)
+        {
+            var other = history[i];
+
+            if (other is BehaviourActionData behaviourChangeActionData && behaviourChangeActionData.Type == Type)
+            {
+                // If the value has been changed back to a previous value
+                if (Math.Abs(NewValue - behaviourChangeActionData.OldValue) < MathUtils.EPSILON &&
+                    Math.Abs(behaviourChangeActionData.NewValue - OldValue) < MathUtils.EPSILON)
+                {
+                    cost = Math.Min(-other.GetCalculatedCost(), cost);
+                    continue;
+                }
+
+                // If the value has been changed twice
+                if (Math.Abs(NewValue - behaviourChangeActionData.OldValue) < MathUtils.EPSILON ||
+                    Math.Abs(behaviourChangeActionData.NewValue - OldValue) < MathUtils.EPSILON)
+                {
+                    // TODO: calculate the new total change and return that (minus the already paid other cost)
+                    // return ActionInterferenceMode.Combinable;
+                }
+            }
         }
 
-        return ActionInterferenceMode.NoInterference;
+        return cost;
     }
 
-    protected override CombinableActionData CombineGuaranteed(CombinableActionData other)
+    protected override bool CanMergeWithInternal(CombinableActionData other)
     {
-        var behaviourChangeActionData = (BehaviourActionData)other;
-        if (Math.Abs(OldValue - behaviourChangeActionData.NewValue) < MathUtils.EPSILON)
-            return new BehaviourActionData(behaviourChangeActionData.OldValue, NewValue, Type);
-
-        return new BehaviourActionData(behaviourChangeActionData.NewValue, OldValue, Type);
+        return other is BehaviourActionData;
     }
 
     protected override void MergeGuaranteed(CombinableActionData other)

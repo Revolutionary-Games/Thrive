@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 
 public abstract class HexMoveActionData<THex, TContext> : EditorCombinableActionData<TContext>
     where THex : class, IActionHex
@@ -19,7 +20,7 @@ public abstract class HexMoveActionData<THex, TContext> : EditorCombinableAction
         NewRotation = newRotation;
     }
 
-    protected override double CalculateCostInternal()
+    protected override double CalculateBaseCostInternal()
     {
         if (OldLocation == NewLocation && OldRotation == NewRotation)
             return 0;
@@ -27,64 +28,55 @@ public abstract class HexMoveActionData<THex, TContext> : EditorCombinableAction
         return Constants.ORGANELLE_MOVE_COST;
     }
 
-    protected override ActionInterferenceMode GetInterferenceModeWithGuaranteed(CombinableActionData other)
+    protected override double CalculateCostInternal(IReadOnlyList<EditorCombinableActionData> history,
+        int insertPosition)
     {
-        // If this hex got moved in the same session again
-        if (other is HexMoveActionData<THex, TContext> moveActionData &&
-            moveActionData.MovedHex.MatchesDefinition(MovedHex))
-        {
-            // If this hex got moved back and forth
-            if (OldLocation == moveActionData.NewLocation && NewLocation == moveActionData.OldLocation &&
-                OldRotation == moveActionData.NewRotation && NewRotation == moveActionData.OldRotation)
-                return ActionInterferenceMode.CancelsOut;
+        // Move is free if moving a hex placed in this session, or if moving something moved already
+        var cost = CalculateBaseCostInternal();
 
-            // If this hex got moved twice
-            if ((moveActionData.NewLocation == OldLocation && moveActionData.NewRotation == OldRotation) ||
-                (NewLocation == moveActionData.OldLocation && NewRotation == moveActionData.OldRotation))
+        var count = history.Count;
+        for (int i = 0; i < insertPosition && i < count; ++i)
+        {
+            var other = history[i];
+
+            // If this hex got moved in the same session again
+            if (other is HexMoveActionData<THex, TContext> moveActionData &&
+                moveActionData.MovedHex.MatchesDefinition(MovedHex) && MatchesContext(moveActionData))
             {
-                return ActionInterferenceMode.Combinable;
+                // If this hex got moved back and forth
+                if (OldLocation == moveActionData.NewLocation && NewLocation == moveActionData.OldLocation &&
+                    OldRotation == moveActionData.NewRotation && NewRotation == moveActionData.OldRotation)
+                {
+                    cost = Math.Min(-other.GetCalculatedCost(), cost);
+                    continue;
+                }
+
+                // If this hex got moved twice
+                if ((moveActionData.NewLocation == OldLocation && moveActionData.NewRotation == OldRotation) ||
+                    (NewLocation == moveActionData.OldLocation && NewRotation == moveActionData.OldRotation))
+                {
+                    cost = Math.Min(0, cost);
+                    continue;
+                }
             }
+
+            // If this hex got placed in this session
+            if (other is HexPlacementActionData<THex, TContext> placementActionData &&
+                placementActionData.PlacedHex.MatchesDefinition(MovedHex) &&
+                placementActionData.Location == OldLocation &&
+                placementActionData.Orientation == OldRotation && MatchesContext(placementActionData))
+            {
+                cost = Math.Min(0, cost);
+            }
+
+            // Moves shouldn't happen after a remove, so we don't check that here
         }
 
-        // If this hex got placed in this session
-        if (other is HexPlacementActionData<THex, TContext> placementActionData &&
-            placementActionData.PlacedHex.MatchesDefinition(MovedHex) &&
-            placementActionData.Location == OldLocation &&
-            placementActionData.Orientation == OldRotation)
-        {
-            return ActionInterferenceMode.Combinable;
-        }
-
-        // If this hex got removed in this session
-        if (other is HexRemoveActionData<THex, TContext> removeActionData &&
-            removeActionData.RemovedHex.MatchesDefinition(MovedHex) &&
-            removeActionData.Location == NewLocation)
-        {
-            return ActionInterferenceMode.ReplacesOther;
-        }
-
-        return ActionInterferenceMode.NoInterference;
+        return cost;
     }
 
-    protected override CombinableActionData CombineGuaranteed(CombinableActionData other)
+    protected override bool CanMergeWithInternal(CombinableActionData other)
     {
-        switch (other)
-        {
-            case HexPlacementActionData<THex, TContext> placementActionData:
-                return CreateDerivedPlacementAction(placementActionData);
-            case HexMoveActionData<THex, TContext> moveActionData when moveActionData.NewLocation == OldLocation:
-                return CreateDerivedMoveAction(MovedHex, moveActionData.OldLocation, NewLocation,
-                    moveActionData.OldRotation, NewRotation);
-            case HexMoveActionData<THex, TContext> moveActionData:
-                return CreateDerivedMoveAction(moveActionData.MovedHex, OldLocation, moveActionData.NewLocation,
-                    OldRotation, moveActionData.NewRotation);
-            default:
-                throw new NotSupportedException();
-        }
+        return false;
     }
-
-    protected abstract CombinableActionData CreateDerivedMoveAction(THex hex, Hex oldLocation, Hex newLocation,
-        int oldRotation, int newRotation);
-
-    protected abstract CombinableActionData CreateDerivedPlacementAction(HexPlacementActionData<THex, TContext> data);
 }
