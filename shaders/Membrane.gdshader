@@ -99,7 +99,7 @@ void fragment(){
 
     // Mix base normals with detail normals in some proportion (0.0 - 1.0)
     adjustedNormals = normalize(mix(NORMAL, adjustedNormals, 0.2f));
-    
+
     ALBEDO = final.rgb;
     ALPHA = fresnel(3.0, adjustedNormals, adjustedView) * round(cutoff);
     METALLIC = 0.0f;
