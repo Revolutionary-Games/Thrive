@@ -127,6 +127,8 @@ public struct OrganelleContainer
 
     public bool HasBindingAgent;
 
+    public bool HasChemosynthesizingProtein;
+
     /// <summary>
     ///   Set true once all organelles are divided to not continuously run code that is triggered when a cell is ready
     ///   to reproduce.
@@ -502,6 +504,7 @@ public static class OrganelleContainerHelpers
         container.OrganellesCapacity = 0;
         container.HasSignalingAgent = false;
         container.HasBindingAgent = false;
+        container.HasChemosynthesizingProtein = false;
         container.HeatCollection = 0;
         container.OxygenUsingOrganelles = 0;
         container.RadiationProtection = 0;
@@ -582,6 +585,12 @@ public static class OrganelleContainerHelpers
 
             if (organelleDefinition.HasBindingFeature)
                 container.HasBindingAgent = true;
+
+            if (organelleDefinition.RunnableProcesses.Any(o => o.Process.Inputs
+                    .Any(input => input.Key.ID == Compound.Hydrogensulfide)))
+            {
+                container.HasChemosynthesizingProtein = true;
+            }
 
             if (organelleDefinition.HasRadiationProtection)
                 ++container.RadiationProtection;

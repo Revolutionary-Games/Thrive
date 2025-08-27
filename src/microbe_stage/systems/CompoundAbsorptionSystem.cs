@@ -79,7 +79,8 @@ public sealed class CompoundAbsorptionSystem : AEntitySetSystem<float>
         compoundCloudSystem.AbsorbCompounds(position.Position, absorber.AbsorbRadius, storage.Compounds,
             absorber.TotalAbsorbedCompounds, delta, absorber.AbsorptionRatio, out bool hydrogenSulfideAbsorbed);
 
-        if (hydrogenSulfideDamageTrigger && hydrogenSulfideAbsorbed)
+        if (hydrogenSulfideDamageTrigger && hydrogenSulfideAbsorbed
+            && !entity.Get<OrganelleContainer>().HasChemosynthesizingProtein)
         {
             entity.Get<Health>().DealMicrobeDamage(ref entity.Get<CellProperties>(), Constants.HYDROGEN_SULFIDE_DAMAGE,
                 "hydrogenSulfide", HealthHelpers.GetInstantKillProtectionThreshold(entity));
