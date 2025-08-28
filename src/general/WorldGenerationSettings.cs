@@ -37,6 +37,15 @@ public class WorldGenerationSettings
         DaytimeFraction = defaultDayNight.DaytimeFraction;
     }
 
+    /// <summary>
+    ///   Represents possible origins of life.
+    /// </summary>
+    /// <remarks>
+    ///   <para>
+    ///     Do not reorder, remove, or change values without updating the OptionButton in corresponding scene files.
+    ///     The GUI depends on these specific enum values and their order for correct mapping.
+    ///   </para>
+    /// </remarks>
     public enum LifeOrigin
     {
         [Description("LIFE_ORIGIN_VENTS")]
@@ -73,6 +82,12 @@ public class WorldGenerationSettings
     /// <summary>
     ///   The possible temperature settings for the planet
     /// </summary>
+    /// <remarks>
+    ///   <para>
+    ///     Do not reorder, remove, or change values without updating the OptionButton in corresponding scene files.
+    ///     The GUI depends on these specific enum values and their order for correct mapping.
+    ///   </para>
+    /// </remarks>
     public enum WorldTemperatureEnum
     {
         [Description("WORLD_TEMPERATURE_COLD")]
@@ -88,6 +103,12 @@ public class WorldGenerationSettings
     /// <summary>
     ///   The possible sea level options for the planet
     /// </summary>
+    /// <remarks>
+    ///   <para>
+    ///     Do not reorder, remove, or change values without updating the OptionButton in corresponding scene files.
+    ///     The GUI depends on these specific enum values and their order for correct mapping.
+    ///   </para>
+    /// </remarks>
     public enum WorldOceanicCoverageEnum
     {
         [Description("WORLD_OCEANIC_COVERAGE_SMALL")]
@@ -103,6 +124,12 @@ public class WorldGenerationSettings
     /// <summary>
     ///   The geological activity levels of the planet
     /// </summary>
+    /// <remarks>
+    ///   <para>
+    ///     Do not reorder, remove, or change values without updating the OptionButton in corresponding scene files.
+    ///     The GUI depends on these specific enum values and their order for correct mapping.
+    ///   </para>
+    /// </remarks>
     public enum GeologicalActivityEnum
     {
         [Description("GEOLOGICAL_ACTIVITY_DORMANT")]
@@ -118,6 +145,12 @@ public class WorldGenerationSettings
     /// <summary>
     ///   The possible climate instability settings for the planet
     /// </summary>
+    /// <remarks>
+    ///   <para>
+    ///     Do not reorder, remove, or change values without updating the OptionButton in corresponding scene files.
+    ///     The GUI depends on these specific enum values and their order for correct mapping.
+    ///   </para>
+    /// </remarks>
     public enum ClimateInstabilityEnum
     {
         [Description("CLIMATE_STABILITY_STABLE")]
@@ -133,6 +166,12 @@ public class WorldGenerationSettings
     /// <summary>
     ///   The possible compound levels settings for the planet
     /// </summary>
+    /// <remarks>
+    ///   <para>
+    ///     Do not reorder, remove, or change values without updating the OptionButton in corresponding scene files.
+    ///     The GUI depends on these specific enum values and their order for correct mapping.
+    ///   </para>
+    /// </remarks>
     public enum CompoundLevel
     {
         [Description("COMPOUND_LEVEL_VERY_LOW")]
