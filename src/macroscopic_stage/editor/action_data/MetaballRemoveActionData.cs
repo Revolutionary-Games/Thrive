@@ -106,53 +106,45 @@ public class MetaballRemoveActionData<TMetaball> : EditorCombinableActionData
         return result;
     }
 
-    protected override double CalculateCostInternal()
+    protected override double CalculateBaseCostInternal()
     {
         return Constants.METABALL_REMOVE_COST;
     }
 
-    protected override ActionInterferenceMode GetInterferenceModeWithGuaranteed(CombinableActionData other)
+    protected override double CalculateCostInternal(IReadOnlyList<EditorCombinableActionData> history,
+        int insertPosition)
     {
-        // If this metaball got placed in this session on the same position
-        if (other is MetaballPlacementActionData<TMetaball> placementActionData &&
-            placementActionData.PlacedMetaball.MatchesDefinition(RemovedMetaball))
-        {
-            // If this metaball got placed on the same position
-            if (placementActionData.Position.DistanceSquaredTo(Position) < MathUtils.EPSILON &&
-                placementActionData.Parent == Parent)
-                return ActionInterferenceMode.CancelsOut;
+        var cost = CalculateBaseCostInternal();
 
-            // Removing a metaball and then placing it is a move operation
-            return ActionInterferenceMode.Combinable;
+        var count = history.Count;
+        for (int i = 0; i < insertPosition && i < count; ++i)
+        {
+            var other = history[i];
+
+            // If this metaball got placed in this session on the same position
+            if (other is MetaballPlacementActionData<TMetaball> placementActionData &&
+                placementActionData.PlacedMetaball.MatchesDefinition(RemovedMetaball))
+            {
+                // Deleting a placed metaball refunds it
+                cost = Math.Min(-other.GetCalculatedCost(), cost);
+                continue;
+            }
+
+            // If this metaball got moved in this session, refund that
+            if (other is MetaballMoveActionData<TMetaball> moveActionData &&
+                moveActionData.MovedMetaball.MatchesDefinition(RemovedMetaball) &&
+                moveActionData.NewPosition.DistanceSquaredTo(Position) < MathUtils.EPSILON &&
+                moveActionData.NewParent == Parent)
+            {
+                cost -= moveActionData.GetCalculatedCost();
+            }
         }
 
-        // If this metaball got moved in this session
-        if (other is MetaballMoveActionData<TMetaball> moveActionData &&
-            moveActionData.MovedMetaball.MatchesDefinition(RemovedMetaball) &&
-            moveActionData.NewPosition.DistanceSquaredTo(Position) < MathUtils.EPSILON &&
-            moveActionData.NewParent == Parent)
-        {
-            return ActionInterferenceMode.Combinable;
-        }
-
-        return ActionInterferenceMode.NoInterference;
+        return cost;
     }
 
-    protected override CombinableActionData CombineGuaranteed(CombinableActionData other)
+    protected override bool CanMergeWithInternal(CombinableActionData other)
     {
-        if (other is MetaballPlacementActionData<TMetaball> placementActionData)
-        {
-            return new MetaballMoveActionData<TMetaball>(placementActionData.PlacedMetaball, Position,
-                placementActionData.Position,
-                Parent, placementActionData.Parent, MetaballMoveActionData<TMetaball>.UpdateNewMovementPositions(
-                    ReParentedMetaballs,
-                    placementActionData.Position - Position));
-        }
-
-        var moveActionData = (MetaballMoveActionData<TMetaball>)other;
-        return new MetaballRemoveActionData<TMetaball>(RemovedMetaball, moveActionData.OldPosition,
-            moveActionData.OldParent,
-            MetaballMoveActionData<TMetaball>.UpdateOldMovementPositions(ReParentedMetaballs,
-                moveActionData.OldPosition - Position));
+        return false;
     }
 }

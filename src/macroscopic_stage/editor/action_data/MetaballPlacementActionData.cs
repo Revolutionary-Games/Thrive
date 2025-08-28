@@ -1,4 +1,6 @@
-﻿using Godot;
+﻿using System;
+using System.Collections.Generic;
+using Godot;
 using Newtonsoft.Json;
 
 public class MetaballPlacementActionData<TMetaball> : EditorCombinableActionData
@@ -26,64 +28,43 @@ public class MetaballPlacementActionData<TMetaball> : EditorCombinableActionData
         Parent = metaball.Parent;
     }
 
-    protected override double CalculateCostInternal()
+    protected override double CalculateBaseCostInternal()
     {
         return Constants.METABALL_ADD_COST;
     }
 
-    protected override ActionInterferenceMode GetInterferenceModeWithGuaranteed(CombinableActionData other)
+    protected override double CalculateCostInternal(IReadOnlyList<EditorCombinableActionData> history,
+        int insertPosition)
     {
-        // If this metaball got removed in this session
-        if (other is MetaballRemoveActionData<TMetaball> removeActionData &&
-            removeActionData.RemovedMetaball.MatchesDefinition(PlacedMetaball))
-        {
-            // If the placed metaball has been placed on the same position where it got removed before
-            if (removeActionData.Position.DistanceSquaredTo(Position) < MathUtils.EPSILON &&
-                removeActionData.Parent == Parent)
-                return ActionInterferenceMode.CancelsOut;
+        var cost = CalculateBaseCostInternal();
 
-            // Removing and placing a metaball is a move operation
-            return ActionInterferenceMode.Combinable;
+        var count = history.Count;
+        for (int i = 0; i < insertPosition && i < count; ++i)
+        {
+            var other = history[i];
+
+            // If this metaball got removed in this session
+            if (other is MetaballRemoveActionData<TMetaball> removeActionData &&
+                removeActionData.RemovedMetaball.MatchesDefinition(PlacedMetaball))
+            {
+                // If the placed metaball has been placed in the same position where it got removed before
+                if (removeActionData.Position.DistanceSquaredTo(Position) < MathUtils.EPSILON &&
+                    removeActionData.Parent == Parent)
+                {
+                    cost = Math.Min(-other.GetCalculatedCost(), cost);
+                    continue;
+                }
+
+                // Removing and placing a metaball is a move operation
+                cost = Math.Min(-other.GetCalculatedCost(), cost) + Constants.METABALL_MOVE_COST;
+            }
         }
 
-        // If this metaball got resized in this session
-        // TODO: is the Equals check here too strict or just right?
-        if (other is MetaballResizeActionData<TMetaball> resizeActionData &&
-            resizeActionData.ResizedMetaball.Equals(PlacedMetaball))
-        {
-            // Placing and resizing a metaball is a place operation
-            return ActionInterferenceMode.Combinable;
-        }
-
-        if (other is MetaballMoveActionData<TMetaball> moveActionData &&
-            moveActionData.MovedMetaball.MatchesDefinition(PlacedMetaball))
-        {
-            if (moveActionData.OldPosition.DistanceSquaredTo(Position) < MathUtils.EPSILON &&
-                moveActionData.OldParent == Parent)
-                return ActionInterferenceMode.Combinable;
-        }
-
-        return ActionInterferenceMode.NoInterference;
+        return cost;
     }
 
-    protected override CombinableActionData CombineGuaranteed(CombinableActionData other)
+    protected override bool CanMergeWithInternal(CombinableActionData other)
     {
-        if (other is MetaballRemoveActionData<TMetaball> removeActionData)
-        {
-            return new MetaballMoveActionData<TMetaball>(removeActionData.RemovedMetaball, removeActionData.Position,
-                Position, removeActionData.Parent, Parent,
-                MetaballMoveActionData<TMetaball>.UpdateNewMovementPositions(removeActionData.ReParentedMetaballs,
-                    Position - removeActionData.Position));
-        }
-
-        if (other is MetaballResizeActionData<TMetaball> resizeActionData)
-        {
-            return new MetaballPlacementActionData<TMetaball>(PlacedMetaball, Position, resizeActionData.NewSize,
-                Parent);
-        }
-
-        var moveActionData = (MetaballMoveActionData<TMetaball>)other;
-        return new MetaballPlacementActionData<TMetaball>(PlacedMetaball, moveActionData.NewPosition, Size,
-            moveActionData.NewParent);
+        return false;
     }
 }
