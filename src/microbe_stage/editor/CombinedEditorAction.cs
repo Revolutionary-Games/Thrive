@@ -75,7 +75,7 @@ public class CombinedEditorAction : EditorAction
         double sum = 0;
 
         var count = Actions.Count;
-        for (var i = 0; i < count; i++)
+        for (var i = 0; i < count; ++i)
         {
             sum += Actions[i].CalculateCost(history, insertPosition);
         }
