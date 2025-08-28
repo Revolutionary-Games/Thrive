@@ -368,7 +368,14 @@ public class MicrobeSpecies : Species, ICellDefinition
                 MembraneRigidity,
                 BaseSpeed,
                 BaseRotationSpeed,
-                BaseHexSize);
+                BaseHexSize) + "\n" +
+            Localization.Translate("TOLERANCE_DETAIL_TEXT").FormatSafe(
+                Tolerances.PreferredTemperature,
+                Tolerances.TemperatureTolerance,
+                Tolerances.PressureMinimum,
+                Tolerances.PressureMaximum,
+                Tolerances.OxygenResistance,
+                Tolerances.UVResistance);
     }
 
     protected override Dictionary<Compound, float> CalculateTotalReproductionCost()
