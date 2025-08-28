@@ -66,7 +66,7 @@ temperatureToleranceLabel = NodePath("Temperature/HBoxContainer3/HBoxContainer/M
 temperatureBaseLabel = NodePath("Temperature/BaseAndTotal/HBoxContainer/Base/BaseValue")
 temperatureToleranceBaseLabelContainer = NodePath("Temperature/HBoxContainer3/HBoxContainer/MarginContainer2")
 temperatureToleranceBaseLabel = NodePath("Temperature/HBoxContainer3/HBoxContainer/MarginContainer2/TemperatureRangeBase")
-temperatureOptimalDisplay = NodePath("Temperature/TemperatureOptimalDisplay")
+temperatureOptimalDisplay = NodePath("Temperature/HBoxContainer2/TemperatureOptimalDisplay")
 pressureMinLabel = NodePath("Pressure/HBoxContainer2/PressureMin")
 pressureMaxLabel = NodePath("Pressure/HBoxContainer2/PressureMax")
 oxygenResistanceLabel = NodePath("Oxygen/HBoxContainer3/HBoxContainer/OxygenValue")
@@ -154,7 +154,19 @@ label_settings = ExtResource("8_ktuy7")
 custom_minimum_size = Vector2(0, 15)
 layout_mode = 2
 
-[node name="TemperatureOptimalDisplay" parent="Temperature" instance=ExtResource("9_xmghy")]
+[node name="HBoxContainer2" type="HBoxContainer" parent="Temperature"]
+layout_mode = 2
+
+[node name="Spacer" type="Control" parent="Temperature/HBoxContainer2"]
+custom_minimum_size = Vector2(8, 0)
+layout_mode = 2
+
+[node name="TemperatureOptimalDisplay" parent="Temperature/HBoxContainer2" instance=ExtResource("9_xmghy")]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="Spacer2" type="Control" parent="Temperature/HBoxContainer2"]
+custom_minimum_size = Vector2(8, 0)
 layout_mode = 2
 
 [node name="TemperatureSlider" type="HSlider" parent="Temperature"]
