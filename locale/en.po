@@ -7,8 +7,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2025-08-25 19:09+0300\n"
-"PO-Revision-Date: 2025-08-21 15:25+0300\n"
+"POT-Creation-Date: 2025-08-28 18:31+0200\n"
+"PO-Revision-Date: 2025-08-28 18:33+0200\n"
 "Last-Translator: Henri Hyyryläinen <hhyyrylainen@revolutionarygamesstudio.com>\n"
 "Language-Team: English <https://translate.revolutionarygamesstudio.com/projects/thrive/thrive-game/en/>\n"
 "Language: en\n"
@@ -444,6 +444,9 @@ msgstr "Include movement cost"
 
 msgid "BALANCE_DISPLAY_WHILE_MOVING_TOOLTIP"
 msgstr "When checked calculates the balance and other numbers in this panel assuming the cell is constantly moving"
+
+msgid "BASE"
+msgstr "Base"
 
 msgid "BASE_MOBILITY"
 msgstr "Base Mobility"
@@ -2879,12 +2882,6 @@ msgstr "July"
 msgid "JUNE"
 msgstr "June"
 
-msgid "KEEP_CURRENT_SHORT"
-msgstr "Keep Current"
-
-msgid "KEEP_CURRENT_TOLERANCE_FLEXIBILITY_TOOLTIP"
-msgstr "Keep the current pressure tolerance range while moving the min and max sliders"
-
 msgid "KEEP_MIGRATION"
 msgstr "Keep Migration"
 
@@ -4780,6 +4777,9 @@ msgstr "Play microbe intro on new game"
 msgid "PLAY_WITH_CURRENT_SETTING"
 msgstr "Play With Current Setting"
 
+msgid "PLUS_MINUS_VALUE_WITH_UNIT"
+msgstr "± {0} {1}"
+
 msgid "POPULATION_CAPITAL"
 msgstr "POPULATION:"
 
@@ -6111,11 +6111,11 @@ msgstr "Tools"
 msgid "TOOL_HAND_AXE"
 msgstr "Hand Axe"
 
-msgid "TOO_LARGE_PRESSURE_RANGE"
-msgstr "Pressure range too wide"
-
 msgid "TOO_MANY_RECENT_VERSIONS_TO_SHOW"
 msgstr "Not showing all recent versions as there are too many"
+
+msgid "TOTAL"
+msgstr "Total"
 
 msgid "TOTAL_GATHERED_ENERGY_COLON"
 msgstr "Gathered Energy:"
@@ -9395,6 +9395,18 @@ msgstr "Zoom in"
 
 msgid "ZOOM_OUT"
 msgstr "Zoom out"
+
+msgid "—"
+msgstr ""
+
+#~ msgid "KEEP_CURRENT_SHORT"
+#~ msgstr "Keep Current"
+
+#~ msgid "KEEP_CURRENT_TOLERANCE_FLEXIBILITY_TOOLTIP"
+#~ msgstr "Keep the current pressure tolerance range while moving the min and max sliders"
+
+#~ msgid "TOO_LARGE_PRESSURE_RANGE"
+#~ msgstr "Pressure range too wide"
 
 #~ msgid "CELL_TYPE_BUTTON_ATP_CONSUMPTION"
 #~ msgstr "The ATP consumption of this cell type is {0}."

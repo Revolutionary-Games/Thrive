@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2025-08-25 19:09+0300\n"
+"POT-Creation-Date: 2025-08-28 18:31+0200\n"
 "PO-Revision-Date: 2025-08-13 14:57+0000\n"
 "Last-Translator: Anonymous <noreply@weblate.org>\n"
 "Language-Team: German <https://translate.revolutionarygamesstudio.com/projects/thrive/thrive-game/de/>\n"
@@ -447,6 +447,9 @@ msgstr "Bewegungskosten mitberücksichtigen"
 
 msgid "BALANCE_DISPLAY_WHILE_MOVING_TOOLTIP"
 msgstr "Wenn aktiviert, wird den Berechnungen in dieser Anzeige die Annahme zugrunde gelegt, dass die Zelle sich kontinuierlich bewegt"
+
+msgid "BASE"
+msgstr ""
 
 msgid "BASE_MOBILITY"
 msgstr "Basis Mobilität"
@@ -2896,12 +2899,6 @@ msgstr "Juli"
 msgid "JUNE"
 msgstr "Juni"
 
-msgid "KEEP_CURRENT_SHORT"
-msgstr "Aktuelle Welt"
-
-msgid "KEEP_CURRENT_TOLERANCE_FLEXIBILITY_TOOLTIP"
-msgstr "Besuche unsere Patreon Seite"
-
 msgid "KEEP_MIGRATION"
 msgstr "Aerobe Atmung"
 
@@ -4829,6 +4826,10 @@ msgstr "Mikroben-Intro bei neuem Spiel abspielen"
 msgid "PLAY_WITH_CURRENT_SETTING"
 msgstr "Mit diesen Einstellungen spielen"
 
+#, fuzzy
+msgid "PLUS_MINUS_VALUE_WITH_UNIT"
+msgstr "{0} {1}"
+
 msgid "POPULATION_CAPITAL"
 msgstr "POPULATION:"
 
@@ -6216,11 +6217,12 @@ msgstr "Werkzeuge"
 msgid "TOOL_HAND_AXE"
 msgstr "Beil"
 
-msgid "TOO_LARGE_PRESSURE_RANGE"
-msgstr "Druck-Schwankungsbreite zu groß"
-
 msgid "TOO_MANY_RECENT_VERSIONS_TO_SHOW"
 msgstr ""
+
+#, fuzzy
+msgid "TOTAL"
+msgstr "Gesamtspeicherungen:"
 
 #, fuzzy
 msgid "TOTAL_GATHERED_ENERGY_COLON"
@@ -9139,6 +9141,18 @@ msgstr "Hereinzoomen"
 
 msgid "ZOOM_OUT"
 msgstr "Herauszoomen"
+
+msgid "—"
+msgstr ""
+
+#~ msgid "KEEP_CURRENT_SHORT"
+#~ msgstr "Aktuelle Welt"
+
+#~ msgid "KEEP_CURRENT_TOLERANCE_FLEXIBILITY_TOOLTIP"
+#~ msgstr "Besuche unsere Patreon Seite"
+
+#~ msgid "TOO_LARGE_PRESSURE_RANGE"
+#~ msgstr "Druck-Schwankungsbreite zu groß"
 
 #~ msgid "CELL_TYPE_BUTTON_ATP_CONSUMPTION"
 #~ msgstr "Der ATP-Verbrauch dieses Zelltyps ist {0}."

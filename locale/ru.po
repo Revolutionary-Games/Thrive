@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2025-08-25 19:09+0300\n"
+"POT-Creation-Date: 2025-08-28 18:31+0200\n"
 "PO-Revision-Date: 2025-08-22 10:08+0000\n"
 "Last-Translator: Anonymous <noreply@weblate.org>\n"
 "Language-Team: Russian <https://translate.revolutionarygamesstudio.com/projects/thrive/thrive-game/ru/>\n"
@@ -444,6 +444,9 @@ msgstr "Включить стоимость передвижения"
 
 msgid "BALANCE_DISPLAY_WHILE_MOVING_TOOLTIP"
 msgstr "Если флажок установлен, вычисляет баланс и другие числа на этой панели, предполагая, что клетка постоянно движется"
+
+msgid "BASE"
+msgstr ""
 
 msgid "BASE_MOBILITY"
 msgstr "Базовая Мобильность"
@@ -2880,12 +2883,6 @@ msgstr "Июль"
 msgid "JUNE"
 msgstr "Июнь"
 
-msgid "KEEP_CURRENT_SHORT"
-msgstr "Текущий мир"
-
-msgid "KEEP_CURRENT_TOLERANCE_FLEXIBILITY_TOOLTIP"
-msgstr "Поддерживает текущую толерантность к давлению при изменении Максимальных и Минимальных Слайдеров"
-
 msgid "KEEP_MIGRATION"
 msgstr "Продолжить Миграцию"
 
@@ -4782,6 +4779,10 @@ msgstr "Проигрывать вступление микроба при нов
 msgid "PLAY_WITH_CURRENT_SETTING"
 msgstr "Играть с текущими настройками"
 
+#, fuzzy
+msgid "PLUS_MINUS_VALUE_WITH_UNIT"
+msgstr "{0} {1}"
+
 msgid "POPULATION_CAPITAL"
 msgstr "ПОПУЛЯЦИЯ:"
 
@@ -6114,11 +6115,12 @@ msgstr "Инструменты"
 msgid "TOOL_HAND_AXE"
 msgstr "Ручной Топор"
 
-msgid "TOO_LARGE_PRESSURE_RANGE"
-msgstr "Диапазон давлений слишком широк"
-
 msgid "TOO_MANY_RECENT_VERSIONS_TO_SHOW"
 msgstr "Слишком много недавних версий для отображения"
+
+#, fuzzy
+msgid "TOTAL"
+msgstr "Всего сохранений:"
 
 msgid "TOTAL_GATHERED_ENERGY_COLON"
 msgstr "Полученная Энергия:"
@@ -9404,6 +9406,18 @@ msgstr "Увеличить масштаб"
 
 msgid "ZOOM_OUT"
 msgstr "Уменьшить масштаб"
+
+msgid "—"
+msgstr ""
+
+#~ msgid "KEEP_CURRENT_SHORT"
+#~ msgstr "Текущий мир"
+
+#~ msgid "KEEP_CURRENT_TOLERANCE_FLEXIBILITY_TOOLTIP"
+#~ msgstr "Поддерживает текущую толерантность к давлению при изменении Максимальных и Минимальных Слайдеров"
+
+#~ msgid "TOO_LARGE_PRESSURE_RANGE"
+#~ msgstr "Диапазон давлений слишком широк"
 
 #~ msgid "CELL_TYPE_BUTTON_ATP_CONSUMPTION"
 #~ msgstr "Потребление АТФ этого типа клетки: {0}."
