@@ -1,5 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using Newtonsoft.Json;
 
 [JSONAlwaysDynamicType]
@@ -29,7 +28,8 @@ public class OrganelleRemoveActionData : HexRemoveActionData<OrganelleTemplate, 
     protected override double CalculateCostInternal(IReadOnlyList<EditorCombinableActionData> history,
         int insertPosition)
     {
-        var cost = CalculateBaseCostInternal();
+        var cost = base.CalculateCostInternal(history, insertPosition);
+        bool refundedUpgrade = false;
 
         var count = history.Count;
         for (int i = 0; i < insertPosition && i < count; ++i)
@@ -51,15 +51,16 @@ public class OrganelleRemoveActionData : HexRemoveActionData<OrganelleTemplate, 
             {
                 // This replaces (refunds) the MP for an upgrade done to this organelle
                 if (ReferenceEquals(upgradeActionData.UpgradedOrganelle, RemovedHex))
-                    cost = Math.Min(-upgradeActionData.GetCalculatedCost(), cost);
+                {
+                    if (!refundedUpgrade)
+                    {
+                        refundedUpgrade = true;
+                        cost -= upgradeActionData.GetCalculatedCost();
+                    }
+                }
             }
         }
 
         return cost;
-    }
-
-    protected override bool CanMergeWithInternal(CombinableActionData other)
-    {
-        return false;
     }
 }

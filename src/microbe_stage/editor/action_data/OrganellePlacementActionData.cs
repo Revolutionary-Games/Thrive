@@ -47,9 +47,4 @@ public class OrganellePlacementActionData : HexPlacementActionData<OrganelleTemp
 
         return cost + base.CalculateCostInternal(history, insertPosition);
     }
-
-    protected override bool CanMergeWithInternal(CombinableActionData other)
-    {
-        return false;
-    }
 }

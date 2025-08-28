@@ -31,7 +31,6 @@ public class ColourActionData : EditorCombinableActionData<CellType>
         return other is ColourActionData;
     }
 
-
     protected override void MergeGuaranteed(CombinableActionData other)
     {
         var colourChangeActionData = (ColourActionData)other;

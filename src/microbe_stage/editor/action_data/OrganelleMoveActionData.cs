@@ -31,9 +31,4 @@ public class OrganelleMoveActionData : HexMoveActionData<OrganelleTemplate, Cell
 
         return base.CalculateCostInternal(history, insertPosition);
     }
-
-    protected override bool CanMergeWithInternal(CombinableActionData other)
-    {
-        return false;
-    }
 }
