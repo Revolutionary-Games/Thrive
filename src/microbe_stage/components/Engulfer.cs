@@ -190,10 +190,7 @@ public static class EngulferHelpers
                 continue;
 
             // Skip entities that are too small to catch easily
-            // TODO: Does this .4 need to be in a CONSTANT?
-            // TODO: What is a deterministic way to come up with a better guess than .4 the size of the player object
-            // TODO: How is player object and the engulfable objects speed calculated to maybe compare a percentage of that instead?
-            if ((engulfer.EngulfingSize / .4) > engulfable.AdjustedEngulfSize)
+            if (engulfer.EngulfingSize / .4 > engulfable.AdjustedEngulfSize)
                 continue;
 
             if (nearestPoint == null || distance < nearestDistanceSquared)
