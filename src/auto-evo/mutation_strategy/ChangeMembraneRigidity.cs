@@ -2,6 +2,7 @@
 
 using System;
 using System.Collections.Generic;
+using static CommonMutationFunctions;
 
 public class ChangeMembraneRigidity : IMutationStrategy<MicrobeSpecies>
 {
@@ -14,7 +15,7 @@ public class ChangeMembraneRigidity : IMutationStrategy<MicrobeSpecies>
 
     public bool Repeatable => true;
 
-    public List<Tuple<MicrobeSpecies, double>>? MutationsOf(MicrobeSpecies baseSpecies, double mp, bool lawk,
+    public List<Mutant>? MutationsOf(MicrobeSpecies baseSpecies, double mp, bool lawk,
         Random random, BiomeConditions biomeToConsider)
     {
         const float change = Constants.AUTO_EVO_MUTATION_RIGIDITY_STEP;
@@ -42,6 +43,6 @@ public class ChangeMembraneRigidity : IMutationStrategy<MicrobeSpecies>
 
         newSpecies.MembraneRigidity = Math.Clamp(newSpecies.MembraneRigidity, -1, 1);
 
-        return [Tuple.Create(newSpecies, mp - mpCost)];
+        return [new Mutant(newSpecies, mp - mpCost)];
     }
 }
