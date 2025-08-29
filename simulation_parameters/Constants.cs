@@ -1455,6 +1455,13 @@ public static class Constants
     /// </summary>
     public const float MOVEMENT_MODE_SELECTION_DELAY = 1.55f;
 
+    /// <summary>
+    ///     The size ratio an entity has to be in relation to the player for the engulfable tutorial to point to it.
+    ///     This is to increase the chances of catching the target entity during the tutorial to reduce player
+    ///     frustration.
+    /// </summary>
+    public const float TUTORIAL_ENGULFABLE_SIZE_RATIO = .4f;
+
     public const float MICROBE_MOVEMENT_EXPLAIN_TUTORIAL_DELAY = 12.0f;
     public const float MICROBE_MOVEMENT_EXPLAIN_TUTORIAL_DELAY_CONTROLLER = 1.0f;
     public const float MICROBE_MOVEMENT_TUTORIAL_REQUIRE_DIRECTION_PRESS_TIME = 2.2f;
