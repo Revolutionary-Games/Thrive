@@ -191,7 +191,8 @@ public static class EngulferHelpers
                 continue;
 
             // Skip entities that are too small to catch easily
-            if (skipLikelyTooFastTargets && engulfer.EngulfingSize / Constants.TUTORIAL_ENGULFABLE_SIZE_RATIO > engulfable.AdjustedEngulfSize)
+            if (skipLikelyTooFastTargets &&
+                engulfer.EngulfingSize / Constants.TUTORIAL_ENGULFABLE_SIZE_RATIO > engulfable.AdjustedEngulfSize)
                 continue;
 
             if (nearestPoint == null || distance < nearestDistanceSquared)

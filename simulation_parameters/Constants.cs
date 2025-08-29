@@ -1456,9 +1456,9 @@ public static class Constants
     public const float MOVEMENT_MODE_SELECTION_DELAY = 1.55f;
 
     /// <summary>
-    ///     The size ratio an entity has to be in relation to the player for the engulfable tutorial to point to it.
-    ///     This is to increase the chances of catching the target entity during the tutorial to reduce player
-    ///     frustration.
+    ///   The size ratio an entity has to be in relation to the player for the engulfable tutorial to point to it.
+    ///   This is to increase the chances of catching the target entity during the tutorial to reduce player
+    ///   frustration.
     /// </summary>
     public const float TUTORIAL_ENGULFABLE_SIZE_RATIO = .4f;
 
