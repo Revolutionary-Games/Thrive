@@ -12,6 +12,8 @@ public abstract class WorldBasedUnlockCondition : IUnlockCondition
 {
     public abstract bool Satisfied(IUnlockStateDataSource data);
 
+    public abstract float Progress(IUnlockStateDataSource data);
+
     public abstract void GenerateTooltip(LocalizedStringBuilder builder, IUnlockStateDataSource data);
 
     public virtual void Resolve(SimulationParameters parameters)
@@ -33,20 +35,25 @@ public class AtpProductionAbove : WorldBasedUnlockCondition
 
     public override bool Satisfied(IUnlockStateDataSource data)
     {
-        if (data is not WorldAndPlayerDataSource worldArgs)
-            return false;
+        return AtpProduction(data) >= Atp;
+    }
 
-        var energyBalance = worldArgs.EnergyBalance;
-
-        if (energyBalance == null)
-            return false;
-
-        return energyBalance.TotalProduction >= Atp;
+    public override float Progress(IUnlockStateDataSource data)
+    {
+        return Math.Clamp(AtpProduction(data) ?? 0 / Atp, 0, 1);
     }
 
     public override void GenerateTooltip(LocalizedStringBuilder builder, IUnlockStateDataSource data)
     {
         builder.Append(new LocalizedString("UNLOCK_CONDITION_ATP_PRODUCTION_ABOVE", Atp));
+    }
+
+    private float? AtpProduction(IUnlockStateDataSource data)
+    {
+        if (data is not WorldAndPlayerDataSource worldArgs)
+            return null;
+
+        return worldArgs.EnergyBalance?.TotalProduction;
     }
 }
 
@@ -60,20 +67,25 @@ public class ExcessAtpAbove : WorldBasedUnlockCondition
 
     public override bool Satisfied(IUnlockStateDataSource data)
     {
-        if (data is not WorldAndPlayerDataSource worldArgs)
-            return false;
+        return FinalBalance(data) >= Atp;
+    }
 
-        var energyBalance = worldArgs.EnergyBalance;
-
-        if (energyBalance == null)
-            return false;
-
-        return energyBalance.FinalBalance >= Atp;
+    public override float Progress(IUnlockStateDataSource data)
+    {
+        return Math.Clamp(FinalBalance(data) ?? 0 / Atp, 0, 1);
     }
 
     public override void GenerateTooltip(LocalizedStringBuilder builder, IUnlockStateDataSource data)
     {
         builder.Append(new LocalizedString("UNLOCK_CONDITION_EXCESS_ATP_ABOVE", Atp));
+    }
+
+    private float? FinalBalance(IUnlockStateDataSource data)
+    {
+        if (data is not WorldAndPlayerDataSource worldArgs)
+            return null;
+
+        return worldArgs.EnergyBalance?.FinalBalance;
     }
 }
 
@@ -87,15 +99,13 @@ public class SpeedBelow : WorldBasedUnlockCondition
 
     public override bool Satisfied(IUnlockStateDataSource data)
     {
-        if (data is not WorldAndPlayerDataSource worldArgs)
-            return false;
+        return GetPlayerSpeed(data) < Threshold;
+    }
 
-        var playerData = worldArgs.PlayerData;
-
-        if (playerData == null)
-            return false;
-
-        return GetPlayerSpeed(playerData) < Threshold;
+    public override float Progress(IUnlockStateDataSource data)
+    {
+        var overThreashold = Threshold - (GetPlayerSpeed(data) ?? 0);
+        return Math.Clamp(overThreashold / Threshold, 0, 1);
     }
 
     public override void GenerateTooltip(LocalizedStringBuilder builder, IUnlockStateDataSource data)
@@ -103,8 +113,16 @@ public class SpeedBelow : WorldBasedUnlockCondition
         builder.Append(new LocalizedString("UNLOCK_CONDITION_SPEED_BELOW", Threshold));
     }
 
-    private float GetPlayerSpeed(ICellDefinition playerData)
+    private float? GetPlayerSpeed(IUnlockStateDataSource data)
     {
+        if (data is not WorldAndPlayerDataSource worldArgs)
+            return null;
+
+        var playerData = worldArgs.PlayerData;
+
+        if (playerData == null)
+            return null;
+
         var rawSpeed = MicrobeInternalCalculations.CalculateSpeed(playerData.Organelles.Organelles,
             playerData.MembraneType,
             playerData.MembraneRigidity,
@@ -140,6 +158,11 @@ public class PatchCompound : WorldBasedUnlockCondition
         var minSatisfied = !Min.HasValue || current >= Min;
         var maxSatisfied = !Max.HasValue || current <= Max;
         return minSatisfied && maxSatisfied;
+    }
+
+    public override float Progress(IUnlockStateDataSource data)
+    {
+        return Satisfied(data) ? 1 : 0;
     }
 
     public override void GenerateTooltip(LocalizedStringBuilder builder, IUnlockStateDataSource data)
