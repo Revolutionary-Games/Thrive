@@ -1843,6 +1843,8 @@ public static class Constants
     /// </summary>
     public const float TOLERANCE_OXYGEN_STEP = 0.05f;
 
+    public const float TOLERANCE_UV_STEP = 0.05f;
+
     // These are chosen to be symmetric so that the pressure tolerance range ends up easier to show correctly in the
     // GUI
     public const float TOLERANCE_INITIAL_PRESSURE_MIN_FRACTION = 0.8f;

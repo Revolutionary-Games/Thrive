@@ -53,9 +53,6 @@ public partial class TolerancesEditorSubComponent : EditorComponentBase<ICellEdi
     private Slider pressureMaxSlider = null!;
 
     [Export]
-    private Slider uvResistanceSlider = null!;
-
-    [Export]
     [ExportCategory("Displays")]
     private Label temperatureMinLabel = null!;
 
@@ -103,6 +100,9 @@ public partial class TolerancesEditorSubComponent : EditorComponentBase<ICellEdi
 
     [Export]
     private Label uvResistanceTotalLabel = null!;
+
+    [Export]
+    private ToleranceOptimalDisplay uvResistanceOptimalDisplay = null!;
 
     [Export]
     [ExportCategory("Style")]
@@ -276,7 +276,7 @@ public partial class TolerancesEditorSubComponent : EditorComponentBase<ICellEdi
 
         if (uvResistanceToolTip != null)
         {
-            var uvCost = uvResistanceSlider.Step * Constants.TOLERANCE_CHANGE_MP_PER_UV * MPDisplayCostMultiplier;
+            var uvCost = Constants.TOLERANCE_OXYGEN_STEP * Constants.TOLERANCE_CHANGE_MP_PER_UV * MPDisplayCostMultiplier;
 
             uvResistanceToolTip.MPCost = (float)uvCost;
         }
@@ -406,9 +406,9 @@ public partial class TolerancesEditorSubComponent : EditorComponentBase<ICellEdi
         PressureMinSliderActualValue = CurrentTolerances.PressureMinimum;
         PressureMaxSliderActualValue = CurrentTolerances.PressureMaximum;
 
-        UpdateOxygenResistanceLabel(CurrentTolerances.OxygenResistance);
+        UpdatePercentageResistanceLabel(oxygenResistanceLabel, CurrentTolerances.OxygenResistance);
+        UpdatePercentageResistanceLabel(uvResistanceLabel, CurrentTolerances.UVResistance);
 
-        uvResistanceSlider.Value = CurrentTolerances.UVResistance;
 
         automaticallyChanging = false;
 
@@ -571,7 +571,7 @@ public partial class TolerancesEditorSubComponent : EditorComponentBase<ICellEdi
 
         // As pressing the button doesn't update the label by itself
         // we have to update it here no matter what the result of TriggerChangeIfPossible is
-        UpdateOxygenResistanceLabel(CurrentTolerances.OxygenResistance);
+        UpdatePercentageResistanceLabel(oxygenResistanceLabel, CurrentTolerances.OxygenResistance);
 
         automaticallyChanging = false;
     }
@@ -593,29 +593,55 @@ public partial class TolerancesEditorSubComponent : EditorComponentBase<ICellEdi
 
         TriggerChangeIfPossible();
 
-        UpdateOxygenResistanceLabel(CurrentTolerances.OxygenResistance);
+        UpdatePercentageResistanceLabel(oxygenResistanceLabel, CurrentTolerances.OxygenResistance);
 
         automaticallyChanging = false;
     }
 
-    private void OnUVResistanceSliderChanged(float value)
+    private void OnUVResistancePlusButtonPressed()
     {
         if (automaticallyChanging)
             return;
 
+        // Make sure the tolerance doesn't go above 100%
+        if (CurrentTolerances.UVResistance + Constants.TOLERANCE_UV_STEP > 1)
+            return;
+
         reusableTolerances ??= new EnvironmentalTolerances();
         reusableTolerances.CopyFrom(CurrentTolerances);
-        reusableTolerances.UVResistance = value;
+        reusableTolerances.UVResistance += Constants.TOLERANCE_UV_STEP;
 
         automaticallyChanging = true;
 
-        if (!TriggerChangeIfPossible())
-        {
-            uvResistanceSlider.Value = CurrentTolerances.UVResistance;
-        }
+        TriggerChangeIfPossible();
+
+        UpdatePercentageResistanceLabel(uvResistanceLabel, CurrentTolerances.UVResistance);
 
         automaticallyChanging = false;
     }
+
+    private void OnUVResistanceMinusButtonPressed()
+    {
+        if (automaticallyChanging)
+            return;
+
+        // Make sure the tolerance doesn't go above 100%
+        if (CurrentTolerances.UVResistance - Constants.TOLERANCE_UV_STEP < 0)
+            return;
+
+        reusableTolerances ??= new EnvironmentalTolerances();
+        reusableTolerances.CopyFrom(CurrentTolerances);
+        reusableTolerances.UVResistance -= Constants.TOLERANCE_UV_STEP;
+
+        automaticallyChanging = true;
+
+        TriggerChangeIfPossible();
+
+        UpdatePercentageResistanceLabel(uvResistanceLabel, CurrentTolerances.UVResistance);
+
+        automaticallyChanging = false;
+    }
+
 
     private bool TriggerChangeIfPossible()
     {
@@ -649,11 +675,11 @@ public partial class TolerancesEditorSubComponent : EditorComponentBase<ICellEdi
         UpdateToolTipStats();
     }
 
-    private void UpdateOxygenResistanceLabel(float value)
+    private void UpdatePercentageResistanceLabel(Label label, float value)
     {
         var percentageFormat = Localization.Translate("PERCENTAGE_VALUE");
         var percentage = percentageFormat.FormatSafe(Math.Round(value * 100, 1));
-        oxygenResistanceLabel.Text = "+" + percentage;
+        label.Text = "+" + percentage;
     }
 
     private void UpdateCurrentValueDisplays()
@@ -769,6 +795,30 @@ public partial class TolerancesEditorSubComponent : EditorComponentBase<ICellEdi
         oxygenResistanceBaseLabel.Text = oxygenResistanceBase;
         oxygenResistanceBaseLabel.LabelSettings = organelleModifiers.OxygenResistance < 0 ? modifierBadFont : originalModifierFont;
 
+        // UV Resistance
+
+        var uvResistanceWithOrganelles = CurrentTolerances.UVResistance + organelleModifiers.UVResistance;
+
+        uvResistanceOptimalDisplay.SetBoundPositionsManual(0, uvResistanceWithOrganelles);
+        uvResistanceOptimalDisplay.UpdateMarker(requiredUVResistance);
+
+        uvResistanceTotalLabel.Text =
+            percentageFormat.FormatSafe(Math.Round(uvResistanceWithOrganelles * 100, 1));
+
+        if (uvResistanceWithOrganelles < requiredUVResistance)
+        {
+            uvResistanceTotalLabel.LabelSettings = badValueFont;
+        }
+        else
+        {
+            uvResistanceTotalLabel.LabelSettings = originalTemperatureFont;
+        }
+
+        var uvResistanceBase = percentageFormat.FormatSafe(Math.Round(organelleModifiers.UVResistance * 100, 1));
+        uvResistanceBase = organelleModifiers.UVResistance >= 0 ? "+" + uvResistanceBase : uvResistanceBase;
+
+        uvResistanceBaseLabel.Text = uvResistanceBase;
+        uvResistanceBaseLabel.LabelSettings = organelleModifiers.UVResistance < 0 ? modifierBadFont : originalModifierFont;
     }
 
 

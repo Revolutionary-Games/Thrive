@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Thrive VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2025-08-28 18:31+0200\n"
+"POT-Creation-Date: 2025-08-29 14:48+0200\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -120,6 +120,10 @@ msgstr ""
 
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:222
 msgid "ACTIVITY_EXPLANATION"
+msgstr ""
+
+#: ../src/microbe_stage/editor/TolerancesEditorSubComponent.tscn:464
+msgid "ADDITIONAL_RESISTANCE"
 msgstr ""
 
 #: ../src/modding/NewModGUI.cs:250
@@ -572,9 +576,9 @@ msgstr ""
 msgid "BALANCE_DISPLAY_WHILE_MOVING_TOOLTIP"
 msgstr ""
 
-#: ../src/microbe_stage/editor/TolerancesEditorSubComponent.tscn:123
-#: ../src/microbe_stage/editor/TolerancesEditorSubComponent.tscn:373
-#: ../src/microbe_stage/editor/TolerancesEditorSubComponent.tscn:491
+#: ../src/microbe_stage/editor/TolerancesEditorSubComponent.tscn:125
+#: ../src/microbe_stage/editor/TolerancesEditorSubComponent.tscn:410
+#: ../src/microbe_stage/editor/TolerancesEditorSubComponent.tscn:535
 msgid "BASE"
 msgstr ""
 
@@ -6411,7 +6415,7 @@ msgstr ""
 
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:921
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:929
-#: ../src/microbe_stage/editor/TolerancesEditorSubComponent.tscn:349
+#: ../src/microbe_stage/editor/TolerancesEditorSubComponent.tscn:386
 msgid "OXYGEN_RESISTANCE"
 msgstr ""
 
@@ -6581,7 +6585,8 @@ msgstr ""
 #: ../src/gui_common/CompoundAmount.cs:316
 #: ../src/gui_common/menus/OptionsMenu.cs:1828
 #: ../src/microbe_stage/editor/MicrobeEditorReportComponent.cs:531
-#: ../src/microbe_stage/editor/TolerancesEditorSubComponent.cs:624
+#: ../src/microbe_stage/editor/TolerancesEditorSubComponent.cs:654
+#: ../src/microbe_stage/editor/TolerancesEditorSubComponent.cs:670
 #: ../src/microbe_stage/editor/tooltips/EnvironmentalToleranceToolTip.cs:98
 #: ../src/microbe_stage/editor/tooltips/StatModifierToolTip.cs:157
 #: ../src/microbe_stage/editor/tooltips/StatModifierToolTip.cs:237
@@ -6740,7 +6745,7 @@ msgstr ""
 msgid "PLAY_WITH_CURRENT_SETTING"
 msgstr ""
 
-#: ../src/microbe_stage/editor/TolerancesEditorSubComponent.cs:625
+#: ../src/microbe_stage/editor/TolerancesEditorSubComponent.cs:671
 msgid "PLUS_MINUS_VALUE_WITH_UNIT"
 msgstr ""
 
@@ -6776,7 +6781,7 @@ msgstr ""
 
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:903
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:911
-#: ../src/microbe_stage/editor/TolerancesEditorSubComponent.tscn:227
+#: ../src/microbe_stage/editor/TolerancesEditorSubComponent.tscn:264
 #: ../src/microbe_stage/gui/PatchDetailsPanel.tscn:196
 msgid "PRESSURE"
 msgstr ""
@@ -8231,7 +8236,7 @@ msgstr ""
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:894
 #: ../src/microbe_stage/editor/MicrobeEditorReportComponent.cs:414
 #: ../src/microbe_stage/editor/MicrobeEditorReportComponent.tscn:528
-#: ../src/microbe_stage/editor/TolerancesEditorSubComponent.tscn:99
+#: ../src/microbe_stage/editor/TolerancesEditorSubComponent.tscn:101
 #: ../src/microbe_stage/gui/PatchDetailsPanel.tscn:170
 msgid "TEMPERATURE"
 msgstr ""
@@ -8549,8 +8554,8 @@ msgstr ""
 msgid "TOLERANCE_FROM_ORGANELLES_TOOLTIP"
 msgstr ""
 
-#: ../src/microbe_stage/editor/TolerancesEditorSubComponent.tscn:175
-#: ../src/microbe_stage/editor/TolerancesEditorSubComponent.tscn:310
+#: ../src/microbe_stage/editor/TolerancesEditorSubComponent.tscn:189
+#: ../src/microbe_stage/editor/TolerancesEditorSubComponent.tscn:347
 msgid "TOLERANCE_RANGE_LABEL"
 msgstr ""
 
@@ -8566,8 +8571,8 @@ msgstr ""
 msgid "TOO_MANY_RECENT_VERSIONS_TO_SHOW"
 msgstr ""
 
-#: ../src/microbe_stage/editor/TolerancesEditorSubComponent.tscn:388
-#: ../src/microbe_stage/editor/TolerancesEditorSubComponent.tscn:506
+#: ../src/microbe_stage/editor/TolerancesEditorSubComponent.tscn:425
+#: ../src/microbe_stage/editor/TolerancesEditorSubComponent.tscn:550
 msgid "TOTAL"
 msgstr ""
 
@@ -9182,7 +9187,7 @@ msgstr ""
 
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:938
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:946
-#: ../src/microbe_stage/editor/TolerancesEditorSubComponent.tscn:467
+#: ../src/microbe_stage/editor/TolerancesEditorSubComponent.tscn:511
 msgid "UV_PROTECTION"
 msgstr ""
 
@@ -9215,7 +9220,7 @@ msgid "VACUOLE_SPECIALIZED_DESCRIPTION"
 msgstr ""
 
 #: ../src/gui_common/CompoundAmount.cs:311
-#: ../src/microbe_stage/editor/TolerancesEditorSubComponent.cs:623
+#: ../src/microbe_stage/editor/TolerancesEditorSubComponent.cs:669
 #: ../src/microbe_stage/gui/CompoundProgressBar.cs:516
 #: ../src/microbe_stage/gui/CompoundProgressBar.cs:592
 #: ../src/microbe_stage/gui/PatchDetailsPanel.cs:375
@@ -11745,7 +11750,7 @@ msgstr ""
 msgid "ZOOM_OUT"
 msgstr ""
 
-#: ../src/microbe_stage/editor/TolerancesEditorSubComponent.tscn:143
+#: ../src/microbe_stage/editor/TolerancesEditorSubComponent.tscn:145
 msgid "—"
 msgstr ""
 

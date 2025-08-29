@@ -1,4 +1,4 @@
-[gd_scene load_steps=21 format=3 uid="uid://5kamud4sukbd"]
+[gd_scene load_steps=20 format=3 uid="uid://5kamud4sukbd"]
 
 [ext_resource type="Theme" uid="uid://b4cx0o110g4b6" path="res://src/gui_common/thrive_theme.tres" id="1_16mn0"]
 [ext_resource type="Script" uid="uid://dxl2pjshg67oa" path="res://src/microbe_stage/editor/TolerancesEditorSubComponent.cs" id="2_kqh2k"]
@@ -10,7 +10,6 @@
 [ext_resource type="PackedScene" uid="uid://dccswprlmgtel" path="res://src/microbe_stage/editor/ToleranceOptimalMarker.tscn" id="7_sg3ru"]
 [ext_resource type="LabelSettings" uid="uid://dvqx73nhtr0y2" path="res://src/gui_common/fonts/Body-Regular-Small.tres" id="8_ktuy7"]
 [ext_resource type="PackedScene" uid="uid://duf1lf5lp4v5p" path="res://src/microbe_stage/editor/ToleranceOptimalDisplay.tscn" id="9_xmghy"]
-[ext_resource type="Texture2D" uid="uid://dmjlic63rpnug" path="res://assets/textures/gui/bevel/markerMoreThan.svg" id="10_q4a2w"]
 [ext_resource type="Texture2D" uid="uid://d1tuehjbire76" path="res://assets/textures/gui/bevel/Pressure.svg" id="10_xmghy"]
 [ext_resource type="Texture2D" uid="uid://djaidl3g28ibi" path="res://assets/textures/gui/bevel/Oxygen.svg" id="12_3r1ho"]
 [ext_resource type="Texture2D" uid="uid://c253x2crwbldo" path="res://assets/textures/gui/bevel/Sunlight.svg" id="14_n6u17"]
@@ -42,7 +41,7 @@ height = 5
 
 [sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_evsrs"]
 
-[node name="TolerancesEditorSubComponent" type="VBoxContainer" node_paths=PackedStringArray("temperatureToolTipContainer", "pressureToolTipContainer", "oxygenResistanceToolTipContainer", "uvResistanceToolTipContainer", "temperatureSlider", "temperatureToleranceRangeSlider", "pressureMinSlider", "pressureMaxSlider", "uvResistanceSlider", "temperatureMinLabel", "temperatureMaxLabel", "temperatureToleranceLabel", "temperatureBaseLabel", "temperatureToleranceBaseLabelContainer", "temperatureToleranceBaseLabel", "temperatureOptimalDisplay", "pressureMinLabel", "pressureMaxLabel", "oxygenResistanceLabel", "oxygenResistanceBaseLabel", "oxygenResistanceTotalLabel", "oxygenResistanceOptimalDisplay", "uvResistanceLabel", "uvResistanceBaseLabel", "uvResistanceTotalLabel")]
+[node name="TolerancesEditorSubComponent" type="VBoxContainer" node_paths=PackedStringArray("temperatureToolTipContainer", "pressureToolTipContainer", "oxygenResistanceToolTipContainer", "uvResistanceToolTipContainer", "temperatureSlider", "temperatureToleranceRangeSlider", "pressureMinSlider", "pressureMaxSlider", "temperatureMinLabel", "temperatureMaxLabel", "temperatureToleranceLabel", "temperatureBaseLabel", "temperatureToleranceBaseLabelContainer", "temperatureToleranceBaseLabel", "temperatureOptimalDisplay", "pressureMinLabel", "pressureMaxLabel", "oxygenResistanceLabel", "oxygenResistanceBaseLabel", "oxygenResistanceTotalLabel", "oxygenResistanceOptimalDisplay", "uvResistanceLabel", "uvResistanceBaseLabel", "uvResistanceTotalLabel", "uvResistanceOptimalDisplay")]
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
@@ -58,7 +57,6 @@ temperatureSlider = NodePath("Temperature/TemperatureSlider")
 temperatureToleranceRangeSlider = NodePath("Temperature/HBoxContainer3/TemperatureRange")
 pressureMinSlider = NodePath("Pressure/PressureSliderMin")
 pressureMaxSlider = NodePath("Pressure/PressureSliderMax")
-uvResistanceSlider = NodePath("UV/UVSlider")
 temperatureMinLabel = NodePath("Temperature/BaseAndTotal/HBoxContainer/Total/TemperatureMinimum")
 temperatureMaxLabel = NodePath("Temperature/BaseAndTotal/HBoxContainer/Total/TemperatureMaximum")
 temperatureToleranceLabel = NodePath("Temperature/HBoxContainer3/HBoxContainer/MarginContainer/TemperatureRangeValue")
@@ -72,9 +70,10 @@ oxygenResistanceLabel = NodePath("Oxygen/HBoxContainer2/OxygenResistanceLabel")
 oxygenResistanceBaseLabel = NodePath("Oxygen/BaseAndTotal/HBoxContainer/Base/BaseValue")
 oxygenResistanceTotalLabel = NodePath("Oxygen/BaseAndTotal/HBoxContainer/Total/TotalValue")
 oxygenResistanceOptimalDisplay = NodePath("Oxygen/OptimalDisplayContainer/OxygenOptimalDisplay")
-uvResistanceLabel = NodePath("UV/HBoxContainer2/HBoxContainer/HBoxContainer/UVProtectionValue")
+uvResistanceLabel = NodePath("UV/HBoxContainer2/UVResistanceLabel")
 uvResistanceBaseLabel = NodePath("UV/BaseAndTotal/HBoxContainer/Base/BaseValue")
 uvResistanceTotalLabel = NodePath("UV/BaseAndTotal/HBoxContainer/Total/TotalValue")
+uvResistanceOptimalDisplay = NodePath("UV/OptimalDisplayContainer/UVOptimalDisplay")
 badValueFont = ExtResource("3_q5r3n")
 perfectValueFont = ExtResource("4_15qmx")
 modifierBadFont = ExtResource("3_q5r3n")
@@ -556,66 +555,64 @@ text = "+10%"
 label_settings = ExtResource("8_ktuy7")
 
 [node name="Spacer2" type="Control" parent="UV"]
-custom_minimum_size = Vector2(0, 6)
+custom_minimum_size = Vector2(0, 15)
 layout_mode = 2
 
-[node name="UVSlider" type="HSlider" parent="UV"]
+[node name="OptimalDisplayContainer" type="HBoxContainer" parent="UV"]
 layout_mode = 2
-mouse_filter = 1
+
+[node name="Spacer" type="Control" parent="UV/OptimalDisplayContainer"]
+custom_minimum_size = Vector2(8, 0)
+layout_mode = 2
+
+[node name="UVOptimalDisplay" parent="UV/OptimalDisplayContainer" instance=ExtResource("9_xmghy")]
+layout_mode = 2
+size_flags_horizontal = 3
 max_value = 1.0
-step = 0.05
-value = 0.1
-scrollable = false
-tick_count = 6
+step = 0.01
+value = 1.0
 
-[node name="UVMarker" parent="UV/UVSlider" instance=ExtResource("7_sg3ru")]
-layout_mode = 1
-offset_top = -10.0
-offset_bottom = 5.0
-markerTextureOverride = ExtResource("10_q4a2w")
-
-[node name="HBoxContainer2" type="HBoxContainer" parent="UV"]
+[node name="Spacer2" type="Control" parent="UV/OptimalDisplayContainer"]
+custom_minimum_size = Vector2(8, 0)
 layout_mode = 2
-
-[node name="HBoxContainer" type="HBoxContainer" parent="UV/HBoxContainer2"]
-layout_mode = 2
-size_flags_horizontal = 3
-
-[node name="Spacer" type="Control" parent="UV/HBoxContainer2/HBoxContainer"]
-layout_mode = 2
-size_flags_horizontal = 3
-mouse_filter = 1
-
-[node name="HBoxContainer" type="HBoxContainer" parent="UV/HBoxContainer2/HBoxContainer"]
-layout_mode = 2
-
-[node name="UVProtectionValue" type="Label" parent="UV/HBoxContainer2/HBoxContainer/HBoxContainer"]
-editor_description = "PLACEHOLDER"
-layout_mode = 2
-size_flags_horizontal = 3
-text = "10%"
-label_settings = ExtResource("8_ktuy7")
-horizontal_alignment = 2
-
-[node name="Spacer2" type="Control" parent="UV/HBoxContainer2/HBoxContainer/HBoxContainer"]
-layout_mode = 2
-
-[node name="UVModifier" type="Label" parent="UV/HBoxContainer2/HBoxContainer/HBoxContainer"]
-editor_description = "PLACEHOLDER"
-layout_mode = 2
-size_flags_horizontal = 3
-mouse_filter = 0
-text = "(+18%)"
-label_settings = ExtResource("8_ktuy7")
-
-[node name="Spacer3" type="Control" parent="UV/HBoxContainer2/HBoxContainer"]
-layout_mode = 2
-size_flags_horizontal = 3
-mouse_filter = 1
 
 [node name="Spacer" type="Control" parent="UV"]
 custom_minimum_size = Vector2(0, 5)
 layout_mode = 2
+
+[node name="HBoxContainer2" type="HBoxContainer" parent="UV"]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="UV/HBoxContainer2"]
+layout_mode = 2
+text = "ADDITIONAL_RESISTANCE"
+label_settings = ExtResource("8_ktuy7")
+
+[node name="Control" type="Control" parent="UV/HBoxContainer2"]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="UVResistanceMinus" type="Button" parent="UV/HBoxContainer2"]
+custom_minimum_size = Vector2(20, 0)
+layout_mode = 2
+size_flags_vertical = 4
+theme_override_font_sizes/font_size = 14
+action_mode = 0
+text = "-
+"
+
+[node name="UVResistanceLabel" type="Label" parent="UV/HBoxContainer2"]
+layout_mode = 2
+text = "+0%"
+label_settings = ExtResource("8_ktuy7")
+
+[node name="UVResistancePlus" type="Button" parent="UV/HBoxContainer2"]
+custom_minimum_size = Vector2(20, 0)
+layout_mode = 2
+size_flags_vertical = 4
+theme_override_font_sizes/font_size = 14
+action_mode = 0
+text = "+"
 
 [connection signal="value_changed" from="Temperature/TemperatureSlider" to="." method="OnTemperatureSliderChanged"]
 [connection signal="value_changed" from="Temperature/HBoxContainer3/TemperatureRange" to="." method="OnTemperatureToleranceRangeSliderChanged"]
@@ -623,4 +620,5 @@ layout_mode = 2
 [connection signal="value_changed" from="Pressure/PressureSliderMax" to="." method="OnPressureSliderMaxChanged"]
 [connection signal="pressed" from="Oxygen/HBoxContainer2/OxygenResistanceMinus" to="." method="OnOxygenResistanceMinusButtonPressed"]
 [connection signal="pressed" from="Oxygen/HBoxContainer2/OxugenResistancePlus" to="." method="OnOxygenResistancePlusButtonPressed"]
-[connection signal="value_changed" from="UV/UVSlider" to="." method="OnUVResistanceSliderChanged"]
+[connection signal="pressed" from="UV/HBoxContainer2/UVResistanceMinus" to="." method="OnUVResistanceMinusButtonPressed"]
+[connection signal="pressed" from="UV/HBoxContainer2/UVResistancePlus" to="." method="OnUVResistancePlusButtonPressed"]
