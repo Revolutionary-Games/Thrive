@@ -734,7 +734,8 @@ public partial class CompoundCloudPlane : MeshInstance3D, ISaveLoadedTracked
                 break;
 
             // Skip if compound is non-useful or disallowed to be absorbed
-            if (!compoundDefinitions[i]!.IsAbsorbable || (!storage.IsUseful(compound) && compound != Compound.Hydrogensulfide))
+            if (!compoundDefinitions[i]!.IsAbsorbable || (!storage.IsUseful(compound)
+                && compound != Compound.Hydrogensulfide))
                 continue;
 
             // Loop here to retry in case we read stale data
@@ -751,7 +752,7 @@ public partial class CompoundCloudPlane : MeshInstance3D, ISaveLoadedTracked
                     break;
                 }
                 else if (compound == Compound.Hydrogensulfide
-                    && generousAmount > Constants.HYDROGEN_SULFIDE_DAMAGE_THESHOLD)
+                         && generousAmount > Constants.HYDROGEN_SULFIDE_DAMAGE_THESHOLD)
                 {
                     hydrogenSulfideAbsorbed = true;
 
