@@ -20,7 +20,7 @@ public sealed class CompoundAbsorptionSystem : AEntitySetSystem<float>
     private readonly CompoundCloudSystem compoundCloudSystem;
 
     private bool hydrogenSulfideDamageTrigger;
-    private float elapsedSinceUpdate;
+    private float elapsedSinceTrigger;
 
     public CompoundAbsorptionSystem(CompoundCloudSystem compoundCloudSystem, World world, IParallelRunner runner) :
         base(world, runner, Constants.SYSTEM_NORMAL_ENTITIES_PER_THREAD)
@@ -31,12 +31,12 @@ public sealed class CompoundAbsorptionSystem : AEntitySetSystem<float>
     protected override void PreUpdate(float delta)
     {
         base.PreUpdate(delta);
-        elapsedSinceUpdate += delta;
+        elapsedSinceTrigger += delta;
 
-        if (elapsedSinceUpdate >= Constants.HYDROGEN_SULFIDE_DAMAGE_INTERVAL)
+        if (elapsedSinceTrigger >= Constants.HYDROGEN_SULFIDE_DAMAGE_INTERVAL)
         {
             hydrogenSulfideDamageTrigger = true;
-            elapsedSinceUpdate = 0.0f;
+            elapsedSinceTrigger = 0.0f;
         }
         else
         {
