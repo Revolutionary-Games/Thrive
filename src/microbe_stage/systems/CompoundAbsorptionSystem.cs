@@ -80,7 +80,7 @@ public sealed class CompoundAbsorptionSystem : AEntitySetSystem<float>
             absorber.TotalAbsorbedCompounds, delta, absorber.AbsorptionRatio, out bool hydrogenSulfideAbsorbed);
 
         if (hydrogenSulfideDamageTrigger && hydrogenSulfideAbsorbed
-            && !entity.Get<OrganelleContainer>().HasChemosynthesizingProtein)
+            && !entity.Get<OrganelleContainer>().HydrogenSulfideProtection)
         {
             entity.Get<Health>().DealMicrobeDamage(ref entity.Get<CellProperties>(), Constants.HYDROGEN_SULFIDE_DAMAGE,
                 "hydrogenSulfide", HealthHelpers.GetInstantKillProtectionThreshold(entity));

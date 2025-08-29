@@ -91,6 +91,11 @@ public struct OrganelleContainer
     public int RadiationProtection;
 
     /// <summary>
+    ///   Does the organelle provide hydrogen sulfide immunity
+    /// </summary>
+    public bool HydrogenSulfideProtection;
+
+    /// <summary>
     ///   How many heat-collecting organelles this container has
     /// </summary>
     public int HeatCollection;
@@ -126,8 +131,6 @@ public struct OrganelleContainer
     public bool HasSignalingAgent;
 
     public bool HasBindingAgent;
-
-    public bool HasChemosynthesizingProtein;
 
     /// <summary>
     ///   Set true once all organelles are divided to not continuously run code that is triggered when a cell is ready
@@ -504,7 +507,7 @@ public static class OrganelleContainerHelpers
         container.OrganellesCapacity = 0;
         container.HasSignalingAgent = false;
         container.HasBindingAgent = false;
-        container.HasChemosynthesizingProtein = false;
+        container.HydrogenSulfideProtection = false;
         container.HeatCollection = 0;
         container.OxygenUsingOrganelles = 0;
         container.RadiationProtection = 0;
@@ -586,11 +589,8 @@ public static class OrganelleContainerHelpers
             if (organelleDefinition.HasBindingFeature)
                 container.HasBindingAgent = true;
 
-            if (organelleDefinition.RunnableProcesses.Any(o => o.Process.Inputs
-                    .Any(input => input.Key.ID == Compound.Hydrogensulfide)))
-            {
-                container.HasChemosynthesizingProtein = true;
-            }
+            if (organelleDefinition.HasHydrogenSulfideProtection)
+                container.HydrogenSulfideProtection = true;
 
             if (organelleDefinition.HasRadiationProtection)
                 ++container.RadiationProtection;
