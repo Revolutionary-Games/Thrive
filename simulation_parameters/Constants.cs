@@ -1460,7 +1460,7 @@ public static class Constants
     ///   This is to increase the chances of catching the target entity during the tutorial to reduce player
     ///   frustration.
     /// </summary>
-    public const float TUTORIAL_ENGULFABLE_SIZE_RATIO = .4f;
+    public const float TUTORIAL_ENGULFABLE_SIZE_RATIO = 0.4f;
 
     public const float MICROBE_MOVEMENT_EXPLAIN_TUTORIAL_DELAY = 12.0f;
     public const float MICROBE_MOVEMENT_EXPLAIN_TUTORIAL_DELAY_CONTROLLER = 1.0f;
