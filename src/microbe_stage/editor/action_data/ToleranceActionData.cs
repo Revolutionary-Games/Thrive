@@ -46,7 +46,7 @@ public class ToleranceActionData : EditorCombinableActionData
         return temperatureChange * Constants.TOLERANCE_CHANGE_MP_PER_TEMPERATURE +
             temperatureToleranceChange * Constants.TOLERANCE_CHANGE_MP_PER_TEMPERATURE_TOLERANCE +
             totalPressureChangeAverage * Constants.TOLERANCE_CHANGE_MP_PER_PRESSURE_STEP +
-            //pressureToleranceChange * Constants.TOLERANCE_CHANGE_MP_PER_PRESSURE_TOLERANCE +
+            pressureToleranceChange * Constants.TOLERANCE_CHANGE_MP_PER_PRESSURE_TOLERANCE +
             oxygenChange * Constants.TOLERANCE_CHANGE_MP_PER_OXYGEN +
             uvChange * Constants.TOLERANCE_CHANGE_MP_PER_UV;
     }

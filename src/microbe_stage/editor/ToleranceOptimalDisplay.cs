@@ -22,7 +22,6 @@ public partial class ToleranceOptimalDisplay : HSlider
     private float flexibilityPlus;
     private float flexibilityMinus;
 
-
     public void UpdateMarker(float value)
     {
         optimalValueMarker.OptimalValue = (value - (float)MinValue)
@@ -40,6 +39,8 @@ public partial class ToleranceOptimalDisplay : HSlider
 
     public void SetBoundPositionsManual(double lower, double upper)
     {
+        GD.PushWarning($"Setting Manual: {lower}, {upper}");
+
         var upperBoundFraction = Math.Clamp(upper / MaxValue, 0, 1);
         var lowerBoundFraction = Math.Clamp(lower / MaxValue, 0, 1);
 

@@ -349,7 +349,6 @@ public partial class TolerancesEditorSubComponent : EditorComponentBase<ICellEdi
 
             CalculateStatsAndShow(tempTolerances, uvResistanceToolTip);
         }
-
     }
 
     protected override void OnTranslationsChanged()
@@ -408,7 +407,6 @@ public partial class TolerancesEditorSubComponent : EditorComponentBase<ICellEdi
 
         UpdatePercentageResistanceLabel(oxygenResistanceLabel, CurrentTolerances.OxygenResistance);
         UpdatePercentageResistanceLabel(uvResistanceLabel, CurrentTolerances.UVResistance);
-
 
         automaticallyChanging = false;
 
@@ -642,7 +640,6 @@ public partial class TolerancesEditorSubComponent : EditorComponentBase<ICellEdi
         automaticallyChanging = false;
     }
 
-
     private bool TriggerChangeIfPossible()
     {
         if (reusableTolerances == null)
@@ -820,7 +817,6 @@ public partial class TolerancesEditorSubComponent : EditorComponentBase<ICellEdi
         uvResistanceBaseLabel.Text = uvResistanceBase;
         uvResistanceBaseLabel.LabelSettings = organelleModifiers.UVResistance < 0 ? modifierBadFont : originalModifierFont;
     }
-
 
     [DeserializedCallbackAllowed]
     private void DoToleranceChangeAction(ToleranceActionData data)
