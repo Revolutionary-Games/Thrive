@@ -361,7 +361,7 @@ public partial class MicrobeStage : CreatureStageBase<Entity, MicrobeWorldSimula
                     var position = engulfer.FindNearestEngulfableSlow(ref Player.Get<CellProperties>(),
                         ref Player.Get<OrganelleContainer>(), ref Player.Get<WorldPosition>(),
                         Player.Get<CompoundStorage>().Compounds, Player, Player.Get<SpeciesMember>().ID,
-                        WorldSimulation, true);
+                        WorldSimulation, skipLikelyTooFastTargets: true);
 
                     TutorialState.SendEvent(TutorialEventType.MicrobeChunksNearPlayer,
                         new EntityPositionEventArgs(position), this);
