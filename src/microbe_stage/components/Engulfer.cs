@@ -190,9 +190,10 @@ public static class EngulferHelpers
             if (!compounds.Compounds.Any(p => usefulCompoundSource.IsUseful(p.Key)))
                 continue;
 
-            // Skip entities that are too small to catch easily
+            // Skip entities that are too small to catch easily (ex: player = 3; ratio = 1/3; entity must be > 1 to be
+            // considered)
             if (skipLikelyTooFastTargets &&
-                engulfer.EngulfingSize / Constants.TUTORIAL_ENGULFABLE_SIZE_RATIO > engulfable.AdjustedEngulfSize)
+                engulfer.EngulfingSize * Constants.TUTORIAL_ENGULFABLE_SIZE_RATIO > engulfable.AdjustedEngulfSize)
             {
                 continue;
             }
