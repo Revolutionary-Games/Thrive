@@ -39,7 +39,7 @@ public partial class ToleranceOptimalDisplay : HSlider
 
     public void SetBoundPositionsManual(double lower, double upper)
     {
-        GD.PushWarning($"Setting Manual: {lower}, {upper}");
+        GD.PushWarning($"{Name} Setting Manual: {lower}, {upper}");
 
         var upperBoundFraction = Math.Clamp(upper / MaxValue, 0, 1);
         var lowerBoundFraction = Math.Clamp(lower / MaxValue, 0, 1);
