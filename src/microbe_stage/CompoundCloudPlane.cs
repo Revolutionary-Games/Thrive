@@ -733,9 +733,10 @@ public partial class CompoundCloudPlane : MeshInstance3D, ISaveLoadedTracked
             if (compound == Compound.Invalid)
                 break;
 
+            bool isUseful = storage.IsUseful(compound);
+
             // Skip if compound is non-useful or disallowed to be absorbed
-            if (!compoundDefinitions[i]!.IsAbsorbable || (!storage.IsUseful(compound)
-                && compound != Compound.Hydrogensulfide))
+            if (!compoundDefinitions[i]!.IsAbsorbable || (!isUseful && compound != Compound.Hydrogensulfide))
                 continue;
 
             // Loop here to retry in case we read stale data
@@ -756,7 +757,7 @@ public partial class CompoundCloudPlane : MeshInstance3D, ISaveLoadedTracked
                 {
                     hydrogenSulfideAbsorbed = true;
 
-                    if (!storage.IsUseful(compound))
+                    if (!isUseful)
                         break;
                 }
 
