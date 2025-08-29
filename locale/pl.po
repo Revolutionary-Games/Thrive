@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2025-08-27 21:03+0200\n"
+"POT-Creation-Date: 2025-08-29 14:14+0300\n"
 "PO-Revision-Date: 2025-08-13 14:57+0000\n"
 "Last-Translator: Anonymous <noreply@weblate.org>\n"
 "Language-Team: Polish <https://translate.revolutionarygamesstudio.com/projects/thrive/thrive-game/pl/>\n"
@@ -1369,6 +1369,10 @@ msgstr "Protanopia (Czerwony-Zielony)"
 msgid "CORRECTION_TRITANOPE"
 msgstr "Tritanopia (Niebieski-Żółty)"
 
+#, fuzzy
+msgid "CPU_POWER_NOT_ENOUGH_FOR_SPEED_MODE"
+msgstr "Nie wystarczająca przestrzeń przechowawcza dla związku [thrive:compound type=\"{0}\"][/thrive:compound], ponieważ noc trwa {2} s a przestrzeń przechowawcza zmieści ilość związków wystarczającą jedynie na {1} s."
+
 msgid "CPU_THREADS"
 msgstr "Wątki"
 
@@ -1947,6 +1951,15 @@ msgstr ""
 "W tej zakładce możesz zobaczyć raport istniejących gatunków, gdzie i jak duża jest ich populacja. Użyj dostępnych narzędzi aby dowiedzieć się więcej o wydarzeniach na świecie!\n"
 "\n"
 "kiedy będziesz gotów, wciśnij przycisk \"dalej\" w prawym dolnym rogu aby kontynuować."
+
+#, fuzzy
+msgid "EDITOR_TUTORIAL_MICROBE_EDITOR_BINDING_AGENTS"
+msgstr ""
+"To jest edytor komórki gdzie możesz ewoluować swój gatunek poprzez wydawanie [b]punktów mutacji[/b] (PM) [thrive:icon]MP[/thrive:icon]. W każdym pokoleniu zawsze masz [b]100[/b] [/b][/b][thrive:icon]MP[/thrive:icon], więc nie przejmuj się oszczędzaniem!\n"
+"\n"
+"Heks w centrum twego ekranu to twoja [b]komórka[/b], która składa się z jednej części cytozolu.\n"
+"\n"
+"By kontynuować, wybierz część z lewego panelu. Następnie naciśnij lewy przycisk myszy obok heksa by ją umieścić. Możesz obracać części używając [thrive:input]e_rotate_left[/thrive:input] oraz [thrive:input]e_rotate_right[/thrive:input]."
 
 #, fuzzy
 msgid "EDITOR_TUTORIAL_MICROBE_EDITOR_NUCLEUS"
@@ -3757,6 +3770,10 @@ msgstr "Drapieżnictwo {0}"
 
 msgid "MICHE_ROOT_PRESSURE"
 msgstr ""
+
+#, fuzzy
+msgid "MICHE_TEMPERATURE_SESSILITY_PRESSURE"
+msgstr "Drapieżnictwo {0}"
 
 msgid "MICHE_TREE"
 msgstr ""
@@ -6603,10 +6620,6 @@ msgid "TUTORIAL"
 msgstr "Samouczek"
 
 #, fuzzy
-msgid "TUTORIAL_ALL_NOT_ENABLED_EXPLANATION"
-msgstr "(Niektóre organelle będą mieć warunki odblokowania wymagane by je postawić)"
-
-#, fuzzy
 msgid "TUTORIAL_MICROBE_EDITOR_ATP_BALANCE_INTRO"
 msgstr ""
 "Grafik produkcji ATP po prawej pokazuje ile [thrive:compound type=\"atp\"][/thrive:compound] twoja komórka produkuje w porównaniu do ile jest zużywane. Jeżeli górny słupek jest krótszy od dolnego, to produkcja [thrive:compound type=\"atp\"][/thrive:compound] jest za niska.\n"
@@ -6890,6 +6903,10 @@ msgstr ""
 "Jednak teraz możesz tworzyć układ komórek twojej kolonii w edytorze jak i specjalizować swoje komórki do różnych zadań. Pamiętaj, że członkowie kolonii nie mogą dzielić się [thrive:compound type=\"atp\"][/thrive:compound].\n"
 "\n"
 "Jeśli rozmnażasz się przez pączkowanie (sposób podstawowy), zaczynasz poprzez kontrolowanie małego pączka i musisz rozwinąć resztę swojego układu komórek."
+
+#, fuzzy
+msgid "TUTORIAL_REPLAY_ALL_EXPLANATION"
+msgstr "(Niektóre organelle będą mieć warunki odblokowania wymagane by je postawić)"
 
 msgid "TUTORIAL_VIEW_NOW"
 msgstr "Oglądaj Teraz"
@@ -9230,14 +9247,6 @@ msgid "ZOOM_OUT"
 msgstr "Oddal"
 
 #, fuzzy
-#~ msgid "SULFIDE_LEVELS"
-#~ msgstr "{0}-{1}m poniżej poziomu morza"
-
-#, fuzzy
-#~ msgid "TEST_TEST"
-#~ msgstr "Testerzy"
-
-#, fuzzy
 #~ msgid "GENERATE_BUTTON"
 #~ msgstr "Pokolenia"
 
@@ -9248,6 +9257,10 @@ msgstr "Oddal"
 #, fuzzy
 #~ msgid "CELL_TYPE_BUTTON_ATP_PRODUCTION"
 #~ msgstr "Opcje"
+
+#, fuzzy
+#~ msgid "WORLD_SEA_LEVEL"
+#~ msgstr "{0}-{1}m poniżej poziomu morza"
 
 #, fuzzy
 #~ msgid "WORLD_SEA_LEVEL_DEEP"

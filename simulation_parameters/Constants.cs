@@ -25,13 +25,15 @@ public static class Constants
     public const float SIMULATION_OPTIMIZE_THREADS_INTERVAL = 0.3f;
 
     /// <summary>
-    ///   Controls the number of threads used by the entity systems. The number of cells is divided by this and that is
-    ///   the max number of threads.
+    ///   Controls the number of threads used by the entity systems. The number of cells is divided by this,
+    ///   and that is the max number of threads.
     /// </summary>
     public const int SIMULATION_CELLS_PER_THREAD_ESTIMATE = 25;
 
+    public const float SIMULATION_REQUIRED_FAST_MODE_SUCCESS_RATE = 0.45f;
+
     // The following variables define the number of entities each thread running a system of that category needs to be
-    // able to process for threading to be used at all. For example if there are 40 entities and 4 threads to be used
+    // able to process for threading to be used at all. For example, if there are 40 entities and 4 threads to be used
     // and a system specifies 10 entities per thread, that system will run multithreaded (4 * 10 {40} <= 40).
     // But if there was a system that wanted at least 15 entities per thread, that would run purely *single threaded*
     // (4 * 15 {60} <= 40)
@@ -388,6 +390,8 @@ public static class Constants
     ///   The multiplier to the force that currents apply to cells.
     /// </summary>
     public const float CURRENT_FORCE_CELL_MULTIPLIER = 15;
+
+    public const float CURRENT_COMPOUND_CLOUD_ADVECT_THRESHOLD = 0.15f;
 
     public const int TRANSLATION_VERY_INCOMPLETE_THRESHOLD = 30;
     public const int TRANSLATION_INCOMPLETE_THRESHOLD = 70;
@@ -1363,6 +1367,10 @@ public static class Constants
     public const double HYDROGEN_SULFIDE_ENVIRONMENT_EATING_MULTIPLIER = 0.00000001;
     public const float HYDROGEN_SULFIDE_NATURAL_DECAY_FACTOR = 0.3f;
 
+    public const float HYDROGEN_SULFIDE_NATURAL_DECAY_INCREASE_PER_OXYGEN = 0.021f;
+    public const float HYDROGEN_SULFIDE_NATURAL_DECAY_FACTOR_OXYGEN = 0.1f;
+    public const float HYDROGEN_SULFIDE_OXYGEN_TOTAL_CUTOFF = 0.01f;
+
     /// <summary>
     ///   Below this value oxygen doesn't cause iron chunks to become less common
     /// </summary>
@@ -1465,6 +1473,8 @@ public static class Constants
     public const float HIDE_MICROBE_SPECIES_MEMBER_DIED_AFTER = 60;
 
     public const float DAY_NIGHT_TUTORIAL_LIGHT_MIN = 0.01f;
+
+    public const int TRIGGER_BINDING_AGENTS_TUTORIAL_AFTER_SESSIONS_WITH_NUCLEUS = 7;
 
     /// <summary>
     ///   Used to limit how often the hover indicator panels are updated. The default value is every 0.1 seconds.

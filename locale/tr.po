@@ -7,8 +7,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2025-08-27 21:03+0200\n"
-"PO-Revision-Date: 2025-08-15 07:46+0000\n"
+"POT-Creation-Date: 2025-08-29 14:14+0300\n"
+"PO-Revision-Date: 2025-08-22 13:14+0000\n"
 "Last-Translator: punctdan <yunusemredilek@hotmail.com>\n"
 "Language-Team: Turkish <https://translate.revolutionarygamesstudio.com/projects/thrive/thrive-game/tr/>\n"
 "Language: tr\n"
@@ -276,12 +276,12 @@ msgid "ASSEMBLY_REQUIRED_WITH_HARMONY"
 msgstr "Oto Harmony etkinleştirildiğinde, Assembly modu gereklidir"
 
 msgid "ASSUME_HYPERTHREADING"
-msgstr "CPU'da hiper iş parçacığını etkin varsay"
+msgstr "İşlemcide hiper iş parçacığını etkin varsay"
 
 msgid "ASSUME_HYPERTHREADING_TOOLTIP"
 msgstr ""
 "Hiper iş parçacığının etkin olup olmadığı otomatik olarak tespit edilemez.\n"
-"Hiper iş parçacıkları gerçek CPU çekirdekleri kadar hızlı olmadığı için, bu, varsayılan iş parçacığı sayısını etkiler."
+"Hiper iş parçacıkları gerçek işlemci çekirdekleri kadar hızlı olmadığı için, bu, varsayılan iş parçacığı sayısını etkiler."
 
 msgid "ATMOSPHERIC_GASSES"
 msgstr "Atmosferik Gazlar"
@@ -1330,6 +1330,9 @@ msgstr "Protanop (Kırmızı-Yeşil)"
 msgid "CORRECTION_TRITANOPE"
 msgstr "Tritanop (Mavi-Sarı)"
 
+msgid "CPU_POWER_NOT_ENOUGH_FOR_SPEED_MODE"
+msgstr "İşlemci, seçilen hız için yeterince hızlı değil, oyun hızı varsayılana sıfırlandı"
+
 msgid "CPU_THREADS"
 msgstr "İş Parçacıkları"
 
@@ -1598,7 +1601,7 @@ msgid "DESPAWN_ENTITIES"
 msgstr "Bütün Varlıkları Yok Et"
 
 msgid "DETECTED_CPU_COUNT"
-msgstr "Tespit edilen CPU sayısı:"
+msgstr "Tespit edilen işlemci sayısı:"
 
 msgid "DEVBUILD_VERSION_INFO"
 msgstr ""
@@ -1890,6 +1893,17 @@ msgstr ""
 "Neler olduğunu gözden geçirdikten sonra, türünüzün uyum sağlaması için türünüzde [b]değişiklikler yapabilirsiniz[/b].\n"
 "\n"
 "Bunu yapmaya hazır olduğunuzda, Arazi Haritası Ekranına devam etmek için sağ alttaki \"sonraki\" butonuna basın."
+
+#, fuzzy
+msgid "EDITOR_TUTORIAL_MICROBE_EDITOR_BINDING_AGENTS"
+msgstr ""
+"İlerlemeye devam etmek için er ya da geç bir [b]çekirdek[/b] yerleştirmeniz gerekecek.\n"
+"\n"
+"Bir [b]çekirdek[/b] eklemek, türünüzün diğer hücreleri ile bağ kurmanızı ve [u]çok hücreli[/u] olmanızı sağlayan [b]bağlayıcı ajan[/b] gibi gelişmiş organellerin kilidini açar.\n"
+"\n"
+"Bu oyun rehberini kapatmak için bir [b]çekirdek[/b] eklemeyi deneyin.\n"
+"\n"
+"Eğer hücreniz henüz çekirdeğe hazır değilse, [b]geri al butonunu[/b] kullanarak çekirdeği [u]geri alabilirsiniz[/u]."
 
 msgid "EDITOR_TUTORIAL_MICROBE_EDITOR_NUCLEUS"
 msgstr ""
@@ -3546,7 +3560,7 @@ msgstr ""
 "Artık Düğümler: {12}\n"
 "Ses Gecikmesi: {13} ms\n"
 "Toplam İş Parçacığı: {14}\n"
-"Toplam CPU Süresi:\n"
+"Toplam İşlemci Süresi:\n"
 "{15}"
 
 msgid "MIB_VALUE"
@@ -3602,6 +3616,10 @@ msgstr "Yırtıcı Kök Baskısı"
 
 msgid "MICHE_ROOT_PRESSURE"
 msgstr "Kök Baskı"
+
+#, fuzzy
+msgid "MICHE_TEMPERATURE_SESSILITY_PRESSURE"
+msgstr "Metabolik Kararlılık Baskısı"
 
 msgid "MICHE_TREE"
 msgstr "Miche Ağacı"
@@ -5405,7 +5423,7 @@ msgid "SHIFT"
 msgstr "Shift"
 
 msgid "SHOW_ALL_TUTORIALS"
-msgstr "Bütün oyun rehberlerini göster"
+msgstr "Bütün oyun rehberlerini (tekrar) göster"
 
 msgid "SHOW_ALL_TUTORIALS_TOOLTIP"
 msgstr "Bütün oyun rehberlerini her zaman göstermek ile yalnızca herhangi bir oyunda henüz tamamlanmamış olan oyun rehberlerini göstermek arasında seçim yap"
@@ -6271,9 +6289,6 @@ msgstr "Bir ekran görüntüsü almayı deneyin!"
 msgid "TUTORIAL"
 msgstr "Oyun Rehberi"
 
-msgid "TUTORIAL_ALL_NOT_ENABLED_EXPLANATION"
-msgstr "Yalnızca, herhangi bir oyunda henüz görülmemiş olan oyun rehberleri gösterilir. Oyun rehberleri ayarlar menüsünden tamamen devre dışı bırakılabilir. Ancak, en azından yeni oyun rehberlerinin etkinleştirilmiş şekilde bırakılması ŞİDDETLE ÖNERİLMEKTEDİR."
-
 msgid "TUTORIAL_MICROBE_EDITOR_ATP_BALANCE_INTRO"
 msgstr ""
 "Sağdaki ATP Üretim çubuğu, tüketilen ATP'ye nazaran, hücrenizin ne kadar [thrive:compound type=\"atp\"]ATP[/thrive:compound] ürettiğini gösterir. Eğer üstteki çubuk alttakinden daha kısa ise, bu yeterince [thrive:compound type=\"atp\"]ATP[/thrive:compound] üretmiyorsunuz demektir.\n"
@@ -6579,6 +6594,9 @@ msgstr ""
 "Ancak, artık editörde koloninizin hücre düzenini tasarlayabilir ve hücrelerinizi çeşitli görevler için özelleştirebilirsiniz. Unutmayın, koloni üyeleri [thrive:compound type=\"atp\"]ATP'yi[/thrive:compound] paylaşamaz.\n"
 "\n"
 "Eğer tomorcuklanma ile üremeyi (varsayılan yöntem) kullanıyorsanız, ufak bir tomurcuğu kontrol etmeye başlarsınız ve hücre düzeninin geri kalanını büyütmeniz gerekir."
+
+msgid "TUTORIAL_REPLAY_ALL_EXPLANATION"
+msgstr "Bütün oyun rehberleri tekrar gösterilir. Bu seçenek devre dışı bırakıldığında, yalnızca gösterilmemiş rehberler gösterilir. Bu seçeneği devre dışı bırakmak, ilk oyunda bile güvenlidir."
 
 msgid "TUTORIAL_VIEW_NOW"
 msgstr "Şimdi İnceleyin"
@@ -6892,7 +6910,7 @@ msgid "VISIBLE_WHEN_CLOSE_TO_FULL"
 msgstr "Neredeyse dolduğunda görünür"
 
 msgid "VISIBLE_WHEN_OVER_ZERO"
-msgstr "Sıfırın üstündeyken görünür"
+msgstr "Sıfırın üzerindeyken görünür"
 
 msgid "VISIT_SUGGESTIONS_SITE"
 msgstr "Bir Özellik Öner"
@@ -7223,9 +7241,15 @@ msgstr ""
 msgid "WIKI_CHEMOSYNTHESIZING_PROTEINS_REQUIREMENTS"
 msgstr "Gereksinimler yok."
 
-#, fuzzy
 msgid "WIKI_CHEMOSYNTHESIZING_PROTEINS_SCIENTIFIC_BACKGROUND"
-msgstr "TBA"
+msgstr ""
+"[color=#3796e1][url=https://en.wikipedia.org/wiki/Chemosynthesis]Kemosentez[/url][/color], gerçek dünyadaki birçok mikropta bulunan metabolik bir işlemdir ve esasen fotosenteze bir alternatif olarak kullanılır. Fotosentez, kimyasal reaksiyonlar için enerji sağlamak amacıyla, güneş ışığından gelen fotonları yararlanırken, kemosentez, enerji sağlamak için demir veya hidrojen sülfür gibi inorganik bileşiklerin oksidasyonunu kullanır.\n"
+"\n"
+"Örnek olarak, hidrojen sülfür kemosentezi aşağıdaki kimyasal denklemle özetlenebilir:\n"
+"\n"
+"18H<sub>2</sub>S + 6CO<sub>2</sub> + 3O<sub>2</sub> → C<sub>6</sub>H<sub>12</sub>O<sub>6</sub> (karbonhidrat) + 12H<sub>2</sub>O + 18S\n"
+"\n"
+"Yukarıdaki tepkimede hidrojen sülfür, karbondioksit ve oksijen ile tepkimeye girdiği için elektron kaynağı olarak görev yapar. Bu tepkimeden, bir karbonhidrat molekülü ile birlikte su ve serbest kükürt atomları oluşur. Böylece fotosentez, oksijen gazının salınmasına sebep olurken, hidrojen sülfür kemosentezi, genellikle katı kürecikler halinde toplanan kükürtü üretir."
 
 msgid "WIKI_CHEMOSYNTHESIZING_PROTEINS_STRATEGY"
 msgstr ""
@@ -7266,9 +7290,11 @@ msgstr ""
 "\n"
 "[indent]—   Üst üste en az [b]7[/b] kuşak boyunca en az [b]5[/b] [b][color=#3796e1][url=thriveopedia:chromatophore]Tilakoid[/url][/color][/b] içermek.[/indent]"
 
-#, fuzzy
 msgid "WIKI_CHLOROPLAST_SCIENTIFIC_BACKGROUND"
-msgstr "TBA"
+msgstr ""
+"[color=#3796e1][url=https://en.wikipedia.org/wiki/Chloroplast]Kloroplastlar[/url][/color], gerçek dünyadaki bitkilerde ve alg hücrelerinde bulunan çift zarlı organellerdir. Bu organeller, bir siyanobakterinin ilkel bir ökaryotik hücre tarafından yutulmasıyla eski bir endosimbiyoz olayından türemiştir. Bu tarihsel sürecin sonucu olarak bu organeller, tıpkı [b]Mitokondriler[/b] gibi, kendi genomlarını taşımaktadır ve bu genom konak hücredekinden farklıdır.\n"
+"\n"
+"[b][color=#3796e1][url=thriveopedia:chromatophore]Tilakoidlerin[/url][/color][/b] yanı sıra kloroplastlar, atmosferdeki karbondioksiti [b]Glukoza[/b] ve enerji açısından zengin diğer moleküllere dönüştürmek için fotosentezde merkezi bir rol oynayan ribuloz-1,5-bifosfat karboksilaz/oksijenaz enzimini (genellikle RuBisCO olarak kısaltılır) içerir. RuBisCO çok eski bir enzim olup, yaklaşık dört milyar yıl önce evrimleştiğine inanılmaktadır. Günümüzde, Dünya’da en bol bulunan enzim olduğu düşünülmektedir. Ancak, buna rağmen, hem karbondioksiti dönüştürmede nispeten yavaş olması hem de aksine oksijen ile tepkimeye girme eğiliminde olması nedeniyle, son derece verimsiz bir enzimdir. Bu işlem, fotosolunum olarak bilinir ve fotosentezin verimliliğini, aslında enerji israfı yaparak ve önceden bağlanmış olan karbonu tüketerek azaltır. Görünüşte RuBisCO, büyük bir seçilim baskısına sahip olmasına rağmen, bu engeli aşacak kadar evrimleşememiştir. Moleküler biyologlar, RuBisCO’yu daha verimli hale getirmek için büyük zorluklarla karşılaşmışlardır. Bu durum, bu sınırlamanın RuBisCO’nun yapı ve etkinliğinin temel bir yönü olabileceğini göstermektedir."
 
 msgid "WIKI_CHLOROPLAST_STRATEGY"
 msgstr ""
@@ -9440,14 +9466,6 @@ msgstr "Yakınlaştır"
 msgid "ZOOM_OUT"
 msgstr "Uzaklaştır"
 
-#, fuzzy
-#~ msgid "SULFIDE_LEVELS"
-#~ msgstr "Deniz seviyesinin {0}-{1}m altı"
-
-#, fuzzy
-#~ msgid "TEST_TEST"
-#~ msgstr "Deneme Ekibi"
-
 #~ msgid "GENERATE_BUTTON"
 #~ msgstr "Dünya Oluştur"
 
@@ -9456,6 +9474,10 @@ msgstr "Uzaklaştır"
 
 #~ msgid "CELL_TYPE_BUTTON_ATP_PRODUCTION"
 #~ msgstr "Bu hücre türünün ATP üretim miktarı {0}."
+
+#, fuzzy
+#~ msgid "WORLD_SEA_LEVEL"
+#~ msgstr "Deniz seviyesinin {0}-{1}m altı"
 
 #, fuzzy
 #~ msgid "WORLD_SEA_LEVEL_DEEP"

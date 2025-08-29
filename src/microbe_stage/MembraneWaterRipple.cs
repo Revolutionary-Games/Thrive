@@ -64,13 +64,13 @@ public partial class MembraneWaterRipple : Node
     ///   Minimal movement threshold
     /// </summary>
     [Export]
-    public float MovementThresholdSqr = 0.0001f;
+    public float MovementThresholdSqr = 0.1f;
 
     /// <summary>
     ///   Threshold for resuming movement
     /// </summary>
     [Export]
-    public float ResumeMovementThresholdSqr = 0.0003f;
+    public float ResumeMovementThresholdSqr = 0.3f;
 
     /// <summary>
     ///   Maximum delta time to prevent jitter
@@ -591,7 +591,7 @@ public partial class MembraneWaterRipple : Node
         // Calculates movement since the last frame
         var currentPos = FollowTargetNode.GlobalPosition;
         var movement = currentPos - lastPosition;
-        float movementSqr = movement.LengthSquared();
+        float movementSqr = movement.LengthSquared() / delta;
         averageMovementSqr = Mathf.Lerp(averageMovementSqr, movementSqr, 0.2f);
         bool significantMovement;
 

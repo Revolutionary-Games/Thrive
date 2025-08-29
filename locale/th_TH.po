@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2025-08-27 21:03+0200\n"
+"POT-Creation-Date: 2025-08-29 14:14+0300\n"
 "PO-Revision-Date: 2025-05-27 06:43+0000\n"
 "Last-Translator: Anonymous <noreply@weblate.org>\n"
 "Language-Team: Thai <https://translate.revolutionarygamesstudio.com/projects/thrive/thrive-game/th/>\n"
@@ -1373,6 +1373,10 @@ msgstr ""
 msgid "CORRECTION_TRITANOPE"
 msgstr ""
 
+#, fuzzy
+msgid "CPU_POWER_NOT_ENOUGH_FOR_SPEED_MODE"
+msgstr "สารประกอบของเมฆ"
+
 msgid "CPU_THREADS"
 msgstr ""
 
@@ -1916,6 +1920,23 @@ msgstr ""
 
 msgid "EDITOR_TUTORIAL_EDITOR_TEXT"
 msgstr ""
+
+#, fuzzy
+msgid "EDITOR_TUTORIAL_MICROBE_EDITOR_BINDING_AGENTS"
+msgstr ""
+"โครงสร้างโปรคาริโอต\n"
+"\n"
+"เมตาโบโลโซม: ผลิต ATP จากกลูโคส\n"
+"\n"
+"Chemosynthisizing Proteins: ผลิตกลูโคสครึ่งหนึ่งจากไฮโดรเจนซัลไฟด์เป็นเคมีโมพลาสต์ แต่ยังทำหน้าที่เป็นไกลโคไลซิสและใช้เวลาถึง 1 Hex\n"
+"\n"
+"Thylakoids: ผลิตกลูโคสในปริมาณ 1 ใน 3 เป็นคลอโรพลาสต์ปกติ แต่ยังทำหน้าที่เป็นไกลโคไลซิสและใช้ 1 Hex\n"
+"\n"
+"Rusticyanin: แปลงเหล็กเป็น ATP\n"
+"\n"
+"Nitrogenase: แปลงไนโตรเจนในบรรยากาศและ ATP เป็นแอมโมเนียแบบไม่ใช้ออกซิเจน\n"
+"\n"
+"ไซโทพลาสซึม: มีพื้นที่จัดเก็บและทำปฏิกิริยาไกลโคไลซิส (ผลิต ATP จำนวนเล็กน้อย)"
 
 #, fuzzy
 msgid "EDITOR_TUTORIAL_MICROBE_EDITOR_NUCLEUS"
@@ -3746,6 +3767,10 @@ msgstr ""
 
 msgid "MICHE_ROOT_PRESSURE"
 msgstr ""
+
+#, fuzzy
+msgid "MICHE_TEMPERATURE_SESSILITY_PRESSURE"
+msgstr "แพร่กระจายไปยังแพทช์:"
 
 msgid "MICHE_TREE"
 msgstr ""
@@ -6653,10 +6678,6 @@ msgid "TUTORIAL"
 msgstr "บทช่วยสอน"
 
 #, fuzzy
-msgid "TUTORIAL_ALL_NOT_ENABLED_EXPLANATION"
-msgstr "แทงเซลล์อื่นด้วยสิ่งนี้"
-
-#, fuzzy
 msgid "TUTORIAL_MICROBE_EDITOR_ATP_BALANCE_INTRO"
 msgstr "สร้างจุลินทรีย์ฟรี"
 
@@ -6865,6 +6886,10 @@ msgstr "สร้างจุลินทรีย์ฟรี"
 #, fuzzy
 msgid "TUTORIAL_MULTICELLULAR_STAGE_WELCOME"
 msgstr "วางออร์แกเนลล์"
+
+#, fuzzy
+msgid "TUTORIAL_REPLAY_ALL_EXPLANATION"
+msgstr "แทงเซลล์อื่นด้วยสิ่งนี้"
 
 #, fuzzy
 msgid "TUTORIAL_VIEW_NOW"
@@ -9187,12 +9212,12 @@ msgid "ZOOM_OUT"
 msgstr "ซูมออก"
 
 #, fuzzy
-#~ msgid "SULFIDE_LEVELS"
-#~ msgstr "\"{0}\" - {1}"
-
-#, fuzzy
 #~ msgid "GENERATE_BUTTON"
 #~ msgstr "ตั้งค่า"
+
+#, fuzzy
+#~ msgid "WORLD_SEA_LEVEL"
+#~ msgstr "\"{0}\" - {1}"
 
 #, fuzzy
 #~ msgid "WORLD_SEA_LEVEL_DEEP"

@@ -7,9 +7,9 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2025-08-27 21:03+0200\n"
-"PO-Revision-Date: 2025-08-13 14:57+0000\n"
-"Last-Translator: Anonymous <noreply@weblate.org>\n"
+"POT-Creation-Date: 2025-08-29 14:14+0300\n"
+"PO-Revision-Date: 2025-08-25 16:38+0000\n"
+"Last-Translator: Teashrock <kajitsu22@gmail.com>\n"
 "Language-Team: Ukrainian <https://translate.revolutionarygamesstudio.com/projects/thrive/thrive-game/uk/>\n"
 "Language: uk\n"
 "MIME-Version: 1.0\n"
@@ -448,7 +448,7 @@ msgid "BACKSPACE"
 msgstr "Backspace"
 
 msgid "BACK_TO_SETTINGS"
-msgstr ""
+msgstr "До налаштувань"
 
 msgid "BACTERIAL_THERMOSYNTHESIS"
 msgstr "Бактеріальний термосинтез"
@@ -526,10 +526,10 @@ msgid "BEST_PATCH_COLON"
 msgstr "Найкраща ділянка:"
 
 msgid "BETTER_TOGETHER"
-msgstr ""
+msgstr "Разом краще"
 
 msgid "BEYOND_THE_CELL"
-msgstr ""
+msgstr "Більше ніж клітина"
 
 msgid "BIG_IRON_CHUNK"
 msgstr "Великий шматок заліза"
@@ -640,7 +640,7 @@ msgid "CANNOT_ENGULF"
 msgstr "Не може поглинати"
 
 msgid "CANNOT_IMPROVE_PERFECTION"
-msgstr ""
+msgstr "Неможливо досягти досконалості"
 
 msgid "CANNOT_MOVE_METABALL_TO_DESCENDANT_TREE"
 msgstr "Неможна перемістити метасферу в цьому дереві нащадків"
@@ -843,7 +843,7 @@ msgid "CLICK_TO_SELECT"
 msgstr "Видалити обране"
 
 msgid "CLIMATE_INSTABILITY"
-msgstr ""
+msgstr "Нестабільність клімату"
 
 #, fuzzy
 msgid "CLIMATE_INSTABILITY_EXPLANATION"
@@ -852,13 +852,13 @@ msgstr ""
 "Пасивні будуть залишатися нерухомими до змін в оточені, й лиш тоді діють."
 
 msgid "CLIMATE_STABILITY_AVERAGE"
-msgstr ""
+msgstr "Середня"
 
 msgid "CLIMATE_STABILITY_STABLE"
-msgstr ""
+msgstr "Стабільна"
 
 msgid "CLIMATE_STABILITY_UNSTABLE"
-msgstr ""
+msgstr "Нестабільна"
 
 msgid "CLOSE"
 msgstr "Закрити"
@@ -1334,6 +1334,10 @@ msgstr "Протаноп (червоно-зелений)"
 
 msgid "CORRECTION_TRITANOPE"
 msgstr "Тританоп (блакитно-жовтий)"
+
+#, fuzzy
+msgid "CPU_POWER_NOT_ENOUGH_FOR_SPEED_MODE"
+msgstr "{0} поглинуто"
 
 msgid "CPU_THREADS"
 msgstr "Потоки"
@@ -1905,6 +1909,17 @@ msgstr ""
 "\n"
 "Коли будете готові, натисніть кнопку \"Далі\" справа знизу, щоб перейти до наступної вкладки редактора."
 
+#, fuzzy
+msgid "EDITOR_TUTORIAL_MICROBE_EDITOR_BINDING_AGENTS"
+msgstr ""
+"Для подальшого прогресування вам знадобиться [b]ядро[/b].\n"
+"\n"
+"Додавання [b]ядра[/b] відімкне більш просунені органели, такі як [b]зв'язувальний агент[/b], що дозволить вам зв'язатися з іншими клітинами вашого виду та стати [u]багатоклітинним[/u].\n"
+"\n"
+"Спробуйте розмістити [b]ядро[/b], щоб закрити цей туторіал.\n"
+"\n"
+"Якщо ваша клітина ще не готова до ядра, скористайтеся [b]кнопкою скасування[/b], щоби [u]прибрати[/u] ядро."
+
 msgid "EDITOR_TUTORIAL_MICROBE_EDITOR_NUCLEUS"
 msgstr ""
 "Для подальшого прогресування вам знадобиться [b]ядро[/b].\n"
@@ -2022,7 +2037,7 @@ msgid "ENERGY_SUMMARY_LINE"
 msgstr "Загальна зібрана енергія становить {0} з індивідуальною вартістю {1}, результатом чого є нескоригована популяція кількістю в {2}"
 
 msgid "ENGULF_CELL_OR_CHUNK"
-msgstr ""
+msgstr "Поглиньте іншу клітину або фрагмент"
 
 msgid "ENGULF_NO_ATP_DAMAGE_MESSAGE"
 msgstr "Пошкоджено входом у режим поглинання при відсутності АТФ"
@@ -2475,7 +2490,7 @@ msgid "GENERAL_LOADING_TIP_7"
 msgstr "Якщо ваша популяція впаде до нуля, ваш вид вимре."
 
 msgid "GENERATE_POSITIVE_GLUCOSE_PHOTOSYNTHESIS"
-msgstr ""
+msgstr "Згенерувати фотосинтезом більше глюкози ніж вам потрібно"
 
 msgid "GENERATIONS"
 msgstr "Генерації"
@@ -2484,16 +2499,16 @@ msgid "GENERATION_COLON"
 msgstr "Генерація:"
 
 msgid "GEOLOGICAL_ACTIVITY"
-msgstr ""
+msgstr "Геологічна активність"
 
 msgid "GEOLOGICAL_ACTIVITY_ACTIVE"
-msgstr ""
+msgstr "Активна"
 
 msgid "GEOLOGICAL_ACTIVITY_AVERAGE"
-msgstr ""
+msgstr "Середня"
 
 msgid "GEOLOGICAL_ACTIVITY_DORMANT"
-msgstr ""
+msgstr "Спляча"
 
 #, fuzzy
 msgid "GEOLOGICAL_ACTIVITY_EXPLANATION"
@@ -3678,6 +3693,10 @@ msgstr "Винищення {0}"
 
 msgid "MICHE_ROOT_PRESSURE"
 msgstr "Початковий тиск"
+
+#, fuzzy
+msgid "MICHE_TEMPERATURE_SESSILITY_PRESSURE"
+msgstr "Вплив матаболічної стабільності"
 
 #, fuzzy
 msgid "MICHE_TREE"
@@ -6429,10 +6448,6 @@ msgstr "Спробуйте зробити декілька скріншотів!
 msgid "TUTORIAL"
 msgstr "Туторіал"
 
-#, fuzzy
-msgid "TUTORIAL_ALL_NOT_ENABLED_EXPLANATION"
-msgstr "(деякі органели матимуть умови відкриття, необхідні для їх розміщення)"
-
 msgid "TUTORIAL_MICROBE_EDITOR_ATP_BALANCE_INTRO"
 msgstr ""
 "Панель вироблення АТФ справа вказує, скільки [thrive:compound type=\"atp\"][/thrive:compound] ваша клітина продукує в порівнянні з тим, скільки вона поглинає. Якщо вища панель коротша за нижню, ви не виробляєте достатньо [thrive:compound type=\"atp\"][/thrive:compound].\n"
@@ -6743,6 +6758,10 @@ msgstr ""
 "Проте зараз ви ще можете розмітити вашу колонію клітин у редакторі та спеціалізувати ваші клітини для різних цілей. Пам'ятайте, що члени колонії не здатні ділити між собою [thrive:compound type=\"atp\"][/thrive:compound].\n"
 "\n"
 "Якщо ви використовуєте розмноження брунькуванням (метод за замовчуванням), ви почнете керувати малою брунькою та згодом наростите решту розміченої клітинної колонії."
+
+#, fuzzy
+msgid "TUTORIAL_REPLAY_ALL_EXPLANATION"
+msgstr "(деякі органели матимуть умови відкриття, необхідні для їх розміщення)"
 
 msgid "TUTORIAL_VIEW_NOW"
 msgstr "Переглянути зараз"
@@ -9099,14 +9118,6 @@ msgid "ZOOM_OUT"
 msgstr "Віддалитись"
 
 #, fuzzy
-#~ msgid "SULFIDE_LEVELS"
-#~ msgstr "{0}-{1}м. нижче рівня моря"
-
-#, fuzzy
-#~ msgid "TEST_TEST"
-#~ msgstr "Команда тестувальників"
-
-#, fuzzy
 #~ msgid "GENERATE_BUTTON"
 #~ msgstr "Генерації"
 
@@ -9117,6 +9128,10 @@ msgstr "Віддалитись"
 #, fuzzy
 #~ msgid "CELL_TYPE_BUTTON_ATP_PRODUCTION"
 #~ msgstr "Опції"
+
+#, fuzzy
+#~ msgid "WORLD_SEA_LEVEL"
+#~ msgstr "{0}-{1}м. нижче рівня моря"
 
 #, fuzzy
 #~ msgid "WORLD_SEA_LEVEL_DEEP"

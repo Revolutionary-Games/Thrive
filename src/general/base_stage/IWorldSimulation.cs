@@ -71,8 +71,15 @@ public interface IWorldSimulation : IEntityContainer, IDisposable
     public bool ProcessLogic(float delta);
 
     /// <summary>
-    ///   Returns true when this simulation has pending
+    ///   Returns true when this simulation has pending operations
     /// </summary>
-    /// <returns>True when pending operations exit</returns>
+    /// <returns>True when pending operations exist</returns>
     public bool HasSystemsWithPendingOperations();
+
+    /// <summary>
+    ///   Returns the ratio of simulation processing at the desired speed versus lower speed
+    ///   (due to CPU power constraints)
+    /// </summary>
+    /// <returns>Speed ratio. 1.0 when full speed is achieved</returns>
+    public float GetAndResetTrackedSimulationSpeedRatio();
 }

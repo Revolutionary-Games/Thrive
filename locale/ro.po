@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2025-08-27 21:03+0200\n"
+"POT-Creation-Date: 2025-08-29 14:14+0300\n"
 "PO-Revision-Date: 2025-01-21 12:01+0000\n"
 "Last-Translator: Anonymous <noreply@weblate.org>\n"
 "Language-Team: Romanian <https://translate.revolutionarygamesstudio.com/projects/thrive/thrive-game/ro/>\n"
@@ -1322,6 +1322,9 @@ msgstr ""
 msgid "CORRECTION_TRITANOPE"
 msgstr ""
 
+msgid "CPU_POWER_NOT_ENOUGH_FOR_SPEED_MODE"
+msgstr ""
+
 msgid "CPU_THREADS"
 msgstr ""
 
@@ -1820,6 +1823,27 @@ msgstr ""
 
 msgid "EDITOR_TUTORIAL_EDITOR_TEXT"
 msgstr ""
+
+#, fuzzy
+msgid "EDITOR_TUTORIAL_MICROBE_EDITOR_BINDING_AGENTS"
+msgstr ""
+"Structuri Procariote\n"
+"\n"
+"Citoplasmă: Poate depozita compuși și face glicoliză (produce un pic de [thrive:compound type=\"atp\"][/thrive:compound] din [thrive:compound type=\"glucose\"][/thrive:compound])\n"
+"\n"
+"Metabolozomi: Produc [thrive:compound type=\"atp\"][/thrive:compound] din [thrive:compound type=\"glucose\"][/thrive:compound]\n"
+"\n"
+"Tilacoide: Produc 1/3 din [thrive:compound type=\"glucose\"][/thrive:compound] care un cloroplast produce, dar mai și face glicoliză, și ocupă doar un hexagon.\n"
+"\n"
+"Proteine Care Chemosintează: Produc o jumătate mai puțină [thrive:compound type=\"glucose\"][/thrive:compound] din [thrive:compound type=\"hydrogensulfide\"][/thrive:compound] ca un chemoplast, dar mai și fac glicoliză, și ocupă doar un hexagon.\n"
+"\n"
+"Ruginină: Utilizează [thrive:compound type=\"iron\"][/thrive:compound] ca să producă [thrive:compound type=\"atp\"][/thrive:compound]\n"
+"\n"
+"Azotenază: Utilizează azot atmosferic și [thrive:compound type=\"atp\"][/thrive:compound] ca să producă [thrive:compound type=\"ammonia\"][/thrive:compound] fără nevoie de aer.\n"
+"\n"
+"Oxitoxizom: Utilizează [thrive:compound type=\"atp\"][/thrive:compound] ca să facă [thrive:compound type=\"oxytoxy\"][/thrive:compound]\n"
+"\n"
+"Termosintază: Produce [thrive:compound type=\"atp\"][/thrive:compound] folosind variații din temperatură"
 
 #, fuzzy
 msgid "EDITOR_TUTORIAL_MICROBE_EDITOR_NUCLEUS"
@@ -2585,9 +2609,8 @@ msgstr "Apăsați [thrive:input]g_toggle_binding[/thrive:input] pentru a activa/
 msgid "HYDROGEN_SULFIDE"
 msgstr ""
 
-#, fuzzy
 msgid "HYDROGEN_SULFIDE_LEVELS"
-msgstr "{0}-{1}m sub nivelul mării"
+msgstr ""
 
 msgid "ICESHARD"
 msgstr ""
@@ -3519,6 +3542,9 @@ msgid "MICHE_PREDATOR_ROOT_PRESSURE"
 msgstr ""
 
 msgid "MICHE_ROOT_PRESSURE"
+msgstr ""
+
+msgid "MICHE_TEMPERATURE_SESSILITY_PRESSURE"
 msgstr ""
 
 msgid "MICHE_TREE"
@@ -6138,10 +6164,6 @@ msgstr ""
 msgid "TUTORIAL"
 msgstr ""
 
-#, fuzzy
-msgid "TUTORIAL_ALL_NOT_ENABLED_EXPLANATION"
-msgstr "(viteza cu care speciile IA suferă mutații)"
-
 msgid "TUTORIAL_MICROBE_EDITOR_ATP_BALANCE_INTRO"
 msgstr ""
 
@@ -6514,6 +6536,10 @@ msgstr ""
 #, fuzzy
 msgid "TUTORIAL_MULTICELLULAR_STAGE_WELCOME"
 msgstr "Etapa Multicelulară"
+
+#, fuzzy
+msgid "TUTORIAL_REPLAY_ALL_EXPLANATION"
+msgstr "(viteza cu care speciile IA suferă mutații)"
 
 msgid "TUTORIAL_VIEW_NOW"
 msgstr ""
@@ -8712,6 +8738,10 @@ msgstr ""
 #, fuzzy
 #~ msgid "CELL_TYPE_BUTTON_ATP_PRODUCTION"
 #~ msgstr "Producția ATP"
+
+#, fuzzy
+#~ msgid "WORLD_SEA_LEVEL"
+#~ msgstr "{0}-{1}m sub nivelul mării"
 
 #, fuzzy
 #~ msgid "WORLD_SEA_LEVEL_DEEP"

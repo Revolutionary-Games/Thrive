@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2025-08-27 21:03+0200\n"
+"POT-Creation-Date: 2025-08-29 14:14+0300\n"
 "PO-Revision-Date: 2025-08-13 14:57+0000\n"
 "Last-Translator: Anonymous <noreply@weblate.org>\n"
 "Language-Team: German <https://translate.revolutionarygamesstudio.com/projects/thrive/thrive-game/de/>\n"
@@ -1340,6 +1340,10 @@ msgstr "Rotblindheit (Rot-Grün)"
 msgid "CORRECTION_TRITANOPE"
 msgstr "Blaublindheit (Blau-Gelb)"
 
+#, fuzzy
+msgid "CPU_POWER_NOT_ENOUGH_FOR_SPEED_MODE"
+msgstr "Es ist nicht ausreichend Speicher für [thrive:compound type=\"{0}\"][/thrive:compound] vorhanden. Die Nacht dauert {2} s, aber der Substanzspeicher reicht nur für {1}s."
+
 msgid "CPU_THREADS"
 msgstr "Threads"
 
@@ -1900,6 +1904,17 @@ msgstr ""
 "Nachdem du den Verlauf der Ereignisse begutachtet hast, kannst du [b]Änderungen vornehmen[/b], um deine Spezies anzupassen.\n"
 "\n"
 "Wenn du bereit bist, drücke die \"Nächste\"-Schaltfläche unten rechts um Fortzufahren."
+
+#, fuzzy
+msgid "EDITOR_TUTORIAL_MICROBE_EDITOR_BINDING_AGENTS"
+msgstr ""
+"Um die weiterzuentwickeln wirst du wahrscheinlich einen [b]Zellkern[/b] platzieren wollen.\n"
+"\n"
+"Mit einem [b]Zellkern[/b] wird es möglich, weiterentwickelte Organellen zu platzieren, wie z.B. [b]Bindungswirkstoff[/b], die es erlauben, sich mit anderen Individuen deiner Spezies zu verbinden und [u]mehrzellig[/u] zu werden.\n"
+"\n"
+"Versuche einen [b]Zellkern[/b] zu platzieren, um dieses Tutorial zu schließen.\n"
+"\n"
+"Wenn deine Zelle noch nicht bereit für einen Zellkern ist, kannst du die [b]Rückgängig-Schaltfläche[/b] verwenden, um den Zellkern wieder zu [u]entfernen[/u]."
 
 msgid "EDITOR_TUTORIAL_MICROBE_EDITOR_NUCLEUS"
 msgstr ""
@@ -3619,6 +3634,10 @@ msgstr "Grunddruck durch Beutegreifer"
 
 msgid "MICHE_ROOT_PRESSURE"
 msgstr ""
+
+#, fuzzy
+msgid "MICHE_TEMPERATURE_SESSILITY_PRESSURE"
+msgstr "Druck durch metabolische Stabilität"
 
 msgid "MICHE_TREE"
 msgstr "Mischen-Baum"
@@ -6391,10 +6410,6 @@ msgid "TUTORIAL"
 msgstr "Anleitung"
 
 #, fuzzy
-msgid "TUTORIAL_ALL_NOT_ENABLED_EXPLANATION"
-msgstr "(WARNUNG: Photosynthese wird wesentlich weniger effizient)"
-
-#, fuzzy
 msgid "TUTORIAL_MICROBE_EDITOR_ATP_BALANCE_INTRO"
 msgstr ""
 "Die ATP-Produktionsanzeige rechts zeigt an, wie viel [thrive:compound type=\"atp\"][/thrive:compound] deine Zelle produziert im Vergleich dazu, wie viel verbraucht wird. Wenn die obere Leiste kürzer ist als die untere, produzierst du nicht genug [thrive:compound type=\"atp\"][/thrive:compound].\n"
@@ -6694,6 +6709,10 @@ msgstr ""
 "Allerdings kannst du das zelluläre Layout deiner Kolonie im Editor bearbeiten und deine Zellen für bestimmte Rollen spezialisieren. Bedenke, dass die Mitglieder deiner Kolonie [thrive:compound type=\"atp\"][/thrive:compound] nicht teilen können. \n"
 "\n"
 "Wenn du Knospung als Fortpflanzung benutzt (was Standard ist), beginnst du in Kontrolle einer kleinen Knospe und musst den Rest deines zellulären Layouts wachsen lassen."
+
+#, fuzzy
+msgid "TUTORIAL_REPLAY_ALL_EXPLANATION"
+msgstr "(WARNUNG: Photosynthese wird wesentlich weniger effizient)"
 
 msgid "TUTORIAL_VIEW_NOW"
 msgstr "Tutorial ansehen"
@@ -9191,14 +9210,6 @@ msgid "ZOOM_OUT"
 msgstr "Herauszoomen"
 
 #, fuzzy
-#~ msgid "SULFIDE_LEVELS"
-#~ msgstr "{0}-{1}m unter dem Meeresspiegel"
-
-#, fuzzy
-#~ msgid "TEST_TEST"
-#~ msgstr "Test Team"
-
-#, fuzzy
 #~ msgid "GENERATE_BUTTON"
 #~ msgstr "Generationen"
 
@@ -9207,6 +9218,10 @@ msgstr "Herauszoomen"
 
 #~ msgid "CELL_TYPE_BUTTON_ATP_PRODUCTION"
 #~ msgstr "Die ATP-Produktion dieses Zelltyps ist {0}."
+
+#, fuzzy
+#~ msgid "WORLD_SEA_LEVEL"
+#~ msgstr "{0}-{1}m unter dem Meeresspiegel"
 
 #, fuzzy
 #~ msgid "WORLD_SEA_LEVEL_DEEP"
