@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2025-08-25 19:09+0300\n"
+"POT-Creation-Date: 2025-08-29 14:14+0300\n"
 "PO-Revision-Date: 2025-08-22 13:14+0000\n"
 "Last-Translator: punctdan <yunusemredilek@hotmail.com>\n"
 "Language-Team: Turkish <https://translate.revolutionarygamesstudio.com/projects/thrive/thrive-game/tr/>\n"
@@ -187,6 +187,10 @@ msgid "AMMONIA"
 msgstr "Amonyak"
 
 msgid "AMMONIA_COST"
+msgstr "Amonyak Maliyeti:"
+
+#, fuzzy
+msgid "AMMONIA_LEVELS"
 msgstr "Amonyak Maliyeti:"
 
 msgid "AMOUNT_OF_AUTOSAVE_TO_KEEP"
@@ -408,6 +412,21 @@ msgstr "Mevcut İnşaat Projeleri"
 
 msgid "AVAILABLE_MODS"
 msgstr "Mevcut Modlar"
+
+msgid "AVERAGE_SURFACE_CARBON_DIOXIDE_LEVEL"
+msgstr ""
+
+msgid "AVERAGE_SURFACE_LIGHT_LEVEL"
+msgstr ""
+
+msgid "AVERAGE_SURFACE_NITROGEN_LEVEL"
+msgstr ""
+
+msgid "AVERAGE_SURFACE_OTHER_LEVEL"
+msgstr ""
+
+msgid "AVERAGE_SURFACE_OXYGEN_LEVEL"
+msgstr ""
 
 msgid "AWAKENING_STAGE"
 msgstr "Uyanış Evresi"
@@ -1008,6 +1027,25 @@ msgstr "Her Zaman Baştakinin Üzerine Ekle"
 
 msgid "COMPOUND_HANDLE_TOP_UP_ON_CHANGE"
 msgstr "Arazi Değişiminde Üzerine Ekle"
+
+#, fuzzy
+msgid "COMPOUND_LEVEL_AVERAGE"
+msgstr "Ortalama"
+
+#, fuzzy
+msgid "COMPOUND_LEVEL_HIGH"
+msgstr "Bileşik Tutarları"
+
+#, fuzzy
+msgid "COMPOUND_LEVEL_LOW"
+msgstr "Bileşik bulutu"
+
+msgid "COMPOUND_LEVEL_VERY_HIGH"
+msgstr ""
+
+#, fuzzy
+msgid "COMPOUND_LEVEL_VERY_LOW"
+msgstr "Hepsini Tut"
 
 msgid "COMPOUND_STORAGE_AMOUNT_DOES_NOT_LAST_NIGHT"
 msgstr "({0} s uzun bir gece vaktine dayanmak için yeterli değil)"
@@ -2429,9 +2467,6 @@ msgstr "Unutmayın, imlecin altındaki öğeyi görmek için ekranın sağ üst�
 msgid "GENERAL_LOADING_TIP_7"
 msgstr "Eğer popülasyonunuz sıfıra düşerse, soyunuz tükenir."
 
-msgid "GENERATE_BUTTON"
-msgstr "Dünya Oluştur"
-
 msgid "GENERATE_POSITIVE_GLUCOSE_PHOTOSYNTHESIS"
 msgstr "Fotosentez ile kullandığından daha fazla glukoz oluştur"
 
@@ -2498,6 +2533,10 @@ msgstr "Glukoz"
 
 msgid "GLUCOSE_CONCENTRATIONS_DRASTICALLY_DROPPED"
 msgstr "Glukoz konsantrasyonu sert bir şekilde düştü!"
+
+#, fuzzy
+msgid "GLUCOSE_LEVEL"
+msgstr "Deniz seviyesinin {0}-{1}m altı"
 
 msgid "GLYCOLYSIS"
 msgstr "Glikoliz"
@@ -2627,6 +2666,10 @@ msgid "HYDROGENOSOME_PROCESSES_DESCRIPTION"
 msgstr "[thrive:compound type=\\\"atp\\\"]ATP'yi[/thrive:compound], [thrive:compound type=\\\"glucose\\\"]glukoza[/thrive:compound] dönüştürür."
 
 msgid "HYDROGEN_SULFIDE"
+msgstr "Hidrojen Sülfür"
+
+#, fuzzy
+msgid "HYDROGEN_SULFIDE_LEVELS"
 msgstr "Hidrojen Sülfür"
 
 msgid "ICESHARD"
@@ -2845,6 +2888,9 @@ msgstr ""
 
 msgid "IRON"
 msgstr "Demir"
+
+msgid "IRON_LEVELS"
+msgstr ""
 
 msgid "IRON_OXIDATION"
 msgstr "Demir Oksidasyonu"
@@ -4604,6 +4650,10 @@ msgstr "Kamerayı yukarı çevir"
 msgid "PAST_DEVELOPERS"
 msgstr "Eski Oyun Geliştiricileri"
 
+#, fuzzy
+msgid "PATCHES_NUMBER"
+msgstr "{0} {1}"
+
 msgid "PATCH_COLON"
 msgstr "Arazi:"
 
@@ -4699,6 +4749,10 @@ msgstr "Fosfat"
 msgid "PHOSPHATES_COST"
 msgstr "Fosfat Maliyeti:"
 
+#, fuzzy
+msgid "PHOSPHATES_LEVELS"
+msgstr "Fosfat Maliyeti:"
+
 msgid "PHOTOSYNTHESIS"
 msgstr "Fotosentez"
 
@@ -4727,6 +4781,10 @@ msgstr ""
 
 msgid "PLANET_RANDOM_SEED"
 msgstr "Rastgele gezegen tohumu"
+
+#, fuzzy
+msgid "PLANET_STATISTICS"
+msgstr "İstatistikler"
 
 msgid "PLAYER"
 msgstr "Oyuncu"
@@ -4879,6 +4937,10 @@ msgstr ""
 msgid "RADIATION"
 msgstr "Radyasyon"
 
+#, fuzzy
+msgid "RADIATION_LEVELS"
+msgstr "Radyasyon"
+
 msgid "RADIOACTIVE_CHUNK"
 msgstr "Radyoaktif Taş Parçası"
 
@@ -4929,6 +4991,10 @@ msgstr "Yenile"
 
 msgid "REGENERATE_BUTTON"
 msgstr "Yeniden Dünya Oluştur"
+
+#, fuzzy
+msgid "REGIONS_NUMBER"
+msgstr "ID Numarası"
 
 msgid "RENDER_SCALE"
 msgstr "Çözünürlük ölçeği"
@@ -5370,6 +5436,10 @@ msgstr "Yardım menüsünü göster"
 
 msgid "SHOW_ITEM_COORDINATES"
 msgstr "Koordinatları göster"
+
+#, fuzzy
+msgid "SHOW_MAP"
+msgstr "Yardım menüsünü göster"
 
 msgid "SHOW_NEW_PATCH_NOTES"
 msgstr "Yeni yama notlarını otomatik olarak göster"
@@ -9395,6 +9465,9 @@ msgstr "Yakınlaştır"
 
 msgid "ZOOM_OUT"
 msgstr "Uzaklaştır"
+
+#~ msgid "GENERATE_BUTTON"
+#~ msgstr "Dünya Oluştur"
 
 #~ msgid "CELL_TYPE_BUTTON_ATP_CONSUMPTION"
 #~ msgstr "Bu hücre türünün ATP tüketim miktarı {0}."

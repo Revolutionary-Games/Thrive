@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2025-08-25 19:09+0300\n"
+"POT-Creation-Date: 2025-08-29 14:14+0300\n"
 "PO-Revision-Date: 2025-08-22 10:08+0000\n"
 "Last-Translator: Anonymous <noreply@weblate.org>\n"
 "Language-Team: Russian <https://translate.revolutionarygamesstudio.com/projects/thrive/thrive-game/ru/>\n"
@@ -187,6 +187,10 @@ msgid "AMMONIA"
 msgstr "Аммиак"
 
 msgid "AMMONIA_COST"
+msgstr "Затраты аммиака:"
+
+#, fuzzy
+msgid "AMMONIA_LEVELS"
 msgstr "Затраты аммиака:"
 
 msgid "AMOUNT_OF_AUTOSAVE_TO_KEEP"
@@ -408,6 +412,21 @@ msgstr "Доступные строительные проекты"
 
 msgid "AVAILABLE_MODS"
 msgstr "Доступные моды"
+
+msgid "AVERAGE_SURFACE_CARBON_DIOXIDE_LEVEL"
+msgstr ""
+
+msgid "AVERAGE_SURFACE_LIGHT_LEVEL"
+msgstr ""
+
+msgid "AVERAGE_SURFACE_NITROGEN_LEVEL"
+msgstr ""
+
+msgid "AVERAGE_SURFACE_OTHER_LEVEL"
+msgstr ""
+
+msgid "AVERAGE_SURFACE_OXYGEN_LEVEL"
+msgstr ""
 
 msgid "AWAKENING_STAGE"
 msgstr "Стадия пробуждения"
@@ -1009,6 +1028,25 @@ msgstr "Всегда пополнять до начального"
 
 msgid "COMPOUND_HANDLE_TOP_UP_ON_CHANGE"
 msgstr "Пополнять при смене области"
+
+#, fuzzy
+msgid "COMPOUND_LEVEL_AVERAGE"
+msgstr "В среднем"
+
+#, fuzzy
+msgid "COMPOUND_LEVEL_HIGH"
+msgstr "Компонентный Баланс"
+
+#, fuzzy
+msgid "COMPOUND_LEVEL_LOW"
+msgstr "Облака веществ"
+
+msgid "COMPOUND_LEVEL_VERY_HIGH"
+msgstr ""
+
+#, fuzzy
+msgid "COMPOUND_LEVEL_VERY_LOW"
+msgstr "Оставить всё"
 
 msgid "COMPOUND_STORAGE_AMOUNT_DOES_NOT_LAST_NIGHT"
 msgstr "(недостаточно для того, чтобы прожить ночь, что длится {0} секунд)"
@@ -2430,9 +2468,6 @@ msgstr "Вы можете узнать на что направлен ваш к�
 msgid "GENERAL_LOADING_TIP_7"
 msgstr "Если популяция вашего вида достигнет нуля, он вымрет."
 
-msgid "GENERATE_BUTTON"
-msgstr "Генерировать Мир"
-
 msgid "GENERATE_POSITIVE_GLUCOSE_PHOTOSYNTHESIS"
 msgstr "В процессе фотосинтеза вырабатывается больше глюкозы, чем используется"
 
@@ -2499,6 +2534,10 @@ msgstr "Глюкоза"
 
 msgid "GLUCOSE_CONCENTRATIONS_DRASTICALLY_DROPPED"
 msgstr "Концентрация глюкозы резко упала!"
+
+#, fuzzy
+msgid "GLUCOSE_LEVEL"
+msgstr "{0}-{1}м ниже уровня моря"
 
 msgid "GLYCOLYSIS"
 msgstr "Гликолиз"
@@ -2628,6 +2667,10 @@ msgid "HYDROGENOSOME_PROCESSES_DESCRIPTION"
 msgstr "Преобразовывает [thrive:compound type=\\\"glucose\\\"][/thrive:compound] В [thrive:compound type=\\\"atp\\\"][/thrive:compound]."
 
 msgid "HYDROGEN_SULFIDE"
+msgstr "Сероводород"
+
+#, fuzzy
+msgid "HYDROGEN_SULFIDE_LEVELS"
 msgstr "Сероводород"
 
 msgid "ICESHARD"
@@ -2846,6 +2889,9 @@ msgstr ""
 
 msgid "IRON"
 msgstr "Железо"
+
+msgid "IRON_LEVELS"
+msgstr ""
 
 msgid "IRON_OXIDATION"
 msgstr "Окисление железа"
@@ -4605,6 +4651,10 @@ msgstr "Переместить вверх"
 msgid "PAST_DEVELOPERS"
 msgstr "Бывшие Разработчики"
 
+#, fuzzy
+msgid "PATCHES_NUMBER"
+msgstr "{0} {1}"
+
 msgid "PATCH_COLON"
 msgstr "Биом:"
 
@@ -4700,6 +4750,10 @@ msgstr "Фосфат"
 msgid "PHOSPHATES_COST"
 msgstr "Фосфаты Стоимость:"
 
+#, fuzzy
+msgid "PHOSPHATES_LEVELS"
+msgstr "Фосфаты Стоимость:"
+
 msgid "PHOTOSYNTHESIS"
 msgstr "Фотосинтез"
 
@@ -4728,6 +4782,10 @@ msgstr ""
 
 msgid "PLANET_RANDOM_SEED"
 msgstr "Сид планеты"
+
+#, fuzzy
+msgid "PLANET_STATISTICS"
+msgstr "Статистика"
 
 msgid "PLAYER"
 msgstr "Игрок"
@@ -4880,6 +4938,10 @@ msgstr ""
 msgid "RADIATION"
 msgstr "Радиация"
 
+#, fuzzy
+msgid "RADIATION_LEVELS"
+msgstr "Радиация"
+
 msgid "RADIOACTIVE_CHUNK"
 msgstr "Глыба радиоактивного камня"
 
@@ -4930,6 +4992,10 @@ msgstr "Обновить"
 
 msgid "REGENERATE_BUTTON"
 msgstr "Возродить Мир"
+
+#, fuzzy
+msgid "REGIONS_NUMBER"
+msgstr "Номер ID"
 
 msgid "RENDER_SCALE"
 msgstr "Масштаб отрисовки"
@@ -5372,6 +5438,10 @@ msgstr "Показать помощь"
 
 msgid "SHOW_ITEM_COORDINATES"
 msgstr "Показать координаты"
+
+#, fuzzy
+msgid "SHOW_MAP"
+msgstr "Показать помощь"
 
 msgid "SHOW_NEW_PATCH_NOTES"
 msgstr "Показывать новые заметки релизов автоматически"
@@ -9404,6 +9474,9 @@ msgstr "Увеличить масштаб"
 
 msgid "ZOOM_OUT"
 msgstr "Уменьшить масштаб"
+
+#~ msgid "GENERATE_BUTTON"
+#~ msgstr "Генерировать Мир"
 
 #~ msgid "CELL_TYPE_BUTTON_ATP_CONSUMPTION"
 #~ msgstr "Потребление АТФ этого типа клетки: {0}."

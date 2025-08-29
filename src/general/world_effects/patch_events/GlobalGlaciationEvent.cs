@@ -77,16 +77,11 @@ public class GlobalGlaciationEvent : IWorldEffect
         }
     }
 
-    private bool IsSurfacePatch(Patch patch)
-    {
-        return patch.Depth[0] == 0 && patch.BiomeType != BiomeType.Cave;
-    }
-
     private void MarkPatches(double totalTimePassed)
     {
         foreach (var patch in targetWorld.Map.Patches.Values)
         {
-            if (IsSurfacePatch(patch))
+            if (patch.IsSurfacePatch())
             {
                 patch.AddPatchEventRecord(WorldEffectTypes.GlobalGlaciation, totalTimePassed);
             }
@@ -116,7 +111,7 @@ public class GlobalGlaciationEvent : IWorldEffect
 
             foreach (var patch in targetWorld.Map.Patches.Values)
             {
-                if (IsSurfacePatch(patch))
+                if (patch.IsSurfacePatch())
                 {
                     ChangePatchProperties(patch, totalTimePassed);
                 }
@@ -132,7 +127,7 @@ public class GlobalGlaciationEvent : IWorldEffect
         var patchesExceedingOxygenLevel = 0;
         foreach (var patch in targetWorld.Map.Patches.Values)
         {
-            if (!IsSurfacePatch(patch))
+            if (!patch.IsSurfacePatch())
                 continue;
 
             patch.Biome.TryGetCompound(Compound.Oxygen, CompoundAmountType.Biome, out var oxygenLevel);
@@ -193,7 +188,7 @@ public class GlobalGlaciationEvent : IWorldEffect
             patch.Biome.ModifyLongTermCondition(Compound.Sunlight, currentSunlight);
         }
 
-        currentTemperature.Ambient = random.Next(0, 5);
+        currentTemperature.Ambient = random.Next(-4, 5);
 
         patch.Biome.ModifyLongTermCondition(Compound.Temperature, currentTemperature);
     }

@@ -1739,7 +1739,8 @@ public static class Constants
     public const float COMPOUND_DENSITY_CATEGORY_AN_ABUNDANCE = 3000.0f;
 
     public const int ATMOSPHERIC_COMPOUND_DISPLAY_DECIMALS = 2;
-    public const int PATCH_CONDITIONS_COMPOUND_DISPLAY_DECIMALS = 3;
+    public const int PATCH_CONDITIONS_COMPOUND_DISPLAY_DECIMALS = 2;
+    public const int DETAILED_PATCH_CONDITIONS_COMPOUND_DISPLAY_DECIMALS = 3;
 
     public const float COMPOUND_BAR_VALUE_ANIMATION_TIME = 0.10f;
 
@@ -1815,6 +1816,25 @@ public static class Constants
     public const float MAX_OSMOREGULATION_MULTIPLIER = 2;
     public const float MIN_AUTO_EVO_STRENGTH_MULTIPLIER = 0.01f;
     public const float MAX_AUTO_EVO_STRENGTH_MULTIPLIER = 1.0f;
+
+    // Min/max values for each customizable planet generation option
+    public const int TEMPERATURE_COLD_MIN = -4;
+    public const int TEMPERATURE_COLD_MAX = 1;
+    public const int TEMPERATURE_TEMPERATE_MIN = -2;
+    public const int TEMPERATURE_TEMPERATE_MAX = 2;
+    public const int TEMPERATURE_WARM_MIN = 0;
+    public const int TEMPERATURE_WARM_MAX = 6;
+
+    public const float COMPOUND_LEVEL_VERY_LOW_MIN = 0.3f;
+    public const float COMPOUND_LEVEL_VERY_LOW_MAX = 0.5f;
+    public const float COMPOUND_LEVEL_LOW_MIN = 0.7f;
+    public const float COMPOUND_LEVEL_LOW_MAX = 0.8f;
+    public const float COMPOUND_LEVEL_AVERAGE_MIN = 0.9f;
+    public const float COMPOUND_LEVEL_AVERAGE_MAX = 1.1f;
+    public const float COMPOUND_LEVEL_HIGH_MIN = 1.1f;
+    public const float COMPOUND_LEVEL_HIGH_MAX = 1.2f;
+    public const float COMPOUND_LEVEL_VERY_HIGH_MIN = 1.3f;
+    public const float COMPOUND_LEVEL_VERY_HIGH_MAX = 1.5f;
 
     public const float CURRENT_MAP_PATCH_INDICATOR_HALF_BLINK_INTERVAL = 0.5f;
 
