@@ -752,8 +752,9 @@ public partial class CompoundCloudPlane : MeshInstance3D, ISaveLoadedTracked
                 {
                     break;
                 }
-                else if (compound == Compound.Hydrogensulfide
-                         && generousAmount > Constants.HYDROGEN_SULFIDE_DAMAGE_THESHOLD)
+
+                if (compound == Compound.Hydrogensulfide
+                    && generousAmount > Constants.HYDROGEN_SULFIDE_DAMAGE_THESHOLD)
                 {
                     hydrogenSulfideAbsorbed = true;
 

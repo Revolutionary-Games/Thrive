@@ -91,7 +91,7 @@ public struct OrganelleContainer
     public int RadiationProtection;
 
     /// <summary>
-    ///   Does the organelle provide hydrogen sulfide immunity
+    ///   Do the organelles provide hydrogen sulfide immunity
     /// </summary>
     public bool HydrogenSulfideProtection;
 
