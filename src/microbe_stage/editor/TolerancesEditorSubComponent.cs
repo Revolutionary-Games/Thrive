@@ -53,9 +53,6 @@ public partial class TolerancesEditorSubComponent : EditorComponentBase<ICellEdi
     private Slider pressureMaxSlider = null!;
 
     [Export]
-    private Slider oxygenResistanceSlider = null!;
-
-    [Export]
     private Slider uvResistanceSlider = null!;
 
     [Export]
@@ -94,6 +91,9 @@ public partial class TolerancesEditorSubComponent : EditorComponentBase<ICellEdi
 
     [Export]
     private Label oxygenResistanceTotalLabel = null!;
+
+    [Export]
+    private ToleranceOptimalDisplay oxygenResistanceOptimalDisplay = null!;
 
     [Export]
     private Label uvResistanceLabel = null!;
@@ -172,6 +172,7 @@ public partial class TolerancesEditorSubComponent : EditorComponentBase<ICellEdi
     {
         originalTemperatureFont = temperatureMinLabel.LabelSettings;
         originalPressureFont = pressureMinLabel.LabelSettings;
+        originalModifierFont = temperatureBaseLabel.LabelSettings;
 
         temperature = SimulationParameters.GetCompound(Compound.Temperature);
 
@@ -262,15 +263,15 @@ public partial class TolerancesEditorSubComponent : EditorComponentBase<ICellEdi
         {
             var pressureCost = Constants.TOLERANCE_CHANGE_MP_PER_PRESSURE_STEP * MPDisplayCostMultiplier;
 
-            pressureToolTip.MPCost = (float)pressureCost;
+            pressureToolTip.MPCost = pressureCost;
         }
 
         if (oxygenResistanceToolTip != null)
         {
-            var oxygenCost = oxygenResistanceSlider.Step * Constants.TOLERANCE_CHANGE_MP_PER_OXYGEN *
+            var oxygenCost = Constants.TOLERANCE_OXYGEN_STEP * Constants.TOLERANCE_CHANGE_MP_PER_OXYGEN *
                 MPDisplayCostMultiplier;
 
-            oxygenResistanceToolTip.MPCost = (float)oxygenCost;
+            oxygenResistanceToolTip.MPCost = oxygenCost;
         }
 
         if (uvResistanceToolTip != null)
@@ -405,7 +406,8 @@ public partial class TolerancesEditorSubComponent : EditorComponentBase<ICellEdi
         PressureMinSliderActualValue = CurrentTolerances.PressureMinimum;
         PressureMaxSliderActualValue = CurrentTolerances.PressureMaximum;
 
-        oxygenResistanceSlider.Value = CurrentTolerances.OxygenResistance;
+        UpdateOxygenResistanceLabel(CurrentTolerances.OxygenResistance);
+
         uvResistanceSlider.Value = CurrentTolerances.UVResistance;
 
         automaticallyChanging = false;
@@ -419,7 +421,8 @@ public partial class TolerancesEditorSubComponent : EditorComponentBase<ICellEdi
         if (automaticallyChanging)
             return;
 
-        temperatureOptimalDisplay.SetBoundPositions(value + organelleModifiers.PreferredTemperature,
+        temperatureOptimalDisplay.SetBoundPositions(
+            value + organelleModifiers.PreferredTemperature,
             CurrentTolerances.TemperatureTolerance + organelleModifiers.TemperatureTolerance);
 
         reusableTolerances ??= new EnvironmentalTolerances();
@@ -549,21 +552,48 @@ public partial class TolerancesEditorSubComponent : EditorComponentBase<ICellEdi
         }
     }
 
-    private void OnOxygenResistanceSliderChanged(float value)
+    private void OnOxygenResistancePlusButtonPressed()
     {
         if (automaticallyChanging)
             return;
 
+        // Make sure the tolerance doesn't go above 100%
+        if (CurrentTolerances.OxygenResistance + Constants.TOLERANCE_OXYGEN_STEP > 1)
+            return;
+
         reusableTolerances ??= new EnvironmentalTolerances();
         reusableTolerances.CopyFrom(CurrentTolerances);
-        reusableTolerances.OxygenResistance = value;
+        reusableTolerances.OxygenResistance += Constants.TOLERANCE_OXYGEN_STEP;
 
         automaticallyChanging = true;
 
-        if (!TriggerChangeIfPossible())
-        {
-            oxygenResistanceSlider.Value = CurrentTolerances.OxygenResistance;
-        }
+        TriggerChangeIfPossible();
+
+        // As pressing the button doesn't update the label by itself
+        // we have to update it here no matter what the result of TriggerChangeIfPossible is
+        UpdateOxygenResistanceLabel(CurrentTolerances.OxygenResistance);
+
+        automaticallyChanging = false;
+    }
+
+    private void OnOxygenResistanceMinusButtonPressed()
+    {
+        if (automaticallyChanging)
+            return;
+
+        // Make sure the tolerance doesn't go below 0%
+        if (CurrentTolerances.OxygenResistance - Constants.TOLERANCE_OXYGEN_STEP < 0)
+            return;
+
+        reusableTolerances ??= new EnvironmentalTolerances();
+        reusableTolerances.CopyFrom(CurrentTolerances);
+        reusableTolerances.OxygenResistance -= Constants.TOLERANCE_OXYGEN_STEP;
+
+        automaticallyChanging = true;
+
+        TriggerChangeIfPossible();
+
+        UpdateOxygenResistanceLabel(CurrentTolerances.OxygenResistance);
 
         automaticallyChanging = false;
     }
@@ -617,6 +647,13 @@ public partial class TolerancesEditorSubComponent : EditorComponentBase<ICellEdi
 
         UpdateCurrentValueDisplays();
         UpdateToolTipStats();
+    }
+
+    private void UpdateOxygenResistanceLabel(float value)
+    {
+        var percentageFormat = Localization.Translate("PERCENTAGE_VALUE");
+        var percentage = percentageFormat.FormatSafe(Math.Round(value * 100, 1));
+        oxygenResistanceLabel.Text = "+" + percentage;
     }
 
     private void UpdateCurrentValueDisplays()
@@ -706,6 +743,32 @@ public partial class TolerancesEditorSubComponent : EditorComponentBase<ICellEdi
             temperatureMinLabel.LabelSettings = originalTemperatureFont;
             temperatureMaxLabel.LabelSettings = originalTemperatureFont;
         }
+
+        // Oxygen Resistance
+
+        var oxygenResistanceWithOrganelles = CurrentTolerances.OxygenResistance + organelleModifiers.OxygenResistance;
+
+        oxygenResistanceOptimalDisplay.SetBoundPositionsManual(0, oxygenResistanceWithOrganelles);
+        oxygenResistanceOptimalDisplay.UpdateMarker(requiredOxygenResistance);
+
+        oxygenResistanceTotalLabel.Text =
+            percentageFormat.FormatSafe(Math.Round(oxygenResistanceWithOrganelles * 100, 1));
+
+        if (oxygenResistanceWithOrganelles < requiredOxygenResistance)
+        {
+            oxygenResistanceTotalLabel.LabelSettings = badValueFont;
+        }
+        else
+        {
+            oxygenResistanceTotalLabel.LabelSettings = originalTemperatureFont;
+        }
+
+        var oxygenResistanceBase = percentageFormat.FormatSafe(Math.Round(organelleModifiers.OxygenResistance * 100, 1));
+        oxygenResistanceBase = organelleModifiers.OxygenResistance >= 0 ? "+" + oxygenResistanceBase : oxygenResistanceBase;
+
+        oxygenResistanceBaseLabel.Text = oxygenResistanceBase;
+        oxygenResistanceBaseLabel.LabelSettings = organelleModifiers.OxygenResistance < 0 ? modifierBadFont : originalModifierFont;
+
     }
 
 

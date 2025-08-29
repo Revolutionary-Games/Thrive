@@ -42,7 +42,7 @@ height = 5
 
 [sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_evsrs"]
 
-[node name="TolerancesEditorSubComponent" type="VBoxContainer" node_paths=PackedStringArray("temperatureToolTipContainer", "pressureToolTipContainer", "oxygenResistanceToolTipContainer", "uvResistanceToolTipContainer", "temperatureSlider", "temperatureToleranceRangeSlider", "pressureMinSlider", "pressureMaxSlider", "oxygenResistanceSlider", "uvResistanceSlider", "temperatureMinLabel", "temperatureMaxLabel", "temperatureToleranceLabel", "temperatureBaseLabel", "temperatureToleranceBaseLabelContainer", "temperatureToleranceBaseLabel", "temperatureOptimalDisplay", "pressureMinLabel", "pressureMaxLabel", "oxygenResistanceLabel", "oxygenResistanceBaseLabel", "oxygenResistanceTotalLabel", "uvResistanceLabel", "uvResistanceBaseLabel", "uvResistanceTotalLabel")]
+[node name="TolerancesEditorSubComponent" type="VBoxContainer" node_paths=PackedStringArray("temperatureToolTipContainer", "pressureToolTipContainer", "oxygenResistanceToolTipContainer", "uvResistanceToolTipContainer", "temperatureSlider", "temperatureToleranceRangeSlider", "pressureMinSlider", "pressureMaxSlider", "uvResistanceSlider", "temperatureMinLabel", "temperatureMaxLabel", "temperatureToleranceLabel", "temperatureBaseLabel", "temperatureToleranceBaseLabelContainer", "temperatureToleranceBaseLabel", "temperatureOptimalDisplay", "pressureMinLabel", "pressureMaxLabel", "oxygenResistanceLabel", "oxygenResistanceBaseLabel", "oxygenResistanceTotalLabel", "oxygenResistanceOptimalDisplay", "uvResistanceLabel", "uvResistanceBaseLabel", "uvResistanceTotalLabel")]
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
@@ -58,7 +58,6 @@ temperatureSlider = NodePath("Temperature/TemperatureSlider")
 temperatureToleranceRangeSlider = NodePath("Temperature/HBoxContainer3/TemperatureRange")
 pressureMinSlider = NodePath("Pressure/PressureSliderMin")
 pressureMaxSlider = NodePath("Pressure/PressureSliderMax")
-oxygenResistanceSlider = NodePath("Oxygen/OxgenSlider")
 uvResistanceSlider = NodePath("UV/UVSlider")
 temperatureMinLabel = NodePath("Temperature/BaseAndTotal/HBoxContainer/Total/TemperatureMinimum")
 temperatureMaxLabel = NodePath("Temperature/BaseAndTotal/HBoxContainer/Total/TemperatureMaximum")
@@ -66,12 +65,13 @@ temperatureToleranceLabel = NodePath("Temperature/HBoxContainer3/HBoxContainer/M
 temperatureBaseLabel = NodePath("Temperature/BaseAndTotal/HBoxContainer/Base/BaseValue")
 temperatureToleranceBaseLabelContainer = NodePath("Temperature/HBoxContainer3/HBoxContainer/MarginContainer2")
 temperatureToleranceBaseLabel = NodePath("Temperature/HBoxContainer3/HBoxContainer/MarginContainer2/TemperatureRangeBase")
-temperatureOptimalDisplay = NodePath("Temperature/HBoxContainer2/TemperatureOptimalDisplay")
+temperatureOptimalDisplay = NodePath("Temperature/OptimalDisplayContainer/TemperatureOptimalDisplay")
 pressureMinLabel = NodePath("Pressure/HBoxContainer2/PressureMin")
 pressureMaxLabel = NodePath("Pressure/HBoxContainer2/PressureMax")
-oxygenResistanceLabel = NodePath("Oxygen/HBoxContainer3/HBoxContainer/OxygenValue")
+oxygenResistanceLabel = NodePath("Oxygen/HBoxContainer2/OxygenResistanceLabel")
 oxygenResistanceBaseLabel = NodePath("Oxygen/BaseAndTotal/HBoxContainer/Base/BaseValue")
 oxygenResistanceTotalLabel = NodePath("Oxygen/BaseAndTotal/HBoxContainer/Total/TotalValue")
+oxygenResistanceOptimalDisplay = NodePath("Oxygen/OptimalDisplayContainer/OxygenOptimalDisplay")
 uvResistanceLabel = NodePath("UV/HBoxContainer2/HBoxContainer/HBoxContainer/UVProtectionValue")
 uvResistanceBaseLabel = NodePath("UV/BaseAndTotal/HBoxContainer/Base/BaseValue")
 uvResistanceTotalLabel = NodePath("UV/BaseAndTotal/HBoxContainer/Total/TotalValue")
@@ -154,18 +154,18 @@ label_settings = ExtResource("8_ktuy7")
 custom_minimum_size = Vector2(0, 15)
 layout_mode = 2
 
-[node name="HBoxContainer2" type="HBoxContainer" parent="Temperature"]
+[node name="OptimalDisplayContainer" type="HBoxContainer" parent="Temperature"]
 layout_mode = 2
 
-[node name="Spacer" type="Control" parent="Temperature/HBoxContainer2"]
+[node name="Spacer" type="Control" parent="Temperature/OptimalDisplayContainer"]
 custom_minimum_size = Vector2(8, 0)
 layout_mode = 2
 
-[node name="TemperatureOptimalDisplay" parent="Temperature/HBoxContainer2" instance=ExtResource("9_xmghy")]
+[node name="TemperatureOptimalDisplay" parent="Temperature/OptimalDisplayContainer" instance=ExtResource("9_xmghy")]
 layout_mode = 2
 size_flags_horizontal = 3
 
-[node name="Spacer2" type="Control" parent="Temperature/HBoxContainer2"]
+[node name="Spacer2" type="Control" parent="Temperature/OptimalDisplayContainer"]
 custom_minimum_size = Vector2(8, 0)
 layout_mode = 2
 
@@ -431,57 +431,64 @@ text = "+10%"
 label_settings = ExtResource("8_ktuy7")
 
 [node name="Spacer2" type="Control" parent="Oxygen"]
-custom_minimum_size = Vector2(0, 6)
+custom_minimum_size = Vector2(0, 15)
 layout_mode = 2
 
-[node name="OxgenSlider" type="HSlider" parent="Oxygen"]
+[node name="OptimalDisplayContainer" type="HBoxContainer" parent="Oxygen"]
 layout_mode = 2
-mouse_filter = 1
+
+[node name="Spacer" type="Control" parent="Oxygen/OptimalDisplayContainer"]
+custom_minimum_size = Vector2(8, 0)
+layout_mode = 2
+
+[node name="OxygenOptimalDisplay" parent="Oxygen/OptimalDisplayContainer" instance=ExtResource("9_xmghy")]
+layout_mode = 2
+size_flags_horizontal = 3
 max_value = 1.0
-step = 0.05
-value = 0.25
-scrollable = false
-tick_count = 6
+step = 0.01
+value = 1.0
 
-[node name="HBoxContainer3" type="HBoxContainer" parent="Oxygen"]
+[node name="Spacer2" type="Control" parent="Oxygen/OptimalDisplayContainer"]
+custom_minimum_size = Vector2(8, 0)
 layout_mode = 2
-size_flags_horizontal = 3
-
-[node name="Spacer" type="Control" parent="Oxygen/HBoxContainer3"]
-layout_mode = 2
-size_flags_horizontal = 3
-mouse_filter = 1
-
-[node name="HBoxContainer" type="HBoxContainer" parent="Oxygen/HBoxContainer3"]
-layout_mode = 2
-
-[node name="OxygenValue" type="Label" parent="Oxygen/HBoxContainer3/HBoxContainer"]
-editor_description = "PLACEHOLDER"
-layout_mode = 2
-size_flags_horizontal = 3
-text = "25%"
-label_settings = ExtResource("8_ktuy7")
-horizontal_alignment = 2
-
-[node name="Spacer2" type="Control" parent="Oxygen/HBoxContainer3/HBoxContainer"]
-layout_mode = 2
-
-[node name="OxygenModifier" type="Label" parent="Oxygen/HBoxContainer3/HBoxContainer"]
-editor_description = "PLACEHOLDER"
-layout_mode = 2
-size_flags_horizontal = 3
-mouse_filter = 0
-text = "(-5%)"
-label_settings = ExtResource("8_ktuy7")
-
-[node name="Spacer3" type="Control" parent="Oxygen/HBoxContainer3"]
-layout_mode = 2
-size_flags_horizontal = 3
-mouse_filter = 1
 
 [node name="Spacer" type="Control" parent="Oxygen"]
 custom_minimum_size = Vector2(0, 5)
 layout_mode = 2
+
+[node name="HBoxContainer2" type="HBoxContainer" parent="Oxygen"]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="Oxygen/HBoxContainer2"]
+layout_mode = 2
+text = "ADDITIONAL_RESISTANCE"
+label_settings = ExtResource("8_ktuy7")
+
+[node name="Control" type="Control" parent="Oxygen/HBoxContainer2"]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="OxygenResistanceMinus" type="Button" parent="Oxygen/HBoxContainer2"]
+custom_minimum_size = Vector2(20, 0)
+layout_mode = 2
+size_flags_vertical = 4
+theme_override_font_sizes/font_size = 14
+action_mode = 0
+text = "-
+"
+
+[node name="OxygenResistanceLabel" type="Label" parent="Oxygen/HBoxContainer2"]
+layout_mode = 2
+text = "+0%"
+label_settings = ExtResource("8_ktuy7")
+
+[node name="OxugenResistancePlus" type="Button" parent="Oxygen/HBoxContainer2"]
+custom_minimum_size = Vector2(20, 0)
+layout_mode = 2
+size_flags_vertical = 4
+theme_override_font_sizes/font_size = 14
+action_mode = 0
+text = "+"
 
 [node name="UV" type="VBoxContainer" parent="."]
 layout_mode = 2
@@ -614,5 +621,6 @@ layout_mode = 2
 [connection signal="value_changed" from="Temperature/HBoxContainer3/TemperatureRange" to="." method="OnTemperatureToleranceRangeSliderChanged"]
 [connection signal="value_changed" from="Pressure/PressureSliderMin" to="." method="OnPressureSliderMinChanged"]
 [connection signal="value_changed" from="Pressure/PressureSliderMax" to="." method="OnPressureSliderMaxChanged"]
-[connection signal="value_changed" from="Oxygen/OxgenSlider" to="." method="OnOxygenResistanceSliderChanged"]
+[connection signal="pressed" from="Oxygen/HBoxContainer2/OxygenResistanceMinus" to="." method="OnOxygenResistanceMinusButtonPressed"]
+[connection signal="pressed" from="Oxygen/HBoxContainer2/OxugenResistancePlus" to="." method="OnOxygenResistancePlusButtonPressed"]
 [connection signal="value_changed" from="UV/UVSlider" to="." method="OnUVResistanceSliderChanged"]

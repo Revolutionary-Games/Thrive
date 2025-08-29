@@ -1838,6 +1838,11 @@ public static class Constants
 
     public const int TOLERANCE_PRESSURE_LOG_SCALE_OFFSET = 4;
 
+    /// <summary>
+    ///   How much oxygen resistance is added/subtracted when clicking the +/- buttons
+    /// </summary>
+    public const float TOLERANCE_OXYGEN_STEP = 0.05f;
+
     // These are chosen to be symmetric so that the pressure tolerance range ends up easier to show correctly in the
     // GUI
     public const float TOLERANCE_INITIAL_PRESSURE_MIN_FRACTION = 0.8f;

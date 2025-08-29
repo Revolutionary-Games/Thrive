@@ -73,4 +73,4 @@ grow_vertical = 2
 texture = SubResource("GradientTexture2D_jstjb")
 stretch_mode = 3
 
-[connection signal="resized" from="." to="." method="SetBoundPositions"]
+[connection signal="resized" from="." to="." method="SetBoundPositionsInternal"]

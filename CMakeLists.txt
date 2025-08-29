@@ -62,7 +62,7 @@ include(CMakeHelperFunctions)
 if(CMAKE_SIZEOF_VOID_P EQUAL 8)
 else()
   message(WARNING
-	"32-bit build detected. Probably won't work correctly as this is untested")
+    "32-bit build detected. Probably won't work correctly as this is untested")
 endif()
 
 # Also use a lib prefix on windows for consistency
@@ -115,7 +115,7 @@ mark_as_advanced(
 # Common options
 if(NOT CMAKE_BUILD_TYPE)
   set(CMAKE_BUILD_TYPE Release CACHE STRING
-	"Set the build type, usually Debug or Distribution" FORCE)
+    "Set the build type, usually Debug or Distribution" FORCE)
 endif()
 
 if(CMAKE_BUILD_TYPE STREQUAL "Debug")
@@ -145,7 +145,7 @@ if(CMAKE_CXX_COMPILER_ID STREQUAL "Clang")
   # static can't specify a linker, seems to use llvm-ar thankfully
   # set(CMAKE_STATIC_LINKER_FLAGS "${CMAKE_STATIC_LINKER_FLAGS} -fuse-ld=lld")
   set(CMAKE_SHARED_LINKER_FLAGS
-	"${CMAKE_SHARED_LINKER_FLAGS} -fuse-ld=lld")
+    "${CMAKE_SHARED_LINKER_FLAGS} -fuse-ld=lld")
 
   # fully static standard lib, seems to fail as libc is not relocatable code
   # set(CMAKE_SHARED_LINKER_FLAGS

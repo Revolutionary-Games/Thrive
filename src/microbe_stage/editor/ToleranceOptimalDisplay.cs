@@ -19,15 +19,9 @@ public partial class ToleranceOptimalDisplay : HSlider
 
 #pragma warning restore CA2213
 
-    private float flexibilityRange;
+    private float flexibilityPlus;
+    private float flexibilityMinus;
 
-    public void SetBoundPositions(float preferred, float flexibility)
-    {
-        Value = preferred;
-        flexibilityRange = flexibility;
-
-        SetBoundPositions();
-    }
 
     public void UpdateMarker(float value)
     {
@@ -35,19 +29,33 @@ public partial class ToleranceOptimalDisplay : HSlider
             / (float)(MaxValue - MinValue);
     }
 
-    private void SetBoundPositions()
+    public void SetBoundPositions(float preferred, float flexibility)
     {
-        var upperBoundValue = Value + flexibilityRange;
-        var lowerBoundValue = Value - flexibilityRange;
+        Value = preferred;
+        flexibilityPlus = flexibility;
+        flexibilityMinus = flexibility;
 
-        var upperBoundFraction = Math.Clamp(upperBoundValue / MaxValue, 0, 1);
-        var lowerBoundFraction = Math.Clamp(lowerBoundValue / MaxValue, 0, 1);
+        SetBoundPositionsInternal();
+    }
+
+    public void SetBoundPositionsManual(double lower, double upper)
+    {
+        var upperBoundFraction = Math.Clamp(upper / MaxValue, 0, 1);
+        var lowerBoundFraction = Math.Clamp(lower / MaxValue, 0, 1);
 
         lowerBound.Position = new Vector2((Size.X - 1) * (float)lowerBoundFraction,
             lowerBound.Position.Y);
 
         upperBound.Position = new Vector2((Size.X - 1) * (float)upperBoundFraction,
             upperBound.Position.Y);
+    }
+
+    private void SetBoundPositionsInternal()
+    {
+        var upperBoundValue = Value + flexibilityPlus;
+        var lowerBoundValue = Value - flexibilityMinus;
+
+        SetBoundPositionsManual(lowerBoundValue, upperBoundValue);
     }
 
     private void SetColor(Color color)
