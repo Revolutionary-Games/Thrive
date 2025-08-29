@@ -47,10 +47,10 @@ public partial class TolerancesEditorSubComponent : EditorComponentBase<ICellEdi
     private Slider temperatureToleranceRangeSlider = null!;
 
     [Export]
-    private Slider pressureMinSlider = null!;
+    private Slider pressureSlider = null!;
 
     [Export]
-    private Slider pressureMaxSlider = null!;
+    private Slider pressureToleranceRangeSlider = null!;
 
     [Export]
     [ExportCategory("Displays")]
@@ -79,6 +79,21 @@ public partial class TolerancesEditorSubComponent : EditorComponentBase<ICellEdi
 
     [Export]
     private Label pressureMaxLabel = null!;
+
+    [Export]
+    private Label pressureToleranceLabel = null!;
+
+    [Export]
+    private Label pressureBaseLabel = null!;
+
+    [Export]
+    private Container pressureToleranceBaseLabelContainer = null!;
+
+    [Export]
+    private Label pressureToleranceBaseLabel = null!;
+
+    [Export]
+    private ToleranceOptimalDisplay pressureOptimalDisplay = null!;
 
     [Export]
     private Label oxygenResistanceLabel = null!;
@@ -154,19 +169,6 @@ public partial class TolerancesEditorSubComponent : EditorComponentBase<ICellEdi
 
     public float MPDisplayCostMultiplier { get; set; } = 1;
 
-    private float PressureMaxSliderActualValue
-    {
-        get => PressureLogScaleToValue((float)pressureMaxSlider.Value);
-
-        set => pressureMaxSlider.Value = PressureValueToLogScale(value);
-    }
-
-    private float PressureMinSliderActualValue
-    {
-        get => PressureLogScaleToValue((float)pressureMinSlider.Value);
-
-        set => pressureMinSlider.Value = PressureValueToLogScale(value);
-    }
 
     public override void _Ready()
     {
@@ -217,13 +219,13 @@ public partial class TolerancesEditorSubComponent : EditorComponentBase<ICellEdi
     public void OnDataTolerancesDependOnChanged(bool organellesChanged)
     {
         if (organellesChanged)
-            CalculateOrganelleModifers();
+            CalculateOrganelleModifiers();
 
         UpdateCurrentValueDisplays();
         UpdateToolTipStats();
     }
 
-    public void CalculateOrganelleModifers()
+    public void CalculateOrganelleModifiers()
     {
         if (Editor.EditedCellOrganelles == null)
             return;
@@ -278,7 +280,7 @@ public partial class TolerancesEditorSubComponent : EditorComponentBase<ICellEdi
         {
             var uvCost = Constants.TOLERANCE_OXYGEN_STEP * Constants.TOLERANCE_CHANGE_MP_PER_UV * MPDisplayCostMultiplier;
 
-            uvResistanceToolTip.MPCost = (float)uvCost;
+            uvResistanceToolTip.MPCost = uvCost;
         }
     }
 
@@ -402,8 +404,6 @@ public partial class TolerancesEditorSubComponent : EditorComponentBase<ICellEdi
 
         temperatureSlider.Value = CurrentTolerances.PreferredTemperature;
         temperatureToleranceRangeSlider.Value = CurrentTolerances.TemperatureTolerance;
-        PressureMinSliderActualValue = CurrentTolerances.PressureMinimum;
-        PressureMaxSliderActualValue = CurrentTolerances.PressureMaximum;
 
         UpdatePercentageResistanceLabel(oxygenResistanceLabel, CurrentTolerances.OxygenResistance);
         UpdatePercentageResistanceLabel(uvResistanceLabel, CurrentTolerances.UVResistance);
@@ -463,67 +463,6 @@ public partial class TolerancesEditorSubComponent : EditorComponentBase<ICellEdi
         automaticallyChanging = false;
     }
 
-    private void OnPressureSliderMinChanged(float logValue)
-    {
-        if (automaticallyChanging)
-            return;
-
-        automaticallyChanging = true;
-
-        var previousRange = Math.Abs(CurrentTolerances.PressureMaximum - CurrentTolerances.PressureMinimum);
-
-        var value = PressureLogScaleToValue(logValue);
-
-        var newRange = Math.Abs(PressureMaxSliderActualValue - value);
-
-        // Ensure flexibility doesn't go above the configured limit
-        if (newRange > previousRange && newRange > Constants.TOLERANCE_PRESSURE_RANGE_MAX)
-        {
-            PressureMinSliderActualValue = CurrentTolerances.PressureMinimum;
-            automaticallyChanging = false;
-            return;
-        }
-
-        // Min can't go above the max
-        if (value > PressureMaxSliderActualValue)
-        {
-            PressureMaxSliderActualValue = value;
-        }
-
-        TryApplyPressureChange(value, PressureMaxSliderActualValue);
-        automaticallyChanging = false;
-    }
-
-    private void OnPressureSliderMaxChanged(float logValue)
-    {
-        if (automaticallyChanging)
-            return;
-
-        automaticallyChanging = true;
-
-        var previousRange = Math.Abs(CurrentTolerances.PressureMaximum - CurrentTolerances.PressureMinimum);
-
-        var value = PressureLogScaleToValue(logValue);
-
-        var newRange = Math.Abs(value - PressureMinSliderActualValue);
-
-        if (newRange > previousRange && newRange > Constants.TOLERANCE_PRESSURE_RANGE_MAX)
-        {
-            PressureMaxSliderActualValue = CurrentTolerances.PressureMaximum;
-            automaticallyChanging = false;
-            return;
-        }
-
-        // Max can't go below the min
-        if (value < PressureMinSliderActualValue)
-        {
-            PressureMinSliderActualValue = value;
-        }
-
-        TryApplyPressureChange(PressureMinSliderActualValue, value);
-        automaticallyChanging = false;
-    }
-
     private float PressureLogScaleToValue(float logValue)
     {
         return MathF.Pow(10, logValue / 20 + Constants.TOLERANCE_PRESSURE_LOG_SCALE_OFFSET);
@@ -545,8 +484,10 @@ public partial class TolerancesEditorSubComponent : EditorComponentBase<ICellEdi
 
         if (!TriggerChangeIfPossible())
         {
-            PressureMinSliderActualValue = CurrentTolerances.PressureMinimum;
-            PressureMaxSliderActualValue = CurrentTolerances.PressureMaximum;
+            // TODO: Update the new displays here
+
+            // PressureMinSliderActualValue = CurrentTolerances.PressureMinimum;
+            // PressureMaxSliderActualValue = CurrentTolerances.PressureMaximum;
         }
     }
 

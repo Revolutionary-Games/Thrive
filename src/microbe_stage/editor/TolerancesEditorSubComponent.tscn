@@ -1,4 +1,4 @@
-[gd_scene load_steps=20 format=3 uid="uid://5kamud4sukbd"]
+[gd_scene load_steps=19 format=3 uid="uid://5kamud4sukbd"]
 
 [ext_resource type="Theme" uid="uid://b4cx0o110g4b6" path="res://src/gui_common/thrive_theme.tres" id="1_16mn0"]
 [ext_resource type="Script" uid="uid://dxl2pjshg67oa" path="res://src/microbe_stage/editor/TolerancesEditorSubComponent.cs" id="2_kqh2k"]
@@ -7,7 +7,6 @@
 [ext_resource type="LabelSettings" uid="uid://cw40l6f6fo8ml" path="res://src/gui_common/fonts/Body-Regular-Small-Green.tres" id="4_15qmx"]
 [ext_resource type="LabelSettings" uid="uid://brgbuduvjby6a" path="res://src/gui_common/fonts/Title-SemiBold-Smaller.tres" id="5_6mela"]
 [ext_resource type="Texture2D" uid="uid://ut73drrfbmk0" path="res://assets/textures/gui/bevel/Temperature.svg" id="6_ki8q3"]
-[ext_resource type="PackedScene" uid="uid://dccswprlmgtel" path="res://src/microbe_stage/editor/ToleranceOptimalMarker.tscn" id="7_sg3ru"]
 [ext_resource type="LabelSettings" uid="uid://dvqx73nhtr0y2" path="res://src/gui_common/fonts/Body-Regular-Small.tres" id="8_ktuy7"]
 [ext_resource type="PackedScene" uid="uid://duf1lf5lp4v5p" path="res://src/microbe_stage/editor/ToleranceOptimalDisplay.tscn" id="9_xmghy"]
 [ext_resource type="Texture2D" uid="uid://d1tuehjbire76" path="res://assets/textures/gui/bevel/Pressure.svg" id="10_xmghy"]
@@ -41,7 +40,7 @@ height = 5
 
 [sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_evsrs"]
 
-[node name="TolerancesEditorSubComponent" type="VBoxContainer" node_paths=PackedStringArray("temperatureToolTipContainer", "pressureToolTipContainer", "oxygenResistanceToolTipContainer", "uvResistanceToolTipContainer", "temperatureSlider", "temperatureToleranceRangeSlider", "pressureMinSlider", "pressureMaxSlider", "temperatureMinLabel", "temperatureMaxLabel", "temperatureToleranceLabel", "temperatureBaseLabel", "temperatureToleranceBaseLabelContainer", "temperatureToleranceBaseLabel", "temperatureOptimalDisplay", "pressureMinLabel", "pressureMaxLabel", "oxygenResistanceLabel", "oxygenResistanceBaseLabel", "oxygenResistanceTotalLabel", "oxygenResistanceOptimalDisplay", "uvResistanceLabel", "uvResistanceBaseLabel", "uvResistanceTotalLabel", "uvResistanceOptimalDisplay")]
+[node name="TolerancesEditorSubComponent" type="VBoxContainer" node_paths=PackedStringArray("temperatureSlider", "temperatureToleranceRangeSlider", "temperatureMinLabel", "temperatureMaxLabel", "temperatureToleranceLabel", "oxygenResistanceLabel", "uvResistanceLabel")]
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
@@ -49,31 +48,13 @@ grow_horizontal = 2
 grow_vertical = 2
 theme = ExtResource("1_16mn0")
 script = ExtResource("2_kqh2k")
-temperatureToolTipContainer = NodePath("Temperature/BaseAndTotal")
-pressureToolTipContainer = NodePath("Pressure")
-oxygenResistanceToolTipContainer = NodePath("Oxygen/BaseAndTotal")
-uvResistanceToolTipContainer = NodePath("UV/BaseAndTotal")
 temperatureSlider = NodePath("Temperature/TemperatureSlider")
 temperatureToleranceRangeSlider = NodePath("Temperature/HBoxContainer3/TemperatureRange")
-pressureMinSlider = NodePath("Pressure/PressureSliderMin")
-pressureMaxSlider = NodePath("Pressure/PressureSliderMax")
 temperatureMinLabel = NodePath("Temperature/BaseAndTotal/HBoxContainer/Total/TemperatureMinimum")
 temperatureMaxLabel = NodePath("Temperature/BaseAndTotal/HBoxContainer/Total/TemperatureMaximum")
 temperatureToleranceLabel = NodePath("Temperature/HBoxContainer3/HBoxContainer/MarginContainer/TemperatureRangeValue")
-temperatureBaseLabel = NodePath("Temperature/BaseAndTotal/HBoxContainer/Base/BaseValue")
-temperatureToleranceBaseLabelContainer = NodePath("Temperature/HBoxContainer3/HBoxContainer/MarginContainer2")
-temperatureToleranceBaseLabel = NodePath("Temperature/HBoxContainer3/HBoxContainer/MarginContainer2/TemperatureRangeBase")
-temperatureOptimalDisplay = NodePath("Temperature/OptimalDisplayContainer/TemperatureOptimalDisplay")
-pressureMinLabel = NodePath("Pressure/HBoxContainer2/PressureMin")
-pressureMaxLabel = NodePath("Pressure/HBoxContainer2/PressureMax")
 oxygenResistanceLabel = NodePath("Oxygen/HBoxContainer2/OxygenResistanceLabel")
-oxygenResistanceBaseLabel = NodePath("Oxygen/BaseAndTotal/HBoxContainer/Base/BaseValue")
-oxygenResistanceTotalLabel = NodePath("Oxygen/BaseAndTotal/HBoxContainer/Total/TotalValue")
-oxygenResistanceOptimalDisplay = NodePath("Oxygen/OptimalDisplayContainer/OxygenOptimalDisplay")
 uvResistanceLabel = NodePath("UV/HBoxContainer2/UVResistanceLabel")
-uvResistanceBaseLabel = NodePath("UV/BaseAndTotal/HBoxContainer/Base/BaseValue")
-uvResistanceTotalLabel = NodePath("UV/BaseAndTotal/HBoxContainer/Total/TotalValue")
-uvResistanceOptimalDisplay = NodePath("UV/OptimalDisplayContainer/UVOptimalDisplay")
 badValueFont = ExtResource("3_q5r3n")
 perfectValueFont = ExtResource("4_15qmx")
 modifierBadFont = ExtResource("3_q5r3n")
@@ -242,7 +223,6 @@ custom_minimum_size = Vector2(0, 5)
 layout_mode = 2
 
 [node name="Pressure" type="VBoxContainer" parent="."]
-visible = false
 layout_mode = 2
 mouse_filter = 0
 
@@ -269,96 +249,176 @@ size_flags_horizontal = 3
 mouse_filter = 1
 theme_override_styles/separator = SubResource("StyleBoxTexture_ftstq")
 
-[node name="HBoxContainer2" type="HBoxContainer" parent="Pressure"]
+[node name="BaseAndTotal" type="PanelContainer" parent="Pressure"]
+layout_mode = 2
+theme = ExtResource("1_16mn0")
+
+[node name="HBoxContainer" type="HBoxContainer" parent="Pressure/BaseAndTotal"]
+layout_mode = 2
+alignment = 1
+
+[node name="Base" type="HBoxContainer" parent="Pressure/BaseAndTotal/HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+alignment = 1
+
+[node name="BaseLabel" type="Label" parent="Pressure/BaseAndTotal/HBoxContainer/Base"]
+layout_mode = 2
+text = "BASE"
+label_settings = ExtResource("8_ktuy7")
+
+[node name="BaseValue" type="Label" parent="Pressure/BaseAndTotal/HBoxContainer/Base"]
+layout_mode = 2
+text = "+10%"
+label_settings = ExtResource("8_ktuy7")
+
+[node name="Total" type="HBoxContainer" parent="Pressure/BaseAndTotal/HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+alignment = 1
+
+[node name="TemperatureMinimum" type="Label" parent="Pressure/BaseAndTotal/HBoxContainer/Total"]
+layout_mode = 2
+text = "0"
+label_settings = ExtResource("8_ktuy7")
+
+[node name="RangeIndicator" type="Label" parent="Pressure/BaseAndTotal/HBoxContainer/Total"]
+layout_mode = 2
+text = "—"
+label_settings = ExtResource("8_ktuy7")
+
+[node name="TemperatureMaximum" type="Label" parent="Pressure/BaseAndTotal/HBoxContainer/Total"]
+layout_mode = 2
+text = "100"
+label_settings = ExtResource("8_ktuy7")
+
+[node name="Spacer2" type="Control" parent="Pressure"]
+custom_minimum_size = Vector2(0, 15)
 layout_mode = 2
 
-[node name="Spacer" type="Control" parent="Pressure/HBoxContainer2"]
+[node name="OptimalDisplayContainer" type="HBoxContainer" parent="Pressure"]
+layout_mode = 2
+
+[node name="Spacer" type="Control" parent="Pressure/OptimalDisplayContainer"]
+custom_minimum_size = Vector2(8, 0)
+layout_mode = 2
+
+[node name="PressureOptimalDisplay" parent="Pressure/OptimalDisplayContainer" instance=ExtResource("9_xmghy")]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="Spacer2" type="Control" parent="Pressure/OptimalDisplayContainer"]
+custom_minimum_size = Vector2(8, 0)
+layout_mode = 2
+
+[node name="Spacer3" type="Control" parent="Pressure"]
+custom_minimum_size = Vector2(0, 3)
+layout_mode = 2
+
+[node name="HBoxContainer3" type="HBoxContainer" parent="Pressure"]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="Pressure/HBoxContainer3"]
+layout_mode = 2
+text = "PREFERRED_PRESSURE"
+label_settings = ExtResource("8_ktuy7")
+
+[node name="Spacer" type="Control" parent="Pressure/HBoxContainer3"]
+layout_mode = 2
+
+[node name="PreferredPressure" type="HSlider" parent="Pressure/HBoxContainer3"]
 layout_mode = 2
 size_flags_horizontal = 3
 mouse_filter = 1
+max_value = 80.0
+value = 20.0
+rounded = true
+scrollable = false
+tick_count = 5
 
-[node name="PressureMin" type="Label" parent="Pressure/HBoxContainer2"]
-editor_description = "PLACEHOLDER"
+[node name="Spacer2" type="Control" parent="Pressure/HBoxContainer3"]
+custom_minimum_size = Vector2(10, 0)
 layout_mode = 2
-size_flags_horizontal = 3
-text = "80 kPa"
-label_settings = ExtResource("8_ktuy7")
 
-[node name="RangeIndicator" type="Label" parent="Pressure/HBoxContainer2"]
-editor_description = "PLACEHOLDER"
+[node name="HBoxContainer" type="HBoxContainer" parent="Pressure/HBoxContainer3"]
+custom_minimum_size = Vector2(60, 0)
 layout_mode = 2
-size_flags_horizontal = 3
-text = "—"
-label_settings = ExtResource("8_ktuy7")
-horizontal_alignment = 1
+alignment = 1
 
-[node name="PressureMax" type="Label" parent="Pressure/HBoxContainer2"]
-editor_description = "PLACEHOLDER"
+[node name="MarginContainer" type="MarginContainer" parent="Pressure/HBoxContainer3/HBoxContainer"]
+custom_minimum_size = Vector2(30, 0)
 layout_mode = 2
-size_flags_horizontal = 3
-text = "410 kPa"
+size_flags_horizontal = 8
+
+[node name="PreferredPressureValue" type="Label" parent="Pressure/HBoxContainer3/HBoxContainer/MarginContainer"]
+editor_description = "PLACEHOLDER"
+custom_minimum_size = Vector2(20, 0)
+layout_mode = 2
+size_flags_horizontal = 4
+text = "100 kPa"
 label_settings = ExtResource("8_ktuy7")
 horizontal_alignment = 2
 
-[node name="Spacer2" type="Control" parent="Pressure/HBoxContainer2"]
-layout_mode = 2
-size_flags_horizontal = 3
-mouse_filter = 1
-
-[node name="PressureSliderMin" type="HSlider" parent="Pressure"]
-layout_mode = 2
-mouse_filter = 1
-max_value = 80.0
-value = 20.0
-scrollable = false
-tick_count = 5
-
-[node name="MinPressureMarker" parent="Pressure/PressureSliderMin" instance=ExtResource("7_sg3ru")]
-layout_mode = 1
-offset_top = -10.0
-offset_bottom = 5.0
-rotation = 0.00114285
-
-[node name="PressureSliderMax" type="HSlider" parent="Pressure"]
-layout_mode = 2
-mouse_filter = 1
-max_value = 80.0
-value = 20.0
-scrollable = false
-tick_count = 5
-
-[node name="MaxPressureMarker" parent="Pressure/PressureSliderMax" instance=ExtResource("7_sg3ru")]
-layout_mode = 1
-offset_top = -10.0
-offset_bottom = 5.0
-
-[node name="HFlowContainer" type="HFlowContainer" parent="Pressure"]
+[node name="Spacer4" type="Control" parent="Pressure"]
+custom_minimum_size = Vector2(0, 3)
 layout_mode = 2
 
-[node name="PressureTolerance" type="HBoxContainer" parent="Pressure/HFlowContainer"]
+[node name="HBoxContainer4" type="HBoxContainer" parent="Pressure"]
 layout_mode = 2
-size_flags_horizontal = 3
-mouse_filter = 0
 
-[node name="RangeModifierLabel" type="Label" parent="Pressure/HFlowContainer/PressureTolerance"]
+[node name="Label" type="Label" parent="Pressure/HBoxContainer4"]
 layout_mode = 2
-mouse_filter = 1
 text = "TOLERANCE_RANGE_LABEL"
 label_settings = ExtResource("8_ktuy7")
-vertical_alignment = 2
 
-[node name="PressureRangeModifier" type="Label" parent="Pressure/HFlowContainer/PressureTolerance"]
-editor_description = "PLACEHOLDER"
+[node name="Spacer" type="Control" parent="Pressure/HBoxContainer4"]
 layout_mode = 2
-mouse_filter = 1
-text = "(-500 kPa)"
-label_settings = ExtResource("8_ktuy7")
-horizontal_alignment = 1
-vertical_alignment = 2
 
-[node name="Control" type="Control" parent="Pressure/HFlowContainer/PressureTolerance"]
+[node name="PressureRange" type="HSlider" parent="Pressure/HBoxContainer4"]
 layout_mode = 2
 size_flags_horizontal = 3
+mouse_filter = 1
+max_value = 50.0
+value = 10.0
+rounded = true
+scrollable = false
+
+[node name="Spacer2" type="Control" parent="Pressure/HBoxContainer4"]
+custom_minimum_size = Vector2(10, 0)
+layout_mode = 2
+
+[node name="HBoxContainer" type="HBoxContainer" parent="Pressure/HBoxContainer4"]
+custom_minimum_size = Vector2(100, 0)
+layout_mode = 2
+alignment = 1
+
+[node name="MarginContainer" type="MarginContainer" parent="Pressure/HBoxContainer4/HBoxContainer"]
+custom_minimum_size = Vector2(50, 0)
+layout_mode = 2
+size_flags_horizontal = 8
+
+[node name="PressureRangeValue" type="Label" parent="Pressure/HBoxContainer4/HBoxContainer/MarginContainer"]
+editor_description = "PLACEHOLDER"
+custom_minimum_size = Vector2(20, 0)
+layout_mode = 2
+size_flags_horizontal = 4
+text = "± 2000 Pa"
+label_settings = ExtResource("8_ktuy7")
+horizontal_alignment = 2
+
+[node name="MarginContainer2" type="MarginContainer" parent="Pressure/HBoxContainer4/HBoxContainer"]
+custom_minimum_size = Vector2(50, 0)
+layout_mode = 2
+size_flags_horizontal = 8
+
+[node name="PressureRangeBase" type="Label" parent="Pressure/HBoxContainer4/HBoxContainer/MarginContainer2"]
+editor_description = "PLACEHOLDER"
+custom_minimum_size = Vector2(20, 0)
+layout_mode = 2
+size_flags_horizontal = 4
+text = "(± 1000 Pa)"
+label_settings = ExtResource("8_ktuy7")
+horizontal_alignment = 2
 
 [node name="Spacer" type="Control" parent="Pressure"]
 custom_minimum_size = Vector2(0, 5)
@@ -616,8 +676,8 @@ text = "+"
 
 [connection signal="value_changed" from="Temperature/TemperatureSlider" to="." method="OnTemperatureSliderChanged"]
 [connection signal="value_changed" from="Temperature/HBoxContainer3/TemperatureRange" to="." method="OnTemperatureToleranceRangeSliderChanged"]
-[connection signal="value_changed" from="Pressure/PressureSliderMin" to="." method="OnPressureSliderMinChanged"]
-[connection signal="value_changed" from="Pressure/PressureSliderMax" to="." method="OnPressureSliderMaxChanged"]
+[connection signal="value_changed" from="Pressure/HBoxContainer3/PreferredPressure" to="." method="OnTemperatureToleranceRangeSliderChanged"]
+[connection signal="value_changed" from="Pressure/HBoxContainer4/PressureRange" to="." method="OnTemperatureToleranceRangeSliderChanged"]
 [connection signal="pressed" from="Oxygen/HBoxContainer2/OxygenResistanceMinus" to="." method="OnOxygenResistanceMinusButtonPressed"]
 [connection signal="pressed" from="Oxygen/HBoxContainer2/OxugenResistancePlus" to="." method="OnOxygenResistancePlusButtonPressed"]
 [connection signal="pressed" from="UV/HBoxContainer2/UVResistanceMinus" to="." method="OnUVResistanceMinusButtonPressed"]
