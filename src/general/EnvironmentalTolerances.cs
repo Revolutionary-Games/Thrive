@@ -1,4 +1,5 @@
 ﻿using System;
+using Godot;
 
 /// <summary>
 ///   Environmental tolerances of a species
@@ -16,25 +17,14 @@ public class EnvironmentalTolerances
     /// </summary>
     public float TemperatureTolerance = 21;
 
-    /// <summary>
-    ///   Minimum pressure this species likes. The value is in Pa (pascals). This is not just a single range as
-    ///   the range needs to be lopsided towards surviving higher pressures.
-    /// </summary>
-    /// <remarks>
-    ///   <para>
-    ///     The difference between the defaults may not be over Constants.TOLERANCE_PRESSURE_RANGE_MAX, otherwise the
-    ///     GUI will break when this data is fed in.
-    ///   </para>
-    /// </remarks>
-    public float PressureMinimum = 71325;
-
-    public float PressureMaximum = 301325;
-
-    public float PressureMinLogScale;
-    public float PressureMaxLogScale;
+    public float PreferredPressure;
+    public float PressureTolerance;
 
     public float UVResistance;
     public float OxygenResistance;
+
+    public float PressureMinimum => Mathf.Max(PreferredPressure - PressureTolerance, 0);
+    public float PressureMaximum => Mathf.Min(PreferredPressure + PressureTolerance, Constants.TOLERANCE_PRESSURE_MAX);
 
     public static bool operator ==(EnvironmentalTolerances? left, EnvironmentalTolerances? right)
     {
@@ -50,10 +40,8 @@ public class EnvironmentalTolerances
     {
         PreferredTemperature = tolerancesToCopy.PreferredTemperature;
         TemperatureTolerance = tolerancesToCopy.TemperatureTolerance;
-        PressureMinimum = tolerancesToCopy.PressureMinimum;
-        PressureMaximum = tolerancesToCopy.PressureMaximum;
-        PressureMinLogScale = tolerancesToCopy.PressureMinLogScale;
-        PressureMaxLogScale = tolerancesToCopy.PressureMaxLogScale;
+        PreferredPressure = tolerancesToCopy.PreferredPressure;
+        PressureTolerance = tolerancesToCopy.PressureTolerance;
         UVResistance = tolerancesToCopy.UVResistance;
         OxygenResistance = tolerancesToCopy.OxygenResistance;
     }

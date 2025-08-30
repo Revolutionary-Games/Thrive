@@ -40,7 +40,7 @@ height = 5
 
 [sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_evsrs"]
 
-[node name="TolerancesEditorSubComponent" type="VBoxContainer" node_paths=PackedStringArray("temperatureSlider", "temperatureToleranceRangeSlider", "temperatureMinLabel", "temperatureMaxLabel", "temperatureToleranceLabel", "oxygenResistanceLabel", "uvResistanceLabel")]
+[node name="TolerancesEditorSubComponent" type="VBoxContainer" node_paths=PackedStringArray("temperatureToolTipContainer", "pressureToolTipContainer", "oxygenResistanceToolTipContainer", "uvResistanceToolTipContainer", "temperatureSlider", "temperatureToleranceRangeSlider", "pressureSlider", "pressureToleranceRangeSlider", "temperatureMinLabel", "temperatureMaxLabel", "temperatureToleranceLabel", "temperatureBaseLabel", "temperatureToleranceBaseLabelContainer", "temperatureToleranceBaseLabel", "temperatureOptimalDisplay", "pressureMinLabel", "pressureMaxLabel", "pressureToleranceLabel", "pressureBaseLabel", "pressureToleranceBaseLabelContainer", "pressureToleranceBaseLabel", "pressureOptimalDisplay", "oxygenResistanceLabel", "oxygenResistanceBaseLabel", "oxygenResistanceTotalLabel", "oxygenResistanceOptimalDisplay", "uvResistanceLabel", "uvResistanceBaseLabel", "uvResistanceTotalLabel", "uvResistanceOptimalDisplay")]
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
@@ -48,13 +48,36 @@ grow_horizontal = 2
 grow_vertical = 2
 theme = ExtResource("1_16mn0")
 script = ExtResource("2_kqh2k")
+temperatureToolTipContainer = NodePath("Temperature/BaseAndTotal")
+pressureToolTipContainer = NodePath("Pressure/BaseAndTotal")
+oxygenResistanceToolTipContainer = NodePath("Oxygen/BaseAndTotal")
+uvResistanceToolTipContainer = NodePath("UV/BaseAndTotal")
 temperatureSlider = NodePath("Temperature/TemperatureSlider")
 temperatureToleranceRangeSlider = NodePath("Temperature/HBoxContainer3/TemperatureRange")
+pressureSlider = NodePath("Pressure/HBoxContainer3/PreferredPressure")
+pressureToleranceRangeSlider = NodePath("Pressure/HBoxContainer4/PressureRange")
 temperatureMinLabel = NodePath("Temperature/BaseAndTotal/HBoxContainer/Total/TemperatureMinimum")
 temperatureMaxLabel = NodePath("Temperature/BaseAndTotal/HBoxContainer/Total/TemperatureMaximum")
 temperatureToleranceLabel = NodePath("Temperature/HBoxContainer3/HBoxContainer/MarginContainer/TemperatureRangeValue")
+temperatureBaseLabel = NodePath("Temperature/BaseAndTotal/HBoxContainer/Base/BaseValue")
+temperatureToleranceBaseLabelContainer = NodePath("Temperature/HBoxContainer3/HBoxContainer/MarginContainer2")
+temperatureToleranceBaseLabel = NodePath("Temperature/HBoxContainer3/HBoxContainer/MarginContainer2/TemperatureRangeBase")
+temperatureOptimalDisplay = NodePath("Temperature/OptimalDisplayContainer/TemperatureOptimalDisplay")
+pressureMinLabel = NodePath("Pressure/BaseAndTotal/HBoxContainer/Total/PressureMinimum")
+pressureMaxLabel = NodePath("Pressure/BaseAndTotal/HBoxContainer/Total/PressureMaximum")
+pressureToleranceLabel = NodePath("Pressure/HBoxContainer4/HBoxContainer/MarginContainer/PressureRangeValue")
+pressureBaseLabel = NodePath("Pressure/BaseAndTotal/HBoxContainer/Base/BaseValue")
+pressureToleranceBaseLabelContainer = NodePath("Pressure/HBoxContainer4/HBoxContainer/MarginContainer2")
+pressureToleranceBaseLabel = NodePath("Pressure/HBoxContainer4/HBoxContainer/MarginContainer2/PressureRangeBase")
+pressureOptimalDisplay = NodePath("Pressure/OptimalDisplayContainer/PressureOptimalDisplay")
 oxygenResistanceLabel = NodePath("Oxygen/HBoxContainer2/OxygenResistanceLabel")
+oxygenResistanceBaseLabel = NodePath("Oxygen/BaseAndTotal/HBoxContainer/Base/BaseValue")
+oxygenResistanceTotalLabel = NodePath("Oxygen/BaseAndTotal/HBoxContainer/Total/TotalValue")
+oxygenResistanceOptimalDisplay = NodePath("Oxygen/OptimalDisplayContainer/OxygenOptimalDisplay")
 uvResistanceLabel = NodePath("UV/HBoxContainer2/UVResistanceLabel")
+uvResistanceBaseLabel = NodePath("UV/BaseAndTotal/HBoxContainer/Base/BaseValue")
+uvResistanceTotalLabel = NodePath("UV/BaseAndTotal/HBoxContainer/Total/TotalValue")
+uvResistanceOptimalDisplay = NodePath("UV/OptimalDisplayContainer/UVOptimalDisplay")
 badValueFont = ExtResource("3_q5r3n")
 perfectValueFont = ExtResource("4_15qmx")
 modifierBadFont = ExtResource("3_q5r3n")
@@ -277,7 +300,7 @@ layout_mode = 2
 size_flags_horizontal = 3
 alignment = 1
 
-[node name="TemperatureMinimum" type="Label" parent="Pressure/BaseAndTotal/HBoxContainer/Total"]
+[node name="PressureMinimum" type="Label" parent="Pressure/BaseAndTotal/HBoxContainer/Total"]
 layout_mode = 2
 text = "0"
 label_settings = ExtResource("8_ktuy7")
@@ -287,7 +310,7 @@ layout_mode = 2
 text = "—"
 label_settings = ExtResource("8_ktuy7")
 
-[node name="TemperatureMaximum" type="Label" parent="Pressure/BaseAndTotal/HBoxContainer/Total"]
+[node name="PressureMaximum" type="Label" parent="Pressure/BaseAndTotal/HBoxContainer/Total"]
 layout_mode = 2
 text = "100"
 label_settings = ExtResource("8_ktuy7")

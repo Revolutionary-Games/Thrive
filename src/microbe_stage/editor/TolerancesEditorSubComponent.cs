@@ -297,8 +297,8 @@ public partial class TolerancesEditorSubComponent : EditorComponentBase<ICellEdi
         var optimal = Editor.CurrentPatch.GenerateTolerancesForMicrobe(Editor.EditedCellOrganelles);
 
         // Set huge ranges so that there is no threat of optimal bonuses triggering with the default calculations
-        optimal.PressureMinimum = 0;
-        optimal.PressureMaximum += Constants.TOLERANCE_PERFECT_THRESHOLD_PRESSURE * 2;
+        optimal.PreferredPressure = 0;
+        optimal.PressureTolerance = Constants.TOLERANCE_PERFECT_THRESHOLD_PRESSURE * 2;
         optimal.TemperatureTolerance += Constants.TOLERANCE_PERFECT_THRESHOLD_TEMPERATURE * 2;
 
         var tempTolerances = CurrentTolerances.Clone();
@@ -330,8 +330,8 @@ public partial class TolerancesEditorSubComponent : EditorComponentBase<ICellEdi
         if (pressureToolTip != null)
         {
             tempTolerances.CopyFrom(optimal);
-            tempTolerances.PressureMinimum = CurrentTolerances.PressureMinimum;
-            tempTolerances.PressureMaximum = CurrentTolerances.PressureMaximum;
+            tempTolerances.PreferredPressure = CurrentTolerances.PreferredPressure;
+            tempTolerances.PressureTolerance = CurrentTolerances.PressureTolerance;
 
             CalculateStatsAndShow(tempTolerances, pressureToolTip);
         }
@@ -419,10 +419,6 @@ public partial class TolerancesEditorSubComponent : EditorComponentBase<ICellEdi
         if (automaticallyChanging)
             return;
 
-        temperatureOptimalDisplay.SetBoundPositions(
-            value + organelleModifiers.PreferredTemperature,
-            CurrentTolerances.TemperatureTolerance + organelleModifiers.TemperatureTolerance);
-
         reusableTolerances ??= new EnvironmentalTolerances();
 
         // Create a change action for the new value
@@ -437,6 +433,11 @@ public partial class TolerancesEditorSubComponent : EditorComponentBase<ICellEdi
             temperatureSlider.Value = CurrentTolerances.PreferredTemperature;
         }
 
+        // Update the display only after it has been checked if the player has enough MP
+        temperatureOptimalDisplay.SetBoundPositions(
+            (float)temperatureSlider.Value + organelleModifiers.PreferredTemperature,
+            CurrentTolerances.TemperatureTolerance + organelleModifiers.TemperatureTolerance);
+
         automaticallyChanging = false;
     }
 
@@ -444,10 +445,6 @@ public partial class TolerancesEditorSubComponent : EditorComponentBase<ICellEdi
     {
         if (automaticallyChanging)
             return;
-
-        temperatureOptimalDisplay.SetBoundPositions(
-            CurrentTolerances.PreferredTemperature + organelleModifiers.PreferredTemperature,
-            value + organelleModifiers.TemperatureTolerance);
 
         reusableTolerances ??= new EnvironmentalTolerances();
         reusableTolerances.CopyFrom(CurrentTolerances);
@@ -458,6 +455,48 @@ public partial class TolerancesEditorSubComponent : EditorComponentBase<ICellEdi
         if (!TriggerChangeIfPossible())
         {
             temperatureToleranceRangeSlider.Value = CurrentTolerances.TemperatureTolerance;
+        }
+
+        temperatureOptimalDisplay.SetBoundPositions(
+            CurrentTolerances.PreferredTemperature + organelleModifiers.PreferredTemperature,
+            (float)temperatureToleranceRangeSlider.Value + organelleModifiers.TemperatureTolerance);
+
+        automaticallyChanging = false;
+    }
+
+    private void OnPressureSliderChanged(float value)
+    {
+        if (automaticallyChanging)
+            return;
+
+        reusableTolerances ??= new EnvironmentalTolerances();
+        reusableTolerances.CopyFrom(CurrentTolerances);
+        reusableTolerances.PreferredPressure = value;
+
+        automaticallyChanging = true;
+
+        if (!TriggerChangeIfPossible())
+        {
+            pressureSlider.Value = PressureValueToLogScale(CurrentTolerances.PreferredPressure);
+        }
+
+        automaticallyChanging = false;
+    }
+
+    private void OnPressureToleranceRangeSliderChanged(float value)
+    {
+        if (automaticallyChanging)
+            return;
+
+        reusableTolerances ??= new EnvironmentalTolerances();
+        reusableTolerances.CopyFrom(CurrentTolerances);
+        reusableTolerances.PressureTolerance = value;
+
+        automaticallyChanging = true;
+
+        if (!TriggerChangeIfPossible())
+        {
+            pressureToleranceRangeSlider.Value = PressureValueToLogScale(CurrentTolerances.PressureTolerance);
         }
 
         automaticallyChanging = false;
@@ -473,26 +512,10 @@ public partial class TolerancesEditorSubComponent : EditorComponentBase<ICellEdi
         return (MathF.Log10(rawValue) - Constants.TOLERANCE_PRESSURE_LOG_SCALE_OFFSET) * 20;
     }
 
-    private void TryApplyPressureChange(float min, float max)
-    {
-        reusableTolerances ??= new EnvironmentalTolerances();
-        reusableTolerances.CopyFrom(CurrentTolerances);
-        reusableTolerances.PressureMinimum = min;
-        reusableTolerances.PressureMaximum = max;
-        reusableTolerances.PressureMinLogScale = PressureValueToLogScale(min);
-        reusableTolerances.PressureMaxLogScale = PressureValueToLogScale(max);
-
-        if (!TriggerChangeIfPossible())
-        {
-            // TODO: Update the new displays here
-
-            // PressureMinSliderActualValue = CurrentTolerances.PressureMinimum;
-            // PressureMaxSliderActualValue = CurrentTolerances.PressureMaximum;
-        }
-    }
-
     private void OnOxygenResistancePlusButtonPressed()
     {
+        // TODO: This and similar methods do not follow DRY at all, a common method has to be made
+
         if (automaticallyChanging)
             return;
 
