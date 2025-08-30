@@ -583,7 +583,7 @@ When you add new translation strings to the game, you need to run
 `dotnet run --project Scripts -- localization`. This will update the `.pot` 
 template file and merge the new strings to all existing`.po` files. 
 Unfortunately merging `master` branch to your branch will often cause 
-merge conflicts in `.po` files if someone else merged their changes to `master, 
+merge conflicts in `.po` files if someone else merged their changes to `master`, 
 so it is recommended to setup custom merge driver. It is fairly simple. The only thing 
 you need to do is to add these lines to your local `.git/config` file and you're ready to go:
 ```
