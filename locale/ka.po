@@ -8,7 +8,7 @@ msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2025-08-29 14:14+0300\n"
-"PO-Revision-Date: 2025-08-26 09:19+0000\n"
+"PO-Revision-Date: 2025-08-30 02:10+0000\n"
 "Last-Translator: NorwayFun <temuri.doghonadze@gmail.com>\n"
 "Language-Team: Georgian <https://translate.revolutionarygamesstudio.com/projects/thrive/thrive-game/ka/>\n"
 "Language: ka\n"
@@ -189,9 +189,8 @@ msgstr "ამიაკი"
 msgid "AMMONIA_COST"
 msgstr "ამიაკის ფასი:"
 
-#, fuzzy
 msgid "AMMONIA_LEVELS"
-msgstr "ამიაკის ფასი:"
+msgstr "ამიაკის დონე"
 
 msgid "AMOUNT_OF_AUTOSAVE_TO_KEEP"
 msgstr "შენარჩუნებული ავტოშენახვების რაოდენობა:"
@@ -412,19 +411,19 @@ msgid "AVAILABLE_MODS"
 msgstr "ხელმისაწვდომი მოდები"
 
 msgid "AVERAGE_SURFACE_CARBON_DIOXIDE_LEVEL"
-msgstr ""
+msgstr "საშუალო ზედაპირის CO2-ის დონე"
 
 msgid "AVERAGE_SURFACE_LIGHT_LEVEL"
-msgstr ""
+msgstr "საშუალო ზედაპირის სინათლის დონე"
 
 msgid "AVERAGE_SURFACE_NITROGEN_LEVEL"
-msgstr ""
+msgstr "საშუალო ზედაპირის აზოტის დონე"
 
 msgid "AVERAGE_SURFACE_OTHER_LEVEL"
-msgstr ""
+msgstr "საშუალო ზედაპირის სხვა აირების დონე"
 
 msgid "AVERAGE_SURFACE_OXYGEN_LEVEL"
-msgstr ""
+msgstr "საშუალო ზედაპირის ჟანგბადის დონე"
 
 msgid "AWAKENING_STAGE"
 msgstr "გამოღვიძების ფაზა"
@@ -1004,24 +1003,20 @@ msgstr "ყოველთვის თავში ასვლა"
 msgid "COMPOUND_HANDLE_TOP_UP_ON_CHANGE"
 msgstr "შევსება ბიომის ცვლილებისას"
 
-#, fuzzy
 msgid "COMPOUND_LEVEL_AVERAGE"
 msgstr "საშუალო"
 
-#, fuzzy
 msgid "COMPOUND_LEVEL_HIGH"
-msgstr "ნივთიერების ბალანსები"
+msgstr "მაღალი"
 
-#, fuzzy
 msgid "COMPOUND_LEVEL_LOW"
-msgstr "ნივთიერების ღრუბლები"
+msgstr "დაბალი"
 
 msgid "COMPOUND_LEVEL_VERY_HIGH"
-msgstr ""
+msgstr "ძალიან მაღალი"
 
-#, fuzzy
 msgid "COMPOUND_LEVEL_VERY_LOW"
-msgstr "ყველას შენარჩუნება"
+msgstr "ძალიან დაბალი"
 
 msgid "COMPOUND_STORAGE_AMOUNT_DOES_NOT_LAST_NIGHT"
 msgstr "(არასაკმარისია, რომ გაუძლოთ ღამეს, რომლის სიგრძეა {0})"
@@ -1791,16 +1786,15 @@ msgstr ""
 msgid "EDITOR_TUTORIAL_EDITOR_TEXT"
 msgstr ""
 
-#, fuzzy
 msgid "EDITOR_TUTORIAL_MICROBE_EDITOR_BINDING_AGENTS"
 msgstr ""
-"[b]ფლაგელა[/b] თქვენს მიკრობს მისი მოთავსების საპირისპირო მიმართულებით მიაწვება.\n"
+"იმისათვის, რომ გახდეთ მრავალუჯრედიანი, საჭიროა, [b]შემკვრელი აგენტები[/b] მოათავსოთ.\n"
 "\n"
-"დასვით ფლაგელა წინა ისრის საპირისპირო მხარეს წინა მხარეს და ის თქვენს მიკრობს წინ მიაწვება.[b]ლორწოს ნაკადებიც[/b] იგივენაირად იქცევა]\n"
+"[b]შემკვრელი აგენტები[/b] მრავალუჯრედიანად გარდაქმნაში სასიცოცხლო როლს ასრულებენ. ისინი საშუალებას გაძლევენ, მიეკრათ სხვა უჯრედებს და მათთან კოლონიები შექმნათ.\n"
 "\n"
-"ფლაგელა ძალიან [thrive:compound type=\"atp\"][/thrive:compound] ხარჯიანი ორგანელებია და ამიტომ არც ისე გამოსადეგია პატარა უჯრედებისთვის.\n"
+"მაგრამ [b]შემკვრელი აგენტები[/b] ორგანელებია, რომლებიც უნდა [b]გახსნათ[/b] და იქონიოთ ზედმეტი [thrive:compound type=\"atp\"][/thrive:compound].\n"
 "\n"
-"[b]გადაადგილების სიჩქარის[/b] ოდნავ გასაზრდელად [thrive:icon]MovementIcon[/thrive:icon] თქვენს მემბრანას უფრო თხევადს ხდის [u]მემბრანის ჩანართში[/u]."
+"ჩართეთ ეს, რომ ნახოთ, უკვე გახსენით თუ არა [b]შემკვრელი აგენტები[/b]. თუ კი, სცადეთ, ახლა დადოთ."
 
 msgid "EDITOR_TUTORIAL_MICROBE_EDITOR_NUCLEUS"
 msgstr ""
@@ -2417,9 +2411,8 @@ msgstr "გლუკოზა"
 msgid "GLUCOSE_CONCENTRATIONS_DRASTICALLY_DROPPED"
 msgstr "გლუკოზის კონცენტრაციები მკვეთრად დაეცა!"
 
-#, fuzzy
 msgid "GLUCOSE_LEVEL"
-msgstr "{0}-{1}მ ზღვის დონის ქვემოთ"
+msgstr "გლუკოზის დონე"
 
 msgid "GLYCOLYSIS"
 msgstr "გლიკოლიზი"
@@ -2544,7 +2537,6 @@ msgstr "გადაყლავს [thrive:compound type=\\\"glucose\\\"][/thri
 msgid "HYDROGEN_SULFIDE"
 msgstr "გოგირდწყალბადი"
 
-#, fuzzy
 msgid "HYDROGEN_SULFIDE_LEVELS"
 msgstr "გოგირდწყალბადი"
 
@@ -2762,7 +2754,7 @@ msgid "IRON"
 msgstr "რკინა"
 
 msgid "IRON_LEVELS"
-msgstr ""
+msgstr "რკინის დონე"
 
 msgid "IRON_OXIDATION"
 msgstr "რკინის დაჟანგვა"
@@ -4432,9 +4424,8 @@ msgstr "აბრუნება"
 msgid "PAST_DEVELOPERS"
 msgstr "ყოფილი პროგრამისტები"
 
-#, fuzzy
 msgid "PATCHES_NUMBER"
-msgstr "{0} {1}"
+msgstr "ბიომების რაოდენობა:"
 
 msgid "PATCH_COLON"
 msgstr "ბიომა:"
@@ -4531,9 +4522,8 @@ msgstr "ფოსფატი"
 msgid "PHOSPHATES_COST"
 msgstr "ფოსფატის ფასი:"
 
-#, fuzzy
 msgid "PHOSPHATES_LEVELS"
-msgstr "ფოსფატის ფასი:"
+msgstr "ფოსფატების დონე"
 
 msgid "PHOTOSYNTHESIS"
 msgstr "ფოტოსინთეზი"
@@ -4564,9 +4554,8 @@ msgstr ""
 msgid "PLANET_RANDOM_SEED"
 msgstr "პლანეტის შემთხვევითობის თესლი"
 
-#, fuzzy
 msgid "PLANET_STATISTICS"
-msgstr "სტატისტიკა"
+msgstr "პლანეტის სტატისტიკა"
 
 msgid "PLAYER"
 msgstr "მოთამაშე"
@@ -4713,9 +4702,8 @@ msgstr ""
 msgid "RADIATION"
 msgstr "რადიაცია"
 
-#, fuzzy
 msgid "RADIATION_LEVELS"
-msgstr "რადიაცია"
+msgstr "რადიაციის დონე"
 
 msgid "RADIOACTIVE_CHUNK"
 msgstr "რადიაქტიური ქვის ნატეხი"
@@ -4768,9 +4756,8 @@ msgstr "განახლება"
 msgid "REGENERATE_BUTTON"
 msgstr "სამყაროს თავიდან გენერაცია"
 
-#, fuzzy
 msgid "REGIONS_NUMBER"
-msgstr "ID ნომერი"
+msgstr "რეგიონების რაოდანობა:"
 
 msgid "RENDER_SCALE"
 msgstr "რევოლუციის მასშტაბი"
@@ -5193,9 +5180,8 @@ msgstr "დახმარების ჩვენება"
 msgid "SHOW_ITEM_COORDINATES"
 msgstr "კოორდინატების ჩვენება"
 
-#, fuzzy
 msgid "SHOW_MAP"
-msgstr "დახმარების ჩვენება"
+msgstr "რუკის ჩვენება"
 
 msgid "SHOW_NEW_PATCH_NOTES"
 msgstr "ახალი პაჩის შენიშვნების ავტომატური ჩვენება"
