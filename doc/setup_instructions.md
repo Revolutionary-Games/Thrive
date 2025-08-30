@@ -579,6 +579,24 @@ is available through Homebrew.
 `msgmerge` is part of the gettext tools. So any errors with that
 missing are about these gettext tools.
 
+When you add new translation strings to the game, you need to run 
+`dotnet run --project Scripts -- localization`. This will update the `.pot` 
+template file and merge the new strings to all existing`.po` files. 
+Unfortunately merging `master` branch to your branch will often cause 
+merge conflicts in `.po` files if someone else merged their changes to `master, 
+so it is recommended to setup custom merge driver. It is fairly simple. The only thing 
+you need to do is to add these lines to your local `.git/config` file and you're ready to go:
+```
+[merge "po-smart"]
+    name = Merge PO preferring newer dates in header
+    driver = merge_drivers/merge-po-smart.sh %O %A %B
+```
+
+Unfortunately custom merge drivers are not supported by most IDE's GUI-version git, 
+so you need to do the merge from the command line. If for some reason the merge driver
+doesn't work, make sure the `merge_drivers/merge-po-smart.sh` file is executable
+(`chmod +x merge_drivers/merge-po-smart.sh`).
+
 ## Running the Format Checks
 
 When you are getting ready to commit you should run `dotnet run
