@@ -1,4 +1,4 @@
-﻿{
+{
   "respiration": {
     "Name": "RESPIRATION",
     "Inputs": {
@@ -6,7 +6,7 @@
       "glucose": 0.10
     },
     "Outputs": {
-      "atp": 110,
+      "atp": 40,
       "carbondioxide": 1
     },
     "IsMetabolismProcess": true
@@ -195,7 +195,7 @@
       "glucose": 0.09
     },
     "Outputs": {
-      "atp": 45,
+      "atp": 20,
       "carbondioxide": 1
     },
     "IsMetabolismProcess": true
@@ -206,7 +206,7 @@
       "glucose": 0.013
     },
     "Outputs": {
-      "atp": 5
+      "atp": 4
     },
     "IsMetabolismProcess": true
   },
@@ -216,7 +216,7 @@
       "glucose": 0.02
     },
     "Outputs": {
-      "atp": 13
+      "atp": 7
     },
     "IsMetabolismProcess": true
   },
@@ -234,7 +234,7 @@
   "iron_chemolithoautotrophy": {
     "Name": "IRON_OXIDATION",
     "Inputs": {
-      "iron": 0.02
+      "iron": 0.2
     },
     "Outputs": {
       "atp": 5.5
@@ -253,16 +253,16 @@
   "bacterial_thermosynthesis": {
     "Name": "THERMOSYNTHESIS",
     "Inputs": {
-      "temperature": 0.2
+      "temperature": 0.4
     },
     "Outputs": {
-      "atp": 4
+      "atp": 6
     }
   },
   "ferrosynthesis": {
     "Name": "IRON_OXIDATION",
     "Inputs": {
-      "iron": 0.033
+      "iron": 0.14
     },
     "Outputs": {
       "atp": 14
@@ -272,7 +272,7 @@
   "radiosynthesis": {
     "name": "RADIOSYNTHESIS",
     "inputs": {
-      "radiation": 0.4
+      "radiation": 0.2
     },
     "outputs": {
       "atp": 35
