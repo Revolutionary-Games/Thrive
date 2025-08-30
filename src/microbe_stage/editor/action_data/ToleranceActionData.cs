@@ -28,12 +28,20 @@ public class ToleranceActionData : EditorCombinableActionData
         var oxygenChange = Math.Abs(OldTolerances.OxygenResistance - NewTolerances.OxygenResistance);
         var uvChange = Math.Abs(OldTolerances.UVResistance - NewTolerances.UVResistance);
 
+        var oldPressure =
+            MicrobeEnvironmentalToleranceCalculations.PressureValueToLogScale(OldTolerances.PreferredPressure);
 
+        var newPressure =
+            MicrobeEnvironmentalToleranceCalculations.PressureValueToLogScale(NewTolerances.PreferredPressure);
+
+        var pressureLogScaleChange = Math.Abs(oldPressure - newPressure);
+
+        var pressureToleranceChange = Math.Abs(OldTolerances.PressureTolerance - NewTolerances.PressureTolerance);
 
         // Then add up the costs based on the changes
         return temperatureChange * Constants.TOLERANCE_CHANGE_MP_PER_TEMPERATURE +
             temperatureToleranceChange * Constants.TOLERANCE_CHANGE_MP_PER_TEMPERATURE_TOLERANCE +
-            totalPressureChangeAverage * Constants.TOLERANCE_CHANGE_MP_PER_PRESSURE_STEP +
+            pressureLogScaleChange * Constants.TOLERANCE_CHANGE_MP_PER_PRESSURE_STEP +
             pressureToleranceChange * Constants.TOLERANCE_CHANGE_MP_PER_PRESSURE_TOLERANCE +
             oxygenChange * Constants.TOLERANCE_CHANGE_MP_PER_OXYGEN +
             uvChange * Constants.TOLERANCE_CHANGE_MP_PER_UV;

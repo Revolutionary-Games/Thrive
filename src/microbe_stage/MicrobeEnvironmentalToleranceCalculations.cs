@@ -34,15 +34,8 @@ public static class MicrobeEnvironmentalToleranceCalculations
     {
         var result = new ToleranceResult();
 
-        var resolvedTolerances = new ToleranceValues
-        {
-            PreferredTemperature = speciesTolerances.PreferredTemperature,
-            TemperatureTolerance = speciesTolerances.TemperatureTolerance,
-            PressureMinimum = speciesTolerances.PressureMinimum,
-            PressureMaximum = speciesTolerances.PressureMaximum,
-            OxygenResistance = speciesTolerances.OxygenResistance,
-            UVResistance = speciesTolerances.UVResistance,
-        };
+        var resolvedTolerances = default(ToleranceValues);
+        resolvedTolerances.CopyFrom(speciesTolerances);
 
         var noExtraEffects = resolvedTolerances;
 
@@ -50,8 +43,6 @@ public static class MicrobeEnvironmentalToleranceCalculations
 
         // Tolerances can't go below minimum values.
         // Otherwise, species adding hydrogenosomes in the vents can be too negatively protected against oxygen.
-        if (resolvedTolerances.PressureMinimum < 0)
-            resolvedTolerances.PressureMinimum = 0;
 
         if (resolvedTolerances.OxygenResistance < 0)
             resolvedTolerances.OxygenResistance = 0;
@@ -77,8 +68,7 @@ public static class MicrobeEnvironmentalToleranceCalculations
                 tolerances.TemperatureTolerance += organelleDefinition.ToleranceModifierTemperatureRange;
                 tolerances.OxygenResistance += organelleDefinition.ToleranceModifierOxygen;
                 tolerances.UVResistance += organelleDefinition.ToleranceModifierUV;
-                tolerances.PressureMinimum -= organelleDefinition.ToleranceModifierPressureRange;
-                tolerances.PressureMaximum += organelleDefinition.ToleranceModifierPressureRange;
+                tolerances.PressureTolerance += organelleDefinition.ToleranceModifierPressureRange;
             }
         }
     }
@@ -233,6 +223,16 @@ public static class MicrobeEnvironmentalToleranceCalculations
 #endif
 
         return result;
+    }
+
+    public static float PressureLogScaleToValue(float logValue)
+    {
+        return MathF.Pow(10, logValue / 20 + Constants.TOLERANCE_PRESSURE_LOG_SCALE_OFFSET);
+    }
+
+    public static float PressureValueToLogScale(float rawValue)
+    {
+        return (MathF.Log10(rawValue) - Constants.TOLERANCE_PRESSURE_LOG_SCALE_OFFSET) * 20;
     }
 
     private static void CalculateTolerancesInternal(in ToleranceValues speciesTolerances,
@@ -393,17 +393,22 @@ public static class MicrobeEnvironmentalToleranceCalculations
     {
         public float PreferredTemperature;
         public float TemperatureTolerance;
-        public float PressureMinimum;
-        public float PressureMaximum;
+        public float PreferredPressure;
+        public float PressureTolerance;
         public float OxygenResistance;
         public float UVResistance;
+
+        public float PressureMinimum => MathF.Max(PreferredPressure - PreferredPressure, 0);
+
+        public float PressureMaximum =>
+            MathF.Min(PreferredPressure + PreferredPressure, Constants.TOLERANCE_PRESSURE_MAX);
 
         public void CopyFrom(EnvironmentalTolerances tolerances)
         {
             PreferredTemperature = tolerances.PreferredTemperature;
             TemperatureTolerance = tolerances.TemperatureTolerance;
-            PressureMinimum = tolerances.PressureMinimum;
-            PressureMaximum = tolerances.PressureMaximum;
+            PreferredPressure = tolerances.PreferredPressure;
+            PressureTolerance = tolerances.PressureTolerance;
             OxygenResistance = tolerances.OxygenResistance;
             UVResistance = tolerances.UVResistance;
         }

@@ -23,8 +23,8 @@ public class EnvironmentalTolerances
     public float UVResistance;
     public float OxygenResistance;
 
-    public float PressureMinimum => Mathf.Max(PreferredPressure - PressureTolerance, 0);
-    public float PressureMaximum => Mathf.Min(PreferredPressure + PressureTolerance, Constants.TOLERANCE_PRESSURE_MAX);
+    public float PressureMinimum => MathF.Max(PreferredPressure - PressureTolerance, 0);
+    public float PressureMaximum => MathF.Min(PreferredPressure + PressureTolerance, Constants.TOLERANCE_PRESSURE_MAX);
 
     public static bool operator ==(EnvironmentalTolerances? left, EnvironmentalTolerances? right)
     {

@@ -99,59 +99,11 @@ public class ModifyEnvironmentalTolerance : IMutationStrategy<MicrobeSpecies>
         {
             if (score.PressureScore < 1 || Math.Abs(score.PerfectPressureAdjustment) > MathUtils.EPSILON)
             {
-                var maxChange = mp / Constants.TOLERANCE_CHANGE_MP_PER_PRESSURE_AUTO_EVO;
-
-                // Calculate in doubles as the pressure stuff needs many decimals
-                double change;
-
-                if (score.PerfectPressureAdjustment < 0)
-                {
-                    change = Math.Max(score.PerfectPressureAdjustment, -maxChange);
-                }
-                else
-                {
-                    change = Math.Min(score.PerfectPressureAdjustment, maxChange);
-                }
-
-                // These are adjusted in the same direction to keep the same range as before
-                newTolerances.PressureMinimum = Math.Max(newTolerances.PressureMinimum + (float)change, 0);
-                newTolerances.PressureMaximum = Math.Max(newTolerances.PressureMaximum + (float)change, 0);
-
-                mp -= (float)(change * Constants.TOLERANCE_CHANGE_MP_PER_PRESSURE_AUTO_EVO);
+                // TODO: Auto-evo MP calculation for preferred pressure goes here
             }
             else
             {
-                // Trying to perfect this, which is much harder than the other cases as the middle point also will
-                // change (potentially)
-                var changePotential = mp / Constants.TOLERANCE_CHANGE_MP_PER_PRESSURE_TOLERANCE;
-
-                // The top range needs to always go down, and the bottom range needs always to go up
-#if DEBUG
-                if (score.TemperatureRangeSizeAdjustment > 0)
-                {
-                    if (Debugger.IsAttached)
-                        Debugger.Break();
-                    throw new Exception("Temperature range size adjustment is not negative");
-                }
-#endif
-
-                // TODO: either split this more equally or consider if it should be the other way around
-
-                var halfAdjustment = score.PressureRangeSizeAdjustment * 0.5f;
-
-                var maxChange = Math.Min(changePotential, halfAdjustment);
-
-                // Recalculate change potential for the other part of the calculation
-                mp -= (float)(maxChange * Constants.TOLERANCE_CHANGE_MP_PER_PRESSURE_TOLERANCE);
-                changePotential = mp / Constants.TOLERANCE_CHANGE_MP_PER_PRESSURE_TOLERANCE;
-
-                newTolerances.PressureMaximum = (float)(newTolerances.PressureMaximum - maxChange);
-
-                var minChange = Math.Min(changePotential, halfAdjustment);
-
-                newTolerances.PressureMinimum = (float)(newTolerances.PressureMinimum + minChange);
-
-                mp -= (float)(minChange * Constants.TOLERANCE_CHANGE_MP_PER_PRESSURE_TOLERANCE);
+                // TODO: Auto-evo MP calculation for pressure range goes here
             }
 
             changes = true;

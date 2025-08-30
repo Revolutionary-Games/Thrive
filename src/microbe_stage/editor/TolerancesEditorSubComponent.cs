@@ -471,13 +471,13 @@ public partial class TolerancesEditorSubComponent : EditorComponentBase<ICellEdi
 
         reusableTolerances ??= new EnvironmentalTolerances();
         reusableTolerances.CopyFrom(CurrentTolerances);
-        reusableTolerances.PreferredPressure = value;
+        reusableTolerances.PreferredPressure = Calculations.PressureLogScaleToValue(value);
 
         automaticallyChanging = true;
 
         if (!TriggerChangeIfPossible())
         {
-            pressureSlider.Value = PressureValueToLogScale(CurrentTolerances.PreferredPressure);
+            pressureSlider.Value = Calculations.PressureValueToLogScale(CurrentTolerances.PreferredPressure);
         }
 
         automaticallyChanging = false;
@@ -496,25 +496,15 @@ public partial class TolerancesEditorSubComponent : EditorComponentBase<ICellEdi
 
         if (!TriggerChangeIfPossible())
         {
-            pressureToleranceRangeSlider.Value = PressureValueToLogScale(CurrentTolerances.PressureTolerance);
+            pressureToleranceRangeSlider.Value = CurrentTolerances.PressureTolerance;
         }
 
         automaticallyChanging = false;
     }
 
-    private float PressureLogScaleToValue(float logValue)
-    {
-        return MathF.Pow(10, logValue / 20 + Constants.TOLERANCE_PRESSURE_LOG_SCALE_OFFSET);
-    }
-
-    private float PressureValueToLogScale(float rawValue)
-    {
-        return (MathF.Log10(rawValue) - Constants.TOLERANCE_PRESSURE_LOG_SCALE_OFFSET) * 20;
-    }
-
     private void OnOxygenResistancePlusButtonPressed()
     {
-        // TODO: This and similar methods do not follow DRY at all, a common method has to be made
+        // TODO: This and similar methods do not follow DRY at all, a common method should be made
 
         if (automaticallyChanging)
             return;
@@ -730,6 +720,14 @@ public partial class TolerancesEditorSubComponent : EditorComponentBase<ICellEdi
             temperatureMinLabel.LabelSettings = originalTemperatureFont;
             temperatureMaxLabel.LabelSettings = originalTemperatureFont;
         }
+
+        // Pressure
+
+        var pressureToleranceWithOrganelles = CurrentTolerances.PressureTolerance + organelleModifiers.PressureTolerance;
+
+        temperatureOptimalDisplay.SetBoundPositions(CurrentTolerances.PreferredPressure, pressureToleranceWithOrganelles);
+        temperatureOptimalDisplay.UpdateMarker(patchPressure);
+
 
         // Oxygen Resistance
 
