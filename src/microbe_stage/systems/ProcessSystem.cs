@@ -897,7 +897,6 @@ public sealed class ProcessSystem : AEntitySetSystem<float>
         if (hasNucleus)
         {
             baseMovement *= Constants.NUCLEUS_MOVEMENT_COST_MODIFIER;
-
         }
 
         result.BaseMovement += baseMovement;
