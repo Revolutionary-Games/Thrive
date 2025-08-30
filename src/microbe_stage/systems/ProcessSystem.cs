@@ -899,7 +899,6 @@ public sealed class ProcessSystem : AEntitySetSystem<float>
             baseMovement *= Constants.NUCLEUS_MOVEMENT_COST_MODIFIER;
 
             movementATPConsumption -= result.Flagella * (1.0f - Constants.NUCLEUS_MOVEMENT_COST_MODIFIER);
-            result.Flagella *= Constants.NUCLEUS_MOVEMENT_COST_MODIFIER;
         }
 
         result.BaseMovement += baseMovement;
