@@ -558,7 +558,7 @@ public partial class Jukebox : Node
         if (random.NextFloat() <= Constants.CONTEXTUAL_ONLY_MUSIC_CHANCE)
         {
             var contextMusicOnly = list.GetTracksForContexts(activeContexts)
-                .Where(c => c is { ExclusiveToContexts: not null, PlayedOnce: false })
+                .Where(c => c.ExclusiveToContexts != null && !c.PlayedOnce)
                 .ToArray();
 
             if (contextMusicOnly.Length > 0)
