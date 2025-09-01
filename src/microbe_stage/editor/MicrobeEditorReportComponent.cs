@@ -566,7 +566,7 @@ public partial class MicrobeEditorReportComponent : EditorComponentBase<IEditorR
         }
 
         var temperature = SimulationParameters.Instance.GetCompoundDefinition(Compound.Temperature);
-        temperatureChart.Plot(Localization.Translate("YEARS"), temperature.Unit, 5, null, null, null, 5);
+        temperatureChart.Plot(Localization.Translate("YEARS"), temperature.Unit ?? "MISSING CONFIGURED UNIT", 5, null, null, null, 5);
 
         sunlightChart.Plot(Localization.Translate("YEARS"), percentageFormat + sunlight.Unit, 5, null, null, null, 5);
         atmosphericGassesChart.Plot(Localization.Translate("YEARS"), "%", 5,
