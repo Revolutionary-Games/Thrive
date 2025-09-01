@@ -303,22 +303,32 @@ public partial class CompoundAmount : HBoxContainer
             AddChild(amountLabel);
         }
 
+        var percentageFormat = Localization.Translate("PERCENTAGE_VALUE");
+        var unitFormat = Localization.Translate("VALUE_WITH_UNIT");
+
         string numberPart;
         if (!string.IsNullOrEmpty(compoundDefinition!.Unit) && ShowUnit && UsePercentageDisplay)
         {
-            numberPart = Localization.Translate("VALUE_WITH_UNIT")
-                .FormatSafe(Localization.Translate("PERCENTAGE_VALUE").FormatSafe(Math.Round(amount * 100, 1)), compoundDefinition.Unit);
+            numberPart = unitFormat.FormatSafe(percentageFormat
+                .FormatSafe(Math.Round(amount * 100, 1)), compoundDefinition.Unit);
         }
         else if (!string.IsNullOrEmpty(compoundDefinition!.Unit) && ShowUnit)
         {
-            // TODO: implement also the small value display here?
-
-            numberPart = Localization.Translate("VALUE_WITH_UNIT")
-                .FormatSafe(Math.Round(amount, decimals), compoundDefinition.Unit);
+            var absAmount = Math.Abs(amount);
+            if (showEvenSmallValues && absAmount is < 1 and > MINIMUM_DISPLAY_VALUE &&
+                absAmount < Math.Pow(10, -decimals))
+            {
+                numberPart = unitFormat.FormatSafe(
+                    GetFormatWithDecimals(CalculateNeededDecimalPlaces(absAmount)), compoundDefinition.Unit);
+            }
+            else
+            {
+                numberPart = unitFormat.FormatSafe(Math.Round(amount, decimals), compoundDefinition.Unit);
+            }
         }
         else if (UsePercentageDisplay)
         {
-            numberPart = Localization.Translate("PERCENTAGE_VALUE").FormatSafe(Math.Round(amount * 100, 1));
+            numberPart = percentageFormat.FormatSafe(Math.Round(amount * 100, 1));
         }
         else
         {
