@@ -134,12 +134,12 @@ public partial class PlanetStatistics : VBoxContainer
 
         var temperature = SimulationParameters.Instance.GetCompoundDefinition(Compound.Temperature);
         temperatureLevelLabel.Text =
-            unitFormat.FormatSafe(Math.Round(temperatureLevel)
-                .ToString(CultureInfo.CurrentCulture), temperature.Unit);
-        lightLevelLabel.Text =
-            unitFormat.FormatSafe(Math.Round(lightLevel)
-                .ToString(CultureInfo.CurrentCulture), "lx");
+            unitFormat.FormatSafe(Math.Round(temperatureLevel).ToString(CultureInfo.CurrentCulture), temperature.Unit);
 
+        var sunlight = SimulationParameters.Instance.GetCompoundDefinition(Compound.Sunlight);
+        lightLevelLabel.Text =
+            unitFormat.FormatSafe(percentageFormat.FormatSafe(
+                Math.Round(lightLevel).ToString(CultureInfo.CurrentCulture)), sunlight.Unit);
         carbonOxideLevelLabel.Text =
             percentageFormat.FormatSafe(Math.Round(carbonLevel, Constants.ATMOSPHERIC_COMPOUND_DISPLAY_DECIMALS));
         oxygenLevelLabel.Text =

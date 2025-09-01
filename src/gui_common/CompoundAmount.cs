@@ -304,7 +304,12 @@ public partial class CompoundAmount : HBoxContainer
         }
 
         string numberPart;
-        if (!string.IsNullOrEmpty(compoundDefinition!.Unit) && ShowUnit)
+        if (!string.IsNullOrEmpty(compoundDefinition!.Unit) && ShowUnit && UsePercentageDisplay)
+        {
+            numberPart = Localization.Translate("VALUE_WITH_UNIT")
+                .FormatSafe(Localization.Translate("PERCENTAGE_VALUE").FormatSafe(Math.Round(amount * 100, 1)), compoundDefinition.Unit);
+        }
+        else if (!string.IsNullOrEmpty(compoundDefinition!.Unit) && ShowUnit)
         {
             // TODO: implement also the small value display here?
 
