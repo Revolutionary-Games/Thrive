@@ -23,6 +23,7 @@ public partial class Membrane : MeshInstance3D
     private readonly StringName wigglynessParameterName = new("wigglyNess");
     private readonly StringName movementWigglynessParameterName = new("movementWigglyNess");
     private readonly StringName fadeParameterName = new("fade");
+    private readonly StringName turnParameterName = new("turn");
 
     [Export]
     private MeshInstance3D engulfAnimationMeshInstance = null!;
@@ -31,7 +32,13 @@ public partial class Membrane : MeshInstance3D
     private MeshInstance3D mucocystAnimationMeshInstance = null!;
 
     [Export]
+    private MeshInstance3D internalDecorationsMeshInstance = null!;
+
+    [Export]
     private MembraneWaterRipple waterRipple = null!;
+
+    [Export]
+    private ShaderMaterial? internalDecorationsMaterial;
 
 #pragma warning disable CA2213
     private Texture2D? albedoTexture;
@@ -50,6 +57,7 @@ public partial class Membrane : MeshInstance3D
     private float sizeWigglyNessDampeningFactor = 0.22f;
     private float movementWigglyNess = 1.0f;
     private float sizeMovementWigglyNessDampeningFactor = 0.32f;
+    private float turn;
     private double engulfFade;
 
     private bool mucocystEffectEnabled;
@@ -150,6 +158,26 @@ public partial class Membrane : MeshInstance3D
     }
 
     /// <summary>
+    ///   How much the cell is turning (difference between current rotation and desired rotation)
+    /// </summary>
+    public float Turn
+    {
+        get => turn;
+        set
+        {
+            value = Math.Clamp(value, -1.0f, 1.0f);
+            if (value == Turn)
+                return;
+
+            turn = value;
+
+            Dirty = true;
+
+            ApplyTurn(value);
+        }
+    }
+
+    /// <summary>
     ///   Quick radius value for the membrane size
     /// </summary>
     public float EncompassingCircleRadius => membraneData.Radius;
@@ -187,6 +215,7 @@ public partial class Membrane : MeshInstance3D
 
         var settings = Settings.Instance;
         settings.MicrobeRippleEffect.OnChanged += OnRippleEffectValueChanges;
+        settings.MicrobeMembraneTurnBend.OnChanged += OnMembraneTurnValueChanges;
         OnRippleEffectValueChanges(settings.MicrobeRippleEffect);
     }
 
@@ -204,6 +233,7 @@ public partial class Membrane : MeshInstance3D
 
         Dirty = false;
         ApplyAllMaterialParameters();
+
         waterRipple.EffectRadius = EncompassingCircleRadius;
     }
 
@@ -338,11 +368,20 @@ public partial class Membrane : MeshInstance3D
 
         mucocystAnimationMeshInstance.Mesh = membraneData.GeneratedEngulfMesh;
         mucocystAnimationMeshInstance.MaterialOverride = MucocystShaderMaterial;
+
+        internalDecorationsMeshInstance.Mesh = membraneData.GeneratedFlatMesh;
+        internalDecorationsMeshInstance.MaterialOverride = internalDecorationsMaterial;
     }
 
     private void OnRippleEffectValueChanges(bool enabled)
     {
         waterRipple.EnableEffect = enabled;
+    }
+
+    private void OnMembraneTurnValueChanges(bool enabled)
+    {
+        if (!enabled)
+            ApplyTurn(0);
     }
 
     private void ApplyAllMaterialParameters()
@@ -351,12 +390,16 @@ public partial class Membrane : MeshInstance3D
         ApplyMovementWiggly();
         ApplyHealth();
         ApplyTextures();
+        ApplyTurn(Turn);
     }
 
     private void ApplyWiggly()
     {
-        if (MembraneShaderMaterial == null || EngulfShaderMaterial == null || MucocystShaderMaterial == null)
+        if (MembraneShaderMaterial == null || EngulfShaderMaterial == null || MucocystShaderMaterial == null
+            || internalDecorationsMaterial == null)
+        {
             return;
+        }
 
         float wigglyNessToApply =
             WigglyNess / (EncompassingCircleRadius * sizeWigglyNessDampeningFactor);
@@ -366,12 +409,17 @@ public partial class Membrane : MeshInstance3D
         MembraneShaderMaterial.SetShaderParameter(wigglynessParameterName, finalWiggly);
         EngulfShaderMaterial.SetShaderParameter(wigglynessParameterName, finalWiggly);
         MucocystShaderMaterial.SetShaderParameter(wigglynessParameterName, finalWiggly);
+
+        internalDecorationsMaterial.SetShaderParameter(wigglynessParameterName, finalWiggly);
     }
 
     private void ApplyMovementWiggly()
     {
-        if (MembraneShaderMaterial == null || EngulfShaderMaterial == null || MucocystShaderMaterial == null)
+        if (MembraneShaderMaterial == null || EngulfShaderMaterial == null || MucocystShaderMaterial == null
+            || internalDecorationsMaterial == null)
+        {
             return;
+        }
 
         float wigglyNessToApply =
             MovementWigglyNess / (EncompassingCircleRadius * sizeMovementWigglyNessDampeningFactor);
@@ -381,6 +429,23 @@ public partial class Membrane : MeshInstance3D
         MembraneShaderMaterial.SetShaderParameter(movementWigglynessParameterName, finalWiggly);
         EngulfShaderMaterial.SetShaderParameter(movementWigglynessParameterName, finalWiggly);
         MucocystShaderMaterial.SetShaderParameter(movementWigglynessParameterName, finalWiggly);
+
+        internalDecorationsMaterial.SetShaderParameter(movementWigglynessParameterName, finalWiggly);
+    }
+
+    private void ApplyTurn(float turn)
+    {
+        if (MembraneShaderMaterial == null || EngulfShaderMaterial == null || MucocystShaderMaterial == null
+            || internalDecorationsMaterial == null)
+        {
+            return;
+        }
+
+        MembraneShaderMaterial.SetShaderParameter(turnParameterName, turn);
+        EngulfShaderMaterial.SetShaderParameter(turnParameterName, turn);
+        MucocystShaderMaterial.SetShaderParameter(turnParameterName, turn);
+
+        internalDecorationsMaterial.SetShaderParameter(turnParameterName, turn);
     }
 
     private void ApplyHealth()
