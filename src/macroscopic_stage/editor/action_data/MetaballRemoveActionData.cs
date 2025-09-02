@@ -121,12 +121,12 @@ public class MetaballRemoveActionData<TMetaball> : EditorCombinableActionData
         {
             var other = history[i];
 
-            // If this metaball got placed in this session on the same position
+            // If this metaball got placed in this session (on the same position)
             if (other is MetaballPlacementActionData<TMetaball> placementActionData &&
                 placementActionData.PlacedMetaball.MatchesDefinition(RemovedMetaball))
             {
                 // Deleting a placed metaball refunds it
-                cost = Math.Min(-other.GetCalculatedCost(), cost);
+                cost -= other.GetCalculatedCost() + CalculateBaseCostInternal();
                 continue;
             }
 
@@ -137,6 +137,15 @@ public class MetaballRemoveActionData<TMetaball> : EditorCombinableActionData
                 moveActionData.NewParent == Parent)
             {
                 cost -= moveActionData.GetCalculatedCost();
+                continue;
+            }
+
+            // If this metaball got resized in this session, refund that
+            if (other is MetaballResizeActionData<TMetaball> resizeActionData &&
+                resizeActionData.ResizedMetaball.MatchesDefinition(RemovedMetaball) &&
+                Math.Abs(resizeActionData.NewSize - RemovedMetaball.Size) < MathUtils.EPSILON)
+            {
+                cost -= resizeActionData.GetCalculatedCost();
             }
         }
 
