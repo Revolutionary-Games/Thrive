@@ -27,6 +27,11 @@ public class EditorActionHistory<TAction> : ActionHistory<TAction>
     {
         double sum = 0;
 
+        // TODO: there's a potential pitfall here in that if multiple things are in actions they cannot see each other
+        // and thus their total cost once applied may not be the same as calculated here.
+        // A proper solution would need to build a temporary list of all the data and insert the actions into it and
+        // only then calculate the resulting change in cost.
+
         // TODO: somehow avoid the enumerator allocation here
         foreach (var action in actions)
             sum += WhatWouldActionCost(action);
