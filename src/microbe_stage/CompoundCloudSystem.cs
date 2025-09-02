@@ -250,10 +250,8 @@ public partial class CompoundCloudSystem : Node, IReadonlyCompoundClouds, ISaveL
     ///   Absorbs compounds from clouds into a bag
     /// </summary>
     public void AbsorbCompounds(Vector3 position, float radius, CompoundBag storage,
-        Dictionary<Compound, float>? totals, float delta, float rate, out bool hydrogenSulfideAbsorbed)
+        Dictionary<Compound, float>? totals, float delta, float rate)
     {
-        hydrogenSulfideAbsorbed = false;
-
         // It might be fine to remove this check but this was in the old code
         if (radius < 1.0f)
         {
@@ -307,7 +305,7 @@ public partial class CompoundCloudSystem : Node, IReadonlyCompoundClouds, ISaveL
                     if (x < cloud.Size && y < cloud.Size)
                     {
                         // Absorb all compounds in the cloud
-                        cloud.AbsorbCompounds(x, y, storage, totals, delta, rate, ref hydrogenSulfideAbsorbed);
+                        cloud.AbsorbCompounds(x, y, storage, totals, delta, rate);
                     }
                 }
             }

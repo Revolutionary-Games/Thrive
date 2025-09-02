@@ -19,9 +19,6 @@ public sealed class CompoundAbsorptionSystem : AEntitySetSystem<float>
 {
     private readonly CompoundCloudSystem compoundCloudSystem;
 
-    private bool hydrogenSulfideDamageTrigger;
-    private float elapsedSinceTrigger;
-
     public CompoundAbsorptionSystem(CompoundCloudSystem compoundCloudSystem, World world, IParallelRunner runner) :
         base(world, runner, Constants.SYSTEM_NORMAL_ENTITIES_PER_THREAD)
     {
@@ -31,17 +28,6 @@ public sealed class CompoundAbsorptionSystem : AEntitySetSystem<float>
     protected override void PreUpdate(float delta)
     {
         base.PreUpdate(delta);
-        elapsedSinceTrigger += delta;
-
-        if (elapsedSinceTrigger >= Constants.HYDROGEN_SULFIDE_DAMAGE_INTERVAL)
-        {
-            hydrogenSulfideDamageTrigger = true;
-            elapsedSinceTrigger = 0.0f;
-        }
-        else
-        {
-            hydrogenSulfideDamageTrigger = false;
-        }
     }
 
     protected override void Update(float delta, in Entity entity)
@@ -77,17 +63,7 @@ public sealed class CompoundAbsorptionSystem : AEntitySetSystem<float>
         ref var position = ref entity.Get<WorldPosition>();
 
         compoundCloudSystem.AbsorbCompounds(position.Position, absorber.AbsorbRadius, storage.Compounds,
-            absorber.TotalAbsorbedCompounds, delta, absorber.AbsorptionRatio, out bool hydrogenSulfideAbsorbed);
-
-        if (hydrogenSulfideDamageTrigger && hydrogenSulfideAbsorbed
-            && !entity.Get<OrganelleContainer>().HydrogenSulfideProtection)
-        {
-            entity.Get<Health>().DealMicrobeDamage(ref entity.Get<CellProperties>(), Constants.HYDROGEN_SULFIDE_DAMAGE,
-                "hydrogenSulfide", HealthHelpers.GetInstantKillProtectionThreshold(entity));
-
-            entity.SendNoticeIfPossible(() =>
-                new SimpleHUDMessage(Localization.Translate("NOTICE_HYDROGEN_SULFIDE_DAMAGE"), DisplayDuration.Short));
-        }
+            absorber.TotalAbsorbedCompounds, delta, absorber.AbsorptionRatio);
 
         // Player infinite compounds cheat, doesn't *really* belong here but this is probably the best place to put
         // this instead of creating a dedicated cheats handling system
