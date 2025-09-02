@@ -1,5 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 
 [JSONAlwaysDynamicType]
 public abstract class HexRemoveActionData<THex, TContext> : EditorCombinableActionData<TContext>
@@ -26,38 +25,26 @@ public abstract class HexRemoveActionData<THex, TContext> : EditorCombinableActi
     {
         var cost = CalculateBaseCostInternal();
         bool moved = false;
-        bool placed = false;
 
         var count = history.Count;
         for (int i = 0; i < insertPosition && i < count; ++i)
         {
             var other = history[i];
 
-            // If this hex got placed in this session on the same position
+            // If this hex got placed in this session
             if (other is HexPlacementActionData<THex, TContext> placementActionData &&
                 placementActionData.PlacedHex.MatchesDefinition(RemovedHex) && MatchesContext(placementActionData))
             {
-                // If this hex got placed in the same position
-                if (placementActionData.Location == Location)
-                {
-                    cost = Math.Min(-other.GetCalculatedCost(), cost);
-                }
-                else
-                {
-                    // Removing a hex and then placing it is a move operation
-                    cost = Math.Min(-other.GetCalculatedCost() + Constants.ORGANELLE_MOVE_COST, cost);
-                }
-
-                placed = true;
+                cost -= other.GetCalculatedCost() + CalculateBaseCostInternal();
                 continue;
             }
 
-            // If this hex got moved in this session
+            // If this hex got moved in this session, refund the move cost
             if (other is HexMoveActionData<THex, TContext> moveActionData &&
                 moveActionData.MovedHex.MatchesDefinition(RemovedHex) &&
                 moveActionData.NewLocation == Location && MatchesContext(moveActionData))
             {
-                if (!moved && !placed)
+                if (!moved)
                 {
                     moved = true;
                     cost -= other.GetCalculatedCost();

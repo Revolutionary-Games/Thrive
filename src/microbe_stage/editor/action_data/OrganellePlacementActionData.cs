@@ -26,10 +26,10 @@ public class OrganellePlacementActionData : HexPlacementActionData<OrganelleTemp
         {
             var other = history[i];
 
-            if (other is OrganelleMoveActionData moveActionData &&
-                moveActionData.MovedHex.Definition == PlacedHex.Definition && MatchesContext(moveActionData))
+            if (other is OrganelleMoveActionData moveActionData && MatchesContext(moveActionData))
             {
-                if (moveActionData.OldLocation == Location ||
+                if ((moveActionData.MovedHex.Definition == PlacedHex.Definition &&
+                        moveActionData.OldLocation == Location) ||
                     ReplacedCytoplasm?.Contains(moveActionData.MovedHex) == true)
                 {
                     cost = Math.Min(-other.GetCalculatedCost(), cost);
