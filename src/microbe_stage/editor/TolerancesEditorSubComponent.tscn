@@ -78,6 +78,8 @@ badValueFont = ExtResource("3_q5r3n")
 perfectValueFont = ExtResource("4_15qmx")
 modifierBadFont = ExtResource("3_q5r3n")
 modifierGoodFont = ExtResource("4_15qmx")
+optimalDisplayBadColor = Color(1, 0, 0, 1)
+optimalDisplayGoodColor = Color(0, 1, 0, 1)
 
 [node name="Temperature" type="VBoxContainer" parent="."]
 layout_mode = 2
@@ -158,6 +160,7 @@ layout_mode = 2
 [node name="TemperatureOptimalDisplay" parent="Temperature/OptimalDisplayContainer" instance=ExtResource("9_xmghy")]
 layout_mode = 2
 size_flags_horizontal = 3
+min_value = -10.0
 
 [node name="Spacer2" type="Control" parent="Temperature/OptimalDisplayContainer"]
 custom_minimum_size = Vector2(8, 0)
@@ -169,6 +172,7 @@ mouse_default_cursor_shape = 10
 theme_override_icons/grabber = SubResource("GradientTexture2D_n6u17")
 theme_override_icons/grabber_highlight = SubResource("GradientTexture2D_evsrs")
 theme_override_styles/slider = SubResource("StyleBoxEmpty_evsrs")
+min_value = -10.0
 value = 50.0
 
 [node name="Spacer3" type="Control" parent="Temperature"]

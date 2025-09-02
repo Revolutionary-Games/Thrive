@@ -1,4 +1,4 @@
-[gd_scene load_steps=9 format=3 uid="uid://duf1lf5lp4v5p"]
+[gd_scene load_steps=10 format=3 uid="uid://duf1lf5lp4v5p"]
 
 [ext_resource type="Script" uid="uid://dnh1i83gmsmxd" path="res://src/microbe_stage/editor/ToleranceOptimalDisplay.cs" id="1_nbtwk"]
 [ext_resource type="Theme" uid="uid://b4cx0o110g4b6" path="res://src/gui_common/thrive_theme.tres" id="1_xdmne"]
@@ -14,8 +14,9 @@ gradient = SubResource("Gradient_xmghy")
 width = 1
 height = 1
 
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_xmghy"]
-bg_color = Color(0.43917, 0.61944, 0.61944, 1)
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_xdmne"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_telfv"]
 
 [sub_resource type="Gradient" id="Gradient_evsrs"]
 interpolation_mode = 1
@@ -34,7 +35,8 @@ offset_bottom = 16.0
 grow_horizontal = 2
 theme = ExtResource("1_xdmne")
 theme_override_icons/grabber_disabled = SubResource("GradientTexture2D_3r1ho")
-theme_override_styles/grabber_area = SubResource("StyleBoxFlat_xmghy")
+theme_override_styles/slider = SubResource("StyleBoxEmpty_xdmne")
+theme_override_styles/grabber_area = SubResource("StyleBoxEmpty_telfv")
 value = 60.0
 editable = false
 scrollable = false
