@@ -24,7 +24,7 @@ public partial class NewGameSettings : ControlWithInput
     private PanelContainer basicOptions = null!;
 
     [Export]
-    private PanelContainer advancedOptions = null!;
+    private HBoxContainer advancedOptionsContainer = null!;
 
     [Export]
     private TabButtons tabButtons = null!;
@@ -148,6 +148,15 @@ public partial class NewGameSettings : ControlWithInput
     [Export]
     private PlanetSettings planetSettings = null!;
 
+    [Export]
+    private Control planetStatisticsSpacer = null!;
+
+    [Export]
+    private PanelContainer planetStatisticsContainer = null!;
+
+    [Export]
+    private PlanetStatistics planetStatistics = null!;
+
     // Misc controls
     [Export]
     private CheckButton includeMulticellularButton = null!;
@@ -259,6 +268,8 @@ public partial class NewGameSettings : ControlWithInput
             backButton.Visible = false;
             checkOptionsMenuAdviceContainer.Visible = false;
         }
+
+        OnPlanetSettingsChanged();
     }
 
     [RunOnKeyDown("ui_cancel", Priority = Constants.SUBMENU_CANCEL_PRIORITY)]
@@ -333,12 +344,20 @@ public partial class NewGameSettings : ControlWithInput
         experimentalFeatures.ButtonPressed = settings.ExperimentalFeatures;
         OnExperimentalFeaturesChanged(settings.ExperimentalFeatures);
 
-        planetSettings.SetWorldSize((int)settings.WorldSize);
-        planetSettings.SetWorldTemperature((int)settings.WorldTemperature);
-        planetSettings.SetWorldSeaLevel((int)settings.WorldOceanicCoverage);
-        planetSettings.SetWorldGeologicalActivity((int)settings.GeologicalActivity);
-        planetSettings.SetWorldClimateInstability((int)settings.ClimateInstability);
-        planetSettings.SetLifeOrigin((int)settings.Origin);
+        planetSettings.SetWorldSize(settings.WorldSize);
+        planetSettings.SetWorldTemperature(settings.WorldTemperature);
+        planetSettings.SetOceanicCoverage(settings.WorldOceanicCoverage);
+        planetSettings.SetWorldGeologicalActivity(settings.GeologicalActivity);
+        planetSettings.SetWorldClimateInstability(settings.ClimateInstability);
+
+        planetSettings.SetHydrogenSulfideLevel(settings.HydrogenSulfideLevel);
+        planetSettings.SetGlucoseLevel(settings.GlucoseLevel);
+        planetSettings.SetIronLevel(settings.IronLevel);
+        planetSettings.SetAmmoniaLevel(settings.AmmoniaLevel);
+        planetSettings.SetPhosphatesLevel(settings.PhosphatesLevel);
+        planetSettings.SetRadiationLevel(settings.RadiationLevel);
+
+        planetSettings.SetLifeOrigin(settings.Origin);
         planetSettings.SetDayNightCycle(settings.DayNightCycleEnabled);
         planetSettings.SetDayLength(settings.DayLength);
         planetSettings.SetLawkOnly(settings.LAWK);
@@ -408,6 +427,9 @@ public partial class NewGameSettings : ControlWithInput
         planetTab.Hide();
         miscTab.Hide();
 
+        planetStatisticsSpacer.Hide();
+        planetStatisticsContainer.Hide();
+
         switch (selection)
         {
             case SelectedOptionsTab.Difficulty:
@@ -417,6 +439,8 @@ public partial class NewGameSettings : ControlWithInput
             case SelectedOptionsTab.Planet:
                 planetTab.Show();
                 planetTabButton.ButtonPressed = true;
+                planetStatisticsSpacer.Show();
+                planetStatisticsContainer.Show();
                 break;
             case SelectedOptionsTab.Miscellaneous:
                 miscTab.Show();
@@ -431,7 +455,7 @@ public partial class NewGameSettings : ControlWithInput
         selectedOptionsTab = selection;
     }
 
-    private void StartGame()
+    private WorldGenerationSettings GetGameSettings()
     {
         var settings = new WorldGenerationSettings();
         var planetGenerationSettings = planetSettings.GetPlanetSettings();
@@ -476,11 +500,24 @@ public partial class NewGameSettings : ControlWithInput
         settings.WorldOceanicCoverage = planetGenerationSettings.WorldOceanicCoverage;
         settings.GeologicalActivity = planetGenerationSettings.GeologicalActivity;
         settings.ClimateInstability = planetGenerationSettings.ClimateInstability;
+        settings.HydrogenSulfideLevel = planetGenerationSettings.HydrogenSulfideLevel;
+        settings.GlucoseLevel = planetGenerationSettings.GlucoseLevel;
+        settings.IronLevel = planetGenerationSettings.IronLevel;
+        settings.AmmoniaLevel = planetGenerationSettings.AmmoniaLevel;
+        settings.PhosphatesLevel = planetGenerationSettings.PhosphatesLevel;
+        settings.RadiationLevel = planetGenerationSettings.RadiationLevel;
         settings.Origin = planetGenerationSettings.Origin;
         settings.DayNightCycleEnabled = planetGenerationSettings.DayNightCycleEnabled;
         settings.DayLength = planetGenerationSettings.DayLength;
         settings.LAWK = planetGenerationSettings.LAWK;
         settings.Seed = planetGenerationSettings.Seed;
+
+        return settings;
+    }
+
+    private void StartGame()
+    {
+        var settings = GetGameSettings();
 
         // Stop music for the video (stop is used instead of pause to stop the menu music playing a bit after the video
         // before the stage music starts)
@@ -557,7 +594,7 @@ public partial class NewGameSettings : ControlWithInput
         basicOptions.Visible = !advanced;
         backButton.Visible = !advanced && !Descending;
         basicButton.Visible = advanced;
-        advancedOptions.Visible = advanced;
+        advancedOptionsContainer.Visible = advanced;
         tabButtons.Visible = advanced;
     }
 
@@ -808,9 +845,9 @@ public partial class NewGameSettings : ControlWithInput
         UpdateSelectedDifficultyPresetControl();
     }
 
-    private void OnLifeOriginSelected(int index)
+    private void OnLifeOriginSelected(WorldGenerationSettings.LifeOrigin value)
     {
-        planetSettings.SetLifeOrigin(index);
+        planetSettings.SetLifeOrigin(value);
     }
 
     // This and a few other callbacks are not currently needed to detect anything, but I left them in, in case we
@@ -899,5 +936,11 @@ public partial class NewGameSettings : ControlWithInput
     {
         experimentalWarning.Visible = enabled;
         experimentalExplanation.Visible = !enabled;
+    }
+
+    private void OnPlanetSettingsChanged()
+    {
+        var newGame = GameProperties.StartNewMicrobeGame(GetGameSettings());
+        planetStatistics.UpdateStatistics(newGame.GameWorld.Map);
     }
 }

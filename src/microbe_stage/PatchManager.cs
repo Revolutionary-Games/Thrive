@@ -349,7 +349,7 @@ public class PatchManager : IChildPropertiesLoadCallback
 
         worldLight.LightColor = biome.Sunlight.Colour;
         worldLight.LightEnergy = biome.Sunlight.Energy * lightLevel;
-        worldLight.LightSpecular = biome.Sunlight.Specular;
+        worldLight.LightSpecular = biome.Sunlight.Specular * lightLevel;
     }
 
     private void UnmarkAllSpawners()

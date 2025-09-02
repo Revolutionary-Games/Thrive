@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2025-08-25 19:09+0300\n"
+"POT-Creation-Date: 2025-08-29 14:14+0300\n"
 "PO-Revision-Date: 2025-08-08 14:30+0000\n"
 "Last-Translator: Anonymous <noreply@weblate.org>\n"
 "Language-Team: Bulgarian <https://translate.revolutionarygamesstudio.com/projects/thrive/thrive-game/bg/>\n"
@@ -200,6 +200,10 @@ msgstr "Амоняк"
 
 #, fuzzy
 msgid "AMMONIA_COST"
+msgstr "Амоняк"
+
+#, fuzzy
+msgid "AMMONIA_LEVELS"
 msgstr "Амоняк"
 
 msgid "AMOUNT_OF_AUTOSAVE_TO_KEEP"
@@ -423,6 +427,21 @@ msgstr ""
 
 msgid "AVAILABLE_MODS"
 msgstr "Налични"
+
+msgid "AVERAGE_SURFACE_CARBON_DIOXIDE_LEVEL"
+msgstr ""
+
+msgid "AVERAGE_SURFACE_LIGHT_LEVEL"
+msgstr ""
+
+msgid "AVERAGE_SURFACE_NITROGEN_LEVEL"
+msgstr ""
+
+msgid "AVERAGE_SURFACE_OTHER_LEVEL"
+msgstr ""
+
+msgid "AVERAGE_SURFACE_OXYGEN_LEVEL"
+msgstr ""
 
 msgid "AWAKENING_STAGE"
 msgstr "Пробуждане"
@@ -1067,6 +1086,25 @@ msgstr "Превключване на химичните съединения"
 #, fuzzy
 msgid "COMPOUND_HANDLE_TOP_UP_ON_CHANGE"
 msgstr "Гъстота на облаците"
+
+#, fuzzy
+msgid "COMPOUND_LEVEL_AVERAGE"
+msgstr "Средно"
+
+#, fuzzy
+msgid "COMPOUND_LEVEL_HIGH"
+msgstr "Баланс на химичните съединения"
+
+#, fuzzy
+msgid "COMPOUND_LEVEL_LOW"
+msgstr "Облаци"
+
+msgid "COMPOUND_LEVEL_VERY_HIGH"
+msgstr ""
+
+#, fuzzy
+msgid "COMPOUND_LEVEL_VERY_LOW"
+msgstr "Баланс на химичните съединения"
 
 #, fuzzy
 msgid "COMPOUND_STORAGE_AMOUNT_DOES_NOT_LAST_NIGHT"
@@ -1981,6 +2019,15 @@ msgstr ""
 "За да преминете към следващия раздел, натиснете бутона „НАПРЕД“, който се намира долу вдясно."
 
 #, fuzzy
+msgid "EDITOR_TUTORIAL_MICROBE_EDITOR_BINDING_AGENTS"
+msgstr ""
+"Това е клетъчният редактор, тук може да добавяте или премахвате органели от Вашите създания, чрез наличните [b]мутационни точки[/b] (МТ) [thrive:icon]MP[/thrive:icon]. Всяко поколение разполага със [b]100 MT[/b] [thrive:icon]MP[/thrive:icon].\n"
+"\n"
+"Шестоъгълникът от цитоплазма в центъра на екрана е Вашата [b]клетка[/b].\n"
+"\n"
+"За да продължите, изберете органел от панела вляво. След това, натиснете с мишката до шестоъгълника за да го добавите към Вашето създание. Може да завъртите органелите чрез натискане на [thrive:input]e_rotate_left[/thrive:input] или [thrive:input]e_rotate_right[/thrive:input]."
+
+#, fuzzy
 msgid "EDITOR_TUTORIAL_MICROBE_EDITOR_NUCLEUS"
 msgstr ""
 "Това е клетъчният редактор, тук може да добавяте или премахвате органели от Вашите създания, чрез наличните [b]мутационни точки[/b] (МТ) [thrive:icon]MP[/thrive:icon]. Всяко поколение разполага със [b]100 MT[/b] [thrive:icon]MP[/thrive:icon].\n"
@@ -2586,10 +2633,6 @@ msgstr "Натиснете бутона „Отмяна“ в редактора
 msgid "GENERAL_LOADING_TIP_7"
 msgstr "Натиснете бутона „Отмяна“ в редактора, ако допуснете грешка"
 
-#, fuzzy
-msgid "GENERATE_BUTTON"
-msgstr "Поколение"
-
 msgid "GENERATE_POSITIVE_GLUCOSE_PHOTOSYNTHESIS"
 msgstr ""
 
@@ -2658,6 +2701,10 @@ msgstr "Глюкоза"
 
 msgid "GLUCOSE_CONCENTRATIONS_DRASTICALLY_DROPPED"
 msgstr "Концентрацията на глюкоза се понижи драстично!"
+
+#, fuzzy
+msgid "GLUCOSE_LEVEL"
+msgstr "{0}-{1} м. под морското равнище"
 
 msgid "GLYCOLYSIS"
 msgstr "Гликолиза"
@@ -2795,6 +2842,10 @@ msgid "HYDROGENOSOME_PROCESSES_DESCRIPTION"
 msgstr "Превръща [thrive:compound type=\"atp\"]АТФ[/thrive:compound] в [thrive:compound type=\"ammonia\"]амоняк[/thrive:compound]. Количеството зависи от концентрацията на [thrive:compound type=\"nitrogen\"]азот[/thrive:compound] в околната среда."
 
 msgid "HYDROGEN_SULFIDE"
+msgstr "Сероводород"
+
+#, fuzzy
+msgid "HYDROGEN_SULFIDE_LEVELS"
 msgstr "Сероводород"
 
 #, fuzzy
@@ -3040,6 +3091,9 @@ msgstr ""
 
 msgid "IRON"
 msgstr "Желязо"
+
+msgid "IRON_LEVELS"
+msgstr ""
 
 #, fuzzy
 msgid "IRON_OXIDATION"
@@ -4956,6 +5010,10 @@ msgid "PAST_DEVELOPERS"
 msgstr "Бивши разработчици"
 
 #, fuzzy
+msgid "PATCHES_NUMBER"
+msgstr "{0} — {1}"
+
+#, fuzzy
 msgid "PATCH_COLON"
 msgstr "Процъфтява:"
 
@@ -5063,6 +5121,10 @@ msgstr "Фосфат"
 msgid "PHOSPHATES_COST"
 msgstr "Фосфат"
 
+#, fuzzy
+msgid "PHOSPHATES_LEVELS"
+msgstr "Фосфат"
+
 msgid "PHOTOSYNTHESIS"
 msgstr "Фотосинтеза"
 
@@ -5092,6 +5154,10 @@ msgstr ""
 
 msgid "PLANET_RANDOM_SEED"
 msgstr "Произволен идентификатор на планетата"
+
+#, fuzzy
+msgid "PLANET_STATISTICS"
+msgstr "Статистика"
 
 #, fuzzy
 msgid "PLAYER"
@@ -5248,6 +5314,10 @@ msgid "RADIATION"
 msgstr "Аеробно дишане"
 
 #, fuzzy
+msgid "RADIATION_LEVELS"
+msgstr "Аеробно дишане"
+
+#, fuzzy
 msgid "RADIOACTIVE_CHUNK"
 msgstr "Голям железен фрагмент"
 
@@ -5301,6 +5371,10 @@ msgstr "Опресняване"
 #, fuzzy
 msgid "REGENERATE_BUTTON"
 msgstr "Аксон"
+
+#, fuzzy
+msgid "REGIONS_NUMBER"
+msgstr "Идентификационен №"
 
 #, fuzzy
 msgid "RENDER_SCALE"
@@ -5766,6 +5840,10 @@ msgstr "Отваряне на ръководството"
 #, fuzzy
 msgid "SHOW_ITEM_COORDINATES"
 msgstr "Показване на упътването"
+
+#, fuzzy
+msgid "SHOW_MAP"
+msgstr "Отваряне на ръководството"
 
 msgid "SHOW_NEW_PATCH_NOTES"
 msgstr "Бележки към изданието"
@@ -9387,6 +9465,10 @@ msgstr "Приближаване"
 
 msgid "ZOOM_OUT"
 msgstr "Отдалечаване"
+
+#, fuzzy
+#~ msgid "GENERATE_BUTTON"
+#~ msgstr "Поколение"
 
 #, fuzzy
 #~ msgid "CELL_TYPE_BUTTON_ATP_CONSUMPTION"

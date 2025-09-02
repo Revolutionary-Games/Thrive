@@ -117,5 +117,7 @@ void fragment(){
     ALBEDO = final.rgb;
     ALPHA = fresnel(3.0, adjustedNormals, adjustedView) * round(cutoff) * min(transparencyTex.a * (transparencyTextureFactor + textureAlphaModified), 2.0);
 	EMISSION = final.rgb * 0.3 * ALPHA;
-    ROUGHNESS = 0.7f;
+    METALLIC = 0.0f;
+    ROUGHNESS = 0.5f;
+    SPECULAR = 1.0f;
 }

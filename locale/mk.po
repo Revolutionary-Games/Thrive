@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Thrive VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2025-08-25 19:09+0300\n"
+"POT-Creation-Date: 2025-08-29 14:14+0300\n"
 "PO-Revision-Date: 2023-09-15 06:55+0000\n"
 "Last-Translator: Kristijan Miracevski <mircevskihristijan30@gmail.com>\n"
 "Language-Team: Macedonian <https://translate.revolutionarygamesstudio.com/projects/thrive/thrive-game/mk/>\n"
@@ -197,6 +197,9 @@ msgid "AMMONIA"
 msgstr ""
 
 msgid "AMMONIA_COST"
+msgstr ""
+
+msgid "AMMONIA_LEVELS"
 msgstr ""
 
 msgid "AMOUNT_OF_AUTOSAVE_TO_KEEP"
@@ -401,6 +404,21 @@ msgid "AVAILABLE_CONSTRUCTION_PROJECTS"
 msgstr ""
 
 msgid "AVAILABLE_MODS"
+msgstr ""
+
+msgid "AVERAGE_SURFACE_CARBON_DIOXIDE_LEVEL"
+msgstr ""
+
+msgid "AVERAGE_SURFACE_LIGHT_LEVEL"
+msgstr ""
+
+msgid "AVERAGE_SURFACE_NITROGEN_LEVEL"
+msgstr ""
+
+msgid "AVERAGE_SURFACE_OTHER_LEVEL"
+msgstr ""
+
+msgid "AVERAGE_SURFACE_OXYGEN_LEVEL"
 msgstr ""
 
 msgid "AWAKENING_STAGE"
@@ -989,6 +1007,25 @@ msgstr "Префрлете се на фазата на будење. Доста�
 
 msgid "COMPOUND_HANDLE_TOP_UP_ON_CHANGE"
 msgstr ""
+
+#, fuzzy
+msgid "COMPOUND_LEVEL_AVERAGE"
+msgstr "Префрлете се на фазата на будење. Достапно откако ќе имате доволно мозочна моќ (тип на ткиво со аксони)."
+
+#, fuzzy
+msgid "COMPOUND_LEVEL_HIGH"
+msgstr "Префрлете се на фазата на будење. Достапно откако ќе имате доволно мозочна моќ (тип на ткиво со аксони)."
+
+#, fuzzy
+msgid "COMPOUND_LEVEL_LOW"
+msgstr "Префрлете се на фазата на будење. Достапно откако ќе имате доволно мозочна моќ (тип на ткиво со аксони)."
+
+msgid "COMPOUND_LEVEL_VERY_HIGH"
+msgstr ""
+
+#, fuzzy
+msgid "COMPOUND_LEVEL_VERY_LOW"
+msgstr "Префрлете се на фазата на будење. Достапно откако ќе имате доволно мозочна моќ (тип на ткиво со аксони)."
 
 msgid "COMPOUND_STORAGE_AMOUNT_DOES_NOT_LAST_NIGHT"
 msgstr ""
@@ -1749,6 +1786,10 @@ msgid "EDITOR_TUTORIAL_EDITOR_TEXT"
 msgstr ""
 
 #, fuzzy
+msgid "EDITOR_TUTORIAL_MICROBE_EDITOR_BINDING_AGENTS"
+msgstr "3Д Едитор"
+
+#, fuzzy
 msgid "EDITOR_TUTORIAL_MICROBE_EDITOR_NUCLEUS"
 msgstr "3Д Едитор"
 
@@ -2280,9 +2321,6 @@ msgstr ""
 msgid "GENERAL_LOADING_TIP_7"
 msgstr ""
 
-msgid "GENERATE_BUTTON"
-msgstr ""
-
 msgid "GENERATE_POSITIVE_GLUCOSE_PHOTOSYNTHESIS"
 msgstr ""
 
@@ -2351,6 +2389,10 @@ msgstr ""
 
 msgid "GLUCOSE_CONCENTRATIONS_DRASTICALLY_DROPPED"
 msgstr ""
+
+#, fuzzy
+msgid "GLUCOSE_LEVEL"
+msgstr "Префрлете се на фазата на будење. Достапно откако ќе имате доволно мозочна моќ (тип на ткиво со аксони)."
 
 msgid "GLYCOLYSIS"
 msgstr ""
@@ -2476,6 +2518,9 @@ msgid "HYDROGENOSOME_PROCESSES_DESCRIPTION"
 msgstr "3Д Едитор"
 
 msgid "HYDROGEN_SULFIDE"
+msgstr ""
+
+msgid "HYDROGEN_SULFIDE_LEVELS"
 msgstr ""
 
 msgid "ICESHARD"
@@ -2690,6 +2735,9 @@ msgid "IN_PROTOTYPE"
 msgstr ""
 
 msgid "IRON"
+msgstr ""
+
+msgid "IRON_LEVELS"
 msgstr ""
 
 msgid "IRON_OXIDATION"
@@ -4427,6 +4475,9 @@ msgstr ""
 msgid "PAST_DEVELOPERS"
 msgstr ""
 
+msgid "PATCHES_NUMBER"
+msgstr ""
+
 msgid "PATCH_COLON"
 msgstr ""
 
@@ -4520,6 +4571,9 @@ msgstr ""
 msgid "PHOSPHATES_COST"
 msgstr ""
 
+msgid "PHOSPHATES_LEVELS"
+msgstr ""
+
 msgid "PHOTOSYNTHESIS"
 msgstr ""
 
@@ -4543,6 +4597,23 @@ msgstr ""
 
 msgid "PLANET_RANDOM_SEED"
 msgstr ""
+
+#, fuzzy
+msgid "PLANET_STATISTICS"
+msgstr ""
+"[b]Генерации:[/b]\n"
+"  {0}\n"
+"[b]Вкупен вид:[/b]\n"
+"  Просечно {1}; Стандардна девијација {2}\n"
+"[b]Сè уште живи видови:[/b]\n"
+"  Просечно {3}; Стандардна девијација {4}\n"
+"[b]Број на видови по лепенка:[/b]\n"
+"  Просечно {5}; Стандардна девијација {6}\n"
+"[b]Вкупна популација по лепенка:[/b]\n"
+"  Просечно {7}; Стандардна девијација {8}\n"
+"[b]Просечна хексадетична големина на видови на микроби:[/b]\n"
+"  Просечно {9}; Стандардна девијација {10}\n"
+"[b]Генерички податоци за органели:[/b]"
 
 msgid "PLAYER"
 msgstr ""
@@ -4688,6 +4759,10 @@ msgstr ""
 msgid "RADIATION"
 msgstr ""
 
+#, fuzzy
+msgid "RADIATION_LEVELS"
+msgstr "Избриши"
+
 msgid "RADIOACTIVE_CHUNK"
 msgstr ""
 
@@ -4739,6 +4814,9 @@ msgid "REFRESH"
 msgstr ""
 
 msgid "REGENERATE_BUTTON"
+msgstr ""
+
+msgid "REGIONS_NUMBER"
 msgstr ""
 
 msgid "RENDER_SCALE"
@@ -5162,6 +5240,9 @@ msgid "SHOW_HELP"
 msgstr ""
 
 msgid "SHOW_ITEM_COORDINATES"
+msgstr ""
+
+msgid "SHOW_MAP"
 msgstr ""
 
 msgid "SHOW_NEW_PATCH_NOTES"
@@ -8144,10 +8225,6 @@ msgstr ""
 
 msgid "ZOOM_OUT"
 msgstr ""
-
-#, fuzzy
-#~ msgid "WORLD_SEA_LEVEL"
-#~ msgstr "Префрлете се на фазата на будење. Достапно откако ќе имате доволно мозочна моќ (тип на ткиво со аксони)."
 
 #, fuzzy
 #~ msgid "GLOBAL_GLACIATION_EVENT_LOG"

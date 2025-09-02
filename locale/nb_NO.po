@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2025-08-25 19:09+0300\n"
+"POT-Creation-Date: 2025-08-29 14:14+0300\n"
 "PO-Revision-Date: 2025-07-20 19:51+0000\n"
 "Last-Translator: Fredrik Sjøli Trevland <frozenheimdsbusiness@gmail.com>\n"
 "Language-Team: Norwegian Bokmål <https://translate.revolutionarygamesstudio.com/projects/thrive/thrive-game/nb_NO/>\n"
@@ -194,6 +194,10 @@ msgstr "Ammoniakk"
 
 #, fuzzy
 msgid "AMMONIA_COST"
+msgstr "Ammoniakk"
+
+#, fuzzy
+msgid "AMMONIA_LEVELS"
 msgstr "Ammoniakk"
 
 msgid "AMOUNT_OF_AUTOSAVE_TO_KEEP"
@@ -428,6 +432,21 @@ msgstr "Tilgjenglige Konstruksjonsprosjekter"
 
 msgid "AVAILABLE_MODS"
 msgstr "Tilgjenglige Mods"
+
+msgid "AVERAGE_SURFACE_CARBON_DIOXIDE_LEVEL"
+msgstr ""
+
+msgid "AVERAGE_SURFACE_LIGHT_LEVEL"
+msgstr ""
+
+msgid "AVERAGE_SURFACE_NITROGEN_LEVEL"
+msgstr ""
+
+msgid "AVERAGE_SURFACE_OTHER_LEVEL"
+msgstr ""
+
+msgid "AVERAGE_SURFACE_OXYGEN_LEVEL"
+msgstr ""
 
 msgid "AWAKENING_STAGE"
 msgstr "Oppvåkningsstadiet"
@@ -1040,6 +1059,25 @@ msgstr "Dra til Oppvåknings Fasen. Tilgjengelig når du har nok hjernekraft (ve
 #, fuzzy
 msgid "COMPOUND_HANDLE_TOP_UP_ON_CHANGE"
 msgstr "Mikrobe Redigerer"
+
+#, fuzzy
+msgid "COMPOUND_LEVEL_AVERAGE"
+msgstr "Dra til Oppvåknings Fasen. Tilgjengelig når du har nok hjernekraft (vevstype med aksoner)."
+
+#, fuzzy
+msgid "COMPOUND_LEVEL_HIGH"
+msgstr "Dra til Oppvåknings Fasen. Tilgjengelig når du har nok hjernekraft (vevstype med aksoner)."
+
+#, fuzzy
+msgid "COMPOUND_LEVEL_LOW"
+msgstr "Dra til Oppvåknings Fasen. Tilgjengelig når du har nok hjernekraft (vevstype med aksoner)."
+
+msgid "COMPOUND_LEVEL_VERY_HIGH"
+msgstr ""
+
+#, fuzzy
+msgid "COMPOUND_LEVEL_VERY_LOW"
+msgstr "Dra til Oppvåknings Fasen. Tilgjengelig når du har nok hjernekraft (vevstype med aksoner)."
 
 msgid "COMPOUND_STORAGE_AMOUNT_DOES_NOT_LAST_NIGHT"
 msgstr ""
@@ -1811,6 +1849,10 @@ msgid "EDITOR_TUTORIAL_EDITOR_TEXT"
 msgstr ""
 
 #, fuzzy
+msgid "EDITOR_TUTORIAL_MICROBE_EDITOR_BINDING_AGENTS"
+msgstr "Mikrobestadiet"
+
+#, fuzzy
 msgid "EDITOR_TUTORIAL_MICROBE_EDITOR_NUCLEUS"
 msgstr "Mikrobestadiet"
 
@@ -2359,10 +2401,6 @@ msgstr ""
 msgid "GENERAL_LOADING_TIP_7"
 msgstr ""
 
-#, fuzzy
-msgid "GENERATE_BUTTON"
-msgstr "Generelt"
-
 msgid "GENERATE_POSITIVE_GLUCOSE_PHOTOSYNTHESIS"
 msgstr ""
 
@@ -2432,6 +2470,10 @@ msgstr ""
 
 msgid "GLUCOSE_CONCENTRATIONS_DRASTICALLY_DROPPED"
 msgstr ""
+
+#, fuzzy
+msgid "GLUCOSE_LEVEL"
+msgstr "{0}-{1}m under havnivå"
 
 msgid "GLYCOLYSIS"
 msgstr ""
@@ -2558,6 +2600,9 @@ msgid "HYDROGENOSOME_PROCESSES_DESCRIPTION"
 msgstr "Anaerob Nitrogenfiksering"
 
 msgid "HYDROGEN_SULFIDE"
+msgstr ""
+
+msgid "HYDROGEN_SULFIDE_LEVELS"
 msgstr ""
 
 msgid "ICESHARD"
@@ -2784,6 +2829,9 @@ msgid "IN_PROTOTYPE"
 msgstr ""
 
 msgid "IRON"
+msgstr ""
+
+msgid "IRON_LEVELS"
 msgstr ""
 
 #, fuzzy
@@ -4503,6 +4551,9 @@ msgstr ""
 msgid "PAST_DEVELOPERS"
 msgstr ""
 
+msgid "PATCHES_NUMBER"
+msgstr ""
+
 #, fuzzy
 msgid "PATCH_COLON"
 msgstr "Agenter:"
@@ -4599,6 +4650,9 @@ msgstr ""
 msgid "PHOSPHATES_COST"
 msgstr ""
 
+msgid "PHOSPHATES_LEVELS"
+msgstr ""
+
 msgid "PHOTOSYNTHESIS"
 msgstr ""
 
@@ -4623,6 +4677,10 @@ msgstr ""
 
 msgid "PLANET_RANDOM_SEED"
 msgstr ""
+
+#, fuzzy
+msgid "PLANET_STATISTICS"
+msgstr "[thrive:input]g_move_forward[/thrive:input],[thrive:input]g_move_left[/thrive:input],[thrive:input]g_move_backwards[/thrive:input],[thrive:input]g_move_right[/thrive:input] og mus for bevegelse. [thrive:input]g_fire_toxin[/thrive:input] for skyting [thrive:compound type=\"oxytoxy\"][/thrive:compound] hvis du har toxin vacuole. [thrive:input]g_toggle_engulf[/thrive:input] for veksling av oppsluknings modus. Du kan zoome in og ut med mus hjulet."
 
 msgid "PLAYER"
 msgstr ""
@@ -4769,6 +4827,10 @@ msgstr ""
 msgid "RADIATION"
 msgstr "Generelt"
 
+#, fuzzy
+msgid "RADIATION_LEVELS"
+msgstr "Generelt"
+
 msgid "RADIOACTIVE_CHUNK"
 msgstr ""
 
@@ -4822,6 +4884,9 @@ msgstr ""
 #, fuzzy
 msgid "REGENERATE_BUTTON"
 msgstr "Flercellestadiet"
+
+msgid "REGIONS_NUMBER"
+msgstr ""
 
 msgid "RENDER_SCALE"
 msgstr ""
@@ -5249,6 +5314,9 @@ msgid "SHOW_HELP"
 msgstr ""
 
 msgid "SHOW_ITEM_COORDINATES"
+msgstr ""
+
+msgid "SHOW_MAP"
 msgstr ""
 
 msgid "SHOW_NEW_PATCH_NOTES"
@@ -8419,6 +8487,10 @@ msgstr ""
 
 msgid "ZOOM_OUT"
 msgstr ""
+
+#, fuzzy
+#~ msgid "GENERATE_BUTTON"
+#~ msgstr "Generelt"
 
 #, fuzzy
 #~ msgid "CELL_TYPE_BUTTON_ATP_PRODUCTION"

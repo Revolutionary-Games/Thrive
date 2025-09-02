@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2025-08-25 19:09+0300\n"
+"POT-Creation-Date: 2025-08-29 14:14+0300\n"
 "PO-Revision-Date: 2025-08-25 16:38+0000\n"
 "Last-Translator: Teashrock <kajitsu22@gmail.com>\n"
 "Language-Team: Ukrainian <https://translate.revolutionarygamesstudio.com/projects/thrive/thrive-game/uk/>\n"
@@ -187,6 +187,10 @@ msgid "AMMONIA"
 msgstr "Аміак"
 
 msgid "AMMONIA_COST"
+msgstr "Вартість амоніаку:"
+
+#, fuzzy
+msgid "AMMONIA_LEVELS"
 msgstr "Вартість амоніаку:"
 
 msgid "AMOUNT_OF_AUTOSAVE_TO_KEEP"
@@ -409,6 +413,21 @@ msgstr "Доступні проєкти споруд"
 
 msgid "AVAILABLE_MODS"
 msgstr "Доступні моди"
+
+msgid "AVERAGE_SURFACE_CARBON_DIOXIDE_LEVEL"
+msgstr ""
+
+msgid "AVERAGE_SURFACE_LIGHT_LEVEL"
+msgstr ""
+
+msgid "AVERAGE_SURFACE_NITROGEN_LEVEL"
+msgstr ""
+
+msgid "AVERAGE_SURFACE_OTHER_LEVEL"
+msgstr ""
+
+msgid "AVERAGE_SURFACE_OXYGEN_LEVEL"
+msgstr ""
 
 msgid "AWAKENING_STAGE"
 msgstr "Стадія пробудження"
@@ -1007,6 +1026,25 @@ msgstr "Завжди заповняти до початкових"
 
 msgid "COMPOUND_HANDLE_TOP_UP_ON_CHANGE"
 msgstr "Заповняти при зміні ділянки"
+
+#, fuzzy
+msgid "COMPOUND_LEVEL_AVERAGE"
+msgstr "Середній"
+
+#, fuzzy
+msgid "COMPOUND_LEVEL_HIGH"
+msgstr "Баланс сполук"
+
+#, fuzzy
+msgid "COMPOUND_LEVEL_LOW"
+msgstr "Хмари сполук"
+
+msgid "COMPOUND_LEVEL_VERY_HIGH"
+msgstr ""
+
+#, fuzzy
+msgid "COMPOUND_LEVEL_VERY_LOW"
+msgstr "Лишати як є"
 
 #, fuzzy
 msgid "COMPOUND_STORAGE_AMOUNT_DOES_NOT_LAST_NIGHT"
@@ -1871,6 +1909,17 @@ msgstr ""
 "\n"
 "Коли будете готові, натисніть кнопку \"Далі\" справа знизу, щоб перейти до наступної вкладки редактора."
 
+#, fuzzy
+msgid "EDITOR_TUTORIAL_MICROBE_EDITOR_BINDING_AGENTS"
+msgstr ""
+"Для подальшого прогресування вам знадобиться [b]ядро[/b].\n"
+"\n"
+"Додавання [b]ядра[/b] відімкне більш просунені органели, такі як [b]зв'язувальний агент[/b], що дозволить вам зв'язатися з іншими клітинами вашого виду та стати [u]багатоклітинним[/u].\n"
+"\n"
+"Спробуйте розмістити [b]ядро[/b], щоб закрити цей туторіал.\n"
+"\n"
+"Якщо ваша клітина ще не готова до ядра, скористайтеся [b]кнопкою скасування[/b], щоби [u]прибрати[/u] ядро."
+
 msgid "EDITOR_TUTORIAL_MICROBE_EDITOR_NUCLEUS"
 msgstr ""
 "Для подальшого прогресування вам знадобиться [b]ядро[/b].\n"
@@ -2440,10 +2489,6 @@ msgstr "Не забувайте, що панель зверху справа п�
 msgid "GENERAL_LOADING_TIP_7"
 msgstr "Якщо ваша популяція впаде до нуля, ваш вид вимре."
 
-#, fuzzy
-msgid "GENERATE_BUTTON"
-msgstr "Генерації"
-
 msgid "GENERATE_POSITIVE_GLUCOSE_PHOTOSYNTHESIS"
 msgstr "Згенерувати фотосинтезом більше глюкози ніж вам потрібно"
 
@@ -2512,6 +2557,10 @@ msgstr "Глюкоза"
 
 msgid "GLUCOSE_CONCENTRATIONS_DRASTICALLY_DROPPED"
 msgstr "Концентрація глюкози раптово впала!"
+
+#, fuzzy
+msgid "GLUCOSE_LEVEL"
+msgstr "{0}-{1}м. нижче рівня моря"
 
 msgid "GLYCOLYSIS"
 msgstr "Гліколіз"
@@ -2644,6 +2693,10 @@ msgid "HYDROGENOSOME_PROCESSES_DESCRIPTION"
 msgstr "Перетворює [thrive:compound type=\"glucose\"][/thrive:compound] на [thrive:compound type=\"atp\"][/thrive:compound]."
 
 msgid "HYDROGEN_SULFIDE"
+msgstr "Сірководень"
+
+#, fuzzy
+msgid "HYDROGEN_SULFIDE_LEVELS"
 msgstr "Сірководень"
 
 #, fuzzy
@@ -2872,6 +2925,9 @@ msgstr ""
 
 msgid "IRON"
 msgstr "Залізо"
+
+msgid "IRON_LEVELS"
+msgstr ""
 
 msgid "IRON_OXIDATION"
 msgstr "Залізна оксидація"
@@ -4715,6 +4771,10 @@ msgid "PAST_DEVELOPERS"
 msgstr "Колишні розробники"
 
 #, fuzzy
+msgid "PATCHES_NUMBER"
+msgstr "{0} {1}"
+
+#, fuzzy
 msgid "PATCH_COLON"
 msgstr "Найкраща ділянка:"
 
@@ -4811,6 +4871,10 @@ msgstr "Фосфат"
 msgid "PHOSPHATES_COST"
 msgstr "Вартість фосфату:"
 
+#, fuzzy
+msgid "PHOSPHATES_LEVELS"
+msgstr "Вартість фосфату:"
+
 msgid "PHOTOSYNTHESIS"
 msgstr "Фотосинтез"
 
@@ -4840,6 +4904,10 @@ msgstr ""
 
 msgid "PLANET_RANDOM_SEED"
 msgstr "Рандомний сід планети"
+
+#, fuzzy
+msgid "PLANET_STATISTICS"
+msgstr "Статистика"
 
 msgid "PLAYER"
 msgstr "Гравець"
@@ -4994,6 +5062,10 @@ msgid "RADIATION"
 msgstr "Радіація"
 
 #, fuzzy
+msgid "RADIATION_LEVELS"
+msgstr "Радіація"
+
+#, fuzzy
 msgid "RADIOACTIVE_CHUNK"
 msgstr "Великий шматок фосфату"
 
@@ -5047,6 +5119,10 @@ msgstr "Оновити"
 #, fuzzy
 msgid "REGENERATE_BUTTON"
 msgstr "Аксон"
+
+#, fuzzy
+msgid "REGIONS_NUMBER"
+msgstr "НомерID"
 
 #, fuzzy
 msgid "RENDER_SCALE"
@@ -5498,6 +5574,10 @@ msgstr "Надати допомогу"
 
 msgid "SHOW_ITEM_COORDINATES"
 msgstr "Показати координати"
+
+#, fuzzy
+msgid "SHOW_MAP"
+msgstr "Надати допомогу"
 
 msgid "SHOW_NEW_PATCH_NOTES"
 msgstr "Показувати нову інформацію про патчі автоматично"
@@ -9036,6 +9116,10 @@ msgstr "Приблизитись"
 
 msgid "ZOOM_OUT"
 msgstr "Віддалитись"
+
+#, fuzzy
+#~ msgid "GENERATE_BUTTON"
+#~ msgstr "Генерації"
 
 #, fuzzy
 #~ msgid "CELL_TYPE_BUTTON_ATP_CONSUMPTION"

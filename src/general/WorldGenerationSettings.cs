@@ -37,6 +37,15 @@ public class WorldGenerationSettings
         DaytimeFraction = defaultDayNight.DaytimeFraction;
     }
 
+    /// <summary>
+    ///   Represents possible origins of life.
+    /// </summary>
+    /// <remarks>
+    ///   <para>
+    ///     Do not reorder, remove, or change values without updating the OptionButton in corresponding scene files.
+    ///     The GUI depends on these specific enum values and their order for correct mapping.
+    ///   </para>
+    /// </remarks>
     public enum LifeOrigin
     {
         [Description("LIFE_ORIGIN_VENTS")]
@@ -73,6 +82,12 @@ public class WorldGenerationSettings
     /// <summary>
     ///   The possible temperature settings for the planet
     /// </summary>
+    /// <remarks>
+    ///   <para>
+    ///     Do not reorder, remove, or change values without updating the OptionButton in corresponding scene files.
+    ///     The GUI depends on these specific enum values and their order for correct mapping.
+    ///   </para>
+    /// </remarks>
     public enum WorldTemperatureEnum
     {
         [Description("WORLD_TEMPERATURE_COLD")]
@@ -88,6 +103,12 @@ public class WorldGenerationSettings
     /// <summary>
     ///   The possible sea level options for the planet
     /// </summary>
+    /// <remarks>
+    ///   <para>
+    ///     Do not reorder, remove, or change values without updating the OptionButton in corresponding scene files.
+    ///     The GUI depends on these specific enum values and their order for correct mapping.
+    ///   </para>
+    /// </remarks>
     public enum WorldOceanicCoverageEnum
     {
         [Description("WORLD_OCEANIC_COVERAGE_SMALL")]
@@ -103,6 +124,12 @@ public class WorldGenerationSettings
     /// <summary>
     ///   The geological activity levels of the planet
     /// </summary>
+    /// <remarks>
+    ///   <para>
+    ///     Do not reorder, remove, or change values without updating the OptionButton in corresponding scene files.
+    ///     The GUI depends on these specific enum values and their order for correct mapping.
+    ///   </para>
+    /// </remarks>
     public enum GeologicalActivityEnum
     {
         [Description("GEOLOGICAL_ACTIVITY_DORMANT")]
@@ -118,6 +145,12 @@ public class WorldGenerationSettings
     /// <summary>
     ///   The possible climate instability settings for the planet
     /// </summary>
+    /// <remarks>
+    ///   <para>
+    ///     Do not reorder, remove, or change values without updating the OptionButton in corresponding scene files.
+    ///     The GUI depends on these specific enum values and their order for correct mapping.
+    ///   </para>
+    /// </remarks>
     public enum ClimateInstabilityEnum
     {
         [Description("CLIMATE_STABILITY_STABLE")]
@@ -128,6 +161,33 @@ public class WorldGenerationSettings
 
         [Description("CLIMATE_STABILITY_UNSTABLE")]
         High = 2,
+    }
+
+    /// <summary>
+    ///   The possible compound levels settings for the planet
+    /// </summary>
+    /// <remarks>
+    ///   <para>
+    ///     Do not reorder, remove, or change values without updating the OptionButton in corresponding scene files.
+    ///     The GUI depends on these specific enum values and their order for correct mapping.
+    ///   </para>
+    /// </remarks>
+    public enum CompoundLevel
+    {
+        [Description("COMPOUND_LEVEL_VERY_LOW")]
+        VeryLow = 0,
+
+        [Description("COMPOUND_LEVEL_LOW")]
+        Low = 1,
+
+        [Description("COMPOUND_LEVEL_AVERAGE")]
+        Average = 2,
+
+        [Description("COMPOUND_LEVEL_HIGH")]
+        High = 3,
+
+        [Description("COMPOUND_LEVEL_VERY_HIGH")]
+        VeryHigh = 4,
     }
 
     /// <summary>
@@ -186,6 +246,18 @@ public class WorldGenerationSettings
     ///   </para>
     /// </remarks>
     public ClimateInstabilityEnum ClimateInstability { get; set; } = ClimateInstabilityEnum.Medium;
+
+    public CompoundLevel HydrogenSulfideLevel { get; set; } = CompoundLevel.Average;
+
+    public CompoundLevel GlucoseLevel { get; set; } = CompoundLevel.Average;
+
+    public CompoundLevel IronLevel { get; set; } = CompoundLevel.Average;
+
+    public CompoundLevel AmmoniaLevel { get; set; } = CompoundLevel.Average;
+
+    public CompoundLevel PhosphatesLevel { get; set; } = CompoundLevel.Average;
+
+    public CompoundLevel RadiationLevel { get; set; } = CompoundLevel.Average;
 
     // The following are helper proxies to the values from the difficulty
     [JsonIgnore]

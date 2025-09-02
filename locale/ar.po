@@ -7,8 +7,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2025-08-25 19:09+0300\n"
-"PO-Revision-Date: 2025-08-20 07:39+0000\n"
+"POT-Creation-Date: 2025-08-29 14:14+0300\n"
+"PO-Revision-Date: 2025-08-28 21:04+0000\n"
 "Last-Translator: khalid <khalid50540@gmail.com>\n"
 "Language-Team: Arabic <https://translate.revolutionarygamesstudio.com/projects/thrive/thrive-game/ar/>\n"
 "Language: ar\n"
@@ -173,6 +173,9 @@ msgid "AMMONIA"
 msgstr ""
 
 msgid "AMMONIA_COST"
+msgstr ""
+
+msgid "AMMONIA_LEVELS"
 msgstr ""
 
 msgid "AMOUNT_OF_AUTOSAVE_TO_KEEP"
@@ -377,6 +380,21 @@ msgid "AVAILABLE_CONSTRUCTION_PROJECTS"
 msgstr ""
 
 msgid "AVAILABLE_MODS"
+msgstr ""
+
+msgid "AVERAGE_SURFACE_CARBON_DIOXIDE_LEVEL"
+msgstr ""
+
+msgid "AVERAGE_SURFACE_LIGHT_LEVEL"
+msgstr ""
+
+msgid "AVERAGE_SURFACE_NITROGEN_LEVEL"
+msgstr ""
+
+msgid "AVERAGE_SURFACE_OTHER_LEVEL"
+msgstr ""
+
+msgid "AVERAGE_SURFACE_OXYGEN_LEVEL"
 msgstr ""
 
 msgid "AWAKENING_STAGE"
@@ -987,6 +1005,25 @@ msgstr "استمر إلا مرحلة الاستيقاظ. يصبح متاحًا �
 msgid "COMPOUND_HANDLE_TOP_UP_ON_CHANGE"
 msgstr "فترة الميكروبات"
 
+#, fuzzy
+msgid "COMPOUND_LEVEL_AVERAGE"
+msgstr "استمر إلا مرحلة الاستيقاظ. يصبح متاحًا بمجرد أن تكون قوة العقل كافية (أنسجة مع محاور)."
+
+#, fuzzy
+msgid "COMPOUND_LEVEL_HIGH"
+msgstr "استمر إلا مرحلة الاستيقاظ. يصبح متاحًا بمجرد أن تكون قوة العقل كافية (أنسجة مع محاور)."
+
+#, fuzzy
+msgid "COMPOUND_LEVEL_LOW"
+msgstr "استمر إلا مرحلة الاستيقاظ. يصبح متاحًا بمجرد أن تكون قوة العقل كافية (أنسجة مع محاور)."
+
+msgid "COMPOUND_LEVEL_VERY_HIGH"
+msgstr ""
+
+#, fuzzy
+msgid "COMPOUND_LEVEL_VERY_LOW"
+msgstr "استمر إلا مرحلة الاستيقاظ. يصبح متاحًا بمجرد أن تكون قوة العقل كافية (أنسجة مع محاور)."
+
 msgid "COMPOUND_STORAGE_AMOUNT_DOES_NOT_LAST_NIGHT"
 msgstr ""
 
@@ -1561,23 +1598,26 @@ msgstr ""
 msgid "DISABLED"
 msgstr ""
 
+#, fuzzy
 msgid "DISABLE_ALL"
-msgstr ""
+msgstr "ايقاف الجميع"
 
 msgid "DISCARD_AND_CONTINUE"
-msgstr ""
+msgstr "الالغاء والمتابعة"
 
 msgid "DISCARD_CHANGES"
-msgstr ""
+msgstr "الغاء التغيرات"
 
 msgid "DISCARD_MIGRATION"
-msgstr ""
+msgstr "الغاء الهجرة"
 
 msgid "DISCONNECTED_CELLS"
-msgstr ""
+msgstr "الخلايا غير المربوطة"
 
 msgid "DISCONNECTED_CELLS_TEXT"
 msgstr ""
+"توجد خلية او اكثر غير مربوطة.\n"
+"الرجاء ربط جميع الخلايا الظاهرة مع بعض للاستمرار."
 
 msgid "DISCONNECTED_METABALLS"
 msgstr ""
@@ -1592,7 +1632,7 @@ msgid "DISCONNECTED_ORGANELLES_TEXT"
 msgstr ""
 
 msgid "DISCORD_TOOLTIP"
-msgstr ""
+msgstr "انظم الى سيرفرنا في دسكورد"
 
 #, fuzzy
 msgid "DISK_CACHE_TOOLTIP"
@@ -1605,16 +1645,16 @@ msgid "DISMISSED_POPUPS_EXPLANATION"
 msgstr ""
 
 msgid "DISMISS_INFORMATION_PERMANENTLY"
-msgstr ""
+msgstr "لا تظهر هذا مرة أخرى"
 
 msgid "DISMISS_WARNING_PERMANENTLY"
-msgstr ""
+msgstr "لا تظهر هذا الان التحذير مرة أخرى"
 
 msgid "DISPLAY_3D_MENU_BACKGROUNDS"
 msgstr ""
 
 msgid "DISPLAY_ABILITIES_BAR"
-msgstr ""
+msgstr "اظهر شريط القدرات"
 
 msgid "DISPLAY_BACKGROUND_DISTORTION_EFFECT"
 msgstr ""
@@ -1626,10 +1666,11 @@ msgid "DISPLAY_DRIVER_OPENGL"
 msgstr ""
 
 msgid "DISPLAY_DRIVER_VULKAN"
-msgstr ""
+msgstr "محرك فلكن"
 
+#, fuzzy
 msgid "DISPLAY_MODE"
-msgstr ""
+msgstr "طور المشاهدة:"
 
 msgid "DISPLAY_PART_NAMES"
 msgstr ""
@@ -1638,16 +1679,16 @@ msgid "DISSOLVED_COMPOUND_FOOD_SOURCE"
 msgstr ""
 
 msgid "DOES_NOT_USE_FEATURE"
-msgstr ""
+msgstr "كلا"
 
 msgid "DONATIONS"
-msgstr ""
+msgstr "التبرعات"
 
 msgid "DOT_DOT_DOT"
-msgstr ""
+msgstr "..."
 
 msgid "DOUBLE"
-msgstr ""
+msgstr "الضعف"
 
 msgid "DOUBLE_CLICK_TO_VIEW_IN_FULLSCREEN"
 msgstr ""
@@ -1666,7 +1707,7 @@ msgid "DUMP_SCENE_TREE"
 msgstr ""
 
 msgid "DUPLICATE_TYPE"
-msgstr ""
+msgstr "نوع النسخة"
 
 msgid "EASTEREGG_MESSAGE_1"
 msgstr ""
@@ -1678,7 +1719,7 @@ msgid "EASTEREGG_MESSAGE_11"
 msgstr ""
 
 msgid "EASTEREGG_MESSAGE_12"
-msgstr ""
+msgstr "انظر الى تلك الخلايا الزرقاء."
 
 msgid "EASTEREGG_MESSAGE_13"
 msgstr ""
@@ -1751,6 +1792,10 @@ msgstr ""
 
 msgid "EDITOR_TUTORIAL_EDITOR_TEXT"
 msgstr ""
+
+#, fuzzy
+msgid "EDITOR_TUTORIAL_MICROBE_EDITOR_BINDING_AGENTS"
+msgstr "بمجرد الانتهاء من الابتلاع ، أي أشياء يتم التقاطها ستبقى داخل الغشاء ليتم هضمها. سيتم دائمًا طرد الأشياء غير القابلة للهضم ، لذا تأكد من أن لديك الطفرات اللازمة التي تمكن من معالجتها أولاً. تساعد الإنزيمات في الهضم ويتم توفيرها بواسطة الليزوزوم ؛ قم بتطوير هذه العضية لجعل عملية الهضم أكثر كفاءة."
 
 #, fuzzy
 msgid "EDITOR_TUTORIAL_MICROBE_EDITOR_NUCLEUS"
@@ -2284,10 +2329,6 @@ msgstr ""
 msgid "GENERAL_LOADING_TIP_7"
 msgstr ""
 
-#, fuzzy
-msgid "GENERATE_BUTTON"
-msgstr "عام"
-
 msgid "GENERATE_POSITIVE_GLUCOSE_PHOTOSYNTHESIS"
 msgstr ""
 
@@ -2354,6 +2395,10 @@ msgstr ""
 
 msgid "GLUCOSE_CONCENTRATIONS_DRASTICALLY_DROPPED"
 msgstr ""
+
+#, fuzzy
+msgid "GLUCOSE_LEVEL"
+msgstr "استمر إلا مرحلة الاستيقاظ. يصبح متاحًا بمجرد أن تكون قوة العقل كافية (أنسجة مع محاور)."
 
 msgid "GLYCOLYSIS"
 msgstr ""
@@ -2484,6 +2529,9 @@ msgstr ""
 "لذا تأكد من أنك تملك مدخرات كافية من أجل النجاة في الليل."
 
 msgid "HYDROGEN_SULFIDE"
+msgstr ""
+
+msgid "HYDROGEN_SULFIDE_LEVELS"
 msgstr ""
 
 msgid "ICESHARD"
@@ -2718,6 +2766,9 @@ msgid "IN_PROTOTYPE"
 msgstr ""
 
 msgid "IRON"
+msgstr ""
+
+msgid "IRON_LEVELS"
 msgstr ""
 
 #, fuzzy
@@ -4167,16 +4218,16 @@ msgid "NO_FOSSIL_DIRECTORY"
 msgstr ""
 
 msgid "NO_LONGER_ELIGIBLE_FOR_ACHIEVEMENTS"
-msgstr ""
+msgstr "التخزينة الحالية غير مؤهلة للحصول على الانجازات"
 
 msgid "NO_MODS_ENABLED"
-msgstr ""
+msgstr "لا يوجد تعديلات مفعلة"
 
 msgid "NO_ORGANELLE_PROCESSES"
 msgstr ""
 
 msgid "NO_SAVEGAMES_FOUND"
-msgstr ""
+msgstr "لا يوجد تخزينات"
 
 msgid "NO_SAVE_DIRECTORY"
 msgstr ""
@@ -4185,11 +4236,10 @@ msgid "NO_SCREENSHOT_DIRECTORY"
 msgstr ""
 
 msgid "NO_SELECTED_MOD"
-msgstr ""
+msgstr "لم يتم اختيار تعديلات"
 
-#, fuzzy
 msgid "NO_SUGGESTION"
-msgstr "فترة الكائنات متعددة الخلايا"
+msgstr "لا يوجد اقتراح"
 
 msgid "NUCLEUS"
 msgstr "نواة"
@@ -4204,7 +4254,7 @@ msgid "NUCLEUS_SMALL_DESCRIPTION"
 msgstr ""
 
 msgid "NUMLOCK"
-msgstr ""
+msgstr "زر اغلاق لوحة المفاتيح الإضافية"
 
 #, fuzzy
 msgid "NUTRIENT_COST_TOOLTIP"
@@ -4214,13 +4264,13 @@ msgid "N_A"
 msgstr "لا ينطبق"
 
 msgid "N_A_MP"
-msgstr ""
+msgstr "لا تنطبق نقاط الطفرة"
 
 msgid "N_TIMES"
-msgstr ""
+msgstr "ضرب{0}"
 
 msgid "OCTOBER"
-msgstr ""
+msgstr "اكتوبر"
 
 msgid "OFF"
 msgstr "مطفى"
@@ -4465,6 +4515,10 @@ msgstr "تحريك الكاميرا الى الاعلى"
 msgid "PAST_DEVELOPERS"
 msgstr "المطورين الماضين"
 
+#, fuzzy
+msgid "PATCHES_NUMBER"
+msgstr "خريطة الدفعة"
+
 msgid "PATCH_COLON"
 msgstr "الدفعة:"
 
@@ -4560,6 +4614,9 @@ msgstr ""
 msgid "PHOSPHATES_COST"
 msgstr ""
 
+msgid "PHOSPHATES_LEVELS"
+msgstr ""
+
 msgid "PHOTOSYNTHESIS"
 msgstr ""
 
@@ -4583,6 +4640,10 @@ msgstr ""
 
 msgid "PLANET_RANDOM_SEED"
 msgstr ""
+
+#, fuzzy
+msgid "PLANET_STATISTICS"
+msgstr "تستخدم خليتك [thrive:compound type=\"atp\"][/thrive:compound] كمصدر للطاقة ، إذا نفد مصدر للطاقة تموت."
 
 msgid "PLAYER"
 msgstr ""
@@ -4729,6 +4790,10 @@ msgstr ""
 msgid "RADIATION"
 msgstr "عام"
 
+#, fuzzy
+msgid "RADIATION_LEVELS"
+msgstr "عام"
+
 msgid "RADIOACTIVE_CHUNK"
 msgstr ""
 
@@ -4782,6 +4847,9 @@ msgstr ""
 #, fuzzy
 msgid "REGENERATE_BUTTON"
 msgstr "فترة الكائنات متعددة الخلايا"
+
+msgid "REGIONS_NUMBER"
+msgstr ""
 
 msgid "RENDER_SCALE"
 msgstr ""
@@ -5204,6 +5272,9 @@ msgid "SHOW_HELP"
 msgstr ""
 
 msgid "SHOW_ITEM_COORDINATES"
+msgstr ""
+
+msgid "SHOW_MAP"
 msgstr ""
 
 msgid "SHOW_NEW_PATCH_NOTES"
@@ -8504,8 +8575,8 @@ msgid "ZOOM_OUT"
 msgstr ""
 
 #, fuzzy
-#~ msgid "WORLD_SEA_LEVEL"
-#~ msgstr "استمر إلا مرحلة الاستيقاظ. يصبح متاحًا بمجرد أن تكون قوة العقل كافية (أنسجة مع محاور)."
+#~ msgid "GENERATE_BUTTON"
+#~ msgstr "عام"
 
 #, fuzzy
 #~ msgid "MICROBE_STAGE_DAY_NIGHT_TEXT"

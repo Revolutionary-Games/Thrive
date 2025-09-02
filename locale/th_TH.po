@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2025-08-25 19:09+0300\n"
+"POT-Creation-Date: 2025-08-29 14:14+0300\n"
 "PO-Revision-Date: 2025-05-27 06:43+0000\n"
 "Last-Translator: Anonymous <noreply@weblate.org>\n"
 "Language-Team: Thai <https://translate.revolutionarygamesstudio.com/projects/thrive/thrive-game/th/>\n"
@@ -191,6 +191,10 @@ msgstr "แอมโมเนีย"
 
 #, fuzzy
 msgid "AMMONIA_COST"
+msgstr "แอมโมเนีย"
+
+#, fuzzy
+msgid "AMMONIA_LEVELS"
 msgstr "แอมโมเนีย"
 
 msgid "AMOUNT_OF_AUTOSAVE_TO_KEEP"
@@ -414,6 +418,21 @@ msgid "AVAILABLE_CONSTRUCTION_PROJECTS"
 msgstr ""
 
 msgid "AVAILABLE_MODS"
+msgstr ""
+
+msgid "AVERAGE_SURFACE_CARBON_DIOXIDE_LEVEL"
+msgstr ""
+
+msgid "AVERAGE_SURFACE_LIGHT_LEVEL"
+msgstr ""
+
+msgid "AVERAGE_SURFACE_NITROGEN_LEVEL"
+msgstr ""
+
+msgid "AVERAGE_SURFACE_OTHER_LEVEL"
+msgstr ""
+
+msgid "AVERAGE_SURFACE_OXYGEN_LEVEL"
 msgstr ""
 
 msgid "AWAKENING_STAGE"
@@ -1058,6 +1077,25 @@ msgstr "ดำเนินการต่อ"
 #, fuzzy
 msgid "COMPOUND_HANDLE_TOP_UP_ON_CHANGE"
 msgstr "สารประกอบของเมฆ"
+
+#, fuzzy
+msgid "COMPOUND_LEVEL_AVERAGE"
+msgstr "ดำเนินการต่อ"
+
+#, fuzzy
+msgid "COMPOUND_LEVEL_HIGH"
+msgstr "สารประกอบของเมฆ"
+
+#, fuzzy
+msgid "COMPOUND_LEVEL_LOW"
+msgstr "สารประกอบของเมฆ"
+
+msgid "COMPOUND_LEVEL_VERY_HIGH"
+msgstr ""
+
+#, fuzzy
+msgid "COMPOUND_LEVEL_VERY_LOW"
+msgstr "ดำเนินการต่อ"
 
 #, fuzzy
 msgid "COMPOUND_STORAGE_AMOUNT_DOES_NOT_LAST_NIGHT"
@@ -1884,6 +1922,23 @@ msgid "EDITOR_TUTORIAL_EDITOR_TEXT"
 msgstr ""
 
 #, fuzzy
+msgid "EDITOR_TUTORIAL_MICROBE_EDITOR_BINDING_AGENTS"
+msgstr ""
+"โครงสร้างโปรคาริโอต\n"
+"\n"
+"เมตาโบโลโซม: ผลิต ATP จากกลูโคส\n"
+"\n"
+"Chemosynthisizing Proteins: ผลิตกลูโคสครึ่งหนึ่งจากไฮโดรเจนซัลไฟด์เป็นเคมีโมพลาสต์ แต่ยังทำหน้าที่เป็นไกลโคไลซิสและใช้เวลาถึง 1 Hex\n"
+"\n"
+"Thylakoids: ผลิตกลูโคสในปริมาณ 1 ใน 3 เป็นคลอโรพลาสต์ปกติ แต่ยังทำหน้าที่เป็นไกลโคไลซิสและใช้ 1 Hex\n"
+"\n"
+"Rusticyanin: แปลงเหล็กเป็น ATP\n"
+"\n"
+"Nitrogenase: แปลงไนโตรเจนในบรรยากาศและ ATP เป็นแอมโมเนียแบบไม่ใช้ออกซิเจน\n"
+"\n"
+"ไซโทพลาสซึม: มีพื้นที่จัดเก็บและทำปฏิกิริยาไกลโคไลซิส (ผลิต ATP จำนวนเล็กน้อย)"
+
+#, fuzzy
 msgid "EDITOR_TUTORIAL_MICROBE_EDITOR_NUCLEUS"
 msgstr ""
 "โครงสร้างโปรคาริโอต\n"
@@ -2497,10 +2552,6 @@ msgstr "กดปุ่มเลิกทำในตัวแก้ไขเพ
 msgid "GENERAL_LOADING_TIP_7"
 msgstr "กดปุ่มเลิกทำในตัวแก้ไขเพื่อแก้ไขข้อผิดพลาด"
 
-#, fuzzy
-msgid "GENERATE_BUTTON"
-msgstr "ตั้งค่า"
-
 msgid "GENERATE_POSITIVE_GLUCOSE_PHOTOSYNTHESIS"
 msgstr ""
 
@@ -2569,6 +2620,10 @@ msgstr "กลูโคส"
 
 msgid "GLUCOSE_CONCENTRATIONS_DRASTICALLY_DROPPED"
 msgstr ""
+
+#, fuzzy
+msgid "GLUCOSE_LEVEL"
+msgstr "กลูโคส"
 
 msgid "GLYCOLYSIS"
 msgstr "ไกลโคไลซิส"
@@ -2706,6 +2761,10 @@ msgid "HYDROGENOSOME_PROCESSES_DESCRIPTION"
 msgstr "Nitrogenase เป็นโปรตีนที่สามารถใช้ก๊าซไนโตรเจนและพลังงานของเซลล์ในรูปแบบของ ATP เพื่อผลิตแอมโมเนียซึ่งเป็นสารอาหารที่สำคัญในการเจริญเติบโตของเซลล์ นี่คือกระบวนการที่เรียกว่าการตรึงไนโตรเจนแบบไม่ใช้ออกซิเจน เนื่องจากไนโตรเจนเนสถูกแขวนอยู่ในไซโทพลาสซึมโดยตรงของเหลวที่อยู่รอบ ๆ จึงทำปฏิกิริยาไกลโคไลซิส"
 
 msgid "HYDROGEN_SULFIDE"
+msgstr "ไฮโดรเจนซัลไฟด์"
+
+#, fuzzy
+msgid "HYDROGEN_SULFIDE_LEVELS"
 msgstr "ไฮโดรเจนซัลไฟด์"
 
 #, fuzzy
@@ -2946,6 +3005,9 @@ msgstr ""
 
 msgid "IRON"
 msgstr "เหล็ก"
+
+msgid "IRON_LEVELS"
+msgstr ""
 
 #, fuzzy
 msgid "IRON_OXIDATION"
@@ -4835,6 +4897,9 @@ msgstr "เลื่อนขึ้น"
 msgid "PAST_DEVELOPERS"
 msgstr ""
 
+msgid "PATCHES_NUMBER"
+msgstr ""
+
 #, fuzzy
 msgid "PATCH_COLON"
 msgstr "ก่อนหน้า:"
@@ -4939,6 +5004,10 @@ msgstr "ฟอสเฟต"
 msgid "PHOSPHATES_COST"
 msgstr "ฟอสเฟต"
 
+#, fuzzy
+msgid "PHOSPHATES_LEVELS"
+msgstr "ฟอสเฟต"
+
 msgid "PHOTOSYNTHESIS"
 msgstr "การสังเคราะห์ด้วยแสง"
 
@@ -4962,6 +5031,10 @@ msgstr ""
 
 msgid "PLANET_RANDOM_SEED"
 msgstr ""
+
+#, fuzzy
+msgid "PLANET_STATISTICS"
+msgstr "สถิติ"
 
 #, fuzzy
 msgid "PLAYER"
@@ -5119,6 +5192,10 @@ msgid "RADIATION"
 msgstr "ระบบหายใจแบบแอโรบิค"
 
 #, fuzzy
+msgid "RADIATION_LEVELS"
+msgstr "ระบบหายใจแบบแอโรบิค"
+
+#, fuzzy
 msgid "RADIOACTIVE_CHUNK"
 msgstr "ก้อนเหล็กขนาดใหญ่"
 
@@ -5175,6 +5252,9 @@ msgstr ""
 #, fuzzy
 msgid "REGENERATE_BUTTON"
 msgstr "สัตว์นักล่า"
+
+msgid "REGIONS_NUMBER"
+msgstr ""
 
 msgid "RENDER_SCALE"
 msgstr ""
@@ -5656,6 +5736,10 @@ msgstr "แสดงความช่วยเหลือ"
 #, fuzzy
 msgid "SHOW_ITEM_COORDINATES"
 msgstr "\"{0}\" - {1}"
+
+#, fuzzy
+msgid "SHOW_MAP"
+msgstr "แสดงความช่วยเหลือ"
 
 #, fuzzy
 msgid "SHOW_NEW_PATCH_NOTES"
@@ -9126,6 +9210,10 @@ msgstr "ซูมเข้า"
 
 msgid "ZOOM_OUT"
 msgstr "ซูมออก"
+
+#, fuzzy
+#~ msgid "GENERATE_BUTTON"
+#~ msgstr "ตั้งค่า"
 
 #, fuzzy
 #~ msgid "WORLD_SEA_LEVEL"
