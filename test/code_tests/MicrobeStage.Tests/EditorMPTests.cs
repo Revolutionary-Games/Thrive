@@ -240,6 +240,56 @@ public class EditorMPTests
     }
 
     [Fact]
+    public void EditorMPTests_RemovingEndosymbiontIsFree()
+    {
+        var history = new EditorActionHistory<EditorAction>();
+
+        var template = new OrganelleTemplate(cheapOrganelle, new Hex(0, 0), 0);
+
+        var endosymbiontData = new EndosymbiontPlaceActionData(template, new Hex(0, 0), 0,
+            new EndosymbiosisData.InProgressEndosymbiosis(new MicrobeSpecies(1, "test", "test"), 1, cheapOrganelle));
+
+        history.AddAction(new SingleEditorAction<EndosymbiontPlaceActionData>(_ => { }, _ => { }, endosymbiontData));
+
+        Assert.Equal(Constants.BASE_MUTATION_POINTS, history.CalculateMutationPointsLeft());
+
+        var removeData =
+            new OrganelleRemoveActionData(template, new Hex(0, 0), 0);
+
+        history.AddAction(new SingleEditorAction<OrganelleRemoveActionData>(_ => { }, _ => { }, removeData));
+
+        Assert.Equal(Constants.BASE_MUTATION_POINTS, history.CalculateMutationPointsLeft());
+    }
+
+    [Fact]
+    public void EditorMPTests_MovingEndosymbiontIsFree()
+    {
+        var history = new EditorActionHistory<EditorAction>();
+
+        var template = new OrganelleTemplate(cheapOrganelle, new Hex(0, 0), 0);
+
+        var endosymbiontData = new EndosymbiontPlaceActionData(template, new Hex(0, 0), 0,
+            new EndosymbiosisData.InProgressEndosymbiosis(new MicrobeSpecies(1, "test", "test"), 1, cheapOrganelle));
+
+        history.AddAction(new SingleEditorAction<EndosymbiontPlaceActionData>(_ => { }, _ => { }, endosymbiontData));
+
+        Assert.Equal(Constants.BASE_MUTATION_POINTS, history.CalculateMutationPointsLeft());
+
+        var moveData = new OrganelleMoveActionData(template, new Hex(0, 0), new Hex(1, 0), 0, 0);
+
+        history.AddAction(new SingleEditorAction<OrganelleMoveActionData>(_ => { }, _ => { }, moveData));
+
+        Assert.Equal(Constants.BASE_MUTATION_POINTS, history.CalculateMutationPointsLeft());
+
+        var removeData =
+            new OrganelleRemoveActionData(template, new Hex(1, 0), 0);
+
+        history.AddAction(new SingleEditorAction<OrganelleRemoveActionData>(_ => { }, _ => { }, removeData));
+
+        Assert.Equal(Constants.BASE_MUTATION_POINTS, history.CalculateMutationPointsLeft());
+    }
+
+    [Fact]
     public void EditorMPTests_AddAfterRemoveIsFree()
     {
         var history = new EditorActionHistory<EditorAction>();
