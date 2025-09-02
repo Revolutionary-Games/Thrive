@@ -151,19 +151,20 @@ public class PatchCompound : WorldBasedUnlockCondition
         object? formattedMin;
         object? formattedMax;
 
+        // TODO: automatically handle any compounds with unit set?
+        var unit = compoundDefinition.Unit ?? "MISSING CONFIGURED UNIT";
+
         switch (Compound)
         {
             case Compound.Sunlight:
                 formattedMin = Min.HasValue ?
-                    new LocalizedString("VALUE_WITH_UNIT", new LocalizedString("PERCENTAGE_VALUE", Min), "lx") :
+                    new LocalizedString("VALUE_WITH_UNIT", new LocalizedString("PERCENTAGE_VALUE", Min), unit) :
                     null;
                 formattedMax = Max.HasValue ?
-                    new LocalizedString("VALUE_WITH_UNIT", new LocalizedString("PERCENTAGE_VALUE", Max), "lx") :
+                    new LocalizedString("VALUE_WITH_UNIT", new LocalizedString("PERCENTAGE_VALUE", Max), unit) :
                     null;
                 break;
             case Compound.Temperature:
-                // TODO: automatically handle any compounds with unit set?
-                var unit = compoundDefinition.Unit ?? "MISSING CONFIGURED UNIT";
                 formattedMin = Min.HasValue ? new LocalizedString("VALUE_WITH_UNIT", Min / 100, unit) : null;
                 formattedMax = Max.HasValue ? new LocalizedString("VALUE_WITH_UNIT", Max / 100, unit) : null;
                 break;
