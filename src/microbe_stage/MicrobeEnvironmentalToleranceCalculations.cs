@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Diagnostics;
+using Godot;
 
 /// <summary>
 ///   Helper class that contains all the math for environmental tolerances in one place (though the microbe editor and
@@ -225,16 +226,6 @@ public static class MicrobeEnvironmentalToleranceCalculations
         return result;
     }
 
-    public static float PressureLogScaleToValue(float logValue)
-    {
-        return MathF.Pow(10, logValue / 20 + Constants.TOLERANCE_PRESSURE_LOG_SCALE_OFFSET);
-    }
-
-    public static float PressureValueToLogScale(float rawValue)
-    {
-        return (MathF.Log10(rawValue) - Constants.TOLERANCE_PRESSURE_LOG_SCALE_OFFSET) * 20;
-    }
-
     private static void CalculateTolerancesInternal(in ToleranceValues speciesTolerances,
         in ToleranceValues noExtraEffects, BiomeConditions environment, ToleranceResult result)
     {
@@ -247,12 +238,9 @@ public static class MicrobeEnvironmentalToleranceCalculations
 
         // Always write the targets for becoming perfectly adapted
         result.PerfectTemperatureAdjustment = patchTemperature - speciesTolerances.PreferredTemperature;
+        result.PerfectPressureAdjustment = patchPressure - speciesTolerances.PreferredPressure;
         result.PerfectOxygenAdjustment = requiredOxygenResistance - speciesTolerances.OxygenResistance;
         result.PerfectUVAdjustment = requiredUVResistance - speciesTolerances.UVResistance;
-
-        // Need to get the average pressure value from the max and min to know how much to adjust
-        result.PerfectPressureAdjustment =
-            patchPressure - (speciesTolerances.PressureMaximum + speciesTolerances.PressureMinimum) * 0.5f;
 
         // TODO: the root cause of https://github.com/Revolutionary-Games/Thrive/issues/5928 is probably somewhere in
         // the following lines of code
@@ -331,20 +319,19 @@ public static class MicrobeEnvironmentalToleranceCalculations
         }
         else
         {
-            var range = Math.Abs(noExtraEffects.PressureMaximum - noExtraEffects.PressureMinimum);
-
-            if (range <=
+            if (speciesTolerances.PressureTolerance <=
                 Constants.TOLERANCE_PERFECT_THRESHOLD_PRESSURE)
             {
                 // Perfectly adapted
                 var perfectionFactor = Constants.TOLERANCE_PERFECT_PRESSURE_SCORE *
-                    (1 - (range / Constants.TOLERANCE_PERFECT_THRESHOLD_PRESSURE));
+                    (1 - (speciesTolerances.PressureTolerance / Constants.TOLERANCE_PERFECT_THRESHOLD_PRESSURE));
                 result.PressureScore = 1 + perfectionFactor;
             }
             else
             {
                 // Adequately adapted, but could be made perfect
-                result.PressureRangeSizeAdjustment = Constants.TOLERANCE_PERFECT_THRESHOLD_PRESSURE - range;
+                result.PressureRangeSizeAdjustment = Constants.TOLERANCE_PERFECT_THRESHOLD_PRESSURE -
+                    speciesTolerances.PressureTolerance;
 
                 result.PressureScore = 1;
             }
@@ -398,10 +385,10 @@ public static class MicrobeEnvironmentalToleranceCalculations
         public float OxygenResistance;
         public float UVResistance;
 
-        public float PressureMinimum => MathF.Max(PreferredPressure - PreferredPressure, 0);
+        public float PressureMinimum => MathF.Max(PreferredPressure - PressureTolerance, 0);
 
         public float PressureMaximum =>
-            MathF.Min(PreferredPressure + PreferredPressure, Constants.TOLERANCE_PRESSURE_MAX);
+            MathF.Min(PreferredPressure + PressureTolerance, Constants.TOLERANCE_PRESSURE_MAX);
 
         public void CopyFrom(EnvironmentalTolerances tolerances)
         {
@@ -433,7 +420,6 @@ public class ToleranceResult
 
     public float PressureScore;
     public float PerfectPressureAdjustment;
-    public float PerfectPressureAdjustmentLogScale;
     public float PressureRangeSizeAdjustment;
 
     public float OxygenScore;

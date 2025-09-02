@@ -66,12 +66,6 @@ public partial class TolerancesEditorSubComponent : EditorComponentBase<ICellEdi
     private Label temperatureBaseLabel = null!;
 
     [Export]
-    private Container temperatureToleranceBaseLabelContainer = null!;
-
-    [Export]
-    private Label temperatureToleranceBaseLabel = null!;
-
-    [Export]
     private ToleranceOptimalDisplay temperatureOptimalDisplay = null!;
 
     [Export]
@@ -85,12 +79,6 @@ public partial class TolerancesEditorSubComponent : EditorComponentBase<ICellEdi
 
     [Export]
     private Label pressureBaseLabel = null!;
-
-    [Export]
-    private Container pressureToleranceBaseLabelContainer = null!;
-
-    [Export]
-    private Label pressureToleranceBaseLabel = null!;
 
     [Export]
     private ToleranceOptimalDisplay pressureOptimalDisplay = null!;
@@ -168,7 +156,6 @@ public partial class TolerancesEditorSubComponent : EditorComponentBase<ICellEdi
     public override bool IsSubComponent => true;
 
     public float MPDisplayCostMultiplier { get; set; } = 1;
-
 
     public override void _Ready()
     {
@@ -263,7 +250,7 @@ public partial class TolerancesEditorSubComponent : EditorComponentBase<ICellEdi
 
         if (pressureToolTip != null)
         {
-            var pressureCost = Constants.TOLERANCE_CHANGE_MP_PER_PRESSURE_STEP * MPDisplayCostMultiplier;
+            var pressureCost = Constants.TOLERANCE_CHANGE_MP_PER_PRESSURE * MPDisplayCostMultiplier;
 
             pressureToolTip.MPCost = pressureCost;
         }
@@ -297,8 +284,7 @@ public partial class TolerancesEditorSubComponent : EditorComponentBase<ICellEdi
         var optimal = Editor.CurrentPatch.GenerateTolerancesForMicrobe(Editor.EditedCellOrganelles);
 
         // Set huge ranges so that there is no threat of optimal bonuses triggering with the default calculations
-        optimal.PreferredPressure = 0;
-        optimal.PressureTolerance = Constants.TOLERANCE_PERFECT_THRESHOLD_PRESSURE * 2;
+        optimal.PressureTolerance += Constants.TOLERANCE_PERFECT_THRESHOLD_PRESSURE * 2;
         optimal.TemperatureTolerance += Constants.TOLERANCE_PERFECT_THRESHOLD_TEMPERATURE * 2;
 
         var tempTolerances = CurrentTolerances.Clone();
@@ -405,6 +391,9 @@ public partial class TolerancesEditorSubComponent : EditorComponentBase<ICellEdi
         temperatureSlider.Value = CurrentTolerances.PreferredTemperature;
         temperatureToleranceRangeSlider.Value = CurrentTolerances.TemperatureTolerance;
 
+        pressureSlider.Value = CurrentTolerances.PreferredPressure;
+        pressureToleranceRangeSlider.Value = CurrentTolerances.PressureTolerance;
+
         UpdatePercentageResistanceLabel(oxygenResistanceLabel, CurrentTolerances.OxygenResistance);
         UpdatePercentageResistanceLabel(uvResistanceLabel, CurrentTolerances.UVResistance);
 
@@ -434,8 +423,7 @@ public partial class TolerancesEditorSubComponent : EditorComponentBase<ICellEdi
         }
 
         // Update the display only after it has been checked if the player has enough MP
-        temperatureOptimalDisplay.SetBoundPositions(
-            (float)temperatureSlider.Value + organelleModifiers.PreferredTemperature,
+        temperatureOptimalDisplay.SetBoundPositions(CurrentTolerances.PreferredTemperature,
             CurrentTolerances.TemperatureTolerance + organelleModifiers.TemperatureTolerance);
 
         automaticallyChanging = false;
@@ -457,9 +445,8 @@ public partial class TolerancesEditorSubComponent : EditorComponentBase<ICellEdi
             temperatureToleranceRangeSlider.Value = CurrentTolerances.TemperatureTolerance;
         }
 
-        temperatureOptimalDisplay.SetBoundPositions(
-            CurrentTolerances.PreferredTemperature + organelleModifiers.PreferredTemperature,
-            (float)temperatureToleranceRangeSlider.Value + organelleModifiers.TemperatureTolerance);
+        temperatureOptimalDisplay.SetBoundPositions(CurrentTolerances.PreferredTemperature,
+            CurrentTolerances.TemperatureTolerance + organelleModifiers.TemperatureTolerance);
 
         automaticallyChanging = false;
     }
@@ -471,14 +458,17 @@ public partial class TolerancesEditorSubComponent : EditorComponentBase<ICellEdi
 
         reusableTolerances ??= new EnvironmentalTolerances();
         reusableTolerances.CopyFrom(CurrentTolerances);
-        reusableTolerances.PreferredPressure = Calculations.PressureLogScaleToValue(value);
+        reusableTolerances.PreferredPressure = value;
 
         automaticallyChanging = true;
 
         if (!TriggerChangeIfPossible())
         {
-            pressureSlider.Value = Calculations.PressureValueToLogScale(CurrentTolerances.PreferredPressure);
+            pressureSlider.Value = CurrentTolerances.PreferredPressure;
         }
+
+        pressureOptimalDisplay.SetBoundPositions(CurrentTolerances.PreferredPressure,
+            CurrentTolerances.PressureTolerance + organelleModifiers.PressureTolerance);
 
         automaticallyChanging = false;
     }
@@ -498,6 +488,9 @@ public partial class TolerancesEditorSubComponent : EditorComponentBase<ICellEdi
         {
             pressureToleranceRangeSlider.Value = CurrentTolerances.PressureTolerance;
         }
+
+        pressureOptimalDisplay.SetBoundPositions(CurrentTolerances.PreferredPressure,
+            CurrentTolerances.PressureTolerance + organelleModifiers.PressureTolerance);
 
         automaticallyChanging = false;
     }
@@ -649,56 +642,41 @@ public partial class TolerancesEditorSubComponent : EditorComponentBase<ICellEdi
 
         // Temperature
 
-        var preferredTemperatureWithOrganelles =
-            CurrentTolerances.PreferredTemperature + organelleModifiers.PreferredTemperature;
-
         var temperatureToleranceWithOrganelles =
             CurrentTolerances.TemperatureTolerance + organelleModifiers.TemperatureTolerance;
 
-        temperatureOptimalDisplay.SetBoundPositions(preferredTemperatureWithOrganelles, temperatureToleranceWithOrganelles);
+        temperatureOptimalDisplay.SetBoundPositions(CurrentTolerances.PreferredTemperature, temperatureToleranceWithOrganelles);
         temperatureOptimalDisplay.UpdateMarker(patchTemperature);
 
         temperatureMinLabel.Text =
             unitFormat.FormatSafe(
-                Math.Round(preferredTemperatureWithOrganelles - temperatureToleranceWithOrganelles, 1),
+                Math.Round(CurrentTolerances.PreferredTemperature - temperatureToleranceWithOrganelles, 1),
                 temperature.Unit);
         temperatureMaxLabel.Text =
             unitFormat.FormatSafe(
-                Math.Round(preferredTemperatureWithOrganelles + temperatureToleranceWithOrganelles, 1),
+                Math.Round(CurrentTolerances.PreferredTemperature + temperatureToleranceWithOrganelles, 1),
                 temperature.Unit);
 
-        temperatureBaseLabel.Text =
-            unitFormat.FormatSafe(
-                Math.Round(organelleModifiers.PreferredTemperature, 1),
-                temperature.Unit);
+        temperatureToleranceLabel.Text = plusMinusUnitFormat.FormatSafe(
+            Math.Round(CurrentTolerances.TemperatureTolerance, 1), temperature.Unit);
+        temperatureBaseLabel.Text = plusMinusUnitFormat.FormatSafe(
+            Math.Round(organelleModifiers.TemperatureTolerance, 1), temperature.Unit);
 
-        temperatureToleranceLabel.Text =
-            plusMinusUnitFormat.FormatSafe(
-                Math.Round(CurrentTolerances.TemperatureTolerance, 1),
-                temperature.Unit);
-
-        if (ShowZeroModifiers || organelleModifiers.TemperatureTolerance != 0)
+        temperatureBaseLabel.LabelSettings = organelleModifiers.TemperatureTolerance switch
         {
-            var modifierWithUnit = plusMinusUnitFormat.FormatSafe(
-                Math.Round(organelleModifiers.TemperatureTolerance, 1),
-                temperature.Unit);
-
-            temperatureToleranceBaseLabel.Text = $"({modifierWithUnit})";
-
-            temperatureToleranceBaseLabelContainer.Visible = true;
-        }
-        else
-        {
-            temperatureToleranceBaseLabelContainer.Visible = false;
-        }
+            > 0 => modifierGoodFont,
+            0 => originalModifierFont,
+            < 0 => modifierBadFont,
+            _ => originalModifierFont,
+        };
 
         // Show in red the conditions that are not matching to make them easier to notice
-        if (Math.Abs(patchTemperature - preferredTemperatureWithOrganelles) >
+        if (Math.Abs(patchTemperature - CurrentTolerances.PreferredTemperature) >
             temperatureToleranceWithOrganelles)
         {
             // Mark the direction that is bad as the one having the problem to make it easier for the player to see
             // what is wrong
-            if (patchTemperature > preferredTemperatureWithOrganelles)
+            if (patchTemperature > CurrentTolerances.PreferredTemperature)
             {
                 temperatureMaxLabel.LabelSettings = badValueFont;
                 temperatureMinLabel.LabelSettings = originalTemperatureFont;
@@ -725,8 +703,54 @@ public partial class TolerancesEditorSubComponent : EditorComponentBase<ICellEdi
 
         var pressureToleranceWithOrganelles = CurrentTolerances.PressureTolerance + organelleModifiers.PressureTolerance;
 
-        temperatureOptimalDisplay.SetBoundPositions(CurrentTolerances.PreferredPressure, pressureToleranceWithOrganelles);
-        temperatureOptimalDisplay.UpdateMarker(patchPressure);
+        pressureOptimalDisplay.SetBoundPositions(CurrentTolerances.PreferredPressure, pressureToleranceWithOrganelles);
+        pressureOptimalDisplay.UpdateMarker(patchPressure);
+
+        var pressureMin = CurrentTolerances.PreferredPressure - pressureToleranceWithOrganelles;
+        var pressureMax = CurrentTolerances.PreferredPressure + pressureToleranceWithOrganelles;
+
+        pressureMinLabel.Text = unitFormat.FormatSafe(Math.Round(pressureMin / 1000), "kPa");
+        pressureMaxLabel.Text = unitFormat.FormatSafe(Math.Round(pressureMax / 1000), "kPa");
+
+        pressureToleranceLabel.Text = plusMinusUnitFormat.FormatSafe(Math.Round(CurrentTolerances.PressureTolerance / 1000), "kPa");
+        pressureBaseLabel.Text = plusMinusUnitFormat.FormatSafe(Math.Round(organelleModifiers.PressureTolerance / 1000), "kPa");
+
+        pressureBaseLabel.LabelSettings = organelleModifiers.PressureTolerance switch
+        {
+            > 0 => modifierGoodFont,
+            0 => originalModifierFont,
+            < 0 => modifierBadFont,
+            _ => originalModifierFont,
+        };
+
+        // Show in red the conditions that are not matching to make them easier to notice
+        if (Math.Abs(patchPressure - CurrentTolerances.PreferredPressure) >
+            pressureToleranceWithOrganelles)
+        {
+            // Mark the direction that is bad as the one having the problem to make it easier for the player to see
+            // what is wrong
+            if (patchPressure > CurrentTolerances.PreferredPressure)
+            {
+                pressureMaxLabel.LabelSettings = badValueFont;
+                pressureMinLabel.LabelSettings = originalTemperatureFont;
+            }
+            else
+            {
+                pressureMinLabel.LabelSettings = badValueFont;
+                pressureMaxLabel.LabelSettings = originalTemperatureFont;
+            }
+        }
+        else if (Math.Abs(CurrentTolerances.PreferredPressure) < Constants.TOLERANCE_PERFECT_THRESHOLD_PRESSURE)
+        {
+            // Perfectly adapted
+            pressureMinLabel.LabelSettings = perfectValueFont;
+            pressureMaxLabel.LabelSettings = perfectValueFont;
+        }
+        else
+        {
+            pressureMinLabel.LabelSettings = originalTemperatureFont;
+            pressureMaxLabel.LabelSettings = originalTemperatureFont;
+        }
 
 
         // Oxygen Resistance
