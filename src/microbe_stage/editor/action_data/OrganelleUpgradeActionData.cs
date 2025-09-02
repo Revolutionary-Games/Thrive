@@ -21,11 +21,11 @@ public class OrganelleUpgradeActionData : EditorCombinableActionData<CellType>
     }
 
     public static double CalculateUpgradeCost(Dictionary<string, AvailableUpgrade> availableUpgrades,
-        List<string> newUpgrades, List<string> oldUpgrades)
+        List<string> newUpgrades, List<string> oldUpgrades, bool refund = false)
     {
         int cost = 0;
 
-        // TODO: allow custom upgrades to have a cost
+        // TODO: allow custom upgrades to have a cost (should also add a test in EditorMPTests)
 
         // Calculate the costs of the selected new general upgrades
 
@@ -46,10 +46,33 @@ public class OrganelleUpgradeActionData : EditorCombinableActionData<CellType>
             }
         }
 
-        // TODO: Removals should cost MP: https://github.com/Revolutionary-Games/Thrive/issues/4095
-        // var removedUpgrades = OldUpgrades.UnlockedFeatures.Except(NewUpgrades.UnlockedFeatures)
-        //     .Where(u => availableUpgrades.ContainsKey(u)).Select(u => availableUpgrades[u]);
-        // ? removedUpgrades.Sum(u => u.MPCost);
+        if (refund)
+        {
+            // Refund removed upgrades
+            foreach (var oldUpgrade in oldUpgrades)
+            {
+                if (newUpgrades.Contains(oldUpgrade))
+                    continue;
+
+                if (!availableUpgrades.TryGetValue(oldUpgrade, out var upgrade))
+                {
+                    // See the TODO above
+                    GD.PrintErr("Cannot calculate cost for an unknown upgrade: ", oldUpgrade);
+                }
+                else
+                {
+                    cost -= upgrade.MPCost;
+                }
+            }
+        }
+
+        // else
+        {
+            // TODO: Removals should cost MP: https://github.com/Revolutionary-Games/Thrive/issues/4095
+            // var removedUpgrades = OldUpgrades.UnlockedFeatures.Except(NewUpgrades.UnlockedFeatures)
+            //     .Where(u => availableUpgrades.ContainsKey(u)).Select(u => availableUpgrades[u]);
+            // ? removedUpgrades.Sum(u => u.MPCost);
+        }
 
         return cost;
     }
@@ -65,8 +88,10 @@ public class OrganelleUpgradeActionData : EditorCombinableActionData<CellType>
     {
         var cost = CalculateBaseCostInternal();
 
+        int i = CalculateValidityRegionStart(history, insertPosition, 0);
+
         var count = history.Count;
-        for (int i = 0; i < insertPosition && i < count; ++i)
+        for (; i < insertPosition && i < count; ++i)
         {
             var other = history[i];
 
@@ -74,9 +99,11 @@ public class OrganelleUpgradeActionData : EditorCombinableActionData<CellType>
             {
                 if (ReferenceEquals(UpgradedOrganelle, upgradeActionData.UpgradedOrganelle))
                 {
-                    cost = Math.Min(-other.GetCalculatedCost(), cost) + CalculateUpgradeCost(
-                        UpgradedOrganelle.Definition.AvailableUpgrades, NewUpgrades.UnlockedFeatures,
-                        upgradeActionData.OldUpgrades.UnlockedFeatures);
+                    // When there's a previous upgrade, calculate this cost in relation to that to process refunds as
+                    // well correctly
+                    cost = CalculateUpgradeCost(UpgradedOrganelle.Definition.AvailableUpgrades,
+                        NewUpgrades.UnlockedFeatures,
+                        upgradeActionData.NewUpgrades.UnlockedFeatures, true);
                 }
             }
         }
@@ -89,5 +116,11 @@ public class OrganelleUpgradeActionData : EditorCombinableActionData<CellType>
         // Doesn't need to merge as organelle upgrades are applied when hitting "ok" in the GUI and not for each slider
         // step
         return false;
+    }
+
+    protected override bool ActionDenotesInterestingRegionBoundary(EditorCombinableActionData action)
+    {
+        return action is OrganelleUpgradeActionData upgradeActionData && MatchesContext(upgradeActionData) &&
+            ReferenceEquals(UpgradedOrganelle, upgradeActionData.UpgradedOrganelle);
     }
 }

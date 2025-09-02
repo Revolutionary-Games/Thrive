@@ -47,6 +47,42 @@ public abstract class EditorCombinableActionData : CombinableActionData
         int insertPosition);
 
     protected abstract double CalculateBaseCostInternal();
+
+    /// <summary>
+    ///   Detects where the current region that should be looked at for MP costs begins.
+    ///   Used, for example, to ignore deletes / moves that affected a hex in its previous life before it was placed
+    ///   again (and thus are irrelevant for many actions' MP calculations)
+    /// </summary>
+    /// <param name="history">History to search</param>
+    /// <param name="insertPosition">Position before which the region must be</param>
+    /// <param name="bias">
+    ///   Bias value added to the return value. By default, 1 to return the index after the interesting found boundary.
+    /// </param>
+    /// <returns>0 if not found, otherwise the last relevant position</returns>
+    protected int CalculateValidityRegionStart(IReadOnlyList<EditorCombinableActionData> history,
+        int insertPosition, int bias = 1)
+    {
+        int lastInterestingPoint = 0;
+
+        // TODO: could this loop run in reverse for more efficient searching?
+        var count = history.Count;
+        for (int i = 0; i < insertPosition && i < count; ++i)
+        {
+            var other = history[i];
+
+            if (ActionDenotesInterestingRegionBoundary(other))
+            {
+                lastInterestingPoint = i + bias;
+            }
+        }
+
+        return lastInterestingPoint;
+    }
+
+    protected virtual bool ActionDenotesInterestingRegionBoundary(EditorCombinableActionData action)
+    {
+        throw new NotImplementedException();
+    }
 }
 
 public abstract class EditorCombinableActionData<TContext> : EditorCombinableActionData

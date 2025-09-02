@@ -7,6 +7,7 @@ using Xunit;
 public class EditorMPTests
 {
     private const int TEST_UPGRADE_COST = 11;
+    private const int TEST_UPGRADE_COST_2 = 26;
 
     private readonly OrganelleDefinition cheapOrganelle = new()
     {
@@ -21,7 +22,10 @@ public class EditorMPTests
             {
                 "test", new TestOrganelleUpgrade("Test", TEST_UPGRADE_COST)
             },
-        }
+            {
+                "test2", new TestOrganelleUpgrade("Test2", TEST_UPGRADE_COST_2)
+            },
+        },
     };
 
     private readonly OrganelleDefinition dummyCytoplasm = new()
@@ -287,6 +291,109 @@ public class EditorMPTests
         history.AddAction(new SingleEditorAction<OrganelleRemoveActionData>(_ => { }, _ => { }, removeData));
 
         Assert.Equal(Constants.BASE_MUTATION_POINTS, history.CalculateMutationPointsLeft());
+    }
+
+    [Fact]
+    public void EditorMPTests_MultipleIndependentUpgrades()
+    {
+        var history = new EditorActionHistory<EditorAction>();
+
+        var template = new OrganelleTemplate(cheapOrganelle, new Hex(0, 0), 0);
+
+        var upgrades1 = new OrganelleUpgrades
+        {
+            UnlockedFeatures = ["test"],
+        };
+
+        var upgradeData = new OrganelleUpgradeActionData(new OrganelleUpgrades(), upgrades1, template);
+
+        history.AddAction(new SingleEditorAction<OrganelleUpgradeActionData>(_ => { }, _ => { }, upgradeData));
+
+        Assert.Equal(Constants.BASE_MUTATION_POINTS - TEST_UPGRADE_COST,
+            history.CalculateMutationPointsLeft());
+
+        var upgrades2 = new OrganelleUpgrades
+        {
+            UnlockedFeatures = ["test", "test2"],
+        };
+
+        var upgradeData2 = new OrganelleUpgradeActionData(new OrganelleUpgrades(), upgrades2, template);
+
+        history.AddAction(new SingleEditorAction<OrganelleUpgradeActionData>(_ => { }, _ => { }, upgradeData2));
+
+        Assert.Equal(Constants.BASE_MUTATION_POINTS - TEST_UPGRADE_COST - TEST_UPGRADE_COST_2,
+            history.CalculateMutationPointsLeft());
+    }
+
+    [Fact]
+    public void EditorMPTests_MultipleUpgradesCombine()
+    {
+        var history = new EditorActionHistory<EditorAction>();
+
+        var template = new OrganelleTemplate(cheapOrganelle, new Hex(0, 0), 0);
+
+        var upgrades1 = new OrganelleUpgrades
+        {
+            UnlockedFeatures = ["test"],
+        };
+
+        var upgradeData = new OrganelleUpgradeActionData(new OrganelleUpgrades(), upgrades1, template);
+
+        history.AddAction(new SingleEditorAction<OrganelleUpgradeActionData>(_ => { }, _ => { }, upgradeData));
+
+        Assert.Equal(Constants.BASE_MUTATION_POINTS - TEST_UPGRADE_COST,
+            history.CalculateMutationPointsLeft());
+
+        var upgrades2 = new OrganelleUpgrades
+        {
+            UnlockedFeatures = ["test2"],
+        };
+
+        var upgradeData2 = new OrganelleUpgradeActionData(new OrganelleUpgrades(), upgrades2, template);
+
+        history.AddAction(new SingleEditorAction<OrganelleUpgradeActionData>(_ => { }, _ => { }, upgradeData2));
+
+        Assert.Equal(Constants.BASE_MUTATION_POINTS - TEST_UPGRADE_COST_2,
+            history.CalculateMutationPointsLeft());
+    }
+
+    [Fact]
+    public void EditorMPTests_MultipleUpgradesCombine3Step()
+    {
+        var history = new EditorActionHistory<EditorAction>();
+
+        var template = new OrganelleTemplate(cheapOrganelle, new Hex(0, 0), 0);
+
+        var upgrades1 = new OrganelleUpgrades
+        {
+            UnlockedFeatures = ["test"],
+        };
+
+        var noUpgrades = new OrganelleUpgrades();
+
+        var upgradeData = new OrganelleUpgradeActionData(noUpgrades, upgrades1, template);
+
+        history.AddAction(new SingleEditorAction<OrganelleUpgradeActionData>(_ => { }, _ => { }, upgradeData));
+
+        Assert.Equal(Constants.BASE_MUTATION_POINTS - TEST_UPGRADE_COST,
+            history.CalculateMutationPointsLeft());
+
+        var upgradeData2 = new OrganelleUpgradeActionData(upgrades1, noUpgrades, template);
+
+        history.AddAction(new SingleEditorAction<OrganelleUpgradeActionData>(_ => { }, _ => { }, upgradeData2));
+
+        Assert.Equal(Constants.BASE_MUTATION_POINTS, history.CalculateMutationPointsLeft());
+
+        var upgrades2 = new OrganelleUpgrades
+        {
+            UnlockedFeatures = ["test2"],
+        };
+
+        var upgradeData3 = new OrganelleUpgradeActionData(noUpgrades, upgrades2, template);
+
+        history.AddAction(new SingleEditorAction<OrganelleUpgradeActionData>(_ => { }, _ => { }, upgradeData3));
+
+        Assert.Equal(Constants.BASE_MUTATION_POINTS - TEST_UPGRADE_COST_2, history.CalculateMutationPointsLeft());
     }
 
     [Fact]
