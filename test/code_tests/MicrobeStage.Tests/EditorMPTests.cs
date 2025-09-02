@@ -420,6 +420,111 @@ public class EditorMPTests
     }
 
     [Fact]
+    public void EditorMPTests_MoveAfterRemoveIsNotFree()
+    {
+        var history = new EditorActionHistory<EditorAction>();
+
+        var template = new OrganelleTemplate(cheapOrganelle, new Hex(0, 0), 0);
+
+        var removeData =
+            new OrganelleRemoveActionData(template, new Hex(0, 0), 0);
+
+        history.AddAction(new SingleEditorAction<OrganelleRemoveActionData>(_ => { }, _ => { }, removeData));
+
+        Assert.Equal(Constants.BASE_MUTATION_POINTS - Constants.ORGANELLE_REMOVE_COST,
+            history.CalculateMutationPointsLeft());
+
+        var actionData =
+            new OrganellePlacementActionData(template, new Hex(0, 0), 0);
+
+        history.AddAction(new SingleEditorAction<OrganellePlacementActionData>(_ => { }, _ => { }, actionData));
+
+        Assert.Equal(Constants.BASE_MUTATION_POINTS, history.CalculateMutationPointsLeft());
+
+        var moveData = new OrganelleMoveActionData(template, new Hex(0, 0), new Hex(1, 0), 0, 0);
+
+        history.AddAction(new SingleEditorAction<OrganelleMoveActionData>(_ => { }, _ => { }, moveData));
+
+        Assert.Equal(Constants.BASE_MUTATION_POINTS - Constants.ORGANELLE_MOVE_COST,
+            history.CalculateMutationPointsLeft());
+    }
+
+    [Fact]
+    public void EditorMPTests_PlacingTwiceWithRemoveIsNotFree()
+    {
+        var history = new EditorActionHistory<EditorAction>();
+
+        var template = new OrganelleTemplate(cheapOrganelle, new Hex(0, 0), 0);
+
+        var placementData = new OrganellePlacementActionData(template, new Hex(0, 0), 0);
+
+        history.AddAction(new SingleEditorAction<OrganellePlacementActionData>(_ => { }, _ => { }, placementData));
+
+        Assert.Equal(Constants.BASE_MUTATION_POINTS - cheapOrganelle.MPCost, history.CalculateMutationPointsLeft());
+
+        var removeData =
+            new OrganelleRemoveActionData(template, new Hex(0, 0), 0);
+
+        history.AddAction(new SingleEditorAction<OrganelleRemoveActionData>(_ => { }, _ => { }, removeData));
+
+        Assert.Equal(Constants.BASE_MUTATION_POINTS, history.CalculateMutationPointsLeft());
+
+        var placementData2 =
+            new OrganellePlacementActionData(template, new Hex(0, 0), 0);
+
+        history.AddAction(new SingleEditorAction<OrganellePlacementActionData>(_ => { }, _ => { }, placementData2));
+
+        Assert.Equal(Constants.BASE_MUTATION_POINTS - cheapOrganelle.MPCost, history.CalculateMutationPointsLeft());
+    }
+
+    [Fact]
+    public void EditorMPTests_DeleteBetweenUpgradesWorksCorrectly()
+    {
+        var history = new EditorActionHistory<EditorAction>();
+
+        var template = new OrganelleTemplate(cheapOrganelle, new Hex(0, 0), 0);
+
+        var upgrades1 = new OrganelleUpgrades
+        {
+            UnlockedFeatures = ["test"],
+        };
+
+        var upgradeData = new OrganelleUpgradeActionData(new OrganelleUpgrades(), upgrades1, template);
+
+        history.AddAction(new SingleEditorAction<OrganelleUpgradeActionData>(_ => { }, _ => { }, upgradeData));
+
+        Assert.Equal(Constants.BASE_MUTATION_POINTS - TEST_UPGRADE_COST,
+            history.CalculateMutationPointsLeft());
+
+        var removeData =
+            new OrganelleRemoveActionData(template, new Hex(0, 0), 0);
+
+        history.AddAction(new SingleEditorAction<OrganelleRemoveActionData>(_ => { }, _ => { }, removeData));
+
+        Assert.Equal(Constants.BASE_MUTATION_POINTS - Constants.ORGANELLE_REMOVE_COST,
+            history.CalculateMutationPointsLeft());
+
+        var placementData =
+            new OrganellePlacementActionData(template, new Hex(0, 0), 0);
+
+        history.AddAction(new SingleEditorAction<OrganellePlacementActionData>(_ => { }, _ => { }, placementData));
+
+        Assert.Equal(Constants.BASE_MUTATION_POINTS, history.CalculateMutationPointsLeft());
+
+        var upgrades2 = new OrganelleUpgrades
+        {
+            UnlockedFeatures = ["test2"],
+        };
+
+        var upgradeData2 = new OrganelleUpgradeActionData(new OrganelleUpgrades(), upgrades2, template);
+
+        history.AddAction(new SingleEditorAction<OrganelleUpgradeActionData>(_ => { }, _ => { }, upgradeData2));
+
+        Assert.Equal(Constants.BASE_MUTATION_POINTS - TEST_UPGRADE_COST_2,
+            history.CalculateMutationPointsLeft());
+    }
+
+    [Fact]
     public void EditorMPTests_ReplacingCytoplasmRefundsIt()
     {
         var history = new EditorActionHistory<EditorAction>();
@@ -528,6 +633,55 @@ public class EditorMPTests
         history.AddAction(new SingleEditorAction<OrganellePlacementActionData>(_ => { }, _ => { }, actionData));
 
         Assert.Equal(Constants.BASE_MUTATION_POINTS - cheapOrganelle.MPCost, history.CalculateMutationPointsLeft());
+    }
+
+    [Fact]
+    public void EditorMPTests_MovingBackRefundsTheCost()
+    {
+        var history = new EditorActionHistory<EditorAction>();
+
+        var template = new OrganelleTemplate(cheapOrganelle, new Hex(0, 0), 0);
+
+        var moveData = new OrganelleMoveActionData(template, new Hex(0, 0), new Hex(1, 0), 0, 0);
+
+        history.AddAction(new SingleEditorAction<OrganelleMoveActionData>(_ => { }, _ => { }, moveData));
+
+        Assert.Equal(Constants.BASE_MUTATION_POINTS - Constants.ORGANELLE_MOVE_COST,
+            history.CalculateMutationPointsLeft());
+
+        var moveData2 = new OrganelleMoveActionData(template, new Hex(1, 0), new Hex(0, 0), 0, 0);
+
+        history.AddAction(new SingleEditorAction<OrganelleMoveActionData>(_ => { }, _ => { }, moveData2));
+
+        Assert.Equal(Constants.BASE_MUTATION_POINTS, history.CalculateMutationPointsLeft());
+    }
+
+    [Fact]
+    public void EditorMPTests_MoveBackDoesNotMakeFutureMovesFree()
+    {
+        var history = new EditorActionHistory<EditorAction>();
+
+        var template = new OrganelleTemplate(cheapOrganelle, new Hex(0, 0), 0);
+
+        var moveData = new OrganelleMoveActionData(template, new Hex(0, 0), new Hex(1, 0), 0, 0);
+
+        history.AddAction(new SingleEditorAction<OrganelleMoveActionData>(_ => { }, _ => { }, moveData));
+
+        Assert.Equal(Constants.BASE_MUTATION_POINTS - Constants.ORGANELLE_MOVE_COST,
+            history.CalculateMutationPointsLeft());
+
+        var moveData2 = new OrganelleMoveActionData(template, new Hex(1, 0), new Hex(0, 0), 0, 0);
+
+        history.AddAction(new SingleEditorAction<OrganelleMoveActionData>(_ => { }, _ => { }, moveData2));
+
+        Assert.Equal(Constants.BASE_MUTATION_POINTS, history.CalculateMutationPointsLeft());
+
+        var moveData3 = new OrganelleMoveActionData(template, new Hex(0, 0), new Hex(2, 0), 0, 0);
+
+        history.AddAction(new SingleEditorAction<OrganelleMoveActionData>(_ => { }, _ => { }, moveData3));
+
+        Assert.Equal(Constants.BASE_MUTATION_POINTS - Constants.ORGANELLE_MOVE_COST,
+            history.CalculateMutationPointsLeft());
     }
 
     [Fact]
