@@ -20,8 +20,8 @@ public abstract class HexRemoveActionData<THex, TContext> : EditorCombinableActi
         return Constants.ORGANELLE_REMOVE_COST;
     }
 
-    protected override double CalculateCostInternal(IReadOnlyList<EditorCombinableActionData> history,
-        int insertPosition)
+    protected override (double Cost, double RefundCost) CalculateCostInternal(
+        IReadOnlyList<EditorCombinableActionData> history, int insertPosition)
     {
         var cost = CalculateBaseCostInternal();
         bool moved = false;
@@ -35,7 +35,8 @@ public abstract class HexRemoveActionData<THex, TContext> : EditorCombinableActi
             if (other is HexPlacementActionData<THex, TContext> placementActionData &&
                 placementActionData.PlacedHex.MatchesDefinition(RemovedHex) && MatchesContext(placementActionData))
             {
-                cost -= other.GetCalculatedCost() + CalculateBaseCostInternal();
+                cost = 0;
+                refund += other.GetCalculatedSelfCost();
                 continue;
             }
 
@@ -44,15 +45,11 @@ public abstract class HexRemoveActionData<THex, TContext> : EditorCombinableActi
                 moveActionData.MovedHex.MatchesDefinition(RemovedHex) &&
                 moveActionData.NewLocation == Location && MatchesContext(moveActionData))
             {
-                if (!moved)
-                {
-                    moved = true;
-                    cost -= other.GetCalculatedCost();
-                }
+                refund += other.GetCalculatedSelfCost() - other.GetCalculatedRefundCost();
             }
         }
 
-        return cost;
+        return (cost, refund);
     }
 
     protected override bool CanMergeWithInternal(CombinableActionData other)

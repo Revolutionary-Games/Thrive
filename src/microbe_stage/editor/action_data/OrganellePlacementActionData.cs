@@ -16,10 +16,10 @@ public class OrganellePlacementActionData : HexPlacementActionData<OrganelleTemp
         return PlacedHex.Definition.MPCost;
     }
 
-    protected override double CalculateCostInternal(IReadOnlyList<EditorCombinableActionData> history,
-        int insertPosition)
+    protected override (double Cost, double RefundCost) CalculateCostInternal(
+        IReadOnlyList<EditorCombinableActionData> history, int insertPosition)
     {
-        double cost = 0;
+        double refund = 0;
 
         var count = history.Count;
         for (int i = 0; i < insertPosition && i < count; ++i)
@@ -41,10 +41,12 @@ public class OrganellePlacementActionData : HexPlacementActionData<OrganelleTemp
                 ReplacedCytoplasm?.Contains(placementActionData.PlacedHex) == true &&
                 MatchesContext(placementActionData))
             {
-                cost = Math.Min(-other.GetCalculatedCost(), cost);
+                refund += other.GetCalculatedSelfCost();
             }
         }
 
-        return cost + base.CalculateCostInternal(history, insertPosition);
+        var baseCost = base.CalculateCostInternal(history, insertPosition);
+
+        return (baseCost.Cost, refund + baseCost.RefundCost);
     }
 }
