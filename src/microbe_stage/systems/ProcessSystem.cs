@@ -299,9 +299,7 @@ public sealed class ProcessSystem : AEntitySetSystem<float>
 
             // Take special cell components that take energy into account
             if (TryGetMovementCostForOrganelle(includeMovementCost, organelle, onlyMovementInDirection, out var cost))
-            {
                 result.AddConsumption(organelle.Definition.InternalName, cost);
-            }
 
             if (includeMovementCost && organelle.Definition.HasCiliaComponent)
             {
