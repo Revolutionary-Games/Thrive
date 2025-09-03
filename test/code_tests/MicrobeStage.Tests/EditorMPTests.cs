@@ -716,6 +716,60 @@ public class EditorMPTests
     }
 
     [Fact]
+    public void EditorMPTests_RigidityChangesCombineWithMoveInBetween()
+    {
+        var history = new EditorActionHistory<EditorAction>();
+
+        var rigidityAction1 = new RigidityActionData(0.2f, 0.0f);
+
+        history.AddAction(new SingleEditorAction<RigidityActionData>(_ => { }, _ => { }, rigidityAction1));
+
+        var changeCost1 = RigidityActionData.CalculateRigidityCost(0.2f, 0);
+        Assert.True(changeCost1 > 0.01f);
+
+        Assert.Equal(Constants.BASE_MUTATION_POINTS - changeCost1, history.CalculateMutationPointsLeft());
+
+        var rigidityAction2 = new RigidityActionData(0.3f, 0.2f);
+
+        history.AddAction(new SingleEditorAction<RigidityActionData>(_ => { }, _ => { }, rigidityAction2));
+
+        var totalCost = RigidityActionData.CalculateRigidityCost(0.3f, 0);
+
+        Assert.True(totalCost > changeCost1);
+
+        Assert.Equal(Constants.BASE_MUTATION_POINTS - totalCost, history.CalculateMutationPointsLeft());
+
+        var moveAction = new OrganelleMoveActionData(new OrganelleTemplate(cheapOrganelle, new Hex(0, 0), 0),
+            new Hex(0, 0), new Hex(1, 0), 0, 0);
+
+        history.AddAction(new SingleEditorAction<OrganelleMoveActionData>(_ => { }, _ => { }, moveAction));
+
+        Assert.Equal(Constants.BASE_MUTATION_POINTS - totalCost - Constants.ORGANELLE_MOVE_COST,
+            history.CalculateMutationPointsLeft());
+
+        // Then back to 0 to have full MP remaining
+        var rigidityAction3 = new RigidityActionData(0.0f, 0.3f);
+
+        history.AddAction(new SingleEditorAction<RigidityActionData>(_ => { }, _ => { }, rigidityAction3));
+        Assert.Equal(Constants.BASE_MUTATION_POINTS - Constants.ORGANELLE_MOVE_COST, history.CalculateMutationPointsLeft());
+
+        // Undo the move
+        var moveAction2 = new OrganelleMoveActionData(new OrganelleTemplate(cheapOrganelle, new Hex(0, 0), 0),
+            new Hex(1, 0), new Hex(0, 0), 0, 0);
+
+        history.AddAction(new SingleEditorAction<OrganelleMoveActionData>(_ => { }, _ => { }, moveAction2));
+        Assert.Equal(Constants.BASE_MUTATION_POINTS, history.CalculateMutationPointsLeft());
+
+        // And once more up to check a more complex combine
+        var rigidityAction4 = new RigidityActionData(0.2f, 0.0f);
+
+        history.AddAction(new SingleEditorAction<RigidityActionData>(_ => { }, _ => { }, rigidityAction4));
+
+        var changeCost4 = RigidityActionData.CalculateRigidityCost(0.2f, 0);
+        Assert.Equal(Constants.BASE_MUTATION_POINTS - changeCost4, history.CalculateMutationPointsLeft());
+    }
+
+    [Fact]
     public void EditorMPTests_MoveDeleteAndAddingBackIsFree()
     {
         var history = new EditorActionHistory<EditorAction>();

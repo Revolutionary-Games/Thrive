@@ -28,7 +28,8 @@ public class RigidityActionData : EditorCombinableActionData<CellType>
         int insertPosition)
     {
         bool foundOther = false;
-        double cost = 0;
+        var cost = CalculateBaseCostInternal();
+        var totalOtherCost = 0.0;
 
         var count = history.Count;
         for (int i = 0; i < insertPosition && i < count; ++i)
@@ -37,30 +38,18 @@ public class RigidityActionData : EditorCombinableActionData<CellType>
 
             if (other is RigidityActionData rigidityChangeActionData && MatchesContext(rigidityChangeActionData))
             {
-                // If the value has been changed back to a previous value
-                if (Math.Abs(NewRigidity - rigidityChangeActionData.PreviousRigidity) < MathUtils.EPSILON &&
-                    Math.Abs(rigidityChangeActionData.NewRigidity - PreviousRigidity) < MathUtils.EPSILON)
+                // Calculate the cost as the total change and offset the previous action's cost by the change
+                if (!foundOther)
                 {
-                    cost -= -other.GetCalculatedCost();
+                    cost = CalculateRigidityCost(NewRigidity, rigidityChangeActionData.PreviousRigidity);
                     foundOther = true;
-                    continue;
                 }
 
-                // If the value has been changed twice
-                if (Math.Abs(NewRigidity - rigidityChangeActionData.PreviousRigidity) < MathUtils.EPSILON ||
-                    Math.Abs(rigidityChangeActionData.NewRigidity - PreviousRigidity) < MathUtils.EPSILON)
-                {
-                    cost += -other.GetCalculatedCost() +
-                        CalculateRigidityCost(NewRigidity, rigidityChangeActionData.PreviousRigidity);
-                    foundOther = true;
-                }
+                totalOtherCost += other.GetCalculatedCost();
             }
         }
 
-        if (!foundOther)
-            cost += CalculateBaseCostInternal();
-
-        return cost;
+        return cost - totalOtherCost;
     }
 
     protected override bool CanMergeWithInternal(CombinableActionData other)
