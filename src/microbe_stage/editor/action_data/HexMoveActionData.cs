@@ -34,10 +34,19 @@ public abstract class HexMoveActionData<THex, TContext> : EditorCombinableAction
         // Move is free if moving a hex placed in this session, or if moving something moved already
         var cost = CalculateBaseCostInternal();
 
+        bool interruptedByRemove = false;
+
         var count = history.Count;
         for (int i = 0; i < insertPosition && i < count; ++i)
         {
             var other = history[i];
+
+            if (other is HexRemoveActionData<THex, TContext> removeActionData &&
+                removeActionData.RemovedHex.MatchesDefinition(MovedHex) && MatchesContext(removeActionData))
+            {
+                interruptedByRemove = true;
+                continue;
+            }
 
             // If this hex got moved in the same session again
             if (other is HexMoveActionData<THex, TContext> moveActionData &&
@@ -52,8 +61,9 @@ public abstract class HexMoveActionData<THex, TContext> : EditorCombinableAction
                 }
 
                 // If this hex got moved twice
-                if ((moveActionData.NewLocation == OldLocation && moveActionData.NewRotation == OldRotation) ||
-                    (NewLocation == moveActionData.OldLocation && NewRotation == moveActionData.OldRotation))
+                if (((moveActionData.NewLocation == OldLocation && moveActionData.NewRotation == OldRotation) ||
+                        (NewLocation == moveActionData.OldLocation && NewRotation == moveActionData.OldRotation)) &&
+                    !interruptedByRemove)
                 {
                     cost = Math.Min(0, cost);
                     continue;
@@ -64,7 +74,8 @@ public abstract class HexMoveActionData<THex, TContext> : EditorCombinableAction
             if (other is HexPlacementActionData<THex, TContext> placementActionData &&
                 placementActionData.PlacedHex.MatchesDefinition(MovedHex) &&
                 placementActionData.Location == OldLocation &&
-                placementActionData.Orientation == OldRotation && MatchesContext(placementActionData))
+                placementActionData.Orientation == OldRotation && MatchesContext(placementActionData) &&
+                !interruptedByRemove)
             {
                 cost = Math.Min(0, cost);
             }
