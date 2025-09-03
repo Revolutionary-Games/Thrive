@@ -202,7 +202,7 @@ public class EditorMPTests
 
         history.AddAction(new SingleEditorAction<OrganelleMoveActionData>(_ => { }, _ => { }, moveData));
 
-        var upgradeData = new OrganelleUpgradeActionData(new OrganelleUpgrades(), new OrganelleUpgrades()
+        var upgradeData = new OrganelleUpgradeActionData(new OrganelleUpgrades(), new OrganelleUpgrades
         {
             UnlockedFeatures = ["test"],
         }, template);
@@ -768,6 +768,8 @@ public class EditorMPTests
         var changeCost4 = RigidityActionData.CalculateRigidityCost(0.2f, 0);
         Assert.Equal(Constants.BASE_MUTATION_POINTS - changeCost4, history.CalculateMutationPointsLeft());
     }
+
+    // TODO: implement a test for custom upgrade data changing and having an MP cost once that is supported
 
     [Fact]
     public void EditorMPTests_MoveDeleteAndAddingBackIsFree()
