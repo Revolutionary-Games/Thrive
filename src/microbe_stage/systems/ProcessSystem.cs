@@ -251,7 +251,7 @@ public sealed class ProcessSystem : AEntitySetSystem<float>
         bool hasNucleus = organelles.Any(organelle => organelle.Definition == Nucleus);
 
         CalculateSimplePartOfEnergyBalance(organelles, biome, environmentTolerances, membrane, onlyMovementInDirection,
-            includeMovementCost, isPlayerSpecies, worldSettings, amountType, cache, hasNucleus, result);
+            includeMovementCost, isPlayerSpecies, worldSettings, amountType, cache, result);
     }
 
     /// <summary>
@@ -282,10 +282,8 @@ public sealed class ProcessSystem : AEntitySetSystem<float>
         bool includeMovementCost, bool isPlayerSpecies, WorldGenerationSettings worldSettings,
         CompoundAmountType amountType, SimulationCache? cache, EnergyBalanceInfoFull result)
     {
-        bool hasNucleus = organelles.Any(organelle => organelle.Definition == Nucleus);
-
         CalculateSimplePartOfEnergyBalance(organelles, biome, environmentTolerances, membrane, onlyMovementInDirection,
-            includeMovementCost, isPlayerSpecies, worldSettings, amountType, cache, hasNucleus, result);
+            includeMovementCost, isPlayerSpecies, worldSettings, amountType, cache, result);
 
         // Once simple balance is calculated we add the extra info on top, this approach loops the organelles twice
         // but reduces code duplication
@@ -847,7 +845,7 @@ public sealed class ProcessSystem : AEntitySetSystem<float>
         IBiomeConditions biome, in ResolvedMicrobeTolerances environmentTolerances, MembraneType membrane,
         Vector3 onlyMovementInDirection, bool includeMovementCost, bool isPlayerSpecies,
         WorldGenerationSettings worldSettings, CompoundAmountType amountType,
-        SimulationCache? cache, bool hasNucleus, EnergyBalanceInfoSimple result)
+        SimulationCache? cache, EnergyBalanceInfoSimple result)
     {
         var processATPProduction = 0.0f;
         var processATPConsumption = 0.0f;
