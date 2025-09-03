@@ -24,12 +24,12 @@ public class RigidityActionData : EditorCombinableActionData<CellType>
         return CalculateRigidityCost(NewRigidity, PreviousRigidity);
     }
 
-    protected override double CalculateCostInternal(IReadOnlyList<EditorCombinableActionData> history,
-        int insertPosition)
+    protected override (double Cost, double RefundCost) CalculateCostInternal(
+        IReadOnlyList<EditorCombinableActionData> history, int insertPosition)
     {
         bool foundOther = false;
         var cost = CalculateBaseCostInternal();
-        var totalOtherCost = 0.0;
+        double refund = 0;
 
         var count = history.Count;
         for (int i = 0; i < insertPosition && i < count; ++i)
@@ -45,11 +45,11 @@ public class RigidityActionData : EditorCombinableActionData<CellType>
                     foundOther = true;
                 }
 
-                totalOtherCost += other.GetCalculatedCost();
+                refund += other.GetCalculatedSelfCost();
             }
         }
 
-        return cost - totalOtherCost;
+        return (cost, refund);
     }
 
     protected override bool CanMergeWithInternal(CombinableActionData other)

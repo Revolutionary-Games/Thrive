@@ -111,10 +111,11 @@ public class MetaballRemoveActionData<TMetaball> : EditorCombinableActionData
         return Constants.METABALL_REMOVE_COST;
     }
 
-    protected override double CalculateCostInternal(IReadOnlyList<EditorCombinableActionData> history,
-        int insertPosition)
+    protected override (double Cost, double RefundCost) CalculateCostInternal(
+        IReadOnlyList<EditorCombinableActionData> history, int insertPosition)
     {
         var cost = CalculateBaseCostInternal();
+        double refund = 0;
 
         var count = history.Count;
         for (int i = 0; i < insertPosition && i < count; ++i)
@@ -126,7 +127,7 @@ public class MetaballRemoveActionData<TMetaball> : EditorCombinableActionData
                 placementActionData.PlacedMetaball.MatchesDefinition(RemovedMetaball))
             {
                 // Deleting a placed metaball refunds it
-                cost -= other.GetCalculatedCost() + CalculateBaseCostInternal();
+                refund += other.GetCalculatedSelfCost();
                 continue;
             }
 
@@ -136,7 +137,7 @@ public class MetaballRemoveActionData<TMetaball> : EditorCombinableActionData
                 moveActionData.NewPosition.DistanceSquaredTo(Position) < MathUtils.EPSILON &&
                 moveActionData.NewParent == Parent)
             {
-                cost -= moveActionData.GetCalculatedCost();
+                refund += moveActionData.GetCalculatedEffectiveCost();
                 continue;
             }
 
@@ -145,11 +146,11 @@ public class MetaballRemoveActionData<TMetaball> : EditorCombinableActionData
                 resizeActionData.ResizedMetaball.MatchesDefinition(RemovedMetaball) &&
                 Math.Abs(resizeActionData.NewSize - RemovedMetaball.Size) < MathUtils.EPSILON)
             {
-                cost -= resizeActionData.GetCalculatedCost();
+                refund += resizeActionData.GetCalculatedEffectiveCost();
             }
         }
 
-        return cost;
+        return (cost, refund);
     }
 
     protected override bool CanMergeWithInternal(CombinableActionData other)

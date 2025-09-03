@@ -1,5 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using Godot;
 using Newtonsoft.Json;
 
@@ -33,10 +32,12 @@ public class MetaballPlacementActionData<TMetaball> : EditorCombinableActionData
         return Constants.METABALL_ADD_COST;
     }
 
-    protected override double CalculateCostInternal(IReadOnlyList<EditorCombinableActionData> history,
+    protected override (double Cost, double RefundCost) CalculateCostInternal(
+        IReadOnlyList<EditorCombinableActionData> history,
         int insertPosition)
     {
         var cost = CalculateBaseCostInternal();
+        double refund = 0;
 
         var count = history.Count;
         for (int i = 0; i < insertPosition && i < count; ++i)
@@ -51,16 +52,18 @@ public class MetaballPlacementActionData<TMetaball> : EditorCombinableActionData
                 if (removeActionData.Position.DistanceSquaredTo(Position) < MathUtils.EPSILON &&
                     removeActionData.Parent == Parent)
                 {
-                    cost = Math.Min(-other.GetCalculatedCost(), cost);
+                    cost = 0;
+                    refund += other.GetCalculatedSelfCost();
                     continue;
                 }
 
                 // Removing and placing a metaball is a move operation
-                cost = Math.Min(-other.GetCalculatedCost(), cost) + Constants.METABALL_MOVE_COST;
+                cost = Constants.METABALL_MOVE_COST;
+                refund += other.GetCalculatedSelfCost();
             }
         }
 
-        return cost;
+        return (cost, refund);
     }
 
     protected override bool CanMergeWithInternal(CombinableActionData other)

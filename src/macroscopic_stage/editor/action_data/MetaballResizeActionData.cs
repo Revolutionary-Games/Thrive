@@ -25,10 +25,11 @@ public class MetaballResizeActionData<TMetaball> : EditorCombinableActionData
         return Constants.METABALL_RESIZE_COST;
     }
 
-    protected override double CalculateCostInternal(IReadOnlyList<EditorCombinableActionData> history,
-        int insertPosition)
+    protected override (double Cost, double RefundCost) CalculateCostInternal(
+        IReadOnlyList<EditorCombinableActionData> history, int insertPosition)
     {
         var cost = CalculateBaseCostInternal();
+        double refund = 0;
 
         var count = history.Count;
         for (int i = 0; i < insertPosition && i < count; ++i)
@@ -43,13 +44,13 @@ public class MetaballResizeActionData<TMetaball> : EditorCombinableActionData
                 if (MathF.Abs(OldSize - resizeActionData.NewSize) < MathUtils.EPSILON &&
                     MathF.Abs(NewSize - resizeActionData.OldSize) < MathUtils.EPSILON)
                 {
-                    cost = Math.Min(-other.GetCalculatedCost(), cost);
+                    cost = 0;
+                    refund += other.GetCalculatedSelfCost();
                     continue;
                 }
 
                 // Multiple resizes in a row are just one resize
-                // TODO: once there's a scaled cost, this needs to be updated
-                cost = Math.Min(0, cost);
+                cost = 0;
                 continue;
             }
 
@@ -57,11 +58,11 @@ public class MetaballResizeActionData<TMetaball> : EditorCombinableActionData
                 placementActionData.PlacedMetaball.Equals(ResizedMetaball))
             {
                 // Resizing a just placed metaball is free
-                cost = Math.Min(0, cost);
+                cost = 0;
             }
         }
 
-        return cost;
+        return (cost, refund);
     }
 
     protected override bool CanMergeWithInternal(CombinableActionData other)

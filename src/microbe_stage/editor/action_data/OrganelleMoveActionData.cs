@@ -7,8 +7,8 @@ public class OrganelleMoveActionData : HexMoveActionData<OrganelleTemplate, Cell
     {
     }
 
-    protected override double CalculateCostInternal(IReadOnlyList<EditorCombinableActionData> history,
-        int insertPosition)
+    protected override (double Cost, double RefundCost) CalculateCostInternal(
+        IReadOnlyList<EditorCombinableActionData> history, int insertPosition)
     {
         var count = history.Count;
         for (int i = 0; i < insertPosition && i < count; ++i)
@@ -24,7 +24,7 @@ public class OrganelleMoveActionData : HexMoveActionData<OrganelleTemplate, Cell
                     OldLocation == endosymbiontPlaceActionData.PlacementLocation &&
                     OldRotation == endosymbiontPlaceActionData.PlacementRotation)
                 {
-                    return 0;
+                    return (0, 0);
                 }
             }
         }

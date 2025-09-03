@@ -1,5 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 
 public abstract class HexMoveActionData<THex, TContext> : EditorCombinableActionData<TContext>
     where THex : class, IActionHex
@@ -28,11 +27,12 @@ public abstract class HexMoveActionData<THex, TContext> : EditorCombinableAction
         return Constants.ORGANELLE_MOVE_COST;
     }
 
-    protected override double CalculateCostInternal(IReadOnlyList<EditorCombinableActionData> history,
-        int insertPosition)
+    protected override (double Cost, double RefundCost) CalculateCostInternal(
+        IReadOnlyList<EditorCombinableActionData> history, int insertPosition)
     {
         // Move is free if moving a hex placed in this session, or if moving something moved already
         var cost = CalculateBaseCostInternal();
+        double refund = 0;
 
         bool interruptedByRemove = false;
 
@@ -56,7 +56,8 @@ public abstract class HexMoveActionData<THex, TContext> : EditorCombinableAction
                 if (OldLocation == moveActionData.NewLocation && NewLocation == moveActionData.OldLocation &&
                     OldRotation == moveActionData.NewRotation && NewRotation == moveActionData.OldRotation)
                 {
-                    cost = Math.Min(-other.GetCalculatedCost(), cost);
+                    cost = 0;
+                    refund += other.GetCalculatedSelfCost();
                     continue;
                 }
 
@@ -65,7 +66,7 @@ public abstract class HexMoveActionData<THex, TContext> : EditorCombinableAction
                         (NewLocation == moveActionData.OldLocation && NewRotation == moveActionData.OldRotation)) &&
                     !interruptedByRemove)
                 {
-                    cost = Math.Min(0, cost);
+                    refund += other.GetCalculatedSelfCost();
                     continue;
                 }
             }
@@ -77,13 +78,13 @@ public abstract class HexMoveActionData<THex, TContext> : EditorCombinableAction
                 placementActionData.Orientation == OldRotation && MatchesContext(placementActionData) &&
                 !interruptedByRemove)
             {
-                cost = Math.Min(0, cost);
+                cost = 0;
             }
 
             // Moves shouldn't happen after a remove, so we don't check that here
         }
 
-        return cost;
+        return (cost, refund);
     }
 
     protected override bool CanMergeWithInternal(CombinableActionData other)

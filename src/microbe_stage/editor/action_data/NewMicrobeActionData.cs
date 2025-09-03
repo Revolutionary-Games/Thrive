@@ -42,13 +42,13 @@ public class NewMicrobeActionData : EditorCombinableActionData<CellType>
 
     protected override double CalculateBaseCostInternal()
     {
-        return -Constants.BASE_MUTATION_POINTS;
+        return 0;
     }
 
-    protected override double CalculateCostInternal(IReadOnlyList<EditorCombinableActionData> history,
-        int insertPosition)
+    protected override (double Cost, double RefundCost) CalculateCostInternal(
+        IReadOnlyList<EditorCombinableActionData> history, int insertPosition)
     {
-        return CalculateBaseCostInternal();
+        return (CalculateBaseCostInternal(), Constants.BASE_MUTATION_POINTS);
     }
 
     protected override bool CanMergeWithInternal(CombinableActionData other)

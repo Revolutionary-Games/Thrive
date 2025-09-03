@@ -1,5 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using Godot;
 
 [JSONAlwaysDynamicType]
@@ -83,10 +82,11 @@ public class OrganelleUpgradeActionData : EditorCombinableActionData<CellType>
             OldUpgrades.UnlockedFeatures);
     }
 
-    protected override double CalculateCostInternal(IReadOnlyList<EditorCombinableActionData> history,
-        int insertPosition)
+    protected override (double Cost, double RefundCost) CalculateCostInternal(
+        IReadOnlyList<EditorCombinableActionData> history, int insertPosition)
     {
         var cost = CalculateBaseCostInternal();
+        double refund = 0;
 
         int i = CalculateValidityRegionStart(history, insertPosition, 0);
 
@@ -108,7 +108,7 @@ public class OrganelleUpgradeActionData : EditorCombinableActionData<CellType>
             }
         }
 
-        return cost;
+        return (cost, refund);
     }
 
     protected override bool CanMergeWithInternal(CombinableActionData other)

@@ -25,11 +25,11 @@ public class OrganelleRemoveActionData : HexRemoveActionData<OrganelleTemplate, 
         return GotReplaced ? 0 : base.CalculateBaseCostInternal();
     }
 
-    protected override double CalculateCostInternal(IReadOnlyList<EditorCombinableActionData> history,
-        int insertPosition)
+    protected override (double Cost, double RefundCost) CalculateCostInternal(
+        IReadOnlyList<EditorCombinableActionData> history, int insertPosition)
     {
         var cost = base.CalculateCostInternal(history, insertPosition);
-        bool refundedUpgrade = false;
+        double refund = 0;
 
         var count = history.Count;
         for (int i = 0; i < insertPosition && i < count; ++i)
@@ -42,7 +42,7 @@ public class OrganelleRemoveActionData : HexRemoveActionData<OrganelleTemplate, 
             {
                 if (RemovedHex == endosymbiontPlaceActionData.PlacedOrganelle)
                 {
-                    return 0;
+                    return (0, cost.RefundCost);
                 }
             }
 
@@ -52,15 +52,11 @@ public class OrganelleRemoveActionData : HexRemoveActionData<OrganelleTemplate, 
                 // This replaces (refunds) the MP for an upgrade done to this organelle
                 if (ReferenceEquals(upgradeActionData.UpgradedOrganelle, RemovedHex))
                 {
-                    if (!refundedUpgrade)
-                    {
-                        refundedUpgrade = true;
-                        cost -= upgradeActionData.GetCalculatedCost();
-                    }
+                    refund += upgradeActionData.GetCalculatedSelfCost();
                 }
             }
         }
 
-        return cost;
+        return (cost.Cost, cost.RefundCost + refund);
     }
 }

@@ -13,10 +13,10 @@ public class DuplicateDeleteCellTypeData : EditorCombinableActionData<Multicellu
         CellType = cellType;
     }
 
-    protected override double CalculateCostInternal(IReadOnlyList<EditorCombinableActionData> history,
-        int insertPosition)
+    protected override (double Cost, double RefundCost) CalculateCostInternal(
+        IReadOnlyList<EditorCombinableActionData> history, int insertPosition)
     {
-        return 0;
+        return (0, 0);
     }
 
     protected override double CalculateBaseCostInternal()

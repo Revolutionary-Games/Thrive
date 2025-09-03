@@ -43,11 +43,11 @@ public class EndosymbiontPlaceActionData : EditorCombinableActionData<CellType>
         return 0;
     }
 
-    protected override double CalculateCostInternal(IReadOnlyList<EditorCombinableActionData> history,
-        int insertPosition)
+    protected override (double Cost, double RefundCost) CalculateCostInternal(
+        IReadOnlyList<EditorCombinableActionData> history, int insertPosition)
     {
         // No cost adjustment as this is free
-        return CalculateBaseCostInternal();
+        return (CalculateBaseCostInternal(), 0);
     }
 
     protected override bool CanMergeWithInternal(CombinableActionData other)

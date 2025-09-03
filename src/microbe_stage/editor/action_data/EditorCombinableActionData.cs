@@ -5,13 +5,20 @@ using Godot;
 
 public abstract class EditorCombinableActionData : CombinableActionData
 {
-    protected double lastCalculatedCost = double.NaN;
+    protected double lastCalculatedSelfCost = double.NaN;
+
+    /// <summary>
+    ///   Note that this is *positive* and in most uses needs to be negated when applying to be correct
+    /// </summary>
+    protected double lastCalculatedRefundCost = double.NaN;
 
     public float CostMultiplier { get; set; } = 1.0f;
 
     public virtual double CalculateCost(IReadOnlyList<EditorCombinableActionData> history, int insertPosition)
     {
-        return Math.Min((lastCalculatedCost = CalculateCostInternal(history, insertPosition)) * CostMultiplier, 100);
+        (lastCalculatedSelfCost, lastCalculatedRefundCost) = CalculateCostInternal(history, insertPosition);
+
+        return Math.Min((lastCalculatedSelfCost - lastCalculatedRefundCost) * CostMultiplier, 100);
     }
 
     public virtual double GetBaseCost()
@@ -20,16 +27,18 @@ public abstract class EditorCombinableActionData : CombinableActionData
     }
 
     /// <summary>
-    ///   The last calculated cost of this action.
+    ///   The last calculated *self* cost of this action, which doesn't take refunds into account.
     ///   Updated by <see cref="CalculateCost"/>. This means that actions can only have their costs processed in
     ///   order, otherwise bad things will happen.
     /// </summary>
-    /// <returns>The full realised cost of this action</returns>
-    public virtual double GetCalculatedCost()
+    /// <returns>
+    ///   The full realised cost of this action (note that this is not scaled by <see cref="CostMultiplier"/>
+    /// </returns>
+    public virtual double GetCalculatedSelfCost()
     {
         // TODO: resetting this to NaN for a whole action tree before calculating costs again would provide some extra
         // safety against bugs
-        if (double.IsNaN(lastCalculatedCost))
+        if (double.IsNaN(lastCalculatedSelfCost))
         {
             GD.PrintErr("Trying to get the cost of an action before it has been calculated. " +
                 "Things are being processed in the wrong order!");
@@ -40,11 +49,37 @@ public abstract class EditorCombinableActionData : CombinableActionData
             return 0;
         }
 
-        return Math.Min(lastCalculatedCost * CostMultiplier, 100);
+        return Math.Min(lastCalculatedSelfCost, 100);
     }
 
-    protected abstract double CalculateCostInternal(IReadOnlyList<EditorCombinableActionData> history,
-        int insertPosition);
+    public virtual double GetCalculatedRefundCost()
+    {
+        if (double.IsNaN(lastCalculatedRefundCost))
+        {
+            GD.PrintErr("Trying to get the refund cost of an action before it has been calculated. " +
+                "Things are being processed in the wrong order!");
+
+            if (Debugger.IsAttached)
+                Debugger.Break();
+
+            return 0;
+        }
+
+        return Math.Min(lastCalculatedRefundCost, 100);
+    }
+
+    /// <summary>
+    ///   Effective cost that's been calculated already.
+    ///   Made up of <see cref="GetCalculatedSelfCost"/> - <see cref="GetCalculatedRefundCost"/>.
+    /// </summary>
+    /// <returns>The effective cost that's been calculated</returns>
+    public virtual double GetCalculatedEffectiveCost()
+    {
+        return GetCalculatedSelfCost() - GetCalculatedRefundCost();
+    }
+
+    protected abstract (double Cost, double RefundCost) CalculateCostInternal(
+        IReadOnlyList<EditorCombinableActionData> history, int insertPosition);
 
     protected abstract double CalculateBaseCostInternal();
 

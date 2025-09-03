@@ -21,10 +21,12 @@ public class BehaviourActionData : EditorCombinableActionData
         return 0;
     }
 
-    protected override double CalculateCostInternal(IReadOnlyList<EditorCombinableActionData> history,
-        int insertPosition)
+    protected override (double Cost, double RefundCost) CalculateCostInternal(
+        IReadOnlyList<EditorCombinableActionData> history, int insertPosition)
     {
         var cost = CalculateBaseCostInternal();
+        double refund = 0;
+        bool seenOther = false;
 
         var count = history.Count;
         for (int i = 0; i < insertPosition && i < count; ++i)
@@ -37,7 +39,8 @@ public class BehaviourActionData : EditorCombinableActionData
                 if (Math.Abs(NewValue - behaviourChangeActionData.OldValue) < MathUtils.EPSILON &&
                     Math.Abs(behaviourChangeActionData.NewValue - OldValue) < MathUtils.EPSILON)
                 {
-                    cost = Math.Min(-other.GetCalculatedCost(), cost);
+                    cost = 0;
+                    refund += other.GetCalculatedSelfCost();
                     continue;
                 }
 
@@ -45,13 +48,22 @@ public class BehaviourActionData : EditorCombinableActionData
                 if (Math.Abs(NewValue - behaviourChangeActionData.OldValue) < MathUtils.EPSILON ||
                     Math.Abs(behaviourChangeActionData.NewValue - OldValue) < MathUtils.EPSILON)
                 {
-                    // TODO: calculate the new total change and return that (minus the already paid other cost)
-                    // return ActionInterferenceMode.Combinable;
+                    if (!seenOther)
+                    {
+                        seenOther = true;
+
+                        // TODO: need to calculate real total cost from the other old value to our new value once
+                        // there are costs and not just 0
+                        // cost = CalculateBehaviourCost(behaviourChangeActionData.OldValue, NewValue);
+                        cost = 0;
+                    }
+
+                    refund += other.GetCalculatedSelfCost();
                 }
             }
         }
 
-        return cost;
+        return (cost, refund);
     }
 
     protected override bool CanMergeWithInternal(CombinableActionData other)

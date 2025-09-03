@@ -1,5 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Linq;
 using Godot;
 using Newtonsoft.Json;
@@ -84,10 +83,11 @@ public class MetaballMoveActionData<TMetaball> : EditorCombinableActionData
         return Constants.METABALL_MOVE_COST;
     }
 
-    protected override double CalculateCostInternal(IReadOnlyList<EditorCombinableActionData> history,
-        int insertPosition)
+    protected override (double Cost, double RefundCost) CalculateCostInternal(
+        IReadOnlyList<EditorCombinableActionData> history, int insertPosition)
     {
         var cost = CalculateBaseCostInternal();
+        double refund = 0;
 
         var count = history.Count;
         for (int i = 0; i < insertPosition && i < count; ++i)
@@ -103,7 +103,8 @@ public class MetaballMoveActionData<TMetaball> : EditorCombinableActionData
                     NewPosition.DistanceSquaredTo(moveActionData.OldPosition) < MathUtils.EPSILON &&
                     OldParent == moveActionData.NewParent && NewParent == moveActionData.OldParent)
                 {
-                    cost = Math.Min(-other.GetCalculatedCost(), cost);
+                    cost = 0;
+                    refund += moveActionData.GetCalculatedSelfCost();
                     continue;
                 }
 
@@ -113,7 +114,7 @@ public class MetaballMoveActionData<TMetaball> : EditorCombinableActionData
                     (NewPosition.DistanceSquaredTo(moveActionData.OldPosition) < MathUtils.EPSILON &&
                         NewParent == moveActionData.OldParent))
                 {
-                    cost = Math.Min(0, cost);
+                    cost = 0;
                     continue;
                 }
             }
@@ -124,13 +125,13 @@ public class MetaballMoveActionData<TMetaball> : EditorCombinableActionData
                 placementActionData.Position == OldPosition &&
                 placementActionData.Parent == OldParent)
             {
-                cost = Math.Min(0, cost);
+                cost = 0;
             }
 
             // Moves shouldn't happen after a remove, so we don't check that here
         }
 
-        return cost;
+        return (cost, refund);
     }
 
     protected override bool CanMergeWithInternal(CombinableActionData other)

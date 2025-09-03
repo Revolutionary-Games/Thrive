@@ -51,11 +51,12 @@ public class ToleranceActionData : EditorCombinableActionData
         return CalculateToleranceCost(OldTolerances, NewTolerances);
     }
 
-    protected override double CalculateCostInternal(IReadOnlyList<EditorCombinableActionData> history,
-        int insertPosition)
+    protected override (double Cost, double RefundCost) CalculateCostInternal(
+        IReadOnlyList<EditorCombinableActionData> history, int insertPosition)
     {
         bool foundOther = false;
-        double cost = 0;
+        var cost = CalculateBaseCostInternal();
+        double refund = 0;
 
         var count = history.Count;
         for (int i = 0; i < insertPosition && i < count; ++i)
@@ -65,16 +66,17 @@ public class ToleranceActionData : EditorCombinableActionData
             // Calculate total MP cost of all moves
             if (other is ToleranceActionData toleranceActionData)
             {
-                foundOther = true;
-                cost += -other.GetCalculatedCost() +
-                    CalculateToleranceCost(toleranceActionData.OldTolerances, NewTolerances);
+                if (!foundOther)
+                {
+                    foundOther = true;
+                    cost = CalculateToleranceCost(toleranceActionData.OldTolerances, NewTolerances);
+                }
+
+                refund += other.GetCalculatedSelfCost();
             }
         }
 
-        if (!foundOther)
-            cost += CalculateBaseCostInternal();
-
-        return cost;
+        return (cost, refund);
     }
 
     protected override bool CanMergeWithInternal(CombinableActionData other)
