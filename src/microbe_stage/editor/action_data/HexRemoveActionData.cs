@@ -24,7 +24,7 @@ public abstract class HexRemoveActionData<THex, TContext> : EditorCombinableActi
         IReadOnlyList<EditorCombinableActionData> history, int insertPosition)
     {
         var cost = CalculateBaseCostInternal();
-        bool moved = false;
+        double refund = 0;
 
         var count = history.Count;
         for (int i = 0; i < insertPosition && i < count; ++i)
