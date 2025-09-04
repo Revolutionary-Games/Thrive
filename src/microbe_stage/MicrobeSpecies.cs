@@ -369,8 +369,7 @@ public class MicrobeSpecies : Species, ICellDefinition
                 BaseSpeed,
                 BaseRotationSpeed,
                 BaseHexSize) + "\n" +
-            Localization.Translate("TOLERANCE_DETAIL_TEXT").FormatSafe(
-                Tolerances.PreferredTemperature,
+            Localization.Translate("TOLERANCE_DETAIL_TEXT").FormatSafe(Tolerances.PreferredTemperature,
                 Tolerances.TemperatureTolerance,
                 Tolerances.PressureMinimum,
                 Tolerances.PressureMaximum,
