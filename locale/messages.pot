@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Thrive VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2025-08-28 01:41+0300\n"
+"POT-Creation-Date: 2025-08-25 19:09+0300\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -598,12 +598,12 @@ msgstr ""
 msgid "BATHYPELAGIC"
 msgstr ""
 
-#: ../src/microbe_stage/MicrobeHUD.cs:756
+#: ../src/microbe_stage/MicrobeHUD.cs:764
 #: ../src/microbe_stage/MicrobeHUD.tscn:432
 msgid "BECOME_MACROSCOPIC"
 msgstr ""
 
-#: ../src/microbe_stage/MicrobeHUD.cs:712
+#: ../src/microbe_stage/MicrobeHUD.cs:720
 #: ../src/microbe_stage/MicrobeHUD.tscn:425
 msgid "BECOME_MULTICELLULAR"
 msgstr ""
@@ -686,7 +686,7 @@ msgstr ""
 #: ../simulation_parameters/microbe_stage/biomes.json:3209
 #: ../simulation_parameters/microbe_stage/biomes.json:3432
 #: ../simulation_parameters/microbe_stage/biomes.json:3678
-#: ../src/auto-evo/AutoEvoGlobalCache.cs:59
+#: ../src/auto-evo/AutoEvoGlobalCache.cs:61
 msgid "BIG_IRON_CHUNK"
 msgstr ""
 
@@ -2432,6 +2432,10 @@ msgstr ""
 msgid "EDITOR_TUTORIAL_EDITOR_TEXT"
 msgstr ""
 
+#: ../src/tutorial/microbe_editor/MicrobeEditorTutorialGUI.tscn:618
+msgid "EDITOR_TUTORIAL_MICROBE_EDITOR_BINDING_AGENTS"
+msgstr ""
+
 #: ../src/tutorial/microbe_editor/MicrobeEditorTutorialGUI.tscn:600
 msgid "EDITOR_TUTORIAL_MICROBE_EDITOR_NUCLEUS"
 msgstr ""
@@ -2663,7 +2667,7 @@ msgstr ""
 msgid "ESCAPE"
 msgstr ""
 
-#: ../src/microbe_stage/MicrobeStage.cs:1921
+#: ../src/microbe_stage/MicrobeStage.cs:1922
 msgid "ESCAPE_ENGULFING"
 msgstr ""
 
@@ -3042,12 +3046,12 @@ msgstr ""
 msgid "FOSSILISATION_FAILED_DESCRIPTION"
 msgstr ""
 
-#: ../src/microbe_stage/MicrobeHUD.cs:632
+#: ../src/microbe_stage/MicrobeHUD.cs:640
 #: ../src/thriveopedia/fossilisation/FossilisationButton.tscn:16
 msgid "FOSSILISATION_HINT"
 msgstr ""
 
-#: ../src/microbe_stage/MicrobeHUD.cs:631
+#: ../src/microbe_stage/MicrobeHUD.cs:639
 msgid "FOSSILISATION_HINT_ALREADY_FOSSILISED"
 msgstr ""
 
@@ -3318,8 +3322,8 @@ msgstr ""
 
 #: ../src/tutorial/microbe_editor/MicrobeEditorTutorialGUI.tscn:381
 #: ../src/tutorial/microbe_editor/MicrobeEditorTutorialGUI.tscn:531
-#: ../src/tutorial/microbe_editor/MicrobeEditorTutorialGUI.tscn:648
-#: ../src/tutorial/microbe_editor/MicrobeEditorTutorialGUI.tscn:722
+#: ../src/tutorial/microbe_editor/MicrobeEditorTutorialGUI.tscn:666
+#: ../src/tutorial/microbe_editor/MicrobeEditorTutorialGUI.tscn:740
 msgid "GOT_IT"
 msgstr ""
 
@@ -4381,7 +4385,7 @@ msgstr ""
 #: ../simulation_parameters/microbe_stage/biomes.json:1998
 #: ../simulation_parameters/microbe_stage/biomes.json:2933
 #: ../simulation_parameters/microbe_stage/biomes.json:3756
-#: ../src/auto-evo/AutoEvoGlobalCache.cs:71
+#: ../src/auto-evo/AutoEvoGlobalCache.cs:73
 msgid "LARGE_SULFUR_CHUNK"
 msgstr ""
 
@@ -4695,7 +4699,7 @@ msgstr ""
 msgid "LOADING_MICROBE_EDITOR"
 msgstr ""
 
-#: ../src/microbe_stage/MicrobeStage.cs:1223
+#: ../src/microbe_stage/MicrobeStage.cs:1224
 msgid "LOADING_MICROBE_STAGE"
 msgstr ""
 
@@ -4703,7 +4707,7 @@ msgstr ""
 msgid "LOADING_MULTICELLULAR_EDITOR"
 msgstr ""
 
-#: ../src/microbe_stage/MicrobeStage.cs:1219
+#: ../src/microbe_stage/MicrobeStage.cs:1220
 msgid "LOADING_MULTICELLULAR_STAGE"
 msgstr ""
 
@@ -4917,7 +4921,7 @@ msgstr ""
 #: ../simulation_parameters/microbe_stage/biomes.json:2604
 #: ../simulation_parameters/microbe_stage/biomes.json:2910
 #: ../simulation_parameters/microbe_stage/biomes.json:3733
-#: ../src/auto-evo/AutoEvoGlobalCache.cs:69
+#: ../src/auto-evo/AutoEvoGlobalCache.cs:71
 msgid "MEDIUM_SULFUR_CHUNK"
 msgstr ""
 
@@ -5062,6 +5066,10 @@ msgstr ""
 
 #: ../src/auto-evo/selection_pressure/RootPressure.cs:10
 msgid "MICHE_ROOT_PRESSURE"
+msgstr ""
+
+#: ../src/auto-evo/selection_pressure/TemperatureSessilityPressure.cs:14
+msgid "MICHE_TEMPERATURE_SESSILITY_PRESSURE"
 msgstr ""
 
 #: ../src/auto-evo/AutoEvoExploringTool.tscn:623
@@ -6123,7 +6131,7 @@ msgstr ""
 #: ../src/microbe_stage/editor/CellEditorComponent.cs:2916
 #: ../src/microbe_stage/editor/CellEditorComponent.cs:2928
 #: ../src/microbe_stage/editor/MicrobePartSelection.tscn:154
-#: ../src/microbe_stage/MicrobeHUD.cs:565
+#: ../src/microbe_stage/MicrobeHUD.cs:573
 msgid "N_A"
 msgstr ""
 
@@ -6133,7 +6141,7 @@ msgstr ""
 msgid "N_A_MP"
 msgstr ""
 
-#: ../src/microbe_stage/MicrobeHUD.cs:619
+#: ../src/microbe_stage/MicrobeHUD.cs:627
 #: ../src/microbe_stage/organelle_unlocks/UndiscoveredOrganellesButton.cs:45
 msgid "N_TIMES"
 msgstr ""
@@ -6671,7 +6679,7 @@ msgstr ""
 msgid "PLANET_RANDOM_SEED"
 msgstr ""
 
-#: ../src/microbe_stage/MicrobeHUD.cs:589
+#: ../src/microbe_stage/MicrobeHUD.cs:597
 msgid "PLAYER"
 msgstr ""
 
@@ -6873,7 +6881,7 @@ msgstr ""
 #: ../simulation_parameters/microbe_stage/biomes.json:433
 #: ../simulation_parameters/microbe_stage/biomes.json:2075
 #: ../simulation_parameters/microbe_stage/biomes.json:3825
-#: ../src/auto-evo/AutoEvoGlobalCache.cs:80
+#: ../src/auto-evo/AutoEvoGlobalCache.cs:82
 msgid "RADIOACTIVE_CHUNK"
 msgstr ""
 
@@ -7669,7 +7677,7 @@ msgstr ""
 #: ../simulation_parameters/microbe_stage/biomes.json:3177
 #: ../simulation_parameters/microbe_stage/biomes.json:3396
 #: ../simulation_parameters/microbe_stage/biomes.json:3642
-#: ../src/auto-evo/AutoEvoGlobalCache.cs:57
+#: ../src/auto-evo/AutoEvoGlobalCache.cs:59
 msgid "SMALL_IRON_CHUNK"
 msgstr ""
 
@@ -7690,7 +7698,7 @@ msgstr ""
 #: ../simulation_parameters/microbe_stage/biomes.json:2581
 #: ../simulation_parameters/microbe_stage/biomes.json:2879
 #: ../simulation_parameters/microbe_stage/biomes.json:3706
-#: ../src/auto-evo/AutoEvoGlobalCache.cs:67
+#: ../src/auto-evo/AutoEvoGlobalCache.cs:69
 msgid "SMALL_SULFUR_CHUNK"
 msgstr ""
 
@@ -7753,7 +7761,7 @@ msgstr ""
 msgid "SPAWN_ENEMY"
 msgstr ""
 
-#: ../src/microbe_stage/MicrobeStage.cs:1516
+#: ../src/microbe_stage/MicrobeStage.cs:1517
 msgid "SPAWN_ENEMY_CHEAT_FAIL"
 msgstr ""
 
@@ -8069,11 +8077,11 @@ msgstr ""
 msgid "SUCCESSFULLY_PERFORM_ENDOSYMBIOSIS"
 msgstr ""
 
-#: ../src/microbe_stage/MicrobeStage.cs:1919
+#: ../src/microbe_stage/MicrobeStage.cs:1920
 msgid "SUCCESSFUL_KILL"
 msgstr ""
 
-#: ../src/microbe_stage/MicrobeStage.cs:1920
+#: ../src/microbe_stage/MicrobeStage.cs:1921
 msgid "SUCCESSFUL_SCAVENGE"
 msgstr ""
 
@@ -8716,8 +8724,8 @@ msgstr ""
 #: ../src/tutorial/microbe_editor/MicrobeEditorTutorialGUI.tscn:402
 #: ../src/tutorial/microbe_editor/MicrobeEditorTutorialGUI.tscn:447
 #: ../src/tutorial/microbe_editor/MicrobeEditorTutorialGUI.tscn:502
-#: ../src/tutorial/microbe_editor/MicrobeEditorTutorialGUI.tscn:620
-#: ../src/tutorial/microbe_editor/MicrobeEditorTutorialGUI.tscn:694
+#: ../src/tutorial/microbe_editor/MicrobeEditorTutorialGUI.tscn:638
+#: ../src/tutorial/microbe_editor/MicrobeEditorTutorialGUI.tscn:712
 #: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:70
 #: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:373
 msgid "TUTORIAL"
@@ -8739,11 +8747,11 @@ msgstr ""
 msgid "TUTORIAL_MICROBE_EDITOR_CHEMORECEPTOR"
 msgstr ""
 
-#: ../src/tutorial/microbe_editor/MicrobeEditorTutorialGUI.tscn:619
+#: ../src/tutorial/microbe_editor/MicrobeEditorTutorialGUI.tscn:637
 msgid "TUTORIAL_MICROBE_EDITOR_COMPOUND_BALANCES"
 msgstr ""
 
-#: ../src/tutorial/microbe_editor/MicrobeEditorTutorialGUI.tscn:691
+#: ../src/tutorial/microbe_editor/MicrobeEditorTutorialGUI.tscn:709
 msgid "TUTORIAL_MICROBE_EDITOR_DIGESTION_STAT"
 msgstr ""
 
@@ -8755,7 +8763,7 @@ msgstr ""
 msgid "TUTORIAL_MICROBE_EDITOR_FLAGELLUM"
 msgstr ""
 
-#: ../src/tutorial/microbe_editor/MicrobeEditorTutorialGUI.tscn:672
+#: ../src/tutorial/microbe_editor/MicrobeEditorTutorialGUI.tscn:690
 msgid "TUTORIAL_MICROBE_EDITOR_FOOD_CHAIN"
 msgstr ""
 
@@ -8892,7 +8900,7 @@ msgstr ""
 msgid "UNBIND_ALL_TOOLTIP"
 msgstr ""
 
-#: ../src/microbe_stage/PlayerMicrobeInput.cs:273
+#: ../src/microbe_stage/PlayerMicrobeInput.cs:292
 msgid "UNBIND_HELP_TEXT"
 msgstr ""
 
