@@ -45,7 +45,7 @@ public class RigidityActionData : EditorCombinableActionData<CellType>
                     foundOther = true;
                 }
 
-                refund += other.GetCalculatedSelfCost();
+                refund += other.GetCalculatedSelfCost() - other.GetCalculatedRefundCost();
             }
         }
 
