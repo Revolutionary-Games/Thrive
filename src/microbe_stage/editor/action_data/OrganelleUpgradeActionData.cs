@@ -120,7 +120,20 @@ public class OrganelleUpgradeActionData : EditorCombinableActionData<CellType>
 
     protected override bool ActionDenotesInterestingRegionBoundary(EditorCombinableActionData action)
     {
-        return action is OrganelleUpgradeActionData upgradeActionData && MatchesContext(upgradeActionData) &&
-            ReferenceEquals(UpgradedOrganelle, upgradeActionData.UpgradedOrganelle);
+        // We want to calculate the cost from the latest upgrade action before us.
+        // But also ignore anything before a delete operation, because deletes already refund the upgrade cost.
+        if (action is OrganelleUpgradeActionData upgradeActionData && MatchesContext(upgradeActionData) &&
+            ReferenceEquals(UpgradedOrganelle, upgradeActionData.UpgradedOrganelle))
+        {
+            return true;
+        }
+
+        if (action is HexRemoveActionData<OrganelleTemplate, CellType> deleteActionData &&
+            MatchesContext(deleteActionData) && ReferenceEquals(deleteActionData.RemovedHex, UpgradedOrganelle))
+        {
+            return true;
+        }
+
+        return false;
     }
 }
