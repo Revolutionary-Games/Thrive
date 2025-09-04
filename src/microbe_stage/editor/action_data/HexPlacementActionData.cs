@@ -21,10 +21,23 @@ public abstract class HexPlacementActionData<THex, TContext> : EditorCombinableA
         var cost = CalculateBaseCostInternal();
         double refund = 0;
 
+        bool seenEarlierPlacement = false;
+
         var count = history.Count;
         for (int i = 0; i < insertPosition && i < count; ++i)
         {
             var other = history[i];
+
+            // If this has been placed before, the cost is not free to avoid exploits where the player places and
+            // deletes something they then want to place for free. This stops that exploit.
+            if (other is HexPlacementActionData<THex, TContext> placementActionData &&
+                placementActionData.PlacedHex.MatchesDefinition(PlacedHex) &&
+                placementActionData.Location == Location &&
+                placementActionData.Orientation == Orientation && MatchesContext(placementActionData))
+            {
+                seenEarlierPlacement = true;
+                continue;
+            }
 
             // If this hex got removed in this session before being placed again
             if (other is HexRemoveActionData<THex, TContext> removeActionData &&
@@ -33,7 +46,9 @@ public abstract class HexPlacementActionData<THex, TContext> : EditorCombinableA
                 // If the placed hex has been placed in the same position where it got removed from before
                 if (removeActionData.Location == Location)
                 {
-                    cost = 0;
+                    if (!seenEarlierPlacement)
+                        cost = 0;
+
                     refund += other.GetCalculatedSelfCost();
                 }
                 else
