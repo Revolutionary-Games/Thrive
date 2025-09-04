@@ -743,14 +743,11 @@ public partial class CompoundCloudPlane : MeshInstance3D, ISaveLoadedTracked
             {
                 // Overestimate of how much compounds we get
                 float cloudAmount = HackyAddress(ref Density[localX, localY], i);
-
                 float generousAmount = cloudAmount * Constants.SKIP_TRYING_TO_ABSORB_RATIO;
 
                 // Skip if there isn't enough to absorb
                 if (generousAmount < MathUtils.EPSILON)
-                {
                     break;
-                }
 
                 float freeSpace = storage.GetFreeSpaceForCompound(compound);
 
