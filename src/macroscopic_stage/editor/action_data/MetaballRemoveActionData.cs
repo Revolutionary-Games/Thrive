@@ -127,6 +127,7 @@ public class MetaballRemoveActionData<TMetaball> : EditorCombinableActionData
                 placementActionData.PlacedMetaball.MatchesDefinition(RemovedMetaball))
             {
                 // Deleting a placed metaball refunds it
+                cost = 0;
                 refund += other.GetCalculatedSelfCost();
                 continue;
             }
