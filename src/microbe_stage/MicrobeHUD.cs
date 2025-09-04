@@ -424,6 +424,18 @@ public partial class MicrobeHUD : CreatureStageHUDBase<MicrobeStage>
         base.UpdateBarVisibility(isUseful);
 
         ingestedMatterBar.Visible = GetPlayerUsedIngestionCapacity() > 0;
+
+        foreach (var (compound, bar) in compoundBars)
+        {
+            if (bar.Visible)
+                continue;
+
+            if (SimulationParameters.GetCompound(compound).AlwaysAbsorbable
+                && GetPlayerStorage().GetCompoundAmount(compound) > MathUtils.EPSILON)
+            {
+                bar.Visible = true;
+            }
+        }
     }
 
     protected override bool ShouldShowAgentsPanel()

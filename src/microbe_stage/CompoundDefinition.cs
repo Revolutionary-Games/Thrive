@@ -52,6 +52,11 @@ public class CompoundDefinition : IRegistryType, IEquatable<CompoundDefinition>
     public bool IsAlwaysUseful;
 
     /// <summary>
+    ///   If true, this compound will always be absorbed regardless of capacities. Useful for toxin clouds, etc.
+    /// </summary>
+    public bool AlwaysAbsorbable;
+
+    /// <summary>
     ///   Allows absorbing this compound from environmental clouds (also needs <see cref="IsCloud"/> to be true).
     ///   If false microbes can't absorb clouds of this compound type.
     /// </summary>
