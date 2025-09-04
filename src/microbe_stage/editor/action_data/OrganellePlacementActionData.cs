@@ -1,5 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 
 [JSONAlwaysDynamicType]
 public class OrganellePlacementActionData : HexPlacementActionData<OrganelleTemplate, CellType>
@@ -32,7 +31,7 @@ public class OrganellePlacementActionData : HexPlacementActionData<OrganelleTemp
                         moveActionData.OldLocation == Location) ||
                     ReplacedCytoplasm?.Contains(moveActionData.MovedHex) == true)
                 {
-                    cost = Math.Min(-other.GetCalculatedCost(), cost);
+                    refund += other.GetCalculatedSelfCost();
                     continue;
                 }
             }
