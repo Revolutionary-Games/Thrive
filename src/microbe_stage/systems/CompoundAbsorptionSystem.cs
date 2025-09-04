@@ -25,11 +25,6 @@ public sealed class CompoundAbsorptionSystem : AEntitySetSystem<float>
         this.compoundCloudSystem = compoundCloudSystem;
     }
 
-    protected override void PreUpdate(float delta)
-    {
-        base.PreUpdate(delta);
-    }
-
     protected override void Update(float delta, in Entity entity)
     {
         ref var absorber = ref entity.Get<CompoundAbsorber>();
