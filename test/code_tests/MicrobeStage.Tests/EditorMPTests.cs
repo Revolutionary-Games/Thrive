@@ -9,6 +9,10 @@ public class EditorMPTests
     private const int TEST_UPGRADE_COST = 11;
     private const int TEST_UPGRADE_COST_2 = 26;
 
+    private const int TEST_MEMBRANE_COST_1 = 50;
+    private const int TEST_MEMBRANE_COST_2 = 55;
+    private const int TEST_MEMBRANE_COST_3 = 60;
+
     private readonly OrganelleDefinition cheapOrganelle = new()
     {
         MPCost = 20,
@@ -33,6 +37,30 @@ public class EditorMPTests
         MPCost = 18,
         Name = "Cytoplasm",
         InternalName = "cytoplasm",
+    };
+
+    private readonly MembraneType originalMembrane = new()
+    {
+        EditorCost = TEST_MEMBRANE_COST_1,
+        Name = "OriginalMembrane",
+    };
+
+    private readonly MembraneType testMembrane1 = new()
+    {
+        EditorCost = TEST_MEMBRANE_COST_1,
+        Name = "Test1",
+    };
+
+    private readonly MembraneType testMembrane2 = new()
+    {
+        EditorCost = TEST_MEMBRANE_COST_2,
+        Name = "Test2",
+    };
+
+    private readonly MembraneType testMembrane3 = new()
+    {
+        EditorCost = TEST_MEMBRANE_COST_3,
+        Name = "Test3",
     };
 
     [Fact]
@@ -751,7 +779,8 @@ public class EditorMPTests
         var rigidityAction3 = new RigidityActionData(0.0f, 0.3f);
 
         history.AddAction(new SingleEditorAction<RigidityActionData>(_ => { }, _ => { }, rigidityAction3));
-        Assert.Equal(Constants.BASE_MUTATION_POINTS - Constants.ORGANELLE_MOVE_COST, history.CalculateMutationPointsLeft());
+        Assert.Equal(Constants.BASE_MUTATION_POINTS - Constants.ORGANELLE_MOVE_COST,
+            history.CalculateMutationPointsLeft());
 
         // Undo the move
         var moveAction2 = new OrganelleMoveActionData(new OrganelleTemplate(cheapOrganelle, new Hex(0, 0), 0),
@@ -770,6 +799,35 @@ public class EditorMPTests
     }
 
     // TODO: implement a test for custom upgrade data changing and having an MP cost once that is supported
+
+    [Fact]
+    public void EditorMPTests_MultipleMembraneChanges()
+    {
+        var history = new EditorActionHistory<EditorAction>();
+
+        var membraneAction1 = new MembraneActionData(originalMembrane, testMembrane1);
+        history.AddAction(new SingleEditorAction<MembraneActionData>(_ => { }, _ => { }, membraneAction1));
+        Assert.Equal(Constants.BASE_MUTATION_POINTS - TEST_MEMBRANE_COST_1, history.CalculateMutationPointsLeft());
+
+        var membraneAction2 = new MembraneActionData(testMembrane1, testMembrane2);
+        history.AddAction(new SingleEditorAction<MembraneActionData>(_ => { }, _ => { }, membraneAction2));
+        Assert.True(TEST_MEMBRANE_COST_1 != TEST_MEMBRANE_COST_2);
+        Assert.Equal(Constants.BASE_MUTATION_POINTS - TEST_MEMBRANE_COST_2, history.CalculateMutationPointsLeft());
+
+        var membraneAction3 = new MembraneActionData(testMembrane2, testMembrane3);
+        history.AddAction(new SingleEditorAction<MembraneActionData>(_ => { }, _ => { }, membraneAction3));
+        Assert.Equal(Constants.BASE_MUTATION_POINTS - TEST_MEMBRANE_COST_3, history.CalculateMutationPointsLeft());
+
+        // And back to the original
+        var membraneAction4 = new MembraneActionData(testMembrane3, originalMembrane);
+        history.AddAction(new SingleEditorAction<MembraneActionData>(_ => { }, _ => { }, membraneAction4));
+        Assert.Equal(Constants.BASE_MUTATION_POINTS, history.CalculateMutationPointsLeft());
+
+        // Make sure they didn't all combine and cause that way the test to pass
+        Assert.True(history.Undo());
+        Assert.True(history.Undo());
+        Assert.True(history.Undo());
+    }
 
     [Fact]
     public void EditorMPTests_MoveDeleteAndAddingBackIsFree()

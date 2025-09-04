@@ -46,7 +46,7 @@ public class MembraneActionData : EditorCombinableActionData<CellType>
                     cost = CalculateCost(membraneActionData.OldMembrane, NewMembrane);
                 }
 
-                refund += other.GetCalculatedSelfCost();
+                refund += other.GetCalculatedSelfCost() - other.GetCalculatedRefundCost();
             }
         }
 
