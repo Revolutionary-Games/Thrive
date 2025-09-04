@@ -34,7 +34,7 @@ public abstract class HexMoveActionData<THex, TContext> : EditorCombinableAction
         var cost = CalculateBaseCostInternal();
         double refund = 0;
 
-        bool interruptedByRemove = false;
+        bool removed = false;
 
         var count = history.Count;
         for (int i = 0; i < insertPosition && i < count; ++i)
@@ -44,7 +44,21 @@ public abstract class HexMoveActionData<THex, TContext> : EditorCombinableAction
             if (other is HexRemoveActionData<THex, TContext> removeActionData &&
                 removeActionData.RemovedHex.MatchesDefinition(MovedHex) && MatchesContext(removeActionData))
             {
-                interruptedByRemove = true;
+                removed = true;
+                continue;
+            }
+
+            if (other is HexPlacementActionData<THex, TContext> placementActionData &&
+                placementActionData.PlacedHex.MatchesDefinition(MovedHex) &&
+                placementActionData.Location == OldLocation &&
+                placementActionData.Orientation == OldRotation && MatchesContext(placementActionData))
+            {
+                // If placed in the same session and not deleted before that, then all moves are free
+                if (!removed)
+                {
+                    return (0, 0);
+                }
+
                 continue;
             }
 
@@ -62,26 +76,12 @@ public abstract class HexMoveActionData<THex, TContext> : EditorCombinableAction
                 }
 
                 // If this hex got moved twice
-                if (((moveActionData.NewLocation == OldLocation && moveActionData.NewRotation == OldRotation) ||
-                        (NewLocation == moveActionData.OldLocation && NewRotation == moveActionData.OldRotation)) &&
-                    !interruptedByRemove)
+                if ((moveActionData.NewLocation == OldLocation && moveActionData.NewRotation == OldRotation) ||
+                    (NewLocation == moveActionData.OldLocation && NewRotation == moveActionData.OldRotation))
                 {
                     refund += other.GetCalculatedSelfCost();
-                    continue;
                 }
             }
-
-            // If this hex got placed in this session
-            if (other is HexPlacementActionData<THex, TContext> placementActionData &&
-                placementActionData.PlacedHex.MatchesDefinition(MovedHex) &&
-                placementActionData.Location == OldLocation &&
-                placementActionData.Orientation == OldRotation && MatchesContext(placementActionData) &&
-                !interruptedByRemove)
-            {
-                cost = 0;
-            }
-
-            // Moves shouldn't happen after a remove, so we don't check that here
         }
 
         return (cost, refund);
