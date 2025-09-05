@@ -3,6 +3,7 @@
 using System;
 using System.Collections.Generic;
 using System.Diagnostics;
+using static CommonMutationFunctions;
 
 public class ModifyEnvironmentalTolerance : IMutationStrategy<MicrobeSpecies>
 {
@@ -12,7 +13,7 @@ public class ModifyEnvironmentalTolerance : IMutationStrategy<MicrobeSpecies>
     /// </summary>
     public bool Repeatable => false;
 
-    public List<Tuple<MicrobeSpecies, double>>? MutationsOf(MicrobeSpecies baseSpecies, double mp, bool lawk,
+    public List<Mutant>? MutationsOf(MicrobeSpecies baseSpecies, double mp, bool lawk,
         Random random, BiomeConditions biomeToConsider)
     {
         if (mp <= 0)
@@ -216,6 +217,6 @@ public class ModifyEnvironmentalTolerance : IMutationStrategy<MicrobeSpecies>
         newSpecies.Tolerances.SanityCheck();
 #endif
 
-        return [Tuple.Create(newSpecies, mp)];
+        return [new Mutant(newSpecies, mp)];
     }
 }

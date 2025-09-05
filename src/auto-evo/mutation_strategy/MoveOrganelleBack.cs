@@ -3,6 +3,7 @@ using System.Collections.Frozen;
 using System.Collections.Generic;
 using System.Linq;
 using AutoEvo;
+using static CommonMutationFunctions;
 
 internal class MoveOrganelleBack : IMutationStrategy<MicrobeSpecies>
 {
@@ -15,13 +16,13 @@ internal class MoveOrganelleBack : IMutationStrategy<MicrobeSpecies>
 
     public bool Repeatable => true;
 
-    public List<Tuple<MicrobeSpecies, double>>? MutationsOf(MicrobeSpecies baseSpecies, double mp, bool lawk,
+    public List<Mutant>? MutationsOf(MicrobeSpecies baseSpecies, double mp, bool lawk,
         Random random, BiomeConditions biomeToConsider)
     {
         if (mp < Constants.ORGANELLE_MOVE_COST)
             return null;
 
-        var mutated = new List<Tuple<MicrobeSpecies, double>>();
+        var mutated = new List<Mutant>();
 
         // TODO: try to avoid these temporary list allocations
         var workMemory1 = new List<Hex>();
@@ -34,13 +35,13 @@ internal class MoveOrganelleBack : IMutationStrategy<MicrobeSpecies>
 
             newSpecies.Organelles.Remove(organelle);
 
-            if (CommonMutationFunctions.AddOrganelle(organelle.Definition, CommonMutationFunctions.Direction.Rear,
-                    newSpecies, workMemory1, workMemory2, workMemory3, random))
+            if (AddOrganelle(organelle.Definition, Direction.Rear, newSpecies, workMemory1, workMemory2, workMemory3,
+                    random))
             {
                 // Add mutation attempt only if was able to place the organelle
                 // TODO: maybe this should add the attempt anyway as this may act as a separate remove organelle step
                 // for things that cannot be moved?
-                mutated.Add(Tuple.Create(newSpecies, mp - Constants.ORGANELLE_MOVE_COST));
+                mutated.Add(new Mutant(newSpecies, mp - Constants.ORGANELLE_MOVE_COST));
             }
         }
 
