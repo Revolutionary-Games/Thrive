@@ -8,8 +8,8 @@ msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2025-08-29 14:14+0300\n"
-"PO-Revision-Date: 2025-08-13 14:57+0000\n"
-"Last-Translator: Anonymous <noreply@weblate.org>\n"
+"PO-Revision-Date: 2025-09-04 15:37+0000\n"
+"Last-Translator: Smoczysław Drakoniewicz <dr4gonizer@proton.me>\n"
 "Language-Team: Polish <https://translate.revolutionarygamesstudio.com/projects/thrive/thrive-game/pl/>\n"
 "Language: pl\n"
 "MIME-Version: 1.0\n"
@@ -40,9 +40,8 @@ msgstr "Przerwij"
 msgid "ABORTED_DOT"
 msgstr "Przerwano."
 
-#, fuzzy
 msgid "ABSORBERS_COUNT"
-msgstr "Ilość mikrobów:"
+msgstr "Pochłaniacze:"
 
 msgid "ABYSSOPELAGIC"
 msgstr "Abisal"
@@ -50,12 +49,11 @@ msgstr "Abisal"
 msgid "ACCEPT"
 msgstr "Akceptuj"
 
-#, fuzzy
 msgid "ACHIEVEMENTS"
-msgstr "Bazowa prędkość"
+msgstr "Osiągnięcia"
 
 msgid "ACHIEVEMENTS_TOTAL"
-msgstr ""
+msgstr "Osiągnięcia {0} / {1}"
 
 msgid "ACHIEVEMENT_ACHIEVED"
 msgstr ""
@@ -418,19 +416,19 @@ msgid "AVAILABLE_MODS"
 msgstr "Dostępne Mody"
 
 msgid "AVERAGE_SURFACE_CARBON_DIOXIDE_LEVEL"
-msgstr ""
+msgstr "Średnie stężenie CO2 na powierzchni"
 
 msgid "AVERAGE_SURFACE_LIGHT_LEVEL"
 msgstr ""
 
 msgid "AVERAGE_SURFACE_NITROGEN_LEVEL"
-msgstr ""
+msgstr "Średnie stężenie azotu na powierzchni"
 
 msgid "AVERAGE_SURFACE_OTHER_LEVEL"
-msgstr ""
+msgstr "Średnie stężenie innych gazów na powierzchni"
 
 msgid "AVERAGE_SURFACE_OXYGEN_LEVEL"
-msgstr ""
+msgstr "Średnie stężenie tlenu na powierzchni"
 
 msgid "AWAKENING_STAGE"
 msgstr "Faza Przebudzenia"
@@ -451,7 +449,7 @@ msgid "BACKSPACE"
 msgstr "Backspace"
 
 msgid "BACK_TO_SETTINGS"
-msgstr ""
+msgstr "Wróć do ustawień"
 
 msgid "BACTERIAL_THERMOSYNTHESIS"
 msgstr "Termosynteza Bakteryjna"
@@ -604,19 +602,16 @@ msgid "CACHE_DISK_MAX_TIME"
 msgstr "Maksymalny czas przechowywania wpisów na dysku przed usunięciem"
 
 msgid "CACHE_MEMORY_MAX_ITEMS"
-msgstr ""
+msgstr "Maksymalna ilość wpisów w pamięci podręcznej"
 
-#, fuzzy
 msgid "CACHE_TIME_MEMORY"
-msgstr "Obecnie wykorzystana pamięć wideo:"
+msgstr "Jak długo przechowywać wpisy w pamięci podręcznej"
 
-#, fuzzy
 msgid "CACHE_TIME_MEMORY_ONLY"
-msgstr "Obecnie wykorzystana pamięć wideo:"
+msgstr "Czas przechowywania wpisów pamięci podręcznej przy wyłączonym cache dyskowym"
 
-#, fuzzy
 msgid "CACHING_TITLE"
-msgstr "Craftowanie"
+msgstr "Pamięć podręczna"
 
 msgid "CALCIUM_CARBONATE"
 msgstr "Węglanowo-Wapienna"
@@ -719,12 +714,11 @@ msgstr ""
 "Dodatkowo przy np. zmianie długości wici, wartości szybkości nie mają w pełni sensu i nie będą pasować do tego, co dzieje się w grze.\n"
 "Wiemy o tym problemie, jednak nie jest jeszcze naprawiony ze względu na mniejszy priorytet w porównaniu do innych problemów i nowych funkcji."
 
-#, fuzzy
 msgid "CELL_STAT_STORAGE_TOOLTIP"
 msgstr ""
-"Szybkość poruszania komórki. Prosimy zrozumieć, że z powodu limitacji algorytmu, ta wartość jest tylko przybliżeniem.\n"
-"Dodatkowo przy np. zmianie długości wici, wartości szybkości nie mają w pełni sensu i nie będą pasować do tego, co dzieje się w grze.\n"
-"Wiemy o tym problemie, jednak nie jest jeszcze naprawiony ze względu na mniejszy priorytet w porównaniu do innych problemów i nowych funkcji."
+"Pojemność komórki - im większa, tym więcej związków może w danej chwili przechowywać.\n"
+"Komórki o odpowiednio dużej pojemności mogą przeplatać okresy ruchu z postojami na odbudowę zapasów ATP.\n"
+"Z kolei zbyt mała pojemność może grozić brakiem ATP, nawet przy dodatnim bilansie - a chwilowe przycięcia czy ogólna słaba wydajność gry mogą dodatkowo pogłębiać problem - zaleca się wtedy zwiększenie pojemności."
 
 msgid "CELL_TYPE_NAME"
 msgstr "Nazwa Rodzaju Komórki"
@@ -854,12 +848,11 @@ msgstr "Usuń stare zapisy"
 msgid "CLEAR_CACHE"
 msgstr "Wyczyść pamięć podręczną"
 
-#, fuzzy
 msgid "CLICK_TO_SELECT"
-msgstr "Usuń zaznaczone"
+msgstr "Wybierz"
 
 msgid "CLIMATE_INSTABILITY"
-msgstr ""
+msgstr "Niestabilność klimatu"
 
 #, fuzzy
 msgid "CLIMATE_INSTABILITY_EXPLANATION"
@@ -885,9 +878,8 @@ msgstr "Zamknąć opcje?"
 msgid "CLOSTRIDIAL_FERMENTATION"
 msgstr "Fermentacja masłowa"
 
-#, fuzzy
 msgid "CLOUD_BENCHMARK"
-msgstr "Edytor Mikroba"
+msgstr "Test wydajności chmur"
 
 msgid "CLOUD_RESOLUTION_DIVISOR"
 msgstr "Dzielnik rozdzielczości chmur:"
@@ -1031,42 +1023,33 @@ msgstr "Stężenie {0} zmniejszyło się o {1}"
 msgid "COMPOUND_FOOD_SOURCE"
 msgstr "Konsumpcja {0}"
 
-#, fuzzy
 msgid "COMPOUND_HANDLE_KEEP"
-msgstr "Bilanse Związków"
+msgstr "Zachowaj wszystkie"
 
 #, fuzzy
 msgid "COMPOUND_HANDLE_SPLIT_SISTER"
 msgstr "Bilanse Związków"
 
-#, fuzzy
 msgid "COMPOUND_HANDLE_TOP_UP"
-msgstr ""
-"Ta część pokazuje bilans całkowity (produkcja - konsumpcja) dla każdego związku.\n"
-"Na przykład by stworzyć komórkę roślinną, bilans glukozy powinien być pozytywny z zapasem."
+msgstr "Zawsze uzupełniaj do wartości startowej"
 
-#, fuzzy
 msgid "COMPOUND_HANDLE_TOP_UP_ON_CHANGE"
-msgstr "Benchmark Chmury Związków"
+msgstr "Uzupełnij przy zmianie strefy"
 
-#, fuzzy
 msgid "COMPOUND_LEVEL_AVERAGE"
-msgstr "Średnia"
+msgstr "Średni"
 
-#, fuzzy
 msgid "COMPOUND_LEVEL_HIGH"
-msgstr "Bilanse Związków"
+msgstr "Wysoki"
 
-#, fuzzy
 msgid "COMPOUND_LEVEL_LOW"
-msgstr "Chmury związków"
+msgstr "Niski"
 
 msgid "COMPOUND_LEVEL_VERY_HIGH"
-msgstr ""
+msgstr "Bardzo wysoki"
 
-#, fuzzy
 msgid "COMPOUND_LEVEL_VERY_LOW"
-msgstr "Bilanse Związków"
+msgstr "Bardzo niski"
 
 msgid "COMPOUND_STORAGE_AMOUNT_DOES_NOT_LAST_NIGHT"
 msgstr "(nie wystarczy by przetrwać noc która trwa {0} s)"
@@ -1142,9 +1125,8 @@ msgstr "Wejdź do gry z tymi ustawieniami"
 msgid "CONFIRM_NEW_GAME_BUTTON_TOOLTIP_DISABLED"
 msgstr "Niektóre ustawienia są nieważnie"
 
-#, fuzzy
 msgid "CONFIRM_RESET_ACHIEVEMENTS"
-msgstr "Potwierdź Usunięcie"
+msgstr "Na pewno zresetować osiągnięcia?"
 
 #, fuzzy
 msgid "CONFIRM_RESET_ACHIEVEMENTS_DESCRIPTION"
@@ -1160,9 +1142,8 @@ msgstr "Zawartość warsztatu zostanie wczytana z folderu: {0}"
 msgid "CONTINUE"
 msgstr "Kontynuuj Rozkwitanie"
 
-#, fuzzy
 msgid "CONTINUE_AS_SPECIES"
-msgstr "Wybierz gatunek"
+msgstr "[center]To jeszcze nie koniec. Możesz [b]kontynuować[/b] grę gatunkiem {0} o populacji {1}.[/center]"
 
 msgid "CONTINUE_THRIVING"
 msgstr "Kontynuuj Rozkwitanie"
@@ -1180,9 +1161,8 @@ msgstr ""
 msgid "CONTINUE_TO_PROTOTYPES_PROMPT"
 msgstr "Chcesz przejść do prototypów faz?"
 
-#, fuzzy
 msgid "CONTROLLER_ANY_DEVICE"
-msgstr "Strefy Martwe Kontrolera"
+msgstr "Dowolne urządzenie"
 
 msgid "CONTROLLER_AXIS_L2"
 msgstr "L2"
@@ -1836,11 +1816,10 @@ msgid "DOUBLE_CLICK_TO_VIEW_IN_FULLSCREEN"
 msgstr "Należy kliknąć dwa razy żeby przejść w tryb pełnego ekranu"
 
 msgid "DOUBLE_MEMBRANE_DESCRIPTION"
-msgstr "Membrana z dwoma warstwami, lepiej chroni przed uszkodzeniami i potrzebuje mniej energii żeby się nie deformować. Aczkolwiek, spowalnia trochę komórkę oraz prędkość absorbcji zasobów."
+msgstr "Błona dwuwarstwowa, która lepiej chroni przed uszkodzeniami i wymaga mniej energii, by utrzymać kształt - spowalnia jednak trochę ruch komórki oraz pochłanianie zasobów."
 
-#, fuzzy
 msgid "DOUBLE_SPEED_TOGGLE_TOOLTIP"
-msgstr "Wartość używana do generacji świata (musi być dodatnią liczbą całkowitą)"
+msgstr "Przełącza między normalną i podwójną szybkością rozgrywki"
 
 msgid "DRAG_TO_REORDER_ITEMS_WITH_MOUSE"
 msgstr ""
@@ -2225,15 +2204,13 @@ msgid "EXIT_TO_LAUNCHER"
 msgstr "Wyjdź do Launchera"
 
 msgid "EXPERIMENTAL_FEATURES"
-msgstr "Eksperymentalne funkcje"
+msgstr "Funkcje eksperymentalne"
 
-#, fuzzy
 msgid "EXPERIMENTAL_FEATURES_EXPLANATION"
-msgstr "(prędkość z którą gatunki SI mutują)"
+msgstr "(włącza dodatkowe funkcje, które nie są na tyle dopracowane, by domyślnie znaleźć się w grze - jeśli zechcesz je wypróbować, chętnie poznamy twoje zdanie)"
 
-#, fuzzy
 msgid "EXPERIMENTAL_FEATURES_WARNING"
-msgstr "(prędkość z którą gatunki SI mutują)"
+msgstr "(UWAGA: funkcje eksperymentalne mogą zepsuć balans gry i inne jej aspekty, dlatego zalecane są wyłącznie dla doświadczonych graczy Thrive. Jeśli zgłaszasz jakiekolwiek błędy, musisz zaznaczyć w raporcie, że masz włączone funkcje eksperymentalne.)"
 
 msgid "EXPORT_ALL_WORLDS"
 msgstr "Eksportuj Wszystkie Światy"
@@ -2757,9 +2734,8 @@ msgstr "Siarkowodór (H₂S)"
 msgid "HYDROGEN_SULFIDE_LEVELS"
 msgstr "Siarkowodór (H₂S)"
 
-#, fuzzy
 msgid "ICESHARD"
-msgstr "Odłamy Lodu"
+msgstr "Mały odłamek lodu"
 
 msgid "ICESHELF"
 msgstr "Lodowiec Szelfowy"
@@ -5452,9 +5428,8 @@ msgstr ""
 msgid "RUSTICYANIN"
 msgstr "Rusticyjanina"
 
-#, fuzzy
 msgid "RUSTICYANIN_DESCRIPTION"
-msgstr "Rusticyjanina to białko mogące użyć gazowego [thrive:compound type=\"carbondioxide\"]Dwutlenku Węgla[/thrive:compound] do utleniania [thrive:compound type=\"iron\"]Żelaza[/thrive:compound] z jednego stanu chemicznego do innego. Ten proces, nazywany [b]oddychaniem żelazowym[/b], uwalnia energię którą komórka może zebrać."
+msgstr "Rusticyjanina to białko potrafiące przekształcać [thrive:compound type=\"iron\"][/thrive:compound] z jednego stanu chemicznego do innego. Ten proces, zwany [b]utlenianiem żelazowym[/b], uwalnia energię, którą komórka może wykorzystać."
 
 #, fuzzy
 msgid "RUSTICYANIN_PROCESSES_DESCRIPTION"
@@ -6257,9 +6232,8 @@ msgstr "Teoretycy"
 msgid "THERMOPLAST"
 msgstr "Termoplast"
 
-#, fuzzy
 msgid "THERMOPLAST_DESCRIPTION"
-msgstr "Termoplast jest strukturą z podwójną membraną zawierającą termoczułe pigmenty ułożone razem w membranowych workach. Jest prokariontem, który został przyswojony do użytku przez eukariotycznego hosta. Pigmenty w termoplaście mogą używać energii z gradientów termicznych w otoczeniu do produkcji [thrive:compound type=\"atp\"][/thrive:compound] z wody w procesie zwanym [b]termosyntezą[/b]. Tempo produkcji [thrive:compound type=\"atp\"][/thrive:compound] skaluje się z [thrive:compound type=\"temperature\"]Temperaturą[/thrive:compound]."
+msgstr "Termoplast to struktura otoczona podwójną błoną, zawierająca wrażliwe na temperaturę barwniki ułożone w błoniastych woreczkach. Jest to prokariont zasymilowany przez swojego eukariotycznego gospodarza. Barwniki w termoplaście potrafią wykorzystywać energię rosnącej [thrive:compound type=\"temperature\"]temperatury[/thrive:compound] otoczenia do wytwarzania [thrive:compound type=\"atp\"][/thrive:compound] z wody w procesie zwanym [b]termosyntezą[/b]. Szybkość produkcji [thrive:compound type=\"atp\"][/thrive:compound] rośnie wraz z różnicą [thrive:compound type=\"temperature\"]temperatur[/thrive:compound]."
 
 #, fuzzy
 msgid "THERMOPLAST_PROCESSES_DESCRIPTION"
@@ -6574,11 +6548,8 @@ msgstr "Typ:"
 msgid "TOXIN_TYPE_CUSTOMIZATION_EXPLANATION"
 msgstr "(lokalizacja początkowa)"
 
-#, fuzzy
 msgid "TOXIN_VACUOLE"
-msgstr ""
-"Toksyczna\n"
-"Wakuola"
+msgstr "Toksyczna wakuola"
 
 #, fuzzy
 msgid "TOXIN_VACUOLE_DESCRIPTION"
