@@ -11,7 +11,7 @@ using World = DefaultEcs.World;
 /// <summary>
 ///   Any type of game world simulation where everything needed to run that simulation is collected under. Note that
 ///   <see cref="GameWorld"/> is an object holding the game world's information like species etc. These simulation
-///   types implementing this interface are in charge of running the gameplay simulation side of things. For example
+///   types implementing this interface are in charge of running the gameplay simulation side of things. For example,
 ///   microbe moving around, processing compounds, colliding, rendering etc.
 /// </summary>
 [UseThriveSerializer]

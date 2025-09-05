@@ -10,40 +10,42 @@ public class OrganellePlacementActionData : HexPlacementActionData<OrganelleTemp
     {
     }
 
-    protected override double CalculateCostInternal()
+    protected override double CalculateBaseCostInternal()
     {
         return PlacedHex.Definition.MPCost;
     }
 
-    protected override ActionInterferenceMode GetInterferenceModeWithGuaranteed(CombinableActionData other)
+    protected override (double Cost, double RefundCost) CalculateCostInternal(
+        IReadOnlyList<EditorCombinableActionData> history, int insertPosition)
     {
-        if (other is OrganelleMoveActionData moveActionData &&
-            moveActionData.MovedHex.Definition == PlacedHex.Definition)
-        {
-            if (moveActionData.OldLocation == Location)
-                return ActionInterferenceMode.Combinable;
+        double refund = 0;
 
-            if (ReplacedCytoplasm?.Contains(moveActionData.MovedHex) == true)
-                return ActionInterferenceMode.ReplacesOther;
+        var count = history.Count;
+        for (int i = 0; i < insertPosition && i < count; ++i)
+        {
+            var other = history[i];
+
+            if (other is OrganelleMoveActionData moveActionData && MatchesContext(moveActionData))
+            {
+                if ((moveActionData.MovedHex.Definition == PlacedHex.Definition &&
+                        moveActionData.OldLocation == Location) ||
+                    ReplacedCytoplasm?.Contains(moveActionData.MovedHex) == true)
+                {
+                    refund += other.GetCalculatedSelfCost();
+                    continue;
+                }
+            }
+
+            if (other is OrganellePlacementActionData placementActionData &&
+                ReplacedCytoplasm?.Contains(placementActionData.PlacedHex) == true &&
+                MatchesContext(placementActionData))
+            {
+                refund += other.GetCalculatedSelfCost();
+            }
         }
 
-        if (other is OrganellePlacementActionData placementActionData &&
-            ReplacedCytoplasm?.Contains(placementActionData.PlacedHex) == true)
-            return ActionInterferenceMode.ReplacesOther;
+        var baseCost = base.CalculateCostInternal(history, insertPosition);
 
-        return base.GetInterferenceModeWithGuaranteed(other);
-    }
-
-    protected override CombinableActionData CreateDerivedMoveAction(
-        HexRemoveActionData<OrganelleTemplate, CellType> data)
-    {
-        return new OrganelleMoveActionData(data.RemovedHex, data.Location, Location,
-            data.Orientation, Orientation);
-    }
-
-    protected override CombinableActionData CreateDerivedPlacementAction(
-        HexMoveActionData<OrganelleTemplate, CellType> data)
-    {
-        return new OrganellePlacementActionData(PlacedHex, data.NewLocation, data.NewRotation);
+        return (baseCost.Cost, refund + baseCost.RefundCost);
     }
 }
