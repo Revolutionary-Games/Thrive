@@ -916,4 +916,77 @@ public class EditorMPTests
 
         Assert.Equal(Constants.BASE_MUTATION_POINTS, history.CalculateMutationPointsLeft());
     }
+
+    [Fact]
+    public void EditorMPTests_ToleranceChangeAllowsRevertingAt0()
+    {
+        // Do some tolerance edits to get down to 0 MP left
+        var history = new EditorActionHistory<EditorAction>();
+
+        var initialTolerances = new EnvironmentalTolerances();
+
+        var changedTolerances1 = initialTolerances.Clone();
+        changedTolerances1.TemperatureTolerance += 8;
+        changedTolerances1.UVResistance = 0.01f;
+
+        var toleranceData1 = new ToleranceActionData(initialTolerances, changedTolerances1);
+        history.AddAction(new SingleEditorAction<ToleranceActionData>(_ => { }, _ => { }, toleranceData1));
+        Assert.Equal(Constants.BASE_MUTATION_POINTS -
+            ToleranceActionData.CalculateToleranceCost(initialTolerances, changedTolerances1),
+            history.CalculateMutationPointsLeft());
+
+        Assert.True(ToleranceActionData.CalculateToleranceCost(initialTolerances, changedTolerances1) > 5);
+
+        var changedTolerances2 = changedTolerances1.Clone();
+        changedTolerances2.TemperatureTolerance += 5;
+        changedTolerances2.OxygenResistance = 0.1f;
+
+        Assert.Equal(ToleranceActionData.CalculateToleranceCost(initialTolerances, changedTolerances2),
+            ToleranceActionData.CalculateToleranceCost(initialTolerances, changedTolerances1) +
+            ToleranceActionData.CalculateToleranceCost(changedTolerances1, changedTolerances2));
+
+        var toleranceData2 = new ToleranceActionData(changedTolerances1, changedTolerances2);
+        history.AddAction(new SingleEditorAction<ToleranceActionData>(_ => { }, _ => { }, toleranceData2));
+        Assert.Equal(Constants.BASE_MUTATION_POINTS -
+            ToleranceActionData.CalculateToleranceCost(initialTolerances, changedTolerances1) -
+            ToleranceActionData.CalculateToleranceCost(changedTolerances1, changedTolerances2),
+            history.CalculateMutationPointsLeft());
+
+        var changedTolerances3 = changedTolerances2.Clone();
+        changedTolerances3.TemperatureTolerance += 5;
+
+        for (int i = 0; i < 1000; ++i)
+        {
+            if (ToleranceActionData.CalculateToleranceCost(initialTolerances, changedTolerances3) >=
+                Constants.BASE_MUTATION_POINTS)
+            {
+                // If overshot
+                if (ToleranceActionData.CalculateToleranceCost(initialTolerances, changedTolerances3) >
+                    Constants.BASE_MUTATION_POINTS + 0.01)
+                {
+                    Assert.Fail("Logic overshoot in MP consuming action creation");
+                }
+
+                break;
+            }
+
+            changedTolerances3.TemperatureTolerance += 1;
+        }
+
+        var toleranceData3 = new ToleranceActionData(changedTolerances2, changedTolerances3);
+        history.AddAction(new SingleEditorAction<ToleranceActionData>(_ => { }, _ => { }, toleranceData3));
+        Assert.Equal(0, history.CalculateMutationPointsLeft());
+
+        // And then it should be possible to go in the opposite direction to restore MP
+        var changedTolerances4 = changedTolerances3.Clone();
+        changedTolerances4.TemperatureTolerance -= 30;
+        var toleranceData4 = new ToleranceActionData(changedTolerances3, changedTolerances4);
+        history.AddAction(new SingleEditorAction<ToleranceActionData>(_ => { }, _ => { }, toleranceData4));
+        Assert.True(history.CalculateMutationPointsLeft() > 10);
+
+        // As we used different stats, they should not all combine into a single action (this verifies the test is
+        // actually testing what it is supposed to)
+        Assert.True(history.Undo());
+        Assert.True(history.Undo());
+    }
 }

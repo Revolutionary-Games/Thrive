@@ -72,7 +72,7 @@ public class ToleranceActionData : EditorCombinableActionData
                     cost = CalculateToleranceCost(toleranceActionData.OldTolerances, NewTolerances);
                 }
 
-                refund += other.GetCalculatedSelfCost();
+                refund += other.GetCalculatedSelfCost() - other.GetCalculatedRefundCost();
             }
         }
 
