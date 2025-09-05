@@ -33,6 +33,8 @@ using World = DefaultEcs.World;
 [RuntimeCost(55)]
 public sealed class ProcessSystem : AEntitySetSystem<float>
 {
+    public static OrganelleDefinition Nucleus = SimulationParameters.Instance.GetOrganelleType("nucleus");
+
 #if CHECK_USED_STATISTICS
     private readonly List<ProcessStatistics> usedStatistics = new();
 #endif
@@ -849,6 +851,8 @@ public sealed class ProcessSystem : AEntitySetSystem<float>
 
         int hexCount = 0;
 
+        bool hasNucleus = false;
+
         int organelleCount = organelles.Count;
         for (int i = 0; i < organelleCount; ++i)
         {
@@ -877,9 +881,18 @@ public sealed class ProcessSystem : AEntitySetSystem<float>
 
             // Store hex count
             hexCount += organelle.Definition.HexCount;
+
+            if (organelle.Definition == Nucleus)
+                hasNucleus = true;
         }
 
         var baseMovement = Constants.BASE_MOVEMENT_ATP_COST * hexCount;
+
+        if (hasNucleus)
+        {
+            baseMovement *= Constants.NUCLEUS_MOVEMENT_COST_MODIFIER;
+        }
+
         result.BaseMovement += baseMovement;
 
         if (includeMovementCost)
