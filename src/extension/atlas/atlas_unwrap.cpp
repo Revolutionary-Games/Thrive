@@ -114,13 +114,16 @@ bool Thrive::Unwrap(godot::ArrayMesh& mesh, float texelSize)
     inputMesh.vertexUvStride = 0;
 
     xatlas::ChartOptions chartOptions;
+    chartOptions.maxCost = 1.0f;
+    chartOptions.normalDeviationWeight = 10.0f;
+    chartOptions.straightnessWeight = 10.0f;
+    chartOptions.normalSeamWeight = 1000.0f;
     chartOptions.fixWinding = true;
+    chartOptions.maxBoundaryLength = 10.0f;
 
     ERR_FAIL_COND_V_MSG(texelSize <= 0.0f, false, "Texel size must be greater than 0.");
 
     xatlas::PackOptions packOptions;
-    packOptions.padding = 1;
-
     packOptions.maxChartSize = 1024;
     packOptions.blockAlign = true;
     packOptions.texelsPerUnit = 1.0f / texelSize;

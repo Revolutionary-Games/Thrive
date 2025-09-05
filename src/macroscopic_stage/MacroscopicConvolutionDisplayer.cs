@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Diagnostics;
+using System.Threading.Tasks;
 using Godot;
 using Xoshiro.PRNG32;
 
@@ -83,8 +84,8 @@ public partial class MacroscopicConvolutionDisplayer : MeshInstance3D, IMetaball
         Mesh.SurfaceSetMaterial(0, material);
 
         // UV generation disabled until proper textures can be made for it
-        // var uvUnwrap = new Task(() => UVUnwrapAndTexture((ArrayMesh)Mesh));
-        // TaskExecutor.Instance.AddTask(uvUnwrap);
+        var uvUnwrap = new Task(() => UVUnwrapAndTexture((ArrayMesh)Mesh));
+        TaskExecutor.Instance.AddTask(uvUnwrap);
 
         CustomAabb = new Aabb(minExtends, maxExtends);
     }
@@ -107,6 +108,9 @@ public partial class MacroscopicConvolutionDisplayer : MeshInstance3D, IMetaball
         // `godot_variant arg3_in = (godot_variant)arg3.NativeVar;` and uses `&arg3_in` to get a pointer to it.
         var nativeVariant = Variant.From(mesh).CopyNativeVariant();
 
+        Stopwatch sw = new();
+        sw.Start();
+
         try
         {
             // Note: Unwrapper's Native code uses call_deferred (delayed call) to apply changes to the mesh surface
@@ -127,6 +131,9 @@ public partial class MacroscopicConvolutionDisplayer : MeshInstance3D, IMetaball
             // Must be disposed to not leak resources
             nativeVariant.Dispose();
         }
+
+        sw.Stop();
+        GD.Print("Unwrapped in " + sw.Elapsed);
     }
 
     private void ApplyTextures()
