@@ -151,12 +151,17 @@ public abstract class EditorCombinableActionData<TContext> : EditorCombinableAct
 
     public bool MatchesContext(EditorCombinableActionData<TContext> other)
     {
-        if (Context is null)
+        return MatchesContext(Context, other);
+    }
+
+    protected static bool MatchesContext(TContext? originalContext, EditorCombinableActionData<TContext> other)
+    {
+        if (originalContext is null)
             return other.Context is null;
 
         if (other.Context is null)
             return false;
 
-        return Context.Equals(other.Context);
+        return originalContext.Equals(other.Context);
     }
 }

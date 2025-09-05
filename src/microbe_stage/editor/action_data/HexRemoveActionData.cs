@@ -26,6 +26,8 @@ public abstract class HexRemoveActionData<THex, TContext> : EditorCombinableActi
         var cost = CalculateBaseCostInternal();
         double refund = 0;
 
+        bool placementRefunded = false;
+
         var count = history.Count;
         for (int i = 0; i < insertPosition && i < count; ++i)
         {
@@ -36,7 +38,13 @@ public abstract class HexRemoveActionData<THex, TContext> : EditorCombinableActi
                 placementActionData.PlacedHex.MatchesDefinition(RemovedHex) && MatchesContext(placementActionData))
             {
                 cost = 0;
-                refund += other.GetCalculatedSelfCost();
+
+                if (!placementRefunded)
+                {
+                    refund += other.GetCalculatedSelfCost();
+                    placementRefunded = true;
+                }
+
                 continue;
             }
 

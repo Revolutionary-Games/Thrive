@@ -32,8 +32,14 @@ public abstract class HexPlacementActionData<THex, TContext> : EditorCombinableA
             // deletes something they then want to place for free. This stops that exploit.
             if (other is HexPlacementActionData<THex, TContext> placementActionData &&
                 placementActionData.PlacedHex.MatchesDefinition(PlacedHex) &&
-                placementActionData.Location == Location &&
-                placementActionData.Orientation == Orientation && MatchesContext(placementActionData))
+                MatchesContext(placementActionData) &&
+
+                // Matches the initial position or the final position of the earlier placement
+                ((placementActionData.Location == Location && placementActionData.Orientation == Orientation) ||
+                    (Location, Orientation) ==
+                    HexMoveActionData<THex, TContext>.ResolveFinalLocation(placementActionData.PlacedHex,
+                        placementActionData.Location, placementActionData.Orientation, history, i + 1,
+                        insertPosition - 1, Context)))
             {
                 seenEarlierPlacement = true;
                 continue;
