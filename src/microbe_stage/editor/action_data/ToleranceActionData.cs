@@ -83,8 +83,19 @@ public class ToleranceActionData : EditorCombinableActionData
     {
         // These must always merge with other tolerance actions, because otherwise the undo history step count is going
         // to explore
-        // TODO: maybe shouldn't merge if separate sliders only are changed to make better undo history?
-        return other is ToleranceActionData;
+        if (other is ToleranceActionData toleranceActionData)
+        {
+            var ourChanges = NewTolerances.GetChangedStats(OldTolerances);
+
+            if (ourChanges == 0)
+                return true;
+
+            // Only allow combining if both actions changed the same stats only
+            if (toleranceActionData.NewTolerances.GetChangedStats(toleranceActionData.OldTolerances) == ourChanges)
+                return true;
+        }
+
+        return false;
     }
 
     protected override void MergeGuaranteed(CombinableActionData other)

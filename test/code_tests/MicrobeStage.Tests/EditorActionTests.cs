@@ -41,4 +41,53 @@ public class EditorActionTests
         // There's no easy way to verify the history is completely empty, so we misuse an API here and expect an error
         Assert.Throws<ArgumentOutOfRangeException>(() => history.PopTopAction());
     }
+
+    [Fact]
+    public void EditorAction_ToleranceChangesCombine()
+    {
+        var history = new EditorActionHistory<EditorAction>();
+
+        var initialTolerances = new EnvironmentalTolerances();
+
+        var changedTolerances1 = initialTolerances.Clone();
+        changedTolerances1.TemperatureTolerance += 8;
+
+        var toleranceData1 = new ToleranceActionData(initialTolerances, changedTolerances1);
+        history.AddAction(new SingleEditorAction<ToleranceActionData>(_ => { }, _ => { }, toleranceData1));
+
+        var changedTolerances2 = changedTolerances1.Clone();
+        changedTolerances2.TemperatureTolerance += 5;
+
+        var toleranceData2 = new ToleranceActionData(changedTolerances1, changedTolerances2);
+        history.AddAction(new SingleEditorAction<ToleranceActionData>(_ => { }, _ => { }, toleranceData2));
+
+        // Then changing a different stat shouldn't combine
+        var changedTolerances3 = changedTolerances2.Clone();
+        changedTolerances3.UVResistance += 0.5f;
+
+        var toleranceData3 = new ToleranceActionData(changedTolerances2, changedTolerances3);
+        history.AddAction(new SingleEditorAction<ToleranceActionData>(_ => { }, _ => { }, toleranceData3));
+
+        Assert.True(history.CanUndo());
+        Assert.True(history.Undo());
+        Assert.True(history.CanUndo());
+        Assert.True(history.Undo());
+        Assert.False(history.CanUndo());
+
+        Assert.True(history.Redo());
+        Assert.True(history.Redo());
+
+        history.PopTopAction();
+        var action = history.PopTopAction();
+
+        var combinedAction = Assert.IsAssignableFrom<SingleEditorAction<ToleranceActionData>>(action);
+
+        var data = combinedAction.Data.ToList();
+        Assert.Single(data);
+
+        var castedData = Assert.IsAssignableFrom<ToleranceActionData>(data[0]);
+
+        Assert.Equal(initialTolerances, castedData.OldTolerances);
+        Assert.Equal(changedTolerances2, castedData.NewTolerances);
+    }
 }
