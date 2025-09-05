@@ -47,11 +47,6 @@ public class MeteorImpactEvent : IWorldEffect
         TryToTriggerEvent(totalTimePassed);
     }
 
-    private bool IsSurfacePatch(Patch patch)
-    {
-        return patch.Depth[0] == 0 && patch.BiomeType != BiomeType.Cave;
-    }
-
     private void TryToTriggerEvent(double totalTimePassed)
     {
         if (!AreConditionsMet())
@@ -86,7 +81,7 @@ public class MeteorImpactEvent : IWorldEffect
         var surfacePatches = new List<Patch>();
         foreach (var patch in targetWorld.Map.Patches.Values)
         {
-            if (IsSurfacePatch(patch))
+            if (patch.IsSurfacePatch())
                 surfacePatches.Add(patch);
         }
 
@@ -105,7 +100,7 @@ public class MeteorImpactEvent : IWorldEffect
         {
             foreach (var adjacent in selectedPatch.Adjacent)
             {
-                if (adjacent.Region.ID == selectedPatch.Region.ID && IsSurfacePatch(adjacent))
+                if (adjacent.Region.ID == selectedPatch.Region.ID && adjacent.IsSurfacePatch())
                 {
                     modifiedPatchesIds.Add(adjacent.ID);
                 }
@@ -117,7 +112,7 @@ public class MeteorImpactEvent : IWorldEffect
         {
             foreach (var patch in adjacentRegion.Patches)
             {
-                if (IsSurfacePatch(patch))
+                if (patch.IsSurfacePatch())
                 {
                     modifiedPatchesIds.Add(patch.ID);
                 }

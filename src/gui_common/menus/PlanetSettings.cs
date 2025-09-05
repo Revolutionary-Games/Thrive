@@ -28,6 +28,24 @@ public partial class PlanetSettings : VBoxContainer
     private OptionButton worldClimateInstabilityButton = null!;
 
     [Export]
+    private OptionButton sulfideLevelButton = null!;
+
+    [Export]
+    private OptionButton glucoseLevelButton = null!;
+
+    [Export]
+    private OptionButton ironLevelButton = null!;
+
+    [Export]
+    private OptionButton ammoniaLevelButton = null!;
+
+    [Export]
+    private OptionButton phosphatesLevelButton = null!;
+
+    [Export]
+    private OptionButton radiationLevelButton = null!;
+
+    [Export]
     private CheckButton lawkOnlyButton = null!;
 
     [Export]
@@ -59,6 +77,9 @@ public partial class PlanetSettings : VBoxContainer
     [Signal]
     public delegate void LifeOriginSettingsChangedEventHandler(WorldGenerationSettings.LifeOrigin lifeOrigin);
 
+    [Signal]
+    public delegate void PlanetSettingChangedEventHandler();
+
     public WorldGenerationSettings GetPlanetSettings()
     {
         return new WorldGenerationSettings
@@ -68,6 +89,12 @@ public partial class PlanetSettings : VBoxContainer
             WorldOceanicCoverage = (WorldGenerationSettings.WorldOceanicCoverageEnum)worldSeaLevelButton.Selected,
             GeologicalActivity = (WorldGenerationSettings.GeologicalActivityEnum)worldGeologicalActivityButton.Selected,
             ClimateInstability = (WorldGenerationSettings.ClimateInstabilityEnum)worldClimateInstabilityButton.Selected,
+            HydrogenSulfideLevel = (WorldGenerationSettings.CompoundLevel)sulfideLevelButton.Selected,
+            GlucoseLevel = (WorldGenerationSettings.CompoundLevel)glucoseLevelButton.Selected,
+            IronLevel = (WorldGenerationSettings.CompoundLevel)ironLevelButton.Selected,
+            AmmoniaLevel = (WorldGenerationSettings.CompoundLevel)ammoniaLevelButton.Selected,
+            PhosphatesLevel = (WorldGenerationSettings.CompoundLevel)phosphatesLevelButton.Selected,
+            RadiationLevel = (WorldGenerationSettings.CompoundLevel)radiationLevelButton.Selected,
             Origin = (WorldGenerationSettings.LifeOrigin)lifeOriginButton.Selected,
             DayNightCycleEnabled = dayNightCycleButton.ButtonPressed,
             DayLength = (int)dayLength.Value,
@@ -76,34 +103,64 @@ public partial class PlanetSettings : VBoxContainer
         };
     }
 
-    public void SetLifeOrigin(int index)
+    public void SetLifeOrigin(WorldGenerationSettings.LifeOrigin value)
     {
-        lifeOriginButton.Selected = index;
+        lifeOriginButton.Selected = (int)value;
     }
 
-    public void SetWorldSize(int index)
+    public void SetWorldSize(WorldGenerationSettings.WorldSizeEnum value)
     {
-        worldSizeButton.Selected = index;
+        worldSizeButton.Selected = (int)value;
     }
 
-    public void SetWorldTemperature(int index)
+    public void SetWorldTemperature(WorldGenerationSettings.WorldTemperatureEnum value)
     {
-        worldTemperatureButton.Selected = index;
+        worldTemperatureButton.Selected = (int)value;
     }
 
-    public void SetWorldSeaLevel(int index)
+    public void SetOceanicCoverage(WorldGenerationSettings.WorldOceanicCoverageEnum value)
     {
-        worldSeaLevelButton.Selected = index;
+        worldSeaLevelButton.Selected = (int)value;
     }
 
-    public void SetWorldGeologicalActivity(int index)
+    public void SetWorldGeologicalActivity(WorldGenerationSettings.GeologicalActivityEnum value)
     {
-        worldGeologicalActivityButton.Selected = index;
+        worldGeologicalActivityButton.Selected = (int)value;
     }
 
-    public void SetWorldClimateInstability(int index)
+    public void SetWorldClimateInstability(WorldGenerationSettings.ClimateInstabilityEnum value)
     {
-        worldClimateInstabilityButton.Selected = index;
+        worldClimateInstabilityButton.Selected = (int)value;
+    }
+
+    public void SetHydrogenSulfideLevel(WorldGenerationSettings.CompoundLevel value)
+    {
+        sulfideLevelButton.Selected = (int)value;
+    }
+
+    public void SetGlucoseLevel(WorldGenerationSettings.CompoundLevel value)
+    {
+        glucoseLevelButton.Selected = (int)value;
+    }
+
+    public void SetIronLevel(WorldGenerationSettings.CompoundLevel value)
+    {
+        ironLevelButton.Selected = (int)value;
+    }
+
+    public void SetAmmoniaLevel(WorldGenerationSettings.CompoundLevel value)
+    {
+        ammoniaLevelButton.Selected = (int)value;
+    }
+
+    public void SetPhosphatesLevel(WorldGenerationSettings.CompoundLevel value)
+    {
+        phosphatesLevelButton.Selected = (int)value;
+    }
+
+    public void SetRadiationLevel(WorldGenerationSettings.CompoundLevel value)
+    {
+        radiationLevelButton.Selected = (int)value;
     }
 
     public void SetLawkOnly(bool pressed)
@@ -152,19 +209,24 @@ public partial class PlanetSettings : VBoxContainer
 
         ReportValidityOfGameSeed(valid);
         if (valid)
+        {
             latestValidSeed = seed;
+            EmitSignal(SignalName.PlanetSettingChanged);
+        }
     }
 
     private void OnDayNightCycleToggled(bool pressed)
     {
         dayLengthContainer.Modulate = pressed ? Colors.White : new Color(1.0f, 1.0f, 1.0f, 0.5f);
         dayLength.Editable = pressed;
+        EmitSignal(SignalName.PlanetSettingChanged);
     }
 
     private void OnDayLengthChanged(double length)
     {
         length = Math.Round(length, 1);
         dayLengthReadout.Text = length.ToString(CultureInfo.CurrentCulture);
+        EmitSignal(SignalName.PlanetSettingChanged);
     }
 
     private void UpdateLifeOriginOptions(bool lawk)
@@ -199,8 +261,14 @@ public partial class PlanetSettings : VBoxContainer
 
     private void OnLAWKToggled(bool pressed)
     {
-        EmitSignal(SignalName.LawkSettingsChanged, pressed);
         UpdateLifeOriginOptions(pressed);
+        EmitSignal(SignalName.LawkSettingsChanged, pressed);
+    }
+
+    private void OnPlanetSettingsChanged(int index)
+    {
+        _ = index;
+        EmitSignal(SignalName.PlanetSettingChanged);
     }
 
     private string GenerateNewRandomSeed()

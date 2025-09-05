@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2025-08-25 19:09+0300\n"
+"POT-Creation-Date: 2025-08-29 14:14+0300\n"
 "PO-Revision-Date: 2025-08-17 14:44+0000\n"
 "Last-Translator: Alexandre Stoppini <stoppini.alexandre@gmail.com>\n"
 "Language-Team: French <https://translate.revolutionarygamesstudio.com/projects/thrive/thrive-game/fr/>\n"
@@ -190,6 +190,10 @@ msgid "AMMONIA"
 msgstr "Ammoniac"
 
 msgid "AMMONIA_COST"
+msgstr "Ammoniac :"
+
+#, fuzzy
+msgid "AMMONIA_LEVELS"
 msgstr "Ammoniac :"
 
 msgid "AMOUNT_OF_AUTOSAVE_TO_KEEP"
@@ -414,6 +418,21 @@ msgstr "Projets de construction disponibles"
 
 msgid "AVAILABLE_MODS"
 msgstr "Mods disponibles"
+
+msgid "AVERAGE_SURFACE_CARBON_DIOXIDE_LEVEL"
+msgstr ""
+
+msgid "AVERAGE_SURFACE_LIGHT_LEVEL"
+msgstr ""
+
+msgid "AVERAGE_SURFACE_NITROGEN_LEVEL"
+msgstr ""
+
+msgid "AVERAGE_SURFACE_OTHER_LEVEL"
+msgstr ""
+
+msgid "AVERAGE_SURFACE_OXYGEN_LEVEL"
+msgstr ""
 
 msgid "AWAKENING_STAGE"
 msgstr "Phase d’éveil"
@@ -1029,6 +1048,25 @@ msgstr "Toujours remplir au démarrage"
 #, fuzzy
 msgid "COMPOUND_HANDLE_TOP_UP_ON_CHANGE"
 msgstr "Densité des nuages de composés"
+
+#, fuzzy
+msgid "COMPOUND_LEVEL_AVERAGE"
+msgstr "Moyenne"
+
+#, fuzzy
+msgid "COMPOUND_LEVEL_HIGH"
+msgstr "Équilibre des composés"
+
+#, fuzzy
+msgid "COMPOUND_LEVEL_LOW"
+msgstr "Nuages de composés"
+
+msgid "COMPOUND_LEVEL_VERY_HIGH"
+msgstr ""
+
+#, fuzzy
+msgid "COMPOUND_LEVEL_VERY_LOW"
+msgstr "Équilibre des composés"
 
 #, fuzzy
 msgid "COMPOUND_STORAGE_AMOUNT_DOES_NOT_LAST_NIGHT"
@@ -2499,10 +2537,6 @@ msgstr "Appuyez sur le bouton Annuler la dernière action dans l'éditeur pour c
 msgid "GENERAL_LOADING_TIP_7"
 msgstr "Appuyez sur le bouton Annuler la dernière action dans l'éditeur pour corriger une erreur"
 
-#, fuzzy
-msgid "GENERATE_BUTTON"
-msgstr "Générations"
-
 msgid "GENERATE_POSITIVE_GLUCOSE_PHOTOSYNTHESIS"
 msgstr "Générer plus de glucose que vous n'en consommez via la photosynthèse"
 
@@ -2571,6 +2605,10 @@ msgstr "Glucose"
 
 msgid "GLUCOSE_CONCENTRATIONS_DRASTICALLY_DROPPED"
 msgstr "La concentration de glucose a baissé drastiquement !"
+
+#, fuzzy
+msgid "GLUCOSE_LEVEL"
+msgstr "{0}-{1}m sous la mer"
 
 msgid "GLYCOLYSIS"
 msgstr "Glycolyse"
@@ -2707,6 +2745,10 @@ msgid "HYDROGENOSOME_PROCESSES_DESCRIPTION"
 msgstr "Transforme l'[thrive:compound type=\"atp\"][/thrive:compound] en [thrive:compound type=\"ammonia\"][/thrive:compound]. Taux proportionnels à la concentration de [thrive:compound type=\"nitrogen\"][/thrive:compound]."
 
 msgid "HYDROGEN_SULFIDE"
+msgstr "Sulfure d'hydrogène"
+
+#, fuzzy
+msgid "HYDROGEN_SULFIDE_LEVELS"
 msgstr "Sulfure d'hydrogène"
 
 #, fuzzy
@@ -2931,6 +2973,9 @@ msgstr ""
 
 msgid "IRON"
 msgstr "Fer"
+
+msgid "IRON_LEVELS"
+msgstr ""
 
 #, fuzzy
 msgid "IRON_OXIDATION"
@@ -4831,6 +4876,10 @@ msgstr "Panoramique vers le haut"
 msgid "PAST_DEVELOPERS"
 msgstr "Anciens développeurs"
 
+#, fuzzy
+msgid "PATCHES_NUMBER"
+msgstr "{0} {1}"
+
 msgid "PATCH_COLON"
 msgstr "Secteur :"
 
@@ -4934,6 +4983,10 @@ msgstr "Phosphate"
 msgid "PHOSPHATES_COST"
 msgstr "Phosphate"
 
+#, fuzzy
+msgid "PHOSPHATES_LEVELS"
+msgstr "Phosphate"
+
 msgid "PHOTOSYNTHESIS"
 msgstr "Photosynthèse"
 
@@ -4963,6 +5016,10 @@ msgstr ""
 
 msgid "PLANET_RANDOM_SEED"
 msgstr "Graine planétaire aléatoire"
+
+#, fuzzy
+msgid "PLANET_STATISTICS"
+msgstr "Statistiques"
 
 msgid "PLAYER"
 msgstr "Joueur"
@@ -5116,6 +5173,10 @@ msgid "RADIATION"
 msgstr "Respiration aérobie"
 
 #, fuzzy
+msgid "RADIATION_LEVELS"
+msgstr "Respiration aérobie"
+
+#, fuzzy
 msgid "RADIOACTIVE_CHUNK"
 msgstr "Gros fragment de phosphate"
 
@@ -5169,6 +5230,10 @@ msgstr "Rafraîchir"
 #, fuzzy
 msgid "REGENERATE_BUTTON"
 msgstr "Axone"
+
+#, fuzzy
+msgid "REGIONS_NUMBER"
+msgstr "Identifiant numérique"
 
 #, fuzzy
 msgid "RENDER_SCALE"
@@ -5627,6 +5692,10 @@ msgid "SHOW_ITEM_COORDINATES"
 msgstr ""
 "Position : {0}\n"
 "Pointeur à : {1}"
+
+#, fuzzy
+msgid "SHOW_MAP"
+msgstr "Montrer l'aide"
 
 msgid "SHOW_NEW_PATCH_NOTES"
 msgstr "Afficher automatiquement les nouvelles notes de correctif"
@@ -9519,6 +9588,10 @@ msgstr "Zoomer"
 
 msgid "ZOOM_OUT"
 msgstr "Dézoomer"
+
+#, fuzzy
+#~ msgid "GENERATE_BUTTON"
+#~ msgstr "Générations"
 
 #~ msgid "CELL_TYPE_BUTTON_ATP_CONSUMPTION"
 #~ msgstr "La consommation d'ATP de ce type de cellule est {0}."
