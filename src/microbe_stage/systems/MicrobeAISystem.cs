@@ -346,7 +346,7 @@ public sealed class MicrobeAISystem : AEntitySetSystem<float>, ISpeciesMemberLoc
         // If motionless inside a hydrogen sulfide cloud, move away
         if (!organelles.HydrogenSulfideProtection
             && compounds.GetCompoundAmount(Compound.Hydrogensulfide) > MathUtils.EPSILON
-            && control.MovementDirection != Vector3.Zero)
+            && control.MovementDirection == Vector3.Zero)
         {
             ai.MoveWithRandomTurn(1.5f, 4.5f, position.Position, ref control, speciesActivity, random);
             return;
