@@ -425,13 +425,15 @@ public partial class MicrobeHUD : CreatureStageHUDBase<MicrobeStage>
 
         ingestedMatterBar.Visible = GetPlayerUsedIngestionCapacity() > 0;
 
+        var playerStorage = GetPlayerStorage();
+
         foreach (var (compound, bar) in compoundBars)
         {
             if (bar.Visible)
                 continue;
 
             if (SimulationParameters.GetCompound(compound).AlwaysAbsorbable
-                && GetPlayerStorage().GetCompoundAmount(compound) > MathUtils.EPSILON)
+                && playerStorage.GetCompoundAmount(compound) > MathUtils.EPSILON)
             {
                 bar.Visible = true;
             }

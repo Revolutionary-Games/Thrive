@@ -736,7 +736,9 @@ public partial class CompoundCloudPlane : MeshInstance3D, ISaveLoadedTracked
             // Skip if compound is non-useful or disallowed to be absorbed
             if (!compoundDefinitions[i]!.IsAbsorbable
                 || (!storage.IsUseful(compound) && !compoundDefinitions[i]!.AlwaysAbsorbable))
+            {
                 continue;
+            }
 
             // Loop here to retry in case we read stale data
             while (true)
