@@ -36,6 +36,8 @@ public partial class CreatureStageHUDBase<TStage> : HUDWithPausing, ICreatureSta
     protected readonly List<Compound> allAgents = new();
 
 #pragma warning disable CA2213
+    protected readonly List<(Compound Compound, CompoundProgressBar Bar)> compoundBars = new();
+
     [Export]
     protected MouseHoverPanel mouseHoverPanel = null!;
 
@@ -125,8 +127,6 @@ public partial class CreatureStageHUDBase<TStage> : HUDWithPausing, ICreatureSta
     ///   Access to the stage to retrieve information for display as well as call some player initiated actions.
     /// </summary>
     protected TStage? stage;
-
-    private readonly List<(Compound Compound, CompoundProgressBar Bar)> compoundBars = new();
 
     private readonly Dictionary<Compound, float> gatheredCompounds = new();
     private readonly Dictionary<Compound, float> totalNeededCompounds = new();

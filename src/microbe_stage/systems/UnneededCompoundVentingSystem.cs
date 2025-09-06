@@ -66,7 +66,7 @@ public sealed class UnneededCompoundVentingSystem : AEntitySetSystem<float>
             // Vent if not useful, or if overflowed the capacity
             // The multiply by threshold is here to be more kind to cells that have just divided and make it
             // much less likely the player often sees their cell venting away their precious compounds
-            if (!compounds.IsUseful(type))
+            if (!compounds.IsUseful(type) && !SimulationParameters.GetCompound(type).AlwaysAbsorbable)
             {
                 amountToVent -=
                     cellProperties.EjectCompound(ref position, compounds, compoundCloudSystem, type, amountToVent,

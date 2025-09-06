@@ -70,7 +70,7 @@ public class CompoundBag : ICompoundStorage
     /// </remarks>
     public float GetCapacityForCompound(Compound compound, bool ignoreUsefulness)
     {
-        if (!ignoreUsefulness && !IsUseful(compound))
+        if (!ignoreUsefulness && !IsUseful(compound) && !SimulationParameters.GetCompound(compound).AlwaysAbsorbable)
             return 0;
 
         if (compoundCapacities != null && compoundCapacities.TryGetValue(compound, out var capacity))

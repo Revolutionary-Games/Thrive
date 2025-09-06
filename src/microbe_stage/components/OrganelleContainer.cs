@@ -91,6 +91,11 @@ public struct OrganelleContainer
     public int RadiationProtection;
 
     /// <summary>
+    ///   Do the organelles provide hydrogen sulfide immunity
+    /// </summary>
+    public bool HydrogenSulfideProtection;
+
+    /// <summary>
     ///   How many heat-collecting organelles this container has
     /// </summary>
     public int HeatCollection;
@@ -502,6 +507,7 @@ public static class OrganelleContainerHelpers
         container.OrganellesCapacity = 0;
         container.HasSignalingAgent = false;
         container.HasBindingAgent = false;
+        container.HydrogenSulfideProtection = false;
         container.HeatCollection = 0;
         container.OxygenUsingOrganelles = 0;
         container.RadiationProtection = 0;
@@ -582,6 +588,9 @@ public static class OrganelleContainerHelpers
 
             if (organelleDefinition.HasBindingFeature)
                 container.HasBindingAgent = true;
+
+            if (organelleDefinition.HasHydrogenSulfideProtection)
+                container.HydrogenSulfideProtection = true;
 
             if (organelleDefinition.HasRadiationProtection)
                 ++container.RadiationProtection;
