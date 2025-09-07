@@ -560,7 +560,7 @@ public partial class CreatureStageBase<TPlayer, TSimulation> : StageBase, ICreat
 
         if (current.PressureScore < 1)
         {
-            species.Tolerances.PreferredPressure = optimal.PreferredPressure;
+            species.Tolerances.PressureMinimum = optimal.PressureMinimum;
             species.Tolerances.PressureTolerance = optimal.PressureTolerance;
         }
     }

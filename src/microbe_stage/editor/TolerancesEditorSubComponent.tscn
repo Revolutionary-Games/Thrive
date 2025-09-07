@@ -1,4 +1,4 @@
-[gd_scene load_steps=19 format=3 uid="uid://5kamud4sukbd"]
+[gd_scene load_steps=23 format=3 uid="uid://5kamud4sukbd"]
 
 [ext_resource type="Theme" uid="uid://b4cx0o110g4b6" path="res://src/gui_common/thrive_theme.tres" id="1_16mn0"]
 [ext_resource type="Script" uid="uid://dxl2pjshg67oa" path="res://src/microbe_stage/editor/TolerancesEditorSubComponent.cs" id="2_kqh2k"]
@@ -10,6 +10,7 @@
 [ext_resource type="LabelSettings" uid="uid://dvqx73nhtr0y2" path="res://src/gui_common/fonts/Body-Regular-Small.tres" id="8_ktuy7"]
 [ext_resource type="PackedScene" uid="uid://duf1lf5lp4v5p" path="res://src/microbe_stage/editor/ToleranceOptimalDisplay.tscn" id="9_xmghy"]
 [ext_resource type="Texture2D" uid="uid://d1tuehjbire76" path="res://assets/textures/gui/bevel/Pressure.svg" id="10_xmghy"]
+[ext_resource type="LabelSettings" uid="uid://c07qrffjvqfw" path="res://src/gui_common/fonts/Body-Regular-Tiny.tres" id="11_5y3m2"]
 [ext_resource type="Texture2D" uid="uid://djaidl3g28ibi" path="res://assets/textures/gui/bevel/Oxygen.svg" id="12_3r1ho"]
 [ext_resource type="Texture2D" uid="uid://c253x2crwbldo" path="res://assets/textures/gui/bevel/Sunlight.svg" id="14_n6u17"]
 
@@ -18,29 +19,35 @@ content_margin_top = 1.0
 texture = ExtResource("3_ri2xt")
 region_rect = Rect2(0, 0, 258, 1)
 
-[sub_resource type="Gradient" id="Gradient_3r1ho"]
+[sub_resource type="Gradient" id="Gradient_5y3m2"]
 interpolation_mode = 1
 offsets = PackedFloat32Array(0)
 colors = PackedColorArray(0.0666667, 1, 0.835294, 1)
 
-[sub_resource type="GradientTexture2D" id="GradientTexture2D_n6u17"]
-gradient = SubResource("Gradient_3r1ho")
-width = 20
-height = 5
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_xmghy"]
+gradient = SubResource("Gradient_5y3m2")
+width = 18
+height = 6
 
-[sub_resource type="Gradient" id="Gradient_n6u17"]
+[sub_resource type="Gradient" id="Gradient_xmghy"]
 interpolation_mode = 1
 offsets = PackedFloat32Array(0)
 colors = PackedColorArray(0, 0.435294, 0.52549, 1)
 
-[sub_resource type="GradientTexture2D" id="GradientTexture2D_evsrs"]
-gradient = SubResource("Gradient_n6u17")
-width = 20
-height = 5
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_3r1ho"]
+gradient = SubResource("Gradient_xmghy")
+width = 18
+height = 6
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_3r1ho"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_n6u17"]
 
 [sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_evsrs"]
 
-[node name="TolerancesEditorSubComponent" type="VBoxContainer" node_paths=PackedStringArray("temperatureToolTipContainer", "pressureToolTipContainer", "oxygenResistanceToolTipContainer", "uvResistanceToolTipContainer", "temperatureSlider", "temperatureToleranceRangeSlider", "pressureSlider", "pressureToleranceRangeSlider", "temperatureMinLabel", "temperatureMaxLabel", "temperatureToleranceLabel", "temperatureBaseLabel", "temperatureOptimalDisplay", "pressureMinLabel", "pressureMaxLabel", "pressureToleranceLabel", "pressureBaseLabel", "pressureOptimalDisplay", "oxygenResistanceLabel", "oxygenResistanceBaseLabel", "oxygenResistanceTotalLabel", "oxygenResistanceOptimalDisplay", "uvResistanceLabel", "uvResistanceBaseLabel", "uvResistanceTotalLabel", "uvResistanceOptimalDisplay")]
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_jstjb"]
+
+[node name="TolerancesEditorSubComponent" type="VBoxContainer" node_paths=PackedStringArray("temperatureToolTipContainer", "pressureToolTipContainer", "oxygenResistanceToolTipContainer", "uvResistanceToolTipContainer", "temperatureSlider", "temperatureToleranceRangeSlider", "pressureSlider", "pressureToleranceRangeSlider", "oxygenResistanceSlider", "uvResistanceSlider", "temperatureMinLabel", "temperatureMaxLabel", "temperatureToleranceLabel", "temperatureModifierLabel", "temperatureOptimalDisplay", "pressureMinLabel", "pressureMaxLabel", "pressureToleranceLabel", "pressureModifierLabel", "pressureOptimalDisplay", "oxygenResistanceModifierLabel", "oxygenResistanceTotalLabel", "oxygenResistanceOptimalDisplay", "uvResistanceModifierLabel", "uvResistanceTotalLabel", "uvResistanceOptimalDisplay")]
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
@@ -48,32 +55,32 @@ grow_horizontal = 2
 grow_vertical = 2
 theme = ExtResource("1_16mn0")
 script = ExtResource("2_kqh2k")
-temperatureToolTipContainer = NodePath("Temperature/BaseAndTotal")
-pressureToolTipContainer = NodePath("Pressure/BaseAndTotal")
-oxygenResistanceToolTipContainer = NodePath("Oxygen/BaseAndTotal")
-uvResistanceToolTipContainer = NodePath("UV/BaseAndTotal")
-temperatureSlider = NodePath("Temperature/TemperatureSlider")
+temperatureToolTipContainer = NodePath("Temperature/ModifierAndTotal")
+pressureToolTipContainer = NodePath("Pressure/ModifierAndTotal")
+oxygenResistanceToolTipContainer = NodePath("Oxygen/ModifierAndTotal")
+uvResistanceToolTipContainer = NodePath("UV/ModifierAndTotal")
+temperatureSlider = NodePath("Temperature/OptimalDisplayContainer/VBoxContainer/TemperatureSlider")
 temperatureToleranceRangeSlider = NodePath("Temperature/HBoxContainer3/TemperatureRange")
-pressureSlider = NodePath("Pressure/PressureSlider")
+pressureSlider = NodePath("Pressure/OptimalDisplayContainer/VBoxContainer/PressureSlider")
 pressureToleranceRangeSlider = NodePath("Pressure/HBoxContainer4/PressureRange")
-temperatureMinLabel = NodePath("Temperature/BaseAndTotal/HBoxContainer/Total/TemperatureMinimum")
-temperatureMaxLabel = NodePath("Temperature/BaseAndTotal/HBoxContainer/Total/TemperatureMaximum")
+oxygenResistanceSlider = NodePath("Oxygen/OptimalDisplayContainer/VBoxContainer/OxygenResistanceSlider")
+uvResistanceSlider = NodePath("UV/OptimalDisplayContainer/VBoxContainer/UVResistanceSlider")
+temperatureMinLabel = NodePath("Temperature/ModifierAndTotal/HBoxContainer/Total/TemperatureMinimum")
+temperatureMaxLabel = NodePath("Temperature/ModifierAndTotal/HBoxContainer/Total/TemperatureMaximum")
 temperatureToleranceLabel = NodePath("Temperature/HBoxContainer3/MarginContainer/TemperatureRangeValue")
-temperatureBaseLabel = NodePath("Temperature/BaseAndTotal/HBoxContainer/Base/BaseValue")
-temperatureOptimalDisplay = NodePath("Temperature/OptimalDisplayContainer/TemperatureOptimalDisplay")
-pressureMinLabel = NodePath("Pressure/BaseAndTotal/HBoxContainer/Total/PressureMinimum")
-pressureMaxLabel = NodePath("Pressure/BaseAndTotal/HBoxContainer/Total/PressureMaximum")
+temperatureModifierLabel = NodePath("Temperature/ModifierAndTotal/HBoxContainer/Modifier/BaseValue")
+temperatureOptimalDisplay = NodePath("Temperature/OptimalDisplayContainer/VBoxContainer/TemperatureOptimalDisplay")
+pressureMinLabel = NodePath("Pressure/ModifierAndTotal/HBoxContainer/Total/PressureMinimum")
+pressureMaxLabel = NodePath("Pressure/ModifierAndTotal/HBoxContainer/Total/PressureMaximum")
 pressureToleranceLabel = NodePath("Pressure/HBoxContainer4/MarginContainer/PressureRangeValue")
-pressureBaseLabel = NodePath("Pressure/BaseAndTotal/HBoxContainer/Base/BaseValue")
-pressureOptimalDisplay = NodePath("Pressure/OptimalDisplayContainer/PressureOptimalDisplay")
-oxygenResistanceLabel = NodePath("Oxygen/HBoxContainer2/OxygenResistanceLabel")
-oxygenResistanceBaseLabel = NodePath("Oxygen/BaseAndTotal/HBoxContainer/Base/BaseValue")
-oxygenResistanceTotalLabel = NodePath("Oxygen/BaseAndTotal/HBoxContainer/Total/TotalValue")
-oxygenResistanceOptimalDisplay = NodePath("Oxygen/OptimalDisplayContainer/OxygenOptimalDisplay")
-uvResistanceLabel = NodePath("UV/HBoxContainer2/UVResistanceLabel")
-uvResistanceBaseLabel = NodePath("UV/BaseAndTotal/HBoxContainer/Base/BaseValue")
-uvResistanceTotalLabel = NodePath("UV/BaseAndTotal/HBoxContainer/Total/TotalValue")
-uvResistanceOptimalDisplay = NodePath("UV/OptimalDisplayContainer/UVOptimalDisplay")
+pressureModifierLabel = NodePath("Pressure/ModifierAndTotal/HBoxContainer/Modifier/ModifierValue")
+pressureOptimalDisplay = NodePath("Pressure/OptimalDisplayContainer/VBoxContainer/PressureOptimalDisplay")
+oxygenResistanceModifierLabel = NodePath("Oxygen/ModifierAndTotal/HBoxContainer/Modifier/ModifierValue")
+oxygenResistanceTotalLabel = NodePath("Oxygen/ModifierAndTotal/HBoxContainer/Total/TotalValue")
+oxygenResistanceOptimalDisplay = NodePath("Oxygen/OptimalDisplayContainer/VBoxContainer/OxygenOptimalDisplay")
+uvResistanceModifierLabel = NodePath("UV/ModifierAndTotal/HBoxContainer/Modifier/ModiferValue")
+uvResistanceTotalLabel = NodePath("UV/ModifierAndTotal/HBoxContainer/Total/TotalValue")
+uvResistanceOptimalDisplay = NodePath("UV/OptimalDisplayContainer/VBoxContainer/UVOptimalDisplay")
 badValueFont = ExtResource("3_q5r3n")
 perfectValueFont = ExtResource("4_15qmx")
 modifierBadFont = ExtResource("3_q5r3n")
@@ -108,40 +115,45 @@ size_flags_horizontal = 3
 mouse_filter = 1
 theme_override_styles/separator = SubResource("StyleBoxTexture_ftstq")
 
-[node name="BaseAndTotal" type="PanelContainer" parent="Temperature"]
+[node name="ModifierAndTotal" type="PanelContainer" parent="Temperature"]
 layout_mode = 2
 theme = ExtResource("1_16mn0")
 
-[node name="HBoxContainer" type="HBoxContainer" parent="Temperature/BaseAndTotal"]
+[node name="HBoxContainer" type="HBoxContainer" parent="Temperature/ModifierAndTotal"]
 layout_mode = 2
 alignment = 1
 
-[node name="Base" type="HBoxContainer" parent="Temperature/BaseAndTotal/HBoxContainer"]
+[node name="Modifier" type="HBoxContainer" parent="Temperature/ModifierAndTotal/HBoxContainer"]
 layout_mode = 2
 size_flags_horizontal = 3
 alignment = 1
 
-[node name="BaseValue" type="Label" parent="Temperature/BaseAndTotal/HBoxContainer/Base"]
+[node name="ModifierLabel" type="Label" parent="Temperature/ModifierAndTotal/HBoxContainer/Modifier"]
+layout_mode = 2
+text = "MODIFIER"
+label_settings = ExtResource("8_ktuy7")
+
+[node name="BaseValue" type="Label" parent="Temperature/ModifierAndTotal/HBoxContainer/Modifier"]
 layout_mode = 2
 text = "+10%"
 label_settings = ExtResource("8_ktuy7")
 
-[node name="Total" type="HBoxContainer" parent="Temperature/BaseAndTotal/HBoxContainer"]
+[node name="Total" type="HBoxContainer" parent="Temperature/ModifierAndTotal/HBoxContainer"]
 layout_mode = 2
 size_flags_horizontal = 3
 alignment = 1
 
-[node name="TemperatureMinimum" type="Label" parent="Temperature/BaseAndTotal/HBoxContainer/Total"]
+[node name="TemperatureMinimum" type="Label" parent="Temperature/ModifierAndTotal/HBoxContainer/Total"]
 layout_mode = 2
 text = "0"
 label_settings = ExtResource("8_ktuy7")
 
-[node name="RangeIndicator" type="Label" parent="Temperature/BaseAndTotal/HBoxContainer/Total"]
+[node name="RangeIndicator" type="Label" parent="Temperature/ModifierAndTotal/HBoxContainer/Total"]
 layout_mode = 2
 text = "—"
 label_settings = ExtResource("8_ktuy7")
 
-[node name="TemperatureMaximum" type="Label" parent="Temperature/BaseAndTotal/HBoxContainer/Total"]
+[node name="TemperatureMaximum" type="Label" parent="Temperature/ModifierAndTotal/HBoxContainer/Total"]
 layout_mode = 2
 text = "100"
 label_settings = ExtResource("8_ktuy7")
@@ -157,23 +169,27 @@ layout_mode = 2
 custom_minimum_size = Vector2(8, 0)
 layout_mode = 2
 
-[node name="TemperatureOptimalDisplay" parent="Temperature/OptimalDisplayContainer" instance=ExtResource("9_xmghy")]
+[node name="VBoxContainer" type="VBoxContainer" parent="Temperature/OptimalDisplayContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="TemperatureOptimalDisplay" parent="Temperature/OptimalDisplayContainer/VBoxContainer" instance=ExtResource("9_xmghy")]
 layout_mode = 2
 size_flags_horizontal = 3
 min_value = -10.0
 
+[node name="TemperatureSlider" type="HSlider" parent="Temperature/OptimalDisplayContainer/VBoxContainer"]
+layout_mode = 2
+mouse_default_cursor_shape = 10
+theme_override_icons/grabber = SubResource("GradientTexture2D_xmghy")
+theme_override_icons/grabber_highlight = SubResource("GradientTexture2D_3r1ho")
+theme_override_styles/slider = SubResource("StyleBoxEmpty_3r1ho")
+min_value = -10.0
+value = 50.0
+
 [node name="Spacer2" type="Control" parent="Temperature/OptimalDisplayContainer"]
 custom_minimum_size = Vector2(8, 0)
 layout_mode = 2
-
-[node name="TemperatureSlider" type="HSlider" parent="Temperature"]
-layout_mode = 2
-mouse_default_cursor_shape = 10
-theme_override_icons/grabber = SubResource("GradientTexture2D_n6u17")
-theme_override_icons/grabber_highlight = SubResource("GradientTexture2D_evsrs")
-theme_override_styles/slider = SubResource("StyleBoxEmpty_evsrs")
-min_value = -10.0
-value = 50.0
 
 [node name="Spacer3" type="Control" parent="Temperature"]
 custom_minimum_size = Vector2(0, 3)
@@ -217,10 +233,6 @@ text = "± 8 C"
 label_settings = ExtResource("8_ktuy7")
 horizontal_alignment = 2
 
-[node name="Spacer" type="Control" parent="Temperature"]
-custom_minimum_size = Vector2(0, 5)
-layout_mode = 2
-
 [node name="Pressure" type="VBoxContainer" parent="."]
 layout_mode = 2
 mouse_filter = 0
@@ -248,43 +260,48 @@ size_flags_horizontal = 3
 mouse_filter = 1
 theme_override_styles/separator = SubResource("StyleBoxTexture_ftstq")
 
-[node name="BaseAndTotal" type="PanelContainer" parent="Pressure"]
+[node name="ModifierAndTotal" type="PanelContainer" parent="Pressure"]
 layout_mode = 2
 theme = ExtResource("1_16mn0")
 
-[node name="HBoxContainer" type="HBoxContainer" parent="Pressure/BaseAndTotal"]
+[node name="HBoxContainer" type="HBoxContainer" parent="Pressure/ModifierAndTotal"]
 layout_mode = 2
 alignment = 1
 
-[node name="Base" type="HBoxContainer" parent="Pressure/BaseAndTotal/HBoxContainer"]
+[node name="Modifier" type="HBoxContainer" parent="Pressure/ModifierAndTotal/HBoxContainer"]
 layout_mode = 2
 size_flags_horizontal = 3
 alignment = 1
 
-[node name="BaseValue" type="Label" parent="Pressure/BaseAndTotal/HBoxContainer/Base"]
+[node name="ModifierLabel" type="Label" parent="Pressure/ModifierAndTotal/HBoxContainer/Modifier"]
+layout_mode = 2
+text = "MODIFIER"
+label_settings = ExtResource("8_ktuy7")
+
+[node name="ModifierValue" type="Label" parent="Pressure/ModifierAndTotal/HBoxContainer/Modifier"]
 layout_mode = 2
 text = "+10%"
 label_settings = ExtResource("8_ktuy7")
 
-[node name="Total" type="HBoxContainer" parent="Pressure/BaseAndTotal/HBoxContainer"]
+[node name="Total" type="HBoxContainer" parent="Pressure/ModifierAndTotal/HBoxContainer"]
 layout_mode = 2
 size_flags_horizontal = 3
 alignment = 1
 
-[node name="PressureMinimum" type="Label" parent="Pressure/BaseAndTotal/HBoxContainer/Total"]
+[node name="PressureMinimum" type="Label" parent="Pressure/ModifierAndTotal/HBoxContainer/Total"]
 layout_mode = 2
 text = "0"
-label_settings = ExtResource("8_ktuy7")
+label_settings = ExtResource("11_5y3m2")
 
-[node name="RangeIndicator" type="Label" parent="Pressure/BaseAndTotal/HBoxContainer/Total"]
+[node name="RangeIndicator" type="Label" parent="Pressure/ModifierAndTotal/HBoxContainer/Total"]
 layout_mode = 2
 text = "—"
-label_settings = ExtResource("8_ktuy7")
+label_settings = ExtResource("11_5y3m2")
 
-[node name="PressureMaximum" type="Label" parent="Pressure/BaseAndTotal/HBoxContainer/Total"]
+[node name="PressureMaximum" type="Label" parent="Pressure/ModifierAndTotal/HBoxContainer/Total"]
 layout_mode = 2
 text = "100"
-label_settings = ExtResource("8_ktuy7")
+label_settings = ExtResource("11_5y3m2")
 
 [node name="Spacer2" type="Control" parent="Pressure"]
 custom_minimum_size = Vector2(0, 15)
@@ -297,24 +314,28 @@ layout_mode = 2
 custom_minimum_size = Vector2(8, 0)
 layout_mode = 2
 
-[node name="PressureOptimalDisplay" parent="Pressure/OptimalDisplayContainer" instance=ExtResource("9_xmghy")]
+[node name="VBoxContainer" type="VBoxContainer" parent="Pressure/OptimalDisplayContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="PressureOptimalDisplay" parent="Pressure/OptimalDisplayContainer/VBoxContainer" instance=ExtResource("9_xmghy")]
 layout_mode = 2
 size_flags_horizontal = 3
 max_value = 8e+07
 value = 0.0
 
+[node name="PressureSlider" type="HSlider" parent="Pressure/OptimalDisplayContainer/VBoxContainer"]
+layout_mode = 2
+mouse_default_cursor_shape = 10
+theme_override_icons/grabber = SubResource("GradientTexture2D_xmghy")
+theme_override_icons/grabber_highlight = SubResource("GradientTexture2D_3r1ho")
+theme_override_styles/slider = SubResource("StyleBoxEmpty_n6u17")
+max_value = 8e+07
+value = 4e+07
+
 [node name="Spacer2" type="Control" parent="Pressure/OptimalDisplayContainer"]
 custom_minimum_size = Vector2(8, 0)
 layout_mode = 2
-
-[node name="PressureSlider" type="HSlider" parent="Pressure"]
-layout_mode = 2
-mouse_default_cursor_shape = 10
-theme_override_icons/grabber = SubResource("GradientTexture2D_n6u17")
-theme_override_icons/grabber_highlight = SubResource("GradientTexture2D_evsrs")
-theme_override_styles/slider = SubResource("StyleBoxEmpty_evsrs")
-max_value = 8e+07
-value = 4e+07
 
 [node name="Spacer3" type="Control" parent="Pressure"]
 custom_minimum_size = Vector2(0, 3)
@@ -360,10 +381,6 @@ text = "± 2000 Pa"
 label_settings = ExtResource("8_ktuy7")
 horizontal_alignment = 2
 
-[node name="Spacer" type="Control" parent="Pressure"]
-custom_minimum_size = Vector2(0, 5)
-layout_mode = 2
-
 [node name="Oxygen" type="VBoxContainer" parent="."]
 layout_mode = 2
 mouse_filter = 0
@@ -391,40 +408,40 @@ size_flags_horizontal = 3
 mouse_filter = 1
 theme_override_styles/separator = SubResource("StyleBoxTexture_ftstq")
 
-[node name="BaseAndTotal" type="PanelContainer" parent="Oxygen"]
+[node name="ModifierAndTotal" type="PanelContainer" parent="Oxygen"]
 layout_mode = 2
 theme = ExtResource("1_16mn0")
 
-[node name="HBoxContainer" type="HBoxContainer" parent="Oxygen/BaseAndTotal"]
+[node name="HBoxContainer" type="HBoxContainer" parent="Oxygen/ModifierAndTotal"]
 layout_mode = 2
 alignment = 1
 
-[node name="Base" type="HBoxContainer" parent="Oxygen/BaseAndTotal/HBoxContainer"]
+[node name="Modifier" type="HBoxContainer" parent="Oxygen/ModifierAndTotal/HBoxContainer"]
 layout_mode = 2
 size_flags_horizontal = 3
 alignment = 1
 
-[node name="BaseLabel" type="Label" parent="Oxygen/BaseAndTotal/HBoxContainer/Base"]
+[node name="ModifierLabel" type="Label" parent="Oxygen/ModifierAndTotal/HBoxContainer/Modifier"]
 layout_mode = 2
-text = "BASE"
+text = "MODIFIER"
 label_settings = ExtResource("8_ktuy7")
 
-[node name="BaseValue" type="Label" parent="Oxygen/BaseAndTotal/HBoxContainer/Base"]
+[node name="ModifierValue" type="Label" parent="Oxygen/ModifierAndTotal/HBoxContainer/Modifier"]
 layout_mode = 2
 text = "+10%"
 label_settings = ExtResource("8_ktuy7")
 
-[node name="Total" type="HBoxContainer" parent="Oxygen/BaseAndTotal/HBoxContainer"]
+[node name="Total" type="HBoxContainer" parent="Oxygen/ModifierAndTotal/HBoxContainer"]
 layout_mode = 2
 size_flags_horizontal = 3
 alignment = 1
 
-[node name="TotalLabel" type="Label" parent="Oxygen/BaseAndTotal/HBoxContainer/Total"]
+[node name="TotalLabel" type="Label" parent="Oxygen/ModifierAndTotal/HBoxContainer/Total"]
 layout_mode = 2
 text = "TOTAL"
 label_settings = ExtResource("8_ktuy7")
 
-[node name="TotalValue" type="Label" parent="Oxygen/BaseAndTotal/HBoxContainer/Total"]
+[node name="TotalValue" type="Label" parent="Oxygen/ModifierAndTotal/HBoxContainer/Total"]
 layout_mode = 2
 text = "+10%"
 label_settings = ExtResource("8_ktuy7")
@@ -440,54 +457,28 @@ layout_mode = 2
 custom_minimum_size = Vector2(8, 0)
 layout_mode = 2
 
-[node name="OxygenOptimalDisplay" parent="Oxygen/OptimalDisplayContainer" instance=ExtResource("9_xmghy")]
+[node name="VBoxContainer" type="VBoxContainer" parent="Oxygen/OptimalDisplayContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="OxygenOptimalDisplay" parent="Oxygen/OptimalDisplayContainer/VBoxContainer" instance=ExtResource("9_xmghy")]
 layout_mode = 2
 size_flags_horizontal = 3
 max_value = 1.0
 step = 0.01
 value = 0.0
 
+[node name="OxygenResistanceSlider" type="HSlider" parent="Oxygen/OptimalDisplayContainer/VBoxContainer"]
+layout_mode = 2
+theme_override_icons/grabber = SubResource("GradientTexture2D_xmghy")
+theme_override_icons/grabber_highlight = SubResource("GradientTexture2D_3r1ho")
+theme_override_styles/slider = SubResource("StyleBoxEmpty_evsrs")
+max_value = 1.0
+step = 0.05
+
 [node name="Spacer2" type="Control" parent="Oxygen/OptimalDisplayContainer"]
 custom_minimum_size = Vector2(8, 0)
 layout_mode = 2
-
-[node name="Spacer" type="Control" parent="Oxygen"]
-custom_minimum_size = Vector2(0, 5)
-layout_mode = 2
-
-[node name="HBoxContainer2" type="HBoxContainer" parent="Oxygen"]
-layout_mode = 2
-
-[node name="Label" type="Label" parent="Oxygen/HBoxContainer2"]
-layout_mode = 2
-text = "ADDITIONAL_RESISTANCE"
-label_settings = ExtResource("8_ktuy7")
-
-[node name="Control" type="Control" parent="Oxygen/HBoxContainer2"]
-layout_mode = 2
-size_flags_horizontal = 3
-
-[node name="OxygenResistanceMinus" type="Button" parent="Oxygen/HBoxContainer2"]
-custom_minimum_size = Vector2(20, 0)
-layout_mode = 2
-size_flags_vertical = 4
-theme_override_font_sizes/font_size = 14
-action_mode = 0
-text = "-
-"
-
-[node name="OxygenResistanceLabel" type="Label" parent="Oxygen/HBoxContainer2"]
-layout_mode = 2
-text = "+0%"
-label_settings = ExtResource("8_ktuy7")
-
-[node name="OxugenResistancePlus" type="Button" parent="Oxygen/HBoxContainer2"]
-custom_minimum_size = Vector2(20, 0)
-layout_mode = 2
-size_flags_vertical = 4
-theme_override_font_sizes/font_size = 14
-action_mode = 0
-text = "+"
 
 [node name="UV" type="VBoxContainer" parent="."]
 layout_mode = 2
@@ -516,40 +507,40 @@ size_flags_horizontal = 3
 mouse_filter = 1
 theme_override_styles/separator = SubResource("StyleBoxTexture_ftstq")
 
-[node name="BaseAndTotal" type="PanelContainer" parent="UV"]
+[node name="ModifierAndTotal" type="PanelContainer" parent="UV"]
 layout_mode = 2
 theme = ExtResource("1_16mn0")
 
-[node name="HBoxContainer" type="HBoxContainer" parent="UV/BaseAndTotal"]
+[node name="HBoxContainer" type="HBoxContainer" parent="UV/ModifierAndTotal"]
 layout_mode = 2
 alignment = 1
 
-[node name="Base" type="HBoxContainer" parent="UV/BaseAndTotal/HBoxContainer"]
+[node name="Modifier" type="HBoxContainer" parent="UV/ModifierAndTotal/HBoxContainer"]
 layout_mode = 2
 size_flags_horizontal = 3
 alignment = 1
 
-[node name="BaseLabel" type="Label" parent="UV/BaseAndTotal/HBoxContainer/Base"]
+[node name="ModiferLabel" type="Label" parent="UV/ModifierAndTotal/HBoxContainer/Modifier"]
 layout_mode = 2
-text = "BASE"
+text = "MODIFIER"
 label_settings = ExtResource("8_ktuy7")
 
-[node name="BaseValue" type="Label" parent="UV/BaseAndTotal/HBoxContainer/Base"]
+[node name="ModiferValue" type="Label" parent="UV/ModifierAndTotal/HBoxContainer/Modifier"]
 layout_mode = 2
 text = "+10%"
 label_settings = ExtResource("8_ktuy7")
 
-[node name="Total" type="HBoxContainer" parent="UV/BaseAndTotal/HBoxContainer"]
+[node name="Total" type="HBoxContainer" parent="UV/ModifierAndTotal/HBoxContainer"]
 layout_mode = 2
 size_flags_horizontal = 3
 alignment = 1
 
-[node name="TotalLabel" type="Label" parent="UV/BaseAndTotal/HBoxContainer/Total"]
+[node name="TotalLabel" type="Label" parent="UV/ModifierAndTotal/HBoxContainer/Total"]
 layout_mode = 2
 text = "TOTAL"
 label_settings = ExtResource("8_ktuy7")
 
-[node name="TotalValue" type="Label" parent="UV/BaseAndTotal/HBoxContainer/Total"]
+[node name="TotalValue" type="Label" parent="UV/ModifierAndTotal/HBoxContainer/Total"]
 layout_mode = 2
 text = "+10%"
 label_settings = ExtResource("8_ktuy7")
@@ -565,60 +556,32 @@ layout_mode = 2
 custom_minimum_size = Vector2(8, 0)
 layout_mode = 2
 
-[node name="UVOptimalDisplay" parent="UV/OptimalDisplayContainer" instance=ExtResource("9_xmghy")]
+[node name="VBoxContainer" type="VBoxContainer" parent="UV/OptimalDisplayContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="UVOptimalDisplay" parent="UV/OptimalDisplayContainer/VBoxContainer" instance=ExtResource("9_xmghy")]
 layout_mode = 2
 size_flags_horizontal = 3
 max_value = 1.0
 step = 0.01
 value = 0.0
 
+[node name="UVResistanceSlider" type="HSlider" parent="UV/OptimalDisplayContainer/VBoxContainer"]
+layout_mode = 2
+theme_override_icons/grabber = SubResource("GradientTexture2D_xmghy")
+theme_override_icons/grabber_highlight = SubResource("GradientTexture2D_3r1ho")
+theme_override_styles/slider = SubResource("StyleBoxEmpty_jstjb")
+max_value = 1.0
+step = 0.05
+
 [node name="Spacer2" type="Control" parent="UV/OptimalDisplayContainer"]
 custom_minimum_size = Vector2(8, 0)
 layout_mode = 2
 
-[node name="Spacer" type="Control" parent="UV"]
-custom_minimum_size = Vector2(0, 5)
-layout_mode = 2
-
-[node name="HBoxContainer2" type="HBoxContainer" parent="UV"]
-layout_mode = 2
-
-[node name="Label" type="Label" parent="UV/HBoxContainer2"]
-layout_mode = 2
-text = "ADDITIONAL_RESISTANCE"
-label_settings = ExtResource("8_ktuy7")
-
-[node name="Control" type="Control" parent="UV/HBoxContainer2"]
-layout_mode = 2
-size_flags_horizontal = 3
-
-[node name="UVResistanceMinus" type="Button" parent="UV/HBoxContainer2"]
-custom_minimum_size = Vector2(20, 0)
-layout_mode = 2
-size_flags_vertical = 4
-theme_override_font_sizes/font_size = 14
-action_mode = 0
-text = "-
-"
-
-[node name="UVResistanceLabel" type="Label" parent="UV/HBoxContainer2"]
-layout_mode = 2
-text = "+0%"
-label_settings = ExtResource("8_ktuy7")
-
-[node name="UVResistancePlus" type="Button" parent="UV/HBoxContainer2"]
-custom_minimum_size = Vector2(20, 0)
-layout_mode = 2
-size_flags_vertical = 4
-theme_override_font_sizes/font_size = 14
-action_mode = 0
-text = "+"
-
-[connection signal="value_changed" from="Temperature/TemperatureSlider" to="." method="OnTemperatureSliderChanged"]
+[connection signal="value_changed" from="Temperature/OptimalDisplayContainer/VBoxContainer/TemperatureSlider" to="." method="OnTemperatureSliderChanged"]
 [connection signal="value_changed" from="Temperature/HBoxContainer3/TemperatureRange" to="." method="OnTemperatureToleranceRangeSliderChanged"]
-[connection signal="value_changed" from="Pressure/PressureSlider" to="." method="OnPressureSliderChanged"]
+[connection signal="value_changed" from="Pressure/OptimalDisplayContainer/VBoxContainer/PressureSlider" to="." method="OnPressureSliderChanged"]
 [connection signal="value_changed" from="Pressure/HBoxContainer4/PressureRange" to="." method="OnPressureToleranceRangeSliderChanged"]
-[connection signal="pressed" from="Oxygen/HBoxContainer2/OxygenResistanceMinus" to="." method="OnOxygenResistanceMinusButtonPressed"]
-[connection signal="pressed" from="Oxygen/HBoxContainer2/OxugenResistancePlus" to="." method="OnOxygenResistancePlusButtonPressed"]
-[connection signal="pressed" from="UV/HBoxContainer2/UVResistanceMinus" to="." method="OnUVResistanceMinusButtonPressed"]
-[connection signal="pressed" from="UV/HBoxContainer2/UVResistancePlus" to="." method="OnUVResistancePlusButtonPressed"]
+[connection signal="value_changed" from="Oxygen/OptimalDisplayContainer/VBoxContainer/OxygenResistanceSlider" to="." method="OnOxygenResistanceSliderChanged"]
+[connection signal="value_changed" from="UV/OptimalDisplayContainer/VBoxContainer/UVResistanceSlider" to="." method="OnUVResistanceSliderChanged"]

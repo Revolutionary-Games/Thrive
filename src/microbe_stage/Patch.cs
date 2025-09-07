@@ -521,7 +521,7 @@ public class Patch
         {
             OxygenResistance = GetAmbientCompound(Compound.Oxygen, CompoundAmountType.Biome),
             UVResistance = GetAmbientCompound(Compound.Sunlight, CompoundAmountType.Biome),
-            PreferredPressure = pressure,
+            PressureMinimum = pressure,
             PressureTolerance = pressureTolerance,
             PreferredTemperature = GetAmbientCompound(Compound.Temperature, CompoundAmountType.Biome) -
                 organelleEffects.PreferredTemperature * 1.01f,
@@ -541,7 +541,6 @@ public class Patch
 
         var optimalTest =
             MicrobeEnvironmentalToleranceCalculations.CalculateTolerances(result, organelles, currentSnapshot.Biome);
-
 
         if (optimalTest.OverallScore is < 1 or > 1 + MathUtils.EPSILON)
         {

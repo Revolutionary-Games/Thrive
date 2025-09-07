@@ -28,7 +28,7 @@ public class ToleranceActionData : EditorCombinableActionData
         var oxygenChange = Math.Abs(OldTolerances.OxygenResistance - NewTolerances.OxygenResistance);
         var uvChange = Math.Abs(OldTolerances.UVResistance - NewTolerances.UVResistance);
 
-        var pressureLogScaleChange = Math.Abs(OldTolerances.PreferredPressure - NewTolerances.PreferredPressure);
+        var pressureLogScaleChange = Math.Abs(OldTolerances.PressureMinimum - NewTolerances.PressureMinimum);
 
         var pressureToleranceChange = Math.Abs(OldTolerances.PressureTolerance - NewTolerances.PressureTolerance);
 

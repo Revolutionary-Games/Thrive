@@ -238,7 +238,7 @@ public static class MicrobeEnvironmentalToleranceCalculations
 
         // Always write the targets for becoming perfectly adapted
         result.PerfectTemperatureAdjustment = patchTemperature - speciesTolerances.PreferredTemperature;
-        result.PerfectPressureAdjustment = patchPressure - speciesTolerances.PreferredPressure;
+        result.PerfectPressureAdjustment = patchPressure - speciesTolerances.PressureMinimum;
         result.PerfectOxygenAdjustment = requiredOxygenResistance - speciesTolerances.OxygenResistance;
         result.PerfectUVAdjustment = requiredUVResistance - speciesTolerances.UVResistance;
 
@@ -380,21 +380,19 @@ public static class MicrobeEnvironmentalToleranceCalculations
     {
         public float PreferredTemperature;
         public float TemperatureTolerance;
-        public float PreferredPressure;
+        public float PressureMinimum;
         public float PressureTolerance;
         public float OxygenResistance;
         public float UVResistance;
 
-        public float PressureMinimum => MathF.Max(PreferredPressure - PressureTolerance, 0);
-
         public float PressureMaximum =>
-            MathF.Min(PreferredPressure + PressureTolerance, Constants.TOLERANCE_PRESSURE_MAX);
+            MathF.Min(PressureMinimum + PressureTolerance, Constants.TOLERANCE_PRESSURE_MAX);
 
         public void CopyFrom(EnvironmentalTolerances tolerances)
         {
             PreferredTemperature = tolerances.PreferredTemperature;
             TemperatureTolerance = tolerances.TemperatureTolerance;
-            PreferredPressure = tolerances.PreferredPressure;
+            PressureMinimum = tolerances.PressureMinimum;
             PressureTolerance = tolerances.PressureTolerance;
             OxygenResistance = tolerances.OxygenResistance;
             UVResistance = tolerances.UVResistance;

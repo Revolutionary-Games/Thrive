@@ -21,7 +21,8 @@ public partial class ToleranceOptimalDisplay : HSlider
 
 #pragma warning restore CA2213
 
-    private float flexibilityRange;
+    private float flexibilityPlus;
+    private float flexibilityMinus;
 
     private Color rangeColor;
 
@@ -51,10 +52,11 @@ public partial class ToleranceOptimalDisplay : HSlider
             / (float)(MaxValue - MinValue);
     }
 
-    public void SetBoundPositions(float preferred, float flexibility)
+    public void SetBoundPositions(float preferred, float flexibilityPositive, float? flexibilityNegative = null)
     {
         Value = preferred;
-        flexibilityRange = flexibility;
+        flexibilityPlus = flexibilityPositive;
+        flexibilityMinus = flexibilityNegative ?? flexibilityPlus;
 
         SetBoundPositionsInternal();
     }
@@ -82,6 +84,6 @@ public partial class ToleranceOptimalDisplay : HSlider
 
     private void SetBoundPositionsInternal()
     {
-        SetBoundPositionsManual(Value - flexibilityRange, Value + flexibilityRange);
+        SetBoundPositionsManual(Value - flexibilityMinus, Value + flexibilityPlus);
     }
 }

@@ -17,14 +17,13 @@ public class EnvironmentalTolerances
     /// </summary>
     public float TemperatureTolerance = 21;
 
-    public float PreferredPressure;
+    public float PressureMinimum;
     public float PressureTolerance;
 
     public float UVResistance;
     public float OxygenResistance;
 
-    public float PressureMinimum => MathF.Max(PreferredPressure - PressureTolerance, 0);
-    public float PressureMaximum => MathF.Min(PreferredPressure + PressureTolerance, Constants.TOLERANCE_PRESSURE_MAX);
+    public float PressureMaximum => MathF.Min(PressureMinimum + PressureTolerance, Constants.TOLERANCE_PRESSURE_MAX);
 
     public static bool operator ==(EnvironmentalTolerances? left, EnvironmentalTolerances? right)
     {
@@ -40,7 +39,7 @@ public class EnvironmentalTolerances
     {
         PreferredTemperature = tolerancesToCopy.PreferredTemperature;
         TemperatureTolerance = tolerancesToCopy.TemperatureTolerance;
-        PreferredPressure = tolerancesToCopy.PreferredPressure;
+        PressureMinimum = tolerancesToCopy.PressureMinimum;
         PressureTolerance = tolerancesToCopy.PressureTolerance;
         UVResistance = tolerancesToCopy.UVResistance;
         OxygenResistance = tolerancesToCopy.OxygenResistance;
