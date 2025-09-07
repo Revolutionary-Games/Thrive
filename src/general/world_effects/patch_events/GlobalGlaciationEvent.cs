@@ -65,30 +65,15 @@ public class GlobalGlaciationEvent : IWorldEffect
 
         if (generationsLeft == -1)
         {
-            TryToTriggerEvent(totalTimePassed);
+            TryToTriggerEvent();
         }
         else if (generationsLeft == 0)
         {
             FinishEvent();
         }
-        else if (generationsLeft > 0)
-        {
-            MarkPatches(totalTimePassed);
-        }
     }
 
-    private void MarkPatches(double totalTimePassed)
-    {
-        foreach (var patch in targetWorld.Map.Patches.Values)
-        {
-            if (patch.IsSurfacePatch())
-            {
-                patch.AddPatchEventRecord(WorldEffectTypes.GlobalGlaciation, totalTimePassed);
-            }
-        }
-    }
-
-    private void TryToTriggerEvent(double totalTimePassed)
+    private void TryToTriggerEvent()
     {
         if (generationsToTrigger == -1)
         {
@@ -113,7 +98,7 @@ public class GlobalGlaciationEvent : IWorldEffect
             {
                 if (patch.IsSurfacePatch())
                 {
-                    ChangePatchProperties(patch, totalTimePassed);
+                    ChangePatchProperties(patch);
                 }
             }
 
@@ -145,13 +130,13 @@ public class GlobalGlaciationEvent : IWorldEffect
             && random.NextFloat() <= Constants.GLOBAL_GLACIATION_CHANCE;
     }
 
-    private void ChangePatchProperties(Patch patch, double totalTimePassed)
+    private void ChangePatchProperties(Patch patch)
     {
         modifiedPatchesIds.Add(patch.ID);
         AdjustBackground(patch);
         AdjustEnvironment(patch);
         AddIceChunks(patch);
-        LogEvent(patch, totalTimePassed);
+        LogEvent(patch);
     }
 
     private void AdjustBackground(Patch patch)
@@ -161,36 +146,15 @@ public class GlobalGlaciationEvent : IWorldEffect
 
     private void AdjustEnvironment(Patch patch)
     {
-        if (patch.BiomeType == BiomeType.IceShelf)
+        var isIceShelf = patch.BiomeType == BiomeType.IceShelf;
+
+        PatchEventProperties eventProperties = new()
         {
-            return;
-        }
+            SunlightAmbientMultiplier = Math.Min(GetSunlightMultiplier() * (isIceShelf ? 1.5f : 1), 1.0f),
+            TemperatureAmbientFixedValue = isIceShelf ? random.Next(-7, 0) : random.Next(-4, 2),
+        };
 
-        bool hasTemperature =
-            patch.Biome.ChangeableCompounds.TryGetValue(Compound.Temperature, out var currentTemperature);
-        bool hasSunlight = patch.Biome.ChangeableCompounds.TryGetValue(Compound.Sunlight, out var currentSunlight);
-
-        if (!hasTemperature)
-        {
-            GD.PrintErr("Glaciation event encountered patch with unexpectedly no temperature.");
-            return;
-        }
-
-        if (!hasSunlight)
-        {
-            GD.PrintErr("Glaciation event encountered patch with unexpectedly no sunlight.");
-            return;
-        }
-
-        if (patch.BiomeType != BiomeType.IceShelf)
-        {
-            currentSunlight.Ambient *= GetSunlightMultiplier();
-            patch.Biome.ModifyLongTermCondition(Compound.Sunlight, currentSunlight);
-        }
-
-        currentTemperature.Ambient = random.Next(-4, 5);
-
-        patch.Biome.ModifyLongTermCondition(Compound.Temperature, currentTemperature);
+        patch.CurrentSnapshot.ActivePatchEvents.Add(PatchEventTypes.GlobalGlaciation, eventProperties);
     }
 
     /// <summary>
@@ -246,12 +210,10 @@ public class GlobalGlaciationEvent : IWorldEffect
         }
     }
 
-    private void LogEvent(Patch patch, double totalTimePassed)
+    private void LogEvent(Patch patch)
     {
         patch.LogEvent(new LocalizedString("GLOBAL_GLACIATION_EVENT"),
             true, true, "GlobalGlaciationEvent.svg");
-
-        patch.AddPatchEventRecord(WorldEffectTypes.GlobalGlaciation, totalTimePassed);
     }
 
     private void LogHeadUpEventWarning()
@@ -288,7 +250,7 @@ public class GlobalGlaciationEvent : IWorldEffect
             PatchSnapshot patchSnapshot = patch.History[eventDuration];
 
             ResetBackground(patch, patchSnapshot);
-            ResetEnvironment(patch, patchSnapshot);
+            ResetEnvironment(patch);
             RemoveChunks(patch);
         }
 
@@ -300,24 +262,9 @@ public class GlobalGlaciationEvent : IWorldEffect
         patch.CurrentSnapshot.Background = patchSnapshot.Background;
     }
 
-    private void ResetEnvironment(Patch patch, PatchSnapshot patchSnapshot)
+    private void ResetEnvironment(Patch patch)
     {
-        if (patch.BiomeType != BiomeType.IceShelf)
-        {
-            bool hasSunlight = patch.Biome.ChangeableCompounds.TryGetValue(Compound.Sunlight, out var currentSunlight);
-
-            if (!hasSunlight)
-            {
-                GD.PrintErr("Glaciation event encountered patch with unexpectedly no sunlight");
-                return;
-            }
-
-            currentSunlight.Ambient /= GetSunlightMultiplier();
-            patch.Biome.ModifyLongTermCondition(Compound.Sunlight, currentSunlight);
-        }
-
-        var previousTemperature = patchSnapshot.Biome.ChangeableCompounds[Compound.Temperature];
-        patch.Biome.ModifyLongTermCondition(Compound.Temperature, previousTemperature);
+        patch.CurrentSnapshot.ActivePatchEvents.Remove(PatchEventTypes.GlobalGlaciation);
     }
 
     private void RemoveChunks(Patch patch)

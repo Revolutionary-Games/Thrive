@@ -78,6 +78,12 @@ public class BiomeConditions : IBiomeConditions, ICloneable
     [JsonProperty]
     public float Pressure { get; set; } = 101325;
 
+    [JsonProperty]
+    public float StartingSunlightValue { get; set; }
+
+    [JsonProperty]
+    public float StartingTemperatureValue { get; set; }
+
     /// <summary>
     ///   The compound amounts that change in realtime during gameplay
     /// </summary>

@@ -258,7 +258,7 @@ public partial class PatchMapNode : MarginContainer
         }
     }
 
-    public void ShowEventVisuals(IReadOnlyList<WorldEffectTypes> list)
+    public void ShowEventVisuals(IReadOnlyList<PatchEventTypes> list)
     {
         // TODO: check if this had any active events and only then clear
         // TODO: it would be slightly more efficient to only delete no longer required events
@@ -277,7 +277,7 @@ public partial class PatchMapNode : MarginContainer
                 MouseFilter = MouseFilterEnum.Stop,
             };
 
-            if (!WorldEffectVisuals.EventsTooltips.TryGetValue(effectType, out var tooltipText))
+            if (!PatchEventVisuals.EventsTooltips.TryGetValue(effectType, out var tooltipText))
             {
                 GD.PrintErr($"Missing tooltip for {effectType}");
             }
@@ -286,7 +286,7 @@ public partial class PatchMapNode : MarginContainer
                 eventIcon.TooltipText = tooltipText.ToString();
             }
 
-            if (!WorldEffectVisuals.EventsIcons.TryGetValue(effectType, out var iconPath) ||
+            if (!PatchEventVisuals.EventsIcons.TryGetValue(effectType, out var iconPath) ||
                 string.IsNullOrEmpty(iconPath))
             {
                 GD.PrintErr($"Missing icon for {effectType}");

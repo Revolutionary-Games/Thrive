@@ -13,7 +13,7 @@ public class MeteorImpactEvent : IWorldEffect
     private readonly Dictionary<Compound, float> tempCloudSizes = new();
 
     [JsonProperty]
-    private readonly HashSet<int> modifiedPatchesIds = new();
+    private readonly HashSet<int> affectedPatchesIds = new();
 
     [JsonProperty]
     private readonly XoShiRo256starstar random;
@@ -44,10 +44,10 @@ public class MeteorImpactEvent : IWorldEffect
     public void OnTimePassed(double elapsed, double totalTimePassed)
     {
         FinishEvent();
-        TryToTriggerEvent(totalTimePassed);
+        TryToTriggerEvent();
     }
 
-    private void TryToTriggerEvent(double totalTimePassed)
+    private void TryToTriggerEvent()
     {
         if (!AreConditionsMet())
             return;
@@ -57,9 +57,9 @@ public class MeteorImpactEvent : IWorldEffect
 
         foreach (var patch in targetWorld.Map.Patches.Values)
         {
-            if (modifiedPatchesIds.Contains(patch.ID))
+            if (affectedPatchesIds.Contains(patch.ID))
             {
-                ChangePatchProperties(patch, totalTimePassed);
+                ChangePatchProperties(patch);
             }
         }
 
@@ -92,7 +92,7 @@ public class MeteorImpactEvent : IWorldEffect
         // 1 patch
         if (impactSize >= 0)
         {
-            modifiedPatchesIds.Add(selectedPatch.ID);
+            affectedPatchesIds.Add(selectedPatch.ID);
         }
 
         // all surface patches in region
@@ -102,7 +102,7 @@ public class MeteorImpactEvent : IWorldEffect
             {
                 if (adjacent.Region.ID == selectedPatch.Region.ID && adjacent.IsSurfacePatch())
                 {
-                    modifiedPatchesIds.Add(adjacent.ID);
+                    affectedPatchesIds.Add(adjacent.ID);
                 }
             }
         }
@@ -114,7 +114,7 @@ public class MeteorImpactEvent : IWorldEffect
             {
                 if (patch.IsSurfacePatch())
                 {
-                    modifiedPatchesIds.Add(patch.ID);
+                    affectedPatchesIds.Add(patch.ID);
                 }
             }
         }
@@ -139,12 +139,12 @@ public class MeteorImpactEvent : IWorldEffect
         }
     }
 
-    private void ChangePatchProperties(Patch patch, double totalTimePassed)
+    private void ChangePatchProperties(Patch patch)
     {
         AdjustEnvironmentalConditions(patch);
         AdjustCompounds(patch);
         AddChunks(patch);
-        LogEvent(patch, totalTimePassed);
+        LogEvent(patch);
     }
 
     /// <summary>
@@ -176,16 +176,18 @@ public class MeteorImpactEvent : IWorldEffect
 
     private void AdjustEnvironmentalConditions(Patch patch)
     {
-        bool hasSunlight = patch.Biome.ChangeableCompounds.TryGetValue(Compound.Sunlight, out var currentSunlight);
-
-        if (!hasSunlight)
+        PatchEventProperties eventProperties = new()
         {
-            GD.PrintErr("Meteor impact event encountered patch with unexpectedly no sunlight");
+            SunlightAmbientMultiplier = Constants.METEOR_IMPACT_SUNLIGHT_MULTIPLICATION,
+        };
+
+        if (selectedMeteor == null)
+        {
+            GD.PrintErr("Meteor type has not been chosen!");
             return;
         }
 
-        currentSunlight.Ambient *= Constants.METEOR_IMPACT_SUNLIGHT_MULTIPLICATION;
-        patch.Biome.ModifyLongTermCondition(Compound.Sunlight, currentSunlight);
+        patch.CurrentSnapshot.ActivePatchEvents.Add(selectedMeteor.VisualEffect, eventProperties);
     }
 
     private void AdjustCompounds(Patch patch)
@@ -234,23 +236,15 @@ public class MeteorImpactEvent : IWorldEffect
         patch.Biome.ApplyLongTermCompoundChanges(patch.BiomeTemplate, tempCompoundChanges, tempCloudSizes);
     }
 
-    private void LogEvent(Patch patch, double totalTimePassed)
+    private void LogEvent(Patch patch)
     {
         patch.LogEvent(new LocalizedString("METEOR_IMPACT_EVENT"),
             true, true, "MeteorImpactEvent.svg");
-
-        if (selectedMeteor == null)
-        {
-            GD.PrintErr("Internal error in meteor impact event");
-            return;
-        }
-
-        patch.AddPatchEventRecord(selectedMeteor.VisualEffect, totalTimePassed);
     }
 
     private void FinishEvent()
     {
-        foreach (var index in modifiedPatchesIds)
+        foreach (var index in affectedPatchesIds)
         {
             if (!targetWorld.Map.Patches.TryGetValue(index, out var patch))
             {
@@ -263,7 +257,7 @@ public class MeteorImpactEvent : IWorldEffect
             RemoveChunks(patch);
         }
 
-        modifiedPatchesIds.Clear();
+        affectedPatchesIds.Clear();
     }
 
     private void ReduceCompounds(Patch patch)
@@ -306,16 +300,13 @@ public class MeteorImpactEvent : IWorldEffect
 
     private void ResetEnvironment(Patch patch)
     {
-        bool hasSunlight = patch.Biome.ChangeableCompounds.TryGetValue(Compound.Sunlight, out var currentSunlight);
-
-        if (!hasSunlight)
+        if (selectedMeteor == null)
         {
-            GD.PrintErr("Meteor impact event encountered patch with unexpectedly no sunlight");
+            GD.PrintErr("Meteor type has not been chosen!");
             return;
         }
 
-        currentSunlight.Ambient /= Constants.METEOR_IMPACT_SUNLIGHT_MULTIPLICATION;
-        patch.Biome.ModifyLongTermCondition(Compound.Sunlight, currentSunlight);
+        patch.CurrentSnapshot.ActivePatchEvents.Remove(selectedMeteor.VisualEffect);
     }
 
     private void RemoveChunks(Patch patch)
@@ -334,9 +325,9 @@ public class MeteorImpactEvent : IWorldEffect
 
     private void LogBeginningOfMeteorStrike()
     {
-        var translatedText = modifiedPatchesIds.Count == 1 ?
-            new LocalizedString("METEOR_STRIKE_START_EVENT_LOG_SINGULAR", modifiedPatchesIds.Count) :
-            new LocalizedString("METEOR_STRIKE_START_EVENT_LOG_PLURAL", modifiedPatchesIds.Count);
+        var translatedText = affectedPatchesIds.Count == 1 ?
+            new LocalizedString("METEOR_STRIKE_START_EVENT_LOG_SINGULAR", affectedPatchesIds.Count) :
+            new LocalizedString("METEOR_STRIKE_START_EVENT_LOG_PLURAL", affectedPatchesIds.Count);
         targetWorld.LogEvent(translatedText, true, true, "GlobalGlaciationEvent.svg");
     }
 }

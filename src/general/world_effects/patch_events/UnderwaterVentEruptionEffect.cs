@@ -34,9 +34,20 @@ public class UnderwaterVentEruptionEffect : IWorldEffect
 
     public void OnTimePassed(double elapsed, double totalTimePassed)
     {
-        var changes = new Dictionary<Compound, float>();
-        var cloudSizes = new Dictionary<Compound, float>();
+        FinishOldEvents();
+        StartNewEvents();
+    }
 
+    private void FinishOldEvents()
+    {
+        foreach (var patch in targetWorld.Map.Patches.Values)
+        {
+            patch.CurrentSnapshot.ActivePatchEvents.Remove(PatchEventTypes.UnderwaterVentEruption);
+        }
+    }
+
+    private void StartNewEvents()
+    {
         foreach (var patch in targetWorld.Map.Patches.Values)
         {
             if (patch.BiomeType != BiomeType.Vents)
@@ -45,43 +56,62 @@ public class UnderwaterVentEruptionEffect : IWorldEffect
             if (random.NextFloat() > GetVentEruptionChance())
                 continue;
 
-            var hasHydrogenSulfide = patch.Biome.ChangeableCompounds.TryGetValue(Compound.Hydrogensulfide,
-                out var currentHydrogenSulfide);
-            var hasCarbonDioxide = patch.Biome.ChangeableCompounds.TryGetValue(Compound.Carbondioxide,
-                out var currentCarbonDioxide);
+            var propertiesChanged = ChangePatchProperties(patch);
 
-            // TODO: shouldn't the eruption work even with the compounds not present initially?
-            if (!hasHydrogenSulfide || !hasCarbonDioxide)
+            if (!propertiesChanged)
                 continue;
 
-            currentHydrogenSulfide.Density += Constants.VENT_ERUPTION_HYDROGEN_SULFIDE_INCREASE;
-            currentCarbonDioxide.Ambient += Constants.VENT_ERUPTION_CARBON_DIOXIDE_INCREASE;
+            patch.CurrentSnapshot.ActivePatchEvents.Add(PatchEventTypes.UnderwaterVentEruption, new PatchEventProperties());
 
-            // Percentage is density times amount, so clamp to the inversed amount (times 100)
-            currentHydrogenSulfide.Density = Math.Clamp(currentHydrogenSulfide.Density, 0, 1
-                / currentHydrogenSulfide.Amount * 100);
-            currentCarbonDioxide.Ambient = Math.Clamp(currentCarbonDioxide.Ambient, 0, 1);
+            LogPatchEvent(patch);
+        }
+    }
 
-            // Intelligently apply the changes taking total gas percentages into account
-            changes[Compound.Hydrogensulfide] = currentHydrogenSulfide.Density;
-            changes[Compound.Carbondioxide] = currentCarbonDioxide.Ambient;
-            cloudSizes[Compound.Hydrogensulfide] = currentHydrogenSulfide.Amount;
+    private bool ChangePatchProperties(Patch patch)
+    {
+        var changes = new Dictionary<Compound, float>();
+        var cloudSizes = new Dictionary<Compound, float>();
 
-            patch.Biome.ApplyLongTermCompoundChanges(patch.BiomeTemplate, changes, cloudSizes);
+        var hasHydrogenSulfide = patch.Biome.ChangeableCompounds.TryGetValue(Compound.Hydrogensulfide,
+            out var currentHydrogenSulfide);
+        var hasCarbonDioxide = patch.Biome.ChangeableCompounds.TryGetValue(Compound.Carbondioxide,
+            out var currentCarbonDioxide);
 
-            // Patch specific log
-            // TODO: should these events be highlighted always? It'll get busy when there are a lot of events.
-            patch.LogEvent(new LocalizedString("UNDERWATER_VENT_ERUPTION"),
+        // TODO: shouldn't the eruption work even with the compounds not present initially?
+        // TODO: Do it like it is done in meteor event
+        if (!hasHydrogenSulfide || !hasCarbonDioxide)
+            return false;
+
+        currentHydrogenSulfide.Density += Constants.VENT_ERUPTION_HYDROGEN_SULFIDE_INCREASE;
+        currentCarbonDioxide.Ambient += Constants.VENT_ERUPTION_CARBON_DIOXIDE_INCREASE;
+
+        // Percentage is density times amount, so clamp to the inversed amount (times 100)
+        currentHydrogenSulfide.Density = Math.Clamp(currentHydrogenSulfide.Density, 0, 1
+            / currentHydrogenSulfide.Amount * 100);
+        currentCarbonDioxide.Ambient = Math.Clamp(currentCarbonDioxide.Ambient, 0, 1);
+
+        // Intelligently apply the changes taking total gas percentages into account
+        changes[Compound.Hydrogensulfide] = currentHydrogenSulfide.Density;
+        changes[Compound.Carbondioxide] = currentCarbonDioxide.Ambient;
+        cloudSizes[Compound.Hydrogensulfide] = currentHydrogenSulfide.Amount;
+
+        patch.Biome.ApplyLongTermCompoundChanges(patch.BiomeTemplate, changes, cloudSizes);
+
+        return true;
+    }
+
+    private void LogPatchEvent(Patch patch)
+    {
+        // Patch specific log
+        // TODO: should these events be highlighted always? It'll get busy when there are a lot of events.
+        patch.LogEvent(new LocalizedString("UNDERWATER_VENT_ERUPTION"),
+            true, true, "EruptionEvent.svg");
+
+        if (patch.Visibility == MapElementVisibility.Shown)
+        {
+            // Global log, but only if patch is known to the player
+            targetWorld.LogEvent(new LocalizedString("UNDERWATER_VENT_ERUPTION_IN", patch.Name),
                 true, true, "EruptionEvent.svg");
-
-            if (patch.Visibility == MapElementVisibility.Shown)
-            {
-                // Global log, but only if patch is known to the player
-                targetWorld.LogEvent(new LocalizedString("UNDERWATER_VENT_ERUPTION_IN", patch.Name),
-                    true, true, "EruptionEvent.svg");
-            }
-
-            patch.AddPatchEventRecord(WorldEffectTypes.UnderwaterVentEruption, totalTimePassed);
         }
     }
 

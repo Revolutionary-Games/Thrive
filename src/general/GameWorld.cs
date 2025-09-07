@@ -84,13 +84,15 @@ public class GameWorld : ISaveLoadable
             TimedEffects.RegisterEffect("volcanism", new VolcanismEffect(this));
             TimedEffects.RegisterEffect("nitrogen_control", new NitrogenControlEffect(this));
 
-            // Patch events. Their sequence SHOULD NOT be changed!
+            // Patch events. PatchEventsManager HAS to be the last one
             TimedEffects.RegisterEffect("global_glaciation_event",
                 new GlobalGlaciationEvent(this, random.Next64()));
             TimedEffects.RegisterEffect("meteor_impact_event",
                 new MeteorImpactEvent(this, random.Next64()));
             TimedEffects.RegisterEffect("underwater_vent_eruption",
                 new UnderwaterVentEruptionEffect(this, random.Next64()));
+            TimedEffects.RegisterEffect("patch_events_manager",
+                new PatchEventsManager(this, random.Next64()));
 
             TimedEffects.RegisterEffect("sulfide_consumption", new HydrogenSulfideConsumptionEffect(this));
             TimedEffects.RegisterEffect("compound_diffusion", new CompoundDiffusionEffect(this));
@@ -174,6 +176,11 @@ public class GameWorld : ISaveLoadable
         var initialSpeciesRecord = new SpeciesRecordLite((Species)PlayerSpecies.Clone(), PlayerSpecies.Population);
         GenerationHistory.Add(0, new GenerationRecord(0,
             new Dictionary<uint, SpeciesRecordLite> { { PlayerSpecies.ID, initialSpeciesRecord } }));
+
+        foreach (var entry in Map.Patches)
+        {
+            entry.Value.RecordSnapshot(false);
+        }
 
         UnlockProgress.UnlockAll = !settings.Difficulty.OrganelleUnlocksEnabled;
     }
@@ -421,12 +428,6 @@ public class GameWorld : ISaveLoadable
     /// </summary>
     public void OnTimePassed(double timePassed)
     {
-        // TODO: switch patches to keep an event history and remove this clear
-        foreach (var patch in Map.Patches)
-        {
-            patch.Value.ClearPatchNodeEventVisuals();
-        }
-
         TotalPassedTime = CalculateNextTimeStep(timePassed);
 
         TimedEffects.OnTimePassed(timePassed, TotalPassedTime);

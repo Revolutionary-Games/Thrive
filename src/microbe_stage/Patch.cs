@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Diagnostics;
+using System.Linq;
 using Godot;
 using Newtonsoft.Json;
 using Nito.Collections;
@@ -36,12 +37,6 @@ public class Patch
     /// </summary>
     [JsonProperty]
     private readonly Dictionary<Species, long> gameplayPopulations = new();
-
-    /// <summary>
-    ///   The current effects on the patch node (shown in the patch map)
-    /// </summary>
-    [JsonProperty]
-    private readonly List<WorldEffectTypes> activeWorldEffectVisuals = new();
 
     [JsonProperty]
     private Deque<PatchSnapshot> history = new();
@@ -146,6 +141,11 @@ public class Patch
     ///   Logged events that specifically occurred in this patch.
     /// </summary>
     public IReadOnlyList<GameEventDescription> EventsLog => currentSnapshot.EventsLog;
+
+    /// <summary>
+    ///  Current patch events affecting this patch with their properties.
+    /// </summary>
+    public IReadOnlyDictionary<PatchEventTypes, PatchEventProperties> ActivePatchEvents => currentSnapshot.ActivePatchEvents;
 
     /// <summary>
     ///   The name of the patch the player should see; this accounts for fog of war and <see cref="Visibility"/>
@@ -635,24 +635,10 @@ public class Patch
             Region.Visibility = visibility;
     }
 
-    public void AddPatchEventRecord(WorldEffectTypes worldEffect, double happenedAt)
-    {
-        // TODO: switch this class to have more of the logic for keeping event history together
-        _ = happenedAt;
-
-        activeWorldEffectVisuals.Add(worldEffect);
-    }
-
-    public void ClearPatchNodeEventVisuals()
-    {
-        // TODO: see the TODO comment in AddPatchEventRecord
-        activeWorldEffectVisuals.Clear();
-    }
-
     public void ApplyPatchEventVisuals(PatchMapNode node)
     {
         if (Visibility == MapElementVisibility.Shown)
-            node.ShowEventVisuals(activeWorldEffectVisuals);
+            node.ShowEventVisuals(ActivePatchEvents.Keys.ToList());
     }
 
     public override string ToString()
@@ -702,6 +688,8 @@ public class PatchSnapshot : ICloneable
 
     public List<GameEventDescription> EventsLog = new();
 
+    public Dictionary<PatchEventTypes, PatchEventProperties> ActivePatchEvents = new();
+
     public PatchSnapshot(BiomeConditions biome, string? background)
     {
         Biome = biome;
@@ -734,6 +722,7 @@ public class PatchSnapshot : ICloneable
             SpeciesInPatch = new Dictionary<Species, long>(SpeciesInPatch),
             RecordedSpeciesInfo = new Dictionary<Species, SpeciesInfo>(RecordedSpeciesInfo),
             EventsLog = new List<GameEventDescription>(EventsLog),
+            ActivePatchEvents = new Dictionary<PatchEventTypes, PatchEventProperties>(),
         };
 
         return result;
