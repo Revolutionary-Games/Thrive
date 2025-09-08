@@ -5,6 +5,7 @@ using System.Diagnostics;
 using System.IO;
 using System.Text;
 using System.Threading;
+using System.Threading.Tasks;
 using Godot;
 using Newtonsoft.Json;
 
@@ -20,6 +21,9 @@ using Newtonsoft.Json;
 public partial class DiskCache : Node, IComputeCache<IImageTask>
 {
     private static DiskCache? instance;
+
+    private readonly bool useThreadedLoading = true;
+    private readonly bool useThreadedSaving = true;
 
     /// <summary>
     ///   Lock that must be held when working with <see cref="cacheInfo"/>
@@ -63,6 +67,11 @@ public partial class DiskCache : Node, IComputeCache<IImageTask>
     private long maxTotalCacheSize = Constants.DISK_CACHE_DEFAULT_MAX_SIZE;
     private int maxMemoryItems = Constants.MEMORY_PHOTO_CACHE_MAX_ITEMS;
 
+    // Persistent delegates to reduce allocations
+    private Action runSaveDelegate;
+    private Action runLoadDelegate;
+    private Action runDeleteDelegate;
+
     // Other variables
     private double currentTime;
 
@@ -95,6 +104,13 @@ public partial class DiskCache : Node, IComputeCache<IImageTask>
     ///   When only a few executor threads are available, some parallel operations are avoided
     /// </summary>
     private bool hasLimitedExecutors;
+
+    public DiskCache()
+    {
+        runSaveDelegate = RunSaveQueue;
+        runLoadDelegate = RunLoadQueue;
+        runDeleteDelegate = RunDeleteQueue;
+    }
 
     public static DiskCache Instance => instance ?? throw new InstanceNotLoadedYetException();
 
@@ -180,8 +196,8 @@ public partial class DiskCache : Node, IComputeCache<IImageTask>
 
         var settings = Settings.Instance;
 
-        // Update config that can change. Not all of these can change each frame but as there's just one cache object
-        // refreshing everything each frame shouldn't be that bad.
+        // Update config that can change. Not all of these can change each frame, but as there's just one cache object
+        // refreshing everything, each frame shouldn't be that bad.
         hasLimitedExecutors = threads < 3;
         cacheItemKeepTime = settings.DiskCacheMaxTime;
         cacheItemMemoryTime = settings.DiskMemoryCachePortionTime;
@@ -211,7 +227,7 @@ public partial class DiskCache : Node, IComputeCache<IImageTask>
             }
         }
 
-        // Make sure load is always running if there are waiting objects to load
+        // Make sure the load task is always running if there are waiting objects to load
         if (!objectsPendingLoad.IsEmpty)
         {
             StartLoadIfRequired();
@@ -414,12 +430,17 @@ public partial class DiskCache : Node, IComputeCache<IImageTask>
             infoLock.Dispose();
         }
 
+        // This might be unnecessary, but we let go of some references to ourselves here
+        runSaveDelegate = null!;
+        runLoadDelegate = null!;
+        runDeleteDelegate = null!;
+
         base.Dispose(disposing);
     }
 
     private void LoadCache()
     {
-        // This takes a while but the cache is basically unusable until this is done, so basically required
+        // This takes a while, but the cache is basically unusable until this is done, so basically required
         infoLock.EnterWriteLock();
         try
         {
@@ -458,18 +479,18 @@ public partial class DiskCache : Node, IComputeCache<IImageTask>
 
         foreach (var entry in Directory.EnumerateFiles(path, "*.*", SearchOption.AllDirectories))
         {
-            // Sadly a bunch of objects need to be created to inspect the data here, but the alternative of using
-            // Godot methods doesn't even allow access to the file length so that's not usable
+            // Sadly, a bunch of objects need to be created to inspect the data here, but the alternative of using
+            // Godot methods doesn't even allow access to the file length, so that's not usable
             var entryFileData = new FileInfo(entry);
 
-            // We can't really know when this was last accessed so we use the modify time to make a pretty good
+            // We can't really know when this was last accessed, so we use the modification time to make a pretty good
             // alternative to know when this entry needs to be deleted. It's taken as negative to give that long in the
             // past as the current cache time starts at 0 and increments while the game runs.
             var modifiedLast = -(now - entryFileData.LastWriteTimeUtc).TotalSeconds;
 
             // TODO: should this already apply cache time pruning here (and queue delete the files)?
 
-            // Convert back to Godot path
+            // Convert back to a Godot path
             itemPathTemp.Append(Constants.CACHE_IMAGES_FOLDER);
             itemPathTemp.Append('/');
 
@@ -499,7 +520,7 @@ public partial class DiskCache : Node, IComputeCache<IImageTask>
             if (!entry.EndsWith(".png"))
                 GD.PrintErr("Other image types in the cache aren't handled currently (other than PNG)");
 
-            // Loaded from disk so the data is already on disk and doesn't need to be written back when removing this
+            // Loaded from disk, so the data is already on disk and doesn't need to be written back when removing this
             // entry from memory
             cacheEntry.WrittenToDisk = true;
 
@@ -878,7 +899,15 @@ public partial class DiskCache : Node, IComputeCache<IImageTask>
             else
             {
                 saveTaskRunning = true;
-                Invoke.Instance.Perform(RunSaveQueue);
+
+                if (useThreadedSaving)
+                {
+                    TaskExecutor.Instance.AddTask(new Task(runSaveDelegate), false);
+                }
+                else
+                {
+                    Invoke.Instance.Perform(runSaveDelegate);
+                }
             }
         }
     }
@@ -891,7 +920,15 @@ public partial class DiskCache : Node, IComputeCache<IImageTask>
                 return;
 
             loadTaskRunning = true;
-            Invoke.Instance.Perform(RunLoadQueue);
+
+            if (useThreadedLoading)
+            {
+                TaskExecutor.Instance.AddTask(new Task(runLoadDelegate));
+            }
+            else
+            {
+                Invoke.Instance.Perform(runLoadDelegate);
+            }
         }
     }
 
@@ -903,7 +940,7 @@ public partial class DiskCache : Node, IComputeCache<IImageTask>
                 return;
 
             deleteTaskRunning = true;
-            Invoke.Instance.Perform(RunDeleteQueue);
+            TaskExecutor.Instance.AddTask(new Task(runDeleteDelegate), false);
         }
     }
 
@@ -924,7 +961,7 @@ public partial class DiskCache : Node, IComputeCache<IImageTask>
                 {
                     if (cacheInfo.Remove(item.Hash))
                     {
-                        // We rely on the occasional triggering of the delete queue so we don't need to trigger one
+                        // We rely on the occasional triggering of the delete queue, so we don't need to trigger one
                         // here
                         QueueDeleteItemPath(item);
 
@@ -969,14 +1006,14 @@ public partial class DiskCache : Node, IComputeCache<IImageTask>
             {
                 item.Save();
 
-                // Item is now saved, so it is now known how big the item is, so keep track of the total size
+                // Item is now saved, so it is now known how big the item is, so keep track of the total size.
                 // This if is here to make sure if an item is saved twice, it doesn't get counted twice in the total
-                // size
+                // size.
                 if (item.Size < 1)
                 {
                     var fileInfo = new FileInfo(ProjectSettings.GlobalizePath(item.Path));
 
-                    // If the item was previously saved then need to only increment by the change in size
+                    // If the item was previously saved, then need to only increment by the change in size
                     var oldSize = Math.Max(0, item.Size);
                     item.Size = fileInfo.Length;
                     Interlocked.Add(ref totalCacheSize, item.Size - oldSize);
@@ -988,7 +1025,7 @@ public partial class DiskCache : Node, IComputeCache<IImageTask>
                 GD.PrintErr($"Error when writing cache item to disk ({item.Path}): {e}");
             }
 
-            // Limit how many disk writes are done quickly, a new save task is queued by _PhysicsProcess
+            // Limit how many disk write operations are done quickly, a new save task is queued by _PhysicsProcess
             if (saved >= Constants.DISK_CACHE_SAVES_PER_RUN)
             {
                 break;
@@ -1008,7 +1045,7 @@ public partial class DiskCache : Node, IComputeCache<IImageTask>
             var error = DirAccess.RemoveAbsolute(path);
             if (error != Error.Ok)
             {
-                // File not existing already is not an error in case duplicate deletes are triggered
+                // File not existing yet is not an error in case duplicate deletes are triggered
                 if (error != Error.DoesNotExist)
                     GD.PrintErr($"Failed to delete cache item: {path}");
             }
@@ -1054,7 +1091,7 @@ public partial class DiskCache : Node, IComputeCache<IImageTask>
         public OperationStatus Status;
 
         /// <summary>
-        ///   When false a cache item is pending a write to disk
+        ///   When false a cache item is pending writing to disk
         /// </summary>
         [JsonIgnore]
         public bool WrittenToDisk;
@@ -1075,8 +1112,8 @@ public partial class DiskCache : Node, IComputeCache<IImageTask>
 
             Status = OperationStatus.Loading;
 
-            // Create the cache data item in unloaded state so that it can be already returned to the code that wants
-            // to wait for the cache load
+            // Create the cache data item in an unloaded state so that it can be already returned to the code that
+            // wants to wait for the cache load
             switch (ItemType)
             {
                 case CacheItemType.Png:
