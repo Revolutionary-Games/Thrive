@@ -26,6 +26,8 @@ public partial class MicrobeHUD : CreatureStageHUDBase<MicrobeStage>
     private const string FLOATING_CHUNKS_CATEGORY = "chunks";
     private const string AGENTS_CATEGORY = "agents";
 
+    private const double SHOW_REVERT_POPUP_FOR = 80;
+
     private readonly Dictionary<(string Category, LocalizedString Name), int> hoveredEntities = new();
     private readonly Dictionary<CompoundDefinition, InspectedEntityLabel> hoveredCompoundControls = new();
 
@@ -68,6 +70,7 @@ public partial class MicrobeHUD : CreatureStageHUDBase<MicrobeStage>
     private bool playerWasDigested;
 
     private bool showingRevertPrompt;
+    private double timeShowingRevertPopup;
 
     /// <summary>
     ///   Whether or not the player has the <see cref="StrainAffected"/> component, if not an error will be printed
@@ -176,6 +179,21 @@ public partial class MicrobeHUD : CreatureStageHUDBase<MicrobeStage>
             macroscopicButton.Visible = false;
             heatAccumulationBar.Visible = false;
         }
+
+        if (!PauseManager.Instance.Paused)
+            timeShowingRevertPopup += delta;
+
+        if (timeShowingRevertPopup > SHOW_REVERT_POPUP_FOR)
+        {
+            timeShowingRevertPopup = 0;
+
+            if (showingRevertPrompt || previousSaveLoadAdvicePopup.Visible)
+            {
+                GD.Print("Hiding load previous save question as it's been open for a while");
+                showingRevertPrompt = false;
+                previousSaveLoadAdvicePopup.Close();
+            }
+        }
     }
 
     public void ShowSignalingCommandsMenu(Entity player)
@@ -281,6 +299,7 @@ public partial class MicrobeHUD : CreatureStageHUDBase<MicrobeStage>
         if (!showingRevertPrompt)
         {
             showingRevertPrompt = true;
+            timeShowingRevertPopup = 0;
             previousSaveLoadAdvicePopup.Show();
         }
     }
