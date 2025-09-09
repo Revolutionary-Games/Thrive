@@ -1383,7 +1383,8 @@ public partial class MicrobeStage : CreatureStageBase<Entity, MicrobeWorldSimula
             // Normalise by maximum light level in the patch
             Camera.LightLevel = lightModifier;
 
-            microbeWorldEnvironment.UpdateAmbientReflection(currentPatch.BiomeTemplate.EnvironmentColour * lightModifier);
+            microbeWorldEnvironment.UpdateAmbientReflection(
+                currentPatch.BiomeTemplate.EnvironmentColour * lightModifier);
         }
         else
         {
