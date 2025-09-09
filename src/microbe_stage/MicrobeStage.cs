@@ -1362,8 +1362,6 @@ public partial class MicrobeStage : CreatureStageBase<Entity, MicrobeWorldSimula
         }
     }
 
-
-
     protected override void AutoSave()
     {
         SaveHelper.AutoSave(this);
@@ -2002,10 +2000,8 @@ public partial class MicrobeStage : CreatureStageBase<Entity, MicrobeWorldSimula
 
         var save = foundPreviousEditorSave;
 
-        TransitionManager.Instance.AddSequence(ScreenFade.FadeType.FadeOut, 0.5f, () =>
-        {
-            Invoke.Instance.Queue(() => SaveHelper.LoadSave(save));
-        }, false);
+        TransitionManager.Instance.AddSequence(ScreenFade.FadeType.FadeOut, 0.5f,
+            () => { Invoke.Instance.Queue(() => SaveHelper.LoadSave(save)); }, false);
 
         foundPreviousEditorSave = null;
     }
