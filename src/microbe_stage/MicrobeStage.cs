@@ -1326,7 +1326,8 @@ public partial class MicrobeStage : CreatureStageBase<Entity, MicrobeWorldSimula
             // As we might need to read a bunch of files, this is done in a separate thread
             var task = new Task(() =>
             {
-                // Find a suitable save to load before we show the advice as we don't want to advise something impossible
+                // Find a suitable save to load before we show the advice as we don't want to advise something
+                // impossible
                 string? found = null;
                 foreach (var (saveName, saveInfo) in SaveHelper.CreateListOfAutoSavesForGame(CurrentGame.PlaythroughID,
                              SaveHelper.SaveOrder.FirstModifiedFirst))
