@@ -6,38 +6,22 @@
 [ext_resource type="Texture2D" uid="uid://bsg6xcrlspkdt" path="res://assets/textures/gui/bevel/hSeparatorLeftSide.png" id="3_ri2xt"]
 [ext_resource type="LabelSettings" uid="uid://cw40l6f6fo8ml" path="res://src/gui_common/fonts/Body-Regular-Small-Green.tres" id="4_15qmx"]
 [ext_resource type="LabelSettings" uid="uid://brgbuduvjby6a" path="res://src/gui_common/fonts/Title-SemiBold-Smaller.tres" id="5_6mela"]
+[ext_resource type="LabelSettings" uid="uid://brnlfjye3ufic" path="res://src/gui_common/fonts/Body-Regular-Tiny-Red.tres" id="5_evsrs"]
+[ext_resource type="LabelSettings" uid="uid://cp2wdrb71h2qo" path="res://src/gui_common/fonts/Body-Regular-Tiny-Green.tres" id="6_jstjb"]
 [ext_resource type="Texture2D" uid="uid://ut73drrfbmk0" path="res://assets/textures/gui/bevel/Temperature.svg" id="6_ki8q3"]
 [ext_resource type="LabelSettings" uid="uid://dvqx73nhtr0y2" path="res://src/gui_common/fonts/Body-Regular-Small.tres" id="8_ktuy7"]
 [ext_resource type="PackedScene" uid="uid://duf1lf5lp4v5p" path="res://src/microbe_stage/editor/ToleranceOptimalDisplay.tscn" id="9_xmghy"]
 [ext_resource type="Texture2D" uid="uid://d1tuehjbire76" path="res://assets/textures/gui/bevel/Pressure.svg" id="10_xmghy"]
 [ext_resource type="LabelSettings" uid="uid://c07qrffjvqfw" path="res://src/gui_common/fonts/Body-Regular-Tiny.tres" id="11_5y3m2"]
 [ext_resource type="Texture2D" uid="uid://djaidl3g28ibi" path="res://assets/textures/gui/bevel/Oxygen.svg" id="12_3r1ho"]
+[ext_resource type="Texture2D" uid="uid://c3eae8nokpw7c" path="res://assets/textures/gui/bevel/toleranceSlider.png" id="12_n6u17"]
+[ext_resource type="Texture2D" uid="uid://spbl6ye0wqyu" path="res://assets/textures/gui/bevel/toleranceSliderSelected.png" id="13_evsrs"]
 [ext_resource type="Texture2D" uid="uid://c253x2crwbldo" path="res://assets/textures/gui/bevel/Sunlight.svg" id="14_n6u17"]
 
 [sub_resource type="StyleBoxTexture" id="StyleBoxTexture_ftstq"]
 content_margin_top = 1.0
 texture = ExtResource("3_ri2xt")
 region_rect = Rect2(0, 0, 258, 1)
-
-[sub_resource type="Gradient" id="Gradient_5y3m2"]
-interpolation_mode = 1
-offsets = PackedFloat32Array(0)
-colors = PackedColorArray(0.0666667, 1, 0.835294, 1)
-
-[sub_resource type="GradientTexture2D" id="GradientTexture2D_xmghy"]
-gradient = SubResource("Gradient_5y3m2")
-width = 18
-height = 6
-
-[sub_resource type="Gradient" id="Gradient_xmghy"]
-interpolation_mode = 1
-offsets = PackedFloat32Array(0)
-colors = PackedColorArray(0, 0.435294, 0.52549, 1)
-
-[sub_resource type="GradientTexture2D" id="GradientTexture2D_3r1ho"]
-gradient = SubResource("Gradient_xmghy")
-width = 18
-height = 6
 
 [sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_3r1ho"]
 
@@ -68,7 +52,7 @@ uvResistanceSlider = NodePath("UV/OptimalDisplayContainer/VBoxContainer/UVResist
 temperatureMinLabel = NodePath("Temperature/ModifierAndTotal/HBoxContainer/Total/TemperatureMinimum")
 temperatureMaxLabel = NodePath("Temperature/ModifierAndTotal/HBoxContainer/Total/TemperatureMaximum")
 temperatureToleranceLabel = NodePath("Temperature/HBoxContainer3/MarginContainer/TemperatureRangeValue")
-temperatureModifierLabel = NodePath("Temperature/ModifierAndTotal/HBoxContainer/Modifier/BaseValue")
+temperatureModifierLabel = NodePath("Temperature/ModifierAndTotal/HBoxContainer/Modifier/ModifierValue")
 temperatureOptimalDisplay = NodePath("Temperature/OptimalDisplayContainer/VBoxContainer/TemperatureOptimalDisplay")
 pressureMinLabel = NodePath("Pressure/ModifierAndTotal/HBoxContainer/Total/PressureMinimum")
 pressureMaxLabel = NodePath("Pressure/ModifierAndTotal/HBoxContainer/Total/PressureMaximum")
@@ -83,6 +67,8 @@ uvResistanceTotalLabel = NodePath("UV/ModifierAndTotal/HBoxContainer/Total/Total
 uvResistanceOptimalDisplay = NodePath("UV/OptimalDisplayContainer/VBoxContainer/UVOptimalDisplay")
 badValueFont = ExtResource("3_q5r3n")
 perfectValueFont = ExtResource("4_15qmx")
+badValueFontTiny = ExtResource("5_evsrs")
+perfectValueFontTiny = ExtResource("6_jstjb")
 modifierBadFont = ExtResource("3_q5r3n")
 modifierGoodFont = ExtResource("4_15qmx")
 optimalDisplayBadColor = Color(1, 0, 0, 1)
@@ -133,7 +119,7 @@ layout_mode = 2
 text = "MODIFIER"
 label_settings = ExtResource("8_ktuy7")
 
-[node name="BaseValue" type="Label" parent="Temperature/ModifierAndTotal/HBoxContainer/Modifier"]
+[node name="ModifierValue" type="Label" parent="Temperature/ModifierAndTotal/HBoxContainer/Modifier"]
 layout_mode = 2
 text = "+10%"
 label_settings = ExtResource("8_ktuy7")
@@ -181,8 +167,8 @@ min_value = -10.0
 [node name="TemperatureSlider" type="HSlider" parent="Temperature/OptimalDisplayContainer/VBoxContainer"]
 layout_mode = 2
 mouse_default_cursor_shape = 10
-theme_override_icons/grabber = SubResource("GradientTexture2D_xmghy")
-theme_override_icons/grabber_highlight = SubResource("GradientTexture2D_3r1ho")
+theme_override_icons/grabber = ExtResource("12_n6u17")
+theme_override_icons/grabber_highlight = ExtResource("13_evsrs")
 theme_override_styles/slider = SubResource("StyleBoxEmpty_3r1ho")
 min_value = -10.0
 value = 50.0
@@ -232,6 +218,10 @@ size_flags_horizontal = 4
 text = "± 8 C"
 label_settings = ExtResource("8_ktuy7")
 horizontal_alignment = 2
+
+[node name="Spacer" type="Control" parent="Temperature"]
+custom_minimum_size = Vector2(0, 4)
+layout_mode = 2
 
 [node name="Pressure" type="VBoxContainer" parent="."]
 layout_mode = 2
@@ -327,8 +317,8 @@ value = 0.0
 [node name="PressureSlider" type="HSlider" parent="Pressure/OptimalDisplayContainer/VBoxContainer"]
 layout_mode = 2
 mouse_default_cursor_shape = 10
-theme_override_icons/grabber = SubResource("GradientTexture2D_xmghy")
-theme_override_icons/grabber_highlight = SubResource("GradientTexture2D_3r1ho")
+theme_override_icons/grabber = ExtResource("12_n6u17")
+theme_override_icons/grabber_highlight = ExtResource("13_evsrs")
 theme_override_styles/slider = SubResource("StyleBoxEmpty_n6u17")
 max_value = 8e+07
 value = 4e+07
@@ -380,6 +370,10 @@ size_flags_horizontal = 4
 text = "± 2000 Pa"
 label_settings = ExtResource("8_ktuy7")
 horizontal_alignment = 2
+
+[node name="Spacer" type="Control" parent="Pressure"]
+custom_minimum_size = Vector2(0, 4)
+layout_mode = 2
 
 [node name="Oxygen" type="VBoxContainer" parent="."]
 layout_mode = 2
@@ -470,14 +464,18 @@ value = 0.0
 
 [node name="OxygenResistanceSlider" type="HSlider" parent="Oxygen/OptimalDisplayContainer/VBoxContainer"]
 layout_mode = 2
-theme_override_icons/grabber = SubResource("GradientTexture2D_xmghy")
-theme_override_icons/grabber_highlight = SubResource("GradientTexture2D_3r1ho")
+theme_override_icons/grabber = ExtResource("12_n6u17")
+theme_override_icons/grabber_highlight = ExtResource("13_evsrs")
 theme_override_styles/slider = SubResource("StyleBoxEmpty_evsrs")
 max_value = 1.0
 step = 0.05
 
 [node name="Spacer2" type="Control" parent="Oxygen/OptimalDisplayContainer"]
 custom_minimum_size = Vector2(8, 0)
+layout_mode = 2
+
+[node name="Spacer" type="Control" parent="Oxygen"]
+custom_minimum_size = Vector2(0, 4)
 layout_mode = 2
 
 [node name="UV" type="VBoxContainer" parent="."]
@@ -569,14 +567,18 @@ value = 0.0
 
 [node name="UVResistanceSlider" type="HSlider" parent="UV/OptimalDisplayContainer/VBoxContainer"]
 layout_mode = 2
-theme_override_icons/grabber = SubResource("GradientTexture2D_xmghy")
-theme_override_icons/grabber_highlight = SubResource("GradientTexture2D_3r1ho")
+theme_override_icons/grabber = ExtResource("12_n6u17")
+theme_override_icons/grabber_highlight = ExtResource("13_evsrs")
 theme_override_styles/slider = SubResource("StyleBoxEmpty_jstjb")
 max_value = 1.0
 step = 0.05
 
 [node name="Spacer2" type="Control" parent="UV/OptimalDisplayContainer"]
 custom_minimum_size = Vector2(8, 0)
+layout_mode = 2
+
+[node name="Spacer" type="Control" parent="UV"]
+custom_minimum_size = Vector2(0, 4)
 layout_mode = 2
 
 [connection signal="value_changed" from="Temperature/OptimalDisplayContainer/VBoxContainer/TemperatureSlider" to="." method="OnTemperatureSliderChanged"]

@@ -18,11 +18,6 @@ public partial class TolerancesEditorSubComponent : EditorComponentBase<ICellEdi
     [ExportCategory("Config")]
     public bool ShowZeroModifiers;
 
-    private readonly StringName toleranceFlashName = new("FlashPressureRange");
-    private readonly StringName tooWideRangeName = new("PopupPressureRangeWarning");
-
-    private readonly Dictionary<OrganelleDefinition, float> tempToleranceModifiers = new();
-
     private CompoundDefinition temperature = null!;
 
 #pragma warning disable CA2213
@@ -113,6 +108,12 @@ public partial class TolerancesEditorSubComponent : EditorComponentBase<ICellEdi
 
     [Export]
     private LabelSettings perfectValueFont = null!;
+
+    [Export]
+    private LabelSettings badValueFontTiny = null!;
+
+    [Export]
+    private LabelSettings perfectValueFontTiny = null!;
 
     [Export]
     private LabelSettings modifierBadFont = null!;
@@ -362,17 +363,6 @@ public partial class TolerancesEditorSubComponent : EditorComponentBase<ICellEdi
         uvResistanceToolTipContainer.RegisterToolTipForControl("uvResistance", "tolerances");
     }
 
-    protected override void Dispose(bool disposing)
-    {
-        if (disposing)
-        {
-            toleranceFlashName.Dispose();
-            tooWideRangeName.Dispose();
-        }
-
-        base.Dispose(disposing);
-    }
-
     private void CalculateStatsAndShow(EnvironmentalTolerances calculationTolerances,
         EnvironmentalToleranceToolTip toolTip)
     {
@@ -591,16 +581,26 @@ public partial class TolerancesEditorSubComponent : EditorComponentBase<ICellEdi
 
         temperatureToleranceLabel.Text = plusMinusUnitFormat.FormatSafe(
             Math.Round(CurrentTolerances.TemperatureTolerance, 1), temperature.Unit);
-        temperatureModifierLabel.Text = plusMinusUnitFormat.FormatSafe(
-            Math.Round(organelleModifiers.TemperatureTolerance, 1), temperature.Unit);
 
-        temperatureModifierLabel.LabelSettings = organelleModifiers.TemperatureTolerance switch
+        if (ShowZeroModifiers || organelleModifiers.TemperatureTolerance != 0)
         {
-            > 0 => modifierGoodFont,
-            0 => originalModifierFont,
-            < 0 => modifierBadFont,
-            _ => originalModifierFont,
-        };
+            temperatureModifierLabel.GetParent<Control>().Visible = true;
+
+            temperatureModifierLabel.Text = plusMinusUnitFormat.FormatSafe(
+                Math.Round(organelleModifiers.TemperatureTolerance, 1), temperature.Unit);
+
+            temperatureModifierLabel.LabelSettings = organelleModifiers.TemperatureTolerance switch
+            {
+                > 0 => modifierGoodFont,
+                0 => originalModifierFont,
+                < 0 => modifierBadFont,
+                _ => originalModifierFont,
+            };
+        }
+        else
+        {
+            temperatureModifierLabel.GetParent<Control>().Visible = false;
+        }
 
         // Show in red the conditions that are not matching to make them easier to notice
         if (Math.Abs(patchTemperature - CurrentTolerances.PreferredTemperature) >
@@ -650,46 +650,56 @@ public partial class TolerancesEditorSubComponent : EditorComponentBase<ICellEdi
         pressureMaxLabel.Text = unitFormat.FormatSafe(Math.Round(pressureMax / 1000), "kPa");
 
         pressureToleranceLabel.Text = "+" + unitFormat.FormatSafe(Math.Round(CurrentTolerances.PressureTolerance / 1000), "kPa");
-        pressureModifierLabel.Text = "+" + unitFormat.FormatSafe(Math.Round(organelleModifiers.PressureTolerance / 1000), "kPa");
 
-        pressureModifierLabel.LabelSettings = organelleModifiers.PressureTolerance switch
+        if (ShowZeroModifiers || organelleModifiers.PressureTolerance != 0)
         {
-            > 0 => modifierGoodFont,
-            0 => originalModifierFont,
-            < 0 => modifierBadFont,
-            _ => originalModifierFont,
-        };
+            pressureModifierLabel.GetParent<Control>().Visible = true;
+
+            pressureModifierLabel.Text = "+" + unitFormat.FormatSafe(Math.Round(organelleModifiers.PressureTolerance / 1000), "kPa");
+
+            pressureModifierLabel.LabelSettings = organelleModifiers.PressureTolerance switch
+            {
+                > 0 => modifierGoodFont,
+                0 => originalModifierFont,
+                < 0 => modifierBadFont,
+                _ => originalModifierFont,
+            };
+        }
+        else
+        {
+            pressureModifierLabel.GetParent<Control>().Visible = false;
+        }
 
         // Show in red the conditions that are not matching to make them easier to notice
         if (patchPressure < CurrentTolerances.PressureMinimum)
         {
-            pressureMinLabel.LabelSettings = badValueFont;
-            pressureMaxLabel.LabelSettings = originalTemperatureFont;
+            pressureMinLabel.LabelSettings = badValueFontTiny;
+            pressureMaxLabel.LabelSettings = originalPressureFont;
             pressureOptimalDisplay.SetColorsAndRedraw(optimalDisplayBadColor);
         }
         else if (patchPressure > CurrentTolerances.PressureMaximum)
         {
-            pressureMaxLabel.LabelSettings = badValueFont;
-            pressureMinLabel.LabelSettings = originalTemperatureFont;
+            pressureMaxLabel.LabelSettings = badValueFontTiny;
+            pressureMinLabel.LabelSettings = originalPressureFont;
             pressureOptimalDisplay.SetColorsAndRedraw(optimalDisplayBadColor);
         }
         else if (Math.Abs(CurrentTolerances.PressureTolerance) < Constants.TOLERANCE_PERFECT_THRESHOLD_PRESSURE)
         {
             // Perfectly adapted
-            pressureMinLabel.LabelSettings = perfectValueFont;
-            pressureMaxLabel.LabelSettings = perfectValueFont;
+            pressureMinLabel.LabelSettings = perfectValueFontTiny;
+            pressureMaxLabel.LabelSettings = perfectValueFontTiny;
             pressureOptimalDisplay.SetColorsAndRedraw(optimalDisplayGoodColor);
         }
         else
         {
-            pressureMinLabel.LabelSettings = originalTemperatureFont;
-            pressureMaxLabel.LabelSettings = originalTemperatureFont;
+            pressureMinLabel.LabelSettings = originalPressureFont;
+            pressureMaxLabel.LabelSettings = originalPressureFont;
             pressureOptimalDisplay.SetColorsAndRedraw(null);
         }
 
         // Oxygen Resistance
 
-        var oxygenResistanceWithOrganelles = CurrentTolerances.OxygenResistance + organelleModifiers.OxygenResistance;
+        var oxygenResistanceWithOrganelles = Math.Max(CurrentTolerances.OxygenResistance + organelleModifiers.OxygenResistance, 0);
 
         oxygenResistanceOptimalDisplay.SetBoundPositionsManual(0, oxygenResistanceWithOrganelles);
         oxygenResistanceOptimalDisplay.UpdateMarker(requiredOxygenResistance);
@@ -708,21 +718,30 @@ public partial class TolerancesEditorSubComponent : EditorComponentBase<ICellEdi
             oxygenResistanceOptimalDisplay.SetColorsAndRedraw(null);
         }
 
-        var oxygenResistanceBase = percentageFormat.FormatSafe(Math.Round(organelleModifiers.OxygenResistance * 100, 1));
-        oxygenResistanceBase = organelleModifiers.OxygenResistance >= 0 ? "+" + oxygenResistanceBase : oxygenResistanceBase;
-
-        oxygenResistanceModifierLabel.Text = oxygenResistanceBase;
-        oxygenResistanceModifierLabel.LabelSettings = organelleModifiers.OxygenResistance switch
+        if (ShowZeroModifiers || organelleModifiers.OxygenResistance != 0)
         {
-            > 0 => modifierGoodFont,
-            0 => originalModifierFont,
-            < 0 => modifierBadFont,
-            _ => originalModifierFont,
-        };
+            oxygenResistanceModifierLabel.GetParent<Control>().Visible = true;
+
+            var oxygenResistanceBase = percentageFormat.FormatSafe(Math.Round(organelleModifiers.OxygenResistance * 100, 1));
+            oxygenResistanceBase = organelleModifiers.OxygenResistance >= 0 ? "+" + oxygenResistanceBase : oxygenResistanceBase;
+
+            oxygenResistanceModifierLabel.Text = oxygenResistanceBase;
+            oxygenResistanceModifierLabel.LabelSettings = organelleModifiers.OxygenResistance switch
+            {
+                > 0 => modifierGoodFont,
+                0 => originalModifierFont,
+                < 0 => modifierBadFont,
+                _ => originalModifierFont,
+            };
+        }
+        else
+        {
+            oxygenResistanceModifierLabel.GetParent<Control>().Visible = false;
+        }
 
         // UV Resistance
 
-        var uvResistanceWithOrganelles = CurrentTolerances.UVResistance + organelleModifiers.UVResistance;
+        var uvResistanceWithOrganelles = Math.Max(CurrentTolerances.UVResistance + organelleModifiers.UVResistance, 0);
 
         uvResistanceOptimalDisplay.SetBoundPositionsManual(0, uvResistanceWithOrganelles);
         uvResistanceOptimalDisplay.UpdateMarker(requiredUVResistance);
@@ -740,17 +759,26 @@ public partial class TolerancesEditorSubComponent : EditorComponentBase<ICellEdi
             uvResistanceOptimalDisplay.SetColorsAndRedraw(null);
         }
 
-        var uvResistanceBase = percentageFormat.FormatSafe(Math.Round(organelleModifiers.UVResistance * 100, 1));
-        uvResistanceBase = organelleModifiers.UVResistance >= 0 ? "+" + uvResistanceBase : uvResistanceBase;
-
-        uvResistanceModifierLabel.Text = uvResistanceBase;
-        uvResistanceModifierLabel.LabelSettings = organelleModifiers.UVResistance switch
+        if (ShowZeroModifiers || organelleModifiers.UVResistance != 0)
         {
-            > 0 => modifierGoodFont,
-            0 => originalModifierFont,
-            < 0 => modifierBadFont,
-            _ => originalModifierFont,
-        };
+            uvResistanceModifierLabel.GetParent<Control>().Visible = true;
+
+            var uvResistanceBase = percentageFormat.FormatSafe(Math.Round(organelleModifiers.UVResistance * 100, 1));
+            uvResistanceBase = organelleModifiers.UVResistance >= 0 ? "+" + uvResistanceBase : uvResistanceBase;
+
+            uvResistanceModifierLabel.Text = uvResistanceBase;
+            uvResistanceModifierLabel.LabelSettings = organelleModifiers.UVResistance switch
+            {
+                > 0 => modifierGoodFont,
+                0 => originalModifierFont,
+                < 0 => modifierBadFont,
+                _ => originalModifierFont,
+            };
+        }
+        else
+        {
+            uvResistanceModifierLabel.GetParent<Control>().Visible = false;
+        }
     }
 
     [DeserializedCallbackAllowed]
