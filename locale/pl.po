@@ -8,8 +8,8 @@ msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2025-08-29 14:14+0300\n"
-"PO-Revision-Date: 2025-09-04 15:37+0000\n"
-"Last-Translator: Smoczysław Drakoniewicz <dr4gonizer@proton.me>\n"
+"PO-Revision-Date: 2025-09-06 18:54+0000\n"
+"Last-Translator: DrAlienizer <dr4gonizer@proton.me>\n"
 "Language-Team: Polish <https://translate.revolutionarygamesstudio.com/projects/thrive/thrive-game/pl/>\n"
 "Language: pl\n"
 "MIME-Version: 1.0\n"
@@ -356,9 +356,8 @@ msgstr ""
 "Ten panel pokazuje prawdopodobne dane populacji z auto-ewolucji dla edytowanego gatunku.\n"
 "Auto-ewolucja przeprowadza symulację populacji, czyli drugą rzecz wpływającą (poza twoim wkładem własnym) na liczebność gatunku."
 
-#, fuzzy
 msgid "AUTO-EVO_RESULTS_TITLE"
-msgstr "Rezultat Auto-Ewolucji:"
+msgstr "Rezultat autoewolucji"
 
 msgid "AUTO-EVO_STEPS_DONE"
 msgstr "{0:F1}% zrobione. {1:n0}/{2:n0} kroków."
@@ -375,9 +374,8 @@ msgstr "Autozapis w trakcie gry"
 msgid "AUTO_EVO"
 msgstr "Auto-Ewolucja"
 
-#, fuzzy
 msgid "AUTO_EVO_EXPLORER_TOOL_BUTTON"
-msgstr "Narzędzie Eksploracji Auto-Ewo"
+msgstr "Użyj w eksploratorze autoewolucji"
 
 msgid "AUTO_EVO_EXPLORING_TOOL"
 msgstr "Narzędzie Eksploracji Auto-Ewo"
@@ -419,7 +417,7 @@ msgid "AVERAGE_SURFACE_CARBON_DIOXIDE_LEVEL"
 msgstr "Średnie stężenie CO2 na powierzchni"
 
 msgid "AVERAGE_SURFACE_LIGHT_LEVEL"
-msgstr ""
+msgstr "Średni poziom światła na powierzchni"
 
 msgid "AVERAGE_SURFACE_NITROGEN_LEVEL"
 msgstr "Średnie stężenie azotu na powierzchni"
@@ -861,13 +859,13 @@ msgstr ""
 "Osiadłe mikroby będą czekać w miejscu i oczekiwać zmian w otoczeniu zanim zaczną coś robić."
 
 msgid "CLIMATE_STABILITY_AVERAGE"
-msgstr ""
+msgstr "Średnia"
 
 msgid "CLIMATE_STABILITY_STABLE"
-msgstr ""
+msgstr "Stabilna"
 
 msgid "CLIMATE_STABILITY_UNSTABLE"
-msgstr ""
+msgstr "Niestabilna"
 
 msgid "CLOSE"
 msgstr "Zamknij"
@@ -1138,9 +1136,8 @@ msgstr "Jednostka: {0}"
 msgid "CONTENT_UPLOADED_FROM"
 msgstr "Zawartość warsztatu zostanie wczytana z folderu: {0}"
 
-#, fuzzy
 msgid "CONTINUE"
-msgstr "Kontynuuj Rozkwitanie"
+msgstr "Kontynuuj"
 
 msgid "CONTINUE_AS_SPECIES"
 msgstr "[center]To jeszcze nie koniec. Możesz [b]kontynuować[/b] grę gatunkiem {0} o populacji {1}.[/center]"
@@ -1168,57 +1165,52 @@ msgid "CONTROLLER_AXIS_L2"
 msgstr "L2"
 
 msgid "CONTROLLER_AXIS_LEFT_TRIGGER"
-msgstr ""
+msgstr "Lewy spust"
 
 msgid "CONTROLLER_AXIS_LEFT_X"
-msgstr ""
+msgstr "Lewy grzybek poziomo"
 
 msgid "CONTROLLER_AXIS_LEFT_Y"
-msgstr ""
+msgstr "Lewy grzybek pionowo"
 
 msgid "CONTROLLER_AXIS_NEGATIVE_DIRECTION"
-msgstr ""
+msgstr "Kierunek ujemny"
 
-#, fuzzy
 msgid "CONTROLLER_AXIS_POSITIVE_DIRECTION"
-msgstr "Czułość kontrolera"
+msgstr "Kierunek dodatni"
 
 msgid "CONTROLLER_AXIS_R2"
-msgstr ""
+msgstr "Prawy spust"
 
 msgid "CONTROLLER_AXIS_RIGHT_TRIGGER"
-msgstr ""
+msgstr "Prawy spust"
 
 msgid "CONTROLLER_AXIS_RIGHT_X"
-msgstr ""
+msgstr "Prawy grzybek poziomo"
 
 msgid "CONTROLLER_AXIS_RIGHT_Y"
-msgstr ""
+msgstr "Prawy grzybek pionowo"
 
 msgid "CONTROLLER_AXIS_VISUALIZERS"
 msgstr "Wizualizatory Osi Kontrolera:"
 
-#, fuzzy
 msgid "CONTROLLER_BUTTON_DPAD_DOWN"
-msgstr "Strefy Martwe Kontrolera"
+msgstr "Dół krzyżaka"
 
-#, fuzzy
 msgid "CONTROLLER_BUTTON_DPAD_LEFT"
-msgstr "Strefy Martwe Kontrolera"
+msgstr "Lewo krzyżaka"
 
 msgid "CONTROLLER_BUTTON_DPAD_RIGHT"
-msgstr ""
+msgstr "Prawo krzyżaka"
 
-#, fuzzy
 msgid "CONTROLLER_BUTTON_DPAD_UP"
-msgstr "Strefy Martwe Kontrolera"
+msgstr "Góra krzyżaka"
 
 msgid "CONTROLLER_BUTTON_LEFT_SHOULDER"
-msgstr ""
+msgstr "Lewy zderzak"
 
-#, fuzzy
 msgid "CONTROLLER_BUTTON_LEFT_STICK"
-msgstr "Strefy Martwe Kontrolera"
+msgstr "Wciśnięcie lewego grzybka"
 
 #, fuzzy
 msgid "CONTROLLER_BUTTON_MISC1"
@@ -1252,9 +1244,8 @@ msgstr "Kółko"
 msgid "CONTROLLER_BUTTON_PS_CROSS"
 msgstr "Krzyżyk"
 
-#, fuzzy
 msgid "CONTROLLER_BUTTON_PS_L1"
-msgstr "Strefy Martwe Kontrolera"
+msgstr "Lewy zderzak"
 
 #, fuzzy
 msgid "CONTROLLER_BUTTON_PS_L3"
@@ -1270,12 +1261,11 @@ msgstr "Strefy Martwe Kontrolera"
 msgid "CONTROLLER_BUTTON_PS_R3"
 msgstr "R3"
 
-#, fuzzy
 msgid "CONTROLLER_BUTTON_PS_SHARE"
-msgstr "Strefy Martwe Kontrolera"
+msgstr "Udostępnij"
 
 msgid "CONTROLLER_BUTTON_PS_SONY_BUTTON"
-msgstr ""
+msgstr "Przycisk logo"
 
 msgid "CONTROLLER_BUTTON_PS_SQUARE"
 msgstr "Kwadrat"
@@ -1284,10 +1274,10 @@ msgid "CONTROLLER_BUTTON_PS_TRIANGLE"
 msgstr "Trójkąt"
 
 msgid "CONTROLLER_BUTTON_RIGHT_SHOULDER"
-msgstr ""
+msgstr "Prawy zderzak"
 
 msgid "CONTROLLER_BUTTON_RIGHT_STICK"
-msgstr ""
+msgstr "Wciśnięcie prawego grzybka"
 
 msgid "CONTROLLER_BUTTON_TOUCH_PAD"
 msgstr "Panel dotykowy"
@@ -1307,9 +1297,8 @@ msgstr "Wstecz"
 msgid "CONTROLLER_BUTTON_XBOX_GUIDE"
 msgstr "Przewodnik"
 
-#, fuzzy
 msgid "CONTROLLER_BUTTON_XBOX_START"
-msgstr "Czułość kontrolera"
+msgstr "Start"
 
 msgid "CONTROLLER_BUTTON_XBOX_X"
 msgstr "X"
@@ -1349,9 +1338,8 @@ msgstr "Protanopia (Czerwony-Zielony)"
 msgid "CORRECTION_TRITANOPE"
 msgstr "Tritanopia (Niebieski-Żółty)"
 
-#, fuzzy
 msgid "CPU_POWER_NOT_ENOUGH_FOR_SPEED_MODE"
-msgstr "Nie wystarczająca przestrzeń przechowawcza dla związku [thrive:compound type=\"{0}\"][/thrive:compound], ponieważ noc trwa {2} s a przestrzeń przechowawcza zmieści ilość związków wystarczającą jedynie na {1} s."
+msgstr "Przywrócono domyślną szybkość - procesor nie obsługuje wybranej prędkości"
 
 msgid "CPU_THREADS"
 msgstr "Wątki"
@@ -1360,10 +1348,10 @@ msgid "CRAFTING_CLEAR_INPUTS"
 msgstr "Wyczyść wybrane klawisze"
 
 msgid "CRAFTING_ERROR_INTERNAL_CONSUME_PROBLEM"
-msgstr ""
+msgstr "Błąd: błąd wewnętrzny przy zużywaniu przedmiotu podczas wytwarzania"
 
 msgid "CRAFTING_ERROR_TAKING_ITEMS"
-msgstr ""
+msgstr "Nie znaleziono składników"
 
 msgid "CRAFTING_FILTER_INPUTS"
 msgstr "Wejścia"
@@ -1443,13 +1431,11 @@ msgstr "Twórcy"
 msgid "CTRL"
 msgstr "CTRL"
 
-#, fuzzy
 msgid "CURRENT_CACHE_SIZE"
-msgstr "Brak aktualnych badań"
+msgstr "Obecny rozmiar pamięci podręcznej:"
 
-#, fuzzy
 msgid "CURRENT_CACHE_SIZE_TOOLTIP"
-msgstr "Wydziel śluz"
+msgstr "Zajęta pamięć podręczna. Może być bezpiecznie wyczyszczona, lecz kiedy zachowany obiekt będzie ponownie potrzebny, jego generacja zajmie dłużej"
 
 msgid "CURRENT_DEVELOPERS"
 msgstr "Obecni Developerzy"
@@ -1504,13 +1490,11 @@ msgstr "Glikoliza cytozolu"
 msgid "CYTOPLASM_PROCESSES_DESCRIPTION"
 msgstr "Zmienia [thrive:compound type=\"glucose\"]Glukozę[/thrive:compound] w [thrive:compound type=\"atp\"][/thrive:compound]."
 
-#, fuzzy
 msgid "CYTOTOXIN_SYNTHESIS"
-msgstr "Synteza OxyToxy"
+msgstr "Synteza cytotoksyny"
 
-#, fuzzy
 msgid "DAMAGE_SOURCE_RADIATION"
-msgstr "(koszt organelli, błon i innych przedmiotów w edytorze)"
+msgstr "promieniowanie"
 
 msgid "DAY_LENGTH"
 msgstr "Długość doby"
@@ -1521,9 +1505,8 @@ msgstr "(długość doby gry w sekundach)"
 msgid "DAY_NIGHT_CYCLE_ENABLED"
 msgstr "Włącz cykl dnia i nocy"
 
-#, fuzzy
 msgid "DAY_NIGHT_CYCLE_ENABLED_EXPLANATION_2"
-msgstr "(UWAGA: fotosynteza staje się znacznie mniej wartościowa)"
+msgstr "(fotosynteza staje się nieskuteczna w nocy - wymaga to lepszego planowania)"
 
 msgid "DEADZONE_CALIBRATION_FINISHED"
 msgstr "Kalibracja martwej strefy została zakończona. Nowe martwe strefy są wyświetlane poniżej na wyświetlaczach walut osi."
@@ -1548,9 +1531,8 @@ msgstr ""
 msgid "DEBUG_DRAW_NOT_AVAILABLE"
 msgstr ""
 
-#, fuzzy
 msgid "DEBUG_HEAT_AT_CURSOR"
-msgstr "Pod kursorem:"
+msgstr ""
 
 msgid "DEBUG_PANEL"
 msgstr "Panel Debugowania"
@@ -1558,9 +1540,8 @@ msgstr "Panel Debugowania"
 msgid "DECEMBER"
 msgstr "Grudzień"
 
-#, fuzzy
 msgid "DECREASE_ITEM_SIZE"
-msgstr "Wydziel śluz"
+msgstr "Zmniejsz rozmiar obiektu"
 
 msgid "DEFAULT_AUDIO_OUTPUT_DEVICE"
 msgstr "Domyślne urządzenie wyjściowe"
@@ -1719,9 +1700,8 @@ msgstr "Odrzuć i kontynuuj"
 msgid "DISCARD_CHANGES"
 msgstr "Odrzuć Zmiany"
 
-#, fuzzy
 msgid "DISCARD_MIGRATION"
-msgstr "Odrzuć i kontynuuj"
+msgstr "Odrzuć migrację"
 
 msgid "DISCONNECTED_CELLS"
 msgstr "Niepołączone Komórki"
@@ -1782,17 +1762,14 @@ msgstr "Wyświetlaj cząsteczki w tle"
 msgid "DISPLAY_BACKGROUND_PARTICLES"
 msgstr "Wyświetlaj cząsteczki w tle"
 
-#, fuzzy
 msgid "DISPLAY_DRIVER_OPENGL"
-msgstr "Pokaż nazwy przycisków wyboru części"
+msgstr ""
 
-#, fuzzy
 msgid "DISPLAY_DRIVER_VULKAN"
-msgstr "Pokaż nazwy przycisków wyboru części"
+msgstr ""
 
-#, fuzzy
 msgid "DISPLAY_MODE"
-msgstr "Pokaż nazwy przycisków wyboru części"
+msgstr "Tryb wyświetlania:"
 
 msgid "DISPLAY_PART_NAMES"
 msgstr "Pokaż nazwy przycisków wyboru części"
@@ -2381,19 +2358,19 @@ msgid "FOG_OF_WAR_DISABLED_DESCRIPTION"
 msgstr ""
 
 msgid "FOG_OF_WAR_INTENSE"
-msgstr ""
+msgstr "Gęsta mgła wojny"
 
 msgid "FOG_OF_WAR_INTENSE_DESCRIPTION"
-msgstr ""
+msgstr "(tylko strefy w których gracz był będą pokazane)"
 
 msgid "FOG_OF_WAR_MODE"
-msgstr ""
+msgstr "Tryb mgły wojny"
 
 msgid "FOG_OF_WAR_REGULAR"
-msgstr ""
+msgstr "Zwykła mgła wojny"
 
 msgid "FOG_OF_WAR_REGULAR_DESCRIPTION"
-msgstr ""
+msgstr "(odkryte zostaną strefy odwiedzone i graniczące z nimi obszary)"
 
 msgid "FOOD_CHAIN"
 msgstr "Łańcuch Pokarmowy"
@@ -2436,9 +2413,8 @@ msgstr ""
 msgid "FOSSILISE"
 msgstr "Zachowaj jako skamieniałość"
 
-#, fuzzy
 msgid "FOSSIL_DELETION_FAILED"
-msgstr "Tworzenie Moda Nie Powiodło Się"
+msgstr ""
 
 msgid "FOSSIL_DELETION_FAILED_DESCRIPTION"
 msgstr ""
@@ -2473,16 +2449,14 @@ msgstr "Pełne Informacje o Modzie"
 msgid "GALLERY_VIEWER"
 msgstr "Przeglądarka Galerii"
 
-#, fuzzy
 msgid "GAMEPLAY_BASICS_TITLE"
-msgstr "Designerzy Gry"
+msgstr "Podstawy rozgrywki"
 
 msgid "GAME_DESIGN_TEAM"
 msgstr "Designerzy Gry"
 
-#, fuzzy
 msgid "GAME_SYSTEMS_TITLE"
-msgstr "Designerzy Gry"
+msgstr "Systemy gry"
 
 msgid "GATHERED_ENERGY_TOOLTIP"
 msgstr ""
@@ -2519,7 +2493,7 @@ msgid "GENERAL_LOADING_TIP_7"
 msgstr "Wciśnij przycisk \"cofnij\" w edytorze żeby poprawić błąd"
 
 msgid "GENERATE_POSITIVE_GLUCOSE_PHOTOSYNTHESIS"
-msgstr ""
+msgstr "Wytwarzaj więcej glukozy niż potrzebujesz za pomocą fotosyntezy"
 
 msgid "GENERATIONS"
 msgstr "Pokolenia"
@@ -2528,22 +2502,19 @@ msgid "GENERATION_COLON"
 msgstr "Generacja:"
 
 msgid "GEOLOGICAL_ACTIVITY"
-msgstr ""
+msgstr "Aktywność geologiczna"
 
 msgid "GEOLOGICAL_ACTIVITY_ACTIVE"
-msgstr ""
+msgstr "Aktywna"
 
 msgid "GEOLOGICAL_ACTIVITY_AVERAGE"
-msgstr ""
+msgstr "Średnia"
 
 msgid "GEOLOGICAL_ACTIVITY_DORMANT"
-msgstr ""
+msgstr "Spokojna"
 
-#, fuzzy
 msgid "GEOLOGICAL_ACTIVITY_EXPLANATION"
-msgstr ""
-"Aktywne mikroby będą wędrować kiedy nic się nie dzieje.\n"
-"Osiadłe mikroby będą czekać w miejscu i oczekiwać zmian w otoczeniu zanim zaczną coś robić."
+msgstr "(wpływa na częstość i intensywność zdarzeń takich jak uderzenia meteorytów czy wybuchy wulkanów)"
 
 msgid "GITHUB_TOOLTIP"
 msgstr "Odwiedź naszą stronę GitHub"
@@ -2587,9 +2558,8 @@ msgstr "Glukoza (C₆H₁₂O₆)"
 msgid "GLUCOSE_CONCENTRATIONS_DRASTICALLY_DROPPED"
 msgstr "Stężenie glukozy drastycznie spadło!"
 
-#, fuzzy
 msgid "GLUCOSE_LEVEL"
-msgstr "{0}-{1}m poniżej poziomu morza"
+msgstr "Poziom glukozy"
 
 msgid "GLYCOLYSIS"
 msgstr "Glikoliza"
@@ -2597,9 +2567,8 @@ msgstr "Glikoliza"
 msgid "GODMODE"
 msgstr "Tryb Boga"
 
-#, fuzzy
 msgid "GOD_TOOLS_TITLE"
-msgstr "Dołącz do naszego serwera Discord"
+msgstr "Narzędzia boga"
 
 msgid "GOING_NUCLEAR"
 msgstr ""
@@ -2622,9 +2591,8 @@ msgstr "Grafika"
 msgid "GRAPHICS_TEAM"
 msgstr "Graficy"
 
-#, fuzzy
 msgid "GROWTH_ORDER"
-msgstr "Limituj użycie związków wzrostu"
+msgstr "Kolejność wzrostu"
 
 msgid "GUI"
 msgstr "Interfejs Graficzny"
@@ -2704,20 +2672,17 @@ msgstr "HSV"
 msgid "HUD_MESSAGE_MULTIPLE"
 msgstr "{0} (x{1})"
 
-#, fuzzy
 msgid "HYDROGENASE"
-msgstr "Siarkowodór (H₂S)"
+msgstr "Hydrogenaza"
 
-#, fuzzy
 msgid "HYDROGENASE_DESCRIPTION"
-msgstr "Wykorzystuje wodór do uzyskiwania energii z [thrive:compound type=\\\"glucose\\\"]Glukozy[/thrive:compound]. Bardziej skuteczna przy niższych stężeniach [thrive:compound type=\\\"oxygen\\\"]Tlenu[/thrive:compound] niż metabolosomy. Jest głównym źródłem energii dla wielu organizmów w środowiskach beztlenowych."
+msgstr "Fermentuje [thrive:compound type=\\\"glucose\\\"]glukozę[/thrive:compound] i wytwarza energię oraz produkty uboczne takie jak wodór. Bardziej skuteczna przy niższych stężeniach [thrive:compound type=\\\"oxygen\\\"]Tlenu[/thrive:compound] niż metabolosomy. Jest głównym źródłem energii dla wielu organizmów w środowiskach beztlenowych."
 
 msgid "HYDROGENASE_PROCESSES_DESCRIPTION"
 msgstr "Przekształca [thrive:compound type=\\\"glucose\\\"]Glukozę[/thrive:compound] w [thrive:compound type=\\\"atp\\\"][/thrive:compound]."
 
-#, fuzzy
 msgid "HYDROGENOSOME"
-msgstr "Siarkowodór (H₂S)"
+msgstr "Hydrogenosom"
 
 #, fuzzy
 msgid "HYDROGENOSOME_DESCRIPTION"
@@ -5178,9 +5143,8 @@ msgstr "Oddychanie Tlenowe"
 msgid "RADIOACTIVE_CHUNK"
 msgstr "Duży Kawałek Żelaza"
 
-#, fuzzy
 msgid "RADIOSYNTHESIS"
-msgstr "Termosynteza"
+msgstr "Radiosynteza"
 
 msgid "RANDOMIZE_SPECIES_NAME"
 msgstr "Losuj nazwy gatunków"
@@ -9208,12 +9172,8 @@ msgstr ""
 msgid "YOU_CAN_SUPPORT_THRIVE_ON_PATREON"
 msgstr "Możesz wspomóc przyszły rozwój Thrive na naszym Patreonie"
 
-#, fuzzy
 msgid "YUM_EXCLAMATION"
-msgstr ""
-"Skupione mikroby będą wyszukiwać pożywienia lub ofiar przez długie odległości\n"
-"oraz mogą być bardzo zachłanne względem nowych źródeł pożywienia.\n"
-"Responsywne mikroby będą chętniej zmieniać źródła pożywienia."
+msgstr "Mniam!"
 
 msgid "ZOOM_IN"
 msgstr "Przybliż"
