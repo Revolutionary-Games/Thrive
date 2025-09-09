@@ -55,7 +55,17 @@ public class SaveInformation
     /// </summary>
     public Guid ID { get; set; } = Guid.NewGuid();
 
+    /// <summary>
+    ///   Unique ID of this *playthrough* (all saves of a playthrough have the same ID)
+    /// </summary>
+    public Guid PlaythroughID { get; set; }
+
     public SaveType Type { get; set; } = SaveType.Manual;
+
+    /// <summary>
+    ///   The main game state this save was made in
+    /// </summary>
+    public MainGameState GameState { get; set; } = MainGameState.Invalid;
 
     /// <summary>
     ///   True if this save was made in one of the prototypes allowing saving. Disallows save upgrade and loading
@@ -76,7 +86,7 @@ public class SaveInformation
     /// <summary>
     ///   Creates save information for an invalid save
     /// </summary>
-    /// <returns>A save information for an invalid save</returns>
+    /// <returns>Save information for an invalid save</returns>
     public static SaveInformation CreateInvalid()
     {
         return new SaveInformation
