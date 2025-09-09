@@ -8,8 +8,8 @@ msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2025-08-29 14:14+0300\n"
-"PO-Revision-Date: 2025-08-24 22:26+0000\n"
-"Last-Translator: Jeremias <lejereagui@hotmail.com>\n"
+"PO-Revision-Date: 2025-09-09 03:52+0000\n"
+"Last-Translator: juan garviso <juangarvisopereira326@gmail.com>\n"
 "Language-Team: Spanish <https://translate.revolutionarygamesstudio.com/projects/thrive/thrive-game/es/>\n"
 "Language: es\n"
 "MIME-Version: 1.0\n"
@@ -218,13 +218,12 @@ msgstr "FXAA"
 msgid "ANTI_ALIASING_MODE"
 msgstr "Modo de suavizado:"
 
-#, fuzzy
 msgid "ANTI_ALIASING_MSAA"
 msgstr "MSAA:"
 
 #, fuzzy
 msgid "ANTI_ALIASING_TAA"
-msgstr "MSAA:"
+msgstr "TAA"
 
 msgid "APPEARANCE"
 msgstr "Apariencia"
@@ -303,7 +302,6 @@ msgstr ""
 "Por ejemplo, algunas células solo pueden mantener un balance de ATP positivo cuando tienen múltiplos tipos de compuestos con los que fabricar ATP a la vez.\n"
 "Es más difícil jugar con ese tipo de células, dado que requieren tener varios tipos de compuestos almacenados a la vez para sobrevivir."
 
-#, fuzzy
 msgid "ATP_BALANCE_TOOLTIP_MULTICELLULAR"
 msgstr ""
 "Esta sección muestra el balance total de ATP (energía) de la célula actual.\n"
@@ -348,9 +346,8 @@ msgstr "Agosto"
 msgid "AUTO"
 msgstr "Auto"
 
-#, fuzzy
 msgid "AUTO-EVO_EXPLANATION_EXPLANATION"
-msgstr "Este panel muestra los números con los que auto-evo trabaja. El total de energía que una especie puede capturar y el costo por individuo de la especie determina la población final. Auto-evo usa un modelo simplificado de la realidad para calcular el desempeño de las diferentes especies de acuerdo con la energía que pueden recolectar. Por cada fuente de alimento, se muestra la cantidad de energia que se obtiene. Adicionalmente, se muestra el total de energía disponible de esa fuente. La fracción que obtiene la especie del total disponible se basa en su Aptitud y la Aptitud final. La Aptitud, es una métrica de que tan bien utiliza la especie una fuente de alimento."
+msgstr "Este panel muestra los números con los que auto-evo trabaja. El total de energía que una especie puede capturar y el costo por individuo de la especie determina la población final. Auto-evo usa un modelo simplificado de la realidad para calcular el desempeño de las diferentes especies de acuerdo con la energía que pueden recolectar. Por cada fuente de alimento, se muestra la cantidad de energía que se obtiene. Adicionalmente, se muestra el total de energía disponible de esa fuente. La fracción que obtiene la especie del total disponible se basa en su Aptitud y la Aptitud final. La Aptitud, es una métrica de que tan bien utiliza la especie una fuente de alimento."
 
 msgid "AUTO-EVO_POPULATION_CHANGED_2"
 msgstr "La población de {0} cambió a {1} en {2} debido a: {3}"
@@ -363,7 +360,6 @@ msgstr ""
 "Este panel muestra la población de la especie modificada que se espera auto-evolucione.\n"
 "El sistema auto-evo se encarga de la evolución de la parte de la población que no controlas, tu rendimiento afectara los cálculos del sistema."
 
-#, fuzzy
 msgid "AUTO-EVO_RESULTS_TITLE"
 msgstr "Resultados de Auto-evo:"
 
@@ -384,7 +380,6 @@ msgstr "Autoguardado durante el juego"
 msgid "AUTO_EVO"
 msgstr "Auto-Evo"
 
-#, fuzzy
 msgid "AUTO_EVO_EXPLORER_TOOL_BUTTON"
 msgstr "Herramienta de Exploración Auto-Evo"
 
@@ -425,19 +420,19 @@ msgid "AVAILABLE_MODS"
 msgstr "Mods disponibles"
 
 msgid "AVERAGE_SURFACE_CARBON_DIOXIDE_LEVEL"
-msgstr ""
+msgstr "Nivel promedio de CO2 en la superficie"
 
 msgid "AVERAGE_SURFACE_LIGHT_LEVEL"
-msgstr ""
+msgstr "Nivel de luz en la superficie"
 
 msgid "AVERAGE_SURFACE_NITROGEN_LEVEL"
-msgstr ""
+msgstr "Nivel promedio de nitrógeno en la superficie"
 
 msgid "AVERAGE_SURFACE_OTHER_LEVEL"
-msgstr ""
+msgstr "Nivel promedio de gases en la superficie"
 
 msgid "AVERAGE_SURFACE_OXYGEN_LEVEL"
-msgstr ""
+msgstr "Nivel promedio de oxigeno en la superficie"
 
 msgid "AWAKENING_STAGE"
 msgstr "Etapa del despertar"
@@ -580,7 +575,7 @@ msgstr "Efecto de sombreado:"
 
 #, fuzzy
 msgid "BLUESKY_TOOLTIP"
-msgstr "Pausar el juego"
+msgstr "Visita nuestro Bluesky en nuestro perfil"
 
 msgid "BRAIN_CELL_NAME_DEFAULT"
 msgstr "Neurona"
@@ -747,9 +742,8 @@ msgstr "Síntesis de Inhibidores de Canal"
 msgid "CHEATS"
 msgstr "Trucos"
 
-#, fuzzy
 msgid "CHEATS_USED_NOTICE"
-msgstr "Sin iniciar."
+msgstr "Se han usado trucos en la partida."
 
 msgid "CHEAT_KEYS_ENABLED"
 msgstr "Cheats activados"
@@ -865,7 +859,7 @@ msgstr "Limpiar Caché"
 
 #, fuzzy
 msgid "CLICK_TO_SELECT"
-msgstr "Eliminar selección"
+msgstr "Seleccionar"
 
 msgid "CLIMATE_INSTABILITY"
 msgstr "Inestabilidad climática"
@@ -1051,24 +1045,24 @@ msgstr "Siempre rellenar al iniciar"
 msgid "COMPOUND_HANDLE_TOP_UP_ON_CHANGE"
 msgstr "Rellenar al cambiar de área"
 
-#, fuzzy
 msgid "COMPOUND_LEVEL_AVERAGE"
 msgstr "Promedio"
 
 #, fuzzy
 msgid "COMPOUND_LEVEL_HIGH"
-msgstr "Balance de compuestos"
+msgstr "Altura"
 
 #, fuzzy
 msgid "COMPOUND_LEVEL_LOW"
-msgstr "Nubes de compuestos"
+msgstr "bajo"
 
+#, fuzzy
 msgid "COMPOUND_LEVEL_VERY_HIGH"
-msgstr ""
+msgstr "muy alto"
 
 #, fuzzy
 msgid "COMPOUND_LEVEL_VERY_LOW"
-msgstr "Mantener todo"
+msgstr "muy bajo"
 
 msgid "COMPOUND_STORAGE_AMOUNT_DOES_NOT_LAST_NIGHT"
 msgstr "(no es suficiente para soportar la noche, que dura {0}s)"
@@ -1144,9 +1138,8 @@ msgstr "Entrar al juego con esta configuración"
 msgid "CONFIRM_NEW_GAME_BUTTON_TOOLTIP_DISABLED"
 msgstr "Ciertas opciones son invalidas"
 
-#, fuzzy
 msgid "CONFIRM_RESET_ACHIEVEMENTS"
-msgstr "Confirmar borrado"
+msgstr "¿Confirma el reinicio de los logros?"
 
 #, fuzzy
 msgid "CONFIRM_RESET_ACHIEVEMENTS_DESCRIPTION"
@@ -1511,9 +1504,8 @@ msgstr "Convierte [thrive:compound type=\"glucose\"][/thrive:compound] en [thriv
 msgid "CYTOTOXIN_SYNTHESIS"
 msgstr "Síntesis de Citotoxinas"
 
-#, fuzzy
 msgid "DAMAGE_SOURCE_RADIATION"
-msgstr "(Costo de orgánulos, membranas, y otros objetos en el editor)"
+msgstr "Radiación"
 
 msgid "DAY_LENGTH"
 msgstr "Duración del día"
@@ -1552,7 +1544,7 @@ msgstr "Trazado de depuración de físicas no disponible en este tipo de versió
 
 #, fuzzy
 msgid "DEBUG_HEAT_AT_CURSOR"
-msgstr "En el puntero:"
+msgstr "valor del calor:{0}"
 
 msgid "DEBUG_PANEL"
 msgstr "Panel de Depuración"
@@ -1671,7 +1663,7 @@ msgstr ""
 "Densidad de nubes de compuestos: {3}\n"
 "Penalización de población tras muerte del jugador: {4}\n"
 "Retención ambiental de la glucosa: {5}\n"
-"Multiplicador de coste de la osmoregulación: {6}\n"
+"Multiplicador de coste de la osmorregulación: {6}\n"
 "Nube de glucosa de regalo al salir del editor: {7}\n"
 "Ganar progreso de reproducción pasivamente: {8}\n"
 "Limitar el crecimiento del uso de compuestos: {9}"
@@ -1787,7 +1779,7 @@ msgstr "Vulkan"
 
 #, fuzzy
 msgid "DISPLAY_MODE"
-msgstr "Mostrar nombre de botones durante selección de partes"
+msgstr "Modo de visualización:"
 
 msgid "DISPLAY_PART_NAMES"
 msgstr "Mostrar nombre de botones durante selección de partes"
@@ -1813,9 +1805,8 @@ msgstr "Doble click para ver en pantalla completa"
 msgid "DOUBLE_MEMBRANE_DESCRIPTION"
 msgstr "Una membrana con dos capas; tiene mejor protección y consume menos energía. Sin embargo, reduce un poco la velocidad del movimiento y absorbe recursos más lentamente."
 
-#, fuzzy
 msgid "DOUBLE_SPEED_TOGGLE_TOOLTIP"
-msgstr "El valor usado para generar el planeta, debe ser un numero positivo"
+msgstr "Alternar gameplay entre velocidad normal y 2x de velocidad"
 
 msgid "DRAG_TO_REORDER_ITEMS_WITH_MOUSE"
 msgstr "Arrastra para reordenar los elementos con el ratón"
