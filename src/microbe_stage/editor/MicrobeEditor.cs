@@ -503,7 +503,8 @@ public partial class MicrobeEditor : EditorBase<EditorAction, MicrobeStage>, IEd
             if (!TutorialState.TutorialActive())
             {
                 // Tutorial is likely sequence broken, so it won't continue, show tabs to not get the player stuck
-                GD.Print("Showing tabs as tutorial is not active while it probably should be");
+                if (editorTabSelector == null || !editorTabSelector.Visible)
+                    GD.Print("Showing tabs as tutorial is not active while it probably should be");
                 ShowTabBar(true);
             }
         }
