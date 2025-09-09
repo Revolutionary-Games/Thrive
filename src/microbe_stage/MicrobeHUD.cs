@@ -45,6 +45,9 @@ public partial class MicrobeHUD : CreatureStageHUDBase<MicrobeStage>
     private CustomWindow multicellularConfirmPopup = null!;
 
     [Export]
+    private CustomWindow previousSaveLoadAdvicePopup = null!;
+
+    [Export]
     private Button macroscopicButton = null!;
 
     [Export]
@@ -63,6 +66,8 @@ public partial class MicrobeHUD : CreatureStageHUDBase<MicrobeStage>
     private int? playerColonySize;
 
     private bool playerWasDigested;
+
+    private bool showingRevertPrompt;
 
     /// <summary>
     ///   Whether or not the player has the <see cref="StrainAffected"/> component, if not an error will be printed
@@ -98,6 +103,12 @@ public partial class MicrobeHUD : CreatureStageHUDBase<MicrobeStage>
 
     [Signal]
     public delegate void OnSprintButtonPressedEventHandler();
+
+    [Signal]
+    public delegate void OnAcceptRevertToEditorEventHandler();
+
+    [Signal]
+    public delegate void OnDismissRevertToEditorEventHandler();
 
     protected override string UnPauseHelpText => Localization.Translate("PAUSE_PROMPT");
 
@@ -263,6 +274,15 @@ public partial class MicrobeHUD : CreatureStageHUDBase<MicrobeStage>
             return false;
 
         return stage.WorldSimulation.WorldTimeScale > 1;
+    }
+
+    public void ShowSaveLoadAdvise()
+    {
+        if (!showingRevertPrompt)
+        {
+            showingRevertPrompt = true;
+            previousSaveLoadAdvicePopup.Show();
+        }
     }
 
     protected override void UpdateFossilisationButtonStates()
@@ -1000,5 +1020,21 @@ public partial class MicrobeHUD : CreatureStageHUDBase<MicrobeStage>
                 activeProcesses[i] = process;
             }
         }
+    }
+
+    private void OnRevertPromptClosed()
+    {
+        if (showingRevertPrompt)
+        {
+            showingRevertPrompt = false;
+            EmitSignal(SignalName.OnDismissRevertToEditor);
+        }
+    }
+
+    private void OnAcceptRevertPrompt()
+    {
+        showingRevertPrompt = false;
+        EmitSignal(SignalName.OnAcceptRevertToEditor);
+        previousSaveLoadAdvicePopup.Close();
     }
 }

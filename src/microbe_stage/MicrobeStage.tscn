@@ -105,6 +105,8 @@ mouse_filter = 2
 
 [node name="PauseMenu" parent="." instance=ExtResource("11")]
 
+[connection signal="OnAcceptRevertToEditor" from="MicrobeHUD" to="." method="OnLoadPreviousEditorSave"]
+[connection signal="OnDismissRevertToEditor" from="MicrobeHUD" to="." method="OnCancelLoadAdvice"]
 [connection signal="OnEjectEngulfedButtonPressed" from="MicrobeHUD" to="PlayerMicrobeInput" method="EjectAllEngulfed"]
 [connection signal="OnFireToxinButtonPressed" from="MicrobeHUD" to="PlayerMicrobeInput" method="EmitToxin"]
 [connection signal="OnMucocystButtonPressed" from="MicrobeHUD" to="PlayerMicrobeInput" method="ToggleMucocyst"]
