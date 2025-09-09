@@ -37,6 +37,8 @@ public class Biome : IRegistryType
     /// </summary>
     public LightDetails Sunlight = new();
 
+    public Color EnvironmentColour;
+
     /// <summary>
     ///   How much the temperature in this biome varies on a microscopic scale when moving around
     /// </summary>

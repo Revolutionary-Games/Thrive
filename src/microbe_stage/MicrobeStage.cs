@@ -43,6 +43,9 @@ public partial class MicrobeStage : CreatureStageBase<Entity, MicrobeWorldSimula
 
     [Export]
     private GuidanceLine guidanceLine = null!;
+
+    [Export]
+    private MicrobeWorldEnvironment microbeWorldEnvironment = null!;
 #pragma warning restore CA2213
 
     private Vector3? guidancePosition;
@@ -1310,9 +1313,11 @@ public partial class MicrobeStage : CreatureStageBase<Entity, MicrobeWorldSimula
     {
         ClearResolvedTolerancesCache();
 
+        var currentPatch = GameWorld.Map.CurrentPatch!;
+
         // TODO: would be nice to skip this if we are loading a save made in the editor as this gets called twice when
         // going back to the stage
-        if (patchManager.ApplyChangedPatchSettingsIfNeeded(GameWorld.Map.CurrentPatch!, this))
+        if (patchManager.ApplyChangedPatchSettingsIfNeeded(currentPatch, this))
         {
             if (promptPatchNameChange)
                 HUD.ShowPatchName(CurrentPatchName.ToString());
@@ -1331,13 +1336,13 @@ public partial class MicrobeStage : CreatureStageBase<Entity, MicrobeWorldSimula
             switchedPatchInEditorForCompounds = false;
         }
 
-        HUD.UpdateEnvironmentalBars(GameWorld.Map.CurrentPatch!.Biome);
+        HUD.UpdateEnvironmentalBars(currentPatch.Biome);
 
         UpdateBackground();
 
         UpdatePatchLightLevelSettings();
 
-        fluidCurrentDisplay.ApplyBiome(GameWorld.Map.CurrentPatch.BiomeTemplate);
+        fluidCurrentDisplay.ApplyBiome(currentPatch.BiomeTemplate);
     }
 
     protected override void OnGameContinuedAsSpecies(Species newPlayerSpecies, Patch inPatch)
@@ -1373,13 +1378,19 @@ public partial class MicrobeStage : CreatureStageBase<Entity, MicrobeWorldSimula
             var lightLevel =
                 currentPatch.Biome.GetCompound(Compound.Sunlight, CompoundAmountType.Current).Ambient;
 
+            float lightModifier = lightLevel / maxLightLevel;
+
             // Normalise by maximum light level in the patch
-            Camera.LightLevel = lightLevel / maxLightLevel;
+            Camera.LightLevel = lightModifier;
+
+            microbeWorldEnvironment.UpdateAmbientReflection(currentPatch.BiomeTemplate.EnvironmentColour * lightModifier);
         }
         else
         {
             // Don't change lighting for patches without day/night effects
             Camera.LightLevel = 1.0f;
+
+            microbeWorldEnvironment.UpdateAmbientReflection(currentPatch.BiomeTemplate.EnvironmentColour);
         }
     }
 

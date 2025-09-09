@@ -5,6 +5,8 @@
 /// </summary>
 public partial class MicrobeWorldEnvironment : WorldEnvironment
 {
+    private static StringName skyColorShaderParameter = new("colour");
+
     public override void _EnterTree()
     {
         Settings.Instance.BloomEnabled.OnChanged += OnBloomChanged;
@@ -16,6 +18,11 @@ public partial class MicrobeWorldEnvironment : WorldEnvironment
     {
         Settings.Instance.BloomEnabled.OnChanged -= OnBloomChanged;
         Settings.Instance.BloomStrength.OnChanged -= OnStrengthChanged;
+    }
+
+    public void UpdateAmbientReflection(Color colour)
+    {
+        ((ShaderMaterial)Environment.Sky.SkyMaterial).SetShaderParameter(skyColorShaderParameter, colour);
     }
 
     private void OnBloomChanged(bool value)
