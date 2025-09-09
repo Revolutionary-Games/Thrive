@@ -604,33 +604,39 @@ grow_vertical = 0
 offset_bottom = -24.0
 
 [node name="RevertToEditor" parent="." instance=ExtResource("40_e4my1")]
-custom_minimum_size = Vector2(300, 200)
+custom_minimum_size = Vector2(290, 120)
 layout_mode = 1
-anchors_preset = 3
+anchors_preset = 1
 anchor_left = 1.0
-anchor_top = 1.0
 anchor_right = 1.0
-anchor_bottom = 1.0
-offset_left = -314.0
-offset_top = -530.0
-offset_right = -14.0
-offset_bottom = -330.0
+offset_left = -310.0
+offset_top = 194.0
+offset_right = -10.0
+offset_bottom = 314.0
 grow_horizontal = 0
-grow_vertical = 0
 WindowTitle = "REVERT_TO_EDITOR_PROMPT"
 
 [node name="VBoxContainer" type="VBoxContainer" parent="RevertToEditor"]
-custom_minimum_size = Vector2(300, 200)
+custom_minimum_size = Vector2(290, 100)
+layout_mode = 0
+offset_right = 300.0
+offset_bottom = 167.0
+
+[node name="SizeHack" type="Control" parent="RevertToEditor/VBoxContainer"]
+editor_description = "Can't get the label to not blow up the popup size without this hack node here"
+layout_mode = 2
+
+[node name="Label" type="Label" parent="RevertToEditor/VBoxContainer/SizeHack"]
+custom_minimum_size = Vector2(280, 0)
 layout_mode = 0
 offset_right = 40.0
-offset_bottom = 40.0
-
-[node name="Label" type="Label" parent="RevertToEditor/VBoxContainer"]
-layout_mode = 2
+offset_bottom = 31.0
 text = "REVERT_TO_EDITOR_EXPLANATION"
 label_settings = ExtResource("25_joiju")
+autowrap_mode = 3
 
 [node name="Control" type="Control" parent="RevertToEditor/VBoxContainer"]
+custom_minimum_size = Vector2(0, 120)
 layout_mode = 2
 size_flags_vertical = 3
 
