@@ -5,13 +5,21 @@
 /// </summary>
 public partial class MicrobeWorldEnvironment : WorldEnvironment
 {
-    private static StringName skyColorShaderParameter = new("colour");
+    private readonly StringName skyColorShaderParameter = new("colour");
+
+#pragma warning disable CA2213
+    private ShaderMaterial skyMaterial = null!;
+#pragma warning restore CA2213
+
+    private Color lastSkyColour;
 
     public override void _EnterTree()
     {
         Settings.Instance.BloomEnabled.OnChanged += OnBloomChanged;
         Settings.Instance.BloomStrength.OnChanged += OnStrengthChanged;
         ApplyBloom();
+
+        skyMaterial = (ShaderMaterial)Environment.Sky.SkyMaterial;
     }
 
     public override void _ExitTree()
@@ -22,7 +30,21 @@ public partial class MicrobeWorldEnvironment : WorldEnvironment
 
     public void UpdateAmbientReflection(Color colour)
     {
-        ((ShaderMaterial)Environment.Sky.SkyMaterial).SetShaderParameter(skyColorShaderParameter, colour);
+        if (colour == lastSkyColour)
+            return;
+
+        lastSkyColour = colour;
+        skyMaterial.SetShaderParameter(skyColorShaderParameter, colour);
+    }
+
+    protected override void Dispose(bool disposing)
+    {
+        base.Dispose(disposing);
+
+        if (disposing)
+        {
+            skyColorShaderParameter.Dispose();
+        }
     }
 
     private void OnBloomChanged(bool value)
