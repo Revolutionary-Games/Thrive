@@ -269,16 +269,17 @@ public partial class PatchMapDrawer : Control
     ///   Update the patch event visuals on all created patch map nodes. Call if events change after initial graphics
     ///   init for this drawer.
     /// </summary>
+    /// <param name="snapshots">Snapshot provided by the auto-evo explorer tool to display proper event icons</param>
     /// <remarks>
     ///   <para>
-    ///     TODO: the auto-evo exploring tool needs to call this to show things properly
+    ///     The auto-evo exploring tool needs to call this to show things properly
     ///   </para>
     /// </remarks>
-    public void UpdatePatchEvents()
+    public void UpdatePatchEvents(Dictionary<int, PatchSnapshot>? snapshots = null)
     {
         foreach (var (patch, node) in nodes)
         {
-            patch.ApplyPatchEventVisuals(node);
+            patch.ApplyPatchEventVisuals(node, snapshots?[patch.ID].ActivePatchEvents.Keys.ToList());
         }
     }
 

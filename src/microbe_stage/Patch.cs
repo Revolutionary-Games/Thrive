@@ -145,7 +145,8 @@ public class Patch
     /// <summary>
     ///  Current patch events affecting this patch with their properties.
     /// </summary>
-    public IReadOnlyDictionary<PatchEventTypes, PatchEventProperties> ActivePatchEvents => currentSnapshot.ActivePatchEvents;
+    public IReadOnlyDictionary<PatchEventTypes, PatchEventProperties> ActivePatchEvents =>
+        currentSnapshot.ActivePatchEvents;
 
     /// <summary>
     ///   The name of the patch the player should see; this accounts for fog of war and <see cref="Visibility"/>
@@ -635,10 +636,13 @@ public class Patch
             Region.Visibility = visibility;
     }
 
-    public void ApplyPatchEventVisuals(PatchMapNode node)
+    public void ApplyPatchEventVisuals(PatchMapNode node, IReadOnlyList<PatchEventTypes>? events = null)
     {
+        // If the events are not specified, use the ones from the current generation
+        events ??= ActivePatchEvents.Keys.ToList();
+
         if (Visibility == MapElementVisibility.Shown)
-            node.ShowEventVisuals(ActivePatchEvents.Keys.ToList());
+            node.ShowEventVisuals(events);
     }
 
     public override string ToString()
@@ -722,7 +726,7 @@ public class PatchSnapshot : ICloneable
             SpeciesInPatch = new Dictionary<Species, long>(SpeciesInPatch),
             RecordedSpeciesInfo = new Dictionary<Species, SpeciesInfo>(RecordedSpeciesInfo),
             EventsLog = new List<GameEventDescription>(EventsLog),
-            ActivePatchEvents = new Dictionary<PatchEventTypes, PatchEventProperties>(),
+            ActivePatchEvents = new Dictionary<PatchEventTypes, PatchEventProperties>(ActivePatchEvents),
         };
 
         return result;
