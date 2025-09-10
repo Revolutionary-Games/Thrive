@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Threading.Tasks;
 using Components;
 using DefaultEcs;
 using DefaultEcs.Command;
@@ -95,6 +96,13 @@ public partial class MicrobeStage : CreatureStageBase<Entity, MicrobeWorldSimula
     private bool appliedPlayerGodMode;
 
     private bool appliedUnlimitGrowthSpeed;
+
+    private bool loadSaveAdviceTriggered;
+
+    [JsonProperty]
+    private bool loadSaveAdviseSuppressed;
+
+    private string? foundPreviousEditorSave;
 
     /// <summary>
     ///   Used to ferry data between the patch change logic and handling the player cell splitting (as I couldn't
@@ -806,6 +814,8 @@ public partial class MicrobeStage : CreatureStageBase<Entity, MicrobeWorldSimula
             wonOnce = true;
         }
 
+        loadSaveAdviceTriggered = false;
+
         var playerSpecies = Player.Get<SpeciesMember>().Species;
 
         // Update the player environmental properties
@@ -1294,6 +1304,63 @@ public partial class MicrobeStage : CreatureStageBase<Entity, MicrobeWorldSimula
         base.PlayerExtinctInPatch();
 
         guidanceLine.Visible = false;
+    }
+
+    protected override void OnPlayerDeath(int deathsSinceEditor)
+    {
+        if (CurrentGame == null)
+            throw new InvalidOperationException("Current game is null when player is dead callback triggered");
+
+        if (loadSaveAdviseSuppressed)
+            return;
+
+        if (loadSaveAdviceTriggered)
+            return;
+
+        // It doesn't make sense to suggest loading an earlier auto save if they are disabled
+        if (deathsSinceEditor >= 3 && Settings.Instance.AutoSaveEnabled.Value)
+        {
+            loadSaveAdviceTriggered = true;
+            foundPreviousEditorSave = null;
+
+            // As we might need to read a bunch of files, this is done in a separate thread
+            var task = new Task(() =>
+            {
+                // Find a suitable save to load before we show the advice as we don't want to advise something
+                // impossible
+                string? found = null;
+                foreach (var (saveName, saveInfo) in SaveHelper.CreateListOfAutoSavesForGame(CurrentGame.PlaythroughID,
+                             SaveHelper.SaveOrder.FirstModifiedFirst))
+                {
+                    // Only suitable saves to revert to
+                    if (saveInfo.GameState is not (MainGameState.MicrobeEditor or MainGameState.MulticellularEditor))
+                        continue;
+
+                    GD.Print($"Found earlier save from this playthrough: {saveName} ({saveInfo.PlaythroughID})");
+                    found = saveName;
+                    break;
+                }
+
+                Invoke.Instance.QueueForObject(() =>
+                {
+                    foundPreviousEditorSave = found;
+
+                    if (!string.IsNullOrEmpty(foundPreviousEditorSave))
+                    {
+                        GD.Print("Showing advice about loading a previous save");
+                        loadSaveAdviceTriggered = true;
+
+                        HUD.ShowSaveLoadAdvise();
+                    }
+                    else
+                    {
+                        GD.Print("No previous save to load to suggest");
+                    }
+                }, this);
+            });
+
+            TaskExecutor.Instance.AddTask(task);
+        }
     }
 
     protected override void AutoSave()
@@ -1920,5 +1987,29 @@ public partial class MicrobeStage : CreatureStageBase<Entity, MicrobeWorldSimula
         Localization.Translate("SUCCESSFUL_KILL");
         Localization.Translate("SUCCESSFUL_SCAVENGE");
         Localization.Translate("ESCAPE_ENGULFING");
+    }
+
+    private void OnLoadPreviousEditorSave()
+    {
+        if (foundPreviousEditorSave == null)
+        {
+            GD.PrintErr("No save found to load");
+            return;
+        }
+
+        GD.Print("Beginning to load previous editor save: ", foundPreviousEditorSave);
+
+        var save = foundPreviousEditorSave;
+
+        TransitionManager.Instance.AddSequence(ScreenFade.FadeType.FadeOut, 0.5f,
+            () => { Invoke.Instance.Queue(() => SaveHelper.LoadSave(save)); }, false);
+
+        foundPreviousEditorSave = null;
+    }
+
+    private void OnCancelLoadAdvice()
+    {
+        GD.Print("Permanently cancelling load save advice");
+        loadSaveAdviseSuppressed = true;
     }
 }

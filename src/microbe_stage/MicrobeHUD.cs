@@ -26,6 +26,8 @@ public partial class MicrobeHUD : CreatureStageHUDBase<MicrobeStage>
     private const string FLOATING_CHUNKS_CATEGORY = "chunks";
     private const string AGENTS_CATEGORY = "agents";
 
+    private const double SHOW_REVERT_POPUP_FOR = 80;
+
     private readonly Dictionary<(string Category, LocalizedString Name), int> hoveredEntities = new();
     private readonly Dictionary<CompoundDefinition, InspectedEntityLabel> hoveredCompoundControls = new();
 
@@ -43,6 +45,9 @@ public partial class MicrobeHUD : CreatureStageHUDBase<MicrobeStage>
 
     [Export]
     private CustomWindow multicellularConfirmPopup = null!;
+
+    [Export]
+    private CustomWindow previousSaveLoadAdvicePopup = null!;
 
     [Export]
     private Button macroscopicButton = null!;
@@ -63,6 +68,9 @@ public partial class MicrobeHUD : CreatureStageHUDBase<MicrobeStage>
     private int? playerColonySize;
 
     private bool playerWasDigested;
+
+    private bool showingRevertPrompt;
+    private double timeShowingRevertPopup;
 
     /// <summary>
     ///   Whether or not the player has the <see cref="StrainAffected"/> component, if not an error will be printed
@@ -98,6 +106,12 @@ public partial class MicrobeHUD : CreatureStageHUDBase<MicrobeStage>
 
     [Signal]
     public delegate void OnSprintButtonPressedEventHandler();
+
+    [Signal]
+    public delegate void OnAcceptRevertToEditorEventHandler();
+
+    [Signal]
+    public delegate void OnDismissRevertToEditorEventHandler();
 
     protected override string UnPauseHelpText => Localization.Translate("PAUSE_PROMPT");
 
@@ -164,6 +178,21 @@ public partial class MicrobeHUD : CreatureStageHUDBase<MicrobeStage>
             multicellularButton.Visible = false;
             macroscopicButton.Visible = false;
             heatAccumulationBar.Visible = false;
+        }
+
+        if (!PauseManager.Instance.Paused)
+            timeShowingRevertPopup += delta;
+
+        if (timeShowingRevertPopup > SHOW_REVERT_POPUP_FOR)
+        {
+            timeShowingRevertPopup = 0;
+
+            if (showingRevertPrompt || previousSaveLoadAdvicePopup.Visible)
+            {
+                GD.Print("Hiding load previous save question as it's been open for a while");
+                showingRevertPrompt = false;
+                previousSaveLoadAdvicePopup.Close();
+            }
         }
     }
 
@@ -263,6 +292,16 @@ public partial class MicrobeHUD : CreatureStageHUDBase<MicrobeStage>
             return false;
 
         return stage.WorldSimulation.WorldTimeScale > 1;
+    }
+
+    public void ShowSaveLoadAdvise()
+    {
+        if (!showingRevertPrompt)
+        {
+            showingRevertPrompt = true;
+            timeShowingRevertPopup = 0;
+            previousSaveLoadAdvicePopup.Show();
+        }
     }
 
     protected override void UpdateFossilisationButtonStates()
@@ -1000,5 +1039,21 @@ public partial class MicrobeHUD : CreatureStageHUDBase<MicrobeStage>
                 activeProcesses[i] = process;
             }
         }
+    }
+
+    private void OnRevertPromptClosed()
+    {
+        if (showingRevertPrompt)
+        {
+            showingRevertPrompt = false;
+            EmitSignal(SignalName.OnDismissRevertToEditor);
+        }
+    }
+
+    private void OnAcceptRevertPrompt()
+    {
+        showingRevertPrompt = false;
+        EmitSignal(SignalName.OnAcceptRevertToEditor);
+        previousSaveLoadAdvicePopup.Close();
     }
 }
