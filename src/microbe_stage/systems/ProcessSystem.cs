@@ -909,6 +909,11 @@ public sealed class ProcessSystem : AEntitySetSystem<float>
         var osmoregulation = Constants.ATP_COST_FOR_OSMOREGULATION * hexCount *
             membrane.OsmoregulationFactor;
 
+        if (hasNucleus)
+        {
+            osmoregulation *= Constants.NUCLEUS_MOVEMENT_COST_MODIFIER;
+        }
+
 #if DEBUG
         if (environmentTolerances.OsmoregulationModifier <= 0)
             throw new ArgumentException("Uninitialized environmental tolerances");
