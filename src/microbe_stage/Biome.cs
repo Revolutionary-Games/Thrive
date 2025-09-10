@@ -37,7 +37,7 @@ public class Biome : IRegistryType
     /// </summary>
     public LightDetails Sunlight = new();
 
-    public Color EnvironmentColour;
+    public Color EnvironmentColour = new(0, 0, 0, 1);
 
     /// <summary>
     ///   How much the temperature in this biome varies on a microscopic scale when moving around
@@ -104,6 +104,12 @@ public class Biome : IRegistryType
         {
             throw new InvalidRegistryDataException(name, GetType().Name,
                 "temperature variance scale needs to be over 0");
+        }
+
+        if (EnvironmentColour.A < 1.0f)
+        {
+            throw new InvalidRegistryDataException(name, GetType().Name,
+                "Environment colour alpha needs to be 1");
         }
 
         TranslationHelper.CopyTranslateTemplatesToTranslateSource(this);
