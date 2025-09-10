@@ -17,13 +17,14 @@
 [ext_resource type="PackedScene" uid="uid://b5yuo8sj21lnf" path="res://src/engine/GuidanceLine.tscn" id="75"]
 [ext_resource type="PackedScene" uid="uid://dwkek50fju0fu" path="res://src/microbe_stage/PatchNameOverlay.tscn" id="85"]
 
-[node name="MicrobeStage" type="Node" node_paths=PackedStringArray("heatViewOverlay", "fluidCurrentDisplay", "movementModeSelectionPopup", "guidanceLine", "pauseMenu", "hudRoot")]
+[node name="MicrobeStage" type="Node" node_paths=PackedStringArray("heatViewOverlay", "fluidCurrentDisplay", "movementModeSelectionPopup", "guidanceLine", "microbeWorldEnvironment", "pauseMenu", "hudRoot")]
 process_priority = -1
 script = ExtResource("1")
 heatViewOverlay = NodePath("World/PrimaryCamera/HeatGradientPlane")
 fluidCurrentDisplay = NodePath("World/PrimaryCamera/FluidCurrentDisplay")
 movementModeSelectionPopup = NodePath("MovementModeSelectionPopup")
 guidanceLine = NodePath("World/GuidanceLine")
+microbeWorldEnvironment = NodePath("World/MicrobeWorldEnvironment")
 pauseMenu = NodePath("PauseMenu")
 hudRoot = NodePath("MicrobeHUD")
 
