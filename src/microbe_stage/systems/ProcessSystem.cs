@@ -911,7 +911,7 @@ public sealed class ProcessSystem : AEntitySetSystem<float>
 
         if (hasNucleus)
         {
-            osmoregulation *= Constants.NUCLEUS_MOVEMENT_COST_MODIFIER;
+            osmoregulation *= 0.6f;
         }
 
 #if DEBUG
