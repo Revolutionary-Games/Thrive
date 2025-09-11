@@ -1,65 +1,47 @@
 ﻿namespace Systems;
 
 using System;
+using System.Runtime.CompilerServices;
+using Arch.Core;
+using Arch.Core.Extensions;
+using Arch.System;
+using Arch.System.SourceGenerator;
 using Components;
-using DefaultEcs;
-using DefaultEcs.System;
 using Godot;
+using World = Arch.Core.World;
 
-[With(typeof(IntercellularMatrix))]
-[With(typeof(SpatialInstance))]
-[Without(typeof(MicrobeColony))]
+/// <summary>
+///   Generates intercellular graphical connections between cells
+/// </summary>
 [ReadsComponent(typeof(MicrobeColonyMember))]
 [ReadsComponent(typeof(SpatialInstance))]
 [ReadsComponent(typeof(CellProperties))]
 [RuntimeCost(1.0f)]
 [RunsOnMainThread]
-public sealed class IntercellularMatrixSystem : AEntitySetSystem<float>
+public partial class IntercellularMatrixSystem : BaseSystem<World, float>
 {
     private static readonly Lazy<PackedScene> ConnectionScene =
         new(() => GD.Load<PackedScene>("res://src/multicellular_stage/IntercellularConnection.tscn"));
 
     private static readonly StringName TintParameter = new("tint");
 
-    public IntercellularMatrixSystem(World world) : base(world, null)
+    public IntercellularMatrixSystem(World world) : base(world)
     {
-    }
-
-    protected override void Update(float delta, in Entity entity)
-    {
-        ref var matrix = ref entity.Get<IntercellularMatrix>();
-
-        if (entity.Has<MicrobeColonyMember>())
-        {
-            if (!matrix.IsConnectionRedundant && matrix.GeneratedConnection == null)
-            {
-                ref var colony = ref entity.Get<MicrobeColonyMember>().ColonyLeader.Get<MicrobeColony>();
-
-                AddIntercellularConnection(entity, ref matrix, ref colony);
-            }
-        }
-        else
-        {
-            if (matrix.GeneratedConnection != null)
-            {
-                RemoveConnection(ref matrix);
-            }
-        }
     }
 
     private static void AddIntercellularConnection(in Entity entity, ref IntercellularMatrix intercellularMatrix,
-        ref MicrobeColony colony)
+        ref MicrobeColony colony, ref SpatialInstance spatialInstance, ref CellProperties cellProperties)
     {
-        Entity parentEntity = colony.ColonyStructure[entity];
+        var parentEntity = colony.ColonyStructure[entity];
 
-        var instance = entity.Get<SpatialInstance>().GraphicalInstance;
+        var instance = spatialInstance.GraphicalInstance;
         if (instance == null)
         {
             GD.PrintErr("Tried to add an intercellular connection while a cell's graphical instance is null");
             return;
         }
 
-        var ourMembrane = entity.Get<CellProperties>().CreatedMembrane;
+        var ourMembrane = cellProperties.CreatedMembrane;
         var targetMembrane = parentEntity.Get<CellProperties>().CreatedMembrane;
         if (ourMembrane == null || targetMembrane == null)
             return;
@@ -165,5 +147,29 @@ public sealed class IntercellularMatrixSystem : AEntitySetSystem<float>
 
         var material = ((GeometryInstance3D)intercellularMatrix.GeneratedConnection).MaterialOverride;
         ((ShaderMaterial)material).SetShaderParameter(TintParameter, entity.Get<CellProperties>().Colour);
+    }
+
+    [Query]
+    [None<MicrobeColony>]
+    [MethodImpl(MethodImplOptions.AggressiveInlining)]
+    private void Update(ref IntercellularMatrix matrix, ref SpatialInstance spatialInstance,
+        ref CellProperties cellProperties, in Entity entity)
+    {
+        if (entity.Has<MicrobeColonyMember>())
+        {
+            if (!matrix.IsConnectionRedundant && matrix.GeneratedConnection == null)
+            {
+                ref var colony = ref entity.Get<MicrobeColonyMember>().ColonyLeader.Get<MicrobeColony>();
+
+                AddIntercellularConnection(entity, ref matrix, ref colony, ref spatialInstance, ref cellProperties);
+            }
+        }
+        else
+        {
+            if (matrix.GeneratedConnection != null)
+            {
+                RemoveConnection(ref matrix);
+            }
+        }
     }
 }

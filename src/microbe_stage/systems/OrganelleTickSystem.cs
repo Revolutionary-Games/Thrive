@@ -1,12 +1,13 @@
 ﻿namespace Systems;
 
 using System.Collections.Concurrent;
+using System.Runtime.CompilerServices;
+using Arch.Core;
+using Arch.Core.Extensions;
+using Arch.System;
 using Components;
-using DefaultEcs;
-using DefaultEcs.System;
-using DefaultEcs.Threading;
 using Godot;
-using World = DefaultEcs.World;
+using World = Arch.Core.World;
 
 /// <summary>
 ///   Handles calling <see cref="IOrganelleComponent.UpdateAsync"/> and other tick methods on organelles each game
@@ -39,18 +40,20 @@ using World = DefaultEcs.World;
 [RunsBefore(typeof(EntityLightSystem))]
 [RuntimeCost(14)]
 [RunsOnMainThread]
-public sealed class OrganelleTickSystem : AEntitySetSystem<float>
+public partial class OrganelleTickSystem : BaseSystem<World, float>
 {
     private readonly IWorldSimulation worldSimulation;
     private readonly ConcurrentStack<(IOrganelleComponent Component, Entity Entity)> queuedSyncRuns = new();
 
-    public OrganelleTickSystem(IWorldSimulation worldSimulation, World world, IParallelRunner parallelRunner) :
+    public OrganelleTickSystem(IWorldSimulation worldSimulation, World world) :
         base(world, parallelRunner, Constants.SYSTEM_NORMAL_ENTITIES_PER_THREAD)
     {
         this.worldSimulation = worldSimulation;
     }
 
-    protected override void Update(float delta, in Entity entity)
+    [Query]
+    [MethodImpl(MethodImplOptions.AggressiveInlining)]
+    private void Update([Data] in float delta, ref TODO components, in Entity entity)
     {
         ref var organelleContainer = ref entity.Get<OrganelleContainer>();
 
@@ -81,10 +84,8 @@ public sealed class OrganelleTickSystem : AEntitySetSystem<float>
         }
     }
 
-    protected override void PostUpdate(float delta)
+    public override void AfterUpdate(in float delta)
     {
-        base.PostUpdate(delta);
-
         while (queuedSyncRuns.TryPop(out var entry))
         {
             // TODO: determine if it is a good idea to always fetch the container like for UpdateAsync here

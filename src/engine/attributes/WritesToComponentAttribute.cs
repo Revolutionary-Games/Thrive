@@ -1,5 +1,4 @@
 ﻿using System;
-using DefaultEcs.System;
 
 /// <summary>
 ///   Marks a system as writing to a component. <see cref="WithAttribute"/> automatically implies this so this is

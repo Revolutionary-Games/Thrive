@@ -1,4 +1,4 @@
-﻿using DefaultEcs.Command;
+﻿using Arch.Core;
 using Godot;
 
 /// <summary>
@@ -13,7 +13,7 @@ public class DummySpawnSystem : ISpawnSystem
         this.addTrackedCallback = addTrackedCallback;
     }
 
-    public delegate void OnEntityAddedCallback(in EntityRecord entityRecord);
+    public delegate void OnEntityAddedCallback(in Entity entityRecord);
 
     public bool AllowReproduction { get; set; }
 
@@ -37,7 +37,7 @@ public class DummySpawnSystem : ISpawnSystem
     {
     }
 
-    public void NotifyExternalEntitySpawned(in EntityRecord entity, float despawnRadiusSquared, float entityWeight)
+    public void NotifyExternalEntitySpawned(in Entity entity, float despawnRadiusSquared, float entityWeight)
     {
         addTrackedCallback?.Invoke(entity);
     }

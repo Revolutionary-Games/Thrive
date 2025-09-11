@@ -1,6 +1,6 @@
 ﻿using System;
 using System.Runtime.InteropServices;
-using DefaultEcs;
+using Arch.Core;
 
 /// <summary>
 ///   Info regarding a physics collision in an entity simulation. Must match the PhysicsCollision class byte layout

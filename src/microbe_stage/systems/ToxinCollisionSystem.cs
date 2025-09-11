@@ -2,12 +2,12 @@
 
 using System;
 using System.Collections.Generic;
+using Arch.Core;
+using Arch.Core.Extensions;
+using Arch.System;
 using Components;
-using DefaultEcs;
-using DefaultEcs.System;
-using DefaultEcs.Threading;
 using Godot;
-using World = DefaultEcs.World;
+using World = Arch.Core.World;
 
 /// <summary>
 ///   Handles detected toxin collisions with microbes
@@ -26,7 +26,7 @@ using World = DefaultEcs.World;
 [ReadsComponent(typeof(MicrobeEventCallbacks))]
 [RunsAfter(typeof(PhysicsCollisionManagementSystem))]
 [RuntimeCost(0.5f, false)]
-public sealed class ToxinCollisionSystem : AEntitySetSystem<float>
+public partial class ToxinCollisionSystem : BaseSystem<World, float>
 {
     /// <summary>
     ///   Holds a persistent instance of the collision filter callback to not need to create multiple delegates, and
@@ -39,7 +39,9 @@ public sealed class ToxinCollisionSystem : AEntitySetSystem<float>
     {
     }
 
-    protected override void Update(float delta, in Entity entity)
+    [Query]
+    [MethodImpl(MethodImplOptions.AggressiveInlining)]
+    private void Update([Data] in float delta, ref TODO components, in Entity entity)
     {
         ref var damageSource = ref entity.Get<ToxinDamageSource>();
 

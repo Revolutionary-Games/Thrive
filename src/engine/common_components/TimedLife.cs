@@ -1,6 +1,6 @@
 ﻿namespace Components;
 
-using DefaultEcs;
+using Arch.Core;
 using Newtonsoft.Json;
 
 /// <summary>

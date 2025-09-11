@@ -3,7 +3,8 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
-using DefaultEcs;
+using Arch.Core;
+using Arch.Core.Extensions;
 using DefaultEcs.Command;
 using Godot;
 using Newtonsoft.Json;
@@ -531,7 +532,7 @@ public static class MicrobeColonyHelpers
                 colonyEntity.Get<CompoundStorage>().Compounds, colonyEntity, removedMember);
         }
 
-        if (!removedMember.IsAlive)
+        if (!removedMember.IsAlive())
             throw new Exception("Cannot process a dead entity remove from a colony");
 
         bool removedMemberIsLeader = false;
@@ -609,7 +610,7 @@ public static class MicrobeColonyHelpers
             // This is this way around to support recursive calls also adding things here
             DependentMembersToRemove.RemoveAt(DependentMembersToRemove.Count - 1);
 
-            if (!next.IsAlive)
+            if (!next.IsAlive())
             {
                 // This entity is already dead, this should hopefully never trigger. If this does then this would
                 // give some more info on a colony despawn crash problem.
@@ -621,11 +622,11 @@ public static class MicrobeColonyHelpers
                 if (colony.ColonyMembers.Contains(next))
                     RemoveColonyMemberFromMemberList(ref colony, next);
 
-                // Normal remove can't be performed so the above emergency cleanup needs to be enough
+                // Normal remove can't be performed, so the above emergency cleanup needs to be enough
                 continue;
             }
 
-            // This might stackoverflow if we have absolute hugely nested cell colonies but there would probably
+            // This might stackoverflow if we have absolute, hugely nested cell colonies, but there would probably
             // need to be colonies with thousands of cells, which would already choke the game so that isn't much
             // of a concern
             if (!colony.RemoveFromColony(colonyEntity, next, recorder))
@@ -728,7 +729,7 @@ public static class MicrobeColonyHelpers
     }
 
     /// <summary>
-    ///   Variant of unbind allowed to be called *only* outside the game update loop
+    ///   Variant of unbinding allowed to be called *only* outside the game update loop
     /// </summary>
     public static bool UnbindAllOutsideGameUpdate(in Entity entity, IWorldSimulation entityWorld)
     {
@@ -998,7 +999,7 @@ public static class MicrobeColonyHelpers
     {
         foreach (var colonyMember in colony.ColonyMembers)
         {
-            if (!colonyMember.IsAlive)
+            if (!colonyMember.IsAlive())
                 throw new Exception("Colony has a non-alive member");
         }
     }

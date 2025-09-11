@@ -1,6 +1,6 @@
 ﻿using System.Collections.Generic;
 using System.Runtime.CompilerServices;
-using DefaultEcs;
+using Arch.Core;
 
 /// <summary>
 ///   Object providing access for converters as well as loading finalizing for the current game context

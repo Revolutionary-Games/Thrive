@@ -1,9 +1,10 @@
 ﻿namespace Systems;
 
+using System.Runtime.CompilerServices;
+using Arch.Core;
+using Arch.Core.Extensions;
+using Arch.System;
 using Components;
-using DefaultEcs;
-using DefaultEcs.System;
-using DefaultEcs.Threading;
 
 /// <summary>
 ///   Causes radiation damage based on stored compounds and radiation resistance of microbes
@@ -16,7 +17,7 @@ using DefaultEcs.Threading;
 [RunsAfter(typeof(IrradiationSystem))]
 [RunsBefore(typeof(DamageSoundSystem))]
 [RuntimeCost(0.5f)]
-public sealed class RadiationDamageSystem : AEntitySetSystem<float>
+public partial class RadiationDamageSystem : BaseSystem<World, float>
 {
     /// <summary>
     ///   Used to apply damage not on each game update
@@ -30,15 +31,16 @@ public sealed class RadiationDamageSystem : AEntitySetSystem<float>
     {
     }
 
-    protected override void PreUpdate(float delta)
+    public override void BeforeUpdate(in float delta)
     {
-        base.PreUpdate(delta);
         elapsedSinceUpdate += delta;
 
         trigger = elapsedSinceUpdate >= Constants.RADIATION_DAMAGE_INTERVAL;
     }
 
-    protected override void Update(float delta, in Entity entity)
+    [Query]
+    [MethodImpl(MethodImplOptions.AggressiveInlining)]
+    private void Update([Data] in float delta, ref TODO components, in Entity entity)
     {
         if (!trigger)
             return;
@@ -87,10 +89,8 @@ public sealed class RadiationDamageSystem : AEntitySetSystem<float>
         }
     }
 
-    protected override void PostUpdate(float state)
+    public override void AfterUpdate(in float delta)
     {
-        base.PostUpdate(state);
-
         if (trigger)
             elapsedSinceUpdate = 0;
     }

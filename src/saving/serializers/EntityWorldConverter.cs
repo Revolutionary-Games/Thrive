@@ -1,6 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
-using DefaultEcs;
+using Arch.Core;
 using DefaultEcs.Serialization;
 using Newtonsoft.Json;
 

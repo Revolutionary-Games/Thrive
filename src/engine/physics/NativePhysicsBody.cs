@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Runtime.CompilerServices;
 using System.Runtime.InteropServices;
-using DefaultEcs;
+using Arch.Core;
 using Godot;
 
 /// <summary>

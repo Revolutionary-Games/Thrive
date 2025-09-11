@@ -1,9 +1,9 @@
 ﻿namespace Systems;
 
+using Arch.Core;
+using Arch.Core.Extensions;
+using Arch.System;
 using Components;
-using DefaultEcs;
-using DefaultEcs.System;
-using DefaultEcs.Threading;
 
 /// <summary>
 ///   Fills out the component vectors like <see cref="OrganelleContainer.SlimeJets"/>
@@ -14,13 +14,15 @@ using DefaultEcs.Threading;
 [RunsBefore(typeof(MicrobeMovementSystem))]
 [RunsBefore(typeof(OrganelleTickSystem))]
 [RuntimeCost(0.25f)]
-public sealed class OrganelleComponentFetchSystem : AEntitySetSystem<float>
+public partial class OrganelleComponentFetchSystem : BaseSystem<World, float>
 {
     public OrganelleComponentFetchSystem(World world, IParallelRunner runner) : base(world, runner)
     {
     }
 
-    protected override void Update(float delta, in Entity entity)
+    [Query]
+    [MethodImpl(MethodImplOptions.AggressiveInlining)]
+    private void Update([Data] in float delta, ref TODO components, in Entity entity)
     {
         ref var container = ref entity.Get<OrganelleContainer>();
 

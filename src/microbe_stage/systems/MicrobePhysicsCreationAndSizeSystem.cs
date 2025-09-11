@@ -3,13 +3,14 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Runtime.CompilerServices;
 using System.Threading;
+using Arch.Core;
+using Arch.Core.Extensions;
+using Arch.System;
 using Components;
-using DefaultEcs;
-using DefaultEcs.System;
-using DefaultEcs.Threading;
 using Godot;
-using World = DefaultEcs.World;
+using World = Arch.Core.World;
 
 /// <summary>
 ///   Handles creating microbe physics and handling a few house keeping tasks based on the final cell size data
@@ -35,7 +36,7 @@ using World = DefaultEcs.World;
 [RunsBefore(typeof(PhysicsBodyCreationSystem))]
 [RunsBefore(typeof(MicrobeReproductionSystem))]
 [RunsBefore(typeof(MulticellularGrowthSystem))]
-public sealed class MicrobePhysicsCreationAndSizeSystem : AEntitySetSystem<float>
+public partial class MicrobePhysicsCreationAndSizeSystem : BaseSystem<World, float>
 {
     private readonly float pilusDensity;
 
@@ -68,8 +69,7 @@ public sealed class MicrobePhysicsCreationAndSizeSystem : AEntitySetSystem<float
     /// </summary>
     private readonly Lazy<PhysicsShape> prokaryoticPilus;
 
-    public MicrobePhysicsCreationAndSizeSystem(World world, IParallelRunner parallelRunner) : base(world,
-        parallelRunner)
+    public MicrobePhysicsCreationAndSizeSystem(World world) : base(world)
     {
         pilusDensity = SimulationParameters.Instance.GetOrganelleType("pilus").Density;
 
@@ -83,7 +83,9 @@ public sealed class MicrobePhysicsCreationAndSizeSystem : AEntitySetSystem<float
         base.Dispose();
     }
 
-    protected override void Update(float delta, in Entity entity)
+    [Query]
+    [MethodImpl(MethodImplOptions.AggressiveInlining)]
+    private void Update([Data] in float delta, ref TODO components, in Entity entity)
     {
         ref var cellProperties = ref entity.Get<CellProperties>();
 

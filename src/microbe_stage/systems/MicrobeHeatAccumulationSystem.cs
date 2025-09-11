@@ -1,10 +1,11 @@
 ﻿namespace Systems;
 
 using System;
+using System.Runtime.CompilerServices;
+using Arch.Core;
+using Arch.Core.Extensions;
+using Arch.System;
 using Components;
-using DefaultEcs;
-using DefaultEcs.System;
-using DefaultEcs.Threading;
 using Godot;
 
 /// <summary>
@@ -25,7 +26,7 @@ using Godot;
 [RunsBefore(typeof(ProcessSystem))]
 [RunsAfter(typeof(MicrobePhysicsCreationAndSizeSystem))]
 [RunsOnMainThread]
-public class MicrobeHeatAccumulationSystem : AEntitySetSystem<float>
+public partial class MicrobeHeatAccumulationSystem : BaseSystem<World, float>
 {
     private readonly NoiseTexture2D noiseSource;
 
@@ -81,7 +82,7 @@ public class MicrobeHeatAccumulationSystem : AEntitySetSystem<float>
         return patchTemperatureMiddle + differenceFromMiddle * temperatureVarianceScale;
     }
 
-    protected override void PreUpdate(float delta)
+    public override void BeforeUpdate(in float delta)
     {
         if (gameWorld == null)
             throw new InvalidOperationException("GameWorld not set");
@@ -116,7 +117,9 @@ public class MicrobeHeatAccumulationSystem : AEntitySetSystem<float>
         patchTemperatureMiddle = patchTemperature.Ambient;
     }
 
-    protected override void Update(float delta, in Entity entity)
+    [Query]
+    [MethodImpl(MethodImplOptions.AggressiveInlining)]
+    private void Update([Data] in float delta, ref TODO components, in Entity entity)
     {
         // Can't process when the noise isn't ready yet
         if (noiseImage == null)
@@ -154,7 +157,7 @@ public class MicrobeHeatAccumulationSystem : AEntitySetSystem<float>
 
             change *= ratio * delta * Constants.THERMOPLAST_HEAT_UP_SPEED;
 
-            // When heating up within the right range, give "temperature" compound
+            // When heating up within the right range, give the "temperature" compound
             if (change > 0 && properties.Temperature >= Constants.THERMOPLAST_MIN_ATP_TEMPERATURE &&
                 properties.Temperature <= Constants.THERMOPLAST_MAX_ATP_TEMPERATURE)
             {

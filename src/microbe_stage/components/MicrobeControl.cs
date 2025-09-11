@@ -1,7 +1,7 @@
 ﻿namespace Components;
 
 using System;
-using DefaultEcs;
+using Arch.Core;
 using Godot;
 using Systems;
 

@@ -5,7 +5,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Reflection;
 using System.Runtime.CompilerServices;
-using DefaultEcs.System;
+using Arch.System;
 
 public class SystemToSchedule
 {
@@ -47,7 +47,7 @@ public class SystemToSchedule
     /// </summary>
     public int Timeslot;
 
-    private static readonly Type SystemWithAttribute = typeof(WithAttribute);
+    private static readonly Type QueryMethodAttribute = typeof(QueryAttribute);
     private static readonly Type WritesToAttribute = typeof(WritesToComponentAttribute);
     private static readonly Type ReadsFromAttribute = typeof(ReadsComponentAttribute);
     private static readonly Type ReadByDefaultAttribute = typeof(ComponentIsReadByDefaultAttribute);
@@ -96,28 +96,9 @@ public class SystemToSchedule
 
         var explicitReads = new HashSet<Type>();
 
-        var withRaw = systemToSchedule.Type.GetCustomAttributes(SystemWithAttribute);
-
-        foreach (var attributeRaw in withRaw)
-        {
-            var attribute = (WithAttribute)attributeRaw;
-
-            // TODO: handle without attributes?
-            if (attribute.FilterType is not (ComponentFilterType.WithoutEither or ComponentFilterType.Without))
-            {
-                foreach (var componentType in attribute.ComponentTypes)
-                {
-                    // Handle components that are read by default
-                    if (componentType.GetCustomAttribute(ReadByDefaultAttribute) != null)
-                    {
-                        expectedReadsFrom.Add(componentType);
-                        continue;
-                    }
-
-                    expectedWritesTo.Add(componentType);
-                }
-            }
-        }
+        // TODO: redo this for Arch
+        // need to read Query attributes from system class methods
+        throw new NotImplementedException();
 
         var readsRaw = systemToSchedule.Type.GetCustomAttributes(ReadsFromAttribute);
 

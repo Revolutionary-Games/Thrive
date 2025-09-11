@@ -3,13 +3,14 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Runtime.CompilerServices;
+using Arch.Buffer;
+using Arch.Core;
+using Arch.Core.Extensions;
+using Arch.System;
 using Components;
-using DefaultEcs;
-using DefaultEcs.Command;
-using DefaultEcs.System;
-using DefaultEcs.Threading;
 using Godot;
-using World = DefaultEcs.World;
+using World = Arch.Core.World;
 
 /// <summary>
 ///   Handles microbes dying when they run out of health and also updates the membrane visuals to indicate how
@@ -50,7 +51,7 @@ using World = DefaultEcs.World;
 [RunsAfter(typeof(EngulfingSystem))]
 [RunsBefore(typeof(FadeOutActionSystem))]
 [RuntimeCost(1)]
-public sealed class MicrobeDeathSystem : AEntitySetSystem<float>
+public partial class MicrobeDeathSystem : BaseSystem<World, float>
 {
     private readonly IWorldSimulation worldSimulation;
     private readonly ISpawnSystem spawnSystem;
@@ -60,8 +61,7 @@ public sealed class MicrobeDeathSystem : AEntitySetSystem<float>
     private GameWorld? gameWorld;
     private IDifficulty? difficulty;
 
-    public MicrobeDeathSystem(IWorldSimulation worldSimulation, ISpawnSystem spawnSystem, World world,
-        IParallelRunner parallelRunner) : base(world, parallelRunner)
+    public MicrobeDeathSystem(IWorldSimulation worldSimulation, ISpawnSystem spawnSystem, World world) : base(world)
     {
         this.worldSimulation = worldSimulation;
         this.spawnSystem = spawnSystem;
@@ -244,15 +244,15 @@ public sealed class MicrobeDeathSystem : AEntitySetSystem<float>
         difficulty = world.WorldSettings.Difficulty;
     }
 
-    protected override void PreUpdate(float state)
+    public override void BeforeUpdate(in float delta)
     {
-        base.PreUpdate(state);
-
         if (gameWorld == null || difficulty == null)
             throw new InvalidOperationException("GameWorld not set");
     }
 
-    protected override void Update(float delta, in Entity entity)
+    [Query]
+    [MethodImpl(MethodImplOptions.AggressiveInlining)]
+    private void Update([Data] in float delta, ref TODO components, in Entity entity)
     {
         ref var health = ref entity.Get<Health>();
 
@@ -288,7 +288,7 @@ public sealed class MicrobeDeathSystem : AEntitySetSystem<float>
 
     private bool HandleMicrobeDeath(ref CellProperties cellProperties, in Entity entity)
     {
-        EntityCommandRecorder? commandRecorder = null;
+        CommandBuffer? commandRecorder = null;
 
         bool suppressChunks = false;
 
@@ -346,7 +346,7 @@ public sealed class MicrobeDeathSystem : AEntitySetSystem<float>
     ///   True when the death could be processed, false if the entity isn't ready to process the death
     /// </returns>
     private bool OnKilled(ref CellProperties cellProperties, in Entity entity,
-        ref EntityCommandRecorder? commandRecorder, bool suppressChunks)
+        ref CommandBuffer? commandRecorder, bool suppressChunks)
     {
         ref var organelleContainer = ref entity.Get<OrganelleContainer>();
 
@@ -471,7 +471,7 @@ public sealed class MicrobeDeathSystem : AEntitySetSystem<float>
     }
 
     private void ReleaseAllAgents(ref WorldPosition position, in Entity entity, CompoundBag compounds,
-        Species species, EntityCommandRecorder recorder)
+        Species species, CommandBuffer recorder)
     {
         // To not completely deadlock in this there is a maximum limit
         int createdAgents = 0;
@@ -500,7 +500,7 @@ public sealed class MicrobeDeathSystem : AEntitySetSystem<float>
     }
 
     private void ApplyDeathVisuals(ref CellProperties cellProperties, ref OrganelleContainer organelleContainer,
-        ref WorldPosition position, in Entity entity, EntityCommandRecorder recorder)
+        ref WorldPosition position, in Entity entity, CommandBuffer recorder)
     {
         // Spawn cell death particles.
         float radius = 1;

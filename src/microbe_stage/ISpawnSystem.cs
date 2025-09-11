@@ -1,4 +1,4 @@
-﻿using DefaultEcs.Command;
+﻿using Arch.Core;
 using Godot;
 using Newtonsoft.Json;
 
@@ -26,7 +26,7 @@ public interface ISpawnSystem
 
     /// <summary>
     ///   Notifies this that an externally created entity is now in the world. And needs to be despawned by this.
-    ///   Used to setup the despawn radius for it and make sure entity count is up to date.
+    ///   Used to set up the despawn radius for it and make sure entity count is up to date.
     /// </summary>
     /// <param name="entity">The entity that needs proper despawning support</param>
     /// <param name="despawnRadiusSquared">
@@ -34,7 +34,7 @@ public interface ISpawnSystem
     ///   done to speed up distance checks).
     /// </param>
     /// <param name="entityWeight">How much "space" the entity takes up in the spawn system</param>
-    public void NotifyExternalEntitySpawned(in EntityRecord entity, float despawnRadiusSquared, float entityWeight);
+    public void NotifyExternalEntitySpawned(in Entity entity, float despawnRadiusSquared, float entityWeight);
 
     /// <summary>
     ///   Checks if the approximate entity count is not too much over the entity limit

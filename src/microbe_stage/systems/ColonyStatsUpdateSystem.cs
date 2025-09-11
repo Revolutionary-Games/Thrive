@@ -1,9 +1,9 @@
 ﻿namespace Systems;
 
+using Arch.Core;
+using Arch.Core.Extensions;
+using Arch.System;
 using Components;
-using DefaultEcs;
-using DefaultEcs.System;
-using DefaultEcs.Threading;
 
 /// <summary>
 ///   Handles updating the statistics values (and applying the ones that apply to other components, for example
@@ -15,12 +15,11 @@ using DefaultEcs.Threading;
 [RunsAfter(typeof(SpawnSystem))]
 [RunsAfter(typeof(MulticellularGrowthSystem))]
 [RuntimeCost(0.5f, false)]
-public sealed class ColonyStatsUpdateSystem : AEntitySetSystem<float>
+public partial class ColonyStatsUpdateSystem : BaseSystem<World, float>
 {
     private readonly IWorldSimulation worldSimulation;
 
-    public ColonyStatsUpdateSystem(IWorldSimulation worldSimulation, World world, IParallelRunner parallelRunner) :
-        base(world, parallelRunner)
+    public ColonyStatsUpdateSystem(IWorldSimulation worldSimulation, World world) : base(world)
     {
         this.worldSimulation = worldSimulation;
     }
@@ -73,7 +72,9 @@ public sealed class ColonyStatsUpdateSystem : AEntitySetSystem<float>
         worldSimulation.FinishRecordingEntityCommands(recorder);
     }
 
-    protected override void Update(float delta, in Entity entity)
+    [Query]
+    [MethodImpl(MethodImplOptions.AggressiveInlining)]
+    private void Update([Data] in float delta, ref TODO components, in Entity entity)
     {
         ref var colony = ref entity.Get<MicrobeColony>();
 

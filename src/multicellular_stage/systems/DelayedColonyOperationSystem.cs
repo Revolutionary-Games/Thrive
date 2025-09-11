@@ -1,14 +1,9 @@
 ﻿namespace Systems;
 
 using System;
-using System.Linq;
+using Arch.Buffer;
 using Components;
-using DefaultEcs;
-using DefaultEcs.Command;
-using DefaultEcs.System;
-using DefaultEcs.Threading;
 using Godot;
-using World = DefaultEcs.World;
 
 /// <summary>
 ///   Handles delayed microbe colony operations that couldn't run immediately due to entities being spawned not
@@ -25,7 +20,7 @@ using World = DefaultEcs.World;
 [ReadsComponent(typeof(WorldPosition))]
 [RunsAfter(typeof(ColonyBindingSystem))]
 [RuntimeCost(0.5f, false)]
-public sealed class DelayedColonyOperationSystem : AEntitySetSystem<float>
+public partial class DelayedColonyOperationSystem : BaseSystem<World, float>
 {
     private readonly IWorldSimulation worldSimulation;
     private readonly IMicrobeSpawnEnvironment spawnEnvironment;
@@ -40,10 +35,10 @@ public sealed class DelayedColonyOperationSystem : AEntitySetSystem<float>
         this.spawnSystem = spawnSystem;
     }
 
-    public static void CreateDelayAttachedMicrobe(ref WorldPosition colonyPosition, in Entity colonyEntity,
+    public static void CreateDelayAttachedMicrobe(ref WorldPosition colonyPosition, in Arch.Core.Entity colonyEntity,
         int colonyTargetIndex, CellTemplate cellTemplate, MulticellularSpecies species,
         IWorldSimulation worldSimulation, IMicrobeSpawnEnvironment spawnEnvironment,
-        EntityCommandRecorder recorder, ISpawnSystem notifySpawnTo, bool giveStartingCompounds)
+        CommandBuffer recorder, ISpawnSystem notifySpawnTo, bool giveStartingCompounds)
     {
         if (colonyTargetIndex == 0)
             throw new ArgumentException("Cannot delay add the root colony cell");
@@ -93,7 +88,9 @@ public sealed class DelayedColonyOperationSystem : AEntitySetSystem<float>
         }
     }
 
-    protected override void Update(float delta, in Entity entity)
+    [Query]
+    [MethodImpl(MethodImplOptions.AggressiveInlining)]
+    private void Update([Data] in float delta, ref TODO components, in Entity entity)
     {
         ref var delayed = ref entity.Get<DelayedMicrobeColony>();
 

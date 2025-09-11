@@ -1,10 +1,11 @@
 ﻿namespace Systems;
 
 using System;
+using System.Runtime.CompilerServices;
+using Arch.Core;
+using Arch.Core.Extensions;
+using Arch.System;
 using Components;
-using DefaultEcs;
-using DefaultEcs.System;
-using DefaultEcs.Threading;
 
 /// <summary>
 ///   Handles playing microbe damage sounds and clearing the list of received damage on a microbe
@@ -14,11 +15,11 @@ using DefaultEcs.Threading;
 [WritesToComponent(typeof(SoundEffectPlayer))]
 [RunsBefore(typeof(SoundEffectSystem))]
 [RuntimeCost(0.5f)]
-public sealed class DamageSoundSystem : AEntitySetSystem<float>
+public partial class DamageSoundSystem : BaseSystem<World, float>
 {
     private GameWorld? gameWorld;
 
-    public DamageSoundSystem(World world, IParallelRunner parallelRunner) : base(world, parallelRunner)
+    public DamageSoundSystem(World world) : base(world)
     {
     }
 
@@ -28,15 +29,15 @@ public sealed class DamageSoundSystem : AEntitySetSystem<float>
         gameWorld = world;
     }
 
-    protected override void PreUpdate(float state)
+    public override void BeforeUpdate(in float delta)
     {
-        base.PreUpdate(state);
-
         if (gameWorld == null)
             throw new InvalidOperationException("GameWorld not set");
     }
 
-    protected override void Update(float state, in Entity entity)
+    [Query]
+    [MethodImpl(MethodImplOptions.AggressiveInlining)]
+    private void Update([Data] in float delta, ref TODO components, in Entity entity)
     {
         ref var health = ref entity.Get<Health>();
 

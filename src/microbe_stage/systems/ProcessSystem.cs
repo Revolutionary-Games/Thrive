@@ -3,19 +3,19 @@
 #endif
 
 namespace Systems;
-
 using System;
 using System.Collections.Generic;
 using System.Diagnostics;
 using System.Diagnostics.CodeAnalysis;
 using System.Linq;
+using System.Runtime.CompilerServices;
+using Arch.Core;
+using Arch.Core.Extensions;
+using Arch.System;
 using AutoEvo;
 using Components;
-using DefaultEcs;
-using DefaultEcs.System;
-using DefaultEcs.Threading;
 using Godot;
-using World = DefaultEcs.World;
+using World = Arch.Core.World;
 
 /// <summary>
 ///   Runs biological processes on entities
@@ -31,7 +31,7 @@ using World = DefaultEcs.World;
 [RunsBefore(typeof(OsmoregulationAndHealingSystem))]
 [RunsBefore(typeof(MicrobeMovementSystem))]
 [RuntimeCost(55)]
-public sealed class ProcessSystem : AEntitySetSystem<float>
+public partial class ProcessSystem : BaseSystem<World, float>
 {
 #if CHECK_USED_STATISTICS
     private readonly List<ProcessStatistics> usedStatistics = new();
@@ -778,7 +778,7 @@ public sealed class ProcessSystem : AEntitySetSystem<float>
         return GetAmbientInBiome(compound, biome, amountType);
     }
 
-    protected override void PreUpdate(float delta)
+    public override void BeforeUpdate(in float delta)
     {
         if (biome == null)
         {
@@ -795,7 +795,9 @@ public sealed class ProcessSystem : AEntitySetSystem<float>
 #endif
     }
 
-    protected override void Update(float delta, in Entity entity)
+    [Query]
+    [MethodImpl(MethodImplOptions.AggressiveInlining)]
+    private void Update([Data] in float delta, ref TODO components, in Entity entity)
     {
         ref var storage = ref entity.Get<CompoundStorage>();
         ref var processes = ref entity.Get<BioProcesses>();

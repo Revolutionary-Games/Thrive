@@ -1,12 +1,12 @@
 ﻿namespace Systems;
 
+using Arch.Core;
+using Arch.Core.Extensions;
+using Arch.System;
 using Components;
-using DefaultEcs;
 using DefaultEcs.Command;
-using DefaultEcs.System;
-using DefaultEcs.Threading;
 using Godot;
-using World = DefaultEcs.World;
+using World = Arch.Core.World;
 
 /// <summary>
 ///   Handles microbe binding mode for creating microbe colonies
@@ -40,17 +40,18 @@ using World = DefaultEcs.World;
 [RunsBefore(typeof(MicrobeFlashingSystem))]
 [RunsAfter(typeof(MicrobeMovementSystem))]
 [RunsAfter(typeof(EngulfingSystem))]
-public sealed class ColonyBindingSystem : AEntitySetSystem<float>
+public partial class ColonyBindingSystem : BaseSystem<World, float>
 {
     private readonly IWorldSimulation worldSimulation;
 
-    public ColonyBindingSystem(IWorldSimulation worldSimulation, World world, IParallelRunner parallelRunner) :
-        base(world, parallelRunner)
+    public ColonyBindingSystem(IWorldSimulation worldSimulation, World world) : base(world)
     {
         this.worldSimulation = worldSimulation;
     }
 
-    protected override void Update(float delta, in Entity entity)
+    [Query]
+    [MethodImpl(MethodImplOptions.AggressiveInlining)]
+    private void Update([Data] in float delta, ref TODO components, in Entity entity)
     {
         ref var control = ref entity.Get<MicrobeControl>();
 

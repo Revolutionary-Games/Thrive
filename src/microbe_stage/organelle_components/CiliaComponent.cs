@@ -1,7 +1,8 @@
 ﻿using System;
 using System.Collections.Generic;
+using Arch.Core;
+using Arch.Core.Extensions;
 using Components;
-using DefaultEcs;
 using Godot;
 
 public class CiliaComponent : IOrganelleComponent
@@ -195,8 +196,7 @@ public class CiliaComponent : IOrganelleComponent
             // Cilia initialization
             var recorder = worldSimulation.StartRecordingEntityCommands();
 
-            var entityRecord = recorder.Record(microbeEntity);
-            entityRecord.Set(new PhysicsSensor(Constants.MAX_SIMULTANEOUS_COLLISIONS_SENSOR)
+            recorder.Set(microbeEntity, new PhysicsSensor(Constants.MAX_SIMULTANEOUS_COLLISIONS_SENSOR)
             {
                 ActiveArea = CreateCiliaDetectorShape(sharedPullData.CiliaCount),
             });
@@ -209,8 +209,8 @@ public class CiliaComponent : IOrganelleComponent
 
         ref var sensor = ref microbeEntity.Get<PhysicsSensor>();
 
-        // When loading a save some state needs to be reinitialized. Or if the cilia count has changed then the shape
-        // also needs to be recreated
+        // When loading a save, some state needs to be reinitialized.
+        // Or if the cilia count has changed, then the shape also needs to be recreated.
         if (sensor.ActiveArea == null || sharedPullData.SizeCreatedWithCilia != sharedPullData.CiliaCount)
         {
             // TODO: could dispose the old area here to release that shape data faster

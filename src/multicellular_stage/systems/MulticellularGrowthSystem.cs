@@ -3,12 +3,13 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Runtime.CompilerServices;
+using Arch.Core;
+using Arch.Core.Extensions;
+using Arch.System;
 using Components;
-using DefaultEcs;
-using DefaultEcs.System;
-using DefaultEcs.Threading;
 using Godot;
-using World = DefaultEcs.World;
+using World = Arch.Core.World;
 
 /// <summary>
 ///   Handles growth in multicellular cell colonies
@@ -40,7 +41,7 @@ using World = DefaultEcs.World;
 [RunsAfter(typeof(ProcessSystem))]
 [RunsAfter(typeof(ColonyCompoundDistributionSystem))]
 [RuntimeCost(4, false)]
-public sealed class MulticellularGrowthSystem : AEntitySetSystem<float>
+public partial class MulticellularGrowthSystem : BaseSystem<World, float>
 {
     // TODO: https://github.com/Revolutionary-Games/Thrive/issues/4989
     // private readonly ThreadLocal<List<Compound>> temporaryWorkData = new(() => new List<Compound>());
@@ -72,15 +73,15 @@ public sealed class MulticellularGrowthSystem : AEntitySetSystem<float>
         base.Dispose();
     }
 
-    protected override void PreUpdate(float delta)
+    public override void BeforeUpdate(in float delta)
     {
         if (gameWorld == null)
             throw new InvalidOperationException("GameWorld not set");
-
-        base.PreUpdate(delta);
     }
 
-    protected override void Update(float delta, in Entity entity)
+    [Query]
+    [MethodImpl(MethodImplOptions.AggressiveInlining)]
+    private void Update([Data] in float delta, ref TODO components, in Entity entity)
     {
         ref var health = ref entity.Get<Health>();
 

@@ -1,6 +1,6 @@
 ﻿namespace Components;
 
-using DefaultEcs;
+using Arch.Core;
 
 /// <summary>
 ///   Marks entities as being player reproduced copies

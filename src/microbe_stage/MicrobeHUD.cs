@@ -2,8 +2,9 @@
 using System.Collections.Generic;
 using System.Globalization;
 using System.Linq;
+using Arch.Core;
+using Arch.Core.Extensions;
 using Components;
-using DefaultEcs;
 using Godot;
 using Newtonsoft.Json;
 
@@ -322,13 +323,10 @@ public partial class MicrobeHUD : CreatureStageHUDBase<MicrobeStage>
     {
         var fossils = FossilisedSpecies.CreateListOfFossils(false);
 
-        foreach (var entity in stage!.WorldSimulation.EntitySystem)
+        // TODO: buttons to fossilize multicellular species
+        stage!.WorldSimulation.EntitySystem.Query(new QueryDescription().WithAll<MicrobeSpeciesMember>(), (Entity entity, ref SpeciesMember member) =>
         {
-            // TODO: buttons to fossilize multicellular species
-            if (!entity.Has<MicrobeSpeciesMember>())
-                continue;
-
-            var species = entity.Get<SpeciesMember>().Species;
+            var species = member.Species;
 
             var button = FossilisationButtonScene.Instantiate<FossilisationButton>();
             button.AttachedEntity = entity;
@@ -342,7 +340,7 @@ public partial class MicrobeHUD : CreatureStageHUDBase<MicrobeStage>
             SetupFossilisationButtonVisuals(button, alreadyFossilised);
 
             fossilisationButtonLayer.AddChild(button);
-        }
+        });
     }
 
     protected override void ReadPlayerHitpoints(out float hp, out float maxHealth)

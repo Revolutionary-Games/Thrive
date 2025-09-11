@@ -1,5 +1,4 @@
 ﻿using System;
-using DefaultEcs.System;
 
 /// <summary>
 ///   Marks a system as reading from a component. Can be used to mark a <see cref="WithAttribute"/> relationship

@@ -2,29 +2,27 @@
 
 using System.Collections.Generic;
 using System.Runtime.CompilerServices;
+using Arch.Core;
+using Arch.Core.Extensions;
+using Arch.System;
 using Components;
-using DefaultEcs;
-using DefaultEcs.System;
 using Godot;
-using World = DefaultEcs.World;
+using World = Arch.Core.World;
 
 /// <summary>
 ///   Handling system for <see cref="PhysicsSensorSystem"/>. Keeps the sensor at the world position of the entity.
 /// </summary>
-[With(typeof(PhysicsSensor))]
-[With(typeof(WorldPosition))]
 [ReadsComponent(typeof(WorldPosition))]
 [RunsAfter(typeof(PhysicsUpdateAndPositionSystem))]
 [RunsOnMainThread]
-public sealed class PhysicsSensorSystem : AEntitySetSystem<float>
+public partial class PhysicsSensorSystem : BaseSystem<World, float>
 {
     private readonly IWorldSimulationWithPhysics worldSimulationWithPhysics;
 
     private readonly List<NativePhysicsBody> createdSensors = new();
     private readonly Dictionary<Entity, NativePhysicsBody> detachedBodies = new();
 
-    public PhysicsSensorSystem(IWorldSimulationWithPhysics worldSimulationWithPhysics, World world) :
-        base(world, null)
+    public PhysicsSensorSystem(IWorldSimulationWithPhysics worldSimulationWithPhysics, World world) : base(world)
     {
         this.worldSimulationWithPhysics = worldSimulationWithPhysics;
     }
@@ -61,7 +59,7 @@ public sealed class PhysicsSensorSystem : AEntitySetSystem<float>
         base.Dispose();
     }
 
-    protected override void PreUpdate(float delta)
+    public override void BeforeUpdate(in float delta)
     {
         // Immediate sensor destruction is handled by the world, but we still do this to detect if a sensor gets
         // removed without deleting the entity
@@ -71,10 +69,10 @@ public sealed class PhysicsSensorSystem : AEntitySetSystem<float>
         }
     }
 
-    protected override void Update(float delta, in Entity entity)
+    [Query]
+    [MethodImpl(MethodImplOptions.AggressiveInlining)]
+    private void Update(ref PhysicsSensor sensor, ref WorldPosition position, in Entity entity)
     {
-        ref var sensor = ref entity.Get<PhysicsSensor>();
-
         // Handle disabling
         if (sensor.Disabled != sensor.InternalDisabledState)
         {
@@ -129,7 +127,6 @@ public sealed class PhysicsSensorSystem : AEntitySetSystem<float>
         if (sensor.SensorBody == null && sensor.ActiveArea != null)
         {
             // Time to create a body
-            ref var position = ref entity.Get<WorldPosition>();
             sensor.SensorBody = worldSimulationWithPhysics.CreateSensor(sensor.ActiveArea, position.Position,
                 Quaternion.Identity, sensor.DetectSleepingBodies, sensor.DetectStaticBodies);
 
@@ -158,8 +155,6 @@ public sealed class PhysicsSensorSystem : AEntitySetSystem<float>
         // Update sensor position if a sensor exists
         if (sensor.SensorBody != null)
         {
-            ref var position = ref entity.Get<WorldPosition>();
-
             // TODO: should sensors have their rotation also apply? (see also above in the creation)
             worldSimulationWithPhysics.PhysicalWorld.SetBodyPosition(sensor.SensorBody, position.Position);
 
@@ -167,7 +162,7 @@ public sealed class PhysicsSensorSystem : AEntitySetSystem<float>
         }
     }
 
-    protected override void PostUpdate(float delta)
+    public override void AfterUpdate(in float delta)
     {
         createdSensors.RemoveAll(DestroySensorIfNotMarked);
     }

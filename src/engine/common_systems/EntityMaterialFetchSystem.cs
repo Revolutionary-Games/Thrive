@@ -2,35 +2,36 @@
 
 using System;
 using System.Collections.Generic;
+using System.Runtime.CompilerServices;
+using Arch.Core;
+using Arch.Core.Extensions;
+using Arch.System;
 using Components;
-using DefaultEcs;
-using DefaultEcs.System;
 using Godot;
-using World = DefaultEcs.World;
+using World = Arch.Core.World;
 
 /// <summary>
 ///   Fetches the materials for <see cref="EntityMaterial"/> that have auto fetch on
 /// </summary>
-[With(typeof(EntityMaterial))]
 [ReadsComponent(typeof(SpatialInstance))]
 [ReadsComponent(typeof(SpatialInstance))]
 [RunsAfter(typeof(PathBasedSceneLoader))]
 [RunsAfter(typeof(PredefinedVisualLoaderSystem))]
 [RuntimeCost(0.5f)]
 [RunsOnMainThread]
-public sealed class EntityMaterialFetchSystem : AEntitySetSystem<float>
+public partial class EntityMaterialFetchSystem : BaseSystem<World, float>
 {
     private readonly List<ShaderMaterial> tempMaterialFetchList = new();
 
     // TODO: determine if it is thread safe to fetch Godot materials
-    public EntityMaterialFetchSystem(World world) : base(world, null)
+    public EntityMaterialFetchSystem(World world) : base(world)
     {
     }
 
-    protected override void Update(float delta, in Entity entity)
+    [Query]
+    [MethodImpl(MethodImplOptions.AggressiveInlining)]
+    private void Update(ref EntityMaterial materialComponent, in Entity entity)
     {
-        ref var materialComponent = ref entity.Get<EntityMaterial>();
-
         if (materialComponent.MaterialFetchPerformed || materialComponent.Materials != null)
             return;
 

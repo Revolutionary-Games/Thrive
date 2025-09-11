@@ -3,10 +3,10 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using Arch.Core;
+using Arch.System;
 using Components;
-using DefaultEcs;
 using DefaultEcs.Command;
-using DefaultEcs.System;
 using Godot;
 using Newtonsoft.Json;
 using Nito.Collections;

@@ -4,12 +4,12 @@ using System;
 using System.Collections.Concurrent;
 using System.Collections.Generic;
 using System.Runtime.CompilerServices;
+using Arch.Core;
+using Arch.Core.Extensions;
+using Arch.System;
 using Components;
-using DefaultEcs;
-using DefaultEcs.System;
-using DefaultEcs.Threading;
 using Godot;
-using World = DefaultEcs.World;
+using World = Arch.Core.World;
 
 /// <summary>
 ///   Handles reproduction progress in microbes that are not in aa cell colony. <see cref="AttachedToEntity"/> is
@@ -51,7 +51,7 @@ using World = DefaultEcs.World;
 [RunsAfter(typeof(ProcessSystem))]
 [RuntimeCost(14)]
 [RunsOnMainThread]
-public sealed class MicrobeReproductionSystem : AEntitySetSystem<float>
+public partial class MicrobeReproductionSystem : BaseSystem<World, float>
 {
     private readonly IWorldSimulation worldSimulation;
     private readonly IMicrobeSpawnEnvironment spawnEnvironment;
@@ -77,7 +77,7 @@ public sealed class MicrobeReproductionSystem : AEntitySetSystem<float>
     private float reproductionDelta;
 
     public MicrobeReproductionSystem(IWorldSimulation worldSimulation, IMicrobeSpawnEnvironment spawnEnvironment,
-        ISpawnSystem spawnSystem, World world, IParallelRunner parallelRunner) :
+        ISpawnSystem spawnSystem, World world) :
         base(world, parallelRunner, Constants.SYSTEM_NORMAL_ENTITIES_PER_THREAD)
     {
         this.worldSimulation = worldSimulation;
@@ -179,12 +179,10 @@ public sealed class MicrobeReproductionSystem : AEntitySetSystem<float>
         return reproductionStageComplete;
     }
 
-    protected override void PreUpdate(float delta)
+    public override void BeforeUpdate(in float delta)
     {
         if (gameWorld == null || difficulty == null)
             throw new InvalidOperationException("GameWorld not set");
-
-        base.PreUpdate(delta);
 
         reproductionDelta = delta;
 
@@ -199,7 +197,9 @@ public sealed class MicrobeReproductionSystem : AEntitySetSystem<float>
         }
     }
 
-    protected override void Update(float state, in Entity entity)
+    [Query]
+    [MethodImpl(MethodImplOptions.AggressiveInlining)]
+    private void Update([Data] in float delta, ref TODO components, in Entity entity)
     {
         ref var health = ref entity.Get<Health>();
 
@@ -255,10 +255,8 @@ public sealed class MicrobeReproductionSystem : AEntitySetSystem<float>
         HandleNormalMicrobeReproduction(entity, ref organelles, status.ConsumeReproductionCompoundsReverse);
     }
 
-    protected override void PostUpdate(float state)
+    public override void AfterUpdate(in float delta)
     {
-        base.PostUpdate(state);
-
         bool printedError = false;
 
         // Apply scales

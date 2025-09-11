@@ -3,18 +3,19 @@
 using System;
 using System.Collections.Generic;
 using System.Runtime.CompilerServices;
+using Arch.Core;
+using Arch.Core.Extensions;
+using Arch.System;
 using Components;
-using DefaultEcs;
-using DefaultEcs.System;
-using DefaultEcs.Threading;
 using Godot;
-using World = DefaultEcs.World;
+using World = Arch.Core.World;
 
-[With(typeof(Physics))]
-[With(typeof(CollisionManagement))]
+/// <summary>
+///   Applies <see cref="CollisionManagement"/> to physics bodies
+/// </summary>
 [RunsAfter(typeof(PhysicsBodyCreationSystem))]
 [RuntimeCost(1)]
-public sealed class PhysicsCollisionManagementSystem : AEntitySetSystem<float>
+public partial class PhysicsCollisionManagementSystem : BaseSystem<World, float>
 {
     private readonly PhysicalWorld physicalWorld;
 
@@ -28,8 +29,7 @@ public sealed class PhysicsCollisionManagementSystem : AEntitySetSystem<float>
     /// </summary>
     private readonly List<NativePhysicsBody> resolvedBodyReferences = new();
 
-    public PhysicsCollisionManagementSystem(PhysicalWorld physicalWorld, World world, IParallelRunner runner) :
-        base(world, runner)
+    public PhysicsCollisionManagementSystem(PhysicalWorld physicalWorld, World world) : base(world)
     {
         this.physicalWorld = physicalWorld;
     }
@@ -63,11 +63,10 @@ public sealed class PhysicsCollisionManagementSystem : AEntitySetSystem<float>
         }
     }
 
-    protected override void Update(float delta, in Entity entity)
+    [Query]
+    [MethodImpl(MethodImplOptions.AggressiveInlining)]
+    private void Update(ref Physics physics, ref CollisionManagement collisionManagement, in Entity entity)
     {
-        ref var physics = ref entity.Get<Physics>();
-        ref var collisionManagement = ref entity.Get<CollisionManagement>();
-
         if (collisionManagement.StateApplied)
             return;
 

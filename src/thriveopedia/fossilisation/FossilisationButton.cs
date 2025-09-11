@@ -1,5 +1,6 @@
-﻿using Components;
-using DefaultEcs;
+﻿using Arch.Core;
+using Arch.Core.Extensions;
+using Components;
 using Godot;
 
 /// <summary>
@@ -66,7 +67,7 @@ public partial class FossilisationButton : TextureButton
             camera = GetViewport().GetCamera3D();
 
         // If the entity is removed (e.g. forcefully despawned)
-        if (!AttachedEntity.IsAlive || !AttachedEntity.Has<WorldPosition>())
+        if (!AttachedEntity.IsAlive() || !AttachedEntity.Has<WorldPosition>())
         {
             this.DetachAndQueueFree();
             return;

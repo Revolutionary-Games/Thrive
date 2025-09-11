@@ -3,12 +3,12 @@
 using System;
 using System.Linq;
 using System.Runtime.CompilerServices;
+using Arch.Core;
+using Arch.Core.Extensions;
+using Arch.System;
 using Components;
-using DefaultEcs;
-using DefaultEcs.System;
-using DefaultEcs.Threading;
 using Godot;
-using World = DefaultEcs.World;
+using World = Arch.Core.World;
 
 /// <summary>
 ///   Handles microbes emitting agents (toxins) or slime
@@ -34,14 +34,13 @@ using World = DefaultEcs.World;
 [RunsBefore(typeof(MicrobeMovementSystem))]
 [RunsAfter(typeof(ProcessSystem))]
 [RuntimeCost(1)]
-public sealed class MicrobeEmissionSystem : AEntitySetSystem<float>
+public partial class MicrobeEmissionSystem : BaseSystem<World, float>
 {
     private readonly IWorldSimulation worldSimulation;
     private readonly CompoundCloudSystem clouds;
 
-    public MicrobeEmissionSystem(IWorldSimulation worldSimulation, CompoundCloudSystem cloudSystem, World world,
-        IParallelRunner parallelRunner) :
-        base(world, parallelRunner)
+    public MicrobeEmissionSystem(IWorldSimulation worldSimulation, CompoundCloudSystem cloudSystem, World world) :
+        base(world)
     {
         this.worldSimulation = worldSimulation;
         clouds = cloudSystem;
@@ -79,7 +78,9 @@ public sealed class MicrobeEmissionSystem : AEntitySetSystem<float>
         return 1;
     }
 
-    protected override void Update(float delta, in Entity entity)
+    [Query]
+    [MethodImpl(MethodImplOptions.AggressiveInlining)]
+    private void Update([Data] in float delta, ref TODO components, in Entity entity)
     {
         ref var control = ref entity.Get<MicrobeControl>();
 

@@ -1,11 +1,12 @@
 ﻿namespace Systems;
 
+using System.Runtime.CompilerServices;
+using Arch.Core;
+using Arch.Core.Extensions;
+using Arch.System;
 using Components;
-using DefaultEcs;
-using DefaultEcs.System;
-using DefaultEcs.Threading;
 using Godot;
-using World = DefaultEcs.World;
+using World = Arch.Core.World;
 
 /// <summary>
 ///   Handles playing (and stopping) of microbe movement sound
@@ -22,14 +23,15 @@ using World = DefaultEcs.World;
 [RunsAfter(typeof(MicrobeMovementSystem))]
 [RunsBefore(typeof(SoundEffectSystem))]
 [RuntimeCost(3)]
-public sealed class MicrobeMovementSoundSystem : AEntitySetSystem<float>
+public partial class MicrobeMovementSoundSystem : BaseSystem<World, float>
 {
-    public MicrobeMovementSoundSystem(World world, IParallelRunner parallelRunner) :
-        base(world, parallelRunner)
+    public MicrobeMovementSoundSystem(World world) : base(world)
     {
     }
 
-    protected override void Update(float delta, in Entity entity)
+    [Query]
+    [MethodImpl(MethodImplOptions.AggressiveInlining)]
+    private void Update([Data] in float delta, ref TODO components, in Entity entity)
     {
         ref var status = ref entity.Get<MicrobeStatus>();
         ref var control = ref entity.Get<MicrobeControl>();

@@ -2,11 +2,11 @@
 
 using System;
 using System.Collections.Generic;
+using Arch.Core;
+using Arch.Core.Extensions;
+using Arch.System;
 using Components;
-using DefaultEcs;
-using DefaultEcs.System;
-using DefaultEcs.Threading;
-using World = DefaultEcs.World;
+using World = Arch.Core.World;
 
 /// <summary>
 ///   Handles siderophore projectile collisions
@@ -17,7 +17,7 @@ using World = DefaultEcs.World;
 [With(typeof(SiderophoreProjectile))]
 [RunsAfter(typeof(PhysicsCollisionManagementSystem))]
 [RuntimeCost(0.5f, false)]
-public sealed class SiderophoreSystem : AEntitySetSystem<float>
+public partial class SiderophoreSystem : BaseSystem<World, float>
 {
     private readonly ChunkConfiguration smallIronChunkCache = SimulationParameters.Instance.GetBiome("default")
         .Conditions.Chunks["ironSmallChunk"];
@@ -33,7 +33,9 @@ public sealed class SiderophoreSystem : AEntitySetSystem<float>
         smallIronChunkCache.Compounds = new Dictionary<Compound, ChunkConfiguration.ChunkCompound>();
     }
 
-    protected override void Update(float delta, in Entity entity)
+    [Query]
+    [MethodImpl(MethodImplOptions.AggressiveInlining)]
+    private void Update([Data] in float delta, ref TODO components, in Entity entity)
     {
         ref var projectile = ref entity.Get<SiderophoreProjectile>();
 

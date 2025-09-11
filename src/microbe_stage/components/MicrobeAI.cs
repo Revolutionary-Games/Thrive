@@ -2,7 +2,7 @@
 
 using System;
 using System.Collections.Generic;
-using DefaultEcs;
+using Arch.Core;
 using Godot;
 using Newtonsoft.Json;
 using Systems;

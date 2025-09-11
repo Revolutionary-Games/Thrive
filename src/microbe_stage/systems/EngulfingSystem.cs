@@ -4,13 +4,15 @@ using System;
 using System.Collections.Generic;
 using System.Diagnostics;
 using System.Linq;
+using System.Runtime.CompilerServices;
+using Arch.Buffer;
+using Arch.Core;
+using Arch.Core.Extensions;
+using Arch.System;
 using Components;
-using DefaultEcs;
-using DefaultEcs.Command;
-using DefaultEcs.System;
 using Godot;
 using Xoshiro.PRNG32;
-using World = DefaultEcs.World;
+using World = Arch.Core.World;
 
 /// <summary>
 ///   Handles starting pulling in <see cref="Engulfable"/> to <see cref="Engulfer"/> entities and also expelling
@@ -58,7 +60,7 @@ using World = DefaultEcs.World;
 [RunsBefore(typeof(SpatialAttachSystem))]
 [RuntimeCost(11)]
 [RunsOnMainThread]
-public sealed class EngulfingSystem : AEntitySetSystem<float>
+public partial class EngulfingSystem : BaseSystem<World, float>
 {
     /// <summary>
     ///   Cache to re-use bulk transport animation objects
@@ -110,7 +112,7 @@ public sealed class EngulfingSystem : AEntitySetSystem<float>
     private bool endosomeDebugAlreadyPrinted;
 
     public EngulfingSystem(IWorldSimulation worldSimulation, ISpawnSystem spawnSystem, World world) :
-        base(world, null)
+        base(world)
     {
         this.worldSimulation = worldSimulation;
         this.spawnSystem = spawnSystem;
@@ -144,7 +146,7 @@ public sealed class EngulfingSystem : AEntitySetSystem<float>
         {
             ref var engulfable = ref entity.Get<Engulfable>();
 
-            if (engulfable.HostileEngulfer.IsAlive && engulfable.HostileEngulfer.Has<Engulfer>())
+            if (engulfable.HostileEngulfer.IsAlive() && engulfable.HostileEngulfer.Has<Engulfer>())
             {
                 // Force eject from the engulfer
                 ForceEjectSingleEngulfable(ref engulfable.HostileEngulfer.Get<Engulfer>(),
@@ -158,15 +160,15 @@ public sealed class EngulfingSystem : AEntitySetSystem<float>
         EjectEngulfablesOnDeath(entity);
     }
 
-    protected override void PreUpdate(float state)
+    public override void BeforeUpdate(in float delta)
     {
-        base.PreUpdate(state);
-
         if (gameWorld == null)
             throw new InvalidOperationException("GameWorld not set");
     }
 
-    protected override void Update(float delta, in Entity entity)
+    [Query]
+    [MethodImpl(MethodImplOptions.AggressiveInlining)]
+    private void Update([Data] in float delta, ref TODO components, in Entity entity)
     {
         ref var engulfer = ref entity.Get<Engulfer>();
         ref var health = ref entity.Get<Health>();
@@ -250,7 +252,7 @@ public sealed class EngulfingSystem : AEntitySetSystem<float>
         {
             var engulfedEntity = engulfer.EngulfedObjects![i];
 
-            if (!engulfedEntity.IsAlive || !engulfedEntity.Has<Engulfable>())
+            if (!engulfedEntity.IsAlive() || !engulfedEntity.Has<Engulfable>())
             {
                 // Clear once the object has been fully eaten / deleted. We can't call RemoveEngulfedObject
                 // as the engulfed object may be invalid already
@@ -413,10 +415,8 @@ public sealed class EngulfingSystem : AEntitySetSystem<float>
         SetPhagosomeColours(entity, colour);
     }
 
-    protected override void PostUpdate(float state)
+    public override void AfterUpdate(in float delta)
     {
-        base.PostUpdate(state);
-
         beginningEngulfedObjects.Clear();
 
         // Delete unused endosome graphics. First mark unused things
@@ -995,7 +995,7 @@ public sealed class EngulfingSystem : AEntitySetSystem<float>
         foreach (var engulfedObject in tempEntitiesToEject)
         {
             // In case here, the engulfer being dead, we check to make sure the engulfed objects aren't incorrect
-            if (!engulfedObject.IsAlive || !engulfedObject.Has<Engulfable>())
+            if (!engulfedObject.IsAlive() || !engulfedObject.Has<Engulfable>())
             {
                 GD.PrintErr("Ejecting everything from a dead engulfable encountered a destroyed engulfed entity");
                 continue;
@@ -1203,7 +1203,7 @@ public sealed class EngulfingSystem : AEntitySetSystem<float>
         if (engulferCellProperties.IsBacteria)
             radius *= 0.5f;
 
-        EntityCommandRecorder? recorder = null;
+        CommandBuffer? recorder = null;
 
         // Steal this cell from a colony if it is in a colony currently
         // Right now this causes extra operations for deleting the attach component but avoiding that would
@@ -1545,7 +1545,7 @@ public sealed class EngulfingSystem : AEntitySetSystem<float>
 
             if (engulfersEngulfable.PhagocytosisStep != PhagocytosisPhase.None)
             {
-                if (!engulfersEngulfable.HostileEngulfer.IsAlive ||
+                if (!engulfersEngulfable.HostileEngulfer.IsAlive() ||
                     !engulfersEngulfable.HostileEngulfer.Has<Engulfer>())
                 {
                     GD.PrintErr("Attempt to pass ejected object to our engulfer failed because that " +

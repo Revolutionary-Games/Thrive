@@ -2,9 +2,10 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using Arch.Buffer;
+using Arch.Core;
+using Arch.Core.Extensions;
 using Components;
-using DefaultEcs;
-using DefaultEcs.Command;
 using Godot;
 using Newtonsoft.Json;
 
@@ -143,7 +144,7 @@ public partial class MicrobeStage : CreatureStageBase<Entity, MicrobeWorldSimula
         CurrentGame?.TutorialState ?? throw new InvalidOperationException("Game not started yet");
 
     [JsonIgnore]
-    public override bool HasPlayer => Player.IsAlive;
+    public override bool HasPlayer => Player.IsAlive();
 
     [JsonIgnore]
     public override bool HasAlivePlayer => HasPlayer && IsPlayerAlive();
@@ -920,10 +921,10 @@ public partial class MicrobeStage : CreatureStageBase<Entity, MicrobeWorldSimula
         // Spawn another cell from the player species
         // This needs to be done after updating the player so that multicellular organisms are accurately separated
         cellProperties.Divide(ref Player.Get<OrganelleContainer>(), Player, playerSpecies, WorldSimulation,
-            this, WorldSimulation.SpawnSystem, (ref EntityRecord daughter) =>
+            this, WorldSimulation.SpawnSystem, (ref Entity daughter, CommandBuffer commandBuffer) =>
             {
                 // Mark as a player-reproduced entity
-                daughter.Set(new PlayerOffspring
+                commandBuffer.Set(daughter, new PlayerOffspring
                 {
                     OffspringOrderNumber = ++playerOffspringTotalCount,
                 });
@@ -940,7 +941,7 @@ public partial class MicrobeStage : CreatureStageBase<Entity, MicrobeWorldSimula
             var doNotDespawn = PlayerOffspringHelpers.FindLatestSpawnedOffspring(WorldSimulation.EntitySystem);
 
 #if DEBUG
-            if (doNotDespawn.IsAlive && !doNotDespawn.Has<Spawned>())
+            if (doNotDespawn.IsAlive() && !doNotDespawn.Has<Spawned>())
             {
                 throw new Exception(
                     "Spawned player offspring has no spawned component, microbe reproduction method is" +
@@ -1565,22 +1566,23 @@ public partial class MicrobeStage : CreatureStageBase<Entity, MicrobeWorldSimula
     ///   Helper function for transition to multicellular. For normal gameplay this would be not optimal as this
     ///   uses the slow world entity fetching.
     /// </summary>
-    /// <returns>Enumerable of all microbes of Player's species</returns>
-    private IEnumerable<Entity> GetAllPlayerSpeciesMicrobes()
+    /// <returns>All microbes of Player's species</returns>
+    private List<Entity> GetAllPlayerSpeciesMicrobes()
     {
         if (Player == default)
             throw new InvalidOperationException("Could not get player species microbes: no Player object");
 
         var species = Player.Get<SpeciesMember>().ID;
+        var result = new List<Entity>();
 
-        foreach (var entity in WorldSimulation.EntitySystem)
-        {
-            if (!entity.Has<SpeciesMember>())
-                continue;
+        WorldSimulation.EntitySystem.Query(new QueryDescription().WithAll<SpeciesMember>(),
+            (Entity entity, ref SpeciesMember member) =>
+            {
+                if (member.ID == species)
+                    result.Add(entity);
+            });
 
-            if (entity.Get<SpeciesMember>().ID == species)
-                yield return entity;
-        }
+        return result;
     }
 
     private void OnSpawnEnemyCheatUsed(object? sender, EventArgs e)
@@ -1657,7 +1659,7 @@ public partial class MicrobeStage : CreatureStageBase<Entity, MicrobeWorldSimula
 
     private bool PlayerIsEngulfed(Entity player)
     {
-        if (player.IsAlive && player.Has<Engulfable>())
+        if (player.IsAlive() && player.Has<Engulfable>())
         {
             return player.Get<Engulfable>().PhagocytosisStep != PhagocytosisPhase.None;
         }
@@ -1715,7 +1717,7 @@ public partial class MicrobeStage : CreatureStageBase<Entity, MicrobeWorldSimula
         {
             try
             {
-                if (!player.IsAlive)
+                if (!player.IsAlive())
                 {
                     GD.PrintErr("Got player engulfed callback but player entity is dead");
                     OnCanEditStatusChanged(false);
@@ -1853,7 +1855,7 @@ public partial class MicrobeStage : CreatureStageBase<Entity, MicrobeWorldSimula
             chemoreception.Line.LineStart = position;
 
             // The target needs to be updated for entities with a position.
-            if (chemoreception.TargetEntity.IsAlive && chemoreception.TargetEntity.Has<WorldPosition>())
+            if (chemoreception.TargetEntity.IsAlive() && chemoreception.TargetEntity.Has<WorldPosition>())
             {
                 chemoreception.Line.LineEnd = chemoreception.TargetEntity.Get<WorldPosition>().Position;
             }

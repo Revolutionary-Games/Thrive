@@ -2,13 +2,13 @@
 
 using System;
 using System.Runtime.CompilerServices;
+using Arch.Core;
+using Arch.Core.Extensions;
+using Arch.System;
 using Components;
-using DefaultEcs;
-using DefaultEcs.System;
-using DefaultEcs.Threading;
 using Godot;
 using Newtonsoft.Json;
-using World = DefaultEcs.World;
+using World = Arch.Core.World;
 
 /// <summary>
 ///   Gives a push from currents in a fluid to physics entities (that have <see cref="ManualPhysicsControl"/>).
@@ -24,7 +24,7 @@ using World = DefaultEcs.World;
 [RuntimeCost(8)]
 [JsonObject(MemberSerialization.OptIn)]
 [RunsOnMainThread]
-public sealed class FluidCurrentsSystem : AEntitySetSystem<float>
+public partial class FluidCurrentsSystem : BaseSystem<World, float>
 {
     public FluidCurrentDisplay? FluidCurrentDisplay;
 
@@ -97,10 +97,8 @@ public sealed class FluidCurrentsSystem : AEntitySetSystem<float>
         return currentsVelocity * speed;
     }
 
-    protected override void PreUpdate(float delta)
+    public override void BeforeUpdate(in float delta)
     {
-        base.PreUpdate(delta);
-
         if (!imagesInitialized)
         {
             currentsNoise1 = currentsNoise1Texture.GetImage();
@@ -129,7 +127,9 @@ public sealed class FluidCurrentsSystem : AEntitySetSystem<float>
         inverseScale = biome.WaterCurrents.InverseScale;
     }
 
-    protected override void Update(float delta, in Entity entity)
+    [Query]
+    [MethodImpl(MethodImplOptions.AggressiveInlining)]
+    private void Update([Data] in float delta, ref TODO components, in Entity entity)
     {
         ref var physics = ref entity.Get<Physics>();
 

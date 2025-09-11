@@ -5,7 +5,7 @@ using System.Collections.Generic;
 using System.Runtime.CompilerServices;
 using System.Runtime.InteropServices;
 using System.Threading;
-using DefaultEcs;
+using Arch.Core;
 using Godot;
 using Newtonsoft.Json;
 

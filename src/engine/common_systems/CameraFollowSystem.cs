@@ -1,11 +1,13 @@
 ﻿namespace Systems;
 
+using System.Runtime.CompilerServices;
+using Arch.Core;
+using Arch.Core.Extensions;
+using Arch.System;
 using Components;
-using DefaultEcs;
-using DefaultEcs.System;
 using Godot;
 using Newtonsoft.Json;
-using World = DefaultEcs.World;
+using World = Arch.Core.World;
 
 /// <summary>
 ///   Handles moving a camera to follow entity with <see cref="CameraFollowTarget"/> component
@@ -16,20 +18,18 @@ using World = DefaultEcs.World;
 ///     https://github.com/Revolutionary-Games/Thrive/issues/4695
 ///   </para>
 /// </remarks>
-[With(typeof(CameraFollowTarget))]
-[With(typeof(WorldPosition))]
 [ReadsComponent(typeof(WorldPosition))]
 [RunsAfter(typeof(PhysicsUpdateAndPositionSystem))]
 [RunsAfter(typeof(AttachedEntityPositionSystem))]
 [RunsOnMainThread]
-public sealed class CameraFollowSystem : AEntitySetSystem<float>
+public partial class CameraFollowSystem : BaseSystem<World, float>
 {
     private bool cameraUsed;
 
     private bool errorPrinted;
     private bool warnedAboutMissingCamera;
 
-    public CameraFollowSystem(World world) : base(world, null)
+    public CameraFollowSystem(World world) : base(world)
     {
     }
 
@@ -40,17 +40,15 @@ public sealed class CameraFollowSystem : AEntitySetSystem<float>
     [JsonIgnore]
     public IGameCamera? Camera { get; set; }
 
-    protected override void PreUpdate(float delta)
+    public override void BeforeUpdate(in float delta)
     {
-        base.PreUpdate(delta);
-
         cameraUsed = false;
     }
 
-    protected override void Update(float delta, in Entity entity)
+    [Query]
+    [MethodImpl(MethodImplOptions.AggressiveInlining)]
+    private void Update([Data] in float delta, ref CameraFollowTarget followTarget, ref WorldPosition position)
     {
-        ref var followTarget = ref entity.Get<CameraFollowTarget>();
-
         if (followTarget.Disabled)
             return;
 
@@ -70,8 +68,6 @@ public sealed class CameraFollowSystem : AEntitySetSystem<float>
 
         if (Camera != null)
         {
-            ref var position = ref entity.Get<WorldPosition>();
-
             Camera.UpdateCameraPosition(delta, position.Position);
         }
         else if (!warnedAboutMissingCamera)
@@ -81,10 +77,8 @@ public sealed class CameraFollowSystem : AEntitySetSystem<float>
         }
     }
 
-    protected override void PostUpdate(float delta)
+    public override void AfterUpdate(in float delta)
     {
-        base.PostUpdate(delta);
-
         if (!cameraUsed)
         {
             // Update camera without a target

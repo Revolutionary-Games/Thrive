@@ -5,7 +5,7 @@ using System.Linq;
 using System.Reflection;
 using System.Text;
 using System.Threading.Tasks;
-using DefaultEcs.System;
+using Arch.System;
 using Godot;
 using Tools;
 using Environment = System.Environment;

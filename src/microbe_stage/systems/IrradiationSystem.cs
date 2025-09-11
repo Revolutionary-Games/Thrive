@@ -1,10 +1,10 @@
 ﻿namespace Systems;
 
 using System.Collections.Generic;
+using Arch.Core;
+using Arch.Core.Extensions;
+using Arch.System;
 using Components;
-using DefaultEcs;
-using DefaultEcs.System;
-using DefaultEcs.Threading;
 
 /// <summary>
 ///   Handles <see cref="RadiationSource"/> sending out radiation to anything that can receive it that is nearby
@@ -21,14 +21,16 @@ using DefaultEcs.Threading;
 [ReadsComponent(typeof(WorldPosition))]
 [RunsBefore(typeof(ProcessSystem))]
 [RunsBefore(typeof(CompoundAbsorptionSystem))]
-public sealed class IrradiationSystem : AEntitySetSystem<float>
+public partial class IrradiationSystem : BaseSystem<World, float>
 {
     public IrradiationSystem(World world, IParallelRunner runner) : base(world, runner,
         Constants.SYSTEM_HIGHER_ENTITIES_PER_THREAD)
     {
     }
 
-    protected override void Update(float delta, in Entity entity)
+    [Query]
+    [MethodImpl(MethodImplOptions.AggressiveInlining)]
+    private void Update([Data] in float delta, ref TODO components, in Entity entity)
     {
         ref var source = ref entity.Get<RadiationSource>();
         ref var sensor = ref entity.Get<PhysicsSensor>();

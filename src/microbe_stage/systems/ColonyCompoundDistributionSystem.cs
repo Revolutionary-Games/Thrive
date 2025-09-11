@@ -1,9 +1,9 @@
 ﻿namespace Systems;
 
+using Arch.Core;
+using Arch.Core.Extensions;
+using Arch.System;
 using Components;
-using DefaultEcs;
-using DefaultEcs.System;
-using DefaultEcs.Threading;
 
 /// <summary>
 ///   Evenly distributes compounds (except ones that can't be shared between cells like ATP) between cells in a
@@ -21,14 +21,15 @@ using DefaultEcs.Threading;
 [ReadsComponent(typeof(MicrobeColony))]
 [WritesToComponent(typeof(CompoundStorage))]
 [RunsBefore(typeof(EngulfingSystem))]
-public sealed class ColonyCompoundDistributionSystem : AEntitySetSystem<float>
+public partial class ColonyCompoundDistributionSystem : BaseSystem<World, float>
 {
-    public ColonyCompoundDistributionSystem(World world, IParallelRunner parallelRunner) : base(world,
-        parallelRunner)
+    public ColonyCompoundDistributionSystem(World world) : base(world)
     {
     }
 
-    protected override void Update(float delta, in Entity entity)
+    [Query]
+    [MethodImpl(MethodImplOptions.AggressiveInlining)]
+    private void Update([Data] in float delta, ref TODO components, in Entity entity)
     {
         ref var colony = ref entity.Get<MicrobeColony>();
 

@@ -1,8 +1,10 @@
 ﻿namespace Systems;
 
+using System.Runtime.CompilerServices;
+using Arch.Core;
+using Arch.Core.Extensions;
+using Arch.System;
 using Components;
-using DefaultEcs;
-using DefaultEcs.System;
 using Godot;
 
 /// <summary>
@@ -22,11 +24,11 @@ using Godot;
 [RuntimeCost(8)]
 [RunsOnFrame]
 [RunsOnMainThread]
-public sealed class TintColourApplyingSystem : AEntitySetSystem<float>
+public partial class TintColourApplyingSystem : BaseSystem<World, float>
 {
     private readonly StringName tintParameterName = new("tint");
 
-    public TintColourApplyingSystem(World world) : base(world, null)
+    public TintColourApplyingSystem(World world) : base(world)
     {
     }
 
@@ -36,7 +38,9 @@ public sealed class TintColourApplyingSystem : AEntitySetSystem<float>
         base.Dispose();
     }
 
-    protected override void Update(float delta, in Entity entity)
+    [Query]
+    [MethodImpl(MethodImplOptions.AggressiveInlining)]
+    private void Update([Data] in float delta, ref TODO components, in Entity entity)
     {
         ref var animation = ref entity.Get<ColourAnimation>();
 

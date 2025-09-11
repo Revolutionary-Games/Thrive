@@ -1,10 +1,9 @@
-﻿using Components;
-using DefaultEcs;
-using DefaultEcs.Threading;
+﻿using Arch.Core;
+using Components;
 using Godot;
 using Newtonsoft.Json;
 using Systems;
-using World = DefaultEcs.World;
+using World = Arch.Core.World;
 
 /// <summary>
 ///   Contains all the parts needed to simulate a microbial world. Separate from (but used by) the

@@ -2,10 +2,10 @@
 
 using System;
 using System.Linq;
+using Arch.Core;
+using Arch.Core.Extensions;
+using Arch.System;
 using Components;
-using DefaultEcs;
-using DefaultEcs.System;
-using DefaultEcs.Threading;
 
 /// <summary>
 ///   Handles absorbing compounds from <see cref="CompoundCloudSystem"/> into <see cref="CompoundStorage"/>
@@ -15,7 +15,7 @@ using DefaultEcs.Threading;
 [With(typeof(WorldPosition))]
 [ReadsComponent(typeof(WorldPosition))]
 [RuntimeCost(50)]
-public sealed class CompoundAbsorptionSystem : AEntitySetSystem<float>
+public partial class CompoundAbsorptionSystem : BaseSystem<World, float>
 {
     private readonly CompoundCloudSystem compoundCloudSystem;
 
@@ -25,7 +25,9 @@ public sealed class CompoundAbsorptionSystem : AEntitySetSystem<float>
         this.compoundCloudSystem = compoundCloudSystem;
     }
 
-    protected override void Update(float delta, in Entity entity)
+    [Query]
+    [MethodImpl(MethodImplOptions.AggressiveInlining)]
+    private void Update([Data] in float delta, ref TODO components, in Entity entity)
     {
         ref var absorber = ref entity.Get<CompoundAbsorber>();
 

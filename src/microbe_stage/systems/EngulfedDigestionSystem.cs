@@ -4,12 +4,13 @@ using System;
 using System.Collections.Generic;
 using System.Diagnostics;
 using System.Linq;
+using System.Runtime.CompilerServices;
+using Arch.Core;
+using Arch.Core.Extensions;
+using Arch.System;
 using Components;
-using DefaultEcs;
-using DefaultEcs.System;
-using DefaultEcs.Threading;
 using Godot;
-using World = DefaultEcs.World;
+using World = Arch.Core.World;
 
 /// <summary>
 ///   Handles digestion of engulfed objects (and starting ejection of indigestible things).
@@ -37,7 +38,7 @@ using World = DefaultEcs.World;
 [ReadsComponent(typeof(SpeciesMember))]
 [RunsAfter(typeof(EngulfingSystem))]
 [RuntimeCost(2)]
-public sealed class EngulfedDigestionSystem : AEntitySetSystem<float>
+public partial class EngulfedDigestionSystem : BaseSystem<World, float>
 {
     private readonly CompoundCloudSystem compoundCloudSystem;
     private readonly IReadOnlyList<Compound> digestibleCompounds;
@@ -61,15 +62,15 @@ public sealed class EngulfedDigestionSystem : AEntitySetSystem<float>
         gameWorld = world;
     }
 
-    protected override void PreUpdate(float state)
+    public override void BeforeUpdate(in float delta)
     {
-        base.PreUpdate(state);
-
         if (gameWorld == null)
             throw new InvalidOperationException("GameWorld not set");
     }
 
-    protected override void Update(float delta, in Entity entity)
+    [Query]
+    [MethodImpl(MethodImplOptions.AggressiveInlining)]
+    private void Update([Data] in float delta, ref TODO components, in Entity entity)
     {
         ref var engulfer = ref entity.Get<Engulfer>();
 
@@ -115,7 +116,7 @@ public sealed class EngulfedDigestionSystem : AEntitySetSystem<float>
             var engulfedObject = engulfer.EngulfedObjects![i];
 
 #if DEBUG
-            if (!engulfedObject.IsAlive)
+            if (!engulfedObject.IsAlive())
             {
                 throw new Exception(
                     "Digestion system has a non-alive engulfed object, engulfing system should have taken care " +

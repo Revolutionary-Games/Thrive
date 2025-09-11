@@ -1,11 +1,13 @@
 ﻿namespace Systems;
 
 using System.Collections.Generic;
+using System.Runtime.CompilerServices;
+using Arch.Core;
+using Arch.Core.Extensions;
+using Arch.System;
 using Components;
-using DefaultEcs;
-using DefaultEcs.System;
 using Godot;
-using World = DefaultEcs.World;
+using World = Arch.Core.World;
 
 /// <summary>
 ///   Handles the various <see cref="MicrobeEventCallbacks"/> that are not handled directly by other systems.
@@ -31,20 +33,21 @@ using World = DefaultEcs.World;
 [RunsAfter(typeof(SpawnSystem))]
 [RunsAfter(typeof(MicrobeAISystem))]
 [RuntimeCost(0.25f)]
-public sealed class MicrobeEventCallbackSystem : AEntitySetSystem<float>
+public partial class MicrobeEventCallbackSystem : BaseSystem<World, float>
 {
     private readonly IReadonlyCompoundClouds compoundClouds;
     private readonly ISpeciesMemberLocationData microbeLocationData;
 
     public MicrobeEventCallbackSystem(IReadonlyCompoundClouds compoundClouds,
-        ISpeciesMemberLocationData microbeLocationData, World world) :
-        base(world, null)
+        ISpeciesMemberLocationData microbeLocationData, World world) : base(world)
     {
         this.compoundClouds = compoundClouds;
         this.microbeLocationData = microbeLocationData;
     }
 
-    protected override void Update(float delta, in Entity entity)
+    [Query]
+    [MethodImpl(MethodImplOptions.AggressiveInlining)]
+    private void Update([Data] in float delta, ref TODO components, in Entity entity)
     {
         ref var callbacks = ref entity.Get<MicrobeEventCallbacks>();
         ref var status = ref entity.Get<MicrobeStatus>();

@@ -1,9 +1,9 @@
 ﻿namespace Systems;
 
+using Arch.Core;
+using Arch.Core.Extensions;
+using Arch.System;
 using Components;
-using DefaultEcs;
-using DefaultEcs.System;
-using DefaultEcs.Threading;
 
 /// <summary>
 ///   Handles applying pilus damage to microbes
@@ -19,13 +19,15 @@ using DefaultEcs.Threading;
 [WritesToComponent(typeof(DamageCooldown))]
 [RunsAfter(typeof(PhysicsCollisionManagementSystem))]
 [RuntimeCost(1)]
-public sealed class PilusDamageSystem : AEntitySetSystem<float>
+public partial class PilusDamageSystem : BaseSystem<World, float>
 {
-    public PilusDamageSystem(World world, IParallelRunner parallelRunner) : base(world, parallelRunner)
+    public PilusDamageSystem(World world) : base(world)
     {
     }
 
-    protected override void Update(float delta, in Entity entity)
+    [Query]
+    [MethodImpl(MethodImplOptions.AggressiveInlining)]
+    private void Update([Data] in float delta, ref TODO components, in Entity entity)
     {
         ref var collisionManagement = ref entity.Get<CollisionManagement>();
 

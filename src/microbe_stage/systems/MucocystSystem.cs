@@ -1,8 +1,10 @@
 ﻿namespace Systems;
 
+using System.Runtime.CompilerServices;
+using Arch.Core;
+using Arch.Core.Extensions;
+using Arch.System;
 using Components;
-using DefaultEcs;
-using DefaultEcs.System;
 
 /// <summary>
 ///   Handles gaining immortality from mucocyst ability
@@ -15,13 +17,15 @@ using DefaultEcs.System;
 [ReadsComponent(typeof(CellProperties))]
 [RunsBefore(typeof(MicrobeMovementSystem))]
 [RunsOnMainThread]
-public sealed class MucocystSystem : AEntitySetSystem<float>
+public partial class MucocystSystem : BaseSystem<World, float>
 {
     public MucocystSystem(World world) : base(world)
     {
     }
 
-    protected override void Update(float delta, in Entity entity)
+    [Query]
+    [MethodImpl(MethodImplOptions.AggressiveInlining)]
+    private void Update([Data] in float delta, ref TODO components, in Entity entity)
     {
         // Handles invulnerability from mucocyst. Other buffs/debuffs from mucocyst are in related systems to what they
         // affect
@@ -79,7 +83,7 @@ public sealed class MucocystSystem : AEntitySetSystem<float>
     // This system could be refactored to use a post update to apply visual effects to be able to run with multiple
     // threads processing all the entities
 
-    // protected override void PostUpdate(float state)
+    // public override void AfterUpdate(in float delta)
 
     private void OnMucocystDisabled(in Entity entity)
     {

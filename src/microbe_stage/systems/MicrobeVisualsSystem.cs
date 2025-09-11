@@ -5,13 +5,15 @@ using System.Buffers;
 using System.Collections.Concurrent;
 using System.Collections.Generic;
 using System.Diagnostics;
+using System.Runtime.CompilerServices;
 using System.Threading;
 using System.Threading.Tasks;
+using Arch.Core;
+using Arch.Core.Extensions;
+using Arch.System;
 using Components;
-using DefaultEcs;
-using DefaultEcs.System;
 using Godot;
-using World = DefaultEcs.World;
+using World = Arch.Core.World;
 
 /// <summary>
 ///   Generates the visuals needed for microbes. Handles the membrane and organelle graphics. Attaching to the
@@ -27,7 +29,7 @@ using World = DefaultEcs.World;
 [RunsBefore(typeof(SpatialPositionSystem))]
 [RuntimeCost(6)]
 [RunsOnMainThread]
-public sealed class MicrobeVisualsSystem : AEntitySetSystem<float>
+public partial class MicrobeVisualsSystem : BaseSystem<World, float>
 {
     private readonly Lazy<PackedScene> membraneScene =
         new(() => GD.Load<PackedScene>("res://src/microbe_stage/Membrane.tscn"));
@@ -58,7 +60,7 @@ public sealed class MicrobeVisualsSystem : AEntitySetSystem<float>
 
     private volatile int runningMembraneTaskCount;
 
-    public MicrobeVisualsSystem(World world) : base(world, null)
+    public MicrobeVisualsSystem(World world) : base(world)
     {
     }
 
@@ -73,16 +75,16 @@ public sealed class MicrobeVisualsSystem : AEntitySetSystem<float>
         base.Dispose();
     }
 
-    protected override void PreUpdate(float delta)
+    public override void BeforeUpdate(in float delta)
     {
-        base.PreUpdate(delta);
-
         pendingMembraneGenerations = false;
 
         activeGenerationTasks.RemoveAll(t => t.IsCompleted);
     }
 
-    protected override void Update(float delta, in Entity entity)
+    [Query]
+    [MethodImpl(MethodImplOptions.AggressiveInlining)]
+    private void Update([Data] in float delta, ref TODO components, in Entity entity)
     {
         ref var organelleContainer = ref entity.Get<OrganelleContainer>();
 
@@ -193,10 +195,8 @@ public sealed class MicrobeVisualsSystem : AEntitySetSystem<float>
         cellProperties.ShapeCreated = false;
     }
 
-    protected override void PostUpdate(float state)
+    public override void AfterUpdate(in float delta)
     {
-        base.PostUpdate(state);
-
         // TODO: if we need a separate mechanism to communicate our results back, then cleaning up that mechanism
         // here and in on PreUpdate will be needed
         // // Clear any ready resources that weren't required to not keep them forever (but only ones that were

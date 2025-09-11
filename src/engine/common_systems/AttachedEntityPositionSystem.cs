@@ -1,40 +1,39 @@
 ﻿namespace Systems;
 
+using System.Runtime.CompilerServices;
+using Arch.Core;
+using Arch.Core.Extensions;
+using Arch.System;
 using Components;
-using DefaultEcs;
-using DefaultEcs.System;
-using DefaultEcs.Threading;
 
 /// <summary>
 ///   Handles positioning of entities attached to each other
 /// </summary>
-[With(typeof(AttachedToEntity))]
-[With(typeof(WorldPosition))]
 [ReadsComponent(typeof(AttachedToEntity))]
 [RunsAfter(typeof(PhysicsUpdateAndPositionSystem))]
 [RunsBefore(typeof(SpatialPositionSystem))]
 [RuntimeCost(0.5f)]
-public sealed class AttachedEntityPositionSystem : AEntitySetSystem<float>
+public partial class AttachedEntityPositionSystem : BaseSystem<World, float>
 {
     private readonly IWorldSimulation worldSimulation;
 
-    public AttachedEntityPositionSystem(IWorldSimulation worldSimulation, World world, IParallelRunner runner) :
-        base(world, runner)
+    public AttachedEntityPositionSystem(IWorldSimulation worldSimulation, World world) : base(world)
     {
         this.worldSimulation = worldSimulation;
     }
 
-    protected override void Update(float delta, in Entity entity)
+    [Query]
+    [MethodImpl(MethodImplOptions.AggressiveInlining)]
+    private void Update(ref AttachedToEntity attachInfo, ref WorldPosition position, in Entity entity)
     {
-        ref var attachInfo = ref entity.Get<AttachedToEntity>();
-
         if (!attachInfo.AttachedTo.Has<WorldPosition>())
         {
             // This can happen if the entity is dead now
 
-            if (attachInfo.AttachedTo != default(Entity) && !attachInfo.AttachedTo.IsAlive)
+            if (attachInfo.AttachedTo != default(Entity) && !attachInfo.AttachedTo.IsAlive())
             {
                 // Delete this dependent entity if configured to do so
+                // TODO: could this probably switch this to use child entity feature in Arch
                 if (attachInfo.DeleteIfTargetIsDeleted)
                 {
                     worldSimulation.DestroyEntity(entity);
@@ -47,8 +46,6 @@ public sealed class AttachedEntityPositionSystem : AEntitySetSystem<float>
         // TODO: optimize for attached entities where the position / parent position doesn't change each frame?
 
         ref var parentPosition = ref attachInfo.AttachedTo.Get<WorldPosition>();
-
-        ref var position = ref entity.Get<WorldPosition>();
 
         position.Position = parentPosition.Position + parentPosition.Rotation * attachInfo.RelativePosition;
         position.Rotation = parentPosition.Rotation * attachInfo.RelativeRotation;

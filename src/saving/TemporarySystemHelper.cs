@@ -1,5 +1,5 @@
 ﻿using System;
-using DefaultEcs;
+using Arch.Core;
 
 public static class TemporarySystemHelper
 {

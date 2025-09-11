@@ -2,13 +2,14 @@
 
 using System;
 using System.Collections.Generic;
+using System.Runtime.CompilerServices;
+using Arch.Core;
+using Arch.Core.Extensions;
+using Arch.System;
 using Components;
-using DefaultEcs;
-using DefaultEcs.System;
-using DefaultEcs.Threading;
 using Godot;
 using Newtonsoft.Json;
-using World = DefaultEcs.World;
+using World = Arch.Core.World;
 
 /// <summary>
 ///   Updates <see cref="CommandSignaler"/> components that also have <see cref="WorldPosition"/>
@@ -19,7 +20,7 @@ using World = DefaultEcs.World;
 [RunsBefore(typeof(MicrobeAISystem))]
 [RuntimeCost(0.5f)]
 [JsonObject(MemberSerialization.OptIn)]
-public sealed class EntitySignalingSystem : AEntitySetSystem<float>
+public partial class EntitySignalingSystem : BaseSystem<World, float>
 {
     private readonly Dictionary<ulong, List<(Entity Entity, Vector3 Position)>> entitiesOnChannels = new();
 
@@ -40,11 +41,9 @@ public sealed class EntitySignalingSystem : AEntitySetSystem<float>
         this.elapsedSinceUpdate = elapsedSinceUpdate;
     }
 
-    protected override void PreUpdate(float state)
+    public override void BeforeUpdate(in float delta)
     {
-        base.PreUpdate(state);
-
-        elapsedSinceUpdate += state;
+        elapsedSinceUpdate += delta;
 
         if (elapsedSinceUpdate > Constants.ENTITY_SIGNAL_UPDATE_INTERVAL)
         {
@@ -121,7 +120,9 @@ public sealed class EntitySignalingSystem : AEntitySetSystem<float>
         base.Update(delta, entities);
     }
 
-    protected override void Update(float delta, in Entity entity)
+    [Query]
+    [MethodImpl(MethodImplOptions.AggressiveInlining)]
+    private void Update([Data] in float delta, ref TODO components, in Entity entity)
     {
         ref var signaling = ref entity.Get<CommandSignaler>();
 

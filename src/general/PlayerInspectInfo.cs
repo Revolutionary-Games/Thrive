@@ -1,11 +1,12 @@
 ﻿using System.Collections.Generic;
 using System.Linq;
+using Arch.Core;
+using Arch.Core.Extensions;
 using Components;
-using DefaultEcs;
 using Godot;
 
 /// <summary>
-///   A system that manages detecting what the player is pointing with the cursor.
+///   A system that manages to detect what the player is pointing with the cursor.
 /// </summary>
 public partial class PlayerInspectInfo : Node
 {
@@ -86,7 +87,7 @@ public partial class PlayerInspectInfo : Node
             if (hits.Take(validHits).All(h => h.BodyEntity != m))
             {
                 // Hit removed
-                if (m.IsAlive && m.Has<Selectable>())
+                if (m.IsAlive() && m.Has<Selectable>())
                 {
                     ref var selectable = ref m.Get<Selectable>();
                     selectable.Selected = false;
@@ -105,7 +106,7 @@ public partial class PlayerInspectInfo : Node
 
             // New hit added
 
-            if (hit.BodyEntity.IsAlive && hit.BodyEntity.Has<Selectable>())
+            if (hit.BodyEntity.IsAlive() && hit.BodyEntity.Has<Selectable>())
             {
                 ref var selectable = ref hit.BodyEntity.Get<Selectable>();
                 selectable.Selected = true;
@@ -114,8 +115,9 @@ public partial class PlayerInspectInfo : Node
     }
 
     /// <summary>
-    ///   Returns the raycast data of the given raycast hit entity. Note that the ray data doesn't have sub-shape index
-    ///   resolved. Except for microbe colonies those are already processed at this point.
+    ///   Returns the raycast data of the given raycast hit entity.
+    ///   Note that the ray data doesn't have a sub-shape index resolved. Except for microbe colonies,
+    ///   those are already processed at this point.
     /// </summary>
     /// <param name="entity">Entity to get the data for</param>
     /// <param name="rayData">Where to put the found ray data, initialized to default if not found</param>
@@ -136,10 +138,10 @@ public partial class PlayerInspectInfo : Node
     }
 
     /// <summary>
-    ///   Applies screen effects to mouse position.
+    ///   Applies screen effects to the mouse position.
     /// </summary>
     /// <returns>
-    ///   True screen position of what visually is under cursor.
+    ///   True screen position of what visually is under the cursor.
     /// </returns>
     protected virtual Vector2 ApplyScreenEffects(Vector2 mousePos, Vector2 viewportSize)
     {

@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
+using Arch.Core;
 using Components;
-using DefaultEcs;
 
 /// <summary>
 ///   Adds extra digestion enzymes to an organelle

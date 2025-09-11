@@ -5,7 +5,6 @@ using System.Diagnostics;
 using System.Runtime.CompilerServices;
 using System.Threading;
 using System.Threading.Tasks;
-using DefaultEcs.Threading;
 using Godot;
 using Environment = System.Environment;
 using Thread = System.Threading.Thread;
@@ -14,7 +13,7 @@ using Thread = System.Threading.Thread;
 ///   Manages running a reasonable number of parallel tasks at once
 /// </summary>
 #pragma warning disable CA1001 // singleton anyway
-public class TaskExecutor : IParallelRunner
+public class TaskExecutor
 #pragma warning restore CA1001
 {
     private const int ThreadSleepAfterNoWorkFor = 160;
@@ -195,52 +194,54 @@ public class TaskExecutor : IParallelRunner
             NotifyNewTasksAdded(1);
     }
 
-    /// <summary>
-    ///   Runs an ECS library runnable on the current thread and the available executors (waits for all ECS runnables
-    ///   to complete, even from other threads)
-    /// </summary>
-    public void Run(IParallelRunnable runnable)
-    {
-        int maxIndex = DegreeOfParallelism - 1;
-
-        if (maxIndex > 0)
+    // TODO: reimplement task parallelism for the new ECS
+    /*
+        /// <summary>
+        ///   Runs an ECS library runnable on the current thread and the available executors (waits for all ECS runnables
+        ///   to complete, even from other threads)
+        /// </summary>
+        public void Run(IParallelRunnable runnable)
         {
-            Interlocked.Add(ref queuedParallelRunnableCount, maxIndex);
+            int maxIndex = DegreeOfParallelism - 1;
 
-            for (int i = 0; i < maxIndex; ++i)
+            if (maxIndex > 0)
             {
-                queuedTasks.Enqueue(new ThreadCommand(runnable, i, maxIndex));
+                Interlocked.Add(ref queuedParallelRunnableCount, maxIndex);
+
+                for (int i = 0; i < maxIndex; ++i)
+                {
+                    queuedTasks.Enqueue(new ThreadCommand(runnable, i, maxIndex));
+                }
+
+                NotifyNewTasksAdded(maxIndex);
             }
 
-            NotifyNewTasksAdded(maxIndex);
-        }
+            // Current thread runs at the max index
+            runnable.Run(maxIndex, maxIndex);
 
-        // Current thread runs at the max index
-        runnable.Run(maxIndex, maxIndex);
+            // If only ran on the main thread can exit early, no need to try to wait
+            if (maxIndex < 1)
+                return;
 
-        // If only ran on the main thread can exit early, no need to try to wait
-        if (maxIndex < 1)
-            return;
-
-        while (queuedParallelRunnableCount > 0)
-        {
-            // Busy loop a bit before checking the variable again
-            for (int i = 0; i < 10; ++i)
+            while (queuedParallelRunnableCount > 0)
             {
-                _ = i;
+                // Busy loop a bit before checking the variable again
+                for (int i = 0; i < 10; ++i)
+                {
+                    _ = i;
+                }
+
+                // Reduce hyperthreading resource use while waiting
+                CPUHelpers.HyperThreadPause();
             }
 
-            // Reduce hyperthreading resource use while waiting
-            CPUHelpers.HyperThreadPause();
-        }
+    #if DEBUG
+            if (queuedParallelRunnableCount < 0)
+                throw new Exception("After waiting for parallel runnables count got negative");
+    #endif
 
-#if DEBUG
-        if (queuedParallelRunnableCount < 0)
-            throw new Exception("After waiting for parallel runnables count got negative");
-#endif
-
-        Interlocked.MemoryBarrier();
-    }
+            Interlocked.MemoryBarrier();
+        }*/
 
     /// <summary>
     ///   Runs a list of tasks and waits for them to complete. The
@@ -531,7 +532,9 @@ public class TaskExecutor : IParallelRunner
         {
             try
             {
-                command.ParallelRunnable!.Run(command.ParallelIndex, command.MaxIndex);
+                throw new Exception("TODO: reimplement parallel runnable");
+
+                // command.ParallelRunnable!.Run(command.ParallelIndex, command.MaxIndex);
             }
             catch (Exception exception)
             {
@@ -567,7 +570,7 @@ public class TaskExecutor : IParallelRunner
     private struct ThreadCommand
     {
         public readonly Task? Task;
-        public readonly IParallelRunnable? ParallelRunnable;
+        // public readonly IParallelRunnable? ParallelRunnable;
 
         public readonly Type CommandType;
         public readonly int ParallelIndex;
@@ -581,7 +584,7 @@ public class TaskExecutor : IParallelRunner
             if (Task == null)
                 throw new ArgumentNullException(nameof(task), "Task must be provided to this constructor");
 
-            ParallelRunnable = null;
+            // ParallelRunnable = null;
             ParallelIndex = 0;
             MaxIndex = 0;
         }
@@ -594,12 +597,12 @@ public class TaskExecutor : IParallelRunner
                 throw new ArgumentException("This constructor is only allowed to create quit type commands");
 
             Task = null;
-            ParallelRunnable = null;
+            // ParallelRunnable = null;
             ParallelIndex = 0;
             MaxIndex = 0;
         }
 
-        public ThreadCommand(IParallelRunnable parallelRunnable, int index, int maxIndex)
+        /*public ThreadCommand(IParallelRunnable parallelRunnable, int index, int maxIndex)
         {
             CommandType = Type.ParallelRunnable;
             ParallelRunnable = parallelRunnable;
@@ -617,12 +620,11 @@ public class TaskExecutor : IParallelRunner
 #endif
 
             Task = null;
-        }
+        }*/
 
         public enum Type
         {
-            // Default initialize type to invalid in order to catch errors caused by default initialization of
-            // this class
+            // Default-initialise type to invalid to catch errors caused by default initialisation of this class
             Invalid = 0,
             Task,
             ParallelRunnable,

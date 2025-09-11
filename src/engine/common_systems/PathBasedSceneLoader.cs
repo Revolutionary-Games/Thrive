@@ -2,12 +2,13 @@
 
 using System;
 using System.Collections.Generic;
+using System.Runtime.CompilerServices;
+using Arch.Core;
+using Arch.Core.Extensions;
+using Arch.System;
 using Components;
-using DefaultEcs;
-using DefaultEcs.System;
-using DefaultEcs.Threading;
 using Godot;
-using World = DefaultEcs.World;
+using World = Arch.Core.World;
 
 /// <summary>
 ///   Loader for <see cref="PathLoadedSceneVisuals"/> into a <see cref="SpatialInstance"/>
@@ -17,10 +18,8 @@ using World = DefaultEcs.World;
 ///     TODO: test is parallel scene loading now fine in Godot 4
 ///   </para>
 /// </remarks>
-[With(typeof(PathLoadedSceneVisuals))]
-[With(typeof(SpatialInstance))]
 [RunsOnMainThread]
-public sealed class PathBasedSceneLoader : AEntitySetSystem<float>
+public partial class PathBasedSceneLoader : BaseSystem<World, float>
 {
     /// <summary>
     ///   This stores all the scenes seen in this world. This is done with the assumption that any once used scene
@@ -30,11 +29,8 @@ public sealed class PathBasedSceneLoader : AEntitySetSystem<float>
 
     private PackedScene? errorScene;
 
-    public PathBasedSceneLoader(World world, IParallelRunner runner) : base(world, runner)
+    public PathBasedSceneLoader(World world) : base(world)
     {
-        // TODO: will we be able to at some point load Godot scenes in parallel without issues?
-        if (runner.DegreeOfParallelism > 1)
-            throw new ArgumentException("This system cannot be ran in parallel");
     }
 
     public override void Dispose()
@@ -45,15 +41,13 @@ public sealed class PathBasedSceneLoader : AEntitySetSystem<float>
         // GC.SuppressFinalize(this);
     }
 
-    protected override void Update(float delta, in Entity entity)
+    [Query]
+    [MethodImpl(MethodImplOptions.AggressiveInlining)]
+    private void Update(ref PathLoadedSceneVisuals sceneVisuals, ref SpatialInstance spatial)
     {
-        ref var sceneVisuals = ref entity.Get<PathLoadedSceneVisuals>();
-
         // Skip update if nothing to do
         if (sceneVisuals.ScenePath == sceneVisuals.LastLoadedScene)
             return;
-
-        ref var spatial = ref entity.Get<SpatialInstance>();
 
         sceneVisuals.LastLoadedScene = sceneVisuals.ScenePath;
 
@@ -85,7 +79,7 @@ public sealed class PathBasedSceneLoader : AEntitySetSystem<float>
 
         if (scene == null)
         {
-            // Even error scene failed
+            // Even the error scene failed
             return;
         }
 

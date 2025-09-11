@@ -1,11 +1,12 @@
 ﻿namespace Systems;
 
+using System.Runtime.CompilerServices;
+using Arch.Core;
+using Arch.Core.Extensions;
+using Arch.System;
 using Components;
-using DefaultEcs;
-using DefaultEcs.System;
-using DefaultEcs.Threading;
 using Godot;
-using World = DefaultEcs.World;
+using World = Arch.Core.World;
 
 /// <summary>
 ///   Handles <see cref="Engulfable"/> entities that are currently engulfed or have been engulfed before and should
@@ -27,7 +28,7 @@ using World = DefaultEcs.World;
 [RunsAfter(typeof(EngulfingSystem))]
 [RunsAfter(typeof(EngulfedDigestionSystem))]
 [RuntimeCost(0.5f)]
-public sealed class EngulfedHandlingSystem : AEntitySetSystem<float>
+public partial class EngulfedHandlingSystem : BaseSystem<World, float>
 {
     private readonly IWorldSimulation worldSimulation;
     private readonly ISpawnSystem spawnSystem;
@@ -37,21 +38,20 @@ public sealed class EngulfedHandlingSystem : AEntitySetSystem<float>
     private float playerEngulfedDeathTimer;
     private float previousPlayerEngulfedDeathTimer;
 
-    public EngulfedHandlingSystem(IWorldSimulation worldSimulation, ISpawnSystem spawnSystem, World world,
-        IParallelRunner parallelRunner) : base(world, parallelRunner)
+    public EngulfedHandlingSystem(IWorldSimulation worldSimulation, ISpawnSystem spawnSystem, World world) : base(world)
     {
         this.worldSimulation = worldSimulation;
         this.spawnSystem = spawnSystem;
     }
 
-    protected override void PreUpdate(float delta)
+    public override void BeforeUpdate(in float delta)
     {
-        base.PreUpdate(delta);
-
         previousPlayerEngulfedDeathTimer = playerEngulfedDeathTimer;
     }
 
-    protected override void Update(float delta, in Entity entity)
+    [Query]
+    [MethodImpl(MethodImplOptions.AggressiveInlining)]
+    private void Update([Data] in float delta, ref TODO components, in Entity entity)
     {
         ref var engulfable = ref entity.Get<Engulfable>();
 
@@ -104,7 +104,7 @@ public sealed class EngulfedHandlingSystem : AEntitySetSystem<float>
             // If the engulfing entity is dead, then this should have been ejected. The simulation world also has
             // an on entity destroy callback that should do this so things are going pretty wrong if this is
             // triggered
-            if (!engulfable.HostileEngulfer.IsAlive)
+            if (!engulfable.HostileEngulfer.IsAlive())
             {
                 GD.PrintErr("Entity is stuck inside a dead engulfer, force clearing state to rescue it");
 
@@ -122,10 +122,8 @@ public sealed class EngulfedHandlingSystem : AEntitySetSystem<float>
         }
     }
 
-    protected override void PostUpdate(float state)
+    public override void AfterUpdate(in float delta)
     {
-        base.PostUpdate(state);
-
         // If there's no player digestion progress reset the timer
         // ReSharper disable once CompareOfFloatsByEqualityOperator
         if (previousPlayerEngulfedDeathTimer == playerEngulfedDeathTimer)
@@ -149,7 +147,7 @@ public sealed class EngulfedHandlingSystem : AEntitySetSystem<float>
         }
 
         var hostile = engulfable.HostileEngulfer;
-        if (!hostile.IsAlive || !hostile.Has<Engulfer>())
+        if (!hostile.IsAlive() || !hostile.Has<Engulfer>())
             return;
 
         ref var engulfer = ref entity.Get<Engulfer>();

@@ -1,33 +1,30 @@
 ﻿namespace Systems;
 
 using System;
+using System.Runtime.CompilerServices;
+using Arch.Core;
+using Arch.Core.Extensions;
+using Arch.System;
 using Components;
-using DefaultEcs;
-using DefaultEcs.System;
-using DefaultEcs.Threading;
 
 /// <summary>
 ///   Handles creating the simple shapes of <see cref="SimpleShapeType"/>
 /// </summary>
-[With(typeof(SimpleShapeCreator))]
-[With(typeof(PhysicsShapeHolder))]
 [RunsBefore(typeof(PhysicsBodyCreationSystem))]
 [RuntimeCost(0.25f)]
-public sealed class SimpleShapeCreatorSystem : AEntitySetSystem<float>
+public partial class SimpleShapeCreatorSystem : BaseSystem<World, float>
 {
     public SimpleShapeCreatorSystem(World world, IParallelRunner runner) :
         base(world, runner, Constants.SYSTEM_HIGH_ENTITIES_PER_THREAD)
     {
     }
 
-    protected override void Update(float delta, in Entity entity)
+    [Query]
+    [MethodImpl(MethodImplOptions.AggressiveInlining)]
+    private void Update(ref SimpleShapeCreator shapeCreator, ref PhysicsShapeHolder shapeHolder)
     {
-        ref var shapeCreator = ref entity.Get<SimpleShapeCreator>();
-
         if (shapeCreator.ShapeCreated)
             return;
-
-        ref var shapeHolder = ref entity.Get<PhysicsShapeHolder>();
 
         shapeHolder.Shape = CreateShape(ref shapeCreator);
 

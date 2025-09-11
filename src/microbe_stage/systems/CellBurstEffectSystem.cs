@@ -1,10 +1,12 @@
 ﻿namespace Systems;
 
+using System.Runtime.CompilerServices;
+using Arch.Core;
+using Arch.Core.Extensions;
+using Arch.System;
 using Components;
-using DefaultEcs;
-using DefaultEcs.System;
 using Godot;
-using World = DefaultEcs.World;
+using World = Arch.Core.World;
 
 /// <summary>
 ///   Updates cell burst effects as time elapses. As this just setups the effect this doesn't need to run per frame
@@ -23,13 +25,15 @@ using World = DefaultEcs.World;
 [RunsBefore(typeof(TimedLifeSystem))]
 [RuntimeCost(0.25f)]
 [RunsOnMainThread]
-public sealed class CellBurstEffectSystem : AEntitySetSystem<float>
+public partial class CellBurstEffectSystem : BaseSystem<World, float>
 {
-    public CellBurstEffectSystem(World world) : base(world, null)
+    public CellBurstEffectSystem(World world) : base(world)
     {
     }
 
-    protected override void Update(float delta, in Entity entity)
+    [Query]
+    [MethodImpl(MethodImplOptions.AggressiveInlining)]
+    private void Update([Data] in float delta, ref TODO components, in Entity entity)
     {
         ref var burstEffect = ref entity.Get<CellBurstEffect>();
         ref var timedLife = ref entity.Get<TimedLife>();

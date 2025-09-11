@@ -3,8 +3,9 @@ using System.Collections.Generic;
 using System.Globalization;
 using System.Linq;
 using System.Text;
+using Arch.Core;
+using Arch.Core.Extensions;
 using Components;
-using DefaultEcs;
 using Godot;
 
 /// <summary>
@@ -71,7 +72,7 @@ public partial class MicrobeBenchmark : BenchmarkBase
 
     private MicrobeWorldSimulation? microbeSimulation;
 
-    private EntitySet? microbeEntities;
+    private QueryDescription? microbeEntities;
 
     private int aiGroup1Seed;
     private int aiGroup2Seed;
@@ -148,8 +149,6 @@ public partial class MicrobeBenchmark : BenchmarkBase
                 health.CurrentHealth = health.MaxHealth;
             }
         }
-
-        microbeEntities?.Complete();
 
         microbeSimulation?.ProcessAll((float)delta);
 
@@ -451,7 +450,7 @@ public partial class MicrobeBenchmark : BenchmarkBase
         if (disposing)
         {
             microbeSimulation?.Dispose();
-            microbeEntities?.Dispose();
+            microbeEntities = null;
         }
 
         base.Dispose(disposing);
@@ -496,8 +495,7 @@ public partial class MicrobeBenchmark : BenchmarkBase
         microbeSimulation.Init(dynamicRoot, cloudSystem, dummyEnvironment);
         microbeSimulation.InitForCurrentGame(gameProperties ?? throw new Exception("game properties not set"));
 
-        microbeEntities = microbeSimulation.EntitySystem.GetEntities().With<MicrobeSpeciesMember>().With<Health>()
-            .AsSet();
+        microbeEntities = new QueryDescription().WithAll<MicrobeSpeciesMember, Health>();
 
         microbeSimulation.SetSimulationBiome(dummyEnvironment.CurrentBiome);
     }
@@ -541,22 +539,23 @@ public partial class MicrobeBenchmark : BenchmarkBase
     {
         // Find the spawned microbes. This needs to be done separately from SpawnMicrobe because they are only queued
         // spawns at that point
-        foreach (var existingMicrobe in microbeEntities!.GetEntities())
+
+        microbeSimulation!.EntitySystem.Query(microbeEntities!.Value, (Entity entity, ref Health health) =>
         {
-            if (existingMicrobe.Get<Health>().Dead)
-                continue;
+            if (health.Dead)
+                return;
 
-            if (spawnedMicrobes.Any(m => m == existingMicrobe))
-                continue;
+            if (spawnedMicrobes.Any(m => m == entity))
+                return;
 
-            spawnedMicrobes.Add(existingMicrobe);
-        }
+            spawnedMicrobes.Add(entity);
+        });
 
         spawnedSomething = false;
     }
 
     private void PruneDeadMicrobes()
     {
-        spawnedMicrobes.RemoveAll(r => !r.IsAlive || r.Get<Health>().Dead);
+        spawnedMicrobes.RemoveAll(r => !r.IsAlive() || r.Get<Health>().Dead);
     }
 }

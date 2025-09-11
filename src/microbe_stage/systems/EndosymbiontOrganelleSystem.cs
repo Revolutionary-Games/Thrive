@@ -2,10 +2,11 @@
 
 using System;
 using System.Collections.Generic;
+using System.Runtime.CompilerServices;
+using Arch.Core;
+using Arch.Core.Extensions;
+using Arch.System;
 using Components;
-using DefaultEcs;
-using DefaultEcs.System;
-using DefaultEcs.Threading;
 using Godot;
 
 /// <summary>
@@ -24,7 +25,7 @@ using Godot;
 [RunsBefore(typeof(MicrobeReproductionSystem))]
 [RunsBefore(typeof(MicrobePhysicsCreationAndSizeSystem))]
 [RunsBefore(typeof(MicrobeVisualsSystem))]
-public class EndosymbiontOrganelleSystem : AEntitySetSystem<float>
+public partial class EndosymbiontOrganelleSystem : BaseSystem<World, float>
 {
     // TODO: https://github.com/Revolutionary-Games/Thrive/issues/4989
     // private readonly ThreadLocal<List<Hex>> hexWorkData = new(() => new List<Hex>());
@@ -34,12 +35,14 @@ public class EndosymbiontOrganelleSystem : AEntitySetSystem<float>
     private readonly List<Hex> hexWorkData2 = new();
     private readonly HashSet<Hex> hexWorkData3 = new();
 
-    public EndosymbiontOrganelleSystem(World world, IParallelRunner parallelRunner) : base(world, parallelRunner,
+    public EndosymbiontOrganelleSystem(World world) : base(world, parallelRunner,
         Constants.SYSTEM_NORMAL_ENTITIES_PER_THREAD)
     {
     }
 
-    protected override void Update(float state, in Entity entity)
+    [Query]
+    [MethodImpl(MethodImplOptions.AggressiveInlining)]
+    private void Update([Data] in float delta, ref TODO components, in Entity entity)
     {
         ref var endosymbiontInfo = ref entity.Get<TemporaryEndosymbiontInfo>();
 

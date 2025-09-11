@@ -1,9 +1,9 @@
 ﻿namespace Systems;
 
+using Arch.Core;
+using Arch.Core.Extensions;
+using Arch.System;
 using Components;
-using DefaultEcs;
-using DefaultEcs.System;
-using DefaultEcs.Threading;
 
 /// <summary>
 ///   Handles slowing down cells that are currently moving through slime (and don't have slime jets themselves)
@@ -17,7 +17,7 @@ using DefaultEcs.Threading;
 [RunsAfter(typeof(OrganelleComponentFetchSystem))]
 [RunsBefore(typeof(MicrobeMovementSystem))]
 [RuntimeCost(7)]
-public sealed class SlimeSlowdownSystem : AEntitySetSystem<float>
+public partial class SlimeSlowdownSystem : BaseSystem<World, float>
 {
     private readonly IReadonlyCompoundClouds compoundCloudSystem;
 
@@ -27,7 +27,9 @@ public sealed class SlimeSlowdownSystem : AEntitySetSystem<float>
         this.compoundCloudSystem = compoundCloudSystem;
     }
 
-    protected override void Update(float delta, in Entity entity)
+    [Query]
+    [MethodImpl(MethodImplOptions.AggressiveInlining)]
+    private void Update([Data] in float delta, ref TODO components, in Entity entity)
     {
         ref var control = ref entity.Get<MicrobeControl>();
 

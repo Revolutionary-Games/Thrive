@@ -1,22 +1,20 @@
 ﻿namespace Systems;
 
+using System.Runtime.CompilerServices;
+using Arch.System;
 using Components;
-using DefaultEcs;
-using DefaultEcs.System;
 using Godot;
-using World = DefaultEcs.World;
+using World = Arch.Core.World;
 
 /// <summary>
-///   Hears the sounds from <see cref="SoundEffectPlayer"/> (this marks where the player's ears are)
+///   Hears the sounds from <see cref="SoundEffectPlayer"/> (this system marks where the player's ears are)
 /// </summary>
-[With(typeof(SoundListener))]
-[With(typeof(WorldPosition))]
 [ReadsComponent(typeof(WorldPosition))]
 [RunsAfter(typeof(PhysicsUpdateAndPositionSystem))]
 [RunsAfter(typeof(AttachedEntityPositionSystem))]
 [RuntimeCost(2)]
 [RunsOnMainThread]
-public sealed class SoundListenerSystem : AEntitySetSystem<float>
+public partial class SoundListenerSystem : BaseSystem<World, float>
 {
     private readonly AudioListener3D listener;
 
@@ -26,7 +24,7 @@ public sealed class SoundListenerSystem : AEntitySetSystem<float>
 
     private bool printedError;
 
-    public SoundListenerSystem(Node listenerParentNode, World world) : base(world, null)
+    public SoundListenerSystem(Node listenerParentNode, World world) : base(world)
     {
         listener = new AudioListener3D();
         listener.ClearCurrent();
@@ -39,21 +37,17 @@ public sealed class SoundListenerSystem : AEntitySetSystem<float>
         base.Dispose();
     }
 
-    protected override void PreUpdate(float delta)
+    public override void BeforeUpdate(in float delta)
     {
-        base.PreUpdate(delta);
-
         wantedListenerPosition = null;
     }
 
-    protected override void Update(float delta, in Entity entity)
+    [Query]
+    [MethodImpl(MethodImplOptions.AggressiveInlining)]
+    private void Update(ref SoundListener soundListener, ref WorldPosition position)
     {
-        ref var soundListener = ref entity.Get<SoundListener>();
-
         if (soundListener.Disabled)
             return;
-
-        ref var position = ref entity.Get<WorldPosition>();
 
         if (wantedListenerPosition != null)
         {
@@ -69,10 +63,8 @@ public sealed class SoundListenerSystem : AEntitySetSystem<float>
         wantedListenerPosition = position.ToTransform();
     }
 
-    protected override void PostUpdate(float delta)
+    public override void AfterUpdate(in float delta)
     {
-        base.PostUpdate(delta);
-
         if (wantedListenerPosition == null)
         {
             if (listener.IsCurrent())

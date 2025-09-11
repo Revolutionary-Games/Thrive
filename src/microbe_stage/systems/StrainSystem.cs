@@ -1,23 +1,25 @@
-﻿using Components;
-using DefaultEcs;
-using DefaultEcs.System;
-using DefaultEcs.Threading;
+﻿using Arch.Core;
+using Arch.Core.Extensions;
+using Arch.System;
+using Components;
 using Systems;
-using World = DefaultEcs.World;
+using World = Arch.Core.World;
 
 [With(typeof(StrainAffected))]
 [With(typeof(MicrobeControl))]
 [With(typeof(OrganelleContainer))]
 [ReadsComponent(typeof(OrganelleContainer))]
 [RunsBefore(typeof(MicrobeMovementSystem))]
-public sealed class StrainSystem : AEntitySetSystem<float>
+public partial class StrainSystem : BaseSystem<World, float>
 {
     public StrainSystem(World world, IParallelRunner runner) : base(world, runner,
         Constants.SYSTEM_EXTREME_ENTITIES_PER_THREAD)
     {
     }
 
-    protected override void Update(float delta, in Entity entity)
+    [Query]
+    [MethodImpl(MethodImplOptions.AggressiveInlining)]
+    private void Update([Data] in float delta, ref TODO components, in Entity entity)
     {
         ref var strain = ref entity.Get<StrainAffected>();
         ref var control = ref entity.Get<MicrobeControl>();

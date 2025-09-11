@@ -1,10 +1,12 @@
 ﻿namespace Systems;
 
+using System.Runtime.CompilerServices;
+using Arch.Core;
+using Arch.Core.Extensions;
+using Arch.System;
 using Components;
-using DefaultEcs;
-using DefaultEcs.System;
 using Godot;
-using World = DefaultEcs.World;
+using World = Arch.Core.World;
 
 /// <summary>
 ///   Handles things related to <see cref="MicrobeShaderParameters"/>. This should run each frame and pause when
@@ -22,13 +24,13 @@ using World = DefaultEcs.World;
 [RuntimeCost(8)]
 [RunsOnFrame]
 [RunsOnMainThread]
-public sealed class MicrobeShaderSystem : AEntitySetSystem<float>
+public partial class MicrobeShaderSystem : BaseSystem<World, float>
 {
     // private readonly Lazy<Texture> noiseTexture = GD.Load<Texture>("res://assets/textures/dissolve_noise.tres");
 
     private readonly StringName dissolveValueName = new("dissolveValue");
 
-    public MicrobeShaderSystem(World world) : base(world, null)
+    public MicrobeShaderSystem(World world) : base(world)
     {
     }
 
@@ -38,7 +40,9 @@ public sealed class MicrobeShaderSystem : AEntitySetSystem<float>
         base.Dispose();
     }
 
-    protected override void Update(float delta, in Entity entity)
+    [Query]
+    [MethodImpl(MethodImplOptions.AggressiveInlining)]
+    private void Update([Data] in float delta, ref TODO components, in Entity entity)
     {
         ref var shaderParameters = ref entity.Get<MicrobeShaderParameters>();
 

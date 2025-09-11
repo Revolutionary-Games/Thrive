@@ -1,6 +1,6 @@
 ﻿using System;
 using System.Runtime.InteropServices;
-using DefaultEcs;
+using Arch.Core;
 
 /// <summary>
 ///   Info regarding a physics ray hit. Must match the PhysicsRayWithUserData class byte layout defined on the

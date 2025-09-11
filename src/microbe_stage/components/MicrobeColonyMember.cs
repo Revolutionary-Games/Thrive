@@ -1,6 +1,6 @@
 ﻿namespace Components;
 
-using DefaultEcs;
+using Arch.Core;
 
 /// <summary>
 ///   Marker for microbes that are in a cell colony. The cell colony leader has <see cref="MicrobeColony"/>

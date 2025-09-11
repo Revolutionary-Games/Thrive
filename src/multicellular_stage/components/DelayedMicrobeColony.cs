@@ -1,6 +1,6 @@
 ﻿namespace Components;
 
-using DefaultEcs;
+using Arch.Core;
 
 /// <summary>
 ///   Holds operation info for delayed microbe colony operations

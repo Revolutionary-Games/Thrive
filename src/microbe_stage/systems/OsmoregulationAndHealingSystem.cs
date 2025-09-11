@@ -1,10 +1,11 @@
 ﻿namespace Systems;
 
 using System;
+using System.Runtime.CompilerServices;
+using Arch.Core;
+using Arch.Core.Extensions;
+using Arch.System;
 using Components;
-using DefaultEcs;
-using DefaultEcs.System;
-using DefaultEcs.Threading;
 using Godot;
 
 /// <summary>
@@ -35,15 +36,14 @@ using Godot;
 [RunsAfter(typeof(DamageOnTouchSystem))]
 [RunsAfter(typeof(ToxinCollisionSystem))]
 [RuntimeCost(4)]
-public sealed class OsmoregulationAndHealingSystem : AEntitySetSystem<float>
+public partial class OsmoregulationAndHealingSystem : BaseSystem<World, float>
 {
     private GameWorld? gameWorld;
 
     private bool hydrogenSulfideDamageTrigger;
     private float elapsedSinceTrigger;
 
-    public OsmoregulationAndHealingSystem(World world, IParallelRunner parallelRunner) :
-        base(world, parallelRunner)
+    public OsmoregulationAndHealingSystem(World world) : base(world)
     {
     }
 
@@ -52,14 +52,12 @@ public sealed class OsmoregulationAndHealingSystem : AEntitySetSystem<float>
         gameWorld = world;
     }
 
-    protected override void PreUpdate(float state)
+    public override void BeforeUpdate(in float delta)
     {
-        base.PreUpdate(state);
-
         if (gameWorld == null)
             throw new InvalidOperationException("GameWorld not set");
 
-        elapsedSinceTrigger += state;
+        elapsedSinceTrigger += delta;
 
         if (elapsedSinceTrigger >= Constants.HYDROGEN_SULFIDE_DAMAGE_INTERVAL)
         {
@@ -72,7 +70,9 @@ public sealed class OsmoregulationAndHealingSystem : AEntitySetSystem<float>
         }
     }
 
-    protected override void Update(float delta, in Entity entity)
+    [Query]
+    [MethodImpl(MethodImplOptions.AggressiveInlining)]
+    private void Update([Data] in float delta, ref TODO components, in Entity entity)
     {
         ref var status = ref entity.Get<MicrobeStatus>();
         ref var health = ref entity.Get<Health>();

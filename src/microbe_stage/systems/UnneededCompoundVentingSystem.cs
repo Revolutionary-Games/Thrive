@@ -2,12 +2,12 @@
 
 using System;
 using System.Collections.Generic;
+using Arch.Core;
+using Arch.Core.Extensions;
+using Arch.System;
 using Components;
-using DefaultEcs;
-using DefaultEcs.System;
-using DefaultEcs.Threading;
 using Godot;
-using World = DefaultEcs.World;
+using World = Arch.Core.World;
 
 /// <summary>
 ///   Handles venting unneeded compounds or compounds that exceed storage capacity from microbes
@@ -22,7 +22,7 @@ using World = DefaultEcs.World;
 [Without(typeof(AttachedToEntity))]
 [RunsAfter(typeof(ProcessSystem))]
 [RuntimeCost(9)]
-public sealed class UnneededCompoundVentingSystem : AEntitySetSystem<float>
+public partial class UnneededCompoundVentingSystem : BaseSystem<World, float>
 {
     private readonly CompoundCloudSystem compoundCloudSystem;
     private readonly IReadOnlyList<CompoundDefinition> ventableCompounds;
@@ -36,7 +36,9 @@ public sealed class UnneededCompoundVentingSystem : AEntitySetSystem<float>
         ventableCompounds = SimulationParameters.Instance.GetCloudCompounds();
     }
 
-    protected override void Update(float delta, in Entity entity)
+    [Query]
+    [MethodImpl(MethodImplOptions.AggressiveInlining)]
+    private void Update([Data] in float delta, ref TODO components, in Entity entity)
     {
         ref var venter = ref entity.Get<UnneededCompoundVenter>();
 

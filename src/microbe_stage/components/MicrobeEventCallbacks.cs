@@ -2,11 +2,11 @@
 
 using System;
 using System.Collections.Generic;
-using DefaultEcs;
+using Arch.Core;
 using Godot;
 
 /// <summary>
-///   Entity that triggers various microbe event callbacks when things happens to it. This is mostly used for
+///   Entity that triggers various microbe event callbacks when things happen to it. This is mostly used for
 ///   connecting the player cell to the GUI and game stage.
 /// </summary>
 [JSONDynamicTypeAllowed]

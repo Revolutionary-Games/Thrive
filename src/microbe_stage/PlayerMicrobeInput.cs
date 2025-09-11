@@ -1,7 +1,8 @@
 ﻿using System;
 using System.Linq;
+using Arch.Core;
+using Arch.Core.Extensions;
 using Components;
-using DefaultEcs;
 using Godot;
 
 /// <summary>
@@ -325,10 +326,10 @@ public partial class PlayerMicrobeInput : NodeWithInput
             return false;
 
         var target = stage.HoverInfo.Entities.FirstOrDefault();
-        if (target == default || !target.IsAlive)
+        if (target == default || !target.IsAlive())
             return false;
 
-        if (!target.IsAlive || !target.Has<MicrobeSpeciesMember>())
+        if (!target.IsAlive() || !target.Has<MicrobeSpeciesMember>())
             return false;
 
         // If didn't hit a cell colony, can't do anything
@@ -338,7 +339,7 @@ public partial class PlayerMicrobeInput : NodeWithInput
         RemoveCellFromColony(target);
 
         // Removing a colony member should reset the microbe mode so this text should be hidden anyway soon, but
-        // apparently we wanted extra guarantee here
+        // apparently we wanted an extra guarantee here
         stage.HUD.HintText = string.Empty;
         return true;
     }

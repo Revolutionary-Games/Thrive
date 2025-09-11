@@ -1,12 +1,13 @@
 ﻿namespace Systems;
 
 using System;
+using System.Runtime.CompilerServices;
+using Arch.Core;
+using Arch.Core.Extensions;
+using Arch.System;
 using Components;
-using DefaultEcs;
-using DefaultEcs.System;
-using DefaultEcs.Threading;
 using Godot;
-using World = DefaultEcs.World;
+using World = Arch.Core.World;
 
 /// <summary>
 ///   Handles applying <see cref="MicrobeControl"/> to a microbe
@@ -41,7 +42,7 @@ using World = DefaultEcs.World;
 [RunsAfter(typeof(PhysicsBodyDisablingSystem))]
 [RunsBefore(typeof(PhysicsBodyControlSystem))]
 [RuntimeCost(14)]
-public sealed class MicrobeMovementSystem : AEntitySetSystem<float>
+public partial class MicrobeMovementSystem : BaseSystem<World, float>
 {
     private readonly IWorldSimulation worldSimulation;
     private readonly PhysicalWorld physicalWorld;
@@ -53,7 +54,9 @@ public sealed class MicrobeMovementSystem : AEntitySetSystem<float>
         this.physicalWorld = physicalWorld;
     }
 
-    protected override void Update(float delta, in Entity entity)
+    [Query]
+    [MethodImpl(MethodImplOptions.AggressiveInlining)]
+    private void Update([Data] in float delta, ref TODO components, in Entity entity)
     {
         ref var physics = ref entity.Get<Physics>();
 

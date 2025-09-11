@@ -3,13 +3,13 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using Arch.Core;
+using Arch.Core.Extensions;
+using Arch.System;
 using Components;
-using DefaultEcs;
-using DefaultEcs.System;
-using DefaultEcs.Threading;
 using Godot;
 using Xoshiro.PRNG64;
-using World = DefaultEcs.World;
+using World = Arch.Core.World;
 
 /// <summary>
 ///   Microbe AI logic
@@ -45,7 +45,7 @@ using World = DefaultEcs.World;
 [RunsConditionally("RunAI")]
 [RunsWithCustomCode("{0}.ReportPotentialPlayerPosition(reportedPlayerPosition);\n{0}.Update(delta);")]
 [RuntimeCost(9)]
-public sealed class MicrobeAISystem : AEntitySetSystem<float>, ISpeciesMemberLocationData
+public partial class MicrobeAISystem : BaseSystem<World, float>, ISpeciesMemberLocationData
 {
     private readonly IReadonlyCompoundClouds clouds;
     private readonly IDaylightInfo lightInfo;
@@ -146,10 +146,8 @@ public sealed class MicrobeAISystem : AEntitySetSystem<float>, ISpeciesMemberLoc
         base.Dispose();
     }
 
-    protected override void PreUpdate(float delta)
+    public override void BeforeUpdate(in float delta)
     {
-        base.PreUpdate(delta);
-
         skipAI = CheatManager.NoAI;
         usedAIThinkRandomIndex = 0;
 
@@ -174,7 +172,9 @@ public sealed class MicrobeAISystem : AEntitySetSystem<float>, ISpeciesMemberLoc
         }
     }
 
-    protected override void Update(float delta, in Entity entity)
+    [Query]
+    [MethodImpl(MethodImplOptions.AggressiveInlining)]
+    private void Update([Data] in float delta, ref TODO components, in Entity entity)
     {
         if (skipAI)
             return;
@@ -220,7 +220,7 @@ public sealed class MicrobeAISystem : AEntitySetSystem<float>, ISpeciesMemberLoc
         AIThink(GetNextAIRandom(), in entity, ref ai, ref health, strain);
     }
 
-    protected override void PostUpdate(float state)
+    public override void AfterUpdate(in float delta)
     {
         base.PostUpdate(state);
 
@@ -554,7 +554,7 @@ public sealed class MicrobeAISystem : AEntitySetSystem<float>, ISpeciesMemberLoc
         // If there are no chunks, look for living prey to hunt
         var possiblePrey = GetNearestPreyItem(ref ai, ref position, ref organelles, ref ourSpecies, ref engulfer,
             compounds, speciesFocus, speciesAggression, speciesOpportunism, random);
-        if (possiblePrey != default && possiblePrey.IsAlive)
+        if (possiblePrey != default && possiblePrey.IsAlive())
         {
             Vector3 prey;
 
@@ -789,7 +789,7 @@ public sealed class MicrobeAISystem : AEntitySetSystem<float>, ISpeciesMemberLoc
         ref Engulfer engulfer, CompoundBag ourCompounds, float speciesFocus, float speciesAggression,
         float speciesOpportunism, Random random)
     {
-        if (ai.FocusedPrey != default && ai.FocusedPrey.IsAlive)
+        if (ai.FocusedPrey != default && ai.FocusedPrey.IsAlive())
         {
             var focused = ai.FocusedPrey;
             try

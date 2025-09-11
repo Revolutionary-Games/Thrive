@@ -1,9 +1,9 @@
 ﻿namespace Systems;
 
+using Arch.Core;
+using Arch.Core.Extensions;
+using Arch.System;
 using Components;
-using DefaultEcs;
-using DefaultEcs.System;
-using DefaultEcs.Threading;
 
 /// <summary>
 ///   Handles applying the effects specified by <see cref="MicrobeTemporaryEffects"/>
@@ -13,13 +13,15 @@ using DefaultEcs.Threading;
 [With(typeof(CellProperties))]
 [With(typeof(BioProcesses))]
 [RunsAfter(typeof(ToxinCollisionSystem))]
-public class MicrobeTemporaryEffectsSystem : AEntitySetSystem<float>
+public partial class MicrobeTemporaryEffectsSystem : BaseSystem<World, float>
 {
-    public MicrobeTemporaryEffectsSystem(World world, IParallelRunner parallelRunner) : base(world, parallelRunner)
+    public MicrobeTemporaryEffectsSystem(World world) : base(world)
     {
     }
 
-    protected override void Update(float delta, in Entity entity)
+    [Query]
+    [MethodImpl(MethodImplOptions.AggressiveInlining)]
+    private void Update([Data] in float delta, ref TODO components, in Entity entity)
     {
         ref var temporaryEffects = ref entity.Get<MicrobeTemporaryEffects>();
 

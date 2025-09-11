@@ -2,11 +2,13 @@
 
 using System;
 using System.Collections.Generic;
+using System.Runtime.CompilerServices;
+using Arch.Core;
+using Arch.Core.Extensions;
+using Arch.System;
 using Components;
-using DefaultEcs;
-using DefaultEcs.System;
 using Godot;
-using World = DefaultEcs.World;
+using World = Arch.Core.World;
 
 /// <summary>
 ///   Microbe specific render priority system that is aware of how to set render priority separately for organelles
@@ -27,15 +29,17 @@ using World = DefaultEcs.World;
 [RunsAfter(typeof(EntityMaterialFetchSystem))]
 [RuntimeCost(0.5f)]
 [RunsOnMainThread]
-public sealed class MicrobeRenderPrioritySystem : AEntitySetSystem<float>
+public partial class MicrobeRenderPrioritySystem : BaseSystem<World, float>
 {
     private readonly List<ShaderMaterial> tempMaterialsList = new();
 
-    public MicrobeRenderPrioritySystem(World world) : base(world, null)
+    public MicrobeRenderPrioritySystem(World world) : base(world)
     {
     }
 
-    protected override void Update(float state, in Entity entity)
+    [Query]
+    [MethodImpl(MethodImplOptions.AggressiveInlining)]
+    private void Update([Data] in float delta, ref TODO components, in Entity entity)
     {
         ref var renderOrder = ref entity.Get<RenderPriorityOverride>();
 

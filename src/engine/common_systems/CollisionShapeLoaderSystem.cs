@@ -1,36 +1,35 @@
 ﻿namespace Systems;
 
+using System.Runtime.CompilerServices;
+using Arch.Core;
+using Arch.Core.Extensions;
+using Arch.System;
 using Components;
-using DefaultEcs;
-using DefaultEcs.System;
 
 /// <summary>
 ///   Loads predefined collision shapes from resources
 /// </summary>
 /// <remarks>
 ///   <para>
-///     Runs on main thread for now due to needing to load Godot resources for physics. Maybe in the future we
-///     have a pre-converted format for the game that doesn't need this. Also multithreading disabled for now.
+///     Runs on the main thread for now due to needing to load Godot resources for physics.
+///     Maybe in the future we'll have a pre-converted format for the game that doesn't need this.
+///     Also, multithreading is disabled for now.
 ///   </para>
 /// </remarks>
-[With(typeof(CollisionShapeLoader))]
-[With(typeof(PhysicsShapeHolder))]
 [RuntimeCost(0.5f)]
 [RunsOnMainThread]
-public sealed class CollisionShapeLoaderSystem : AEntitySetSystem<float>
+public partial class CollisionShapeLoaderSystem : BaseSystem<World, float>
 {
-    public CollisionShapeLoaderSystem(World world) : base(world, null)
+    public CollisionShapeLoaderSystem(World world) : base(world)
     {
     }
 
-    protected override void Update(float delta, in Entity entity)
+    [Query]
+    [MethodImpl(MethodImplOptions.AggressiveInlining)]
+    private void Update(ref CollisionShapeLoader loader, ref PhysicsShapeHolder shapeHolder)
     {
-        ref var loader = ref entity.Get<CollisionShapeLoader>();
-
         if (loader.ShapeLoaded)
             return;
-
-        ref var shapeHolder = ref entity.Get<PhysicsShapeHolder>();
 
         float density;
         if (loader.ApplyDensity)

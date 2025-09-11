@@ -2,11 +2,13 @@
 
 using System;
 using System.Collections.Generic;
+using System.Runtime.CompilerServices;
+using Arch.Core;
+using Arch.Core.Extensions;
+using Arch.System;
 using Components;
-using DefaultEcs;
-using DefaultEcs.System;
 using Godot;
-using World = DefaultEcs.World;
+using World = Arch.Core.World;
 
 /// <summary>
 ///   Loads predefined visual instances for entities.
@@ -27,11 +29,9 @@ using World = DefaultEcs.World;
 ///     TODO: merge the loading logic of this to leverage <see cref="ResourceManager"/>
 ///   </para>
 /// </remarks>
-[With(typeof(PredefinedVisuals))]
-[With(typeof(SpatialInstance))]
 [RuntimeCost]
 [RunsOnMainThread]
-public sealed class PredefinedVisualLoaderSystem : AEntitySetSystem<float>
+public partial class PredefinedVisualLoaderSystem : BaseSystem<World, float>
 {
     /// <summary>
     ///   This stores all the scenes seen in this world. This is done with the assumption that any once used scene
@@ -46,7 +46,7 @@ public sealed class PredefinedVisualLoaderSystem : AEntitySetSystem<float>
     private SimulationParameters simulationParameters = null!;
 #pragma warning restore CA2213
 
-    public PredefinedVisualLoaderSystem(World world) : base(world, null)
+    public PredefinedVisualLoaderSystem(World world) : base(world)
     {
         // TODO: will we be able to at some point load Godot scenes in parallel without issues?
         // Also a proper resource manager would basically remove the need for that
@@ -63,20 +63,18 @@ public sealed class PredefinedVisualLoaderSystem : AEntitySetSystem<float>
         // GC.SuppressFinalize(this);
     }
 
-    protected override void PreUpdate(float state)
+    public override void BeforeUpdate(in float delta)
     {
         simulationParameters = SimulationParameters.Instance;
     }
 
-    protected override void Update(float delta, in Entity entity)
+    [Query]
+    [MethodImpl(MethodImplOptions.AggressiveInlining)]
+    private void Update(ref PredefinedVisuals visuals, ref SpatialInstance spatial)
     {
-        ref var visuals = ref entity.Get<PredefinedVisuals>();
-
         // Skip update if nothing to do
         if (visuals.VisualIdentifier == visuals.LoadedInstance)
             return;
-
-        ref var spatial = ref entity.Get<SpatialInstance>();
 
         visuals.LoadedInstance = visuals.VisualIdentifier;
 
@@ -96,7 +94,7 @@ public sealed class PredefinedVisualLoaderSystem : AEntitySetSystem<float>
 
         if (scene == null)
         {
-            // Even error scene failed
+            // Even the error scene failed
             return;
         }
 

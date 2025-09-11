@@ -3,7 +3,8 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
-using DefaultEcs;
+using Arch.Core;
+using Arch.Core.Extensions;
 using DefaultEcs.Command;
 using Godot;
 using Newtonsoft.Json;

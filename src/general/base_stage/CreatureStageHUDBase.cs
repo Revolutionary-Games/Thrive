@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Globalization;
 using System.Linq;
+using Arch.Core.Extensions;
 using Components;
 using Godot;
 using Newtonsoft.Json;
@@ -626,7 +627,7 @@ public partial class CreatureStageHUDBase<TStage> : HUDWithPausing, ICreatureSta
     /// <param name="button">The button attached to the organism to fossilise</param>
     public void ShowFossilisationDialog(FossilisationButton button)
     {
-        if (!button.AttachedEntity.IsAlive)
+        if (!button.AttachedEntity.IsAlive())
         {
             GD.PrintErr("Tried to show fossilization dialog for a dead entity");
             return;

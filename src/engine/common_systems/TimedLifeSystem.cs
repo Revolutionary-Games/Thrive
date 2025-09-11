@@ -1,9 +1,9 @@
 ﻿namespace Systems;
 
+using System.Runtime.CompilerServices;
+using Arch.Core;
+using Arch.System;
 using Components;
-using DefaultEcs;
-using DefaultEcs.System;
-using DefaultEcs.Threading;
 
 /// <summary>
 ///   System that deletes nodes that are in the timed group after their lifespan expires.
@@ -13,15 +13,13 @@ using DefaultEcs.Threading;
 ///     See the TODOs on <see cref="FadeOutActionSystem"/> why this is marked as needing to run on the main thread.
 ///   </para>
 /// </remarks>
-[With(typeof(TimedLife))]
 [RuntimeCost(0.25f)]
 [RunsOnMainThread]
-public sealed class TimedLifeSystem : AEntitySetSystem<float>
+public partial class TimedLifeSystem : BaseSystem<World, float>
 {
     private readonly IEntityContainer entityContainer;
 
-    public TimedLifeSystem(IEntityContainer entityContainer, World world, IParallelRunner runner) :
-        base(world, runner)
+    public TimedLifeSystem(IEntityContainer entityContainer, World world) : base(world)
     {
         this.entityContainer = entityContainer;
     }
@@ -31,16 +29,16 @@ public sealed class TimedLifeSystem : AEntitySetSystem<float>
     /// </summary>
     public void DespawnAll()
     {
-        foreach (var entity in World.GetEntities().With<TimedLife>().AsEnumerable())
+        World.Query(new QueryDescription().WithAll<TimedLife>(), entity =>
         {
             entityContainer.DestroyEntity(entity);
-        }
+        });
     }
 
-    protected override void Update(float delta, in Entity entity)
+    [Query]
+    [MethodImpl(MethodImplOptions.AggressiveInlining)]
+    private void Update([Data] in float delta, ref TimedLife timed, in Entity entity)
     {
-        ref var timed = ref entity.Get<TimedLife>();
-
         // Fading timing is now also handled by this system
         if (timed.FadeTimeRemaining != null)
         {
@@ -62,7 +60,7 @@ public sealed class TimedLifeSystem : AEntitySetSystem<float>
             timed.OnTimeOverTriggered = true;
             var callback = timed.CustomTimeOverCallback;
 
-            // If there is a custom callback call it first as it can set the fade time
+            // If there is a custom callback, call it first as it can set the fade time
             bool wantsToLive = callback != null && !callback.Invoke(entity, ref timed);
 
             if (timed.FadeTimeRemaining != null && timed.FadeTimeRemaining.Value > 0)

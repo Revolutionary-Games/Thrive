@@ -1,11 +1,12 @@
 ﻿namespace Systems;
 
+using System.Runtime.CompilerServices;
+using Arch.Core;
+using Arch.Core.Extensions;
+using Arch.System;
 using Components;
-using DefaultEcs;
-using DefaultEcs.System;
-using DefaultEcs.Threading;
 using Godot;
-using World = DefaultEcs.World;
+using World = Arch.Core.World;
 
 /// <summary>
 ///   Handles flashing microbes different colour based on the mode they are in or if they are taking damage. Needs
@@ -19,13 +20,15 @@ using World = DefaultEcs.World;
 [ReadsComponent(typeof(Selectable))]
 [RunsAfter(typeof(OsmoregulationAndHealingSystem))]
 [RunsBefore(typeof(DamageSoundSystem))]
-public sealed class MicrobeFlashingSystem : AEntitySetSystem<float>
+public partial class MicrobeFlashingSystem : BaseSystem<World, float>
 {
-    public MicrobeFlashingSystem(World world, IParallelRunner parallelRunner) : base(world, parallelRunner)
+    public MicrobeFlashingSystem(World world) : base(world)
     {
     }
 
-    protected override void Update(float delta, in Entity entity)
+    [Query]
+    [MethodImpl(MethodImplOptions.AggressiveInlining)]
+    private void Update([Data] in float delta, ref TODO components, in Entity entity)
     {
         ref var animation = ref entity.Get<ColourAnimation>();
 

@@ -2,8 +2,9 @@
 using System.Collections.Generic;
 using System.Globalization;
 using System.Linq;
+using Arch.Core;
+using Arch.Core.Extensions;
 using AutoEvo;
-using DefaultEcs;
 using Godot;
 using Newtonsoft.Json;
 using Systems;
@@ -316,7 +317,7 @@ public partial class CellEditorComponent :
 
             previewMicrobeSpecies.MembraneRigidity = value;
 
-            if (previewMicrobe.IsAlive)
+            if (previewMicrobe.IsAlive())
                 previewSimulation!.ApplyMicrobeRigidity(previewMicrobe, previewMicrobeSpecies.MembraneRigidity);
         }
     }
@@ -343,13 +344,13 @@ public partial class CellEditorComponent :
 
             previewMicrobeSpecies.Colour = value;
 
-            if (previewMicrobe.IsAlive)
+            if (previewMicrobe.IsAlive())
                 previewSimulation!.ApplyMicrobeColour(previewMicrobe, previewMicrobeSpecies.Colour);
         }
     }
 
     /// <summary>
-    ///   The name of organelle type that is selected to be placed
+    ///   The name of the organelle type that is selected to be placed
     /// </summary>
     [JsonIgnore]
     public string? ActiveActionName
@@ -1661,7 +1662,7 @@ public partial class CellEditorComponent :
         if (previewSimulation == null)
             throw new InvalidOperationException("Component needs to be initialized first");
 
-        if (previewMicrobe.IsAlive && previewMicrobeSpecies != null)
+        if (previewMicrobe.IsAlive() && previewMicrobeSpecies != null)
             return false;
 
         if (cellPreviewVisualsRoot == null)

@@ -1,12 +1,12 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Diagnostics;
-using System.Linq;
-using DefaultEcs;
-using DefaultEcs.Command;
+using Arch.Buffer;
+using Arch.Core;
+using Arch.Core.Extensions;
 using Godot;
 using Newtonsoft.Json;
-using World = DefaultEcs.World;
+using World = Arch.Core.World;
 
 /// <summary>
 ///   Any type of game world simulation where everything needed to run that simulation is collected under. Note that
@@ -48,15 +48,15 @@ public abstract class WorldSimulation : IWorldSimulation, IGodotEarlyNodeResolve
     // TODO: are there situations where invokes not having run yet but a save being made could cause problems?
     private readonly Queue<Action> queuedInvokes = new();
 
-    private readonly Queue<EntityCommandRecorder> availableRecorders = new();
-    private readonly HashSet<EntityCommandRecorder> nonEmptyRecorders = new();
+    private readonly Queue<CommandBuffer> availableRecorders = new();
+    private readonly HashSet<CommandBuffer> nonEmptyRecorders = new();
     private int totalCreatedRecorders;
 
     private float timeSinceLastEntityEstimate = 1;
     private int ecsThreadsToUse = 1;
 
     private int missedUpdates;
-    private int successfullUpdates;
+    private int successfulUpdates;
 
     /// <summary>
     ///   Used to trigger warnings about <see cref="WorldTimeScale"/> being so high we can't process the game fast
@@ -66,7 +66,7 @@ public abstract class WorldSimulation : IWorldSimulation, IGodotEarlyNodeResolve
 
     public WorldSimulation()
     {
-        entities = new World();
+        entities = World.Create();
         entitiesToNotSave = new UnsavedEntities(queuedForDelete);
     }
 
@@ -221,7 +221,7 @@ public abstract class WorldSimulation : IWorldSimulation, IGodotEarlyNodeResolve
             if (timeScaleMissedUpdates > 0)
                 --timeScaleMissedUpdates;
 
-            ++successfullUpdates;
+            ++successfulUpdates;
         }
 
         Processing = true;
@@ -322,7 +322,7 @@ public abstract class WorldSimulation : IWorldSimulation, IGodotEarlyNodeResolve
             ComponentAccessChecks.ReportSimulationActive(false);
     }
 
-    public Entity CreateEmptyEntity()
+    public Entity CreateEmptyEntity(ComponentType[] types)
     {
         // Ensure thread unsafe operation doesn't happen
         if (Processing)
@@ -330,12 +330,12 @@ public abstract class WorldSimulation : IWorldSimulation, IGodotEarlyNodeResolve
             throw new InvalidOperationException("Can't use entity create at this time, use deferred create");
         }
 
-        return entities.CreateEntity();
+        return entities.Create(types);
     }
 
-    public EntityRecord CreateEntityDeferred(WorldRecord activeRecording)
+    public Entity CreateEntityDeferred(CommandBuffer activeRecording, ComponentType[] componentTypes)
     {
-        return activeRecording.CreateEntity();
+        return activeRecording.Create(componentTypes);
     }
 
     public bool DestroyEntity(Entity entity)
@@ -369,8 +369,11 @@ public abstract class WorldSimulation : IWorldSimulation, IGodotEarlyNodeResolve
         {
             bool despawned = false;
 
-            // If destroy all is used a lot then this temporary memory use (ToList) here should be solved
-            foreach (var entity in entities.ToList())
+            // If destroy all is used a lot, then this temporary memory use (ToList) here should be solved
+            var toDestroy = new List<Entity>();
+            entities.Query(new QueryDescription(), entity => toDestroy.Add(entity));
+
+            foreach (var entity in toDestroy)
             {
                 if (entity == skip)
                     continue;
@@ -408,7 +411,7 @@ public abstract class WorldSimulation : IWorldSimulation, IGodotEarlyNodeResolve
         }
     }
 
-    public EntityCommandRecorder StartRecordingEntityCommands()
+    public CommandBuffer StartRecordingEntityCommands()
     {
         lock (availableRecorders)
         {
@@ -416,16 +419,11 @@ public abstract class WorldSimulation : IWorldSimulation, IGodotEarlyNodeResolve
                 return availableRecorders.Dequeue();
 
             ++totalCreatedRecorders;
-            return new EntityCommandRecorder();
+            return new CommandBuffer();
         }
     }
 
-    public WorldRecord GetRecorderWorld(EntityCommandRecorder recorder)
-    {
-        return recorder.Record(entities);
-    }
-
-    public void FinishRecordingEntityCommands(EntityCommandRecorder recorder)
+    public void FinishRecordingEntityCommands(CommandBuffer recorder)
     {
         lock (availableRecorders)
         {
@@ -452,7 +450,7 @@ public abstract class WorldSimulation : IWorldSimulation, IGodotEarlyNodeResolve
     {
         // TODO: check WorldId first somehow to ensure this doesn't access things out of bounds in the list of worlds?
 
-        if (!entity.IsAlive)
+        if (!entity.IsAlive())
             return false;
 
         lock (queuedForDelete)
@@ -483,7 +481,7 @@ public abstract class WorldSimulation : IWorldSimulation, IGodotEarlyNodeResolve
 
     /// <summary>
     ///   Immediately perform any delayed / queued entity spawns. This can only be used outside the normal update cycle
-    ///   to get immediate access to a created entity. For example used when spawning the player.
+    ///   to get immediate access to a created entity. For example, used when spawning the player.
     /// </summary>
     /// <exception cref="InvalidOperationException">If an update is currently running</exception>
     public void ProcessDelaySpawnedEntitiesImmediately()
@@ -501,13 +499,18 @@ public abstract class WorldSimulation : IWorldSimulation, IGodotEarlyNodeResolve
     /// <returns>The first found entity or an invalid entity</returns>
     public Entity FindFirstEntityWithComponent<T>()
     {
-        foreach (var entity in EntitySystem)
-        {
-            if (entity.Has<T>())
-                return entity;
-        }
+        var found = Entity.Null;
 
-        return default;
+        // TODO: there's probably a much better way to do this with Arch
+        EntitySystem.Query(new QueryDescription().WithAll<T>(), entity =>
+        {
+            if (found == Entity.Null)
+            {
+                found = entity;
+            }
+        });
+
+        return found;
     }
 
     /// <summary>
@@ -524,15 +527,15 @@ public abstract class WorldSimulation : IWorldSimulation, IGodotEarlyNodeResolve
 
     public float GetAndResetTrackedSimulationSpeedRatio()
     {
-        var total = successfullUpdates + missedUpdates;
+        var total = successfulUpdates + missedUpdates;
 
         // If called too often, we have no data, and at that point we'll assume we are running at full speed
         if (total == 0)
             return 1;
 
-        var result = successfullUpdates / (float)total;
+        var result = successfulUpdates / (float)total;
 
-        successfullUpdates = 0;
+        successfulUpdates = 0;
         missedUpdates = 0;
 
         return result;
@@ -633,13 +636,13 @@ public abstract class WorldSimulation : IWorldSimulation, IGodotEarlyNodeResolve
         }
 
         // Skip multiple destruction of entities that were already destroyed but were queued to be destroyed again
-        if (!entity.IsAlive)
+        if (!entity.IsAlive())
             return;
 
         OnEntityDestroyed(entity);
 
         // Destroy the entity from the ECS system
-        entity.Dispose();
+        EntitySystem.Destroy(entity);
     }
 
     /// <summary>
@@ -712,12 +715,33 @@ public abstract class WorldSimulation : IWorldSimulation, IGodotEarlyNodeResolve
         {
             try
             {
-                recorder.Execute();
+                recorder.Playback(EntitySystem);
             }
             catch (Exception e)
             {
                 GD.PrintErr("Deferred entity command applying caused an exception: ", e);
-                recorder.Clear();
+                recorder.Dispose();
+
+                // To get back to a somewhat correct state, we need to clear the recorder from the available ones
+                GD.PrintErr("Flushing available recorders to get rid of the problematic one");
+                var temp = availableRecorders.ToArray();
+                int oldCount = availableRecorders.Count;
+
+                if (oldCount < 1)
+                    throw new InvalidOperationException("Played recorder should have been in available recorders");
+
+                availableRecorders.Clear();
+
+                foreach (var potentialRecorder in temp)
+                {
+                    if (potentialRecorder != recorder)
+                        availableRecorders.Enqueue(potentialRecorder);
+                }
+
+                if (availableRecorders.Count - 1 < oldCount)
+                {
+                    throw new Exception("We somehow lost recorders while copying");
+                }
 
 #if DEBUG
                 throw;

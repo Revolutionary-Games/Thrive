@@ -1,9 +1,11 @@
 ﻿namespace Systems;
 
 using System.Collections.Generic;
+using System.Runtime.CompilerServices;
+using Arch.Core;
+using Arch.Core.Extensions;
+using Arch.System;
 using Components;
-using DefaultEcs;
-using DefaultEcs.System;
 
 /// <summary>
 ///   Vents all compounds until empty from a <see cref="CompoundStorage"/> that has a <see cref="CompoundVenter"/>.
@@ -17,7 +19,7 @@ using DefaultEcs.System;
 [ReadsComponent(typeof(WorldPosition))]
 [RunsAfter(typeof(PhysicsUpdateAndPositionSystem))]
 [RuntimeCost(9)]
-public sealed class AllCompoundsVentingSystem : AEntitySetSystem<float>
+public partial class AllCompoundsVentingSystem : BaseSystem<World, float>
 {
     private readonly CompoundCloudSystem compoundCloudSystem;
     private readonly WorldSimulation worldSimulation;
@@ -26,13 +28,15 @@ public sealed class AllCompoundsVentingSystem : AEntitySetSystem<float>
     private readonly List<Compound> processedCompoundKeys = new();
 
     public AllCompoundsVentingSystem(CompoundCloudSystem compoundClouds, WorldSimulation worldSimulation,
-        World world) : base(world, null)
+        World world) : base(world)
     {
         compoundCloudSystem = compoundClouds;
         this.worldSimulation = worldSimulation;
     }
 
-    protected override void Update(float delta, in Entity entity)
+    [Query]
+    [MethodImpl(MethodImplOptions.AggressiveInlining)]
+    private void Update([Data] in float delta, ref TODO components, in Entity entity)
     {
         // TODO: rate limit updates if needed for performance?
 

@@ -1,45 +1,39 @@
 ﻿namespace Systems;
 
 using System;
+using System.Runtime.CompilerServices;
+using Arch.System;
 using Components;
-using DefaultEcs;
-using DefaultEcs.System;
-using DefaultEcs.Threading;
-using World = DefaultEcs.World;
+using World = Arch.Core.World;
 
 /// <summary>
 ///   Reads the physics state into position and also applies a few physics component state things
 /// </summary>
-[With(typeof(Physics))]
-[With(typeof(WorldPosition))]
 [RunsBefore(typeof(SpatialPositionSystem))]
 [RuntimeCost(10)]
-public sealed class PhysicsUpdateAndPositionSystem : AEntitySetSystem<float>
+public partial class PhysicsUpdateAndPositionSystem : BaseSystem<World, float>
 {
     private readonly PhysicalWorld physicalWorld;
 
-    public PhysicsUpdateAndPositionSystem(PhysicalWorld physicalWorld, World world, IParallelRunner runner) : base(
-        world, runner)
+    public PhysicsUpdateAndPositionSystem(PhysicalWorld physicalWorld, World world) : base(world)
     {
         this.physicalWorld = physicalWorld;
     }
 
     /// <summary>
-    ///   If true Y-axis fixed bodies are ensured they don't get too far away from Y=0. Should be unnecessary now
-    ///   with
+    ///   If true Y-axis fixed bodies are ensured, they don't get too far away from Y=0.
+    ///   Should be unnecessary now with Jolt.
     /// </summary>
     public bool EnforceYPosition { get; set; }
 
-    protected override void Update(float delta, in Entity entity)
+    [Query]
+    [MethodImpl(MethodImplOptions.AggressiveInlining)]
+    private void Update(ref Physics physics, ref WorldPosition position)
     {
-        ref var physics = ref entity.Get<Physics>();
-
         if (!physics.IsBodyEffectivelyEnabled())
             return;
 
         var body = physics.Body!;
-
-        ref var position = ref entity.Get<WorldPosition>();
 
         // TODO: implement this operation
         // if (physics.TeleportBodyPosition || physics.TeleportBodyRotationAlso)
@@ -86,7 +80,7 @@ public sealed class PhysicsUpdateAndPositionSystem : AEntitySetSystem<float>
 
         if (physics.DisableCollisionState != Physics.CollisionState.DoNotChange)
         {
-            // Because the struct default data is 0 (false) we need to use a reversed value for the flag here
+            // Because the struct default data is 0 (false), we need to use a reversed value for the flag here
             bool wantedState = physics.DisableCollisionState == Physics.CollisionState.DisableCollisions;
 
             if (wantedState != physics.InternalDisableCollisionState)
