@@ -217,6 +217,8 @@ public static class Constants
 
     public const float NUCLEUS_MOVEMENT_COST_MODIFIER = 0.6f;
 
+    public const float NUCLEUS_OSMOREGULATION_COST_MODIFIER = 0.6f;
+
     public const float BASE_MOVEMENT_FORCE = 900.0f;
 
     public const float MAX_STRAIN_PER_ENTITY = 400.0f;
