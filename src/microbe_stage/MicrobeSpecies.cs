@@ -373,8 +373,8 @@ public class MicrobeSpecies : Species, ICellDefinition
                 Tolerances.TemperatureTolerance,
                 Tolerances.PressureMinimum,
                 Tolerances.PressureMaximum,
-                Tolerances.OxygenResistance,
-                Tolerances.UVResistance);
+                Tolerances.OxygenResistance * 100,
+                Tolerances.UVResistance * 100);
     }
 
     protected override Dictionary<Compound, float> CalculateTotalReproductionCost()
