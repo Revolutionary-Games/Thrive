@@ -25,8 +25,6 @@ using World = Arch.Core.World;
 ///     This is marked as writing to the processes due to <see cref="BioProcesses.ProcessStatistics"/>
 ///   </para>
 /// </remarks>
-[With(typeof(CompoundStorage))]
-[With(typeof(BioProcesses))]
 [RunsAfter(typeof(CompoundAbsorptionSystem))]
 [RunsBefore(typeof(OsmoregulationAndHealingSystem))]
 [RunsBefore(typeof(MicrobeMovementSystem))]
@@ -40,7 +38,7 @@ public partial class ProcessSystem : BaseSystem<World, float>
     private BiomeConditions? biome;
 
     /// <summary>
-    ///   Used to go from the calculated compound values to per second values for reporting statistics
+    ///   Used to go from the calculated compound values to per-second values for reporting statistics
     /// </summary>
     private float inverseDelta;
 
@@ -797,11 +795,8 @@ public partial class ProcessSystem : BaseSystem<World, float>
 
     [Query]
     [MethodImpl(MethodImplOptions.AggressiveInlining)]
-    private void Update([Data] in float delta, ref TODO components, in Entity entity)
+    private void Update([Data] in float delta, ref CompoundStorage storage, ref BioProcesses processes, in Entity entity)
     {
-        ref var storage = ref entity.Get<CompoundStorage>();
-        ref var processes = ref entity.Get<BioProcesses>();
-
         float overallSpeedModifier = 1.0f;
 
         // TODO: remove this if check once save breakage is done

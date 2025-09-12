@@ -14,8 +14,6 @@ using World = Arch.Core.World;
 /// <summary>
 ///   Updates <see cref="CommandSignaler"/> components that also have <see cref="WorldPosition"/>
 /// </summary>
-[With(typeof(CommandSignaler))]
-[With(typeof(WorldPosition))]
 [ReadsComponent(typeof(WorldPosition))]
 [RunsBefore(typeof(MicrobeAISystem))]
 [RuntimeCost(0.5f)]
@@ -29,14 +27,13 @@ public partial class EntitySignalingSystem : BaseSystem<World, float>
 
     private bool timeToUpdate;
 
-    public EntitySignalingSystem(World world, IParallelRunner runner) :
-        base(world, runner, Constants.SYSTEM_HIGH_ENTITIES_PER_THREAD)
+    public EntitySignalingSystem(World world) : base(world)
     {
     }
 
     [JsonConstructor]
     public EntitySignalingSystem(float elapsedSinceUpdate) :
-        base(TemporarySystemHelper.GetDummyWorldForLoad(), null)
+        base(TemporarySystemHelper.GetDummyWorldForLoad())
     {
         this.elapsedSinceUpdate = elapsedSinceUpdate;
     }
@@ -58,7 +55,7 @@ public partial class EntitySignalingSystem : BaseSystem<World, float>
         if (!timeToUpdate)
             return;
 
-        // Clear old signaling cache (and delete any cache categories that aren't in use anymore)
+        // Clear old signalling cache (and delete any cache categories that aren't in use any more)
         foreach (var entry in entitiesOnChannels)
         {
             // Skip non-empty channels
@@ -69,70 +66,68 @@ public partial class EntitySignalingSystem : BaseSystem<World, float>
 
             // It should be fine to just delete up to one category per system run as we shouldn't have that many
             // categories being abandoned multiple times per second. Though if we end up with many signalers
-            // turning off and on often then we might not see the actually abandoned channels quickly.
+            // turning off and on often, then we might not see the actually abandoned channels quickly.
             // This is done to avoid having to take a clone of the dictionary keys
             break;
         }
 
-        // Clear still left categories
+        // Clear away the still left categories
         foreach (var value in entitiesOnChannels.Values)
         {
             value.Clear();
         }
-
-        // Update the queued commands to active commands first in a non-multithreaded way
-        // TODO: this could also be multithreaded as long as this finishes before the Update calls start running
-        // as long as the channel cache updating can be fast enough
-        foreach (ref readonly var entity in Set.GetEntities())
-        {
-            ref var signaling = ref entity.Get<CommandSignaler>();
-
-            if (signaling.QueuedSignalingCommand != null)
-            {
-                signaling.Command = signaling.QueuedSignalingCommand.Value;
-                signaling.QueuedSignalingCommand = null;
-            }
-
-            // Build a mapping of signalers by their channel and position to speed up the update logic below
-            if (signaling.Command == MicrobeSignalCommand.None)
-                continue;
-
-            if (!entitiesOnChannels.TryGetValue(signaling.SignalingChannel, out var channel))
-            {
-                channel = new List<(Entity Entity, Vector3 Position)>();
-
-                entitiesOnChannels[signaling.SignalingChannel] = channel;
-            }
-
-            ref var position = ref entity.Get<WorldPosition>();
-
-            // TODO: determine if it is faster to copy the position here rather than continuously looking up
-            // the position again in Update when comparing positions to signal receivers
-            channel.Add((entity, position.Position));
-        }
     }
 
-    protected override void Update(float delta, ReadOnlySpan<Entity> entities)
+    public override void Update(in float delta)
     {
-        if (!timeToUpdate)
-            return;
+        // We manually call these to ensure the order
 
-        base.Update(delta, entities);
+        // Update the queued commands to active commands first in a non-multithreaded way
+
+        // TODO: this could also be multithreaded as long as this finishes before the Update calls start running and
+        // there's locking on the data lists
+        UpdateSignalSendQuery(World, delta);
+
+        UpdateSignalReceiveQuery(World, delta);
     }
 
     [Query]
     [MethodImpl(MethodImplOptions.AggressiveInlining)]
-    private void Update([Data] in float delta, ref TODO components, in Entity entity)
+    private void UpdateSignalSend([Data] in float delta, ref CommandSignaler signaling, ref WorldPosition position,
+        in Entity entity)
     {
-        ref var signaling = ref entity.Get<CommandSignaler>();
+        if (signaling.QueuedSignalingCommand != null)
+        {
+            signaling.Command = signaling.QueuedSignalingCommand.Value;
+            signaling.QueuedSignalingCommand = null;
+        }
 
-        // Find closest signaler on the channel this entity is on
+        // Build a mapping of signalers by their channel and position to speed up the update logic below
+        if (signaling.Command == MicrobeSignalCommand.None)
+            return;
+
+        if (!entitiesOnChannels.TryGetValue(signaling.SignalingChannel, out var channel))
+        {
+            channel = new List<(Entity Entity, Vector3 Position)>();
+
+            entitiesOnChannels[signaling.SignalingChannel] = channel;
+        }
+
+        // TODO: determine if it is faster to copy the position here rather than continuously looking up
+        // the position again in Update when comparing positions to signal receivers
+        channel.Add((entity, position.Position));
+    }
+
+    // TODO: could parallelize
+    [Query]
+    [MethodImpl(MethodImplOptions.AggressiveInlining)]
+    private void UpdateSignalReceive([Data] in float delta, ref CommandSignaler signaling, ref WorldPosition position, in Entity entity)
+    {
+        // Find the closest signaler on the channel this entity is on
         bool foundSignal = false;
 
         if (entitiesOnChannels.TryGetValue(signaling.SignalingChannel, out var signalers))
         {
-            ref var position = ref entity.Get<WorldPosition>();
-
             // We kind of simulate how strong the "smell" of a signal is by finding the closest active signal
             (Entity Entity, Vector3 Position)? bestSignaler = null;
             float minDistanceFound = float.MaxValue;

@@ -10,8 +10,6 @@ using Components;
 /// <summary>
 ///   Handles playing microbe damage sounds and clearing the list of received damage on a microbe
 /// </summary>
-[With(typeof(Health))]
-[With(typeof(SoundEffectPlayer))]
 [WritesToComponent(typeof(SoundEffectPlayer))]
 [RunsBefore(typeof(SoundEffectSystem))]
 [RuntimeCost(0.5f)]
@@ -37,18 +35,14 @@ public partial class DamageSoundSystem : BaseSystem<World, float>
 
     [Query]
     [MethodImpl(MethodImplOptions.AggressiveInlining)]
-    private void Update([Data] in float delta, ref TODO components, in Entity entity)
+    private void Update(ref Health health, ref SoundEffectPlayer soundEffectPlayer, in Entity entity)
     {
-        ref var health = ref entity.Get<Health>();
-
         var receivedDamage = health.RecentDamageReceived;
 
         // We don't lock here before checking the count, it's probably fine as it should just read a single int,
         // but in the future if we get random crashes, add a "lock" statement around also the count access.
         if (receivedDamage == null || receivedDamage.Count < 1)
             return;
-
-        ref var soundEffectPlayer = ref entity.Get<SoundEffectPlayer>();
 
         bool isPlayer = entity.Has<PlayerMarker>();
 

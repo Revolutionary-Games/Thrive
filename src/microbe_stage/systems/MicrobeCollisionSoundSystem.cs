@@ -1,16 +1,15 @@
 ﻿namespace Systems;
 
+using System.Runtime.CompilerServices;
 using Arch.Core;
 using Arch.Core.Extensions;
 using Arch.System;
+using Arch.System.SourceGenerator;
 using Components;
 
 /// <summary>
 ///   Plays a sound effect when two cells collide hard enough
 /// </summary>
-[With(typeof(CollisionManagement))]
-[With(typeof(SoundEffectPlayer))]
-[With(typeof(CellProperties))]
 [ReadsComponent(typeof(CollisionManagement))]
 [ReadsComponent(typeof(CellProperties))]
 [RunsAfter(typeof(PhysicsCollisionManagementSystem))]
@@ -22,16 +21,13 @@ public partial class MicrobeCollisionSoundSystem : BaseSystem<World, float>
     }
 
     [Query]
+    [All<CellProperties>]
     [MethodImpl(MethodImplOptions.AggressiveInlining)]
-    private void Update([Data] in float delta, ref TODO components, in Entity entity)
+    private void Update(ref CollisionManagement collisionManagement, ref SoundEffectPlayer soundEffectPlayer)
     {
-        ref var collisionManagement = ref entity.Get<CollisionManagement>();
-
         var count = collisionManagement.GetActiveCollisions(out var collisions);
         if (count < 1)
             return;
-
-        ref var soundEffectPlayer = ref entity.Get<SoundEffectPlayer>();
 
         for (int i = 0; i < count; ++i)
         {

@@ -3,6 +3,7 @@
 using System;
 using System.Collections.Generic;
 using Arch.Core;
+using Arch.Core.Extensions;
 using Godot;
 using Newtonsoft.Json;
 using Systems;
@@ -336,8 +337,7 @@ public static class EngulfableHelpers
                     GD.Print("Creating timed life now as safety fallback");
                     var recorder = worldSimulation.StartRecordingEntityCommands();
 
-                    var entityRecord = recorder.Record(entity);
-                    entityRecord.Set(new TimedLife(10));
+                    recorder.Set(entity, new TimedLife(10));
 
                     worldSimulation.FinishRecordingEntityCommands(recorder);
                 }

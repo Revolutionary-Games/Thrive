@@ -4,13 +4,12 @@ using System.Runtime.CompilerServices;
 using Arch.Core;
 using Arch.Core.Extensions;
 using Arch.System;
+using Arch.System.SourceGenerator;
 using Components;
 
 /// <summary>
 ///   Causes radiation damage based on stored compounds and radiation resistance of microbes
 /// </summary>
-[With(typeof(Health))]
-[With(typeof(CompoundStorage))]
 [ReadsComponent(typeof(OrganelleContainer))]
 [ReadsComponent(typeof(CellProperties))]
 [RunsAfter(typeof(OsmoregulationAndHealingSystem))]
@@ -24,28 +23,28 @@ public partial class RadiationDamageSystem : BaseSystem<World, float>
     /// </summary>
     private float elapsedSinceUpdate;
 
-    private bool trigger;
-
-    public RadiationDamageSystem(World world, IParallelRunner runner) : base(world, runner,
-        Constants.SYSTEM_HIGH_ENTITIES_PER_THREAD)
+    public RadiationDamageSystem(World world) : base(world)
     {
     }
 
-    public override void BeforeUpdate(in float delta)
+    public override void Update(in float delta)
     {
         elapsedSinceUpdate += delta;
 
-        trigger = elapsedSinceUpdate >= Constants.RADIATION_DAMAGE_INTERVAL;
+        if (elapsedSinceUpdate >= Constants.RADIATION_DAMAGE_INTERVAL)
+        {
+            UpdateQuery(World);
+
+            elapsedSinceUpdate = 0;
+        }
     }
 
     [Query]
+    [All<Health, CellProperties>]
     [MethodImpl(MethodImplOptions.AggressiveInlining)]
-    private void Update([Data] in float delta, ref TODO components, in Entity entity)
+    private void Update(ref CompoundStorage compoundStorage, in Entity entity)
     {
-        if (!trigger)
-            return;
-
-        var compounds = entity.Get<CompoundStorage>().Compounds;
+        var compounds = compoundStorage.Compounds;
 
         var radiationAmount = compounds.GetCompoundAmount(Compound.Radiation);
 
@@ -87,11 +86,5 @@ public partial class RadiationDamageSystem : BaseSystem<World, float>
             entity.SendNoticeIfPossible(() =>
                 new SimpleHUDMessage(Localization.Translate("NOTICE_RADIATION_DAMAGE"), DisplayDuration.Short));
         }
-    }
-
-    public override void AfterUpdate(in float delta)
-    {
-        if (trigger)
-            elapsedSinceUpdate = 0;
     }
 }

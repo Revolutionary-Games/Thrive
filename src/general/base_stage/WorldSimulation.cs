@@ -441,6 +441,17 @@ public abstract class WorldSimulation : IWorldSimulation, IGodotEarlyNodeResolve
         }
     }
 
+    public void OnFailedRecordingEntityCommands(CommandBuffer recorder)
+    {
+        recorder.Dispose();
+        lock (availableRecorders)
+        {
+            GD.Print("An entity command recording has failed, it will be discarded. " +
+                "Hopefully unrelated operations were not impacted");
+            --totalCreatedRecorders;
+        }
+    }
+
     /// <summary>
     ///   Checks that the entity is in this world and is not being deleted
     /// </summary>

@@ -8,12 +8,13 @@ using System.Threading;
 using Arch.Core;
 using Arch.Core.Extensions;
 using Arch.System;
+using Arch.System.SourceGenerator;
 using Components;
 using Godot;
 using World = Arch.Core.World;
 
 /// <summary>
-///   Handles creating microbe physics and handling a few house keeping tasks based on the final cell size data
+///   Handles creating microbe physics and handling a few housekeeping tasks based on the final cell size data
 ///   from the membrane
 /// </summary>
 /// <remarks>
@@ -22,11 +23,6 @@ using World = Arch.Core.World;
 ///     colony (only colony leader has a physics shape)
 ///   </para>
 /// </remarks>
-[With(typeof(CellProperties))]
-[With(typeof(MicrobePhysicsExtraData))]
-[With(typeof(OrganelleContainer))]
-[With(typeof(PhysicsShapeHolder))]
-[Without(typeof(AttachedToEntity))]
 [WritesToComponent(typeof(MicrobeColony))]
 [WritesToComponent(typeof(CompoundAbsorber))]
 [WritesToComponent(typeof(CurrentAffected))]
@@ -84,15 +80,13 @@ public partial class MicrobePhysicsCreationAndSizeSystem : BaseSystem<World, flo
     }
 
     [Query]
+    [None<AttachedToEntity>]
+    [All<MicrobePhysicsExtraData, OrganelleContainer>]
     [MethodImpl(MethodImplOptions.AggressiveInlining)]
-    private void Update([Data] in float delta, ref TODO components, in Entity entity)
+    private void Update(ref CellProperties cellProperties, ref PhysicsShapeHolder shapeHolder, in Entity entity)
     {
-        ref var cellProperties = ref entity.Get<CellProperties>();
-
         if (cellProperties.ShapeCreated)
             return;
-
-        ref var shapeHolder = ref entity.Get<PhysicsShapeHolder>();
 
         // We don't skip creating a shape if there is already one as microbes can change shape, so we re-apply
         // the shape if there is a previous one
@@ -101,10 +95,11 @@ public partial class MicrobePhysicsCreationAndSizeSystem : BaseSystem<World, flo
 
         var membrane = cellProperties.CreatedMembrane;
 
-        // Wait until membrane is created (and no longer being updated)
+        // Wait until the membrane is created (and no longer being updated)
         if (!cellProperties.IsMembraneReady())
             return;
 
+        // This uses this fetch approach as it is very rare that microbes need shapes created
         ref var extraData = ref entity.Get<MicrobePhysicsExtraData>();
 
         List<(Membrane Membrane, bool Bacteria)>? colonyMembranes = null;
@@ -136,7 +131,7 @@ public partial class MicrobePhysicsCreationAndSizeSystem : BaseSystem<World, flo
             // their bodies won't get created as they are disabled, so make sure that works and then remove this
             // TODO comment)
 
-            // If there are no pili or colony members then a single shape is enough for this microbe
+            // If there are no pili or colony members, then a single shape is enough for this microbe
             bool requiresCompoundShape = false;
 
             if (entity.Has<MicrobeColony>())
@@ -358,8 +353,8 @@ public partial class MicrobePhysicsCreationAndSizeSystem : BaseSystem<World, flo
         }
 
         // Pili are after the microbe shapes, otherwise pilus collision detection can't be done as we just
-        // compare the sub-shape index to the number of microbe collisions to determine if something is a pilus
-        // And to detect between the pilus variants, first normal pili are created and only then injectisomes
+        // compare the sub-shape index to the number of microbe collisions to determine if something is a pilus.
+        // And to detect between the pilus variants, first normal pili are created and only then injectisomes.
         bool hasInjectisomes = false;
 
         foreach (var organelle in organelles.Organelles!)
@@ -470,7 +465,7 @@ public partial class MicrobePhysicsCreationAndSizeSystem : BaseSystem<World, flo
     /// <summary>
     ///   Updates the microbe movement's used rotation rate.
     ///   Note that the PhysicsShape is not currently used in rotation calculations, and this code is here due to
-    ///   earlier version requiring it.
+    ///   an earlier version requiring it.
     /// </summary>
     private void UpdateRotationRate(ref OrganelleContainer organelleContainer)
     {

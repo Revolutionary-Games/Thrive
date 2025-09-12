@@ -1,16 +1,15 @@
 ﻿namespace Systems;
 
+using System.Runtime.CompilerServices;
 using Arch.Core;
 using Arch.Core.Extensions;
 using Arch.System;
+using Arch.System.SourceGenerator;
 using Components;
 
 /// <summary>
 ///   Handles applying pilus damage to microbes
 /// </summary>
-[With(typeof(CollisionManagement))]
-[With(typeof(MicrobePhysicsExtraData))]
-[With(typeof(SpeciesMember))]
 [ReadsComponent(typeof(CollisionManagement))]
 [ReadsComponent(typeof(MicrobePhysicsExtraData))]
 [ReadsComponent(typeof(CellProperties))]
@@ -26,11 +25,10 @@ public partial class PilusDamageSystem : BaseSystem<World, float>
     }
 
     [Query]
+    [All<MicrobePhysicsExtraData, SpeciesMember>]
     [MethodImpl(MethodImplOptions.AggressiveInlining)]
-    private void Update([Data] in float delta, ref TODO components, in Entity entity)
+    private void Update(ref CollisionManagement collisionManagement, in Entity entity)
     {
-        ref var collisionManagement = ref entity.Get<CollisionManagement>();
-
         var count = collisionManagement.GetActiveCollisions(out var collisions);
         if (count < 1)
             return;

@@ -8,6 +8,7 @@ using System.Runtime.CompilerServices;
 using Arch.Core;
 using Arch.Core.Extensions;
 using Arch.System;
+using Arch.System.SourceGenerator;
 using Components;
 using Godot;
 using World = Arch.Core.World;
@@ -22,13 +23,6 @@ using World = Arch.Core.World;
 ///     just reading that component.
 ///   </para>
 /// </remarks>
-[With(typeof(Engulfer))]
-[With(typeof(OrganelleContainer))]
-[With(typeof(CompoundStorage))]
-[With(typeof(MicrobeStatus))]
-[With(typeof(CellProperties))]
-[With(typeof(Health))]
-[With(typeof(WorldPosition))]
 [WritesToComponent(typeof(Engulfable))]
 [ReadsComponent(typeof(OrganelleContainer))]
 [ReadsComponent(typeof(MicrobeStatus))]
@@ -69,11 +63,11 @@ public partial class EngulfedDigestionSystem : BaseSystem<World, float>
     }
 
     [Query]
+    [All<MicrobeStatus, CellProperties, Health, WorldPosition>]
     [MethodImpl(MethodImplOptions.AggressiveInlining)]
-    private void Update([Data] in float delta, ref TODO components, in Entity entity)
+    private void Update([Data] in float delta, ref Engulfer engulfer, ref OrganelleContainer organelles,
+        ref CompoundStorage compoundStorage, in Entity entity)
     {
-        ref var engulfer = ref entity.Get<Engulfer>();
-
         if (engulfer.EngulfedObjects == null || engulfer.EngulfedObjects.Count < 1)
         {
             // When something ejects its last engulfed object, the used engulfing size needs to be still updated
@@ -85,10 +79,7 @@ public partial class EngulfedDigestionSystem : BaseSystem<World, float>
             return;
         }
 
-        ref var organelles = ref entity.Get<OrganelleContainer>();
-        var compounds = entity.Get<CompoundStorage>().Compounds;
-
-        HandleDigestion(entity, ref engulfer, ref organelles, compounds, delta);
+        HandleDigestion(entity, ref engulfer, ref organelles, compoundStorage.Compounds, delta);
     }
 
     /// <summary>

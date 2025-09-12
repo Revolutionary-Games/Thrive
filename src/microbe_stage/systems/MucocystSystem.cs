@@ -4,16 +4,12 @@ using System.Runtime.CompilerServices;
 using Arch.Core;
 using Arch.Core.Extensions;
 using Arch.System;
+using Arch.System.SourceGenerator;
 using Components;
 
 /// <summary>
 ///   Handles gaining immortality from mucocyst ability
 /// </summary>
-[With(typeof(MicrobeControl))]
-[With(typeof(Health))]
-[With(typeof(CompoundStorage))]
-[With(typeof(CellProperties))]
-[With(typeof(CompoundAbsorber))]
 [ReadsComponent(typeof(CellProperties))]
 [RunsBefore(typeof(MicrobeMovementSystem))]
 [RunsOnMainThread]
@@ -24,25 +20,23 @@ public partial class MucocystSystem : BaseSystem<World, float>
     }
 
     [Query]
+    [All<Health, CompoundStorage, CellProperties, CompoundAbsorber>]
     [MethodImpl(MethodImplOptions.AggressiveInlining)]
-    private void Update([Data] in float delta, ref TODO components, in Entity entity)
+    private void Update([Data] in float delta, ref MicrobeControl control, ref CompoundStorage storage,
+        in Entity entity)
     {
         // Handles invulnerability from mucocyst. Other buffs/debuffs from mucocyst are in related systems to what they
         // affect
 
-        ref var control = ref entity.Get<MicrobeControl>();
-
         bool wantsMucocyst = control.State == MicrobeState.MucocystShield;
 
-        // Skip processing if already in correct state (and not currently using mucocyst which has an upkeep cost)
+        // Skip processing if already in the correct state (and not currently using mucocyst, which has an upkeep cost)
         if (control.MucocystEffectsApplied == wantsMucocyst && !control.MucocystEffectsApplied)
             return;
 
         if (wantsMucocyst)
         {
-            ref var storage = ref entity.Get<CompoundStorage>();
-
-            // Take mucilage as cost for keeping the mucocyst active
+            // Take mucilage as a cost for keeping the mucocyst active
             var requiredMucilage = Constants.MUCOCYST_MUCILAGE_DRAIN * delta;
 
             if (storage.Compounds.TakeCompound(Compound.Mucilage, requiredMucilage) < requiredMucilage)
@@ -65,14 +59,14 @@ public partial class MucocystSystem : BaseSystem<World, float>
                     entity.Get<CompoundAbsorber>().AbsorbSpeed = -1;
                 }
 
-                // Make sure membrane is playing the mucocyst effect animation
+                // Make sure the membrane is playing the mucocyst effect animation
                 var membrane = entity.Get<CellProperties>().CreatedMembrane;
 
                 membrane?.SetMucocystEffectVisible(true);
             }
         }
 
-        // If cell doesn't want to keep mucocyst on or cannot afford, then disable the effects
+        // If the cell doesn't want to keep mucocyst on or cannot afford, then disable the effects
         if (!wantsMucocyst)
         {
             OnMucocystDisabled(entity);
@@ -80,7 +74,7 @@ public partial class MucocystSystem : BaseSystem<World, float>
         }
     }
 
-    // This system could be refactored to use a post update to apply visual effects to be able to run with multiple
+    // This system could be refactored to use a post-update to apply visual effects to be able to run with multiple
     // threads processing all the entities
 
     // public override void AfterUpdate(in float delta)
@@ -104,10 +98,7 @@ public partial class MucocystSystem : BaseSystem<World, float>
         }
 
         // Restore invulnerability state
-        if (entity.Has<Health>())
-        {
-            entity.Get<Health>().Invulnerable =
-                HealthHelpers.GetMicrobeInvulnerabilityState(entity.Has<PlayerMarker>(), false);
-        }
+        entity.Get<Health>().Invulnerable =
+            HealthHelpers.GetMicrobeInvulnerabilityState(entity.Has<PlayerMarker>(), false);
     }
 }

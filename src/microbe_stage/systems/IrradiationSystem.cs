@@ -1,6 +1,7 @@
 ﻿namespace Systems;
 
 using System.Collections.Generic;
+using System.Runtime.CompilerServices;
 using Arch.Core;
 using Arch.Core.Extensions;
 using Arch.System;
@@ -15,26 +16,21 @@ using Components;
 ///     likely systems to access it.
 ///   </para>
 /// </remarks>
-[With(typeof(RadiationSource))]
-[With(typeof(PhysicsSensor))]
-[With(typeof(WorldPosition))]
 [ReadsComponent(typeof(WorldPosition))]
+[ReadsComponent(typeof(CompoundStorage))]
 [RunsBefore(typeof(ProcessSystem))]
 [RunsBefore(typeof(CompoundAbsorptionSystem))]
 public partial class IrradiationSystem : BaseSystem<World, float>
 {
-    public IrradiationSystem(World world, IParallelRunner runner) : base(world, runner,
-        Constants.SYSTEM_HIGHER_ENTITIES_PER_THREAD)
+    public IrradiationSystem(World world) : base(world)
     {
     }
 
     [Query]
     [MethodImpl(MethodImplOptions.AggressiveInlining)]
-    private void Update([Data] in float delta, ref TODO components, in Entity entity)
+    private void Update([Data] in float delta, ref RadiationSource source, ref PhysicsSensor sensor,
+        ref WorldPosition position)
     {
-        ref var source = ref entity.Get<RadiationSource>();
-        ref var sensor = ref entity.Get<PhysicsSensor>();
-
         if (sensor.SensorBody == null)
         {
             // Ignore invalid configurations
@@ -55,9 +51,9 @@ public partial class IrradiationSystem : BaseSystem<World, float>
             if (source.RadiatedEntities.Count == 0)
                 return;
 
-            var chunkPosition = entity.Get<WorldPosition>().Position;
-
             float radiationAmount = source.RadiationStrength * delta;
+
+            var chunkPosition = position.Position;
 
             foreach (var radiatedEntity in source.RadiatedEntities)
             {

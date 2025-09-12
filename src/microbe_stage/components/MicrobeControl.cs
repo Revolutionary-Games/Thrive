@@ -2,6 +2,7 @@
 
 using System;
 using Arch.Core;
+using Arch.Core.Extensions;
 using Godot;
 using Systems;
 
@@ -137,7 +138,7 @@ public static class MicrobeControlHelpers
                 {
                     // The IsAlive check should be unnecessary here, but as this is a general method, there's this
                     // extra safety against crashing due to colony bugs
-                    if (colonyMember != entity && colonyMember.IsAlive)
+                    if (colonyMember != entity && colonyMember.IsAlive())
                     {
                         ref var memberControl = ref colonyMember.Get<MicrobeControl>();
                         memberControl.State = targetState;
@@ -169,9 +170,9 @@ public static class MicrobeControlHelpers
 
                 foreach (var colonyMember in colony.ColonyMembers)
                 {
-                    // The IsAlive check should be unnecessary here but as this is a general method there's this
+                    // The IsAlive check should be unnecessary here, but as this is a general method, there's this
                     // extra safety against crashing due to colony bugs
-                    if (colonyMember != entity && colonyMember.IsAlive)
+                    if (colonyMember != entity && colonyMember.IsAlive())
                     {
                         ref var memberControl = ref colonyMember.Get<MicrobeControl>();
                         ref var memberHealth = ref colonyMember.Get<Health>();

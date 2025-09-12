@@ -17,8 +17,6 @@ using World = Arch.Core.World;
 ///     This is marked as just reading the entity materials as this just does a single shader parameter write to it
 ///   </para>
 /// </remarks>
-[With(typeof(MicrobeShaderParameters))]
-[With(typeof(EntityMaterial))]
 [ReadsComponent(typeof(EntityMaterial))]
 [ReadsComponent(typeof(CellProperties))]
 [RuntimeCost(8)]
@@ -42,10 +40,9 @@ public partial class MicrobeShaderSystem : BaseSystem<World, float>
 
     [Query]
     [MethodImpl(MethodImplOptions.AggressiveInlining)]
-    private void Update([Data] in float delta, ref TODO components, in Entity entity)
+    private void Update([Data] in float delta, ref MicrobeShaderParameters shaderParameters,
+        ref EntityMaterial entityMaterial, in Entity entity)
     {
-        ref var shaderParameters = ref entity.Get<MicrobeShaderParameters>();
-
         if (shaderParameters.ParametersApplied && !shaderParameters.PlayAnimations)
             return;
 
@@ -66,7 +63,7 @@ public partial class MicrobeShaderSystem : BaseSystem<World, float>
                     {
                         ref var cellProperties = ref entity.Get<CellProperties>();
 
-                        // Makes the engulf animation fade out during dissolve
+                        // Makes the engulfing animation fade out during dissolve
                         cellProperties.CreatedMembrane?.HandleEngulfAnimation(false, delta);
                     }
 
@@ -89,8 +86,6 @@ public partial class MicrobeShaderSystem : BaseSystem<World, float>
             }
         }
 
-        ref var entityMaterial = ref entity.Get<EntityMaterial>();
-
         // Wait for the material to be defined
         if (entityMaterial.Materials == null)
             return;
@@ -99,8 +94,8 @@ public partial class MicrobeShaderSystem : BaseSystem<World, float>
         {
             material.SetShaderParameter(dissolveValueName, shaderParameters.DissolveValue);
 
-            // Dissolve texture must be set in the material set on the object otherwise the dissolve animation
-            // won't play correctly. It used to be the case that the old C# code set the noise texture here but
+            // Dissolve texture must be set in the material set on the object; otherwise the dissolve animation
+            // won't play correctly. It used to be the case that the old C# code set the noise texture here, but
             // now it is much simpler to just require it to be set in the scenes.
         }
 

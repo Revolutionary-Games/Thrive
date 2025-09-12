@@ -11,9 +11,6 @@ using Components;
 ///   Vents all compounds until empty from a <see cref="CompoundStorage"/> that has a <see cref="CompoundVenter"/>.
 ///   Requires a <see cref="WorldPosition"/>
 /// </summary>
-[With(typeof(CompoundVenter))]
-[With(typeof(CompoundStorage))]
-[With(typeof(WorldPosition))]
 [WritesToComponent(typeof(Physics))]
 [WritesToComponent(typeof(MicrobeShaderParameters))]
 [ReadsComponent(typeof(WorldPosition))]
@@ -36,34 +33,31 @@ public partial class AllCompoundsVentingSystem : BaseSystem<World, float>
 
     [Query]
     [MethodImpl(MethodImplOptions.AggressiveInlining)]
-    private void Update([Data] in float delta, ref TODO components, in Entity entity)
+    private void Update([Data] in float delta, ref CompoundVenter venter, ref CompoundStorage compoundStorage,
+        ref WorldPosition position, in Entity entity)
     {
         // TODO: rate limit updates if needed for performance?
-
-        ref var venter = ref entity.Get<CompoundVenter>();
 
         if (venter.VentingPrevented)
             return;
 
-        ref var compounds = ref entity.Get<CompoundStorage>();
+        var compounds = compoundStorage.Compounds;
 
-        if (compounds.Compounds.Compounds.Count < 1)
+        if (compounds.Compounds.Count < 1)
         {
             // Empty, perform defined actions for when this venter runs out
             OnOutOfCompounds(in entity, ref venter);
             return;
         }
 
-        ref var position = ref entity.Get<WorldPosition>();
-
         processedCompoundKeys.Clear();
-        processedCompoundKeys.AddRange(compounds.Compounds.Compounds.Keys);
+        processedCompoundKeys.AddRange(compounds.Compounds.Keys);
 
         // Loop through all the compounds in the storage bag and eject them
         bool vented = false;
         foreach (var compound in processedCompoundKeys)
         {
-            if (compounds.VentChunkCompound(compound, delta * venter.VentEachCompoundPerSecond, position.Position,
+            if (compoundStorage.VentChunkCompound(compound, delta * venter.VentEachCompoundPerSecond, position.Position,
                     compoundCloudSystem))
             {
                 vented = true;

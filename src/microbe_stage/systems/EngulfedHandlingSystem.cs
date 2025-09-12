@@ -4,6 +4,7 @@ using System.Runtime.CompilerServices;
 using Arch.Core;
 using Arch.Core.Extensions;
 using Arch.System;
+using Arch.System.SourceGenerator;
 using Components;
 using Godot;
 using World = Arch.Core.World;
@@ -12,11 +13,6 @@ using World = Arch.Core.World;
 ///   Handles <see cref="Engulfable"/> entities that are currently engulfed or have been engulfed before and should
 ///   heal
 /// </summary>
-[With(typeof(Engulfable))]
-[With(typeof(Engulfer))]
-[With(typeof(Health))]
-[With(typeof(SoundEffectPlayer))]
-[With(typeof(MicrobeControl))]
 [WritesToComponent(typeof(CompoundAbsorber))]
 [WritesToComponent(typeof(UnneededCompoundVenter))]
 [WritesToComponent(typeof(RenderPriorityOverride))]
@@ -50,25 +46,24 @@ public partial class EngulfedHandlingSystem : BaseSystem<World, float>
     }
 
     [Query]
+    [All<Health, Engulfer, SoundEffectPlayer>]
     [MethodImpl(MethodImplOptions.AggressiveInlining)]
-    private void Update([Data] in float delta, ref TODO components, in Entity entity)
+    private void Update([Data] in float delta, ref Engulfable engulfable, ref MicrobeControl control, in Entity entity)
     {
-        ref var engulfable = ref entity.Get<Engulfable>();
-
         // Handle logic if the cell that's being/has been digested is us
         if (engulfable.PhagocytosisStep == PhagocytosisPhase.None)
         {
             if (engulfable.DigestedAmount >= 1 || (engulfable.DestroyIfPartiallyDigested &&
                     engulfable.DigestedAmount >= Constants.PARTIALLY_DIGESTED_THRESHOLD))
             {
-                // Too digested to live anymore
+                // Too digested to live any more
                 // Note that the microbe equivalent of this is handled in OnExpelledFromEngulfment
                 ref var health = ref entity.Get<Health>();
                 KillEngulfed(entity, ref health, ref engulfable);
             }
             else if (engulfable.DigestedAmount > 0)
             {
-                // Cell is not too damaged, can heal itself in open environment and continue living
+                // Cell is not too damaged, can heal itself in an open environment and continue living
                 engulfable.DigestedAmount -= delta * Constants.ENGULF_COMPOUND_ABSORBING_PER_SECOND;
 
                 if (engulfable.DigestedAmount < 0)
@@ -78,7 +73,6 @@ public partial class EngulfedHandlingSystem : BaseSystem<World, float>
         else
         {
             // Disallow cells being in any state than normal while engulfed
-            ref var control = ref entity.Get<MicrobeControl>();
             control.State = MicrobeState.Normal;
 
             // TODO: it seems that this code is always ran, though with the PARTIALLY_DIGESTED_THRESHOLD check
@@ -113,9 +107,7 @@ public partial class EngulfedHandlingSystem : BaseSystem<World, float>
                 engulfable.HostileEngulfer = default;
 
                 var recorder = worldSimulation.StartRecordingEntityCommands();
-
-                var entityRecord = recorder.Record(entity);
-                entityRecord.Remove<AttachedToEntity>();
+                recorder.Remove<AttachedToEntity>(entity);
 
                 worldSimulation.FinishRecordingEntityCommands(recorder);
             }
@@ -124,11 +116,11 @@ public partial class EngulfedHandlingSystem : BaseSystem<World, float>
 
     public override void AfterUpdate(in float delta)
     {
-        // If there's no player digestion progress reset the timer
+        // If there's no player digestion progress, reset the timer
         // ReSharper disable once CompareOfFloatsByEqualityOperator
         if (previousPlayerEngulfedDeathTimer == playerEngulfedDeathTimer)
         {
-            // Just in case player is engulfed again after escaping to make sure the player doesn't die faster
+            // Just in case the player is engulfed again after escaping to make sure the player doesn't die faster
             playerEngulfedDeathTimer = 0;
         }
     }

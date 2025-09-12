@@ -1,7 +1,6 @@
 ﻿namespace Systems;
 
 using System.Runtime.CompilerServices;
-using Arch.Core;
 using Arch.Core.Extensions;
 using Arch.System;
 using Components;
@@ -11,11 +10,6 @@ using World = Arch.Core.World;
 /// <summary>
 ///   Handles playing (and stopping) of microbe movement sound
 /// </summary>
-[With(typeof(MicrobeStatus))]
-[With(typeof(MicrobeControl))]
-[With(typeof(Engulfable))]
-[With(typeof(Physics))]
-[With(typeof(SoundEffectPlayer))]
 [ReadsComponent(typeof(MicrobeControl))]
 [ReadsComponent(typeof(Engulfable))]
 [ReadsComponent(typeof(Physics))]
@@ -31,15 +25,11 @@ public partial class MicrobeMovementSoundSystem : BaseSystem<World, float>
 
     [Query]
     [MethodImpl(MethodImplOptions.AggressiveInlining)]
-    private void Update([Data] in float delta, ref TODO components, in Entity entity)
+    private void Update([Data] in float delta, ref MicrobeStatus status, ref MicrobeControl control,
+        ref Physics physics, ref SoundEffectPlayer soundEffectPlayer, ref Engulfable engulfable)
     {
-        ref var status = ref entity.Get<MicrobeStatus>();
-        ref var control = ref entity.Get<MicrobeControl>();
-        ref var physics = ref entity.Get<Physics>();
-        ref var soundEffectPlayer = ref entity.Get<SoundEffectPlayer>();
-
         if (control.MovementDirection != Vector3.Zero &&
-            entity.Get<Engulfable>().PhagocytosisStep == PhagocytosisPhase.None)
+            engulfable.PhagocytosisStep == PhagocytosisPhase.None)
         {
             var acceleration = physics.Velocity - status.LastLinearVelocity;
             var deltaAcceleration = (acceleration - status.LastLinearAcceleration).LengthSquared();

@@ -6,20 +6,13 @@ using System.Runtime.CompilerServices;
 using Arch.Core;
 using Arch.Core.Extensions;
 using Arch.System;
+using Arch.System.SourceGenerator;
 using Components;
 using Godot;
 
 /// <summary>
 ///   Handles creating temporary organelles for endosymbiosis
 /// </summary>
-[With(typeof(TemporaryEndosymbiontInfo))]
-[With(typeof(OrganelleContainer))]
-[With(typeof(SpeciesMember))]
-[With(typeof(CompoundStorage))]
-[With(typeof(BioProcesses))]
-[With(typeof(Engulfer))]
-[With(typeof(Engulfable))]
-[With(typeof(CellProperties))]
 [ReadsComponent(typeof(SpeciesMember))]
 [ReadsComponent(typeof(CellProperties))]
 [RunsBefore(typeof(MicrobeReproductionSystem))]
@@ -35,31 +28,28 @@ public partial class EndosymbiontOrganelleSystem : BaseSystem<World, float>
     private readonly List<Hex> hexWorkData2 = new();
     private readonly HashSet<Hex> hexWorkData3 = new();
 
-    public EndosymbiontOrganelleSystem(World world) : base(world, parallelRunner,
-        Constants.SYSTEM_NORMAL_ENTITIES_PER_THREAD)
+    public EndosymbiontOrganelleSystem(World world) : base(world)
     {
     }
 
     [Query]
+    [All<SpeciesMember, CompoundStorage, BioProcesses, Engulfer, Engulfable, CellProperties>]
     [MethodImpl(MethodImplOptions.AggressiveInlining)]
-    private void Update([Data] in float delta, ref TODO components, in Entity entity)
+    private void Update(ref TemporaryEndosymbiontInfo endosymbiontInfo, ref OrganelleContainer organelleContainer,
+        in Entity entity)
     {
-        ref var endosymbiontInfo = ref entity.Get<TemporaryEndosymbiontInfo>();
-
         if (endosymbiontInfo.Applied)
             return;
-
-        ref var organelleContainer = ref entity.Get<OrganelleContainer>();
 
         // Skip if organelles are not initialized
         if (organelleContainer.Organelles is not { Count: > 0 })
             return;
 
-        var species = entity.Get<SpeciesMember>().Species;
-
         if (endosymbiontInfo.EndosymbiontSpeciesPresent != null)
         {
             endosymbiontInfo.CreatedOrganelleInstancesFor ??= new List<Species>();
+
+            var species = entity.Get<SpeciesMember>().Species;
 
             foreach (var symbiontSpecies in endosymbiontInfo.EndosymbiontSpeciesPresent)
             {
@@ -67,7 +57,7 @@ public partial class EndosymbiontOrganelleSystem : BaseSystem<World, float>
                 if (endosymbiontInfo.CreatedOrganelleInstancesFor.Contains(symbiontSpecies))
                     continue;
 
-                // When originally creating the symbiont info it is not yet resolved which organelle type they
+                // When originally creating the symbiont info, it is not yet resolved which organelle type they
                 // represent, so we need to find that now
                 try
                 {
@@ -75,7 +65,7 @@ public partial class EndosymbiontOrganelleSystem : BaseSystem<World, float>
                     CreateNewOrganelle(organelleContainer.Organelles!, type);
 
                     // These are fetched inside the loop with the assumption that most of the time the loop runs 0
-                    // times and when not empty mostly just once
+                    // times and when not empty, mostly just once
                     organelleContainer.OnOrganellesChanged(ref entity.Get<CompoundStorage>(),
                         ref entity.Get<BioProcesses>(), ref entity.Get<Engulfer>(), ref entity.Get<Engulfable>(),
                         ref entity.Get<CellProperties>());

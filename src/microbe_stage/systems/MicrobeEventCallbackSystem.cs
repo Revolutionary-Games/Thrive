@@ -5,6 +5,7 @@ using System.Runtime.CompilerServices;
 using Arch.Core;
 using Arch.Core.Extensions;
 using Arch.System;
+using Arch.System.SourceGenerator;
 using Components;
 using Godot;
 using World = Arch.Core.World;
@@ -19,10 +20,6 @@ using World = Arch.Core.World;
 ///     so this doesn't conflict with other systems.
 ///   </para>
 /// </remarks>
-[With(typeof(MicrobeEventCallbacks))]
-[With(typeof(MicrobeStatus))]
-[With(typeof(Health))]
-[With(typeof(WorldPosition))]
 [ReadsComponent(typeof(MicrobeEventCallbacks))]
 [ReadsComponent(typeof(MicrobeStatus))]
 [ReadsComponent(typeof(WorldPosition))]
@@ -46,13 +43,10 @@ public partial class MicrobeEventCallbackSystem : BaseSystem<World, float>
     }
 
     [Query]
+    [All<WorldPosition>]
     [MethodImpl(MethodImplOptions.AggressiveInlining)]
-    private void Update([Data] in float delta, ref TODO components, in Entity entity)
+    private void Update([Data] in float delta, ref MicrobeEventCallbacks callbacks, ref MicrobeStatus status, ref Health health, in Entity entity)
     {
-        ref var callbacks = ref entity.Get<MicrobeEventCallbacks>();
-        ref var status = ref entity.Get<MicrobeStatus>();
-        ref var health = ref entity.Get<Health>();
-
         // Don't run callbacks for dead cells
         if (health.Dead)
             return;

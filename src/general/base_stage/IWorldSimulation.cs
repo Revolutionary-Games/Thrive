@@ -58,6 +58,14 @@ public interface IWorldSimulation : IEntityContainer, IDisposable
     /// <param name="recorder">The recorder to return</param>
     public void FinishRecordingEntityCommands(CommandBuffer recorder);
 
+    /// <summary>
+    ///   Call if entity command recording failed. This discards the entire recorder. Note that this may lose unrelated
+    ///   changes, so only call this in an emergency if a system has totally failed and needs to somewhat allow the
+    ///   gameplay to continue.
+    /// </summary>
+    /// <param name="recorder">Recorder to discard</param>
+    public void OnFailedRecordingEntityCommands(CommandBuffer recorder);
+
     public bool ProcessAll(float delta);
     public bool ProcessLogic(float delta);
 
@@ -73,4 +81,5 @@ public interface IWorldSimulation : IEntityContainer, IDisposable
     /// </summary>
     /// <returns>Speed ratio. 1.0 when full speed is achieved</returns>
     public float GetAndResetTrackedSimulationSpeedRatio();
+
 }

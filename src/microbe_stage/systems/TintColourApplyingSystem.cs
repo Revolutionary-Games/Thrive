@@ -17,8 +17,6 @@ using Godot;
 ///     materials, but otherwise doesn't do anything to them.
 ///   </para>
 /// </remarks>
-[With(typeof(ColourAnimation))]
-[With(typeof(EntityMaterial))]
 [ReadsComponent(typeof(EntityMaterial))]
 [RunsAfter(typeof(ColourAnimationSystem))]
 [RuntimeCost(8)]
@@ -40,14 +38,10 @@ public partial class TintColourApplyingSystem : BaseSystem<World, float>
 
     [Query]
     [MethodImpl(MethodImplOptions.AggressiveInlining)]
-    private void Update([Data] in float delta, ref TODO components, in Entity entity)
+    private void Update(ref ColourAnimation animation, ref EntityMaterial entityMaterial)
     {
-        ref var animation = ref entity.Get<ColourAnimation>();
-
         if (animation.ColourApplied)
             return;
-
-        ref var entityMaterial = ref entity.Get<EntityMaterial>();
 
         if (entityMaterial.Materials == null)
             return;

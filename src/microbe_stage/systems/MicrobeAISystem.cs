@@ -3,9 +3,11 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Runtime.CompilerServices;
 using Arch.Core;
 using Arch.Core.Extensions;
 using Arch.System;
+using Arch.System.SourceGenerator;
 using Components;
 using Godot;
 using Xoshiro.PRNG64;
@@ -19,18 +21,6 @@ using World = Arch.Core.World;
 ///     Without the attached component here stops this from running for microbes in colonies
 ///   </para>
 /// </remarks>
-[With(typeof(MicrobeAI))]
-[With(typeof(SpeciesMember))]
-[With(typeof(MicrobeControl))]
-[With(typeof(Health))]
-[With(typeof(CompoundAbsorber))]
-[With(typeof(CompoundStorage))]
-[With(typeof(OrganelleContainer))]
-[With(typeof(CommandSignaler))]
-[With(typeof(CellProperties))]
-[With(typeof(Engulfer))]
-[With(typeof(WorldPosition))]
-[Without(typeof(AttachedToEntity))]
 [ReadsComponent(typeof(CompoundStorage))]
 [ReadsComponent(typeof(OrganelleContainer))]
 [ReadsComponent(typeof(CellProperties))]
@@ -60,8 +50,20 @@ public partial class MicrobeAISystem : BaseSystem<World, float>, ISpeciesMemberL
     private readonly List<XoShiRo256starstar> thinkRandoms = new();
 
     // New access to the world stuff for AI to see
-    private readonly EntitySet microbesSet;
-    private readonly EntitySet chunksSet;
+
+    /// <summary>
+    ///   Query for microbes that aren't colony non-leaders (and also not eaten)
+    ///   The WorldPosition requirement is here to just ensure that the AI won't accidentally throw an exception if
+    ///   it sees an entity with no position
+    /// </summary>
+    private readonly QueryDescription microbesQuery = new QueryDescription()
+        .WithAll<WorldPosition, SpeciesMember, Health, Engulfer, Engulfable>().WithNone<AttachedToEntity>();
+
+    /// <summary>
+    ///   Query for chunks that aren't cells or attached so that they also aren't eaten already
+    /// </summary>
+    private readonly QueryDescription chunksQuery = new QueryDescription().WithAll<WorldPosition, CompoundStorage>()
+        .WithNone<SpeciesMember, AttachedToEntity>();
 
     private readonly List<uint> speciesCachesToDrop = new();
 
@@ -99,16 +101,6 @@ public partial class MicrobeAISystem : BaseSystem<World, float>, ISpeciesMemberL
     {
         clouds = cloudSystem;
         this.lightInfo = lightInfo;
-
-        // Microbes that aren't colony non-leaders (and also not eaten)
-        // The WorldPosition require is here to just ensure that the AI won't accidentally throw an exception if
-        // it sees an entity with no position
-        microbesSet = world.GetEntities().With<WorldPosition>().With<SpeciesMember>()
-            .With<Health>().With<Engulfer>().With<Engulfable>().Without<AttachedToEntity>().AsSet();
-
-        // Chunks that aren't cells or attached so that they also aren't eaten already
-        chunksSet = world.GetEntities().With<WorldPosition>().With<CompoundStorage>()
-            .Without<SpeciesMember>().Without<AttachedToEntity>().AsSet();
     }
 
     public void OverrideAIRandomSeed(long seed)
@@ -173,13 +165,15 @@ public partial class MicrobeAISystem : BaseSystem<World, float>, ISpeciesMemberL
     }
 
     [Query]
+    [All<SpeciesMember, MicrobeControl, CompoundAbsorber, CompoundStorage, OrganelleContainer, CommandSignaler,
+        CellProperties, Engulfer, WorldPosition>]
+    [None<AttachedToEntity>]
     [MethodImpl(MethodImplOptions.AggressiveInlining)]
-    private void Update([Data] in float delta, ref TODO components, in Entity entity)
+    private void Update([Data] in float delta, ref MicrobeAI ai, ref Health health, ref StrainAffected strainAffected,
+        in Entity entity)
     {
         if (skipAI)
             return;
-
-        ref var ai = ref entity.Get<MicrobeAI>();
 
         ai.TimeUntilNextThink -= delta;
 
@@ -200,17 +194,12 @@ public partial class MicrobeAISystem : BaseSystem<World, float>, ISpeciesMemberL
             }
         }
 
-        ref var health = ref entity.Get<Health>();
-
         if (health.Dead)
             return;
 
         var strain = 0.0f;
 
-        if (entity.Has<StrainAffected>())
-        {
-            strain = entity.Get<StrainAffected>().CurrentStrain;
-        }
+        strain = strainAffected.CurrentStrain;
 
         // This shouldn't be needed thanks to the check that this doesn't run on attached entities
         // ref var engulfable = ref entity.Get<Engulfable>();
@@ -218,14 +207,6 @@ public partial class MicrobeAISystem : BaseSystem<World, float>, ISpeciesMemberL
         //     return;
 
         AIThink(GetNextAIRandom(), in entity, ref ai, ref health, strain);
-    }
-
-    public override void AfterUpdate(in float delta)
-    {
-        base.PostUpdate(state);
-
-        microbesSet.Complete();
-        chunksSet.Complete();
     }
 
     private static bool RollCheck(float ourStat, float dc, Random random)
@@ -268,6 +249,8 @@ public partial class MicrobeAISystem : BaseSystem<World, float>, ISpeciesMemberL
         ref Health health, float strain, Random random)
     {
         // Fetch all the components that are usually needed
+        // TODO: determine if it is good idea to fetch all the components like this.
+        // These aren't passed on from the top level as most AI entities do not need to think each update
         ref var position = ref entity.Get<WorldPosition>();
 
         ref var ourSpecies = ref entity.Get<SpeciesMember>();
@@ -1397,33 +1380,10 @@ public partial class MicrobeAISystem : BaseSystem<World, float>, ISpeciesMemberL
             if (microbeCacheBuilt)
                 return;
 
-            foreach (ref readonly var microbe in microbesSet.GetEntities())
-            {
-                // Skip considering dead microbes
-                ref var health = ref microbe.Get<Health>();
+            var query = new MicrobeCollectingQuery(microbesBySpecies);
 
-                if (health.Dead)
-                    continue;
-
-                ref var microbeSpecies = ref microbe.Get<SpeciesMember>();
-
-                // TODO: determine if it is a good idea to resolve this data here immediately (at least position
-                // should be fine as it is needed by other systems as well, see ISpeciesMemberLocationData)
-                ref var position = ref microbe.Get<WorldPosition>();
-                ref var engulfer = ref microbe.Get<Engulfer>();
-
-                // We assume here that the engulfable size is the same as the engulfing size so we don't fetch
-                // Engulfable here
-
-                if (!microbesBySpecies.TryGetValue(microbeSpecies.ID, out var targetList))
-                {
-                    targetList = new List<(Entity Entity, Vector3 Position, float EngulfSize)>();
-
-                    microbesBySpecies[microbeSpecies.ID] = targetList;
-                }
-
-                targetList.Add((microbe, position.Position, engulfer.EngulfingSize));
-            }
+            World.InlineEntityQuery<MicrobeCollectingQuery, SpeciesMember, WorldPosition, Engulfer, Health>(
+                microbesQuery, ref query);
 
             microbeCacheBuilt = true;
         }
@@ -1497,37 +1457,8 @@ public partial class MicrobeAISystem : BaseSystem<World, float>, ISpeciesMemberL
             if (chunkCacheBuilt)
                 return;
 
-            foreach (ref readonly var chunk in chunksSet.GetEntities())
-            {
-                if (chunk.Has<TimedLife>())
-                {
-                    // Ignore already despawning chunks
-                    ref var timed = ref chunk.Get<TimedLife>();
-
-                    if (timed.TimeToLiveRemaining <= 0)
-                        continue;
-                }
-
-                // Ignore chunks that wouldn't yield any useful compounds when absorbing
-                ref var compounds = ref chunk.Get<CompoundStorage>();
-
-                if (!compounds.Compounds.HasAnyCompounds())
-                    continue;
-
-                // TODO: determine if it is a good idea to resolve this data here immediately
-                ref var position = ref chunk.Get<WorldPosition>();
-
-                if (chunk.Has<Engulfable>())
-                {
-                    ref var engulfable = ref chunk.Get<Engulfable>();
-                    chunkDataCache.Add((chunk, position.Position, engulfable.AdjustedEngulfSize,
-                        compounds.Compounds));
-                }
-                else
-                {
-                    terrainChunkDataCache.Add((chunk, position.Position, compounds.Compounds));
-                }
-            }
+            var query = new ChunkCollectingQuery(chunkDataCache, terrainChunkDataCache);
+            World.InlineEntityQuery<ChunkCollectingQuery, CompoundStorage, WorldPosition>(chunksQuery, ref query);
 
             chunkCacheBuilt = true;
         }
@@ -1546,12 +1477,62 @@ public partial class MicrobeAISystem : BaseSystem<World, float>, ISpeciesMemberL
         }
     }
 
-    private void Dispose(bool disposing)
+    private readonly struct MicrobeCollectingQuery(
+        Dictionary<uint, List<(Entity Entity, Vector3 Position, float EngulfSize)>> targetData)
+        : IForEachWithEntity<SpeciesMember, WorldPosition, Engulfer, Health>
     {
-        if (disposing)
+        [MethodImpl(MethodImplOptions.AggressiveInlining)]
+        public void Update(Entity entity, ref SpeciesMember speciesMember, ref WorldPosition position,
+            ref Engulfer engulfer, ref Health health)
         {
-            microbesSet.Dispose();
-            chunksSet.Dispose();
+            // Skip considering dead microbes
+            if (health.Dead)
+                return;
+
+            // We assume here that the engulfable size is the same as the engulfing size, so we don't fetch
+            // Engulfable here
+
+            if (!targetData.TryGetValue(speciesMember.ID, out var targetList))
+            {
+                targetList = new List<(Entity Entity, Vector3 Position, float EngulfSize)>();
+
+                targetData[speciesMember.ID] = targetList;
+            }
+
+            targetList.Add((entity, position.Position, engulfer.EngulfingSize));
+        }
+    }
+
+    private readonly struct ChunkCollectingQuery(
+        List<(Entity Entity, Vector3 Position, float EngulfSize, CompoundBag Compounds)> chunkTarget,
+        List<(Entity Entity, Vector3 Position, CompoundBag Compounds)> terrainTarget) : IForEachWithEntity<CompoundStorage, WorldPosition>
+    {
+        [MethodImpl(MethodImplOptions.AggressiveInlining)]
+        public void Update(Entity entity, ref CompoundStorage compounds, ref WorldPosition position)
+        {
+            if (entity.Has<TimedLife>())
+            {
+                // Ignore already despawning chunks
+                ref var timed = ref entity.Get<TimedLife>();
+
+                if (timed.TimeToLiveRemaining <= 0)
+                    return;
+            }
+
+            // Ignore chunks that wouldn't yield any useful compounds when absorbing
+            if (!compounds.Compounds.HasAnyCompounds())
+                return;
+
+            if (entity.Has<Engulfable>())
+            {
+                ref var engulfable = ref entity.Get<Engulfable>();
+                chunkTarget.Add((entity, position.Position, engulfable.AdjustedEngulfSize,
+                    compounds.Compounds));
+            }
+            else
+            {
+                terrainTarget.Add((entity, position.Position, compounds.Compounds));
+            }
         }
     }
 }

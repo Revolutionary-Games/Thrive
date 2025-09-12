@@ -2,9 +2,11 @@
 
 using System;
 using System.Collections.Generic;
+using System.Runtime.CompilerServices;
 using Arch.Core;
 using Arch.Core.Extensions;
 using Arch.System;
+using Arch.System.SourceGenerator;
 using Components;
 using Godot;
 using World = Arch.Core.World;
@@ -12,10 +14,6 @@ using World = Arch.Core.World;
 /// <summary>
 ///   Handles detected toxin collisions with microbes
 /// </summary>
-[With(typeof(ToxinDamageSource))]
-[With(typeof(CollisionManagement))]
-[With(typeof(Physics))]
-[With(typeof(TimedLife))]
 [ReadsComponent(typeof(MicrobeSpeciesMember))]
 [ReadsComponent(typeof(SpeciesMember))]
 [ReadsComponent(typeof(Health))]
@@ -29,27 +27,24 @@ using World = Arch.Core.World;
 public partial class ToxinCollisionSystem : BaseSystem<World, float>
 {
     /// <summary>
-    ///   Holds a persistent instance of the collision filter callback to not need to create multiple delegates, and
+    ///   Holds a persistent instance of the collision filter callback to not need to create multiple delegates and
     ///   to make doubly sure this callback won't be garbage collected while the native side still has a reference to
     ///   it.
     /// </summary>
     private readonly PhysicalWorld.OnCollisionFilterCallback collisionFilter = FilterCollisions;
 
-    public ToxinCollisionSystem(World world, IParallelRunner runner) : base(world, runner)
+    public ToxinCollisionSystem(World world) : base(world)
     {
     }
 
     [Query]
+    [All<Physics, TimedLife>]
     [MethodImpl(MethodImplOptions.AggressiveInlining)]
-    private void Update([Data] in float delta, ref TODO components, in Entity entity)
+    private void Update(ref ToxinDamageSource damageSource, ref CollisionManagement collisions, in Entity entity)
     {
-        ref var damageSource = ref entity.Get<ToxinDamageSource>();
-
         // Quickly detect already hit projectiles
         if (damageSource.ProjectileUsed)
             return;
-
-        ref var collisions = ref entity.Get<CollisionManagement>();
 
         if (!damageSource.ProjectileInitialized)
         {
@@ -331,11 +326,11 @@ public partial class ToxinCollisionSystem : BaseSystem<World, float>
     {
         var oxygenParts = organelleContainer.OxygenUsingOrganelles;
 
-        // For now all effects are based on oxygen use so this method can just exit if there aren't any of those
+        // For now all effects are based on oxygen use, so this method can just exit if there aren't any of those
         if (oxygenParts == 0)
             return 1;
 
-        // Oxygen targeting toxin has increased damage based on the number of oxygen using parts
+        // Oxygen targeting toxin has increased damage based on the amount of oxygen using parts
         if (toxinProperties.ToxinSubType == ToxinType.OxygenMetabolismInhibitor)
         {
             return 1 + Math.Min(oxygenParts * Constants.OXYGEN_INHIBITOR_DAMAGE_BUFF_PER_ORGANELLE,

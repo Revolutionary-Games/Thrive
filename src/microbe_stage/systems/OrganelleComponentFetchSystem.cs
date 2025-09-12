@@ -1,14 +1,13 @@
 ﻿namespace Systems;
 
+using System.Runtime.CompilerServices;
 using Arch.Core;
-using Arch.Core.Extensions;
 using Arch.System;
 using Components;
 
 /// <summary>
 ///   Fills out the component vectors like <see cref="OrganelleContainer.SlimeJets"/>
 /// </summary>
-[With(typeof(OrganelleContainer))]
 [RunsAfter(typeof(MicrobeReproductionSystem))]
 [RunsAfter(typeof(MulticellularGrowthSystem))]
 [RunsBefore(typeof(MicrobeMovementSystem))]
@@ -16,16 +15,14 @@ using Components;
 [RuntimeCost(0.25f)]
 public partial class OrganelleComponentFetchSystem : BaseSystem<World, float>
 {
-    public OrganelleComponentFetchSystem(World world, IParallelRunner runner) : base(world, runner)
+    public OrganelleComponentFetchSystem(World world) : base(world)
     {
     }
 
     [Query]
     [MethodImpl(MethodImplOptions.AggressiveInlining)]
-    private void Update([Data] in float delta, ref TODO components, in Entity entity)
+    private void Update(ref OrganelleContainer container)
     {
-        ref var container = ref entity.Get<OrganelleContainer>();
-
         if (container.OrganelleComponentsCached)
             return;
 

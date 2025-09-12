@@ -8,6 +8,7 @@ using Arch.Buffer;
 using Arch.Core;
 using Arch.Core.Extensions;
 using Arch.System;
+using Arch.System.SourceGenerator;
 using Components;
 using Godot;
 using World = Arch.Core.World;
@@ -26,19 +27,6 @@ using World = Arch.Core.World;
 ///     spikes, this is marked with a bit of a runtime cost.
 ///   </para>
 /// </remarks>
-[With(typeof(Health))]
-[With(typeof(OrganelleContainer))]
-[With(typeof(MicrobeShaderParameters))]
-[With(typeof(CellProperties))]
-[With(typeof(Physics))]
-[With(typeof(WorldPosition))]
-[With(typeof(MicrobeControl))]
-[With(typeof(ManualPhysicsControl))]
-[With(typeof(SoundEffectPlayer))]
-[With(typeof(CompoundAbsorber))]
-[With(typeof(Engulfable))]
-[With(typeof(CompoundStorage))]
-[With(typeof(SpeciesMember))]
 [ReadsComponent(typeof(Engulfable))]
 [ReadsComponent(typeof(SpeciesMember))]
 [ReadsComponent(typeof(WorldPosition))]
@@ -75,7 +63,7 @@ public partial class MicrobeDeathSystem : BaseSystem<World, float>
     public delegate Vector3 CustomizeSpawnedChunk(ref Vector3 position);
 
     public static void SpawnCorpseChunks(ref OrganelleContainer organelleContainer, CompoundBag compounds,
-        ISpawnSystem spawnSystem, IWorldSimulation worldSimulation, EntityCommandRecorder recorder,
+        ISpawnSystem spawnSystem, IWorldSimulation worldSimulation, CommandBuffer recorder,
         Vector3 basePosition, Random random, CustomizeSpawnedChunk? customizeCallback, bool isBacteria)
     {
         if (organelleContainer.Organelles == null)
@@ -232,9 +220,9 @@ public partial class MicrobeDeathSystem : BaseSystem<World, float>
                 position, random, true, velocity);
 
             // Add to the spawn system to make these chunks limit the possible number of entities
-            spawnSystem.NotifyExternalEntitySpawned(chunk, Constants.MICROBE_DESPAWN_RADIUS_SQUARED, 1);
+            spawnSystem.NotifyExternalEntitySpawned(chunk, recorder, Constants.MICROBE_DESPAWN_RADIUS_SQUARED, 1);
 
-            ModLoader.ModInterface.TriggerOnChunkSpawned(chunk, false);
+            ModLoader.ModInterface.TriggerOnChunkSpawned(chunk, false, recorder);
         }
     }
 
@@ -251,16 +239,15 @@ public partial class MicrobeDeathSystem : BaseSystem<World, float>
     }
 
     [Query]
+    [All<OrganelleContainer, MicrobeShaderParameters, Physics, WorldPosition, MicrobeControl, ManualPhysicsControl,
+        SoundEffectPlayer, CompoundAbsorber, Engulfable, CompoundStorage, SpeciesMember>]
     [MethodImpl(MethodImplOptions.AggressiveInlining)]
-    private void Update([Data] in float delta, ref TODO components, in Entity entity)
+    private void Update(ref Health health, ref CellProperties cellProperties, in Entity entity)
     {
-        ref var health = ref entity.Get<Health>();
-
         if (health.DeathProcessed)
             return;
 
         // Update membrane damaged status
-        ref var cellProperties = ref entity.Get<CellProperties>();
         if (cellProperties.CreatedMembrane != null)
         {
             if (health.MaxHealth <= 0)
@@ -277,8 +264,8 @@ public partial class MicrobeDeathSystem : BaseSystem<World, float>
         // Then handle death for cells that should die
         if (health.CurrentHealth <= 0 || health.Dead)
         {
-            // Ensure dead flag is always set, as otherwise this will cause "zombies," so that this is always retried
-            // if the death processing cannot be done yet
+            // Ensure the dead flag is always set, as otherwise this will cause "zombies", so that this is always
+            // retried if the death processing cannot be done yet
             health.Dead = true;
 
             if (HandleMicrobeDeath(ref cellProperties, entity))
@@ -410,10 +397,9 @@ public partial class MicrobeDeathSystem : BaseSystem<World, float>
         ref var engulfable = ref entity.Get<Engulfable>();
 
         commandRecorder ??= worldSimulation.StartRecordingEntityCommands();
-        var entityRecord = commandRecorder.Record(entity);
 
         // Add a timed life component to make sure the entity will despawn after the death animation
-        entityRecord.Set(new TimedLife
+        commandRecorder.Set(entity, new TimedLife
         {
             TimeToLiveRemaining = 1 / Constants.MEMBRANE_DISSOLVE_SPEED * 2,
         });
@@ -473,7 +459,7 @@ public partial class MicrobeDeathSystem : BaseSystem<World, float>
     private void ReleaseAllAgents(ref WorldPosition position, in Entity entity, CompoundBag compounds,
         Species species, CommandBuffer recorder)
     {
-        // To not completely deadlock in this there is a maximum limit
+        // To not completely deadlock in this, there is a maximum limit
         int createdAgents = 0;
 
         var amount = compounds.GetCompoundAmount(Compound.Oxytoxy);
@@ -489,7 +475,7 @@ public partial class MicrobeDeathSystem : BaseSystem<World, float>
                 props, Constants.MAXIMUM_AGENT_EMISSION_AMOUNT, Constants.EMITTED_AGENT_LIFETIME,
                 position.Position, direction, Constants.MAXIMUM_AGENT_EMISSION_AMOUNT, entity);
 
-            ModLoader.ModInterface.TriggerOnToxinEmitted(spawnedRecord);
+            ModLoader.ModInterface.TriggerOnToxinEmitted(spawnedRecord, recorder);
 
             amount -= Constants.MAXIMUM_AGENT_EMISSION_AMOUNT;
             ++createdAgents;

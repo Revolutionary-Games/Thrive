@@ -5,6 +5,7 @@ using System.Runtime.CompilerServices;
 using Arch.Core;
 using Arch.Core.Extensions;
 using Arch.System;
+using Arch.System.SourceGenerator;
 using Components;
 using Godot;
 using World = Arch.Core.World;
@@ -25,9 +26,6 @@ using World = Arch.Core.World;
 ///     reference directly
 ///   </para>
 /// </remarks>
-[With(typeof(OrganelleContainer))]
-[With(typeof(CompoundStorage))]
-[With(typeof(WorldPosition))]
 [ReadsComponent(typeof(Engulfable))]
 [ReadsComponent(typeof(MicrobeControl))]
 [ReadsComponent(typeof(Physics))]
@@ -52,11 +50,10 @@ public partial class OrganelleTickSystem : BaseSystem<World, float>
     }
 
     [Query]
+    [All<CompoundStorage, WorldPosition>]
     [MethodImpl(MethodImplOptions.AggressiveInlining)]
-    private void Update([Data] in float delta, ref TODO components, in Entity entity)
+    private void Update([Data] in float delta, ref OrganelleContainer organelleContainer, in Entity entity)
     {
-        ref var organelleContainer = ref entity.Get<OrganelleContainer>();
-
         if (organelleContainer.Organelles == null)
             return;
 
@@ -76,6 +73,8 @@ public partial class OrganelleTickSystem : BaseSystem<World, float>
             for (int j = 0; j < componentCount; ++j)
             {
                 var component = components[j];
+
+                // Organelles can do various things which is why we have the above "All" attribute
                 component.UpdateAsync(ref organelleContainer, entity, worldSimulation, delta);
 
                 if (component.UsesSyncProcess)

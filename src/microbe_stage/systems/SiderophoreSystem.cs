@@ -2,19 +2,18 @@
 
 using System;
 using System.Collections.Generic;
+using System.Runtime.CompilerServices;
 using Arch.Core;
 using Arch.Core.Extensions;
 using Arch.System;
+using Arch.System.SourceGenerator;
 using Components;
 using World = Arch.Core.World;
 
 /// <summary>
 ///   Handles siderophore projectile collisions
 /// </summary>
-[With(typeof(CollisionManagement))]
-[With(typeof(Physics))]
-[With(typeof(TimedLife))]
-[With(typeof(SiderophoreProjectile))]
+[WritesToComponent(typeof(CompoundStorage))]
 [RunsAfter(typeof(PhysicsCollisionManagementSystem))]
 [RuntimeCost(0.5f, false)]
 public partial class SiderophoreSystem : BaseSystem<World, float>
@@ -24,8 +23,7 @@ public partial class SiderophoreSystem : BaseSystem<World, float>
 
     private readonly IWorldSimulation worldSimulation;
 
-    public SiderophoreSystem(World world, IParallelRunner runner, IWorldSimulation worldSimulation) :
-        base(world, runner)
+    public SiderophoreSystem(World world, IWorldSimulation worldSimulation) : base(world)
     {
         this.worldSimulation = worldSimulation;
 
@@ -34,15 +32,12 @@ public partial class SiderophoreSystem : BaseSystem<World, float>
     }
 
     [Query]
+    [All<WorldPosition>]
     [MethodImpl(MethodImplOptions.AggressiveInlining)]
-    private void Update([Data] in float delta, ref TODO components, in Entity entity)
+    private void Update(ref SiderophoreProjectile projectile, ref CollisionManagement collisions, in Entity entity)
     {
-        ref var projectile = ref entity.Get<SiderophoreProjectile>();
-
         if (projectile.IsUsed)
             return;
-
-        ref var collisions = ref entity.Get<CollisionManagement>();
 
         if (!projectile.ProjectileInitialized)
         {
@@ -97,7 +92,7 @@ public partial class SiderophoreSystem : BaseSystem<World, float>
 
         var firstEntityPosition = collision.FirstEntity.Get<WorldPosition>().Position;
 
-        // This shallow copies a struct to modify here
+        // This makes a shallow copy of the struct to modify here
         var smallIronChunk = smallIronChunkCache;
 
         smallIronChunk.ChunkScale = (float)Math.Sqrt(size);

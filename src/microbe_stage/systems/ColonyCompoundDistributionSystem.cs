@@ -1,8 +1,9 @@
 ﻿namespace Systems;
 
+using System.Runtime.CompilerServices;
 using Arch.Core;
-using Arch.Core.Extensions;
 using Arch.System;
+using Arch.System.SourceGenerator;
 using Components;
 
 /// <summary>
@@ -16,8 +17,6 @@ using Components;
 ///     due to missing ATP.
 ///   </para>
 /// </remarks>
-[With(typeof(MicrobeColony))]
-[Without(typeof(AttachedToEntity))]
 [ReadsComponent(typeof(MicrobeColony))]
 [WritesToComponent(typeof(CompoundStorage))]
 [RunsBefore(typeof(EngulfingSystem))]
@@ -28,11 +27,10 @@ public partial class ColonyCompoundDistributionSystem : BaseSystem<World, float>
     }
 
     [Query]
+    [None<AttachedToEntity>]
     [MethodImpl(MethodImplOptions.AggressiveInlining)]
-    private void Update([Data] in float delta, ref TODO components, in Entity entity)
+    private void Update(ref MicrobeColony colony)
     {
-        ref var colony = ref entity.Get<MicrobeColony>();
-
         colony.GetCompounds().DistributeCompoundSurplus();
     }
 }

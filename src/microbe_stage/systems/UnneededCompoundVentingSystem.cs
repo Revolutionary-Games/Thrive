@@ -2,9 +2,11 @@
 
 using System;
 using System.Collections.Generic;
+using System.Runtime.CompilerServices;
 using Arch.Core;
 using Arch.Core.Extensions;
 using Arch.System;
+using Arch.System.SourceGenerator;
 using Components;
 using Godot;
 using World = Arch.Core.World;
@@ -12,14 +14,9 @@ using World = Arch.Core.World;
 /// <summary>
 ///   Handles venting unneeded compounds or compounds that exceed storage capacity from microbes
 /// </summary>
-[With(typeof(UnneededCompoundVenter))]
-[With(typeof(CellProperties))]
-[With(typeof(CompoundStorage))]
-[With(typeof(WorldPosition))]
 [ReadsComponent(typeof(UnneededCompoundVenter))]
 [ReadsComponent(typeof(CellProperties))]
 [ReadsComponent(typeof(WorldPosition))]
-[Without(typeof(AttachedToEntity))]
 [RunsAfter(typeof(ProcessSystem))]
 [RuntimeCost(9)]
 public partial class UnneededCompoundVentingSystem : BaseSystem<World, float>
@@ -37,22 +34,19 @@ public partial class UnneededCompoundVentingSystem : BaseSystem<World, float>
     }
 
     [Query]
+    [None<AttachedToEntity>]
     [MethodImpl(MethodImplOptions.AggressiveInlining)]
-    private void Update([Data] in float delta, ref TODO components, in Entity entity)
+    private void Update([Data] in float delta, ref UnneededCompoundVenter venter, ref CompoundStorage storage,
+        ref WorldPosition position, ref CellProperties cellProperties, in Entity entity)
     {
-        ref var venter = ref entity.Get<UnneededCompoundVenter>();
-
         if (venter.VentThreshold >= float.MaxValue)
             return;
 
-        var compounds = entity.Get<CompoundStorage>().Compounds;
+        var compounds = storage.Compounds;
 
-        // Skip until something is marked as useful (set by bio process system)
+        // Skip until something is marked as useful (set by the bioprocess system)
         if (!compounds.HasAnyBeenSetUseful())
             return;
-
-        ref var position = ref entity.Get<WorldPosition>();
-        ref var cellProperties = ref entity.Get<CellProperties>();
 
         float amountToVent = Constants.COMPOUNDS_TO_VENT_PER_SECOND * delta;
 

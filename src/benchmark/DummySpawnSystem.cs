@@ -1,4 +1,5 @@
-﻿using Arch.Core;
+﻿using Arch.Buffer;
+using Arch.Core;
 using Godot;
 
 /// <summary>
@@ -21,7 +22,7 @@ public class DummySpawnSystem : ISpawnSystem
     {
     }
 
-    public void Update(float delta)
+    public void Update(in float delta)
     {
     }
 
@@ -37,7 +38,8 @@ public class DummySpawnSystem : ISpawnSystem
     {
     }
 
-    public void NotifyExternalEntitySpawned(in Entity entity, float despawnRadiusSquared, float entityWeight)
+    public void NotifyExternalEntitySpawned(in Entity entity, CommandBuffer commandBuffer, float despawnRadiusSquared,
+        float entityWeight)
     {
         addTrackedCallback?.Invoke(entity);
     }

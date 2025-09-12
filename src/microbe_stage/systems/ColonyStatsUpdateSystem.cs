@@ -1,15 +1,15 @@
 ﻿namespace Systems;
 
+using System.Runtime.CompilerServices;
 using Arch.Core;
 using Arch.Core.Extensions;
 using Arch.System;
 using Components;
 
 /// <summary>
-///   Handles updating the statistics values (and applying the ones that apply to other components, for example
+///   Handles updating the statistics values (and applying the ones that apply to other components, for example,
 ///   entity weight) for microbe colonies
 /// </summary>
-[With(typeof(MicrobeColony))]
 [WritesToComponent(typeof(Spawned))]
 [ReadsComponent(typeof(MicrobeColonyMember))]
 [RunsAfter(typeof(SpawnSystem))]
@@ -31,13 +31,13 @@ public partial class ColonyStatsUpdateSystem : BaseSystem<World, float>
     {
         if (entity.Has<MicrobeColony>())
         {
-            // Disbanding a colony. As despawn system can despawn the colony leaders, this simply just destroys all
+            // Disbanding a colony. As the despawn system can despawn the colony leaders, this simply just destroys all
             // the other entities in the colony
             ref var colony = ref entity.Get<MicrobeColony>();
 
             foreach (var colonyMember in colony.ColonyMembers)
             {
-                if (colonyMember != entity && colonyMember.IsAlive)
+                if (colonyMember != entity && colonyMember.IsAlive())
                     worldSimulation.DestroyEntity(colonyMember);
             }
 
@@ -65,19 +65,17 @@ public partial class ColonyStatsUpdateSystem : BaseSystem<World, float>
             parentColony.RemoveFromColony(memberInfo.ColonyLeader, entity, recorder);
         }
 
-        // As this is called by the destroy callback, the world can't be doing anything else so we can safely
+        // As this is called by the destruction callback, the world can't be doing anything else so we can safely
         // apply the operations immediately
-        recorder.Execute();
+        recorder.Playback(worldSimulation.EntitySystem);
 
         worldSimulation.FinishRecordingEntityCommands(recorder);
     }
 
     [Query]
     [MethodImpl(MethodImplOptions.AggressiveInlining)]
-    private void Update([Data] in float delta, ref TODO components, in Entity entity)
+    private void Update(ref MicrobeColony colony, in Entity entity)
     {
-        ref var colony = ref entity.Get<MicrobeColony>();
-
         colony.CanEngulf();
 
         if (!colony.EntityWeightApplied)
@@ -86,7 +84,7 @@ public partial class ColonyStatsUpdateSystem : BaseSystem<World, float>
             {
                 ref var spawned = ref entity.Get<Spawned>();
 
-                // Weight calculation may not be ready immediately so this can fail (in which case this is retried)
+                // Weight calculation may not be ready immediately, so this can fail (in which case this is retried)
                 if (colony.CalculateEntityWeight(entity, out var weight))
                 {
                     spawned.EntityWeight = weight;

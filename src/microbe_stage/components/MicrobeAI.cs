@@ -3,6 +3,7 @@
 using System;
 using System.Collections.Generic;
 using Arch.Core;
+using Arch.Core.Extensions;
 using Godot;
 using Newtonsoft.Json;
 using Systems;
@@ -38,8 +39,8 @@ public struct MicrobeAI
     /// </summary>
     /// <remarks>
     ///   <para>
-    ///     Memory of the previous absorption step is required to compute gradient (which is a variation).
-    ///     Values dictionary rather than single value as they will be combined with variable weights.
+    ///     Memory of the previous absorption step is required to compute the gradient (which is a variation).
+    ///     Values dictionary rather than a single value as they will be combined with variable weights.
     ///   </para>
     /// </remarks>
     public Dictionary<Compound, float>? PreviouslyAbsorbedCompounds;
@@ -54,7 +55,7 @@ public struct MicrobeAI
 public static class MicrobeAIHelpers
 {
     /// <summary>
-    ///   Resets AI status when this AI controlled microbe is removed from a colony
+    ///   Resets AI status when this AI-controlled microbe is removed from a colony
     /// </summary>
     public static void ResetAI(this ref MicrobeAI ai, in Entity entity)
     {

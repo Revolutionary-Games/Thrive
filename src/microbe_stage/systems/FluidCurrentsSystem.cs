@@ -14,10 +14,6 @@ using World = Arch.Core.World;
 ///   Gives a push from currents in a fluid to physics entities (that have <see cref="ManualPhysicsControl"/>).
 ///   Only acts on entities marked with <see cref="CurrentAffected"/>.
 /// </summary>
-[With(typeof(CurrentAffected))]
-[With(typeof(Physics))]
-[With(typeof(ManualPhysicsControl))]
-[With(typeof(WorldPosition))]
 [ReadsComponent(typeof(CurrentAffected))]
 [ReadsComponent(typeof(Physics))]
 [ReadsComponent(typeof(WorldPosition))]
@@ -68,7 +64,7 @@ public partial class FluidCurrentsSystem : BaseSystem<World, float>
     ///   JSON constructor for creating temporary instances used to apply the child properties
     /// </summary>
     [JsonConstructor]
-    public FluidCurrentsSystem(float currentsTimePassed) : base(TemporarySystemHelper.GetDummyWorldForLoad(), null)
+    public FluidCurrentsSystem(float currentsTimePassed) : base(TemporarySystemHelper.GetDummyWorldForLoad())
     {
         this.currentsTimePassed = currentsTimePassed;
     }
@@ -129,20 +125,16 @@ public partial class FluidCurrentsSystem : BaseSystem<World, float>
 
     [Query]
     [MethodImpl(MethodImplOptions.AggressiveInlining)]
-    private void Update([Data] in float delta, ref TODO components, in Entity entity)
+    private void Update([Data] in float delta, ref Physics physics, ref WorldPosition position,
+        ref ManualPhysicsControl physicsControl, ref CurrentAffected currentAffected, in Entity entity)
     {
-        ref var physics = ref entity.Get<Physics>();
-
         if (physics.Body == null)
             return;
-
-        ref var position = ref entity.Get<WorldPosition>();
-        ref var physicsControl = ref entity.Get<ManualPhysicsControl>();
 
         var pos = new Vector2(position.Position.X, position.Position.Z);
         var vel = VelocityAt(pos) * Constants.MAX_FORCE_APPLIED_BY_CURRENTS;
 
-        float effectStrength = entity.Get<CurrentAffected>().EffectStrength;
+        float effectStrength = currentAffected.EffectStrength;
 
         if (effectStrength == 0)
         {

@@ -1,7 +1,6 @@
 ﻿namespace Systems;
 
 using System.Runtime.CompilerServices;
-using Arch.Core;
 using Arch.Core.Extensions;
 using Arch.System;
 using Components;
@@ -18,9 +17,6 @@ using World = Arch.Core.World;
 ///     (if exists)
 ///   </para>
 /// </remarks>
-[With(typeof(CellBurstEffect))]
-[With(typeof(TimedLife))]
-[With(typeof(SpatialInstance))]
 [ReadsComponent(typeof(SpatialInstance))]
 [RunsBefore(typeof(TimedLifeSystem))]
 [RuntimeCost(0.25f)]
@@ -33,16 +29,12 @@ public partial class CellBurstEffectSystem : BaseSystem<World, float>
 
     [Query]
     [MethodImpl(MethodImplOptions.AggressiveInlining)]
-    private void Update([Data] in float delta, ref TODO components, in Entity entity)
+    private void Update(ref CellBurstEffect burstEffect, ref TimedLife timedLife, ref SpatialInstance spatial)
     {
-        ref var burstEffect = ref entity.Get<CellBurstEffect>();
-        ref var timedLife = ref entity.Get<TimedLife>();
-        ref var spatial = ref entity.Get<SpatialInstance>();
-
         if (burstEffect.Initialized)
             return;
 
-        // Skip if can't initialize yet
+        // Skip if can't be initialized yet
         if (spatial.GraphicalInstance == null)
             return;
 

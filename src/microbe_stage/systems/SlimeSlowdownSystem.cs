@@ -1,17 +1,14 @@
 ﻿namespace Systems;
 
+using System.Runtime.CompilerServices;
 using Arch.Core;
-using Arch.Core.Extensions;
 using Arch.System;
+using Arch.System.SourceGenerator;
 using Components;
 
 /// <summary>
 ///   Handles slowing down cells that are currently moving through slime (and don't have slime jets themselves)
 /// </summary>
-[With(typeof(MicrobeControl))]
-[With(typeof(OrganelleContainer))]
-[With(typeof(WorldPosition))]
-[Without(typeof(AttachedToEntity))]
 [ReadsComponent(typeof(OrganelleContainer))]
 [ReadsComponent(typeof(WorldPosition))]
 [RunsAfter(typeof(OrganelleComponentFetchSystem))]
@@ -21,28 +18,22 @@ public partial class SlimeSlowdownSystem : BaseSystem<World, float>
 {
     private readonly IReadonlyCompoundClouds compoundCloudSystem;
 
-    public SlimeSlowdownSystem(IReadonlyCompoundClouds compoundCloudSystem, World world, IParallelRunner runner) :
-        base(world, runner)
+    public SlimeSlowdownSystem(IReadonlyCompoundClouds compoundCloudSystem, World world) : base(world)
     {
         this.compoundCloudSystem = compoundCloudSystem;
     }
 
     [Query]
+    [None<AttachedToEntity>]
     [MethodImpl(MethodImplOptions.AggressiveInlining)]
-    private void Update([Data] in float delta, ref TODO components, in Entity entity)
+    private void Update(ref MicrobeControl control, ref OrganelleContainer organelles, ref WorldPosition position)
     {
-        ref var control = ref entity.Get<MicrobeControl>();
-
-        ref var organelles = ref entity.Get<OrganelleContainer>();
-
-        // Cells with jets aren't affected by mucilage
+        // Mucilage doesn't affect cells with jets
         if (organelles.SlimeJets is { Count: > 0 })
         {
             control.SlowedBySlime = false;
             return;
         }
-
-        ref var position = ref entity.Get<WorldPosition>();
 
         control.SlowedBySlime = compoundCloudSystem.AmountAvailable(Compound.Mucilage, position.Position, 1.0f) >
             Constants.COMPOUND_DENSITY_CATEGORY_FAIR_AMOUNT;

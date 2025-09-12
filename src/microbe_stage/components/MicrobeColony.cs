@@ -3,9 +3,9 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using Arch.Buffer;
 using Arch.Core;
 using Arch.Core.Extensions;
-using DefaultEcs.Command;
 using Godot;
 using Newtonsoft.Json;
 
@@ -372,7 +372,7 @@ public static class MicrobeColonyHelpers
     ///   True when added. False if some data like membrane wasn't ready yet (this will print an error)
     /// </returns>
     public static bool AddToColony(this ref MicrobeColony colony, in Entity colonyEntity, int parentIndex,
-        Entity newMember, EntityCommandRecorder recorder)
+        Entity newMember, CommandBuffer recorder)
     {
         if (newMember.Has<MicrobeColonyMember>())
             throw new ArgumentException("Microbe already is in a colony");
@@ -416,13 +416,17 @@ public static class MicrobeColonyHelpers
 
     /// <summary>
     ///   Finishes adding a queued colony member. This is used by
-    ///   <see cref="Systems.DelayedColonyOperationSystem"/>. This automatically adjusts the parent index to +1 if
-    ///   the inserted member index is before the parent index (to make sure the parent index points to the
-    ///   intended member of the colony and won't point to the newly added member which would cause in invalid
-    ///   parent loop)
+    ///   <see cref="Systems.DelayedColonyOperationSystem"/>.
     /// </summary>
+    /// <remarks>
+    ///   <para>
+    ///     This automatically adjusts the parent index to +1 if the inserted member index is before the parent index.
+    ///     This is done to make sure the parent index points to the intended member of the colony
+    ///     and won't point to the newly added member, which would cause an invalid parent loop.
+    ///   </para>
+    /// </remarks>
     public static void FinishQueuedMemberAdd(this ref MicrobeColony colony, in Entity colonyEntity, int parentIndex,
-        Entity newMember, int intendedNewMemberIndex, EntityCommandRecorder recorder)
+        Entity newMember, int intendedNewMemberIndex, CommandBuffer recorder)
     {
         if (!newMember.Has<AttachedToEntity>())
         {
@@ -489,7 +493,7 @@ public static class MicrobeColonyHelpers
     ///   of <see cref="AddToColony"/> that works a bit specially
     /// </summary>
     public static bool AddInitialColonyMember(this ref MicrobeColony colony, in Entity colonyEntity,
-        int parentIndex, in Entity addedColonyMember, EntityCommandRecorder recorder)
+        int parentIndex, in Entity addedColonyMember, CommandBuffer recorder)
     {
         if (addedColonyMember.Has<MicrobeColonyMember>())
             throw new ArgumentException("Microbe already is in a colony");
@@ -522,7 +526,7 @@ public static class MicrobeColonyHelpers
     /// </summary>
     /// <returns>True when the colony still exists. False if the entire colony was disbanded</returns>
     public static bool RemoveFromColony(this ref MicrobeColony colony, in Entity colonyEntity, Entity removedMember,
-        EntityCommandRecorder recorder)
+        CommandBuffer recorder)
     {
         if (colonyEntity.Has<MulticellularGrowth>())
         {
@@ -567,7 +571,7 @@ public static class MicrobeColonyHelpers
         if (colony.ColonyMembers.Length <= 2)
         {
             // The whole colony is disbanding
-            recorder.Record(colonyEntity).Remove<MicrobeColony>();
+            recorder.Remove<MicrobeColony>(colonyEntity);
 
             // Call the remove callback on the members
             for (int i = 0; i < colony.ColonyMembers.Length; ++i)
@@ -659,7 +663,7 @@ public static class MicrobeColonyHelpers
     ///   </para>
     /// </remarks>
     /// <returns>True if unbind happened</returns>
-    public static bool UnbindAll(in Entity entity, EntityCommandRecorder entityCommandRecorder)
+    public static bool UnbindAll(in Entity entity, CommandBuffer entityCommandRecorder)
     {
         ref var control = ref entity.Get<MicrobeControl>();
 
@@ -683,7 +687,7 @@ public static class MicrobeColonyHelpers
     ///   Removes the given entity from the microbe colony it is in (if any)
     /// </summary>
     /// <returns>True on success</returns>
-    public static bool RemoveFromColony(in Entity entity, EntityCommandRecorder entityCommandRecorder)
+    public static bool RemoveFromColony(in Entity entity, CommandBuffer entityCommandRecorder)
     {
         lock (AttachedToEntityHelpers.EntityAttachRelationshipModifyLock)
         {
@@ -755,7 +759,7 @@ public static class MicrobeColonyHelpers
 
         // TODO: should this skip applying the recorder if the operation failed
 
-        recorder.Execute();
+        recorder.Playback(entityWorld.EntitySystem);
         entityWorld.FinishRecordingEntityCommands(recorder);
 
 #if DEBUG
@@ -824,8 +828,8 @@ public static class MicrobeColonyHelpers
     ///   Makes an entity that is being spawned into a fully grown multicellular colony
     /// </summary>
     /// <returns>How much the added colony members add entity weight</returns>
-    public static float SpawnAsFullyGrownMulticellularColony(EntityRecord entity, MulticellularSpecies species,
-        float originalWeight)
+    public static float SpawnAsFullyGrownMulticellularColony(Entity entity, MulticellularSpecies species,
+        float originalWeight, CommandBuffer commandBuffer)
     {
         int members = species.Cells.Count - 1;
 
@@ -833,13 +837,13 @@ public static class MicrobeColonyHelpers
         if (members < 1)
             return 0;
 
-        SetupColonyWithMembersDelayed(entity, members);
+        SetupColonyWithMembersDelayed(entity, members, commandBuffer);
 
         return CalculateColonyAdditionalEntityWeight(originalWeight, members);
     }
 
-    public static float SpawnAsPartialMulticellularColony(EntityRecord entity, float originalWeight,
-        int membersToAdd)
+    public static float SpawnAsPartialMulticellularColony(Entity entity, float originalWeight,
+        int membersToAdd, CommandBuffer commandBuffer)
     {
         if (membersToAdd < 1)
         {
@@ -847,7 +851,7 @@ public static class MicrobeColonyHelpers
             return 0;
         }
 
-        SetupColonyWithMembersDelayed(entity, membersToAdd);
+        SetupColonyWithMembersDelayed(entity, membersToAdd, commandBuffer);
 
         return CalculateColonyAdditionalEntityWeight(originalWeight, membersToAdd);
     }
@@ -1170,12 +1174,11 @@ public static class MicrobeColonyHelpers
     /// </summary>
     private static void SetupColonyMemberData(ref MicrobeColony colony, in Entity colonyEntity, int parentIndex,
         in Entity newMember, Vector3 offsetToColonyLeader, Quaternion rotationToLeader,
-        EntityCommandRecorder recorder)
+        CommandBuffer recorder)
     {
         OnCommonColonyMemberSetup(ref colony, colonyEntity, parentIndex, newMember, recorder);
 
-        var memberRecord = recorder.Record(newMember);
-        memberRecord.Set(new AttachedToEntity(colonyEntity, offsetToColonyLeader, rotationToLeader));
+        recorder.Set(newMember, new AttachedToEntity(colonyEntity, offsetToColonyLeader, rotationToLeader));
 
         // Setup event forwarding
         if (colonyEntity.Has<MicrobeEventCallbacks>())
@@ -1184,7 +1187,7 @@ public static class MicrobeColonyHelpers
 
             if (!originalEvents.IsTemporary)
             {
-                memberRecord.Set(originalEvents.CloneEventCallbacksForColonyMember());
+                recorder.Set(newMember, originalEvents.CloneEventCallbacksForColonyMember());
             }
         }
 
@@ -1192,7 +1195,7 @@ public static class MicrobeColonyHelpers
     }
 
     private static void SetupDelayAddedColonyMemberData(ref MicrobeColony colony, in Entity colonyEntity,
-        int parentIndex, in Entity newMember, EntityCommandRecorder recorder)
+        int parentIndex, in Entity newMember, CommandBuffer recorder)
     {
         OnCommonColonyMemberSetup(ref colony, colonyEntity, parentIndex, newMember, recorder);
 
@@ -1202,7 +1205,7 @@ public static class MicrobeColonyHelpers
     }
 
     private static void OnCommonColonyMemberSetup(ref MicrobeColony colony, Entity colonyEntity, int parentIndex,
-        Entity newMember, EntityCommandRecorder recorder)
+        Entity newMember, CommandBuffer recorder)
     {
         if (parentIndex >= colony.ColonyMembers.Length)
             throw new ArgumentException("Cannot use out of range parent index for new colony member parent");
@@ -1219,15 +1222,14 @@ public static class MicrobeColonyHelpers
 
         colony.ColonyStructure[newMember] = parentMicrobe;
 
-        var memberRecord = recorder.Record(newMember);
-        memberRecord.Set(new MicrobeColonyMember(colonyEntity));
+        recorder.Set(newMember, new MicrobeColonyMember(colonyEntity));
     }
 
     /// <summary>
-    ///   Removes a member from the colony. It is incorrect to call this with an entity that is not contained in
+    ///   Removes a member from the colony. It is incorrect to call this with an entity which is not contained in
     ///   the list of members.
     /// </summary>
-    /// <exception cref="Exception">If this is called with a member not in the members list</exception>
+    /// <exception cref="Exception">If this is called with a member not in the list of members</exception>
     private static void RemoveColonyMemberFromMemberList(ref MicrobeColony colony, in Entity removedMember)
     {
         // TODO: pooling (see the TODO in the add method)
@@ -1270,18 +1272,17 @@ public static class MicrobeColonyHelpers
     ///   Removes the components from the detached entity that no longer should be on it
     /// </summary>
     private static void QueueRemoveFormerColonyMemberComponents(in Entity removedMember,
-        EntityCommandRecorder recorder)
+        CommandBuffer recorder)
     {
-        var memberRecord = recorder.Record(removedMember);
-        memberRecord.Remove<MicrobeColonyMember>();
-        memberRecord.Remove<AttachedToEntity>();
+        recorder.Remove<MicrobeColonyMember>(removedMember);
+        recorder.Remove<AttachedToEntity>(removedMember);
 
         // Destroy temporary event callbacks if they exist
         if (removedMember.Has<MicrobeEventCallbacks>())
         {
             if (removedMember.Get<MicrobeEventCallbacks>().IsTemporary)
             {
-                memberRecord.Remove<MicrobeEventCallbacks>();
+                recorder.Remove<MicrobeEventCallbacks>(removedMember);
             }
         }
     }
@@ -1314,10 +1315,11 @@ public static class MicrobeColonyHelpers
 
     /// <summary>
     ///   Sets up a colony to be created for an entity after it is spawned. This works in a delayed way as the
-    ///   entity is not known when it is being spawned so normal colony creation doesn't work.
+    ///   entity is not known when it is being spawned, so normal colony creation doesn't work.
     /// </summary>
-    private static void SetupColonyWithMembersDelayed(EntityRecord entity, int membersAfterLeader)
+    private static void SetupColonyWithMembersDelayed(Entity entity, int membersAfterLeader,
+        CommandBuffer commandBuffer)
     {
-        entity.Set(new DelayedMicrobeColony(membersAfterLeader));
+        commandBuffer.Set(entity, new DelayedMicrobeColony(membersAfterLeader));
     }
 }

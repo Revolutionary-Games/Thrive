@@ -4,6 +4,7 @@ using System.Runtime.CompilerServices;
 using Arch.Core;
 using Arch.Core.Extensions;
 using Arch.System;
+using Arch.System.SourceGenerator;
 using Components;
 using Godot;
 using World = Arch.Core.World;
@@ -12,10 +13,6 @@ using World = Arch.Core.World;
 ///   Handles flashing microbes different colour based on the mode they are in or if they are taking damage. Needs
 ///   to run before the damage events are cleared.
 /// </summary>
-[With(typeof(MicrobeControl))]
-[With(typeof(ColourAnimation))]
-[With(typeof(Health))]
-[With(typeof(Selectable))]
 [ReadsComponent(typeof(MicrobeControl))]
 [ReadsComponent(typeof(Selectable))]
 [RunsAfter(typeof(OsmoregulationAndHealingSystem))]
@@ -27,21 +24,18 @@ public partial class MicrobeFlashingSystem : BaseSystem<World, float>
     }
 
     [Query]
+    [All<Selectable>]
     [MethodImpl(MethodImplOptions.AggressiveInlining)]
-    private void Update([Data] in float delta, ref TODO components, in Entity entity)
+    private void Update(ref MicrobeControl control, ref ColourAnimation animation, ref Health health, in Entity entity)
     {
-        ref var animation = ref entity.Get<ColourAnimation>();
-
-        if (HasReceivedDamage(entity))
+        if (HasReceivedDamage(ref health))
         {
             // Flash the microbe red
             animation.Flash(new Color(1, 0, 0, 0.5f), Constants.MICROBE_FLASH_DURATION, 1);
             return;
         }
 
-        // Flash based on current state of the microbe
-        ref var control = ref entity.Get<MicrobeControl>();
-
+        // Flash based on the current state of the microbe
         switch (control.State)
         {
             default:
@@ -66,10 +60,8 @@ public partial class MicrobeFlashingSystem : BaseSystem<World, float>
         }
     }
 
-    private bool HasReceivedDamage(in Entity entity)
+    private bool HasReceivedDamage(ref Health health)
     {
-        ref var health = ref entity.Get<Health>();
-
         var damageEvents = health.RecentDamageReceived;
 
         if (damageEvents == null)

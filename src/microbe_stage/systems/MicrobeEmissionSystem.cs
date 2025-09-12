@@ -6,6 +6,7 @@ using System.Runtime.CompilerServices;
 using Arch.Core;
 using Arch.Core.Extensions;
 using Arch.System;
+using Arch.System.SourceGenerator;
 using Components;
 using Godot;
 using World = Arch.Core.World;
@@ -19,13 +20,6 @@ using World = Arch.Core.World;
 ///     and nothing else so this shouldn't conflict with other things.
 ///   </para>
 /// </remarks>
-[With(typeof(MicrobeControl))]
-[With(typeof(SpeciesMember))]
-[With(typeof(OrganelleContainer))]
-[With(typeof(CellProperties))]
-[With(typeof(SoundEffectPlayer))]
-[With(typeof(WorldPosition))]
-[With(typeof(CompoundStorage))]
 [ReadsComponent(typeof(CellProperties))]
 [ReadsComponent(typeof(WorldPosition))]
 [ReadsComponent(typeof(Engulfable))]
@@ -48,7 +42,7 @@ public partial class MicrobeEmissionSystem : BaseSystem<World, float>
 
     public static float ToxinAmountMultiplierFromToxicity(float toxicity, ToxinType type)
     {
-        // Scale toxin damage from a low-damage high-firerate, to low-firerate high-damage
+        // Scale toxin damage from a low-damage high-firerate, to low-firerate high damage
 
         float strengthModifier = Constants.TOXIN_TOXICITY_DAMAGE_MODIFIER_STRENGTH;
 
@@ -79,23 +73,18 @@ public partial class MicrobeEmissionSystem : BaseSystem<World, float>
     }
 
     [Query]
+    [All<SpeciesMember>]
     [MethodImpl(MethodImplOptions.AggressiveInlining)]
-    private void Update([Data] in float delta, ref TODO components, in Entity entity)
+    private void Update([Data] in float delta, ref MicrobeControl control, ref OrganelleContainer organelles,
+        ref CellProperties cellProperties, ref WorldPosition position, ref SoundEffectPlayer soundEffectPlayer,
+        ref CompoundStorage compoundStorage, ref Engulfable engulfable, in Entity entity)
     {
-        ref var control = ref entity.Get<MicrobeControl>();
-
         DecreaseTimeCountdownValue(ref control.AgentEmissionCooldown, delta);
         DecreaseTimeCountdownValue(ref control.SlimeSecretionCooldown, delta);
 
-        ref var organelles = ref entity.Get<OrganelleContainer>();
-        ref var cellProperties = ref entity.Get<CellProperties>();
-        ref var position = ref entity.Get<WorldPosition>();
-        ref var soundEffectPlayer = ref entity.Get<SoundEffectPlayer>();
+        var compounds = compoundStorage.Compounds;
 
-        var compounds = entity.Get<CompoundStorage>().Compounds;
-
-        bool engulfed = entity.Has<Engulfable>() &&
-            entity.Get<Engulfable>().PhagocytosisStep != PhagocytosisPhase.None;
+        bool engulfed = engulfable.PhagocytosisStep != PhagocytosisPhase.None;
 
         // Fire queued agents
         if (control.QueuedToxinToEmit != Compound.Invalid)
@@ -237,16 +226,18 @@ public partial class MicrobeEmissionSystem : BaseSystem<World, float>
 
                 compounds.TakeCompound(agentType, amountEmitted);
 
-                // Adjust amount based on toxicity to make the shot more or less effective
+                // Adjust the amount based on toxicity to make the shot more or less effective
                 var damagingToxinAmount = amountEmitted *
                     ToxinAmountMultiplierFromToxicity(organelles.AverageToxinToxicity, selectedToxinType);
 
-                var agent = SpawnHelpers.SpawnAgentProjectile(worldSimulation,
+                var recorder = SpawnHelpers.SpawnAgentProjectileWithoutFinalizing(worldSimulation,
                     new AgentProperties(entity.Get<SpeciesMember>().Species, agentType, selectedToxinType),
                     damagingToxinAmount, Constants.EMITTED_AGENT_LIFETIME, emissionPosition, direction, amountEmitted,
-                    entity);
+                    entity, out var agent);
 
-                ModLoader.ModInterface.TriggerOnToxinEmitted(agent);
+                ModLoader.ModInterface.TriggerOnToxinEmitted(agent, recorder);
+
+                SpawnHelpers.FinalizeEntitySpawn(recorder, worldSimulation);
 
                 ++control.FiredToxinCount;
 

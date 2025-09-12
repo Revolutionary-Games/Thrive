@@ -11,6 +11,7 @@ using System.Threading.Tasks;
 using Arch.Core;
 using Arch.Core.Extensions;
 using Arch.System;
+using Arch.System.SourceGenerator;
 using Components;
 using Godot;
 using World = Arch.Core.World;
@@ -19,11 +20,6 @@ using World = Arch.Core.World;
 ///   Generates the visuals needed for microbes. Handles the membrane and organelle graphics. Attaching to the
 ///   Godot scene tree is handled by <see cref="SpatialAttachSystem"/>
 /// </summary>
-[With(typeof(OrganelleContainer))]
-[With(typeof(CellProperties))]
-[With(typeof(SpatialInstance))]
-[With(typeof(EntityMaterial))]
-[With(typeof(RenderPriorityOverride))]
 [RunsBefore(typeof(SpatialAttachSystem))]
 [RunsBefore(typeof(EntityMaterialFetchSystem))]
 [RunsBefore(typeof(SpatialPositionSystem))]
@@ -52,7 +48,7 @@ public partial class MicrobeVisualsSystem : BaseSystem<World, float>
     private readonly HashSet<long> pendingGenerationsOfMembraneHashes = new();
 
     /// <summary>
-    ///   Keeps track of generated tasks, just to allow disposing this object safely by waiting for them all
+    ///   Keeps track of generated tasks, just to allow Disposing this object safely by waiting for them all
     /// </summary>
     private readonly List<Task> activeGenerationTasks = new();
 
@@ -83,11 +79,10 @@ public partial class MicrobeVisualsSystem : BaseSystem<World, float>
     }
 
     [Query]
+    [All<CellProperties, SpatialInstance, EntityMaterial, RenderPriorityOverride>]
     [MethodImpl(MethodImplOptions.AggressiveInlining)]
-    private void Update([Data] in float delta, ref TODO components, in Entity entity)
+    private void Update(ref OrganelleContainer organelleContainer, in Entity entity)
     {
-        ref var organelleContainer = ref entity.Get<OrganelleContainer>();
-
         if (organelleContainer.OrganelleVisualsCreated)
             return;
 
@@ -102,7 +97,7 @@ public partial class MicrobeVisualsSystem : BaseSystem<World, float>
 
         ref var spatialInstance = ref entity.Get<SpatialInstance>();
 
-        // Create graphics top level node if missing for entity
+        // Create graphics top level node if missing for the entity
         spatialInstance.GraphicalInstance ??= new Node3D();
 
 #if DEBUG
@@ -169,12 +164,12 @@ public partial class MicrobeVisualsSystem : BaseSystem<World, float>
         }
         else
         {
-            // Existing membrane should have its properties updated to make sure they are up to date
-            // For example an engulfed cell has its membrane wigglyness removed
+            // Existing membrane should have its properties updated to make sure they are up to date.
+            // For example, an engulfed cell has its membrane wigglyness removed
             SetMembraneDisplayData(cellProperties.CreatedMembrane, data, ref cellProperties);
         }
 
-        // Material is initialized in _Ready so this is after AddChild of membrane
+        // Material is initialized in _Ready, so this is after AddChild of membrane
         tempMaterialsList.Add(cellProperties.CreatedMembrane!.MembraneShaderMaterial ??
             throw new Exception("Membrane didn't set material to edit"));
 
@@ -191,7 +186,7 @@ public partial class MicrobeVisualsSystem : BaseSystem<World, float>
         // Need to update render priority of the visuals
         entity.Get<RenderPriorityOverride>().RenderPriorityApplied = false;
 
-        // Force recreation of physics body in case organelles changed to make sure the shape matches growth status
+        // Force recreation of the physics body in case organelles changed to make sure the shape matches growth status
         cellProperties.ShapeCreated = false;
     }
 

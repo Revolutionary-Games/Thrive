@@ -3,9 +3,9 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using Arch.Buffer;
 using Arch.Core;
 using Arch.Core.Extensions;
-using DefaultEcs.Command;
 using Godot;
 using Newtonsoft.Json;
 using Systems;
@@ -94,7 +94,7 @@ public static class CellPropertiesHelpers
     /// </summary>
     public static readonly Vector3 DefaultVisualPos = Vector3.Forward;
 
-    public delegate void ModifyDividedCellCallback(ref EntityRecord entity);
+    public delegate void ModifyDividedCellCallback(ref Entity entity, CommandBuffer commandBuffer);
 
     /// <summary>
     ///   Checks this cell and also the entire colony if something can enter engulf mode in it
@@ -305,7 +305,7 @@ public static class CellPropertiesHelpers
         // TODO: should this also set an initial look direction that is the same?
 
         // Make it despawn like normal
-        spawnerToRegisterWith.NotifyExternalEntitySpawned(copyEntity, Constants.MICROBE_DESPAWN_RADIUS_SQUARED,
+        spawnerToRegisterWith.NotifyExternalEntitySpawned(copyEntity, recorder, Constants.MICROBE_DESPAWN_RADIUS_SQUARED,
             weight);
 
         // Remove the compounds from the created cell
@@ -375,7 +375,7 @@ public static class CellPropertiesHelpers
             Compounds = copyEntityCompounds,
         });
 
-        customizeCallback?.Invoke(ref copyEntity);
+        customizeCallback?.Invoke(ref copyEntity, recorder);
 
         SpawnHelpers.FinalizeEntitySpawn(recorder, worldSimulation);
 

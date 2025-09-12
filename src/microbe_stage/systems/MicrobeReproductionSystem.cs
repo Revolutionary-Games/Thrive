@@ -7,35 +7,25 @@ using System.Runtime.CompilerServices;
 using Arch.Core;
 using Arch.Core.Extensions;
 using Arch.System;
+using Arch.System.SourceGenerator;
 using Components;
 using Godot;
 using World = Arch.Core.World;
 
 /// <summary>
-///   Handles reproduction progress in microbes that are not in aa cell colony. <see cref="AttachedToEntity"/> is
-///   used to skip reproduction for engulfed cells or cells in colonies.
+///   Handles reproduction progress in microbes that are not in a cell colony.
+///   <see cref="AttachedToEntity"/> is used to skip reproduction for engulfed cells or cells in colonies.
 /// </summary>
 /// <remarks>
 ///   <para>
 ///     This just needs an exclusive property for this system that is stored in <see cref="MicrobeStatus"/> so
-///     this is marked just as reading that component as it won't conflict with other writes.
+///     this is marked just as reading that component as it won't conflict with other write operations.
 ///   </para>
 ///   <para>
-///     This needs to run on the main thread as this updates scale of organelles as they grow (Godot scale is
+///     This needs to run on the main thread as this updates the scale of organelles as they grow (Godot scale is
 ///     used directly)
 ///   </para>
 /// </remarks>
-[With(typeof(ReproductionStatus))]
-[With(typeof(OrganelleContainer))]
-[With(typeof(MicrobeStatus))]
-[With(typeof(CompoundStorage))]
-[With(typeof(CellProperties))]
-[With(typeof(MicrobeSpeciesMember))]
-[With(typeof(Health))]
-[With(typeof(BioProcesses))]
-[With(typeof(WorldPosition))]
-[Without(typeof(AttachedToEntity))]
-[Without(typeof(MulticellularSpeciesMember))]
 [WritesToComponent(typeof(Engulfable))]
 [WritesToComponent(typeof(Engulfer))]
 [WritesToComponent(typeof(TemporaryEndosymbiontInfo))]
@@ -198,16 +188,17 @@ public partial class MicrobeReproductionSystem : BaseSystem<World, float>
     }
 
     [Query]
+    [All<CellProperties, MicrobeSpeciesMember, BioProcesses, WorldPosition, MicrobeEnvironmentalEffects, Engulfable,
+        Engulfer>]
+    [None<AttachedToEntity, MulticellularSpeciesMember>]
     [MethodImpl(MethodImplOptions.AggressiveInlining)]
-    private void Update([Data] in float delta, ref TODO components, in Entity entity)
+    private void Update(ref OrganelleContainer organelles, ref MicrobeControl microbeControl, ref Health health,
+        ref CompoundStorage compoundStorage, ref MicrobeStatus status, ref ReproductionStatus reproductionStatus,
+        in Entity entity)
     {
-        ref var health = ref entity.Get<Health>();
-
         // Dead cells can't reproduce
         if (health.Dead)
             return;
-
-        ref var organelles = ref entity.Get<OrganelleContainer>();
 
         if (organelles.AllOrganellesDivided)
         {
@@ -215,14 +206,9 @@ public partial class MicrobeReproductionSystem : BaseSystem<World, float>
             return;
         }
 
-        if (entity.Has<MicrobeControl>())
-        {
-            // Microbe reproduction is stopped when mucocyst is active
-            if (entity.Get<MicrobeControl>().State == MicrobeState.MucocystShield)
-                return;
-        }
-
-        ref var status = ref entity.Get<MicrobeStatus>();
+        // Microbe reproduction is stopped when mucocyst is active
+        if (microbeControl.State == MicrobeState.MucocystShield)
+            return;
 
         status.ConsumeReproductionCompoundsReverse = !status.ConsumeReproductionCompoundsReverse;
 
@@ -235,8 +221,6 @@ public partial class MicrobeReproductionSystem : BaseSystem<World, float>
 
             var species = entity.Get<MicrobeSpeciesMember>().Species;
 
-            ref var storage = ref entity.Get<CompoundStorage>();
-
             float sum = 0.0f;
 
             foreach (var compound in species.TotalReproductionCost)
@@ -246,13 +230,14 @@ public partial class MicrobeReproductionSystem : BaseSystem<World, float>
 
             foreach (var compound in species.TotalReproductionCost)
             {
-                storage.Compounds.AddCompound(compound.Key, freeCompounds * (compound.Value / sum));
+                compoundStorage.Compounds.AddCompound(compound.Key, freeCompounds * (compound.Value / sum));
             }
 
             return;
         }
 
-        HandleNormalMicrobeReproduction(entity, ref organelles, status.ConsumeReproductionCompoundsReverse);
+        HandleNormalMicrobeReproduction(entity, ref organelles, ref compoundStorage, ref reproductionStatus,
+            status.ConsumeReproductionCompoundsReverse);
     }
 
     public override void AfterUpdate(in float delta)
@@ -370,7 +355,7 @@ public partial class MicrobeReproductionSystem : BaseSystem<World, float>
     ///   </para>
     /// </remarks>
     private void HandleNormalMicrobeReproduction(in Entity entity, ref OrganelleContainer organelles,
-        bool consumeInReverseOrder)
+        ref CompoundStorage storage, ref ReproductionStatus baseReproduction, bool consumeInReverseOrder)
     {
         // Skip not initialized microbes yet
         if (organelles.Organelles == null)
@@ -380,10 +365,7 @@ public partial class MicrobeReproductionSystem : BaseSystem<World, float>
             CalculateFreeCompoundsAndLimits(gameWorld!.WorldSettings, organelles.HexCount, false,
                 reproductionDelta);
 
-        ref var storage = ref entity.Get<CompoundStorage>();
         var compounds = storage.Compounds;
-
-        ref var baseReproduction = ref entity.Get<ReproductionStatus>();
 
         // Process base cost first so the player can be their designed cell (without extra organelles) for a while
         bool reproductionStageComplete;
@@ -428,7 +410,7 @@ public partial class MicrobeReproductionSystem : BaseSystem<World, float>
                         break;
                     }
 
-                    // We are in G1 phase of the cell cycle, duplicate all organelles.
+                    // We are in the G1 phase of the cell cycle, duplicate all organelles.
 
                     // Except the unique organelles
                     if (organelle.Definition.Unique)
@@ -532,7 +514,7 @@ public partial class MicrobeReproductionSystem : BaseSystem<World, float>
             organelle2.IsDuplicate = true;
             organelle2.SisterOrganelle = organelle;
 
-            // These are fetched here as most of the time only one organelle will divide per step so it doesn't
+            // These are fetched here as most of the time only one organelle will divide per step, so it doesn't
             // help to complicate things by trying to fetch these before the loop
             organelles.OnOrganellesChanged(ref storage, ref entity.Get<BioProcesses>(),
                 ref entity.Get<Engulfer>(), ref entity.Get<Engulfable>(),
@@ -600,7 +582,7 @@ public partial class MicrobeReproductionSystem : BaseSystem<World, float>
         }
         else
         {
-            // Skip reproducing if we would go too much over the entity limit
+            // Skip reproducing if we go too much over the entity limit
             if (!spawnSystem.IsUnderEntityLimitForReproducing())
             {
                 // Set this to false so that we re-check in a few frames if we can reproduce then
@@ -637,21 +619,7 @@ public partial class MicrobeReproductionSystem : BaseSystem<World, float>
             {
                 lock (workData2)
                 {
-                    // TODO: remove this extra copy on next save breakage point
-                    MicrobeEnvironmentalEffects environmentalEffects;
-
-                    if (entity.Has<MicrobeEnvironmentalEffects>())
-                    {
-                        environmentalEffects = entity.Get<MicrobeEnvironmentalEffects>();
-                    }
-                    else
-                    {
-                        environmentalEffects = new MicrobeEnvironmentalEffects
-                        {
-                            HealthMultiplier = 1,
-                            OsmoregulationMultiplier = 1,
-                        };
-                    }
+                    MicrobeEnvironmentalEffects environmentalEffects = entity.Get<MicrobeEnvironmentalEffects>();
 
                     // Return the first cell to its normal, non-duplicated cell arrangement and spawn a daughter cell
                     organelles.ResetOrganelleLayout(ref entity.Get<CompoundStorage>(),
