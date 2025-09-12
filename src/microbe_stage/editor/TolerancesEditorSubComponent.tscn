@@ -1,4 +1,4 @@
-[gd_scene load_steps=23 format=3 uid="uid://5kamud4sukbd"]
+[gd_scene load_steps=21 format=3 uid="uid://5kamud4sukbd"]
 
 [ext_resource type="Theme" uid="uid://b4cx0o110g4b6" path="res://src/gui_common/thrive_theme.tres" id="1_16mn0"]
 [ext_resource type="Script" uid="uid://dxl2pjshg67oa" path="res://src/microbe_stage/editor/TolerancesEditorSubComponent.cs" id="2_kqh2k"]
@@ -14,8 +14,6 @@
 [ext_resource type="Texture2D" uid="uid://d1tuehjbire76" path="res://assets/textures/gui/bevel/Pressure.svg" id="10_xmghy"]
 [ext_resource type="LabelSettings" uid="uid://c07qrffjvqfw" path="res://src/gui_common/fonts/Body-Regular-Tiny.tres" id="11_5y3m2"]
 [ext_resource type="Texture2D" uid="uid://djaidl3g28ibi" path="res://assets/textures/gui/bevel/Oxygen.svg" id="12_3r1ho"]
-[ext_resource type="Texture2D" uid="uid://c3eae8nokpw7c" path="res://assets/textures/gui/bevel/toleranceSlider.png" id="12_n6u17"]
-[ext_resource type="Texture2D" uid="uid://spbl6ye0wqyu" path="res://assets/textures/gui/bevel/toleranceSliderSelected.png" id="13_evsrs"]
 [ext_resource type="Texture2D" uid="uid://c253x2crwbldo" path="res://assets/textures/gui/bevel/Sunlight.svg" id="14_n6u17"]
 
 [sub_resource type="StyleBoxTexture" id="StyleBoxTexture_ftstq"]
@@ -163,12 +161,13 @@ size_flags_horizontal = 3
 layout_mode = 2
 size_flags_horizontal = 3
 min_value = -10.0
+showMiddleMarker = true
+drawLineAtMarker = 1
 
 [node name="TemperatureSlider" type="HSlider" parent="Temperature/OptimalDisplayContainer/VBoxContainer"]
 layout_mode = 2
-mouse_default_cursor_shape = 10
-theme_override_icons/grabber = ExtResource("12_n6u17")
-theme_override_icons/grabber_highlight = ExtResource("13_evsrs")
+size_flags_horizontal = 3
+theme_override_constants/center_grabber = 1
 theme_override_styles/slider = SubResource("StyleBoxEmpty_3r1ho")
 min_value = -10.0
 value = 50.0
@@ -316,9 +315,8 @@ value = 0.0
 
 [node name="PressureSlider" type="HSlider" parent="Pressure/OptimalDisplayContainer/VBoxContainer"]
 layout_mode = 2
-mouse_default_cursor_shape = 10
-theme_override_icons/grabber = ExtResource("12_n6u17")
-theme_override_icons/grabber_highlight = ExtResource("13_evsrs")
+size_flags_horizontal = 3
+theme_override_constants/center_grabber = 1
 theme_override_styles/slider = SubResource("StyleBoxEmpty_n6u17")
 max_value = 8e+07
 value = 4e+07
@@ -333,6 +331,7 @@ layout_mode = 2
 
 [node name="HBoxContainer4" type="HBoxContainer" parent="Pressure"]
 layout_mode = 2
+size_flags_vertical = 3
 
 [node name="Label" type="Label" parent="Pressure/HBoxContainer4"]
 layout_mode = 2
@@ -461,11 +460,12 @@ size_flags_horizontal = 3
 max_value = 1.0
 step = 0.01
 value = 0.0
+drawLineAtMarker = 2
 
 [node name="OxygenResistanceSlider" type="HSlider" parent="Oxygen/OptimalDisplayContainer/VBoxContainer"]
 layout_mode = 2
-theme_override_icons/grabber = ExtResource("12_n6u17")
-theme_override_icons/grabber_highlight = ExtResource("13_evsrs")
+size_flags_horizontal = 3
+theme_override_constants/center_grabber = 1
 theme_override_styles/slider = SubResource("StyleBoxEmpty_evsrs")
 max_value = 1.0
 step = 0.05
@@ -564,11 +564,12 @@ size_flags_horizontal = 3
 max_value = 1.0
 step = 0.01
 value = 0.0
+drawLineAtMarker = 2
 
 [node name="UVResistanceSlider" type="HSlider" parent="UV/OptimalDisplayContainer/VBoxContainer"]
 layout_mode = 2
-theme_override_icons/grabber = ExtResource("12_n6u17")
-theme_override_icons/grabber_highlight = ExtResource("13_evsrs")
+size_flags_horizontal = 3
+theme_override_constants/center_grabber = 1
 theme_override_styles/slider = SubResource("StyleBoxEmpty_jstjb")
 max_value = 1.0
 step = 0.05

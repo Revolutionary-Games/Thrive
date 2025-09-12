@@ -1,4 +1,4 @@
-[gd_scene load_steps=10 format=3 uid="uid://duf1lf5lp4v5p"]
+[gd_scene load_steps=8 format=3 uid="uid://duf1lf5lp4v5p"]
 
 [ext_resource type="Script" uid="uid://dnh1i83gmsmxd" path="res://src/microbe_stage/editor/ToleranceOptimalDisplay.cs" id="1_nbtwk"]
 [ext_resource type="Theme" uid="uid://b4cx0o110g4b6" path="res://src/gui_common/thrive_theme.tres" id="1_xdmne"]
@@ -17,16 +17,6 @@ height = 1
 [sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_xdmne"]
 
 [sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_telfv"]
-
-[sub_resource type="Gradient" id="Gradient_evsrs"]
-interpolation_mode = 1
-offsets = PackedFloat32Array(0)
-colors = PackedColorArray(1, 0.996078, 1, 1)
-
-[sub_resource type="GradientTexture2D" id="GradientTexture2D_jstjb"]
-gradient = SubResource("Gradient_evsrs")
-width = 2
-height = 15
 
 [node name="ToleranceOptimalDisplay" type="HSlider" node_paths=PackedStringArray("optimalValueMarker", "upperBound", "lowerBound")]
 anchors_preset = 10
@@ -49,7 +39,7 @@ lowerBound = NodePath("LowerBound")
 layout_mode = 1
 offset_top = -15.0
 
-[node name="UpperBound" type="TextureRect" parent="."]
+[node name="UpperBound" type="Control" parent="."]
 modulate = Color(0.0666667, 1, 0.835294, 1)
 layout_mode = 1
 anchors_preset = 4
@@ -59,10 +49,8 @@ offset_top = -10.0
 offset_right = 2.0
 offset_bottom = 10.0
 grow_vertical = 2
-texture = SubResource("GradientTexture2D_jstjb")
-stretch_mode = 3
 
-[node name="LowerBound" type="TextureRect" parent="."]
+[node name="LowerBound" type="Control" parent="."]
 modulate = Color(0.0666667, 1, 0.835294, 1)
 layout_mode = 1
 anchors_preset = 4
@@ -72,7 +60,5 @@ offset_top = -10.0
 offset_right = 2.0
 offset_bottom = 10.0
 grow_vertical = 2
-texture = SubResource("GradientTexture2D_jstjb")
-stretch_mode = 3
 
 [connection signal="resized" from="." to="." method="SetBoundPositionsInternal"]

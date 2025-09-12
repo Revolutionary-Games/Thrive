@@ -8,16 +8,22 @@ public partial class ToleranceOptimalDisplay : HSlider
 {
     private readonly Color mainColor = Color.FromHtml("#11FFD5");
 
+    [Export]
+    private bool showMiddleMarker;
+
+    [Export]
+    private RangeMarker drawLineAtMarker;
+
 #pragma warning disable CA2213
 
     [Export]
     private ToleranceOptimalMarker optimalValueMarker = null!;
 
     [Export]
-    private TextureRect upperBound = null!;
+    private Control upperBound = null!;
 
     [Export]
-    private TextureRect lowerBound = null!;
+    private Control lowerBound = null!;
 
 #pragma warning restore CA2213
 
@@ -25,6 +31,15 @@ public partial class ToleranceOptimalDisplay : HSlider
     private float flexibilityMinus;
 
     private Color rangeColor;
+
+    public enum RangeMarker
+    {
+        Lower,
+        Middle,
+        Upper,
+    }
+
+    public float SliderGrabberPosX { get; set; }
 
     public override void _Ready()
     {
@@ -38,12 +53,51 @@ public partial class ToleranceOptimalDisplay : HSlider
 
         var lowerBoundRight = lowerBound.Position + new Vector2(lowerBound.Size.X, lowerBound.Size.Y / 2);
         var lowerBoundLeft = lowerBound.Position + new Vector2(0, lowerBound.Size.Y / 2);
+
         var upperBoundRight = upperBound.Position + new Vector2(upperBound.Size.X, upperBound.Size.Y / 2);
         var upperBoundLeft = upperBound.Position + new Vector2(0, upperBound.Size.Y / 2);
+
+        var lowerBoundCenter = lowerBound.Position + lowerBound.Size / 2;
+        var upperBoundCenter = upperBound.Position + upperBound.Size / 2;
+        var middleBoundCenter = new Vector2((float)(Size.X * (Value - MinValue) / (MaxValue - MinValue)), Size.Y / 2);
+
+        var boundOffset = new Vector2(0, 7.5f);
+
+        if (showMiddleMarker)
+            DrawLine(middleBoundCenter + new Vector2(0, 3), middleBoundCenter - new Vector2(0, 3), rangeColor, 2);
 
         DrawLine(mainLineStartPos, lowerBoundLeft, mainColor with { A = 0.25f }, 4);
         DrawLine(upperBoundRight, mainLineEndPos, mainColor with { A = 0.25f }, 4);
         DrawLine(lowerBoundRight, upperBoundLeft, rangeColor with { A = 0.5f }, 4);
+
+        DrawLine(lowerBoundCenter, lowerBoundCenter + boundOffset, rangeColor, 2);
+        DrawLine(lowerBoundCenter, lowerBoundCenter - boundOffset, rangeColor, 2);
+
+        DrawLine(upperBoundCenter, upperBoundCenter + boundOffset, rangeColor, 2);
+        DrawLine(upperBoundCenter, upperBoundCenter - boundOffset, rangeColor, 2);
+
+        var grabberPos = new Vector2(SliderGrabberPosX, 28);
+        var lineStartPos = drawLineAtMarker switch
+        {
+            RangeMarker.Upper => upperBoundCenter,
+            RangeMarker.Middle => middleBoundCenter,
+            RangeMarker.Lower => lowerBoundCenter,
+            _ => throw new InvalidOperationException(),
+        };
+
+        if (Math.Abs(lineStartPos.X - grabberPos.X) <= Mathf.Epsilon)
+        {
+            DrawLine(lineStartPos, grabberPos, rangeColor, 2);
+        }
+        else
+        {
+            var intermediate1 = lineStartPos + Vector2.Down * 9;
+            var intermediate2 = grabberPos + Vector2.Up * 11;
+            DrawLine(lineStartPos, intermediate1 + Vector2.Down, rangeColor, 2);
+            DrawLine(intermediate1, intermediate2, rangeColor, 2);
+            DrawLine(intermediate2 + Vector2.Up, grabberPos, rangeColor, 2);
+        }
+
     }
 
     public void UpdateMarker(float value)
@@ -66,17 +120,15 @@ public partial class ToleranceOptimalDisplay : HSlider
         var upperBoundFraction = Math.Clamp((upper - MinValue) / (MaxValue - MinValue), 0, 1);
         var lowerBoundFraction = Math.Clamp((lower - MinValue) / (MaxValue - MinValue), 0, 1);
 
-        lowerBound.Position = new Vector2((Size.X - 1) * (float)lowerBoundFraction,
+        lowerBound.Position = new Vector2((Size.X * (float)lowerBoundFraction) - 1,
             lowerBound.Position.Y);
 
-        upperBound.Position = new Vector2((Size.X - 1) * (float)upperBoundFraction,
+        upperBound.Position = new Vector2((Size.X * (float)upperBoundFraction) - 1,
             upperBound.Position.Y);
     }
 
     public void SetColorsAndRedraw(Color? color)
     {
-        upperBound.Modulate = color ?? mainColor;
-        lowerBound.Modulate = color ?? mainColor;
         rangeColor = color ?? mainColor;
 
         QueueRedraw();

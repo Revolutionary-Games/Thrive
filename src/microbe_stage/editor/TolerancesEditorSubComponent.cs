@@ -548,6 +548,12 @@ public partial class TolerancesEditorSubComponent : EditorComponentBase<ICellEdi
         UpdateToolTipStats();
     }
 
+    private void UpdateSliderPositionForDisplay(Slider slider, ToleranceOptimalDisplay display)
+    {
+        var fraction = (float)((slider.Value - slider.MinValue) / (slider.MaxValue - slider.MinValue));
+        display.SliderGrabberPosX = slider.Size.X * fraction;
+    }
+
     private void UpdateCurrentValueDisplays()
     {
         var patch = Editor.CurrentPatch;
@@ -569,6 +575,7 @@ public partial class TolerancesEditorSubComponent : EditorComponentBase<ICellEdi
 
         temperatureOptimalDisplay.SetBoundPositions(CurrentTolerances.PreferredTemperature, temperatureToleranceWithOrganelles);
         temperatureOptimalDisplay.UpdateMarker(patchTemperature);
+        UpdateSliderPositionForDisplay(temperatureSlider, temperatureOptimalDisplay);
 
         temperatureMinLabel.Text =
             unitFormat.FormatSafe(
@@ -642,6 +649,7 @@ public partial class TolerancesEditorSubComponent : EditorComponentBase<ICellEdi
 
         pressureOptimalDisplay.SetBoundPositions(CurrentTolerances.PressureMinimum, pressureToleranceWithOrganelles, 0);
         pressureOptimalDisplay.UpdateMarker(patchPressure);
+        UpdateSliderPositionForDisplay(pressureSlider, pressureOptimalDisplay);
 
         var pressureMin = CurrentTolerances.PressureMinimum;
         var pressureMax = Math.Min(CurrentTolerances.PressureMinimum + pressureToleranceWithOrganelles, Constants.TOLERANCE_PRESSURE_MAX);
@@ -703,6 +711,7 @@ public partial class TolerancesEditorSubComponent : EditorComponentBase<ICellEdi
 
         oxygenResistanceOptimalDisplay.SetBoundPositionsManual(0, oxygenResistanceWithOrganelles);
         oxygenResistanceOptimalDisplay.UpdateMarker(requiredOxygenResistance);
+        UpdateSliderPositionForDisplay(oxygenResistanceSlider, oxygenResistanceOptimalDisplay);
 
         oxygenResistanceTotalLabel.Text = percentageFormat.FormatSafe(Math.Round(oxygenResistanceWithOrganelles * 100, 1));
 
@@ -745,6 +754,7 @@ public partial class TolerancesEditorSubComponent : EditorComponentBase<ICellEdi
 
         uvResistanceOptimalDisplay.SetBoundPositionsManual(0, uvResistanceWithOrganelles);
         uvResistanceOptimalDisplay.UpdateMarker(requiredUVResistance);
+        UpdateSliderPositionForDisplay(uvResistanceSlider, uvResistanceOptimalDisplay);
 
         uvResistanceTotalLabel.Text = percentageFormat.FormatSafe(Math.Round(uvResistanceWithOrganelles * 100, 1));
 
