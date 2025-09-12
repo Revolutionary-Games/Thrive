@@ -7,9 +7,9 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2025-09-03 22:18-0300\n"
-"PO-Revision-Date: 2025-08-24 22:26+0000\n"
-"Last-Translator: Jeremias <lejereagui@hotmail.com>\n"
+"POT-Creation-Date: 2025-09-12 09:19+0300\n"
+"PO-Revision-Date: 2025-09-10 06:32+0000\n"
+"Last-Translator: juan garviso <juangarvisopereira326@gmail.com>\n"
 "Language-Team: Spanish <https://translate.revolutionarygamesstudio.com/projects/thrive/thrive-game/es/>\n"
 "Language: es\n"
 "MIME-Version: 1.0\n"
@@ -190,6 +190,10 @@ msgstr "Amoniaco"
 msgid "AMMONIA_COST"
 msgstr "Coste del Amoniaco:"
 
+#, fuzzy
+msgid "AMMONIA_LEVELS"
+msgstr "Coste del Amoniaco:"
+
 msgid "AMOUNT_OF_AUTOSAVE_TO_KEEP"
 msgstr "Cantidad de autoguardados a almacenar:"
 
@@ -214,13 +218,12 @@ msgstr "FXAA"
 msgid "ANTI_ALIASING_MODE"
 msgstr "Modo de suavizado:"
 
-#, fuzzy
 msgid "ANTI_ALIASING_MSAA"
 msgstr "MSAA:"
 
 #, fuzzy
 msgid "ANTI_ALIASING_TAA"
-msgstr "MSAA:"
+msgstr "TAA"
 
 msgid "APPEARANCE"
 msgstr "Apariencia"
@@ -299,7 +302,6 @@ msgstr ""
 "Por ejemplo, algunas células solo pueden mantener un balance de ATP positivo cuando tienen múltiplos tipos de compuestos con los que fabricar ATP a la vez.\n"
 "Es más difícil jugar con ese tipo de células, dado que requieren tener varios tipos de compuestos almacenados a la vez para sobrevivir."
 
-#, fuzzy
 msgid "ATP_BALANCE_TOOLTIP_MULTICELLULAR"
 msgstr ""
 "Esta sección muestra el balance total de ATP (energía) de la célula actual.\n"
@@ -344,9 +346,8 @@ msgstr "Agosto"
 msgid "AUTO"
 msgstr "Auto"
 
-#, fuzzy
 msgid "AUTO-EVO_EXPLANATION_EXPLANATION"
-msgstr "Este panel muestra los números con los que auto-evo trabaja. El total de energía que una especie puede capturar y el costo por individuo de la especie determina la población final. Auto-evo usa un modelo simplificado de la realidad para calcular el desempeño de las diferentes especies de acuerdo con la energía que pueden recolectar. Por cada fuente de alimento, se muestra la cantidad de energia que se obtiene. Adicionalmente, se muestra el total de energía disponible de esa fuente. La fracción que obtiene la especie del total disponible se basa en su Aptitud y la Aptitud final. La Aptitud, es una métrica de que tan bien utiliza la especie una fuente de alimento."
+msgstr "Este panel muestra los números con los que auto-evo trabaja. El total de energía que una especie puede capturar y el costo por individuo de la especie determina la población final. Auto-evo usa un modelo simplificado de la realidad para calcular el desempeño de las diferentes especies de acuerdo con la energía que pueden recolectar. Por cada fuente de alimento, se muestra la cantidad de energía que se obtiene. Adicionalmente, se muestra el total de energía disponible de esa fuente. La fracción que obtiene la especie del total disponible se basa en su Aptitud y la Aptitud final. La Aptitud, es una métrica de que tan bien utiliza la especie una fuente de alimento."
 
 msgid "AUTO-EVO_POPULATION_CHANGED_2"
 msgstr "La población de {0} cambió a {1} en {2} debido a: {3}"
@@ -359,7 +360,6 @@ msgstr ""
 "Este panel muestra la población de la especie modificada que se espera auto-evolucione.\n"
 "El sistema auto-evo se encarga de la evolución de la parte de la población que no controlas, tu rendimiento afectara los cálculos del sistema."
 
-#, fuzzy
 msgid "AUTO-EVO_RESULTS_TITLE"
 msgstr "Resultados de Auto-evo:"
 
@@ -380,7 +380,6 @@ msgstr "Autoguardado durante el juego"
 msgid "AUTO_EVO"
 msgstr "Auto-Evo"
 
-#, fuzzy
 msgid "AUTO_EVO_EXPLORER_TOOL_BUTTON"
 msgstr "Herramienta de Exploración Auto-Evo"
 
@@ -419,6 +418,21 @@ msgstr "Proyectos de construcción disponibles"
 
 msgid "AVAILABLE_MODS"
 msgstr "Mods disponibles"
+
+msgid "AVERAGE_SURFACE_CARBON_DIOXIDE_LEVEL"
+msgstr "Nivel promedio de CO2 en la superficie"
+
+msgid "AVERAGE_SURFACE_LIGHT_LEVEL"
+msgstr "Nivel de luz en la superficie"
+
+msgid "AVERAGE_SURFACE_NITROGEN_LEVEL"
+msgstr "Nivel promedio de nitrógeno en la superficie"
+
+msgid "AVERAGE_SURFACE_OTHER_LEVEL"
+msgstr "Nivel promedio de gases en la superficie"
+
+msgid "AVERAGE_SURFACE_OXYGEN_LEVEL"
+msgstr "Nivel promedio de oxigeno en la superficie"
 
 msgid "AWAKENING_STAGE"
 msgstr "Etapa del despertar"
@@ -561,7 +575,7 @@ msgstr "Efecto de sombreado:"
 
 #, fuzzy
 msgid "BLUESKY_TOOLTIP"
-msgstr "Pausar el juego"
+msgstr "Visita nuestro Bluesky en nuestro perfil"
 
 msgid "BRAIN_CELL_NAME_DEFAULT"
 msgstr "Neurona"
@@ -728,9 +742,8 @@ msgstr "Síntesis de Inhibidores de Canal"
 msgid "CHEATS"
 msgstr "Trucos"
 
-#, fuzzy
 msgid "CHEATS_USED_NOTICE"
-msgstr "Sin iniciar."
+msgstr "Se han usado trucos en la partida."
 
 msgid "CHEAT_KEYS_ENABLED"
 msgstr "Cheats activados"
@@ -846,7 +859,7 @@ msgstr "Limpiar Caché"
 
 #, fuzzy
 msgid "CLICK_TO_SELECT"
-msgstr "Eliminar selección"
+msgstr "Seleccionar"
 
 msgid "CLIMATE_INSTABILITY"
 msgstr "Inestabilidad climática"
@@ -1032,6 +1045,25 @@ msgstr "Siempre rellenar al iniciar"
 msgid "COMPOUND_HANDLE_TOP_UP_ON_CHANGE"
 msgstr "Rellenar al cambiar de área"
 
+msgid "COMPOUND_LEVEL_AVERAGE"
+msgstr "Promedio"
+
+#, fuzzy
+msgid "COMPOUND_LEVEL_HIGH"
+msgstr "Altura"
+
+#, fuzzy
+msgid "COMPOUND_LEVEL_LOW"
+msgstr "bajo"
+
+#, fuzzy
+msgid "COMPOUND_LEVEL_VERY_HIGH"
+msgstr "muy alto"
+
+#, fuzzy
+msgid "COMPOUND_LEVEL_VERY_LOW"
+msgstr "muy bajo"
+
 msgid "COMPOUND_STORAGE_AMOUNT_DOES_NOT_LAST_NIGHT"
 msgstr "(no es suficiente para soportar la noche, que dura {0}s)"
 
@@ -1106,9 +1138,8 @@ msgstr "Entrar al juego con esta configuración"
 msgid "CONFIRM_NEW_GAME_BUTTON_TOOLTIP_DISABLED"
 msgstr "Ciertas opciones son invalidas"
 
-#, fuzzy
 msgid "CONFIRM_RESET_ACHIEVEMENTS"
-msgstr "Confirmar borrado"
+msgstr "¿Confirma el reinicio de los logros?"
 
 #, fuzzy
 msgid "CONFIRM_RESET_ACHIEVEMENTS_DESCRIPTION"
@@ -1473,9 +1504,8 @@ msgstr "Convierte [thrive:compound type=\"glucose\"][/thrive:compound] en [thriv
 msgid "CYTOTOXIN_SYNTHESIS"
 msgstr "Síntesis de Citotoxinas"
 
-#, fuzzy
 msgid "DAMAGE_SOURCE_RADIATION"
-msgstr "(Costo de orgánulos, membranas, y otros objetos en el editor)"
+msgstr "Radiación"
 
 msgid "DAY_LENGTH"
 msgstr "Duración del día"
@@ -1514,7 +1544,7 @@ msgstr "Trazado de depuración de físicas no disponible en este tipo de versió
 
 #, fuzzy
 msgid "DEBUG_HEAT_AT_CURSOR"
-msgstr "En el puntero:"
+msgstr "valor del calor:{0}"
 
 msgid "DEBUG_PANEL"
 msgstr "Panel de Depuración"
@@ -1633,7 +1663,7 @@ msgstr ""
 "Densidad de nubes de compuestos: {3}\n"
 "Penalización de población tras muerte del jugador: {4}\n"
 "Retención ambiental de la glucosa: {5}\n"
-"Multiplicador de coste de la osmoregulación: {6}\n"
+"Multiplicador de coste de la osmorregulación: {6}\n"
 "Nube de glucosa de regalo al salir del editor: {7}\n"
 "Ganar progreso de reproducción pasivamente: {8}\n"
 "Limitar el crecimiento del uso de compuestos: {9}"
@@ -1749,7 +1779,7 @@ msgstr "Vulkan"
 
 #, fuzzy
 msgid "DISPLAY_MODE"
-msgstr "Mostrar nombre de botones durante selección de partes"
+msgstr "Modo de visualización:"
 
 msgid "DISPLAY_PART_NAMES"
 msgstr "Mostrar nombre de botones durante selección de partes"
@@ -1775,9 +1805,8 @@ msgstr "Doble click para ver en pantalla completa"
 msgid "DOUBLE_MEMBRANE_DESCRIPTION"
 msgstr "Una membrana con dos capas; tiene mejor protección y consume menos energía. Sin embargo, reduce un poco la velocidad del movimiento y absorbe recursos más lentamente."
 
-#, fuzzy
 msgid "DOUBLE_SPEED_TOGGLE_TOOLTIP"
-msgstr "El valor usado para generar el planeta, debe ser un numero positivo"
+msgstr "Alternar gameplay entre velocidad normal y 2x de velocidad"
 
 msgid "DRAG_TO_REORDER_ITEMS_WITH_MOUSE"
 msgstr "Arrastra para reordenar los elementos con el ratón"
@@ -2452,13 +2481,12 @@ msgstr "Presiona el botón de deshacer en el editor para corregir un error"
 msgid "GENERAL_LOADING_TIP_3"
 msgstr "Presiona el botón de deshacer en el editor para corregir un error"
 
-#, fuzzy
 msgid "GENERAL_LOADING_TIP_4"
-msgstr "Presiona el botón de deshacer en el editor para corregir un error"
+msgstr "A veces es mejor solo huir y salvar tu pellejo."
 
 #, fuzzy
 msgid "GENERAL_LOADING_TIP_5"
-msgstr "Presiona el botón de deshacer en el editor para corregir un error"
+msgstr "A veces el Auto-Evo predice que tu población bajá recuerda que con un buen desempeño puedes aumentar la poblacion."
 
 #, fuzzy
 msgid "GENERAL_LOADING_TIP_6"
@@ -2467,9 +2495,6 @@ msgstr "Presiona el botón de deshacer en el editor para corregir un error"
 #, fuzzy
 msgid "GENERAL_LOADING_TIP_7"
 msgstr "Presiona el botón de deshacer en el editor para corregir un error"
-
-msgid "GENERATE_BUTTON"
-msgstr "Generar mundo"
 
 msgid "GENERATE_POSITIVE_GLUCOSE_PHOTOSYNTHESIS"
 msgstr "Genera más Glucosa de la que usas a través de la Fotosíntesis"
@@ -2537,6 +2562,10 @@ msgstr "Glucosa"
 
 msgid "GLUCOSE_CONCENTRATIONS_DRASTICALLY_DROPPED"
 msgstr "¡Las concentraciones de glucosa han bajado drásticamente!"
+
+#, fuzzy
+msgid "GLUCOSE_LEVEL"
+msgstr "{0}-{1}m bajo el nivel del mar"
 
 msgid "GLYCOLYSIS"
 msgstr "Glicólisis"
@@ -2665,6 +2694,10 @@ msgid "HYDROGENOSOME_PROCESSES_DESCRIPTION"
 msgstr "Convierte [thrive:compound type=\\\"glucose\\\"][/thrive:compound] en [thrive:compound type=\\\"atp\\\"][/thrive:compound]."
 
 msgid "HYDROGEN_SULFIDE"
+msgstr "Ácido Sulfhídrico"
+
+#, fuzzy
+msgid "HYDROGEN_SULFIDE_LEVELS"
 msgstr "Ácido Sulfhídrico"
 
 msgid "ICESHARD"
@@ -2882,6 +2915,9 @@ msgstr ""
 
 msgid "IRON"
 msgstr "Hierro"
+
+msgid "IRON_LEVELS"
+msgstr ""
 
 #, fuzzy
 msgid "IRON_OXIDATION"
@@ -4419,6 +4455,10 @@ msgid "NOTICE_HIT_BY_BASE_MOVEMENT_TOXIN"
 msgstr "Movimiento Base"
 
 #, fuzzy
+msgid "NOTICE_HYDROGEN_SULFIDE_DAMAGE"
+msgstr "Ácido Sulfhídrico"
+
+#, fuzzy
 msgid "NOTICE_NOT_ENOUGH_MUCILAGE"
 msgstr "No es suficiente {0} para elaborar la receta"
 
@@ -4796,6 +4836,10 @@ msgid "PAST_DEVELOPERS"
 msgstr "Desarrolladores anteriores"
 
 #, fuzzy
+msgid "PATCHES_NUMBER"
+msgstr "{0} {1}"
+
+#, fuzzy
 msgid "PATCH_COLON"
 msgstr "Mejor bioma:"
 
@@ -4908,6 +4952,10 @@ msgstr "Fosfato"
 msgid "PHOSPHATES_COST"
 msgstr "Fosfato"
 
+#, fuzzy
+msgid "PHOSPHATES_LEVELS"
+msgstr "Fosfato"
+
 msgid "PHOTOSYNTHESIS"
 msgstr "Fotosíntesis"
 
@@ -4937,6 +4985,10 @@ msgstr ""
 
 msgid "PLANET_RANDOM_SEED"
 msgstr "Semilla de generación del Planeta"
+
+#, fuzzy
+msgid "PLANET_STATISTICS"
+msgstr "Estadísticas"
 
 #, fuzzy
 msgid "PLAYER"
@@ -5096,6 +5148,10 @@ msgid "RADIATION"
 msgstr "Respiración Aeróbica"
 
 #, fuzzy
+msgid "RADIATION_LEVELS"
+msgstr "Respiración Aeróbica"
+
+#, fuzzy
 msgid "RADIOACTIVE_CHUNK"
 msgstr "Fragmento de Fosfato grande"
 
@@ -5149,6 +5205,10 @@ msgstr "Actualizar"
 #, fuzzy
 msgid "REGENERATE_BUTTON"
 msgstr "Orgánulos"
+
+#, fuzzy
+msgid "REGIONS_NUMBER"
+msgstr "Número ID"
 
 #, fuzzy
 msgid "RENDER_SCALE"
@@ -5293,6 +5353,18 @@ msgstr ""
 #, fuzzy
 msgid "REVEAL_ALL_PATCHES"
 msgstr "Migró a:"
+
+#, fuzzy
+msgid "REVERT_TO_EDITOR"
+msgstr "Salir del Editor"
+
+#, fuzzy
+msgid "REVERT_TO_EDITOR_EXPLANATION"
+msgstr "(Si es habilitado, limita la cantidad necesaria de compuestos; si no, solo los compuestos disponibles limitan la velocidad de crecimiento)"
+
+#, fuzzy
+msgid "REVERT_TO_EDITOR_PROMPT"
+msgstr "Mostrar más información"
 
 msgid "REVOLUTIONARY_GAMES_SOCIAL_TOOLTIP"
 msgstr "Visita los sitios web oficiales de Revolutionary Games"
@@ -5623,6 +5695,10 @@ msgid "SHOW_ITEM_COORDINATES"
 msgstr ""
 "Coordenadas de posición: {0}\n"
 "Mirando a las coordenadas: {1}"
+
+#, fuzzy
+msgid "SHOW_MAP"
+msgstr "Mostrar ayuda"
 
 #, fuzzy
 msgid "SHOW_NEW_PATCH_NOTES"
@@ -9338,6 +9414,9 @@ msgstr "Hacer zoom"
 
 msgid "ZOOM_OUT"
 msgstr "Alejar el zoom"
+
+#~ msgid "GENERATE_BUTTON"
+#~ msgstr "Generar mundo"
 
 #, fuzzy
 #~ msgid "CELL_TYPE_BUTTON_ATP_CONSUMPTION"

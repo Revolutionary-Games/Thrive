@@ -382,6 +382,11 @@ public class Patch
         gameplayPopulations.Clear();
     }
 
+    public bool IsSurfacePatch()
+    {
+        return Depth[0] == 0 && BiomeType != BiomeType.Cave;
+    }
+
     public float GetCompoundAmountForDisplay(Compound compound,
         CompoundAmountType amountType = CompoundAmountType.Current)
     {
@@ -399,9 +404,8 @@ public class Patch
             case Compound.Carbondioxide:
             case Compound.Nitrogen:
                 return GetAmbientCompoundInSnapshot(snapshot, compound, CompoundAmountType.Biome) * 100;
-            case Compound.Iron:
-                return GetTotalChunkCompoundAmountInSnapshot(snapshot, compound);
             case Compound.Radiation:
+            case Compound.Iron:
                 return GetTotalChunkCompoundAmountInSnapshot(snapshot, compound);
             default:
             {

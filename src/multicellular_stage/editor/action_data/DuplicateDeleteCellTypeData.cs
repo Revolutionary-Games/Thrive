@@ -1,4 +1,4 @@
-﻿using System;
+﻿using System.Collections.Generic;
 
 /// <summary>
 ///   Stores information for duplicating and deleting cell types.
@@ -13,18 +13,19 @@ public class DuplicateDeleteCellTypeData : EditorCombinableActionData<Multicellu
         CellType = cellType;
     }
 
-    protected override ActionInterferenceMode GetInterferenceModeWithGuaranteed(CombinableActionData other)
+    protected override (double Cost, double RefundCost) CalculateCostInternal(
+        IReadOnlyList<EditorCombinableActionData> history, int insertPosition)
     {
-        return ActionInterferenceMode.NoInterference;
+        return (0, 0);
     }
 
-    protected override CombinableActionData CombineGuaranteed(CombinableActionData other)
-    {
-        throw new NotSupportedException();
-    }
-
-    protected override double CalculateCostInternal()
+    protected override double CalculateBaseCostInternal()
     {
         return 0;
+    }
+
+    protected override bool CanMergeWithInternal(CombinableActionData other)
+    {
+        return false;
     }
 }

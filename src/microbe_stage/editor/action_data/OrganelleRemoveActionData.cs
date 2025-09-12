@@ -1,10 +1,11 @@
-﻿using Newtonsoft.Json;
+﻿using System.Collections.Generic;
+using Newtonsoft.Json;
 
 [JSONAlwaysDynamicType]
 public class OrganelleRemoveActionData : HexRemoveActionData<OrganelleTemplate, CellType>
 {
     /// <summary>
-    ///   Used for replacing Cytoplasm. If true this action is free.
+    ///   Used for replacing Cytoplasm. If true, this action is free.
     /// </summary>
     public bool GotReplaced;
 
@@ -19,48 +20,43 @@ public class OrganelleRemoveActionData : HexRemoveActionData<OrganelleTemplate, 
     {
     }
 
-    protected override double CalculateCostInternal()
+    protected override double CalculateBaseCostInternal()
     {
-        return GotReplaced ? 0 : base.CalculateCostInternal();
+        return GotReplaced ? 0 : base.CalculateBaseCostInternal();
     }
 
-    protected override ActionInterferenceMode GetInterferenceModeWithGuaranteed(CombinableActionData other)
+    protected override (double Cost, double RefundCost) CalculateCostInternal(
+        IReadOnlyList<EditorCombinableActionData> history, int insertPosition)
     {
-        // Endosymbionts can be deleted for free after placing (not that it is very useful, but it should be free)
-        if (other is EndosymbiontPlaceActionData endosymbiontPlaceActionData)
+        var cost = base.CalculateCostInternal(history, insertPosition);
+        double refund = 0;
+
+        var count = history.Count;
+        for (int i = 0; i < insertPosition && i < count; ++i)
         {
-            if (RemovedHex == endosymbiontPlaceActionData.PlacedOrganelle)
+            var other = history[i];
+
+            // Endosymbionts can be deleted for free after placing (not that it is very useful, but it should be free)
+            if (other is EndosymbiontPlaceActionData endosymbiontPlaceActionData &&
+                MatchesContext(endosymbiontPlaceActionData))
             {
-                return ActionInterferenceMode.CancelsOut;
+                if (RemovedHex == endosymbiontPlaceActionData.PlacedOrganelle)
+                {
+                    return (0, cost.RefundCost);
+                }
+            }
+
+            if (other is OrganelleUpgradeActionData upgradeActionData &&
+                upgradeActionData.UpgradedOrganelle == RemovedHex && MatchesContext(upgradeActionData))
+            {
+                // This replaces (refunds) the MP for an upgrade done to this organelle
+                if (ReferenceEquals(upgradeActionData.UpgradedOrganelle, RemovedHex))
+                {
+                    refund += upgradeActionData.GetCalculatedSelfCost();
+                }
             }
         }
 
-        var baseResult = base.GetInterferenceModeWithGuaranteed(other);
-
-        if (baseResult != ActionInterferenceMode.NoInterference)
-            return baseResult;
-
-        if (other is OrganelleUpgradeActionData upgradeActionData)
-        {
-            // This replaces (refunds) the MP for an upgrade done to this organelle
-            if (ReferenceEquals(upgradeActionData.UpgradedOrganelle, RemovedHex))
-                return ActionInterferenceMode.ReplacesOther;
-        }
-
-        return ActionInterferenceMode.NoInterference;
-    }
-
-    protected override CombinableActionData CreateDerivedMoveAction(
-        HexPlacementActionData<OrganelleTemplate, CellType> data)
-    {
-        return new OrganelleMoveActionData(data.PlacedHex, Location, data.Location,
-            Orientation, data.Orientation);
-    }
-
-    protected override CombinableActionData CreateDerivedRemoveAction(
-        HexMoveActionData<OrganelleTemplate, CellType> data)
-    {
-        return new OrganelleRemoveActionData(RemovedHex, data.OldLocation, data.OldRotation)
-            { GotReplaced = GotReplaced };
+        return (cost.Cost, cost.RefundCost + refund);
     }
 }

@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2025-09-03 22:18-0300\n"
+"POT-Creation-Date: 2025-09-12 09:19+0300\n"
 "PO-Revision-Date: 2025-08-08 14:30+0000\n"
 "Last-Translator: Anonymous <noreply@weblate.org>\n"
 "Language-Team: Portuguese (Portugal) <https://translate.revolutionarygamesstudio.com/projects/thrive/thrive-game/pt_PT/>\n"
@@ -200,6 +200,10 @@ msgstr "Amoníaco"
 
 #, fuzzy
 msgid "AMMONIA_COST"
+msgstr "Amoníaco"
+
+#, fuzzy
+msgid "AMMONIA_LEVELS"
 msgstr "Amoníaco"
 
 msgid "AMOUNT_OF_AUTOSAVE_TO_KEEP"
@@ -424,6 +428,21 @@ msgstr "Projetos de Construção Disponíveis"
 
 msgid "AVAILABLE_MODS"
 msgstr "Mods disponíveis"
+
+msgid "AVERAGE_SURFACE_CARBON_DIOXIDE_LEVEL"
+msgstr ""
+
+msgid "AVERAGE_SURFACE_LIGHT_LEVEL"
+msgstr ""
+
+msgid "AVERAGE_SURFACE_NITROGEN_LEVEL"
+msgstr ""
+
+msgid "AVERAGE_SURFACE_OTHER_LEVEL"
+msgstr ""
+
+msgid "AVERAGE_SURFACE_OXYGEN_LEVEL"
+msgstr ""
 
 msgid "AWAKENING_STAGE"
 msgstr "Estágio de Despertar"
@@ -1041,6 +1060,25 @@ msgstr "Mostrar / ocultar compostos"
 #, fuzzy
 msgid "COMPOUND_HANDLE_TOP_UP_ON_CHANGE"
 msgstr "Densidade da nuvem de compostos"
+
+#, fuzzy
+msgid "COMPOUND_LEVEL_AVERAGE"
+msgstr "Médio"
+
+#, fuzzy
+msgid "COMPOUND_LEVEL_HIGH"
+msgstr "Equilíbrio de Compostos"
+
+#, fuzzy
+msgid "COMPOUND_LEVEL_LOW"
+msgstr "Nuvens de compostos"
+
+msgid "COMPOUND_LEVEL_VERY_HIGH"
+msgstr ""
+
+#, fuzzy
+msgid "COMPOUND_LEVEL_VERY_LOW"
+msgstr "Equilíbrio de Compostos"
 
 #, fuzzy
 msgid "COMPOUND_STORAGE_AMOUNT_DOES_NOT_LAST_NIGHT"
@@ -2499,10 +2537,6 @@ msgstr "Pressione o botão \"reverter\" no editor para corrigir um erro"
 msgid "GENERAL_LOADING_TIP_7"
 msgstr "Pressione o botão \"reverter\" no editor para corrigir um erro"
 
-#, fuzzy
-msgid "GENERATE_BUTTON"
-msgstr "Gerações"
-
 msgid "GENERATE_POSITIVE_GLUCOSE_PHOTOSYNTHESIS"
 msgstr ""
 
@@ -2571,6 +2605,10 @@ msgstr "Glicose"
 
 msgid "GLUCOSE_CONCENTRATIONS_DRASTICALLY_DROPPED"
 msgstr "As concentrações de glicose caíram drasticamente!"
+
+#, fuzzy
+msgid "GLUCOSE_LEVEL"
+msgstr "{0}-{1}m abaixo do nível do mar"
 
 msgid "GLYCOLYSIS"
 msgstr "Glicólise"
@@ -2706,6 +2744,10 @@ msgid "HYDROGENOSOME_PROCESSES_DESCRIPTION"
 msgstr "Transforma [thrive:compound type=\"atp\"][/thrive:compound] em [thrive:compound type=\"ammonia\"][/thrive:compound]. A taxa aumenta com a concentração de [thrive:compound type=\"nitrogen\"][/thrive:compound]."
 
 msgid "HYDROGEN_SULFIDE"
+msgstr "Sulfureto de Hidrogénio"
+
+#, fuzzy
+msgid "HYDROGEN_SULFIDE_LEVELS"
 msgstr "Sulfureto de Hidrogénio"
 
 #, fuzzy
@@ -2935,6 +2977,9 @@ msgstr "Protanóptico (Vermelho-Verde)"
 
 msgid "IRON"
 msgstr "Ferro"
+
+msgid "IRON_LEVELS"
+msgstr ""
 
 #, fuzzy
 msgid "IRON_OXIDATION"
@@ -4467,6 +4512,10 @@ msgid "NOTICE_HIT_BY_BASE_MOVEMENT_TOXIN"
 msgstr "Movimento Base"
 
 #, fuzzy
+msgid "NOTICE_HYDROGEN_SULFIDE_DAMAGE"
+msgstr "Sulfureto de Hidrogénio"
+
+#, fuzzy
 msgid "NOTICE_NOT_ENOUGH_MUCILAGE"
 msgstr "Não há {0} suficiente para criar a receita"
 
@@ -4827,6 +4876,10 @@ msgid "PAST_DEVELOPERS"
 msgstr "Desenvolvedores anteriores"
 
 #, fuzzy
+msgid "PATCHES_NUMBER"
+msgstr "{0} {1}"
+
+#, fuzzy
 msgid "PATCH_COLON"
 msgstr "Melhor Região:"
 
@@ -4934,6 +4987,10 @@ msgstr "Fosfato"
 msgid "PHOSPHATES_COST"
 msgstr "Fosfato"
 
+#, fuzzy
+msgid "PHOSPHATES_LEVELS"
+msgstr "Fosfato"
+
 msgid "PHOTOSYNTHESIS"
 msgstr "Fotossíntese"
 
@@ -4963,6 +5020,10 @@ msgstr ""
 
 msgid "PLANET_RANDOM_SEED"
 msgstr "Semente aleatória do planeta"
+
+#, fuzzy
+msgid "PLANET_STATISTICS"
+msgstr "Estatísticas"
 
 msgid "PLAYER"
 msgstr "Jogador"
@@ -5117,6 +5178,10 @@ msgid "RADIATION"
 msgstr "Respiração Aeróbica"
 
 #, fuzzy
+msgid "RADIATION_LEVELS"
+msgstr "Respiração Aeróbica"
+
+#, fuzzy
 msgid "RADIOACTIVE_CHUNK"
 msgstr "Grande Pedaço de Ferro"
 
@@ -5170,6 +5235,10 @@ msgstr "Atualizar"
 #, fuzzy
 msgid "REGENERATE_BUTTON"
 msgstr "Axónio"
+
+#, fuzzy
+msgid "REGIONS_NUMBER"
+msgstr "Número de ID"
 
 #, fuzzy
 msgid "RENDER_SCALE"
@@ -5308,6 +5377,18 @@ msgstr ""
 
 msgid "REVEAL_ALL_PATCHES"
 msgstr "Revelar todas as regiões"
+
+#, fuzzy
+msgid "REVERT_TO_EDITOR"
+msgstr "Ativar o editor"
+
+#, fuzzy
+msgid "REVERT_TO_EDITOR_EXPLANATION"
+msgstr "Este painel mostra os números a partir dos quais a previsão de auto-evo funciona. A energia total que uma espécie é capaz de capturar e o custo por indivíduo da espécie determinam a população final. O Auto-evo usa um modelo simplificado da realidade para calcular o desempenho das espécies com base na energia que conseguem obter. Para cada fonte de alimento, mostra quanta energia é que a espécie ganha com isso. Além disso, aparece o total de energia disponível na fonte. A fração que a espécie ganha da energia total é baseada em quão grande a aptidão é comparada com a aptidão total. A aptidão é uma métrica de quão bem a espécie pode utilizar essa fonte de alimento."
+
+#, fuzzy
+msgid "REVERT_TO_EDITOR_PROMPT"
+msgstr "Pressione [thrive:input]help[/thrive:input] para ver mais informações na Thrivepédia."
 
 msgid "REVOLUTIONARY_GAMES_SOCIAL_TOOLTIP"
 msgstr "Visite os sites oficiais da Revolutionary Games"
@@ -5625,6 +5706,10 @@ msgstr "Mostrar ajuda"
 #, fuzzy
 msgid "SHOW_ITEM_COORDINATES"
 msgstr "Mostrar tutoriais"
+
+#, fuzzy
+msgid "SHOW_MAP"
+msgstr "Mostrar ajuda"
 
 #, fuzzy
 msgid "SHOW_NEW_PATCH_NOTES"
@@ -9165,6 +9250,10 @@ msgstr "Ampliar"
 
 msgid "ZOOM_OUT"
 msgstr "Reduzir"
+
+#, fuzzy
+#~ msgid "GENERATE_BUTTON"
+#~ msgstr "Gerações"
 
 #, fuzzy
 #~ msgid "CELL_TYPE_BUTTON_ATP_CONSUMPTION"
