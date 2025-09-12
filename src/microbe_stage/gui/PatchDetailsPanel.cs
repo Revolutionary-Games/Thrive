@@ -381,12 +381,13 @@ public partial class PatchDetailsPanel : PanelContainer
                 temperature.Unit);
         pressureLabel.Text = unitFormat.FormatSafe(Math.Round(SelectedPatch.Biome.Pressure * (1 / 1000.0f)), "kPa");
 
+        var sunlight = SimulationParameters.Instance.GetCompoundDefinition(Compound.Sunlight);
         var maxLightLevel = GetCompoundAmount(SelectedPatch, Compound.Sunlight, CompoundAmountType.Biome);
         lightLabel.Text =
             unitFormat.FormatSafe(percentageFormat.FormatSafe(Math.Round(GetCompoundAmount(SelectedPatch,
-                Compound.Sunlight))), "lx");
+                Compound.Sunlight))), sunlight.Unit);
         lightMax.Text = Localization.Translate("LIGHT_LEVEL_LABEL_AT_NOON").FormatSafe(
-            unitFormat.FormatSafe(percentageFormat.FormatSafe(Math.Round(maxLightLevel, 1)), "lx"));
+            unitFormat.FormatSafe(percentageFormat.FormatSafe(Math.Round(maxLightLevel, 1)), sunlight.Unit));
         lightMax.Visible = maxLightLevel > 0;
 
         oxygenLabel.Text = percentageFormat.FormatSafe(Math.Round(GetCompoundAmount(SelectedPatch, Compound.Oxygen),
