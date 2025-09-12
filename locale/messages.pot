@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Thrive VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2025-09-09 13:49+0300\n"
+"POT-Creation-Date: 2025-09-12 13:18+0200\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -625,12 +625,12 @@ msgstr ""
 msgid "BATHYPELAGIC"
 msgstr ""
 
-#: ../src/microbe_stage/MicrobeHUD.cs:816
+#: ../src/microbe_stage/MicrobeHUD.cs:817
 #: ../src/microbe_stage/MicrobeHUD.tscn:435
 msgid "BECOME_MACROSCOPIC"
 msgstr ""
 
-#: ../src/microbe_stage/MicrobeHUD.cs:772
+#: ../src/microbe_stage/MicrobeHUD.cs:773
 #: ../src/microbe_stage/MicrobeHUD.tscn:428
 msgid "BECOME_MULTICELLULAR"
 msgstr ""
@@ -2181,7 +2181,7 @@ msgstr ""
 msgid "DEVELOPMENT_WIKI_BUTTON_TOOLTIP"
 msgstr ""
 
-#: ../src/microbe_stage/MicrobeHUD.cs:388
+#: ../src/microbe_stage/MicrobeHUD.cs:389
 msgid "DEVOURED"
 msgstr ""
 
@@ -2536,7 +2536,7 @@ msgid "EJECT_ENGULFED"
 msgstr ""
 
 #: ../src/macroscopic_stage/MacroscopicHUD.tscn:499
-#: ../src/microbe_stage/MicrobeHUD.tscn:679
+#: ../src/microbe_stage/MicrobeHUD.tscn:685
 msgid "EJECT_ENGULFED_TOOLTIP"
 msgstr ""
 
@@ -2745,7 +2745,7 @@ msgstr ""
 msgid "ESCAPE"
 msgstr ""
 
-#: ../src/microbe_stage/MicrobeStage.cs:1990
+#: ../src/microbe_stage/MicrobeStage.cs:1989
 msgid "ESCAPE_ENGULFING"
 msgstr ""
 
@@ -2993,7 +2993,7 @@ msgid "FIRE_TOXIN"
 msgstr ""
 
 #: ../src/macroscopic_stage/MacroscopicHUD.tscn:474
-#: ../src/microbe_stage/MicrobeHUD.tscn:689
+#: ../src/microbe_stage/MicrobeHUD.tscn:695
 msgid "FIRE_TOXIN_TOOLTIP"
 msgstr ""
 
@@ -3124,12 +3124,12 @@ msgstr ""
 msgid "FOSSILISATION_FAILED_DESCRIPTION"
 msgstr ""
 
-#: ../src/microbe_stage/MicrobeHUD.cs:692
+#: ../src/microbe_stage/MicrobeHUD.cs:693
 #: ../src/thriveopedia/fossilisation/FossilisationButton.tscn:16
 msgid "FOSSILISATION_HINT"
 msgstr ""
 
-#: ../src/microbe_stage/MicrobeHUD.cs:691
+#: ../src/microbe_stage/MicrobeHUD.cs:692
 msgid "FOSSILISATION_HINT_ALREADY_FOSSILISED"
 msgstr ""
 
@@ -5125,6 +5125,10 @@ msgstr ""
 msgid "MICHE_DETAIL_TEXT"
 msgstr ""
 
+#: ../src/auto-evo/selection_pressure/EndosymbiosisPressure.cs:17
+msgid "MICHE_ENDOSYMBIOSIS_SELECTION_PRESSURE"
+msgstr ""
+
 #: ../src/auto-evo/selection_pressure/EnvironmentalCompoundPressure.cs:11
 msgid "MICHE_ENVIRONMENTAL_COMPOUND_PRESSURE"
 msgstr ""
@@ -5783,7 +5787,7 @@ msgid "MUCILAGE_SYNTHESIS"
 msgstr ""
 
 #: ../src/macroscopic_stage/MacroscopicHUD.tscn:516
-#: ../src/microbe_stage/MicrobeHUD.tscn:752
+#: ../src/microbe_stage/MicrobeHUD.tscn:758
 msgid "MUCOCYST_ACTION_TOOLTIP"
 msgstr ""
 
@@ -6220,7 +6224,7 @@ msgstr ""
 #: ../src/microbe_stage/editor/CellEditorComponent.cs:2916
 #: ../src/microbe_stage/editor/CellEditorComponent.cs:2928
 #: ../src/microbe_stage/editor/MicrobePartSelection.tscn:154
-#: ../src/microbe_stage/MicrobeHUD.cs:625
+#: ../src/microbe_stage/MicrobeHUD.cs:626
 msgid "N_A"
 msgstr ""
 
@@ -6230,7 +6234,7 @@ msgstr ""
 msgid "N_A_MP"
 msgstr ""
 
-#: ../src/microbe_stage/MicrobeHUD.cs:679
+#: ../src/microbe_stage/MicrobeHUD.cs:680
 #: ../src/microbe_stage/organelle_unlocks/UndiscoveredOrganellesButton.cs:45
 msgid "N_TIMES"
 msgstr ""
@@ -6689,7 +6693,7 @@ msgstr ""
 #: ../src/microbe_stage/gui/CompoundProgressBar.cs:512
 #: ../src/microbe_stage/gui/CompoundProgressBar.cs:588
 #: ../src/microbe_stage/gui/PatchDetailsPanel.cs:374
-#: ../src/microbe_stage/MicrobeHUD.cs:394
+#: ../src/microbe_stage/MicrobeHUD.cs:395
 #: ../src/microbe_stage/organelle_unlocks/WorldBasedUnlockCondition.cs:158
 #: ../src/microbe_stage/organelle_unlocks/WorldBasedUnlockCondition.cs:161
 #: ../src/microbe_stage/organelle_unlocks/WorldBasedUnlockCondition.cs:173
@@ -6784,7 +6788,7 @@ msgstr ""
 msgid "PLANET_STATISTICS"
 msgstr ""
 
-#: ../src/microbe_stage/MicrobeHUD.cs:649
+#: ../src/microbe_stage/MicrobeHUD.cs:650
 msgid "PLAYER"
 msgstr ""
 
@@ -7255,15 +7259,15 @@ msgstr ""
 msgid "REVEAL_ALL_PATCHES"
 msgstr ""
 
-#: ../src/microbe_stage/MicrobeHUD.tscn:640
+#: ../src/microbe_stage/MicrobeHUD.tscn:646
 msgid "REVERT_TO_EDITOR"
 msgstr ""
 
-#: ../src/microbe_stage/MicrobeHUD.tscn:630
+#: ../src/microbe_stage/MicrobeHUD.tscn:634
 msgid "REVERT_TO_EDITOR_EXPLANATION"
 msgstr ""
 
-#: ../src/microbe_stage/MicrobeHUD.tscn:620
+#: ../src/microbe_stage/MicrobeHUD.tscn:617
 msgid "REVERT_TO_EDITOR_PROMPT"
 msgstr ""
 
@@ -7541,7 +7545,7 @@ msgid "SECRETE_SLIME"
 msgstr ""
 
 #: ../src/macroscopic_stage/MacroscopicHUD.tscn:491
-#: ../src/microbe_stage/MicrobeHUD.tscn:731
+#: ../src/microbe_stage/MicrobeHUD.tscn:737
 msgid "SECRETE_SLIME_TOOLTIP"
 msgstr ""
 
@@ -7711,7 +7715,7 @@ msgstr ""
 msgid "SHOW_WEB_NEWS_FEED"
 msgstr ""
 
-#: ../src/microbe_stage/MicrobeHUD.tscn:763
+#: ../src/microbe_stage/MicrobeHUD.tscn:769
 msgid "SIDEROPHORE_ACTION_TOOLTIP"
 msgstr ""
 
@@ -7719,7 +7723,7 @@ msgstr ""
 msgid "SIGNALING_AGENT"
 msgstr ""
 
-#: ../src/microbe_stage/MicrobeHUD.tscn:720
+#: ../src/microbe_stage/MicrobeHUD.tscn:726
 msgid "SIGNALING_AGENTS_ACTION_TOOLTIP"
 msgstr ""
 
@@ -7731,27 +7735,27 @@ msgstr ""
 msgid "SIGNALING_AGENT_PROCESSES_DESCRIPTION"
 msgstr ""
 
-#: ../src/microbe_stage/MicrobeHUD.cs:218
+#: ../src/microbe_stage/MicrobeHUD.cs:219
 msgid "SIGNAL_COMMAND_AGGRESSION"
 msgstr ""
 
-#: ../src/microbe_stage/MicrobeHUD.cs:217
+#: ../src/microbe_stage/MicrobeHUD.cs:218
 msgid "SIGNAL_COMMAND_FLEE"
 msgstr ""
 
-#: ../src/microbe_stage/MicrobeHUD.cs:215
+#: ../src/microbe_stage/MicrobeHUD.cs:216
 msgid "SIGNAL_COMMAND_FOLLOW"
 msgstr ""
 
-#: ../src/microbe_stage/MicrobeHUD.cs:214
+#: ../src/microbe_stage/MicrobeHUD.cs:215
 msgid "SIGNAL_COMMAND_NONE"
 msgstr ""
 
-#: ../src/microbe_stage/MicrobeHUD.cs:216
+#: ../src/microbe_stage/MicrobeHUD.cs:217
 msgid "SIGNAL_COMMAND_TO_ME"
 msgstr ""
 
-#: ../src/microbe_stage/MicrobeHUD.cs:221
+#: ../src/microbe_stage/MicrobeHUD.cs:222
 msgid "SIGNAL_TO_EMIT"
 msgstr ""
 
@@ -7892,7 +7896,7 @@ msgstr ""
 msgid "SPAWN_ENEMY"
 msgstr ""
 
-#: ../src/microbe_stage/MicrobeStage.cs:1585
+#: ../src/microbe_stage/MicrobeStage.cs:1584
 msgid "SPAWN_ENEMY_CHEAT_FAIL"
 msgstr ""
 
@@ -7985,7 +7989,7 @@ msgid "SPRINT"
 msgstr ""
 
 #: ../src/macroscopic_stage/MacroscopicHUD.tscn:506
-#: ../src/microbe_stage/MicrobeHUD.tscn:741
+#: ../src/microbe_stage/MicrobeHUD.tscn:747
 msgid "SPRINT_ACTION_TOOLTIP"
 msgstr ""
 
@@ -8135,7 +8139,7 @@ msgid "STORE_LOGGED_IN_AS"
 msgstr ""
 
 #: ../src/macroscopic_stage/MacroscopicHUD.tscn:607
-#: ../src/microbe_stage/MicrobeHUD.tscn:819
+#: ../src/microbe_stage/MicrobeHUD.tscn:825
 msgid "STRAIN_BAR_TOOLTIP"
 msgstr ""
 
@@ -8208,11 +8212,11 @@ msgstr ""
 msgid "SUCCESSFULLY_PERFORM_ENDOSYMBIOSIS"
 msgstr ""
 
-#: ../src/microbe_stage/MicrobeStage.cs:1988
+#: ../src/microbe_stage/MicrobeStage.cs:1987
 msgid "SUCCESSFUL_KILL"
 msgstr ""
 
-#: ../src/microbe_stage/MicrobeStage.cs:1989
+#: ../src/microbe_stage/MicrobeStage.cs:1988
 msgid "SUCCESSFUL_SCAVENGE"
 msgstr ""
 
@@ -8584,7 +8588,7 @@ msgstr ""
 msgid "TOGGLE_BINDING"
 msgstr ""
 
-#: ../src/microbe_stage/MicrobeHUD.tscn:699
+#: ../src/microbe_stage/MicrobeHUD.tscn:705
 msgid "TOGGLE_BINDING_TOOLTIP"
 msgstr ""
 
@@ -8598,7 +8602,7 @@ msgstr ""
 msgid "TOGGLE_ENGULF"
 msgstr ""
 
-#: ../src/microbe_stage/MicrobeHUD.tscn:667
+#: ../src/microbe_stage/MicrobeHUD.tscn:673
 msgid "TOGGLE_ENGULF_TOOLTIP"
 msgstr ""
 
@@ -9028,7 +9032,7 @@ msgstr ""
 msgid "UNBIND_ALL"
 msgstr ""
 
-#: ../src/microbe_stage/MicrobeHUD.tscn:710
+#: ../src/microbe_stage/MicrobeHUD.tscn:716
 msgid "UNBIND_ALL_TOOLTIP"
 msgstr ""
 
