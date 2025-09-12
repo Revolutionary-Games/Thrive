@@ -1,5 +1,6 @@
 ﻿using System;
 using Arch.Core;
+using Arch.Core.Extensions;
 using Newtonsoft.Json;
 
 /// <summary>
@@ -32,7 +33,7 @@ public class EntityReferenceConverter : JsonConverter<Entity>
         }
 
         // Don't write non-alive entities or entities that no longer want to be saved
-        if (context.SkipSavingEntity(value) || !value.IsAlive)
+        if (context.SkipSavingEntity(value) || !value.IsAlive())
             value = default;
 
         writer.WriteValue(value.ToString());
@@ -70,7 +71,7 @@ public class EntityReferenceConverter : JsonConverter<Entity>
         if (context.OldToNewEntityMapping.TryGetValue(old, out var existing))
             return existing;
 
-        var newValue = context.ProcessedEntityWorld.CreateEntity();
+        var newValue = context.ProcessedEntityWorld.Create();
         context.OldToNewEntityMapping[old] = newValue;
 
         return newValue;
