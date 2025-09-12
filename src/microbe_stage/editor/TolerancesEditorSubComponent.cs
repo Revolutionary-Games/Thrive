@@ -361,6 +361,20 @@ public partial class TolerancesEditorSubComponent : EditorComponentBase<ICellEdi
         pressureToolTipContainer.RegisterToolTipForControl("pressure", "tolerances");
         oxygenResistanceToolTipContainer.RegisterToolTipForControl("oxygenResistance", "tolerances");
         uvResistanceToolTipContainer.RegisterToolTipForControl("uvResistance", "tolerances");
+
+        var toolTipManager = ToolTipManager.Instance;
+        temperatureToolTip = toolTipManager.GetToolTip<EnvironmentalToleranceToolTip>("temperature", "tolerances");
+        temperatureRangeToolTip =
+            toolTipManager.GetToolTip<StatModifierToolTip>("temperatureRangeModifier", "tolerances");
+        pressureToolTip = toolTipManager.GetToolTip<EnvironmentalToleranceToolTip>("pressure", "tolerances");
+        pressureRangeToolTip = toolTipManager.GetToolTip<StatModifierToolTip>("pressureRangeModifier", "tolerances");
+        oxygenResistanceToolTip =
+            toolTipManager.GetToolTip<EnvironmentalToleranceToolTip>("oxygenResistance", "tolerances");
+        oxygenResistanceModifierToolTip =
+            toolTipManager.GetToolTip<StatModifierToolTip>("oxygenResistanceModifier", "tolerances");
+        uvResistanceToolTip = toolTipManager.GetToolTip<EnvironmentalToleranceToolTip>("uvResistance", "tolerances");
+        uvResistanceModifierToolTip =
+            toolTipManager.GetToolTip<StatModifierToolTip>("uvResistanceModifier", "tolerances");
     }
 
     private void CalculateStatsAndShow(EnvironmentalTolerances calculationTolerances,

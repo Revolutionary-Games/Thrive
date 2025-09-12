@@ -94,7 +94,7 @@ public partial class ToleranceOptimalDisplay : HSlider
             var intermediate1 = lineStartPos + Vector2.Down * 9;
             var intermediate2 = grabberPos + Vector2.Up * 11;
             DrawLine(lineStartPos, intermediate1 + Vector2.Down, rangeColor, 2);
-            DrawLine(intermediate1, intermediate2, rangeColor, 2);
+            DrawLine(intermediate1, intermediate2, rangeColor with { A = 0.5f }, 2);
             DrawLine(intermediate2 + Vector2.Up, grabberPos, rangeColor, 2);
         }
 
