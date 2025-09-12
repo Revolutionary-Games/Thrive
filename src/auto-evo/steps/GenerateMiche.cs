@@ -166,6 +166,17 @@ public class GenerateMiche : IRunStep
 
         generatedMiche.AddChild(predationRoot);
 
+        // Endosymbiosis Miches
+        foreach (var possibleHost in patch.SpeciesInPatch.Keys)
+        {
+            if (possibleHost.PlayerSpecies && possibleHost.Endosymbiosis.StartedEndosymbiosis != null)
+            {
+                var endosymbiont = possibleHost.Endosymbiosis.StartedEndosymbiosis.Species;
+                var endosymbiosisPressure = new Miche(new EndosymbiosisPressure(endosymbiont, possibleHost, 1.0f));
+                generatedMiche.AddChild(endosymbiosisPressure);
+            }
+        }
+
         return rootMiche;
     }
 
