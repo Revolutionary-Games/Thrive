@@ -33,7 +33,7 @@ public class PhotosynthesisProductionEffect : IWorldEffect
         var inputModifier = 0.8f;
 
         // This affects how fast the conditions change, but also the final balance somewhat
-        var modifier = 0.000010f;
+        var modifier = 0.000012f;
 
         List<TweakedProcess> microbeProcesses = [];
 
