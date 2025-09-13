@@ -23,6 +23,15 @@ public class EnvironmentalTolerances
     public float UVResistance;
     public float OxygenResistance;
 
+    [Flags]
+    public enum ToleranceChangedStats
+    {
+        Temperature = 1,
+        Pressure = 2,
+        UVResistance = 4,
+        OxygenResistance = 8,
+    }
+
     public float PressureMaximum => MathF.Min(PressureMinimum + PressureTolerance, Constants.TOLERANCE_PRESSURE_MAX);
 
     public static bool operator ==(EnvironmentalTolerances? left, EnvironmentalTolerances? right)
@@ -60,6 +69,31 @@ public class EnvironmentalTolerances
             return false;
 
         return true;
+    }
+
+    public ToleranceChangedStats GetChangedStats(EnvironmentalTolerances other)
+    {
+        ToleranceChangedStats changes = 0;
+
+        if (Math.Abs(PreferredTemperature - other.PreferredTemperature) > 0.01f ||
+            Math.Abs(TemperatureTolerance - other.TemperatureTolerance) > 0.01f)
+        {
+            changes |= ToleranceChangedStats.Temperature;
+        }
+
+        if (Math.Abs(PressureMinimum - other.PressureMinimum) > 0.01f ||
+            Math.Abs(PressureTolerance - other.PressureTolerance) > 0.01f)
+        {
+            changes |= ToleranceChangedStats.Pressure;
+        }
+
+        if (Math.Abs(UVResistance - other.UVResistance) > 0.01f)
+            changes |= ToleranceChangedStats.UVResistance;
+
+        if (Math.Abs(OxygenResistance - other.OxygenResistance) > 0.01f)
+            changes |= ToleranceChangedStats.OxygenResistance;
+
+        return changes;
     }
 
     public override bool Equals(object? obj)

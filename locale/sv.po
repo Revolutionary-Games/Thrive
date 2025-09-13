@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2025-09-13 14:35+0200\n"
+"POT-Creation-Date: 2025-09-12 09:19+0300\n"
 "PO-Revision-Date: 2025-07-28 15:04+0000\n"
 "Last-Translator: Anonymous <noreply@weblate.org>\n"
 "Language-Team: Swedish <https://translate.revolutionarygamesstudio.com/projects/thrive/thrive-game/sv/>\n"
@@ -188,6 +188,10 @@ msgid "AMMONIA"
 msgstr "Ammoniak"
 
 msgid "AMMONIA_COST"
+msgstr "Ammoniak kostnad:"
+
+#, fuzzy
+msgid "AMMONIA_LEVELS"
 msgstr "Ammoniak kostnad:"
 
 msgid "AMOUNT_OF_AUTOSAVE_TO_KEEP"
@@ -419,6 +423,21 @@ msgstr "Tillgängliga Konstruktionsprojekt"
 
 msgid "AVAILABLE_MODS"
 msgstr "Tillgängliga Mod"
+
+msgid "AVERAGE_SURFACE_CARBON_DIOXIDE_LEVEL"
+msgstr ""
+
+msgid "AVERAGE_SURFACE_LIGHT_LEVEL"
+msgstr ""
+
+msgid "AVERAGE_SURFACE_NITROGEN_LEVEL"
+msgstr ""
+
+msgid "AVERAGE_SURFACE_OTHER_LEVEL"
+msgstr ""
+
+msgid "AVERAGE_SURFACE_OXYGEN_LEVEL"
+msgstr ""
 
 msgid "AWAKENING_STAGE"
 msgstr "Uppvaknandestadiet"
@@ -1070,6 +1089,25 @@ msgstr "Hjälp"
 #, fuzzy
 msgid "COMPOUND_HANDLE_TOP_UP_ON_CHANGE"
 msgstr "Molekylmoln"
+
+#, fuzzy
+msgid "COMPOUND_LEVEL_AVERAGE"
+msgstr "Hjälp"
+
+#, fuzzy
+msgid "COMPOUND_LEVEL_HIGH"
+msgstr "Föreningsbalans"
+
+#, fuzzy
+msgid "COMPOUND_LEVEL_LOW"
+msgstr "Molekylmoln"
+
+msgid "COMPOUND_LEVEL_VERY_HIGH"
+msgstr ""
+
+#, fuzzy
+msgid "COMPOUND_LEVEL_VERY_LOW"
+msgstr "Hjälp"
 
 #, fuzzy
 msgid "COMPOUND_STORAGE_AMOUNT_DOES_NOT_LAST_NIGHT"
@@ -1986,6 +2024,10 @@ msgstr ""
 msgid "EDIT_MICROBE_FIRST_TIME"
 msgstr "Mikrob Stadiet"
 
+#, fuzzy
+msgid "EFFECTIVE_VALUE"
+msgstr "{0}%"
+
 msgid "EIGHT_TIMES"
 msgstr "8x"
 
@@ -2605,10 +2647,6 @@ msgstr "Använd ångraknapped i cellredigeraren för att fixa ett mistag"
 msgid "GENERAL_LOADING_TIP_7"
 msgstr "Använd ångraknapped i cellredigeraren för att fixa ett mistag"
 
-#, fuzzy
-msgid "GENERATE_BUTTON"
-msgstr "generation:"
-
 msgid "GENERATE_POSITIVE_GLUCOSE_PHOTOSYNTHESIS"
 msgstr ""
 
@@ -2680,6 +2718,10 @@ msgstr "Glukos"
 
 msgid "GLUCOSE_CONCENTRATIONS_DRASTICALLY_DROPPED"
 msgstr "Glukoskoncentrationerna har sjunkit drastiskt!"
+
+#, fuzzy
+msgid "GLUCOSE_LEVEL"
+msgstr "{0}-{1}m under havsnivån"
 
 msgid "GLYCOLYSIS"
 msgstr "Glykolys"
@@ -2816,6 +2858,10 @@ msgid "HYDROGENOSOME_PROCESSES_DESCRIPTION"
 msgstr "Nitrogenas är ett protein som kan använda gasformigt kväve och cellulär energi i form av ATP för att producera ammoniak, ett viktigt tillväxtnäringsämne för celler. Detta är en process som kallas anaerob kvävefixering. Eftersom kvävgaset är suspenderat direkt i cytoplasman, utför den omgivande vätskan viss jäsning."
 
 msgid "HYDROGEN_SULFIDE"
+msgstr "Svavelväte"
+
+#, fuzzy
+msgid "HYDROGEN_SULFIDE_LEVELS"
 msgstr "Svavelväte"
 
 #, fuzzy
@@ -3066,6 +3112,9 @@ msgstr "Protanope (Röd-Grön)"
 msgid "IRON"
 msgstr "Järn"
 
+msgid "IRON_LEVELS"
+msgstr ""
+
 #, fuzzy
 msgid "IRON_OXIDATION"
 msgstr "Donationer"
@@ -3101,6 +3150,14 @@ msgstr "Juli"
 
 msgid "JUNE"
 msgstr "Juni"
+
+#, fuzzy
+msgid "KEEP_CURRENT_SHORT"
+msgstr "Nuvarande utvecklare"
+
+#, fuzzy
+msgid "KEEP_CURRENT_TOLERANCE_FLEXIBILITY_TOOLTIP"
+msgstr "Självmord"
 
 #, fuzzy
 msgid "KEEP_MIGRATION"
@@ -4156,10 +4213,6 @@ msgstr "Modeller"
 msgid "MODE_CAN_BE_CHANGED_IN_OPTIONS"
 msgstr ""
 
-#, fuzzy
-msgid "MODIFIER"
-msgstr "Modifiera"
-
 msgid "MODIFY"
 msgstr "Modifiera"
 
@@ -4590,6 +4643,10 @@ msgstr ""
 msgid "NOTICE_HIT_BY_BASE_MOVEMENT_TOXIN"
 msgstr "Grundrörelse"
 
+#, fuzzy
+msgid "NOTICE_HYDROGEN_SULFIDE_DAMAGE"
+msgstr "Svavelväte"
+
 msgid "NOTICE_NOT_ENOUGH_MUCILAGE"
 msgstr ""
 
@@ -4692,9 +4749,6 @@ msgstr ""
 #, fuzzy
 msgid "OFFICIAL_WEBSITE_BUTTON_TOOLTIP"
 msgstr "Självmord"
-
-msgid "OFFSET"
-msgstr ""
 
 msgid "OK"
 msgstr "OK"
@@ -4973,6 +5027,10 @@ msgid "PAST_DEVELOPERS"
 msgstr "Tidigare utvecklare"
 
 #, fuzzy
+msgid "PATCHES_NUMBER"
+msgstr "Grotta"
+
+#, fuzzy
 msgid "PATCH_COLON"
 msgstr "Bästa Biom:"
 
@@ -5081,6 +5139,10 @@ msgstr "Fosfat"
 msgid "PHOSPHATES_COST"
 msgstr "Fosfat kostnad:"
 
+#, fuzzy
+msgid "PHOSPHATES_LEVELS"
+msgstr "Fosfat kostnad:"
+
 msgid "PHOTOSYNTHESIS"
 msgstr "Fotosyntes"
 
@@ -5106,6 +5168,10 @@ msgstr "Öppna Logmapp"
 
 msgid "PLANET_RANDOM_SEED"
 msgstr ""
+
+#, fuzzy
+msgid "PLANET_STATISTICS"
+msgstr "Statistik"
 
 #, fuzzy
 msgid "PLAYER"
@@ -5263,6 +5329,10 @@ msgid "RADIATION"
 msgstr "Anding"
 
 #, fuzzy
+msgid "RADIATION_LEVELS"
+msgstr "Anding"
+
+#, fuzzy
 msgid "RADIOACTIVE_CHUNK"
 msgstr "Stor järnbit"
 
@@ -5320,6 +5390,9 @@ msgstr "Ladda om"
 #, fuzzy
 msgid "REGENERATE_BUTTON"
 msgstr "Organeller"
+
+msgid "REGIONS_NUMBER"
+msgstr ""
 
 msgid "RENDER_SCALE"
 msgstr ""
@@ -5471,6 +5544,18 @@ msgstr ""
 #, fuzzy
 msgid "REVEAL_ALL_PATCHES"
 msgstr "sprid till platser:"
+
+#, fuzzy
+msgid "REVERT_TO_EDITOR"
+msgstr "Lämna cellredigeraren"
+
+#, fuzzy
+msgid "REVERT_TO_EDITOR_EXPLANATION"
+msgstr "{0} befolkning förändrades av {1} på grund av: {2}"
+
+#, fuzzy
+msgid "REVERT_TO_EDITOR_PROMPT"
+msgstr "Spawna fosfat"
 
 #, fuzzy
 msgid "REVOLUTIONARY_GAMES_SOCIAL_TOOLTIP"
@@ -5804,6 +5889,10 @@ msgstr "Visa hjälp"
 #, fuzzy
 msgid "SHOW_ITEM_COORDINATES"
 msgstr "Visa handledningar"
+
+#, fuzzy
+msgid "SHOW_MAP"
+msgstr "Visa hjälp"
 
 #, fuzzy
 msgid "SHOW_NEW_PATCH_NOTES"
@@ -6613,6 +6702,20 @@ msgid "TOLERANCES_UNSUITABLE_DEBUFFS"
 msgstr ""
 
 #, fuzzy
+msgid "TOLERANCE_DETAIL_TEXT"
+msgstr ""
+"[b]Arter[/b]\n"
+"  {0}:{1}\n"
+"[b]Generation[/b]\n"
+"  {2}\n"
+"[b]Population[/b]\n"
+"  {3}\n"
+"[b]Färg[/b]\n"
+"  #{4}\n"
+"[b]Beteende[/b]\n"
+"  {5}"
+
+#, fuzzy
 msgid "TOLERANCE_FROM_ORGANELLES_TOOLTIP"
 msgstr ""
 "Den här sektionen visar ATP-saldot (energi) för den aktuella cellen.\n"
@@ -6630,22 +6733,17 @@ msgstr "Verktyg"
 msgid "TOOL_HAND_AXE"
 msgstr ""
 
-msgid "TOO_MANY_RECENT_VERSIONS_TO_SHOW"
+msgid "TOO_LARGE_PRESSURE_RANGE"
 msgstr ""
 
-#, fuzzy
-msgid "TOTAL"
-msgstr "Totala sparningar:"
+msgid "TOO_MANY_RECENT_VERSIONS_TO_SHOW"
+msgstr ""
 
 #, fuzzy
 msgid "TOTAL_GATHERED_ENERGY_COLON"
 msgstr "föregående:"
 
 msgid "TOTAL_SAVES"
-msgstr "Totala sparningar:"
-
-#, fuzzy
-msgid "TOTAL_VALUE"
 msgstr "Totala sparningar:"
 
 msgid "TOXIN_CHANNEL_INHIBITOR"
@@ -9304,24 +9402,9 @@ msgstr "Zooma in"
 msgid "ZOOM_OUT"
 msgstr "Zooma ut"
 
-msgid "—"
-msgstr ""
-
 #, fuzzy
-#~ msgid "EFFECTIVE_VALUE"
-#~ msgstr "{0}%"
-
-#, fuzzy
-#~ msgid "ADDITIONAL_RESISTANCE"
-#~ msgstr "Ytterligare valideringar upptäckte ett problem: {0}"
-
-#, fuzzy
-#~ msgid "KEEP_CURRENT_SHORT"
-#~ msgstr "Nuvarande utvecklare"
-
-#, fuzzy
-#~ msgid "KEEP_CURRENT_TOLERANCE_FLEXIBILITY_TOOLTIP"
-#~ msgstr "Självmord"
+#~ msgid "GENERATE_BUTTON"
+#~ msgstr "generation:"
 
 #, fuzzy
 #~ msgid "CELL_TYPE_BUTTON_ATP_CONSUMPTION"

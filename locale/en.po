@@ -7,8 +7,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2025-09-13 14:35+0200\n"
-"PO-Revision-Date: 2025-09-13 14:50+0200\n"
+"POT-Creation-Date: 2025-09-12 09:19+0300\n"
+"PO-Revision-Date: 2025-08-21 15:25+0300\n"
 "Last-Translator: Henri Hyyryläinen <hhyyrylainen@revolutionarygamesstudio.com>\n"
 "Language-Team: English <https://translate.revolutionarygamesstudio.com/projects/thrive/thrive-game/en/>\n"
 "Language: en\n"
@@ -188,6 +188,9 @@ msgstr "Ammonia"
 
 msgid "AMMONIA_COST"
 msgstr "Ammonia Cost:"
+
+msgid "AMMONIA_LEVELS"
+msgstr "Ammonia level"
 
 msgid "AMOUNT_OF_AUTOSAVE_TO_KEEP"
 msgstr "Amount of autosaves to keep:"
@@ -408,6 +411,21 @@ msgstr "Available Construction Projects"
 
 msgid "AVAILABLE_MODS"
 msgstr "Available Mods"
+
+msgid "AVERAGE_SURFACE_CARBON_DIOXIDE_LEVEL"
+msgstr "Average surface CO2 level"
+
+msgid "AVERAGE_SURFACE_LIGHT_LEVEL"
+msgstr "Average surface light level"
+
+msgid "AVERAGE_SURFACE_NITROGEN_LEVEL"
+msgstr "Average surface nitrogen level"
+
+msgid "AVERAGE_SURFACE_OTHER_LEVEL"
+msgstr "Average surface level of other gases"
+
+msgid "AVERAGE_SURFACE_OXYGEN_LEVEL"
+msgstr "Average surface oxygen level"
 
 msgid "AWAKENING_STAGE"
 msgstr "Awakening Stage"
@@ -1009,6 +1027,21 @@ msgstr "Always Top Up To Initial"
 
 msgid "COMPOUND_HANDLE_TOP_UP_ON_CHANGE"
 msgstr "Top Up On Patch Change"
+
+msgid "COMPOUND_LEVEL_AVERAGE"
+msgstr "Average"
+
+msgid "COMPOUND_LEVEL_HIGH"
+msgstr "High"
+
+msgid "COMPOUND_LEVEL_LOW"
+msgstr "Low"
+
+msgid "COMPOUND_LEVEL_VERY_HIGH"
+msgstr "Very high"
+
+msgid "COMPOUND_LEVEL_VERY_LOW"
+msgstr "Very low"
 
 msgid "COMPOUND_STORAGE_AMOUNT_DOES_NOT_LAST_NIGHT"
 msgstr "(not enough to last the night which is {0} s long)"
@@ -2426,9 +2459,6 @@ msgstr "Don't forget, you can use the panel at the top right of the screen to se
 msgid "GENERAL_LOADING_TIP_7"
 msgstr "If your population drops to zero, you go extinct."
 
-msgid "GENERATE_BUTTON"
-msgstr "Generate World"
-
 msgid "GENERATE_POSITIVE_GLUCOSE_PHOTOSYNTHESIS"
 msgstr "Generate more glucose than you use through photosynthesis"
 
@@ -2495,6 +2525,9 @@ msgstr "Glucose"
 
 msgid "GLUCOSE_CONCENTRATIONS_DRASTICALLY_DROPPED"
 msgstr "Glucose concentrations have drastically dropped!"
+
+msgid "GLUCOSE_LEVEL"
+msgstr "Glucose level"
 
 msgid "GLYCOLYSIS"
 msgstr "Glycolysis"
@@ -2624,6 +2657,9 @@ msgid "HYDROGENOSOME_PROCESSES_DESCRIPTION"
 msgstr "Turns [thrive:compound type=\\\"glucose\\\"][/thrive:compound] into [thrive:compound type=\\\"atp\\\"][/thrive:compound]."
 
 msgid "HYDROGEN_SULFIDE"
+msgstr "Hydrogen Sulfide"
+
+msgid "HYDROGEN_SULFIDE_LEVELS"
 msgstr "Hydrogen Sulfide"
 
 msgid "ICESHARD"
@@ -2842,6 +2878,9 @@ msgstr ""
 
 msgid "IRON"
 msgstr "Iron"
+
+msgid "IRON_LEVELS"
+msgstr "Iron level"
 
 msgid "IRON_OXIDATION"
 msgstr "Iron Oxidation"
@@ -4259,6 +4298,9 @@ msgstr "ATP production inhibited by toxin"
 msgid "NOTICE_HIT_BY_BASE_MOVEMENT_TOXIN"
 msgstr "Base movement speed decreased due to toxin"
 
+msgid "NOTICE_HYDROGEN_SULFIDE_DAMAGE"
+msgstr "Damaged by hydrogen sulfide while having no Chemosynthesizing Proteins"
+
 msgid "NOTICE_NOT_ENOUGH_MUCILAGE"
 msgstr "Not enough mucilage to activate mucocyst shield"
 
@@ -4600,6 +4642,9 @@ msgstr "Pan upwards"
 msgid "PAST_DEVELOPERS"
 msgstr "Past Developers"
 
+msgid "PATCHES_NUMBER"
+msgstr "Number of patches:"
+
 msgid "PATCH_COLON"
 msgstr "Patch:"
 
@@ -4695,6 +4740,9 @@ msgstr "Phosphate"
 msgid "PHOSPHATES_COST"
 msgstr "Phosphates Cost:"
 
+msgid "PHOSPHATES_LEVELS"
+msgstr "Phosphates level"
+
 msgid "PHOTOSYNTHESIS"
 msgstr "Photosynthesis"
 
@@ -4723,6 +4771,9 @@ msgstr ""
 
 msgid "PLANET_RANDOM_SEED"
 msgstr "Planet random seed"
+
+msgid "PLANET_STATISTICS"
+msgstr "Planet Statistics"
 
 msgid "PLAYER"
 msgstr "Player"
@@ -4875,6 +4926,9 @@ msgstr ""
 msgid "RADIATION"
 msgstr "Radiation"
 
+msgid "RADIATION_LEVELS"
+msgstr "Radiation level"
+
 msgid "RADIOACTIVE_CHUNK"
 msgstr "Radioactive Rock Chunk"
 
@@ -4925,6 +4979,9 @@ msgstr "Refresh"
 
 msgid "REGENERATE_BUTTON"
 msgstr "Regenerate World"
+
+msgid "REGIONS_NUMBER"
+msgstr "Number of regions:"
 
 msgid "RENDER_SCALE"
 msgstr "Resolution scale"
@@ -5058,6 +5115,15 @@ msgstr ""
 
 msgid "REVEAL_ALL_PATCHES"
 msgstr "Reveal All Patches"
+
+msgid "REVERT_TO_EDITOR"
+msgstr "Revert To Editor"
+
+msgid "REVERT_TO_EDITOR_EXPLANATION"
+msgstr "If your current microbe is not suitable to survive in this environment, you can revert back to the previous time you were in the editor and try something different."
+
+msgid "REVERT_TO_EDITOR_PROMPT"
+msgstr "Revert To The Editor?"
 
 msgid "REVOLUTIONARY_GAMES_SOCIAL_TOOLTIP"
 msgstr "Visit official Revolutionary Games sites"
@@ -5366,6 +5432,9 @@ msgstr "Show help"
 
 msgid "SHOW_ITEM_COORDINATES"
 msgstr "Show coordinates"
+
+msgid "SHOW_MAP"
+msgstr "Show Map"
 
 msgid "SHOW_NEW_PATCH_NOTES"
 msgstr "Show new patch notes automatically"
@@ -6095,6 +6164,18 @@ msgstr "UV protection too low, needs to be {0}% higher"
 
 msgid "TOLERANCES_UNSUITABLE_DEBUFFS"
 msgstr "Not adapted to current environmental conditions. Osmoregulation cost {0}%, bioprocess speed {1}%, health {2}%"
+
+msgid "TOLERANCE_DETAIL_TEXT"
+msgstr ""
+"[b]Temperature[/b]\n"
+"  Preferred: {0}°C\n"
+"  Range: ±{1}°C\n"
+"[b]Pressure[/b]\n"
+"  Range: {2}-{3} Pa\n"
+"[b]Oxygen Resistance[/b]\n"
+"  {4}%\n"
+"[b]UV Resistance[/b]\n"
+"  {5}%"
 
 msgid "TOLERANCE_FROM_ORGANELLES_TOOLTIP"
 msgstr "Tolerances are affected by some organelles, both positively and negatively. The total value is shown here after the base value is added together with the change from organelles. Some organelles synergize with certain playstyles but harm others."
@@ -9441,12 +9522,6 @@ msgstr ""
 
 #~ msgid "SHOW_TUTORIALS"
 #~ msgstr "Show tutorials"
-
-#~ msgid "GLUCOSE_METEOR"
-#~ msgstr "Glucose meteor"
-
-#~ msgid "IRON_METEOR"
-#~ msgstr "Iron meteor"
 
 #~ msgid "PHOSPHATE_METEOR"
 #~ msgstr "Phosphate meteor"

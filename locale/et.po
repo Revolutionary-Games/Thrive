@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2025-09-13 14:35+0200\n"
+"POT-Creation-Date: 2025-09-12 09:19+0300\n"
 "PO-Revision-Date: 2025-05-25 15:00+0000\n"
 "Last-Translator: Anonymous <noreply@weblate.org>\n"
 "Language-Team: Estonian <https://translate.revolutionarygamesstudio.com/projects/thrive/thrive-game/et/>\n"
@@ -209,6 +209,10 @@ msgstr "Ammoniaak"
 
 #, fuzzy
 msgid "AMMONIA_COST"
+msgstr "Ammoniaak"
+
+#, fuzzy
+msgid "AMMONIA_LEVELS"
 msgstr "Ammoniaak"
 
 msgid "AMOUNT_OF_AUTOSAVE_TO_KEEP"
@@ -441,6 +445,21 @@ msgstr ""
 
 msgid "AVAILABLE_MODS"
 msgstr "Saadaolevad modifikatsioonid"
+
+msgid "AVERAGE_SURFACE_CARBON_DIOXIDE_LEVEL"
+msgstr ""
+
+msgid "AVERAGE_SURFACE_LIGHT_LEVEL"
+msgstr ""
+
+msgid "AVERAGE_SURFACE_NITROGEN_LEVEL"
+msgstr ""
+
+msgid "AVERAGE_SURFACE_OTHER_LEVEL"
+msgstr ""
+
+msgid "AVERAGE_SURFACE_OXYGEN_LEVEL"
+msgstr ""
 
 msgid "AWAKENING_STAGE"
 msgstr ""
@@ -1099,6 +1118,25 @@ msgstr "Näita/peida keskkonda ja ühendeid"
 #, fuzzy
 msgid "COMPOUND_HANDLE_TOP_UP_ON_CHANGE"
 msgstr "Liitpilved"
+
+#, fuzzy
+msgid "COMPOUND_LEVEL_AVERAGE"
+msgstr "Liitsaldod"
+
+#, fuzzy
+msgid "COMPOUND_LEVEL_HIGH"
+msgstr "Liitsaldod"
+
+#, fuzzy
+msgid "COMPOUND_LEVEL_LOW"
+msgstr "Liitpilved"
+
+msgid "COMPOUND_LEVEL_VERY_HIGH"
+msgstr ""
+
+#, fuzzy
+msgid "COMPOUND_LEVEL_VERY_LOW"
+msgstr "Liitsaldod"
 
 #, fuzzy
 msgid "COMPOUND_STORAGE_AMOUNT_DOES_NOT_LAST_NIGHT"
@@ -2019,6 +2057,10 @@ msgstr ""
 "\n"
 "Selles vaenulikus maailmas ellujäämiseks peate koguma kokku kõik ühendid, mida leiate ja põlvkondade kaupa edasi arenema, et võistelda teiste mikroobiliikidega."
 
+#, fuzzy
+msgid "EFFECTIVE_VALUE"
+msgstr "{0}%"
+
 msgid "EIGHT_TIMES"
 msgstr "8x"
 
@@ -2662,10 +2704,6 @@ msgstr "Vea parandamiseks vajutage redaktoris tagasivõtmisnuppu"
 msgid "GENERAL_LOADING_TIP_7"
 msgstr "Vea parandamiseks vajutage redaktoris tagasivõtmisnuppu"
 
-#, fuzzy
-msgid "GENERATE_BUTTON"
-msgstr "Põlvkond:"
-
 msgid "GENERATE_POSITIVE_GLUCOSE_PHOTOSYNTHESIS"
 msgstr ""
 
@@ -2737,6 +2775,10 @@ msgstr "Glükoos"
 
 msgid "GLUCOSE_CONCENTRATIONS_DRASTICALLY_DROPPED"
 msgstr "Glükoosi kontsentratsioon on drastiliselt langenud!"
+
+#, fuzzy
+msgid "GLUCOSE_LEVEL"
+msgstr "{0}–{1} m allpool merepinda"
 
 msgid "GLYCOLYSIS"
 msgstr "Glükolüüs"
@@ -2878,6 +2920,10 @@ msgid "HYDROGENOSOME_PROCESSES_DESCRIPTION"
 msgstr "Muudab [thrive:compound type=\"atp\"][/thrive:compound] tüübiks [thrive:compound type=\"ammoniaak\"][/thrive:compound]. Hindamisskaalad kontsentratsiooniga [thrive:compound type=\"nitrogen\"][/thrive:compound]."
 
 msgid "HYDROGEN_SULFIDE"
+msgstr "Vesiniksulfiid"
+
+#, fuzzy
+msgid "HYDROGEN_SULFIDE_LEVELS"
 msgstr "Vesiniksulfiid"
 
 #, fuzzy
@@ -3130,6 +3176,9 @@ msgstr ""
 msgid "IRON"
 msgstr "Raud"
 
+msgid "IRON_LEVELS"
+msgstr ""
+
 #, fuzzy
 msgid "IRON_OXIDATION"
 msgstr "Annetused"
@@ -3165,6 +3214,14 @@ msgstr "juuli"
 
 msgid "JUNE"
 msgstr "juuni"
+
+#, fuzzy
+msgid "KEEP_CURRENT_SHORT"
+msgstr "Praegused arendajad"
+
+#, fuzzy
+msgid "KEEP_CURRENT_TOLERANCE_FLEXIBILITY_TOOLTIP"
+msgstr "Peata mäng"
 
 #, fuzzy
 msgid "KEEP_MIGRATION"
@@ -4303,10 +4360,6 @@ msgstr "Jumalarežiim"
 msgid "MODE_CAN_BE_CHANGED_IN_OPTIONS"
 msgstr ""
 
-#, fuzzy
-msgid "MODIFIER"
-msgstr "Muutma"
-
 msgid "MODIFY"
 msgstr "Muutma"
 
@@ -4767,6 +4820,10 @@ msgstr ""
 msgid "NOTICE_HIT_BY_BASE_MOVEMENT_TOXIN"
 msgstr "Aluse liikumine"
 
+#, fuzzy
+msgid "NOTICE_HYDROGEN_SULFIDE_DAMAGE"
+msgstr "Vesiniksulfiid"
+
 msgid "NOTICE_NOT_ENOUGH_MUCILAGE"
 msgstr ""
 
@@ -4868,9 +4925,6 @@ msgstr ""
 #, fuzzy
 msgid "OFFICIAL_WEBSITE_BUTTON_TOOLTIP"
 msgstr "vabasurm"
-
-msgid "OFFSET"
-msgstr ""
 
 msgid "OK"
 msgstr "Okei"
@@ -5152,6 +5206,10 @@ msgid "PAST_DEVELOPERS"
 msgstr "Varasemad arendajad"
 
 #, fuzzy
+msgid "PATCHES_NUMBER"
+msgstr "{0} {1}"
+
+#, fuzzy
 msgid "PATCH_COLON"
 msgstr "Parim plaaster:"
 
@@ -5262,6 +5320,10 @@ msgstr "fosfaat"
 msgid "PHOSPHATES_COST"
 msgstr "fosfaat"
 
+#, fuzzy
+msgid "PHOSPHATES_LEVELS"
+msgstr "fosfaat"
+
 msgid "PHOTOSYNTHESIS"
 msgstr "Fotosüntees"
 
@@ -5286,6 +5348,10 @@ msgstr ""
 
 msgid "PLANET_RANDOM_SEED"
 msgstr ""
+
+#, fuzzy
+msgid "PLANET_STATISTICS"
+msgstr "Statistika"
 
 #, fuzzy
 msgid "PLAYER"
@@ -5444,6 +5510,10 @@ msgid "RADIATION"
 msgstr "Aeroobne hingamine"
 
 #, fuzzy
+msgid "RADIATION_LEVELS"
+msgstr "Aeroobne hingamine"
+
+#, fuzzy
 msgid "RADIOACTIVE_CHUNK"
 msgstr "Suur raua tükk"
 
@@ -5501,6 +5571,10 @@ msgstr "Värskenda"
 #, fuzzy
 msgid "REGENERATE_BUTTON"
 msgstr "Organellid"
+
+#, fuzzy
+msgid "REGIONS_NUMBER"
+msgstr "Isikukood"
 
 msgid "RENDER_SCALE"
 msgstr ""
@@ -5649,6 +5723,18 @@ msgstr ""
 #, fuzzy
 msgid "REVEAL_ALL_PATCHES"
 msgstr "levinud plaastritele:"
+
+#, fuzzy
+msgid "REVERT_TO_EDITOR"
+msgstr "Minge järgmisele redaktori vahekaardile"
+
+#, fuzzy
+msgid "REVERT_TO_EDITOR_EXPLANATION"
+msgstr "See paneel näitab numbreid, millest automaatse evo ennustus töötab. Lõpliku populatsiooni määrab kogu energia, mida liik suudab püüda, ja kulu liigi isendi kohta. Auto-evo kasutab lihtsustatud tegelikkuse mudelit, et arvutada, kui hästi liigid toimivad, võttes aluseks energia, mida nad suudavad koguda. Iga toiduallika puhul näidatakse, et liik saab sellest palju energiat. Lisaks kuvatakse sellest allikast saadaolev koguenergia. See, kui suur osa liikide koguenergiast võidab, põhineb sellel, kui suur on sobivus võrreldes kogu sobivusega. Fitness on mõõdik selle kohta, kui hästi liik suudab seda toiduallikat kasutada."
+
+#, fuzzy
+msgid "REVERT_TO_EDITOR_PROMPT"
+msgstr "Näita rohkem teavet"
 
 #, fuzzy
 msgid "REVOLUTIONARY_GAMES_SOCIAL_TOOLTIP"
@@ -5985,6 +6071,10 @@ msgstr "Näita abi"
 #, fuzzy
 msgid "SHOW_ITEM_COORDINATES"
 msgstr "Näita õpetusi"
+
+#, fuzzy
+msgid "SHOW_MAP"
+msgstr "Näita abi"
 
 #, fuzzy
 msgid "SHOW_NEW_PATCH_NOTES"
@@ -6795,6 +6885,10 @@ msgid "TOLERANCES_UNSUITABLE_DEBUFFS"
 msgstr ""
 
 #, fuzzy
+msgid "TOLERANCE_DETAIL_TEXT"
+msgstr "{0} (x{1})"
+
+#, fuzzy
 msgid "TOLERANCE_FROM_ORGANELLES_TOOLTIP"
 msgstr "Näita/peida keskkonda ja ühendeid"
 
@@ -6807,22 +6901,17 @@ msgstr "Tööriistad"
 msgid "TOOL_HAND_AXE"
 msgstr ""
 
-msgid "TOO_MANY_RECENT_VERSIONS_TO_SHOW"
+msgid "TOO_LARGE_PRESSURE_RANGE"
 msgstr ""
 
-#, fuzzy
-msgid "TOTAL"
-msgstr "Kokkuhoid:"
+msgid "TOO_MANY_RECENT_VERSIONS_TO_SHOW"
+msgstr ""
 
 #, fuzzy
 msgid "TOTAL_GATHERED_ENERGY_COLON"
 msgstr "eelmine:"
 
 msgid "TOTAL_SAVES"
-msgstr "Kokkuhoid:"
-
-#, fuzzy
-msgid "TOTAL_VALUE"
 msgstr "Kokkuhoid:"
 
 msgid "TOXIN_CHANNEL_INHIBITOR"
@@ -9732,24 +9821,9 @@ msgstr "Suurenda"
 msgid "ZOOM_OUT"
 msgstr "Suumi välja"
 
-msgid "—"
-msgstr ""
-
 #, fuzzy
-#~ msgid "EFFECTIVE_VALUE"
-#~ msgstr "{0}%"
-
-#, fuzzy
-#~ msgid "ADDITIONAL_RESISTANCE"
-#~ msgstr "Toksiiniresistentsus"
-
-#, fuzzy
-#~ msgid "KEEP_CURRENT_SHORT"
-#~ msgstr "Praegused arendajad"
-
-#, fuzzy
-#~ msgid "KEEP_CURRENT_TOLERANCE_FLEXIBILITY_TOOLTIP"
-#~ msgstr "Peata mäng"
+#~ msgid "GENERATE_BUTTON"
+#~ msgstr "Põlvkond:"
 
 #, fuzzy
 #~ msgid "CELL_TYPE_BUTTON_ATP_CONSUMPTION"

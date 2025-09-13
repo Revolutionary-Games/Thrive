@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Threading.Tasks;
 using Components;
 using DefaultEcs;
 using DefaultEcs.Command;
@@ -43,6 +44,9 @@ public partial class MicrobeStage : CreatureStageBase<Entity, MicrobeWorldSimula
 
     [Export]
     private GuidanceLine guidanceLine = null!;
+
+    [Export]
+    private MicrobeWorldEnvironment microbeWorldEnvironment = null!;
 #pragma warning restore CA2213
 
     private Vector3? guidancePosition;
@@ -95,6 +99,13 @@ public partial class MicrobeStage : CreatureStageBase<Entity, MicrobeWorldSimula
     private bool appliedPlayerGodMode;
 
     private bool appliedUnlimitGrowthSpeed;
+
+    private bool loadSaveAdviceTriggered;
+
+    [JsonProperty]
+    private bool loadSaveAdviseSuppressed;
+
+    private string? foundPreviousEditorSave;
 
     /// <summary>
     ///   Used to ferry data between the patch change logic and handling the player cell splitting (as I couldn't
@@ -361,7 +372,7 @@ public partial class MicrobeStage : CreatureStageBase<Entity, MicrobeWorldSimula
                     var position = engulfer.FindNearestEngulfableSlow(ref Player.Get<CellProperties>(),
                         ref Player.Get<OrganelleContainer>(), ref Player.Get<WorldPosition>(),
                         Player.Get<CompoundStorage>().Compounds, Player, Player.Get<SpeciesMember>().ID,
-                        WorldSimulation);
+                        WorldSimulation, skipLikelyTooFastTargets: true);
 
                     TutorialState.SendEvent(TutorialEventType.MicrobeChunksNearPlayer,
                         new EntityPositionEventArgs(position), this);
@@ -805,6 +816,8 @@ public partial class MicrobeStage : CreatureStageBase<Entity, MicrobeWorldSimula
             HUD.ToggleWinBox();
             wonOnce = true;
         }
+
+        loadSaveAdviceTriggered = false;
 
         var playerSpecies = Player.Get<SpeciesMember>().Species;
 
@@ -1296,6 +1309,63 @@ public partial class MicrobeStage : CreatureStageBase<Entity, MicrobeWorldSimula
         guidanceLine.Visible = false;
     }
 
+    protected override void OnPlayerDeath(int deathsSinceEditor)
+    {
+        if (CurrentGame == null)
+            throw new InvalidOperationException("Current game is null when player is dead callback triggered");
+
+        if (loadSaveAdviseSuppressed)
+            return;
+
+        if (loadSaveAdviceTriggered)
+            return;
+
+        // It doesn't make sense to suggest loading an earlier auto save if they are disabled
+        if (deathsSinceEditor >= 3 && Settings.Instance.AutoSaveEnabled.Value)
+        {
+            loadSaveAdviceTriggered = true;
+            foundPreviousEditorSave = null;
+
+            // As we might need to read a bunch of files, this is done in a separate thread
+            var task = new Task(() =>
+            {
+                // Find a suitable save to load before we show the advice as we don't want to advise something
+                // impossible
+                string? found = null;
+                foreach (var (saveName, saveInfo) in SaveHelper.CreateListOfAutoSavesForGame(CurrentGame.PlaythroughID,
+                             SaveHelper.SaveOrder.FirstModifiedFirst))
+                {
+                    // Only suitable saves to revert to
+                    if (saveInfo.GameState is not (MainGameState.MicrobeEditor or MainGameState.MulticellularEditor))
+                        continue;
+
+                    GD.Print($"Found earlier save from this playthrough: {saveName} ({saveInfo.PlaythroughID})");
+                    found = saveName;
+                    break;
+                }
+
+                Invoke.Instance.QueueForObject(() =>
+                {
+                    foundPreviousEditorSave = found;
+
+                    if (!string.IsNullOrEmpty(foundPreviousEditorSave))
+                    {
+                        GD.Print("Showing advice about loading a previous save");
+                        loadSaveAdviceTriggered = true;
+
+                        HUD.ShowSaveLoadAdvise();
+                    }
+                    else
+                    {
+                        GD.Print("No previous save to load to suggest");
+                    }
+                }, this);
+            });
+
+            TaskExecutor.Instance.AddTask(task);
+        }
+    }
+
     protected override void AutoSave()
     {
         SaveHelper.AutoSave(this);
@@ -1310,9 +1380,11 @@ public partial class MicrobeStage : CreatureStageBase<Entity, MicrobeWorldSimula
     {
         ClearResolvedTolerancesCache();
 
+        var currentPatch = GameWorld.Map.CurrentPatch!;
+
         // TODO: would be nice to skip this if we are loading a save made in the editor as this gets called twice when
         // going back to the stage
-        if (patchManager.ApplyChangedPatchSettingsIfNeeded(GameWorld.Map.CurrentPatch!, this))
+        if (patchManager.ApplyChangedPatchSettingsIfNeeded(currentPatch, this))
         {
             if (promptPatchNameChange)
                 HUD.ShowPatchName(CurrentPatchName.ToString());
@@ -1331,13 +1403,13 @@ public partial class MicrobeStage : CreatureStageBase<Entity, MicrobeWorldSimula
             switchedPatchInEditorForCompounds = false;
         }
 
-        HUD.UpdateEnvironmentalBars(GameWorld.Map.CurrentPatch!.Biome);
+        HUD.UpdateEnvironmentalBars(currentPatch.Biome);
 
         UpdateBackground();
 
         UpdatePatchLightLevelSettings();
 
-        fluidCurrentDisplay.ApplyBiome(GameWorld.Map.CurrentPatch.BiomeTemplate);
+        fluidCurrentDisplay.ApplyBiome(currentPatch.BiomeTemplate);
     }
 
     protected override void OnGameContinuedAsSpecies(Species newPlayerSpecies, Patch inPatch)
@@ -1373,13 +1445,20 @@ public partial class MicrobeStage : CreatureStageBase<Entity, MicrobeWorldSimula
             var lightLevel =
                 currentPatch.Biome.GetCompound(Compound.Sunlight, CompoundAmountType.Current).Ambient;
 
+            float lightModifier = lightLevel / maxLightLevel;
+
             // Normalise by maximum light level in the patch
-            Camera.LightLevel = lightLevel / maxLightLevel;
+            Camera.LightLevel = lightModifier;
+
+            microbeWorldEnvironment.UpdateAmbientReflection(
+                currentPatch.BiomeTemplate.EnvironmentColour * lightModifier);
         }
         else
         {
             // Don't change lighting for patches without day/night effects
             Camera.LightLevel = 1.0f;
+
+            microbeWorldEnvironment.UpdateAmbientReflection(currentPatch.BiomeTemplate.EnvironmentColour);
         }
     }
 
@@ -1920,5 +1999,29 @@ public partial class MicrobeStage : CreatureStageBase<Entity, MicrobeWorldSimula
         Localization.Translate("SUCCESSFUL_KILL");
         Localization.Translate("SUCCESSFUL_SCAVENGE");
         Localization.Translate("ESCAPE_ENGULFING");
+    }
+
+    private void OnLoadPreviousEditorSave()
+    {
+        if (foundPreviousEditorSave == null)
+        {
+            GD.PrintErr("No save found to load");
+            return;
+        }
+
+        GD.Print("Beginning to load previous editor save: ", foundPreviousEditorSave);
+
+        var save = foundPreviousEditorSave;
+
+        TransitionManager.Instance.AddSequence(ScreenFade.FadeType.FadeOut, 0.5f,
+            () => { Invoke.Instance.Queue(() => SaveHelper.LoadSave(save)); }, false);
+
+        foundPreviousEditorSave = null;
+    }
+
+    private void OnCancelLoadAdvice()
+    {
+        GD.Print("Permanently cancelling load save advice");
+        loadSaveAdviseSuppressed = true;
     }
 }

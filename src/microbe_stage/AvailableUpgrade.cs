@@ -31,14 +31,14 @@ public class AvailableUpgrade : IRegistryType
 #pragma warning restore 169,649
 
     /// <summary>
-    ///   When true this is the default upgrade shown in the upgrade GUI for reverting upgrades
+    ///   When true, this is the default upgrade shown in the upgrade GUI for reverting upgrades
     /// </summary>
     [JsonProperty]
-    public bool IsDefault { get; private set; }
+    public bool IsDefault { get; protected set; }
 
     [JsonProperty]
     [TranslateFrom(nameof(untranslatedName))]
-    public string Name { get; private set; } = null!;
+    public string Name { get; protected set; } = null!;
 
     [JsonProperty]
     [TranslateFrom(nameof(untranslatedDescription))]
@@ -48,7 +48,7 @@ public class AvailableUpgrade : IRegistryType
     ///   Cost of selecting this upgrade in the editor
     /// </summary>
     [JsonProperty]
-    public int MPCost { get; private set; }
+    public int MPCost { get; protected set; }
 
     [JsonProperty]
     public string IconPath { get; private set; } = string.Empty;

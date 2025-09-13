@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2025-09-13 14:35+0200\n"
+"POT-Creation-Date: 2025-09-12 09:19+0300\n"
 "PO-Revision-Date: 2025-05-25 15:00+0000\n"
 "Last-Translator: Anonymous <noreply@weblate.org>\n"
 "Language-Team: Dutch <https://translate.revolutionarygamesstudio.com/projects/thrive/thrive-game/nl/>\n"
@@ -188,6 +188,10 @@ msgid "AMMONIA"
 msgstr "Ammoniak"
 
 msgid "AMMONIA_COST"
+msgstr "Ammoniakkosten:"
+
+#, fuzzy
+msgid "AMMONIA_LEVELS"
 msgstr "Ammoniakkosten:"
 
 msgid "AMOUNT_OF_AUTOSAVE_TO_KEEP"
@@ -416,6 +420,21 @@ msgstr "Beschikbare Bouwprojecten"
 
 msgid "AVAILABLE_MODS"
 msgstr "Beschikbare Mods"
+
+msgid "AVERAGE_SURFACE_CARBON_DIOXIDE_LEVEL"
+msgstr ""
+
+msgid "AVERAGE_SURFACE_LIGHT_LEVEL"
+msgstr ""
+
+msgid "AVERAGE_SURFACE_NITROGEN_LEVEL"
+msgstr ""
+
+msgid "AVERAGE_SURFACE_OTHER_LEVEL"
+msgstr ""
+
+msgid "AVERAGE_SURFACE_OXYGEN_LEVEL"
+msgstr ""
 
 msgid "AWAKENING_STAGE"
 msgstr "Ontwaakfase"
@@ -1021,6 +1040,25 @@ msgstr "Toon / verberg stoffen"
 #, fuzzy
 msgid "COMPOUND_HANDLE_TOP_UP_ON_CHANGE"
 msgstr "Dichtheid van stofwolken"
+
+#, fuzzy
+msgid "COMPOUND_LEVEL_AVERAGE"
+msgstr "Gemiddeld"
+
+#, fuzzy
+msgid "COMPOUND_LEVEL_HIGH"
+msgstr "Stofbalanzen"
+
+#, fuzzy
+msgid "COMPOUND_LEVEL_LOW"
+msgstr "Samenstellings-wolken"
+
+msgid "COMPOUND_LEVEL_VERY_HIGH"
+msgstr ""
+
+#, fuzzy
+msgid "COMPOUND_LEVEL_VERY_LOW"
+msgstr "Alles Behouden"
 
 msgid "COMPOUND_STORAGE_AMOUNT_DOES_NOT_LAST_NIGHT"
 msgstr "(niet genoeg om de nachtduur van {0} s te overleven)"
@@ -1892,6 +1930,9 @@ msgstr ""
 msgid "EDIT_MICROBE_FIRST_TIME"
 msgstr "Gedeelde Bewerken en Strategiefasen"
 
+msgid "EFFECTIVE_VALUE"
+msgstr "Effectieve Waarde"
+
 msgid "EIGHT_TIMES"
 msgstr "8x"
 
@@ -2465,10 +2506,6 @@ msgstr "Klik de ongedaan maken knop in de bewerker om een fout te corrigeren"
 msgid "GENERAL_LOADING_TIP_7"
 msgstr "Klik de ongedaan maken knop in de bewerker om een fout te corrigeren"
 
-#, fuzzy
-msgid "GENERATE_BUTTON"
-msgstr "Generatie"
-
 msgid "GENERATE_POSITIVE_GLUCOSE_PHOTOSYNTHESIS"
 msgstr ""
 
@@ -2537,6 +2574,10 @@ msgstr "Glucose"
 
 msgid "GLUCOSE_CONCENTRATIONS_DRASTICALLY_DROPPED"
 msgstr "Glucoseconcentratie is drastisch gedaald!"
+
+#, fuzzy
+msgid "GLUCOSE_LEVEL"
+msgstr "{0}-{1}m onder zeeniveau"
 
 msgid "GLYCOLYSIS"
 msgstr "Glycolyse"
@@ -2671,6 +2712,10 @@ msgid "HYDROGENOSOME_PROCESSES_DESCRIPTION"
 msgstr "Zet [thrive:compound type=\"atp\"][/thrive:compound] om in [thrive:compound type=\"ammonia\"][/thrive:compound]. Snelheid schaalt met de concentratie van [thrive:compound type=\"nitrogen\"][/thrive:compound]."
 
 msgid "HYDROGEN_SULFIDE"
+msgstr "Waterstofsulfide"
+
+#, fuzzy
+msgid "HYDROGEN_SULFIDE_LEVELS"
 msgstr "Waterstofsulfide"
 
 msgid "ICESHARD"
@@ -2899,6 +2944,9 @@ msgstr ""
 msgid "IRON"
 msgstr "Ijzer"
 
+msgid "IRON_LEVELS"
+msgstr ""
+
 #, fuzzy
 msgid "IRON_OXIDATION"
 msgstr "Donaties"
@@ -2936,6 +2984,14 @@ msgstr "Juli"
 
 msgid "JUNE"
 msgstr "Juni"
+
+#, fuzzy
+msgid "KEEP_CURRENT_SHORT"
+msgstr "Huidige Wereld"
+
+#, fuzzy
+msgid "KEEP_CURRENT_TOLERANCE_FLEXIBILITY_TOOLTIP"
+msgstr "Bezoek onze Patreonpagina"
 
 #, fuzzy
 msgid "KEEP_MIGRATION"
@@ -4009,10 +4065,6 @@ msgstr "Modellen"
 msgid "MODE_CAN_BE_CHANGED_IN_OPTIONS"
 msgstr "Schuif strategische weergave wanneer muisaanwijzer aan de rand van het scherm is"
 
-#, fuzzy
-msgid "MODIFIER"
-msgstr "Aanpassen"
-
 msgid "MODIFY"
 msgstr "Aanpassen"
 
@@ -4437,6 +4489,10 @@ msgid "NOTICE_HIT_BY_BASE_MOVEMENT_TOXIN"
 msgstr "Basisbeweging"
 
 #, fuzzy
+msgid "NOTICE_HYDROGEN_SULFIDE_DAMAGE"
+msgstr "Waterstofsulfide"
+
+#, fuzzy
 msgid "NOTICE_NOT_ENOUGH_MUCILAGE"
 msgstr "Niet genoeg {0} om recept te vervaardigen"
 
@@ -4536,9 +4592,6 @@ msgstr "Officiële Website"
 
 msgid "OFFICIAL_WEBSITE_BUTTON_TOOLTIP"
 msgstr "Bezoek de officiële Revolutionary Games website"
-
-msgid "OFFSET"
-msgstr ""
 
 msgid "OK"
 msgstr "OK"
@@ -4801,6 +4854,10 @@ msgid "PAST_DEVELOPERS"
 msgstr "Eerdere Ontwikkelaars"
 
 #, fuzzy
+msgid "PATCHES_NUMBER"
+msgstr "{0} {1}"
+
+#, fuzzy
 msgid "PATCH_COLON"
 msgstr "Beste Plek:"
 
@@ -4904,6 +4961,10 @@ msgstr "Fosfaat"
 msgid "PHOSPHATES_COST"
 msgstr "Fosfaat"
 
+#, fuzzy
+msgid "PHOSPHATES_LEVELS"
+msgstr "Fosfaat"
+
 msgid "PHOTOSYNTHESIS"
 msgstr "Fotosynthese"
 
@@ -4933,6 +4994,10 @@ msgstr ""
 
 msgid "PLANET_RANDOM_SEED"
 msgstr "Willekeurige kiem voor de planeet"
+
+#, fuzzy
+msgid "PLANET_STATISTICS"
+msgstr "Statistieken"
 
 msgid "PLAYER"
 msgstr "Speler"
@@ -5086,6 +5151,10 @@ msgid "RADIATION"
 msgstr "Straling"
 
 #, fuzzy
+msgid "RADIATION_LEVELS"
+msgstr "Straling"
+
+#, fuzzy
 msgid "RADIOACTIVE_CHUNK"
 msgstr "Groot Brokstuk Fosfaat"
 
@@ -5139,6 +5208,10 @@ msgstr "Ververs"
 #, fuzzy
 msgid "REGENERATE_BUTTON"
 msgstr "Axon"
+
+#, fuzzy
+msgid "REGIONS_NUMBER"
+msgstr "ID Nummer"
 
 #, fuzzy
 msgid "RENDER_SCALE"
@@ -5277,6 +5350,18 @@ msgstr ""
 #, fuzzy
 msgid "REVEAL_ALL_PATCHES"
 msgstr "verspreid naar patches:"
+
+#, fuzzy
+msgid "REVERT_TO_EDITOR"
+msgstr "Ga naar het volgende bewerkertabblad"
+
+#, fuzzy
+msgid "REVERT_TO_EDITOR_EXPLANATION"
+msgstr "(wanneer aangezet wordt de groeisnelheid gelimiteerd, anders heeft alleen de beschikbaarheid van stoffen effect op groeisnelheid)"
+
+#, fuzzy
+msgid "REVERT_TO_EDITOR_PROMPT"
+msgstr "Toon Meer Info"
 
 msgid "REVOLUTIONARY_GAMES_SOCIAL_TOOLTIP"
 msgstr "Bezoek officiële Revolutionary Games sites"
@@ -5594,6 +5679,10 @@ msgid "SHOW_ITEM_COORDINATES"
 msgstr ""
 "Coordinaten positie: {0}\n"
 "Kijkend naar coordinaten: {1}"
+
+#, fuzzy
+msgid "SHOW_MAP"
+msgstr "Open hulp"
 
 msgid "SHOW_NEW_PATCH_NOTES"
 msgstr "Toon nieuwe patchnotities automatisch"
@@ -6353,6 +6442,20 @@ msgid "TOLERANCES_UNSUITABLE_DEBUFFS"
 msgstr ""
 
 #, fuzzy
+msgid "TOLERANCE_DETAIL_TEXT"
+msgstr ""
+"[b]Soorten[/b]\n"
+"  {0}:{1}\n"
+"[b]Generatie[/b]\n"
+"  {2}\n"
+"[b]Bevolking[/b]\n"
+"  {3}\n"
+"[b]Kleur[/b]\n"
+"  #{4}\n"
+"[b]Gedrag[/b]\n"
+"  {5}"
+
+#, fuzzy
 msgid "TOLERANCE_FROM_ORGANELLES_TOOLTIP"
 msgstr ""
 "Dit deel laat het totaal aantal ATP (energie) zien in de huidige cel.\n"
@@ -6370,22 +6473,17 @@ msgstr "Tools"
 msgid "TOOL_HAND_AXE"
 msgstr "Handbijl"
 
-msgid "TOO_MANY_RECENT_VERSIONS_TO_SHOW"
+msgid "TOO_LARGE_PRESSURE_RANGE"
 msgstr ""
 
-#, fuzzy
-msgid "TOTAL"
-msgstr "Totale hoeveelheid opslagbestanden:"
+msgid "TOO_MANY_RECENT_VERSIONS_TO_SHOW"
+msgstr ""
 
 #, fuzzy
 msgid "TOTAL_GATHERED_ENERGY_COLON"
 msgstr "Soorten:"
 
 msgid "TOTAL_SAVES"
-msgstr "Totale hoeveelheid opslagbestanden:"
-
-#, fuzzy
-msgid "TOTAL_VALUE"
 msgstr "Totale hoeveelheid opslagbestanden:"
 
 msgid "TOXIN_CHANNEL_INHIBITOR"
@@ -9163,27 +9261,9 @@ msgstr "Inzoomen"
 msgid "ZOOM_OUT"
 msgstr "Uitzoomen"
 
-msgid "—"
-msgstr ""
-
-#~ msgid "EFFECTIVE_VALUE"
-#~ msgstr "Effectieve Waarde"
-
 #, fuzzy
-#~ msgid "PLUS_MINUS_VALUE_WITH_UNIT"
-#~ msgstr "{0} {1}"
-
-#, fuzzy
-#~ msgid "ADDITIONAL_RESISTANCE"
-#~ msgstr "Weerstand tegen Gifstoffen"
-
-#, fuzzy
-#~ msgid "KEEP_CURRENT_SHORT"
-#~ msgstr "Huidige Wereld"
-
-#, fuzzy
-#~ msgid "KEEP_CURRENT_TOLERANCE_FLEXIBILITY_TOOLTIP"
-#~ msgstr "Bezoek onze Patreonpagina"
+#~ msgid "GENERATE_BUTTON"
+#~ msgstr "Generatie"
 
 #~ msgid "CELL_TYPE_BUTTON_ATP_CONSUMPTION"
 #~ msgstr "De ATP-consumptie van dit celtype is {0}."

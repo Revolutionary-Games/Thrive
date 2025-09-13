@@ -39,6 +39,9 @@ public sealed class OsmoregulationAndHealingSystem : AEntitySetSystem<float>
 {
     private GameWorld? gameWorld;
 
+    private bool hydrogenSulfideDamageTrigger;
+    private float elapsedSinceTrigger;
+
     public OsmoregulationAndHealingSystem(World world, IParallelRunner parallelRunner) :
         base(world, parallelRunner)
     {
@@ -55,6 +58,18 @@ public sealed class OsmoregulationAndHealingSystem : AEntitySetSystem<float>
 
         if (gameWorld == null)
             throw new InvalidOperationException("GameWorld not set");
+
+        elapsedSinceTrigger += state;
+
+        if (elapsedSinceTrigger >= Constants.HYDROGEN_SULFIDE_DAMAGE_INTERVAL)
+        {
+            hydrogenSulfideDamageTrigger = true;
+            elapsedSinceTrigger = 0.0f;
+        }
+        else
+        {
+            hydrogenSulfideDamageTrigger = false;
+        }
     }
 
     protected override void Update(float delta, in Entity entity)
@@ -74,6 +89,19 @@ public sealed class OsmoregulationAndHealingSystem : AEntitySetSystem<float>
         TakeOsmoregulationEnergyCost(entity, ref cellProperties, compounds, delta);
 
         HandleOsmoregulationDamage(entity, ref status, ref health, ref cellProperties, compounds, delta);
+
+        if (hydrogenSulfideDamageTrigger
+            && compounds.GetCompoundAmount(Compound.Hydrogensulfide) > Constants.HYDROGEN_SULFIDE_DAMAGE_THESHOLD
+            && !entity.Get<OrganelleContainer>().HydrogenSulfideProtection)
+        {
+            compounds.TakeCompound(Compound.Hydrogensulfide, Constants.HYDROGEN_SULFIDE_DAMAGE_COMPOUND_DRAIN);
+
+            health.DealMicrobeDamage(ref cellProperties, Constants.HYDROGEN_SULFIDE_DAMAGE, "hydrogenSulfide",
+                HealthHelpers.GetInstantKillProtectionThreshold(entity));
+
+            entity.SendNoticeIfPossible(() =>
+                new SimpleHUDMessage(Localization.Translate("NOTICE_HYDROGEN_SULFIDE_DAMAGE"), DisplayDuration.Short));
+        }
 
         // There used to be the engulfing mode ATP handling here, but it is now in EngulfingSystem as it makes more
         // sense to be in there

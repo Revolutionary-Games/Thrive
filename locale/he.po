@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2025-09-13 14:35+0200\n"
+"POT-Creation-Date: 2025-09-12 09:19+0300\n"
 "PO-Revision-Date: 2025-05-25 15:00+0000\n"
 "Last-Translator: Anonymous <noreply@weblate.org>\n"
 "Language-Team: Hebrew <https://translate.revolutionarygamesstudio.com/projects/thrive/thrive-game/he/>\n"
@@ -189,6 +189,10 @@ msgstr "אמוניה"
 
 #, fuzzy
 msgid "AMMONIA_COST"
+msgstr "אמוניה"
+
+#, fuzzy
+msgid "AMMONIA_LEVELS"
 msgstr "אמוניה"
 
 msgid "AMOUNT_OF_AUTOSAVE_TO_KEEP"
@@ -414,6 +418,21 @@ msgstr ""
 
 msgid "AVAILABLE_MODS"
 msgstr "מודים זמינים"
+
+msgid "AVERAGE_SURFACE_CARBON_DIOXIDE_LEVEL"
+msgstr ""
+
+msgid "AVERAGE_SURFACE_LIGHT_LEVEL"
+msgstr ""
+
+msgid "AVERAGE_SURFACE_NITROGEN_LEVEL"
+msgstr ""
+
+msgid "AVERAGE_SURFACE_OTHER_LEVEL"
+msgstr ""
+
+msgid "AVERAGE_SURFACE_OXYGEN_LEVEL"
+msgstr ""
 
 msgid "AWAKENING_STAGE"
 msgstr ""
@@ -1039,6 +1058,25 @@ msgstr "הראה/החבא תרכובות"
 #, fuzzy
 msgid "COMPOUND_HANDLE_TOP_UP_ON_CHANGE"
 msgstr "ריכוז ענני תרכובת"
+
+#, fuzzy
+msgid "COMPOUND_LEVEL_AVERAGE"
+msgstr "מאזן תרכובות"
+
+#, fuzzy
+msgid "COMPOUND_LEVEL_HIGH"
+msgstr "מאזן תרכובות"
+
+#, fuzzy
+msgid "COMPOUND_LEVEL_LOW"
+msgstr "ענני תרכובות"
+
+msgid "COMPOUND_LEVEL_VERY_HIGH"
+msgstr ""
+
+#, fuzzy
+msgid "COMPOUND_LEVEL_VERY_LOW"
+msgstr "מאזן תרכובות"
 
 #, fuzzy
 msgid "COMPOUND_STORAGE_AMOUNT_DOES_NOT_LAST_NIGHT"
@@ -1953,6 +1991,10 @@ msgstr ""
 msgid "EDIT_MICROBE_FIRST_TIME"
 msgstr "שלב המיקרובי"
 
+#, fuzzy
+msgid "EFFECTIVE_VALUE"
+msgstr "{0}%"
+
 msgid "EIGHT_TIMES"
 msgstr "8x"
 
@@ -2571,10 +2613,6 @@ msgstr "לחץ על הכפתור \"בטל\" בעורך בשביל לתקן טע�
 msgid "GENERAL_LOADING_TIP_7"
 msgstr "לחץ על הכפתור \"בטל\" בעורך בשביל לתקן טעויות"
 
-#, fuzzy
-msgid "GENERATE_BUTTON"
-msgstr "דורות"
-
 msgid "GENERATE_POSITIVE_GLUCOSE_PHOTOSYNTHESIS"
 msgstr ""
 
@@ -2643,6 +2681,10 @@ msgstr "גלוקוז"
 
 msgid "GLUCOSE_CONCENTRATIONS_DRASTICALLY_DROPPED"
 msgstr "ריכוזי הגלוקוז ירדו בצורה דרסטית!"
+
+#, fuzzy
+msgid "GLUCOSE_LEVEL"
+msgstr "{0}-{1}מ' מתחת פני הים"
 
 msgid "GLYCOLYSIS"
 msgstr "גליקוליזה"
@@ -2782,6 +2824,10 @@ msgid "HYDROGENOSOME_PROCESSES_DESCRIPTION"
 msgstr "הופך [thrive:compound type=\"atp\"][/thrive:compound] ל[thrive:compound type=\"ammonia\"][/thrive:compound]. בהתאם לריכוזו של ה[thrive:compound type=\"nitrogen\"][/thrive:compound]."
 
 msgid "HYDROGEN_SULFIDE"
+msgstr "מימן גופרתי"
+
+#, fuzzy
+msgid "HYDROGEN_SULFIDE_LEVELS"
 msgstr "מימן גופרתי"
 
 #, fuzzy
@@ -3033,6 +3079,9 @@ msgstr ""
 msgid "IRON"
 msgstr "ברזל"
 
+msgid "IRON_LEVELS"
+msgstr ""
+
 #, fuzzy
 msgid "IRON_OXIDATION"
 msgstr "תרומות"
@@ -3067,6 +3116,14 @@ msgstr "יולי"
 
 msgid "JUNE"
 msgstr "יוני"
+
+#, fuzzy
+msgid "KEEP_CURRENT_SHORT"
+msgstr "מפתחים נוכחים"
+
+#, fuzzy
+msgid "KEEP_CURRENT_TOLERANCE_FLEXIBILITY_TOOLTIP"
+msgstr "ראו את דף הפטריון שלנו"
 
 #, fuzzy
 msgid "KEEP_MIGRATION"
@@ -4155,10 +4212,6 @@ msgstr "מודלים"
 msgid "MODE_CAN_BE_CHANGED_IN_OPTIONS"
 msgstr ""
 
-#, fuzzy
-msgid "MODIFIER"
-msgstr "לשנות"
-
 msgid "MODIFY"
 msgstr "לשנות"
 
@@ -4584,6 +4637,10 @@ msgid "NOTICE_HIT_BY_BASE_MOVEMENT_TOXIN"
 msgstr "מהירות בסיסית"
 
 #, fuzzy
+msgid "NOTICE_HYDROGEN_SULFIDE_DAMAGE"
+msgstr "מימן גופרתי"
+
+#, fuzzy
 msgid "NOTICE_NOT_ENOUGH_MUCILAGE"
 msgstr "בקנה מידה הפוך"
 
@@ -4684,9 +4741,6 @@ msgstr "אתר רשמי"
 
 msgid "OFFICIAL_WEBSITE_BUTTON_TOOLTIP"
 msgstr "להיכנס לאתר הרשמי של Revolutionary Games"
-
-msgid "OFFSET"
-msgstr ""
 
 msgid "OK"
 msgstr "בסדר"
@@ -4961,6 +5015,10 @@ msgid "PAST_DEVELOPERS"
 msgstr "מפתחים לשעבר"
 
 #, fuzzy
+msgid "PATCHES_NUMBER"
+msgstr "{0} {1}"
+
+#, fuzzy
 msgid "PATCH_COLON"
 msgstr "האזור הטוב ביותר:"
 
@@ -5069,6 +5127,10 @@ msgstr "פוספט"
 msgid "PHOSPHATES_COST"
 msgstr "פוספט"
 
+#, fuzzy
+msgid "PHOSPHATES_LEVELS"
+msgstr "פוספט"
+
 msgid "PHOTOSYNTHESIS"
 msgstr "פוטוסינתזה"
 
@@ -5094,6 +5156,10 @@ msgstr "פתח תקיית קבצי לוג"
 
 msgid "PLANET_RANDOM_SEED"
 msgstr "כוכב סייד אקראי"
+
+#, fuzzy
+msgid "PLANET_STATISTICS"
+msgstr "סטטיסטיקה"
 
 #, fuzzy
 msgid "PLAYER"
@@ -5250,6 +5316,10 @@ msgid "RADIATION"
 msgstr "נשימה ארובית"
 
 #, fuzzy
+msgid "RADIATION_LEVELS"
+msgstr "נשימה ארובית"
+
+#, fuzzy
 msgid "RADIOACTIVE_CHUNK"
 msgstr "גוש ברזל גדול"
 
@@ -5303,6 +5373,10 @@ msgstr "רענן"
 #, fuzzy
 msgid "REGENERATE_BUTTON"
 msgstr "אברונים"
+
+#, fuzzy
+msgid "REGIONS_NUMBER"
+msgstr "מספר ID"
 
 #, fuzzy
 msgid "RENDER_SCALE"
@@ -5448,6 +5522,18 @@ msgstr ""
 #, fuzzy
 msgid "REVEAL_ALL_PATCHES"
 msgstr "התפשט לאזורים:"
+
+#, fuzzy
+msgid "REVERT_TO_EDITOR"
+msgstr "לך לכרטיסיית העורך הבאה"
+
+#, fuzzy
+msgid "REVERT_TO_EDITOR_EXPLANATION"
+msgstr "(כאשר מופעל מגביל מהירות הצמיחה, ואם מושבת רק תרכובות הזמינות משפיעות על מהירות הצמיחה)"
+
+#, fuzzy
+msgid "REVERT_TO_EDITOR_PROMPT"
+msgstr "הראה עוד מידע"
 
 msgid "REVOLUTIONARY_GAMES_SOCIAL_TOOLTIP"
 msgstr "בקרו באתר הרשמי של Revolutionary Games"
@@ -5771,6 +5857,10 @@ msgstr "הצג עזרה"
 #, fuzzy
 msgid "SHOW_ITEM_COORDINATES"
 msgstr "הצג מדריכים"
+
+#, fuzzy
+msgid "SHOW_MAP"
+msgstr "הצג עזרה"
 
 #, fuzzy
 msgid "SHOW_NEW_PATCH_NOTES"
@@ -6544,6 +6634,20 @@ msgid "TOLERANCES_UNSUITABLE_DEBUFFS"
 msgstr ""
 
 #, fuzzy
+msgid "TOLERANCE_DETAIL_TEXT"
+msgstr ""
+"[b]מינים[/b]\n"
+" {0}:{1}\n"
+"[b]דור[/b]\n"
+" {2}\n"
+"[b]אוכלוסיה[/b]\n"
+" {3}\n"
+"[b]צבע[/b]\n"
+" #{4}\n"
+"[b]התנהגות[/b]\n"
+" {5}"
+
+#, fuzzy
 msgid "TOLERANCE_FROM_ORGANELLES_TOOLTIP"
 msgstr "הראה/החבא תרכובות"
 
@@ -6556,22 +6660,17 @@ msgstr "כלים"
 msgid "TOOL_HAND_AXE"
 msgstr ""
 
-msgid "TOO_MANY_RECENT_VERSIONS_TO_SHOW"
+msgid "TOO_LARGE_PRESSURE_RANGE"
 msgstr ""
 
-#, fuzzy
-msgid "TOTAL"
-msgstr "נשמר בסך הכל:"
+msgid "TOO_MANY_RECENT_VERSIONS_TO_SHOW"
+msgstr ""
 
 #, fuzzy
 msgid "TOTAL_GATHERED_ENERGY_COLON"
 msgstr "מצב:"
 
 msgid "TOTAL_SAVES"
-msgstr "נשמר בסך הכל:"
-
-#, fuzzy
-msgid "TOTAL_VALUE"
 msgstr "נשמר בסך הכל:"
 
 msgid "TOXIN_CHANNEL_INHIBITOR"
@@ -9362,28 +9461,9 @@ msgstr "להתמקד"
 msgid "ZOOM_OUT"
 msgstr "זום החוצה"
 
-msgid "—"
-msgstr ""
-
 #, fuzzy
-#~ msgid "EFFECTIVE_VALUE"
-#~ msgstr "{0}%"
-
-#, fuzzy
-#~ msgid "PLUS_MINUS_VALUE_WITH_UNIT"
-#~ msgstr "{0} {1}"
-
-#, fuzzy
-#~ msgid "ADDITIONAL_RESISTANCE"
-#~ msgstr "עמידות לרעלים"
-
-#, fuzzy
-#~ msgid "KEEP_CURRENT_SHORT"
-#~ msgstr "מפתחים נוכחים"
-
-#, fuzzy
-#~ msgid "KEEP_CURRENT_TOLERANCE_FLEXIBILITY_TOOLTIP"
-#~ msgstr "ראו את דף הפטריון שלנו"
+#~ msgid "GENERATE_BUTTON"
+#~ msgstr "דורות"
 
 #, fuzzy
 #~ msgid "CELL_TYPE_BUTTON_ATP_CONSUMPTION"

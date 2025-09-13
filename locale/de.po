@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2025-09-13 14:35+0200\n"
+"POT-Creation-Date: 2025-09-12 09:19+0300\n"
 "PO-Revision-Date: 2025-08-13 14:57+0000\n"
 "Last-Translator: Anonymous <noreply@weblate.org>\n"
 "Language-Team: German <https://translate.revolutionarygamesstudio.com/projects/thrive/thrive-game/de/>\n"
@@ -188,6 +188,10 @@ msgid "AMMONIA"
 msgstr "Ammoniak"
 
 msgid "AMMONIA_COST"
+msgstr "Ammoniak-Kosten:"
+
+#, fuzzy
+msgid "AMMONIA_LEVELS"
 msgstr "Ammoniak-Kosten:"
 
 msgid "AMOUNT_OF_AUTOSAVE_TO_KEEP"
@@ -411,6 +415,21 @@ msgstr "Verfügbare Bauprojekte"
 
 msgid "AVAILABLE_MODS"
 msgstr "Verfügbare Mods"
+
+msgid "AVERAGE_SURFACE_CARBON_DIOXIDE_LEVEL"
+msgstr ""
+
+msgid "AVERAGE_SURFACE_LIGHT_LEVEL"
+msgstr ""
+
+msgid "AVERAGE_SURFACE_NITROGEN_LEVEL"
+msgstr ""
+
+msgid "AVERAGE_SURFACE_OTHER_LEVEL"
+msgstr ""
+
+msgid "AVERAGE_SURFACE_OXYGEN_LEVEL"
+msgstr ""
 
 msgid "AWAKENING_STAGE"
 msgstr "Phase des Erwachens"
@@ -1016,6 +1035,25 @@ msgstr "Immer auf Ausgangsbestand auffüllen"
 
 msgid "COMPOUND_HANDLE_TOP_UP_ON_CHANGE"
 msgstr "Bei Bereichswechsel auffüllen"
+
+#, fuzzy
+msgid "COMPOUND_LEVEL_AVERAGE"
+msgstr "Durchschnitt"
+
+#, fuzzy
+msgid "COMPOUND_LEVEL_HIGH"
+msgstr "Substanzhaushalt"
+
+#, fuzzy
+msgid "COMPOUND_LEVEL_LOW"
+msgstr "Substanzwolken"
+
+msgid "COMPOUND_LEVEL_VERY_HIGH"
+msgstr ""
+
+#, fuzzy
+msgid "COMPOUND_LEVEL_VERY_LOW"
+msgstr "Alle behalten"
 
 msgid "COMPOUND_STORAGE_AMOUNT_DOES_NOT_LAST_NIGHT"
 msgstr "(nicht ausreichend, um die Nachtdauer von {0} s zu überstehen)"
@@ -1892,6 +1930,9 @@ msgstr ""
 msgid "EDIT_MICROBE_FIRST_TIME"
 msgstr "Lädt Mikrobenstadium"
 
+msgid "EFFECTIVE_VALUE"
+msgstr "Effektiver Wert"
+
 msgid "EIGHT_TIMES"
 msgstr "8x"
 
@@ -2439,10 +2480,6 @@ msgstr "Nicht vergessen: Die Anzeige rechts oben zeigt dir, was unter dem Cursor
 msgid "GENERAL_LOADING_TIP_7"
 msgstr "Wenn deine Population auf Null fällt, stirbst du aus."
 
-#, fuzzy
-msgid "GENERATE_BUTTON"
-msgstr "Generationen"
-
 msgid "GENERATE_POSITIVE_GLUCOSE_PHOTOSYNTHESIS"
 msgstr ""
 
@@ -2512,6 +2549,10 @@ msgstr "Glukose"
 
 msgid "GLUCOSE_CONCENTRATIONS_DRASTICALLY_DROPPED"
 msgstr "Die Glukosekonzentration ist drastisch gesunken!"
+
+#, fuzzy
+msgid "GLUCOSE_LEVEL"
+msgstr "{0}-{1}m unter dem Meeresspiegel"
 
 msgid "GLYCOLYSIS"
 msgstr "Glykolyse"
@@ -2642,6 +2683,10 @@ msgid "HYDROGENOSOME_PROCESSES_DESCRIPTION"
 msgstr "Wandelt [thrive:compound type=\"atp\"][/thrive:compound] in [thrive:compound type=\"ammonia\"][/thrive:compound] um. Rate skaliert mit der Konzentration von [thrive:compound type=\"nitrogen\"][/thrive:compound]."
 
 msgid "HYDROGEN_SULFIDE"
+msgstr "Schwefelwasserstoff"
+
+#, fuzzy
+msgid "HYDROGEN_SULFIDE_LEVELS"
 msgstr "Schwefelwasserstoff"
 
 msgid "ICESHARD"
@@ -2860,6 +2905,9 @@ msgstr ""
 msgid "IRON"
 msgstr "Eisen"
 
+msgid "IRON_LEVELS"
+msgstr ""
+
 msgid "IRON_OXIDATION"
 msgstr "Eisenoxidation"
 
@@ -2892,6 +2940,12 @@ msgstr "Juli"
 
 msgid "JUNE"
 msgstr "Juni"
+
+msgid "KEEP_CURRENT_SHORT"
+msgstr "Aktuelle Welt"
+
+msgid "KEEP_CURRENT_TOLERANCE_FLEXIBILITY_TOOLTIP"
+msgstr "Besuche unsere Patreon Seite"
 
 msgid "KEEP_MIGRATION"
 msgstr "Aerobe Atmung"
@@ -3871,10 +3925,6 @@ msgstr "Modelle"
 msgid "MODE_CAN_BE_CHANGED_IN_OPTIONS"
 msgstr "Der 2D-Bewegungsmodus kann später in den Einstellungen jederzeit geändert werden"
 
-#, fuzzy
-msgid "MODIFIER"
-msgstr "Verändern"
-
 msgid "MODIFY"
 msgstr "Verändern"
 
@@ -4288,6 +4338,10 @@ msgid "NOTICE_HIT_BY_BASE_MOVEMENT_TOXIN"
 msgstr "Basisgeschwindigkeit durch Gift herabgesetzt"
 
 #, fuzzy
+msgid "NOTICE_HYDROGEN_SULFIDE_DAMAGE"
+msgstr "Schwefelwasserstoff"
+
+#, fuzzy
 msgid "NOTICE_NOT_ENOUGH_MUCILAGE"
 msgstr "Nicht genug {0}, um das Rezept herzustellen"
 
@@ -4383,9 +4437,6 @@ msgstr "Offizielle Website"
 
 msgid "OFFICIAL_WEBSITE_BUTTON_TOOLTIP"
 msgstr "Revolutionary Games website besuchen"
-
-msgid "OFFSET"
-msgstr ""
 
 msgid "OK"
 msgstr "OK"
@@ -4645,6 +4696,10 @@ msgstr "Nach oben schwenken"
 msgid "PAST_DEVELOPERS"
 msgstr "Frühere Entwickler(innen)"
 
+#, fuzzy
+msgid "PATCHES_NUMBER"
+msgstr "{0} {1}"
+
 msgid "PATCH_COLON"
 msgstr "Bereich:"
 
@@ -4746,6 +4801,10 @@ msgstr "Phosphat"
 msgid "PHOSPHATES_COST"
 msgstr "Phosphat-Kosten:"
 
+#, fuzzy
+msgid "PHOSPHATES_LEVELS"
+msgstr "Phosphat-Kosten:"
+
 msgid "PHOTOSYNTHESIS"
 msgstr "Photosynthese"
 
@@ -4775,6 +4834,10 @@ msgstr ""
 
 msgid "PLANET_RANDOM_SEED"
 msgstr "Planetensamen Nummer (Zufallswert):"
+
+#, fuzzy
+msgid "PLANET_STATISTICS"
+msgstr "Statistiken"
 
 msgid "PLAYER"
 msgstr "Spieler"
@@ -4924,6 +4987,10 @@ msgstr ""
 msgid "RADIATION"
 msgstr "Strahlung"
 
+#, fuzzy
+msgid "RADIATION_LEVELS"
+msgstr "Strahlung"
+
 msgid "RADIOACTIVE_CHUNK"
 msgstr "Radioaktiver Gesteinsbrocken"
 
@@ -4976,6 +5043,10 @@ msgstr "Aktualisieren"
 #, fuzzy
 msgid "REGENERATE_BUTTON"
 msgstr "Organellen"
+
+#, fuzzy
+msgid "REGIONS_NUMBER"
+msgstr "ID-Nummer"
 
 #, fuzzy
 msgid "RENDER_SCALE"
@@ -5120,6 +5191,18 @@ msgstr ""
 #, fuzzy
 msgid "REVEAL_ALL_PATCHES"
 msgstr "Ausbreitung auf Gebiete:"
+
+#, fuzzy
+msgid "REVERT_TO_EDITOR"
+msgstr "Editor verlassen"
+
+#, fuzzy
+msgid "REVERT_TO_EDITOR_EXPLANATION"
+msgstr "(Aktivierung beschränkt die Wachstums-Geschwindigkeit; Deaktivierung lässt nur die verfügbaren Substanzen das Wachstum beeinflussen)"
+
+#, fuzzy
+msgid "REVERT_TO_EDITOR_PROMPT"
+msgstr "Drücke [thrive:input]help[/thrive:input], um mehr Informationen im Thriveopedia anzuzeigen."
 
 msgid "REVOLUTIONARY_GAMES_SOCIAL_TOOLTIP"
 msgstr "Zeige offizielle Revolutionary Games Seiten.."
@@ -5446,6 +5529,10 @@ msgstr "Hilfe anzeigen"
 
 msgid "SHOW_ITEM_COORDINATES"
 msgstr "Koordinaten anzeigen"
+
+#, fuzzy
+msgid "SHOW_MAP"
+msgstr "Hilfe anzeigen"
 
 msgid "SHOW_NEW_PATCH_NOTES"
 msgstr "Neue Patchnotizen automatisch anzeigen"
@@ -6202,6 +6289,20 @@ msgid "TOLERANCES_UNSUITABLE_DEBUFFS"
 msgstr "Nicht an die derzeitigen Umweltbedingungen angepasst. Osmoregulations-Kosten {0}%, Bioprozess-Geschwindigkeit {1}%, Gesundheit {2}%"
 
 #, fuzzy
+msgid "TOLERANCE_DETAIL_TEXT"
+msgstr ""
+"[b]Spezies[/b]\n"
+"  {0}:{1}\n"
+"[b]Generation[/b]\n"
+"  {2}\n"
+"[b]Bevölkerung[/b]\n"
+"  {3}\n"
+"[b]Farbe[/b]\n"
+"  #{4}\n"
+"[b]Verhalten[/b]\n"
+"  {5}"
+
+#, fuzzy
 msgid "TOLERANCE_FROM_ORGANELLES_TOOLTIP"
 msgstr "Die Menge an ultravioletter Strahlung, die deine Spezies aushält, bevor negative Effekte eintreten. Wenn du in einem Bereich mit zu viel Licht lebst, hat das negative Auswirkungen, bis der Widerstand erhöht wird."
 
@@ -6214,22 +6315,17 @@ msgstr "Werkzeuge"
 msgid "TOOL_HAND_AXE"
 msgstr "Beil"
 
+msgid "TOO_LARGE_PRESSURE_RANGE"
+msgstr "Druck-Schwankungsbreite zu groß"
+
 msgid "TOO_MANY_RECENT_VERSIONS_TO_SHOW"
 msgstr ""
-
-#, fuzzy
-msgid "TOTAL"
-msgstr "Gesamtspeicherungen:"
 
 #, fuzzy
 msgid "TOTAL_GATHERED_ENERGY_COLON"
 msgstr "Status:"
 
 msgid "TOTAL_SAVES"
-msgstr "Gesamtspeicherungen:"
-
-#, fuzzy
-msgid "TOTAL_VALUE"
 msgstr "Gesamtspeicherungen:"
 
 msgid "TOXIN_CHANNEL_INHIBITOR"
@@ -9143,28 +9239,9 @@ msgstr "Hereinzoomen"
 msgid "ZOOM_OUT"
 msgstr "Herauszoomen"
 
-msgid "—"
-msgstr ""
-
-#~ msgid "EFFECTIVE_VALUE"
-#~ msgstr "Effektiver Wert"
-
 #, fuzzy
-#~ msgid "PLUS_MINUS_VALUE_WITH_UNIT"
-#~ msgstr "{0} {1}"
-
-#, fuzzy
-#~ msgid "ADDITIONAL_RESISTANCE"
-#~ msgstr "Toxin-Resistenz"
-
-#~ msgid "KEEP_CURRENT_SHORT"
-#~ msgstr "Aktuelle Welt"
-
-#~ msgid "KEEP_CURRENT_TOLERANCE_FLEXIBILITY_TOOLTIP"
-#~ msgstr "Besuche unsere Patreon Seite"
-
-#~ msgid "TOO_LARGE_PRESSURE_RANGE"
-#~ msgstr "Druck-Schwankungsbreite zu groß"
+#~ msgid "GENERATE_BUTTON"
+#~ msgstr "Generationen"
 
 #~ msgid "CELL_TYPE_BUTTON_ATP_CONSUMPTION"
 #~ msgstr "Der ATP-Verbrauch dieses Zelltyps ist {0}."
