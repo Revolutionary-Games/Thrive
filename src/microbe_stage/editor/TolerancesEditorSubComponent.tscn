@@ -37,10 +37,10 @@ grow_horizontal = 2
 grow_vertical = 2
 theme = ExtResource("1_16mn0")
 script = ExtResource("2_kqh2k")
-temperatureToolTipContainer = NodePath("Temperature/ModifierAndTotal")
-pressureToolTipContainer = NodePath("Pressure/ModifierAndTotal")
-oxygenResistanceToolTipContainer = NodePath("Oxygen/ModifierAndTotal")
-uvResistanceToolTipContainer = NodePath("UV/ModifierAndTotal")
+temperatureToolTipContainer = NodePath("Temperature/ModifierAndTotal/HBoxContainer/Total")
+pressureToolTipContainer = NodePath("Pressure/ModifierAndTotal/HBoxContainer/Total")
+oxygenResistanceToolTipContainer = NodePath("Oxygen/ModifierAndTotal/HBoxContainer/Total")
+uvResistanceToolTipContainer = NodePath("UV/ModifierAndTotal/HBoxContainer/Total")
 temperatureSlider = NodePath("Temperature/OptimalDisplayContainer/VBoxContainer/TemperatureSlider")
 temperatureToleranceRangeSlider = NodePath("Temperature/HBoxContainer3/TemperatureRange")
 pressureSlider = NodePath("Pressure/OptimalDisplayContainer/VBoxContainer/PressureSlider")
@@ -416,7 +416,7 @@ alignment = 1
 
 [node name="ModifierLabel" type="Label" parent="Oxygen/ModifierAndTotal/HBoxContainer/Modifier"]
 layout_mode = 2
-text = "MODIFIER"
+text = "OFFSET"
 label_settings = ExtResource("8_ktuy7")
 
 [node name="ModifierValue" type="Label" parent="Oxygen/ModifierAndTotal/HBoxContainer/Modifier"]
@@ -520,7 +520,7 @@ alignment = 1
 
 [node name="ModiferLabel" type="Label" parent="UV/ModifierAndTotal/HBoxContainer/Modifier"]
 layout_mode = 2
-text = "MODIFIER"
+text = "OFFSET"
 label_settings = ExtResource("8_ktuy7")
 
 [node name="ModiferValue" type="Label" parent="UV/ModifierAndTotal/HBoxContainer/Modifier"]

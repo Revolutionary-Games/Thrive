@@ -15,7 +15,7 @@ public class ToleranceActionData : EditorCombinableActionData
     public override bool WantsMergeWith(CombinableActionData other)
     {
         // These must always merge with other tolerance actions, because otherwise the undo history step count is going
-        // to explore
+        // to explode
         return other is ToleranceActionData;
     }
 
@@ -28,14 +28,13 @@ public class ToleranceActionData : EditorCombinableActionData
         var oxygenChange = Math.Abs(OldTolerances.OxygenResistance - NewTolerances.OxygenResistance);
         var uvChange = Math.Abs(OldTolerances.UVResistance - NewTolerances.UVResistance);
 
-        var pressureLogScaleChange = Math.Abs(OldTolerances.PressureMinimum - NewTolerances.PressureMinimum);
-
+        var pressureChange = Math.Abs(OldTolerances.PressureMinimum - NewTolerances.PressureMinimum);
         var pressureToleranceChange = Math.Abs(OldTolerances.PressureTolerance - NewTolerances.PressureTolerance);
 
         // Then add up the costs based on the changes
         return temperatureChange * Constants.TOLERANCE_CHANGE_MP_PER_TEMPERATURE +
             temperatureToleranceChange * Constants.TOLERANCE_CHANGE_MP_PER_TEMPERATURE_TOLERANCE +
-            pressureLogScaleChange * Constants.TOLERANCE_CHANGE_MP_PER_PRESSURE +
+            pressureChange * Constants.TOLERANCE_CHANGE_MP_PER_PRESSURE +
             pressureToleranceChange * Constants.TOLERANCE_CHANGE_MP_PER_PRESSURE_TOLERANCE +
             oxygenChange * Constants.TOLERANCE_CHANGE_MP_PER_OXYGEN +
             uvChange * Constants.TOLERANCE_CHANGE_MP_PER_UV;

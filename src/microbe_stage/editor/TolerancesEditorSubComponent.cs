@@ -18,6 +18,8 @@ public partial class TolerancesEditorSubComponent : EditorComponentBase<ICellEdi
     [ExportCategory("Config")]
     public bool ShowZeroModifiers;
 
+    private readonly Dictionary<OrganelleDefinition, float> tempToleranceModifiers = new();
+
     private CompoundDefinition temperature = null!;
 
 #pragma warning disable CA2213
@@ -257,24 +259,25 @@ public partial class TolerancesEditorSubComponent : EditorComponentBase<ICellEdi
 
         if (pressureToolTip != null)
         {
-            var pressureCost = Constants.TOLERANCE_CHANGE_MP_PER_PRESSURE * MPDisplayCostMultiplier;
+            var pressureCost = pressureSlider.Step * Constants.TOLERANCE_CHANGE_MP_PER_PRESSURE *
+                MPDisplayCostMultiplier;
 
-            pressureToolTip.MPCost = pressureCost;
+            pressureToolTip.MPCost = (float)pressureCost;
         }
 
         if (oxygenResistanceToolTip != null)
         {
-            var oxygenCost = Constants.TOLERANCE_OXYGEN_STEP * Constants.TOLERANCE_CHANGE_MP_PER_OXYGEN *
+            var oxygenCost = oxygenResistanceSlider.Step * Constants.TOLERANCE_CHANGE_MP_PER_OXYGEN *
                 MPDisplayCostMultiplier;
 
-            oxygenResistanceToolTip.MPCost = oxygenCost;
+            oxygenResistanceToolTip.MPCost = (float)oxygenCost;
         }
 
         if (uvResistanceToolTip != null)
         {
-            var uvCost = Constants.TOLERANCE_OXYGEN_STEP * Constants.TOLERANCE_CHANGE_MP_PER_UV * MPDisplayCostMultiplier;
+            var uvCost = uvResistanceSlider.Step * Constants.TOLERANCE_CHANGE_MP_PER_UV * MPDisplayCostMultiplier;
 
-            uvResistanceToolTip.MPCost = uvCost;
+            uvResistanceToolTip.MPCost = (float)uvCost;
         }
     }
 
@@ -344,6 +347,8 @@ public partial class TolerancesEditorSubComponent : EditorComponentBase<ICellEdi
 
             CalculateStatsAndShow(tempTolerances, uvResistanceToolTip);
         }
+
+        UpdateTotalValueInToolTips();
     }
 
     protected override void OnTranslationsChanged()
@@ -361,6 +366,11 @@ public partial class TolerancesEditorSubComponent : EditorComponentBase<ICellEdi
         pressureToolTipContainer.RegisterToolTipForControl("pressure", "tolerances");
         oxygenResistanceToolTipContainer.RegisterToolTipForControl("oxygenResistance", "tolerances");
         uvResistanceToolTipContainer.RegisterToolTipForControl("uvResistance", "tolerances");
+
+        temperatureModifierLabel.GetParent<Control>().RegisterToolTipForControl("temperatureRangeModifier", "tolerances");
+        pressureModifierLabel.GetParent<Control>().RegisterToolTipForControl("pressureRangeModifier", "tolerances");
+        oxygenResistanceModifierLabel.GetParent<Control>().RegisterToolTipForControl("oxygenResistanceModifier", "tolerances");
+        uvResistanceModifierLabel.GetParent<Control>().RegisterToolTipForControl("uvResistanceModifier", "tolerances");
 
         var toolTipManager = ToolTipManager.Instance;
         temperatureToolTip = toolTipManager.GetToolTip<EnvironmentalToleranceToolTip>("temperature", "tolerances");
@@ -392,6 +402,57 @@ public partial class TolerancesEditorSubComponent : EditorComponentBase<ICellEdi
         var resolvedTolerances = Calculations.ResolveToleranceValues(rawTolerances);
 
         toolTip.UpdateStats(resolvedTolerances);
+    }
+
+    private void UpdateTotalValueInToolTips()
+    {
+        if (Editor.EditedCellOrganelles == null)
+        {
+            GD.PrintErr("no cell edited organelles set, cannot update effective value tooltips");
+            return;
+        }
+
+        if (temperatureRangeToolTip != null)
+        {
+            temperatureRangeToolTip.DisplayedValue =
+                CurrentTolerances.TemperatureTolerance + organelleModifiers.TemperatureTolerance;
+
+            // Calculate organelle summaries so that the info can be shown in the tooltips
+            Calculations.GenerateToleranceEffectSummariesByOrganelle(
+                Editor.EditedCellOrganelles, ToleranceModifier.TemperatureRange, tempToleranceModifiers);
+
+            temperatureRangeToolTip.DisplayOrganelleBreakdown(tempToleranceModifiers);
+        }
+
+        if (pressureRangeToolTip != null)
+        {
+            pressureRangeToolTip.DisplayedValue =
+                CurrentTolerances.PressureTolerance + organelleModifiers.PressureTolerance;
+
+            MicrobeEnvironmentalToleranceCalculations.GenerateToleranceEffectSummariesByOrganelle(
+                Editor.EditedCellOrganelles, ToleranceModifier.PressureRange, tempToleranceModifiers);
+            pressureRangeToolTip.DisplayOrganelleBreakdown(tempToleranceModifiers);
+        }
+
+        if (oxygenResistanceModifierToolTip != null)
+        {
+            oxygenResistanceModifierToolTip.DisplayedValue =
+                CurrentTolerances.OxygenResistance + organelleModifiers.OxygenResistance;
+
+            MicrobeEnvironmentalToleranceCalculations.GenerateToleranceEffectSummariesByOrganelle(
+                Editor.EditedCellOrganelles, ToleranceModifier.Oxygen, tempToleranceModifiers);
+            oxygenResistanceModifierToolTip.DisplayOrganelleBreakdown(tempToleranceModifiers);
+        }
+
+        if (uvResistanceModifierToolTip != null)
+        {
+            uvResistanceModifierToolTip.DisplayedValue =
+                CurrentTolerances.UVResistance + organelleModifiers.UVResistance;
+
+            MicrobeEnvironmentalToleranceCalculations.GenerateToleranceEffectSummariesByOrganelle(
+                Editor.EditedCellOrganelles, ToleranceModifier.UV, tempToleranceModifiers);
+            uvResistanceModifierToolTip.DisplayOrganelleBreakdown(tempToleranceModifiers);
+        }
     }
 
     private void ApplyCurrentValuesToGUI()
@@ -580,7 +641,6 @@ public partial class TolerancesEditorSubComponent : EditorComponentBase<ICellEdi
 
         var unitFormat = Localization.Translate("VALUE_WITH_UNIT");
         var percentageFormat = Localization.Translate("PERCENTAGE_VALUE");
-        var plusMinusUnitFormat = Localization.Translate("PLUS_MINUS_VALUE_WITH_UNIT");
 
         // Temperature
 
@@ -600,14 +660,14 @@ public partial class TolerancesEditorSubComponent : EditorComponentBase<ICellEdi
                 Math.Round(CurrentTolerances.PreferredTemperature + temperatureToleranceWithOrganelles, 1),
                 temperature.Unit);
 
-        temperatureToleranceLabel.Text = plusMinusUnitFormat.FormatSafe(
+        temperatureToleranceLabel.Text = "±" + unitFormat.FormatSafe(
             Math.Round(CurrentTolerances.TemperatureTolerance, 1), temperature.Unit);
 
         if (ShowZeroModifiers || organelleModifiers.TemperatureTolerance != 0)
         {
             temperatureModifierLabel.GetParent<Control>().Visible = true;
 
-            temperatureModifierLabel.Text = plusMinusUnitFormat.FormatSafe(
+            temperatureModifierLabel.Text = "±" + unitFormat.FormatSafe(
                 Math.Round(organelleModifiers.TemperatureTolerance, 1), temperature.Unit);
 
             temperatureModifierLabel.LabelSettings = organelleModifiers.TemperatureTolerance switch

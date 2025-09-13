@@ -82,7 +82,7 @@ public class ModifyEnvironmentalTolerance : IMutationStrategy<MicrobeSpecies>
                 }
 #endif
 
-                var change = Math.Max(score.PerfectOxygenAdjustment, maxChange);
+                var change = Math.Max(score.PressureRangeSizeAdjustment, maxChange);
 
                 newTolerances.TemperatureTolerance -= change;
 
@@ -100,10 +100,40 @@ public class ModifyEnvironmentalTolerance : IMutationStrategy<MicrobeSpecies>
             if (score.PressureScore < 1 || Math.Abs(score.PerfectPressureAdjustment) > MathUtils.EPSILON)
             {
                 // TODO: Auto-evo MP calculation for preferred pressure goes here
+                var maxChange = mp / Constants.TOLERANCE_CHANGE_MP_PER_PRESSURE;
+
+                float change;
+
+                if (score.PerfectPressureAdjustment < 0)
+                {
+                    change = (float)Math.Max(score.PerfectPressureAdjustment, -maxChange);
+                }
+                else
+                {
+                    change = (float)Math.Min(score.PerfectPressureAdjustment, maxChange);
+                }
+
+                newTolerances.PressureMinimum += change;
+
+                mp -= (float)(change * Constants.TOLERANCE_CHANGE_MP_PER_PRESSURE);
             }
             else
             {
-                // TODO: Auto-evo MP calculation for pressure range goes here
+                var maxChange = mp / Constants.TOLERANCE_CHANGE_MP_PER_PRESSURE_TOLERANCE;
+                var change = Math.Max(score.PressureRangeSizeAdjustment, maxChange);
+
+#if DEBUG
+                if (score.PressureRangeSizeAdjustment > 0)
+                {
+                    if (Debugger.IsAttached)
+                        Debugger.Break();
+                    throw new Exception("Pressure range size adjustment is not negative");
+                }
+#endif
+
+                newTolerances.PressureTolerance += (float)change;
+
+                mp -= (float)(change * Constants.TOLERANCE_CHANGE_MP_PER_PRESSURE_TOLERANCE);
             }
 
             changes = true;
