@@ -139,11 +139,12 @@ public static class EngulferHelpers
     /// <param name="engulferSpeciesID">Engulfer species ID to use in engulfability checks</param>
     /// <param name="world">Where to fetch potential entities</param>
     /// <param name="searchRadius">How wide to search around the position</param>
+    /// <param name="skipLikelyTooFastTargets">Should skip targets under a certain relative size</param>
     /// <returns>The nearest found point for the engulfable entity or null</returns>
     public static Vector3? FindNearestEngulfableSlow(this ref Engulfer engulfer,
         ref CellProperties cellProperties, ref OrganelleContainer organelles, ref WorldPosition position,
         CompoundBag usefulCompoundSource, in Entity engulferEntity, uint engulferSpeciesID, IWorldSimulation world,
-        float searchRadius = 200)
+        float searchRadius = 200, bool skipLikelyTooFastTargets = false)
     {
         if (searchRadius < 1)
             throw new ArgumentException("searchRadius must be >= 1");
@@ -188,6 +189,14 @@ public static class EngulferHelpers
             // Skip entities that have no useful compounds
             if (!compounds.Compounds.Any(p => usefulCompoundSource.IsUseful(p.Key)))
                 continue;
+
+            // Skip entities that are too small to catch easily (ex: player = 3; ratio = 1/3; entity must be > 1 to be
+            // considered)
+            if (skipLikelyTooFastTargets &&
+                engulfer.EngulfingSize * Constants.TUTORIAL_ENGULFABLE_SIZE_RATIO > engulfable.AdjustedEngulfSize)
+            {
+                continue;
+            }
 
             if (nearestPoint == null || distance < nearestDistanceSquared)
             {

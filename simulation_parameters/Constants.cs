@@ -755,6 +755,14 @@ public static class Constants
     /// </summary>
     public const float HEALTH_REGEN_STOP_DAMAGE_THRESHOLD = 0.15f;
 
+    public const float HYDROGEN_SULFIDE_DAMAGE_INTERVAL = 0.75f;
+
+    public const float HYDROGEN_SULFIDE_DAMAGE_THESHOLD = 0.05f;
+
+    public const float HYDROGEN_SULFIDE_DAMAGE = 2.0f;
+
+    public const float HYDROGEN_SULFIDE_DAMAGE_COMPOUND_DRAIN = 0.2f;
+
     public const float RADIATION_STRENGTH_MULTIPLIER = 0.02f;
 
     /// <summary>
@@ -1454,6 +1462,13 @@ public static class Constants
     ///   tutorial.
     /// </summary>
     public const float MOVEMENT_MODE_SELECTION_DELAY = 1.55f;
+
+    /// <summary>
+    ///   The size ratio an entity has to be in relation to the player for the engulfable tutorial to point to it.
+    ///   This is to increase the chances of catching the target entity during the tutorial to reduce player
+    ///   frustration. Increase the value to target bigger and slower entities, but less of them.
+    /// </summary>
+    public const float TUTORIAL_ENGULFABLE_SIZE_RATIO = 0.35f;
 
     public const float MICROBE_MOVEMENT_EXPLAIN_TUTORIAL_DELAY = 12.0f;
     public const float MICROBE_MOVEMENT_EXPLAIN_TUTORIAL_DELAY_CONTROLLER = 1.0f;

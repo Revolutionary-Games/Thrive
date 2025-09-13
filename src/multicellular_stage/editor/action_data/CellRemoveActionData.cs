@@ -14,17 +14,4 @@ public class CellRemoveActionData : HexRemoveActionData<HexWithData<CellTemplate
         hex.Data?.Orientation ?? throw new ArgumentException("Hex with no data"))
     {
     }
-
-    protected override CombinableActionData CreateDerivedMoveAction(
-        HexPlacementActionData<HexWithData<CellTemplate>, MulticellularSpecies> data)
-    {
-        return new CellMoveActionData(data.PlacedHex, Location, data.Location,
-            Orientation, data.Orientation);
-    }
-
-    protected override CombinableActionData CreateDerivedRemoveAction(HexMoveActionData<HexWithData<CellTemplate>,
-        MulticellularSpecies> data)
-    {
-        return new CellRemoveActionData(RemovedHex, data.OldLocation, data.OldRotation);
-    }
 }

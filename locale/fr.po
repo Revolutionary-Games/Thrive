@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2025-08-29 14:14+0300\n"
+"POT-Creation-Date: 2025-09-12 09:19+0300\n"
 "PO-Revision-Date: 2025-08-17 14:44+0000\n"
 "Last-Translator: Alexandre Stoppini <stoppini.alexandre@gmail.com>\n"
 "Language-Team: French <https://translate.revolutionarygamesstudio.com/projects/thrive/thrive-game/fr/>\n"
@@ -4522,6 +4522,10 @@ msgstr "Production d'ATP inhibée par une toxine"
 msgid "NOTICE_HIT_BY_BASE_MOVEMENT_TOXIN"
 msgstr "Vitesse de déplacement réduite en raison d'une toxine"
 
+#, fuzzy
+msgid "NOTICE_HYDROGEN_SULFIDE_DAMAGE"
+msgstr "Sulfure d'hydrogène"
+
 msgid "NOTICE_NOT_ENOUGH_MUCILAGE"
 msgstr "Mucilage insuffisant pour activer le bouclier mucocyste"
 
@@ -5371,6 +5375,18 @@ msgstr ""
 
 msgid "REVEAL_ALL_PATCHES"
 msgstr "Révéler tous les secteurs"
+
+#, fuzzy
+msgid "REVERT_TO_EDITOR"
+msgstr "Quitter l'éditeur"
+
+#, fuzzy
+msgid "REVERT_TO_EDITOR_EXPLANATION"
+msgstr "(si elle est activée, la vitesse de croissance est plafonnée, si elle est désactivée, seuls les composés disponibles affectent la vitesse de croissance)"
+
+#, fuzzy
+msgid "REVERT_TO_EDITOR_PROMPT"
+msgstr "Appuyez sur [thrive:input]help[/thrive:input] pour voir plus d'informations dans Thriveopédia."
 
 msgid "REVOLUTIONARY_GAMES_SOCIAL_TOOLTIP"
 msgstr "Visitez les sites officiels de Revolutionary Games"
@@ -6471,6 +6487,20 @@ msgstr "{0} : +{1} ATP"
 
 msgid "TOLERANCES_UNSUITABLE_DEBUFFS"
 msgstr "Pas adapté à vivre dans les conditions environnementales actuelles. Coût de l'osmorégulation {0}%, vitesse des processus biologiques {1}%, santé {2}%"
+
+#, fuzzy
+msgid "TOLERANCE_DETAIL_TEXT"
+msgstr ""
+"[b]Espèce[/b] \n"
+"   {0}:{1}  \n"
+"[b]Génération[/b] \n"
+"   {2}  \n"
+"[b]Population[/b] \n"
+"   {3}  \n"
+"[b]Couleur[/b] \n"
+"   #{4}  \n"
+"[b]Comportement[/b] \n"
+"   {5}"
 
 #, fuzzy
 msgid "TOLERANCE_FROM_ORGANELLES_TOOLTIP"

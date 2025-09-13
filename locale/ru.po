@@ -7,8 +7,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2025-08-29 14:14+0300\n"
-"PO-Revision-Date: 2025-08-26 17:38+0000\n"
+"POT-Creation-Date: 2025-09-12 09:19+0300\n"
+"PO-Revision-Date: 2025-09-11 20:53+0000\n"
 "Last-Translator: ILIA RIABOV <ilyarya131@gmail.com>\n"
 "Language-Team: Russian <https://translate.revolutionarygamesstudio.com/projects/thrive/thrive-game/ru/>\n"
 "Language: ru\n"
@@ -189,9 +189,8 @@ msgstr "Аммиак"
 msgid "AMMONIA_COST"
 msgstr "Затраты аммиака:"
 
-#, fuzzy
 msgid "AMMONIA_LEVELS"
-msgstr "Затраты аммиака:"
+msgstr "Уровень Аммиака"
 
 msgid "AMOUNT_OF_AUTOSAVE_TO_KEEP"
 msgstr "Количество записей автосохранения:"
@@ -414,19 +413,19 @@ msgid "AVAILABLE_MODS"
 msgstr "Доступные моды"
 
 msgid "AVERAGE_SURFACE_CARBON_DIOXIDE_LEVEL"
-msgstr ""
+msgstr "Средний уровень CO2 на поверхности"
 
 msgid "AVERAGE_SURFACE_LIGHT_LEVEL"
-msgstr ""
+msgstr "Средний уровень освещенности поверхности"
 
 msgid "AVERAGE_SURFACE_NITROGEN_LEVEL"
-msgstr ""
+msgstr "Средний уровень азота на поверхности"
 
 msgid "AVERAGE_SURFACE_OTHER_LEVEL"
-msgstr ""
+msgstr "Средний уровень содержания других газов"
 
 msgid "AVERAGE_SURFACE_OXYGEN_LEVEL"
-msgstr ""
+msgstr "Средний уровень кислорода на поверхности"
 
 msgid "AWAKENING_STAGE"
 msgstr "Стадия пробуждения"
@@ -1029,24 +1028,20 @@ msgstr "Всегда пополнять до начального"
 msgid "COMPOUND_HANDLE_TOP_UP_ON_CHANGE"
 msgstr "Пополнять при смене области"
 
-#, fuzzy
 msgid "COMPOUND_LEVEL_AVERAGE"
-msgstr "В среднем"
+msgstr "Средний"
 
-#, fuzzy
 msgid "COMPOUND_LEVEL_HIGH"
-msgstr "Компонентный Баланс"
+msgstr "Высокий"
 
-#, fuzzy
 msgid "COMPOUND_LEVEL_LOW"
-msgstr "Облака веществ"
+msgstr "Низкий"
 
 msgid "COMPOUND_LEVEL_VERY_HIGH"
-msgstr ""
+msgstr "Очень высокий"
 
-#, fuzzy
 msgid "COMPOUND_LEVEL_VERY_LOW"
-msgstr "Оставить всё"
+msgstr "Очень низкий"
 
 msgid "COMPOUND_STORAGE_AMOUNT_DOES_NOT_LAST_NIGHT"
 msgstr "(недостаточно для того, чтобы прожить ночь, что длится {0} секунд)"
@@ -2534,9 +2529,8 @@ msgstr "Глюкоза"
 msgid "GLUCOSE_CONCENTRATIONS_DRASTICALLY_DROPPED"
 msgstr "Концентрация глюкозы резко упала!"
 
-#, fuzzy
 msgid "GLUCOSE_LEVEL"
-msgstr "{0}-{1}м ниже уровня моря"
+msgstr "Уровень Глюкозы"
 
 msgid "GLYCOLYSIS"
 msgstr "Гликолиз"
@@ -2668,7 +2662,6 @@ msgstr "Преобразовывает [thrive:compound type=\\\"glucose\\\"][/t
 msgid "HYDROGEN_SULFIDE"
 msgstr "Сероводород"
 
-#, fuzzy
 msgid "HYDROGEN_SULFIDE_LEVELS"
 msgstr "Сероводород"
 
@@ -2890,7 +2883,7 @@ msgid "IRON"
 msgstr "Железо"
 
 msgid "IRON_LEVELS"
-msgstr ""
+msgstr "Уровень Железа"
 
 msgid "IRON_OXIDATION"
 msgstr "Окисление железа"
@@ -4311,6 +4304,9 @@ msgstr "Производство АТФ подавляется токсином"
 msgid "NOTICE_HIT_BY_BASE_MOVEMENT_TOXIN"
 msgstr "Базовая скорость передвижения уменьшена из-за токсина"
 
+msgid "NOTICE_HYDROGEN_SULFIDE_DAMAGE"
+msgstr "Повреждён сероводородом при отсутствии хемосинтезирующих белков"
+
 msgid "NOTICE_NOT_ENOUGH_MUCILAGE"
 msgstr "Не хватает слизи для создания микоцистого щита"
 
@@ -4649,9 +4645,8 @@ msgstr "Переместить вверх"
 msgid "PAST_DEVELOPERS"
 msgstr "Бывшие Разработчики"
 
-#, fuzzy
 msgid "PATCHES_NUMBER"
-msgstr "{0} {1}"
+msgstr "Количество биомов:"
 
 msgid "PATCH_COLON"
 msgstr "Биом:"
@@ -4748,9 +4743,8 @@ msgstr "Фосфат"
 msgid "PHOSPHATES_COST"
 msgstr "Фосфаты Стоимость:"
 
-#, fuzzy
 msgid "PHOSPHATES_LEVELS"
-msgstr "Фосфаты Стоимость:"
+msgstr "Уровень Фосфатов"
 
 msgid "PHOTOSYNTHESIS"
 msgstr "Фотосинтез"
@@ -4781,9 +4775,8 @@ msgstr ""
 msgid "PLANET_RANDOM_SEED"
 msgstr "Сид планеты"
 
-#, fuzzy
 msgid "PLANET_STATISTICS"
-msgstr "Статистика"
+msgstr "Статистика Планеты"
 
 msgid "PLAYER"
 msgstr "Игрок"
@@ -4936,9 +4929,8 @@ msgstr ""
 msgid "RADIATION"
 msgstr "Радиация"
 
-#, fuzzy
 msgid "RADIATION_LEVELS"
-msgstr "Радиация"
+msgstr "Уровень Излучения"
 
 msgid "RADIOACTIVE_CHUNK"
 msgstr "Глыба радиоактивного камня"
@@ -4991,9 +4983,8 @@ msgstr "Обновить"
 msgid "REGENERATE_BUTTON"
 msgstr "Возродить Мир"
 
-#, fuzzy
 msgid "REGIONS_NUMBER"
-msgstr "Номер ID"
+msgstr "Количество регионов:"
 
 msgid "RENDER_SCALE"
 msgstr "Масштаб отрисовки"
@@ -5127,6 +5118,15 @@ msgstr ""
 
 msgid "REVEAL_ALL_PATCHES"
 msgstr "Открыть все биомы"
+
+msgid "REVERT_TO_EDITOR"
+msgstr "Вернуться к Редактору"
+
+msgid "REVERT_TO_EDITOR_EXPLANATION"
+msgstr "Если ваш текущий микроб не приспособлен к выживанию в этой среде, вы можете вернуться к предыдущему состоянию в редакторе и попробовать что-то другое."
+
+msgid "REVERT_TO_EDITOR_PROMPT"
+msgstr "Вернуться К Редактору?"
 
 msgid "REVOLUTIONARY_GAMES_SOCIAL_TOOLTIP"
 msgstr "Посетить официальный сайт Revolutionary Games"
@@ -5436,9 +5436,8 @@ msgstr "Показать помощь"
 msgid "SHOW_ITEM_COORDINATES"
 msgstr "Показать координаты"
 
-#, fuzzy
 msgid "SHOW_MAP"
-msgstr "Показать помощь"
+msgstr "Показать Карту"
 
 msgid "SHOW_NEW_PATCH_NOTES"
 msgstr "Показывать новые заметки релизов автоматически"
@@ -6168,6 +6167,20 @@ msgstr "Защита от УФ слишком низкая, требуется �
 
 msgid "TOLERANCES_UNSUITABLE_DEBUFFS"
 msgstr "Не адаптирован к нынешним условиям среды. Осморегуляция: стоимость {0}%, скорость биопроцессов {1}%, здоровье {2}%"
+
+#, fuzzy
+msgid "TOLERANCE_DETAIL_TEXT"
+msgstr ""
+"[b]Виды[/b]\n"
+"  {0}:{1}\n"
+"[b]Поколения[/b]\n"
+"  {2}\n"
+"[b]Популяция[/b]\n"
+"  {3}\n"
+"[b]Цвет[/b]\n"
+"  #{4}\n"
+"[b]Поведение[/b]\n"
+"  {5}"
 
 msgid "TOLERANCE_FROM_ORGANELLES_TOOLTIP"
 msgstr "Погрешности влияют на некоторые органеллы положительно или отрицательно. Эффективное значение показано после базового значения и добавляется вместе с изменениями от органелл. Некоторые органеллы образуют синергию с определенными стилями игры, но вредны для других."

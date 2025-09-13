@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using Newtonsoft.Json;
 
@@ -8,7 +9,7 @@ using Newtonsoft.Json;
 /// </summary>
 /// <typeparam name="T">Type of the action data to hold</typeparam>
 [JSONAlwaysDynamicType]
-public class SingleEditorAction<T> : EditorAction
+public class SingleEditorAction<T> : EditorAction, IEnumerable<EditorCombinableActionData>
     where T : EditorCombinableActionData
 {
     [JsonProperty]
@@ -16,6 +17,8 @@ public class SingleEditorAction<T> : EditorAction
 
     [JsonProperty]
     private readonly Action<T> undo;
+
+    private List<EditorCombinableActionData>? temporaryMergedData;
 
     public SingleEditorAction(Action<T> redo, Action<T> undo, T data)
     {
@@ -28,7 +31,7 @@ public class SingleEditorAction<T> : EditorAction
     public T SingleData { get; private set; }
 
     [JsonIgnore]
-    public override IEnumerable<EditorCombinableActionData> Data => new[] { SingleData };
+    public override IEnumerable<EditorCombinableActionData> Data => this;
 
     public static implicit operator SingleEditorAction<EditorCombinableActionData>(SingleEditorAction<T> action)
     {
@@ -46,9 +49,25 @@ public class SingleEditorAction<T> : EditorAction
         undo(SingleData);
     }
 
-    public override double CalculateCost()
+    public override double GetBaseCost()
     {
-        return SingleData.CalculateCost();
+        return SingleData.GetBaseCost();
+    }
+
+    public override double CalculateCost(IReadOnlyList<EditorAction> history, int insertPosition)
+    {
+        // Note due to this object reuse this method is not re-entrant, but this approach is used to avoid short-lived
+        // allocations
+        temporaryMergedData ??= new List<EditorCombinableActionData>(history.Count);
+        temporaryMergedData.Clear();
+
+        var count = history.Count;
+        for (int i = 0; i < insertPosition && i < count; ++i)
+        {
+            history[i].CopyData(temporaryMergedData);
+        }
+
+        return SingleData.CalculateCost(temporaryMergedData, insertPosition);
     }
 
     public override void ApplyMergedData(IEnumerable<EditorCombinableActionData> newData)
@@ -79,5 +98,21 @@ public class SingleEditorAction<T> : EditorAction
         }
 
         return 0;
+    }
+
+    public override void CopyData(ICollection<EditorCombinableActionData> target)
+    {
+        target.Add(SingleData);
+    }
+
+    public IEnumerator<EditorCombinableActionData> GetEnumerator()
+    {
+        // Creating an enumerator like this should use a minimal amount of allocated memory
+        yield return SingleData;
+    }
+
+    IEnumerator IEnumerable.GetEnumerator()
+    {
+        yield return SingleData;
     }
 }
