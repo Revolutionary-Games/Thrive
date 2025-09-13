@@ -20,5 +20,9 @@ void fragment() {
         0.017919583599443834 * texture(textureAlbedo, UV + 4.8f * s).rgb +
         0.0019076926935783702 * texture(textureAlbedo, UV + 6.4f * s).rgb;
 
+#if CURRENT_RENDERER == RENDERER_COMPATIBILITY
+    COLOR.rgb = COLOR.rgb + 0.05f;
+#endif
+
     COLOR.a = 1.0f;
 }
