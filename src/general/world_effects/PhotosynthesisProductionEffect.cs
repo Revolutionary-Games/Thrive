@@ -29,11 +29,11 @@ public class PhotosynthesisProductionEffect : IWorldEffect
     private void ApplyCompoundsAddition()
     {
         // These affect the final balance
-        var outputModifier = 1.5f;
-        var inputModifier = 1.0f;
+        var outputModifier = 1.2f;
+        var inputModifier = 0.8f;
 
         // This affects how fast the conditions change, but also the final balance somewhat
-        var modifier = 0.00015f;
+        var modifier = 0.000012f;
 
         List<TweakedProcess> microbeProcesses = [];
 
