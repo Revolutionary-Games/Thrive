@@ -155,27 +155,25 @@ public class GenerateMiche : IRunStep
         var predationRoot = new Miche(globalCache.PredatorRoot);
         var predationGlucose = new Miche(globalCache.MinorGlucoseConversionEfficiencyPressure);
 
-        // Heterotrophic Miches
-        foreach (var possiblePrey in patch.SpeciesInPatch)
+        // Per Target-Species Miches
+        foreach (var targetSpecies in patch.SpeciesInPatch)
         {
-            predationGlucose.AddChild(new Miche(new PredationEffectivenessPressure(possiblePrey.Key, 1.0f)));
+            // Predation Miches
+            predationGlucose.AddChild(new Miche(new PredationEffectivenessPressure(targetSpecies.Key, 1.0f)));
+
+            // Endosymbiosis Miches
+            if (targetSpecies.Key.PlayerSpecies && targetSpecies.Key.Endosymbiosis.StartedEndosymbiosis != null)
+            {
+                var endosymbiont = targetSpecies.Key.Endosymbiosis.StartedEndosymbiosis.Species;
+                var endosymbiosisPressure = new Miche(new EndosymbiosisPressure(endosymbiont, targetSpecies.Key, 1.0f));
+                generatedMiche.AddChild(endosymbiosisPressure);
+            }
         }
 
         if (patch.SpeciesInPatch.Count > 1)
             predationRoot.AddChild(predationGlucose);
 
         generatedMiche.AddChild(predationRoot);
-
-        // Endosymbiosis Miches
-        foreach (var possibleHost in patch.SpeciesInPatch.Keys)
-        {
-            if (possibleHost.PlayerSpecies && possibleHost.Endosymbiosis.StartedEndosymbiosis != null)
-            {
-                var endosymbiont = possibleHost.Endosymbiosis.StartedEndosymbiosis.Species;
-                var endosymbiosisPressure = new Miche(new EndosymbiosisPressure(endosymbiont, possibleHost, 1.0f));
-                generatedMiche.AddChild(endosymbiosisPressure);
-            }
-        }
 
         return rootMiche;
     }
