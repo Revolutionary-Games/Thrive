@@ -84,7 +84,7 @@ public class ModifyEnvironmentalTolerance : IMutationStrategy<MicrobeSpecies>
 
                 var change = Math.Max(score.PressureRangeSizeAdjustment, maxChange);
 
-                newTolerances.TemperatureTolerance -= change;
+                newTolerances.TemperatureTolerance += change;
 
                 mp -= change * Constants.TOLERANCE_CHANGE_MP_PER_TEMPERATURE_TOLERANCE;
             }
@@ -99,7 +99,6 @@ public class ModifyEnvironmentalTolerance : IMutationStrategy<MicrobeSpecies>
         {
             if (score.PressureScore < 1 || Math.Abs(score.PerfectPressureAdjustment) > MathUtils.EPSILON)
             {
-                // TODO: Auto-evo MP calculation for preferred pressure goes here
                 var maxChange = mp / Constants.TOLERANCE_CHANGE_MP_PER_PRESSURE;
 
                 float change;
@@ -131,7 +130,7 @@ public class ModifyEnvironmentalTolerance : IMutationStrategy<MicrobeSpecies>
                 }
 #endif
 
-                newTolerances.PressureTolerance += (float)change;
+                newTolerances.PressureTolerance -= (float)change;
 
                 mp -= (float)(change * Constants.TOLERANCE_CHANGE_MP_PER_PRESSURE_TOLERANCE);
             }
@@ -182,7 +181,7 @@ public class ModifyEnvironmentalTolerance : IMutationStrategy<MicrobeSpecies>
             changes = true;
         }
 
-        if (changes)
+        if (!changes)
         {
             // Didn't find anything to do after all. This condition should be ensured to be rare as we wasted some
             // processing time here
