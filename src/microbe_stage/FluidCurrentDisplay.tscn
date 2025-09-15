@@ -39,8 +39,8 @@ albedo_texture = ExtResource("4_00tqm")
 material = SubResource("StandardMaterial3D_mse0a")
 
 [sub_resource type="Curve" id="Curve_00tqm"]
-_data = [Vector2(0, 0), 1.99326, 10.4888, 0, 0, Vector2(0.235294, 1), 0.0, 0.0, 0, 0, Vector2(0.496732, 1), 0.0, 0.0, 0, 0, Vector2(0.751634, 1), 0.0, 0.0, 0, 0, Vector2(1, 0), -10.4187, 0.0, 0, 0]
-point_count = 5
+_data = [Vector2(0, 0), 0.0, 3.41851, 0, 0, Vector2(0.503268, 1), 0.0, 0.0, 0, 0, Vector2(1, 0), -3.42149, 0.0, 0, 0]
+point_count = 3
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_mse0a"]
 render_priority = 0
@@ -49,7 +49,7 @@ shader = ExtResource("6_1112y")
 [sub_resource type="RibbonTrailMesh" id="RibbonTrailMesh_y0umn"]
 material = SubResource("ShaderMaterial_mse0a")
 shape = 0
-section_length = 1.0
+sections = 15
 curve = SubResource("Curve_00tqm")
 
 [node name="WaterCurrentDisplay" type="GPUParticles3D"]
