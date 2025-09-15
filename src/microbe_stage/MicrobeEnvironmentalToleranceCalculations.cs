@@ -93,7 +93,7 @@ public static class MicrobeEnvironmentalToleranceCalculations
     }
 
     public static void GenerateToleranceProblemList(ToleranceResult data, in ResolvedMicrobeTolerances problemNumbers,
-        Action<string> resultCallback)
+        Action<string, float> resultCallback)
     {
         if (problemNumbers.HealthModifier < 1 || problemNumbers.ProcessSpeedModifier < 1 ||
             problemNumbers.OsmoregulationModifier > 1)
@@ -102,7 +102,7 @@ public static class MicrobeEnvironmentalToleranceCalculations
             resultCallback.Invoke(Localization.Translate("TOLERANCES_UNSUITABLE_DEBUFFS")
                 .FormatSafe($"+{(problemNumbers.OsmoregulationModifier - 1) * 100:0.#}",
                     -Math.Round((1 - problemNumbers.ProcessSpeedModifier) * 100, 1),
-                    -Math.Round((1 - problemNumbers.HealthModifier) * 100, 1)));
+                    -Math.Round((1 - problemNumbers.HealthModifier) * 100, 1)), 40);
         }
 
         if (data.TemperatureScore < 1)
@@ -110,12 +110,12 @@ public static class MicrobeEnvironmentalToleranceCalculations
             if (data.PerfectTemperatureAdjustment < 0)
             {
                 resultCallback.Invoke(Localization.Translate("TOLERANCES_TOO_HIGH_TEMPERATURE")
-                    .FormatSafe(Math.Round(-data.PerfectTemperatureAdjustment, 1)));
+                    .FormatSafe(Math.Round(-data.PerfectTemperatureAdjustment, 1)), 20);
             }
             else
             {
                 resultCallback.Invoke(Localization.Translate("TOLERANCES_TOO_LOW_TEMPERATURE")
-                    .FormatSafe(Math.Round(data.PerfectTemperatureAdjustment, 1)));
+                    .FormatSafe(Math.Round(data.PerfectTemperatureAdjustment, 1)), 20);
             }
         }
 
@@ -125,25 +125,25 @@ public static class MicrobeEnvironmentalToleranceCalculations
             {
                 // TODO: show the numbers in megapascals when makes sense
                 resultCallback.Invoke(Localization.Translate("TOLERANCES_TOO_HIGH_PRESSURE")
-                    .FormatSafe(Math.Round(-data.PerfectPressureAdjustment / 1000, 1)));
+                    .FormatSafe(Math.Round(-data.PerfectPressureAdjustment / 1000, 1)), 20);
             }
             else
             {
                 resultCallback.Invoke(Localization.Translate("TOLERANCES_TOO_LOW_PRESSURE")
-                    .FormatSafe(Math.Round(data.PerfectPressureAdjustment / 1000, 1)));
+                    .FormatSafe(Math.Round(data.PerfectPressureAdjustment / 1000, 1)), 20);
             }
         }
 
         if (data.OxygenScore < 1)
         {
             resultCallback.Invoke(Localization.Translate("TOLERANCES_TOO_LOW_OXYGEN_PROTECTION")
-                .FormatSafe(Math.Round(data.PerfectOxygenAdjustment * 100, 1)));
+                .FormatSafe(Math.Round(data.PerfectOxygenAdjustment * 100, 1)), 20);
         }
 
         if (data.UVScore < 1)
         {
             resultCallback.Invoke(Localization.Translate("TOLERANCES_TOO_LOW_UV_PROTECTION")
-                .FormatSafe(Math.Round(data.PerfectUVAdjustment * 100, 1)));
+                .FormatSafe(Math.Round(data.PerfectUVAdjustment * 100, 1)), 20);
         }
     }
 

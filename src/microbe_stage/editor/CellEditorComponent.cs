@@ -182,6 +182,10 @@ public partial class CellEditorComponent :
 
     [Export]
     private LabelSettings toleranceWarningsFont = null!;
+
+    [Export]
+    private PackedScene customRichTextLabelScene = null!;
+
 #pragma warning restore CA2213
 
     private OrganelleDefinition nucleus = null!;
