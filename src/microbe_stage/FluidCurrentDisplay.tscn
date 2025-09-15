@@ -1,10 +1,10 @@
-[gd_scene load_steps=14 format=3 uid="uid://d3hkouff6asri"]
+[gd_scene load_steps=15 format=3 uid="uid://d3hkouff6asri"]
 
 [ext_resource type="Shader" uid="uid://erlcc6rxb1cy" path="res://shaders/CurrentsParticles.gdshader" id="1_ykhyg"]
 [ext_resource type="Texture2D" uid="uid://nf7opycrmbhf" path="res://assets/textures/CurrentsNoise1.png" id="2_y0umn"]
 [ext_resource type="Texture2D" uid="uid://cf25131bt7raj" path="res://assets/textures/CurrentsNoise2.png" id="3_78fhh"]
 [ext_resource type="Texture2D" uid="uid://bh2oogng6fs2u" path="res://assets/textures/menu_backgrounds/RoundParticle.png" id="4_00tqm"]
-[ext_resource type="Texture2D" uid="uid://dufk485jxbiin" path="res://assets/textures/TrailParticle.png" id="4_78fhh"]
+[ext_resource type="Shader" uid="uid://gfll71n3cy3f" path="res://shaders/FluidCurrentTrail.gdshader" id="6_1112y"]
 [ext_resource type="Script" uid="uid://dbjhycamqqslq" path="res://src/microbe_stage/FluidCurrentDisplay.cs" id="7_21wlg"]
 
 [sub_resource type="Gradient" id="Gradient_4eerh"]
@@ -38,18 +38,19 @@ albedo_texture = ExtResource("4_00tqm")
 [sub_resource type="QuadMesh" id="QuadMesh_1112y"]
 material = SubResource("StandardMaterial3D_mse0a")
 
-[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_78fhh"]
-transparency = 1
-shading_mode = 0
-diffuse_mode = 1
-specular_mode = 2
-vertex_color_use_as_albedo = true
-albedo_texture = ExtResource("4_78fhh")
-use_particle_trails = true
+[sub_resource type="Curve" id="Curve_00tqm"]
+_data = [Vector2(0, 0), 1.99326, 10.4888, 0, 0, Vector2(0.235294, 1), 0.0, 0.0, 0, 0, Vector2(0.496732, 1), 0.0, 0.0, 0, 0, Vector2(0.751634, 1), 0.0, 0.0, 0, 0, Vector2(1, 0), -10.4187, 0.0, 0, 0]
+point_count = 5
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_mse0a"]
+render_priority = 0
+shader = ExtResource("6_1112y")
 
 [sub_resource type="RibbonTrailMesh" id="RibbonTrailMesh_y0umn"]
-material = SubResource("StandardMaterial3D_78fhh")
+material = SubResource("ShaderMaterial_mse0a")
 shape = 0
+section_length = 1.0
+curve = SubResource("Curve_00tqm")
 
 [node name="WaterCurrentDisplay" type="GPUParticles3D"]
 amount = 1000
