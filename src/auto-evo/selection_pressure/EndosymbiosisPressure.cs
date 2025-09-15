@@ -1,4 +1,4 @@
-namespace AutoEvo;
+﻿namespace AutoEvo;
 
 using Newtonsoft.Json;
 
@@ -8,6 +8,7 @@ public class EndosymbiosisPressure : SelectionPressure
 {
     [JsonProperty]
     public readonly Species Endosymbiont;
+
     [JsonProperty]
     public readonly Species Host;
 
