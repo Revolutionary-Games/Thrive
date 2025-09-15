@@ -1,4 +1,5 @@
 ﻿using System;
+using Godot;
 
 /// <summary>
 ///   Environmental tolerances of a species
@@ -16,19 +17,8 @@ public class EnvironmentalTolerances
     /// </summary>
     public float TemperatureTolerance = 21;
 
-    /// <summary>
-    ///   Minimum pressure this species likes. The value is in Pa (pascals). This is not just a single range as
-    ///   the range needs to be lopsided towards surviving higher pressures.
-    /// </summary>
-    /// <remarks>
-    ///   <para>
-    ///     The difference between the defaults may not be over Constants.TOLERANCE_PRESSURE_RANGE_MAX, otherwise the
-    ///     GUI will break when this data is fed in.
-    ///   </para>
-    /// </remarks>
-    public float PressureMinimum = 71325;
-
-    public float PressureMaximum = 301325;
+    public float PressureMinimum;
+    public float PressureTolerance;
 
     public float UVResistance;
     public float OxygenResistance;
@@ -41,6 +31,8 @@ public class EnvironmentalTolerances
         UVResistance = 4,
         OxygenResistance = 8,
     }
+
+    public float PressureMaximum => MathF.Min(PressureMinimum + PressureTolerance, Constants.TOLERANCE_PRESSURE_MAX);
 
     public static bool operator ==(EnvironmentalTolerances? left, EnvironmentalTolerances? right)
     {
@@ -57,7 +49,7 @@ public class EnvironmentalTolerances
         PreferredTemperature = tolerancesToCopy.PreferredTemperature;
         TemperatureTolerance = tolerancesToCopy.TemperatureTolerance;
         PressureMinimum = tolerancesToCopy.PressureMinimum;
-        PressureMaximum = tolerancesToCopy.PressureMaximum;
+        PressureTolerance = tolerancesToCopy.PressureTolerance;
         UVResistance = tolerancesToCopy.UVResistance;
         OxygenResistance = tolerancesToCopy.OxygenResistance;
     }
@@ -90,7 +82,7 @@ public class EnvironmentalTolerances
         }
 
         if (Math.Abs(PressureMinimum - other.PressureMinimum) > 0.01f ||
-            Math.Abs(PressureMaximum - other.PressureMaximum) > 0.01f)
+            Math.Abs(PressureTolerance - other.PressureTolerance) > 0.01f)
         {
             changes |= ToleranceChangedStats.Pressure;
         }

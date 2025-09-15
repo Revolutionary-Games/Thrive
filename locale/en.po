@@ -7,8 +7,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2025-09-12 09:19+0300\n"
-"PO-Revision-Date: 2025-08-21 15:25+0300\n"
+"POT-Creation-Date: 2025-09-13 23:55+0200\n"
+"PO-Revision-Date: 2025-09-15 22:24+0200\n"
 "Last-Translator: Henri Hyyryläinen <hhyyrylainen@revolutionarygamesstudio.com>\n"
 "Language-Team: English <https://translate.revolutionarygamesstudio.com/projects/thrive/thrive-game/en/>\n"
 "Language: en\n"
@@ -1913,9 +1913,6 @@ msgstr ""
 msgid "EDIT_MICROBE_FIRST_TIME"
 msgstr "Edit your microbe for the first time"
 
-msgid "EFFECTIVE_VALUE"
-msgstr "Effective Value"
-
 msgid "EIGHT_TIMES"
 msgstr "8x"
 
@@ -2918,12 +2915,6 @@ msgstr "July"
 msgid "JUNE"
 msgstr "June"
 
-msgid "KEEP_CURRENT_SHORT"
-msgstr "Keep Current"
-
-msgid "KEEP_CURRENT_TOLERANCE_FLEXIBILITY_TOOLTIP"
-msgstr "Keep the current pressure tolerance range while moving the min and max sliders"
-
 msgid "KEEP_MIGRATION"
 msgstr "Keep Migration"
 
@@ -3895,6 +3886,9 @@ msgstr "Models"
 msgid "MODE_CAN_BE_CHANGED_IN_OPTIONS"
 msgstr "2D movement mode can be later changed in the options menu at any time"
 
+msgid "MODIFIER"
+msgstr "Modifier"
+
 msgid "MODIFY"
 msgstr "Modify"
 
@@ -4401,6 +4395,9 @@ msgstr "Official Website"
 
 msgid "OFFICIAL_WEBSITE_BUTTON_TOOLTIP"
 msgstr "Visit the official Revolutionary Games website"
+
+msgid "OFFSET"
+msgstr "Offset"
 
 msgid "OK"
 msgstr "OK"
@@ -6166,7 +6163,7 @@ msgid "TOLERANCES_TOO_LOW_UV_PROTECTION"
 msgstr "UV protection too low, needs to be {0}% higher"
 
 msgid "TOLERANCES_UNSUITABLE_DEBUFFS"
-msgstr "Not adapted to current environmental conditions. Osmoregulation cost {0}%, bioprocess speed {1}%, health {2}%"
+msgstr "[color=#ff4d4d][b]Not adapted to current environmental conditions.[/b] Osmoregulation cost {0}%, bioprocess speed {1}%, health {2}%[/color]"
 
 msgid "TOLERANCE_DETAIL_TEXT"
 msgstr ""
@@ -6175,13 +6172,14 @@ msgstr ""
 "  Range: ±{1}°C\n"
 "[b]Pressure[/b]\n"
 "  Range: {2}-{3} Pa\n"
+"  Tolerance: {4}\n"
 "[b]Oxygen Resistance[/b]\n"
-"  {4}%\n"
+"  {5}%\n"
 "[b]UV Resistance[/b]\n"
-"  {5}%"
+"  {6}%"
 
 msgid "TOLERANCE_FROM_ORGANELLES_TOOLTIP"
-msgstr "Tolerances are affected by some organelles, both positively and negatively. The effective value is shown here after the base value is added together with the change from organelles. Some organelles synergize with certain playstyles but harm others."
+msgstr "Tolerances are affected by some organelles, both positively and negatively. The total value is shown here after the base value is added together with the change from organelles. Some organelles synergize with certain playstyles but harm others."
 
 msgid "TOLERANCE_RANGE_LABEL"
 msgstr "Flexibility:"
@@ -6192,17 +6190,20 @@ msgstr "Tools"
 msgid "TOOL_HAND_AXE"
 msgstr "Hand Axe"
 
-msgid "TOO_LARGE_PRESSURE_RANGE"
-msgstr "Pressure range too wide"
-
 msgid "TOO_MANY_RECENT_VERSIONS_TO_SHOW"
 msgstr "Not showing all recent versions as there are too many"
+
+msgid "TOTAL"
+msgstr "Total"
 
 msgid "TOTAL_GATHERED_ENERGY_COLON"
 msgstr "Gathered Energy:"
 
 msgid "TOTAL_SAVES"
 msgstr "Total saves:"
+
+msgid "TOTAL_VALUE"
+msgstr "Total Value"
 
 msgid "TOXIN_CHANNEL_INHIBITOR"
 msgstr "Channel Inhibitor"
@@ -6479,15 +6480,19 @@ msgstr ""
 
 msgid "TUTORIAL_MICROBE_EDITOR_TOLERANCES_TAB"
 msgstr ""
-"The tolerances editor allows changing the [b]environmental conditions your species is adapted to[/b]. These include [thrive:compound type=\"temperature\"][/thrive:compound] and [b]pressure[/b] [thrive:icon]Pressure[/thrive:icon] of the patch you reside in.\n"
+"Your organism can only live in environmental conditions it is [b]adapted[/b] to.\n"
 "\n"
-"When moving to a patch you aren't adapted to, there will be [b]various negative effects[/b]. Adjusting the sliders to correct either the preferred conditions or increasing the flexibility range for the new patch will remove these effects. The unsuitable conditions are shown in red.\n"
+"The tolerances tab allows you to change what conditions your species can tolerate, such as [thrive:compound type=\"temperature\"][/thrive:compound] or [b]Pressure[/b] [thrive:icon]Pressure[/thrive:icon].\n"
 "\n"
-"To become [b]perfectly adapted[/b] and gain bonuses instead of negative effects, the flexibility ranges need to be reduced to minimal values while still staying adapted to the patch. The numbers will then turn green and grant positive effects.\n"
+"Here you can also increase your resistance to the harmful effects of [thrive:compound type=\"oxygen\"][/thrive:compound] and [thrive:compound type=\"sunlight\"][/thrive:compound].\n"
 "\n"
-"The trade-off with perfect adaptation is not being suitable for a wide range of patches. Planning before moving patches by increasing the tolerance ranges can be a good strategy if you have [b]some remaining MP[/b] [thrive:icon]MP[/thrive:icon] to use up before exiting the editor.\n"
+"[color=#ff4d4d]If the current conditions are out of range of your tolerances, you will suffer penalties[/color] to your [b]health[/b] [thrive:icon]HealthIcon[/thrive:icon], [b]osmoregulation[/b] [thrive:icon]OsmoIcon[/thrive:icon] and [b]bioprocess speed[/b].\n"
 "\n"
-"Try changing one of the environmental tolerances to close this tutorial."
+"[color=#338000]Likewise, if your tolerance [b]range[/b] is small enough, those same attributes get buffed.[/color] The tradeoff here is that with a small range you are limited to a smaller number of patches.\n"
+"\n"
+"Beware that [u]organelles in your cell can affect your [b]resistances[/b] and [b]flexibility[/b][/u].\n"
+"\n"
+"Try changing one of your tolerances to close this tutorial."
 
 msgid "TUTORIAL_MICROBE_STAGE_EDITOR_BUTTON_TUTORIAL"
 msgstr ""
@@ -9477,11 +9482,29 @@ msgstr "Zoom in"
 msgid "ZOOM_OUT"
 msgstr "Zoom out"
 
-#~ msgid "SULFIDE_LEVELS"
-#~ msgstr "Sulfide level"
+msgid "—"
+msgstr ""
 
-#~ msgid "GENERATE_BUTTON"
-#~ msgstr "Generate World"
+#~ msgid "EFFECTIVE_VALUE"
+#~ msgstr "Effective Value"
+
+#~ msgid "PLUS_MINUS_VALUE_WITH_UNIT"
+#~ msgstr "± {0} {1}"
+
+#~ msgid "ADDITIONAL_RESISTANCE"
+#~ msgstr "Additional Resistance:"
+
+#~ msgid "BASE"
+#~ msgstr "Base"
+
+#~ msgid "KEEP_CURRENT_SHORT"
+#~ msgstr "Keep Current"
+
+#~ msgid "KEEP_CURRENT_TOLERANCE_FLEXIBILITY_TOOLTIP"
+#~ msgstr "Keep the current pressure tolerance range while moving the min and max sliders"
+
+#~ msgid "TOO_LARGE_PRESSURE_RANGE"
+#~ msgstr "Pressure range too wide"
 
 #~ msgid "CELL_TYPE_BUTTON_ATP_CONSUMPTION"
 #~ msgstr "The ATP consumption of this cell type is {0}."

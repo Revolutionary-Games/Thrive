@@ -519,45 +519,14 @@ public class Patch
         // The multipliers cause things to be slightly higher than required so that there's no "rounding" errors with
         // some tolerances not being exactly right
         var pressure = Biome.Pressure - (organelleEffects.PressureMaximum - organelleEffects.PressureMinimum) * 0.51f;
-        var minPressure = Constants.TOLERANCE_INITIAL_PRESSURE_MIN_FRACTION * pressure;
-        var maxPressure = Constants.TOLERANCE_INITIAL_PRESSURE_MAX_FRACTION * pressure;
-
-        // Don't give too big initial tolerance range
-        var overshoot = (maxPressure - minPressure) - Constants.TOLERANCE_PRESSURE_RANGE_MAX;
-        if (overshoot > 0)
-        {
-            // Add a little bit of extra buffer around the overshoot to ensure it is below the max
-            minPressure += overshoot / 2 + 1;
-            maxPressure -= overshoot / 2 + 1;
-        }
-        else
-        {
-            // Make sure tolerance is not perfectly adapted by default
-            var rangeToPerfect = Constants.TOLERANCE_PERFECT_THRESHOLD_PRESSURE - (maxPressure - minPressure);
-
-            if (rangeToPerfect > 0)
-            {
-                // This is rounded to 50 000 as that's the min step in GUI sliders
-                maxPressure += MathF.Ceiling(rangeToPerfect / 50000.0f) * 50000;
-            }
-
-#if DEBUG
-            if (Math.Abs(maxPressure - minPressure) > Constants.TOLERANCE_PRESSURE_RANGE_MAX)
-            {
-                GD.PrintErr("Ended up generating too wide initial tolerance");
-
-                if (Debugger.IsAttached)
-                    Debugger.Break();
-            }
-#endif
-        }
+        var pressureTolerance = Constants.TOLERANCE_PRESSURE_RANGE_MAX / 2;
 
         var result = new EnvironmentalTolerances
         {
             OxygenResistance = GetAmbientCompound(Compound.Oxygen, CompoundAmountType.Biome),
             UVResistance = GetAmbientCompound(Compound.Sunlight, CompoundAmountType.Biome),
-            PressureMinimum = minPressure,
-            PressureMaximum = maxPressure,
+            PressureMinimum = pressure,
+            PressureTolerance = pressureTolerance,
             PreferredTemperature = GetAmbientCompound(Compound.Temperature, CompoundAmountType.Biome) -
                 organelleEffects.PreferredTemperature * 1.01f,
             TemperatureTolerance = Constants.TOLERANCE_INITIAL_TEMPERATURE_RANGE,

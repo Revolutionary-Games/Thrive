@@ -82,9 +82,9 @@ public class ModifyEnvironmentalTolerance : IMutationStrategy<MicrobeSpecies>
                 }
 #endif
 
-                var change = Math.Max(score.PerfectOxygenAdjustment, maxChange);
+                var change = Math.Max(score.PressureRangeSizeAdjustment, maxChange);
 
-                newTolerances.TemperatureTolerance -= change;
+                newTolerances.TemperatureTolerance += change;
 
                 mp -= change * Constants.TOLERANCE_CHANGE_MP_PER_TEMPERATURE_TOLERANCE;
             }
@@ -101,57 +101,38 @@ public class ModifyEnvironmentalTolerance : IMutationStrategy<MicrobeSpecies>
             {
                 var maxChange = mp / Constants.TOLERANCE_CHANGE_MP_PER_PRESSURE;
 
-                // Calculate in doubles as the pressure stuff needs many decimals
-                double change;
+                float change;
 
                 if (score.PerfectPressureAdjustment < 0)
                 {
-                    change = Math.Max(score.PerfectPressureAdjustment, -maxChange);
+                    change = (float)Math.Max(score.PerfectPressureAdjustment, -maxChange);
                 }
                 else
                 {
-                    change = Math.Min(score.PerfectPressureAdjustment, maxChange);
+                    change = (float)Math.Min(score.PerfectPressureAdjustment, maxChange);
                 }
 
-                // These are adjusted in the same direction to keep the same range as before
-                newTolerances.PressureMinimum = Math.Max(newTolerances.PressureMinimum + (float)change, 0);
-                newTolerances.PressureMaximum = Math.Max(newTolerances.PressureMaximum + (float)change, 0);
+                newTolerances.PressureMinimum += change;
 
                 mp -= (float)(change * Constants.TOLERANCE_CHANGE_MP_PER_PRESSURE);
             }
             else
             {
-                // Trying to perfect this, which is much harder than the other cases as the middle point also will
-                // change (potentially)
-                var changePotential = mp / Constants.TOLERANCE_CHANGE_MP_PER_PRESSURE_TOLERANCE;
+                var maxChange = mp / Constants.TOLERANCE_CHANGE_MP_PER_PRESSURE_TOLERANCE;
+                var change = Math.Max(score.PressureRangeSizeAdjustment, -maxChange);
 
-                // The top range needs to always go down, and the bottom range needs always to go up
 #if DEBUG
-                if (score.TemperatureRangeSizeAdjustment > 0)
+                if (score.PressureRangeSizeAdjustment > 0)
                 {
                     if (Debugger.IsAttached)
                         Debugger.Break();
-                    throw new Exception("Temperature range size adjustment is not negative");
+                    throw new Exception("Pressure range size adjustment is not negative");
                 }
 #endif
 
-                // TODO: either split this more equally or consider if it should be the other way around
+                newTolerances.PressureTolerance += (float)change;
 
-                var halfAdjustment = score.PressureRangeSizeAdjustment * 0.5f;
-
-                var maxChange = Math.Min(changePotential, halfAdjustment);
-
-                // Recalculate change potential for the other part of the calculation
-                mp -= (float)(maxChange * Constants.TOLERANCE_CHANGE_MP_PER_PRESSURE_TOLERANCE);
-                changePotential = mp / Constants.TOLERANCE_CHANGE_MP_PER_PRESSURE_TOLERANCE;
-
-                newTolerances.PressureMaximum = (float)(newTolerances.PressureMaximum - maxChange);
-
-                var minChange = Math.Min(changePotential, halfAdjustment);
-
-                newTolerances.PressureMinimum = (float)(newTolerances.PressureMinimum + minChange);
-
-                mp -= (float)(minChange * Constants.TOLERANCE_CHANGE_MP_PER_PRESSURE_TOLERANCE);
+                mp -= (float)(change * Constants.TOLERANCE_CHANGE_MP_PER_PRESSURE_TOLERANCE);
             }
 
             changes = true;
@@ -200,7 +181,7 @@ public class ModifyEnvironmentalTolerance : IMutationStrategy<MicrobeSpecies>
             changes = true;
         }
 
-        if (changes)
+        if (!changes)
         {
             // Didn't find anything to do after all. This condition should be ensured to be rare as we wasted some
             // processing time here

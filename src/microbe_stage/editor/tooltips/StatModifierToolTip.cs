@@ -28,7 +28,15 @@ public partial class StatModifierToolTip : Control, ICustomToolTip
     [Export]
     private GridContainer statsContainer = null!;
 
+    [Export]
+    [ExportCategory("Configuration")]
     private LabelSettings? breakdownFont;
+
+    [Export]
+    private LabelSettings? breakdownGoodFont;
+
+    [Export]
+    private LabelSettings? breakdownBadFont;
 #pragma warning restore CA2213
 
     private string? displayName;
@@ -39,9 +47,9 @@ public partial class StatModifierToolTip : Control, ICustomToolTip
 
     private bool formatAsPercentage;
     private string? valueSuffix;
+    private string? valuePrefix;
 
     [Export]
-    [ExportCategory("Configuration")]
     public string DisplayName
     {
         get => displayName ?? "StatModifierToolTip_unset";
@@ -97,6 +105,20 @@ public partial class StatModifierToolTip : Control, ICustomToolTip
     }
 
     [Export]
+    public string? ValuePrefix
+    {
+        get => valuePrefix;
+        set
+        {
+            if (valuePrefix == value)
+                return;
+
+            valuePrefix = value;
+            UpdateValueDisplay();
+        }
+    }
+
+    [Export]
     public bool ShowAsPercentage
     {
         get => formatAsPercentage;
@@ -112,13 +134,6 @@ public partial class StatModifierToolTip : Control, ICustomToolTip
 
     [Export]
     public float DisplayDelay { get; set; }
-
-    [Export]
-    public LabelSettings? BreakdownFont
-    {
-        get => breakdownFont;
-        set => breakdownFont = value;
-    }
 
     public ToolTipPositioning Positioning { get; set; } = ToolTipPositioning.ControlBottomRightCorner;
 
@@ -149,7 +164,7 @@ public partial class StatModifierToolTip : Control, ICustomToolTip
 
     /// <summary>
     ///   Shows a breakdown of values divided based on organelle types. Clears any old data that shouldn't be shown
-    ///   any more.
+    ///   anymore.
     /// </summary>
     /// <param name="itemsAndValues">Data to show</param>
     public void DisplayOrganelleBreakdown(Dictionary<OrganelleDefinition, float> itemsAndValues)
@@ -208,6 +223,13 @@ public partial class StatModifierToolTip : Control, ICustomToolTip
                         pair.Value);
             }
 
+            value.LabelSettings = valueToShow switch
+            {
+                > 0 => breakdownGoodFont,
+                < 0 => breakdownBadFont,
+                _ => breakdownFont,
+            };
+
             ++usedIndex;
         }
 
@@ -243,9 +265,6 @@ public partial class StatModifierToolTip : Control, ICustomToolTip
             text = value.ToString(CultureInfo.CurrentCulture);
         }
 
-        if (!string.IsNullOrEmpty(valueSuffix))
-            text = $"{text} {valueSuffix}";
-
-        valueLabel.Text = text;
+        valueLabel.Text = $"{valuePrefix ?? string.Empty} {text} {valueSuffix ?? string.Empty}";
     }
 }

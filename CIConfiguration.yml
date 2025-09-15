@@ -146,4 +146,3 @@ jobs:
       - run:
           name: Unit tests
           command: dotnet run --project Scripts -- test
-

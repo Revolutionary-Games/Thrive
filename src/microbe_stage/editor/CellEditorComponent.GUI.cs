@@ -19,7 +19,7 @@ public partial class CellEditorComponent
 {
     private readonly Dictionary<int, GrowthOrderLabel> createdGrowthOrderLabels = new();
 
-    private readonly List<Label> activeToleranceWarnings = new();
+    private readonly List<CustomRichTextLabel> activeToleranceWarnings = new();
 
     private int usedToleranceWarnings;
 
@@ -782,7 +782,7 @@ public partial class CellEditorComponent
         {
             var tolerances = CalculateRawTolerances();
 
-            void AddToleranceWarning(string text)
+            void AddToleranceWarning(string text, float minimumY)
             {
                 if (usedToleranceWarnings < activeToleranceWarnings.Count)
                 {
@@ -791,15 +791,18 @@ public partial class CellEditorComponent
                 }
                 else if (usedToleranceWarnings < MaxToleranceWarnings)
                 {
-                    var warning = new Label
-                    {
-                        HorizontalAlignment = HorizontalAlignment.Center,
-                        AutowrapMode = TextServer.AutowrapMode.WordSmart,
-                        CustomMinimumSize = new Vector2(150, 0),
-                        LabelSettings = toleranceWarningsFont,
-                    };
+                    var warning = customRichTextLabelScene.Instantiate<CustomRichTextLabel>();
 
-                    warning.Text = text;
+                    warning.HorizontalAlignment = HorizontalAlignment.Center;
+                    warning.AutowrapMode = TextServer.AutowrapMode.WordSmart;
+                    warning.CustomMinimumSize = new Vector2(150, minimumY);
+                    warning.ScrollActive = false;
+
+                    warning.AddThemeColorOverride("default_color", toleranceWarningsFont.FontColor);
+                    warning.AddThemeFontOverride("normal_font", toleranceWarningsFont.Font);
+                    warning.AddThemeFontSizeOverride("normal_font_size", toleranceWarningsFont.FontSize);
+
+                    warning.ExtendedBbcode = text;
                     activeToleranceWarnings.Add(warning);
                     toleranceWarningContainer.AddChild(warning);
                 }

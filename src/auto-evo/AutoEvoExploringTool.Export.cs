@@ -62,6 +62,8 @@ public partial class AutoEvoExploringTool
             "Organelle count",
         });
 
+        header.AddRange(typeof(EnvironmentalTolerances).GetFields().Select(f => f.Name));
+
         header.AddRange(allOrganelles.Select(o => o.UntranslatedName));
         file.StoreCsvLine(header.ToArray());
 
@@ -101,6 +103,16 @@ public partial class AutoEvoExploringTool
                         microbeSpecies.StorageCapacity.ToString(CultureInfo.InvariantCulture),
                         microbeSpecies.IsBacteria.ToString(),
                         microbeSpecies.Organelles.Count.ToString(),
+                    });
+
+                    data.AddRange(new[]
+                    {
+                        microbeSpecies.Tolerances.PreferredTemperature.ToString(CultureInfo.InvariantCulture),
+                        microbeSpecies.Tolerances.TemperatureTolerance.ToString(CultureInfo.InvariantCulture),
+                        microbeSpecies.Tolerances.PressureMinimum.ToString(CultureInfo.InvariantCulture),
+                        microbeSpecies.Tolerances.PressureTolerance.ToString(CultureInfo.InvariantCulture),
+                        microbeSpecies.Tolerances.OxygenResistance.ToString(CultureInfo.InvariantCulture),
+                        microbeSpecies.Tolerances.UVResistance.ToString(CultureInfo.InvariantCulture),
                     });
 
                     data.AddRange(allOrganelles

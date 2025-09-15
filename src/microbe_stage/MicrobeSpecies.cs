@@ -373,6 +373,7 @@ public class MicrobeSpecies : Species, ICellDefinition
                 Tolerances.TemperatureTolerance,
                 Tolerances.PressureMinimum,
                 Tolerances.PressureMaximum,
+                Tolerances.PressureTolerance,
                 Math.Round(Tolerances.OxygenResistance * 100, 2),
                 Math.Round(Tolerances.UVResistance * 100, 2));
     }

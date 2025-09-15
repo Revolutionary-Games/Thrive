@@ -1871,11 +1871,7 @@ public static class Constants
     public const float TOLERANCE_MAXIMUM_SURVIVABLE_PRESSURE_DIFFERENCE = 4000000;
     public const float TOLERANCE_PERFECT_THRESHOLD_PRESSURE = 350000;
 
-    // These are chosen to be symmetric so that the pressure tolerance range ends up easier to show correctly in the
-    // GUI
-    public const float TOLERANCE_INITIAL_PRESSURE_MIN_FRACTION = 0.8f;
-    public const float TOLERANCE_INITIAL_PRESSURE_MAX_FRACTION = 1.2f;
-
+    public const float TOLERANCE_PRESSURE_MAX = 80000000;
     public const float TOLERANCE_PRESSURE_RANGE_MAX = 2000000;
     public const float TOLERANCE_PERFECT_PRESSURE_SCORE = 0.1f;
 
@@ -1892,11 +1888,8 @@ public static class Constants
     public const float TOLERANCE_CHANGE_MP_PER_OXYGEN = 150.0f;
     public const float TOLERANCE_CHANGE_MP_PER_UV = 100.0f;
 
-    /// <summary>
-    ///   As pressure values are massive, this is a double to get reasonable MP costs
-    /// </summary>
+    // TODO: MAKE THIS A SENSIBLE COST
     public const double TOLERANCE_CHANGE_MP_PER_PRESSURE = 0.000002;
-
     public const double TOLERANCE_CHANGE_MP_PER_PRESSURE_TOLERANCE = 0.00005;
 
     // Environmental tolerance debuff / buff tweak variables
