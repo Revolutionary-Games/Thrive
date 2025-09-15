@@ -3,7 +3,6 @@
 using Newtonsoft.Json;
 
 [JSONDynamicTypeAllowed]
-
 public class EndosymbiosisPressure : SelectionPressure
 {
     [JsonProperty]
