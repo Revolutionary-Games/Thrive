@@ -74,7 +74,10 @@ void process() {
     {
         // The following should strictly conform to the formula in FluidCurrentSystem.cs
         vec2 scaledPosition = TRANSFORM[3].xz * positionScaling * inverseScale;
-        float scaledTime = CUSTOM.z * currentsTimescale * chaoticness;
+        // CUSTOM.z is the point of time when the lead particle spawned, CUSTOM.y is this particle's lifetime.
+        // The sum is the time such that this particle follows the exact same path as the lead one.
+        // Or just the gameTime if this is the lead particle.
+        float scaledTime = (CUSTOM.z + CUSTOM.y) * currentsTimescale * chaoticness;
         
         vec2 current1 = texture(noiseCurrents1,
             vec2((scaledPosition.x + scaledTime) / 1024.0f,
