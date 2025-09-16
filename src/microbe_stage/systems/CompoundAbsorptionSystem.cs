@@ -17,13 +17,12 @@ public partial class CompoundAbsorptionSystem : BaseSystem<World, float>
 {
     private readonly CompoundCloudSystem compoundCloudSystem;
 
-    public CompoundAbsorptionSystem(CompoundCloudSystem compoundCloudSystem, World world, IParallelRunner runner) :
-        base(world, runner, Constants.SYSTEM_NORMAL_ENTITIES_PER_THREAD)
+    public CompoundAbsorptionSystem(CompoundCloudSystem compoundCloudSystem, World world) : base(world)
     {
         this.compoundCloudSystem = compoundCloudSystem;
     }
 
-    [Query]
+    [Query(Parallel = true)]
     [MethodImpl(MethodImplOptions.AggressiveInlining)]
     private void Update([Data] in float delta, ref CompoundAbsorber absorber, ref CompoundStorage storage,
         ref WorldPosition position, in Entity entity)

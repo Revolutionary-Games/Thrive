@@ -41,8 +41,7 @@ public partial class EngulfedDigestionSystem : BaseSystem<World, float>
 
     private GameWorld? gameWorld;
 
-    public EngulfedDigestionSystem(CompoundCloudSystem compoundCloudSystem, World world,
-        IParallelRunner parallelRunner) : base(world, parallelRunner, Constants.SYSTEM_NORMAL_ENTITIES_PER_THREAD)
+    public EngulfedDigestionSystem(CompoundCloudSystem compoundCloudSystem, World world) : base(world)
     {
         this.compoundCloudSystem = compoundCloudSystem;
         var simulationParameters = SimulationParameters.Instance;
@@ -62,7 +61,7 @@ public partial class EngulfedDigestionSystem : BaseSystem<World, float>
             throw new InvalidOperationException("GameWorld not set");
     }
 
-    [Query]
+    [Query(Parallel = true)]
     [All<MicrobeStatus, CellProperties, Health, WorldPosition>]
     [MethodImpl(MethodImplOptions.AggressiveInlining)]
     private void Update([Data] in float delta, ref Engulfer engulfer, ref OrganelleContainer organelles,

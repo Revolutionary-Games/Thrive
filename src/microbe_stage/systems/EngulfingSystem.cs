@@ -306,7 +306,7 @@ public partial class EngulfingSystem : BaseSystem<World, float>
                 }
 #endif
             }
-            else if (engulfable.PhagocytosisStep == PhagocytosisPhase.None || engulfable.HostileEngulfer == default)
+            else if (engulfable.PhagocytosisStep == PhagocytosisPhase.None || engulfable.HostileEngulfer == Entity.Null)
             {
                 if (engulfable.PhagocytosisStep == PhagocytosisPhase.None)
                 {

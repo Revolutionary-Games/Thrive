@@ -48,6 +48,7 @@ public partial class FadeOutActionSystem : BaseSystem<World, float>
 
     private readonly TimedLife.OnTimeOver cachedDelegate;
 
+    // TODO: Constants.SYSTEM_EXTREME_ENTITIES_PER_THREAD
     public FadeOutActionSystem(IWorldSimulation worldSimulation, CompoundCloudSystem? compoundCloudSystem,
         World world) : base(world)
     {

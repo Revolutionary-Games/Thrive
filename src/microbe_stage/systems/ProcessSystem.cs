@@ -42,8 +42,7 @@ public partial class ProcessSystem : BaseSystem<World, float>
     /// </summary>
     private float inverseDelta;
 
-    public ProcessSystem(World world, IParallelRunner runner) : base(world, runner,
-        Constants.SYSTEM_LOW_ENTITIES_PER_THREAD)
+    public ProcessSystem(World world) : base(world)
     {
     }
 
@@ -793,7 +792,7 @@ public partial class ProcessSystem : BaseSystem<World, float>
 #endif
     }
 
-    [Query]
+    [Query(Parallel = true)]
     [MethodImpl(MethodImplOptions.AggressiveInlining)]
     private void Update([Data] in float delta, ref CompoundStorage storage, ref BioProcesses processes, in Entity entity)
     {

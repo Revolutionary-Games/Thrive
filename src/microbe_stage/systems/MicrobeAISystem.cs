@@ -95,9 +95,7 @@ public partial class MicrobeAISystem : BaseSystem<World, float>, ISpeciesMemberL
 
     private bool skipAI;
 
-    public MicrobeAISystem(IReadonlyCompoundClouds cloudSystem, IDaylightInfo lightInfo, World world,
-        IParallelRunner runner) :
-        base(world, runner, Constants.SYSTEM_NORMAL_ENTITIES_PER_THREAD)
+    public MicrobeAISystem(IReadonlyCompoundClouds cloudSystem, IDaylightInfo lightInfo, World world) : base(world)
     {
         clouds = cloudSystem;
         this.lightInfo = lightInfo;
@@ -132,12 +130,6 @@ public partial class MicrobeAISystem : BaseSystem<World, float>, ISpeciesMemberL
         return microbesBySpecies.GetValueOrDefault(id);
     }
 
-    public override void Dispose()
-    {
-        Dispose(true);
-        base.Dispose();
-    }
-
     public override void BeforeUpdate(in float delta)
     {
         skipAI = CheatManager.NoAI;
@@ -164,7 +156,7 @@ public partial class MicrobeAISystem : BaseSystem<World, float>, ISpeciesMemberL
         }
     }
 
-    [Query]
+    [Query(Parallel = true)]
     [All<SpeciesMember, MicrobeControl, CompoundAbsorber, CompoundStorage, OrganelleContainer, CommandSignaler,
         CellProperties, Engulfer, WorldPosition>]
     [None<AttachedToEntity>]

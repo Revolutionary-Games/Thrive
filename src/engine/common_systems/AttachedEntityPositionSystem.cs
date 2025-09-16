@@ -30,7 +30,7 @@ public partial class AttachedEntityPositionSystem : BaseSystem<World, float>
         {
             // This can happen if the entity is dead now
 
-            if (attachInfo.AttachedTo != default(Entity) && !attachInfo.AttachedTo.IsAlive())
+            if (attachInfo.AttachedTo != Entity.Null && !attachInfo.AttachedTo.IsAlive())
             {
                 // Delete this dependent entity if configured to do so
                 // TODO: could this probably switch this to use child entity feature in Arch

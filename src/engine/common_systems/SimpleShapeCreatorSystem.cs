@@ -14,8 +14,8 @@ using Components;
 [RuntimeCost(0.25f)]
 public partial class SimpleShapeCreatorSystem : BaseSystem<World, float>
 {
-    public SimpleShapeCreatorSystem(World world, IParallelRunner runner) :
-        base(world, runner, Constants.SYSTEM_HIGH_ENTITIES_PER_THREAD)
+    // TODO: Constants.SYSTEM_HIGH_ENTITIES_PER_THREAD
+    public SimpleShapeCreatorSystem(World world) : base(world)
     {
     }
 

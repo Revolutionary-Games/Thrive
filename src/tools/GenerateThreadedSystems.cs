@@ -139,7 +139,7 @@ public partial class GenerateThreadedSystems : Node
         new List<(Type Class, string File, string EndOfProcess)>
         {
             (typeof(MicrobeWorldSimulation), "src/microbe_stage/MicrobeWorldSimulation.generated.cs",
-                "cellCountingEntitySet.Complete();\nreportedPlayerPosition = null;"),
+                "\nreportedPlayerPosition = null;"),
         };
 
     private readonly Type systemBaseType = typeof(ISystem<>);

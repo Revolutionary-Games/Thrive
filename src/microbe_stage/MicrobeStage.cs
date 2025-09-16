@@ -1569,7 +1569,7 @@ public partial class MicrobeStage : CreatureStageBase<Entity, MicrobeWorldSimula
     /// <returns>All microbes of Player's species</returns>
     private List<Entity> GetAllPlayerSpeciesMicrobes()
     {
-        if (Player == default)
+        if (Player == Entity.Null)
             throw new InvalidOperationException("Could not get player species microbes: no Player object");
 
         var species = Player.Get<SpeciesMember>().ID;

@@ -397,7 +397,7 @@ public partial class CloudBenchmark : BenchmarkBase
 
         // Dummy currents that don't need to run on any entities have to be created for the cloud system
         dummyEntityWorld = World.Create();
-        var dummyCurrents = new FluidCurrentsSystem(dummyEntityWorld, new DefaultParallelRunner(1));
+        var dummyCurrents = new FluidCurrentsSystem(dummyEntityWorld, 0);
 
         cloudSystem.Init(dummyCurrents);
 

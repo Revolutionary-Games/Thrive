@@ -196,7 +196,6 @@ public partial class MicrobeWorldSimulation
         // Catch for extra system run safety (for debugging why higher level catches don't get errors)
         try
         {
-            cellCountingEntitySet.Complete();
             reportedPlayerPosition = null;
         }
         catch (Exception e)
@@ -310,7 +309,6 @@ public partial class MicrobeWorldSimulation
         // Catch for extra system run safety (for debugging why higher level catches don't get errors)
         try
         {
-            cellCountingEntitySet.Complete();
             reportedPlayerPosition = null;
         }
         catch (Exception e)

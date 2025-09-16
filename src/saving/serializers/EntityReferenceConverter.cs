@@ -10,7 +10,7 @@ using Newtonsoft.Json;
 public class EntityReferenceConverter : JsonConverter<Entity>
 {
     private const string AlwaysRemovedPart = "Entity ";
-    private static readonly string DefaultEntityStr = default(Entity).ToString().Substring(AlwaysRemovedPart.Length);
+    private static readonly string DefaultEntityStr = Entity.Null.ToString().Substring(AlwaysRemovedPart.Length);
 
     private readonly SaveContext context;
 
@@ -26,7 +26,7 @@ public class EntityReferenceConverter : JsonConverter<Entity>
 
     public override void WriteJson(JsonWriter writer, Entity value, JsonSerializer serializer)
     {
-        if (value == default)
+        if (value == Entity.Null)
         {
             writer.WriteValue(value.ToString());
             return;
@@ -65,9 +65,9 @@ public class EntityReferenceConverter : JsonConverter<Entity>
         }
 
         if (old == DefaultEntityStr)
-            return default(Entity);
+            return Entity.Null;
 
-        // If already loaded return the entity
+        // If already loaded returns the entity
         if (context.OldToNewEntityMapping.TryGetValue(old, out var existing))
             return existing;
 

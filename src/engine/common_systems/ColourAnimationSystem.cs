@@ -15,8 +15,8 @@ using World = Arch.Core.World;
 [RunsOnFrame]
 public partial class ColourAnimationSystem : BaseSystem<World, float>
 {
-    public ColourAnimationSystem(World world, IParallelRunner runner) : base(world, runner,
-        Constants.SYSTEM_EXTREME_ENTITIES_PER_THREAD)
+    // TODO: Constants.SYSTEM_EXTREME_ENTITIES_PER_THREAD
+    public ColourAnimationSystem(World world) : base(world)
     {
     }
 

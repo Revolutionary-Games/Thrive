@@ -43,13 +43,12 @@ public partial class OrganelleTickSystem : BaseSystem<World, float>
     private readonly IWorldSimulation worldSimulation;
     private readonly ConcurrentStack<(IOrganelleComponent Component, Entity Entity)> queuedSyncRuns = new();
 
-    public OrganelleTickSystem(IWorldSimulation worldSimulation, World world) :
-        base(world, parallelRunner, Constants.SYSTEM_NORMAL_ENTITIES_PER_THREAD)
+    public OrganelleTickSystem(IWorldSimulation worldSimulation, World world) : base(world)
     {
         this.worldSimulation = worldSimulation;
     }
 
-    [Query]
+    [Query(Parallel = true)]
     [All<CompoundStorage, WorldPosition>]
     [MethodImpl(MethodImplOptions.AggressiveInlining)]
     private void Update([Data] in float delta, ref OrganelleContainer organelleContainer, in Entity entity)

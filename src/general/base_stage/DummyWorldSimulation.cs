@@ -58,6 +58,10 @@ public class DummyWorldSimulation : IWorldSimulation
     {
     }
 
+    public void OnFailedRecordingEntityCommands(CommandBuffer recorder)
+    {
+    }
+
     public bool ProcessAll(float delta)
     {
         return true;

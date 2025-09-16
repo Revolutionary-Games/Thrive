@@ -1,5 +1,4 @@
 ﻿using Arch.Core;
-using Components;
 using Godot;
 using Newtonsoft.Json;
 using Systems;
@@ -11,8 +10,6 @@ using World = Arch.Core.World;
 /// </summary>
 public partial class MicrobeWorldSimulation : WorldSimulationWithPhysics
 {
-    private readonly IParallelRunner nonParallelRunner = new DefaultParallelRunner(1);
-
     // Base systems
     private AnimationControlSystem animationControlSystem = null!;
     private AttachedEntityPositionSystem attachedEntityPositionSystem = null!;
@@ -92,8 +89,6 @@ public partial class MicrobeWorldSimulation : WorldSimulationWithPhysics
     private MulticellularGrowthSystem multicellularGrowthSystem = null!;
     private IntercellularMatrixSystem intercellularMatrixSystem = null!;
 
-    private EntitySet cellCountingEntitySet = null!;
-
 #pragma warning disable CA2213
     private Node visualsParent = null!;
 #pragma warning restore CA2213
@@ -148,43 +143,36 @@ public partial class MicrobeWorldSimulation : WorldSimulationWithPhysics
 
         visualsParent = visualDisplayRoot;
 
-        // Threading using our task system
-        IParallelRunner parallelRunner = TaskExecutor.Instance;
-
         if (GenerateThreadedSystems.UseCheckedComponentAccess)
         {
             GD.Print("Disallowing threaded execution to allow strict component thread checks to work");
-            parallelRunner = new DefaultParallelRunner(1);
+            World.SharedJobScheduler = null;
         }
-
-        // Set on systems that can be run in parallel but aren't right now as there's no real performance improvement
-        // / the system entity count per thread needs tweaking before there's any benefit
-        var couldParallelize = new DefaultParallelRunner(1);
 
         // Systems stored in fields
         animationControlSystem = new AnimationControlSystem(EntitySystem);
-        attachedEntityPositionSystem = new AttachedEntityPositionSystem(this, EntitySystem, couldParallelize);
-        colourAnimationSystem = new ColourAnimationSystem(EntitySystem, parallelRunner);
+        attachedEntityPositionSystem = new AttachedEntityPositionSystem(this, EntitySystem);
+        colourAnimationSystem = new ColourAnimationSystem(EntitySystem);
         countLimitedDespawnSystem = new CountLimitedDespawnSystem(this, EntitySystem);
-        damageCooldownSystem = new DamageCooldownSystem(EntitySystem, couldParallelize);
-        damageOnTouchSystem = new DamageOnTouchSystem(this, EntitySystem, couldParallelize);
+        damageCooldownSystem = new DamageCooldownSystem(EntitySystem);
+        damageOnTouchSystem = new DamageOnTouchSystem(this, EntitySystem);
         disallowPlayerBodySleepSystem = new DisallowPlayerBodySleepSystem(physics, EntitySystem);
         entityLightSystem = new EntityLightSystem(EntitySystem);
         entityMaterialFetchSystem = new EntityMaterialFetchSystem(EntitySystem);
-        fadeOutActionSystem = new FadeOutActionSystem(this, cloudSystem, EntitySystem, couldParallelize);
-        pathBasedSceneLoader = new PathBasedSceneLoader(EntitySystem, nonParallelRunner);
-        physicsBodyControlSystem = new PhysicsBodyControlSystem(physics, EntitySystem, couldParallelize);
+        fadeOutActionSystem = new FadeOutActionSystem(this, cloudSystem, EntitySystem);
+        pathBasedSceneLoader = new PathBasedSceneLoader(EntitySystem);
+        physicsBodyControlSystem = new PhysicsBodyControlSystem(physics, EntitySystem);
         physicsBodyDisablingSystem = new PhysicsBodyDisablingSystem(physics, EntitySystem);
         physicsBodyCreationSystem =
             new PhysicsBodyCreationSystem(this, physicsBodyDisablingSystem, EntitySystem);
         physicsCollisionManagementSystem =
-            new PhysicsCollisionManagementSystem(physics, EntitySystem, couldParallelize);
+            new PhysicsCollisionManagementSystem(physics, EntitySystem);
         physicsSensorSystem = new PhysicsSensorSystem(this, EntitySystem);
-        physicsUpdateAndPositionSystem = new PhysicsUpdateAndPositionSystem(physics, EntitySystem, couldParallelize);
+        physicsUpdateAndPositionSystem = new PhysicsUpdateAndPositionSystem(physics, EntitySystem);
         collisionShapeLoaderSystem = new CollisionShapeLoaderSystem(EntitySystem);
         predefinedVisualLoaderSystem = new PredefinedVisualLoaderSystem(EntitySystem);
 
-        simpleShapeCreatorSystem = new SimpleShapeCreatorSystem(EntitySystem, couldParallelize);
+        simpleShapeCreatorSystem = new SimpleShapeCreatorSystem(EntitySystem);
 
         // TODO: different root for sounds?
         soundEffectSystem = new SoundEffectSystem(visualsParent, EntitySystem);
@@ -195,71 +183,69 @@ public partial class MicrobeWorldSimulation : WorldSimulationWithPhysics
         allCompoundsVentingSystem = new AllCompoundsVentingSystem(cloudSystem, this, EntitySystem);
         cellBurstEffectSystem = new CellBurstEffectSystem(EntitySystem);
 
-        colonyBindingSystem = new ColonyBindingSystem(this, EntitySystem, couldParallelize);
-        colonyCompoundDistributionSystem = new ColonyCompoundDistributionSystem(EntitySystem, couldParallelize);
-        colonyStatsUpdateSystem = new ColonyStatsUpdateSystem(this, EntitySystem, couldParallelize);
+        colonyBindingSystem = new ColonyBindingSystem(this, EntitySystem);
+        colonyCompoundDistributionSystem = new ColonyCompoundDistributionSystem(EntitySystem);
+        colonyStatsUpdateSystem = new ColonyStatsUpdateSystem(this, EntitySystem);
 
         // TODO: clouds currently only allow 2 thread to absorb at once
-        compoundAbsorptionSystem = new CompoundAbsorptionSystem(cloudSystem, EntitySystem, parallelRunner);
+        compoundAbsorptionSystem = new CompoundAbsorptionSystem(cloudSystem, EntitySystem);
 
-        damageSoundSystem = new DamageSoundSystem(EntitySystem, couldParallelize);
-        endosymbiontOrganelleSystem = new EndosymbiontOrganelleSystem(EntitySystem, couldParallelize);
-        engulfedDigestionSystem = new EngulfedDigestionSystem(cloudSystem, EntitySystem, parallelRunner);
-        engulfedHandlingSystem = new EngulfedHandlingSystem(this, SpawnSystem, EntitySystem, couldParallelize);
+        damageSoundSystem = new DamageSoundSystem(EntitySystem);
+        endosymbiontOrganelleSystem = new EndosymbiontOrganelleSystem(EntitySystem);
+        engulfedDigestionSystem = new EngulfedDigestionSystem(cloudSystem, EntitySystem);
+        engulfedHandlingSystem = new EngulfedHandlingSystem(this, SpawnSystem, EntitySystem);
 
-        strainSystem = new StrainSystem(EntitySystem, couldParallelize);
-        microbeMovementSystem = new MicrobeMovementSystem(this, PhysicalWorld, EntitySystem, parallelRunner);
+        strainSystem = new StrainSystem(EntitySystem);
+        microbeMovementSystem = new MicrobeMovementSystem(this, PhysicalWorld, EntitySystem);
 
-        irradiationSystem = new IrradiationSystem(EntitySystem, parallelRunner);
-        microbeAI = new MicrobeAISystem(cloudSystem, spawnEnvironment.DaylightInfo, EntitySystem, parallelRunner);
-        microbeCollisionSoundSystem = new MicrobeCollisionSoundSystem(EntitySystem, couldParallelize);
-        microbeEmissionSystem = new MicrobeEmissionSystem(this, cloudSystem, EntitySystem, couldParallelize);
+        irradiationSystem = new IrradiationSystem(EntitySystem);
+        microbeAI = new MicrobeAISystem(cloudSystem, spawnEnvironment.DaylightInfo, EntitySystem);
+        microbeCollisionSoundSystem = new MicrobeCollisionSoundSystem(EntitySystem);
+        microbeEmissionSystem = new MicrobeEmissionSystem(this, cloudSystem, EntitySystem);
 
         microbeEventCallbackSystem = new MicrobeEventCallbackSystem(cloudSystem, microbeAI, EntitySystem);
-        microbeFlashingSystem = new MicrobeFlashingSystem(EntitySystem, couldParallelize);
-        microbeHeatAccumulationSystem = new MicrobeHeatAccumulationSystem(EntitySystem, parallelRunner);
-        microbeMovementSoundSystem = new MicrobeMovementSoundSystem(EntitySystem, couldParallelize);
+        microbeFlashingSystem = new MicrobeFlashingSystem(EntitySystem);
+        microbeHeatAccumulationSystem = new MicrobeHeatAccumulationSystem(EntitySystem);
+        microbeMovementSoundSystem = new MicrobeMovementSoundSystem(EntitySystem);
         microbeShaderSystem = new MicrobeShaderSystem(EntitySystem);
-        microbeTemporaryEffectsSystem = new MicrobeTemporaryEffectsSystem(EntitySystem, parallelRunner);
+        microbeTemporaryEffectsSystem = new MicrobeTemporaryEffectsSystem(EntitySystem);
 
         microbeVisualsSystem = new MicrobeVisualsSystem(EntitySystem);
-        organelleComponentFetchSystem = new OrganelleComponentFetchSystem(EntitySystem, couldParallelize);
-        organelleTickSystem = new OrganelleTickSystem(this, EntitySystem, parallelRunner);
-        osmoregulationAndHealingSystem = new OsmoregulationAndHealingSystem(EntitySystem, couldParallelize);
-        pilusDamageSystem = new PilusDamageSystem(EntitySystem, couldParallelize);
-        radiationDamageSystem = new RadiationDamageSystem(EntitySystem, parallelRunner);
-        slimeSlowdownSystem = new SlimeSlowdownSystem(cloudSystem, EntitySystem, couldParallelize);
+        organelleComponentFetchSystem = new OrganelleComponentFetchSystem(EntitySystem);
+        organelleTickSystem = new OrganelleTickSystem(this, EntitySystem);
+        osmoregulationAndHealingSystem = new OsmoregulationAndHealingSystem(EntitySystem);
+        pilusDamageSystem = new PilusDamageSystem(EntitySystem);
+        radiationDamageSystem = new RadiationDamageSystem(EntitySystem);
+        slimeSlowdownSystem = new SlimeSlowdownSystem(cloudSystem, EntitySystem);
         mucocystSystem = new MucocystSystem(EntitySystem);
-        microbePhysicsCreationAndSizeSystem = new MicrobePhysicsCreationAndSizeSystem(EntitySystem, couldParallelize);
+        microbePhysicsCreationAndSizeSystem = new MicrobePhysicsCreationAndSizeSystem(EntitySystem);
         microbeRenderPrioritySystem = new MicrobeRenderPrioritySystem(EntitySystem);
         tintColourApplyingSystem = new TintColourApplyingSystem(EntitySystem);
 
-        toxinCollisionSystem = new ToxinCollisionSystem(EntitySystem, couldParallelize);
-        siderophoreSystem = new SiderophoreSystem(EntitySystem, couldParallelize, this);
+        toxinCollisionSystem = new ToxinCollisionSystem(EntitySystem);
+        siderophoreSystem = new SiderophoreSystem(EntitySystem, this);
 
-        unneededCompoundVentingSystem = new UnneededCompoundVentingSystem(cloudSystem, EntitySystem, parallelRunner);
+        unneededCompoundVentingSystem = new UnneededCompoundVentingSystem(cloudSystem, EntitySystem);
 
         // Systems stored in properties
         CameraFollowSystem = new CameraFollowSystem(EntitySystem);
 
-        ProcessSystem = new ProcessSystem(EntitySystem, parallelRunner);
+        ProcessSystem = new ProcessSystem(EntitySystem);
 
-        TimedLifeSystem = new TimedLifeSystem(this, EntitySystem, couldParallelize);
+        TimedLifeSystem = new TimedLifeSystem(this, EntitySystem);
 
         microbeReproductionSystem =
-            new MicrobeReproductionSystem(this, spawnEnvironment, SpawnSystem, EntitySystem, parallelRunner);
-        microbeDeathSystem = new MicrobeDeathSystem(this, SpawnSystem, EntitySystem, couldParallelize);
+            new MicrobeReproductionSystem(this, spawnEnvironment, SpawnSystem, EntitySystem);
+        microbeDeathSystem = new MicrobeDeathSystem(this, SpawnSystem, EntitySystem);
         engulfingSystem = new EngulfingSystem(this, SpawnSystem, EntitySystem);
 
         delayedColonyOperationSystem =
-            new DelayedColonyOperationSystem(this, spawnEnvironment, SpawnSystem, EntitySystem, couldParallelize);
+            new DelayedColonyOperationSystem(this, spawnEnvironment, SpawnSystem, EntitySystem);
         multicellularGrowthSystem =
-            new MulticellularGrowthSystem(this, spawnEnvironment, SpawnSystem, EntitySystem, parallelRunner);
+            new MulticellularGrowthSystem(this, spawnEnvironment, SpawnSystem, EntitySystem);
         intercellularMatrixSystem = new IntercellularMatrixSystem(EntitySystem);
 
         CloudSystem = cloudSystem;
-
-        cellCountingEntitySet = EntitySystem.GetEntities().With<CellProperties>().AsSet();
 
         physics.RemoveGravity();
 
@@ -329,18 +315,12 @@ public partial class MicrobeWorldSimulation : WorldSimulationWithPhysics
 
     protected override void InitSystemsEarly()
     {
-        IParallelRunner parallelRunner = TaskExecutor.Instance;
+        entitySignalingSystem = new EntitySignalingSystem(EntitySystem);
 
-        // See the similar if in Init to know why this is used
-        if (GenerateThreadedSystems.UseCheckedComponentAccess)
-        {
-            parallelRunner = new DefaultParallelRunner(1);
-        }
+        // TODO: load time from save
+        FluidCurrentsSystem = new FluidCurrentsSystem(EntitySystem, 0);
 
-        entitySignalingSystem = new EntitySignalingSystem(EntitySystem, parallelRunner);
-        FluidCurrentsSystem = new FluidCurrentsSystem(EntitySystem, parallelRunner);
-
-        SpawnSystem = new SpawnSystem(this);
+        SpawnSystem = new SpawnSystem(this, EntitySystem);
     }
 
     protected override void OnProcessFixedLogic(float delta)
@@ -403,13 +383,6 @@ public partial class MicrobeWorldSimulation : WorldSimulationWithPhysics
         CloudSystem.ReportPlayerPosition(playerPosition);
     }
 
-    protected override int EstimateThreadsUtilizedBySystems()
-    {
-        var estimateCellCount = cellCountingEntitySet.Count;
-
-        return 1 + estimateCellCount / Constants.SIMULATION_CELLS_PER_THREAD_ESTIMATE;
-    }
-
     protected override void Dispose(bool disposing)
     {
         // Must disable recording to avoid disposing exceptions from metrics reporting
@@ -418,8 +391,6 @@ public partial class MicrobeWorldSimulation : WorldSimulationWithPhysics
 
         if (disposing)
         {
-            nonParallelRunner.Dispose();
-
             // If disposed before Init is called, problems will happen without this check. This happens, for example,
             // if loading a save made in the editor and quitting the game without exiting the editor first to the
             // microbe stage.
@@ -498,8 +469,6 @@ public partial class MicrobeWorldSimulation : WorldSimulationWithPhysics
                 CameraFollowSystem.Dispose();
                 ProcessSystem.Dispose();
                 TimedLifeSystem.Dispose();
-
-                cellCountingEntitySet.Dispose();
             }
 
             if (SpawnSystem != null!)

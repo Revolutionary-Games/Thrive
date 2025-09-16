@@ -52,9 +52,6 @@ public abstract class WorldSimulation : IWorldSimulation, IGodotEarlyNodeResolve
     private readonly HashSet<CommandBuffer> nonEmptyRecorders = new();
     private int totalCreatedRecorders;
 
-    private float timeSinceLastEntityEstimate = 1;
-    private int ecsThreadsToUse = 1;
-
     private int missedUpdates;
     private int successfulUpdates;
 
@@ -86,8 +83,8 @@ public abstract class WorldSimulation : IWorldSimulation, IGodotEarlyNodeResolve
     ///     a simulation run.
     ///   </para>
     ///   <para>
-    ///     Also looping all entities to find relevant ones is only allowed for one-off operations that don't occur
-    ///     very often (for example each frame). Systems must be implemented for per-frame operations that act on
+    ///     Also, looping all entities to find relevant ones is only allowed for one-off operations that don't occur
+    ///     very often (for example, each frame). Systems must be implemented for per-frame operations that act on
     ///     entities having specific components.
     ///   </para>
     /// </remarks>
@@ -189,9 +186,6 @@ public abstract class WorldSimulation : IWorldSimulation, IGodotEarlyNodeResolve
             WorldTimeScale = 1;
         }
 
-        // Allow this time to actually reflect realtime
-        timeSinceLastEntityEstimate += delta;
-
         accumulatedLogicTime += delta * WorldTimeScale;
 
         // TODO: is it a good idea to rate limit physics to not be able to run on update frames when the logic
@@ -228,14 +222,6 @@ public abstract class WorldSimulation : IWorldSimulation, IGodotEarlyNodeResolve
 
         // Make sure all commands are flushed if someone added some in the time between updates
         ApplyRecordedCommands();
-
-        if (timeSinceLastEntityEstimate > Constants.SIMULATION_OPTIMIZE_THREADS_INTERVAL)
-        {
-            timeSinceLastEntityEstimate = 0;
-            ecsThreadsToUse = EstimateThreadsUtilizedBySystems();
-        }
-
-        ApplyECSThreadCount(ecsThreadsToUse);
 
         // See the similar check in ProcessAll to see what this is about (this is about special component debug mode)
         bool useNormalPhysics = disableComponentChecking || !GenerateThreadedSystems.UseCheckedComponentAccess;
@@ -608,35 +594,6 @@ public abstract class WorldSimulation : IWorldSimulation, IGodotEarlyNodeResolve
 
     protected virtual void OnPlayerPositionSet(Vector3 playerPosition)
     {
-    }
-
-    /// <summary>
-    ///   Provides an estimate based on the number of entities (that are the most prevalent type) how many threads the
-    ///   ECS system should use when processing entities. This needs to be a bit lower than what maximally would give
-    ///   more performance to ensure systems with more thread switching overhead don't suffer from lowered performance.
-    /// </summary>
-    /// <returns>The number of simultaneous single entity system tasks there should be processed</returns>
-    protected virtual int EstimateThreadsUtilizedBySystems()
-    {
-        // By default, no multithreading, just use the main thread
-        return 1;
-    }
-
-    /// <summary>
-    ///   Sets the number of ECS threads to use by <see cref="TaskExecutor"/>. It's not the best to have this be
-    ///   a global property in the executor, but this works well enough with the worlds setting the number of threads
-    ///   to use just before running.
-    /// </summary>
-    /// <remarks>
-    ///   <para>
-    ///     This is overridable so that simulations that don't use threading can skip this operation to not mess with
-    ///     simulations that do use this (for example pure visuals simulations don't use threading).
-    ///   </para>
-    /// </remarks>
-    /// <param name="ecsThreadsToUse">Number of threads to use</param>
-    protected virtual void ApplyECSThreadCount(int ecsThreadsToUse)
-    {
-        TaskExecutor.Instance.ECSThrottling = ecsThreadsToUse;
     }
 
     protected void PerformEntityDestroy(Entity entity)

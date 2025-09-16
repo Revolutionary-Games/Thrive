@@ -24,8 +24,7 @@ public partial class UnneededCompoundVentingSystem : BaseSystem<World, float>
     private readonly CompoundCloudSystem compoundCloudSystem;
     private readonly IReadOnlyList<CompoundDefinition> ventableCompounds;
 
-    public UnneededCompoundVentingSystem(CompoundCloudSystem compoundCloudSystem, World world,
-        IParallelRunner parallelRunner) : base(world, parallelRunner, Constants.SYSTEM_HIGHER_ENTITIES_PER_THREAD)
+    public UnneededCompoundVentingSystem(CompoundCloudSystem compoundCloudSystem, World world) : base(world)
     {
         this.compoundCloudSystem = compoundCloudSystem;
 
@@ -33,7 +32,7 @@ public partial class UnneededCompoundVentingSystem : BaseSystem<World, float>
         ventableCompounds = SimulationParameters.Instance.GetCloudCompounds();
     }
 
-    [Query]
+    [Query(Parallel = true)]
     [None<AttachedToEntity>]
     [MethodImpl(MethodImplOptions.AggressiveInlining)]
     private void Update([Data] in float delta, ref UnneededCompoundVenter venter, ref CompoundStorage storage,

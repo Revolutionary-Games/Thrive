@@ -131,7 +131,7 @@ public partial class PhysicsSensorSystem : BaseSystem<World, float>
                 Quaternion.Identity, sensor.DetectSleepingBodies, sensor.DetectStaticBodies);
 
             // Set no entity on the sensor, so anything colliding with the sensor can't do anything
-            sensor.SensorBody.SetEntityReference(default(Entity));
+            sensor.SensorBody.SetEntityReference(Entity.Null);
 
             sensor.ActiveCollisions = worldSimulationWithPhysics.PhysicalWorld.BodyStartCollisionRecording(
                 sensor.SensorBody, sensor.MaxActiveContacts > 0 ?

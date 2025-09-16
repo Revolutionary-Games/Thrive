@@ -68,7 +68,7 @@ public partial class MicrobeReproductionSystem : BaseSystem<World, float>
 
     public MicrobeReproductionSystem(IWorldSimulation worldSimulation, IMicrobeSpawnEnvironment spawnEnvironment,
         ISpawnSystem spawnSystem, World world) :
-        base(world, parallelRunner, Constants.SYSTEM_NORMAL_ENTITIES_PER_THREAD)
+        base(world)
     {
         this.worldSimulation = worldSimulation;
         this.spawnEnvironment = spawnEnvironment;
@@ -187,7 +187,7 @@ public partial class MicrobeReproductionSystem : BaseSystem<World, float>
         }
     }
 
-    [Query]
+    [Query(Parallel = true)]
     [All<CellProperties, MicrobeSpeciesMember, BioProcesses, WorldPosition, MicrobeEnvironmentalEffects, Engulfable,
         Engulfer>]
     [None<AttachedToEntity, MulticellularSpeciesMember>]

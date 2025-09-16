@@ -3,7 +3,6 @@
 using System;
 using System.Runtime.CompilerServices;
 using Arch.Core;
-using Arch.Core.Extensions;
 using Arch.System;
 using Components;
 using Godot;
@@ -29,8 +28,8 @@ public partial class FluidCurrentsSystem : BaseSystem<World, float>
     private const float POSITION_SCALING = 0.9f;
 
 #pragma warning disable CA2213
-    private Texture2D currentsNoise1Texture = null!;
-    private Texture2D currentsNoise2Texture = null!;
+    private Texture2D currentsNoise1Texture;
+    private Texture2D currentsNoise2Texture;
 
     private Image currentsNoise1 = null!;
     private Image currentsNoise2 = null!;
@@ -50,22 +49,14 @@ public partial class FluidCurrentsSystem : BaseSystem<World, float>
     private int noiseWidth = -1;
     private int noiseHeight = -1;
 
-    public FluidCurrentsSystem(World world, IParallelRunner runner) : base(world, runner,
-        Constants.SYSTEM_HIGHER_ENTITIES_PER_THREAD)
+    public FluidCurrentsSystem(World world, float currentsTimePassed) : base(world)
     {
         currentsNoise1Texture = GD.Load<CompressedTexture2D>("res://assets/textures/CurrentsNoise1.png") ??
             throw new Exception("Fluid current noise texture couldn't be loaded");
 
         currentsNoise2Texture = GD.Load<CompressedTexture2D>("res://assets/textures/CurrentsNoise2.png") ??
             throw new Exception("Fluid current noise texture couldn't be loaded");
-    }
 
-    /// <summary>
-    ///   JSON constructor for creating temporary instances used to apply the child properties
-    /// </summary>
-    [JsonConstructor]
-    public FluidCurrentsSystem(float currentsTimePassed) : base(TemporarySystemHelper.GetDummyWorldForLoad())
-    {
         this.currentsTimePassed = currentsTimePassed;
     }
 
@@ -123,7 +114,7 @@ public partial class FluidCurrentsSystem : BaseSystem<World, float>
         inverseScale = biome.WaterCurrents.InverseScale;
     }
 
-    [Query]
+    [Query(Parallel = true)]
     [MethodImpl(MethodImplOptions.AggressiveInlining)]
     private void Update([Data] in float delta, ref Physics physics, ref WorldPosition position,
         ref ManualPhysicsControl physicsControl, ref CurrentAffected currentAffected, in Entity entity)
