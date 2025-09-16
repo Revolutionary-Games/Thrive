@@ -52,6 +52,11 @@ public partial class PredefinedVisualLoaderSystem : BaseSystem<World, float>
         // Also a proper resource manager would basically remove the need for that
     }
 
+    public override void BeforeUpdate(in float delta)
+    {
+        simulationParameters = SimulationParameters.Instance;
+    }
+
     // TODO: this will need a callback for when graphics visual level is updated and this needs to redo all of the
     // loaded graphics (if we add a quality level graphics option)
 
@@ -61,11 +66,6 @@ public partial class PredefinedVisualLoaderSystem : BaseSystem<World, float>
 
         // This doesn't have a destructor
         // GC.SuppressFinalize(this);
-    }
-
-    public override void BeforeUpdate(in float delta)
-    {
-        simulationParameters = SimulationParameters.Instance;
     }
 
     [Query]

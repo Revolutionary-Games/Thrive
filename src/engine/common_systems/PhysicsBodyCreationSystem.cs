@@ -72,6 +72,11 @@ public partial class PhysicsBodyCreationSystem : BaseSystem<World, float>
         }
     }
 
+    public override void AfterUpdate(in float delta)
+    {
+        createdBodies.RemoveAll(destroyBodyIfNotMarkedCallable);
+    }
+
     [Query]
     [All<WorldPosition>]
     [MethodImpl(MethodImplOptions.AggressiveInlining)]
@@ -158,11 +163,6 @@ public partial class PhysicsBodyCreationSystem : BaseSystem<World, float>
         if (physics.Body.IsDetached)
             throw new Exception("Physics body created in detached state");
 #endif
-    }
-
-    public override void AfterUpdate(in float delta)
-    {
-        createdBodies.RemoveAll(destroyBodyIfNotMarkedCallable);
     }
 
     [MethodImpl(MethodImplOptions.AggressiveInlining)]

@@ -37,70 +37,6 @@ public partial class ToxinCollisionSystem : BaseSystem<World, float>
     {
     }
 
-    [Query]
-    [All<Physics, TimedLife>]
-    [MethodImpl(MethodImplOptions.AggressiveInlining)]
-    private void Update(ref ToxinDamageSource damageSource, ref CollisionManagement collisions, in Entity entity)
-    {
-        // Quickly detect already hit projectiles
-        if (damageSource.ProjectileUsed)
-            return;
-
-        if (!damageSource.ProjectileInitialized)
-        {
-            damageSource.ProjectileInitialized = true;
-
-            // Need to set up callbacks etc. for this to work
-
-            // TODO: make sure this system runs before the collision management to make sure no double data apply
-            // happens
-
-            collisions.CollisionFilter = collisionFilter;
-
-            collisions.StartCollisionRecording(Constants.MAX_SIMULTANEOUS_COLLISIONS_TINY);
-
-            collisions.StateApplied = false;
-        }
-
-        // Check for active collisions that count as a hit and use up this projectile
-        var count = collisions.GetActiveCollisions(out var activeCollisions);
-
-        if (count < 1)
-            return;
-
-        var ignoredCollisions = collisions.IgnoredCollisionsWith;
-        bool firedByPlayer = IsPlayerEntityInList(ignoredCollisions);
-
-        for (int i = 0; i < count; ++i)
-        {
-            ref var collision = ref activeCollisions![i];
-
-            if (!HandlePotentiallyDamagingCollision(ref collision, firedByPlayer))
-                continue;
-
-            // Applied a damaging hit, destroy this toxin
-            // TODO: We should probably get some *POP* effect here.
-
-            // Expire right now
-            ref var timedLife = ref entity.Get<TimedLife>();
-            timedLife.TimeToLiveRemaining = -1;
-
-            ref var physics = ref entity.Get<Physics>();
-
-            // TODO: should this instead of disabling the further collisions be removed from the world immediately
-            // to cause less of a physics impact?
-            // physics.BodyDisabled = true;
-            physics.DisableCollisionState = Physics.CollisionState.DisableCollisions;
-
-            // And make sure the flag we check for is set immediately to not process this projectile again
-            // (this is just extra safety against the time over callback configuration not working correctly)
-            damageSource.ProjectileUsed = true;
-
-            // Only deal damage at most to a single thing
-            break;
-        }
-    }
-
     /// <summary>
     ///   Collision filter to disable collisions with microbes the toxin can't damage
     /// </summary>
@@ -346,5 +282,69 @@ public partial class ToxinCollisionSystem : BaseSystem<World, float>
         }
 
         return 1;
+    }
+
+    [Query]
+    [All<Physics, TimedLife>]
+    [MethodImpl(MethodImplOptions.AggressiveInlining)]
+    private void Update(ref ToxinDamageSource damageSource, ref CollisionManagement collisions, in Entity entity)
+    {
+        // Quickly detect already hit projectiles
+        if (damageSource.ProjectileUsed)
+            return;
+
+        if (!damageSource.ProjectileInitialized)
+        {
+            damageSource.ProjectileInitialized = true;
+
+            // Need to set up callbacks etc. for this to work
+
+            // TODO: make sure this system runs before the collision management to make sure no double data apply
+            // happens
+
+            collisions.CollisionFilter = collisionFilter;
+
+            collisions.StartCollisionRecording(Constants.MAX_SIMULTANEOUS_COLLISIONS_TINY);
+
+            collisions.StateApplied = false;
+        }
+
+        // Check for active collisions that count as a hit and use up this projectile
+        var count = collisions.GetActiveCollisions(out var activeCollisions);
+
+        if (count < 1)
+            return;
+
+        var ignoredCollisions = collisions.IgnoredCollisionsWith;
+        bool firedByPlayer = IsPlayerEntityInList(ignoredCollisions);
+
+        for (int i = 0; i < count; ++i)
+        {
+            ref var collision = ref activeCollisions![i];
+
+            if (!HandlePotentiallyDamagingCollision(ref collision, firedByPlayer))
+                continue;
+
+            // Applied a damaging hit, destroy this toxin
+            // TODO: We should probably get some *POP* effect here.
+
+            // Expire right now
+            ref var timedLife = ref entity.Get<TimedLife>();
+            timedLife.TimeToLiveRemaining = -1;
+
+            ref var physics = ref entity.Get<Physics>();
+
+            // TODO: should this instead of disabling the further collisions be removed from the world immediately
+            // to cause less of a physics impact?
+            // physics.BodyDisabled = true;
+            physics.DisableCollisionState = Physics.CollisionState.DisableCollisions;
+
+            // And make sure the flag we check for is set immediately to not process this projectile again
+            // (this is just extra safety against the time over callback configuration not working correctly)
+            damageSource.ProjectileUsed = true;
+
+            // Only deal damage at most to a single thing
+            break;
+        }
     }
 }

@@ -45,6 +45,15 @@ public partial class CameraFollowSystem : BaseSystem<World, float>
         cameraUsed = false;
     }
 
+    public override void AfterUpdate(in float delta)
+    {
+        if (!cameraUsed)
+        {
+            // Update camera without a target
+            Camera?.UpdateCameraPosition(delta, null);
+        }
+    }
+
     [Query]
     [MethodImpl(MethodImplOptions.AggressiveInlining)]
     private void Update([Data] in float delta, ref CameraFollowTarget followTarget, ref WorldPosition position)
@@ -74,15 +83,6 @@ public partial class CameraFollowSystem : BaseSystem<World, float>
         {
             warnedAboutMissingCamera = true;
             GD.PrintErr("CameraFollowSystem doesn't have camera set, can't follow an entity");
-        }
-    }
-
-    public override void AfterUpdate(in float delta)
-    {
-        if (!cameraUsed)
-        {
-            // Update camera without a target
-            Camera?.UpdateCameraPosition(delta, null);
         }
     }
 }

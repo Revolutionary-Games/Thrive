@@ -172,6 +172,104 @@ public static class EngulferHelpers
         return nearestPoint;
     }
 
+    /// <summary>
+    ///   Request ejection of an engulfable
+    /// </summary>
+    /// <returns>
+    ///   True, when ejection has started, false if already was in progress, or it is impossible to eject
+    /// </returns>
+    public static bool EjectEngulfable(this ref Engulfer engulfer, ref Engulfable engulfable)
+    {
+        // Cannot start ejecting a thing that is not in a valid state for that
+        switch (engulfable.PhagocytosisStep)
+        {
+            case PhagocytosisPhase.None:
+            case PhagocytosisPhase.Ingestion:
+            case PhagocytosisPhase.Digested:
+                return false;
+
+            case PhagocytosisPhase.RequestExocytosis:
+            case PhagocytosisPhase.Exocytosis:
+            case PhagocytosisPhase.Ejection:
+                // Already requested / happening
+                return false;
+        }
+
+        engulfable.PhagocytosisStep = PhagocytosisPhase.RequestExocytosis;
+        return true;
+    }
+
+    /// <summary>
+    ///   Immediately deletes all engulfed objects. Should only be used in special cases.
+    /// </summary>
+    public static void DeleteEngulfedObjects(this ref Engulfer engulfer, IWorldSimulation worldSimulation)
+    {
+        if (engulfer.EngulfedObjects != null)
+        {
+            foreach (var engulfedObject in engulfer.EngulfedObjects)
+            {
+                worldSimulation.DestroyEntity(engulfedObject);
+            }
+
+            engulfer.UsedEngulfingCapacity = 0;
+        }
+
+        engulfer.ExpelledObjects?.Clear();
+    }
+
+    /// <summary>
+    ///   Moves all engulfables from <see cref="engulfer"/> to <see cref="targetEngulfer"/>
+    /// </summary>
+    public static void TransferEngulferObjectsToAnotherEngulfer(this ref Engulfer engulfer,
+        ref Engulfer targetEngulfer, in Entity targetEngulferEntity)
+    {
+        lock (AttachedToEntityHelpers.EntityAttachRelationshipModifyLock)
+        {
+            if (engulfer.EngulfedObjects is not { Count: > 0 })
+                return;
+
+            // Can't move to a dead engulfer
+            if (targetEngulferEntity.Get<Health>().Dead)
+                return;
+
+            foreach (var ourEngulfedEntity in engulfer.EngulfedObjects.ToList())
+            {
+                if (!engulfer.EngulfedObjects.Remove(ourEngulfedEntity) || !ourEngulfedEntity.IsAlive() ||
+                    !ourEngulfedEntity.Has<Engulfable>())
+                {
+                    continue;
+                }
+
+                ref var engulfed = ref ourEngulfedEntity.Get<Engulfable>();
+
+                if (!targetEngulfer.TakeOwnershipOfEngulfed(targetEngulferEntity, ref engulfed, ourEngulfedEntity))
+                {
+                    // Add back to the original list as it can't be moved.
+                    // The engulfing system will eject it properly out of the dead entity
+                    GD.Print("Adding failed to be transferred engulfed back to us for ejecting when " +
+                        "death is processed");
+                    engulfer.EngulfedObjects.Add(ourEngulfedEntity);
+                }
+            }
+        }
+    }
+
+    /// <summary>
+    ///   Moves an already engulfed object to be engulfed by this object's engulfer
+    /// </summary>
+    /// <remarks>
+    ///   <para>
+    ///     This has to be called with <see cref="AttachedToEntityHelpers.EntityAttachRelationshipModifyLock"/>
+    ///     already locked
+    ///   </para>
+    /// </remarks>
+    private static bool TakeOwnershipOfEngulfed(this ref Engulfer engulfer, in Entity engulferEntity,
+        ref Engulfable engulfable, in Entity engulfableEntity)
+    {
+        return EngulfingSystem.AddAlreadyEngulfedObject(ref engulfer, in engulferEntity, ref engulfable,
+            in engulfableEntity);
+    }
+
     private struct EngulfableCollector : IForEachWithEntity<Engulfable, CompoundStorage, WorldPosition>
     {
         private readonly Vector3 position;
@@ -256,103 +354,5 @@ public static class EngulferHelpers
             result = nearestPoint;
             return hasNearestPoint;
         }
-    }
-
-    /// <summary>
-    ///   Request ejection of an engulfable
-    /// </summary>
-    /// <returns>
-    ///   True when ejection has started, false if already was in progress, or it is impossible to eject
-    /// </returns>
-    public static bool EjectEngulfable(this ref Engulfer engulfer, ref Engulfable engulfable)
-    {
-        // Cannot start ejecting a thing that is not in a valid state for that
-        switch (engulfable.PhagocytosisStep)
-        {
-            case PhagocytosisPhase.None:
-            case PhagocytosisPhase.Ingestion:
-            case PhagocytosisPhase.Digested:
-                return false;
-
-            case PhagocytosisPhase.RequestExocytosis:
-            case PhagocytosisPhase.Exocytosis:
-            case PhagocytosisPhase.Ejection:
-                // Already requested / happening
-                return false;
-        }
-
-        engulfable.PhagocytosisStep = PhagocytosisPhase.RequestExocytosis;
-        return true;
-    }
-
-    /// <summary>
-    ///   Immediately deletes all engulfed objects. Should only be used in special cases.
-    /// </summary>
-    public static void DeleteEngulfedObjects(this ref Engulfer engulfer, IWorldSimulation worldSimulation)
-    {
-        if (engulfer.EngulfedObjects != null)
-        {
-            foreach (var engulfedObject in engulfer.EngulfedObjects)
-            {
-                worldSimulation.DestroyEntity(engulfedObject);
-            }
-
-            engulfer.UsedEngulfingCapacity = 0;
-        }
-
-        engulfer.ExpelledObjects?.Clear();
-    }
-
-    /// <summary>
-    ///   Moves all engulfables from <see cref="engulfer"/> to <see cref="targetEngulfer"/>
-    /// </summary>
-    public static void TransferEngulferObjectsToAnotherEngulfer(this ref Engulfer engulfer,
-        ref Engulfer targetEngulfer, in Entity targetEngulferEntity)
-    {
-        lock (AttachedToEntityHelpers.EntityAttachRelationshipModifyLock)
-        {
-            if (engulfer.EngulfedObjects is not { Count: > 0 })
-                return;
-
-            // Can't move to a dead engulfer
-            if (targetEngulferEntity.Get<Health>().Dead)
-                return;
-
-            foreach (var ourEngulfedEntity in engulfer.EngulfedObjects.ToList())
-            {
-                if (!engulfer.EngulfedObjects.Remove(ourEngulfedEntity) || !ourEngulfedEntity.IsAlive() ||
-                    !ourEngulfedEntity.Has<Engulfable>())
-                {
-                    continue;
-                }
-
-                ref var engulfed = ref ourEngulfedEntity.Get<Engulfable>();
-
-                if (!targetEngulfer.TakeOwnershipOfEngulfed(targetEngulferEntity, ref engulfed, ourEngulfedEntity))
-                {
-                    // Add back to an original list as it can't be moved. The engulfing system will eject it
-                    // properly out of the dead entity
-                    GD.Print("Adding failed to be transferred engulfed back to us for ejecting when " +
-                        "death is processed");
-                    engulfer.EngulfedObjects.Add(ourEngulfedEntity);
-                }
-            }
-        }
-    }
-
-    /// <summary>
-    ///   Moves an already engulfed object to be engulfed by this object's engulfer
-    /// </summary>
-    /// <remarks>
-    ///   <para>
-    ///     This has to be called with <see cref="AttachedToEntityHelpers.EntityAttachRelationshipModifyLock"/>
-    ///     already locked
-    ///   </para>
-    /// </remarks>
-    private static bool TakeOwnershipOfEngulfed(this ref Engulfer engulfer, in Entity engulferEntity,
-        ref Engulfable engulfable, in Entity engulfableEntity)
-    {
-        return EngulfingSystem.AddAlreadyEngulfedObject(ref engulfer, in engulferEntity, ref engulfable,
-            in engulfableEntity);
     }
 }

@@ -86,12 +86,6 @@ public partial class SoundEffectSystem : BaseSystem<World, float>
         used2DPlayers.Clear();
     }
 
-    public override void Dispose()
-    {
-        Dispose(true);
-        base.Dispose();
-    }
-
     public override void BeforeUpdate(in float delta)
     {
         timeCounter += delta;
@@ -162,29 +156,6 @@ public partial class SoundEffectSystem : BaseSystem<World, float>
         }
     }
 
-    [Query]
-    [MethodImpl(MethodImplOptions.AggressiveInlining)]
-    private void Update(ref SoundEffectPlayer soundEffectPlayer, ref WorldPosition position, in Entity entity)
-    {
-        // Collect sound playing entities that need processing
-
-        if (soundEffectPlayer.SoundsApplied)
-            return;
-
-        var distance = position.Position.DistanceSquaredTo(playerPosition);
-
-        // Skip so far away players that they shouldn't be handled at all
-        // TODO: maybe still stop sounds in these from playing? (for example if some code wanted to stop a
-        // sound on an entity that doesn't get processed due to distance, that sound playing won't stop)
-        if (soundEffectPlayer.AbsoluteMaxDistanceSquared > 0 &&
-            distance > soundEffectPlayer.AbsoluteMaxDistanceSquared)
-        {
-            return;
-        }
-
-        entitiesThatNeedProcessing.Add((entity, distance));
-    }
-
     public override void AfterUpdate(in float delta)
     {
         // Play sounds starting from the nearest to the player to make the concurrently playing limit
@@ -205,6 +176,12 @@ public partial class SoundEffectSystem : BaseSystem<World, float>
         }
 
         ExpireOldAudioCacheEntries(delta);
+    }
+
+    public override void Dispose()
+    {
+        Dispose(true);
+        base.Dispose();
     }
 
     private static void MarkSoundEndedOnEntityIfPossible(in Entity entity, uint slotId, string sound)
@@ -261,6 +238,29 @@ public partial class SoundEffectSystem : BaseSystem<World, float>
                 }
             }
         }
+    }
+
+    [Query]
+    [MethodImpl(MethodImplOptions.AggressiveInlining)]
+    private void Update(ref SoundEffectPlayer soundEffectPlayer, ref WorldPosition position, in Entity entity)
+    {
+        // Collect sound playing entities that need processing
+
+        if (soundEffectPlayer.SoundsApplied)
+            return;
+
+        var distance = position.Position.DistanceSquaredTo(playerPosition);
+
+        // Skip so far away players that they shouldn't be handled at all
+        // TODO: maybe still stop sounds in these from playing? (for example if some code wanted to stop a
+        // sound on an entity that doesn't get processed due to distance, that sound playing won't stop)
+        if (soundEffectPlayer.AbsoluteMaxDistanceSquared > 0 &&
+            distance > soundEffectPlayer.AbsoluteMaxDistanceSquared)
+        {
+            return;
+        }
+
+        entitiesThatNeedProcessing.Add((entity, distance));
     }
 
     private void HandleSoundEntityStateApply()

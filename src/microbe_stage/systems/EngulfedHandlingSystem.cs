@@ -45,6 +45,17 @@ public partial class EngulfedHandlingSystem : BaseSystem<World, float>
         previousPlayerEngulfedDeathTimer = playerEngulfedDeathTimer;
     }
 
+    public override void AfterUpdate(in float delta)
+    {
+        // If there's no player digestion progress, reset the timer
+        // ReSharper disable once CompareOfFloatsByEqualityOperator
+        if (previousPlayerEngulfedDeathTimer == playerEngulfedDeathTimer)
+        {
+            // Just in case the player is engulfed again after escaping to make sure the player doesn't die faster
+            playerEngulfedDeathTimer = 0;
+        }
+    }
+
     [Query]
     [All<Health, Engulfer, SoundEffectPlayer>]
     [MethodImpl(MethodImplOptions.AggressiveInlining)]
@@ -111,17 +122,6 @@ public partial class EngulfedHandlingSystem : BaseSystem<World, float>
 
                 worldSimulation.FinishRecordingEntityCommands(recorder);
             }
-        }
-    }
-
-    public override void AfterUpdate(in float delta)
-    {
-        // If there's no player digestion progress, reset the timer
-        // ReSharper disable once CompareOfFloatsByEqualityOperator
-        if (previousPlayerEngulfedDeathTimer == playerEngulfedDeathTimer)
-        {
-            // Just in case the player is engulfed again after escaping to make sure the player doesn't die faster
-            playerEngulfedDeathTimer = 0;
         }
     }
 

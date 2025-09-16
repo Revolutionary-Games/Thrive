@@ -31,36 +31,9 @@ public partial class SoundListenerSystem : BaseSystem<World, float>
         listenerParentNode.AddChild(listener);
     }
 
-    public override void Dispose()
-    {
-        Dispose(true);
-        base.Dispose();
-    }
-
     public override void BeforeUpdate(in float delta)
     {
         wantedListenerPosition = null;
-    }
-
-    [Query]
-    [MethodImpl(MethodImplOptions.AggressiveInlining)]
-    private void Update(ref SoundListener soundListener, ref WorldPosition position)
-    {
-        if (soundListener.Disabled)
-            return;
-
-        if (wantedListenerPosition != null)
-        {
-            if (!printedError)
-            {
-                GD.PrintErr("Multiple SoundListener entities are active at once. Only last one will work! " +
-                    "This error won't be printed again.");
-                printedError = true;
-            }
-        }
-
-        useTopDownOrientation = soundListener.UseTopDownRotation;
-        wantedListenerPosition = position.ToTransform();
     }
 
     public override void AfterUpdate(in float delta)
@@ -88,6 +61,33 @@ public partial class SoundListenerSystem : BaseSystem<World, float>
             if (!listener.IsCurrent())
                 listener.MakeCurrent();
         }
+    }
+
+    public override void Dispose()
+    {
+        Dispose(true);
+        base.Dispose();
+    }
+
+    [Query]
+    [MethodImpl(MethodImplOptions.AggressiveInlining)]
+    private void Update(ref SoundListener soundListener, ref WorldPosition position)
+    {
+        if (soundListener.Disabled)
+            return;
+
+        if (wantedListenerPosition != null)
+        {
+            if (!printedError)
+            {
+                GD.PrintErr("Multiple SoundListener entities are active at once. Only last one will work! " +
+                    "This error won't be printed again.");
+                printedError = true;
+            }
+        }
+
+        useTopDownOrientation = soundListener.UseTopDownRotation;
+        wantedListenerPosition = position.ToTransform();
     }
 
     private void Dispose(bool disposing)

@@ -36,6 +36,47 @@ public partial class CountLimitedDespawnSystem : BaseSystem<World, float>
         playerPosition = position;
     }
 
+    public override void AfterUpdate(in float delta)
+    {
+        // Limit despawns per frame
+        int despawnsLeft = maxDespawnsPerFrame;
+
+        // Process all the groups and despawn the farthest entity from each group where the group size is over its
+        // limit
+        foreach (var pair in groupData)
+        {
+            var group = pair.Value;
+
+            if (group.Count > group.Limit && group.HasFarthestEntity && despawnsLeft > 0)
+            {
+                if (group.Limit < 1)
+                {
+                    GD.PrintErr("Badly configured entity group limit");
+                }
+                else
+                {
+                    // TODO: allow things like chunks to pop out their compounds when they are removed
+                    // if (group.FarthestEntity.Has<CompoundStorage>())
+                    // {
+                    //
+                    // }
+
+                    if (!entityContainer.DestroyEntity(group.FarthestEntity))
+                    {
+                        GD.PrintErr("Count limited entity despawn failed");
+                    }
+
+                    --despawnsLeft;
+                }
+            }
+
+            // Clear the data to prepare for the next frame
+            group.Count = 0;
+            group.FarthestDistance = float.MaxValue;
+            group.HasFarthestEntity = false;
+        }
+    }
+
     [Query]
     [MethodImpl(MethodImplOptions.AggressiveInlining)]
     private void Update(ref CountLimited countLimited, ref WorldPosition position, in Entity entity)
@@ -80,47 +121,6 @@ public partial class CountLimitedDespawnSystem : BaseSystem<World, float>
         {
             group.FarthestDistance = distance;
             group.FarthestEntity = entity;
-        }
-    }
-
-    public override void AfterUpdate(in float delta)
-    {
-        // Limit despawns per frame
-        int despawnsLeft = maxDespawnsPerFrame;
-
-        // Process all the groups and despawn the farthest entity from each group where the group size is over its
-        // limit
-        foreach (var pair in groupData)
-        {
-            var group = pair.Value;
-
-            if (group.Count > group.Limit && group.HasFarthestEntity && despawnsLeft > 0)
-            {
-                if (group.Limit < 1)
-                {
-                    GD.PrintErr("Badly configured entity group limit");
-                }
-                else
-                {
-                    // TODO: allow things like chunks to pop out their compounds when they are removed
-                    // if (group.FarthestEntity.Has<CompoundStorage>())
-                    // {
-                    //
-                    // }
-
-                    if (!entityContainer.DestroyEntity(group.FarthestEntity))
-                    {
-                        GD.PrintErr("Count limited entity despawn failed");
-                    }
-
-                    --despawnsLeft;
-                }
-            }
-
-            // Clear the data to prepare for the next frame
-            group.Count = 0;
-            group.FarthestDistance = float.MaxValue;
-            group.HasFarthestEntity = false;
         }
     }
 

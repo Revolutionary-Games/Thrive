@@ -156,6 +156,16 @@ public partial class MicrobeAISystem : BaseSystem<World, float>, ISpeciesMemberL
         }
     }
 
+    private static bool RollCheck(float ourStat, float dc, Random random)
+    {
+        return random.Next(0.0f, dc) <= ourStat;
+    }
+
+    private static bool RollReverseCheck(float ourStat, float dc, Random random)
+    {
+        return ourStat <= random.Next(0.0f, dc);
+    }
+
     [Query(Parallel = true)]
     [All<SpeciesMember, MicrobeControl, CompoundAbsorber, CompoundStorage, OrganelleContainer, CommandSignaler,
         CellProperties, Engulfer, WorldPosition>]
@@ -199,16 +209,6 @@ public partial class MicrobeAISystem : BaseSystem<World, float>, ISpeciesMemberL
         //     return;
 
         AIThink(GetNextAIRandom(), in entity, ref ai, ref health, strain);
-    }
-
-    private static bool RollCheck(float ourStat, float dc, Random random)
-    {
-        return random.Next(0.0f, dc) <= ourStat;
-    }
-
-    private static bool RollReverseCheck(float ourStat, float dc, Random random)
-    {
-        return ourStat <= random.Next(0.0f, dc);
     }
 
     /// <summary>

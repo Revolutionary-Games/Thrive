@@ -53,12 +53,6 @@ public partial class PhysicsSensorSystem : BaseSystem<World, float>
         }
     }
 
-    public override void Dispose()
-    {
-        Dispose(true);
-        base.Dispose();
-    }
-
     public override void BeforeUpdate(in float delta)
     {
         // Immediate sensor destruction is handled by the world, but we still do this to detect if a sensor gets
@@ -67,6 +61,17 @@ public partial class PhysicsSensorSystem : BaseSystem<World, float>
         {
             createdSensor.Marked = false;
         }
+    }
+
+    public override void AfterUpdate(in float delta)
+    {
+        createdSensors.RemoveAll(DestroySensorIfNotMarked);
+    }
+
+    public override void Dispose()
+    {
+        Dispose(true);
+        base.Dispose();
     }
 
     [Query]
@@ -160,11 +165,6 @@ public partial class PhysicsSensorSystem : BaseSystem<World, float>
 
             sensor.SensorBody.Marked = true;
         }
-    }
-
-    public override void AfterUpdate(in float delta)
-    {
-        createdSensors.RemoveAll(DestroySensorIfNotMarked);
     }
 
     [MethodImpl(MethodImplOptions.AggressiveInlining)]

@@ -38,6 +38,19 @@ public partial class EntitySignalingSystem : BaseSystem<World, float>
         this.elapsedSinceUpdate = elapsedSinceUpdate;
     }
 
+    public override void Update(in float delta)
+    {
+        // We manually call these to ensure the order
+
+        // Update the queued commands to active commands first in a non-multithreaded way
+
+        // TODO: this could also be multithreaded as long as this finishes before the Update calls start running and
+        // there's locking on the data lists
+        UpdateSignalSendQuery(World, delta);
+
+        UpdateSignalReceiveQuery(World, delta);
+    }
+
     public override void BeforeUpdate(in float delta)
     {
         elapsedSinceUpdate += delta;
@@ -76,19 +89,6 @@ public partial class EntitySignalingSystem : BaseSystem<World, float>
         {
             value.Clear();
         }
-    }
-
-    public override void Update(in float delta)
-    {
-        // We manually call these to ensure the order
-
-        // Update the queued commands to active commands first in a non-multithreaded way
-
-        // TODO: this could also be multithreaded as long as this finishes before the Update calls start running and
-        // there's locking on the data lists
-        UpdateSignalSendQuery(World, delta);
-
-        UpdateSignalReceiveQuery(World, delta);
     }
 
     [Query]

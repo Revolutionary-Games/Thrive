@@ -60,16 +60,16 @@ public partial class MulticellularGrowthSystem : BaseSystem<World, float>
         gameWorld = world;
     }
 
-    public override void Dispose()
-    {
-        Dispose(true);
-        base.Dispose();
-    }
-
     public override void BeforeUpdate(in float delta)
     {
         if (gameWorld == null)
             throw new InvalidOperationException("GameWorld not set");
+    }
+
+    public override void Dispose()
+    {
+        Dispose(true);
+        base.Dispose();
     }
 
     [Query]

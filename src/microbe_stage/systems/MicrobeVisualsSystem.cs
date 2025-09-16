@@ -65,17 +65,36 @@ public partial class MicrobeVisualsSystem : BaseSystem<World, float>
         return pendingMembraneGenerations;
     }
 
-    public override void Dispose()
-    {
-        Dispose(true);
-        base.Dispose();
-    }
-
     public override void BeforeUpdate(in float delta)
     {
         pendingMembraneGenerations = false;
 
         activeGenerationTasks.RemoveAll(t => t.IsCompleted);
+    }
+
+    public override void AfterUpdate(in float delta)
+    {
+        // TODO: if we need a separate mechanism to communicate our results back, then cleaning up that mechanism
+        // here and in on PreUpdate will be needed
+        // // Clear any ready resources that weren't required to not keep them forever (but only ones that were
+        // // ready in PreUpdate to ensure no resources that managed to finish while update was running are lost)
+
+        // Ensure we have at least some tasks running even if no new membrane generation requests were started
+        // this frame
+        lock (pendingGenerationsOfMembraneHashes)
+        {
+            if (pendingGenerationsOfMembraneHashes.Count > runningMembraneTaskCount / 2 ||
+                (runningMembraneTaskCount <= 0 && pendingGenerationsOfMembraneHashes.Count > 0))
+            {
+                StartMembraneGenerationJobs();
+            }
+        }
+    }
+
+    public override void Dispose()
+    {
+        Dispose(true);
+        base.Dispose();
     }
 
     [Query]
@@ -188,25 +207,6 @@ public partial class MicrobeVisualsSystem : BaseSystem<World, float>
 
         // Force recreation of the physics body in case organelles changed to make sure the shape matches growth status
         cellProperties.ShapeCreated = false;
-    }
-
-    public override void AfterUpdate(in float delta)
-    {
-        // TODO: if we need a separate mechanism to communicate our results back, then cleaning up that mechanism
-        // here and in on PreUpdate will be needed
-        // // Clear any ready resources that weren't required to not keep them forever (but only ones that were
-        // // ready in PreUpdate to ensure no resources that managed to finish while update was running are lost)
-
-        // Ensure we have at least some tasks running even if no new membrane generation requests were started
-        // this frame
-        lock (pendingGenerationsOfMembraneHashes)
-        {
-            if (pendingGenerationsOfMembraneHashes.Count > runningMembraneTaskCount / 2 ||
-                (runningMembraneTaskCount <= 0 && pendingGenerationsOfMembraneHashes.Count > 0))
-            {
-                StartMembraneGenerationJobs();
-            }
-        }
     }
 
     private MembranePointData? GetMembraneDataIfReadyOrStartGenerating(ref CellProperties cellProperties,

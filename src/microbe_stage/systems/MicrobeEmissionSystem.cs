@@ -72,6 +72,27 @@ public partial class MicrobeEmissionSystem : BaseSystem<World, float>
         return 1;
     }
 
+    /// <summary>
+    ///   Handles colony logic to determine the actual facing vector of this microbe
+    /// </summary>
+    /// <returns>A Vector3 of this microbe's real facing</returns>
+    private static Vector3 FacingDirection(in Entity entity, ref WorldPosition position)
+    {
+        if (entity.Has<AttachedToEntity>())
+        {
+            var attachedTo = entity.Get<AttachedToEntity>().AttachedTo;
+
+            if (attachedTo.Has<WorldPosition>())
+            {
+                // Use parent rotation rather than our own to get the whole cell colony facing direction rather
+                // than our facing direction in world space
+                return attachedTo.Get<WorldPosition>().Rotation * Vector3.Forward;
+            }
+        }
+
+        return position.Rotation * Vector3.Forward;
+    }
+
     [Query]
     [All<SpeciesMember>]
     [MethodImpl(MethodImplOptions.AggressiveInlining)]
@@ -104,27 +125,6 @@ public partial class MicrobeEmissionSystem : BaseSystem<World, float>
         // This method itself checks for the preconditions on emitting slime
         HandleSlimeSecretion(entity, ref control, ref organelles, ref cellProperties, ref soundEffectPlayer,
             ref position, compounds, engulfed, delta);
-    }
-
-    /// <summary>
-    ///   Handles colony logic to determine the actual facing vector of this microbe
-    /// </summary>
-    /// <returns>A Vector3 of this microbe's real facing</returns>
-    private static Vector3 FacingDirection(in Entity entity, ref WorldPosition position)
-    {
-        if (entity.Has<AttachedToEntity>())
-        {
-            var attachedTo = entity.Get<AttachedToEntity>().AttachedTo;
-
-            if (attachedTo.Has<WorldPosition>())
-            {
-                // Use parent rotation rather than our own to get the whole cell colony facing direction rather
-                // than our facing direction in world space
-                return attachedTo.Get<WorldPosition>().Rotation * Vector3.Forward;
-            }
-        }
-
-        return position.Rotation * Vector3.Forward;
     }
 
     /// <summary>

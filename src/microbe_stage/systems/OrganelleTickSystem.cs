@@ -48,6 +48,19 @@ public partial class OrganelleTickSystem : BaseSystem<World, float>
         this.worldSimulation = worldSimulation;
     }
 
+    public override void AfterUpdate(in float delta)
+    {
+        while (queuedSyncRuns.TryPop(out var entry))
+        {
+            // TODO: determine if it is a good idea to always fetch the container like for UpdateAsync here
+            // ref entry.Entity.Get<OrganelleContainer>()
+            entry.Component.UpdateSync(entry.Entity, delta);
+        }
+
+        if (!queuedSyncRuns.IsEmpty)
+            GD.PrintErr("Queued sync runs for organelle updates is not empty after processing");
+    }
+
     [Query(Parallel = true)]
     [All<CompoundStorage, WorldPosition>]
     [MethodImpl(MethodImplOptions.AggressiveInlining)]
@@ -80,18 +93,5 @@ public partial class OrganelleTickSystem : BaseSystem<World, float>
                     queuedSyncRuns.Push((component, entity));
             }
         }
-    }
-
-    public override void AfterUpdate(in float delta)
-    {
-        while (queuedSyncRuns.TryPop(out var entry))
-        {
-            // TODO: determine if it is a good idea to always fetch the container like for UpdateAsync here
-            // ref entry.Entity.Get<OrganelleContainer>()
-            entry.Component.UpdateSync(entry.Entity, delta);
-        }
-
-        if (!queuedSyncRuns.IsEmpty)
-            GD.PrintErr("Queued sync runs for organelle updates is not empty after processing");
     }
 }

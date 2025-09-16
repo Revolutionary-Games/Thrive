@@ -53,6 +53,24 @@ public partial class SpatialAttachSystem : BaseSystem<World, float>
         }
     }
 
+    public override void AfterUpdate(in float delta)
+    {
+        // Delete unmarked
+        foreach (var pair in attachedSpatialInstances)
+        {
+            if (!pair.Value.Marked)
+                instancesToDelete.Add(pair.Key);
+        }
+
+        foreach (var spatial in instancesToDelete)
+        {
+            attachedSpatialInstances.Remove(spatial);
+            spatial.QueueFree();
+        }
+
+        instancesToDelete.Clear();
+    }
+
     [Query]
     [MethodImpl(MethodImplOptions.AggressiveInlining)]
     private void Update(ref SpatialInstance spatial)
@@ -73,24 +91,6 @@ public partial class SpatialAttachSystem : BaseSystem<World, float>
         {
             info.Marked = true;
         }
-    }
-
-    public override void AfterUpdate(in float delta)
-    {
-        // Delete unmarked
-        foreach (var pair in attachedSpatialInstances)
-        {
-            if (!pair.Value.Marked)
-                instancesToDelete.Add(pair.Key);
-        }
-
-        foreach (var spatial in instancesToDelete)
-        {
-            attachedSpatialInstances.Remove(spatial);
-            spatial.QueueFree();
-        }
-
-        instancesToDelete.Clear();
     }
 
     /// <summary>

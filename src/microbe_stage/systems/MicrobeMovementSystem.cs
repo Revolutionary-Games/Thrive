@@ -40,6 +40,24 @@ public partial class MicrobeMovementSystem : BaseSystem<World, float>
         this.physicalWorld = physicalWorld;
     }
 
+    private static float CalculateRotationSpeed(in Entity entity, ref OrganelleContainer organelles)
+    {
+        float rotationSpeed = organelles.RotationSpeed;
+
+        // Note that cilia taking ATP is actually calculated later; this is the max speed rotation calculation only
+
+        if (entity.Has<MicrobeColony>())
+        {
+            rotationSpeed = entity.Get<MicrobeColony>().ColonyRotationSpeed;
+        }
+
+        // Lower value is faster rotation
+        if (CheatManager.Speed > 1 && entity.Has<PlayerMarker>())
+            rotationSpeed /= CheatManager.Speed * 2;
+
+        return rotationSpeed;
+    }
+
     [Query]
     [None<MicrobeColonyMember>]
     [MethodImpl(MethodImplOptions.AggressiveInlining)]
@@ -137,24 +155,6 @@ public partial class MicrobeMovementSystem : BaseSystem<World, float>
         }
 
         physicalWorld.ApplyBodyMicrobeControl(physics.Body!, movementImpulse, wantedRotation, rotationSpeed);
-    }
-
-    private static float CalculateRotationSpeed(in Entity entity, ref OrganelleContainer organelles)
-    {
-        float rotationSpeed = organelles.RotationSpeed;
-
-        // Note that cilia taking ATP is actually calculated later; this is the max speed rotation calculation only
-
-        if (entity.Has<MicrobeColony>())
-        {
-            rotationSpeed = entity.Get<MicrobeColony>().ColonyRotationSpeed;
-        }
-
-        // Lower value is faster rotation
-        if (CheatManager.Speed > 1 && entity.Has<PlayerMarker>())
-            rotationSpeed /= CheatManager.Speed * 2;
-
-        return rotationSpeed;
     }
 
     private Vector3 CalculateMovementForce(in Entity entity, ref MicrobeControl control,
