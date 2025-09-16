@@ -1,5 +1,6 @@
 ﻿using System;
 using Godot;
+using Range = Godot.Range;
 
 /// <summary>
 ///   Displays a tolerance with an optimal value in an intuitive way
@@ -53,7 +54,7 @@ public partial class ToleranceRangeDisplay : HSlider
         rangeColor = mainColor;
         rangeColorTranslucent = mainColorTranslucent;
 
-        relatedSlider.Connect(Godot.Range.SignalName.ValueChanged, new Callable(this, nameof(OnSliderValueChanged)));
+        relatedSlider.Connect(Range.SignalName.ValueChanged, new Callable(this, nameof(OnSliderValueChanged)));
         relatedSlider.Connect(Control.SignalName.Resized, new Callable(this, nameof(UpdateSliderGrabberXPos)));
     }
 
