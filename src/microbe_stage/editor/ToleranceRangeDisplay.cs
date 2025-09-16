@@ -22,6 +22,9 @@ public partial class ToleranceRangeDisplay : HSlider
     [Export]
     private ToleranceOptimalMarker optimalValueMarker = null!;
 
+    [Export]
+    private Slider relatedSlider = null!;
+
 #pragma warning restore CA2213
 
     private float upperBoundPos;
@@ -33,6 +36,11 @@ public partial class ToleranceRangeDisplay : HSlider
     private Color rangeColor;
     private Color rangeColorTranslucent;
 
+    /// <summary>
+    ///   The X position of the related slider's grabber. In local coordinates.
+    /// </summary>
+    private float sliderGrabberXPos;
+
     public enum RangeMarker
     {
         Lower,
@@ -40,15 +48,13 @@ public partial class ToleranceRangeDisplay : HSlider
         Upper,
     }
 
-    /// <summary>
-    ///   The X position of the related slider's grabber. In local coordinates.
-    /// </summary>
-    public float SliderGrabberPosX { get; set; }
-
     public override void _Ready()
     {
         rangeColor = mainColor;
         rangeColorTranslucent = mainColorTranslucent;
+
+        relatedSlider.Connect(Godot.Range.SignalName.ValueChanged, new Callable(this, nameof(OnSliderValueChanged)));
+        relatedSlider.Connect(Control.SignalName.Resized, new Callable(this, nameof(UpdateSliderGrabberXPos)));
     }
 
     public override void _Draw()
@@ -87,7 +93,7 @@ public partial class ToleranceRangeDisplay : HSlider
             Constants.TOLERANCE_DISPLAY_MAIN_LINE_WIDTH);
 
         // Draw connector to slider grabber
-        var grabberPos = new Vector2(SliderGrabberPosX, Constants.TOLERANCE_DISPLAY_SLIDER_GRABBER_Y_OFFSET);
+        var grabberPos = new Vector2(sliderGrabberXPos, Constants.TOLERANCE_DISPLAY_SLIDER_GRABBER_Y_OFFSET);
         var connectorStart = beginConnectorFromMarker switch
         {
             RangeMarker.Upper => upperBoundCenter,
@@ -152,8 +158,9 @@ public partial class ToleranceRangeDisplay : HSlider
         var lowerBoundFraction = Math.Clamp((lower - MinValue) / (MaxValue - MinValue), 0, 1);
 
         lowerBoundPos = Size.X * (float)lowerBoundFraction - 1;
-
         upperBoundPos = Size.X * (float)upperBoundFraction - 1;
+
+        QueueRedraw();
     }
 
     /// <summary>
@@ -164,6 +171,19 @@ public partial class ToleranceRangeDisplay : HSlider
     {
         rangeColor = color ?? mainColor;
         rangeColorTranslucent = rangeColor with { A = 0.5f };
+
+        QueueRedraw();
+    }
+
+    private void OnSliderValueChanged(float value)
+    {
+        UpdateSliderGrabberXPos();
+    }
+
+    private void UpdateSliderGrabberXPos()
+    {
+        var fraction = (float)((relatedSlider.Value - relatedSlider.MinValue) / (relatedSlider.MaxValue - relatedSlider.MinValue));
+        sliderGrabberXPos = relatedSlider.Size.X * fraction;
 
         QueueRedraw();
     }

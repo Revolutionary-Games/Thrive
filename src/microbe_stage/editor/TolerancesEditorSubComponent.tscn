@@ -158,12 +158,13 @@ layout_mode = 2
 layout_mode = 2
 size_flags_horizontal = 3
 
-[node name="TemperatureRangeDisplay" parent="Temperature/RangeDisplayContainer/VBoxContainer" instance=ExtResource("9_xmghy")]
+[node name="TemperatureRangeDisplay" parent="Temperature/RangeDisplayContainer/VBoxContainer" node_paths=PackedStringArray("relatedSlider") instance=ExtResource("9_xmghy")]
 layout_mode = 2
 size_flags_horizontal = 3
 min_value = -10.0
 showMiddleMarker = true
 beginConnectorFromMarker = 1
+relatedSlider = NodePath("../TemperatureSlider")
 
 [node name="TemperatureSlider" type="HSlider" parent="Temperature/RangeDisplayContainer/VBoxContainer"]
 layout_mode = 2
@@ -309,11 +310,12 @@ layout_mode = 2
 layout_mode = 2
 size_flags_horizontal = 3
 
-[node name="PressureRangeDisplay" parent="Pressure/RangeDisplayContainer/VBoxContainer" instance=ExtResource("9_xmghy")]
+[node name="PressureRangeDisplay" parent="Pressure/RangeDisplayContainer/VBoxContainer" node_paths=PackedStringArray("relatedSlider") instance=ExtResource("9_xmghy")]
 layout_mode = 2
 size_flags_horizontal = 3
 max_value = 8e+07
 value = 0.0
+relatedSlider = NodePath("../PressureSlider")
 
 [node name="PressureSlider" type="HSlider" parent="Pressure/RangeDisplayContainer/VBoxContainer"]
 layout_mode = 2
@@ -456,13 +458,14 @@ layout_mode = 2
 layout_mode = 2
 size_flags_horizontal = 3
 
-[node name="OxygenRangeDisplay" parent="Oxygen/RangeDisplayContainer/VBoxContainer" instance=ExtResource("9_xmghy")]
+[node name="OxygenRangeDisplay" parent="Oxygen/RangeDisplayContainer/VBoxContainer" node_paths=PackedStringArray("relatedSlider") instance=ExtResource("9_xmghy")]
 layout_mode = 2
 size_flags_horizontal = 3
 max_value = 1.0
 step = 0.01
 value = 0.0
 beginConnectorFromMarker = 2
+relatedSlider = NodePath("../OxygenResistanceSlider")
 
 [node name="OxygenResistanceSlider" type="HSlider" parent="Oxygen/RangeDisplayContainer/VBoxContainer"]
 layout_mode = 2
@@ -560,13 +563,14 @@ layout_mode = 2
 layout_mode = 2
 size_flags_horizontal = 3
 
-[node name="UVRangeDisplay" parent="UV/RangeDisplayContainer/VBoxContainer" instance=ExtResource("9_xmghy")]
+[node name="UVRangeDisplay" parent="UV/RangeDisplayContainer/VBoxContainer" node_paths=PackedStringArray("relatedSlider") instance=ExtResource("9_xmghy")]
 layout_mode = 2
 size_flags_horizontal = 3
 max_value = 1.0
 step = 0.01
 value = 0.0
 beginConnectorFromMarker = 2
+relatedSlider = NodePath("../UVResistanceSlider")
 
 [node name="UVResistanceSlider" type="HSlider" parent="UV/RangeDisplayContainer/VBoxContainer"]
 layout_mode = 2
