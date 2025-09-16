@@ -182,7 +182,9 @@ public partial class ToleranceRangeDisplay : HSlider
 
     private void UpdateSliderGrabberXPos()
     {
-        var fraction = (float)((relatedSlider.Value - relatedSlider.MinValue) / (relatedSlider.MaxValue - relatedSlider.MinValue));
+        var fraction = (float)((relatedSlider.Value - relatedSlider.MinValue) /
+            (relatedSlider.MaxValue - relatedSlider.MinValue));
+
         sliderGrabberXPos = relatedSlider.Size.X * fraction;
 
         QueueRedraw();
