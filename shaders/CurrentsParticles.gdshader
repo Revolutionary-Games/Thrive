@@ -60,6 +60,7 @@ void start() {
     TRANSFORM[1].xyz *= visibleScale;
     TRANSFORM[2].xyz *= visibleScale;
     CUSTOM.w = RandFromSeed(altSeed) * 0.2f + 0.8f;
+    CUSTOM.z = gameTime + LIFETIME * 0.5f;
 }
 
 void process() {
@@ -73,7 +74,7 @@ void process() {
     {
         // The following should strictly conform to the formula in FluidCurrentSystem.cs
         vec2 scaledPosition = TRANSFORM[3].xz * positionScaling * inverseScale;
-        float scaledTime = gameTime * currentsTimescale * chaoticness;
+        float scaledTime = CUSTOM.z * currentsTimescale * chaoticness;
         
         vec2 current1 = texture(noiseCurrents1,
             vec2((scaledPosition.x + scaledTime) / 1024.0f,
