@@ -1,5 +1,4 @@
 ﻿using System;
-using Godot;
 
 /// <summary>
 ///   Environmental tolerances of a species

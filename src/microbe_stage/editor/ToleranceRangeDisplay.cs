@@ -1,12 +1,13 @@
-using System;
+﻿using System;
 using Godot;
-using GraphShape;
 
 /// <summary>
-///  Displays a tolerance with an optimal value in an intuitive way
+///   Displays a tolerance with an optimal value in an intuitive way
 /// </summary>
 public partial class ToleranceRangeDisplay : HSlider
 {
+    private const float LINE_WIDTH = Constants.TOLERANCE_DISPLAY_MARKER_WIDTH;
+
     private readonly Color mainColor = Color.FromHtml("#11FFD5");
     private readonly Color mainColorTranslucent = Color.FromHtml("#11FFD5") with { A = 0.5f };
 
@@ -52,36 +53,38 @@ public partial class ToleranceRangeDisplay : HSlider
 
     public override void _Draw()
     {
-        var lineWidth = Constants.TOLERANCE_DISPLAY_MARKER_WIDTH;
         var mainLineStartPos = new Vector2(0, Size.Y / 2);
         var mainLineEndPos = new Vector2(Size.X, Size.Y / 2);
 
-        var lowerBoundCenter = new Vector2(lowerBoundPos + lineWidth / 2, Size.Y / 2);
-        var upperBoundCenter = new Vector2(upperBoundPos + lineWidth / 2, Size.Y / 2);
+        var lowerBoundCenter = new Vector2(lowerBoundPos + LINE_WIDTH / 2, Size.Y / 2);
+        var upperBoundCenter = new Vector2(upperBoundPos + LINE_WIDTH / 2, Size.Y / 2);
         var middleBoundCenter = new Vector2((float)(Size.X * (Value - MinValue) / (MaxValue - MinValue)), Size.Y / 2);
 
         var boundOffset = new Vector2(0, Constants.TOLERANCE_DISPLAY_BOUND_HEIGHT / 2);
 
         // Lower bound
-        DrawLine(lowerBoundCenter, lowerBoundCenter + boundOffset, rangeColor, lineWidth);
-        DrawLine(lowerBoundCenter, lowerBoundCenter - boundOffset, rangeColor, lineWidth);
+        DrawLine(lowerBoundCenter, lowerBoundCenter + boundOffset, rangeColor, LINE_WIDTH);
+        DrawLine(lowerBoundCenter, lowerBoundCenter - boundOffset, rangeColor, LINE_WIDTH);
 
         // Upper bound
-        DrawLine(upperBoundCenter, upperBoundCenter + boundOffset, rangeColor, lineWidth);
-        DrawLine(upperBoundCenter, upperBoundCenter - boundOffset, rangeColor, lineWidth);
+        DrawLine(upperBoundCenter, upperBoundCenter + boundOffset, rangeColor, LINE_WIDTH);
+        DrawLine(upperBoundCenter, upperBoundCenter - boundOffset, rangeColor, LINE_WIDTH);
 
         // Middle
         if (showMiddleMarker)
         {
             var middleOffset = new Vector2(0, Constants.TOLERANCE_DISPLAY_MIDDLE_HEIGHT / 2);
             DrawLine(middleBoundCenter + middleOffset, middleBoundCenter - middleOffset, rangeColor,
-                lineWidth);
+                LINE_WIDTH);
         }
 
         // Main line
-        DrawLine(mainLineStartPos, lowerBoundCenter, mainColorTranslucent, Constants.TOLERANCE_DISPLAY_MAIN_LINE_WIDTH);
-        DrawLine(upperBoundCenter, mainLineEndPos, mainColorTranslucent, Constants.TOLERANCE_DISPLAY_MAIN_LINE_WIDTH);
-        DrawLine(lowerBoundCenter, upperBoundCenter, rangeColorTranslucent, Constants.TOLERANCE_DISPLAY_MAIN_LINE_WIDTH);
+        DrawLine(mainLineStartPos, lowerBoundCenter, mainColorTranslucent,
+            Constants.TOLERANCE_DISPLAY_MAIN_LINE_WIDTH);
+        DrawLine(upperBoundCenter, mainLineEndPos, mainColorTranslucent,
+            Constants.TOLERANCE_DISPLAY_MAIN_LINE_WIDTH);
+        DrawLine(lowerBoundCenter, upperBoundCenter, rangeColorTranslucent,
+            Constants.TOLERANCE_DISPLAY_MAIN_LINE_WIDTH);
 
         // Draw connector to slider grabber
         var grabberPos = new Vector2(SliderGrabberPosX, Constants.TOLERANCE_DISPLAY_SLIDER_GRABBER_Y_OFFSET);
@@ -93,9 +96,9 @@ public partial class ToleranceRangeDisplay : HSlider
             _ => throw new InvalidOperationException(),
         };
 
-        if (Math.Abs(connectorStart.X - grabberPos.X) <= Mathf.Epsilon)
+        if (Math.Abs(connectorStart.X - grabberPos.X) <= MathUtils.EPSILON)
         {
-            DrawLine(connectorStart, grabberPos, rangeColor, lineWidth);
+            DrawLine(connectorStart, grabberPos, rangeColor, LINE_WIDTH);
         }
         else
         {
@@ -103,9 +106,11 @@ public partial class ToleranceRangeDisplay : HSlider
             var bend1 = new Vector2(connectorStart.X, bendYPos);
             var bend2 = new Vector2(grabberPos.X, bendYPos);
 
-            DrawLine(connectorStart, bend1 + Vector2.Down, rangeColor, lineWidth);
-            DrawLine(bend1, bend2, rangeColorTranslucent, lineWidth);
-            DrawLine(bend2 + Vector2.Up, grabberPos, rangeColor, lineWidth);
+            // Vector.Down and Vector.Up are added here to extend the line a bit to cover the next line completely
+            // i.e. make a full corner
+            DrawLine(connectorStart, bend1 + Vector2.Down, rangeColor, LINE_WIDTH);
+            DrawLine(bend1, bend2, rangeColorTranslucent, LINE_WIDTH);
+            DrawLine(bend2 + Vector2.Up, grabberPos, rangeColor, LINE_WIDTH);
         }
     }
 
@@ -120,7 +125,8 @@ public partial class ToleranceRangeDisplay : HSlider
     }
 
     /// <summary>
-    ///   Sets the positions of the upper and lower bounds based on a middle value. All values have to be between this slider's max and min.
+    ///   Sets the positions of the upper and lower bounds based on a middle value.
+    ///   All values have to be between this slider's max and min.
     /// </summary>
     /// <param name="preferred">The middle of the range</param>
     /// <param name="flexibilityPositive">The offset of the upper bound from the middle</param>
@@ -151,7 +157,7 @@ public partial class ToleranceRangeDisplay : HSlider
     }
 
     /// <summary>
-    ///  Sets the color of the range between the upper and lower bounds and queues a redraw.
+    ///   Sets the color of the range between the upper and lower bounds and queues a redraw.
     /// </summary>
     /// <param name="color">New color. If null, will default to <see cref="mainColor"/></param>
     public void SetColorsAndRedraw(Color? color)

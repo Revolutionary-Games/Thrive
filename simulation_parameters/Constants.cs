@@ -1888,6 +1888,7 @@ public static class Constants
     ///   Should be equal to the maximum value of <see cref="TolerancesEditorSubComponent.pressureSlider"/>.
     /// </summary>
     public const float TOLERANCE_PRESSURE_MAX = 80000000;
+
     public const float TOLERANCE_PRESSURE_RANGE_MAX = 2000000;
     public const float TOLERANCE_PERFECT_PRESSURE_SCORE = 0.1f;
 
@@ -1908,6 +1909,7 @@ public static class Constants
     ///   As pressure values are massive, this is a double to get reasonable MP costs
     /// </summary>
     public const double TOLERANCE_CHANGE_MP_PER_PRESSURE = 0.000002;
+
     public const double TOLERANCE_CHANGE_MP_PER_PRESSURE_TOLERANCE = 0.00005;
 
     // Environmental tolerance debuff / buff tweak variables

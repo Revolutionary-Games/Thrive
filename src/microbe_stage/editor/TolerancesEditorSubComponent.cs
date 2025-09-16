@@ -366,10 +366,14 @@ public partial class TolerancesEditorSubComponent : EditorComponentBase<ICellEdi
         oxygenResistanceToolTipContainer.RegisterToolTipForControl("oxygenResistance", "tolerances");
         uvResistanceToolTipContainer.RegisterToolTipForControl("uvResistance", "tolerances");
 
-        temperatureModifierLabel.GetParent<Control>().RegisterToolTipForControl("temperatureRangeModifier", "tolerances");
-        pressureModifierLabel.GetParent<Control>().RegisterToolTipForControl("pressureRangeModifier", "tolerances");
-        oxygenResistanceModifierLabel.GetParent<Control>().RegisterToolTipForControl("oxygenResistanceModifier", "tolerances");
-        uvResistanceModifierLabel.GetParent<Control>().RegisterToolTipForControl("uvResistanceModifier", "tolerances");
+        temperatureModifierLabel.GetParent<Control>()
+            .RegisterToolTipForControl("temperatureRangeModifier", "tolerances");
+        pressureModifierLabel.GetParent<Control>()
+            .RegisterToolTipForControl("pressureRangeModifier", "tolerances");
+        oxygenResistanceModifierLabel.GetParent<Control>()
+            .RegisterToolTipForControl("oxygenResistanceModifier", "tolerances");
+        uvResistanceModifierLabel.GetParent<Control>()
+            .RegisterToolTipForControl("uvResistanceModifier", "tolerances");
 
         var toolTipManager = ToolTipManager.Instance;
         temperatureToolTip = toolTipManager.GetToolTip<EnvironmentalToleranceToolTip>("temperature", "tolerances");
@@ -654,7 +658,8 @@ public partial class TolerancesEditorSubComponent : EditorComponentBase<ICellEdi
         var temperatureToleranceWithOrganelles =
             CurrentTolerances.TemperatureTolerance + organelleModifiers.TemperatureTolerance;
 
-        temperatureRangeDisplay.SetBoundPositions(CurrentTolerances.PreferredTemperature, temperatureToleranceWithOrganelles);
+        temperatureRangeDisplay.SetBoundPositions(CurrentTolerances.PreferredTemperature,
+            temperatureToleranceWithOrganelles);
         temperatureRangeDisplay.UpdateMarker(patchTemperature);
         UpdateSliderPositionForDisplay(temperatureSlider, temperatureRangeDisplay);
 
@@ -726,25 +731,30 @@ public partial class TolerancesEditorSubComponent : EditorComponentBase<ICellEdi
 
         // Pressure
 
-        var pressureToleranceWithOrganelles = CurrentTolerances.PressureTolerance + organelleModifiers.PressureTolerance;
+        var pressureToleranceWithOrganelles = CurrentTolerances.PressureTolerance +
+            organelleModifiers.PressureTolerance;
 
-        pressureRangeDisplay.SetBoundPositions(CurrentTolerances.PressureMinimum, pressureToleranceWithOrganelles, 0);
+        pressureRangeDisplay.SetBoundPositions(CurrentTolerances.PressureMinimum,
+            pressureToleranceWithOrganelles, 0);
         pressureRangeDisplay.UpdateMarker(patchPressure);
         UpdateSliderPositionForDisplay(pressureSlider, pressureRangeDisplay);
 
         var pressureMin = CurrentTolerances.PressureMinimum;
-        var pressureMax = Math.Min(CurrentTolerances.PressureMinimum + pressureToleranceWithOrganelles, Constants.TOLERANCE_PRESSURE_MAX);
+        var pressureMax = Math.Min(CurrentTolerances.PressureMinimum + pressureToleranceWithOrganelles,
+            Constants.TOLERANCE_PRESSURE_MAX);
 
         pressureMinLabel.Text = unitFormat.FormatSafe(Math.Round(pressureMin / 1000), "kPa");
         pressureMaxLabel.Text = unitFormat.FormatSafe(Math.Round(pressureMax / 1000), "kPa");
 
-        pressureToleranceLabel.Text = "+" + unitFormat.FormatSafe(Math.Round(CurrentTolerances.PressureTolerance / 1000), "kPa");
+        pressureToleranceLabel.Text =
+            "+" + unitFormat.FormatSafe(Math.Round(CurrentTolerances.PressureTolerance / 1000), "kPa");
 
         if (ShowZeroModifiers || organelleModifiers.PressureTolerance != 0)
         {
             pressureModifierLabel.GetParent<Control>().Visible = true;
 
-            pressureModifierLabel.Text = "+" + unitFormat.FormatSafe(Math.Round(organelleModifiers.PressureTolerance / 1000), "kPa");
+            pressureModifierLabel.Text =
+                "+" + unitFormat.FormatSafe(Math.Round(organelleModifiers.PressureTolerance / 1000), "kPa");
 
             pressureModifierLabel.LabelSettings = organelleModifiers.PressureTolerance switch
             {
@@ -788,16 +798,18 @@ public partial class TolerancesEditorSubComponent : EditorComponentBase<ICellEdi
 
         // Oxygen Resistance
 
-        var oxygenResistanceWithOrganelles = Math.Max(CurrentTolerances.OxygenResistance + organelleModifiers.OxygenResistance, 0);
+        var oxygenResistanceWithOrganelles =
+            Math.Max(CurrentTolerances.OxygenResistance + organelleModifiers.OxygenResistance, 0);
 
         oxygenResistanceRangeDisplay.SetBoundPositionsManual(0, oxygenResistanceWithOrganelles);
         oxygenResistanceRangeDisplay.UpdateMarker(requiredOxygenResistance);
         UpdateSliderPositionForDisplay(oxygenResistanceSlider, oxygenResistanceRangeDisplay);
 
-        oxygenResistanceTotalLabel.Text = percentageFormat.FormatSafe(Math.Round(oxygenResistanceWithOrganelles * 100, 1));
+        oxygenResistanceTotalLabel.Text =
+            percentageFormat.FormatSafe(Math.Round(oxygenResistanceWithOrganelles * 100, 1));
 
         // Epsilon is subtracted here to avoid -0 triggering this
-        if (oxygenResistanceWithOrganelles < requiredOxygenResistance - Mathf.Epsilon)
+        if (oxygenResistanceWithOrganelles < requiredOxygenResistance - MathUtils.EPSILON)
         {
             oxygenResistanceTotalLabel.LabelSettings = badValueFont;
             oxygenResistanceRangeDisplay.SetColorsAndRedraw(optimalDisplayBadColor);
@@ -812,8 +824,12 @@ public partial class TolerancesEditorSubComponent : EditorComponentBase<ICellEdi
         {
             oxygenResistanceModifierLabel.GetParent<Control>().Visible = true;
 
-            var oxygenResistanceBase = percentageFormat.FormatSafe(Math.Round(organelleModifiers.OxygenResistance * 100, 1));
-            oxygenResistanceBase = organelleModifiers.OxygenResistance >= 0 ? "+" + oxygenResistanceBase : oxygenResistanceBase;
+            var oxygenResistanceBase =
+                percentageFormat.FormatSafe(Math.Round(organelleModifiers.OxygenResistance * 100, 1));
+
+            oxygenResistanceBase = organelleModifiers.OxygenResistance >= 0 ?
+                "+" + oxygenResistanceBase :
+                oxygenResistanceBase;
 
             oxygenResistanceModifierLabel.Text = oxygenResistanceBase;
             oxygenResistanceModifierLabel.LabelSettings = organelleModifiers.OxygenResistance switch
@@ -839,7 +855,7 @@ public partial class TolerancesEditorSubComponent : EditorComponentBase<ICellEdi
 
         uvResistanceTotalLabel.Text = percentageFormat.FormatSafe(Math.Round(uvResistanceWithOrganelles * 100, 1));
 
-        if (uvResistanceWithOrganelles < requiredUVResistance - Mathf.Epsilon)
+        if (uvResistanceWithOrganelles < requiredUVResistance - MathUtils.EPSILON)
         {
             uvResistanceTotalLabel.LabelSettings = badValueFont;
             uvResistanceRangeDisplay.SetColorsAndRedraw(optimalDisplayBadColor);
