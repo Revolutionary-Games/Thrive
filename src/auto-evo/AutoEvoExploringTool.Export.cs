@@ -56,6 +56,8 @@ public partial class AutoEvoExploringTool
         header.AddRange(Enum.GetNames(typeof(BehaviouralValueType))
             .OrderBy(n => Enum.Parse(typeof(BehaviouralValueType), n)));
 
+        // Microbe specific headers
+
         header.AddRange(new[]
         {
             "Membrane type", "Membrane rigidity", "Base speed", "Base rotation speed", "Storage capacity", "Bacteria",

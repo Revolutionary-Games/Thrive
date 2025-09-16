@@ -1,7 +1,7 @@
 [gd_scene load_steps=8 format=3 uid="uid://duf1lf5lp4v5p"]
 
-[ext_resource type="Script" uid="uid://dnh1i83gmsmxd" path="res://src/microbe_stage/editor/ToleranceOptimalDisplay.cs" id="1_nbtwk"]
 [ext_resource type="Theme" uid="uid://b4cx0o110g4b6" path="res://src/gui_common/thrive_theme.tres" id="1_xdmne"]
+[ext_resource type="Script" uid="uid://dnh1i83gmsmxd" path="res://src/microbe_stage/editor/ToleranceRangeDisplay.cs" id="2_telfv"]
 [ext_resource type="PackedScene" uid="uid://dccswprlmgtel" path="res://src/microbe_stage/editor/ToleranceOptimalMarker.tscn" id="2_xdmne"]
 
 [sub_resource type="Gradient" id="Gradient_xmghy"]
@@ -18,7 +18,7 @@ height = 1
 
 [sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_telfv"]
 
-[node name="ToleranceOptimalDisplay" type="HSlider" node_paths=PackedStringArray("optimalValueMarker", "upperBound", "lowerBound")]
+[node name="ToleranceOptimalDisplay" type="HSlider" node_paths=PackedStringArray("optimalValueMarker")]
 anchors_preset = 10
 anchor_right = 1.0
 offset_bottom = 16.0
@@ -30,35 +30,11 @@ theme_override_styles/grabber_area = SubResource("StyleBoxEmpty_telfv")
 value = 60.0
 editable = false
 scrollable = false
-script = ExtResource("1_nbtwk")
+script = ExtResource("2_telfv")
 optimalValueMarker = NodePath("ToleranceInfo")
-upperBound = NodePath("UpperBound")
-lowerBound = NodePath("LowerBound")
 
 [node name="ToleranceInfo" parent="." instance=ExtResource("2_xdmne")]
 layout_mode = 1
 offset_top = -15.0
-
-[node name="UpperBound" type="Control" parent="."]
-modulate = Color(0.0666667, 1, 0.835294, 1)
-layout_mode = 1
-anchors_preset = 4
-anchor_top = 0.5
-anchor_bottom = 0.5
-offset_top = -10.0
-offset_right = 2.0
-offset_bottom = 10.0
-grow_vertical = 2
-
-[node name="LowerBound" type="Control" parent="."]
-modulate = Color(0.0666667, 1, 0.835294, 1)
-layout_mode = 1
-anchors_preset = 4
-anchor_top = 0.5
-anchor_bottom = 0.5
-offset_top = -10.0
-offset_right = 2.0
-offset_bottom = 10.0
-grow_vertical = 2
 
 [connection signal="resized" from="." to="." method="SetBoundPositionsInternal"]

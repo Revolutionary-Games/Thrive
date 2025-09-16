@@ -113,7 +113,7 @@ public class EnvironmentalTolerances
         return Math.Abs(PreferredTemperature - other.PreferredTemperature) < MathUtils.EPSILON &&
             Math.Abs(TemperatureTolerance - other.TemperatureTolerance) < MathUtils.EPSILON &&
             Math.Abs(PressureMinimum - other.PressureMinimum) < MathUtils.EPSILON &&
-            Math.Abs(PressureMaximum - other.PressureMaximum) < MathUtils.EPSILON &&
+            Math.Abs(PressureTolerance - other.PressureTolerance) < MathUtils.EPSILON &&
             Math.Abs(UVResistance - other.UVResistance) < MathUtils.EPSILON &&
             Math.Abs(OxygenResistance - other.OxygenResistance) < MathUtils.EPSILON;
     }
@@ -128,7 +128,7 @@ public class EnvironmentalTolerances
     public override int GetHashCode()
     {
         return HashCode.Combine(PreferredTemperature, TemperatureTolerance, PressureMinimum,
-            PressureMaximum, UVResistance, OxygenResistance);
+            PressureTolerance, UVResistance, OxygenResistance);
     }
 
     protected bool Equals(EnvironmentalTolerances other)
@@ -136,7 +136,8 @@ public class EnvironmentalTolerances
         return PreferredTemperature.Equals(other.PreferredTemperature) &&
             TemperatureTolerance.Equals(other.TemperatureTolerance) &&
             PressureMinimum.Equals(other.PressureMinimum) &&
-            PressureMaximum.Equals(other.PressureMaximum) && UVResistance.Equals(other.UVResistance) &&
+            PressureTolerance.Equals(other.PressureTolerance) &&
+            UVResistance.Equals(other.UVResistance) &&
             OxygenResistance.Equals(other.OxygenResistance);
     }
 }

@@ -181,9 +181,6 @@ public partial class CellEditorComponent :
     private AnimationPlayer tutorialAnimationPlayer = null!;
 
     [Export]
-    private LabelSettings toleranceWarningsFont = null!;
-
-    [Export]
     private PackedScene customRichTextLabelScene = null!;
 
 #pragma warning restore CA2213

@@ -798,10 +798,6 @@ public partial class CellEditorComponent
                     warning.CustomMinimumSize = new Vector2(150, minimumY);
                     warning.ScrollActive = false;
 
-                    warning.AddThemeColorOverride("default_color", toleranceWarningsFont.FontColor);
-                    warning.AddThemeFontOverride("normal_font", toleranceWarningsFont.Font);
-                    warning.AddThemeFontSizeOverride("normal_font_size", toleranceWarningsFont.FontSize);
-
                     warning.ExtendedBbcode = text;
                     activeToleranceWarnings.Add(warning);
                     toleranceWarningContainer.AddChild(warning);

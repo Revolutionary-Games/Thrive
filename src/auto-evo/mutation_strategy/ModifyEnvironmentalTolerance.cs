@@ -101,18 +101,18 @@ public class ModifyEnvironmentalTolerance : IMutationStrategy<MicrobeSpecies>
             {
                 var maxChange = mp / Constants.TOLERANCE_CHANGE_MP_PER_PRESSURE;
 
-                float change;
+                double change;
 
                 if (score.PerfectPressureAdjustment < 0)
                 {
-                    change = (float)Math.Max(score.PerfectPressureAdjustment, -maxChange);
+                    change = Math.Max(score.PerfectPressureAdjustment, -maxChange);
                 }
                 else
                 {
-                    change = (float)Math.Min(score.PerfectPressureAdjustment, maxChange);
+                    change = Math.Min(score.PerfectPressureAdjustment, maxChange);
                 }
 
-                newTolerances.PressureMinimum += change;
+                newTolerances.PressureMinimum += (float)change;
 
                 mp -= (float)(change * Constants.TOLERANCE_CHANGE_MP_PER_PRESSURE);
             }

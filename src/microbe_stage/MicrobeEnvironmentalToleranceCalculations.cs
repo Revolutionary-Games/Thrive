@@ -1,7 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Diagnostics;
-using Godot;
 
 /// <summary>
 ///   Helper class that contains all the math for environmental tolerances in one place (though the microbe editor and
@@ -35,8 +34,15 @@ public static class MicrobeEnvironmentalToleranceCalculations
     {
         var result = new ToleranceResult();
 
-        var resolvedTolerances = default(ToleranceValues);
-        resolvedTolerances.CopyFrom(speciesTolerances);
+        var resolvedTolerances = new ToleranceValues
+        {
+            PreferredTemperature = speciesTolerances.PreferredTemperature,
+            TemperatureTolerance = speciesTolerances.TemperatureTolerance,
+            PressureMinimum = speciesTolerances.PressureMinimum,
+            PressureTolerance = speciesTolerances.PressureTolerance,
+            OxygenResistance = speciesTolerances.OxygenResistance,
+            UVResistance = speciesTolerances.UVResistance,
+        };
 
         var noExtraEffects = resolvedTolerances;
 
@@ -44,6 +50,8 @@ public static class MicrobeEnvironmentalToleranceCalculations
 
         // Tolerances can't go below minimum values.
         // Otherwise, species adding hydrogenosomes in the vents can be too negatively protected against oxygen.
+        if (resolvedTolerances.PressureMinimum < 0)
+            resolvedTolerances.PressureMinimum = 0;
 
         if (resolvedTolerances.OxygenResistance < 0)
             resolvedTolerances.OxygenResistance = 0;
