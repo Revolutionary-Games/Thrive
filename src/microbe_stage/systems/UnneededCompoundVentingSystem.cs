@@ -3,8 +3,6 @@
 using System;
 using System.Collections.Generic;
 using System.Runtime.CompilerServices;
-using Arch.Core;
-using Arch.Core.Extensions;
 using Arch.System;
 using Arch.System.SourceGenerator;
 using Components;
@@ -32,11 +30,13 @@ public partial class UnneededCompoundVentingSystem : BaseSystem<World, float>
         ventableCompounds = SimulationParameters.Instance.GetCloudCompounds();
     }
 
-    [Query(Parallel = true)]
+    // TODO: re-enable parallel entity processing
+    // [Query(Parallel = true)]
+    [Query]
     [None<AttachedToEntity>]
     [MethodImpl(MethodImplOptions.AggressiveInlining)]
     private void Update([Data] in float delta, ref UnneededCompoundVenter venter, ref CompoundStorage storage,
-        ref WorldPosition position, ref CellProperties cellProperties, in Entity entity)
+        ref WorldPosition position, ref CellProperties cellProperties)
     {
         if (venter.VentThreshold >= float.MaxValue)
             return;

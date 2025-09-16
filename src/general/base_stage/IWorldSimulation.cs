@@ -81,5 +81,4 @@ public interface IWorldSimulation : IEntityContainer, IDisposable
     /// </summary>
     /// <returns>Speed ratio. 1.0 when full speed is achieved</returns>
     public float GetAndResetTrackedSimulationSpeedRatio();
-
 }

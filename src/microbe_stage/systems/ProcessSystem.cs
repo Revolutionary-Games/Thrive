@@ -922,7 +922,9 @@ public partial class ProcessSystem : BaseSystem<World, float>
         return environmentalCompoundProperties.Ambient;
     }
 
-    [Query(Parallel = true)]
+    // TODO: re-enable parallel entity processing
+    // [Query(Parallel = true)]
+    [Query]
     [MethodImpl(MethodImplOptions.AggressiveInlining)]
     private void Update([Data] in float delta, in Entity entity, ref CompoundStorage storage, ref BioProcesses processes)
     {

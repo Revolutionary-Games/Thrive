@@ -290,7 +290,9 @@ public partial class MicrobeReproductionSystem : BaseSystem<World, float>
         requiredCompoundsForBaseReproduction[compound] = left;
     }
 
-    [Query(Parallel = true)]
+    // TODO: re-enable parallel entity processing
+    // [Query(Parallel = true)]
+    [Query]
     [All<CellProperties, MicrobeSpeciesMember, BioProcesses, WorldPosition, MicrobeEnvironmentalEffects, Engulfable,
         Engulfer>]
     [None<AttachedToEntity, MulticellularSpeciesMember>]

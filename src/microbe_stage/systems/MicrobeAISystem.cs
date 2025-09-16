@@ -166,7 +166,9 @@ public partial class MicrobeAISystem : BaseSystem<World, float>, ISpeciesMemberL
         return ourStat <= random.Next(0.0f, dc);
     }
 
-    [Query(Parallel = true)]
+    // TODO: re-enable parallel entity processing
+    // [Query(Parallel = true)]
+    [Query]
     [All<SpeciesMember, MicrobeControl, CompoundAbsorber, CompoundStorage, OrganelleContainer, CommandSignaler,
         CellProperties, Engulfer, WorldPosition>]
     [None<AttachedToEntity>]

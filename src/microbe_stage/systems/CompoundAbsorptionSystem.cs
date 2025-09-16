@@ -22,7 +22,9 @@ public partial class CompoundAbsorptionSystem : BaseSystem<World, float>
         this.compoundCloudSystem = compoundCloudSystem;
     }
 
-    [Query(Parallel = true)]
+    // TODO: re-enable parallel entity processing
+    // [Query(Parallel = true)]
+    [Query]
     [MethodImpl(MethodImplOptions.AggressiveInlining)]
     private void Update([Data] in float delta, ref CompoundAbsorber absorber, ref CompoundStorage storage,
         ref WorldPosition position, in Entity entity)
@@ -54,8 +56,8 @@ public partial class CompoundAbsorptionSystem : BaseSystem<World, float>
         compoundCloudSystem.AbsorbCompounds(position.Position, absorber.AbsorbRadius, storage.Compounds,
             absorber.TotalAbsorbedCompounds, delta, absorber.AbsorptionRatio);
 
-        // Player infinite compounds cheat, doesn't *really* belong here but this is probably the best place to put
-        // this instead of creating a dedicated cheats handling system
+        // Player infinite compounds cheat, doesn't *really* belong here, but this is probably the best place to put
+        // this instead of creating a dedicated cheat handling system
         if (CheatManager.InfiniteCompounds && entity.Has<PlayerMarker>())
         {
             var usefulCompounds =

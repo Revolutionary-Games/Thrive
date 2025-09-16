@@ -61,7 +61,9 @@ public partial class EngulfedDigestionSystem : BaseSystem<World, float>
             throw new InvalidOperationException("GameWorld not set");
     }
 
-    [Query(Parallel = true)]
+    // TODO: re-enable parallel entity processing
+    // [Query(Parallel = true)]
+    [Query]
     [All<MicrobeStatus, CellProperties, Health, WorldPosition>]
     [MethodImpl(MethodImplOptions.AggressiveInlining)]
     private void Update([Data] in float delta, ref Engulfer engulfer, ref OrganelleContainer organelles,

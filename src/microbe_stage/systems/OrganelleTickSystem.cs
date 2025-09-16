@@ -61,7 +61,9 @@ public partial class OrganelleTickSystem : BaseSystem<World, float>
             GD.PrintErr("Queued sync runs for organelle updates is not empty after processing");
     }
 
-    [Query(Parallel = true)]
+    // TODO: re-enable parallel entity processing
+    // [Query(Parallel = true)]
+    [Query]
     [All<CompoundStorage, WorldPosition>]
     [MethodImpl(MethodImplOptions.AggressiveInlining)]
     private void Update([Data] in float delta, ref OrganelleContainer organelleContainer, in Entity entity)
