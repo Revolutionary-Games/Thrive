@@ -177,6 +177,7 @@ public partial class ToleranceRangeDisplay : HSlider
 
     private void OnSliderValueChanged(float value)
     {
+        _ = value;
         UpdateSliderGrabberXPos();
     }
 
