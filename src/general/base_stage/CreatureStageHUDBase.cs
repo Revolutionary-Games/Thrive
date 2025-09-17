@@ -759,13 +759,13 @@ public partial class CreatureStageHUDBase<TStage> : HUDWithPausing, ICreatureSta
                 damageScreenEffect.Visible = false;
             }
 
-            // Start damage flash if player has taken enough damage
+            // Start damage flash if the player has taken enough damage
             if (hp < lastHealth && lastHealth - hp > Constants.SCREEN_DAMAGE_FLASH_THRESHOLD)
                 damageEffectCurrentValue = 1;
         }
         else if (damageEffectCurrentValue > 0)
         {
-            // Disable effect if user turned off the setting while flashing
+            // Disable effect if the player turned off the setting while flashing
             damageEffectCurrentValue = 0;
             damageScreenEffect.Visible = false;
         }
@@ -782,7 +782,7 @@ public partial class CreatureStageHUDBase<TStage> : HUDWithPausing, ICreatureSta
     {
         var readStrainFraction = ReadPlayerStrainFraction();
 
-        // Skip the rest of the method if the player does not have strain
+        // Skip the rest of the method if the player does not have a strain buildup
         if (readStrainFraction == null)
             return;
 
