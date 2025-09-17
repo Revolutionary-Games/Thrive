@@ -389,7 +389,10 @@ public static class NativeInterop
         CheckSizeOfType<JQuat>(4 * 4);
         CheckSizeOfType<JColour>(4 * 4);
 
-        CheckSizeOfType<PhysicsCollision>(48);
+        // These must match the configuration in the relevant C++ files or otherwise things will break badly
+        CheckSizeOfType<PhysicsCollision>(56);
+        CheckSizeOfType<PhysicsRayWithUserData>(32);
+
         CheckSizeOfType<SubShapeDefinition>(40);
     }
 
