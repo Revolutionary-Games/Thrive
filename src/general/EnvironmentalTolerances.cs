@@ -1,4 +1,5 @@
 ﻿using System;
+using Newtonsoft.Json;
 
 /// <summary>
 ///   Environmental tolerances of a species
@@ -8,19 +9,41 @@ public class EnvironmentalTolerances
     /// <summary>
     ///   Temperature (in C) that this species likes to be in
     /// </summary>
-    public float PreferredTemperature = 15;
+    public float PreferredTemperature;
 
     /// <summary>
     ///   How wide a temperature range this species can stay in effectively. The range of temperatures is
     ///   <c>PreferredTemperature - TemperatureTolerance</c> to <c>PreferredTemperature + TemperatureTolerance</c>
     /// </summary>
-    public float TemperatureTolerance = 21;
+    public float TemperatureTolerance;
 
     public float PressureMinimum;
+
+    /// <summary>
+    ///   This is specifically ignored, as pressure is saved as a maximum and minimum for save compatability.
+    /// </summary>
+    [JsonIgnore]
     public float PressureTolerance;
 
     public float UVResistance;
     public float OxygenResistance;
+
+    public EnvironmentalTolerances()
+        : this(0, 0, 0, 0, 0, 0)
+    {
+    }
+
+    [JsonConstructor]
+    public EnvironmentalTolerances(float preferredTemperature, float temperatureTolerance, float pressureMinimum,
+        float pressureMaximum, float uvResistance, float oxygenResistance)
+    {
+        PreferredTemperature = preferredTemperature;
+        TemperatureTolerance = temperatureTolerance;
+        PressureMinimum = pressureMinimum;
+        PressureTolerance = pressureMaximum - pressureMinimum;
+        UVResistance = uvResistance;
+        OxygenResistance = oxygenResistance;
+    }
 
     [Flags]
     public enum ToleranceChangedStats
@@ -31,6 +54,7 @@ public class EnvironmentalTolerances
         OxygenResistance = 8,
     }
 
+    [JsonProperty]
     public float PressureMaximum => MathF.Min(PressureMinimum + PressureTolerance, Constants.TOLERANCE_PRESSURE_MAX);
 
     public static bool operator ==(EnvironmentalTolerances? left, EnvironmentalTolerances? right)
