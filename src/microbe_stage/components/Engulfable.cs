@@ -337,7 +337,7 @@ public static class EngulfableHelpers
                     GD.Print("Creating timed life now as safety fallback");
                     var recorder = worldSimulation.StartRecordingEntityCommands();
 
-                    recorder.Set(entity, new TimedLife(10));
+                    recorder.Add(entity, new TimedLife(10));
 
                     worldSimulation.FinishRecordingEntityCommands(recorder);
                 }

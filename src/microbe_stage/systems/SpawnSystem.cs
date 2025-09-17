@@ -211,7 +211,7 @@ public partial class SpawnSystem : BaseSystem<World, float>, ISpawnSystem
         if (entityWeight <= 0)
             throw new ArgumentException("weight needs to be positive", nameof(entityWeight));
 
-        commandBuffer.Set(entity, new Spawned
+        commandBuffer.Add(entity, new Spawned
         {
             DespawnRadiusSquared = despawnRadiusSquared,
             EntityWeight = entityWeight,
@@ -612,7 +612,7 @@ public partial class SpawnSystem : BaseSystem<World, float>, ISpawnSystem
     {
         float radius = spawnType.SpawnRadius + Constants.DESPAWN_RADIUS_OFFSET;
 
-        commandBuffer.Set(entity, new Spawned
+        commandBuffer.Add(entity, new Spawned
         {
             DespawnRadiusSquared = radius * radius,
             EntityWeight = weight,

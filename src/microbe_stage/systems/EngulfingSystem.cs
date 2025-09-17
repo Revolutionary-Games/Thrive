@@ -1236,7 +1236,7 @@ public partial class EngulfingSystem : BaseSystem<World, float>
 
         CreateEngulfableTransport(ref engulfable, engulfableFinalPosition, originalScale, boundingBoxSize);
 
-        // If the other body is already attached this needs to handle that correctly
+        // If the other body is already attached, this needs to handle that correctly
         if (targetEntity.Has<AttachedToEntity>())
         {
             var attached = AdjustExistingAttachedComponentForEngulfed(engulferEntity, ref targetEntityPosition,
@@ -1255,7 +1255,7 @@ public partial class EngulfingSystem : BaseSystem<World, float>
             StartBulkTransport(ref engulfable, ref attached, animationSpeed,
                 CalculateInitialEndosomeScale());
 
-            recorder.Set(targetEntity, attached);
+            recorder.Add(targetEntity, attached);
         }
 
         if (recorder != null)
@@ -1303,7 +1303,7 @@ public partial class EngulfingSystem : BaseSystem<World, float>
                         EndosymbiontSpeciesPresent = [engulfedSpecies.Species],
                     };
 
-                    recorder.Set(entity, endosymbiontInfo);
+                    recorder.Add(entity, endosymbiontInfo);
 
                     worldSimulation.FinishRecordingEntityCommands(recorder);
                 }

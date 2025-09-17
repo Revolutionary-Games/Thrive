@@ -39,7 +39,7 @@ public partial class DelayedColonyOperationSystem : BaseSystem<World, float>
         this.spawnSystem = spawnSystem;
     }
 
-    public static void CreateDelayAttachedMicrobe(ref WorldPosition colonyPosition, in Arch.Core.Entity colonyEntity,
+    public static void CreateDelayAttachedMicrobe(ref WorldPosition colonyPosition, in Entity colonyEntity,
         int colonyTargetIndex, CellTemplate cellTemplate, MulticellularSpecies species,
         IWorldSimulation worldSimulation, IMicrobeSpawnEnvironment spawnEnvironment,
         CommandBuffer recorder, ISpawnSystem notifySpawnTo, bool giveStartingCompounds)
@@ -74,9 +74,9 @@ public partial class DelayedColonyOperationSystem : BaseSystem<World, float>
         // or attaching fails
         notifySpawnTo.NotifyExternalEntitySpawned(member, recorder, Constants.MICROBE_DESPAWN_RADIUS_SQUARED, weight);
 
-        member.Set(attachPosition);
+        member.Add(attachPosition);
 
-        member.Set(new DelayedMicrobeColony(colonyEntity, colonyTargetIndex));
+        member.Add(new DelayedMicrobeColony(colonyEntity, colonyTargetIndex));
 
         // Ensure no physics is created before the attach-operation completes
         member.Set(PhysicsHelpers.CreatePhysicsForMicrobe(true));
@@ -87,7 +87,7 @@ public partial class DelayedColonyOperationSystem : BaseSystem<World, float>
 
             if (!originalEvents.IsTemporary)
             {
-                member.Set(originalEvents.CloneEventCallbacksForColonyMember());
+                member.Add(originalEvents.CloneEventCallbacksForColonyMember());
             }
         }
     }

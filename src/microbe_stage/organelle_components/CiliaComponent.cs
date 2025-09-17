@@ -196,7 +196,7 @@ public class CiliaComponent : IOrganelleComponent
             // Cilia initialization
             var recorder = worldSimulation.StartRecordingEntityCommands();
 
-            recorder.Set(microbeEntity, new PhysicsSensor(Constants.MAX_SIMULTANEOUS_COLLISIONS_SENSOR)
+            recorder.Add(microbeEntity, new PhysicsSensor(Constants.MAX_SIMULTANEOUS_COLLISIONS_SENSOR)
             {
                 ActiveArea = CreateCiliaDetectorShape(sharedPullData.CiliaCount),
             });

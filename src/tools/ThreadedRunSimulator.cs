@@ -27,7 +27,7 @@ public class ThreadedRunSimulator
     private const double ChanceToShuffleNormalTasks = 0.2;
 
     /// <summary>
-    ///   Relative time cost of a barrier to running an average system (which is 1). For example 1.5 means that a
+    ///   Relative time cost of a barrier to running an average system (which is 1). For example, 1.5 means that a
     ///   barrier is as expensive as running 1.5 other systems.
     /// </summary>
     private const float TimeCostPerBarrier = 1.5f;
@@ -35,7 +35,7 @@ public class ThreadedRunSimulator
     private static readonly bool ExtraVerifySystemRun = false;
 
     /// <summary>
-    ///   After finding a new best result, how long to look at more attempts
+    ///   After finding the new best result, how long to look at more attempts
     /// </summary>
     private readonly TimeSpan timeToLookForMoreResults = TimeSpan.FromSeconds(10);
 
@@ -65,7 +65,7 @@ public class ThreadedRunSimulator
     /// <summary>
     ///   Simulate threads and find a good ordering
     /// </summary>
-    /// <returns>The tasks split into threads, first item is always the main thread tasks</returns>
+    /// <returns>The tasks split into threads, the first item is always the main thread tasks</returns>
     public List<List<SystemToSchedule>> Simulate(int initialSeed, int parallelTasks)
     {
         if (parallelTasks < 1)
@@ -93,7 +93,7 @@ public class ThreadedRunSimulator
             lastNewBestFound = DateTime.UtcNow;
         }
 
-        // Wait for tasks to end, this is not time critical threading here so this thread can be used to run
+        // Wait for tasks to end, this is not time-critical threading here so this thread can be used to run
         // a bunch more tasks
         TaskExecutor.Instance.RunTasks(tasks, true);
 
@@ -134,7 +134,7 @@ public class ThreadedRunSimulator
                     GD.Print($"Found new best thread simulation: {bestThreadTime} " +
                         $"thread variance: {bestThreadDifference}");
 
-                    // Store the current attempt as the best one, and set it to null as we need to create a new
+                    // Store the current attempt as the best one and set it to null as we need to create a new
                     // object to keep testing attempts
                     bestSimulation = currentSimulationAttempt;
                     currentSimulationAttempt = null;
@@ -162,7 +162,7 @@ public class ThreadedRunSimulator
         private readonly List<Thread> allThreads = new();
         private readonly List<SystemToSchedule> upcomingGeneralTasks = new();
 
-        // All reads / runs need to be stored per-thread so when one thread is blocked another can still
+        // All reads / runs need to be stored per-thread, so when one thread is blocked, another can still proceed
         private readonly Dictionary<Thread, HashSet<Type>> componentReads = new();
         private readonly Dictionary<Thread, HashSet<Type>> componentWrites = new();
         private readonly Dictionary<Thread, List<SystemToSchedule>> runSystems = new();
@@ -178,7 +178,7 @@ public class ThreadedRunSimulator
 
             for (int i = 0; i < threadCount; ++i)
             {
-                // Main tasks are reserved for first thread
+                // Main tasks are reserved for the first thread
                 var thread = new Thread(i + 1, i == 0 ? mainThreadTasks : new List<SystemToSchedule>());
                 allThreads.Add(thread);
             }
@@ -224,7 +224,7 @@ public class ThreadedRunSimulator
                 {
                     var timeInFuture = thread.TimeSinceBarrier - timeSinceBarrier;
 
-                    // If thread is still busy at this point in time, can't do anything
+                    // If the thread is still busy at this point in time, can't do anything
                     if (timeInFuture > 0)
                     {
                         if (neededTimeSkip > timeInFuture)
@@ -235,7 +235,7 @@ public class ThreadedRunSimulator
 
                     anyThreadIsAtCurrentTime = true;
 
-                    // Small chance to skip giving task to a thread to explore more options
+                    // A Small chance to skip giving a task to a thread to explore more options
                     if (random.NextDouble() < SkipThreadWorkChance)
                     {
                         skippedThread = true;
@@ -275,7 +275,8 @@ public class ThreadedRunSimulator
                 if (skippedThread)
                     continue;
 
-                // If cannot schedule anything (and there's something to do), need to move to next group of barriers
+                // If this cannot schedule anything (and there's something to do), need to move to the next group of
+                // barriers
                 if (HasUpcomingTasks)
                 {
                     // If there are other threads with barely any work to do, there's a chance to steal their
@@ -283,7 +284,7 @@ public class ThreadedRunSimulator
                     bool attemptTaskSteal = true;
                     int activeThreads = 0;
 
-                    // Note that thread order is shuffled so the first thread is not necessarily the main thread
+                    // Note that thread order is shuffled, so the first thread is not necessarily the main thread
                     // stealing work here
                     for (int i = 1; i < allThreads.Count; ++i)
                     {
@@ -337,7 +338,7 @@ public class ThreadedRunSimulator
 
         public List<List<SystemToSchedule>> ToTaskListResult()
         {
-            // Need to sort threads back to have main thread first
+            // Need to sort threads back to have the main thread first
             allThreads.Sort(new ThreadIdComparer());
 
             if (allThreads[0].ThreadId != 1)
@@ -469,7 +470,7 @@ public class ThreadedRunSimulator
         /// <summary>
         ///   Check for timing conflicts with all *other* threads
         /// </summary>
-        /// <returns>True if can run in parallel</returns>
+        /// <returns>True if the system can run in parallel</returns>
         private bool CanRunSystemInParallel(SystemToSchedule systemToSchedule, Thread thread)
         {
             // Read / write conflicts
@@ -555,7 +556,7 @@ public class ThreadedRunSimulator
 
             AddRunningSystemData(systemToSchedule, thread);
 
-            // Current system from thread is ran, step it to the next system
+            // Current system from thread is run, step it to the next system
             thread.MarkExecutedTask(systemToSchedule);
 
             upcomingGeneralTasks.Remove(systemToSchedule);
@@ -772,7 +773,7 @@ public class ThreadedRunSimulator
         public float Time { get; private set; }
 
         /// <summary>
-        ///   Time since last barrier, used to not schedule too much work for a single thread
+        ///   Time since the last barrier, used to not schedule too much work for a single thread
         /// </summary>
         public float TimeSinceBarrier { get; private set; }
 
@@ -823,7 +824,7 @@ public class ThreadedRunSimulator
             // Move back in time as if the system never ran
             Time -= system.RuntimeCost;
 
-            // Recount the time since last barrier
+            // Recount the time since the last barrier
             if (threadBarrierPoints.Count < 1)
             {
                 // When no barriers, all costs are still active and can be adjusted like this

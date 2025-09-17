@@ -202,7 +202,7 @@ public partial class ColonyBindingSystem : BaseSystem<World, float>
                 if (colony.AddInitialColonyMember(primaryEntity, indexOfMemberToBindTo, other, recorder))
                 {
                     // Add the colony component to the lead cell
-                    recorder.Set(primaryEntity, colony);
+                    recorder.Add(primaryEntity, colony);
 
                     // Report not being able to reproduce by the lead cell
                     MicrobeColonyHelpers.ReportReproductionStatusOnAddToColony(primaryEntity);

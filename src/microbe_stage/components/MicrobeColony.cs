@@ -1178,7 +1178,7 @@ public static class MicrobeColonyHelpers
     {
         OnCommonColonyMemberSetup(ref colony, colonyEntity, parentIndex, newMember, recorder);
 
-        recorder.Set(newMember, new AttachedToEntity(colonyEntity, offsetToColonyLeader, rotationToLeader));
+        recorder.Add(newMember, new AttachedToEntity(colonyEntity, offsetToColonyLeader, rotationToLeader));
 
         // Setup event forwarding
         if (colonyEntity.Has<MicrobeEventCallbacks>())
@@ -1187,7 +1187,7 @@ public static class MicrobeColonyHelpers
 
             if (!originalEvents.IsTemporary)
             {
-                recorder.Set(newMember, originalEvents.CloneEventCallbacksForColonyMember());
+                recorder.Add(newMember, originalEvents.CloneEventCallbacksForColonyMember());
             }
         }
 
@@ -1222,7 +1222,7 @@ public static class MicrobeColonyHelpers
 
         colony.ColonyStructure[newMember] = parentMicrobe;
 
-        recorder.Set(newMember, new MicrobeColonyMember(colonyEntity));
+        recorder.Add(newMember, new MicrobeColonyMember(colonyEntity));
     }
 
     /// <summary>
@@ -1320,6 +1320,6 @@ public static class MicrobeColonyHelpers
     private static void SetupColonyWithMembersDelayed(Entity entity, int membersAfterLeader,
         CommandBuffer commandBuffer)
     {
-        commandBuffer.Set(entity, new DelayedMicrobeColony(membersAfterLeader));
+        commandBuffer.Add(entity, new DelayedMicrobeColony(membersAfterLeader));
     }
 }

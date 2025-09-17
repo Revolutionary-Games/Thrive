@@ -41,6 +41,9 @@ public partial class SimpleShapeCreatorSystem : BaseSystem<World, float>
         if (density <= 0)
             density = 1000;
 
+        if (creator.Size <= 0)
+            throw new InvalidOperationException("Size must be greater than 0");
+
         // TODO: add caching here for small shapes that get recreated a lot
         switch (creator.ShapeType)
         {

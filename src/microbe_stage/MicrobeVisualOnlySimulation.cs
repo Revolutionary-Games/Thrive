@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using Arch.Core;
 using Arch.Core.Extensions;
+using Arch.System;
 using Components;
 using Godot;
 using Systems;
@@ -16,36 +17,20 @@ public sealed class MicrobeVisualOnlySimulation : WorldSimulation
     private readonly List<Hex> hexWorkData1 = new();
     private readonly List<Hex> hexWorkData2 = new();
 
-    // Base systems
-    private AnimationControlSystem animationControlSystem = null!;
-    private AttachedEntityPositionSystem attachedEntityPositionSystem = null!;
-    private ColourAnimationSystem colourAnimationSystem = null!;
-    private EntityMaterialFetchSystem entityMaterialFetchSystem = null!;
-    private FadeOutActionSystem fadeOutActionSystem = null!;
-    private PathBasedSceneLoader pathBasedSceneLoader = null!;
-    private PredefinedVisualLoaderSystem predefinedVisualLoaderSystem = null!;
+    private Group<float> simulationSystems = new("Simulation Systems");
 
-    private SpatialAttachSystem spatialAttachSystem = null!;
-    private SpatialPositionSystem spatialPositionSystem = null!;
-
-    // Microbe systems
-    private CellBurstEffectSystem cellBurstEffectSystem = null!;
-
-    // private ColonyBindingSystem colonyBindingSystem = null!;
-    private MicrobeFlashingSystem microbeFlashingSystem = null!;
-    private MicrobeRenderPrioritySystem microbeRenderPrioritySystem = null!;
-    private MicrobeShaderSystem microbeShaderSystem = null!;
-    private MicrobeVisualsSystem microbeVisualsSystem = null!;
-    private TintColourApplyingSystem tintColourApplyingSystem = null!;
-
-    private IntercellularMatrixSystem intercellularMatrixSystem = null!;
+    private Group<float> frameSystems = new("Frame Systems");
 
 #pragma warning disable CA2213
+
+    // This is Disposed indirectly
+    private MicrobeVisualsSystem microbeVisualsSystem = null!;
+
     private Node visualsParent = null!;
 #pragma warning restore CA2213
 
     /// <summary>
-    ///   Initialized this visual simulation for use
+    ///   Initialises this visual simulation for use
     /// </summary>
     /// <param name="visualDisplayRoot">Root node to place all visuals under</param>
     public void Init(Node visualDisplayRoot)
@@ -59,38 +44,45 @@ public sealed class MicrobeVisualOnlySimulation : WorldSimulation
         // This is not used for intensive use, and even is used in the background of normal gameplay
         // TODO: but we cannot prevent this entity world from using multithreading
 
-        animationControlSystem = new AnimationControlSystem(EntitySystem);
-        attachedEntityPositionSystem = new AttachedEntityPositionSystem(this, EntitySystem);
-        colourAnimationSystem = new ColourAnimationSystem(EntitySystem);
-
-        entityMaterialFetchSystem = new EntityMaterialFetchSystem(EntitySystem);
-        fadeOutActionSystem = new FadeOutActionSystem(this, null, EntitySystem);
-        pathBasedSceneLoader = new PathBasedSceneLoader(EntitySystem);
-
-        predefinedVisualLoaderSystem = new PredefinedVisualLoaderSystem(EntitySystem);
-
-        spatialAttachSystem = new SpatialAttachSystem(visualsParent, EntitySystem);
-        spatialPositionSystem = new SpatialPositionSystem(EntitySystem);
-        cellBurstEffectSystem = new CellBurstEffectSystem(EntitySystem);
-
-        // For previewing multicellular some colony operations will be needed
-        // colonyBindingSystem = new ColonyBindingSystem(this, EntitySystem, parallelRunner);
-
-        microbeFlashingSystem = new MicrobeFlashingSystem(EntitySystem);
-        microbeRenderPrioritySystem = new MicrobeRenderPrioritySystem(EntitySystem);
-        microbeShaderSystem = new MicrobeShaderSystem(EntitySystem);
-
         microbeVisualsSystem = new MicrobeVisualsSystem(EntitySystem);
 
-        // organelleComponentFetchSystem = new OrganelleComponentFetchSystem(EntitySystem, runner);
+        simulationSystems = new Group<float>(simulationSystems.Name, [
+            microbeVisualsSystem,
 
-        // TODO: is there a need for the movement system / OrganelleTickSystem to control animations on organelles
-        // if those are used then also OrganelleComponentFetchSystem would be needed
-        // organelleTickSystem = new OrganelleTickSystem(EntitySystem, runner);
+            // Base systems
+            new PathBasedSceneLoader(EntitySystem),
+            new PredefinedVisualLoaderSystem(EntitySystem),
+            new EntityMaterialFetchSystem(EntitySystem),
+            new AnimationControlSystem(EntitySystem),
 
-        tintColourApplyingSystem = new TintColourApplyingSystem(EntitySystem);
+            new AttachedEntityPositionSystem(this, EntitySystem),
 
-        intercellularMatrixSystem = new IntercellularMatrixSystem(EntitySystem);
+            new SpatialAttachSystem(visualsParent, EntitySystem),
+            new SpatialPositionSystem(EntitySystem),
+
+            // Microbe systems
+
+            // TODO: is there a need for the movement system / OrganelleTickSystem to control animations on organelles
+            // if those are used then also OrganelleComponentFetchSystem would be needed
+            // new OrganelleComponentFetchSystem(EntitySystem, runner),
+            // new OrganelleTickSystem(EntitySystem, runner),
+
+            new FadeOutActionSystem(this, null, EntitySystem),
+            new MicrobeRenderPrioritySystem(EntitySystem),
+            new CellBurstEffectSystem(EntitySystem),
+            new MicrobeFlashingSystem(EntitySystem),
+
+            new IntercellularMatrixSystem(EntitySystem),
+        ]);
+
+        frameSystems = new Group<float>(frameSystems.Name, [
+            new ColourAnimationSystem(EntitySystem),
+            new MicrobeShaderSystem(EntitySystem),
+            new TintColourApplyingSystem(EntitySystem),
+        ]);
+
+        simulationSystems.Initialize();
+        frameSystems.Initialize();
 
         OnInitialized();
     }
@@ -391,7 +383,8 @@ public sealed class MicrobeVisualOnlySimulation : WorldSimulation
 
                     float radius = cellProperties.CreatedMembrane!.EncompassingCircleRadius;
 
-                    if (distanceSquared + radius * radius > maxCellDistanceSquared + farthestCellRadius * farthestCellRadius)
+                    if (distanceSquared + radius * radius >
+                        maxCellDistanceSquared + farthestCellRadius * farthestCellRadius)
                     {
                         maxCellDistanceSquared = distanceSquared;
 
@@ -426,59 +419,24 @@ public sealed class MicrobeVisualOnlySimulation : WorldSimulation
 
     protected override void OnProcessFixedLogic(float delta)
     {
-        microbeVisualsSystem.Update(delta);
-        pathBasedSceneLoader.Update(delta);
-        predefinedVisualLoaderSystem.Update(delta);
-        entityMaterialFetchSystem.Update(delta);
-        animationControlSystem.Update(delta);
-
-        attachedEntityPositionSystem.Update(delta);
-
-        // colonyBindingSystem.Update(delta);
-
-        spatialAttachSystem.Update(delta);
-        spatialPositionSystem.Update(delta);
-
-        // organelleComponentFetchSystem.Update(delta);
-        // organelleTickSystem.Update(delta);
-
-        fadeOutActionSystem.Update(delta);
-
-        microbeRenderPrioritySystem.Update(delta);
-
-        cellBurstEffectSystem.Update(delta);
-
-        microbeFlashingSystem.Update(delta);
+        simulationSystems.BeforeUpdate(delta);
+        simulationSystems.Update(delta);
+        simulationSystems.AfterUpdate(delta);
     }
 
     protected override void OnProcessFrameLogic(float delta)
     {
-        colourAnimationSystem.Update(delta);
-        microbeShaderSystem.Update(delta);
-        tintColourApplyingSystem.Update(delta);
-        intercellularMatrixSystem.Update(delta);
+        frameSystems.BeforeUpdate(delta);
+        frameSystems.Update(delta);
+        frameSystems.AfterUpdate(delta);
     }
 
     protected override void Dispose(bool disposing)
     {
         if (disposing)
         {
-            animationControlSystem.Dispose();
-            attachedEntityPositionSystem.Dispose();
-            colourAnimationSystem.Dispose();
-            entityMaterialFetchSystem.Dispose();
-            fadeOutActionSystem.Dispose();
-            pathBasedSceneLoader.Dispose();
-            predefinedVisualLoaderSystem.Dispose();
-            spatialAttachSystem.Dispose();
-            spatialPositionSystem.Dispose();
-            cellBurstEffectSystem.Dispose();
-            microbeFlashingSystem.Dispose();
-            microbeRenderPrioritySystem.Dispose();
-            microbeShaderSystem.Dispose();
-            microbeVisualsSystem.Dispose();
-            tintColourApplyingSystem.Dispose();
-            intercellularMatrixSystem.Dispose();
+            simulationSystems.Dispose();
+            frameSystems.Dispose();
         }
 
         base.Dispose(disposing);

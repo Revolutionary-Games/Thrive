@@ -399,7 +399,7 @@ public partial class MicrobeDeathSystem : BaseSystem<World, float>
         commandRecorder ??= worldSimulation.StartRecordingEntityCommands();
 
         // Add a timed life component to make sure the entity will despawn after the death animation
-        commandRecorder.Set(entity, new TimedLife
+        commandRecorder.Add(entity, new TimedLife
         {
             TimeToLiveRemaining = 1 / Constants.MEMBRANE_DISSOLVE_SPEED * 2,
         });

@@ -249,6 +249,8 @@ public partial class MicrobeWorldSimulation : WorldSimulationWithPhysics
 
         physics.RemoveGravity();
 
+        RunSystemInits();
+
         OnInitialized();
 
         // In case this is loaded from a save, ensure the next save has correct ignore entities
@@ -288,7 +290,7 @@ public partial class MicrobeWorldSimulation : WorldSimulationWithPhysics
 
     /// <summary>
     ///   Clears system data that has been stored based on the player location. Call this when the player changes
-    ///   locations a lot by respawning or by moving patches
+    ///   location by a lot by respawning or by moving patches
     /// </summary>
     public void ClearPlayerLocationDependentCaches()
     {
@@ -339,12 +341,10 @@ public partial class MicrobeWorldSimulation : WorldSimulationWithPhysics
         // For single-threaded testing uncomment the next line:
         // availableThreads = 1;
 
-        // Need to have more threads than configured to run with to not deadlock on all threads just waiting for
-        // tasks to be able to start. Apparently with just 1 background task the deadlock never occurs but still
-        // performance is reduced a lot without enough threads
-        // TODO: adjust the min threads threshold here (currently +1 for slowest systems to not get hit with the
-        // threading performance penalty)
-        if (availableThreads > GenerateThreadedSystems.TargetThreadCount + 1)
+        // This now does a plain count compare as no system itself currently runs threaded (need to increase if that
+        // starts to be the case and there's a threat of thread starvation caused deadlock)
+        // // TODO: re-enable parallel entity processing
+        if (availableThreads > GenerateThreadedSystems.TargetThreadCount)
         {
             OnProcessFixedWithThreads(delta);
         }

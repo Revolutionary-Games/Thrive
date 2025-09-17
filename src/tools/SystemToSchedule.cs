@@ -5,6 +5,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Reflection;
 using System.Runtime.CompilerServices;
+using Arch.Core;
 using Arch.System;
 
 public class SystemToSchedule
@@ -47,7 +48,7 @@ public class SystemToSchedule
     /// </summary>
     public int Timeslot;
 
-    private static readonly Type QueryMethodAttribute = typeof(QueryAttribute);
+    private static readonly Type EntityType = typeof(Entity);
     private static readonly Type WritesToAttribute = typeof(WritesToComponentAttribute);
     private static readonly Type ReadsFromAttribute = typeof(ReadsComponentAttribute);
     private static readonly Type ReadByDefaultAttribute = typeof(ComponentIsReadByDefaultAttribute);
@@ -81,7 +82,21 @@ public class SystemToSchedule
 
         if (customRun != null)
         {
-            systemToSchedule.CustomRunCode = ((RunsWithCustomCodeAttribute)customRun).CustomCode;
+            var attribute = (RunsWithCustomCodeAttribute)customRun;
+
+            systemToSchedule.CustomRunCode ??= string.Empty;
+
+            if (attribute.AddDefaultPreAndPostActions)
+            {
+                systemToSchedule.CustomRunCode += "{0}.BeforeUpdate(delta);\n";
+            }
+
+            systemToSchedule.CustomRunCode += attribute.CustomCode;
+
+            if (attribute.AddDefaultPreAndPostActions)
+            {
+                systemToSchedule.CustomRunCode += "\n{0}.AfterUpdate(delta);";
+            }
         }
 
         var customCost = systemToSchedule.Type.GetCustomAttribute(RuntimeCostAttribute);
@@ -96,10 +111,76 @@ public class SystemToSchedule
 
         var explicitReads = new HashSet<Type>();
 
-        // TODO: redo this for Arch
-        // need to read Query attributes from system class methods
-        throw new NotImplementedException();
+        // need to read query attributes from system class query methods and the classes themselves
 
+        // Search for query methods
+        var queryMethods = systemToSchedule.Type
+            .GetMethods(BindingFlags.NonPublic | BindingFlags.Public | BindingFlags.Static | BindingFlags.Instance)
+            .Where(m => m.GetCustomAttribute<QueryAttribute>() != null);
+
+        var currentComponents = new HashSet<Type>();
+
+        foreach (var queryMethod in queryMethods)
+        {
+            currentComponents.Clear();
+
+            // Add usages from parameters
+            foreach (var parameter in queryMethod.GetParameters())
+            {
+                // Skip non-components
+                if (parameter.GetCustomAttribute<DataAttribute>() != null)
+                    continue;
+
+                var parameterType = parameter.ParameterType;
+
+                // Strip ref/out modifiers to get the bare type
+                if (parameterType.IsByRef)
+                {
+                    parameterType = parameterType.GetElementType() ?? throw new Exception("ref/out type is missing");
+                }
+
+                if (parameterType == EntityType)
+                    continue;
+
+                currentComponents.Add(parameterType);
+            }
+
+            // Add usages from attributes
+            foreach (var attribute in queryMethod.GetCustomAttributes<AllAttribute>())
+            {
+                foreach (var componentType in attribute.ComponentTypes)
+                {
+                    currentComponents.Add(componentType);
+                }
+            }
+
+            foreach (var attribute in queryMethod.GetCustomAttributes<AnyAttribute>())
+            {
+                // As the query can match an entity with any combination of the components, we need to add all
+                foreach (var componentType in attribute.ComponentTypes)
+                {
+                    currentComponents.Add(componentType);
+                }
+            }
+
+            // NoneAttribute doesn't need to be read as that's what this doesn't process
+
+            foreach (var componentType in currentComponents)
+            {
+                // Handle components that are read by default or already marked as reads
+                if (componentType.GetCustomAttribute(ReadByDefaultAttribute) != null)
+                {
+                    if (!expectedReadsFrom.Contains(componentType))
+                        expectedReadsFrom.Add(componentType);
+                    continue;
+                }
+
+                if (!expectedWritesTo.Contains(componentType))
+                    expectedWritesTo.Add(componentType);
+            }
+        }
+
+        // Apply system attributes on top
         var readsRaw = systemToSchedule.Type.GetCustomAttributes(ReadsFromAttribute);
 
         foreach (var attributeRaw in readsRaw)
@@ -188,7 +269,7 @@ public class SystemToSchedule
             if (system.RunsBefore.Any(s => system.RunsAfter.Contains(s)))
                 throw new Exception("A system is set to run both after and before another");
 
-            // System dependencies are not allowed to run after itself
+            // System dependencies are not allowed to run after themselves
             DoNotAllowSeeingRunsAfter(system, system, seenSystems);
             seenSystems.Clear();
 
@@ -335,6 +416,7 @@ public class SystemToSchedule
             }
         }
 
+        // TODO: could automatically detect if should skip BeforeUpdate and AfterUpdate if they are unused
         if (CustomRunCode != null)
         {
             foreach (var customLine in CustomRunCode.Split("\n"))
@@ -344,7 +426,9 @@ public class SystemToSchedule
         }
         else
         {
+            lineReceiver.Add(StringUtils.GetIndent(indent) + $"{FieldName}.BeforeUpdate(delta);");
             lineReceiver.Add(StringUtils.GetIndent(indent) + $"{FieldName}.Update(delta);");
+            lineReceiver.Add(StringUtils.GetIndent(indent) + $"{FieldName}.AfterUpdate(delta);");
         }
 
         if (GenerateThreadedSystems.UseCheckedComponentAccess)

@@ -10,13 +10,15 @@ using Godot;
 [StructLayout(LayoutKind.Sequential)]
 public class NativePhysicsBody : IDisposable, IEquatable<NativePhysicsBody>
 {
+    public static readonly int EntityDataSize = Marshal.SizeOf<Entity>();
+
     /// <summary>
-    ///   This is only used by external code, not this class at all to know which bodies are in use without having to
+    ///   This is only used by external code, not this class at all, to know which bodies are in use without having to
     ///   allocate extra memory.
     /// </summary>
     /// <remarks>
     ///   <para>
-    ///     This being the first field makes the memory layout non-optimal but some of the private fields have been
+    ///     This being the first field makes the memory layout non-optimal, but some of the private fields have been
     ///     juggled around a bit for better layout.
     ///   </para>
     /// </remarks>
@@ -27,12 +29,10 @@ public class NativePhysicsBody : IDisposable, IEquatable<NativePhysicsBody>
         ArrayPool<PhysicsCollision>.Create(Constants.MAX_COLLISION_CACHE_BUFFER_RETURN_SIZE,
             Constants.MAX_COLLISION_CACHE_BUFFERS_OF_SIMILAR_LENGTH);*/
 
-    private static readonly int EntityDataSize = Marshal.SizeOf<Entity>();
-
     private bool disposed;
 
     /// <summary>
-    ///   Storage variable for collision recording, when this is active the pin handle is used to pin down this
+    ///   Storage variable for collision recording, when this is active, the pin handle is used to pin down this
     ///   piece of memory to ensure the native code side can directly write here with pointers
     /// </summary>
     private PhysicsCollision[]? activeCollisions;
@@ -87,6 +87,9 @@ public class NativePhysicsBody : IDisposable, IEquatable<NativePhysicsBody>
     /// <param name="entity">The entity data to store</param>
     public void SetEntityReference(in Entity entity)
     {
+        if (entity.Id < 0)
+            throw new InvalidOperationException("Entity ID to set on physics is invalid (negative)");
+
         NativeMethods.PhysicsBodySetUserData(AccessBodyInternal(), entity, EntityDataSize);
     }
 
@@ -124,7 +127,7 @@ public class NativePhysicsBody : IDisposable, IEquatable<NativePhysicsBody>
     internal (PhysicsCollision[] CollisionsArray, IntPtr ArrayAddress)
         SetupCollisionRecording(int maxCollisions)
     {
-        // Can re-use collision recording array if the max count is still low enough
+        // Can re-use the collision recording array if the max count is still low enough
         if (activeCollisions == null || activeCollisions.Length < maxCollisions)
         {
             // Ensure no previous state. This is safe as each physics body can only be recording one set of collisions

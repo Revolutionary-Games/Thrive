@@ -84,7 +84,7 @@ public static class MulticellularGrowthHelpers
     {
         if (!entity.Has<MicrobeColony>())
         {
-            recorder.Set(entity, new MicrobeColony(true, entity, entity.Get<MicrobeControl>().State));
+            recorder.Add(entity, new MicrobeColony(true, entity, entity.Get<MicrobeControl>().State));
         }
 
         ref var colonyPosition = ref entity.Get<WorldPosition>();

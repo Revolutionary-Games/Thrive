@@ -55,9 +55,9 @@ public static class SpawnHelpers
     private static readonly ComponentType[] ChunkSignatureBase =
     [
         typeof(WorldPosition), typeof(PathLoadedSceneVisuals),
-        typeof(SpatialInstance), typeof(FadeOutActions), typeof(Physics), typeof(SimpleShapeCreator),
-        typeof(PhysicsShapeHolder), typeof(CollisionManagement), typeof(ManualPhysicsControl),
-        typeof(PredefinedVisuals), typeof(ToxinDamageSource), typeof(ReadableName),
+        typeof(SpatialInstance), typeof(Physics), typeof(PhysicsShapeHolder), typeof(EntityRadiusInfo),
+        typeof(CollisionManagement), typeof(CurrentAffected), typeof(ManualPhysicsControl), typeof(CountLimited),
+        typeof(ReadableName),
     ];
 
     private static readonly Dictionary<ChunkComponentFlag, ComponentType[]> ChunkComponentSignatureCache = new();
@@ -344,7 +344,7 @@ public static class SpawnHelpers
         // This needs to be skipped for particle type chunks (as they don't have materials)
         bool hasMicrobeShaderParameters = !selectedMesh.IsParticles && !selectedMesh.MissingDefaultShaderSupport;
 
-        // Due to the very many combinations, we need to construct a bit-flag variable and then look it up with a
+        // Due to the very many combinations, we need to construct a bitflag-variable and then look it up with a
         // dictionary lookup
         ChunkComponentFlag flags = 0;
         if (siderophoreTarget)
@@ -737,7 +737,7 @@ public static class SpawnHelpers
                 // This is not in the signature as this is a very specific case
                 // TODO: determine if this has negative effects and the signature should be adjusted (to split on
                 // this one more variable)
-                recorder.Set(entity, new MulticellularGrowth(multicellularSpecies));
+                recorder.Add(entity, new MulticellularGrowth(multicellularSpecies));
             }
 
 #if DEBUG
@@ -1357,6 +1357,7 @@ public static class SpawnHelpers
 
             if ((flags & ChunkComponentFlag.UsesDamageTouch) != 0)
                 temp.Add(typeof(DamageOnTouch));
+
             if ((flags & ChunkComponentFlag.HasMicrobeShaderParameters) != 0)
             {
                 temp.Add(typeof(EntityMaterial));

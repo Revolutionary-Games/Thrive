@@ -704,9 +704,9 @@ public partial class MicrobeStage : CreatureStageBase<Entity, MicrobeWorldSimula
             // Direct component setting is safe as we verified above we aren't running during a simulation update
             microbe.Remove<MicrobeSpeciesMember>();
             microbe.Set(new SpeciesMember(multicellularSpecies));
-            microbe.Set(new MulticellularSpeciesMember(multicellularSpecies, multicellularSpecies.CellTypes[0], 0));
+            microbe.Add(new MulticellularSpeciesMember(multicellularSpecies, multicellularSpecies.CellTypes[0], 0));
 
-            microbe.Set(new MulticellularGrowth(multicellularSpecies));
+            microbe.Add(new MulticellularGrowth(multicellularSpecies));
 
             if (microbe.Has<PlayerMarker>())
                 playerHandled = true;
@@ -924,7 +924,7 @@ public partial class MicrobeStage : CreatureStageBase<Entity, MicrobeWorldSimula
             this, WorldSimulation.SpawnSystem, (ref Entity daughter, CommandBuffer commandBuffer) =>
             {
                 // Mark as a player-reproduced entity
-                commandBuffer.Set(daughter, new PlayerOffspring
+                commandBuffer.Add(daughter, new PlayerOffspring
                 {
                     OffspringOrderNumber = ++playerOffspringTotalCount,
                 });
@@ -1069,11 +1069,11 @@ public partial class MicrobeStage : CreatureStageBase<Entity, MicrobeWorldSimula
                 }
             }
 
-            // Force player despawn to happen if there is a problem that prevented the player timed life from being
+            // Force player despawn to happen if there is a problem that prevented the player timed-life from being
             // added
             if (!Player.Has<TimedLife>())
             {
-                Player.Set<TimedLife>();
+                Player.Add<TimedLife>();
             }
 
             ref var timed = ref Player.Get<TimedLife>();
@@ -1173,7 +1173,7 @@ public partial class MicrobeStage : CreatureStageBase<Entity, MicrobeWorldSimula
             GameWorld.PlayerSpecies,
             spawnLocation, false, (null, 0), out var entityRecord);
 
-        entityRecord.Set(new MicrobeEventCallbacks
+        recorder.Add(entityRecord, new MicrobeEventCallbacks
         {
             OnReproductionStatus = OnPlayerReproductionStatusChanged,
 
@@ -1193,7 +1193,7 @@ public partial class MicrobeStage : CreatureStageBase<Entity, MicrobeWorldSimula
             OnNoticeMessage = OnPlayerNoticeMessage,
         });
 
-        entityRecord.Set<CameraFollowTarget>();
+        recorder.Add<CameraFollowTarget>(entityRecord);
 
         // Spawn and grab the player
         SpawnHelpers.FinalizeEntitySpawn(recorder, WorldSimulation);

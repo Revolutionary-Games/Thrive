@@ -64,7 +64,7 @@ public static class MicrobeShaderParametersHelpers
         {
             recorder = newComponentCreator.StartRecordingEntityCommands();
 
-            recorder.Set(entity, new MicrobeShaderParameters
+            recorder.Add(entity, new MicrobeShaderParameters
             {
                 DissolveAnimationSpeed = speed,
                 PlayAnimations = true,
@@ -81,7 +81,7 @@ public static class MicrobeShaderParametersHelpers
 
             recorder ??= newComponentCreator.StartRecordingEntityCommands();
 
-            recorder.Set(entity, new TimedLife
+            recorder.Add(entity, new TimedLife
             {
                 TimeToLiveRemaining = duration,
             });
