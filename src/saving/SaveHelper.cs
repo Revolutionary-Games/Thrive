@@ -27,6 +27,7 @@ public static class SaveHelper
         "0.5.9.0-alpha",
         "0.6.4.0-alpha",
         "0.6.6.0-alpha",
+        "0.8.4.0-alpha",
     };
 
     private static readonly IReadOnlyList<MainGameState> StagesAllowingPrototypeSaving = new[]
