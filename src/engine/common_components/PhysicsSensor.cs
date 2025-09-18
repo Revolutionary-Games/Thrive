@@ -51,7 +51,7 @@ public struct PhysicsSensor
     public bool Disabled;
 
     /// <summary>
-    ///   When set to true, the sensor body uses kinematic movement type and detects sleeping bodies. If this is
+    ///   When set to true, the sensor body uses the kinematic movement type and detects sleeping bodies. If this is
     ///   false, this only detects active bodies within the sensor. Must be set before the sensor is created,
     ///   doesn't apply retroactively.
     /// </summary>
@@ -63,6 +63,13 @@ public struct PhysicsSensor
     ///   creation.
     /// </summary>
     public bool DetectStaticBodies;
+
+    /// <summary>
+    ///   If set to true on sensor creation, allows detecting collisions with the entity that has this sensor.
+    ///   Otherwise, such collisions are ignored (which is usually desired). Note that this applies on creation so
+    ///   if the body is not yet created or this value is later changes that has no effect.
+    /// </summary>
+    public bool DetectSelfEntityCollision;
 
     // TODO: for purely sensor type entities implement a bool here for automatically retrieving the shape from
     // PhysicsShapeHolder component

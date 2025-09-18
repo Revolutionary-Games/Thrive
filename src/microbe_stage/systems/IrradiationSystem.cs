@@ -57,6 +57,9 @@ public partial class IrradiationSystem : BaseSystem<World, float>
 
             foreach (var radiatedEntity in source.RadiatedEntities)
             {
+                if (radiatedEntity == Entity.Null)
+                    continue;
+
                 // Anything with a compound storage can receive radiation
                 if (!radiatedEntity.Has<CompoundStorage>())
                     continue;

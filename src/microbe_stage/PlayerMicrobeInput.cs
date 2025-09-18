@@ -326,10 +326,7 @@ public partial class PlayerMicrobeInput : NodeWithInput
             return false;
 
         var target = stage.HoverInfo.Entities.FirstOrDefault();
-        if (target == default || !target.IsAlive())
-            return false;
-
-        if (!target.IsAlive() || !target.Has<MicrobeSpeciesMember>())
+        if (target == default || !target.IsAliveAndHas<MicrobeSpeciesMember>())
             return false;
 
         // If didn't hit a cell colony, can't do anything

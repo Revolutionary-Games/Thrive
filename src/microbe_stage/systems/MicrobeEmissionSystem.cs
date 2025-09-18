@@ -82,7 +82,7 @@ public partial class MicrobeEmissionSystem : BaseSystem<World, float>
         {
             var attachedTo = entity.Get<AttachedToEntity>().AttachedTo;
 
-            if (attachedTo.Has<WorldPosition>())
+            if (attachedTo.IsAliveAndHas<WorldPosition>())
             {
                 // Use parent rotation rather than our own to get the whole cell colony facing direction rather
                 // than our facing direction in world space

@@ -334,7 +334,7 @@ public partial class MicrobePhysicsCreationAndSizeSystem : BaseSystem<World, flo
 
                 ref var currentMemberOrganelles = ref member.Get<OrganelleContainer>();
 
-                if (!member.Has<AttachedToEntity>())
+                if (!member.IsAliveAndHas<AttachedToEntity>())
                 {
                     GD.PrintErr("Colony member has no attached component, created combined body will be wrong");
                     continue;

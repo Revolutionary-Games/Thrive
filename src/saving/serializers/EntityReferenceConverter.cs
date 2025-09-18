@@ -34,7 +34,7 @@ public class EntityReferenceConverter : JsonConverter<Entity>
 
         // Don't write non-alive entities or entities that no longer want to be saved
         if (context.SkipSavingEntity(value) || !value.IsAlive())
-            value = default;
+            value = Entity.Null;
 
         writer.WriteValue(value.ToString());
     }

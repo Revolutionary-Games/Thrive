@@ -78,7 +78,7 @@ public struct CollisionManagement
     public bool CollisionFilterCallbackRegistered;
 
     /// <summary>
-    ///   Internal flag don't touch. Used as an optimization to not always have to call to the native side library.
+    ///   Internal flag, don't touch. Used as an optimization to not always have to call the native side library.
     /// </summary>
     [JsonIgnore]
     public bool CollisionIgnoresUsed;

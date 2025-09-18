@@ -13,7 +13,9 @@ using World = Arch.Core.World;
 ///   Handling system for <see cref="PhysicsSensorSystem"/>. Keeps the sensor at the world position of the entity.
 /// </summary>
 [ReadsComponent(typeof(WorldPosition))]
+[ReadsComponent(typeof(Physics))]
 [RunsAfter(typeof(PhysicsUpdateAndPositionSystem))]
+[RunsAfter(typeof(PhysicsBodyCreationSystem))]
 [RunsOnMainThread]
 public partial class PhysicsSensorSystem : BaseSystem<World, float>
 {
@@ -137,6 +139,14 @@ public partial class PhysicsSensorSystem : BaseSystem<World, float>
 
             // Set no entity on the sensor, so anything colliding with the sensor can't do anything
             sensor.SensorBody.SetEntityReference(Entity.Null);
+
+            // Ignoring collisions with self
+            if (!sensor.DetectSelfEntityCollision && entity.Has<Physics>())
+            {
+                var body = entity.Get<Physics>().Body;
+                if (body != null)
+                    worldSimulationWithPhysics.PhysicalWorld.BodyIgnoreCollisionsWithBody(sensor.SensorBody, body);
+            }
 
             sensor.ActiveCollisions = worldSimulationWithPhysics.PhysicalWorld.BodyStartCollisionRecording(
                 sensor.SensorBody, sensor.MaxActiveContacts > 0 ?

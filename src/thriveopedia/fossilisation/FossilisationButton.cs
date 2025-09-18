@@ -16,7 +16,7 @@ public partial class FossilisationButton : TextureButton
     /// <summary>
     ///   The entity (organism) this button is attached to.
     /// </summary>
-    public Entity AttachedEntity;
+    public Entity AttachedEntity = Entity.Null;
 
     public bool IsMicrobeStage;
 
@@ -67,7 +67,7 @@ public partial class FossilisationButton : TextureButton
             camera = GetViewport().GetCamera3D();
 
         // If the entity is removed (e.g. forcefully despawned)
-        if (!AttachedEntity.IsAlive() || !AttachedEntity.Has<WorldPosition>())
+        if (!AttachedEntity.IsAliveAndHas<WorldPosition>())
         {
             this.DetachAndQueueFree();
             return;

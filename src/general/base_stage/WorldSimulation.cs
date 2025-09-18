@@ -264,7 +264,17 @@ public abstract class WorldSimulation : IWorldSimulation, IGodotEarlyNodeResolve
         {
             while (queuedInvokes.Count > 0)
             {
-                queuedInvokes.Dequeue().Invoke();
+                try
+                {
+                    queuedInvokes.Dequeue().Invoke();
+                }
+                catch (Exception e)
+                {
+                    GD.PrintErr($"Unhandled exception in world simulation invoke: {e}");
+
+                    if (Debugger.IsAttached)
+                        Debugger.Break();
+                }
             }
         }
 
@@ -498,7 +508,7 @@ public abstract class WorldSimulation : IWorldSimulation, IGodotEarlyNodeResolve
     {
         var found = Entity.Null;
 
-        // TODO: there's probably a much better way to do this with Arch
+        // TODO: there's probably a much better way to do this with Arch (might need to go through the archetype list)
         EntitySystem.Query(new QueryDescription().WithAll<T>(), entity =>
         {
             if (found == Entity.Null)
@@ -625,6 +635,8 @@ public abstract class WorldSimulation : IWorldSimulation, IGodotEarlyNodeResolve
     /// <param name="entity">The entity that is being destroyed</param>
     protected virtual void OnEntityDestroyed(in Entity entity)
     {
+        if (entity == Entity.Null)
+            throw new ArgumentException("Entity reported destroyed cannot be null");
     }
 
     protected void ThrowIfNotInitialized()

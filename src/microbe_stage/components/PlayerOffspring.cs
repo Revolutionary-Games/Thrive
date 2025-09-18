@@ -33,12 +33,11 @@ public static class PlayerOffspringHelpers
 
     private struct PlayerOffspringQuery : IForEachWithEntity<PlayerOffspring>
     {
-        public Entity Entity;
+        public Entity Entity = Entity.Null;
         private int highestFound;
 
         public PlayerOffspringQuery(int searchStart)
         {
-            Entity = Entity.Null;
             highestFound = searchStart;
         }
 

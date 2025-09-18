@@ -71,7 +71,7 @@ public struct Physics
     public bool BodyDisabled;
 
     /// <summary>
-    ///   Internal variable for the disable system, don't touch elsewhere
+    ///   Internal variable for the body disabling system, don't touch elsewhere
     /// </summary>
     [JsonIgnore]
     public bool InternalDisableState;

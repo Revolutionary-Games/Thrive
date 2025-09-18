@@ -228,8 +228,8 @@ public class CiliaComponent : IOrganelleComponent
 
         sensor.GetDetectedBodies(sharedPullData.JustPulledEntities);
 
-        // Skipped when count is 1 as the cell is just detecting itself
-        if (sharedPullData.JustPulledEntities.Count < 2)
+        // Usually when there's at least one collision, it isn't just us (as our sensor tries to ignore us)
+        if (sharedPullData.JustPulledEntities.Count < 1)
         {
             sharedPullData.JustPulledEntities.Clear();
             return;
@@ -242,8 +242,11 @@ public class CiliaComponent : IOrganelleComponent
 
         foreach (var pulledEntity in sharedPullData.JustPulledEntities)
         {
-            // Don't pull self
+            // Don't pull self (if the self-collision ignoring did not apply fully due to body creation order)
             if (pulledEntity == microbeEntity)
+                continue;
+
+            if (pulledEntity == Entity.Null)
                 continue;
 
             // Skip if something that can't be pulled
@@ -344,7 +347,7 @@ public class CiliaComponent : IOrganelleComponent
         public int SizeCreatedWithCilia;
 
         /// <summary>
-        ///   Used to detect if the primary cilia disappears
+        ///   Used to detect if the primary cilia disappear
         /// </summary>
         public int PullPerformed;
 

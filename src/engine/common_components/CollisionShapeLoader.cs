@@ -16,13 +16,13 @@ public struct CollisionShapeLoader
     public float Density;
 
     /// <summary>
-    ///   If false a default density (if known for the collision resource) is used
+    ///   If false, a default density (if known for the collision resource) is used
     /// </summary>
     public bool ApplyDensity;
 
     /// <summary>
     ///   If this is set to true then when this shape is created it doesn't force a <see cref="Physics"/> to
-    ///   recreate the body for the changed shape (if the body was already created). When false it is ensured that
+    ///   recreate the body for the changed shape (if the body was already created). When false, it is ensured that
     ///   the body gets recreated when the shape changes.
     /// </summary>
     public bool SkipForceRecreateBodyIfCreated;

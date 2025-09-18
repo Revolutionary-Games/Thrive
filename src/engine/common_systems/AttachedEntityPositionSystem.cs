@@ -26,7 +26,7 @@ public partial class AttachedEntityPositionSystem : BaseSystem<World, float>
     [MethodImpl(MethodImplOptions.AggressiveInlining)]
     private void Update(ref AttachedToEntity attachInfo, ref WorldPosition position, in Entity entity)
     {
-        if (!attachInfo.AttachedTo.Has<WorldPosition>())
+        if (!attachInfo.AttachedTo.IsAliveAndHas<WorldPosition>())
         {
             // This can happen if the entity is dead now
 

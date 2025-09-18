@@ -237,10 +237,9 @@ public static class SpawnHelpers
             VisualIdentifier = VisualResourceIdentifier.SiderophoreProjectile,
         });
 
-        commandRecorder.Set(entity, new SiderophoreProjectile
+        commandRecorder.Set(entity, new SiderophoreProjectile(emitter)
         {
             Amount = amount,
-            Sender = emitter,
         });
 
         // TODO: readable name is missing from this projectile variant (also need to add to signature)
@@ -557,7 +556,7 @@ public static class SpawnHelpers
 
         if (engulfable)
         {
-            commandRecorder.Set(entity, new Engulfable
+            commandRecorder.Set(entity, new Engulfable(PhagocytosisPhase.None, Entity.Null)
             {
                 BaseEngulfSize = chunkType.Size,
                 RequisiteEnzymeToDigest = !string.IsNullOrEmpty(chunkType.DissolverEnzyme) ?
@@ -643,7 +642,10 @@ public static class SpawnHelpers
         // Player vs. AI-controlled microbe components
         if (aiControlled)
         {
-            recorder.Set<MicrobeAI>(entity);
+            recorder.Set(entity, new MicrobeAI
+            {
+                FocusedPrey = Entity.Null,
+            });
 
             // Darwinian evolution statistic tracking (these are the external effects that are passed to auto-evo)
             recorder.Set<SurvivalStatistics>(entity);
@@ -799,7 +801,7 @@ public static class SpawnHelpers
             // This has to be called as CreateOrganelleLayout doesn't do this automatically
             container.UpdateCompoundBagStorageFromOrganelles(ref storage);
 
-            var engulfable = new Engulfable
+            var engulfable = new Engulfable(PhagocytosisPhase.None, Entity.Null)
             {
                 RequisiteEnzymeToDigest = SimulationParameters.Instance.GetEnzyme(membraneType.DissolverEnzyme),
             };
@@ -907,6 +909,7 @@ public static class SpawnHelpers
 
         recorder.Set(entity, new CommandSignaler
         {
+            ReceivedCommandFromEntity = Entity.Null,
             SignalingChannel = species.ID,
         });
 

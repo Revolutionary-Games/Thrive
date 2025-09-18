@@ -43,6 +43,9 @@ public partial class ToxinCollisionSystem : BaseSystem<World, float>
     /// <returns>False when should pass through</returns>
     private static bool FilterCollisions(ref PhysicsCollision collision)
     {
+        if (collision.SecondEntity == Entity.Null)
+            return true;
+
         try
         {
             // TODO: maybe this could cache something for slight speed up? (though the cache would need clearing
@@ -90,6 +93,9 @@ public partial class ToxinCollisionSystem : BaseSystem<World, float>
         // TODO: see the TODOs about combining code with FilterCollisions
 
         var damageTarget = collision.SecondEntity;
+
+        if (damageTarget == Entity.Null)
+            return false;
 
         // TODO: there is a pretty rare bug where the collision data has random entities in it
 
@@ -237,6 +243,9 @@ public partial class ToxinCollisionSystem : BaseSystem<World, float>
         {
             foreach (var firingEntity in entities)
             {
+                if (firingEntity == Entity.Null || !firingEntity.IsAlive())
+                    continue;
+
                 if (firingEntity.Has<PlayerMarker>())
                 {
                     return true;
@@ -246,7 +255,7 @@ public partial class ToxinCollisionSystem : BaseSystem<World, float>
                 {
                     ref var memberData = ref firingEntity.Get<MicrobeColonyMember>();
 
-                    if (memberData.ColonyLeader.Has<PlayerMarker>())
+                    if (memberData.ColonyLeader.IsAliveAndHas<PlayerMarker>())
                     {
                         return true;
                     }

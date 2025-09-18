@@ -181,6 +181,12 @@ public partial class PhysicsCollisionManagementSystem : BaseSystem<World, float>
 
         try
         {
+            if (entity == Entity.Null || !entity.IsAlive())
+                throw new Exception("Entity is dead");
+
+            if (!entity.Has<Physics>())
+                throw new Exception($"Entity {entity} has no Physics component");
+
             ref var physics = ref entity.Get<Physics>();
             body = physics.Body;
         }

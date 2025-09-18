@@ -61,7 +61,7 @@ public static class MicrobeAIHelpers
     {
         ai.PreviousAngle = 0;
         ai.TargetPosition = Vector3.Zero;
-        ai.FocusedPrey = default;
+        ai.FocusedPrey = Entity.Null;
         ai.PursuitThreshold = 0;
 
         ref var absorber = ref entity.Get<CompoundAbsorber>();

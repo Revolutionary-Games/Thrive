@@ -37,6 +37,9 @@ public partial class MicrobeCollisionSoundSystem : BaseSystem<World, float>
             if (collision.JustStarted != 1)
                 continue;
 
+            if (collision.SecondEntity == Entity.Null)
+                continue;
+
             // TODO: should collisions with any physics entities count?
             // For now collisions with just microbes count
             if (!collision.SecondEntity.Has<CellProperties>())

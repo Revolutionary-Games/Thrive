@@ -87,8 +87,10 @@ public class NativePhysicsBody : IDisposable, IEquatable<NativePhysicsBody>
     /// <param name="entity">The entity data to store</param>
     public void SetEntityReference(in Entity entity)
     {
-        if (entity.Id < 0)
-            throw new InvalidOperationException("Entity ID to set on physics is invalid (negative)");
+#if DEBUG
+        if (entity.Id < 0 && entity != Entity.Null)
+            throw new InvalidOperationException("Entity ID to set on physics is invalid (negative and not Null)");
+#endif
 
         NativeMethods.PhysicsBodySetUserData(AccessBodyInternal(), entity, EntityDataSize);
     }

@@ -50,7 +50,7 @@ public partial class ColonyStatsUpdateSystem : BaseSystem<World, float>
         // Handle removing a member's data from a colony
         ref var memberInfo = ref entity.Get<MicrobeColonyMember>();
 
-        if (!memberInfo.ColonyLeader.Has<MicrobeColony>())
+        if (!memberInfo.ColonyLeader.IsAliveAndHas<MicrobeColony>())
         {
             // This entity is part of a destroyed colony, which is fine as the entity is being deleted
             return;

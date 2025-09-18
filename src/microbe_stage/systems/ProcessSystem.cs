@@ -930,7 +930,7 @@ public partial class ProcessSystem : BaseSystem<World, float>
     {
         float overallSpeedModifier = 1.0f;
 
-        // TODO: remove this if check once save breakage is done
+        // TODO: remove this if check if it is decided this system is only to be used for the microbe stage
         if (entity.Has<MicrobeEnvironmentalEffects>())
         {
             var microbeEnvironmentalEffects = entity.Get<MicrobeEnvironmentalEffects>();

@@ -218,7 +218,7 @@ public static class OrganelleContainerHelpers
         Entity other)
     {
         // Can only bind with microbes
-        if (!other.Has<MicrobeSpeciesMember>())
+        if (!other.IsAliveAndHas<MicrobeSpeciesMember>())
             return false;
 
         // Things with missing binding agents can't bind (this is just an extra safety check and an excuse to make

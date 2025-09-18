@@ -23,13 +23,13 @@ public struct CommandSignaler
     public Entity ReceivedCommandFromEntity;
 
     /// <summary>
-    ///   Used to limit signals reaching entities they shouldn't. In the microbe stage this contains the entity's
-    ///   species ID to allow species-wide signaling.
+    ///   Used to limit signals reaching entities that they shouldn't.
+    ///   In the microbe stage this contains the entity's species ID to allow species-wide signaling.
     /// </summary>
     public ulong SignalingChannel;
 
     /// <summary>
-    ///   Because AI is ran in parallel thread, if it wants to change the signaling, it needs to do it through this
+    ///   Because AI is run in parallel thread, if it wants to change the signaling, it needs to do it through this
     /// </summary>
     public MicrobeSignalCommand? QueuedSignalingCommand;
 

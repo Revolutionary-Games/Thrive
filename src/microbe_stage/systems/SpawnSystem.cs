@@ -236,7 +236,7 @@ public partial class SpawnSystem : BaseSystem<World, float>, ISpawnSystem
     {
         float extra = 0;
 
-        if (doNotDespawn != Entity.Null && doNotDespawn.Has<Spawned>())
+        if (doNotDespawn.IsAliveAndHas<Spawned>())
         {
             // Take the just spawned thing we shouldn't despawn into account in the entity count as our estimate
             // won't likely include it yet

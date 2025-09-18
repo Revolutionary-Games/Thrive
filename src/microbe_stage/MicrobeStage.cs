@@ -1659,7 +1659,7 @@ public partial class MicrobeStage : CreatureStageBase<Entity, MicrobeWorldSimula
 
     private bool PlayerIsEngulfed(Entity player)
     {
-        if (player.IsAlive() && player.Has<Engulfable>())
+        if (player.IsAliveAndHas<Engulfable>())
         {
             return player.Get<Engulfable>().PhagocytosisStep != PhagocytosisPhase.None;
         }
@@ -1681,12 +1681,12 @@ public partial class MicrobeStage : CreatureStageBase<Entity, MicrobeWorldSimula
         OnCanEditStatusChanged(true);
     }
 
-    // These need to use invoke as during gameplay code these can be called in a multithreaded way
+    // These need to use Invoke as during gameplay code these can be called in a multithreaded way
     [DeserializedCallbackAllowed]
     private void OnPlayerReproductionStatusChanged(Entity player, bool ready)
     {
         Invoke.Instance.QueueForObject(() => OnCanEditStatusChanged(ready &&
-            (!player.Has<MicrobeColony>() || GameWorld.PlayerSpecies is not MicrobeSpecies)), this);
+            (!player.IsAliveAndHas<MicrobeColony>() || GameWorld.PlayerSpecies is not MicrobeSpecies)), this);
     }
 
     [DeserializedCallbackAllowed]
@@ -1855,7 +1855,7 @@ public partial class MicrobeStage : CreatureStageBase<Entity, MicrobeWorldSimula
             chemoreception.Line.LineStart = position;
 
             // The target needs to be updated for entities with a position.
-            if (chemoreception.TargetEntity.IsAlive() && chemoreception.TargetEntity.Has<WorldPosition>())
+            if (chemoreception.TargetEntity.IsAliveAndHas<WorldPosition>())
             {
                 chemoreception.Line.LineEnd = chemoreception.TargetEntity.Get<WorldPosition>().Position;
             }

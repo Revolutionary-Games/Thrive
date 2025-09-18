@@ -102,21 +102,28 @@ public partial class DelayedColonyOperationSystem : BaseSystem<World, float>
         {
             GrowColonyMembers(entity, recorder, delayed.GrowAdditionalMembers);
         }
-        else if (delayed.FinishAttachingToColony.IsAlive())
+        else if (delayed.FinishAttachingToColony != Entity.Null)
         {
-            if (delayed.FinishAttachingToColony.Has<MicrobeColony>())
+            if (delayed.FinishAttachingToColony.IsAlive())
             {
-                ref var colony = ref delayed.FinishAttachingToColony.Get<MicrobeColony>();
-
-                lock (AttachedToEntityHelpers.EntityAttachRelationshipModifyLock)
+                if (delayed.FinishAttachingToColony.Has<MicrobeColony>())
                 {
-                    CompleteDelayedColonyAttach(ref colony, delayed.FinishAttachingToColony, entity,
-                        recorder, delayed.AttachIndex);
+                    ref var colony = ref delayed.FinishAttachingToColony.Get<MicrobeColony>();
+
+                    lock (AttachedToEntityHelpers.EntityAttachRelationshipModifyLock)
+                    {
+                        CompleteDelayedColonyAttach(ref colony, delayed.FinishAttachingToColony, entity,
+                            recorder, delayed.AttachIndex);
+                    }
+                }
+                else
+                {
+                    GD.PrintErr("Delayed attach target entity is missing colony, ignoring attach request");
                 }
             }
             else
             {
-                GD.PrintErr("Delayed attach target entity is missing colony, ignoring attach request");
+                GD.PrintErr("Delayed attach target entity is dead, ignoring attach request");
             }
         }
         else

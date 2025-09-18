@@ -46,6 +46,9 @@ public partial class PilusDamageSystem : BaseSystem<World, float>
             if (collision.JustStarted != 1)
                 continue;
 
+            if (collision.SecondEntity == Entity.Null)
+                continue;
+
             if (!collision.SecondEntity.Has<MicrobePhysicsExtraData>())
                 continue;
 

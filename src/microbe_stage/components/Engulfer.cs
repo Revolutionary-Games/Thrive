@@ -63,7 +63,7 @@ public static class EngulferHelpers
     public static EngulfCheckResult CanEngulfObject(this ref readonly Engulfer engulfer, uint engulferSpeciesID,
         in Entity target)
     {
-        if (!target.IsAlive())
+        if (target == Entity.Null || !target.IsAlive())
             return EngulfCheckResult.TargetDead;
 
         bool invulnerable = false;

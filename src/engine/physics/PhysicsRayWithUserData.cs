@@ -10,7 +10,8 @@ using Arch.Core;
 public struct PhysicsRayWithUserData
 {
     /// <summary>
-    ///   The hit entity. Maybe be 0 bytes if hits a physics object not created through the ECS simulation
+    ///   The hit entity. May be 0 bytes if hits a physics object not created through the ECS simulation.
+    ///   Note that that is not the same as <see cref="Entity.Null"/>.
     /// </summary>
     public readonly Entity BodyEntity;
 

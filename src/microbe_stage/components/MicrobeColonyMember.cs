@@ -1,7 +1,6 @@
 ﻿namespace Components;
 
 using Arch.Core;
-using Arch.Core.Extensions;
 
 /// <summary>
 ///   Marker for microbes that are in a cell colony. The cell colony leader has <see cref="MicrobeColony"/>
@@ -34,13 +33,13 @@ public static class MicrobeColonyMemberHelpers
     /// </returns>
     public static bool GetColonyFromMember(this ref MicrobeColonyMember member, out Entity colonyEntity)
     {
-        if (member.ColonyLeader.IsAlive() && member.ColonyLeader.Has<MicrobeColony>())
+        if (member.ColonyLeader.IsAliveAndHas<MicrobeColony>())
         {
             colonyEntity = member.ColonyLeader;
             return true;
         }
 
-        colonyEntity = default;
+        colonyEntity = Entity.Null;
         return false;
     }
 }

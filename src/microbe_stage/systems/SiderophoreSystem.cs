@@ -75,6 +75,9 @@ public partial class SiderophoreSystem : BaseSystem<World, float>
     {
         var target = collision.SecondEntity;
 
+        if (target == Entity.Null)
+            return false;
+
         // Skip if hit something that isn't a valid target
         if (!target.Has<SiderophoreTarget>() || !target.Has<CompoundStorage>())
             return false;

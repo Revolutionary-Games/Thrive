@@ -158,10 +158,15 @@ public sealed class MicrobeVisualOnlySimulation : WorldSimulation
             if (!archetype.Has<CellProperties>())
                 continue;
 
-            foreach (var entityChunk in archetype.Chunks.AsSpan())
+            foreach (var chunk in archetype.Chunks.AsSpan())
             {
-                foreach (var entity in entityChunk.Entities)
+                var count = chunk.Count;
+                var chunkEntities = chunk.Entities;
+
+                for (int i = 0; i < count; ++i)
                 {
+                    var entity = chunkEntities[i];
+
                     // In case there are already multiple microbes, grab the last one
                     // TODO: maybe this should use highest ID?
                     foundEntity = entity;
@@ -174,7 +179,7 @@ public sealed class MicrobeVisualOnlySimulation : WorldSimulation
 
     public void ApplyNewVisualisationMicrobeSpecies(Entity microbe, MicrobeSpecies species)
     {
-        if (!microbe.Has<CellProperties>())
+        if (!microbe.IsAliveAndHas<CellProperties>())
         {
             GD.PrintErr("Can't apply new species to visualization entity as it is missing a component");
             return;
@@ -202,7 +207,7 @@ public sealed class MicrobeVisualOnlySimulation : WorldSimulation
     /// <param name="colour">Colour to apply to it (overrides any previously applied species colour)</param>
     public void ApplyMicrobeColour(Entity microbe, Color colour)
     {
-        if (!microbe.Has<CellProperties>())
+        if (!microbe.IsAliveAndHas<CellProperties>())
         {
             GD.PrintErr("Can't apply new rigidity to visualization entity as it is missing a component");
             return;
@@ -225,7 +230,7 @@ public sealed class MicrobeVisualOnlySimulation : WorldSimulation
 
     public void ApplyMicrobeRigidity(Entity microbe, float membraneRigidity)
     {
-        if (!microbe.Has<CellProperties>())
+        if (!microbe.IsAliveAndHas<CellProperties>())
         {
             GD.PrintErr("Can't apply new rigidity to visualization entity as it is missing a component");
             return;
@@ -242,7 +247,7 @@ public sealed class MicrobeVisualOnlySimulation : WorldSimulation
 
     public void ApplyMicrobeMembraneType(Entity microbe, MembraneType membraneType)
     {
-        if (!microbe.Has<CellProperties>())
+        if (!microbe.IsAliveAndHas<CellProperties>())
         {
             GD.PrintErr("Can't apply new membrane type to visualization entity as it is missing a component");
             return;
@@ -369,10 +374,15 @@ public sealed class MicrobeVisualOnlySimulation : WorldSimulation
             if (!archetype.Has<CellProperties>())
                 continue;
 
-            foreach (var entityChunk in archetype.Chunks.AsSpan())
+            foreach (var chunk in archetype.Chunks.AsSpan())
             {
-                foreach (var entity in entityChunk.Entities)
+                var entityCount = chunk.Count;
+                var chunkEntities = chunk.Entities;
+
+                for (int i = 0; i < entityCount; ++i)
                 {
+                    var entity = chunkEntities[i];
+
                     var distanceSquared = entity.Get<WorldPosition>().Position.DistanceSquaredTo(center);
 
                     ref var cellProperties = ref entity.Get<CellProperties>();

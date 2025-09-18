@@ -201,15 +201,12 @@ public partial class MicrobeAISystem : BaseSystem<World, float>, ISpeciesMemberL
         if (health.Dead)
             return;
 
-        var strain = 0.0f;
-
-        strain = strainAffected.CurrentStrain;
+        var strain = strainAffected.CurrentStrain;
 
         // This shouldn't be needed thanks to the check that this doesn't run on attached entities
         // ref var engulfable = ref entity.Get<Engulfable>();
         // if (engulfable.PhagocytosisStep != PhagocytosisPhase.None)
         //     return;
-
         AIThink(GetNextAIRandom(), in entity, ref ai, ref health, strain);
     }
 
@@ -382,7 +379,7 @@ public partial class MicrobeAISystem : BaseSystem<World, float>, ISpeciesMemberL
                 {
                     // TODO: should these use signaling.ReceivedCommandSource ? As that's where the chemical signal
                     // was smelled from
-                    if (signaling.ReceivedCommandFromEntity.Has<WorldPosition>())
+                    if (signaling.ReceivedCommandFromEntity.IsAliveAndHas<WorldPosition>())
                     {
                         ai.MoveToLocation(signaling.ReceivedCommandFromEntity.Get<WorldPosition>().Position,
                             ref control, entity);
@@ -394,7 +391,7 @@ public partial class MicrobeAISystem : BaseSystem<World, float>, ISpeciesMemberL
 
                 case MicrobeSignalCommand.FollowMe:
                 {
-                    if (signaling.ReceivedCommandFromEntity.Has<WorldPosition>())
+                    if (signaling.ReceivedCommandFromEntity.IsAliveAndHas<WorldPosition>())
                     {
                         var signalerPosition = signaling.ReceivedCommandFromEntity.Get<WorldPosition>().Position;
                         if (position.Position.DistanceSquaredTo(signalerPosition) >
@@ -411,7 +408,7 @@ public partial class MicrobeAISystem : BaseSystem<World, float>, ISpeciesMemberL
 
                 case MicrobeSignalCommand.FleeFromMe:
                 {
-                    if (signaling.ReceivedCommandFromEntity.Has<WorldPosition>())
+                    if (signaling.ReceivedCommandFromEntity.IsAliveAndHas<WorldPosition>())
                     {
                         var signalerPosition = signaling.ReceivedCommandFromEntity.Get<WorldPosition>().Position;
                         if (position.Position.DistanceSquaredTo(signalerPosition) <
@@ -531,7 +528,7 @@ public partial class MicrobeAISystem : BaseSystem<World, float>, ISpeciesMemberL
         // If there are no chunks, look for living prey to hunt
         var possiblePrey = GetNearestPreyItem(ref ai, ref position, ref organelles, ref ourSpecies, ref engulfer,
             compounds, speciesFocus, speciesAggression, speciesOpportunism, random);
-        if (possiblePrey != default && possiblePrey.IsAlive())
+        if (possiblePrey != Entity.Null && possiblePrey.IsAlive())
         {
             Vector3 prey;
 
@@ -542,7 +539,7 @@ public partial class MicrobeAISystem : BaseSystem<World, float>, ISpeciesMemberL
             catch (Exception e)
             {
                 GD.PrintErr("Microbe AI tried to engage prey with no position: " + e);
-                ai.FocusedPrey = default;
+                ai.FocusedPrey = Entity.Null;
                 return false;
             }
 
@@ -766,7 +763,7 @@ public partial class MicrobeAISystem : BaseSystem<World, float>, ISpeciesMemberL
         ref Engulfer engulfer, CompoundBag ourCompounds, float speciesFocus, float speciesAggression,
         float speciesOpportunism, Random random)
     {
-        if (ai.FocusedPrey != default && ai.FocusedPrey.IsAlive())
+        if (ai.FocusedPrey != Entity.Null && ai.FocusedPrey.IsAlive())
         {
             var focused = ai.FocusedPrey;
             try
@@ -786,7 +783,7 @@ public partial class MicrobeAISystem : BaseSystem<World, float>, ISpeciesMemberL
 
                     // If prey hasn't gotten closer by now, it's probably too fast, or juking you
                     // Remember who focused prey is, so that you don't fall for this again
-                    return default;
+                    return Entity.Null;
                 }
             }
             catch (Exception e)
@@ -794,7 +791,7 @@ public partial class MicrobeAISystem : BaseSystem<World, float>, ISpeciesMemberL
                 GD.PrintErr("Invalid focused prey, resetting, error: " + e);
             }
 
-            ai.FocusedPrey = default;
+            ai.FocusedPrey = Entity.Null;
         }
 
         (Entity Entity, Vector3 Position, float EngulfSize)? chosenPrey = null;
@@ -839,7 +836,7 @@ public partial class MicrobeAISystem : BaseSystem<World, float>, ISpeciesMemberL
         }
         else
         {
-            ai.FocusedPrey = default;
+            ai.FocusedPrey = Entity.Null;
         }
 
         return ai.FocusedPrey;
@@ -1499,7 +1496,8 @@ public partial class MicrobeAISystem : BaseSystem<World, float>, ISpeciesMemberL
 
     private readonly struct ChunkCollectingQuery(
         List<(Entity Entity, Vector3 Position, float EngulfSize, CompoundBag Compounds)> chunkTarget,
-        List<(Entity Entity, Vector3 Position, CompoundBag Compounds)> terrainTarget) : IForEachWithEntity<CompoundStorage, WorldPosition>
+        List<(Entity Entity, Vector3 Position, CompoundBag Compounds)> terrainTarget)
+        : IForEachWithEntity<CompoundStorage, WorldPosition>
     {
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
         public void Update(Entity entity, ref CompoundStorage compounds, ref WorldPosition position)

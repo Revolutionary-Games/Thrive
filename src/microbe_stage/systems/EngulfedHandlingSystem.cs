@@ -107,7 +107,7 @@ public partial class EngulfedHandlingSystem : BaseSystem<World, float>
             }
 
             // If the engulfing entity is dead, then this should have been ejected. The simulation world also has
-            // an on entity destroy callback that should do this so things are going pretty wrong if this is
+            // an on entity destroy callback that should do this, so things are going pretty wrong if this is
             // triggered
             if (!engulfable.HostileEngulfer.IsAlive())
             {
@@ -115,7 +115,7 @@ public partial class EngulfedHandlingSystem : BaseSystem<World, float>
 
                 engulfable.OnExpelledFromEngulfment(entity, spawnSystem, worldSimulation);
                 engulfable.PhagocytosisStep = PhagocytosisPhase.None;
-                engulfable.HostileEngulfer = default;
+                engulfable.HostileEngulfer = Entity.Null;
 
                 var recorder = worldSimulation.StartRecordingEntityCommands();
                 recorder.Remove<AttachedToEntity>(entity);
@@ -139,7 +139,7 @@ public partial class EngulfedHandlingSystem : BaseSystem<World, float>
         }
 
         var hostile = engulfable.HostileEngulfer;
-        if (!hostile.IsAlive() || !hostile.Has<Engulfer>())
+        if (!hostile.IsAliveAndHas<Engulfer>())
             return;
 
         ref var engulfer = ref entity.Get<Engulfer>();

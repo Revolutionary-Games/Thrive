@@ -116,7 +116,7 @@ public partial class EngulfedDigestionSystem : BaseSystem<World, float>
             }
 #endif
 
-            if (!engulfedObject.Has<Engulfable>())
+            if (!engulfedObject.IsAliveAndHas<Engulfable>())
             {
                 GD.PrintErr("Microbe has engulfed object that isn't engulfable");
                 continue;

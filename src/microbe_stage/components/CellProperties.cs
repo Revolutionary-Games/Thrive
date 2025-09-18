@@ -300,7 +300,7 @@ public static class CellPropertiesHelpers
         // Since the daughter spawns right next to the cell, it should face the same way to avoid colliding
         // This probably wastes a bit of memory but should be fine to overwrite the WorldPosition component like
         // this
-        copyEntity.Set(new WorldPosition(spawnPosition, position.Rotation));
+        recorder.Set(copyEntity, new WorldPosition(spawnPosition, position.Rotation));
 
         // TODO: should this also set an initial look direction that is the same?
 
@@ -330,7 +330,7 @@ public static class CellPropertiesHelpers
             if (amount <= 0)
                 continue;
 
-            // If the compound is for reproduction we give player and NPC microbes different amounts.
+            // If the compound is for reproduction, we give player and NPC microbes different amounts.
             if (reproductionCompounds.TryGetValue(compound, out float divideAmount))
             {
                 // The amount taken away from the parent cell depends on if it is a player or NPC. Player
@@ -370,7 +370,7 @@ public static class CellPropertiesHelpers
             }
         }
 
-        copyEntity.Set(new CompoundStorage
+        recorder.Set(copyEntity, new CompoundStorage
         {
             Compounds = copyEntityCompounds,
         });

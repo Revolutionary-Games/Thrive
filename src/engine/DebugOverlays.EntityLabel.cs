@@ -64,8 +64,13 @@ public partial class DebugOverlays
         {
             foreach (var chunk in archetype)
             {
-                foreach (var entity in chunk.Entities)
+                var count = chunk.Count;
+                var entities = chunk.Entities;
+
+                for (int i = 0; i < count; ++i)
                 {
+                    var entity = entities[i];
+
                     // Only display positional entities
                     if (!entity.Has<WorldPosition>())
                         return;
@@ -181,7 +186,7 @@ public partial class DebugOverlays
             {
                 var species = entity.Get<SpeciesMember>().Species;
 
-                label.Text = $"[{entity}:{species.Genus.Left(1)}.{species.Epithet.Left(4)}]";
+                label.Text = $"[{entity.Id}-{entity.Version}:{species.Genus.Left(1)}.{species.Epithet.Left(4)}]";
                 continue;
             }
 
@@ -191,12 +196,12 @@ public partial class DebugOverlays
 
                 // TODO: some entities would probably be fine with not displaying the entity reference before the
                 // readable name
-                label.Text = $"[{entity}:{entity.Get<ReadableName>().Name}]";
+                label.Text = $"[{entity.Id}-{entity.Version}:{entity.Get<ReadableName>().Name}]";
                 continue;
             }
 
             // Fallback to just showing the raw entity reference, nothing else can be shown
-            label.Text = $"[{entity}]";
+            label.Text = $"[{entity.Id}-{entity.Version}]";
         }
     }
 

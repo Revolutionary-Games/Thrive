@@ -35,7 +35,8 @@ public partial class PlayerInspectInfo : Node
     ///   </para>
     /// </remarks>
     public IEnumerable<Entity> Entities =>
-        hits.Take(validHits).Where(h => h.BodyEntity != default).Select(h => h.BodyEntity);
+        hits.Take(validHits).Where(h => h.BodyEntity != default && h.BodyEntity != Entity.Null)
+            .Select(h => h.BodyEntity);
 
     public virtual void Process(double delta)
     {
@@ -63,7 +64,11 @@ public partial class PlayerInspectInfo : Node
         for (int i = 0; i < validHits; ++i)
         {
             var originalHitEntity = hits[i].BodyEntity;
-            if (originalHitEntity.Has<MicrobeColony>() && originalHitEntity.Has<PhysicsShapeHolder>())
+
+            if (originalHitEntity == Entity.Null || originalHitEntity == default)
+                continue;
+
+            if (originalHitEntity.IsAliveAndHas<MicrobeColony>() && originalHitEntity.Has<PhysicsShapeHolder>())
             {
                 var shape = originalHitEntity.Get<PhysicsShapeHolder>().Shape;
 
@@ -87,7 +92,7 @@ public partial class PlayerInspectInfo : Node
             if (hits.Take(validHits).All(h => h.BodyEntity != m))
             {
                 // Hit removed
-                if (m.IsAlive() && m.Has<Selectable>())
+                if (m != default && m.IsAliveAndHas<Selectable>())
                 {
                     ref var selectable = ref m.Get<Selectable>();
                     selectable.Selected = false;
@@ -106,7 +111,7 @@ public partial class PlayerInspectInfo : Node
 
             // New hit added
 
-            if (hit.BodyEntity.IsAlive() && hit.BodyEntity.Has<Selectable>())
+            if (hit.BodyEntity != default && hit.BodyEntity.IsAliveAndHas<Selectable>())
             {
                 ref var selectable = ref hit.BodyEntity.Get<Selectable>();
                 selectable.Selected = true;

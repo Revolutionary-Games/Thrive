@@ -137,7 +137,7 @@ public partial class EngulfingSystem : BaseSystem<World, float>
         {
             ref var engulfable = ref entity.Get<Engulfable>();
 
-            if (engulfable.HostileEngulfer.IsAlive() && engulfable.HostileEngulfer.Has<Engulfer>())
+            if (engulfable.HostileEngulfer.IsAliveAndHas<Engulfer>())
             {
                 // Force eject from the engulfer
                 ForceEjectSingleEngulfable(ref engulfable.HostileEngulfer.Get<Engulfer>(),
@@ -261,7 +261,7 @@ public partial class EngulfingSystem : BaseSystem<World, float>
     private static bool IngestEngulfableFromOtherEntity(ref Engulfer engulfer, in Entity engulferEntity,
         ref Engulfable engulfable, in Entity targetEntity, float animationSpeed = 3)
     {
-        if (!targetEntity.Has<AttachedToEntity>())
+        if (!targetEntity.IsAliveAndHas<AttachedToEntity>())
         {
             GD.PrintErr($"Engulfable to move to different engulfer doesn't have {nameof(AttachedToEntity)} component");
             return false;
@@ -670,7 +670,7 @@ public partial class EngulfingSystem : BaseSystem<World, float>
         {
             var engulfedEntity = engulfer.EngulfedObjects![i];
 
-            if (!engulfedEntity.IsAlive() || !engulfedEntity.Has<Engulfable>())
+            if (!engulfedEntity.IsAliveAndHas<Engulfable>())
             {
                 // Clear once the object has been fully eaten / deleted. We can't call RemoveEngulfedObject
                 // as the engulfed object may be invalid already
@@ -981,7 +981,7 @@ public partial class EngulfingSystem : BaseSystem<World, float>
         foreach (var engulfedObject in tempEntitiesToEject)
         {
             // In case here, the engulfer being dead, we check to make sure the engulfed objects aren't incorrect
-            if (!engulfedObject.IsAlive() || !engulfedObject.Has<Engulfable>())
+            if (!engulfedObject.IsAliveAndHas<Engulfable>())
             {
                 GD.PrintErr("Ejecting everything from a dead engulfable encountered a destroyed engulfed entity");
                 continue;
@@ -1013,6 +1013,9 @@ public partial class EngulfingSystem : BaseSystem<World, float>
         for (int i = 0; i < count; ++i)
         {
             ref var collision = ref collisions![i];
+
+            if (collision.SecondEntity == Entity.Null)
+                continue;
 
             if (!collision.SecondEntity.Has<Engulfable>())
                 continue;
@@ -1160,7 +1163,7 @@ public partial class EngulfingSystem : BaseSystem<World, float>
     private bool IngestEngulfable(ref Engulfer engulfer, ref CellProperties engulferCellProperties,
         in Entity engulferEntity, ref Engulfable engulfable, in Entity targetEntity, float animationSpeed = 2.0f)
     {
-        // Can't ingest before our membrane and the target membrane are ready (if target is a microbe)
+        // Can't ingest before our membrane and the target membrane are ready (if the target is a microbe)
         if (engulferCellProperties.CreatedMembrane == null)
             return false;
 
@@ -1490,7 +1493,7 @@ public partial class EngulfingSystem : BaseSystem<World, float>
         // The rest of the operation is done in CompleteEjection
     }
 
-    private void CompleteEjection(ref Engulfer engulfer, in Entity entity, ref Engulfable engulfable,
+    private void CompleteEjection(ref Engulfer engulfer, Entity entity, ref Engulfable engulfable,
         in Entity engulfableObject, bool canMoveToHigherLevelEngulfer = true)
     {
         if (engulfer.EngulfedObjects == null)
@@ -1528,8 +1531,7 @@ public partial class EngulfingSystem : BaseSystem<World, float>
 
             if (engulfersEngulfable.PhagocytosisStep != PhagocytosisPhase.None)
             {
-                if (!engulfersEngulfable.HostileEngulfer.IsAlive() ||
-                    !engulfersEngulfable.HostileEngulfer.Has<Engulfer>())
+                if (!engulfersEngulfable.HostileEngulfer.IsAliveAndHas<Engulfer>())
                 {
                     GD.PrintErr("Attempt to pass ejected object to our engulfer failed because that " +
                         "engulfer is not alive");
@@ -1659,7 +1661,7 @@ public partial class EngulfingSystem : BaseSystem<World, float>
         }
 
         engulfable.PhagocytosisStep = PhagocytosisPhase.None;
-        engulfable.HostileEngulfer = default;
+        engulfable.HostileEngulfer = Entity.Null;
 
 #if DEBUG
         if (engulfedEntity.Get<SpatialInstance>().VisualScale != engulfable.OriginalScale && !destroy)
@@ -1940,9 +1942,9 @@ public partial class EngulfingSystem : BaseSystem<World, float>
         }
     }
 
-    private void ForceEjectSingleEngulfable(ref Engulfer engulfer, in Entity entity, in Entity toEject)
+    private void ForceEjectSingleEngulfable(ref Engulfer engulfer, Entity entity, in Entity toEject)
     {
-        if (!toEject.Has<Engulfable>())
+        if (!toEject.IsAliveAndHas<Engulfable>())
         {
             GD.Print("Skip ejecting engulfable on engulfer destroy as it no longer has engulfable component");
             return;

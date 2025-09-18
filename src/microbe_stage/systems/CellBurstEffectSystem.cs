@@ -1,7 +1,6 @@
 ﻿namespace Systems;
 
 using System.Runtime.CompilerServices;
-using Arch.Core.Extensions;
 using Arch.System;
 using Components;
 using Godot;
@@ -9,7 +8,7 @@ using World = Arch.Core.World;
 
 /// <summary>
 ///   Updates cell burst effects as time elapses. As this just setups the effect this doesn't need to run per frame
-///   normal update frequen.Y is fine.
+///   normal update frequency is fine.
 /// </summary>
 /// <remarks>
 ///   <para>
@@ -34,7 +33,7 @@ public partial class CellBurstEffectSystem : BaseSystem<World, float>
         if (burstEffect.Initialized)
             return;
 
-        // Skip if can't be initialized yet
+        // Skip if this can't be initialized yet
         if (spatial.GraphicalInstance == null)
             return;
 

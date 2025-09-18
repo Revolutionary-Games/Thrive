@@ -91,7 +91,7 @@ public struct MicrobeColony
         Leader = leader;
         ColonyMembers = allMembers;
 
-        // Grab initial state from leader to preserve that (only really important for multicellular)
+        // Grab initial state from the leader to preserve that (only really important for multicellular)
         ColonyState = initialState;
 
         ColonyStructure = new Dictionary<Entity, Entity>();
@@ -130,7 +130,7 @@ public struct MicrobeColony
         // TODO: pooling
         // As we need to spawn the entities to add to the colony the next frame, we can only add the lead
         // cell here when constructing the colony
-        ColonyMembers = new[] { leader };
+        ColonyMembers = [leader];
 
         ColonyState = initialState;
 
@@ -353,7 +353,7 @@ public static class MicrobeColonyHelpers
             // In case the physics data is not yet up to date compared to the colony members, skip
             if (microbeIndex >= members.Length)
             {
-                microbe = default;
+                microbe = Entity.Null;
                 return false;
             }
 
@@ -361,7 +361,7 @@ public static class MicrobeColonyHelpers
             return true;
         }
 
-        microbe = default;
+        microbe = Entity.Null;
         return false;
     }
 
