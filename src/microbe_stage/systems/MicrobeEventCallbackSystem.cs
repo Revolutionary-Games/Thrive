@@ -44,7 +44,8 @@ public partial class MicrobeEventCallbackSystem : BaseSystem<World, float>
     [Query]
     [All<WorldPosition>]
     [MethodImpl(MethodImplOptions.AggressiveInlining)]
-    private void Update([Data] in float delta, ref MicrobeEventCallbacks callbacks, ref MicrobeStatus status, ref Health health, in Entity entity)
+    private void Update([Data] in float delta, ref MicrobeEventCallbacks callbacks, ref MicrobeStatus status,
+        ref Health health, in Entity entity)
     {
         // Don't run callbacks for dead cells
         if (health.Dead)

@@ -615,9 +615,30 @@ public abstract class WorldSimulation : IWorldSimulation, IGodotEarlyNodeResolve
 
         // Skip multiple destruction of entities that were already destroyed but were queued to be destroyed again
         if (!entity.IsAlive())
+        {
+            GD.Print("Ignoring duplicate destroy of entity ", entity);
             return;
+        }
+
+        lock (availableRecorders)
+        {
+            if (nonEmptyRecorders.Count > 0)
+            {
+                GD.PrintErr("Cannot destroy entities while pending command buffers exist");
+                throw new InvalidOperationException("Cannot destroy entities while pending command buffers exist");
+            }
+        }
 
         OnEntityDestroyed(entity);
+
+        // If callbacks created any pending operations, those must be flushed now
+        lock (availableRecorders)
+        {
+            if (nonEmptyRecorders.Count > 0)
+            {
+                ApplyRecordedCommands();
+            }
+        }
 
         // Destroy the entity from the ECS system
         EntitySystem.Destroy(entity);

@@ -3,6 +3,7 @@
 #endif
 
 namespace Systems;
+
 using System;
 using System.Collections.Generic;
 using System.Diagnostics;
@@ -926,7 +927,8 @@ public partial class ProcessSystem : BaseSystem<World, float>
     // [Query(Parallel = true)]
     [Query]
     [MethodImpl(MethodImplOptions.AggressiveInlining)]
-    private void Update([Data] in float delta, in Entity entity, ref CompoundStorage storage, ref BioProcesses processes)
+    private void Update([Data] in float delta, in Entity entity, ref CompoundStorage storage,
+        ref BioProcesses processes)
     {
         float overallSpeedModifier = 1.0f;
 

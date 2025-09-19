@@ -1574,14 +1574,14 @@ public partial class EngulfingSystem : BaseSystem<World, float>
             else
             {
                 relativePosition = engulfableObject.Get<AttachedToEntity>().RelativePosition;
+
+                var recorder = worldSimulation.StartRecordingEntityCommands();
+
+                // Stop this entity being attached to us
+                recorder.Remove<AttachedToEntity>(engulfableObject);
+
+                worldSimulation.FinishRecordingEntityCommands(recorder);
             }
-
-            var recorder = worldSimulation.StartRecordingEntityCommands();
-
-            // Stop this entity being attached to us
-            recorder.Remove<AttachedToEntity>(engulfableObject);
-
-            worldSimulation.FinishRecordingEntityCommands(recorder);
         }
 
         // Try to get velocity of the engulfer for ejection impulse strength calculation

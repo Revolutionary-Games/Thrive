@@ -29,10 +29,7 @@ public partial class TimedLifeSystem : BaseSystem<World, float>
     /// </summary>
     public void DespawnAll()
     {
-        World.Query(new QueryDescription().WithAll<TimedLife>(), entity =>
-        {
-            entityContainer.DestroyEntity(entity);
-        });
+        World.Query(new QueryDescription().WithAll<TimedLife>(), entity => entityContainer.DestroyEntity(entity));
     }
 
     [Query]

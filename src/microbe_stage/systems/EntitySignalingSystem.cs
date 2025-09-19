@@ -120,7 +120,8 @@ public partial class EntitySignalingSystem : BaseSystem<World, float>
     // TODO: could parallelize
     [Query]
     [MethodImpl(MethodImplOptions.AggressiveInlining)]
-    private void UpdateSignalReceive([Data] in float delta, ref CommandSignaler signaling, ref WorldPosition position, in Entity entity)
+    private void UpdateSignalReceive([Data] in float delta, ref CommandSignaler signaling, ref WorldPosition position,
+        in Entity entity)
     {
         // Find the closest signaler on the channel this entity is on
         bool foundSignal = false;

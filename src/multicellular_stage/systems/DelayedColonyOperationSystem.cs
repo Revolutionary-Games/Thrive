@@ -74,12 +74,12 @@ public partial class DelayedColonyOperationSystem : BaseSystem<World, float>
         // or attaching fails
         notifySpawnTo.NotifyExternalEntitySpawned(member, recorder, Constants.MICROBE_DESPAWN_RADIUS_SQUARED, weight);
 
-        member.Add(attachPosition);
+        recorder.Add(member, attachPosition);
 
-        member.Add(new DelayedMicrobeColony(colonyEntity, colonyTargetIndex));
+        recorder.Add(member, new DelayedMicrobeColony(colonyEntity, colonyTargetIndex));
 
         // Ensure no physics is created before the attach-operation completes
-        member.Set(PhysicsHelpers.CreatePhysicsForMicrobe(true));
+        recorder.Set(member, PhysicsHelpers.CreatePhysicsForMicrobe(true));
 
         if (colonyEntity.Has<MicrobeEventCallbacks>())
         {
@@ -87,7 +87,7 @@ public partial class DelayedColonyOperationSystem : BaseSystem<World, float>
 
             if (!originalEvents.IsTemporary)
             {
-                member.Add(originalEvents.CloneEventCallbacksForColonyMember());
+                recorder.Add(member, originalEvents.CloneEventCallbacksForColonyMember());
             }
         }
     }
@@ -165,14 +165,14 @@ public partial class DelayedColonyOperationSystem : BaseSystem<World, float>
                 EntityWeightApplied = true,
             };
 
-            recorder.Set(entity, colony);
+            recorder.Add(entity, colony);
         }
         else
         {
             // Growing to an existing colony
             ref var colony = ref entity.Get<MicrobeColony>();
 
-            // Assume that things have been added in order for much more simple check here than needing to look
+            // Assume that things have been added in order for a much more simple check here than needing to look
             // at multicellular growth etc. info here that might not even exist in all cases so a fallback like
             // this might be needed
             bodyPlanIndex = colony.ColonyMembers.Length;

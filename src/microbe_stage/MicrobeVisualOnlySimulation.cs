@@ -45,8 +45,8 @@ public sealed class MicrobeVisualOnlySimulation : WorldSimulation
         // TODO: but we cannot prevent this entity world from using multithreading
 
         microbeVisualsSystem = new MicrobeVisualsSystem(EntitySystem);
-
-        simulationSystems = new Group<float>(simulationSystems.Name, [
+#pragma warning disable SA1115
+        simulationSystems = new Group<float>(simulationSystems.Name,
             microbeVisualsSystem,
 
             // Base systems
@@ -55,8 +55,10 @@ public sealed class MicrobeVisualOnlySimulation : WorldSimulation
             new EntityMaterialFetchSystem(EntitySystem),
             new AnimationControlSystem(EntitySystem),
 
+            // Attach
             new AttachedEntityPositionSystem(this, EntitySystem),
 
+            // Base spatial
             new SpatialAttachSystem(visualsParent, EntitySystem),
             new SpatialPositionSystem(EntitySystem),
 
@@ -67,19 +69,21 @@ public sealed class MicrobeVisualOnlySimulation : WorldSimulation
             // new OrganelleComponentFetchSystem(EntitySystem, runner),
             // new OrganelleTickSystem(EntitySystem, runner),
 
+            // Visual effects
             new FadeOutActionSystem(this, null, EntitySystem),
             new MicrobeRenderPrioritySystem(EntitySystem),
             new CellBurstEffectSystem(EntitySystem),
             new MicrobeFlashingSystem(EntitySystem),
 
-            new IntercellularMatrixSystem(EntitySystem),
-        ]);
+            // Multicellular
+            new IntercellularMatrixSystem(EntitySystem));
 
-        frameSystems = new Group<float>(frameSystems.Name, [
+        frameSystems = new Group<float>(frameSystems.Name,
             new ColourAnimationSystem(EntitySystem),
             new MicrobeShaderSystem(EntitySystem),
-            new TintColourApplyingSystem(EntitySystem),
-        ]);
+            new TintColourApplyingSystem(EntitySystem));
+
+#pragma warning restore SA1115
 
         simulationSystems.Initialize();
         frameSystems.Initialize();
