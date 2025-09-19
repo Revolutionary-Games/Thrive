@@ -9,7 +9,6 @@ using Arch.Buffer;
 using Arch.Core;
 using Arch.Core.Extensions;
 using Arch.System;
-using Arch.System.SourceGenerator;
 using Components;
 using Godot;
 using Xoshiro.PRNG32;

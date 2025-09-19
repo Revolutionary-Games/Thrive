@@ -4,7 +4,6 @@ using System;
 using System.Collections.Generic;
 using System.Runtime.CompilerServices;
 using Arch.System;
-using Arch.System.SourceGenerator;
 using Components;
 using Godot;
 using World = Arch.Core.World;

@@ -1,5 +1,5 @@
 ﻿using System;
-using Arch.System.SourceGenerator;
+using Arch.System;
 
 /// <summary>
 ///   Marks a system as writing to a component.

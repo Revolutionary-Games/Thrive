@@ -1,5 +1,5 @@
 ﻿using System;
-using Arch.System.SourceGenerator;
+using Arch.System;
 
 /// <summary>
 ///   Marks a system as reading from a component. Can be used to mark a <see cref="AllAttribute{T0}"/> relationship

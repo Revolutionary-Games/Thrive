@@ -8,7 +8,6 @@ using System.Threading;
 using Arch.Core;
 using Arch.Core.Extensions;
 using Arch.System;
-using Arch.System.SourceGenerator;
 using Components;
 using Godot;
 using World = Arch.Core.World;
