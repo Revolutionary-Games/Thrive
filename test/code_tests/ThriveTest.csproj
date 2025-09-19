@@ -24,6 +24,9 @@
   </ItemGroup>
 
   <ItemGroup>
+    <PackageReference Include="Godot.SourceGenerators" Version="4.5.0" />
+    <PackageReference Include="GodotSharp" Version="4.5.0" />
+  <PackageReference Include="GodotSharpEditor" Version="4.5.0" />
     <ProjectReference Include="..\..\Thrive.csproj" />
   </ItemGroup>
 
