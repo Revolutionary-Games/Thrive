@@ -20,6 +20,8 @@ uniform float brightness;
 const float currentsTimescale = 0.25f;
 const float positionScaling = 0.9f;
 
+uniform float particleDepthVariation = 1.0f;
+
 // Generates a random float and modifies the seed
 float RandFromSeed(inout uint seed) {
     int k;
@@ -55,11 +57,16 @@ void start() {
     TRANSFORM[3].xyz = vec3(RandFromSeed(altSeed) * 2.0 - 1.0, RandFromSeed(altSeed) * 2.0 - 1.0,
         RandFromSeed(altSeed) * 2.0 - 1.0) * emissionBoxExtents;
     TRANSFORM = EMISSION_TRANSFORM * TRANSFORM;
-    float visibleScale = RandFromSeed(altSeed) * 0.75f + 0.625f;
+    float backgroundFactor = RandFromSeed(altSeed) * particleDepthVariation;
+    float squaredBackgroundFactor = backgroundFactor * backgroundFactor;
+    TRANSFORM[3].y -= squaredBackgroundFactor * 75.0f;
+    float visibleScale = RandFromSeed(altSeed) * 0.75f + 0.625f
+        + squaredBackgroundFactor * 12.5f;
     TRANSFORM[0].xyz *= visibleScale;
     TRANSFORM[1].xyz *= visibleScale;
     TRANSFORM[2].xyz *= visibleScale;
-    CUSTOM.w = RandFromSeed(altSeed) * 0.2f + 0.8f;
+    
+    CUSTOM.w = 1.0f - backgroundFactor * 0.9f;
     CUSTOM.z = gameTime + LIFETIME * 0.5f;
 }
 
@@ -97,7 +104,7 @@ void process() {
     TRANSFORM[3].xyz += VELOCITY * DELTA;
     
     vec4 finalColor = colorValue;
-    finalColor.rgb *= CUSTOM.w;
+    finalColor.rgba *= CUSTOM.w;
     finalColor.a *= texture(alphaCurve, vec2(lifetimePercent)).r;
     if (speed != 0.0)
     {
