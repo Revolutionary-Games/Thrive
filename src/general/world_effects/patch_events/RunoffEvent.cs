@@ -24,26 +24,6 @@ public class RunoffEvent : IWorldEffect
         { Compound.Phosphates, ["phosphateBigChunk"] },
     };
 
-    private static readonly Dictionary<BiomeType, float> SmallChunksDensityMultipliers = new()
-    {
-        { BiomeType.IceShelf, 1.5f },
-        { BiomeType.Epipelagic, 1.5f },
-        { BiomeType.Mesopelagic, 1.2f },
-        { BiomeType.Bathypelagic, 1.0f },
-        { BiomeType.Abyssopelagic, 0.8f },
-        { BiomeType.Seafloor, 0.6f },
-    };
-
-    private static readonly Dictionary<BiomeType, float> BigChunksDensityMultipliers = new()
-    {
-        { BiomeType.IceShelf, 0.3f },
-        { BiomeType.Epipelagic, 0.3f },
-        { BiomeType.Mesopelagic, 0.6f },
-        { BiomeType.Bathypelagic, 0.9f },
-        { BiomeType.Abyssopelagic, 1.3f },
-        { BiomeType.Seafloor, 1.6f },
-    };
-
     private static readonly Compound[] CompoundsToAffect =
     [
         Compound.Ammonia,
@@ -219,22 +199,21 @@ public class RunoffEvent : IWorldEffect
     {
         var templateBiome = SimulationParameters.Instance.GetBiome(TemplateBiomeForChunks);
 
-        ApplyChunksConfiguration(patch, templateBiome, SmallChunks, SmallChunksDensityMultipliers, compound);
-        ApplyChunksConfiguration(patch, templateBiome, BigChunks, BigChunksDensityMultipliers, compound);
+        ApplyChunksConfiguration(patch, templateBiome, SmallChunks, compound);
+        ApplyChunksConfiguration(patch, templateBiome, BigChunks, compound);
     }
 
     /// <summary>
     ///   Helper to reduce group of chunks in a patch using the provided configuration and multipliers.
     /// </summary>
-    private void ApplyChunksConfiguration(Patch patch, Biome templateBiome, Dictionary<Compound, string[]> chunkGroup,
-        Dictionary<BiomeType, float> densityMultipliers, Compound compound)
+    private void ApplyChunksConfiguration(Patch patch, Biome templateBiome, Dictionary<Compound, string[]> chunkGroup, Compound compound)
     {
         if (chunkGroup.TryGetValue(compound, out var chunkConfigurations))
         {
             foreach (var configuration in chunkConfigurations)
             {
                 var chunkConfiguration = templateBiome.Conditions.Chunks[configuration];
-                var multiplier = densityMultipliers[patch.BiomeType] * random.Next(0.8f, 1.2f);
+                var multiplier = random.Next(0.8f, 1.2f);
 
                 if (!patch.Biome.Chunks.TryGetValue(configuration, out var existingChunk))
                     continue;
