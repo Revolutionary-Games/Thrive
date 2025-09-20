@@ -11,10 +11,10 @@ public class Background : IRegistryType
     [JsonRequired]
     public List<string> Textures = null!;
 
-    public string? ParticleEffect = null!;
+    public string? ParticleEffect;
 
     [JsonIgnore]
-    public PackedScene? ParticleEffectScene = null!;
+    public PackedScene? ParticleEffectScene;
 
     public string InternalName { get; set; } = null!;
 
