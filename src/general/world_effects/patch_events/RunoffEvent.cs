@@ -218,8 +218,7 @@ public class RunoffEvent : IWorldEffect
                 if (!patch.Biome.Chunks.TryGetValue(configuration, out var existingChunk))
                     continue;
 
-                existingChunk.Density -= chunkConfiguration.Density * multiplier;
-                existingChunk.Density = Math.Max(existingChunk.Density, 0.0f);
+                existingChunk.Density += chunkConfiguration.Density * multiplier;
                 patch.Biome.Chunks[configuration] = existingChunk;
             }
         }
