@@ -56,11 +56,13 @@ void start() {
     TRANSFORM[3].xyz = vec3(RandFromSeed(altSeed) * 2.0 - 1.0, RandFromSeed(altSeed) * 2.0 - 1.0,
         RandFromSeed(altSeed) * 2.0 - 1.0) * emissionBoxExtents;
     TRANSFORM = EMISSION_TRANSFORM * TRANSFORM;
+    
     float backgroundFactor = RandFromSeed(altSeed) * particleDepthVariation;
-    float squaredBackgroundFactor = backgroundFactor * backgroundFactor;
-    TRANSFORM[3].y -= squaredBackgroundFactor * 80.0f;
+    float adjustedBackgroundFactor = pow(backgroundFactor, 3.0f);
+    TRANSFORM[3].y -= adjustedBackgroundFactor * 80.0f;
     float visibleScale = RandFromSeed(altSeed) * 0.75f + 0.625f
-        + squaredBackgroundFactor * 20.0f;
+        + adjustedBackgroundFactor * 35.0f;
+    
     TRANSFORM[0].xyz *= visibleScale;
     TRANSFORM[1].xyz *= visibleScale;
     TRANSFORM[2].xyz *= visibleScale;
@@ -99,6 +101,7 @@ void process() {
     }
     
     VELOCITY = mix(vec3(current.x, 0.0f, current.y), VELOCITY, 1.0f - DELTA * 5.0f);
+    VELOCITY *= CUSTOM.w * 0.2f + 0.8f;
     
     vec4 finalColor = colorValue;
     finalColor.rgba *= CUSTOM.w;
