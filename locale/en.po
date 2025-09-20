@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2025-08-29 14:14+0300\n"
+"POT-Creation-Date: 2025-09-20 23:04+0200\n"
 "PO-Revision-Date: 2025-08-21 15:25+0300\n"
 "Last-Translator: Henri Hyyryläinen <hhyyrylainen@revolutionarygamesstudio.com>\n"
 "Language-Team: English <https://translate.revolutionarygamesstudio.com/projects/thrive/thrive-game/en/>\n"
@@ -1430,6 +1430,11 @@ msgstr ""
 msgid "CURRENT_DEVELOPERS"
 msgstr "Current Developers"
 
+msgid "CURRENT_DILUTION_TOOLTIP"
+msgstr ""
+"Compounds have been dispersed by shifting currents, reducing their concentration.\n"
+"Reduces concentration of:"
+
 msgid "CURRENT_LOCATION_CAPITAL"
 msgstr "CURRENT LOCATION"
 
@@ -2125,6 +2130,16 @@ msgstr ""
 "Sulfur meteor impact event\n"
 "Raises carbon dioxide and sulfur levels.\n"
 "Spawns sulfur chunks."
+
+msgid "EVENT_RUNOFF_TOOLTIP"
+msgstr ""
+"Sediments have been washed from land into coastal waters, enriching them.\n"
+"Increases concentration of:"
+
+msgid "EVENT_UPWELLING_TOOLTIP"
+msgstr ""
+"Compounds have been carried up from the ocean floor, enriching the waters above.\n"
+"Increases concentration of:"
 
 msgid "EVOLUTIONARY_TREE"
 msgstr "Evolutionary Tree"
@@ -9453,6 +9468,15 @@ msgstr "Zoom in"
 msgid "ZOOM_OUT"
 msgstr "Zoom out"
 
+#~ msgid "CARBONDIOXIDE"
+#~ msgstr "Carbon Dioxide"
+
+#~ msgid "OXYTOXY"
+#~ msgstr "OxyToxy"
+
+#~ msgid "PHOSPHATES"
+#~ msgstr "Phosphates"
+
 #~ msgid "SULFIDE_LEVELS"
 #~ msgstr "Sulfide level"
 
@@ -9826,9 +9850,6 @@ msgstr "Zoom out"
 
 #~ msgid "INTO"
 #~ msgstr "into"
-
-#~ msgid "OXYTOXY"
-#~ msgstr "OxyToxy"
 
 #~ msgid "DOT_CAN_RELEASE"
 #~ msgstr ". Can release"

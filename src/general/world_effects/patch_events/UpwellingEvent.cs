@@ -190,7 +190,7 @@ public class UpwellingEvent : IWorldEffect
                 if (!patch.Biome.ChangeableCompounds.TryGetValue(compound, out var compoundLevel))
                 {
                     // This is adding a new compound
-                    GD.Print($"Runoff event is adding a new compound {compound} that was not present before " +
+                    GD.Print($"Upwelling event is adding a new compound {compound} that was not present before " +
                         $"in {patch.Name}");
                 }
 
@@ -200,7 +200,7 @@ public class UpwellingEvent : IWorldEffect
                 {
                     // glucose, phosphates, iron, sulfur
                     compoundLevel.Amount = compoundLevel.Amount == 0 ? 90000 : compoundLevel.Amount;
-                    compoundChanges[compound] = Constants.CURRENT_DILUTION_COMPOUND_CHANGE;
+                    compoundChanges[compound] = Constants.UPWELLING_DILUTION_COMPOUND_CHANGE;
                     cloudSizes[compound] = compoundLevel.Amount;
 
                     AddChunks(patch, compound);

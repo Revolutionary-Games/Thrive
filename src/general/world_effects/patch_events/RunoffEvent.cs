@@ -1,7 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Text;
 using Godot;
 using Newtonsoft.Json;
 using Xoshiro.PRNG64;
@@ -64,7 +63,7 @@ public class RunoffEvent : IWorldEffect
     private readonly Dictionary<int, int> eventDurationsInPatches = new();
 
     [JsonProperty]
-    private readonly Dictionary<int, HashSet<Compound>> affectedCompoundsInPatches = new();
+    private readonly Dictionary<int, List<Compound>> affectedCompoundsInPatches = new();
 
     [JsonProperty]
     private GameWorld targetWorld;
@@ -153,18 +152,18 @@ public class RunoffEvent : IWorldEffect
             eventDurationsInPatches[patchId] -= 1;
 
             var affectedCompounds = affectedCompoundsInPatches[patchId];
-            var tooltipBuilder = new StringBuilder(new LocalizedString("EVENT_RUNOFF_TOOLTIP").ToString());
-            tooltipBuilder.Append(" ");
+            var tooltipBuilder = new LocalizedStringBuilder(500);
+            tooltipBuilder.Append(new LocalizedString("EVENT_RUNOFF_TOOLTIP"));
+            tooltipBuilder.Append(' ');
 
-            foreach (var compound in affectedCompounds)
+            for (var i = 0; i < affectedCompounds.Count; ++i)
             {
+                var compound = affectedCompounds[i];
                 if (!patch.Biome.ChangeableCompounds.TryGetValue(compound, out var compoundLevel))
                 {
                     // This is adding a new compound
                     GD.Print($"Runoff event is adding a new compound {compound} that was not present before " +
                         $"in {patch.Name}");
-
-                    AddChunks(patch, compound);
                 }
 
                 var compoundDefinition = SimulationParameters.Instance.GetCompoundDefinition(compound);
@@ -172,25 +171,25 @@ public class RunoffEvent : IWorldEffect
                 if (!compoundDefinition.IsEnvironmental)
                 {
                     // glucose, phosphates, iron, sulfur
-                    compoundLevel.Amount = compoundLevel.Amount == 0 ? 125000 : compoundLevel.Amount;
-                    compoundChanges[compound] = Constants.VENT_ERUPTION_HYDROGEN_SULFIDE_INCREASE / 10;
+                    compoundLevel.Amount = compoundLevel.Amount == 0 ? 90000 : compoundLevel.Amount;
+                    compoundChanges[compound] = Constants.RUNOFF_DILUTION_COMPOUND_CHANGE;
                     cloudSizes[compound] = compoundLevel.Amount;
 
-                    patch.Biome.ModifyChunksDensitiesByCompound(compound, 1.2f);
+                    AddChunks(patch, compound);
                 }
                 else
                 {
                     compoundChanges[compound] = 0.1f;
                 }
 
-                tooltipBuilder.Append(compoundDefinition.Name).Append(", ");
+                tooltipBuilder.Append(compoundDefinition.Name);
+
+                if (i < affectedCompounds.Count - 1)
+                    tooltipBuilder.Append(", ");
             }
 
             if (compoundChanges.Count > 0)
             {
-                // remove last ", "
-                tooltipBuilder.Length -= 2;
-
                 patch.Biome.ApplyLongTermCompoundChanges(patch.BiomeTemplate, compoundChanges, cloudSizes);
 
                 var patchProperties = new PatchEventProperties
@@ -252,12 +251,12 @@ public class RunoffEvent : IWorldEffect
         return random.Next(Constants.RUNOFF_MIN_DURATION, Constants.RUNOFF_MAX_DURATION + 1);
     }
 
-    private HashSet<Compound> GetAffectedCompounds()
+    private List<Compound> GetAffectedCompounds()
     {
         var pool = (Compound[])CompoundsToAffect.Clone();
         int poolCount = CompoundsToAffect.Length;
 
-        var selectedCompounds = new HashSet<Compound>();
+        var selectedCompounds = new List<Compound>();
 
         while (poolCount > 0)
         {

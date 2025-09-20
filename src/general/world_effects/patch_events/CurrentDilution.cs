@@ -199,7 +199,7 @@ public class CurrentDilution : IWorldEffect
                 {
                     // glucose, phosphates, iron, sulfur
                     compoundLevel.Amount = compoundLevel.Amount == 0 ? 0 : compoundLevel.Amount;
-                    compoundChanges[compound] = -Constants.CURRENT_DILUTION_COMPOUND_CHANGE;
+                    compoundChanges[compound] = Constants.CURRENT_DILUTION_COMPOUND_CHANGE;
                     cloudSizes[compound] = compoundLevel.Amount;
 
                     ReduceChunks(patch, compound);
