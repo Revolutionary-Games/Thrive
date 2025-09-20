@@ -1,5 +1,4 @@
 shader_type particles;
-render_mode disable_velocity;
 
 uniform vec3 emissionBoxExtents;
 uniform vec4 colorValue : source_color;
@@ -100,8 +99,6 @@ void process() {
     }
     
     VELOCITY = mix(vec3(current.x, 0.0f, current.y), VELOCITY, 1.0f - DELTA * 5.0f);
-
-    TRANSFORM[3].xyz += VELOCITY * DELTA;
     
     vec4 finalColor = colorValue;
     finalColor.rgba *= CUSTOM.w;
