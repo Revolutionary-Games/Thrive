@@ -997,9 +997,9 @@ public static class PatchMapGenerator
             if (patch.IsSurfacePatch())
                 ApplyTemperatureVariation(patch, settings, random);
 
-            bool hasTemperature =
+            var hasTemperature =
                 patch.Biome.ChangeableCompounds.TryGetValue(Compound.Temperature, out var patchTemperature);
-            bool hasSunlight =
+            var hasSunlight =
                 patch.Biome.ChangeableCompounds.TryGetValue(Compound.Sunlight, out var patchSunlight);
 
             if (!hasTemperature)
@@ -1007,6 +1007,7 @@ public static class PatchMapGenerator
                 GD.PrintErr("Patch map generator encountered patch with unexpectedly no temperature.");
                 return;
             }
+
             if (!hasSunlight)
             {
                 GD.PrintErr("Patch map generator encountered patch with unexpectedly no sunlight.");

@@ -91,6 +91,12 @@ public class GameWorld : ISaveLoadable
                 new MeteorImpactEvent(this, random.Next64()));
             TimedEffects.RegisterEffect("underwater_vent_eruption",
                 new UnderwaterVentEruptionEffect(this, random.Next64()));
+            TimedEffects.RegisterEffect("runoff_event",
+                new RunoffEvent(this, random.Next64()));
+            TimedEffects.RegisterEffect("upwelling_event",
+                new UpwellingEvent(this, random.Next64()));
+            TimedEffects.RegisterEffect("current_dilution_event",
+                new CurrentDilution(this, random.Next64()));
             TimedEffects.RegisterEffect("patch_events_manager",
                 new PatchEventsManager(this, random.Next64()));
 

@@ -279,7 +279,7 @@ public partial class PatchMapDrawer : Control
     {
         foreach (var (patch, node) in nodes)
         {
-            patch.ApplyPatchEventVisuals(node, snapshots?[patch.ID].ActivePatchEvents.Keys.ToList());
+            patch.ApplyPatchEventVisuals(node, snapshots?[patch.ID].ActivePatchEvents);
         }
     }
 

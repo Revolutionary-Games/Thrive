@@ -388,6 +388,17 @@ public class Patch
         return Depth[0] == 0 && BiomeType != BiomeType.Cave;
     }
 
+    public bool IsOceanicPatch()
+    {
+        return BiomeType is BiomeType.Epipelagic or BiomeType.IceShelf or BiomeType.Mesopelagic
+            or BiomeType.Bathypelagic or BiomeType.Abyssopelagic or BiomeType.Seafloor;
+    }
+
+    public bool IsContinentalPatch()
+    {
+        return BiomeType is BiomeType.Banana or BiomeType.Coastal or BiomeType.Estuary or BiomeType.Tidepool;
+    }
+
     public float GetCompoundAmountForDisplay(Compound compound,
         CompoundAmountType amountType = CompoundAmountType.Current)
     {
@@ -636,10 +647,11 @@ public class Patch
             Region.Visibility = visibility;
     }
 
-    public void ApplyPatchEventVisuals(PatchMapNode node, IReadOnlyList<PatchEventTypes>? events = null)
+    public void ApplyPatchEventVisuals(PatchMapNode node,
+        IReadOnlyDictionary<PatchEventTypes, PatchEventProperties>? events = null)
     {
         // If the events are not specified, use the ones from the current generation
-        events ??= ActivePatchEvents.Keys.ToList();
+        events ??= ActivePatchEvents;
 
         if (Visibility == MapElementVisibility.Shown)
             node.ShowEventVisuals(events);
