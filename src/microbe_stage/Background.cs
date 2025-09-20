@@ -11,11 +11,10 @@ public class Background : IRegistryType
     [JsonRequired]
     public List<string> Textures = null!;
 
-    [JsonRequired]
-    public string ParticleEffect = null!;
+    public string? ParticleEffect = null!;
 
     [JsonIgnore]
-    public PackedScene ParticleEffectScene = null!;
+    public PackedScene? ParticleEffectScene = null!;
 
     public string InternalName { get; set; } = null!;
 
@@ -25,12 +24,6 @@ public class Background : IRegistryType
         {
             throw new InvalidRegistryDataException(name, GetType().Name,
                 "Background needs 4 layers");
-        }
-
-        if (string.IsNullOrEmpty(ParticleEffect))
-        {
-            throw new InvalidRegistryDataException(name, GetType().Name,
-                "ParticleEffect is missing");
         }
     }
 
@@ -52,8 +45,8 @@ public class Background : IRegistryType
             }
         }
 #endif
-
-        ParticleEffectScene = GD.Load<PackedScene>(ParticleEffect);
+        if (ParticleEffect != null)
+            ParticleEffectScene = GD.Load<PackedScene>(ParticleEffect);
     }
 
     public void ApplyTranslations()

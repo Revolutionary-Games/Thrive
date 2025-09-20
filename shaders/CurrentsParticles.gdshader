@@ -59,9 +59,9 @@ void start() {
     TRANSFORM = EMISSION_TRANSFORM * TRANSFORM;
     float backgroundFactor = RandFromSeed(altSeed) * particleDepthVariation;
     float squaredBackgroundFactor = backgroundFactor * backgroundFactor;
-    TRANSFORM[3].y -= squaredBackgroundFactor * 75.0f;
+    TRANSFORM[3].y -= squaredBackgroundFactor * 80.0f;
     float visibleScale = RandFromSeed(altSeed) * 0.75f + 0.625f
-        + squaredBackgroundFactor * 12.5f;
+        + squaredBackgroundFactor * 20.0f;
     TRANSFORM[0].xyz *= visibleScale;
     TRANSFORM[1].xyz *= visibleScale;
     TRANSFORM[2].xyz *= visibleScale;
