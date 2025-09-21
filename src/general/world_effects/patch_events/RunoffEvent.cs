@@ -107,7 +107,8 @@ public class RunoffEvent : IWorldEffect
                 continue;
 
             var duration = GetEventDuration();
-            var affectedCompounds = GetAffectedCompounds();
+            var affectedCompounds =
+                PatchEventUtils.GetAffectedCompounds(random, Constants.RUNOFF_CHANCE_OF_AFFECTING_ANOTHER_COMPOUND);
 
             if (affectedCompounds.Count == 0)
                 continue;
@@ -140,22 +141,11 @@ public class RunoffEvent : IWorldEffect
             }
 
             var affectedCompounds = affectedCompoundsInPatches[patchId];
-            var tooltipBuilder = new LocalizedStringBuilder(200);
-            tooltipBuilder.Append(new LocalizedString("EVENT_RUNOFF_TOOLTIP"));
-            tooltipBuilder.Append(' ');
+            var tooltip = PatchEventUtils.BuildCustomTooltip("EVENT_RUNOFF_TOOLTIP",
+                affectedCompounds);
 
-            GD.Print("BEFORE RUNOFF EVENT\nAffected compounds:");
             foreach (var compound in affectedCompounds)
             {
-                GD.Print(SimulationParameters.Instance.GetCompoundDefinition(compound).Name);
-            }
-
-            GD.Print();
-            DisplayCompounds(patch, affectedCompounds);
-
-            for (var i = 0; i < affectedCompounds.Count; ++i)
-            {
-                var compound = affectedCompounds[i];
                 var compoundDefinition = SimulationParameters.Instance.GetCompoundDefinition(compound);
                 if (patch.Biome.ChangeableCompounds.TryGetValue(compound, out var compoundLevel))
                 {
@@ -175,11 +165,6 @@ public class RunoffEvent : IWorldEffect
 
                 // iron, hydrogensulfide, phosphates
                 AddChunks(patch, compound);
-
-                tooltipBuilder.Append(compoundDefinition.Name);
-
-                if (i < affectedCompounds.Count - 1)
-                    tooltipBuilder.Append(", ");
             }
 
             if (compoundChanges.Count > 0)
@@ -188,14 +173,11 @@ public class RunoffEvent : IWorldEffect
 
                 var patchProperties = new PatchEventProperties
                 {
-                    CustomTooltip = tooltipBuilder.ToString(),
+                    CustomTooltip = tooltip,
                 };
 
                 patch.CurrentSnapshot.ActivePatchEvents[PatchEventTypes.Runoff] = patchProperties;
             }
-
-            GD.Print("AFTER RUNOFF EVENT\n");
-            DisplayCompounds(patch, affectedCompounds);
 
             compoundChanges.Clear();
             cloudSizes.Clear();
@@ -246,92 +228,18 @@ public class RunoffEvent : IWorldEffect
         ApplyChunksConfiguration(patch, templateBiome, SmallChunks, compound);
         ApplyChunksConfiguration(patch, templateBiome, BigChunks, compound);
     }
-
-    /// <summary>
-    ///   Helper to reduce group of chunks in a patch using the provided configuration and multipliers.
-    /// </summary>
+    
     private void ApplyChunksConfiguration(Patch patch, Biome templateBiome, Dictionary<Compound, string[]> chunkGroup,
         Compound compound)
     {
-        if (!chunkGroup.TryGetValue(compound, out var chunkConfigurations))
-            return;
-
-        foreach (var configuration in chunkConfigurations)
-        {
-            var chunkConfiguration = templateBiome.Conditions.Chunks[configuration];
-            chunkConfiguration.Density *= random.Next(8.0f, 22.0f);
-
-            if (patch.Biome.Chunks.TryGetValue(configuration, out var existingChunkConfiguration))
-            {
-                existingChunkConfiguration.Density += chunkConfiguration.Density;
-                patch.Biome.Chunks[configuration] = existingChunkConfiguration;
-            }
-            else
-            {
-                patch.Biome.Chunks[configuration] = chunkConfiguration;
-            }
-        }
+        PatchEventUtils.ApplyChunksConfiguration(patch, templateBiome, chunkGroup, null, compound, random,
+            addChunks: true, Constants.RUNOFF_MIN_CHUNK_DENSITY_MULTIPLIER,
+            Constants.RUNOFF_MAX_CHUNK_DENSITY_MULTIPLIER);
     }
-
-    // /// <summary>
-    // ///   Helper to reduce group of chunks in a patch using the provided configuration and multipliers.
-    // /// </summary>
-    // private void ApplyChunksConfiguration(Patch patch, Biome templateBiome, Dictionary<Compound, string[]> chunkGroup,
-    //     Compound compound)
-    // {
-    //     if (chunkGroup.TryGetValue(compound, out var chunkConfigurations))
-    //     {
-    //         foreach (var configuration in chunkConfigurations)
-    //         {
-    //             GD.Print(configuration);
-    //             var chunkConfiguration = templateBiome.Conditions.Chunks[configuration];
-    //             chunkConfiguration.Density *= random.Next(8.0f, 22.0f);
-    //
-    //             if (patch.Biome.Chunks.TryGetValue(configuration, out var existingChunkConfiguration))
-    //             {
-    //                 GD.Print("Updating: " + configuration);
-    //                 GD.Print(existingChunkConfiguration.Density, ", ", chunkConfiguration.Density);
-    //                 existingChunkConfiguration.Density += chunkConfiguration.Density;
-    //                 patch.Biome.Chunks[configuration] = existingChunkConfiguration;
-    //                 GD.Print(existingChunkConfiguration.Density, ", ", patch.Biome.Chunks[configuration].Density);
-    //             }
-    //             else
-    //             {
-    //                 patch.Biome.Chunks[configuration] = chunkConfiguration;
-    //             }
-    //         }
-    //     }
-    // }
 
     private int GetEventDuration()
     {
         return random.Next(Constants.RUNOFF_MIN_DURATION, Constants.RUNOFF_MAX_DURATION + 1);
-    }
-
-    private List<Compound> GetAffectedCompounds()
-    {
-        var pool = (Compound[])CompoundsToAffect.Clone();
-        int poolCount = CompoundsToAffect.Length;
-
-        var selectedCompounds = new List<Compound>();
-
-        while (poolCount > 0)
-        {
-            // Select a random index from the pool
-            int randomIndex = random.Next(0, poolCount);
-            var compound = pool[randomIndex];
-
-            // Remove selected compound from pool by overwriting with last and reducing count
-            pool[randomIndex] = pool[poolCount - 1];
-            poolCount--;
-
-            selectedCompounds.Add(compound);
-
-            if (random.NextFloat() > GetChanceOfAffectAnotherCompound(selectedCompounds.Count))
-                break;
-        }
-
-        return selectedCompounds;
     }
 
     private void LogEvent(Patch patch)

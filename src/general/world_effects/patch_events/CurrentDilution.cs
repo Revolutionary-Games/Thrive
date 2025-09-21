@@ -43,15 +43,6 @@ public class CurrentDilution : IWorldEffect
         { BiomeType.Seafloor, 17.0f },
     };
 
-    private static readonly Compound[] CompoundsToAffect =
-    [
-        Compound.Ammonia,
-        Compound.Phosphates,
-        Compound.Nitrogen,
-        Compound.Hydrogensulfide,
-        Compound.Iron,
-    ];
-
     private readonly Dictionary<Compound, float> compoundChanges = new();
     private readonly Dictionary<Compound, float> cloudSizes = new();
 
@@ -191,13 +182,11 @@ public class CurrentDilution : IWorldEffect
             }
 
             var affectedCompounds = affectedCompoundsInPatches[patchId];
-            var tooltipBuilder = new LocalizedStringBuilder(500);
-            tooltipBuilder.Append(new LocalizedString("CURRENT_DILUTION_TOOLTIP"));
-            tooltipBuilder.Append(' ');
+            var tooltip = PatchEventUtils.BuildCustomTooltip("CURRENT_DILUTION_TOOLTIP",
+                affectedCompounds);
 
-            for (var i = 0; i < affectedCompounds.Count; ++i)
+            foreach (var compound in affectedCompounds)
             {
-                var compound = affectedCompounds[i];
                 var compoundDefinition = SimulationParameters.Instance.GetCompoundDefinition(compound);
                 if (patch.Biome.ChangeableCompounds.TryGetValue(compound, out var compoundLevel))
                 {
@@ -211,17 +200,12 @@ public class CurrentDilution : IWorldEffect
                     else
                     {
                         // nitrogen
-                        compoundChanges[compound] = 0.1f;
+                        compoundChanges[compound] = -0.1f;
                     }
                 }
 
                 // iron, hydrogensulfide, phosphates
                 ReduceChunks(patch, compound);
-
-                tooltipBuilder.Append(compoundDefinition.Name);
-
-                if (i < affectedCompounds.Count - 1)
-                    tooltipBuilder.Append(", ");
             }
 
             if (compoundChanges.Count > 0)
@@ -230,7 +214,7 @@ public class CurrentDilution : IWorldEffect
 
                 var patchProperties = new PatchEventProperties
                 {
-                    CustomTooltip = tooltipBuilder.ToString(),
+                    CustomTooltip = tooltip,
                 };
 
                 patch.CurrentSnapshot.ActivePatchEvents[PatchEventTypes.CurrentDilution] = patchProperties;
@@ -252,28 +236,13 @@ public class CurrentDilution : IWorldEffect
         ApplyChunksConfiguration(patch, templateBiome, BigChunks, BigChunksDensityMultipliers, compound);
     }
 
-    /// <summary>
-    ///   Helper to add a group of chunks to a patch using the provided configuration and multipliers.
-    /// </summary>
     private void ApplyChunksConfiguration(Patch patch, Biome templateBiome, Dictionary<Compound, string[]> chunkGroup,
-        Dictionary<BiomeType, float> densityMultipliers, Compound compound)
+        Dictionary<BiomeType, float> chunkDensityMultipliers,
+        Compound compound)
     {
-        if (!chunkGroup.TryGetValue(compound, out var chunkConfigurations))
-            return;
-
-        foreach (var configuration in chunkConfigurations)
-        {
-            var chunkConfiguration = templateBiome.Conditions.Chunks[configuration];
-            var multiplier = densityMultipliers.GetValueOrDefault(patch.BiomeType, random.Next(8.0f, 22.0f));
-            chunkConfiguration.Density *= multiplier;
-
-            if (!patch.Biome.Chunks.TryGetValue(configuration, out var existingChunkConfiguration))
-                continue;
-
-            existingChunkConfiguration.Density =
-                Math.Max(0.0f, existingChunkConfiguration.Density - chunkConfiguration.Density);
-            patch.Biome.Chunks[configuration] = existingChunkConfiguration;
-        }
+        PatchEventUtils.ApplyChunksConfiguration(patch, templateBiome, chunkGroup, chunkDensityMultipliers, compound,
+            random, addChunks: false, Constants.CURRENT_DILUTION_MIN_CHUNK_DENSITY_MULTIPLIER,
+            Constants.CURRENT_DILUTION_MAX_CHUNK_DENSITY_MULTIPLIER);
     }
 
     private int GetEventDuration()
@@ -283,28 +252,8 @@ public class CurrentDilution : IWorldEffect
 
     private List<Compound> GetAffectedCompounds()
     {
-        var pool = (Compound[])CompoundsToAffect.Clone();
-        int poolCount = CompoundsToAffect.Length;
-
-        var selectedCompounds = new List<Compound>();
-
-        while (poolCount > 0)
-        {
-            // Select a random index from the pool
-            int randomIndex = random.Next(0, poolCount);
-            var compound = pool[randomIndex];
-
-            // Remove selected compound from pool by overwriting with last and reducing count
-            pool[randomIndex] = pool[poolCount - 1];
-            poolCount--;
-
-            selectedCompounds.Add(compound);
-
-            if (random.NextFloat() > GetChanceOfAffectAnotherCompound(selectedCompounds.Count))
-                break;
-        }
-
-        return selectedCompounds;
+        return PatchEventUtils.GetAffectedCompounds(random,
+            Constants.CURRENT_DILUTION_CHANCE_OF_AFFECTING_ANOTHER_COMPOUND);
     }
 
     private void LogEvent(Patch patch)
