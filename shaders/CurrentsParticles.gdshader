@@ -100,7 +100,7 @@ void process() {
         current *= 10.0f * speed;
     }
     
-    VELOCITY = mix(vec3(current.x, 0.0f, current.y), VELOCITY, 1.0f - DELTA * 5.0f);
+    VELOCITY = mix(VELOCITY, vec3(current.x, 0.0f, current.y), DELTA * 5.0f);
     VELOCITY *= CUSTOM.w * 0.05f + 0.95f;
     
     vec4 finalColor = colorValue;
