@@ -101,7 +101,7 @@ void process() {
     }
     
     VELOCITY = mix(vec3(current.x, 0.0f, current.y), VELOCITY, 1.0f - DELTA * 5.0f);
-    VELOCITY *= CUSTOM.w * 0.2f + 0.8f;
+    VELOCITY *= CUSTOM.w * 0.05f + 0.95f;
     
     vec4 finalColor = colorValue;
     finalColor.rgba *= CUSTOM.w;
