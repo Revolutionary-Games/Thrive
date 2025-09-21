@@ -26,22 +26,22 @@ public class UpwellingEvent : IWorldEffect
 
     private static readonly Dictionary<BiomeType, float> SmallChunksDensityMultipliers = new()
     {
-        { BiomeType.IceShelf, 1.5f },
-        { BiomeType.Epipelagic, 1.5f },
-        { BiomeType.Mesopelagic, 1.2f },
-        { BiomeType.Bathypelagic, 1.0f },
-        { BiomeType.Abyssopelagic, 0.8f },
-        { BiomeType.Seafloor, 0.6f },
+        { BiomeType.IceShelf, 22.0f },
+        { BiomeType.Epipelagic, 22.0f },
+        { BiomeType.Mesopelagic, 12.0f },
+        { BiomeType.Bathypelagic, 8.0f },
+        { BiomeType.Abyssopelagic, 2.0f },
+        { BiomeType.Seafloor, 1.0f },
     };
 
     private static readonly Dictionary<BiomeType, float> BigChunksDensityMultipliers = new()
     {
-        { BiomeType.IceShelf, 0.3f },
-        { BiomeType.Epipelagic, 0.3f },
-        { BiomeType.Mesopelagic, 0.6f },
-        { BiomeType.Bathypelagic, 0.9f },
-        { BiomeType.Abyssopelagic, 1.3f },
-        { BiomeType.Seafloor, 1.6f },
+        { BiomeType.IceShelf, 1.0f },
+        { BiomeType.Epipelagic, 1.0f },
+        { BiomeType.Mesopelagic, 3.0f },
+        { BiomeType.Bathypelagic, 7.0f },
+        { BiomeType.Abyssopelagic, 11.0f },
+        { BiomeType.Seafloor, 17.0f },
     };
 
     private static readonly Compound[] CompoundsToAffect =
@@ -179,36 +179,42 @@ public class UpwellingEvent : IWorldEffect
             var patch = targetWorld.Map.Patches[patchId];
             eventDurationsInPatches[patchId] -= 1;
 
+            if (eventDurationsInPatches[patchId] <= 0)
+            {
+                eventDurationsInPatches.Remove(patchId);
+                affectedCompoundsInPatches.Remove(patchId);
+                patch.CurrentSnapshot.ActivePatchEvents.Remove(PatchEventTypes.Upwelling);
+                continue;
+            }
+
             var affectedCompounds = affectedCompoundsInPatches[patchId];
-            var tooltipBuilder = new LocalizedStringBuilder(500);
+            var tooltipBuilder = new LocalizedStringBuilder(200);
             tooltipBuilder.Append(new LocalizedString("EVENT_UPWELLING_TOOLTIP"));
             tooltipBuilder.Append(' ');
 
             for (var i = 0; i < affectedCompounds.Count; ++i)
             {
                 var compound = affectedCompounds[i];
-                if (!patch.Biome.ChangeableCompounds.TryGetValue(compound, out var compoundLevel))
-                {
-                    // This is adding a new compound
-                    GD.Print($"Upwelling event is adding a new compound {compound} that was not present before " +
-                        $"in {patch.Name}");
-                }
-
                 var compoundDefinition = SimulationParameters.Instance.GetCompoundDefinition(compound);
-
-                if (!compoundDefinition.IsEnvironmental)
+                if (patch.Biome.ChangeableCompounds.TryGetValue(compound, out var compoundLevel))
                 {
-                    // glucose, phosphates, iron, sulfur
-                    compoundLevel.Amount = compoundLevel.Amount == 0 ? 90000 : compoundLevel.Amount;
-                    compoundChanges[compound] = Constants.UPWELLING_DILUTION_COMPOUND_CHANGE;
-                    cloudSizes[compound] = compoundLevel.Amount;
+                    if (!compoundDefinition.IsEnvironmental)
+                    {
+                        // ammonia, hydrogensulfide, phosphates
+                        compoundLevel.Amount = compoundLevel.Amount == 0 ? 90000 : compoundLevel.Amount;
+                        compoundChanges[compound] =
+                            Constants.UPWELLING_DILUTION_COMPOUND_CHANGE * random.Next(0.8f, 1.2f);
+                        cloudSizes[compound] = compoundLevel.Amount;
+                    }
+                    else
+                    {
+                        // nitrogen
+                        compoundChanges[compound] = 0.1f;
+                    }
+                }
 
-                    AddChunks(patch, compound);
-                }
-                else
-                {
-                    compoundChanges[compound] = 0.1f;
-                }
+                // iron, hydrogensulfide, phosphates
+                AddChunks(patch, compound);
 
                 tooltipBuilder.Append(compoundDefinition.Name);
 
@@ -230,13 +236,6 @@ public class UpwellingEvent : IWorldEffect
 
             compoundChanges.Clear();
             cloudSizes.Clear();
-
-            if (eventDurationsInPatches[patchId] <= 0)
-            {
-                eventDurationsInPatches.Remove(patchId);
-                affectedCompoundsInPatches.Remove(patchId);
-                patch.CurrentSnapshot.ActivePatchEvents.Remove(PatchEventTypes.Upwelling);
-            }
         }
     }
 
@@ -257,19 +256,19 @@ public class UpwellingEvent : IWorldEffect
     private void ApplyChunksConfiguration(Patch patch, Biome templateBiome, Dictionary<Compound, string[]> chunkGroup,
         Dictionary<BiomeType, float> densityMultipliers, Compound compound)
     {
-        if (chunkGroup.TryGetValue(compound, out var chunkConfigurations))
+        if (!chunkGroup.TryGetValue(compound, out var chunkConfigurations))
+            return;
+
+        foreach (var configuration in chunkConfigurations)
         {
-            foreach (var configuration in chunkConfigurations)
-            {
-                var chunkConfiguration = templateBiome.Conditions.Chunks[configuration];
-                var multiplier = densityMultipliers[patch.BiomeType] * random.Next(0.8f, 1.2f);
+            var chunkConfiguration = templateBiome.Conditions.Chunks[configuration];
+            var multiplier = densityMultipliers[patch.BiomeType] * random.Next(0.8f, 1.2f);
 
-                if (!patch.Biome.Chunks.TryGetValue(configuration, out var existingChunk))
-                    continue;
+            if (!patch.Biome.Chunks.TryGetValue(configuration, out var existingChunk))
+                continue;
 
-                existingChunk.Density += chunkConfiguration.Density * multiplier;
-                patch.Biome.Chunks[configuration] = existingChunk;
-            }
+            existingChunk.Density += chunkConfiguration.Density * multiplier;
+            patch.Biome.Chunks[configuration] = existingChunk;
         }
     }
 

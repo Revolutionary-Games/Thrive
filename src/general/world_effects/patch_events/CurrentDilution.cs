@@ -25,22 +25,22 @@ public class CurrentDilution : IWorldEffect
 
     private static readonly Dictionary<BiomeType, float> SmallChunksDensityMultipliers = new()
     {
-        { BiomeType.IceShelf, 1.5f },
-        { BiomeType.Epipelagic, 1.5f },
-        { BiomeType.Mesopelagic, 1.2f },
-        { BiomeType.Bathypelagic, 1.0f },
-        { BiomeType.Abyssopelagic, 0.8f },
-        { BiomeType.Seafloor, 0.6f },
+        { BiomeType.IceShelf, 22.0f },
+        { BiomeType.Epipelagic, 22.0f },
+        { BiomeType.Mesopelagic, 12.0f },
+        { BiomeType.Bathypelagic, 8.0f },
+        { BiomeType.Abyssopelagic, 2.0f },
+        { BiomeType.Seafloor, 1.0f },
     };
 
     private static readonly Dictionary<BiomeType, float> BigChunksDensityMultipliers = new()
     {
-        { BiomeType.IceShelf, 0.3f },
-        { BiomeType.Epipelagic, 0.3f },
-        { BiomeType.Mesopelagic, 0.6f },
-        { BiomeType.Bathypelagic, 0.9f },
-        { BiomeType.Abyssopelagic, 1.3f },
-        { BiomeType.Seafloor, 1.6f },
+        { BiomeType.IceShelf, 1.0f },
+        { BiomeType.Epipelagic, 1.0f },
+        { BiomeType.Mesopelagic, 3.0f },
+        { BiomeType.Bathypelagic, 7.0f },
+        { BiomeType.Abyssopelagic, 11.0f },
+        { BiomeType.Seafloor, 17.0f },
     };
 
     private static readonly Compound[] CompoundsToAffect =
@@ -182,6 +182,14 @@ public class CurrentDilution : IWorldEffect
             var patch = targetWorld.Map.Patches[patchId];
             eventDurationsInPatches[patchId] -= 1;
 
+            if (eventDurationsInPatches[patchId] <= 0)
+            {
+                eventDurationsInPatches.Remove(patchId);
+                affectedCompoundsInPatches.Remove(patchId);
+                patch.CurrentSnapshot.ActivePatchEvents.Remove(PatchEventTypes.CurrentDilution);
+                continue;
+            }
+
             var affectedCompounds = affectedCompoundsInPatches[patchId];
             var tooltipBuilder = new LocalizedStringBuilder(500);
             tooltipBuilder.Append(new LocalizedString("CURRENT_DILUTION_TOOLTIP"));
@@ -190,24 +198,25 @@ public class CurrentDilution : IWorldEffect
             for (var i = 0; i < affectedCompounds.Count; ++i)
             {
                 var compound = affectedCompounds[i];
-                if (!patch.Biome.ChangeableCompounds.TryGetValue(compound, out var compoundLevel))
-                    continue;
-
                 var compoundDefinition = SimulationParameters.Instance.GetCompoundDefinition(compound);
-
-                if (!compoundDefinition.IsEnvironmental)
+                if (patch.Biome.ChangeableCompounds.TryGetValue(compound, out var compoundLevel))
                 {
-                    // glucose, phosphates, iron, sulfur
-                    compoundLevel.Amount = compoundLevel.Amount == 0 ? 0 : compoundLevel.Amount;
-                    compoundChanges[compound] = Constants.CURRENT_DILUTION_COMPOUND_CHANGE;
-                    cloudSizes[compound] = compoundLevel.Amount;
+                    if (!compoundDefinition.IsEnvironmental)
+                    {
+                        // ammonia, hydrogensulfide, phosphates
+                        compoundLevel.Amount = compoundLevel.Amount == 0 ? 0 : compoundLevel.Amount;
+                        compoundChanges[compound] = Constants.CURRENT_DILUTION_COMPOUND_CHANGE;
+                        cloudSizes[compound] = compoundLevel.Amount;
+                    }
+                    else
+                    {
+                        // nitrogen
+                        compoundChanges[compound] = 0.1f;
+                    }
+                }
 
-                    ReduceChunks(patch, compound);
-                }
-                else
-                {
-                    compoundChanges[compound] = -0.1f;
-                }
+                // iron, hydrogensulfide, phosphates
+                ReduceChunks(patch, compound);
 
                 tooltipBuilder.Append(compoundDefinition.Name);
 
@@ -229,13 +238,6 @@ public class CurrentDilution : IWorldEffect
 
             compoundChanges.Clear();
             cloudSizes.Clear();
-
-            if (eventDurationsInPatches[patchId] <= 0)
-            {
-                eventDurationsInPatches.Remove(patchId);
-                affectedCompoundsInPatches.Remove(patchId);
-                patch.CurrentSnapshot.ActivePatchEvents.Remove(PatchEventTypes.CurrentDilution);
-            }
         }
     }
 
@@ -262,18 +264,15 @@ public class CurrentDilution : IWorldEffect
         foreach (var configuration in chunkConfigurations)
         {
             var chunkConfiguration = templateBiome.Conditions.Chunks[configuration];
-            var multiplier = densityMultipliers.GetValueOrDefault(patch.BiomeType, 1.0f);
+            var multiplier = densityMultipliers.GetValueOrDefault(patch.BiomeType, random.Next(8.0f, 22.0f));
+            chunkConfiguration.Density *= multiplier;
 
-            if (!patch.Biome.Chunks.TryGetValue(configuration, out var existingChunk))
-            {
-                chunkConfiguration.Density *= multiplier;
-                patch.Biome.Chunks[configuration] = chunkConfiguration;
-            }
-            else
-            {
-                existingChunk.Density += chunkConfiguration.Density * multiplier;
-                patch.Biome.Chunks[configuration] = existingChunk;
-            }
+            if (!patch.Biome.Chunks.TryGetValue(configuration, out var existingChunkConfiguration))
+                continue;
+
+            existingChunkConfiguration.Density =
+                Math.Max(0.0f, existingChunkConfiguration.Density - chunkConfiguration.Density);
+            patch.Biome.Chunks[configuration] = existingChunkConfiguration;
         }
     }
 

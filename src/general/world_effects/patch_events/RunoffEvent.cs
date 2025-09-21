@@ -131,36 +131,50 @@ public class RunoffEvent : IWorldEffect
             var patch = targetWorld.Map.Patches[patchId];
             eventDurationsInPatches[patchId] -= 1;
 
+            if (eventDurationsInPatches[patchId] <= 0)
+            {
+                eventDurationsInPatches.Remove(patchId);
+                affectedCompoundsInPatches.Remove(patchId);
+                patch.CurrentSnapshot.ActivePatchEvents.Remove(PatchEventTypes.Runoff);
+                continue;
+            }
+
             var affectedCompounds = affectedCompoundsInPatches[patchId];
-            var tooltipBuilder = new LocalizedStringBuilder(500);
+            var tooltipBuilder = new LocalizedStringBuilder(200);
             tooltipBuilder.Append(new LocalizedString("EVENT_RUNOFF_TOOLTIP"));
             tooltipBuilder.Append(' ');
+
+            GD.Print("BEFORE RUNOFF EVENT\nAffected compounds:");
+            foreach (var compound in affectedCompounds)
+            {
+                GD.Print(SimulationParameters.Instance.GetCompoundDefinition(compound).Name);
+            }
+
+            GD.Print();
+            DisplayCompounds(patch, affectedCompounds);
 
             for (var i = 0; i < affectedCompounds.Count; ++i)
             {
                 var compound = affectedCompounds[i];
-                if (!patch.Biome.ChangeableCompounds.TryGetValue(compound, out var compoundLevel))
-                {
-                    // This is adding a new compound
-                    GD.Print($"Runoff event is adding a new compound {compound} that was not present before " +
-                        $"in {patch.Name}");
-                }
-
                 var compoundDefinition = SimulationParameters.Instance.GetCompoundDefinition(compound);
-
-                if (!compoundDefinition.IsEnvironmental)
+                if (patch.Biome.ChangeableCompounds.TryGetValue(compound, out var compoundLevel))
                 {
-                    // glucose, phosphates, iron, sulfur
-                    compoundLevel.Amount = compoundLevel.Amount == 0 ? 90000 : compoundLevel.Amount;
-                    compoundChanges[compound] = Constants.RUNOFF_DILUTION_COMPOUND_CHANGE;
-                    cloudSizes[compound] = compoundLevel.Amount;
+                    if (!compoundDefinition.IsEnvironmental)
+                    {
+                        // ammonia, hydrogensulfide, phosphates
+                        compoundLevel.Amount = compoundLevel.Amount == 0 ? 90000 : compoundLevel.Amount;
+                        compoundChanges[compound] = Constants.RUNOFF_COMPOUND_CHANGE * random.Next(0.8f, 1.2f);
+                        cloudSizes[compound] = compoundLevel.Amount;
+                    }
+                    else
+                    {
+                        // nitrogen
+                        compoundChanges[compound] = 0.1f;
+                    }
+                }
 
-                    AddChunks(patch, compound);
-                }
-                else
-                {
-                    compoundChanges[compound] = 0.1f;
-                }
+                // iron, hydrogensulfide, phosphates
+                AddChunks(patch, compound);
 
                 tooltipBuilder.Append(compoundDefinition.Name);
 
@@ -180,16 +194,46 @@ public class RunoffEvent : IWorldEffect
                 patch.CurrentSnapshot.ActivePatchEvents[PatchEventTypes.Runoff] = patchProperties;
             }
 
+            GD.Print("AFTER RUNOFF EVENT\n");
+            DisplayCompounds(patch, affectedCompounds);
+
             compoundChanges.Clear();
             cloudSizes.Clear();
-
-            if (eventDurationsInPatches[patchId] <= 0)
-            {
-                eventDurationsInPatches.Remove(patchId);
-                affectedCompoundsInPatches.Remove(patchId);
-                patch.CurrentSnapshot.ActivePatchEvents.Remove(PatchEventTypes.Runoff);
-            }
         }
+    }
+
+    private void DisplayCompounds(Patch patch, List<Compound> compounds)
+    {
+        return;
+
+        foreach (var compound in compounds)
+        {
+            var compoundDefinition = SimulationParameters.Instance.GetCompoundDefinition(compound);
+            GD.Print(compoundDefinition.Name + ":");
+            if (patch.Biome.ChangeableCompounds.TryGetValue(compound, out var compoundLevel))
+            {
+                GD.Print(" - " + compoundLevel);
+            }
+            else
+            {
+                GD.Print(" - not present");
+            }
+
+            var chunks =
+                patch.Biome.Chunks.Where(configuration =>
+                    configuration.Value.Compounds != null && configuration.Value.Compounds.ContainsKey(compound));
+
+            GD.Print(" - chunks:");
+            foreach (var chunk in chunks)
+            {
+                GD.Print($"     - Chunk '{chunk.Key}' density: {chunk.Value.Density}");
+            }
+
+            GD.Print();
+        }
+
+        GD.Print("-------------------");
+        GD.Print();
     }
 
     /// <summary>
@@ -206,23 +250,58 @@ public class RunoffEvent : IWorldEffect
     /// <summary>
     ///   Helper to reduce group of chunks in a patch using the provided configuration and multipliers.
     /// </summary>
-    private void ApplyChunksConfiguration(Patch patch, Biome templateBiome, Dictionary<Compound, string[]> chunkGroup, Compound compound)
+    private void ApplyChunksConfiguration(Patch patch, Biome templateBiome, Dictionary<Compound, string[]> chunkGroup,
+        Compound compound)
     {
-        if (chunkGroup.TryGetValue(compound, out var chunkConfigurations))
+        if (!chunkGroup.TryGetValue(compound, out var chunkConfigurations))
+            return;
+
+        foreach (var configuration in chunkConfigurations)
         {
-            foreach (var configuration in chunkConfigurations)
+            var chunkConfiguration = templateBiome.Conditions.Chunks[configuration];
+            chunkConfiguration.Density *= random.Next(8.0f, 22.0f);
+
+            if (patch.Biome.Chunks.TryGetValue(configuration, out var existingChunkConfiguration))
             {
-                var chunkConfiguration = templateBiome.Conditions.Chunks[configuration];
-                var multiplier = random.Next(0.8f, 1.2f);
-
-                if (!patch.Biome.Chunks.TryGetValue(configuration, out var existingChunk))
-                    continue;
-
-                existingChunk.Density += chunkConfiguration.Density * multiplier;
-                patch.Biome.Chunks[configuration] = existingChunk;
+                existingChunkConfiguration.Density += chunkConfiguration.Density;
+                patch.Biome.Chunks[configuration] = existingChunkConfiguration;
+            }
+            else
+            {
+                patch.Biome.Chunks[configuration] = chunkConfiguration;
             }
         }
     }
+
+    // /// <summary>
+    // ///   Helper to reduce group of chunks in a patch using the provided configuration and multipliers.
+    // /// </summary>
+    // private void ApplyChunksConfiguration(Patch patch, Biome templateBiome, Dictionary<Compound, string[]> chunkGroup,
+    //     Compound compound)
+    // {
+    //     if (chunkGroup.TryGetValue(compound, out var chunkConfigurations))
+    //     {
+    //         foreach (var configuration in chunkConfigurations)
+    //         {
+    //             GD.Print(configuration);
+    //             var chunkConfiguration = templateBiome.Conditions.Chunks[configuration];
+    //             chunkConfiguration.Density *= random.Next(8.0f, 22.0f);
+    //
+    //             if (patch.Biome.Chunks.TryGetValue(configuration, out var existingChunkConfiguration))
+    //             {
+    //                 GD.Print("Updating: " + configuration);
+    //                 GD.Print(existingChunkConfiguration.Density, ", ", chunkConfiguration.Density);
+    //                 existingChunkConfiguration.Density += chunkConfiguration.Density;
+    //                 patch.Biome.Chunks[configuration] = existingChunkConfiguration;
+    //                 GD.Print(existingChunkConfiguration.Density, ", ", patch.Biome.Chunks[configuration].Density);
+    //             }
+    //             else
+    //             {
+    //                 patch.Biome.Chunks[configuration] = chunkConfiguration;
+    //             }
+    //         }
+    //     }
+    // }
 
     private int GetEventDuration()
     {
