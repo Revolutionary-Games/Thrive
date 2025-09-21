@@ -1,5 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Linq;
 using Newtonsoft.Json;
 using Xoshiro.PRNG64;
@@ -25,9 +24,9 @@ public class CurrentDilution : IWorldEffect
 
     private static readonly Dictionary<BiomeType, float> SmallChunksDensityMultipliers = new()
     {
-        { BiomeType.IceShelf, 22.0f },
-        { BiomeType.Epipelagic, 22.0f },
-        { BiomeType.Mesopelagic, 12.0f },
+        { BiomeType.IceShelf, 30.0f },
+        { BiomeType.Epipelagic, 30.0f },
+        { BiomeType.Mesopelagic, 18.0f },
         { BiomeType.Bathypelagic, 8.0f },
         { BiomeType.Abyssopelagic, 2.0f },
         { BiomeType.Seafloor, 1.0f },
@@ -35,8 +34,8 @@ public class CurrentDilution : IWorldEffect
 
     private static readonly Dictionary<BiomeType, float> BigChunksDensityMultipliers = new()
     {
-        { BiomeType.IceShelf, 1.0f },
-        { BiomeType.Epipelagic, 1.0f },
+        { BiomeType.IceShelf, 2.0f },
+        { BiomeType.Epipelagic, 2.0f },
         { BiomeType.Mesopelagic, 3.0f },
         { BiomeType.Bathypelagic, 7.0f },
         { BiomeType.Abyssopelagic, 11.0f },
@@ -82,24 +81,11 @@ public class CurrentDilution : IWorldEffect
         ChangePatchProperties();
     }
 
-    private static float GetChanceOfTriggering(double currentGeneration)
+    private float GetChanceOfTriggering(double currentGeneration)
     {
-        if (currentGeneration >= Constants.CURRENT_DILUTION_CHANCE_DIMINISH_DURATION)
-            return Constants.CURRENT_DILUTION_FINAL_CHANCE;
-
-        // Diminish linearly from start chance to end chance
-        var chance = ((Constants.CURRENT_DILUTION_CHANCE_DIMINISH_DURATION - currentGeneration) *
-                Constants.CURRENT_DILUTION_INITIAL_CHANCE
-                + currentGeneration * Constants.CURRENT_DILUTION_FINAL_CHANCE) /
-            Constants.CURRENT_DILUTION_CHANCE_DIMINISH_DURATION;
-
-        return (float)chance;
-    }
-
-    private static float GetChanceOfAffectAnotherCompound(int affectedCompoundsNumber)
-    {
-        return (float)Math.Pow(Constants.CURRENT_DILUTION_CHANCE_OF_AFFECTING_ANOTHER_COMPOUND,
-            affectedCompoundsNumber);
+        return PatchEventUtils.GetChanceOfTriggering(currentGeneration,
+            Constants.CURRENT_DILUTION_CHANCE_DIMINISH_DURATION, Constants.CURRENT_DILUTION_INITIAL_CHANCE,
+            Constants.CURRENT_DILUTION_FINAL_CHANCE, targetWorld.WorldSettings.GeologicalActivity);
     }
 
     private void TriggerEventOnContinent(double elapsed)

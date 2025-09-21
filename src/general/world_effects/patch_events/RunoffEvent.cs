@@ -1,5 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Linq;
 using Godot;
 using Newtonsoft.Json;
@@ -74,29 +73,11 @@ public class RunoffEvent : IWorldEffect
     // Returns bigger chance for earlier generations, then linearly diminishes to a final chance
     private float GetChanceOfTriggering(double currentGeneration)
     {
-        if (currentGeneration >= Constants.RUNOFF_CHANCE_DIMINISH_DURATION)
-            return Constants.RUNOFF_FINAL_CHANCE;
-
-        // Linear interpolation
-        var chance = (float)(((Constants.RUNOFF_CHANCE_DIMINISH_DURATION - currentGeneration) *
-                Constants.RUNOFF_INITIAL_CHANCE
-                + currentGeneration * Constants.RUNOFF_FINAL_CHANCE) /
-            Constants.RUNOFF_CHANCE_DIMINISH_DURATION);
-
-        float modifier = targetWorld.WorldSettings.GeologicalActivity switch
-        {
-            WorldGenerationSettings.GeologicalActivityEnum.Dormant => 0.8f,
-            WorldGenerationSettings.GeologicalActivityEnum.Active => 1.2f,
-            _ => 1.0f,
-        };
-
-        return Math.Min(chance * modifier, 0.9f);
-    }
-
-    // Each additional compound has a diminishing chance of being affected
-    private float GetChanceOfAffectAnotherCompound(int numberOfAffectedCompounds)
-    {
-        return (float)Math.Pow(Constants.RUNOFF_CHANCE_OF_AFFECTING_ANOTHER_COMPOUND, numberOfAffectedCompounds);
+        return PatchEventUtils.GetChanceOfTriggering(currentGeneration,
+            Constants.RUNOFF_CHANCE_DIMINISH_DURATION,
+            Constants.RUNOFF_INITIAL_CHANCE,
+            Constants.RUNOFF_FINAL_CHANCE,
+            targetWorld.WorldSettings.GeologicalActivity);
     }
 
     private void TriggerEvents(double elapsed)
@@ -228,7 +209,7 @@ public class RunoffEvent : IWorldEffect
         ApplyChunksConfiguration(patch, templateBiome, SmallChunks, compound);
         ApplyChunksConfiguration(patch, templateBiome, BigChunks, compound);
     }
-    
+
     private void ApplyChunksConfiguration(Patch patch, Biome templateBiome, Dictionary<Compound, string[]> chunkGroup,
         Compound compound)
     {

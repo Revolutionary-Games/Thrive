@@ -1,5 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Linq;
 using Newtonsoft.Json;
 using Xoshiro.PRNG64;
@@ -25,9 +24,9 @@ public class UpwellingEvent : IWorldEffect
 
     private static readonly Dictionary<BiomeType, float> SmallChunksDensityMultipliers = new()
     {
-        { BiomeType.IceShelf, 22.0f },
-        { BiomeType.Epipelagic, 22.0f },
-        { BiomeType.Mesopelagic, 12.0f },
+        { BiomeType.IceShelf, 30.0f },
+        { BiomeType.Epipelagic, 30.0f },
+        { BiomeType.Mesopelagic, 15.0f },
         { BiomeType.Bathypelagic, 8.0f },
         { BiomeType.Abyssopelagic, 2.0f },
         { BiomeType.Seafloor, 1.0f },
@@ -35,8 +34,8 @@ public class UpwellingEvent : IWorldEffect
 
     private static readonly Dictionary<BiomeType, float> BigChunksDensityMultipliers = new()
     {
-        { BiomeType.IceShelf, 1.0f },
-        { BiomeType.Epipelagic, 1.0f },
+        { BiomeType.IceShelf, 2.0f },
+        { BiomeType.Epipelagic, 2.0f },
         { BiomeType.Mesopelagic, 3.0f },
         { BiomeType.Bathypelagic, 7.0f },
         { BiomeType.Abyssopelagic, 11.0f },
@@ -81,29 +80,12 @@ public class UpwellingEvent : IWorldEffect
         ChangePatchProperties();
     }
 
-    // Returns bigger chance for earlier generations, then linearly diminishes to a final chance
     private float GetChanceOfTriggering(double currentGeneration)
     {
-        if (currentGeneration >= Constants.UPWELLING_CHANCE_DIMINISH_DURATION)
-            return Constants.UPWELLING_FINAL_CHANCE;
-
-        // Linear interpolation
-        var chance = (float)(((Constants.UPWELLING_CHANCE_DIMINISH_DURATION - currentGeneration) *
-                Constants.UPWELLING_INITIAL_CHANCE
-                + currentGeneration * Constants.UPWELLING_FINAL_CHANCE) /
-            Constants.UPWELLING_CHANCE_DIMINISH_DURATION);
-
-        float modifier = targetWorld.WorldSettings.GeologicalActivity switch
-        {
-            WorldGenerationSettings.GeologicalActivityEnum.Dormant => 0.8f,
-            WorldGenerationSettings.GeologicalActivityEnum.Active => 1.2f,
-            _ => 1.0f,
-        };
-
-        return Math.Min(chance * modifier, 0.9f);
+        return PatchEventUtils.GetChanceOfTriggering(currentGeneration, Constants.UPWELLING_CHANCE_DIMINISH_DURATION,
+            Constants.UPWELLING_INITIAL_CHANCE, Constants.UPWELLING_FINAL_CHANCE,
+            targetWorld.WorldSettings.GeologicalActivity);
     }
-
-    // Each additional compound has a diminishing chance of being affected
 
     private void TriggerEvents(double elapsed)
     {
@@ -219,9 +201,6 @@ public class UpwellingEvent : IWorldEffect
         }
     }
 
-    /// <summary>
-    ///   Gets chunks from event template patch and reduced their density in the patches.
-    /// </summary>
     private void AddChunks(Patch patch, Compound compound)
     {
         var templateBiome = SimulationParameters.Instance.GetBiome(TemplateBiomeForChunks);

@@ -84,8 +84,10 @@ public static class PatchEventUtils
     public static string BuildCustomTooltip(string baseTooltip, List<Compound> affectedCompounds)
     {
         var builder = new LocalizedStringBuilder(256);
+
         builder.Append(new LocalizedString(baseTooltip));
         builder.Append(' ');
+
         for (var i = 0; i < affectedCompounds.Count; ++i)
         {
             builder.Append(SimulationParameters.Instance.GetCompoundDefinition(affectedCompounds[i]).Name);
@@ -96,8 +98,29 @@ public static class PatchEventUtils
         return builder.ToString();
     }
 
+    public static float GetChanceOfTriggering(double currentGeneration, float diminishDuration, float initialChance,
+        float finalChance, WorldGenerationSettings.GeologicalActivityEnum geologicalActivity)
+    {
+        if (currentGeneration >= diminishDuration)
+            return finalChance;
+
+        // Returns bigger chance for earlier generations, then linearly diminishes to a final chance
+        var chance = ((diminishDuration - currentGeneration) * initialChance
+            + currentGeneration * finalChance) / diminishDuration;
+
+        var modifier = geologicalActivity switch
+        {
+            WorldGenerationSettings.GeologicalActivityEnum.Dormant => 0.8f,
+            WorldGenerationSettings.GeologicalActivityEnum.Active => 1.2f,
+            _ => 1.0f,
+        };
+
+        return Math.Min((float)chance * modifier, 0.9f);
+    }
+
     private static float GetChanceOfAffectAnotherCompound(float chance, int numberOfAffectedCompounds)
     {
+        // Each additional compound has a diminishing chance of being affected
         return (float)Math.Pow(chance, numberOfAffectedCompounds);
     }
 }
