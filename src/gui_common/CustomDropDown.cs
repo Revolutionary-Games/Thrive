@@ -182,6 +182,7 @@ public partial class CustomDropDown : MenuButton
                         Popup.AddIconCheckItem(tintedIcon, item.Text, id);
                         var index = Popup.GetItemIndex(id);
                         Popup.SetItemIconMaxWidth(index, iconMaxWidth);
+
                         // Don't apply color modulation to checkable items as it affects the radio button icon
                         // The species color should only affect the custom icon, not the selection radio button
                         Popup.SetItemChecked(index, item.Checked);
@@ -235,7 +236,6 @@ public partial class CustomDropDown : MenuButton
             image.Convert(Image.Format.Rgba8);
         }
 
-        image.Lock();
 
         var width = image.GetWidth();
         var height = image.GetHeight();
@@ -257,21 +257,9 @@ public partial class CustomDropDown : MenuButton
             }
         }
 
-        image.Unlock();
 
         // Create a texture from the modified image
         return ImageTexture.CreateFromImage(image);
-    }
-
-    protected override void Dispose(bool disposing)
-    {
-        if (disposing)
-        {
-            vSeparationReference.Dispose();
-            themeVSeparationReference.Dispose();
-        }
-
-        base.Dispose(disposing);
     }
 
     /// <summary>
@@ -299,6 +287,17 @@ public partial class CustomDropDown : MenuButton
         tween.TweenProperty(Popup, themeVSeparationReference, cachedPopupVSeparation, 0.1).From(-14);
     }
 
+    protected override void Dispose(bool disposing)
+    {
+        if (disposing)
+        {
+            vSeparationReference.Dispose();
+            themeVSeparationReference.Dispose();
+        }
+
+        base.Dispose(disposing);
+    }
+
     /// <summary>
     ///   Helper data regarding the popup menu item. All custom operations relating to the dropdown uses this,
     ///   we can't utilize PopupMenu's internal item class since it's not exposed to the user.
@@ -318,5 +317,6 @@ public partial class CustomDropDown : MenuButton
         public bool Checked;
         public int Id;
         public bool Separator;
+        public Texture2D? PreTintedIcon;
     }
 }
