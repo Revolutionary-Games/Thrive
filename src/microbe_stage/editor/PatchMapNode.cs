@@ -258,11 +258,14 @@ public partial class PatchMapNode : MarginContainer
         }
     }
 
-    public void ShowEventVisuals(IReadOnlyList<WorldEffectTypes> list)
+    public void ShowEventVisuals(IReadOnlyList<WorldEffectTypes>? list)
     {
         // TODO: check if this had any active events and only then clear
         // TODO: it would be slightly more efficient to only delete no longer required events
         eventIconsContainer.QueueFreeChildren(false);
+
+        if (list == null)
+            return;
 
         // Manual loop to avoid enumerator allocation
         var count = list.Count;

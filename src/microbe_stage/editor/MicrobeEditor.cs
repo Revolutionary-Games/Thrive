@@ -305,7 +305,7 @@ public partial class MicrobeEditor : EditorBase<EditorAction, MicrobeStage>, IEd
 
         reportTab.UpdateEvents(CurrentGame.GameWorld.EventsLog, CurrentGame.GameWorld.TotalPassedTime);
 
-        patchMapTab.UpdatePatchEvents();
+        patchMapTab.UpdatePatchEvents(CurrentGame.GameWorld.TotalPassedTime);
 
         if (TutorialState.Enabled)
         {

@@ -41,7 +41,7 @@ public class Patch
     ///   The current effects on the patch node (shown in the patch map)
     /// </summary>
     [JsonProperty]
-    private readonly List<WorldEffectTypes> activeWorldEffectVisuals = new();
+    private readonly Dictionary<double, List<WorldEffectTypes>> activeWorldEffectVisuals = new();
 
     [JsonProperty]
     private Deque<PatchSnapshot> history = new();
@@ -637,22 +637,18 @@ public class Patch
 
     public void AddPatchEventRecord(WorldEffectTypes worldEffect, double happenedAt)
     {
-        // TODO: switch this class to have more of the logic for keeping event history together
-        _ = happenedAt;
+        if (!activeWorldEffectVisuals.ContainsKey(happenedAt))
+            activeWorldEffectVisuals[happenedAt] = new();
 
-        activeWorldEffectVisuals.Add(worldEffect);
+        activeWorldEffectVisuals[happenedAt].Add(worldEffect);
     }
 
-    public void ClearPatchNodeEventVisuals()
+    public void ApplyPatchEventVisuals(PatchMapNode node, double generation)
     {
-        // TODO: see the TODO comment in AddPatchEventRecord
-        activeWorldEffectVisuals.Clear();
-    }
+        activeWorldEffectVisuals.TryGetValue(generation, out var eventVisualList);
 
-    public void ApplyPatchEventVisuals(PatchMapNode node)
-    {
         if (Visibility == MapElementVisibility.Shown)
-            node.ShowEventVisuals(activeWorldEffectVisuals);
+            node.ShowEventVisuals(eventVisualList);
     }
 
     public override string ToString()

@@ -421,12 +421,6 @@ public class GameWorld : ISaveLoadable
     /// </summary>
     public void OnTimePassed(double timePassed)
     {
-        // TODO: switch patches to keep an event history and remove this clear
-        foreach (var patch in Map.Patches)
-        {
-            patch.Value.ClearPatchNodeEventVisuals();
-        }
-
         TotalPassedTime = CalculateNextTimeStep(timePassed);
 
         TimedEffects.OnTimePassed(timePassed, TotalPassedTime);

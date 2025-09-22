@@ -269,16 +269,11 @@ public partial class PatchMapDrawer : Control
     ///   Update the patch event visuals on all created patch map nodes. Call if events change after initial graphics
     ///   init for this drawer.
     /// </summary>
-    /// <remarks>
-    ///   <para>
-    ///     TODO: the auto-evo exploring tool needs to call this to show things properly
-    ///   </para>
-    /// </remarks>
-    public void UpdatePatchEvents()
+    public void UpdatePatchEvents(double generation)
     {
         foreach (var (patch, node) in nodes)
         {
-            patch.ApplyPatchEventVisuals(node);
+            patch.ApplyPatchEventVisuals(node, generation);
         }
     }
 
@@ -1097,7 +1092,7 @@ public partial class PatchMapDrawer : Control
 
         node.Enabled = patchEnableStatusesToBeApplied?[patch] ?? true;
 
-        patch.ApplyPatchEventVisuals(node);
+        patch.ApplyPatchEventVisuals(node, patch.TimePeriod);
 
         patchNodeContainer.AddChild(node);
         nodes.Add(node.Patch, node);

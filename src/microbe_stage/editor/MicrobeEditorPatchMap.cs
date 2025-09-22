@@ -25,9 +25,9 @@ public partial class MicrobeEditorPatchMap : PatchMapEditorComponent<IEditorWith
         mapDrawer.MarkDirty();
     }
 
-    public void UpdatePatchEvents()
+    public void UpdatePatchEvents(double timePeriod)
     {
-        mapDrawer.UpdatePatchEvents();
+        mapDrawer.UpdatePatchEvents(timePeriod);
     }
 
     protected override void UpdateShownPatchDetails()
