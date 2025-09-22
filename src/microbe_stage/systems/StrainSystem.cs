@@ -9,6 +9,7 @@ using World = Arch.Core.World;
 /// </summary>
 [ReadsComponent(typeof(OrganelleContainer))]
 [RunsBefore(typeof(MicrobeMovementSystem))]
+[RuntimeCost(0.5f)]
 public partial class StrainSystem : BaseSystem<World, float>
 {
     public StrainSystem(World world) : base(world)

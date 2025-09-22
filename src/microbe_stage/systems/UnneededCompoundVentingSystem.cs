@@ -11,11 +11,17 @@ using World = Arch.Core.World;
 /// <summary>
 ///   Handles venting unneeded compounds or compounds that exceed storage capacity from microbes
 /// </summary>
+/// <remarks>
+///   <para>
+///     Marked as being on the main thread as that's a limitation of Arch ECS parallel processing.
+///   </para>
+/// </remarks>
 [ReadsComponent(typeof(UnneededCompoundVenter))]
 [ReadsComponent(typeof(CellProperties))]
 [ReadsComponent(typeof(WorldPosition))]
 [RunsAfter(typeof(ProcessSystem))]
-[RuntimeCost(9)]
+[RunsOnMainThread]
+[RuntimeCost(10)]
 public partial class UnneededCompoundVentingSystem : BaseSystem<World, float>
 {
     private readonly CompoundCloudSystem compoundCloudSystem;
@@ -29,9 +35,7 @@ public partial class UnneededCompoundVentingSystem : BaseSystem<World, float>
         ventableCompounds = SimulationParameters.Instance.GetCloudCompounds();
     }
 
-    // TODO: re-enable parallel entity processing
-    // [Query(Parallel = true)]
-    [Query]
+    [Query(Parallel = true)]
     [None<AttachedToEntity>]
     [MethodImpl(MethodImplOptions.AggressiveInlining)]
     private void Update([Data] in float delta, ref UnneededCompoundVenter venter, ref CompoundStorage storage,

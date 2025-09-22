@@ -17,6 +17,7 @@ using World = Arch.Core.World;
 [RunsAfter(typeof(PhysicsUpdateAndPositionSystem))]
 [RunsAfter(typeof(PhysicsBodyCreationSystem))]
 [RunsOnMainThread]
+[RuntimeCost(0.5f)]
 public partial class PhysicsSensorSystem : BaseSystem<World, float>
 {
     private readonly IWorldSimulationWithPhysics worldSimulationWithPhysics;

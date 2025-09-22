@@ -11,8 +11,14 @@ using Components;
 /// <summary>
 ///   Handles absorbing compounds from <see cref="CompoundCloudSystem"/> into <see cref="CompoundStorage"/>
 /// </summary>
+/// <remarks>
+///   <para>
+///     Marked as being on the main thread as that's a limitation of Arch ECS parallel processing.
+///   </para>
+/// </remarks>
 [ReadsComponent(typeof(WorldPosition))]
-[RuntimeCost(50)]
+[RunsOnMainThread]
+[RuntimeCost(38)]
 public partial class CompoundAbsorptionSystem : BaseSystem<World, float>
 {
     private readonly CompoundCloudSystem compoundCloudSystem;
@@ -22,9 +28,7 @@ public partial class CompoundAbsorptionSystem : BaseSystem<World, float>
         this.compoundCloudSystem = compoundCloudSystem;
     }
 
-    // TODO: re-enable parallel entity processing
-    // [Query(Parallel = true)]
-    [Query]
+    [Query(Parallel = true)]
     [MethodImpl(MethodImplOptions.AggressiveInlining)]
     private void Update([Data] in float delta, ref CompoundAbsorber absorber, ref CompoundStorage storage,
         ref WorldPosition position, in Entity entity)

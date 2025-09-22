@@ -9,6 +9,7 @@ using Components;
 ///   Handles applying the effects specified by <see cref="MicrobeTemporaryEffects"/>
 /// </summary>
 [RunsAfter(typeof(ToxinCollisionSystem))]
+[RuntimeCost(0.5f)]
 public partial class MicrobeTemporaryEffectsSystem : BaseSystem<World, float>
 {
     public MicrobeTemporaryEffectsSystem(World world) : base(world)

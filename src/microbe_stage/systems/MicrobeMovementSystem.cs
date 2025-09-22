@@ -17,6 +17,11 @@ using World = Arch.Core.World;
 ///     The only write this does to <see cref="MicrobeControl"/> is ensuring the movement direction is normalized.
 ///   </para>
 /// </remarks>
+/// <remarks>
+///   <para>
+///     Marked as being on the main thread as that's a limitation of Arch ECS parallel processing.
+///   </para>
+/// </remarks>
 [ReadsComponent(typeof(CellProperties))]
 [ReadsComponent(typeof(WorldPosition))]
 [ReadsComponent(typeof(AttachedToEntity))]
@@ -25,7 +30,8 @@ using World = Arch.Core.World;
 [RunsAfter(typeof(PhysicsBodyCreationSystem))]
 [RunsAfter(typeof(PhysicsBodyDisablingSystem))]
 [RunsBefore(typeof(PhysicsBodyControlSystem))]
-[RuntimeCost(14)]
+[RunsOnMainThread]
+[RuntimeCost(18)]
 public partial class MicrobeMovementSystem : BaseSystem<World, float>
 {
     private readonly IWorldSimulation worldSimulation;
@@ -57,7 +63,7 @@ public partial class MicrobeMovementSystem : BaseSystem<World, float>
         return rotationSpeed;
     }
 
-    [Query]
+    [Query(Parallel = true)]
     [None<MicrobeColonyMember>]
     [MethodImpl(MethodImplOptions.AggressiveInlining)]
     private void Update([Data] in float delta, ref Physics physics, ref OrganelleContainer organelles,

@@ -341,10 +341,10 @@ public partial class MicrobeWorldSimulation : WorldSimulationWithPhysics
         // For single-threaded testing uncomment the next line:
         // availableThreads = 1;
 
-        // This now does a plain count compare as no system itself currently runs threaded (need to increase if that
-        // starts to be the case and there's a threat of thread starvation caused deadlock)
-        // // TODO: re-enable parallel entity processing
-        if (availableThreads > GenerateThreadedSystems.TargetThreadCount)
+        // This now does a plain count compare as no system itself currently runs threaded as there should be no
+        // threat of deadlock with Arch ECS.
+        // But there is still a +1 as the thread-using version doesn't really give significant performance improvement.
+        if (availableThreads > GenerateThreadedSystems.TargetThreadCount + 1)
         {
             OnProcessFixedWithThreads(delta);
         }

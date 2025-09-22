@@ -15,7 +15,7 @@ using Components;
 [WritesToComponent(typeof(MicrobeShaderParameters))]
 [ReadsComponent(typeof(WorldPosition))]
 [RunsAfter(typeof(PhysicsUpdateAndPositionSystem))]
-[RuntimeCost(9)]
+[RuntimeCost(4)]
 public partial class AllCompoundsVentingSystem : BaseSystem<World, float>
 {
     private readonly CompoundCloudSystem compoundCloudSystem;

@@ -22,7 +22,7 @@ using World = Arch.Core.World;
 [RunsBefore(typeof(SpatialAttachSystem))]
 [RunsBefore(typeof(EntityMaterialFetchSystem))]
 [RunsBefore(typeof(SpatialPositionSystem))]
-[RuntimeCost(6)]
+[RuntimeCost(5)]
 [RunsOnMainThread]
 public partial class MicrobeVisualsSystem : BaseSystem<World, float>
 {

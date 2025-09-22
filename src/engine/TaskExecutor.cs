@@ -62,7 +62,11 @@ public class TaskExecutor
         {
             ThreadPrefixName = "Arch",
 
-            // TODO: fix the thread counts to make sense
+            // These thread counts about make sense now.
+            // Because the calling thread is blocked whenever there are parallel operations running.
+            // TODO: Though it would be nice again to find a way to share threads or some other mechanism to ensure
+            // these don't run at once (though as these are for purely gameplay systems, they don't usually run at the
+            // same time as something else that is taking up all of the normal threads)
             ThreadCount = Math.Clamp(ParallelTasks - 2, 2, 4),
             MaxExpectedConcurrentJobs = 64,
 #if DEBUG

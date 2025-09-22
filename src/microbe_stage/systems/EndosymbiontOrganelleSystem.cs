@@ -17,6 +17,7 @@ using Godot;
 [RunsBefore(typeof(MicrobeReproductionSystem))]
 [RunsBefore(typeof(MicrobePhysicsCreationAndSizeSystem))]
 [RunsBefore(typeof(MicrobeVisualsSystem))]
+[RuntimeCost(0.25f)]
 public partial class EndosymbiontOrganelleSystem : BaseSystem<World, float>
 {
     // TODO: https://github.com/Revolutionary-Games/Thrive/issues/4989

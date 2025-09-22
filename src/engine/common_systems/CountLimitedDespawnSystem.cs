@@ -14,7 +14,7 @@ using World = Arch.Core.World;
 /// </summary>
 [ReadsComponent(typeof(CountLimited))]
 [ReadsComponent(typeof(WorldPosition))]
-[RuntimeCost(1.5f)]
+[RuntimeCost(1)]
 public partial class CountLimitedDespawnSystem : BaseSystem<World, float>
 {
     private readonly IEntityContainer entityContainer;

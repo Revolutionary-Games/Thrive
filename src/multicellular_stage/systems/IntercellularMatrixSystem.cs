@@ -15,7 +15,7 @@ using World = Arch.Core.World;
 [ReadsComponent(typeof(MicrobeColonyMember))]
 [ReadsComponent(typeof(SpatialInstance))]
 [ReadsComponent(typeof(CellProperties))]
-[RuntimeCost(1.0f)]
+[RuntimeCost(0.25f)]
 [RunsOnMainThread]
 public partial class IntercellularMatrixSystem : BaseSystem<World, float>
 {

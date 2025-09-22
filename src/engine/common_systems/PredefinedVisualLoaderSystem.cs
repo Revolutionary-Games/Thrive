@@ -27,7 +27,7 @@ using World = Arch.Core.World;
 ///     TODO: merge the loading logic of this to leverage <see cref="ResourceManager"/>
 ///   </para>
 /// </remarks>
-[RuntimeCost]
+[RuntimeCost(0.75f)]
 [RunsOnMainThread]
 public partial class PredefinedVisualLoaderSystem : BaseSystem<World, float>
 {

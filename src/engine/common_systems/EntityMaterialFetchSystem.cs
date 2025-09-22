@@ -17,7 +17,7 @@ using World = Arch.Core.World;
 [ReadsComponent(typeof(SpatialInstance))]
 [RunsAfter(typeof(PathBasedSceneLoader))]
 [RunsAfter(typeof(PredefinedVisualLoaderSystem))]
-[RuntimeCost(0.5f)]
+[RuntimeCost(0.75f)]
 [RunsOnMainThread]
 public partial class EntityMaterialFetchSystem : BaseSystem<World, float>
 {

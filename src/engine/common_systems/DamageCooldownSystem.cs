@@ -11,7 +11,7 @@ using Components;
 [RunsBefore(typeof(ToxinCollisionSystem))]
 [RunsBefore(typeof(PilusDamageSystem))]
 [RunsBefore(typeof(DamageOnTouchSystem))]
-[RuntimeCost(0.25f)]
+[RuntimeCost(0.5f)]
 public partial class DamageCooldownSystem : BaseSystem<World, float>
 {
     public DamageCooldownSystem(World world) : base(world)

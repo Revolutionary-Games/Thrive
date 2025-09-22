@@ -16,7 +16,7 @@ using World = Arch.Core.World;
 ///   </para>
 /// </remarks>
 [ReadsComponent(typeof(SpatialInstance))]
-[RuntimeCost(0.5f, false)]
+[RuntimeCost(0.25f)]
 [RunsOnMainThread]
 public partial class AnimationControlSystem : BaseSystem<World, float>
 {

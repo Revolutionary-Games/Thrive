@@ -11,7 +11,7 @@ using World = Arch.Core.World;
 /// </summary>
 [RunsAfter(typeof(PhysicsBodyCreationSystem))]
 [RunsAfter(typeof(PhysicsBodyDisablingSystem))]
-[RuntimeCost(0.5f)]
+[RuntimeCost(4)]
 public partial class PhysicsBodyControlSystem : BaseSystem<World, float>
 {
     private readonly PhysicalWorld physicalWorld;

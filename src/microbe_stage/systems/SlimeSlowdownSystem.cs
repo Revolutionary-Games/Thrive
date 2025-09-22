@@ -12,7 +12,7 @@ using Components;
 [ReadsComponent(typeof(WorldPosition))]
 [RunsAfter(typeof(OrganelleComponentFetchSystem))]
 [RunsBefore(typeof(MicrobeMovementSystem))]
-[RuntimeCost(7)]
+[RuntimeCost(6)]
 public partial class SlimeSlowdownSystem : BaseSystem<World, float>
 {
     private readonly IReadonlyCompoundClouds compoundCloudSystem;

@@ -14,7 +14,7 @@ using Components;
 [ReadsComponent(typeof(MicrobeColonyMember))]
 [RunsAfter(typeof(SpawnSystem))]
 [RunsAfter(typeof(MulticellularGrowthSystem))]
-[RuntimeCost(0.5f, false)]
+[RuntimeCost(0.25f)]
 public partial class ColonyStatsUpdateSystem : BaseSystem<World, float>
 {
     private readonly IWorldSimulation worldSimulation;

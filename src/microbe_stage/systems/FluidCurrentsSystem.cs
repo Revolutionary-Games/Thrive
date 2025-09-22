@@ -114,9 +114,7 @@ public partial class FluidCurrentsSystem : BaseSystem<World, float>
         inverseScale = biome.WaterCurrents.InverseScale;
     }
 
-    // TODO: re-enable parallel entity processing
-    // [Query(Parallel = true)]
-    [Query]
+    [Query(Parallel = true)]
     [MethodImpl(MethodImplOptions.AggressiveInlining)]
     private void Update([Data] in float delta, ref Physics physics, ref WorldPosition position,
         ref ManualPhysicsControl physicsControl, ref CurrentAffected currentAffected, in Entity entity)

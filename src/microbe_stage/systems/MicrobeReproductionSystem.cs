@@ -38,7 +38,7 @@ using World = Arch.Core.World;
 [ReadsComponent(typeof(MicrobeEnvironmentalEffects))]
 [RunsAfter(typeof(OsmoregulationAndHealingSystem))]
 [RunsAfter(typeof(ProcessSystem))]
-[RuntimeCost(14)]
+[RuntimeCost(10)]
 [RunsOnMainThread]
 public partial class MicrobeReproductionSystem : BaseSystem<World, float>
 {
@@ -289,9 +289,7 @@ public partial class MicrobeReproductionSystem : BaseSystem<World, float>
         requiredCompoundsForBaseReproduction[compound] = left;
     }
 
-    // TODO: re-enable parallel entity processing
-    // [Query(Parallel = true)]
-    [Query]
+    [Query(Parallel = true)]
     [All<CellProperties, MicrobeSpeciesMember, BioProcesses, WorldPosition, MicrobeEnvironmentalEffects, Engulfable,
         Engulfer>]
     [None<AttachedToEntity, MulticellularSpeciesMember>]

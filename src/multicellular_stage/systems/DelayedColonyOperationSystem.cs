@@ -23,7 +23,7 @@ using Godot;
 [ReadsComponent(typeof(MulticellularSpeciesMember))]
 [ReadsComponent(typeof(WorldPosition))]
 [RunsAfter(typeof(ColonyBindingSystem))]
-[RuntimeCost(0.5f, false)]
+[RuntimeCost(0.25f)]
 public partial class DelayedColonyOperationSystem : BaseSystem<World, float>
 {
     private readonly IWorldSimulation worldSimulation;

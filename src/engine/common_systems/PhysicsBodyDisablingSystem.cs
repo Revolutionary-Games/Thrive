@@ -17,7 +17,7 @@ using World = Arch.Core.World;
 [WritesToComponent(typeof(ManualPhysicsControl))]
 [ReadsComponent(typeof(WorldPosition))]
 [RunsAfter(typeof(PhysicsBodyCreationSystem))]
-[RuntimeCost(0.5f)]
+[RuntimeCost(1)]
 [RunsOnMainThread]
 public partial class PhysicsBodyDisablingSystem : BaseSystem<World, float>
 {

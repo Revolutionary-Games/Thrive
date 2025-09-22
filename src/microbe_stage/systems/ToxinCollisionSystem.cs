@@ -22,7 +22,7 @@ using World = Arch.Core.World;
 [ReadsComponent(typeof(OrganelleContainer))]
 [ReadsComponent(typeof(MicrobeEventCallbacks))]
 [RunsAfter(typeof(PhysicsCollisionManagementSystem))]
-[RuntimeCost(0.5f, false)]
+[RuntimeCost(0.25f)]
 public partial class ToxinCollisionSystem : BaseSystem<World, float>
 {
     /// <summary>

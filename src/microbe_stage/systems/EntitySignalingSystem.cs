@@ -15,7 +15,7 @@ using World = Arch.Core.World;
 /// </summary>
 [ReadsComponent(typeof(WorldPosition))]
 [RunsBefore(typeof(MicrobeAISystem))]
-[RuntimeCost(0.5f)]
+[RuntimeCost(1)]
 [JsonObject(MemberSerialization.OptIn)]
 public partial class EntitySignalingSystem : BaseSystem<World, float>
 {

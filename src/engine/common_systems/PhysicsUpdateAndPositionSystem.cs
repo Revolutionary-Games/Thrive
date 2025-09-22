@@ -10,7 +10,7 @@ using World = Arch.Core.World;
 ///   Reads the physics state into position and also applies a few physics component state things
 /// </summary>
 [RunsBefore(typeof(SpatialPositionSystem))]
-[RuntimeCost(10)]
+[RuntimeCost(8)]
 public partial class PhysicsUpdateAndPositionSystem : BaseSystem<World, float>
 {
     private readonly PhysicalWorld physicalWorld;

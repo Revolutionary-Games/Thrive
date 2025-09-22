@@ -20,6 +20,7 @@ using World = Arch.Core.World;
 [RunsAfter(typeof(PhysicsUpdateAndPositionSystem))]
 [RunsAfter(typeof(AttachedEntityPositionSystem))]
 [RunsOnMainThread]
+[RuntimeCost(0.5f)]
 public partial class CameraFollowSystem : BaseSystem<World, float>
 {
     private bool cameraUsed;

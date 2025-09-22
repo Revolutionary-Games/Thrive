@@ -14,7 +14,7 @@ using World = Arch.Core.World;
 /// </summary>
 [ReadsComponent(typeof(WorldPosition))]
 [WritesToComponent(typeof(SoundEffectPlayer))]
-[RuntimeCost(25)]
+[RuntimeCost(30)]
 [RunsOnMainThread]
 public partial class SoundEffectSystem : BaseSystem<World, float>
 {

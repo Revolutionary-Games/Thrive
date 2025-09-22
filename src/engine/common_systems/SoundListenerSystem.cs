@@ -12,7 +12,7 @@ using World = Arch.Core.World;
 [ReadsComponent(typeof(WorldPosition))]
 [RunsAfter(typeof(PhysicsUpdateAndPositionSystem))]
 [RunsAfter(typeof(AttachedEntityPositionSystem))]
-[RuntimeCost(2)]
+[RuntimeCost(0.5f)]
 [RunsOnMainThread]
 public partial class SoundListenerSystem : BaseSystem<World, float>
 {

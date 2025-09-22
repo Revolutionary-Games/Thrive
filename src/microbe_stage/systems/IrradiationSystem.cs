@@ -20,6 +20,7 @@ using Components;
 [ReadsComponent(typeof(CompoundStorage))]
 [RunsBefore(typeof(ProcessSystem))]
 [RunsBefore(typeof(CompoundAbsorptionSystem))]
+[RuntimeCost(0.5f)]
 public partial class IrradiationSystem : BaseSystem<World, float>
 {
     public IrradiationSystem(World world) : base(world)

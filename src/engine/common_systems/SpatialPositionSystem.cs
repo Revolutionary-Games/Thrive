@@ -10,7 +10,7 @@ using World = Arch.Core.World;
 ///   Updates visual positions of entities for rendering by Godot
 /// </summary>
 [ReadsComponent(typeof(WorldPosition))]
-[RuntimeCost(36)]
+[RuntimeCost(6)]
 [RunsOnMainThread]
 public partial class SpatialPositionSystem : BaseSystem<World, float>
 {

@@ -20,6 +20,11 @@ using World = Arch.Core.World;
 ///     Without the attached component here stops this from running for microbes in colonies
 ///   </para>
 /// </remarks>
+/// <remarks>
+///   <para>
+///     Marked as being on the main thread as that's a limitation of Arch ECS parallel processing.
+///   </para>
+/// </remarks>
 [ReadsComponent(typeof(CompoundStorage))]
 [ReadsComponent(typeof(OrganelleContainer))]
 [ReadsComponent(typeof(CellProperties))]
@@ -33,7 +38,8 @@ using World = Arch.Core.World;
 [RunsBefore(typeof(MicrobeEmissionSystem))]
 [RunsConditionally("RunAI")]
 [RunsWithCustomCode("{0}.ReportPotentialPlayerPosition(reportedPlayerPosition);\n{0}.Update(delta);")]
-[RuntimeCost(9)]
+[RunsOnMainThread]
+[RuntimeCost(23)]
 public partial class MicrobeAISystem : BaseSystem<World, float>, ISpeciesMemberLocationData
 {
     private readonly IReadonlyCompoundClouds clouds;
@@ -165,9 +171,7 @@ public partial class MicrobeAISystem : BaseSystem<World, float>, ISpeciesMemberL
         return ourStat <= random.Next(0.0f, dc);
     }
 
-    // TODO: re-enable parallel entity processing
-    // [Query(Parallel = true)]
-    [Query]
+    [Query(Parallel = true)]
     [All<SpeciesMember, MicrobeControl, CompoundAbsorber, CompoundStorage, OrganelleContainer, CommandSignaler,
         CellProperties, Engulfer, WorldPosition>]
     [None<AttachedToEntity>]

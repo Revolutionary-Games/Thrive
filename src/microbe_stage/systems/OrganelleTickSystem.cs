@@ -34,7 +34,7 @@ using World = Arch.Core.World;
 [RunsAfter(typeof(OrganelleComponentFetchSystem))]
 [RunsBefore(typeof(PhysicsSensorSystem))]
 [RunsBefore(typeof(EntityLightSystem))]
-[RuntimeCost(14)]
+[RuntimeCost(10)]
 [RunsOnMainThread]
 public partial class OrganelleTickSystem : BaseSystem<World, float>
 {
@@ -59,9 +59,7 @@ public partial class OrganelleTickSystem : BaseSystem<World, float>
             GD.PrintErr("Queued sync runs for organelle updates is not empty after processing");
     }
 
-    // TODO: re-enable parallel entity processing
-    // [Query(Parallel = true)]
-    [Query]
+    [Query(Parallel = true)]
     [All<CompoundStorage, WorldPosition>]
     [MethodImpl(MethodImplOptions.AggressiveInlining)]
     private void Update([Data] in float delta, ref OrganelleContainer organelleContainer, in Entity entity)

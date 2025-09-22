@@ -48,7 +48,7 @@ using World = Arch.Core.World;
 [RunsAfter(typeof(PilusDamageSystem))]
 [RunsAfter(typeof(MicrobeVisualsSystem))]
 [RunsBefore(typeof(SpatialAttachSystem))]
-[RuntimeCost(11)]
+[RuntimeCost(10)]
 [RunsOnMainThread]
 public partial class EngulfingSystem : BaseSystem<World, float>
 {

@@ -26,10 +26,16 @@ using World = Arch.Core.World;
 ///     This is marked as writing to the processes due to <see cref="BioProcesses.ProcessStatistics"/>
 ///   </para>
 /// </remarks>
+/// <remarks>
+///   <para>
+///     Marked as being on the main thread as that's a limitation of Arch ECS parallel processing.
+///   </para>
+/// </remarks>
 [RunsAfter(typeof(CompoundAbsorptionSystem))]
 [RunsBefore(typeof(OsmoregulationAndHealingSystem))]
 [RunsBefore(typeof(MicrobeMovementSystem))]
-[RuntimeCost(55)]
+[RunsOnMainThread]
+[RuntimeCost(26)]
 public partial class ProcessSystem : BaseSystem<World, float>
 {
 #if CHECK_USED_STATISTICS
@@ -923,9 +929,7 @@ public partial class ProcessSystem : BaseSystem<World, float>
         return environmentalCompoundProperties.Ambient;
     }
 
-    // TODO: re-enable parallel entity processing
-    // [Query(Parallel = true)]
-    [Query]
+    [Query(Parallel = true)]
     [MethodImpl(MethodImplOptions.AggressiveInlining)]
     private void Update([Data] in float delta, in Entity entity, ref CompoundStorage storage,
         ref BioProcesses processes)
