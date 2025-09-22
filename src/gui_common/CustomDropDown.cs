@@ -178,7 +178,8 @@ public partial class CustomDropDown : MenuButton
                         Popup.AddIconCheckItem(item.Icon, item.Text, id);
                         var index = Popup.GetItemIndex(id);
                         Popup.SetItemIconMaxWidth(index, iconMaxWidth);
-                        Popup.SetItemIconModulate(index, item.Color);
+                        // Don't apply color modulation to checkable items as it affects the radio button icon
+                        // The species color should only affect the custom icon, not the selection radio button
                         Popup.SetItemChecked(index, item.Checked);
                     }
                     else
