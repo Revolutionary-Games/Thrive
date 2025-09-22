@@ -175,7 +175,11 @@ public partial class CustomDropDown : MenuButton
                 {
                     if (item.Checkable)
                     {
-                        Popup.AddIconCheckItem(item.Icon, item.Text, id);
+                        // Use a pre-tinted icon so the species color is applied only to the custom icon
+                        // while the radio/checkbox indicator (selection control) keeps theme colors
+                        var tintedIcon = item.PreTintedIcon ??= CreateTintedIcon(item.Icon, item.Color);
+
+                        Popup.AddIconCheckItem(tintedIcon, item.Text, id);
                         var index = Popup.GetItemIndex(id);
                         Popup.SetItemIconMaxWidth(index, iconMaxWidth);
                         // Don't apply color modulation to checkable items as it affects the radio button icon
@@ -208,6 +212,55 @@ public partial class CustomDropDown : MenuButton
         }
 
         ReadjustRectSizes();
+    }
+
+    /// <summary>
+    ///   Creates a tinted copy of the provided icon by multiplying its pixels with the given color.
+    ///   This bakes the color into the texture so later UI modulation won't affect selection indicators.
+    /// </summary>
+    /// <param name="icon">Base icon texture to tint</param>
+    /// <param name="tint">Tint color to apply</param>
+    /// <returns>New texture containing the tinted icon</returns>
+    private static Texture2D CreateTintedIcon(Texture2D icon, Color tint)
+    {
+        // Get a mutable image copy of the original texture
+        var image = icon.GetImage();
+
+        if (image == null)
+            return icon;
+
+        // Ensure a format with alpha channel to retain transparency
+        if (image.GetFormat() != Image.Format.Rgba8 && image.GetFormat() != Image.Format.Rgb8)
+        {
+            image.Convert(Image.Format.Rgba8);
+        }
+
+        image.Lock();
+
+        var width = image.GetWidth();
+        var height = image.GetHeight();
+
+        for (var y = 0; y < height; y++)
+        {
+            for (var x = 0; x < width; x++)
+            {
+                var px = image.GetPixel(x, y);
+
+                // Multiply RGB by tint, alpha by tint alpha to allow dimming if needed
+                var tinted = new Color(
+                    px.R * tint.R,
+                    px.G * tint.G,
+                    px.B * tint.B,
+                    px.A * tint.A);
+
+                image.SetPixel(x, y, tinted);
+            }
+        }
+
+        image.Unlock();
+
+        // Create a texture from the modified image
+        return ImageTexture.CreateFromImage(image);
     }
 
     protected override void Dispose(bool disposing)
