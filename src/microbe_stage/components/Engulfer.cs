@@ -163,7 +163,7 @@ public static class EngulferHelpers
         var query = new EngulfableCollector(ref position, organelles, engulfer, searchRadius * searchRadius,
             usefulCompoundSource, engulferSpeciesID, skipLikelyTooFastTargets);
         world.EntitySystem.InlineEntityQuery<EngulfableCollector, Engulfable, CompoundStorage, WorldPosition>(
-            new QueryDescription(), ref query);
+            new QueryDescription().WithAll<Engulfable, CompoundStorage, WorldPosition>(), ref query);
 
         // TODO: switch this to a non-nullable return to avoid boxing
         if (!query.TryGetResult(out var nearestPoint))
