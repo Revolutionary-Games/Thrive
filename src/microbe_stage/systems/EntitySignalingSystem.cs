@@ -77,7 +77,7 @@ public partial class EntitySignalingSystem : BaseSystem<World, float>
             entitiesOnChannels.Remove(entry.Key);
 
             // It should be fine to just delete up to one category per system run as we shouldn't have that many
-            // categories being abandoned multiple times per second. Though if we end up with many signalers
+            // categories being abandoned multiple times per second. Though if we end up with many signallers
             // turning off and on often, then we might not see the actually abandoned channels quickly.
             // This is done to avoid having to take a clone of the dictionary keys
             break;
@@ -101,7 +101,7 @@ public partial class EntitySignalingSystem : BaseSystem<World, float>
             signaling.QueuedSignalingCommand = null;
         }
 
-        // Build a mapping of signalers by their channel and position to speed up the update logic below
+        // Build a mapping of signallers by their channel and position to speed up the update logic below
         if (signaling.Command == MicrobeSignalCommand.None)
             return;
 
@@ -123,7 +123,7 @@ public partial class EntitySignalingSystem : BaseSystem<World, float>
     private void UpdateSignalReceive([Data] in float delta, ref CommandSignaler signaling, ref WorldPosition position,
         in Entity entity)
     {
-        // Find the closest signaler on the channel this entity is on
+        // Find the closest signaller on the channel this entity is on
         bool foundSignal = false;
 
         if (entitiesOnChannels.TryGetValue(signaling.SignalingChannel, out var signalers))
@@ -133,7 +133,7 @@ public partial class EntitySignalingSystem : BaseSystem<World, float>
             float minDistanceFound = float.MaxValue;
 
             // In the old microbe AI implementation this actually used the last smelled position to calculate a new
-            // min distance, which could result in different kind of "pinning" behaviour of previous commands. That
+            // min distance, which could result in different kind of "pinning" behaviour for previous commands. That
             // is now gone as this does a fresh look each time.
 
             foreach (var signaler in signalers)
