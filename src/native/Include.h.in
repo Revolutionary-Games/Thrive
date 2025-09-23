@@ -148,6 +148,16 @@
 // This is needed to allow including this in the C interop header
 #ifdef __cplusplus
 
+#ifdef _MSC_VER
+#define BEGIN_GODOT_INCLUDES
+#define END_GODOT_INCLUDES
+#else
+#define BEGIN_GODOT_INCLUDES _Pragma("GCC diagnostic push")       \
+    _Pragma("GCC diagnostic ignored \"-Wunused-parameter\"")      \
+    _Pragma("GCC diagnostic ignored \"-Wpedantic\"")
+#define END_GODOT_INCLUDES _Pragma("GCC diagnostic pop")
+#endif
+
 namespace Thrive
 {
 constexpr float PI = 3.14159265f;
