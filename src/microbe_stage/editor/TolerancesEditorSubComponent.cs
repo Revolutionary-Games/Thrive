@@ -768,7 +768,7 @@ public partial class TolerancesEditorSubComponent : EditorComponentBase<ICellEdi
             pressureMaxLabel.LabelSettings = originalPressureFont;
             pressureRangeDisplay.SetColorsAndRedraw(optimalDisplayBadColor);
         }
-        else if (patchPressure > CurrentTolerances.PressureMaximum)
+        else if (patchPressure > Math.Min(CurrentTolerances.PressureMaximum, Constants.TOLERANCE_PRESSURE_MAX))
         {
             pressureMaxLabel.LabelSettings = badValueFontTiny;
             pressureMinLabel.LabelSettings = originalPressureFont;

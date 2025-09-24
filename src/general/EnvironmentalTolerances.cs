@@ -55,7 +55,7 @@ public class EnvironmentalTolerances
     }
 
     [JsonProperty]
-    public float PressureMaximum => MathF.Min(PressureMinimum + PressureTolerance, Constants.TOLERANCE_PRESSURE_MAX);
+    public float PressureMaximum => PressureMinimum + PressureTolerance;
 
     public static bool operator ==(EnvironmentalTolerances? left, EnvironmentalTolerances? right)
     {
@@ -85,7 +85,7 @@ public class EnvironmentalTolerances
 
     public bool SanityCheckNoThrow()
     {
-        if (PressureMinimum > PressureMaximum)
+        if (PressureMinimum > Math.Min(PressureMaximum, Constants.TOLERANCE_PRESSURE_MAX))
             return false;
 
         if (PressureMaximum < 0)

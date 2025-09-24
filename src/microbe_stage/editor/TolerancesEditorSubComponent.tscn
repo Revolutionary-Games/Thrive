@@ -1,16 +1,17 @@
-[gd_scene load_steps=21 format=3 uid="uid://5kamud4sukbd"]
+[gd_scene load_steps=22 format=3 uid="uid://5kamud4sukbd"]
 
 [ext_resource type="Theme" uid="uid://b4cx0o110g4b6" path="res://src/gui_common/thrive_theme.tres" id="1_16mn0"]
 [ext_resource type="Script" uid="uid://dxl2pjshg67oa" path="res://src/microbe_stage/editor/TolerancesEditorSubComponent.cs" id="2_kqh2k"]
-[ext_resource type="LabelSettings" uid="uid://bl7dig4lq5ko" path="res://src/gui_common/fonts/Body-Regular-Small-Red.tres" id="3_q5r3n"]
+[ext_resource type="LabelSettings" uid="uid://58teykjxnrdt" path="res://src/gui_common/fonts/Body-Regular-AlmostTiny-Red.tres" id="3_n6u17"]
 [ext_resource type="Texture2D" uid="uid://bsg6xcrlspkdt" path="res://assets/textures/gui/bevel/hSeparatorLeftSide.png" id="3_ri2xt"]
-[ext_resource type="LabelSettings" uid="uid://cw40l6f6fo8ml" path="res://src/gui_common/fonts/Body-Regular-Small-Green.tres" id="4_15qmx"]
-[ext_resource type="LabelSettings" uid="uid://brgbuduvjby6a" path="res://src/gui_common/fonts/Title-SemiBold-Smaller.tres" id="5_6mela"]
+[ext_resource type="LabelSettings" uid="uid://bkbj6e1c0x8ac" path="res://src/gui_common/fonts/Body-Regular-AlmostTiny-Green.tres" id="4_evsrs"]
 [ext_resource type="LabelSettings" uid="uid://brnlfjye3ufic" path="res://src/gui_common/fonts/Body-Regular-Tiny-Red.tres" id="5_evsrs"]
 [ext_resource type="LabelSettings" uid="uid://cp2wdrb71h2qo" path="res://src/gui_common/fonts/Body-Regular-Tiny-Green.tres" id="6_jstjb"]
 [ext_resource type="Texture2D" uid="uid://ut73drrfbmk0" path="res://assets/textures/gui/bevel/Temperature.svg" id="6_ki8q3"]
+[ext_resource type="LabelSettings" uid="uid://csw4xjfy4y0dk" path="res://src/gui_common/fonts/Title-SemiBold-Small.tres" id="8_3r1ho"]
 [ext_resource type="LabelSettings" uid="uid://dvqx73nhtr0y2" path="res://src/gui_common/fonts/Body-Regular-Small.tres" id="8_ktuy7"]
 [ext_resource type="PackedScene" uid="uid://duf1lf5lp4v5p" path="res://src/microbe_stage/editor/ToleranceOptimalDisplay.tscn" id="9_xmghy"]
+[ext_resource type="LabelSettings" uid="uid://uxdd8vb4xedn" path="res://src/gui_common/fonts/Body-Regular-AlmostTiny.tres" id="10_jstjb"]
 [ext_resource type="Texture2D" uid="uid://d1tuehjbire76" path="res://assets/textures/gui/bevel/Pressure.svg" id="10_xmghy"]
 [ext_resource type="LabelSettings" uid="uid://c07qrffjvqfw" path="res://src/gui_common/fonts/Body-Regular-Tiny.tres" id="11_5y3m2"]
 [ext_resource type="Texture2D" uid="uid://djaidl3g28ibi" path="res://assets/textures/gui/bevel/Oxygen.svg" id="12_3r1ho"]
@@ -37,38 +38,38 @@ grow_horizontal = 2
 grow_vertical = 2
 theme = ExtResource("1_16mn0")
 script = ExtResource("2_kqh2k")
-temperatureToolTipContainer = NodePath("Temperature/ModifierAndTotal/HBoxContainer/Total")
-pressureToolTipContainer = NodePath("Pressure/ModifierAndTotal/HBoxContainer/Total")
-oxygenResistanceToolTipContainer = NodePath("Oxygen/ModifierAndTotal/HBoxContainer/Total")
-uvResistanceToolTipContainer = NodePath("UV/ModifierAndTotal/HBoxContainer/Total")
+temperatureToolTipContainer = NodePath("Temperature/HBoxContainer2/Total")
+pressureToolTipContainer = NodePath("Pressure/HBoxContainer2/Total")
+oxygenResistanceToolTipContainer = NodePath("Oxygen/HBoxContainer2/Total")
+uvResistanceToolTipContainer = NodePath("UV/HBoxContainer2/Total")
 temperatureSlider = NodePath("Temperature/RangeDisplayContainer/VBoxContainer/TemperatureSlider")
 temperatureToleranceRangeSlider = NodePath("Temperature/HBoxContainer3/TemperatureRange")
 pressureSlider = NodePath("Pressure/RangeDisplayContainer/VBoxContainer/PressureSlider")
 pressureToleranceRangeSlider = NodePath("Pressure/HBoxContainer4/PressureRange")
 oxygenResistanceSlider = NodePath("Oxygen/RangeDisplayContainer/VBoxContainer/OxygenResistanceSlider")
 uvResistanceSlider = NodePath("UV/RangeDisplayContainer/VBoxContainer/UVResistanceSlider")
-temperatureMinLabel = NodePath("Temperature/ModifierAndTotal/HBoxContainer/Total/TemperatureMinimum")
-temperatureMaxLabel = NodePath("Temperature/ModifierAndTotal/HBoxContainer/Total/TemperatureMaximum")
+temperatureMinLabel = NodePath("Temperature/HBoxContainer2/Total/TemperatureMinimum")
+temperatureMaxLabel = NodePath("Temperature/HBoxContainer2/Total/TemperatureMaximum")
 temperatureToleranceLabel = NodePath("Temperature/HBoxContainer3/MarginContainer/TemperatureRangeValue")
-temperatureModifierLabel = NodePath("Temperature/ModifierAndTotal/HBoxContainer/Modifier/ModifierValue")
+temperatureModifierLabel = NodePath("Temperature/HBoxContainer2/Modifier/ModifierValue")
 temperatureRangeDisplay = NodePath("Temperature/RangeDisplayContainer/VBoxContainer/TemperatureRangeDisplay")
-pressureMinLabel = NodePath("Pressure/ModifierAndTotal/HBoxContainer/Total/PressureMinimum")
-pressureMaxLabel = NodePath("Pressure/ModifierAndTotal/HBoxContainer/Total/PressureMaximum")
+pressureMinLabel = NodePath("Pressure/HBoxContainer2/Total/PressureMinimum")
+pressureMaxLabel = NodePath("Pressure/HBoxContainer2/Total/PressureMaximum")
 pressureToleranceLabel = NodePath("Pressure/HBoxContainer4/MarginContainer/PressureRangeValue")
-pressureModifierLabel = NodePath("Pressure/ModifierAndTotal/HBoxContainer/Modifier/ModifierValue")
+pressureModifierLabel = NodePath("Pressure/HBoxContainer2/Modifier/ModifierValue")
 pressureRangeDisplay = NodePath("Pressure/RangeDisplayContainer/VBoxContainer/PressureRangeDisplay")
-oxygenResistanceModifierLabel = NodePath("Oxygen/ModifierAndTotal/HBoxContainer/Modifier/ModifierValue")
-oxygenResistanceTotalLabel = NodePath("Oxygen/ModifierAndTotal/HBoxContainer/Total/TotalValue")
+oxygenResistanceModifierLabel = NodePath("Oxygen/HBoxContainer2/Modifier/ModifierValue")
+oxygenResistanceTotalLabel = NodePath("Oxygen/HBoxContainer2/Total/TotalValue")
 oxygenResistanceRangeDisplay = NodePath("Oxygen/RangeDisplayContainer/VBoxContainer/OxygenRangeDisplay")
-uvResistanceModifierLabel = NodePath("UV/ModifierAndTotal/HBoxContainer/Modifier/ModiferValue")
-uvResistanceTotalLabel = NodePath("UV/ModifierAndTotal/HBoxContainer/Total/TotalValue")
+uvResistanceModifierLabel = NodePath("UV/HBoxContainer2/Modifier/ModiferValue")
+uvResistanceTotalLabel = NodePath("UV/HBoxContainer2/Total/TotalValue")
 uvResistanceRangeDisplay = NodePath("UV/RangeDisplayContainer/VBoxContainer/UVRangeDisplay")
-badValueFont = ExtResource("3_q5r3n")
-perfectValueFont = ExtResource("4_15qmx")
+badValueFont = ExtResource("3_n6u17")
+perfectValueFont = ExtResource("4_evsrs")
 badValueFontTiny = ExtResource("5_evsrs")
 perfectValueFontTiny = ExtResource("6_jstjb")
-modifierBadFont = ExtResource("3_q5r3n")
-modifierGoodFont = ExtResource("4_15qmx")
+modifierBadFont = ExtResource("3_n6u17")
+modifierGoodFont = ExtResource("4_evsrs")
 optimalDisplayBadColor = Color(1, 0, 0, 1)
 optimalDisplayGoodColor = Color(0, 1, 0, 1)
 
@@ -80,7 +81,7 @@ mouse_filter = 0
 layout_mode = 2
 
 [node name="TextureRect" type="TextureRect" parent="Temperature/HBoxContainer"]
-custom_minimum_size = Vector2(20, 20)
+custom_minimum_size = Vector2(18, 18)
 layout_mode = 2
 size_flags_horizontal = 4
 size_flags_vertical = 4
@@ -91,7 +92,7 @@ stretch_mode = 4
 [node name="TemperatureTitle" type="Label" parent="Temperature/HBoxContainer"]
 layout_mode = 2
 text = "TEMPERATURE"
-label_settings = ExtResource("5_6mela")
+label_settings = ExtResource("8_3r1ho")
 
 [node name="HSeparator" type="HSeparator" parent="Temperature/HBoxContainer"]
 layout_mode = 2
@@ -99,52 +100,48 @@ size_flags_horizontal = 3
 mouse_filter = 1
 theme_override_styles/separator = SubResource("StyleBoxTexture_ftstq")
 
-[node name="ModifierAndTotal" type="PanelContainer" parent="Temperature"]
-layout_mode = 2
-theme = ExtResource("1_16mn0")
-
-[node name="HBoxContainer" type="HBoxContainer" parent="Temperature/ModifierAndTotal"]
+[node name="HBoxContainer2" type="HBoxContainer" parent="Temperature"]
 layout_mode = 2
 alignment = 1
 
-[node name="Modifier" type="HBoxContainer" parent="Temperature/ModifierAndTotal/HBoxContainer"]
+[node name="Modifier" type="HBoxContainer" parent="Temperature/HBoxContainer2"]
 layout_mode = 2
 size_flags_horizontal = 3
 alignment = 1
 
-[node name="ModifierLabel" type="Label" parent="Temperature/ModifierAndTotal/HBoxContainer/Modifier"]
+[node name="ModifierLabel" type="Label" parent="Temperature/HBoxContainer2/Modifier"]
 layout_mode = 2
 text = "MODIFIER"
-label_settings = ExtResource("8_ktuy7")
+label_settings = ExtResource("10_jstjb")
 
-[node name="ModifierValue" type="Label" parent="Temperature/ModifierAndTotal/HBoxContainer/Modifier"]
+[node name="ModifierValue" type="Label" parent="Temperature/HBoxContainer2/Modifier"]
 layout_mode = 2
 text = "+10%"
-label_settings = ExtResource("8_ktuy7")
+label_settings = ExtResource("10_jstjb")
 
-[node name="Total" type="HBoxContainer" parent="Temperature/ModifierAndTotal/HBoxContainer"]
+[node name="Total" type="HBoxContainer" parent="Temperature/HBoxContainer2"]
 layout_mode = 2
 size_flags_horizontal = 3
 alignment = 1
 
-[node name="TemperatureMinimum" type="Label" parent="Temperature/ModifierAndTotal/HBoxContainer/Total"]
+[node name="TemperatureMinimum" type="Label" parent="Temperature/HBoxContainer2/Total"]
 layout_mode = 2
 text = "0"
-label_settings = ExtResource("8_ktuy7")
+label_settings = ExtResource("10_jstjb")
 
-[node name="RangeIndicator" type="Label" parent="Temperature/ModifierAndTotal/HBoxContainer/Total"]
+[node name="RangeIndicator" type="Label" parent="Temperature/HBoxContainer2/Total"]
 editor_description = "PLACEHOLDER"
 layout_mode = 2
 text = "—"
-label_settings = ExtResource("8_ktuy7")
+label_settings = ExtResource("10_jstjb")
 
-[node name="TemperatureMaximum" type="Label" parent="Temperature/ModifierAndTotal/HBoxContainer/Total"]
+[node name="TemperatureMaximum" type="Label" parent="Temperature/HBoxContainer2/Total"]
 layout_mode = 2
 text = "100"
-label_settings = ExtResource("8_ktuy7")
+label_settings = ExtResource("10_jstjb")
 
 [node name="Spacer2" type="Control" parent="Temperature"]
-custom_minimum_size = Vector2(0, 15)
+custom_minimum_size = Vector2(0, 6)
 layout_mode = 2
 
 [node name="RangeDisplayContainer" type="HBoxContainer" parent="Temperature"]
@@ -178,17 +175,13 @@ value = 50.0
 custom_minimum_size = Vector2(8, 0)
 layout_mode = 2
 
-[node name="Spacer3" type="Control" parent="Temperature"]
-custom_minimum_size = Vector2(0, 3)
-layout_mode = 2
-
 [node name="HBoxContainer3" type="HBoxContainer" parent="Temperature"]
 layout_mode = 2
 
 [node name="Label" type="Label" parent="Temperature/HBoxContainer3"]
 layout_mode = 2
 text = "TOLERANCE_RANGE_LABEL"
-label_settings = ExtResource("8_ktuy7")
+label_settings = ExtResource("10_jstjb")
 
 [node name="Spacer" type="Control" parent="Temperature/HBoxContainer3"]
 layout_mode = 2
@@ -221,7 +214,7 @@ label_settings = ExtResource("8_ktuy7")
 horizontal_alignment = 2
 
 [node name="Spacer" type="Control" parent="Temperature"]
-custom_minimum_size = Vector2(0, 4)
+custom_minimum_size = Vector2(0, 2)
 layout_mode = 2
 
 [node name="Pressure" type="VBoxContainer" parent="."]
@@ -232,7 +225,7 @@ mouse_filter = 0
 layout_mode = 2
 
 [node name="TextureRect" type="TextureRect" parent="Pressure/HBoxContainer"]
-custom_minimum_size = Vector2(20, 20)
+custom_minimum_size = Vector2(18, 18)
 layout_mode = 2
 size_flags_horizontal = 4
 size_flags_vertical = 4
@@ -243,7 +236,7 @@ stretch_mode = 4
 [node name="Title" type="Label" parent="Pressure/HBoxContainer"]
 layout_mode = 2
 text = "PRESSURE"
-label_settings = ExtResource("5_6mela")
+label_settings = ExtResource("8_3r1ho")
 
 [node name="HSeparator" type="HSeparator" parent="Pressure/HBoxContainer"]
 layout_mode = 2
@@ -251,52 +244,48 @@ size_flags_horizontal = 3
 mouse_filter = 1
 theme_override_styles/separator = SubResource("StyleBoxTexture_ftstq")
 
-[node name="ModifierAndTotal" type="PanelContainer" parent="Pressure"]
-layout_mode = 2
-theme = ExtResource("1_16mn0")
-
-[node name="HBoxContainer" type="HBoxContainer" parent="Pressure/ModifierAndTotal"]
+[node name="HBoxContainer2" type="HBoxContainer" parent="Pressure"]
 layout_mode = 2
 alignment = 1
 
-[node name="Modifier" type="HBoxContainer" parent="Pressure/ModifierAndTotal/HBoxContainer"]
+[node name="Modifier" type="HBoxContainer" parent="Pressure/HBoxContainer2"]
 layout_mode = 2
 size_flags_horizontal = 3
 alignment = 1
 
-[node name="ModifierLabel" type="Label" parent="Pressure/ModifierAndTotal/HBoxContainer/Modifier"]
+[node name="ModifierLabel" type="Label" parent="Pressure/HBoxContainer2/Modifier"]
 layout_mode = 2
 text = "MODIFIER"
-label_settings = ExtResource("8_ktuy7")
+label_settings = ExtResource("10_jstjb")
 
-[node name="ModifierValue" type="Label" parent="Pressure/ModifierAndTotal/HBoxContainer/Modifier"]
+[node name="ModifierValue" type="Label" parent="Pressure/HBoxContainer2/Modifier"]
 layout_mode = 2
 text = "+10%"
-label_settings = ExtResource("8_ktuy7")
+label_settings = ExtResource("10_jstjb")
 
-[node name="Total" type="HBoxContainer" parent="Pressure/ModifierAndTotal/HBoxContainer"]
+[node name="Total" type="HBoxContainer" parent="Pressure/HBoxContainer2"]
 layout_mode = 2
 size_flags_horizontal = 3
 alignment = 1
 
-[node name="PressureMinimum" type="Label" parent="Pressure/ModifierAndTotal/HBoxContainer/Total"]
+[node name="PressureMinimum" type="Label" parent="Pressure/HBoxContainer2/Total"]
 layout_mode = 2
 text = "0"
 label_settings = ExtResource("11_5y3m2")
 
-[node name="RangeIndicator" type="Label" parent="Pressure/ModifierAndTotal/HBoxContainer/Total"]
+[node name="RangeIndicator" type="Label" parent="Pressure/HBoxContainer2/Total"]
 editor_description = "PLACEHOLDER"
 layout_mode = 2
 text = "—"
 label_settings = ExtResource("11_5y3m2")
 
-[node name="PressureMaximum" type="Label" parent="Pressure/ModifierAndTotal/HBoxContainer/Total"]
+[node name="PressureMaximum" type="Label" parent="Pressure/HBoxContainer2/Total"]
 layout_mode = 2
 text = "100"
 label_settings = ExtResource("11_5y3m2")
 
 [node name="Spacer2" type="Control" parent="Pressure"]
-custom_minimum_size = Vector2(0, 15)
+custom_minimum_size = Vector2(0, 6)
 layout_mode = 2
 
 [node name="RangeDisplayContainer" type="HBoxContainer" parent="Pressure"]
@@ -329,10 +318,6 @@ value = 4e+07
 custom_minimum_size = Vector2(8, 0)
 layout_mode = 2
 
-[node name="Spacer3" type="Control" parent="Pressure"]
-custom_minimum_size = Vector2(0, 3)
-layout_mode = 2
-
 [node name="HBoxContainer4" type="HBoxContainer" parent="Pressure"]
 layout_mode = 2
 size_flags_vertical = 3
@@ -340,7 +325,7 @@ size_flags_vertical = 3
 [node name="Label" type="Label" parent="Pressure/HBoxContainer4"]
 layout_mode = 2
 text = "TOLERANCE_RANGE_LABEL"
-label_settings = ExtResource("8_ktuy7")
+label_settings = ExtResource("10_jstjb")
 
 [node name="Spacer" type="Control" parent="Pressure/HBoxContainer4"]
 layout_mode = 2
@@ -375,7 +360,7 @@ label_settings = ExtResource("8_ktuy7")
 horizontal_alignment = 2
 
 [node name="Spacer" type="Control" parent="Pressure"]
-custom_minimum_size = Vector2(0, 4)
+custom_minimum_size = Vector2(0, 2)
 layout_mode = 2
 
 [node name="Oxygen" type="VBoxContainer" parent="."]
@@ -386,7 +371,7 @@ mouse_filter = 0
 layout_mode = 2
 
 [node name="TextureRect" type="TextureRect" parent="Oxygen/HBoxContainer"]
-custom_minimum_size = Vector2(20, 20)
+custom_minimum_size = Vector2(18, 18)
 layout_mode = 2
 size_flags_horizontal = 4
 size_flags_vertical = 4
@@ -397,7 +382,7 @@ stretch_mode = 4
 [node name="Title" type="Label" parent="Oxygen/HBoxContainer"]
 layout_mode = 2
 text = "OXYGEN_RESISTANCE"
-label_settings = ExtResource("5_6mela")
+label_settings = ExtResource("8_3r1ho")
 
 [node name="HSeparator" type="HSeparator" parent="Oxygen/HBoxContainer"]
 layout_mode = 2
@@ -405,46 +390,42 @@ size_flags_horizontal = 3
 mouse_filter = 1
 theme_override_styles/separator = SubResource("StyleBoxTexture_ftstq")
 
-[node name="ModifierAndTotal" type="PanelContainer" parent="Oxygen"]
-layout_mode = 2
-theme = ExtResource("1_16mn0")
-
-[node name="HBoxContainer" type="HBoxContainer" parent="Oxygen/ModifierAndTotal"]
+[node name="HBoxContainer2" type="HBoxContainer" parent="Oxygen"]
 layout_mode = 2
 alignment = 1
 
-[node name="Modifier" type="HBoxContainer" parent="Oxygen/ModifierAndTotal/HBoxContainer"]
+[node name="Modifier" type="HBoxContainer" parent="Oxygen/HBoxContainer2"]
 layout_mode = 2
 size_flags_horizontal = 3
 alignment = 1
 
-[node name="ModifierLabel" type="Label" parent="Oxygen/ModifierAndTotal/HBoxContainer/Modifier"]
+[node name="ModifierLabel" type="Label" parent="Oxygen/HBoxContainer2/Modifier"]
 layout_mode = 2
 text = "OFFSET"
-label_settings = ExtResource("8_ktuy7")
+label_settings = ExtResource("10_jstjb")
 
-[node name="ModifierValue" type="Label" parent="Oxygen/ModifierAndTotal/HBoxContainer/Modifier"]
+[node name="ModifierValue" type="Label" parent="Oxygen/HBoxContainer2/Modifier"]
 layout_mode = 2
 text = "+10%"
-label_settings = ExtResource("8_ktuy7")
+label_settings = ExtResource("10_jstjb")
 
-[node name="Total" type="HBoxContainer" parent="Oxygen/ModifierAndTotal/HBoxContainer"]
+[node name="Total" type="HBoxContainer" parent="Oxygen/HBoxContainer2"]
 layout_mode = 2
 size_flags_horizontal = 3
 alignment = 1
 
-[node name="TotalLabel" type="Label" parent="Oxygen/ModifierAndTotal/HBoxContainer/Total"]
+[node name="TotalLabel" type="Label" parent="Oxygen/HBoxContainer2/Total"]
 layout_mode = 2
 text = "TOTAL"
-label_settings = ExtResource("8_ktuy7")
+label_settings = ExtResource("10_jstjb")
 
-[node name="TotalValue" type="Label" parent="Oxygen/ModifierAndTotal/HBoxContainer/Total"]
+[node name="TotalValue" type="Label" parent="Oxygen/HBoxContainer2/Total"]
 layout_mode = 2
 text = "+10%"
-label_settings = ExtResource("8_ktuy7")
+label_settings = ExtResource("10_jstjb")
 
 [node name="Spacer2" type="Control" parent="Oxygen"]
-custom_minimum_size = Vector2(0, 15)
+custom_minimum_size = Vector2(0, 6)
 layout_mode = 2
 
 [node name="RangeDisplayContainer" type="HBoxContainer" parent="Oxygen"]
@@ -480,7 +461,7 @@ custom_minimum_size = Vector2(8, 0)
 layout_mode = 2
 
 [node name="Spacer" type="Control" parent="Oxygen"]
-custom_minimum_size = Vector2(0, 4)
+custom_minimum_size = Vector2(0, 2)
 layout_mode = 2
 
 [node name="UV" type="VBoxContainer" parent="."]
@@ -491,7 +472,7 @@ mouse_filter = 0
 layout_mode = 2
 
 [node name="TextureRect" type="TextureRect" parent="UV/HBoxContainer"]
-custom_minimum_size = Vector2(20, 20)
+custom_minimum_size = Vector2(18, 18)
 layout_mode = 2
 size_flags_horizontal = 4
 size_flags_vertical = 4
@@ -502,7 +483,7 @@ stretch_mode = 4
 [node name="Title" type="Label" parent="UV/HBoxContainer"]
 layout_mode = 2
 text = "UV_PROTECTION"
-label_settings = ExtResource("5_6mela")
+label_settings = ExtResource("8_3r1ho")
 
 [node name="HSeparator" type="HSeparator" parent="UV/HBoxContainer"]
 layout_mode = 2
@@ -510,46 +491,42 @@ size_flags_horizontal = 3
 mouse_filter = 1
 theme_override_styles/separator = SubResource("StyleBoxTexture_ftstq")
 
-[node name="ModifierAndTotal" type="PanelContainer" parent="UV"]
-layout_mode = 2
-theme = ExtResource("1_16mn0")
-
-[node name="HBoxContainer" type="HBoxContainer" parent="UV/ModifierAndTotal"]
+[node name="HBoxContainer2" type="HBoxContainer" parent="UV"]
 layout_mode = 2
 alignment = 1
 
-[node name="Modifier" type="HBoxContainer" parent="UV/ModifierAndTotal/HBoxContainer"]
+[node name="Modifier" type="HBoxContainer" parent="UV/HBoxContainer2"]
 layout_mode = 2
 size_flags_horizontal = 3
 alignment = 1
 
-[node name="ModiferLabel" type="Label" parent="UV/ModifierAndTotal/HBoxContainer/Modifier"]
+[node name="ModiferLabel" type="Label" parent="UV/HBoxContainer2/Modifier"]
 layout_mode = 2
 text = "OFFSET"
-label_settings = ExtResource("8_ktuy7")
+label_settings = ExtResource("10_jstjb")
 
-[node name="ModiferValue" type="Label" parent="UV/ModifierAndTotal/HBoxContainer/Modifier"]
+[node name="ModiferValue" type="Label" parent="UV/HBoxContainer2/Modifier"]
 layout_mode = 2
 text = "+10%"
-label_settings = ExtResource("8_ktuy7")
+label_settings = ExtResource("10_jstjb")
 
-[node name="Total" type="HBoxContainer" parent="UV/ModifierAndTotal/HBoxContainer"]
+[node name="Total" type="HBoxContainer" parent="UV/HBoxContainer2"]
 layout_mode = 2
 size_flags_horizontal = 3
 alignment = 1
 
-[node name="TotalLabel" type="Label" parent="UV/ModifierAndTotal/HBoxContainer/Total"]
+[node name="TotalLabel" type="Label" parent="UV/HBoxContainer2/Total"]
 layout_mode = 2
 text = "TOTAL"
-label_settings = ExtResource("8_ktuy7")
+label_settings = ExtResource("10_jstjb")
 
-[node name="TotalValue" type="Label" parent="UV/ModifierAndTotal/HBoxContainer/Total"]
+[node name="TotalValue" type="Label" parent="UV/HBoxContainer2/Total"]
 layout_mode = 2
 text = "+10%"
-label_settings = ExtResource("8_ktuy7")
+label_settings = ExtResource("10_jstjb")
 
 [node name="Spacer2" type="Control" parent="UV"]
-custom_minimum_size = Vector2(0, 15)
+custom_minimum_size = Vector2(0, 6)
 layout_mode = 2
 
 [node name="RangeDisplayContainer" type="HBoxContainer" parent="UV"]
@@ -581,11 +558,7 @@ max_value = 1.0
 step = 0.05
 
 [node name="Spacer2" type="Control" parent="UV/RangeDisplayContainer"]
-custom_minimum_size = Vector2(8, 0)
-layout_mode = 2
-
-[node name="Spacer" type="Control" parent="UV"]
-custom_minimum_size = Vector2(0, 4)
+custom_minimum_size = Vector2(10, 0)
 layout_mode = 2
 
 [connection signal="value_changed" from="Temperature/RangeDisplayContainer/VBoxContainer/TemperatureSlider" to="." method="OnTemperatureSliderChanged"]
