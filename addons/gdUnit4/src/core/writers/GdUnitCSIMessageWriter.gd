@@ -20,6 +20,7 @@ enum {
 const CSI_BOLD = "[1m"
 const CSI_ITALIC = "[3m"
 const CSI_UNDERLINE = "[4m"
+const CSI_RESET = "[0m"
 
 # Control Sequence Introducer
 var _debug_show_color_codes := false
@@ -27,6 +28,9 @@ var _color_mode := COLOR_TABLE
 
 ## Current cursor position in the line
 var _current_pos := 0
+
+# Pre-compiled regex patterns for tag matching
+var _tag_regex: RegEx
 
 
 ## Constructs CSI style codes based on flags.[br]
@@ -44,12 +48,110 @@ func _apply_style_flags(flags: int) -> String:
 	return _style
 
 
+## Converts a color string (named or hex) to a Color object
+func _parse_color(color_str: String) -> Color:
+	return Color.from_string(color_str.strip_edges().to_lower(), Color.WHITE)
+
+
+## Generates CSI color code for foreground color
+func _color_to_csi_fg(c: Color) -> String:
+	return "[38;2;%d;%d;%dm" % [c.r8 * c.a, c.g8 * c.a, c.b8 * c.a]
+
+
+## Generates CSI color code for background color
+func _color_to_csi_bg(c: Color) -> String:
+	return "[48;2;%d;%d;%dm" % [c.r8 * c.a, c.g8 * c.a, c.b8 * c.a]
+
+
+func _init_regex_patterns() -> void:
+	if not _tag_regex:
+		_tag_regex = RegEx.new()
+		# Match all richtext tags: [tag], [tag=value], [/tag]
+		_tag_regex.compile(r"\[/?(?:color|bgcolor|b|i|u)(?:=[^\]]+)?\]")
+
+
+func _extract_color_from_tag(tag: String, tag_assign: String) -> Color:
+	var tag_assign_length := tag_assign.length()
+	var color_value := tag.substr(tag_assign_length, tag.length() - tag_assign_length - 1)
+	return _parse_color(color_value)
+
+
+## Optimized richtext to CSI conversion using regex and lookup processing
+func _bbcode_tags_to_csi_codes(message: String) -> String:
+	_init_regex_patterns()
+
+	var result := ""
+	var last_pos := 0
+	var color_stack: Array[Color] = []
+	var bgcolor_stack: Array[Color] = []
+
+	# Find all richtext tags
+	var matches := _tag_regex.search_all(message)
+
+	for match in matches:
+		var start_pos := match.get_start()
+		var end_pos := match.get_end()
+		var tag := match.get_string(0)
+
+		# Add text before this tag
+		result += message.substr(last_pos, start_pos - last_pos)
+
+		# Process the tag
+		if tag.begins_with("[color="):
+			var fg_color := _extract_color_from_tag(tag, "[color=")
+			color_stack.push_back(fg_color)
+			result += _color_to_csi_fg(fg_color)
+		elif tag.begins_with("[bgcolor="):
+			var bg_color := _extract_color_from_tag(tag, "[bgcolor=")
+			bgcolor_stack.push_back(bg_color)
+			result += _color_to_csi_bg(bg_color)
+		elif tag == "[b]":
+			result += CSI_BOLD
+		elif tag == "[i]":
+			result += CSI_ITALIC
+		elif tag == "[u]":
+			result += CSI_UNDERLINE
+		elif tag == "[/color]":
+			result += CSI_RESET
+			if color_stack.size() > 0:
+				color_stack.pop_back()
+			# Restore remaining styles and colors
+			if color_stack.size() > 0:
+				result += _color_to_csi_fg(color_stack[-1])
+			if bgcolor_stack.size() > 0:
+				result += _color_to_csi_bg(bgcolor_stack[-1])
+		elif tag == "[/bgcolor]":
+			result += CSI_RESET
+			if bgcolor_stack.size() > 0:
+				bgcolor_stack.pop_back()
+			# Restore remaining styles and colors
+			if color_stack.size() > 0:
+				result += _color_to_csi_fg(color_stack[-1])
+			if bgcolor_stack.size() > 0:
+				result += _color_to_csi_bg(bgcolor_stack[-1])
+		elif tag in ["[/b]", "[/i]", "[/u]"]:
+			result += CSI_RESET
+			# Restore remaining colors after style reset
+			if color_stack.size() > 0:
+				result += _color_to_csi_fg(color_stack[-1])
+			if bgcolor_stack.size() > 0:
+				result += _color_to_csi_bg(bgcolor_stack[-1])
+
+		last_pos = end_pos
+
+	# Add remaining text after last tag
+	result += message.substr(last_pos)
+
+	return result
+
+
 ## Implementation of basic message output with formatting.
 func _print_message(_message: String, _color: Color, _indent: int, _flags: int) -> void:
+	var text := _bbcode_tags_to_csi_codes(_message)
 	var indent_text := "".lpad(_indent * 2)
 	var _style := _apply_style_flags(_flags)
-	printraw("%s[38;2;%d;%d;%dm%s%s[0m" % [indent_text, _color.r8, _color.g8, _color.b8, _style, _message] )
-	_current_pos += _indent * 2 + _message.length()
+	printraw("%s[38;2;%d;%d;%dm%s%s[0m" % [indent_text, _color.r8, _color.g8, _color.b8, _style, text] )
+	_current_pos += _indent * 2 + text.length()
 
 
 ## Implementation of line-ending message output with formatting.

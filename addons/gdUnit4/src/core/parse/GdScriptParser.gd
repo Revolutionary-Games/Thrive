@@ -74,6 +74,7 @@ var _regex_clazz_name := GdUnitTools.to_regex("(class) ([a-zA-Z0-9_]+) (extends[
 var _regex_strip_comments := GdUnitTools.to_regex("^([^#\"']|'[^']*'|\"[^\"]*\")*\\K#.*")
 var _scanned_inner_classes := PackedStringArray()
 var _script_constants := {}
+var _is_awaiting := GdUnitTools.to_regex("\\bawait\\s+(?![^\"]*\"[^\"]*$)(?!.*#.*await)")
 
 
 static func to_unix_format(input :String) -> String:
@@ -650,14 +651,17 @@ func _enrich_function_descriptor(script: GDScript, fds: Array[GdFunctionDescript
 func is_func_coroutine(rows :PackedStringArray, index :int) -> bool:
 	var is_coroutine := false
 	for rowIndex in range(index+1, rows.size()):
-		var input := rows[rowIndex]
-		is_coroutine = input.contains("await")
-		if is_coroutine:
-			return true
+		var input := rows[rowIndex].strip_edges()
+		# skip empty lines
+		if input.is_empty():
+			continue
 		var token := next_token(input, 0)
 		# scan until next function
 		if token == TOKEN_FUNCTION_STATIC_DECLARATION or token == TOKEN_FUNCTION_DECLARATION:
 			break
+
+		if _is_awaiting.search(input):
+			return true
 	return is_coroutine
 
 

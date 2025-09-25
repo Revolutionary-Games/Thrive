@@ -3,7 +3,8 @@
 using System;
 using System.Collections.Generic;
 using System.Runtime.CompilerServices;
-using DefaultEcs;
+using Arch.Core;
+using Arch.Core.Extensions;
 using Godot;
 
 /// <summary>

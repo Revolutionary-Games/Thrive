@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
-using DefaultEcs.Command;
+using Arch.Buffer;
+using Arch.Core;
 using Godot;
 
 /// <summary>
@@ -66,17 +67,17 @@ public abstract class SpawnQueue : IDisposable
         }
     }
 
-    public abstract (EntityCommandRecorder CommandRecorder, float SpawnedWeight) SpawnNext(out EntityRecord entity);
+    public abstract (CommandBuffer CommandRecorder, float SpawnedWeight) SpawnNext(out Entity entity);
 
     /// <summary>
     ///   Checks that this spawn queue is still good to spawn from
     /// </summary>
     /// <param name="playerPosition">
-    ///   The player position to check against. If spawning is too close to the player it should be skipped.
+    ///   The player position to check against. If spawning is too close to the player, it should be skipped.
     /// </param>
     /// <remarks>
     ///   <para>
-    ///     Derived classes should set <see cref="Ended"/> to true if they override this and determine a spawn
+    ///     Derived classes should set <see cref="Ended"/> to true if they override this and determine spawn
     ///     shouldn't happen
     ///   </para>
     /// </remarks>
@@ -106,19 +107,36 @@ public class SingleItemSpawnQueue : SpawnQueue
 {
     private readonly Factory factory;
 
-    public SingleItemSpawnQueue(Factory factory, Spawner fromSpawnType) : base(fromSpawnType)
+    private readonly CheckTooCloseToPlayer cancelCheck;
+
+    private Vector3 spawnLocation;
+
+    public SingleItemSpawnQueue(Factory factory, Vector3 spawnLocation, CheckTooCloseToPlayer cancelCheck,
+        Spawner fromSpawnType) : base(fromSpawnType)
     {
         this.factory = factory;
+        this.spawnLocation = spawnLocation;
+        this.cancelCheck = cancelCheck;
     }
 
-    public delegate (EntityCommandRecorder CommandRecorder, float SpawnedWeight) Factory(out EntityRecord entity);
+    public delegate (CommandBuffer CommandRecorder, float SpawnedWeight) Factory(out Entity entity);
+
+    public delegate bool CheckTooCloseToPlayer(Vector3 spawnLocation, Vector3 playerPosition);
 
     public override bool Ended { get; protected set; }
 
-    public override (EntityCommandRecorder CommandRecorder, float SpawnedWeight) SpawnNext(out EntityRecord entity)
+    public override (CommandBuffer CommandRecorder, float SpawnedWeight) SpawnNext(out Entity entity)
     {
         Ended = true;
         return factory(out entity);
+    }
+
+    public override void CheckIsSpawningStillPossible(Vector3 playerPosition)
+    {
+        if (cancelCheck(spawnLocation, playerPosition))
+        {
+            Ended = true;
+        }
     }
 }
 
@@ -140,14 +158,14 @@ public class CallbackSpawnQueue<T> : SpawnQueue
         this.cancelCheck = cancelCheck;
     }
 
-    public delegate (EntityCommandRecorder Recorder, float SpawnedWeight, bool LastItem) Factory(T state,
-        out EntityRecord entity);
+    public delegate (CommandBuffer Recorder, float SpawnedWeight, bool LastItem) Factory(T state,
+        out Entity entity);
 
     public delegate bool CheckTooCloseToPlayer(T state, Vector3 playerPosition);
 
     public override bool Ended { get; protected set; }
 
-    public override (EntityCommandRecorder CommandRecorder, float SpawnedWeight) SpawnNext(out EntityRecord entity)
+    public override (CommandBuffer CommandRecorder, float SpawnedWeight) SpawnNext(out Entity entity)
     {
         var (recorder, weight, ended) = factory(stateData, out entity);
 
@@ -204,7 +222,7 @@ public class CombinedSpawnQueue : SpawnQueue
         }
     }
 
-    public override (EntityCommandRecorder CommandRecorder, float SpawnedWeight) SpawnNext(out EntityRecord entity)
+    public override (CommandBuffer CommandRecorder, float SpawnedWeight) SpawnNext(out Entity entity)
     {
         if (Ended)
             throw new InvalidOperationException("Spawn queue has ended");
@@ -225,7 +243,7 @@ public class CombinedSpawnQueue : SpawnQueue
 
         spawnQueues[usedSpawnIndex].CheckIsSpawningStillPossible(playerPosition);
 
-        // Automatically end the queue if CheckIsSpawningStillPossible set it to ended
+        // Automatically end the queue if CheckIsSpawningStillPossible set it to ended status
         if (spawnQueues[usedSpawnIndex].Ended)
             ++usedSpawnIndex;
     }

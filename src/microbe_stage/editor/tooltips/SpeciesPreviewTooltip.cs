@@ -13,6 +13,8 @@ public partial class SpeciesPreviewTooltip : PanelContainer, ICustomToolTip
     private CellHexesPreview? hexesPreview;
 #pragma warning restore CA2213
 
+    private ulong speciesVisualHash;
+
     private Species? previewSpecies;
 
     public Species? PreviewSpecies
@@ -20,10 +22,13 @@ public partial class SpeciesPreviewTooltip : PanelContainer, ICustomToolTip
         get => previewSpecies;
         set
         {
-            if (previewSpecies == value)
+            var newHash = value?.GetVisualHashCode() ?? 0UL;
+
+            if (newHash == speciesVisualHash)
                 return;
 
             previewSpecies = value;
+            speciesVisualHash = newHash;
             UpdateSpeciesPreview();
         }
     }
@@ -65,14 +70,6 @@ public partial class SpeciesPreviewTooltip : PanelContainer, ICustomToolTip
         DisplayName = PreviewSpecies.FormattedName;
         Description = PreviewSpecies.FormattedName;
 
-        if (PreviewSpecies is MicrobeSpecies microbeSpecies)
-        {
-            hexesPreview.PreviewSpecies = microbeSpecies;
-        }
-        else
-        {
-            GD.PrintErr("Unknown species type to preview: ", PreviewSpecies, " (", PreviewSpecies.GetType().Name, ")");
-            hexesPreview.PreviewSpecies = null;
-        }
+        hexesPreview.PreviewSpecies = PreviewSpecies;
     }
 }

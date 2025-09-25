@@ -42,7 +42,7 @@ func name() -> String:
 
 
 func default() -> Variant:
-	return GodotVersionFixures.convert(_default_value, _type)
+	return type_convert(_default_value, _type)
 
 
 func set_value(value: String) -> void:
@@ -57,7 +57,7 @@ func set_value(value: String) -> void:
 
 	if _type == TYPE_NIL or _type == GdObjects.TYPE_VARIANT:
 		_type = _extract_value_type(value)
-		if _type == GdObjects.TYPE_VARIANT:
+		if _type == GdObjects.TYPE_VARIANT and _default_value == null:
 			_default_value = value
 	if _default_value == null:
 		match _type:
@@ -131,7 +131,7 @@ func _to_string() -> String:
 		s += ": " + GdObjects.type_as_string(_type)
 	if _type_hint != TYPE_NIL:
 		s += "[%s]" % GdObjects.type_as_string(_type_hint)
-	if typeof(_default_value) != TYPE_STRING:
+	if has_default():
 		s += "=" + value_as_string()
 	return s
 

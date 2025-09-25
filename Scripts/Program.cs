@@ -94,8 +94,6 @@ public class Program
     {
         CommandLineHelpers.HandleDefaultOptions(options);
 
-        ColourConsole.WriteInfoLine("Running 'dotnet test'");
-
         var godot = ExecutableFinder.Which("godot");
 
         if (string.IsNullOrEmpty(godot))
@@ -104,12 +102,45 @@ public class Program
             return 2;
         }
 
-        TestRunningHelpers.GenerateRunSettings(godot, AssemblyInfoReader.ReadRunTimeFromCsproj("Thrive.csproj"), false);
+        // Delete the old gdUnit runner if one is present as it will make tests fail
+        if (Directory.Exists("gdunit4_testadapter"))
+        {
+            ColourConsole.WriteWarningLine("Detected old gdUnit runner folder, deleting it");
+            Directory.Delete("gdunit4_testadapter", true);
+        }
+
+        CodeChecks.IgnoreGdUnitReportsFolder();
 
         var tokenSource = ConsoleHelpers.CreateSimpleConsoleCancellationSource();
 
-        int result = -1;
+        int result;
+
+        ColourConsole.WriteInfoLine("Running 'dotnet test'");
+
+        // Run plain C# tests first
+        {
+            var startInfo = new ProcessStartInfo("dotnet");
+            startInfo.ArgumentList.Add("test");
+            startInfo.ArgumentList.Add("--verbosity");
+            startInfo.ArgumentList.Add(TestRunningHelpers.TEST_RUN_VERBOSITY);
+            startInfo.ArgumentList.Add("test/code_tests/ThriveTest.csproj");
+
+            result = ProcessRunHelpers.RunProcessAsync(startInfo, tokenSource.Token, false)
+                .Result.ExitCode;
+
+            if (result != 0)
+            {
+                ColourConsole.WriteErrorLine("Pure C# code tests failed");
+                return result;
+            }
+        }
+
+        ColourConsole.WriteInfoLine("Running tests with gdUnit");
+
         const int maxTries = 2;
+
+        // Then gdUnit tests
+        TestRunningHelpers.GenerateRunSettings(godot, false);
 
         // gdUnit can randomly fail once to detect available tests, that's why the tests run multiple times on fail
         // (which is not ideal, but it should hopefully be relatively rare for the tests to actually fail for real)
@@ -120,7 +151,8 @@ public class Program
             startInfo.ArgumentList.Add("--settings");
             startInfo.ArgumentList.Add(TestRunningHelpers.RUN_SETTINGS_FILE);
             startInfo.ArgumentList.Add("--verbosity");
-            startInfo.ArgumentList.Add("normal");
+            startInfo.ArgumentList.Add(TestRunningHelpers.TEST_RUN_VERBOSITY);
+            startInfo.ArgumentList.Add("Thrive.csproj");
 
             result = ProcessRunHelpers.RunProcessAsync(startInfo, tokenSource.Token, false)
                 .Result.ExitCode;
@@ -135,8 +167,8 @@ public class Program
         }
 
         // Edit the gdUnit wrapper to suppress warnings in it
-        if (File.Exists("gdunit4_testadapter/GdUnit4TestRunnerScene.cs"))
-            TestRunningHelpers.EnsureStartsWithPragmaSuppression("gdunit4_testadapter/GdUnit4TestRunnerScene.cs");
+        if (File.Exists("gdunit4_testadapter_v5/GdUnit4TestRunnerScene.cs"))
+            TestRunningHelpers.EnsureStartsWithPragmaSuppression("gdunit4_testadapter_v5/GdUnit4TestRunnerScene.cs");
 
         return result;
     }
@@ -155,6 +187,8 @@ public class Program
         CommandLineHelpers.HandleDefaultOptions(options);
 
         ColourConsole.WriteDebugLine("Running packaging tool");
+
+        CodeChecks.IgnoreGdUnitReportsFolder();
 
         var tokenSource = ConsoleHelpers.CreateSimpleConsoleCancellationSource();
 

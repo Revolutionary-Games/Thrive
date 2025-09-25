@@ -48,6 +48,10 @@ public class CompoundDiffusionEffect : IWorldEffect
         {
             foreach (var compound in patch.Value.Biome.Compounds)
             {
+                // Skip processing compounds there isn't any of
+                if (compound.Value is { Ambient: <= 0, Density: <= 0 })
+                    continue;
+
                 var definition = simulationParameters.GetCompoundDefinition(compound.Key);
 
                 // If not diffusible, then skip
@@ -106,7 +110,7 @@ public class CompoundDiffusionEffect : IWorldEffect
 
                     AddMove(compound.Key, adjacent, changes, movedAmounts);
 
-                    // Negate for the source patch to keep the same total amount of compounds but just to move it
+                    // Negate for the source patch to keep the same total number of compounds but just to move it
                     if (changes.Ambient != 0)
                         changes.Ambient = -changes.Ambient;
 
@@ -136,7 +140,7 @@ public class CompoundDiffusionEffect : IWorldEffect
                         "incorrect result");
                 }
 
-                // Setup cloud size copying in case it ends up needed
+                // Set up cloud size copying in case it ends up needed
                 if (entry.Value.Amount > 0)
                     cloudSizes[entry.Key] = entry.Value.Amount;
             }

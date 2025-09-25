@@ -1,17 +1,16 @@
 ﻿namespace Systems;
 
+using System.Runtime.CompilerServices;
+using Arch.Core;
+using Arch.Core.Extensions;
+using Arch.System;
 using Components;
-using DefaultEcs;
-using DefaultEcs.System;
-using DefaultEcs.Threading;
 using Godot;
-using World = DefaultEcs.World;
+using World = Arch.Core.World;
 
 /// <summary>
 ///   Handles <see cref="DamageOnTouch"/> component setup and dealing the damage
 /// </summary>
-[With(typeof(DamageOnTouch))]
-[With(typeof(CollisionManagement))]
 [WritesToComponent(typeof(Physics))]
 [WritesToComponent(typeof(MicrobeShaderParameters))]
 [ReadsComponent(typeof(Health))]
@@ -20,24 +19,22 @@ using World = DefaultEcs.World;
 [ReadsComponent(typeof(MicrobeColony))]
 [RunsAfter(typeof(PhysicsCollisionManagementSystem))]
 [RuntimeCost(0.5f)]
-public sealed class DamageOnTouchSystem : AEntitySetSystem<float>
+public partial class DamageOnTouchSystem : BaseSystem<World, float>
 {
     private readonly WorldSimulation worldSimulation;
 
-    public DamageOnTouchSystem(WorldSimulation worldSimulation, World world, IParallelRunner runner) : base(world,
-        runner)
+    public DamageOnTouchSystem(WorldSimulation worldSimulation, World world) : base(world)
     {
         this.worldSimulation = worldSimulation;
     }
 
-    protected override void Update(float delta, in Entity entity)
+    [Query]
+    [MethodImpl(MethodImplOptions.AggressiveInlining)]
+    private void Update([Data] in float delta, ref DamageOnTouch damageTouch,
+        ref CollisionManagement collisionManagement, in Entity entity)
     {
-        ref var damageTouch = ref entity.Get<DamageOnTouch>();
-
         if (damageTouch.StartedDestroy)
             return;
-
-        ref var collisionManagement = ref entity.Get<CollisionManagement>();
 
         // Entity setup
         if (!damageTouch.RegisteredWithCollisions)
@@ -56,7 +53,7 @@ public sealed class DamageOnTouchSystem : AEntitySetSystem<float>
             ref var collision = ref collisions![i];
 
             // Skip collisions with things that can't be damaged
-            if (!collision.SecondEntity.Has<Health>())
+            if (collision.SecondEntity == Entity.Null || !collision.SecondEntity.Has<Health>())
                 continue;
 
             // If this doesn't cause any damage, we can consider this hit here immediately a success

@@ -1,4 +1,4 @@
-[gd_scene load_steps=33 format=3 uid="uid://b6at78uxbps1"]
+[gd_scene load_steps=34 format=3 uid="uid://b6at78uxbps1"]
 
 [ext_resource type="Script" uid="uid://caq4oh00j7yin" path="res://src/macroscopic_stage/editor/MetaballBodyEditorComponent.cs" id="1"]
 [ext_resource type="Texture2D" uid="uid://bo70v3237p6iv" path="res://assets/textures/gui/bevel/hSeparatorCentered.png" id="2"]
@@ -88,6 +88,22 @@ corner_radius_bottom_left = 5
 [sub_resource type="StyleBoxEmpty" id="7"]
 
 [sub_resource type="StyleBoxEmpty" id="8"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_foare"]
+content_margin_left = 5.0
+content_margin_top = 5.0
+content_margin_right = 5.0
+content_margin_bottom = 5.0
+draw_center = false
+border_width_left = 2
+border_width_top = 2
+border_width_right = 2
+border_width_bottom = 2
+border_color = Color(0.666667, 1, 0.941176, 1)
+corner_radius_top_left = 3
+corner_radius_top_right = 3
+corner_radius_bottom_right = 3
+corner_radius_bottom_left = 3
 
 [sub_resource type="StyleBoxFlat" id="12"]
 content_margin_left = 5.0
@@ -655,6 +671,7 @@ layout_mode = 2
 mouse_force_pass_scroll_events = false
 theme_override_colors/font_disabled_color = Color(0.498039, 0.529412, 0.541176, 1)
 theme_override_colors/font_pressed_color = Color(1, 1, 1, 1)
+theme_override_styles/focus = SubResource("StyleBoxFlat_foare")
 theme_override_styles/hover = SubResource("12")
 theme_override_styles/pressed = SubResource("13")
 theme_override_styles/normal = SubResource("14")

@@ -17,5 +17,7 @@ public enum OrganelleFeatureTag
 
     RadiationBlock,
 
+    HydrogenSulfideProtection,
+
     HeatCollecting,
 }

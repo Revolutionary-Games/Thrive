@@ -152,6 +152,7 @@ func simulate_key_press(key_code: int, shift_pressed := false, ctrl_pressed := f
 	event.pressed = true
 	event.keycode = key_code as Key
 	event.physical_keycode = key_code as Key
+	event.unicode = key_code
 	event.alt_pressed = key_code == KEY_ALT
 	event.shift_pressed = shift_pressed or key_code == KEY_SHIFT
 	event.ctrl_pressed = ctrl_pressed or key_code == KEY_CTRL
@@ -166,6 +167,7 @@ func simulate_key_release(key_code: int, shift_pressed := false, ctrl_pressed :=
 	event.pressed = false
 	event.keycode = key_code as Key
 	event.physical_keycode = key_code as Key
+	event.unicode = key_code
 	event.alt_pressed = key_code == KEY_ALT
 	event.shift_pressed = shift_pressed or key_code == KEY_SHIFT
 	event.ctrl_pressed = ctrl_pressed or key_code == KEY_CTRL
@@ -502,7 +504,7 @@ func invoke(
 	arg9: Variant = NO_ARG) -> Variant:
 	var args: Array = GdArrayTools.filter_value([arg0,arg1,arg2,arg3,arg4,arg5,arg6,arg7,arg8,arg9], NO_ARG)
 	if scene().has_method(name):
-		return scene().callv(name, args)
+		return await scene().callv(name, args)
 	return "The method '%s' not exist checked loaded scene." % name
 
 
@@ -569,7 +571,7 @@ func _handle_actions(event: InputEventAction) -> bool:
 		return false
 	__print("	process action %s (%s) <- %s" % [scene(), _scene_name(), event.as_text()])
 	if event.is_pressed():
-		Input.action_press(event.action, InputMap.action_get_deadzone(event.action))
+		Input.action_press(event.action, event.get_strength())
 	else:
 		Input.action_release(event.action)
 	return true

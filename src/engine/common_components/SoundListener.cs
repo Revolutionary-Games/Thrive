@@ -7,7 +7,7 @@
 public struct SoundListener
 {
     /// <summary>
-    ///   When set to true sound is set to come from the side of the screen relative to the
+    ///   When set to true, sound is set to come from the side of the screen relative to the
     ///   camera rather than using the entity's rotation.
     /// </summary>
     public bool UseTopDownRotation;

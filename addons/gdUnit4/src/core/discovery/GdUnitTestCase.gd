@@ -9,6 +9,9 @@ extends RefCounted
 ## A unique identifier for the test case. Used to track and reference specific test instances.
 var guid := GdUnitGUID.new()
 
+## The resource path to the test suite
+var suite_resource_path: String
+
 ## The name of the test method/function. Should start with "test_" prefix.
 var test_name: String
 
@@ -52,6 +55,7 @@ var metadata: Dictionary = {}
 static func from_dict(dict: Dictionary) -> GdUnitTestCase:
 	var test := GdUnitTestCase.new()
 	test.guid = GdUnitGUID.new(str(dict["guid"]))
+	test.suite_resource_path = dict["suite_resource_path"] if dict.has("suite_resource_path") else dict["source_file"]
 	test.suite_name = dict["managed_type"]
 	test.test_name = dict["test_name"]
 	test.display_name = dict["simple_name"]
@@ -67,6 +71,7 @@ static func from_dict(dict: Dictionary) -> GdUnitTestCase:
 static func to_dict(test: GdUnitTestCase) -> Dictionary:
 	return {
 		"guid": test.guid._guid,
+		"suite_resource_path": test.suite_resource_path,
 		"managed_type": test.suite_name,
 		"test_name" : test.test_name,
 		"simple_name" : test.display_name,
@@ -79,7 +84,7 @@ static func to_dict(test: GdUnitTestCase) -> Dictionary:
 	}
 
 
-static func from(_source_file: String, _line_number: int, _test_name: String, _attribute_index := -1, _test_parameters := "") -> GdUnitTestCase:
+static func from(_suite_resource_path: String, _source_file: String, _line_number: int, _test_name: String, _attribute_index := -1, _test_parameters := "") -> GdUnitTestCase:
 	if(_source_file == null or _source_file.is_empty()):
 		prints(_test_name)
 
@@ -87,13 +92,14 @@ static func from(_source_file: String, _line_number: int, _test_name: String, _a
 	assert(_source_file != null and not _source_file.is_empty(), "Precondition: The parameter 'source_file' is not set")
 
 	var test := GdUnitTestCase.new()
+	test.suite_resource_path = _suite_resource_path
 	test.test_name = _test_name
 	test.source_file = _source_file
 	test.line_number = _line_number
 	test.attribute_index = _attribute_index
 	test._build_suite_name()
 	test._build_display_name(_test_parameters)
-	test._build_fully_qualified_name()
+	test._build_fully_qualified_name(_suite_resource_path)
 	return test
 
 
@@ -109,8 +115,8 @@ func _build_display_name(_test_parameters: String) -> void:
 		display_name = "%s:%d (%s)" % [test_name, attribute_index, _test_parameters.trim_prefix("[").trim_suffix("]").replace('"', "'")]
 
 
-func _build_fully_qualified_name() -> void:
-	var name_space := source_file.trim_prefix("res://").trim_suffix(".gd").trim_suffix(".cs").replace("/", ".")
+func _build_fully_qualified_name(_resource_path: String) -> void:
+	var name_space := _resource_path.trim_prefix("res://").trim_suffix(".gd").trim_suffix(".cs").replace("/", ".")
 
 	if attribute_index == -1:
 		fully_qualified_name = "%s.%s" % [name_space, test_name]

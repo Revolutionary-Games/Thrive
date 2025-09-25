@@ -35,6 +35,7 @@ public partial class SimpleStageStarter : Node
         // We can't switch scenes in _Ready as the game is initializing still
 
         GD.Print("Switching to scene: ", StageToSwitchTo);
+        AchievementsManager.ReportNewGameStarted(false);
 
         SceneManager.Instance.SwitchToScene(StageToSwitchTo);
     }

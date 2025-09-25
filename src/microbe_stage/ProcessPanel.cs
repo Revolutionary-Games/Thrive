@@ -32,6 +32,9 @@ public partial class ProcessPanel : CustomWindow
     public override void _Ready()
     {
         closeButtonContainer.Visible = ShowCustomCloseButton;
+
+        // To make sure processes refresh when the game is paused
+        ProcessMode = ProcessModeEnum.Always;
     }
 
     public override void _Process(double delta)

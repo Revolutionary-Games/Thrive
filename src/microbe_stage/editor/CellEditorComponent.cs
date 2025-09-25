@@ -2,8 +2,9 @@
 using System.Collections.Generic;
 using System.Globalization;
 using System.Linq;
+using Arch.Core;
+using Arch.Core.Extensions;
 using AutoEvo;
-using DefaultEcs;
 using Godot;
 using Newtonsoft.Json;
 using Systems;
@@ -188,6 +189,7 @@ public partial class CellEditorComponent :
     private OrganelleDefinition bindingAgent = null!;
 
     private OrganelleDefinition cytoplasm = null!;
+    private OrganelleDefinition chemoSynthesizingProteins = null!;
 
     private EnergyBalanceInfoFull? energyBalanceInfo;
 
@@ -315,7 +317,7 @@ public partial class CellEditorComponent :
 
             previewMicrobeSpecies.MembraneRigidity = value;
 
-            if (previewMicrobe.IsAlive)
+            if (previewMicrobe.IsAlive())
                 previewSimulation!.ApplyMicrobeRigidity(previewMicrobe, previewMicrobeSpecies.MembraneRigidity);
         }
     }
@@ -342,13 +344,13 @@ public partial class CellEditorComponent :
 
             previewMicrobeSpecies.Colour = value;
 
-            if (previewMicrobe.IsAlive)
+            if (previewMicrobe.IsAlive())
                 previewSimulation!.ApplyMicrobeColour(previewMicrobe, previewMicrobeSpecies.Colour);
         }
     }
 
     /// <summary>
-    ///   The name of organelle type that is selected to be placed
+    ///   The name of the organelle type that is selected to be placed
     /// </summary>
     [JsonIgnore]
     public string? ActiveActionName
@@ -489,6 +491,9 @@ public partial class CellEditorComponent :
         }
     }
 
+    [JsonIgnore]
+    public Func<string, bool>? ValidateNewCellTypeName { get; set; }
+
     /// <summary>
     ///   True when there are pending endosymbiosis actions. Only works after editor is fully initialized.
     /// </summary>
@@ -567,6 +572,7 @@ public partial class CellEditorComponent :
             GD.Load<PackedScene>("res://src/microbe_stage/organelle_unlocks/UndiscoveredOrganellesTooltip.tscn");
 
         cytoplasm = SimulationParameters.Instance.GetOrganelleType("cytoplasm");
+        chemoSynthesizingProteins = SimulationParameters.Instance.GetOrganelleType("chemoSynthesizingProteins");
 
         SetupMicrobePartSelections();
 
@@ -577,6 +583,11 @@ public partial class CellEditorComponent :
     public override void Init(ICellEditorData owningEditor, bool fresh)
     {
         base.Init(owningEditor, fresh);
+
+        if (IsMulticellularEditor && ValidateNewCellTypeName == null)
+        {
+            throw new InvalidOperationException("The new cell type name validation callback needs to be set");
+        }
 
         if (!IsMulticellularEditor)
         {
@@ -822,6 +833,16 @@ public partial class CellEditorComponent :
         // As auto-evo results can modify the patch data, we only want to calculate the effectiveness of organelles in
         // the current patch once that data is ready (and whenever the selected patch changes of course)
         OnPatchDataReady();
+
+        if (!Editor.IsLoadedFromSave)
+        {
+            if (HasNucleus)
+            {
+                AchievementEvents.ReportPlayerSurvivedWithNucleus();
+            }
+
+            SendChemosynthesisInfoToAchievements();
+        }
     }
 
     [RunOnKeyDown("e_primary")]
@@ -930,7 +951,7 @@ public partial class CellEditorComponent :
         // It is easiest to just replace all
         editedProperties.Organelles.Clear();
 
-        // Even in multicellular context, it should always be safe to apply the organelle growth order
+        // Even in a multicellular context, it should always be safe to apply the organelle growth order
         foreach (var organelle in growthOrderGUI.ApplyOrderingToItems(editedMicrobeOrganelles.Organelles))
         {
             var organelleToAdd = (OrganelleTemplate)organelle.Clone();
@@ -1379,12 +1400,7 @@ public partial class CellEditorComponent :
 
     public float CalculateHitpoints()
     {
-        var maxHitpoints = Membrane.Hitpoints + Rigidity * Constants.MEMBRANE_RIGIDITY_HITPOINTS_MODIFIER;
-
-        // Tolerances affect health
-        maxHitpoints *= CalculateLatestTolerances().HealthModifier;
-
-        return maxHitpoints;
+        return MicrobeInternalCalculations.CalculateHealth(CalculateLatestTolerances(), Membrane, Rigidity);
     }
 
     public Dictionary<Compound, float> GetAdditionalCapacities(out float nominalCapacity)
@@ -1634,6 +1650,10 @@ public partial class CellEditorComponent :
 
         EnqueueAction(action);
 
+        // Note that due to undo/redo this can trigger multiple times so any achievement about multiple endosymbiosis
+        // completions would require changing this
+        AchievementEvents.ReportEndosymbiosisCompleted();
+
         return true;
     }
 
@@ -1642,7 +1662,7 @@ public partial class CellEditorComponent :
         if (previewSimulation == null)
             throw new InvalidOperationException("Component needs to be initialized first");
 
-        if (previewMicrobe.IsAlive && previewMicrobeSpecies != null)
+        if (previewMicrobe.IsAlive() && previewMicrobeSpecies != null)
             return false;
 
         if (cellPreviewVisualsRoot == null)
@@ -2630,14 +2650,31 @@ public partial class CellEditorComponent :
             .Visible = IsMacroscopicEditor;
     }
 
+    private bool HasNewName()
+    {
+        if (Editor.EditedCellProperties == null)
+        {
+            return false;
+        }
+
+        return Editor.EditedCellProperties.FormattedName != newName;
+    }
+
     private void OnSpeciesNameChanged(string newText)
     {
         newName = newText;
 
         if (IsMulticellularEditor)
         {
-            // TODO: somehow update the architecture so that we can know here if the name conflicts with another type
-            componentBottomLeftButtons.ReportValidityOfName(!string.IsNullOrWhiteSpace(newText));
+            if (HasNewName())
+            {
+                componentBottomLeftButtons.ReportValidityOfName(ValidateNewCellTypeName!(newText));
+            }
+            else
+            {
+                // The name hasn't changed and should remain valid
+                componentBottomLeftButtons.ReportValidityOfName(true);
+            }
         }
     }
 
@@ -2781,10 +2818,13 @@ public partial class CellEditorComponent :
 
         GUICommon.Instance.PlayButtonPressSound();
 
-        selectedSelectionMenuTab = selection;
-        ApplySelectionMenuTab();
+        if (!BlockTabSwitchIfInProgressAction(CanCancelAction))
+        {
+            selectedSelectionMenuTab = selection;
+            tutorialState?.SendEvent(TutorialEventType.CellEditorTabChanged, new StringEventArgs(tab), this);
+        }
 
-        tutorialState?.SendEvent(TutorialEventType.CellEditorTabChanged, new StringEventArgs(tab), this);
+        ApplySelectionMenuTab();
     }
 
     private void ApplySelectionMenuTab()
@@ -3090,6 +3130,54 @@ public partial class CellEditorComponent :
         micheViewer.ShowMiches(Editor.CurrentPatch, predictionMiches, Editor.CurrentGame.GameWorld.WorldSettings);
 
         autoEvoPredictionExplanationPopup.Hide();
+    }
+
+    private void SendChemosynthesisInfoToAchievements()
+    {
+        float chemosynthesis = 0;
+        bool ignoredCytoplasm = false;
+
+        foreach (var organelleTemplate in editedMicrobeOrganelles)
+        {
+            // Ignore one cytoplasm
+            if (organelleTemplate.Definition == cytoplasm && !ignoredCytoplasm)
+            {
+                ignoredCytoplasm = true;
+                continue;
+            }
+
+            var definition = organelleTemplate.Definition;
+
+            foreach (var process in definition.RunnableProcesses)
+            {
+                bool productionProcess = process.Process.Outputs.Any(c => c.Key.ID is Compound.Glucose or Compound.ATP);
+
+                bool chemosynthesisProcess = process.Process.Inputs.Any(c => c.Key.ID is Compound.Hydrogensulfide);
+
+                if (productionProcess && !chemosynthesisProcess)
+                {
+                    // Ignore glucolysis in chemo-synthesising proteins
+                    if (organelleTemplate.Definition == chemoSynthesizingProteins)
+                    {
+                        continue;
+                    }
+
+                    // Uses some other energy source than chemosynthesis
+                    return;
+                }
+
+                if (chemosynthesisProcess)
+                {
+                    chemosynthesis += process.Process.Outputs.SumValues();
+                }
+            }
+        }
+
+        // The threshold is pretty low as the chemo-synthesising proteins don't produce much
+        if (chemosynthesis > 0.03)
+        {
+            AchievementEvents.ReportPlayerUsesChemosynthesis();
+        }
     }
 
     private class PendingAutoEvoPrediction

@@ -95,12 +95,7 @@ public partial class PhotoStudio : SubViewport
     /// <returns>The distance to use</returns>
     public static float CameraDistanceFromRadiusOfObject(float radius)
     {
-        if (radius <= 0)
-            throw new ArgumentException("radius needs to be over 0");
-
-        float angle = Constants.PHOTO_STUDIO_CAMERA_HALF_ANGLE;
-
-        return MathF.Tan(MathF.PI * 0.5f - MathUtils.DEGREES_TO_RADIANS * angle) * radius;
+        return MathUtils.CameraDistanceFromRadiusOfObject(radius, Constants.PHOTO_STUDIO_CAMERA_FOV);
     }
 
     public override void _Ready()

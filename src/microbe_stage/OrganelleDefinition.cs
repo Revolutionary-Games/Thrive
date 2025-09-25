@@ -285,6 +285,8 @@ public class OrganelleDefinition : IRegistryType
     public bool HasMovementComponent { get; private set; }
     public bool HasCiliaComponent { get; private set; }
 
+    public bool HasHydrogenSulfideProtection { get; private set; }
+
     /// <summary>
     ///   True if this is an agent vacuole. The number of agent vacuoles determines how often a cell can shoot toxins.
     /// </summary>
@@ -828,6 +830,7 @@ public class OrganelleDefinition : IRegistryType
         HasBindingFeature = HasFeatureTag(OrganelleFeatureTag.BindingAgent);
         HasSignalingFeature = HasFeatureTag(OrganelleFeatureTag.SignalingAgent);
         HasRadiationProtection = HasFeatureTag(OrganelleFeatureTag.RadiationBlock);
+        HasHydrogenSulfideProtection = HasFeatureTag(OrganelleFeatureTag.HydrogenSulfideProtection);
         HasHeatCollection = HasFeatureTag(OrganelleFeatureTag.HeatCollecting);
     }
 

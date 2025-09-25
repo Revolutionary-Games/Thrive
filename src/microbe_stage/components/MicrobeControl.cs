@@ -1,7 +1,8 @@
 ﻿namespace Components;
 
 using System;
-using DefaultEcs;
+using Arch.Core;
+using Arch.Core.Extensions;
 using Godot;
 using Systems;
 
@@ -137,7 +138,7 @@ public static class MicrobeControlHelpers
                 {
                     // The IsAlive check should be unnecessary here, but as this is a general method, there's this
                     // extra safety against crashing due to colony bugs
-                    if (colonyMember != entity && colonyMember.IsAlive)
+                    if (colonyMember != entity && colonyMember.IsAlive())
                     {
                         ref var memberControl = ref colonyMember.Get<MicrobeControl>();
                         memberControl.State = targetState;
@@ -169,9 +170,9 @@ public static class MicrobeControlHelpers
 
                 foreach (var colonyMember in colony.ColonyMembers)
                 {
-                    // The IsAlive check should be unnecessary here but as this is a general method there's this
+                    // The IsAlive check should be unnecessary here, but as this is a general method, there's this
                     // extra safety against crashing due to colony bugs
-                    if (colonyMember != entity && colonyMember.IsAlive)
+                    if (colonyMember != entity && colonyMember.IsAlive())
                     {
                         ref var memberControl = ref colonyMember.Get<MicrobeControl>();
                         ref var memberHealth = ref colonyMember.Get<Health>();
@@ -354,10 +355,17 @@ public static class MicrobeControlHelpers
 
         if (state)
         {
-            // Don't allow spamming if not enough mucocyst. This is inside this if to allow exiting mucocyst shield
-            // mode even without enough mucilage remaining.
-            if (availableCompounds.Compounds.GetCompoundAmount(mucilageCompound) < Constants.MUCOCYST_MINIMUM_MUCILAGE)
+            // Apply the activation cost before activating the mucocyst shield
+            var mucilageCapactiy = availableCompounds.Compounds.GetCapacityForCompound(mucilageCompound);
+            var mucilageRequired = mucilageCapactiy * Constants.MUCOCYST_ACTIVATION_MUCILAGE_FRACTION;
+            if (availableCompounds.Compounds.GetCompoundAmount(mucilageCompound) < mucilageRequired)
+            {
+                entity.SendNoticeIfPossible(() =>
+                    new SimpleHUDMessage(Localization.Translate("NOTICE_NOT_ENOUGH_MUCILAGE")));
                 return;
+            }
+
+            availableCompounds.Compounds.TakeCompound(mucilageCompound, mucilageRequired);
 
             control.State = MicrobeState.MucocystShield;
 

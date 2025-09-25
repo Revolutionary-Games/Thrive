@@ -15,4 +15,6 @@ public interface ICreatureStageHUD : IStageHUD
     public void HidePatchExtinctionBox();
     public void ShowReproductionDialog();
     public void HideReproductionDialog();
+
+    public void ApplySpeedMode(bool fastModeEnabled);
 }

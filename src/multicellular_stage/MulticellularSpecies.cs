@@ -15,7 +15,7 @@ using Systems;
 [JSONDynamicTypeAllowed]
 [UseThriveConverter]
 [UseThriveSerializer]
-public class MulticellularSpecies : Species
+public class MulticellularSpecies : Species, ISimulationPhotographable
 {
     public MulticellularSpecies(uint id, string genus, string epithet) : base(id, genus, epithet)
     {
@@ -28,6 +28,12 @@ public class MulticellularSpecies : Species
     [JsonProperty]
     public CellLayout<CellTemplate> Cells { get; private set; } = new();
 
+    /// <summary>
+    ///   The 'original' colony layout, from which the simulated one (<see cref="Cells"/>) is generated.
+    /// </summary>
+    [JsonProperty]
+    public IndividualHexLayout<CellTemplate>? EditorCellLayout { get; set; }
+
     [JsonProperty]
     public List<CellType> CellTypes { get; private set; } = new();
 
@@ -39,6 +45,10 @@ public class MulticellularSpecies : Species
 
     [JsonIgnore]
     public override string StringCode => ThriveJsonConverter.Instance.SerializeObject(this);
+
+    [JsonIgnore]
+    public ISimulationPhotographable.SimulationType SimulationToPhotograph =>
+        ISimulationPhotographable.SimulationType.MicrobeGraphics;
 
     public override void OnEdited()
     {
@@ -188,6 +198,21 @@ public class MulticellularSpecies : Species
         return totalOrganelles;
     }
 
+    public void SetupWorldEntities(IWorldSimulation worldSimulation)
+    {
+        ((MicrobeVisualOnlySimulation)worldSimulation).CreateVisualisationColony(this);
+    }
+
+    public bool StateHasStabilized(IWorldSimulation worldSimulation)
+    {
+        return true;
+    }
+
+    public Vector3 CalculatePhotographDistance(IWorldSimulation worldSimulation)
+    {
+        return ((MicrobeVisualOnlySimulation)worldSimulation).CalculateColonyPhotographDistance();
+    }
+
     public override object Clone()
     {
         var result = new MulticellularSpecies(ID, Genus, Epithet);
@@ -210,6 +235,18 @@ public class MulticellularSpecies : Species
         return result;
     }
 
+    public override ulong GetVisualHashCode()
+    {
+        ulong hash = 1099511628211;
+
+        foreach (var cell in Cells)
+        {
+            hash += cell.GetVisualHashCode() ^ (ulong)cell.Position.GetHashCode();
+        }
+
+        return hash;
+    }
+
     protected override Dictionary<Compound, float> CalculateBaseReproductionCost()
     {
         var baseReproductionCost = base.CalculateBaseReproductionCost();
@@ -220,6 +257,19 @@ public class MulticellularSpecies : Species
         foreach (var entry in baseReproductionCost)
         {
             result[entry.Key] = entry.Value * Constants.MULTICELLULAR_BASE_REPRODUCTION_COST_MULTIPLIER;
+        }
+
+        return result;
+    }
+
+    protected override Dictionary<Compound, float> CalculateTotalReproductionCost()
+    {
+        var result = base.CalculateTotalReproductionCost();
+
+        int count = Cells.Count;
+        for (int i = 0; i < count; ++i)
+        {
+            result.Merge(Cells[i].CalculateTotalComposition());
         }
 
         return result;

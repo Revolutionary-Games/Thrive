@@ -1,20 +1,18 @@
 ﻿namespace Systems;
 
 using System;
+using System.Collections.Generic;
+using System.Runtime.CompilerServices;
+using Arch.Core;
+using Arch.Core.Extensions;
+using Arch.System;
 using Components;
-using DefaultEcs;
-using DefaultEcs.System;
-using DefaultEcs.Threading;
 using Godot;
-using World = DefaultEcs.World;
+using World = Arch.Core.World;
 
 /// <summary>
 ///   Handles detected toxin collisions with microbes
 /// </summary>
-[With(typeof(ToxinDamageSource))]
-[With(typeof(CollisionManagement))]
-[With(typeof(Physics))]
-[With(typeof(TimedLife))]
 [ReadsComponent(typeof(MicrobeSpeciesMember))]
 [ReadsComponent(typeof(SpeciesMember))]
 [ReadsComponent(typeof(Health))]
@@ -24,76 +22,18 @@ using World = DefaultEcs.World;
 [ReadsComponent(typeof(OrganelleContainer))]
 [ReadsComponent(typeof(MicrobeEventCallbacks))]
 [RunsAfter(typeof(PhysicsCollisionManagementSystem))]
-[RuntimeCost(0.5f, false)]
-public sealed class ToxinCollisionSystem : AEntitySetSystem<float>
+[RuntimeCost(0.25f)]
+public partial class ToxinCollisionSystem : BaseSystem<World, float>
 {
     /// <summary>
-    ///   Holds a persistent instance of the collision filter callback to not need to create multiple delegates, and
+    ///   Holds a persistent instance of the collision filter callback to not need to create multiple delegates and
     ///   to make doubly sure this callback won't be garbage collected while the native side still has a reference to
     ///   it.
     /// </summary>
     private readonly PhysicalWorld.OnCollisionFilterCallback collisionFilter = FilterCollisions;
 
-    public ToxinCollisionSystem(World world, IParallelRunner runner) : base(world, runner)
+    public ToxinCollisionSystem(World world) : base(world)
     {
-    }
-
-    protected override void Update(float delta, in Entity entity)
-    {
-        ref var damageSource = ref entity.Get<ToxinDamageSource>();
-
-        // Quickly detect already hit projectiles
-        if (damageSource.ProjectileUsed)
-            return;
-
-        ref var collisions = ref entity.Get<CollisionManagement>();
-
-        if (!damageSource.ProjectileInitialized)
-        {
-            damageSource.ProjectileInitialized = true;
-
-            // Need to set up callbacks etc. for this to work
-
-            // TODO: make sure this system runs before the collision management to make sure no double data apply
-            // happens
-
-            collisions.CollisionFilter = collisionFilter;
-
-            collisions.StartCollisionRecording(Constants.MAX_SIMULTANEOUS_COLLISIONS_TINY);
-
-            collisions.StateApplied = false;
-        }
-
-        // Check for active collisions that count as a hit and use up this projectile
-        var count = collisions.GetActiveCollisions(out var activeCollisions);
-        for (int i = 0; i < count; ++i)
-        {
-            ref var collision = ref activeCollisions![i];
-
-            if (!HandlePotentiallyDamagingCollision(ref collision))
-                continue;
-
-            // Applied a damaging hit, destroy this toxin
-            // TODO: We should probably get some *POP* effect here.
-
-            // Expire right now
-            ref var timedLife = ref entity.Get<TimedLife>();
-            timedLife.TimeToLiveRemaining = -1;
-
-            ref var physics = ref entity.Get<Physics>();
-
-            // TODO: should this instead of disabling the further collisions be removed from the world immediately
-            // to cause less of a physics impact?
-            // physics.BodyDisabled = true;
-            physics.DisableCollisionState = Physics.CollisionState.DisableCollisions;
-
-            // And make sure the flag we check for is set immediately to not process this projectile again
-            // (this is just extra safety against the time over callback configuration not working correctly)
-            damageSource.ProjectileUsed = true;
-
-            // Only deal damage at most to a single thing
-            break;
-        }
     }
 
     /// <summary>
@@ -102,6 +42,9 @@ public sealed class ToxinCollisionSystem : AEntitySetSystem<float>
     /// <returns>False when should pass through</returns>
     private static bool FilterCollisions(ref PhysicsCollision collision)
     {
+        if (collision.SecondEntity == Entity.Null)
+            return true;
+
         try
         {
             // TODO: maybe this could cache something for slight speed up? (though the cache would need clearing
@@ -132,8 +75,8 @@ public sealed class ToxinCollisionSystem : AEntitySetSystem<float>
         }
         catch (Exception e)
         {
-            // Catch any exceptions to not let them escape up to the native code calling side which would blow up
-            // everything
+            // Catch any exceptions to not let them escape up to the native code calling side which would blow
+            // everything up
             GD.PrintErr("Unexpected error in collision filter: ", e);
         }
 
@@ -141,7 +84,7 @@ public sealed class ToxinCollisionSystem : AEntitySetSystem<float>
         return true;
     }
 
-    private static bool HandlePotentiallyDamagingCollision(ref PhysicsCollision collision)
+    private static bool HandlePotentiallyDamagingCollision(ref PhysicsCollision collision, bool firedByPlayer)
     {
         // TODO: switch this to also take ref once we use .NET 5 or newer:
         // https://learn.microsoft.com/en-us/dotnet/api/system.runtime.interopservices.collectionsmarshal.asspan
@@ -149,6 +92,9 @@ public sealed class ToxinCollisionSystem : AEntitySetSystem<float>
         // TODO: see the TODOs about combining code with FilterCollisions
 
         var damageTarget = collision.SecondEntity;
+
+        if (damageTarget == Entity.Null)
+            return false;
 
         // TODO: there is a pretty rare bug where the collision data has random entities in it
 
@@ -193,6 +139,8 @@ public sealed class ToxinCollisionSystem : AEntitySetSystem<float>
                 // Consume this even though this won't deal damage
                 return true;
             }
+
+            var oldHealth = health.CurrentHealth;
 
             if (damageTarget.Has<CellProperties>())
             {
@@ -242,6 +190,8 @@ public sealed class ToxinCollisionSystem : AEntitySetSystem<float>
                                 DisplayDuration.Long));
                     }
 
+                    // TODO: is it possible somehow to track this as a kill for player achievements?
+
                     temporaryEffects.ATPDebuffDuration =
                         Constants.CHANNEL_INHIBITOR_DEBUFF_DURATION * damageSource.ToxinAmount;
                     temporaryEffects.StateApplied = false;
@@ -261,12 +211,18 @@ public sealed class ToxinCollisionSystem : AEntitySetSystem<float>
                 }
 
                 damageSource.ToxinProperties.DealDamage(ref health, ref damageTarget.Get<CellProperties>(),
-                    damageTarget,
-                    damageSource.ToxinAmount * modifier);
+                    damageTarget, damageSource.ToxinAmount * modifier);
             }
             else
             {
                 damageSource.ToxinProperties.DealDamage(ref health, damageTarget, damageSource.ToxinAmount);
+            }
+
+            if (health.CurrentHealth <= 0 && oldHealth > 0 && !health.Invulnerable &&
+                Math.Abs(health.CurrentHealth - oldHealth) > 0.001f && firedByPlayer)
+            {
+                // Player has killed something with a toxin shot
+                AchievementEvents.ReportPlayerMicrobeKill();
             }
 
             return true;
@@ -280,16 +236,45 @@ public sealed class ToxinCollisionSystem : AEntitySetSystem<float>
         }
     }
 
+    private static bool IsPlayerEntityInList(List<Entity>? entities)
+    {
+        if (entities != null)
+        {
+            foreach (var firingEntity in entities)
+            {
+                if (firingEntity == Entity.Null || !firingEntity.IsAlive())
+                    continue;
+
+                if (firingEntity.Has<PlayerMarker>())
+                {
+                    return true;
+                }
+
+                if (firingEntity.Has<MicrobeColonyMember>())
+                {
+                    ref var memberData = ref firingEntity.Get<MicrobeColonyMember>();
+
+                    if (memberData.ColonyLeader.IsAliveAndHas<PlayerMarker>())
+                    {
+                        return true;
+                    }
+                }
+            }
+        }
+
+        return false;
+    }
+
     private static float CalculateToxinOrganelleDamageMultiplier(ref OrganelleContainer organelleContainer,
         AgentProperties toxinProperties)
     {
         var oxygenParts = organelleContainer.OxygenUsingOrganelles;
 
-        // For now all effects are based on oxygen use so this method can just exit if there aren't any of those
+        // For now all effects are based on oxygen use, so this method can just exit if there aren't any of those
         if (oxygenParts == 0)
             return 1;
 
-        // Oxygen targeting toxin has increased damage based on the number of oxygen using parts
+        // Oxygen targeting toxin has increased damage based on the amount of oxygen using parts
         if (toxinProperties.ToxinSubType == ToxinType.OxygenMetabolismInhibitor)
         {
             return 1 + Math.Min(oxygenParts * Constants.OXYGEN_INHIBITOR_DAMAGE_BUFF_PER_ORGANELLE,
@@ -305,5 +290,69 @@ public sealed class ToxinCollisionSystem : AEntitySetSystem<float>
         }
 
         return 1;
+    }
+
+    [Query]
+    [All<Physics, TimedLife>]
+    [MethodImpl(MethodImplOptions.AggressiveInlining)]
+    private void Update(ref ToxinDamageSource damageSource, ref CollisionManagement collisions, in Entity entity)
+    {
+        // Quickly detect already hit projectiles
+        if (damageSource.ProjectileUsed)
+            return;
+
+        if (!damageSource.ProjectileInitialized)
+        {
+            damageSource.ProjectileInitialized = true;
+
+            // Need to set up callbacks etc. for this to work
+
+            // TODO: make sure this system runs before the collision management to make sure no double data apply
+            // happens
+
+            collisions.CollisionFilter = collisionFilter;
+
+            collisions.StartCollisionRecording(Constants.MAX_SIMULTANEOUS_COLLISIONS_TINY);
+
+            collisions.StateApplied = false;
+        }
+
+        // Check for active collisions that count as a hit and use up this projectile
+        var count = collisions.GetActiveCollisions(out var activeCollisions);
+
+        if (count < 1)
+            return;
+
+        var ignoredCollisions = collisions.IgnoredCollisionsWith;
+        bool firedByPlayer = IsPlayerEntityInList(ignoredCollisions);
+
+        for (int i = 0; i < count; ++i)
+        {
+            ref var collision = ref activeCollisions![i];
+
+            if (!HandlePotentiallyDamagingCollision(ref collision, firedByPlayer))
+                continue;
+
+            // Applied a damaging hit, destroy this toxin
+            // TODO: We should probably get some *POP* effect here.
+
+            // Expire right now
+            ref var timedLife = ref entity.Get<TimedLife>();
+            timedLife.TimeToLiveRemaining = -1;
+
+            ref var physics = ref entity.Get<Physics>();
+
+            // TODO: should this instead of disabling the further collisions be removed from the world immediately
+            // to cause less of a physics impact?
+            // physics.BodyDisabled = true;
+            physics.DisableCollisionState = Physics.CollisionState.DisableCollisions;
+
+            // And make sure the flag we check for is set immediately to not process this projectile again
+            // (this is just extra safety against the time over callback configuration not working correctly)
+            damageSource.ProjectileUsed = true;
+
+            // Only deal damage at most to a single thing
+            break;
+        }
     }
 }

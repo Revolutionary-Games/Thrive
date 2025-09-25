@@ -1,7 +1,7 @@
 ﻿namespace Components;
 
 using System.Collections.Generic;
-using DefaultEcs;
+using Arch.Core;
 
 /// <summary>
 ///   Marks an entity as emitting radiation

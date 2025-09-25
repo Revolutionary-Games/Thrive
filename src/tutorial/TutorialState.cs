@@ -30,6 +30,7 @@ public class TutorialState : ITutorialInput, ISaveLoadable
     ///   When this is true, tutorials that have already been seen by the player in any playthrough are automatically
     ///   marked as already complete.
     /// </summary>
+    [JsonProperty]
     public bool DisableShowingAlreadySeenTutorials { get; private set; }
 
     // Tutorial states
@@ -169,6 +170,9 @@ public class TutorialState : ITutorialInput, ISaveLoadable
 
     [JsonProperty]
     public NucleusTutorial NucleusTutorial { get; private set; } = new();
+
+    [JsonProperty]
+    public BindingAgentsTutorial BindingAgentsTutorial { get; private set; } = new();
 
     // End of tutorial state variables
 
@@ -521,6 +525,7 @@ public class TutorialState : ITutorialInput, ISaveLoadable
             MigrationTutorial,
             CellEditorIntroduction,
             NucleusTutorial,
+            BindingAgentsTutorial,
             EditorUndoTutorial,
             EditorRedoTutorial,
             EditorTutorialEnd,

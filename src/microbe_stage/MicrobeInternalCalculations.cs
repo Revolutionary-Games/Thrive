@@ -280,6 +280,16 @@ public static class MicrobeInternalCalculations
         return rawSpeed * 100;
     }
 
+    public static float CalculateHealth(ResolvedMicrobeTolerances tolerances, MembraneType membrane, float rigidity)
+    {
+        var maxHitpoints = membrane.Hitpoints + rigidity * Constants.MEMBRANE_RIGIDITY_HITPOINTS_MODIFIER;
+
+        // Tolerances affect health
+        maxHitpoints *= tolerances.HealthModifier;
+
+        return maxHitpoints;
+    }
+
     /// <summary>
     ///   Calculates the rotation speed for a cell. Note that higher value means slower rotation.
     /// </summary>

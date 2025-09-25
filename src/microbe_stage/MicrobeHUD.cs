@@ -2,8 +2,9 @@
 using System.Collections.Generic;
 using System.Globalization;
 using System.Linq;
+using Arch.Core;
+using Arch.Core.Extensions;
 using Components;
-using DefaultEcs;
 using Godot;
 using Newtonsoft.Json;
 
@@ -26,6 +27,8 @@ public partial class MicrobeHUD : CreatureStageHUDBase<MicrobeStage>
     private const string FLOATING_CHUNKS_CATEGORY = "chunks";
     private const string AGENTS_CATEGORY = "agents";
 
+    private const double SHOW_REVERT_POPUP_FOR = 80;
+
     private readonly Dictionary<(string Category, LocalizedString Name), int> hoveredEntities = new();
     private readonly Dictionary<CompoundDefinition, InspectedEntityLabel> hoveredCompoundControls = new();
 
@@ -43,6 +46,9 @@ public partial class MicrobeHUD : CreatureStageHUDBase<MicrobeStage>
 
     [Export]
     private CustomWindow multicellularConfirmPopup = null!;
+
+    [Export]
+    private CustomWindow previousSaveLoadAdvicePopup = null!;
 
     [Export]
     private Button macroscopicButton = null!;
@@ -63,6 +69,9 @@ public partial class MicrobeHUD : CreatureStageHUDBase<MicrobeStage>
     private int? playerColonySize;
 
     private bool playerWasDigested;
+
+    private bool showingRevertPrompt;
+    private double timeShowingRevertPopup;
 
     /// <summary>
     ///   Whether or not the player has the <see cref="StrainAffected"/> component, if not an error will be printed
@@ -98,6 +107,12 @@ public partial class MicrobeHUD : CreatureStageHUDBase<MicrobeStage>
 
     [Signal]
     public delegate void OnSprintButtonPressedEventHandler();
+
+    [Signal]
+    public delegate void OnAcceptRevertToEditorEventHandler();
+
+    [Signal]
+    public delegate void OnDismissRevertToEditorEventHandler();
 
     protected override string UnPauseHelpText => Localization.Translate("PAUSE_PROMPT");
 
@@ -165,11 +180,26 @@ public partial class MicrobeHUD : CreatureStageHUDBase<MicrobeStage>
             macroscopicButton.Visible = false;
             heatAccumulationBar.Visible = false;
         }
+
+        if (!PauseManager.Instance.Paused)
+            timeShowingRevertPopup += delta;
+
+        if (timeShowingRevertPopup > SHOW_REVERT_POPUP_FOR)
+        {
+            timeShowingRevertPopup = 0;
+
+            if (showingRevertPrompt || previousSaveLoadAdvicePopup.Visible)
+            {
+                GD.Print("Hiding load previous save question as it's been open for a while");
+                showingRevertPrompt = false;
+                previousSaveLoadAdvicePopup.Close();
+            }
+        }
     }
 
     public void ShowSignalingCommandsMenu(Entity player)
     {
-        if (!player.Has<CommandSignaler>())
+        if (!player.IsAliveAndHas<CommandSignaler>())
         {
             GD.PrintErr("Can't show signaling commands for entity with no signaler component");
             return;
@@ -252,6 +282,9 @@ public partial class MicrobeHUD : CreatureStageHUDBase<MicrobeStage>
         var resultingModifier = fastModeEnabled ? 2 : 1;
 
         stage.WorldSimulation.WorldTimeScale = resultingModifier;
+
+        // Make sure the GUI state is consistent with the current speed
+        bottomLeftBar.SpeedModePressed = fastModeEnabled;
     }
 
     public override bool GetCurrentSpeedMode()
@@ -260,6 +293,16 @@ public partial class MicrobeHUD : CreatureStageHUDBase<MicrobeStage>
             return false;
 
         return stage.WorldSimulation.WorldTimeScale > 1;
+    }
+
+    public void ShowSaveLoadAdvise()
+    {
+        if (!showingRevertPrompt)
+        {
+            showingRevertPrompt = true;
+            timeShowingRevertPopup = 0;
+            previousSaveLoadAdvicePopup.Show();
+        }
     }
 
     protected override void UpdateFossilisationButtonStates()
@@ -280,27 +323,25 @@ public partial class MicrobeHUD : CreatureStageHUDBase<MicrobeStage>
     {
         var fossils = FossilisedSpecies.CreateListOfFossils(false);
 
-        foreach (var entity in stage!.WorldSimulation.EntitySystem)
-        {
-            // TODO: buttons to fossilize multicellular species
-            if (!entity.Has<MicrobeSpeciesMember>())
-                continue;
+        // TODO: buttons to fossilize multicellular species
+        stage!.WorldSimulation.EntitySystem.Query(new QueryDescription().WithAll<MicrobeSpeciesMember>(),
+            (Entity entity, ref SpeciesMember member) =>
+            {
+                var species = member.Species;
 
-            var species = entity.Get<SpeciesMember>().Species;
+                var button = FossilisationButtonScene.Instantiate<FossilisationButton>();
+                button.AttachedEntity = entity;
+                button.IsMicrobeStage = true;
+                button.Connect(FossilisationButton.SignalName.OnFossilisationDialogOpened, new Callable(this,
+                    nameof(ShowFossilisationDialog)));
 
-            var button = FossilisationButtonScene.Instantiate<FossilisationButton>();
-            button.AttachedEntity = entity;
-            button.IsMicrobeStage = true;
-            button.Connect(FossilisationButton.SignalName.OnFossilisationDialogOpened, new Callable(this,
-                nameof(ShowFossilisationDialog)));
+                var alreadyFossilised =
+                    FossilisedSpecies.IsSpeciesAlreadyFossilised(species.FormattedName, fossils);
 
-            var alreadyFossilised =
-                FossilisedSpecies.IsSpeciesAlreadyFossilised(species.FormattedName, fossils);
+                SetupFossilisationButtonVisuals(button, alreadyFossilised);
 
-            SetupFossilisationButtonVisuals(button, alreadyFossilised);
-
-            fossilisationButtonLayer.AddChild(button);
-        }
+                fossilisationButtonLayer.AddChild(button);
+            });
     }
 
     protected override void ReadPlayerHitpoints(out float hp, out float maxHealth)
@@ -379,7 +420,7 @@ public partial class MicrobeHUD : CreatureStageHUDBase<MicrobeStage>
 
     protected override float? ReadPlayerStrainFraction()
     {
-        if (!stage!.Player.Has<StrainAffected>())
+        if (!stage!.Player.IsAliveAndHas<StrainAffected>())
         {
             if (!playerMissingStrainAffected)
             {
@@ -421,6 +462,20 @@ public partial class MicrobeHUD : CreatureStageHUDBase<MicrobeStage>
         base.UpdateBarVisibility(isUseful);
 
         ingestedMatterBar.Visible = GetPlayerUsedIngestionCapacity() > 0;
+
+        var playerStorage = GetPlayerStorage();
+
+        foreach (var (compound, bar) in compoundBars)
+        {
+            if (bar.Visible)
+                continue;
+
+            if (SimulationParameters.GetCompound(compound).AlwaysAbsorbable
+                && playerStorage.GetCompoundAmount(compound) > MathUtils.EPSILON)
+            {
+                bar.Visible = true;
+            }
+        }
     }
 
     protected override bool ShouldShowAgentsPanel()
@@ -487,25 +542,32 @@ public partial class MicrobeHUD : CreatureStageHUDBase<MicrobeStage>
         bool showSlime;
         bool showMucocyst;
         bool showSiderophore;
+        bool showSignaling;
 
         bool engulfing;
         bool usingMucocyst;
+        bool isDigesting = false;
 
         // Multicellularity is not checked here (only colony membership) as that is also not checked when firing toxins
         if (player.Has<MicrobeColony>())
         {
             ref var colony = ref player.Get<MicrobeColony>();
 
-            // TODO: does this need a variant that just returns a bool and has an early exit?
-            colony.CalculateColonySpecialOrganelles(out var vacuoles, out var slimeJets, out var mucocysts);
+            colony.GetColonySpecialOrganelles(out showToxin, out showSlime, out showMucocyst, out showSignaling);
 
-            showToxin = vacuoles > 0;
-            showSlime = slimeJets > 0;
-            showMucocyst = mucocysts > 0;
             showSiderophore = false;
 
             engulfing = colony.ColonyState == MicrobeState.Engulf;
             usingMucocyst = colony.ColonyState == MicrobeState.MucocystShield;
+
+            for (int i = 0; i < colony.ColonyMembers.Length; ++i)
+            {
+                if (colony.ColonyMembers[i].Get<Engulfer>().EngulfedObjects is { Count: > 0 })
+                {
+                    isDigesting = true;
+                    break;
+                }
+            }
         }
         else
         {
@@ -513,22 +575,21 @@ public partial class MicrobeHUD : CreatureStageHUDBase<MicrobeStage>
             showSlime = organelles.SlimeJets is { Count: > 0 };
             showMucocyst = organelles.MucocystCount > 0;
             showSiderophore = organelles.IronBreakdownEfficiency > 0 && stage.WorldSettings.ExperimentalFeatures;
+            showSignaling = organelles.HasSignalingAgent;
 
             engulfing = control.State == MicrobeState.Engulf;
             usingMucocyst = control.State == MicrobeState.MucocystShield;
+
+            ref var engulfer = ref stage.Player.Get<Engulfer>();
+
+            if (engulfer.EngulfedObjects is { Count: > 0 })
+                isDigesting = true;
         }
-
-        bool isDigesting = false;
-
-        ref var engulfer = ref stage.Player.Get<Engulfer>();
-
-        if (engulfer.EngulfedObjects is { Count: > 0 })
-            isDigesting = true;
 
         // Read the engulf state from the colony as the player cell might be unable to engulf but some
         // member might be able to
         UpdateBaseAbilitiesBar(cellProperties.CanEngulfInColony(player), showToxin, showSlime,
-            organelles.HasSignalingAgent, showMucocyst, true, engulfing, isDigesting, usingMucocyst, control.Sprinting);
+            showSignaling, showMucocyst, true, engulfing, isDigesting, usingMucocyst, control.Sprinting);
 
         siderophoreHotkey.Visible = showSiderophore;
 
@@ -576,7 +637,7 @@ public partial class MicrobeHUD : CreatureStageHUDBase<MicrobeStage>
 
         foreach (var entity in stage.HoverInfo.Entities)
         {
-            if (!entity.Has<ReadableName>())
+            if (!entity.IsAliveAndHas<ReadableName>())
                 continue;
 
             var name = entity.Get<ReadableName>().Name;
@@ -761,7 +822,7 @@ public partial class MicrobeHUD : CreatureStageHUDBase<MicrobeStage>
         if (stage == null)
             return;
 
-        if (!player.Has<CellProperties>())
+        if (!player.IsAliveAndHas<CellProperties>())
             return;
 
         ref var organelles = ref player.Get<OrganelleContainer>();
@@ -977,5 +1038,21 @@ public partial class MicrobeHUD : CreatureStageHUDBase<MicrobeStage>
                 activeProcesses[i] = process;
             }
         }
+    }
+
+    private void OnRevertPromptClosed()
+    {
+        if (showingRevertPrompt)
+        {
+            showingRevertPrompt = false;
+            EmitSignal(SignalName.OnDismissRevertToEditor);
+        }
+    }
+
+    private void OnAcceptRevertPrompt()
+    {
+        showingRevertPrompt = false;
+        EmitSignal(SignalName.OnAcceptRevertToEditor);
+        previousSaveLoadAdvicePopup.Close();
     }
 }

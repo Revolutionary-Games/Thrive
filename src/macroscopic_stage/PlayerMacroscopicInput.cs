@@ -221,6 +221,7 @@ public partial class PlayerMacroscopicInput : NodeWithInput
         if (Settings.Instance.CheatsEnabled)
         {
             stage.HUD.ShowReproductionDialog();
+            AchievementsManager.ReportCheatsUsed();
         }
     }
 }

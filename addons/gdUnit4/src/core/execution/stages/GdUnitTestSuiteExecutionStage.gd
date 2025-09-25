@@ -98,7 +98,8 @@ func fire_test_suite_skipped(context :GdUnitExecutionContext) -> void:
 				continue
 			var test_case_context := GdUnitExecutionContext.of_test_case(context, test_case)
 			fire_event(GdUnitEvent.new().test_before(test_case.id()))
-			fire_test_skipped(test_case_context)
+			# use skip count 0 because we counted it over the complete test suite
+			fire_test_skipped(test_case_context, 0)
 
 
 	var statistics := {
@@ -117,7 +118,7 @@ func fire_test_suite_skipped(context :GdUnitExecutionContext) -> void:
 	await (Engine.get_main_loop() as SceneTree).process_frame
 
 
-func fire_test_skipped(context: GdUnitExecutionContext) -> void:
+func fire_test_skipped(context: GdUnitExecutionContext, skip_count := 1) -> void:
 	var test_case := context.test_case
 	var statistics := {
 		GdUnitEvent.ORPHAN_NODES: 0,
@@ -128,7 +129,7 @@ func fire_test_skipped(context: GdUnitExecutionContext) -> void:
 		GdUnitEvent.FAILED: false,
 		GdUnitEvent.FAILED_COUNT: 0,
 		GdUnitEvent.SKIPPED: true,
-		GdUnitEvent.SKIPPED_COUNT: 1,
+		GdUnitEvent.SKIPPED_COUNT: skip_count,
 	}
 	var report := GdUnitReport.new() \
 		.create(GdUnitReport.SKIPPED, test_case.line_number(), GdAssertMessages.test_skipped("Skipped from the entire test suite"))

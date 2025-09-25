@@ -4,12 +4,13 @@ using System;
 using System.Collections.Generic;
 using System.Diagnostics;
 using System.Linq;
+using System.Runtime.CompilerServices;
+using Arch.Core;
+using Arch.Core.Extensions;
+using Arch.System;
 using Components;
-using DefaultEcs;
-using DefaultEcs.System;
-using DefaultEcs.Threading;
 using Godot;
-using World = DefaultEcs.World;
+using World = Arch.Core.World;
 
 /// <summary>
 ///   Handles digestion of engulfed objects (and starting ejection of indigestible things).
@@ -21,13 +22,6 @@ using World = DefaultEcs.World;
 ///     just reading that component.
 ///   </para>
 /// </remarks>
-[With(typeof(Engulfer))]
-[With(typeof(OrganelleContainer))]
-[With(typeof(CompoundStorage))]
-[With(typeof(MicrobeStatus))]
-[With(typeof(CellProperties))]
-[With(typeof(Health))]
-[With(typeof(WorldPosition))]
 [WritesToComponent(typeof(Engulfable))]
 [ReadsComponent(typeof(OrganelleContainer))]
 [ReadsComponent(typeof(MicrobeStatus))]
@@ -37,7 +31,7 @@ using World = DefaultEcs.World;
 [ReadsComponent(typeof(SpeciesMember))]
 [RunsAfter(typeof(EngulfingSystem))]
 [RuntimeCost(2)]
-public sealed class EngulfedDigestionSystem : AEntitySetSystem<float>
+public partial class EngulfedDigestionSystem : BaseSystem<World, float>
 {
     private readonly CompoundCloudSystem compoundCloudSystem;
     private readonly IReadOnlyList<Compound> digestibleCompounds;
@@ -46,8 +40,7 @@ public sealed class EngulfedDigestionSystem : AEntitySetSystem<float>
 
     private GameWorld? gameWorld;
 
-    public EngulfedDigestionSystem(CompoundCloudSystem compoundCloudSystem, World world,
-        IParallelRunner parallelRunner) : base(world, parallelRunner, Constants.SYSTEM_NORMAL_ENTITIES_PER_THREAD)
+    public EngulfedDigestionSystem(CompoundCloudSystem compoundCloudSystem, World world) : base(world)
     {
         this.compoundCloudSystem = compoundCloudSystem;
         var simulationParameters = SimulationParameters.Instance;
@@ -61,18 +54,18 @@ public sealed class EngulfedDigestionSystem : AEntitySetSystem<float>
         gameWorld = world;
     }
 
-    protected override void PreUpdate(float state)
+    public override void BeforeUpdate(in float delta)
     {
-        base.PreUpdate(state);
-
         if (gameWorld == null)
             throw new InvalidOperationException("GameWorld not set");
     }
 
-    protected override void Update(float delta, in Entity entity)
+    [Query]
+    [All<MicrobeStatus, CellProperties, Health, WorldPosition>]
+    [MethodImpl(MethodImplOptions.AggressiveInlining)]
+    private void Update([Data] in float delta, ref Engulfer engulfer, ref OrganelleContainer organelles,
+        ref CompoundStorage compoundStorage, in Entity entity)
     {
-        ref var engulfer = ref entity.Get<Engulfer>();
-
         if (engulfer.EngulfedObjects == null || engulfer.EngulfedObjects.Count < 1)
         {
             // When something ejects its last engulfed object, the used engulfing size needs to be still updated
@@ -84,10 +77,7 @@ public sealed class EngulfedDigestionSystem : AEntitySetSystem<float>
             return;
         }
 
-        ref var organelles = ref entity.Get<OrganelleContainer>();
-        var compounds = entity.Get<CompoundStorage>().Compounds;
-
-        HandleDigestion(entity, ref engulfer, ref organelles, compounds, delta);
+        HandleDigestion(entity, ref engulfer, ref organelles, compoundStorage.Compounds, delta);
     }
 
     /// <summary>
@@ -115,7 +105,7 @@ public sealed class EngulfedDigestionSystem : AEntitySetSystem<float>
             var engulfedObject = engulfer.EngulfedObjects![i];
 
 #if DEBUG
-            if (!engulfedObject.IsAlive)
+            if (!engulfedObject.IsAlive())
             {
                 throw new Exception(
                     "Digestion system has a non-alive engulfed object, engulfing system should have taken care " +
@@ -123,7 +113,7 @@ public sealed class EngulfedDigestionSystem : AEntitySetSystem<float>
             }
 #endif
 
-            if (!engulfedObject.Has<Engulfable>())
+            if (!engulfedObject.IsAliveAndHas<Engulfable>())
             {
                 GD.PrintErr("Microbe has engulfed object that isn't engulfable");
                 continue;
@@ -147,11 +137,11 @@ public sealed class EngulfedDigestionSystem : AEntitySetSystem<float>
                 continue;
             }
 
-            // Doesn't make sense to digest non ingested objects, i.e. objects that are being engulfed,
+            // Doesn't make sense to digest non-ingested objects, i.e. objects that are being engulfed,
             // being ejected, etc. So skip them.
             if (engulfable.PhagocytosisStep != PhagocytosisPhase.Ingested)
             {
-                // Still need to consider the size of this thing for the engulf storage, otherwise cells can start
+                // Still need to consider the size of this thing for the engulfed storage, otherwise cells can start
                 // pulling in too much
                 usedCapacity += currentEngulfableSize;
 
@@ -310,7 +300,7 @@ public sealed class EngulfedDigestionSystem : AEntitySetSystem<float>
             {
                 engulfable.DigestedAmount = 1 - (totalAmountLeft / initialTotalEngulfableCompounds);
 
-                // Digested amount can become negative if the calculated initial compounds is not accurate anymore
+                // Digested amount can become negative if the calculated initial compounds are not accurate any more
                 if (engulfable.DigestedAmount < 0)
                     engulfable.DigestedAmount = 0;
             }
@@ -319,16 +309,25 @@ public sealed class EngulfedDigestionSystem : AEntitySetSystem<float>
                 GD.PrintErr("Engulfing system hasn't initialized InitialTotalEngulfableCompounds");
             }
 
-            // If out of stuff to digest, or as a safety check the engulf size has gone to zero, consider digested
-            if (totalAmountLeft <= 0 || engulfable.DigestedAmount >= Constants.FULLY_DIGESTED_LIMIT ||
+            // If out of stuff to digest, or as a safety check, the engulf size has gone to zero, consider digested
+            // Note that the digestion threshold has to be slightly above zero
+            // to avoid https://github.com/Revolutionary-Games/Thrive/issues/4794
+            if (totalAmountLeft <= 0.001f || engulfable.DigestedAmount >= Constants.FULLY_DIGESTED_LIMIT ||
                 engulfable.AdjustedEngulfSize <= 0)
             {
                 engulfable.PhagocytosisStep = PhagocytosisPhase.Digested;
 
+                if (engulferIsPlayer)
+                {
+                    AchievementEvents.ReportPlayerDigestedObject();
+                }
+
                 if (engulfedObject.Has<CellProperties>())
                 {
                     if (engulferIsPlayer)
+                    {
                         gameWorld!.StatisticsTracker.TotalDigestedByPlayer.Increment(1);
+                    }
 
                     // TODO: maybe allow non-player and other species to to also perform endosymbiosis
                     if (engulferIsPlayer && entity.Has<SpeciesMember>() && engulfedObject.Has<SpeciesMember>())
@@ -344,12 +343,15 @@ public sealed class EngulfedDigestionSystem : AEntitySetSystem<float>
 
                         // TODO: maybe add a notice that the player might be able to make an endosymbiont. That
                         // shouldn't always trigger on each engulf but would be nice to have sometimes.
+
+                        // Player got a microbe kill through engulfing
+                        AchievementEvents.ReportPlayerMicrobeKill();
                     }
                 }
             }
 
             // This is always applied, even when digested fully now. This is because EngulfingSystem will subtract
-            // the engulfing size when ejecting an object so this ensures that a digested object cannot contribute
+            // the engulfing size when ejecting an object, so this ensures that a digested object cannot contribute
             // negative size for a short while. The digested object's impact will be correctly recalculated once
             // it is ejected and this system runs again.
             usedCapacity += engulfable.AdjustedEngulfSize;

@@ -30,6 +30,8 @@ public partial class PatchExtinctionBox : Control
             mapDrawer.SetPatchEnabledStatuses(value.Patches.Values,
                 p => p.GetSpeciesGameplayPopulation(PlayerSpecies) > 0);
             mapDrawer.MarkDirty();
+
+            mapDrawer.PlayerPatch = value.CurrentPatch;
         }
     }
 

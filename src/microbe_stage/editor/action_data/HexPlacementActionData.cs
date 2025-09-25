@@ -1,4 +1,6 @@
-﻿[JSONAlwaysDynamicType]
+﻿using System.Collections.Generic;
+
+[JSONAlwaysDynamicType]
 public abstract class HexPlacementActionData<THex, TContext> : EditorCombinableActionData<TContext>
     where THex : class, IActionHex
 {
@@ -13,40 +15,62 @@ public abstract class HexPlacementActionData<THex, TContext> : EditorCombinableA
         Orientation = orientation;
     }
 
-    protected override ActionInterferenceMode GetInterferenceModeWithGuaranteed(CombinableActionData other)
+    protected override (double Cost, double RefundCost) CalculateCostInternal(
+        IReadOnlyList<EditorCombinableActionData> history, int insertPosition)
     {
-        // If this hex got removed in this session
-        if (other is HexRemoveActionData<THex, TContext> removeActionData &&
-            removeActionData.RemovedHex.MatchesDefinition(PlacedHex))
-        {
-            // If the placed hex has been placed on the same position where it got removed before
-            if (removeActionData.Location == Location)
-                return ActionInterferenceMode.CancelsOut;
+        var cost = CalculateBaseCostInternal();
+        double refund = 0;
 
-            // Removing and placing a hex is a move operation
-            return ActionInterferenceMode.Combinable;
+        bool seenEarlierPlacement = false;
+
+        var count = history.Count;
+        for (int i = 0; i < insertPosition && i < count; ++i)
+        {
+            var other = history[i];
+
+            // If this has been placed before, the cost is not free to avoid exploits where the player places and
+            // deletes something they then want to place for free. This stops that exploit.
+            if (other is HexPlacementActionData<THex, TContext> placementActionData &&
+                placementActionData.PlacedHex.MatchesDefinition(PlacedHex) &&
+                MatchesContext(placementActionData) &&
+
+                // Matches the initial position or the final position of the earlier placement
+                ((placementActionData.Location == Location && placementActionData.Orientation == Orientation) ||
+                    (Location, Orientation) ==
+                    HexMoveActionData<THex, TContext>.ResolveFinalLocation(placementActionData.PlacedHex,
+                        placementActionData.Location, placementActionData.Orientation, history, i + 1,
+                        insertPosition - 1, Context)))
+            {
+                seenEarlierPlacement = true;
+                continue;
+            }
+
+            // If this hex got removed in this session before being placed again
+            if (other is HexRemoveActionData<THex, TContext> removeActionData &&
+                removeActionData.RemovedHex.MatchesDefinition(PlacedHex) && MatchesContext(removeActionData))
+            {
+                // If the placed hex has been placed in the same position where it got removed from before
+                if (removeActionData.Location == Location)
+                {
+                    if (!seenEarlierPlacement)
+                        cost = 0;
+
+                    refund += other.GetCalculatedSelfCost();
+                }
+                else
+                {
+                    // Removing and placing a hex is a move operation
+                    cost = Constants.ORGANELLE_MOVE_COST;
+                    refund += other.GetCalculatedSelfCost();
+                }
+            }
         }
 
-        if (other is HexMoveActionData<THex, TContext> moveActionData &&
-            moveActionData.MovedHex.MatchesDefinition(PlacedHex))
-        {
-            if (moveActionData.OldLocation == Location)
-                return ActionInterferenceMode.Combinable;
-        }
-
-        return ActionInterferenceMode.NoInterference;
+        return (cost, refund);
     }
 
-    protected override CombinableActionData CombineGuaranteed(CombinableActionData other)
+    protected override bool CanMergeWithInternal(CombinableActionData other)
     {
-        if (other is HexRemoveActionData<THex, TContext> removeActionData)
-        {
-            return CreateDerivedMoveAction(removeActionData);
-        }
-
-        return CreateDerivedPlacementAction((HexMoveActionData<THex, TContext>)other);
+        return false;
     }
-
-    protected abstract CombinableActionData CreateDerivedMoveAction(HexRemoveActionData<THex, TContext> data);
-    protected abstract CombinableActionData CreateDerivedPlacementAction(HexMoveActionData<THex, TContext> data);
 }

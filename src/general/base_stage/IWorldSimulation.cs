@@ -1,6 +1,6 @@
 ﻿using System;
-using DefaultEcs;
-using DefaultEcs.Command;
+using Arch.Buffer;
+using Arch.Core;
 
 /// <summary>
 ///   Interface for <see cref="WorldSimulation"/> to give flexibility for swapping out things
@@ -29,7 +29,7 @@ public interface IWorldSimulation : IEntityContainer, IDisposable
     ///   Thread safe variant of <see cref="IEntityContainer.CreateEmptyEntity"/>
     /// </summary>
     /// <returns>Record of the deferred entity creation referring to it</returns>
-    public EntityRecord CreateEntityDeferred(WorldRecord activeRecording);
+    public Entity CreateEntityDeferred(CommandBuffer recorder, ComponentType[] types);
 
     /// <summary>
     ///   Checks that the entity is in this world and is not being deleted
@@ -48,16 +48,7 @@ public interface IWorldSimulation : IEntityContainer, IDisposable
     ///   current (or next) entity update cycle.
     /// </summary>
     /// <returns>An object that records instead of applies the entity modification commands performed on it</returns>
-    public EntityCommandRecorder StartRecordingEntityCommands();
-
-    /// <summary>
-    ///   Activates a recorder and gets an entity manager proxy that can be used to perform entity operations
-    /// </summary>
-    /// <param name="recorder">
-    ///   The recorder in use by the caller (received from <see cref="StartRecordingEntityCommands"/>)
-    /// </param>
-    /// <returns>An entity manager instance that is safe to call entity modification operations on</returns>
-    public WorldRecord GetRecorderWorld(EntityCommandRecorder recorder);
+    public CommandBuffer StartRecordingEntityCommands();
 
     /// <summary>
     ///   Notify that the code using a command recorder is now done. This must be called when done with the recorder,
@@ -65,14 +56,29 @@ public interface IWorldSimulation : IEntityContainer, IDisposable
     ///   as well.
     /// </summary>
     /// <param name="recorder">The recorder to return</param>
-    public void FinishRecordingEntityCommands(EntityCommandRecorder recorder);
+    public void FinishRecordingEntityCommands(CommandBuffer recorder);
+
+    /// <summary>
+    ///   Call if entity command recording failed. This discards the entire recorder. Note that this may lose unrelated
+    ///   changes, so only call this in an emergency if a system has totally failed and needs to somewhat allow the
+    ///   gameplay to continue.
+    /// </summary>
+    /// <param name="recorder">Recorder to discard</param>
+    public void OnFailedRecordingEntityCommands(CommandBuffer recorder);
 
     public bool ProcessAll(float delta);
     public bool ProcessLogic(float delta);
 
     /// <summary>
-    ///   Returns true when this simulation has pending
+    ///   Returns true when this simulation has pending operations
     /// </summary>
-    /// <returns>True when pending operations exit</returns>
+    /// <returns>True when pending operations exist</returns>
     public bool HasSystemsWithPendingOperations();
+
+    /// <summary>
+    ///   Returns the ratio of simulation processing at the desired speed versus lower speed
+    ///   (due to CPU power constraints)
+    /// </summary>
+    /// <returns>Speed ratio. 1.0 when full speed is achieved</returns>
+    public float GetAndResetTrackedSimulationSpeedRatio();
 }

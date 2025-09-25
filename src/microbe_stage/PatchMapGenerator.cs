@@ -82,7 +82,7 @@ public static class PatchMapGenerator
             }
             else
             {
-                regionType = (PatchRegion.RegionType)random.Next(0, 3);
+                regionType = GetRandomRegionType(settings, random);
             }
 
             var region = new PatchRegion(i, continentName, regionType, coordinates);
@@ -127,8 +127,7 @@ public static class PatchMapGenerator
                 numberOfPatches = random.Next(0, 4);
 
                 // All oceans/seas must have at least one epipelagic/ice patch and a seafloor
-                NewPredefinedPatch(random.Next(0, 2) == 1 ? BiomeType.Epipelagic : BiomeType.IceShelf,
-                    ++currentPatchId, region, regionName);
+                NewPredefinedPatch(GetRandomSurfaceBiomeType(settings, random), ++currentPatchId, region, regionName);
 
                 // Add the patches between surface and sea floor
                 for (int patchIndex = 4; numberOfPatches > 0 && patchIndex <= (int)BiomeType.Abyssopelagic;
@@ -218,7 +217,69 @@ public static class PatchMapGenerator
             entry.Value.UpdateAverageSunlight(DayNightCycle.CalculateAverageSunlight(daytimeMultiplier, settings));
         }
 
+        ApplyPatchEnvironmentVariation(map, settings, random);
+
         return map;
+    }
+
+    private static PatchRegion.RegionType GetRandomRegionType(WorldGenerationSettings settings, Random random)
+    {
+        int roll = random.Next(0, 100);
+
+        switch (settings.WorldOceanicCoverage)
+        {
+            case WorldGenerationSettings.WorldOceanicCoverageEnum.Small:
+                if (roll < 60)
+                    return PatchRegion.RegionType.Continent;
+                if (roll < 90)
+                    return PatchRegion.RegionType.Sea;
+
+                return PatchRegion.RegionType.Ocean;
+
+            case WorldGenerationSettings.WorldOceanicCoverageEnum.Large:
+                if (roll < 60)
+                    return PatchRegion.RegionType.Ocean;
+                if (roll < 90)
+                    return PatchRegion.RegionType.Sea;
+
+                return PatchRegion.RegionType.Continent;
+
+            default:
+                if (roll < 33)
+                    return PatchRegion.RegionType.Continent;
+                if (roll < 66)
+                    return PatchRegion.RegionType.Sea;
+
+                return PatchRegion.RegionType.Ocean;
+        }
+    }
+
+    private static BiomeType GetRandomSurfaceBiomeType(WorldGenerationSettings settings, Random random)
+    {
+        int roll = random.Next(0, 100);
+
+        switch (settings.WorldTemperature)
+        {
+            case WorldGenerationSettings.WorldTemperatureEnum.Cold:
+                if (roll < 80)
+                    return BiomeType.IceShelf;
+
+                break;
+
+            case WorldGenerationSettings.WorldTemperatureEnum.Temperate:
+                if (roll < 50)
+                    return BiomeType.IceShelf;
+
+                break;
+
+            case WorldGenerationSettings.WorldTemperatureEnum.Warm:
+                if (roll < 20)
+                    return BiomeType.IceShelf;
+
+                break;
+        }
+
+        return BiomeType.Epipelagic;
     }
 
     private static Biome GetBiomeTemplate(string name)
@@ -914,6 +975,124 @@ public static class PatchMapGenerator
         }
 
         map.CurrentPatch.AddSpecies(defaultSpecies, Constants.INITIAL_SPECIES_POPULATION);
+    }
+
+    /// <summary>
+    ///   Applies environment variation to all patches in the map based on world generation settings.
+    /// </summary>
+    /// <param name="map">The patch map to apply variations to</param>
+    /// <param name="settings">The world generation settings to use for variations</param>
+    /// <param name="random">Random instance with certain seed</param>
+    private static void ApplyPatchEnvironmentVariation(PatchMap map, WorldGenerationSettings settings, Random random)
+    {
+        foreach (var patch in map.Patches.Values)
+        {
+            ApplyCompoundVariation(patch, Compound.Hydrogensulfide, settings.HydrogenSulfideLevel, random);
+            ApplyCompoundVariation(patch, Compound.Glucose, settings.GlucoseLevel, random);
+            ApplyCompoundVariation(patch, Compound.Iron, settings.IronLevel, random);
+            ApplyCompoundVariation(patch, Compound.Ammonia, settings.AmmoniaLevel, random);
+            ApplyCompoundVariation(patch, Compound.Phosphates, settings.PhosphatesLevel, random);
+            ApplyCompoundVariation(patch, Compound.Radiation, settings.RadiationLevel, random);
+
+            if (patch.IsSurfacePatch())
+                ApplyTemperatureVariation(patch, settings, random);
+        }
+    }
+
+    private static void ApplyTemperatureVariation(Patch patch, WorldGenerationSettings settings, Random random)
+    {
+        int temperatureDown;
+        int temperatureUp;
+
+        switch (settings.WorldTemperature)
+        {
+            case WorldGenerationSettings.WorldTemperatureEnum.Cold:
+                temperatureDown = Constants.TEMPERATURE_COLD_MIN;
+                temperatureUp = Constants.TEMPERATURE_COLD_MAX;
+                break;
+            case WorldGenerationSettings.WorldTemperatureEnum.Temperate:
+                temperatureDown = Constants.TEMPERATURE_TEMPERATE_MIN;
+                temperatureUp = Constants.TEMPERATURE_TEMPERATE_MAX;
+                break;
+            case WorldGenerationSettings.WorldTemperatureEnum.Warm:
+                temperatureDown = Constants.TEMPERATURE_WARM_MIN;
+                temperatureUp = Constants.TEMPERATURE_WARM_MAX;
+                break;
+            default:
+                GD.PrintErr($"Selected temperature {settings.WorldTemperature} doesn't match a known temperature type");
+                temperatureDown = Constants.TEMPERATURE_TEMPERATE_MIN;
+                temperatureUp = Constants.TEMPERATURE_TEMPERATE_MAX;
+                break;
+        }
+
+        var temperatureVariation = random.Next(temperatureDown, temperatureUp + 1);
+
+        bool hasTemperature =
+            patch.Biome.ChangeableCompounds.TryGetValue(Compound.Temperature, out var currentTemperature);
+
+        if (!hasTemperature)
+        {
+            GD.PrintErr("Patch map generator encountered patch with unexpectedly no temperature.");
+            return;
+        }
+
+        currentTemperature.Ambient += temperatureVariation;
+        currentTemperature.Ambient = Math.Max(-1, currentTemperature.Ambient);
+        patch.Biome.ModifyLongTermCondition(Compound.Temperature, currentTemperature, true);
+    }
+
+    private static void ApplyCompoundVariation(Patch patch, Compound compound,
+        WorldGenerationSettings.CompoundLevel compoundLevel, Random random)
+    {
+        float minValue;
+        float maxValue;
+
+        switch (compoundLevel)
+        {
+            case WorldGenerationSettings.CompoundLevel.VeryLow:
+                minValue = Constants.COMPOUND_LEVEL_VERY_LOW_MIN;
+                maxValue = Constants.COMPOUND_LEVEL_VERY_LOW_MAX;
+                break;
+            case WorldGenerationSettings.CompoundLevel.Low:
+                minValue = Constants.COMPOUND_LEVEL_LOW_MIN;
+                maxValue = Constants.COMPOUND_LEVEL_LOW_MAX;
+                break;
+            case WorldGenerationSettings.CompoundLevel.Average:
+                minValue = Constants.COMPOUND_LEVEL_AVERAGE_MIN;
+                maxValue = Constants.COMPOUND_LEVEL_AVERAGE_MAX;
+                break;
+            case WorldGenerationSettings.CompoundLevel.High:
+                minValue = Constants.COMPOUND_LEVEL_HIGH_MIN;
+                maxValue = Constants.COMPOUND_LEVEL_HIGH_MAX;
+                break;
+            case WorldGenerationSettings.CompoundLevel.VeryHigh:
+                minValue = Constants.COMPOUND_LEVEL_VERY_HIGH_MIN;
+                maxValue = Constants.COMPOUND_LEVEL_VERY_HIGH_MAX;
+                break;
+            default:
+                GD.PrintErr($"Selected compoundLevel {compoundLevel} for {compound.ToString()}" +
+                    $" doesn't match a known compoundLevel type");
+                minValue = Constants.COMPOUND_LEVEL_AVERAGE_MIN;
+                maxValue = Constants.COMPOUND_LEVEL_AVERAGE_MAX;
+                break;
+        }
+
+        var compoundAmountVariation = random.Next(minValue, maxValue);
+        var compoundDensityVariation = random.Next(minValue, maxValue);
+
+        var hasCompound =
+            patch.Biome.ChangeableCompounds.TryGetValue(compound, out var currentCompoundLevel);
+
+        if (hasCompound)
+        {
+            currentCompoundLevel.Amount *= compoundAmountVariation;
+            currentCompoundLevel.Density *= compoundDensityVariation;
+
+            patch.Biome.ModifyLongTermCondition(compound, currentCompoundLevel);
+        }
+
+        // Iron and radiation are present only in chunk form
+        patch.Biome.ModifyChunksDensitiesByCompound(compound, compoundDensityVariation);
     }
 
     private static LocalizedString GetPatchLocalizedName(string regionName, string biomeType)

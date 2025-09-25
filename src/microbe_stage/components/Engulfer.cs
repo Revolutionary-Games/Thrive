@@ -3,7 +3,9 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
-using DefaultEcs;
+using System.Runtime.CompilerServices;
+using Arch.Core;
+using Arch.Core.Extensions;
 using Godot;
 using Newtonsoft.Json;
 using Systems;
@@ -56,17 +58,17 @@ public struct Engulfer
 public static class EngulferHelpers
 {
     /// <summary>
-    ///   Direct engulfing check. Microbe should use <see cref="CellPropertiesHelpers.CanEngulfObject"/>
+    ///   Direct engulfing check. Microbe should use <see cref="CellPropertiesHelpers.CanEngulfObject"/> instead
     /// </summary>
-    public static EngulfCheckResult CanEngulfObject(this ref Engulfer engulfer, uint engulferSpeciesID,
+    public static EngulfCheckResult CanEngulfObject(this ref readonly Engulfer engulfer, uint engulferSpeciesID,
         in Entity target)
     {
-        if (!target.IsAlive)
+        if (target == Entity.Null || !target.IsAlive())
             return EngulfCheckResult.TargetDead;
 
         bool invulnerable = false;
 
-        // Can't engulf dead microbes (unlikely to happen but this is a fail-safe)
+        // Can't engulf dead microbes (unlikely to happen, but this is a fail-safe)
         if (target.Has<Health>())
         {
             ref var health = ref target.Get<Health>();
@@ -77,7 +79,7 @@ public static class EngulferHelpers
             invulnerable = health.Invulnerable;
         }
 
-        // Can't engulf recently ejected objects, this act as a cooldown
+        // Can't engulf recently ejected objects, this acts as a cooldown
         if (engulfer.ExpelledObjects != null && engulfer.ExpelledObjects.ContainsKey(target))
             return EngulfCheckResult.RecentlyExpelled;
 
@@ -102,7 +104,7 @@ public static class EngulferHelpers
             if (engulfer.EngulfingSize < targetSize * Constants.ENGULF_SIZE_RATIO_REQ)
                 return EngulfCheckResult.TargetTooBig;
 
-            // Limit amount of things that can be engulfed at once
+            // Limit the number of things that can be engulfed at once
             if (engulfer.UsedEngulfingCapacity + targetSize >= engulfer.EngulfStorageSize)
             {
                 return EngulfCheckResult.IngestedMatterFull;
@@ -130,20 +132,23 @@ public static class EngulferHelpers
     /// <param name="cellProperties">
     ///   Cell properties to determine if this engulfer can even engulf things in the first place
     /// </param>
-    /// <param name="organelles">Organelles the engulfer has, used to determine what it can eat or digest</param>
+    /// <param name="organelles">
+    ///   Organelles the engulfer has. This is used to determine what it can eat or digest.
+    /// </param>
     /// <param name="position">Location of the engulfer to search nearby positions for</param>
     /// <param name="usefulCompoundSource">
     ///   Used to filter engulfables to only ones this bag considers useful
     /// </param>
-    /// <param name="engulferEntity">Entity of the engulfer, used to skip self engulfment check</param>
+    /// <param name="engulferEntity">Entity of the engulfer, used to skip self-engulfment check</param>
     /// <param name="engulferSpeciesID">Engulfer species ID to use in engulfability checks</param>
     /// <param name="world">Where to fetch potential entities</param>
     /// <param name="searchRadius">How wide to search around the position</param>
+    /// <param name="skipLikelyTooFastTargets">Should skip targets under a certain relative size</param>
     /// <returns>The nearest found point for the engulfable entity or null</returns>
     public static Vector3? FindNearestEngulfableSlow(this ref Engulfer engulfer,
         ref CellProperties cellProperties, ref OrganelleContainer organelles, ref WorldPosition position,
         CompoundBag usefulCompoundSource, in Entity engulferEntity, uint engulferSpeciesID, IWorldSimulation world,
-        float searchRadius = 200)
+        float searchRadius = 200, bool skipLikelyTooFastTargets = false)
     {
         if (searchRadius < 1)
             throw new ArgumentException("searchRadius must be >= 1");
@@ -152,49 +157,17 @@ public static class EngulferHelpers
         if (!cellProperties.MembraneType.CanEngulf)
             return null;
 
-        Vector3? nearestPoint = null;
-        float nearestDistanceSquared = float.MaxValue;
-        var searchRadiusSquared = searchRadius * searchRadius;
-
         // Retrieve nearest potential entities
-        foreach (var entity in world.EntitySystem)
-        {
-            if (!entity.Has<Engulfable>() || !entity.Has<CompoundStorage>())
-                continue;
+        // TODO: this cannot use ref struct here so we have to copy 2 pretty big components here. Determine if this is
+        // better than just allocating a lambda and using a non-inline query
+        var query = new EngulfableCollector(ref position, organelles, engulfer, searchRadius * searchRadius,
+            usefulCompoundSource, engulferSpeciesID, skipLikelyTooFastTargets);
+        world.EntitySystem.InlineEntityQuery<EngulfableCollector, Engulfable, CompoundStorage, WorldPosition>(
+            new QueryDescription().WithAll<Engulfable, CompoundStorage, WorldPosition>(), ref query);
 
-            ref var engulfable = ref entity.Get<Engulfable>();
-            var compounds = entity.Get<CompoundStorage>().Compounds;
-
-            if (compounds.Compounds.Count <= 0 || engulfable.PhagocytosisStep != PhagocytosisPhase.None)
-                continue;
-
-            if (!entity.Has<WorldPosition>())
-                continue;
-
-            ref var entityPosition = ref entity.Get<WorldPosition>();
-
-            // Skip entities that are out of range
-            var distance = (entityPosition.Position - position.Position).LengthSquared();
-            if (distance > searchRadiusSquared)
-                continue;
-
-            // Skip non-engulfable or digestible entities
-            if (organelles.CanDigestObject(ref engulfable) != DigestCheckResult.Ok ||
-                engulfer.CanEngulfObject(engulferSpeciesID, entity) != EngulfCheckResult.Ok)
-            {
-                continue;
-            }
-
-            // Skip entities that have no useful compounds
-            if (!compounds.Compounds.Any(p => usefulCompoundSource.IsUseful(p.Key)))
-                continue;
-
-            if (nearestPoint == null || distance < nearestDistanceSquared)
-            {
-                nearestPoint = entityPosition.Position;
-                nearestDistanceSquared = distance;
-            }
-        }
+        // TODO: switch this to a non-nullable return to avoid boxing
+        if (!query.TryGetResult(out var nearestPoint))
+            return null;
 
         return nearestPoint;
     }
@@ -203,7 +176,7 @@ public static class EngulferHelpers
     ///   Request ejection of an engulfable
     /// </summary>
     /// <returns>
-    ///   True when ejection has started, false if already was in progress, or it is impossible to eject
+    ///   True, when ejection has started, false if already was in progress, or it is impossible to eject
     /// </returns>
     public static bool EjectEngulfable(this ref Engulfer engulfer, ref Engulfable engulfable)
     {
@@ -261,7 +234,7 @@ public static class EngulferHelpers
 
             foreach (var ourEngulfedEntity in engulfer.EngulfedObjects.ToList())
             {
-                if (!engulfer.EngulfedObjects.Remove(ourEngulfedEntity) || !ourEngulfedEntity.IsAlive ||
+                if (!engulfer.EngulfedObjects.Remove(ourEngulfedEntity) || !ourEngulfedEntity.IsAlive() ||
                     !ourEngulfedEntity.Has<Engulfable>())
                 {
                     continue;
@@ -271,8 +244,8 @@ public static class EngulferHelpers
 
                 if (!targetEngulfer.TakeOwnershipOfEngulfed(targetEngulferEntity, ref engulfed, ourEngulfedEntity))
                 {
-                    // Add back to original list as it can't be moved. The engulfing system will eject it
-                    // properly out of the dead entity
+                    // Add back to the original list as it can't be moved.
+                    // The engulfing system will eject it properly out of the dead entity
                     GD.Print("Adding failed to be transferred engulfed back to us for ejecting when " +
                         "death is processed");
                     engulfer.EngulfedObjects.Add(ourEngulfedEntity);
@@ -295,5 +268,91 @@ public static class EngulferHelpers
     {
         return EngulfingSystem.AddAlreadyEngulfedObject(ref engulfer, in engulferEntity, ref engulfable,
             in engulfableEntity);
+    }
+
+    private struct EngulfableCollector : IForEachWithEntity<Engulfable, CompoundStorage, WorldPosition>
+    {
+        private readonly Vector3 position;
+        private readonly OrganelleContainer organelles;
+        private readonly Engulfer engulfer;
+        private readonly float searchRadiusSquared;
+        private readonly CompoundBag usefulCompoundSource;
+        private readonly uint engulferSpeciesID;
+        private readonly bool skipLikelyTooFastTargets;
+
+        private float nearestDistanceSquared = float.MaxValue;
+
+        private bool hasNearestPoint;
+        private Vector3 nearestPoint;
+
+        public EngulfableCollector(ref WorldPosition position, OrganelleContainer organelles, Engulfer engulfer,
+            float searchRadiusSquared, CompoundBag usefulCompoundSource, uint engulferSpeciesID,
+            bool skipLikelyTooFastTargets)
+        {
+            this.position = position.Position;
+            this.organelles = organelles;
+            this.engulfer = engulfer;
+            this.searchRadiusSquared = searchRadiusSquared;
+            this.usefulCompoundSource = usefulCompoundSource;
+            this.engulferSpeciesID = engulferSpeciesID;
+            this.skipLikelyTooFastTargets = skipLikelyTooFastTargets;
+        }
+
+        [MethodImpl(MethodImplOptions.AggressiveInlining)]
+        public void Update(Entity entity, ref Engulfable engulfable, ref CompoundStorage compoundStorage,
+            ref WorldPosition entityPosition)
+        {
+            var compounds = compoundStorage.Compounds;
+
+            if (compounds.Compounds.Count <= 0 || engulfable.PhagocytosisStep != PhagocytosisPhase.None)
+                return;
+
+            // Skip entities that are out of range
+            var distance = (entityPosition.Position - position).LengthSquared();
+            if (distance > searchRadiusSquared)
+                return;
+
+            // Skip non-engulfable or digestible entities
+            if (organelles.CanDigestObject(ref engulfable) != DigestCheckResult.Ok ||
+                engulfer.CanEngulfObject(engulferSpeciesID, entity) != EngulfCheckResult.Ok)
+            {
+                return;
+            }
+
+            // Skip entities that have no useful compounds
+            bool useful = false;
+            foreach (var pair in compounds.Compounds)
+            {
+                if (usefulCompoundSource.IsUseful(pair.Key))
+                {
+                    useful = true;
+                    break;
+                }
+            }
+
+            if (!useful)
+                return;
+
+            // Skip entities that are too small to catch easily (ex: player = 3; ratio = 1/3; entity must be > 1 to be
+            // considered)
+            if (skipLikelyTooFastTargets &&
+                engulfer.EngulfingSize * Constants.TUTORIAL_ENGULFABLE_SIZE_RATIO > engulfable.AdjustedEngulfSize)
+            {
+                return;
+            }
+
+            if (!hasNearestPoint || distance < nearestDistanceSquared)
+            {
+                hasNearestPoint = true;
+                nearestPoint = entityPosition.Position;
+                nearestDistanceSquared = distance;
+            }
+        }
+
+        public bool TryGetResult(out Vector3 result)
+        {
+            result = nearestPoint;
+            return hasNearestPoint;
+        }
     }
 }

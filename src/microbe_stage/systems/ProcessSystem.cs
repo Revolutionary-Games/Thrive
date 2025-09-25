@@ -9,13 +9,14 @@ using System.Collections.Generic;
 using System.Diagnostics;
 using System.Diagnostics.CodeAnalysis;
 using System.Linq;
+using System.Runtime.CompilerServices;
+using Arch.Core;
+using Arch.Core.Extensions;
+using Arch.System;
 using AutoEvo;
 using Components;
-using DefaultEcs;
-using DefaultEcs.System;
-using DefaultEcs.Threading;
 using Godot;
-using World = DefaultEcs.World;
+using World = Arch.Core.World;
 
 /// <summary>
 ///   Runs biological processes on entities
@@ -25,13 +26,17 @@ using World = DefaultEcs.World;
 ///     This is marked as writing to the processes due to <see cref="BioProcesses.ProcessStatistics"/>
 ///   </para>
 /// </remarks>
-[With(typeof(CompoundStorage))]
-[With(typeof(BioProcesses))]
+/// <remarks>
+///   <para>
+///     Marked as being on the main thread as that's a limitation of Arch ECS parallel processing.
+///   </para>
+/// </remarks>
 [RunsAfter(typeof(CompoundAbsorptionSystem))]
 [RunsBefore(typeof(OsmoregulationAndHealingSystem))]
 [RunsBefore(typeof(MicrobeMovementSystem))]
-[RuntimeCost(55)]
-public sealed class ProcessSystem : AEntitySetSystem<float>
+[RunsOnMainThread]
+[RuntimeCost(26)]
+public partial class ProcessSystem : BaseSystem<World, float>
 {
     public static OrganelleDefinition Nucleus = SimulationParameters.Instance.GetOrganelleType("nucleus");
 
@@ -42,12 +47,11 @@ public sealed class ProcessSystem : AEntitySetSystem<float>
     private BiomeConditions? biome;
 
     /// <summary>
-    ///   Used to go from the calculated compound values to per second values for reporting statistics
+    ///   Used to go from the calculated compound values to per-second values for reporting statistics
     /// </summary>
     private float inverseDelta;
 
-    public ProcessSystem(World world, IParallelRunner runner) : base(world, runner,
-        Constants.SYSTEM_LOW_ENTITIES_PER_THREAD)
+    public ProcessSystem(World world) : base(world)
     {
     }
 
@@ -780,7 +784,7 @@ public sealed class ProcessSystem : AEntitySetSystem<float>
         return GetAmbientInBiome(compound, biome, amountType);
     }
 
-    protected override void PreUpdate(float delta)
+    public override void BeforeUpdate(in float delta)
     {
         if (biome == null)
         {
@@ -795,48 +799,6 @@ public sealed class ProcessSystem : AEntitySetSystem<float>
             usedStatistics.Clear();
         }
 #endif
-    }
-
-    protected override void Update(float delta, in Entity entity)
-    {
-        ref var storage = ref entity.Get<CompoundStorage>();
-        ref var processes = ref entity.Get<BioProcesses>();
-
-        float overallSpeedModifier = 1.0f;
-
-        // TODO: remove this if check once save breakage is done
-        if (entity.Has<MicrobeEnvironmentalEffects>())
-        {
-            var microbeEnvironmentalEffects = entity.Get<MicrobeEnvironmentalEffects>();
-            overallSpeedModifier = microbeEnvironmentalEffects.ProcessSpeedModifier;
-
-            // TODO: hopefully in the far future this safety check could be removed
-            // https://github.com/Revolutionary-Games/Thrive/issues/5928
-            if (float.IsNaN(overallSpeedModifier) || float.IsInfinity(overallSpeedModifier) || overallSpeedModifier < 0)
-            {
-                GD.PrintErr(
-                    $"ProcessSystem: process speed modifier is invalid for entity {entity}: {overallSpeedModifier}");
-                overallSpeedModifier = 1.0f;
-
-                // Reset the data to not keep printing the error
-                microbeEnvironmentalEffects.ProcessSpeedModifier = 1.0f;
-            }
-        }
-
-#if DEBUG
-        if (overallSpeedModifier <= 0)
-        {
-            // This likely causes NaN values, so we need to track down places that would cause this.
-            // If desired in the future to be able to disable processing entirely, we might want to fix this case, but
-            // for now this should never be allowed to happen.
-            GD.PrintErr($"ProcessSystem: process speed modifier is invalid for {entity}: {overallSpeedModifier}");
-
-            if (Debugger.IsAttached)
-                Debugger.Break();
-        }
-#endif
-
-        ProcessNode(ref processes, ref storage, overallSpeedModifier, delta);
     }
 
     private static void CalculateSimplePartOfEnergyBalance(IReadOnlyList<OrganelleTemplate> organelles,
@@ -983,6 +945,48 @@ public sealed class ProcessSystem : AEntitySetSystem<float>
             return 0;
 
         return environmentalCompoundProperties.Ambient;
+    }
+
+    [Query(Parallel = true)]
+    [MethodImpl(MethodImplOptions.AggressiveInlining)]
+    private void Update([Data] in float delta, in Entity entity, ref CompoundStorage storage,
+        ref BioProcesses processes)
+    {
+        float overallSpeedModifier = 1.0f;
+
+        // TODO: remove this if check if it is decided this system is only to be used for the microbe stage
+        if (entity.Has<MicrobeEnvironmentalEffects>())
+        {
+            var microbeEnvironmentalEffects = entity.Get<MicrobeEnvironmentalEffects>();
+            overallSpeedModifier = microbeEnvironmentalEffects.ProcessSpeedModifier;
+
+            // TODO: hopefully in the far future this safety check could be removed
+            // https://github.com/Revolutionary-Games/Thrive/issues/5928
+            if (float.IsNaN(overallSpeedModifier) || float.IsInfinity(overallSpeedModifier) || overallSpeedModifier < 0)
+            {
+                GD.PrintErr(
+                    $"ProcessSystem: process speed modifier is invalid for entity {entity}: {overallSpeedModifier}");
+                overallSpeedModifier = 1.0f;
+
+                // Reset the data to not keep printing the error
+                microbeEnvironmentalEffects.ProcessSpeedModifier = 1.0f;
+            }
+        }
+
+#if DEBUG
+        if (overallSpeedModifier <= 0)
+        {
+            // This likely causes NaN values, so we need to track down places that would cause this.
+            // If desired in the future to be able to disable processing entirely, we might want to fix this case, but
+            // for now this should never be allowed to happen.
+            GD.PrintErr($"ProcessSystem: process speed modifier is invalid for {entity}: {overallSpeedModifier}");
+
+            if (Debugger.IsAttached)
+                Debugger.Break();
+        }
+#endif
+
+        ProcessNode(ref processes, ref storage, overallSpeedModifier, delta);
     }
 
     private void ProcessNode(ref BioProcesses processor, ref CompoundStorage storage, float overallSpeedModifier,

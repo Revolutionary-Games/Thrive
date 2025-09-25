@@ -109,7 +109,7 @@ public partial class AscensionCeremony : Node
             ReturnToScene?.QueueFree();
     }
 
-    public override void _Process(double delta)
+    public override void _PhysicsProcess(double delta)
     {
         if (currentState is State.FadingOut or State.Credits)
         {

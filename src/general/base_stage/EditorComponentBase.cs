@@ -183,6 +183,23 @@ public partial class EditorComponentBase<TEditor> : ControlWithInput, IEditorCom
     }
 
     /// <summary>
+    ///   Blocks tab switch (and shows a tooltip) if there's an in-progress action
+    /// </summary>
+    /// <returns>Whether the tab switch was blocked</returns>
+    protected bool BlockTabSwitchIfInProgressAction(bool actionInProgess)
+    {
+        if (actionInProgess)
+        {
+            ToolTipManager.Instance.ShowPopup(Localization.Translate("TAB_CHANGE_BLOCKED_WHILE_ACTION_IN_PROGRESS"),
+                1.5f);
+
+            return true;
+        }
+
+        return false;
+    }
+
+    /// <summary>
     ///   Rebuilds and recalculates all value-dependent UI elements on language change
     /// </summary>
     protected virtual void OnTranslationsChanged()

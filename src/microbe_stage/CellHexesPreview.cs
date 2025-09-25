@@ -1,23 +1,29 @@
 ﻿using System;
+using Godot;
 
 /// <summary>
 ///   Shows a visualization of a cell's hexes in the GUI
 /// </summary>
 public partial class CellHexesPreview : PhotographablePreview
 {
-    private MicrobeSpecies? microbeSpecies;
+    private ulong speciesVisualHash;
 
-    public MicrobeSpecies? PreviewSpecies
+    private Species? previewSpecies;
+
+    public Species? PreviewSpecies
     {
-        get => microbeSpecies;
+        get => previewSpecies;
         set
         {
-            if (PreviewSpecies == value)
+            var newHash = value?.GetVisualHashCode() ?? 0UL;
+
+            if (newHash == speciesVisualHash)
                 return;
 
-            microbeSpecies = value;
+            previewSpecies = value;
+            speciesVisualHash = newHash;
 
-            if (microbeSpecies != null)
+            if (previewSpecies != null)
             {
                 UpdatePreview();
             }
@@ -28,18 +34,44 @@ public partial class CellHexesPreview : PhotographablePreview
         }
     }
 
-    protected override IImageTask SetupImageTask()
+    protected override IImageTask? SetupImageTask()
     {
-        if (microbeSpecies == null)
+        if (previewSpecies == null)
             throw new InvalidOperationException("No species set to generate image of hexes for");
 
-        var hash = CellHexesPhotoBuilder.GetVisualHash(microbeSpecies);
+        if (previewSpecies is MicrobeSpecies microbeSpecies)
+        {
+            var hash = CellHexesPhotoBuilder.GetVisualHash(microbeSpecies);
 
-        var task = PhotoStudio.Instance.TryGetFromCache(hash);
+            var task = PhotoStudio.Instance.TryGetFromCache(hash);
 
-        if (task != null)
-            return task;
+            if (task != null)
+                return task;
 
-        return PhotoStudio.Instance.GenerateImage(new CellHexesPhotoBuilder { Species = microbeSpecies }, Priority);
+            return PhotoStudio.Instance.GenerateImage(new CellHexesPhotoBuilder { Species = microbeSpecies }, Priority);
+        }
+
+        if (previewSpecies is MulticellularSpecies multicellularSpecies)
+        {
+            var hash = ColonyHexPhotoBuilder.GetVisualHash(multicellularSpecies);
+
+            var task = PhotoStudio.Instance.TryGetFromCache(hash);
+
+            if (task != null)
+                return task;
+
+            if (multicellularSpecies.EditorCellLayout == null)
+            {
+                GD.PrintErr("No cell layout is remembered, the hex preview can't be generated");
+                return null;
+            }
+
+            return PhotoStudio.Instance.GenerateImage(new ColonyHexPhotoBuilder { Species = multicellularSpecies },
+                Priority);
+        }
+
+        GD.PrintErr("Unknown species type to generate hexes view of: ", previewSpecies, " (",
+            previewSpecies.GetType().Name, ")");
+        return null;
     }
 }

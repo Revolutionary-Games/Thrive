@@ -2,54 +2,46 @@
 
 using System;
 using System.Runtime.CompilerServices;
+using Arch.Core;
+using Arch.System;
 using Components;
-using DefaultEcs;
-using DefaultEcs.System;
-using DefaultEcs.Threading;
 using Godot;
 using Newtonsoft.Json;
-using World = DefaultEcs.World;
+using World = Arch.Core.World;
 
 /// <summary>
 ///   Gives a push from currents in a fluid to physics entities (that have <see cref="ManualPhysicsControl"/>).
 ///   Only acts on entities marked with <see cref="CurrentAffected"/>.
 /// </summary>
-[With(typeof(CurrentAffected))]
-[With(typeof(Physics))]
-[With(typeof(ManualPhysicsControl))]
-[With(typeof(WorldPosition))]
 [ReadsComponent(typeof(CurrentAffected))]
 [ReadsComponent(typeof(Physics))]
 [ReadsComponent(typeof(WorldPosition))]
 [RuntimeCost(8)]
 [JsonObject(MemberSerialization.OptIn)]
 [RunsOnMainThread]
-public sealed class FluidCurrentsSystem : AEntitySetSystem<float>
+public partial class FluidCurrentsSystem : BaseSystem<World, float>
 {
+    public FluidCurrentDisplay? FluidCurrentDisplay;
+
     // The following constants should be the same as in CurrentsParticles.gdshader
-    private const float DISTURBANCE_TIMESCALE = 1.000f;
-    private const float CURRENTS_TIMESCALE = 1.000f / 500.0f;
-    private const float CURRENTS_STRETCHING_MULTIPLIER = 1.0f / 10.0f;
-    private const float MIN_CURRENT_INTENSITY = 0.25f;
-    private const float DISTURBANCE_TO_CURRENTS_RATIO = 0.15f;
+    private const float CURRENTS_TIMESCALE = 0.25f;
     private const float POSITION_SCALING = 0.9f;
 
-    private readonly NoiseTexture3D noiseDisturbancesX;
-    private readonly NoiseTexture3D noiseDisturbancesY;
-    private readonly NoiseTexture3D noiseCurrentsX;
-    private readonly NoiseTexture3D noiseCurrentsY;
+#pragma warning disable CA2213
+    private Texture2D currentsNoise1Texture;
+    private Texture2D currentsNoise2Texture;
 
-    private Image[] noiseDisturbancesXImage = null!;
-    private Image[] noiseDisturbancesYImage = null!;
-    private Image[] noiseCurrentsXImage = null!;
-    private Image[] noiseCurrentsYImage = null!;
+    private Image currentsNoise1 = null!;
+    private Image currentsNoise2 = null!;
+#pragma warning restore CA2213
+
     private bool imagesInitialized;
 
     private GameWorld? gameWorld;
 
     private float speed;
     private float chaoticness;
-    private float scale;
+    private float inverseScale;
 
     [JsonProperty]
     private float currentsTimePassed;
@@ -57,34 +49,15 @@ public sealed class FluidCurrentsSystem : AEntitySetSystem<float>
     private int noiseWidth = -1;
     private int noiseHeight = -1;
 
-    public FluidCurrentsSystem(World world, IParallelRunner runner) : base(world, runner,
-        Constants.SYSTEM_HIGHER_ENTITIES_PER_THREAD)
+    public FluidCurrentsSystem(World world, float currentsTimePassed) : base(world)
     {
-        noiseDisturbancesX = GD.Load<NoiseTexture3D>("res://src/microbe_stage/NoiseFluidDisturbanceX.tres") ??
+        currentsNoise1Texture = GD.Load<CompressedTexture2D>("res://assets/textures/CurrentsNoise1.png") ??
             throw new Exception("Fluid current noise texture couldn't be loaded");
 
-        noiseDisturbancesY = GD.Load<NoiseTexture3D>("res://src/microbe_stage/NoiseFluidDisturbanceY.tres") ??
+        currentsNoise2Texture = GD.Load<CompressedTexture2D>("res://assets/textures/CurrentsNoise2.png") ??
             throw new Exception("Fluid current noise texture couldn't be loaded");
 
-        noiseCurrentsX = GD.Load<NoiseTexture3D>("res://src/microbe_stage/NoiseFluidCurrentX.tres") ??
-            throw new Exception("Fluid current noise texture couldn't be loaded");
-
-        noiseCurrentsY = GD.Load<NoiseTexture3D>("res://src/microbe_stage/NoiseFluidCurrentY.tres") ??
-            throw new Exception("Fluid current noise texture couldn't be loaded");
-    }
-
-    /// <summary>
-    ///   JSON constructor for creating temporary instances used to apply the child properties
-    /// </summary>
-    [JsonConstructor]
-    public FluidCurrentsSystem(float currentsTimePassed) : base(TemporarySystemHelper.GetDummyWorldForLoad(), null)
-    {
         this.currentsTimePassed = currentsTimePassed;
-
-        noiseDisturbancesX = null!;
-        noiseDisturbancesY = null!;
-        noiseCurrentsX = null!;
-        noiseCurrentsY = null!;
     }
 
     public void SetWorld(GameWorld world)
@@ -98,38 +71,32 @@ public sealed class FluidCurrentsSystem : AEntitySetSystem<float>
             return Vector2.Zero;
 
         // This function's formula should be the same as the one in CurrentsParticles.gdshader
-        var scaledPosition = position * POSITION_SCALING * scale;
+        var scaledPosition = position * POSITION_SCALING * inverseScale;
+        var scaledTime = currentsTimePassed * CURRENTS_TIMESCALE * chaoticness;
 
-        float disturbancesX = GetPixel(scaledPosition.X, scaledPosition.Y,
-            currentsTimePassed * DISTURBANCE_TIMESCALE * chaoticness, noiseDisturbancesXImage);
-        float disturbancesY = GetPixel(scaledPosition.X, scaledPosition.Y,
-            currentsTimePassed * DISTURBANCE_TIMESCALE * chaoticness, noiseDisturbancesYImage);
+        Vector2 currents1 = GetPixel(scaledPosition.X + scaledTime, scaledPosition.Y + scaledTime, currentsNoise1);
+        Vector2 currents2 = GetPixel(scaledPosition.X - scaledTime, scaledPosition.Y - scaledTime, currentsNoise2);
 
-        float currentsX = GetPixel(scaledPosition.X * CURRENTS_STRETCHING_MULTIPLIER,
-            scaledPosition.Y, currentsTimePassed * CURRENTS_TIMESCALE * chaoticness, noiseCurrentsXImage);
-        float currentsY = GetPixel(scaledPosition.X,
-            scaledPosition.Y * CURRENTS_STRETCHING_MULTIPLIER,
-            currentsTimePassed * CURRENTS_TIMESCALE * chaoticness, noiseCurrentsYImage);
+        var currentsVelocity = currents1 * 2.0f - Vector2.One;
 
-        var disturbancesVelocity = new Vector2(disturbancesX, disturbancesY);
-        var currentsVelocity = new Vector2(currentsX, currentsY);
+        currentsVelocity *= currents2;
 
-        if (currentsVelocity.LengthSquared() < MIN_CURRENT_INTENSITY)
-            currentsVelocity = Vector2.Zero;
-
-        return currentsVelocity.Lerp(disturbancesVelocity, DISTURBANCE_TO_CURRENTS_RATIO) * speed;
+        return currentsVelocity * speed;
     }
 
-    protected override void PreUpdate(float delta)
+    public override void BeforeUpdate(in float delta)
     {
-        base.PreUpdate(delta);
-
         if (!imagesInitialized)
         {
-            TryGetNoiseImages();
+            currentsNoise1 = currentsNoise1Texture.GetImage();
+            currentsNoise2 = currentsNoise2Texture.GetImage();
+            noiseWidth = currentsNoise1.GetWidth();
+            noiseHeight = currentsNoise2.GetHeight();
+            imagesInitialized = true;
         }
 
         currentsTimePassed += delta;
+        FluidCurrentDisplay?.UpdateTime(currentsTimePassed);
 
         if (gameWorld == null)
             throw new InvalidOperationException("GameWorld not set");
@@ -142,25 +109,23 @@ public sealed class FluidCurrentsSystem : AEntitySetSystem<float>
 
         var biome = gameWorld.Map.CurrentPatch.BiomeTemplate;
 
-        speed = biome.WaterCurrentSpeed;
-        chaoticness = biome.WaterCurrentChaoticness;
-        scale = biome.WaterCurrentScale;
+        speed = biome.WaterCurrents.Speed;
+        chaoticness = biome.WaterCurrents.Chaoticness;
+        inverseScale = biome.WaterCurrents.InverseScale;
     }
 
-    protected override void Update(float delta, in Entity entity)
+    [Query(Parallel = true)]
+    [MethodImpl(MethodImplOptions.AggressiveInlining)]
+    private void Update([Data] in float delta, ref Physics physics, ref WorldPosition position,
+        ref ManualPhysicsControl physicsControl, ref CurrentAffected currentAffected, in Entity entity)
     {
-        ref var physics = ref entity.Get<Physics>();
-
         if (physics.Body == null)
             return;
-
-        ref var position = ref entity.Get<WorldPosition>();
-        ref var physicsControl = ref entity.Get<ManualPhysicsControl>();
 
         var pos = new Vector2(position.Position.X, position.Position.Z);
         var vel = VelocityAt(pos) * Constants.MAX_FORCE_APPLIED_BY_CURRENTS;
 
-        float effectStrength = entity.Get<CurrentAffected>().EffectStrength;
+        float effectStrength = currentAffected.EffectStrength;
 
         if (effectStrength == 0)
         {
@@ -175,48 +140,15 @@ public sealed class FluidCurrentsSystem : AEntitySetSystem<float>
         physicsControl.PhysicsApplied = false;
     }
 
-    private void TryGetNoiseImages()
-    {
-        var disturbancesX = noiseDisturbancesX.GetData();
-        if (disturbancesX == null)
-            return;
-
-        var disturbancesY = noiseDisturbancesY.GetData();
-        if (disturbancesY == null)
-            return;
-
-        var currentsX = noiseCurrentsX.GetData();
-        if (currentsX == null)
-            return;
-
-        var currentsY = noiseCurrentsY.GetData();
-        if (currentsY == null)
-            return;
-
-        noiseWidth = disturbancesX[0].GetWidth();
-        noiseHeight = disturbancesY[0].GetHeight();
-
-        int noiseDepth = noiseDisturbancesX.Depth;
-        noiseDisturbancesXImage = new Image[noiseDepth];
-        noiseDisturbancesYImage = new Image[noiseDepth];
-        noiseCurrentsXImage = new Image[noiseDepth];
-        noiseCurrentsYImage = new Image[noiseDepth];
-
-        for (int i = 0; i < noiseDepth; ++i)
-        {
-            noiseDisturbancesXImage[i] = disturbancesX[i];
-            noiseDisturbancesYImage[i] = disturbancesY[i];
-            noiseCurrentsXImage[i] = currentsX[i];
-            noiseCurrentsYImage[i] = currentsY[i];
-        }
-
-        imagesInitialized = true;
-    }
-
+    /// <summary>
+    ///   Return image pixel's red and green values
+    /// </summary>
     [MethodImpl(MethodImplOptions.AggressiveInlining)]
-    private float GetPixel(float x, float y, float z, Image[] array)
+    private Vector2 GetPixel(float x, float y, Image image)
     {
-        return array[(int)z % array.Length].GetPixel(((int)x).PositiveModulo(noiseWidth),
-            ((int)y).PositiveModulo(noiseHeight)).R * 2.0f - 1.0f;
+        var color = image.GetPixel(((int)x).PositiveModulo(noiseWidth),
+            ((int)y).PositiveModulo(noiseHeight));
+
+        return new Vector2(color.R, color.G);
     }
 }

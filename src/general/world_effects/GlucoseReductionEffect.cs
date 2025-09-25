@@ -52,11 +52,11 @@ public class GlucoseReductionEffect : IWorldEffect
             }
 
             // If there are microbes to be eating up the primordial soup, reduce the milk
-            if (patch.SpeciesInPatch.Count > 0)
+            // But only if there is any glucose
+            var initialGlucose = Math.Round(glucoseValue.Density * glucoseValue.Amount +
+                patch.GetTotalChunkCompoundAmount(Compound.Glucose), 3);
+            if (patch.SpeciesInPatch.Count > 0 && initialGlucose > 0)
             {
-                var initialGlucose = Math.Round(glucoseValue.Density * glucoseValue.Amount +
-                    patch.GetTotalChunkCompoundAmount(Compound.Glucose), 3);
-
                 glucoseValue.Density = Math.Max(glucoseValue.Density * targetWorld.WorldSettings.GlucoseDecay,
                     Constants.GLUCOSE_MIN);
 
@@ -67,12 +67,16 @@ public class GlucoseReductionEffect : IWorldEffect
 
                 var localReduction = Math.Round((initialGlucose - finalGlucose) / initialGlucose * 100, 1);
 
-                // TODO: improve how the glucose reduction is shown for the patch the player is in
-                // as right now the reduction percentages aren't super drastic anymore (like under 1%) rather than
-                // the 20% it used to say.
-                patch.LogEvent(new LocalizedString("COMPOUND_CONCENTRATIONS_DECREASED",
-                        glucoseDefinition.Name, new LocalizedString("PERCENTAGE_VALUE", localReduction)), false, false,
-                    "glucoseDown.png");
+                // Don't log an event if we didn't change the glucose amount
+                if (localReduction > 0)
+                {
+                    // TODO: improve how the glucose reduction is shown for the patch the player is in
+                    // as right now the reduction percentages aren't super drastic anymore (like under 1%) rather than
+                    // the 20% it used to say.
+                    patch.LogEvent(new LocalizedString("COMPOUND_CONCENTRATIONS_DECREASED",
+                            glucoseDefinition.Name, new LocalizedString("PERCENTAGE_VALUE", localReduction)), false,
+                        false, "glucoseDown.png");
+                }
             }
 
             if (includeAllPatches || patch.Visibility == MapElementVisibility.Shown)

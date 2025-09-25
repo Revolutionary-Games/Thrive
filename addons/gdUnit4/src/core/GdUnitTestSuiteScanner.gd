@@ -168,7 +168,7 @@ func _build_test_attribute(script: GDScript, fd: GdFunctionDescriptor) -> TestCa
 		else:
 			match arg.name():
 				ARGUMENT_TIMEOUT:
-					attribute.timeout = convert(arg.default(), TYPE_INT)
+					attribute.timeout = type_convert(arg.default(), TYPE_INT)
 				ARGUMENT_SKIP:
 					var result: Variant = _expression_runner.execute(script, arg.plain_value())
 					if result is bool:
@@ -178,9 +178,9 @@ func _build_test_attribute(script: GDScript, fd: GdFunctionDescriptor) -> TestCa
 				ARGUMENT_SKIP_REASON:
 					attribute.skip_reason = arg.plain_value()
 				Fuzzer.ARGUMENT_ITERATIONS:
-					attribute.fuzzer_iterations = convert(arg.default(), TYPE_INT)
+					attribute.fuzzer_iterations = type_convert(arg.default(), TYPE_INT)
 				Fuzzer.ARGUMENT_SEED:
-					attribute.test_seed = convert(arg.default(), TYPE_INT)
+					attribute.test_seed = type_convert(arg.default(), TYPE_INT)
 				ARGUMENT_PARAMETER_SET:
 					collected_unknown_aruments.clear()
 					pass
@@ -224,7 +224,7 @@ static func is_test_suite(script: Script) -> bool:
 					return true
 				stack.push_back(base)
 	elif script != null and script.get_class() == "CSharpScript":
-		return GdUnit4CSharpApiLoader.is_test_suite(script)
+		return true
 	return false
 
 

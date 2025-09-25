@@ -54,7 +54,7 @@ public class Save
     public Image? Screenshot { get; set; }
 
     /// <summary>
-    ///   The scene object to switch to once this save is loaded
+    ///   The scene-object to switch to once this save is loaded
     /// </summary>
     [JsonIgnore]
     public ILoadableGameState? TargetScene

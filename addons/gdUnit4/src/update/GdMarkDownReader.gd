@@ -215,7 +215,7 @@ func process_tables(input: String) -> String:
 	return "\n".join(bbcode)
 
 
-class Table:
+class GdUnitMDReaderTable:
 	var _columns: int
 	var _rows: Array[Row] = []
 
@@ -292,7 +292,7 @@ class Table:
 
 func parse_table(lines: Array) -> PackedStringArray:
 	var line: String = lines[0]
-	var table := Table.new(line.count("|") + 1)
+	var table := GdUnitMDReaderTable.new(line.count("|") + 1)
 	while not lines.is_empty():
 		line = lines.pop_front()
 		if not table.parse_row(line):

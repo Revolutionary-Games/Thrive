@@ -1,0 +1,228 @@
+[gd_scene load_steps=19 format=3 uid="uid://o7or0bdonqcx"]
+
+[ext_resource type="Theme" uid="uid://b4cx0o110g4b6" path="res://src/gui_common/thrive_theme.tres" id="1_vl8jg"]
+[ext_resource type="Script" uid="uid://jksc2g7702o4" path="res://src/multicellular_stage/editor/CellTypeTooltip.cs" id="2_0abd5"]
+[ext_resource type="Texture2D" uid="uid://drdwtf2f6qqch" path="res://assets/textures/gui/bevel/MP.png" id="3_esy5e"]
+[ext_resource type="LabelSettings" uid="uid://brgbuduvjby6a" path="res://src/gui_common/fonts/Title-SemiBold-Smaller.tres" id="4_oloco"]
+[ext_resource type="LabelSettings" uid="uid://bv3bnu0g1wdw3" path="res://src/gui_common/fonts/Title-SemiBold-Big.tres" id="5_smds5"]
+[ext_resource type="PackedScene" uid="uid://sxqf3o1pkl0n" path="res://src/microbe_stage/editor/CompoundBalanceDisplay.tscn" id="6_0abd5"]
+[ext_resource type="PackedScene" uid="uid://c027xyogk08vx" path="res://src/microbe_stage/editor/CellStatsIndicator.tscn" id="6_w1mf1"]
+[ext_resource type="Texture2D" uid="uid://cq25ojg73mpr" path="res://assets/textures/gui/bevel/HealthIcon.png" id="7_esy5e"]
+[ext_resource type="Texture2D" uid="uid://bmu3av0d807dw" path="res://assets/textures/gui/bevel/StorageIcon.png" id="8_oloco"]
+[ext_resource type="Texture2D" uid="uid://c4w7v5wtq2d1b" path="res://assets/textures/gui/bevel/SpeedIcon.png" id="9_smds5"]
+[ext_resource type="Texture2D" uid="uid://5ivblyrfrfc0" path="res://assets/textures/gui/bevel/RotationIcon.png" id="10_w1mf1"]
+[ext_resource type="Texture2D" uid="uid://b6s4ekosu7unk" path="res://assets/textures/gui/bevel/SizeIcon.png" id="11_smds5"]
+[ext_resource type="Texture2D" uid="uid://ctdcp7ts77dhd" path="res://assets/textures/gui/bevel/DigestionSpeedIcon.png" id="12_w1mf1"]
+[ext_resource type="LabelSettings" uid="uid://chasppwihgufu" path="res://src/gui_common/fonts/Body-Bold-Small.tres" id="13_smds5"]
+[ext_resource type="LabelSettings" uid="uid://dvqx73nhtr0y2" path="res://src/gui_common/fonts/Body-Regular-Small.tres" id="14_w1mf1"]
+
+[sub_resource type="StyleBoxFlat" id="1"]
+bg_color = Color(0, 0.129412, 0.141176, 0.980392)
+border_width_left = 1
+border_width_top = 1
+border_width_right = 1
+border_width_bottom = 1
+border_color = Color(0.0666667, 1, 0.835294, 1)
+corner_radius_top_left = 5
+corner_radius_top_right = 5
+corner_radius_bottom_right = 5
+corner_radius_bottom_left = 5
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_oloco"]
+bg_color = Color(0.321545, 0.077991, 0.077618, 1)
+border_width_left = 1
+border_width_top = 1
+border_width_right = 1
+border_width_bottom = 1
+border_color = Color(0.22769, 0.0443489, 0.0444666, 1)
+corner_radius_top_left = 3
+corner_radius_top_right = 3
+corner_radius_bottom_right = 3
+corner_radius_bottom_left = 3
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_smds5"]
+bg_color = Color(0.651654, 0.201407, 0.199912, 1)
+border_color = Color(1, 1, 1, 0)
+corner_radius_top_left = 3
+corner_radius_top_right = 3
+corner_radius_bottom_right = 3
+corner_radius_bottom_left = 3
+
+[node name="CellTypeTooltip" type="PanelContainer" node_paths=PackedStringArray("nameLabel", "mpLabel", "compoundBalanceDisplay", "healthLabel", "storageLabel", "speedLabel", "rotationSpeedLabel", "sizeLabel", "digestionSpeedLabel", "atpProductionBar", "atpProductionLabel", "atpConsumptionBar", "atpConsumptionLabel")]
+custom_minimum_size = Vector2(300, 0)
+offset_right = 373.0
+offset_bottom = 344.0
+mouse_filter = 2
+theme = ExtResource("1_vl8jg")
+theme_override_styles/panel = SubResource("1")
+script = ExtResource("2_0abd5")
+nameLabel = NodePath("MarginContainer/VBoxContainer/Header/Title")
+mpLabel = NodePath("MarginContainer/VBoxContainer/Header/MP/Value")
+compoundBalanceDisplay = NodePath("MarginContainer/VBoxContainer/CompoundBalanceDisplay")
+healthLabel = NodePath("MarginContainer/VBoxContainer/CellStats/Hp")
+storageLabel = NodePath("MarginContainer/VBoxContainer/CellStats/Storage")
+speedLabel = NodePath("MarginContainer/VBoxContainer/CellStats/Speed")
+rotationSpeedLabel = NodePath("MarginContainer/VBoxContainer/CellStats/Rotation")
+sizeLabel = NodePath("MarginContainer/VBoxContainer/CellStats/Size")
+digestionSpeedLabel = NodePath("MarginContainer/VBoxContainer/CellStats/DigestionSpeed")
+atpProductionBar = NodePath("MarginContainer/VBoxContainer/AtpBalance/ProductionContainer/ProductionBar")
+atpProductionLabel = NodePath("MarginContainer/VBoxContainer/AtpBalance/ProductionContainer/ProductionLabel")
+atpConsumptionBar = NodePath("MarginContainer/VBoxContainer/AtpBalance/ConsumptionContainer/ConsumptionBar")
+atpConsumptionLabel = NodePath("MarginContainer/VBoxContainer/AtpBalance/ConsumptionContainer/ConsumptionLabel")
+
+[node name="MarginContainer" type="MarginContainer" parent="."]
+layout_mode = 2
+mouse_filter = 2
+theme_override_constants/margin_left = 15
+theme_override_constants/margin_top = 15
+theme_override_constants/margin_right = 15
+theme_override_constants/margin_bottom = 15
+
+[node name="VBoxContainer" type="VBoxContainer" parent="MarginContainer"]
+layout_mode = 2
+mouse_filter = 2
+theme_override_constants/separation = 15
+
+[node name="Header" type="HBoxContainer" parent="MarginContainer/VBoxContainer"]
+layout_mode = 2
+mouse_filter = 2
+theme_override_constants/separation = 10
+
+[node name="MP" type="HBoxContainer" parent="MarginContainer/VBoxContainer/Header"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 0
+mouse_filter = 2
+
+[node name="Icon" type="TextureRect" parent="MarginContainer/VBoxContainer/Header/MP"]
+custom_minimum_size = Vector2(20, 20)
+layout_mode = 2
+size_flags_vertical = 4
+mouse_filter = 2
+texture = ExtResource("3_esy5e")
+expand_mode = 1
+
+[node name="Value" type="Label" parent="MarginContainer/VBoxContainer/Header/MP"]
+layout_mode = 2
+text = "N_A_MP"
+label_settings = ExtResource("4_oloco")
+
+[node name="Title" type="Label" parent="MarginContainer/VBoxContainer/Header"]
+editor_description = "PLACEHOLDER"
+custom_minimum_size = Vector2(230, 0)
+layout_mode = 2
+size_flags_horizontal = 3
+text = "Cell Type Name"
+label_settings = ExtResource("5_smds5")
+horizontal_alignment = 1
+autowrap_mode = 2
+
+[node name="Spacer" type="Control" parent="MarginContainer/VBoxContainer/Header"]
+layout_mode = 2
+size_flags_horizontal = 3
+mouse_filter = 2
+
+[node name="CellStats" type="VBoxContainer" parent="MarginContainer/VBoxContainer"]
+layout_mode = 2
+
+[node name="Hp" parent="MarginContainer/VBoxContainer/CellStats" instance=ExtResource("6_w1mf1")]
+layout_mode = 2
+Icon = ExtResource("7_esy5e")
+Description = "HP_COLON"
+UseChangeIndicator = false
+
+[node name="Storage" parent="MarginContainer/VBoxContainer/CellStats" instance=ExtResource("6_w1mf1")]
+layout_mode = 2
+tooltip_text = "CELL_STAT_STORAGE_TOOLTIP"
+Icon = ExtResource("8_oloco")
+Description = "STORAGE_COLON"
+UseChangeIndicator = false
+
+[node name="Speed" parent="MarginContainer/VBoxContainer/CellStats" instance=ExtResource("6_w1mf1")]
+layout_mode = 2
+tooltip_text = "CELL_STAT_SPEED_TOOLTIP"
+Icon = ExtResource("9_smds5")
+Description = "SPEED_COLON"
+UseChangeIndicator = false
+
+[node name="Rotation" parent="MarginContainer/VBoxContainer/CellStats" instance=ExtResource("6_w1mf1")]
+layout_mode = 2
+tooltip_text = "CELL_STAT_ROTATION_TOOLTIP"
+Icon = ExtResource("10_w1mf1")
+Description = "ROTATION_COLON"
+UseChangeIndicator = false
+
+[node name="Size" parent="MarginContainer/VBoxContainer/CellStats" instance=ExtResource("6_w1mf1")]
+layout_mode = 2
+Icon = ExtResource("11_smds5")
+Description = "SIZE_COLON"
+UseChangeIndicator = false
+
+[node name="DigestionSpeed" parent="MarginContainer/VBoxContainer/CellStats" instance=ExtResource("6_w1mf1")]
+layout_mode = 2
+Icon = ExtResource("12_w1mf1")
+Description = "DIGESTION_SPEED_COLON"
+UseChangeIndicator = false
+
+[node name="HSeparator" type="HSeparator" parent="MarginContainer/VBoxContainer"]
+layout_mode = 2
+mouse_filter = 2
+
+[node name="AtpBalance" type="VBoxContainer" parent="MarginContainer/VBoxContainer"]
+layout_mode = 2
+theme_override_constants/separation = 0
+
+[node name="Label" type="Label" parent="MarginContainer/VBoxContainer/AtpBalance"]
+custom_minimum_size = Vector2(150, 0)
+layout_mode = 2
+tooltip_text = "COMPOUND_BALANCE_TOOLTIP"
+mouse_filter = 0
+text = "ATP_BALANCE"
+label_settings = ExtResource("13_smds5")
+autowrap_mode = 3
+
+[node name="ProductionContainer" type="HBoxContainer" parent="MarginContainer/VBoxContainer/AtpBalance"]
+layout_mode = 2
+
+[node name="ProductionBar" type="ProgressBar" parent="MarginContainer/VBoxContainer/AtpBalance/ProductionContainer"]
+custom_minimum_size = Vector2(0, 6)
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 4
+max_value = 1.0
+step = 0.001
+show_percentage = false
+
+[node name="ProductionLabel" type="Label" parent="MarginContainer/VBoxContainer/AtpBalance/ProductionContainer"]
+editor_description = "PLACEHOLDER"
+layout_mode = 2
+text = "n/a"
+label_settings = ExtResource("14_w1mf1")
+
+[node name="ConsumptionContainer" type="HBoxContainer" parent="MarginContainer/VBoxContainer/AtpBalance"]
+layout_mode = 2
+
+[node name="ConsumptionBar" type="ProgressBar" parent="MarginContainer/VBoxContainer/AtpBalance/ConsumptionContainer"]
+custom_minimum_size = Vector2(0, 6)
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 4
+theme_override_styles/background = SubResource("StyleBoxFlat_oloco")
+theme_override_styles/fill = SubResource("StyleBoxFlat_smds5")
+max_value = 1.0
+step = 0.001
+show_percentage = false
+
+[node name="ConsumptionLabel" type="Label" parent="MarginContainer/VBoxContainer/AtpBalance/ConsumptionContainer"]
+editor_description = "PLACEHOLDER"
+layout_mode = 2
+text = "n/a"
+label_settings = ExtResource("14_w1mf1")
+
+[node name="HSeparator2" type="HSeparator" parent="MarginContainer/VBoxContainer"]
+layout_mode = 2
+mouse_filter = 2
+
+[node name="CompoundBalanceDisplay" parent="MarginContainer/VBoxContainer" instance=ExtResource("6_0abd5")]
+layout_mode = 2
+showDisplayTypeSelector = false

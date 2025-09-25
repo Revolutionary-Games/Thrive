@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Diagnostics;
 using System.Linq;
+using Arch.Core.Extensions;
 using Godot;
 
 /// <summary>
@@ -243,7 +244,7 @@ public partial class CellEditorComponent
         {
             previewMicrobeSpecies.MembraneType = membrane;
 
-            if (previewMicrobe.IsAlive)
+            if (previewMicrobe.IsAlive())
                 previewSimulation!.ApplyMicrobeMembraneType(previewMicrobe, membrane);
         }
     }
@@ -267,7 +268,7 @@ public partial class CellEditorComponent
         {
             previewMicrobeSpecies.MembraneType = Membrane;
 
-            if (previewMicrobe.IsAlive)
+            if (previewMicrobe.IsAlive())
                 previewSimulation!.ApplyMicrobeMembraneType(previewMicrobe, Membrane);
         }
     }
@@ -359,7 +360,7 @@ public partial class CellEditorComponent
             var overwrote =
                 Editor.EditedBaseSpecies.Endosymbiosis.ResumeEndosymbiosisProcess(data.OverriddenEndosymbiosisOnUndo);
 
-            // Hopefully there's no way to hit this condition, if there is then this needs some fix
+            // Hopefully there's no way to hit this condition, if there is, then this needs some fix
             if (overwrote != null && overwrote != data.RelatedEndosymbiosisAction)
             {
                 GD.PrintErr("Losing an in-progress endosymbiosis info on redo");

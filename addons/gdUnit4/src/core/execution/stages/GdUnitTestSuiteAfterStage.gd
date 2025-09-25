@@ -12,14 +12,15 @@ func _execute(context :GdUnitExecutionContext) -> void:
 
 	@warning_ignore("redundant_await")
 	await test_suite.after()
-	await context.gc()
-	var reports := context.build_reports(false)
+	await context.gc(GdUnitExecutionContext.GC_ORPHANS_CHECK.SUITE_HOOK_AFTER)
+
+	var reports := context.collect_reports(false)
+	var statistics := context.calculate_statistics(reports)
 	fire_event(GdUnitEvent.new()\
 		.suite_after(context.get_test_suite_path(),\
 			test_suite.get_name(),
-			context.get_execution_statistics(),
+			statistics,
 			reports))
-
 	GdUnitFileAccess.clear_tmp()
 	# Guard that checks if all doubled (spy/mock) objects are released
 	GdUnitClassDoubler.check_leaked_instances()

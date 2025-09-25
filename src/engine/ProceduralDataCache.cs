@@ -28,7 +28,7 @@ public partial class ProceduralDataCache : Node
 
     /// <summary>
     ///   When enabled, prefers older entries in the cache to not mess with already returned data being randomly
-    ///   disposed.
+    ///   Disposed.
     /// </summary>
     private readonly bool onConflictPreferOlder = true;
 
@@ -38,7 +38,7 @@ public partial class ProceduralDataCache : Node
     private double timeSinceClean;
 
     /// <summary>
-    ///   Counts how many cache writes are abandoned due to another thread already creating a cache entry for that data
+    ///   Counts how many cache-writes are abandoned due to another thread already creating a cache entry for that data
     /// </summary>
     private int wastedRecalculations;
 

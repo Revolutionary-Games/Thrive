@@ -2,7 +2,7 @@ shader_type spatial;
 render_mode blend_mix, depth_prepass_alpha, cull_back, diffuse_lambert;
 
 // Almost completely transparent background
-uniform vec4 WaterColor : source_color = vec4(0.0, 0.0, 0.0, 0.02);
+uniform vec4 WaterColor : source_color = vec4(0.0, 0.0, 0.0, 0.06);
 
 // Intensity of ripple displacement
 uniform float RippleStrength = 0.8;
@@ -34,6 +34,9 @@ uniform float StillnessFactor = 0.0;
 // Membrane radius for scaling
 uniform float MembraneRadius = 5.0;
 
+// Global alpha multiplier for fade-in/out transitions
+uniform float GlobalAlpha = 1.0;
+
 // Constants for mesh sizing and effect configuration
 const float MeshSize = 8.0;
 const float EdgeFadeStart = 4.5;
@@ -41,6 +44,10 @@ const float EdgeFadeEnd = 0.4;
 const int MaxPathSamples = 12;
 const int SecondaryStart = 2;
 const int SecondaryEnd = 10;
+
+// Constants for storing intensity and displacement
+varying float rippleIntensity;
+varying float vertexDisplacement;
 
 // Function to get position at arbitrary position in the path with interpolation
 vec2 GetPathPosition(float index)
@@ -232,6 +239,59 @@ float SimulateRipples(vec2 position, vec2 direction, float speed, float time)
     return totalRipple * max(speedFactor, 0.15) * edgeFade * stillnessInfluence;
 }
 
+// Calculate the intensity/visibility of ripples at a given position
+float CalculateIntensity(vec2 position, float displacement)
+{
+    // No movement data = no visibility
+    if (PastPositionsCount <= 0 || StillnessFactor >= 0.98)
+        return 0.0;
+
+    vec2 currentPos = PastPositions[0];
+    float distFromCenter = length(position - currentPos);
+
+    // Get displacement intensity value
+    float displacementIntensity = abs(displacement);
+
+    // Calculate distance from the movement path
+    float minDistToPath = 999999.0;
+    for (int i = 0; i < PastPositionsCount - 1; i++) {
+        vec2 pathStart = PastPositions[i];
+        vec2 pathEnd = PastPositions[i + 1];
+        vec2 pathVec = pathEnd - pathStart;
+        float pathLength = length(pathVec);
+
+        if (pathLength > 0.001) {
+            vec2 pathDir = pathVec / pathLength;
+            vec2 toPoint = position - pathStart;
+            float projDist = clamp(dot(toPoint, pathDir), 0.0, pathLength);
+            vec2 closestPoint = pathStart + pathDir * projDist;
+            float distToPath = length(position - closestPoint);
+            minDistToPath = min(minDistToPath, distToPath);
+        }
+    }
+
+    // Create a visibility mask based on proximity
+    float pathProximity = exp(-minDistToPath * 0.5);
+
+    // Combine factors with intensity and proximity and stillness
+    float intensity = displacementIntensity * 10.0;
+    intensity *= pathProximity;
+    intensity *= (1.0 - StillnessFactor);
+
+    // Apply distance falloff
+    float scaleFactor = max(1.0, MembraneRadius / 5.0);
+    float maxDist = 8.0 * scaleFactor;
+    if (distFromCenter > maxDist * 0.7) {
+        float fade = 1.0 - (distFromCenter - maxDist * 0.7) / (maxDist * 0.3);
+        intensity *= clamp(fade, 0.0, 1.0);
+    }
+
+    // Apply global alpha
+    intensity *= GlobalAlpha;
+
+    return intensity;
+}
+
 void vertex()
 {
     // Get vertex position in model space
@@ -251,11 +311,17 @@ void vertex()
         // Apply ripple simulation with movement parameters
         float displacement = SimulateRipples(pos, MovementDirection, MovementSpeed, TimeOffset);
 
+        // Store displacement for fragment shader
+        vertexDisplacement = displacement;
+
+        // Calculate and store intensity
+        rippleIntensity = CalculateIntensity(pos, displacement);
+
         // Apply height displacement
-        VERTEX.y += displacement * RippleStrength;
+        VERTEX.y += displacement * RippleStrength * GlobalAlpha;
 
         // Only calculate normals when there's visible displacement
-        if (abs(displacement) > 0.001)
+        if (abs(displacement) > 0.001 && GlobalAlpha > 0.1)
         {
             float stepSize = 0.05;
 
@@ -266,26 +332,58 @@ void vertex()
                        displacement) / stepSize;
 
             // Create normal from gradient
-            vec3 gradientNormal = normalize(vec3(-dx * RippleStrength, 1.0, -dz * RippleStrength));
+            vec3 gradientNormal = normalize(vec3(-dx * RippleStrength * GlobalAlpha, 1.0, -dz * RippleStrength * GlobalAlpha));
             NORMAL = gradientNormal;
         }
     }
-    // For distant vertices, we don't modify VERTEX or NORMAL
+    else
+    {
+        rippleIntensity = 0.0;
+        vertexDisplacement = 0.0;
+    }
 }
 
 void fragment()
 {
+    // Threshold scales with global alpha to maintain smooth transitions
+    float rippleThreshold = 0.01 * max(0.1, GlobalAlpha);
+
+    if (rippleIntensity < rippleThreshold) {
+        // Completely discard pixels with no ripple activity
+        discard;
+    }
+
+    // Early discard if global alpha is too low
+    if (GlobalAlpha < 0.001) {
+        discard;
+    }
+
     // Calculate lighting parameters
     float nDotL = dot(NORMAL, normalize(vec3(0.4, 0.8, 0.3)));
     float viewDotNormal = max(0.0, dot(normalize(VIEW), NORMAL));
 
     // Highlights and fresnel calculation
-    float enhancedHighlight = pow(max(0.0, nDotL), 8.0) * 0.25;
-    float enhancedFresnel = pow(1.0 - viewDotNormal, 2.0) * 0.4;
+    float enhancedHighlight = pow(max(0.0, nDotL), 8.0) * 0.25 * GlobalAlpha;
+    float enhancedFresnel = pow(1.0 - viewDotNormal, 2.0) * 0.4 * GlobalAlpha;
 
     ALBEDO = vec3(0.0, 0.0, 0.0) + vec3(enhancedHighlight) + vec3(0.8, 0.9, 1.0) * enhancedFresnel;
     SPECULAR = 0.5;
     ROUGHNESS = 0.2;
+
+    // Calculate alpha based on ripple intensity
     float fadeMultiplier = pow(1.0 - StillnessFactor, 1.5);
-    ALPHA = WaterColor.a * fadeMultiplier;
+
+    // Use ripple intensity to modulate alpha
+    float baseAlpha = WaterColor.a * fadeMultiplier;
+
+    // Apply non-linear curve to intensity
+    float intensityCurve = pow(clamp(rippleIntensity, 0.0, 1.0), 0.5);
+
+    // Final alpha is modulated by both local activity and fade-in/out
+    ALPHA = baseAlpha * intensityCurve;
+
+    // Additional alpha clipping for very low values
+    if (ALPHA < 0.002) {
+        discard;
+    }
 }

@@ -5,6 +5,7 @@
     public void CurrentUserStatsReceived(ulong game, int result, ulong user);
     public void UserStatsReceived(ulong game, int result, ulong user);
     public void UserStatsStored(ulong game, int result);
+    public void UserAchievementStored(ulong game, uint currentProgress, uint maxProgress, bool groupAchievement);
     public void LowPower(int batteryLeftMinutes);
     public void APICallComplete(ulong asyncCall, int callback, uint parameter);
     public void ShutdownRequested();

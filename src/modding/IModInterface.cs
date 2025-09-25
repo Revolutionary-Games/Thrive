@@ -1,5 +1,5 @@
-﻿using DefaultEcs;
-using DefaultEcs.Command;
+﻿using Arch.Buffer;
+using Arch.Core;
 using Godot;
 
 /// <summary>
@@ -26,11 +26,11 @@ public interface IModInterface
 
     public delegate void OnPlayerMicrobeSpawnedHandler(Entity player);
 
-    public delegate void OnMicrobeSpawnedHandler(EntityRecord microbe);
+    public delegate void OnMicrobeSpawnedHandler(Entity microbe, CommandBuffer commandBuffer);
 
-    public delegate void OnChunkSpawnedHandler(EntityRecord chunk, bool environmental);
+    public delegate void OnChunkSpawnedHandler(Entity chunk, bool environmental, CommandBuffer commandBuffer);
 
-    public delegate void OnToxinEmittedHandler(EntityRecord toxin);
+    public delegate void OnToxinEmittedHandler(Entity toxin, CommandBuffer commandBuffer);
 
     public delegate void OnMicrobeDiedHandler(Entity microbe, bool isPlayer);
 

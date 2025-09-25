@@ -58,10 +58,11 @@
     "Name": "HYDROGEN_SULFIDE",
     "Volume": 1,
     "IsCloud": true,
-    "IsAlwaysUseful": false,
+    "AlwaysAbsorbable": true,
     "IsEnvironmental": false,
     "CanBeDistributed": true,
     "Digestible": true,
+    "Diffusible": true,
     "Colour": {
       "r": 0.949,
       "g": 0.918,

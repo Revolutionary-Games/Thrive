@@ -1,28 +1,25 @@
 ﻿namespace Systems;
 
+using System.Runtime.CompilerServices;
+using Arch.Core;
+using Arch.System;
 using Components;
-using DefaultEcs;
-using DefaultEcs.System;
-using DefaultEcs.Threading;
 
 /// <summary>
 ///   Handles applying the effects specified by <see cref="MicrobeTemporaryEffects"/>
 /// </summary>
-[With(typeof(MicrobeTemporaryEffects))]
-[With(typeof(MicrobeControl))]
-[With(typeof(CellProperties))]
-[With(typeof(BioProcesses))]
 [RunsAfter(typeof(ToxinCollisionSystem))]
-public class MicrobeTemporaryEffectsSystem : AEntitySetSystem<float>
+[RuntimeCost(0.5f)]
+public partial class MicrobeTemporaryEffectsSystem : BaseSystem<World, float>
 {
-    public MicrobeTemporaryEffectsSystem(World world, IParallelRunner parallelRunner) : base(world, parallelRunner)
+    public MicrobeTemporaryEffectsSystem(World world) : base(world)
     {
     }
 
-    protected override void Update(float delta, in Entity entity)
+    [Query]
+    [MethodImpl(MethodImplOptions.AggressiveInlining)]
+    private void Update([Data] in float delta, ref MicrobeTemporaryEffects temporaryEffects, ref BioProcesses processes)
     {
-        ref var temporaryEffects = ref entity.Get<MicrobeTemporaryEffects>();
-
         if (temporaryEffects.StateApplied)
             return;
 
@@ -38,14 +35,12 @@ public class MicrobeTemporaryEffectsSystem : AEntitySetSystem<float>
             // The speed debuff is directly taken into account by MicrobeMovementSystem
         }
 
-        ref var processes = ref entity.Get<BioProcesses>();
-
         if (temporaryEffects.ATPDebuffDuration > 0)
         {
             temporaryEffects.ATPDebuffDuration -= delta;
             hasDebuff = true;
 
-            // Make sure effect is applied
+            // Make sure the effect is applied
             processes.ATPProductionSpeedModifier = 1 - Constants.CHANNEL_INHIBITOR_ATP_DEBUFF;
         }
         else
