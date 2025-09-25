@@ -1,6 +1,7 @@
 ﻿namespace Components;
 
-using DefaultEcs;
+using System.Runtime.CompilerServices;
+using Arch.Core;
 
 /// <summary>
 ///   Marks entities as being player reproduced copies
@@ -9,7 +10,7 @@ using DefaultEcs;
 public struct PlayerOffspring
 {
     /// <summary>
-    ///   Which offspring this is in number of the player's offspring. Used to detect which is the latest offspring
+    ///   Which offspring this is in the number of the player's offspring. Used to detect which is the latest offspring
     /// </summary>
     public int OffspringOrderNumber;
 }
@@ -17,25 +18,39 @@ public struct PlayerOffspring
 public static class PlayerOffspringHelpers
 {
     /// <summary>
-    ///   A pretty slow method to find the latest spawned offspring (fine for occasional calls)
+    ///   A somewhat slow method to find the latest spawned offspring (fine for occasional calls)
     /// </summary>
-    /// <returns>The latest offspring or invalid entity value if there are no offspring</returns>
+    /// <returns>The latest offspring or an invalid-entity-value if there are no offspring</returns>
     public static Entity FindLatestSpawnedOffspring(World entitySystem)
     {
-        int highest = int.MinValue;
-        Entity result = default;
+        var query = new PlayerOffspringQuery(int.MinValue);
 
-        foreach (var entity in entitySystem.GetEntities().With<PlayerOffspring>().AsEnumerable())
+        entitySystem.InlineEntityQuery<PlayerOffspringQuery, PlayerOffspring>(
+            new QueryDescription().WithAll<PlayerOffspring>(), ref query);
+
+        return query.Entity;
+    }
+
+    private struct PlayerOffspringQuery : IForEachWithEntity<PlayerOffspring>
+    {
+        public Entity Entity = Entity.Null;
+        private int highestFound;
+
+        public PlayerOffspringQuery(int searchStart)
         {
-            var current = entity.Get<PlayerOffspring>().OffspringOrderNumber;
-
-            if (current > highest)
-            {
-                highest = current;
-                result = entity;
-            }
+            highestFound = searchStart;
         }
 
-        return result;
+        [MethodImpl(MethodImplOptions.AggressiveInlining)]
+        public void Update(Entity entity, ref PlayerOffspring offspring)
+        {
+            var current = offspring.OffspringOrderNumber;
+
+            if (current > highestFound)
+            {
+                highestFound = current;
+                Entity = entity;
+            }
+        }
     }
 }

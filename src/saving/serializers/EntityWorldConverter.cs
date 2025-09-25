@@ -1,7 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
-using DefaultEcs;
-using DefaultEcs.Serialization;
+using Arch.Core;
 using Newtonsoft.Json;
 
 /// <summary>
@@ -39,7 +38,9 @@ public class EntityWorldConverter : JsonConverter
             return;
         }
 
-        // It's probably fine to use a single temporary object here as a forwarder
+        throw new NotImplementedException("Saving is not reimplemented for Arch.World");
+
+        /*// It's probably fine to use a single temporary object here as a forwarder
         var componentWriter = new ComponentReadHandler(writer, serializer);
 
         var world = (World)value;
@@ -59,13 +60,13 @@ public class EntityWorldConverter : JsonConverter
             writer.WritePropertyName(entity.ToString());
 
             writer.WriteStartArray();
-            entity.ReadAllComponents(componentWriter);
+            // entity.ReadAllComponents(componentWriter);
             writer.WriteEndArray();
         }
 
         writer.WriteEndObject();
 
-        writer.WriteEndObject();
+        writer.WriteEndObject();*/
     }
 
     public override object? ReadJson(JsonReader reader, Type objectType, object? existingValue,
@@ -77,7 +78,9 @@ public class EntityWorldConverter : JsonConverter
         if (context.ProcessedEntityWorld != null)
             throw new JsonException("Entity World deserialization is not re-entrant");
 
-        var world = (World?)existingValue ?? new World();
+        throw new NotImplementedException("Saving is not reimplemented for Arch.World");
+
+        /*var world = (World?)existingValue ?? World.Create();
 
         context.ProcessedEntityWorld = world;
 
@@ -105,8 +108,6 @@ public class EntityWorldConverter : JsonConverter
             // Processing the entities
             while (reader.TokenType != JsonToken.EndObject)
             {
-                var entity = serializer.Deserialize<Entity>(reader);
-
                 reader.Read();
 
                 if (reader.TokenType != JsonToken.StartArray)
@@ -117,10 +118,7 @@ public class EntityWorldConverter : JsonConverter
 
                 while (reader.TokenType != JsonToken.EndArray)
                 {
-                    var component = serializer.Deserialize(reader) ??
-                        throw new JsonException("Deserialized component should not be null");
-
-                    GetComponentForwarder(component.GetType()).Set(component, entity);
+                    // GetComponentForwarder(component.GetType()).Set(component, entity);
 
                     if (!reader.Read())
                         throw new JsonException("Expected to see end of component array before end of data");
@@ -147,61 +145,11 @@ public class EntityWorldConverter : JsonConverter
 
         // See the TODO comment on this property
         context.OldToNewEntityMapping.Clear();
-        return world;
+        return world;*/
     }
 
     public override bool CanConvert(Type objectType)
     {
         return objectType == WorldType;
-    }
-
-    /// <summary>
-    ///   The other part of the component forwarding to the right container
-    /// </summary>
-    /// <param name="type">The type to get the forwarder for</param>
-    /// <returns>A forwarder</returns>
-    private IComponentForwarder GetComponentForwarder(Type type)
-    {
-        if (componentForwarders.TryGetValue(type, out var existing))
-            return existing;
-
-        var forwarder =
-            (IComponentForwarder?)Activator.CreateInstance(typeof(ComponentForwarder<>).MakeGenericType(type));
-
-        componentForwarders[type] = forwarder ??
-            throw new InvalidOperationException("Failed to create instance of component forwarder for type");
-        return forwarder;
-    }
-
-    private class ComponentReadHandler : IComponentReader
-    {
-        /// <summary>
-        ///   Used to force objects to write their dynamic types
-        /// </summary>
-        private static readonly Type ObjectType = typeof(object);
-
-        private readonly JsonWriter writer;
-        private readonly JsonSerializer jsonSerializer;
-
-        public ComponentReadHandler(JsonWriter writer, JsonSerializer jsonSerializer)
-        {
-            this.writer = writer;
-            this.jsonSerializer = jsonSerializer;
-        }
-
-        public void OnRead<T>(in T component, in Entity componentOwner)
-        {
-            // This probably boxes the struct, but should be fine for saving purposes, anything else would be really
-            // hard to implement
-            jsonSerializer.Serialize(writer, component, ObjectType);
-        }
-    }
-
-    private class ComponentForwarder<T> : IComponentForwarder
-    {
-        public void Set(object component, in Entity entity)
-        {
-            entity.Set<T>((T)component);
-        }
     }
 }

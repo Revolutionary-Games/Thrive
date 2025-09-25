@@ -1,6 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
-using DefaultEcs;
+using Arch.Core;
 using Godot;
 
 /// <summary>
@@ -50,7 +50,7 @@ public static class SpeciesMemberLocationDataHelpers
         var members = locationData.GetSpeciesMembers(species);
 
         // These are set here to make the compiler allow us to simply exit this method as the exit condition is complex
-        foundMicrobe = default;
+        foundMicrobe = Entity.Null;
         foundPosition = Vector3.Zero;
 
         if (members == null)

@@ -2,29 +2,24 @@
 
 using System;
 using System.Runtime.CompilerServices;
+using Arch.Core;
+using Arch.System;
 using Components;
-using DefaultEcs;
-using DefaultEcs.System;
-using DefaultEcs.Threading;
 using Godot;
 using Newtonsoft.Json;
-using World = DefaultEcs.World;
+using World = Arch.Core.World;
 
 /// <summary>
 ///   Gives a push from currents in a fluid to physics entities (that have <see cref="ManualPhysicsControl"/>).
 ///   Only acts on entities marked with <see cref="CurrentAffected"/>.
 /// </summary>
-[With(typeof(CurrentAffected))]
-[With(typeof(Physics))]
-[With(typeof(ManualPhysicsControl))]
-[With(typeof(WorldPosition))]
 [ReadsComponent(typeof(CurrentAffected))]
 [ReadsComponent(typeof(Physics))]
 [ReadsComponent(typeof(WorldPosition))]
 [RuntimeCost(8)]
 [JsonObject(MemberSerialization.OptIn)]
 [RunsOnMainThread]
-public sealed class FluidCurrentsSystem : AEntitySetSystem<float>
+public partial class FluidCurrentsSystem : BaseSystem<World, float>
 {
     public FluidCurrentDisplay? FluidCurrentDisplay;
 
@@ -33,8 +28,8 @@ public sealed class FluidCurrentsSystem : AEntitySetSystem<float>
     private const float POSITION_SCALING = 0.9f;
 
 #pragma warning disable CA2213
-    private Texture2D currentsNoise1Texture = null!;
-    private Texture2D currentsNoise2Texture = null!;
+    private Texture2D currentsNoise1Texture;
+    private Texture2D currentsNoise2Texture;
 
     private Image currentsNoise1 = null!;
     private Image currentsNoise2 = null!;
@@ -54,22 +49,14 @@ public sealed class FluidCurrentsSystem : AEntitySetSystem<float>
     private int noiseWidth = -1;
     private int noiseHeight = -1;
 
-    public FluidCurrentsSystem(World world, IParallelRunner runner) : base(world, runner,
-        Constants.SYSTEM_HIGHER_ENTITIES_PER_THREAD)
+    public FluidCurrentsSystem(World world, float currentsTimePassed) : base(world)
     {
         currentsNoise1Texture = GD.Load<CompressedTexture2D>("res://assets/textures/CurrentsNoise1.png") ??
             throw new Exception("Fluid current noise texture couldn't be loaded");
 
         currentsNoise2Texture = GD.Load<CompressedTexture2D>("res://assets/textures/CurrentsNoise2.png") ??
             throw new Exception("Fluid current noise texture couldn't be loaded");
-    }
 
-    /// <summary>
-    ///   JSON constructor for creating temporary instances used to apply the child properties
-    /// </summary>
-    [JsonConstructor]
-    public FluidCurrentsSystem(float currentsTimePassed) : base(TemporarySystemHelper.GetDummyWorldForLoad(), null)
-    {
         this.currentsTimePassed = currentsTimePassed;
     }
 
@@ -97,10 +84,8 @@ public sealed class FluidCurrentsSystem : AEntitySetSystem<float>
         return currentsVelocity * speed;
     }
 
-    protected override void PreUpdate(float delta)
+    public override void BeforeUpdate(in float delta)
     {
-        base.PreUpdate(delta);
-
         if (!imagesInitialized)
         {
             currentsNoise1 = currentsNoise1Texture.GetImage();
@@ -129,20 +114,18 @@ public sealed class FluidCurrentsSystem : AEntitySetSystem<float>
         inverseScale = biome.WaterCurrents.InverseScale;
     }
 
-    protected override void Update(float delta, in Entity entity)
+    [Query(Parallel = true)]
+    [MethodImpl(MethodImplOptions.AggressiveInlining)]
+    private void Update([Data] in float delta, ref Physics physics, ref WorldPosition position,
+        ref ManualPhysicsControl physicsControl, ref CurrentAffected currentAffected, in Entity entity)
     {
-        ref var physics = ref entity.Get<Physics>();
-
         if (physics.Body == null)
             return;
-
-        ref var position = ref entity.Get<WorldPosition>();
-        ref var physicsControl = ref entity.Get<ManualPhysicsControl>();
 
         var pos = new Vector2(position.Position.X, position.Position.Z);
         var vel = VelocityAt(pos) * Constants.MAX_FORCE_APPLIED_BY_CURRENTS;
 
-        float effectStrength = entity.Get<CurrentAffected>().EffectStrength;
+        float effectStrength = currentAffected.EffectStrength;
 
         if (effectStrength == 0)
         {

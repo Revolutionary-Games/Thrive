@@ -1,7 +1,8 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Threading;
-using DefaultEcs;
+using Arch.Core;
+using Arch.Core.Extensions;
 using Godot;
 
 /// <summary>
@@ -58,7 +59,7 @@ public static class ComponentFetchHelpers
     /// </summary>
     /// <typeparam name="T">Type of component to try to access</typeparam>
     /// <returns>The component</returns>
-    public static ref T GetChecked<T>(this Entity entity)
+    public static ref T GetChecked<T>(this in Entity entity)
     {
         ComponentAccessChecks.CheckHasAccess(typeof(T).Name);
         return ref entity.Get<T>();

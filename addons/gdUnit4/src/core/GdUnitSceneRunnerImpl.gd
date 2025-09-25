@@ -152,6 +152,7 @@ func simulate_key_press(key_code: int, shift_pressed := false, ctrl_pressed := f
 	event.pressed = true
 	event.keycode = key_code as Key
 	event.physical_keycode = key_code as Key
+	event.unicode = key_code
 	event.alt_pressed = key_code == KEY_ALT
 	event.shift_pressed = shift_pressed or key_code == KEY_SHIFT
 	event.ctrl_pressed = ctrl_pressed or key_code == KEY_CTRL
@@ -166,6 +167,7 @@ func simulate_key_release(key_code: int, shift_pressed := false, ctrl_pressed :=
 	event.pressed = false
 	event.keycode = key_code as Key
 	event.physical_keycode = key_code as Key
+	event.unicode = key_code
 	event.alt_pressed = key_code == KEY_ALT
 	event.shift_pressed = shift_pressed or key_code == KEY_SHIFT
 	event.ctrl_pressed = ctrl_pressed or key_code == KEY_CTRL

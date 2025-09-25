@@ -1,5 +1,6 @@
-﻿using Components;
-using DefaultEcs;
+﻿using Arch.Core;
+using Arch.Core.Extensions;
+using Components;
 using Godot;
 
 /// <summary>

@@ -2,10 +2,14 @@
 
 #include <vector>
 
+#include "Include.h"
+
+BEGIN_GODOT_INCLUDES;
 #include <godot_cpp/classes/control.hpp>
 #include <godot_cpp/classes/material.hpp>
 #include <Jolt/Jolt.h>
 #include <Jolt/Math/Real.h>
+END_GODOT_INCLUDES;
 
 namespace godot
 {

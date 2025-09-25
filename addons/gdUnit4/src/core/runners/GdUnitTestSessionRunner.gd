@@ -112,8 +112,8 @@ func _process(_delta: float) -> void:
 	match _state:
 		INIT:
 			await init_runner()
-			_hooks = GdUnitTestSessionHookService.instance()
 		RUN:
+			_hooks = GdUnitTestSessionHookService.instance()
 			_test_session = GdUnitTestSession.new(_test_cases, report_path)
 			GdUnitSignals.instance().gdunit_event.emit(GdUnitSessionStart.new())
 			# process next test suite

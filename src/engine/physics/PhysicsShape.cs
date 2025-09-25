@@ -27,6 +27,9 @@ public class PhysicsShape : IDisposable
 
     public static PhysicsShape CreateBox(float halfSideLength, float density = 1000)
     {
+        if (halfSideLength <= 0)
+            throw new ArgumentOutOfRangeException(nameof(halfSideLength), "Half side length must be greater than 0");
+
         return new PhysicsShape(NativeMethods.CreateBoxShape(halfSideLength, density));
     }
 
@@ -37,6 +40,9 @@ public class PhysicsShape : IDisposable
 
     public static PhysicsShape CreateSphere(float radius, float density = 1000)
     {
+        if (radius <= 0)
+            throw new ArgumentOutOfRangeException(nameof(radius), "Radius must be greater than 0");
+
         return new PhysicsShape(NativeMethods.CreateSphereShape(radius, density));
     }
 

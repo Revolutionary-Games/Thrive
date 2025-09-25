@@ -82,17 +82,22 @@ func _on_signal_emmited(
 		(_collected_signals[emitter][signal_name] as Array).append(signal_args)
 
 
-func reset_received_signals(emitter :Object, signal_name: String, signal_args :Array) -> void:
+func reset_received_signals(emitter: Object, signal_name: String, signal_args: Array) -> void:
 	#_debug_signal_list("before claer");
 	if _collected_signals.has(emitter):
 		var signals_by_emitter :Dictionary = _collected_signals[emitter]
 		if signals_by_emitter.has(signal_name):
-			@warning_ignore("unsafe_cast")
-			(_collected_signals[emitter][signal_name] as Array).erase(signal_args)
+			var received_args: Array = _collected_signals[emitter][signal_name]
+			# We iterate backwarts over to received_args to remove matching args.
+			# This will avoid array corruption see comment on `erase` otherwise we need a timeconsuming duplicate before
+			for arg_pos: int in range(received_args.size()-1, -1, -1):
+				var arg: Variant = received_args[arg_pos]
+				if GdObjects.equals(arg, signal_args):
+					received_args.remove_at(arg_pos)
 	#_debug_signal_list("after claer");
 
 
-func is_signal_collecting(emitter :Object, signal_name :String) -> bool:
+func is_signal_collecting(emitter: Object, signal_name: String) -> bool:
 	@warning_ignore("unsafe_cast")
 	return _collected_signals.has(emitter) and (_collected_signals[emitter] as Dictionary).has(signal_name)
 

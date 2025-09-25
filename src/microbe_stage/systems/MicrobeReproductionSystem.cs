@@ -4,38 +4,27 @@ using System;
 using System.Collections.Concurrent;
 using System.Collections.Generic;
 using System.Runtime.CompilerServices;
+using Arch.Core;
+using Arch.Core.Extensions;
+using Arch.System;
 using Components;
-using DefaultEcs;
-using DefaultEcs.System;
-using DefaultEcs.Threading;
 using Godot;
-using World = DefaultEcs.World;
+using World = Arch.Core.World;
 
 /// <summary>
-///   Handles reproduction progress in microbes that are not in aa cell colony. <see cref="AttachedToEntity"/> is
-///   used to skip reproduction for engulfed cells or cells in colonies.
+///   Handles reproduction progress in microbes that are not in a cell colony.
+///   <see cref="AttachedToEntity"/> is used to skip reproduction for engulfed cells or cells in colonies.
 /// </summary>
 /// <remarks>
 ///   <para>
 ///     This just needs an exclusive property for this system that is stored in <see cref="MicrobeStatus"/> so
-///     this is marked just as reading that component as it won't conflict with other writes.
+///     this is marked just as reading that component as it won't conflict with other write operations.
 ///   </para>
 ///   <para>
-///     This needs to run on the main thread as this updates scale of organelles as they grow (Godot scale is
+///     This needs to run on the main thread as this updates the scale of organelles as they grow (Godot scale is
 ///     used directly)
 ///   </para>
 /// </remarks>
-[With(typeof(ReproductionStatus))]
-[With(typeof(OrganelleContainer))]
-[With(typeof(MicrobeStatus))]
-[With(typeof(CompoundStorage))]
-[With(typeof(CellProperties))]
-[With(typeof(MicrobeSpeciesMember))]
-[With(typeof(Health))]
-[With(typeof(BioProcesses))]
-[With(typeof(WorldPosition))]
-[Without(typeof(AttachedToEntity))]
-[Without(typeof(MulticellularSpeciesMember))]
 [WritesToComponent(typeof(Engulfable))]
 [WritesToComponent(typeof(Engulfer))]
 [WritesToComponent(typeof(TemporaryEndosymbiontInfo))]
@@ -49,9 +38,9 @@ using World = DefaultEcs.World;
 [ReadsComponent(typeof(MicrobeEnvironmentalEffects))]
 [RunsAfter(typeof(OsmoregulationAndHealingSystem))]
 [RunsAfter(typeof(ProcessSystem))]
-[RuntimeCost(14)]
+[RuntimeCost(10)]
 [RunsOnMainThread]
-public sealed class MicrobeReproductionSystem : AEntitySetSystem<float>
+public partial class MicrobeReproductionSystem : BaseSystem<World, float>
 {
     private readonly IWorldSimulation worldSimulation;
     private readonly IMicrobeSpawnEnvironment spawnEnvironment;
@@ -77,8 +66,8 @@ public sealed class MicrobeReproductionSystem : AEntitySetSystem<float>
     private float reproductionDelta;
 
     public MicrobeReproductionSystem(IWorldSimulation worldSimulation, IMicrobeSpawnEnvironment spawnEnvironment,
-        ISpawnSystem spawnSystem, World world, IParallelRunner parallelRunner) :
-        base(world, parallelRunner, Constants.SYSTEM_NORMAL_ENTITIES_PER_THREAD)
+        ISpawnSystem spawnSystem, World world) :
+        base(world)
     {
         this.worldSimulation = worldSimulation;
         this.spawnEnvironment = spawnEnvironment;
@@ -111,6 +100,62 @@ public sealed class MicrobeReproductionSystem : AEntitySetSystem<float>
     {
         gameWorld = world;
         difficulty = world.WorldSettings.Difficulty;
+    }
+
+    public override void BeforeUpdate(in float delta)
+    {
+        if (gameWorld == null || difficulty == null)
+            throw new InvalidOperationException("GameWorld not set");
+
+        reproductionDelta = delta;
+
+        // TODO: rate limit how often the reproduction update is allowed to run?
+        // // Limit how often the reproduction logic is run
+        // if (lastCheckedReproduction < Constants.MICROBE_REPRODUCTION_PROGRESS_INTERVAL)
+        //     return;
+
+        while (organellesNeedingScaleUpdate.TryPop(out _))
+        {
+            GD.PrintErr("Organelles needing scale list is not empty like it should before a system run");
+        }
+    }
+
+    public override void AfterUpdate(in float delta)
+    {
+        bool printedError = false;
+
+        // Apply scales
+        while (organellesNeedingScaleUpdate.TryPop(out var organelle))
+        {
+            if (organelle.OrganelleGraphics == null)
+                continue;
+
+            // The parent node of the organelle graphics is what needs to be scaled
+            // TODO: check if it would be better to just store this node directly in the PlacedOrganelle to not
+            // re-read it like this
+            var nodeToScale = organelle.OrganelleGraphics.GetParentSpatialWorking();
+
+            // This should no longer happen with the working spatial fetch, but just for safety this is kept
+            if (nodeToScale == null)
+            {
+                if (!printedError)
+                {
+                    GD.PrintErr("Organelle is missing Spatial parent, cannot apply scale change");
+                    printedError = true;
+                }
+
+                continue;
+            }
+
+            if (!organelle.Definition.PositionedExternally)
+            {
+                nodeToScale.Transform = organelle.CalculateVisualsTransform();
+            }
+            else
+            {
+                nodeToScale.Transform = organelle.CalculateVisualsTransformExternalCached();
+            }
+        }
     }
 
     public override void Dispose()
@@ -179,122 +224,6 @@ public sealed class MicrobeReproductionSystem : AEntitySetSystem<float>
         return reproductionStageComplete;
     }
 
-    protected override void PreUpdate(float delta)
-    {
-        if (gameWorld == null || difficulty == null)
-            throw new InvalidOperationException("GameWorld not set");
-
-        base.PreUpdate(delta);
-
-        reproductionDelta = delta;
-
-        // TODO: rate limit how often the reproduction update is allowed to run?
-        // // Limit how often the reproduction logic is run
-        // if (lastCheckedReproduction < Constants.MICROBE_REPRODUCTION_PROGRESS_INTERVAL)
-        //     return;
-
-        while (organellesNeedingScaleUpdate.TryPop(out _))
-        {
-            GD.PrintErr("Organelles needing scale list is not empty like it should before a system run");
-        }
-    }
-
-    protected override void Update(float state, in Entity entity)
-    {
-        ref var health = ref entity.Get<Health>();
-
-        // Dead cells can't reproduce
-        if (health.Dead)
-            return;
-
-        ref var organelles = ref entity.Get<OrganelleContainer>();
-
-        if (organelles.AllOrganellesDivided)
-        {
-            // Ready to reproduce already. Only the player gets here as other cells split and reset automatically
-            return;
-        }
-
-        if (entity.Has<MicrobeControl>())
-        {
-            // Microbe reproduction is stopped when mucocyst is active
-            if (entity.Get<MicrobeControl>().State == MicrobeState.MucocystShield)
-                return;
-        }
-
-        ref var status = ref entity.Get<MicrobeStatus>();
-
-        status.ConsumeReproductionCompoundsReverse = !status.ConsumeReproductionCompoundsReverse;
-
-        bool isInColony = entity.Has<MicrobeColony>();
-
-        if (isInColony)
-        {
-            var (_, freeCompounds) = CalculateFreeCompoundsAndLimits(gameWorld!.WorldSettings, organelles.HexCount,
-                false, reproductionDelta);
-
-            var species = entity.Get<MicrobeSpeciesMember>().Species;
-
-            ref var storage = ref entity.Get<CompoundStorage>();
-
-            float sum = 0.0f;
-
-            foreach (var compound in species.TotalReproductionCost)
-            {
-                sum += compound.Value;
-            }
-
-            foreach (var compound in species.TotalReproductionCost)
-            {
-                storage.Compounds.AddCompound(compound.Key, freeCompounds * (compound.Value / sum));
-            }
-
-            return;
-        }
-
-        HandleNormalMicrobeReproduction(entity, ref organelles, status.ConsumeReproductionCompoundsReverse);
-    }
-
-    protected override void PostUpdate(float state)
-    {
-        base.PostUpdate(state);
-
-        bool printedError = false;
-
-        // Apply scales
-        while (organellesNeedingScaleUpdate.TryPop(out var organelle))
-        {
-            if (organelle.OrganelleGraphics == null)
-                continue;
-
-            // The parent node of the organelle graphics is what needs to be scaled
-            // TODO: check if it would be better to just store this node directly in the PlacedOrganelle to not
-            // re-read it like this
-            var nodeToScale = organelle.OrganelleGraphics.GetParentSpatialWorking();
-
-            // This should no longer happen with the working spatial fetch, but just for safety this is kept
-            if (nodeToScale == null)
-            {
-                if (!printedError)
-                {
-                    GD.PrintErr("Organelle is missing Spatial parent, cannot apply scale change");
-                    printedError = true;
-                }
-
-                continue;
-            }
-
-            if (!organelle.Definition.PositionedExternally)
-            {
-                nodeToScale.Transform = organelle.CalculateVisualsTransform();
-            }
-            else
-            {
-                nodeToScale.Transform = organelle.CalculateVisualsTransformExternalCached();
-            }
-        }
-    }
-
     [MethodImpl(MethodImplOptions.AggressiveInlining)]
     private static void ProcessBaseReproductionForCompoundType(Compound compound,
         Dictionary<Compound, float> requiredCompoundsForBaseReproduction,
@@ -360,6 +289,59 @@ public sealed class MicrobeReproductionSystem : AEntitySetSystem<float>
         requiredCompoundsForBaseReproduction[compound] = left;
     }
 
+    [Query(Parallel = true)]
+    [All<CellProperties, MicrobeSpeciesMember, BioProcesses, WorldPosition, MicrobeEnvironmentalEffects, Engulfable,
+        Engulfer>]
+    [None<AttachedToEntity, MulticellularSpeciesMember>]
+    [MethodImpl(MethodImplOptions.AggressiveInlining)]
+    private void Update(ref OrganelleContainer organelles, ref MicrobeControl microbeControl, ref Health health,
+        ref CompoundStorage compoundStorage, ref MicrobeStatus status, ref ReproductionStatus reproductionStatus,
+        in Entity entity)
+    {
+        // Dead cells can't reproduce
+        if (health.Dead)
+            return;
+
+        if (organelles.AllOrganellesDivided)
+        {
+            // Ready to reproduce already. Only the player gets here as other cells split and reset automatically
+            return;
+        }
+
+        // Microbe reproduction is stopped when mucocyst is active
+        if (microbeControl.State == MicrobeState.MucocystShield)
+            return;
+
+        status.ConsumeReproductionCompoundsReverse = !status.ConsumeReproductionCompoundsReverse;
+
+        bool isInColony = entity.Has<MicrobeColony>();
+
+        if (isInColony)
+        {
+            var (_, freeCompounds) = CalculateFreeCompoundsAndLimits(gameWorld!.WorldSettings, organelles.HexCount,
+                false, reproductionDelta);
+
+            var species = entity.Get<MicrobeSpeciesMember>().Species;
+
+            float sum = 0.0f;
+
+            foreach (var compound in species.TotalReproductionCost)
+            {
+                sum += compound.Value;
+            }
+
+            foreach (var compound in species.TotalReproductionCost)
+            {
+                compoundStorage.Compounds.AddCompound(compound.Key, freeCompounds * (compound.Value / sum));
+            }
+
+            return;
+        }
+
+        HandleNormalMicrobeReproduction(entity, ref organelles, ref compoundStorage, ref reproductionStatus,
+            status.ConsumeReproductionCompoundsReverse);
+    }
+
     /// <summary>
     ///   Handles feeding the organelles in a microbe in order for them to split. After all are split the microbe
     ///   is ready to reproduce. This is allowed to be called only for non-multicellular growth only (and not in
@@ -372,7 +354,7 @@ public sealed class MicrobeReproductionSystem : AEntitySetSystem<float>
     ///   </para>
     /// </remarks>
     private void HandleNormalMicrobeReproduction(in Entity entity, ref OrganelleContainer organelles,
-        bool consumeInReverseOrder)
+        ref CompoundStorage storage, ref ReproductionStatus baseReproduction, bool consumeInReverseOrder)
     {
         // Skip not initialized microbes yet
         if (organelles.Organelles == null)
@@ -382,10 +364,7 @@ public sealed class MicrobeReproductionSystem : AEntitySetSystem<float>
             CalculateFreeCompoundsAndLimits(gameWorld!.WorldSettings, organelles.HexCount, false,
                 reproductionDelta);
 
-        ref var storage = ref entity.Get<CompoundStorage>();
         var compounds = storage.Compounds;
-
-        ref var baseReproduction = ref entity.Get<ReproductionStatus>();
 
         // Process base cost first so the player can be their designed cell (without extra organelles) for a while
         bool reproductionStageComplete;
@@ -430,7 +409,7 @@ public sealed class MicrobeReproductionSystem : AEntitySetSystem<float>
                         break;
                     }
 
-                    // We are in G1 phase of the cell cycle, duplicate all organelles.
+                    // We are in the G1 phase of the cell cycle, duplicate all organelles.
 
                     // Except the unique organelles
                     if (organelle.Definition.Unique)
@@ -534,7 +513,7 @@ public sealed class MicrobeReproductionSystem : AEntitySetSystem<float>
             organelle2.IsDuplicate = true;
             organelle2.SisterOrganelle = organelle;
 
-            // These are fetched here as most of the time only one organelle will divide per step so it doesn't
+            // These are fetched here as most of the time only one organelle will divide per step, so it doesn't
             // help to complicate things by trying to fetch these before the loop
             organelles.OnOrganellesChanged(ref storage, ref entity.Get<BioProcesses>(),
                 ref entity.Get<Engulfer>(), ref entity.Get<Engulfable>(),
@@ -602,7 +581,7 @@ public sealed class MicrobeReproductionSystem : AEntitySetSystem<float>
         }
         else
         {
-            // Skip reproducing if we would go too much over the entity limit
+            // Skip reproducing if we go too much over the entity limit
             if (!spawnSystem.IsUnderEntityLimitForReproducing())
             {
                 // Set this to false so that we re-check in a few frames if we can reproduce then
@@ -639,21 +618,7 @@ public sealed class MicrobeReproductionSystem : AEntitySetSystem<float>
             {
                 lock (workData2)
                 {
-                    // TODO: remove this extra copy on next save breakage point
-                    MicrobeEnvironmentalEffects environmentalEffects;
-
-                    if (entity.Has<MicrobeEnvironmentalEffects>())
-                    {
-                        environmentalEffects = entity.Get<MicrobeEnvironmentalEffects>();
-                    }
-                    else
-                    {
-                        environmentalEffects = new MicrobeEnvironmentalEffects
-                        {
-                            HealthMultiplier = 1,
-                            OsmoregulationMultiplier = 1,
-                        };
-                    }
+                    MicrobeEnvironmentalEffects environmentalEffects = entity.Get<MicrobeEnvironmentalEffects>();
 
                     // Return the first cell to its normal, non-duplicated cell arrangement and spawn a daughter cell
                     organelles.ResetOrganelleLayout(ref entity.Get<CompoundStorage>(),

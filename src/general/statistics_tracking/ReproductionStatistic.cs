@@ -1,7 +1,8 @@
 ﻿using System.Collections.Generic;
 using System.Runtime.CompilerServices;
+using Arch.Core;
+using Arch.Core.Extensions;
 using Components;
-using DefaultEcs;
 using Newtonsoft.Json;
 
 public class ReproductionStatistic : IStatistic
@@ -50,7 +51,7 @@ public class ReproductionStatistic : IStatistic
 
         foreach (var organelle in layout.Organelles)
         {
-            // As the player grows before reproducing, this might end up double counting organelles so this skip is
+            // As the player grows before reproducing, this might end up doubly counting organelles, so this skip is
             // here
             if (organelle.IsDuplicate)
                 continue;
@@ -68,13 +69,13 @@ public class ReproductionStatistic : IStatistic
     public class ReproductionOrganelleData
     {
         /// <summary>
-        ///   The total amount of generations the player evolved with this organelle
+        ///   The total number of generations the player evolved with this organelle
         /// </summary>
         [JsonProperty]
         public int TotalGenerations { get; private set; }
 
         /// <summary>
-        ///   The amount of generations that the player evolved this organelle in a row
+        ///   The number of generations that the player evolved this organelle in a row
         /// </summary>
         [JsonProperty]
         public int GenerationsInARow { get; private set; }
