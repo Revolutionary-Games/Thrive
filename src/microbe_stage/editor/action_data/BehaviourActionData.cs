@@ -68,7 +68,11 @@ public class BehaviourActionData : EditorCombinableActionData
 
     protected override bool CanMergeWithInternal(CombinableActionData other)
     {
-        return other is BehaviourActionData;
+        if (other is not BehaviourActionData otherBehaviour)
+            return false;
+
+        // Only combine the same type. Otherwise, terrible bugs happen.
+        return otherBehaviour.Type == Type;
     }
 
     protected override void MergeGuaranteed(CombinableActionData other)
