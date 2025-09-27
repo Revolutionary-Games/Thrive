@@ -32,7 +32,9 @@ public class ChunkCompoundPressure : SelectionPressure
     private readonly Compound compoundOutRaw;
 
     public ChunkCompoundPressure(string chunkType, LocalizedString readableName, Compound compound,
-        Compound compoundOut, float weight) : base(weight, [])
+        Compound compoundOut, float weight) : base(weight, [
+        new AddOrganelleAnywhere(organelle => organelle.HasChemoreceptorComponent),
+    ])
     {
         compoundRaw = compound;
         compoundOutRaw = compoundOut;
