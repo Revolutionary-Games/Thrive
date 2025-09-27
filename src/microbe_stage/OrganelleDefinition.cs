@@ -827,6 +827,7 @@ public class OrganelleDefinition : IRegistryType
         HasCiliaComponent = HasComponentFactory<CiliaComponentFactory>();
         HasAgentVacuoleComponent = HasComponentFactory<AgentVacuoleComponentFactory>();
         HasSlimeJetComponent = HasComponentFactory<SlimeJetComponentFactory>();
+        HasChemoreceptorComponent = HasComponentFactory<ChemoreceptorComponentFactory>();
         HasLysosomeComponent = HasComponentFactory<LysosomeComponentFactory>();
 
         HasBindingFeature = HasFeatureTag(OrganelleFeatureTag.BindingAgent);
