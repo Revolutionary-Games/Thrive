@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Linq;
+using Arch.Core;
 using Components;
 using Godot;
 using Newtonsoft.Json;
@@ -178,15 +179,11 @@ public partial class CreatureStageBase<TPlayer, TSimulation> : StageBase, ICreat
             float totalEntityWeight = 0;
             int totalEntityCount = 0;
 
-            foreach (var entity in WorldSimulation.EntitySystem)
+            WorldSimulation.EntitySystem.Query(new QueryDescription().WithAll<Spawned>(), (ref Spawned spawned) =>
             {
                 ++totalEntityCount;
-
-                if (!entity.Has<Spawned>())
-                    continue;
-
-                totalEntityWeight += entity.Get<Spawned>().EntityWeight;
-            }
+                totalEntityWeight += spawned.EntityWeight;
+            });
 
             debugOverlay.ReportEntities(totalEntityWeight, totalEntityCount);
         }

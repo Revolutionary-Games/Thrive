@@ -1,29 +1,27 @@
 ﻿namespace Systems;
 
+using System.Runtime.CompilerServices;
+using Arch.System;
 using Components;
-using DefaultEcs;
-using DefaultEcs.System;
-using DefaultEcs.Threading;
 using Godot;
-using World = DefaultEcs.World;
+using World = Arch.Core.World;
 
 /// <summary>
 ///   Handles updating the state of <see cref="ColourAnimation"/> based on animations triggered elsewhere
 /// </summary>
-[With(typeof(ColourAnimation))]
 [RuntimeCost(2)]
 [RunsOnFrame]
-public sealed class ColourAnimationSystem : AEntitySetSystem<float>
+public partial class ColourAnimationSystem : BaseSystem<World, float>
 {
-    public ColourAnimationSystem(World world, IParallelRunner runner) : base(world, runner,
-        Constants.SYSTEM_EXTREME_ENTITIES_PER_THREAD)
+    // TODO: Constants.SYSTEM_EXTREME_ENTITIES_PER_THREAD
+    public ColourAnimationSystem(World world) : base(world)
     {
     }
 
-    protected override void Update(float delta, in Entity entity)
+    [Query]
+    [MethodImpl(MethodImplOptions.AggressiveInlining)]
+    private void Update([Data] in float delta, ref ColourAnimation colourAnimation)
     {
-        ref var colourAnimation = ref entity.Get<ColourAnimation>();
-
         if (!colourAnimation.Animating)
             return;
 

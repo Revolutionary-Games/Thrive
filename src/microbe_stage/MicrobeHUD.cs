@@ -2,8 +2,9 @@
 using System.Collections.Generic;
 using System.Globalization;
 using System.Linq;
+using Arch.Core;
+using Arch.Core.Extensions;
 using Components;
-using DefaultEcs;
 using Godot;
 using Newtonsoft.Json;
 
@@ -198,7 +199,7 @@ public partial class MicrobeHUD : CreatureStageHUDBase<MicrobeStage>
 
     public void ShowSignalingCommandsMenu(Entity player)
     {
-        if (!player.Has<CommandSignaler>())
+        if (!player.IsAliveAndHas<CommandSignaler>())
         {
             GD.PrintErr("Can't show signaling commands for entity with no signaler component");
             return;
@@ -322,27 +323,25 @@ public partial class MicrobeHUD : CreatureStageHUDBase<MicrobeStage>
     {
         var fossils = FossilisedSpecies.CreateListOfFossils(false);
 
-        foreach (var entity in stage!.WorldSimulation.EntitySystem)
-        {
-            // TODO: buttons to fossilize multicellular species
-            if (!entity.Has<MicrobeSpeciesMember>())
-                continue;
+        // TODO: buttons to fossilize multicellular species
+        stage!.WorldSimulation.EntitySystem.Query(new QueryDescription().WithAll<MicrobeSpeciesMember>(),
+            (Entity entity, ref SpeciesMember member) =>
+            {
+                var species = member.Species;
 
-            var species = entity.Get<SpeciesMember>().Species;
+                var button = FossilisationButtonScene.Instantiate<FossilisationButton>();
+                button.AttachedEntity = entity;
+                button.IsMicrobeStage = true;
+                button.Connect(FossilisationButton.SignalName.OnFossilisationDialogOpened, new Callable(this,
+                    nameof(ShowFossilisationDialog)));
 
-            var button = FossilisationButtonScene.Instantiate<FossilisationButton>();
-            button.AttachedEntity = entity;
-            button.IsMicrobeStage = true;
-            button.Connect(FossilisationButton.SignalName.OnFossilisationDialogOpened, new Callable(this,
-                nameof(ShowFossilisationDialog)));
+                var alreadyFossilised =
+                    FossilisedSpecies.IsSpeciesAlreadyFossilised(species.FormattedName, fossils);
 
-            var alreadyFossilised =
-                FossilisedSpecies.IsSpeciesAlreadyFossilised(species.FormattedName, fossils);
+                SetupFossilisationButtonVisuals(button, alreadyFossilised);
 
-            SetupFossilisationButtonVisuals(button, alreadyFossilised);
-
-            fossilisationButtonLayer.AddChild(button);
-        }
+                fossilisationButtonLayer.AddChild(button);
+            });
     }
 
     protected override void ReadPlayerHitpoints(out float hp, out float maxHealth)
@@ -421,7 +420,7 @@ public partial class MicrobeHUD : CreatureStageHUDBase<MicrobeStage>
 
     protected override float? ReadPlayerStrainFraction()
     {
-        if (!stage!.Player.Has<StrainAffected>())
+        if (!stage!.Player.IsAliveAndHas<StrainAffected>())
         {
             if (!playerMissingStrainAffected)
             {
@@ -638,7 +637,7 @@ public partial class MicrobeHUD : CreatureStageHUDBase<MicrobeStage>
 
         foreach (var entity in stage.HoverInfo.Entities)
         {
-            if (!entity.Has<ReadableName>())
+            if (!entity.IsAliveAndHas<ReadableName>())
                 continue;
 
             var name = entity.Get<ReadableName>().Name;
@@ -823,7 +822,7 @@ public partial class MicrobeHUD : CreatureStageHUDBase<MicrobeStage>
         if (stage == null)
             return;
 
-        if (!player.Has<CellProperties>())
+        if (!player.IsAliveAndHas<CellProperties>())
             return;
 
         ref var organelles = ref player.Get<OrganelleContainer>();

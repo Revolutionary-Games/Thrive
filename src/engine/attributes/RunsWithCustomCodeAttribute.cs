@@ -12,4 +12,6 @@ public class RunsWithCustomCodeAttribute : Attribute
     }
 
     public string CustomCode { get; set; }
+
+    public bool AddDefaultPreAndPostActions { get; set; } = true;
 }

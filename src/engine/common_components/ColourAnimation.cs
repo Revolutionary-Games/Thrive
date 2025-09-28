@@ -32,7 +32,7 @@ public struct ColourAnimation
     public float AnimationElapsed;
 
     /// <summary>
-    ///   If true the animation is played in reverse after it completes once. Used for example for colour flashes.
+    ///   If true, the animation is played in reverse after it completes once. Used, for example, for colour flashes.
     /// </summary>
     public bool AutoReverseAnimation;
 
@@ -42,12 +42,12 @@ public struct ColourAnimation
     public bool Animating;
 
     /// <summary>
-    ///   if true only the first material is animated on an entity and the other ones are left untouched
+    ///   If true, only the first material is animated on an entity and the other ones are left untouched
     /// </summary>
     public bool AnimateOnlyFirstMaterial;
 
     /// <summary>
-    ///   True when whatever entity / stage specific system that handles applying the colour is
+    ///   True when whatever entity / stage-specific system that handles applying the colour is done with this entity
     /// </summary>
     [JsonIgnore]
     public bool ColourApplied;

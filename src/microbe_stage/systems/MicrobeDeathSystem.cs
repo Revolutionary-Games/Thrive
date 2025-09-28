@@ -3,13 +3,14 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Runtime.CompilerServices;
+using Arch.Buffer;
+using Arch.Core;
+using Arch.Core.Extensions;
+using Arch.System;
 using Components;
-using DefaultEcs;
-using DefaultEcs.Command;
-using DefaultEcs.System;
-using DefaultEcs.Threading;
 using Godot;
-using World = DefaultEcs.World;
+using World = Arch.Core.World;
 
 /// <summary>
 ///   Handles microbes dying when they run out of health and also updates the membrane visuals to indicate how
@@ -25,19 +26,6 @@ using World = DefaultEcs.World;
 ///     spikes, this is marked with a bit of a runtime cost.
 ///   </para>
 /// </remarks>
-[With(typeof(Health))]
-[With(typeof(OrganelleContainer))]
-[With(typeof(MicrobeShaderParameters))]
-[With(typeof(CellProperties))]
-[With(typeof(Physics))]
-[With(typeof(WorldPosition))]
-[With(typeof(MicrobeControl))]
-[With(typeof(ManualPhysicsControl))]
-[With(typeof(SoundEffectPlayer))]
-[With(typeof(CompoundAbsorber))]
-[With(typeof(Engulfable))]
-[With(typeof(CompoundStorage))]
-[With(typeof(SpeciesMember))]
 [ReadsComponent(typeof(Engulfable))]
 [ReadsComponent(typeof(SpeciesMember))]
 [ReadsComponent(typeof(WorldPosition))]
@@ -50,7 +38,7 @@ using World = DefaultEcs.World;
 [RunsAfter(typeof(EngulfingSystem))]
 [RunsBefore(typeof(FadeOutActionSystem))]
 [RuntimeCost(1)]
-public sealed class MicrobeDeathSystem : AEntitySetSystem<float>
+public partial class MicrobeDeathSystem : BaseSystem<World, float>
 {
     private readonly IWorldSimulation worldSimulation;
     private readonly ISpawnSystem spawnSystem;
@@ -60,8 +48,7 @@ public sealed class MicrobeDeathSystem : AEntitySetSystem<float>
     private GameWorld? gameWorld;
     private IDifficulty? difficulty;
 
-    public MicrobeDeathSystem(IWorldSimulation worldSimulation, ISpawnSystem spawnSystem, World world,
-        IParallelRunner parallelRunner) : base(world, parallelRunner)
+    public MicrobeDeathSystem(IWorldSimulation worldSimulation, ISpawnSystem spawnSystem, World world) : base(world)
     {
         this.worldSimulation = worldSimulation;
         this.spawnSystem = spawnSystem;
@@ -75,7 +62,7 @@ public sealed class MicrobeDeathSystem : AEntitySetSystem<float>
     public delegate Vector3 CustomizeSpawnedChunk(ref Vector3 position);
 
     public static void SpawnCorpseChunks(ref OrganelleContainer organelleContainer, CompoundBag compounds,
-        ISpawnSystem spawnSystem, IWorldSimulation worldSimulation, EntityCommandRecorder recorder,
+        ISpawnSystem spawnSystem, IWorldSimulation worldSimulation, CommandBuffer recorder,
         Vector3 basePosition, Random random, CustomizeSpawnedChunk? customizeCallback, bool isBacteria)
     {
         if (organelleContainer.Organelles == null)
@@ -232,9 +219,9 @@ public sealed class MicrobeDeathSystem : AEntitySetSystem<float>
                 position, random, true, velocity);
 
             // Add to the spawn system to make these chunks limit the possible number of entities
-            spawnSystem.NotifyExternalEntitySpawned(chunk, Constants.MICROBE_DESPAWN_RADIUS_SQUARED, 1);
+            spawnSystem.NotifyExternalEntitySpawned(chunk, recorder, Constants.MICROBE_DESPAWN_RADIUS_SQUARED, 1);
 
-            ModLoader.ModInterface.TriggerOnChunkSpawned(chunk, false);
+            ModLoader.ModInterface.TriggerOnChunkSpawned(chunk, false, recorder);
         }
     }
 
@@ -244,23 +231,22 @@ public sealed class MicrobeDeathSystem : AEntitySetSystem<float>
         difficulty = world.WorldSettings.Difficulty;
     }
 
-    protected override void PreUpdate(float state)
+    public override void BeforeUpdate(in float delta)
     {
-        base.PreUpdate(state);
-
         if (gameWorld == null || difficulty == null)
             throw new InvalidOperationException("GameWorld not set");
     }
 
-    protected override void Update(float delta, in Entity entity)
+    [Query]
+    [All<OrganelleContainer, MicrobeShaderParameters, Physics, WorldPosition, MicrobeControl, ManualPhysicsControl,
+        SoundEffectPlayer, CompoundAbsorber, Engulfable, CompoundStorage, SpeciesMember>]
+    [MethodImpl(MethodImplOptions.AggressiveInlining)]
+    private void Update(ref Health health, ref CellProperties cellProperties, in Entity entity)
     {
-        ref var health = ref entity.Get<Health>();
-
         if (health.DeathProcessed)
             return;
 
         // Update membrane damaged status
-        ref var cellProperties = ref entity.Get<CellProperties>();
         if (cellProperties.CreatedMembrane != null)
         {
             if (health.MaxHealth <= 0)
@@ -277,8 +263,8 @@ public sealed class MicrobeDeathSystem : AEntitySetSystem<float>
         // Then handle death for cells that should die
         if (health.CurrentHealth <= 0 || health.Dead)
         {
-            // Ensure dead flag is always set, as otherwise this will cause "zombies," so that this is always retried
-            // if the death processing cannot be done yet
+            // Ensure the dead flag is always set, as otherwise this will cause "zombies", so that this is always
+            // retried if the death processing cannot be done yet
             health.Dead = true;
 
             if (HandleMicrobeDeath(ref cellProperties, entity))
@@ -288,7 +274,7 @@ public sealed class MicrobeDeathSystem : AEntitySetSystem<float>
 
     private bool HandleMicrobeDeath(ref CellProperties cellProperties, in Entity entity)
     {
-        EntityCommandRecorder? commandRecorder = null;
+        CommandBuffer? commandRecorder = null;
 
         bool suppressChunks = false;
 
@@ -346,7 +332,7 @@ public sealed class MicrobeDeathSystem : AEntitySetSystem<float>
     ///   True when the death could be processed, false if the entity isn't ready to process the death
     /// </returns>
     private bool OnKilled(ref CellProperties cellProperties, in Entity entity,
-        ref EntityCommandRecorder? commandRecorder, bool suppressChunks)
+        ref CommandBuffer? commandRecorder, bool suppressChunks)
     {
         ref var organelleContainer = ref entity.Get<OrganelleContainer>();
 
@@ -410,10 +396,9 @@ public sealed class MicrobeDeathSystem : AEntitySetSystem<float>
         ref var engulfable = ref entity.Get<Engulfable>();
 
         commandRecorder ??= worldSimulation.StartRecordingEntityCommands();
-        var entityRecord = commandRecorder.Record(entity);
 
         // Add a timed life component to make sure the entity will despawn after the death animation
-        entityRecord.Set(new TimedLife
+        commandRecorder.Add(entity, new TimedLife
         {
             TimeToLiveRemaining = 1 / Constants.MEMBRANE_DISSOLVE_SPEED * 2,
         });
@@ -471,9 +456,9 @@ public sealed class MicrobeDeathSystem : AEntitySetSystem<float>
     }
 
     private void ReleaseAllAgents(ref WorldPosition position, in Entity entity, CompoundBag compounds,
-        Species species, EntityCommandRecorder recorder)
+        Species species, CommandBuffer recorder)
     {
-        // To not completely deadlock in this there is a maximum limit
+        // To not completely deadlock in this, there is a maximum limit
         int createdAgents = 0;
 
         var amount = compounds.GetCompoundAmount(Compound.Oxytoxy);
@@ -489,7 +474,7 @@ public sealed class MicrobeDeathSystem : AEntitySetSystem<float>
                 props, Constants.MAXIMUM_AGENT_EMISSION_AMOUNT, Constants.EMITTED_AGENT_LIFETIME,
                 position.Position, direction, Constants.MAXIMUM_AGENT_EMISSION_AMOUNT, entity);
 
-            ModLoader.ModInterface.TriggerOnToxinEmitted(spawnedRecord);
+            ModLoader.ModInterface.TriggerOnToxinEmitted(spawnedRecord, recorder);
 
             amount -= Constants.MAXIMUM_AGENT_EMISSION_AMOUNT;
             ++createdAgents;
@@ -500,7 +485,7 @@ public sealed class MicrobeDeathSystem : AEntitySetSystem<float>
     }
 
     private void ApplyDeathVisuals(ref CellProperties cellProperties, ref OrganelleContainer organelleContainer,
-        ref WorldPosition position, in Entity entity, EntityCommandRecorder recorder)
+        ref WorldPosition position, in Entity entity, CommandBuffer recorder)
     {
         // Spawn cell death particles.
         float radius = 1;

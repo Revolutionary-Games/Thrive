@@ -2,11 +2,12 @@
 
 using System;
 using System.Collections.Generic;
-using DefaultEcs;
+using Arch.Core;
+using Arch.Core.Extensions;
 using Godot;
 
 /// <summary>
-///   Entity that triggers various microbe event callbacks when things happens to it. This is mostly used for
+///   Entity that triggers various microbe event callbacks when things happen to it. This is mostly used for
 ///   connecting the player cell to the GUI and game stage.
 /// </summary>
 [JSONDynamicTypeAllowed]
@@ -70,7 +71,7 @@ public static class MicrobeEventCallbackHelpers
     /// <returns>True if sent, false if missing the component or callback</returns>
     public static bool SendNoticeIfPossible(this in Entity entity, LocalizedString message)
     {
-        if (!entity.Has<MicrobeEventCallbacks>())
+        if (!entity.IsAliveAndHas<MicrobeEventCallbacks>())
             return false;
 
         ref var callbacks = ref entity.Get<MicrobeEventCallbacks>();
@@ -87,7 +88,7 @@ public static class MicrobeEventCallbackHelpers
     /// </summary>
     public static bool SendNoticeIfPossible(this in Entity entity, Func<SimpleHUDMessage> messageFactory)
     {
-        if (!entity.Has<MicrobeEventCallbacks>())
+        if (!entity.IsAliveAndHas<MicrobeEventCallbacks>())
             return false;
 
         ref var callbacks = ref entity.Get<MicrobeEventCallbacks>();
@@ -104,7 +105,7 @@ public static class MicrobeEventCallbackHelpers
     /// </summary>
     public static bool SendNoticeIfPossible(this in Entity entity, SimpleHUDMessage message)
     {
-        if (!entity.Has<MicrobeEventCallbacks>())
+        if (!entity.IsAliveAndHas<MicrobeEventCallbacks>())
             return false;
 
         ref var callbacks = ref entity.Get<MicrobeEventCallbacks>();

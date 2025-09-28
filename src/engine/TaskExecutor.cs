@@ -5,16 +5,17 @@ using System.Diagnostics;
 using System.Runtime.CompilerServices;
 using System.Threading;
 using System.Threading.Tasks;
-using DefaultEcs.Threading;
+using Arch.Core;
 using Godot;
+using Schedulers;
 using Environment = System.Environment;
 using Thread = System.Threading.Thread;
 
 /// <summary>
-///   Manages running a reasonable number of parallel tasks at once
+///   Manages the running of a reasonable number of parallel tasks at once
 /// </summary>
 #pragma warning disable CA1001 // singleton anyway
-public class TaskExecutor : IParallelRunner
+public class TaskExecutor
 #pragma warning restore CA1001
 {
     private const int ThreadSleepAfterNoWorkFor = 160;
@@ -32,8 +33,6 @@ public class TaskExecutor : IParallelRunner
     private int usedNativeTaskCount;
 
     private volatile int queuedParallelRunnableCount;
-
-    private int ecsThrottling = 4;
 
     /// <summary>
     ///   For naming the created threads.
@@ -57,6 +56,27 @@ public class TaskExecutor : IParallelRunner
         }
 
         Thread.CurrentThread.Name = "TMain";
+
+        // Start Arch multithreading
+        var jobScheduler = new JobScheduler(new JobScheduler.Config
+        {
+            ThreadPrefixName = "Arch",
+
+            // These thread counts about make sense now.
+            // Because the calling thread is blocked whenever there are parallel operations running.
+            // TODO: Though it would be nice again to find a way to share threads or some other mechanism to ensure
+            // these don't run at once (though as these are for purely gameplay systems, they don't usually run at the
+            // same time as something else that is taking up all of the normal threads)
+            ThreadCount = Math.Clamp(ParallelTasks - 2, 2, 4),
+            MaxExpectedConcurrentJobs = 64,
+#if DEBUG
+            StrictAllocationMode = true,
+#else
+            StrictAllocationMode = false,
+#endif
+        });
+        World.SharedJobScheduler = jobScheduler;
+
         GD.Print("TaskExecutor started with parallel job count: ", ParallelTasks);
     }
 
@@ -87,35 +107,6 @@ public class TaskExecutor : IParallelRunner
         }
     }
 
-    /// <summary>
-    ///   Set to a value lower than <see cref="ParallelTasks"/> to throttle how many threads the ECS system is allowed
-    ///   to use. This is because the ECS runner always uses all threads even if each thread would only have a couple
-    ///   of entities to process.
-    /// </summary>
-    public int ECSThrottling
-    {
-        get => ecsThrottling;
-        set =>
-
-            // TODO: BUG: not currently updated as ECS update can calculate different threads before executing and
-            // during execution then another thread count is used. Meaning this is not multithreading safe property.
-            _ = value;
-
-        // if (value > 0)
-        // {
-        //     ecsThrottling = value;
-        // }
-        // else
-        // {
-        //     ecsThrottling = 1;
-        // }
-    }
-
-    /// <summary>
-    ///   How many tasks are used by ECS operations. +1 is here as the main thread also is used
-    /// </summary>
-    public int DegreeOfParallelism => Math.Min(currentThreadCount + 1, ECSThrottling);
-
     public int NativeTasks
     {
         get => usedNativeTaskCount;
@@ -134,7 +125,8 @@ public class TaskExecutor : IParallelRunner
     ///   Computes how many threads there should be by default
     /// </summary>
     /// <param name="hyperthreading">
-    ///   True if hyperthreading is on. There is no platform independent way to get this in C#.
+    ///   True, if hyperthreading is on.
+    ///   There is no platform-independent way to get this in C#.
     /// </param>
     /// <param name="autoEvoDuringGameplay">If true, reserves extra (minimum thread) for auto-evo</param>
     /// <returns>The number of threads to use</returns>
@@ -143,7 +135,7 @@ public class TaskExecutor : IParallelRunner
         int targetTaskCount = CPUCount;
 
         // The divisible by 2 check here makes sure there are 2n number of threads (where n is the number of real cores
-        // this holds for desktop hyperthreading where there's always 2 threads per core)
+        // this holds for desktop hyperthreading where there are always 2 threads per core)
         if (hyperthreading && targetTaskCount % 2 == 0)
             targetTaskCount /= 2;
 
@@ -151,7 +143,7 @@ public class TaskExecutor : IParallelRunner
         if (targetTaskCount > max)
             targetTaskCount = max;
 
-        // There needs to be 2 threads as when auto-evo is running it hogs one thread
+        // There needs to be 2 threads as when auto-evo is running, it hogs one thread
         if (autoEvoDuringGameplay && targetTaskCount < 2)
         {
             targetTaskCount = 2;
@@ -196,63 +188,16 @@ public class TaskExecutor : IParallelRunner
     }
 
     /// <summary>
-    ///   Runs an ECS library runnable on the current thread and the available executors (waits for all ECS runnables
-    ///   to complete, even from other threads)
-    /// </summary>
-    public void Run(IParallelRunnable runnable)
-    {
-        int maxIndex = DegreeOfParallelism - 1;
-
-        if (maxIndex > 0)
-        {
-            Interlocked.Add(ref queuedParallelRunnableCount, maxIndex);
-
-            for (int i = 0; i < maxIndex; ++i)
-            {
-                queuedTasks.Enqueue(new ThreadCommand(runnable, i, maxIndex));
-            }
-
-            NotifyNewTasksAdded(maxIndex);
-        }
-
-        // Current thread runs at the max index
-        runnable.Run(maxIndex, maxIndex);
-
-        // If only ran on the main thread can exit early, no need to try to wait
-        if (maxIndex < 1)
-            return;
-
-        while (queuedParallelRunnableCount > 0)
-        {
-            // Busy loop a bit before checking the variable again
-            for (int i = 0; i < 10; ++i)
-            {
-                _ = i;
-            }
-
-            // Reduce hyperthreading resource use while waiting
-            CPUHelpers.HyperThreadPause();
-        }
-
-#if DEBUG
-        if (queuedParallelRunnableCount < 0)
-            throw new Exception("After waiting for parallel runnables count got negative");
-#endif
-
-        Interlocked.MemoryBarrier();
-    }
-
-    /// <summary>
     ///   Runs a list of tasks and waits for them to complete. The
-    ///   first task is ran on the calling thread before waiting.
+    ///   first task is run on the calling thread before waiting.
     /// </summary>
     /// <param name="tasks">
     ///   List of tasks to execute and wait to finish. Not modified but must be List to avoid a memory allocation in
     ///   the foreach.
     /// </param>
     /// <param name="runExtraTasksOnCallingThread">
-    ///   If true the main thread processes tasks while there are queued tasks. Set this to false if you want to wait
-    ///   only for the tasks list to complete. If this is true then this call blocks until all tasks (for example
+    ///   If true, the main thread processes tasks while there are queued tasks. Set this to false if you want to wait
+    ///   only for the task list to complete. If this is true, then this call blocks until all tasks (for example,
     ///   ones queued from another thread while this method is executing) are complete, which may be unwanted in
     ///   some cases.
     /// </param>
@@ -281,8 +226,8 @@ public class TaskExecutor : IParallelRunner
             return;
         }
 
-        // Should be fine to wake up all the threads as main thread is going to also be busy so this is purely to be
-        // able to run things at full speed
+        // Should be fine to wake up all the threads as the main thread is going to also be busy,
+        // so this is purely to be able to run things at full speed
         NotifyAllNewTasksAdded();
 
         // Run the first task on this thread
@@ -295,7 +240,7 @@ public class TaskExecutor : IParallelRunner
         {
             // Process tasks also on the main thread
 
-            // This should be the non-blocking variant so the current thread won't wait for more tasks,
+            // This should be the non-blocking variant, so the current thread won't wait for more tasks,
             // just immediately exits the loop if there are no tasks to run
             while (queuedTasks.TryDequeue(out ThreadCommand command))
             {
@@ -342,6 +287,14 @@ public class TaskExecutor : IParallelRunner
         SetNativeThreadCount(ParallelTasks);
     }
 
+    public void OnProgramExit()
+    {
+        // Stop Arch scheduling as it might keep the process otherwise alive incorrectly
+        StopArch();
+
+        running = false;
+    }
+
     public void Dispose()
     {
         Dispose(true);
@@ -352,7 +305,17 @@ public class TaskExecutor : IParallelRunner
     {
         if (disposing)
         {
+            // Stop Arch scheduling (though as a singleton this class is never really disposed)
+            StopArch();
         }
+    }
+
+    private void StopArch()
+    {
+        // Stop Arch scheduling (though as a singleton this class is never really disposed)
+        var scheduler = World.SharedJobScheduler;
+        World.SharedJobScheduler = null;
+        scheduler?.Dispose();
     }
 
     private void SpawnThread()
@@ -453,7 +416,7 @@ public class TaskExecutor : IParallelRunner
                     {
                         // This timeout here is just for safety to avoid locking up, reducing this doesn't seem to have
                         // any performance impact. This is set now for a balance of threads not being able to be stuck
-                        // too long in case the wake-up thread notify not working
+                        // too long in case the wake-up thread notifying is not working
                         Monitor.Wait(threadNotifySync, 10);
                     }
                 }
@@ -502,7 +465,7 @@ public class TaskExecutor : IParallelRunner
             catch (Exception e)
             {
                 // This shouldn't hit in normal circumstances, but people have been submitting crash reports where
-                // an exception likely directly is caused by the run synchronously call
+                // an exception likely directly is caused by the run synchronous call
 
 #if DEBUG
                 if (Debugger.IsAttached)
@@ -531,7 +494,9 @@ public class TaskExecutor : IParallelRunner
         {
             try
             {
-                command.ParallelRunnable!.Run(command.ParallelIndex, command.MaxIndex);
+                throw new Exception("TODO: reimplement parallel runnable");
+
+                // command.ParallelRunnable!.Run(command.ParallelIndex, command.MaxIndex);
             }
             catch (Exception exception)
             {
@@ -567,11 +532,8 @@ public class TaskExecutor : IParallelRunner
     private struct ThreadCommand
     {
         public readonly Task? Task;
-        public readonly IParallelRunnable? ParallelRunnable;
 
         public readonly Type CommandType;
-        public readonly int ParallelIndex;
-        public readonly int MaxIndex;
 
         public ThreadCommand(Task task)
         {
@@ -580,10 +542,6 @@ public class TaskExecutor : IParallelRunner
 
             if (Task == null)
                 throw new ArgumentNullException(nameof(task), "Task must be provided to this constructor");
-
-            ParallelRunnable = null;
-            ParallelIndex = 0;
-            MaxIndex = 0;
         }
 
         public ThreadCommand(Type commandType)
@@ -594,35 +552,11 @@ public class TaskExecutor : IParallelRunner
                 throw new ArgumentException("This constructor is only allowed to create quit type commands");
 
             Task = null;
-            ParallelRunnable = null;
-            ParallelIndex = 0;
-            MaxIndex = 0;
-        }
-
-        public ThreadCommand(IParallelRunnable parallelRunnable, int index, int maxIndex)
-        {
-            CommandType = Type.ParallelRunnable;
-            ParallelRunnable = parallelRunnable;
-            ParallelIndex = index;
-            MaxIndex = maxIndex;
-
-            // This is inside a debug block as there's never been a crash report with the parallel runnable being
-            // null
-#if DEBUG
-            if (ParallelRunnable == null)
-            {
-                throw new ArgumentNullException(nameof(parallelRunnable),
-                    "Parallel runnable must be provided to this constructor");
-            }
-#endif
-
-            Task = null;
         }
 
         public enum Type
         {
-            // Default initialize type to invalid in order to catch errors caused by default initialization of
-            // this class
+            // Default-initialise type to invalid to catch errors caused by default initialisation of this class
             Invalid = 0,
             Task,
             ParallelRunnable,

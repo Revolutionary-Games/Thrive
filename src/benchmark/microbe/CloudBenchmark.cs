@@ -3,8 +3,7 @@ using System.Collections.Generic;
 using System.Globalization;
 using System.Linq;
 using System.Text;
-using DefaultEcs;
-using DefaultEcs.Threading;
+using Arch.Core;
 using Godot;
 using Systems;
 
@@ -396,9 +395,9 @@ public partial class CloudBenchmark : BenchmarkBase
         cloudSystem = new CompoundCloudSystem();
         worldRoot.AddChild(cloudSystem);
 
-        // Dummy currents that doesn't need to run on any entities has to be created for the cloud system
-        dummyEntityWorld = new World();
-        var dummyCurrents = new FluidCurrentsSystem(dummyEntityWorld, new DefaultParallelRunner(1));
+        // Dummy currents that don't need to run on any entities have to be created for the cloud system
+        dummyEntityWorld = World.Create();
+        var dummyCurrents = new FluidCurrentsSystem(dummyEntityWorld, 0);
 
         cloudSystem.Init(dummyCurrents);
 

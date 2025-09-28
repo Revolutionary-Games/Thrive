@@ -1,30 +1,27 @@
 ﻿namespace Systems;
 
+using System.Runtime.CompilerServices;
+using Arch.System;
 using Components;
-using DefaultEcs;
-using DefaultEcs.System;
 using Godot;
-using World = DefaultEcs.World;
+using World = Arch.Core.World;
 
 /// <summary>
 ///   Updates visual positions of entities for rendering by Godot
 /// </summary>
-[With(typeof(WorldPosition))]
-[With(typeof(SpatialInstance))]
 [ReadsComponent(typeof(WorldPosition))]
-[RuntimeCost(36)]
+[RuntimeCost(6)]
 [RunsOnMainThread]
-public sealed class SpatialPositionSystem : AEntitySetSystem<float>
+public partial class SpatialPositionSystem : BaseSystem<World, float>
 {
-    public SpatialPositionSystem(World world) : base(world, null)
+    public SpatialPositionSystem(World world) : base(world)
     {
     }
 
-    protected override void Update(float delta, in Entity entity)
+    [Query]
+    [MethodImpl(MethodImplOptions.AggressiveInlining)]
+    private void Update(ref SpatialInstance spatial, ref WorldPosition position)
     {
-        ref var position = ref entity.Get<WorldPosition>();
-        ref var spatial = ref entity.Get<SpatialInstance>();
-
         if (spatial.GraphicalInstance == null)
             return;
 

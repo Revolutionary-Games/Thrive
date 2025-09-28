@@ -20,11 +20,6 @@ public static class Constants
     public const float SIMULATION_MAX_DELTA_TIME = 0.2f;
 
     /// <summary>
-    ///   How often entity simulation optimizes the number of used threads (should be less than 1)
-    /// </summary>
-    public const float SIMULATION_OPTIMIZE_THREADS_INTERVAL = 0.3f;
-
-    /// <summary>
     ///   Controls the number of threads used by the entity systems. The number of cells is divided by this,
     ///   and that is the max number of threads.
     /// </summary>

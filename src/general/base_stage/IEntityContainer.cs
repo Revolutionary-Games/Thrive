@@ -1,4 +1,4 @@
-﻿using DefaultEcs;
+﻿using Arch.Core;
 
 /// <summary>
 ///   Anything that supports the entity management (creation, deletion) operations
@@ -8,10 +8,10 @@ public interface IEntityContainer
     /// <summary>
     ///   Adds an entity to this simulation / container that is empty. Note not thread safe!
     /// </summary>
-    public Entity CreateEmptyEntity();
+    public Entity CreateEmptyEntity(ComponentType[] types);
 
     /// <summary>
-    ///   Destroys an entity (some simulations will queue destroys and only perform them at the end of the current
+    ///   Destroys an entity (some simulations will queue destruction and only perform them at the end of the current
     ///   simulation frame)
     /// </summary>
     /// <param name="entity">Entity to destroy</param>
@@ -25,7 +25,7 @@ public interface IEntityContainer
     public void DestroyAllEntities(Entity? skip = null);
 
     /// <summary>
-    ///   Reports that an entity will die soon and it should not be saved and loaded if the game is loaded before
+    ///   Reports that an entity will die soon, and it should not be saved and loaded if the game is loaded before
     ///   <see cref="DestroyEntity"/> gets called
     /// </summary>
     /// <param name="entity">The entity that will die very soon</param>

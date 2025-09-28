@@ -1,11 +1,11 @@
 ﻿namespace Systems;
 
-using System;
 using System.Collections.Generic;
+using System.Runtime.CompilerServices;
+using Arch.System;
 using Components;
-using DefaultEcs.System;
 using Godot;
-using World = DefaultEcs.World;
+using World = Arch.Core.World;
 
 /// <summary>
 ///   Attaches <see cref="SpatialInstance"/> to the Godot scene and handles freeing unused spatial instances.
@@ -14,7 +14,7 @@ using World = DefaultEcs.World;
 /// <remarks>
 ///   <para>
 ///     This explicitly marks the <see cref="SpatialInstance"/> as read component as the threading system doesn't
-///     handle AComponentSystem automatically. And as this *just* attaches the created instances to the scene tree
+///     handle AComponentSystem automatically. And as this *just* attaches the created instances to the scene tree,
 ///     this doesn't *really* modify the component data.
 ///   </para>
 /// </remarks>
@@ -22,14 +22,14 @@ using World = DefaultEcs.World;
 [ReadsComponent(typeof(SpatialInstance))]
 [RuntimeCost(5)]
 [RunsOnMainThread]
-public sealed class SpatialAttachSystem : AComponentSystem<float, SpatialInstance>
+public partial class SpatialAttachSystem : BaseSystem<World, float>
 {
     private readonly Node godotWorldRoot;
 
     private readonly Dictionary<Node3D, AttachedInfo> attachedSpatialInstances = new();
     private readonly List<Node3D> instancesToDelete = new();
 
-    public SpatialAttachSystem(Node godotWorldRoot, World world) : base(world, null)
+    public SpatialAttachSystem(Node godotWorldRoot, World world) : base(world)
     {
         this.godotWorldRoot = godotWorldRoot;
     }
@@ -44,7 +44,7 @@ public sealed class SpatialAttachSystem : AComponentSystem<float, SpatialInstanc
         attachedSpatialInstances.Clear();
     }
 
-    protected override void PreUpdate(float state)
+    public override void BeforeUpdate(in float delta)
     {
         // Unmark all
         foreach (var info in attachedSpatialInstances.Values)
@@ -53,30 +53,7 @@ public sealed class SpatialAttachSystem : AComponentSystem<float, SpatialInstanc
         }
     }
 
-    protected override void Update(float state, Span<SpatialInstance> components)
-    {
-        foreach (ref SpatialInstance spatial in components)
-        {
-            var graphicalInstance = spatial.GraphicalInstance;
-            if (graphicalInstance == null)
-                continue;
-
-            if (!attachedSpatialInstances.TryGetValue(graphicalInstance, out var info))
-            {
-                // New spatial to attach
-                godotWorldRoot.AddChild(graphicalInstance);
-
-                info = new AttachedInfo();
-                attachedSpatialInstances.Add(graphicalInstance, info);
-            }
-            else
-            {
-                info.Marked = true;
-            }
-        }
-    }
-
-    protected override void PostUpdate(float state)
+    public override void AfterUpdate(in float delta)
     {
         // Delete unmarked
         foreach (var pair in attachedSpatialInstances)
@@ -94,9 +71,31 @@ public sealed class SpatialAttachSystem : AComponentSystem<float, SpatialInstanc
         instancesToDelete.Clear();
     }
 
+    [Query]
+    [MethodImpl(MethodImplOptions.AggressiveInlining)]
+    private void Update(ref SpatialInstance spatial)
+    {
+        var graphicalInstance = spatial.GraphicalInstance;
+        if (graphicalInstance == null)
+            return;
+
+        if (!attachedSpatialInstances.TryGetValue(graphicalInstance, out var info))
+        {
+            // New spatial to attach
+            godotWorldRoot.AddChild(graphicalInstance);
+
+            info = new AttachedInfo();
+            attachedSpatialInstances.Add(graphicalInstance, info);
+        }
+        else
+        {
+            info.Marked = true;
+        }
+    }
+
     /// <summary>
     ///   Info (really just a marked status) for spatial instances. This breaks the use of only value types by
-    ///   systems, so there might be some more efficient way to implement this (for example with two hash sets)
+    ///   systems, so there might be some more efficient way to implement this (for example, with two hash sets)
     /// </summary>
     private class AttachedInfo
     {
