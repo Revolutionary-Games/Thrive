@@ -155,7 +155,6 @@ public partial class OsmoregulationAndHealingSystem : BaseSystem<World, float>
 
         var environmentalMultiplier = environmentalEffects.OsmoregulationMultiplier;
 
-
         // TODO: remove this safety check once it is no longer possible for this problem to happen
         // https://github.com/Revolutionary-Games/Thrive/issues/5928
         if (float.IsNaN(environmentalMultiplier) || environmentalMultiplier < 0)
