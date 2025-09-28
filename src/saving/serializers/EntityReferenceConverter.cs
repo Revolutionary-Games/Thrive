@@ -19,7 +19,7 @@ public class EntityReferenceConverter : JsonConverter<Entity>
         this.context = context;
 
 #if DEBUG
-        if (DefaultEntityStr != "{ Id = −1, WorldId = 0, Version = −1 }")
+        if (DefaultEntityStr != "{ Id = -1, WorldId = 0, Version = -1 }")
             throw new Exception("Text format for Entity ToString has changed");
 #endif
     }
