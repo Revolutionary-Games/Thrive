@@ -244,19 +244,19 @@
   "thermosynthesis": {
     "Name": "THERMOSYNTHESIS",
     "Inputs": {
-      "temperature": 0.2
+      "temperature": 0.18
     },
     "Outputs": {
-      "atp": 11
+      "glucose": 0.05
     }
   },
   "bacterial_thermosynthesis": {
     "Name": "THERMOSYNTHESIS",
     "Inputs": {
-      "temperature": 0.4
+      "temperature": 0.2
     },
     "Outputs": {
-      "atp": 6
+      "glucose": 0.02
     }
   },
   "ferrosynthesis": {
