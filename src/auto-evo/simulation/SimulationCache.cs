@@ -286,6 +286,13 @@ public class SimulationCache
 
         var behaviourScore = predator.Behaviour.Aggression / Constants.MAX_SPECIES_AGGRESSION;
 
+        var hasChemoreceptor = false;
+        foreach (var organelle in predator.Organelles.Organelles)
+        {
+            if (organelle.Definition.HasChemoreceptorComponent)
+                hasChemoreceptor = true;
+        }
+
         // Only assign engulf score if one can actually engulf (and digest)
         var engulfmentScore = 0.0f;
         if (predatorHexSize / preyHexSize >
@@ -300,6 +307,11 @@ public class SimulationCache
                 // You catch more preys if you are fast, and if they are slow.
                 // This incentivizes engulfment strategies in these cases.
                 catchScore += predatorSpeed / preySpeed;
+                if (hasChemoreceptor)
+                {
+                    catchScore *= Constants.AUTO_EVO_CHEMORECEPTOR_PREDATION_BASE_MODIFIER;
+                    catchScore *= 1 + Constants.AUTO_EVO_CHEMORECEPTOR_PREDATION_VARIABLE_MODIFIER / prey.Population;
+                }
             }
 
             // ... but you may also catch them by luck (e.g. when they run into you),
@@ -319,12 +331,17 @@ public class SimulationCache
 
         // Pili are much more useful if the microbe can close to melee
         pilusScore *= predatorSpeed > preySpeed ? 1.0f : Constants.AUTO_EVO_ENGULF_LUCKY_CATCH_PROBABILITY;
+        if (hasChemoreceptor)
+            pilusScore *= Constants.AUTO_EVO_CHEMORECEPTOR_PREDATION_BASE_MODIFIER;
 
         // Predators are less likely to use toxin against larger prey, unless they are opportunistic
         if (preyHexSize > predatorHexSize)
         {
             oxytoxyScore *= predator.Behaviour.Opportunism / Constants.MAX_SPECIES_OPPORTUNISM;
         }
+
+        if (hasChemoreceptor)
+            oxytoxyScore *= Constants.AUTO_EVO_CHEMORECEPTOR_PREDATION_BASE_MODIFIER;
 
         // If you can store enough to kill the prey, producing more isn't as important
         var storageToKillRatio = predator.StorageCapacities.Nominal * Constants.OXYTOXY_DAMAGE /
