@@ -102,7 +102,8 @@ public class ChunkCompoundPressure : SelectionPressure
                 throw new ArgumentException("Chunk does not contain compound");
 
             var totalAbundance = chunk.Density * MathF.Pow(compoundAmount.Amount, Constants.AUTO_EVO_CHUNK_AMOUNT_NERF);
-            var chemoreceptorScore = Constants.AUTO_EVO_CHEMORECEPTOR_VARIABLE_CHUNK_SCORE / totalAbundance + Constants.AUTO_EVO_CHEMORECEPTOR_BASE_SCORE;
+            var chemoreceptorScore = Constants.AUTO_EVO_CHEMORECEPTOR_BASE_SCORE;
+            chemoreceptorScore += Constants.AUTO_EVO_CHEMORECEPTOR_VARIABLE_CHUNK_SCORE / totalAbundance;
             score += chemoreceptorScore;
         }
 
