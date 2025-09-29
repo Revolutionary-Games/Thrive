@@ -60,6 +60,22 @@ public class CompoundCloudPressure : SelectionPressure
                 score *= multiplier;
         }
 
+        var hasChemoreceptor = false;
+        foreach (var organelle in microbeSpecies.Organelles.Organelles)
+        {
+            if (organelle.Definition.HasChemoreceptorComponent)
+                hasChemoreceptor = true;
+        }
+
+        if (hasChemoreceptor)
+        {
+            if (patch.Biome.AverageCompounds.TryGetValue(compound, out var compoundData))
+            {
+                var chemoreceptorScore = Constants.AUTO_EVO_CHEMORECEPTOR_VARIABLE_CLOUD_SCORE / (compoundData.Density * compoundData.Amount) + Constants.AUTO_EVO_CHEMORECEPTOR_BASE_SCORE;
+                score += chemoreceptorScore;
+            }
+        }
+
         return score;
     }
 
