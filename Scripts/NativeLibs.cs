@@ -1275,7 +1275,13 @@ public class NativeLibs
         };
 
         if (options.DebugLibrary != true)
+        {
             cmakeCommon.Add("-DTHRIVE_DISTRIBUTION=ON");
+        }
+        else
+        {
+            cmakeCommon.Add("-DTHRIVE_DISTRIBUTION=OFF");
+        }
 
         if (!string.IsNullOrEmpty(options.Compiler))
             cmakeCommon.Add($"-DCMAKE_CXX_COMPILER={options.Compiler}");
