@@ -1271,7 +1271,11 @@ public class NativeLibs
         {
             "-DTHRIVE_AVX=OFF",
             options.DebugLibrary == true ? "-DCMAKE_BUILD_TYPE=Debug" : "-DCMAKE_BUILD_TYPE=Distribution",
+            options.DebugLibrary == true ? "-DGODOTCPP_TARGET=template_debug" : "-DGODOTCPP_TARGET=template_release",
         };
+
+        if (options.DebugLibrary != true)
+            cmakeCommon.Add("-DTHRIVE_DISTRIBUTION=ON");
 
         if (!string.IsNullOrEmpty(options.Compiler))
             cmakeCommon.Add($"-DCMAKE_CXX_COMPILER={options.Compiler}");
