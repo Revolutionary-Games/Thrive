@@ -10,10 +10,9 @@ reloadable = true
 # non-avx variant. If support is ever added the NativeInterop class needs
 # also get the fix.
 
-# For some reason mac doesn't have debug variants
-# macos.debug.arm64 = "res://lib/debug/libthrive_extension_without_avx.dylib"
+macos.debug.arm64 = "res://lib/debug/libthrive_extension_without_avx.dylib"
 macos.arm64 = "res://lib/libthrive_extension_without_avx.dylib"
-# macos.debug.x86_64 = "res://lib/debug/libthrive_extension_without_avx.dylib"
+macos.debug.x86_64 = "res://lib/debug/libthrive_extension_without_avx.dylib"
 macos.x86_64 = "res://lib/libthrive_extension_without_avx.dylib"
 
 # 32-bit version if we ever want to support that again
