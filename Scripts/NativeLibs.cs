@@ -757,10 +757,12 @@ public class NativeLibs
         if (options.DebugLibrary == true)
         {
             startInfo.ArgumentList.Add("-DCMAKE_BUILD_TYPE=Debug");
+            startInfo.ArgumentList.Add("-DGODOTCPP_TARGET=template_debug");
         }
         else
         {
             startInfo.ArgumentList.Add("-DCMAKE_BUILD_TYPE=RelWithDebInfo");
+            startInfo.ArgumentList.Add("-DGODOTCPP_TARGET=template_release");
         }
 
         if (options.DisableLocalAvx)
@@ -1003,10 +1005,12 @@ public class NativeLibs
         {
             ColourConsole.WriteDebugLine("Creating a debug version of the distributable");
             buildType = "Debug";
+            shCommandBuilder.Append("-DGODOTCPP_TARGET=template_debug ");
         }
         else
         {
             shCommandBuilder.Append("-DTHRIVE_DISTRIBUTION=ON ");
+            shCommandBuilder.Append("-DGODOTCPP_TARGET=template_release ");
         }
 
         shCommandBuilder.Append($"-DCMAKE_BUILD_TYPE={buildType} ");
