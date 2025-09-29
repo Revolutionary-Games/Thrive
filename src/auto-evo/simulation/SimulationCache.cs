@@ -58,6 +58,8 @@ public class SimulationCache
     private readonly Dictionary<(MicrobeSpecies, BiomeConditions), ResolvedMicrobeTolerances> cachedResolvedTolerances =
         new();
 
+    private readonly Dictionary<Enzyme, int> tempEnzymes = new();
+
     public SimulationCache(WorldGenerationSettings worldSettings)
     {
         this.worldSettings = worldSettings;
@@ -498,22 +500,25 @@ public class SimulationCache
         var count = organelles.Count;
         for (var i = 0; i < count; ++i)
         {
-            var organelle = organelles[i].Definition;
-            if (!organelle.HasLysosomeComponent)
-                continue;
+            var placedOrganelle = organelles[i];
 
-            foreach (var enzyme in organelle.Enzymes)
+            if (placedOrganelle.GetActiveEnzymes(tempEnzymes))
             {
-                if (enzyme.Key.InternalName != dissolverEnzyme)
-                    continue;
+                foreach (var enzyme in tempEnzymes)
+                {
+                    if (enzyme.Key.InternalName != dissolverEnzyme)
+                        continue;
 
-                // No need to check the amount here as organelle data validates enzyme amounts are above 0
+                    // No need to check the amount here as organelle data validates enzyme amounts are above 0
 
-                isMembraneDigestible = true;
+                    isMembraneDigestible = true;
 
-                // This doesn't use safety as it will be otherwise masking very subtle bugs with some enzyme not
-                // working in auto-evo
-                enzymesScore += Constants.AutoEvoLysosomeEnzymesScores[enzyme.Key.InternalName];
+                    // This doesn't use safety as it will be otherwise masking very subtle bugs with some enzyme not
+                    // working in auto-evo
+                    enzymesScore += Constants.AutoEvoLysosomeEnzymesScores[enzyme.Key.InternalName];
+                }
+
+                tempEnzymes.Clear();
             }
         }
 
