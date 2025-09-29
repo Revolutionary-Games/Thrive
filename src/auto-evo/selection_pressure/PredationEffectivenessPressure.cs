@@ -24,6 +24,7 @@ public class PredationEffectivenessPressure : SelectionPressure
             new AddOrganelleAnywhere(organelle => organelle.HasSlimeJetComponent,
                 CommonMutationFunctions.Direction.Rear),
             new AddOrganelleAnywhere(organelle => organelle.HasLysosomeComponent),
+            new AddOrganelleAnywhere(organelle => organelle.HasChemoreceptorComponent),
             new MoveOrganelleBack(organelle => organelle.HasSlimeJetComponent),
             new MoveOrganelleBack(organelle => organelle.HasMovementComponent),
             new UpgradeOrganelle(organelle => organelle.HasMovementComponent, new FlagellumUpgrades(0.5f)),
