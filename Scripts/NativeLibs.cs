@@ -2047,7 +2047,7 @@ public class NativeLibs
             catch (Exception e)
             {
                 ColourConsole.WriteErrorLine(
-                    $"Error downloading (attempt took: {stopwatch.Elapsed.TotalSeconds:F2}, " +
+                    $"Error downloading (attempt took: {stopwatch.Elapsed.TotalSeconds:F2}s), " +
                     $"will retry a few times: {e}");
             }
         }
