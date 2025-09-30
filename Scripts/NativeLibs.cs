@@ -2015,10 +2015,21 @@ public class NativeLibs
                 await Task.Delay(TimeSpan.FromSeconds(i * 15), cancellationToken);
             }
 
+            bool memoryBuffer = i % 2 != 0;
+
             try
             {
                 stopwatch.Restart();
-                using var download = await httpClient.GetAsync(downloadUrl, HttpCompletionOption.ResponseHeadersRead,
+
+                var completion = HttpCompletionOption.ResponseHeadersRead;
+
+                if (memoryBuffer)
+                {
+                    ColourConsole.WriteNormalLine("Using memory buffer for download");
+                    completion = HttpCompletionOption.ResponseContentRead;
+                }
+
+                using var download = await httpClient.GetAsync(downloadUrl, completion,
                     cancellationToken);
 
                 download.EnsureSuccessStatusCode();
