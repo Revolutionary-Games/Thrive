@@ -2059,6 +2059,19 @@ public class NativeLibs
 
                 await using var readStream = await download.Content.ReadAsStreamAsync(cancellationToken);
 
+                if (memoryBuffer)
+                {
+                    // Check buffer size
+                    var length = download.Content.Headers.ContentLength ?? -1;
+                    ColourConsole.WriteDebugLine($"Download header size: {length}");
+
+                    if (readStream.Length != length)
+                    {
+                        throw new Exception(
+                            $"Downloaded file size doesn't match the header size {readStream.Length} != {length}");
+                    }
+                }
+
                 // And also compress while downloading as a compressed form of the data is not needed on disk for
                 // anything, so it would just take up unnecessary space
                 await using var decompressor = new BrotliStream(readStream, CompressionMode.Decompress);
