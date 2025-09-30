@@ -2004,6 +2004,8 @@ public class NativeLibs
         // Download the file without sending the authentication headers used for the DevCenter
         using var normalClient = new HttpClient();
 
+        var stopwatch = Stopwatch.StartNew();
+
         // Retry a few times in case the storage is not available
         for (int i = 0; i < 10; ++i)
         {
@@ -2015,6 +2017,7 @@ public class NativeLibs
 
             try
             {
+                stopwatch.Restart();
                 using var download = await httpClient.GetAsync(downloadUrl, HttpCompletionOption.ResponseHeadersRead,
                     cancellationToken);
 
@@ -2026,7 +2029,7 @@ public class NativeLibs
                 await using var readStream = await download.Content.ReadAsStreamAsync(cancellationToken);
 
                 // And also compress while downloading as a compressed form of the data is not needed on disk for
-                // anything so it would just take up unnecessary space
+                // anything, so it would just take up unnecessary space
                 await using var decompressor = new BrotliStream(readStream, CompressionMode.Decompress);
 
                 await decompressor.CopyToAsync(writer, cancellationToken);
@@ -2043,7 +2046,9 @@ public class NativeLibs
             }
             catch (Exception e)
             {
-                ColourConsole.WriteErrorLine($"Error downloading, will retry a few times: {e}");
+                ColourConsole.WriteErrorLine(
+                    $"Error downloading (attempt took: {stopwatch.Elapsed.TotalSeconds:F2}, " +
+                    $"will retry a few times: {e}");
             }
         }
 
