@@ -11,6 +11,7 @@ using System.Net.Http;
 using System.Net.Http.Headers;
 using System.Net.Http.Json;
 using System.Runtime.InteropServices;
+using System.Security.Cryptography;
 using System.Text;
 using System.Text.Json;
 using System.Threading;
@@ -1785,6 +1786,15 @@ public class NativeLibs
         precompiledData.Size = new FileInfo(compressedLocation).Length;
         ColourConsole.WriteDebugLine($"Size of compressed library: {precompiledData.Size}");
 
+        // Verify it decompresses to the same file
+        var originalHash =
+            FileUtilities.HashToHex(await FileUtilities.CalculateSha256OfFile(filePath, cancellationToken));
+
+        var decompressedHash = await CalculateDecompressedHash(compressedLocation, cancellationToken);
+
+        if (originalHash != decompressedHash)
+            throw new Exception("Decompressed hash doesn't match original hash");
+
         ColourConsole.WriteWarningLine("Beginning upload... Canceling is no longer possible, otherwise a " +
             "non-uploaded library will persist on the DevCenter");
 
@@ -1832,7 +1842,7 @@ public class NativeLibs
             {
                 ColourConsole.WriteNormalLine("Will retry upload in 15 seconds...");
 
-                // Again, don't want to pass cancellation token to not cancel out of the retry
+                // Again, don't want to pass the cancellation token to not cancel out of the retry
                 // ReSharper disable once MethodSupportsCancellation
                 await Task.Delay(TimeSpan.FromSeconds(i * 15));
             }
@@ -1922,6 +1932,16 @@ public class NativeLibs
         await reader.CopyToAsync(compressor, cancellationToken);
 
         ColourConsole.WriteSuccessLine($"Created compressed file: {compressedLocation}");
+    }
+
+    private async Task<string> CalculateDecompressedHash(string filePath, CancellationToken cancellationToken)
+    {
+        await using var reader = File.OpenRead(filePath);
+
+        await using var decompressor = new BrotliStream(reader, CompressionMode.Decompress);
+
+        var hash = await SHA256.Create().ComputeHashAsync(decompressor, cancellationToken);
+        return FileUtilities.HashToHex(hash);
     }
 
     private Task<bool> UploadMissingSymbolsToServer(CancellationToken cancellationToken)
