@@ -757,10 +757,12 @@ public class NativeLibs
         if (options.DebugLibrary == true)
         {
             startInfo.ArgumentList.Add("-DCMAKE_BUILD_TYPE=Debug");
+            startInfo.ArgumentList.Add("-DGODOTCPP_TARGET=template_debug");
         }
         else
         {
             startInfo.ArgumentList.Add("-DCMAKE_BUILD_TYPE=RelWithDebInfo");
+            startInfo.ArgumentList.Add("-DGODOTCPP_TARGET=template_release");
         }
 
         if (options.DisableLocalAvx)
@@ -1003,10 +1005,12 @@ public class NativeLibs
         {
             ColourConsole.WriteDebugLine("Creating a debug version of the distributable");
             buildType = "Debug";
+            shCommandBuilder.Append("-DGODOTCPP_TARGET=template_debug ");
         }
         else
         {
             shCommandBuilder.Append("-DTHRIVE_DISTRIBUTION=ON ");
+            shCommandBuilder.Append("-DGODOTCPP_TARGET=template_release ");
         }
 
         shCommandBuilder.Append($"-DCMAKE_BUILD_TYPE={buildType} ");
@@ -1267,7 +1271,17 @@ public class NativeLibs
         {
             "-DTHRIVE_AVX=OFF",
             options.DebugLibrary == true ? "-DCMAKE_BUILD_TYPE=Debug" : "-DCMAKE_BUILD_TYPE=Distribution",
+            options.DebugLibrary == true ? "-DGODOTCPP_TARGET=template_debug" : "-DGODOTCPP_TARGET=template_release",
         };
+
+        if (options.DebugLibrary != true)
+        {
+            cmakeCommon.Add("-DTHRIVE_DISTRIBUTION=ON");
+        }
+        else
+        {
+            cmakeCommon.Add("-DTHRIVE_DISTRIBUTION=OFF");
+        }
 
         if (!string.IsNullOrEmpty(options.Compiler))
             cmakeCommon.Add($"-DCMAKE_CXX_COMPILER={options.Compiler}");
