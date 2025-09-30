@@ -11,6 +11,7 @@ using System.Net.Http;
 using System.Net.Http.Headers;
 using System.Net.Http.Json;
 using System.Runtime.InteropServices;
+using System.Security.Cryptography;
 using System.Text;
 using System.Text.Json;
 using System.Threading;
@@ -1785,6 +1786,15 @@ public class NativeLibs
         precompiledData.Size = new FileInfo(compressedLocation).Length;
         ColourConsole.WriteDebugLine($"Size of compressed library: {precompiledData.Size}");
 
+        // Verify it decompresses to the same file
+        var originalHash =
+            FileUtilities.HashToHex(await FileUtilities.CalculateSha256OfFile(filePath, cancellationToken));
+
+        var decompressedHash = await CalculateDecompressedHash(compressedLocation, cancellationToken);
+
+        if (originalHash != decompressedHash)
+            throw new Exception("Decompressed hash doesn't match original hash");
+
         ColourConsole.WriteWarningLine("Beginning upload... Canceling is no longer possible, otherwise a " +
             "non-uploaded library will persist on the DevCenter");
 
@@ -1832,7 +1842,7 @@ public class NativeLibs
             {
                 ColourConsole.WriteNormalLine("Will retry upload in 15 seconds...");
 
-                // Again, don't want to pass cancellation token to not cancel out of the retry
+                // Again, don't want to pass the cancellation token to not cancel out of the retry
                 // ReSharper disable once MethodSupportsCancellation
                 await Task.Delay(TimeSpan.FromSeconds(i * 15));
             }
@@ -1924,6 +1934,16 @@ public class NativeLibs
         ColourConsole.WriteSuccessLine($"Created compressed file: {compressedLocation}");
     }
 
+    private async Task<string> CalculateDecompressedHash(string filePath, CancellationToken cancellationToken)
+    {
+        await using var reader = File.OpenRead(filePath);
+
+        await using var decompressor = new BrotliStream(reader, CompressionMode.Decompress);
+
+        var hash = await SHA256.Create().ComputeHashAsync(decompressor, cancellationToken);
+        return FileUtilities.HashToHex(hash);
+    }
+
     private Task<bool> UploadMissingSymbolsToServer(CancellationToken cancellationToken)
     {
         var uploader = new SymbolUploader(options, "./");
@@ -2004,6 +2024,8 @@ public class NativeLibs
         // Download the file without sending the authentication headers used for the DevCenter
         using var normalClient = new HttpClient();
 
+        var stopwatch = Stopwatch.StartNew();
+
         // Retry a few times in case the storage is not available
         for (int i = 0; i < 10; ++i)
         {
@@ -2013,9 +2035,21 @@ public class NativeLibs
                 await Task.Delay(TimeSpan.FromSeconds(i * 15), cancellationToken);
             }
 
+            bool memoryBuffer = i % 2 != 0;
+
             try
             {
-                using var download = await httpClient.GetAsync(downloadUrl, HttpCompletionOption.ResponseHeadersRead,
+                stopwatch.Restart();
+
+                var completion = HttpCompletionOption.ResponseHeadersRead;
+
+                if (memoryBuffer)
+                {
+                    ColourConsole.WriteNormalLine("Using memory buffer for download");
+                    completion = HttpCompletionOption.ResponseContentRead;
+                }
+
+                using var download = await httpClient.GetAsync(downloadUrl, completion,
                     cancellationToken);
 
                 download.EnsureSuccessStatusCode();
@@ -2025,8 +2059,21 @@ public class NativeLibs
 
                 await using var readStream = await download.Content.ReadAsStreamAsync(cancellationToken);
 
+                if (memoryBuffer)
+                {
+                    // Check buffer size
+                    var length = download.Content.Headers.ContentLength ?? -1;
+                    ColourConsole.WriteDebugLine($"Download header size: {length}");
+
+                    if (readStream.Length != length)
+                    {
+                        throw new Exception(
+                            $"Downloaded file size doesn't match the header size {readStream.Length} != {length}");
+                    }
+                }
+
                 // And also compress while downloading as a compressed form of the data is not needed on disk for
-                // anything so it would just take up unnecessary space
+                // anything, so it would just take up unnecessary space
                 await using var decompressor = new BrotliStream(readStream, CompressionMode.Decompress);
 
                 await decompressor.CopyToAsync(writer, cancellationToken);
@@ -2043,7 +2090,9 @@ public class NativeLibs
             }
             catch (Exception e)
             {
-                ColourConsole.WriteErrorLine($"Error downloading, will retry a few times: {e}");
+                ColourConsole.WriteErrorLine(
+                    $"Error downloading (attempt took: {stopwatch.Elapsed.TotalSeconds:F2}s), " +
+                    $"will retry a few times: {e}");
             }
         }
 
