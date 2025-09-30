@@ -133,6 +133,9 @@ public partial class BackgroundPlane : Node3D
 
         backgroundParticles?.DetachAndQueueFree();
 
+        if (background.ParticleEffectScene == null)
+            return;
+
         backgroundParticles = background.ParticleEffectScene.Instantiate<GpuParticles3D>();
         backgroundParticles.Rotation = Rotation;
         backgroundParticles.LocalCoords = false;

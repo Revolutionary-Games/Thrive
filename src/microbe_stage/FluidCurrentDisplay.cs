@@ -13,6 +13,7 @@ public partial class FluidCurrentDisplay : GpuParticles3D
     private readonly StringName inverseScaleParameterName = new("inverseScale");
     private readonly StringName brightnessParameterName = new("brightness");
     private readonly StringName colorParameterName = new("colorValue");
+    private readonly StringName particleDepthVariationParameterName = new("particleDepthVariation");
 
 #pragma warning disable CA2213
     [Export]
@@ -79,10 +80,12 @@ public partial class FluidCurrentDisplay : GpuParticles3D
         if (biome.WaterCurrents.UseTrails)
         {
             DrawPass1 = trailedParticleMesh;
+            material.SetShaderParameter(particleDepthVariationParameterName, 0.0f);
         }
         else
         {
             DrawPass1 = normalParticleMesh;
+            material.SetShaderParameter(particleDepthVariationParameterName, 1.0f);
         }
 
         Amount = biome.WaterCurrents.ParticleCount;
@@ -113,6 +116,7 @@ public partial class FluidCurrentDisplay : GpuParticles3D
             inverseScaleParameterName.Dispose();
             brightnessParameterName.Dispose();
             colorParameterName.Dispose();
+            particleDepthVariationParameterName.Dispose();
         }
 
         base.Dispose(disposing);
