@@ -1152,6 +1152,7 @@ public partial class MicrobeStage : CreatureStageBase<Entity, MicrobeWorldSimula
         TutorialState.GlucoseCollecting.OnOpened += SetupPlayerForGlucoseCollecting;
         TutorialState.DayNightTutorial.OnOpened += HUD.CloseProcessPanel;
 
+        // TODO: replace this placeholder spawning with the actual patch terrain system
         var testEntity = WorldSimulation.EntitySystem.Create();
         testEntity.Add<SpatialInstance>();
         var pos = Player.Get<WorldPosition>().Position + Vector3.Forward * 22 + Vector3.Right * 1;
