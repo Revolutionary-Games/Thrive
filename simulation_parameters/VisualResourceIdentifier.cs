@@ -33,4 +33,6 @@ public enum VisualResourceIdentifier
     ///   Iron projectile effect
     /// </summary>
     SiderophoreProjectile,
+
+    UnderwaterVentModel1,
 }
