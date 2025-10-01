@@ -181,7 +181,7 @@ public partial class InputGroupList : VBoxContainer
         // Pass the input event again to have the key be set where it was previously skipped
         latestDialogCaller.Rebind(latestDialogNewEvent);
 
-        latestDialogCaller.GrabFocusDeferred();
+        latestDialogCaller.MakeInputButtonGrabFocus();
     }
 
     public void OnConflictCancelled()
@@ -189,7 +189,7 @@ public partial class InputGroupList : VBoxContainer
         if (latestDialogCaller == null)
             return;
 
-        latestDialogCaller.GrabFocusDeferred();
+        latestDialogCaller.MakeInputButtonGrabFocus();
     }
 
     public bool IsConflictDialogOpen()

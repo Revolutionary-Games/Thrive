@@ -416,6 +416,11 @@ public partial class InputEventItem : MarginContainer
         OnKeybindingSuccessfullyChanged();
     }
 
+    public void MakeInputButtonGrabFocus()
+    {
+        button.GrabFocus();
+    }
+
     /// <summary>
     ///   Delete this event from the associated action and update the godot InputMap
     /// </summary>
@@ -436,11 +441,6 @@ public partial class InputEventItem : MarginContainer
     public override int GetHashCode()
     {
         return AssociatedEvent?.GetHashCode() ?? 13;
-    }
-
-    public void GrabFocusDeferred()
-    {
-        button.CallDeferred(MethodName.GrabFocus);
     }
 
     internal static InputEventItem BuildGUI(InputActionItem associatedAction, SpecifiedInputKey @event)
@@ -501,7 +501,7 @@ public partial class InputEventItem : MarginContainer
                 // because Equals treats it the same with the same AssociatedEvent.
                 AssociatedEvent = null;
                 Delete();
-                associatedAction.Inputs[i].GrabFocusDeferred();
+                associatedAction.Inputs[i].MakeInputButtonGrabFocus();
                 return true;
             }
         }
