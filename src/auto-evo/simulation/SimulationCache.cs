@@ -43,6 +43,10 @@ public class SimulationCache
 
     private readonly Dictionary<(MicrobeSpecies, MicrobeSpecies, IBiomeConditions), float> predationScores = new();
 
+    private readonly Dictionary<(MicrobeSpecies, CompoundDefinition, IBiomeConditions), float> chemoreceptorCloudScores = new();
+
+    private readonly Dictionary<(MicrobeSpecies, ChunkConfiguration, CompoundDefinition, IBiomeConditions), float> chemoreceptorChunkScores = new();
+
     private readonly Dictionary<(TweakedProcess, float, IBiomeConditions), ProcessSpeedInformation>
         cachedProcessSpeeds = new();
 
@@ -52,6 +56,8 @@ public class SimulationCache
     private readonly Dictionary<(MicrobeSpecies, string), float> cachedEnzymeScores = new();
 
     private readonly Dictionary<(MicrobeSpecies, BiomeConditions), bool> cachedUsesVaryingCompounds = new();
+
+    private readonly Dictionary<(MicrobeSpecies, BiomeConditions), bool> cachedHasChemoreceptor = new();
 
     private readonly Dictionary<(MicrobeSpecies, BiomeConditions), float> cachedStorageScores = new();
 
@@ -286,13 +292,6 @@ public class SimulationCache
 
         var behaviourScore = predator.Behaviour.Aggression / Constants.MAX_SPECIES_AGGRESSION;
 
-        var hasChemoreceptor = false;
-        foreach (var organelle in predator.Organelles.Organelles)
-        {
-            if (organelle.Definition.HasChemoreceptorComponent)
-                hasChemoreceptor = true;
-        }
-
         // Only assign engulf score if one can actually engulf (and digest)
         var engulfmentScore = 0.0f;
         if (predatorHexSize / preyHexSize >
@@ -307,7 +306,7 @@ public class SimulationCache
                 // You catch more preys if you are fast, and if they are slow.
                 // This incentivizes engulfment strategies in these cases.
                 catchScore += predatorSpeed / preySpeed;
-                if (hasChemoreceptor)
+                if (HasChemoreceptor(predator, biomeConditions))
                 {
                     catchScore *= Constants.AUTO_EVO_CHEMORECEPTOR_PREDATION_BASE_MODIFIER;
                     catchScore *= 1 + Constants.AUTO_EVO_CHEMORECEPTOR_PREDATION_VARIABLE_MODIFIER / prey.Population;
@@ -331,7 +330,7 @@ public class SimulationCache
 
         // Pili are much more useful if the microbe can close to melee
         pilusScore *= predatorSpeed > preySpeed ? 1.0f : Constants.AUTO_EVO_ENGULF_LUCKY_CATCH_PROBABILITY;
-        if (hasChemoreceptor)
+        if (HasChemoreceptor(predator, biomeConditions))
             pilusScore *= Constants.AUTO_EVO_CHEMORECEPTOR_PREDATION_BASE_MODIFIER;
 
         // Predators are less likely to use toxin against larger prey, unless they are opportunistic
@@ -340,7 +339,7 @@ public class SimulationCache
             oxytoxyScore *= predator.Behaviour.Opportunism / Constants.MAX_SPECIES_OPPORTUNISM;
         }
 
-        if (hasChemoreceptor)
+        if (HasChemoreceptor(predator, biomeConditions))
             oxytoxyScore *= Constants.AUTO_EVO_CHEMORECEPTOR_PREDATION_BASE_MODIFIER;
 
         // If you can store enough to kill the prey, producing more isn't as important
@@ -390,6 +389,75 @@ public class SimulationCache
         return cached;
     }
 
+    public bool HasChemoreceptor(MicrobeSpecies species, BiomeConditions biomeConditions)
+    {
+        var key = (species, biomeConditions);
+
+        if (cachedHasChemoreceptor.TryGetValue(key, out var cached))
+            return cached;
+
+        foreach (var organelle in species.Organelles.Organelles)
+        {
+            if (organelle.Definition.HasChemoreceptorComponent)
+                cached = true;
+        }
+
+        cachedHasChemoreceptor.Add(key, cached);
+        return cached;
+    }
+
+    public float GetChemoreceptorCloudScore(MicrobeSpecies species, CompoundDefinition compound, BiomeConditions biomeConditions)
+    {
+        var key = (species, compound, biomeConditions);
+
+        if (chemoreceptorCloudScores.TryGetValue(key, out var cached))
+        {
+            return cached;
+        }
+
+        var score = 0f;
+
+        if (HasChemoreceptor(species, biomeConditions))
+        {
+            if (biomeConditions.AverageCompounds.TryGetValue(compound.ID, out var compoundData))
+            {
+                var totalAbundance = compoundData.Density * compoundData.Amount;
+                score = Constants.AUTO_EVO_CHEMORECEPTOR_BASE_SCORE;
+                score += Constants.AUTO_EVO_CHEMORECEPTOR_VARIABLE_CLOUD_SCORE / totalAbundance;
+            }
+        }
+
+        cached = score;
+        chemoreceptorCloudScores.Add(key, cached);
+        return cached;
+    }
+
+    public float GetChemoreceptorChunkScore(MicrobeSpecies species, ChunkConfiguration chunk, CompoundDefinition compound, BiomeConditions biomeConditions)
+    {
+        var key = (species, chunk, compound, biomeConditions);
+
+        if (chemoreceptorChunkScores.TryGetValue(key, out var cached))
+        {
+            return cached;
+        }
+
+        var score = 0f;
+
+        if (HasChemoreceptor(species, biomeConditions))
+        {
+            if (chunk.Compounds?.TryGetValue(compound.ID, out var compoundAmount) != true)
+                throw new ArgumentException("Chunk does not contain compound");
+
+            var totalAbundance = chunk.Density * MathF.Pow(compoundAmount.Amount, Constants.AUTO_EVO_CHUNK_AMOUNT_NERF);
+            score = Constants.AUTO_EVO_CHEMORECEPTOR_BASE_SCORE;
+            score += Constants.AUTO_EVO_CHEMORECEPTOR_VARIABLE_CHUNK_SCORE / totalAbundance;
+        }
+
+        cached = score;
+        chemoreceptorChunkScores.Add(key, cached);
+        return cached;
+    }
+
     public float GetStorageAndDayGenerationScore(MicrobeSpecies species, BiomeConditions biomeConditions,
         Compound compound)
     {
@@ -424,10 +492,13 @@ public class SimulationCache
         cachedCompoundScores.Clear();
         cachedGeneratedCompound.Clear();
         predationScores.Clear();
+        chemoreceptorCloudScores.Clear();
+        chemoreceptorChunkScores.Clear();
         cachedProcessSpeeds.Clear();
         cachedPredationToolsRawScores.Clear();
         cachedEnzymeScores.Clear();
         cachedUsesVaryingCompounds.Clear();
+        cachedHasChemoreceptor.Clear();
         cachedStorageScores.Clear();
         cachedResolvedTolerances.Clear();
     }
