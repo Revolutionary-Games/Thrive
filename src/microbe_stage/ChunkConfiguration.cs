@@ -24,6 +24,8 @@ public struct ChunkConfiguration : IEquatable<ChunkConfiguration>
     public float Radius;
     public float ChunkScale;
     public float PhysicsDensity;
+
+    // TODO: rename Size to EngulfSize after making sure it isn't used for other purposes
     public float Size;
 
     /// <summary>

@@ -3,24 +3,22 @@
 using System;
 using System.Collections.Generic;
 using System.Runtime.CompilerServices;
+using Arch.Core;
+using Arch.Core.Extensions;
+using Arch.System;
 using Components;
-using DefaultEcs;
-using DefaultEcs.System;
 using Godot;
-using World = DefaultEcs.World;
+using World = Arch.Core.World;
 
 /// <summary>
 ///   Creates physics bodies for entities that have a shape defined for them. Also handles deleting unused bodies.
 /// </summary>
-[With(typeof(Physics))]
-[With(typeof(PhysicsShapeHolder))]
-[With(typeof(WorldPosition))]
 [ReadsComponent(typeof(PhysicsShapeHolder))]
 [ReadsComponent(typeof(WorldPosition))]
 [RunsBefore(typeof(PhysicsUpdateAndPositionSystem))]
 [RuntimeCost(2)]
 [RunsOnMainThread]
-public sealed class PhysicsBodyCreationSystem : AEntitySetSystem<float>
+public partial class PhysicsBodyCreationSystem : BaseSystem<World, float>
 {
     private readonly IWorldSimulationWithPhysics worldSimulationWithPhysics;
     private readonly PhysicsBodyDisablingSystem disablingSystem;
@@ -34,7 +32,7 @@ public sealed class PhysicsBodyCreationSystem : AEntitySetSystem<float>
 
     // This is not parallel as we don't use the parallel body add method of Jolt
     public PhysicsBodyCreationSystem(IWorldSimulationWithPhysics worldSimulationWithPhysics,
-        PhysicsBodyDisablingSystem disablingSystem, World world) : base(world, null)
+        PhysicsBodyDisablingSystem disablingSystem, World world) : base(world)
     {
         this.worldSimulationWithPhysics = worldSimulationWithPhysics;
         this.disablingSystem = disablingSystem;
@@ -42,7 +40,7 @@ public sealed class PhysicsBodyCreationSystem : AEntitySetSystem<float>
     }
 
     /// <summary>
-    ///   Destroys a body collision body immediately. This is needed to be called by the world to ensure that
+    ///   Destroys a collision body immediately. This is needed to be called by the world to ensure that
     ///   physics bodies of destroyed entities are immediately destroyed
     /// </summary>
     public void OnEntityDestroyed(in Entity entity)
@@ -63,7 +61,7 @@ public sealed class PhysicsBodyCreationSystem : AEntitySetSystem<float>
         }
     }
 
-    protected override void PreUpdate(float delta)
+    public override void BeforeUpdate(in float delta)
     {
         // Immediate body destruction is handled by the world, but we still do this to detect if a physics
         // component gets removed while things are running
@@ -73,10 +71,16 @@ public sealed class PhysicsBodyCreationSystem : AEntitySetSystem<float>
         }
     }
 
-    protected override void Update(float delta, in Entity entity)
+    public override void AfterUpdate(in float delta)
     {
-        ref var physics = ref entity.Get<Physics>();
+        createdBodies.RemoveAll(destroyBodyIfNotMarkedCallable);
+    }
 
+    [Query]
+    [All<WorldPosition>]
+    [MethodImpl(MethodImplOptions.AggressiveInlining)]
+    private void Update(ref Physics physics, ref PhysicsShapeHolder shapeHolder, in Entity entity)
+    {
         var body = physics.Body;
 
         // Mark bodies in use
@@ -86,9 +90,7 @@ public sealed class PhysicsBodyCreationSystem : AEntitySetSystem<float>
         if (physics.BodyDisabled)
             return;
 
-        ref var shapeHolder = ref entity.Get<PhysicsShapeHolder>();
-
-        // Don't need to do anything if body is already created and it is not requested to be recreated
+        // Don't need to do anything if the body is already created, and it is not requested to be recreated
         if (body != null && !shapeHolder.UpdateBodyShapeIfCreated)
             return;
 
@@ -160,11 +162,6 @@ public sealed class PhysicsBodyCreationSystem : AEntitySetSystem<float>
         if (physics.Body.IsDetached)
             throw new Exception("Physics body created in detached state");
 #endif
-    }
-
-    protected override void PostUpdate(float delta)
-    {
-        createdBodies.RemoveAll(destroyBodyIfNotMarkedCallable);
     }
 
     [MethodImpl(MethodImplOptions.AggressiveInlining)]

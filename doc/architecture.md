@@ -124,7 +124,7 @@ are taken care of then the system can safely modify the data inside
 components.
 
 To facilitate changes to component structure (adding, removing)
-`EntityCommandRecorder` type exists, which can be accessed from the
+`CommandBuffer` type exists, which can be accessed from the
 simulation world. With the recorder, changes can be queued to happen
 after the current world simulation update run has finished. Similarly
 the entity spawn methods actually just queue the spawning of the

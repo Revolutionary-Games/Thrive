@@ -20,6 +20,12 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ThriveScriptsShared", "Thri
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CodeBenchmark", "test\code_benchmarks\CodeBenchmark.csproj", "{8D9390BE-EB42-468C-80D7-BBB7951FD9E3}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Arch", "third_party\Arch\src\Arch\Arch.csproj", "{AD113035-AA35-4AC3-A89A-7E74FB4149D2}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Arch.System", "third_party\Arch.Extended\Arch.System\Arch.System.csproj", "{2B78C91B-2F60-4EC0-8C52-AC4173EB263D}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Arch.System.SourceGenerator", "third_party\Arch.Extended\Arch.System.SourceGenerator\Arch.System.SourceGenerator.csproj", "{881D2A8D-3B39-4020-A8BB-750100AB0D6F}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -87,6 +93,24 @@ Global
 		{8D9390BE-EB42-468C-80D7-BBB7951FD9E3}.ExportDebug|Any CPU.Build.0 = Debug|Any CPU
 		{8D9390BE-EB42-468C-80D7-BBB7951FD9E3}.ExportRelease|Any CPU.ActiveCfg = Debug|Any CPU
 		{8D9390BE-EB42-468C-80D7-BBB7951FD9E3}.ExportRelease|Any CPU.Build.0 = Debug|Any CPU
+		{AD113035-AA35-4AC3-A89A-7E74FB4149D2}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{AD113035-AA35-4AC3-A89A-7E74FB4149D2}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{AD113035-AA35-4AC3-A89A-7E74FB4149D2}.ExportDebug|Any CPU.ActiveCfg = Debug|Any CPU
+		{AD113035-AA35-4AC3-A89A-7E74FB4149D2}.ExportDebug|Any CPU.Build.0 = Debug|Any CPU
+		{AD113035-AA35-4AC3-A89A-7E74FB4149D2}.ExportRelease|Any CPU.ActiveCfg = Debug|Any CPU
+		{AD113035-AA35-4AC3-A89A-7E74FB4149D2}.ExportRelease|Any CPU.Build.0 = Debug|Any CPU
+		{2B78C91B-2F60-4EC0-8C52-AC4173EB263D}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{2B78C91B-2F60-4EC0-8C52-AC4173EB263D}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{2B78C91B-2F60-4EC0-8C52-AC4173EB263D}.ExportDebug|Any CPU.ActiveCfg = Debug|Any CPU
+		{2B78C91B-2F60-4EC0-8C52-AC4173EB263D}.ExportDebug|Any CPU.Build.0 = Debug|Any CPU
+		{2B78C91B-2F60-4EC0-8C52-AC4173EB263D}.ExportRelease|Any CPU.ActiveCfg = Debug|Any CPU
+		{2B78C91B-2F60-4EC0-8C52-AC4173EB263D}.ExportRelease|Any CPU.Build.0 = Debug|Any CPU
+		{881D2A8D-3B39-4020-A8BB-750100AB0D6F}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{881D2A8D-3B39-4020-A8BB-750100AB0D6F}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{881D2A8D-3B39-4020-A8BB-750100AB0D6F}.ExportDebug|Any CPU.ActiveCfg = Debug|Any CPU
+		{881D2A8D-3B39-4020-A8BB-750100AB0D6F}.ExportDebug|Any CPU.Build.0 = Debug|Any CPU
+		{881D2A8D-3B39-4020-A8BB-750100AB0D6F}.ExportRelease|Any CPU.ActiveCfg = Debug|Any CPU
+		{881D2A8D-3B39-4020-A8BB-750100AB0D6F}.ExportRelease|Any CPU.Build.0 = Debug|Any CPU
 	EndGlobalSection
 	GlobalSection(MonoDevelopProperties) = preSolution
 		Policies = $0

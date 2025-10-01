@@ -1,7 +1,8 @@
 ﻿using System.Collections.Generic;
 using System.Linq;
+using Arch.Core;
+using Arch.Core.Extensions;
 using Components;
-using DefaultEcs;
 using Godot;
 
 /// <summary>
@@ -54,23 +55,34 @@ public partial class DebugOverlays
         if (!ShowEntityLabels)
             return;
 
-        // Only one world at a time can show labels so clear existing labels if the world changes
+        // Only one world at a time can show labels so clear as existing labels if the world changes
         if (worldSimulation != labelsActiveForSimulation)
             ClearEntityLabels();
 
         // Detect new entities
-        foreach (var entity in worldSimulation.EntitySystem)
+        foreach (var archetype in worldSimulation.EntitySystem)
         {
-            // Only display positional entities
-            if (!entity.Has<WorldPosition>())
-                return;
-
-            seenEntities.Add(entity);
-
-            if (!entityLabels.TryGetValue(entity, out _))
+            foreach (var chunk in archetype)
             {
-                // New entity seen
-                OnEntityAdded(entity);
+                var count = chunk.Count;
+                var entities = chunk.Entities;
+
+                for (int i = 0; i < count; ++i)
+                {
+                    var entity = entities[i];
+
+                    // Only display positional entities
+                    if (!entity.Has<WorldPosition>())
+                        return;
+
+                    seenEntities.Add(entity);
+
+                    if (!entityLabels.TryGetValue(entity, out _))
+                    {
+                        // New entity seen
+                        OnEntityAdded(entity);
+                    }
+                }
             }
         }
 
@@ -93,7 +105,7 @@ public partial class DebugOverlays
 
     private bool UpdateLabelColour(Entity entity, Label label)
     {
-        if (!entity.IsAlive)
+        if (!entity.IsAlive())
         {
             label.LabelSettings = entityDeadFont;
             return false;
@@ -174,7 +186,7 @@ public partial class DebugOverlays
             {
                 var species = entity.Get<SpeciesMember>().Species;
 
-                label.Text = $"[{entity}:{species.Genus.Left(1)}.{species.Epithet.Left(4)}]";
+                label.Text = $"[{entity.Id}-{entity.Version}:{species.Genus.Left(1)}.{species.Epithet.Left(4)}]";
                 continue;
             }
 
@@ -184,12 +196,12 @@ public partial class DebugOverlays
 
                 // TODO: some entities would probably be fine with not displaying the entity reference before the
                 // readable name
-                label.Text = $"[{entity}:{entity.Get<ReadableName>().Name}]";
+                label.Text = $"[{entity.Id}-{entity.Version}:{entity.Get<ReadableName>().Name}]";
                 continue;
             }
 
             // Fallback to just showing the raw entity reference, nothing else can be shown
-            label.Text = $"[{entity}]";
+            label.Text = $"[{entity.Id}-{entity.Version}]";
         }
     }
 

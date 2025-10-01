@@ -1,23 +1,22 @@
 ﻿namespace Systems;
 
-using System;
 using System.Collections.Generic;
+using System.Runtime.CompilerServices;
+using Arch.Core;
+using Arch.Core.Extensions;
+using Arch.System;
 using Components;
-using DefaultEcs;
-using DefaultEcs.System;
 using Godot;
-using World = DefaultEcs.World;
+using World = Arch.Core.World;
 
 /// <summary>
 ///   Plays the sounds from <see cref="SoundEffectPlayer"/>
 /// </summary>
-[With(typeof(SoundEffectPlayer))]
-[With(typeof(WorldPosition))]
 [ReadsComponent(typeof(WorldPosition))]
 [WritesToComponent(typeof(SoundEffectPlayer))]
-[RuntimeCost(25)]
+[RuntimeCost(30)]
 [RunsOnMainThread]
-public sealed class SoundEffectSystem : AEntitySetSystem<float>
+public partial class SoundEffectSystem : BaseSystem<World, float>
 {
     private const string AudioBus = "SFX";
 
@@ -45,7 +44,7 @@ public sealed class SoundEffectSystem : AEntitySetSystem<float>
 
     private Vector3 playerPosition;
 
-    public SoundEffectSystem(Node soundPlayerParentNode, World world) : base(world, null)
+    public SoundEffectSystem(Node soundPlayerParentNode, World world) : base(world)
     {
         soundPlayerParent = soundPlayerParentNode;
     }
@@ -87,21 +86,13 @@ public sealed class SoundEffectSystem : AEntitySetSystem<float>
         used2DPlayers.Clear();
     }
 
-    public override void Dispose()
+    public override void BeforeUpdate(in float delta)
     {
-        Dispose(true);
-        base.Dispose();
-    }
-
-    protected override void PreUpdate(float delta)
-    {
-        base.PreUpdate(delta);
-
         timeCounter += delta;
 
         playingSoundCount = 0;
 
-        // First check the status of any sound players to detect when some end playing, and handle looping
+        // First, check the status of any sound players to detect when some end playing and handle looping
         int positionalCount = usedPositionalPlayers.Count;
         for (int i = 0; i < positionalCount; ++i)
         {
@@ -129,7 +120,7 @@ public sealed class SoundEffectSystem : AEntitySetSystem<float>
                 // Need to go back two spaces as this current slot may have something swapped into it now
                 i -= 2;
 
-                // Next loop increments i by one so invalid values are -2 and below as that + 1 won't be a valid
+                // The next loop increments i by one, so invalid values are -2 and below as that + 1 won't be a valid
                 // index
                 if (i < -1)
                     break;
@@ -165,32 +156,8 @@ public sealed class SoundEffectSystem : AEntitySetSystem<float>
         }
     }
 
-    protected override void Update(float delta, ReadOnlySpan<Entity> entities)
+    public override void AfterUpdate(in float delta)
     {
-        // Collect sound playing entities that need processing
-        foreach (ref readonly var entity in entities)
-        {
-            ref var soundEffectPlayer = ref entity.Get<SoundEffectPlayer>();
-
-            if (soundEffectPlayer.SoundsApplied)
-                continue;
-
-            ref var position = ref entity.Get<WorldPosition>();
-
-            var distance = position.Position.DistanceSquaredTo(playerPosition);
-
-            // Skip so far away players that they shouldn't be handled at all
-            // TODO: maybe still stop sounds in these from playing? (for example if some code wanted to stop a
-            // sound on an entity that doesn't get processed due to distance, that sound playing won't stop)
-            if (soundEffectPlayer.AbsoluteMaxDistanceSquared > 0 &&
-                distance > soundEffectPlayer.AbsoluteMaxDistanceSquared)
-            {
-                continue;
-            }
-
-            entitiesThatNeedProcessing.Add((entity, distance));
-        }
-
         // Play sounds starting from the nearest to the player to make the concurrently playing limit
         // work correctly
         entitiesThatNeedProcessing.Sort((x, y) => (int)(x.Distance - y.Distance));
@@ -198,11 +165,6 @@ public sealed class SoundEffectSystem : AEntitySetSystem<float>
         HandleSoundEntityStateApply();
 
         entitiesThatNeedProcessing.Clear();
-    }
-
-    protected override void PostUpdate(float delta)
-    {
-        base.PostUpdate(delta);
 
         // Update active positional players to have the right positions for the sounds
         foreach (var usedPositionalPlayer in usedPositionalPlayers)
@@ -216,9 +178,15 @@ public sealed class SoundEffectSystem : AEntitySetSystem<float>
         ExpireOldAudioCacheEntries(delta);
     }
 
+    public override void Dispose()
+    {
+        Dispose(true);
+        base.Dispose();
+    }
+
     private static void MarkSoundEndedOnEntityIfPossible(in Entity entity, uint slotId, string sound)
     {
-        if (!entity.IsAlive)
+        if (!entity.IsAlive())
             return;
 
         ref var entityPlayer = ref entity.Get<SoundEffectPlayer>();
@@ -270,6 +238,29 @@ public sealed class SoundEffectSystem : AEntitySetSystem<float>
                 }
             }
         }
+    }
+
+    [Query]
+    [MethodImpl(MethodImplOptions.AggressiveInlining)]
+    private void Update(ref SoundEffectPlayer soundEffectPlayer, ref WorldPosition position, in Entity entity)
+    {
+        // Collect sound playing entities that need processing
+
+        if (soundEffectPlayer.SoundsApplied)
+            return;
+
+        var distance = position.Position.DistanceSquaredTo(playerPosition);
+
+        // Skip so far away players that they shouldn't be handled at all
+        // TODO: maybe still stop sounds in these from playing? (for example if some code wanted to stop a
+        // sound on an entity that doesn't get processed due to distance, that sound playing won't stop)
+        if (soundEffectPlayer.AbsoluteMaxDistanceSquared > 0 &&
+            distance > soundEffectPlayer.AbsoluteMaxDistanceSquared)
+        {
+            return;
+        }
+
+        entitiesThatNeedProcessing.Add((entity, distance));
     }
 
     private void HandleSoundEntityStateApply()
@@ -583,7 +574,7 @@ public sealed class SoundEffectSystem : AEntitySetSystem<float>
         ///   True when there is an alive entity related to this player. This is used to stop looping sounds for
         ///   dead entities instead of playing forever.
         /// </summary>
-        public bool HasAliveEntity => Entity.IsAlive;
+        public bool HasAliveEntity => Entity.IsAlive();
 
         public void MarkEnded()
         {
@@ -616,7 +607,7 @@ public sealed class SoundEffectSystem : AEntitySetSystem<float>
 
         public bool GetUpdatedPositionIfEntityIsValid(out Vector3 position)
         {
-            if (!Entity.IsAlive)
+            if (!Entity.IsAlive())
             {
                 position = Vector3.Zero;
                 return false;

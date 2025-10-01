@@ -3,8 +3,9 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
-using DefaultEcs;
-using DefaultEcs.Command;
+using Arch.Buffer;
+using Arch.Core;
+using Arch.Core.Extensions;
 using Godot;
 using Newtonsoft.Json;
 using Systems;
@@ -79,13 +80,11 @@ public static class MulticellularGrowthHelpers
     /// </summary>
     public static void AddMulticellularGrowthCell(this ref MulticellularGrowth multicellularGrowth,
         in Entity entity, MulticellularSpecies species, IWorldSimulation worldSimulation,
-        IMicrobeSpawnEnvironment spawnEnvironment, EntityCommandRecorder recorder, ISpawnSystem notifySpawnTo)
+        IMicrobeSpawnEnvironment spawnEnvironment, CommandBuffer recorder, ISpawnSystem notifySpawnTo)
     {
         if (!entity.Has<MicrobeColony>())
         {
-            var entityRecord = recorder.Record(entity);
-
-            entityRecord.Set(new MicrobeColony(true, entity, entity.Get<MicrobeControl>().State));
+            recorder.Add(entity, new MicrobeColony(true, entity, entity.Get<MicrobeControl>().State));
         }
 
         ref var colonyPosition = ref entity.Get<WorldPosition>();
@@ -132,8 +131,7 @@ public static class MulticellularGrowthHelpers
                 worldSimulation.DestroyEntity(member);
             }
 
-            var entityRecord = recorder.Record(entity);
-            entityRecord.Remove<MicrobeColony>();
+            recorder.Remove<MicrobeColony>(entity);
             worldSimulation.FinishRecordingEntityCommands(recorder);
         }
     }
