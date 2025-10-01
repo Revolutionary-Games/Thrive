@@ -415,19 +415,18 @@ public class SimulationCache
             return cached;
         }
 
-        var score = 0f;
+        cached = 0f;
 
         if (HasChemoreceptor(species, biomeConditions))
         {
             if (biomeConditions.AverageCompounds.TryGetValue(compound.ID, out var compoundData))
             {
                 var totalAbundance = compoundData.Density * compoundData.Amount;
-                score = Constants.AUTO_EVO_CHEMORECEPTOR_BASE_SCORE;
-                score += Constants.AUTO_EVO_CHEMORECEPTOR_VARIABLE_CLOUD_SCORE / totalAbundance;
+                cached = Constants.AUTO_EVO_CHEMORECEPTOR_BASE_SCORE
+                    + Constants.AUTO_EVO_CHEMORECEPTOR_VARIABLE_CLOUD_SCORE / totalAbundance;
             }
         }
 
-        cached = score;
         chemoreceptorCloudScores.Add(key, cached);
         return cached;
     }
@@ -441,7 +440,7 @@ public class SimulationCache
             return cached;
         }
 
-        var score = 0f;
+        cached = 0f;
 
         if (HasChemoreceptor(species, biomeConditions))
         {
@@ -449,11 +448,10 @@ public class SimulationCache
                 throw new ArgumentException("Chunk does not contain compound");
 
             var totalAbundance = chunk.Density * MathF.Pow(compoundAmount.Amount, Constants.AUTO_EVO_CHUNK_AMOUNT_NERF);
-            score = Constants.AUTO_EVO_CHEMORECEPTOR_BASE_SCORE;
-            score += Constants.AUTO_EVO_CHEMORECEPTOR_VARIABLE_CHUNK_SCORE / totalAbundance;
+            cached = Constants.AUTO_EVO_CHEMORECEPTOR_BASE_SCORE
+                + Constants.AUTO_EVO_CHEMORECEPTOR_VARIABLE_CHUNK_SCORE / totalAbundance;
         }
 
-        cached = score;
         chemoreceptorChunkScores.Add(key, cached);
         return cached;
     }
