@@ -438,6 +438,11 @@ public partial class InputEventItem : MarginContainer
         return AssociatedEvent?.GetHashCode() ?? 13;
     }
 
+    public void GrabFocusDeferred()
+    {
+        button.CallDeferred(MethodName.GrabFocus);
+    }
+
     internal static InputEventItem BuildGUI(InputActionItem associatedAction, SpecifiedInputKey @event)
     {
         if (associatedAction.GroupList == null)
@@ -496,6 +501,7 @@ public partial class InputEventItem : MarginContainer
                 // because Equals treats it the same with the same AssociatedEvent.
                 AssociatedEvent = null;
                 Delete();
+                associatedAction.Inputs[i].GrabFocusDeferred();
                 return true;
             }
         }

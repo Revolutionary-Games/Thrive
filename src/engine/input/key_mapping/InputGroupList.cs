@@ -21,6 +21,11 @@ public partial class InputGroupList : VBoxContainer
     private InputEventItem? latestDialogCaller;
     private InputEventItem? latestDialogConflict;
     private InputEvent? latestDialogNewEvent;
+
+    [Export]
+    private FocusGrabber focusGrabber = null!;
+
+    private NodePath defaultFocusNode = null!;
 #pragma warning restore CA2213
 
     private FocusFlowDynamicChildrenHelper focusHelper = null!;
@@ -56,6 +61,8 @@ public partial class InputGroupList : VBoxContainer
         focusHelper = new FocusFlowDynamicChildrenHelper(this,
             FocusFlowDynamicChildrenHelper.NavigationToChildrenDirection.VerticalToChildrenOnly,
             FocusFlowDynamicChildrenHelper.NavigationInChildrenDirection.Vertical);
+
+        defaultFocusNode = focusGrabber.NodeToGiveFocusTo!;
     }
 
     public void InitGroupList()
@@ -173,6 +180,16 @@ public partial class InputGroupList : VBoxContainer
 
         // Pass the input event again to have the key be set where it was previously skipped
         latestDialogCaller.Rebind(latestDialogNewEvent);
+
+        latestDialogCaller.GrabFocusDeferred();
+    }
+
+    public void OnConflictCancelled()
+    {
+        if (latestDialogCaller == null)
+            return;
+
+        latestDialogCaller.GrabFocusDeferred();
     }
 
     public bool IsConflictDialogOpen()
