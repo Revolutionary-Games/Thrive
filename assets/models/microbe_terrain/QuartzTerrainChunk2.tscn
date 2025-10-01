@@ -1,0 +1,9 @@
+[gd_scene load_steps=3 format=3 uid="uid://cfsevjxju432n"]
+
+[ext_resource type="PackedScene" uid="uid://b32o5hhhhlntx" path="res://assets/models/microbe_terrain/QuartzTerrainChunk2.glb" id="1_7yglg"]
+[ext_resource type="Material" uid="uid://dah57m0syfrwc" path="res://assets/models/microbe_terrain/QuartzTerrainChunk.material" id="2_74dok"]
+
+[node name="QuartzTerrainChunk2" instance=ExtResource("1_7yglg")]
+
+[node name="quartz2" parent="." index="0"]
+surface_material_override/0 = ExtResource("2_74dok")
