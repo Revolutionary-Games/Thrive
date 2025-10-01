@@ -43,9 +43,11 @@ public class SimulationCache
 
     private readonly Dictionary<(MicrobeSpecies, MicrobeSpecies, IBiomeConditions), float> predationScores = new();
 
-    private readonly Dictionary<(MicrobeSpecies, CompoundDefinition, IBiomeConditions), float> chemoreceptorCloudScores = new();
+    private readonly Dictionary<(MicrobeSpecies, CompoundDefinition, IBiomeConditions), float>
+        chemoreceptorCloudScores = new();
 
-    private readonly Dictionary<(MicrobeSpecies, ChunkConfiguration, CompoundDefinition, IBiomeConditions), float> chemoreceptorChunkScores = new();
+    private readonly Dictionary<(MicrobeSpecies, ChunkConfiguration, CompoundDefinition, IBiomeConditions), float>
+        chemoreceptorChunkScores = new();
 
     private readonly Dictionary<(TweakedProcess, float, IBiomeConditions), ProcessSpeedInformation>
         cachedProcessSpeeds = new();
@@ -410,7 +412,8 @@ public class SimulationCache
         return cached;
     }
 
-    public float GetChemoreceptorCloudScore(MicrobeSpecies species, CompoundDefinition compound, BiomeConditions biomeConditions)
+    public float GetChemoreceptorCloudScore(MicrobeSpecies species, CompoundDefinition compound,
+        BiomeConditions biomeConditions)
     {
         var key = (species, compound, biomeConditions);
 
@@ -419,7 +422,7 @@ public class SimulationCache
             return cached;
         }
 
-        cached = 0f;
+        cached = 0.0f;
 
         if (HasChemoreceptor(species, biomeConditions))
         {
@@ -435,7 +438,8 @@ public class SimulationCache
         return cached;
     }
 
-    public float GetChemoreceptorChunkScore(MicrobeSpecies species, ChunkConfiguration chunk, CompoundDefinition compound, BiomeConditions biomeConditions)
+    public float GetChemoreceptorChunkScore(MicrobeSpecies species, ChunkConfiguration chunk,
+        CompoundDefinition compound, BiomeConditions biomeConditions)
     {
         var key = (species, chunk, compound, biomeConditions);
 
@@ -444,7 +448,7 @@ public class SimulationCache
             return cached;
         }
 
-        cached = 0f;
+        cached = 0.0f;
 
         if (HasChemoreceptor(species, biomeConditions))
         {
