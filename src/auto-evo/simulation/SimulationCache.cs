@@ -306,6 +306,8 @@ public class SimulationCache
                 // You catch more preys if you are fast, and if they are slow.
                 // This incentivizes engulfment strategies in these cases.
                 catchScore += predatorSpeed / preySpeed;
+
+                // If you have a chemoreceptor, active hunting types are more effective
                 if (HasChemoreceptor(predator, biomeConditions))
                 {
                     catchScore *= Constants.AUTO_EVO_CHEMORECEPTOR_PREDATION_BASE_MODIFIER;
@@ -330,17 +332,12 @@ public class SimulationCache
 
         // Pili are much more useful if the microbe can close to melee
         pilusScore *= predatorSpeed > preySpeed ? 1.0f : Constants.AUTO_EVO_ENGULF_LUCKY_CATCH_PROBABILITY;
-        if (HasChemoreceptor(predator, biomeConditions))
-            pilusScore *= Constants.AUTO_EVO_CHEMORECEPTOR_PREDATION_BASE_MODIFIER;
 
         // Predators are less likely to use toxin against larger prey, unless they are opportunistic
         if (preyHexSize > predatorHexSize)
         {
             oxytoxyScore *= predator.Behaviour.Opportunism / Constants.MAX_SPECIES_OPPORTUNISM;
         }
-
-        if (HasChemoreceptor(predator, biomeConditions))
-            oxytoxyScore *= Constants.AUTO_EVO_CHEMORECEPTOR_PREDATION_BASE_MODIFIER;
 
         // If you can store enough to kill the prey, producing more isn't as important
         var storageToKillRatio = predator.StorageCapacities.Nominal * Constants.OXYTOXY_DAMAGE /
@@ -356,6 +353,13 @@ public class SimulationCache
 
         // Prey that resist toxin are obviously weaker to it
         oxytoxyScore /= prey.MembraneType.ToxinResistance;
+
+        // If you have a chemoreceptor, active hunting types are more effective
+        if (HasChemoreceptor(predator, biomeConditions))
+        {
+            pilusScore *= Constants.AUTO_EVO_CHEMORECEPTOR_PREDATION_BASE_MODIFIER;
+            oxytoxyScore *= Constants.AUTO_EVO_CHEMORECEPTOR_PREDATION_BASE_MODIFIER;
+        }
 
         var scoreMultiplier = 1.0f;
 
