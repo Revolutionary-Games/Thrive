@@ -1151,6 +1151,24 @@ public partial class MicrobeStage : CreatureStageBase<Entity, MicrobeWorldSimula
         // Can now register this callback with the game set
         TutorialState.GlucoseCollecting.OnOpened += SetupPlayerForGlucoseCollecting;
         TutorialState.DayNightTutorial.OnOpened += HUD.CloseProcessPanel;
+
+        var testEntity = WorldSimulation.EntitySystem.Create();
+        testEntity.Add<SpatialInstance>();
+        var pos = Player.Get<WorldPosition>().Position + Vector3.Forward * 50 + Vector3.Down * 10.1f;
+        testEntity.Add(new WorldPosition(pos, Quaternion.Identity));
+        testEntity.Add(new PredefinedVisuals
+        {
+            VisualIdentifier = VisualResourceIdentifier.UnderwaterVentModel1,
+        });
+
+        // TODO: need to implement mesh collision shape type for Jolt
+        /*testEntity.Add<Physics>();
+        testEntity.Add(new PhysicsShapeHolder
+        {
+            BodyIsStatic = true,
+            Shape = PhysicsShape.CreateShapeFromGodotResource(
+                "res://assets/models/microbe_terrain/HydrothermalVent1.shape", 1000),
+        });*/
     }
 
     protected override void SpawnPlayer()
