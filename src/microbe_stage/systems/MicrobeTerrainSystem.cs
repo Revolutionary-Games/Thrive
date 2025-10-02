@@ -216,6 +216,7 @@ public class MicrobeTerrainSystem : BaseSystem<World, float>
     /// </summary>
     public void ClearQueue()
     {
+        // TODO: queueing
     }
 
     private void DespawnGridArea(List<SpawnedTerrainCluster> clusters)
@@ -449,22 +450,22 @@ public class MicrobeTerrainSystem : BaseSystem<World, float>
             }
         }
     }
+}
 
-    /// <summary>
-    ///   Small local area of terrain parts that constitutes a single area preventing spawns. Needs to be a class as
-    ///   references to this are processed.
-    /// </summary>
-    private class SpawnedTerrainGroup(Vector3 position, float radius, uint groupId)
-    {
-        public Vector3 Position = position;
-        public float SquaredRadius = radius * radius;
+/// <summary>
+///   Small local area of terrain parts that constitutes a single area preventing spawns. Needs to be a class as
+///   references to this are processed.
+/// </summary>
+internal class SpawnedTerrainGroup(Vector3 position, float radius, uint groupId)
+{
+    public Vector3 Position = position;
+    public float SquaredRadius = radius * radius;
 
-        public uint GroupId = groupId;
+    public uint GroupId = groupId;
 
-        public bool MembersFetched = false;
+    public bool MembersFetched = false;
 
-        public int ExpectedMemberCount;
+    public int ExpectedMemberCount;
 
-        public List<Entity> GroupMembers = new();
-    }
+    public List<Entity> GroupMembers = new();
 }
