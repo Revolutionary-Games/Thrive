@@ -294,6 +294,7 @@ public class SimulationCache
         var (_, _, preySlimeJetScore, preyMucocystsScore) = GetPredationToolsRawScores(prey);
 
         var behaviourScore = predator.Behaviour.Aggression / Constants.MAX_SPECIES_AGGRESSION;
+        var hasChemoreceptor = HasChemoreceptor(predator, biomeConditions);
 
         // Only assign engulf score if one can actually engulf (and digest)
         var engulfmentScore = 0.0f;
@@ -311,7 +312,7 @@ public class SimulationCache
                 catchScore += predatorSpeed / preySpeed;
 
                 // If you have a chemoreceptor, active hunting types are more effective
-                if (HasChemoreceptor(predator, biomeConditions))
+                if (hasChemoreceptor)
                 {
                     catchScore *= Constants.AUTO_EVO_CHEMORECEPTOR_PREDATION_BASE_MODIFIER;
 
@@ -361,7 +362,7 @@ public class SimulationCache
         oxytoxyScore /= prey.MembraneType.ToxinResistance;
 
         // If you have a chemoreceptor, active hunting types are more effective
-        if (HasChemoreceptor(predator, biomeConditions))
+        if (hasChemoreceptor)
         {
             pilusScore *= Constants.AUTO_EVO_CHEMORECEPTOR_PREDATION_BASE_MODIFIER;
             pilusScore *= 1 + Constants.AUTO_EVO_CHEMORECEPTOR_PREDATION_VARIABLE_MODIFIER
