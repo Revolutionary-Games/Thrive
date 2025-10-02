@@ -1151,6 +1151,92 @@ public partial class MicrobeStage : CreatureStageBase<Entity, MicrobeWorldSimula
         // Can now register this callback with the game set
         TutorialState.GlucoseCollecting.OnOpened += SetupPlayerForGlucoseCollecting;
         TutorialState.DayNightTutorial.OnOpened += HUD.CloseProcessPanel;
+
+        // TODO: replace this placeholder spawning with the actual patch terrain system
+        var testEntity = WorldSimulation.EntitySystem.Create();
+        testEntity.Add<SpatialInstance>();
+        var pos = Player.Get<WorldPosition>().Position + Vector3.Forward * 22 + Vector3.Right * 1;
+        testEntity.Add(new WorldPosition(pos, Quaternion.Identity));
+        testEntity.Add(new PredefinedVisuals
+        {
+            VisualIdentifier = VisualResourceIdentifier.ClayTerrain1,
+        });
+
+        testEntity.Add<Physics>();
+        testEntity.Add(new PhysicsShapeHolder
+        {
+            BodyIsStatic = true,
+            Shape = PhysicsShape.CreateShapeFromGodotResource(
+                "res://assets/models/microbe_terrain/ClayTerrainChunk1.shape", 1000),
+        });
+
+        testEntity = WorldSimulation.EntitySystem.Create();
+        testEntity.Add<SpatialInstance>();
+        pos += Vector3.Right * 25;
+        testEntity.Add(new WorldPosition(pos, Quaternion.Identity));
+        testEntity.Add(new PredefinedVisuals
+        {
+            VisualIdentifier = VisualResourceIdentifier.ClayTerrain2,
+        });
+
+        testEntity.Add<Physics>();
+        testEntity.Add(new PhysicsShapeHolder
+        {
+            BodyIsStatic = true,
+            Shape = PhysicsShape.CreateShapeFromGodotResource(
+                "res://assets/models/microbe_terrain/ClayTerrainChunk2.shape", 1000),
+        });
+
+        testEntity = WorldSimulation.EntitySystem.Create();
+        testEntity.Add<SpatialInstance>();
+        pos += Vector3.Right * 25;
+        testEntity.Add(new WorldPosition(pos, Quaternion.Identity));
+        testEntity.Add(new PredefinedVisuals
+        {
+            VisualIdentifier = VisualResourceIdentifier.QuartzTerrain1,
+        });
+
+        testEntity.Add<Physics>();
+        testEntity.Add(new PhysicsShapeHolder
+        {
+            BodyIsStatic = true,
+            Shape = PhysicsShape.CreateShapeFromGodotResource(
+                "res://assets/models/microbe_terrain/QuartzTerrainChunk1.shape", 1000),
+        });
+
+        testEntity = WorldSimulation.EntitySystem.Create();
+        testEntity.Add<SpatialInstance>();
+        pos += Vector3.Right * 25;
+        testEntity.Add(new WorldPosition(pos, Quaternion.Identity));
+        testEntity.Add(new PredefinedVisuals
+        {
+            VisualIdentifier = VisualResourceIdentifier.QuartzTerrain2,
+        });
+
+        testEntity.Add<Physics>();
+        testEntity.Add(new PhysicsShapeHolder
+        {
+            BodyIsStatic = true,
+            Shape = PhysicsShape.CreateShapeFromGodotResource(
+                "res://assets/models/microbe_terrain/QuartzTerrainChunk2.shape", 1000),
+        });
+
+        testEntity = WorldSimulation.EntitySystem.Create();
+        testEntity.Add<SpatialInstance>();
+        pos += Vector3.Right * 25;
+        testEntity.Add(new WorldPosition(pos, Quaternion.Identity));
+        testEntity.Add(new PredefinedVisuals
+        {
+            VisualIdentifier = VisualResourceIdentifier.QuartzTerrain3,
+        });
+
+        testEntity.Add<Physics>();
+        testEntity.Add(new PhysicsShapeHolder
+        {
+            BodyIsStatic = true,
+            Shape = PhysicsShape.CreateShapeFromGodotResource(
+                "res://assets/models/microbe_terrain/QuartzTerrainChunk3.shape", 1000),
+        });
     }
 
     protected override void SpawnPlayer()
