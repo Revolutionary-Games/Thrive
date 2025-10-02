@@ -287,6 +287,7 @@ public class SimulationCache
         var predatorSpeed = GetSpeedForSpecies(predator);
         var preyHexSize = GetBaseHexSizeForSpecies(prey);
         var preySpeed = GetSpeedForSpecies(prey);
+        var preyIndividualCost = MichePopulation.CalculateMicrobeIndividualCost(prey, biomeConditions, this);
         var enzymesScore = GetEnzymesScore(predator, prey.MembraneType.DissolverEnzyme);
         var (pilusScore, oxytoxyScore, predatorSlimeJetScore, _) =
             GetPredationToolsRawScores(predator);
@@ -313,7 +314,10 @@ public class SimulationCache
                 if (HasChemoreceptor(predator, biomeConditions))
                 {
                     catchScore *= Constants.AUTO_EVO_CHEMORECEPTOR_PREDATION_BASE_MODIFIER;
-                    catchScore *= 1 + Constants.AUTO_EVO_CHEMORECEPTOR_PREDATION_VARIABLE_MODIFIER / prey.Population;
+                    // Uses crude estimate of population density assuming same energy capture
+                    catchScore *= 1 + Constants.AUTO_EVO_CHEMORECEPTOR_PREDATION_VARIABLE_MODIFIER
+                        * float.Sqrt(preyIndividualCost);
+
                 }
             }
 
@@ -360,7 +364,11 @@ public class SimulationCache
         if (HasChemoreceptor(predator, biomeConditions))
         {
             pilusScore *= Constants.AUTO_EVO_CHEMORECEPTOR_PREDATION_BASE_MODIFIER;
+            pilusScore *= 1 + Constants.AUTO_EVO_CHEMORECEPTOR_PREDATION_VARIABLE_MODIFIER
+                * float.Sqrt(preyIndividualCost);
             oxytoxyScore *= Constants.AUTO_EVO_CHEMORECEPTOR_PREDATION_BASE_MODIFIER;
+            oxytoxyScore *= 1 + Constants.AUTO_EVO_CHEMORECEPTOR_PREDATION_VARIABLE_MODIFIER
+                * float.Sqrt(preyIndividualCost);
         }
 
         var scoreMultiplier = 1.0f;
