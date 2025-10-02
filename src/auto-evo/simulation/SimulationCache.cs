@@ -59,8 +59,6 @@ public class SimulationCache
 
     private readonly Dictionary<(MicrobeSpecies, BiomeConditions), bool> cachedUsesVaryingCompounds = new();
 
-    private readonly Dictionary<(MicrobeSpecies, BiomeConditions), bool> cachedHasChemoreceptor = new();
-
     private readonly Dictionary<(MicrobeSpecies, BiomeConditions), float> cachedStorageScores = new();
 
     private readonly Dictionary<(MicrobeSpecies, BiomeConditions), ResolvedMicrobeTolerances> cachedResolvedTolerances =
@@ -294,7 +292,12 @@ public class SimulationCache
         var (_, _, preySlimeJetScore, preyMucocystsScore) = GetPredationToolsRawScores(prey);
 
         var behaviourScore = predator.Behaviour.Aggression / Constants.MAX_SPECIES_AGGRESSION;
-        var hasChemoreceptor = HasChemoreceptor(predator, biomeConditions);
+        var hasChemoreceptor = false;
+        foreach (var organelle in predator.Organelles.Organelles)
+        {
+            if (organelle.Definition.HasChemoreceptorComponent)
+                hasChemoreceptor = true;
+        }
 
         // Only assign engulf score if one can actually engulf (and digest)
         var engulfmentScore = 0.0f;
@@ -404,23 +407,6 @@ public class SimulationCache
         return cached;
     }
 
-    public bool HasChemoreceptor(MicrobeSpecies species, BiomeConditions biomeConditions)
-    {
-        var key = (species, biomeConditions);
-
-        if (cachedHasChemoreceptor.TryGetValue(key, out var cached))
-            return cached;
-
-        foreach (var organelle in species.Organelles.Organelles)
-        {
-            if (organelle.Definition.HasChemoreceptorComponent)
-                cached = true;
-        }
-
-        cachedHasChemoreceptor.Add(key, cached);
-        return cached;
-    }
-
     public float GetChemoreceptorCloudScore(MicrobeSpecies species, CompoundDefinition compound,
         BiomeConditions biomeConditions)
     {
@@ -432,8 +418,14 @@ public class SimulationCache
         }
 
         cached = 0.0f;
+        var hasChemoreceptor = false;
+        foreach (var organelle in species.Organelles.Organelles)
+        {
+            if (organelle.Definition.HasChemoreceptorComponent)
+                hasChemoreceptor = true;
+        }
 
-        if (HasChemoreceptor(species, biomeConditions))
+        if (hasChemoreceptor)
         {
             if (biomeConditions.AverageCompounds.TryGetValue(compound.ID, out var compoundData))
             {
@@ -458,8 +450,14 @@ public class SimulationCache
         }
 
         cached = 0.0f;
+        var hasChemoreceptor = false;
+        foreach (var organelle in species.Organelles.Organelles)
+        {
+            if (organelle.Definition.HasChemoreceptorComponent)
+                hasChemoreceptor = true;
+        }
 
-        if (HasChemoreceptor(species, biomeConditions))
+        if (hasChemoreceptor)
         {
             if (chunk.Compounds?.TryGetValue(compound.ID, out var compoundAmount) != true)
                 throw new ArgumentException("Chunk does not contain compound");
@@ -513,7 +511,6 @@ public class SimulationCache
         cachedPredationToolsRawScores.Clear();
         cachedEnzymeScores.Clear();
         cachedUsesVaryingCompounds.Clear();
-        cachedHasChemoreceptor.Clear();
         cachedStorageScores.Clear();
         cachedResolvedTolerances.Clear();
     }
