@@ -138,6 +138,10 @@ public static class SpawnHelpers
         // Multicellular-specific components
         typeof(MulticellularSpeciesMember), typeof(IntercellularMatrix));
 
+    private static readonly Signature TerrainSignature = new(typeof(WorldPosition), typeof(SpatialInstance),
+        typeof(MicrobeTerrainChunk), typeof(PredefinedVisuals), typeof(Physics), typeof(PhysicsShapeHolder),
+        typeof(StaticBodyMarker));
+
     [Flags]
     private enum ChunkComponentFlag : short
     {
@@ -1040,6 +1044,52 @@ public static class SpawnHelpers
         clouds.AddCloud(compound, amount, location + new Vector3(0, 0, 0));
     }
 
+    public static void SpawnMicrobeTerrain(IWorldSimulation worldSimulation, Vector3 location,
+        TerrainConfiguration.TerrainChunkConfiguration chunkConfiguration, uint groupId, Random random)
+    {
+        var recorder = worldSimulation.StartRecordingEntityCommands();
+
+        SpawnMicrobeTerrainWithoutFinalizing(recorder, worldSimulation, location, chunkConfiguration, groupId, random);
+        worldSimulation.FinishRecordingEntityCommands(recorder);
+    }
+
+    public static void SpawnMicrobeTerrainWithoutFinalizing(CommandBuffer entityRecorder,
+        IWorldSimulation worldSimulation, Vector3 location,
+        TerrainConfiguration.TerrainChunkConfiguration chunkConfiguration, uint groupId, Random random)
+    {
+        var entity = worldSimulation.CreateEntityDeferred(entityRecorder, TerrainSignature);
+
+        var rotation = chunkConfiguration.DefaultRotation;
+
+        if (chunkConfiguration.RandomizeRotation)
+        {
+            rotation = new Quaternion(Vector3.Up, random.NextSingle() * MathF.PI * 2);
+        }
+
+        entityRecorder.Set(entity, new WorldPosition(location, rotation));
+
+        entityRecorder.Set<SpatialInstance>(entity);
+        entityRecorder.Set(entity, new PredefinedVisuals
+        {
+            VisualIdentifier = chunkConfiguration.Visuals,
+        });
+
+        entityRecorder.Add<Physics>(entity);
+        entityRecorder.Add(entity, new PhysicsShapeHolder
+        {
+            BodyIsStatic = true,
+            Shape = PhysicsShape.CreateShapeFromGodotResource(chunkConfiguration.CollisionShapePath, 1000),
+        });
+
+        entityRecorder.Set(entity, new MicrobeTerrainChunk
+        {
+            TerrainGroupId = groupId,
+        });
+
+        entityRecorder.Add<StaticBodyMarker>(entity);
+    }
+
+    // TODO: move further stage spawners to their own file
     public static MacroscopicCreature SpawnCreature(Species species, Vector3 location,
         Node worldRoot, PackedScene multicellularScene, bool aiControlled, ISpawnSystem spawnSystem,
         GameProperties currentGame)
@@ -1393,6 +1443,8 @@ public class MicrobeSpawner : Spawner
 
     public Species Species { get; }
 
+    public override string Name => ToString();
+
     public override SpawnQueue Spawn(IWorldSimulation worldSimulation, Vector3 location, ISpawnSystem spawnSystem)
     {
         // This should no longer happen, but let's keep this print here to keep track of the situation
@@ -1450,7 +1502,7 @@ public class MicrobeSpawner : Spawner
 
     public override string ToString()
     {
-        return $"MicrobeSpawner for {Species}";
+        return $"MicrobeSpawner for {Species.FormattedIdentifier}";
     }
 }
 
@@ -1475,6 +1527,8 @@ public class CompoundCloudSpawner : Spawner
     }
 
     public override bool SpawnsEntities => false;
+
+    public override string Name => ToString();
 
     public override SpawnQueue? Spawn(IWorldSimulation worldSimulation, Vector3 location, ISpawnSystem spawnSystem)
     {
@@ -1504,6 +1558,8 @@ public class ChunkSpawner : Spawner
     }
 
     public override bool SpawnsEntities => true;
+
+    public override string Name => ToString();
 
     public override SpawnQueue Spawn(IWorldSimulation worldSimulation, Vector3 location, ISpawnSystem spawnSystem)
     {
