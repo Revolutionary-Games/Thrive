@@ -179,10 +179,7 @@ public partial class InputGroupList : VBoxContainer
 
     public void OnConflictCancelled()
     {
-        if (latestDialogCaller == null)
-            return;
-
-        latestDialogCaller.MakeInputButtonGrabFocus();
+        latestDialogCaller?.MakeInputButtonGrabFocus();
     }
 
     public bool IsConflictDialogOpen()
