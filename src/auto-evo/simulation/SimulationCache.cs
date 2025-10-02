@@ -436,9 +436,9 @@ public class SimulationCache
         {
             if (biomeConditions.AverageCompounds.TryGetValue(compound.ID, out var compoundData))
             {
-                var totalAbundance = compoundData.Density * compoundData.Amount;
                 cached = Constants.AUTO_EVO_CHEMORECEPTOR_BASE_SCORE
-                    + Constants.AUTO_EVO_CHEMORECEPTOR_VARIABLE_CLOUD_SCORE / totalAbundance;
+                    + Constants.AUTO_EVO_CHEMORECEPTOR_VARIABLE_CLOUD_SCORE
+                    / (compoundData.Density * compoundData.Amount);
             }
         }
 
@@ -463,9 +463,9 @@ public class SimulationCache
             if (chunk.Compounds?.TryGetValue(compound.ID, out var compoundAmount) != true)
                 throw new ArgumentException("Chunk does not contain compound");
 
-            var totalAbundance = chunk.Density * MathF.Pow(compoundAmount.Amount, Constants.AUTO_EVO_CHUNK_AMOUNT_NERF);
             cached = Constants.AUTO_EVO_CHEMORECEPTOR_BASE_SCORE
-                + Constants.AUTO_EVO_CHEMORECEPTOR_VARIABLE_CHUNK_SCORE / totalAbundance;
+                + Constants.AUTO_EVO_CHEMORECEPTOR_VARIABLE_CHUNK_SCORE
+                / (chunk.Density * MathF.Pow(compoundAmount.Amount, Constants.AUTO_EVO_CHUNK_AMOUNT_NERF));
         }
 
         chemoreceptorChunkScores.Add(key, cached);
