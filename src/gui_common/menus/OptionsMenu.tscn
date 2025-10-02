@@ -2602,7 +2602,7 @@ size_flags_horizontal = 3
 [node name="InputGroupListTop" type="HSeparator" parent="CenterContainer/VBoxContainer/VBoxContainer/VBoxContainer/PanelContainer/Inputs/MarginContainer/VBoxContainer/VBoxContainer/ScrollContainer/MarginContainer/VBoxContainer"]
 layout_mode = 2
 
-[node name="InputGroupList" type="VBoxContainer" parent="CenterContainer/VBoxContainer/VBoxContainer/VBoxContainer/PanelContainer/Inputs/MarginContainer/VBoxContainer/VBoxContainer/ScrollContainer/MarginContainer/VBoxContainer" node_paths=PackedStringArray("conflictDialog", "resetInputsDialog", "focusGrabber")]
+[node name="InputGroupList" type="VBoxContainer" parent="CenterContainer/VBoxContainer/VBoxContainer/VBoxContainer/PanelContainer/Inputs/MarginContainer/VBoxContainer/VBoxContainer/ScrollContainer/MarginContainer/VBoxContainer" node_paths=PackedStringArray("conflictDialog", "resetInputsDialog")]
 layout_mode = 2
 focus_neighbor_left = NodePath("../../../../../../../../../../HBoxContainer/Back")
 focus_neighbor_top = NodePath("../InputGroupListTop")
@@ -2613,7 +2613,6 @@ theme_override_constants/separation = 30
 script = ExtResource("3")
 conflictDialog = NodePath("../../../../../../../../../../../../ConflictDialog")
 resetInputsDialog = NodePath("../../../../../../../../../../../../DefaultsInputsConfirm")
-focusGrabber = NodePath("../FocusGrabber")
 
 [node name="InputGroupListBottom" type="Control" parent="CenterContainer/VBoxContainer/VBoxContainer/VBoxContainer/PanelContainer/Inputs/MarginContainer/VBoxContainer/VBoxContainer/ScrollContainer/MarginContainer/VBoxContainer"]
 layout_mode = 2

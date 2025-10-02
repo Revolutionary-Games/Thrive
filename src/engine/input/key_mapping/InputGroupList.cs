@@ -21,11 +21,6 @@ public partial class InputGroupList : VBoxContainer
     private InputEventItem? latestDialogCaller;
     private InputEventItem? latestDialogConflict;
     private InputEvent? latestDialogNewEvent;
-
-    [Export]
-    private FocusGrabber focusGrabber = null!;
-
-    private NodePath defaultFocusNode = null!;
 #pragma warning restore CA2213
 
     private FocusFlowDynamicChildrenHelper focusHelper = null!;
@@ -61,8 +56,6 @@ public partial class InputGroupList : VBoxContainer
         focusHelper = new FocusFlowDynamicChildrenHelper(this,
             FocusFlowDynamicChildrenHelper.NavigationToChildrenDirection.VerticalToChildrenOnly,
             FocusFlowDynamicChildrenHelper.NavigationInChildrenDirection.Vertical);
-
-        defaultFocusNode = focusGrabber.NodeToGiveFocusTo!;
     }
 
     public void InitGroupList()
