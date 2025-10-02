@@ -2,6 +2,7 @@
 
 using System;
 using System.Collections.Generic;
+using System.Runtime.CompilerServices;
 using Arch.Buffer;
 using Arch.Core;
 using Arch.System;
@@ -14,6 +15,7 @@ using Xoshiro.PRNG32;
 ///   Handles spawning and despawning the terrain as the player moves in the microbe stage
 /// </summary>
 [RunsBefore(typeof(SpawnSystem))]
+[ReadsComponent(typeof(MicrobeTerrainChunk))]
 [RuntimeCost(1)]
 public class MicrobeTerrainSystem : BaseSystem<World, float>
 {
@@ -23,6 +25,8 @@ public class MicrobeTerrainSystem : BaseSystem<World, float>
 
     [JsonProperty]
     private readonly Dictionary<Vector2I, List<SpawnedTerrainCluster>> terrainGridData = new();
+
+    private readonly Dictionary<uint, SpawnedTerrainGroup> spawnedGroupsWithMissingMembers = new();
 
     private readonly List<SpawnedTerrainCluster> blankClusterList = new();
 
@@ -44,12 +48,14 @@ public class MicrobeTerrainSystem : BaseSystem<World, float>
     private TerrainConfiguration? terrainConfiguration;
 
     private bool hasRetrievedAllGroups;
+    private int unsuccessfulFetches;
 
     /// <summary>
-    ///   Used to mark entity groups for finding them
+    ///   Used to mark entity groups for finding them. Wraparound shouldn't cause problems as the spawns should be
+    ///   so far apart.
     /// </summary>
     [JsonProperty]
-    private uint nextGroupId;
+    private uint nextGroupId = 1;
 
     public MicrobeTerrainSystem(WorldSimulation worldSimulation, World world) : base(world)
     {
@@ -118,17 +124,12 @@ public class MicrobeTerrainSystem : BaseSystem<World, float>
 
     public override void Update(in float delta)
     {
-        // Process one despawn and one spawn queue item per update
-        
-        // Fetch group data if not already
+        // TODO: Process one despawn and one spawn queue item per update
+
+        // Fetch group data if not already (maybe should skip fetch if we just spawned something from the queue?)
         if (!hasRetrievedAllGroups)
         {
-            bool notFound = false;
-            
-            
-
-            if(!notFound)
-                hasRetrievedAllGroups = true;
+            FetchSpawnedChunksToOurData();
         }
 
         // Skip if in a patch with no terrain
@@ -219,6 +220,13 @@ public class MicrobeTerrainSystem : BaseSystem<World, float>
 
     private void DespawnGridArea(List<SpawnedTerrainCluster> clusters)
     {
+        if (!hasRetrievedAllGroups)
+        {
+            // Need to perform a fetch cycle to be able to despawn properly
+            GD.Print("Doing a fetch cycle before despawning terrain so that we have them all");
+            FetchSpawnedChunksToOurData();
+        }
+
         foreach (var cluster in clusters)
         {
             foreach (var group in cluster.Parts)
@@ -268,6 +276,7 @@ public class MicrobeTerrainSystem : BaseSystem<World, float>
 
         SpawnHelpers.FinalizeEntitySpawn(recorder, worldSimulation);
         hasRetrievedAllGroups = false;
+        unsuccessfulFetches = 0;
     }
 
     private void SpawnNewCluster(Vector2I baseCell, List<SpawnedTerrainCluster> spawned, CommandBuffer recorder,
@@ -338,7 +347,7 @@ public class MicrobeTerrainSystem : BaseSystem<World, float>
         foreach (var terrainGroup in cluster.TerrainGroups)
         {
             var groupId = nextGroupId++;
-            groupData[index] = new SpawnedTerrainGroup(terrainGroup.RelativePosition, terrainGroup.Radius, groupId);
+            var data = new SpawnedTerrainGroup(terrainGroup.RelativePosition, terrainGroup.Radius, groupId);
 
             ++index;
 
@@ -347,25 +356,57 @@ public class MicrobeTerrainSystem : BaseSystem<World, float>
                 // TODO: position mirroring etc. slight variation flags?
                 SpawnHelpers.SpawnMicrobeTerrainWithoutFinalizing(recorder, worldSimulation,
                     position + terrainGroup.RelativePosition + chunk.RelativePosition, chunk, groupId, random);
+
+                data.ExpectedMemberCount += 1;
             }
+
+            groupData[index] = data;
         }
 
         return new SpawnedTerrainCluster(position, cluster.OverallRadius, groupData, cluster.OverallOverlapRadius);
     }
 
-    /// <summary>
-    ///   Small local area of terrain parts that constitutes a single area preventing spawns
-    /// </summary>
-    private struct SpawnedTerrainGroup(Vector3 position, float radius, uint groupId)
+    private void FetchSpawnedChunksToOurData()
     {
-        public Vector3 Position = position;
-        public float SquaredRadius = radius * radius;
+        foreach (var entry in terrainGridData)
+        {
+            foreach (var terrainCluster in entry.Value)
+            {
+                foreach (var spawnedTerrainGroup in terrainCluster.Parts)
+                {
+                    if (!spawnedTerrainGroup.MembersFetched)
+                    {
+                        spawnedGroupsWithMissingMembers[spawnedTerrainGroup.GroupId] = spawnedTerrainGroup;
+                    }
+                }
+            }
+        }
 
-        public uint GroupId = groupId;
+        if (spawnedGroupsWithMissingMembers.Count < 1)
+        {
+            hasRetrievedAllGroups = true;
+            return;
+        }
 
-        public bool MembersFetched = false;
+        var query = new TerrainChunkFetchQuery(spawnedGroupsWithMissingMembers);
+        World.InlineEntityQuery<TerrainChunkFetchQuery, MicrobeTerrainChunk>(allTerrainQuery, ref query);
 
-        public List<Entity> GroupMembers = new();
+        if (spawnedGroupsWithMissingMembers.Count < 1 || unsuccessfulFetches > 2)
+        {
+            // This gives up after some time in case some detection fails
+            if (spawnedGroupsWithMissingMembers.Count > 0)
+            {
+                GD.PrintErr("Failed to find a terrain chunk that should have spawned");
+            }
+
+            hasRetrievedAllGroups = true;
+        }
+        else
+        {
+            hasRetrievedAllGroups = false;
+            spawnedGroupsWithMissingMembers.Clear();
+            ++unsuccessfulFetches;
+        }
     }
 
     private struct SpawnedTerrainCluster(Vector3 centerPosition, float maxRadius, SpawnedTerrainGroup[] parts,
@@ -377,5 +418,53 @@ public class MicrobeTerrainSystem : BaseSystem<World, float>
         public SpawnedTerrainGroup[] Parts = parts;
 
         public float OverlapRadiusSquared = overlapRadius * overlapRadius;
+    }
+
+    private struct TerrainChunkFetchQuery : IForEachWithEntity<MicrobeTerrainChunk>
+    {
+        // TODO: determine if using a dictionary or list is faster here
+        private readonly Dictionary<uint, SpawnedTerrainGroup> thingsToLookFor;
+
+        public TerrainChunkFetchQuery(Dictionary<uint, SpawnedTerrainGroup> thingsToLookFor)
+        {
+            this.thingsToLookFor = thingsToLookFor;
+        }
+
+        [MethodImpl(MethodImplOptions.AggressiveInlining)]
+        public void Update(Entity entity, ref MicrobeTerrainChunk chunk)
+        {
+            // Quickly skip chunks we aren't interested in scanning
+            if (!thingsToLookFor.TryGetValue(chunk.TerrainGroupId, out var group))
+                return;
+
+            // Found a member
+            if (!group.GroupMembers.Contains(entity))
+            {
+                group.GroupMembers.Add(entity);
+                if (group.GroupMembers.Count >= group.ExpectedMemberCount)
+                {
+                    // Don't need to look in this any more if found all members
+                    thingsToLookFor.Remove(chunk.TerrainGroupId);
+                }
+            }
+        }
+    }
+
+    /// <summary>
+    ///   Small local area of terrain parts that constitutes a single area preventing spawns. Needs to be a class as
+    ///   references to this are processed.
+    /// </summary>
+    private class SpawnedTerrainGroup(Vector3 position, float radius, uint groupId)
+    {
+        public Vector3 Position = position;
+        public float SquaredRadius = radius * radius;
+
+        public uint GroupId = groupId;
+
+        public bool MembersFetched = false;
+
+        public int ExpectedMemberCount;
+
+        public List<Entity> GroupMembers = new();
     }
 }
