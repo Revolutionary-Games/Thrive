@@ -314,10 +314,10 @@ public class SimulationCache
                 if (HasChemoreceptor(predator, biomeConditions))
                 {
                     catchScore *= Constants.AUTO_EVO_CHEMORECEPTOR_PREDATION_BASE_MODIFIER;
+
                     // Uses crude estimate of population density assuming same energy capture
                     catchScore *= 1 + Constants.AUTO_EVO_CHEMORECEPTOR_PREDATION_VARIABLE_MODIFIER
                         * float.Sqrt(preyIndividualCost);
-
                 }
             }
 
