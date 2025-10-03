@@ -433,10 +433,10 @@ public partial class InputEventItem : MarginContainer
     public void Delete()
     {
         var nextFocusPath = new string?[]
-            {
-                button.FocusNeighborLeft, button.FocusNeighborRight, Action?.FocusNeighborTop,
-                Action?.FocusNeighborBottom,
-            }.First(a => !string.IsNullOrEmpty(a) && a != ".");
+        {
+            button.FocusNeighborLeft, button.FocusNeighborRight, Action?.FocusNeighborTop,
+            Action?.FocusNeighborBottom,
+        }.First(a => !string.IsNullOrEmpty(a) && a != ".");
 
         if (nextFocusPath != null)
         {
