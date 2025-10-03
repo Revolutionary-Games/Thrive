@@ -130,6 +130,8 @@ public class MicrobeTerrainSystem : BaseSystem<World, float>
 
     public override void Update(in float delta)
     {
+        bool playerHasMoved = playerPosition != nextPlayerPosition;
+
         // Process despawn and spawn queue
         int despawns = 0;
         int spawns = 0;
@@ -148,6 +150,15 @@ public class MicrobeTerrainSystem : BaseSystem<World, float>
             despawnQueue.RemoveAt(despawnQueue.Count - 1);
         }
 
+        // Skip if in a patch with no terrain
+        if (terrainConfiguration == null)
+        {
+            if (spawnQueue.Count > 0)
+                spawnQueue.Clear();
+
+            return;
+        }
+
         while (spawnQueue.Count > 0 && spawns < spawnsPerUpdate)
         {
             SpawnTerrainCell(spawnQueue[^1]);
@@ -161,11 +172,7 @@ public class MicrobeTerrainSystem : BaseSystem<World, float>
             FetchSpawnedChunksToOurData();
         }
 
-        // Skip if in a patch with no terrain
-        if (terrainConfiguration == null)
-            return;
-
-        if (playerPosition == nextPlayerPosition)
+        if (!playerHasMoved)
             return;
 
         printedClustersTightWarning = false;
@@ -174,6 +181,9 @@ public class MicrobeTerrainSystem : BaseSystem<World, float>
         var playerGrid = PositionToTerrainCell(nextPlayerPosition);
         if (PositionToTerrainCell(playerPosition) != playerGrid)
         {
+            // Update position here to have it ready in spawn calculations
+            playerPosition = nextPlayerPosition;
+
             // Queue despawning of terrain cells that are out of range
             foreach (var entry in terrainGridData)
             {
