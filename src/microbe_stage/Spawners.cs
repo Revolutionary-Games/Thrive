@@ -1044,26 +1044,30 @@ public static class SpawnHelpers
         clouds.AddCloud(compound, amount, location + new Vector3(0, 0, 0));
     }
 
-    public static void SpawnMicrobeTerrain(IWorldSimulation worldSimulation, Vector3 location,
+    public static void SpawnMicrobeTerrain(IWorldSimulation worldSimulation, Vector3 location, Quaternion baseRotation,
         TerrainConfiguration.TerrainChunkConfiguration chunkConfiguration, uint groupId, Random random)
     {
         var recorder = worldSimulation.StartRecordingEntityCommands();
 
-        SpawnMicrobeTerrainWithoutFinalizing(recorder, worldSimulation, location, chunkConfiguration, groupId, random);
+        SpawnMicrobeTerrainWithoutFinalizing(recorder, worldSimulation, location, baseRotation, chunkConfiguration,
+            groupId, random);
         worldSimulation.FinishRecordingEntityCommands(recorder);
     }
 
     public static void SpawnMicrobeTerrainWithoutFinalizing(CommandBuffer entityRecorder,
-        IWorldSimulation worldSimulation, Vector3 location,
+        IWorldSimulation worldSimulation, Vector3 location, Quaternion baseRotation,
         TerrainConfiguration.TerrainChunkConfiguration chunkConfiguration, uint groupId, Random random)
     {
         var entity = worldSimulation.CreateEntityDeferred(entityRecorder, TerrainSignature);
 
-        var rotation = chunkConfiguration.DefaultRotation;
-
+        Quaternion rotation;
         if (chunkConfiguration.RandomizeRotation)
         {
-            rotation = new Quaternion(Vector3.Up, random.NextSingle() * MathF.PI * 2);
+            rotation = baseRotation * new Quaternion(Vector3.Up, random.NextSingle() * MathF.Tau);
+        }
+        else
+        {
+            rotation = baseRotation * chunkConfiguration.DefaultRotation;
         }
 
         entityRecorder.Set(entity, new WorldPosition(location, rotation));

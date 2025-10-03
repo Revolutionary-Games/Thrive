@@ -541,7 +541,7 @@
       "MaxClusters": 4,
       "PotentialClusters": [
         {
-          "RelativeChance": 6,
+          "RelativeChance": 3,
           "TerrainGroups": [
             {
               "RelativePosition": {
@@ -553,7 +553,7 @@
                 {
                   "Visuals": "ClayTerrain1",
                   "CollisionShapePath": "res://assets/models/microbe_terrain/ClayTerrainChunk1.shape",
-                  "Radius": 12.1,
+                  "Radius": 13,
                   "RelativePosition": {
                     "x": 0,
                     "y": 0,
@@ -578,11 +578,48 @@
                 {
                   "Visuals": "ClayTerrain2",
                   "CollisionShapePath": "res://assets/models/microbe_terrain/ClayTerrainChunk2.shape",
-                  "Radius": 12.3,
+                  "Radius": 13,
                   "RelativePosition": {
                     "x": 0,
                     "y": 0,
                     "z": 0
+                  },
+                  "RandomizeRotation": true
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "RelativeChance": 1,
+          "TerrainGroups": [
+            {
+              "RelativePosition": {
+                "x": 0,
+                "y": 0,
+                "z": 0
+              },
+              "RandomizeRotation": true,
+              "Chunks": [
+                {
+                  "Visuals": "ClayTerrain1",
+                  "CollisionShapePath": "res://assets/models/microbe_terrain/ClayTerrainChunk1.shape",
+                  "Radius": 13,
+                  "RelativePosition": {
+                    "x": 0,
+                    "y": 0,
+                    "z": 0
+                  },
+                  "RandomizeRotation": true
+                },
+                {
+                  "Visuals": "ClayTerrain2",
+                  "CollisionShapePath": "res://assets/models/microbe_terrain/ClayTerrainChunk2.shape",
+                  "Radius": 13,
+                  "RelativePosition": {
+                    "x": 0,
+                    "y": 0,
+                    "z": 22
                   },
                   "RandomizeRotation": true
                 }

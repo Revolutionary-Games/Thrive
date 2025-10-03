@@ -449,19 +449,30 @@ public class MicrobeTerrainSystem : BaseSystem<World, float>
 
         int index = 0;
 
+        var clusterRotation = Quaternion.Identity;
+
+        if (cluster.RandomizeRotation)
+            clusterRotation = new Quaternion(Vector3.Up, random.NextSingle() * MathF.Tau);
+
         foreach (var terrainGroup in cluster.TerrainGroups)
         {
             var groupId = nextGroupId++;
             var data = new SpawnedTerrainGroup(position + terrainGroup.RelativePosition, terrainGroup.Radius, groupId);
 
+            var groupRotation = Quaternion.Identity;
+
+            if (terrainGroup.RandomizeRotation)
+                groupRotation = new Quaternion(Vector3.Up, random.NextSingle() * MathF.Tau);
+
             foreach (var chunk in terrainGroup.Chunks)
             {
+                var rotation = clusterRotation * groupRotation;
+
                 var yOffset = new Vector3(0, random.NextSingle() * Constants.TERRAIN_HEIGHT_RANDOMNESS, 0);
 
-                // TODO: position mirroring etc. slight variation flags?
                 SpawnHelpers.SpawnMicrobeTerrainWithoutFinalizing(recorder, worldSimulation,
-                    position + terrainGroup.RelativePosition + chunk.RelativePosition + yOffset, chunk, groupId,
-                    random);
+                    position + rotation * (terrainGroup.RelativePosition + chunk.RelativePosition) + yOffset,
+                    rotation, chunk, groupId, random);
 
                 data.ExpectedMemberCount += 1;
             }

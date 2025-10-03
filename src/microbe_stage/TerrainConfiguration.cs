@@ -110,6 +110,9 @@ public class TerrainConfiguration : IRegistryType
         [JsonProperty]
         public readonly Vector3 RelativePosition;
 
+        [JsonProperty]
+        public readonly bool RandomizeRotation;
+
         public float Radius;
 
         public float OtherTerrainPreventionRadius;
@@ -152,6 +155,9 @@ public class TerrainConfiguration : IRegistryType
 
         [JsonProperty]
         public readonly int RelativeChance;
+
+        [JsonProperty]
+        public readonly bool RandomizeRotation;
 
         public float OverallRadius;
         public float OverallOverlapRadius;
