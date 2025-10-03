@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Linq;
 using Godot;
 
 /// <summary>
@@ -416,11 +417,32 @@ public partial class InputEventItem : MarginContainer
         OnKeybindingSuccessfullyChanged();
     }
 
+    public void MakeInputButtonGrabFocus()
+    {
+        button.GrabFocus();
+    }
+
     /// <summary>
     ///   Delete this event from the associated action and update the godot InputMap
     /// </summary>
+    /// <remarks>
+    ///   <para>
+    ///     Also changes GUI focus to another close button so that the focus doesn't default elsewhere
+    ///   </para>
+    /// </remarks>
     public void Delete()
     {
+        var nextFocusPath = new string?[]
+        {
+            button.FocusNeighborLeft, button.FocusNeighborRight, Action?.FocusNeighborTop,
+            Action?.FocusNeighborBottom,
+        }.First(a => !string.IsNullOrEmpty(a) && a != ".");
+
+        if (nextFocusPath != null)
+        {
+            GetNode<Control>(nextFocusPath)?.GrabFocus();
+        }
+
         Action?.Inputs.Remove(this);
         GroupList?.ControlsChanged();
     }
