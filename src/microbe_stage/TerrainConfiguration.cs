@@ -25,8 +25,8 @@ public class TerrainConfiguration : IRegistryType
             throw new InvalidRegistryDataException(name, GetType().Name, "Terrain clusters is empty");
         }
 
-        if (MinClusters < 1)
-            throw new InvalidRegistryDataException(name, GetType().Name, "Min clusters must be above 0");
+        if (MinClusters < 0)
+            throw new InvalidRegistryDataException(name, GetType().Name, "Min clusters must be at least 0");
 
         if (MaxClusters <= MinClusters)
             throw new InvalidRegistryDataException(name, GetType().Name, "Max clusters must be more than min clusters");

@@ -537,11 +537,11 @@
       }
     },
     "Terrain": {
-      "MinClusters": 50,
-      "MaxClusters": 100,
+      "MinClusters": 0,
+      "MaxClusters": 4,
       "PotentialClusters": [
         {
-          "RelativeChance": 10,
+          "RelativeChance": 6,
           "TerrainGroups": [
             {
               "RelativePosition": {
