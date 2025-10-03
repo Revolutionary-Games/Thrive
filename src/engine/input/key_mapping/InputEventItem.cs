@@ -431,11 +431,7 @@ public partial class InputEventItem : MarginContainer
     /// </remarks>
     public void Delete()
     {
-        if (Action != null)
-        {
-            var neighboor = GetNode<Control>(Action.FocusNeighborTop);
-            neighboor?.GrabFocus();
-        }
+        SwitchFocusElsewhere();
 
         Action?.Inputs.Remove(this);
         GroupList?.ControlsChanged();
@@ -475,6 +471,34 @@ public partial class InputEventItem : MarginContainer
         }
 
         base.Dispose(disposing);
+    }
+
+    /// <summary>
+    ///   Switches focus to a close input event button or falls backs to another action group
+    /// </summary>
+    private void SwitchFocusElsewhere()
+    {
+        string path = string.Empty;
+
+        path = button.FocusNeighborLeft;
+
+        if (string.IsNullOrEmpty(path) || path == ".")
+        {
+            path = button.FocusNeighborRight;
+        }
+
+        if ((string.IsNullOrEmpty(path) || path == ".") && Action != null)
+        {
+            path = Action.FocusNeighborTop;
+
+            if (string.IsNullOrEmpty(path) || path == ".")
+            {
+                path = Action.FocusNeighborBottom;
+            }
+        }
+
+        if (!string.IsNullOrEmpty(path))
+            GetNode<Control>(path).GrabFocus();
     }
 
     private bool CheckNewKeyConflicts(InputEvent @event, InputGroupList groupList, SpecifiedInputKey? old)
