@@ -40,6 +40,11 @@ public abstract class Spawner
     public bool DestroyQueued { get; set; }
 
     /// <summary>
+    ///   Name used for internal logging etc. purposes
+    /// </summary>
+    public abstract string Name { get; }
+
+    /// <summary>
     ///   Spawns the next thing. This is an enumerator to be able to control how many things to spawn per frame easily
     /// </summary>
     /// <param name="worldSimulation">The simulation to create the entity in</param>
