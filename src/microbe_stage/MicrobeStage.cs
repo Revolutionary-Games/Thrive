@@ -1073,7 +1073,10 @@ public partial class MicrobeStage : CreatureStageBase<Entity, MicrobeWorldSimula
             // added
             if (!Player.Has<TimedLife>())
             {
-                Player.Add<TimedLife>();
+                Player.Add(new TimedLife
+                {
+                    TimeToLiveRemaining = 5,
+                });
             }
 
             ref var timed = ref Player.Get<TimedLife>();
