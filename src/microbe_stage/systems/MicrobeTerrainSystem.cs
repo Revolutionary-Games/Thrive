@@ -26,11 +26,12 @@ public class MicrobeTerrainSystem : BaseSystem<World, float>
     [JsonProperty]
     private readonly Dictionary<Vector2I, List<SpawnedTerrainCluster>> terrainGridData = new();
 
+    private readonly List<Vector2I> despawnQueue = new();
+    private readonly List<Vector2I> spawnQueue = new();
+
     private readonly Dictionary<uint, SpawnedTerrainGroup> spawnedGroupsWithMissingMembers = new();
 
     private readonly List<SpawnedTerrainCluster> blankClusterList = new();
-
-    private readonly List<Vector2I> tempGridCells = new();
 
     [JsonProperty]
     private Vector3 playerPosition;
@@ -50,6 +51,11 @@ public class MicrobeTerrainSystem : BaseSystem<World, float>
     private bool hasRetrievedAllGroups;
     private int unsuccessfulFetches;
 
+    private bool printedClustersTightWarning;
+
+    private int spawnsPerUpdate = 2;
+    private int despawnsPerUpdate = 5;
+
     /// <summary>
     ///   Used to mark entity groups for finding them. Wraparound shouldn't cause problems as the spawns should be
     ///   so far apart.
@@ -64,8 +70,8 @@ public class MicrobeTerrainSystem : BaseSystem<World, float>
 
     public static Vector2I PositionToTerrainCell(Vector3 position)
     {
-        return new Vector2I((int)(position.X % Constants.TERRAIN_GRID_SIZE),
-            (int)(position.Z % Constants.TERRAIN_GRID_SIZE));
+        return new Vector2I((int)(position.X * Constants.TERRAIN_GRID_SIZE_INV),
+            (int)(position.Z * Constants.TERRAIN_GRID_SIZE_INV));
     }
 
     public void ReportPlayerPosition(Vector3 position)
@@ -124,7 +130,30 @@ public class MicrobeTerrainSystem : BaseSystem<World, float>
 
     public override void Update(in float delta)
     {
-        // TODO: Process one despawn and one spawn queue item per update
+        // Process despawn and spawn queue
+        int despawns = 0;
+        int spawns = 0;
+        while (despawnQueue.Count > 0 && despawns < despawnsPerUpdate)
+        {
+            var coordinates = despawnQueue[^1];
+
+            // If something is deleted already, it is not too serious of a problem
+            if (terrainGridData.TryGetValue(coordinates, out var toDespawn))
+            {
+                DespawnGridArea(toDespawn);
+                terrainGridData.Remove(coordinates);
+                ++despawns;
+            }
+
+            despawnQueue.RemoveAt(despawnQueue.Count - 1);
+        }
+
+        while (spawnQueue.Count > 0 && spawns < spawnsPerUpdate)
+        {
+            SpawnTerrainCell(spawnQueue[^1]);
+            spawnQueue.RemoveAt(spawnQueue.Count - 1);
+            ++spawns;
+        }
 
         // Fetch group data if not already (maybe should skip fetch if we just spawned something from the queue?)
         if (!hasRetrievedAllGroups)
@@ -139,22 +168,26 @@ public class MicrobeTerrainSystem : BaseSystem<World, float>
         if (playerPosition == nextPlayerPosition)
             return;
 
+        printedClustersTightWarning = false;
+
         // Check if player moved terrain grids and if so perform an operation
         var playerGrid = PositionToTerrainCell(nextPlayerPosition);
         if (PositionToTerrainCell(playerPosition) != playerGrid)
         {
-            // TODO: make a spawn / despawn queue to avoid as big lag spikes
-            // Despawn terrain cells out of range
+            // Queue despawning of terrain cells that are out of range
             foreach (var entry in terrainGridData)
             {
                 var distance = Math.Abs(entry.Key.X - playerGrid.X) + Math.Abs(entry.Key.Y - playerGrid.Y);
 
                 if (distance > Constants.TERRAIN_SPAWN_AREA_NUMBER)
                 {
-                    tempGridCells.Add(entry.Key);
-                    DespawnGridArea(entry.Value);
+                    // We don't process any despawns immediately here, as they shouldn't be totally time-critical
+                    despawnQueue.Add(entry.Key);
                 }
             }
+
+            // Initial spawn if data is likely empty
+            bool initialSpawn = terrainGridData.Count - despawnQueue.Count < 1;
 
             // Spawn in terrain cells that are now in range
             for (int x = playerGrid.X - Constants.TERRAIN_SPAWN_AREA_NUMBER;
@@ -167,22 +200,35 @@ public class MicrobeTerrainSystem : BaseSystem<World, float>
 
                     var distance = Math.Abs(currentPos.X - playerGrid.X) + Math.Abs(currentPos.Y - playerGrid.Y);
 
-                    if (distance <= Constants.TERRAIN_SPAWN_AREA_NUMBER &&
-                        !terrainGridData.TryGetValue(currentPos, out _))
+                    if (distance <= Constants.TERRAIN_SPAWN_AREA_NUMBER)
                     {
-                        SpawnTerrainCell(currentPos);
+                        if (!terrainGridData.TryGetValue(currentPos, out _))
+                        {
+                            // Limited spawns per frame. But if initially spawning in terrain then we want to spawn
+                            // everything at once to not leave an empty world for a little bit
+                            if (spawns < spawnsPerUpdate || initialSpawn)
+                            {
+                                SpawnTerrainCell(currentPos);
+                                ++spawns;
+                            }
+                            else
+                            {
+                                // And queue the other ones.
+                                // This contains check here is in case the queue is long, and the player is moving
+                                // superfast causing duplicate terrain load requests.
+                                if (!spawnQueue.Contains(currentPos))
+                                {
+                                    spawnQueue.Add(currentPos);
+                                }
+                            }
+                        }
+                        else
+                        {
+                            // Make sure existing data won't be deleted
+                            despawnQueue.Remove(currentPos);
+                        }
                     }
                 }
-            }
-
-            if (tempGridCells.Count > 0)
-            {
-                foreach (var tempGridCell in tempGridCells)
-                {
-                    terrainGridData.Remove(tempGridCell);
-                }
-
-                tempGridCells.Clear();
             }
         }
 
@@ -216,17 +262,40 @@ public class MicrobeTerrainSystem : BaseSystem<World, float>
     /// </summary>
     public void ClearQueue()
     {
-        // TODO: queueing
+        spawnQueue.Clear();
+        despawnQueue.Clear();
     }
 
     private void DespawnGridArea(List<SpawnedTerrainCluster> clusters)
     {
-        if (!hasRetrievedAllGroups)
+        // Try to despawn normally first, and then re-fetch data if missing any members
+        bool missing = false;
+        foreach (var cluster in clusters)
         {
-            // Need to perform a fetch cycle to be able to despawn properly
-            GD.Print("Doing a fetch cycle before despawning terrain so that we have them all");
-            FetchSpawnedChunksToOurData();
+            foreach (var group in cluster.Parts)
+            {
+                foreach (var entity in group.GroupMembers)
+                {
+                    if (worldSimulation.IsEntityInWorld(entity))
+                        worldSimulation.DestroyEntity(entity);
+                }
+
+                if (!group.MembersFetched)
+                {
+                    missing = true;
+                    continue;
+                }
+
+                group.GroupMembers.Clear();
+            }
         }
+
+        if (!missing)
+            return;
+
+        // Need to perform a fetch cycle to be able to despawn properly
+        GD.Print("Doing a fetch cycle before despawning terrain so that we have them all");
+        FetchSpawnedChunksToOurData();
 
         foreach (var cluster in clusters)
         {
@@ -234,9 +303,14 @@ public class MicrobeTerrainSystem : BaseSystem<World, float>
             {
                 foreach (var entity in group.GroupMembers)
                 {
-                    // TODO: a queue for despawning
                     if (worldSimulation.IsEntityInWorld(entity))
                         worldSimulation.DestroyEntity(entity);
+                }
+
+                if (!group.MembersFetched)
+                {
+                    GD.PrintErr("Despawning terrain group with unfetched members, will not be able to despawn " +
+                        "all entities correctly");
                 }
 
                 group.GroupMembers.Clear();
@@ -246,6 +320,13 @@ public class MicrobeTerrainSystem : BaseSystem<World, float>
 
     private void SpawnTerrainCell(Vector2I cell)
     {
+        // Safety return if terrain is already generated
+        if (terrainGridData.ContainsKey(cell))
+        {
+            GD.Print($"Already spawned terrain for: {cell}");
+            return;
+        }
+
         if (terrainConfiguration == null)
         {
             // If nothing to spawn, do nothing
@@ -253,16 +334,17 @@ public class MicrobeTerrainSystem : BaseSystem<World, float>
             return;
         }
 
-        // TODO: spawn queue the entities instead of immediately just spawning everything
+        // TODO: do we need to queue individual bits of terrain rather than entire grid cells?
 
         // We use a random per cell to make sure the same cell spawns in again if the player returns. We can't avoid
         // allocations here as re-initializing the xoshiro class is not possible.
         // Cast required to avoid another warning
         // ReSharper disable once RedundantCast
-        var random = new XoShiRo128starstar(baseSeed | (long)cell.X.GetHashCode() | (long)cell.Y.GetHashCode() << 32);
+        var random = new XoShiRo128starstar(baseSeed ^ (long)cell.X.GetHashCode() ^ (long)cell.Y.GetHashCode() << 32);
 
-        // TODO: could probably have an entity-limit based correction applied here
+        // TODO: could probably have an entity-limit based correction applied here?
         int clusters = random.Next(terrainConfiguration.MinClusters, terrainConfiguration.MaxClusters + 1);
+        var wantedClusters = clusters;
 
         var recorder = worldSimulation.StartRecordingEntityCommands();
 
@@ -275,7 +357,14 @@ public class MicrobeTerrainSystem : BaseSystem<World, float>
             SpawnNewCluster(cell, result, recorder, random);
         }
 
+        if (result.Count < wantedClusters)
+        {
+            GD.Print($"Could only spawn {result.Count} terrain clusters out of wanted {wantedClusters}");
+        }
+
         SpawnHelpers.FinalizeEntitySpawn(recorder, worldSimulation);
+
+        terrainGridData[cell] = result;
         hasRetrievedAllGroups = false;
         unsuccessfulFetches = 0;
     }
@@ -285,14 +374,14 @@ public class MicrobeTerrainSystem : BaseSystem<World, float>
     {
         var cluster = terrainConfiguration!.GetRandomCluster(random);
 
-        var minX = baseCell.X * Constants.TERRAIN_SPAWN_AREA_NUMBER + Constants.TERRAIN_EDGE_PROTECTION_SIZE +
+        var minX = baseCell.X * Constants.TERRAIN_GRID_SIZE + Constants.TERRAIN_EDGE_PROTECTION_SIZE +
             cluster.OverallRadius;
-        var maxX = (baseCell.X + 1) * Constants.TERRAIN_SPAWN_AREA_NUMBER - Constants.TERRAIN_EDGE_PROTECTION_SIZE -
+        var maxX = (baseCell.X + 1) * Constants.TERRAIN_GRID_SIZE - Constants.TERRAIN_EDGE_PROTECTION_SIZE -
             cluster.OverallRadius;
 
-        var minZ = baseCell.Y * Constants.TERRAIN_SPAWN_AREA_NUMBER + Constants.TERRAIN_EDGE_PROTECTION_SIZE +
+        var minZ = baseCell.Y * Constants.TERRAIN_GRID_SIZE + Constants.TERRAIN_EDGE_PROTECTION_SIZE +
             cluster.OverallRadius;
-        var maxZ = (baseCell.Y + 1) * Constants.TERRAIN_SPAWN_AREA_NUMBER - Constants.TERRAIN_EDGE_PROTECTION_SIZE -
+        var maxZ = (baseCell.Y + 1) * Constants.TERRAIN_GRID_SIZE - Constants.TERRAIN_EDGE_PROTECTION_SIZE -
             cluster.OverallRadius;
 
         var rangeX = maxX - minX;
@@ -335,7 +424,12 @@ public class MicrobeTerrainSystem : BaseSystem<World, float>
         }
 
         // If ran out of attempts, we'll just ignore as the terrain is too crowded
-        GD.Print("Terrain is so dense that can't find places to put more");
+
+        if (!printedClustersTightWarning)
+        {
+            GD.Print("Terrain is so dense that can't find places to put more");
+            printedClustersTightWarning = true;
+        }
     }
 
     private SpawnedTerrainCluster SpawnCluster(TerrainConfiguration.TerrainClusterConfiguration cluster,
@@ -348,9 +442,7 @@ public class MicrobeTerrainSystem : BaseSystem<World, float>
         foreach (var terrainGroup in cluster.TerrainGroups)
         {
             var groupId = nextGroupId++;
-            var data = new SpawnedTerrainGroup(terrainGroup.RelativePosition, terrainGroup.Radius, groupId);
-
-            ++index;
+            var data = new SpawnedTerrainGroup(position + terrainGroup.RelativePosition, terrainGroup.Radius, groupId);
 
             foreach (var chunk in terrainGroup.Chunks)
             {
@@ -362,6 +454,7 @@ public class MicrobeTerrainSystem : BaseSystem<World, float>
             }
 
             groupData[index] = data;
+            ++index;
         }
 
         return new SpawnedTerrainCluster(position, cluster.OverallRadius, groupData, cluster.OverallOverlapRadius);
@@ -398,6 +491,7 @@ public class MicrobeTerrainSystem : BaseSystem<World, float>
             if (spawnedGroupsWithMissingMembers.Count > 0)
             {
                 GD.PrintErr("Failed to find a terrain chunk that should have spawned");
+                spawnedGroupsWithMissingMembers.Clear();
             }
 
             hasRetrievedAllGroups = true;
@@ -445,6 +539,7 @@ public class MicrobeTerrainSystem : BaseSystem<World, float>
                 if (group.GroupMembers.Count >= group.ExpectedMemberCount)
                 {
                     // Don't need to look in this any more if found all members
+                    group.MembersFetched = true;
                     thingsToLookFor.Remove(chunk.TerrainGroupId);
                 }
             }

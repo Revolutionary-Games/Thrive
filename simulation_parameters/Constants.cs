@@ -188,9 +188,10 @@ public static class Constants
 
     public const float CLOUD_CHEAT_DENSITY = 16000.0f;
 
-    public const float TERRAIN_GRID_SIZE = 150;
-    public const float TERRAIN_EDGE_PROTECTION_SIZE = 5;
-    public const int TERRAIN_SPAWN_AREA_NUMBER = 2;
+    public const float TERRAIN_GRID_SIZE = 100;
+    public const float TERRAIN_GRID_SIZE_INV = 1 / TERRAIN_GRID_SIZE;
+    public const float TERRAIN_EDGE_PROTECTION_SIZE = 1;
+    public const int TERRAIN_SPAWN_AREA_NUMBER = 4;
 
     public const int MEMBRANE_RESOLUTION = 10;
     public const int MEMBRANE_VERTICAL_RESOLUTION = 7;
