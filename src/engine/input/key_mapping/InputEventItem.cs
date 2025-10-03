@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Linq;
 using Godot;
 
 /// <summary>
@@ -431,7 +432,16 @@ public partial class InputEventItem : MarginContainer
     /// </remarks>
     public void Delete()
     {
-        SwitchFocusElsewhere();
+        var nextFocusPath = new string?[]
+            {
+                button.FocusNeighborLeft, button.FocusNeighborRight, Action?.FocusNeighborTop,
+                Action?.FocusNeighborBottom,
+            }.First(a => !string.IsNullOrEmpty(a) && a != ".");
+
+        if (nextFocusPath != null)
+        {
+            GetNode<Control>(nextFocusPath)?.GrabFocus();
+        }
 
         Action?.Inputs.Remove(this);
         GroupList?.ControlsChanged();
@@ -471,34 +481,6 @@ public partial class InputEventItem : MarginContainer
         }
 
         base.Dispose(disposing);
-    }
-
-    /// <summary>
-    ///   Switches focus to a close input event button or falls backs to another action group
-    /// </summary>
-    private void SwitchFocusElsewhere()
-    {
-        string path = string.Empty;
-
-        path = button.FocusNeighborLeft;
-
-        if (string.IsNullOrEmpty(path) || path == ".")
-        {
-            path = button.FocusNeighborRight;
-        }
-
-        if ((string.IsNullOrEmpty(path) || path == ".") && Action != null)
-        {
-            path = Action.FocusNeighborTop;
-
-            if (string.IsNullOrEmpty(path) || path == ".")
-            {
-                path = Action.FocusNeighborBottom;
-            }
-        }
-
-        if (!string.IsNullOrEmpty(path))
-            GetNode<Control>(path).GrabFocus();
     }
 
     private bool CheckNewKeyConflicts(InputEvent @event, InputGroupList groupList, SpecifiedInputKey? old)
