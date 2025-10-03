@@ -424,8 +424,19 @@ public partial class InputEventItem : MarginContainer
     /// <summary>
     ///   Delete this event from the associated action and update the godot InputMap
     /// </summary>
+    /// <remarks>
+    ///   <para>
+    ///     Also changes GUI focus to another close button so that the focus doesn't default elsewhere
+    ///   </para>
+    /// </remarks>
     public void Delete()
     {
+        if (Action != null)
+        {
+            var neighboor = GetNode<Control>(Action.FocusNeighborTop);
+            neighboor?.GrabFocus();
+        }
+
         Action?.Inputs.Remove(this);
         GroupList?.ControlsChanged();
     }
@@ -501,7 +512,6 @@ public partial class InputEventItem : MarginContainer
                 // because Equals treats it the same with the same AssociatedEvent.
                 AssociatedEvent = null;
                 Delete();
-                associatedAction.Inputs[i].MakeInputButtonGrabFocus();
                 return true;
             }
         }
