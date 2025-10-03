@@ -1,6 +1,7 @@
 ﻿namespace AutoEvo;
 
 using System;
+using Godot;
 using Newtonsoft.Json;
 
 [JSONDynamicTypeAllowed]
@@ -24,6 +25,9 @@ public class CompoundCloudPressure : SelectionPressure
         base(weight, [
             new AddOrganelleAnywhere(organelle => organelle.HasChemoreceptorComponent),
             new ChangeMembraneRigidity(true),
+            new UpgradeOrganelle(organelle => organelle.HasChemoreceptorComponent,
+                new ChemoreceptorUpgrades(compound, null, Constants.CHEMORECEPTOR_RANGE_DEFAULT,
+                    Constants.CHEMORECEPTOR_AMOUNT_DEFAULT, SimulationParameters.GetCompound(compound).Colour)),
             new ChangeMembraneType("single"),
         ])
     {
