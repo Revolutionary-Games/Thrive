@@ -456,9 +456,12 @@ public class MicrobeTerrainSystem : BaseSystem<World, float>
 
             foreach (var chunk in terrainGroup.Chunks)
             {
+                var yOffset = new Vector3(0, random.NextSingle() * Constants.TERRAIN_HEIGHT_RANDOMNESS, 0);
+
                 // TODO: position mirroring etc. slight variation flags?
                 SpawnHelpers.SpawnMicrobeTerrainWithoutFinalizing(recorder, worldSimulation,
-                    position + terrainGroup.RelativePosition + chunk.RelativePosition, chunk, groupId, random);
+                    position + terrainGroup.RelativePosition + chunk.RelativePosition + yOffset, chunk, groupId,
+                    random);
 
                 data.ExpectedMemberCount += 1;
             }

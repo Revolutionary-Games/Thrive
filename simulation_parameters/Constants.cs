@@ -193,6 +193,11 @@ public static class Constants
     public const float TERRAIN_EDGE_PROTECTION_SIZE = 1;
 
     /// <summary>
+    ///   Adds randomness to microbe terrain height so that there's no z-fighting if terrain ends up overlapping 
+    /// </summary>
+    public const float TERRAIN_HEIGHT_RANDOMNESS = 0.001f;
+
+    /// <summary>
     ///   In how big radius (in terms of grid cells) around the player terrain is spawned in. If too low then pop in is
     ///   visible and the spawn system can spawn stuff in that then gets covered by the terrain.
     /// </summary>
