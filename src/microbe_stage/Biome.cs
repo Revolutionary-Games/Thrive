@@ -117,8 +117,7 @@ public class Biome : IRegistryType
                 "Environment colour alpha needs to be 1");
         }
 
-        if (Terrain != null)
-            Terrain.Check(name);
+        Terrain?.Check(name);
 
         TranslationHelper.CopyTranslateTemplatesToTranslateSource(this);
     }
