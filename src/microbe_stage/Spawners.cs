@@ -1074,8 +1074,8 @@ public static class SpawnHelpers
             VisualIdentifier = chunkConfiguration.Visuals,
         });
 
-        entityRecorder.Add<Physics>(entity);
-        entityRecorder.Add(entity, new PhysicsShapeHolder
+        entityRecorder.Set<Physics>(entity);
+        entityRecorder.Set(entity, new PhysicsShapeHolder
         {
             BodyIsStatic = true,
             Shape = PhysicsShape.CreateShapeFromGodotResource(chunkConfiguration.CollisionShapePath, 1000),
@@ -1086,7 +1086,7 @@ public static class SpawnHelpers
             TerrainGroupId = groupId,
         });
 
-        entityRecorder.Add<StaticBodyMarker>(entity);
+        entityRecorder.Set<StaticBodyMarker>(entity);
     }
 
     // TODO: move further stage spawners to their own file
