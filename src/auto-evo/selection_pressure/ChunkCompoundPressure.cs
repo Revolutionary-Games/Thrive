@@ -34,6 +34,9 @@ public class ChunkCompoundPressure : SelectionPressure
     public ChunkCompoundPressure(string chunkType, LocalizedString readableName, Compound compound,
         Compound compoundOut, float weight) : base(weight, [
         new AddOrganelleAnywhere(organelle => organelle.HasChemoreceptorComponent),
+        new UpgradeOrganelle(organelle => organelle.HasChemoreceptorComponent,
+            new ChemoreceptorUpgrades(compound, null, Constants.CHEMORECEPTOR_RANGE_DEFAULT,
+                Constants.CHEMORECEPTOR_AMOUNT_DEFAULT, SimulationParameters.GetCompound(compound).Colour)),
     ])
     {
         compoundRaw = compound;
