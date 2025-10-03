@@ -22,7 +22,11 @@ public class CompoundCloudPressure : SelectionPressure
 
     public CompoundCloudPressure(Compound compound, bool isDayNightCycleEnabled, float weight) :
         base(weight, [
+            new AddOrganelleAnywhere(organelle => organelle.HasChemoreceptorComponent),
             new ChangeMembraneRigidity(true),
+            new UpgradeOrganelle(organelle => organelle.HasChemoreceptorComponent,
+                new ChemoreceptorUpgrades(compound, null, Constants.CHEMORECEPTOR_RANGE_DEFAULT,
+                    Constants.CHEMORECEPTOR_AMOUNT_DEFAULT, SimulationParameters.GetCompound(compound).Colour)),
             new ChangeMembraneType("single"),
         ])
     {
@@ -58,6 +62,9 @@ public class CompoundCloudPressure : SelectionPressure
             if (multiplier <= 1)
                 score *= multiplier;
         }
+
+        var chemoreceptorScore = cache.GetChemoreceptorCloudScore(microbeSpecies, compoundDefinition, patch.Biome);
+        score += chemoreceptorScore;
 
         return score;
     }

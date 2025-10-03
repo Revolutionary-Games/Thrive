@@ -72,6 +72,34 @@ public class OrganelleTemplate : IPositionedOrganelle, ICloneable, IActionHex, I
         return false;
     }
 
+    public Species? GetActiveTargetSpecies()
+    {
+        if (Definition.HasChemoreceptorComponent &&
+            Upgrades?.CustomUpgradeData is ChemoreceptorUpgrades chemoreceptorData)
+        {
+            return chemoreceptorData.TargetSpecies;
+        }
+
+        // No other organelles are known to set up their active target species
+        return null;
+    }
+
+    public Compound GetActiveTargetCompound()
+    {
+        if (Definition.HasChemoreceptorComponent)
+        {
+            if (Upgrades?.CustomUpgradeData is not ChemoreceptorUpgrades chemoreceptorData)
+            {
+                return Constants.CHEMORECEPTOR_DEFAULT_COMPOUND;
+            }
+
+            return chemoreceptorData.TargetCompound;
+        }
+
+        // No other organelles are known to set up their active target compounds
+        return Compound.Invalid;
+    }
+
     public object Clone()
     {
         return new OrganelleTemplate(Definition, Position, Orientation)
