@@ -9,6 +9,11 @@ using World = Arch.Core.World;
 /// <summary>
 ///   Updates visual positions of entities for rendering by Godot
 /// </summary>
+/// <remarks>
+///   <para>
+///     TODO: would be nice to somehow skip applying the position after the initial one for static entities.
+///   </para>
+/// </remarks>
 [ReadsComponent(typeof(WorldPosition))]
 [RuntimeCost(6)]
 [RunsOnMainThread]

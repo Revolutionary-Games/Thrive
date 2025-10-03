@@ -49,6 +49,11 @@ public class Biome : IRegistryType
     public WaterCurrentsDetails WaterCurrents = new();
 
     /// <summary>
+    ///   Optional static terrain that is spawned when playing in this patch
+    /// </summary>
+    public TerrainConfiguration? Terrain;
+
+    /// <summary>
     ///   Total gas volume of this biome when it is a single patch.
     /// </summary>
     public float GasVolume = 1;
@@ -111,6 +116,8 @@ public class Biome : IRegistryType
             throw new InvalidRegistryDataException(name, GetType().Name,
                 "Environment colour alpha needs to be 1");
         }
+
+        Terrain?.Check(name);
 
         TranslationHelper.CopyTranslateTemplatesToTranslateSource(this);
     }

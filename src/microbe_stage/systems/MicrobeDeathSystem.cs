@@ -397,11 +397,24 @@ public partial class MicrobeDeathSystem : BaseSystem<World, float>
 
         commandRecorder ??= worldSimulation.StartRecordingEntityCommands();
 
+        var lifeTime = 1 / Constants.MEMBRANE_DISSOLVE_SPEED * 2;
+
         // Add a timed life component to make sure the entity will despawn after the death animation
-        commandRecorder.Add(entity, new TimedLife
+        if (!entity.Has<TimedLife>())
         {
-            TimeToLiveRemaining = 1 / Constants.MEMBRANE_DISSOLVE_SPEED * 2,
-        });
+            commandRecorder.Add(entity, new TimedLife
+            {
+                TimeToLiveRemaining = lifeTime,
+            });
+        }
+        else
+        {
+            // Otherwise make sure the time to live remaining is not too high
+            ref var timedLife = ref entity.Get<TimedLife>();
+
+            if (timedLife.TimeToLiveRemaining > lifeTime)
+                timedLife.TimeToLiveRemaining = lifeTime;
+        }
 
         // TODO: if we have problems with dead microbes behaving weirdly in loaded saves, uncomment the next line
         // worldSimulation.ReportEntityDyingSoon(entity);

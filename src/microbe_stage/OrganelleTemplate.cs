@@ -43,12 +43,12 @@ public class OrganelleTemplate : IPositionedOrganelle, ICloneable, IActionHex, I
     public string ReadableExactIdentifier => Localization.Translate("ITEM_AT_2D_COORDINATES")
         .FormatSafe(Definition.Name, Position.Q, Position.R);
 
+    [JsonIgnore]
+    public IReadOnlyList<Hex> RotatedHexes => Definition.GetRotatedHexes(Orientation);
+
 #pragma warning disable CA1033
     OrganelleDefinition IPositionedOrganelle.Definition => Definition;
 #pragma warning restore CA1033
-
-    [JsonIgnore]
-    public IReadOnlyList<Hex> RotatedHexes => Definition.GetRotatedHexes(Orientation);
 
     public bool MatchesDefinition(IActionHex other)
     {
