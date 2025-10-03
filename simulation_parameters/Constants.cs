@@ -188,18 +188,19 @@ public static class Constants
 
     public const float CLOUD_CHEAT_DENSITY = 16000.0f;
 
-    public const float TERRAIN_GRID_SIZE = 100;
+    public const float TERRAIN_GRID_SIZE = 200;
     public const float TERRAIN_GRID_SIZE_INV = 1 / TERRAIN_GRID_SIZE;
     public const float TERRAIN_EDGE_PROTECTION_SIZE = 1;
 
     /// <summary>
-    ///   Adds randomness to microbe terrain height so that there's no z-fighting if terrain ends up overlapping 
+    ///   Adds randomness to microbe terrain height so that there's no z-fighting if terrain ends up overlapping
     /// </summary>
     public const float TERRAIN_HEIGHT_RANDOMNESS = 0.001f;
 
     /// <summary>
-    ///   In how big radius (in terms of grid cells) around the player terrain is spawned in. If too low then pop in is
-    ///   visible and the spawn system can spawn stuff in that then gets covered by the terrain.
+    ///   In how big the radius (in terms of grid cells) around the player terrain is spawned in.
+    ///   If too low, then pop in is visible and the spawn system can spawn stuff in that then gets covered
+    ///   by the terrain.
     /// </summary>
     public const int TERRAIN_SPAWN_AREA_NUMBER = 4;
 
