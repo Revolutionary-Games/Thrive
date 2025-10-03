@@ -434,8 +434,7 @@ public partial class InputEventItem : MarginContainer
     {
         var nextFocusPath = new string?[]
         {
-            button.FocusNeighborLeft, button.FocusNeighborRight, Action?.FocusNeighborTop,
-            Action?.FocusNeighborBottom,
+            button.FocusNeighborLeft, button.FocusNeighborRight, Action?.FocusNeighborTop, Action?.FocusNeighborBottom,
         }.First(a => !string.IsNullOrEmpty(a) && a != ".");
 
         if (nextFocusPath != null)
