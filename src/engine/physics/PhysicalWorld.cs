@@ -495,7 +495,7 @@ public class PhysicalWorld : IDisposable
     /// </summary>
     /// <param name="start">Start world point</param>
     /// <param name="directionAndLength">Vector to add to start to get to the end point</param>
-    /// <param name="results">Will be filled with the hit objects. Needs to have size greater than 0</param>
+    /// <param name="results">Will be filled with the hit objects. Needs to have a size greater than 0</param>
     /// <returns>The number of hits in results, all other array indexes are left untouched</returns>
     public int CastRayGetAllHits(Vector3 start, Vector3 directionAndLength, PhysicsRayWithUserData[] results)
     {

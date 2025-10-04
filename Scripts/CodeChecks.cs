@@ -116,6 +116,8 @@ public class CodeChecks : CodeChecksBase<Program.CheckOptions>
         "addons/**",
         "*.generated.cs",
         "reports/**",
+        "third_party/Arch/**",
+        "third_party/Arch.Extended/**",
     ];
 
     protected override string MainSolutionFile => "Thrive.sln";

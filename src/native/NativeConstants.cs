@@ -9,9 +9,9 @@ using SharedBase.Models;
 /// </summary>
 public class NativeConstants
 {
-    public const int Version = 19;
+    public const int Version = 20;
     public const int EarlyCheck = 2;
-    public const int ExtensionVersion = 6;
+    public const int ExtensionVersion = 7;
 
     public const string LibraryFolder = "native_libs";
     public const string DistributableFolderName = "distributable";
@@ -71,8 +71,8 @@ public class NativeConstants
             return true;
         }
 
-        // For handling simplicity the enum doesn't have an invalid value so we can't use one here, but instead need to
-        // rely on all of our callers to check the return value
+        // For handling simplicity, the enum doesn't have an invalid value, so we can't use one here, but instead need
+        // to rely on all of our callers to check the return value
         library = Library.ThriveNative;
         return false;
     }
@@ -166,7 +166,7 @@ public class NativeConstants
     }
 
     /// <summary>
-    ///   Path to the library's root where all version specific folders are added
+    ///   Path to the library's root where all version-specific folders are added
     /// </summary>
     private static string GetPathToLibrary(Library library, PackagePlatform platform, string version,
         bool distributableVersion, PrecompiledTag tags)

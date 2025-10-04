@@ -27,6 +27,9 @@ public class PhysicsShape : IDisposable
 
     public static PhysicsShape CreateBox(float halfSideLength, float density = 1000)
     {
+        if (halfSideLength <= 0)
+            throw new ArgumentOutOfRangeException(nameof(halfSideLength), "Half side length must be greater than 0");
+
         return new PhysicsShape(NativeMethods.CreateBoxShape(halfSideLength, density));
     }
 
@@ -37,6 +40,9 @@ public class PhysicsShape : IDisposable
 
     public static PhysicsShape CreateSphere(float radius, float density = 1000)
     {
+        if (radius <= 0)
+            throw new ArgumentOutOfRangeException(nameof(radius), "Radius must be greater than 0");
+
         return new PhysicsShape(NativeMethods.CreateSphereShape(radius, density));
     }
 
@@ -136,7 +142,7 @@ public class PhysicsShape : IDisposable
     /// </summary>
     /// <param name="path">Path to the Godot resource</param>
     /// <param name="density">
-    ///   The density of the created body. Note that this avoid caching if the same shape has different density so
+    ///   The density of the created body. Note that this avoids caching if the same shape has different density so
     ///   avoid slight density changes if they wouldn't have any concrete impact anyway
     /// </param>
     /// <returns>The loaded shape or null if there is an error processing</returns>

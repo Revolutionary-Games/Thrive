@@ -1,12 +1,13 @@
 ﻿namespace Systems;
 
 using System;
+using System.Runtime.CompilerServices;
+using Arch.Core;
+using Arch.Core.Extensions;
+using Arch.System;
 using Components;
-using DefaultEcs;
-using DefaultEcs.System;
-using DefaultEcs.Threading;
 using Godot;
-using World = DefaultEcs.World;
+using World = Arch.Core.World;
 
 /// <summary>
 ///   Handles applying <see cref="MicrobeControl"/> to a microbe
@@ -18,53 +19,66 @@ using World = DefaultEcs.World;
 /// </remarks>
 /// <remarks>
 ///   <para>
-///     Once save compatibility is broken after 0.6.7 add with temporary effects amd strain affected
+///     Marked as being on the main thread as that's a limitation of Arch ECS parallel processing.
 ///   </para>
 /// </remarks>
-[With(typeof(MicrobeControl))]
-[With(typeof(OrganelleContainer))]
-[With(typeof(CellProperties))]
-[With(typeof(CompoundStorage))]
-[With(typeof(Physics))]
-[With(typeof(WorldPosition))]
-[With(typeof(Health))]
-
-// [With(typeof(MicrobeTemporaryEffects))]
-// [With(typeof(StrainAffected))]
 [ReadsComponent(typeof(CellProperties))]
 [ReadsComponent(typeof(WorldPosition))]
 [ReadsComponent(typeof(AttachedToEntity))]
 [ReadsComponent(typeof(MicrobeColony))]
 [ReadsComponent(typeof(MicrobeTemporaryEffects))]
-[WritesToComponent(typeof(StrainAffected))]
 [RunsAfter(typeof(PhysicsBodyCreationSystem))]
 [RunsAfter(typeof(PhysicsBodyDisablingSystem))]
 [RunsBefore(typeof(PhysicsBodyControlSystem))]
-[RuntimeCost(14)]
-public sealed class MicrobeMovementSystem : AEntitySetSystem<float>
+[RunsOnMainThread]
+[RuntimeCost(18)]
+public partial class MicrobeMovementSystem : BaseSystem<World, float>
 {
     private readonly IWorldSimulation worldSimulation;
     private readonly PhysicalWorld physicalWorld;
 
-    public MicrobeMovementSystem(IWorldSimulation worldSimulation, PhysicalWorld physicalWorld, World world,
-        IParallelRunner runner) : base(world, runner, Constants.SYSTEM_HIGHER_ENTITIES_PER_THREAD)
+    // TODO: Constants.SYSTEM_HIGHER_ENTITIES_PER_THREAD
+    public MicrobeMovementSystem(IWorldSimulation worldSimulation, PhysicalWorld physicalWorld, World world) :
+        base(world)
     {
         this.worldSimulation = worldSimulation;
         this.physicalWorld = physicalWorld;
     }
 
-    protected override void Update(float delta, in Entity entity)
+    private static float CalculateRotationSpeed(in Entity entity, ref OrganelleContainer organelles)
     {
-        ref var physics = ref entity.Get<Physics>();
+        float rotationSpeed = organelles.RotationSpeed;
 
+        // Note that cilia taking ATP is actually calculated later; this is the max speed rotation calculation only
+
+        if (entity.Has<MicrobeColony>())
+        {
+            rotationSpeed = entity.Get<MicrobeColony>().ColonyRotationSpeed;
+        }
+
+        // Lower value is faster rotation
+        if (CheatManager.Speed > 1 && entity.Has<PlayerMarker>())
+            rotationSpeed /= CheatManager.Speed * 2;
+
+        return rotationSpeed;
+    }
+
+    [Query(Parallel = true)]
+    [None<MicrobeColonyMember>]
+    [MethodImpl(MethodImplOptions.AggressiveInlining)]
+    private void Update([Data] in float delta, ref Physics physics, ref OrganelleContainer organelles,
+        ref MicrobeControl control, ref StrainAffected strainAffected, ref Health health, ref WorldPosition position,
+        ref CompoundStorage compoundStorage, ref CellProperties cellProperties,
+        ref MicrobeTemporaryEffects microbeTemporaryEffects, in Entity entity)
+    {
         if (!physics.IsBodyEffectivelyEnabled())
             return;
 
         // Skip dead microbes being allowed to move, this is now needed as the death system keeps the physics body
         // alive so velocity still moves microbes for a bit even after death
-        if (entity.Get<Health>().Dead)
+        if (health.Dead)
         {
-            // Disable control to not have the dead microbes maintain rotation or anything like that
+            // Disable control to make sure that the dead microbes don't maintain rotation or anything like that
             physicalWorld.DisableMicrobeBodyControl(physics.Body!);
             return;
         }
@@ -75,20 +89,11 @@ public sealed class MicrobeMovementSystem : AEntitySetSystem<float>
             return;
         }
 
-        ref var organelles = ref entity.Get<OrganelleContainer>();
-        ref var control = ref entity.Get<MicrobeControl>();
-
-        // Position is used to calculate the look direction
-        ref var position = ref entity.Get<WorldPosition>();
-        ref var cellProperties = ref entity.Get<CellProperties>();
-
         var lookVector = control.LookAtPoint - position.Position;
         lookVector.Y = 0;
         var lookVectorLength = lookVector.Length();
 
         var turnAngle = (position.Rotation * Vector3.Forward).SignedAngleTo(lookVector, Vector3.Up);
-
-        var rotationSpeed = CalculateRotationSpeed(entity, ref organelles);
 
         if (Settings.Instance.MicrobeMembraneTurnBend)
         {
@@ -102,7 +107,7 @@ public sealed class MicrobeMovementSystem : AEntitySetSystem<float>
         var blendFactor = MathF.PI / 4.0f * MathF.Min(unsignedTurnAngle *
             (1.0f / Constants.CELL_TURN_INFLECTION_RADIANS), 1.0f);
 
-        // Simplify turns to 90 degrees to keep consistent turning speed
+        // Simplify turns to 90 degrees to keep a consistent turning speed
         if (turnAngle > 0.0f)
         {
             lookVector = (position.Rotation
@@ -115,7 +120,7 @@ public sealed class MicrobeMovementSystem : AEntitySetSystem<float>
         }
         else if (lookVectorLength > MathUtils.EPSILON)
         {
-            // Normalize vector when it has a length
+            // Normalize the vector when it has a length
             lookVector /= lookVectorLength;
         }
         else
@@ -149,10 +154,11 @@ public sealed class MicrobeMovementSystem : AEntitySetSystem<float>
 #endif
 
         var compounds = entity.Get<CompoundStorage>().Compounds;
+        var rotationSpeed = CalculateRotationSpeed(entity, ref organelles);
 
         var movementImpulse =
-            CalculateMovementForce(entity, ref control, ref cellProperties, ref position, ref organelles, compounds,
-                delta);
+            CalculateMovementForce(entity, ref control, ref cellProperties, ref position, ref organelles,
+                ref microbeTemporaryEffects, ref strainAffected, compoundStorage.Compounds, delta);
 
         if (control.State == MicrobeState.MucocystShield)
         {
@@ -163,46 +169,20 @@ public sealed class MicrobeMovementSystem : AEntitySetSystem<float>
         physicalWorld.ApplyBodyMicrobeControl(physics.Body!, movementImpulse, wantedRotation, rotationSpeed);
     }
 
-    private static float CalculateRotationSpeed(in Entity entity, ref OrganelleContainer organelles)
-    {
-        float rotationSpeed = organelles.RotationSpeed;
-
-        // Note that cilia taking ATP is actually calculated later, this is the max speed rotation calculation
-        // only
-
-        if (entity.Has<MicrobeColony>())
-        {
-            rotationSpeed = entity.Get<MicrobeColony>().ColonyRotationSpeed;
-        }
-
-        // Lower value is faster rotation
-        if (CheatManager.Speed > 1 && entity.Has<PlayerMarker>())
-            rotationSpeed /= CheatManager.Speed * 2;
-
-        return rotationSpeed;
-    }
-
     private Vector3 CalculateMovementForce(in Entity entity, ref MicrobeControl control,
         ref CellProperties cellProperties, ref WorldPosition position,
-        ref OrganelleContainer organelles, CompoundBag compounds, float delta)
+        ref OrganelleContainer organelles, ref MicrobeTemporaryEffects temporaryEffects, ref StrainAffected strain,
+        CompoundBag compounds, float delta)
     {
-        // TODO: switch to always reading strain affected once old save compatibility is removed
-        // ref var strain = ref entity.Get<StrainAffected>();
-
-        float strainMultiplier = 1;
+        float strainMultiplier;
 
         if (control.MovementDirection == Vector3.Zero)
         {
-            if (entity.Has<StrainAffected>())
-            {
-                // TODO: move this variable up in the future
-                ref var strain = ref entity.Get<StrainAffected>();
-                strainMultiplier = GetStrainAtpMultiplier(ref strain);
-                strain.IsUnderStrain = false;
-            }
+            strainMultiplier = GetStrainAtpMultiplier(ref strain);
+            strain.IsUnderStrain = false;
 
             // Remove ATP due to strain even if not moving (but only if strain is active, because otherwise this would
-            // take the movement cost even while not moving meaning the editor ATP balance bar would be totally
+            // take the movement cost even while not moving, meaning the editor ATP balance bar would be totally
             // inaccurate)
             if (strainMultiplier > 1)
             {
@@ -225,7 +205,7 @@ public sealed class MicrobeMovementSystem : AEntitySetSystem<float>
         // Ensure no cells attempt to move on the y-axis
         control.MovementDirection.Y = 0;
 
-        // Normalize if length is over 1 to not allow diagonal movement to be very fast
+        // Normalize if the length is over 1 to not allow diagonal movement to be very fast
         var length = control.MovementDirection.Length();
 
         // Movement direction should not be normalized *always* to allow different speeds
@@ -241,22 +221,11 @@ public sealed class MicrobeMovementSystem : AEntitySetSystem<float>
 
         bool usesSprintingForce = false;
 
-        if (entity.Has<StrainAffected>())
-        {
-            // TODO: move this variable up in the future
-            ref var strain = ref entity.Get<StrainAffected>();
-            strainMultiplier = GetStrainAtpMultiplier(ref strain);
+        strainMultiplier = GetStrainAtpMultiplier(ref strain);
 
-            // TODO: move this if down in the future (once save compatibility is broken next time)
-            if (control.Sprinting)
-            {
-                strain.IsUnderStrain = true;
-                usesSprintingForce = true;
-            }
-            else
-            {
-                strain.IsUnderStrain = false;
-            }
+        if (control.Sprinting)
+        {
+            usesSprintingForce = true;
         }
 
         // Length is multiplied here so that cells that set very slow movement speed don't need to pay the entire
@@ -275,21 +244,13 @@ public sealed class MicrobeMovementSystem : AEntitySetSystem<float>
             if (usesSprintingForce)
             {
                 control.Sprinting = false;
-
-                // Under strain will reset on the next update to false
             }
         }
 
-        // TODO: this if check can be removed (can be assumed to be present) once save compatibility is next broken
-        if (entity.Has<MicrobeTemporaryEffects>())
+        // Apply base movement debuff if the cell is currently affected by one
+        if (temporaryEffects.SpeedDebuffDuration > 0)
         {
-            ref var temporaryEffects = ref entity.Get<MicrobeTemporaryEffects>();
-
-            // Apply base movement debuff if cell is currently affected by one
-            if (temporaryEffects.SpeedDebuffDuration > 0)
-            {
-                force *= 1 - Constants.MACROLIDE_BASE_MOVEMENT_DEBUFF;
-            }
+            force *= 1 - Constants.MACROLIDE_BASE_MOVEMENT_DEBUFF;
         }
 
         // Speed from flagella (these also take ATP otherwise they won't work)
@@ -305,18 +266,16 @@ public sealed class MicrobeMovementSystem : AEntitySetSystem<float>
         force *= cellProperties.MembraneType.MovementFactor -
             cellProperties.MembraneRigidity * Constants.MEMBRANE_RIGIDITY_BASE_MOBILITY_MODIFIER;
 
-        if (usesSprintingForce)
+        if (usesSprintingForce && control.Sprinting)
         {
             force *= Constants.SPRINTING_FORCE_MULTIPLIER;
 
-            // TODO: put this code back once strain is guaranteed
-            // strain.IsUnderStrain = true;
+            strain.IsUnderStrain = true;
         }
-
-        /*else
+        else
         {
             strain.IsUnderStrain = false;
-        }*/
+        }
 
         bool hasColony = entity.Has<MicrobeColony>();
 
@@ -372,7 +331,7 @@ public sealed class MicrobeMovementSystem : AEntitySetSystem<float>
 
             foreach (var colonyMember in colony.ColonyMembers)
             {
-                // This doesn't really hurt as the slime jets were consumed above but for consistency with
+                // This doesn't really hurt as the slime jets were consumed above, but for consistency with
                 // basically all other places code like this is needed we skip the leader here
                 if (colonyMember == entity)
                     continue;
@@ -405,7 +364,7 @@ public sealed class MicrobeMovementSystem : AEntitySetSystem<float>
                 if (!jet.Active)
                     continue;
 
-                // It might be better to consume the queued force always but, this probably results at most in just
+                // It might be better to consume the queued force always, but this probably results at most in just
                 // one extra frame of thrust whenever the jets are engaged
                 jet.ConsumeMovementForce(out var jetForce);
                 movementVector += jetForce;
@@ -424,10 +383,10 @@ public sealed class MicrobeMovementSystem : AEntitySetSystem<float>
         CellBodyPlanInternalCalculations.ModifyCellSpeedWithColony(ref force, microbeColony.ColonyMembers.Length);
 
         // Colony members have their movement update before organelle update, so that the movement organelles
-        // see the direction
+        // see the direction.
         // The colony master should be already updated as the movement direction is either set by the
         // player input or microbe AI, neither of which will happen concurrently, so this should always get the
-        // up to date value
+        // up-to-date value.
 
         foreach (var colonyMember in microbeColony.ColonyMembers)
         {

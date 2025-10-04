@@ -7,8 +7,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2025-08-29 14:14+0300\n"
-"PO-Revision-Date: 2025-08-24 04:37+0000\n"
+"POT-Creation-Date: 2025-09-15 11:08+0200\n"
+"PO-Revision-Date: 2025-09-30 05:52+0000\n"
 "Last-Translator: xzihnago <xzihnago@gmail.com>\n"
 "Language-Team: Chinese (Traditional Han script) <https://translate.revolutionarygamesstudio.com/projects/thrive/thrive-game/zh_Hant/>\n"
 "Language: zh_TW\n"
@@ -189,9 +189,8 @@ msgstr "氨"
 msgid "AMMONIA_COST"
 msgstr "氨成本："
 
-#, fuzzy
 msgid "AMMONIA_LEVELS"
-msgstr "氨成本："
+msgstr "氨含量"
 
 msgid "AMOUNT_OF_AUTOSAVE_TO_KEEP"
 msgstr "保留的自動存檔數量："
@@ -414,19 +413,19 @@ msgid "AVAILABLE_MODS"
 msgstr "可用模組"
 
 msgid "AVERAGE_SURFACE_CARBON_DIOXIDE_LEVEL"
-msgstr ""
+msgstr "平均地表二氧化碳含量"
 
 msgid "AVERAGE_SURFACE_LIGHT_LEVEL"
-msgstr ""
+msgstr "平均地表光照量"
 
 msgid "AVERAGE_SURFACE_NITROGEN_LEVEL"
-msgstr ""
+msgstr "平均地表氮含量"
 
 msgid "AVERAGE_SURFACE_OTHER_LEVEL"
-msgstr ""
+msgstr "平均地表其他氣體含量"
 
 msgid "AVERAGE_SURFACE_OXYGEN_LEVEL"
-msgstr ""
+msgstr "平均地表氧含量"
 
 msgid "AWAKENING_STAGE"
 msgstr "覺醒階段"
@@ -1029,24 +1028,20 @@ msgstr "始終補充至初始值"
 msgid "COMPOUND_HANDLE_TOP_UP_ON_CHANGE"
 msgstr "區域更改時補充"
 
-#, fuzzy
 msgid "COMPOUND_LEVEL_AVERAGE"
-msgstr "平均"
+msgstr "中等"
 
-#, fuzzy
 msgid "COMPOUND_LEVEL_HIGH"
-msgstr "化合物平衡"
+msgstr "高"
 
-#, fuzzy
 msgid "COMPOUND_LEVEL_LOW"
-msgstr "化合物雲"
+msgstr "低"
 
 msgid "COMPOUND_LEVEL_VERY_HIGH"
-msgstr ""
+msgstr "非常高"
 
-#, fuzzy
 msgid "COMPOUND_LEVEL_VERY_LOW"
-msgstr "保留全部"
+msgstr "非常低"
 
 msgid "COMPOUND_STORAGE_AMOUNT_DOES_NOT_LAST_NIGHT"
 msgstr "（不足以維持 {0} 秒長的夜晚）"
@@ -2670,9 +2665,8 @@ msgstr "將[thrive:compound type=\\\"glucose\\\"][/thrive:compound] 轉化為[th
 msgid "HYDROGEN_SULFIDE"
 msgstr "硫化氫"
 
-#, fuzzy
 msgid "HYDROGEN_SULFIDE_LEVELS"
-msgstr "硫化氫"
+msgstr "硫化氫含量"
 
 msgid "ICESHARD"
 msgstr "小型冰礫"
@@ -2892,7 +2886,7 @@ msgid "IRON"
 msgstr "鐵"
 
 msgid "IRON_LEVELS"
-msgstr ""
+msgstr "鐵含量"
 
 msgid "IRON_OXIDATION"
 msgstr "鐵氧化"
@@ -3597,6 +3591,10 @@ msgstr ""
 "  {1}\n"
 "[b]適應分數[/b]\n"
 "  {2}"
+
+#, fuzzy
+msgid "MICHE_ENDOSYMBIOSIS_SELECTION_PRESSURE"
+msgstr "避免捕食選擇壓力"
 
 msgid "MICHE_ENVIRONMENTAL_COMPOUND_PRESSURE"
 msgstr "環境化合物壓力"
@@ -4319,6 +4317,10 @@ msgstr "ATP 生產受毒素抑制"
 msgid "NOTICE_HIT_BY_BASE_MOVEMENT_TOXIN"
 msgstr "基礎移動速度因毒素而降低"
 
+#, fuzzy
+msgid "NOTICE_HYDROGEN_SULFIDE_DAMAGE"
+msgstr "硫化氫"
+
 msgid "NOTICE_NOT_ENOUGH_MUCILAGE"
 msgstr "黏液不足以形成黏液囊護盾"
 
@@ -4757,9 +4759,8 @@ msgstr "磷酸鹽"
 msgid "PHOSPHATES_COST"
 msgstr "磷酸鹽成本："
 
-#, fuzzy
 msgid "PHOSPHATES_LEVELS"
-msgstr "磷酸鹽成本："
+msgstr "磷酸鹽含量"
 
 msgid "PHOTOSYNTHESIS"
 msgstr "光合作用"
@@ -4790,9 +4791,8 @@ msgstr ""
 msgid "PLANET_RANDOM_SEED"
 msgstr "星球隨機種子"
 
-#, fuzzy
 msgid "PLANET_STATISTICS"
-msgstr "統計數據"
+msgstr "星球統計"
 
 msgid "PLAYER"
 msgstr "玩家"
@@ -5138,6 +5138,18 @@ msgstr ""
 
 msgid "REVEAL_ALL_PATCHES"
 msgstr "揭曉所有區域"
+
+#, fuzzy
+msgid "REVERT_TO_EDITOR"
+msgstr "退出編輯器"
+
+#, fuzzy
+msgid "REVERT_TO_EDITOR_EXPLANATION"
+msgstr "此分頁允許設定細胞器生長的順序。這對於在生長過程中 ATP 生產不穩定的細胞非常重要。生長順序也會對生物代謝的運作順序造成影響。建議僅在完成結構編輯後進行修改，因為可以如同結構編輯一樣取消此處所做的變更。"
+
+#, fuzzy
+msgid "REVERT_TO_EDITOR_PROMPT"
+msgstr "按[thrive:input]help[/thrive:input]在 Thrive 百科中查看更多資訊。"
 
 msgid "REVOLUTIONARY_GAMES_SOCIAL_TOOLTIP"
 msgstr "造訪 Revolutionary Games 官方網站"
@@ -6186,6 +6198,20 @@ msgstr "紫外線（UV）保護過低，需要提高 {0}%"
 
 msgid "TOLERANCES_UNSUITABLE_DEBUFFS"
 msgstr "不適應當前的環境條件。滲透調節成本 {0}%、代謝速度 {1}%、生命值 {2}%"
+
+#, fuzzy
+msgid "TOLERANCE_DETAIL_TEXT"
+msgstr ""
+"[b]物種[/b]\n"
+"  {0}：{1}\n"
+"[b]世代[/b]\n"
+"  {2}\n"
+"[b]物種量[/b]\n"
+"  {3}\n"
+"[b]顏色[/b]\n"
+"  #{4}\n"
+"[b]行為[/b]\n"
+"  {5}"
 
 msgid "TOLERANCE_FROM_ORGANELLES_TOOLTIP"
 msgstr "有些細胞器會對耐性產生正面與負面的影響。這裡顯示的是基礎值與細胞器的變化相加後的有效值。有些細胞器與某些遊戲玩法產生協同作用，但對其他遊戲玩法有害。"
@@ -7256,9 +7282,15 @@ msgstr ""
 msgid "WIKI_CHEMOSYNTHESIZING_PROTEINS_REQUIREMENTS"
 msgstr "無要求。"
 
-#, fuzzy
 msgid "WIKI_CHEMOSYNTHESIZING_PROTEINS_SCIENTIFIC_BACKGROUND"
-msgstr "待定"
+msgstr ""
+"[color=#3796e1][url=https://en.wikipedia.org/wiki/Chemosynthesis]化能合成[/url][/color]是存在於許多現實世界微生物中的一種代謝過程，它本質上是光合作用的替代過程。光合作用利用日光中的光子為化學反應提供能量，而化能合成則利用鐵或硫化氫等無機化合物的氧化來提供能量。\n"
+"\n"
+"例如，硫化氫化能合成可以用以下化學式來概括：\n"
+"\n"
+"18H<sub>2</sub>S + 6CO<sub>2</sub> + 3O<sub>2</sub> → C<sub>6</sub>H<sub>12</sub>O<sub>6</sub>（醣類）+ 12H<sub>2</sub>O + 18S\n"
+"\n"
+"在上述反應中，硫化氫作為電子源與二氧化碳和氧氣反應，生成醣類分子、水與遊離硫原子。因此，光合作用會釋放氧氣，而硫化氫化能合成會產生硫，硫通常會聚集成固體球狀。"
 
 msgid "WIKI_CHEMOSYNTHESIZING_PROTEINS_STRATEGY"
 msgstr ""
@@ -7299,9 +7331,11 @@ msgstr ""
 "\n"
 "[indent]—   至少連續 [b]7[/b] 代中包含 [b]5[/b] 個[b][color=#3796e1][url=thriveopedia:chromatophore]類囊體[/url][/color][/b]。[/indent]"
 
-#, fuzzy
 msgid "WIKI_CHLOROPLAST_SCIENTIFIC_BACKGROUND"
-msgstr "待定"
+msgstr ""
+"[color=#3796e1][url=https://en.wikipedia.org/wiki/Chloroplast]葉綠體[/url][/color]是一種存在於現實世界植物與藻類細胞中的雙層有膜細胞器。它們起源於一次古老的內共生事件，當時藍菌被一個早期真核細胞吞噬；由於這段歷史，它們擁有與宿主細胞不同的基因組，就像[b]粒線體[/b]一樣。\n"
+"\n"
+"除了[b][color=#3796e1][url=thriveopedia:chromatophore]類囊體[/url][/color][/b]之外，葉綠體還含有核酮糖-1,5-二磷酸羧化酶/加氧酶（通常縮寫為 RuBisCO），它透過將大氣中的二氧化碳轉化為[b]葡萄糖[/b]與其他富含能量的分子，在光合作用中發揮核心作用。RuBisCO 是一種非常古老的酶，據信大約在四十億年前進化而來，目前被認為是地球上最豐富的酶；然而，儘管如此，它是一種效率極低的酶，不僅固化二氧化碳的速度相對較慢，也容易與氧氣發生反應，這一過程被稱為光呼吸，它實際上會浪費能量並消耗已經固化的碳，從而降低光合作用效率。儘管面臨巨大的自然選擇壓力，RuBisCO 似乎無法突破這一障礙，分子生物學家在改造 RuBisCO 以提高其效率方面遇到了很大的困難，這表明這種限制可能是 RuBisCO 結構與活性的基本面向。"
 
 msgid "WIKI_CHLOROPLAST_STRATEGY"
 msgstr ""
@@ -7683,9 +7717,13 @@ msgstr ""
 "[indent]—   速度低於 [b]15[/b]。[/indent]\n"
 "[indent]—   生產至少 [b]+15[/b] [thrive:compound type=\"atp\"][/thrive:compound][/indent]"
 
-#, fuzzy
 msgid "WIKI_FLAGELLUM_SCIENTIFIC_BACKGROUND"
-msgstr "待定"
+msgstr ""
+"[color=#3796e1][url=https://en.wikipedia.org/wiki/Flagellum]鞭毛[/url][/color]是存在於多種原核生物與真核生物細胞中的結構，主要用作推進手段。\n"
+"\n"
+"真核生物鞭毛與原核生物鞭毛之間存在顯著差異，儘管它們都是大致類似鞭狀的絲狀結構，能夠推動細胞在流體環境中向前移動。原核生物鞭毛的運動是旋轉運動，鞭毛嵌入外膜上一個類似軸承的「插座」中，使其能夠連續地向任意方向旋轉，從而使鞭毛有效地充當螺旋槳；在真核生物細胞（例如人類精子細胞）中，鞭毛更大、更複雜，它們採用振盪運動，來回擺動以產生沿著結構傳播的波狀運動。\n"
+"\n"
+"細菌鞭毛是生物體中唯一已知的完全旋轉運動的例子，與酶複合體[color=#3796e1][url=https://en.wikipedia.org/wiki/ATP_synthase]三磷酸腺苷合酶[/url][/color]一樣。"
 
 msgid "WIKI_FLAGELLUM_STRATEGY"
 msgstr ""
@@ -8024,9 +8062,8 @@ msgstr ""
 "[indent]—   到目前為止，在整個遊戲中至少吞噬了 [b]20[/b] 個細胞。[/indent]\n"
 "[indent]—   到目前為止，在整個遊戲中至少消化了 [b]10[/b] 個細胞。[/indent]"
 
-#, fuzzy
 msgid "WIKI_LYSOSOME_SCIENTIFIC_BACKGROUND"
-msgstr "待定"
+msgstr "[color=#3796e1][url=https://en.wikipedia.org/wiki/Lysosome]溶酶體[/url][/color]存在於幾乎所有現實世界的動物細胞中，其主要功能是將蛋白質、脂質與多醣分解成各自的組成成分。它們可以透過胞吞作用從細胞外部獲取物質，也可以透過自噬從細胞內部獲取物質。"
 
 msgid "WIKI_LYSOSOME_STRATEGY"
 msgstr ""
@@ -8396,9 +8433,8 @@ msgstr ""
 "\n"
 "[indent]—   位於少於 [b]13[/b] [thrive:compound type=\"ammonia\"][/thrive:compound] 的區域中。[/indent]"
 
-#, fuzzy
 msgid "WIKI_NITROGENASE_SCIENTIFIC_BACKGROUND"
-msgstr "待定"
+msgstr "[color=#3796e1][url=https://en.wikipedia.org/wiki/Nitrogenase]固氮酶[/url][/color]是存在於某些真實世界細菌中的酶，它們將氮氣（N<sub>2</sub>）固化為氨（NH<sub>3</sub>）。這些固氮微生物在地球上所有其他生命的生存中發揮著至關重要的作用，因為氮是 DNA 與蛋白質的重要組成成分，但大多數生物無法直接利用其氣態形態。"
 
 msgid "WIKI_NITROGENASE_STRATEGY"
 msgstr ""

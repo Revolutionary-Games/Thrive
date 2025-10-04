@@ -1,9 +1,9 @@
 ﻿namespace Systems;
 
+using System.Runtime.CompilerServices;
+using Arch.Core;
+using Arch.System;
 using Components;
-using DefaultEcs;
-using DefaultEcs.System;
-using DefaultEcs.Threading;
 
 /// <summary>
 ///   Evenly distributes compounds (except ones that can't be shared between cells like ATP) between cells in a
@@ -16,22 +16,20 @@ using DefaultEcs.Threading;
 ///     due to missing ATP.
 ///   </para>
 /// </remarks>
-[With(typeof(MicrobeColony))]
-[Without(typeof(AttachedToEntity))]
 [ReadsComponent(typeof(MicrobeColony))]
 [WritesToComponent(typeof(CompoundStorage))]
 [RunsBefore(typeof(EngulfingSystem))]
-public sealed class ColonyCompoundDistributionSystem : AEntitySetSystem<float>
+public partial class ColonyCompoundDistributionSystem : BaseSystem<World, float>
 {
-    public ColonyCompoundDistributionSystem(World world, IParallelRunner parallelRunner) : base(world,
-        parallelRunner)
+    public ColonyCompoundDistributionSystem(World world) : base(world)
     {
     }
 
-    protected override void Update(float delta, in Entity entity)
+    [Query]
+    [None<AttachedToEntity>]
+    [MethodImpl(MethodImplOptions.AggressiveInlining)]
+    private void Update(ref MicrobeColony colony)
     {
-        ref var colony = ref entity.Get<MicrobeColony>();
-
         colony.GetCompounds().DistributeCompoundSurplus();
     }
 }

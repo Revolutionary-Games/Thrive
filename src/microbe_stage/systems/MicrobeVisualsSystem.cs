@@ -5,29 +5,26 @@ using System.Buffers;
 using System.Collections.Concurrent;
 using System.Collections.Generic;
 using System.Diagnostics;
+using System.Runtime.CompilerServices;
 using System.Threading;
 using System.Threading.Tasks;
+using Arch.Core;
+using Arch.Core.Extensions;
+using Arch.System;
 using Components;
-using DefaultEcs;
-using DefaultEcs.System;
 using Godot;
-using World = DefaultEcs.World;
+using World = Arch.Core.World;
 
 /// <summary>
 ///   Generates the visuals needed for microbes. Handles the membrane and organelle graphics. Attaching to the
 ///   Godot scene tree is handled by <see cref="SpatialAttachSystem"/>
 /// </summary>
-[With(typeof(OrganelleContainer))]
-[With(typeof(CellProperties))]
-[With(typeof(SpatialInstance))]
-[With(typeof(EntityMaterial))]
-[With(typeof(RenderPriorityOverride))]
 [RunsBefore(typeof(SpatialAttachSystem))]
 [RunsBefore(typeof(EntityMaterialFetchSystem))]
 [RunsBefore(typeof(SpatialPositionSystem))]
-[RuntimeCost(6)]
+[RuntimeCost(5)]
 [RunsOnMainThread]
-public sealed class MicrobeVisualsSystem : AEntitySetSystem<float>
+public partial class MicrobeVisualsSystem : BaseSystem<World, float>
 {
     private readonly Lazy<PackedScene> membraneScene =
         new(() => GD.Load<PackedScene>("res://src/microbe_stage/Membrane.tscn"));
@@ -50,7 +47,7 @@ public sealed class MicrobeVisualsSystem : AEntitySetSystem<float>
     private readonly HashSet<long> pendingGenerationsOfMembraneHashes = new();
 
     /// <summary>
-    ///   Keeps track of generated tasks, just to allow disposing this object safely by waiting for them all
+    ///   Keeps track of generated tasks, just to allow Disposing this object safely by waiting for them all
     /// </summary>
     private readonly List<Task> activeGenerationTasks = new();
 
@@ -58,7 +55,7 @@ public sealed class MicrobeVisualsSystem : AEntitySetSystem<float>
 
     private volatile int runningMembraneTaskCount;
 
-    public MicrobeVisualsSystem(World world) : base(world, null)
+    public MicrobeVisualsSystem(World world) : base(world)
     {
     }
 
@@ -67,48 +64,43 @@ public sealed class MicrobeVisualsSystem : AEntitySetSystem<float>
         return pendingMembraneGenerations;
     }
 
+    public override void BeforeUpdate(in float delta)
+    {
+        pendingMembraneGenerations = false;
+
+        activeGenerationTasks.RemoveAll(t => t.IsCompleted);
+    }
+
+    public override void AfterUpdate(in float delta)
+    {
+        // TODO: if we need a separate mechanism to communicate our results back, then cleaning up that mechanism
+        // here and in on PreUpdate will be needed
+        // // Clear any ready resources that weren't required to not keep them forever (but only ones that were
+        // // ready in PreUpdate to ensure no resources that managed to finish while update was running are lost)
+
+        // Ensure we have at least some tasks running even if no new membrane generation requests were started
+        // this frame
+        lock (pendingGenerationsOfMembraneHashes)
+        {
+            if (pendingGenerationsOfMembraneHashes.Count > runningMembraneTaskCount / 2 ||
+                (runningMembraneTaskCount <= 0 && pendingGenerationsOfMembraneHashes.Count > 0))
+            {
+                StartMembraneGenerationJobs();
+            }
+        }
+    }
+
     public override void Dispose()
     {
         Dispose(true);
         base.Dispose();
     }
 
-    protected override void PreUpdate(float delta)
+    [Query]
+    [All<CellProperties, SpatialInstance, EntityMaterial, RenderPriorityOverride>]
+    [MethodImpl(MethodImplOptions.AggressiveInlining)]
+    private void Update(ref OrganelleContainer organelleContainer, in Entity entity)
     {
-        base.PreUpdate(delta);
-
-        pendingMembraneGenerations = false;
-
-        activeGenerationTasks.RemoveAll(t => t.IsCompleted);
-    }
-
-    protected override void Update(float delta, in Entity entity)
-    {
-        ref var organelleContainer = ref entity.Get<OrganelleContainer>();
-        ref var cellProperties = ref entity.Get<CellProperties>();
-
-        if (cellProperties.CreatedMembrane != null && Settings.Instance.MicrobeMembraneTurnBend)
-        {
-            organelleContainer.OrganelleVisualsShifted = true;
-            SetMembraneTurn(cellProperties.CreatedMembrane!, ref cellProperties, ref organelleContainer, delta);
-        }
-
-        if (!Settings.Instance.MicrobeMembraneTurnBend && organelleContainer.CreatedOrganelleVisuals != null
-            && organelleContainer.OrganelleVisualsShifted)
-        {
-            organelleContainer.OrganelleVisualsShifted = false;
-
-            foreach (var visual in organelleContainer.CreatedOrganelleVisuals)
-            {
-                var visualParent = (Node3D)visual.Value.GetParent();
-                var verticalPos = visualParent.Position.Z;
-                if (verticalPos < 0)
-                {
-                    visualParent.Position = visual.Key.TargetVisualsTransform.Origin;
-                }
-            }
-        }
-
         if (organelleContainer.OrganelleVisualsCreated)
             return;
 
@@ -120,8 +112,9 @@ public sealed class MicrobeVisualsSystem : AEntitySetSystem<float>
         }
 
         ref var spatialInstance = ref entity.Get<SpatialInstance>();
+        ref var cellProperties = ref entity.Get<CellProperties>();
 
-        // Create graphics top level node if missing for entity
+        // Create graphics top level node if missing for the entity
         spatialInstance.GraphicalInstance ??= new Node3D();
 
 #if DEBUG
@@ -188,12 +181,12 @@ public sealed class MicrobeVisualsSystem : AEntitySetSystem<float>
         }
         else
         {
-            // Existing membrane should have its properties updated to make sure they are up to date
-            // For example an engulfed cell has its membrane wigglyness removed
+            // Existing membrane should have its properties updated to make sure they are up to date.
+            // For example, an engulfed cell has its membrane wigglyness removed
             SetMembraneDisplayData(cellProperties.CreatedMembrane, data, ref cellProperties);
         }
 
-        // Material is initialized in _Ready so this is after AddChild of membrane
+        // Material is initialized in _Ready, so this is after AddChild of membrane
         tempMaterialsList.Add(cellProperties.CreatedMembrane!.MembraneShaderMaterial ??
             throw new Exception("Membrane didn't set material to edit"));
 
@@ -210,29 +203,8 @@ public sealed class MicrobeVisualsSystem : AEntitySetSystem<float>
         // Need to update render priority of the visuals
         entity.Get<RenderPriorityOverride>().RenderPriorityApplied = false;
 
-        // Force recreation of physics body in case organelles changed to make sure the shape matches growth status
+        // Force recreation of the physics body in case organelles changed to make sure the shape matches growth status
         cellProperties.ShapeCreated = false;
-    }
-
-    protected override void PostUpdate(float state)
-    {
-        base.PostUpdate(state);
-
-        // TODO: if we need a separate mechanism to communicate our results back, then cleaning up that mechanism
-        // here and in on PreUpdate will be needed
-        // // Clear any ready resources that weren't required to not keep them forever (but only ones that were
-        // // ready in PreUpdate to ensure no resources that managed to finish while update was running are lost)
-
-        // Ensure we have at least some tasks running even if no new membrane generation requests were started
-        // this frame
-        lock (pendingGenerationsOfMembraneHashes)
-        {
-            if (pendingGenerationsOfMembraneHashes.Count > runningMembraneTaskCount / 2 ||
-                (runningMembraneTaskCount <= 0 && pendingGenerationsOfMembraneHashes.Count > 0))
-            {
-                StartMembraneGenerationJobs();
-            }
-        }
     }
 
     private MembranePointData? GetMembraneDataIfReadyOrStartGenerating(ref CellProperties cellProperties,

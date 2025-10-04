@@ -1,7 +1,8 @@
 ﻿namespace Components;
 
-using DefaultEcs;
-using DefaultEcs.Command;
+using Arch.Buffer;
+using Arch.Core;
+using Arch.Core.Extensions;
 using Newtonsoft.Json;
 
 /// <summary>
@@ -18,7 +19,7 @@ public struct MicrobeShaderParameters
 
     /// <summary>
     ///   Automatically animate the <see cref="DissolveValue"/> when this is not 0 and <see cref="PlayAnimations"/>
-    ///   is true. 1 is default speed.
+    ///   is true. <c>1</c> is the default speed.
     /// </summary>
     public float DissolveAnimationSpeed;
 
@@ -50,7 +51,7 @@ public static class MicrobeShaderParametersHelpers
         if (useChunkSpeed)
             speed = Constants.FLOATING_CHUNKS_DISSOLVE_SPEED;
 
-        EntityCommandRecorder? recorder = null;
+        CommandBuffer? recorder = null;
 
         if (entity.Has<MicrobeShaderParameters>())
         {
@@ -63,17 +64,15 @@ public static class MicrobeShaderParametersHelpers
         {
             recorder = newComponentCreator.StartRecordingEntityCommands();
 
-            var record = recorder.Record(entity);
-
-            record.Set(new MicrobeShaderParameters
+            recorder.Add(entity, new MicrobeShaderParameters
             {
                 DissolveAnimationSpeed = speed,
                 PlayAnimations = true,
             });
         }
 
-        // Add a tiny bit of extra time to ensure the animation is finished by the time is elapsed (for example
-        // despawning with a delay purposes)
+        // Add a tiny bit of extra time to ensure the animation is finished by the time is elapsed (for example,
+        // despawning-with-a-delay purposes)
         var duration = 1 / speed + 0.0001f;
 
         if (addTimedLifeIfMissing && !entity.Has<TimedLife>())
@@ -81,9 +80,8 @@ public static class MicrobeShaderParametersHelpers
             // Add a timed life component as the dissolve animation doesn't despawn the entity
 
             recorder ??= newComponentCreator.StartRecordingEntityCommands();
-            var record = recorder.Record(entity);
 
-            record.Set(new TimedLife
+            recorder.Add(entity, new TimedLife
             {
                 TimeToLiveRemaining = duration,
             });

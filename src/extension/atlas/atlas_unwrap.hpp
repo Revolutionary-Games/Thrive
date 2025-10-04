@@ -1,8 +1,12 @@
 #pragma once
 
+#include "Include.h"
+
+BEGIN_GODOT_INCLUDES;
 #include <godot_cpp/classes/array_mesh.hpp>
 #include <godot_cpp/classes/ref.hpp>
 #include <godot_cpp/classes/surface_tool.hpp>
+END_GODOT_INCLUDES;
 
 namespace Thrive
 {

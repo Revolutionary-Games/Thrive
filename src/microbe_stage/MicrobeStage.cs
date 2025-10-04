@@ -1,9 +1,11 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Threading.Tasks;
+using Arch.Buffer;
+using Arch.Core;
+using Arch.Core.Extensions;
 using Components;
-using DefaultEcs;
-using DefaultEcs.Command;
 using Godot;
 using Newtonsoft.Json;
 
@@ -43,6 +45,9 @@ public partial class MicrobeStage : CreatureStageBase<Entity, MicrobeWorldSimula
 
     [Export]
     private GuidanceLine guidanceLine = null!;
+
+    [Export]
+    private MicrobeWorldEnvironment microbeWorldEnvironment = null!;
 #pragma warning restore CA2213
 
     private Vector3? guidancePosition;
@@ -96,6 +101,13 @@ public partial class MicrobeStage : CreatureStageBase<Entity, MicrobeWorldSimula
 
     private bool appliedUnlimitGrowthSpeed;
 
+    private bool loadSaveAdviceTriggered;
+
+    [JsonProperty]
+    private bool loadSaveAdviseSuppressed;
+
+    private string? foundPreviousEditorSave;
+
     /// <summary>
     ///   Used to ferry data between the patch change logic and handling the player cell splitting (as I couldn't
     ///   figure out another way to fit this into the code architecture -hhyyrylainen)
@@ -132,7 +144,7 @@ public partial class MicrobeStage : CreatureStageBase<Entity, MicrobeWorldSimula
         CurrentGame?.TutorialState ?? throw new InvalidOperationException("Game not started yet");
 
     [JsonIgnore]
-    public override bool HasPlayer => Player.IsAlive;
+    public override bool HasPlayer => Player.IsAlive();
 
     [JsonIgnore]
     public override bool HasAlivePlayer => HasPlayer && IsPlayerAlive();
@@ -692,9 +704,9 @@ public partial class MicrobeStage : CreatureStageBase<Entity, MicrobeWorldSimula
             // Direct component setting is safe as we verified above we aren't running during a simulation update
             microbe.Remove<MicrobeSpeciesMember>();
             microbe.Set(new SpeciesMember(multicellularSpecies));
-            microbe.Set(new MulticellularSpeciesMember(multicellularSpecies, multicellularSpecies.CellTypes[0], 0));
+            microbe.Add(new MulticellularSpeciesMember(multicellularSpecies, multicellularSpecies.CellTypes[0], 0));
 
-            microbe.Set(new MulticellularGrowth(multicellularSpecies));
+            microbe.Add(new MulticellularGrowth(multicellularSpecies));
 
             if (microbe.Has<PlayerMarker>())
                 playerHandled = true;
@@ -806,6 +818,8 @@ public partial class MicrobeStage : CreatureStageBase<Entity, MicrobeWorldSimula
             wonOnce = true;
         }
 
+        loadSaveAdviceTriggered = false;
+
         var playerSpecies = Player.Get<SpeciesMember>().Species;
 
         // Update the player environmental properties
@@ -907,10 +921,10 @@ public partial class MicrobeStage : CreatureStageBase<Entity, MicrobeWorldSimula
         // Spawn another cell from the player species
         // This needs to be done after updating the player so that multicellular organisms are accurately separated
         cellProperties.Divide(ref Player.Get<OrganelleContainer>(), Player, playerSpecies, WorldSimulation,
-            this, WorldSimulation.SpawnSystem, (ref EntityRecord daughter) =>
+            this, WorldSimulation.SpawnSystem, (ref Entity daughter, CommandBuffer commandBuffer) =>
             {
                 // Mark as a player-reproduced entity
-                daughter.Set(new PlayerOffspring
+                commandBuffer.Add(daughter, new PlayerOffspring
                 {
                     OffspringOrderNumber = ++playerOffspringTotalCount,
                 });
@@ -927,7 +941,7 @@ public partial class MicrobeStage : CreatureStageBase<Entity, MicrobeWorldSimula
             var doNotDespawn = PlayerOffspringHelpers.FindLatestSpawnedOffspring(WorldSimulation.EntitySystem);
 
 #if DEBUG
-            if (doNotDespawn.IsAlive && !doNotDespawn.Has<Spawned>())
+            if (doNotDespawn.IsAlive() && !doNotDespawn.Has<Spawned>())
             {
                 throw new Exception(
                     "Spawned player offspring has no spawned component, microbe reproduction method is" +
@@ -1055,11 +1069,14 @@ public partial class MicrobeStage : CreatureStageBase<Entity, MicrobeWorldSimula
                 }
             }
 
-            // Force player despawn to happen if there is a problem that prevented the player timed life from being
+            // Force player despawn to happen if there is a problem that prevented the player timed-life from being
             // added
             if (!Player.Has<TimedLife>())
             {
-                Player.Set<TimedLife>();
+                Player.Add(new TimedLife
+                {
+                    TimeToLiveRemaining = 5,
+                });
             }
 
             ref var timed = ref Player.Get<TimedLife>();
@@ -1075,8 +1092,8 @@ public partial class MicrobeStage : CreatureStageBase<Entity, MicrobeWorldSimula
         // Initialise the simulation on a basic level first to ensure the base stage setup has all the objects it needs
         WorldSimulation.Init(rootOfDynamicallySpawned, Clouds, this);
 
-        patchManager = new PatchManager(WorldSimulation.SpawnSystem, WorldSimulation.ProcessSystem, Clouds,
-            WorldSimulation.TimedLifeSystem, worldLight);
+        patchManager = new PatchManager(WorldSimulation.SpawnSystem, WorldSimulation.MicrobeTerrainSystem,
+            WorldSimulation.ProcessSystem, Clouds, WorldSimulation.TimedLifeSystem, worldLight);
 
         if (IsLoadedFromSave)
         {
@@ -1159,7 +1176,7 @@ public partial class MicrobeStage : CreatureStageBase<Entity, MicrobeWorldSimula
             GameWorld.PlayerSpecies,
             spawnLocation, false, (null, 0), out var entityRecord);
 
-        entityRecord.Set(new MicrobeEventCallbacks
+        recorder.Add(entityRecord, new MicrobeEventCallbacks
         {
             OnReproductionStatus = OnPlayerReproductionStatusChanged,
 
@@ -1179,7 +1196,7 @@ public partial class MicrobeStage : CreatureStageBase<Entity, MicrobeWorldSimula
             OnNoticeMessage = OnPlayerNoticeMessage,
         });
 
-        entityRecord.Set<CameraFollowTarget>();
+        recorder.Add<CameraFollowTarget>(entityRecord);
 
         // Spawn and grab the player
         SpawnHelpers.FinalizeEntitySpawn(recorder, WorldSimulation);
@@ -1296,6 +1313,63 @@ public partial class MicrobeStage : CreatureStageBase<Entity, MicrobeWorldSimula
         guidanceLine.Visible = false;
     }
 
+    protected override void OnPlayerDeath(int deathsSinceEditor)
+    {
+        if (CurrentGame == null)
+            throw new InvalidOperationException("Current game is null when player is dead callback triggered");
+
+        if (loadSaveAdviseSuppressed)
+            return;
+
+        if (loadSaveAdviceTriggered)
+            return;
+
+        // It doesn't make sense to suggest loading an earlier auto save if they are disabled
+        if (deathsSinceEditor >= 3 && Settings.Instance.AutoSaveEnabled.Value)
+        {
+            loadSaveAdviceTriggered = true;
+            foundPreviousEditorSave = null;
+
+            // As we might need to read a bunch of files, this is done in a separate thread
+            var task = new Task(() =>
+            {
+                // Find a suitable save to load before we show the advice as we don't want to advise something
+                // impossible
+                string? found = null;
+                foreach (var (saveName, saveInfo) in SaveHelper.CreateListOfAutoSavesForGame(CurrentGame.PlaythroughID,
+                             SaveHelper.SaveOrder.FirstModifiedFirst))
+                {
+                    // Only suitable saves to revert to
+                    if (saveInfo.GameState is not (MainGameState.MicrobeEditor or MainGameState.MulticellularEditor))
+                        continue;
+
+                    GD.Print($"Found earlier save from this playthrough: {saveName} ({saveInfo.PlaythroughID})");
+                    found = saveName;
+                    break;
+                }
+
+                Invoke.Instance.QueueForObject(() =>
+                {
+                    foundPreviousEditorSave = found;
+
+                    if (!string.IsNullOrEmpty(foundPreviousEditorSave))
+                    {
+                        GD.Print("Showing advice about loading a previous save");
+                        loadSaveAdviceTriggered = true;
+
+                        HUD.ShowSaveLoadAdvise();
+                    }
+                    else
+                    {
+                        GD.Print("No previous save to load to suggest");
+                    }
+                }, this);
+            });
+
+            TaskExecutor.Instance.AddTask(task);
+        }
+    }
+
     protected override void AutoSave()
     {
         SaveHelper.AutoSave(this);
@@ -1310,9 +1384,11 @@ public partial class MicrobeStage : CreatureStageBase<Entity, MicrobeWorldSimula
     {
         ClearResolvedTolerancesCache();
 
+        var currentPatch = GameWorld.Map.CurrentPatch!;
+
         // TODO: would be nice to skip this if we are loading a save made in the editor as this gets called twice when
         // going back to the stage
-        if (patchManager.ApplyChangedPatchSettingsIfNeeded(GameWorld.Map.CurrentPatch!, this))
+        if (patchManager.ApplyChangedPatchSettingsIfNeeded(currentPatch, this))
         {
             if (promptPatchNameChange)
                 HUD.ShowPatchName(CurrentPatchName.ToString());
@@ -1331,13 +1407,13 @@ public partial class MicrobeStage : CreatureStageBase<Entity, MicrobeWorldSimula
             switchedPatchInEditorForCompounds = false;
         }
 
-        HUD.UpdateEnvironmentalBars(GameWorld.Map.CurrentPatch!.Biome);
+        HUD.UpdateEnvironmentalBars(currentPatch.Biome);
 
         UpdateBackground();
 
         UpdatePatchLightLevelSettings();
 
-        fluidCurrentDisplay.ApplyBiome(GameWorld.Map.CurrentPatch.BiomeTemplate);
+        fluidCurrentDisplay.ApplyBiome(currentPatch.BiomeTemplate);
     }
 
     protected override void OnGameContinuedAsSpecies(Species newPlayerSpecies, Patch inPatch)
@@ -1373,13 +1449,20 @@ public partial class MicrobeStage : CreatureStageBase<Entity, MicrobeWorldSimula
             var lightLevel =
                 currentPatch.Biome.GetCompound(Compound.Sunlight, CompoundAmountType.Current).Ambient;
 
+            float lightModifier = lightLevel / maxLightLevel;
+
             // Normalise by maximum light level in the patch
-            Camera.LightLevel = lightLevel / maxLightLevel;
+            Camera.LightLevel = lightModifier;
+
+            microbeWorldEnvironment.UpdateAmbientReflection(
+                currentPatch.BiomeTemplate.EnvironmentColour * lightModifier);
         }
         else
         {
             // Don't change lighting for patches without day/night effects
             Camera.LightLevel = 1.0f;
+
+            microbeWorldEnvironment.UpdateAmbientReflection(currentPatch.BiomeTemplate.EnvironmentColour);
         }
     }
 
@@ -1486,22 +1569,23 @@ public partial class MicrobeStage : CreatureStageBase<Entity, MicrobeWorldSimula
     ///   Helper function for transition to multicellular. For normal gameplay this would be not optimal as this
     ///   uses the slow world entity fetching.
     /// </summary>
-    /// <returns>Enumerable of all microbes of Player's species</returns>
-    private IEnumerable<Entity> GetAllPlayerSpeciesMicrobes()
+    /// <returns>All microbes of Player's species</returns>
+    private List<Entity> GetAllPlayerSpeciesMicrobes()
     {
-        if (Player == default)
+        if (Player == Entity.Null)
             throw new InvalidOperationException("Could not get player species microbes: no Player object");
 
         var species = Player.Get<SpeciesMember>().ID;
+        var result = new List<Entity>();
 
-        foreach (var entity in WorldSimulation.EntitySystem)
-        {
-            if (!entity.Has<SpeciesMember>())
-                continue;
+        WorldSimulation.EntitySystem.Query(new QueryDescription().WithAll<SpeciesMember>(),
+            (Entity entity, ref SpeciesMember member) =>
+            {
+                if (member.ID == species)
+                    result.Add(entity);
+            });
 
-            if (entity.Get<SpeciesMember>().ID == species)
-                yield return entity;
-        }
+        return result;
     }
 
     private void OnSpawnEnemyCheatUsed(object? sender, EventArgs e)
@@ -1527,8 +1611,8 @@ public partial class MicrobeStage : CreatureStageBase<Entity, MicrobeWorldSimula
             randomSpecies, playerPosition + Vector3.Forward * 20, true, (null, 0), out var entity);
 
         // Make the cell despawn like normal
-        WorldSimulation.SpawnSystem.NotifyExternalEntitySpawned(entity, Constants.MICROBE_DESPAWN_RADIUS_SQUARED,
-            weight);
+        WorldSimulation.SpawnSystem.NotifyExternalEntitySpawned(entity, recorder,
+            Constants.MICROBE_DESPAWN_RADIUS_SQUARED, weight);
 
         SpawnHelpers.FinalizeEntitySpawn(recorder, WorldSimulation);
     }
@@ -1578,7 +1662,7 @@ public partial class MicrobeStage : CreatureStageBase<Entity, MicrobeWorldSimula
 
     private bool PlayerIsEngulfed(Entity player)
     {
-        if (player.IsAlive && player.Has<Engulfable>())
+        if (player.IsAliveAndHas<Engulfable>())
         {
             return player.Get<Engulfable>().PhagocytosisStep != PhagocytosisPhase.None;
         }
@@ -1600,12 +1684,12 @@ public partial class MicrobeStage : CreatureStageBase<Entity, MicrobeWorldSimula
         OnCanEditStatusChanged(true);
     }
 
-    // These need to use invoke as during gameplay code these can be called in a multithreaded way
+    // These need to use Invoke as during gameplay code these can be called in a multithreaded way
     [DeserializedCallbackAllowed]
     private void OnPlayerReproductionStatusChanged(Entity player, bool ready)
     {
         Invoke.Instance.QueueForObject(() => OnCanEditStatusChanged(ready &&
-            (!player.Has<MicrobeColony>() || GameWorld.PlayerSpecies is not MicrobeSpecies)), this);
+            (!player.IsAliveAndHas<MicrobeColony>() || GameWorld.PlayerSpecies is not MicrobeSpecies)), this);
     }
 
     [DeserializedCallbackAllowed]
@@ -1636,7 +1720,7 @@ public partial class MicrobeStage : CreatureStageBase<Entity, MicrobeWorldSimula
         {
             try
             {
-                if (!player.IsAlive)
+                if (!player.IsAlive())
                 {
                     GD.PrintErr("Got player engulfed callback but player entity is dead");
                     OnCanEditStatusChanged(false);
@@ -1774,7 +1858,7 @@ public partial class MicrobeStage : CreatureStageBase<Entity, MicrobeWorldSimula
             chemoreception.Line.LineStart = position;
 
             // The target needs to be updated for entities with a position.
-            if (chemoreception.TargetEntity.IsAlive && chemoreception.TargetEntity.Has<WorldPosition>())
+            if (chemoreception.TargetEntity.IsAliveAndHas<WorldPosition>())
             {
                 chemoreception.Line.LineEnd = chemoreception.TargetEntity.Get<WorldPosition>().Position;
             }
@@ -1920,5 +2004,29 @@ public partial class MicrobeStage : CreatureStageBase<Entity, MicrobeWorldSimula
         Localization.Translate("SUCCESSFUL_KILL");
         Localization.Translate("SUCCESSFUL_SCAVENGE");
         Localization.Translate("ESCAPE_ENGULFING");
+    }
+
+    private void OnLoadPreviousEditorSave()
+    {
+        if (foundPreviousEditorSave == null)
+        {
+            GD.PrintErr("No save found to load");
+            return;
+        }
+
+        GD.Print("Beginning to load previous editor save: ", foundPreviousEditorSave);
+
+        var save = foundPreviousEditorSave;
+
+        TransitionManager.Instance.AddSequence(ScreenFade.FadeType.FadeOut, 0.5f,
+            () => { Invoke.Instance.Queue(() => SaveHelper.LoadSave(save)); }, false);
+
+        foundPreviousEditorSave = null;
+    }
+
+    private void OnCancelLoadAdvice()
+    {
+        GD.Print("Permanently cancelling load save advice");
+        loadSaveAdviseSuppressed = true;
     }
 }

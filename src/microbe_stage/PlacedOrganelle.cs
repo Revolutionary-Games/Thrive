@@ -156,6 +156,9 @@ public class PlacedOrganelle : IPositionedOrganelle, ICloneable
     /// <returns>Effective enzyme data for this organelle</returns>
     public IReadOnlyDictionary<Enzyme, int> GetEnzymes()
     {
+        // Note that if a new type of organelle handling is added here, OrganelleTemplate.GetActiveEnzymes has to be
+        // updated as well
+
         if (OverriddenEnzymes != null)
             return OverriddenEnzymes;
 

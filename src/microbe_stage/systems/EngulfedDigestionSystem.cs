@@ -4,12 +4,13 @@ using System;
 using System.Collections.Generic;
 using System.Diagnostics;
 using System.Linq;
+using System.Runtime.CompilerServices;
+using Arch.Core;
+using Arch.Core.Extensions;
+using Arch.System;
 using Components;
-using DefaultEcs;
-using DefaultEcs.System;
-using DefaultEcs.Threading;
 using Godot;
-using World = DefaultEcs.World;
+using World = Arch.Core.World;
 
 /// <summary>
 ///   Handles digestion of engulfed objects (and starting ejection of indigestible things).
@@ -21,13 +22,6 @@ using World = DefaultEcs.World;
 ///     just reading that component.
 ///   </para>
 /// </remarks>
-[With(typeof(Engulfer))]
-[With(typeof(OrganelleContainer))]
-[With(typeof(CompoundStorage))]
-[With(typeof(MicrobeStatus))]
-[With(typeof(CellProperties))]
-[With(typeof(Health))]
-[With(typeof(WorldPosition))]
 [WritesToComponent(typeof(Engulfable))]
 [ReadsComponent(typeof(OrganelleContainer))]
 [ReadsComponent(typeof(MicrobeStatus))]
@@ -37,7 +31,7 @@ using World = DefaultEcs.World;
 [ReadsComponent(typeof(SpeciesMember))]
 [RunsAfter(typeof(EngulfingSystem))]
 [RuntimeCost(2)]
-public sealed class EngulfedDigestionSystem : AEntitySetSystem<float>
+public partial class EngulfedDigestionSystem : BaseSystem<World, float>
 {
     private readonly CompoundCloudSystem compoundCloudSystem;
     private readonly IReadOnlyList<Compound> digestibleCompounds;
@@ -46,8 +40,7 @@ public sealed class EngulfedDigestionSystem : AEntitySetSystem<float>
 
     private GameWorld? gameWorld;
 
-    public EngulfedDigestionSystem(CompoundCloudSystem compoundCloudSystem, World world,
-        IParallelRunner parallelRunner) : base(world, parallelRunner, Constants.SYSTEM_NORMAL_ENTITIES_PER_THREAD)
+    public EngulfedDigestionSystem(CompoundCloudSystem compoundCloudSystem, World world) : base(world)
     {
         this.compoundCloudSystem = compoundCloudSystem;
         var simulationParameters = SimulationParameters.Instance;
@@ -61,18 +54,18 @@ public sealed class EngulfedDigestionSystem : AEntitySetSystem<float>
         gameWorld = world;
     }
 
-    protected override void PreUpdate(float state)
+    public override void BeforeUpdate(in float delta)
     {
-        base.PreUpdate(state);
-
         if (gameWorld == null)
             throw new InvalidOperationException("GameWorld not set");
     }
 
-    protected override void Update(float delta, in Entity entity)
+    [Query]
+    [All<MicrobeStatus, CellProperties, Health, WorldPosition>]
+    [MethodImpl(MethodImplOptions.AggressiveInlining)]
+    private void Update([Data] in float delta, ref Engulfer engulfer, ref OrganelleContainer organelles,
+        ref CompoundStorage compoundStorage, in Entity entity)
     {
-        ref var engulfer = ref entity.Get<Engulfer>();
-
         if (engulfer.EngulfedObjects == null || engulfer.EngulfedObjects.Count < 1)
         {
             // When something ejects its last engulfed object, the used engulfing size needs to be still updated
@@ -84,10 +77,7 @@ public sealed class EngulfedDigestionSystem : AEntitySetSystem<float>
             return;
         }
 
-        ref var organelles = ref entity.Get<OrganelleContainer>();
-        var compounds = entity.Get<CompoundStorage>().Compounds;
-
-        HandleDigestion(entity, ref engulfer, ref organelles, compounds, delta);
+        HandleDigestion(entity, ref engulfer, ref organelles, compoundStorage.Compounds, delta);
     }
 
     /// <summary>
@@ -115,7 +105,7 @@ public sealed class EngulfedDigestionSystem : AEntitySetSystem<float>
             var engulfedObject = engulfer.EngulfedObjects![i];
 
 #if DEBUG
-            if (!engulfedObject.IsAlive)
+            if (!engulfedObject.IsAlive())
             {
                 throw new Exception(
                     "Digestion system has a non-alive engulfed object, engulfing system should have taken care " +
@@ -123,7 +113,7 @@ public sealed class EngulfedDigestionSystem : AEntitySetSystem<float>
             }
 #endif
 
-            if (!engulfedObject.Has<Engulfable>())
+            if (!engulfedObject.IsAliveAndHas<Engulfable>())
             {
                 GD.PrintErr("Microbe has engulfed object that isn't engulfable");
                 continue;

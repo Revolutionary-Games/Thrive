@@ -2,29 +2,30 @@
 
 using System;
 using System.Collections.Generic;
+using System.Runtime.CompilerServices;
+using Arch.Core;
+using Arch.Core.Extensions;
+using Arch.System;
 using Components;
-using DefaultEcs;
-using DefaultEcs.System;
 using Godot;
-using World = DefaultEcs.World;
+using World = Arch.Core.World;
 
 /// <summary>
 ///   Handles disabling and enabling the physics body for an entity (disabled bodies don't exist in the physical
 ///   world at all)
 /// </summary>
-[With(typeof(Physics))]
 [WritesToComponent(typeof(ManualPhysicsControl))]
 [ReadsComponent(typeof(WorldPosition))]
 [RunsAfter(typeof(PhysicsBodyCreationSystem))]
-[RuntimeCost(0.5f)]
+[RuntimeCost(1)]
 [RunsOnMainThread]
-public sealed class PhysicsBodyDisablingSystem : AEntitySetSystem<float>
+public partial class PhysicsBodyDisablingSystem : BaseSystem<World, float>
 {
     private readonly PhysicalWorld physicalWorld;
 
     private readonly HashSet<NativePhysicsBody> disabledBodies = new();
 
-    public PhysicsBodyDisablingSystem(PhysicalWorld physicalWorld, World world) : base(world, null)
+    public PhysicsBodyDisablingSystem(PhysicalWorld physicalWorld, World world) : base(world)
     {
         this.physicalWorld = physicalWorld;
     }
@@ -61,10 +62,10 @@ public sealed class PhysicsBodyDisablingSystem : AEntitySetSystem<float>
         base.Dispose();
     }
 
-    protected override void Update(float delta, in Entity entity)
+    [Query]
+    [MethodImpl(MethodImplOptions.AggressiveInlining)]
+    private void Update(ref Physics physics, in Entity entity)
     {
-        ref var physics = ref entity.Get<Physics>();
-
         // Skip objects that are up to date
         if (physics.InternalDisableState == physics.BodyDisabled)
             return;
@@ -86,7 +87,7 @@ public sealed class PhysicsBodyDisablingSystem : AEntitySetSystem<float>
 
                 if (entity.Has<WorldPosition>())
                 {
-                    // Set new position to update the body to be where it should be now after not tracking its
+                    // Set a new position to update the body to be where it should be now after not tracking its
                     // position for a while (due to it being disabled)
                     ref var newPosition = ref entity.Get<WorldPosition>();
                     physicalWorld.SetBodyPositionAndRotation(body, newPosition.Position, newPosition.Rotation);

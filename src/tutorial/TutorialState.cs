@@ -30,6 +30,7 @@ public class TutorialState : ITutorialInput, ISaveLoadable
     ///   When this is true, tutorials that have already been seen by the player in any playthrough are automatically
     ///   marked as already complete.
     /// </summary>
+    [JsonProperty]
     public bool DisableShowingAlreadySeenTutorials { get; private set; }
 
     // Tutorial states

@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Globalization;
 using System.Linq;
+using Arch.Core.Extensions;
 using Components;
 using Godot;
 using Newtonsoft.Json;
@@ -36,6 +37,8 @@ public partial class CreatureStageHUDBase<TStage> : HUDWithPausing, ICreatureSta
     protected readonly List<Compound> allAgents = new();
 
 #pragma warning disable CA2213
+    protected readonly List<(Compound Compound, CompoundProgressBar Bar)> compoundBars = new();
+
     [Export]
     protected MouseHoverPanel mouseHoverPanel = null!;
 
@@ -125,8 +128,6 @@ public partial class CreatureStageHUDBase<TStage> : HUDWithPausing, ICreatureSta
     ///   Access to the stage to retrieve information for display as well as call some player initiated actions.
     /// </summary>
     protected TStage? stage;
-
-    private readonly List<(Compound Compound, CompoundProgressBar Bar)> compoundBars = new();
 
     private readonly Dictionary<Compound, float> gatheredCompounds = new();
     private readonly Dictionary<Compound, float> totalNeededCompounds = new();
@@ -626,7 +627,7 @@ public partial class CreatureStageHUDBase<TStage> : HUDWithPausing, ICreatureSta
     /// <param name="button">The button attached to the organism to fossilise</param>
     public void ShowFossilisationDialog(FossilisationButton button)
     {
-        if (!button.AttachedEntity.IsAlive)
+        if (!button.AttachedEntity.IsAlive())
         {
             GD.PrintErr("Tried to show fossilization dialog for a dead entity");
             return;
@@ -758,13 +759,13 @@ public partial class CreatureStageHUDBase<TStage> : HUDWithPausing, ICreatureSta
                 damageScreenEffect.Visible = false;
             }
 
-            // Start damage flash if player has taken enough damage
+            // Start damage flash if the player has taken enough damage
             if (hp < lastHealth && lastHealth - hp > Constants.SCREEN_DAMAGE_FLASH_THRESHOLD)
                 damageEffectCurrentValue = 1;
         }
         else if (damageEffectCurrentValue > 0)
         {
-            // Disable effect if user turned off the setting while flashing
+            // Disable effect if the player turned off the setting while flashing
             damageEffectCurrentValue = 0;
             damageScreenEffect.Visible = false;
         }
@@ -781,7 +782,7 @@ public partial class CreatureStageHUDBase<TStage> : HUDWithPausing, ICreatureSta
     {
         var readStrainFraction = ReadPlayerStrainFraction();
 
-        // Skip the rest of the method if the player does not have strain
+        // Skip the rest of the method if the player does not have a strain buildup
         if (readStrainFraction == null)
             return;
 

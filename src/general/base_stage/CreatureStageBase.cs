@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Linq;
+using Arch.Core;
 using Components;
 using Godot;
 using Newtonsoft.Json;
@@ -28,6 +29,9 @@ public partial class CreatureStageBase<TPlayer, TSimulation> : StageBase, ICreat
     [JsonProperty]
     protected double playerRespawnTimer;
 
+    [JsonProperty]
+    protected int deathsSinceLastEditorExit;
+
     /// <summary>
     ///   True when the player is extinct in the current patch. The player can still move to another patch.
     /// </summary>
@@ -35,6 +39,11 @@ public partial class CreatureStageBase<TPlayer, TSimulation> : StageBase, ICreat
     protected bool playerExtinctInCurrentPatch;
 
     private double timeSinceSimulationPerformanceCheck;
+
+    /// <summary>
+    ///   Used to trigger actions when the player goes from being alive to being not there (i.e. having died)
+    /// </summary>
+    private bool lastSeenPlayerAlive;
 
     public CreatureStageBase()
     {
@@ -127,6 +136,14 @@ public partial class CreatureStageBase<TPlayer, TSimulation> : StageBase, ICreat
                 // Respawn the player once the timer is up
                 playerRespawnTimer -= delta * GetWorldTimeMultiplier();
 
+                if (lastSeenPlayerAlive)
+                {
+                    lastSeenPlayerAlive = false;
+                    ++deathsSinceLastEditorExit;
+
+                    OnPlayerDeath(deathsSinceLastEditorExit);
+                }
+
                 if (playerRespawnTimer <= 0)
                 {
                     HandlePlayerRespawn();
@@ -144,6 +161,8 @@ public partial class CreatureStageBase<TPlayer, TSimulation> : StageBase, ICreat
                 timeSinceSimulationPerformanceCheck = 0;
                 CheckPerformanceEnoughForSimulationSpeed();
             }
+
+            lastSeenPlayerAlive = true;
         }
 
         // Start auto-evo if stage entry finished, don't need to auto save,
@@ -160,15 +179,11 @@ public partial class CreatureStageBase<TPlayer, TSimulation> : StageBase, ICreat
             float totalEntityWeight = 0;
             int totalEntityCount = 0;
 
-            foreach (var entity in WorldSimulation.EntitySystem)
+            WorldSimulation.EntitySystem.Query(new QueryDescription().WithAll<Spawned>(), (ref Spawned spawned) =>
             {
                 ++totalEntityCount;
-
-                if (!entity.Has<Spawned>())
-                    continue;
-
-                totalEntityWeight += entity.Get<Spawned>().EntityWeight;
-            }
+                totalEntityWeight += spawned.EntityWeight;
+            });
 
             debugOverlay.ReportEntities(totalEntityWeight, totalEntityCount);
         }
@@ -208,6 +223,8 @@ public partial class CreatureStageBase<TPlayer, TSimulation> : StageBase, ICreat
         }
 
         // Now the editor increases the generation, so we don't do that here any more
+
+        deathsSinceLastEditorExit = 0;
 
         // Make sure the player is spawned
         SpawnPlayer();
@@ -374,7 +391,7 @@ public partial class CreatureStageBase<TPlayer, TSimulation> : StageBase, ICreat
             }
             else if (GameWorld.Map.CurrentPatch.GetSpeciesGameplayPopulation(playerSpecies) <= 0)
             {
-                // Has run out of population in current patch but not globally
+                // Has run out of population in the current patch but not globally
                 PlayerExtinctInPatch();
             }
 
@@ -384,6 +401,14 @@ public partial class CreatureStageBase<TPlayer, TSimulation> : StageBase, ICreat
 
         // Player is not extinct, so can respawn
         SpawnPlayer();
+    }
+
+    /// <summary>
+    ///   Triggered when the player is detected as being deleted after having been previously alive
+    /// </summary>
+    /// <param name="deathsSinceEditor">How many times the player has died since the editor</param>
+    protected virtual void OnPlayerDeath(int deathsSinceEditor)
+    {
     }
 
     protected override bool IsGameOver()

@@ -3,8 +3,9 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
-using DefaultEcs;
-using DefaultEcs.Command;
+using Arch.Buffer;
+using Arch.Core;
+using Arch.Core.Extensions;
 using Godot;
 using Newtonsoft.Json;
 using Systems;
@@ -103,7 +104,7 @@ public static class CellPropertiesHelpers
     /// </summary>
     public static readonly Vector3 DefaultVisualPos = Vector3.Forward;
 
-    public delegate void ModifyDividedCellCallback(ref EntityRecord entity);
+    public delegate void ModifyDividedCellCallback(ref Entity entity, CommandBuffer commandBuffer);
 
     /// <summary>
     ///   Checks this cell and also the entire colony if something can enter engulf mode in it
@@ -309,13 +310,13 @@ public static class CellPropertiesHelpers
         // Since the daughter spawns right next to the cell, it should face the same way to avoid colliding
         // This probably wastes a bit of memory but should be fine to overwrite the WorldPosition component like
         // this
-        copyEntity.Set(new WorldPosition(spawnPosition, position.Rotation));
+        recorder.Set(copyEntity, new WorldPosition(spawnPosition, position.Rotation));
 
         // TODO: should this also set an initial look direction that is the same?
 
         // Make it despawn like normal
-        spawnerToRegisterWith.NotifyExternalEntitySpawned(copyEntity, Constants.MICROBE_DESPAWN_RADIUS_SQUARED,
-            weight);
+        spawnerToRegisterWith.NotifyExternalEntitySpawned(copyEntity, recorder,
+            Constants.MICROBE_DESPAWN_RADIUS_SQUARED, weight);
 
         // Remove the compounds from the created cell
         var originalCompounds = entity.Get<CompoundStorage>().Compounds;
@@ -339,7 +340,7 @@ public static class CellPropertiesHelpers
             if (amount <= 0)
                 continue;
 
-            // If the compound is for reproduction we give player and NPC microbes different amounts.
+            // If the compound is for reproduction, we give player and NPC microbes different amounts.
             if (reproductionCompounds.TryGetValue(compound, out float divideAmount))
             {
                 // The amount taken away from the parent cell depends on if it is a player or NPC. Player
@@ -379,12 +380,12 @@ public static class CellPropertiesHelpers
             }
         }
 
-        copyEntity.Set(new CompoundStorage
+        recorder.Set(copyEntity, new CompoundStorage
         {
             Compounds = copyEntityCompounds,
         });
 
-        customizeCallback?.Invoke(ref copyEntity);
+        customizeCallback?.Invoke(ref copyEntity, recorder);
 
         SpawnHelpers.FinalizeEntitySpawn(recorder, worldSimulation);
 

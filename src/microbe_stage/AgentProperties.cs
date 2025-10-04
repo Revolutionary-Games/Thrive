@@ -1,5 +1,5 @@
-﻿using Components;
-using DefaultEcs;
+﻿using Arch.Core;
+using Components;
 using Newtonsoft.Json;
 
 /// <summary>

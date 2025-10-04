@@ -77,6 +77,12 @@ public class GameProperties
     /// </summary>
     public bool InPrototypes { get; private set; }
 
+    /// <summary>
+    ///   ID of this playthrough
+    /// </summary>
+    [JsonProperty]
+    public Guid PlaythroughID { get; private set; } = Guid.NewGuid();
+
     // Not saved for now as this is only in prototypes
     [JsonIgnore]
     public TechWeb TechWeb { get; private set; } = new();

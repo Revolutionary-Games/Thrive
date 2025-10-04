@@ -10,7 +10,7 @@ using System.Collections.Generic;
 public struct CompoundAbsorber
 {
     /// <summary>
-    ///   If not null then this tracks the total absorbed compounds
+    ///   If not null, then this tracks the total absorbed compounds
     /// </summary>
     public Dictionary<Compound, float>? TotalAbsorbedCompounds;
 

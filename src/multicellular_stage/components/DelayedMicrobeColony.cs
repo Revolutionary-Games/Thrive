@@ -1,6 +1,6 @@
 ﻿namespace Components;
 
-using DefaultEcs;
+using Arch.Core;
 
 /// <summary>
 ///   Holds operation info for delayed microbe colony operations
@@ -9,7 +9,7 @@ using DefaultEcs;
 public struct DelayedMicrobeColony
 {
     /// <summary>
-    ///   If not default then this entity wants to attach to a colony after initialization. Note that this entity
+    ///   If not default, then this entity wants to attach to a colony after initialization. Note that this entity
     ///   must already have a <see cref="AttachedToEntity"/> component added.
     /// </summary>
     public Entity FinishAttachingToColony;
@@ -31,7 +31,7 @@ public struct DelayedMicrobeColony
     {
         GrowAdditionalMembers = growAdditionalMembers;
 
-        FinishAttachingToColony = default(Entity);
+        FinishAttachingToColony = Entity.Null;
         AttachIndex = 0;
     }
 
@@ -41,7 +41,7 @@ public struct DelayedMicrobeColony
     /// <param name="delayAttachToColony">Entity to attach to</param>
     /// <param name="targetIndex">
     ///   The index the new member should be placed at. This exists to allow ensuring colonies to have consistent
-    ///   order for their delay attached members if multiple are added at once;
+    ///   order for their delay-attached members if multiple is added at once;
     /// </param>
     public DelayedMicrobeColony(Entity delayAttachToColony, int targetIndex)
     {

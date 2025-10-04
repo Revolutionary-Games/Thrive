@@ -1,9 +1,9 @@
 ﻿using System;
-using DefaultEcs;
+using Arch.Core;
 
 public static class TemporarySystemHelper
 {
-    private static readonly Lazy<World> LoadingWorld = new(() => new World(0));
+    private static readonly Lazy<World> LoadingWorld = new(() => World.Create());
 
     /// <summary>
     ///   Returns a world usable for temporary system creation to get JSON loading with child properties work
