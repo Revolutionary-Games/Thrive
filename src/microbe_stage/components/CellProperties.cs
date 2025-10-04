@@ -616,7 +616,7 @@ public static class CellPropertiesHelpers
     public static void ApplyMembraneTurn(this ref CellProperties cellProperties, Membrane targetMembrane, float delta)
     {
         targetMembrane.Turn += (cellProperties.MeshTurnDistance - targetMembrane.Turn)
-            * MathF.Min(1 / (cellProperties.Radius * 0.1f) * delta, 1.0f);
+            * MathF.Min(1 / (cellProperties.Radius * 0.1f) * delta, 0.5f);
     }
 
     public static float CalculateSurfaceAreaToVolume(this ref CellProperties cellProperties, int hexCount)

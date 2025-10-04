@@ -98,7 +98,7 @@ public partial class MicrobeMovementSystem : BaseSystem<World, float>
         if (Settings.Instance.MicrobeMembraneTurnBend)
         {
             cellProperties.MeshTurnDistance = MathF.Round(turnAngle * 10.0f) * 0.1f / (organelles.LengthWidthRatio *
-                0.2f * cellProperties.Radius);
+                0.1f * cellProperties.Radius);
         }
 
         var unsignedTurnAngle = Math.Abs(turnAngle);

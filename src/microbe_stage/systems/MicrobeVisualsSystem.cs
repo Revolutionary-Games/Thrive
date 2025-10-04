@@ -99,8 +99,15 @@ public partial class MicrobeVisualsSystem : BaseSystem<World, float>
     [Query]
     [All<CellProperties, SpatialInstance, EntityMaterial, RenderPriorityOverride>]
     [MethodImpl(MethodImplOptions.AggressiveInlining)]
-    private void Update(ref OrganelleContainer organelleContainer, in Entity entity)
+    private void Update([Data] in float delta, ref OrganelleContainer organelleContainer, in Entity entity)
     {
+        ref var cellProperties = ref entity.Get<CellProperties>();
+
+        if (cellProperties.CreatedMembrane != null)
+        {
+            SetMembraneTurn(cellProperties.CreatedMembrane!, ref cellProperties, ref organelleContainer, delta);
+        }
+
         if (organelleContainer.OrganelleVisualsCreated)
             return;
 
@@ -112,7 +119,6 @@ public partial class MicrobeVisualsSystem : BaseSystem<World, float>
         }
 
         ref var spatialInstance = ref entity.Get<SpatialInstance>();
-        ref var cellProperties = ref entity.Get<CellProperties>();
 
         // Create graphics top level node if missing for the entity
         spatialInstance.GraphicalInstance ??= new Node3D();
@@ -181,8 +187,6 @@ public partial class MicrobeVisualsSystem : BaseSystem<World, float>
         }
         else
         {
-            // Existing membrane should have its properties updated to make sure they are up to date.
-            // For example, an engulfed cell has its membrane wigglyness removed
             SetMembraneDisplayData(cellProperties.CreatedMembrane, data, ref cellProperties);
         }
 
