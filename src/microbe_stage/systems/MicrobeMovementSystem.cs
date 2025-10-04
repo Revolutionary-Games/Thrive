@@ -153,7 +153,6 @@ public partial class MicrobeMovementSystem : BaseSystem<World, float>
             throw new Exception("Trying to run microbe control on detached body");
 #endif
 
-        var compounds = entity.Get<CompoundStorage>().Compounds;
         var rotationSpeed = CalculateRotationSpeed(entity, ref organelles);
 
         var movementImpulse =
