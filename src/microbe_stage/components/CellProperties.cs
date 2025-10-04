@@ -43,6 +43,16 @@ public struct CellProperties
     public float Temperature;
 
     /// <summary>
+    ///   Some value representing difference between current rotation and desired rotation
+    /// </summary>
+    public float MeshTurnDistance;
+
+    /// <summary>
+    ///   How fast will mesh adapt to new turn distance
+    /// </summary>
+    public float MeshTurnRate;
+
+    /// <summary>
     ///   The membrane created for this cell. This is here so that some other systems apart from the visuals system
     ///   can have access to the membrane data.
     /// </summary>
@@ -601,6 +611,12 @@ public static class CellPropertiesHelpers
 
         targetMembrane.MovementWigglyNess = cellProperties.MembraneType.MovementWigglyness -
             cellProperties.MembraneRigidity / cellProperties.MembraneType.BaseWigglyness * 0.2f;
+    }
+
+    public static void ApplyMembraneTurn(this ref CellProperties cellProperties, Membrane targetMembrane, float delta)
+    {
+        targetMembrane.Turn += (cellProperties.MeshTurnDistance - targetMembrane.Turn)
+            * MathF.Min(1 / (cellProperties.Radius * 0.1f) * delta, 0.5f);
     }
 
     public static float CalculateSurfaceAreaToVolume(this ref CellProperties cellProperties, int hexCount)
