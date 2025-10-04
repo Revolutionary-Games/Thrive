@@ -119,5 +119,5 @@ void fragment(){
 	EMISSION = final.rgb * 0.3 * ALPHA;
     METALLIC = 0.0f;
     ROUGHNESS = 0.5f;
-    SPECULAR = 1.0f;
+    SPECULAR = 1.5f;
 }
