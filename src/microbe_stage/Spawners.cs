@@ -546,6 +546,7 @@ public static class SpawnHelpers
                 DamageAmount = chunkType.Damages,
                 DestroyOnTouch = chunkType.DeleteOnTouch,
                 DamageType = string.IsNullOrEmpty(chunkType.DamageType) ? "chunk" : chunkType.DamageType,
+                UsesMicrobialDissolveEffect = hasMicrobeShaderParameters,
             });
         }
         else if (chunkType.DeleteOnTouch)
@@ -555,6 +556,7 @@ public static class SpawnHelpers
             {
                 DamageAmount = 0,
                 DestroyOnTouch = chunkType.DeleteOnTouch,
+                UsesMicrobialDissolveEffect = hasMicrobeShaderParameters,
             });
         }
 
