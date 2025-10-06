@@ -1,0 +1,9 @@
+[gd_scene load_steps=3 format=3 uid="uid://glw134awyb7d"]
+
+[ext_resource type="PackedScene" uid="uid://dl7gg4f1jbray" path="res://assets/models/microbe_terrain/ClayTerrainChunk1.glb" id="1_q6tlx"]
+[ext_resource type="Material" uid="uid://doux3w47yc4ml" path="res://assets/models/microbe_terrain/ClayTerrainMaterial.material" id="2_xiovj"]
+
+[node name="ClayTerrainChunk1" instance=ExtResource("1_q6tlx")]
+
+[node name="clay1" parent="." index="0"]
+surface_material_override/0 = ExtResource("2_xiovj")

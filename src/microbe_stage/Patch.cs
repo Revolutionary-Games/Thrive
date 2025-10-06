@@ -46,7 +46,8 @@ public class Patch
     [JsonProperty]
     private Deque<PatchSnapshot> history = new();
 
-    public Patch(LocalizedString name, int id, Biome biomeTemplate, BiomeType biomeType, PatchRegion region)
+    public Patch(LocalizedString name, int id, Biome biomeTemplate, BiomeType biomeType, PatchRegion region,
+        long additionalDataSeed)
     {
         Name = name;
         ID = id;
@@ -55,12 +56,16 @@ public class Patch
         currentSnapshot =
             new PatchSnapshot((BiomeConditions)biomeTemplate.Conditions.Clone(), biomeTemplate.Background);
         Region = region;
+
+        DynamicDataSeed = additionalDataSeed;
     }
 
-    public Patch(LocalizedString name, int id, Biome biomeTemplate, BiomeType biomeType, PatchSnapshot currentSnapshot)
+    public Patch(LocalizedString name, int id, Biome biomeTemplate, BiomeType biomeType, PatchSnapshot currentSnapshot,
+        long additionalDatAseed)
         : this(name, id, biomeTemplate, currentSnapshot)
     {
         BiomeType = biomeType;
+        DynamicDataSeed = additionalDatAseed;
     }
 
     [JsonConstructor]
@@ -174,6 +179,12 @@ public class Patch
     /// </summary>
     [JsonIgnore]
     public bool HasDayAndNight => Biome.HasCompoundsThatVary();
+
+    /// <summary>
+    ///   Seed for generating dynamic runtime data for this patch (for example terrain)
+    /// </summary>
+    [JsonProperty]
+    public long DynamicDataSeed { get; private set; }
 
     /// <summary>
     ///   Adds all neighbors recursively to the provided <see cref="HashSet{T}"/>

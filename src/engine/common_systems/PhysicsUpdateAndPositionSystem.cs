@@ -27,6 +27,7 @@ public partial class PhysicsUpdateAndPositionSystem : BaseSystem<World, float>
     public bool EnforceYPosition { get; set; }
 
     [Query]
+    [None<StaticBodyMarker>]
     [MethodImpl(MethodImplOptions.AggressiveInlining)]
     private void Update(ref Physics physics, ref WorldPosition position)
     {

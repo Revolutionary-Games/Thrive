@@ -1,8 +1,10 @@
 #pragma once
 
-#include <godot_cpp/classes/object.hpp>
-
 #include "Include.h"
+
+BEGIN_GODOT_INCLUDES;
+#include <godot_cpp/classes/object.hpp>
+END_GODOT_INCLUDES;
 
 #include "core/NativeLibIntercommunication.hpp"
 
@@ -11,7 +13,7 @@ namespace Thrive
 
 class DebugDrawer;
 
-/// \brief Manages forwarding C# side configuration and other runtime data between Thrive parts into this module
+/// \brief Handles forwarding the C# side configuration and other runtime data between Thrive parts into this module
 class ThriveConfig : public godot::Object
 {
     GDCLASS(ThriveConfig, godot::Object)

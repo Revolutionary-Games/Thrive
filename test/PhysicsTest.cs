@@ -587,7 +587,7 @@ public partial class PhysicsTest : Node
         var test = "test";
         var dummyPatch = new Patch(new LocalizedString(test), 1,
             SimulationParameters.Instance.GetBiome("aavolcanic_vent"), BiomeType.Vents,
-            new PatchRegion(1, "test", PatchRegion.RegionType.Ocean, new Vector2(0, 0)));
+            new PatchRegion(1, "test", PatchRegion.RegionType.Ocean, new Vector2(0, 0)), 1);
 
         // Generate a random, pretty big microbe species to use for testing
         var microbeSpecies =

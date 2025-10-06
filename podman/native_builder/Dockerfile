@@ -133,7 +133,11 @@ FROM almalinux:9
 
 # gcc-c++ is needed on top of libstdc++-devel to get all standard headers
 RUN dnf update -y && dnf install -y --setopt=deltarpm=false \
-    git gcc-c++ glibc-devel && dnf clean all
+    git gcc-c++ glibc-devel libstdc++-devel && dnf clean all
+
+# Static library
+RUN dnf install --enablerepo=crb -y --setopt=deltarpm=false \
+    libstdc++-static && dnf clean all
 
 # binutils is removed so that the default linker doesn't exist
 # RUN dnf remove binutils -y

@@ -27,6 +27,11 @@ public partial class SpawnSystem : BaseSystem<World, float>, ISpawnSystem
     private readonly QueryDescription spawnedQuery = new QueryDescription().WithAll<Spawned>();
 
     /// <summary>
+    ///   Used to check if a spawn position is likely bad and should be retried
+    /// </summary>
+    private readonly Func<Vector3, float, bool> badSpawnPositionCheck;
+
+    /// <summary>
     ///   Sets how often the spawn system runs and checks things
     /// </summary>
     [JsonProperty]
@@ -78,9 +83,14 @@ public partial class SpawnSystem : BaseSystem<World, float>, ISpawnSystem
     private float spawnedEntityWeight;
     private int despawnedCount;
 
-    public SpawnSystem(IWorldSimulation worldSimulation, World world) : base(world)
+    private float spawnRadiusSquaredCheck = 5 * 5;
+    private int maxDifferentPositionsCheck = 10;
+
+    public SpawnSystem(IWorldSimulation worldSimulation, World world,
+        Func<Vector3, float, bool> badSpawnPositionCheck) : base(world)
     {
         this.worldSimulation = worldSimulation;
+        this.badSpawnPositionCheck = badSpawnPositionCheck;
 
         random = new XoShiRo256starstar();
 
@@ -460,12 +470,28 @@ public partial class SpawnSystem : BaseSystem<World, float>, ISpawnSystem
             var sectorCenter = new Vector3(sector.X * Constants.SPAWN_SECTOR_SIZE, 0,
                 sector.Y * Constants.SPAWN_SECTOR_SIZE);
 
-            // Distance from the sector center.
-            var displacement = new Vector3(random.NextSingle() * Constants.SPAWN_SECTOR_SIZE -
-                Constants.SPAWN_SECTOR_SIZE * 0.5f, 0,
-                random.NextSingle() * Constants.SPAWN_SECTOR_SIZE - Constants.SPAWN_SECTOR_SIZE * 0.5f);
+            bool spawned = false;
 
-            spawns += SpawnWithSpawner(spawnType, sectorCenter + displacement, ref spawnsLeftThisFrame);
+            for (int i = 0; i < maxDifferentPositionsCheck; ++i)
+            {
+                // Distance from the sector center.
+                var displacement = new Vector3(random.NextSingle() * Constants.SPAWN_SECTOR_SIZE -
+                    Constants.SPAWN_SECTOR_SIZE * 0.5f, 0,
+                    random.NextSingle() * Constants.SPAWN_SECTOR_SIZE - Constants.SPAWN_SECTOR_SIZE * 0.5f);
+
+                var finalPosition = sectorCenter + displacement;
+
+                // Skip spawning stuff into the terrain
+                if (badSpawnPositionCheck.Invoke(finalPosition, spawnRadiusSquaredCheck))
+                    continue;
+
+                spawned = true;
+                spawns += SpawnWithSpawner(spawnType, sectorCenter + displacement, ref spawnsLeftThisFrame);
+                break;
+            }
+
+            if (!spawned)
+                GD.Print($"Skipped a spawn due to not finding position outside the terrain for {spawnType.Name}");
         }
 
         var debugOverlay = DebugOverlays.Instance;
@@ -483,9 +509,17 @@ public partial class SpawnSystem : BaseSystem<World, float>, ISpawnSystem
         {
             if (!SpawnsBlocked(spawnType) && spawnType is MicrobeSpawner)
             {
-                spawns += SpawnWithSpawner(spawnType,
-                    playerLocation + new Vector3(MathF.Cos(angle) * Constants.SPAWN_SECTOR_SIZE * 2, 0,
-                        MathF.Sin(angle) * Constants.SPAWN_SECTOR_SIZE * 2), ref spawnsLeftThisFrame);
+                for (int i = 0; i < maxDifferentPositionsCheck; ++i)
+                {
+                    var position = playerLocation + new Vector3(MathF.Cos(angle) * Constants.SPAWN_SECTOR_SIZE * 2, 0,
+                        MathF.Sin(angle) * Constants.SPAWN_SECTOR_SIZE * 2);
+
+                    if (badSpawnPositionCheck.Invoke(position, spawnRadiusSquaredCheck))
+                        continue;
+
+                    spawns += SpawnWithSpawner(spawnType, position, ref spawnsLeftThisFrame);
+                    break;
+                }
             }
         }
 

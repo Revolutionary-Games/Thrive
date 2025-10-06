@@ -1073,7 +1073,10 @@ public partial class MicrobeStage : CreatureStageBase<Entity, MicrobeWorldSimula
             // added
             if (!Player.Has<TimedLife>())
             {
-                Player.Add<TimedLife>();
+                Player.Add(new TimedLife
+                {
+                    TimeToLiveRemaining = 5,
+                });
             }
 
             ref var timed = ref Player.Get<TimedLife>();
@@ -1089,8 +1092,8 @@ public partial class MicrobeStage : CreatureStageBase<Entity, MicrobeWorldSimula
         // Initialise the simulation on a basic level first to ensure the base stage setup has all the objects it needs
         WorldSimulation.Init(rootOfDynamicallySpawned, Clouds, this);
 
-        patchManager = new PatchManager(WorldSimulation.SpawnSystem, WorldSimulation.ProcessSystem, Clouds,
-            WorldSimulation.TimedLifeSystem, worldLight);
+        patchManager = new PatchManager(WorldSimulation.SpawnSystem, WorldSimulation.MicrobeTerrainSystem,
+            WorldSimulation.ProcessSystem, Clouds, WorldSimulation.TimedLifeSystem, worldLight);
 
         if (IsLoadedFromSave)
         {

@@ -8,7 +8,7 @@ msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2025-09-15 11:08+0200\n"
-"PO-Revision-Date: 2025-09-18 21:15+0000\n"
+"PO-Revision-Date: 2025-09-30 05:52+0000\n"
 "Last-Translator: xzihnago <xzihnago@gmail.com>\n"
 "Language-Team: Chinese (Traditional Han script) <https://translate.revolutionarygamesstudio.com/projects/thrive/thrive-game/zh_Hant/>\n"
 "Language: zh_TW\n"
@@ -189,9 +189,8 @@ msgstr "氨"
 msgid "AMMONIA_COST"
 msgstr "氨成本："
 
-#, fuzzy
 msgid "AMMONIA_LEVELS"
-msgstr "氨成本："
+msgstr "氨含量"
 
 msgid "AMOUNT_OF_AUTOSAVE_TO_KEEP"
 msgstr "保留的自動存檔數量："
@@ -414,19 +413,19 @@ msgid "AVAILABLE_MODS"
 msgstr "可用模組"
 
 msgid "AVERAGE_SURFACE_CARBON_DIOXIDE_LEVEL"
-msgstr ""
+msgstr "平均地表二氧化碳含量"
 
 msgid "AVERAGE_SURFACE_LIGHT_LEVEL"
-msgstr ""
+msgstr "平均地表光照量"
 
 msgid "AVERAGE_SURFACE_NITROGEN_LEVEL"
-msgstr ""
+msgstr "平均地表氮含量"
 
 msgid "AVERAGE_SURFACE_OTHER_LEVEL"
-msgstr ""
+msgstr "平均地表其他氣體含量"
 
 msgid "AVERAGE_SURFACE_OXYGEN_LEVEL"
-msgstr ""
+msgstr "平均地表氧含量"
 
 msgid "AWAKENING_STAGE"
 msgstr "覺醒階段"
@@ -1029,24 +1028,20 @@ msgstr "始終補充至初始值"
 msgid "COMPOUND_HANDLE_TOP_UP_ON_CHANGE"
 msgstr "區域更改時補充"
 
-#, fuzzy
 msgid "COMPOUND_LEVEL_AVERAGE"
-msgstr "平均"
+msgstr "中等"
 
-#, fuzzy
 msgid "COMPOUND_LEVEL_HIGH"
-msgstr "化合物平衡"
+msgstr "高"
 
-#, fuzzy
 msgid "COMPOUND_LEVEL_LOW"
-msgstr "化合物雲"
+msgstr "低"
 
 msgid "COMPOUND_LEVEL_VERY_HIGH"
-msgstr ""
+msgstr "非常高"
 
-#, fuzzy
 msgid "COMPOUND_LEVEL_VERY_LOW"
-msgstr "保留全部"
+msgstr "非常低"
 
 msgid "COMPOUND_STORAGE_AMOUNT_DOES_NOT_LAST_NIGHT"
 msgstr "（不足以維持 {0} 秒長的夜晚）"
@@ -2670,9 +2665,8 @@ msgstr "將[thrive:compound type=\\\"glucose\\\"][/thrive:compound] 轉化為[th
 msgid "HYDROGEN_SULFIDE"
 msgstr "硫化氫"
 
-#, fuzzy
 msgid "HYDROGEN_SULFIDE_LEVELS"
-msgstr "硫化氫"
+msgstr "硫化氫含量"
 
 msgid "ICESHARD"
 msgstr "小型冰礫"
@@ -2892,7 +2886,7 @@ msgid "IRON"
 msgstr "鐵"
 
 msgid "IRON_LEVELS"
-msgstr ""
+msgstr "鐵含量"
 
 msgid "IRON_OXIDATION"
 msgstr "鐵氧化"
@@ -4765,9 +4759,8 @@ msgstr "磷酸鹽"
 msgid "PHOSPHATES_COST"
 msgstr "磷酸鹽成本："
 
-#, fuzzy
 msgid "PHOSPHATES_LEVELS"
-msgstr "磷酸鹽成本："
+msgstr "磷酸鹽含量"
 
 msgid "PHOTOSYNTHESIS"
 msgstr "光合作用"
@@ -4798,9 +4791,8 @@ msgstr ""
 msgid "PLANET_RANDOM_SEED"
 msgstr "星球隨機種子"
 
-#, fuzzy
 msgid "PLANET_STATISTICS"
-msgstr "統計數據"
+msgstr "星球統計"
 
 msgid "PLAYER"
 msgstr "玩家"
@@ -8070,9 +8062,8 @@ msgstr ""
 "[indent]—   到目前為止，在整個遊戲中至少吞噬了 [b]20[/b] 個細胞。[/indent]\n"
 "[indent]—   到目前為止，在整個遊戲中至少消化了 [b]10[/b] 個細胞。[/indent]"
 
-#, fuzzy
 msgid "WIKI_LYSOSOME_SCIENTIFIC_BACKGROUND"
-msgstr "待定"
+msgstr "[color=#3796e1][url=https://en.wikipedia.org/wiki/Lysosome]溶酶體[/url][/color]存在於幾乎所有現實世界的動物細胞中，其主要功能是將蛋白質、脂質與多醣分解成各自的組成成分。它們可以透過胞吞作用從細胞外部獲取物質，也可以透過自噬從細胞內部獲取物質。"
 
 msgid "WIKI_LYSOSOME_STRATEGY"
 msgstr ""
@@ -8442,9 +8433,8 @@ msgstr ""
 "\n"
 "[indent]—   位於少於 [b]13[/b] [thrive:compound type=\"ammonia\"][/thrive:compound] 的區域中。[/indent]"
 
-#, fuzzy
 msgid "WIKI_NITROGENASE_SCIENTIFIC_BACKGROUND"
-msgstr "待定"
+msgstr "[color=#3796e1][url=https://en.wikipedia.org/wiki/Nitrogenase]固氮酶[/url][/color]是存在於某些真實世界細菌中的酶，它們將氮氣（N<sub>2</sub>）固化為氨（NH<sub>3</sub>）。這些固氮微生物在地球上所有其他生命的生存中發揮著至關重要的作用，因為氮是 DNA 與蛋白質的重要組成成分，但大多數生物無法直接利用其氣態形態。"
 
 msgid "WIKI_NITROGENASE_STRATEGY"
 msgstr ""

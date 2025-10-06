@@ -115,6 +115,10 @@ public partial class MicrobeWorldSimulation : WorldSimulationWithPhysics
     [AssignOnlyChildItemsOnDeserialize]
     public SpawnSystem SpawnSystem { get; private set; } = null!;
 
+    [JsonProperty]
+    [AssignOnlyChildItemsOnDeserialize]
+    public MicrobeTerrainSystem MicrobeTerrainSystem { get; private set; } = null!;
+
     [JsonIgnore]
     public ProcessSystem ProcessSystem { get; private set; } = null!;
 
@@ -322,7 +326,8 @@ public partial class MicrobeWorldSimulation : WorldSimulationWithPhysics
         // TODO: load time from save
         FluidCurrentsSystem = new FluidCurrentsSystem(EntitySystem, 0);
 
-        SpawnSystem = new SpawnSystem(this, EntitySystem);
+        MicrobeTerrainSystem = new MicrobeTerrainSystem(this, EntitySystem);
+        SpawnSystem = new SpawnSystem(this, EntitySystem, MicrobeTerrainSystem.IsPositionBlocked);
     }
 
     protected override void OnProcessFixedLogic(float delta)
@@ -378,6 +383,7 @@ public partial class MicrobeWorldSimulation : WorldSimulationWithPhysics
         countLimitedDespawnSystem.ReportPlayerPosition(playerPosition);
         soundEffectSystem.ReportPlayerPosition(playerPosition);
         SpawnSystem.ReportPlayerPosition(playerPosition);
+        MicrobeTerrainSystem.ReportPlayerPosition(playerPosition);
 
         // Report to the kind of external clouds system as this simplifies code using the simulation
         CloudSystem.ReportPlayerPosition(playerPosition);
@@ -473,6 +479,9 @@ public partial class MicrobeWorldSimulation : WorldSimulationWithPhysics
 
             if (SpawnSystem != null!)
                 SpawnSystem.Dispose();
+
+            if (MicrobeTerrainSystem != null!)
+                MicrobeTerrainSystem.Dispose();
 
             DisposeGenerated();
         }

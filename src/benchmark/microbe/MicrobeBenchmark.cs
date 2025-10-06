@@ -465,7 +465,7 @@ public partial class MicrobeBenchmark : BenchmarkBase
         var test = "test";
         var dummyPatch = new Patch(new LocalizedString(test), 1,
             SimulationParameters.Instance.GetBiome("aavolcanic_vent"), BiomeType.Vents,
-            new PatchRegion(1, "test", PatchRegion.RegionType.Ocean, new Vector2(0, 0)));
+            new PatchRegion(1, "test", PatchRegion.RegionType.Ocean, new Vector2(0, 0)), 1);
 
         generatedSpecies.Clear();
 
